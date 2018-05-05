@@ -1,0 +1,9 @@
+{
+	"parent": "essence:block/grass",
+	"textures": {
+		"particle": "essence:blocks/corbaLog_top",
+		"bottom": "essence:blocks/corbaLog_top",
+		"top": "essence:blocks/corbaLog_top",
+		"side": "essence:blocks/corbaLog_side"
+	}
+}

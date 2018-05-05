@@ -1,0 +1,18 @@
+{
+	"parent": "builtin/generated",
+	"textures": {
+		"layer0": "essence:items/oceanPlasma"
+	},
+	"display": {
+		"thirdperson": {
+			"rotation": [ 0, 80, -90 ],
+			"translation": [ 0.25, 1.25, -2.5 ],
+			"scale": [ 1, 1, 1 ]
+		},
+		"firstperson": {
+			"rotation": [ 0, -135, 0 ],
+			"translation": [ 0, 4, 2 ],
+			"scale": [ 2.5, 2.5, 2.5 ]
+		}
+	}
+}

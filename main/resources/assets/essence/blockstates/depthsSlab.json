@@ -1,0 +1,5 @@
+{
+    "variants": {
+        "all": { "model": "essence:depthsSlab" }
+    }
+}

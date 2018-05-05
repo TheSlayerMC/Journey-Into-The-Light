@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "essence:cloudiaChest" },
+        "facing=south": { "model": "essence:cloudiaChest", "y": 180 },
+        "facing=west":  { "model": "essence:cloudiaChest", "y": 270 },
+        "facing=east":  { "model": "essence:cloudiaChest", "y": 90 }
+    }
+}

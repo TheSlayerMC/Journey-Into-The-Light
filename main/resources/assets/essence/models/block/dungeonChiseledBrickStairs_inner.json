@@ -1,0 +1,8 @@
+{
+	"parent": "block/stairs",
+	"textures": {
+		"bottom": "essence:blocks/dungeonChiseledBrick",
+		"top": "essence:blocks/dungeonChiseledBrick",
+		"side": "essence:blocks/dungeonChiseledBrick"
+	}
+}

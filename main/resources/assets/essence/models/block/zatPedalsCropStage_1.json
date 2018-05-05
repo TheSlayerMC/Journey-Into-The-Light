@@ -1,0 +1,6 @@
+{
+	"parent": "block/crop",
+	"textures": {
+		"crop": "essence:blocks/zatPedalsCrop_1"
+	}
+}

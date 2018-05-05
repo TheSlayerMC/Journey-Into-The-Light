@@ -1,0 +1,7 @@
+{
+    "parent": "block/pane_nw",
+    "textures": {
+        "edge": "essence:blocks/darklyGate",
+        "pane": "essence:blocks/darklyGate"
+    }
+}

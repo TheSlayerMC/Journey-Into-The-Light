@@ -1,0 +1,9 @@
+{
+	"parent": "essence:block/grass",
+	"textures": {
+		"particle": "essence:blocks/godDirt",
+		"bottom": "essence:blocks/godDirt",
+		"top": "essence:blocks/godGrass_top",
+		"side": "essence:blocks/godGrass_side"
+	}
+}

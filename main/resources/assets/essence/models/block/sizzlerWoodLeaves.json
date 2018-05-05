@@ -1,0 +1,9 @@
+{
+	"parent": "essence:block/grass",
+	"textures": {
+		"particle": "essence:blocks/sizzlerWoodLeaves_top",
+		"bottom": "essence:blocks/sizzlerWoodLeaves_bottom",
+		"top": "essence:blocks/sizzlerWoodLeaves_top",
+		"side": "essence:blocks/sizzlerWoodLeaves_side"
+	}
+}

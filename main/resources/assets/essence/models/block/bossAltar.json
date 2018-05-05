@@ -1,0 +1,9 @@
+{
+    "parent": "essence:block/grass",
+    "textures": {
+        "particle": "essence:blocks/bossAltar_top",
+        "bottom": "essence:blocks/bossAltar_top",
+        "top": "essence:blocks/bossAltar_top",
+        "side": "essence:blocks/bossAltar_side"
+    }
+}

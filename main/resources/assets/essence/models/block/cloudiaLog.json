@@ -1,0 +1,9 @@
+{
+	"parent": "essence:block/grass",
+	"textures": {
+		"particle": "essence:blocks/cloudiaLog_top",
+		"bottom": "essence:blocks/cloudiaLog_top",
+		"top": "essence:blocks/cloudiaLog_top",
+		"side": "essence:blocks/cloudiaLog_side"
+	}
+}

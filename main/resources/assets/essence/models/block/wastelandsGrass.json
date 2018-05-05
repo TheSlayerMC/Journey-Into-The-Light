@@ -1,0 +1,9 @@
+{
+	"parent": "essence:block/grass",
+	"textures": {
+		"particle": "essence:blocks/wastelandsStone",
+		"bottom": "essence:blocks/wastelandsStone",
+		"top": "essence:blocks/wastelandsGrass_top",
+		"side": "essence:blocks/wastelandsGrass_side"
+	}
+}

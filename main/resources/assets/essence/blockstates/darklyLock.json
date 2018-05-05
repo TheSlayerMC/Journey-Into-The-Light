@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "essence:darklyLock" },
+        "facing=south": { "model": "essence:darklyLock", "y": 180 },
+        "facing=west":  { "model": "essence:darklyLock", "y": 270 },
+        "facing=east":  { "model": "essence:darklyLock", "y": 90 }
+    }
+}

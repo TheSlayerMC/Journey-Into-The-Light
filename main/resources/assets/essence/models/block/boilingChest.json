@@ -1,0 +1,8 @@
+{
+    "parent": "block/orientable",
+    "textures": {
+        "top": "essence:blocks/boilChest_top",
+        "front": "essence:blocks/boilChest_front",
+        "side": "essence:blocks/boilChest_side"
+    }
+}

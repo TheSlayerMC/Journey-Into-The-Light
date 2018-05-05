@@ -1,0 +1,8 @@
+{
+    "parent": "block/half_slab",
+    "textures": {
+        "bottom": "essence:blocks/eucaPlank",
+        "top": "essence:blocks/eucaPlank",
+        "side": "essence:blocks/eucaPlank"
+    }
+}

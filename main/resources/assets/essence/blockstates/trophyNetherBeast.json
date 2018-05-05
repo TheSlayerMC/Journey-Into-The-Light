@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "essence:trophyNetherBeast" },
+        "facing=south": { "model": "essence:trophyNetherBeast", "y": 180 },
+        "facing=west":  { "model": "essence:trophyNetherBeast", "y": 270 },
+        "facing=east":  { "model": "essence:trophyNetherBeast", "y": 90 }
+    }
+}

@@ -1,0 +1,8 @@
+{
+	"parent": "block/stairs",
+	"textures": {
+		"bottom": "essence:blocks/dungeonBrick",
+		"top": "essence:blocks/dungeonBrick",
+		"side": "essence:blocks/dungeonBrick"
+	}
+}

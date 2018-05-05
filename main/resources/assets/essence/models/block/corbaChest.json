@@ -1,0 +1,8 @@
+{
+    "parent": "block/orientable",
+    "textures": {
+        "top": "essence:blocks/corbaChest_top",
+        "front": "essence:blocks/corbaChest_front",
+        "side": "essence:blocks/corbaChest_side"
+    }
+}

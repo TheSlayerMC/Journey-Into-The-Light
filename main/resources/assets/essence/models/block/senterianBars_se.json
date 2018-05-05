@@ -1,0 +1,7 @@
+{
+    "parent": "block/pane_se",
+    "textures": {
+        "edge": "essence:blocks/senterianBars",
+        "pane": "essence:blocks/senterianBars"
+    }
+}

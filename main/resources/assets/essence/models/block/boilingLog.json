@@ -1,0 +1,9 @@
+{
+	"parent": "essence:block/grass",
+	"textures": {
+		"particle": "essence:blocks/boilingLog_top",
+		"bottom": "essence:blocks/boilingLog_top",
+		"top": "essence:blocks/boilingLog_top",
+		"side": "essence:blocks/boilingLog_side"
+	}
+}

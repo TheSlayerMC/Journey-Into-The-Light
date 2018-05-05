@@ -1,0 +1,11 @@
+{
+	"variants": {
+		"age=0": { "model": "essence:spineBerryCropStage_0" },
+		"age=1": { "model": "essence:spineBerryCropStage_1" },
+		"age=2": { "model": "essence:spineBerryCropStage_2" },
+		"age=3": { "model": "essence:spineBerryCropStage_3" },
+		"age=4": { "model": "essence:spineBerryCropStage_4" },
+		"age=5": { "model": "essence:spineBerryCropStage_5" },
+		"age=6": { "model": "essence:spineBerryCropStage_6" }
+	}
+}

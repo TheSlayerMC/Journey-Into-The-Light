@@ -1,0 +1,9 @@
+{
+	"parent": "essence:block/grass",
+	"textures": {
+		"particle": "essence:blocks/frozenBark_top",
+		"bottom": "essence:blocks/frozenBark_top",
+		"top": "essence:blocks/frozenBark_top",
+		"side": "essence:blocks/frozenBark_side"
+	}
+}

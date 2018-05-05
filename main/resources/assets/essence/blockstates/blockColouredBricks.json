@@ -1,0 +1,17 @@
+{
+    "variants": {
+        "variant=black": { "model": "essence:blackColouredBrick" },
+        "variant=blue": { "model": "essence:blueColouredBrick" },
+        "variant=brown": { "model": "essence:brownColouredBrick" },
+		"variant=cyan": { "model": "essence:cyanColouredBrick" },
+		"variant=gray": { "model": "essence:grayColouredBrick" },
+		"variant=lime": { "model": "essence:limeColouredBrick" },
+		"variant=magenta": { "model": "essence:magentaColouredBrick" },
+		"variant=orange": { "model": "essence:orangeColouredBrick" },
+		"variant=pink": { "model": "essence:pinkColouredBrick" },
+		"variant=purple": { "model": "essence:purpleColouredBrick" },
+	    "variant=red": { "model": "essence:redColouredBrick" },
+		"variant=white": { "model": "essence:whiteColouredBrick" },
+		"variant=yellow": { "model": "essence:yellowColouredBrick" }
+    }
+}

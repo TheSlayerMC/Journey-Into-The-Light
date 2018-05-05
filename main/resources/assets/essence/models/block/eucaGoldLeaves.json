@@ -1,0 +1,9 @@
+{
+	"parent": "essence:block/grass",
+	"textures": {
+		"particle": "essence:blocks/eucaGoldLeaves_side",
+		"bottom": "essence:blocks/eucaGoldLeaves_bottom",
+		"top": "essence:blocks/eucaGoldLeaves_top",
+		"side": "essence:blocks/eucaGoldLeaves_side"
+	}
+}

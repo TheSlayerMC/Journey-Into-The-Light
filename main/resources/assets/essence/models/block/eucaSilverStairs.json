@@ -1,0 +1,8 @@
+{
+	"parent": "block/stairs",
+	"textures": {
+		"bottom": "essence:blocks/silverEucaPlank",
+		"top": "essence:blocks/silverEucaPlank",
+		"side": "essence:blocks/silverEucaPlank"
+	}
+}

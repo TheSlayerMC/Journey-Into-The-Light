@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "axis=z": { "model": "essence:cloudiaPortal_ew" },
+        "axis=x": { "model": "essence:cloudiaPortal_ns" }
+    }
+}

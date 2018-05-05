@@ -1,0 +1,8 @@
+{
+    "parent": "block/orientable",
+    "textures": {
+        "top": "essence:blocks/eucaChest_top",
+        "front": "essence:blocks/eucaChest_front",
+        "side": "essence:blocks/eucaChest_side"
+    }
+}

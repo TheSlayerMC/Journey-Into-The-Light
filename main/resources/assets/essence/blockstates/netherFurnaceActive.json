@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "essence:netherFurnaceActive" },
+        "facing=south": { "model": "essence:netherFurnaceActive", "y": 180 },
+        "facing=west":  { "model": "essence:netherFurnaceActive", "y": 270 },
+        "facing=east":  { "model": "essence:netherFurnaceActive", "y": 90 }
+    }
+}

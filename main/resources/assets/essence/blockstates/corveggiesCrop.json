@@ -1,0 +1,7 @@
+{
+	"variants": {
+		"age=0": { "model": "essence:corveggiesCropStage_0" },
+		"age=1": { "model": "essence:corveggiesCropStage_1" },
+		"age=2": { "model": "essence:corveggiesCropStage_2" }
+	}
+}

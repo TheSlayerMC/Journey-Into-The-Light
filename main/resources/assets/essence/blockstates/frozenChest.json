@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "essence:frozenChest" },
+        "facing=south": { "model": "essence:frozenChest", "y": 180 },
+        "facing=west":  { "model": "essence:frozenChest", "y": 270 },
+        "facing=east":  { "model": "essence:frozenChest", "y": 90 }
+    }
+}

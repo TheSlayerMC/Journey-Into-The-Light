@@ -1,0 +1,8 @@
+{
+	"parent": "block/stairs",
+	"textures": {
+		"bottom": "essence:blocks/hotBrick",
+		"top": "essence:blocks/hotBrick",
+		"side": "essence:blocks/hotBrick"
+	}
+}

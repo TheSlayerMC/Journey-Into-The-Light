@@ -1,0 +1,11 @@
+{
+	"variants": {
+		"age=0": { "model": "essence:glowshroomCropStage_0" },
+		"age=1": { "model": "essence:glowshroomCropStage_1" },
+		"age=2": { "model": "essence:glowshroomCropStage_2" },
+		"age=3": { "model": "essence:glowshroomCropStage_3" },
+		"age=4": { "model": "essence:glowshroomCropStage_4" },
+		"age=5": { "model": "essence:glowshroomCropStage_5" },
+		"age=6": { "model": "essence:glowshroomCropStage_6" }
+	}
+}

@@ -1,0 +1,9 @@
+{
+	"parent": "essence:block/grass",
+	"textures": {
+		"particle": "essence:blocks/igniter_side",
+		"bottom": "blocks/furnace_bottom",
+		"top": "essence:blocks/igniter_top_on",
+		"side": "essence:blocks/igniter_side"
+	}
+}

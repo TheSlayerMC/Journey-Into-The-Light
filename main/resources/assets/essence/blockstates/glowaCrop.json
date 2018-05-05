@@ -1,0 +1,8 @@
+{
+	"variants": {
+		"age=0": { "model": "essence:glowaCropStage_0" },
+		"age=1": { "model": "essence:glowaCropStage_1" },
+		"age=2": { "model": "essence:glowaCropStage_2" },
+		"age=3": { "model": "essence:glowaCropStage_3" }
+	}
+}

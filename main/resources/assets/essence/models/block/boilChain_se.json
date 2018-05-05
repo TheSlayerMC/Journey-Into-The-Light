@@ -1,0 +1,7 @@
+{
+    "parent": "block/pane_se",
+    "textures": {
+        "edge": "essence:blocks/boilChain",
+        "pane": "essence:blocks/boilChain"
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "essence:trophyEudor" },
+        "facing=south": { "model": "essence:trophyEudor", "y": 180 },
+        "facing=west":  { "model": "essence:trophyEudor", "y": 270 },
+        "facing=east":  { "model": "essence:trophyEudor", "y": 90 }
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "essence:depthsChest" },
+        "facing=south": { "model": "essence:depthsChest", "y": 180 },
+        "facing=west":  { "model": "essence:depthsChest", "y": 270 },
+        "facing=east":  { "model": "essence:depthsChest", "y": 90 }
+    }
+}

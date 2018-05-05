@@ -1,0 +1,11 @@
+{
+	"variants": {
+		"age=0": { "model": "essence:zatPedalsCropStage_0" },
+		"age=1": { "model": "essence:zatPedalsCropStage_1" },
+		"age=2": { "model": "essence:zatPedalsCropStage_2" },
+		"age=3": { "model": "essence:zatPedalsCropStage_3" },
+		"age=4": { "model": "essence:zatPedalsCropStage_4" },
+		"age=5": { "model": "essence:zatPedalsCropStage_5" },
+		"age=6": { "model": "essence:zatPedalsCropStage_6" }
+	}
+}

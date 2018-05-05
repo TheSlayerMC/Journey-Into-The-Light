@@ -1,0 +1,7 @@
+{
+    "parent": "block/pane_sew",
+    "textures": {
+        "edge": "essence:blocks/boilingBars",
+        "pane": "essence:blocks/boilingBars"
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "variants": {
+        "east=false,north=false,south=false,west=false": { "model": "essence:dungeonChiseledBrickFencePost" },
+        "east=false,north=true,south=false,west=false": { "model": "essence:dungeonChiseledBrickFence_n", "uvlock": true },
+        "east=true,north=false,south=false,west=false": { "model": "essence:dungeonChiseledBrickFence_n", "y": 90, "uvlock": true },
+        "east=false,north=false,south=true,west=false": { "model": "essence:dungeonChiseledBrickFence_n", "y": 180, "uvlock": true },
+        "east=false,north=false,south=false,west=true": { "model": "essence:dungeonChiseledBrickFence_n", "y": 270, "uvlock": true },
+        "east=true,north=true,south=false,west=false": { "model": "essence:dungeonChiseledBrickFence_ne", "uvlock": true },
+        "east=true,north=false,south=true,west=false": { "model": "essence:dungeonChiseledBrickFence_ne", "y": 90, "uvlock": true },
+        "east=false,north=false,south=true,west=true": { "model": "essence:dungeonChiseledBrickFence_ne", "y": 180, "uvlock": true },
+        "east=false,north=true,south=false,west=true": { "model": "essence:dungeonChiseledBrickFence_ne", "y": 270, "uvlock": true },
+        "east=false,north=true,south=true,west=false": { "model": "essence:dungeonChiseledBrickFence_ns", "uvlock": true },
+        "east=true,north=false,south=false,west=true": { "model": "essence:dungeonChiseledBrickFence_ns", "y": 90, "uvlock": true },
+        "east=true,north=true,south=true,west=false": { "model": "essence:dungeonChiseledBrickFence_nse", "uvlock": true },
+        "east=true,north=false,south=true,west=true": { "model": "essence:dungeonChiseledBrickFence_nse", "y": 90, "uvlock": true },
+        "east=false,north=true,south=true,west=true": { "model": "essence:dungeonChiseledBrickFence_nse", "y": 180, "uvlock": true },
+        "east=true,north=true,south=false,west=true": { "model": "essence:dungeonChiseledBrickFence_nse", "y": 270, "uvlock": true },
+        "east=true,north=true,south=true,west=true": { "model": "essence:dungeonChiseledBrickFence_nsew", "uvlock": true }
+	}
+}

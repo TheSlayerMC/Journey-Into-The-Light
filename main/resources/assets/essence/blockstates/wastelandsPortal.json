@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "axis=z": { "model": "essence:wastelandsPortal_ew" },
+        "axis=x": { "model": "essence:wastelandsPortal_ns" }
+    }
+}

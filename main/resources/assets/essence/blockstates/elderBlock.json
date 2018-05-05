@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "essence:elderBlock" },
+        "facing=south": { "model": "essence:elderBlock", "y": 180 },
+        "facing=west":  { "model": "essence:elderBlock", "y": 270 },
+        "facing=east":  { "model": "essence:elderBlock", "y": 90 }
+    }
+}

@@ -1,0 +1,12 @@
+{
+	"variants": {
+		"age=0": { "model": "essence:tomatoCropStage_0" },
+		"age=1": { "model": "essence:tomatoCropStage_1" },
+		"age=2": { "model": "essence:tomatoCropStage_2" },
+		"age=3": { "model": "essence:tomatoCropStage_3" },
+		"age=4": { "model": "essence:tomatoCropStage_4" },
+		"age=5": { "model": "essence:tomatoCropStage_5" },
+		"age=6": { "model": "essence:tomatoCropStage_6" },
+		"age=7": { "model": "essence:tomatoCropStage_7" }
+	}
+}

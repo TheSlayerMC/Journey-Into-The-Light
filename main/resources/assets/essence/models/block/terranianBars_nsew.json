@@ -1,0 +1,7 @@
+{
+    "parent": "block/pane_nsew",
+    "textures": {
+        "edge": "essence:blocks/terranianBars",
+        "pane": "essence:blocks/terranianBars"
+    }
+}

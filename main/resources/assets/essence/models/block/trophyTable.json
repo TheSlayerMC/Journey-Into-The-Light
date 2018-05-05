@@ -1,0 +1,9 @@
+{
+	"parent": "essence:block/grass",
+	"textures": {
+		"particle": "essence:blocks/trophyTable_bottom",
+		"bottom": "essence:blocks/trophyTable_bottom",
+		"top": "essence:blocks/trophyTable_top",
+		"side": "essence:blocks/trophyTable_side"
+	}
+}
