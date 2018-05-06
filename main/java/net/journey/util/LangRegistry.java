@@ -12,7 +12,7 @@ public class LangRegistry {
 
 	public static LangRegistry instance = new LangRegistry();
 
-	public String location = "C:/Users/Brock Kerley/Desktop/";
+	public String location = System.getProperty("user.home") + "/Desktop/";
 	private BufferedWriter writer;
 	public static ArrayList<String> 
 		blockUnloc = new ArrayList<String>(), 
@@ -20,9 +20,7 @@ public class LangRegistry {
 		itemUnloc = new ArrayList<String>(), 
 		itemFinal = new ArrayList<String>(), 
 		fileText = new ArrayList<String>();
-	public static String[] brickNames = {"Black", "Blue", "Brown", "Cyan", "Gray", "Lime", "Magenta", "Orange", "Pink", "Purple", "Red", "White", "Yellow"};
-	public static String[] brickTextures = {"black", "blue", "brown", "cyan", "gray", "lime", "magenta", "orange", "pink", "purple", "red", "white", "yellow"};
-
+	
 	public static ArrayList<String> 
 		mobUnloc = new ArrayList<String>(), 
 		mobFinal = new ArrayList<String>(), 
@@ -61,9 +59,6 @@ public class LangRegistry {
 		writeToFile("itemGroup.journey.machineBlocks=Journey into the Light: Machine Blocks");
 		writeToFile("itemGroup.journey.portalBlocks=Journey into the Light: Portal Blocks");
 		writeToFile("itemGroup.journey.hammers=Journey into the Light: Hammers");
-
-		for(int j = 0; j < 13; j++) writeToFile("tile." + brickTextures[j] + "ColouredBricks.name=" + brickNames[j] + " Coloured Brick");
-		for(int j = 0; j < 13; j++) writeToFile("tile." + brickTextures[j] + "MiniColouredBricks.name=" + brickNames[j] + " Coloured Mini Brick");
 	}
 	
 	public void achievements() {

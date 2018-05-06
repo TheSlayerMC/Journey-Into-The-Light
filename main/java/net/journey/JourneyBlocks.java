@@ -299,7 +299,7 @@ public class JourneyBlocks {
 	public static final BlockTerraniaPortal terraniaPortal = new BlockTerraniaPortal("terraniaPortal");
 	public static final Block terraniaPortalFrame = new BlockMod("terraniaPortalFrame", "Terrania Portal Frame", 3.0F);
 	
-	public static final BlockSenterianPortal senterianPortal = (BlockSenterianPortal)new BlockSenterianPortal(EnumMaterialTypes.METAL_SOUND, "senterianPortal", "senterianPortal", 1000000F, JourneyTabs.portalBlocks).setCreativeTab(null);
+	public static final BlockSenterianPortal senterianPortal = (BlockSenterianPortal)new BlockSenterianPortal("senterianPortal", "senterianPortal").setCreativeTab(null);
 	public static final Block senterianPortalFrame = new BlockSenterianPortalFrame("senterianPortalFrame", "Senterian Portal Frame").setCreativeTab(null);
 	//public static final BlockWastelandsPortal wastelandsPortal = (BlockWastelandsPortal)new BlockWastelandsPortal("wastelandsPortal");
 	//public static final Block wastelandsPortalFrame = new BlockMod("wastelandsPortalFrame");

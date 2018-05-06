@@ -30,8 +30,8 @@ public class BarTickHandler {
 	public static boolean regenDark, regenEssence, regenPower;
 
 	@SubscribeEvent
-	public void ongetEntity()Constructing(EntityConstructing event) {
-		if(event.getgetEntity()() instanceof EntityPlayer && DarkEnergyBar.getProperties((EntityPlayer)event.getEntity()) == null)
+	public void ongetEntityConstructing(EntityConstructing event) {
+		/*if(event.getgetEntity()() instanceof EntityPlayer && DarkEnergyBar.getProperties((EntityPlayer)event.getEntity()) == null)
 			DarkEnergyBar.addProperties((EntityPlayer)event.getEntity());
 		if(event.getEntity() instanceof EntityPlayer && event.getEntity().getExtendedProperties(DarkEnergyBar.PROP) == null)
 			event.getEntity().registerExtendedProperties(DarkEnergyBar.PROP, new DarkEnergyBar((EntityPlayer)event.getEntity()));
@@ -44,7 +44,7 @@ public class BarTickHandler {
 		if(event.getEntity() instanceof EntityPlayer && PowerBar.getProperties((EntityPlayer) event.getEntity()) == null)
 			PowerBar.addProperties((EntityPlayer)event.getEntity());
 		if(event.getEntity() instanceof EntityPlayer && event.getEntity().getExtendedProperties(PowerBar.PROP) == null)
-			event.getEntity().registerExtendedProperties(PowerBar.PROP, new PowerBar((EntityPlayer)event.getEntity()));
+			event.getEntity().registerExtendedProperties(PowerBar.PROP, new PowerBar((EntityPlayer)event.getEntity()));*/
 	}
 
 	@SubscribeEvent

@@ -40,7 +40,7 @@ public class BossTickHandler {
 		if(EssenceBossStatus.statusBarTime > 0 && mc.currentScreen == null) {
 			EssenceBossStatus.statusBarTime--;
 			GuiIngame gig = mc.ingameGUI;
-			FontRenderer fontrenderer = this.mc.fontRendererObj;
+			FontRenderer fontrenderer = this.mc.fontRenderer;
 			ScaledResolution scaledresolution = new ScaledResolution(mc);
 			int i = scaledresolution.getScaledWidth();
 			int barLength = 182;

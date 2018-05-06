@@ -10,6 +10,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
@@ -58,7 +60,7 @@ public class BlockModFlower extends BlockMod implements IPlantable {
 
 	@Override
 	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
-		if(damageWhenContact) entityIn.attackEntityFrom(DamageSource.cactus, 1.0F);
+		if(damageWhenContact) entityIn.attackEntityFrom(DamageSource.CACTUS, 1.0F);
 	}
 
 	@Override
@@ -81,7 +83,7 @@ public class BlockModFlower extends BlockMod implements IPlantable {
 		if(!this.canBlockStay(w, pos, true)) {
 			//if(this != EssenceBlocks.eucaTallGrass)
 				this.dropBlockAsItem(w, pos, s, 0);
-			w.setBlockState(pos, Blocks.air.getDefaultState(), 3);
+			w.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
 		}
 	}
 

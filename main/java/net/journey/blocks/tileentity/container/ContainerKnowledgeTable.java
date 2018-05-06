@@ -29,7 +29,7 @@ public class ContainerKnowledgeTable extends Container {
 		if(!world.isRemote) {
 			ItemStack itemstack = this.tableInventory.removeStackFromSlot(0);
 			if (itemstack != null) {
-				playerIn.dropPlayerItemWithRandomChoice(itemstack, false);
+				playerIn.dropItem(itemstack, false);
 			}
 		}
 	}

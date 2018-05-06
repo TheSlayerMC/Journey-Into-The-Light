@@ -1,31 +1,32 @@
-package net.journey.client.render;
+package net.journey.client.render.mob;
+
+import org.lwjgl.opengl.GL11;
 
 import net.journey.util.Config;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
 import net.slayer.api.SlayerAPI.Colour;
 
-import org.lwjgl.opengl.GL11;
-
-public class RenderModMob<T> extends RenderLiving {
+public class RenderModBiped<T extends EntityLiving> extends RenderBiped<T> {
 
 	private ResourceLocation texture;
 
-	public RenderModMob(ModelBase model, float shadow, ResourceLocation tex) {
+	public RenderModBiped(ModelBiped model, float shadow, ResourceLocation tex) {
 		super(Minecraft.getMinecraft().getRenderManager(), model, shadow);
 		texture = tex;
 	}
 
-	public RenderModMob(ModelBase model, ResourceLocation tex) {
+	public RenderModBiped(ModelBiped model, ResourceLocation tex) {
 		this(model, 0.5F, tex);
 	}
 
@@ -37,7 +38,7 @@ public class RenderModMob<T> extends RenderLiving {
 				renderHealth(e, Colour.GREEN + "Health: " + Colour.AQUA + (int)e.getHealth() + "/" + (int)e.getMaxHealth(), x, y, z, Config.entityHealthDistance);
 			}
 		}
-		super.doRender(entity, x, y, z, f, partialTicks);
+		super.doRender((T) entity, x, y, z, f, partialTicks);
 	}
 
 	public void renderHealth(EntityLivingBase e, String s, double x, double y, double z, int distance) {
@@ -82,7 +83,7 @@ public class RenderModMob<T> extends RenderLiving {
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(Entity var1) {
-		return texture;
-	}
+	protected ResourceLocation getEntityTexture(T entity)  {
+        return texture;
+    }
 }

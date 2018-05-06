@@ -1,6 +1,7 @@
 package net.journey.dimension.corba.gen.maze;
 
 import net.minecraft.block.Block;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class MazeAddition {

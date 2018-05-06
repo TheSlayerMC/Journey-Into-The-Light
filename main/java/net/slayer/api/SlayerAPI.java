@@ -328,6 +328,14 @@ public class SlayerAPI {
 		return Item.getItemFromBlock(block);
 	}
 	
+	public static ItemStack toItemStack(Block block){
+		return new ItemStack(Item.getItemFromBlock(block));
+	}
+	
+	public static ItemStack toItemStack(Item item){
+		return new ItemStack(item);
+	}
+	
 	public static boolean giveItemStackToPlayer(EntityPlayer player, Integer count, ItemStack itemstack) {
 		if (player.world.isRemote) {
 			boolean boolAddedToInventory = true;

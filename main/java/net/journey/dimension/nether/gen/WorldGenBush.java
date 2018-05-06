@@ -7,6 +7,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockPumpkin;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.slayer.api.block.BlockModBush;
@@ -21,10 +22,10 @@ public class WorldGenBush extends WorldGenerator {
 		this.bush = bush;
 		generate(w, rand, pos);
 	}
-	
+
 	@Override
-    public boolean generate(World worldIn, Random rand, BlockPos position) {
-        for (int i = 0; i < 64; ++i) {
+	public boolean generate(World worldIn, Random rand, BlockPos position) {
+		for (int i = 0; i < 64; ++i) {
             BlockPos blockpos = position.add(
             		rand.nextInt(8) 
             		- rand.nextInt(8), 
@@ -40,5 +41,5 @@ public class WorldGenBush extends WorldGenerator {
             }
         }
         return true;
-    }
+	}
 }
