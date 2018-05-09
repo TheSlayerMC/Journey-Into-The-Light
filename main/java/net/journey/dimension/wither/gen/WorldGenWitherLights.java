@@ -5,6 +5,7 @@ import java.util.Random;
 import net.journey.JourneyBlocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
@@ -21,7 +22,7 @@ public class WorldGenWitherLights extends WorldGenerator {
 			w.setBlockState(pos, JourneyBlocks.withanLight.getDefaultState(), 2);
 			for(int i = 0; i < 1500; i++) {
 				BlockPos blockpos1 = pos.add(r.nextInt(8) - r.nextInt(8), -r.nextInt(12), r.nextInt(8) - r.nextInt(8));
-				if(w.getBlockState(blockpos1).getBlock().getMaterial() == Material.air) {
+				if(w.getBlockState(blockpos1).getBlock().getMaterial(null) == Material.AIR) {
 					int j = 0;
 					EnumFacing[] aenumfacing = EnumFacing.values();
 					int k = aenumfacing.length;
@@ -50,7 +51,7 @@ public class WorldGenWitherLights extends WorldGenerator {
 				w.setBlockState(pos, JourneyBlocks.withanLight.getDefaultState(), 2);
 				for(int i = 0; i < 1500; ++i) {
 					BlockPos blockpos1 = pos.add(r.nextInt(8) - r.nextInt(8), r.nextInt(12), r.nextInt(8) - r.nextInt(8));
-					if(w.getBlockState(blockpos1).getBlock().getMaterial() == Material.air) {
+					if(w.getBlockState(blockpos1).getBlock().getMaterial(null) == Material.AIR) {
 						int j = 0;
 						EnumFacing[] aenumfacing = EnumFacing.values();
 						int k = aenumfacing.length;

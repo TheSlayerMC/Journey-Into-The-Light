@@ -4,30 +4,26 @@ import java.util.List;
 import java.util.Random;
 
 import net.journey.JourneyBlocks;
-import net.journey.JourneyCrops;
-import net.journey.dimension.WorldGenMelon;
 import net.journey.dimension.cloudia.gen.WorldGenCloudiaLamp;
-import net.journey.dimension.cloudia.gen.WorldGenCloudiaLand;
 import net.journey.dimension.cloudia.gen.WorldGenHut;
 import net.journey.dimension.cloudia.gen.WorldGenIsland;
 import net.journey.dimension.cloudia.gen.WorldGenStarlightCastle;
 import net.journey.dimension.cloudia.gen.WorldGenStarlightTree;
 import net.journey.dimension.cloudia.gen.WorldGenStarlightVillage;
 import net.journey.dimension.cloudia.gen.WorldGenTower;
-import net.journey.dimension.nether.gen.WorldGenBush;
 import net.journey.dimension.overworld.gen.WorldGenModFlower;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.IProgressUpdate;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.minecraftforge.common.BiomeDictionary;
-import net.minecraftforge.common.BiomeDictionary.Type;
 
 public class ChunkProviderCloudia implements IChunkProvider {
 
@@ -143,17 +139,17 @@ public class ChunkProviderCloudia implements IChunkProvider {
 	public boolean isBlockTop(int x, int y, int z, Block grass, World w) {
 		return 
 				w.getBlockState(new BlockPos(x, y - 1, z)) == grass.getDefaultState() && 
-				w.getBlockState(new BlockPos(x, y + 1, z)) == Blocks.air.getDefaultState() && 
-				w.getBlockState(new BlockPos(x, y + 2, z)) == Blocks.air.getDefaultState() && 
-				w.getBlockState(new BlockPos(x, y + 3, z)) == Blocks.air.getDefaultState() &&
-				w.getBlockState(new BlockPos(x, y + 4, z)) == Blocks.air.getDefaultState() && 
-				w.getBlockState(new BlockPos(x, y + 5, z)) == Blocks.air.getDefaultState() &&	
+				w.getBlockState(new BlockPos(x, y + 1, z)) == Blocks.AIR.getDefaultState() && 
+				w.getBlockState(new BlockPos(x, y + 2, z)) == Blocks.AIR.getDefaultState() && 
+				w.getBlockState(new BlockPos(x, y + 3, z)) == Blocks.AIR.getDefaultState() &&
+				w.getBlockState(new BlockPos(x, y + 4, z)) == Blocks.AIR.getDefaultState() && 
+				w.getBlockState(new BlockPos(x, y + 5, z)) == Blocks.AIR.getDefaultState() &&	
 				
-				w.getBlockState(new BlockPos(x, y + 1, z)) != Blocks.lava.getDefaultState() && 
-				w.getBlockState(new BlockPos(x, y + 2, z)) != Blocks.lava.getDefaultState() && 
-				w.getBlockState(new BlockPos(x, y + 3, z)) != Blocks.lava.getDefaultState() &&
-				w.getBlockState(new BlockPos(x, y + 4, z)) != Blocks.lava.getDefaultState() && 
-				w.getBlockState(new BlockPos(x, y + 5, z)) != Blocks.lava.getDefaultState();
+				w.getBlockState(new BlockPos(x, y + 1, z)) != Blocks.LAVA.getDefaultState() && 
+				w.getBlockState(new BlockPos(x, y + 2, z)) != Blocks.LAVA.getDefaultState() && 
+				w.getBlockState(new BlockPos(x, y + 3, z)) != Blocks.LAVA.getDefaultState() &&
+				w.getBlockState(new BlockPos(x, y + 4, z)) != Blocks.LAVA.getDefaultState() && 
+				w.getBlockState(new BlockPos(x, y + 5, z)) != Blocks.LAVA.getDefaultState();
 	}
 	
 	@Override

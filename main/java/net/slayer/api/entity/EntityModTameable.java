@@ -1,6 +1,15 @@
 package net.slayer.api.entity;
 
+import java.util.UUID;
+
+import javax.annotation.Nullable;
+
+import com.google.common.base.Optional;
+
 import net.journey.enums.EnumSounds;
+import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIFollowOwner;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
@@ -10,16 +19,30 @@ import net.minecraft.entity.ai.EntityAIMate;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAIOwnerHurtByTarget;
 import net.minecraft.entity.ai.EntityAIOwnerHurtTarget;
+import net.minecraft.entity.ai.EntityAISit;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.scoreboard.Team;
+import net.minecraft.server.management.PreYggdrasilConverter;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public abstract class EntityModTameable extends EntityTameable {
+
+	protected static final DataParameter<Byte> TAMED = EntityDataManager.<Byte>createKey(EntityModTameable.class, DataSerializers.BYTE);
+	protected static final DataParameter<Optional<UUID>> OWNER_UNIQUE_ID = EntityDataManager.<Optional<UUID>>createKey(EntityModTameable.class, DataSerializers.OPTIONAL_UNIQUE_ID);
+	protected EntityAISit aiSit;
 
 	public EntityModTameable(World w) {
 		super(w);
@@ -54,46 +77,194 @@ public abstract class EntityModTameable extends EntityTameable {
 		return setDeathSound().getNonPrefixedName();
 	}
 
-	protected void mountPlayer(EntityPlayer player){
-
+	@Override
+	protected void entityInit() {
+		super.entityInit();
+		this.dataManager.register(TAMED, Byte.valueOf((byte)0));
+		this.dataManager.register(OWNER_UNIQUE_ID, Optional.absent());
 	}
 
 	@Override
-	public void onLivingUpdate() {
-		super.onLivingUpdate();
+	public void writeEntityToNBT(NBTTagCompound compound) {
+		super.writeEntityToNBT(compound);
 
-		if(!this.world.isRemote && !this.hasPath() && this.onGround) {
-			this.world.setEntityState(this, (byte)8);
+		if (this.getOwnerId() == null) {
+			compound.setString("OwnerUUID", "");
+		} else {
+			compound.setString("OwnerUUID", this.getOwnerId().toString());
 		}
-		if(!this.world.isRemote && this.getAttackTarget() == null && this.isAngry()) {
-			this.setAngry(false);
+
+		compound.setBoolean("Sitting", this.isSitting());
+	}
+
+	@Override
+	public void readEntityFromNBT(NBTTagCompound compound) {
+		super.readEntityFromNBT(compound);
+		String s;
+
+		if (compound.hasKey("OwnerUUID", 8)) {
+			s = compound.getString("OwnerUUID");
+		} else {
+			String s1 = compound.getString("Owner");
+			s = PreYggdrasilConverter.convertMobOwnerIfNeeded(this.getServer(), s1);
+		}
+
+		if (!s.isEmpty()) {
+			try {
+				this.setOwnerId(UUID.fromString(s));
+				this.setTamed(true);
+			}
+			catch (Throwable var4) {
+				this.setTamed(false);
+			}
+		}
+
+		if (this.aiSit != null) {
+			this.aiSit.setSitting(compound.getBoolean("Sitting"));
+		}
+
+		this.setSitting(compound.getBoolean("Sitting"));
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void handleStatusUpdate(byte id) {
+		if (id == 7) {
+			this.playTameEffect(true);
+		}
+		else if (id == 6) {
+			this.playTameEffect(false);
+		} else {
+			super.handleStatusUpdate(id);
 		}
 	}
 
-	public void setAngry(boolean angry)
-	{
-		byte b0 = this.dataWatcher.getWatchableObjectByte(16);
+	@Override
+	public boolean isTamed() {
+		return (((Byte)this.dataManager.get(TAMED)).byteValue() & 4) != 0;
+	}
 
-		if (angry)
-		{
-			this.dataWatcher.updateObject(16, Byte.valueOf((byte)(b0 | 2)));
+	@Override
+	public void setTamed(boolean tamed) {
+		byte b0 = ((Byte)this.dataManager.get(TAMED)).byteValue();
+
+		if (tamed) {
+			this.dataManager.set(TAMED, Byte.valueOf((byte)(b0 | 4)));
+		} else {
+			this.dataManager.set(TAMED, Byte.valueOf((byte)(b0 & -5)));
 		}
-		else
-		{
-			this.dataWatcher.updateObject(16, Byte.valueOf((byte)(b0 & -3)));
+
+		this.setupTamedAI();
+	}
+
+	protected void setupTamedAI() { }
+
+	@Override
+	public boolean isSitting() {
+		return (((Byte)this.dataManager.get(TAMED)).byteValue() & 1) != 0;
+	}
+
+	@Override
+	public void setSitting(boolean sitting) {
+		byte b0 = ((Byte)this.dataManager.get(TAMED)).byteValue();
+
+		if (sitting) {
+			this.dataManager.set(TAMED, Byte.valueOf((byte)(b0 | 1)));
+		} else {
+			this.dataManager.set(TAMED, Byte.valueOf((byte)(b0 & -2)));
 		}
 	}
 
-	public boolean isAngry()
-	{
-		return (this.dataWatcher.getWatchableObjectByte(16) & 2) != 0;
+	@Override
+	@Nullable
+	public UUID getOwnerId() {
+		return (UUID)((Optional)this.dataManager.get(OWNER_UNIQUE_ID)).orNull();
+	}
+
+	@Override
+	public void setOwnerId(@Nullable UUID p_184754_1_) {
+		this.dataManager.set(OWNER_UNIQUE_ID, Optional.fromNullable(p_184754_1_));
+	}
+
+	@Override
+	public void setTamedBy(EntityPlayer player) {
+		this.setTamed(true);
+		this.setOwnerId(player.getUniqueID());
+
+		if (player instanceof EntityPlayerMP) {
+			CriteriaTriggers.TAME_ANIMAL.trigger((EntityPlayerMP)player, this);
+		}
+	}
+
+	@Override
+	@Nullable
+	public EntityLivingBase getOwner() {
+		try {
+			UUID uuid = this.getOwnerId();
+			return uuid == null ? null : this.world.getPlayerEntityByUUID(uuid);
+		}
+		catch (IllegalArgumentException var2) {
+			return null;
+		}
+	}
+
+	public boolean isOwner(EntityLivingBase entityIn) {
+		return entityIn == this.getOwner();
+	}
+
+	@Override    
+	public EntityAISit getAISit() {
+		return this.aiSit;
+	}
+
+	@Override
+	public boolean shouldAttackEntity(EntityLivingBase target, EntityLivingBase owner) {
+		return true;
+	}
+
+	@Override
+	public Team getTeam() {
+		if (this.isTamed()) {
+			EntityLivingBase entitylivingbase = this.getOwner();
+
+			if (entitylivingbase != null) {
+				return entitylivingbase.getTeam();
+			}
+		}
+
+		return super.getTeam();
+	}
+
+	@Override
+	public boolean isOnSameTeam(Entity entityIn) {
+		if (this.isTamed()) {
+			EntityLivingBase entitylivingbase = this.getOwner();
+
+			if (entityIn == entitylivingbase) {
+				return true;
+			}
+
+			if (entitylivingbase != null) {
+				return entitylivingbase.isOnSameTeam(entityIn);
+			}
+		}
+
+		return super.isOnSameTeam(entityIn);
+	}
+
+	@Override
+	public void onDeath(DamageSource cause) {
+		if (!this.world.isRemote && this.world.getGameRules().getBoolean("showDeathMessages") && this.getOwner() instanceof EntityPlayerMP) {
+			this.getOwner().sendMessage(this.getCombatTracker().getDeathMessage());
+		}
+		super.onDeath(cause);
 	}
 
 	protected void addBasicAI(){
 		this.tasks.addTask(1, new EntityAISwimming(this));
 		this.tasks.addTask(2, this.aiSit);
 		this.tasks.addTask(3, new EntityAILeapAtTarget(this, 0.4F));
-		this.tasks.addTask(4, new EntityAIAttackOnCollide(this, 1.0F, true));
+		//this.tasks.addTask(4, new EntityAIAttackOnCollide(this, 1.0F, true));
 		this.tasks.addTask(5, new EntityAIFollowOwner(this, 1.0F, 10.0F, 2.0F));
 		this.tasks.addTask(6, new EntityAIMate(this, 1.0F));
 		this.tasks.addTask(7, new EntityAIWander(this, 1.0F));
@@ -106,9 +277,8 @@ public abstract class EntityModTameable extends EntityTameable {
 	}
 
 	protected void addAttackingAI(){
-		this.tasks.addTask(5, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1.0F, false));
+		//this.tasks.addTask(5, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1.0F, false));
 		this.targetTasks.addTask(6, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
-
 	}
 
 	@Override

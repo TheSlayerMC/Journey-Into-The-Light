@@ -1,10 +1,7 @@
 package net.journey.event;
 
 import net.journey.JourneyItems;
-import net.journey.util.Helper;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
@@ -14,8 +11,6 @@ import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ArmorAbilityEvent{
 
@@ -249,7 +244,7 @@ public class ArmorAbilityEvent{
 
 	@SubscribeEvent
 	public void onJump(LivingJumpEvent event) {
-		if(event.entityLiving instanceof EntityPlayer) {
+		if(event.getEntityLiving() instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer) event.entityLiving;
 			ItemStack stackBoots = player.inventory.armorItemInSlot(0);
 			ItemStack stackLegs = player.inventory.armorItemInSlot(1);
@@ -324,8 +319,8 @@ public class ArmorAbilityEvent{
 
 	@SubscribeEvent
 	public void onLivingHurtEvent(LivingHurtEvent e) {
-		DamageSource s = e.source;
-		if(e.entity instanceof EntityPlayer){
+		DamageSource s = e.getSource();
+		if(e.getEntity() instanceof EntityPlayer){
 			EntityPlayer player = (EntityPlayer)e.entity;
 			ItemStack stackBoots = player.inventory.armorItemInSlot(0);
 			ItemStack stackLegs = player.inventory.armorItemInSlot(1);
@@ -341,9 +336,9 @@ public class ArmorAbilityEvent{
 			else helmet = null;
 		}
 
-		if(!(e.entity instanceof EntityPlayer)) {
+		if(!(e.getEntity() instanceof EntityPlayer)) {
 			if(helmet == JourneyItems.luniumHelmet && body == JourneyItems.luniumChest && legs == JourneyItems.luniumLegs && boots == JourneyItems.luniumBoots)
-				e.ammount += 4;
+				e.setAmount(e.getAmount() += 4);
 			
 			if(helmet == JourneyItems.bronzedHelmet && body == JourneyItems.bronzedChest && legs == JourneyItems.bronzedLegs && boots == JourneyItems.bronzedBoots)
 				e.ammount += 6;

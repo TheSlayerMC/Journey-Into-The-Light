@@ -64,9 +64,17 @@ public class SlayerAPI {
 			BETA = false;
 
 	public static void addRecipe(ItemStack i, Object... o) {
-		GameRegistry.addRecipe(i, o);
+		//GameRegistry.addRecipe(i, o);
 	}
-
+	
+	public static ToolMaterial addMeleeMaterial(int uses, float efficiency, float dam) {
+		return EnumHelper.addToolMaterial("tool", 3, uses, efficiency, dam, 30);
+	}
+	
+	public static ToolMaterial addAxeMaterial(int uses, int level, float efficiency, float dam, int enchant) {
+		return EnumHelper.addToolMaterial("tool", level, uses, efficiency, dam, enchant);
+	}
+	
 	@SideOnly(Side.CLIENT)
 	public static void scaleFont(FontRenderer f, String s, int x, int y, int color, double scale){
 		GL11.glPushMatrix();
@@ -79,7 +87,7 @@ public class SlayerAPI {
 	}
 
 	public static void addBucket(Fluid fluid, ItemStack modBucket) {
-		FluidContainerRegistry.registerFluidContainer(new FluidContainerData(FluidRegistry.getFluidStack(fluid.getName(), FluidContainerRegistry.BUCKET_VOLUME), modBucket, new ItemStack(Items.bucket)));
+		//FluidContainerRegistry.registerFluidContainer(new FluidContainerData(FluidRegistry.getFluidStack(fluid.getName(), FluidContainerRegistry.BUCKET_VOLUME), modBucket, new ItemStack(Items.bucket)));
 	}
 	
 	public static void addMapGen(Class c, String s){
@@ -96,9 +104,9 @@ public class SlayerAPI {
 	}
 
 	public static void registerCommand(ICommand o){
-		if (MinecraftServer.getServer().getCommandManager() instanceof ServerCommandManager) {
-			((CommandHandler)MinecraftServer.getServer().getCommandManager()).registerCommand(o);
-		}
+		//if (MinecraftServer.getServer().getCommandManager() instanceof ServerCommandManager) {
+		//	((CommandHandler)MinecraftServer.getServer().getCommandManager()).registerCommand(o);
+		//}
 	}
 
 	public static void registerEvent(Object o) {
@@ -181,7 +189,7 @@ public class SlayerAPI {
     }
 
     @SideOnly(Side.CLIENT)
-	public static void addChatMessageWithColour(EntityPlayer p, EnumChatFormatting colour, String str) {
+	public static void addChatMessageWithColour(EntityPlayer p, Chat colour, String str) {
 		ChatComponentText chat = new ChatComponentText(
 				SlayerAPI.Colour.YELLOW + "[" + 
 				SlayerAPI.Colour.GOLD + MOD_NAME + 
@@ -192,14 +200,14 @@ public class SlayerAPI {
 
 	@SideOnly(Side.CLIENT)
 	public static void addChatMessage(EntityPlayer p, String str) {
-		ChatComponentText ret = new ChatComponentText(str);
-		p.addChatMessage(ret);
+		//ChatComponentText ret = new ChatComponentText(str);
+		//p.addChatMessage(ret);
 	}
 	
 	@SideOnly(Side.CLIENT)
 	public static void addFormattedChatMessage(EntityPlayer p, String str) {
-		ChatComponentText ret = new ChatComponentText(I18n.format(str, new Object[0]));
-		p.addChatMessage(ret);
+		//ChatComponentText ret = new ChatComponentText(I18n.format(str, new Object[0]));
+		//p.addChatMessage(ret);
 	}
 
 	private static final String	SECTION_SIGN	= "\u00a7";

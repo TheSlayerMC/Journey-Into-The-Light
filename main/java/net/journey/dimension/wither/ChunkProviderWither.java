@@ -5,21 +5,6 @@ import java.util.List;
 import java.util.Random;
 
 import net.journey.JourneyBlocks;
-import net.journey.dimension.corba.gen.trees.WorldGenCorbaLargeTree;
-import net.journey.dimension.corba.gen.trees.WorldGenCorbaMediumTree;
-import net.journey.dimension.corba.gen.trees.WorldGenCorbaSmallTree;
-import net.journey.dimension.depths.gen.WorldGenDepthsLights;
-import net.journey.dimension.euca.gen.WorldGenSmeltery;
-import net.journey.dimension.frozen.gen.WorldGenFrozenTree;
-import net.journey.dimension.frozen.gen.WorldGenFrozenTree2;
-import net.journey.dimension.frozen.gen.WorldGenIceCrystal1;
-import net.journey.dimension.frozen.gen.WorldGenIceCrystal2;
-import net.journey.dimension.frozen.gen.WorldGenIceDungeon;
-import net.journey.dimension.frozen.gen.WorldGenIceTree;
-import net.journey.dimension.frozen.gen.WorldGenIceTree2;
-import net.journey.dimension.frozen.gen.WorldGenMerchantHouse;
-import net.journey.dimension.frozen.gen.WorldGenNewLamp;
-import net.journey.dimension.overworld.gen.WorldGenModFlower;
 import net.journey.dimension.wither.gen.WorldGenWitherLamp;
 import net.journey.dimension.wither.gen.WorldGenWitherLights;
 import net.journey.dimension.wither.gen.trees.WorldGenWithanTree1;
@@ -29,14 +14,16 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.IProgressUpdate;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
+import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.NoiseGeneratorPerlin;
-import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
 public class ChunkProviderWither implements IChunkProvider
@@ -166,14 +153,14 @@ public class ChunkProviderWither implements IChunkProvider
 		for(int i = 0; i<16; i++) {
 			for(int k = 0; k<16; k++) {
 				for(int j = 175; j>0; j--) {
-					if(cp.getBlockState(i, j, k)!=Blocks.air.getDefaultState()) {
+					if(cp.getBlockState(i, j, k)!=Blocks.AIR.getDefaultState()) {
 						top=j;
 						break;
 					}
 				}
 				for(int j = top-10; j>top-40; j--) {
 					if(cp.getBlockState(i, j, k)!=Blocks.bedrock.getDefaultState()) {
-						cp.setBlockState(i, j, k, Blocks.air.getDefaultState());
+						cp.setBlockState(i, j, k, Blocks.AIR.getDefaultState());
 					}
 				}
 			}
@@ -581,11 +568,11 @@ public class ChunkProviderWither implements IChunkProvider
 	public boolean isBlockTop(int x, int y, int z, Block block) {
 		return
 				worldObj.getBlockState(new BlockPos(x, y, z)) == block.getDefaultState() && 
-				worldObj.getBlockState(new BlockPos(x, y + 1, z)) == Blocks.air.getDefaultState() && 
-				worldObj.getBlockState(new BlockPos(x, y + 2, z)) == Blocks.air.getDefaultState() && 
-				worldObj.getBlockState(new BlockPos(x, y + 3, z)) == Blocks.air.getDefaultState() &&
-				worldObj.getBlockState(new BlockPos(x, y + 4, z)) == Blocks.air.getDefaultState() && 
-				worldObj.getBlockState(new BlockPos(x, y + 5, z)) == Blocks.air.getDefaultState();
+				worldObj.getBlockState(new BlockPos(x, y + 1, z)) == Blocks.AIR.getDefaultState() && 
+				worldObj.getBlockState(new BlockPos(x, y + 2, z)) == Blocks.AIR.getDefaultState() && 
+				worldObj.getBlockState(new BlockPos(x, y + 3, z)) == Blocks.AIR.getDefaultState() &&
+				worldObj.getBlockState(new BlockPos(x, y + 4, z)) == Blocks.AIR.getDefaultState() && 
+				worldObj.getBlockState(new BlockPos(x, y + 5, z)) == Blocks.AIR.getDefaultState();
 	}
 
 	@Override

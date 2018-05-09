@@ -2,12 +2,12 @@ package net.slayer.api.block;
 
 import java.util.Random;
 
-import net.journey.JourneyItems;
 import net.journey.JourneyTabs;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
@@ -15,7 +15,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
@@ -39,14 +43,14 @@ public class BlockModBush extends BlockMod implements IGrowable, IPlantable {
 		this.setLightOpacity(-100000);
 		this.setCreativeTab(JourneyTabs.crops);
 	}
-	
+
 	@Override
 	public boolean isPassable(IBlockAccess worldIn, BlockPos pos) {
 		return false;
 	}
 
 	@Override
-	public boolean onBlockActivated(World w, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing face, float fx, float fy, float fz) {
+	public boolean onBlockActivated(World w, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		double 
 		x = player.posX,
 		y = player.posY, 
@@ -56,46 +60,47 @@ public class BlockModBush extends BlockMod implements IGrowable, IPlantable {
 				return true;
 			}
 			EntityItem drop = new EntityItem(w, x, y, z, new ItemStack(berry));
-			w.spawnEntityInWorld(drop);
+			w.spawnEntity(drop);
 			w.setBlockState(pos, state.withProperty(AGE, 0), 1);
 			return true;
 		}
 		return false;
 	}
-	
+
 	@Override
-	public void setBlockBoundsBasedOnState(IBlockAccess access, BlockPos pos) {
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess access, BlockPos pos) {
 		float f = 0.3F;
 		if (access.getBlockState(pos).getValue(AGE) == 0) {
-			this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, f * 1.0F, 0.5F + f);
+			return new AxisAlignedBB(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, f * 1.0F, 0.5F + f);
 		}
-		
+
 		if (access.getBlockState(pos).getValue(AGE) == 1) {
-			this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
+			return new AxisAlignedBB(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 		}
-		
+
 		if (access.getBlockState(pos).getValue(AGE) == 2) {
-			this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
+			return new AxisAlignedBB(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 		}
-	}
-	
-	@Override
-	public AxisAlignedBB getCollisionBoundingBox(World worldIn, BlockPos pos, IBlockState state) {
 		return null;
 	}
-	
+
+	@Override
+	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
+		return null;
+	}
+
 	@Override
 	public boolean canPlaceBlockAt(World w, BlockPos pos) {
 		Block block = w.getBlockState(pos.down()).getBlock();
 		if(isNether) {
-			return block == Blocks.netherrack;
+			return block == Blocks.NETHERRACK;
 		}
 		if(!isNether) {
-			return block == Blocks.grass;
+			return block == Blocks.GRASS;
 		}
 		return false;
 	}
-	
+
 	@Override
 	public void updateTick(World w, BlockPos pos, IBlockState state, Random rand) {
 		if (w.rand.nextInt(5) == 0) {
@@ -105,54 +110,54 @@ public class BlockModBush extends BlockMod implements IGrowable, IPlantable {
 			}		            
 		}
 	}
-	
+
 	@Override
-	public IBlockState onBlockPlaced(World w, BlockPos pos, EnumFacing face, float x, float y, float z, int meta, EntityLivingBase placer) {
+	public IBlockState getStateForPlacement(World w, BlockPos pos, EnumFacing face, float x, float y, float z, int meta, EntityLivingBase placer) {
 		return this.getDefaultState().withProperty(AGE, Integer.valueOf(0));
-		
+
 	}
-	
+
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
 		return this.getDefaultState().withProperty(AGE, Integer.valueOf((meta & 15) >> 2));
 	}
-	
+
 	@Override
 	public int getMetaFromState(IBlockState state) {
 		int i = 0;
 		i = i | state.getValue(AGE).intValue() << 2;
 		return i;
 	}
-	
+
 	@Override
-	protected BlockState createBlockState() {
-		return new BlockState(this, new IProperty[] {AGE});
+	protected BlockStateContainer createBlockState() {
+		return new BlockStateContainer(this, new IProperty[] {AGE});
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
-	public EnumWorldBlockLayer getBlockLayer() {
-		return EnumWorldBlockLayer.CUTOUT_MIPPED;
+	public BlockRenderLayer getBlockLayer() {
+		return BlockRenderLayer.CUTOUT_MIPPED;
+	}
+
+	@Override
+	public boolean isOpaqueCube(IBlockState state) {
+		return false;
 	}
 	
 	@Override
-	public boolean isOpaqueCube() {
-		return false;
+	public boolean canGrow(World worldIn, BlockPos pos, IBlockState state, boolean isClient) {
+		return state.getValue(AGE).intValue() < 2;
 	}
 
-    @Override
-    public boolean canGrow(World worldIn, BlockPos pos, IBlockState state, boolean isClient) {
-        return state.getValue(AGE).intValue() < 2;
-    }
+	@Override
+	public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, IBlockState state) {
+		return true;
+	}
 
-    @Override
-    public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, IBlockState state) {
-        return true;
-    }
-
-    @Override
-    public void grow(World worldIn, Random rand, BlockPos pos, IBlockState state) {
-        worldIn.setBlockState(pos, state.withProperty(AGE, Integer.valueOf(state.getValue(AGE).intValue() + 1)), 2);
+	@Override
+	public void grow(World worldIn, Random rand, BlockPos pos, IBlockState state) {
+		worldIn.setBlockState(pos, state.withProperty(AGE, Integer.valueOf(state.getValue(AGE).intValue() + 1)), 2);
 	}
 
 	@Override

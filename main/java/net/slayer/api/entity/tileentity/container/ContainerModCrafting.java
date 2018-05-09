@@ -16,6 +16,9 @@ public class ContainerModCrafting extends Container
 {
     public InventoryCrafting invCraft;
     public IInventory outcome;
+    private final EntityPlayer player;
+    public InventoryCrafting craftMatrix = new InventoryCrafting(this, 3, 3);
+    public InventoryCraftResult craftResult = new InventoryCraftResult();
     private World w;
     
 	@Override
@@ -25,6 +28,7 @@ public class ContainerModCrafting extends Container
 	
 	public ContainerModCrafting(InventoryPlayer inventoryplayer, World world)
     {
+		player = inventoryplayer.player;
         invCraft = new InventoryCrafting(this, 3, 3);
         outcome = new InventoryCraftResult();
         world = this.w;
@@ -54,7 +58,7 @@ public class ContainerModCrafting extends Container
     @Override
     public void onCraftMatrixChanged (IInventory inv)
     {
-        this.outcome.setInventorySlotContents(0, CraftingManager.getInstance().findMatchingRecipe(invCraft, w));
+        this.slotChangedCraftingGrid(this.w, this.player, this.craftMatrix, this.craftResult);
     }
     
     @Override
@@ -109,7 +113,7 @@ public class ContainerModCrafting extends Container
             {
                 return null;
             }
-            if (item1.stackSize == 0)
+            if (item1.getCount() == 0)
             {
                 slot.putStack(null);
             }
@@ -117,9 +121,9 @@ public class ContainerModCrafting extends Container
             {
                 slot.onSlotChanged();
             }
-            if (item1.stackSize != item.stackSize)
+            if (item1.getCount() != item.getCount())
             {
-                slot.onPickupFromSlot(entityplayer, item1);
+                slot.onTake(entityplayer, item1);
             }
             else
             {

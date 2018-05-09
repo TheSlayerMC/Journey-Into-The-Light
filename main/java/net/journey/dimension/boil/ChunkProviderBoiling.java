@@ -178,7 +178,7 @@ public class ChunkProviderBoiling implements IChunkProvider {
 			} else {
 				IBlockState iblockstate2 = c.getBlockState(j1, k1, i1);
 
-				if(iblockstate2.getBlock().getMaterial() == Material.air) k = -1;
+				if(iblockstate2.getBlock().getMaterial() == Material.AIR) k = -1;
 				else if(iblockstate2.getBlock() == JourneyBlocks.ashBlock) {
 					if(k == -1) {
 						if(l <= 0) {
@@ -190,7 +190,7 @@ public class ChunkProviderBoiling implements IChunkProvider {
 							iblockstate1 = JourneyBlocks.ashBlock.getDefaultState();
 						}
 
-						if(k1 < 63 && (iblockstate == null || iblockstate.getBlock().getMaterial() == Material.air))
+						if(k1 < 63 && (iblockstate == null || iblockstate.getBlock().getMaterial() == Material.AIR))
 							iblockstate = JourneyBlocks.ashBlock.getDefaultState();
 						k = l;
 						if(k1 >= 62) c.setBlockState(j1, k1, i1, iblockstate);
@@ -381,9 +381,9 @@ public class ChunkProviderBoiling implements IChunkProvider {
 	}
 	
 	public boolean isBlockTop(int x, int y, int z, Block grass) {
-		return worldObj.getBlockState(new BlockPos(x, y, z)) == grass.getDefaultState() && worldObj.getBlockState(new BlockPos(x, y + 1, z)) == Blocks.air.getDefaultState()
-				&& worldObj.getBlockState(new BlockPos(x, y + 2, z)) == Blocks.air.getDefaultState() && worldObj.getBlockState(new BlockPos(x, y + 3, z)) == Blocks.air.getDefaultState()
-				&& worldObj.getBlockState(new BlockPos(x, y + 4, z)) == Blocks.air.getDefaultState() && worldObj.getBlockState(new BlockPos(x, y + 5, z)) == Blocks.air.getDefaultState();
+		return worldObj.getBlockState(new BlockPos(x, y, z)) == grass.getDefaultState() && worldObj.getBlockState(new BlockPos(x, y + 1, z)) == Blocks.AIR.getDefaultState()
+				&& worldObj.getBlockState(new BlockPos(x, y + 2, z)) == Blocks.AIR.getDefaultState() && worldObj.getBlockState(new BlockPos(x, y + 3, z)) == Blocks.AIR.getDefaultState()
+				&& worldObj.getBlockState(new BlockPos(x, y + 4, z)) == Blocks.AIR.getDefaultState() && worldObj.getBlockState(new BlockPos(x, y + 5, z)) == Blocks.AIR.getDefaultState();
 	}
 
 	@Override

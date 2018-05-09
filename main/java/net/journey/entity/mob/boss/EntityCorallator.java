@@ -8,25 +8,21 @@ import net.journey.JourneyItems;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.entity.MobStats;
 import net.journey.entity.mob.euca.EntityShimmerer;
-import net.journey.entity.projectile.EntityDeathSkull;
-import net.journey.entity.projectile.EntityIceBall;
 import net.journey.entity.projectile.EntityMagmaFireball;
 import net.journey.enums.EnumSounds;
-import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
 import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityEssenceBoss;
@@ -79,7 +75,7 @@ public class EntityCorallator extends EntityEssenceBoss implements IRangedAttack
 	@Override
 	public boolean getCanSpawnHere() {
 		return this.rand.nextInt(15) == 0 && super.getCanSpawnHere()
-				&& this.worldObj.getDifficulty() != EnumDifficulty.PEACEFUL;
+				&& this.world.getDifficulty() != EnumDifficulty.PEACEFUL;
 	}
 
 	@Override
@@ -94,9 +90,9 @@ public class EntityCorallator extends EntityEssenceBoss implements IRangedAttack
 			p.triggerAchievement(JourneyAchievements.achievementCorallator); {
 			}
 		}
-		this.worldObj.setBlockState(new BlockPos((int)Math.floor(this.posX + 0), ((int)Math.floor(this.posY + 1)), ((int)Math.floor(this.posZ + 0))), JourneyBlocks.trophyCor.getStateFromMeta(5));
-		this.worldObj.setBlockState(new BlockPos((int)Math.floor(this.posX + 0), ((int)Math.floor(this.posY + 0)), ((int)Math.floor(this.posZ + 0))), JourneyBlocks.eucaChest.getStateFromMeta(5));
-		TileEntityJourneyChest te = (TileEntityJourneyChest)worldObj.getTileEntity(new BlockPos((int)Math.floor(this.posX + 0), ((int)Math.floor(this.posY + 0)), ((int)Math.floor(this.posZ + 0))));
+		this.world.setBlockState(new BlockPos((int)Math.floor(this.posX + 0), ((int)Math.floor(this.posY + 1)), ((int)Math.floor(this.posZ + 0))), JourneyBlocks.trophyCor.getStateFromMeta(5));
+		this.world.setBlockState(new BlockPos((int)Math.floor(this.posX + 0), ((int)Math.floor(this.posY + 0)), ((int)Math.floor(this.posZ + 0))), JourneyBlocks.eucaChest.getStateFromMeta(5));
+		TileEntityJourneyChest te = (TileEntityJourneyChest)world.getTileEntity(new BlockPos((int)Math.floor(this.posX + 0), ((int)Math.floor(this.posY + 0)), ((int)Math.floor(this.posZ + 0))));
 		switch(rand.nextInt(2)) {
 		case 0:
 			te.setInventorySlotContents(15, new ItemStack(JourneyItems.depthsPortalGem, 8));
@@ -143,7 +139,7 @@ public class EntityCorallator extends EntityEssenceBoss implements IRangedAttack
 			float f2 = 0.91F;
 
 			if (this.onGround) {
-				f2 = this.worldObj.getBlockState(new BlockPos(MathHelper.floor_double(this.posX),
+				f2 = this.world.getBlockState(new BlockPos(MathHelper.floor_double(this.posX),
 						MathHelper.floor_double(this.getEntityBoundingBox().minY) - 1,
 						MathHelper.floor_double(this.posZ))).getBlock().slipperiness * 0.91F;
 			}
@@ -153,7 +149,7 @@ public class EntityCorallator extends EntityEssenceBoss implements IRangedAttack
 			f2 = 0.91F;
 
 			if (this.onGround) {
-				f2 = this.worldObj.getBlockState(new BlockPos(MathHelper.floor_double(this.posX),
+				f2 = this.world.getBlockState(new BlockPos(MathHelper.floor_double(this.posX),
 						MathHelper.floor_double(this.getEntityBoundingBox().minY) - 1,
 						MathHelper.floor_double(this.posZ))).getBlock().slipperiness * 0.91F;
 			}
@@ -238,7 +234,7 @@ public class EntityCorallator extends EntityEssenceBoss implements IRangedAttack
 			AxisAlignedBB axisalignedbb = this.e.getEntityBoundingBox();
 			for (int i = 1; i < h; ++i) {
 				axisalignedbb = axisalignedbb.offset(d4, d5, d6);
-				if (!this.e.worldObj.getCollidingBoundingBoxes(this.e, axisalignedbb).isEmpty()) {
+				if (!this.e.world.getCollidingBoundingBoxes(this.e, axisalignedbb).isEmpty()) {
 					return false;
 				}
 			}
@@ -253,30 +249,30 @@ public class EntityCorallator extends EntityEssenceBoss implements IRangedAttack
             this.motionY *= 0.6D;
         }
 
-        if (this.worldObj.isRemote) {
+        if (this.world.isRemote) {
             if (this.rand.nextInt(24) == 0 && !this.isSilent()) {
-                this.worldObj.playSound(this.posX + 0.5D, this.posY + 0.5D, this.posZ + 0.5D, "fire.fire", 1.0F + this.rand.nextFloat(), this.rand.nextFloat() * 0.7F + 0.3F, false);
+                this.world.playSound(this.posX + 0.5D, this.posY + 0.5D, this.posZ + 0.5D, "fire.fire", 1.0F + this.rand.nextFloat(), this.rand.nextFloat() * 0.7F + 0.3F, false);
             }
 
             for (int i = 0; i < 2; ++i) {
-                this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_LARGE, this.posX + (this.rand.nextDouble() - 0.5D) * this.width, this.posY + this.rand.nextDouble() * this.height, this.posZ + (this.rand.nextDouble() - 0.5D) * this.width, 0.0D, 0.0D, 0.0D, new int[0]);
+                this.world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, this.posX + (this.rand.nextDouble() - 0.5D) * this.width, this.posY + this.rand.nextDouble() * this.height, this.posZ + (this.rand.nextDouble() - 0.5D) * this.width, 0.0D, 0.0D, 0.0D, new int[0]);
             }
         }
 
         if(getHealth() <= 250) {
-        	if(spawnTimer == 0 && !worldObj.isRemote) {
-    			EntityShimmerer z = new EntityShimmerer(worldObj);
+        	if(spawnTimer == 0 && !world.isRemote) {
+    			EntityShimmerer z = new EntityShimmerer(world);
                 z.setLocationAndAngles(posX + 3, posY, posZ, this.rand.nextFloat() * 360.0F, 0.0F);
-                EntityShimmerer z1 = new EntityShimmerer(worldObj);
+                EntityShimmerer z1 = new EntityShimmerer(world);
                 z1.setLocationAndAngles(posX - 3, posY, posZ, this.rand.nextFloat() * 360.0F, 0.0F);
-                EntityShimmerer z2 = new EntityShimmerer(worldObj);
+                EntityShimmerer z2 = new EntityShimmerer(world);
                 z2.setLocationAndAngles(posX, posY, posZ + 3, this.rand.nextFloat() * 360.0F, 0.0F);
-                EntityShimmerer z3 = new EntityShimmerer(worldObj);
+                EntityShimmerer z3 = new EntityShimmerer(world);
                 z3.setLocationAndAngles(posX, posY, posZ - 3, this.rand.nextFloat() * 360.0F, 0.0F);
-                this.worldObj.spawnEntityInWorld(z);
-                this.worldObj.spawnEntityInWorld(z1);
-                this.worldObj.spawnEntityInWorld(z2);
-                this.worldObj.spawnEntityInWorld(z3);
+                this.world.spawnEntityInWorld(z);
+                this.world.spawnEntityInWorld(z1);
+                this.world.spawnEntityInWorld(z2);
+                this.world.spawnEntityInWorld(z3);
                 spawnTimer = 200;
     		}
         	spawnTimer--;
@@ -328,18 +324,18 @@ public class EntityCorallator extends EntityEssenceBoss implements IRangedAttack
     
     private void launchWitherSkullToCoords(int var1, double f2, double f4, double f6, boolean f8)
     {
-        this.worldObj.playAuxSFXAtEntity((EntityPlayer)null, 1014, new BlockPos(this), 0);
+        this.world.playAuxSFXAtEntity((EntityPlayer)null, 1014, new BlockPos(this), 0);
         double d3 = this.coordX(var1);
         double d4 = this.coordY(var1);
         double d5 = this.coordZ(var1);
         double d6 = f2 - d3;
         double d7 = f4 - d4;
         double d8 = f6 - d5;
-        EntityMagmaFireball entitydeathskull = new EntityMagmaFireball(this.worldObj, this, d6, d7, d8);
+        EntityMagmaFireball entitydeathskull = new EntityMagmaFireball(this.world, this, d6, d7, d8);
         entitydeathskull.posY = d4;
         entitydeathskull.posX = d3;
         entitydeathskull.posZ = d5;
-        this.worldObj.spawnEntityInWorld(entitydeathskull);
+        this.world.spawnEntityInWorld(entitydeathskull);
 	}
     
     private double coordX(int par1) {

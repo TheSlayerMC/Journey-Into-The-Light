@@ -1,23 +1,12 @@
 package net.journey.util.recipes;
 
-import net.journey.JourneyBlocks;
-import net.journey.JourneyItems;
-import net.journey.blocks.BlockColouredBricks;
-import net.journey.blocks.BlockMiniColouredBricks;
-import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-
 public class JourneyMiscRecipes {
 
 	public static void init() {
-		initMiscCrafting();
+		//initMiscCrafting();
 	}
 
-	public static void initMiscCrafting() {
+	/*public static void initMiscCrafting() {
 		JourneyBlocks b = new JourneyBlocks();
 		JourneyItems i = new JourneyItems();
 		
@@ -134,5 +123,5 @@ public class JourneyMiscRecipes {
 
 	private static void addBoots(Item boots, Item ingot) {
 		GameRegistry.addRecipe(new ItemStack(boots), new Object[] {"i i", "i i", 'i', ingot});
-	}
+	}*/
 }

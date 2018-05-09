@@ -164,7 +164,7 @@ public class EntityFrozenArrow extends EntityArrow implements IProjectile {
 		IBlockState iblockstate = this.worldObj.getBlockState(blockpos);
 		Block block = iblockstate.getBlock();
 
-		if (block.getMaterial() != Material.air) {
+		if (block.getMaterial() != Material.AIR) {
 			block.setBlockBoundsBasedOnState(this.worldObj, blockpos);
 			AxisAlignedBB axisalignedbb = block.getCollisionBoundingBox(this.worldObj, blockpos, iblockstate);
 
@@ -328,7 +328,7 @@ public class EntityFrozenArrow extends EntityArrow implements IProjectile {
 					this.arrowShake = 7;
 					this.setIsCritical(false);
 
-					if (this.inBlock.getMaterial() != Material.air) {
+					if (this.inBlock.getMaterial() != Material.AIR) {
 						this.inBlock.onEntityCollidedWithBlock(this.worldObj, blockpos1, iblockstate, this);
 					}
 				}

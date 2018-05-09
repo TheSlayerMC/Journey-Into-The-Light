@@ -30,11 +30,11 @@ import com.google.common.collect.Sets;
 
 public class ItemMultiTool extends ItemTool {
 
-	private static final Set<Block> blocksEffectiveAgainst = Sets.newHashSet(Block.blockRegistry);
+	private static final Set<Block> blocksEffectiveAgainst = Sets.newHashSet(Block.REGISTRY);
 	protected EssenceToolMaterial mat;
 
     public ItemMultiTool(String name, String f, EssenceToolMaterial tool, int damage) {
-        super(0, tool.getToolMaterial(), blocksEffectiveAgainst);
+        super(tool.getToolMaterial(), blocksEffectiveAgainst);
         LangRegistry.addItem(name, f);
 		mat = tool;
 		this.setMaxDamage(damage);
@@ -42,7 +42,7 @@ public class ItemMultiTool extends ItemTool {
         setCreativeTab(JourneyTabs.tools);
         setHarvestLevel("pickaxe", tool.getHarvestLevel());
         JourneyItems.itemNames.add(name);
-        GameRegistry.registerItem(this, name);
+        JourneyItems.items.add(this);
 	}
 
 	@Override
@@ -68,20 +68,20 @@ public class ItemMultiTool extends ItemTool {
 	}
 	
     public float getCorrectEfficiency(ItemStack is, Block b) {
-        return this.toolMaterial.getEfficiencyOnProperMaterial();
+        return this.toolMaterial.getEfficiency();
     }
 
 	protected boolean isEfficient(Block block) {
-		return block == Blocks.obsidian ? this.toolMaterial.getHarvestLevel() == 3 :
-			(block != Blocks.diamond_block && block != Blocks.diamond_ore ?
-			(block != Blocks.emerald_ore && block != Blocks.emerald_block ?
-			(block != Blocks.gold_block && block != Blocks.gold_ore ?
-			(block != Blocks.iron_block && block != Blocks.iron_ore ?
-			(block != Blocks.lapis_block && block != Blocks.lapis_ore ?
-			(block != Blocks.redstone_ore && block != Blocks.lit_redstone_ore ?
-			(block.getMaterial() == Material.rock ? true :
-			(block.getMaterial() == Material.iron ? true :
-			block.getMaterial() == Material.anvil)) :
+		return block == Blocks.OBSIDIAN ? this.toolMaterial.getHarvestLevel() == 3 :
+			(block != Blocks.DIAMOND_BLOCK && block != Blocks.DIAMOND_ORE ?
+			(block != Blocks.EMERALD_ORE && block != Blocks.EMERALD_BLOCK ?
+			(block != Blocks.GOLD_BLOCK && block != Blocks.GOLD_ORE ?
+			(block != Blocks.IRON_BLOCK && block != Blocks.IRON_ORE ?
+			(block != Blocks.LAPIS_BLOCK && block != Blocks.LAPIS_ORE ?
+			(block != Blocks.REDSTONE_ORE && block != Blocks.LIT_REDSTONE_ORE ?
+			(block.getMaterial(null) == Material.ROCK ? true :
+			(block.getMaterial(null) == Material.IRON ? true :
+			block.getMaterial(null) == Material.ANVIL)) :
 			this.toolMaterial.getHarvestLevel() >= 2) :
 			this.toolMaterial.getHarvestLevel() >= 1) :
 			this.toolMaterial.getHarvestLevel() >= 1) :

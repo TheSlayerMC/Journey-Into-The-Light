@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Random;
 
 import net.journey.JourneyBlocks;
-import net.journey.dimension.euca.gen.WorldGenSmeltery;
 import net.journey.dimension.frozen.gen.WorldGenFrozenTree;
 import net.journey.dimension.frozen.gen.WorldGenFrozenTree2;
 import net.journey.dimension.frozen.gen.WorldGenIceCrystal1;
@@ -18,8 +17,11 @@ import net.journey.dimension.overworld.gen.WorldGenModFlower;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.IProgressUpdate;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
+import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.chunk.IChunkProvider;
@@ -148,14 +150,14 @@ public class ChunkProviderFrozenLands implements IChunkProvider
 		for(int i = 0; i<16; i++) {
 			for(int k = 0; k<16; k++) {
 				for(int j = 175; j>0; j--) {
-					if(cp.getBlockState(i, j, k)!=Blocks.air.getDefaultState()) {
+					if(cp.getBlockState(i, j, k)!=Blocks.AIR.getDefaultState()) {
 						top=j;
 						break;
 					}
 				}
 				for(int j = top-10; j>top-40; j--) {
 					if(cp.getBlockState(i, j, k)!=Blocks.bedrock.getDefaultState()) {
-						cp.setBlockState(i, j, k, Blocks.air.getDefaultState());
+						cp.setBlockState(i, j, k, Blocks.AIR.getDefaultState());
 					}
 				}
 			}
@@ -534,7 +536,7 @@ public class ChunkProviderFrozenLands implements IChunkProvider
 			int x = chunkX * 16 + rand.nextInt(16) + 8, z = chunkZ * 16 + rand.nextInt(16) + 8;
 			int y = 0;
 			for(int j = 5; j < 100; j++) {
-				if(worldObj.getBlockState(new BlockPos(x, j, z)).getBlock() == Blocks.air) {
+				if(worldObj.getBlockState(new BlockPos(x, j, z)).getBlock() == Blocks.AIR) {
 					y = j;
 					break;
 				}
@@ -558,7 +560,7 @@ public class ChunkProviderFrozenLands implements IChunkProvider
 			int x = chunkX * 16 + rand.nextInt(16) + 8, z = chunkZ * 16 + rand.nextInt(16) + 8;
 			int y = 0;
 			for(int j = 5; j < 100; j++) {
-				if(worldObj.getBlockState(new BlockPos(x, j, z)).getBlock() == Blocks.air) {
+				if(worldObj.getBlockState(new BlockPos(x, j, z)).getBlock() == Blocks.AIR) {
 					y = j;
 					break;
 				}
@@ -570,7 +572,7 @@ public class ChunkProviderFrozenLands implements IChunkProvider
 			int x = chunkX * 16 + rand.nextInt(16) + 8, z = chunkZ * 16 + rand.nextInt(16) + 8;
 			int y = 0;
 			for(int j = 5; j < 100; j++) {
-				if(worldObj.getBlockState(new BlockPos(x, j, z)).getBlock() == Blocks.air) {
+				if(worldObj.getBlockState(new BlockPos(x, j, z)).getBlock() == Blocks.AIR) {
 					y = j;
 					break;
 				}

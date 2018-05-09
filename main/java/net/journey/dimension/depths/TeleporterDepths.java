@@ -3,6 +3,8 @@ package net.journey.dimension.depths;
 import net.journey.JourneyBlocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.Teleporter;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
@@ -198,7 +200,7 @@ public class TeleporterDepths extends Teleporter {
 	private void makePortalAt(World w, int x, int y, int z) {
 		y = 3;
 		WorldGenAPI.addRectangle(1, 4, 5, w, x + 2, y + 1, z + 1, JourneyBlocks.depthsPortalFrame);
-		WorldGenAPI.addRectangle(1, 2, 3, w, x + 2, y + 2, z + 2, Blocks.air);
+		WorldGenAPI.addRectangle(1, 2, 3, w, x + 2, y + 2, z + 2, Blocks.AIR);
 		WorldGenAPI.addBlock(w, x + 2, y + 3, z + 2, JourneyBlocks.fire);
 	}
 }

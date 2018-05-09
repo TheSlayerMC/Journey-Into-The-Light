@@ -2,15 +2,16 @@ package net.journey.dimension.boil.gen;
 
 import java.util.Random;
 
+import com.google.common.base.Objects;
+
 import net.journey.JourneyBlocks;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.MapGenBase;
-
-import com.google.common.base.Objects;
 
 public class MapGenBoilingCaves extends MapGenBase {
 
@@ -172,7 +173,7 @@ public class MapGenBoilingCaves extends MapGenBase {
                                         if (d13 > -0.7D && d14 * d14 + d13 * d13 + d12 * d12 < 1.0D)
                                         {
                                             IBlockState iblockstate1 = p_180702_5_.getBlockState(k2, j3, j4);
-                                            IBlockState iblockstate2 = (IBlockState)Objects.firstNonNull(p_180702_5_.getBlockState(k2, j3 + 1, j4), Blocks.air.getDefaultState());
+                                            IBlockState iblockstate2 = (IBlockState)Objects.firstNonNull(p_180702_5_.getBlockState(k2, j3 + 1, j4), Blocks.AIR.getDefaultState());
 
                                             if (isTopBlock(p_180702_5_, k2, j3, j4, p_180702_3_, p_180702_4_))
                                             {
@@ -261,9 +262,9 @@ public class MapGenBoilingCaves extends MapGenBase {
 
         if (this.func_175793_a(state, up) || state.getBlock() == top.getBlock() || state.getBlock() == filler.getBlock()) {
             if (y < 10) {
-                data.setBlockState(x, y, z, Blocks.lava.getDefaultState());
+                data.setBlockState(x, y, z, Blocks.LAVA.getDefaultState());
             } else {
-                data.setBlockState(x, y, z, Blocks.air.getDefaultState());
+                data.setBlockState(x, y, z, Blocks.AIR.getDefaultState());
 
                 if (foundTop && data.getBlockState(x, y - 1, z).getBlock() == filler.getBlock())
                 {

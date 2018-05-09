@@ -14,7 +14,7 @@ public abstract class BlockModContainer extends BlockMod implements ITileEntityP
 
     public BlockModContainer(EnumMaterialTypes type, String name, String n, float hardness, CreativeTabs tab) {
         super(type, name, n, hardness, tab);
-        this.isBlockContainer = true;
+        this.hasTileEntity = true;
     }
 
 	@Override

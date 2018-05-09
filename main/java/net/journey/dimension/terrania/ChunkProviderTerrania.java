@@ -5,18 +5,6 @@ import java.util.List;
 import java.util.Random;
 
 import net.journey.JourneyBlocks;
-import net.journey.dimension.corba.gen.WorldGenCorbaLamp;
-import net.journey.dimension.corba.gen.WorldGenCorbaVillage;
-import net.journey.dimension.corba.gen.WorldGenTreehouse;
-import net.journey.dimension.corba.gen.trees.WorldGenCorbaHugeTree;
-import net.journey.dimension.corba.gen.trees.WorldGenCorbaLargeTree;
-import net.journey.dimension.corba.gen.trees.WorldGenCorbaMediumTree;
-import net.journey.dimension.corba.gen.trees.WorldGenCorbaSmallTree;
-import net.journey.dimension.corba.gen.trees.WorldGenCorbaSpruceTree;
-import net.journey.dimension.corba.gen.trees.WorldGenCorbaSpruceTree1;
-import net.journey.dimension.corba.gen.trees.WorldGenHugeCorbaSpruceTree;
-import net.journey.dimension.euca.gen.WorldGenSmeltery;
-import net.journey.dimension.euca.gen.trees.WorldGenEucaTree3;
 import net.journey.dimension.overworld.gen.WorldGenModFlower;
 import net.journey.dimension.terrania.gen.WorldGenHollowTree;
 import net.journey.dimension.terrania.gen.WorldGenTallTree;
@@ -31,7 +19,10 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.IProgressUpdate;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.chunk.IChunkProvider;
@@ -45,7 +36,6 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.TerrainGen;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
-import net.slayer.api.block.BlockModFlower;
 
 public class ChunkProviderTerrania implements IChunkProvider {
 
@@ -190,7 +180,7 @@ public class ChunkProviderTerrania implements IChunkProvider {
 			} else {
 				IBlockState iblockstate2 = c.getBlockState(j1, k1, i1);
 
-				if(iblockstate2.getBlock().getMaterial() == Material.air) k = -1;
+				if(iblockstate2.getBlock().getMaterial() == Material.AIR) k = -1;
 				else if(iblockstate2.getBlock() == JourneyBlocks.terranianStone) {
 					if(k == -1) {
 						if(l <= 0) {
@@ -202,7 +192,7 @@ public class ChunkProviderTerrania implements IChunkProvider {
 							iblockstate1 = JourneyBlocks.terranianStone.getDefaultState();
 						}
 
-						if(k1 < 63 && (iblockstate == null || iblockstate.getBlock().getMaterial() == Material.air))
+						if(k1 < 63 && (iblockstate == null || iblockstate.getBlock().getMaterial() == Material.AIR))
 							iblockstate = JourneyBlocks.terranianStone.getDefaultState();
 						k = l;
 						if(k1 >= 62) c.setBlockState(j1, k1, i1, iblockstate);
@@ -400,9 +390,9 @@ public class ChunkProviderTerrania implements IChunkProvider {
 	}
 	
 	public boolean isBlockTop(int x, int y, int z, Block grass) {
-		return worldObj.getBlockState(new BlockPos(x, y, z)) == grass.getDefaultState() && worldObj.getBlockState(new BlockPos(x, y + 1, z)) == Blocks.air.getDefaultState()
-				&& worldObj.getBlockState(new BlockPos(x, y + 2, z)) == Blocks.air.getDefaultState() && worldObj.getBlockState(new BlockPos(x, y + 3, z)) == Blocks.air.getDefaultState()
-				&& worldObj.getBlockState(new BlockPos(x, y + 4, z)) == Blocks.air.getDefaultState() && worldObj.getBlockState(new BlockPos(x, y + 5, z)) == Blocks.air.getDefaultState();
+		return worldObj.getBlockState(new BlockPos(x, y, z)) == grass.getDefaultState() && worldObj.getBlockState(new BlockPos(x, y + 1, z)) == Blocks.AIR.getDefaultState()
+				&& worldObj.getBlockState(new BlockPos(x, y + 2, z)) == Blocks.AIR.getDefaultState() && worldObj.getBlockState(new BlockPos(x, y + 3, z)) == Blocks.AIR.getDefaultState()
+				&& worldObj.getBlockState(new BlockPos(x, y + 4, z)) == Blocks.AIR.getDefaultState() && worldObj.getBlockState(new BlockPos(x, y + 5, z)) == Blocks.AIR.getDefaultState();
 	}
 
 	@Override

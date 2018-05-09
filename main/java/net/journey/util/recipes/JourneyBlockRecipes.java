@@ -2,14 +2,8 @@ package net.journey.util.recipes;
 
 import net.journey.JourneyBlocks;
 import net.journey.JourneyItems;
-import net.journey.blocks.BlockColouredBricks;
-import net.journey.blocks.BlockMiniColouredBricks;
 import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class JourneyBlockRecipes {
 
@@ -20,7 +14,7 @@ public class JourneyBlockRecipes {
 	public static void initBlockCrafting() {
 		JourneyBlocks b = new JourneyBlocks();
 		JourneyItems i = new JourneyItems();
-		GameRegistry.addRecipe(new ItemStack(JourneyBlocks.greenGemBlock, 1), new Object[] {"iii", "iii", "iii", 'i', JourneyItems.greenGem});
+		/*GameRegistry.addRecipe(new ItemStack(JourneyBlocks.greenGemBlock, 1), new Object[] {"iii", "iii", "iii", 'i', JourneyItems.greenGem});
 		GameRegistry.addRecipe(new ItemStack(JourneyBlocks.purpleGemBlock, 1), new Object[] {"iii", "iii", "iii", 'i', JourneyItems.purpleGem});
 		GameRegistry.addRecipe(new ItemStack(JourneyBlocks.blueGemBlock, 1), new Object[] {"iii", "iii", "iii", 'i', JourneyItems.blueGem});
 		GameRegistry.addRecipe(new ItemStack(JourneyBlocks.yellowGemBlock, 1), new Object[] {"iii", "iii", "iii", 'i', JourneyItems.yellowGem});
@@ -47,33 +41,26 @@ public class JourneyBlockRecipes {
 		GameRegistry.addRecipe(new ItemStack(JourneyBlocks.trophy, 1), new Object[] {"d d", "ddd", " d ", 'd', Items.gold_ingot});
 		GameRegistry.addRecipe(new ItemStack(JourneyBlocks.grindstone), new Object[] {" o ", "bib", "bbb", 'b', Blocks.brick_block, 'o', Blocks.obsidian, 'i', Items.iron_ingot});
 		GameRegistry.addRecipe(new ItemStack(Blocks.web), new Object[] {"sss", "sss","sss", 's', Items.string});
-		GameRegistry.addRecipe(new ItemStack(JourneyBlocks.netherFurnace, 1), new Object[] {"ddd", "d d", "ddd", 'd', Blocks.netherrack});
+		GameRegistry.addRecipe(new ItemStack(JourneyBlocks.netherFurnace, 1), new Object[] {"ddd", "d d", "ddd", 'd', Blocks.netherrack});*/
 		
 		addWood(JourneyBlocks.eucaGoldLog, JourneyBlocks.goldEucaPlank, JourneyBlocks.eucaGoldStairs, 0, true);
 		addWood(JourneyBlocks.depthsLog, JourneyBlocks.depthsPlank, JourneyBlocks.depthsStairs, 1, true);
-
-		for(int j = 0; j < 13; j++) {
-			GameRegistry.addShapelessRecipe(new ItemStack(JourneyBlocks.colouredBricks, 1, j), new Object[] {Blocks.stonebrick, BlockColouredBricks.crafting[j]});
-			GameRegistry.addRecipe(new ItemStack(JourneyBlocks.colouredBricks, 8, j), new Object[] {"bbb", "bdb", "bbb", 'b', Blocks.stonebrick, 'd', BlockColouredBricks.crafting[j]});
-			GameRegistry.addShapelessRecipe(new ItemStack(JourneyBlocks.miniColouredBricks, 1, j), new Object[] {Blocks.brick_block, BlockMiniColouredBricks.crafting[j]});
-			GameRegistry.addRecipe(new ItemStack(JourneyBlocks.miniColouredBricks, 8, j), new Object[] {"bbb", "bdb", "bbb", 'b', Blocks.brick_block, 'd', BlockMiniColouredBricks.crafting[j]});
-		}
 	}
 	
 	public static void addBlock(Block made, Item used) {
-		GameRegistry.addRecipe(new ItemStack(made), new Object[] {"iii", "iii", "iii", 'i', used});
+		//GameRegistry.addRecipe(new ItemStack(made), new Object[] {"iii", "iii", "iii", 'i', used});
 	}
 	
 	public static void addBlock(Block made, Block used) {
-		GameRegistry.addRecipe(new ItemStack(made), new Object[] {"iii", "iii", "iii", 'i', used});
+		//GameRegistry.addRecipe(new ItemStack(made), new Object[] {"iii", "iii", "iii", 'i', used});
 	}
 	
 	private static void addWood(Block log, Block plank, Block stair, int slabMeta, boolean smelt) {
-		GameRegistry.addShapelessRecipe(new ItemStack(plank, 4), new Object[] {log});
+		/*GameRegistry.addShapelessRecipe(new ItemStack(plank, 4), new Object[] {log});
 		GameRegistry.addRecipe(new ItemStack(stair, 4), new Object[] {"i  ", "ii ", "iii", 'i', plank});
 		GameRegistry.addRecipe(new ItemStack(Items.stick, 4), new Object[] {"i", "i", 'i', plank});
 		GameRegistry.addRecipe(new ItemStack(Blocks.crafting_table), new Object[] {"ii", "ii", 'i', plank});
 		//GameRegistry.addRecipe(new ItemStack(EssenceBlocks.halfSlab, 6, slabMeta), new Object[] {"iii", 'i', plank});
-		if(smelt) GameRegistry.addSmelting(log, new ItemStack(Items.coal), 0.5F);
+		if(smelt) GameRegistry.addSmelting(log, new ItemStack(Items.coal), 0.5F);*/
 	}
 }

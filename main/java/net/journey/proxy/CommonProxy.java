@@ -81,7 +81,6 @@ public class CommonProxy {
 		DimensionHelper.addSpawns();
 		
 		JourneyTabs.init();
-		BookRegistry.initBooks();
 		
 		if(SlayerAPI.DEVMODE) LangRegistry.instance.register();
 		addOreDictionary();

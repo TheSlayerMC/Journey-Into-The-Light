@@ -204,7 +204,7 @@ public class JourneyBlocks {
 	public static final Block darkBrisonBrick = new BlockMod("darkBrisonBrick", "Dark Brison Brick", 2.0F);
 	public static final Block redBrisonBrick = new BlockMod("redBrisonBrick", "Red Brison Brick", 2.0F);
 	public static final Block smallBrisonBrick = new BlockMod("smallBrisonBrick", "Small Brison Brick", 2.0F);
-	public static final Block boilingBars = new BlockModBars("boilingBars", "Brison Bars");
+	public static final Block boilingBars = new BlockModBars("boilingBars", "Brison Bars", 5.0F);
 	public static final Block burningLeaves = new BlockModLeaves("burningLeaves", "Burning Leaves", 0.5F).setBurningPlant();
 	public static final Block boilingLog = new BlockModLog("boilingLog", "Boiling Log"); 
 	
@@ -236,11 +236,11 @@ public class JourneyBlocks {
 	public static final Block terraniaChest = new BlockJourneyChest("terraniaChest", "Terrania Chest");
 
 	public static final Block nethicDungeonBricks = new BlockMod("nethicDungeonBricks", "Nethic Dungeon Bricks");
-	public static final Block boilChain = new BlockModBars("boilChain", "Boil Chain").setBlockUnbreakable().setResistance(10000000.0F);
-	public static final Block boilGate = new BlockModBars("boilGate", "Boil Gate").setBlockUnbreakable().setResistance(10000000.0F);
+	public static final Block boilChain = new BlockModBars("boilChain", "Boil Chain", 5.0F).setBlockUnbreakable().setResistance(10000000.0F);
+	public static final Block boilGate = new BlockModBars("boilGate", "Boil Gate", 5.0F).setBlockUnbreakable().setResistance(10000000.0F);
 	public static final Block boilLock = new BlockLock("boilLock", "Boil Lock", JourneyItems.boilKey).setBlockUnbreakable().setResistance(10000000.0F);
 
-	public static final Block darklyGate = new BlockModBars("darklyGate", "Darkly Gate").setBlockUnbreakable().setResistance(10000000.0F);
+	public static final Block darklyGate = new BlockModBars("darklyGate", "Darkly Gate", 5.0F).setBlockUnbreakable().setResistance(10000000.0F);
 	public static final Block darklyLock = new BlockLock("darklyLock", "Darkly Lock", JourneyItems.darkKey).setBlockUnbreakable().setResistance(10000000.0F);
 	
 	public static final Block corbaPost = new BlockModFence(pinkCloudiaCloud, "corbaPost", "Corba Post");
@@ -250,7 +250,7 @@ public class JourneyBlocks {
 	public static final Block senterianRock = new BlockMod("senterianRock", "Senterian Rock").setBlockUnbreakable().setResistance(10000000.0F);
 	public static final Block senterianCarvedRock = new BlockMod("senterianCarvedRock", "Senterian Carved Rock").setBlockUnbreakable().setResistance(10000000.0F);
 	public static final Block senterianFloor = new BlockMod("senterianFloor", "Senterian Floor").setBlockUnbreakable().setResistance(10000000.0F);
-	public static final Block senterianBars = new BlockModBars("senterianBars", "Senterian Bars").setBlockUnbreakable().setResistance(10000000.0F);
+	public static final Block senterianBars = new BlockModBars("senterianBars", "Senterian Bars", 5.0F).setBlockUnbreakable().setResistance(10000000.0F);
 	public static final Block senterianLightLamp = new BlockMod(EnumMaterialTypes.GLASS, "senterianLightLamp", "Senterian Light Lamp", 0.1F).setLightLevel(0.5F).setCreativeTab(JourneyTabs.decoration).setBlockUnbreakable().setResistance(10000000.0F);
 	public static final Block senterianMellowLamp = new BlockMod(EnumMaterialTypes.GLASS, "senterianMellowLamp", "Senterian Mellow Lamp", 0.1F).setLightLevel(0.5F).setCreativeTab(JourneyTabs.decoration).setBlockUnbreakable().setResistance(10000000.0F);
 	public static final Block senterianGuardianLamp = new BlockMod(EnumMaterialTypes.GLASS, "senterianGuardianLamp", "Senterian Guardian Lamp", 0.1F).setLightLevel(0.5F).setCreativeTab(JourneyTabs.decoration).setBlockUnbreakable().setResistance(10000000.0F);
@@ -338,7 +338,7 @@ public class JourneyBlocks {
 	public static final Block terranianLog = new BlockModLog("terranianLog", "Terranian Log");
 	public static final Block terranianGrass = new BlockModGrass(terranianDirt, "terranianGrass", "Terranian Grass", 2.0F);
 	public static final Block terranianStone = new BlockMod("terranianStone", "Terranian Stone", 2.0F);
-	public static final Block terranianBars = new BlockModBars("terranianBars", "Terranian Bars");
+	public static final Block terranianBars = new BlockModBars("terranianBars", "Terranian Bars", 5.0F);
 	public static final Block terranianDarkPanels = new BlockMod("terranianDarkPanels", "Terranian Dark Panels", 2.0F);
 	public static final Block terranianPanels = new BlockMod("terranianPanels", "Terranian Panels", 2.0F);
 	public static final BlockModFlower terranianTallgrass = new BlockModFlower("terranianTallgrass", "Terranian Tallgrass");

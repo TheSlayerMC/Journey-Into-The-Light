@@ -2,6 +2,8 @@ package net.slayer.api.block;
 
 import java.util.Random;
 
+import javax.annotation.Nullable;
+
 import net.journey.JourneyBlocks;
 import net.journey.JourneyTabs;
 import net.journey.dimension.corba.TeleporterCorba;
@@ -13,8 +15,11 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
@@ -27,14 +32,25 @@ public class BlockModMobFlower extends BlockMod implements IPlantable {
 
 	private boolean damageWhenContact = false;
 	private boolean isFrozenPlant = false;
-
+    protected static final AxisAlignedBB BUSH_AABB = new AxisAlignedBB(0.30000001192092896D, 0.0D, 0.30000001192092896D, 0.699999988079071D, 0.6000000238418579D, 0.699999988079071D);
+	
 	public BlockModMobFlower(String name, String finalName) {
 		super(EnumMaterialTypes.PLANT, name, finalName, 0.0F);
 		this.setTickRandomly(true);
 		float f = 0.3F;
-		this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, f * 2.0F, 0.5F + f);
 		this.setCreativeTab(JourneyTabs.decoration);
 	}
+	
+	@Override
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+        return BUSH_AABB;
+    }
+
+	@Override
+    @Nullable
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
+        return NULL_AABB;
+    }
 
 	public BlockModMobFlower setContactDamage() {
 		damageWhenContact = true;
@@ -48,7 +64,7 @@ public class BlockModMobFlower extends BlockMod implements IPlantable {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void randomDisplayTick(World w, BlockPos pos, IBlockState state, Random random) {
+	public void randomDisplayTick(IBlockState stateIn, World w, BlockPos pos, Random random) {
 		if(isFrozenPlant) {
 			if(random.nextInt(15) == 0) {
 				for(int i = 0; i < 6; ++i) {
@@ -60,44 +76,49 @@ public class BlockModMobFlower extends BlockMod implements IPlantable {
 			}
 		}
 	}
-
+	
 	@Override
 	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entity) {
 		if(!worldIn.isRemote) {
 			EntityTerragrow terra = new EntityTerragrow(worldIn);
-			worldIn.spawnEntityInWorld(terra);
+			worldIn.spawnEntity(terra);
 			terra.setPosition(pos.getX(), pos.getY() + 0, pos.getZ());
-			worldIn.setBlockState(pos.add(0, 0, 0), Blocks.air.getDefaultState());
+			worldIn.setBlockState(pos.add(0, 0, 0), Blocks.AIR.getDefaultState());
 		}
 	}
 
-	@Override
-	public boolean canPlaceBlockAt(World worldIn, BlockPos pos) {
-		return super.canPlaceBlockAt(worldIn, pos) && worldIn.getBlockState(pos.down()).getBlock().canSustainPlant(worldIn, pos.down(), net.minecraft.util.EnumFacing.UP, this);
+	protected boolean canSustainBush(IBlockState state) {
+		return state.getBlock() == Blocks.GRASS || state.getBlock() == Blocks.DIRT || state.getBlock() == Blocks.FARMLAND;
 	}
 
 	@Override
-	public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock) {
-		super.onNeighborBlockChange(worldIn, pos, state, neighborBlock);
+	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
+		super.neighborChanged(state, worldIn, pos, blockIn, fromPos);
 		this.checkAndDropBlock(worldIn, pos, state);
 	}
 
 	@Override
-	public void updateTick(World w, BlockPos pos, IBlockState s, Random r) {
-		this.checkAndDropBlock(w, pos, s);
+	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
+		this.checkAndDropBlock(worldIn, pos, state);
 	}
 
-	protected void checkAndDropBlock(World w, BlockPos pos, IBlockState s) {
-		if(!this.canBlockStay(w, pos, true)) {
-			//if(this != EssenceBlocks.eucaTallGrass)
-				this.dropBlockAsItem(w, pos, s, 0);
-			w.setBlockState(pos, Blocks.air.getDefaultState(), 3);
+	protected void checkAndDropBlock(World worldIn, BlockPos pos, IBlockState state) {
+		if (!this.canBlockStay(worldIn, pos, state)) {
+			this.dropBlockAsItem(worldIn, pos, state, 0);
+			worldIn.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
 		}
 	}
 
-	public boolean canBlockStay(World w, BlockPos pos, boolean b) {
-		if(b) return w.getBlockState(pos.down()).getBlock().getMaterial() == Material.grass || w.getBlockState(pos.down()).getBlock().getMaterial() == Material.ground;
-		else return w.getBlockState(pos.down()).getBlock().getMaterial() == Material.grass;
+	public boolean canBlockStay(World worldIn, BlockPos pos, IBlockState state) {
+		if (state.getBlock() == this)  {
+			IBlockState soil = worldIn.getBlockState(pos.down());
+			return soil.getBlock().canSustainPlant(soil, worldIn, pos.down(), net.minecraft.util.EnumFacing.UP, this);
+		}
+		return this.canSustainBush(worldIn.getBlockState(pos.down()));
+	}
+
+	public boolean canBlockStay(World w, BlockPos pos) {
+		return canPlaceBlockAt(w, pos);
 	}
 
 	@Override
@@ -107,25 +128,19 @@ public class BlockModMobFlower extends BlockMod implements IPlantable {
 	}
 
 	@Override
-	public AxisAlignedBB getCollisionBoundingBox(World w, BlockPos pos, IBlockState s) {
-		return null;
+	@SideOnly(Side.CLIENT)
+	public BlockRenderLayer getBlockLayer() {
+		return BlockRenderLayer.CUTOUT;
 	}
 
 	@Override
-	public boolean isOpaqueCube() {
+	public boolean isOpaqueCube(IBlockState state) {
 		return false;
 	}
 
 	@Override
-	public boolean isFullCube() {
+	public boolean isFullCube(IBlockState state) {
 		return false;
-	}
-
-	@Override
-	public EnumWorldBlockLayer getBlockLayer() {
-		//if(this == EssenceBlocks.permaFlower || this == EssenceBlocks.shiverFlower || this == EssenceBlocks.iceBush)
-		//	return EnumWorldBlockLayer.TRANSLUCENT;
-		return EnumWorldBlockLayer.CUTOUT;
 	}
 
 	@Override
@@ -139,7 +154,7 @@ public class BlockModMobFlower extends BlockMod implements IPlantable {
 	}
 
 	@Override
-	public boolean isReplaceable(World worldIn, BlockPos pos) {
+	public boolean isReplaceable(IBlockAccess worldIn, BlockPos pos) {
 		return true;
 	}
 }

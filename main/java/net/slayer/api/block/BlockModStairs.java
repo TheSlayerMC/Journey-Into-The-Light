@@ -16,9 +16,8 @@ public class BlockModStairs extends BlockStairs {
 		setUnlocalizedName(name);
 		if(light) setLightLevel(0.5F);
 		this.setLightOpacity(1);
-		setHardness(stair.getBlockHardness(null, null));
 		JourneyBlocks.blockName.add(name);
-		GameRegistry.registerBlock(this, name);
+		JourneyBlocks.blocks.add(this);
 	}
 	
 	public BlockModStairs(Block b, String n, String n2) {

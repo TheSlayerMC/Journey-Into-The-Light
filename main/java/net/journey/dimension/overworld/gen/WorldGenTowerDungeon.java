@@ -5,12 +5,11 @@ import java.util.Random;
 
 import net.journey.JourneyBlocks;
 import net.journey.entity.mob.boss.EntityTempleGuardian;
-import net.journey.util.Helper;
 import net.journey.util.LogHelper;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityMobSpawner;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.slayer.api.worldgen.WorldGenAPI;
@@ -27,16 +26,16 @@ public class WorldGenTowerDungeon extends WorldGenerator {
 		WorldGenAPI.placeChestWithContents(w, x + 1, y + 14, z + 8, 2, false, items);
 		WorldGenAPI.placeChestWithContents(w, x + 13, y + 14, z + 8, 2, false, items);*/
 		
-		WorldGenAPI.addRectangle(17, 12, 1, w, x - 1, y, z - 1, Blocks.grass);
-		WorldGenAPI.addRectangle(17, 12, 10, w, x - 1, y - 10, z - 1, Blocks.dirt);
+		WorldGenAPI.addRectangle(17, 12, 1, w, x - 1, y, z - 1, Blocks.GRASS);
+		WorldGenAPI.addRectangle(17, 12, 10, w, x - 1, y - 10, z - 1, Blocks.DIRT);
 
 		WorldGenAPI.addCornerlessRectangle(15, 10, height + 10, w, x, y + 1, z, JourneyBlocks.dungeonBrick);
-		WorldGenAPI.addRectangle(13, 8, height + 10, w, x + 1, y + 1, z + 1, Blocks.air);
+		WorldGenAPI.addRectangle(13, 8, height + 10, w, x + 1, y + 1, z + 1, Blocks.AIR);
 		WorldGenAPI.addRectangle(13, 8, 1, w, x + 1, y, z + 1, JourneyBlocks.dungeonBrick);
-		WorldGenAPI.addRectangle(2, 1, 3, w, x + 6, y + 1, z, Blocks.air);
-		WorldGenAPI.addRectangle(2, 1, 3, w, x + 6, y + 1, z + 9, Blocks.air);
-		WorldGenAPI.addRectangle(1, 2, 3, w, x, y + 1, z + 4, Blocks.air);
-		WorldGenAPI.addRectangle(1, 2, 3, w, x + 14, y + 1, z + 4, Blocks.air);
+		WorldGenAPI.addRectangle(2, 1, 3, w, x + 6, y + 1, z, Blocks.AIR);
+		WorldGenAPI.addRectangle(2, 1, 3, w, x + 6, y + 1, z + 9, Blocks.AIR);
+		WorldGenAPI.addRectangle(1, 2, 3, w, x, y + 1, z + 4, Blocks.AIR);
+		WorldGenAPI.addRectangle(1, 2, 3, w, x + 14, y + 1, z + 4, Blocks.AIR);
 		
 		ArrayList<String> mobNames = new ArrayList<String>();
 		
@@ -67,11 +66,11 @@ public class WorldGenTowerDungeon extends WorldGenerator {
 		
 		WorldGenAPI.addRectangle(13, 8, 1, w, x + 1, y + height + 8, z + 1, JourneyBlocks.mossyEssenceStone);
 		WorldGenAPI.addRectangle(15, 10, 1, w, x, y + height + 10, z, JourneyBlocks.dungeonBrick);
-		WorldGenAPI.addRectangle(13, 8, 1, w, x + 1, y + height + 10, z + 1, Blocks.air);
+		WorldGenAPI.addRectangle(13, 8, 1, w, x + 1, y + height + 10, z + 1, Blocks.AIR);
 
 		WorldGenAPI.addHollowRectangle(15, 10, 1, w, x, y + height + 11, z, JourneyBlocks.dungeonLampFence);
-		WorldGenAPI.addHollowRectangle(13, 8, 1, w, x + 1, y + height + 11, z + 1, Blocks.air);
-		WorldGenAPI.addRectangle(4, 2, 1, w, x + 2, y + height + 8, z + 1, Blocks.air);
+		WorldGenAPI.addHollowRectangle(13, 8, 1, w, x + 1, y + height + 11, z + 1, Blocks.AIR);
+		WorldGenAPI.addRectangle(4, 2, 1, w, x + 2, y + height + 8, z + 1, Blocks.AIR);
 
 		for(int i = 0; i < 4; i++) {
 			w.setBlockState(new BlockPos(x + 5 - i, y + i + height + 5, z + 1), JourneyBlocks.dungeonBrickStairs.getStateFromMeta(1), 2);
@@ -101,7 +100,7 @@ public class WorldGenTowerDungeon extends WorldGenerator {
 		if(!w.isRemote) {
 			EntityTempleGuardian guard = new EntityTempleGuardian(w);
 			guard.setLocationAndAngles(x + 5, y + height + 10, z + 5, 0.0F, 0.0F);
-			w.spawnEntityInWorld(guard);
+			w.spawnEntity(guard);
 		}
 		return true;
 	}
@@ -156,8 +155,8 @@ public class WorldGenTowerDungeon extends WorldGenerator {
 		Random r = new Random();
 		WorldGenAPI.addRectangle(13, 8, 1, w, x + 1, y + height, z + 1, JourneyBlocks.dungeonBrick);
 		WorldGenAPI.addRectangle(13, 8, 1, w, x + 1, y + height + 4, z + 1, JourneyBlocks.dungeonBrick);
-		WorldGenAPI.addRectangle(4, 2, 1, w, x + 2, y + height + 4, z + 1, Blocks.air);
-		WorldGenAPI.addRectangle(4, 2, 1, w, x + 2, y + height, z + 7, Blocks.air);
+		WorldGenAPI.addRectangle(4, 2, 1, w, x + 2, y + height + 4, z + 1, Blocks.AIR);
+		WorldGenAPI.addRectangle(4, 2, 1, w, x + 2, y + height, z + 7, Blocks.AIR);
 		WorldGenAPI.addBlock(w, x + 13, y + height - 1, z + 1, JourneyBlocks.dungeonLamp);
 		WorldGenAPI.addBlock(w, x + 1, y + height - 1, z + 1, JourneyBlocks.dungeonLamp);
 		WorldGenAPI.addBlock(w, x + 1, y + height - 1, z + 8, JourneyBlocks.dungeonLamp);
@@ -167,10 +166,10 @@ public class WorldGenTowerDungeon extends WorldGenerator {
 		WorldGenAPI.addBlock(w, x + 1, y + height - 5, z + 8, JourneyBlocks.dungeonLamp);
 		WorldGenAPI.addBlock(w, x + 13, y + height - 5, z + 8, JourneyBlocks.dungeonLamp);
 		
-		w.setBlockState(new BlockPos(x + 11, y + height - 3, z + 2), Blocks.mob_spawner.getDefaultState());
-		w.setBlockState(new BlockPos(x + 11, y + height - 3, z + 7), Blocks.mob_spawner.getDefaultState());
-		w.setBlockState(new BlockPos(x + 11, y + height + 1, z + 2), Blocks.mob_spawner.getDefaultState());
-		w.setBlockState(new BlockPos(x + 11, y + height + 1, z + 7), Blocks.mob_spawner.getDefaultState());
+		w.setBlockState(new BlockPos(x + 11, y + height - 3, z + 2), Blocks.MOB_SPAWNER.getDefaultState());
+		w.setBlockState(new BlockPos(x + 11, y + height - 3, z + 7), Blocks.MOB_SPAWNER.getDefaultState());
+		w.setBlockState(new BlockPos(x + 11, y + height + 1, z + 2), Blocks.MOB_SPAWNER.getDefaultState());
+		w.setBlockState(new BlockPos(x + 11, y + height + 1, z + 7), Blocks.MOB_SPAWNER.getDefaultState());
 		
 		TileEntityMobSpawner spawner1 = (TileEntityMobSpawner)w.getTileEntity(new BlockPos(x + 11, y + height - 3, z + 2));
 		TileEntityMobSpawner spawner2 = (TileEntityMobSpawner)w.getTileEntity(new BlockPos(x + 11, y + height - 3, z + 7));
@@ -178,10 +177,10 @@ public class WorldGenTowerDungeon extends WorldGenerator {
 		TileEntityMobSpawner spawner4 = (TileEntityMobSpawner)w.getTileEntity(new BlockPos(x + 11, y + height + 1, z + 7));
 		
 		if(spawner1 != null && spawner2 != null && spawner3 != null && spawner4 != null) {
-			spawner1.getSpawnerBaseLogic().setEntityName(mobName);
-			spawner2.getSpawnerBaseLogic().setEntityName(mobName2);
-			spawner3.getSpawnerBaseLogic().setEntityName(mobName2);
-			spawner4.getSpawnerBaseLogic().setEntityName(mobName);
+			spawner1.getSpawnerBaseLogic().setEntityId(new ResourceLocation(mobName));
+			spawner2.getSpawnerBaseLogic().setEntityId(new ResourceLocation(mobName2));
+			spawner3.getSpawnerBaseLogic().setEntityId(new ResourceLocation(mobName2));
+			spawner4.getSpawnerBaseLogic().setEntityId(new ResourceLocation(mobName));
 		} else {
 			LogHelper.error("Error placing mob spawner for tower dungeon");
 		}

@@ -6,6 +6,7 @@ import net.journey.JourneyBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
@@ -68,7 +69,7 @@ public class WorldGenBoilingLava extends WorldGenerator {
 						flag = !aboolean[(i1 * 16 + j2) * 8 + j1] && (i1 < 15 && aboolean[((i1 + 1) * 16 + j2) * 8 + j1] || i1 > 0 && aboolean[((i1 - 1) * 16 + j2) * 8 + j1] || j2 < 15 && aboolean[(i1 * 16 + j2 + 1) * 8 + j1] || j2 > 0 && aboolean[(i1 * 16 + (j2 - 1)) * 8 + j1] || j1 < 7 && aboolean[(i1 * 16 + j2) * 8 + j1 + 1] || j1 > 0 && aboolean[(i1 * 16 + j2) * 8 + (j1 - 1)]);
 
 						if(flag) {
-							Material material = par1World.getBlockState(new BlockPos(par3 + i1, par4 + j1, par5 + j2)).getBlock().getMaterial();
+							Material material = par1World.getBlockState(new BlockPos(par3 + i1, par4 + j1, par5 + j2)).getBlock().getMaterial(null);
 
 							if(j1 >= 4 && material.isLiquid()) {
 								return false;
@@ -86,7 +87,7 @@ public class WorldGenBoilingLava extends WorldGenerator {
 				for(j2 = 0; j2 < 16; ++j2) {
 					for(j1 = 0; j1 < 8; ++j1) {
 						if(aboolean[(i1 * 16 + j2) * 8 + j1]) {
-							par1World.setBlockState(new BlockPos(par3 + i1, par4 + j1, par5 + j2), j1 >= 4 ? Blocks.air.getDefaultState() : this.gen.getDefaultState(), 2);
+							par1World.setBlockState(new BlockPos(par3 + i1, par4 + j1, par5 + j2), j1 >= 4 ? Blocks.AIR.getDefaultState() : this.gen.getDefaultState(), 2);
 						}
 					}
 				}
@@ -97,7 +98,7 @@ public class WorldGenBoilingLava extends WorldGenerator {
 					for(j1 = 0; j1 < 8; ++j1) {
 						flag = !aboolean[(i1 * 16 + j2) * 8 + j1] && (i1 < 15 && aboolean[((i1 + 1) * 16 + j2) * 8 + j1] || i1 > 0 && aboolean[((i1 - 1) * 16 + j2) * 8 + j1] || j2 < 15 && aboolean[(i1 * 16 + j2 + 1) * 8 + j1] || j2 > 0 && aboolean[(i1 * 16 + (j2 - 1)) * 8 + j1] || j1 < 7 && aboolean[(i1 * 16 + j2) * 8 + j1 + 1] || j1 > 0 && aboolean[(i1 * 16 + j2) * 8 + (j1 - 1)]);
 
-						if(flag && (j1 < 4 || par2Random.nextInt(2) != 0) && par1World.getBlockState(new BlockPos(par3 + i1, par4 + j1, par5 + j2)).getBlock().getMaterial().isSolid()) {
+						if(flag && (j1 < 4 || par2Random.nextInt(2) != 0) && par1World.getBlockState(new BlockPos(par3 + i1, par4 + j1, par5 + j2)).getBlock().getMaterial(null).isSolid()) {
 							par1World.setBlockState(new BlockPos(par3 + i1, par4 + j1, par5 + j2), JourneyBlocks.ashBlock.getDefaultState(), 2);
 						}
 					}

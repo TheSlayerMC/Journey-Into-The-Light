@@ -15,6 +15,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityEssenceBoss;
 
@@ -38,7 +40,7 @@ public class EntityNetherBeast extends EntityEssenceBoss {
 			int k = MathHelper.floor_double(this.posZ);
 			IBlockState iblockstate = this.worldObj.getBlockState(new BlockPos(i, j, k));
             Block block = iblockstate.getBlock();
-			if(block.getMaterial() != Material.air)
+			if(block.getMaterial() != Material.AIR)
 				 this.worldObj.spawnParticle(EnumParticleTypes.BLOCK_CRACK, this.posX + (this.rand.nextFloat() - 0.5D) * this.width, this.getEntityBoundingBox().minY + 0.1D, this.posZ + (this.rand.nextFloat() - 0.5D) * this.width, 4.0D * (this.rand.nextFloat() - 0.5D), 0.5D, (this.rand.nextFloat() - 0.5D) * 4.0D, new int[] {Block.getStateId(iblockstate)});
 		}
 	}

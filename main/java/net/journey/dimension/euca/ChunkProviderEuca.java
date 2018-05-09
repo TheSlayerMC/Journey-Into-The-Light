@@ -19,7 +19,9 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.IProgressUpdate;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.chunk.IChunkProvider;
@@ -137,13 +139,13 @@ public class ChunkProviderEuca implements IChunkProvider {
 
 				for (int l = 127; l >= 0; --l) {
 					IBlockState iblockstate2 = c.getBlockState(i, l, j);
-					if (iblockstate2.getBlock().getMaterial() == Material.air) 
+					if (iblockstate2.getBlock().getMaterial() == Material.AIR) 
 						k = -1;
 
 					else if (iblockstate2.getBlock() == JourneyBlocks.eucaStone) {
 						if (k == -1) {
 							if (b0 <= 0) {
-								iblockstate = Blocks.air.getDefaultState();
+								iblockstate = Blocks.AIR.getDefaultState();
 								iblockstate1 = JourneyBlocks.eucaGrass.getDefaultState();
 							}
 							k = b0;
@@ -276,9 +278,9 @@ public class ChunkProviderEuca implements IChunkProvider {
 	}
 	
 	public boolean isBlockTop(int x, int y, int z, Block grass) {
-		return worldObj.getBlockState(new BlockPos(x, y, z)) == grass.getDefaultState() && worldObj.getBlockState(new BlockPos(x, y + 1, z)) == Blocks.air.getDefaultState()
-				&& worldObj.getBlockState(new BlockPos(x, y + 2, z)) == Blocks.air.getDefaultState() && worldObj.getBlockState(new BlockPos(x, y + 3, z)) == Blocks.air.getDefaultState()
-				&& worldObj.getBlockState(new BlockPos(x, y + 4, z)) == Blocks.air.getDefaultState() && worldObj.getBlockState(new BlockPos(x, y + 5, z)) == Blocks.air.getDefaultState();
+		return worldObj.getBlockState(new BlockPos(x, y, z)) == grass.getDefaultState() && worldObj.getBlockState(new BlockPos(x, y + 1, z)) == Blocks.AIR.getDefaultState()
+				&& worldObj.getBlockState(new BlockPos(x, y + 2, z)) == Blocks.AIR.getDefaultState() && worldObj.getBlockState(new BlockPos(x, y + 3, z)) == Blocks.AIR.getDefaultState()
+				&& worldObj.getBlockState(new BlockPos(x, y + 4, z)) == Blocks.AIR.getDefaultState() && worldObj.getBlockState(new BlockPos(x, y + 5, z)) == Blocks.AIR.getDefaultState();
 	}
 
 	@Override

@@ -3,6 +3,8 @@ package net.slayer.api.entity.tileentity.container;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
+import net.minecraft.inventory.IContainerListener;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.inventory.SlotFurnaceFuel;
 import net.minecraft.inventory.SlotFurnaceOutput;
@@ -33,28 +35,26 @@ public class ContainerModFurnace extends Container {
 			this.addSlotToContainer(new Slot(player, i, 8 + i * 18, 142));
 		}
 	}
-	
+
 	@Override
-	 public void onCraftGuiOpened(ICrafting listener) {
-        super.onCraftGuiOpened(listener);
-        listener.sendProgressBarUpdate(this, 0, this.tileFurnace.furnaceCookTime);
-		listener.sendProgressBarUpdate(this, 1, this.tileFurnace.furnaceBurnTime);
-		listener.sendProgressBarUpdate(this, 2, this.tileFurnace.currentItemBurnTime);
+    public void addListener(IContainerListener listener) {
+        super.addListener(listener);
+        listener.sendAllWindowProperties(this, this.tileFurnace);
     }
 
 	@Override
 	public void detectAndSendChanges() {
 		super.detectAndSendChanges();
-		for(int i = 0; i < this.crafters.size(); ++i) {
-			ICrafting icrafting = (ICrafting)this.crafters.get(i);
-			if(this.lastCookTime != this.tileFurnace.furnaceCookTime) 
-				icrafting.sendProgressBarUpdate(this, 0, this.tileFurnace.furnaceCookTime);
+		for (int i = 0; i < this.listeners.size(); ++i) {
+            IContainerListener icontainerlistener = this.listeners.get(i);
+			if(this.lastCookTime != this.tileFurnace.cookTime) 
+				icontainerlistener.sendWindowProperty(this, 0, this.tileFurnace.cookTime);
 			if(this.lastBurnTime != this.tileFurnace.furnaceBurnTime)
-				icrafting.sendProgressBarUpdate(this, 1, this.tileFurnace.furnaceBurnTime);
+				icontainerlistener.sendWindowProperty(this, 1, this.tileFurnace.furnaceBurnTime);
 			if(this.lastItemBurnTime != this.tileFurnace.currentItemBurnTime)
-				icrafting.sendProgressBarUpdate(this, 2, this.tileFurnace.currentItemBurnTime);
+				icontainerlistener.sendWindowProperty(this, 2, this.tileFurnace.currentItemBurnTime);
 		}
-		this.lastCookTime = this.tileFurnace.furnaceCookTime;
+		this.lastCookTime = this.tileFurnace.cookTime;
 		this.lastBurnTime = this.tileFurnace.furnaceBurnTime;
 		this.lastItemBurnTime = this.tileFurnace.currentItemBurnTime;
 	}
@@ -62,14 +62,14 @@ public class ContainerModFurnace extends Container {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void updateProgressBar(int par1, int par2) {
-		if(par1 == 0) this.tileFurnace.furnaceCookTime = par2;
+		if(par1 == 0) this.tileFurnace.cookTime = par2;
 		if(par1 == 1) this.tileFurnace.furnaceBurnTime = par2;
 		if(par1 == 2) this.tileFurnace.currentItemBurnTime = par2;
 	}
 
 	@Override
 	public boolean canInteractWith(EntityPlayer par1EntityPlayer) {
-		return this.tileFurnace.isUseableByPlayer(par1EntityPlayer);
+		return true;
 	}
 
 	@Override
@@ -90,27 +90,27 @@ public class ContainerModFurnace extends Container {
                     return null;
                 }
 
-                if (itemstack1.hasTagCompound() && itemstack1.stackSize == 1) {
+                if (itemstack1.hasTagCompound() && itemstack1.getCount() == 1) {
                     this.inventorySlots.get(0).putStack(itemstack1.copy());
-                    itemstack1.stackSize = 0;
+                    itemstack1.setCount(0);
                 }
-                else if (itemstack1.stackSize >= 1) {
+                else if (itemstack1.getCount() >= 1) {
                     this.inventorySlots.get(0).putStack(new ItemStack(itemstack1.getItem(), 1, itemstack1.getItemDamage()));
-                    itemstack1.stackSize--;
+                    itemstack1.shrink(1);;
                 }
             }
 
-            if (itemstack1.stackSize == 0) {
+            if (itemstack1.getCount() == 0) {
                 slot.putStack((ItemStack)null);
             } else {
                 slot.onSlotChanged();
             }
 
-            if (itemstack1.stackSize == itemstack.stackSize) {
+            if (itemstack1.getCount() == itemstack.getCount()) {
                 return null;
             }
 
-            slot.onPickupFromSlot(par1EntityPlayer, itemstack1);
+            slot.onTake(par1EntityPlayer, itemstack1);
         }
         return itemstack;
     }

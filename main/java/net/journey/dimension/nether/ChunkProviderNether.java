@@ -4,14 +4,14 @@ import java.util.List;
 import java.util.Random;
 
 import net.journey.JourneyBlocks;
-import net.journey.entity.mob.nether.EntityMiniGhast;
-import net.journey.entity.mob.nether.EntityWitherspine;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.IProgressUpdate;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
@@ -27,10 +27,7 @@ import net.minecraft.world.gen.feature.WorldGenHellLava;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraft.world.gen.structure.MapGenNetherBridge;
-import net.minecraftforge.common.BiomeDictionary;
-import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.event.terraingen.TerrainGen;
-import net.minecraftforge.fml.common.registry.EntityRegistry;
 
 public class ChunkProviderNether implements IChunkProvider {
 
@@ -52,7 +49,7 @@ public class ChunkProviderNether implements IChunkProvider {
     private final WorldGenFire field_177470_t = new WorldGenFire();
     private final WorldGenGlowStone1 field_177469_u = new WorldGenGlowStone1();
     private final WorldGenGlowStone2 field_177468_v = new WorldGenGlowStone2();
-    private final WorldGenerator field_177467_w = new WorldGenMinable(Blocks.quartz_ore.getDefaultState(), 14, BlockHelper.forBlock(Blocks.netherrack));
+    private final WorldGenerator field_177467_w = new WorldGenMinable(Blocks.quartz_ore.getDefaultState(), 14, BlockHelper.forBlock(Blocks.NETHERRACK));
     private final WorldGenHellLava field_177473_x = new WorldGenHellLava(Blocks.flowing_lava, true);
     private final WorldGenHellLava field_177472_y = new WorldGenHellLava(Blocks.flowing_lava, false);
     private final GeneratorBushFeature field_177471_z = new GeneratorBushFeature(Blocks.brown_mushroom);
@@ -129,11 +126,11 @@ public class ChunkProviderNether implements IChunkProvider {
                                 IBlockState iblockstate = null;
 
                                 if (l1 * 8 + i2 < j) {
-                                    iblockstate = Blocks.lava.getDefaultState();
+                                    iblockstate = Blocks.LAVA.getDefaultState();
                                 }
 
                                 if (d15 > 0.0D) {
-                                    iblockstate = Blocks.netherrack.getDefaultState();
+                                    iblockstate = Blocks.NETHERRACK.getDefaultState();
                                 }
 
                                 int l2 = j2 + j1 * 4;
@@ -176,32 +173,32 @@ public class ChunkProviderNether implements IChunkProvider {
                 boolean flag2 = this.heatsoilNoise[j + k * 16] + this.hellRNG.nextDouble() * 0.2D > 0.0D;
                 int l = (int)(this.netherrackExclusivityNoise[j + k * 16] / 3.0D + 3.0D + this.hellRNG.nextDouble() * 0.25D);
                 int i1 = -1;
-                IBlockState iblockstate = Blocks.netherrack.getDefaultState();
-                IBlockState iblockstate1 = Blocks.netherrack.getDefaultState();
+                IBlockState iblockstate = Blocks.NETHERRACK.getDefaultState();
+                IBlockState iblockstate1 = Blocks.NETHERRACK.getDefaultState();
 
                 for (int j1 = 127; j1 >= 0; --j1){
                     if (j1 < 127 - this.hellRNG.nextInt(5) && j1 > this.hellRNG.nextInt(5)){
                         IBlockState iblockstate2 = primer.getBlockState(k, j1, j);
 
-                        if (iblockstate2.getBlock() != null && iblockstate2.getBlock().getMaterial() != Material.air){
-                            if (iblockstate2.getBlock() == Blocks.netherrack) {
+                        if (iblockstate2.getBlock() != null && iblockstate2.getBlock().getMaterial() != Material.AIR){
+                            if (iblockstate2.getBlock() == Blocks.NETHERRACK) {
                                 if (i1 == -1){
                                     if (l <= 0) {
                                         iblockstate = null;
-                                        iblockstate1 = Blocks.netherrack.getDefaultState();
+                                        iblockstate1 = Blocks.NETHERRACK.getDefaultState();
                                     }
                                     else if (j1 >= i - 4 && j1 <= i + 1) {
-                                        iblockstate = Blocks.netherrack.getDefaultState();
-                                        iblockstate1 = Blocks.netherrack.getDefaultState();
+                                        iblockstate = Blocks.NETHERRACK.getDefaultState();
+                                        iblockstate1 = Blocks.NETHERRACK.getDefaultState();
 
                                         if (flag1) {
-                                            iblockstate = Blocks.gravel.getDefaultState();
-                                            iblockstate1 = Blocks.netherrack.getDefaultState();
+                                            iblockstate = Blocks.GRAVEL.getDefaultState();
+                                            iblockstate1 = Blocks.NETHERRACK.getDefaultState();
                                         }
                                         
                                         if (flag) {
-                                            iblockstate = Blocks.soul_sand.getDefaultState();
-                                            iblockstate1 = Blocks.soul_sand.getDefaultState();
+                                            iblockstate = Blocks.SOUL_SAND.getDefaultState();
+                                            iblockstate1 = Blocks.SOUL_SAND.getDefaultState();
                                         }
 
                                         if (flag2) {
@@ -210,8 +207,8 @@ public class ChunkProviderNether implements IChunkProvider {
                                         }
                                     }
 
-                                    if (j1 < i && (iblockstate == null || iblockstate.getBlock().getMaterial() == Material.air)){
-                                        iblockstate = Blocks.lava.getDefaultState();
+                                    if (j1 < i && (iblockstate == null || iblockstate.getBlock().getMaterial() == Material.AIR)){
+                                        iblockstate = Blocks.LAVA.getDefaultState();
                                     }
 
                                     i1 = l;
@@ -234,7 +231,7 @@ public class ChunkProviderNether implements IChunkProvider {
                         }
                     }
                     else {
-                        primer.setBlockState(k, j1, j, Blocks.netherrack.getDefaultState());
+                        primer.setBlockState(k, j1, j, Blocks.NETHERRACK.getDefaultState());
                     }
                 }
             }
@@ -247,10 +244,10 @@ public class ChunkProviderNether implements IChunkProvider {
         ChunkPrimer chunkprimer = new ChunkPrimer();
         this.generateTerrainFeatures(x, z, chunkprimer);
         this.generateNetherTerrain(x, z, chunkprimer);
-        this.netherCaveGenerator.generate(this, this.worldObj, x, z, chunkprimer);
+        this.netherCaveGenerator.generate(this.worldObj, x, z, chunkprimer);
 
         if (this.par1) {
-            this.genNetherBridge.generate(this, this.worldObj, x, z, chunkprimer);
+            this.genNetherBridge.generate(this.worldObj, x, z, chunkprimer);
         }
 
         Chunk chunk = new Chunk(this.worldObj, chunkprimer, x, z);
@@ -346,8 +343,8 @@ public class ChunkProviderNether implements IChunkProvider {
         BlockFalling.fallInstantly = true;
         net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(new net.minecraftforge.event.terraingen.PopulateChunkEvent.Pre(provider, worldObj, hellRNG, chunkX, chunkZ, false));
         BlockPos blockpos = new BlockPos(chunkX * 16, 0, chunkZ * 16);
-        ChunkCoordIntPair chunkcoordintpair = new ChunkCoordIntPair(chunkX, chunkZ);
-        this.genNetherBridge.generateStructure(this.worldObj, this.hellRNG, chunkcoordintpair);
+        ChunkCoordIntPair chunkcoordintpAIR = new ChunkCoordIntPAIR(chunkX, chunkZ);
+        this.genNetherBridge.generateStructure(this.worldObj, this.hellRNG, chunkcoordintpAIR);
 
         boolean doGen = net.minecraftforge.event.terraingen.TerrainGen.populate(provider, worldObj, hellRNG, chunkX, chunkZ, false, net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.NETHER_LAVA);
         for (int i = 0; doGen && i < 8; ++i)

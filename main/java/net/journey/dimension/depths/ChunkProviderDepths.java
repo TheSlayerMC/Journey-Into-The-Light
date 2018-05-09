@@ -15,16 +15,15 @@ import net.journey.dimension.depths.gen.WorldGenPlant2;
 import net.journey.dimension.depths.gen.WorldGenPlant3;
 import net.journey.dimension.depths.gen.WorldGenSorcererShrine;
 import net.journey.dimension.depths.gen.WorldGenSpike;
-import net.journey.dimension.euca.gen.WorldGenSmeltery;
 import net.journey.dimension.overworld.gen.WorldGenModFlower;
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.IProgressUpdate;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldType;
+import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.chunk.IChunkProvider;
@@ -35,7 +34,6 @@ import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.TerrainGen;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
-import net.slayer.api.block.BlockModFlower;
 
 public class ChunkProviderDepths implements IChunkProvider {
 
@@ -171,7 +169,7 @@ public class ChunkProviderDepths implements IChunkProvider {
 		this.func_180517_a(x, z, chunkprimer);
 		for(int i = 0; i < 10; i++) {
 			int ycoord = rand.nextInt(249) + 1;
-			if(chunkprimer.getBlockState(8, ycoord, 8).getBlock() == Blocks.air && chunkprimer.getBlockState(8, ycoord - 1, 8).getBlock() == JourneyBlocks.darkFloor && chunkprimer.getBlockState(8, ycoord + 1, 8).getBlock() == Blocks.air) {
+			if(chunkprimer.getBlockState(8, ycoord, 8).getBlock() == Blocks.AIR && chunkprimer.getBlockState(8, ycoord - 1, 8).getBlock() == JourneyBlocks.darkFloor && chunkprimer.getBlockState(8, ycoord + 1, 8).getBlock() == Blocks.AIR) {
 				new WorldGenSpike().generate(chunkprimer, rand, new BlockPos(8, ycoord, 8));
 			}
 		}
@@ -287,7 +285,7 @@ public class ChunkProviderDepths implements IChunkProvider {
 
 		for(i = 0; i < 25; i++) {
 			y = r.nextInt(250); x = x1 + this.rand.nextInt(16) + 8; z = z1 + this.rand.nextInt(16) + 8;
-			(new WorldGenMinable(JourneyBlocks.flairiumOre.getDefaultState(), 8, BlockHelper.forBlock(JourneyBlocks.depthsStone))).generate(worldObj, r, new BlockPos(x, y, z));
+			(new WorldGenMinable(JourneyBlocks.flAIRiumOre.getDefaultState(), 8, BlockHelper.forBlock(JourneyBlocks.depthsStone))).generate(worldObj, r, new BlockPos(x, y, z));
 		}
 
 		for(i = 0; i < 25; i++) {
@@ -386,9 +384,9 @@ public class ChunkProviderDepths implements IChunkProvider {
 	}
 	
 	public boolean isBlockTop(int x, int y, int z, Block grass) {
-		return worldObj.getBlockState(new BlockPos(x, y, z)) == grass.getDefaultState() && worldObj.getBlockState(new BlockPos(x, y + 1, z)) == Blocks.air.getDefaultState()
-				&& worldObj.getBlockState(new BlockPos(x, y + 2, z)) == Blocks.air.getDefaultState() && worldObj.getBlockState(new BlockPos(x, y + 3, z)) == Blocks.air.getDefaultState()
-				&& worldObj.getBlockState(new BlockPos(x, y + 4, z)) == Blocks.air.getDefaultState() && worldObj.getBlockState(new BlockPos(x, y + 5, z)) == Blocks.air.getDefaultState();
+		return worldObj.getBlockState(new BlockPos(x, y, z)) == grass.getDefaultState() && worldObj.getBlockState(new BlockPos(x, y + 1, z)) == Blocks.AIR.getDefaultState()
+				&& worldObj.getBlockState(new BlockPos(x, y + 2, z)) == Blocks.AIR.getDefaultState() && worldObj.getBlockState(new BlockPos(x, y + 3, z)) == Blocks.AIR.getDefaultState()
+				&& worldObj.getBlockState(new BlockPos(x, y + 4, z)) == Blocks.AIR.getDefaultState() && worldObj.getBlockState(new BlockPos(x, y + 5, z)) == Blocks.AIR.getDefaultState();
 	}
 
 	@Override
