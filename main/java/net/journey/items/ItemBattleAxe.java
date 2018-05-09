@@ -28,7 +28,7 @@ public class ItemBattleAxe extends ItemModAxe {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, World player, List<String> list, ITooltipFlag par4) {
     	list.add(SlayerAPI.Colour.AQUA + "Battle Axe");
-        list.add(SlayerAPI.Colour.BLUE + "Efficiency: " + toolMaterial.getEfficiencyOnProperMaterial());
+        list.add(SlayerAPI.Colour.BLUE + "Efficiency: " + toolMaterial.getEfficiency());
         if (stack.getMaxDamage() != -1) list.add(stack.getMaxDamage() - stack.getItemDamage() + " Uses");
         else list.add(SlayerAPI.Colour.GREEN + "Infinite Uses");
     }

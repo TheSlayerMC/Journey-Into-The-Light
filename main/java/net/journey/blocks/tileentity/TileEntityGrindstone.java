@@ -9,6 +9,7 @@ import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
 import net.minecraft.server.gui.PlayerListComponent;
@@ -22,13 +23,16 @@ public class TileEntityGrindstone extends TileEntity implements ITickable {
 	public boolean isActive = false;
 	public TileEntityGrindstone() { }
 
+	
+	
 	@Override
-	public void writeToNBT(NBTTagCompound nbt) {
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
 		nbt.setInteger("ItemOnGrind", Item.getIdFromItem(itemOnGrind));
 		nbt.setInteger("GrindItemState", state);
 		nbt.setBoolean("Active", isActive);
 		nbt.setFloat("Rotation", rotation);
+		return nbt;
 	}
 
 	@Override
@@ -41,14 +45,14 @@ public class TileEntityGrindstone extends TileEntity implements ITickable {
 	}
 
 	@Override
-	public Packet getDescriptionPacket() {
+	public SPacketUpdateTileEntity getUpdatePacket() {
 		NBTTagCompound var1 = new NBTTagCompound();
 		this.writeToNBT(var1);
-		return new S35PacketUpdateTileEntity(pos, 1, var1);
+		return new SPacketUpdateTileEntity(pos, 1, var1);
 	}
-
+	
 	@Override
-	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
+	public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
 		readFromNBT(pkt.getNbtCompound());
 	}
 
@@ -79,9 +83,9 @@ public class TileEntityGrindstone extends TileEntity implements ITickable {
 			else if(itemOnGrind == SlayerAPI.toItem(JourneyBlocks.ashualOre)) setItem(JourneyItems.ashDust, f, returnVal);
 			else if(itemOnGrind == SlayerAPI.toItem(JourneyBlocks.sapphireOre)) setItem(JourneyItems.sapphireDust, f, returnVal);
 			else if(itemOnGrind == SlayerAPI.toItem(JourneyBlocks.enderilliumOre)) setItem(JourneyItems.enderilliumDust, f, returnVal);
-			else if(itemOnGrind == SlayerAPI.toItem(Blocks.gold_ore)) setItem(JourneyItems.goldDust, f, returnVal);
-			else if(itemOnGrind == SlayerAPI.toItem(Blocks.diamond_ore)) setItem(JourneyItems.diamondDust, f, returnVal);
-			else if(itemOnGrind == SlayerAPI.toItem(Blocks.iron_ore)) setItem(JourneyItems.ironDust, f, returnVal);
+			else if(itemOnGrind == SlayerAPI.toItem(Blocks.GOLD_ORE)) setItem(JourneyItems.goldDust, f, returnVal);
+			else if(itemOnGrind == SlayerAPI.toItem(Blocks.DIAMOND_ORE)) setItem(JourneyItems.diamondDust, f, returnVal);
+			else if(itemOnGrind == SlayerAPI.toItem(Blocks.IRON_ORE)) setItem(JourneyItems.ironDust, f, returnVal);
 			else if(itemOnGrind == SlayerAPI.toItem(JourneyBlocks.gorbiteOre)) setItem(JourneyItems.gorbiteDust, f, returnVal);
 			else if(itemOnGrind == SlayerAPI.toItem(JourneyBlocks.orbaditeOre)) setItem(JourneyItems.orbaditeDust, f, returnVal);
 
@@ -109,9 +113,9 @@ public class TileEntityGrindstone extends TileEntity implements ITickable {
 							else if(item == SlayerAPI.toItem(JourneyBlocks.ashualOre)) itemOnGrind = JourneyItems.ashDust;
 							else if(item == SlayerAPI.toItem(JourneyBlocks.sapphireOre)) itemOnGrind = JourneyItems.sapphireDust;
 							else if(item == SlayerAPI.toItem(JourneyBlocks.enderilliumOre)) itemOnGrind = JourneyItems.enderilliumDust;
-							else if(item == SlayerAPI.toItem(Blocks.diamond_ore)) itemOnGrind = JourneyItems.diamondDust;
-							else if(item == SlayerAPI.toItem(Blocks.gold_ore)) itemOnGrind = JourneyItems.goldDust;
-							else if(item == SlayerAPI.toItem(Blocks.iron_ore)) itemOnGrind = JourneyItems.ironDust;
+							else if(item == SlayerAPI.toItem(Blocks.DIAMOND_ORE)) itemOnGrind = JourneyItems.diamondDust;
+							else if(item == SlayerAPI.toItem(Blocks.GOLD_ORE)) itemOnGrind = JourneyItems.goldDust;
+							else if(item == SlayerAPI.toItem(Blocks.IRON_ORE)) itemOnGrind = JourneyItems.ironDust;
 							else if(item == SlayerAPI.toItem(JourneyBlocks.gorbiteOre)) itemOnGrind = JourneyItems.gorbiteDust;
 							else if(item == SlayerAPI.toItem(JourneyBlocks.orbaditeOre)) itemOnGrind = JourneyItems.orbaditeDust;
 							else itemOnGrind = null;
@@ -140,7 +144,7 @@ public class TileEntityGrindstone extends TileEntity implements ITickable {
 
 	@Override
 	public void update() {
-		if(worldObj.isBlockPowered(getPos())) {
+		if(world.isBlockPowered(getPos())) {
 			setActivated(true);
 			work(2);
 			rotation += 20.0F;

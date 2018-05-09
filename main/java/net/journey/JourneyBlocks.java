@@ -34,7 +34,6 @@ import net.journey.blocks.machines.BlockGrindstone;
 import net.journey.blocks.machines.BlockIgniter;
 import net.journey.blocks.machines.BlockJourneyChest;
 import net.journey.blocks.machines.BlockKnowledgeTable;
-import net.journey.blocks.machines.BlockStoneCraftingTable;
 import net.journey.blocks.machines.BlockSummoningTable;
 import net.journey.blocks.portal.BlockBoilPortal;
 import net.journey.blocks.portal.BlockCloudiaPortal;
@@ -51,7 +50,6 @@ import net.slayer.api.EnumMaterialTypes;
 import net.slayer.api.EnumToolType;
 import net.slayer.api.block.BlockMod;
 import net.slayer.api.block.BlockModBars;
-import net.slayer.api.block.BlockModBush;
 import net.slayer.api.block.BlockModDoor;
 import net.slayer.api.block.BlockModFence;
 import net.slayer.api.block.BlockModFlower;
@@ -130,11 +128,12 @@ public class JourneyBlocks {
 	public static final Block blueGemBlock = new BlockMod("blueGemBlock", "Blue Gem Block");
 	public static final Block yellowGemBlock = new BlockMod("yellowGemBlock", "Yellow Gem Block");
 	
-	public static final Block sizzleberryBush = new BlockModBush("sizzleberryBush", "Sizzleberry Bush", JourneyItems.sizzleberry, true);
+	@SuppressWarnings("")
+	/*public static final Block sizzleberryBush = new BlockModBush("sizzleberryBush", "Sizzleberry Bush", JourneyItems.sizzleberry, true);
 	public static final Block bradberryBush = new BlockModBush("bradberryBush", "Bradberry Bush", JourneyItems.bradberry, false);
 	public static final Block tangleberryBush = new BlockModBush("tangleberryBush", "Tangleberry Bush", JourneyItems.tangleberry, false);
 	public static final Block juiceberryBush = new BlockModBush("juiceberryBush", "Juiceberry Bush", JourneyItems.juiceberry, false);
-	public static final Block bogberryBush = new BlockModBush("bogberryBush", "Bogberry Bush", JourneyItems.bogberry, false);
+	public static final Block bogberryBush = new BlockModBush("bogberryBush", "Bogberry Bush", JourneyItems.bogberry, false);*/
 	
 	public static final Block nethicanSludge = new BlockMod(EnumMaterialTypes.SLIME, "nethicanSludge", "Nethican Sludge", 1.0F);
 	
@@ -424,8 +423,6 @@ public class JourneyBlocks {
 	public static final Block blueGems = new BlockGemBlock("blueGems", "Blue Gems", false);
 	public static final Block redGems = new BlockGemBlock("redGems", "Red Gems", true);
 	
-	public static final Block stoneCraftingTable = new BlockStoneCraftingTable("stoneCraftingTable", "Stone Crafting Table").setCreativeTab(JourneyTabs.machineBlocks);
-
 	public static final Block blackBlock = new BlockMod(EnumMaterialTypes.STONE, "blackBlock", "Black Block", 0.5F);
 	public static final Block whiteBlock = new BlockMod(EnumMaterialTypes.STONE, "whiteBlock", "White Block", 0.5F);
 

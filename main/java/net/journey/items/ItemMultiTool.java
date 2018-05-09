@@ -53,6 +53,11 @@ public class ItemMultiTool extends ItemTool {
 	}
 	
 	@Override
+	public boolean isEnchantable(ItemStack stack) {
+		return true;
+	}
+	
+	@Override
 	public boolean isItemTool(ItemStack i) {
 		return true;
 	}

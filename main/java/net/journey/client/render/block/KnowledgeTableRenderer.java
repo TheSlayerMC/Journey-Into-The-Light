@@ -2,6 +2,7 @@ package net.journey.client.render.block;
 
 import net.journey.JourneyItems;
 import net.journey.blocks.tileentity.TileEntityKnowledgeTable;
+import net.journey.util.LangHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -27,8 +28,8 @@ public class KnowledgeTableRenderer extends TileEntitySpecialRenderer {
 	public KnowledgeTableRenderer() {
 		renderEntity = new RenderEntityItem(Minecraft.getMinecraft().getRenderManager(), Minecraft.getMinecraft().getRenderItem()){
             @Override
-            public int func_177078_a(ItemStack stack) {
-                return SignedBytes.saturatedCast(Math.min(stack.getCount() / 32, 15) + 1);
+            protected int getModelCount(ItemStack stack) {
+            	return SignedBytes.saturatedCast(Math.min(stack.getCount() / 32, 15) + 1);
             }
             
             @Override
@@ -52,7 +53,7 @@ public class KnowledgeTableRenderer extends TileEntitySpecialRenderer {
 	}
 	
 	@Override
-	public void render(TileEntity t, double x, double y, double z, float f, int j, float f) {
+	public void render(TileEntity t, double x, double y, double z, float f, int j, float f1) {
 		TileEntityKnowledgeTable tile = (TileEntityKnowledgeTable)t;
 		float scale = 1.0F;
 		float timeD = (float) (360.0 * (System.currentTimeMillis() & 0x3FFFL) / 0x3FFFL) * 8;
@@ -68,7 +69,7 @@ public class KnowledgeTableRenderer extends TileEntitySpecialRenderer {
 		//renderItem.renderItemModel(item.getEntityItem());
 		GL11.glPopMatrix();
 		GL11.glPushMatrix();
-		renderText(StatCollector.translateToLocal(i.getItem().getUnlocalizedName() + ".name"), x + 0.5F, y + 1.5F, z + 0.5F);
+		renderText(LangHelper.getFormattedText(i.getItem().getUnlocalizedName() + ".name"), x + 0.5F, y + 1.5F, z + 0.5F);
 		GL11.glPopMatrix();
 	}
 

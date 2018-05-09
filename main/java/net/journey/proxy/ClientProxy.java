@@ -36,8 +36,6 @@ public class ClientProxy extends CommonProxy {
 
 	@Override
 	public void clientPreInit() {
-		SlayerAPI.registerModelBakery(JourneyBlocks.miniColouredBricks, miniBricks);
-		SlayerAPI.registerModelBakery(JourneyBlocks.colouredBricks, brick);
 		SlayerAPI.addBow(JourneyItems.flameBow, "flameBow");
 		SlayerAPI.addBow(JourneyItems.poisonBow, "poisonBow");
 		SlayerAPI.addBow(JourneyItems.darknessBow, "darknessBow");
@@ -80,10 +78,6 @@ public class ClientProxy extends CommonProxy {
 		SlayerAPI.registerEvent(new PlayerStats());
 	}
 
-	public static String[] brick = {SlayerAPI.PREFIX + "blackColouredBrick", SlayerAPI.PREFIX + "blueColouredBrick", SlayerAPI.PREFIX + "brownColouredBrick", SlayerAPI.PREFIX + "cyanColouredBrick", SlayerAPI.PREFIX + "grayColouredBrick", SlayerAPI.PREFIX + "limeColouredBrick", SlayerAPI.PREFIX + "magentaColouredBrick", SlayerAPI.PREFIX + "orangeColouredBrick", SlayerAPI.PREFIX + "pinkColouredBrick", SlayerAPI.PREFIX + "purpleColouredBrick", SlayerAPI.PREFIX + "redColouredBrick", SlayerAPI.PREFIX + "whiteColouredBrick", SlayerAPI.PREFIX + "yellowColouredBrick"};
-	public static String[] miniBricks = {SlayerAPI.PREFIX + "blackMiniColouredBrick", SlayerAPI.PREFIX + "blueMiniColouredBrick", SlayerAPI.PREFIX + "brownMiniColouredBrick", SlayerAPI.PREFIX + "cyanMiniColouredBrick", SlayerAPI.PREFIX + "grayMiniColouredBrick", SlayerAPI.PREFIX + "limeMiniColouredBrick", SlayerAPI.PREFIX + "magentaMiniColouredBrick", SlayerAPI.PREFIX + "orangeMiniColouredBrick", SlayerAPI.PREFIX + "pinkMiniColouredBrick", SlayerAPI.PREFIX + "purpleMiniColouredBrick", SlayerAPI.PREFIX + "redMiniColouredBrick", SlayerAPI.PREFIX + "whiteMiniColouredBrick", SlayerAPI.PREFIX + "yellowMiniColouredBrick"};
-	public static String[] brickNames = {"blackColouredBrick", "blueColouredBrick", "brownColouredBrick", "cyanColouredBrick", "grayColouredBrick", "limeColouredBrick", "magentaColouredBrick", "orangeColouredBrick", "pinkColouredBrick", "purpleColouredBrick", "redColouredBrick", "whiteColouredBrick", "yellowColouredBrick"};
-	public static String[] miniBricksName = {"blackMiniColouredBrick", "blueMiniColouredBrick", "brownMiniColouredBrick", "cyanMiniColouredBrick", "grayMiniColouredBrick", "limeMiniColouredBrick", "magentaMiniColouredBrick", "orangeMiniColouredBrick", "pinkMiniColouredBrick", "purpleMiniColouredBrick", "redMiniColouredBrick", "whiteMiniColouredBrick", "yellowMiniColouredBrick"};
 	public static String[] brison = {"dark", "red", "small", "bstone"};
 
 	@Override
@@ -116,16 +110,6 @@ public class ClientProxy extends CommonProxy {
 		SlayerAPI.addBowRender(JourneyItems.darknessBow, "darknessBow");
 		SlayerAPI.addBowRender(JourneyItems.frozenBow, "frozenBow");
 		SlayerAPI.addBowRender(JourneyItems.staringBow, "staringBow");
-
-		for(int i = 0; i < brickNames.length; i++) {
-			Block b = JourneyBlocks.colouredBricks;
-			SlayerAPI.registerBlockRender(b, i, brickNames[i]);
-		}
-
-		for(int i = 0; i < miniBricksName.length; i++) {
-			Block b = JourneyBlocks.miniColouredBricks;
-			SlayerAPI.registerBlockRender(b, i, miniBricksName[i]);
-		}
 	}
 
 	@SuppressWarnings("unchecked")

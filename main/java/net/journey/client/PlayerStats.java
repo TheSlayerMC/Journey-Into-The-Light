@@ -1,22 +1,14 @@
 package net.journey.client;
 
-import net.journey.util.Config;
-import net.journey.util.Helper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.gui.GuiChat;
 import net.minecraft.client.gui.GuiIngame;
-import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.RenderTickEvent;
 import net.slayer.api.SlayerAPI;
-
-import org.lwjgl.opengl.GL11;
+import net.slayer.api.SlayerAPI.Colour;
 
 public class PlayerStats {
 
@@ -25,11 +17,11 @@ public class PlayerStats {
 	public void tickEvent(RenderTickEvent event) {
 		Minecraft mc = Minecraft.getMinecraft();
 		GuiIngame gig = mc.ingameGUI;
-		FontRenderer font = mc.fontRendererObj;
-		EntityPlayer player = mc.thePlayer;
+		FontRenderer font = mc.fontRenderer;
+		EntityPlayer player = mc.player;
 		if(mc.currentScreen == null) {
 			if(!mc.gameSettings.showDebugInfo) 
-				if(SlayerAPI.BETA) mc.fontRendererObj.drawString(EnumChatFormatting.DARK_GREEN + "Essence of the Gods: " + EnumChatFormatting.DARK_RED + SlayerAPI.MOD_VERSION, 5, 5, 0);
+				if(SlayerAPI.BETA) mc.fontRenderer.drawString(Colour.DARK_GREEN + "Essence of the Gods: " + Colour.DARK_RED + SlayerAPI.MOD_VERSION, 5, 5, 0);
 
 			if(mc.gameSettings.showDebugInfo) {
 				String st = I18n.format("essence.time", new Object[0]) + " " + formatTime(getWorldTime(mc));
@@ -39,7 +31,7 @@ public class PlayerStats {
 	}
 
 	public static Long getWorldTime(Minecraft mc) {
-		return Long.valueOf(mc.theWorld.provider.getWorldTime());
+		return Long.valueOf(mc.world.provider.getWorldTime());
 	}
 
 	public static String formatTime(Long time) {

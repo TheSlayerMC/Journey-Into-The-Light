@@ -23,16 +23,13 @@ import net.journey.client.render.gui.GuiSummoningTable;
 import net.journey.client.render.gui.GuiTerranian;
 import net.journey.client.render.gui.GuiTordo;
 import net.journey.client.render.gui.GuiTrophyTable;
-import net.minecraft.client.gui.inventory.GuiCrafting;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.IMerchant;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import net.slayer.api.entity.tileentity.container.ContainerModCrafting;
 import net.slayer.api.entity.tileentity.container.ContainerModVillager;
 
 public class GuiHandler implements IGuiHandler {
@@ -57,7 +54,6 @@ public class GuiHandler implements IGuiHandler {
 	escaped = id++,
 	
 	//Blocks
-	crafting = id++,
 	knowledge = id++,
 	summoning = id++,
 	trophy = id++;
@@ -122,7 +118,6 @@ public class GuiHandler implements IGuiHandler {
 		if(ID == overgrownMerchant) return new GuiOvergrownMerchant(new ContainerModVillager(player.inventory, (IMerchant)getEntityByID(x, world), world), (IMerchant)getEntityByID(x, world));
 		if(ID == escaped) return new GuiEscaped(new ContainerModVillager(player.inventory, (IMerchant)getEntityByID(x, world), world), (IMerchant)getEntityByID(x, world));
 		if(ID == rockite) return new GuiRockite(new ContainerModVillager(player.inventory, (IMerchant)getEntityByID(x, world), world), (IMerchant)getEntityByID(x, world));
-		if(ID == crafting) return new GuiStoneCraftingTable(player.inventory, null, world);
 		return null;
 	}
 

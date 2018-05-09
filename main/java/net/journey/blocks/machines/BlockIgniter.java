@@ -43,7 +43,7 @@ public class BlockIgniter extends BlockMod {
     }
 	
 	@Override
-	public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock) {
+    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
 		if(!worldIn.isRemote) {
 			if(worldIn.isBlockPowered(pos)) {
 				worldIn.setBlockState(pos.up(), Blocks.FIRE.getDefaultState());
@@ -57,9 +57,7 @@ public class BlockIgniter extends BlockMod {
 	}
 	
 	@Override
-	public void onNeighborChange(IBlockAccess world, BlockPos pos, BlockPos neighbor) {
-		
-	}
+	public void onNeighborChange(IBlockAccess world, BlockPos pos, BlockPos neighbor) { }
 	
 	@Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {

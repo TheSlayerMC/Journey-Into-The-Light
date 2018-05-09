@@ -82,16 +82,12 @@ public abstract class TileEntityAdvancedFurnace extends TileEntity implements IS
     }
     
     @Override
-    public ItemStack removeStackFromSlot(int index)
-    {
-        if (this.furnaceItemStacks[index] != null)
-        {
+    public ItemStack removeStackFromSlot(int index) {
+        if (this.furnaceItemStacks[index] != null) {
             ItemStack itemstack = this.furnaceItemStacks[index];
             this.furnaceItemStacks[index] = null;
             return itemstack;
-        }
-        else
-        {
+        } else {
             return null;
         }
     }
@@ -104,18 +100,14 @@ public abstract class TileEntityAdvancedFurnace extends TileEntity implements IS
     }
     
     @Override
-    public void openInventory(EntityPlayer player)
-    {}
+    public void openInventory(EntityPlayer player) { }
 
     @Override
-    public void closeInventory(EntityPlayer player)
-    {}
+    public void closeInventory(EntityPlayer player) { }
     
     @Override
-    public int getField(int id)
-    {
-        switch (id)
-        {
+    public int getField(int id) {
+        switch (id) {
             case 0:
                 return this.furnaceBurnTime;
             case 1:
@@ -130,10 +122,8 @@ public abstract class TileEntityAdvancedFurnace extends TileEntity implements IS
     }
 
     @Override
-    public void setField(int id, int value)
-    {
-        switch (id)
-        {
+    public void setField(int id, int value) {
+        switch (id) {
             case 0:
                 this.furnaceBurnTime = value;
                 break;
@@ -149,16 +139,13 @@ public abstract class TileEntityAdvancedFurnace extends TileEntity implements IS
     }
     
     @Override
-    public int getFieldCount()
-    {
+    public int getFieldCount() {
         return 4;
     }
     
     @Override
-    public void clear()
-    {
-        for (int i = 0; i < this.furnaceItemStacks.length; ++i)
-        {
+    public void clear() {
+        for (int i = 0; i < this.furnaceItemStacks.length; ++i) {
             this.furnaceItemStacks[i] = null;
         }
     }
