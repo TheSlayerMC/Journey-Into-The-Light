@@ -1,19 +1,19 @@
 package net.journey.client.render.block;
 
-import net.journey.blocks.tileentity.TileEntityKnowledgeTable;
+import org.lwjgl.opengl.GL11;
+
+import com.google.common.primitives.SignedBytes;
+
 import net.journey.blocks.tileentity.TileEntityTrophyTable;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.entity.RenderEntityItem;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-
-import org.lwjgl.opengl.GL11;
-
-import com.google.common.primitives.SignedBytes;
 
 public class TrophyTableRenderer extends TileEntitySpecialRenderer {
 

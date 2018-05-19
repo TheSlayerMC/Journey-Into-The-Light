@@ -25,7 +25,7 @@ public class SenterianPortalRenderer extends TileEntitySpecialRenderer<TileEntit
     FloatBuffer buffer = GLAllocation.createDirectFloatBuffer(16);
 
 	@Override
-    public void render(TileEntitySenterianPortal te, double x, double y, double z, float partialTicks, int destroyStage, fload f) {
+    public void render(TileEntitySenterianPortal te, double x, double y, double z, float partialTicks, int destroyStage, float f12) {
         float f = (float)this.rendererDispatcher.entityX;
         float f1 = (float)this.rendererDispatcher.entityY;
         float f2 = (float)this.rendererDispatcher.entityZ;

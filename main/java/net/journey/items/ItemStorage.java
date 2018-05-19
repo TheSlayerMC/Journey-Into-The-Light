@@ -13,6 +13,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemModelMesher;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityOcelot;
@@ -23,7 +24,10 @@ import net.minecraft.inventory.InventoryLargeChest;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.ILockableContainer;
 import net.minecraft.world.World;
@@ -45,7 +49,7 @@ public class ItemStorage extends Item {
 		setUnlocalizedName(name);
 		setCreativeTab(tab);
 		JourneyItems.itemNames.add(name);
-		GameRegistry.registerItem(this, name);
+		JourneyItems.items.add(this);
 	}
 
 	public ItemStorage setHealAmount(int healAmount){
@@ -55,7 +59,7 @@ public class ItemStorage extends Item {
 
 	public void spawnEntityIntoWorld(World w, EntityPlayer p, Entity entity, boolean magic, String sound, boolean damage, ItemStack item, int dam) {
 		if(!w.isRemote){
-			if(magic) w.spawnEntityInWorld(entity);
+			if(magic) w.spawnEntity(entity);
 		}
 		if(magic) {
 			EnumSounds.playSound(sound, w, p);
@@ -65,31 +69,29 @@ public class ItemStorage extends Item {
 
 	public void spawnEntityIntoWorld(World w, EntityPlayer p, Entity entity, String sound, boolean damage, ItemStack item, int dam) {
 		if(!w.isRemote){
-			w.spawnEntityInWorld(entity);
+			w.spawnEntity(entity);
 			EnumSounds.playSound(sound, w, p);
 			if(damage) item.damageItem(dam, p);
 		}
 	}
 
 	public void spawnEntityIntoWorld(World w, EntityPlayer p, Entity entity, boolean magic, String sound) {
-		spawnEntityIntoWorld(w, p, entity, magic, sound, false, new ItemStack(Items.apple), 0);
+		spawnEntityIntoWorld(w, p, entity, magic, sound, false, new ItemStack(Items.APPLE), 0);
 	}
 
 	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack stack, EntityPlayer player, List list){ }
+	public void addInformation(ItemStack stack, List list){ }
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
-		addInformation(par1ItemStack, par2EntityPlayer, par3List);
+	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+		addInformation(stack, tooltip);
 	}
 
 	@Override
-	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
-				EnumSounds.playSound(EnumSounds.CHEST_OPEN, world, player);
-		        if (world.isRemote)
-		                player.displayGUIChest(null);
-				return stack;
-
-		    }
-		}
+	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
+		EnumSounds.playSound(EnumSounds.CHEST_OPEN, world, player);
+		if (world.isRemote) player.displayGUIChest(null);
+		return ActionResult.newResult(EnumActionResult.PASS, player.getHeldItem(hand));
+	}
+}

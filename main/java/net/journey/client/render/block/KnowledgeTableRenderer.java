@@ -5,6 +5,7 @@ import net.journey.blocks.tileentity.TileEntityKnowledgeTable;
 import net.journey.util.LangHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.Tessellator;
@@ -63,7 +64,7 @@ public class KnowledgeTableRenderer extends TileEntitySpecialRenderer {
 		EntityItem item = new EntityItem(t.getWorld(), x, y, z, i);
 		GlStateManager.rotate(timeD, 0.0F, 1.0F, 0.0F);
 		GL11.glScalef(scale, scale, scale);
-		item.setEntityItemStack(i);
+		item.setItem(i);
 		item.hoverStart = 0.0F;
 		renderEntity.doRender(item, 0, 0, 0, 0, 0);
 		//renderItem.renderItemModel(item.getEntityItem());
@@ -88,8 +89,8 @@ public class KnowledgeTableRenderer extends TileEntitySpecialRenderer {
 		GlStateManager.disableDepth();
 		GlStateManager.enableBlend();
 		GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
-		Tessellator tessellator = Tessellator.getInstance();
-		WorldRenderer worldrenderer = tessellator.getWorldRenderer();
+        Tessellator t = Tessellator.getInstance();
+        BufferBuilder worldrenderer = t.getBuffer();
 		byte b0 = 0;
 		GlStateManager.disableTexture2D();
 		worldrenderer.begin(GL11.GL_QUADS, worldrenderer.getVertexFormat());
@@ -99,7 +100,7 @@ public class KnowledgeTableRenderer extends TileEntitySpecialRenderer {
 		worldrenderer.pos((double)(-j - 1), (double)(8 + b0), 0.0D);
 		worldrenderer.pos((double)(j + 1), (double)(8 + b0), 0.0D);
 		worldrenderer.pos((double)(j + 1), (double)(-1 + b0), 0.0D);
-		tessellator.draw();
+		t.draw();
 		GlStateManager.enableTexture2D();
 		fontrenderer.drawString(s, -fontrenderer.getStringWidth(s) / 2, b0, 553648127);
 		GlStateManager.enableDepth();

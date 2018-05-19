@@ -6,6 +6,7 @@ import net.minecraft.network.Packet;
 import net.minecraft.tileentity.MobSpawnerBaseLogic;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class TileEntityTrap extends TileEntity implements ITickable {
@@ -13,12 +14,12 @@ public class TileEntityTrap extends TileEntity implements ITickable {
     	
         @Override
         public void func_98267_a(int id) {
-            TileEntityTrap.this.worldObj.addBlockEvent(TileEntityTrap.this.pos, Blocks.mob_spawner, id, 0);
+            TileEntityTrap.this.world.addBlockEvent(TileEntityTrap.this.pos, Blocks.MOB_SPAWNER, id, 0);
         }
         
         @Override
         public World getSpawnerWorld() {
-            return TileEntityTrap.this.worldObj;
+            return TileEntityTrap.this.world;
         }
         
         @Override
@@ -64,11 +65,6 @@ public class TileEntityTrap extends TileEntity implements ITickable {
     @Override
     public boolean receiveClientEvent(int id, int type) {
         return this.spawnerLogic.setDelayToMin(id) ? true : super.receiveClientEvent(id, type);
-    }
-
-    @Override
-    public boolean func_183000_F() {
-        return true;
     }
 
     public MobSpawnerBaseLogic getSpawnerBaseLogic() {

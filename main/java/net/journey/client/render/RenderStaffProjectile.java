@@ -1,6 +1,7 @@
 package net.journey.client.render;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
@@ -49,7 +50,7 @@ public class RenderStaffProjectile extends Render {
         GL11.glEnable(GL12.GL_RESCALE_NORMAL);
         GL11.glScalef(scale * 0.5F, scale * 0.5F, scale * 0.5F);
         Tessellator t = Tessellator.getInstance();
-        WorldRenderer tessellator = t.getWorldRenderer();
+        BufferBuilder tessellator = t.getBuffer();
         float minU = 0;
         float maxU = 1;
         float minV = 0;

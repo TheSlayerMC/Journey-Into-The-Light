@@ -1,6 +1,7 @@
 package net.journey.client.render;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
@@ -32,7 +33,7 @@ public class RenderModArrow extends Render {
         GlStateManager.rotate(p_180551_1_.prevRotationYaw + (p_180551_1_.rotationYaw - p_180551_1_.prevRotationYaw) * p_180551_9_ - 90.0F, 0.0F, 1.0F, 0.0F);
         GlStateManager.rotate(p_180551_1_.prevRotationPitch + (p_180551_1_.rotationPitch - p_180551_1_.prevRotationPitch) * p_180551_9_, 0.0F, 0.0F, 1.0F);
         Tessellator tessellator = Tessellator.getInstance();
-        WorldRenderer worldrenderer = tessellator.getWorldRenderer();
+        BufferBuilder bufferbuilder = tessellator.getBuffer();
         byte b0 = 0;
         float f2 = 0.0F;
         float f3 = 0.5F;
@@ -56,29 +57,29 @@ public class RenderModArrow extends Render {
         GlStateManager.scale(f10, f10, f10);
         GlStateManager.translate(-4.0F, 0.0F, 0.0F);
         GL11.glNormal3f(f10, 0.0F, 0.0F);
-        worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
-        worldrenderer.pos(-7.0D, -2.0D, -2.0D);
-        worldrenderer.pos(-7.0D, -2.0D, 2.0D);
-        worldrenderer.pos(-7.0D, 2.0D, 2.0D);
-        worldrenderer.pos(-7.0D, 2.0D, -2.0D);
+        bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
+        bufferbuilder.pos(-7.0D, -2.0D, -2.0D);
+        bufferbuilder.pos(-7.0D, -2.0D, 2.0D);
+        bufferbuilder.pos(-7.0D, 2.0D, 2.0D);
+        bufferbuilder.pos(-7.0D, 2.0D, -2.0D);
         tessellator.draw();
         GL11.glNormal3f(-f10, 0.0F, 0.0F);
-        worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
-        worldrenderer.pos(-7.0D, 2.0D, -2.0D);
-        worldrenderer.pos(-7.0D, 2.0D, 2.0D);
-        worldrenderer.pos(-7.0D, -2.0D, 2.0D);
-        worldrenderer.pos(-7.0D, -2.0D, -2.0D);
+        bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
+        bufferbuilder.pos(-7.0D, 2.0D, -2.0D);
+        bufferbuilder.pos(-7.0D, 2.0D, 2.0D);
+        bufferbuilder.pos(-7.0D, -2.0D, 2.0D);
+        bufferbuilder.pos(-7.0D, -2.0D, -2.0D);
         tessellator.draw();
 
         for (int i = 0; i < 4; ++i)
         {
             GlStateManager.rotate(90.0F, 1.0F, 0.0F, 0.0F);
             GL11.glNormal3f(0.0F, 0.0F, f10);
-            worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
-            worldrenderer.pos(-8.0D, -2.0D, 0.0D);
-            worldrenderer.pos(8.0D, -2.0D, 0.0D);
-            worldrenderer.pos(8.0D, 2.0D, 0.0D);
-            worldrenderer.pos(-8.0D, 2.0D, 0.0D);
+            bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
+            bufferbuilder.pos(-8.0D, -2.0D, 0.0D);
+            bufferbuilder.pos(8.0D, -2.0D, 0.0D);
+            bufferbuilder.pos(8.0D, 2.0D, 0.0D);
+            bufferbuilder.pos(-8.0D, 2.0D, 0.0D);
             tessellator.draw();
         }
 

@@ -32,7 +32,7 @@ public class TileEntitySummoningTable extends TileEntity implements ITickable, I
 	}
 
 	@Override
-	public void writeToNBT(NBTTagCompound nbt) {
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
 		NBTTagList nbttaglist = new NBTTagList();
 		for(int i = 0; i < inventory.length; i++) {
@@ -44,6 +44,7 @@ public class TileEntitySummoningTable extends TileEntity implements ITickable, I
 			}
 		}
 		nbt.setTag("Items", nbttaglist);
+		return nbt;
 	}
 
 	@Override
@@ -53,8 +54,8 @@ public class TileEntitySummoningTable extends TileEntity implements ITickable, I
 		for(int i = 0; i < nbttaglist.tagCount(); i++) {
 			NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
 			byte b0 = nbttagcompound1.getByte("Slot");
-			if(b0 >= 0 && b0 < this.inventory.length)
-				this.inventory[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
+			//if(b0 >= 0 && b0 < this.inventory.length)
+			//	this.inventory[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
 		} 
 	}
 
@@ -225,14 +226,14 @@ public class TileEntitySummoningTable extends TileEntity implements ITickable, I
 		double x = pos.getX();
 		double y = pos.getY();
 		double z = pos.getZ();
-		worldObj.playSoundEffect(x, y, z, "essence:summon", 1.0F, 1.0F);
+		//world.playSoundEffect(x, y, z, "essence:summon", 1.0F, 1.0F);
 	}
 	@SideOnly(Side.CLIENT)
 	public void addParticles() {
 		Random r = new Random();
-		if(!worldObj.isRemote) {
+		if(!world.isRemote) {
 			for(int i = 0; i < 20; i++)
-				FMLClientHandler.instance().getClient().effectRenderer.addEffect(new EntitySummoningFX(worldObj, getPos().getX() + r.nextFloat(), getPos().getY() + 1.2D, getPos().getZ() + r.nextFloat(), 0, 1, 0));
+				FMLClientHandler.instance().getClient().effectRenderer.addEffect(new EntitySummoningFX(world, getPos().getX() + r.nextFloat(), getPos().getY() + 1.2D, getPos().getZ() + r.nextFloat(), 0, 1, 0));
 		}
 	}
 
@@ -279,22 +280,17 @@ public class TileEntitySummoningTable extends TileEntity implements ITickable, I
 	}
 
 	@Override
-	public IChatComponent getDisplayName() {
-		return null;
-	}
-
-	@Override
 	public ItemStack decrStackSize(int i, int j) {
 		if(inventory[i] != null) {
-			if(inventory[i].stackSize <= j) {
+			if(inventory[i].getCount() <= j) {
 				ItemStack itemstack = inventory[i];
 				inventory[i] = null;
 				return itemstack;
 			} else {
-				inventory[i].stackSize -= j;
+				inventory[i].shrink(j);
 				return new ItemStack(inventory[i].getItem(), j, inventory[i].getMetadata());
 			}
-		} else {
+		} else { 
 			return null;
 		}
 	}
@@ -314,19 +310,14 @@ public class TileEntitySummoningTable extends TileEntity implements ITickable, I
 	public void setInventorySlotContents(int index, ItemStack stack) {
 		boolean flag = stack != null && stack.isItemEqual(this.inventory[index]) && ItemStack.areItemStackTagsEqual(stack, this.inventory[index]);
 		this.inventory[index] = stack;
-		if(stack != null && stack.stackSize > this.getInventoryStackLimit())
-			stack.stackSize = this.getInventoryStackLimit();
+		if(stack != null && stack.getCount() > this.getInventoryStackLimit())
+			stack.setCount(this.getInventoryStackLimit()); 
 		if(index == 0 && !flag) this.markDirty();
 	}
 
 	@Override
 	public int getInventoryStackLimit() {
 		return 1;
-	}
-
-	@Override
-	public boolean isUseableByPlayer(EntityPlayer player) {
-		return true;
 	}
 
 	@Override
@@ -356,5 +347,15 @@ public class TileEntitySummoningTable extends TileEntity implements ITickable, I
 	@Override
 	public void clear() {
 		for(int i = 0; i < getSizeInventory(); i++) inventory[i] = null;
+	}
+
+	@Override
+	public boolean isEmpty() {
+		return false;
+	}
+
+	@Override
+	public boolean isUsableByPlayer(EntityPlayer player) {
+		return true;
 	}
 }

@@ -16,16 +16,6 @@ public class TileEntityKnowledgeTable extends TileEntity implements ITickable, I
 	private ItemStack inventory;
 
 	@Override
-	public void writeToNBT(NBTTagCompound nbt) {
-		super.writeToNBT(nbt);
-	}
-
-	@Override
-	public void readFromNBT(NBTTagCompound nbt) {
-		super.readFromNBT(nbt);
-	}
-
-	@Override
 	public void update() {
 		if(getStackInSlot(0) != null) {
 			Item i = inventory.getItem();
@@ -57,19 +47,14 @@ public class TileEntityKnowledgeTable extends TileEntity implements ITickable, I
 	}
 
 	@Override
-	public IChatComponent getDisplayName() {
-		return null;
-	}
-
-	@Override
 	public ItemStack decrStackSize(int i, int j) {
 		if(i == 0 && inventory != null) {
-			if(inventory.stackSize <= j) {
+			if(inventory.getCount() <= j) {
 				ItemStack itemstack = inventory;
 				inventory = null;
 				return itemstack;
 			} else {
-				inventory.stackSize -= j;
+				inventory.shrink(j);
 				return new ItemStack(inventory.getItem(), j, inventory.getMetadata());
 			}
 		} else {
@@ -99,11 +84,6 @@ public class TileEntityKnowledgeTable extends TileEntity implements ITickable, I
 	}
 
 	@Override
-	public boolean isUseableByPlayer(EntityPlayer player) {
-		return true;
-	}
-
-	@Override
 	public void openInventory(EntityPlayer player) { }
 
 	@Override
@@ -130,5 +110,15 @@ public class TileEntityKnowledgeTable extends TileEntity implements ITickable, I
 	@Override
 	public void clear() {
 		inventory = null;
+	}
+
+	@Override
+	public boolean isEmpty() {
+		return false;
+	}
+
+	@Override
+	public boolean isUsableByPlayer(EntityPlayer player) {
+		return true;
 	}
 }

@@ -13,11 +13,16 @@ public class TileEntityNetherFurnace extends TileEntityAdvancedFurnace {
 
 	@Override
 	public void addUpdate() {
-		BlockNetherFurnace.setState(this.furnaceBurnTime > 0, this.worldObj, pos);
+		BlockNetherFurnace.setState(this.furnaceBurnTime > 0, this.world, pos);
 	}
 
 	@Override
-	public IChatComponent getDisplayName() {
-		return null;
+	public boolean isEmpty() {
+		return false;
+	}
+
+	@Override
+	public boolean isUsableByPlayer(EntityPlayer player) {
+		return true;
 	}
 }
