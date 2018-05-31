@@ -30,7 +30,7 @@ public class ItemModAxe extends ItemAxe {
 		setCreativeTab(JourneyTabs.tools);
 		JourneyItems.itemNames.add(name);
 	}
-
+	
 	@Override
 	public boolean isEnchantable(ItemStack stack) {
 		return true;
@@ -42,8 +42,6 @@ public class ItemModAxe extends ItemAxe {
 		if(canRepair) return mat.getRepairItem() == i1.getItem() ? true : super.getIsRepairable(i, i1);
 		return super.getIsRepairable(i, i1);
 	}
-	
-	
 	
 	@Override
 	public float getDestroySpeed(ItemStack stack, IBlockState state) {

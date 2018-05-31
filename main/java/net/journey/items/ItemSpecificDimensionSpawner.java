@@ -1,9 +1,7 @@
 package net.journey.items;
 
 import java.util.List;
-import java.util.Random;
 
-import net.journey.JourneyAchievements;
 import net.journey.JourneyItems;
 import net.journey.JourneyTabs;
 import net.journey.entity.mob.boss.EntityBlazier;
@@ -19,15 +17,18 @@ import net.journey.entity.mob.boss.EntityThunderbird;
 import net.journey.entity.mob.pet.EntityTameRoc;
 import net.journey.entity.projectile.EntityLightningBall;
 import net.journey.enums.EnumSounds;
-import net.journey.util.Config;
 import net.journey.util.LangHelper;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.slayer.api.SlayerAPI;
+import net.slayer.api.SlayerAPI.Colour;
 import net.slayer.api.item.ItemMod;
 
 public class ItemSpecificDimensionSpawner extends ItemMod {
@@ -44,10 +45,11 @@ public class ItemSpecificDimensionSpawner extends ItemMod {
 	}
 	
 	@Override
-	public boolean onItemUse(ItemStack i, EntityPlayer p, World w, BlockPos pos, EnumFacing fa, float par8, float par9, float par10) {
+	public EnumActionResult onItemUse(EntityPlayer p, World w, BlockPos pos, EnumHand hand, EnumFacing fa, float par8, float par9, float par10) {
+		ItemStack i = p.getHeldItem(hand);
 		Item item = i.getItem();
 		if(!w.isRemote) {
-			if(w.provider.getDimensionId() == dimID) {
+			if(w.provider.getDimension() == dimID) {
 				EntityLightningBall light = new EntityLightningBall(w);
 				EntityBlazier blaze = new EntityBlazier(w);
 				EntitySoulWatcher soul = new EntitySoulWatcher(w);
@@ -62,95 +64,94 @@ public class ItemSpecificDimensionSpawner extends ItemMod {
 				if(item == JourneyItems.blazierOrb) {			
 				    EnumSounds.playSound(EnumSounds.SUMMON, w, p);
 					light.setPosition(pos.getX(), pos.getY(), pos.getZ());
-					w.spawnEntityInWorld(light);
+					w.spawnEntity(light);
 					SlayerAPI.sendMessageToAll("You're playing with hot fire. It's not too late to turn back...", true);
 				    blaze.setPosition(pos.getX(), pos.getY() + 1, pos.getZ());
-				    w.spawnEntityInWorld(blaze);
+				    w.spawnEntity(blaze);
 				}
 				if(item == JourneyItems.rocSpawnEgg) {
 				    EnumSounds.playSound(EnumSounds.SUMMON, w, p);
 					roc.setPosition(pos.getX(), pos.getY() + 1, pos.getZ());
-					w.spawnEntityInWorld(roc);
-					p.triggerAchievement(JourneyAchievements.achievementRoc);
+					w.spawnEntity(roc);
+					//p.triggerAchievement(JourneyAchievements.achievementRoc);
 				}
 				if(item == JourneyItems.sentryKingOrb) {
 					SlayerAPI.sendMessageToAll("It sucked all the energy out of this world, don't let it suck the energy out of you...", true);
 					light.setPosition(pos.getX(), pos.getY(), pos.getZ());
-					w.spawnEntityInWorld(light);
+					w.spawnEntity(light);
 				    EnumSounds.playSound(EnumSounds.SUMMON, w, p);
 					sentry.setPosition(pos.getX(), pos.getY() + 1, pos.getZ());
-					w.spawnEntityInWorld(sentry);
+					w.spawnEntity(sentry);
 				}
 				if(item == JourneyItems.mysteriousDisk) {
 					SlayerAPI.sendMessageToAll("The purple flying fish monster is not happy...", true);
 				    EnumSounds.playSound(EnumSounds.SUMMON, w, p);
 					light.setPosition(pos.getX(), pos.getY(), pos.getZ());
-					w.spawnEntityInWorld(light);
+					w.spawnEntity(light);
 					sky.setPosition(pos.getX(), pos.getY() + 1, pos.getZ());
-					w.spawnEntityInWorld(sky);
+					w.spawnEntity(sky);
 				}
 				if(item == JourneyItems.corallatorOrb) {
 					SlayerAPI.sendMessageToAll("You will regret this mistake for the rest of your life - if you'll still have one, that is...", true);
 				    EnumSounds.playSound(EnumSounds.SUMMON, w, p);
 					light.setPosition(pos.getX(), pos.getY(), pos.getZ());
-					w.spawnEntityInWorld(light);
+					w.spawnEntity(light);
 					corallator.setPosition(pos.getX(), pos.getY() + 1, pos.getZ());
-					w.spawnEntityInWorld(corallator);
+					w.spawnEntity(corallator);
 				}
 				if(item == JourneyItems.loggerOrb) {
 					SlayerAPI.sendMessageToAll("You'll get chopped to pieces with this one...", true);
 				    EnumSounds.playSound(EnumSounds.SUMMON, w, p);
 					light.setPosition(pos.getX(), pos.getY(), pos.getZ());
-					w.spawnEntityInWorld(light);
+					w.spawnEntity(light);
 					logger.setPosition(pos.getX(), pos.getY() + 1, pos.getZ());
-					w.spawnEntityInWorld(logger);
+					w.spawnEntity(logger);
 				}
 				if(item == JourneyItems.scaleOrb) {
 					SlayerAPI.sendMessageToAll("(W.I.P) The blue blubby fish monster has been summoned!", true);
 				    EnumSounds.playSound(EnumSounds.SUMMON, w, p);
 					light.setPosition(pos.getX(), pos.getY(), pos.getZ());
-					w.spawnEntityInWorld(light);
+					w.spawnEntity(light);
 					scale.setPosition(pos.getX(), pos.getY() + 1, pos.getZ());
-					w.spawnEntityInWorld(scale);
+					w.spawnEntity(scale);
 				}
 				EntityEudor eudor = new EntityEudor(w);
 				if(item == JourneyItems.eudorOrb){
 				    EnumSounds.playSound(EnumSounds.SUMMON, w, p);
 					light.setPosition(pos.getX(), pos.getY(), pos.getZ());
-					w.spawnEntityInWorld(light);
+					w.spawnEntity(light);
 					SlayerAPI.sendMessageToAll("The King has been summoned", true);
 					eudor.setPosition(pos.getX(), pos.getY() + 1, pos.getZ());
-					w.spawnEntityInWorld(eudor);
+					w.spawnEntity(eudor);
 				}
 				if(item == JourneyItems.thunderbirdOrb) {
 					SlayerAPI.sendMessageToAll("The thunderbird is not pleased with its awakening...", true);
 				    EnumSounds.playSound(EnumSounds.SUMMON, w, p);
 					light.setPosition(pos.getX(), pos.getY(), pos.getZ());
-					w.spawnEntityInWorld(light);
+					w.spawnEntity(light);
 					thunder.setPosition(pos.getX(), pos.getY() + 1, pos.getZ());
-					w.spawnEntityInWorld(thunder);
+					w.spawnEntity(thunder);
 				}
 				if(item == JourneyItems.enchantedTerrastar) {
 					SlayerAPI.sendMessageToAll("It's sole purpose was to protect this land. Why would you try to destroy it?", true);
 				    EnumSounds.playSound(EnumSounds.SUMMON, w, p);
 					light.setPosition(pos.getX(), pos.getY(), pos.getZ());
-					w.spawnEntityInWorld(light);
+					w.spawnEntity(light);
 					terrastar.setPosition(pos.getX(), pos.getY() + 1, pos.getZ());
-					w.spawnEntityInWorld(terrastar);
+					w.spawnEntity(terrastar);
 					
 				}
-				
-				if(!p.capabilities.isCreativeMode) i.stackSize--;
+				if(!p.capabilities.isCreativeMode) i.shrink(1);
 			} else {
-				SlayerAPI.addChatMessage(p, EnumChatFormatting.GREEN + "Cannot be called upon unless in the " + dimName + " dimension.");
+				SlayerAPI.addChatMessage(p, Colour.GREEN + "Cannot be called upon unless in the " + dimName + " dimension.");
 			}
 		}
-		return true;
+		return EnumActionResult.PASS;
 	}
 
 	@Override
-	public void addInformation(ItemStack stack, EntityPlayer player, List list) {
-		Item item = stack.getItem();
+	public void addInformation(ItemStack i, World worldIn, List<String> list, ITooltipFlag flagIn) {
+		Item item = i.getItem();
 		if(item == JourneyItems.blazierOrb) list.add(LangHelper.setBossSpawner("Blazier"));
 		if(item == JourneyItems.sentryKingOrb) list.add(LangHelper.setBossSpawner("Sentry King"));
 		if(item == JourneyItems.mysteriousDisk) list.add(LangHelper.setBossSpawner("Sky Stalker"));

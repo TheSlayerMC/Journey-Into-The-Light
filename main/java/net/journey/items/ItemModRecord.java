@@ -3,8 +3,11 @@ package net.journey.items;
 import java.util.List;
 import java.util.Map;
 
+import com.google.common.collect.Maps;
+
 import net.journey.JourneyItems;
 import net.journey.JourneyTabs;
+import net.journey.util.LangHelper;
 import net.journey.util.LangRegistry;
 import net.minecraft.block.BlockJukebox;
 import net.minecraft.block.state.IBlockState;
@@ -16,41 +19,43 @@ import net.minecraft.item.ItemRecord;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.SlayerAPI;
 
-import com.google.common.collect.Maps;
-
 public class ItemModRecord extends ItemRecord {
 
     private static final Map RECORDS = Maps.newHashMap();
-    private String recordName = "";
-    
-	public ItemModRecord(String name, String finalName) {
-		super(name);
+    private final SoundEvent sound;
+    private String soundName;
+
+	public ItemModRecord(String name, String finalName, SoundEvent sound) {
+		super(name, sound);
 		setUnlocalizedName(name + "Record");
+		soundName = name;
 		LangRegistry.addItem(name + "Record", finalName);
 		setCreativeTab(JourneyTabs.util);
 		JourneyItems.itemNames.add(name + "Record");
-		this.recordName = name;
+		this.sound = sound;
         this.maxStackSize = 1;
 		RECORDS.put(name, this);
-		GameRegistry.registerItem(this, name + "Record");
+		JourneyItems.items.add(this);
 	}
 	
 	@Override
 	public boolean onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ) {
         IBlockState iblockstate = worldIn.getBlockState(pos);
-        if(iblockstate.getBlock() == Blocks.jukebox && !iblockstate.getValue(BlockJukebox.HAS_RECORD).booleanValue()) {
+        if(iblockstate.getBlock() == Blocks.JUKEBOX && !iblockstate.getValue(BlockJukebox.HAS_RECORD).booleanValue()) {
             if(worldIn.isRemote) {
                 return true;
             } else {
-                ((BlockJukebox)Blocks.jukebox).insertRecord(worldIn, pos, iblockstate, stack);
+                ((BlockJukebox)Blocks.JUKEBOX).insertRecord(worldIn, pos, iblockstate, stack);
                 worldIn.playAuxSFXAtEntity((EntityPlayer)null, 1005, pos, Item.getIdFromItem(this));
-                --stack.stackSize;
+                stack.shrink(1);
                 return true;
             }
         } else {
@@ -67,7 +72,7 @@ public class ItemModRecord extends ItemRecord {
     @Override
 	@SideOnly(Side.CLIENT)
     public String getRecordNameLocal() {
-        return StatCollector.translateToLocal("item.record." + this.recordName + ".desc");
+        return LangHelper.getFormattedText("item.record." + this.soundName + ".desc");
     }
 
     @Override

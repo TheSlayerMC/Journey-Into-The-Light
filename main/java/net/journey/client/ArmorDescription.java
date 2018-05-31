@@ -10,7 +10,7 @@ import net.slayer.api.SlayerAPI;
 
 public class ArmorDescription {
 
-	public static void add(ItemStack item, EntityPlayer player, List<String> list) {
+	public static void add(ItemStack item, List<String> list) {
 		Item i = item.getItem();
 		if(i == JourneyItems.hellstoneHelmet || i == JourneyItems.hellstoneChest || i == JourneyItems.hellstoneLegs || i == JourneyItems.hellstoneBoots) {
 			list.add(SlayerAPI.Colour.AQUA + "Full set: " + SlayerAPI.Colour.GOLD + "Fire Protection");

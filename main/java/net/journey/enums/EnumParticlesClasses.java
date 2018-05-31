@@ -1,14 +1,16 @@
 package net.journey.enums;
 
-import net.journey.client.render.particles.EntityFireballFX;
+import net.minecraft.client.particle.ParticleFlame;
+import net.minecraft.client.particle.ParticleLava;
+import net.minecraft.client.particle.ParticleSmokeLarge;
+import net.minecraft.client.particle.ParticleSnowShovel;
 
 public enum EnumParticlesClasses {
 
-	LAVA(EntityLavaFX.class),
-	SMOKE(EntitySmokeFX.class),
-	FLAME(EntityFlameFX.class),
-	SNOWBALL_POOF(EntitySnowShovelFX.class),
-	FIREBALL(EntityFireballFX.class);
+	LAVA(ParticleLava.class),
+	SMOKE(ParticleSmokeLarge.class),
+	FLAME(ParticleFlame.class),
+	SNOWBALL_POOF(ParticleSnowShovel.class);
 	
 	private Class particle;
 	

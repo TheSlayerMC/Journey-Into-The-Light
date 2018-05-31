@@ -15,6 +15,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 import net.slayer.api.SlayerAPI;
@@ -42,7 +43,9 @@ public class ItemChaosCannon extends ItemMod {
 			world.spawnEntity(new EntityBouncingProjectile(world, player, damage, bounces));
 			EnumSounds.playSound(EnumSounds.CANNON, world, player);
 			stack.damageItem(1, player);
+			return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);	
 		}
+		return new ActionResult<ItemStack>(EnumActionResult.PASS, stack);	
 	}
 
 	@Override

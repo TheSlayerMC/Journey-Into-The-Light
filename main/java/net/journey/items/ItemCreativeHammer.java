@@ -13,10 +13,14 @@ import net.journey.enums.EnumSounds;
 import net.journey.util.EssenceToolMaterial;
 import net.journey.util.LangHelper;
 import net.journey.util.LangRegistry;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -45,15 +49,17 @@ public class ItemCreativeHammer extends ItemSword{
 	}
 
 	@Override
-	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
+	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand handIn) {
+		ItemStack stack = player.getHeldItem(handIn);
 		EnumSounds.playSound(EnumSounds.PLASMA, world, player);
 		if(!unbreakable) stack.damageItem(1, player);
 		try {
-			world.spawnEntityInWorld(projectile.getConstructor(World.class, EntityLivingBase.class, float.class).newInstance(world, player, dam));
+			world.spawnEntity(projectile.getConstructor(World.class, EntityLivingBase.class, float.class).newInstance(world, player, dam));
+			return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);	
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return stack;
+		return new ActionResult<ItemStack>(EnumActionResult.FAIL, stack);	
 	}
 
 	@Override
@@ -70,7 +76,7 @@ public class ItemCreativeHammer extends ItemSword{
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack item, EntityPlayer player, List infoList, boolean par4) {
+	public void addInformation(ItemStack item, World worldIn, List<String> infoList, ITooltipFlag flagIn) {
 		if(item.getMaxDamage() != -1) infoList.add(item.getMaxDamage() - item.getItemDamage() + " " + LangHelper.getUsesRemaining());
 		else infoList.add(SlayerAPI.Colour.GREEN + LangHelper.getInfiniteUses());
 		infoList.add(SlayerAPI.Colour.YELLOW + "Creative Only");

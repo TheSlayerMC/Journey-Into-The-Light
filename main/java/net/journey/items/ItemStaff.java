@@ -8,9 +8,13 @@ import net.journey.client.server.EssenceBar;
 import net.journey.entity.projectile.EntityBasicProjectile;
 import net.journey.enums.EnumSounds;
 import net.journey.util.LangHelper;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -38,13 +42,14 @@ public class ItemStaff extends ItemMod {
 	}
 
 	@Override
-	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
+	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand handIn) {
+		ItemStack stack = player.getHeldItem(handIn);
 		if(essence) {
 			if(!world.isRemote && EssenceBar.getProperties(player).useBar(usage)) {
 				EnumSounds.playSound(EnumSounds.SPARKLE, world, player);
 				if(!unBreakable) stack.damageItem(1, player);
 				try {
-					world.spawnEntityInWorld(projectile.getConstructor(World.class, EntityLivingBase.class, float.class).newInstance(world, player, damage));
+					world.spawnEntity(projectile.getConstructor(World.class, EntityLivingBase.class, float.class).newInstance(world, player, damage));
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -54,22 +59,22 @@ public class ItemStaff extends ItemMod {
 				EnumSounds.playSound(EnumSounds.SPARKLE, world, player);
 				if(!unBreakable) stack.damageItem(1, player);
 				try {
-					world.spawnEntityInWorld(projectile.getConstructor(World.class, EntityLivingBase.class, float.class).newInstance(world, player, damage));
+					world.spawnEntity(projectile.getConstructor(World.class, EntityLivingBase.class, float.class).newInstance(world, player, damage));
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		}
-		return stack;
+		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);	
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack stack, EntityPlayer player, List list) {
-		list.add(SlayerAPI.Colour.DARK_GREEN + LangHelper.rangedDamage(damage));
+	public void addInformation(ItemStack i, World worldIn, List<String> l, ITooltipFlag flagIn) {
+		l.add(SlayerAPI.Colour.DARK_GREEN + LangHelper.rangedDamage(damage));
 		if(essence) LangHelper.useDarkEnergy(usage);
 		else LangHelper.useDarkEnergy(usage);
 		if(unBreakable) LangHelper.getInfiniteUses();
-		else list.add(stack.getMaxDamage() - stack.getItemDamage() + " " + LangHelper.getUsesRemaining());
+		else l.add(i.getMaxDamage() - i.getItemDamage() + " " + LangHelper.getUsesRemaining());
 	}
 }

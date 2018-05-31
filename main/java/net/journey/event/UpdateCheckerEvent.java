@@ -12,6 +12,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.SlayerAPI;
+import net.slayer.api.SlayerAPI.Colour;
 
 public class UpdateCheckerEvent {
 
@@ -20,16 +21,16 @@ public class UpdateCheckerEvent {
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
 	public void onPlayerLogin(EntityJoinWorldEvent e) {
-		if(e.entity instanceof EntityPlayer) {
-			EntityPlayer p = (EntityPlayer)e.entity;
-			if(p.worldObj.isRemote) {
+		if(e.getEntity() instanceof EntityPlayer) {
+			EntityPlayer p = (EntityPlayer)e.getEntity();
+			if(p.world.isRemote) {
 				if(!hasSeen) {
 					try {
-						if(!UpdateChecker.isOnline()){
-							SlayerAPI.addChatMessage(p, EnumChatFormatting.GOLD + "[|--------------------------------------------------|]"); 
-							SlayerAPI.addChatMessageWithColour(p, EnumChatFormatting.GRAY, "[Version: " + SlayerAPI.MOD_VERSION + "]");
-							SlayerAPI.addChatMessage(p, EnumChatFormatting.RED + "Unable to check for latest version. You may want to check your internet connection.");
-							SlayerAPI.addChatMessage(p, EnumChatFormatting.GOLD + "[|--------------------------------------------------|]"); 
+						if(!UpdateChecker.isOnline()){ 
+							SlayerAPI.addChatMessage(p, Colour.GOLD + "[|--------------------------------------------------|]"); 
+							SlayerAPI.addChatMessageWithColour(p, Colour.GRAY, "[Version: " + SlayerAPI.MOD_VERSION + "]");
+							SlayerAPI.addChatMessage(p, Colour.RED + "Unable to check for latest version. You may want to check your internet connection.");
+							SlayerAPI.addChatMessage(p, Colour.GOLD + "[|--------------------------------------------------|]"); 
 						}
 						if(UpdateChecker.isUpdateAvailable() && UpdateChecker.isOnline()) {
 							BufferedReader versionFile = new BufferedReader(new InputStreamReader(new URL("https://raw.githubusercontent.com/Dizzlepop12/Journey-Into-the-Light/master/main/resources/assets/essence/version.txt").openStream()));
@@ -37,19 +38,19 @@ public class UpdateCheckerEvent {
 							//BufferedReader changelogFile = new BufferedReader(new InputStreamReader(new URL("https://raw.githubusercontent.com/TheSlayerMC/Essence/master/main/resources/assets/essence/ingame_changelog.txt").openStream()));
 							//String changelog = changelogFile.readLine();
 							
-							SlayerAPI.addChatMessage(p, EnumChatFormatting.GOLD + "[|--------------------------------------------------|]"); 
-							SlayerAPI.addChatMessage(p, EnumChatFormatting.GOLD + "[Version: " + SlayerAPI.MOD_VERSION + "]");
-							SlayerAPI.addChatMessage(p, EnumChatFormatting.RED + "A Journey into the Light update is avaliable.");
-							SlayerAPI.addChatMessage(p, EnumChatFormatting.AQUA + "[New Version: " + curVersion + "]"); 
-							SlayerAPI.addChatMessageWithColour(p, EnumChatFormatting.YELLOW, "Follow @EssenceMod on twitter for update teasers.");
-							SlayerAPI.addChatMessage(p, EnumChatFormatting.GOLD + "[|--------------------------------------------------|]"); 
+							SlayerAPI.addChatMessage(p, Colour.GOLD + "[|--------------------------------------------------|]"); 
+							SlayerAPI.addChatMessage(p, Colour.GOLD + "[Version: " + SlayerAPI.MOD_VERSION + "]");
+							SlayerAPI.addChatMessage(p, Colour.RED + "A Journey into the Light update is avaliable.");
+							SlayerAPI.addChatMessage(p, Colour.AQUA + "[New Version: " + curVersion + "]"); 
+							SlayerAPI.addChatMessageWithColour(p, Colour.YELLOW, "Follow @EssenceMod on twitter for update teasers.");
+							SlayerAPI.addChatMessage(p, Colour.GOLD + "[|--------------------------------------------------|]"); 
 						}
 						if((!UpdateChecker.isUpdateAvailable()) && UpdateChecker.isOnline()) {
-							SlayerAPI.addChatMessage(p, EnumChatFormatting.GOLD + "[|--------------------------------------------------|]"); 
-							SlayerAPI.addChatMessage(p, EnumChatFormatting.GRAY + "[Journey into the Light] [Version: " + SlayerAPI.MOD_VERSION + "]");
-							SlayerAPI.addChatMessageWithColour(p, EnumChatFormatting.GOLD, "Journey into the Light is up to date.");
-							SlayerAPI.addChatMessageWithColour(p, EnumChatFormatting.YELLOW, "Follow @EssenceMod on twitter for update teasers.");
-							SlayerAPI.addChatMessage(p, EnumChatFormatting.GOLD + "[|--------------------------------------------------|]"); 
+							SlayerAPI.addChatMessage(p, Colour.GOLD + "[|--------------------------------------------------|]"); 
+							SlayerAPI.addChatMessage(p, Colour.GRAY + "[Journey into the Light] [Version: " + SlayerAPI.MOD_VERSION + "]");
+							SlayerAPI.addChatMessageWithColour(p, Colour.GOLD, "Journey into the Light is up to date.");
+							SlayerAPI.addChatMessageWithColour(p, Colour.YELLOW, "Follow @EssenceMod on twitter for update teasers.");
+							SlayerAPI.addChatMessage(p, Colour.GOLD + "[|--------------------------------------------------|]"); 
 						}
 					} catch(MalformedURLException e1) {
 						e1.printStackTrace();

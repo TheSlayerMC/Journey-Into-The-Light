@@ -10,7 +10,7 @@ import net.slayer.api.SlayerAPI;
 
 public class ItemDescription {
 
-	public static void addInformation(ItemStack itemStack, World w, List<String> list) {
+	public static void addInformation(ItemStack itemStack, List<String> list) {
 		Item item = itemStack.getItem();
 		if(item == JourneyItems.glowshroom) 
 			list.add(SlayerAPI.Colour.GREEN + "Grants night vision when eaten"); 

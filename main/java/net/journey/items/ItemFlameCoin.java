@@ -6,14 +6,19 @@ import java.util.Random;
 import net.journey.JourneyBlocks;
 import net.journey.JourneyTabs;
 import net.minecraft.block.Block;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.SlayerAPI;
 import net.slayer.api.item.ItemMod;
-import net.slayer.api.worldgen.WorldGenAPI;
 
 public class ItemFlameCoin extends ItemMod {
 
@@ -24,19 +29,19 @@ public class ItemFlameCoin extends ItemMod {
 	}
 
 	@Override
-	public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer p, World w, BlockPos pos, EnumFacing fa, float par8, float par9, float par10) {
+	public EnumActionResult onItemUse(EntityPlayer player, World w, BlockPos pos, EnumHand hand, EnumFacing fa, float hitX, float hitY, float hitZ) {
 		Random r = new Random();
 		int x = pos.getX(), y = pos.getY(), z = pos.getZ();
-		if(fa != EnumFacing.UP && w.getBlockState(pos.up()).getBlock() != Blocks.air){
-			return false;
+		if(fa != EnumFacing.UP && w.getBlockState(pos.up()).getBlock() != Blocks.AIR){
+			return EnumActionResult.FAIL;
 		} else {
 			Block block = w.getBlockState(pos).getBlock();
 			if(block == JourneyBlocks.frozenPortalFrame ||block == JourneyBlocks.eucaPortalFrame || block == JourneyBlocks.depthsPortalFrame || block == JourneyBlocks.boilPortalFrame 
 					 || block == JourneyBlocks.cloudiaPortalFrame || block == JourneyBlocks.terraniaPortalFrame || block == JourneyBlocks.goldenPortalFrame){
 				w.setBlockState(new BlockPos(pos.up()), JourneyBlocks.fire.getDefaultState(), 2);
-				return true;
+				return EnumActionResult.SUCCESS;
 			}
-			else return false;
+			else return EnumActionResult.FAIL;
 		}
 		//BARN
 		/*WorldGenAPI.addRectangle(7, 5, 1, w, x, y, z, EssenceBlocks.greenCorbaPlank);
@@ -74,7 +79,8 @@ public class ItemFlameCoin extends ItemMod {
 	}
 
 	@Override
-	public void addInformation(ItemStack stack, EntityPlayer player, List list) {
-		list.add(SlayerAPI.Colour.GREEN + "Key item used to light all portals.");
+	@SideOnly(Side.CLIENT)
+	public void addInformation(ItemStack i, World worldIn, List<String> l, ITooltipFlag flagIn) {
+		l.add(SlayerAPI.Colour.GREEN + "Key item used to light all portals.");
 	}
 }

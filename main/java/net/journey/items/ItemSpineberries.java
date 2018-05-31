@@ -5,6 +5,7 @@ import java.util.List;
 import net.journey.JourneyItems;
 import net.journey.JourneyTabs;
 import net.journey.util.LangRegistry;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
@@ -24,7 +25,7 @@ public class ItemSpineberries extends ItemFood {
         super(heal, sat);
         LangRegistry.addItem(name, actual);
         setUnlocalizedName(name);
-        GameRegistry.registerItem(this, name);
+        JourneyItems.items.add(this);
         JourneyItems.itemNames.add(name);
         setCreativeTab(JourneyTabs.crops);
     }
@@ -37,7 +38,7 @@ public class ItemSpineberries extends ItemFood {
     
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack i, EntityPlayer p, List list, boolean par4) {
+	public void addInformation(ItemStack i, World worldIn, List<String> list, ITooltipFlag flagIn) {
 		list.add(SlayerAPI.Colour.YELLOW + "When eaten: Grants Absorption");
     }
 }

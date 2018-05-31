@@ -90,6 +90,7 @@ import net.journey.util.Config;
 import net.journey.util.LogHelper;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.monster.EntitySnowman;
+import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldProvider;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
@@ -115,8 +116,8 @@ public class DimensionHelper {
 
 	public static void init(){
 		LogHelper.info("Registering Dimensions...");
-		DimensionManager.unregisterProviderType(-1);
-		DimensionManager.registerProviderType(-1, WorldProviderNetherJourney.class, true);
+		DimensionManager.unregisterDimension(-1);
+		DimensionManager.registerDimension(-1, DimensionType.NETHER);
 		addDimension(Config.euca, WorldProviderEuca.class, Config.keepLoadingEuca);
 		addDimension(Config.depths, WorldProviderDepths.class, Config.keepLoadingDepths);
 		addDimension(Config.boil, WorldProviderBoiling.class, Config.keepLoadingBoil);
@@ -132,8 +133,7 @@ public class DimensionHelper {
 
 	private static void addDimension(int id, Class<? extends WorldProvider> w, boolean keeploading) {
 		LogHelper.info("Registering dimension ID: " + id);
-		DimensionManager.registerProviderType(id, w, keeploading);
-		DimensionManager.registerDimension(id, id);
+		DimensionManager.registerDimension(id, w, keeploading);
 	}
 
 	public static void addSpawns() {

@@ -11,7 +11,7 @@ import net.minecraft.item.Item;
  */
 public enum EnumMobDrops {
 
-	ROBOT(Items.stick, Items.iron_ingot);
+	ROBOT(Items.STICK, Items.IRON_INGOT);
 
 	private Item[] drops;
 

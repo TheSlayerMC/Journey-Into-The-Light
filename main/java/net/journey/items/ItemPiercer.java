@@ -4,11 +4,17 @@ import java.util.List;
 
 import net.journey.JourneyTabs;
 import net.journey.client.ItemDescription;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.item.ItemMod;
 
 public class ItemPiercer extends ItemMod {
@@ -16,7 +22,7 @@ public class ItemPiercer extends ItemMod {
 	private Class<? extends EntityThrowable> entity;
 	private float damage;
 	private int maxBounces = 0;
-	
+
 	public ItemPiercer(String name, String f, float damage, int bounces, Class<? extends EntityThrowable> entity) {
 		super(name, f);
 		this.maxBounces = bounces;
@@ -26,22 +32,23 @@ public class ItemPiercer extends ItemMod {
 	}
 
 	@Override
-	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
+	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand handIn) {
+		ItemStack stack = player.getHeldItem(handIn);
 		try {
 			if(!world.isRemote) {
-				world.playSoundAtEntity(player, "random.bow", 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-				world.spawnEntityInWorld(entity.getConstructor(World.class, EntityLivingBase.class, float.class, int.class).newInstance(world, player, damage, maxBounces));
-				if(!player.capabilities.isCreativeMode) stack.stackSize--;
+				world.spawnEntity(entity.getConstructor(World.class, EntityLivingBase.class, float.class, int.class).newInstance(world, player, damage, maxBounces));
+				if(!player.capabilities.isCreativeMode) stack.shrink(1);
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		return stack;
+		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getHeldItem(handIn));	
 	}
-	
+
 	@Override
-	public void addInformation(ItemStack stack, EntityPlayer player, List list) {
-		ItemDescription.addInformation(stack, player, list);
-		list.add(damage + "Ranged Damage");
+	@SideOnly(Side.CLIENT)
+	public void addInformation(ItemStack i, World worldIn, List<String> l, ITooltipFlag flagIn) {
+		ItemDescription.addInformation(i, l);
+		l.add(damage + "Ranged Damage");
 	}
 }

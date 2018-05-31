@@ -115,8 +115,8 @@ public class SlayerAPI {
 	}
 
 	public static void registerMob(Class entityClass, String name, String finalN, int base, int fore) {
-		LangRegistry.addMob(name, finalN);
-		EntityRegistry.registerModEntity(new ResourceLocation(name), entityClass, name, mobID++, JITL.instance, 128, 5, true, base, fore);
+		LangRegistry.addMob(PREFIX + name, finalN);
+		EntityRegistry.registerModEntity(new ResourceLocation(PREFIX + name), entityClass, PREFIX + name, mobID++, JITL.instance, 128, 5, true, base, fore);
 	}
 	
 	public static void registerEndMob(Class entityClass, String entityName, String finalN) {
@@ -189,13 +189,8 @@ public class SlayerAPI {
     }
 
     @SideOnly(Side.CLIENT)
-	public static void addChatMessageWithColour(EntityPlayer p, Chat colour, String str) {
-		ChatComponentText chat = new ChatComponentText(
-				SlayerAPI.Colour.YELLOW + "[" + 
-				SlayerAPI.Colour.GOLD + MOD_NAME + 
-				SlayerAPI.Colour.YELLOW + "] " + str);
-		chat.getChatStyle().setColor(colour);
-		p.addChatMessage(chat);
+	public static void addChatMessageWithColour(EntityPlayer p, String colour, String str) {
+		//p.sendMessage(SlayerAPI.Colour.YELLOW + "[" + SlayerAPI.Colour.GOLD + MOD_NAME + SlayerAPI.Colour.YELLOW + "] " + colour + str);
 	}
 
 	@SideOnly(Side.CLIENT)

@@ -2,19 +2,17 @@ package net.journey.items;
 
 import java.util.List;
 
-import net.journey.JourneyItems;
 import net.journey.JourneyTabs;
 import net.journey.client.ItemDescription;
 import net.journey.client.server.EssenceBar;
 import net.journey.entity.projectile.EntityBasicProjectile;
 import net.journey.entity.projectile.EntityGreenpace;
 import net.journey.enums.EnumSounds;
-import net.journey.util.LangHelper;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

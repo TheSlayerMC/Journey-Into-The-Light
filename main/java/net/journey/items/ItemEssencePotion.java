@@ -5,13 +5,24 @@ import java.util.List;
 import net.journey.JourneyTabs;
 import net.journey.client.server.DarkEnergyBar;
 import net.journey.client.server.EssenceBar;
+import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.item.ItemMod;
 
 public class ItemEssencePotion extends ItemMod {
@@ -25,9 +36,10 @@ public class ItemEssencePotion extends ItemMod {
 	}
 
 	@Override
-	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
-		player.setItemInUse(stack, this.getMaxItemUseDuration(stack));
-		return stack;
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
+		ItemStack stack = playerIn .getHeldItem(handIn);
+		playerIn.setActiveHand(handIn);
+		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);	
 	}
 
 	@Override
@@ -39,22 +51,30 @@ public class ItemEssencePotion extends ItemMod {
 	public EnumAction getItemUseAction(ItemStack par1ItemStack) {
 		return EnumAction.DRINK;
 	}
-
+	
 	@Override
-	public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityPlayer playerIn) {
-		if(!playerIn.capabilities.isCreativeMode) --stack.stackSize;
-		worldIn.playSoundAtEntity(playerIn, "random.burp", 0.5F, worldIn.rand.nextFloat() * 0.1F + 0.9F);
-		this.drink(stack, worldIn, playerIn);
-		playerIn.triggerAchievement(StatList.objectUseStats[Item.getIdFromItem(this)]);
-		return stack;
-	}
+	public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving) {
+        if (entityLiving instanceof EntityPlayer) {
+            EntityPlayer entityplayer = (EntityPlayer)entityLiving;
+            worldIn.playSound((EntityPlayer)null, entityplayer.posX, entityplayer.posY, entityplayer.posZ, SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS, 0.5F, worldIn.rand.nextFloat() * 0.1F + 0.9F);
+            this.drink(stack, worldIn, entityplayer);
+            entityplayer.addStat(StatList.getObjectUseStats(this));
+
+            if (entityplayer instanceof EntityPlayerMP) {
+                CriteriaTriggers.CONSUME_ITEM.trigger((EntityPlayerMP)entityplayer, stack);
+            }
+        }
+
+        stack.shrink(1);
+        return stack;
+    }
 
 	public ItemStack drink(ItemStack stack, World world, EntityPlayer player) {
 		int amount = isStrong ? 10 : 5;
 		if(!world.isRemote){
 			if(essence) EssenceBar.getProperties(player).addBarPoints(amount);
 			else DarkEnergyBar.getProperties(player).addBarPoints(amount);
-			if(!player.capabilities.isCreativeMode) stack.stackSize--;
+			if(!player.capabilities.isCreativeMode) stack.shrink(1);
 		}
 		return stack;
 	}
@@ -70,11 +90,12 @@ public class ItemEssencePotion extends ItemMod {
 	}
 
 	@Override
-	public void addInformation(ItemStack stack, EntityPlayer player, List list) {
+	@SideOnly(Side.CLIENT)
+	public void addInformation(ItemStack i, World worldIn, List<String> l, ITooltipFlag flagIn) {
 		String type = "";
 		if(essence) type = " Essence";
 		else type = " Dark Energy";
 		int amount = isStrong ? 10 : 5;
-		list.add("Replenishes " + amount + type);
+		l.add("Replenishes " + amount + type);
 	}
 }

@@ -5,8 +5,11 @@ import java.util.List;
 import net.journey.JourneyTabs;
 import net.journey.client.server.EssenceBar;
 import net.journey.util.LangHelper;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -28,7 +31,7 @@ public class ItemTeleport extends ItemMod {
 		double var6 = par3.posX;
 		double var8 = par3.posY + 1.62D;
 		double var10 = par3.posZ;
-		Vec3 var12 = new Vec3(var6, var8, var10);
+		Vec3d var12 = new Vec3d(var6, var8, var10);
 		float var13 = MathHelper.cos(-var5 * 0.01745329F - (float)Math.PI);
 		float var14 = MathHelper.sin(-var5 * 0.01745329F - (float)Math.PI);
 		float var15 = -MathHelper.cos(-var4 * 0.01745329F);
@@ -36,7 +39,7 @@ public class ItemTeleport extends ItemMod {
 		float var17 = var14 * var15;
 		float var18 = var13 * var15;
 		double var19 = 30.0D;
-		Vec3 var21 = var12.addVector(var17 * var19, var16 * var19, var18 * var19);
+		Vec3d var21 = var12.addVector(var17 * var19, var16 * var19, var18 * var19);
 		MovingObjectPosition var22 = par2.rayTraceBlocks(var12, var21);
 		if(var22 == null) {
 			return par1;
@@ -65,12 +68,12 @@ public class ItemTeleport extends ItemMod {
 
 	protected void teleportTo(EntityPlayer par1, World par2, double par3, double par4, double par5) {
 		par1.setPosition(par3, par4, par5);
-		par2.playSoundAtEntity(par1, "mob.endermen.portal", 1.0F, 1.0F);
+	//	par2.playSoundAtEntity(par1, "mob.endermen.portal", 1.0F, 1.0F);
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack stack, EntityPlayer player, List list) {
+	public void addInformation(ItemStack stack, World worldIn, List<String> list, ITooltipFlag flagIn) {
 		list.add(SlayerAPI.Colour.DARK_GREEN + LangHelper.useEssence(5));
 		list.add(stack.getMaxDamage() - stack.getItemDamage() + " " + LangHelper.getUsesRemaining());
 	}

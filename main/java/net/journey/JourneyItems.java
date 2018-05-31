@@ -1,6 +1,7 @@
 package net.journey;
 
 import java.util.ArrayList;
+
 import net.journey.entity.projectile.EntityBoilingPiercer;
 import net.journey.entity.projectile.EntityConjuring;
 import net.journey.entity.projectile.EntityCorbaPiercer;
@@ -32,12 +33,10 @@ import net.journey.entity.projectile.EntityRock;
 import net.journey.entity.projectile.EntityWithic;
 import net.journey.entity.projectile.EntityWizardsStar;
 import net.journey.enums.EnumKnowledge;
-import net.journey.items.ItemBattleAxe;
 import net.journey.items.ItemBleedheart;
 import net.journey.items.ItemCandyCane;
 import net.journey.items.ItemChaosCannon;
 import net.journey.items.ItemCrackenCanes;
-import net.journey.items.ItemCrafting;
 import net.journey.items.ItemCrakeBulb;
 import net.journey.items.ItemCreativeHammer;
 import net.journey.items.ItemDemonicEye;
@@ -86,11 +85,11 @@ import net.journey.util.Config;
 import net.journey.util.EnumArmor;
 import net.journey.util.EssenceToolMaterial;
 import net.journey.util.PotionEffects;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraftforge.common.util.EnumHelper;
 import net.slayer.api.item.ItemMod;
-import net.slayer.api.item.ItemModAxe;
 import net.slayer.api.item.ItemModFood;
 import net.slayer.api.item.ItemModHoe;
 import net.slayer.api.item.ItemModPickaxe;
@@ -148,7 +147,7 @@ public class JourneyItems {
 	public static ArrayList<String> itemNames = new ArrayList<String>();
 	public static ArrayList<Item> items = new ArrayList<Item>();
 
-	public static int HEAD = 0, BODY = 1, LEGS = 2, BOOTS = 3;
+	public static final EntityEquipmentSlot HEAD = EntityEquipmentSlot.HEAD, BODY = EntityEquipmentSlot.CHEST, LEGS = EntityEquipmentSlot.LEGS, BOOTS = EntityEquipmentSlot.FEET;
 
 	public static final Item heartSml = new ItemHealth("heartSml", "Heart: Tier 1", 1, 2, 0.2F, false, false, 60, false, true);
 	public static final Item heartMed = new ItemHealth("heartMed", "Heart: Tier 2", 2, 2, 0.2F, false, false, 60, false, true);
@@ -320,7 +319,7 @@ public class JourneyItems {
 	public static final Item storonShovel = new ItemModShovel("storonShovel", "Storon Shovel", EssenceToolMaterial.KORITE);
 	public static final Item mekyumShovel = new ItemModShovel("mekyumShovel", "Mekyum Shovel", EssenceToolMaterial.KORITE);
 
-	public static final Item hellstoneAxe = new ItemModAxe("hellstoneAxe", "Bloodcrust Axe", EssenceToolMaterial.HELLSTONE);
+	/*public static final Item hellstoneAxe = new ItemModAxe("hellstoneAxe", "Bloodcrust Axe", EssenceToolMaterial.HELLSTONE);
 	public static final Item shadiumAxe = new ItemModAxe("shadiumAxe", "Shadium Axe", EssenceToolMaterial.SHADIUM);
 	public static final Item celestiumAxe = new ItemModAxe("celestiumAxe", "Celestium Axe", EssenceToolMaterial.CELESTIUM);
 	public static final Item luniumAxe = new ItemModAxe("luniumAxe", "Lunium Axe", EssenceToolMaterial.LUNIUM);
@@ -331,7 +330,7 @@ public class JourneyItems {
 	public static final Item desAxe = new ItemModAxe("desAxe", "Des Axe", EssenceToolMaterial.DES);
 	public static final Item koriteAxe = new ItemModAxe("koriteAxe", "Korite Axe", EssenceToolMaterial.KORITE);
 	public static final Item storonAxe = new ItemModAxe("storonAxe", "Storon Axe", EssenceToolMaterial.KORITE);
-	public static final Item mekyumAxe = new ItemModAxe("mekyumAxe", "Mekyum Axe", EssenceToolMaterial.KORITE);
+	public static final Item mekyumAxe = new ItemModAxe("mekyumAxe", "Mekyum Axe", EssenceToolMaterial.KORITE);*/
 
 	public static final Item hellstoneHoe = new ItemModHoe("hellstoneHoe", "Bloodcrust Hoe", EssenceToolMaterial.HELLSTONE);
 	public static final Item shadiumHoe = new ItemModHoe("shadiumHoe", "Shadium Hoe", EssenceToolMaterial.SHADIUM);
@@ -590,7 +589,7 @@ public class JourneyItems {
 	public static final Item bleedrockLegs = new ItemModArmor(EnumArmor.BLEEDROCK, LEGS);
 	public static final Item bleedrockBoots = new ItemModArmor(EnumArmor.BLEEDROCK, BOOTS);
 
-	public static final Item rockyBattleaxe = new ItemBattleAxe("rockyBattleaxe", "Rocky Battleaxe", EssenceToolMaterial.ROCKY_BATTLEAXE);
+	/*public static final Item rockyBattleaxe = new ItemBattleAxe("rockyBattleaxe", "Rocky Battleaxe", EssenceToolMaterial.ROCKY_BATTLEAXE);
 	public static final Item crystalizedBattleaxe = new ItemBattleAxe("crystalizedBattleaxe", "Crystalized Battleaxe", EssenceToolMaterial.CRYSTAL_BATTLEAXE);
 	public static final Item backBiter = new ItemBattleAxe("backBiter", "Back Biter", EssenceToolMaterial.BACK_BITER);
 	public static final Item dawnBreaker = new ItemBattleAxe("dawnBreaker", "Dawn Breaker", EssenceToolMaterial.DAWN_BREAKER);
@@ -600,7 +599,7 @@ public class JourneyItems {
 	public static final Item storumBattleaxe = new ItemBattleAxe("storumBattleaxe", "Storum Battleaxe", EssenceToolMaterial.STORUM_BATTLEAXE);
 	public static final Item celekiumBattleaxe = new ItemBattleAxe("celekiumBattleaxe", "Celekium Battleaxe", EssenceToolMaterial.CELEKIUM_BATTLEAXE);
 	public static final Item thunderbirdBattleaxe = new ItemBattleAxe("thunderbirdBattleaxe", "Thunderbird Battleaxe", EssenceToolMaterial.THUNDERBIRD_BATTLEAXE);
-
+*/
 	public static final Item staffOfCrystal = new ItemStaff("staffOfCrystal", "Staff of Crystal", false, 3, 1000, 10, false, EntityIceBall.class);
 	public static final Item staffOfDivineStone = new ItemStaff("staffOfDivineStone", "Staff of Divine Stone", false, 3, 1000, 9, false, EntityRock.class);
 	public static final Item staffOfHellstone = new ItemStaff("staffOfHellstone", "Staff of Hellstone", false, 3, 1000, 7, false, EntityHellstone.class);
@@ -695,7 +694,6 @@ public class JourneyItems {
 	public static final Item yellowGem = new ItemMod("yellowGem", "Yellow Gem");
 
 	public static final Item eucaTablet = new ItemMod("eucaTablet", "Euca Tablet");
-	public static final Item pocketCrafting = new ItemCrafting("pocketCrafting", "Sizzling Crafting Pack", 0);
 
 	public static final Item wandBase = new ItemMod("wandBase", "Wand Base");
 	public static final Item staffBase = new ItemMod("staffBase", "Staff Base");
@@ -772,12 +770,12 @@ public class JourneyItems {
 	public static final Item flamingBeef = new ItemModFood("flamingBeef", "Raw Flaming Beef", 6, 1.2F, true).setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.fireResistance, 90, 1), 1.0F).setAlwaysEdible();
 	public static final Item flamingBeefCooked = new ItemModFood("flamingBeefCooked", "Cooked Flaming Beef", 16, 1.2F, true).setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.fireResistance, 100, 2), 2.0F).setAlwaysEdible();
 
-	public static final Item underwaterWorldRecord = new ItemModRecord("underwaterWorld", "Underwater World");
-	public static final Item blueWater = new ItemModRecord("blueWater", "Blue Water");
-	public static final Item raceStar = new ItemModRecord("raceStar", "Race Star");
-	public static final Item compBegins = new ItemModRecord("compBegins", "Compition Begins");
-	public static final Item deepBlue = new ItemModRecord("deepBlue", "Deep Blue");
-	public static final Item raceShore = new ItemModRecord("raceShore", "Race to Shore");
+	public static final Item underwaterWorldRecord = new ItemModRecord("underwaterWorld", "Underwater World", null);
+	public static final Item blueWater = new ItemModRecord("blueWater", "Blue Water", null);
+	public static final Item raceStar = new ItemModRecord("raceStar", "Race Star", null);
+	public static final Item compBegins = new ItemModRecord("compBegins", "Compition Begins", null);
+	public static final Item deepBlue = new ItemModRecord("deepBlue", "Deep Blue", null);
+	public static final Item raceShore = new ItemModRecord("raceShore", "Race to Shore", null);
 
 	public static final Item demonicEye = new ItemDemonicEye("demonicEye", "Demonic Eye");
 

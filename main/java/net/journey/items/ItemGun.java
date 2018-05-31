@@ -3,18 +3,18 @@ package net.journey.items;
 import java.util.List;
 
 import net.journey.JourneyTabs;
-import net.journey.client.server.DarkEnergyBar;
-import net.journey.client.server.EssenceBar;
 import net.journey.entity.projectile.EntityBasicProjectile;
-import net.journey.entity.projectile.EntityBouncingProjectile;
-import net.journey.entity.projectile.EntityChaosProjectile;
-import net.journey.entity.projectile.EntityNetherPlasma;
 import net.journey.enums.EnumSounds;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.SlayerAPI;
 import net.slayer.api.item.ItemMod;
 
@@ -34,21 +34,22 @@ public class ItemGun extends ItemMod {
 	}
 
 	@Override
-	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
-		if(!world.isRemote && EssenceBar.getProperties(player).useBar(2)) {
-			EnumSounds.playSound(EnumSounds.PLASMA, world, player);
-			try {
-				world.spawnEntityInWorld(projectile.getConstructor(World.class, EntityLivingBase.class, float.class).newInstance(world, player, damage));
-				stack.damageItem(1, player);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand handIn) {
+		ItemStack stack = player.getHeldItem(handIn);
+		EnumSounds.playSound(EnumSounds.PLASMA, world, player);
+		try {
+			world.spawnEntity(projectile.getConstructor(World.class, EntityLivingBase.class, float.class).newInstance(world, player, damage));
+			stack.damageItem(1, player);
+			return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);	
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		return stack;
+		return new ActionResult<ItemStack>(EnumActionResult.FAIL, stack);	
 	}
 
 	@Override
-	public void addInformation(ItemStack i, EntityPlayer p, List l) {
+	@SideOnly(Side.CLIENT)
+	public void addInformation(ItemStack i, World worldIn, List<String> l, ITooltipFlag flagIn) {
 		l.add("Infinite ammo");
 		l.add("Uses 2 Essence");
 		l.add(SlayerAPI.Colour.GOLD + "Ability: " + ability);

@@ -2,12 +2,16 @@ package net.journey.items;
 
 import net.journey.JourneyBlocks;
 import net.journey.blocks.BlockSenterianPortalFrame;
+import net.journey.blocks.BlockSenterianPortalFrame;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.slayer.api.item.ItemMod;
 
@@ -16,18 +20,18 @@ public class ItemSentryEye extends ItemMod {
 	public ItemSentryEye(String name, String f) {
 		super(name, f);
 	}
-
+	
 	@Override
-	public boolean onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ) {
+	public EnumActionResult onItemUse(EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
 		IBlockState iblockstate = worldIn.getBlockState(pos);
-
+		ItemStack stack = playerIn.getHeldItem(hand);
 		if (playerIn.canPlayerEdit(pos.offset(side), side, stack) && iblockstate.getBlock() == JourneyBlocks.senterianPortalFrame && !iblockstate.getValue(BlockSenterianPortalFrame.EYE).booleanValue()) {
 			if (worldIn.isRemote) {
-				return true;
+				return EnumActionResult.SUCCESS;
 			} else {
 				worldIn.setBlockState(pos, iblockstate.withProperty(BlockSenterianPortalFrame.EYE, Boolean.valueOf(true)), 2);
 				worldIn.updateComparatorOutputLevel(pos, JourneyBlocks.senterianPortalFrame);
-				--stack.stackSize;
+				stack.shrink(1);;
 
 				for (int i = 0; i < 16; ++i) {
 					double d0 = (float)pos.getX() + (5.0F + itemRand.nextFloat() * 6.0F) / 16.0F;
@@ -107,10 +111,10 @@ public class ItemSentryEye extends ItemMod {
 						}
 					}
 				}
-				return true;
+				return EnumActionResult.SUCCESS;
 			}
 		} else {
-			return false;
+			return EnumActionResult.FAIL;
 		}
 	}
 }
