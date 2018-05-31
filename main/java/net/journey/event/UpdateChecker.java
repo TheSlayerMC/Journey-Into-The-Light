@@ -19,7 +19,7 @@ import net.slayer.api.SlayerAPI;
 public class UpdateChecker {
 
 	public static boolean isUpdateAvailable() throws IOException, MalformedURLException {
-		BufferedReader versionFile = new BufferedReader(new InputStreamReader(new URL("https://raw.githubusercontent.com/Dizzlepop12/Journey-Into-the-Light/master/main/resources/assets/essence/version.txt").openStream()));
+		BufferedReader versionFile = new BufferedReader(new InputStreamReader(new URL("https://raw.githubusercontent.com/TheSlayerMC/Journey-1.12/master/VER.txt").openStream()));
 		//BufferedReader changelogFile = new BufferedReader(new InputStreamReader(new URL("https://raw.githubusercontent.com/TheSlayerMC/Essence/master/main/resources/assets/essence/ingame_changelog.txt").openStream()));
 		String curVersion = versionFile.readLine();
 		//String changelog = changelogFile.readLine();

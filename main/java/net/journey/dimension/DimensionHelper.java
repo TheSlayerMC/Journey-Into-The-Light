@@ -86,6 +86,7 @@ import net.journey.entity.mob.terrania.mob.EntityTerragrow;
 import net.journey.entity.mob.terrania.mob.EntityTerralight;
 import net.journey.entity.mob.terrania.mob.EntityTerrashroom;
 import net.journey.entity.mob.terrania.mob.EntityTerraslug;
+import net.journey.event.UpdateChecker;
 import net.journey.util.Config;
 import net.journey.util.LogHelper;
 import net.minecraft.entity.EnumCreatureType;
