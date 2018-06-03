@@ -14,7 +14,6 @@ import net.journey.dimension.frozen.BiomeGenFrozenLands;
 import net.journey.dimension.frozen.WorldProviderFrozenLands;
 import net.journey.dimension.golden.BiomeGenGoldenGrains;
 import net.journey.dimension.golden.WorldProviderGoldenGrains;
-import net.journey.dimension.nether.WorldProviderNetherJourney;
 import net.journey.dimension.senterian.BiomeGenSenterian;
 import net.journey.dimension.senterian.WorldProviderSenterian;
 import net.journey.dimension.terrania.BiomeGenTerrania;
@@ -86,13 +85,13 @@ import net.journey.entity.mob.terrania.mob.EntityTerragrow;
 import net.journey.entity.mob.terrania.mob.EntityTerralight;
 import net.journey.entity.mob.terrania.mob.EntityTerrashroom;
 import net.journey.entity.mob.terrania.mob.EntityTerraslug;
-import net.journey.event.UpdateChecker;
 import net.journey.util.Config;
 import net.journey.util.LogHelper;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.monster.EntitySnowman;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldProvider;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.common.DimensionManager;
@@ -100,20 +99,20 @@ import net.minecraftforge.fml.common.registry.EntityRegistry;
 
 public class DimensionHelper {
 	
-	protected static final BiomeGenBase.Height boilHeight = new BiomeGenBase.Height(0.125F, 0.1F); 
-	protected static final BiomeGenBase.Height corbaHeight = new BiomeGenBase.Height(0.2F, 0.2F); 
+	public static final float[] boilHeight = new float[] {0.125F, 0.1F}; 
+	public static final float[] corbaHeight = new float[] {0.2F, 0.2F}; 
 
-	public static BiomeGenBase euca = new BiomeGenEuca(Config.eucaBiome).setHeight(new BiomeGenBase.Height(0.125F, 0.05F));
-	public static BiomeGenBase depths = new BiomeGenDepths(Config.depthsBiome);
-	public static BiomeGenBase boiling = new BiomeGenBoiling(Config.boilBiome).setHeight(boilHeight);
-	public static BiomeGenBase frozen = new BiomeGenFrozenLands(Config.frozenBiome);
-	public static BiomeGenBase corba = new BiomeGenCorba(Config.corbaBiome).setHeight(corbaHeight);
+	public static Biome euca = new BiomeGenEuca(Config.eucaBiome);
+	public static Biome depths = new BiomeGenDepths(Config.depthsBiome);
+	public static Biome boiling = new BiomeGenBoiling(Config.boilBiome);
+	public static Biome frozen = new BiomeGenFrozenLands(Config.frozenBiome);
+	public static Biome corba = new BiomeGenCorba(Config.corbaBiome);
 	//public static BiomeGenBase wastelands = new BiomeGenWastelands(Config.wastelandsBiome);
-	public static BiomeGenBase cloudia = new BiomeGenCloudia(Config.cloudiaBiome);
-	public static BiomeGenBase terrania = new BiomeGenTerrania(Config.terraniaBiome);
-	public static BiomeGenBase golden = new BiomeGenGoldenGrains(Config.goldenBiome);
-	public static BiomeGenBase senterian = new BiomeGenSenterian(Config.senterianBiome);
-	public static BiomeGenBase wither = new BiomeGenWither(Config.witherBiome);
+	public static Biome cloudia = new BiomeGenCloudia(Config.cloudiaBiome);
+	public static Biome terrania = new BiomeGenTerrania(Config.terraniaBiome);
+	public static Biome golden = new BiomeGenGoldenGrains(Config.goldenBiome);
+	public static Biome senterian = new BiomeGenSenterian(Config.senterianBiome);
+	public static Biome wither = new BiomeGenWither(Config.witherBiome);
 
 	public static void init(){
 		LogHelper.info("Registering Dimensions...");
@@ -248,37 +247,37 @@ public class DimensionHelper {
 
 	private static void addCommonVanillaSpawns() {
 		int amount = 100;
-		EntityRegistry.addSpawn(EntitySwampFly.class, amount, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomesForType(Type.SWAMP));
+		EntityRegistry.addSpawn(EntitySwampFly.class, amount, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomes(Type.SWAMP));
 		
 	}
 	private static void addNetherSpawns() {
-		EntityRegistry.addSpawn(EntityLavasnake.class, 100, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomesForType(Type.NETHER));
-		EntityRegistry.addSpawn(EntityWitherspine.class, 100, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomesForType(Type.NETHER));
-		EntityRegistry.addSpawn(EntityReaper.class, 100, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomesForType(Type.NETHER));
-		EntityRegistry.addSpawn(EntityHellCow.class, 100, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomesForType(Type.NETHER));
-		EntityRegistry.addSpawn(EntityMiniGhast.class, 100, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomesForType(Type.NETHER));
+		EntityRegistry.addSpawn(EntityLavasnake.class, 100, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomes(Type.NETHER));
+		EntityRegistry.addSpawn(EntityWitherspine.class, 100, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomes(Type.NETHER));
+		EntityRegistry.addSpawn(EntityReaper.class, 100, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomes(Type.NETHER));
+		EntityRegistry.addSpawn(EntityHellCow.class, 100, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomes(Type.NETHER));
+		EntityRegistry.addSpawn(EntityMiniGhast.class, 100, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomes(Type.NETHER));
 	}
 	private static void addVanillaSpawns() {
 		int amount = 4;
-		EntityRegistry.addSpawn(EntitySandCrawler.class, amount, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomesForType(Type.SANDY));
-		EntityRegistry.addSpawn(EntitySpyclops.class, amount, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomesForType(Type.SANDY));
-		EntityRegistry.addSpawn(EntityFerret.class, 1, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomesForType(Type.SAVANNA));
-		EntityRegistry.addSpawn(EntityFerret.class, 1, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomesForType(Type.SANDY));
-		EntityRegistry.addSpawn(EntityFireMage.class, amount, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomesForType(Type.NETHER));
-		EntityRegistry.addSpawn(EntityFireMage.class, amount, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomesForType(Type.BEACH));
-		EntityRegistry.addSpawn(EntityFireMage.class, amount, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomesForType(Type.HOT));
-		EntityRegistry.addSpawn(EntityFireMage.class, amount, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomesForType(Type.SANDY));
-		EntityRegistry.addSpawn(EntityBlizzard.class, amount, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomesForType(Type.SNOWY));
-		EntityRegistry.addSpawn(EntityTurducken.class, amount, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomesForType(Type.FOREST));
-		EntityRegistry.addSpawn(EntityFloro.class, amount, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomesForType(Type.FOREST));
-		EntityRegistry.addSpawn(EntityBigHongo.class, amount, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomesForType(Type.FOREST));
-		EntityRegistry.addSpawn(EntityMediumHongo.class, amount, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomesForType(Type.FOREST));
-		EntityRegistry.addSpawn(EntityBigHongo.class, amount, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomesForType(Type.MUSHROOM));
-		EntityRegistry.addSpawn(EntityMediumHongo.class, amount, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomesForType(Type.MUSHROOM));
-		EntityRegistry.addSpawn(EntityBoom.class, amount, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomesForType(Type.FOREST));
+		EntityRegistry.addSpawn(EntitySandCrawler.class, amount, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomes(Type.SANDY));
+		EntityRegistry.addSpawn(EntitySpyclops.class, amount, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomes(Type.SANDY));
+		EntityRegistry.addSpawn(EntityFerret.class, 1, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomes(Type.SAVANNA));
+		EntityRegistry.addSpawn(EntityFerret.class, 1, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomes(Type.SANDY));
+		EntityRegistry.addSpawn(EntityFireMage.class, amount, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomes(Type.NETHER));
+		EntityRegistry.addSpawn(EntityFireMage.class, amount, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomes(Type.BEACH));
+		EntityRegistry.addSpawn(EntityFireMage.class, amount, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomes(Type.HOT));
+		EntityRegistry.addSpawn(EntityFireMage.class, amount, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomes(Type.SANDY));
+		EntityRegistry.addSpawn(EntityBlizzard.class, amount, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomes(Type.SNOWY));
+		EntityRegistry.addSpawn(EntityTurducken.class, amount, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomes(Type.FOREST));
+		EntityRegistry.addSpawn(EntityFloro.class, amount, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomes(Type.FOREST));
+		EntityRegistry.addSpawn(EntityBigHongo.class, amount, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomes(Type.FOREST));
+		EntityRegistry.addSpawn(EntityMediumHongo.class, amount, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomes(Type.FOREST));
+		EntityRegistry.addSpawn(EntityBigHongo.class, amount, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomes(Type.MUSHROOM));
+		EntityRegistry.addSpawn(EntityMediumHongo.class, amount, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomes(Type.MUSHROOM));
+		EntityRegistry.addSpawn(EntityBoom.class, amount, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomes(Type.FOREST));
 		
-		for (int i = 0; i < BiomeGenBase.getBiomeGenArray().length; i++) {
-			BiomeGenBase biome = BiomeGenBase.getBiomeGenArray()[i];
+		for (int i = 0; i < Biome.getBiomeGenArray().length; i++) {
+			Biome biome = Biome.getBiomeGenArray()[i];
 			if (biome != null){
 				EntityRegistry.addSpawn(EntitySpectre.class, amount, 1, 1, EnumCreatureType.CREATURE, biome);
 				EntityRegistry.addSpawn(EntityWraith.class, amount, 1, 1, EnumCreatureType.CREATURE, biome);

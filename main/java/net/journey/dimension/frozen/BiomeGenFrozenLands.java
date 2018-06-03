@@ -1,20 +1,24 @@
 package net.journey.dimension.frozen;
 
 import net.journey.JourneyBlocks;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biome.BiomeProperties;
 
-public class BiomeGenFrozenLands extends BiomeGenBase {
+public class BiomeGenFrozenLands extends Biome {
 
-	public BiomeGenFrozenLands(int par1) {
-		super(par1);
-		this.setBiomeName("Frozen Lands");
+	public BiomeGenFrozenLands(String par1) {
+		super(new BiomeProperties(par1));
+		this.setRegistryName(par1);
 		this.topBlock = JourneyBlocks.frozenGrass.getDefaultState();
 		this.fillerBlock = JourneyBlocks.frozenDirt.getDefaultState();
 		this.spawnableCreatureList.clear();
         this.spawnableMonsterList.clear();
         this.spawnableCaveCreatureList.clear();
         this.spawnableWaterCreatureList.clear();
-        rainfall = 0;
-        setEnableSnow();
-        enableRain = false;
+     }
+	
+	@Override
+	public boolean getEnableSnow() {
+		return true;
 	}
 }

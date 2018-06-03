@@ -1,21 +1,38 @@
 package net.journey.dimension.golden;
 
 import net.journey.JourneyBlocks;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biome.BiomeProperties;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BiomeGenGoldenGrains extends BiomeGenBase {
+public class BiomeGenGoldenGrains extends Biome {
 
-	public BiomeGenGoldenGrains(int par1) {
-		super(par1);
-		this.setBiomeName("Golden Grains");
+	public BiomeGenGoldenGrains(String par1) {
+		super(new BiomeProperties(par1));
+		this.setRegistryName(par1);
 		this.topBlock = JourneyBlocks.goldenGrass.getDefaultState();
 		this.fillerBlock = JourneyBlocks.goldenStone.getDefaultState();
 		this.spawnableCreatureList.clear();
         this.spawnableMonsterList.clear();
         this.spawnableCaveCreatureList.clear();
         this.spawnableWaterCreatureList.clear();
-        setColor(0xffef96);
+	}
+	
+	@Override
+	public int getFoliageColorAtPos(BlockPos pos) {
+		return 0xffef96;
+	}
+	
+	@Override
+	public int getGrassColorAtPos(BlockPos pos) {
+		return 0xffef96;
+	}
+	
+	@Override
+	public int getWaterColorMultiplier() {
+		return 0xffef96;
 	}
 	
 	@Override

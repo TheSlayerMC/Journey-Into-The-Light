@@ -1,6 +1,7 @@
 package net.journey.dimension.euca;
 
 import net.journey.JourneyBlocks;
+import net.journey.dimension.DimensionHelper;
 import net.minecraft.world.biome.Biome;
 
 public class BiomeGenEuca extends Biome {
