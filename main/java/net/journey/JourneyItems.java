@@ -842,8 +842,8 @@ public class JourneyItems {
 	
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event) {
-		for(Item i : items)
-			event.getRegistry().registerAll(i);
+		for(int i = 0; i < items.size(); i++)
+			event.getRegistry().registerAll(items.get(i));
 	}
 
 	public static ToolMaterial addToolMaterial(int uses, float efficiency, float dam, boolean breakable) {

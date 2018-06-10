@@ -35,6 +35,7 @@ public class ItemMod extends Item {
 		setRegistryName(name);
 		JourneyItems.itemNames.add(name);
 		JourneyItems.items.add(this);
+		System.out.println(name);
 	}
 
 	public ItemMod setHealAmount(int healAmount){
