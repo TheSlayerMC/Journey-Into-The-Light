@@ -85,10 +85,15 @@ import net.journey.util.Config;
 import net.journey.util.EnumArmor;
 import net.journey.util.EssenceToolMaterial;
 import net.journey.util.PotionEffects;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraftforge.common.util.EnumHelper;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.slayer.api.SlayerAPI;
 import net.slayer.api.item.ItemMod;
 import net.slayer.api.item.ItemModFood;
 import net.slayer.api.item.ItemModHoe;
@@ -96,6 +101,7 @@ import net.slayer.api.item.ItemModPickaxe;
 import net.slayer.api.item.ItemModShovel;
 import net.slayer.api.item.ItemModSword;
 
+@EventBusSubscriber(modid=SlayerAPI.MOD_ID)
 public class JourneyItems {
 
 	public static ToolMaterial hellstoneSwordMat = addToolMaterial(2356, 13F, 10F, true);
@@ -599,7 +605,7 @@ public class JourneyItems {
 	public static final Item storumBattleaxe = new ItemBattleAxe("storumBattleaxe", "Storum Battleaxe", EssenceToolMaterial.STORUM_BATTLEAXE);
 	public static final Item celekiumBattleaxe = new ItemBattleAxe("celekiumBattleaxe", "Celekium Battleaxe", EssenceToolMaterial.CELEKIUM_BATTLEAXE);
 	public static final Item thunderbirdBattleaxe = new ItemBattleAxe("thunderbirdBattleaxe", "Thunderbird Battleaxe", EssenceToolMaterial.THUNDERBIRD_BATTLEAXE);
-*/
+	 */
 	public static final Item staffOfCrystal = new ItemStaff("staffOfCrystal", "Staff of Crystal", false, 3, 1000, 10, false, EntityIceBall.class);
 	public static final Item staffOfDivineStone = new ItemStaff("staffOfDivineStone", "Staff of Divine Stone", false, 3, 1000, 9, false, EntityRock.class);
 	public static final Item staffOfHellstone = new ItemStaff("staffOfHellstone", "Staff of Hellstone", false, 3, 1000, 7, false, EntityHellstone.class);
@@ -833,10 +839,15 @@ public class JourneyItems {
 	/**
 	public static final Item weakPower = new ItemPower("weakPower", 10F);
 	 */
+	
+	@SubscribeEvent
+	public static void registerItems(RegistryEvent.Register<Item> event) {
+		for(Item i : items)
+			event.getRegistry().registerAll(i);
+	}
 
-
-public static ToolMaterial addToolMaterial(int uses, float efficiency, float dam, boolean breakable) {
-	return EnumHelper.addToolMaterial("tool", 3, breakable ? uses : -1, efficiency, dam, 30);
-}
+	public static ToolMaterial addToolMaterial(int uses, float efficiency, float dam, boolean breakable) {
+		return EnumHelper.addToolMaterial("tool", 3, breakable ? uses : -1, efficiency, dam, 30);
+	}
 
 }

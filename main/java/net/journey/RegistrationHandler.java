@@ -14,7 +14,7 @@ import net.slayer.api.SlayerAPI;
 
 @Mod.EventBusSubscriber(modid = SlayerAPI.MOD_ID)
 public class RegistrationHandler {
-	
+
 	public static final Set<Item> ITEMS = new HashSet<Item>();
 	public static final Set<Block> BLOCKS = new HashSet<Block>();
 
@@ -22,21 +22,23 @@ public class RegistrationHandler {
 	public static void registerItems(final RegistryEvent.Register<Item> event) {
 		final IForgeRegistry<Item> registry = event.getRegistry();
 		final ArrayList<Item> items = JourneyItems.items;
-		
+
 		for(final Item item : items) {
 			registry.register(item);
 			ITEMS.add(item);
 		}
 	}
-	
+
 	@SubscribeEvent
 	public static void registerBlocks(final RegistryEvent.Register<Block> event) {
 		final IForgeRegistry<Block> registry = event.getRegistry();
 		final ArrayList<Block> blocks = JourneyBlocks.blocks;
-		
-		for(final Block block : blocks) {
-			registry.register(block);
-			BLOCKS.add(block);
+
+		for(String s : JourneyBlocks.blockName) {
+			for(final Block block : blocks) {
+				registry.register(block);
+				BLOCKS.add(block);
+			}
 		}
 	}
 }

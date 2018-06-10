@@ -78,19 +78,6 @@ public class ClientProxy extends CommonProxy {
 		SlayerAPI.registerEvent(new PlayerStats());
 	}
 
-	public static String[] brison = {"dark", "red", "small", "bstone"};
-
-	@Override
-	@EventHandler
-	public void registerItem(RegistryEvent.Register<Item> event) {
-		RegistrationHandler.registerItems(event);
-	}
-
-	@EventHandler
-	public void registerBlock(RegistryEvent.Register<Block> event) {
-		RegistrationHandler.registerBlocks(event);
-	}
-
 	@Override
 	public void registerModModels() {
 		for(String s : JourneyBlocks.blockName) {
@@ -112,7 +99,6 @@ public class ClientProxy extends CommonProxy {
 		SlayerAPI.addBowRender(JourneyItems.staringBow, "staringBow");
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public void spawnParticle(EnumParticlesClasses particle, World worldObj, double posX, double posY, double posZ, boolean b) {
 		try {

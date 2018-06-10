@@ -2,6 +2,7 @@ package net.journey.dimension.euca;
 
 import net.journey.dimension.DimensionHelper;
 import net.journey.util.Config;
+import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.client.IRenderHandler;
@@ -65,14 +66,9 @@ public class WorldProviderEuca extends WorldProvider {
     public boolean canRespawnHere() {
         return false;
     }
-    
-    @Override
-    public String getDimensionName() {
-        return "Euca";
-    }
 
 	@Override
-	public String getInternalNameSuffix() {
-		return "Euca";
+	public DimensionType getDimensionType() {
+		return DimensionHelper.eucaType;
 	}
 }

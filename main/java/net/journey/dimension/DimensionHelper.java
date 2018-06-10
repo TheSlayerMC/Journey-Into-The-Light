@@ -114,26 +114,39 @@ public class DimensionHelper {
 	public static Biome senterian = new BiomeGenSenterian(Config.senterianBiome);
 	public static Biome wither = new BiomeGenWither(Config.witherBiome);
 
+	public static DimensionType eucaType = DimensionType.register("Euca", "euca", Config.euca, WorldProviderEuca.class, Config.keepLoadingEuca);
+	public static DimensionType depthsType = DimensionType.register("Depths", "depths", Config.depths, WorldProviderDepths.class, Config.keepLoadingDepths);
+	public static DimensionType boilingType = DimensionType.register("Boiling Point", "boilingPoint", Config.boil, WorldProviderBoiling.class, Config.keepLoadingBoil);
+	public static DimensionType frozenType = DimensionType.register("Frozen", "frozen", Config.frozen, WorldProviderFrozenLands.class, Config.keepLoadingFrozen);
+	public static DimensionType corbaType = DimensionType.register("Corba", "corba", Config.corba, WorldProviderCorba.class, Config.keepLoadingCorba);
+	public static DimensionType cloudiaType = DimensionType.register("Cloudia", "cloudia", Config.cloudia, WorldProviderCloudia.class, Config.keepLoadingCloudia);
+	public static DimensionType terraniaType = DimensionType.register("Terrania", "terrania", Config.terrania, WorldProviderTerrania.class, Config.keepLoadingTerrania);
+	public static DimensionType goldenType = DimensionType.register("Golden Grains", "goldenGrains", Config.golden, WorldProviderGoldenGrains.class, Config.keepLoadingGolden);
+	public static DimensionType senterianType = DimensionType.register("Senterian", "senterian", Config.senterian, WorldProviderSenterian.class, Config.keepLoadingSenterian);
+	public static DimensionType witherType = DimensionType.register("Wither", "wither", Config.wither, WorldProviderWither.class, Config.keepLoadingWither);
+
+	
 	public static void init(){
+
 		LogHelper.info("Registering Dimensions...");
 		DimensionManager.unregisterDimension(-1);
 		DimensionManager.registerDimension(-1, DimensionType.NETHER);
-		addDimension(Config.euca, WorldProviderEuca.class, Config.keepLoadingEuca);
-		addDimension(Config.depths, WorldProviderDepths.class, Config.keepLoadingDepths);
-		addDimension(Config.boil, WorldProviderBoiling.class, Config.keepLoadingBoil);
-		addDimension(Config.frozen, WorldProviderFrozenLands.class, Config.keepLoadingFrozen);
-		addDimension(Config.corba, WorldProviderCorba.class, Config.keepLoadingCorba);
+		addDimension(Config.euca, eucaType);
+		addDimension(Config.depths, depthsType);
+		addDimension(Config.boil, boilingType);
+		addDimension(Config.frozen, frozenType);
+		addDimension(Config.corba, corbaType);
 		//addDimension(Config.wastelands, WorldProviderWastelands.class, Config.keepLoadingWastelands);
-		addDimension(Config.cloudia, WorldProviderCloudia.class, Config.keepLoadingCloudia);
-		addDimension(Config.terrania, WorldProviderTerrania.class, Config.keepLoadingTerrania);
-		addDimension(Config.golden, WorldProviderGoldenGrains.class, Config.keepLoadingGolden);
-		addDimension(Config.senterian, WorldProviderSenterian.class, Config.keepLoadingSenterian);
-		addDimension(Config.wither, WorldProviderWither.class, Config.keepLoadingWither);
+		addDimension(Config.cloudia, cloudiaType);
+		addDimension(Config.terrania, terraniaType);
+		addDimension(Config.golden, goldenType);
+		addDimension(Config.senterian, senterianType);
+		addDimension(Config.wither, witherType);
 	}
 
-	private static void addDimension(int id, Class<? extends WorldProvider> w, boolean keeploading) {
+	private static void addDimension(int id, DimensionType type) {
 		LogHelper.info("Registering dimension ID: " + id);
-		DimensionManager.registerDimension(id, w, keeploading);
+		DimensionManager.registerDimension(id, type);
 	}
 
 	public static void addSpawns() {
@@ -230,9 +243,9 @@ public class DimensionHelper {
 	private static void addCaveSpawns() {
 		int amount = 250;
 		int amount2 = 5;
-		for (int i = 0; i < BiomeGenBase.getBiomeGenArray().length; i++) {
-			BiomeGenBase biome = BiomeGenBase.getBiomeGenArray()[i];
-			if (biome != null){
+		for(Biome b : Biome.REGISTRY) {
+			Biome biome = b;
+			if (biome != null) {
 				EntityRegistry.addSpawn(EntityCaveMage.class, amount, 3, 4, EnumCreatureType.MONSTER, biome);
 				EntityRegistry.addSpawn(EntityCaveling.class, amount, 3, 4, EnumCreatureType.MONSTER, biome);
 				EntityRegistry.addSpawn(EntityCavurn.class, amount, 3, 4, EnumCreatureType.MONSTER, biome);
@@ -247,19 +260,19 @@ public class DimensionHelper {
 
 	private static void addCommonVanillaSpawns() {
 		int amount = 100;
-		EntityRegistry.addSpawn(EntitySwampFly.class, amount, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomes(Type.SWAMP));
+		//EntityRegistry.addSpawn(EntitySwampFly.class, amount, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomes(Type.SWAMP));
 		
 	}
 	private static void addNetherSpawns() {
-		EntityRegistry.addSpawn(EntityLavasnake.class, 100, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomes(Type.NETHER));
+		/*EntityRegistry.addSpawn(EntityLavasnake.class, 100, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomes(Type.NETHER));
 		EntityRegistry.addSpawn(EntityWitherspine.class, 100, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomes(Type.NETHER));
 		EntityRegistry.addSpawn(EntityReaper.class, 100, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomes(Type.NETHER));
 		EntityRegistry.addSpawn(EntityHellCow.class, 100, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomes(Type.NETHER));
-		EntityRegistry.addSpawn(EntityMiniGhast.class, 100, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomes(Type.NETHER));
+		EntityRegistry.addSpawn(EntityMiniGhast.class, 100, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomes(Type.NETHER));*/
 	}
 	private static void addVanillaSpawns() {
 		int amount = 4;
-		EntityRegistry.addSpawn(EntitySandCrawler.class, amount, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomes(Type.SANDY));
+		/*EntityRegistry.addSpawn(EntitySandCrawler.class, amount, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomes(Type.SANDY));
 		EntityRegistry.addSpawn(EntitySpyclops.class, amount, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomes(Type.SANDY));
 		EntityRegistry.addSpawn(EntityFerret.class, 1, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomes(Type.SAVANNA));
 		EntityRegistry.addSpawn(EntityFerret.class, 1, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomes(Type.SANDY));
@@ -274,11 +287,11 @@ public class DimensionHelper {
 		EntityRegistry.addSpawn(EntityMediumHongo.class, amount, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomes(Type.FOREST));
 		EntityRegistry.addSpawn(EntityBigHongo.class, amount, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomes(Type.MUSHROOM));
 		EntityRegistry.addSpawn(EntityMediumHongo.class, amount, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomes(Type.MUSHROOM));
-		EntityRegistry.addSpawn(EntityBoom.class, amount, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomes(Type.FOREST));
+		EntityRegistry.addSpawn(EntityBoom.class, amount, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomes(Type.FOREST));*/
 		
-		for (int i = 0; i < Biome.getBiomeGenArray().length; i++) {
-			Biome biome = Biome.getBiomeGenArray()[i];
-			if (biome != null){
+		for(Biome b : Biome.REGISTRY) {
+			Biome biome = b;
+			if (biome != null) {
 				EntityRegistry.addSpawn(EntitySpectre.class, amount, 1, 1, EnumCreatureType.CREATURE, biome);
 				EntityRegistry.addSpawn(EntityWraith.class, amount, 1, 1, EnumCreatureType.CREATURE, biome);
 			}

@@ -21,20 +21,23 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.IProgressUpdate;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.ChunkGeneratorOverworld;
+import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
-public class ChunkProviderEuca implements IChunkProvider {
+public class ChunkProviderEuca implements IChunkGenerator {
 
 	private Random rand;
 	private NoiseGeneratorOctaves noiseGen1, noiseGen2, noiseGen3, noiseGen5, noiseGen6;
 	private World worldObj;
 	private double[] noiseArray;
-	private BiomeGenBase[] biomesForGeneration;
+	private Biome[] biomesForGeneration;
 	private double[] noise3, noise1, noise2, noise5, noise6;
 	private ArrayList<WorldGenerator> trees;
 
@@ -48,8 +51,8 @@ public class ChunkProviderEuca implements IChunkProvider {
 		new NoiseGeneratorOctaves(this.rand, 4);
 		this.noiseGen5 = new NoiseGeneratorOctaves(this.rand, 10);
 		this.noiseGen6 = new NoiseGeneratorOctaves(this.rand, 16);
-		new WorldGenEucaWater(Blocks.flowing_water, true);
-		new WorldGenEucaWater(Blocks.flowing_water, false);
+		new WorldGenEucaWater(Blocks.FLOWING_WATER, true);
+		new WorldGenEucaWater(Blocks.FLOWING_WATER, false);
 
 		trees = new ArrayList<WorldGenerator>(3);
 		trees.add(new WorldGenEucaTree());
@@ -58,22 +61,15 @@ public class ChunkProviderEuca implements IChunkProvider {
 		trees.add(new WorldGenEucaTree4());
 		trees.add(new WorldGenEucaTree5());
 	}
-
+	
 	@Override
-	public boolean chunkExists(int i, int j) {
-		return true;
-	}
-
-	@Override
-	public Chunk provideChunk(int par1, int par2) {
+	public Chunk generateChunk(int par1, int par2) {
 		this.rand.setSeed(par1 * 391279512714L + par2 * 132894987741L);
 		ChunkPrimer primer = new ChunkPrimer();
-		this.biomesForGeneration = this.worldObj.getWorldChunkManager().loadBlockGeneratorData(this.biomesForGeneration, par1 * 16, par2 * 16, 16, 16);
+		this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomesForGeneration(this.biomesForGeneration, par1 * 16, par2 * 16, 16, 16);
 		this.generateTerrain(par1, par2, primer);
 		this.replaceBlocksForBiome(primer);
 		Chunk chunk = new Chunk(this.worldObj, primer, par1, par2);
-		byte[] abyte = chunk.getBiomeArray();
-		for(int k = 0; k < abyte.length; ++k) abyte[k] = (byte)this.biomesForGeneration[k].biomeID;
 		chunk.generateSkylightMap();
 		return chunk;
 	}
@@ -139,7 +135,7 @@ public class ChunkProviderEuca implements IChunkProvider {
 
 				for (int l = 127; l >= 0; --l) {
 					IBlockState iblockstate2 = c.getBlockState(i, l, j);
-					if (iblockstate2.getBlock().getMaterial() == Material.AIR) 
+					if (iblockstate2.getBlock().getMaterial(iblockstate2) == Material.AIR) 
 						k = -1;
 
 					else if (iblockstate2.getBlock() == JourneyBlocks.eucaStone) {
@@ -226,7 +222,7 @@ public class ChunkProviderEuca implements IChunkProvider {
 	}
 
 	@Override
-	public void populate(IChunkProvider ichunkprovider, int i, int j) {
+	public void populate(int i, int j) {
 		int x1 = i * 16;
 		int z1 = j * 16;
 		int x, z, times;
@@ -284,56 +280,26 @@ public class ChunkProviderEuca implements IChunkProvider {
 	}
 
 	@Override
-	public boolean saveChunks(boolean par1, IProgressUpdate par2) {
-		return true;
-	}
-
-	@Override
-	public boolean unloadQueuedChunks() {
-		return false;
-	}
-
-	@Override
-	public boolean canSave() {
-		return true;
-	}
-
-	@Override
-	public String makeString() {
-		return "Euca";
-	}
-
-	@Override
-	public int getLoadedChunkCount() {
-		return 0;
-	}
-
-	@Override
-	public void saveExtraData() { }
-
-	@Override
-	public boolean func_177460_a(IChunkProvider p_177460_1_, Chunk p_177460_2_, int p_177460_3_, int p_177460_4_) {
-		return false;
-	}
-
-	@Override
 	public List <SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos) {
-		BiomeGenBase biomegenbase = this.worldObj.getBiomeGenForCoords(pos);
-		return biomegenbase.getSpawnableList(creatureType);
+        Biome biome = this.worldObj.getBiome(pos);
+		return biome.getSpawnableList(creatureType);
 	}
 
 	@Override
-	public Chunk provideChunk(BlockPos pos) {
-		return this.provideChunk(pos.getX() >> 4, pos.getZ() >> 4);
+	public boolean generateStructures(Chunk chunkIn, int x, int z) {
+		return false;
 	}
 
 	@Override
-	public BlockPos getStrongholdGen(World worldIn, String p_180513_2_, BlockPos p_180513_3_) {
+	public BlockPos getNearestStructurePos(World worldIn, String structureName, BlockPos position, boolean findUnexplored) {
 		return null;
 	}
 
 	@Override
-	public void recreateStructures(Chunk p_180514_1_, int par1, int par2) { 
-		
+	public void recreateStructures(Chunk chunkIn, int x, int z) { }
+
+	@Override
+	public boolean isInsideStructure(World worldIn, String structureName, BlockPos pos) {
+		return false;
 	}
 }

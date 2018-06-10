@@ -1,6 +1,5 @@
 package net.journey.proxy;
 
-import net.journey.JourneyAchievements;
 import net.journey.JourneyBlocks;
 import net.journey.JourneyChestGenerator;
 import net.journey.JourneyCrops;
@@ -22,8 +21,6 @@ import net.journey.dimension.WorldGenEssence;
 import net.journey.enums.EnumParticlesClasses;
 import net.journey.event.ArmorAbilityEvent;
 import net.journey.event.PlayerEvent;
-import net.journey.misc.DimensionCommand;
-import net.journey.misc.EssenceCommands;
 import net.journey.util.Config;
 import net.journey.util.EntityRegistry;
 import net.journey.util.JourneyFuelHandler;
@@ -33,12 +30,10 @@ import net.journey.util.recipes.JourneyMaterialRecipes;
 import net.journey.util.recipes.JourneyMiscRecipes;
 import net.journey.util.recipes.JourneySmeltingRecipes;
 import net.journey.util.recipes.JourneyWeaponRecipes;
+import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeHell;
-import net.minecraftforge.common.BiomeDictionary;
-import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -61,12 +56,9 @@ public class CommonProxy {
 	public void registerSounds() { }
 	public void spawnParticle(EnumParticlesClasses particle, World worldObj, double x, double y, double z, boolean b) { }
 	public void registerModModels() { }
-	
-	public void registerItem(RegistryEvent.Register<Item> event) { }
-	
+
 	public void preInit(FMLPreInitializationEvent event) {
 		Config.init(event);
-		//Essence.tropicalWater.setBlock(EssenceBlocks.tropicalWater);
 		EntityRegistry.init();
 		JourneyChestGenerator.init();
 		//JourneyAchievements.init();
@@ -110,13 +102,9 @@ public class CommonProxy {
 		SlayerAPI.registerEvent(new PlayerEvent());
 	}
 	
-	public void postInit(FMLPostInitializationEvent event) {
-	}
+	public void postInit(FMLPostInitializationEvent event) { }
 	
-	public void serverStarting(FMLServerStartingEvent event) {
-		SlayerAPI.registerCommand(new EssenceCommands());
-		SlayerAPI.registerCommand(new DimensionCommand());
-	}
+	public void serverStarting(FMLServerStartingEvent event) { }
 	
 	private void addOreDictionary() {
 		OreDictionary.registerOre("oreAshual", JourneyBlocks.ashualOre);

@@ -32,7 +32,9 @@ public class ItemMod extends Item {
 		LangRegistry.addItem(name, finalName);
 		setUnlocalizedName(name);
 		setCreativeTab(tab);
+		setRegistryName(name);
 		JourneyItems.itemNames.add(name);
+		JourneyItems.items.add(this);
 	}
 
 	public ItemMod setHealAmount(int healAmount){
@@ -82,7 +84,7 @@ public class ItemMod extends Item {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack item, World world, List<String> list, ITooltipFlag flagIn) {
-		ItemDescription.addInformation(item, world, list);
+		ItemDescription.addInformation(item, list);
 		addInformation(item, world, list);
 		addInformation(item, list);
 	}

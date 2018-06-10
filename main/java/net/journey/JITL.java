@@ -11,6 +11,7 @@ import net.journey.proxy.CommonProxy;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.world.DimensionType;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
@@ -41,7 +42,7 @@ public class JITL {
 	public static final Material tropicalMat = new Material(MapColor.BLUE);
 	
 	public static SimpleNetworkWrapper wrapper;
-	
+		
 	@EventHandler
 	public static void preInit(FMLPreInitializationEvent event) {
 		wrapper = NetworkRegistry.INSTANCE.newSimpleChannel("EssenceNetwork");

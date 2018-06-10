@@ -64,6 +64,7 @@ public class BlockMod extends Block{
 		setUnlocalizedName(name);
 		this.name = name; 
 		JourneyBlocks.blockName.add(name);
+		setRegistryName(name);
 		JourneyBlocks.blocks.add(this);
 	}
 
@@ -78,6 +79,7 @@ public class BlockMod extends Block{
 		setHardness(hardness);
 		this.name = name;
 		JourneyBlocks.blockName.add(name);
+		setRegistryName(name);
 		JourneyBlocks.blocks.add(this);
 	}
 

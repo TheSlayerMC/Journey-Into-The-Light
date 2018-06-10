@@ -46,8 +46,12 @@ import net.journey.blocks.portal.BlockSenterianPortal;
 import net.journey.blocks.portal.BlockTerraniaPortal;
 import net.journey.blocks.portal.BlockWitherPortal;
 import net.minecraft.block.Block;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.slayer.api.EnumMaterialTypes;
 import net.slayer.api.EnumToolType;
+import net.slayer.api.SlayerAPI;
 import net.slayer.api.block.BlockMod;
 import net.slayer.api.block.BlockModBars;
 import net.slayer.api.block.BlockModDoor;
@@ -62,6 +66,7 @@ import net.slayer.api.block.BlockModStairs;
 import net.slayer.api.block.BlockModVine;
 import net.slayer.api.block.BlockNetherFurnace;
 
+@EventBusSubscriber(modid=SlayerAPI.MOD_ID)
 public class JourneyBlocks {
 
 	public static ArrayList<String> blockName = new ArrayList<String>();
@@ -118,7 +123,7 @@ public class JourneyBlocks {
 	public static final BlockNetherFlower deathGrass = new BlockNetherFlower("deathGrass", "Death Grass");
 	public static final BlockNetherFlower hellBell = new BlockNetherFlower("hellBell", "Hell Bell");
 	public static final Block hellshroom = new BlockNetherPlant("hellshroom", "Hellshroom");
-	public static final Block bleedheartFruit = new BlockFruitCrop("bleedheartFruit", "Bleedheart Fruit");
+	public static final Block bleedheartFruit = new BlockFruitCrop("bleedheartFruit");
 	public static final Block heatSoil = new BlockMod(EnumMaterialTypes.DIRT, "heatSoil", "Nethic Soil", 2.0F);
 	
 	public static final Block igniterOn = new BlockIgniter("igniterOn", "Redstone Igniter");
@@ -473,4 +478,10 @@ public class JourneyBlocks {
 	//public static final Block tropicalWater = new BlockTropicalWater("tropicalWater");
 	
 	//public static final Block bowCraftingTable = new BlockBowCrafter("bowCraftingTable");
+	
+	@SubscribeEvent
+	public static void registerBlocks(RegistryEvent.Register<Block> event) {
+		for(Block b : blocks)
+			event.getRegistry().registerAll(b);
+	}
 }

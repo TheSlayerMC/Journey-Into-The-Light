@@ -1,13 +1,15 @@
 package net.slayer.api;
 
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import org.lwjgl.opengl.GL11;
 
 import net.journey.JITL;
 import net.journey.client.ChatHandler;
 import net.journey.util.Config;
 import net.journey.util.GL11Helper;
+import net.journey.util.LangHelper;
 import net.journey.util.LangRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -16,38 +18,27 @@ import net.minecraft.client.renderer.ItemModelMesher;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.resources.I18n;
-import net.minecraft.command.CommandHandler;
 import net.minecraft.command.ICommand;
-import net.minecraft.command.ServerCommandManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.FurnaceRecipes;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.ShapedRecipes;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.common.registry.VillagerRegistry;
 import net.minecraftforge.fml.common.registry.VillagerRegistry.IVillageCreationHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import org.lwjgl.opengl.GL11;
 
 public class SlayerAPI {
 
@@ -257,13 +248,13 @@ public class SlayerAPI {
 
 	@SideOnly(Side.CLIENT)
 	public static void sendMessageToAll(String message, boolean showMod) {
-		if(showMod) FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(SlayerAPI.Colour.DARK_AQUA + "[" + SlayerAPI.Colour.DARK_GREEN + MOD_NAME + SlayerAPI.Colour.DARK_AQUA + "] " + SlayerAPI.Colour.GREEN + message));
-		else FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(SlayerAPI.Colour.GREEN + message));
+		//if(showMod) FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(SlayerAPI.Colour.DARK_AQUA + "[" + SlayerAPI.Colour.DARK_GREEN + MOD_NAME + SlayerAPI.Colour.DARK_AQUA + "] " + SlayerAPI.Colour.GREEN + message));
+		//else FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(SlayerAPI.Colour.GREEN + message));
 	}
 
 	@SideOnly(Side.CLIENT)
 	public static void sendContinuedMessageToAll(String message) {
-		FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(SlayerAPI.Colour.GREEN + message));
+		//FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(SlayerAPI.Colour.GREEN + message));
 	}
 
 	public static void removeCraftingRecipe(Item removed) {
@@ -347,7 +338,7 @@ public class SlayerAPI {
 				if (!boolAddedToInventory && itemstack.getItemDamage() == 0) {
 					player.dropItem(itemstack.getItem(), 1);
 					String itemName = itemstack.getUnlocalizedName();
-					ChatHandler.sendFormattedChat(player, EnumChatFormatting.RED, "essence.fullinv", StatCollector.translateToLocal(itemName + ".name"));
+					ChatHandler.sendFormattedChat(player, TextFormatting.RED, "essence.fullinv", LangHelper.getFormattedText(itemName + ".name"));
 				}
 			}
 			return boolAddedToInventory;
@@ -368,7 +359,7 @@ public class SlayerAPI {
 			if (!boolAddedToInventory && itemstack.getItemDamage() == 0) {
 				player.dropItem(itemstack.getItem(), 1);
 				String itemName = itemstack.getUnlocalizedName();
-				ChatHandler.sendFormattedChat(player, EnumChatFormatting.RED, "essence.fullinv", StatCollector.translateToLocal(itemName + ".name"));
+				ChatHandler.sendFormattedChat(player, TextFormatting.RED, "essence.fullinv", LangHelper.getFormattedText(itemName + ".name"));
 			} else {
 				player.sendContainerToPlayer(player.inventoryContainer);
 			}
@@ -382,12 +373,12 @@ public class SlayerAPI {
 		if(stack != null) {
 			GL11.glTranslated(x, y, z);
 			GL11Helper.scale(scale);
-			renderItem.renderItemModelForEntity(stack, null, null);
+			//renderItem.renderItemModelForEntity(stack, null, null);
 		}
 	}
 	
 	public static void addBow(Item bow, String name) {
-		SlayerAPI.registerModelBakery(bow, new String[] {SlayerAPI.PREFIX + name, SlayerAPI.PREFIX + name + "_0", SlayerAPI.PREFIX + name + "_1", SlayerAPI.PREFIX  + name + "_2"});
+		//SlayerAPI.registerModelBakery(bow, new String[] {SlayerAPI.PREFIX + name, SlayerAPI.PREFIX + name + "_0", SlayerAPI.PREFIX + name + "_1", SlayerAPI.PREFIX  + name + "_2"});
 	}
 	
 	public static void addBowRender(Item bow, String name) {
@@ -397,12 +388,12 @@ public class SlayerAPI {
 		registerItemRender(bow, 3, name + "_2");
 	}
 
-	public static void registerModelBakery(Item i, String[] names) {
+	public static void registerModelBakery(Item i, String names) {
 		ModelBakery.registerItemVariants(i, new ResourceLocation(names));
 	}
 
-	public static void registerModelBakery(Block b, String[] names) {
-		ModelBakery.addVariantName(SlayerAPI.toItem(b), names);
+	public static void registerModelBakery(Block b, String names) {
+		ModelBakery.registerItemVariants(SlayerAPI.toItem(b), new ResourceLocation(names));
 	}
 
 	public static void registerItemRender(Item item, int metadata, String itemName) {

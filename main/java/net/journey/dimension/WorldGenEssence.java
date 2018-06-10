@@ -195,8 +195,9 @@ public class WorldGenEssence implements IWorldGenerator {
 			y = r.nextInt(128) + 1;
 			x = chunkX + r.nextInt(16);
 			z = chunkZ + r.nextInt(16);
-			if(isBlockTop(x, y, z, Blocks.NETHERRACK, w)) 
-				new WorldGenBush(w, r, new BlockPos(x, y, z), JourneyBlocks.sizzleberryBush, Blocks.NETHERRACK).generate(w, r, new BlockPos(x, y, z));
+			if(isBlockTop(x, y, z, Blocks.NETHERRACK, w)) {
+				//new WorldGenBush(w, r, new BlockPos(x, y, z), JourneyBlocks.sizzleberryBush, Blocks.NETHERRACK).generate(w, r, new BlockPos(x, y, z));
+			}
 		}
 		
 		for(times = 0; times < 350; times++) {
@@ -286,8 +287,9 @@ public class WorldGenEssence implements IWorldGenerator {
 			x = chunkX + r.nextInt(16);
 			z = chunkZ + r.nextInt(16);
 			if(isBlockTop(x, y, z, Blocks.GRASS, w)) 
-			if(BiomeDictionary.hasType(biome, Type.FOREST))
-				new WorldGenBush(w, r, new BlockPos(x, y, z), JourneyBlocks.juiceberryBush, Blocks.GRASS).generate(w, r, new BlockPos(x, y, z));
+			if(BiomeDictionary.hasType(biome, Type.FOREST)) {
+				//new WorldGenBush(w, r, new BlockPos(x, y, z), JourneyBlocks.juiceberryBush, Blocks.GRASS).generate(w, r, new BlockPos(x, y, z));
+			}
 		}
 		
 		for(times = 0; times < 1; times++) {
@@ -295,8 +297,9 @@ public class WorldGenEssence implements IWorldGenerator {
 			x = chunkX + r.nextInt(16);
 			z = chunkZ + r.nextInt(16);
 			if(isBlockTop(x, y, z, Blocks.GRASS, w)) 
-			if(BiomeDictionary.hasType(biome, Type.CONIFEROUS))
-				new WorldGenBush(w, r, new BlockPos(x, y, z), JourneyBlocks.bradberryBush, Blocks.GRASS).generate(w, r, new BlockPos(x, y, z));
+			if(BiomeDictionary.hasType(biome, Type.CONIFEROUS)) {
+				//new WorldGenBush(w, r, new BlockPos(x, y, z), JourneyBlocks.bradberryBush, Blocks.GRASS).generate(w, r, new BlockPos(x, y, z));
+			}
 		}
 		
 		for(times = 0; times < 20; times++) {
@@ -304,8 +307,9 @@ public class WorldGenEssence implements IWorldGenerator {
 			x = chunkX + r.nextInt(16);
 			z = chunkZ + r.nextInt(16);
 			if(isBlockTop(x, y, z, Blocks.GRASS, w)) 
-			if(BiomeDictionary.hasType(biome, Type.JUNGLE))
-				new WorldGenBush(w, r, new BlockPos(x, y, z), JourneyBlocks.tangleberryBush, Blocks.GRASS).generate(w, r, new BlockPos(x, y, z));
+			if(BiomeDictionary.hasType(biome, Type.JUNGLE)) {
+			//	new WorldGenBush(w, r, new BlockPos(x, y, z), JourneyBlocks.tangleberryBush, Blocks.GRASS).generate(w, r, new BlockPos(x, y, z));
+			}
 		}
 		
 		for(times = 0; times < 1; times++) {
@@ -313,8 +317,9 @@ public class WorldGenEssence implements IWorldGenerator {
 			x = chunkX + r.nextInt(16);
 			z = chunkZ + r.nextInt(16);
 			if(isBlockTop(x, y, z, Blocks.GRASS, w)) 
-			if(BiomeDictionary.hasType(biome, Type.SWAMP))
-				new WorldGenBush(w, r, new BlockPos(x, y, z), JourneyBlocks.bogberryBush, Blocks.GRASS).generate(w, r, new BlockPos(x, y, z));
+			if(BiomeDictionary.hasType(biome, Type.SWAMP)) {
+				//new WorldGenBush(w, r, new BlockPos(x, y, z), JourneyBlocks.bogberryBush, Blocks.GRASS).generate(w, r, new BlockPos(x, y, z));
+			}
 		}
 		
 		for(times = 0; times < 100; times++) {
