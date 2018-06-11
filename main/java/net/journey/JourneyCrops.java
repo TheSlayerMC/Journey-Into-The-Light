@@ -13,6 +13,7 @@ import net.journey.blocks.crop.BlockGlowshroomCrop;
 import net.journey.blocks.crop.BlockSpineberryCrop;
 import net.journey.blocks.crop.BlockTomatoCrop;
 import net.journey.blocks.crop.BlockZatPedalsCrop;
+import net.journey.blocks.crop.base.BlockFruitCrop;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.slayer.api.item.ItemModSeeds;
@@ -31,6 +32,7 @@ public class JourneyCrops {
 	public static final Block floroCrop = new BlockFloroCrop("floroCrop");
 	public static final Block airRootCrop = new BlockAirRootCrop("airRootCrop");
 	public static final Block airRootMelon = new BlockMelon("airRootMelon", "Air Root", JourneyItems.airMelon);
+	public static final Block bleedheartFruit = new BlockFruitCrop("bleedheartFruitCrop");
 
 	public static final Item glowshroomPowder = new ItemModSeeds("glowshroomPowder", "Glowshroom Powder", JourneyCrops.glowshroomCrop);
 	public static final Item tomatoSeeds = new ItemModSeeds("tomatoSeeds", "Tomato Seeds", JourneyCrops.tomatoCrop);

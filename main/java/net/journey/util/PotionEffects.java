@@ -20,6 +20,8 @@ public class PotionEffects {
 	public static int moveSlow = Potion.getIdFromPotion(MobEffects.SLOWNESS);
 	public static int blindness = Potion.getIdFromPotion(MobEffects.BLINDNESS);
 	public static int poison = Potion.getIdFromPotion(MobEffects.POISON);
+	public static int wither = Potion.getIdFromPotion(MobEffects.WITHER);
+	public static int harm = Potion.getIdFromPotion(MobEffects.INSTANT_DAMAGE);
 
 
 	public static PotionEffect setPotionEffect(int id, int durationIn, int amplifierIn) {

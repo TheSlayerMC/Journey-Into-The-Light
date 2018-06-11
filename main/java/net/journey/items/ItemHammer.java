@@ -29,7 +29,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.SlayerAPI;
 
-public class ItemHammer extends ItemSword{
+public class ItemHammer extends ItemSword {
 
 	protected int usage;
 	protected int damage;

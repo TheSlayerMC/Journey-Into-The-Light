@@ -47,6 +47,8 @@ public class BlockDepthsPortal extends BlockBreakable {
 		setCreativeTab(JourneyTabs.portalBlocks);
 		setUnlocalizedName(name);
 		JourneyBlocks.blockName.add(name);
+		JourneyBlocks.blocks.add(this);
+
 	}
 
 	@Override

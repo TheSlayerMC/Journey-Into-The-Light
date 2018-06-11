@@ -20,7 +20,6 @@ public class BlockModFence extends BlockFence {
 	public BlockModFence(Block block, String name, String finalName, boolean light) {
 		super(Material.ROCK, null);
 		LangRegistry.addBlock(name, finalName);
-		
 		setUnlocalizedName(name);
 		setCreativeTab(JourneyTabs.blocks);
 		if(light) setLightLevel(0.5F);

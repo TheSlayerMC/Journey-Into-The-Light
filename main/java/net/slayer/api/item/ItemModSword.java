@@ -27,6 +27,7 @@ public class ItemModSword extends ItemSword {
         mat = toolMaterial;
         setCreativeTab(JourneyTabs.swords);
         JourneyItems.itemNames.add(name);
+        JourneyItems.items.add(this);
     }
     
     @Override
@@ -44,7 +45,7 @@ public class ItemModSword extends ItemSword {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack item, World player, List<String> infoList, ITooltipFlag par4) {
-		ItemDescription.addInformation(item, player, infoList);
+		ItemDescription.addInformation(item, infoList);
 		if(item.getMaxDamage() != -1) infoList.add(item.getMaxDamage() - item.getItemDamage() + " " + LangHelper.getUsesRemaining());
 		else infoList.add(SlayerAPI.Colour.GREEN + LangHelper.getInfiniteUses());
 	}

@@ -27,6 +27,7 @@ public class ItemModPickaxe extends ItemPickaxe {
         setCreativeTab(JourneyTabs.tools);
         setHarvestLevel("pickaxe", tool.getHarvestLevel());
         JourneyItems.itemNames.add(name);
+        JourneyItems.items.add(this);
     }
     
     @Override

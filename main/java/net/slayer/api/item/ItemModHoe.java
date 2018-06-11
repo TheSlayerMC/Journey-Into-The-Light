@@ -26,6 +26,7 @@ public class ItemModHoe extends ItemHoe {
         setUnlocalizedName(name);
         setCreativeTab(JourneyTabs.tools);
         JourneyItems.itemNames.add(name);
+        JourneyItems.items.add(this);
     }
     
     @Override

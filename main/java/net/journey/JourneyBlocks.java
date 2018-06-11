@@ -123,7 +123,6 @@ public class JourneyBlocks {
 	public static final BlockNetherFlower deathGrass = new BlockNetherFlower("deathGrass", "Death Grass");
 	public static final BlockNetherFlower hellBell = new BlockNetherFlower("hellBell", "Hell Bell");
 	public static final Block hellshroom = new BlockNetherPlant("hellshroom", "Hellshroom");
-	public static final Block bleedheartFruit = new BlockFruitCrop("bleedheartFruit");
 	public static final Block heatSoil = new BlockMod(EnumMaterialTypes.DIRT, "heatSoil", "Nethic Soil", 2.0F);
 	
 	public static final Block igniterOn = new BlockIgniter("igniterOn", "Redstone Igniter");

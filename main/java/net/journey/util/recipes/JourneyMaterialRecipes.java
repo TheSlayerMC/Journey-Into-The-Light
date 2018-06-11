@@ -15,8 +15,8 @@ public class JourneyMaterialRecipes {
 	}
 
 	public static void initMaterialCrafting() {
-		JourneyBlocks b = new JourneyBlocks();
-		JourneyItems i = new JourneyItems();
+		//JourneyBlocks b = new JourneyBlocks();
+		//JourneyItems i = new JourneyItems();
 		/*GameRegistry.addRecipe(new ItemStack(JourneyItems.flameCoin), new Object[] {"iii", "idi", "iii", 'i', Items.GOLD_INGOT, 'd', Items.DIAMOND});
 		GameRegistry.addRecipe(new ItemStack(JourneyItems.hellcrustIngot), new Object[] {"iii", "idi", "iii", 'i', JourneyItems.ash, 'd', JourneyItems.hellstoneIngot});
 		GameRegistry.addRecipe(new ItemStack(JourneyItems.reinforcedStoneIngot), new Object[] {"ddd", "did", "ddd", 'd', JourneyItems.stoneClump, 'i', Blocks.STONE});

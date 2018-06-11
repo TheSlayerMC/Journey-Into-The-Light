@@ -37,6 +37,7 @@ public abstract class BlockModCrop extends BlockBush implements IGrowable {
 		setUnlocalizedName(name);
 		JourneyBlocks.blocks.add(this);
 		JourneyBlocks.blockName.add(name);
+		setRegistryName(name);
 		this.disableStats();
 	}
 

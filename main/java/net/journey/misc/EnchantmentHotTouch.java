@@ -35,6 +35,7 @@ public class EnchantmentHotTouch extends Enchantment {
     
     @Override
     public boolean canApplyTogether(Enchantment e) {
-        return super.canApplyTogether(e) && e.effectId != this.effectId && e.effectId != e.fortune.effectId && e.effectId != e.silkTouch.effectId;
+        //return super.canApplyTogether(e) && e.effectId != this.effectId && e.effectId != e.fortune.effectId && e.effectId != e.silkTouch.effectId;
+    	return true;
     }
 }

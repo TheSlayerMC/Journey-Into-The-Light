@@ -7,12 +7,15 @@ import net.journey.client.render.particles.EntityModFireFX;
 import net.journey.client.render.particles.EntityModLavaFX;
 import net.journey.client.render.particles.EntityPoisionFX;
 import net.journey.util.EssenceToolMaterial;
+import net.journey.util.PotionEffects;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -27,7 +30,7 @@ public class ItemPoisionSword extends ItemModSword {
 
 	@Override
 	public boolean hitEntity(ItemStack par1ItemStack, EntityLivingBase hit, EntityLivingBase player) {
-		hit.addPotionEffect(new PotionEffect(Potion.poison.id, 100, 2));
+		hit.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.poison, 100, 2)));
 		addParticles(hit);
 		return super.hitEntity(par1ItemStack, hit, player);
 	}
@@ -36,13 +39,13 @@ public class ItemPoisionSword extends ItemModSword {
 	public void addParticles(EntityLivingBase hit) {
 		Random r = new Random();
 		for(int i = 0; i < 50; i++){
-			FMLClientHandler.instance().getClient().effectRenderer.addEffect(new EntityPoisionFX(hit.worldObj, hit.posX + r.nextFloat() - 0.5F, hit.posY + 0.5D + r.nextFloat(), hit.posZ + r.nextFloat() - 0.5F, 0.0D, 0.0D, 0.0D));
+			FMLClientHandler.instance().getClient().effectRenderer.addEffect(new EntityPoisionFX(hit.world, hit.posX + r.nextFloat() - 0.5F, hit.posY + 0.5D + r.nextFloat(), hit.posZ + r.nextFloat() - 0.5F, 0.0D, 0.0D, 0.0D));
 		}
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack item, EntityPlayer player, List infoList, boolean par4) {
+    public void addInformation(ItemStack item, World player, List<String> infoList, ITooltipFlag par4) {
 		infoList.add(SlayerAPI.Colour.DARK_GREEN + "On hit: Poisions for 6 seconds");
 		if(item.getMaxDamage() != -1) infoList.add(item.getMaxDamage() - item.getItemDamage() + " Uses Remaining");
 		else infoList.add(SlayerAPI.Colour.GREEN + "Infinite Uses");

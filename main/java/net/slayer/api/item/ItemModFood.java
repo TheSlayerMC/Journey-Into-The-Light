@@ -24,6 +24,7 @@ public class ItemModFood extends ItemFood {
         setUnlocalizedName(name);
         setCreativeTab(JourneyTabs.crops);
         JourneyItems.itemNames.add(name);
+        JourneyItems.items.add(this);
     }
     
     public ItemModFood(String name, String f, int food, float sat, int timeToEat, boolean wolfFood) {
@@ -44,7 +45,7 @@ public class ItemModFood extends ItemFood {
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		ItemDescription.addInformation(stack, worldIn, tooltip);
+		ItemDescription.addInformation(stack, tooltip);
 		tooltip.add("Fills " + (double) getHealAmount(stack) / 2 + " Hunger Bars");
 		tooltip.add(getSaturationModifier(stack) + " Saturation");
         if(time <= 32) tooltip.add("Faster eating");

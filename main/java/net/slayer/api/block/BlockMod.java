@@ -64,9 +64,9 @@ public class BlockMod extends Block{
 		setCreativeTab(tab);
 		setUnlocalizedName(name);
 		this.name = name; 
+		JourneyBlocks.blocks.add(this);
 		JourneyBlocks.blockName.add(name);
 		setRegistryName(name);
-		JourneyBlocks.blocks.add(this);
 	}
 
 	public BlockMod(EnumMaterialTypes blockType, String name, String finalName, float hardness, CreativeTabs tab) {

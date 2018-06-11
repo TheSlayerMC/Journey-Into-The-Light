@@ -29,6 +29,7 @@ public class ItemModAxe extends ItemAxe {
 		setUnlocalizedName(name);
 		setCreativeTab(JourneyTabs.tools);
 		JourneyItems.itemNames.add(name);
+		JourneyItems.items.add(this);
 	}
 	
 	@Override
@@ -52,7 +53,7 @@ public class ItemModAxe extends ItemAxe {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack item, World w, List<String> infoList, ITooltipFlag flagIn) {
-		ItemDescription.addInformation(item, w, infoList);
+		ItemDescription.addInformation(item, infoList);
 		infoList.add(SlayerAPI.Colour.BLUE + LangHelper.getEfficiency() + ": " + toolMaterial.getEfficiency());
 		if(item.getMaxDamage() != -1) infoList.add(item.getMaxDamage() - item.getItemDamage() + " " + LangHelper.getUsesRemaining());
 		else infoList.add(SlayerAPI.Colour.GREEN + LangHelper.getInfiniteUses());

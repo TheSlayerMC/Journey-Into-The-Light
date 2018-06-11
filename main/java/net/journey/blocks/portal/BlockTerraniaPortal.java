@@ -3,6 +3,7 @@ package net.journey.blocks.portal;
 import java.util.Random;
 
 import net.journey.JourneyBlocks;
+import net.journey.JourneyItems;
 import net.journey.JourneyTabs;
 import net.journey.dimension.ModTeleporter;
 import net.journey.util.Config;
@@ -46,6 +47,7 @@ public class BlockTerraniaPortal extends BlockBreakable {
 		setCreativeTab(JourneyTabs.portalBlocks);
 		setUnlocalizedName(name);
 		JourneyBlocks.blockName.add(name);
+		JourneyBlocks.blocks.add(this);
 	}
 
 	@Override

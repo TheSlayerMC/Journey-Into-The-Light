@@ -26,6 +26,7 @@ public class ItemModShovel extends ItemSpade {
         setUnlocalizedName(name);
         setCreativeTab(JourneyTabs.tools);
         JourneyItems.itemNames.add(name);
+        JourneyItems.items.add(this);
     }
     
     @Override

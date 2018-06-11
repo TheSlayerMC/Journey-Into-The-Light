@@ -72,7 +72,6 @@ public class CommonProxy {
 		//BiomeDictionary.addTypes(new BiomeHell(), Type.NETHER);
 		DimensionHelper.addSpawns();
 		
-		JourneyTabs.init();
 		
 		if(SlayerAPI.DEVMODE) LangRegistry.instance.register();
 		addOreDictionary();
@@ -95,6 +94,8 @@ public class CommonProxy {
 		FMLCommonHandler.instance().bus().register(new JourneySapphireSwordEvent());
 		FMLCommonHandler.instance().bus().register(new JourneySapphireEvent());
 		FMLCommonHandler.instance().bus().register(new JourneyDungeonEvent());
+		JourneyTabs.init();
+
 	}
 	
 	public void init(FMLInitializationEvent event) {

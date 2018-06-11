@@ -30,7 +30,7 @@ public class LangRegistry {
 		armorPiece = new ArrayList<String>();
 
 	public LangRegistry() {
-		File en_US = new File(location + "en_US.lang");
+		File en_US = new File(location + "en_us.lang");
 		try {
 			en_US.mkdirs();
 			if(en_US.exists()) en_US.delete();

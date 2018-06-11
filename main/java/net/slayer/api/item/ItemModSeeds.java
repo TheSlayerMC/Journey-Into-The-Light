@@ -14,6 +14,8 @@ public class ItemModSeeds extends ItemSeeds {
 		LangRegistry.addItem(name, f);
 		setUnlocalizedName(name);
 		setCreativeTab(JourneyTabs.crops);
+		setRegistryName(name);
+		JourneyItems.items.add(this);
 		JourneyItems.itemNames.add(name);
 	}
 }

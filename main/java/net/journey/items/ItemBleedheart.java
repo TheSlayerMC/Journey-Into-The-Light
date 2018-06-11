@@ -1,6 +1,7 @@
 package net.journey.items;
 
 import net.journey.JourneyBlocks;
+import net.journey.JourneyCrops;
 import net.journey.blocks.BlockEucaPumpkin;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -40,7 +41,7 @@ public class ItemBleedheart extends ItemModFood {
 				pos = pos.offset(side);
 
 				if (worldIn.isAirBlock(pos)) {
-					IBlockState iblockstate1 = JourneyBlocks.bleedheartFruit.getDefaultState();
+					IBlockState iblockstate1 = JourneyCrops.bleedheartFruit.getDefaultState();
 					worldIn.setBlockState(pos, iblockstate1, 2);
 
 					if (!playerIn.capabilities.isCreativeMode) {

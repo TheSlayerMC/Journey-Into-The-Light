@@ -41,7 +41,8 @@ public class EnchantmentWaterWalk extends Enchantment {
     }
     
     @Override
-    public boolean canApplyTogether(Enchantment e) {EnchantmentLootBonus
-        return super.canApplyTogether(e) && e.effectId != this.effectId || e.effectId != this.depthStrider.effectId;
+    public boolean canApplyTogether(Enchantment e) {
+        //return super.canApplyTogether(e) && e.effectId != this.effectId || e.effectId != this.depthStrider.effectId;
+    	return true;
     }
 }

@@ -2,14 +2,16 @@ package net.journey.misc;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
+import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.enchantment.Enchantment.Rarity;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 public class EnchantmentLavaWalk extends Enchantment {
 
-	public EnchantmentLavaWalk(int id, int weight) {
-		super(id, new ResourceLocation("lavaWalk"), weight, EnumEnchantmentType.ARMOR_FEET);
+	public EnchantmentLavaWalk(EntityEquipmentSlot ... slot) {
+		super(Rarity.RARE, EnumEnchantmentType.ARMOR_FEET, slot);
 		this.setName("Lava Walker");
 	}
 
@@ -35,6 +37,7 @@ public class EnchantmentLavaWalk extends Enchantment {
     
     @Override
     public boolean canApplyTogether(Enchantment e) {
-        return super.canApplyTogether(e) && e.effectId != this.effectId;
+       // return super.canApplyTogether(e) && e.effectId != this.effectId;
+    	return true;
     }
 }
