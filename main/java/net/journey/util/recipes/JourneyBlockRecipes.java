@@ -12,8 +12,8 @@ public class JourneyBlockRecipes {
 	}
 
 	public static void initBlockCrafting() {
-		JourneyBlocks b = new JourneyBlocks();
-		JourneyItems i = new JourneyItems();
+		//JourneyBlocks b = new JourneyBlocks();
+		//JourneyItems i = new JourneyItems();
 		/*GameRegistry.addRecipe(new ItemStack(JourneyBlocks.greenGemBlock, 1), new Object[] {"iii", "iii", "iii", 'i', JourneyItems.greenGem});
 		GameRegistry.addRecipe(new ItemStack(JourneyBlocks.purpleGemBlock, 1), new Object[] {"iii", "iii", "iii", 'i', JourneyItems.purpleGem});
 		GameRegistry.addRecipe(new ItemStack(JourneyBlocks.blueGemBlock, 1), new Object[] {"iii", "iii", "iii", 'i', JourneyItems.blueGem});
@@ -43,8 +43,8 @@ public class JourneyBlockRecipes {
 		GameRegistry.addRecipe(new ItemStack(Blocks.web), new Object[] {"sss", "sss","sss", 's', Items.string});
 		GameRegistry.addRecipe(new ItemStack(JourneyBlocks.netherFurnace, 1), new Object[] {"ddd", "d d", "ddd", 'd', Blocks.netherrack});*/
 		
-		addWood(JourneyBlocks.eucaGoldLog, JourneyBlocks.goldEucaPlank, JourneyBlocks.eucaGoldStairs, 0, true);
-		addWood(JourneyBlocks.depthsLog, JourneyBlocks.depthsPlank, JourneyBlocks.depthsStairs, 1, true);
+		//addWood(JourneyBlocks.eucaGoldLog, JourneyBlocks.goldEucaPlank, JourneyBlocks.eucaGoldStairs, 0, true);
+		//addWood(JourneyBlocks.depthsLog, JourneyBlocks.depthsPlank, JourneyBlocks.depthsStairs, 1, true);
 	}
 	
 	public static void addBlock(Block made, Item used) {

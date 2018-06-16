@@ -11,8 +11,8 @@ public class JourneyWeaponRecipes {
 	}
 
 	public static void initWeaponCrafting() {
-		JourneyBlocks b = new JourneyBlocks();
-		JourneyItems i = new JourneyItems();
+		//JourneyBlocks b = new JourneyBlocks();
+		//JourneyItems i = new JourneyItems();
 		/*GameRegistry.addRecipe(new ItemStack(JourneyItems.demonicBomb, 16), new Object[] {"ddd", "did", "ddd", 'd', JourneyItems.demonicDust, 'i', JourneyItems.crystalBall});
 		GameRegistry.addRecipe(new ItemStack(JourneyItems.withicBlade), new Object[] {"i", "i", "d", 'd', JourneyItems.withicDust, 'i', JourneyItems.hellcrustIngot});
 		GameRegistry.addRecipe(new ItemStack(JourneyItems.reinforcedStoneSword), new Object[] {"d", "d", "i", 'd', JourneyItems.reinforcedStoneIngot, 'i', JourneyItems.stoneStick});

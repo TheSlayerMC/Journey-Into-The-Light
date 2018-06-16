@@ -48,6 +48,7 @@ import net.journey.blocks.portal.BlockWitherPortal;
 import net.minecraft.block.Block;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.slayer.api.EnumMaterialTypes;
 import net.slayer.api.EnumToolType;
@@ -68,7 +69,7 @@ import net.slayer.api.block.BlockNetherFurnace;
 
 @EventBusSubscriber(modid=SlayerAPI.MOD_ID)
 public class JourneyBlocks {
-
+	
 	public static ArrayList<String> blockName = new ArrayList<String>();
 	public static ArrayList<Block> blocks = new ArrayList<Block>();
 	

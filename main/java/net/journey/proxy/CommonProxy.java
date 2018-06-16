@@ -68,10 +68,8 @@ public class CommonProxy {
 		JourneySmeltingRecipes.init();
 		JourneyWeaponRecipes.init();
 		
-		DimensionHelper.init();
 		//BiomeDictionary.addTypes(new BiomeHell(), Type.NETHER);
 		DimensionHelper.addSpawns();
-		
 		
 		if(SlayerAPI.DEVMODE) LangRegistry.instance.register();
 		addOreDictionary();
@@ -95,6 +93,7 @@ public class CommonProxy {
 		FMLCommonHandler.instance().bus().register(new JourneySapphireEvent());
 		FMLCommonHandler.instance().bus().register(new JourneyDungeonEvent());
 		JourneyTabs.init();
+		DimensionHelper.init();
 
 	}
 	
@@ -107,19 +106,5 @@ public class CommonProxy {
 	
 	public void serverStarting(FMLServerStartingEvent event) { }
 	
-	private void addOreDictionary() {
-		OreDictionary.registerOre("oreAshual", JourneyBlocks.ashualOre);
-		OreDictionary.registerOre("oreCelestium", JourneyBlocks.celestiumOre);
-		OreDictionary.registerOre("oreLunium", JourneyBlocks.luniumOre);
-		OreDictionary.registerOre("oreShadium", JourneyBlocks.shadiumOre);
-		OreDictionary.registerOre("oreFlairium", JourneyBlocks.flairiumOre);
-		OreDictionary.registerOre("oreSapphire", JourneyBlocks.sapphireOre);
-		OreDictionary.registerOre("ash", JourneyItems.ash);
-		OreDictionary.registerOre("ingotCelestium", JourneyItems.celestiumIngot);
-		OreDictionary.registerOre("ingotLunium", JourneyItems.luniumIngot);
-		OreDictionary.registerOre("ingotShadium", JourneyItems.shadiumIngot);
-		OreDictionary.registerOre("ingotFlairium", JourneyItems.flairiumIngot);
-		OreDictionary.registerOre("gemSapphire", JourneyItems.sapphire);
-		OreDictionary.registerOre("gemBlazium", JourneyItems.blazium);
-	}
+	private void addOreDictionary() { }
 }

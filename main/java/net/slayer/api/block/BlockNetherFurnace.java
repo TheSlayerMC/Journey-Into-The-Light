@@ -32,7 +32,6 @@ public class BlockNetherFurnace extends BlockModContainer {
 	public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
 	private final boolean isBurning;
 	private static boolean keepInventory;
-	private static final String __OBFID = "CL_00000248";
 
 	public BlockNetherFurnace(String name, String f, boolean isBurning) {
 		super(EnumMaterialTypes.STONE, name, f, 2.0F, JourneyTabs.machineBlocks);

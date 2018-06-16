@@ -12,5 +12,6 @@ public class BlockModBookshelf extends BlockBookshelf {
         setSoundType(blockSoundType.WOOD);
         JourneyBlocks.blockName.add(name);
 		JourneyBlocks.blocks.add(this);
+		setRegistryName(name);
     }
 }

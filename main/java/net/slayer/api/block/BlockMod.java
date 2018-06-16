@@ -22,7 +22,7 @@ import net.slayer.api.EnumMaterialTypes;
 import net.slayer.api.EnumToolType;
 import net.slayer.api.SlayerAPI;
 
-public class BlockMod extends Block{
+public class BlockMod extends Block {
 
 	protected EnumMaterialTypes blockType;
 	protected Item drop = null;

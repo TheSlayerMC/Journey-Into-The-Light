@@ -45,10 +45,11 @@ public class BlockEucaPortal extends BlockBreakable {
 		LangRegistry.addBlock(name, "Euca Portal");
 		this.setTickRandomly(true);
 		setCreativeTab(JourneyTabs.portalBlocks);
+        this.setDefaultState(this.blockState.getBaseState().withProperty(AXIS, EnumFacing.Axis.X));
 		setUnlocalizedName(name);
 		JourneyBlocks.blockName.add(name);
 		JourneyBlocks.blocks.add(this);
-
+		setRegistryName(name);
 	}
 
 	@Override

@@ -48,7 +48,7 @@ public class BlockCloudiaPortal extends BlockBreakable {
 		setUnlocalizedName(name);
 		JourneyBlocks.blockName.add(name);
 		JourneyBlocks.blocks.add(this);
-
+		setRegistryName(name);
 	}
 
 	@Override
