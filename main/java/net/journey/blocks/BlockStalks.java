@@ -31,7 +31,7 @@ public class BlockStalks extends Block {
 		setLightLevel(0.6F);
 		setTickRandomly(true);
 		setUnlocalizedName(name);
-		setRegistryName(name);
+		
 		JourneyBlocks.blocks.add(this);
 		JourneyBlocks.blockName.add(name);
 	}

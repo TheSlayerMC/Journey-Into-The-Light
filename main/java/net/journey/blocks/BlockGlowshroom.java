@@ -32,7 +32,7 @@ public class BlockGlowshroom extends Block {
 		setUnlocalizedName(name);
 		JourneyBlocks.blocks.add(this);
 		JourneyBlocks.blockName.add(name);
-		setRegistryName(name);
+		
 	}
 
 	@Override

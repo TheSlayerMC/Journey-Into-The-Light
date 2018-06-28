@@ -26,7 +26,6 @@ public class BlockModFence extends BlockFence {
 		setHardness(block.getBlockHardness(null, null, null));
 		JourneyBlocks.blockName.add(name);
 		JourneyBlocks.blocks.add(this);
-		setRegistryName(name);
 	}
 	
 	public BlockModFence(Block b, String n, String finalName) {

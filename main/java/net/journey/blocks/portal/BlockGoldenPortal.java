@@ -11,8 +11,10 @@ import net.journey.util.LangRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBreakable;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockFaceShape;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -35,20 +37,21 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockGoldenPortal extends BlockBreakable {
 
-	public static final PropertyEnum AXIS = PropertyEnum.create("axis", EnumFacing.Axis.class, new EnumFacing.Axis[] {EnumFacing.Axis.X, EnumFacing.Axis.Z});
+    public static final PropertyEnum<EnumFacing.Axis> AXIS = PropertyEnum.<EnumFacing.Axis>create("axis", EnumFacing.Axis.class, EnumFacing.Axis.X, EnumFacing.Axis.Z);
 	protected static final AxisAlignedBB X_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.375D, 1.0D, 1.0D, 0.625D);
 	protected static final AxisAlignedBB Z_AABB = new AxisAlignedBB(0.375D, 0.0D, 0.0D, 0.625D, 1.0D, 1.0D);
 	protected static final AxisAlignedBB Y_AABB = new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 1.0D, 0.625D);
 
 	public BlockGoldenPortal(String name) {
 		super(Material.PORTAL, false);
+        this.setDefaultState(this.blockState.getBaseState().withProperty(AXIS, EnumFacing.Axis.X));
 		LangRegistry.addBlock(name, "Golden Portal");
 		this.setTickRandomly(true);
 		setCreativeTab(JourneyTabs.portalBlocks);
 		setUnlocalizedName(name);
 		JourneyBlocks.blockName.add(name);
 		JourneyBlocks.blocks.add(this);
-		setRegistryName(name);
+		
 	}
 
 	@Override
@@ -195,6 +198,11 @@ public class BlockGoldenPortal extends BlockBreakable {
 	public int getMetaFromState(IBlockState state) {
 		return meta((EnumFacing.Axis)state.getValue(AXIS));
 	}
+	
+	@Override
+	protected BlockStateContainer createBlockState() {
+        return new BlockStateContainer(this, new IProperty[] {AXIS});
+    }
 
 	public static int meta(Axis a) {
 		return a == EnumFacing.Axis.X ? 1 : (a == EnumFacing.Axis.Z ? 2 : 0);

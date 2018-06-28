@@ -19,7 +19,7 @@ public class BlockModRail extends BlockRail {
 		JourneyBlocks.blockName.add(name);
 		power = isPowered;
 		this.speed = speed;
-		setRegistryName(name);
+		
 	}
 	
 	@Override

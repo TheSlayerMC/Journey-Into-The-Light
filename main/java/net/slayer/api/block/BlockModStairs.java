@@ -18,7 +18,6 @@ public class BlockModStairs extends BlockStairs {
 		this.setLightOpacity(1);
 		JourneyBlocks.blockName.add(name);
 		JourneyBlocks.blocks.add(this);
-		setRegistryName(name);
 	}
 	
 	public BlockModStairs(Block b, String n, String n2) {

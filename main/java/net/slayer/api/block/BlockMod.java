@@ -66,7 +66,6 @@ public class BlockMod extends Block {
 		this.name = name; 
 		JourneyBlocks.blocks.add(this);
 		JourneyBlocks.blockName.add(name);
-		setRegistryName(name);
 	}
 
 	public BlockMod(EnumMaterialTypes blockType, String name, String finalName, float hardness, CreativeTabs tab) {
@@ -81,7 +80,6 @@ public class BlockMod extends Block {
 		setHardness(hardness);
 		this.name = name;
 		JourneyBlocks.blockName.add(name);
-		setRegistryName(name);
 		JourneyBlocks.blocks.add(this);
 	}
 
