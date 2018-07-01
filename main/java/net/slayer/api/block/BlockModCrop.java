@@ -22,6 +22,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.slayer.api.SlayerAPI;
 
 public abstract class BlockModCrop extends BlockBush implements IGrowable {
 
@@ -37,6 +38,7 @@ public abstract class BlockModCrop extends BlockBush implements IGrowable {
 		setUnlocalizedName(name);
 		JourneyBlocks.blocks.add(this);
 		JourneyBlocks.blockName.add(name);
+		setRegistryName(SlayerAPI.MOD_ID, name);
 		this.disableStats();
 	}
 

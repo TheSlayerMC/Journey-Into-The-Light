@@ -29,6 +29,7 @@ public class ItemHonglow extends ItemFood {
 		JourneyItems.items.add(this);
 		JourneyItems.itemNames.add(name);
 		setCreativeTab(JourneyTabs.crops);
+		setRegistryName(SlayerAPI.MOD_ID, name);
 	}
 
 	@Override

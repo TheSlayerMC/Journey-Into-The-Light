@@ -32,6 +32,7 @@ import net.minecraftforge.event.entity.player.UseHoeEvent;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.slayer.api.SlayerAPI;
 
 public class ItemMultiTool extends ItemTool {
 
@@ -48,6 +49,7 @@ public class ItemMultiTool extends ItemTool {
 		setHarvestLevel("pickaxe", tool.getHarvestLevel());
 		JourneyItems.itemNames.add(name);
 		JourneyItems.items.add(this);
+		setRegistryName(SlayerAPI.MOD_ID, name);
 	}
 
 	@Override

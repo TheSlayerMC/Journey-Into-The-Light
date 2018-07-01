@@ -53,6 +53,7 @@ public class ItemHammer extends ItemSword {
 		setCreativeTab(JourneyTabs.hammers);
 		JourneyItems.itemNames.add(name);
 		JourneyItems.items.add(this);
+		setRegistryName(SlayerAPI.MOD_ID, name);
 	}
 
 	@Override

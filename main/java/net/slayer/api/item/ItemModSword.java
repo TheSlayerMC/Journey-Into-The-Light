@@ -28,6 +28,7 @@ public class ItemModSword extends ItemSword {
         setCreativeTab(JourneyTabs.swords);
         JourneyItems.itemNames.add(name);
         JourneyItems.items.add(this);
+        setRegistryName(SlayerAPI.MOD_ID, name);
     }
     
     @Override

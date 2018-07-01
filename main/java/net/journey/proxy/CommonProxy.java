@@ -60,6 +60,7 @@ public class CommonProxy {
 	public void preInit(FMLPreInitializationEvent event) {
 		Config.init(event);
 		JourneyBlocks.init();
+		JourneyCrops.init();
 		JourneyItems.init();
 		EntityRegistry.init();
 		JourneyChestGenerator.init();

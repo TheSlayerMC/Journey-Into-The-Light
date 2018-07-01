@@ -40,6 +40,7 @@ public class ItemHealth extends ItemFood {
         LangRegistry.addItem(name, actual);
         JourneyItems.itemNames.add(name);
         JourneyItems.items.add(this);
+        setRegistryName(SlayerAPI.MOD_ID, name);
     }
 
     @Override
@@ -59,7 +60,8 @@ public class ItemHealth extends ItemFood {
 	@Override
     public void addInformation(ItemStack stack, World player, List<String> list, ITooltipFlag par4) {
 		list.add(SlayerAPI.Colour.RED + "Adds " + hearts / 2F + " Heart(s)");
-		if(isntSentry && Minecraft.getMinecraft().player.getMaxHealth() >= 60 && !isSentry) {
+		//if(isntSentry && Minecraft.getMinecraft().player.getMaxHealth() >= 60 && !isSentry) {
+		if(isntSentry && !isSentry) {
 			list.add(SlayerAPI.Colour.DARK_RED + "You have reached the maximum amount of health.");
 			list.add(SlayerAPI.Colour.DARK_RED + "No more can be achieved without a Sentry's Heart");
 		}

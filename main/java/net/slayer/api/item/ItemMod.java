@@ -19,6 +19,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.slayer.api.SlayerAPI;
 
 public class ItemMod extends Item {
 
@@ -32,10 +33,9 @@ public class ItemMod extends Item {
 		LangRegistry.addItem(name, finalName);
 		setUnlocalizedName(name);
 		setCreativeTab(tab);
-		setRegistryName(name);
 		JourneyItems.itemNames.add(name);
 		JourneyItems.items.add(this);
-		System.out.println(name);
+		setRegistryName(SlayerAPI.MOD_ID, name);
 	}
 
 	public ItemMod setHealAmount(int healAmount){

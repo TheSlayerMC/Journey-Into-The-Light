@@ -19,29 +19,54 @@ import net.minecraft.item.Item;
 import net.slayer.api.item.ItemModSeeds;
 
 public class JourneyCrops {
-	public static ArrayList<String> blockName = new ArrayList<String>();
-	
-	public static final Block tomatoCrop = new BlockTomatoCrop("tomatoCrop");
-	public static final Block corveggieCrop = new BlockCorveggieCrop("corveggiesCrop");
-	public static final Block crackenCaneCrop = new BlockCrackenCaneCrop("crackenCanesCrop");
-	public static final Block crakeBulbCrop = new BlockCrakeBulbCrop("crakeBulbCrop");
-	public static final Block spineberryCrop = new BlockSpineberryCrop("spineberryCrop");
-	public static final Block glowaCrop = new BlockGlowaCrop("glowaCrop");
-	public static final Block zatPedalsCrop = new BlockZatPedalsCrop("zatPedalsCrop");
-	public static final Block glowshroomCrop = new BlockGlowshroomCrop("glowshroomCrop");
-	public static final Block floroCrop = new BlockFloroCrop("floroCrop");
-	public static final Block airRootCrop = new BlockAirRootCrop("airRootCrop");
-	public static final Block airRootMelon = new BlockMelon("airRootMelon", "Air Root", JourneyItems.airMelon);
-	public static final Block bleedheartFruit = new BlockFruitCrop("bleedheartFruitCrop");
 
-	public static final Item glowshroomPowder = new ItemModSeeds("glowshroomPowder", "Glowshroom Powder", JourneyCrops.glowshroomCrop);
-	public static final Item tomatoSeeds = new ItemModSeeds("tomatoSeeds", "Tomato Seeds", JourneyCrops.tomatoCrop);
-	public static final Item corveggieSeeds = new ItemModSeeds("corveggieSeeds", "Corveggie", JourneyCrops.corveggieCrop);
-	public static final Item crackenCaneSeeds = new ItemModSeeds("crackenCaneSeeds", "Kracken Cane Seeds", JourneyCrops.crackenCaneCrop);
-	public static final Item crakeBulbSeeds = new ItemModSeeds("crakeBulbSeeds", "Crake Bulb Seeds", JourneyCrops.crakeBulbCrop);
-	public static final Item spineberrySeeds = new ItemModSeeds("spineBerrySeeds", "Spine Berry Seeds", JourneyCrops.spineberryCrop);
-	public static final Item glowaSeeds = new ItemModSeeds("glowaSeeds", "Glowa Seeds", JourneyCrops.glowaCrop);
-	public static final Item zatSeeds = new ItemModSeeds("zatSeeds", "Zat Seeds", JourneyCrops.zatPedalsCrop);
-	public static final Item floroSeeds = new ItemModSeeds("floroSeeds", "Floro Seeds", JourneyCrops.floroCrop);
-	public static final Item airRootSeed = new ItemModSeeds("airRootSeed", "Air Root Seed", JourneyCrops.airRootCrop);
+	public static Block tomatoCrop;
+	public static Block corveggieCrop;
+	public static Block crackenCaneCrop;
+	public static Block crakeBulbCrop;
+	public static Block spineberryCrop;
+	public static Block glowaCrop;
+	public static Block zatPedalsCrop;
+	public static Block glowshroomCrop;
+	public static Block floroCrop;
+	public static Block airRootCrop;
+	public static Block airRootMelon;
+	public static Block bleedheartFruit;
+
+	public static Item glowshroomPowder;
+	public static Item tomatoSeeds;
+	public static Item corveggieSeeds;
+	public static Item crackenCaneSeeds;
+	public static Item crakeBulbSeeds;
+	public static Item spineberrySeeds;
+	public static Item glowaSeeds;
+	public static Item zatSeeds;
+	public static Item floroSeeds;
+	public static Item airRootSeed;
+
+	public static void init() {
+		tomatoCrop = new BlockTomatoCrop("tomatoCrop");
+		corveggieCrop = new BlockCorveggieCrop("corveggiesCrop");
+		crackenCaneCrop = new BlockCrackenCaneCrop("crackenCanesCrop");
+		crakeBulbCrop = new BlockCrakeBulbCrop("crakeBulbCrop");
+		spineberryCrop = new BlockSpineberryCrop("spineberryCrop");
+		glowaCrop = new BlockGlowaCrop("glowaCrop");
+		zatPedalsCrop = new BlockZatPedalsCrop("zatPedalsCrop");
+		glowshroomCrop = new BlockGlowshroomCrop("glowshroomCrop");
+		floroCrop = new BlockFloroCrop("floroCrop");
+		airRootCrop = new BlockAirRootCrop("airRootCrop");
+		airRootMelon = new BlockMelon("airRootMelon", "Air Root", JourneyItems.airMelon);
+		bleedheartFruit = new BlockFruitCrop("bleedheartFruitCrop");
+
+		glowshroomPowder = new ItemModSeeds("glowshroomPowder", "Glowshroom Powder", JourneyCrops.glowshroomCrop);
+		tomatoSeeds = new ItemModSeeds("tomatoSeeds", "Tomato Seeds", JourneyCrops.tomatoCrop);
+		corveggieSeeds = new ItemModSeeds("corveggieSeeds", "Corveggie", JourneyCrops.corveggieCrop);
+		crackenCaneSeeds = new ItemModSeeds("crackenCaneSeeds", "Kracken Cane Seeds", JourneyCrops.crackenCaneCrop);
+		crakeBulbSeeds = new ItemModSeeds("crakeBulbSeeds", "Crake Bulb Seeds", JourneyCrops.crakeBulbCrop);
+		spineberrySeeds = new ItemModSeeds("spineBerrySeeds", "Spine Berry Seeds", JourneyCrops.spineberryCrop);
+		glowaSeeds = new ItemModSeeds("glowaSeeds", "Glowa Seeds", JourneyCrops.glowaCrop);
+		zatSeeds = new ItemModSeeds("zatSeeds", "Zat Seeds", JourneyCrops.zatPedalsCrop);
+		floroSeeds = new ItemModSeeds("floroSeeds", "Floro Seeds", JourneyCrops.floroCrop);
+		airRootSeed = new ItemModSeeds("airRootSeed", "Air Root Seed", JourneyCrops.airRootCrop);
+	}
 }

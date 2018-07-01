@@ -35,6 +35,7 @@ import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.slayer.api.SlayerAPI;
 
 public class BlockBoilPortal extends BlockBreakable {
 
@@ -52,7 +53,7 @@ public class BlockBoilPortal extends BlockBreakable {
 		setUnlocalizedName(name);
 		JourneyBlocks.blockName.add(name);
 		JourneyBlocks.blocks.add(this);
-		
+		setRegistryName(SlayerAPI.MOD_ID, name);
 	}
 	
 	@Override

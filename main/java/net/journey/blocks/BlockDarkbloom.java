@@ -18,6 +18,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.EnumMaterialTypes;
+import net.slayer.api.SlayerAPI;
 
 public class BlockDarkbloom extends Block {
 
@@ -30,7 +31,7 @@ public class BlockDarkbloom extends Block {
 		setLightLevel(0.6F);
 		setTickRandomly(true);
 		setUnlocalizedName(name);
-		
+		setRegistryName(SlayerAPI.MOD_ID, name);
 		JourneyBlocks.blocks.add(this);
 		JourneyBlocks.blockName.add(name);
 	}

@@ -6,6 +6,7 @@ import net.journey.util.LangRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockStairs;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.slayer.api.SlayerAPI;
 
 public class BlockModStairs extends BlockStairs {
 
@@ -18,6 +19,7 @@ public class BlockModStairs extends BlockStairs {
 		this.setLightOpacity(1);
 		JourneyBlocks.blockName.add(name);
 		JourneyBlocks.blocks.add(this);
+		setRegistryName(SlayerAPI.MOD_ID, name);
 	}
 	
 	public BlockModStairs(Block b, String n, String n2) {

@@ -18,6 +18,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.EnumMaterialTypes;
+import net.slayer.api.SlayerAPI;
 
 public class BlockGlowshroom extends Block {
 
@@ -32,7 +33,7 @@ public class BlockGlowshroom extends Block {
 		setUnlocalizedName(name);
 		JourneyBlocks.blocks.add(this);
 		JourneyBlocks.blockName.add(name);
-		
+		setRegistryName(SlayerAPI.MOD_ID, name);
 	}
 
 	@Override

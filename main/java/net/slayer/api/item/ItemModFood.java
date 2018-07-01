@@ -13,6 +13,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.slayer.api.SlayerAPI;
 
 public class ItemModFood extends ItemFood {
 
@@ -25,6 +26,7 @@ public class ItemModFood extends ItemFood {
         setCreativeTab(JourneyTabs.crops);
         JourneyItems.itemNames.add(name);
         JourneyItems.items.add(this);
+        setRegistryName(SlayerAPI.MOD_ID, name);
     }
     
     public ItemModFood(String name, String f, int food, float sat, int timeToEat, boolean wolfFood) {

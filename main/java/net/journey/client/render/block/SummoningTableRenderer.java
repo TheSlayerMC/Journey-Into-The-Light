@@ -1,19 +1,20 @@
 package net.journey.client.render.block;
 
-import net.journey.blocks.tileentity.TileEntityKnowledgeTable;
+import org.lwjgl.opengl.GL11;
+
+import com.google.common.primitives.SignedBytes;
+
 import net.journey.blocks.tileentity.TileEntitySummoningTable;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.entity.RenderEntityItem;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-
-import org.lwjgl.opengl.GL11;
-
-import com.google.common.primitives.SignedBytes;
 
 public class SummoningTableRenderer extends TileEntitySpecialRenderer {
 
@@ -24,8 +25,8 @@ public class SummoningTableRenderer extends TileEntitySpecialRenderer {
 	public SummoningTableRenderer() {
 		renderEntity = new RenderEntityItem(Minecraft.getMinecraft().getRenderManager(), Minecraft.getMinecraft().getRenderItem()){
 			@Override
-			public int func_177078_a(ItemStack stack) {
-				return SignedBytes.saturatedCast(Math.min(stack.stackSize / 32, 15) + 1);
+			protected int getTeamColor(EntityItem entityIn) {
+				return SignedBytes.saturatedCast(Math.min(entityIn.getItem().getCount() / 32, 15) + 1);
 			}
 			@Override
 			public boolean shouldBob() {
@@ -37,9 +38,9 @@ public class SummoningTableRenderer extends TileEntitySpecialRenderer {
 			}
 		};
 	}
-
+	
 	@Override
-	public void renderTileEntityAt(TileEntity t, double x, double y, double z, float f, int j) {
+	public void renderTileEntityFast(TileEntity t, double x, double y, double z, float partialTicks, int destroyStage, float partial, BufferBuilder buffer) {
 		TileEntitySummoningTable tile = (TileEntitySummoningTable)t;
 		renderItem(tile.getStackInSlot(0), t.getWorld(), x + 0.85D, y, z + 0.85D, false);
 		renderItem(tile.getStackInSlot(1), t.getWorld(), x + 0.85D, y, z + 0.5D, false);
@@ -60,7 +61,7 @@ public class SummoningTableRenderer extends TileEntitySpecialRenderer {
 			ItemStack i = stack;
 			EntityItem item = new EntityItem(w, x, y, z, i);
 			GL11.glScalef(scale, scale, scale);
-			item.setEntityItemStack(i);
+			//item.setEntityItemStack(i);
 			item.hoverStart = 0.0F;
 			renderEntity.doRender(item, 0, 0, 0, 0, 0);
 			GL11.glPopMatrix();

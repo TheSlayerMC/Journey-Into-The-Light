@@ -44,6 +44,7 @@ public class ItemModRecord extends ItemRecord {
         this.maxStackSize = 1;
 		RECORDS.put(name, this);
 		JourneyItems.items.add(this);
+		setRegistryName(SlayerAPI.MOD_ID, name + "Record");
 	}
 	
 	@Override

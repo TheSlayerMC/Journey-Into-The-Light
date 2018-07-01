@@ -6,6 +6,7 @@ import net.minecraft.block.BlockRail;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.slayer.api.SlayerAPI;
 
 public class BlockModRail extends BlockRail {
 
@@ -19,7 +20,7 @@ public class BlockModRail extends BlockRail {
 		JourneyBlocks.blockName.add(name);
 		power = isPowered;
 		this.speed = speed;
-		
+		setRegistryName(SlayerAPI.MOD_ID, name);
 	}
 	
 	@Override

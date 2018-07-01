@@ -28,6 +28,7 @@ public class ItemModPickaxe extends ItemPickaxe {
         setHarvestLevel("pickaxe", tool.getHarvestLevel());
         JourneyItems.itemNames.add(name);
         JourneyItems.items.add(this);
+        setRegistryName(SlayerAPI.MOD_ID, name);
     }
     
     @Override

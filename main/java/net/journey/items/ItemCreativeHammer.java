@@ -27,7 +27,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.SlayerAPI;
 
-public class ItemCreativeHammer extends ItemSword{
+public class ItemCreativeHammer extends ItemSword {
 
 	protected int use;
 	protected int dam;
@@ -46,6 +46,7 @@ public class ItemCreativeHammer extends ItemSword{
 		setCreativeTab(JourneyTabs.hammers);
 		JourneyItems.itemNames.add(name);
 		JourneyItems.items.add(this);
+		setRegistryName(SlayerAPI.MOD_ID, name);
 	}
 
 	@Override

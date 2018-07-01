@@ -50,6 +50,7 @@ public class ItemStorage extends Item {
 		setCreativeTab(tab);
 		JourneyItems.itemNames.add(name);
 		JourneyItems.items.add(this);
+		setRegistryName(SlayerAPI.MOD_ID, name);
 	}
 
 	public ItemStorage setHealAmount(int healAmount){

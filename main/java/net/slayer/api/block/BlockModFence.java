@@ -14,6 +14,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.slayer.api.SlayerAPI;
 
 public class BlockModFence extends BlockFence {
 
@@ -26,6 +27,7 @@ public class BlockModFence extends BlockFence {
 		setHardness(block.getBlockHardness(null, null, null));
 		JourneyBlocks.blockName.add(name);
 		JourneyBlocks.blocks.add(this);
+		setRegistryName(SlayerAPI.MOD_ID, name);
 	}
 	
 	public BlockModFence(Block b, String n, String finalName) {

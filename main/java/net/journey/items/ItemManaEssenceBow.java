@@ -43,6 +43,7 @@ public class ItemManaEssenceBow extends ItemMod {
 		setMaxStackSize(1);
 		setFull3D();
 		setCreativeTab(JourneyTabs.staves);
+		setRegistryName(SlayerAPI.MOD_ID, name);
 	}
 
 	@SuppressWarnings("unused")

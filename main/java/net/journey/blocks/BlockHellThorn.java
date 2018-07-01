@@ -16,6 +16,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.EnumMaterialTypes;
+import net.slayer.api.SlayerAPI;
 
 public class BlockHellThorn extends Block {
 
@@ -28,7 +29,7 @@ public class BlockHellThorn extends Block {
 		setLightLevel(0.6F);
 		setTickRandomly(true);
 		setUnlocalizedName(name);
-		
+		setRegistryName(SlayerAPI.MOD_ID, name);
 		JourneyBlocks.blocks.add(this);
 		JourneyBlocks.blockName.add(name);
 	}

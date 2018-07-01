@@ -48,6 +48,7 @@ public class ItemModArmor extends ItemArmor implements ISpecialArmor {
 		JourneyItems.itemNames.add(this.name);
 		JourneyItems.items.add(this);
 		LangRegistry.addArmour(this, armorMaterial, type);
+		setRegistryName(SlayerAPI.MOD_ID, name);
 	}
 
 	@Override
