@@ -1473,7 +1473,11 @@ public class JourneyItems {
 		sizzlingKnife = new ItemThrowable("sizzlingKnife", "Sizzling Knife", 6F, EntityFrostyPiercer.class);
 	}
 
-	
+	@SubscribeEvent
+	public static void registerItems(RegistryEvent.Register<Item> event) {
+		for(int i = 0; i < items.size(); i++)
+			event.getRegistry().registerAll(items.get(i));
+	}
 
 	public static ToolMaterial addToolMaterial(int uses, float efficiency, float dam, boolean breakable) {
 		return EnumHelper.addToolMaterial("tool", 3, breakable ? uses : -1, efficiency, dam, 30);

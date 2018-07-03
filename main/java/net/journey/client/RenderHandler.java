@@ -19,18 +19,6 @@ import net.slayer.api.item.ItemMod;
 public class RenderHandler {
 
 	@SubscribeEvent
-	public static void registerItems(RegistryEvent.Register<Item> event) {
-		for(int i = 0; i < JourneyItems.items.size(); i++)
-			event.getRegistry().registerAll(JourneyItems.items.get(i));
-	}
-
-	@SubscribeEvent
-	public static void registerBlocks(RegistryEvent.Register<Block> event) {
-		for(int i = 0; i < JourneyBlocks.blocks.size(); i++)
-			event.getRegistry().registerAll(JourneyBlocks.blocks.get(i));
-	}
-
-	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
 	public void onRender(ModelRegistryEvent event) {
 		for(String s : JourneyItems.itemNames) {

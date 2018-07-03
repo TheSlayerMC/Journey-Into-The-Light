@@ -69,12 +69,14 @@ public class ClientProxy extends CommonProxy {
 		SlayerAPI.addBow(JourneyItems.lavenderBow, "lavenderBow");
 		SlayerAPI.addBow(JourneyItems.terralightBow, "terralightBow");
 		SlayerAPI.addBow(JourneyItems.terrianBow, "terrianBow");
+		SlayerAPI.registerEvent(new RenderHandler());
+
 	}
 
 	@Override
 	public void clientInit(FMLInitializationEvent event) {
 		EntityRendering.init();
-		SlayerAPI.registerEvent(new RenderHandler());
+		//SlayerAPI.registerEvent(new RenderHandler());
 		SlayerAPI.registerEvent(new BossTickHandler());
 		SlayerAPI.registerEvent(new ClientTickEvent());
 		SlayerAPI.registerEvent(new PlayerStats());
