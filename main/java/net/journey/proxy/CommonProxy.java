@@ -44,6 +44,7 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.slayer.api.SlayerAPI;
+import net.slayer.api.item.ItemMod;
 
 public class CommonProxy {
 
@@ -56,7 +57,7 @@ public class CommonProxy {
 	public void registerSounds() { }
 	public void spawnParticle(EnumParticlesClasses particle, World worldObj, double x, double y, double z, boolean b) { }
 	public void registerModModels() { }
-
+	
 	public void preInit(FMLPreInitializationEvent event) {
 		Config.init(event);
 		JourneyBlocks.init();
@@ -96,13 +97,14 @@ public class CommonProxy {
 		FMLCommonHandler.instance().bus().register(new JourneySapphireEvent());
 		FMLCommonHandler.instance().bus().register(new JourneyDungeonEvent());
 		JourneyTabs.init();
-		DimensionHelper.init();
+		//DimensionHelper.init();
 
 	}
 	
 	public void init(FMLInitializationEvent event) {
 		GameRegistry.registerWorldGenerator(new WorldGenEssence(), 2);
 		SlayerAPI.registerEvent(new PlayerEvent());
+		
 	}
 	
 	public void postInit(FMLPostInitializationEvent event) { }

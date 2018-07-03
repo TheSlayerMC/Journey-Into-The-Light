@@ -6,28 +6,20 @@ import net.journey.enums.EnumSounds;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.EnumDifficulty;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityModMob;
 
 public class EntitySpectre extends EntityModMob {
 
-	public static final int ENTITY_TYPE = 24;
 	
 	public EntitySpectre(World par1World) {
 		super(par1World);
 		addAttackingAI();
 		setSize(1.0F, 2.0F);
-		dataWatcher.updateObject(ENTITY_TYPE, rand.nextInt(4));
-	}
-	
-	@Override
-	protected void entityInit() {
-		super.entityInit();
-		dataWatcher.addObject(ENTITY_TYPE, (int)0);
 	}
 
 	@Override
@@ -35,20 +27,18 @@ public class EntitySpectre extends EntityModMob {
 		return MobStats.lowJourneyDamage;
 	}
 	
-	
-	
 	@Override
     public void onLivingUpdate()
     {
-        if (this.worldObj.isDaytime() && !this.worldObj.isRemote && !this.isChild())
+        if (this.world.isDaytime() && !this.world.isRemote && !this.isChild())
         {
-            float f = this.getBrightness(1.0F);
-            BlockPos blockpos = new BlockPos(this.posX, (double)Math.round(this.posY), this.posZ);
+            float f = this.getBrightness();
+            BlockPos blockpos = new BlockPos(this.posX, Math.round(this.posY), this.posZ);
 
-            if (f > 0.5F && this.rand.nextFloat() * 30.0F < (f - 0.4F) * 2.0F && this.worldObj.canSeeSky(blockpos))
+            if (f > 0.5F && this.rand.nextFloat() * 30.0F < (f - 0.4F) * 2.0F && this.world.canSeeSky(blockpos))
             {
                 boolean flag = true;
-                ItemStack itemstack = this.getEquipmentInSlot(4);
+                ItemStack itemstack = this.getItemStackFromSlot(EntityEquipmentSlot.MAINHAND);
 
                 if (itemstack != null)
                 {
@@ -59,7 +49,7 @@ public class EntitySpectre extends EntityModMob {
                         if (itemstack.getItemDamage() >= itemstack.getMaxDamage())
                         {
                             this.renderBrokenItemStack(itemstack);
-                            this.setCurrentItemOrArmor(4, (ItemStack)null);
+                            setItemStackToSlot(EntityEquipmentSlot.MAINHAND, null);
                         }
                     }
 
@@ -73,21 +63,22 @@ public class EntitySpectre extends EntityModMob {
             }
         }
 
-        if (this.isRiding() && this.getAttackTarget() != null && this.ridingEntity instanceof EntityChicken)
+        if (this.isRiding() && this.getAttackTarget() != null && this.getRidingEntity() instanceof EntityChicken)
         {
-            ((EntityLiving)this.ridingEntity).getNavigator().setPath(this.getNavigator().getPath(), 1.5D);
+            ((EntityLiving)this.getRidingEntity()).getNavigator().setPath(this.getNavigator().getPath(), 1.5D);
         }
 
         super.onLivingUpdate();
     }
+
 	
 	@Override
 	public boolean getCanSpawnHere() {
 		return 
-			   this.worldObj.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.grass || 
-			   		this.worldObj.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.leaves || 
-			   			this.worldObj.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.sand || 
-			   				this.worldObj.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.dirt;
+			   this.world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.GRASS || 
+			   		this.world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.LEAVES || 
+			   			this.world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.SAND || 
+			   				this.world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.DIRT;
 	}
 
 	@Override

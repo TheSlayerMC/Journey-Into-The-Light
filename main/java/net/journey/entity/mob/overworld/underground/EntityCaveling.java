@@ -4,11 +4,11 @@ import net.journey.JourneyAchievements;
 import net.journey.JourneyItems;
 import net.journey.entity.MobStats;
 import net.journey.enums.EnumSounds;
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.slayer.api.SlayerAPI;
 import net.slayer.api.entity.EntityModMob;
@@ -48,23 +48,23 @@ public class EntityCaveling extends EntityModMob {
 
 	@Override
 	public Item getItemDropped() {
-		return SlayerAPI.toItem(Blocks.stone);
+		return SlayerAPI.toItem(Blocks.STONE);
 
 	}
 	
 	@Override
 	public void onDeath(DamageSource d) {
 		super.onDeath(d);
-		if(d.getEntity() instanceof EntityPlayer) {
-			EntityPlayer p = (EntityPlayer)d.getEntity();
-			p.triggerAchievement(JourneyAchievements.achievementCave);
+		if(d.getImmediateSource() instanceof EntityPlayer) {
+			EntityPlayer p = (EntityPlayer)d.getImmediateSource();
+			//p.triggerAchievement(JourneyAchievements.achievementCave);
 		}
 	}
 
 	@Override
 	public boolean getCanSpawnHere() {
 		return this.posY < 40.0D && super.getCanSpawnHere() && 
-				this.worldObj.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.stone;
+				this.world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.STONE;
 	}
 
 	@Override

@@ -1,71 +1,119 @@
 package net.journey.entity.mob.overworld;
 
+import java.util.Calendar;
+
+import javax.annotation.Nullable;
+
 import net.journey.JourneyItems;
 import net.journey.entity.MobStats;
-import net.journey.entity.projectile.EntityFireBall;
 import net.journey.entity.projectile.EntityIceBall;
 import net.journey.enums.EnumSounds;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.IRangedAttackMob;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.EntityAIAttackRangedBow;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityModMob;
 
 public class EntityIceMage extends EntityModMob implements IRangedAttackMob {
 
-	private EntityAIArrowAttack aiArrowAttack = new EntityAIArrowAttack(this, this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getAttributeValue(), 23, 10);
-	
+	private final EntityAIAttackRangedBow<EntityIceMage> aiArrowAttack = new EntityAIAttackRangedBow<EntityIceMage>(this, 1.0D, 20, 15.0F);
+
 	public EntityIceMage(World par1World) {
 		super(par1World);
 		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false, new Class[0]));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
+		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
 		if(par1World != null && !par1World.isRemote) {
 			this.setCombatTask();
 		}
 	}
-	
+
 	public void setCombatTask() {
-		this.tasks.removeTask(this.aiArrowAttack);
-		ItemStack itemstack = this.getHeldItem();
-		if(itemstack != null && itemstack.getItem() == JourneyItems.iceWand) {
-			this.tasks.addTask(4, this.aiArrowAttack);
+		if(this.world != null && !this.world.isRemote) {
+			this.tasks.removeTask(this.aiArrowAttack);
+			ItemStack itemstack = this.getHeldItemMainhand();
+			if(itemstack.getItem() == JourneyItems.iceWand) {
+				int i = 20;
+				if(this.world.getDifficulty() != EnumDifficulty.HARD) {
+					i = 40;
+				}
+				this.aiArrowAttack.setAttackCooldown(i);
+				this.tasks.addTask(4, this.aiArrowAttack);
+			}
 		}
 	}
 	
 	@Override
-	public void setCurrentItemOrArmor(int par1, ItemStack par2ItemStack) {
-		super.setCurrentItemOrArmor(par1, par2ItemStack);
-		if(!this.worldObj.isRemote && par1 == 0) {
-			this.setCombatTask();
-		}
-	}
+    protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty) {
+        super.setEquipmentBasedOnDifficulty(difficulty);
+        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(JourneyItems.iceWand));
+    }
 
 	@Override
-	public ItemStack getHeldItem() {
+	@Nullable
+    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata) {
+        livingdata = super.onInitialSpawn(difficulty, livingdata);
+        this.setEquipmentBasedOnDifficulty(difficulty);
+        this.setEnchantmentBasedOnDifficulty(difficulty);
+        this.setCombatTask();
+        this.setCanPickUpLoot(this.rand.nextFloat() < 0.55F * difficulty.getClampedAdditionalDifficulty());
+        return livingdata;
+    }
+	
+	@Override
+	public void readEntityFromNBT(NBTTagCompound compound) {
+        super.readEntityFromNBT(compound);
+        this.setCombatTask();
+    }
+	
+	@Override
+	public void setItemStackToSlot(EntityEquipmentSlot slotIn, ItemStack stack) {
+        super.setItemStackToSlot(slotIn, stack);
+        if (!this.world.isRemote && slotIn == EntityEquipmentSlot.MAINHAND) {
+            this.setCombatTask();
+        }
+    }
+
+	@Override
+	public ItemStack getHeldItem(EnumHand hand) {
 		return new ItemStack(JourneyItems.iceWand);
 	}
-
-	@Override
-	public void attackEntityWithRangedAttack(EntityLivingBase e, float f) {
-        EntityIceBall b = new EntityIceBall(this.worldObj, this, 10F);
-        b.setThrowableHeading(e.posX-this.posX, e.posY-this.posY, e.posZ-this.posZ, 1.6f, 12);
-        EnumSounds.playSound(EnumSounds.SPARKLE, worldObj, this);
-        this.worldObj.spawnEntityInWorld(b);
-	}
 	
+	@Override
+	public void attackEntityWithRangedAttack(EntityLivingBase target, float distanceFactor) {
+		EntityIceBall b = new EntityIceBall(this.world, this, 10F);
+        double d0 = target.posX - this.posX;
+        double d1 = target.getEntityBoundingBox().minY + (double)(target.height / 3.0F) - b.posY;
+        double d2 = target.posZ - this.posZ;
+        double d3 = (double)MathHelper.sqrt(d0 * d0 + d2 * d2);
+        b.shoot(d0, d1 + d3 * 0.20000000298023224D, d2, 1.6F, (float)(14 - this.world.getDifficulty().getDifficultyId() * 4));
+		EnumSounds.playSound(EnumSounds.SPARKLE, world, this);
+        this.world.spawnEntity(b);
+    }
+
 	@Override
 	public boolean getCanSpawnHere() {
 		return 
-			   this.worldObj.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.grass || 
-			   		this.worldObj.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.leaves || 
-			   			this.worldObj.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.sand || 
-			   				this.worldObj.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.dirt;
+				this.world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.GRASS || 
+				this.world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.LEAVES || 
+				this.world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.SAND || 
+				this.world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.DIRT;
 	}
 
 	@Override
@@ -96,5 +144,10 @@ public class EntityIceMage extends EntityModMob implements IRangedAttackMob {
 	@Override
 	public Item getItemDropped() {
 		return null;
+	}
+
+	@Override
+	public void setSwingingArms(boolean swingingArms) {
+
 	}
 }

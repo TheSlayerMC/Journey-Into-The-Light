@@ -6,6 +6,7 @@ import net.journey.client.render.particles.EntityHellstoneFX;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.client.FMLClientHandler;
 
@@ -41,9 +42,9 @@ public class EntityBasicProjectile extends EntityThrowable {
 	}
 
 	@Override
-	protected void onImpact(MovingObjectPosition var1) {
+	protected void onImpact(RayTraceResult var1) {
 		if(var1.entityHit != null) var1.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), damage);
-		if(!worldObj.isRemote) this.setDead();
+		if(!world.isRemote) this.setDead();
 	}
 
 	@Override

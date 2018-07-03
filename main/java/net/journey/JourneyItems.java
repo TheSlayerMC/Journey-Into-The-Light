@@ -1102,7 +1102,7 @@ public class JourneyItems {
 		weakEssencePotion = new ItemEssencePotion("weakEssencePotion", "Weak Essence Potion", false, true);
 		strongEssencePotion = new ItemEssencePotion("strongEssencePotion", "Strong Essence Potion", true, true);
 
-		hellstoneHelmet = new ItemModArmor(EnumArmor.HELLSTONE, HEAD);
+		/*hellstoneHelmet = new ItemModArmor(EnumArmor.HELLSTONE, HEAD);
 		hellstoneChest = new ItemModArmor(EnumArmor.HELLSTONE, BODY);
 		hellstoneLegs = new ItemModArmor(EnumArmor.HELLSTONE, LEGS);
 		hellstoneBoots = new ItemModArmor(EnumArmor.HELLSTONE, BOOTS);
@@ -1250,7 +1250,7 @@ public class JourneyItems {
 		bleedrockHelmet = new ItemModArmor(EnumArmor.BLEEDROCK, HEAD);
 		bleedrockChest = new ItemModArmor(EnumArmor.BLEEDROCK, BODY);
 		bleedrockLegs = new ItemModArmor(EnumArmor.BLEEDROCK, LEGS);
-		bleedrockBoots = new ItemModArmor(EnumArmor.BLEEDROCK, BOOTS);
+		bleedrockBoots = new ItemModArmor(EnumArmor.BLEEDROCK, BOOTS);*/
 
 		/*rockyBattleaxe = new ItemBattleAxe("rockyBattleaxe", "Rocky Battleaxe", EssenceToolMaterial.ROCKY_BATTLEAXE);
 		crystalizedBattleaxe = new ItemBattleAxe("crystalizedBattleaxe", "Crystalized Battleaxe", EssenceToolMaterial.CRYSTAL_BATTLEAXE);
@@ -1473,11 +1473,7 @@ public class JourneyItems {
 		sizzlingKnife = new ItemThrowable("sizzlingKnife", "Sizzling Knife", 6F, EntityFrostyPiercer.class);
 	}
 
-	@SubscribeEvent
-	public static void registerItems(RegistryEvent.Register<Item> event) {
-		for(int i = 0; i < items.size(); i++)
-			event.getRegistry().registerAll(items.get(i));
-	}
+	
 
 	public static ToolMaterial addToolMaterial(int uses, float efficiency, float dam, boolean breakable) {
 		return EnumHelper.addToolMaterial("tool", 3, breakable ? uses : -1, efficiency, dam, 30);

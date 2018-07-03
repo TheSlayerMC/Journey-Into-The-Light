@@ -29,10 +29,11 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
+import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.VillagerRegistry;
@@ -397,8 +398,13 @@ public class SlayerAPI {
 	}
 
 	public static void registerItemRender(Item item, int metadata, String itemName) {
-		ItemModelMesher mesher = Minecraft.getMinecraft().getRenderItem().getItemModelMesher();
-		mesher.register(item, metadata, new ModelResourceLocation(SlayerAPI.PREFIX + itemName, "inventory"));
+		ModelResourceLocation model = new ModelResourceLocation(item.getRegistryName(), "inventory");
+		ModelLoader.registerItemVariants(item, model);
+		ModelLoader.setCustomModelResourceLocation(item, metadata, model);
+
+	}
+	
+	public static void modelEvent(ModelRegistryEvent event) {
 	}
 
 	public static void registerBlockRender(Block block, int metadata, String blockName) {

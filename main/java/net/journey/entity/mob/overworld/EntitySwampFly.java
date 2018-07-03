@@ -3,6 +3,7 @@ package net.journey.entity.mob.overworld;
 import java.util.Random;
 
 import net.journey.JourneyBlocks;
+import net.journey.JourneyItems;
 import net.journey.entity.MobStats;
 import net.journey.enums.EnumSounds;
 import net.minecraft.entity.EntityLiving;
@@ -12,13 +13,14 @@ import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import net.slayer.api.SlayerAPI;
 import net.slayer.api.entity.EntityModFlying;
 
 public class EntitySwampFly extends EntityModFlying {
@@ -71,15 +73,15 @@ public class EntitySwampFly extends EntityModFlying {
 	@Override
 	public void onLivingUpdate()
 	{
-		if (this.worldObj.isDaytime() && !this.worldObj.isRemote && !this.isChild())
+		if (this.world.isDaytime() && !this.world.isRemote && !this.isChild())
 		{
-			float f = this.getBrightness(1.0F);
+			float f = this.getBrightness();
 			BlockPos blockpos = new BlockPos(this.posX, Math.round(this.posY), this.posZ);
 
-			if (f > 0.5F && this.rand.nextFloat() * 30.0F < (f - 0.4F) * 2.0F && this.worldObj.canSeeSky(blockpos))
+			if (f > 0.5F && this.rand.nextFloat() * 30.0F < (f - 0.4F) * 2.0F && this.world.canSeeSky(blockpos))
 			{
 				boolean flag = true;
-				ItemStack itemstack = this.getEquipmentInSlot(4);
+				ItemStack itemstack = this.getItemStackFromSlot(EntityEquipmentSlot.MAINHAND);
 
 				if (itemstack != null)
 				{
@@ -90,7 +92,7 @@ public class EntitySwampFly extends EntityModFlying {
 						if (itemstack.getItemDamage() >= itemstack.getMaxDamage())
 						{
 							this.renderBrokenItemStack(itemstack);
-							this.setCurrentItemOrArmor(4, (ItemStack)null);
+							setItemStackToSlot(EntityEquipmentSlot.MAINHAND, null);
 						}
 					}
 
@@ -104,9 +106,9 @@ public class EntitySwampFly extends EntityModFlying {
 			}
 		}
 
-		if (this.isRiding() && this.getAttackTarget() != null && this.ridingEntity instanceof EntityChicken)
+		if (this.isRiding() && this.getAttackTarget() != null && this.getRidingEntity() instanceof EntityChicken)
 		{
-			((EntityLiving)this.ridingEntity).getNavigator().setPath(this.getNavigator().getPath(), 1.5D);
+			((EntityLiving)this.getRidingEntity()).getNavigator().setPath(this.getNavigator().getPath(), 1.5D);
 		}
 
 		super.onLivingUpdate();
@@ -144,7 +146,7 @@ public class EntitySwampFly extends EntityModFlying {
 		}
 
 		@Override
-		public boolean continueExecuting() {
+		public boolean shouldContinueExecuting() {
 			return false;
 		}
 
@@ -168,20 +170,20 @@ public class EntitySwampFly extends EntityModFlying {
 
 		@Override
 		public void onUpdateMoveHelper() {
-			if(this.update) {
+			if(this.action == EntityMoveHelper.Action.MOVE_TO) {
 				double d0 = this.posX - this.e.posX;
 				double d1 = this.posY - this.e.posY;
 				double d2 = this.posZ - this.e.posZ;
 				double d3 = d0 * d0 + d1 * d1 + d2 * d2;
 				if(this.height-- <= 0) {
 					this.height += this.e.getRNG().nextInt(5) + 2;
-					d3 = (double)MathHelper.sqrt_double(d3);
+					d3 = (double)MathHelper.sqrt(d3);
 					if(this.canMove(this.posX, this.posY, this.posZ, d3)) {
 						this.e.motionX += d0 / d3 * 0.1D;
 						this.e.motionY += d1 / d3 * 0.1D;
 						this.e.motionZ += d2 / d3 * 0.1D;
 					} else {
-						this.update = false;
+						this.action = EntityMoveHelper.Action.WAIT;
 					}
 				}
 			}
@@ -194,31 +196,28 @@ public class EntitySwampFly extends EntityModFlying {
 			AxisAlignedBB axisalignedbb = this.e.getEntityBoundingBox();
 			for(int i = 1; i < h; ++i) {
 				axisalignedbb = axisalignedbb.offset(d4, d5, d6);
-				if(!this.e.worldObj.getCollidingBoundingBoxes(this.e, axisalignedbb).isEmpty()) {
+				if (!this.e.world.getCollisionBoxes(this.e, axisalignedbb).isEmpty())
 					return false;
-				}
 			}
 			return true;
 		}
 	}
 
 	@Override
-	public boolean interact(EntityPlayer player) {
-		ItemStack itemstack = player.inventory.getCurrentItem();
-
-		if (itemstack != null && itemstack.getItem() == Items.glass_bottle && !this.isChild()) {
-			if (itemstack.stackSize-- == 1) {
-				player.inventory.setInventorySlotContents(player.inventory.currentItem, new ItemStack(SlayerAPI.toItem(JourneyBlocks.swampLamp)));
+	public boolean processInteract(EntityPlayer player, EnumHand hand) {
+		ItemStack itemstack = player.getHeldItem(hand);
+		if(itemstack.getItem() == Items.GLASS_BOTTLE && !player.capabilities.isCreativeMode) {
+			itemstack.shrink(1);
+			if(itemstack.isEmpty()) {
+				player.setHeldItem(hand, new ItemStack(JourneyBlocks.swampLamp));
 			}
-			else if (!player.inventory.addItemStackToInventory(new ItemStack(SlayerAPI.toItem(JourneyBlocks.swampLamp)))) {
-				player.dropPlayerItemWithRandomChoice(new ItemStack(SlayerAPI.toItem(JourneyBlocks.swampLamp)), false);
+			else if(!player.inventory.addItemStackToInventory(new ItemStack(JourneyBlocks.swampLamp))) {
+				player.dropItem(new ItemStack(JourneyBlocks.swampLamp), false);
 			}
-
 			this.setDead();
 			return true;
-		}
-		else {
-			return super.interact(player);
+		} else {
+			return super.processInteract(player, hand);
 		}
 	}
 }

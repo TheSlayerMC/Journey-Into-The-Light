@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class DarkEnergyBar implements IExtendedEntityProperties {
+public class DarkEnergyBar implements ICapabilityProvider  {
 
 	private int darkEnergy, regenDelay;
 	private final EntityPlayer player;

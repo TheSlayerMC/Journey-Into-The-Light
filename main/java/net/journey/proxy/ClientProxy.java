@@ -3,11 +3,11 @@ package net.journey.proxy;
 import net.journey.JITL;
 import net.journey.JourneyBlocks;
 import net.journey.JourneyItems;
-import net.journey.RegistrationHandler;
 import net.journey.client.BossTickHandler;
 import net.journey.client.EntityRendering;
 import net.journey.client.GuiHandler;
 import net.journey.client.PlayerStats;
+import net.journey.client.RenderHandler;
 import net.journey.client.server.DarkEnergyBar;
 import net.journey.client.server.EssenceBar;
 import net.journey.client.server.PowerBar;
@@ -17,14 +17,15 @@ import net.journey.event.UpdateCheckerEvent;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
-import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.client.FMLClientHandler;
-import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.slayer.api.SlayerAPI;
+import net.slayer.api.item.ItemMod;
 
 public class ClientProxy extends CommonProxy {
 
@@ -73,6 +74,7 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public void clientInit(FMLInitializationEvent event) {
 		EntityRendering.init();
+		SlayerAPI.registerEvent(new RenderHandler());
 		SlayerAPI.registerEvent(new BossTickHandler());
 		SlayerAPI.registerEvent(new ClientTickEvent());
 		SlayerAPI.registerEvent(new PlayerStats());
@@ -80,23 +82,7 @@ public class ClientProxy extends CommonProxy {
 
 	@Override
 	public void registerModModels() {
-		for(String s : JourneyBlocks.blockName) {
-			for(Block b : JourneyBlocks.blocks) {
-				SlayerAPI.registerBlockRender(b, s);
-			}
-		}
-
-		for(String s : JourneyItems.itemNames) {
-			for(Item i : JourneyItems.items) {
-				SlayerAPI.registerItemRender(i, s);
-			}
-		}
-
-		SlayerAPI.addBowRender(JourneyItems.flameBow, "flameBow");
-		SlayerAPI.addBowRender(JourneyItems.poisonBow, "poisonBow");
-		SlayerAPI.addBowRender(JourneyItems.darknessBow, "darknessBow");
-		SlayerAPI.addBowRender(JourneyItems.frozenBow, "frozenBow");
-		SlayerAPI.addBowRender(JourneyItems.staringBow, "staringBow");
+		
 	}
 
 	@Override

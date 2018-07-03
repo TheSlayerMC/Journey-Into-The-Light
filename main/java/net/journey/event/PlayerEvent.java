@@ -106,7 +106,7 @@ public class PlayerEvent {
 	}
 
 	public static int getItemEnchantment(Enchantment en, EntityLivingBase e) {
-		if(en != null && e != null) return EnchantmentHelper.getEnchantmentLevel(en.effectId, e.getHeldItemMainhand());
+		if(en != null && e != null) return EnchantmentHelper.getEnchantmentLevel(en, e.getHeldItemMainhand());
 		else return 0;
 	}
 
@@ -115,7 +115,7 @@ public class PlayerEvent {
 	}
 
 	public static int getArmorEnchantment(Enchantment en, EntityLivingBase e) {
-		if(en != null && e != null) return EnchantmentHelper.getMaxEnchantmentLevel(en.effectId, e.getInventory());
+		if(en != null && e != null) return EnchantmentHelper.getEnchantmentLevel(en, e.getHeldItemMainhand());
 		else return 0;
 	}
 

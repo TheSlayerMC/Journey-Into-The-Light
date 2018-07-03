@@ -28,4 +28,7 @@ public class PotionEffects {
 		return new PotionEffect(Potion.getPotionById(id), durationIn, amplifierIn);
 	}
 	
+	public static Potion getPotionFromID(int id) {
+		return Potion.getPotionById(id);
+	}
 }

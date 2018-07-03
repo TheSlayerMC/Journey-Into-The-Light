@@ -6,6 +6,7 @@ import net.journey.enums.EnumSounds;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.init.Blocks;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
@@ -30,7 +31,6 @@ public class EntityWraith extends EntityModMob {
 			   				this.world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.DIRT;
 	}
 
-	@SuppressWarnings("static-access")
 	@Override
 	public double setAttackDamage(MobStats s) {
 		return MobStats.lowJourneyDamage;
@@ -44,15 +44,15 @@ public class EntityWraith extends EntityModMob {
 	@Override
     public void onLivingUpdate()
     {
-        if (this.worldObj.isDaytime() && !this.worldObj.isRemote && !this.isChild())
+        if (this.world.isDaytime() && !this.world.isRemote && !this.isChild())
         {
-            float f = this.getBrightness(1.0F);
+            float f = this.getBrightness();
             BlockPos blockpos = new BlockPos(this.posX, Math.round(this.posY), this.posZ);
 
-            if (f > 0.5F && this.rand.nextFloat() * 30.0F < (f - 0.4F) * 2.0F && this.worldObj.canSeeSky(blockpos))
+            if (f > 0.5F && this.rand.nextFloat() * 30.0F < (f - 0.4F) * 2.0F && this.world.canSeeSky(blockpos))
             {
                 boolean flag = true;
-                ItemStack itemstack = this.getEquipmentInSlot(4);
+                ItemStack itemstack = this.getItemStackFromSlot(EntityEquipmentSlot.MAINHAND);
 
                 if (itemstack != null)
                 {
@@ -63,7 +63,7 @@ public class EntityWraith extends EntityModMob {
                         if (itemstack.getItemDamage() >= itemstack.getMaxDamage())
                         {
                             this.renderBrokenItemStack(itemstack);
-                            this.setCurrentItemOrArmor(4, (ItemStack)null);
+                            setItemStackToSlot(EntityEquipmentSlot.MAINHAND, null);
                         }
                     }
 
@@ -77,9 +77,9 @@ public class EntityWraith extends EntityModMob {
             }
         }
 
-        if (this.isRiding() && this.getAttackTarget() != null && this.ridingEntity instanceof EntityChicken)
+        if (this.isRiding() && this.getAttackTarget() != null && this.getRidingEntity() instanceof EntityChicken)
         {
-            ((EntityLiving)this.ridingEntity).getNavigator().setPath(this.getNavigator().getPath(), 1.5D);
+            ((EntityLiving)this.getRidingEntity()).getNavigator().setPath(this.getNavigator().getPath(), 1.5D);
         }
 
         super.onLivingUpdate();

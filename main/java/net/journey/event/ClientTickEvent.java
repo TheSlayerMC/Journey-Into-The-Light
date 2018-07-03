@@ -32,8 +32,8 @@ public class ClientTickEvent {
 		if(event.phase == Phase.END) {
 			for(int i = 0; i < 2; i++) {
 				if(helmet == JourneyItems.flameHelmet && body == JourneyItems.flameChest && legs == JourneyItems.flameLegs && boots == JourneyItems.flameBoots) {
-					event.player.worldObj.spawnParticle(EnumParticleTypes.FLAME, event.player.posX + rand.nextFloat() - 0.5D, event.player.posY + 0.1D, event.player.posZ + rand.nextFloat() - 0.5D, -event.player.motionX, +event.player.motionY + 0.2D, -event.player.motionZ, new int[]{});
-					event.player.worldObj.spawnParticle(EnumParticleTypes.FLAME, event.player.posX + rand.nextFloat() - 0.5D, event.player.posY + 0.1D, event.player.posZ + rand.nextFloat() - 0.5D, 0, 0, 0, new int[]{});
+					event.player.world.spawnParticle(EnumParticleTypes.FLAME, event.player.posX + rand.nextFloat() - 0.5D, event.player.posY + 0.1D, event.player.posZ + rand.nextFloat() - 0.5D, -event.player.motionX, +event.player.motionY + 0.2D, -event.player.motionZ, new int[]{});
+					event.player.world.spawnParticle(EnumParticleTypes.FLAME, event.player.posX + rand.nextFloat() - 0.5D, event.player.posY + 0.1D, event.player.posZ + rand.nextFloat() - 0.5D, 0, 0, 0, new int[]{});
 				}
 			}
 		}

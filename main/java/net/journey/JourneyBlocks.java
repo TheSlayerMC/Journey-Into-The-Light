@@ -844,9 +844,5 @@ public class JourneyBlocks {
 	}
 
 
-	@SubscribeEvent
-	public static void registerBlocks(RegistryEvent.Register<Block> event) {
-		for(int i = 0; i < blocks.size(); i++)
-			event.getRegistry().registerAll(blocks.get(i));
-	}
+	
 }

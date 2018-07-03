@@ -30,7 +30,7 @@ public class BarTickHandler {
 	public static boolean regenDark, regenEssence, regenPower;
 
 	@SubscribeEvent
-	public void ongetEntityConstructing(EntityConstructing event) {
+	public void onEntityConstructing(EntityConstructing event) {
 		/*if(event.getgetEntity()() instanceof EntityPlayer && DarkEnergyBar.getProperties((EntityPlayer)event.getEntity()) == null)
 			DarkEnergyBar.addProperties((EntityPlayer)event.getEntity());
 		if(event.getEntity() instanceof EntityPlayer && event.getEntity().getExtendedProperties(DarkEnergyBar.PROP) == null)
@@ -49,7 +49,7 @@ public class BarTickHandler {
 
 	@SubscribeEvent
 	public void onTick(PlayerTickEvent event) {
-		if(event.phase == Phase.END) tickEnd(event.player);
+		//if(event.phase == Phase.END) tickEnd(event.player);
 	}
 	
 	@SideOnly(Side.CLIENT)
@@ -60,7 +60,7 @@ public class BarTickHandler {
 
 	@SideOnly(Side.CLIENT)
 	private void onTickRender(EntityPlayer player) {
-		Minecraft mc = Minecraft.getMinecraft();
+		/*Minecraft mc = Minecraft.getMinecraft();
 		if(mc.currentScreen == null) {
 			if(!player.capabilities.isCreativeMode) {
 				GL11.glPushMatrix();
@@ -98,7 +98,7 @@ public class BarTickHandler {
 				GlStateManager.disableBlend();
 				GL11.glPopMatrix();
 			}
-		}
+		}*/
 	}
 
 	private void tickEnd(EntityPlayer player) {

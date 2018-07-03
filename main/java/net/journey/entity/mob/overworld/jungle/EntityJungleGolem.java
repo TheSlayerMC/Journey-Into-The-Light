@@ -2,19 +2,17 @@ package net.journey.entity.mob.overworld.jungle;
 
 import java.util.List;
 
-import net.journey.JourneyItems;
 import net.journey.entity.MobStats;
 import net.journey.enums.EnumSounds;
 import net.journey.util.PotionEffects;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
-import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityModMob;
 
@@ -29,13 +27,13 @@ public class EntityJungleGolem extends EntityModMob{
     @Override
     public void onLivingUpdate() {
         super.onLivingUpdate();
-        if(this.worldObj.isDaytime() && !this.worldObj.isRemote) {
-            float var1 = getBrightness(1.0F);
+        if(this.world.isDaytime() && !this.world.isRemote) {
+            float var1 = getBrightness();
         }
         
-        List<Entity> e = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox());        
+        List<Entity> e = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox());        
         for(Entity entity : e) {
-        	if(entity instanceof EntityPlayer && canEntityBeSeen(entity)) ((EntityPlayer)entity).addPotionEffect(new PotionEffect(Potion.poison.id, 60, 1));
+        	if(entity instanceof EntityPlayer && canEntityBeSeen(entity)) ((EntityPlayer)entity).addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.poison, 60, 1)));
         }        
     }
 
@@ -57,8 +55,8 @@ public class EntityJungleGolem extends EntityModMob{
 	}
 
 	@Override
-    public void playStepSound(BlockPos pos, Block blockIn) {
-        this.playSound("mob.irongolem.walk", 1.0F, 1.0F);
+	protected void playStepSound(BlockPos pos, Block blockIn) {
+        this.playSound(SoundEvents.ENTITY_IRONGOLEM_STEP, 1.0F, 1.0F);
     }
 	
 	@Override
