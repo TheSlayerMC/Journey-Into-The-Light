@@ -33,7 +33,7 @@ public class BlockDarkbloom extends Block {
 		setUnlocalizedName(SlayerAPI.PREFIX + name);
 		setRegistryName(SlayerAPI.MOD_ID, name);
 		JourneyBlocks.blocks.add(this);
-		JourneyBlocks.blockName.add(name);
+		JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
 	}
 
 	@Override
