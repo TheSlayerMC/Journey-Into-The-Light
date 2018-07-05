@@ -21,16 +21,10 @@ public class RenderHandler {
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
 	public void onRender(ModelRegistryEvent event) {
-		for(String s : JourneyItems.itemNames) {
-			for(Item i : JourneyItems.items) {
-				ModelLoader.setCustomModelResourceLocation(i, 0, new ModelResourceLocation(s, "inventory"));
-			}
-		}
-
-		for(String s : JourneyBlocks.blockName) {
-			for(Block b : JourneyBlocks.blocks) {
-				ModelLoader.setCustomModelResourceLocation(SlayerAPI.toItem(b), 0, new ModelResourceLocation(s, "inventory"));
-			}
-		}
+		for(Item i : JourneyItems.items) 
+			ModelLoader.setCustomModelResourceLocation(i, 0, new ModelResourceLocation(i.getRegistryName(), "inventory"));
+		
+		for(Block b : JourneyBlocks.blocks) 
+			ModelLoader.setCustomModelResourceLocation(SlayerAPI.toItem(b), 0, new ModelResourceLocation(b.getRegistryName(), "inventory"));
 	}
 }
