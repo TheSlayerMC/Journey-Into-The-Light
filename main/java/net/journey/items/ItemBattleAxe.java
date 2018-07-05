@@ -20,7 +20,7 @@ public class ItemBattleAxe extends ItemModAxe {
 	
 	public ItemBattleAxe(String name, String f, EssenceToolMaterial m) {
 		super(name, f, m);
-		setUnlocalizedName(name);
+		setUnlocalizedName(SlayerAPI.PREFIX + name);
 		setCreativeTab(JourneyTabs.battleaxes);
 	}
 	

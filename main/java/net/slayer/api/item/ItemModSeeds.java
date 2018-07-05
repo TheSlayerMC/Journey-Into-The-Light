@@ -12,11 +12,11 @@ public class ItemModSeeds extends ItemSeeds {
 	
 	public ItemModSeeds(String name, String f, Block block) {
 		super(block, Blocks.FARMLAND);
-		LangRegistry.addItem(name, f);
-		setUnlocalizedName(name);
+		LangRegistry.addItem(SlayerAPI.PREFIX + name, f);
+		setUnlocalizedName(SlayerAPI.PREFIX + name);
 		setCreativeTab(JourneyTabs.crops);
 		JourneyItems.items.add(this);
-		JourneyItems.itemNames.add(name);
+		JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
 		setRegistryName(SlayerAPI.MOD_ID, name);
 	}
 }

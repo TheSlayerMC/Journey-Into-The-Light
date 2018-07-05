@@ -11,6 +11,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.slayer.api.SlayerAPI;
 import net.slayer.api.item.ItemModFood;
 
 public class ItemGoldenFood extends ItemModFood {
@@ -20,8 +21,8 @@ public class ItemGoldenFood extends ItemModFood {
     public ItemGoldenFood(String name, String actual, int heal, float sat, boolean wolf, boolean isOP) {
         super(name, actual, heal, sat, wolf);
         op = isOP;
-        setUnlocalizedName(name);
-        JourneyItems.itemNames.add(name);
+        setUnlocalizedName(SlayerAPI.PREFIX + name);
+        JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
         setCreativeTab(JourneyTabs.crops);
         this.setAlwaysEdible();
     }

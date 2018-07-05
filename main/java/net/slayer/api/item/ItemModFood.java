@@ -21,10 +21,10 @@ public class ItemModFood extends ItemFood {
 	
     public ItemModFood(String name, String f, int food, float sat, boolean wolfFood) {
         super(food, sat, wolfFood);
-        LangRegistry.addItem(name, f);
-        setUnlocalizedName(name);
+        LangRegistry.addItem(SlayerAPI.PREFIX + name, f);
+        setUnlocalizedName(SlayerAPI.PREFIX + name);
         setCreativeTab(JourneyTabs.crops);
-        JourneyItems.itemNames.add(name);
+        JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
         JourneyItems.items.add(this);
         setRegistryName(SlayerAPI.MOD_ID, name);
     }

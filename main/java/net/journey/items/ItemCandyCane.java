@@ -23,10 +23,10 @@ public class ItemCandyCane extends ItemFood {
 	
     public ItemCandyCane(String name, String actual, int heal, float f, boolean sat, boolean b) {
         super(heal, sat);
-        LangRegistry.addItem(name, actual);
-        setUnlocalizedName(name);
+        LangRegistry.addItem(SlayerAPI.PREFIX + name, actual);
+        setUnlocalizedName(SlayerAPI.PREFIX + name);
         JourneyItems.items.add(this);
-        JourneyItems.itemNames.add(name);
+        JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
         setCreativeTab(JourneyTabs.crops);
         setRegistryName(SlayerAPI.MOD_ID, name);
     }

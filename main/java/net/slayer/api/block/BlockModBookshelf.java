@@ -8,10 +8,10 @@ import net.slayer.api.SlayerAPI;
 public class BlockModBookshelf extends BlockBookshelf {
 	
     public BlockModBookshelf(String name) {
-        setUnlocalizedName(name);
+        setUnlocalizedName(SlayerAPI.PREFIX + name);
         setCreativeTab(JourneyTabs.blocks);
         setSoundType(blockSoundType.WOOD);
-        JourneyBlocks.blockName.add(name);
+        JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
 		JourneyBlocks.blocks.add(this);
 		setRegistryName(SlayerAPI.MOD_ID, name);
     }

@@ -14,10 +14,10 @@ public class BlockModStairs extends BlockStairs {
 		super(stair.getDefaultState());
 		LangRegistry.addBlock(name, finalName);
 		setCreativeTab(JourneyTabs.blocks);
-		setUnlocalizedName(name);
+		setUnlocalizedName(SlayerAPI.PREFIX + name);
 		if(light) setLightLevel(0.5F);
 		this.setLightOpacity(1);
-		JourneyBlocks.blockName.add(name);
+		JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
 		JourneyBlocks.blocks.add(this);
 		setRegistryName(SlayerAPI.MOD_ID, name);
 	}

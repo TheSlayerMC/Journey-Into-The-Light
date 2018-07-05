@@ -21,11 +21,11 @@ public class BlockModFence extends BlockFence {
 	public BlockModFence(Block block, String name, String finalName, boolean light) {
 		super(Material.ROCK, null);
 		LangRegistry.addBlock(name, finalName);
-		setUnlocalizedName(name);
+		setUnlocalizedName(SlayerAPI.PREFIX + name);
 		setCreativeTab(JourneyTabs.blocks);
 		if(light) setLightLevel(0.5F);
 		setHardness(block.getBlockHardness(null, null, null));
-		JourneyBlocks.blockName.add(name);
+		JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
 		JourneyBlocks.blocks.add(this);
 		setRegistryName(SlayerAPI.MOD_ID, name);
 	}

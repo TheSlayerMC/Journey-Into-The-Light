@@ -30,9 +30,9 @@ public class BlockGlowshroom extends Block {
 		setHardness(0.0F);
 		setLightLevel(0.6F);
 		setTickRandomly(true);
-		setUnlocalizedName(name);
+		setUnlocalizedName(SlayerAPI.PREFIX + name);
 		JourneyBlocks.blocks.add(this);
-		JourneyBlocks.blockName.add(name);
+		JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
 		setRegistryName(SlayerAPI.MOD_ID, name);
 	}
 
