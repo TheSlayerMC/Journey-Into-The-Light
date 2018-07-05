@@ -36,7 +36,7 @@ public class BlockWastelandsPortal extends BlockBreakable {
 		super(Material.portal, false);
 		this.setTickRandomly(true);
 		setCreativeTab(EssenceTabs.blocks);
-		setUnlocalizedName(SlayerAPI.PREFIX + name);
+		setUnlocalizedName(name);
 		EssenceBlocks.blockName.add(name);
 		GameRegistry.registerBlock(this, name);
 	}

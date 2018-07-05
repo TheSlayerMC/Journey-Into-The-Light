@@ -35,7 +35,7 @@ public abstract class BlockModCrop extends BlockBush implements IGrowable {
 		this.setCreativeTab((CreativeTabs)null);
 		this.setHardness(0.0F);
 		this.setSoundType(SoundType.PLANT);
-		setUnlocalizedName(SlayerAPI.PREFIX + name);
+		setUnlocalizedName(name);
 		JourneyBlocks.blocks.add(this);
 		JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
 		setRegistryName(SlayerAPI.MOD_ID, name);

@@ -24,9 +24,9 @@ public class ItemModAxe extends ItemAxe {
 
 	public ItemModAxe(String name, String f, EssenceToolMaterial tool) {
         super(tool.getToolMaterial());
-        LangRegistry.addItem(SlayerAPI.PREFIX + name, f);
+        LangRegistry.addItem(name, f);
 		mat = tool;
-		setUnlocalizedName(SlayerAPI.PREFIX + name);
+		setUnlocalizedName(name);
 		setCreativeTab(JourneyTabs.tools);
 		JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
 		JourneyItems.items.add(this);

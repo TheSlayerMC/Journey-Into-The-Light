@@ -24,8 +24,8 @@ public class ItemGlowshroom extends ItemFood {
 
 	public ItemGlowshroom(String name, String actual, int heal, float f, boolean sat, boolean b) {
 		super(heal, sat);
-		LangRegistry.addItem(SlayerAPI.PREFIX + name, actual);
-		setUnlocalizedName(SlayerAPI.PREFIX + name);
+		LangRegistry.addItem(name, actual);
+		setUnlocalizedName(name);
 		JourneyItems.items.add(this);
 		JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
 		setCreativeTab(JourneyTabs.crops);

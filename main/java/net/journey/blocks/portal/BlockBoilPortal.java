@@ -50,7 +50,7 @@ public class BlockBoilPortal extends BlockBreakable {
 		LangRegistry.addBlock(name, "Boiling Portal");
 		this.setTickRandomly(true);
 		setCreativeTab(JourneyTabs.portalBlocks);
-		setUnlocalizedName(SlayerAPI.PREFIX + name);
+		setUnlocalizedName(name);
 		JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
 		JourneyBlocks.blocks.add(this);
 		setRegistryName(SlayerAPI.MOD_ID, name);

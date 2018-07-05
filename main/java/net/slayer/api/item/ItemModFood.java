@@ -21,8 +21,8 @@ public class ItemModFood extends ItemFood {
 	
     public ItemModFood(String name, String f, int food, float sat, boolean wolfFood) {
         super(food, sat, wolfFood);
-        LangRegistry.addItem(SlayerAPI.PREFIX + name, f);
-        setUnlocalizedName(SlayerAPI.PREFIX + name);
+        LangRegistry.addItem(name, f);
+        setUnlocalizedName(name);
         setCreativeTab(JourneyTabs.crops);
         JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
         JourneyItems.items.add(this);

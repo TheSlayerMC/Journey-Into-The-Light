@@ -62,7 +62,7 @@ public class BlockMod extends Block {
 		rand = new Random();
 		setSoundType(blockType.getSound());
 		setCreativeTab(tab);
-		setUnlocalizedName(SlayerAPI.PREFIX + name);
+		setUnlocalizedName(name);
 		this.name = name; 
 		JourneyBlocks.blocks.add(this);
 		JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
@@ -77,7 +77,7 @@ public class BlockMod extends Block {
 		rand = new Random();
 		setSoundType(blockType.getSound());
 		setCreativeTab(tab);
-		setUnlocalizedName(SlayerAPI.PREFIX + name);
+		setUnlocalizedName(name);
 		setHardness(hardness);
 		this.name = name;
 		JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);

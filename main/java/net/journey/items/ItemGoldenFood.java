@@ -21,7 +21,7 @@ public class ItemGoldenFood extends ItemModFood {
     public ItemGoldenFood(String name, String actual, int heal, float sat, boolean wolf, boolean isOP) {
         super(name, actual, heal, sat, wolf);
         op = isOP;
-        setUnlocalizedName(SlayerAPI.PREFIX + name);
+        setUnlocalizedName(name);
         JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
         setCreativeTab(JourneyTabs.crops);
         this.setAlwaysEdible();

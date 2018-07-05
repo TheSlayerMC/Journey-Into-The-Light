@@ -76,7 +76,6 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public void clientInit(FMLInitializationEvent event) {
 		EntityRendering.init();
-		//SlayerAPI.registerEvent(new RenderHandler());
 		SlayerAPI.registerEvent(new BossTickHandler());
 		SlayerAPI.registerEvent(new ClientTickEvent());
 		SlayerAPI.registerEvent(new PlayerStats());

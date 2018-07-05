@@ -45,8 +45,8 @@ public class ItemStorage extends Item {
 	}
 
 	public ItemStorage(String name, String finalName, CreativeTabs tab){
-		LangRegistry.addItem(SlayerAPI.PREFIX + name, finalName);
-		setUnlocalizedName(SlayerAPI.PREFIX + name);
+		LangRegistry.addItem(name, finalName);
+		setUnlocalizedName(name);
 		setCreativeTab(tab);
 		JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
 		JourneyItems.items.add(this);

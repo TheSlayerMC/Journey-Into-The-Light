@@ -41,10 +41,10 @@ public class ItemMultiTool extends ItemTool {
 
 	public ItemMultiTool(String name, String f, EssenceToolMaterial tool, int damage) {
 		super(tool.getToolMaterial(), blocksEffectiveAgainst);
-		LangRegistry.addItem(SlayerAPI.PREFIX + name, f);
+		LangRegistry.addItem(name, f);
 		mat = tool;
 		this.setMaxDamage(damage);
-		setUnlocalizedName(SlayerAPI.PREFIX + name);
+		setUnlocalizedName(name);
 		setCreativeTab(JourneyTabs.tools);
 		setHarvestLevel("pickaxe", tool.getHarvestLevel());
 		JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
