@@ -12,7 +12,7 @@ import net.journey.entity.projectile.EntityChaosProjectile;
 import net.journey.entity.projectile.EntityIceBall;
 import net.journey.entity.projectile.EntityLightningBall;
 import net.journey.enums.EnumSounds;
-import net.journey.util.EssenceToolMaterial;
+import net.journey.util.JourneyToolMaterial;
 import net.journey.util.LangHelper;
 import net.journey.util.LangRegistry;
 import net.minecraft.client.util.ITooltipFlag;
@@ -35,10 +35,10 @@ public class ItemHammer extends ItemSword {
 	protected int damage;
 	protected boolean essence, unbreakable;
 	protected Class<? extends EntityBasicProjectile> projectile;
-	protected EssenceToolMaterial mat;
+	protected JourneyToolMaterial mat;
 	private boolean power;
 
-	public ItemHammer(String name, String f, EssenceToolMaterial toolMaterial, boolean durability, Class<? extends EntityBasicProjectile> projectile, boolean essence, boolean power, int dam, int magic, int uses) {
+	public ItemHammer(String name, String f, JourneyToolMaterial toolMaterial, boolean durability, Class<? extends EntityBasicProjectile> projectile, boolean essence, boolean power, int dam, int magic, int uses) {
 		super(toolMaterial.getToolMaterial());
 		this.projectile=projectile;
 		damage = dam;

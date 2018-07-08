@@ -3,7 +3,7 @@ package net.journey.items;
 import java.util.List;
 
 import net.journey.JourneyTabs;
-import net.journey.util.EssenceToolMaterial;
+import net.journey.util.JourneyToolMaterial;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
@@ -18,7 +18,7 @@ import net.slayer.api.item.ItemModAxe;
 
 public class ItemBattleAxe extends ItemModAxe {
 	
-	public ItemBattleAxe(String name, String f, EssenceToolMaterial m) {
+	public ItemBattleAxe(String name, String f, JourneyToolMaterial m) {
 		super(name, f, m);
 		setUnlocalizedName(name);
 		setCreativeTab(JourneyTabs.battleaxes);

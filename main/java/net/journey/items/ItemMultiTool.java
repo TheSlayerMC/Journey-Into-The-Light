@@ -8,7 +8,7 @@ import com.google.common.collect.Sets;
 import net.journey.JourneyItems;
 import net.journey.JourneyTabs;
 import net.journey.client.ItemDescription;
-import net.journey.util.EssenceToolMaterial;
+import net.journey.util.JourneyToolMaterial;
 import net.journey.util.LangHelper;
 import net.journey.util.LangRegistry;
 import net.minecraft.block.Block;
@@ -37,9 +37,9 @@ import net.slayer.api.SlayerAPI;
 public class ItemMultiTool extends ItemTool {
 
 	private static final Set<Block> blocksEffectiveAgainst = Sets.newHashSet(Block.REGISTRY);
-	protected EssenceToolMaterial mat;
+	protected JourneyToolMaterial mat;
 
-	public ItemMultiTool(String name, String f, EssenceToolMaterial tool, int damage) {
+	public ItemMultiTool(String name, String f, JourneyToolMaterial tool, int damage) {
 		super(tool.getToolMaterial(), blocksEffectiveAgainst);
 		LangRegistry.addItem(name, f);
 		mat = tool;

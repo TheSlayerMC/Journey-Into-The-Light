@@ -5,7 +5,7 @@ import java.util.List;
 import net.journey.JourneyItems;
 import net.journey.JourneyTabs;
 import net.journey.client.ItemDescription;
-import net.journey.util.EssenceToolMaterial;
+import net.journey.util.JourneyToolMaterial;
 import net.journey.util.LangHelper;
 import net.journey.util.LangRegistry;
 import net.minecraft.client.util.ITooltipFlag;
@@ -18,9 +18,9 @@ import net.slayer.api.SlayerAPI;
 
 public class ItemModSword extends ItemSword {
 
-	protected EssenceToolMaterial mat;
+	protected JourneyToolMaterial mat;
 	
-    public ItemModSword(String name, String f, EssenceToolMaterial toolMaterial) {
+    public ItemModSword(String name, String f, JourneyToolMaterial toolMaterial) {
         super(toolMaterial.getToolMaterial());
         LangRegistry.addItem(name, f);
         setUnlocalizedName(name);

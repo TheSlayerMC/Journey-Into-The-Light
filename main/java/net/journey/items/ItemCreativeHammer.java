@@ -10,7 +10,7 @@ import net.journey.entity.projectile.EntityBasicProjectile;
 import net.journey.entity.projectile.EntityChaosProjectile;
 import net.journey.entity.projectile.EntityLightningBall;
 import net.journey.enums.EnumSounds;
-import net.journey.util.EssenceToolMaterial;
+import net.journey.util.JourneyToolMaterial;
 import net.journey.util.LangHelper;
 import net.journey.util.LangRegistry;
 import net.minecraft.client.util.ITooltipFlag;
@@ -33,9 +33,9 @@ public class ItemCreativeHammer extends ItemSword {
 	protected int dam;
 	protected boolean unbreakable;
 	protected Class<? extends EntityBasicProjectile> projectile;
-	protected EssenceToolMaterial mat;
+	protected JourneyToolMaterial mat;
 
-	public ItemCreativeHammer(String name, String f, EssenceToolMaterial toolMaterial, boolean unbreakable, Class<? extends EntityLightningBall> projectile) {
+	public ItemCreativeHammer(String name, String f, JourneyToolMaterial toolMaterial, boolean unbreakable, Class<? extends EntityLightningBall> projectile) {
 		super(toolMaterial.getToolMaterial());
 		this.projectile=projectile;
 		this.unbreakable=unbreakable;

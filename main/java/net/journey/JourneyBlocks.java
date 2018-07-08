@@ -68,7 +68,6 @@ import net.slayer.api.block.BlockModStairs;
 import net.slayer.api.block.BlockModVine;
 import net.slayer.api.block.BlockNetherFurnace;
 
-@EventBusSubscriber(modid=SlayerAPI.MOD_ID)
 public class JourneyBlocks {
 
 	public static ArrayList<String> blockName = new ArrayList<String>();
@@ -844,9 +843,5 @@ public class JourneyBlocks {
 	}
 
 
-	@SubscribeEvent
-	public static void registerBlocks(RegistryEvent.Register<Block> event) {
-		for(int i = 0; i < blocks.size(); i++)
-			event.getRegistry().registerAll(blocks.get(i));
-	}
+	
 }

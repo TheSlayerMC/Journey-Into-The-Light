@@ -8,7 +8,7 @@ import net.journey.client.render.particles.EntityHellstoneFX;
 import net.journey.client.render.particles.EntityModFireFX;
 import net.journey.client.render.particles.EntityModLavaFX;
 import net.journey.client.render.particles.EntityPoisionFX;
-import net.journey.util.EssenceToolMaterial;
+import net.journey.util.JourneyToolMaterial;
 import net.journey.util.PotionEffects;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.util.ITooltipFlag;
@@ -26,7 +26,7 @@ import net.slayer.api.item.ItemModSword;
 
 public class ItemRegenSword extends ItemModSword {
 
-	public ItemRegenSword(String name, String f , EssenceToolMaterial toolMaterial) {
+	public ItemRegenSword(String name, String f , JourneyToolMaterial toolMaterial) {
 		super(name, f, toolMaterial);
 	}
 

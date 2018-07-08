@@ -11,42 +11,42 @@ public class LangHelper {
 	}
 	
 	public static String getEfficiency() {
-		return getFormattedText("essence.efficiency");
+		return getFormattedText("journey.efficiency");
 	}
 	
 	public static String getUsesRemaining() {
-		return getFormattedText("essence.usesRemaining");
+		return getFormattedText("journey.usesRemaining");
 	}
 	
 	public static String getInfiniteUses() {
-		return getFormattedText("essence.infinite");
+		return getFormattedText("journey.infinite");
 	}
 	
 	public static String useEssence(int amount) {
-		return getFormattedText("essence.uses") + " " + amount + " " + getFormattedText("essence.essence");
+		return getFormattedText("journey.uses") + " " + amount + " " + getFormattedText("journey.essence");
 	}
 	
 	public static String useDarkEnergy(int amount) {
-		return getFormattedText("essence.uses") + " " + amount + " " + getFormattedText("essence.dark");
+		return getFormattedText("journey.uses") + " " + amount + " " + getFormattedText("journey.dark");
 	}
 	
 	public static String rangedDamage(int damage) {
-		return damage + " " + getFormattedText("essence.rangedDamage");
+		return damage + " " + getFormattedText("journey.rangedDamage");
 	}
 	
 	public static String unbreakable() {
-		return getFormattedText("essence.unbreakable");
+		return getFormattedText("journey.unbreakable");
 	}
 	
 	public static String setWitherSword(int time) {
-		return getFormattedText("essence.hit") + " " + getFormattedText("essence.wither") + " " + time + " " + getFormattedText("essence.seconds");
+		return getFormattedText("journey.hit") + " " + getFormattedText("journey.wither") + " " + time + " " + getFormattedText("journey.seconds");
 	}
 	
 	public static String setBossSpawner(String boss) {
-		return getFormattedText("essence.bossSpawn") + ": " + boss;
+		return getFormattedText("journey.bossSpawn") + ": " + boss;
 	}
 	
 	public static String setPetSpawner(String pet) {
-		return getFormattedText("essence.petSpawn") + ": " + pet;
+		return getFormattedText("journey.petSpawn") + ": " + pet;
 	}
 }

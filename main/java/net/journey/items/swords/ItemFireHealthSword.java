@@ -7,7 +7,7 @@ import net.journey.client.render.particles.EntityFloroWaterFX;
 import net.journey.client.render.particles.EntityModFireFX;
 import net.journey.client.render.particles.EntityModLavaFX;
 import net.journey.client.render.particles.EntityPoisionFX;
-import net.journey.util.EssenceToolMaterial;
+import net.journey.util.JourneyToolMaterial;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
@@ -26,7 +26,7 @@ public class ItemFireHealthSword extends ItemModSword {
 
 	private float health;
 	
-	public ItemFireHealthSword(String name, String f, EssenceToolMaterial toolMaterial, float health) {
+	public ItemFireHealthSword(String name, String f, JourneyToolMaterial toolMaterial, float health) {
 		super(name, f, toolMaterial);
 		this.health = health;
 	}

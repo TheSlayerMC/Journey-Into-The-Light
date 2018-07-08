@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import net.journey.client.render.particles.EntityModSnowFX;
-import net.journey.util.EssenceToolMaterial;
+import net.journey.util.JourneyToolMaterial;
 import net.journey.util.PotionEffects;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.util.ITooltipFlag;
@@ -22,7 +22,7 @@ import net.slayer.api.item.ItemModSword;
 
 public class ItemFreezeSword extends ItemModSword {
 
-	public ItemFreezeSword(String name, String f, EssenceToolMaterial toolMaterial) {
+	public ItemFreezeSword(String name, String f, JourneyToolMaterial toolMaterial) {
 		super(name, f, toolMaterial);
 	}
 

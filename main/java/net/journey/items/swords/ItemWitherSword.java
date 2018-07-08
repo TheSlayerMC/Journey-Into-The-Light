@@ -2,7 +2,7 @@ package net.journey.items.swords;
 
 import java.util.List;
 
-import net.journey.util.EssenceToolMaterial;
+import net.journey.util.JourneyToolMaterial;
 import net.journey.util.LangHelper;
 import net.journey.util.PotionEffects;
 import net.minecraft.client.util.ITooltipFlag;
@@ -19,7 +19,7 @@ import net.slayer.api.item.ItemModSword;
 
 public class ItemWitherSword extends ItemModSword {
 
-	public ItemWitherSword(String name, String f, EssenceToolMaterial toolMaterial) {
+	public ItemWitherSword(String name, String f, JourneyToolMaterial toolMaterial) {
 		super(name, f, toolMaterial);
 	}
 

@@ -13,7 +13,7 @@ import net.minecraft.world.World;
  * <b>A modified version of vanilla EntityList</b>
  * @author TheSlayerMC, Mojang
  */
-public class EssenceEntityList {
+public class JourneyEntityList {
 
     public static Map<String, Class<?>> stringToClassMapping = new HashMap<String, Class<?>>();
     public static Map<Class<?>, String> classToStringMapping = new HashMap<Class<?>, String>();
@@ -41,7 +41,7 @@ public class EssenceEntityList {
 
     public static void addMapping(Class<?> clazz, String name, int id, int primary, int secondary) {
         addMapping(clazz, name, id);
-        entityEggs.put(Integer.valueOf(id), new EssenceEntityList.EntityEggInfo(id, primary, secondary));
+        entityEggs.put(Integer.valueOf(id), new JourneyEntityList.EntityEggInfo(id, primary, secondary));
     }
 
     public static String getStringFromID(int id) {

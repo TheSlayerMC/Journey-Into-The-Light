@@ -84,7 +84,7 @@ import net.journey.items.swords.ItemStunWitherSword;
 import net.journey.items.swords.ItemWitherSword;
 import net.journey.util.Config;
 import net.journey.util.EnumArmor;
-import net.journey.util.EssenceToolMaterial;
+import net.journey.util.JourneyToolMaterial;
 import net.journey.util.PotionEffects;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
@@ -101,7 +101,6 @@ import net.slayer.api.item.ItemModPickaxe;
 import net.slayer.api.item.ItemModShovel;
 import net.slayer.api.item.ItemModSword;
 
-@EventBusSubscriber(modid=SlayerAPI.MOD_ID)
 public class JourneyItems {
 
 	public static ToolMaterial hellstoneSwordMat = addToolMaterial(2356, 13F, 10F, true);
@@ -938,49 +937,49 @@ public class JourneyItems {
 		rockShard = new ItemMod("rockShard", "Rock Shard");
 		//plasmaBall = new ItemMod("plasmaBall");
 
-		hellstoneMultiTool = new ItemMultiTool("hellstoneMultiTool", "Bloodcrust Multi Tool", EssenceToolMaterial.HELLSTONE_MULTI_TOOL, 1750);
-		shadiumMultiTool = new ItemMultiTool("shadiumMultiTool", "Shadium Multi Tool", EssenceToolMaterial.SHADIUM_MULTI_TOOL, 1670);
-		celestiumMultiTool = new ItemMultiTool("celestiumMultiTool", "Celestium Multi Tool", EssenceToolMaterial.CELESTIUM_MULTI_TOOL, 1820);
-		luniumMultiTool = new ItemMultiTool("luniumMultiTool", "Lunium Multi Tool", EssenceToolMaterial.LUNIUM_MULTI_TOOL, 1670);
-		flairiumMultiTool = new ItemMultiTool("flairiumMultiTool", "Flairium Multi Tool", EssenceToolMaterial.FLAIRIUM_MULTI_TOOL, 1202);
-		sapphireMultiTool = new ItemMultiTool("sapphireMultiTool", "Sapphire Multi Tool", EssenceToolMaterial.SAPPHIRE_MULTI_TOOL, 2456);
-		gorbiteMultiTool = new ItemMultiTool("gorbiteMultiTool", "Gorbite Multi Tool", EssenceToolMaterial.GORBITE_MULTI_TOOL, 2115);
-		orbaditeMultiTool = new ItemMultiTool("orbaditeMultiTool", "Orbadite Multi Tool", EssenceToolMaterial.ORBADITE_MULTI_TOOL, 2115);
-		desMultiTool = new ItemMultiTool("desMultiTool", "Des Multi Tool", EssenceToolMaterial.DES_MULTI_TOOL, 2102);
-		koriteMultiTool = new ItemMultiTool("koriteMultiTool", "Korite Multi Tool", EssenceToolMaterial.KORITE_MULTI_TOOL, 1820);
-		storonMultiTool = new ItemMultiTool("storonMultiTool", "Storon Multi Tool", EssenceToolMaterial.KORITE_MULTI_TOOL, 1820);
-		mekyumMultiTool = new ItemMultiTool("mekyumMultiTool", "Mekyum Multi Tool", EssenceToolMaterial.KORITE_MULTI_TOOL, 1820);
-		woodMultiTool = new ItemMultiTool("woodMultiTool", "Wooden Multi Tool", EssenceToolMaterial.WOOD_MULTI_TOOL, 60);
-		stoneMultiTool = new ItemMultiTool("stoneMultiTool", "Stone Multi Tool", EssenceToolMaterial.STONE_MULTI_TOOL, 132);
-		ironMultiTool = new ItemMultiTool("ironMultiTool", "Iron Multi Tool", EssenceToolMaterial.IRON_MULTI_TOOL, 251);
-		goldMultiTool = new ItemMultiTool("goldMultiTool", "Gold Multi Tool", EssenceToolMaterial.GOLD_MULTI_TOOL, 33);
-		diamondMultiTool = new ItemMultiTool("diamondMultiTool", "Diamond Multi Tool", EssenceToolMaterial.DIAMOND_MULTI_TOOL, 1562);
+		hellstoneMultiTool = new ItemMultiTool("hellstoneMultiTool", "Bloodcrust Multi Tool", JourneyToolMaterial.HELLSTONE_MULTI_TOOL, 1750);
+		shadiumMultiTool = new ItemMultiTool("shadiumMultiTool", "Shadium Multi Tool", JourneyToolMaterial.SHADIUM_MULTI_TOOL, 1670);
+		celestiumMultiTool = new ItemMultiTool("celestiumMultiTool", "Celestium Multi Tool", JourneyToolMaterial.CELESTIUM_MULTI_TOOL, 1820);
+		luniumMultiTool = new ItemMultiTool("luniumMultiTool", "Lunium Multi Tool", JourneyToolMaterial.LUNIUM_MULTI_TOOL, 1670);
+		flairiumMultiTool = new ItemMultiTool("flairiumMultiTool", "Flairium Multi Tool", JourneyToolMaterial.FLAIRIUM_MULTI_TOOL, 1202);
+		sapphireMultiTool = new ItemMultiTool("sapphireMultiTool", "Sapphire Multi Tool", JourneyToolMaterial.SAPPHIRE_MULTI_TOOL, 2456);
+		gorbiteMultiTool = new ItemMultiTool("gorbiteMultiTool", "Gorbite Multi Tool", JourneyToolMaterial.GORBITE_MULTI_TOOL, 2115);
+		orbaditeMultiTool = new ItemMultiTool("orbaditeMultiTool", "Orbadite Multi Tool", JourneyToolMaterial.ORBADITE_MULTI_TOOL, 2115);
+		desMultiTool = new ItemMultiTool("desMultiTool", "Des Multi Tool", JourneyToolMaterial.DES_MULTI_TOOL, 2102);
+		koriteMultiTool = new ItemMultiTool("koriteMultiTool", "Korite Multi Tool", JourneyToolMaterial.KORITE_MULTI_TOOL, 1820);
+		storonMultiTool = new ItemMultiTool("storonMultiTool", "Storon Multi Tool", JourneyToolMaterial.KORITE_MULTI_TOOL, 1820);
+		mekyumMultiTool = new ItemMultiTool("mekyumMultiTool", "Mekyum Multi Tool", JourneyToolMaterial.KORITE_MULTI_TOOL, 1820);
+		woodMultiTool = new ItemMultiTool("woodMultiTool", "Wooden Multi Tool", JourneyToolMaterial.WOOD_MULTI_TOOL, 60);
+		stoneMultiTool = new ItemMultiTool("stoneMultiTool", "Stone Multi Tool", JourneyToolMaterial.STONE_MULTI_TOOL, 132);
+		ironMultiTool = new ItemMultiTool("ironMultiTool", "Iron Multi Tool", JourneyToolMaterial.IRON_MULTI_TOOL, 251);
+		goldMultiTool = new ItemMultiTool("goldMultiTool", "Gold Multi Tool", JourneyToolMaterial.GOLD_MULTI_TOOL, 33);
+		diamondMultiTool = new ItemMultiTool("diamondMultiTool", "Diamond Multi Tool", JourneyToolMaterial.DIAMOND_MULTI_TOOL, 1562);
 
-		hellstonePickaxe = new ItemModPickaxe("hellstonePickaxe", "Bloodcrust Pickaxe", EssenceToolMaterial.HELLSTONE);
-		shadiumPickaxe = new ItemModPickaxe("shadiumPickaxe", "Shadium Pickaxe", EssenceToolMaterial.SHADIUM);
-		celestiumPickaxe = new ItemModPickaxe("celestiumPickaxe", "Celestium Pickaxe", EssenceToolMaterial.CELESTIUM);
-		luniumPickaxe = new ItemModPickaxe("luniumPickaxe", "Lunium Pickaxe", EssenceToolMaterial.LUNIUM);
-		flairiumPickaxe = new ItemModPickaxe("flairiumPickaxe", "Flairium Pickaxe", EssenceToolMaterial.FLAIRIUM);
-		sapphirePickaxe = new ItemModPickaxe("sapphirePickaxe", "Sapphire Pickaxe", EssenceToolMaterial.SAPPHIRE);
-		gorbitePickaxe = new ItemModPickaxe("gorbitePickaxe", "Gorbite Pickaxe", EssenceToolMaterial.GORBITE);
-		orbaditePickaxe = new ItemModPickaxe("orbaditePickaxe", "Orbadite Pickaxe", EssenceToolMaterial.ORBADITE);
-		desPickaxe = new ItemModPickaxe("desPickaxe", "Des Pickaxe", EssenceToolMaterial.DES);
-		koritePickaxe = new ItemModPickaxe("koritePickaxe", "Korite Pickaxe", EssenceToolMaterial.KORITE);
-		storonPickaxe = new ItemModPickaxe("storonPickaxe", "Storon Pickaxe", EssenceToolMaterial.KORITE);
-		mekyumPickaxe = new ItemModPickaxe("mekyumPickaxe", "Mekyum Pickaxe", EssenceToolMaterial.KORITE);
+		hellstonePickaxe = new ItemModPickaxe("hellstonePickaxe", "Bloodcrust Pickaxe", JourneyToolMaterial.HELLSTONE);
+		shadiumPickaxe = new ItemModPickaxe("shadiumPickaxe", "Shadium Pickaxe", JourneyToolMaterial.SHADIUM);
+		celestiumPickaxe = new ItemModPickaxe("celestiumPickaxe", "Celestium Pickaxe", JourneyToolMaterial.CELESTIUM);
+		luniumPickaxe = new ItemModPickaxe("luniumPickaxe", "Lunium Pickaxe", JourneyToolMaterial.LUNIUM);
+		flairiumPickaxe = new ItemModPickaxe("flairiumPickaxe", "Flairium Pickaxe", JourneyToolMaterial.FLAIRIUM);
+		sapphirePickaxe = new ItemModPickaxe("sapphirePickaxe", "Sapphire Pickaxe", JourneyToolMaterial.SAPPHIRE);
+		gorbitePickaxe = new ItemModPickaxe("gorbitePickaxe", "Gorbite Pickaxe", JourneyToolMaterial.GORBITE);
+		orbaditePickaxe = new ItemModPickaxe("orbaditePickaxe", "Orbadite Pickaxe", JourneyToolMaterial.ORBADITE);
+		desPickaxe = new ItemModPickaxe("desPickaxe", "Des Pickaxe", JourneyToolMaterial.DES);
+		koritePickaxe = new ItemModPickaxe("koritePickaxe", "Korite Pickaxe", JourneyToolMaterial.KORITE);
+		storonPickaxe = new ItemModPickaxe("storonPickaxe", "Storon Pickaxe", JourneyToolMaterial.KORITE);
+		mekyumPickaxe = new ItemModPickaxe("mekyumPickaxe", "Mekyum Pickaxe", JourneyToolMaterial.KORITE);
 
-		hellstoneShovel = new ItemModShovel("hellstoneShovel", "Bloodcrust Shovel", EssenceToolMaterial.HELLSTONE);
-		shadiumShovel = new ItemModShovel("shadiumShovel", "Shadium Shovel", EssenceToolMaterial.SHADIUM);
-		celestiumShovel = new ItemModShovel("celestiumShovel", "Celestium Shovel", EssenceToolMaterial.CELESTIUM);
-		luniumShovel = new ItemModShovel("luniumShovel", "Lunium Shovel", EssenceToolMaterial.LUNIUM);
-		flairiumShovel = new ItemModShovel("flairiumShovel", "Flairium Shovel", EssenceToolMaterial.FLAIRIUM);
-		sapphireShovel = new ItemModShovel("sapphireShovel", "Sapphire Shovel", EssenceToolMaterial.SAPPHIRE);
-		gorbiteShovel = new ItemModShovel("gorbiteShovel", "Gorbite Shovel", EssenceToolMaterial.GORBITE);
-		orbaditeShovel = new ItemModShovel("orbaditeShovel", "Orbadite Shovel", EssenceToolMaterial.ORBADITE);
-		desShovel = new ItemModShovel("desShovel", "Des Shovel", EssenceToolMaterial.DES);
-		koriteShovel = new ItemModShovel("koriteShovel", "Korite Shovel", EssenceToolMaterial.KORITE);
-		storonShovel = new ItemModShovel("storonShovel", "Storon Shovel", EssenceToolMaterial.KORITE);
-		mekyumShovel = new ItemModShovel("mekyumShovel", "Mekyum Shovel", EssenceToolMaterial.KORITE);
+		hellstoneShovel = new ItemModShovel("hellstoneShovel", "Bloodcrust Shovel", JourneyToolMaterial.HELLSTONE);
+		shadiumShovel = new ItemModShovel("shadiumShovel", "Shadium Shovel", JourneyToolMaterial.SHADIUM);
+		celestiumShovel = new ItemModShovel("celestiumShovel", "Celestium Shovel", JourneyToolMaterial.CELESTIUM);
+		luniumShovel = new ItemModShovel("luniumShovel", "Lunium Shovel", JourneyToolMaterial.LUNIUM);
+		flairiumShovel = new ItemModShovel("flairiumShovel", "Flairium Shovel", JourneyToolMaterial.FLAIRIUM);
+		sapphireShovel = new ItemModShovel("sapphireShovel", "Sapphire Shovel", JourneyToolMaterial.SAPPHIRE);
+		gorbiteShovel = new ItemModShovel("gorbiteShovel", "Gorbite Shovel", JourneyToolMaterial.GORBITE);
+		orbaditeShovel = new ItemModShovel("orbaditeShovel", "Orbadite Shovel", JourneyToolMaterial.ORBADITE);
+		desShovel = new ItemModShovel("desShovel", "Des Shovel", JourneyToolMaterial.DES);
+		koriteShovel = new ItemModShovel("koriteShovel", "Korite Shovel", JourneyToolMaterial.KORITE);
+		storonShovel = new ItemModShovel("storonShovel", "Storon Shovel", JourneyToolMaterial.KORITE);
+		mekyumShovel = new ItemModShovel("mekyumShovel", "Mekyum Shovel", JourneyToolMaterial.KORITE);
 
 		/*hellstoneAxe = new ItemModAxe("hellstoneAxe", "Bloodcrust Axe", EssenceToolMaterial.HELLSTONE);
 		shadiumAxe = new ItemModAxe("shadiumAxe", "Shadium Axe", EssenceToolMaterial.SHADIUM);
@@ -995,82 +994,82 @@ public class JourneyItems {
 		storonAxe = new ItemModAxe("storonAxe", "Storon Axe", EssenceToolMaterial.KORITE);
 		mekyumAxe = new ItemModAxe("mekyumAxe", "Mekyum Axe", EssenceToolMaterial.KORITE);*/
 
-		hellstoneHoe = new ItemModHoe("hellstoneHoe", "Bloodcrust Hoe", EssenceToolMaterial.HELLSTONE);
-		shadiumHoe = new ItemModHoe("shadiumHoe", "Shadium Hoe", EssenceToolMaterial.SHADIUM);
-		celestiumHoe = new ItemModHoe("celestiumHoe", "Celestium Hoe", EssenceToolMaterial.CELESTIUM);
-		luniumHoe = new ItemModHoe("luniumHoe", "Lunium Hoe", EssenceToolMaterial.LUNIUM);
-		flairiumHoe = new ItemModHoe("flairiumHoe", "Flairium Hoe", EssenceToolMaterial.FLAIRIUM);
-		sapphireHoe = new ItemModHoe("sapphireHoe", "Sapphire Hoe", EssenceToolMaterial.SAPPHIRE);
-		gorbiteHoe = new ItemModHoe("gorbiteHoe", "Gorbite Hoe", EssenceToolMaterial.GORBITE);
-		orbaditeHoe = new ItemModHoe("orbaditeHoe", "Orbadite Hoe", EssenceToolMaterial.ORBADITE);
-		desHoe = new ItemModHoe("desHoe", "Des Hoe", EssenceToolMaterial.DES);
-		koriteHoe = new ItemModHoe("koriteHoe", "Korite Hoe", EssenceToolMaterial.KORITE);
-		storonHoe = new ItemModHoe("storonHoe", "Storon Hoe", EssenceToolMaterial.KORITE);
-		mekyumHoe = new ItemModHoe("mekyumHoe", "Storon Hoe", EssenceToolMaterial.KORITE);
+		hellstoneHoe = new ItemModHoe("hellstoneHoe", "Bloodcrust Hoe", JourneyToolMaterial.HELLSTONE);
+		shadiumHoe = new ItemModHoe("shadiumHoe", "Shadium Hoe", JourneyToolMaterial.SHADIUM);
+		celestiumHoe = new ItemModHoe("celestiumHoe", "Celestium Hoe", JourneyToolMaterial.CELESTIUM);
+		luniumHoe = new ItemModHoe("luniumHoe", "Lunium Hoe", JourneyToolMaterial.LUNIUM);
+		flairiumHoe = new ItemModHoe("flairiumHoe", "Flairium Hoe", JourneyToolMaterial.FLAIRIUM);
+		sapphireHoe = new ItemModHoe("sapphireHoe", "Sapphire Hoe", JourneyToolMaterial.SAPPHIRE);
+		gorbiteHoe = new ItemModHoe("gorbiteHoe", "Gorbite Hoe", JourneyToolMaterial.GORBITE);
+		orbaditeHoe = new ItemModHoe("orbaditeHoe", "Orbadite Hoe", JourneyToolMaterial.ORBADITE);
+		desHoe = new ItemModHoe("desHoe", "Des Hoe", JourneyToolMaterial.DES);
+		koriteHoe = new ItemModHoe("koriteHoe", "Korite Hoe", JourneyToolMaterial.KORITE);
+		storonHoe = new ItemModHoe("storonHoe", "Storon Hoe", JourneyToolMaterial.KORITE);
+		mekyumHoe = new ItemModHoe("mekyumHoe", "Storon Hoe", JourneyToolMaterial.KORITE);
 
-		multiToolOfEternalSmelting = new ItemMultiTool("multiToolOfEternalSmelting", "Multi Tool of Eternal Smelting", EssenceToolMaterial.SMELTING_TOOL, 512);
+		multiToolOfEternalSmelting = new ItemMultiTool("multiToolOfEternalSmelting", "Multi Tool of Eternal Smelting", JourneyToolMaterial.SMELTING_TOOL, 512);
 
-		hellstoneSword = new ItemFireSword("hellstoneSword", "Bloodcrust Sword", EssenceToolMaterial.HELLSTONE_SWORD);
-		shadiumSword = new ItemFreezeSword("shadiumSword", "Shadium Sword", EssenceToolMaterial.SHADIUM_SWORD);
-		celestiumSword = new ItemModSword("celestiumSword", "Celestium Sword", EssenceToolMaterial.CELESTIUM_SWORD);
-		luniumSword = new ItemModSword("luniumSword", "Lunium Sword", EssenceToolMaterial.LUNIUM_SWORD);
-		flairiumSword = new ItemFireSword("flairiumSword", "Flairium Sword", EssenceToolMaterial.FLAIRIUM_SWORD);
-		desSword = new ItemModSword("desSword", "Des Sword", EssenceToolMaterial.DES_SWORD);
-		sapphireSword = new ItemModSword("sapphireSword", "Sapphire Sword", EssenceToolMaterial.SAPPHIRE_SWORD);
-		gorbiteSword = new ItemModSword("gorbiteSword", "Gorbite Sword", EssenceToolMaterial.GORBITE_SWORD);
-		orbaditeSword = new ItemModSword("orbaditeSword", "Orbadite Sword", EssenceToolMaterial.ORBADITE_SWORD);
-		poisonSword = new ItemPoisionSword("poisonSword", "Poison Sword", EssenceToolMaterial.POISON_SWORD);
-		cloudSlicer = new ItemModSword("cloudSlicer", "Cloud Slicer", EssenceToolMaterial.CLOUD_SLICER);
-		dragonsTooth = new ItemModSword("dragonsTooth", "Dragons Tooth", EssenceToolMaterial.DRAGONS_TOOTH);
-		netherBeastSword = new ItemRegenSword("netherBeastSword", "Netherbeast Sword", EssenceToolMaterial.NETHER_BEAST_SWORD);
-		witheringBeastSword = new ItemWitherSword("witheringBeastSword", "Witheringbeast Sword", EssenceToolMaterial.WITHERING_BEAST_SWORD);
-		calciaSword = new ItemModSword("calciaSword", "Calcia Sword", EssenceToolMaterial.CALCIA_SWORD);
-		championsSword = new ItemModSword("championsSword", "Champions Sword", EssenceToolMaterial.CHAMPIONS_SWORD);
-		theWraith = new ItemModSword("theWraith", "The Wraith", EssenceToolMaterial.THE_WRAITH);
-		bubbleSword = new ItemBubbleSword("bubbleSword", "Bubble Sword", EssenceToolMaterial.BUBBLE_SWORD);
-		boilingBlade = new ItemFireSword("boilingBlade", "Boiling Blade", EssenceToolMaterial.BOILING_BLADE);
-		loggersSword = new ItemLoggersSword("loggersSword", "Loggers Sword", EssenceToolMaterial.LOGGERS_SWORD);
-		naturesBlade = new ItemStunWitherSword("naturesBlade", "Natures Blade", EssenceToolMaterial.NATURES_BLADE);
-		depthsDarksword = new ItemStunWitherSword("depthsDarksword", "Depths Darksword", EssenceToolMaterial.DEPTHS_DARKSWORD);
-		depthsSlayer = new ItemStunSword("depthsSlayer", "Depths Slayer", EssenceToolMaterial.DEPTHS_SLAYER);
-		snowShoveler = new ItemStunWitherSword("snowShoveler", "Snow Shoveler", EssenceToolMaterial.SNOW_SHOVELER);
-		frostySword = new ItemStunSword("frostySword", "Frosty Sword", EssenceToolMaterial.FROSTY_SWORD);
-		frostbittenSword = new ItemStunSword("frostbittenSword", "Frostbitten Sword", EssenceToolMaterial.FROSTBITTEN_SWORD);
-		treeHugger = new ItemPoisionSword("treeHugger", "Tree Hugger", EssenceToolMaterial.TREE_HUGGER);
-		coreMender = new ItemFireSword("coreMender", "Core Mender", EssenceToolMaterial.CORE_MENDER);
-		royalBlade = new ItemPoisionSword("royalBlade", "Royal Blade", EssenceToolMaterial.ROYAL_BLADE);
-		royalStabber = new ItemPoisionSword("royalStabber", "Royal Stabber", EssenceToolMaterial.ROYAL_STABBER);
-		rocSword = new ItemModSword("rocSword", "Roc Sword", EssenceToolMaterial.ROC_SWORD);
-		swordOfTheThunderbird = new ItemModSword("swordOfTheThunderbird", "Sword of the Thunderbird", EssenceToolMaterial.SWORD_THUNDERBIRD);
-		bloodwieldSword = new ItemHealthSword("bloodWieldSword", "Blood Wielder", EssenceToolMaterial.BLOODWIELD_SWORD, 1);
-		charredBlade = new ItemWitherSword("charredBlade", "Charred Blade", EssenceToolMaterial.CHARRED_BLADE);
-		sizzlerSword = new ItemFireWitherSword("sizzlerSword", "Sizzler Sword", EssenceToolMaterial.SIZZLER_SWORD);
-		fluffyBlade = new ItemNightvisionHealthSword("fluffyBlade", "Fluffy Blade", EssenceToolMaterial.FLUFFY_BLADE);
-		golemSword = new ItemModSword("golemSword", "Golem Sword", EssenceToolMaterial.GOLEM_SWORD);
-		thunderblade = new ItemPoisonHealthSword("thunderblade", "Thunder Blade", EssenceToolMaterial.THUNDERBLADE, 1.5F);
-		sentrySword = new ItemFireHealthSword("sentrySword", "Sentry Sword", EssenceToolMaterial.SENTRY_SWORD, 2);
-		crystalBlade = new ItemModSword("crystalBlade", "Crystal Blade", EssenceToolMaterial.CRYSTAL_BLADE);
-		starlightBlade = new ItemModSword("starlightBlade", "Starlight Blade", EssenceToolMaterial.STARLIGHT_BLADE);
-		koriteSword = new ItemModSword("koriteSword", "Korite Sword", EssenceToolMaterial.KORITE_SWORD);
-		storonSword = new ItemModSword("storonSword", "Storon Sword", EssenceToolMaterial.KORITE_SWORD);
-		mekyumSword = new ItemModSword("mekyumSword", "Mekyum Sword", EssenceToolMaterial.KORITE_SWORD);
-		pedalSword = new ItemModSword("pedalSword", "Pedal Sword", EssenceToolMaterial.PEDAL_SWORD);
-		withicBlade = new ItemModSword("withicBlade", "Withic Blade", EssenceToolMaterial.WITHIC_BLADE);
-		reinforcedCrystalSword = new ItemModSword("reinforcedCrystalSword", "Reinforced Crystal Sword", EssenceToolMaterial.RE_CRYSTAL_SWORD);
-		reinforcedStoneSword = new ItemModSword("reinforcedStoneSword", "Reinforced Stone Sword", EssenceToolMaterial.RE_STONE_SWORD);
-		terralightBlade = new ItemModSword("terralightBlade", "Terralight Blade", EssenceToolMaterial.TERRALIGHT_BLADE);
-		terranaSword = new ItemModSword("terranaSword", "Terrana Sword", EssenceToolMaterial.TERRANA_SWORD);
-		terrolicaSword = new ItemNightvisionSword("terrolicaSword", "Terrolica Sword", EssenceToolMaterial.TERROLICA_SWORD);
-		voliteSword = new ItemModSword("voliteSword", "Volite Sword", EssenceToolMaterial.VOLITE_SWORD);
-		kingsSword = new ItemFireHealthSword("kingsSword", "Kings Sword", EssenceToolMaterial.KINGS_SWORD, 1);
-		demonicSword = new ItemWitherSword("demonicSword", "Wither Sword", EssenceToolMaterial.DEMONIC_SWORD);
-		vinestrandBlade = new ItemPoisionSword("vinestrandBlade", "Vinestrand Blade", EssenceToolMaterial.VINESTRAND_BLADE);
-		darkPineSword = new ItemWitherSword("darkPineSword", "Dark Pine Sword", EssenceToolMaterial.DARK_PINE_SWORD);
+		hellstoneSword = new ItemFireSword("hellstoneSword", "Bloodcrust Sword", JourneyToolMaterial.HELLSTONE_SWORD);
+		shadiumSword = new ItemFreezeSword("shadiumSword", "Shadium Sword", JourneyToolMaterial.SHADIUM_SWORD);
+		celestiumSword = new ItemModSword("celestiumSword", "Celestium Sword", JourneyToolMaterial.CELESTIUM_SWORD);
+		luniumSword = new ItemModSword("luniumSword", "Lunium Sword", JourneyToolMaterial.LUNIUM_SWORD);
+		flairiumSword = new ItemFireSword("flairiumSword", "Flairium Sword", JourneyToolMaterial.FLAIRIUM_SWORD);
+		desSword = new ItemModSword("desSword", "Des Sword", JourneyToolMaterial.DES_SWORD);
+		sapphireSword = new ItemModSword("sapphireSword", "Sapphire Sword", JourneyToolMaterial.SAPPHIRE_SWORD);
+		gorbiteSword = new ItemModSword("gorbiteSword", "Gorbite Sword", JourneyToolMaterial.GORBITE_SWORD);
+		orbaditeSword = new ItemModSword("orbaditeSword", "Orbadite Sword", JourneyToolMaterial.ORBADITE_SWORD);
+		poisonSword = new ItemPoisionSword("poisonSword", "Poison Sword", JourneyToolMaterial.POISON_SWORD);
+		cloudSlicer = new ItemModSword("cloudSlicer", "Cloud Slicer", JourneyToolMaterial.CLOUD_SLICER);
+		dragonsTooth = new ItemModSword("dragonsTooth", "Dragons Tooth", JourneyToolMaterial.DRAGONS_TOOTH);
+		netherBeastSword = new ItemRegenSword("netherBeastSword", "Netherbeast Sword", JourneyToolMaterial.NETHER_BEAST_SWORD);
+		witheringBeastSword = new ItemWitherSword("witheringBeastSword", "Witheringbeast Sword", JourneyToolMaterial.WITHERING_BEAST_SWORD);
+		calciaSword = new ItemModSword("calciaSword", "Calcia Sword", JourneyToolMaterial.CALCIA_SWORD);
+		championsSword = new ItemModSword("championsSword", "Champions Sword", JourneyToolMaterial.CHAMPIONS_SWORD);
+		theWraith = new ItemModSword("theWraith", "The Wraith", JourneyToolMaterial.THE_WRAITH);
+		bubbleSword = new ItemBubbleSword("bubbleSword", "Bubble Sword", JourneyToolMaterial.BUBBLE_SWORD);
+		boilingBlade = new ItemFireSword("boilingBlade", "Boiling Blade", JourneyToolMaterial.BOILING_BLADE);
+		loggersSword = new ItemLoggersSword("loggersSword", "Loggers Sword", JourneyToolMaterial.LOGGERS_SWORD);
+		naturesBlade = new ItemStunWitherSword("naturesBlade", "Natures Blade", JourneyToolMaterial.NATURES_BLADE);
+		depthsDarksword = new ItemStunWitherSword("depthsDarksword", "Depths Darksword", JourneyToolMaterial.DEPTHS_DARKSWORD);
+		depthsSlayer = new ItemStunSword("depthsSlayer", "Depths Slayer", JourneyToolMaterial.DEPTHS_SLAYER);
+		snowShoveler = new ItemStunWitherSword("snowShoveler", "Snow Shoveler", JourneyToolMaterial.SNOW_SHOVELER);
+		frostySword = new ItemStunSword("frostySword", "Frosty Sword", JourneyToolMaterial.FROSTY_SWORD);
+		frostbittenSword = new ItemStunSword("frostbittenSword", "Frostbitten Sword", JourneyToolMaterial.FROSTBITTEN_SWORD);
+		treeHugger = new ItemPoisionSword("treeHugger", "Tree Hugger", JourneyToolMaterial.TREE_HUGGER);
+		coreMender = new ItemFireSword("coreMender", "Core Mender", JourneyToolMaterial.CORE_MENDER);
+		royalBlade = new ItemPoisionSword("royalBlade", "Royal Blade", JourneyToolMaterial.ROYAL_BLADE);
+		royalStabber = new ItemPoisionSword("royalStabber", "Royal Stabber", JourneyToolMaterial.ROYAL_STABBER);
+		rocSword = new ItemModSword("rocSword", "Roc Sword", JourneyToolMaterial.ROC_SWORD);
+		swordOfTheThunderbird = new ItemModSword("swordOfTheThunderbird", "Sword of the Thunderbird", JourneyToolMaterial.SWORD_THUNDERBIRD);
+		bloodwieldSword = new ItemHealthSword("bloodWieldSword", "Blood Wielder", JourneyToolMaterial.BLOODWIELD_SWORD, 1);
+		charredBlade = new ItemWitherSword("charredBlade", "Charred Blade", JourneyToolMaterial.CHARRED_BLADE);
+		sizzlerSword = new ItemFireWitherSword("sizzlerSword", "Sizzler Sword", JourneyToolMaterial.SIZZLER_SWORD);
+		fluffyBlade = new ItemNightvisionHealthSword("fluffyBlade", "Fluffy Blade", JourneyToolMaterial.FLUFFY_BLADE);
+		golemSword = new ItemModSword("golemSword", "Golem Sword", JourneyToolMaterial.GOLEM_SWORD);
+		thunderblade = new ItemPoisonHealthSword("thunderblade", "Thunder Blade", JourneyToolMaterial.THUNDERBLADE, 1.5F);
+		sentrySword = new ItemFireHealthSword("sentrySword", "Sentry Sword", JourneyToolMaterial.SENTRY_SWORD, 2);
+		crystalBlade = new ItemModSword("crystalBlade", "Crystal Blade", JourneyToolMaterial.CRYSTAL_BLADE);
+		starlightBlade = new ItemModSword("starlightBlade", "Starlight Blade", JourneyToolMaterial.STARLIGHT_BLADE);
+		koriteSword = new ItemModSword("koriteSword", "Korite Sword", JourneyToolMaterial.KORITE_SWORD);
+		storonSword = new ItemModSword("storonSword", "Storon Sword", JourneyToolMaterial.KORITE_SWORD);
+		mekyumSword = new ItemModSword("mekyumSword", "Mekyum Sword", JourneyToolMaterial.KORITE_SWORD);
+		pedalSword = new ItemModSword("pedalSword", "Pedal Sword", JourneyToolMaterial.PEDAL_SWORD);
+		withicBlade = new ItemModSword("withicBlade", "Withic Blade", JourneyToolMaterial.WITHIC_BLADE);
+		reinforcedCrystalSword = new ItemModSword("reinforcedCrystalSword", "Reinforced Crystal Sword", JourneyToolMaterial.RE_CRYSTAL_SWORD);
+		reinforcedStoneSword = new ItemModSword("reinforcedStoneSword", "Reinforced Stone Sword", JourneyToolMaterial.RE_STONE_SWORD);
+		terralightBlade = new ItemModSword("terralightBlade", "Terralight Blade", JourneyToolMaterial.TERRALIGHT_BLADE);
+		terranaSword = new ItemModSword("terranaSword", "Terrana Sword", JourneyToolMaterial.TERRANA_SWORD);
+		terrolicaSword = new ItemNightvisionSword("terrolicaSword", "Terrolica Sword", JourneyToolMaterial.TERROLICA_SWORD);
+		voliteSword = new ItemModSword("voliteSword", "Volite Sword", JourneyToolMaterial.VOLITE_SWORD);
+		kingsSword = new ItemFireHealthSword("kingsSword", "Kings Sword", JourneyToolMaterial.KINGS_SWORD, 1);
+		demonicSword = new ItemWitherSword("demonicSword", "Wither Sword", JourneyToolMaterial.DEMONIC_SWORD);
+		vinestrandBlade = new ItemPoisionSword("vinestrandBlade", "Vinestrand Blade", JourneyToolMaterial.VINESTRAND_BLADE);
+		darkPineSword = new ItemWitherSword("darkPineSword", "Dark Pine Sword", JourneyToolMaterial.DARK_PINE_SWORD);
 
-		healersBlade = new ItemHealthSword("healersBlade", "Healers Blade", EssenceToolMaterial.HEALERS_BLADE, 1);
-		terronicBlade = new ItemHealthSword("terronicBlade", "Terronic Blade", EssenceToolMaterial.TERRONIC_BLADE, 2);
+		healersBlade = new ItemHealthSword("healersBlade", "Healers Blade", JourneyToolMaterial.HEALERS_BLADE, 1);
+		terronicBlade = new ItemHealthSword("terronicBlade", "Terronic Blade", JourneyToolMaterial.TERRONIC_BLADE, 2);
 
-		developerSword = new ItemModSword("developerSword", "Creative Sword", EssenceToolMaterial.DEVELOPER_SWORD).setCreativeTab(JourneyTabs.util);
+		developerSword = new ItemModSword("developerSword", "Creative Sword", JourneyToolMaterial.DEVELOPER_SWORD).setCreativeTab(JourneyTabs.util);
 
 		slugSlime = new ItemMod("slugSlime", "Slug Slime");
 
@@ -1315,15 +1314,15 @@ public class JourneyItems {
 		iceWand = new ItemWand("iceWand", "Ice Wand", true, 5, 600, 8, false, EntityIceBall.class);
 		lightningWand = new ItemWand("lightningWand", "Lightning Wand", false, 10, 600, 8, false, EntityLightningBall.class);
 
-		hammerCreative = new ItemCreativeHammer("hammerCreative", "Hammer of Creative Spellbinding", EssenceToolMaterial.CREATIVE, false, EntityLightningBall.class);
-		earthenHammer = new ItemHammer("earthenHammer", "Earthen Hammer", EssenceToolMaterial.EARTHEN_HAMMER, false, EntityEarthen.class, false, true, 4, 4, 642);
-		flamingHammer = new ItemHammer("flamingHammer", "Flaming Hammer", EssenceToolMaterial.FLAMING_HAMMER, false, EntityFireBall.class, false, true, 10, 4, 1230);
-		nethicHammer = new ItemHammer("nethicHammer", "Nethic Hammer", EssenceToolMaterial.NETHIC_HAMMER, false, EntityFireBall.class, false, true, 8, 4, 825);
-		withicHammer = new ItemHammer("withicHammer", "Withic Hammer", EssenceToolMaterial.WITHIC_HAMMER, false, EntityWithic.class, false, true, 9, 4, 1230);
-		royalHammer = new ItemHammer("royalHammer", "Royal Hammer", EssenceToolMaterial.ROYAL_HAMMER, false, EntityFireBall.class, false, true, 12, 4, 1320);
-		overgrownHammer = new ItemHammer("overgrownHammer", "Overgrown Hammer", EssenceToolMaterial.OVERGROWN_HAMMER, false, EntityOvergrown.class, false, true, 12, 4, 1320);
-		rockyHammer = new ItemHammer("rockyHammer", "Rocky Hammer", EssenceToolMaterial.ROCKY_HAMMER, false, EntityRock.class, false, true, 6, 4, 2230);
-		crystalizedHammer = new ItemHammer("crystalizedHammer", "Crystalized Hammer", EssenceToolMaterial.CRYSTAL_HAMMER, false, EntityIceBall.class, false, true, 7, 4, 3320);
+		hammerCreative = new ItemCreativeHammer("hammerCreative", "Hammer of Creative Spellbinding", JourneyToolMaterial.CREATIVE, false, EntityLightningBall.class);
+		earthenHammer = new ItemHammer("earthenHammer", "Earthen Hammer", JourneyToolMaterial.EARTHEN_HAMMER, false, EntityEarthen.class, false, true, 4, 4, 642);
+		flamingHammer = new ItemHammer("flamingHammer", "Flaming Hammer", JourneyToolMaterial.FLAMING_HAMMER, false, EntityFireBall.class, false, true, 10, 4, 1230);
+		nethicHammer = new ItemHammer("nethicHammer", "Nethic Hammer", JourneyToolMaterial.NETHIC_HAMMER, false, EntityFireBall.class, false, true, 8, 4, 825);
+		withicHammer = new ItemHammer("withicHammer", "Withic Hammer", JourneyToolMaterial.WITHIC_HAMMER, false, EntityWithic.class, false, true, 9, 4, 1230);
+		royalHammer = new ItemHammer("royalHammer", "Royal Hammer", JourneyToolMaterial.ROYAL_HAMMER, false, EntityFireBall.class, false, true, 12, 4, 1320);
+		overgrownHammer = new ItemHammer("overgrownHammer", "Overgrown Hammer", JourneyToolMaterial.OVERGROWN_HAMMER, false, EntityOvergrown.class, false, true, 12, 4, 1320);
+		rockyHammer = new ItemHammer("rockyHammer", "Rocky Hammer", JourneyToolMaterial.ROCKY_HAMMER, false, EntityRock.class, false, true, 6, 4, 2230);
+		crystalizedHammer = new ItemHammer("crystalizedHammer", "Crystalized Hammer", JourneyToolMaterial.CRYSTAL_HAMMER, false, EntityIceBall.class, false, true, 7, 4, 3320);
 
 		chaosCannon = new ItemChaosCannon("chaosCannon", "Chaos Cannon", 6, 4, "Shoots a bouncing projectile");
 		rockLauncher = new ItemGun("rockLauncher", "Rock Launcher", 4, "Stuns mobs for 10 seconds", EntityRock.class);
@@ -1473,11 +1472,7 @@ public class JourneyItems {
 		sizzlingKnife = new ItemThrowable("sizzlingKnife", "Sizzling Knife", 6F, EntityFrostyPiercer.class);
 	}
 
-	@SubscribeEvent
-	public static void registerItems(RegistryEvent.Register<Item> event) {
-		for(int i = 0; i < items.size(); i++)
-			event.getRegistry().registerAll(items.get(i));
-	}
+	
 
 	public static ToolMaterial addToolMaterial(int uses, float efficiency, float dam, boolean breakable) {
 		return EnumHelper.addToolMaterial("tool", 3, breakable ? uses : -1, efficiency, dam, 30);

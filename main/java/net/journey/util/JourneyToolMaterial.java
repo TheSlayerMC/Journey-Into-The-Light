@@ -7,7 +7,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.slayer.api.SlayerAPI;
 
-public enum EssenceToolMaterial {
+public enum JourneyToolMaterial {
 
 	HELLSTONE_SWORD(JourneyItems.hellstoneSwordMat, JourneyItems.hellstoneIngot),
 	FLAIRIUM_SWORD(JourneyItems.flairiumSwordMat, JourneyItems.flairiumIngot),
@@ -124,19 +124,19 @@ public enum EssenceToolMaterial {
 	private Item repairItem;
 	private int harvestLevel = 0;
 
-	private EssenceToolMaterial(ToolMaterial toolMaterial, Item repair) {
+	private JourneyToolMaterial(ToolMaterial toolMaterial, Item repair) {
 		this.toolMaterial = toolMaterial;
 		this.repairItem = repair;
 		harvestLevel = 0;
 	}
 	
-	private EssenceToolMaterial(ToolMaterial toolMaterial, Item repair, int level) {
+	private JourneyToolMaterial(ToolMaterial toolMaterial, Item repair, int level) {
 		this.toolMaterial = toolMaterial;
 		this.repairItem = repair;
 		this.harvestLevel = level;
 	}
 
-	private EssenceToolMaterial(ToolMaterial toolMaterial) {
+	private JourneyToolMaterial(ToolMaterial toolMaterial) {
 		this(toolMaterial, null);
 	}
 

@@ -1,7 +1,7 @@
 package net.journey.util;
 
 
-public final class EssenceBossStatus {
+public final class JourneyBossStatus {
 
     public static float healthScale;
     public static int statusBarTime;

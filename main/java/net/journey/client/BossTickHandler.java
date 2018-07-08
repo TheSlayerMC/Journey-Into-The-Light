@@ -1,7 +1,7 @@
 package net.journey.client;
 
 import net.journey.entity.MobStats;
-import net.journey.util.EssenceBossStatus;
+import net.journey.util.JourneyBossStatus;
 import net.journey.util.GL11Helper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -34,11 +34,11 @@ public class BossTickHandler {
 	}
 
 	private void renderBossHealth() {
-		if(EssenceBossStatus.bar == null)return;
-		ResourceLocation r = set(EssenceBossStatus.bar);
+		if(JourneyBossStatus.bar == null)return;
+		ResourceLocation r = set(JourneyBossStatus.bar);
 
-		if(EssenceBossStatus.statusBarTime > 0 && mc.currentScreen == null) {
-			EssenceBossStatus.statusBarTime--;
+		if(JourneyBossStatus.statusBarTime > 0 && mc.currentScreen == null) {
+			JourneyBossStatus.statusBarTime--;
 			GuiIngame gig = mc.ingameGUI;
 			FontRenderer fontrenderer = this.mc.fontRenderer;
 			ScaledResolution scaledresolution = new ScaledResolution(mc);
@@ -47,7 +47,7 @@ public class BossTickHandler {
 			int finalBarLength = barLength + 1;
 			int barDisX = i / 2 - barLength / 2;
 			int barDisY = 6;
-			int health = (int)(EssenceBossStatus.healthScale * (finalBarLength));
+			int health = (int)(JourneyBossStatus.healthScale * (finalBarLength));
 			int barHeight = 10;
 			this.mc.getTextureManager().bindTexture(r);
 			gig.drawTexturedModalRect(barDisX, barDisY, 0, 0, health, barHeight);

@@ -55,7 +55,6 @@ public class BlockMod extends Block {
 
 	public BlockMod(EnumMaterialTypes blockType, String name, String finalName, CreativeTabs tab) {
 		super(blockType.getMaterial());
-		System.out.println(name);
 		LangRegistry.addBlock(name, finalName);
 		this.blockType = blockType;
 		setHardness(2.0F);
@@ -71,7 +70,6 @@ public class BlockMod extends Block {
 
 	public BlockMod(EnumMaterialTypes blockType, String name, String finalName, float hardness, CreativeTabs tab) {
 		super(blockType.getMaterial());
-		System.out.println(name);
 		LangRegistry.addBlock(name, finalName);
 		this.blockType = blockType;
 		rand = new Random();

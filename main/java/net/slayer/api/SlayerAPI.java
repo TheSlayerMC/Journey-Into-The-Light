@@ -48,7 +48,7 @@ public class SlayerAPI {
 
 	public static final String 
 			MOD_NAME = "Journey Into the Light", 
-			MOD_ID = "essence", 
+			MOD_ID = "journey", 
 			PREFIX = MOD_ID + ":", 
 			MOD_VERSION = "1.2"; 
 	public static final boolean 
@@ -318,7 +318,7 @@ public class SlayerAPI {
 				if (!boolAddedToInventory && itemstack.getItemDamage() == 0) {
 					player.dropItem(itemstack.getItem(), 1);
 					String itemName = itemstack.getUnlocalizedName();
-					ChatHandler.sendFormattedChat(player, TextFormatting.RED, "essence.fullinv", LangHelper.getFormattedText(itemName + ".name"));
+					ChatHandler.sendFormattedChat(player, TextFormatting.RED, "journey.fullinv", LangHelper.getFormattedText(itemName + ".name"));
 				}
 			}
 			return boolAddedToInventory;
@@ -339,7 +339,7 @@ public class SlayerAPI {
 			if (!boolAddedToInventory && itemstack.getItemDamage() == 0) {
 				player.dropItem(itemstack.getItem(), 1);
 				String itemName = itemstack.getUnlocalizedName();
-				ChatHandler.sendFormattedChat(player, TextFormatting.RED, "essence.fullinv", LangHelper.getFormattedText(itemName + ".name"));
+				ChatHandler.sendFormattedChat(player, TextFormatting.RED, "journey.fullinv", LangHelper.getFormattedText(itemName + ".name"));
 			} else {
 				player.sendContainerToPlayer(player.inventoryContainer);
 			}

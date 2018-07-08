@@ -133,22 +133,22 @@ public class LangRegistry {
 		writeToFile("item.record.raceShore.desc=Chris Geddes - Race Shore");
 		writeToFile("enchantment.Hot Touch=Hot Touch");
 		writeToFile("enchantment.Water Walker=Water Walker");
-		writeToFile("essence.knowledgeTable=Knowledge Table");
-		writeToFile("essence.summoningTable=Summoning Table");
-		writeToFile("essence.efficiency=Efficiency");
-		writeToFile("essence.usesRemaining=Uses Remaining");
-		writeToFile("essence.infinite=Infinite");
-		writeToFile("essence.uses=Uses");
-		writeToFile("essence.essence=Essence");
-		writeToFile("essence.dark=Dark Energy");
-		writeToFile("essence.rangedDamage=Ranged Damage");
-		writeToFile("essence.unbreakable=Unbreakable");
-		writeToFile("essence.hit=On hit");
-		writeToFile("essence.wither=Withers foe for");
-		writeToFile("essence.seconds=seconds");
-		writeToFile("essence.bossSpawn=Spawns boss");
-		writeToFile("essence.petSpawn=Spawns pet");
-		writeToFile("essence.time=Time: ");
+		writeToFile("journey.knowledgeTable=Knowledge Table");
+		writeToFile("journey.summoningTable=Summoning Table");
+		writeToFile("journey.efficiency=Efficiency");
+		writeToFile("journey.usesRemaining=Uses Remaining");
+		writeToFile("journey.infinite=Infinite");
+		writeToFile("journey.uses=Uses");
+		writeToFile("journey.essence=Essence");
+		writeToFile("journey.dark=Dark Energy");
+		writeToFile("journey.rangedDamage=Ranged Damage");
+		writeToFile("journey.unbreakable=Unbreakable");
+		writeToFile("journey.hit=On hit");
+		writeToFile("journey.wither=Withers foe for");
+		writeToFile("journey.seconds=seconds");
+		writeToFile("journey.bossSpawn=Spawns boss");
+		writeToFile("journey.petSpawn=Spawns pet");
+		writeToFile("journey.time=Time: ");
 		writeToFile("mage.deals=I have some great deals!");
 		writeToFile("mage.valuables=I've got some nice valuables!");
 		writeToFile("mage.greetings=Greetings, weary traveller!");
@@ -183,7 +183,7 @@ public class LangRegistry {
 	}
 
 	public static void addMob(String unloc, String finalName) {
-		mobUnloc.add("essence." + unloc);
+		mobUnloc.add(unloc);
 		mobFinal.add(finalName);
 	}
 

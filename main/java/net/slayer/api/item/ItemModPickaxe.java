@@ -4,7 +4,7 @@ import java.util.List;
 
 import net.journey.JourneyItems;
 import net.journey.JourneyTabs;
-import net.journey.util.EssenceToolMaterial;
+import net.journey.util.JourneyToolMaterial;
 import net.journey.util.LangHelper;
 import net.journey.util.LangRegistry;
 import net.minecraft.client.util.ITooltipFlag;
@@ -17,9 +17,9 @@ import net.slayer.api.SlayerAPI;
 
 public class ItemModPickaxe extends ItemPickaxe {
 	
-	protected EssenceToolMaterial mat;
+	protected JourneyToolMaterial mat;
 
-    public ItemModPickaxe(String name, String f, EssenceToolMaterial tool) {
+    public ItemModPickaxe(String name, String f, JourneyToolMaterial tool) {
         super(tool.getToolMaterial());
         LangRegistry.addItem(name, f);
 		mat = tool;

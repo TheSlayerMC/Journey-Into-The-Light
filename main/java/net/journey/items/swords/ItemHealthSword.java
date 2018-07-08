@@ -8,7 +8,7 @@ import net.journey.client.render.particles.EntityHellstoneFX;
 import net.journey.client.render.particles.EntityModFireFX;
 import net.journey.client.render.particles.EntityModLavaFX;
 import net.journey.client.render.particles.EntityPoisionFX;
-import net.journey.util.EssenceToolMaterial;
+import net.journey.util.JourneyToolMaterial;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
@@ -26,7 +26,7 @@ import net.slayer.api.item.ItemModSword;
 public class ItemHealthSword extends ItemModSword {
 
 	private float health;
-	public ItemHealthSword(String name, String f , EssenceToolMaterial toolMaterial, float health) {
+	public ItemHealthSword(String name, String f , JourneyToolMaterial toolMaterial, float health) {
 		super(name, f, toolMaterial);
 		this.health = health;
 	}

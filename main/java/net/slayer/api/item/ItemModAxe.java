@@ -5,7 +5,7 @@ import java.util.List;
 import net.journey.JourneyItems;
 import net.journey.JourneyTabs;
 import net.journey.client.ItemDescription;
-import net.journey.util.EssenceToolMaterial;
+import net.journey.util.JourneyToolMaterial;
 import net.journey.util.LangHelper;
 import net.journey.util.LangRegistry;
 import net.minecraft.block.material.Material;
@@ -20,9 +20,9 @@ import net.slayer.api.SlayerAPI;
 
 public class ItemModAxe extends ItemAxe {
 
-	protected EssenceToolMaterial mat;
+	protected JourneyToolMaterial mat;
 
-	public ItemModAxe(String name, String f, EssenceToolMaterial tool) {
+	public ItemModAxe(String name, String f, JourneyToolMaterial tool) {
         super(tool.getToolMaterial());
         LangRegistry.addItem(name, f);
 		mat = tool;
