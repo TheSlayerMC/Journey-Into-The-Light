@@ -839,7 +839,7 @@ public class JourneyItems {
 		sizzlingEye = new ItemMod("sizzlingEye", "Sizzling Eye");
 
 		sentryEye = new ItemSentryEye("sentryEye", "Sentry Eye");
-		boilingSkull = new ItemMod("boilingSkull", "Boiling Skull");
+		boilingSkull = new ItemMod("boilingskull", "Boiling Skull");
 		overgrownNatureBall = new ItemMod("overgrownNatureBall", "Overgrown Natureball");
 		overseeingTablet = new ItemMod("overseeingTablet", "Overseeing Tablet");
 		overseeingEye = new ItemMod("overseeingEye", "Overseeing Eye");
