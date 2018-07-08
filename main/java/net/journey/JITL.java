@@ -75,7 +75,6 @@ public class JITL {
 	public static void init(FMLInitializationEvent event) {
 		proxy.init(event);
 		proxy.clientInit(event);
-		proxy.registerModModels();
 	}
 
 	@EventHandler

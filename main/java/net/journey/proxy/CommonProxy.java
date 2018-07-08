@@ -56,7 +56,6 @@ public class CommonProxy {
 	public void clientPreInit() { }
 	public void registerSounds() { }
 	public void spawnParticle(EnumParticlesClasses particle, World worldObj, double x, double y, double z, boolean b) { }
-	public void registerModModels() { }
 	
 	public void preInit(FMLPreInitializationEvent event) {
 		Config.init(event);
@@ -88,17 +87,12 @@ public class CommonProxy {
 		GameRegistry.registerTileEntity(TileEntityNetherFurnace.class, "Nether Furnace");
 		GameRegistry.registerTileEntity(TileEntitySenterianPortal.class, "Senterian Labyrinth Portal");
 		GameRegistry.registerFuelHandler(new JourneyFuelHandler());
-		//SlayerAPI.addMapGen(MapGenBoilVillage.Start.class, "Boil Village");
-		//SlayerAPI.addMapGen(MapGenBoilBridge.Start.class, "Boil Bridge");
-		//StructureBoilBridgePieces.registerBoilFortressPieces();
-		//StructureBoilVillagePieces.registerVillagePieces();
 		MinecraftForge.addGrassSeed(new ItemStack(JourneyCrops.tomatoSeeds), 5);
 		FMLCommonHandler.instance().bus().register(new JourneySapphireSwordEvent());
 		FMLCommonHandler.instance().bus().register(new JourneySapphireEvent());
 		FMLCommonHandler.instance().bus().register(new JourneyDungeonEvent());
 		JourneyTabs.init();
 		//DimensionHelper.init();
-
 	}
 	
 	public void init(FMLInitializationEvent event) {

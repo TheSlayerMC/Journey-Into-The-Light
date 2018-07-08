@@ -37,40 +37,7 @@ public class ClientProxy extends CommonProxy {
 
 	@Override
 	public void clientPreInit() {
-		SlayerAPI.addBow(JourneyItems.flameBow, "flameBow");
-		SlayerAPI.addBow(JourneyItems.poisonBow, "poisonBow");
-		SlayerAPI.addBow(JourneyItems.darknessBow, "darknessBow");
-		SlayerAPI.addBow(JourneyItems.frozenBow, "frozenBow");
-		SlayerAPI.addBow(JourneyItems.staringBow, "staringBow");
-		SlayerAPI.addBow(JourneyItems.deathPiercerBow, "deathPiercerBow");
-		SlayerAPI.addBow(JourneyItems.fusionBow, "fusionBow");
-		SlayerAPI.addBow(JourneyItems.springBow, "springBow");
-		SlayerAPI.addBow(JourneyItems.starlightBow, "starlightBow");
-		SlayerAPI.addBow(JourneyItems.wastefulBow, "wastefulBow");
-		SlayerAPI.addBow(JourneyItems.flamingBow, "flamingBow");
-		SlayerAPI.addBow(JourneyItems.darkEnforcer, "darkEnforcer");
-		SlayerAPI.addBow(JourneyItems.depthsBow, "depthsBow");
-		SlayerAPI.addBow(JourneyItems.frostbittenBow, "frostbittenBow");
-		SlayerAPI.addBow(JourneyItems.frostyBow, "frostyBow");
-		SlayerAPI.addBow(JourneyItems.charredBow, "charredBow");
-		SlayerAPI.addBow(JourneyItems.fluffyBow, "fluffyBow");
-		SlayerAPI.addBow(JourneyItems.golemBow, "golemBow");
-		SlayerAPI.addBow(JourneyItems.loggersBow, "loggersBow");
-		SlayerAPI.addBow(JourneyItems.overgrownBow, "overgrownBow");
-		SlayerAPI.addBow(JourneyItems.overseerBow, "overseerBow");
-		SlayerAPI.addBow(JourneyItems.woodlandBow, "woodlandBow");
-		SlayerAPI.addBow(JourneyItems.rocsWing, "rocsWing");
-		SlayerAPI.addBow(JourneyItems.scaleBow, "scaleBow");
-		SlayerAPI.addBow(JourneyItems.mantleBow, "mantleBow");
-		SlayerAPI.addBow(JourneyItems.coreExpender, "coreExpender");
-		SlayerAPI.addBow(JourneyItems.royalBow, "royalBow");
-		SlayerAPI.addBow(JourneyItems.blazingBow, "blazingBow");
-		SlayerAPI.addBow(JourneyItems.darkTerraBow, "darkTerraBow");
-		SlayerAPI.addBow(JourneyItems.lavenderBow, "lavenderBow");
-		SlayerAPI.addBow(JourneyItems.terralightBow, "terralightBow");
-		SlayerAPI.addBow(JourneyItems.terrianBow, "terrianBow");
 		SlayerAPI.registerEvent(new RenderHandler());
-
 	}
 
 	@Override
@@ -79,11 +46,6 @@ public class ClientProxy extends CommonProxy {
 		SlayerAPI.registerEvent(new BossTickHandler());
 		SlayerAPI.registerEvent(new ClientTickEvent());
 		SlayerAPI.registerEvent(new PlayerStats());
-	}
-
-	@Override
-	public void registerModModels() {
-		
 	}
 
 	@Override

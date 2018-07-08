@@ -14,26 +14,26 @@ import net.journey.util.LangRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.renderer.ItemModelMesher;
 import net.minecraft.client.renderer.RenderItem;
-import net.minecraft.client.renderer.block.model.ModelBakery;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.command.ICommand;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
-import net.minecraftforge.client.event.ModelRegistryEvent;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.VillagerRegistry;
@@ -53,7 +53,7 @@ public class SlayerAPI {
 			MOD_VERSION = "1.2"; 
 	public static final boolean 
 			DEVMODE = true, 
-			BETA = false;
+			BETA = true;
 
 	public static void addRecipe(ItemStack i, Object... o) {
 		//GameRegistry.addRecipe(i, o);
@@ -78,9 +78,9 @@ public class SlayerAPI {
 		GL11.glPopMatrix();
 	}
 
-	public static void addBucket(Fluid fluid, ItemStack modBucket) {
+	//public static void addBucket(Fluid fluid, ItemStack modBucket) {
 		//FluidContainerRegistry.registerFluidContainer(new FluidContainerData(FluidRegistry.getFluidStack(fluid.getName(), FluidContainerRegistry.BUCKET_VOLUME), modBucket, new ItemStack(Items.bucket)));
-	}
+	//}
 	
 	public static void addMapGen(Class c, String s){
 		try {
@@ -153,7 +153,6 @@ public class SlayerAPI {
 	
 	public static void registerTerraniaMob(Class entityClass, String entityName, String finalN) {
 		registerMob(entityClass, entityName, finalN, 0x7813ff, 0xff58f5);
-		
 	}
 	
 	public static void registerNPC(Class entityClass, String entityName, String finalN) {
@@ -182,19 +181,19 @@ public class SlayerAPI {
 
     @SideOnly(Side.CLIENT)
 	public static void addChatMessageWithColour(EntityPlayer p, String colour, String str) {
-		//p.sendMessage(SlayerAPI.Colour.YELLOW + "[" + SlayerAPI.Colour.GOLD + MOD_NAME + SlayerAPI.Colour.YELLOW + "] " + colour + str);
+		p.sendMessage(new TextComponentString(SlayerAPI.Colour.YELLOW + "[" + SlayerAPI.Colour.GOLD + MOD_NAME + SlayerAPI.Colour.YELLOW + "] " + colour + str));
 	}
 
 	@SideOnly(Side.CLIENT)
 	public static void addChatMessage(EntityPlayer p, String str) {
-		//ChatComponentText ret = new ChatComponentText(str);
-		//p.addChatMessage(ret);
+		TextComponentString ret = new TextComponentString(str);
+		p.sendMessage(ret);
 	}
 	
 	@SideOnly(Side.CLIENT)
 	public static void addFormattedChatMessage(EntityPlayer p, String str) {
-		//ChatComponentText ret = new ChatComponentText(I18n.format(str, new Object[0]));
-		//p.addChatMessage(ret);
+		TextComponentString ret = new TextComponentString(I18n.format(str, new Object[0]));
+		p.sendMessage(ret);
 	}
 
 	private static final String	SECTION_SIGN	= "\u00a7";
@@ -227,35 +226,15 @@ public class SlayerAPI {
 		public static final String	RESET		= SECTION_SIGN + "r";
 	}
 
-	
-	/**
-	 * Not used in 1.8
-	 */
-	/**
-	@Deprecated
-	public static void registerItemRenderer(Item i, ItemRenderer ir) {
-		MinecraftForgeClient.registerItemRenderer(i, ir);
-	}
-
-	/**
-	 * Not used in 1.8
-	 */
-	/**
-	@Deprecated
-	public static void registerItemRenderer(Block b, ItemRenderer ir) {
-		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(b), ir);
-	}
-	*/
-
 	@SideOnly(Side.CLIENT)
 	public static void sendMessageToAll(String message, boolean showMod) {
-		//if(showMod) FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(SlayerAPI.Colour.DARK_AQUA + "[" + SlayerAPI.Colour.DARK_GREEN + MOD_NAME + SlayerAPI.Colour.DARK_AQUA + "] " + SlayerAPI.Colour.GREEN + message));
-		//else FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(SlayerAPI.Colour.GREEN + message));
+		if(showMod) FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(new TextComponentString(SlayerAPI.Colour.DARK_AQUA + "[" + SlayerAPI.Colour.DARK_GREEN + MOD_NAME + SlayerAPI.Colour.DARK_AQUA + "] " + SlayerAPI.Colour.GREEN + message));
+		else FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(new TextComponentString(SlayerAPI.Colour.GREEN + message));
 	}
 
 	@SideOnly(Side.CLIENT)
 	public static void sendContinuedMessageToAll(String message) {
-		//FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(SlayerAPI.Colour.GREEN + message));
+		FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(new TextComponentString(SlayerAPI.Colour.GREEN + message));
 	}
 
 	public static void removeCraftingRecipe(Item removed) {
@@ -376,47 +355,5 @@ public class SlayerAPI {
 			GL11Helper.scale(scale);
 			//renderItem.renderItemModelForEntity(stack, null, null);
 		}
-	}
-	
-	public static void addBow(Item bow, String name) {
-		//SlayerAPI.registerModelBakery(bow, new String[] {SlayerAPI.PREFIX + name, SlayerAPI.PREFIX + name + "_0", SlayerAPI.PREFIX + name + "_1", SlayerAPI.PREFIX  + name + "_2"});
-	}
-	
-	public static void addBowRender(Item bow, String name) {
-		registerItemRender(bow, 0, name);
-		registerItemRender(bow, 1, name + "_0");
-		registerItemRender(bow, 2, name + "_1");
-		registerItemRender(bow, 3, name + "_2");
-	}
-
-	public static void registerModelBakery(Item i, String names) {
-		ModelBakery.registerItemVariants(i, new ResourceLocation(names));
-	}
-
-	public static void registerModelBakery(Block b, String names) {
-		ModelBakery.registerItemVariants(SlayerAPI.toItem(b), new ResourceLocation(names));
-	}
-
-	public static void registerItemRender(Item item, int metadata, String itemName) {
-		ModelResourceLocation model = new ModelResourceLocation(item.getRegistryName(), "inventory");
-		ModelLoader.registerItemVariants(item, model);
-		ModelLoader.setCustomModelResourceLocation(item, metadata, model);
-
-	}
-	
-	public static void modelEvent(ModelRegistryEvent event) {
-	}
-
-	public static void registerBlockRender(Block block, int metadata, String blockName) {
-		registerItemRender(Item.getItemFromBlock(block), metadata, blockName);
-	}
-	
-	public static void registerBlockRender(Block block, String blockName) {
-		registerItemRender(Item.getItemFromBlock(block), 0, blockName);
-	}
-
-	public static void registerItemRender(Item item, String itemName) {
-		registerItemRender(item, 0, itemName);
-		
 	}
 }
