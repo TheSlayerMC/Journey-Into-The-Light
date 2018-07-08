@@ -8,10 +8,14 @@ import net.journey.event.message.MessagePowerBar;
 import net.journey.misc.EnchantmentHotTouch;
 import net.journey.misc.EnchantmentWaterWalk;
 import net.journey.proxy.CommonProxy;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.item.Item;
 import net.minecraft.world.DimensionType;
+import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
@@ -22,6 +26,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -82,6 +87,20 @@ public class JITL {
 		proxy.postInit(event);
 		proxy.registerSounds();
 	}
+	
+	@Mod.EventBusSubscriber
+	public static class RegistrationHandler {
+		
+		@SubscribeEvent
+		public static void registerItems(RegistryEvent.Register<Item> event) {
+			TestBlocks.registerItemBlocks(event.getRegistry());
+		}
+	
+    	@SubscribeEvent
+    	public static void registerBlocks(RegistryEvent.Register<Block> event) {
+    		TestBlocks.registerBlocks(event.getRegistry());
+    	}
+    }
 
 	@EventHandler
 	public static void serverStarting(FMLServerStartingEvent event) {
