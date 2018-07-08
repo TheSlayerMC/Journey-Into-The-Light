@@ -2,6 +2,7 @@ package net.slayer.api.block;
 
 import java.util.Random;
 
+import net.journey.JITL;
 import net.journey.JourneyBlocks;
 import net.journey.JourneyTabs;
 import net.journey.util.LangRegistry;
@@ -9,6 +10,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
@@ -81,6 +83,14 @@ public class BlockMod extends Block {
 		JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
 		JourneyBlocks.blocks.add(this);
 		setRegistryName(SlayerAPI.MOD_ID, name);
+	}
+	
+	public void registerItemModel(Item itemBlock) {
+		JITL.proxy.registerItemRenderer(itemBlock, 0, name);
+	}
+	
+	public Item createItemBlock() {
+		return new ItemBlock(this).setRegistryName(getRegistryName());
 	}
 
 	public Block addName(String name) {

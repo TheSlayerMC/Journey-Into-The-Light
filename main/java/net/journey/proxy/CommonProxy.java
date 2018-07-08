@@ -31,6 +31,7 @@ import net.journey.util.recipes.JourneyMiscRecipes;
 import net.journey.util.recipes.JourneySmeltingRecipes;
 import net.journey.util.recipes.JourneyWeaponRecipes;
 import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -41,6 +42,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.slayer.api.SlayerAPI;
@@ -98,6 +100,22 @@ public class CommonProxy {
 	public void init(FMLInitializationEvent event) {
 		GameRegistry.registerWorldGenerator(new WorldGenEssence(), 2);
 		SlayerAPI.registerEvent(new PlayerEvent());
+		
+	}
+	
+    @SubscribeEvent
+    public static void registerBlocks(RegistryEvent.Register<Block> event) {
+    	
+    }
+
+    @SubscribeEvent
+    public static void registerItems(RegistryEvent.Register<Item> event) {
+    }
+    
+	public void registerItemRenderer(Item itemBlock, int i, String name) {
+		
+	}
+	public void registerEntityRenderer(Entity entity, int i, String name) {
 		
 	}
 	
