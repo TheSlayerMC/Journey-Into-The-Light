@@ -88,7 +88,7 @@ public class JITL {
 		proxy.registerSounds();
 	}
 	
-	@Mod.EventBusSubscriber
+	/* @Mod.EventBusSubscriber
 	public static class RegistrationHandler {
 		
 		@SubscribeEvent
@@ -100,7 +100,7 @@ public class JITL {
     	public static void registerBlocks(RegistryEvent.Register<Block> event) {
     		JourneyBlocks.registerBlocks(event.getRegistry());
     	}
-    }
+    } */
 
 	@EventHandler
 	public static void serverStarting(FMLServerStartingEvent event) {

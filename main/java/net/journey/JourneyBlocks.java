@@ -75,7 +75,7 @@ public class JourneyBlocks {
 	public static ArrayList<String> blockName = new ArrayList<String>();
 	public static ArrayList<Block> blocks = new ArrayList<Block>();
 
-	public static BlockMod cobaltOre = new BlockModOre("cobaltOre", "cobalt Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
+	public static BlockMod cobaltOre; // = new BlockModOre("cobaltOre", "cobalt Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
 	public static Block rubyOre;
 	public static Block adamantineOre;
 	public static Block mythrilOre;
@@ -455,7 +455,7 @@ public class JourneyBlocks {
 	public static Block netherFurnace;
 	public static Block netherFurnaceActive;
 	
-	public static void registerBlocks(IForgeRegistry<Block> registry) {
+	/* public static void registerBlocks(IForgeRegistry<Block> registry) {
 		System.out.print("Fucking Blocks Loading");
 		registry.registerAll(
 				cobaltOre);
@@ -465,7 +465,7 @@ public class JourneyBlocks {
 	public static void registerItemBlocks(IForgeRegistry<Item> registry) {
 		registry.registerAll(
 				cobaltOre.createItemBlock());
-	}
+	} */
 
 
 	/**
@@ -473,7 +473,7 @@ public class JourneyBlocks {
 	public static Block boilingFurnaceActive = new BlockNetherFurnace("boilingFurnaceActive", "Boiling Furnace", true).setLightLevel(1).setCreativeTab(null);
 	 */
 
-	/** public static void init() {
+	 public static void init() {
 		cobaltOre = new BlockModOre("cobaltOre", "cobalt Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
 		rubyOre = new BlockModOre("rubyOre", "Ruby Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
 		adamantineOre = new BlockModOre("adamantineOre", "Adamantine Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
@@ -535,7 +535,7 @@ public class JourneyBlocks {
 	 	bradberryBush = new BlockModBush("bradberryBush", "Bradberry Bush", JourneyItems.bradberry, false);
 	 	tangleberryBush = new BlockModBush("tangleberryBush", "Tangleberry Bush", JourneyItems.tangleberry, false);
 	 	juiceberryBush = new BlockModBush("juiceberryBush", "Juiceberry Bush", JourneyItems.juiceberry, false);
-	 	bogberryBush = new BlockModBush("bogberryBush", "Bogberry Bush", JourneyItems.bogberry, false);
+	 	bogberryBush = new BlockModBush("bogberryBush", "Bogberry Bush", JourneyItems.bogberry, false); */
 
 		nethicanSludge = new BlockMod(EnumMaterialTypes.SLIME, "nethicanSludge", "Nethican Sludge", 1.0F);
 
@@ -667,7 +667,7 @@ public class JourneyBlocks {
 		/*Mod wastelandsStone = new BlockWastelandsStone("wastelandsStone");
 	 wastelandsGrass = new BlockModGrass((BlockMod)null, "wastelandsGrass", 2.0F);
 	 wastelandsLog = new BlockModLog("wastelandsLog");
-	 wastelandsBranches = new BlockModLeaves("wastelandsBranches", 2.0F).setStepSound(EnumMaterialTypes.WOOD.getSound());
+	 wastelandsBranches = new BlockModLeaves("wastelandsBranches", 2.0F).setStepSound(EnumMaterialTypes.WOOD.getSound()); */
 
 		witherPortal = new BlockWitherPortal("witherPortal", "Withanian Portal");
 		witherPortalFrame = new BlockWitherFrame("witherPortalFrame", "Withanian Portal Frame");
@@ -855,7 +855,7 @@ public class JourneyBlocks {
 
 		netherFurnace = new BlockNetherFurnace("netherFurnace", "Nethic Furnace", false);
 		netherFurnaceActive = new BlockNetherFurnace("netherFurnaceActive", "Nethic Furnace", true).setLightLevel(0.7F).setCreativeTab(null);
-	} */
+	} 
 
 
 	
