@@ -93,12 +93,12 @@ public class JITL {
 		
 		@SubscribeEvent
 		public static void registerItems(RegistryEvent.Register<Item> event) {
-			TestBlocks.registerItemBlocks(event.getRegistry());
+			JourneyBlocks.registerItemBlocks(event.getRegistry());
 		}
 	
     	@SubscribeEvent
     	public static void registerBlocks(RegistryEvent.Register<Block> event) {
-    		TestBlocks.registerBlocks(event.getRegistry());
+    		JourneyBlocks.registerBlocks(event.getRegistry());
     	}
     }
 

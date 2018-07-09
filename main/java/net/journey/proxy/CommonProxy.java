@@ -61,7 +61,7 @@ public class CommonProxy {
 	
 	public void preInit(FMLPreInitializationEvent event) {
 		Config.init(event);
-		JourneyBlocks.init();
+		//JourneyBlocks.init();
 		JourneyCrops.init();
 		JourneyItems.init();
 		EntityRegistry.init();
@@ -74,7 +74,7 @@ public class CommonProxy {
 		JourneyWeaponRecipes.init();
 		
 		//BiomeDictionary.addTypes(new BiomeHell(), Type.NETHER);
-		DimensionHelper.addSpawns();
+		//DimensionHelper.addSpawns();
 		
 		if(SlayerAPI.DEVMODE) LangRegistry.instance.register();
 		addOreDictionary();
