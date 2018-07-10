@@ -2,6 +2,7 @@ package net.slayer.api.item;
 
 import java.util.List;
 
+import net.journey.JITL;
 import net.journey.JourneyItems;
 import net.journey.JourneyTabs;
 import net.journey.client.ItemDescription;
@@ -24,12 +25,15 @@ import net.slayer.api.SlayerAPI;
 public class ItemMod extends Item {
 
 	protected int healAmount = 0;
+	protected String name;
 
 	public ItemMod(String name, String finalName){
 		this(name, finalName, JourneyTabs.items);
+		this.name = name;
 	}
 
 	public ItemMod(String name, String finalName, CreativeTabs tab){
+		this.name = name;
 		LangRegistry.addItem(name.toLowerCase(), finalName);
 		setUnlocalizedName(name.toLowerCase());
 		setCreativeTab(tab);
@@ -92,4 +96,8 @@ public class ItemMod extends Item {
 
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack i, List l) { }
+
+	public void registerItemModel() {
+		JITL.proxy.registerItemRenderer(this, 0, name);
+	}
 }
