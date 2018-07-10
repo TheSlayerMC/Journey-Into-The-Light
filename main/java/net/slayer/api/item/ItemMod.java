@@ -30,12 +30,12 @@ public class ItemMod extends Item {
 	}
 
 	public ItemMod(String name, String finalName, CreativeTabs tab){
-		LangRegistry.addItem(name, finalName);
-		setUnlocalizedName(name);
+		LangRegistry.addItem(name.toLowerCase(), finalName);
+		setUnlocalizedName(name.toLowerCase());
 		setCreativeTab(tab);
-		JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
+		JourneyItems.itemNames.add(SlayerAPI.PREFIX + name.toLowerCase());
 		JourneyItems.items.add(this);
-		setRegistryName(SlayerAPI.MOD_ID, name);
+		setRegistryName(SlayerAPI.MOD_ID, name.toLowerCase());
 	}
 
 	public ItemMod setHealAmount(int healAmount){
@@ -45,9 +45,9 @@ public class ItemMod extends Item {
 
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer player, EnumHand handIn) {
-		if(player.getHeldItemMainhand().getItem() instanceof ItemMod){
+		if(player.getHeldItemMainhand().getItem() instanceof ItemMod) {
 			if(healAmount != 0){
-				if(player.getHealth() < player.getMaxHealth()){
+				if(player.getHealth() < player.getMaxHealth()) {
 					player.heal(healAmount);
 					player.getHeldItemMainhand().shrink(1);
 				}
@@ -57,7 +57,7 @@ public class ItemMod extends Item {
 	}
 
 	public void spawnEntityIntoWorld(World w, EntityPlayer p, Entity entity, boolean magic, String sound, boolean damage, ItemStack item, int dam) {
-		if(!w.isRemote){
+		if(!w.isRemote) {
 			if(magic) w.spawnEntity(entity);
 		}
 		if(magic) {
@@ -67,7 +67,7 @@ public class ItemMod extends Item {
 	}
 
 	public void spawnEntityIntoWorld(World w, EntityPlayer p, Entity entity, String sound, boolean damage, ItemStack item, int dam) {
-		if(!w.isRemote){
+		if(!w.isRemote) {
 			w.spawnEntity(entity);
 			EnumSounds.playSound(sound, w, p);
 			if(damage) item.damageItem(dam, p);
