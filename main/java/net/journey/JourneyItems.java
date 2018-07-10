@@ -168,7 +168,7 @@ public class JourneyItems {
 	public static Item luniumIngot;
 	public static Item flairiumIngot;
 	public static Item ash;
-	public static Item sapphire;
+	public static ItemMod sapphire;
 	public static Item blazium;
 	public static Item enderilliumShard;
 	public static Item orbaditeIngot;
@@ -1477,5 +1477,8 @@ public class JourneyItems {
 	public static ToolMaterial addToolMaterial(int uses, float efficiency, float dam, boolean breakable) {
 		return EnumHelper.addToolMaterial("tool", 3, breakable ? uses : -1, efficiency, dam, 30);
 	}
-
+	
+	public static void registerItemModels() {
+		sapphire.registerItemModel();
+	}
 }

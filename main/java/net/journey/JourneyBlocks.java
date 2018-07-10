@@ -474,7 +474,7 @@ public class JourneyBlocks {
 	 */
 
 	 public static void init() {
-		cobaltOre = new BlockModOre("cobaltOre", "cobalt Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
+		cobaltOre = new BlockModOre("cobaltOre", "Cobalt Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
 		rubyOre = new BlockModOre("rubyOre", "Ruby Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
 		adamantineOre = new BlockModOre("adamantineOre", "Adamantine Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
 		mythrilOre = new BlockModOre("amethystOre", "Amethyst Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
@@ -855,8 +855,15 @@ public class JourneyBlocks {
 
 		netherFurnace = new BlockNetherFurnace("netherFurnace", "Nethic Furnace", false);
 		netherFurnaceActive = new BlockNetherFurnace("netherFurnaceActive", "Nethic Furnace", true).setLightLevel(0.7F).setCreativeTab(null);
-	} 
-
-
-	
+		
+	    }
+	 
+		public static void registerItemBlocks(IForgeRegistry<Item> registry) {
+			registry.registerAll(
+					cobaltOre.createItemBlock());
+		}
+		
+		public static void registerBlockModels() {
+			cobaltOre.registerItemModel(Item.getItemFromBlock(cobaltOre));
+		}
 }
