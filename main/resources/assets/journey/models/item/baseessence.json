@@ -1,7 +1,7 @@
 {
 	"parent": "builtin/generated",
 	"textures": {
-		"layer0": "journey:items/basejourney"
+		"layer0": "journey:items/baseessence"
 	},
 	"display": {
 		"thirdperson": {

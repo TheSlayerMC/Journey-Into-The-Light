@@ -1,7 +1,7 @@
 {
 	"parent": "builtin/generated",
 	"textures": {
-		"layer0": "journey:items/frozenLandsjourney"
+		"layer0": "journey:items/frozenlandsessence"
 	},
 	"display": {
 		"thirdperson": {

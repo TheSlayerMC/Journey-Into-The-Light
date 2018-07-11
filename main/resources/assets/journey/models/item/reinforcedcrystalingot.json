@@ -1,7 +1,7 @@
 {
 	"parent": "builtin/generated",
 	"textures": {
-		"layer0": "journey:items/reinforcedCrystalIngot"
+		"layer0": "journey:items/reinforcedcrystalingot"
 	},
 	"display": {
 		"thirdperson": {

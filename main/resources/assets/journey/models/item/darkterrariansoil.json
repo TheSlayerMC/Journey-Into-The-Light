@@ -1,7 +1,7 @@
 {
 	"parent": "builtin/generated",
 	"textures": {
-		"layer0": "journey:items/darkTerrarianSoil"
+		"layer0": "journey:items/darkterrariansoil"
 	},
 	"display": {
 		"thirdperson": {

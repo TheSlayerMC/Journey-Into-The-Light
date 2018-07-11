@@ -1,7 +1,7 @@
 {
 	"parent": "builtin/generated",
 	"textures": {
-		"layer0": "journey:items/journeyFeather"
+		"layer0": "journey:items/rocfeather"
 	},
 	"display": {
 		"thirdperson": {

@@ -1,7 +1,7 @@
 {
 	"parent": "builtin/generated",
 	"textures": {
-		"layer0": "journey:items/koriteIngot"
+		"layer0": "journey:items/koriteingot"
 	},
 	"display": {
 		"thirdperson": {
