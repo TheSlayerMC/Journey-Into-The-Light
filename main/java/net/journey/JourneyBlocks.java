@@ -859,6 +859,7 @@ public class JourneyBlocks {
 	    }
 	 
 		public static void registerItemBlocks(IForgeRegistry<Item> registry) {
+			System.out.print("Loading Journey ItemBlocks");
 			registry.registerAll(
 					cobaltOre.createItemBlock(), 
 					darkBrick.createItemBlock(), 
@@ -1164,9 +1165,11 @@ public class JourneyBlocks {
 					elderBlock.createItemBlock(),
 					netherFurnace.createItemBlock(),
 					netherFurnaceActive.createItemBlock());
+			System.out.print("Journey ItemBlocks loaded successfully");
 		}
 		
 		public static void registerBlockModels() {
+			System.out.print("Loading Journey Block Models");
 			cobaltOre.registerItemModel(SlayerAPI.toItem(cobaltOre)); 
 			darkBrick.registerItemModel(SlayerAPI.toItem(darkBrick)); 
 			flairiumOre.registerItemModel(SlayerAPI.toItem(flairiumOre));
@@ -1471,5 +1474,6 @@ public class JourneyBlocks {
 			elderBlock.registerItemModel(SlayerAPI.toItem(elderBlock));
 			netherFurnace.registerItemModel(SlayerAPI.toItem(netherFurnace));
 			netherFurnaceActive.registerItemModel(SlayerAPI.toItem(netherFurnaceActive));
+			System.out.print("Journey Block Models loaded successfully");
 		}
 }
