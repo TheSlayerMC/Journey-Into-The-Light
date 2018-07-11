@@ -1,0 +1,25 @@
+BEFORE RELEASE 1.12 List
+
+Items:
+Armour needs to be added back
+Axes need to be added back
+All items need to be tested and checked that no crash occures
+
+Blocks:
+All blocks need to be placed down and used if an interaction is avaliable to check crashes
+
+Rendering:
+Item JSONS need to written in the way of the new ones (refer to vanilla basic items using the parent "item/handheld" to assure of proper perspective in first and third person)
+
+Registrys:
+Crafting recipes are through JSONS now, need to look into that
+Sound registrys have to be done
+
+Dimensions:
+Make sure all work and run fine
+
+Entitys:
+Make sure all mobs are placed to prevent crashes on spawn
+
+CODE:
+Brock is to check through code and get rid of un useless classes and combine others such as food classes
