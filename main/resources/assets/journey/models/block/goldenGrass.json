@@ -1,9 +1,9 @@
 {
-	"parent": "essence:block/grass",
+	"parent": "journey:block/grass",
 	"textures": {
-		"particle": "essence:blocks/goldenGrass_top",
-		"bottom": "essence:blocks/goldenGrass_bottom",
-		"top": "essence:blocks/goldenGrass_top",
-		"side": "essence:blocks/goldenGrass_side"
+		"particle": "journey:blocks/goldenGrass_top",
+		"bottom": "journey:blocks/goldenGrass_bottom",
+		"top": "journey:blocks/goldenGrass_top",
+		"side": "journey:blocks/goldenGrass_side"
 	}
 }

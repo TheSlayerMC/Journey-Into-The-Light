@@ -1,9 +1,9 @@
 {
-	"parent": "essence:block/grass",
+	"parent": "journey:block/grass",
 	"textures": {
-		"particle": "essence:blocks/brittleIce",
-		"bottom": "essence:blocks/brittleIce_bottom",
-		"top": "essence:blocks/brittleIce_top",
-		"side": "essence:blocks/brittleIce_side"
+		"particle": "journey:blocks/brittleIce",
+		"bottom": "journey:blocks/brittleIce_bottom",
+		"top": "journey:blocks/brittleIce_top",
+		"side": "journey:blocks/brittleIce_side"
 	}
 }

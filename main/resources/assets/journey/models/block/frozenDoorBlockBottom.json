@@ -1,7 +1,7 @@
 {
     "parent": "block/door_bottom",
     "textures": {
-        "bottom": "essence:blocks/frozenDoorBlockBottom",
-        "top": "essence:blocks/frozenDoorBlockTop"
+        "bottom": "journey:blocks/frozenDoorBlockBottom",
+        "top": "journey:blocks/frozenDoorBlockTop"
     }
 }

@@ -1,7 +1,7 @@
-package net.essence.client;
+package net.journey.client;
 
-import net.essence.util.Config;
-import net.essence.util.Helper;
+import net.journey.util.Config;
+import net.journey.util.Helper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiChat;
@@ -25,7 +25,7 @@ public class PlayerStats {
 
 	@SubscribeEvent
 	public void renderEvent(RenderGameOverlayEvent event) {
-		mc.mcProfiler.startSection("Essence Stats");
+		mc.mcProfiler.startSection("journey Stats");
 		if(event.type == ElementType.EXPERIENCE || event.type == ElementType.HEALTH || event.type == ElementType.FOOD || event.type == ElementType.AIR || event.type == ElementType.ARMOR)
 			event.setCanceled(true);
 		if(!Minecraft.getMinecraft().playerController.shouldDrawHUD() || !event.isCanceled()) return;
@@ -39,7 +39,7 @@ public class PlayerStats {
 		EntityPlayer player = mc.thePlayer;
 		if(mc.currentScreen == null || mc.currentScreen instanceof GuiChat) {
 			if(!mc.gameSettings.showDebugInfo) {
-				if(SlayerAPI.BETA) mc.fontRendererObj.drawString(EnumChatFormatting.DARK_GREEN + "Essence of the Gods: " + EnumChatFormatting.DARK_RED + SlayerAPI.MOD_VERSION, 5, 5, 0);
+				if(SlayerAPI.BETA) mc.fontRendererObj.drawString(EnumChatFormatting.DARK_GREEN + "journey of the Gods: " + EnumChatFormatting.DARK_RED + SlayerAPI.MOD_VERSION, 5, 5, 0);
 				if(!player.capabilities.isCreativeMode) {
 					mc.getTextureManager().bindTexture(new ResourceLocation(SlayerAPI.PREFIX + "textures/gui/playerStats.png"));
 					float health = player.getHealth() * 5F;
@@ -76,15 +76,15 @@ public class PlayerStats {
 					GL11.glPopMatrix();
 					GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 
-					font.drawString(I18n.format("essence.healthbar", new Object[0]) + " " + health + "%", w - 10 + 20, h + 5, 0xFFFFFF);
-					font.drawString(I18n.format("essence.hungerbar", new Object[0]) + " " + hunger + "%" , w - 10 + 20, h + 23, 0xFFFFFF);
-					font.drawString(I18n.format("essence.armorbar", new Object[0]) + " " + armor + "%", w - 10 + 20, h + 36 + 23 + 18, 0xFFFFFF);
-					if(player.getAir() <= 0) font.drawString(I18n.format("essence.airbar", new Object[0]) + " " + "0%" , w - 10 + 20, h + 36 - 18 + 42, 0xFFFFFF);
-					else font.drawString(I18n.format("essence.airbar", new Object[0]) + " " + (int)air + "%" , w - 10 + 20, h + 36 - 18 + 42, 0xFFFFFF);
-					font.drawString(I18n.format("essence.xpbar", new Object[0]) + " " + mc.thePlayer.experienceLevel , w - 10 + 20, h + 41, 0xFFFFFF);
-					String st = I18n.format("essence.time", new Object[0]) + " " + formatTime(getWorldTime(mc));
+					font.drawString(I18n.format("journey.healthbar", new Object[0]) + " " + health + "%", w - 10 + 20, h + 5, 0xFFFFFF);
+					font.drawString(I18n.format("journey.hungerbar", new Object[0]) + " " + hunger + "%" , w - 10 + 20, h + 23, 0xFFFFFF);
+					font.drawString(I18n.format("journey.armorbar", new Object[0]) + " " + armor + "%", w - 10 + 20, h + 36 + 23 + 18, 0xFFFFFF);
+					if(player.getAir() <= 0) font.drawString(I18n.format("journey.airbar", new Object[0]) + " " + "0%" , w - 10 + 20, h + 36 - 18 + 42, 0xFFFFFF);
+					else font.drawString(I18n.format("journey.airbar", new Object[0]) + " " + (int)air + "%" , w - 10 + 20, h + 36 - 18 + 42, 0xFFFFFF);
+					font.drawString(I18n.format("journey.xpbar", new Object[0]) + " " + mc.thePlayer.experienceLevel , w - 10 + 20, h + 41, 0xFFFFFF);
+					String st = I18n.format("journey.time", new Object[0]) + " " + formatTime(getWorldTime(mc));
 					font.drawString(st, w - 10 + 3, h + 41 + 36 + 18, 0xFFFFFF);
-					font.drawString(I18n.format("essence.coords", new Object[0]) + " X: " + (int)player.posX + ", Y: " + (int)(player.posY - 1) + ", Z: " + (int)player.posZ, w - 10 + 5, h + 36 + 78, 0xFFFFFF);
+					font.drawString(I18n.format("journey.coords", new Object[0]) + " X: " + (int)player.posX + ", Y: " + (int)(player.posY - 1) + ", Z: " + (int)player.posZ, w - 10 + 5, h + 36 + 78, 0xFFFFFF);
 					GL11.glDisable(GL11.GL_BLEND);
 				}
 			}

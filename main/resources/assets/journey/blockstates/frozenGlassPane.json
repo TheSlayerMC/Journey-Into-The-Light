@@ -1,5 +1,5 @@
 {
 	"variants": {
-		"normal": { "model": "essence:frozenGlassPane"}
+		"normal": { "model": "journey:frozenGlassPane"}
 	}
 }

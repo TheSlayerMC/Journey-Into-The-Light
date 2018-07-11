@@ -1,8 +1,8 @@
 {
     "__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
     "textures": {
-        "particle": "essence:blocks/bogberryBush_empty",
-        "0": "essence:blocks/bogberryBush_empty"
+        "particle": "journey:blocks/bogberryBush_empty",
+        "0": "journey:blocks/bogberryBush_empty"
     },
     "elements": [
         {

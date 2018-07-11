@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": { "model": "essence:frozenBlooms" }
+        "normal": { "model": "journey:frozenBlooms" }
     }
 }

@@ -1,9 +1,9 @@
 {
-	"parent": "essence:block/grass",
+	"parent": "journey:block/grass",
 	"textures": {
-		"particle": "essence:blocks/terranianGrass_top",
-		"bottom": "essence:blocks/terranianDirt",
-		"top": "essence:blocks/terranianGrass_top",
-		"side": "essence:blocks/terranianGrass"
+		"particle": "journey:blocks/terranianGrass_top",
+		"bottom": "journey:blocks/terranianDirt",
+		"top": "journey:blocks/terranianGrass_top",
+		"side": "journey:blocks/terranianGrass"
 	}
 }

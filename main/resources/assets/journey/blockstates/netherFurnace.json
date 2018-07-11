@@ -1,8 +1,8 @@
 {
     "variants": {
-        "facing=north": { "model": "essence:netherFurnace" },
-        "facing=south": { "model": "essence:netherFurnace", "y": 180 },
-        "facing=west":  { "model": "essence:netherFurnace", "y": 270 },
-        "facing=east":  { "model": "essence:netherFurnace", "y": 90 }
+        "facing=north": { "model": "journey:netherFurnace" },
+        "facing=south": { "model": "journey:netherFurnace", "y": 180 },
+        "facing=west":  { "model": "journey:netherFurnace", "y": 270 },
+        "facing=east":  { "model": "journey:netherFurnace", "y": 90 }
     }
 }

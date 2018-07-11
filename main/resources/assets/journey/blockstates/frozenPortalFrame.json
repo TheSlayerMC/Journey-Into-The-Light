@@ -1,5 +1,5 @@
 {
 	"variants": {
-		"normal": { "model": "essence:frozenPortalFrame"}
+		"normal": { "model": "journey:frozenPortalFrame"}
 	}
 }

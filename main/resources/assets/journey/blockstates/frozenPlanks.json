@@ -1,5 +1,5 @@
 {
 	"variants": {
-		"normal": { "model": "essence:frozenPlanks"}
+		"normal": { "model": "journey:frozenPlanks"}
 	}
 }

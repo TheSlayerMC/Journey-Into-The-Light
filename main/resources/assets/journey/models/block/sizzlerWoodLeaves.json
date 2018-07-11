@@ -1,9 +1,9 @@
 {
-	"parent": "essence:block/grass",
+	"parent": "journey:block/grass",
 	"textures": {
-		"particle": "essence:blocks/sizzlerWoodLeaves_top",
-		"bottom": "essence:blocks/sizzlerWoodLeaves_bottom",
-		"top": "essence:blocks/sizzlerWoodLeaves_top",
-		"side": "essence:blocks/sizzlerWoodLeaves_side"
+		"particle": "journey:blocks/sizzlerWoodLeaves_top",
+		"bottom": "journey:blocks/sizzlerWoodLeaves_bottom",
+		"top": "journey:blocks/sizzlerWoodLeaves_top",
+		"side": "journey:blocks/sizzlerWoodLeaves_side"
 	}
 }

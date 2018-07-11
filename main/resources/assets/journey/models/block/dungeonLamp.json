@@ -1,6 +1,6 @@
 {
 	"parent": "block/cube_all",
 	"textures": {
-		"all": "essence:blocks/dungeonLamp"
+		"all": "journey:blocks/dungeonLamp"
 	}
 }

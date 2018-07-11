@@ -1,8 +1,8 @@
 {
 	"variants": {
-		"age=0": { "model": "essence:crakeBulbCropStage_0" },
-		"age=1": { "model": "essence:crakeBulbCropStage_1" },
-		"age=2": { "model": "essence:crakeBulbCropStage_2" },
-		"age=3": { "model": "essence:crakeBulbCropStage_3" }
+		"age=0": { "model": "journey:crakeBulbCropStage_0" },
+		"age=1": { "model": "journey:crakeBulbCropStage_1" },
+		"age=2": { "model": "journey:crakeBulbCropStage_2" },
+		"age=3": { "model": "journey:crakeBulbCropStage_3" }
 	}
 }

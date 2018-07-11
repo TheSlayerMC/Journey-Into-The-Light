@@ -1,10 +1,10 @@
 {
     "__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
     "textures": {
-        "particle": "essence:blocks/trophySoul",
-        "0": "essence:blocks/trophySoul",
-        "1": "essence:blocks/trophySoulFront",
-        "2": "essence:blocks/trophySoulSide"
+        "particle": "journey:blocks/trophySoul",
+        "0": "journey:blocks/trophySoul",
+        "1": "journey:blocks/trophySoulFront",
+        "2": "journey:blocks/trophySoulSide"
     },
     "elements": [
         {

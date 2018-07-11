@@ -1,8 +1,8 @@
 {
 	"parent": "block/stairs",
 	"textures": {
-		"bottom": "essence:blocks/workshopStone",
-		"top": "essence:blocks/workshopStone",
-		"side": "essence:blocks/workshopStone"
+		"bottom": "journey:blocks/workshopStone",
+		"top": "journey:blocks/workshopStone",
+		"side": "journey:blocks/workshopStone"
 	}
 }

@@ -2,8 +2,8 @@
     "__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
 "ambientocclusion": false,
     "textures": {
-        "particle": "essence:blocks/bleedheartFruit_stage2",
-        "0": "essence:blocks/bleedheartFruit_stage2"
+        "particle": "journey:blocks/bleedheartFruit_stage2",
+        "0": "journey:blocks/bleedheartFruit_stage2"
     },
     "elements": [
         {

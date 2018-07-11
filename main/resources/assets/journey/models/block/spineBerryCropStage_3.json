@@ -1,6 +1,6 @@
 {
 	"parent": "block/crop",
 	"textures": {
-		"crop": "essence:blocks/spineBerryCrop_3"
+		"crop": "journey:blocks/spineBerryCrop_3"
 	}
 }

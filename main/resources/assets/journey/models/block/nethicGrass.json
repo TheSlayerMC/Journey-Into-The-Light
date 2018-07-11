@@ -1,9 +1,9 @@
 {
-	"parent": "essence:block/grass",
+	"parent": "journey:block/grass",
 	"textures": {
-		"particle": "essence:blocks/nethicGrass_top",
+		"particle": "journey:blocks/nethicGrass_top",
 		"bottom": "minecraft:blocks/netherrack",
-		"top": "essence:blocks/nethicGrass_top",
-		"side": "essence:blocks/nethicGrass_side"
+		"top": "journey:blocks/nethicGrass_top",
+		"side": "journey:blocks/nethicGrass_side"
 	}
 }

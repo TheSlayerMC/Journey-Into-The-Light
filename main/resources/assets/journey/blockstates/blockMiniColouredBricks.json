@@ -1,17 +1,17 @@
 {
     "variants": {
-        "variant=black": { "model": "essence:blackMiniColouredBrick" },
-        "variant=blue": { "model": "essence:blueMiniColouredBrick" },
-        "variant=brown": { "model": "essence:brownMiniColouredBrick" },
-		"variant=cyan": { "model": "essence:cyanMiniColouredBrick" },
-		"variant=gray": { "model": "essence:grayMiniColouredBrick" },
-		"variant=lime": { "model": "essence:limeMiniColouredBrick" },
-		"variant=magenta": { "model": "essence:magentaMiniColouredBrick" },
-		"variant=orange": { "model": "essence:orangeMiniColouredBrick" },
-		"variant=pink": { "model": "essence:pinkMiniColouredBrick" },
-		"variant=purple": { "model": "essence:purpleMiniColouredBrick" },
-	    "variant=red": { "model": "essence:redMiniColouredBrick" },
-		"variant=white": { "model": "essence:whiteMiniColouredBrick" },
-		"variant=yellow": { "model": "essence:yellowMiniColouredBrick" }
+        "variant=black": { "model": "journey:blackMiniColouredBrick" },
+        "variant=blue": { "model": "journey:blueMiniColouredBrick" },
+        "variant=brown": { "model": "journey:brownMiniColouredBrick" },
+		"variant=cyan": { "model": "journey:cyanMiniColouredBrick" },
+		"variant=gray": { "model": "journey:grayMiniColouredBrick" },
+		"variant=lime": { "model": "journey:limeMiniColouredBrick" },
+		"variant=magenta": { "model": "journey:magentaMiniColouredBrick" },
+		"variant=orange": { "model": "journey:orangeMiniColouredBrick" },
+		"variant=pink": { "model": "journey:pinkMiniColouredBrick" },
+		"variant=purple": { "model": "journey:purpleMiniColouredBrick" },
+	    "variant=red": { "model": "journey:redMiniColouredBrick" },
+		"variant=white": { "model": "journey:whiteMiniColouredBrick" },
+		"variant=yellow": { "model": "journey:yellowMiniColouredBrick" }
     }
 }

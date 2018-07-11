@@ -1,7 +1,7 @@
 {
     "textures": {
-        "particle": "essence:blocks/eucaPortal",
-        "portal": "essence:blocks/eucaPortal"
+        "particle": "journey:blocks/eucaPortal",
+        "portal": "journey:blocks/eucaPortal"
     },
     "elements": [
         {   "from": [ 0, 0, 6 ],

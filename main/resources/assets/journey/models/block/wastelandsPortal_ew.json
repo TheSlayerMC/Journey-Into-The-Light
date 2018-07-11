@@ -1,7 +1,7 @@
 {
     "textures": {
-        "particle": "essence:blocks/wastelandsPortal",
-        "portal": "essence:blocks/wastelandsPortal"
+        "particle": "journey:blocks/wastelandsPortal",
+        "portal": "journey:blocks/wastelandsPortal"
     },
     "elements": [
         {   "from": [ 6, 0, 0 ],

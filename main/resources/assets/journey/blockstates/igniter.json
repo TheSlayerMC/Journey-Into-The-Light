@@ -1,5 +1,5 @@
 {
 	"variants": {
-		"normal": { "model": "essence:igniter"}
+		"normal": { "model": "journey:igniter"}
 	}
 }

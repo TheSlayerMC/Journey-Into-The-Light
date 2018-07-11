@@ -1,6 +1,6 @@
 {
 	"parent": "block/cross",
 	"textures": {
-		"cross": "essence:blocks/hellThornBottom"
+		"cross": "journey:blocks/hellThornBottom"
 	}
 }

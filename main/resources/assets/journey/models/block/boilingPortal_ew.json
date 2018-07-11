@@ -1,7 +1,7 @@
 {
     "textures": {
-        "particle": "essence:blocks/boilingPortal",
-        "portal": "essence:blocks/boilingPortal"
+        "particle": "journey:blocks/boilingPortal",
+        "portal": "journey:blocks/boilingPortal"
     },
     "elements": [
         {   "from": [ 6, 0, 0 ],

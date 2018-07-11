@@ -1,6 +1,6 @@
 {
     "parent": "block/fence_nse",
     "textures": {
-        "texture": "essence:blocks/workshopStone"
+        "texture": "journey:blocks/workshopStone"
     }
 }

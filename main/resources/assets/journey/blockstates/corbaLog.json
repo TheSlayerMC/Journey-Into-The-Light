@@ -1,5 +1,5 @@
 {
 	"variants": {
-		"normal": { "model": "essence:corbaLog"}
+		"normal": { "model": "journey:corbaLog"}
 	}
 }

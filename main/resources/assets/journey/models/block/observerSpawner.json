@@ -1,6 +1,6 @@
 {
 	"parent": "block/cube_all",
 	"textures": {
-		"all": "essence:blocks/brisonSpawner"
+		"all": "journey:blocks/brisonSpawner"
 	}
 }

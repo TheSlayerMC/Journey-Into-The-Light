@@ -1,5 +1,5 @@
 {
 	"variants": {
-		"normal": { "model": "essence:hellstoneBlock"}
+		"normal": { "model": "journey:hellstoneBlock"}
 	}
 }

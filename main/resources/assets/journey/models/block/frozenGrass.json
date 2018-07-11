@@ -1,9 +1,9 @@
 {
-	"parent": "essence:block/grass",
+	"parent": "journey:block/grass",
 	"textures": {
-		"particle": "essence:blocks/frozenDirt",
-		"bottom": "essence:blocks/frozenDirt",
-		"top": "essence:blocks/frozenGrass_top",
-		"side": "essence:blocks/frozenGrass_side"
+		"particle": "journey:blocks/frozenDirt",
+		"bottom": "journey:blocks/frozenDirt",
+		"top": "journey:blocks/frozenGrass_top",
+		"side": "journey:blocks/frozenGrass_side"
 	}
 }

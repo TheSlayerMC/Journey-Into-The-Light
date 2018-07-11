@@ -1,9 +1,9 @@
 {
-	"parent": "essence:block/grass",
+	"parent": "journey:block/grass",
 	"textures": {
-		"particle": "essence:blocks/boilingLog_top",
-		"bottom": "essence:blocks/boilingLog_top",
-		"top": "essence:blocks/boilingLog_top",
-		"side": "essence:blocks/boilingLog_side"
+		"particle": "journey:blocks/boilingLog_top",
+		"bottom": "journey:blocks/boilingLog_top",
+		"top": "journey:blocks/boilingLog_top",
+		"side": "journey:blocks/boilingLog_side"
 	}
 }

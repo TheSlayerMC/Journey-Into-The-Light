@@ -1,8 +1,8 @@
 {
     "variants": {
-        "facing=north": { "model": "essence:frozenChest" },
-        "facing=south": { "model": "essence:frozenChest", "y": 180 },
-        "facing=west":  { "model": "essence:frozenChest", "y": 270 },
-        "facing=east":  { "model": "essence:frozenChest", "y": 90 }
+        "facing=north": { "model": "journey:frozenChest" },
+        "facing=south": { "model": "journey:frozenChest", "y": 180 },
+        "facing=west":  { "model": "journey:frozenChest", "y": 270 },
+        "facing=east":  { "model": "journey:frozenChest", "y": 90 }
     }
 }

@@ -1,6 +1,6 @@
 {
     "variants": {
-        "axis=z": { "model": "essence:boilingPortal_ew" },
-        "axis=x": { "model": "essence:boilingPortal_ns" }
+        "axis=z": { "model": "journey:boilingPortal_ew" },
+        "axis=x": { "model": "journey:boilingPortal_ns" }
     }
 }

@@ -1,5 +1,5 @@
 {
 	"variants": {
-		"normal": { "model": "essence:dungeonLamp"}
+		"normal": { "model": "journey:dungeonLamp"}
 	}
 }

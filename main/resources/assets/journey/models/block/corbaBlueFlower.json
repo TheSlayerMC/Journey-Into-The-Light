@@ -1,6 +1,6 @@
 {
 	"parent": "block/cross",
 	"textures": {
-		"cross": "essence:blocks/corbaBlueFlower"
+		"cross": "journey:blocks/corbaBlueFlower"
 	}
 }

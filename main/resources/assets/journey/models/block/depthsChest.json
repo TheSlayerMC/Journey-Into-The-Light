@@ -1,8 +1,8 @@
 {
     "parent": "block/orientable",
     "textures": {
-        "top": "essence:blocks/depthsChest_top",
-        "front": "essence:blocks/depthsChest_front",
-        "side": "essence:blocks/depthsChest_side"
+        "top": "journey:blocks/depthsChest_top",
+        "front": "journey:blocks/depthsChest_front",
+        "side": "journey:blocks/depthsChest_side"
     }
 }

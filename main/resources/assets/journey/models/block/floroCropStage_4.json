@@ -1,6 +1,6 @@
 {
 	"parent": "block/crop",
 	"textures": {
-		"crop": "essence:blocks/floroCropStage_4"
+		"crop": "journey:blocks/floroCropStage_4"
 	}
 }

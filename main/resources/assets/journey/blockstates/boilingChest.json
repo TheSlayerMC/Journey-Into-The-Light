@@ -1,8 +1,8 @@
 {
     "variants": {
-        "facing=north": { "model": "essence:boilingChest" },
-        "facing=south": { "model": "essence:boilingChest", "y": 180 },
-        "facing=west":  { "model": "essence:boilingChest", "y": 270 },
-        "facing=east":  { "model": "essence:boilingChest", "y": 90 }
+        "facing=north": { "model": "journey:boilingChest" },
+        "facing=south": { "model": "journey:boilingChest", "y": 180 },
+        "facing=west":  { "model": "journey:boilingChest", "y": 270 },
+        "facing=east":  { "model": "journey:boilingChest", "y": 90 }
     }
 }

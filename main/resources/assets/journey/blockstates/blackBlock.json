@@ -1,5 +1,5 @@
 {
 	"variants": {
-		"normal": { "model": "essence:blackBlock"}
+		"normal": { "model": "journey:blackBlock"}
 	}
 }

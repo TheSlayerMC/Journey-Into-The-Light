@@ -1,5 +1,5 @@
 {
 	"variants": {
-		"normal": { "model": "essence:storonBlock"}
+		"normal": { "model": "journey:storonBlock"}
 	}
 }

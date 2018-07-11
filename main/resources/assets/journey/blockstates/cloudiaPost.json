@@ -1,20 +1,20 @@
 {
     "variants": {
-        "east=false,north=false,south=false,west=false": { "model": "essence:cloudiaPost" },
-        "east=false,north=true,south=false,west=false": { "model": "essence:cloudiaPost_n", "uvlock": true },
-        "east=true,north=false,south=false,west=false": { "model": "essence:cloudiaPost_n", "y": 90, "uvlock": true },
-        "east=false,north=false,south=true,west=false": { "model": "essence:cloudiaPost_n", "y": 180, "uvlock": true },
-        "east=false,north=false,south=false,west=true": { "model": "essence:cloudiaPost_n", "y": 270, "uvlock": true },
-        "east=true,north=true,south=false,west=false": { "model": "essence:cloudiaPost_ne", "uvlock": true },
-        "east=true,north=false,south=true,west=false": { "model": "essence:cloudiaPost_ne", "y": 90, "uvlock": true },
-        "east=false,north=false,south=true,west=true": { "model": "essence:cloudiaPost_ne", "y": 180, "uvlock": true },
-        "east=false,north=true,south=false,west=true": { "model": "essence:cloudiaPost_ne", "y": 270, "uvlock": true },
-        "east=false,north=true,south=true,west=false": { "model": "essence:cloudiaPost_ns", "uvlock": true },
-        "east=true,north=false,south=false,west=true": { "model": "essence:cloudiaPost_ns", "y": 90, "uvlock": true },
-        "east=true,north=true,south=true,west=false": { "model": "essence:cloudiaPost_nse", "uvlock": true },
-        "east=true,north=false,south=true,west=true": { "model": "essence:cloudiaPost_nse", "y": 90, "uvlock": true },
-        "east=false,north=true,south=true,west=true": { "model": "essence:cloudiaPost_nse", "y": 180, "uvlock": true },
-        "east=true,north=true,south=false,west=true": { "model": "essence:cloudiaPost_nse", "y": 270, "uvlock": true },
-        "east=true,north=true,south=true,west=true": { "model": "essence:cloudiaPost_nsew", "uvlock": true }
+        "east=false,north=false,south=false,west=false": { "model": "journey:cloudiaPost" },
+        "east=false,north=true,south=false,west=false": { "model": "journey:cloudiaPost_n", "uvlock": true },
+        "east=true,north=false,south=false,west=false": { "model": "journey:cloudiaPost_n", "y": 90, "uvlock": true },
+        "east=false,north=false,south=true,west=false": { "model": "journey:cloudiaPost_n", "y": 180, "uvlock": true },
+        "east=false,north=false,south=false,west=true": { "model": "journey:cloudiaPost_n", "y": 270, "uvlock": true },
+        "east=true,north=true,south=false,west=false": { "model": "journey:cloudiaPost_ne", "uvlock": true },
+        "east=true,north=false,south=true,west=false": { "model": "journey:cloudiaPost_ne", "y": 90, "uvlock": true },
+        "east=false,north=false,south=true,west=true": { "model": "journey:cloudiaPost_ne", "y": 180, "uvlock": true },
+        "east=false,north=true,south=false,west=true": { "model": "journey:cloudiaPost_ne", "y": 270, "uvlock": true },
+        "east=false,north=true,south=true,west=false": { "model": "journey:cloudiaPost_ns", "uvlock": true },
+        "east=true,north=false,south=false,west=true": { "model": "journey:cloudiaPost_ns", "y": 90, "uvlock": true },
+        "east=true,north=true,south=true,west=false": { "model": "journey:cloudiaPost_nse", "uvlock": true },
+        "east=true,north=false,south=true,west=true": { "model": "journey:cloudiaPost_nse", "y": 90, "uvlock": true },
+        "east=false,north=true,south=true,west=true": { "model": "journey:cloudiaPost_nse", "y": 180, "uvlock": true },
+        "east=true,north=true,south=false,west=true": { "model": "journey:cloudiaPost_nse", "y": 270, "uvlock": true },
+        "east=true,north=true,south=true,west=true": { "model": "journey:cloudiaPost_nsew", "uvlock": true }
 	}
 }

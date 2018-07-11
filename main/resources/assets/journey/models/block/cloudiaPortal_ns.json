@@ -1,7 +1,7 @@
 {
     "textures": {
-        "particle": "essence:blocks/cloudiaPortal",
-        "portal": "essence:blocks/cloudiaPortal"
+        "particle": "journey:blocks/cloudiaPortal",
+        "portal": "journey:blocks/cloudiaPortal"
     },
     "elements": [
         {   "from": [ 0, 0, 6 ],

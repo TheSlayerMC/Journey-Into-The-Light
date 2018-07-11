@@ -1,6 +1,6 @@
 {
     "variants": {
-        "axis=z": { "model": "essence:eucaPortal_ew" },
-        "axis=x": { "model": "essence:eucaPortal_ns" }
+        "axis=z": { "model": "journey:eucaPortal_ew" },
+        "axis=x": { "model": "journey:eucaPortal_ns" }
     }
 }

@@ -1,6 +1,6 @@
 {
     "parent": "block/cross",
     "textures": {
-        "cross": "essence:blocks/eucaTallFlowers"
+        "cross": "journey:blocks/eucaTallFlowers"
     }
 }

@@ -1,8 +1,8 @@
 {
     "ambientocclusion": false,
     "textures": {
-        "particle": "essence:blocks/terranianVine",
-        "terranianVine": "essence:blocks/terranianVine"
+        "particle": "journey:blocks/terranianVine",
+        "terranianVine": "journey:blocks/terranianVine"
     },
     "elements": [
         {   "from": [ 15.2, 0, 0 ],

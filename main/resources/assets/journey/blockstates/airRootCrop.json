@@ -1,9 +1,9 @@
 {
 	"variants": {
-		"age=0": { "model": "essence:airRoot_stage0" },
-		"age=1": { "model": "essence:airRoot_stage1" },
-		"age=2": { "model": "essence:airRoot_stage2" },
-		"age=3": { "model": "essence:airRoot_stage3" },
-		"age=4": { "model": "essence:airRoot_stage4" }
+		"age=0": { "model": "journey:airRoot_stage0" },
+		"age=1": { "model": "journey:airRoot_stage1" },
+		"age=2": { "model": "journey:airRoot_stage2" },
+		"age=3": { "model": "journey:airRoot_stage3" },
+		"age=4": { "model": "journey:airRoot_stage4" }
 	}
 }

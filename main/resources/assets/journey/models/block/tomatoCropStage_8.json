@@ -1,6 +1,6 @@
 {
 	"parent": "block/crop",
 	"textures": {
-		"crop": "essence:blocks/tomatoCrop_8"
+		"crop": "journey:blocks/tomatoCrop_8"
 	}
 }

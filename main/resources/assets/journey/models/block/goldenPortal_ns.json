@@ -1,7 +1,7 @@
 {
     "textures": {
-        "particle": "essence:blocks/goldenPortal",
-        "portal": "essence:blocks/goldenPortal"
+        "particle": "journey:blocks/goldenPortal",
+        "portal": "journey:blocks/goldenPortal"
     },
     "elements": [
         {   "from": [ 0, 0, 6 ],

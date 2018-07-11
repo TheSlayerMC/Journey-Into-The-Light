@@ -1,8 +1,8 @@
 {
     "variants": {
-        "facing=north": { "model": "essence:elderBlock" },
-        "facing=south": { "model": "essence:elderBlock", "y": 180 },
-        "facing=west":  { "model": "essence:elderBlock", "y": 270 },
-        "facing=east":  { "model": "essence:elderBlock", "y": 90 }
+        "facing=north": { "model": "journey:elderBlock" },
+        "facing=south": { "model": "journey:elderBlock", "y": 180 },
+        "facing=west":  { "model": "journey:elderBlock", "y": 270 },
+        "facing=east":  { "model": "journey:elderBlock", "y": 90 }
     }
 }

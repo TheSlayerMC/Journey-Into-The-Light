@@ -1,7 +1,7 @@
 {
     "parent": "block/pane_sw",
     "textures": {
-        "edge": "blocks/essence:blocks/boilGate",
-        "pane": "blocks/essence:blocks/boilGate"
+        "edge": "blocks/journey:blocks/boilGate",
+        "pane": "blocks/journey:blocks/boilGate"
     }
 }

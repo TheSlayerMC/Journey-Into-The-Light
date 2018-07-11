@@ -1,7 +1,7 @@
 {
     "textures": {
-        "particle": "essence:blocks/depthsPortal",
-        "portal": "essence:blocks/depthsPortal"
+        "particle": "journey:blocks/depthsPortal",
+        "portal": "journey:blocks/depthsPortal"
     },
     "elements": [
         {   "from": [ 6, 0, 0 ],

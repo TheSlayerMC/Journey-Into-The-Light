@@ -1,5 +1,5 @@
 {
 	"variants": {
-		"normal": { "model": "essence:boilPortalFrame"}
+		"normal": { "model": "journey:boilPortalFrame"}
 	}
 }

@@ -1,5 +1,5 @@
 {
 	"variants": {
-		"normal": { "model": "essence:luniumBlock"}
+		"normal": { "model": "journey:luniumBlock"}
 	}
 }

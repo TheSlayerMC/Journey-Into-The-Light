@@ -1,5 +1,5 @@
 {
 	"variants": {
-		"normal": { "model": "essence:terraniaPortalFrame"}
+		"normal": { "model": "journey:terraniaPortalFrame"}
 	}
 }

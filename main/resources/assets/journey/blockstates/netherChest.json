@@ -1,8 +1,8 @@
 {
     "variants": {
-        "facing=north": { "model": "essence:netherChest" },
-        "facing=south": { "model": "essence:netherChest", "y": 180 },
-        "facing=west":  { "model": "essence:netherChest", "y": 270 },
-        "facing=east":  { "model": "essence:netherChest", "y": 90 }
+        "facing=north": { "model": "journey:netherChest" },
+        "facing=south": { "model": "journey:netherChest", "y": 180 },
+        "facing=west":  { "model": "journey:netherChest", "y": 270 },
+        "facing=east":  { "model": "journey:netherChest", "y": 90 }
     }
 }

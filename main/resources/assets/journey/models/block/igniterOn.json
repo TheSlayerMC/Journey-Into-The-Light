@@ -1,9 +1,9 @@
 {
-	"parent": "essence:block/grass",
+	"parent": "journey:block/grass",
 	"textures": {
-		"particle": "essence:blocks/igniter_side",
+		"particle": "journey:blocks/igniter_side",
 		"bottom": "blocks/furnace_bottom",
-		"top": "essence:blocks/igniter_top_on",
-		"side": "essence:blocks/igniter_side"
+		"top": "journey:blocks/igniter_top_on",
+		"side": "journey:blocks/igniter_side"
 	}
 }

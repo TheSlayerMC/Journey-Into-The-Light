@@ -1,8 +1,8 @@
 {
     "variants": {
-        "facing=north": { "model": "essence:trophyStalk" },
-        "facing=south": { "model": "essence:trophyStalk", "y": 180 },
-        "facing=west":  { "model": "essence:trophyStalk", "y": 270 },
-        "facing=east":  { "model": "essence:trophyStalk", "y": 90 }
+        "facing=north": { "model": "journey:trophyStalk" },
+        "facing=south": { "model": "journey:trophyStalk", "y": 180 },
+        "facing=west":  { "model": "journey:trophyStalk", "y": 270 },
+        "facing=east":  { "model": "journey:trophyStalk", "y": 90 }
     }
 }

@@ -1,5 +1,5 @@
 {
 	"variants": {
-		"normal": { "model": "essence:frozenDirt"}
+		"normal": { "model": "journey:frozenDirt"}
 	}
 }

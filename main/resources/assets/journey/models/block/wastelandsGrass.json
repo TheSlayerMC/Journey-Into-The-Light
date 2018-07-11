@@ -1,9 +1,9 @@
 {
-	"parent": "essence:block/grass",
+	"parent": "journey:block/grass",
 	"textures": {
-		"particle": "essence:blocks/wastelandsStone",
-		"bottom": "essence:blocks/wastelandsStone",
-		"top": "essence:blocks/wastelandsGrass_top",
-		"side": "essence:blocks/wastelandsGrass_side"
+		"particle": "journey:blocks/wastelandsStone",
+		"bottom": "journey:blocks/wastelandsStone",
+		"top": "journey:blocks/wastelandsGrass_top",
+		"side": "journey:blocks/wastelandsGrass_side"
 	}
 }

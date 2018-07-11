@@ -1,10 +1,10 @@
 {
     "__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
     "textures": {
-        "particle": "blocks/essence:blocks/airRoot_vine_tiny",
-        "0": "essence:blocks/airRoot_side",
-        "1": "essence:blocks/airRoot_top",
-        "2": "essence:blocks/airRoot_stem"
+        "particle": "blocks/journey:blocks/airRoot_vine_tiny",
+        "0": "journey:blocks/airRoot_side",
+        "1": "journey:blocks/airRoot_top",
+        "2": "journey:blocks/airRoot_stem"
     },
     "elements": [
         {

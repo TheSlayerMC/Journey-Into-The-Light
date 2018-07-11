@@ -1,5 +1,5 @@
 {
 	"variants": {
-		"normal": { "model": "essence:orbaditeBlock"}
+		"normal": { "model": "journey:orbaditeBlock"}
 	}
 }

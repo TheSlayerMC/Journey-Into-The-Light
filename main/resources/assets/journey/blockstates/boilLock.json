@@ -1,8 +1,8 @@
 {
     "variants": {
-        "facing=north": { "model": "essence:boilLock" },
-        "facing=south": { "model": "essence:boilLock", "y": 180 },
-        "facing=west":  { "model": "essence:boilLock", "y": 270 },
-        "facing=east":  { "model": "essence:boilLock", "y": 90 }
+        "facing=north": { "model": "journey:boilLock" },
+        "facing=south": { "model": "journey:boilLock", "y": 180 },
+        "facing=west":  { "model": "journey:boilLock", "y": 270 },
+        "facing=east":  { "model": "journey:boilLock", "y": 90 }
     }
 }

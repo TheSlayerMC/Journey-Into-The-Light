@@ -1,7 +1,7 @@
 {
     "textures": {
-        "particle": "essence:blocks/frozenPortal",
-        "portal": "essence:blocks/frozenPortal"
+        "particle": "journey:blocks/frozenPortal",
+        "portal": "journey:blocks/frozenPortal"
     },
     "elements": [
         {   "from": [ 0, 0, 6 ],

@@ -1,10 +1,10 @@
 {
     "__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
     "textures": {
-        "particle": "essence:blocks/airRoot_stage1_side",
-        "0": "essence:blocks/airRoot_side",
-        "1": "essence:blocks/airRoot_top",
-        "2": "essence:blocks/airRoot_stem"
+        "particle": "journey:blocks/airRoot_stage1_side",
+        "0": "journey:blocks/airRoot_side",
+        "1": "journey:blocks/airRoot_top",
+        "2": "journey:blocks/airRoot_stem"
     },
     "elements": [
         {

@@ -1,8 +1,8 @@
 {
     "variants": {
-        "facing=north": { "model": "essence:corbaLadder" },
-        "facing=east":  { "model": "essence:corbaLadder", "y": 90 },
-        "facing=south": { "model": "essence:corbaLadder", "y": 180 },
-        "facing=west":  { "model": "essence:corbaLadder", "y": 270 }
+        "facing=north": { "model": "journey:corbaLadder" },
+        "facing=east":  { "model": "journey:corbaLadder", "y": 90 },
+        "facing=south": { "model": "journey:corbaLadder", "y": 180 },
+        "facing=west":  { "model": "journey:corbaLadder", "y": 270 }
     }
 }

@@ -1,9 +1,9 @@
 {
-	"parent": "essence:block/grass",
+	"parent": "journey:block/grass",
 	"textures": {
-		"particle": "essence:blocks/eucaLog_top",
-		"bottom": "essence:blocks/eucaLog_top",
-		"top": "essence:blocks/eucaLog_top",
-		"side": "essence:blocks/eucaLog_side"
+		"particle": "journey:blocks/eucaLog_top",
+		"bottom": "journey:blocks/eucaLog_top",
+		"top": "journey:blocks/eucaLog_top",
+		"side": "journey:blocks/eucaLog_side"
 	}
 }

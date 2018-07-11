@@ -1,6 +1,6 @@
 {
 	"parent": "block/crop",
 	"textures": {
-		"crop": "essence:blocks/crakeBulbCrop_4"
+		"crop": "journey:blocks/crakeBulbCrop_4"
 	}
 }

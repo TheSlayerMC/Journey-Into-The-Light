@@ -1,8 +1,8 @@
 {
     "variants": {
-        "facing=north": { "model": "essence:eucaChest" },
-        "facing=south": { "model": "essence:eucaChest", "y": 180 },
-        "facing=west":  { "model": "essence:eucaChest", "y": 270 },
-        "facing=east":  { "model": "essence:eucaChest", "y": 90 }
+        "facing=north": { "model": "journey:eucaChest" },
+        "facing=south": { "model": "journey:eucaChest", "y": 180 },
+        "facing=west":  { "model": "journey:eucaChest", "y": 270 },
+        "facing=east":  { "model": "journey:eucaChest", "y": 90 }
     }
 }

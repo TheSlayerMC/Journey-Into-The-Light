@@ -1,6 +1,6 @@
 {
 	"parent": "block/cross",
 	"textures": {
-		"cross": "essence:blocks/cloudiaFlower"
+		"cross": "journey:blocks/cloudiaFlower"
 	}
 }

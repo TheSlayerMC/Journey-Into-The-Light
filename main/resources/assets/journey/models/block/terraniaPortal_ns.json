@@ -1,7 +1,7 @@
 {
     "textures": {
-        "particle": "essence:blocks/terraniaPortal",
-        "portal": "essence:blocks/terraniaPortal"
+        "particle": "journey:blocks/terraniaPortal",
+        "portal": "journey:blocks/terraniaPortal"
     },
     "elements": [
         {   "from": [ 0, 0, 6 ],

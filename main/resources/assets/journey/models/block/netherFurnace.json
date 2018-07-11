@@ -1,8 +1,8 @@
 {
     "parent": "block/orientable",
     "textures": {
-        "top": "essence:blocks/netherFurnace_top",
-        "front": "essence:blocks/netherFurnace_front",
-        "side": "essence:blocks/netherFurnace_side"
+        "top": "journey:blocks/netherFurnace_top",
+        "front": "journey:blocks/netherFurnace_front",
+        "side": "journey:blocks/netherFurnace_side"
     }
 }

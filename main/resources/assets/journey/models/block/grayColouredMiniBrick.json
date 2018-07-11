@@ -1,6 +1,6 @@
 {
 	"parent": "block/cube_all",
 	"textures": {
-		"all": "essence:blocks/bricks/mini/gray_brick"
+		"all": "journey:blocks/bricks/mini/gray_brick"
 	}
 }

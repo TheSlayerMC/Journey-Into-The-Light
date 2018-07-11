@@ -1,5 +1,5 @@
 {
 	"variants": {
-		"normal": { "model": "essence:boilingLog"}
+		"normal": { "model": "journey:boilingLog"}
 	}
 }

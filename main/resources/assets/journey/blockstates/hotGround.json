@@ -1,5 +1,5 @@
 {
 	"variants": {
-		"normal": { "model": "essence:hotGround"}
+		"normal": { "model": "journey:hotGround"}
 	}
 }

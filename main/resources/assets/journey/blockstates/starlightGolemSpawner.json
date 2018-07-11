@@ -1,5 +1,5 @@
 {
 	"variants": {
-		"normal": { "model": "essence:starlightGolemSpawner"}
+		"normal": { "model": "journey:starlightGolemSpawner"}
 	}
 }

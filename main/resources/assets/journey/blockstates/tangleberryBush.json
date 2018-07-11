@@ -2,13 +2,13 @@
 {
   "variants": {
     "age=0": {
-      "model": "essence:tangleberryBush_0"
+      "model": "journey:tangleberryBush_0"
     },
     "age=1": {
-      "model": "essence:tangleberryBush_1"
+      "model": "journey:tangleberryBush_1"
     },
     "age=2": {
-      "model": "essence:tangleberryBush_2"
+      "model": "journey:tangleberryBush_2"
     }
   }
 }

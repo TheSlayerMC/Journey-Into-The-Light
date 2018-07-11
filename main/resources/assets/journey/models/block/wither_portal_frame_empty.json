@@ -1,9 +1,9 @@
 {
     "__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
     "textures": {
-        "particle": "essence:blocks/witherPortal_side",
-        "0": "essence:blocks/witherPortal_side",
-        "1": "essence:blocks/witherPortal_top"
+        "particle": "journey:blocks/witherPortal_side",
+        "0": "journey:blocks/witherPortal_side",
+        "1": "journey:blocks/witherPortal_top"
     },
     "elements": [
         {

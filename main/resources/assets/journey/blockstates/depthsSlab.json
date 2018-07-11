@@ -1,5 +1,5 @@
 {
     "variants": {
-        "all": { "model": "essence:depthsSlab" }
+        "all": { "model": "journey:depthsSlab" }
     }
 }

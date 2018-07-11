@@ -1,6 +1,6 @@
 {
 	"parent": "block/cross",
 	"textures": {
-		"cross": "essence:blocks/shiverFlower"
+		"cross": "journey:blocks/shiverFlower"
 	}
 }

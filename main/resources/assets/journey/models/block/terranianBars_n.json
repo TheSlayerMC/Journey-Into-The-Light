@@ -1,7 +1,7 @@
 {
     "parent": "block/pane_n",
     "textures": {
-        "edge": "essence:blocks/terranianBars",
-        "pane": "essence:blocks/terranianBars"
+        "edge": "journey:blocks/terranianBars",
+        "pane": "journey:blocks/terranianBars"
     }
 }

@@ -2,13 +2,13 @@
 {
   "variants": {
     "age=0": {
-      "model": "essence:sizzleBush_0"
+      "model": "journey:sizzleBush_0"
     },
     "age=1": {
-      "model": "essence:sizzleBush_1"
+      "model": "journey:sizzleBush_1"
     },
     "age=2": {
-      "model": "essence:sizzleBush_2"
+      "model": "journey:sizzleBush_2"
     }
   }
 }

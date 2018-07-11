@@ -1,6 +1,6 @@
 {
 	"parent": "block/cross",
 	"textures": {
-		"cross": "essence:blocks/burntGrass"
+		"cross": "journey:blocks/burntGrass"
 	}
 }

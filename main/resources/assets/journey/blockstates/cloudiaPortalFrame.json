@@ -1,5 +1,5 @@
 {
 	"variants": {
-		"normal": { "model": "essence:cloudiaPortalFrame"}
+		"normal": { "model": "journey:cloudiaPortalFrame"}
 	}
 }

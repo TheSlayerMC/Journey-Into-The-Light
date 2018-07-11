@@ -1,7 +1,7 @@
 {
     "parent": "block/pane_nsw",
     "textures": {
-        "edge": "essence:blocks/boilingBars",
-        "pane": "essence:blocks/boilingBars"
+        "edge": "journey:blocks/boilingBars",
+        "pane": "journey:blocks/boilingBars"
     }
 }

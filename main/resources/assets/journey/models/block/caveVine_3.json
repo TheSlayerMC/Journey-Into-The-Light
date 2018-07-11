@@ -1,8 +1,8 @@
 {
     "ambientocclusion": false,
     "textures": {
-        "particle": "essence:blocks/caveVine",
-        "caveVine": "essence:blocks/caveVine"
+        "particle": "journey:blocks/caveVine",
+        "caveVine": "journey:blocks/caveVine"
     },
     "elements": [
         {   "from": [ 15.2, 0, 0 ],

@@ -1,8 +1,8 @@
 {
 	"parent": "block/stairs",
 	"textures": {
-		"bottom": "essence:blocks/hotBrick",
-		"top": "essence:blocks/hotBrick",
-		"side": "essence:blocks/hotBrick"
+		"bottom": "journey:blocks/hotBrick",
+		"top": "journey:blocks/hotBrick",
+		"side": "journey:blocks/hotBrick"
 	}
 }

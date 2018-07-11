@@ -1,6 +1,6 @@
 {
 	"parent": "block/cross",
 	"textures": {
-		"cross": "essence:blocks/iceBush"
+		"cross": "journey:blocks/iceBush"
 	}
 }

@@ -1,9 +1,9 @@
 {
     "textures": {
-        "particle": "essence:blocks/knowledgeTable_bottom",
-        "bottom": "essence:blocks/knowledgeTable_bottom",
-        "top": "essence:blocks/knowledgeTable_top",
-        "side": "essence:blocks/knowledgeTable_side"
+        "particle": "journey:blocks/knowledgeTable_bottom",
+        "bottom": "journey:blocks/knowledgeTable_bottom",
+        "top": "journey:blocks/knowledgeTable_top",
+        "side": "journey:blocks/knowledgeTable_side"
     },
     "elements": [
         {   "from": [ 0, 0, 0 ],

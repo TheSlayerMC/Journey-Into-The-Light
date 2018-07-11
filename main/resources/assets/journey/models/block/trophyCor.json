@@ -1,10 +1,10 @@
 {
     "__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
     "textures": {
-        "particle": "essence:blocks/trophyCor",
-        "0": "essence:blocks/trophyCor",
-        "1": "essence:blocks/trophyCorFront",
-        "2": "essence:blocks/trophyCorSide"
+        "particle": "journey:blocks/trophyCor",
+        "0": "journey:blocks/trophyCor",
+        "1": "journey:blocks/trophyCorFront",
+        "2": "journey:blocks/trophyCorSide"
     },
     "elements": [
         {

@@ -1,6 +1,6 @@
 {
 	"parent": "block/cube_all",
 	"textures": {
-		"all": "essence:blocks/blueCorbaLeaves"
+		"all": "journey:blocks/blueCorbaLeaves"
 	}
 }

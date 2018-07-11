@@ -1,6 +1,6 @@
 {
 	"parent": "block/cross",
 	"textures": {
-		"cross": "essence:blocks/goldenStalksTop"
+		"cross": "journey:blocks/goldenStalksTop"
 	}
 }

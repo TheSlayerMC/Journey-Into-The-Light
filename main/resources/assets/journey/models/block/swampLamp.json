@@ -1,8 +1,8 @@
 {
     "__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
     "textures": {
-        "particle": "essence:blocks/swampLamp",
-        "0": "essence:blocks/swampLamp"
+        "particle": "journey:blocks/swampLamp",
+        "0": "journey:blocks/swampLamp"
     },
     "elements": [
         {

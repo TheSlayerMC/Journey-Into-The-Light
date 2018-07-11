@@ -1,6 +1,6 @@
 {
     "parent": "block/fence_nsew",
     "textures": {
-        "texture": "essence:blocks/corbaPost"
+        "texture": "journey:blocks/corbaPost"
     }
 }

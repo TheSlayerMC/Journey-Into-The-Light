@@ -1,5 +1,5 @@
 {
 	"variants": {
-		"normal": { "model": "essence:screamerSpawner"}
+		"normal": { "model": "journey:screamerSpawner"}
 	}
 }

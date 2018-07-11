@@ -1,9 +1,9 @@
 {
-	"parent": "essence:block/grass",
+	"parent": "journey:block/grass",
 	"textures": {
-		"particle": "essence:blocks/stoneCraftingTable_top",
-		"bottom": "essence:blocks/stoneCraftingTable_bottom",
-		"top": "essence:blocks/stoneCraftingTable_top",
-		"side": "essence:blocks/stoneCraftingTable_side"
+		"particle": "journey:blocks/stoneCraftingTable_top",
+		"bottom": "journey:blocks/stoneCraftingTable_bottom",
+		"top": "journey:blocks/stoneCraftingTable_top",
+		"side": "journey:blocks/stoneCraftingTable_side"
 	}
 }

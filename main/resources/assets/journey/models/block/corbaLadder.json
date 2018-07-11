@@ -2,8 +2,8 @@
     "__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
 "ambientocclusion": false,
     "textures": {
-        "particle": "essence:blocks/corbaLadder",
-        "0": "essence:blocks/corbaLadder"
+        "particle": "journey:blocks/corbaLadder",
+        "0": "journey:blocks/corbaLadder"
     },
     "elements": [
         {

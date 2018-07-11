@@ -2,13 +2,13 @@
 {
   "variants": {
     "age=0": {
-      "model": "essence:bradberryBush_0"
+      "model": "journey:bradberryBush_0"
     },
     "age=1": {
-      "model": "essence:bradberryBush_1"
+      "model": "journey:bradberryBush_1"
     },
     "age=2": {
-      "model": "essence:bradberryBush_2"
+      "model": "journey:bradberryBush_2"
     }
   }
 }

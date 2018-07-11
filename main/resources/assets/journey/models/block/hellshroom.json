@@ -1,9 +1,9 @@
 {
     "__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
     "textures": {
-        "particle": "essence:blocks/hellshroom_top",
-        "0": "essence:blocks/hellshroom_bottom",
-        "1": "essence:blocks/hellshroom_top"
+        "particle": "journey:blocks/hellshroom_top",
+        "0": "journey:blocks/hellshroom_bottom",
+        "1": "journey:blocks/hellshroom_top"
     },
     "elements": [
         {

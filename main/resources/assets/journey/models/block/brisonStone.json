@@ -1,6 +1,6 @@
 {
 	"parent": "block/cube_all",
 	"textures": {
-		"all": "essence:blocks/brisonStone"
+		"all": "journey:blocks/brisonStone"
 	}
 }

@@ -1,6 +1,6 @@
 {
     "parent": "block/fence_n",
     "textures": {
-        "texture": "essence:blocks/senterianPost"
+        "texture": "journey:blocks/senterianPost"
     }
 }

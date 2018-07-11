@@ -1,12 +1,12 @@
 {
     "__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
     "textures": {
-        "particle": "essence:blocks/summoningTable_side",
-        "0": "essence:blocks/summoningTable_legs",
-        "1": "essence:blocks/summoningTable_side",
-        "2": "essence:blocks/summoningTable_top",
-        "3": "essence:blocks/summoningTable_bottom",
-        "4": "essence:blocks/summoningTable_sides"
+        "particle": "journey:blocks/summoningTable_side",
+        "0": "journey:blocks/summoningTable_legs",
+        "1": "journey:blocks/summoningTable_side",
+        "2": "journey:blocks/summoningTable_top",
+        "3": "journey:blocks/summoningTable_bottom",
+        "4": "journey:blocks/summoningTable_sides"
     },
     "elements": [
         {

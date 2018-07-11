@@ -1,5 +1,5 @@
 {
 	"variants": {
-		"normal": { "model": "essence:hellbotSpawner"}
+		"normal": { "model": "journey:hellbotSpawner"}
 	}
 }

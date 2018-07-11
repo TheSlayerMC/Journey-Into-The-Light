@@ -1,6 +1,6 @@
 {
 	"parent": "block/cube_all",
 	"textures": {
-		"all": "essence:blocks/frozenLeaves"
+		"all": "journey:blocks/frozenLeaves"
 	}
 }

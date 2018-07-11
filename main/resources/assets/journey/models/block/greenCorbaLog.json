@@ -1,9 +1,9 @@
 {
-	"parent": "essence:block/grass",
+	"parent": "journey:block/grass",
 	"textures": {
-		"particle": "essence:blocks/greenCorbaLog_top",
-		"bottom": "essence:blocks/greenCorbaLog_top",
-		"top": "essence:blocks/greenCorbaLog_top",
-		"side": "essence:blocks/greenCorbaLog_side"
+		"particle": "journey:blocks/greenCorbaLog_top",
+		"bottom": "journey:blocks/greenCorbaLog_top",
+		"top": "journey:blocks/greenCorbaLog_top",
+		"side": "journey:blocks/greenCorbaLog_side"
 	}
 }

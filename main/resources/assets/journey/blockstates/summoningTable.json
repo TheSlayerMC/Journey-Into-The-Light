@@ -1,5 +1,5 @@
 {
 	"variants": {
-		"normal": { "model": "essence:summoningTable"}
+		"normal": { "model": "journey:summoningTable"}
 	}
 }

@@ -1,9 +1,9 @@
 {
     "__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
     "textures": {
-        "particle": "essence:blocks/tangleberryBush_empty",
-        "0": "essence:blocks/tangleberryBush_empty",
-        "1": "essence:blocks/tangleberryBush_empty"
+        "particle": "journey:blocks/tangleberryBush_empty",
+        "0": "journey:blocks/tangleberryBush_empty",
+        "1": "journey:blocks/tangleberryBush_empty"
     },
     "elements": [
         {

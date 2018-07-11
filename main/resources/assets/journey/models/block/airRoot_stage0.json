@@ -1,8 +1,8 @@
 {
     "__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
     "textures": {
-        "particle": "essence:blocks/airRoot_vine_tiny",
-        "0": "essence:blocks/airRoot_vine"
+        "particle": "journey:blocks/airRoot_vine_tiny",
+        "0": "journey:blocks/airRoot_vine"
     },
     "elements": [
         {

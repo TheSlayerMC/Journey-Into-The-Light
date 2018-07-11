@@ -1,5 +1,5 @@
 {
 	"variants": {
-		"normal": { "model": "essence:senterianFloor"}
+		"normal": { "model": "journey:senterianFloor"}
 	}
 }

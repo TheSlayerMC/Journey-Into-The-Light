@@ -1,8 +1,8 @@
 {
 	"parent": "block/stairs",
 	"textures": {
-		"bottom": "essence:blocks/dungeonBrickCarved",
-		"top": "essence:blocks/dungeonBrickCarved",
-		"side": "essence:blocks/dungeonBrickCarved"
+		"bottom": "journey:blocks/dungeonBrickCarved",
+		"top": "journey:blocks/dungeonBrickCarved",
+		"side": "journey:blocks/dungeonBrickCarved"
 	}
 }

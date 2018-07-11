@@ -1,6 +1,6 @@
 {
 	"parent": "block/crop",
 	"textures": {
-		"crop": "essence:blocks/zatPedalsCrop_6"
+		"crop": "journey:blocks/zatPedalsCrop_6"
 	}
 }

@@ -1,9 +1,9 @@
 {
     "__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
     "textures": {
-        "particle": "essence:blocks/sizzleBush_empty",
-        "0": "essence:blocks/sizzleBush_empty",
-        "1": "essence:blocks/sizzleBush_empty"
+        "particle": "journey:blocks/sizzleBush_empty",
+        "0": "journey:blocks/sizzleBush_empty",
+        "1": "journey:blocks/sizzleBush_empty"
     },
     "elements": [
         {

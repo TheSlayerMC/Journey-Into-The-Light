@@ -1,5 +1,5 @@
 {
 	"variants": {
-		"normal": { "model": "essence:flairiumBlock"}
+		"normal": { "model": "journey:flairiumBlock"}
 	}
 }

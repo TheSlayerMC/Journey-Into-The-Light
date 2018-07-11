@@ -1,6 +1,6 @@
 {
     "parent": "block/fence_ne",
     "textures": {
-        "texture": "essence:blocks/dungeonBrickCarved"
+        "texture": "journey:blocks/dungeonBrickCarved"
     }
 }

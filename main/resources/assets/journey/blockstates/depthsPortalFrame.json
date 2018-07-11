@@ -1,5 +1,5 @@
 {
 	"variants": {
-		"normal": { "model": "essence:depthsPortalFrame"}
+		"normal": { "model": "journey:depthsPortalFrame"}
 	}
 }

@@ -1,8 +1,8 @@
 {
     "variants": {
-        "facing=north": { "model": "essence:corbaChest" },
-        "facing=south": { "model": "essence:corbaChest", "y": 180 },
-        "facing=west":  { "model": "essence:corbaChest", "y": 270 },
-        "facing=east":  { "model": "essence:corbaChest", "y": 90 }
+        "facing=north": { "model": "journey:corbaChest" },
+        "facing=south": { "model": "journey:corbaChest", "y": 180 },
+        "facing=west":  { "model": "journey:corbaChest", "y": 270 },
+        "facing=east":  { "model": "journey:corbaChest", "y": 90 }
     }
 }

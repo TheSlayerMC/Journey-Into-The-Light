@@ -1,8 +1,8 @@
 {
 	"parent": "block/stairs",
 	"textures": {
-		"bottom": "essence:blocks/depthsPlank",
-		"top": "essence:blocks/depthsPlank",
-		"side": "essence:blocks/depthsPlank"
+		"bottom": "journey:blocks/depthsPlank",
+		"top": "journey:blocks/depthsPlank",
+		"side": "journey:blocks/depthsPlank"
 	}
 }

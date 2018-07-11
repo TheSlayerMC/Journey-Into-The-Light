@@ -1,11 +1,11 @@
 {
 	"variants": {
-		"age=0": { "model": "essence:crackenCanesCropStage_0" },
-		"age=1": { "model": "essence:crackenCanesCropStage_1" },
-		"age=2": { "model": "essence:crackenCanesCropStage_2" },
-		"age=3": { "model": "essence:crackenCanesCropStage_3" },
-		"age=4": { "model": "essence:crackenCanesCropStage_4" },
-		"age=5": { "model": "essence:crackenCanesCropStage_5" },
-		"age=6": { "model": "essence:crackenCanesCropStage_6" }
+		"age=0": { "model": "journey:crackenCanesCropStage_0" },
+		"age=1": { "model": "journey:crackenCanesCropStage_1" },
+		"age=2": { "model": "journey:crackenCanesCropStage_2" },
+		"age=3": { "model": "journey:crackenCanesCropStage_3" },
+		"age=4": { "model": "journey:crackenCanesCropStage_4" },
+		"age=5": { "model": "journey:crackenCanesCropStage_5" },
+		"age=6": { "model": "journey:crackenCanesCropStage_6" }
 	}
 }

@@ -1,6 +1,6 @@
 {
 	"parent": "block/crop",
 	"textures": {
-		"crop": "essence:blocks/glowshroomCropStage_4"
+		"crop": "journey:blocks/glowshroomCropStage_4"
 	}
 }

@@ -1,9 +1,9 @@
 {
     "textures": {
-        "particle": "essence:blocks/corbaPortalFrame_side",
-        "bottom": "essence:blocks/corbaPortalFrame_bottom",
-        "top": "essence:blocks/corbaPortalFrame_top",
-        "side": "essence:blocks/corbaPortalFrame_side"
+        "particle": "journey:blocks/corbaPortalFrame_side",
+        "bottom": "journey:blocks/corbaPortalFrame_bottom",
+        "top": "journey:blocks/corbaPortalFrame_top",
+        "side": "journey:blocks/corbaPortalFrame_side"
     },
     "elements": [
         {   "from": [ 0, 0, 0 ],

@@ -1,8 +1,8 @@
 {
     "variants": {
-        "variant=dark": { "model": "essence:darkBrisonBrick" },
-        "variant=red": { "model": "essence:redBrisonBrick" },
-        "variant=small": { "model": "essence:smallBrisonBrick" },
-		"variant=bstone": { "model": "essence:brisonStone" }
+        "variant=dark": { "model": "journey:darkBrisonBrick" },
+        "variant=red": { "model": "journey:redBrisonBrick" },
+        "variant=small": { "model": "journey:smallBrisonBrick" },
+		"variant=bstone": { "model": "journey:brisonStone" }
     }
 }
