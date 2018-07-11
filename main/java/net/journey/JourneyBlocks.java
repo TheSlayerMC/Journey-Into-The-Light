@@ -76,320 +76,320 @@ public class JourneyBlocks {
 	public static ArrayList<Block> blocks = new ArrayList<Block>();
 
 	public static BlockMod cobaltOre; // = new BlockModOre("cobaltOre", "cobalt Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
-	public static Block rubyOre;
-	public static Block adamantineOre;
-	public static Block mythrilOre;
-	public static Block verditeOre;
-	public static Block sapphireOre;
-	public static Block lavaRock;
-	public static Block shadiumOre;
-	public static Block luniumOre;
-	public static Block hellstoneOre;
-	public static Block ashualOre;
-	public static Block blaziumOre;
-	public static Block celestiumOre;
-	public static Block mekyumOre;
-	public static Block koriteOre;
-	public static Block storonOre;
-	public static Block flairiumOre;
-	public static Block desOre;
-	public static Block enderilliumOre;
-	public static Block gorbiteOre;
-	public static Block orbaditeOre;
-	public static Block luniteOre;
-	public static Block firestoneOre;
+	public static BlockMod rubyOre;
+	public static BlockMod adamantineOre;
+	public static BlockMod mythrilOre;
+	public static BlockMod verditeOre;
+	public static BlockMod sapphireOre;
+	public static BlockMod lavaRock;
+	public static BlockMod shadiumOre;
+	public static BlockMod luniumOre;
+	public static BlockMod hellstoneOre;
+	public static BlockMod ashualOre;
+	public static BlockMod blaziumOre;
+	public static BlockMod celestiumOre;
+	public static BlockMod mekyumOre;
+	public static BlockMod koriteOre;
+	public static BlockMod storonOre;
+	public static BlockMod flairiumOre;
+	public static BlockMod desOre;
+	public static BlockMod enderilliumOre;
+	public static BlockMod gorbiteOre;
+	public static BlockMod orbaditeOre;
+	public static BlockMod luniteOre;
+	public static BlockMod firestoneOre;
 
-	public static Block sapphireBlock;
-	public static Block shadiumBlock;
-	public static Block luniumBlock;
-	public static Block hellstoneBlock;
-	public static Block ashualBlock;
-	public static Block blaziumBlock;
-	public static Block celestiumBlock;
-	public static Block mekyumBlock;
-	public static Block koriteBlock;
-	public static Block storonBlock;
-	public static Block flairiumBlock;
-	public static Block desBlock;
-	public static Block enderilliumBlock;
-	public static Block gorbiteBlock;
-	public static Block orbaditeBlock;
-	public static Block luniteBlock;
+	public static BlockMod sapphireBlock;
+	public static BlockMod shadiumBlock;
+	public static BlockMod luniumBlock;
+	public static BlockMod hellstoneBlock;
+	public static BlockMod ashualBlock;
+	public static BlockMod blaziumBlock;
+	public static BlockMod celestiumBlock;
+	public static BlockMod mekyumBlock;
+	public static BlockMod koriteBlock;
+	public static BlockMod storonBlock;
+	public static BlockMod flairiumBlock;
+	public static BlockMod desBlock;
+	public static BlockMod enderilliumBlock;
+	public static BlockMod gorbiteBlock;
+	public static BlockMod orbaditeBlock;
+	public static BlockMod luniteBlock;
 
-	public static Block witherwoodLog;
-	public static Block witherwoodLeaves;
-	public static Block sizzlerWoodLeaves;
-	public static Block sizzlerWoodLog;
+	public static BlockMod witherwoodLog;
+	public static BlockMod witherwoodLeaves;
+	public static BlockMod sizzlerWoodLeaves;
+	public static BlockMod sizzlerWoodLog;
 	public static BlockNetherFlower deathGrass;
 	public static BlockNetherFlower hellBell;
-	public static Block hellshroom;
-	public static Block heatSoil;
+	public static BlockMod hellshroom;
+	public static BlockMod heatSoil;
 
-	public static Block igniterOn;
-	public static Block igniter;
-	public static Block greenGemBlock;
-	public static Block purpleGemBlock;
-	public static Block blueGemBlock;
-	public static Block yellowGemBlock;
+	public static BlockMod igniterOn;
+	public static BlockMod igniter;
+	public static BlockMod greenGemBlock;
+	public static BlockMod purpleGemBlock;
+	public static BlockMod blueGemBlock;
+	public static BlockMod yellowGemBlock;
 
 	@SuppressWarnings("")
-	/*public static Block sizzleberryBush = new BlockModBush("sizzleberryBush", "Sizzleberry Bush", JourneyItems.sizzleberry, true);
-	public static Block bradberryBush = new BlockModBush("bradberryBush", "Bradberry Bush", JourneyItems.bradberry, false);
-	public static Block tangleberryBush = new BlockModBush("tangleberryBush", "Tangleberry Bush", JourneyItems.tangleberry, false);
-	public static Block juiceberryBush = new BlockModBush("juiceberryBush", "Juiceberry Bush", JourneyItems.juiceberry, false);
-	public static Block bogberryBush = new BlockModBush("bogberryBush", "Bogberry Bush", JourneyItems.bogberry, false);*/
+	/*public static BlockMod sizzleberryBush = new BlockModBush("sizzleberryBush", "Sizzleberry Bush", JourneyItems.sizzleberry, true);
+	public static BlockMod bradberryBush = new BlockModBush("bradberryBush", "Bradberry Bush", JourneyItems.bradberry, false);
+	public static BlockMod tangleberryBush = new BlockModBush("tangleberryBush", "Tangleberry Bush", JourneyItems.tangleberry, false);
+	public static BlockMod juiceberryBush = new BlockModBush("juiceberryBush", "Juiceberry Bush", JourneyItems.juiceberry, false);
+	public static BlockMod bogberryBush = new BlockModBush("bogberryBush", "Bogberry Bush", JourneyItems.bogberry, false);*/
 
-	public static Block nethicanSludge;
+	public static BlockMod nethicanSludge;
 
-	public static Block eucaGrass;
-	public static Block eucaStone;
-	public static Block eucaGoldLog;
-	public static Block goldEucaPlank;
-	public static Block eucaGoldStairs;
-	public static Block eucaGoldLeaves;
-	public static Block eucaSilverLeaves;
-	public static Block eucaSapling;
-	public static Block eucaBricks;
-	public static Block eucaTile;
+	public static BlockMod eucaGrass;
+	public static BlockMod eucaStone;
+	public static BlockMod eucaGoldLog;
+	public static BlockMod goldEucaPlank;
+	public static BlockModStairs eucaGoldStairs;
+	public static BlockMod eucaGoldLeaves;
+	public static BlockMod eucaSilverLeaves;
+	public static BlockMod eucaSapling;
+	public static BlockMod eucaBricks;
+	public static BlockMod eucaTile;
 
 	public static BlockMod depthsDirt;
-	public static Block depthsGrass;
-	public static Block depthsStone;
-	public static Block depthsLog;
-	public static Block depthsPlank;
-	public static Block depthsStairs;
-	public static Block depthsLeaves;
-	public static Block darkBrick;
-	public static Block darkFloor;
-	public static Block darkShingle;
+	public static BlockMod depthsGrass;
+	public static BlockMod depthsStone;
+	public static BlockMod depthsLog;
+	public static BlockMod depthsPlank;
+	public static BlockModStairs depthsStairs;
+	public static BlockMod depthsLeaves;
+	public static BlockMod darkBrick;
+	public static BlockMod darkFloor;
+	public static BlockMod darkShingle;
 
-	public static Block iceLeaves;
+	public static BlockMod iceLeaves;
 	public static BlockMod frozenDirt;
 	public static BlockMod frozenStone;
-	public static Block frozenGrass;
-	public static Block frozenLeaves;
-	public static Block frozenBark;
-	public static Block frozenPlanks;
+	public static BlockMod frozenGrass;
+	public static BlockMod frozenLeaves;
+	public static BlockMod frozenBark;
+	public static BlockMod frozenPlanks;
 
 	public static BlockMod withanDirt;
 	public static BlockMod withanRock;
-	public static Block withanGrass;
-	public static Block withanLeaves;
-	public static Block withanBark;
-	public static Block withanRockReinforced;
-	public static Block withanLamp;
-	public static Block withanLight; 
+	public static BlockMod withanGrass;
+	public static BlockMod withanLeaves;
+	public static BlockMod withanBark;
+	public static BlockMod withanRockReinforced;
+	public static BlockMod withanLamp;
+	public static BlockMod withanLight; 
 
-	public static Block goldenGrass;
+	public static BlockMod goldenGrass;
 	public static BlockMod goldenStone;
 
 	public static BlockMod corbaStone;
-	public static Block corbaGrass;
-	public static Block corbaLog;
-	public static Block corbaLeaves;
-	public static Block corbaPillar;
-	public static Block corbaPlank;
-	public static Block corbaLamp;
-	public static Block corbaSentryBrick;
+	public static BlockMod corbaGrass;
+	public static BlockMod corbaLog;
+	public static BlockMod corbaLeaves;
+	public static BlockMod corbaPillar;
+	public static BlockMod corbaPlank;
+	public static BlockMod corbaLamp;
+	public static BlockMod corbaSentryBrick;
 
-	public static Block boilingLamp;
-	public static Block blazierBricks; 
+	public static BlockMod boilingLamp;
+	public static BlockMod blazierBricks; 
 	public static BlockMod ashBlock;
-	public static Block hotBlock;
-	public static Block brisonStone;
-	public static Block darkBrisonBrick;
-	public static Block redBrisonBrick;
-	public static Block smallBrisonBrick;
-	public static Block boilingBars;
-	public static Block burningLeaves;
-	public static Block boilingLog; 
+	public static BlockMod hotBlock;
+	public static BlockMod brisonStone;
+	public static BlockMod darkBrisonBrick;
+	public static BlockMod redBrisonBrick;
+	public static BlockMod smallBrisonBrick;
+	public static BlockMod boilingBars;
+	public static BlockMod burningLeaves;
+	public static BlockMod boilingLog; 
 
 	public static BlockMod cloudiaDirt;
-	public static Block cloudiaGrass;
-	public static Block cloudiaLog; 
-	public static Block cloudiaRock; 
-	public static Block cloudiaBrick; 
-	public static Block cloudiaWall;  
-	public static Block cloudiaTile;
-	public static Block cloudiaLeaves;
-	public static Block cloudiaLamp;
-	//public static Block cloudiaPost = new BlockCloudiaPost("cloudiaPost");
-	public static Block pinkCloudiaCloud;
-	public static Block blueCloudiaCloud;
-	public static Block lightBlueCloudiaCloud;
+	public static BlockMod cloudiaGrass;
+	public static BlockMod cloudiaLog; 
+	public static BlockMod cloudiaRock; 
+	public static BlockMod cloudiaBrick; 
+	public static BlockMod cloudiaWall;  
+	public static BlockMod cloudiaTile;
+	public static BlockMod cloudiaLeaves;
+	public static BlockMod cloudiaLamp;
+	//public static BlockMod cloudiaPost = new BlockCloudiaPost("cloudiaPost");
+	public static BlockMod pinkCloudiaCloud;
+	public static BlockMod blueCloudiaCloud;
+	public static BlockMod lightBlueCloudiaCloud;
 	public static BlockModFlower cloudiaTallGrass;
 	public static BlockModFlower cloudiaFlower;
 
-	public static Block swampLamp;
+	public static BlockMod swampLamp;
 
-	public static Block frozenChest;
-	public static Block netherChest;
-	public static Block boilingChest;
-	public static Block eucaChest;
-	public static Block depthsChest;
-	public static Block corbaChest;
-	public static Block cloudiaChest;
-	public static Block terraniaChest;
+	public static BlockMod frozenChest;
+	public static BlockMod netherChest;
+	public static BlockMod boilingChest;
+	public static BlockMod eucaChest;
+	public static BlockMod depthsChest;
+	public static BlockMod corbaChest;
+	public static BlockMod cloudiaChest;
+	public static BlockMod terraniaChest;
 
-	public static Block nethicDungeonBricks;
-	public static Block boilChain;
-	public static Block boilGate;
-	public static Block boilLock;
+	public static BlockMod nethicDungeonBricks;
+	public static BlockMod boilChain;
+	public static BlockMod boilGate;
+	public static BlockMod boilLock;
 
-	public static Block darklyGate;
-	public static Block darklyLock;
+	public static BlockMod darklyGate;
+	public static BlockMod darklyLock;
 
-	public static Block corbaPost;
-	public static Block sizzlingPost;
+	public static BlockModFence corbaPost;
+	public static BlockModFence sizzlingPost;
 
-	public static Block senterianBricks;
-	public static Block senterianRock;
-	public static Block senterianCarvedRock;
-	public static Block senterianFloor;
-	public static Block senterianBars;
-	public static Block senterianLightLamp;
-	public static Block senterianMellowLamp;
-	public static Block senterianGuardianLamp;
-	public static Block senterianPost;
+	public static BlockMod senterianBricks;
+	public static BlockMod senterianRock;
+	public static BlockMod senterianCarvedRock;
+	public static BlockMod senterianFloor;
+	public static BlockMod senterianBars;
+	public static BlockMod senterianLightLamp;
+	public static BlockMod senterianMellowLamp;
+	public static BlockMod senterianGuardianLamp;
+	public static BlockModFence senterianPost;
 
-	public static Block trophy;
-	public static Block trophySoul;
-	public static Block trophyBlaze;
-	public static Block trophyEudor;
-	public static Block trophyCor;
-	public static Block trophyScale;
-	public static Block trophyRoc;
-	public static Block trophySentry;
-	public static Block trophyLogger;
-	public static Block trophyTerra;
-	public static Block trophyStalk;
-	public static Block trophyNetherBeast;
-	public static Block trophyWitherBeast;
+	public static BlockMod trophy;
+	public static BlockMod trophySoul;
+	public static BlockMod trophyBlaze;
+	public static BlockMod trophyEudor;
+	public static BlockMod trophyCor;
+	public static BlockMod trophyScale;
+	public static BlockMod trophyRoc;
+	public static BlockMod trophySentry;
+	public static BlockMod trophyLogger;
+	public static BlockMod trophyTerra;
+	public static BlockMod trophyStalk;
+	public static BlockMod trophyNetherBeast;
+	public static BlockMod trophyWitherBeast;
 
 	/*public static BlockMod wastelandsStone = new BlockWastelandsStone("wastelandsStone");
-	public static Block wastelandsGrass = new BlockModGrass((BlockMod)null, "wastelandsGrass", 2.0F);
-	public static Block wastelandsLog = new BlockModLog("wastelandsLog");
-	public static Block wastelandsBranches = new BlockModLeaves("wastelandsBranches", 2.0F).setStepSound(EnumMaterialTypes.WOOD.getSound());*/
+	public static BlockMod wastelandsGrass = new BlockModGrass((BlockMod)null, "wastelandsGrass", 2.0F);
+	public static BlockMod wastelandsLog = new BlockModLog("wastelandsLog");
+	public static BlockMod wastelandsBranches = new BlockModLeaves("wastelandsBranches", 2.0F).setStepSound(EnumMaterialTypes.WOOD.getSound());*/
 
 	public static BlockWitherPortal witherPortal;
-	public static Block witherPortalFrame;
+	public static BlockMod witherPortalFrame;
 
 	public static BlockEucaPortal eucaPortal;
-	public static Block eucaPortalFrame;
+	public static BlockMod eucaPortalFrame;
 
 	public static BlockGoldenPortal goldenPortal;
-	public static Block goldenPortalFrame;
+	public static BlockMod goldenPortalFrame;
 
 	public static BlockDepthsPortal depthsPortal;
-	public static Block depthsPortalFrame;
+	public static BlockMod depthsPortalFrame;
 
 	public static BlockBoilPortal boilPortal;
-	public static Block boilPortalFrame;
+	public static BlockMod boilPortalFrame;
 
 	public static BlockFrozenPortal frozenPortal;
-	public static Block frozenPortalFrame;
+	public static BlockMod frozenPortalFrame;
 
 	public static BlockCorbaPortal corbaPortal;
-	public static Block corbaPortalFrame;
+	public static BlockMod corbaPortalFrame;
 
 	public static BlockTerraniaPortal terraniaPortal;
-	public static Block terraniaPortalFrame;
+	public static BlockMod terraniaPortalFrame;
 
 	public static BlockSenterianPortal senterianPortal;
-	public static Block senterianPortalFrame;
+	public static BlockMod senterianPortalFrame;
 	//public static BlockWastelandsPortal wastelandsPortal = (BlockWastelandsPortal)new BlockWastelandsPortal("wastelandsPortal");
-	//public static Block wastelandsPortalFrame = new BlockMod("wastelandsPortalFrame");
+	//public static BlockMod wastelandsPortalFrame = new BlockMod("wastelandsPortalFrame");
 	public static BlockCloudiaPortal cloudiaPortal;
-	public static Block cloudiaPortalFrame;
+	public static BlockMod cloudiaPortalFrame;
 
-	public static Block depthsLights;
+	public static BlockMod depthsLights;
 
-	public static Block fire;
+	public static BlockMod fire;
 
-	public static Block mossyEssenceStone;
+	public static BlockMod mossyEssenceStone;
 
-	public static Block dungeonBrick;
-	public static Block dungeonCrackedBrick;
-	public static Block dungeonChisledBrick;
-	public static Block dungeonBrickCarved;
-	public static Block dungeonLamp;
+	public static BlockMod dungeonBrick;
+	public static BlockMod dungeonCrackedBrick;
+	public static BlockMod dungeonChisledBrick;
+	public static BlockMod dungeonBrickCarved;
+	public static BlockMod dungeonLamp;
 
-	public static Block dungeonBrickStairs;
-	public static Block dungeonCrackedBrickStairs;
-	public static Block dungeonChisledBrickStairs;
-	public static Block dungeonBrickCarvedStairs;
-	public static Block dungeonLampStairs;
+	public static BlockModStairs dungeonBrickStairs;
+	public static BlockModStairs dungeonCrackedBrickStairs;
+	public static BlockModStairs dungeonChisledBrickStairs;
+	public static BlockModStairs dungeonBrickCarvedStairs;
+	public static BlockModStairs dungeonLampStairs;
 
-	public static Block dungeonBrickFence;
-	public static Block dungeonCrackedBrickFence;
-	public static Block dungeonChisledBrickFence;
-	public static Block dungeonBrickCarvedFence;
-	public static Block cloudiaPost;
-	public static Block terranianPost;
-	public static Block dungeonLampFence;
+	public static BlockModFence dungeonBrickFence;
+	public static BlockModFence dungeonCrackedBrickFence;
+	public static BlockModFence dungeonChisledBrickFence;
+	public static BlockModFence dungeonBrickCarvedFence;
+	public static BlockModFence cloudiaPost;
+	public static BlockModFence terranianPost;
+	public static BlockModFence dungeonLampFence;
 
-	public static Block terraniaLeaves;
-	public static Block terraniaVine;
+	public static BlockMod terraniaLeaves;
+	public static BlockMod terraniaVine;
 	public static BlockMod terranianDirt;
-	public static Block terranianLog;
-	public static Block terranianGrass;
-	public static Block terranianStone;
-	public static Block terranianBars;
-	public static Block terranianDarkPanels;
-	public static Block terranianPanels;
+	public static BlockMod terranianLog;
+	public static BlockMod terranianGrass;
+	public static BlockMod terranianStone;
+	public static BlockMod terranianBars;
+	public static BlockMod terranianDarkPanels;
+	public static BlockMod terranianPanels;
 	public static BlockModFlower terranianTallgrass;
-	public static Block terragrow;
-	public static Block terraniaLamp;
+	public static BlockMod terragrow;
+	public static BlockMod terraniaLamp;
 
-	public static Block hotBrick;
-	public static Block hotBrick_fence;
-	public static Block hotBrick_stairs;
+	public static BlockMod hotBrick;
+	public static BlockModFence hotBrick_fence;
+	public static BlockModStairs hotBrick_stairs;
 
-	public static Block hotGlass;
-	public static Block smoothGlass;
-	//public static Block hotGlassPane = new BlockJoinedPane("hotGlass");
-	//public static Block smoothGlassPane = new BlockJoinedPane("smoothGlass");
+	public static BlockMod hotGlass;
+	public static BlockMod smoothGlass;
+	//public static BlockMod hotGlassPane = new BlockJoinedPane("hotGlass");
+	//public static BlockMod smoothGlassPane = new BlockJoinedPane("smoothGlass");
 
-	//public static Block witheringBeastStatue = new BlockStatue("witheringBeastStatue", new ModelWitheringBeastStatue(), EnumSounds.WITHER);
-	//public static Block netherBeastStatue = new BlockStatue("netherBeastStatue", new ModelNetherBeastStatue(), EnumSounds.NETHER_BEAST);
-	//public static Block calciaStatue = new BlockStatue("calciaStatue", new ModelCalciaStatue(), EnumSounds.CALCIA);
-	//public static Block eudorStatue = new BlockStatue("eudorStatue", new ModelEudorStatue(), EnumSounds.CALCIA);
-	//public static Block enderChampionStatue = new BlockStatue("enderChampionStatue", new ModelEnderChampionStatue());
-	//public static Block wraithStatue = new BlockStatue("wraithStatue", new ModelWraithStatue());
+	//public static BlockMod witheringBeastStatue = new BlockStatue("witheringBeastStatue", new ModelWitheringBeastStatue(), EnumSounds.WITHER);
+	//public static BlockMod netherBeastStatue = new BlockStatue("netherBeastStatue", new ModelNetherBeastStatue(), EnumSounds.NETHER_BEAST);
+	//public static BlockMod calciaStatue = new BlockStatue("calciaStatue", new ModelCalciaStatue(), EnumSounds.CALCIA);
+	//public static BlockMod eudorStatue = new BlockStatue("eudorStatue", new ModelEudorStatue(), EnumSounds.CALCIA);
+	//public static BlockMod enderChampionStatue = new BlockStatue("enderChampionStatue", new ModelEnderChampionStatue());
+	//public static BlockMod wraithStatue = new BlockStatue("wraithStatue", new ModelWraithStatue());
 
-	public static Block darkbloomTop;
-	public static Block darkbloomBottom;
+	public static BlockDarkbloom darkbloomTop;
+	public static BlockDarkbloom darkbloomBottom;
 
-	public static Block redGlowshroomTop;
-	public static Block redGlowshroomBottom;
+	public static BlockGlowshroom redGlowshroomTop;
+	public static BlockGlowshroom redGlowshroomBottom;
 
-	public static Block hellThornTop;
-	public static Block hellThornBottom;
-	public static Block hellThornRoot;
-	public static Block nethicGrass;
+	public static BlockHellThorn hellThornTop;
+	public static BlockHellThorn hellThornBottom;
+	public static BlockMod hellThornRoot;
+	public static BlockMod nethicGrass;
 
-	public static Block greenGlowshroomTop;
-	public static Block greenGlowshroomBottom;
-	public static Block blueGlowshroomTop;
-	public static Block blueGlowshroomBottom;
+	public static BlockGlowshroom greenGlowshroomTop;
+	public static BlockGlowshroom greenGlowshroomBottom;
+	public static BlockGlowshroom blueGlowshroomTop;
+	public static BlockGlowshroom blueGlowshroomBottom;
 
-	public static Block goldenStalksTop;
-	public static Block goldenStalksBottom;
+	public static BlockStalks goldenStalksTop;
+	public static BlockStalks goldenStalksBottom;
 	public static BlockModFlower goldenBulb;
 	public static BlockModFlower goldenBloom;
 	public static BlockModFlower goldenStalks;
 
-	public static Block workshopCarpet;
-	public static Block frozenGlass;
-	//public static Block frozenPane = new BlockJoinedPane("frozenGlass");
-	public static Block frozenLamp;
-	public static Block workshopStone;
-	public static Block workshopStoneStair;
-	public static Block workshopStoneFence;
+	public static BlockMod workshopCarpet;
+	public static BlockMod frozenGlass;
+	//public static BlockMod frozenPane = new BlockJoinedPane("frozenGlass");
+	public static BlockMod frozenLamp;
+	public static BlockMod workshopStone;
+	public static BlockModStairs workshopStoneStair;
+	public static BlockModFence workshopStoneFence;
 	public static BlockModDoor frozenDoor;
-	public static Block candyCane;
-	public static Block frozenBrick;
-	public static Block icicle;
+	public static BlockMod candyCane;
+	public static BlockMod frozenBrick;
+	public static BlockMod icicle;
 	public static BlockModFlower frostberryThorn;
 	public static BlockModFlower iceBud;
 	public static BlockModFlower frozenBlooms;
@@ -416,44 +416,44 @@ public class JourneyBlocks {
 	public static BlockModFlower infernoPlant;
 	public static BlockModFlower burntGrass;
 
-	public static Block grindstone;
-	public static Block blueGems;
-	public static Block redGems;
+	public static BlockMod grindstone;
+	public static BlockMod blueGems;
+	public static BlockMod redGems;
 
-	public static Block blackBlock;
-	public static Block whiteBlock;
+	public static BlockMod blackBlock;
+	public static BlockMod whiteBlock;
 
-	public static Block eucaPumpkin;
-	public static Block cloud;
+	public static BlockMod eucaPumpkin;
+	public static BlockMod cloud;
 
-	public static Block corbaLadder;
-	public static Block largeNetherBrick;
-	public static Block compactNetherBrick;
-	public static Block nethicLamp;
+	public static BlockMod corbaLadder;
+	public static BlockMod largeNetherBrick;
+	public static BlockMod compactNetherBrick;
+	public static BlockMod nethicLamp;
 
-	public static Block knowledgeTable;
-	public static Block summoningTable;
-	public static Block trophyTable;
-	public static Block bossAltar;
+	public static BlockMod knowledgeTable;
+	public static BlockMod summoningTable;
+	public static BlockMod trophyTable;
+	public static BlockMod bossAltar;
 
-	public static Block observerSpawner;
-	public static Block screamerSpawner;
-	public static Block goldbotSpawner;
-	public static Block silverbotSpawner;
-	public static Block hellbotSpawner;
-	public static Block purplianSpawner;
-	public static Block starlightGolemSpawner;
-	public static Block starlightTransporterSpawner;
-	public static Block sentarAlter;
-	public static Block sorcererSpawner;
-	public static Block frostbiterSpawner;
-	public static Block overseerSpawner;
-	public static Block overseerElderSpawner;
+	public static BlockMod observerSpawner;
+	public static BlockMod screamerSpawner;
+	public static BlockMod goldbotSpawner;
+	public static BlockMod silverbotSpawner;
+	public static BlockMod hellbotSpawner;
+	public static BlockMod purplianSpawner;
+	public static BlockMod starlightGolemSpawner;
+	public static BlockMod starlightTransporterSpawner;
+	public static BlockMod sentarAlter;
+	public static BlockMod sorcererSpawner;
+	public static BlockMod frostbiterSpawner;
+	public static BlockMod overseerSpawner;
+	public static BlockMod overseerElderSpawner;
 
-	public static Block elderBlock;
+	public static BlockMod elderBlock;
 
-	public static Block netherFurnace;
-	public static Block netherFurnaceActive;
+	public static BlockMod netherFurnace;
+	public static BlockMod netherFurnaceActive;
 	
 	/* public static void registerBlocks(IForgeRegistry<Block> registry) {
 		System.out.print("Fucking Blocks Loading");
@@ -469,8 +469,8 @@ public class JourneyBlocks {
 
 
 	/**
-	public static Block boilingFurnace = new BlockNetherFurnace("boilingFurnace", "Boiling Furnace", false);
-	public static Block boilingFurnaceActive = new BlockNetherFurnace("boilingFurnaceActive", "Boiling Furnace", true).setLightLevel(1).setCreativeTab(null);
+	public static BlockMod boilingFurnace = new BlockNetherFurnace("boilingFurnace", "Boiling Furnace", false);
+	public static BlockMod boilingFurnaceActive = new BlockNetherFurnace("boilingFurnaceActive", "Boiling Furnace", true).setLightLevel(1).setCreativeTab(null);
 	 */
 
 	 public static void init() {
@@ -490,8 +490,8 @@ public class JourneyBlocks {
 		mekyumOre = new BlockModOre("mekyumOre", "Mekyum Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
 		koriteOre = new BlockModOre("koriteOre", "Korite Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
 		storonOre = new BlockModOre("storonOre", "Storon Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
-		flairiumOre = new BlockModOre("flairiumOre", "Flairium Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK).setLightLevel(0.5F);
-		desOre = new BlockModOre("desOre", "Des Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK).setLightLevel(0.5F);
+		flairiumOre = (BlockMod) new BlockModOre("flairiumOre", "Flairium Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK).setLightLevel(0.5F);
+		desOre = (BlockMod) new BlockModOre("desOre", "Des Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK).setLightLevel(0.5F);
 		enderilliumOre = new BlockModOre("enderilliumOre", "Enderillium Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
 		gorbiteOre = new BlockModOre("gorbiteOre", "Gorbite Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
 		orbaditeOre = new BlockModOre("orbaditeOre", "Orbadite Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
@@ -557,15 +557,15 @@ public class JourneyBlocks {
 		depthsPlank = new BlockMod(EnumMaterialTypes.WOOD, "depthsPlank", "Depths Plank", 1.0F);
 		depthsStairs = new BlockModStairs(depthsPlank, "depthsStairs", "Depths Stairs");
 		depthsLeaves = new BlockDepthsLeaves("depthsLeaves", "Depths Leaves", 1.0F);
-		darkBrick = new BlockMod("darkBrick", "Dark Brick", 2.0F).setBlockUnbreakable().setResistance(10000000.0F);
-		darkFloor = new BlockMod("darkFloor", "Dark Floor", 2.0F).setBlockUnbreakable().setResistance(10000000.0F);
-		darkShingle = new BlockMod("darkShingle", "Dark Shingle", 2.0F).setBlockUnbreakable().setResistance(10000000.0F);
+		darkBrick = (BlockMod) new BlockMod("darkBrick", "Dark Brick", 2.0F).setBlockUnbreakable().setResistance(10000000.0F);
+		darkFloor = (BlockMod) new BlockMod("darkFloor", "Dark Floor", 2.0F).setBlockUnbreakable().setResistance(10000000.0F);
+		darkShingle = (BlockMod) new BlockMod("darkShingle", "Dark Shingle", 2.0F).setBlockUnbreakable().setResistance(10000000.0F);
 
 		iceLeaves = new BlockDepthsLeaves("iceLeaves", "Ice Leaves", 1.0F);
 		frozenDirt = new BlockMod(EnumMaterialTypes.DIRT, "frozenDirt", "Frozen Dirt", 2.0F);
 		frozenStone = new BlockMod(EnumMaterialTypes.STONE, "frozenStone", "Frozen Stone", 5.0F);
 		frozenGrass = new BlockModGrass(frozenDirt, "frozenGrass", "Frozen Grass", 2.0F);
-		frozenLeaves = new BlockModLeaves("frozenLeaves", "Frozen Leaves", 0.5F).setFrozenPlant().setLightLevel(1);
+		frozenLeaves = (BlockMod) new BlockModLeaves("frozenLeaves", "Frozen Leaves", 0.5F).setFrozenPlant().setLightLevel(1);
 		frozenBark = new BlockModLog("frozenBark", "Frozen Bark");
 		frozenPlanks = new BlockMod(EnumMaterialTypes.WOOD, "frozenPlanks", "Frozen Planks", 0.5F);
 
@@ -574,9 +574,9 @@ public class JourneyBlocks {
 		withanGrass = new BlockModGrass(withanDirt, "withanGrass", "Withan Grass", 2.0F);
 		withanLeaves = new BlockModLeaves("withanLeaves", "Withering Leaves", 0.5F);
 		withanBark = new BlockModLog("withanBark", "Withering Bark");
-		withanRockReinforced = new BlockMod("reinforcedWithan", "Withan Rock").setResistance(10000000000F).setBlockUnbreakable();
-		withanLamp = new BlockMod(EnumMaterialTypes.GLASS, "withanLamp", "Withan Lamp", 0.1F).setLightLevel(1.0F).setCreativeTab(JourneyTabs.decoration);
-		withanLight = new BlockMod(EnumMaterialTypes.GLASS, "withanLight", "Withan Light", 0.1F).setLightLevel(1.0F).setCreativeTab(JourneyTabs.decoration); 
+		withanRockReinforced = (BlockMod) new BlockMod("reinforcedWithan", "Withan Rock").setResistance(10000000000F).setBlockUnbreakable();
+		withanLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "withanLamp", "Withan Lamp", 0.1F).setLightLevel(1.0F).setCreativeTab(JourneyTabs.decoration);
+		withanLight = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "withanLight", "Withan Light", 0.1F).setLightLevel(1.0F).setCreativeTab(JourneyTabs.decoration); 
 
 		goldenGrass = new BlockModGrass((BlockMod)null, "goldenGrass", "Golden Grass", 0.5F);
 		goldenStone = new BlockMod("goldenStone", "Golden Stone");
@@ -587,10 +587,10 @@ public class JourneyBlocks {
 		corbaLeaves = new BlockModLeaves("corbaLeaves", "Corba Leaves", 0.2F);
 		corbaPillar = new BlockMod("corbaPillar", "Corba Pillar");
 		corbaPlank = new BlockMod(EnumMaterialTypes.WOOD, "corbaPlank", "Corba Plank", 0.5F);
-		corbaLamp = new BlockMod(EnumMaterialTypes.GLASS, "corbaLamp", "Corba Lamp", 0.1F).setLightLevel(1.0F).setCreativeTab(JourneyTabs.decoration);
+		corbaLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "corbaLamp", "Corba Lamp", 0.1F).setLightLevel(1.0F).setCreativeTab(JourneyTabs.decoration);
 		corbaSentryBrick = new BlockMod("corbaSentryBrick", "Corba Sentry Brick");
 
-		boilingLamp = new BlockMod(EnumMaterialTypes.GLASS, "boilingLamp", "Boiling Lamp", 0.1F).setLightLevel(1.0F).setCreativeTab(JourneyTabs.decoration);
+		boilingLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "boilingLamp", "Boiling Lamp", 0.1F).setLightLevel(1.0F).setCreativeTab(JourneyTabs.decoration);
 		blazierBricks = new BlockMod("blazierBricks", "Blazier Bricks"); 
 		ashBlock = new BlockMod("ashBlock", "Ash");
 		hotBlock = new BlockModGrass(ashBlock, "hotGround", "Hot Ground", 2.0F);
@@ -606,11 +606,11 @@ public class JourneyBlocks {
 		cloudiaGrass = new BlockModGrass(cloudiaDirt, "cloudiaGrass", "Cloudia Grass", 2.0F);
 		cloudiaLog = new BlockModLog("cloudiaLog", "Cloudia Log"); 
 		cloudiaRock = new BlockMod("cloudiaRock", "Cloudia Rock"); 
-		cloudiaBrick = new BlockMod("cloudiaBrick", "Cloudia Brick").setLightLevel(0.5F); 
-		cloudiaWall = new BlockMod("cloudiaWall", "Cloudia Wall").setLightLevel(0.5F);  
-		cloudiaTile = new BlockMod("cloudiaTile", "Cloudia Tile").setLightLevel(0.5F); 
-		cloudiaLeaves = new BlockModLeaves("cloudiaLeaves", "Cloudia Leaves", 0.5F).setLightLevel(2);
-		cloudiaLamp = new BlockMod(EnumMaterialTypes.GLASS, "cloudiaLamp", "Cloudia Lamp", 0.1F).setLightLevel(1.0F).setCreativeTab(JourneyTabs.decoration);
+		cloudiaBrick = (BlockMod) new BlockMod("cloudiaBrick", "Cloudia Brick").setLightLevel(0.5F); 
+		cloudiaWall = (BlockMod) new BlockMod("cloudiaWall", "Cloudia Wall").setLightLevel(0.5F);  
+		cloudiaTile = (BlockMod) new BlockMod("cloudiaTile", "Cloudia Tile").setLightLevel(0.5F); 
+		cloudiaLeaves = (BlockMod) new BlockModLeaves("cloudiaLeaves", "Cloudia Leaves", 0.5F).setLightLevel(2);
+		cloudiaLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "cloudiaLamp", "Cloudia Lamp", 0.1F).setLightLevel(1.0F).setCreativeTab(JourneyTabs.decoration);
 		// cloudiaPost = new BlockCloudiaPost("cloudiaPost");
 		pinkCloudiaCloud = new BlockCloud("pinkCloudiaCloud", "Pink Cloudia Cloud");
 		blueCloudiaCloud = new BlockCloud("blueCloudiaCloud", "Blue Cloudia Cloud");
@@ -618,7 +618,7 @@ public class JourneyBlocks {
 		cloudiaTallGrass = new BlockModFlower("cloudiaTallGrass", "Cloudia Tall Grass");
 		cloudiaFlower = new BlockModFlower("cloudiaFlower", "Cloudia Flower");
 
-		swampLamp = new BlockSwampLamp("swampLamp", "Swamp Fly Bottle", 0).setLightLevel(1);
+		swampLamp = (BlockMod) new BlockSwampLamp("swampLamp", "Swamp Fly Bottle", 0).setLightLevel(1);
 
 		frozenChest = new BlockJourneyChest("frozenChest", "Frozen Chest");
 		netherChest = new BlockJourneyChest("netherChest", "Nether Chest");
@@ -630,25 +630,25 @@ public class JourneyBlocks {
 		terraniaChest = new BlockJourneyChest("terraniaChest", "Terrania Chest");
 
 		nethicDungeonBricks = new BlockMod("nethicDungeonBricks", "Nethic Dungeon Bricks");
-		boilChain = new BlockModBars("boilChain", "Boil Chain", 5.0F).setBlockUnbreakable().setResistance(10000000.0F);
-		boilGate = new BlockModBars("boilGate", "Boil Gate", 5.0F).setBlockUnbreakable().setResistance(10000000.0F);
-		boilLock = new BlockLock("boilLock", "Boil Lock", JourneyItems.boilKey).setBlockUnbreakable().setResistance(10000000.0F);
+		boilChain = (BlockMod) new BlockModBars("boilChain", "Boil Chain", 5.0F).setBlockUnbreakable().setResistance(10000000.0F);
+		boilGate = (BlockMod) new BlockModBars("boilGate", "Boil Gate", 5.0F).setBlockUnbreakable().setResistance(10000000.0F);
+		boilLock = (BlockMod) new BlockLock("boilLock", "Boil Lock", JourneyItems.boilKey).setBlockUnbreakable().setResistance(10000000.0F);
 
-		darklyGate = new BlockModBars("darklyGate", "Darkly Gate", 5.0F).setBlockUnbreakable().setResistance(10000000.0F);
-		darklyLock = new BlockLock("darklyLock", "Darkly Lock", JourneyItems.darkKey).setBlockUnbreakable().setResistance(10000000.0F);
+		darklyGate = (BlockMod) new BlockModBars("darklyGate", "Darkly Gate", 5.0F).setBlockUnbreakable().setResistance(10000000.0F);
+		darklyLock = (BlockMod) new BlockLock("darklyLock", "Darkly Lock", JourneyItems.darkKey).setBlockUnbreakable().setResistance(10000000.0F);
 
 		corbaPost = new BlockModFence(pinkCloudiaCloud, "corbaPost", "Corba Post");
 		sizzlingPost = new BlockModFence(pinkCloudiaCloud, "sizzlingPost", "Sizzling Post");
 
-		senterianBricks = new BlockMod("senterianBricks", "Senterian Bricks").setBlockUnbreakable().setResistance(10000000.0F);
-		senterianRock = new BlockMod("senterianRock", "Senterian Rock").setBlockUnbreakable().setResistance(10000000.0F);
-		senterianCarvedRock = new BlockMod("senterianCarvedRock", "Senterian Carved Rock").setBlockUnbreakable().setResistance(10000000.0F);
-		senterianFloor = new BlockMod("senterianFloor", "Senterian Floor").setBlockUnbreakable().setResistance(10000000.0F);
-		senterianBars = new BlockModBars("senterianBars", "Senterian Bars", 5.0F).setBlockUnbreakable().setResistance(10000000.0F);
-		senterianLightLamp = new BlockMod(EnumMaterialTypes.GLASS, "senterianLightLamp", "Senterian Light Lamp", 0.1F).setLightLevel(0.5F).setCreativeTab(JourneyTabs.decoration).setBlockUnbreakable().setResistance(10000000.0F);
-		senterianMellowLamp = new BlockMod(EnumMaterialTypes.GLASS, "senterianMellowLamp", "Senterian Mellow Lamp", 0.1F).setLightLevel(0.5F).setCreativeTab(JourneyTabs.decoration).setBlockUnbreakable().setResistance(10000000.0F);
-		senterianGuardianLamp = new BlockMod(EnumMaterialTypes.GLASS, "senterianGuardianLamp", "Senterian Guardian Lamp", 0.1F).setLightLevel(0.5F).setCreativeTab(JourneyTabs.decoration).setBlockUnbreakable().setResistance(10000000.0F);
-		senterianPost = new BlockModFence(senterianBricks, "senterianPost", "Senterian Post").setBlockUnbreakable().setResistance(10000000.0F);
+		senterianBricks = (BlockMod) new BlockMod("senterianBricks", "Senterian Bricks").setBlockUnbreakable().setResistance(10000000.0F);
+		senterianRock = (BlockMod) new BlockMod("senterianRock", "Senterian Rock").setBlockUnbreakable().setResistance(10000000.0F);
+		senterianCarvedRock = (BlockMod) new BlockMod("senterianCarvedRock", "Senterian Carved Rock").setBlockUnbreakable().setResistance(10000000.0F);
+		senterianFloor = (BlockMod) new BlockMod("senterianFloor", "Senterian Floor").setBlockUnbreakable().setResistance(10000000.0F);
+		senterianBars = (BlockMod) new BlockModBars("senterianBars", "Senterian Bars", 5.0F).setBlockUnbreakable().setResistance(10000000.0F);
+		senterianLightLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "senterianLightLamp", "Senterian Light Lamp", 0.1F).setLightLevel(0.5F).setCreativeTab(JourneyTabs.decoration).setBlockUnbreakable().setResistance(10000000.0F);
+		senterianMellowLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "senterianMellowLamp", "Senterian Mellow Lamp", 0.1F).setLightLevel(0.5F).setCreativeTab(JourneyTabs.decoration).setBlockUnbreakable().setResistance(10000000.0F);
+		senterianGuardianLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "senterianGuardianLamp", "Senterian Guardian Lamp", 0.1F).setLightLevel(0.5F).setCreativeTab(JourneyTabs.decoration).setBlockUnbreakable().setResistance(10000000.0F);
+		senterianPost = (BlockModFence) new BlockModFence(senterianBricks, "senterianPost", "Senterian Post").setBlockUnbreakable().setResistance(10000000.0F);
 
 		trophy = new BlockTrophy("trophy", "Trophy");
 		trophySoul = new BlockTrophy("trophySoul", "Soul Watcher Trophy");
@@ -694,13 +694,13 @@ public class JourneyBlocks {
 		terraniaPortalFrame = new BlockMod("terraniaPortalFrame", "Terrania Portal Frame", 3.0F);
 
 		senterianPortal = (BlockSenterianPortal)new BlockSenterianPortal("senterianPortal", "senterianPortal").setCreativeTab(null);
-		senterianPortalFrame = new BlockSenterianPortalFrame("senterianPortalFrame", "Senterian Portal Frame").setCreativeTab(null);
+		senterianPortalFrame = (BlockMod) new BlockSenterianPortalFrame("senterianPortalFrame", "Senterian Portal Frame").setCreativeTab(null);
 		//WastelandsPortal wastelandsPortal = (BlockWastelandsPortal)new BlockWastelandsPortal("wastelandsPortal");
 		// wastelandsPortalFrame = new BlockMod("wastelandsPortalFrame");
 		cloudiaPortal = new BlockCloudiaPortal("cloudiaPortal");
 		cloudiaPortalFrame = new BlockMod("cloudiaPortalFrame", "Cloudia Portal Frame", 3.0F);
 
-		depthsLights = new BlockMod(EnumMaterialTypes.GLASS, "depthsLight", "Depths Light", 0.5F).setLightLevel(1.0F);
+		depthsLights = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "depthsLight", "Depths Light", 0.5F).setLightLevel(1.0F);
 
 		fire = new BlockModFire("fire", "Essential Fire");
 
@@ -710,7 +710,7 @@ public class JourneyBlocks {
 		dungeonCrackedBrick = new BlockDungeonBlock("dungeonCrackedBrick", "Dungeon Cracked Brick");
 		dungeonChisledBrick = new BlockDungeonBlock("dungeonChiseledBrick", "Dungeon Chiseled Brick");
 		dungeonBrickCarved = new BlockDungeonBlock("dungeonBrickCarved", "Dungeon Carved Brick");
-		dungeonLamp = new BlockDungeonBlock("dungeonLamp", "Dungeon Lamp", true).setLightLevel(0.5F).setCreativeTab(JourneyTabs.decoration);
+		dungeonLamp = (BlockMod) new BlockDungeonBlock("dungeonLamp", "Dungeon Lamp", true).setLightLevel(0.5F).setCreativeTab(JourneyTabs.decoration);
 
 		dungeonBrickStairs = new BlockModStairs(dungeonBrick, "dungeonBrickStairs", "Dungeon Brick Stairs");
 		dungeonCrackedBrickStairs = new BlockModStairs(dungeonCrackedBrick, "dungeonCrackedBrickStairs", "Cracked Dungeon Brick Stairs");
@@ -737,7 +737,7 @@ public class JourneyBlocks {
 		terranianPanels = new BlockMod("terranianPanels", "Terranian Panels", 2.0F);
 		terranianTallgrass = new BlockModFlower("terranianTallgrass", "Terranian Tallgrass");
 		terragrow = new BlockTerraFlower("terragrow", "Terranian Flower");
-		terraniaLamp = new BlockMod(EnumMaterialTypes.GLASS, "terraniaLamp", "Terrania Lamp", 0.1F).setLightLevel(1.0F).setCreativeTab(JourneyTabs.decoration);
+		terraniaLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "terraniaLamp", "Terrania Lamp", 0.1F).setLightLevel(1.0F).setCreativeTab(JourneyTabs.decoration);
 
 		hotBrick = new BlockMod("hotBrick", "Hot Brick", 2.0F);
 		hotBrick_fence = new BlockModFence(hotBrick, "hotBrickFence", "Hot Brick Fence");
@@ -771,8 +771,8 @@ public class JourneyBlocks {
 		blueGlowshroomTop = new BlockGlowshroom("blueGlowshroomTop", "Blue Glowshroom", true);
 		blueGlowshroomBottom = new BlockGlowshroom("blueGlowshroomBottom", "Blue Glowshroom", false);
 
-		goldenStalksTop = new BlockStalks("goldenStalksTop", "Golden Stalks", true).setCreativeTab(null);
-		goldenStalksBottom = new BlockStalks("goldenStalksBottom", "Golden Stalks", false).setCreativeTab(null);
+		goldenStalksTop = (BlockStalks) new BlockStalks("goldenStalksTop", "Golden Stalks", true).setCreativeTab(null);
+		goldenStalksBottom = (BlockStalks) new BlockStalks("goldenStalksBottom", "Golden Stalks", false).setCreativeTab(null);
 		goldenBulb = (BlockModFlower) new BlockModFlower("goldenBulb", "Golden Bulb").setCreativeTab(null);
 		goldenBloom = (BlockModFlower) new BlockModFlower("goldenBloom", "Golden Bloom").setCreativeTab(null);
 		goldenStalks = (BlockModFlower) new BlockModFlower("goldenStalks", "Golden Stalks").setCreativeTab(null);
@@ -780,7 +780,7 @@ public class JourneyBlocks {
 		workshopCarpet = new BlockMod(EnumMaterialTypes.WOOL, "workshopCarpet", "Workshop Carpet", 0.5F);
 		frozenGlass = new BlockJoinedGlass("frozenGlass", "Frozen Glass");
 		// frozenPane = new BlockJoinedPane("frozenGlass");
-		frozenLamp = new BlockMod(EnumMaterialTypes.GLASS, "frozenLamp", "Frozen Lamp", 0.5F).setLightLevel(1.0F).setCreativeTab(JourneyTabs.decoration);
+		frozenLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "frozenLamp", "Frozen Lamp", 0.5F).setLightLevel(1.0F).setCreativeTab(JourneyTabs.decoration);
 		workshopStone = new BlockMod(EnumMaterialTypes.STONE, "workshopStone", "Workshop Stone", 0.5F);
 		workshopStoneStair = new BlockModStairs(workshopStone, "workshopStairs", "Workshop Stairs");
 		workshopStoneFence = new BlockModFence(workshopStone, "workshopStoneFence", "Workshop Fence");
@@ -826,10 +826,10 @@ public class JourneyBlocks {
 
 		corbaLadder = new BlockModLadder("corbaLadder", "Corba Ladder", 0);
 		largeNetherBrick = new BlockMod("largeNetherBrick", "Large Nether Brick");
-		compactNetherBrick = new BlockMod("compactNetherBrick", "Compact Nether Brick").setBlockUnbreakable().setResistance(10000000.0F);
-		nethicLamp = new BlockMod(EnumMaterialTypes.GLASS, "nethicLamp", "Nethic Lamp", 0.1F).setLightLevel(1).setCreativeTab(JourneyTabs.decoration);
+		compactNetherBrick = (BlockMod) new BlockMod("compactNetherBrick", "Compact Nether Brick").setBlockUnbreakable().setResistance(10000000.0F);
+		nethicLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "nethicLamp", "Nethic Lamp", 0.1F).setLightLevel(1).setCreativeTab(JourneyTabs.decoration);
 
-		knowledgeTable = new BlockKnowledgeTable("knowledgeTable", "Knowledge Table").setCreativeTab(null);
+		knowledgeTable = (BlockMod) new BlockKnowledgeTable("knowledgeTable", "Knowledge Table").setCreativeTab(null);
 		summoningTable = new BlockSummoningTable("summoningTable", "Summoning Table");
 		trophyTable = new BlockTrophyTable("trophyTable", "Trophy Table");
 		bossAltar = new BlockMod("bossAltar", "Boss Altar");
@@ -854,16 +854,20 @@ public class JourneyBlocks {
 		elderBlock = new BlockChangeable("elderBlock", "Elder Block", JourneyItems.elderKey, JourneyBlocks.overseerElderSpawner);
 
 		netherFurnace = new BlockNetherFurnace("netherFurnace", "Nethic Furnace", false);
-		netherFurnaceActive = new BlockNetherFurnace("netherFurnaceActive", "Nethic Furnace", true).setLightLevel(0.7F).setCreativeTab(null);
+		netherFurnaceActive = (BlockMod) new BlockNetherFurnace("netherFurnaceActive", "Nethic Furnace", true).setLightLevel(0.7F).setCreativeTab(null);
 		
 	    }
 	 
 		public static void registerItemBlocks(IForgeRegistry<Item> registry) {
 			registry.registerAll(
-					cobaltOre.createItemBlock());
+					cobaltOre.createItemBlock(), 
+					darkBrick.createItemBlock(), 
+					flairiumOre.createItemBlock());
 		}
 		
 		public static void registerBlockModels() {
 			cobaltOre.registerItemModel(Item.getItemFromBlock(cobaltOre));
+			darkBrick.registerItemModel(Item.getItemFromBlock(darkBrick));
+			flairiumOre.registerItemModel(Item.getItemFromBlock(flairiumOre));
 		}
 }
