@@ -710,7 +710,7 @@ public class JourneyBlocks {
 		dungeonCrackedBrick = new BlockDungeonBlock("dungeonCrackedBrick", "Dungeon Cracked Brick");
 		dungeonChisledBrick = new BlockDungeonBlock("dungeonChiseledBrick", "Dungeon Chiseled Brick");
 		dungeonBrickCarved = new BlockDungeonBlock("dungeonBrickCarved", "Dungeon Carved Brick");
-		dungeonLamp = (BlockMod) new BlockDungeonBlock("dungeonLamp", "Dungeon Lamp", true).setLightLevel(0.5F).setCreativeTab(JourneyTabs.decoration);
+		dungeonLamp = (BlockDungeonBlock) new BlockDungeonBlock("dungeonLamp", "Dungeon Lamp", true).setLightLevel(0.5F).setCreativeTab(JourneyTabs.decoration);
 
 		dungeonBrickStairs = new BlockModStairs(dungeonBrick, "dungeonBrickStairs", "Dungeon Brick Stairs");
 		dungeonCrackedBrickStairs = new BlockModStairs(dungeonCrackedBrick, "dungeonCrackedBrickStairs", "Cracked Dungeon Brick Stairs");
@@ -1056,14 +1056,9 @@ public class JourneyBlocks {
 					dungeonCrackedBrickStairs.createItemBlock(),
 					dungeonChisledBrickStairs.createItemBlock(),
 					dungeonBrickCarvedStairs.createItemBlock(),
-					dungeonLampStairs.createItemBlock(),
-					dungeonBrick.createItemBlock(),
-					dungeonCrackedBrick.createItemBlock(),
-					dungeonChisledBrick.createItemBlock(),
-					dungeonBrickCarved.createItemBlock(),
+					dungeonLampStairs.createItemBlock(), 
 					cloudiaPost.createItemBlock(),
 					terranianPost.createItemBlock(),
-					dungeonLamp.createItemBlock(),
 					terraniaLeaves.createItemBlock(),
 					terraniaVine.createItemBlock(),
 					terranianDirt.createItemBlock(),
@@ -1354,6 +1349,7 @@ public class JourneyBlocks {
 			depthsLights.registerItemModel(SlayerAPI.toItem(depthsLights));
 			fire.registerItemModel(SlayerAPI.toItem(fire));
 			mossyEssenceStone.registerItemModel(SlayerAPI.toItem(mossyEssenceStone));
+			
 			dungeonBrick.registerItemModel(SlayerAPI.toItem(dungeonBrick));
 			dungeonCrackedBrick.registerItemModel(SlayerAPI.toItem(dungeonCrackedBrick));
 			dungeonChisledBrick.registerItemModel(SlayerAPI.toItem(dungeonChisledBrick));
@@ -1364,13 +1360,9 @@ public class JourneyBlocks {
 			dungeonChisledBrickStairs.registerItemModel(SlayerAPI.toItem(dungeonChisledBrickStairs));
 			dungeonBrickCarvedStairs.registerItemModel(SlayerAPI.toItem(dungeonBrickCarvedStairs));
 			dungeonLampStairs.registerItemModel(SlayerAPI.toItem(dungeonLampStairs));
-			dungeonBrick.registerItemModel(SlayerAPI.toItem(dungeonBrick));
-			dungeonCrackedBrick.registerItemModel(SlayerAPI.toItem(dungeonCrackedBrick));
-			dungeonChisledBrick.registerItemModel(SlayerAPI.toItem(dungeonChisledBrick));
-			dungeonBrickCarved.registerItemModel(SlayerAPI.toItem(dungeonBrickCarved));
+		
 			cloudiaPost.registerItemModel(SlayerAPI.toItem(cloudiaPost));
 			terranianPost.registerItemModel(SlayerAPI.toItem(terranianPost));
-			dungeonLamp.registerItemModel(SlayerAPI.toItem(dungeonLamp));
 			terraniaLeaves.registerItemModel(SlayerAPI.toItem(terraniaLeaves));
 			terraniaVine.registerItemModel(SlayerAPI.toItem(terraniaVine));
 			terranianDirt.registerItemModel(SlayerAPI.toItem(terranianDirt));
@@ -1470,6 +1462,6 @@ public class JourneyBlocks {
 			elderBlock.registerItemModel(SlayerAPI.toItem(elderBlock));
 			netherFurnace.registerItemModel(SlayerAPI.toItem(netherFurnace));
 			netherFurnaceActive.registerItemModel(SlayerAPI.toItem(netherFurnaceActive));
-			System.out.print("Journey Block Models loaded successfully");
+			System.out.print("Journey Block Models loaded successfully"); 
 		}
 }
