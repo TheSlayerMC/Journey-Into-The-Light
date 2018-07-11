@@ -1,5 +1,6 @@
 package net.slayer.api.block;
 
+import net.journey.JITL;
 import net.journey.JourneyBlocks;
 import net.journey.JourneyTabs;
 import net.journey.util.LangRegistry;
@@ -10,6 +11,8 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -18,8 +21,10 @@ import net.slayer.api.SlayerAPI;
 
 public class BlockModFence extends BlockFence {
 
+	public String name;
 	public BlockModFence(Block block, String name, String finalName, boolean light) {
 		super(Material.ROCK, null);
+		this.name = name;
 		LangRegistry.addBlock(name, finalName);
 		setUnlocalizedName(name);
 		setCreativeTab(JourneyTabs.blocks);
@@ -32,6 +37,15 @@ public class BlockModFence extends BlockFence {
 	
 	public BlockModFence(Block b, String n, String finalName) {
 		this(b, n, finalName, false);
+		this.name = n;
+	}
+
+	public void registerItemModel(Item itemBlock) {
+		JITL.proxy.registerItemRenderer(itemBlock, 0, name);
+	}
+	
+	public Item createItemBlock() {
+		return new ItemBlock(this).setRegistryName(getRegistryName());
 	}
 
 	

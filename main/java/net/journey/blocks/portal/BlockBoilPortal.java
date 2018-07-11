@@ -2,6 +2,7 @@ package net.journey.blocks.portal;
 
 import java.util.Random;
 
+import net.journey.JITL;
 import net.journey.JourneyBlocks;
 import net.journey.JourneyTabs;
 import net.journey.client.render.particles.EntityBoilPotalFX;
@@ -20,6 +21,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
@@ -39,6 +41,8 @@ import net.slayer.api.SlayerAPI;
 
 public class BlockBoilPortal extends BlockBreakable {
 
+	public String name; 
+	
     public static final PropertyEnum<EnumFacing.Axis> AXIS = PropertyEnum.<EnumFacing.Axis>create("axis", EnumFacing.Axis.class, EnumFacing.Axis.X, EnumFacing.Axis.Z);
 	protected static final AxisAlignedBB X_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.375D, 1.0D, 1.0D, 0.625D);
 	protected static final AxisAlignedBB Z_AABB = new AxisAlignedBB(0.375D, 0.0D, 0.0D, 0.625D, 1.0D, 1.0D);
@@ -46,6 +50,7 @@ public class BlockBoilPortal extends BlockBreakable {
 
 	public BlockBoilPortal(String name) {
 		super(Material.PORTAL, false);
+		this.name = name;
         this.setDefaultState(this.blockState.getBaseState().withProperty(AXIS, EnumFacing.Axis.X));
 		LangRegistry.addBlock(name, "Boiling Portal");
 		this.setTickRandomly(true);
@@ -367,5 +372,13 @@ public class BlockBoilPortal extends BlockBreakable {
 				}
 			}
 		}
+	}
+
+	public void registerItemModel(Item itemBlock) {
+		JITL.proxy.registerItemRenderer(itemBlock, 0, name);
+	}
+	
+	public Item createItemBlock() {
+		return new ItemBlock(this).setRegistryName(getRegistryName());
 	}
 }
