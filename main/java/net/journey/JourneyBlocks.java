@@ -862,8 +862,6 @@ public class JourneyBlocks {
 			System.out.print("Loading Journey ItemBlocks");
 			registry.registerAll(
 					cobaltOre.createItemBlock(), 
-					darkBrick.createItemBlock(), 
-					flairiumOre.createItemBlock(),
 					rubyOre.createItemBlock(),
 					adamantineOre.createItemBlock(),
 					mythrilOre.createItemBlock(),
@@ -1171,8 +1169,6 @@ public class JourneyBlocks {
 		public static void registerBlockModels() {
 			System.out.print("Loading Journey Block Models");
 			cobaltOre.registerItemModel(SlayerAPI.toItem(cobaltOre)); 
-			darkBrick.registerItemModel(SlayerAPI.toItem(darkBrick)); 
-			flairiumOre.registerItemModel(SlayerAPI.toItem(flairiumOre));
 			rubyOre.registerItemModel(SlayerAPI.toItem(rubyOre));
 			adamantineOre.registerItemModel(SlayerAPI.toItem(adamantineOre));
 			mythrilOre.registerItemModel(SlayerAPI.toItem(mythrilOre));
