@@ -859,7 +859,7 @@ public class JourneyBlocks {
 		netherFurnace = new BlockNetherFurnace("netherFurnace", "Nethic Furnace", false);
 		netherFurnaceActive = (BlockMod) new BlockNetherFurnace("netherFurnaceActive", "Nethic Furnace", true).setLightLevel(0.7F).setCreativeTab(null);
 		
-	 	bleedheartFruit = new BlockFruitCrop("bleedheartFruit", "Bleedheart Fruit");
+	 	bleedheartFruit = new BlockFruitCrop("bleedheartFruit", "Bleedheart Fruit", JourneyItems.bleedheart, sizzlerWoodLog);
 		
 	    }
 	 

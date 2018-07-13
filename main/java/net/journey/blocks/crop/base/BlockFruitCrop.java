@@ -34,6 +34,9 @@ import net.slayer.api.block.BlockModCrop;
 
 public class BlockFruitCrop extends BlockMod implements IGrowable {
 	
+	public Item fruitItem;
+	public Block sustainableBlock;
+	
     public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
     protected static final AxisAlignedBB[] FRUIT_EAST_AABB = new AxisAlignedBB[] {
     		new AxisAlignedBB(0.6875D, 0.4375D, 0.375D, 0.9375D, 0.75D, 0.625D), 
@@ -60,6 +63,15 @@ public class BlockFruitCrop extends BlockMod implements IGrowable {
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(AGE, Integer.valueOf(0)));
         this.setTickRandomly(true);
     }
+    
+    public BlockFruitCrop(String name, String finalName, Item fruitItem, Block sustainableBlock) {
+        super(EnumMaterialTypes.SLIME, name, finalName, 0.5F);
+        this.fruitItem = fruitItem;
+        this.sustainableBlock = sustainableBlock;
+        this.setCreativeTab(null);
+        this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(AGE, Integer.valueOf(0)));
+        this.setTickRandomly(true);
+    }
 
     @Override
     public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
@@ -79,7 +91,7 @@ public class BlockFruitCrop extends BlockMod implements IGrowable {
     public boolean canBlockStay(World worldIn, BlockPos pos, IBlockState state) {
         pos = pos.offset((EnumFacing)state.getValue(FACING));
         IBlockState iblockstate = worldIn.getBlockState(pos);
-        return iblockstate.getBlock() == JourneyBlocks.sizzlerWoodLog;
+        return iblockstate.getBlock() == this.sustainableBlock;
     }
     
     @Override
@@ -167,7 +179,7 @@ public class BlockFruitCrop extends BlockMod implements IGrowable {
             j = 3;
         }
         for (int k = 0; k < j; ++k) {
-            dropped.add(new ItemStack(JourneyItems.bleedheart));
+            dropped.add(new ItemStack(this.fruitItem));
         }
         return dropped;
     }
