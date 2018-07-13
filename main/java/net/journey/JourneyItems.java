@@ -33,7 +33,6 @@ import net.journey.entity.projectile.EntityRock;
 import net.journey.entity.projectile.EntityWithic;
 import net.journey.entity.projectile.EntityWizardsStar;
 import net.journey.enums.EnumKnowledge;
-import net.journey.items.ItemBleedheart;
 import net.journey.items.ItemCandyCane;
 import net.journey.items.ItemChaosCannon;
 import net.journey.items.ItemCrackenCanes;
@@ -43,6 +42,7 @@ import net.journey.items.ItemDemonicEye;
 import net.journey.items.ItemDetractor;
 import net.journey.items.ItemEssencePotion;
 import net.journey.items.ItemFlameCoin;
+import net.journey.items.ItemFruit;
 import net.journey.items.ItemGlowa;
 import net.journey.items.ItemGoldenFood;
 import net.journey.items.ItemGun;
@@ -1369,7 +1369,7 @@ public class JourneyItems {
 		jellyBeans = new ItemModFood("jellyBeans", "Jelly Beans", 1, 0.1F, 2, false);
 		chocolate = new ItemModFood("chocolate", "Chocolate Bar", 2, 0.1F, 2, false);
 		vanillaWafer = new ItemModFood("vanillaWafer", "Vanilla Wafer", 1, 0.1F, 2, false);
-		bleedheart = new ItemBleedheart("bleedheart", "Bleedheart Fruit", 2, 0.1F, false);
+		bleedheart = new ItemFruit("bleedheart", "Bleedheart Fruit", 2, 0.1F, false, JourneyBlocks.bleedheartFruit, JourneyBlocks.sizzlerWoodLog);
 
 		sizzleberry = new ItemModFood("sizzleberry", "Sizzleberry", 1, 4.0F, 5, false).setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.fireResistance, 20, 1), 1.0F).setAlwaysEdible();
 		bradberry = new ItemModFood("bradberry", "Bradberry", 1, 8, 4, false);

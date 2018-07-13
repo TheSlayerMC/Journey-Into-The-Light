@@ -154,7 +154,7 @@ public class WorldGenEssence implements IWorldGenerator {
 			(new WorldGenBleedheartTree2()).generate(w, r, new BlockPos(x, y - 1, z));
 		}
 		
-		/* for(times = 0; times < 100; times++) {
+		for(times = 0; times < 100; times++) {
 			y = r.nextInt(256); 
 			x = chunkX + this.r.nextInt(16) + 8; 
 			z = chunkZ + this.r.nextInt(16) + 8;
@@ -216,7 +216,7 @@ public class WorldGenEssence implements IWorldGenerator {
 				new WorldGenNetherFlower(w, r, new BlockPos(x, y, z), JourneyBlocks.hellBell);
 		} 
 
-		if(r.nextInt(30)==0) {
+		/*if(r.nextInt(30)==0) {
 			y = r.nextInt(128) + 1;
 			x = chunkX + r.nextInt(16);
 			z = chunkZ + r.nextInt(16);

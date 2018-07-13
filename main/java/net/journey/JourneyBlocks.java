@@ -134,11 +134,11 @@ public class JourneyBlocks {
 	public static BlockMod yellowGemBlock;
 
 	//@SuppressWarnings("")
-	public static BlockMod sizzleberryBush = new BlockModBush("sizzleberryBush", "Sizzleberry Bush", JourneyItems.sizzleberry, true);
-	public static BlockMod bradberryBush = new BlockModBush("bradberryBush", "Bradberry Bush", JourneyItems.bradberry, false);
-	public static BlockMod tangleberryBush = new BlockModBush("tangleberryBush", "Tangleberry Bush", JourneyItems.tangleberry, false);
-	public static BlockMod juiceberryBush = new BlockModBush("juiceberryBush", "Juiceberry Bush", JourneyItems.juiceberry, false);
-	public static BlockMod bogberryBush = new BlockModBush("bogberryBush", "Bogberry Bush", JourneyItems.bogberry, false);
+	 public static BlockModBush sizzleberryBush = new BlockModBush("sizzleberryBush", "Sizzleberry Bush", JourneyItems.sizzleberry, true);
+	public static BlockModBush bradberryBush = new BlockModBush("bradberryBush", "Bradberry Bush", JourneyItems.bradberry, false);
+	public static BlockModBush tangleberryBush = new BlockModBush("tangleberryBush", "Tangleberry Bush", JourneyItems.tangleberry, false);
+	public static BlockModBush juiceberryBush = new BlockModBush("juiceberryBush", "Juiceberry Bush", JourneyItems.juiceberry, false);
+	public static BlockModBush bogberryBush = new BlockModBush("bogberryBush", "Bogberry Bush", JourneyItems.bogberry, false); 
 
 	public static BlockMod nethicanSludge;
 
@@ -455,6 +455,8 @@ public class JourneyBlocks {
 
 	public static BlockMod netherFurnace;
 	public static BlockMod netherFurnaceActive;
+	
+	public static BlockFruitCrop bleedheartFruit;
 	
 	/* public static void registerBlocks(IForgeRegistry<Block> registry) {
 		System.out.print("Fucking Blocks Loading");
@@ -857,6 +859,8 @@ public class JourneyBlocks {
 		netherFurnace = new BlockNetherFurnace("netherFurnace", "Nethic Furnace", false);
 		netherFurnaceActive = (BlockMod) new BlockNetherFurnace("netherFurnaceActive", "Nethic Furnace", true).setLightLevel(0.7F).setCreativeTab(null);
 		
+	 	bleedheartFruit = new BlockFruitCrop("bleedheartFruit", "Bleedheart Fruit");
+		
 	    }
 	 
 		public static void registerItemBlocks(IForgeRegistry<Item> registry) {
@@ -915,6 +919,13 @@ public class JourneyBlocks {
 					purpleGemBlock.createItemBlock(),
 					blueGemBlock.createItemBlock(),
 					yellowGemBlock.createItemBlock(),
+					
+					/*sizzleberryBush.createItemBlock(),
+					bradberryBush.createItemBlock(),
+					tangleberryBush.createItemBlock(),
+					juiceberryBush.createItemBlock(),
+					bogberryBush.createItemBlock(), */
+					
 					nethicanSludge.createItemBlock(),
 					eucaGrass.createItemBlock(),
 					eucaStone.createItemBlock(),
@@ -933,6 +944,12 @@ public class JourneyBlocks {
 					depthsPlank.createItemBlock(),
 					depthsStairs.createItemBlock(),
 					depthsLeaves.createItemBlock(),
+					
+
+					
+					
+					
+					
 					darkBrick.createItemBlock(),
 					darkFloor.createItemBlock(),
 					darkShingle.createItemBlock(),
@@ -1158,7 +1175,8 @@ public class JourneyBlocks {
 					overseerElderSpawner.createItemBlock(),
 					elderBlock.createItemBlock(),
 					netherFurnace.createItemBlock(),
-					netherFurnaceActive.createItemBlock());
+					netherFurnaceActive.createItemBlock(),
+					bleedheartFruit.createItemBlock());
 			System.out.print("Journey ItemBlocks loaded successfully");
 		}
 		
@@ -1217,6 +1235,14 @@ public class JourneyBlocks {
 			purpleGemBlock.registerItemModel(SlayerAPI.toItem(purpleGemBlock));
 			blueGemBlock.registerItemModel(SlayerAPI.toItem(blueGemBlock));
 			yellowGemBlock.registerItemModel(SlayerAPI.toItem(yellowGemBlock));
+			
+			/*sizzleberryBush.registerItemModel(SlayerAPI.toItem(sizzleberryBush));
+			bradberryBush.registerItemModel(SlayerAPI.toItem(bradberryBush));
+			tangleberryBush.registerItemModel(SlayerAPI.toItem(tangleberryBush));
+			juiceberryBush.registerItemModel(SlayerAPI.toItem(juiceberryBush));
+			bogberryBush.registerItemModel(SlayerAPI.toItem(bogberryBush)); */
+			
+			
 			nethicanSludge.registerItemModel(SlayerAPI.toItem(nethicanSludge));
 			eucaGrass.registerItemModel(SlayerAPI.toItem(eucaGrass));
 			eucaStone.registerItemModel(SlayerAPI.toItem(eucaStone));
@@ -1361,6 +1387,9 @@ public class JourneyBlocks {
 			dungeonChisledBrickStairs.registerItemModel(SlayerAPI.toItem(dungeonChisledBrickStairs));
 			dungeonBrickCarvedStairs.registerItemModel(SlayerAPI.toItem(dungeonBrickCarvedStairs));
 			dungeonLampStairs.registerItemModel(SlayerAPI.toItem(dungeonLampStairs));
+			
+
+		
 		
 			cloudiaPost.registerItemModel(SlayerAPI.toItem(cloudiaPost));
 			terranianPost.registerItemModel(SlayerAPI.toItem(terranianPost));
@@ -1463,6 +1492,7 @@ public class JourneyBlocks {
 			elderBlock.registerItemModel(SlayerAPI.toItem(elderBlock));
 			netherFurnace.registerItemModel(SlayerAPI.toItem(netherFurnace));
 			netherFurnaceActive.registerItemModel(SlayerAPI.toItem(netherFurnaceActive));
+			bleedheartFruit.registerItemModel(SlayerAPI.toItem(bleedheartFruit));
 			System.out.print("Journey Block Models loaded successfully"); 
 		}
 }

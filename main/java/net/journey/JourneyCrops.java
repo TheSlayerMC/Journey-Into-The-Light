@@ -31,7 +31,6 @@ public class JourneyCrops {
 	public static Block floroCrop;
 	public static Block airRootCrop;
 	public static Block airRootMelon;
-	public static Block bleedheartFruit;
 
 	public static Item glowshroomPowder;
 	public static Item tomatoSeeds;
@@ -56,7 +55,6 @@ public class JourneyCrops {
 		floroCrop = new BlockFloroCrop("floroCrop");
 		airRootCrop = new BlockAirRootCrop("airRootCrop");
 		airRootMelon = new BlockMelon("airRootMelon", "Air Root", JourneyItems.airMelon);
-		bleedheartFruit = new BlockFruitCrop("bleedheartFruitCrop");
 
 		glowshroomPowder = new ItemModSeeds("glowshroomPowder", "Glowshroom Powder", JourneyCrops.glowshroomCrop);
 		tomatoSeeds = new ItemModSeeds("tomatoSeeds", "Tomato Seeds", JourneyCrops.tomatoCrop);

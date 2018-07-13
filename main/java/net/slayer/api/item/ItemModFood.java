@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.journey.JourneyItems;
 import net.journey.JourneyTabs;
+import net.journey.blocks.crop.base.BlockFruitCrop;
 import net.journey.client.ItemDescription;
 import net.journey.util.LangRegistry;
 import net.minecraft.client.util.ITooltipFlag;
@@ -18,6 +19,7 @@ import net.slayer.api.SlayerAPI;
 public class ItemModFood extends ItemFood {
 
 	private int time = 32;
+	public BlockFruitCrop crop;
 	
     public ItemModFood(String name, String f, int food, float sat, boolean wolfFood) {
         super(food, sat, wolfFood);

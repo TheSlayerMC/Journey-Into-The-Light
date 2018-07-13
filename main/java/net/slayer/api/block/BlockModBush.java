@@ -32,6 +32,7 @@ public class BlockModBush extends BlockMod implements IGrowable, IPlantable {
 
 	private boolean isNether;
 	private Item berry;
+	
 	public static final PropertyInteger AGE = PropertyInteger.create("age", 0, 2);
 
 	public BlockModBush(String name, String finalName, Item berry, boolean isNether) {
