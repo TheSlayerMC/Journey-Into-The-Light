@@ -10,6 +10,6 @@
 
 "key": {
 
-"R": { "item": "journey:input" }},
+"A": { "item": "journey:input" }},
 
 "result": { "item": "journey:output", "count" : 1 }}

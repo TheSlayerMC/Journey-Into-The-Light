@@ -58,6 +58,7 @@ import net.slayer.api.EnumToolType;
 import net.slayer.api.SlayerAPI;
 import net.slayer.api.block.BlockMod;
 import net.slayer.api.block.BlockModBars;
+import net.slayer.api.block.BlockModBush;
 import net.slayer.api.block.BlockModDoor;
 import net.slayer.api.block.BlockModFence;
 import net.slayer.api.block.BlockModFlower;
@@ -132,12 +133,12 @@ public class JourneyBlocks {
 	public static BlockMod blueGemBlock;
 	public static BlockMod yellowGemBlock;
 
-	@SuppressWarnings("")
-	/*public static BlockMod sizzleberryBush = new BlockModBush("sizzleberryBush", "Sizzleberry Bush", JourneyItems.sizzleberry, true);
+	//@SuppressWarnings("")
+	public static BlockMod sizzleberryBush = new BlockModBush("sizzleberryBush", "Sizzleberry Bush", JourneyItems.sizzleberry, true);
 	public static BlockMod bradberryBush = new BlockModBush("bradberryBush", "Bradberry Bush", JourneyItems.bradberry, false);
 	public static BlockMod tangleberryBush = new BlockModBush("tangleberryBush", "Tangleberry Bush", JourneyItems.tangleberry, false);
 	public static BlockMod juiceberryBush = new BlockModBush("juiceberryBush", "Juiceberry Bush", JourneyItems.juiceberry, false);
-	public static BlockMod bogberryBush = new BlockModBush("bogberryBush", "Bogberry Bush", JourneyItems.bogberry, false);*/
+	public static BlockMod bogberryBush = new BlockModBush("bogberryBush", "Bogberry Bush", JourneyItems.bogberry, false);
 
 	public static BlockMod nethicanSludge;
 

@@ -154,26 +154,26 @@ public class WorldGenEssence implements IWorldGenerator {
 			(new WorldGenBleedheartTree2()).generate(w, r, new BlockPos(x, y - 1, z));
 		}
 		
-		/*for(times = 0; times < 100; times++) {
+		/* for(times = 0; times < 100; times++) {
 			y = r.nextInt(256); 
 			x = chunkX + this.r.nextInt(16) + 8; 
 			z = chunkZ + this.r.nextInt(16) + 8;
-			new WorldGenNetherFlower(JourneyBlocks.deathGRASS).generate(worldObj, r, new BlockPos(x, y, z));
+			new WorldGenNetherFlower(w, r, pos, JourneyBlocks.deathGrass).generate(worldObj, r, new BlockPos(x, y, z));
 		}
 		
 		for(times = 0; times < 16; times++) {
 			y = r.nextInt(256); 
 			x = chunkX + this.r.nextInt(16) + 8; 
 			z = chunkZ + this.r.nextInt(16) + 8;
-			new WorldGenNetherFlower(JourneyBlocks.hellBell).generate(worldObj, r, new BlockPos(x, y, z));
-		} */
+			new WorldGenNetherFlower(w, r, pos, JourneyBlocks.hellBell).generate(worldObj, r, new BlockPos(x, y, z));
+		}
 		
-		/* for(times = 0; times < 100; times++) {
+		for(times = 0; times < 100; times++) {
 			y = r.nextInt(35) + 1;
 			x = chunkX + r.nextInt(16);
 			z = chunkZ + r.nextInt(16);
 			trees.get(r.nextInt(trees.size())).generate(w, r, new BlockPos(x, y, z));
-		} */
+		}
 		
 		for(times = 0; times < 100; times++) {
 			y = r.nextInt(250); 
@@ -196,7 +196,7 @@ public class WorldGenEssence implements IWorldGenerator {
 			x = chunkX + r.nextInt(16);
 			z = chunkZ + r.nextInt(16);
 			if(isBlockTop(x, y, z, Blocks.NETHERRACK, w)) {
-				//new WorldGenBush(w, r, new BlockPos(x, y, z), JourneyBlocks.sizzleberryBush, Blocks.NETHERRACK).generate(w, r, new BlockPos(x, y, z));
+				new WorldGenBush(w, r, new BlockPos(x, y, z), JourneyBlocks.sizzleberryBush, Blocks.NETHERRACK).generate(w, r, new BlockPos(x, y, z));
 			}
 		}
 		
@@ -214,7 +214,7 @@ public class WorldGenEssence implements IWorldGenerator {
 			z = chunkZ + r.nextInt(16);
 			if(isBlockTop(x, y, z, JourneyBlocks.heatSoil, w)) 
 				new WorldGenNetherFlower(w, r, new BlockPos(x, y, z), JourneyBlocks.hellBell);
-		}
+		} 
 
 		if(r.nextInt(30)==0) {
 			y = r.nextInt(128) + 1;
@@ -222,7 +222,7 @@ public class WorldGenEssence implements IWorldGenerator {
 			z = chunkZ + r.nextInt(16);
 			if(y > 20 && y < 110) if(isBlockTop(x, y, z, Blocks.NETHERRACK, w))
 			new WorldGenBoilPortal().generate(w, r, new BlockPos(x, y, z));
-		}
+		} 
 		
 		if(r.nextInt(30)==0) {
 			y = r.nextInt(128) + 1;
@@ -230,7 +230,7 @@ public class WorldGenEssence implements IWorldGenerator {
 			z = chunkZ + r.nextInt(16);
 			if(y > 20 && y < 110) if(isBlockTop(x, y, z, Blocks.NETHERRACK, w))
 			new WorldGenNetherDungeons().generate(w, r, new BlockPos(x, y, z));
-		}
+		} */
 		
 		for(times = 0; times < 5; times++) {
 			y = r.nextInt(128) + 1;
