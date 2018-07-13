@@ -13,6 +13,7 @@ import net.slayer.api.SlayerAPI;
 public interface IHasModel {
 
 	@SideOnly(Side.CLIENT)
+	default public void registerModels(ModelRegistryEvent e) {
 		if (this instanceof Item)
 			sMRL("items", (Item) this, 0, "item=" + ((Item) this).getRegistryName().getResourcePath());
 		else if (this instanceof Block)
@@ -26,7 +27,7 @@ public interface IHasModel {
 	{
 		ModelLoader.setCustomModelResourceLocation(k, meta, new ModelResourceLocation(k.getRegistryName(), variant));
 	}
-
+ 
 	public static void sMRL(String statePath, Item k, int meta, String variant)
 	{
 		ModelLoader.setCustomModelResourceLocation(k, meta,
