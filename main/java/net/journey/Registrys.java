@@ -38,11 +38,12 @@ public class Registrys {
 	@SubscribeEvent
 	public static void onModelRegister(ModelRegistryEvent event) {
 		for(Block block : JourneyBlocks.blocks)
+			
 			if(block instanceof IHasModel)
-				((IHasModel)block).registerModels();
+				((IHasModel)block).registerModels(event);
 		for(Item item : JourneyItems.items)
 			if(item instanceof IHasModel)
-				((IHasModel)item).registerModels();
+				((IHasModel)item).registerModels(event);
 	}
 
 }
