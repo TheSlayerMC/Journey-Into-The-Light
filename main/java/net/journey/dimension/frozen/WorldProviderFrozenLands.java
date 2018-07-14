@@ -2,8 +2,10 @@ package net.journey.dimension.frozen;
 
 import net.journey.dimension.DimensionHelper;
 import net.journey.util.Config;
+import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -16,7 +18,7 @@ public class WorldProviderFrozenLands extends WorldProvider{
 	}
 	
 	@Override
-	public IChunkProvider createChunkGenerator()
+	public IChunkGenerator createChunkGenerator()
     {
         return new ChunkProviderFrozenLands(worldObj, worldObj.getSeed(), worldObj.getWorldInfo().getGeneratorOptions());
     }
@@ -41,5 +43,10 @@ public class WorldProviderFrozenLands extends WorldProvider{
 	@Override
 	public String getInternalNameSuffix() {
 		return "FrozenLands";
+	}
+
+	@Override
+	public DimensionType getDimensionType() {
+		return null;
 	}
 }
