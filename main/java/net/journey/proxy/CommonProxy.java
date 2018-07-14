@@ -81,13 +81,6 @@ public class CommonProxy {
 		SlayerAPI.registerEvent(new ArmorAbilityEvent());
 		SlayerAPI.registerEvent(new PlayerEvent());
 		SlayerAPI.registerEvent(new BarTickHandler());
-		GameRegistry.registerTileEntity(TileEntityGrindstone.class, "grindstone");
-		GameRegistry.registerTileEntity(TileEntityKnowledgeTable.class, "Knowledge Table");
-		GameRegistry.registerTileEntity(TileEntitySummoningTable.class, "Summoning Table");
-		GameRegistry.registerTileEntity(TileEntityTrophyTable.class, "Trophy Table");
-		GameRegistry.registerTileEntity(TileEntityJourneyChest.class, "Journey Chest");
-		GameRegistry.registerTileEntity(TileEntityNetherFurnace.class, "Nether Furnace");
-		GameRegistry.registerTileEntity(TileEntitySenterianPortal.class, "Senterian Labyrinth Portal");
 		GameRegistry.registerFuelHandler(new JourneyFuelHandler());
 		MinecraftForge.addGrassSeed(new ItemStack(JourneyCrops.tomatoSeeds), 5);
 		FMLCommonHandler.instance().bus().register(new JourneySapphireSwordEvent());
@@ -104,20 +97,14 @@ public class CommonProxy {
 	}
 	
     @SubscribeEvent
-    public static void registerBlocks(RegistryEvent.Register<Block> event) {
-    	
-    }
+    public static void registerBlocks(RegistryEvent.Register<Block> event) {  }
 
     @SubscribeEvent
-    public static void registerItems(RegistryEvent.Register<Item> event) {
-    }
+    public static void registerItems(RegistryEvent.Register<Item> event) { }
     
-	public void registerItemRenderer(Item itemBlock, int i, String name) {
-		
-	}
-	public void registerEntityRenderer(Entity entity, int i, String name) {
-		
-	}
+	public void registerItemRenderer(Item itemBlock, int i, String name) { }
+	
+	public void registerEntityRenderer(Entity entity, int i, String name) { }
 	
 	public void postInit(FMLPostInitializationEvent event) { }
 	

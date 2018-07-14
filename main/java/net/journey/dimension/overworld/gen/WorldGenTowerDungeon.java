@@ -39,19 +39,19 @@ public class WorldGenTowerDungeon extends WorldGenerator {
 		
 		ArrayList<String> mobNames = new ArrayList<String>();
 		
-		mobNames.add("Spider");
-		mobNames.add("Creeper");
-		mobNames.add("boomBoom");
-		mobNames.add("robot");
-		mobNames.add("spyclops");
-		mobNames.add("bigHongo");
-		mobNames.add("mediumHongo");
-		mobNames.add("reaper");
-		mobNames.add("Zombie");
-		mobNames.add("Skeleton");
-		mobNames.add("sandCrawler");
-		mobNames.add("fireMage");
-		mobNames.add("iceMage");
+		mobNames.add("minecraft:spider");
+		mobNames.add("minecraft:creeper");
+		mobNames.add("journey:boomBoom");
+		mobNames.add("journey:robot");
+		mobNames.add("journey:spyclops");
+		mobNames.add("journey:bighongo");
+		mobNames.add("journey:mediumhongo");
+		mobNames.add("journey:reaper");
+		mobNames.add("minecraft:zombie");
+		mobNames.add("minecraft:skeleton");
+		mobNames.add("journey:sandcrawler");
+		mobNames.add("journey:firemage");
+		mobNames.add("journey:icemage");
 		
 		addLevel(w, x, y, z, 4, 1, mobNames.get(r.nextInt(mobNames.size())), mobNames.get(r.nextInt(mobNames.size())));
 		addLevel(w, x, y, z, 4, 0, mobNames.get(r.nextInt(mobNames.size())), mobNames.get(r.nextInt(mobNames.size())));
