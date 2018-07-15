@@ -5,6 +5,7 @@ import java.util.Random;
 import net.journey.JourneyBlocks;
 import net.journey.JourneyTabs;
 import net.journey.blocks.tileentity.TileEntityNetherFurnace;
+import net.journey.client.GuiHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
@@ -25,6 +26,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.EnumMaterialTypes;
+import net.slayer.api.SlayerAPI;
 import net.slayer.api.entity.tileentity.container.BlockModContainer;
 
 public class BlockNetherFurnace extends BlockModContainer {
@@ -108,24 +110,13 @@ public class BlockNetherFurnace extends BlockModContainer {
 			}
 		}
 	}
-
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
-	{
-		if (worldIn.isRemote)
-		{
-			return true;
+	
+	@Override
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing heldItem, float side, float hitX, float hitY) {
+		if(!worldIn.isRemote) {
+			playerIn.openGui(SlayerAPI.MOD_ID, GuiHandler.DUAL_FURNACE_GUI, worldIn, pos.getX(), pos.getY(), pos.getZ());
 		}
-		else
-		{
-			TileEntity tileentity = worldIn.getTileEntity(pos);
-
-			if (tileentity instanceof TileEntityNetherFurnace)
-			{
-				playerIn.displayGUIChest((TileEntityNetherFurnace)tileentity);
-			}
-
-			return true;
-		}
+		return true;
 	}
 
 	public static void setState(boolean active, World worldIn, BlockPos pos)

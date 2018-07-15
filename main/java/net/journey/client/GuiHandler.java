@@ -30,6 +30,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
+import net.slayer.api.entity.tileentity.container.ContainerModFurnace;
 import net.slayer.api.entity.tileentity.container.ContainerModVillager;
 
 public class GuiHandler implements IGuiHandler {
@@ -55,6 +56,7 @@ public class GuiHandler implements IGuiHandler {
 	
 	//Blocks
 	knowledge = id++,
+	netherfurnace = id++,
 	summoning = id++,
 	trophy = id++;
 
@@ -71,6 +73,8 @@ public class GuiHandler implements IGuiHandler {
 			return new ContainerKnowledgeTable(player.inventory, (TileEntityKnowledgeTable)entity, world);
 		if(ID == summoning) 
 			return new ContainerSummoningTable(player.inventory, (TileEntitySummoningTable)entity, world);
+		if(ID == netherfurnace) 
+			return new ContainerModFurnace(player.inventory, (TileEntityModFurnace)entity, world);
 		if(ID == trophy) 
 			return new ContainerTrophy(player.inventory, (TileEntityTrophyTable)entity, world);
 		if(ID == staringGuardian) 
