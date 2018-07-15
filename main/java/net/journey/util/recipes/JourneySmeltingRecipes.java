@@ -26,6 +26,10 @@ public class JourneySmeltingRecipes {
 		return SMELTING;
 	}
 
+	public static void init() {
+		initSmeltingCrafting();
+	}
+	
 	public static void initSmeltingCrafting() {
 		JourneyBlocks b = new JourneyBlocks();
 		JourneyItems i = new JourneyItems();
