@@ -87,7 +87,7 @@ public class CommonProxy {
 		FMLCommonHandler.instance().bus().register(new JourneySapphireEvent());
 		FMLCommonHandler.instance().bus().register(new JourneyDungeonEvent());
 		JourneyTabs.init();
-		//DimensionHelper.init();
+		DimensionHelper.init();
 	}
 	
 	public void init(FMLInitializationEvent event) {

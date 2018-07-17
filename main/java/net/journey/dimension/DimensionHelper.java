@@ -132,7 +132,7 @@ public class DimensionHelper {
 		DimensionManager.unregisterDimension(-1);
 		DimensionManager.registerDimension(-1, DimensionType.NETHER);
 		addDimension(Config.euca, eucaType);
-		addDimension(Config.depths, depthsType);
+		/*addDimension(Config.depths, depthsType);
 		addDimension(Config.boil, boilingType);
 		addDimension(Config.frozen, frozenType);
 		addDimension(Config.corba, corbaType);
@@ -141,7 +141,7 @@ public class DimensionHelper {
 		addDimension(Config.terrania, terraniaType);
 		addDimension(Config.golden, goldenType);
 		addDimension(Config.senterian, senterianType);
-		addDimension(Config.wither, witherType);
+		addDimension(Config.wither, witherType); */
 	}
 
 	private static void addDimension(int id, DimensionType type) {

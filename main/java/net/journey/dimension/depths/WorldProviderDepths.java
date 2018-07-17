@@ -2,16 +2,19 @@ package net.journey.dimension.depths;
 
 import net.journey.dimension.DimensionHelper;
 import net.journey.util.Config;
+import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldProvider;
+import net.minecraft.world.biome.BiomeProviderSingle;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.IChunkGenerator;
 
 public class WorldProviderDepths extends WorldProvider {
 
-    @Override
-    public void registerWorldChunkManager() {
-        this.worldChunkMgr = new WorldChunkManagerHell(DimensionHelper.depths, 0.5F);
-        this.dimensionId = Config.depths;
-        isHellWorld = false;
+	@Override
+	public void init() {
+        this.biomeProvider = new BiomeProviderSingle(DimensionHelper.depths);
+        //this.dimensionId = Config.depths;
+        nether = false;
     }
     
     @Override
@@ -35,8 +38,8 @@ public class WorldProviderDepths extends WorldProvider {
     }
 
     @Override
-    public IChunkProvider createChunkGenerator() {
-        return new ChunkProviderDepths(this.worldObj, this.worldObj.getSeed());
+    public IChunkGenerator createChunkGenerator() {
+        return new ChunkProviderDepths(this.world, this.world.getSeed());
     }
 
     @Override
@@ -53,14 +56,10 @@ public class WorldProviderDepths extends WorldProvider {
     public boolean canRespawnHere() {
         return false;
     }
-    
-    @Override
-    public String getDimensionName() {
-        return "The Depths";
-    }
 
 	@Override
-	public String getInternalNameSuffix() {
-		return "Depths";
+	public DimensionType getDimensionType() {
+		return DimensionHelper.depthsType;
+		
 	}
 }

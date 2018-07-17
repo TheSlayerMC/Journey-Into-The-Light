@@ -12,6 +12,9 @@ import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
 import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityModFlying;
@@ -36,7 +39,7 @@ public class EntityShimmerer extends EntityModFlying {
 	@Override
 	public void onUpdate() {
         super.onUpdate();
-        if(!this.worldObj.isRemote && this.worldObj.getDifficulty() == EnumDifficulty.PEACEFUL) this.setDead();
+        if(!this.world.isRemote && this.world.getDifficulty() == EnumDifficulty.PEACEFUL) this.setDead();
     }
 	
 	@Override
@@ -61,7 +64,7 @@ public class EntityShimmerer extends EntityModFlying {
 	
 	@Override
 	public boolean getCanSpawnHere() {
-        return this.rand.nextInt(15) == 0 && super.getCanSpawnHere() && this.worldObj.getDifficulty() != EnumDifficulty.PEACEFUL;
+        return this.rand.nextInt(15) == 0 && super.getCanSpawnHere() && this.world.getDifficulty() != EnumDifficulty.PEACEFUL;
     }
 
     @Override
@@ -168,7 +171,7 @@ public class EntityShimmerer extends EntityModFlying {
 			AxisAlignedBB axisalignedbb = this.e.getEntityBoundingBox();
 			for(int i = 1; i < h; ++i) {
 				axisalignedbb = axisalignedbb.offset(d4, d5, d6);
-				if(!this.e.worldObj.getCollidingBoundingBoxes(this.e, axisalignedbb).isEmpty()) {
+				if(!this.e.world.getCollisionBoxes(this.e, axisalignedbb).isEmpty()) {
 					return false;
 				}
 			}
@@ -196,7 +199,7 @@ public class EntityShimmerer extends EntityModFlying {
 				EntityLivingBase entitylivingbase = this.e.getAttackTarget();
 				double d0 = 64.0D;
 
-				if (entitylivingbase.getDistanceSqToEntity(this.e) < d0 * d0) {
+				if (entitylivingbase.getDistanceSq(this.e) < d0 * d0) {
 					double d1 = entitylivingbase.posX - this.e.posX;
 					double d2 = entitylivingbase.posZ - this.e.posZ;
 					this.e.renderYawOffset = this.e.rotationYaw = -((float)Math.atan2(d1, d2)) * 180.0F / (float)Math.PI;
@@ -229,8 +232,8 @@ public class EntityShimmerer extends EntityModFlying {
 			EntityLivingBase entitylivingbase = this.entity.getAttackTarget();
 			double d0 = 64.0D;
 
-			if(entitylivingbase.getDistanceSqToEntity(this.entity) < d0 * d0 && this.entity.canEntityBeSeen(entitylivingbase)) {
-				World world = this.entity.worldObj;
+			if(entitylivingbase.getDistanceSq(this.entity) < d0 * d0 && this.entity.canEntityBeSeen(entitylivingbase)) {
+				World world = this.entity.world;
 				counter++;
 
 				if(this.counter == 20) {
@@ -244,7 +247,7 @@ public class EntityShimmerer extends EntityModFlying {
 					projectile.posX = this.entity.posX + vec3.xCoord * d1;
 					projectile.posY = this.entity.posY + this.entity.height / 2.0F + 0.5D;
 					projectile.posZ = this.entity.posZ + vec3.zCoord * d1;
-					world.spawnEntityInWorld(projectile);
+					world.spawnEntity(projectile);
 					this.counter = -40;
 				}
 			}

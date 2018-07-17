@@ -48,7 +48,9 @@ public class EntityDynaster extends EntityModMob{
 	@Override
 	public boolean attackEntityFrom(DamageSource e, float a) {
 		if(e.getImmediateSource() instanceof EntityPlayer)
-			((EntityPlayer)e.getImmediateSource()).addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.poison, 60, 1)));
+			((EntityPlayer)e.getImmediateSource()).addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.blindness, 60, 10)));
+		if(e.getImmediateSource() instanceof EntityPlayer)
+			((EntityPlayer)e.getImmediateSource()).addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.moveSlow, 60, 10)));
 		return super.attackEntityFrom(e, a);
 	}
 	

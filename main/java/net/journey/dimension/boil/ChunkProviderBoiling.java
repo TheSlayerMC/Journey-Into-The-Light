@@ -21,6 +21,7 @@ import net.minecraft.util.IProgressUpdate;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
@@ -34,6 +35,7 @@ import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.NoiseGeneratorPerlin;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.terraingen.InitNoiseGensEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 
@@ -54,7 +56,7 @@ public class ChunkProviderBoiling implements IChunkGenerator {
 	private double[] stoneNoise;
 	private MapGenBase caveGenerator;
 	private MapGenBase ravineGenerator;
-	private BiomeGenBase[] biomesForGeneration;
+	private Biome[] biomesForGeneration;
 	double[] gen1;
 	double[] gen2;
 	double[] gen3;
@@ -81,21 +83,21 @@ public class ChunkProviderBoiling implements IChunkGenerator {
 		trees.add(new WorldGenBoilTree3());
 		for(int j = -2; j <= 2; ++j) {
 			for(int k = -2; k <= 2; ++k) {
-				float f = 10.0F / MathHelper.sqrt_float(j * j + k * k + 0.2F);
+				float f = 10.0F / MathHelper.sqrt(j * j + k * k + 0.2F);
 				this.parabolicField[j + 2 + (k + 2) * 5] = f;
 			}
 		}
-
-
-		NoiseGenerator[] noiseGens = {noiseGen1, noiseGen2, noiseGen3, noiseGen4, noiseGen5, noiseGen6, mobSpawnerNoise};
-		noiseGens = TerrainGen.getModdedNoiseGenerators(worldIn, this.rand, noiseGens);
-		this.noiseGen1 = (NoiseGeneratorOctaves)noiseGens[0];
-		this.noiseGen2 = (NoiseGeneratorOctaves)noiseGens[1];
-		this.noiseGen3 = (NoiseGeneratorOctaves)noiseGens[2];
-		this.noiseGen4 = (NoiseGeneratorPerlin)noiseGens[3];
-		this.noiseGen5 = (NoiseGeneratorOctaves)noiseGens[4];
-		this.noiseGen6 = (NoiseGeneratorOctaves)noiseGens[5];
-		this.mobSpawnerNoise = (NoiseGeneratorOctaves)noiseGens[6];
+		
+        net.minecraftforge.event.terraingen.InitNoiseGensEvent.ContextHell ctx =
+                new net.minecraftforge.event.terraingen.InitNoiseGensEvent.ContextHell(noiseGen1, noiseGen2, noiseGen3, noiseGen5, noiseGen6, mobSpawnerNoise, mobSpawnerNoise);
+        ctx = net.minecraftforge.event.terraingen.TerrainGen.getModdedNoiseGenerators(worldIn, this.rand, ctx);
+        this.noiseGen1 = ctx.getLPerlin1();
+        this.noiseGen2 = ctx.getLPerlin2();
+        this.noiseGen3 = ctx.getPerlin();
+        this.noiseGen5 = ctx.getPerlin2();
+        this.noiseGen6 = ctx.getPerlin3();
+        this.mobSpawnerNoise = ctx.getScale();
+        this.mobSpawnerNoise = ctx.getDepth();
 	}
 
 	public void setBlocksInChunk(int p_180518_1_, int p_180518_2_, ChunkPrimer p_180518_3_) {

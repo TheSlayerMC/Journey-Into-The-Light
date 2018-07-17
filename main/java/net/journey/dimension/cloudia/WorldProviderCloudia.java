@@ -17,7 +17,7 @@ public class WorldProviderCloudia extends WorldProvider {
 	
 	@Override
 	public IChunkProvider createChunkGenerator() {
-		return new ChunkProviderCloudia(this.worldObj, this.worldObj.getSeed());
+		return new ChunkProviderCloudia(this.world, this.world.getSeed());
 	}
 
     @Override

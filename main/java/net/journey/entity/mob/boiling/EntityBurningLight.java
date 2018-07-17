@@ -5,10 +5,13 @@ import java.util.List;
 import net.journey.JourneyItems;
 import net.journey.entity.MobStats;
 import net.journey.enums.EnumSounds;
+import net.journey.util.PotionEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityModMob;
 
@@ -58,6 +61,15 @@ public class EntityBurningLight extends EntityModMob{
         	if(entity instanceof EntityPlayer && canEntityBeSeen(entity)) ((EntityPlayer)entity).setFire(5 + rand.nextInt(7));
         }        
     }
+    
+	@Override
+	public boolean attackEntityFrom(DamageSource e, float a) {
+		if(e.getImmediateSource() instanceof EntityPlayer)
+			((EntityPlayer)e.getImmediateSource()).addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.moveSlow, 60, 5)));
+		if(e.getImmediateSource() instanceof EntityPlayer)
+			((EntityPlayer)e.getImmediateSource()).addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.blindness, 60, 5)));
+		return super.attackEntityFrom(e, a);
+	}
 	
 	@Override
 	public Item getItemDropped() {

@@ -23,10 +23,12 @@ import net.minecraft.util.IProgressUpdate;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.NoiseGenerator;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.NoiseGeneratorPerlin;
@@ -35,7 +37,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.TerrainGen;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 
-public class ChunkProviderDepths implements IChunkProvider {
+public class ChunkProviderDepths implements IChunkProvider, IChunkGenerator {
 
 	private Random rand;
 	private NoiseGeneratorOctaves noiseGen1;
@@ -48,7 +50,7 @@ public class ChunkProviderDepths implements IChunkProvider {
 	private final double[] da;
 	private final float[] parabolicField;
 	private double[] stoneNoise;
-	private BiomeGenBase[] biomesForGeneration;
+	private Biome[] biomesForGeneration;
 	double[] gen1, gen2, gen3, gen4;
 
 	public ChunkProviderDepths(World worldIn, long s) {
@@ -66,7 +68,7 @@ public class ChunkProviderDepths implements IChunkProvider {
 
 		for (int j = -2; j <= 2; ++j) {
 			for (int k = -2; k <= 2; ++k) {
-				float f = 10.0F / MathHelper.sqrt_float(j * j + k * k + 0.2F);
+				float f = 10.0F / MathHelper.sqrt(j * j + k * k + 0.2F);
 				this.parabolicField[j + 2 + (k + 2) * 5] = f;
 			}
 		}
@@ -196,16 +198,16 @@ public class ChunkProviderDepths implements IChunkProvider {
 				float f1 = 0.0F;
 				float f2 = 0.0F;
 				byte b0 = 2;
-				BiomeGenBase biomegenbase = this.biomesForGeneration[(j1 + 2 + (k1 + 2) * 10)];
+				Biome Biome = this.biomesForGeneration[(j1 + 2 + (k1 + 2) * 10)];
 				for (int l1 = -b0; l1 <= b0; l1++) {
 					for (int i2 = -b0; i2 <= b0; i2++) {
-						BiomeGenBase biomegenbase1 = this.biomesForGeneration[(j1 + l1 + 2 + (k1 + i2 + 2) * 10)];
-						float f3 = biomegenbase1.minHeight;
-						float f4 = biomegenbase1.maxHeight;
+						Biome Biome1 = this.biomesForGeneration[(j1 + l1 + 2 + (k1 + i2 + 2) * 10)];
+						float f3 = Biome1.minHeight;
+						float f4 = Biome1.maxHeight;
 						f3 = 0.0F;
 						f4 = -1.0F;
 						float f5 = this.parabolicField[l1 + 2 + (i2 + 2) * 5] / (f3 + 2.0F);
-						if(biomegenbase1.minHeight > biomegenbase.minHeight) f5 /= 2.0F;
+						if(Biome1.minHeight > Biome.minHeight) f5 /= 2.0F;
 						f += f4 * f5;
 						f1 += f3 * f5;
 						f2 += f5;
@@ -419,8 +421,8 @@ public class ChunkProviderDepths implements IChunkProvider {
 
 	@Override
 	public List <SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos) {
-		BiomeGenBase biomegenbase = this.worldObj.getBiomeGenForCoords(pos);
-		return biomegenbase.getSpawnableList(creatureType);
+		Biome Biome = this.worldObj.getBiomeGenForCoords(pos);
+		return Biome.getSpawnableList(creatureType);
 	}
 
 	@Override

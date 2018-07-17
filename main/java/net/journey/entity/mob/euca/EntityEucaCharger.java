@@ -12,6 +12,7 @@ public class EntityEucaCharger extends EntityModMob {
 	public EntityEucaCharger(World par1World) {
 		super(par1World);
 		addAttackingAI();
+		this.setMovementSpeed();
 		setSize(0.7F, 1.2F);
 	}
 
@@ -23,6 +24,11 @@ public class EntityEucaCharger extends EntityModMob {
 	@Override
 	public double setMaxHealth(MobStats s) {
 		return MobStats.eucaHealth;
+	}
+	
+	@Override
+	public double setMovementSpeed() {
+		return 0.5D;
 	}
 
 	@Override
