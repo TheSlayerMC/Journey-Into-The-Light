@@ -9,18 +9,18 @@ import net.journey.JourneyItems;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.slayer.api.worldgen.WorldGenAPI;
 
 public class WorldGenTreeHut extends WorldGenerator {
 	
-	private static WeightedRandomChestContent[] loot = {
+	/*private static WeightedRandomChestContent[] loot = {
 			new WeightedRandomChestContent(JourneyItems.slugSlime, 0, 1, 5, 10), 
 			new WeightedRandomChestContent(JourneyItems.darkTerrarianSoil, 0, 1, 10, 40), 
 			new WeightedRandomChestContent(JourneyItems.earthenCrystal, 0, 1, 10, 40), 
-			new WeightedRandomChestContent(JourneyItems.lightTerrarianSoil, 0, 1, 5, 40)};
+			new WeightedRandomChestContent(JourneyItems.lightTerrarianSoil, 0, 1, 5, 40)};*/
 	@Override
 	public boolean generate(World world, Random rand, BlockPos pos) {
 		Block post = JourneyBlocks.terranianPost;
@@ -97,7 +97,7 @@ public class WorldGenTreeHut extends WorldGenerator {
 		
 		TileEntityJourneyChest te = (TileEntityJourneyChest)world.getTileEntity(new BlockPos(i + 0, j + 14, k + 0));
 		if(te != null) {
-			WeightedRandomChestContent.generateChestContents(rand, Lists.newArrayList(loot), te, 4);
+			//WeightedRandomChestContent.generateChestContents(rand, Lists.newArrayList(loot), te, 4);
 		}
 		
 		world.setBlockState(new BlockPos(i + 3, j + 16, k + 2), JourneyBlocks.terranianDarkPanels.getDefaultState());

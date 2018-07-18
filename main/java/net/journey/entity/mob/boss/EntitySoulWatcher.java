@@ -9,24 +9,20 @@ import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.client.render.particles.EntityHellstoneFX;
 import net.journey.entity.MobStats;
 import net.journey.entity.mob.nether.EntityLavasnake;
-import net.journey.entity.projectile.EntityIceBall;
 import net.journey.entity.projectile.EntityMagmaFireball;
 import net.journey.enums.EnumSounds;
-import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
 import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.client.FMLClientHandler;
@@ -80,7 +76,7 @@ public class EntitySoulWatcher extends EntityEssenceBoss implements IRangedAttac
 	@Override
 	public boolean getCanSpawnHere() {
 		return this.rand.nextInt(15) == 0 && super.getCanSpawnHere()
-				&& this.worldObj.getDifficulty() != EnumDifficulty.PEACEFUL;
+				&& this.world.getDifficulty() != EnumDifficulty.PEACEFUL;
 	}
 
 	@Override
@@ -95,9 +91,9 @@ public class EntitySoulWatcher extends EntityEssenceBoss implements IRangedAttac
 			p.triggerAchievement(JourneyAchievements.achievementSoul); {
 			}
 		}
-		this.worldObj.setBlockState(new BlockPos((int)Math.floor(this.posX + 0), ((int)Math.floor(this.posY + 1)), ((int)Math.floor(this.posZ + 0))), JourneyBlocks.trophySoul.getStateFromMeta(5));
-		this.worldObj.setBlockState(new BlockPos((int)Math.floor(this.posX + 0), ((int)Math.floor(this.posY + 0)), ((int)Math.floor(this.posZ + 0))), JourneyBlocks.netherChest.getStateFromMeta(5));
-		TileEntityJourneyChest te = (TileEntityJourneyChest)worldObj.getTileEntity(new BlockPos((int)Math.floor(this.posX + 0), ((int)Math.floor(this.posY + 0)), ((int)Math.floor(this.posZ + 0))));
+		this.world.setBlockState(new BlockPos((int)Math.floor(this.posX + 0), ((int)Math.floor(this.posY + 1)), ((int)Math.floor(this.posZ + 0))), JourneyBlocks.trophySoul.getStateFromMeta(5));
+		this.world.setBlockState(new BlockPos((int)Math.floor(this.posX + 0), ((int)Math.floor(this.posY + 0)), ((int)Math.floor(this.posZ + 0))), JourneyBlocks.netherChest.getStateFromMeta(5));
+		TileEntityJourneyChest te = (TileEntityJourneyChest)world.getTileEntity(new BlockPos((int)Math.floor(this.posX + 0), ((int)Math.floor(this.posY + 0)), ((int)Math.floor(this.posZ + 0))));
 		switch(rand.nextInt(2)) {
 		case 0:
 			te.setInventorySlotContents(2, new ItemStack(JourneyItems.staringBow, 1));
@@ -152,7 +148,7 @@ public class EntitySoulWatcher extends EntityEssenceBoss implements IRangedAttac
 			float f2 = 0.91F;
 
 			if (this.onGround) {
-				f2 = this.worldObj.getBlockState(new BlockPos(MathHelper.floor_double(this.posX),
+				f2 = this.world.getBlockState(new BlockPos(MathHelper.floor_double(this.posX),
 						MathHelper.floor_double(this.getEntityBoundingBox().minY) - 1,
 						MathHelper.floor_double(this.posZ))).getBlock().slipperiness * 0.91F;
 			}
@@ -162,7 +158,7 @@ public class EntitySoulWatcher extends EntityEssenceBoss implements IRangedAttac
 			f2 = 0.91F;
 
 			if (this.onGround) {
-				f2 = this.worldObj.getBlockState(new BlockPos(MathHelper.floor_double(this.posX),
+				f2 = this.world.getBlockState(new BlockPos(MathHelper.floor_double(this.posX),
 						MathHelper.floor_double(this.getEntityBoundingBox().minY) - 1,
 						MathHelper.floor_double(this.posZ))).getBlock().slipperiness * 0.91F;
 			}
@@ -247,7 +243,7 @@ public class EntitySoulWatcher extends EntityEssenceBoss implements IRangedAttac
 			AxisAlignedBB axisalignedbb = this.e.getEntityBoundingBox();
 			for (int i = 1; i < h; ++i) {
 				axisalignedbb = axisalignedbb.offset(d4, d5, d6);
-				if (!this.e.worldObj.getCollidingBoundingBoxes(this.e, axisalignedbb).isEmpty()) {
+				if (!this.e.world.getCollidingBoundingBoxes(this.e, axisalignedbb).isEmpty()) {
 					return false;
 				}
 			}
@@ -262,30 +258,30 @@ public class EntitySoulWatcher extends EntityEssenceBoss implements IRangedAttac
             this.motionY *= 0.6D;
         }
 
-        if (this.worldObj.isRemote) {
+        if (this.world.isRemote) {
             if (this.rand.nextInt(24) == 0 && !this.isSilent()) {
-                this.worldObj.playSound(this.posX + 0.5D, this.posY + 0.5D, this.posZ + 0.5D, "fire.fire", 1.0F + this.rand.nextFloat(), this.rand.nextFloat() * 0.7F + 0.3F, false);
+                this.world.playSound(this.posX + 0.5D, this.posY + 0.5D, this.posZ + 0.5D, "fire.fire", 1.0F + this.rand.nextFloat(), this.rand.nextFloat() * 0.7F + 0.3F, false);
             }
 
             for (int i = 0; i < 2; ++i) {
-            	FMLClientHandler.instance().getClient().effectRenderer.addEffect(new EntityHellstoneFX(worldObj, getPosition().getX() + rand.nextFloat(), getPosition().getY() + 1.2D, getPosition().getZ() + rand.nextFloat(), 0, 0, 0));
+            	FMLClientHandler.instance().getClient().effectRenderer.addEffect(new EntityHellstoneFX(world, getPosition().getX() + rand.nextFloat(), getPosition().getY() + 1.2D, getPosition().getZ() + rand.nextFloat(), 0, 0, 0));
             }
         }
 
         if(getHealth() <= 250) {
-        	if(spawnTimer == 0 && !worldObj.isRemote) {
-    			EntityLavasnake z = new EntityLavasnake(worldObj);
+        	if(spawnTimer == 0 && !world.isRemote) {
+    			EntityLavasnake z = new EntityLavasnake(world);
                 z.setLocationAndAngles(posX + 3, posY, posZ, this.rand.nextFloat() * 360.0F, 0.0F);
-                EntityLavasnake z1 = new EntityLavasnake(worldObj);
+                EntityLavasnake z1 = new EntityLavasnake(world);
                 z1.setLocationAndAngles(posX - 3, posY, posZ, this.rand.nextFloat() * 360.0F, 0.0F);
-                EntityLavasnake z2 = new EntityLavasnake(worldObj);
+                EntityLavasnake z2 = new EntityLavasnake(world);
                 z2.setLocationAndAngles(posX, posY, posZ + 3, this.rand.nextFloat() * 360.0F, 0.0F);
-                EntityLavasnake z3 = new EntityLavasnake(worldObj);
+                EntityLavasnake z3 = new EntityLavasnake(world);
                 z3.setLocationAndAngles(posX, posY, posZ - 3, this.rand.nextFloat() * 360.0F, 0.0F);
-                this.worldObj.spawnEntityInWorld(z);
-                this.worldObj.spawnEntityInWorld(z1);
-                this.worldObj.spawnEntityInWorld(z2);
-                this.worldObj.spawnEntityInWorld(z3);
+                this.world.spawnEntityInWorld(z);
+                this.world.spawnEntityInWorld(z1);
+                this.world.spawnEntityInWorld(z2);
+                this.world.spawnEntityInWorld(z3);
                 spawnTimer = 200;
     		}
         	spawnTimer--;
@@ -337,18 +333,18 @@ public class EntitySoulWatcher extends EntityEssenceBoss implements IRangedAttac
     
     private void launchWitherSkullToCoords(int var1, double f2, double f4, double f6, boolean f8)
     {
-        this.worldObj.playAuxSFXAtEntity((EntityPlayer)null, 1014, new BlockPos(this), 0);
+        this.world.playAuxSFXAtEntity((EntityPlayer)null, 1014, new BlockPos(this), 0);
         double d3 = this.coordX(var1);
         double d4 = this.coordY(var1);
         double d5 = this.coordZ(var1);
         double d6 = f2 - d3;
         double d7 = f4 - d4;
         double d8 = f6 - d5;
-        EntityMagmaFireball entitydeathskull = new EntityMagmaFireball(this.worldObj, this, d6, d7, d8);
+        EntityMagmaFireball entitydeathskull = new EntityMagmaFireball(this.world, this, d6, d7, d8);
         entitydeathskull.posY = d4;
         entitydeathskull.posX = d3;
         entitydeathskull.posZ = d5;
-        this.worldObj.spawnEntityInWorld(entitydeathskull);
+        this.world.spawnEntityInWorld(entitydeathskull);
 	}
     
     private double coordX(int par1) {

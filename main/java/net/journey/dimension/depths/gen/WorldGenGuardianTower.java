@@ -2,21 +2,11 @@ package net.journey.dimension.depths.gen;
 
 import java.util.Random;
 
-import com.google.common.collect.Lists;
-
 import net.journey.JourneyBlocks;
-import net.journey.JourneyItems;
-import net.journey.blocks.tileentity.TileEntityJourneyChest;
-import net.journey.entity.mob.boiling.npc.EntityBoilTrader;
-import net.journey.entity.mob.boiling.npc.EntityEscapedConvict;
 import net.journey.entity.mob.depths.npc.EntityStaringGuardian;
-import net.journey.entity.mob.euca.npc.EntityAlloyMender;
-import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.slayer.api.worldgen.WorldGenAPI;
 
 public class WorldGenGuardianTower extends WorldGenerator {
 	
@@ -212,7 +202,7 @@ public class WorldGenGuardianTower extends WorldGenerator {
 		if(!world.isRemote) {
 			EntityStaringGuardian smith = new EntityStaringGuardian(world);
 			smith.setLocationAndAngles(i + 6, j + 7, k + 4, 0.0F, 0.0F);
-			world.spawnEntityInWorld(smith);
+			world.spawnEntity(smith);
 		}
 		return false;
 	}

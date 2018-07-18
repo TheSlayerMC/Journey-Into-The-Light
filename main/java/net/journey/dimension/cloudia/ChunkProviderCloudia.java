@@ -18,6 +18,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.IProgressUpdate;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
@@ -29,7 +30,7 @@ public class ChunkProviderCloudia implements IChunkProvider {
 
 	private Random rand;
 	private World worldObj;
-	private BiomeGenBase[] biomesForGeneration;
+	private Biome[] biomesForGeneration;
 	public ChunkProviderCloudia(World worldIn, long seed) {
 		this.worldObj = worldIn;
 		this.rand = new Random(seed);
@@ -188,8 +189,8 @@ public class ChunkProviderCloudia implements IChunkProvider {
 
 	@Override
 	public List <SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos) {
-		BiomeGenBase biomegenbase = this.worldObj.getBiomeGenForCoords(pos);
-		return biomegenbase.getSpawnableList(creatureType);
+		Biome Biome = this.worldObj.getBiomeGenForCoords(pos);
+		return Biome.getSpawnableList(creatureType);
 	}
 
 	@Override

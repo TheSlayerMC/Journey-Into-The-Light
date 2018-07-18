@@ -2,6 +2,8 @@ package net.journey.dimension.cloudia.gen;
 
 import java.util.Random;
 
+import com.google.common.base.Predicate;
+
 import net.journey.JourneyBlocks;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -9,8 +11,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-
-import com.google.common.base.Predicate;
 
 public class WorldGenCloudiaLand extends WorldGenerator {
 	
@@ -42,12 +42,12 @@ public class WorldGenCloudiaLand extends WorldGenerator {
             double d9 = r.nextDouble() * this.numberOfBlocks / 16.0D;
             double d10 = (MathHelper.sin((float)Math.PI * f1) + 1.0F) * d9 + 1.0D;
             double d11 = (MathHelper.sin((float)Math.PI * f1) + 1.0F) * d9 + 1.0D;
-            int j = MathHelper.floor_double(d6 - d10 / 2.0D);
-            int k = MathHelper.floor_double(d7 - d11 / 2.0D);
-            int l = MathHelper.floor_double(d8 - d10 / 2.0D);
-            int i1 = MathHelper.floor_double(d6 + d10 / 2.0D);
-            int j1 = MathHelper.floor_double(d7 + d11 / 2.0D);
-            int k1 = MathHelper.floor_double(d8 + d10 / 2.0D);
+            int j = MathHelper.floor(d6 - d10 / 2.0D);
+            int k = MathHelper.floor(d7 - d11 / 2.0D);
+            int l = MathHelper.floor(d8 - d10 / 2.0D);
+            int i1 = MathHelper.floor(d6 + d10 / 2.0D);
+            int j1 = MathHelper.floor(d7 + d11 / 2.0D);
+            int k1 = MathHelper.floor(d8 + d10 / 2.0D);
             for(int l1 = j; l1 <= i1; ++l1) {
                 double d12 = (l1 + 0.5D - d6) / (d10 / 2.0D);
                 if(d12 * d12 < 1.0D) {

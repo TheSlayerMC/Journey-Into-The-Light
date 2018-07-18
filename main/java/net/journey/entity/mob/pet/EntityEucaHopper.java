@@ -1,5 +1,7 @@
 package net.journey.entity.mob.pet;
 
+import java.util.UUID;
+
 import net.journey.entity.MobStats;
 import net.journey.enums.EnumSounds;
 import net.minecraft.block.Block;
@@ -13,14 +15,24 @@ import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Items;
-import net.minecraft.item.ItemFood;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityModTameable;
 
 public class EntityEucaHopper extends EntityModTameable {
+
+	private static final DataParameter<Float> DATA_HEALTH_ID = EntityDataManager.<Float>createKey(EntityEucaHopper.class, DataSerializers.FLOAT);
+
 
 	public EntityEucaHopper(World w) {
 		super(w);
@@ -30,20 +42,22 @@ public class EntityEucaHopper extends EntityModTameable {
 	@Override
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(MobStats.fastSpeed);
-		if(this.isTamed()) this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(MobStats.baseNetherHealth);
-		else this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(MobStats.baseNetherHealth);
+		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(MobStats.fastSpeed);
+		if(this.isTamed()) this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(MobStats.baseNetherHealth);
+		else this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(MobStats.baseNetherHealth);
 	}
 
 	@Override
-	public EntityAgeable createChild(EntityAgeable var1) {
-		EntityEucaHopper e = new EntityEucaHopper(this.world);
-		String s = this.getOwnerId();
-		if(s != null && s.trim().length() > 0) {
-			e.setOwnerId(s);
-			e.setTamed(true);
+	public EntityEucaHopper createChild(EntityAgeable ageable) {
+		EntityEucaHopper hopper = new EntityEucaHopper(this.world);
+		UUID uuid = this.getOwnerId();
+
+		if (uuid != null) {
+			hopper.setOwnerId(uuid);
+			hopper.setTamed(true);
 		}
-		return e;
+
+		return hopper;
 	}
 
 	@Override
@@ -54,21 +68,22 @@ public class EntityEucaHopper extends EntityModTameable {
 	}
 
 	@Override
+	protected void updateAITasks() {
+		this.dataManager.set(DATA_HEALTH_ID, Float.valueOf(this.getHealth()));
+	}
+
+	@Override
 	protected void entityInit() {
 		super.entityInit();
-		this.dataWatcher.addObject(18, new Float(this.getHealth()));
+		this.dataManager.register(DATA_HEALTH_ID, Float.valueOf(this.getHealth()));
 	}
 
-	@Override
-	protected void updateAITick() {
-		this.dataWatcher.updateObject(18, Float.valueOf(this.getHealth()));
-	}
 
 	@Override
-	protected void playStepSound(BlockPos pos, Block b) {
-		this.playSound("mob.wolf.step", 0.15F, 1.0F);
+	protected void playStepSound(BlockPos pos, Block blockIn) {
+		this.playSound(SoundEvents.ENTITY_WOLF_STEP, 0.15F, 1.0F);
 	}
-	
+
 	@Override
 	public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound) {
 		super.writeEntityToNBT(par1NBTTagCompound);
@@ -85,7 +100,7 @@ public class EntityEucaHopper extends EntityModTameable {
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2) {
 		if(this.isEntityInvulnerable(par1DamageSource)) return false;
 		else {
-			Entity entity = par1DamageSource.getEntity();
+			Entity entity = par1DamageSource.getImmediateSource();
 			this.aiSit.setSitting(false);
 			if(entity != null && !(entity instanceof EntityPlayer) && !(entity instanceof EntityArrow))            
 				par2 = (par2 + 1.0F) / 2.0F;
@@ -102,78 +117,79 @@ public class EntityEucaHopper extends EntityModTameable {
 	@Override
 	public void setTamed(boolean par1) {
 		super.setTamed(par1);
-		if(par1) this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(MobStats.baseNetherHealth);
-		else this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(MobStats.baseNetherHealth);
+		if(par1) this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(MobStats.baseNetherHealth);
+		else this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(MobStats.baseNetherHealth);
 	}
 
 	@Override
-	public boolean interact(EntityPlayer par1EntityPlayer) {
-		ItemStack itemstack = par1EntityPlayer.inventory.getCurrentItem();
+	public boolean processInteract(EntityPlayer player, EnumHand hand) {
+		ItemStack itemstack = player.getHeldItem(hand);
 
-		if(this.isTamed()) {
-			if(itemstack != null) {
-				if(itemstack.getItem() instanceof ItemFood) {
-					ItemFood itemfood = (ItemFood)itemstack.getItem();
-					if(itemfood.isWolfsFavoriteMeat() && this.dataWatcher.getWatchableObjectFloat(18) < 20.0F) {
-						if(!par1EntityPlayer.capabilities.isCreativeMode)
-							--itemstack.stackSize;            
-						this.heal(itemfood.getHealAmount(itemstack));
-						if(itemstack.stackSize <= 0)
-							par1EntityPlayer.inventory.setInventorySlotContents(par1EntityPlayer.inventory.currentItem,(ItemStack)null);
+		if (this.isTamed()) {
+			if (!itemstack.isEmpty()) {
+				if (itemstack.getItem() == Items.APPLE) {
+					Item itemfood = Items.APPLE;
+
+					if (((Float)this.dataManager.get(DATA_HEALTH_ID)).floatValue() < 20.0F) {
+						if (!player.capabilities.isCreativeMode) {
+							itemstack.shrink(1);
+						}
+						this.heal(5);
 						return true;
 					}
 				}
-			}
 
-			if(isOwner(par1EntityPlayer) && !this.world.isRemote && !this.isBreedingItem(itemstack)) {
-				this.aiSit.setSitting(!this.isSitting());
-				this.isJumping = false;
-				this.navigator.clearPathEntity();
-				this.setAttackTarget((EntityLivingBase)null);
-			}
-		}
-
-		else if(itemstack != null && itemstack.getItem() == Items.APPLE && !this.isAngry()) {
-			if(!par1EntityPlayer.capabilities.isCreativeMode)    
-				--itemstack.stackSize;
-
-			if(itemstack.stackSize <= 0) par1EntityPlayer.inventory.setInventorySlotContents(par1EntityPlayer.inventory.currentItem,(ItemStack)null);
-
-			if(!this.world.isRemote) {
-				if(this.rand.nextInt(3) == 0) {
-					this.setTamed(true);
-					this.navigator.clearPathEntity();
+				if (this.isOwner(player) && !this.world.isRemote && !this.isBreedingItem(itemstack)) {
+					this.aiSit.setSitting(!this.isSitting());
+					this.isJumping = false;
+					this.navigator.clearPath();
 					this.setAttackTarget((EntityLivingBase)null);
-					this.aiSit.setSitting(true);
-					this.setHealth(20.0F);
-					this.setOwnerId(par1EntityPlayer.getUniqueID().toString());
-					this.playTameEffect(true);
-					this.world.setEntityState(this,(byte)7);
-				} else {
-					this.playTameEffect(false);
-					this.world.setEntityState(this,(byte)6);
 				}
 			}
-			return true;
+			else if (itemstack.getItem() == Items.APPLE && !this.isAngry()) {
+				if (!player.capabilities.isCreativeMode) {
+					itemstack.shrink(1);
+				}
+
+				if (!this.world.isRemote) {
+					if (this.rand.nextInt(3) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, player)) {
+						this.setTamedBy(player);
+						this.navigator.clearPath();
+						this.setAttackTarget((EntityLivingBase)null);
+						this.aiSit.setSitting(true);
+						this.setHealth(20.0F);
+						this.playTameEffect(true);
+						this.world.setEntityState(this, (byte)7);
+					} else {
+						this.playTameEffect(false);
+						this.world.setEntityState(this, (byte)6);
+					}
+				}
+
+				return true;
+			}
 		}
-		return super.interact(par1EntityPlayer);
+		return super.processInteract(player, hand);
 	}
 
 	@Override
 	public boolean isBreedingItem(ItemStack i) {
-		return i == null ? false : i.getItem() == Items.apple;
+		return i == null ? false : i.getItem() == Items.APPLE;
 	}
 
-	@Override
+
 	public boolean isAngry() {
-		return(this.dataWatcher.getWatchableObjectByte(16) & 2) != 0;
+		return (((Byte)this.dataManager.get(TAMED)).byteValue() & 2) != 0;
 	}
 
-	@Override
-	public void setAngry(boolean b) {
-		byte b0 = this.dataWatcher.getWatchableObjectByte(16);
-		if(b) this.dataWatcher.updateObject(16, Byte.valueOf((byte)(b0 | 2)));
-		else this.dataWatcher.updateObject(16, Byte.valueOf((byte)(b0 & -3)));
+	public void setAngry(boolean angry) {
+		byte b0 = ((Byte)this.dataManager.get(TAMED)).byteValue();
+
+		if (angry) {
+			this.dataManager.set(TAMED, Byte.valueOf((byte)(b0 | 2)));
+		} else {
+			this.dataManager.set(TAMED, Byte.valueOf((byte)(b0 & -3)));
+		}
 	}
 
 	@Override
@@ -191,24 +207,24 @@ public class EntityEucaHopper extends EntityModTameable {
 		}
 		else return false;
 	}
-	
+
 	@Override
 	public int getMaxSpawnedInChunk() {
 		return 1;
 	}
 
 	@Override
-	public String setLivingSound() {
-		return EnumSounds.HONGO.getNonPrefixedName();
+	public EnumSounds setLivingSound() {
+		return EnumSounds.HONGO;
 	}
 
 	@Override
-	public String setHurtSound() {
-		return EnumSounds.TURTLE.getNonPrefixedName();
+	public EnumSounds setHurtSound() {
+		return EnumSounds.TURTLE;
 	}
 
 	@Override
-	public String setDeathSound() {
-		return EnumSounds.TURTLE.getNonPrefixedName();
+	public EnumSounds setDeathSound() {
+		return EnumSounds.TURTLE;
 	}
 }

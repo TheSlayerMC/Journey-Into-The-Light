@@ -7,12 +7,14 @@ import net.journey.JourneyBlocks;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.block.state.pattern.BlockStateMatcher;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.IProgressUpdate;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.chunk.IChunkProvider;
@@ -49,11 +51,11 @@ public class ChunkProviderNether implements IChunkProvider {
     private final WorldGenFire field_177470_t = new WorldGenFire();
     private final WorldGenGlowStone1 field_177469_u = new WorldGenGlowStone1();
     private final WorldGenGlowStone2 field_177468_v = new WorldGenGlowStone2();
-    private final WorldGenerator field_177467_w = new WorldGenMinable(Blocks.quartz_ore.getDefaultState(), 14, BlockHelper.forBlock(Blocks.NETHERRACK));
-    private final WorldGenHellLava field_177473_x = new WorldGenHellLava(Blocks.flowing_lava, true);
-    private final WorldGenHellLava field_177472_y = new WorldGenHellLava(Blocks.flowing_lava, false);
-    private final GeneratorBushFeature field_177471_z = new GeneratorBushFeature(Blocks.brown_mushroom);
-    private final GeneratorBushFeature field_177465_A = new GeneratorBushFeature(Blocks.red_mushroom);
+    private final WorldGenerator field_177467_w = new WorldGenMinable(Blocks.QUARTZ_ORE.getDefaultState(), 14, BlockStateMatcher.forBlock(Blocks.NETHERRACK));
+    private final WorldGenHellLava field_177473_x = new WorldGenHellLava(Blocks.FLOWING_LAVA, true);
+    private final WorldGenHellLava field_177472_y = new WorldGenHellLava(Blocks.FLOWING_LAVA, false);
+    private final GeneratorBushFeature field_177471_z = new GeneratorBushFeature(Blocks.BROWN_MUSHROOM);
+    private final GeneratorBushFeature field_177465_A = new GeneratorBushFeature(Blocks.RED_MUSHROOM);
     private final MapGenNetherBridge genNetherBridge;
     private final MapGenBase netherCaveGenerator;
     double[] noiseData1;
@@ -251,11 +253,11 @@ public class ChunkProviderNether implements IChunkProvider {
         }
 
         Chunk chunk = new Chunk(this.worldObj, chunkprimer, x, z);
-        BiomeGenBase[] abiomegenbase = this.worldObj.getWorldChunkManager().loadBlockGeneratorData((BiomeGenBase[])null, x * 16, z * 16, 16, 16);
+        Biome[] aBiome = this.worldObj.getWorldChunkManager().loadBlockGeneratorData((Biome[])null, x * 16, z * 16, 16, 16);
         byte[] abyte = chunk.getBiomeArray();
 
         for (int i = 0; i < abyte.length; ++i) {
-            abyte[i] = (byte)abiomegenbase[i].biomeID;
+            abyte[i] = (byte)aBiome[i].biomeID;
         }
 
         chunk.resetRelightChecks();
@@ -427,7 +429,7 @@ public class ChunkProviderNether implements IChunkProvider {
     }
 
     @Override
-    public List<BiomeGenBase.SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos)
+    public List<Biome.SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos)
     {
         if (creatureType == EnumCreatureType.MONSTER)
         {
@@ -441,8 +443,8 @@ public class ChunkProviderNether implements IChunkProvider {
                 return this.genNetherBridge.getSpawnList();
             }
         }
-        BiomeGenBase biomegenbase = this.worldObj.getBiomeGenForCoords(pos);
-        return biomegenbase.getSpawnableList(creatureType);
+        Biome Biome = this.worldObj.getBiomeGenForCoords(pos);
+        return Biome.getSpawnableList(creatureType);
     }
 
     @Override

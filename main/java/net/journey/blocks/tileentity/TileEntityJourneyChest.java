@@ -19,9 +19,9 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityLockable;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TileEntityJourneyChest extends TileEntityLockable implements ITickable, IInventory
 {
@@ -195,7 +195,7 @@ public class TileEntityJourneyChest extends TileEntityLockable implements ITicka
 
     public boolean isUseableByPlayer(EntityPlayer player)
     {
-        return this.worldObj.getTileEntity(this.pos) != this ? false : player.getDistanceSq(this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D) <= 64.0D;
+        return this.world.getTileEntity(this.pos) != this ? false : player.getDistanceSq(this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D) <= 64.0D;
     }
 
     @Override
@@ -266,7 +266,7 @@ public class TileEntityJourneyChest extends TileEntityLockable implements ITicka
 
         if (this.func_174912_b(blockpos))
         {
-            TileEntity tileentity = this.worldObj.getTileEntity(blockpos);
+            TileEntity tileentity = this.world.getTileEntity(blockpos);
 
             if (tileentity instanceof TileEntityJourneyChest)
             {
@@ -281,13 +281,13 @@ public class TileEntityJourneyChest extends TileEntityLockable implements ITicka
 
     private boolean func_174912_b(BlockPos p_174912_1_)
     {
-        if (this.worldObj == null)
+        if (this.world == null)
         {
             return false;
         }
         else
         {
-            Block block = this.worldObj.getBlockState(p_174912_1_).getBlock();
+            Block block = this.world.getBlockState(p_174912_1_).getBlock();
             return block instanceof BlockChest && ((BlockChest)block).chestType == this.getChestType();
         }
     }
@@ -302,11 +302,11 @@ public class TileEntityJourneyChest extends TileEntityLockable implements ITicka
         ++this.ticksSinceSync;
         float f;
 
-        if (!this.worldObj.isRemote && this.numPlayersUsing != 0 && (this.ticksSinceSync + i + j + k) % 200 == 0)
+        if (!this.world.isRemote && this.numPlayersUsing != 0 && (this.ticksSinceSync + i + j + k) % 200 == 0)
         {
             this.numPlayersUsing = 0;
             f = 5.0F;
-            List list = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB((double)(i - f), (double)(j - f), (double)(k - f), (double)(i + 1 + f), (double)(j + 1 + f), (double)(k + 1 + f)));
+            List list = this.world.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB((double)(i - f), (double)(j - f), (double)(k - f), (double)(i + 1 + f), (double)(j + 1 + f), (double)(k + 1 + f)));
             Iterator iterator = list.iterator();
 
             while (iterator.hasNext())
@@ -414,9 +414,9 @@ public class TileEntityJourneyChest extends TileEntityLockable implements ITicka
             }
 
             ++this.numPlayersUsing;
-            this.worldObj.addBlockEvent(this.pos, this.getBlockType(), 1, this.numPlayersUsing);
-            this.worldObj.notifyNeighborsOfStateChange(this.pos, this.getBlockType());
-            this.worldObj.notifyNeighborsOfStateChange(this.pos.down(), this.getBlockType());
+            this.world.addBlockEvent(this.pos, this.getBlockType(), 1, this.numPlayersUsing);
+            this.world.notifyNeighborsOfStateChange(this.pos, this.getBlockType());
+            this.world.notifyNeighborsOfStateChange(this.pos.down(), this.getBlockType());
         }
     }
 
@@ -426,9 +426,9 @@ public class TileEntityJourneyChest extends TileEntityLockable implements ITicka
         if (!player.isSpectator() && this.getBlockType() instanceof BlockChest)
         {
             --this.numPlayersUsing;
-            this.worldObj.addBlockEvent(this.pos, this.getBlockType(), 1, this.numPlayersUsing);
-            this.worldObj.notifyNeighborsOfStateChange(this.pos, this.getBlockType());
-            this.worldObj.notifyNeighborsOfStateChange(this.pos.down(), this.getBlockType());
+            this.world.addBlockEvent(this.pos, this.getBlockType(), 1, this.numPlayersUsing);
+            this.world.notifyNeighborsOfStateChange(this.pos, this.getBlockType());
+            this.world.notifyNeighborsOfStateChange(this.pos.down(), this.getBlockType());
         }
     }
 
@@ -450,7 +450,7 @@ public class TileEntityJourneyChest extends TileEntityLockable implements ITicka
     {
         if (this.cachedChestType == -1)
         {
-            if (this.worldObj == null || !(this.getBlockType() instanceof BlockChest))
+            if (this.world == null || !(this.getBlockType() instanceof BlockChest))
             {
                 return 0;
             }

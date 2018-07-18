@@ -12,6 +12,9 @@ import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
 import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityModFlying;
@@ -36,7 +39,7 @@ public class EntityLightener extends EntityModFlying {
 	@Override
 	public void onUpdate() {
         super.onUpdate();
-        if(!this.worldObj.isRemote && this.worldObj.getDifficulty() == EnumDifficulty.PEACEFUL) this.setDead();
+        if(!this.world.isRemote && this.world.getDifficulty() == EnumDifficulty.PEACEFUL) this.setDead();
     }
 	
 	@Override
@@ -61,7 +64,7 @@ public class EntityLightener extends EntityModFlying {
 	
 	@Override
 	public boolean getCanSpawnHere() {
-        return this.rand.nextInt(15) == 0 && super.getCanSpawnHere() && this.worldObj.getDifficulty() != EnumDifficulty.EASY;
+        return this.rand.nextInt(15) == 0 && super.getCanSpawnHere() && this.world.getDifficulty() != EnumDifficulty.EASY;
     }
 
     @Override
@@ -163,7 +166,7 @@ public class EntityLightener extends EntityModFlying {
 			AxisAlignedBB axisalignedbb = this.e.getEntityBoundingBox();
 			for(int i = 1; i < h; ++i) {
 				axisalignedbb = axisalignedbb.offset(d4, d5, d6);
-				if(!this.e.worldObj.getCollidingBoundingBoxes(this.e, axisalignedbb).isEmpty()) {
+				if(!this.e.world.getCollisionBoxes(this.e, axisalignedbb).isEmpty()) {
 					return false;
 				}
 			}
@@ -225,7 +228,7 @@ public class EntityLightener extends EntityModFlying {
 			double d0 = 64.0D;
 
 			if(entitylivingbase.getDistanceSqToEntity(this.entity) < d0 * d0 && this.entity.canEntityBeSeen(entitylivingbase)) {
-				World world = this.entity.worldObj;
+				World world = this.entity.world;
 				counter++;
 
 				if(this.counter == 20) {

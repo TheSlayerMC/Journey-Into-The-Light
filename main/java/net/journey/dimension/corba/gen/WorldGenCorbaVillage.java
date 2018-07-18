@@ -2,15 +2,10 @@ package net.journey.dimension.corba.gen;
 
 import java.util.Random;
 
-import com.google.common.collect.Lists;
-
 import net.journey.JourneyBlocks;
-import net.journey.JourneyItems;
 import net.journey.entity.mob.corba.npc.EntityRedTordo;
 import net.journey.entity.mob.corba.npc.EntityTordo;
-import net.journey.entity.mob.euca.npc.EntityAlloyMender;
-import net.minecraft.init.Blocks;
-import net.minecraft.tileentity.TileEntityChest;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
@@ -530,16 +525,11 @@ public class WorldGenCorbaVillage extends WorldGenerator {
 		if(!w.isRemote) {
 			EntityTordo smith = new EntityTordo(w);
 				smith.setLocationAndAngles(i + 15, j + 3, k + 5, 0.0F, 0.0F);
-				w.spawnEntityInWorld(smith);spawnEntityInWorld(smith);
+				w.spawnEntity(smith);
 			EntityRedTordo smith1 = new EntityRedTordo(w);
 				smith1.setLocationAndAngles(i + 14, j + 3, k + 6, 0.0F, 0.0F);
-				w.spawnEntityInWorld(smith1);spawnEntityInWorld(smith);
+				w.spawnEntity(smith1);
 		}
 		return false;
-	}
-
-	private void spawnEntityInWorld(EntityTordo smith) {
-		// TODO Auto-generated method stub
-		
 	}
 }

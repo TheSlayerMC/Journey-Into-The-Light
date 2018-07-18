@@ -17,6 +17,7 @@ import net.journey.dimension.depths.gen.WorldGenSorcererShrine;
 import net.journey.dimension.depths.gen.WorldGenSpike;
 import net.journey.dimension.overworld.gen.WorldGenModFlower;
 import net.minecraft.block.Block;
+import net.minecraft.block.state.pattern.BlockStateMatcher;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.IProgressUpdate;
@@ -124,7 +125,7 @@ public class ChunkProviderDepths implements IChunkProvider, IChunkGenerator {
 								if ((d15 += d16) > 0.0D) {
 									int y = k2 * 8 + l2;
 									if(y <= 84) p_180518_3_.setBlockState(k * 4 + i3, y, j1 * 4 + j3, JourneyBlocks.depthsStone.getDefaultState());
-									p_180518_3_.setBlockState(k * 4 + i3, 85, j1 * 4 + j3, Blocks.bedrock.getDefaultState());
+									p_180518_3_.setBlockState(k * 4 + i3, 85, j1 * 4 + j3, Blocks.BEDROCK.getDefaultState());
 								}
 							}
 
@@ -159,7 +160,7 @@ public class ChunkProviderDepths implements IChunkProvider, IChunkGenerator {
 		int i1 = x & 15;
 		int j1 = z & 15;
 		c.setBlockState(j1, 1, i1, JourneyBlocks.depthsGrass.getDefaultState());
-		c.setBlockState(j1, 0, i1, Blocks.bedrock.getDefaultState());
+		c.setBlockState(j1, 0, i1, Blocks.BEDROCK.getDefaultState());
 	}
 
 	@Override
@@ -287,12 +288,12 @@ public class ChunkProviderDepths implements IChunkProvider, IChunkGenerator {
 
 		for(i = 0; i < 25; i++) {
 			y = r.nextInt(250); x = x1 + this.rand.nextInt(16) + 8; z = z1 + this.rand.nextInt(16) + 8;
-			(new WorldGenMinable(JourneyBlocks.flAIRiumOre.getDefaultState(), 8, BlockHelper.forBlock(JourneyBlocks.depthsStone))).generate(worldObj, r, new BlockPos(x, y, z));
+			(new WorldGenMinable(JourneyBlocks.flairiumOre.getDefaultState(), 8, BlockStateMatcher.forBlock(JourneyBlocks.depthsStone))).generate(worldObj, r, new BlockPos(x, y, z));
 		}
 
 		for(i = 0; i < 25; i++) {
 			y = r.nextInt(250); x = x1 + this.rand.nextInt(16) + 8; z = z1 + this.rand.nextInt(16) + 8;
-			(new WorldGenMinable(JourneyBlocks.desOre.getDefaultState(), 8, BlockHelper.forBlock(JourneyBlocks.depthsStone))).generate(worldObj, r, new BlockPos(x, y, z));
+			(new WorldGenMinable(JourneyBlocks.desOre.getDefaultState(), 8, BlockStateMatcher.forBlock(JourneyBlocks.depthsStone))).generate(worldObj, r, new BlockPos(x, y, z));
 		}
 
 		for(i = 0; i < 11; i++) {

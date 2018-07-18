@@ -20,6 +20,9 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSourceIndirect;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -161,7 +164,7 @@ public class EntityWastefulArrow extends EntityArrow implements IProjectile {
 		IBlockState iblockstate = this.worldObj.getBlockState(blockpos);
 		Block block = iblockstate.getBlock();
 
-		if (block.getMaterial() != Material.air) {
+		if (block.getMaterial() != Material.AIR) {
 			block.setBlockBoundsBasedOnState(this.worldObj, blockpos);
 			AxisAlignedBB axisalignedbb = block.getCollisionBoundingBox(this.worldObj, blockpos, iblockstate);
 
@@ -324,7 +327,7 @@ public class EntityWastefulArrow extends EntityArrow implements IProjectile {
 					this.arrowShake = 7;
 					this.setIsCritical(false);
 
-					if (this.inBlock.getMaterial() != Material.air) {
+					if (this.inBlock.getMaterial() != Material.AIR) {
 						this.inBlock.onEntityCollidedWithBlock(this.worldObj, blockpos1, iblockstate, this);
 					}
 				}

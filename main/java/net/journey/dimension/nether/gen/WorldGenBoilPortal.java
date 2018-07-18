@@ -19,11 +19,11 @@ import net.slayer.api.worldgen.WorldGenAPI;
 
 public class WorldGenBoilPortal extends WorldGenerator {
 	
-	private static WeightedRandomChestContent[] loot = {
+	/*private static WeightedRandomChestContent[] loot = {
 			new WeightedRandomChestContent(Item.getItemFromBlock(JourneyBlocks.boilPortalFrame), 0, 1, 5, 10),
 			new WeightedRandomChestContent(Item.getItemFromBlock(JourneyBlocks.boilPortalFrame), 0, 1, 5, 40),
 			new WeightedRandomChestContent(Item.getItemFromBlock(JourneyBlocks.boilPortalFrame), 0, 1, 10, 40)
-	};
+	};*/
 
 	@Override
 	public boolean generate(World world, Random rand, BlockPos pos) {
@@ -114,7 +114,7 @@ public class WorldGenBoilPortal extends WorldGenerator {
 		world.setBlockState(new BlockPos(i + 3, j + 4, k + 3), JourneyBlocks.netherChest.getStateFromMeta(2));
 		TileEntityJourneyChest te = (TileEntityJourneyChest)world.getTileEntity(new BlockPos(i + 3, j + 4, k + 3));
 		if(te != null) {
-			WeightedRandomChestContent.generateChestContents(rand, Lists.newArrayList(loot), te, 4);
+			//WeightedRandomChestContent.generateChestContents(rand, Lists.newArrayList(loot), te, 4);
 		}
 		
 		world.setBlockState(new BlockPos(i + 3, j + 2, k + 5), JourneyBlocks.compactNetherBrick.getDefaultState());

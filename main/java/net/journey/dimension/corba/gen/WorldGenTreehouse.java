@@ -4,11 +4,8 @@ import java.util.Random;
 
 import net.journey.JourneyBlocks;
 import net.journey.entity.mob.corba.npc.EntityOvergrownMerchant;
-import net.journey.entity.mob.corba.npc.EntityRedTordo;
-import net.journey.entity.mob.corba.npc.EntityTordo;
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.slayer.api.worldgen.WorldGenAPI;
@@ -379,7 +376,7 @@ public class WorldGenTreehouse extends WorldGenerator {
 			if(!world.isRemote) {
 				EntityOvergrownMerchant smith = new EntityOvergrownMerchant(world);
 					smith.setLocationAndAngles(i + 4, j + 8, k + 4, 0.0F, 0.0F);
-					world.spawnEntityInWorld(smith);spawnEntityInWorld(smith);
+					world.spawnEntity(smith);spawnEntityInWorld(smith);
 			}
 			return false;
 		}

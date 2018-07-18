@@ -3,6 +3,7 @@ package net.journey.dimension.frozen.gen;
 import java.util.Random;
 
 import net.journey.JourneyBlocks;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
@@ -10,7 +11,7 @@ public class WorldGenNewLamp extends WorldGenerator {
 
 	@Override
 	public boolean generate(World w, Random rand, BlockPos pos) {
-		if(!w.getBlockState(pos.down()).getBlock().isFullBlock())return false;
+		if(!w.getBlockState(pos.down()).getBlock().isFullBlock(null))return false;
 		w.setBlockState(pos, JourneyBlocks.workshopStone.getDefaultState());
 		w.setBlockState(pos.up(), JourneyBlocks.workshopStone.getDefaultState());
 		w.setBlockState(pos.up(2), JourneyBlocks.workshopStone.getDefaultState());

@@ -166,7 +166,7 @@ public class EntityScreamer extends EntityModMob {
 
 	@Override
 	public Item getItemDropped() {
-		return Items.blaze_rod;
+		return Items.BLAZE_ROD;
 	}
 	
     class AIFireballAttack extends EntityAIBase

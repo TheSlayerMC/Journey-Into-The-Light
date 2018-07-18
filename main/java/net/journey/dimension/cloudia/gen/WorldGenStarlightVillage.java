@@ -5,7 +5,7 @@ import java.util.Random;
 import net.journey.JourneyBlocks;
 import net.journey.entity.mob.cloudia.npc.EntityStarlightBlacksmith;
 import net.journey.entity.mob.cloudia.npc.EntityStarlightVillager;
-import net.journey.entity.mob.euca.npc.EntityAlloyMender;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
@@ -1077,10 +1077,10 @@ public class WorldGenStarlightVillage extends WorldGenerator {
 		if(!world.isRemote) {
 			EntityStarlightVillager smith = new EntityStarlightVillager(world);
 				smith.setLocationAndAngles(i + 6, j + 5, k + 6, 0.0F, 0.0F);
-				world.spawnEntityInWorld(smith);
+				world.spawnEntity(smith);
 			EntityStarlightBlacksmith smith1 = new EntityStarlightBlacksmith(world);
 				smith1.setLocationAndAngles(i + 6, j + 5, k + 6, 0.0F, 0.0F);
-				world.spawnEntityInWorld(smith1);
+				world.spawnEntity(smith1);
 		}
 		return false;
 	}

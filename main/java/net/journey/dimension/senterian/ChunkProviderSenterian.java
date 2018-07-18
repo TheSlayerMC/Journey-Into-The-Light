@@ -1,53 +1,16 @@
 package net.journey.dimension.senterian;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
-import net.journey.JourneyBlocks;
-import net.journey.dimension.boil.gen.WorldGenBoilingLamp;
-import net.journey.dimension.boil.gen.WorldGenBoilingLava;
-import net.journey.dimension.boil.gen.WorldGenBrisonNetwork;
-import net.journey.dimension.boil.gen.WorldGenTraderHutBoiling;
-import net.journey.dimension.boil.gen.WorldGenVolcano;
-import net.journey.dimension.boil.trees.WorldGenBoilTree1;
-import net.journey.dimension.boil.trees.WorldGenBoilTree2;
-import net.journey.dimension.boil.trees.WorldGenBoilTree3;
-import net.journey.dimension.corba.gen.WorldGenCorbaLamp;
-import net.journey.dimension.corba.gen.WorldGenCorbaVillage;
-import net.journey.dimension.corba.gen.WorldGenTreehouse;
-import net.journey.dimension.corba.gen.trees.WorldGenCorbaHugeTree;
-import net.journey.dimension.corba.gen.trees.WorldGenCorbaLargeTree;
-import net.journey.dimension.corba.gen.trees.WorldGenCorbaMediumTree;
-import net.journey.dimension.corba.gen.trees.WorldGenCorbaSmallTree;
-import net.journey.dimension.corba.gen.trees.WorldGenCorbaSpruceTree;
-import net.journey.dimension.corba.gen.trees.WorldGenCorbaSpruceTree1;
-import net.journey.dimension.corba.gen.trees.WorldGenHugeCorbaSpruceTree;
-import net.journey.dimension.euca.gen.WorldGenSmeltery;
-import net.journey.dimension.euca.gen.trees.WorldGenEucaTree3;
-import net.journey.dimension.overworld.gen.WorldGenModFlower;
-import net.journey.dimension.terrania.gen.trees.WorldGenTerraniaBigTree3;
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.IProgressUpdate;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraft.world.gen.MapGenBase;
-import net.minecraft.world.gen.MapGenCaves;
-import net.minecraft.world.gen.MapGenRavine;
-import net.minecraft.world.gen.NoiseGenerator;
-import net.minecraft.world.gen.NoiseGeneratorOctaves;
-import net.minecraft.world.gen.NoiseGeneratorPerlin;
-import net.minecraft.world.gen.feature.WorldGenerator;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.terraingen.TerrainGen;
-import net.minecraftforge.fml.common.eventhandler.Event.Result;
-import net.slayer.api.block.BlockModFlower;
 
 public class ChunkProviderSenterian implements IChunkProvider {
 
@@ -115,8 +78,8 @@ public class ChunkProviderSenterian implements IChunkProvider {
 
 	@Override
 	public List <SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos) {
-		BiomeGenBase biomegenbase = this.w.getBiomeGenForCoords(pos);
-		return biomegenbase.getSpawnableList(creatureType);
+		Biome Biome = this.w.getBiomeGenForCoords(pos);
+		return Biome.getSpawnableList(creatureType);
 	}
 
 	@Override

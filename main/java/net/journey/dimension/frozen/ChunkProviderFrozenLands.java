@@ -21,6 +21,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
@@ -45,7 +46,7 @@ public class ChunkProviderFrozenLands implements IChunkProvider
 	private final float[] parabolicField;
 	private ChunkProviderSettings settings;
 	private double[] stoneNoise;
-	private BiomeGenBase[] biomesForGeneration;
+	private Biome[] biomesForGeneration;
 	double[] field_147427_d;
 	double[] field_147428_e;
 	double[] field_147425_f;
@@ -156,7 +157,7 @@ public class ChunkProviderFrozenLands implements IChunkProvider
 					}
 				}
 				for(int j = top-10; j>top-40; j--) {
-					if(cp.getBlockState(i, j, k)!=Blocks.bedrock.getDefaultState()) {
+					if(cp.getBlockState(i, j, k)!=Blocks.BEDROCK.getDefaultState()) {
 						cp.setBlockState(i, j, k, Blocks.AIR.getDefaultState());
 					}
 				}
@@ -251,7 +252,7 @@ public class ChunkProviderFrozenLands implements IChunkProvider
 
 	}
 
-	public void func_180517_a(int p_180517_1_, int p_180517_2_, ChunkPrimer p_180517_3_, BiomeGenBase[] p_180517_4_)
+	public void func_180517_a(int p_180517_1_, int p_180517_2_, ChunkPrimer p_180517_3_, Biome[] p_180517_4_)
 	{
 		double d0 = 0.03125D;
 		this.stoneNoise = this.perlinNoise.func_151599_a(this.stoneNoise, (double)(p_180517_1_ * 16), (double)(p_180517_2_ * 16), 16, 16, d0 * 2.0D, d0 * 2.0D, 1.0D);
@@ -260,8 +261,8 @@ public class ChunkProviderFrozenLands implements IChunkProvider
 		{
 			for (int l = 0; l < 16; ++l)
 			{
-				BiomeGenBase biomegenbase = p_180517_4_[l + k * 16];
-				biomegenbase.genTerrainBlocks(this.worldObj, this.rand, p_180517_3_, p_180517_1_ * 16 + k, p_180517_2_ * 16 + l, this.stoneNoise[l + k * 16]);
+				Biome Biome = p_180517_4_[l + k * 16];
+				Biome.genTerrainBlocks(this.worldObj, this.rand, p_180517_3_, p_180517_1_ * 16 + k, p_180517_2_ * 16 + l, this.stoneNoise[l + k * 16]);
 			}
 		}
 	}
@@ -308,19 +309,19 @@ public class ChunkProviderFrozenLands implements IChunkProvider
 				float f3 = 0.0F;
 				float f4 = 0.0F;
 				byte b0 = 2;
-				BiomeGenBase biomegenbase = this.biomesForGeneration[j1 + 2 + (k1 + 2) * 10];
+				Biome Biome = this.biomesForGeneration[j1 + 2 + (k1 + 2) * 10];
 
 				for (int l1 = -b0; l1 <= b0; ++l1)
 				{
 					for (int i2 = -b0; i2 <= b0; ++i2)
 					{
-						BiomeGenBase biomegenbase1 = this.biomesForGeneration[j1 + l1 + 2 + (k1 + i2 + 2) * 10];
-						float f5 = this.settings.biomeDepthOffSet + biomegenbase1.minHeight * this.settings.biomeDepthWeight;
-						float f6 = this.settings.biomeScaleOffset + biomegenbase1.maxHeight * this.settings.biomeScaleWeight;
+						Biome Biome1 = this.biomesForGeneration[j1 + l1 + 2 + (k1 + i2 + 2) * 10];
+						float f5 = this.settings.biomeDepthOffSet + Biome1.minHeight * this.settings.biomeDepthWeight;
+						float f6 = this.settings.biomeScaleOffset + Biome1.maxHeight * this.settings.biomeScaleWeight;
 
 						float f7 = this.parabolicField[l1 + 2 + (i2 + 2) * 5] / (f5 + 2.0F);
 
-						if (biomegenbase1.minHeight > biomegenbase.minHeight)
+						if (Biome1.minHeight > Biome.minHeight)
 						{
 							f7 /= 2.0F;
 						}
@@ -421,19 +422,19 @@ public class ChunkProviderFrozenLands implements IChunkProvider
 				float f3 = 0.0F;
 				float f4 = 0.0F;
 				byte b0 = 2;
-				BiomeGenBase biomegenbase = this.biomesForGeneration[j1 + 2 + (k1 + 2) * 10];
+				Biome Biome = this.biomesForGeneration[j1 + 2 + (k1 + 2) * 10];
 
 				for (int l1 = -b0; l1 <= b0; ++l1)
 				{
 					for (int i2 = -b0; i2 <= b0; ++i2)
 					{
-						BiomeGenBase biomegenbase1 = this.biomesForGeneration[j1 + l1 + 2 + (k1 + i2 + 2) * 10];
-						float f5 = this.settings.biomeDepthOffSet + biomegenbase1.minHeight * this.settings.biomeDepthWeight;
-						float f6 = this.settings.biomeScaleOffset + biomegenbase1.maxHeight * this.settings.biomeScaleWeight;
+						Biome Biome1 = this.biomesForGeneration[j1 + l1 + 2 + (k1 + i2 + 2) * 10];
+						float f5 = this.settings.biomeDepthOffSet + Biome1.minHeight * this.settings.biomeDepthWeight;
+						float f6 = this.settings.biomeScaleOffset + Biome1.maxHeight * this.settings.biomeScaleWeight;
 
 						float f7 = this.parabolicField[l1 + 2 + (i2 + 2) * 5] / (f5 + 2.0F);
 
-						if (biomegenbase1.minHeight > biomegenbase.minHeight)
+						if (Biome1.minHeight > Biome.minHeight)
 						{
 							f7 /= 2.0F;
 						}
@@ -705,8 +706,8 @@ public class ChunkProviderFrozenLands implements IChunkProvider
 
 	@Override
 	public List <SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos) {
-		BiomeGenBase biomegenbase = this.worldObj.getBiomeGenForCoords(pos);
-		return biomegenbase.getSpawnableList(creatureType);
+		Biome Biome = this.worldObj.getBiomeGenForCoords(pos);
+		return Biome.getSpawnableList(creatureType);
 	}
 
 	@Override

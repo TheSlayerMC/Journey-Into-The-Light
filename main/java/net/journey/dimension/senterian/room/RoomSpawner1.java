@@ -6,9 +6,8 @@ package net.journey.dimension.senterian.room;
 import java.util.Random;
 
 import net.journey.JourneyBlocks;
-import net.minecraft.world.World;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.chunk.ChunkPrimer;
-import net.minecraft.world.gen.feature.WorldGenerator;
 
 public class RoomSpawner1 extends RoomBase {
 	public RoomSpawner1() { }

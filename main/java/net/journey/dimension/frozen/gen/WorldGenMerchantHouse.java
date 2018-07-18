@@ -7,18 +7,18 @@ import com.google.common.collect.Lists;
 import net.journey.JourneyBlocks;
 import net.journey.JourneyItems;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
-import net.journey.entity.mob.euca.npc.EntityAlloyMender;
 import net.journey.entity.mob.frozen.npc.EntityFrozenMerchant;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
 public class WorldGenMerchantHouse extends WorldGenerator {
 	
 	
-	private static WeightedRandomChestContent[] loot = {
+	/*private static WeightedRandomChestContent[] loot = {
 		new WeightedRandomChestContent(JourneyItems.frostGem, 0, 1, 5, 10), 
-		new WeightedRandomChestContent(JourneyItems.crystalFlake, 0, 1, 10, 40)};
+		new WeightedRandomChestContent(JourneyItems.crystalFlake, 0, 1, 10, 40)};*/
 	
 
 	public boolean locationIsValidSpawn(World w, int x, int y, int z) {
@@ -68,20 +68,20 @@ public class WorldGenMerchantHouse extends WorldGenerator {
 		w.setBlockState(new BlockPos(x + 1, y + 1, z + 10), JourneyBlocks.frozenBrick.getDefaultState());
 		w.setBlockState(new BlockPos(x + 1, y + 2, z + 2), JourneyBlocks.frozenBrick.getDefaultState());
 		w.setBlockState(new BlockPos(x + 1, y + 2, z + 3), JourneyBlocks.frozenBrick.getDefaultState());
-		w.setBlockState(new BlockPos(x + 1, y + 2, z + 4), Blocks.glass_pane.getStateFromMeta(1));
-		w.setBlockState(new BlockPos(x + 1, y + 2, z + 5), Blocks.glass_pane.getStateFromMeta(1));
+		w.setBlockState(new BlockPos(x + 1, y + 2, z + 4), Blocks.GLASS_PANE.getStateFromMeta(1));
+		w.setBlockState(new BlockPos(x + 1, y + 2, z + 5), Blocks.GLASS_PANE.getStateFromMeta(1));
 		w.setBlockState(new BlockPos(x + 1, y + 2, z + 6), JourneyBlocks.frozenBrick.getDefaultState());
-		w.setBlockState(new BlockPos(x + 1, y + 2, z + 7), Blocks.glass_pane.getStateFromMeta(1));
-		w.setBlockState(new BlockPos(x + 1, y + 2, z + 8), Blocks.glass_pane.getStateFromMeta(1));
+		w.setBlockState(new BlockPos(x + 1, y + 2, z + 7), Blocks.GLASS_PANE.getStateFromMeta(1));
+		w.setBlockState(new BlockPos(x + 1, y + 2, z + 8), Blocks.GLASS_PANE.getStateFromMeta(1));
 		w.setBlockState(new BlockPos(x + 1, y + 2, z + 9), JourneyBlocks.frozenBrick.getDefaultState());
 		w.setBlockState(new BlockPos(x + 1, y + 2, z + 10), JourneyBlocks.frozenBrick.getDefaultState());
 		w.setBlockState(new BlockPos(x + 1, y + 3, z + 2), JourneyBlocks.frozenBrick.getDefaultState());
 		w.setBlockState(new BlockPos(x + 1, y + 3, z + 3), JourneyBlocks.frozenBrick.getDefaultState());
-		w.setBlockState(new BlockPos(x + 1, y + 3, z + 4), Blocks.glass_pane.getStateFromMeta(1));
-		w.setBlockState(new BlockPos(x + 1, y + 3, z + 5), Blocks.glass_pane.getStateFromMeta(1));
+		w.setBlockState(new BlockPos(x + 1, y + 3, z + 4), Blocks.GLASS_PANE.getStateFromMeta(1));
+		w.setBlockState(new BlockPos(x + 1, y + 3, z + 5), Blocks.GLASS_PANE.getStateFromMeta(1));
 		w.setBlockState(new BlockPos(x + 1, y + 3, z + 6), JourneyBlocks.frozenBrick.getDefaultState());
-		w.setBlockState(new BlockPos(x + 1, y + 3, z + 7), Blocks.glass_pane.getStateFromMeta(1));
-		w.setBlockState(new BlockPos(x + 1, y + 3, z + 8), Blocks.glass_pane.getStateFromMeta(1));
+		w.setBlockState(new BlockPos(x + 1, y + 3, z + 7), Blocks.GLASS_PANE.getStateFromMeta(1));
+		w.setBlockState(new BlockPos(x + 1, y + 3, z + 8), Blocks.GLASS_PANE.getStateFromMeta(1));
 		w.setBlockState(new BlockPos(x + 1, y + 3, z + 9), JourneyBlocks.frozenBrick.getDefaultState());
 		w.setBlockState(new BlockPos(x + 1, y + 3, z + 10), JourneyBlocks.frozenBrick.getDefaultState());
 		w.setBlockState(new BlockPos(x + 1, y + 4, z + 2), JourneyBlocks.frozenBrick.getDefaultState());
@@ -127,7 +127,7 @@ public class WorldGenMerchantHouse extends WorldGenerator {
 		
 		TileEntityJourneyChest te = (TileEntityJourneyChest)w.getTileEntity(new BlockPos(x + 2, y + 1, z + 5));
 		if(te != null) {
-			WeightedRandomChestContent.generateChestContents(r, Lists.newArrayList(loot), te, 4);
+		//	WeightedRandomChestContent.generateChestContents(r, Lists.newArrayList(loot), te, 4);
 		}
 		
 		w.setBlockState(new BlockPos(x + 2, y + 1, z + 6), JourneyBlocks.frozenChest.getStateFromMeta(3));
@@ -136,7 +136,7 @@ public class WorldGenMerchantHouse extends WorldGenerator {
 		
 		TileEntityJourneyChest te2 = (TileEntityJourneyChest)w.getTileEntity(new BlockPos(x + 2, y + 1, z + 9));
 		if(te2 != null) {
-			WeightedRandomChestContent.generateChestContents(r, Lists.newArrayList(loot), te2, 12);
+			//WeightedRandomChestContent.generateChestContents(r, Lists.newArrayList(loot), te2, 12);
 		}
 		
 		w.setBlockState(new BlockPos(x + 2, y + 1, z + 10), JourneyBlocks.frozenBrick.getDefaultState());
@@ -250,10 +250,10 @@ public class WorldGenMerchantHouse extends WorldGenerator {
 		w.setBlockState(new BlockPos(x + 4, y + 0, z + 10), JourneyBlocks.frozenBrick.getDefaultState());
 		w.setBlockState(new BlockPos(x + 4, y + 1, z + 2), JourneyBlocks.frozenBrick.getDefaultState());
 		w.setBlockState(new BlockPos(x + 4, y + 1, z + 10), JourneyBlocks.frozenBrick.getDefaultState());
-		w.setBlockState(new BlockPos(x + 4, y + 2, z + 2), Blocks.glass_pane.getStateFromMeta(1));
-		w.setBlockState(new BlockPos(x + 4, y + 2, z + 10), Blocks.glass_pane.getStateFromMeta(1));
-		w.setBlockState(new BlockPos(x + 4, y + 3, z + 2), Blocks.glass_pane.getStateFromMeta(1));
-		w.setBlockState(new BlockPos(x + 4, y + 3, z + 10), Blocks.glass_pane.getStateFromMeta(1));
+		w.setBlockState(new BlockPos(x + 4, y + 2, z + 2), Blocks.GLASS_PANE.getStateFromMeta(1));
+		w.setBlockState(new BlockPos(x + 4, y + 2, z + 10), Blocks.GLASS_PANE.getStateFromMeta(1));
+		w.setBlockState(new BlockPos(x + 4, y + 3, z + 2), Blocks.GLASS_PANE.getStateFromMeta(1));
+		w.setBlockState(new BlockPos(x + 4, y + 3, z + 10), Blocks.GLASS_PANE.getStateFromMeta(1));
 		w.setBlockState(new BlockPos(x + 4, y + 4, z + 2), JourneyBlocks.frozenBrick.getDefaultState());
 		w.setBlockState(new BlockPos(x + 4, y + 4, z + 10), JourneyBlocks.frozenBrick.getDefaultState());
 		w.setBlockState(new BlockPos(x + 4, y + 5, z + 2), JourneyBlocks.frozenBrick.getDefaultState());
@@ -371,18 +371,18 @@ public class WorldGenMerchantHouse extends WorldGenerator {
 		w.setBlockState(new BlockPos(x + 6, y + 2, z + 2), JourneyBlocks.frozenBrick.getDefaultState());
 		w.setBlockState(new BlockPos(x + 6, y + 2, z + 4), JourneyBlocks.frozenBrick.getDefaultState());
 		w.setBlockState(new BlockPos(x + 6, y + 2, z + 5), JourneyBlocks.frozenBrick.getDefaultState());
-		w.setBlockState(new BlockPos(x + 6, y + 2, z + 6), Blocks.glass_pane.getStateFromMeta(1));
-		w.setBlockState(new BlockPos(x + 6, y + 2, z + 7), Blocks.glass_pane.getStateFromMeta(1));
-		w.setBlockState(new BlockPos(x + 6, y + 2, z + 8), Blocks.glass_pane.getStateFromMeta(1));
+		w.setBlockState(new BlockPos(x + 6, y + 2, z + 6), Blocks.GLASS_PANE.getStateFromMeta(1));
+		w.setBlockState(new BlockPos(x + 6, y + 2, z + 7), Blocks.GLASS_PANE.getStateFromMeta(1));
+		w.setBlockState(new BlockPos(x + 6, y + 2, z + 8), Blocks.GLASS_PANE.getStateFromMeta(1));
 		w.setBlockState(new BlockPos(x + 6, y + 2, z + 9), JourneyBlocks.frozenBrick.getDefaultState());
 		w.setBlockState(new BlockPos(x + 6, y + 2, z + 10), JourneyBlocks.frozenBrick.getDefaultState());
 		w.setBlockState(new BlockPos(x + 6, y + 3, z + 2), JourneyBlocks.frozenBrick.getDefaultState());
 		w.setBlockState(new BlockPos(x + 6, y + 3, z + 3), JourneyBlocks.frozenBrick.getDefaultState());
 		w.setBlockState(new BlockPos(x + 6, y + 3, z + 4), JourneyBlocks.frozenBrick.getDefaultState());
 		w.setBlockState(new BlockPos(x + 6, y + 3, z + 5), JourneyBlocks.frozenBrick.getDefaultState());
-		w.setBlockState(new BlockPos(x + 6, y + 3, z + 6), Blocks.glass_pane.getStateFromMeta(1));
-		w.setBlockState(new BlockPos(x + 6, y + 3, z + 7), Blocks.glass_pane.getStateFromMeta(1));
-		w.setBlockState(new BlockPos(x + 6, y + 3, z + 8), Blocks.glass_pane.getStateFromMeta(1));
+		w.setBlockState(new BlockPos(x + 6, y + 3, z + 6), Blocks.GLASS_PANE.getStateFromMeta(1));
+		w.setBlockState(new BlockPos(x + 6, y + 3, z + 7), Blocks.GLASS_PANE.getStateFromMeta(1));
+		w.setBlockState(new BlockPos(x + 6, y + 3, z + 8), Blocks.GLASS_PANE.getStateFromMeta(1));
 		w.setBlockState(new BlockPos(x + 6, y + 3, z + 9), JourneyBlocks.frozenBrick.getDefaultState());
 		w.setBlockState(new BlockPos(x + 6, y + 3, z + 10), JourneyBlocks.frozenBrick.getDefaultState());
 		w.setBlockState(new BlockPos(x + 6, y + 4, z + 2), JourneyBlocks.frozenBrick.getDefaultState());
@@ -429,7 +429,7 @@ public class WorldGenMerchantHouse extends WorldGenerator {
 		if(!w.isRemote) {
 			EntityFrozenMerchant smith = new EntityFrozenMerchant(w);
 			smith.setLocationAndAngles(x + 4, y + 2, z + 4, 0.0F, 0.0F);
-			w.spawnEntityInWorld(smith);
+			w.spawnEntity(smith);
 		}
 		return false;
 	}

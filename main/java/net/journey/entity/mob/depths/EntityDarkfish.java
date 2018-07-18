@@ -7,20 +7,22 @@
 
     import java.util.Random;
 
-    import net.journey.JourneyItems;
-    import net.journey.entity.MobStats;
-    import net.journey.entity.projectile.EntityShimmererProjectile;
-    import net.journey.enums.EnumSounds;
-    import net.minecraft.entity.EntityLivingBase;
-    import net.minecraft.entity.ai.EntityAIBase;
-    import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
-    import net.minecraft.entity.ai.EntityMoveHelper;
-    import net.minecraft.entity.player.EntityPlayer;
-    import net.minecraft.init.Blocks;
-	import net.minecraft.item.Item;
-    import net.minecraft.world.EnumDifficulty;
-    import net.minecraft.world.World;
-    import net.slayer.api.entity.EntityModFlying;
+import net.journey.JourneyItems;
+import net.journey.entity.MobStats;
+import net.journey.entity.projectile.EntityShimmererProjectile;
+import net.journey.enums.EnumSounds;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.ai.EntityAIBase;
+import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
+import net.minecraft.entity.ai.EntityMoveHelper;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.EnumDifficulty;
+import net.minecraft.world.World;
+import net.slayer.api.entity.EntityModFlying;
 
     public class EntityDarkfish extends EntityModFlying {
 
@@ -65,7 +67,7 @@
     	
     	@Override
     	public boolean getCanSpawnHere() {
-            return super.rand.nextInt(15) == 0 && super.getCanSpawnHere() && this.worldObj.getDifficulty() != EnumDifficulty.PEACEFUL;
+            return super.rand.nextInt(15) == 0 && super.getCanSpawnHere() && this.world.getDifficulty() != EnumDifficulty.PEACEFUL;
         }		
 
     	@Override
@@ -160,7 +162,7 @@
     			AxisAlignedBB axisalignedbb = this.e.getEntityBoundingBox();
     			for(int i = 1; i < h; ++i) {
     				axisalignedbb = axisalignedbb.offset(d4, d5, d6);
-    				if(!this.e.worldObj.getCollidingBoundingBoxes(this.e, axisalignedbb).isEmpty()) {
+    				if(!this.e.world.getCollidingBoundingBoxes(this.e, axisalignedbb).isEmpty()) {
     					return false;
     				}
     			}
@@ -222,7 +224,7 @@
     			double d0 = 64.0D;
 
     			if(entitylivingbase.getDistanceSqToEntity(this.entity) < d0 * d0 && this.entity.canEntityBeSeen(entitylivingbase)) {
-    				World world = this.entity.worldObj;
+    				World world = this.entity.world;
     				counter++;
 
     				if(this.counter == 20) {

@@ -22,6 +22,7 @@ import net.minecraft.util.IProgressUpdate;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
@@ -54,7 +55,7 @@ public class ChunkProviderTerrania implements IChunkProvider {
 	private double[] stoneNoise;
 	private MapGenBase caveGenerator;
 	private MapGenBase ravineGenerator;
-	private BiomeGenBase[] biomesForGeneration;
+	private Biome[] biomesForGeneration;
 	double[] gen1;
 	double[] gen2;
 	double[] gen3;
@@ -153,7 +154,7 @@ public class ChunkProviderTerrania implements IChunkProvider {
 	}
 
 
-	public void biomeBlocks(int x, int z, ChunkPrimer c, BiomeGenBase[] b) {
+	public void biomeBlocks(int x, int z, ChunkPrimer c, Biome[] b) {
 		ChunkProviderEvent.ReplaceBiomeBlocks event = new ChunkProviderEvent.ReplaceBiomeBlocks(this, x, z, c, this.worldObj);
 		MinecraftForge.EVENT_BUS.post(event);
 		if(event.getResult() == Result.DENY) return;
@@ -176,7 +177,7 @@ public class ChunkProviderTerrania implements IChunkProvider {
 		int j1 = z & 15;
 		for(int k1 = 255; k1 >= 0; --k1) {
 			if(k1 <= 1) {
-				c.setBlockState(j1, k1, i1, Blocks.bedrock.getDefaultState());
+				c.setBlockState(j1, k1, i1, Blocks.BEDROCK.getDefaultState());
 			} else {
 				IBlockState iblockstate2 = c.getBlockState(j1, k1, i1);
 
@@ -248,13 +249,13 @@ public class ChunkProviderTerrania implements IChunkProvider {
 				float f1 = 0.0F;
 				float f2 = 0.0F;
 				byte b0 = 2;
-				BiomeGenBase biomegenbase = this.biomesForGeneration[j1 + 2 + (k1 + 2) * 10];
+				Biome Biome = this.biomesForGeneration[j1 + 2 + (k1 + 2) * 10];
 
 				for(int l1 = -b0; l1 <= b0; ++l1) {
 					for(int i2 = -b0; i2 <= b0; ++i2) {
-						BiomeGenBase biomegenbase1 = this.biomesForGeneration[j1 + l1 + 2 + (k1 + i2 + 2) * 10];
-						float f3 = biomegenbase1.minHeight;
-						float f4 = biomegenbase1.maxHeight;
+						Biome Biome1 = this.biomesForGeneration[j1 + l1 + 2 + (k1 + i2 + 2) * 10];
+						float f3 = Biome1.minHeight;
+						float f4 = Biome1.maxHeight;
 
 						float f5 = this.parabolicField[l1 + 2 + (i2 + 2) * 5] / (f3 + 2.0F);
 
@@ -425,8 +426,8 @@ public class ChunkProviderTerrania implements IChunkProvider {
 
 	@Override
 	public List <SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos) {
-		BiomeGenBase biomegenbase = this.worldObj.getBiomeGenForCoords(pos);
-		return biomegenbase.getSpawnableList(creatureType);
+		Biome Biome = this.worldObj.getBiomeGenForCoords(pos);
+		return Biome.getSpawnableList(creatureType);
 	}
 
 	@Override

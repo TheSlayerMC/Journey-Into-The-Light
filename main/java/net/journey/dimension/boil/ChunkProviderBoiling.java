@@ -30,13 +30,10 @@ import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.MapGenBase;
 import net.minecraft.world.gen.MapGenCaves;
 import net.minecraft.world.gen.MapGenRavine;
-import net.minecraft.world.gen.NoiseGenerator;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.NoiseGeneratorPerlin;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.terraingen.InitNoiseGensEvent;
-import net.minecraftforge.event.terraingen.TerrainGen;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 
 public class ChunkProviderBoiling implements IChunkGenerator {
@@ -154,7 +151,7 @@ public class ChunkProviderBoiling implements IChunkGenerator {
 	}
 
 
-	public void biomeBlocks(int x, int z, ChunkPrimer c, BiomeGenBase[] b) {
+	public void biomeBlocks(int x, int z, ChunkPrimer c, Biome[] b) {
 		ChunkProviderEvent.ReplaceBiomeBlocks event = new ChunkProviderEvent.ReplaceBiomeBlocks(this, x, z, c, this.worldObj);
 		MinecraftForge.EVENT_BUS.post(event);
 		if(event.getResult() == Result.DENY) return;
@@ -177,7 +174,7 @@ public class ChunkProviderBoiling implements IChunkGenerator {
 		int j1 = z & 15;
 		for(int k1 = 255; k1 >= 0; --k1) {
 			if(k1 <= 1) {
-				c.setBlockState(j1, k1, i1, Blocks.bedrock.getDefaultState());
+				c.setBlockState(j1, k1, i1, Blocks.BEDROCK.getDefaultState());
 			} else {
 				IBlockState iblockstate2 = c.getBlockState(j1, k1, i1);
 
@@ -249,13 +246,13 @@ public class ChunkProviderBoiling implements IChunkGenerator {
 				float f1 = 0.0F;
 				float f2 = 0.0F;
 				byte b0 = 2;
-				BiomeGenBase biomegenbase = this.biomesForGeneration[j1 + 2 + (k1 + 2) * 10];
+				Biome Biome = this.biomesForGeneration[j1 + 2 + (k1 + 2) * 10];
 
 				for(int l1 = -b0; l1 <= b0; ++l1) {
 					for(int i2 = -b0; i2 <= b0; ++i2) {
-						BiomeGenBase biomegenbase1 = this.biomesForGeneration[j1 + l1 + 2 + (k1 + i2 + 2) * 10];
-						float f3 = biomegenbase1.minHeight;
-						float f4 = biomegenbase1.maxHeight;
+						Biome Biome1 = this.biomesForGeneration[j1 + l1 + 2 + (k1 + i2 + 2) * 10];
+						float f3 = Biome1.minHeight;
+						float f4 = Biome1.maxHeight;
 
 						float f5 = this.parabolicField[l1 + 2 + (i2 + 2) * 5] / (f3 + 2.0F);
 
@@ -419,8 +416,8 @@ public class ChunkProviderBoiling implements IChunkGenerator {
 
 	@Override
 	public List <SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos) {
-		BiomeGenBase biomegenbase = this.worldObj.getBiomeGenForCoords(pos);
-		return biomegenbase.getSpawnableList(creatureType);
+		Biome Biome = this.worldObj.getBiomeGenForCoords(pos);
+		return Biome.getSpawnableList(creatureType);
 	}
 
 	@Override

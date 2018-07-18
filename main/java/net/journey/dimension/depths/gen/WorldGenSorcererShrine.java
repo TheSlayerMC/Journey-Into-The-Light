@@ -7,21 +7,16 @@ import com.google.common.collect.Lists;
 import net.journey.JourneyBlocks;
 import net.journey.JourneyItems;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
-import net.journey.entity.mob.boiling.npc.EntityBoilTrader;
-import net.journey.entity.mob.boiling.npc.EntityEscapedConvict;
-import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.slayer.api.worldgen.WorldGenAPI;
 
 public class WorldGenSorcererShrine extends WorldGenerator {
 	
-	private static WeightedRandomChestContent[] loot = {
+	/*private static WeightedRandomChestContent[] loot = {
 			new WeightedRandomChestContent(JourneyItems.depthsFlake, 0, 1, 5, 10), 
 			new WeightedRandomChestContent(JourneyItems.scale, 0, 1, 10, 40), 
-			new WeightedRandomChestContent(JourneyItems.beastlyStomach, 0, 1, 5, 40)};
+			new WeightedRandomChestContent(JourneyItems.beastlyStomach, 0, 1, 5, 40)};*/
 	@Override
 	public boolean generate(World world, Random rand, BlockPos pos) {
 		int i = pos.getX(), j = pos.getY(), k = pos.getZ();
@@ -124,7 +119,7 @@ public class WorldGenSorcererShrine extends WorldGenerator {
 		world.setBlockState(new BlockPos(i + 5, j + 2, k + 4), JourneyBlocks.depthsChest.getStateFromMeta(2));
 		TileEntityJourneyChest te = (TileEntityJourneyChest)world.getTileEntity(new BlockPos(i + 5, j + 2, k + 4));
 		if(te != null) {
-			WeightedRandomChestContent.generateChestContents(rand, Lists.newArrayList(loot), te, 4);
+		//	WeightedRandomChestContent.generateChestContents(rand, Lists.newArrayList(loot), te, 4);
 		}
 		
 		world.setBlockState(new BlockPos(i + 5, j + 2, k + 7), JourneyBlocks.darklyGate.getDefaultState());

@@ -20,6 +20,9 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSourceIndirect;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -158,12 +161,12 @@ public class EntityFlamingArrow extends EntityArrow implements IProjectile {
 		}
 
 		BlockPos blockpos = new BlockPos(this.xTile, this.yTile, this.zTile);
-		IBlockState iblockstate = this.worldObj.getBlockState(blockpos);
+		IBlockState iblockstate = this.world.getBlockState(blockpos);
 		Block block = iblockstate.getBlock();
 
 		if (block.getMaterial() != Material.AIR) {
-			block.setBlockBoundsBasedOnState(this.worldObj, blockpos);
-			AxisAlignedBB axisalignedbb = block.getCollisionBoundingBox(this.worldObj, blockpos, iblockstate);
+			block.setBlockBoundsBasedOnState(this.world, blockpos);
+			AxisAlignedBB axisalignedbb = block.getCollisionBoundingBox(this.world, blockpos, iblockstate);
 
 			if (axisalignedbb != null && axisalignedbb.isVecInside(new Vec3(this.posX, this.posY, this.posZ))) {
 				this.inGround = true;
@@ -195,7 +198,7 @@ public class EntityFlamingArrow extends EntityArrow implements IProjectile {
 			++this.ticksInAir;
 			Vec3 vec31 = new Vec3(this.posX, this.posY, this.posZ);
 			Vec3 vec3 = new Vec3(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
-			MovingObjectPosition movingobjectposition = this.worldObj.rayTraceBlocks(vec31, vec3, false, true, false);
+			MovingObjectPosition movingobjectposition = this.world.rayTraceBlocks(vec31, vec3, false, true, false);
 			vec31 = new Vec3(this.posX, this.posY, this.posZ);
 			vec3 = new Vec3(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
 
@@ -204,7 +207,7 @@ public class EntityFlamingArrow extends EntityArrow implements IProjectile {
 			}
 
 			Entity entity = null;
-			List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
+			List list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
 			double d0 = 0.0D;
 			int i;
 			float f1;
@@ -269,7 +272,7 @@ public class EntityFlamingArrow extends EntityArrow implements IProjectile {
 						if (movingobjectposition.entityHit instanceof EntityLivingBase) {
 							EntityLivingBase entitylivingbase = (EntityLivingBase)movingobjectposition.entityHit;
 
-							if (!this.worldObj.isRemote) {
+							if (!this.world.isRemote) {
 								entitylivingbase.setArrowCountInEntity(entitylivingbase.getArrowCountInEntity() + 1);
 							}
 
@@ -309,7 +312,7 @@ public class EntityFlamingArrow extends EntityArrow implements IProjectile {
 					this.xTile = blockpos1.getX();
 					this.yTile = blockpos1.getY();
 					this.zTile = blockpos1.getZ();
-					iblockstate = this.worldObj.getBlockState(blockpos1);
+					iblockstate = this.world.getBlockState(blockpos1);
 					this.inBlock = iblockstate.getBlock();
 					this.inData = this.inBlock.getMetaFromState(iblockstate);
 					this.motionX = ((float)(movingobjectposition.hitVec.xCoord - this.posX));
@@ -325,14 +328,14 @@ public class EntityFlamingArrow extends EntityArrow implements IProjectile {
 					this.setIsCritical(false);
 
 					if (this.inBlock.getMaterial() != Material.AIR) {
-						this.inBlock.onEntityCollidedWithBlock(this.worldObj, blockpos1, iblockstate, this);
+						this.inBlock.onEntityCollidedWithBlock(this.world, blockpos1, iblockstate, this);
 					}
 				}
 			}
 
 			for (i = 0; i < 20; ++i) {
-				this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX + this.motionX * i / 4.0D, this.posY + this.motionY * i / 4.0D, this.posZ + this.motionZ * i / 4.0D, -this.motionX, -this.motionY + 0.2D, -this.motionZ, new int[0]);
-				this.worldObj.spawnParticle(EnumParticleTypes.LAVA, this.posX + this.motionX * i / 4.0D, this.posY + this.motionY * i / 4.0D, this.posZ + this.motionZ * i / 4.0D, -this.motionX, -this.motionY + 0.2D, -this.motionZ, new int[0]);
+				this.world.spawnParticle(EnumParticleTypes.FLAME, this.posX + this.motionX * i / 4.0D, this.posY + this.motionY * i / 4.0D, this.posZ + this.motionZ * i / 4.0D, -this.motionX, -this.motionY + 0.2D, -this.motionZ, new int[0]);
+				this.world.spawnParticle(EnumParticleTypes.LAVA, this.posX + this.motionX * i / 4.0D, this.posY + this.motionY * i / 4.0D, this.posZ + this.motionZ * i / 4.0D, -this.motionX, -this.motionY + 0.2D, -this.motionZ, new int[0]);
 			}
 
 
@@ -366,7 +369,7 @@ public class EntityFlamingArrow extends EntityArrow implements IProjectile {
 			if (this.isInWater()) {
 				for (int l = 0; l < 4; ++l) {
 					f4 = 0.25F;
-					this.worldObj.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX - this.motionX * f4, this.posY - this.motionY * f4, this.posZ - this.motionZ * f4, this.motionX, this.motionY, this.motionZ, new int[0]);
+					this.world.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX - this.motionX * f4, this.posY - this.motionY * f4, this.posZ - this.motionZ * f4, this.motionX, this.motionY, this.motionZ, new int[0]);
 				}
 				f3 = 0.6F;
 			}
@@ -435,7 +438,7 @@ public class EntityFlamingArrow extends EntityArrow implements IProjectile {
 
 	@Override
 	public void onCollideWithPlayer(EntityPlayer entityIn) {
-		if (!this.worldObj.isRemote && this.inGround && this.arrowShake <= 0) {
+		if (!this.world.isRemote && this.inGround && this.arrowShake <= 0) {
 			boolean flag = this.canBePickedUp == 1 || this.canBePickedUp == 2 && entityIn.capabilities.isCreativeMode;
 
 			if (this.canBePickedUp == 1 && !entityIn.inventory.addItemStackToInventory(new ItemStack(JourneyItems.essenceArrow, 1))) {

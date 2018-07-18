@@ -10,14 +10,22 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
 import net.minecraft.entity.ai.EntityMoveHelper;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityModFlying;
 
 public class EntityCrystalCluster extends EntityModFlying {
 
+	private static final DataParameter<Boolean> IS_FIRE = EntityDataManager.<Boolean>createKey(EntityCrystalCluster.class, DataSerializers.BOOLEAN);
+
+	
 	public EntityCrystalCluster(World par1World) {
 		super(par1World);
 		this.moveHelper = new EntityCrystalCluster.MoveHelper();
@@ -36,7 +44,7 @@ public class EntityCrystalCluster extends EntityModFlying {
 	@Override
 	public void onUpdate() {
         super.onUpdate();
-        if(!this.worldObj.isRemote && this.worldObj.getDifficulty() == EnumDifficulty.PEACEFUL) this.setDead();
+        if(!this.world.isRemote && this.world.getDifficulty() == EnumDifficulty.PEACEFUL) this.setDead();
     }
 
 	@Override
@@ -61,7 +69,7 @@ public class EntityCrystalCluster extends EntityModFlying {
 	
 	@Override
 	public boolean getCanSpawnHere() {
-        return this.rand.nextInt(15) == 0 && super.getCanSpawnHere() && this.worldObj.getDifficulty() != EnumDifficulty.PEACEFUL;
+        return this.rand.nextInt(15) == 0 && super.getCanSpawnHere() && this.world.getDifficulty() != EnumDifficulty.PEACEFUL;
     }
 
     @Override
@@ -77,18 +85,18 @@ public class EntityCrystalCluster extends EntityModFlying {
 	}
 
 	@Override
-	protected void entityInit() {
-		super.entityInit();
-		this.dataWatcher.addObject(16, Byte.valueOf((byte)0));
-	}
-
-	@Override
 	public Item getItemDropped() {
 		return null;
 	}
 
+	@Override
+	protected void entityInit() {
+		super.entityInit();
+		this.dataManager.register(IS_FIRE, Boolean.valueOf(false));
+	}
+	
 	public void setFire(boolean b) {
-		this.dataWatcher.updateObject(16, Byte.valueOf((byte)(b ? 1 : 0)));
+		this.dataManager.set(IS_FIRE, Boolean.valueOf(b));
 	}
 
 	private class AIRandomFly extends EntityAIBase {
@@ -111,9 +119,9 @@ public class EntityCrystalCluster extends EntityModFlying {
 				return d3 < 1.0D || d3 > 3600.0D;
 			}
 		}
-
+		
 		@Override
-		public boolean continueExecuting() {
+		public boolean shouldContinueExecuting() {
 			return false;
 		}
 
@@ -137,20 +145,20 @@ public class EntityCrystalCluster extends EntityModFlying {
 
 		@Override
 		public void onUpdateMoveHelper() {
-			if(this.update) {
+			if(this.action == EntityMoveHelper.Action.MOVE_TO) {
 				double d0 = this.posX - this.e.posX;
 				double d1 = this.posY - this.e.posY;
 				double d2 = this.posZ - this.e.posZ;
 				double d3 = d0 * d0 + d1 * d1 + d2 * d2;
 				if(this.height-- <= 0) {
 					this.height += this.e.getRNG().nextInt(5) + 2;
-					d3 = (double)MathHelper.sqrt_double(d3);
+					d3 = (double)MathHelper.sqrt(d3);
 					if(this.canMove(this.posX, this.posY, this.posZ, d3)) {
 						this.e.motionX += d0 / d3 * 0.1D;
 						this.e.motionY += d1 / d3 * 0.1D;
 						this.e.motionZ += d2 / d3 * 0.1D;
 					} else {
-						this.update = false;
+						this.action = EntityMoveHelper.Action.WAIT;
 					}
 				}
 			}
@@ -163,7 +171,7 @@ public class EntityCrystalCluster extends EntityModFlying {
 			AxisAlignedBB axisalignedbb = this.e.getEntityBoundingBox();
 			for(int i = 1; i < h; ++i) {
 				axisalignedbb = axisalignedbb.offset(d4, d5, d6);
-				if(!this.e.worldObj.getCollidingBoundingBoxes(this.e, axisalignedbb).isEmpty()) {
+				if(!this.e.world.getCollisionBoxes(this.e, axisalignedbb).isEmpty()) {
 					return false;
 				}
 			}
@@ -191,7 +199,7 @@ public class EntityCrystalCluster extends EntityModFlying {
 				EntityLivingBase entitylivingbase = this.e.getAttackTarget();
 				double d0 = 64.0D;
 
-				if (entitylivingbase.getDistanceSqToEntity(this.e) < d0 * d0) {
+				if (entitylivingbase.getDistanceSq(this.e) < d0 * d0) {
 					double d1 = entitylivingbase.posX - this.e.posX;
 					double d2 = entitylivingbase.posZ - this.e.posZ;
 					this.e.renderYawOffset = this.e.rotationYaw = -((float)Math.atan2(d1, d2)) * 180.0F / (float)Math.PI;
@@ -224,22 +232,22 @@ public class EntityCrystalCluster extends EntityModFlying {
 			EntityLivingBase entitylivingbase = this.entity.getAttackTarget();
 			double d0 = 64.0D;
 
-			if(entitylivingbase.getDistanceSqToEntity(this.entity) < d0 * d0 && this.entity.canEntityBeSeen(entitylivingbase)) {
-				World world = this.entity.worldObj;
+			if(entitylivingbase.getDistanceSq(this.entity) < d0 * d0 && this.entity.canEntityBeSeen(entitylivingbase)) {
+				World world = this.entity.world;
 				counter++;
 
 				if(this.counter == 20) {
 					double d1 = 4.0D;
-					Vec3 vec3 = this.entity.getLook(1.0F);
-					double d2 = entitylivingbase.posX - (this.entity.posX + vec3.xCoord * d1);
+					Vec3d vec3 = this.entity.getLook(1.0F);
+					double d2 = entitylivingbase.posX - (this.entity.posX + vec3.x * d1);
 					double d3 = entitylivingbase.getEntityBoundingBox().minY + entitylivingbase.height / 2.0F - (0.5D + this.entity.posY + this.entity.height / 2.0F);
-					double d4 = entitylivingbase.posZ - (this.entity.posZ + vec3.zCoord * d1);
-					world.playAuxSFXAtEntity((EntityPlayer)null, 1008, new BlockPos(this.entity), 0);
+					double d4 = entitylivingbase.posZ - (this.entity.posZ + vec3.z * d1);
+					//world.playAuxSFXAtEntity((EntityPlayer)null, 1008, new BlockPos(this.entity), 0);
 					EntityShimmererProjectile projectile = new EntityShimmererProjectile(world, this.entity, d2, d3, d4);
-					projectile.posX = this.entity.posX + vec3.xCoord * d1;
+					projectile.posX = this.entity.posX + vec3.x * d1;
 					projectile.posY = this.entity.posY + this.entity.height / 2.0F + 0.5D;
-					projectile.posZ = this.entity.posZ + vec3.zCoord * d1;
-					world.spawnEntityInWorld(projectile);
+					projectile.posZ = this.entity.posZ + vec3.z * d1;
+					world.spawnEntity(projectile);
 					this.counter = -40;
 				}
 			}

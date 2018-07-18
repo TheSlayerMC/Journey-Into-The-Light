@@ -1,6 +1,7 @@
 package net.journey.dimension.nether;
 
 import net.minecraft.world.WorldProvider;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.border.WorldBorder;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.fml.relauncher.Side;
@@ -12,7 +13,7 @@ public class WorldProviderNetherJourney extends WorldProvider
     @Override
     public void registerWorldChunkManager()
     {
-        this.worldChunkMgr = new WorldChunkManagerHell(BiomeGenBase.hell, 0.0F);
+        this.worldChunkMgr = new WorldChunkManagerHell(Biome.hell, 0.0F);
         this.isHellWorld = true;
         this.hasNoSky = true;
         this.dimensionId = -1;
