@@ -15,7 +15,6 @@ import net.journey.dimension.overworld.gen.WorldGenModFlower;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.IProgressUpdate;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -23,10 +22,11 @@ import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
-public class ChunkProviderCloudia implements IChunkProvider {
+public class ChunkProviderCloudia implements IChunkGenerator {
 
 	private Random rand;
 	private World worldObj;
@@ -39,13 +39,13 @@ public class ChunkProviderCloudia implements IChunkProvider {
 	}
 
 	@Override
-	public Chunk provideChunk(int cx, int cz) {
+	public Chunk generateChunk(int cx, int cz) {
 		this.rand.setSeed(cx * 391279512714L + cz * 132894987741L);
 		ChunkPrimer primer = new ChunkPrimer();
-		this.biomesForGeneration = this.worldObj.getWorldChunkManager().loadBlockGeneratorData(this.biomesForGeneration, cx* 16, cz* 16, 16, 16);
+		this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomesForGeneration(this.biomesForGeneration, cx* 16, cz* 16, 16, 16);
 		Chunk chunk = new Chunk(this.worldObj, primer, cx, cz);
 		byte[] abyte = chunk.getBiomeArray();
-		for(int k = 0; k < abyte.length; ++k) abyte[k] = (byte)this.biomesForGeneration[k].biomeID;
+		for(int k = 0; k < abyte.length; ++k) abyte[k] = (byte)Biome.getIdForBiome(this.biomesForGeneration[k]);
 		chunk.generateSkylightMap();
 		return chunk;
 	}
@@ -59,7 +59,7 @@ public class ChunkProviderCloudia implements IChunkProvider {
 	private static WorldGenerator village = new WorldGenStarlightVillage();
 	
 	@Override
-	public void populate(IChunkProvider c, int cx, int cz) {
+	public void populate(int cx, int cz) {
 		this.rand.setSeed(this.worldObj.getSeed() * (cx + cz) * this.rand.nextInt());
 		int x1 = cx * 16;
 		int z1 = cz * 16;
@@ -152,63 +152,28 @@ public class ChunkProviderCloudia implements IChunkProvider {
 				w.getBlockState(new BlockPos(x, y + 4, z)) != Blocks.LAVA.getDefaultState() && 
 				w.getBlockState(new BlockPos(x, y + 5, z)) != Blocks.LAVA.getDefaultState();
 	}
-	
-	@Override
-	public boolean chunkExists(int x, int z) {
-		return true;
-	}
-
-	@Override
-	public boolean func_177460_a(IChunkProvider ic, Chunk c, int x, int z) {
-		return false;
-	}
-
-	@Override
-	public boolean saveChunks(boolean b, IProgressUpdate i) {
-		return true;
-	}
-
-	@Override
-	public void saveExtraData() {
-	}
-
-	@Override
-	public boolean unloadQueuedChunks() {
-		return false;
-	}
-
-	@Override
-	public boolean canSave() {
-		return true;
-	}
-
-	@Override
-	public String makeString() {
-		return "RandomLevelSource";
-	}
 
 	@Override
 	public List <SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos) {
-		Biome Biome = this.worldObj.getBiomeGenForCoords(pos);
-		return Biome.getSpawnableList(creatureType);
+		Biome biome = this.worldObj.getBiome(pos);
+		return biome.getSpawnableList(creatureType);
 	}
 
 	@Override
-	public BlockPos getStrongholdGen(World worldIn, String s, BlockPos p) {
+	public boolean generateStructures(Chunk chunkIn, int x, int z) {
+		return false;
+	}
+
+	@Override
+	public BlockPos getNearestStructurePos(World worldIn, String structureName, BlockPos position, boolean findUnexplored) {
 		return null;
 	}
 
 	@Override
-	public int getLoadedChunkCount() {
-		return 0;
-	}
+	public void recreateStructures(Chunk chunkIn, int x, int z) { }
 
 	@Override
-	public void recreateStructures(Chunk c, int x, int z) {
-	}
-
-	@Override
-	public Chunk provideChunk(BlockPos blockPosIn) {
-		return this.provideChunk(blockPosIn.getX() >> 4, blockPosIn.getZ() >> 4);
+	public boolean isInsideStructure(World worldIn, String structureName, BlockPos pos) {
+		return false;
 	}
 }

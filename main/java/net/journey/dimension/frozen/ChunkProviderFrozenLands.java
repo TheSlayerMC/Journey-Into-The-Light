@@ -26,10 +26,11 @@ import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.NoiseGeneratorPerlin;
 
-public class ChunkProviderFrozenLands implements IChunkProvider
+public class ChunkProviderFrozenLands implements IChunkGenerator
 {
 	private Random rand;
 	private NoiseGeneratorOctaves noiseGen1;

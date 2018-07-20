@@ -2,16 +2,15 @@ package net.journey.entity.mob.terrania.mob;
 
 import java.util.Random;
 
-import net.journey.JourneyBlocks;
 import net.journey.entity.MobStats;
 import net.journey.enums.EnumSounds;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.item.Item;
-import net.minecraft.world.EnumDifficulty;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityModFlying;
-import net.slayer.api.entity.EntityModMob;
 
 public class EntityTerralight extends EntityModFlying {
 
@@ -133,7 +132,7 @@ public class EntityTerralight extends EntityModFlying {
             AxisAlignedBB axisalignedbb = this.e.getEntityBoundingBox();
             for(int i = 1; i < h; ++i) {
                 axisalignedbb = axisalignedbb.offset(d4, d5, d6);
-                if(!this.e.worldObj.getCollidingBoundingBoxes(this.e, axisalignedbb).isEmpty()) {
+                if(!this.e.world.getCollidingBoundingBoxes(this.e, axisalignedbb).isEmpty()) {
                     return false;
                 }
             }

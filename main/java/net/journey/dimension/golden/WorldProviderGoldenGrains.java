@@ -2,28 +2,31 @@ package net.journey.dimension.golden;
 
 import net.journey.dimension.DimensionHelper;
 import net.journey.util.Config;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldProvider;
-import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.biome.BiomeProviderSingle;
+import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WorldProviderGoldenGrains extends WorldProvider {
 	
 	@Override
-	public void registerWorldChunkManager() {
-		this.worldChunkMgr = new WorldChunkManagerHell(DimensionHelper.corba, 0.5F);
-		this.dimensionId = Config.corba;
+	public void init() {
+		this.biomeProvider = new BiomeProviderSingle(DimensionHelper.corba);
+		this.nether = false;
 	}
 	
 	@Override
-	public IChunkProvider createChunkGenerator() {
-		return new ChunkProviderGoldenGrains(this.worldObj, this.worldObj.getSeed());
+	public IChunkGenerator createChunkGenerator() {
+		return new ChunkProviderGoldenGrains(this.world, this.world.getSeed());
 	}
 	
 	@Override
     @SideOnly(Side.CLIENT)
-    public Vec3 getFogColor(float f1, float f2) {
-    	return new Vec3(1.3, 1.5, 0.0);
+    public Vec3d getFogColor(float f1, float f2) {
+    	return new Vec3d(1.3, 1.5, 0.0);
     }
 
 	@Override
@@ -54,17 +57,7 @@ public class WorldProviderGoldenGrains extends WorldProvider {
     }
 
 	@Override
-    public String getDimensionName() {
-        return "Golden Grains";
-    }
-
-	@Override
-	public String getSaveFolder() {
-		return getDimensionName();
-	}
-
-	@Override
-	public String getInternalNameSuffix() {
-		return getDimensionName();
+	public DimensionType getDimensionType() {
+		return DimensionHelper.goldenType;
 	}
 }

@@ -61,14 +61,14 @@ public class MusicHandler implements IResourceManagerReloadListener {
 		Map soundMap = getMap(reg);
 		Iterator i = soundMap.entrySet().iterator();
 		while(i.hasNext()) {
-			Map.Entry<ResourceLocation, SoundEventAccessorComposite> entry = (Map.Entry<ResourceLocation, SoundEventAccessorComposite>) i.next();
-			SoundEventAccessorComposite sound = entry.getValue();
-			if(sound.getSoundCategory() == SoundCategory.MUSIC) {
+			Map.Entry<ResourceLocation, SoundCategory> entry = (Map.Entry<ResourceLocation, SoundCategory>) i.next();
+			SoundCategory sound = entry.getValue();
+			if(sound == SoundCategory.MUSIC) {
 				List soundPool = getSoundPool(entry.getValue());
 				for(int j = 0; j < soundPool.size(); j++) {
 					if(soundPool.get(j) instanceof SoundEventAccessor) {
 						SoundEventAccessor remSound = (SoundEventAccessor)soundPool.get(j);
-						if(remSound.cloneEntry().getSoundPoolEntryLocation().getResourceDomain().equals("minecraft")) {
+						if(remSound.cloneEntry().getSoundLocation().getResourceDomain().equals("minecraft")) {
 							soundPool.remove(j);
 							j--;
 						}
@@ -78,7 +78,7 @@ public class MusicHandler implements IResourceManagerReloadListener {
 		}
 	}
 
-	private List getSoundPool(SoundEventAccessorComposite value) {
+	private List getSoundPool(SoundCategory value) {
 		Field[] fields = value.getClass().getDeclaredFields();
 		try {
 			for(Field f : fields) {

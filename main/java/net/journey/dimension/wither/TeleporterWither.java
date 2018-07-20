@@ -24,8 +24,8 @@ public class TeleporterWither extends Teleporter {
 		int var12 = 0;
 		int var13 = 0;
 		int var14 = 0;
-		int entityPosX_floored = MathHelper.floor_double(entity.posX);
-		int entityPosY = MathHelper.floor_double(entity.posZ);
+		int entityPosX_floored = MathHelper.floor(entity.posX);
+		int entityPosY = MathHelper.floor(entity.posZ);
 		double var24;
 
 		for(int searchX = entityPosX_floored - searchRange; searchX <= entityPosX_floored + searchRange; ++searchX) {
@@ -77,10 +77,10 @@ public class TeleporterWither extends Teleporter {
 	@Override
 	public boolean makePortal(Entity entity) {
 		byte var4 = 16;
-		double var32, var33, var16, var19, var5 = -1.0D, var2 = this.myWorld.provider.getDimensionId() == 0 ? 2.0D : 0.5D;
-		int var7 = MathHelper.floor_double(entity.posX);
-		int var8 = MathHelper.floor_double(entity.posY * var2);
-		int var9 = MathHelper.floor_double(entity.posZ);
+		double var32, var33, var16, var19, var5 = -1.0D, var2 = this.myWorld.provider.getDimension() == 0 ? 2.0D : 0.5D;
+		int var7 = MathHelper.floor(entity.posX);
+		int var8 = MathHelper.floor(entity.posY * var2);
+		int var9 = MathHelper.floor(entity.posZ);
 		int var10 = var7, var11 = var8, var12 = var9, var13 = 0, var14 = this.myWorld.rand.nextInt(4), var15, var18, var21, var23, var22, var25, var24, var27, var26, var29, var28;
 
 
@@ -113,7 +113,7 @@ public class TeleporterWither extends Teleporter {
 											var29 = var21 + var27;
 											int var30 = var18 + (var26 - 1) * var24 - var25 * var23;
 
-											if(var27 < 0 && !this.myWorld.getBlockState(new BlockPos(var28, var29, var30)).getBlock().getMaterial().isSolid() || var27 >= 0 && !this.myWorld.isAirBlock(new BlockPos(var28, var29, var30))) {
+											if(var27 < 0 && !this.myWorld.getBlockState(new BlockPos(var28, var29, var30)).getBlock().getMaterial(null).isSolid() || var27 >= 0 && !this.myWorld.isAirBlock(new BlockPos(var28, var29, var30))) {
 												continue label178;
 											}
 										}
@@ -160,7 +160,7 @@ public class TeleporterWither extends Teleporter {
 											var28 = var21 + var26;
 											var29 = var18 + (var25 - 1) * var24;
 
-											if(var26 < 0 && !this.myWorld.getBlockState(new BlockPos(var27, var28, var29)).getBlock().getMaterial().isSolid() || var26 >= 0 && !this.myWorld.isAirBlock(new BlockPos(var27, var28, var29))) {
+											if(var26 < 0 && !this.myWorld.getBlockState(new BlockPos(var27, var28, var29)).getBlock().getMaterial(null).isSolid() || var26 >= 0 && !this.myWorld.isAirBlock(new BlockPos(var27, var28, var29))) {
 												continue label126;
 											}
 										}

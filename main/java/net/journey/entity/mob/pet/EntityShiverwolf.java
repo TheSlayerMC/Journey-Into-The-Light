@@ -399,7 +399,7 @@ public class EntityShiverwolf extends EntityModTameable
                 this.setAttackTarget((EntityLivingBase)null);
             }
         }
-        else if (itemstack != null && itemstack.getItem() == Items.bone && !this.isAngry())
+        else if (itemstack != null && itemstack.getItem() == Items.BONE && !this.isAngry())
         {
             if (!player.capabilities.isCreativeMode)
             {

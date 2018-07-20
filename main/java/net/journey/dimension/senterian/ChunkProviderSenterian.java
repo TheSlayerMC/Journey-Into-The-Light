@@ -11,8 +11,9 @@ import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.IChunkGenerator;
 
-public class ChunkProviderSenterian implements IChunkProvider {
+public class ChunkProviderSenterian implements IChunkGenerator {
 
 	private World w;
 	

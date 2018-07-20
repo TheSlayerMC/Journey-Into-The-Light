@@ -1,28 +1,28 @@
 package net.journey.dimension.boil;
 
 import net.journey.dimension.DimensionHelper;
-import net.journey.util.Config;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldProvider;
+import net.minecraft.world.biome.BiomeProviderSingle;
 import net.minecraft.world.chunk.Chunk;
-import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WorldProviderBoiling extends WorldProvider {
 
 	@Override
-	public void registerWorldChunkManager() {
-		this.worldChunkMgr = new WorldChunkManagerHell(DimensionHelper.boiling, 0.0F);
-		this.dimensionId = Config.boil;
-		isHellWorld = true;
+	public void init() {
+		this.biomeProvider = new BiomeProviderSingle(DimensionHelper.boiling);
+		nether = true;
 	}
 	
 	@Override
 	@SideOnly(Side.CLIENT)
-    public Vec3 getFogColor(float p_76562_1_, float p_76562_2_)
-    {
-        return new Vec3(0.2, 0.1, 0);
+    public Vec3d getFogColor(float p_76562_1_, float p_76562_2_) {
+        return new Vec3d(0.2, 0.1, 0);
     }
 	
 	@Override
@@ -51,8 +51,8 @@ public class WorldProviderBoiling extends WorldProvider {
 	}
 
 	@Override
-	public IChunkProvider createChunkGenerator() {
-		return new ChunkProviderBoiling(this.worldObj, this.worldObj.getSeed());
+	public IChunkGenerator createChunkGenerator() {
+		return new ChunkProviderBoiling(this.world, this.world.getSeed());
 	}
 
 	@Override
@@ -71,12 +71,7 @@ public class WorldProviderBoiling extends WorldProvider {
 	}
 
 	@Override
-	public String getDimensionName() {
-		return "Boiling Point";
-	}
-
-	@Override
-	public String getInternalNameSuffix() {
-		return "Boiling Point";
+	public DimensionType getDimensionType() {
+		return DimensionHelper.boilingType;
 	}
 }

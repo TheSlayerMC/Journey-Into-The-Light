@@ -23,11 +23,12 @@ import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.NoiseGeneratorPerlin;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
-public class ChunkProviderWither implements IChunkProvider
+public class ChunkProviderWither implements IChunkGenerator
 {
 	private Random rand;
 	private ArrayList<WorldGenerator> trees;

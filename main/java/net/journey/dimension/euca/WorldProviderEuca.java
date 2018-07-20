@@ -20,6 +20,7 @@ public class WorldProviderEuca extends WorldProvider {
 	public void init() {
 		this.biomeProvider = new BiomeProviderSingle(DimensionHelper.euca);
 		this.nether = false;
+		hasSkyLight = true;
 	}
 
 	@Override

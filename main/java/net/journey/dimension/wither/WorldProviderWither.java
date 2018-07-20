@@ -1,26 +1,30 @@
 package net.journey.dimension.wither;
 
 import net.journey.dimension.DimensionHelper;
-import net.journey.dimension.frozen.ChunkProviderFrozenLands;
 import net.journey.util.Config;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldProvider;
+import net.minecraft.world.biome.BiomeProviderSingle;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WorldProviderWither extends WorldProvider {
 
 	@Override
-	public void registerWorldChunkManager() {
-		this.worldChunkMgr = new WorldChunkManagerHell(DimensionHelper.wither, 0.0F);
-		this.dimensionId = Config.wither;
+	public void init() {
+		this.biomeProvider = new BiomeProviderSingle(DimensionHelper.wither);
+		this.nether = false;
 	}
 	
 	@Override
 	@SideOnly(Side.CLIENT)
-    public Vec3 getFogColor(float par1, float par2) {
-        return new Vec3(1F, 1F, 1F);
+    public Vec3d getFogColor(float par1, float par2) {
+        return new Vec3d(1F, 1F, 1F);
     }
 	
     @Override
@@ -54,9 +58,9 @@ public class WorldProviderWither extends WorldProvider {
 		return 128.0F;
 	}
 
-	@Override
-	public IChunkProvider createChunkGenerator() {
-        return new ChunkProviderWither(worldObj, worldObj.getSeed(), worldObj.getWorldInfo().getGeneratorOptions());
+	@Override 
+	public IChunkGenerator createChunkGenerator() {
+        return new ChunkProviderWither(world, world.getSeed(), world.getWorldInfo().getGeneratorOptions());
 	}
 
 	@Override
@@ -75,12 +79,7 @@ public class WorldProviderWither extends WorldProvider {
 	}
 
 	@Override
-	public String getDimensionName() {
-		return "Withanian Lands";
-	}
-
-	@Override
-	public String getInternalNameSuffix() {
-		return "Withanian";
+	public DimensionType getDimensionType() {
+		return DimensionHelper.witherType;
 	}
 }

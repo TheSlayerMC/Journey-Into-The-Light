@@ -390,7 +390,7 @@ public class EntityFrozenArrow extends EntityArrow implements IProjectile {
 		tagCompound.setShort("yTile", (short)this.yTile);
 		tagCompound.setShort("zTile", (short)this.zTile);
 		tagCompound.setShort("life", (short)this.ticksInGround);
-		ResourceLocation resourcelocation = (ResourceLocation)Block.blockRegistry.getNameForObject(this.inBlock);
+		ResourceLocation resourcelocation = (ResourceLocation)Block.REGISTRY.getNameForObject(this.inBlock);
 		tagCompound.setString("inTile", resourcelocation == null ? "" : resourcelocation.toString());
 		tagCompound.setByte("inData", (byte)this.inData);
 		tagCompound.setByte("shake", (byte)this.arrowShake);

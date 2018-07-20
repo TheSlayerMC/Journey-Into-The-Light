@@ -61,7 +61,7 @@ public class ChunkProviderEuca implements IChunkGenerator {
 		trees.add(new WorldGenEucaTree4());
 		trees.add(new WorldGenEucaTree5());
 	}
-	
+
 	@Override
 	public Chunk generateChunk(int par1, int par2) {
 		this.rand.setSeed(par1 * 391279512714L + par2 * 132894987741L);
@@ -253,7 +253,7 @@ public class ChunkProviderEuca implements IChunkGenerator {
 				trees.get(rand.nextInt(trees.size())).generate(worldObj, rand, new BlockPos(x, yCoord, z));
 			}
 		}
-		
+
 		for(times = 0; times < 140; times++) {
 			x = x1 + this.rand.nextInt(16) + 8;
 			z = z1 + this.rand.nextInt(16) + 8;
@@ -262,7 +262,7 @@ public class ChunkProviderEuca implements IChunkGenerator {
 				new WorldGenEucaTree4().generate(worldObj, rand, new BlockPos(x, yCoord, z));
 			}
 		}
-		
+
 		for(times = 0; times < 140; times++) {
 			x = x1 + this.rand.nextInt(16) + 8;
 			z = z1 + this.rand.nextInt(16) + 8;
@@ -272,7 +272,7 @@ public class ChunkProviderEuca implements IChunkGenerator {
 			}
 		}
 	}
-	
+
 	public boolean isBlockTop(int x, int y, int z, Block grass) {
 		return worldObj.getBlockState(new BlockPos(x, y, z)) == grass.getDefaultState() && worldObj.getBlockState(new BlockPos(x, y + 1, z)) == Blocks.AIR.getDefaultState()
 				&& worldObj.getBlockState(new BlockPos(x, y + 2, z)) == Blocks.AIR.getDefaultState() && worldObj.getBlockState(new BlockPos(x, y + 3, z)) == Blocks.AIR.getDefaultState()
@@ -281,7 +281,7 @@ public class ChunkProviderEuca implements IChunkGenerator {
 
 	@Override
 	public List <SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos) {
-        Biome biome = this.worldObj.getBiome(pos);
+		Biome biome = this.worldObj.getBiome(pos);
 		return biome.getSpawnableList(creatureType);
 	}
 

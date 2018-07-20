@@ -6,9 +6,11 @@ import java.util.Random;
 import net.journey.blocks.tileentity.TileEntitySenterianPortal;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ActiveRenderInfo;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GLAllocation;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.entity.RenderEnderCrystal;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.tileentity.TileEntityEndPortal;
@@ -25,7 +27,7 @@ public class SenterianPortalRenderer extends TileEntitySpecialRenderer<TileEntit
     FloatBuffer buffer = GLAllocation.createDirectFloatBuffer(16);
 
 	@Override
-    public void render(TileEntitySenterianPortal te, double x, double y, double z, float partialTicks, int destroyStage, float f12) {
+    public void render(TileEntitySenterianPortal te, double x, double y, double z, float partialTicks, int destroyStage, float f121) {
         float f = (float)this.rendererDispatcher.entityX;
         float f1 = (float)this.rendererDispatcher.entityY;
         float f2 = (float)this.rendererDispatcher.entityZ;
@@ -59,8 +61,8 @@ public class SenterianPortalRenderer extends TileEntitySpecialRenderer<TileEntit
             }
 
             float f7 = (float)(-(y + f3));
-            float f8 = f7 + (float)ActiveRenderInfo.getPosition().yCoord;
-            float f9 = f7 + f4 + (float)ActiveRenderInfo.getPosition().yCoord;
+            float f8 = f7 + (float)ActiveRenderInfo.getCameraPosition().y;
+            float f9 = f7 + f4 + (float)ActiveRenderInfo.getCameraPosition().y;
             float f10 = f8 / f9;
             f10 = (float)(y + f3) + f10;
             GlStateManager.translate(f, f10, f2);
@@ -86,11 +88,11 @@ public class SenterianPortalRenderer extends TileEntitySpecialRenderer<TileEntit
             GlStateManager.rotate((i * i * 4321 + i * 9) * 2.0F, 0.0F, 0.0F, 1.0F);
             GlStateManager.translate(-0.5F, -0.5F, 0.0F);
             GlStateManager.translate(-f, -f2, -f1);
-            f8 = f7 + (float)ActiveRenderInfo.getPosition().yCoord;
-            GlStateManager.translate((float)ActiveRenderInfo.getPosition().xCoord * f4 / f8, (float)ActiveRenderInfo.getPosition().zCoord * f4 / f8, -f1);
+            f8 = f7 + (float)ActiveRenderInfo.getCameraPosition().y;
+            GlStateManager.translate((float)ActiveRenderInfo.getCameraPosition().x * f4 / f8, (float)ActiveRenderInfo.getCameraPosition().z * f4 / f8, -f1);
             Tessellator tessellator = Tessellator.getInstance();
-            WorldRenderer worldrenderer = tessellator.getWorldRenderer();
-            worldrenderer.begin(7, DefaultVertexFormats.POSITION_COLOR);
+            BufferBuilder bufferbuilder = tessellator.getBuffer();
+            bufferbuilder.begin(7, DefaultVertexFormats.POSITION_COLOR);
             float f11 = (rand.nextFloat() * 0.5F + 0.1F) * f6;
             float f12 = (rand.nextFloat() * 0.5F + 0.4F) * f6;
             float f13 = (rand.nextFloat() * 0.5F + 0.5F) * f6;
@@ -99,10 +101,10 @@ public class SenterianPortalRenderer extends TileEntitySpecialRenderer<TileEntit
                 f11 = f12 = f13 = 1.0F * f6;
             }
 
-            worldrenderer.pos(x, y + f3, z).color(f11, f12, f13, 1.0F).endVertex();
-            worldrenderer.pos(x, y + f3, z + 1.0D).color(f11, f12, f13, 1.0F).endVertex();
-            worldrenderer.pos(x + 1.0D, y + f3, z + 1.0D).color(f11, f12, f13, 1.0F).endVertex();
-            worldrenderer.pos(x + 1.0D, y + f3, z).color(f11, f12, f13, 1.0F).endVertex();
+            bufferbuilder.pos(x, y + f3, z).color(f11, f12, f13, 1.0F).endVertex();
+            bufferbuilder.pos(x, y + f3, z + 1.0D).color(f11, f12, f13, 1.0F).endVertex();
+            bufferbuilder.pos(x + 1.0D, y + f3, z + 1.0D).color(f11, f12, f13, 1.0F).endVertex();
+            bufferbuilder.pos(x + 1.0D, y + f3, z).color(f11, f12, f13, 1.0F).endVertex();
             tessellator.draw();
             GlStateManager.popMatrix();
             GlStateManager.matrixMode(5888);

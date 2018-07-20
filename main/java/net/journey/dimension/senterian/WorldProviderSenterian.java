@@ -1,27 +1,28 @@
 package net.journey.dimension.senterian;
 
 import net.journey.dimension.DimensionHelper;
-import net.journey.util.Config;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldProvider;
+import net.minecraft.world.biome.BiomeProviderSingle;
 import net.minecraft.world.chunk.Chunk;
-import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WorldProviderSenterian extends WorldProvider {
 
 	@Override
-	public void registerWorldChunkManager() {
-		this.worldChunkMgr = new WorldChunkManagerHell(DimensionHelper.senterian, 0.0F);
-		this.dimensionId = Config.senterian;
-		isHellWorld = true;
+	public void init() {
+		this.biomeProvider = new BiomeProviderSingle(DimensionHelper.senterian);
+		nether = true;
 	}
 	
 	@Override
 	@SideOnly(Side.CLIENT)
-    public Vec3 getFogColor(float par1, float par2) {
-        return new Vec3(0.2, 0.1, 0);
+    public Vec3d getFogColor(float par1, float par2) {
+        return new Vec3d(0.2, 0.1, 0);
     }
 	
 	@Override
@@ -50,8 +51,8 @@ public class WorldProviderSenterian extends WorldProvider {
 	}
 
 	@Override
-	public IChunkProvider createChunkGenerator() {
-		return new ChunkProviderSenterian(this.worldObj, this.worldObj.getSeed());
+	public IChunkGenerator createChunkGenerator() {
+		return new ChunkProviderSenterian(this.world, this.world.getSeed());
 	}
 
 	@Override
@@ -70,12 +71,8 @@ public class WorldProviderSenterian extends WorldProvider {
 	}
 
 	@Override
-	public String getDimensionName() {
-		return "Senterian Labyrinth";
+	public DimensionType getDimensionType() {
+		return DimensionHelper.senterianType;
 	}
 
-	@Override
-	public String getInternalNameSuffix() {
-		return "Senterian Labyrinth";
-	}
 }

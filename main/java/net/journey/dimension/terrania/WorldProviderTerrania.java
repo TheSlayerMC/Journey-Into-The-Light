@@ -1,26 +1,27 @@
 package net.journey.dimension.terrania;
 
 import net.journey.dimension.DimensionHelper;
-import net.journey.util.Config;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldProvider;
+import net.minecraft.world.biome.BiomeProviderSingle;
 import net.minecraft.world.chunk.Chunk;
-import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WorldProviderTerrania extends WorldProvider {
 
 	@Override
-	public void registerWorldChunkManager() {
-		this.worldChunkMgr = new WorldChunkManagerHell(DimensionHelper.terrania, 0.0F);
-		this.dimensionId = Config.terrania;
+	public void init() {
+		this.biomeProvider = new BiomeProviderSingle(DimensionHelper.terrania);
 	}
 	
 	@Override
 	@SideOnly(Side.CLIENT)
-    public Vec3 getFogColor(float p_76562_1_, float p_76562_2_)
-    {
-        return new Vec3(0.6, 0, 1.0);
+    public Vec3d getFogColor(float p_76562_1_, float p_76562_2_) {
+        return new Vec3d(0.6, 0, 1.0);
     }
 	
 	@Override
@@ -49,8 +50,8 @@ public class WorldProviderTerrania extends WorldProvider {
 	}
 
 	@Override
-	public IChunkProvider createChunkGenerator() {
-		return new ChunkProviderTerrania(this.worldObj, this.worldObj.getSeed());
+	public IChunkGenerator createChunkGenerator() {
+		return new ChunkProviderTerrania(this.world, this.world.getSeed());
 	}
 
 	@Override
@@ -75,12 +76,7 @@ public class WorldProviderTerrania extends WorldProvider {
 	}
 
 	@Override
-	public String getDimensionName() {
-		return "Terrania";
-	}
-
-	@Override
-	public String getInternalNameSuffix() {
-		return "Terrania";
+	public DimensionType getDimensionType() {
+		return DimensionHelper.terraniaType;
 	}
 }

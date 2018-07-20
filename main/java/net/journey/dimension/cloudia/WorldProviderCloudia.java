@@ -1,22 +1,24 @@
 package net.journey.dimension.cloudia;
 
 import net.journey.dimension.DimensionHelper;
-import net.journey.util.Config;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldProvider;
-import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.biome.BiomeProviderSingle;
+import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WorldProviderCloudia extends WorldProvider {
 	
 	@Override
-	public void registerWorldChunkManager() {
-		this.worldChunkMgr = new WorldChunkManagerHell(DimensionHelper.cloudia, 0.5F);
-		this.dimensionId = Config.cloudia;
+	public void init() {
+		this.biomeProvider = new BiomeProviderSingle(DimensionHelper.euca);
+		this.nether = false;
 	}
 	
 	@Override
-	public IChunkProvider createChunkGenerator() {
+	public IChunkGenerator createChunkGenerator() {
 		return new ChunkProviderCloudia(this.world, this.world.getSeed());
 	}
 
@@ -28,8 +30,8 @@ public class WorldProviderCloudia extends WorldProvider {
     
 	@Override
     @SideOnly(Side.CLIENT)
-    public Vec3 getFogColor(float f1, float f2) {
-    	return new Vec3(1.7, 0.7, 1.2333);
+    public Vec3d getFogColor(float f1, float f2) {
+    	return new Vec3d(1.7, 0.7, 1.2333);
     }
 
 	@Override
@@ -60,17 +62,7 @@ public class WorldProviderCloudia extends WorldProvider {
     }
 
 	@Override
-    public String getDimensionName() {
-        return "Cloudia";
-    }
-
-	@Override
-	public String getSaveFolder() {
-		return getDimensionName();
-	}
-
-	@Override
-	public String getInternalNameSuffix() {
-		return getDimensionName();
+	public DimensionType getDimensionType() {
+		return DimensionHelper.cloudiaType;
 	}
 }
