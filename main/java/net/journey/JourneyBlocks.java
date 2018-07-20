@@ -231,6 +231,8 @@ public class JourneyBlocks {
 	public static BlockMod corbaChest;
 	public static BlockMod cloudiaChest;
 	public static BlockMod terraniaChest;
+	
+	public static BlockMod journeyChest;
 
 	public static BlockMod nethicDungeonBricks;
 	public static BlockMod boilChain;
@@ -631,6 +633,8 @@ public class JourneyBlocks {
 		corbaChest = new BlockJourneyChest("corbaChest", "Corba Chest");
 		cloudiaChest = new BlockJourneyChest("cloudiaChest", "Cloudia Chest");
 		terraniaChest = new BlockJourneyChest("terraniaChest", "Terrania Chest");
+		
+		journeyChest = new BlockJourneyChest("journeychest", "Journey Chest");
 
 		nethicDungeonBricks = new BlockMod("nethicDungeonBricks", "Nethic Dungeon Bricks");
 		boilChain = (BlockMod) new BlockModBars("boilChain", "Boil Chain", 5.0F).setBlockUnbreakable().setResistance(10000000.0F);
@@ -1012,6 +1016,9 @@ public class JourneyBlocks {
 					corbaChest.createItemBlock(),
 					cloudiaChest.createItemBlock(),
 					terraniaChest.createItemBlock(),
+					
+					journeyChest.createItemBlock(),
+					
 					nethicDungeonBricks.createItemBlock(),
 					boilChain.createItemBlock(),
 					boilGate.createItemBlock(),

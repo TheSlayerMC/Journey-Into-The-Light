@@ -3,6 +3,9 @@ package net.journey.client.render.block;
 import java.util.Calendar;
 
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
+import net.journey.client.render.model.block.ModelJoureyLargeChest;
+import net.journey.client.render.model.block.ModelJourneyChest;
+import net.journey.util.Textures;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
 import net.minecraft.client.model.ModelChest;
@@ -23,8 +26,8 @@ public class JourneyChestRenderer extends TileEntitySpecialRenderer<TileEntityJo
     private static final ResourceLocation FROZEN = new ResourceLocation(SlayerAPI.PREFIX + "textures/models/blocks/chestfrozen.png");
     private static final ResourceLocation DEPTHS = new ResourceLocation(SlayerAPI.PREFIX + "textures/models/blocks/chestdepths.png");
     private static final ResourceLocation CORBA = new ResourceLocation(SlayerAPI.PREFIX + "textures/models/blocks/chestcorba.png");
-    private final ModelChest simpleChest = new ModelChest();
-    private final ModelChest largeChest = new ModelLargeChest();
+    private final ModelJourneyChest simpleChest = new ModelJourneyChest();
+    private final ModelJourneyChest largeChest = new ModelJoureyLargeChest();
     private boolean isEuca;
     private boolean isNether;
     private boolean isBoil;
@@ -34,11 +37,13 @@ public class JourneyChestRenderer extends TileEntitySpecialRenderer<TileEntityJo
 
     public JourneyChestRenderer() {}
 
+    @Override
     public void render(TileEntityJourneyChest te, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
         GlStateManager.enableDepth();
         GlStateManager.depthFunc(515);
         GlStateManager.depthMask(true);
+		bindTexture(Textures.journeyChest);
         int i;
 
         if (te.hasWorld())
@@ -61,7 +66,7 @@ public class JourneyChestRenderer extends TileEntitySpecialRenderer<TileEntityJo
 
         if (te.adjacentChestZNeg == null && te.adjacentChestXNeg == null)
         {
-            ModelChest modelchest;
+            ModelJourneyChest modelchest;
 
             if (te.adjacentChestXPos == null && te.adjacentChestZPos == null)
             {

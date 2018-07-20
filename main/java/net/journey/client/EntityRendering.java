@@ -266,6 +266,7 @@ public class EntityRendering {
 		
 		//ClientRegistry.bindTileEntitySpecialRenderer(TileEntityStatue.class, new StatueRenderer());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGrindstone.class, new GrindstoneRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityJourneyChest.class, new JourneyChestRenderer());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityKnowledgeTable.class, new KnowledgeTableRenderer());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySummoningTable.class, new SummoningTableRenderer());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySenterianPortal.class, new SenterianPortalRenderer());
