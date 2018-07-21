@@ -8,6 +8,7 @@ import net.journey.JourneyItems;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.entity.MobStats;
 import net.journey.enums.EnumSounds;
+import net.journey.util.PotionEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -16,6 +17,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityEssenceBoss;
 
@@ -69,10 +71,10 @@ public class EntityEudor extends EntityEssenceBoss {
 	public void onUpdate() {
 		super.onUpdate();
 		if(isInv()) {
-			for(int i = 0; i < 5; i++) this.worldObj.spawnParticle(EnumParticleTypes.ENCHANTMENT_TABLE, this.posX + (this.rand.nextDouble() - 0.5D) * this.width, this.posY + this.rand.nextDouble() * this.height - 0.25D, this.posZ + (this.rand.nextDouble() - 0.5D) * this.width, (this.rand.nextDouble() - 0.5D) * 2.0D, -this.rand.nextDouble(), (this.rand.nextDouble() - 0.5D) * 2.0D, new int[0]);
+			for(int i = 0; i < 5; i++) this.world.spawnParticle(EnumParticleTypes.ENCHANTMENT_TABLE, this.posX + (this.rand.nextDouble() - 0.5D) * this.width, this.posY + this.rand.nextDouble() * this.height - 0.25D, this.posZ + (this.rand.nextDouble() - 0.5D) * this.width, (this.rand.nextDouble() - 0.5D) * 2.0D, -this.rand.nextDouble(), (this.rand.nextDouble() - 0.5D) * 2.0D, new int[0]);
 			Entity entity = attackingPlayer;
 			if(entity != null)
-				((EntityPlayer)entity).addPotionEffect(new PotionEffect(Potion.blindness.id, 25, 2));
+				((EntityPlayer)entity).addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.blindness, 60, 5)));
 		}
 	}
 
@@ -100,14 +102,14 @@ public class EntityEudor extends EntityEssenceBoss {
 	
 	@Override
 	public void onDeath(DamageSource damage) {
-		if(damage.getEntity() instanceof EntityPlayer) {
+		/* if(damage.getEntity() instanceof EntityPlayer) {
 			EntityPlayer p = (EntityPlayer)damage.getEntity();
 			p.triggerAchievement(JourneyAchievements.achievementEudor); {
 			}
-		}
-		this.worldObj.setBlockState(new BlockPos((int)Math.floor(this.posX + 0), ((int)Math.floor(this.posY + 1)), ((int)Math.floor(this.posZ + 0))), JourneyBlocks.trophyEudor.getStateFromMeta(5));
-		this.worldObj.setBlockState(new BlockPos((int)Math.floor(this.posX + 0), ((int)Math.floor(this.posY + 0)), ((int)Math.floor(this.posZ + 0))), JourneyBlocks.eucaChest.getStateFromMeta(5));
-		TileEntityJourneyChest te = (TileEntityJourneyChest)worldObj.getTileEntity(new BlockPos((int)Math.floor(this.posX + 0), ((int)Math.floor(this.posY + 0)), ((int)Math.floor(this.posZ + 0))));
+		} */
+		this.world.setBlockState(new BlockPos((int)Math.floor(this.posX + 0), ((int)Math.floor(this.posY + 1)), ((int)Math.floor(this.posZ + 0))), JourneyBlocks.trophyEudor.getStateFromMeta(5));
+		this.world.setBlockState(new BlockPos((int)Math.floor(this.posX + 0), ((int)Math.floor(this.posY + 0)), ((int)Math.floor(this.posZ + 0))), JourneyBlocks.eucaChest.getStateFromMeta(5));
+		TileEntityJourneyChest te = (TileEntityJourneyChest)world.getTileEntity(new BlockPos((int)Math.floor(this.posX + 0), ((int)Math.floor(this.posY + 0)), ((int)Math.floor(this.posZ + 0))));
 		switch(rand.nextInt(2)) {
 		case 0:
 			te.setInventorySlotContents(15, new ItemStack(JourneyItems.depthsPortalGem, 8));

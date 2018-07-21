@@ -25,6 +25,7 @@ import net.journey.client.render.model.mob.overworld.desert.ModelDunewerm;
 import net.journey.client.render.model.mob.overworld.desert.ModelSandCrawler;
 import net.journey.client.render.model.mob.overworld.desert.ModelSpyclops;
 import net.journey.client.render.model.mob.overworld.jungle.ModelJungleGolem;
+import net.journey.client.render.model.mob.overworld.jungle.ModelJungleTurtle;
 import net.journey.client.render.model.mob.overworld.underground.*;
 import net.journey.client.render.model.mob.overworld.underground.npc.ModelRockiteGolem;
 import net.journey.client.render.model.mob.terrania.mob.ModelPurplian;
@@ -60,6 +61,7 @@ import net.journey.entity.mob.overworld.*;
 import net.journey.entity.mob.overworld.EntityWraith;
 import net.journey.entity.mob.overworld.cold.EntityBlizzard;
 import net.journey.entity.mob.overworld.jungle.EntityJungleGolem;
+import net.journey.entity.mob.overworld.jungle.EntityJungleTurtle;
 import net.journey.entity.mob.overworld.npc.*;
 import net.journey.entity.mob.overworld.underground.*;
 import net.journey.entity.mob.overworld.underground.npc.EntityRockiteGolem;
@@ -252,6 +254,7 @@ public class EntityRendering {
 		RenderingRegistry.registerEntityRenderingHandler(EntityScale.class, new RenderBoss(new ModelSoulWatcher(), 0.5F, 2.0F, Textures.scale, "scale"));
 		
 		RenderingRegistry.registerEntityRenderingHandler(EntityTameRoc.class, new RenderModMob(new ModelRoc(), Textures.tameRoc));
+		RenderingRegistry.registerEntityRenderingHandler(EntityJungleTurtle.class, new RenderModMob(new ModelJungleTurtle(), Textures.jungleTurtle));
 		//RenderingRegistry.registerEntityRenderingHandler(EntityWraith.class, new RenderBoss(new ModelWraith(), 0.5F, 1.0F, tex.wraith, stat.wraithBossID));
 		
 		//SlayerAPI.registerItemRenderer(EssenceBlocks.netherBeastStatue, new ItemRendererStatue("netherBeastStatue"));

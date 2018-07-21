@@ -36,9 +36,11 @@ public class ModelJungleGolem extends ModelBase {
     public ModelJungleGolem() {
         this.textureWidth = 64;
         this.textureHeight = 64;
+        
         this.body1 = new ModelRenderer(this, 0, 50);
         this.body1.setRotationPoint(-8.0F, 9.0F, -3.0F);
         this.body1.addBox(0.0F, 0.0F, 0.0F, 16, 3, 5, 0.0F);
+        
         this.face1 = new ModelRenderer(this, 0, 0);
         this.face1.setRotationPoint(-0.0F, -8.0F, 0.0F);
         this.face1.addBox(-5.0F, -8.0F, -7.0F, 10, 1, 1, 0.0F);
