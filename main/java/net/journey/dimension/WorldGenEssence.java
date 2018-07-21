@@ -122,13 +122,13 @@ public class WorldGenEssence implements IWorldGenerator {
 			worldGenNetherFeature(JourneyBlocks.lavaRock, 40, w, x, y, z);
 		}
 		
-		for(times = 0; times < 150; times++) {
+		/* for(times = 0; times < 150; times++) {
 			y = r.nextInt(35); 
 			x = chunkX + r.nextInt(16) + 8; 
 			z = chunkZ + r.nextInt(16) + 8;
 			if(isBlockTop(x, y, z, JourneyBlocks.heatSoil, w))
 			(new WorldGenSizzlerWoodTree0()).generate(w, r, new BlockPos(x, y - 1, z));
-		}
+		} */
 		
 		for(times = 0; times < 150; times++) {
 			y = r.nextInt(256); 
@@ -154,7 +154,7 @@ public class WorldGenEssence implements IWorldGenerator {
 			(new WorldGenBleedheartTree2()).generate(w, r, new BlockPos(x, y - 1, z));
 		}
 		
-		for(times = 0; times < 100; times++) {
+		/* for(times = 0; times < 100; times++) {
 			y = r.nextInt(256); 
 			x = chunkX + this.r.nextInt(16) + 8; 
 			z = chunkZ + this.r.nextInt(16) + 8;
@@ -166,14 +166,14 @@ public class WorldGenEssence implements IWorldGenerator {
 			x = chunkX + this.r.nextInt(16) + 8; 
 			z = chunkZ + this.r.nextInt(16) + 8;
 			new WorldGenNetherFlower(w, r, pos, JourneyBlocks.hellBell).generate(worldObj, r, new BlockPos(x, y, z));
-		}
+		} 
 		
-		for(times = 0; times < 100; times++) {
+		 for(times = 0; times < 100; times++) {
 			y = r.nextInt(35) + 1;
 			x = chunkX + r.nextInt(16);
 			z = chunkZ + r.nextInt(16);
 			trees.get(r.nextInt(trees.size())).generate(w, r, new BlockPos(x, y, z));
-		}
+		} */
 		
 		for(times = 0; times < 100; times++) {
 			y = r.nextInt(250); 

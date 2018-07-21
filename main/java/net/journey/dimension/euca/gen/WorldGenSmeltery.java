@@ -126,13 +126,13 @@ public class WorldGenSmeltery extends WorldGenerator {
 		/* TileEntityJourneyChest te = (TileEntityJourneyChest)w.getTileEntity(new BlockPos(x + 2, y + 1, z + 5));
 		if(te != null) {
 			//WeightedRandomChestContent.generateChestContents(r, Lists.newArrayList(loot), te, 4);
-		}
+		} */
 		
 		w.setBlockState(new BlockPos(x + 2, y + 1, z + 6), JourneyBlocks.eucaChest.getStateFromMeta(3));
 		w.setBlockState(new BlockPos(x + 2, y + 1, z + 8), JourneyBlocks.eucaBricks.getDefaultState());
 		w.setBlockState(new BlockPos(x + 2, y + 1, z + 9), JourneyBlocks.eucaChest.getStateFromMeta(3));
 		
-		TileEntityJourneyChest te2 = (TileEntityJourneyChest)w.getTileEntity(new BlockPos(x + 2, y + 1, z + 9));
+		/* TileEntityJourneyChest te2 = (TileEntityJourneyChest)w.getTileEntity(new BlockPos(x + 2, y + 1, z + 9));
 		if(te2 != null) {
 			//WeightedRandomChestContent.generateChestContents(r, Lists.newArrayList(loot), te2, 12);
 		} */
