@@ -51,7 +51,6 @@ public class EntityWitherspine extends EntityModMob {
         return "mob.skeleton.hurt";
     }
     
-    @Override
 	protected String getDeathSound()
     {
         return "mob.skeleton.death";
