@@ -13,7 +13,7 @@ import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 
-public class ChunkProviderSenterian implements IChunkGenerator {
+public class ChunkProviderSenterian implements IChunkProvider {
 
 	private World w;
 	

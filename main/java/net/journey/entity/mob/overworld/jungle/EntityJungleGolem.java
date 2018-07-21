@@ -7,12 +7,14 @@ import net.journey.enums.EnumSounds;
 import net.journey.util.PotionEffects;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityModMob;
 
@@ -22,6 +24,12 @@ public class EntityJungleGolem extends EntityModMob{
 		super(par1World);
 		addAttackingAI();
 		setSize(1.2F, 2.5F);
+	}
+	
+	@Override
+	protected void applyEntityAttributes() {
+		super.applyEntityAttributes();
+		this.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(3);
 	}
 	
     @Override
@@ -34,7 +42,8 @@ public class EntityJungleGolem extends EntityModMob{
         List<Entity> e = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox());        
         for(Entity entity : e) {
         	if(entity instanceof EntityPlayer && canEntityBeSeen(entity)) ((EntityPlayer)entity).addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.poison, 60, 1)));
-        }        
+        }   
+
     }
 
 	@Override
@@ -44,6 +53,15 @@ public class EntityJungleGolem extends EntityModMob{
 		return super.attackEntityFrom(e, a);
 	}
     
+	@Override
+	public boolean attackEntityAsMob(Entity e) {
+		boolean attacked = super.attackEntityAsMob(e);
+		if(attacked) {
+			e.addVelocity((double)(-MathHelper.sin(this.rotationYaw * (float)Math.PI / 180.0F)) * 4, 0.1D, (double)(MathHelper.cos(this.rotationYaw * (float)Math.PI / 180.0F)) * 4);
+		}
+		return attacked;
+	}
+	
 	@Override
 	public double setAttackDamage(MobStats s) {
 		return MobStats.baseJourneyDamage;

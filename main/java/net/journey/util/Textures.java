@@ -185,6 +185,7 @@ public class Textures {
 	public static final ResourceLocation detractor = addProjectile("detractor");
 	public static final ResourceLocation jungleGolem = addMob("jungleGolem");
 	public static final ResourceLocation jungleTurtle = addMob("jungleturtle");
+	public static final ResourceLocation jungleSpider = addMob("junglespider");
 	
     private static ResourceLocation addMob(String tex){
     	return new ResourceLocation(prefix + tex + ".png");

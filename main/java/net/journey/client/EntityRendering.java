@@ -25,6 +25,7 @@ import net.journey.client.render.model.mob.overworld.desert.ModelDunewerm;
 import net.journey.client.render.model.mob.overworld.desert.ModelSandCrawler;
 import net.journey.client.render.model.mob.overworld.desert.ModelSpyclops;
 import net.journey.client.render.model.mob.overworld.jungle.ModelJungleGolem;
+import net.journey.client.render.model.mob.overworld.jungle.ModelJungleSpider;
 import net.journey.client.render.model.mob.overworld.jungle.ModelJungleTurtle;
 import net.journey.client.render.model.mob.overworld.underground.*;
 import net.journey.client.render.model.mob.overworld.underground.npc.ModelRockiteGolem;
@@ -61,6 +62,7 @@ import net.journey.entity.mob.overworld.*;
 import net.journey.entity.mob.overworld.EntityWraith;
 import net.journey.entity.mob.overworld.cold.EntityBlizzard;
 import net.journey.entity.mob.overworld.jungle.EntityJungleGolem;
+import net.journey.entity.mob.overworld.jungle.EntityJungleSpider;
 import net.journey.entity.mob.overworld.jungle.EntityJungleTurtle;
 import net.journey.entity.mob.overworld.npc.*;
 import net.journey.entity.mob.overworld.underground.*;
@@ -254,7 +256,8 @@ public class EntityRendering {
 		RenderingRegistry.registerEntityRenderingHandler(EntityScale.class, new RenderBoss(new ModelSoulWatcher(), 0.5F, 2.0F, Textures.scale, "scale"));
 		
 		RenderingRegistry.registerEntityRenderingHandler(EntityTameRoc.class, new RenderModMob(new ModelRoc(), Textures.tameRoc));
-		RenderingRegistry.registerEntityRenderingHandler(EntityJungleTurtle.class, new RenderModMob(new ModelJungleTurtle(), Textures.jungleTurtle));
+		RenderingRegistry.registerEntityRenderingHandler(EntityJungleTurtle.class, new RenderSizeable(new ModelJungleTurtle(), 0.5F, 1.5F, Textures.jungleTurtle));
+		RenderingRegistry.registerEntityRenderingHandler(EntityJungleSpider.class, new RenderSizeable(new ModelJungleSpider(), 0.5F, 0.5F, Textures.jungleSpider));
 		//RenderingRegistry.registerEntityRenderingHandler(EntityWraith.class, new RenderBoss(new ModelWraith(), 0.5F, 1.0F, tex.wraith, stat.wraithBossID));
 		
 		//SlayerAPI.registerItemRenderer(EssenceBlocks.netherBeastStatue, new ItemRendererStatue("netherBeastStatue"));

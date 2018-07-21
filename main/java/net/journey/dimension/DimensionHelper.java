@@ -72,6 +72,9 @@ import net.journey.entity.mob.overworld.EntitySwampFly;
 import net.journey.entity.mob.overworld.EntityTurducken;
 import net.journey.entity.mob.overworld.EntityWraith;
 import net.journey.entity.mob.overworld.cold.EntityBlizzard;
+import net.journey.entity.mob.overworld.jungle.EntityJungleGolem;
+import net.journey.entity.mob.overworld.jungle.EntityJungleSpider;
+import net.journey.entity.mob.overworld.jungle.EntityJungleTurtle;
 import net.journey.entity.mob.overworld.underground.EntityBlueHonglow;
 import net.journey.entity.mob.overworld.underground.EntityCaveMage;
 import net.journey.entity.mob.overworld.underground.EntityCaveling;
@@ -134,12 +137,12 @@ public class DimensionHelper {
 		DimensionManager.unregisterDimension(-1);
 		DimensionManager.registerDimension(-1, DimensionType.register("Nether", "NETHER", -1, WorldProviderNetherJourney.class, true));
 		addDimension(Config.euca, eucaType);
-		/*addDimension(Config.depths, depthsType);
 		addDimension(Config.boil, boilingType);
+		addDimension(Config.cloudia, cloudiaType);
+		/*addDimension(Config.depths, depthsType);
 		addDimension(Config.frozen, frozenType);
 		addDimension(Config.corba, corbaType);
 		//addDimension(Config.wastelands, WorldProviderWastelands.class, Config.keepLoadingWastelands);
-		addDimension(Config.cloudia, cloudiaType);
 		addDimension(Config.terrania, terraniaType);
 		addDimension(Config.golden, goldenType);
 		addDimension(Config.senterian, senterianType);
@@ -287,11 +290,15 @@ public class DimensionHelper {
 		EntityRegistry.addSpawn(EntityFloro.class, amount, 1, 1, EnumCreatureType.MONSTER, Biomes.FOREST);
 		EntityRegistry.addSpawn(EntityFloro.class, amount, 1, 1, EnumCreatureType.MONSTER, Biomes.PLAINS);
 		EntityRegistry.addSpawn(EntityFloro.class, amount, 1, 1, EnumCreatureType.MONSTER, Biomes.EXTREME_HILLS);
-		/*EntityRegistry.addSpawn(EntityBigHongo.class, amount, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomes(Type.FOREST));
-		EntityRegistry.addSpawn(EntityBigHongo.class, amount, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomes(Type.MUSHROOM));
-		EntityRegistry.addSpawn(EntityMediumHongo.class, amount, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomes(Type.FOREST));
-		EntityRegistry.addSpawn(EntityMediumHongo.class, amount, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomes(Type.MUSHROOM));
-		EntityRegistry.addSpawn(EntityBoom.class, amount, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomes(Type.FOREST)); */
+		EntityRegistry.addSpawn(EntityBigHongo.class, amount, 1, 1, EnumCreatureType.MONSTER, Biomes.FOREST);
+		EntityRegistry.addSpawn(EntityBigHongo.class, amount, 1, 1, EnumCreatureType.MONSTER, Biomes.PLAINS);
+		EntityRegistry.addSpawn(EntityBigHongo.class, amount, 1, 1, EnumCreatureType.MONSTER, Biomes.MUSHROOM_ISLAND);
+		EntityRegistry.addSpawn(EntityMediumHongo.class, amount, 1, 1, EnumCreatureType.MONSTER, Biomes.FOREST);
+		EntityRegistry.addSpawn(EntityMediumHongo.class, amount, 1, 1, EnumCreatureType.MONSTER, Biomes.MUSHROOM_ISLAND);
+		EntityRegistry.addSpawn(EntityJungleGolem.class, 150, 1, 1, EnumCreatureType.MONSTER, Biomes.JUNGLE);
+		EntityRegistry.addSpawn(EntityJungleTurtle.class, 400, 1, 1, EnumCreatureType.MONSTER, Biomes.JUNGLE);
+		EntityRegistry.addSpawn(EntityJungleSpider.class, 400, 1, 1, EnumCreatureType.MONSTER, Biomes.JUNGLE);
+		EntityRegistry.addSpawn(EntityBoom.class, amount, 1, 1, EnumCreatureType.MONSTER, Biomes.DESERT); 
 		
 		for(Biome b : Biome.REGISTRY) {
 			Biome biome = b;

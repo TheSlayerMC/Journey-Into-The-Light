@@ -150,7 +150,6 @@ public class ChunkProviderBoiling implements IChunkGenerator {
 		}
 	}
 
-
 	public void biomeBlocks(int x, int z, ChunkPrimer c, Biome[] b) {
         if(!net.minecraftforge.event.ForgeEventFactory.onReplaceBiomeBlocks(this, x, z, c, this.worldObj)) return;
 		double d0 = 0.03125D;
