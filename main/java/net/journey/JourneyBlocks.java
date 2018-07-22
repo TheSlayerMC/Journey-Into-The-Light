@@ -76,9 +76,11 @@ public class JourneyBlocks {
 	public static ArrayList<String> blockName = new ArrayList<String>();
 	public static ArrayList<Block> blocks = new ArrayList<Block>();
 
-	public static BlockMod iridiumOre;
+	public static BlockMod cobaltOre; // = new BlockModOre("cobaltOre", "cobalt Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
+	public static BlockMod rubyOre;
+	public static BlockMod adamantineOre;
+	public static BlockMod mythrilOre;
 	public static BlockMod verditeOre;
-	
 	public static BlockMod sapphireOre;
 	public static BlockMod lavaRock;
 	public static BlockMod shadiumOre;
@@ -98,9 +100,6 @@ public class JourneyBlocks {
 	public static BlockMod luniteOre;
 	public static BlockMod firestoneOre;
 
-	public static BlockMod iridiumBlock;
-	public static BlockMod verditeBlock;
-	
 	public static BlockMod sapphireBlock;
 	public static BlockMod shadiumBlock;
 	public static BlockMod luniumBlock;
@@ -480,15 +479,17 @@ public class JourneyBlocks {
 	 */
 
 	 public static void init() {
-		iridiumOre = new BlockModOre("iridiumOre", "Iridium Ore", true).setHarvestLevel(EnumToolType.DIAMOND_PICK);
-		verditeOre = new BlockModOre("verditeOre", "Verdite Ore", false).setHarvestLevel(EnumToolType.STONE_PICK);
-		
-		sapphireOre = new BlockModOre("sapphireOre", "Sapphire Ore", false).setHarvestLevel(EnumToolType.IRON_PICK);
+		cobaltOre = new BlockModOre("cobaltOre", "Cobalt Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
+		rubyOre = new BlockModOre("rubyOre", "Ruby Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
+		adamantineOre = new BlockModOre("adamantineOre", "Adamantine Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
+		mythrilOre = new BlockModOre("amethystOre", "Amethyst Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
+		verditeOre = new BlockModOre("verditeOre", "Verdite Ore").setHarvestLevel(EnumToolType.STONE_PICK);
+		sapphireOre = new BlockModOre("sapphireOre", "Sapphire Ore").setHarvestLevel(EnumToolType.IRON_PICK);
 		lavaRock = new BlockMod("lavaRock", "Lava Rock").setHarvestLevel(EnumToolType.DIAMOND_PICK);
-		shadiumOre = new BlockModOre("shadiumOre", "Shadium Ore", false).setHarvestLevel(EnumToolType.DIAMOND_PICK);
+		shadiumOre = new BlockModOre("shadiumOre", "Shadium Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
 		luniumOre = new BlockModOre("luniumOre", "Lunium Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
-		hellstoneOre = new BlockModOre("hellstoneOre", "Bloodcrust Ore", false).setHarvestLevel(EnumToolType.DIAMOND_PICK);
-		ashualOre = new BlockModOre("ashualOre", "Ashual Ore", false);
+		hellstoneOre = new BlockModOre("hellstoneOre", "Bloodcrust Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
+		ashualOre = new BlockModOre("ashualOre", "Ashual Ore");
 		blaziumOre = new BlockModOre("blaziumOre", "Blazium Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
 		celestiumOre = new BlockModOre("celestiumOre", "Celestium Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
 		mekyumOre = new BlockModOre("mekyumOre", "Mekyum Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
@@ -502,9 +503,6 @@ public class JourneyBlocks {
 		luniteOre = new BlockModOre("luniteOre", "Lunite Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
 		firestoneOre = new BlockModOre("firestoneOre", "Firestone Ores").setHarvestLevel(EnumToolType.DIAMOND_PICK);
 
-		iridiumBlock = new BlockModOre("iridiumBlock", "Iridium Block").setHarvestLevel(EnumToolType.IRON_PICK);
-		verditeBlock = new BlockModOre("verditeBlock", "Verdite Block").setHarvestLevel(EnumToolType.STONE_PICK);
-		
 		sapphireBlock = new BlockModOre("sapphireBlock", "Sapphire Block").setHarvestLevel(EnumToolType.STONE_PICK);
 		shadiumBlock = new BlockModOre("shadiumBlock", "Shadium Block").setHarvestLevel(EnumToolType.STONE_PICK);
 		luniumBlock = new BlockModOre("luniumBlock", "Lunium Block").setHarvestLevel(EnumToolType.STONE_PICK);
@@ -872,9 +870,11 @@ public class JourneyBlocks {
 		public static void registerItemBlocks(IForgeRegistry<Item> registry) {
 			System.out.print("Loading Journey ItemBlocks");
 			registry.registerAll(
-					iridiumOre.createItemBlock(), 
+					cobaltOre.createItemBlock(), 
+					rubyOre.createItemBlock(),
+					adamantineOre.createItemBlock(),
+					mythrilOre.createItemBlock(),
 					verditeOre.createItemBlock(),
-					
 					sapphireOre.createItemBlock(),
 					lavaRock.createItemBlock(),
 					shadiumOre.createItemBlock(),

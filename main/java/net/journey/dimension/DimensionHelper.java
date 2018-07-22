@@ -246,8 +246,8 @@ public class DimensionHelper {
 	}
 	
 	private static void addCaveSpawns() {
-		int amount = 300;
-		int amount2 = 10;
+		int amount = 250;
+		int amount2 = 5;
 		for(Biome b : Biome.REGISTRY) {
 			Biome biome = b;
 			if (biome != null) {
@@ -269,11 +269,11 @@ public class DimensionHelper {
 		
 	}
 	private static void addNetherSpawns() {
-		EntityRegistry.addSpawn(EntityLavasnake.class, 120, 1, 1, EnumCreatureType.MONSTER, Biomes.HELL);
+		EntityRegistry.addSpawn(EntityLavasnake.class, 100, 1, 1, EnumCreatureType.MONSTER, Biomes.HELL);
 		EntityRegistry.addSpawn(EntityWitherspine.class, 100, 1, 1, EnumCreatureType.MONSTER, Biomes.HELL);
 		EntityRegistry.addSpawn(EntityReaper.class, 100, 1, 1, EnumCreatureType.MONSTER, Biomes.HELL);
 		EntityRegistry.addSpawn(EntityHellCow.class, 100, 1, 1, EnumCreatureType.MONSTER, Biomes.HELL);
-		EntityRegistry.addSpawn(EntityMiniGhast.class, 120, 1, 1, EnumCreatureType.MONSTER, Biomes.HELL);
+		EntityRegistry.addSpawn(EntityMiniGhast.class, 100, 1, 1, EnumCreatureType.MONSTER, Biomes.HELL);
 	}
 	private static void addVanillaSpawns() {
 		int amount = 4;
