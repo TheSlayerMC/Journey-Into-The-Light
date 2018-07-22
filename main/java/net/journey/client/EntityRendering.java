@@ -14,6 +14,7 @@ import net.journey.client.render.model.mob.end.*;
 import net.journey.client.render.model.mob.euca.*;
 import net.journey.client.render.model.mob.frozen.*;
 import net.journey.client.render.model.mob.nether.ModelHellCow;
+import net.journey.client.render.model.mob.nether.ModelInfernoBlaze;
 import net.journey.client.render.model.mob.nether.ModelLavasnake;
 import net.journey.client.render.model.mob.nether.ModelMiniGhast;
 import net.journey.client.render.model.mob.nether.ModelReaper;
@@ -53,7 +54,9 @@ import net.journey.entity.mob.euca.npc.*;
 import net.journey.entity.mob.frozen.*;
 import net.journey.entity.mob.frozen.npc.*;
 import net.journey.entity.mob.nether.EntityHellCow;
+import net.journey.entity.mob.nether.EntityHellTurtle;
 import net.journey.entity.mob.nether.EntityHellbot;
+import net.journey.entity.mob.nether.EntityInfernoBlaze;
 import net.journey.entity.mob.nether.EntityLavasnake;
 import net.journey.entity.mob.nether.EntityMiniGhast;
 import net.journey.entity.mob.nether.EntityReaper;
@@ -230,6 +233,8 @@ public class EntityRendering {
 		RenderingRegistry.registerEntityRenderingHandler(EntityBlizzard.class, new RenderModMob(new ModelBlizzard(), Textures.blizzard));
 		RenderingRegistry.registerEntityRenderingHandler(EntityRockiteGolem.class, new RenderModMob(new ModelRockiteGolem(), Textures.rockiteGolem));
 		RenderingRegistry.registerEntityRenderingHandler(EntityFerret.class, new RenderModMob(new ModelFerret(), Textures.ferret));
+		RenderingRegistry.registerEntityRenderingHandler(EntityInfernoBlaze.class, new RenderModMob(new ModelInfernoBlaze(), Textures.infernoBlaze));
+		RenderingRegistry.registerEntityRenderingHandler(EntityHellTurtle.class, new RenderModMob(new ModelJungleTurtle(), Textures.hellTurtle));
 		
 		RenderingRegistry.registerEntityRenderingHandler(EntityJungleGolem.class, new RenderModMob(new ModelJungleGolem(), Textures.jungleGolem));
 				

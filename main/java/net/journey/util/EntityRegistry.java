@@ -15,7 +15,9 @@ import net.journey.entity.mob.euca.npc.*;
 import net.journey.entity.mob.frozen.*;
 import net.journey.entity.mob.frozen.npc.*;
 import net.journey.entity.mob.nether.EntityHellCow;
+import net.journey.entity.mob.nether.EntityHellTurtle;
 import net.journey.entity.mob.nether.EntityHellbot;
+import net.journey.entity.mob.nether.EntityInfernoBlaze;
 import net.journey.entity.mob.nether.EntityLavasnake;
 import net.journey.entity.mob.nether.EntityMiniGhast;
 import net.journey.entity.mob.nether.EntityReaper;
@@ -115,6 +117,8 @@ public class EntityRegistry {
 		SlayerAPI.registerNetherMob(EntityHellCow.class, "hellcow", "Hell Cow");
 		SlayerAPI.registerNetherMob(EntityReaper.class, "reaper", "Reaper");
 		SlayerAPI.registerNetherMob(EntityMiniGhast.class, "minighast", "Mini Ghast");
+		SlayerAPI.registerNetherMob(EntityInfernoBlaze.class, "infernoblaze", "Inferno Blaze");
+		SlayerAPI.registerNetherMob(EntityHellTurtle.class, "hellturtle", "Hell Turtle");
 	}
 
 	public static void registerOverworldMobs() {

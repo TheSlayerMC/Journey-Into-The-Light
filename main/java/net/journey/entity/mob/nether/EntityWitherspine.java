@@ -3,7 +3,10 @@ package net.journey.entity.mob.nether;
 import net.journey.JourneyItems;
 import net.journey.entity.MobStats;
 import net.journey.enums.EnumSounds;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityModMob;
 
@@ -41,19 +44,22 @@ public class EntityWitherspine extends EntityModMob {
 		return EnumSounds.EMPTY;
 	}
 
-    protected String getLivingSound()
+	@Override
+    protected SoundEvent getAmbientSound()
     {
-        return "mob.wither.idle";
+        return SoundEvents.ENTITY_WITHER_AMBIENT;
     }
-    
-    protected String getHurtSound()
+
+	@Override
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
-        return "mob.skeleton.hurt";
+        return SoundEvents.ENTITY_SKELETON_HURT;
     }
-    
-	protected String getDeathSound()
+	
+	@Override
+    protected SoundEvent getDeathSound()
     {
-        return "mob.skeleton.death";
+        return SoundEvents.ENTITY_SKELETON_DEATH;
     }
     
 	@Override

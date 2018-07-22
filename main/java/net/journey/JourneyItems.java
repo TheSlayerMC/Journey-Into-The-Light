@@ -1282,7 +1282,7 @@ public class JourneyItems {
 		darknessBow = new ItemModBow("darknessBow", "Darkness Bow", 384, 3, essenceArrow, "Withers foe", EntityDarknessArrow.class);
 		frozenBow = new ItemModBow("frozenBow", "Frozen Bow", 384, 3, essenceArrow, "Slows enemies", EntityFrozenArrow.class);
 		staringBow = new ItemModBow("staringBow", "Staring Bow", 456, 4, essenceArrow, "Sets enemies ablaze", EntityFlameArrow.class);
-		deathPiercerBow = new ItemModBow("deathPiercerBow", "Death Piercer Bow", 892, 6, essenceArrow, 0, "Withers foe", EntityDarknessArrow.class);
+		//deathPiercerBow = new ItemModBow("deathPiercerBow", "Death Piercer Bow", 892, 6, essenceArrow, 0, "Withers foe", EntityDarknessArrow.class);
 		fusionBow = new ItemModBow("fusionBow", "Fusion Bow", 456, 4, essenceArrow, "Withers foe", EntityDarknessArrow.class);
 		springBow = new ItemModBow("springBow", "Spring Bow", 384, 5, essenceArrow, "Sets enemies ablaze", EntityFlameArrow.class);
 		starlightBow = new ItemModBow("starlightBow", "Starlight Bow", 384, 6, essenceArrow, "Poisons enemies", EntityPoisonArrow.class);

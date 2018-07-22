@@ -19,6 +19,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityPeacefullUntillAttacked;
@@ -48,18 +49,21 @@ public class EntityHellCow extends EntityPeacefullUntillAttacked {
 	}
 
 	@Override
-    protected String getLivingSound() {
-        return "mob.cow.say";
+    protected SoundEvent getAmbientSound()
+    {
+        return SoundEvents.ENTITY_COW_AMBIENT;
     }
-    
+
 	@Override
-    protected String getHurtSound() {
-        return "mob.cow.hurt";
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
+    {
+        return SoundEvents.ENTITY_COW_HURT;
     }
-    
+	
 	@Override
-    protected String getDeathSound() {
-        return "mob.cow.hurt";
+    protected SoundEvent getDeathSound()
+    {
+        return SoundEvents.ENTITY_COW_DEATH;
     }
 	
 	@Override
