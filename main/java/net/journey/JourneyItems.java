@@ -809,6 +809,7 @@ public class JourneyItems {
 	public static Item bloodKnife;
 	public static Item charredKnife;
 	public static Item sizzlingKnife;
+	public static Item iridium;
 	
 	public static void init() {
 		heartSml = new ItemHealth("heartSml", "Heart: Tier 1", 1, 2, 0.2F, false, false, 60, false, true);
@@ -1249,7 +1250,7 @@ public class JourneyItems {
 		bleedrockHelmet = new ItemModArmor(EnumArmor.BLEEDROCK, HEAD);
 		bleedrockChest = new ItemModArmor(EnumArmor.BLEEDROCK, BODY);
 		bleedrockLegs = new ItemModArmor(EnumArmor.BLEEDROCK, LEGS);
-		bleedrockBoots = new ItemModArmor(EnumArmor.BLEEDROCK, BOOTS);*/
+		bleedrockBoots = new ItemModArmor(EnumArmor.BLEEDROCK, BOOTS); */
 
 		/*rockyBattleaxe = new ItemBattleAxe("rockyBattleaxe", "Rocky Battleaxe", EssenceToolMaterial.ROCKY_BATTLEAXE);
 		crystalizedBattleaxe = new ItemBattleAxe("crystalizedBattleaxe", "Crystalized Battleaxe", EssenceToolMaterial.CRYSTAL_BATTLEAXE);
@@ -1344,6 +1345,7 @@ public class JourneyItems {
 		frostyGift = new ItemPresent("frostyGift", "Frosty Gift");
 
 		firestoneClump = new ItemMod("firestoneClump", "Firestone Clump");
+		iridium = new ItemMod("iridium", "Iridium");
 
 		//TODO
 		friedFlamingGhastTentacale = new ItemModFood("friedFlamingGhastTentacle", "Fried Flaming Tentacale", 4, 0.6F, 10, true).setAlwaysEdible().setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.fireResistance, 5, 1), 1.0F);
