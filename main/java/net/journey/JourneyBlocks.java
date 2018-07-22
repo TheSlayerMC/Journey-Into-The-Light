@@ -867,7 +867,7 @@ public class JourneyBlocks {
 		
 	    }
 	 
-		public static void registerItemBlocks(IForgeRegistry<Item> registry) {
+		public static void registerItemBlocks1(IForgeRegistry<Item> registry) {
 			System.out.print("Loading Journey ItemBlocks");
 			registry.registerAll(
 					cobaltOre.createItemBlock(), 
