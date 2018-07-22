@@ -63,6 +63,7 @@ public class ItemTeleport extends ItemMod {
 
 				if(EssenceBar.getProperties(player).useBar(5)) {
 					player.getLook(1);
+					this.teleportTo(player, worldIn, var23, var24, var25);
 				}
 			}
 		}
