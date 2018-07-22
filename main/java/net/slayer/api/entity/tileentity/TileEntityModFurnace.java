@@ -37,10 +37,10 @@ public abstract class TileEntityModFurnace extends TileEntity implements IInvent
 	private NonNullList<ItemStack> inventory = NonNullList.<ItemStack>withSize(4, ItemStack.EMPTY);
 	private String customName;
 	
-	private int burnTime;
-	private int currentBurnTime;
-	private int cookTime;
-	private int totalCookTime;
+	public int burnTime;
+	public int currentBurnTime;
+	public int cookTime;
+	public int totalCookTime;
 	
 	@Override
 	public String getName() {

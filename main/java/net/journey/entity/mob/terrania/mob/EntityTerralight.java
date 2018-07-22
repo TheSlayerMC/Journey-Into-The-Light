@@ -113,7 +113,7 @@ public class EntityTerralight extends EntityModFlying {
                 double d3 = d0 * d0 + d1 * d1 + d2 * d2;
                 if(this.height-- <= 0) {
                     this.height += this.e.getRNG().nextInt(5) + 2;
-                    d3 = (double)MathHelper.sqrt_double(d3);
+                    d3 = (double)MathHelper.sqrt(d3);
                     if(this.canMove(this.posX, this.posY, this.posZ, d3)) {
                         this.e.motionX += d0 / d3 * 0.1D;
                         this.e.motionY += d1 / d3 * 0.1D;
@@ -132,7 +132,7 @@ public class EntityTerralight extends EntityModFlying {
             AxisAlignedBB axisalignedbb = this.e.getEntityBoundingBox();
             for(int i = 1; i < h; ++i) {
                 axisalignedbb = axisalignedbb.offset(d4, d5, d6);
-                if(!this.e.world.getCollidingBoundingBoxes(this.e, axisalignedbb).isEmpty()) {
+                if(!this.e.world.getCollisionBoxes(this.e, axisalignedbb).isEmpty()) {
                     return false;
                 }
             }

@@ -92,6 +92,7 @@ public class ItemModBow extends ItemMod {
 
     protected boolean isArrow(ItemStack stack) {return stack.getItem() instanceof ItemArrow;}
     
+    @Override
 	public void onPlayerStoppedUsing(ItemStack stack, World worldIn, EntityLivingBase entityLiving, int timeLeft) {
         if (entityLiving instanceof EntityPlayer) {
             EntityPlayer entityplayer = (EntityPlayer)entityLiving;

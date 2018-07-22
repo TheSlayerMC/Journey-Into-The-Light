@@ -20,6 +20,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -114,7 +115,7 @@ public class BlockNetherFurnace extends BlockModContainer {
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing heldItem, float side, float hitX, float hitY) {
 		if(!worldIn.isRemote) {
-			playerIn.openGui(SlayerAPI.MOD_ID, GuiHandler.DUAL_FURNACE_GUI, worldIn, pos.getX(), pos.getY(), pos.getZ());
+			playerIn.openGui(SlayerAPI.MOD_ID, GuiHandler.netherfurnace, worldIn, pos.getX(), pos.getY(), pos.getZ());
 		}
 		return true;
 	}

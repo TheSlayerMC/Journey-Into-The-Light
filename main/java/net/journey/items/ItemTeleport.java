@@ -8,6 +8,10 @@ import net.journey.util.LangHelper;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -25,12 +29,12 @@ public class ItemTeleport extends ItemMod {
 	}
 
 	@Override
-	public ItemStack onItemRightClick(ItemStack par1, World par2, EntityPlayer par3) {
-		float var4 = par3.rotationPitch;
-		float var5 = par3.rotationYaw;
-		double var6 = par3.posX;
-		double var8 = par3.posY + 1.62D;
-		double var10 = par3.posZ;
+    public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		float var4 = player.rotationPitch;
+		float var5 = player.rotationYaw;
+		double var6 = player.posX;
+		double var8 = player.posY + 1.62D;
+		double var10 = player.posZ;
 		Vec3d var12 = new Vec3d(var6, var8, var10);
 		float var13 = MathHelper.cos(-var5 * 0.01745329F - (float)Math.PI);
 		float var14 = MathHelper.sin(-var5 * 0.01745329F - (float)Math.PI);
@@ -40,7 +44,7 @@ public class ItemTeleport extends ItemMod {
 		float var18 = var13 * var15;
 		double var19 = 30.0D;
 		Vec3d var21 = var12.addVector(var17 * var19, var16 * var19, var18 * var19);
-		MovingObjectPosition var22 = par2.rayTraceBlocks(var12, var21);
+		MovingObjectPosition var22 = worldIn.rayTraceBlocks(var12, var21);
 		if(var22 == null) {
 			return par1;
 		} else {
@@ -57,9 +61,8 @@ public class ItemTeleport extends ItemMod {
 				if (var26 == 4) --var23;                
 				if (var26 == 5) ++var23;                
 
-				if(EssenceBar.getProperties(par3).useBar(5)) {
-					par3.getLook(1);
-					this.teleportTo(par3, par2, var23, var24, var25);
+				if(EssenceBar.getProperties(player).useBar(5)) {
+					player.getLook(1);
 				}
 			}
 		}

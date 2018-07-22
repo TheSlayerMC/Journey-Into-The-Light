@@ -49,22 +49,22 @@ public class ContainerModFurnace extends Container {
             IContainerListener icontainerlistener = this.listeners.get(i);
 			if(this.lastCookTime != this.tileFurnace.cookTime) 
 				icontainerlistener.sendWindowProperty(this, 0, this.tileFurnace.cookTime);
-			if(this.lastBurnTime != this.tileFurnace.furnaceBurnTime)
-				icontainerlistener.sendWindowProperty(this, 1, this.tileFurnace.furnaceBurnTime);
-			if(this.lastItemBurnTime != this.tileFurnace.currentItemBurnTime)
-				icontainerlistener.sendWindowProperty(this, 2, this.tileFurnace.currentItemBurnTime);
+			if(this.lastBurnTime != this.tileFurnace.burnTime)
+				icontainerlistener.sendWindowProperty(this, 1, this.tileFurnace.burnTime);
+			if(this.lastItemBurnTime != this.tileFurnace.burnTime)
+				icontainerlistener.sendWindowProperty(this, 2, this.tileFurnace.currentBurnTime);
 		}
 		this.lastCookTime = this.tileFurnace.cookTime;
-		this.lastBurnTime = this.tileFurnace.furnaceBurnTime;
-		this.lastItemBurnTime = this.tileFurnace.currentItemBurnTime;
+		this.lastBurnTime = this.tileFurnace.burnTime;
+		this.lastItemBurnTime = this.tileFurnace.currentBurnTime;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void updateProgressBar(int par1, int par2) {
 		if(par1 == 0) this.tileFurnace.cookTime = par2;
-		if(par1 == 1) this.tileFurnace.furnaceBurnTime = par2;
-		if(par1 == 2) this.tileFurnace.currentItemBurnTime = par2;
+		if(par1 == 1) this.tileFurnace.burnTime = par2;
+		if(par1 == 2) this.tileFurnace.currentBurnTime = par2;
 	}
 
 	@Override
