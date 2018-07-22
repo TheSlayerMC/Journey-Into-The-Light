@@ -18,7 +18,6 @@ import net.journey.client.render.gui.GuiRockite;
 import net.journey.client.render.gui.GuiStaringGuardian;
 import net.journey.client.render.gui.GuiStarlightBlacksmith;
 import net.journey.client.render.gui.GuiStarlightVillager;
-import net.journey.client.render.gui.GuiStoneCraftingTable;
 import net.journey.client.render.gui.GuiSummoningTable;
 import net.journey.client.render.gui.GuiTerranian;
 import net.journey.client.render.gui.GuiTordo;
@@ -73,8 +72,8 @@ public class GuiHandler implements IGuiHandler {
 			return new ContainerKnowledgeTable(player.inventory, (TileEntityKnowledgeTable)entity, world);
 		if(ID == summoning) 
 			return new ContainerSummoningTable(player.inventory, (TileEntitySummoningTable)entity, world);
-		if(ID == netherfurnace) 
-			return new ContainerModFurnace(player.inventory, (TileEntityModFurnace)entity, world);
+		/*if(ID == netherfurnace) 
+			return new ContainerModFurnace(player.inventory, (TileEntityModFurnace)entity, world); */
 		if(ID == trophy) 
 			return new ContainerTrophy(player.inventory, (TileEntityTrophyTable)entity, world);
 		if(ID == staringGuardian) 

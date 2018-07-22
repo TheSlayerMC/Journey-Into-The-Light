@@ -19,8 +19,6 @@ import net.journey.dimension.senterian.BiomeGenSenterian;
 import net.journey.dimension.senterian.WorldProviderSenterian;
 import net.journey.dimension.terrania.BiomeGenTerrania;
 import net.journey.dimension.terrania.WorldProviderTerrania;
-import net.journey.dimension.wither.BiomeGenWither;
-import net.journey.dimension.wither.WorldProviderWither;
 import net.journey.entity.mob.boiling.EntityBurningLight;
 import net.journey.entity.mob.boiling.EntityFrightener;
 import net.journey.entity.mob.boiling.EntityHellwing;
@@ -112,12 +110,10 @@ public class DimensionHelper {
 	public static Biome boiling = new BiomeGenBoiling(Config.boilBiome);
 	public static Biome frozen = new BiomeGenFrozenLands(Config.frozenBiome);
 	public static Biome corba = new BiomeGenCorba(Config.corbaBiome);
-	//public static BiomeGenBase wastelands = new BiomeGenWastelands(Config.wastelandsBiome);
 	public static Biome cloudia = new BiomeGenCloudia(Config.cloudiaBiome);
 	public static Biome terrania = new BiomeGenTerrania(Config.terraniaBiome);
 	public static Biome golden = new BiomeGenGoldenGrains(Config.goldenBiome);
 	public static Biome senterian = new BiomeGenSenterian(Config.senterianBiome);
-	public static Biome wither = new BiomeGenWither(Config.witherBiome);
 
 	public static DimensionType eucaType = DimensionType.register("Euca", "euca", Config.euca, WorldProviderEuca.class, Config.keepLoadingEuca);
 	public static DimensionType depthsType = DimensionType.register("Depths", "depths", Config.depths, WorldProviderDepths.class, Config.keepLoadingDepths);
@@ -128,7 +124,6 @@ public class DimensionHelper {
 	public static DimensionType terraniaType = DimensionType.register("Terrania", "terrania", Config.terrania, WorldProviderTerrania.class, Config.keepLoadingTerrania);
 	public static DimensionType goldenType = DimensionType.register("Golden Grains", "goldenGrains", Config.golden, WorldProviderGoldenGrains.class, Config.keepLoadingGolden);
 	public static DimensionType senterianType = DimensionType.register("Senterian", "senterian", Config.senterian, WorldProviderSenterian.class, Config.keepLoadingSenterian);
-	public static DimensionType witherType = DimensionType.register("Wither", "wither", Config.wither, WorldProviderWither.class, Config.keepLoadingWither);
 
 	
 	public static void init(){
@@ -142,11 +137,9 @@ public class DimensionHelper {
 		/*addDimension(Config.depths, depthsType);
 		addDimension(Config.frozen, frozenType);
 		addDimension(Config.corba, corbaType);
-		//addDimension(Config.wastelands, WorldProviderWastelands.class, Config.keepLoadingWastelands);
 		addDimension(Config.terrania, terraniaType);
 		addDimension(Config.golden, goldenType);
-		addDimension(Config.senterian, senterianType);
-		addDimension(Config.wither, witherType); */
+		addDimension(Config.senterian, senterianType); */
 	}
 
 	private static void addDimension(int id, DimensionType type) {

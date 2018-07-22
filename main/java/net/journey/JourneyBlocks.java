@@ -437,7 +437,6 @@ public class JourneyBlocks {
 
 	public static BlockMod knowledgeTable;
 	public static BlockMod summoningTable;
-	public static BlockMod trophyTable;
 	public static BlockMod bossAltar;
 
 	public static BlockMod observerSpawner;
@@ -840,7 +839,6 @@ public class JourneyBlocks {
 
 		knowledgeTable = (BlockMod) new BlockKnowledgeTable("knowledgeTable", "Knowledge Table").setCreativeTab(null);
 		summoningTable = new BlockSummoningTable("summoningTable", "Summoning Table");
-		trophyTable = new BlockTrophyTable("trophyTable", "Trophy Table");
 		bossAltar = new BlockMod("bossAltar", "Boss Altar");
 
 		observerSpawner = new BlockModSpawner("observerSpawner", "Observer Spawner", "observer");
@@ -1165,7 +1163,6 @@ public class JourneyBlocks {
 					nethicLamp.createItemBlock(),
 					knowledgeTable.createItemBlock(),
 					summoningTable.createItemBlock(),
-					trophyTable.createItemBlock(),
 					bossAltar.createItemBlock(),
 					observerSpawner.createItemBlock(),
 					screamerSpawner.createItemBlock(),

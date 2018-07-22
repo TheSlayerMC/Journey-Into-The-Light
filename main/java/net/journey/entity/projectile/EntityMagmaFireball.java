@@ -6,6 +6,8 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntitySmallFireball;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
@@ -27,14 +29,14 @@ public class EntityMagmaFireball extends EntitySmallFireball {
     public void onUpdate() {
     	super.onUpdate();
 		for(int i = 0; i < 6; ++i) {
-			EntityFX effect = new EntityHellstoneFX(this.worldObj, this.posX, this.posY - 1.0F, this.posZ, 0.0D, 0.0D, 0.0D);
-			FMLClientHandler.instance().getClient().effectRenderer.addEffect(effect);
+			//EntityFX effect = new EntityHellstoneFX(this.world, this.posX, this.posY - 1.0F, this.posZ, 0.0D, 0.0D, 0.0D);
+			//FMLClientHandler.instance().getClient().effectRenderer.addEffect(effect);
 		}
     }
 
 	@Override
-	protected void onImpact(MovingObjectPosition m) {
-		if (!this.worldObj.isRemote) {
+	protected void onImpact(RayTraceResult m) {
+		if (!this.world.isRemote) {
             boolean flag;
 
             if (m.entityHit != null) {
@@ -51,14 +53,14 @@ public class EntityMagmaFireball extends EntitySmallFireball {
                 flag = true;
 
                 if (this.shootingEntity != null && this.shootingEntity instanceof EntityLiving) {
-                    flag = this.worldObj.getGameRules().getBoolean("mobGriefing");
+                    flag = this.world.getGameRules().getBoolean("mobGriefing");
                 }
 
                 if (flag) {
                     BlockPos blockpos = m.getBlockPos().offset(m.sideHit);
 
-                    if (this.worldObj.isAirBlock(blockpos)) {
-                        this.worldObj.setBlockState(blockpos, Blocks.fire.getDefaultState());
+                    if (this.world.isAirBlock(blockpos)) {
+                        this.world.setBlockState(blockpos, Blocks.FIRE.getDefaultState());
                     }
                 }
             }
