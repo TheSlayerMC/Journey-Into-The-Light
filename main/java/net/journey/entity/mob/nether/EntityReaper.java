@@ -3,6 +3,7 @@ package net.journey.entity.mob.nether;
 import net.journey.JourneyItems;
 import net.journey.entity.MobStats;
 import net.journey.enums.EnumSounds;
+import net.journey.util.PotionEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,6 +11,7 @@ import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
@@ -28,8 +30,22 @@ public class EntityReaper extends EntityModMob {
 	}
 
 	@Override
+	public boolean attackEntityAsMob(Entity e) {
+		boolean attacked = super.attackEntityAsMob(e);
+		if(attacked) {
+			if(e instanceof EntityLivingBase) 
+				((EntityLivingBase)e).addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.blindness, 100, 2)));
+		}
+		return attacked;
+	}
+	
+	@Override
+	public double setMovementSpeed() {
+	}
+	
+	@Override
 	public double setAttackDamage(MobStats s) {
-		return MobStats.baseJourneyDamage;
+		return MobStats.highJourneyDamage;
 	}
 
 	@Override
@@ -46,13 +62,13 @@ public class EntityReaper extends EntityModMob {
 	@Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
-        return SoundEvents.ENTITY_WITHER_HURT;
+        return SoundEvents.ENTITY_WITHER_SKELETON_HURT;
     }
 	
 	@Override
     protected SoundEvent getDeathSound()
     {
-        return SoundEvents.ENTITY_WITHER_DEATH;
+        return SoundEvents.ENTITY_WITHER_SKELETON_DEATH;
     }
 	
 	@Override

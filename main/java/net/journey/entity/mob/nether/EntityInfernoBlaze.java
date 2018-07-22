@@ -124,11 +124,16 @@ public class EntityInfernoBlaze extends EntityModMob {
         return SoundEvents.ENTITY_BLAZE_DEATH;
     }
 
-	@Override
+	/* @Override
 	public boolean getCanSpawnHere() {
 		return super.getCanSpawnHere() && 
-				this.world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.NETHER_BRICK;
-	}
+				this.
+				world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.NETHER_BRICK || 
+				world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.NETHER_BRICK_FENCE || 
+				world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.NETHER_BRICK_STAIRS ||
+				world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.RED_NETHER_BRICK || 
+				world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.NETHER_WART;
+	} */
 
 	@Override
 	public boolean attackEntityFrom(DamageSource e, float a) {

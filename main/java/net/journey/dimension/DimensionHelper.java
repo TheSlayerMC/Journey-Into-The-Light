@@ -97,9 +97,13 @@ import net.minecraft.init.Biomes;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.MapGenBase;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.common.DimensionManager;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.terraingen.InitMapGenEvent;
+import net.minecraftforge.event.terraingen.TerrainGen;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 
 public class DimensionHelper {
@@ -245,7 +249,7 @@ public class DimensionHelper {
 		int amount2 = 10;
 		for(Biome b : Biome.REGISTRY) {
 			Biome biome = b;
-			if (biome != null) {
+			if (biome != null && biome != Biomes.HELL) {
 				EntityRegistry.addSpawn(EntityCaveMage.class, amount, 3, 4, EnumCreatureType.MONSTER, biome);
 				EntityRegistry.addSpawn(EntityCaveling.class, amount, 3, 4, EnumCreatureType.MONSTER, biome);
 				EntityRegistry.addSpawn(EntityCavurn.class, amount, 3, 4, EnumCreatureType.MONSTER, biome);
@@ -266,10 +270,10 @@ public class DimensionHelper {
 	private static void addNetherSpawns() {
 		EntityRegistry.addSpawn(EntityLavasnake.class, 120, 1, 1, EnumCreatureType.MONSTER, Biomes.HELL);
 		EntityRegistry.addSpawn(EntityWitherspine.class, 100, 1, 1, EnumCreatureType.MONSTER, Biomes.HELL);
-		EntityRegistry.addSpawn(EntityReaper.class, 100, 1, 1, EnumCreatureType.MONSTER, Biomes.HELL);
+		EntityRegistry.addSpawn(EntityReaper.class, 60, 1, 1, EnumCreatureType.MONSTER, Biomes.HELL);
 		EntityRegistry.addSpawn(EntityHellCow.class, 100, 1, 1, EnumCreatureType.MONSTER, Biomes.HELL);
 		EntityRegistry.addSpawn(EntityMiniGhast.class, 120, 1, 1, EnumCreatureType.MONSTER, Biomes.HELL);
-		EntityRegistry.addSpawn(EntityInfernoBlaze.class, 110, 1, 1, EnumCreatureType.MONSTER, Biomes.HELL);
+		EntityRegistry.addSpawn(EntityInfernoBlaze.class, 80, 1, 2, EnumCreatureType.MONSTER, Biomes.HELL);
 		EntityRegistry.addSpawn(EntityHellTurtle.class, 300, 1, 2, EnumCreatureType.MONSTER, Biomes.HELL);
 	}
 	private static void addVanillaSpawns() {
@@ -314,5 +318,5 @@ public class DimensionHelper {
 				EntityRegistry.addSpawn(EntityWraith.class, amount, 1, 1, EnumCreatureType.CREATURE, biome);
 			}
 		}
-	}
+    }
 }

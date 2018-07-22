@@ -3,10 +3,15 @@ package net.journey.entity.mob.nether;
 import net.journey.JourneyItems;
 import net.journey.entity.MobStats;
 import net.journey.enums.EnumSounds;
+import net.journey.util.PotionEffects;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityModMob;
 
@@ -24,6 +29,16 @@ public class EntityWitherspine extends EntityModMob {
 	//	return super.worldObj.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.nether_brick;
 	//}
 
+	@Override
+	public boolean attackEntityAsMob(Entity e) {
+		boolean attacked = super.attackEntityAsMob(e);
+		if(attacked) {
+			if(e instanceof EntityLivingBase) 
+				((EntityLivingBase)e).addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.wither, 100, 2)));
+		}
+		return attacked;
+	}
+	
 	@Override
 	public double setAttackDamage(MobStats s) {
 		return MobStats.baseJourneyDamage;

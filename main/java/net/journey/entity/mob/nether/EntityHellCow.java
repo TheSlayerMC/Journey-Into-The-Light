@@ -39,6 +39,11 @@ public class EntityHellCow extends EntityPeacefullUntillAttacked {
 	}
 
 	@Override
+	public double setMovementSpeed() {
+		return 1.5F;
+	}
+	
+	@Override
 	public double setAttackDamage(MobStats s) {
 		return MobStats.baseJourneyDamage;
 	}
