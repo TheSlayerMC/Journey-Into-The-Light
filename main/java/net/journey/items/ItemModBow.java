@@ -7,7 +7,6 @@ import javax.annotation.Nullable;
 import net.journey.JourneyItems;
 import net.journey.JourneyTabs;
 import net.journey.client.ItemDescription;
-import net.journey.entity.projectile.EntityEssenceArrow;
 import net.journey.util.LangHelper;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.util.ITooltipFlag;
@@ -44,7 +43,7 @@ public class ItemModBow extends ItemMod {
 	//protected String damageString;
 	public String ability;
 
-	public ItemModBow(String name, String f, int uses, int damage, /**String damageString,*/ Item arrow, int duration, String ability, Class<? extends EntityEssenceArrow> arrowEnt) {
+	public ItemModBow(String name, String f, int uses, int damage, /**String damageString,*/ Item arrow, int duration, String ability, Class<? extends EntityArrow> arrowEnt) {
 		super(name, f, JourneyTabs.bows);
 		this.maxStackSize = 1;
 		this.dur = duration;
@@ -115,7 +114,7 @@ public class ItemModBow extends ItemMod {
 
                     if (!worldIn.isRemote) {
                         ItemArrow itemarrow = (ItemArrow)(itemstack.getItem() instanceof ItemArrow ? itemstack.getItem() : JourneyItems.essenceArrow);
-                        EntityEssenceArrow entityarrow = (EntityEssenceArrow) itemarrow.createArrow(worldIn, itemstack, entityplayer);
+                        EntityArrow entityarrow = (EntityArrow) itemarrow.createArrow(worldIn, itemstack, entityplayer);
                         entityarrow.shoot(entityplayer, entityplayer.rotationPitch, entityplayer.rotationYaw, 0.0F, f * 3.0F, 1.0F);
 
                         if (f == 1.0F){
@@ -141,7 +140,7 @@ public class ItemModBow extends ItemMod {
                         stack.damageItem(1, entityplayer);
 
                         if (flag1 || entityplayer.capabilities.isCreativeMode && (itemstack.getItem() == Items.SPECTRAL_ARROW || itemstack.getItem() == Items.TIPPED_ARROW)){
-                            entityarrow.pickupStatus = EntityEssenceArrow.PickupStatus.CREATIVE_ONLY;
+                            entityarrow.pickupStatus = EntityArrow.PickupStatus.CREATIVE_ONLY;
                         }
 
                         worldIn.spawnEntity(entityarrow);
