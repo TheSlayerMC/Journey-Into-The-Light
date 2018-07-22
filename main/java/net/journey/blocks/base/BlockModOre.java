@@ -16,14 +16,24 @@ import net.slayer.api.block.BlockMod;
 
 public class BlockModOre extends BlockMod {
 
+	public boolean hasParticle;
+	
 	public BlockModOre(String name, String finalName) {
 		super(name, finalName);
+		this.hasParticle = true;
+	}
+	
+	public BlockModOre(String name, String finalName, Boolean hasParticle) {
+		super(name, finalName);
+		this.hasParticle = hasParticle;
 	}
 	
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
-		renderParticle(worldIn, pos.getX(), pos.getY(), pos.getZ(), pos);
+		if (this.hasParticle) {
+			renderParticle(worldIn, pos.getX(), pos.getY(), pos.getZ(), pos);
+		}
 	}
 	
 	@SideOnly(Side.CLIENT)
@@ -76,6 +86,13 @@ public class BlockModOre extends BlockMod {
 			g = 0.8F;
 			b = 0.8F;
 		}
+		
+		if(this == JourneyBlocks.iridiumOre || this == JourneyBlocks.iridiumBlock) {
+			r = 0.4F;
+			g = 0.8F;
+			b = 0.7F;
+		}
+		
 		Random random = w.rand;
 		double d0 = 0.0625D;
 		for(int l = 0; l < 6; ++l) {
@@ -105,7 +122,7 @@ public class BlockModOre extends BlockMod {
         if(this == JourneyBlocks.firestoneOre) {
             int j = random.nextInt(2) - 1;
             if(j < 1) j = 1; 
-        	return this.quantityDropped(random) * (j + 3);
+        	return this.quantityDropped(random) * (j + 1);
         } else {
             return 1;
         }
@@ -120,6 +137,7 @@ public class BlockModOre extends BlockMod {
 		if(this == JourneyBlocks.gorbiteOre) return JourneyItems.gorbiteGem;
 		if(this == JourneyBlocks.luniteOre) return JourneyItems.luniteChunk;
 		if(this == JourneyBlocks.firestoneOre) return JourneyItems.firestoneClump;
+		if(this == JourneyBlocks.iridiumOre) return JourneyItems.iridium;
 		return Item.getItemFromBlock(this);
 	}
 }
