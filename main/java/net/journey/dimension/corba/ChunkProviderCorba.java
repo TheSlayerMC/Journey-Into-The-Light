@@ -326,10 +326,6 @@ public class ChunkProviderCorba implements IChunkGenerator {
 		}
 	}
 
-	/* @Override
-	public boolean chunkExists(int x, int z) {
-		return true;
-	} */
 	@Override
 	public void populate(int cx, int cz) {
 		int x1 = cx * 16;
@@ -415,7 +411,7 @@ public class ChunkProviderCorba implements IChunkGenerator {
 	}
 
 	@Override
-	public void recreateStructures(Chunk p_180514_1_, int p_180514_2_, int p_180514_3_) { }
+	public void recreateStructures(Chunk c, int x, int z) { }
 
 	@Override
 	public boolean generateStructures(Chunk chunkIn, int x, int z) {
