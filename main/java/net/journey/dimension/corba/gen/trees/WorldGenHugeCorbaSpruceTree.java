@@ -41,7 +41,7 @@ public class WorldGenHugeCorbaSpruceTree extends WorldGenCorbaHugeTree
 			{
 				Block block = w.getBlockState(new BlockPos(posX, posY + i1, posZ)).getBlock();
 
-				if (block.isAir(w, new BlockPos(posX, posY + i1, posZ)) || block.isLeaves(w, new BlockPos(posX, posY + i1, posZ)))
+				if (block.isAir(w.getBlockState(new BlockPos(pos)), w, new BlockPos(posX, posY + i1, posZ)) || block.isLeaves(w.getBlockState(new BlockPos(pos)), w, new BlockPos(posX, posY + i1, posZ)))
 				{
 					this.setBlockAndNotifyAdequately(w, new BlockPos(posX, posY + i1, posZ), log.getDefaultState());
 					//this.setBlockAndNotifyAdequately(w, new BlockPos(posX, posY + i1, posZ), log.getDefaultState());
@@ -51,21 +51,21 @@ public class WorldGenHugeCorbaSpruceTree extends WorldGenCorbaHugeTree
 				{
 					block = w.getBlockState(new BlockPos(posX + 1, posY + i1, posZ)).getBlock();
 
-					if (block.isAir(w, new BlockPos(posX + 1, posY + i1, posZ)) || block.isLeaves(w, new BlockPos(posX + 1, posY + i1, posZ)))
+					if (block.isAir(w.getBlockState(new BlockPos(pos)), w, new BlockPos(posX + 1, posY + i1, posZ)) || block.isLeaves(w.getBlockState(new BlockPos(pos)), w, new BlockPos(posX + 1, posY + i1, posZ)))
 					{
 						this.setBlockAndNotifyAdequately(w, new BlockPos(posX + 1, posY + i1, posZ), log.getDefaultState());
 					}
 
 					block = w.getBlockState(new BlockPos(posX + 1, posY + i1, posZ + 1)).getBlock();
 
-					if (block.isAir(w, new BlockPos(posX + 1, posY + i1, posZ + 1)) || block.isLeaves(w, new BlockPos(posX + 1, posY + i1, posZ + 1)))
+					if (block.isAir(w.getBlockState(new BlockPos(pos)), w, new BlockPos(posX + 1, posY + i1, posZ + 1)) || block.isLeaves(w.getBlockState(new BlockPos(pos)), w, new BlockPos(posX + 1, posY + i1, posZ + 1)))
 					{
 						this.setBlockAndNotifyAdequately(w, new BlockPos(posX + 1, posY + i1, posZ + 1), log.getDefaultState());
 					}
 
 					block = w.getBlockState(new BlockPos(posX, posY + i1, posZ + 1)).getBlock();
 
-					if (block.isAir(w, new BlockPos(posX, posY + i1, posZ + 1)) || block.isLeaves(w, new BlockPos(posX, posY + i1, posZ + 1)))
+					if (block.isAir(w.getBlockState(new BlockPos(pos)), w, new BlockPos(posX, posY + i1, posZ + 1)) || block.isLeaves(w.getBlockState(new BlockPos(pos)), w, new BlockPos(posX, posY + i1, posZ + 1)))
 					{
 						this.setBlockAndNotifyAdequately(w, new BlockPos(posX, posY + i1, posZ + 1), log.getDefaultState());
 					}
@@ -87,7 +87,7 @@ public class WorldGenHugeCorbaSpruceTree extends WorldGenCorbaHugeTree
 		int j1 = 0;
 		for (int k1 = par4_ - i1; k1 <= par4_; ++k1) {
 			int l1 = par4_ - k1;
-			int i2 = par5_ + MathHelper.floor_float((float)l1 / (float)i1 * 3.5F);
+			int i2 = par5_ + MathHelper.floor((float)l1 / (float)i1 * 3.5F);
 			this.grow3(w, par2_, k1, par3_, i2 + (l1 > 0 && i2 == j1 && (k1 & 1) == 0 ? 1 : 0), par6_);
 			j1 = i2;
 		}
@@ -123,11 +123,11 @@ public class WorldGenHugeCorbaSpruceTree extends WorldGenCorbaHugeTree
 	private void sustainBlock(World w, int par2_, int par3_, int par4_) {
 		for (int l = par3_ + 2; l >= par3_ - 3; --l) {
 			Block block = w.getBlockState(new BlockPos(par2_, l, par4_)).getBlock();
-			if (block.canSustainPlant(w, new BlockPos(par2_, l, par4_), EnumFacing.UP, (BlockSapling)Blocks.sapling)) {
+			if (block.canSustainPlant(w.getBlockState(new BlockPos(par2_, par3_, par4_)), w, new BlockPos(par2_, l, par4_), EnumFacing.UP, (BlockSapling)Blocks.SAPLING)) {
 				this.setBlockAndNotifyAdequately(w, new BlockPos(par2_, l, par4_), JourneyBlocks.corbaStone.getDefaultState());
 				break;
 			}
-			if (block.isAir(w, new BlockPos(par2_, l, par4_)) && l < par3_) {
+			if (block.isAir(w.getBlockState(new BlockPos(par2_, l, par4_)), w, new BlockPos(par2_, l, par4_)) && l < par3_) {
 				break;
 			}
 		}

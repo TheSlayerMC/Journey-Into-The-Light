@@ -22,12 +22,12 @@ public class WorldGenCorbaSpruceTree extends WorldGenAbstractTree {
         Random r = new Random();
     }
 
-    public boolean generate(World p_76484_1_, Random p_76484_2_, BlockPos pos) {
+    public boolean generate(World w, Random r, BlockPos pos) {
     	int p_76484_3_ = pos.getX(), p_76484_4_ = pos.getY(), p_76484_5_ = pos.getZ();
-        int l = p_76484_2_.nextInt(5) + 7;
-        int i1 = l - p_76484_2_.nextInt(2) - 3;
+        int l = r.nextInt(5) + 7;
+        int i1 = l - r.nextInt(2) - 3;
         int j1 = l - i1;
-        int k1 = 1 + p_76484_2_.nextInt(j1 + 1);
+        int k1 = 1 + r.nextInt(j1 + 1);
         boolean flag = true;
 
         if (p_76484_4_ >= 1 && p_76484_4_ + l + 1 <= 256)
@@ -55,9 +55,9 @@ public class WorldGenCorbaSpruceTree extends WorldGenAbstractTree {
                     {
                         if (l1 >= 0 && l1 < 256)
                         {
-                            Block block = p_76484_1_.getBlockState(new BlockPos(i2, l1, j2)).getBlock();
+                            Block block = w.getBlockState(new BlockPos(i2, l1, j2)).getBlock();
 
-                            if (!this.isReplaceable(p_76484_1_, new BlockPos(i2, l1, j2)))
+                            if (!this.isReplaceable(w, new BlockPos(i2, l1, j2)))
                             {
                                 flag = false;
                             }
@@ -76,12 +76,12 @@ public class WorldGenCorbaSpruceTree extends WorldGenAbstractTree {
             }
             else
             {
-                Block block1 = p_76484_1_.getBlockState(new BlockPos(p_76484_3_, p_76484_4_ - 1, p_76484_5_)).getBlock();
+                Block block1 = w.getBlockState(new BlockPos(p_76484_3_, p_76484_4_ - 1, p_76484_5_)).getBlock();
 
-                boolean isSoil = block1.canSustainPlant(p_76484_1_, new BlockPos(p_76484_3_, p_76484_4_ - 1, p_76484_5_), EnumFacing.UP, (BlockSapling)Blocks.sapling);
+                boolean isSoil = block1.canSustainPlant(w.getBlockState(new BlockPos(pos)), w, new BlockPos(p_76484_3_, p_76484_4_ - 1, p_76484_5_), EnumFacing.UP, (BlockSapling)Blocks.SAPLING);
                 if (isSoil && p_76484_4_ < 256 - l - 1)
                 {
-                    block1.onPlantGrow(p_76484_1_, new BlockPos(p_76484_3_, p_76484_4_ - 1, p_76484_5_), new BlockPos(p_76484_3_, p_76484_4_, p_76484_5_));
+                    block1.onPlantGrow(w.getBlockState(new BlockPos(pos)), w, new BlockPos(p_76484_3_, p_76484_4_ - 1, p_76484_5_), new BlockPos(p_76484_3_, p_76484_4_, p_76484_5_));
                     i3 = 0;
 
                     for (i2 = p_76484_4_ + l; i2 >= p_76484_4_ + i1; --i2)
@@ -94,9 +94,9 @@ public class WorldGenCorbaSpruceTree extends WorldGenAbstractTree {
                             {
                                 int l2 = k2 - p_76484_5_;
 
-                                if ((Math.abs(j3) != i3 || Math.abs(l2) != i3 || i3 <= 0) && p_76484_1_.getBlockState(new BlockPos(j2, i2, k2)).getBlock().canBeReplacedByLeaves(p_76484_1_, new BlockPos(j2, i2, k2)))
+                                if ((Math.abs(j3) != i3 || Math.abs(l2) != i3 || i3 <= 0) && w.getBlockState(new BlockPos(j2, i2, k2)).getBlock().canBeReplacedByLeaves(w.getBlockState(new BlockPos(pos)), w, new BlockPos(j2, i2, k2)))
                                 {
-                                    this.setBlockAndNotifyAdequately(p_76484_1_, new BlockPos(j2, i2, k2), leaves.getDefaultState());
+                                    this.setBlockAndNotifyAdequately(w, new BlockPos(j2, i2, k2), leaves.getDefaultState());
                                 }
                             }
                         }
@@ -113,11 +113,11 @@ public class WorldGenCorbaSpruceTree extends WorldGenAbstractTree {
 
                     for (i2 = 0; i2 < l - 1; ++i2)
                     {
-                        Block block2 = p_76484_1_.getBlockState(new BlockPos(p_76484_3_, p_76484_4_ + i2, p_76484_5_)).getBlock();
+                        Block block2 = w.getBlockState(new BlockPos(p_76484_3_, p_76484_4_ + i2, p_76484_5_)).getBlock();
 
-                        if (block2.isAir(p_76484_1_, new BlockPos(p_76484_3_, p_76484_4_ + i2, p_76484_5_)) || block2.isLeaves(p_76484_1_, new BlockPos(p_76484_3_, p_76484_4_ + i2, p_76484_5_)))
+                        if (block2.isAir(w.getBlockState(new BlockPos(pos)), w, new BlockPos(p_76484_3_, p_76484_4_ + i2, p_76484_5_)) || block2.isLeaves(w.getBlockState(new BlockPos(pos)), w, new BlockPos(p_76484_3_, p_76484_4_ + i2, p_76484_5_)))
                         {
-                            this.setBlockAndNotifyAdequately(p_76484_1_, new BlockPos(p_76484_3_, p_76484_4_ + i2, p_76484_5_), log.getDefaultState());
+                            this.setBlockAndNotifyAdequately(w, new BlockPos(p_76484_3_, p_76484_4_ + i2, p_76484_5_), log.getDefaultState());
                         }
                     }
 

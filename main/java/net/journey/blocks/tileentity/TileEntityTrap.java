@@ -3,6 +3,7 @@ package net.journey.blocks.tileentity;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.MobSpawnerBaseLogic;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
@@ -13,7 +14,7 @@ public class TileEntityTrap extends TileEntity implements ITickable {
     private final MobSpawnerBaseLogic spawnerLogic = new MobSpawnerBaseLogic() {
     	
         @Override
-        public void func_98267_a(int id) {
+		public void broadcastEvent(int id) {
             TileEntityTrap.this.world.addBlockEvent(TileEntityTrap.this.pos, Blocks.MOB_SPAWNER, id, 0);
         }
         
@@ -59,7 +60,7 @@ public class TileEntityTrap extends TileEntity implements ITickable {
         NBTTagCompound nbttagcompound = new NBTTagCompound();
         this.writeToNBT(nbttagcompound);
         nbttagcompound.removeTag("SpawnPotentials");
-        return new S35PacketUpdateTileEntity(this.pos, 1, nbttagcompound);
+        return new SPacketUpdateTileEntity(this.pos, 1, nbttagcompound);
     }
 
     @Override

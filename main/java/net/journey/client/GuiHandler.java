@@ -1,17 +1,12 @@
 package net.journey.client;
 
-import net.journey.blocks.tileentity.TileEntityKnowledgeTable;
 import net.journey.blocks.tileentity.TileEntitySummoningTable;
-import net.journey.blocks.tileentity.TileEntityTrophyTable;
-import net.journey.blocks.tileentity.container.ContainerKnowledgeTable;
 import net.journey.blocks.tileentity.container.ContainerSummoningTable;
-import net.journey.blocks.tileentity.container.ContainerTrophy;
 import net.journey.client.render.gui.GuiAlloyMender;
 import net.journey.client.render.gui.GuiBlacksmith;
 import net.journey.client.render.gui.GuiBoilTrader;
 import net.journey.client.render.gui.GuiEscaped;
 import net.journey.client.render.gui.GuiFrozenMerchant;
-import net.journey.client.render.gui.GuiKnowledgeTable;
 import net.journey.client.render.gui.GuiMage;
 import net.journey.client.render.gui.GuiOvergrownMerchant;
 import net.journey.client.render.gui.GuiRockite;
@@ -21,7 +16,6 @@ import net.journey.client.render.gui.GuiStarlightVillager;
 import net.journey.client.render.gui.GuiSummoningTable;
 import net.journey.client.render.gui.GuiTerranian;
 import net.journey.client.render.gui.GuiTordo;
-import net.journey.client.render.gui.GuiTrophyTable;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.IMerchant;
 import net.minecraft.entity.player.EntityPlayer;
@@ -68,14 +62,10 @@ public class GuiHandler implements IGuiHandler {
 			return new ContainerModVillager(player.inventory, (IMerchant)getEntityByID(x, world), world);
 		if(ID == frozenMerchant) 
 			return new ContainerModVillager(player.inventory, (IMerchant)getEntityByID(x, world), world);
-		if(ID == knowledge) 
-			return new ContainerKnowledgeTable(player.inventory, (TileEntityKnowledgeTable)entity, world);
 		if(ID == summoning) 
 			return new ContainerSummoningTable(player.inventory, (TileEntitySummoningTable)entity, world);
 		/*if(ID == netherfurnace) 
 			return new ContainerModFurnace(player.inventory, (TileEntityModFurnace)entity, world); */
-		if(ID == trophy) 
-			return new ContainerTrophy(player.inventory, (TileEntityTrophyTable)entity, world);
 		if(ID == staringGuardian) 
 			return new ContainerModVillager(player.inventory, (IMerchant)getEntityByID(x, world), world);
 		if(ID == tordo) 
@@ -107,9 +97,7 @@ public class GuiHandler implements IGuiHandler {
 		if(ID == mage) return new GuiMage(new ContainerModVillager(player.inventory, (IMerchant)getEntityByID(x, world), world), (IMerchant)getEntityByID(x, world));
 		if(ID == blacksmith) return new GuiBlacksmith(new ContainerModVillager(player.inventory, (IMerchant)getEntityByID(x, world), world), (IMerchant)getEntityByID(x, world));
 		if(ID == frozenMerchant) return new GuiFrozenMerchant(new ContainerModVillager(player.inventory, (IMerchant)getEntityByID(x, world), world), (IMerchant)getEntityByID(x, world));
-		if(ID == knowledge) return new GuiKnowledgeTable(player.inventory, (TileEntityKnowledgeTable)entity, world);
 		if(ID == summoning) return new GuiSummoningTable(player.inventory, (TileEntitySummoningTable)entity, world);
-		if(ID == trophy) return new GuiTrophyTable(player.inventory, (TileEntityTrophyTable)entity, world);
 		if(ID == staringGuardian) return new GuiStaringGuardian(new ContainerModVillager(player.inventory, (IMerchant)getEntityByID(x, world), world), (IMerchant)getEntityByID(x, world));
 		if(ID == tordo) return new GuiTordo(new ContainerModVillager(player.inventory, (IMerchant)getEntityByID(x, world), world), (IMerchant)getEntityByID(x, world));
 		if(ID == boilTrader) return new GuiBoilTrader(new ContainerModVillager(player.inventory, (IMerchant)getEntityByID(x, world), world), (IMerchant)getEntityByID(x, world));

@@ -33,9 +33,7 @@ import net.journey.blocks.crop.base.BlockFruitCrop;
 import net.journey.blocks.machines.BlockGrindstone;
 import net.journey.blocks.machines.BlockIgniter;
 import net.journey.blocks.machines.BlockJourneyChest;
-import net.journey.blocks.machines.BlockKnowledgeTable;
 import net.journey.blocks.machines.BlockSummoningTable;
-import net.journey.blocks.machines.BlockTrophyTable;
 import net.journey.blocks.portal.BlockBoilPortal;
 import net.journey.blocks.portal.BlockCloudiaPortal;
 import net.journey.blocks.portal.BlockCorbaPortal;
@@ -836,10 +834,8 @@ public class JourneyBlocks {
 		largeNetherBrick = new BlockMod("largeNetherBrick", "Large Nether Brick");
 		compactNetherBrick = (BlockMod) new BlockMod("compactNetherBrick", "Compact Nether Brick").setBlockUnbreakable().setResistance(10000000.0F);
 		nethicLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "nethicLamp", "Nethic Lamp", 0.1F).setLightLevel(1).setCreativeTab(JourneyTabs.decoration);
-
-		knowledgeTable = (BlockMod) new BlockKnowledgeTable("knowledgeTable", "Knowledge Table").setCreativeTab(null);
+		
 		summoningTable = new BlockSummoningTable("summoningTable", "Summoning Table");
-		bossAltar = new BlockMod("bossAltar", "Boss Altar");
 
 		observerSpawner = new BlockModSpawner("observerSpawner", "Observer Spawner", "observer");
 		screamerSpawner = new BlockModSpawner("screamerSpawner", "Screamer Spawner", "screamer");
@@ -1161,9 +1157,7 @@ public class JourneyBlocks {
 					largeNetherBrick.createItemBlock(),
 					compactNetherBrick.createItemBlock(),
 					nethicLamp.createItemBlock(),
-					knowledgeTable.createItemBlock(),
 					summoningTable.createItemBlock(),
-					bossAltar.createItemBlock(),
 					observerSpawner.createItemBlock(),
 					screamerSpawner.createItemBlock(),
 					goldbotSpawner.createItemBlock(),

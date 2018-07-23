@@ -41,7 +41,7 @@ public class EntityReaper extends EntityModMob {
 	
 	@Override
 	public double setMovementSpeed() {
-		return 1.5F;
+		return 0.5F;
 	}
 	
 	@Override

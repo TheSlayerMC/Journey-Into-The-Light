@@ -70,7 +70,7 @@ public class WorldGenCorbaHugeTree extends WorldGenAbstractTree {
 	private boolean grow(World w, Random r, int x, int y, int z) {
 		Block block = w.getBlockState(new BlockPos(x, y - 1, z)).getBlock();
 
-		boolean isSoil = block.canSustainPlant(w, new BlockPos(x, y - 1, z), EnumFacing.UP, (BlockSapling)Blocks.sapling);
+		boolean isSoil = block.canSustainPlant(w.getBlockState(new BlockPos(x, y, x)), w, new BlockPos(x, y - 1, z), EnumFacing.UP, (BlockSapling)Blocks.SAPLING);
 		if (isSoil && y >= 2) {
 			onPlantGrow(w, x, y - 1, z, x, y, z);
 			onPlantGrow(w, x + 1, y - 1, z, x, y, z);
@@ -100,7 +100,7 @@ public class WorldGenCorbaHugeTree extends WorldGenAbstractTree {
 				if (k1 * k1 + i2 * i2 <= i1 || j2 * j2 + k2 * k2 <= i1 || k1 * k1 + k2 * k2 <= i1 || j2 * j2 + i2 * i2 <= i1) {
 					Block block = w.getBlockState(new BlockPos(j1, y, l1)).getBlock();
 
-					if (block.isAir(w, new BlockPos(j1, y, l1)) || block.isLeaves(w, new BlockPos(j1, y, l1))) {
+					if (block.isAir(w.getBlockState(new BlockPos(x, y, z)), w, new BlockPos(j1, y, l1)) || block.isLeaves(w.getBlockState(new BlockPos(x, y, z)), w, new BlockPos(j1, y, l1))) {
 						this.setBlockAndNotifyAdequately(w, new BlockPos(j1, y, l1), leaves.getDefaultState());
 					}
 				}
@@ -120,7 +120,7 @@ public class WorldGenCorbaHugeTree extends WorldGenAbstractTree {
 				if (k1 * k1 + i2 * i2 <= i1) {
 					Block block = w.getBlockState(new BlockPos(j1, y, l1)).getBlock();
 
-					if (block.isAir(w, new BlockPos(j1, y, l1)) || block.isLeaves(w, new BlockPos(j1, y, l1))) {
+					if (block.isAir(w.getBlockState(new BlockPos(x, y, z)), w, new BlockPos(j1, y, l1)) || block.isLeaves(w.getBlockState(new BlockPos(x, y, z)), w, new BlockPos(j1, y, l1))) {
 						this.setBlockAndNotifyAdequately(w, new BlockPos(j1, y, l1), leaves.getDefaultState());
 					}
 				}
@@ -129,7 +129,7 @@ public class WorldGenCorbaHugeTree extends WorldGenAbstractTree {
 	}
 
 	private void onPlantGrow(World world, int x, int y, int z, int sourceX, int sourceY, int sourceZ) {
-		world.getBlockState(new BlockPos(x, y, z)).getBlock().onPlantGrow(world, new BlockPos(x, y, z), new BlockPos(sourceX, sourceY, sourceZ));
+		world.getBlockState(new BlockPos(x, y, z)).getBlock().onPlantGrow(world.getBlockState(new BlockPos(x, y, z)), world, new BlockPos(x, y, z), new BlockPos(sourceX, sourceY, sourceZ));
 	}
 
 	@Override
