@@ -88,9 +88,9 @@ public class BlockModOre extends BlockMod {
 		}
 		
 		if(this == JourneyBlocks.iridiumOre || this == JourneyBlocks.iridiumBlock) {
-			r = 0.25F;
-			g = 0.4F;
-			b = 0.1F;
+			r = 0.55F;
+			g = 0.7F;
+			b = 0.2F;
 		}
 		
 		Random random = w.rand;

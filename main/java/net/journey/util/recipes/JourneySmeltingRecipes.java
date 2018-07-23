@@ -15,6 +15,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.slayer.api.SlayerAPI;
 
 public class JourneySmeltingRecipes {
 
@@ -35,6 +36,7 @@ public class JourneySmeltingRecipes {
 		JourneyItems i = new JourneyItems();
 
 		GameRegistry.addSmelting(JourneyItems.spawnerClump, new ItemStack(JourneyItems.spawnerBar), 1.0F);
+		GameRegistry.addSmelting(SlayerAPI.toItem(b.verditeOre), new ItemStack(JourneyItems.verditeIngot), 1.0F);
 		GameRegistry.addSmelting(Blocks.GLASS, new ItemStack(JourneyBlocks.smoothGlass), 1.0F);
 		GameRegistry.addSmelting(JourneyItems.flamingBeef, new ItemStack(JourneyItems.flamingBeefCooked), 0.5F);
 		GameRegistry.addSmelting(JourneyItems.ironDust, new ItemStack(Items.IRON_INGOT), 0.5F);
@@ -47,10 +49,6 @@ public class JourneySmeltingRecipes {
 		GameRegistry.addSmelting(JourneyItems.ghastTentacle, new ItemStack(JourneyItems.friedGhastTentacale), 0.5F);
 		GameRegistry.addSmelting(JourneyItems.flamingGhastTentacle, new ItemStack(JourneyItems.friedFlamingGhastTentacale), 0.5F);
 		
-	}
-	
-	private JourneySmeltingRecipes() {
-		this.addDualSmelting(JourneyItems.hellstoneMultiTool, JourneyItems.blazingFireball, new ItemStack(JourneyItems.multiToolOfEternalSmelting), 10.0F);
 	}
 	
 	public void addDualSmeltingRecipeForBlock(Block input1, Block input2, ItemStack result, float experience) {

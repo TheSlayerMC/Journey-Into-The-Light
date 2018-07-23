@@ -84,7 +84,7 @@ public class BlockGlowshroom extends Block {
 
 	@Override
 	public boolean canPlaceBlockAt(World w, BlockPos pos) {
-		return w.getBlockState(pos.down()).getBlock() == JourneyBlocks.depthsGrass
+		return w.getBlockState(pos.down()).getBlock() == Blocks.STONE
 				|| w.getBlockState(pos.down()).getBlock().getMaterial(w.getBlockState(pos.down())) == Material.PLANTS;
 	}
 

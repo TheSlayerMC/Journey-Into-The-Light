@@ -175,6 +175,8 @@ public class JourneyItems {
 	public static Item orbaditeIngot;
 	public static Item gorbiteGem;
 	public static Item desIngot;
+	
+	public static Item verditeIngot;
 
 	public static Item elderKey;
 	public static Item boilPowder;
@@ -819,6 +821,9 @@ public class JourneyItems {
 		heartUlt = new ItemHealth("heartUlt", "Heart: Ultimate", 8, 2, 0.2F, false, false, 60, false, true);
 		heartSentry = new ItemHealth("heartSen", "Sentry's Heart", 10, 2, 0.2F, false, false, 20, true, false);
 		hellstoneIngot = new ItemMod("hellstoneIngot", "Bloodcrust Ingot");
+		
+		verditeIngot = new ItemMod("verditeIngot", "Verdite Ingot");
+		
 		shadiumIngot = new ItemMod("shadiumIngot", "Shadium Ingot");
 		celestiumIngot = new ItemMod("celestiumIngot", "Celestium Ingot");
 		mekyumIngot = new ItemMod("mekyumIngot", "Mekyum Ingot");
