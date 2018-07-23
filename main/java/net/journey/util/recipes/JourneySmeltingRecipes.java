@@ -34,9 +34,9 @@ public class JourneySmeltingRecipes {
 	public static void initSmeltingCrafting() {
 		JourneyBlocks b = new JourneyBlocks();
 		JourneyItems i = new JourneyItems();
-
+		GameRegistry.addSmelting(JourneyBlocks.verditeOre, new ItemStack(JourneyItems.verditeIngot), 1.0F);
+		
 		GameRegistry.addSmelting(JourneyItems.spawnerClump, new ItemStack(JourneyItems.spawnerBar), 1.0F);
-		GameRegistry.addSmelting(SlayerAPI.toItem(b.verditeOre), new ItemStack(JourneyItems.verditeIngot), 1.0F);
 		GameRegistry.addSmelting(Blocks.GLASS, new ItemStack(JourneyBlocks.smoothGlass), 1.0F);
 		GameRegistry.addSmelting(JourneyItems.flamingBeef, new ItemStack(JourneyItems.flamingBeefCooked), 0.5F);
 		GameRegistry.addSmelting(JourneyItems.ironDust, new ItemStack(Items.IRON_INGOT), 0.5F);

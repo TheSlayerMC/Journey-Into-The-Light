@@ -112,21 +112,23 @@ public class DimensionHelper {
 	public static final float[] corbaHeight = new float[] {0.2F, 0.2F}; 
 
 	public static Biome euca = new BiomeGenEuca(Config.eucaBiome);
-	public static Biome depths = new BiomeGenDepths(Config.depthsBiome);
 	public static Biome boiling = new BiomeGenBoiling(Config.boilBiome);
-	public static Biome frozen = new BiomeGenFrozenLands(Config.frozenBiome);
-	public static Biome corba = new BiomeGenCorba(Config.corbaBiome);
 	public static Biome cloudia = new BiomeGenCloudia(Config.cloudiaBiome);
+	public static Biome corba = new BiomeGenCorba(Config.corbaBiome);
+
+	public static Biome depths = new BiomeGenDepths(Config.depthsBiome);
+	public static Biome frozen = new BiomeGenFrozenLands(Config.frozenBiome);
 	public static Biome terrania = new BiomeGenTerrania(Config.terraniaBiome);
 	public static Biome golden = new BiomeGenGoldenGrains(Config.goldenBiome);
 	public static Biome senterian = new BiomeGenSenterian(Config.senterianBiome);
 
 	public static DimensionType eucaType = DimensionType.register("Euca", "euca", Config.euca, WorldProviderEuca.class, Config.keepLoadingEuca);
-	public static DimensionType depthsType = DimensionType.register("Depths", "depths", Config.depths, WorldProviderDepths.class, Config.keepLoadingDepths);
 	public static DimensionType boilingType = DimensionType.register("Boiling Point", "boilingPoint", Config.boil, WorldProviderBoiling.class, Config.keepLoadingBoil);
-	public static DimensionType frozenType = DimensionType.register("Frozen", "frozen", Config.frozen, WorldProviderFrozenLands.class, Config.keepLoadingFrozen);
-	public static DimensionType corbaType = DimensionType.register("Corba", "corba", Config.corba, WorldProviderCorba.class, Config.keepLoadingCorba);
 	public static DimensionType cloudiaType = DimensionType.register("Cloudia", "cloudia", Config.cloudia, WorldProviderCloudia.class, Config.keepLoadingCloudia);
+	public static DimensionType corbaType = DimensionType.register("Corba", "corba", Config.corba, WorldProviderCorba.class, Config.keepLoadingCorba);
+	
+	public static DimensionType depthsType = DimensionType.register("Depths", "depths", Config.depths, WorldProviderDepths.class, Config.keepLoadingDepths);
+	public static DimensionType frozenType = DimensionType.register("Frozen", "frozen", Config.frozen, WorldProviderFrozenLands.class, Config.keepLoadingFrozen);
 	public static DimensionType terraniaType = DimensionType.register("Terrania", "terrania", Config.terrania, WorldProviderTerrania.class, Config.keepLoadingTerrania);
 	public static DimensionType goldenType = DimensionType.register("Golden Grains", "goldenGrains", Config.golden, WorldProviderGoldenGrains.class, Config.keepLoadingGolden);
 	public static DimensionType senterianType = DimensionType.register("Senterian", "senterian", Config.senterian, WorldProviderSenterian.class, Config.keepLoadingSenterian);

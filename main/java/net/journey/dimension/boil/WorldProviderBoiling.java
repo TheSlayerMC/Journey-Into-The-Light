@@ -20,10 +20,25 @@ public class WorldProviderBoiling extends WorldProvider {
 	}
 	
 	@Override
+	public String getSaveFolder() {
+		return "Boiling Point";
+	}
+
+	@Override
+	public float getCloudHeight() {
+		return 128.0F;
+	}
+	
+	@Override
 	@SideOnly(Side.CLIENT)
     public Vec3d getFogColor(float p_76562_1_, float p_76562_2_) {
         return new Vec3d(0.2, 0.1, 0);
     }
+
+	@Override
+	public IChunkGenerator createChunkGenerator() {
+		return new ChunkProviderBoiling(this.world, this.world.getSeed());
+	}
 	
 	@Override
 	public boolean canBlockFreeze(BlockPos pos, boolean byWater) {
@@ -38,21 +53,6 @@ public class WorldProviderBoiling extends WorldProvider {
 	@Override
 	public boolean canSnowAt(BlockPos pos, boolean checkLight) {
 		return false;
-	}
-
-	@Override
-	public String getSaveFolder() {
-		return "Boiling Point";
-	}
-
-	@Override
-	public float getCloudHeight() {
-		return 128.0F;
-	}
-
-	@Override
-	public IChunkGenerator createChunkGenerator() {
-		return new ChunkProviderBoiling(this.world, this.world.getSeed());
 	}
 
 	@Override
