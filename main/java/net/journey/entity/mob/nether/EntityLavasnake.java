@@ -233,10 +233,12 @@ public class EntityLavasnake extends EntityModFlying {
                     World world = this.parentEntity.world;
                     ++this.attackTimer;
 
+                    if (this.attackTimer == 2)
                     {
                         world.playEvent((EntityPlayer)null, 1015, new BlockPos(this.parentEntity), 0);
                     }
 
+                    if (this.attackTimer == 1)
                     {
                         double d1 = 4.0D;
                         Vec3d vec3d = this.parentEntity.getLook(1.0F);
