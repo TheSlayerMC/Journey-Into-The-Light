@@ -19,7 +19,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.SlayerAPI;
 
 public class ItemModAxe extends ItemAxe {
-
+    
 	protected JourneyToolMaterial mat;
 
 	public ItemModAxe(String name, String f, JourneyToolMaterial tool) {

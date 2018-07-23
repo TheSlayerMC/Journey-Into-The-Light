@@ -46,6 +46,7 @@ import net.journey.blocks.portal.BlockTerraniaPortal;
 import net.journey.blocks.portal.BlockWitherPortal;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -133,11 +134,11 @@ public class JourneyBlocks {
 	public static BlockMod yellowGemBlock;
 
 	//@SuppressWarnings("")
-	 public static BlockModBush sizzleberryBush = new BlockModBush("sizzleberryBush", "Sizzleberry Bush", JourneyItems.sizzleberry, true);
-	public static BlockModBush bradberryBush = new BlockModBush("bradberryBush", "Bradberry Bush", JourneyItems.bradberry, false);
-	public static BlockModBush tangleberryBush = new BlockModBush("tangleberryBush", "Tangleberry Bush", JourneyItems.tangleberry, false);
-	public static BlockModBush juiceberryBush = new BlockModBush("juiceberryBush", "Juiceberry Bush", JourneyItems.juiceberry, false);
-	public static BlockModBush bogberryBush = new BlockModBush("bogberryBush", "Bogberry Bush", JourneyItems.bogberry, false); 
+	 public static BlockModBush sizzleberryBush;
+	public static BlockModBush bradberryBush;
+	public static BlockModBush tangleberryBush;
+	public static BlockModBush juiceberryBush;
+	public static BlockModBush bogberryBush; 
 
 	public static BlockMod nethicanSludge;
 
@@ -535,11 +536,11 @@ public class JourneyBlocks {
 		blueGemBlock = new BlockMod("blueGemBlock", "Blue Gem Block");
 		yellowGemBlock = new BlockMod("yellowGemBlock", "Yellow Gem Block");
 
-		/* sizzleberryBush = new BlockModBush("sizzleberryBush", "Sizzleberry Bush", JourneyItems.sizzleberry, true);
-	 	bradberryBush = new BlockModBush("bradberryBush", "Bradberry Bush", JourneyItems.bradberry, false);
-	 	tangleberryBush = new BlockModBush("tangleberryBush", "Tangleberry Bush", JourneyItems.tangleberry, false);
-	 	juiceberryBush = new BlockModBush("juiceberryBush", "Juiceberry Bush", JourneyItems.juiceberry, false);
-	 	bogberryBush = new BlockModBush("bogberryBush", "Bogberry Bush", JourneyItems.bogberry, false); */
+		sizzleberryBush = new BlockModBush("sizzleberryBush", "Sizzleberry Bush", new ItemStack(JourneyItems.sizzleberry, 1), true);
+	 	bradberryBush = new BlockModBush("bradberryBush", "Bradberry Bush", new ItemStack(JourneyItems.bradberry, 1), false);
+	 	tangleberryBush = new BlockModBush("tangleberryBush", "Tangleberry Bush", new ItemStack(JourneyItems.tangleberry, 1), false);
+	 	juiceberryBush = new BlockModBush("juiceberryBush", "Juiceberry Bush", new ItemStack(JourneyItems.juiceberry, 1), false);
+	 	bogberryBush = new BlockModBush("bogberryBush", "Bogberry Bush", new ItemStack(JourneyItems.bogberry, 1), false); 
 
 		nethicanSludge = new BlockMod(EnumMaterialTypes.SLIME, "nethicanSludge", "Nethican Sludge", 1.0F);
 
@@ -918,11 +919,11 @@ public class JourneyBlocks {
 					blueGemBlock.createItemBlock(),
 					yellowGemBlock.createItemBlock(),
 					
-					/*sizzleberryBush.createItemBlock(),
+					sizzleberryBush.createItemBlock(),
 					bradberryBush.createItemBlock(),
 					tangleberryBush.createItemBlock(),
 					juiceberryBush.createItemBlock(),
-					bogberryBush.createItemBlock(), */
+					bogberryBush.createItemBlock(), 
 					
 					nethicanSludge.createItemBlock(),
 					eucaGrass.createItemBlock(),

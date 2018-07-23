@@ -24,6 +24,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.EnumMaterialTypes;
@@ -31,11 +32,11 @@ import net.slayer.api.EnumMaterialTypes;
 public class BlockModBush extends BlockMod implements IGrowable, IPlantable {
 
 	private boolean isNether;
-	private Item berry;
+	private ItemStack berry;
 	
 	public static final PropertyInteger AGE = PropertyInteger.create("age", 0, 2);
 
-	public BlockModBush(String name, String finalName, Item berry, boolean isNether) {
+	public BlockModBush(String name, String finalName, ItemStack berry, boolean isNether) {
 		super(EnumMaterialTypes.LEAVES, name, finalName, 1.0F);
 		this.berry = berry;
 		this.isNether = isNether;
@@ -49,25 +50,7 @@ public class BlockModBush extends BlockMod implements IGrowable, IPlantable {
 	public boolean isPassable(IBlockAccess worldIn, BlockPos pos) {
 		return false;
 	}
-
-	@Override
-	public boolean onBlockActivated(World w, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		double 
-		x = player.posX,
-		y = player.posY, 
-		z = player.posZ;
-		if (state.getValue(AGE) == 2) {
-			if (w.isRemote) { 
-				return true;
-			}
-			EntityItem drop = new EntityItem(w, x, y, z, new ItemStack(berry));
-			w.spawnEntity(drop);
-			w.setBlockState(pos, state.withProperty(AGE, 0), 1);
-			return true;
-		}
-		return false;
-	}
-
+	
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess access, BlockPos pos) {
 		float f = 0.3F;
@@ -166,12 +149,44 @@ public class BlockModBush extends BlockMod implements IGrowable, IPlantable {
 		return EnumPlantType.Plains;
 	}
 
-	@Override
-	public IBlockState getPlant(IBlockAccess world, BlockPos pos) {
-		return this.getDefaultState();
-	}
+    @Override
+    public IBlockState getPlant(IBlockAccess world, BlockPos pos) {
+        IBlockState state = world.getBlockState(pos);
+        if (state.getBlock() != this) {
+            return this.getDefaultState();
+        }
+        return state;
+    }
 
 	public boolean canBlockStay(World world, BlockPos pos1) {
 		return this.canPlaceBlockAt(world, pos1);
 	}
+	
+	public void setDrop(ItemStack itemIn) {
+        this.berry = itemIn;
+    }
+    
+    @Override
+    public int damageDropped(IBlockState state) {
+        return 0;
+    }
+
+	@Override
+	public boolean onBlockActivated(World w, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		if (state.getValue(AGE) == 2) {
+			if (w.isRemote) { 
+				return true;
+			}
+            w.setBlockState(pos, this.getDefaultState().withProperty(AGE, Integer.valueOf(0)), 1);
+            ItemStack itemDrop = new ItemStack(this.berry.getItem(), 1, this.berry.getItemDamage());
+            EntityItem entityitem = new EntityItem(w, player.posX, player.posY - 1.0D, player.posZ, itemDrop);
+            w.spawnEntity(entityitem);
+            if (!(player instanceof FakePlayer)) {
+                entityitem.onCollideWithPlayer(player);
+            }
+			return true;
+		}
+		return false;
+	}
+
 }

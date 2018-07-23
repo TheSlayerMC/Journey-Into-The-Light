@@ -33,6 +33,7 @@ import net.journey.entity.projectile.EntityRock;
 import net.journey.entity.projectile.EntityWithic;
 import net.journey.entity.projectile.EntityWizardsStar;
 import net.journey.enums.EnumKnowledge;
+import net.journey.items.ItemBattleAxe;
 import net.journey.items.ItemCandyCane;
 import net.journey.items.ItemChaosCannon;
 import net.journey.items.ItemCrackenCanes;
@@ -591,10 +592,10 @@ public class JourneyItems {
 	public static Item bleedrockLegs;
 	public static Item bleedrockBoots;
 
-	/*public static Item rockyBattleaxe = new ItemBattleAxe("rockyBattleaxe", "Rocky Battleaxe", EssenceToolMaterial.ROCKY_BATTLEAXE);
-	public static Item crystalizedBattleaxe = new ItemBattleAxe("crystalizedBattleaxe", "Crystalized Battleaxe", EssenceToolMaterial.CRYSTAL_BATTLEAXE);
-	public static Item backBiter = new ItemBattleAxe("backBiter", "Back Biter", EssenceToolMaterial.BACK_BITER);
-	public static Item dawnBreaker = new ItemBattleAxe("dawnBreaker", "Dawn Breaker", EssenceToolMaterial.DAWN_BREAKER);
+	public static Item rockyBattleaxe;
+	public static Item crystalizedBattleaxe;
+	public static Item backBiter;
+	/*public static Item dawnBreaker = new ItemBattleAxe("dawnBreaker", "Dawn Breaker", EssenceToolMaterial.DAWN_BREAKER);
 	public static Item tempestBattleaxe = new ItemBattleAxe("tempestBattleaxe", "Tempest Battleaxe", EssenceToolMaterial.TEMPEST_BATTLEAXE);
 	public static Item bronzedBattleaxe = new ItemBattleAxe("bronzedBattleaxe", "Bronzed Battleaxe", EssenceToolMaterial.BRONZED_BATTLEAXE);
 	public static Item celestiteBattleaxe = new ItemBattleAxe("celestiteBattleaxe", "Celestite Battleaxe", EssenceToolMaterial.CELESTITE_BATTLEAXE);
@@ -1252,17 +1253,18 @@ public class JourneyItems {
 		bleedrockLegs = new ItemModArmor(EnumArmor.BLEEDROCK, LEGS);
 		bleedrockBoots = new ItemModArmor(EnumArmor.BLEEDROCK, BOOTS); */
 
-		/*rockyBattleaxe = new ItemBattleAxe("rockyBattleaxe", "Rocky Battleaxe", EssenceToolMaterial.ROCKY_BATTLEAXE);
-		crystalizedBattleaxe = new ItemBattleAxe("crystalizedBattleaxe", "Crystalized Battleaxe", EssenceToolMaterial.CRYSTAL_BATTLEAXE);
-		backBiter = new ItemBattleAxe("backBiter", "Back Biter", EssenceToolMaterial.BACK_BITER);
+		/*rockyBattleaxe = new ItemBattleAxe("rockyBattleaxe", "Rocky Battleaxe", JourneyToolMaterial.ROCKY_BATTLEAXE);
+		crystalizedBattleaxe = new ItemBattleAxe("crystalizedBattleaxe", "Crystalized Battleaxe", JourneyToolMaterial.CRYSTAL_BATTLEAXE);
+		backBiter = new ItemBattleAxe("backBiter", "Back Biter", JourneyToolMaterial.BACK_BITER); 
 		dawnBreaker = new ItemBattleAxe("dawnBreaker", "Dawn Breaker", EssenceToolMaterial.DAWN_BREAKER);
 		tempestBattleaxe = new ItemBattleAxe("tempestBattleaxe", "Tempest Battleaxe", EssenceToolMaterial.TEMPEST_BATTLEAXE);
 		bronzedBattleaxe = new ItemBattleAxe("bronzedBattleaxe", "Bronzed Battleaxe", EssenceToolMaterial.BRONZED_BATTLEAXE);
 		celestiteBattleaxe = new ItemBattleAxe("celestiteBattleaxe", "Celestite Battleaxe", EssenceToolMaterial.CELESTITE_BATTLEAXE);
 		storumBattleaxe = new ItemBattleAxe("storumBattleaxe", "Storum Battleaxe", EssenceToolMaterial.STORUM_BATTLEAXE);
 		celekiumBattleaxe = new ItemBattleAxe("celekiumBattleaxe", "Celekium Battleaxe", EssenceToolMaterial.CELEKIUM_BATTLEAXE);
-		thunderbirdBattleaxe = new ItemBattleAxe("thunderbirdBattleaxe", "Thunderbird Battleaxe", EssenceToolMaterial.THUNDERBIRD_BATTLEAXE);
-		 */
+		thunderbirdBattleaxe = new ItemBattleAxe("thunderbirdBattleaxe", "Thunderbird Battleaxe", EssenceToolMaterial.THUNDERBIRD_BATTLEAXE); */
+		 
+		
 		staffOfCrystal = new ItemStaff("staffOfCrystal", "Staff of Crystal", false, 3, 1000, 10, false, EntityIceBall.class);
 		staffOfDivineStone = new ItemStaff("staffOfDivineStone", "Staff of Divine Stone", false, 3, 1000, 9, false, EntityRock.class);
 		staffOfHellstone = new ItemStaff("staffOfHellstone", "Staff of Hellstone", false, 3, 1000, 7, false, EntityHellstone.class);
