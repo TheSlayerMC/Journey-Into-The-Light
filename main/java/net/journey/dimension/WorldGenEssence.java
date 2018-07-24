@@ -361,8 +361,8 @@ public class WorldGenEssence implements IWorldGenerator {
 		}
 		
 		if (biome == Biomes.JUNGLE) {
-			for(times = 0; times < 14; times++) {
-				y = r.nextInt(92); 
+			for(times = 0; times < 7; times++) {
+				y = r.nextInt(128); 
 				x = chunkX + r.nextInt(16) + 8; 
 				z = chunkZ + r.nextInt(16) + 8;
 				worldMinableGenVanilla(JourneyBlocks.verditeOre, 10, w, x, y, z);
