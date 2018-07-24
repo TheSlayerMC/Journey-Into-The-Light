@@ -339,10 +339,10 @@ public class WorldGenEssence implements IWorldGenerator {
 			y = r.nextInt(20); 
 			x = chunkX + r.nextInt(16) + 8; 
 			z = chunkZ + r.nextInt(16) + 8;
-			worldMinableGenVanilla(JourneyBlocks.shadiumOre, 5, w, x, y, z);
+			worldMinableGenVanilla(JourneyBlocks.shadiumOre, 6, w, x, y, z);
 		}
 		if(r.nextInt(1)==0) {
-			y = r.nextInt(25); 
+			y = r.nextInt(26); 
 			x = chunkX + r.nextInt(16) + 8; 
 			z = chunkZ + r.nextInt(16) + 8;
 			worldMinableGenVanilla(JourneyBlocks.luniumOre, 7, w, x, y, z);
@@ -351,13 +351,13 @@ public class WorldGenEssence implements IWorldGenerator {
 			y = r.nextInt(20); 
 			x = chunkX + r.nextInt(16) + 8; 
 			z = chunkZ + r.nextInt(16) + 8;
-			worldMinableGenVanilla(JourneyBlocks.sapphireOre, 16, w, x, y, z);
+			worldMinableGenVanilla(JourneyBlocks.sapphireOre, 5, w, x, y, z);
 		}
-		if(r.nextInt(1)==0) {
-			y = r.nextInt(6); 
+		for(times = 0; times < 10; times++) {
+			y = r.nextInt(16); 
 			x = chunkX + r.nextInt(16) + 8; 
 			z = chunkZ + r.nextInt(16) + 8;
-			worldMinableGenVanilla(JourneyBlocks.iridiumOre, 4, w, x, y, z);
+			worldMinableGenVanilla(JourneyBlocks.iridiumOre, 5, w, x, y, z);
 		}
 		
 		if (biome == Biomes.JUNGLE) {
