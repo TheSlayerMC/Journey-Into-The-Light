@@ -13,6 +13,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.EnumMaterialTypes;
+import net.slayer.api.SlayerAPI;
 import net.slayer.api.entity.tileentity.container.BlockModContainer;
 
 public class BlockModSpawner extends BlockModContainer {
@@ -27,7 +28,7 @@ public class BlockModSpawner extends BlockModContainer {
 	@Override
 	public TileEntity createNewTileEntity(World world, int par1) {
 		TileEntityMobSpawner spawner = new TileEntityMobSpawner();
-		spawner.getSpawnerBaseLogic().setEntityId(new ResourceLocation("essence." + mobName));
+		spawner.getSpawnerBaseLogic().setEntityId(new ResourceLocation(SlayerAPI.PREFIX + mobName));
 		return spawner;
 	}
 

@@ -245,30 +245,12 @@ public class ChunkProviderEuca implements IChunkGenerator {
 			if(isBlockTop(x, yCoord - 1, z, JourneyBlocks.eucaGrass)) new WorldGenBotSpawner().generate(worldObj, rand, new BlockPos(x, yCoord, z));
 		}
 
-		for(times = 0; times < 280; times++) {
+		for(times = 0; times < 210; times++) {
 			x = x1 + this.rand.nextInt(16) + 8;
 			z = z1 + this.rand.nextInt(16) + 8;
 			int yCoord = rand.nextInt(128) + 1;
 			if(isBlockTop(x, yCoord - 1, z, JourneyBlocks.eucaGrass)) {
 				trees.get(rand.nextInt(trees.size())).generate(worldObj, rand, new BlockPos(x, yCoord, z));
-			}
-		}
-
-		for(times = 0; times < 140; times++) {
-			x = x1 + this.rand.nextInt(16) + 8;
-			z = z1 + this.rand.nextInt(16) + 8;
-			int yCoord = rand.nextInt(128) + 1;
-			if(isBlockTop(x, yCoord - 1, z, JourneyBlocks.eucaGrass)) {
-				new WorldGenEucaTree4().generate(worldObj, rand, new BlockPos(x, yCoord, z));
-			}
-		}
-
-		for(times = 0; times < 140; times++) {
-			x = x1 + this.rand.nextInt(16) + 8;
-			z = z1 + this.rand.nextInt(16) + 8;
-			int yCoord = rand.nextInt(128) + 1;
-			if(isBlockTop(x, yCoord - 1, z, JourneyBlocks.eucaGrass)) {
-				new WorldGenEucaTree5().generate(worldObj, rand, new BlockPos(x, yCoord, z));
 			}
 		}
 	}

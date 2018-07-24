@@ -37,11 +37,4 @@ public class BlockDepthsLeaves extends BlockMod {
 	public BlockRenderLayer getBlockLayer() {
 		return BlockRenderLayer.TRANSLUCENT;
 	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess iba, BlockPos pos, EnumFacing side){
-		Block block = iba.getBlockState(pos).getBlock();
-		return block == this ? false : super.shouldSideBeRendered(blockState, iba, pos, side);
-	}
 }

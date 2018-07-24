@@ -58,8 +58,9 @@ public class BlockCloud extends BlockMod {
 	
 	@Override
 	@SideOnly(Side.CLIENT)
-    public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess iba, BlockPos pos, EnumFacing side){
-		Block block = iba.getBlockState(pos).getBlock();
-        return block == this ? false : super.shouldSideBeRendered(blockState, iba, pos, side);
+    public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
+        IBlockState iblockstate = blockAccess.getBlockState(pos.offset(side));
+        Block block = iblockstate.getBlock();
+        return block == this ? false : super.shouldSideBeRendered(blockState, blockAccess, pos, side);
     }
 }

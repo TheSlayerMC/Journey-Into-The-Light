@@ -13,8 +13,8 @@ public class WorldProviderDepths extends WorldProvider {
 	@Override
 	public void init() {
         this.biomeProvider = new BiomeProviderSingle(DimensionHelper.depths);
-        //this.dimensionId = Config.depths;
         nether = false;
+        this.hasSkyLight = true;
     }
     
     @Override

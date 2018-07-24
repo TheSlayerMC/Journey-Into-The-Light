@@ -107,8 +107,8 @@ public class SlayerAPI {
 	}
 
 	public static void registerMob(Class entityClass, String name, String finalN, int base, int fore) {
-		LangRegistry.addMob(PREFIX + name, finalN);
-		EntityRegistry.registerModEntity(new ResourceLocation(PREFIX + name), entityClass, PREFIX + name, mobID++, JITL.instance, 128, 5, true, base, fore);
+		LangRegistry.addMob(name, finalN);
+		EntityRegistry.registerModEntity(new ResourceLocation(MOD_ID, name), entityClass, name, mobID++, JITL.instance, 128, 5, true, base, fore);
 	}
 	
 	public static void registerEndMob(Class entityClass, String entityName, String finalN) {

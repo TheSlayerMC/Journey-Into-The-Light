@@ -15,6 +15,7 @@ public class WorldProviderCloudia extends WorldProvider {
 	public void init() {
 		this.biomeProvider = new BiomeProviderSingle(DimensionHelper.euca);
 		this.nether = false;
+		this.hasSkyLight = true;
 	}
 	
 	@Override
@@ -23,9 +24,8 @@ public class WorldProviderCloudia extends WorldProvider {
 	}
 
     @Override
-	public int getMoonPhase(long p_76559_1_)
-    {
-        return (int)(p_76559_1_ / 24000L % 8L + 8L) % 8;
+	public int getMoonPhase(long s) {
+        return (int)(s / 24000L % 8L + 8L) % 8;
     }
     
 	@Override

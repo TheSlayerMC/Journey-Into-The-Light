@@ -20,7 +20,7 @@ public class WorldProviderEuca extends WorldProvider {
 	public void init() {
 		this.biomeProvider = new BiomeProviderSingle(DimensionHelper.euca);
 		this.nether = false;
-		hasSkyLight = true;
+		this.hasSkyLight = true;
 	}
 
 	@Override
@@ -31,12 +31,6 @@ public class WorldProviderEuca extends WorldProvider {
 	@Override
 	public float getCloudHeight() {
 		return 128.0F;
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void setSkyRenderer(IRenderHandler skyRenderer) {
-		super.setSkyRenderer(new EucaSkyRenderer());
 	}
 
 	@Override
@@ -64,7 +58,7 @@ public class WorldProviderEuca extends WorldProvider {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public float calculateCelestialAngle(long var1, float var3) {
-		return 0.5F;
+		return 0.18F;
 	}
 
 	@Override

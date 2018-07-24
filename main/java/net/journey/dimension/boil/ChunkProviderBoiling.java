@@ -208,7 +208,7 @@ public class ChunkProviderBoiling implements IChunkGenerator {
 
 	@Override
 	public Chunk generateChunk(int x, int z) {
-		return this.provideChunk(x >> 4, z >> 4);
+		return this.provideChunk(x, z);
 	}
 	
 	public Chunk provideChunk(int x, int z) {

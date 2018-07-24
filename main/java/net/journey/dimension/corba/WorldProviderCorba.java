@@ -15,6 +15,7 @@ public class WorldProviderCorba extends WorldProvider {
 	public void init() {
 		this.biomeProvider = new BiomeProviderSingle(DimensionHelper.corba);
 		this.nether = false;
+		hasSkyLight = true;
 	}
 	
 	@Override

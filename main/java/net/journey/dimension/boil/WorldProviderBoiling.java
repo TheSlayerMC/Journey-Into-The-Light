@@ -17,6 +17,7 @@ public class WorldProviderBoiling extends WorldProvider {
 	public void init() {
 		this.biomeProvider = new BiomeProviderSingle(DimensionHelper.boiling);
 		nether = true;
+		hasSkyLight = true;
 	}
 	
 	@Override

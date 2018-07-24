@@ -10,12 +10,13 @@ import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class WorldProviderFrozenLands extends WorldProvider{
+public class WorldProviderFrozenLands extends WorldProvider {
 
 	@Override
 	public void init(){
 		this.biomeProvider = new BiomeProviderSingle(DimensionHelper.euca);
 		this.nether = false;
+		this.hasSkyLight = true;
 	}
 	
 	@Override

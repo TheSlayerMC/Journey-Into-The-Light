@@ -70,7 +70,7 @@ public class CommonProxy {
 		JourneyMiscRecipes.init();
 		JourneySmeltingRecipes.init();
 		JourneyWeaponRecipes.init();
-		
+		GameRegistry.registerTileEntity(TileEntityJourneyChest.class, "Journey Chest");
 		//BiomeDictionary.addTypes(new BiomeHell(), Type.NETHER);
 		DimensionHelper.addSpawns();
 		
@@ -91,7 +91,6 @@ public class CommonProxy {
 	public void init(FMLInitializationEvent event) {
 		GameRegistry.registerWorldGenerator(new WorldGenEssence(), 2);
 		SlayerAPI.registerEvent(new PlayerEvent());
-		
 	}
 	
     @SubscribeEvent

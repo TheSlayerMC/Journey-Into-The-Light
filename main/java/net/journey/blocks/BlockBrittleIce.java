@@ -3,6 +3,7 @@ package net.journey.blocks;
 import net.journey.JourneyTabs;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -44,8 +45,9 @@ public class BlockBrittleIce extends BlockModGrass {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess iba, BlockPos pos, EnumFacing side) {
-		Block block = iba.getBlockState(pos).getBlock();
-		return block == this ? false : super.shouldSideBeRendered(blockState, iba, pos, side);
-	}
+    public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
+        IBlockState iblockstate = blockAccess.getBlockState(pos.offset(side));
+        Block block = iblockstate.getBlock();
+        return block == this ? false : super.shouldSideBeRendered(blockState, blockAccess, pos, side);
+    }
 }

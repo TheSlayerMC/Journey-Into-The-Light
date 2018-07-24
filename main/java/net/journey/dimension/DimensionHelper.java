@@ -144,8 +144,8 @@ public class DimensionHelper {
 		addDimension(Config.cloudia, cloudiaType);
 		addDimension(Config.corba, corbaType);
 		addDimension(Config.depths, depthsType);
-		/*addDimension(Config.frozen, frozenType);
-		addDimension(Config.terrania, terraniaType);
+		addDimension(Config.frozen, frozenType);
+		/*addDimension(Config.terrania, terraniaType);
 		addDimension(Config.golden, goldenType);
 		addDimension(Config.senterian, senterianType); */
 	}
