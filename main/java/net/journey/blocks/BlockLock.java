@@ -54,9 +54,11 @@ public class BlockLock extends BlockMod {
 	
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		if(playerIn.getHeldItemMainhand() !=null && playerIn.getHeldItemMainhand().getItem() == key ) {
-			EnumSounds.playSound(EnumSounds.UNLOCK, worldIn, playerIn);
-			EnumSounds.playSound(EnumSounds.CREAK, worldIn, playerIn);
+		System.out.print("OOGA BOOGA POOPOO HAHA GET IT");
+		if(!worldIn.isRemote && playerIn.getHeldItem(hand) !=null && playerIn.getHeldItem(hand).getItem() == key ) {
+			//EnumSounds.playSound(EnumSounds.UNLOCK, worldIn, playerIn);
+			//EnumSounds.playSound(EnumSounds.CREAK, worldIn, playerIn);
+			System.out.print("SHIT TURD FUCK BITCH");
 			worldIn.setBlockState(pos.add(0, 0, 0), Blocks.AIR.getDefaultState());
 			worldIn.setBlockState(pos.add(0, 1, 0), Blocks.AIR.getDefaultState());
 			worldIn.setBlockState(pos.add(0, 0, 1), Blocks.AIR.getDefaultState());

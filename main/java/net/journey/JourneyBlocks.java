@@ -237,7 +237,7 @@ public class JourneyBlocks {
 	public static BlockMod nethicDungeonBricks;
 	public static BlockMod boilChain;
 	public static BlockMod boilGate;
-	public static BlockMod boilLock;
+	public static Block boilLock;
 
 	public static BlockMod darklyGate;
 	public static BlockMod darklyLock;
@@ -639,7 +639,7 @@ public class JourneyBlocks {
 		nethicDungeonBricks = new BlockMod("nethicDungeonBricks", "Nethic Dungeon Bricks");
 		boilChain = (BlockMod) new BlockModBars("boilChain", "Boil Chain", 5.0F).setBlockUnbreakable().setResistance(10000000.0F);
 		boilGate = (BlockMod) new BlockModBars("boilGate", "Boil Gate", 5.0F).setBlockUnbreakable().setResistance(10000000.0F);
-		boilLock = (BlockMod) new BlockLock("boilLock", "Boil Lock", JourneyItems.boilKey).setBlockUnbreakable().setResistance(10000000.0F);
+		boilLock = new BlockLock("boilLock", "Boil Lock", JourneyItems.boilKey).setBlockUnbreakable().setResistance(10000000.0F);
 
 		darklyGate = (BlockMod) new BlockModBars("darklyGate", "Darkly Gate", 5.0F).setBlockUnbreakable().setResistance(10000000.0F);
 		darklyLock = (BlockMod) new BlockLock("darklyLock", "Darkly Lock", JourneyItems.darkKey).setBlockUnbreakable().setResistance(10000000.0F);
