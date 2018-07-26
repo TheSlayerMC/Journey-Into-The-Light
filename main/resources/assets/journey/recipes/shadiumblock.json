@@ -12,13 +12,13 @@
     {
         "R":
         {
-            "item": "journey:sapphire"
+            "item": "journey:shadiumIngot"
         }
     },
    
     "result":
     {
-        "item": "journey:sapphireBlock",
+        "item": "journey:shadiumBlock",
         "count": 1
     }
 }

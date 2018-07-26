@@ -3,9 +3,9 @@
    
     "pattern":
     [
-        "RRR",
-        "RRR",
-        "RRR"
+        "R",
+        "R",
+        "I"
     ],
    
     "key":
@@ -13,12 +13,17 @@
         "R":
         {
             "item": "journey:sapphire"
+        },
+
+        "I":
+        {
+            "item": "journey:obsidianrod"
         }
     },
    
     "result":
     {
-        "item": "journey:sapphireBlock",
+        "item": "journey:sapphiresword",
         "count": 1
     }
 }

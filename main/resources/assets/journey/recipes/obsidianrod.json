@@ -3,22 +3,21 @@
    
     "pattern":
     [
-        "RRR",
-        "RRR",
-        "RRR"
+        "R",
+        "R"
     ],
    
     "key":
     {
         "R":
         {
-            "item": "journey:sapphire"
+            "item": "minecraft:obsidian"
         }
     },
    
     "result":
     {
-        "item": "journey:sapphireBlock",
-        "count": 1
+        "item": "journey:obsidianrod",
+        "count": 8
     }
 }

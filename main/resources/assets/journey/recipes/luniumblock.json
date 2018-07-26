@@ -12,13 +12,13 @@
     {
         "R":
         {
-            "item": "journey:sapphire"
+            "item": "journey:luniumIngot"
         }
     },
    
     "result":
     {
-        "item": "journey:sapphireBlock",
+        "item": "journey:luniumBlock",
         "count": 1
     }
 }

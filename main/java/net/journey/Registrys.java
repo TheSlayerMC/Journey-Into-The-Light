@@ -1,12 +1,14 @@
 package net.journey;
 
 import net.journey.client.IHasModel;
+import net.journey.util.recipes.JourneySmeltingRecipes;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.slayer.api.SlayerAPI;
 
 @EventBusSubscriber(modid=SlayerAPI.MOD_ID)
@@ -16,7 +18,6 @@ public class Registrys {
 	public static void registerItems(RegistryEvent.Register<Item> event) {
 		for(int i = 0; i < JourneyItems.items.size(); i++)
 			event.getRegistry().registerAll(JourneyItems.items.get(i));
-		JourneyBlocks.registerItemBlocks(event.getRegistry());
 	}
 	
 	@SubscribeEvent
@@ -45,5 +46,8 @@ public class Registrys {
 			if(item instanceof IHasModel)
 				((IHasModel)item).registerModels(event);
 	}
-
+	
+	public static void otherRegistries() {
+		JourneySmeltingRecipes.init();
+	}
 }

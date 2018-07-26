@@ -4,6 +4,7 @@ import java.util.Random;
 
 import net.journey.JITL;
 import net.journey.JourneyBlocks;
+import net.journey.JourneyItems;
 import net.journey.JourneyTabs;
 import net.journey.util.LangRegistry;
 import net.minecraft.block.Block;
@@ -68,6 +69,7 @@ public class BlockMod extends Block {
 		JourneyBlocks.blocks.add(this);
 		JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
 		setRegistryName(SlayerAPI.MOD_ID, name);
+		JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
 	}
 
 	public BlockMod(EnumMaterialTypes blockType, String name, String finalName, float hardness, CreativeTabs tab) {
@@ -83,6 +85,7 @@ public class BlockMod extends Block {
 		JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
 		JourneyBlocks.blocks.add(this);
 		setRegistryName(SlayerAPI.MOD_ID, name);
+		JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
 	}
 	
 	public void registerItemModel(Item itemBlock) {

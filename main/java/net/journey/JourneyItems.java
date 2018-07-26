@@ -169,7 +169,7 @@ public class JourneyItems {
 	public static Item luniumIngot;
 	public static Item flairiumIngot;
 	public static Item ash;
-	public static ItemMod sapphire;
+	public static Item sapphire;
 	public static Item blazium;
 	public static Item enderilliumShard;
 	public static Item orbaditeIngot;
@@ -177,6 +177,8 @@ public class JourneyItems {
 	public static Item desIngot;
 	
 	public static Item verditeIngot;
+	
+	public static Item obsidianrod;
 
 	public static Item elderKey;
 	public static Item boilPowder;
@@ -839,6 +841,7 @@ public class JourneyItems {
 		gorbiteGem = new ItemMod("gorbiteGem", "Gorbite Gem");
 		desIngot = new ItemMod("desIngot", "Des Ingot");
 
+		obsidianrod = new ItemMod("obsidianrod", "Obsidian Rod");
 		elderKey = new ItemMod("elderKey", "Elder Key").setMaxStackSize(1);
 		boilPowder = new ItemMod("boilPowder", "Boiling Powder");
 		blazingFireball = new ItemMod("blazingFireball", "Blazing Fireball");

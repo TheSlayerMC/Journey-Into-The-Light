@@ -194,7 +194,7 @@ public class EntityRendering {
 		RenderingRegistry.registerEntityRenderingHandler(EntityShiverwolf.class, new RenderModMob(new ModelShiverwolf(), Textures.shiverwolf));
 		RenderingRegistry.registerEntityRenderingHandler(EntityShiveringShrieker.class, new RenderModMob(new ModelShiveringShrieker(), Textures.shiveringShrieker));
 		RenderingRegistry.registerEntityRenderingHandler(EntityFrozenFrostbiter.class, new RenderModMob(new ModelFrozenFrostbiter(), Textures.frozenFrostbiter));
-		RenderingRegistry.registerEntityRenderingHandler(EntityWraith.class, new RenderModMob(new ModelWraith(), Textures.wraith));
+		RenderingRegistry.registerEntityRenderingHandler(EntityWraith.class, new RenderWraith(new ModelWraith(), Textures.wraith));
 		RenderingRegistry.registerEntityRenderingHandler(EntityPhoenix.class, new RenderModMob(new ModelRoc(), Textures.phoenix));
 		RenderingRegistry.registerEntityRenderingHandler(EntityCloudFlyer.class, new RenderModMob(new ModelRoc(), Textures.cloudFlyer));
 		RenderingRegistry.registerEntityRenderingHandler(EntityWoodpecker.class, new RenderModMob(new ModelRoc(), Textures.woodpecker));

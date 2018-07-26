@@ -864,7 +864,7 @@ public class JourneyBlocks {
 		
 	    }
 	 
-		public static void registerItemBlocks(IForgeRegistry<Item> registry) {
+		/*public static void registerItemBlocks(IForgeRegistry<Item> registry) {
 			System.out.print("Loading Journey ItemBlocks");
 			registry.registerAll(
 					iridiumOre.createItemBlock(), 
@@ -1176,6 +1176,6 @@ public class JourneyBlocks {
 					netherFurnace.createItemBlock(),
 					netherFurnaceActive.createItemBlock(),
 					bleedheartFruit.createItemBlock());
-			System.out.print("Journey ItemBlocks loaded successfully");
-		}
+			System.out.print("Journey ItemBlocks loaded successfully"); 
+		}*/
 }
