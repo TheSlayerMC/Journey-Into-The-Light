@@ -60,11 +60,11 @@ public class SlayerAPI {
 	}
 	
 	public static ToolMaterial addMeleeMaterial(int uses, float efficiency, float dam) {
-		return EnumHelper.addToolMaterial("tool", 3, uses, efficiency, dam, 30);
+		return EnumHelper.addToolMaterial("tool", 3, uses, dam, efficiency, 30);
 	}
 	
 	public static ToolMaterial addAxeMaterial(int uses, int level, float efficiency, float dam, int enchant) {
-		return EnumHelper.addToolMaterial("tool", level, uses, efficiency, dam, enchant);
+		return EnumHelper.addToolMaterial("tool", level, uses, dam, efficiency, enchant);
 	}
 	
 	@SideOnly(Side.CLIENT)

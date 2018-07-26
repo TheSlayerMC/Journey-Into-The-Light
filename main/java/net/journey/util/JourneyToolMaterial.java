@@ -90,7 +90,7 @@ public enum JourneyToolMaterial {
 	ROCKY_HAMMER(SlayerAPI.addMeleeMaterial(2230, 8, 25)),
 	CRYSTAL_HAMMER(SlayerAPI.addMeleeMaterial(3320, 9, 25)),
 	
-	DEVELOPER_SWORD(SlayerAPI.addMeleeMaterial(3000, 9000, 25)),
+	DEVELOPER_SWORD(SlayerAPI.addMeleeMaterial(3000, 9000, 1000)),
 	
 	HELLSTONE_MULTI_TOOL(JourneyItems.hellstoneMulti, JourneyItems.hellstoneIngot, 3),
 	FLAIRIUM_MULTI_TOOL(JourneyItems.flairiumMulti, JourneyItems.flairiumIngot, 3),
