@@ -24,7 +24,7 @@ import net.slayer.api.block.BlockMod;
 
 public class BlockModFire extends BlockMod {
 
-    protected static final AxisAlignedBB AABB_BLOCK = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.0D, 0.0000000000000000001F, 0.0D);
+    protected static final AxisAlignedBB AABB_BLOCK = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.0D, 1.0D);
     
 	public BlockModFire(String name, String finalN) {
 		super(EnumMaterialTypes.FIRE, name, finalN, 0.0F);

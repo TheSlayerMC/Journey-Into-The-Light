@@ -111,7 +111,7 @@ public class ChunkProviderCorba implements IChunkGenerator {
 				int l1 = (l + j1 + 1) * 33;
 				int i2 = (i1 + j1) * 33;
 				int j2 = (i1 + j1 + 1) * 33;
-				for(int k2 = 0; k2 < 32; ++k2) {
+				for(int k2 = 0; k2 < 4; ++k2) {
 					double d0 = 0.125D;
 					double d1 = this.da[k1 + k2];
 					double d2 = this.da[l1 + k2];
@@ -136,7 +136,7 @@ public class ChunkProviderCorba implements IChunkGenerator {
 
 							for (int j3 = 0; j3 < 4; ++j3) {
 								if ((d15 += d16) > 0.0D) {
-									p_180518_3_.setBlockState(k * 4 + i3, k2 * 8 + l2, j1 * 4 + j3, JourneyBlocks.corbaStone.getDefaultState());
+									p_180518_3_.setBlockState(k * 4 + i3, k2 * 2 + l2, j1 * 4 + j3, JourneyBlocks.corbaStone.getDefaultState());
 								}
 							}
 
@@ -187,16 +187,16 @@ public class ChunkProviderCorba implements IChunkGenerator {
 							iblockstate = null;
 							iblockstate1 = JourneyBlocks.corbaStone.getDefaultState();
 						}
-						else if(k1 >= 59 && k1 <= 64) {
+						else if(k1 >= 7 && k1 <= 8) {
 							iblockstate = JourneyBlocks.corbaGrass.getDefaultState();
 							iblockstate1 = JourneyBlocks.corbaStone.getDefaultState();
 						}
 
-						if(k1 < 63 && (iblockstate == null || iblockstate.getBlock().getMaterial(iblockstate2) == Material.AIR))
+						if(k1 < 8 && (iblockstate == null || iblockstate.getBlock().getMaterial(iblockstate2) == Material.AIR))
 							iblockstate = JourneyBlocks.corbaStone.getDefaultState();
 						k = l;
-						if(k1 >= 62) c.setBlockState(j1, k1, i1, iblockstate);
-						else if(k1 < 56 - l) {
+						if(k1 >= 8) c.setBlockState(j1, k1, i1, iblockstate);
+						else if(k1 < 7 - l) {
 							iblockstate = null;
 							iblockstate1 = JourneyBlocks.corbaStone.getDefaultState();
 						} 
