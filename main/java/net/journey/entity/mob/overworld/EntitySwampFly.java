@@ -34,11 +34,7 @@ public class EntitySwampFly extends EntityModFlying {
 
 	@Override
 	public boolean getCanSpawnHere() {
-		return 
-				this.world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.GRASS || 
-				this.world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.LEAVES || 
-				this.world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.SAND || 
-				this.world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.DIRT;
+		return this.world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).isFullBlock();
 	}
 
 	public int getBrightnessForRender(float p_70070_1_)

@@ -320,8 +320,8 @@ public class DimensionHelper {
 		for(Biome b : Biome.REGISTRY) {
 			Biome biome = b;
 			if (biome != null) {
-				EntityRegistry.addSpawn(EntitySpectre.class, amount, 1, 1, EnumCreatureType.MONSTER, biome);
-				EntityRegistry.addSpawn(EntityWraith.class, amount, 1, 1, EnumCreatureType.MONSTER, biome);
+				EntityRegistry.addSpawn(EntitySpectre.class, 20, 1, 1, EnumCreatureType.MONSTER, biome);
+				EntityRegistry.addSpawn(EntityWraith.class, 20, 1, 1, EnumCreatureType.MONSTER, biome);
 			}
 		}
     }

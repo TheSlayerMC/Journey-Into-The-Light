@@ -111,13 +111,10 @@ public class EntityBoom extends EntityModMob {
 
 	@Override
 	public boolean getCanSpawnHere() {
-		return 
-			   this.world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.GRASS || 
-			   		this.world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.LEAVES || 
-			   			this.world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.SAND || 
-			   				this.world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.DIRT;
+		return 	this.isValidLightLevel() && 
+				this.world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).isFullBlock();
 	}
-
+	
 	@Override
 	public Item getItemDropped() {
 		return null;

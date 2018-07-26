@@ -104,13 +104,10 @@ public class EntityFireMage extends EntityModMob implements IRangedAttackMob {
 
 	@Override
 	public boolean getCanSpawnHere() {
-		return 
-				this.world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.GRASS || 
-				this.world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.LEAVES || 
-				this.world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.SAND || 
-				this.world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.DIRT && this.isValidLightLevel();
+		return 	this.isValidLightLevel() && 
+				this.world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).isFullBlock();
 	}
-
+	
 	@Override
 	public double setAttackDamage(MobStats s) {
 		return 0;
