@@ -57,6 +57,8 @@ public class BlockTerraniaPortal extends BlockBreakable {
 		JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
 		JourneyBlocks.blocks.add(this);
 		setRegistryName(SlayerAPI.MOD_ID, name);
+		
+		JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
 	}
 	
 	@Override

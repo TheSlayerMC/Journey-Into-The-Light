@@ -4,6 +4,7 @@ import java.util.Random;
 
 import net.journey.JITL;
 import net.journey.JourneyBlocks;
+import net.journey.JourneyItems;
 import net.journey.JourneyTabs;
 import net.journey.client.render.particles.EntityFrozenPotalFX;
 import net.journey.dimension.ModTeleporter;
@@ -57,6 +58,8 @@ public class BlockFrozenPortal extends BlockBreakable {
 		JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
 		JourneyBlocks.blocks.add(this);
 		setRegistryName(SlayerAPI.MOD_ID, name);
+		
+		JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
 	}
 	
 	@Override

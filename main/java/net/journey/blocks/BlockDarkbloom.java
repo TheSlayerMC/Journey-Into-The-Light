@@ -4,6 +4,7 @@ import java.util.Random;
 
 import net.journey.JITL;
 import net.journey.JourneyBlocks;
+import net.journey.JourneyItems;
 import net.journey.JourneyTabs;
 import net.journey.util.LangRegistry;
 import net.minecraft.block.Block;
@@ -40,6 +41,8 @@ public class BlockDarkbloom extends Block {
 		setRegistryName(SlayerAPI.MOD_ID, name);
 		JourneyBlocks.blocks.add(this);
 		JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
+		
+		JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
 	}
 
 	@Override

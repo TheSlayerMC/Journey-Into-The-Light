@@ -2,6 +2,7 @@ package net.slayer.api.block;
 
 import net.journey.JITL;
 import net.journey.JourneyBlocks;
+import net.journey.JourneyItems;
 import net.journey.JourneyTabs;
 import net.journey.util.LangRegistry;
 import net.minecraft.block.Block;
@@ -25,6 +26,8 @@ public class BlockModStairs extends BlockStairs {
 		JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
 		JourneyBlocks.blocks.add(this);
 		setRegistryName(SlayerAPI.MOD_ID, name);
+		
+		JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
 	}
 	
 	public BlockModStairs(Block b, String n, String n2) {

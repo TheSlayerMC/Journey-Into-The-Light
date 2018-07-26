@@ -1,9 +1,11 @@
 package net.journey.blocks.base;
 
 import net.journey.JourneyBlocks;
+import net.journey.JourneyItems;
 import net.journey.JourneyTabs;
 import net.minecraft.block.BlockRail;
 import net.minecraft.entity.item.EntityMinecart;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.slayer.api.SlayerAPI;
@@ -21,6 +23,8 @@ public class BlockModRail extends BlockRail {
 		power = isPowered;
 		this.speed = speed;
 		setRegistryName(SlayerAPI.MOD_ID, name);
+		
+		JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
 	}
 	
 	@Override
