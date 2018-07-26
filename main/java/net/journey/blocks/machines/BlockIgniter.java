@@ -35,14 +35,17 @@ public class BlockIgniter extends BlockMod {
 	@Override
     public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state) {
         if (!worldIn.isRemote) {
-            if (worldIn.isBlockPowered(pos)) {
-            	worldIn.playSound((double)((float)pos.getX() + 0.5F), (double)((float)pos.getY() + 0.5F), (double)((float)pos.getZ() + 0.5F), SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 1.0F + rand.nextFloat(), rand.nextFloat() * 0.7F + 0.3F, false);
+            if (worldIn.isBlockPowered(pos) && worldIn.isAirBlock(pos.up())) {
+            	worldIn.playSound(null, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, worldIn.rand.nextFloat()*0.4F+0.8F);
             	worldIn.setBlockState(pos.up(), Blocks.FIRE.getDefaultState());
             	worldIn.setBlockState(pos, JourneyBlocks.igniterOn.getDefaultState());
             }
-			if (!worldIn.isBlockPowered(pos)) {
+			if (!worldIn.isBlockPowered(pos) && worldIn.getBlockState(pos.up()).getBlock() == Blocks.FIRE) {
 				worldIn.setBlockToAir(pos.up());
             	worldIn.setBlockState(pos, JourneyBlocks.igniter.getDefaultState());
+			}
+			if (worldIn.isBlockPowered(pos) && worldIn.getBlockState(pos.up()).getBlock() != Blocks.FIRE) {
+				worldIn.setBlockState(pos, JourneyBlocks.igniter.getDefaultState());
 			}
         }
     }
@@ -50,14 +53,17 @@ public class BlockIgniter extends BlockMod {
 	@Override
     public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
 		if(!worldIn.isRemote) {
-			if(worldIn.isBlockPowered(pos)) {
-            	worldIn.playSound((double)((float)pos.getX() + 0.5F), (double)((float)pos.getY() + 0.5F), (double)((float)pos.getZ() + 0.5F), SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 1.0F + rand.nextFloat(), rand.nextFloat() * 0.7F + 0.3F, false);
-				worldIn.setBlockState(pos.up(), Blocks.FIRE.getDefaultState());
+			if(worldIn.isBlockPowered(pos) && worldIn.isAirBlock(pos.up())) {
+            	worldIn.playSound(null, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, worldIn.rand.nextFloat()*0.4F+0.8F);
+            	worldIn.setBlockState(pos.up(), Blocks.FIRE.getDefaultState());
             	worldIn.setBlockState(pos, JourneyBlocks.igniterOn.getDefaultState());
 			}
-			if (!worldIn.isBlockPowered(pos)) {
+			if (!worldIn.isBlockPowered(pos) && worldIn.getBlockState(pos.up()).getBlock() == Blocks.FIRE) {
 				worldIn.setBlockToAir(pos.up());
             	worldIn.setBlockState(pos, JourneyBlocks.igniter.getDefaultState());
+			}
+			if (worldIn.isBlockPowered(pos) && worldIn.getBlockState(pos.up()).getBlock() != Blocks.FIRE) {
+				worldIn.setBlockState(pos, JourneyBlocks.igniter.getDefaultState());
 			}
 		}
 	}
@@ -73,5 +79,5 @@ public class BlockIgniter extends BlockMod {
             	worldIn.setBlockState(pos, JourneyBlocks.igniter.getDefaultState());
 			}
 		}
-	}
+	} 
 }
