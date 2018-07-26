@@ -15,7 +15,6 @@ import net.slayer.api.entity.EntityModMob;
 
 public class EntityWraith extends EntityModMob {
 
-	
 	public EntityWraith(World par1World) {
 		super(par1World);
 		addAttackingAI();
@@ -28,7 +27,7 @@ public class EntityWraith extends EntityModMob {
 			   this.world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.GRASS || 
 			   		this.world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.LEAVES || 
 			   			this.world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.SAND || 
-			   				this.world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.DIRT;
+			   				this.world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.DIRT && this.isValidLightLevel();
 	}
 
 	@Override
@@ -109,9 +108,7 @@ public class EntityWraith extends EntityModMob {
 	@Override
 	protected void dropFewItems(boolean b, int j) {
 		if(rand.nextInt(5) == 0) dropItem(JourneyItems.demonicDust, 1);
-		super.dropFewItems(b, j);
 		if(rand.nextInt(10) == 0) dropItem(JourneyItems.demonicDust, 2);
-		super.dropFewItems(b, j);
 		if(rand.nextInt(20) == 0) dropItem(JourneyItems.demonicDust, 5);
 		super.dropFewItems(b, j);
 		

@@ -50,6 +50,7 @@ public class EntityMediumHongo extends EntityModMob {
 			   			this.world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.SAND || 
 			   				this.world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.DIRT;
 	}
+	
 	@Override
 	public Item getItemDropped() {
 		return JourneyItems.hongoShroom;

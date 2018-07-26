@@ -1,5 +1,8 @@
 package net.journey.dimension;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.journey.dimension.boil.BiomeGenBoiling;
 import net.journey.dimension.boil.WorldProviderBoiling;
 import net.journey.dimension.cloudia.BiomeGenCloudia;
@@ -91,6 +94,7 @@ import net.journey.entity.mob.terrania.mob.EntityTerrashroom;
 import net.journey.entity.mob.terrania.mob.EntityTerraslug;
 import net.journey.util.Config;
 import net.journey.util.LogHelper;
+import net.minecraft.block.Block;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.monster.EntitySnowman;
 import net.minecraft.init.Biomes;
@@ -316,8 +320,8 @@ public class DimensionHelper {
 		for(Biome b : Biome.REGISTRY) {
 			Biome biome = b;
 			if (biome != null) {
-				EntityRegistry.addSpawn(EntitySpectre.class, amount, 1, 1, EnumCreatureType.CREATURE, biome);
-				EntityRegistry.addSpawn(EntityWraith.class, amount, 1, 1, EnumCreatureType.CREATURE, biome);
+				EntityRegistry.addSpawn(EntitySpectre.class, amount, 1, 1, EnumCreatureType.MONSTER, biome);
+				EntityRegistry.addSpawn(EntityWraith.class, amount, 1, 1, EnumCreatureType.MONSTER, biome);
 			}
 		}
     }
