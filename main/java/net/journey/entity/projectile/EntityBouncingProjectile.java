@@ -4,11 +4,14 @@ import java.util.Random;
 
 import net.journey.client.render.particles.EntityBouncingFX;
 import net.journey.client.render.particles.EntityConjuringFX;
+import net.minecraft.client.particle.Particle;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
@@ -30,7 +33,7 @@ public class EntityBouncingProjectile extends EntityThrowable {
 		Random rand = new Random();
 		super.onUpdate();
 		for(int i = 0; i < 6; ++i) {
-			EntityFX effect = new EntityBouncingFX(this.worldObj, this.posX, this.posY - 1.0F, this.posZ, 0.0D, 0.0D, 0.0D);
+			Particle effect = new EntityBouncingFX(this.world, this.posX, this.posY - 1.0F, this.posZ, 0.0D, 0.0D, 0.0D);
 			FMLClientHandler.instance().getClient().effectRenderer.addEffect(effect);
 		}
 	}
@@ -48,10 +51,10 @@ public class EntityBouncingProjectile extends EntityThrowable {
 	}
 
 	@Override
-	protected void onImpact(MovingObjectPosition par1) {
+	protected void onImpact(RayTraceResult par1) {
 		if(par1.entityHit != null && par1.entityHit != this.thrower) {
 			par1.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.thrower), this.damage);
-			if(!this.worldObj.isRemote) this.setDead();
+			if(!this.world.isRemote) this.setDead();
 			return;
 		}
 		if(par1.sideHit == EnumFacing.UP || par1.sideHit == EnumFacing.DOWN) {
@@ -66,9 +69,9 @@ public class EntityBouncingProjectile extends EntityThrowable {
 		float f = (this.rand.nextFloat() - 0.0F) * 0.0F;
         float f1 = (this.rand.nextFloat() - 0.0F) * 0.0F;
         float f2 = (this.rand.nextFloat() - 0.0F) * 0.0F;
-        this.worldObj.playAuxSFX(1055, new BlockPos(this), 4);
+        this.world.playBroadcastSound(1055, new BlockPos(this), 4);
 		if(this.bounces == maxBounces) this.setDead();
-		if(this.bounces == maxBounces) this.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_LARGE, this.posX + f, this.posY + 0.0D + f1, this.posZ + f2, 0.0D, 0.0D, 0.0D, new int[0]);
-		else this.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, this.posX + f, this.posY + 0.0D + f1, this.posZ + f2, 0.0D, 0.0D, 0.0D, new int[0]);
+		if(this.bounces == maxBounces) this.world.spawnParticle(EnumParticleTypes.EXPLOSION_LARGE, this.posX + f, this.posY + 0.0D + f1, this.posZ + f2, 0.0D, 0.0D, 0.0D, new int[0]);
+		else this.world.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, this.posX + f, this.posY + 0.0D + f1, this.posZ + f2, 0.0D, 0.0D, 0.0D, new int[0]);
 	}
 }

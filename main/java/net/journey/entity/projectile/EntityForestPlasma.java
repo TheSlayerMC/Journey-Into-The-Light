@@ -5,6 +5,7 @@ import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 public class EntityForestPlasma extends EntityThrowable {
@@ -18,12 +19,12 @@ public class EntityForestPlasma extends EntityThrowable {
 	}
 	
 	@Override
-	protected void onImpact(MovingObjectPosition var1) {
+	protected void onImpact(RayTraceResult var1) {
 		if(var1.entityHit != null && var1.entityHit instanceof EntityLivingBase) {
 			var1.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), 10);
 			((EntityLivingBase)var1.entityHit).addPotionEffect(new PotionEffect(Potion.poison.id, 100, 2));
 		}
-		if(!worldObj.isRemote) this.setDead();
+		if(!world.isRemote) this.setDead();
 	}
 
 	@Override

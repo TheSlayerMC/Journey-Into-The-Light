@@ -4,6 +4,7 @@ import java.util.Random;
 
 import net.journey.client.render.particles.EntityEarthenFX;
 import net.journey.client.render.particles.EntityEnlightmentFX;
+import net.minecraft.client.particle.Particle;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.client.FMLClientHandler;
@@ -26,7 +27,7 @@ public class EntityEarthen extends EntityBasicProjectile {
 		Random rand = new Random();
 		super.onUpdate();
 		for(int i = 0; i < 6; ++i) {
-			EntityFX effect = new EntityEarthenFX(this.worldObj, this.posX, this.posY - 1.0F, this.posZ, 0.0D, 0.0D, 0.0D);
+			Particle effect = new EntityEarthenFX(this.world, this.posX, this.posY - 1.0F, this.posZ, 0.0D, 0.0D, 0.0D);
 			FMLClientHandler.instance().getClient().effectRenderer.addEffect(effect);
 		}
 	}

@@ -3,6 +3,7 @@ package net.journey.entity.projectile;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 public class EntityNethicPiercer extends EntityThrowable {
@@ -27,9 +28,9 @@ public class EntityNethicPiercer extends EntityThrowable {
 	}
 
 	@Override
-	protected void onImpact(MovingObjectPosition var1) {
+	protected void onImpact(RayTraceResult var1) {
 		if(var1.entityHit != null) var1.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), damage);
-		if(!worldObj.isRemote) this.setDead();
+		if(!world.isRemote) this.setDead();
 	}
 
 	@Override

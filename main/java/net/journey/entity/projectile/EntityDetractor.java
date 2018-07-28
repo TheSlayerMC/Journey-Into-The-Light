@@ -2,6 +2,7 @@ package net.journey.entity.projectile;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 public class EntityDetractor extends EntityThrowable {
@@ -16,7 +17,7 @@ public class EntityDetractor extends EntityThrowable {
     }
 
     @Override
-    public void onImpact(MovingObjectPosition position) {
+    public void onImpact(RayTraceResult position) {
         if(position.entityHit != null && this.getThrower() != null) { double 
         	x = (position.entityHit.posX-this.getThrower().posX)/2, 
             y = (position.entityHit.posY-this.getThrower().posY)/2, 

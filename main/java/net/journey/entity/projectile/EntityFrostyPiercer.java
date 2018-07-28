@@ -4,6 +4,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 public class EntityFrostyPiercer extends EntityThrowable {
@@ -21,13 +22,14 @@ public class EntityFrostyPiercer extends EntityThrowable {
 		this.damage = dam;
 		this.thrower = var3;
 		this.maxBounces = max;
+		this.setVelocity(this.motionX * 0.01D, this.motionY * 0.01D, this.motionZ * 0.01D);
 	}
 
 	@Override
-	protected void onImpact(MovingObjectPosition par1) {
+	protected void onImpact(RayTraceResult par1) {
 		if(par1.entityHit != null && par1.entityHit != this.thrower) {
 			par1.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.thrower), this.damage);
-			if(!this.worldObj.isRemote) this.setDead();
+			if(!this.world.isRemote) this.setDead();
 			return;
 		}
 		if(par1.sideHit == EnumFacing.UP || par1.sideHit == EnumFacing.DOWN) {

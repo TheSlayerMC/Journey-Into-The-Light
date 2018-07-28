@@ -3,6 +3,7 @@ package net.journey.entity.projectile;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 public class EntityRockProjectile extends EntityThrowable {
@@ -19,9 +20,9 @@ public class EntityRockProjectile extends EntityThrowable {
 	}
 
 	@Override
-	protected void onImpact(MovingObjectPosition mop) {
+	protected void onImpact(RayTraceResult mop) {
 		if(mop.entityHit != null) mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), damage);
-		if(!worldObj.isRemote) this.setDead();
+		if(!world.isRemote) this.setDead();
 	}
 	
 	@Override

@@ -4,6 +4,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 public class EntityBoilingPiercer extends EntityThrowable {
@@ -24,11 +25,11 @@ public class EntityBoilingPiercer extends EntityThrowable {
 	}
 
 	@Override
-	protected void onImpact(MovingObjectPosition par1) {
+	protected void onImpact(RayTraceResult par1) {
 		if(par1.entityHit != null && par1.entityHit != this.thrower) {
 			par1.entityHit.setFire(10);
 			par1.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.thrower), this.damage);
-			if(!this.worldObj.isRemote) this.setDead();
+			if(!this.world.isRemote) this.setDead();
 			return;
 		}
 	}

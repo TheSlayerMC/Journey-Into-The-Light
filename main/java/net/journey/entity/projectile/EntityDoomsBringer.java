@@ -3,6 +3,7 @@ package net.journey.entity.projectile;
 import java.util.Random;
 
 import net.journey.client.render.particles.EntityDoomFX;
+import net.minecraft.client.particle.Particle;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.client.FMLClientHandler;
@@ -25,7 +26,7 @@ public class EntityDoomsBringer extends EntityBasicProjectile {
 		Random rand = new Random();
 		super.onUpdate();
 		for(int i = 0; i < 6; ++i) {
-			EntityFX effect = new EntityDoomFX(this.worldObj, this.posX, this.posY - 1.0F, this.posZ, -this.motionX, -this.motionY + 0.2D, -this.motionZ);
+			Particle effect = new EntityDoomFX(this.world, this.posX, this.posY - 1.0F, this.posZ, -this.motionX, -this.motionY + 0.2D, -this.motionZ);
 			FMLClientHandler.instance().getClient().effectRenderer.addEffect(effect);
 		}
 	}
