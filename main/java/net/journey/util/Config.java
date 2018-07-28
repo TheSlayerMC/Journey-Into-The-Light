@@ -18,6 +18,9 @@ public class Config {
 
 	public static boolean keepLoadingEuca, keepLoadingTerrania, keepLoadingDepths, keepLoadingBoil, keepLoadingFrozen, keepLoadingGolden, reRenderPlayerStats, spawnNetherBossesInNether, showDimensionChange, showDeathMessage, boilBlockSpawnSmoke;
 	public static boolean keepLoadingCorba, keepLoadingWastelands, keepLoadingCloudia, keepLoadingSenterian, keepLoadingWither;
+	
+	public static boolean overrideNether;
+	
 	public static boolean spawnSwordParticles, showEntityHealth;
 
 	public static int euca, depths, boil, frozen, corba, wastelands, cloudia, terrania, golden, senterian, wither;
@@ -73,6 +76,8 @@ public class Config {
 		baseEntityListID = cfg.get("Entity", "The starting 'Entity List ID'", 2650).getInt();
 		entityHealthDistance = cfg.get("Entity", "The distance the player can see the mobs health", 10).getInt();
 		showEntityHealth = cfg.get("Entity", "Show the health bar above the entitys head?", true).getBoolean(true);
+		
+		overrideNether = cfg.get("Dimension", "Override the Nether's chunk provider?", true).getBoolean(true);
 	}
 
 	public static void miscInit() {

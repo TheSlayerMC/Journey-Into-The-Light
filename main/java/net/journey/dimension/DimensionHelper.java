@@ -141,8 +141,10 @@ public class DimensionHelper {
 	public static void init(){
 
 		LogHelper.info("Registering Dimensions...");
-		DimensionManager.unregisterDimension(-1);
-		DimensionManager.registerDimension(-1, DimensionType.register("Nether", "NETHER", -1, WorldProviderNetherJourney.class, true));
+		if(Config.overrideNether = true) {
+			DimensionManager.unregisterDimension(-1);
+			DimensionManager.registerDimension(-1, DimensionType.register("Nether", "NETHER", -1, WorldProviderNetherJourney.class, true));
+		}
 		addDimension(Config.euca, eucaType);
 		addDimension(Config.boil, boilingType);
 		addDimension(Config.cloudia, cloudiaType);
