@@ -45,7 +45,7 @@ public class SlayerAPI {
 
 	public static int mobID = Config.baseMobID, projectileID = Config.baseProjectileID, entityListID = Config.baseEntityListID;
 	public static Logger logger = Logger.getLogger(SlayerAPI.MOD_ID);
-
+	
 	public static final String 
 			MOD_NAME = "Journey Into the Light", 
 			MOD_ID = "journey", 
@@ -59,7 +59,7 @@ public class SlayerAPI {
 		//GameRegistry.addRecipe(i, o);
 	}
 	
-	public static ToolMaterial addMeleeMaterial(int uses, float efficiency, float dam) {
+	public static ToolMaterial addMeleeMaterial(int uses, float efficiency, float dam){
 		return EnumHelper.addToolMaterial("tool", 3, uses, dam, efficiency, 30);
 	}
 	
