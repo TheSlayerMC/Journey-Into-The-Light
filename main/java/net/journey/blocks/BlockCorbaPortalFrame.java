@@ -29,14 +29,13 @@ import net.slayer.api.block.BlockMod;
 
 public class BlockCorbaPortalFrame extends BlockMod {
 	
-    public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
     public static final PropertyBool EYE = PropertyBool.create("eye");
     protected static final AxisAlignedBB AABB_BLOCK = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.8125D, 1.0D);
     protected static final AxisAlignedBB AABB_EYE = new AxisAlignedBB(0.3125D, 0.8125D, 0.3125D, 0.6875D, 1.0D, 0.6875D);
 
     public BlockCorbaPortalFrame(String name, String f) {
         super(name, f, false);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(EYE, Boolean.valueOf(false)));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(EYE, Boolean.valueOf(false)));
     }
 
     @Override
@@ -75,7 +74,7 @@ public class BlockCorbaPortalFrame extends BlockMod {
 
     @Override
     public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
-        return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite()).withProperty(EYE, Boolean.valueOf(false));
+        return this.getDefaultState().withProperty(EYE, Boolean.valueOf(false));
     }
 
     @Override
@@ -90,13 +89,13 @@ public class BlockCorbaPortalFrame extends BlockMod {
 
     @Override
     public IBlockState getStateFromMeta(int meta) {
-        return this.getDefaultState().withProperty(EYE, Boolean.valueOf((meta & 4) != 0)).withProperty(FACING, EnumFacing.getHorizontal(meta & 3));
+        return this.getDefaultState().withProperty(EYE, Boolean.valueOf((meta & 4) != 0));
     }
 
     @Override
     public int getMetaFromState(IBlockState state) {
         byte b0 = 0;
-        int i = b0 | state.getValue(FACING).getHorizontalIndex();
+        int i = b0;
 
         if (state.getValue(EYE).booleanValue()) {
             i |= 4;
@@ -106,6 +105,6 @@ public class BlockCorbaPortalFrame extends BlockMod {
 
     @Override
     protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, new IProperty[] {FACING, EYE});
+        return new BlockStateContainer(this, new IProperty[] {EYE});
     }
 }

@@ -40,17 +40,13 @@ public class ItemDemonicEye extends ItemMod {
 					double d5 = 0.0D;
 					worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0, d1, d2, d3, d4, d5, new int[0]);
 				}
-
-				EnumFacing enumfacing1 = iblockstate.getValue(BlockCorbaPortalFrame.FACING);
 				int l = 0;
 				int j = 0;
 				boolean flag1 = false;
 				boolean flag = true;
-				EnumFacing enumfacing2 = enumfacing1.rotateY();
 
 				for (int k = -2; k <= 2; ++k) {
-					BlockPos blockpos2 = pos.offset(enumfacing2, k);
-					IBlockState iblockstate1 = worldIn.getBlockState(blockpos2);
+					IBlockState iblockstate1 = worldIn.getBlockState(pos);
 
 					if (iblockstate1.getBlock() == JourneyBlocks.corbaPortalFrame) {
 						if (!iblockstate1.getValue(BlockCorbaPortalFrame.EYE).booleanValue()) {
@@ -68,13 +64,10 @@ public class ItemDemonicEye extends ItemMod {
 				}
 
 				if (flag && j == l + 2) {
-					BlockPos blockpos1 = pos.offset(enumfacing1, 4);
 					int i1;
 
 					for (i1 = l; i1 <= j; ++i1) {
-						BlockPos blockpos3 = blockpos1.offset(enumfacing2, i1);
-						IBlockState iblockstate3 = worldIn.getBlockState(blockpos3);
-
+						IBlockState iblockstate3 = worldIn.getBlockState(pos);
 						if (iblockstate3.getBlock() != JourneyBlocks.corbaPortalFrame || !iblockstate3.getValue(BlockCorbaPortalFrame.EYE).booleanValue()) {
 							flag = false;
 							break;
@@ -82,14 +75,10 @@ public class ItemDemonicEye extends ItemMod {
 					}
 
 					int j1;
-					BlockPos blockpos4;
-
 					for (i1 = l - 1; i1 <= j + 1; i1 += 4) {
-						blockpos1 = pos.offset(enumfacing2, i1);
 
 						for (j1 = 1; j1 <= 3; ++j1) {
-							blockpos4 = blockpos1.offset(enumfacing1, j1);
-							IBlockState iblockstate2 = worldIn.getBlockState(blockpos4);
+							IBlockState iblockstate2 = worldIn.getBlockState(pos);
 
 							if (iblockstate2.getBlock() != JourneyBlocks.corbaPortalFrame || !iblockstate2.getValue(BlockCorbaPortalFrame.EYE).booleanValue()) {
 								flag = false;
@@ -97,14 +86,10 @@ public class ItemDemonicEye extends ItemMod {
 							}
 						}
 					}
-
 					if (flag) {
 						for (i1 = l; i1 <= j; ++i1) {
-							blockpos1 = pos.offset(enumfacing2, i1);
-
 							for (j1 = 1; j1 <= 3; ++j1) {
-								blockpos4 = blockpos1.offset(enumfacing1, j1);
-								worldIn.setBlockState(blockpos4, JourneyBlocks.corbaPortal.getDefaultState(), 2);
+								worldIn.setBlockState(pos, JourneyBlocks.corbaPortal.getDefaultState(), 2);
 							}
 						}
 					}
