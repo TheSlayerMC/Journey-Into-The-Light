@@ -77,7 +77,7 @@ public class Config {
 		entityHealthDistance = cfg.get("Entity", "The distance the player can see the mobs health", 10).getInt();
 		showEntityHealth = cfg.get("Entity", "Show the health bar above the entitys head?", true).getBoolean(true);
 		
-		overrideNether = cfg.get("Dimension", "Override the Nether's chunk provider?", true).getBoolean(true);
+		overrideNether = cfg.get("Nether", "Override the Nether's chunk provider?", true).getBoolean(true);
 	}
 
 	public static void miscInit() {
