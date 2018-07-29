@@ -123,6 +123,15 @@ public class WorldGenEssence implements IWorldGenerator {
 			worldGenNetherFeature(JourneyBlocks.lavaRock, 40, w, x, y, z);
 		}
 		
+		if(Config.overrideNether = false) {
+			for(times = 0; times < 500; times++) {
+				y = r.nextInt(250) + 1;
+				x = chunkX + r.nextInt(16);
+				z = chunkZ + r.nextInt(16);
+				worldGenNetherFeature(JourneyBlocks.heatSoil, 500, w, x, y, z);
+			}
+		}
+		
 		/* for(times = 0; times < 150; times++) {
 			y = r.nextInt(35); 
 			x = chunkX + r.nextInt(16) + 8; 
