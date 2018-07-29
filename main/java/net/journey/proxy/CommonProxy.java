@@ -71,7 +71,6 @@ public class CommonProxy {
 		JourneyWeaponRecipes.init();
 		GameRegistry.registerTileEntity(TileEntityJourneyChest.class, "Journey Chest");
 		//BiomeDictionary.addTypes(new BiomeHell(), Type.NETHER);
-		DimensionHelper.addSpawns();
 		
 		if(SlayerAPI.DEVMODE) LangRegistry.instance.register();
 		addOreDictionary();
@@ -85,6 +84,7 @@ public class CommonProxy {
 		FMLCommonHandler.instance().bus().register(new JourneyDungeonEvent());
 		JourneyTabs.init();
 		DimensionHelper.init();
+		DimensionHelper.addSpawns();
 	}
 	
 	public void init(FMLInitializationEvent event) {
