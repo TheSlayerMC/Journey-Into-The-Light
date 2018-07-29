@@ -37,9 +37,9 @@ public class EntitySwampFly extends EntityModFlying {
 		return this.world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).isFullBlock();
 	}
 
-	public int getBrightnessForRender(float p_70070_1_)
-	{
-		return 15728880;
+	@Override
+	public float getBrightness() {
+		return 15728880F;
 	}
 
 	public float getBrightness(float p_70013_1_) {

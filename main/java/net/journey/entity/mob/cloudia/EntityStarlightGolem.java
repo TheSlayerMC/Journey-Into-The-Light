@@ -37,32 +37,17 @@ public class EntityStarlightGolem extends EntityModMob {
 
 	@Override
 	public EnumSounds setHurtSound() {
-		return EnumSounds.EMPTY;
+		return EnumSounds.IRON_GOLEM_HURT;
 	}
 
 	@Override
 	public EnumSounds setDeathSound() {
-		return EnumSounds.EMPTY;
+		return EnumSounds.IRON_GOLEM_DEATH;
 	}
 	
 	@Override
     protected void playStepSound(BlockPos pos, Block blockIn) {
         //this.playSound("mob.irongolem.walk", 1.0F, 1.0F);
-    }
-	
-	@Override
-    protected String getLivingSound() {
-        return "mob.irongolem.hit";
-    }
-	
-	@Override
-    protected String getHurtSound() {
-        return "mob.irongolem.hit";
-    }
-	
-	@Override
-    protected String getDeathSound() {
-        return "mob.irongolem.death";
     }
 	
 	@Override

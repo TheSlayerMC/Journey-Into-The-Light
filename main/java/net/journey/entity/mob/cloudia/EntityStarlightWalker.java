@@ -31,12 +31,12 @@ public class EntityStarlightWalker extends EntityModMob {
 
 	@Override
 	public EnumSounds setHurtSound() {
-		return EnumSounds.EMPTY;
+		return EnumSounds.IRON_GOLEM_HURT;
 	}
 
 	@Override
 	public EnumSounds setDeathSound() {
-		return EnumSounds.EMPTY;
+		return EnumSounds.IRON_GOLEM_DEATH;
 	}
 	
 	@Override
@@ -45,21 +45,6 @@ public class EntityStarlightWalker extends EntityModMob {
 		super.dropFewItems(b, j);
 		
 	}
-	
-	@Override
-    protected String getLivingSound() {
-        return "mob.irongolem.hit";
-    }
-	
-	@Override
-    protected String getHurtSound() {
-        return "mob.irongolem.hit";
-    }
-	
-	@Override
-    protected String getDeathSound() {
-        return "mob.irongolem.death";
-    }
 
 	@Override
 	public Item getItemDropped() {

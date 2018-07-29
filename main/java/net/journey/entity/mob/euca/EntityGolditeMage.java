@@ -1,23 +1,33 @@
 package net.journey.entity.mob.euca;
 
+import javax.annotation.Nullable;
+
 import net.journey.JourneyItems;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityFireBall;
+import net.journey.entity.projectile.EntityIceBall;
 import net.journey.enums.EnumSounds;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.IRangedAttackMob;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.EntityAIAttackRangedBow;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityModMob;
 
 public class EntityGolditeMage extends EntityModMob implements IRangedAttackMob {
 
-	private EntityAIArrowAttack aiArrowAttack = new EntityAIArrowAttack(this, this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getAttributeValue(), 23, 10);
+	private final EntityAIAttackRangedBow<EntityGolditeMage> aiArrowAttack = new EntityAIAttackRangedBow<EntityGolditeMage>(this, 1.0D, 20, 15.0F);
 	
 	public EntityGolditeMage(World par1World) {
 		super(par1World);
@@ -30,32 +40,59 @@ public class EntityGolditeMage extends EntityModMob implements IRangedAttackMob 
 	
 	public void setCombatTask() {
 		this.tasks.removeTask(this.aiArrowAttack);
-		ItemStack itemstack = this.getHeldItem();
+		ItemStack itemstack = this.getHeldItemMainhand();
 		if(itemstack != null && itemstack.getItem() == JourneyItems.fireWand) {
 			this.tasks.addTask(4, this.aiArrowAttack);
 		}
 	}
 	
 	@Override
-	public void setCurrentItemOrArmor(int par1, ItemStack par2ItemStack) {
-		super.setCurrentItemOrArmor(par1, par2ItemStack);
-		if(!this.worldObj.isRemote && par1 == 0) {
-			this.setCombatTask();
-		}
-	}
-
+    protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty) {
+        super.setEquipmentBasedOnDifficulty(difficulty);
+        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(JourneyItems.fireWand));
+    }
+	
 	@Override
-	public ItemStack getHeldItem() {
-		return new ItemStack(JourneyItems.fireWand);
-	}
-
+	@Nullable
+    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata) {
+        livingdata = super.onInitialSpawn(difficulty, livingdata);
+        this.setEquipmentBasedOnDifficulty(difficulty);
+        this.setEnchantmentBasedOnDifficulty(difficulty);
+        this.setCombatTask();
+        this.setCanPickUpLoot(this.rand.nextFloat() < 0.55F * difficulty.getClampedAdditionalDifficulty());
+        return livingdata;
+    }
+	
 	@Override
-	public void attackEntityWithRangedAttack(EntityLivingBase e, float f) {
-        EntityFireBall b = new EntityFireBall(this.worldObj, this, 4F);
-        b.setThrowableHeading(e.posX-this.posX, e.posY-this.posY, e.posZ-this.posZ, 1.6f, 12);
-        EnumSounds.playSound(EnumSounds.SPARKLE, worldObj, this);
-        this.worldObj.spawnEntityInWorld(b);
+	public void readEntityFromNBT(NBTTagCompound compound) {
+        super.readEntityFromNBT(compound);
+        this.setCombatTask();
+    }
+	
+	@Override
+	public void setItemStackToSlot(EntityEquipmentSlot slotIn, ItemStack stack) {
+        super.setItemStackToSlot(slotIn, stack);
+        if (!this.world.isRemote && slotIn == EntityEquipmentSlot.MAINHAND) {
+            this.setCombatTask();
+        }
+    }
+	
+	@Override
+	public ItemStack getHeldItem(EnumHand hand) {
+		return new ItemStack(JourneyItems.iceWand);
 	}
+	
+	@Override
+	public void attackEntityWithRangedAttack(EntityLivingBase target, float distanceFactor) {
+		EntityFireBall b = new EntityFireBall(this.world, this, 4F);
+        double d0 = target.posX - this.posX;
+        double d1 = target.getEntityBoundingBox().minY + (double)(target.height / 3.0F) - b.posY;
+        double d2 = target.posZ - this.posZ;
+        double d3 = (double)MathHelper.sqrt(d0 * d0 + d2 * d2);
+        b.shoot(d0, d1 + d3 * 0.20000000298023224D, d2, 1.6F, (float)(14 - this.world.getDifficulty().getDifficultyId() * 4));
+		EnumSounds.playSound(EnumSounds.SPARKLE, world, this);
+        this.world.spawnEntity(b);
+    }
 	
 	@Override
 	public double setAttackDamage(MobStats s) {
@@ -86,4 +123,7 @@ public class EntityGolditeMage extends EntityModMob implements IRangedAttackMob 
 	public Item getItemDropped() {
 		return null;
 	}
+
+	@Override
+	public void setSwingingArms(boolean swingingArms) { }
 }

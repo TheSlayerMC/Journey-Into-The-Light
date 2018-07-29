@@ -10,16 +10,20 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
 import net.minecraft.entity.ai.EntityMoveHelper;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityModFlying;
 
 public class EntityShimmerer extends EntityModFlying {
+	
+	private static final DataParameter<Boolean> FIRE = EntityDataManager.<Boolean>createKey(EntityShimmerer.class, DataSerializers.BOOLEAN);
 
 	public EntityShimmerer(World par1World) {
 		super(par1World);
@@ -87,7 +91,7 @@ public class EntityShimmerer extends EntityModFlying {
 	@Override
 	protected void entityInit() {
 		super.entityInit();
-		this.dataWatcher.addObject(16, Byte.valueOf((byte)0));
+        this.dataManager.register(FIRE, Boolean.valueOf(false));
 	}
 
 	@Override
@@ -96,7 +100,7 @@ public class EntityShimmerer extends EntityModFlying {
 	}
 
 	public void setFire(boolean b) {
-		this.dataWatcher.updateObject(16, Byte.valueOf((byte)(b ? 1 : 0)));
+        this.dataManager.set(FIRE, Boolean.valueOf(b));
 	}
 
 	private class AIRandomFly extends EntityAIBase {
@@ -121,9 +125,9 @@ public class EntityShimmerer extends EntityModFlying {
 		}
 
 		@Override
-		public boolean continueExecuting() {
-			return false;
-		}
+		public boolean shouldContinueExecuting() {
+            return false;
+        }
 
 		@Override
 		public void startExecuting() {
@@ -145,20 +149,20 @@ public class EntityShimmerer extends EntityModFlying {
 
 		@Override
 		public void onUpdateMoveHelper() {
-			if(this.update) {
+			if(this.action == Action.MOVE_TO) {
 				double d0 = this.posX - this.e.posX;
 				double d1 = this.posY - this.e.posY;
 				double d2 = this.posZ - this.e.posZ;
 				double d3 = d0 * d0 + d1 * d1 + d2 * d2;
 				if(this.height-- <= 0) {
 					this.height += this.e.getRNG().nextInt(5) + 2;
-					d3 = (double)MathHelper.sqrt_double(d3);
+					d3 = (double)MathHelper.sqrt(d3);
 					if(this.canMove(this.posX, this.posY, this.posZ, d3)) {
 						this.e.motionX += d0 / d3 * 0.1D;
 						this.e.motionY += d1 / d3 * 0.1D;
 						this.e.motionZ += d2 / d3 * 0.1D;
 					} else {
-						this.update = false;
+						this.action = Action.WAIT;
 					}
 				}
 			}
@@ -238,15 +242,15 @@ public class EntityShimmerer extends EntityModFlying {
 
 				if(this.counter == 20) {
 					double d1 = 4.0D;
-					Vec3 vec3 = this.entity.getLook(1.0F);
-					double d2 = entitylivingbase.posX - (this.entity.posX + vec3.xCoord * d1);
+					Vec3d vec3 = this.entity.getLook(1.0F);
+					double d2 = entitylivingbase.posX - (this.entity.posX + vec3.x * d1);
 					double d3 = entitylivingbase.getEntityBoundingBox().minY + entitylivingbase.height / 2.0F - (0.5D + this.entity.posY + this.entity.height / 2.0F);
-					double d4 = entitylivingbase.posZ - (this.entity.posZ + vec3.zCoord * d1);
-					world.playAuxSFXAtEntity((EntityPlayer)null, 1008, new BlockPos(this.entity), 0);
+					double d4 = entitylivingbase.posZ - (this.entity.posZ + vec3.z * d1);
+					//world.playAuxSFXAtEntity((EntityPlayer)null, 1008, new BlockPos(this.entity), 0);
 					EntityShimmererProjectile projectile = new EntityShimmererProjectile(world, this.entity, d2, d3, d4);
-					projectile.posX = this.entity.posX + vec3.xCoord * d1;
+					projectile.posX = this.entity.posX + vec3.x * d1;
 					projectile.posY = this.entity.posY + this.entity.height / 2.0F + 0.5D;
-					projectile.posZ = this.entity.posZ + vec3.zCoord * d1;
+					projectile.posZ = this.entity.posZ + vec3.z * d1;
 					world.spawnEntity(projectile);
 					this.counter = -40;
 				}
