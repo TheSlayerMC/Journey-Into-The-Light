@@ -17,6 +17,7 @@ public class WorldProviderSenterian extends WorldProvider {
 	public void init() {
 		this.biomeProvider = new BiomeProviderSingle(DimensionHelper.senterian);
 		nether = true;
+		hasSkyLight = true;
 	}
 	
 	@Override

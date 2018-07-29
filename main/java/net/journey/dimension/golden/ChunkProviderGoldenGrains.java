@@ -80,26 +80,27 @@ public class ChunkProviderGoldenGrains implements IChunkGenerator {
 		trees.add(new WorldGenCorbaLargeTree());
 		for(int j = -2; j <= 2; ++j) {
 			for(int k = -2; k <= 2; ++k) {
-				float f = 10.0F / MathHelper.sqrt_float(j * j + k * k + 0.2F);
+				float f = 10.0F / MathHelper.sqrt(j * j + k * k + 0.2F);
 				this.parabolicField[j + 2 + (k + 2) * 5] = f;
 			}
 		}
 
 
-		NoiseGenerator[] noiseGens = {noiseGen1, noiseGen2, noiseGen3, noiseGen4, noiseGen5, noiseGen6, mobSpawnerNoise};
-		noiseGens = TerrainGen.getModdedNoiseGenerators(worldIn, this.rand, noiseGens);
-		this.noiseGen1 = (NoiseGeneratorOctaves)noiseGens[0];
-		this.noiseGen2 = (NoiseGeneratorOctaves)noiseGens[1];
-		this.noiseGen3 = (NoiseGeneratorOctaves)noiseGens[2];
-		this.noiseGen4 = (NoiseGeneratorPerlin)noiseGens[3];
-		this.noiseGen5 = (NoiseGeneratorOctaves)noiseGens[4];
-		this.noiseGen6 = (NoiseGeneratorOctaves)noiseGens[5];
-		this.mobSpawnerNoise = (NoiseGeneratorOctaves)noiseGens[6];
+		net.minecraftforge.event.terraingen.InitNoiseGensEvent.ContextHell ctx =
+				new net.minecraftforge.event.terraingen.InitNoiseGensEvent.ContextHell(noiseGen1, noiseGen2, noiseGen3, noiseGen5, noiseGen6, mobSpawnerNoise, mobSpawnerNoise);
+		ctx = net.minecraftforge.event.terraingen.TerrainGen.getModdedNoiseGenerators(worldIn, this.rand, ctx);
+		this.noiseGen1 = ctx.getLPerlin1();
+		this.noiseGen2 = ctx.getLPerlin2();
+		this.noiseGen3 = ctx.getPerlin();
+		this.noiseGen5 = ctx.getPerlin2();
+		this.noiseGen6 = ctx.getPerlin3();
+		this.mobSpawnerNoise = ctx.getScale();
+		this.mobSpawnerNoise = ctx.getDepth();
 	}
 
-	public void setBlocksInChunk(int p_180518_1_, int p_180518_2_, ChunkPrimer p_180518_3_) {
-		this.biomesForGeneration = this.worldObj.getWorldChunkManager().getBiomesForGeneration(this.biomesForGeneration, p_180518_1_ * 4 - 2, p_180518_2_ * 4 - 2, 10, 10);
-		this.generate(p_180518_1_ * 4, 0, p_180518_2_ * 4);
+	public void setBlocksInChunk(int x, int z, ChunkPrimer c) {
+		this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomesForGeneration(this.biomesForGeneration, x * 4 - 2, z * 4 - 2, 10, 10);
+		this.generate(x * 4, 0, z * 4);
 		for(int k = 0; k < 4; ++k) {
 			int l = k * 5;
 			int i1 = (k + 1) * 5;
@@ -133,7 +134,7 @@ public class ChunkProviderGoldenGrains implements IChunkGenerator {
 
 							for (int j3 = 0; j3 < 4; ++j3) {
 								if ((d15 += d16) > 0.0D) {
-									p_180518_3_.setBlockState(k * 4 + i3, k2 * 8 + l2, j1 * 4 + j3, JourneyBlocks.goldenStone.getDefaultState());
+									c.setBlockState(k * 4 + i3, k2 * 8 + l2, j1 * 4 + j3, JourneyBlocks.goldenStone.getDefaultState());
 								}
 							}
 
@@ -153,11 +154,8 @@ public class ChunkProviderGoldenGrains implements IChunkGenerator {
 
 
 	public void biomeBlocks(int x, int z, ChunkPrimer c, Biome[] b) {
-		ChunkProviderEvent.ReplaceBiomeBlocks event = new ChunkProviderEvent.ReplaceBiomeBlocks(this, x, z, c, this.worldObj);
-		MinecraftForge.EVENT_BUS.post(event);
-		if(event.getResult() == Result.DENY) return;
 		double d0 = 0.03125D;
-		this.stoneNoise = this.noiseGen4.func_151599_a(this.stoneNoise, (double)(x * 16), (double)(z * 16), 16, 16, d0 * 2.0D, d0 * 2.0D, 1.0D);
+		this.stoneNoise = this.noiseGen4.getRegion(this.stoneNoise, (double)(x * 16), (double)(z * 16), 16, 16, d0 * 2.0D, d0 * 2.0D, 1.0D);
 		for(int k = 0; k < 16; ++k) {
 			for(int l = 0; l < 16; ++l) {
 				generateBiomeTerrain(this.rand, c, x * 16 + k, z * 16 + l, this.stoneNoise[l + k * 16]);
@@ -179,7 +177,7 @@ public class ChunkProviderGoldenGrains implements IChunkGenerator {
 			} else {
 				IBlockState iblockstate2 = c.getBlockState(j1, k1, i1);
 
-				if(iblockstate2.getBlock().getMaterial(null) == Material.AIR) k = -1;
+				if(iblockstate2.getBlock().getMaterial(iblockstate2) == Material.AIR) k = -1;
 				else if(iblockstate2.getBlock() == JourneyBlocks.goldenStone) {
 					if(k == -1) {
 						if(l <= 0) {
@@ -191,7 +189,7 @@ public class ChunkProviderGoldenGrains implements IChunkGenerator {
 							iblockstate1 = JourneyBlocks.goldenStone.getDefaultState();
 						}
 
-						if(k1 < 63 && (iblockstate == null || iblockstate.getBlock().getMaterial(null) == Material.AIR))
+						if(k1 < 63 && (iblockstate == null || iblockstate.getBlock().getMaterial(iblockstate) == Material.AIR))
 							iblockstate = JourneyBlocks.goldenStone.getDefaultState();
 						k = l;
 						if(k1 >= 62) c.setBlockState(j1, k1, i1, iblockstate);
@@ -211,17 +209,17 @@ public class ChunkProviderGoldenGrains implements IChunkGenerator {
 	}
 
 	@Override
-	public Chunk provideChunk(int x, int z) {
+	public Chunk generateChunk(int x, int z) {
 		this.rand.setSeed(x * 341873128712L + z * 132897987541L);
 		ChunkPrimer chunkprimer = new ChunkPrimer();
 		this.setBlocksInChunk(x, z, chunkprimer);
-		this.biomesForGeneration = this.worldObj.getWorldChunkManager().loadBlockGeneratorData(this.biomesForGeneration, x * 16, z * 16, 16, 16);
+		this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomes(this.biomesForGeneration, x * 16, z * 16, 16, 16);
 		this.biomeBlocks(x, z, chunkprimer, this.biomesForGeneration);
-		this.caveGenerator.generate(this, this.worldObj, x, z, chunkprimer);
-		this.ravineGenerator.generate(this, this.worldObj, x, z, chunkprimer);
+		this.caveGenerator.generate(this.worldObj, x, z, chunkprimer);
+		this.ravineGenerator.generate(this.worldObj, x, z, chunkprimer);
 		Chunk chunk = new Chunk(this.worldObj, chunkprimer, x, z);
 		byte[] abyte = chunk.getBiomeArray();
-		for(int k = 0; k < abyte.length; ++k) abyte[k] = (byte)this.biomesForGeneration[k].biomeID;
+		for(int k = 0; k < abyte.length; ++k) abyte[k] = (byte)Biome.getIdForBiome(this.biomesForGeneration[k]);
 		chunk.generateSkylightMap();
 		return chunk;
 	}
@@ -252,8 +250,8 @@ public class ChunkProviderGoldenGrains implements IChunkGenerator {
 				for(int l1 = -b0; l1 <= b0; ++l1) {
 					for(int i2 = -b0; i2 <= b0; ++i2) {
 						Biome Biome1 = this.biomesForGeneration[j1 + l1 + 2 + (k1 + i2 + 2) * 10];
-						float f3 = Biome1.minHeight;
-						float f4 = Biome1.maxHeight;
+						float f3 = Biome1.getBaseHeight();
+						float f4 = Biome1.getHeightVariation();
 
 						float f5 = this.parabolicField[l1 + 2 + (i2 + 2) * 5] / (f3 + 2.0F);
 
@@ -307,7 +305,7 @@ public class ChunkProviderGoldenGrains implements IChunkGenerator {
 					double d7 = this.gen2[l] / 512.0D;
 					double d8 = this.gen3[l] / 512.0D;
 					double d9 = (this.gen1[l] / 10.0D + 1.0D) / 2.0D;
-					double d10 = MathHelper.denormalizeClamp(d7, d8, d9) - d6;
+					double d10 = MathHelper.clampedLerp(d7, d8, d9) - d6;
 
 					if(j2 > 29) {
 						double d11 = (j2 - 29) / 3.0F;
@@ -322,12 +320,7 @@ public class ChunkProviderGoldenGrains implements IChunkGenerator {
 	}
 
 	@Override
-	public boolean chunkExists(int x, int z) {
-		return true;
-	}
-
-	@Override
-	public void populate(IChunkProvider c, int cx, int cz) {
+	public void populate(int cx, int cz) {
 		int x1 = cx * 16;
 		int z1 = cz * 16;
 		int x, y, z, i;
@@ -358,55 +351,28 @@ public class ChunkProviderGoldenGrains implements IChunkGenerator {
 				&& worldObj.getBlockState(new BlockPos(x, y + 4, z)) == Blocks.AIR.getDefaultState() && worldObj.getBlockState(new BlockPos(x, y + 5, z)) == Blocks.AIR.getDefaultState();
 	}
 
-	@Override
-	public boolean func_177460_a(IChunkProvider p_177460_1_, Chunk p_177460_2_, int p_177460_3_, int p_177460_4_) {
-		return false;
-	}
-
-	@Override
-	public boolean saveChunks(boolean p_73151_1_, IProgressUpdate p_73151_2_) {
-		return true;
-	}
-
-	@Override
-	public void saveExtraData() {}
-
-	@Override
-	public boolean unloadQueuedChunks() {
-		return false;
-	}
-
-	@Override
-	public boolean canSave() {
-		return true;
-	}
-
-	@Override
-	public String makeString() {
-		return "RandomLevelSource";
-	}
 
 	@Override
 	public List <SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos) {
-		Biome Biome = this.worldObj.getBiomeGenForCoords(pos);
-		return Biome.getSpawnableList(creatureType);
+		Biome biome = this.worldObj.getBiome(pos);
+		return biome.getSpawnableList(creatureType);
 	}
-
-	@Override
-	public BlockPos getStrongholdGen(World worldIn, String p_180513_2_, BlockPos p_180513_3_) {
-		return null;
-	}
-
-	@Override
-	public int getLoadedChunkCount() {
-		return 0;
-	}
-
+	
 	@Override
 	public void recreateStructures(Chunk p_180514_1_, int p_180514_2_, int p_180514_3_) { }
 
 	@Override
-	public Chunk provideChunk(BlockPos blockPosIn) {
-		return this.provideChunk(blockPosIn.getX() >> 4, blockPosIn.getZ() >> 4);
+	public boolean generateStructures(Chunk chunkIn, int x, int z) {
+		return false;
+	}
+
+	@Override
+	public BlockPos getNearestStructurePos(World worldIn, String structureName, BlockPos position, boolean findUnexplored) {
+		return null;
+	}
+
+	@Override
+	public boolean isInsideStructure(World worldIn, String structureName, BlockPos pos) {
+		return false;
 	}
 }

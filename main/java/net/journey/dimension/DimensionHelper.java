@@ -130,13 +130,11 @@ public class DimensionHelper {
 	public static DimensionType boilingType = DimensionType.register("Boiling Point", "boilingPoint", Config.boil, WorldProviderBoiling.class, Config.keepLoadingBoil);
 	public static DimensionType cloudiaType = DimensionType.register("Cloudia", "cloudia", Config.cloudia, WorldProviderCloudia.class, Config.keepLoadingCloudia);
 	public static DimensionType corbaType = DimensionType.register("Corba", "corba", Config.corba, WorldProviderCorba.class, Config.keepLoadingCorba);
-	
 	public static DimensionType depthsType = DimensionType.register("Depths", "depths", Config.depths, WorldProviderDepths.class, Config.keepLoadingDepths);
 	public static DimensionType frozenType = DimensionType.register("Frozen", "frozen", Config.frozen, WorldProviderFrozenLands.class, Config.keepLoadingFrozen);
 	public static DimensionType terraniaType = DimensionType.register("Terrania", "terrania", Config.terrania, WorldProviderTerrania.class, Config.keepLoadingTerrania);
 	public static DimensionType goldenType = DimensionType.register("Golden Grains", "goldenGrains", Config.golden, WorldProviderGoldenGrains.class, Config.keepLoadingGolden);
 	public static DimensionType senterianType = DimensionType.register("Senterian", "senterian", Config.senterian, WorldProviderSenterian.class, Config.keepLoadingSenterian);
-
 	
 	public static void init(){
 
@@ -151,9 +149,9 @@ public class DimensionHelper {
 		addDimension(Config.corba, corbaType);
 		addDimension(Config.depths, depthsType);
 		addDimension(Config.frozen, frozenType);
-		/*addDimension(Config.terrania, terraniaType);
+		addDimension(Config.terrania, terraniaType);
 		addDimension(Config.golden, goldenType);
-		addDimension(Config.senterian, senterianType); */
+		addDimension(Config.senterian, senterianType);
 	}
 
 	private static void addDimension(int id, DimensionType type) {

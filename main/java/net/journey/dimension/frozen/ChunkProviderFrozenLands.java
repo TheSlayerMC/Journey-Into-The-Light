@@ -258,6 +258,7 @@ public class ChunkProviderFrozenLands implements IChunkGenerator {
 		}
 	}
 
+	@Override
 	public Chunk generateChunk(int x, int z) {
 		this.rand.setSeed(x * 341873128712L + z * 132897987541L);
 		ChunkPrimer chunkprimer = new ChunkPrimer();

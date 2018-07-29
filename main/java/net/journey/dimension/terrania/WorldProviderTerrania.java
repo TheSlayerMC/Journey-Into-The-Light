@@ -16,11 +16,12 @@ public class WorldProviderTerrania extends WorldProvider {
 	@Override
 	public void init() {
 		this.biomeProvider = new BiomeProviderSingle(DimensionHelper.terrania);
+		hasSkyLight = true;
 	}
 	
 	@Override
 	@SideOnly(Side.CLIENT)
-    public Vec3d getFogColor(float p_76562_1_, float p_76562_2_) {
+    public Vec3d getFogColor(float x, float z) {
         return new Vec3d(0.6, 0, 1.0);
     }
 	
