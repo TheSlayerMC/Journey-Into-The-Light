@@ -245,7 +245,7 @@ public class EntityPurplian extends EntityModMob {
                     if (this.field_179467_b > 1)
                     {
                         float f = MathHelper.sqrt(MathHelper.sqrt(d0)) * 0.5F;
-                        this.field_179469_a.world.playAuxSFXAtEntity((EntityPlayer)null, 1009, new BlockPos((int)this.field_179469_a.posX, (int)this.field_179469_a.posY, (int)this.field_179469_a.posZ), 0);
+                        this.field_179469_a.world.playBroadcastSound(1009, new BlockPos((int)this.field_179469_a.posX, (int)this.field_179469_a.posY, (int)this.field_179469_a.posZ), 0);
 
                         for (int i = 0; i < 1; ++i)
                         {

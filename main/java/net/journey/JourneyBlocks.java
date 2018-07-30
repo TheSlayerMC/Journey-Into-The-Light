@@ -500,14 +500,14 @@ public class JourneyBlocks {
 		flairiumOre = (BlockMod) new BlockModOre("flairiumOre", "Flairium Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK).setLightLevel(0.5F);
 		desOre = (BlockMod) new BlockModOre("desOre", "Des Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK).setLightLevel(0.5F);
 		
-		bleedstone = (BlockMod) new BlockModOre("BleedstoneOre", "Bleedstone", false).setHarvestLevel(EnumToolType.DIAMOND_PICK).setLightLevel(10.5F);
+		bleedstone = (BlockMod) new BlockModOre("bleedstoneOre", "Bleedstone", false).setHarvestLevel(EnumToolType.DIAMOND_PICK).setLightLevel(10.5F);
 		smithstone = (BlockMod) new BlockModOre("smithstoneOre", "Smithstone", false).setHarvestLevel(EnumToolType.DIAMOND_PICK).setLightLevel(10.5F);
 		
 		enderilliumOre = new BlockModOre("enderilliumOre", "Enderillium Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
 		gorbiteOre = new BlockModOre("gorbiteOre", "Gorbite Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
 		orbaditeOre = new BlockModOre("orbaditeOre", "Orbadite Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
 		luniteOre = new BlockModOre("luniteOre", "Lunite Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
-		firestoneOre = new BlockModOre("firestoneOre", "Firestone Ores").setHarvestLevel(EnumToolType.DIAMOND_PICK);
+		firestoneOre = new BlockModOre("firestoneOre", "Firestone Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
 
 		iridiumBlock = new BlockModOre("iridiumBlock", "Iridium Block").setHarvestLevel(EnumToolType.IRON_PICK);
 		verditeBlock = new BlockModOre("verditeBlock", "Verdite Block").setHarvestLevel(EnumToolType.STONE_PICK);
