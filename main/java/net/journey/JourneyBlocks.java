@@ -345,8 +345,11 @@ public class JourneyBlocks {
 	public static BlockMod terranianDarkPanels;
 	public static BlockMod terranianPanels;
 	public static BlockModFlower terranianTallgrass;
+	public static BlockModFlower terramushroom;
+	public static BlockModFlower tallterramushroom;
 	public static BlockMod terragrow;
 	public static BlockMod terraniaLamp;
+
 
 	public static BlockMod hotBrick;
 	public static BlockModFence hotBrick_fence;
@@ -752,8 +755,11 @@ public class JourneyBlocks {
 		terranianDarkPanels = new BlockMod("terranianDarkPanels", "Terranian Dark Panels", 2.0F);
 		terranianPanels = new BlockMod("terranianPanels", "Terranian Panels", 2.0F);
 		terranianTallgrass = new BlockModFlower("terranianTallgrass", "Terranian Tallgrass");
+		terramushroom = new BlockModFlower("terramushroom", "Terranian Shroom").setLightLevel(5.0F);
+		tallterramushroom = new BlockModFlower("tallterramushroom", "Tall Terranian Shroom").setLightLevel(5.0F);
 		terragrow = new BlockTerraFlower("terragrow", "Terranian Flower");
 		terraniaLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "terraniaLamp", "Terrania Lamp", 0.1F).setLightLevel(1.0F).setCreativeTab(JourneyTabs.decoration);
+
 
 		hotBrick = new BlockMod("hotBrick", "Hot Brick", 2.0F);
 		hotBrick_fence = new BlockModFence(hotBrick, "hotBrickFence", "Hot Brick Fence");

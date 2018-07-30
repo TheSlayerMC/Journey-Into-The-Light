@@ -110,14 +110,14 @@ public class WorldGenEssence implements IWorldGenerator {
 			worldMinableGenNether(JourneyBlocks.firestoneOre, 10, w, x, y, z);
 		}
 		
-		if(r.nextInt(5)==0) {
+		if(r.nextInt(20)==0) {
 			y = r.nextInt(256) + 1;
 			x = chunkX + r.nextInt(16);
 			z = chunkZ + r.nextInt(16);
 			(new WorldGenModGlowstone(w, r, pos, JourneyBlocks.bleedstone)).generate(w, r, new BlockPos(x, y, z));
 		}
 		
-		if(r.nextInt(5)==0) {
+		if(r.nextInt(10)==0) {
 			y = r.nextInt(256) + 1;
 			x = chunkX + r.nextInt(16);
 			z = chunkZ + r.nextInt(16);

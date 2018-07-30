@@ -112,7 +112,7 @@ public class ChunkProviderTerrania implements IChunkGenerator {
 				int l1 = (l + j1 + 1) * 33;
 				int i2 = (i1 + j1) * 33;
 				int j2 = (i1 + j1 + 1) * 33;
-				for(int k2 = 0; k2 < 32; ++k2) {
+				for(int k2 = 0; k2 < 8; ++k2) {
 					double d0 = 0.125D;
 					double d1 = this.da[k1 + k2];
 					double d2 = this.da[l1 + k2];
@@ -137,7 +137,7 @@ public class ChunkProviderTerrania implements IChunkGenerator {
 
 							for (int j3 = 0; j3 < 4; ++j3) {
 								if ((d15 += d16) > 0.0D) {
-									p_180518_3_.setBlockState(k * 4 + i3, k2 * 8 + l2, j1 * 4 + j3, JourneyBlocks.terranianStone.getDefaultState());
+									p_180518_3_.setBlockState(k * 4 + i3, k2 * 2 + l2, j1 * 4 + j3, JourneyBlocks.terranianStone.getDefaultState());
 								}
 							}
 
@@ -187,16 +187,16 @@ public class ChunkProviderTerrania implements IChunkGenerator {
 							iblockstate = null;
 							iblockstate1 = JourneyBlocks.terranianStone.getDefaultState();
 						}
-						else if(k1 >= 59 && k1 <= 64) {
+						else if(k1 >= 13 && k1 <= 16) {
 							iblockstate = JourneyBlocks.terranianGrass.getDefaultState();
 							iblockstate1 = JourneyBlocks.terranianStone.getDefaultState();
 						}
 
-						if(k1 < 63 && (iblockstate == null || iblockstate.getBlock().getMaterial(iblockstate) == Material.AIR))
+						if(k1 < 15 && (iblockstate == null || iblockstate.getBlock().getMaterial(iblockstate) == Material.AIR))
 							iblockstate = JourneyBlocks.terranianStone.getDefaultState();
 						k = l;
-						if(k1 >= 62) c.setBlockState(j1, k1, i1, iblockstate);
-						else if(k1 < 56 - l) {
+						if(k1 >= 14) c.setBlockState(j1, k1, i1, iblockstate);
+						else if(k1 < 13 - l) {
 							iblockstate = null;
 							iblockstate1 = JourneyBlocks.terranianStone.getDefaultState();
 						} 
@@ -337,6 +337,16 @@ public class ChunkProviderTerrania implements IChunkGenerator {
 			new WorldGenModFlower(JourneyBlocks.terranianTallgrass).generate(worldObj, r, new BlockPos(x, y, z));
 		}
 
+		for(i = 0; i < 20; i++) {
+			y = r.nextInt(220); x = x1 + this.rand.nextInt(16) + 8; z = z1 + this.rand.nextInt(16) + 8;
+			new WorldGenModFlower(JourneyBlocks.terramushroom).generate(worldObj, r, new BlockPos(x, y, z));
+		}
+		
+		for(i = 0; i < 1; i++) {
+			y = r.nextInt(220); x = x1 + this.rand.nextInt(16) + 8; z = z1 + this.rand.nextInt(16) + 8;
+			new WorldGenModFlower(JourneyBlocks.tallterramushroom).generate(worldObj, r, new BlockPos(x, y, z));
+		}
+		
 		for(times = 0; times < 250; times++) {
 			x = x1 + this.rand.nextInt(16) + 8;
 			z = z1 + this.rand.nextInt(16) + 8;
