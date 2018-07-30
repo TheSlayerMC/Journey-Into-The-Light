@@ -25,9 +25,9 @@ public enum JourneyToolMaterial {
 	CELESTIUM(JourneyItems.celestium, JourneyItems.celestiumIngot, 14),
 	SHADIUM(JourneyItems.shadium, JourneyItems.shadiumIngot, 10),
 	SAPPHIRE(JourneyItems.sapphiretool, JourneyItems.sapphire, 8),
-	ORBADITE(JourneyItems.orbadite, JourneyItems.orbaditeIngot, 148),
-	GORBITE(JourneyItems.gorbite, JourneyItems.gorbiteGem, 148),
-	DES(JourneyItems.des, JourneyItems.desIngot, 26),
+	ORBADITE(JourneyItems.orbadite, JourneyItems.orbaditeIngot, 24),
+	GORBITE(JourneyItems.gorbite, JourneyItems.gorbiteGem, 24),
+	DES(JourneyItems.des, JourneyItems.desIngot, 20),
 	KORITE(JourneyItems.korite, JourneyItems.koriteIngot, 14),
 	
 	NETHER_BEAST_SWORD(SlayerAPI.addMeleeMaterial(3000, 16-4, 25)),

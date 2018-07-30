@@ -965,18 +965,23 @@ public class JourneyItems {
 		goldMultiTool = new ItemMultiTool("goldMultiTool", "Gold Multi Tool", JourneyToolMaterial.GOLD_MULTI_TOOL, 33);
 		diamondMultiTool = new ItemMultiTool("diamondMultiTool", "Diamond Multi Tool", JourneyToolMaterial.DIAMOND_MULTI_TOOL, 1562);
 
-		hellstonePickaxe = new ItemModPickaxe("hellstonePickaxe", "Bloodcrust Pickaxe", JourneyToolMaterial.HELLSTONE);
-		shadiumPickaxe = new ItemModPickaxe("shadiumPickaxe", "Shadium Pickaxe", JourneyToolMaterial.SHADIUM);
-		celestiumPickaxe = new ItemModPickaxe("celestiumPickaxe", "Celestium Pickaxe", JourneyToolMaterial.CELESTIUM);
-		luniumPickaxe = new ItemModPickaxe("luniumPickaxe", "Lunium Pickaxe", JourneyToolMaterial.LUNIUM);
-		flairiumPickaxe = new ItemModPickaxe("flairiumPickaxe", "Flairium Pickaxe", JourneyToolMaterial.FLAIRIUM);
-		sapphirePickaxe = new ItemModPickaxe("sapphirePickaxe", "Sapphire Pickaxe", JourneyToolMaterial.SAPPHIRE);
-		gorbitePickaxe = new ItemModPickaxe("gorbitePickaxe", "Gorbite Pickaxe", JourneyToolMaterial.GORBITE);
-		orbaditePickaxe = new ItemModPickaxe("orbaditePickaxe", "Orbadite Pickaxe", JourneyToolMaterial.ORBADITE);
-		desPickaxe = new ItemModPickaxe("desPickaxe", "Des Pickaxe", JourneyToolMaterial.DES);
-		koritePickaxe = new ItemModPickaxe("koritePickaxe", "Korite Pickaxe", JourneyToolMaterial.KORITE);
-		storonPickaxe = new ItemModPickaxe("storonPickaxe", "Storon Pickaxe", JourneyToolMaterial.KORITE);
-		mekyumPickaxe = new ItemModPickaxe("mekyumPickaxe", "Mekyum Pickaxe", JourneyToolMaterial.KORITE);
+
+		sapphirePickaxe = new ItemModPickaxe("sapphirePickaxe", "Sapphire Pickaxe", JourneyToolMaterial.SAPPHIRE, 11);
+		shadiumPickaxe = new ItemModPickaxe("shadiumPickaxe", "Shadium Pickaxe", JourneyToolMaterial.SHADIUM, 13);
+		luniumPickaxe = new ItemModPickaxe("luniumPickaxe", "Lunium Pickaxe", JourneyToolMaterial.LUNIUM, 13);
+		
+		hellstonePickaxe = new ItemModPickaxe("hellstonePickaxe", "Bloodcrust Pickaxe", JourneyToolMaterial.HELLSTONE, 15);
+		
+		koritePickaxe = new ItemModPickaxe("koritePickaxe", "Korite Pickaxe", JourneyToolMaterial.KORITE, 17);
+		storonPickaxe = new ItemModPickaxe("storonPickaxe", "Storon Pickaxe", JourneyToolMaterial.KORITE, 17);
+		mekyumPickaxe = new ItemModPickaxe("mekyumPickaxe", "Mekyum Pickaxe", JourneyToolMaterial.KORITE, 17); 
+		celestiumPickaxe = new ItemModPickaxe("celestiumPickaxe", "Celestium Pickaxe", JourneyToolMaterial.CELESTIUM, 17);
+
+		flairiumPickaxe = new ItemModPickaxe("flairiumPickaxe", "Flairium Pickaxe", JourneyToolMaterial.FLAIRIUM, 19);
+		desPickaxe = new ItemModPickaxe("desPickaxe", "Des Pickaxe", JourneyToolMaterial.DES, 19);
+		
+		gorbitePickaxe = new ItemModPickaxe("gorbitePickaxe", "Gorbite Pickaxe", JourneyToolMaterial.GORBITE, 21);
+		orbaditePickaxe = new ItemModPickaxe("orbaditePickaxe", "Orbadite Pickaxe", JourneyToolMaterial.ORBADITE, 21);
 
 		hellstoneShovel = new ItemModShovel("hellstoneShovel", "Bloodcrust Shovel", JourneyToolMaterial.HELLSTONE);
 		shadiumShovel = new ItemModShovel("shadiumShovel", "Shadium Shovel", JourneyToolMaterial.SHADIUM);
@@ -1417,9 +1422,9 @@ public class JourneyItems {
 		rocMeat = new ItemModFood("rocMeat", "Bird Wing", 4, 0.6F, 10, true);
 		cookedRocMeat = new ItemModFood("cookedRocMeat", "Cooked Bird Wing", 10, 0.6F, 10, true);
 		hongoShroom = new ItemModFood("hongoShroom", "Hongoshroom", 4, 1.2F, 10, false);
-		greenHonglowShroom = new ItemHonglow("greenHonglowShroom", "Green Honglowshroom", 2, 1.2F, false, false).setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.jump, 10, 1), 1.0F).setAlwaysEdible();
-		redHonglowShroom = new ItemHonglow("redHonglowShroom", "Red Honglowshroom", 2, 1.2F, false, false).setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.regeneration, 10, 1), 1.0F).setAlwaysEdible();
-		blueHonglowShroom = new ItemHonglow("blueHonglowShroom", "Blue Honglowshroom", 2, 1.2F, false, false).setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.moveSpeed, 10, 1), 1.0F).setAlwaysEdible();
+		greenHonglowShroom = new ItemHonglow("greenHonglowShroom", "Green Honglowshroom", 2, 1.2F, false, false).setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.jump, 100, 1), 1.0F).setAlwaysEdible();
+		redHonglowShroom = new ItemHonglow("redHonglowShroom", "Red Honglowshroom", 2, 1.2F, false, false).setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.regeneration, 100, 1), 1.0F).setAlwaysEdible();
+		blueHonglowShroom = new ItemHonglow("blueHonglowShroom", "Blue Honglowshroom", 2, 1.2F, false, false).setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.moveSpeed, 100, 1), 1.0F).setAlwaysEdible();
 		honglowShroom = new ItemHonglow("honglowShroom", "Honglowshroom", 6, 1.2F, false, false).setAlwaysEdible();
 		snakeFlesh = new ItemZatPedal("snakeFlesh", "Snake Flesh", 6, 1.2F, false, true).setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.fireResistance, 60, 1), 1.0F).setAlwaysEdible();
 		flamingBeef = new ItemModFood("flamingBeef", "Raw Flaming Beef", 6, 1.2F, true).setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.fireResistance, 90, 1), 1.0F).setAlwaysEdible();

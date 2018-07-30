@@ -14,6 +14,9 @@ import net.journey.blocks.tileentity.TileEntityNetherFurnace;
 import net.journey.blocks.tileentity.TileEntitySenterianPortal;
 import net.journey.blocks.tileentity.TileEntitySummoningTable;
 import net.journey.client.BarTickHandler;
+import net.journey.client.JourneyCapabilityHandler;
+import net.journey.client.server.TestMana;
+import net.journey.client.server.TestManaStorage;
 import net.journey.dimension.DimensionHelper;
 import net.journey.dimension.WorldGenEssence;
 import net.journey.enums.EnumParticlesClasses;
@@ -21,6 +24,7 @@ import net.journey.event.ArmorAbilityEvent;
 import net.journey.event.PlayerEvent;
 import net.journey.util.Config;
 import net.journey.util.EntityRegistry;
+import net.journey.util.IJourneyMana;
 import net.journey.util.JourneyFuelHandler;
 import net.journey.util.LangRegistry;
 import net.journey.util.recipes.JourneyBlockRecipes;
@@ -34,6 +38,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -56,7 +61,7 @@ public class CommonProxy {
 	public void clientPreInit() { }
 	public void registerSounds() { }
 	public void spawnParticle(EnumParticlesClasses particle, World worldObj, double x, double y, double z, boolean b) { }
-	
+
 	public void preInit(FMLPreInitializationEvent event) {
 		Config.init(event);
 		JourneyBlocks.init();
@@ -85,6 +90,9 @@ public class CommonProxy {
 		JourneyTabs.init();
 		DimensionHelper.init();
 		DimensionHelper.addSpawns();
+		
+		CapabilityManager.INSTANCE.register(IJourneyMana.class, new TestManaStorage(), TestMana.class);
+		MinecraftForge.EVENT_BUS.register(JourneyCapabilityHandler.class);
 	}
 	
 	public void init(FMLInitializationEvent event) {
