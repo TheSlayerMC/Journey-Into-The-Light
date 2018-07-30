@@ -3,6 +3,7 @@ package net.journey.entity.projectile;
 import java.util.Random;
 
 import net.journey.client.render.particles.EntityGreenpaceFX;
+import net.journey.util.PotionEffects;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.potion.Potion;
@@ -36,9 +37,9 @@ public class EntityTempleBall extends EntityBasicProjectile {
 	protected void onImpact(RayTraceResult var1) {
 		if(var1.entityHit != null) { 
 			var1.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), getDamage());
-			((EntityLivingBase)var1.entityHit).addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 100, 2));
-			((EntityLivingBase)var1.entityHit).addPotionEffect(new PotionEffect(Potion.confusion.id, 100, 5));
-			((EntityLivingBase)var1.entityHit).addPotionEffect(new PotionEffect(Potion.digSlowdown.id, 100, 2));
+			((EntityLivingBase)var1.entityHit).addPotionEffect(new PotionEffect(PotionEffects.getPotionFromID(PotionEffects.moveSlow), 100, 2));
+			((EntityLivingBase)var1.entityHit).addPotionEffect(new PotionEffect(PotionEffects.getPotionFromID(PotionEffects.confusion), 100, 5));
+			((EntityLivingBase)var1.entityHit).addPotionEffect(new PotionEffect(PotionEffects.getPotionFromID(PotionEffects.digSlow), 100, 2));
 		}
 		if(!world.isRemote) this.setDead();
 	}

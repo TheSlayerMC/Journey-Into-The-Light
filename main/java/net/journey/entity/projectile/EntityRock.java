@@ -5,6 +5,7 @@ import java.util.Random;
 import net.journey.client.render.particles.EntityGreenpaceFX;
 import net.journey.client.render.particles.EntityIceballFX;
 import net.journey.client.render.particles.EntityRockFX;
+import net.journey.util.PotionEffects;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.potion.Potion;
@@ -41,7 +42,7 @@ public class EntityRock extends EntityBasicProjectile {
 	protected void onImpact(RayTraceResult var1) {
 		if(var1.entityHit != null) { 
 			var1.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), getDamage());
-			((EntityLivingBase)var1.entityHit).addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 100, 5));
+			((EntityLivingBase)var1.entityHit).addPotionEffect(new PotionEffect(PotionEffects.getPotionFromID(PotionEffects.moveSlow), 100, 5));
 			var1.entityHit.extinguish();
 		}
 		if(!world.isRemote) this.setDead();

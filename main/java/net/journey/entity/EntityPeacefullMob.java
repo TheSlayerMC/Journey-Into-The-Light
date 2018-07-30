@@ -15,10 +15,13 @@ import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityCreeper;
+import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.EnumDifficulty;
@@ -27,43 +30,15 @@ import net.minecraft.world.World;
 
 import com.google.common.base.Predicate;
 
-public abstract class EntityPeacefullMob extends EntityCreature implements IMob
-{
-    protected final EntityAIBase field_175455_a = new EntityAIAvoidEntity(this, null, new Predicate()
-    {
-        public boolean func_179911_a(Entity p_179911_1_)
-        {
-            return p_179911_1_ instanceof EntityCreeper && ((EntityCreeper)p_179911_1_).getCreeperState() > 0;
-        }
-        @Override
-		public boolean apply(Object p_apply_1_)
-        {
-            return this.func_179911_a((Entity)p_apply_1_);
-        }
-    }, 4.0F, 1.0D, 2.0D);
+public abstract class EntityPeacefullMob extends EntityCreature implements IMob {
 
-    public EntityPeacefullMob(World worldIn)
-    {
-        super(worldIn);
-        this.experienceValue = 5;
-        addBasicAI();
-    }
+	public EntityPeacefullMob(World worldIn) {
+		super(worldIn);
+		this.experienceValue = 5;
+		addBasicAI();
+	}
 
-    @Override
-	public void onLivingUpdate()
-    {
-        this.updateArmSwingProgress();
-        float f = this.getBrightness();
-
-        if (f > 0.5F)
-        {
-            this.entityAge += 2;
-        }
-
-        super.onLivingUpdate();
-    }
-
-    public double getHP(){return getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getAttributeValue();}
+	public double getHP(){return getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getAttributeValue();}
 	public double getMoveSpeed(){return getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue();}
 	public double getAttackDamage(){return getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue();}
 	public double getFollowRange(){return getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).getAttributeValue();}
@@ -97,16 +72,26 @@ public abstract class EntityPeacefullMob extends EntityCreature implements IMob
 	public double setKnockbackResistance() {return MobStats.knockBackResistance;}
 
 	public abstract double setMaxHealth(MobStats s);
-	public abstract String setLivingSound();
-	public abstract String setHurtSound();
-	public abstract String setDeathSound();
+	public abstract SoundEvent setLivingSound();
+	public abstract SoundEvent setHurtSound();
+	public abstract SoundEvent setDeathSound();
 	public abstract Item getItemDropped();
+
+	@Override
+	public void onLivingUpdate() {
+		this.updateArmSwingProgress();
+		float f = this.getBrightness();
+		if(f > 0.5F) {
+			this.idleTime += 2;
+		}
+		super.onLivingUpdate();
+	}
 
 	@Override
 	protected Item getDropItem() {
 		return getItemDropped();
 	}
-	
+
 	@Override
 	protected void dropFewItems(boolean b, int j) {
 		for(int i = 0; i < 1 + rand.nextInt(1); i++)
@@ -114,128 +99,94 @@ public abstract class EntityPeacefullMob extends EntityCreature implements IMob
 	}
 	
 	@Override
-	protected String getLivingSound() {
-		super.getLivingSound();
+	protected SoundEvent getAmbientSound() {
 		return setLivingSound();
 	}
-	
+
 	@Override
 	public boolean getCanSpawnHere() {
 		return world.getDifficulty() != EnumDifficulty.PEACEFUL && this.world.checkNoEntityCollision(this.getEntityBoundingBox()) && this.world.getCollisionBoxes(this, this.getEntityBoundingBox()).isEmpty() && !this.world.containsAnyLiquid(this.getEntityBoundingBox());
 	}
 
-    @Override
-	protected String getSwimSound()
-    {
-        return "game.hostile.swim";
-    }
+	@Override
+	protected SoundEvent getSwimSound() {
+		return SoundEvents.ENTITY_HOSTILE_SWIM;
+	}
 
-    @Override
-	protected String getSplashSound()
-    {
-        return "game.hostile.swim.splash";
-    }
+	@Override
+	protected SoundEvent getSplashSound() {
+		return SoundEvents.ENTITY_HOSTILE_SPLASH;
+	}
 
-    @Override
-	public boolean attackEntityFrom(DamageSource source, float amount)
-    {
-        if (this.isEntityInvulnerable(source))
-        {
-            return false;
-        }
-        else if (super.attackEntityFrom(source, amount))
-        {
-            Entity entity = source.getEntity();
-            return this.riddenByEntity != entity && this.ridingEntity != entity ? true : true;
-        }
-        else
-        {
-            return false;
-        }
-    }
+	@Override
+	public boolean attackEntityFrom(DamageSource source, float amount) {
+		if(this.isEntityInvulnerable(source)) {
+			return false;
+		}
+		else if(super.attackEntityFrom(source, amount)) {
+			Entity entity = source.getImmediateSource();
+			return this.getRidingEntity() != entity ? true : true;
+		} else {
+			return false;
+		}
+	}
 
-    protected String getHurtSound()
-    {
-        return "game.hostile.hurt";
-    }
+	@Override
+	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
+		return setHurtSound();
+	}
 
-    @Override
-	protected String getDeathSound()
-    {
-        return "game.hostile.die";
-    }
+	@Override
+	protected SoundEvent getDeathSound() {
+		return setDeathSound();
+	}
 
-    protected String getFallSoundString(int damageValue)
-    {
-        return damageValue > 4 ? "game.hostile.hurt.fall.big" : "game.hostile.hurt.fall.small";
-    }
+	@Override
+	protected SoundEvent getFallSound(int heightIn) {
+		return heightIn > 4 ? SoundEvents.ENTITY_HOSTILE_BIG_FALL : SoundEvents.ENTITY_HOSTILE_SMALL_FALL;
+	}
 
-    @Override
-	public boolean attackEntityAsMob(Entity p_70652_1_)
-    {
-        float f = (float)this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue();
-        int i = 0;
+	@Override
+	public boolean attackEntityAsMob(Entity en) {
+		float f = (float)this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue();
+		int i = 0;
 
-        if (p_70652_1_ instanceof EntityLivingBase)
-        {
-            f += EnchantmentHelper.func_152377_a(this.getHeldItem(), ((EntityLivingBase)p_70652_1_).getCreatureAttribute());
-            i += EnchantmentHelper.getKnockbackModifier(this);
-        }
+		if(en instanceof EntityLivingBase) {
+			f += EnchantmentHelper.getModifierForCreature(this.getHeldItemMainhand(), ((EntityLivingBase)en).getCreatureAttribute());
+			i += EnchantmentHelper.getKnockbackModifier(this);
+		}
 
-        boolean flag = p_70652_1_.attackEntityFrom(DamageSource.causeMobDamage(this), f);
+		boolean flag = en.attackEntityFrom(DamageSource.causeMobDamage(this), f);
 
-        if (flag)
-        {
-            if (i > 0)
-            {
-                p_70652_1_.addVelocity(-MathHelper.sin(this.rotationYaw * (float)Math.PI / 180.0F) * i * 0.5F, 0.1D, MathHelper.cos(this.rotationYaw * (float)Math.PI / 180.0F) * i * 0.5F);
-                this.motionX *= 0.6D;
-                this.motionZ *= 0.6D;
-            }
+		if(flag) {
+			if(i > 0) {
+				en.addVelocity(-MathHelper.sin(this.rotationYaw * (float)Math.PI / 180.0F) * i * 0.5F, 0.1D, MathHelper.cos(this.rotationYaw * (float)Math.PI / 180.0F) * i * 0.5F);
+				this.motionX *= 0.6D;
+				this.motionZ *= 0.6D;
+			}
 
-            int j = EnchantmentHelper.getFireAspectModifier(this);
+			int j = EnchantmentHelper.getFireAspectModifier(this);
 
-            if (j > 0)
-            {
-                p_70652_1_.setFire(j * 4);
-            }
-            //this.func_174815_a(this, p_70652_1_);
-        }
+			if(j > 0) {
+				en.setFire(j * 4);
+			}
+		}
+		return flag;
+	}
 
-        return flag;
-    }
-
-    public float func_180484_a(BlockPos p_180484_1_)
-    {
-        return 0.5F - this.world.getLightBrightness(p_180484_1_);
-    }
-
-    protected boolean isValidLightLevel()
-    {
-        BlockPos blockpos = new BlockPos(this.posX, this.getEntityBoundingBox().minY, this.posZ);
-
-        if (this.world.getLightFor(EnumSkyBlock.SKY, blockpos) > this.rand.nextInt(32))
-        {
-            return false;
-        }
-        else
-        {
-            int i = this.world.getLightFromNeighbors(blockpos);
-
-            if (this.world.isThundering())
-            {
-                int j = this.world.getSkylightSubtracted();
-                this.world.setSkylightSubtracted(10);
-                i = this.world.getLightFromNeighbors(blockpos);
-                this.world.setSkylightSubtracted(j);
-            }
-
-            return i <= this.rand.nextInt(8);
-        }
-    }
-
-    protected boolean func_146066_aG()
-    {
-        return true;
-    }
+	protected boolean isValidLightLevel() {
+		BlockPos blockpos = new BlockPos(this.posX, this.getEntityBoundingBox().minY, this.posZ);
+		if (this.world.getLightFor(EnumSkyBlock.SKY, blockpos) > this.rand.nextInt(32)) {
+			return false;
+		} else {
+			int i = this.world.getLightFromNeighbors(blockpos);
+			if (this.world.isThundering()) {
+				int j = this.world.getSkylightSubtracted();
+				this.world.setSkylightSubtracted(10);
+				i = this.world.getLightFromNeighbors(blockpos);
+				this.world.setSkylightSubtracted(j);
+			}
+			return i <= this.rand.nextInt(8);
+		}
+	}
 }

@@ -6,6 +6,7 @@ import net.journey.client.render.particles.EntityFireballFX;
 import net.journey.client.render.particles.EntityFloroWaterFX;
 import net.journey.client.render.particles.EntityOvergrownFX;
 import net.journey.client.render.particles.EntityWitherFX;
+import net.journey.util.PotionEffects;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.potion.Potion;
@@ -42,7 +43,7 @@ public class EntityOceanPlasma extends EntityBasicProjectile {
 	protected void onImpact(RayTraceResult var1) {
 		if(var1.entityHit != null) { 
 			var1.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), getDamage());
-			((EntityLivingBase) var1.entityHit).addPotionEffect(new PotionEffect(Potion.harm.id, 100, 1));
+			((EntityLivingBase) var1.entityHit).addPotionEffect(new PotionEffect(PotionEffects.getPotionFromID(PotionEffects.harm), 100, 1));
 		}
 		if(!world.isRemote) this.setDead();
 	}

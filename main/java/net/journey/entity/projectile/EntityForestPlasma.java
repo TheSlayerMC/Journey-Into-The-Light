@@ -1,5 +1,6 @@
 package net.journey.entity.projectile;
 
+import net.journey.util.PotionEffects;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.potion.Potion;
@@ -22,7 +23,7 @@ public class EntityForestPlasma extends EntityThrowable {
 	protected void onImpact(RayTraceResult var1) {
 		if(var1.entityHit != null && var1.entityHit instanceof EntityLivingBase) {
 			var1.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), 10);
-			((EntityLivingBase)var1.entityHit).addPotionEffect(new PotionEffect(Potion.poison.id, 100, 2));
+			((EntityLivingBase)var1.entityHit).addPotionEffect(new PotionEffect(PotionEffects.getPotionFromID(PotionEffects.poison), 100, 2));
 		}
 		if(!world.isRemote) this.setDead();
 	}

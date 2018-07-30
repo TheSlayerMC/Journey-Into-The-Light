@@ -94,7 +94,7 @@ public class ItemModRecord extends ItemRecord {
     }
 	
     @Override
-	public ResourceLocation getRecordResource(String name) {
-        return new ResourceLocation(SlayerAPI.PREFIX + "music." + name);
+    public SoundEvent getSound() {
+    	return this.sound;
     }
 }

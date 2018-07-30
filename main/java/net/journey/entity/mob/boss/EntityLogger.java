@@ -11,6 +11,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
@@ -35,26 +36,26 @@ public class EntityLogger extends EntityEssenceBoss {
 		super.onLivingUpdate();
 		if(this.attackTimer > 0) --this.attackTimer;
 		if (this.motionX * this.motionX + this.motionZ * this.motionZ > 2.500000277905201E-7D && this.rand.nextInt(5) == 0) {
-			int i = MathHelper.floor_double(this.posX);
-			int j = MathHelper.floor_double(this.posY - 0.20000000298023224D);
-			int k = MathHelper.floor_double(this.posZ);
-			IBlockState iblockstate = this.worldObj.getBlockState(new BlockPos(i, j, k));
-            Block block = iblockstate.getBlock();
-			if(block.getMaterial() != Material.AIR)
-				 this.worldObj.spawnParticle(EnumParticleTypes.BLOCK_CRACK, this.posX + (this.rand.nextFloat() - 0.5D) * this.width, this.getEntityBoundingBox().minY + 0.1D, this.posZ + (this.rand.nextFloat() - 0.5D) * this.width, 4.0D * (this.rand.nextFloat() - 0.5D), 0.5D, (this.rand.nextFloat() - 0.5D) * 4.0D, new int[] {Block.getStateId(iblockstate)});
+			int i = MathHelper.floor(this.posX);
+			int j = MathHelper.floor(this.posY - 0.20000000298023224D);
+			int k = MathHelper.floor(this.posZ);
+			IBlockState iblockstate = this.world.getBlockState(new BlockPos(i, j, k));
+			Block block = iblockstate.getBlock();
+			if(block.getMaterial(iblockstate) != Material.AIR)
+				this.world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, this.posX + (this.rand.nextFloat() - 0.5D) * this.width, this.getEntityBoundingBox().minY + 0.1D, this.posZ + (this.rand.nextFloat() - 0.5D) * this.width, 4.0D * (this.rand.nextFloat() - 0.5D), 0.5D, (this.rand.nextFloat() - 0.5D) * 4.0D, new int[] {Block.getStateId(iblockstate)});
 		}
 	}
 
 	@Override
 	public boolean attackEntityAsMob(Entity e) {
 		this.attackTimer = 5;
-		this.worldObj.setEntityState(this, (byte)4);
+		this.world.setEntityState(this, (byte)4);
 		boolean flag = e.attackEntityFrom(DamageSource.causeMobDamage(this), (float)getAttackDamage());
 		if(flag) { 
 			e.motionY += 1.0000000059604645D;
 			e.setFire(10 + rand.nextInt(10));
 		}
-		this.playSound("mob.irongolem.throw", 1.0F, 1.0F);
+		this.playSound(SoundEvents.ENTITY_IRONGOLEM_ATTACK, 1.0F, 1.0F);
 		return flag;
 	}
 
@@ -82,23 +83,22 @@ public class EntityLogger extends EntityEssenceBoss {
 	public EnumSounds setDeathSound() {
 		return EnumSounds.BOSS_DEATH;
 	}
-	
+
 	@Override
 	public void onDeath(DamageSource damage) {
-		if(damage.getEntity() instanceof EntityPlayer) {
-			EntityPlayer p = (EntityPlayer)damage.getEntity();
-			p.triggerAchievement(JourneyAchievements.achievementlogger); {
-			}
+		if(damage.getImmediateSource() instanceof EntityPlayer) {
+			EntityPlayer p = (EntityPlayer)damage.getImmediateSource();
+			//p.triggerAchievement(JourneyAchievements.achievementlogger);
 		}
-		this.worldObj.setBlockState(new BlockPos((int)Math.floor(this.posX + 0), ((int)Math.floor(this.posY + 1)), ((int)Math.floor(this.posZ + 0))), JourneyBlocks.trophyLogger.getStateFromMeta(5));
-		this.worldObj.setBlockState(new BlockPos((int)Math.floor(this.posX + 0), ((int)Math.floor(this.posY + 0)), ((int)Math.floor(this.posZ + 0))), JourneyBlocks.corbaChest.getStateFromMeta(5));
-		TileEntityJourneyChest te = (TileEntityJourneyChest)worldObj.getTileEntity(new BlockPos((int)Math.floor(this.posX + 0), ((int)Math.floor(this.posY + 0)), ((int)Math.floor(this.posZ + 0))));
+		this.world.setBlockState(new BlockPos((int)Math.floor(this.posX + 0), ((int)Math.floor(this.posY + 1)), ((int)Math.floor(this.posZ + 0))), JourneyBlocks.trophyLogger.getStateFromMeta(5));
+		this.world.setBlockState(new BlockPos((int)Math.floor(this.posX + 0), ((int)Math.floor(this.posY + 0)), ((int)Math.floor(this.posZ + 0))), JourneyBlocks.corbaChest.getStateFromMeta(5));
+		TileEntityJourneyChest te = (TileEntityJourneyChest)world.getTileEntity(new BlockPos((int)Math.floor(this.posX + 0), ((int)Math.floor(this.posY + 0)), ((int)Math.floor(this.posZ + 0))));
 		switch(rand.nextInt(2)) {
 		case 0:
 			te.setInventorySlotContents(15, new ItemStack(JourneyItems.terraniaPortalGem, 8));
 			te.setInventorySlotContents(1, new ItemStack(JourneyItems.naturesBlade, 1));
 			te.setInventorySlotContents(5, new ItemStack(JourneyItems.loggersBow, 1));
-			
+
 			te.setInventorySlotContents(3, new ItemStack(JourneyItems.hollowChest, 1));
 			te.setInventorySlotContents(11, new ItemStack(JourneyItems.hollowHelmet, 1));
 			te.setInventorySlotContents(7, new ItemStack(JourneyItems.hollowLegs, 1));
@@ -108,7 +108,7 @@ public class EntityLogger extends EntityEssenceBoss {
 			te.setInventorySlotContents(1, new ItemStack(JourneyItems.terraniaPortalGem, 10));
 			te.setInventorySlotContents(2, new ItemStack(JourneyItems.loggersSword, 1));
 			te.setInventorySlotContents(10, new ItemStack(JourneyItems.loggersBow, 1));
-			
+
 			te.setInventorySlotContents(3, new ItemStack(JourneyItems.hollowChest, 1));
 			te.setInventorySlotContents(11, new ItemStack(JourneyItems.hollowHelmet, 1));
 			te.setInventorySlotContents(5, new ItemStack(JourneyItems.hollowLegs, 1));

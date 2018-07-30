@@ -8,6 +8,7 @@ public class PotionEffects {
 
 	public static int fireResistance = Potion.getIdFromPotion(MobEffects.FIRE_RESISTANCE);
 	public static int digSpeed = Potion.getIdFromPotion(MobEffects.HASTE);
+	public static int digSlow = Potion.getIdFromPotion(MobEffects.MINING_FATIGUE);
 	public static int nightVision = Potion.getIdFromPotion(MobEffects.NIGHT_VISION);
 	public static int saturation = Potion.getIdFromPotion(MobEffects.SATURATION);
 	public static int damageBoost = Potion.getIdFromPotion(MobEffects.STRENGTH);
@@ -17,6 +18,7 @@ public class PotionEffects {
 	public static int resistance = Potion.getIdFromPotion(MobEffects.RESISTANCE);
 	public static int jump = Potion.getIdFromPotion(MobEffects.JUMP_BOOST);
 	public static int moveSpeed = Potion.getIdFromPotion(MobEffects.SPEED);
+	public static int confusion = Potion.getIdFromPotion(MobEffects.NAUSEA);
 	public static int moveSlow = Potion.getIdFromPotion(MobEffects.SLOWNESS);
 	public static int blindness = Potion.getIdFromPotion(MobEffects.BLINDNESS);
 	public static int poison = Potion.getIdFromPotion(MobEffects.POISON);

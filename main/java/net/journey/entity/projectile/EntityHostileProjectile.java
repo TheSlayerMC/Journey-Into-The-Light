@@ -133,7 +133,7 @@ public abstract class EntityHostileProjectile extends Entity
             }
 
             Entity entity = null;
-            List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
+            List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
             double d0 = 0.0D;
 
             for (int i = 0; i < list.size(); ++i)
@@ -299,11 +299,11 @@ public abstract class EntityHostileProjectile extends Entity
         }
         else
         {
-            this.setBeenAttacked();
+            //this.setBeenAttacked();
 
-            if (source.getEntity() != null)
+            if (source.getImmediateSource() != null)
             {
-                Vec3d vec3 = source.getEntity().getLookVec();
+                Vec3d vec3 = source.getImmediateSource().getLookVec();
 
                 if (vec3 != null)
                 {
@@ -315,9 +315,9 @@ public abstract class EntityHostileProjectile extends Entity
                     this.accelerationZ = this.motionZ * 0.1D;
                 }
 
-                if (source.getEntity() instanceof EntityLivingBase)
+                if (source.getImmediateSource() instanceof EntityLivingBase)
                 {
-                    this.shootingEntity = (EntityLivingBase)source.getEntity();
+                    this.shootingEntity = (EntityLivingBase)source.getImmediateSource();
                 }
 
                 return true;

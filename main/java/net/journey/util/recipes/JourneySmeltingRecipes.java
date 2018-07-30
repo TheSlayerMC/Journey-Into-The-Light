@@ -19,6 +19,12 @@ import net.slayer.api.SlayerAPI;
 
 public class JourneySmeltingRecipes {
 
+	public static JourneySmeltingRecipes INSTANCE = new JourneySmeltingRecipes();
+	
+	public static JourneySmeltingRecipes instance() {
+		return INSTANCE;
+	}
+	
 	public static void init() {
 		initSmeltingCrafting();
 	}

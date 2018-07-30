@@ -80,10 +80,10 @@ public class EntityTerralight extends EntityModFlying {
                 return d3 < 1.0D || d3 > 3600.0D;
             }
         }
-
+        
         @Override
-        public boolean continueExecuting() {
-            return false;
+        public boolean shouldContinueExecuting() {
+        	return false;
         }
 
         @Override
@@ -106,7 +106,7 @@ public class EntityTerralight extends EntityModFlying {
 
         @Override
         public void onUpdateMoveHelper() {
-            if(this.update) {
+            if(this.action == Action.MOVE_TO) {
                 double d0 = this.posX - this.e.posX;
                 double d1 = this.posY - this.e.posY;
                 double d2 = this.posZ - this.e.posZ;
@@ -119,7 +119,7 @@ public class EntityTerralight extends EntityModFlying {
                         this.e.motionY += d1 / d3 * 0.1D;
                         this.e.motionZ += d2 / d3 * 0.1D;
                     } else {
-                        this.update = false;
+                        this.action = Action.WAIT;
                     }
                 }
             }

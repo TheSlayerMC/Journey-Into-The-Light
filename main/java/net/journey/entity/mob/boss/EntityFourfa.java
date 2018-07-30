@@ -1,6 +1,5 @@
 package net.journey.entity.mob.boss;
 
-import net.journey.JourneyBlocks;
 import net.journey.JourneyItems;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityDarknessArrow;
@@ -8,14 +7,13 @@ import net.journey.entity.projectile.EntityFlameArrow;
 import net.journey.entity.projectile.EntityFrozenArrow;
 import net.journey.entity.projectile.EntityPoisonArrow;
 import net.journey.enums.EnumSounds;
-import net.journey.util.Helper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityEssenceBoss;
 
@@ -59,21 +57,21 @@ public class EntityFourfa extends EntityEssenceBoss implements IRangedAttackMob 
 		EntityArrow arrow = null;
 		switch(STAGE) {
 		case 0:
-			arrow = new EntityDarknessArrow(this.worldObj, this, e, 1.6F, (float)(14 - this.worldObj.getDifficulty().getDifficultyId() * 4));
+			arrow = new EntityDarknessArrow(this.world, this, e, 1.6F, (float)(14 - this.world.getDifficulty().getDifficultyId() * 4));
 			break;
 		case 1:
-			arrow = new EntityFlameArrow(this.worldObj, this, e, 1.6F, (float)(14 - this.worldObj.getDifficulty().getDifficultyId() * 4));
+			arrow = new EntityFlameArrow(this.world, this, e, 1.6F, (float)(14 - this.world.getDifficulty().getDifficultyId() * 4));
 			break;
 		case 2:
-			arrow = new EntityFrozenArrow(this.worldObj, this, e, 1.6F, (float)(14 - this.worldObj.getDifficulty().getDifficultyId() * 4));
+			arrow = new EntityFrozenArrow(this.world, this, e, 1.6F, (float)(14 - this.world.getDifficulty().getDifficultyId() * 4));
 			break;
 		case 3:
-			arrow = new EntityPoisonArrow(this.worldObj, this, e, 1.6F, (float)(14 - this.worldObj.getDifficulty().getDifficultyId() * 4));
+			arrow = new EntityPoisonArrow(this.world, this, e, 1.6F, (float)(14 - this.world.getDifficulty().getDifficultyId() * 4));
 			break;
 		}
-		arrow.setDamage(f * 2.0F + this.rand.nextGaussian() * 0.25D + (float)this.worldObj.getDifficulty().getDifficultyId() * 0.11F);
+		arrow.setDamage(f * 2.0F + this.rand.nextGaussian() * 0.25D + (float)this.world.getDifficulty().getDifficultyId() * 0.11F);
 		this.playSound("random.bow", 1.0F, 1.0F / (this.getRNG().nextFloat() * 0.4F + 0.8F));
-		this.worldObj.spawnEntityInWorld(arrow);
+		this.world.spawnEntityInWorld(arrow);
 	}
 
 	public void setCombatTask() {
@@ -86,11 +84,11 @@ public class EntityFourfa extends EntityEssenceBoss implements IRangedAttackMob 
 	@Override
 	public void setCurrentItemOrArmor(int par1, ItemStack par2ItemStack) {
 		super.setCurrentItemOrArmor(par1, par2ItemStack);
-		if(!this.worldObj.isRemote && par1 == 0) this.setCombatTask();
+		if(!this.world.isRemote && par1 == 0) this.setCombatTask();
 	}
 
 	@Override
-	public ItemStack getHeldItem() {
+	public ItemStack getHeldItem(EnumHand hand) {
 		return new ItemStack(JourneyItems.darknessBow);
 	}
 
@@ -134,4 +132,7 @@ public class EntityFourfa extends EntityEssenceBoss implements IRangedAttackMob 
 		this.dropItem(getItemDropped(), 6 + rand.nextInt(4));
 	//	if(rand.nextInt(1) == 0) this.dropItem(Item.getItemFromBlock(EssenceBlocks.eudorStatue), 1);
 	}
+
+	@Override
+	public void setSwingingArms(boolean swingingArms) { }
 }

@@ -1,5 +1,6 @@
 package net.journey.entity.projectile;
 
+import net.journey.util.PotionEffects;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityFireball;
@@ -46,7 +47,7 @@ public class EntityDeathSkull extends EntityWitherSkull {
 				par1MovingObjectPosition.entityHit.attackEntityFrom(DamageSource.MAGIC, 20.0F);
 				if(par1MovingObjectPosition.entityHit instanceof EntityLivingBase) {
 					byte witherSeconds = 10;
-					if(witherSeconds > 0) ((EntityLivingBase)par1MovingObjectPosition.entityHit).addPotionEffect(new PotionEffect(Potion.wither.id, 20 * witherSeconds, 1));
+					if(witherSeconds > 0) ((EntityLivingBase)par1MovingObjectPosition.entityHit).addPotionEffect(new PotionEffect(PotionEffects.getPotionFromID(PotionEffects.wither), 20 * witherSeconds, 1));
 				}
 			}
 			this.world.newExplosion(this, this.posX, this.posY, this.posZ, 1.0F, false, this.world.getGameRules().getBoolean("mobGriefing"));

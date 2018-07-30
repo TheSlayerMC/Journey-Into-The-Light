@@ -33,15 +33,15 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.block.BlockNetherFurnace;
 
 public abstract class TileEntityModFurnace extends TileEntity implements IInventory, ITickable{
-	
+
 	private NonNullList<ItemStack> inventory = NonNullList.<ItemStack>withSize(4, ItemStack.EMPTY);
 	private String customName;
-	
+
 	public int burnTime;
 	public int currentBurnTime;
 	public int cookTime;
 	public int totalCookTime;
-	
+
 	@Override
 	public String getName() {
 		return this.hasCustomName() ? this.customName : "container.dual_furnace";
@@ -51,11 +51,11 @@ public abstract class TileEntityModFurnace extends TileEntity implements IInvent
 	public boolean hasCustomName() {
 		return this.customName != null && !this.customName.isEmpty();
 	}
-	
+
 	public void setCustomName(String customName) {
 		this.customName = customName;
 	}
-	
+
 	@Override
 	public ITextComponent getDisplayName() {
 		return this.hasCustomName() ? new TextComponentString(this.getName()) : new TextComponentTranslation(this.getName());
@@ -94,7 +94,7 @@ public abstract class TileEntityModFurnace extends TileEntity implements IInvent
 		ItemStack itemstack = (ItemStack)this.inventory.get(index);
 		boolean flag = !stack.isEmpty() && stack.isItemEqual(itemstack) && ItemStack.areItemStackTagsEqual(stack, itemstack);
 		this.inventory.set(index, stack);
-		
+
 		if(stack.getCount() > this.getInventoryStackLimit())
 			stack.setCount(this.getInventoryStackLimit());
 		if(index == 0 && index + 1 == 1 && !flag) {
@@ -104,7 +104,7 @@ public abstract class TileEntityModFurnace extends TileEntity implements IInvent
 			this.markDirty();
 		}
 	}
-	
+
 	@Override
 	public void readFromNBT(NBTTagCompound compound) {
 		super.readFromNBT(compound);
@@ -114,11 +114,11 @@ public abstract class TileEntityModFurnace extends TileEntity implements IInvent
 		this.cookTime = compound.getInteger("CookTime");
 		this.totalCookTime = compound.getInteger("CookTimeTotal");
 		this.currentBurnTime = getItemBurnTime((ItemStack)this.inventory.get(2));
-		
+
 		if(compound.hasKey("CustomName", 8))
 			this.setCustomName(compound.getString("CustomName"));
 	}
-	
+
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
 		super.writeToNBT(compound);
@@ -126,10 +126,10 @@ public abstract class TileEntityModFurnace extends TileEntity implements IInvent
 		compound.setInteger("CookTime", (short)this.cookTime);
 		compound.setInteger("CookTimeTotal", (short)this.totalCookTime);
 		ItemStackHelper.saveAllItems(compound, this.inventory);
-		
+
 		if(this.hasCustomName())
 			compound.setString("CustomName", this.customName);
-		
+
 		return compound;
 	}
 
@@ -137,38 +137,38 @@ public abstract class TileEntityModFurnace extends TileEntity implements IInvent
 	public int getInventoryStackLimit() {
 		return 64;
 	}
-	
+
 	public boolean isBurning() {
 		return this.burnTime > 0;
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	public static boolean isBurning(IInventory inventory) {
 		return inventory.getField(0) > 0;
 	}
-	
+
 	public void update() {
 		boolean flag = this.isBurning();
 		boolean flag1 = false;
-		
+
 		if(this.isBurning())
 			--this.burnTime;
-		
+
 		if(!this.world.isRemote) {
 			ItemStack stack = (ItemStack)this.inventory.get(2);
-			
+
 			if(this.isBurning() || !stack.isEmpty() && !((((ItemStack)this.inventory.get(0)).isEmpty()) || ((ItemStack)this.inventory.get(1)).isEmpty())) {
 				if(!this.isBurning() && this.canSmelt()) {
 					this.burnTime = getItemBurnTime(stack);
 					this.currentBurnTime = this.burnTime;
-					
+
 					if(this.isBurning()) {
 						flag1 = true;
-						
+
 						if(!stack.isEmpty()) {
 							Item item = stack.getItem();
 							stack.shrink(1);
-							
+
 							if(stack.isEmpty()) {
 								ItemStack item1 = item.getContainerItem(stack);
 								this.inventory.set(2, item1);
@@ -177,7 +177,7 @@ public abstract class TileEntityModFurnace extends TileEntity implements IInvent
 					}
 				} if(this.isBurning() && this.canSmelt()) {
 					++this.cookTime;
-					
+
 					if(this.cookTime == this.totalCookTime) {
 						this.cookTime = 0;
 						this.totalCookTime = this.getCookTime((ItemStack)this.inventory.get(0), (ItemStack)this.inventory.get(1));
@@ -195,17 +195,18 @@ public abstract class TileEntityModFurnace extends TileEntity implements IInvent
 		} if(flag1)
 			this.markDirty();
 	}
-	
+
 	public int getCookTime(ItemStack input1, ItemStack input2) {
 		return 200;
 	}
-	
+
+	@SuppressWarnings("")
 	private boolean canSmelt() {
-		if(((ItemStack)this.inventory.get(0)).isEmpty() || ((ItemStack)this.inventory.get(1)).isEmpty())
+		if(((ItemStack)this.inventory.get(0)).isEmpty() || ((ItemStack)this.inventory.get(1)).isEmpty()) {
 			return false;
-		else {
-			ItemStack result = JourneySmeltingRecipes.instance().getDualSmeltingResult((ItemStack)this.inventory.get(0), (ItemStack)this.inventory.get(1));
-			
+		} else {
+			ItemStack result = ItemStack.EMPTY;//JourneySmeltingRecipes.instance().getDualSmeltingResult((ItemStack)this.inventory.get(0), (ItemStack)this.inventory.get(1));
+
 			if(result.isEmpty())
 				return false;
 			else {
@@ -217,24 +218,24 @@ public abstract class TileEntityModFurnace extends TileEntity implements IInvent
 			}
 		}
 	}
-	
+
 	public void smeltItem() {
 		if(this.canSmelt()) {
 			ItemStack input1 = (ItemStack)this.inventory.get(0);
 			ItemStack input2 = (ItemStack)this.inventory.get(1);
-			ItemStack result = JourneySmeltingRecipes.instance().getDualSmeltingResult(input1, input2);
 			ItemStack output = (ItemStack)this.inventory.get(3);
-			
+			ItemStack result = output;//JourneySmeltingRecipes.instance().getDualSmeltingResult(input1, input2);
+
 			if(output.isEmpty())
 				this.inventory.set(3, result.copy());
 			else if(output.getItem() == result.getItem())
 				output.grow(result.getCount());
-			
+
 			input1.shrink(1);
 			input2.shrink(1);
 		}
 	}
-	
+
 	public static int getItemBurnTime(ItemStack fuel) {
 		if(fuel.isEmpty())
 			return 0;
@@ -264,11 +265,11 @@ public abstract class TileEntityModFurnace extends TileEntity implements IInvent
 			return GameRegistry.getFuelValue(fuel);
 		}
 	}
-		
+
 	public static boolean isItemFuel(ItemStack fuel) {
 		return getItemBurnTime(fuel) > 0;
 	}
-	
+
 	@Override
 	public boolean isUsableByPlayer(EntityPlayer player) {
 		return this.world.getTileEntity(this.pos) != this ? false : player.getDistanceSq((double)this.pos.getX() + 0.5D, (double)this.pos.getY() + 0.5D, (double)this.pos.getZ() + 0.5D) <= 64.0D;
@@ -292,7 +293,7 @@ public abstract class TileEntityModFurnace extends TileEntity implements IInvent
 			return isItemFuel(stack);
 		}
 	}
-	
+
 	public String getGuiID() {
 		return "tutorial:dual_furnace";
 	}

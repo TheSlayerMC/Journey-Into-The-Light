@@ -19,7 +19,6 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.command.ICommand;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
@@ -31,8 +30,6 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.EnumHelper;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
@@ -318,7 +315,7 @@ public class SlayerAPI {
 				if (!boolAddedToInventory && itemstack.getItemDamage() == 0) {
 					player.dropItem(itemstack.getItem(), 1);
 					String itemName = itemstack.getUnlocalizedName();
-					ChatHandler.sendFormattedChat(player, TextFormatting.RED, "journey.fullinv", LangHelper.getFormattedText(itemName + ".name"));
+					ChatHandler.sendFormattedChat(player, TextFormatting.RED, "journey.fullinv " +  LangHelper.getFormattedText(itemName + ".name"));
 				}
 			}
 			return boolAddedToInventory;
@@ -339,7 +336,7 @@ public class SlayerAPI {
 			if (!boolAddedToInventory && itemstack.getItemDamage() == 0) {
 				player.dropItem(itemstack.getItem(), 1);
 				String itemName = itemstack.getUnlocalizedName();
-				ChatHandler.sendFormattedChat(player, TextFormatting.RED, "journey.fullinv", LangHelper.getFormattedText(itemName + ".name"));
+				ChatHandler.sendFormattedChat(player, TextFormatting.RED, "journey.fullinv " + LangHelper.getFormattedText(itemName + ".name"));
 			} else {
 				player.sendContainerToPlayer(player.inventoryContainer);
 			}

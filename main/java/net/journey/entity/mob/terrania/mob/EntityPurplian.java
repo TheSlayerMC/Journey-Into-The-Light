@@ -1,6 +1,5 @@
 package net.journey.entity.mob.terrania.mob;
 
-import net.journey.JourneyBlocks;
 import net.journey.JourneyItems;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityMagmaFireball;
@@ -14,10 +13,11 @@ import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -68,16 +68,16 @@ public class EntityPurplian extends EntityModMob {
             this.motionY *= 0.6D;
         }
 
-        if (this.worldObj.isRemote)
+        if (this.world.isRemote)
         {
             if (this.rand.nextInt(24) == 0 && !this.isSilent())
             {
-                this.worldObj.playSound(this.posX + 0.5D, this.posY + 0.5D, this.posZ + 0.5D, "fire.fire", 1.0F + this.rand.nextFloat(), this.rand.nextFloat() * 0.7F + 0.3F, false);
+                this.world.playSound(this.posX + 0.5D, this.posY + 0.5D, this.posZ + 0.5D, "fire.fire", 1.0F + this.rand.nextFloat(), this.rand.nextFloat() * 0.7F + 0.3F, false);
             }
 
             for (int i = 0; i < 2; ++i)
             {
-                this.worldObj.spawnParticle(EnumParticleTypes.ENCHANTMENT_TABLE, this.posX + (this.rand.nextDouble() - 0.5D) * this.width, this.posY + this.rand.nextDouble() * this.height, this.posZ + (this.rand.nextDouble() - 0.5D) * this.width, 0.0D, 0.0D, 0.0D, new int[0]);
+                this.world.spawnParticle(EnumParticleTypes.ENCHANTMENT_TABLE, this.posX + (this.rand.nextDouble() - 0.5D) * this.width, this.posY + this.rand.nextDouble() * this.height, this.posZ + (this.rand.nextDouble() - 0.5D) * this.width, 0.0D, 0.0D, 0.0D, new int[0]);
             }
         }
 
@@ -87,7 +87,7 @@ public class EntityPurplian extends EntityModMob {
 	@Override
 	protected void updateAITasks() {
 		if (this.isWet()) {
-            this.attackEntityFrom(DamageSource.drown, 1.0F);
+            this.attackEntityFrom(DamageSource.DROWN, 1.0F);
         }
 
         --this.heightOffsetUpdateTime;
@@ -204,7 +204,7 @@ public class EntityPurplian extends EntityModMob {
         {
             --this.field_179468_c;
             EntityLivingBase entitylivingbase = this.field_179469_a.getAttackTarget();
-            double d0 = this.field_179469_a.getDistanceSqToEntity(entitylivingbase);
+            double d0 = this.field_179469_a.getDistanceSq(entitylivingbase);
 
             if (d0 < 4.0D)
             {
@@ -244,14 +244,14 @@ public class EntityPurplian extends EntityModMob {
 
                     if (this.field_179467_b > 1)
                     {
-                        float f = MathHelper.sqrt_float(MathHelper.sqrt_double(d0)) * 0.5F;
-                        this.field_179469_a.worldObj.playAuxSFXAtEntity((EntityPlayer)null, 1009, new BlockPos((int)this.field_179469_a.posX, (int)this.field_179469_a.posY, (int)this.field_179469_a.posZ), 0);
+                        float f = MathHelper.sqrt(MathHelper.sqrt(d0)) * 0.5F;
+                        this.field_179469_a.world.playAuxSFXAtEntity((EntityPlayer)null, 1009, new BlockPos((int)this.field_179469_a.posX, (int)this.field_179469_a.posY, (int)this.field_179469_a.posZ), 0);
 
                         for (int i = 0; i < 1; ++i)
                         {
-                            EntityMagmaFireball entitysmallfireball = new EntityMagmaFireball(this.field_179469_a.worldObj, this.field_179469_a, d1 + this.field_179469_a.getRNG().nextGaussian() * f, d2, d3 + this.field_179469_a.getRNG().nextGaussian() * f);
+                            EntityMagmaFireball entitysmallfireball = new EntityMagmaFireball(this.field_179469_a.world, this.field_179469_a, d1 + this.field_179469_a.getRNG().nextGaussian() * f, d2, d3 + this.field_179469_a.getRNG().nextGaussian() * f);
                             entitysmallfireball.posY = this.field_179469_a.posY + this.field_179469_a.height / 2.0F + 0.5D;
-                            this.field_179469_a.worldObj.spawnEntityInWorld(entitysmallfireball);
+                            this.field_179469_a.world.spawnEntity(entitysmallfireball);
                         }
                     }
                 }
@@ -260,7 +260,7 @@ public class EntityPurplian extends EntityModMob {
             }
             else
             {
-                this.field_179469_a.getNavigator().clearPathEntity();
+                this.field_179469_a.getNavigator().clearPath();
                 this.field_179469_a.getMoveHelper().setMoveTo(entitylivingbase.posX, entitylivingbase.posY, entitylivingbase.posZ, 1.0D);
             }
 

@@ -1,7 +1,6 @@
 package net.journey.client;
 
 import net.journey.util.ManaProvider;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.AttachCapabilitiesEvent;

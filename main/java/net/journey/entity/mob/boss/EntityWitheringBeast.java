@@ -1,6 +1,5 @@
 package net.journey.entity.mob.boss;
 
-import net.journey.JourneyAchievements;
 import net.journey.JourneyBlocks;
 import net.journey.JourneyItems;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
@@ -9,7 +8,7 @@ import net.journey.entity.projectile.EntityDeathSkull;
 import net.journey.enums.EnumSounds;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.ai.EntityAIAttackRangedBow;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
@@ -20,23 +19,26 @@ import net.slayer.api.entity.EntityEssenceBoss;
 
 public class EntityWitheringBeast extends EntityEssenceBoss implements IRangedAttackMob {
 
+	private final EntityAIAttackRangedBow<EntityWitheringBeast> aiArrowAttack = new EntityAIAttackRangedBow<EntityWitheringBeast>(this, 1.0D, 40, 20.0F);
+
+	
 	public EntityWitheringBeast(World par1World) {
 		super(par1World);
 		addAttackingAI();
 		setSize(2.0F, 3.8F);
-		this.tasks.addTask(1, new EntityAIArrowAttack(this, 1.0D, 40, 20.0F));
+		this.tasks.addTask(1, aiArrowAttack);
 	}
 
 	@Override
 	public void onDeath(DamageSource damage){
-		if(damage.getEntity() instanceof EntityPlayer) {
-			EntityPlayer p = (EntityPlayer)damage.getEntity();
-			p.triggerAchievement(JourneyAchievements.achievementWitherBeast); {
-			}
-		}
-		this.worldObj.setBlockState(new BlockPos((int)Math.floor(this.posX + 0), ((int)Math.floor(this.posY + 1)), ((int)Math.floor(this.posZ + 0))), JourneyBlocks.trophyWitherBeast.getStateFromMeta(5));
-		this.worldObj.setBlockState(new BlockPos((int)Math.floor(this.posX + 0), ((int)Math.floor(this.posY + 0)), ((int)Math.floor(this.posZ + 0))), JourneyBlocks.netherChest.getStateFromMeta(5));
-		TileEntityJourneyChest te = (TileEntityJourneyChest)worldObj.getTileEntity(new BlockPos((int)Math.floor(this.posX + 0), ((int)Math.floor(this.posY + 0)), ((int)Math.floor(this.posZ + 0))));
+		//if(damage.getEntity() instanceof EntityPlayer) {
+		//	EntityPlayer p = (EntityPlayer)damage.getEntity();
+		//	p.triggerAchievement(JourneyAchievements.achievementWitherBeast); {
+		//	}
+		//}
+		this.world.setBlockState(new BlockPos((int)Math.floor(this.posX + 0), ((int)Math.floor(this.posY + 1)), ((int)Math.floor(this.posZ + 0))), JourneyBlocks.trophyWitherBeast.getStateFromMeta(5));
+		this.world.setBlockState(new BlockPos((int)Math.floor(this.posX + 0), ((int)Math.floor(this.posY + 0)), ((int)Math.floor(this.posZ + 0))), JourneyBlocks.netherChest.getStateFromMeta(5));
+		TileEntityJourneyChest te = (TileEntityJourneyChest)world.getTileEntity(new BlockPos((int)Math.floor(this.posX + 0), ((int)Math.floor(this.posY + 0)), ((int)Math.floor(this.posZ + 0))));
 		switch(rand.nextInt(2)) {
 		case 0:
 			te.setInventorySlotContents(2, new ItemStack(JourneyItems.witheringBeastSword, 1));
@@ -91,16 +93,15 @@ public class EntityWitheringBeast extends EntityEssenceBoss implements IRangedAt
         
     }
     
-    private void launchWitherSkullToCoords(int var1, double f2, double f4, double f6, boolean f8)
-    {
-        this.worldObj.playAuxSFXAtEntity((EntityPlayer)null, 1014, new BlockPos(this), 0);
+    private void launchWitherSkullToCoords(int var1, double f2, double f4, double f6, boolean f8) {
+        //this.world.playAuxSFXAtEntity((EntityPlayer)null, 1014, new BlockPos(this), 0);
         double d3 = this.coordX(var1);
         double d4 = this.coordY(var1);
         double d5 = this.coordZ(var1);
         double d6 = f2 - d3;
         double d7 = f4 - d4;
         double d8 = f6 - d5;
-        EntityDeathSkull entitydeathskull = new EntityDeathSkull(this.worldObj, this, d6, d7, d8);
+        EntityDeathSkull entitydeathskull = new EntityDeathSkull(this.world, this, d6, d7, d8);
 
         if (f8)
         {
@@ -110,7 +111,7 @@ public class EntityWitheringBeast extends EntityEssenceBoss implements IRangedAt
         entitydeathskull.posY = d4;
         entitydeathskull.posX = d3;
         entitydeathskull.posZ = d5;
-        this.worldObj.spawnEntityInWorld(entitydeathskull);
+        this.world.spawnEntity(entitydeathskull);
 	}
     
     private double coordX(int par1) {
@@ -142,4 +143,7 @@ public class EntityWitheringBeast extends EntityEssenceBoss implements IRangedAt
             return this.posZ + f1 * 1.3D;
         }
     }
+
+	@Override
+	public void setSwingingArms(boolean swingingArms) { }
 }

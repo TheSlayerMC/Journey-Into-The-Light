@@ -13,6 +13,8 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.RayTraceResult.Type;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -44,11 +46,11 @@ public class ItemTeleport extends ItemMod {
 		float var18 = var13 * var15;
 		double var19 = 30.0D;
 		Vec3d var21 = var12.addVector(var17 * var19, var16 * var19, var18 * var19);
-		MovingObjectPosition var22 = worldIn.rayTraceBlocks(var12, var21);
+		RayTraceResult var22 = worldIn.rayTraceBlocks(var12, var21);
 		if(var22 == null) {
-			return par1;
+			return EnumActionResult.FAIL;
 		} else {
-			if (var22.typeOfHit == MovingObjectType.BLOCK) {
+			if (var22.typeOfHit == Type.BLOCK) {
 				int var23 = var22.getBlockPos().getX();
 				int var24 = var22.getBlockPos().getY();
 				int var25 = var22.getBlockPos().getZ();
@@ -67,7 +69,7 @@ public class ItemTeleport extends ItemMod {
 				}
 			}
 		}
-		return par1;
+		return EnumActionResult.SUCCESS;
 	}
 
 	protected void teleportTo(EntityPlayer par1, World par2, double par3, double par4, double par5) {

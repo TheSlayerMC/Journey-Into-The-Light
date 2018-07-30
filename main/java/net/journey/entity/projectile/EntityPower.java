@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import net.journey.client.render.particles.EntityHellstoneFX;
+import net.minecraft.client.particle.Particle;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -43,7 +44,7 @@ public class EntityPower extends EntityThrowable {
 				if(entity1 instanceof EntityLivingBase && entity1 != getThrower()) {
 					EntityLivingBase hit = (EntityLivingBase)entity1;
 					for(int i1 = 0; i1 < 6; i1++) {
-						EntityFX effect = new EntityHellstoneFX(this.world, hit.posX + rand.nextFloat(), hit.posY + 1D + rand.nextFloat(), hit.posZ + rand.nextFloat(), 0.0D, 0.0D, 0.0D);
+						Particle effect = new EntityHellstoneFX(this.world, hit.posX + rand.nextFloat(), hit.posY + 1D + rand.nextFloat(), hit.posZ + rand.nextFloat(), 0.0D, 0.0D, 0.0D);
 						FMLClientHandler.instance().getClient().effectRenderer.addEffect(effect);
 					}
 					hit.attackEntityFrom(new DamageSource("power"), 10F);

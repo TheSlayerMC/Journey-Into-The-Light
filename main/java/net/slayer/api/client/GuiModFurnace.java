@@ -46,11 +46,23 @@ public class GuiModFurnace extends GuiContainer {
         int i1;
 
         if(this.tileFurnace.isBurning()) {
-        //    i1 = this.tileFurnace.getBurnTimeRemainingScaled(12);
+            i1 = getBurnLeftScaled(12);
             this.drawTexturedModalRect(k + 56, l + 36 + 12 - i1, 176, 12 - i1, 14, i1 + 2);
         }
 
-      //  i1 = this.tileFurnace.getCookProgressScaled(24);
+        i1 = getCookProgressScaled(24);
         this.drawTexturedModalRect(k + 79, l + 34, 176, 14, i1 + 1, 16);
+    }
+    
+    private int getCookProgressScaled(int pixels) {
+        int i = this.tileFurnace.getField(2);
+        int j = this.tileFurnace.getField(3);
+        return j != 0 && i != 0 ? i * pixels / j : 0;
+    }
+    
+    private int getBurnLeftScaled(int pixels) {
+        int i = this.tileFurnace.getField(1);
+        if(i == 0) i = 200;
+        return this.tileFurnace.getField(0) * pixels / i;
     }
 }
