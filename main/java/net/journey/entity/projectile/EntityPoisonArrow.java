@@ -2,7 +2,13 @@ package net.journey.entity.projectile;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
+import com.google.common.base.Predicate;
+import com.google.common.base.Predicates;
+
 import net.journey.JourneyItems;
+import net.journey.util.PotionEffects;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -16,21 +22,37 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.network.play.server.SPacketChangeGameState;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSourceIndirect;
+import net.minecraft.util.EntitySelectors;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class EntityPoisonArrow extends EntityArrow implements IProjectile {
 
+    private static final Predicate<Entity> ARROW_TARGETS = Predicates.and(EntitySelectors.NOT_SPECTATING, EntitySelectors.IS_ALIVE, new Predicate<Entity>() {
+        public boolean apply(@Nullable Entity e) {
+            return e.canBeCollidedWith();
+        }
+    });
+    
+    private PotionEffect potioneffect = new PotionEffect(PotionEffects.getPotionFromID(PotionEffects.poison), 100, 2);
+    
+    private static final DataParameter<Byte> CRITICAL = EntityDataManager.<Byte>createKey(EntityArrow.class, DataSerializers.BYTE);
 	private int xTile = -1;
 	private int yTile = -1;
 	private int zTile = -1;
@@ -47,20 +69,20 @@ public class EntityPoisonArrow extends EntityArrow implements IProjectile {
 
 	public EntityPoisonArrow(World worldIn) {
 		super(worldIn);
-		Entity.renderDistanceWeight = 10.0D;
+		Entity.setRenderDistanceWeight(10.0D);
 		this.setSize(0.5F, 0.5F);
 	}
 
 	public EntityPoisonArrow(World worldIn, double d, double d1, double d2) {
 		super(worldIn);
-		Entity.renderDistanceWeight = 10.0D;
+		Entity.setRenderDistanceWeight(10.0D);
 		this.setSize(0.5F, 0.5F);
 		this.setPosition(d, d1, d2);
 	}
 
 	public EntityPoisonArrow(World worldIn, EntityLivingBase e, EntityLivingBase eb, float f, float f1) {
 		super(worldIn);
-		Entity.renderDistanceWeight = 10.0D;
+		Entity.setRenderDistanceWeight(10.0D);
 		this.shootingEntity = e;
 
 		if (e instanceof EntityPlayer) {
@@ -71,7 +93,7 @@ public class EntityPoisonArrow extends EntityArrow implements IProjectile {
 		double d0 = eb.posX - e.posX;
 		double d1 = eb.getEntityBoundingBox().minY + eb.height / 3.0F - this.posY;
 		double d2 = eb.posZ - e.posZ;
-		double d3 = (double)MathHelper.sqrt_double(d0 * d0 + d2 * d2);
+		double d3 = (double)MathHelper.sqrt(d0 * d0 + d2 * d2);
 
 		if (d3 >= 1.0E-7D) {
 			float f2 = (float)(Math.atan2(d2, d0) * 180.0D / Math.PI) - 90.0F;
@@ -80,13 +102,13 @@ public class EntityPoisonArrow extends EntityArrow implements IProjectile {
 			double d5 = d2 / d3;
 			this.setLocationAndAngles(e.posX + d4, this.posY, e.posZ + d5, f2, f3);
 			float f4 = (float)(d3 * 0.20000000298023224D);
-			this.setThrowableHeading(d0, d1 + f4, d2, f, f1);
+			this.shoot(d0, d1 + f4, d2, f, f1);
 		}
 	}
 
 	public EntityPoisonArrow(World worldIn, EntityLivingBase e, float f) {
 		super(worldIn);
-		Entity.renderDistanceWeight = 10.0D;
+		Entity.setRenderDistanceWeight(10.0D);
 		this.shootingEntity = e;
 		if(e instanceof EntityPlayer) this.canBePickedUp = 1;
 		this.setSize(0.5F, 0.5F);
@@ -98,17 +120,17 @@ public class EntityPoisonArrow extends EntityArrow implements IProjectile {
 		this.motionX = (double)(-MathHelper.sin(this.rotationYaw / 180.0F * (float)Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float)Math.PI));
 		this.motionZ = (double)(MathHelper.cos(this.rotationYaw / 180.0F * (float)Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float)Math.PI));
 		this.motionY = (double)(-MathHelper.sin(this.rotationPitch / 180.0F * (float)Math.PI));
-		this.setThrowableHeading(this.motionX, this.motionY, this.motionZ, f * 1.5F, 1.0F);
+		this.shoot(this.motionX, this.motionY, this.motionZ, f * 1.5F, 1.0F);
 	}
 
 	@Override
 	protected void entityInit() {
-		this.dataWatcher.addObject(16, Byte.valueOf((byte)0));
+        this.dataManager.register(CRITICAL, Byte.valueOf((byte)0));
 	}
 
 	@Override
-	public void setThrowableHeading(double d, double d1, double d2, float f, float f1) {
-		float f2 = MathHelper.sqrt_double(d * d + d1 * d1 + d2 * d2);
+	public void shoot(double d, double d1, double d2, float f, float f1) {
+		float f2 = MathHelper.sqrt(d * d + d1 * d1 + d2 * d2);
 		d /= f2;
 		d1 /= f2;
 		d2 /= f2;
@@ -121,13 +143,12 @@ public class EntityPoisonArrow extends EntityArrow implements IProjectile {
 		this.motionX = d;
 		this.motionY = d1;
 		this.motionZ = d2;
-		float f3 = MathHelper.sqrt_double(d * d + d2 * d2);
+		float f3 = MathHelper.sqrt(d * d + d2 * d2);
 		this.prevRotationYaw = this.rotationYaw = (float)(Math.atan2(d, d2) * 180.0D / Math.PI);
 		this.prevRotationPitch = this.rotationPitch = (float)(Math.atan2(d1, f3) * 180.0D / Math.PI);
 		this.ticksInGround = 0;
 	}
 
-	@Override
 	@SideOnly(Side.CLIENT)
 	public void setPositionAndRotation2(double x, double y, double z, float r, float yaw, int i, boolean b) {
 		this.setPosition(x, y, z);
@@ -142,7 +163,7 @@ public class EntityPoisonArrow extends EntityArrow implements IProjectile {
 		this.motionZ = z;
 
 		if (this.prevRotationPitch == 0.0F && this.prevRotationYaw == 0.0F) {
-			float f = MathHelper.sqrt_double(x * x + z * z);
+			float f = MathHelper.sqrt(x * x + z * z);
 			this.prevRotationYaw = this.rotationYaw = (float)(Math.atan2(x, z) * 180.0D / Math.PI);
 			this.prevRotationPitch = this.rotationPitch = (float)(Math.atan2(y, f) * 180.0D / Math.PI);
 			this.prevRotationPitch = this.rotationPitch;
@@ -157,23 +178,22 @@ public class EntityPoisonArrow extends EntityArrow implements IProjectile {
 		super.onEntityUpdate();
 
 		if(this.prevRotationPitch == 0.0F && this.prevRotationYaw == 0.0F) {
-			float f = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
+			float f = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 			this.prevRotationYaw = this.rotationYaw = (float)(Math.atan2(this.motionX, this.motionZ) * 180.0D / Math.PI);
 			this.prevRotationPitch = this.rotationPitch = (float)(Math.atan2(this.motionY, f) * 180.0D / Math.PI);
 		}
 
 		BlockPos blockpos = new BlockPos(this.xTile, this.yTile, this.zTile);
-		IBlockState iblockstate = this.worldObj.getBlockState(blockpos);
+		IBlockState iblockstate = this.world.getBlockState(blockpos);
 		Block block = iblockstate.getBlock();
 
-		if (block.getMaterial() != Material.AIR) {
-			block.setBlockBoundsBasedOnState(this.worldObj, blockpos);
-			AxisAlignedBB axisalignedbb = block.getCollisionBoundingBox(this.worldObj, blockpos, iblockstate);
+		if (iblockstate.getMaterial() != Material.AIR) {
+            AxisAlignedBB axisalignedbb = iblockstate.getCollisionBoundingBox(this.world, blockpos);
 
-			if (axisalignedbb != null && axisalignedbb.isVecInside(new Vec3(this.posX, this.posY, this.posZ))) {
-				this.inGround = true;
-			}
-		}
+            if (axisalignedbb != Block.NULL_AABB && axisalignedbb.offset(blockpos).contains(new Vec3d(this.posX, this.posY, this.posZ))) {
+                this.inGround = true;
+            }
+        }
 
 		if (this.arrowShake > 0) {
 			--this.arrowShake;
@@ -197,192 +217,100 @@ public class EntityPoisonArrow extends EntityArrow implements IProjectile {
 				this.ticksInAir = 0;
 			}
 		} else {
-			++this.ticksInAir;
-			Vec3 vec31 = new Vec3(this.posX, this.posY, this.posZ);
-			Vec3 vec3 = new Vec3(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
-			MovingObjectPosition movingobjectposition = this.worldObj.rayTraceBlocks(vec31, vec3, false, true, false);
-			vec31 = new Vec3(this.posX, this.posY, this.posZ);
-			vec3 = new Vec3(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
+			
+            this.timeInGround = 0;
+            ++this.ticksInAir;
+            Vec3d vec3d1 = new Vec3d(this.posX, this.posY, this.posZ);
+            Vec3d vec3d = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
+            RayTraceResult raytraceresult = this.world.rayTraceBlocks(vec3d1, vec3d, false, true, false);
+            vec3d1 = new Vec3d(this.posX, this.posY, this.posZ);
+            vec3d = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
 
-			if (movingobjectposition != null) {
-				vec3 = new Vec3(movingobjectposition.hitVec.xCoord, movingobjectposition.hitVec.yCoord, movingobjectposition.hitVec.zCoord);
-			}
+            if (raytraceresult != null) {
+                vec3d = new Vec3d(raytraceresult.hitVec.x, raytraceresult.hitVec.y, raytraceresult.hitVec.z);
+            }
 
-			Entity entity = null;
-			List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
-			double d0 = 0.0D;
-			int i;
-			float f1;
+            Entity entity = this.findEntityOnPath(vec3d1, vec3d);
 
-			for (i = 0; i < list.size(); ++i) {
-				Entity entity1 = (Entity)list.get(i);
+            if (entity != null) {
+                raytraceresult = new RayTraceResult(entity);
+            }
 
-				if (entity1.canBeCollidedWith() && (entity1 != this.shootingEntity || this.ticksInAir >= 5)) {
-					f1 = 0.3F;
-					AxisAlignedBB axisalignedbb1 = entity1.getEntityBoundingBox().expand(f1, f1, f1);
-					MovingObjectPosition movingobjectposition1 = axisalignedbb1.calculateIntercept(vec31, vec3);
+            if (raytraceresult != null && raytraceresult.entityHit instanceof EntityPlayer) {
+                EntityPlayer entityplayer = (EntityPlayer)raytraceresult.entityHit;
 
-					if (movingobjectposition1 != null) {
-						double d1 = vec31.distanceTo(movingobjectposition1.hitVec);
+                if (this.shootingEntity instanceof EntityPlayer && !((EntityPlayer)this.shootingEntity).canAttackPlayer(entityplayer)) {
+                    raytraceresult = null;
+                }
+            }
+            
+            if (raytraceresult.entityHit instanceof EntityLivingBase && !(raytraceresult.entityHit instanceof EntityEnderman) && raytraceresult.entityHit != shootingEntity) {
+				EntityLivingBase e = (EntityLivingBase)raytraceresult.entityHit;
+				e.addPotionEffect((potioneffect));
+            }
 
-						if (d1 < d0 || d0 == 0.0D) {
-							entity = entity1;
-							d0 = d1;
-						}
-					}
-				}
-			}
+            if (raytraceresult != null && !net.minecraftforge.event.ForgeEventFactory.onProjectileImpact(this, raytraceresult)) {
+                this.onHit(raytraceresult);
+            }
 
-			if (entity != null) {
-				movingobjectposition = new MovingObjectPosition(entity);
-			}
+            if (this.getIsCritical()) {
+                for (int k = 0; k < 4; ++k) {
+                    this.world.spawnParticle(EnumParticleTypes.CRIT, this.posX + this.motionX * (double)k / 4.0D, this.posY + this.motionY * (double)k / 4.0D, this.posZ + this.motionZ * (double)k / 4.0D, -this.motionX, -this.motionY + 0.2D, -this.motionZ);
+                }
+            }
 
-			if (movingobjectposition != null && movingobjectposition.entityHit != null && movingobjectposition.entityHit instanceof EntityPlayer) {
-				EntityPlayer entityplayer = (EntityPlayer)movingobjectposition.entityHit;
+            this.posX += this.motionX;
+            this.posY += this.motionY;
+            this.posZ += this.motionZ;
+            float f4 = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
+            this.rotationYaw = (float)(MathHelper.atan2(this.motionX, this.motionZ) * (180D / Math.PI));
 
-				if (entityplayer.capabilities.disableDamage || this.shootingEntity instanceof EntityPlayer && !((EntityPlayer)this.shootingEntity).canAttackPlayer(entityplayer)) {
-					movingobjectposition = null;
-				}
-			}
+            for (this.rotationPitch = (float)(MathHelper.atan2(this.motionY, (double)f4) * (180D / Math.PI)); this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F) {
+                ;
+            }
 
-			float f2;
-			float f3;
-			float f4;
+            while (this.rotationPitch - this.prevRotationPitch >= 180.0F) {
+                this.prevRotationPitch += 360.0F;
+            }
 
-			if (movingobjectposition != null) {
-				if (movingobjectposition.entityHit != null) {
-					f2 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
-					int k = MathHelper.ceiling_double_int(f2 * this.damage);
+            while (this.rotationYaw - this.prevRotationYaw < -180.0F) {
+                this.prevRotationYaw -= 360.0F;
+            }
 
-					if (this.getIsCritical()) {
-						k += this.rand.nextInt(k / 2 + 2);
-					}
+            while (this.rotationYaw - this.prevRotationYaw >= 180.0F) {
+                this.prevRotationYaw += 360.0F;
+            }
 
-					DamageSource damagesource;
+            this.rotationPitch = this.prevRotationPitch + (this.rotationPitch - this.prevRotationPitch) * 0.2F;
+            this.rotationYaw = this.prevRotationYaw + (this.rotationYaw - this.prevRotationYaw) * 0.2F;
+            float f1 = 0.99F;
+            float f2 = 0.05F;
 
-					if (this.shootingEntity == null) {
-						damagesource = new EntityDamageSourceIndirect("arrow", this, this).setProjectile();
-					} else {
-						damagesource = new EntityDamageSourceIndirect("arrow", this, this.shootingEntity).setProjectile();
-					}
+            if (this.isInWater()) {
+                for (int i = 0; i < 4; ++i) {
+                    float f3 = 0.25F;
+                    this.world.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX - this.motionX * 0.25D, this.posY - this.motionY * 0.25D, this.posZ - this.motionZ * 0.25D, this.motionX, this.motionY, this.motionZ);
+                }
 
-					if(movingobjectposition.entityHit instanceof EntityLivingBase && !(movingobjectposition.entityHit instanceof EntityEnderman) && movingobjectposition.entityHit != shootingEntity) {
-						EntityLivingBase e = (EntityLivingBase)movingobjectposition.entityHit;
-						e.addPotionEffect(new PotionEffect(Potion.poison.id, 100, 1));
-					}
+                f1 = 0.6F;
+            }
 
-					if (movingobjectposition.entityHit.attackEntityFrom(damagesource, (float)k)) {
-						if (movingobjectposition.entityHit instanceof EntityLivingBase) {
-							EntityLivingBase entitylivingbase = (EntityLivingBase)movingobjectposition.entityHit;
+            if (this.isWet()) {
+                this.extinguish();
+            }
 
-							if (!this.worldObj.isRemote) {
-								entitylivingbase.setArrowCountInEntity(entitylivingbase.getArrowCountInEntity() + 1);
-							}
+            this.motionX *= (double)f1;
+            this.motionY *= (double)f1;
+            this.motionZ *= (double)f1;
 
-							if (this.knockbackStrength > 0) {
-								f4 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
+            if (!this.hasNoGravity()) {
+                this.motionY -= 0.05000000074505806D;
+            }
 
-								if (f4 > 0.0F) {
-									movingobjectposition.entityHit.addVelocity(this.motionX * this.knockbackStrength * 0.6000000238418579D / f4, 0.1D, this.motionZ * this.knockbackStrength * 0.6000000238418579D / f4);
-								}
-							}
-
-							if (this.shootingEntity instanceof EntityLivingBase) {
-								EnchantmentHelper.applyThornEnchantments(entitylivingbase, this.shootingEntity);
-                                EnchantmentHelper.applyArthropodEnchantments((EntityLivingBase)this.shootingEntity, entitylivingbase);
-							}
-
-							if (this.shootingEntity != null && movingobjectposition.entityHit != this.shootingEntity && movingobjectposition.entityHit instanceof EntityPlayer && this.shootingEntity instanceof EntityPlayerMP) {
-								((EntityPlayerMP)this.shootingEntity).playerNetServerHandler.sendPacket(new S2BPacketChangeGameState(6, 0.0F));
-							}
-						}
-
-						this.playSound("random.bowhit", 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
-
-						if (!(movingobjectposition.entityHit instanceof EntityEnderman)) {
-							this.setDead();
-						}
-					} else {
-						this.motionX *= -0.10000000149011612D;
-						this.motionY *= -0.10000000149011612D;
-						this.motionZ *= -0.10000000149011612D;
-						this.rotationYaw += 180.0F;
-						this.prevRotationYaw += 180.0F;
-						this.ticksInAir = 0;
-					}
-				} else {
-					BlockPos blockpos1 = movingobjectposition.getBlockPos();
-					this.xTile = blockpos1.getX();
-					this.yTile = blockpos1.getY();
-					this.zTile = blockpos1.getZ();
-					iblockstate = this.worldObj.getBlockState(blockpos1);
-					this.inBlock = iblockstate.getBlock();
-					this.inData = this.inBlock.getMetaFromState(iblockstate);
-					this.motionX = ((float)(movingobjectposition.hitVec.xCoord - this.posX));
-					this.motionY = ((float)(movingobjectposition.hitVec.yCoord - this.posY));
-					this.motionZ = ((float)(movingobjectposition.hitVec.zCoord - this.posZ));
-					f3 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
-					this.posX -= this.motionX / f3 * 0.05000000074505806D;
-					this.posY -= this.motionY / f3 * 0.05000000074505806D;
-					this.posZ -= this.motionZ / f3 * 0.05000000074505806D;
-					this.playSound("random.bowhit", 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
-					this.inGround = true;
-					this.arrowShake = 7;
-					this.setIsCritical(false);
-
-					if (this.inBlock.getMaterial() != Material.AIR) {
-						this.inBlock.onEntityCollidedWithBlock(this.worldObj, blockpos1, iblockstate, this);
-					}
-				}
-			}
-
-			this.posX += this.motionX;
-			this.posY += this.motionY;
-			this.posZ += this.motionZ;
-			f2 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
-			this.rotationYaw = (float)(Math.atan2(this.motionX, this.motionZ) * 180.0D / Math.PI);
-
-			for (this.rotationPitch = (float)(Math.atan2(this.motionY, f2) * 180.0D / Math.PI); this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F) {
-				;
-			}
-
-			while (this.rotationPitch - this.prevRotationPitch >= 180.0F) {
-				this.prevRotationPitch += 360.0F;
-			}
-
-			while (this.rotationYaw - this.prevRotationYaw < -180.0F) {
-				this.prevRotationYaw -= 360.0F;
-			}
-
-			while (this.rotationYaw - this.prevRotationYaw >= 180.0F) {
-				this.prevRotationYaw += 360.0F;
-			}
-
-			this.rotationPitch = this.prevRotationPitch + (this.rotationPitch - this.prevRotationPitch) * 0.2F;
-			this.rotationYaw = this.prevRotationYaw + (this.rotationYaw - this.prevRotationYaw) * 0.2F;
-			f3 = 0.99F;
-			f1 = 0.05F;
-
-			if (this.isInWater()) {
-				for (int l = 0; l < 4; ++l) {
-					f4 = 0.25F;
-					this.worldObj.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX - this.motionX * f4, this.posY - this.motionY * f4, this.posZ - this.motionZ * f4, this.motionX, this.motionY, this.motionZ, new int[0]);
-				}
-				f3 = 0.6F;
-			}
-
-			if (this.isWet()) {
-				this.extinguish();
-			}
-
-			this.motionX *= f3;
-			this.motionY *= f3;
-			this.motionZ *= f3;
-			this.motionY -= f1;
-			this.setPosition(this.posX, this.posY, this.posZ);
-			this.doBlockCollisions();
-		}
-	}
+            this.setPosition(this.posX, this.posY, this.posZ);
+            this.doBlockCollisions();
+        }
+    }
 
 	@Override
 	public void writeEntityToNBT(NBTTagCompound tagCompound) {
@@ -390,7 +318,7 @@ public class EntityPoisonArrow extends EntityArrow implements IProjectile {
 		tagCompound.setShort("yTile", (short)this.yTile);
 		tagCompound.setShort("zTile", (short)this.zTile);
 		tagCompound.setShort("life", (short)this.ticksInGround);
-		ResourceLocation resourcelocation = (ResourceLocation)Block.blockRegistry.getNameForObject(this.inBlock);
+		ResourceLocation resourcelocation = (ResourceLocation)Block.REGISTRY.getNameForObject(this.inBlock);
 		tagCompound.setString("inTile", resourcelocation == null ? "" : resourcelocation.toString());
 		tagCompound.setByte("inData", (byte)this.inData);
 		tagCompound.setByte("shake", (byte)this.arrowShake);
@@ -430,7 +358,7 @@ public class EntityPoisonArrow extends EntityArrow implements IProjectile {
 
 	@Override
 	public void onCollideWithPlayer(EntityPlayer entityIn) {
-		if (!this.worldObj.isRemote && this.inGround && this.arrowShake <= 0) {
+		if (!this.world.isRemote && this.inGround && this.arrowShake <= 0) {
 			boolean flag = this.canBePickedUp == 1 || this.canBePickedUp == 2 && entityIn.capabilities.isCreativeMode;
 
 			if (this.canBePickedUp == 1 && !entityIn.inventory.addItemStackToInventory(new ItemStack(JourneyItems.essenceArrow, 1))) {
@@ -438,7 +366,6 @@ public class EntityPoisonArrow extends EntityArrow implements IProjectile {
 			}
 
 			if (flag) {
-				this.playSound("random.pop", 0.2F, ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);
 				entityIn.onItemPickup(this, 1);
 				this.setDead();
 			}
@@ -466,24 +393,24 @@ public class EntityPoisonArrow extends EntityArrow implements IProjectile {
 	}
 
 	@Override
-	public boolean canAttackWithItem() {
-		return false;
-	}
-
-	@Override
 	public void setIsCritical(boolean c) {
-		byte b0 = this.dataWatcher.getWatchableObjectByte(16);
+		byte b0 = ((Byte)this.dataManager.get(CRITICAL)).byteValue();
 
 		if(c) {
-			this.dataWatcher.updateObject(16, Byte.valueOf((byte)(b0 | 1)));
+			this.dataManager.set(CRITICAL, Byte.valueOf((byte)(b0 | 1)));
 		} else {
-			this.dataWatcher.updateObject(16, Byte.valueOf((byte)(b0 & -2)));
+	        this.dataManager.set(CRITICAL, Byte.valueOf((byte)(b0 & -2)));
 		}
 	}
 
 	@Override
 	public boolean getIsCritical() {
-		byte b0 = this.dataWatcher.getWatchableObjectByte(16);
+		byte b0 = ((Byte)this.dataManager.get(CRITICAL)).byteValue();
 		return (b0 & 1) != 0;
+	}
+
+	@Override
+	protected ItemStack getArrowStack() {
+		return null;
 	}
 }
