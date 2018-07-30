@@ -133,6 +133,8 @@ public class BlockModOre extends BlockMod {
 		if(this == JourneyBlocks.ashualOre) return JourneyItems.ash;
 		if(this == JourneyBlocks.blaziumOre) return JourneyItems.blazium;
 		if(this == JourneyBlocks.sapphireOre) return JourneyItems.sapphire;
+		if(this == JourneyBlocks.bleedstone) return JourneyItems.bleedstone;
+		if(this == JourneyBlocks.smithstone) return JourneyItems.smithstone;
 		if(this == JourneyBlocks.enderilliumOre) return JourneyItems.enderilliumShard;
 		if(this == JourneyBlocks.gorbiteOre) return JourneyItems.gorbiteGem;
 		if(this == JourneyBlocks.luniteOre) return JourneyItems.luniteChunk;

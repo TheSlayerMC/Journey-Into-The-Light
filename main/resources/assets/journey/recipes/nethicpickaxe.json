@@ -1,0 +1,29 @@
+{
+    "type": "minecraft:crafting_shaped",
+   
+    "pattern":
+    [
+        "RRR",
+        " I ",
+        " I "
+    ],
+   
+    "key":
+    {
+        "R":
+        {
+            "item": "journey:nethicgemstone"
+        },
+
+        "I":
+        {
+            "item": "journey:obsidianrod"
+        }
+    },
+   
+    "result":
+    {
+        "item": "journey:nethicpickaxe",
+        "count": 1
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shapeless",
+ 
+    "ingredients":
+    [
+
+    {
+      "item": "journey:bleedstone"
+    }
+   
+    ],
+ 
+    "result":
+    {
+        "item": "journey:bleedstonedust",
+        "count": 1
+    }
+}

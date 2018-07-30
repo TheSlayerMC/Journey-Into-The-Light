@@ -13,6 +13,7 @@ import net.journey.dimension.nether.gen.WorldGenBush;
 import net.journey.dimension.nether.gen.WorldGenHellThorn;
 import net.journey.dimension.nether.gen.WorldGenHellThornMedium;
 import net.journey.dimension.nether.gen.WorldGenHellThornTall;
+import net.journey.dimension.nether.gen.WorldGenModGlowstone;
 import net.journey.dimension.nether.gen.WorldGenNetherDungeons;
 import net.journey.dimension.nether.gen.WorldGenNetherFlower;
 import net.journey.dimension.nether.gen.WorldGenNetherShroom;
@@ -108,6 +109,20 @@ public class WorldGenEssence implements IWorldGenerator {
 			z = chunkZ + r.nextInt(16);
 			worldMinableGenNether(JourneyBlocks.firestoneOre, 10, w, x, y, z);
 		}
+		
+		if(r.nextInt(5)==0) {
+			y = r.nextInt(256) + 1;
+			x = chunkX + r.nextInt(16);
+			z = chunkZ + r.nextInt(16);
+			(new WorldGenModGlowstone(w, r, pos, JourneyBlocks.bleedstone)).generate(w, r, new BlockPos(x, y, z));
+		}
+		
+		if(r.nextInt(5)==0) {
+			y = r.nextInt(256) + 1;
+			x = chunkX + r.nextInt(16);
+			z = chunkZ + r.nextInt(16);
+			(new WorldGenModGlowstone(w, r, pos, JourneyBlocks.smithstone)).generate(w, r, new BlockPos(x, y, z));
+		}
 
 		for(times = 0; times < 200; times++) {
 			y = r.nextInt(255) + 1;
@@ -185,10 +200,11 @@ public class WorldGenEssence implements IWorldGenerator {
 			trees.get(r.nextInt(trees.size())).generate(w, r, new BlockPos(x, y, z));
 		} */
 		
-		for(times = 0; times < 100; times++) {
+		for(times = 0; times < 300; times++) {
 			y = r.nextInt(250); 
 			x = chunkX + r.nextInt(16) + 8; 
 			z = chunkZ + r.nextInt(16) + 8;
+			if(isBlockTop(x, y, z, Blocks.SOUL_SAND, w))
 			(new WorldGenNetherShroom()).generate(w, r, new BlockPos(x, y, z));
 		}
 		
@@ -529,8 +545,16 @@ public class WorldGenEssence implements IWorldGenerator {
 		(new WorldGenMinable(spawn.getDefaultState(), vein, BlockStateMatcher.forBlock(Blocks.NETHERRACK))).generate(w, r, new BlockPos(x, y, z));
 	}
 	
+	private static void worldMinableGlowstone(Block spawn, int vein, World w, int x, int y, int z){
+		(new WorldGenMinable(spawn.getDefaultState(), vein, BlockStateMatcher.forBlock(Blocks.GLOWSTONE))).generate(w, r, new BlockPos(x, y, z));
+	}
+	
 	private static void worldGenNetherFeature(Block spawn, int vein, World w, int x, int y, int z){
 		(new WorldGenMinable(spawn.getDefaultState(), vein, BlockStateMatcher.forBlock(JourneyBlocks.heatSoil))).generate(w, r, new BlockPos(x, y, z));
+	}
+	
+	private static void worldGenSoulsandFeature(Block spawn, int vein, World w, int x, int y, int z){
+		(new WorldGenMinable(spawn.getDefaultState(), vein, BlockStateMatcher.forBlock(Blocks.SOUL_SAND))).generate(w, r, new BlockPos(x, y, z));
 	}
 
 	private static void worldMinableGenEnd(Block spawn, int vein, World w, int x, int y, int z){

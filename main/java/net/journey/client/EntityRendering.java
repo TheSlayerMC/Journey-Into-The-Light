@@ -224,7 +224,7 @@ public class EntityRendering {
 		RenderingRegistry.registerEntityRenderingHandler(EntityOvergrownMerchant.class, new RenderModMob(new ModelFrozenMerchant(), Textures.overgrownMerchant));
 		RenderingRegistry.registerEntityRenderingHandler(EntityTerraslug.class, new RenderModMob(new ModelTerraslug(), Textures.terraslug));
 		RenderingRegistry.registerEntityRenderingHandler(EntityHellbot.class, new RenderModMob(new ModelGoldbot(), Textures.hellbot));
-		RenderingRegistry.registerEntityRenderingHandler(EntityLavasnake.class, new RenderModMob(new ModelLavasnake(), Textures.lavasnake));
+		RenderingRegistry.registerEntityRenderingHandler(EntityLavasnake.class, new RenderSizeable(new ModelLavasnake(), 0.5F, 1.5F, Textures.lavasnake));
 		RenderingRegistry.registerEntityRenderingHandler(EntityWitherspine.class, new RenderModMob(new ModelWitherspine(), Textures.witherspine));
 		RenderingRegistry.registerEntityRenderingHandler(EntityHellCow.class, new RenderModMob(new ModelHellCow(), Textures.hellCow));
 		RenderingRegistry.registerEntityRenderingHandler(EntityTerragrow.class, new RenderModMob(new ModelTerragrow(), Textures.terragrow));

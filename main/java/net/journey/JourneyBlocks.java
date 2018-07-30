@@ -91,6 +91,10 @@ public class JourneyBlocks {
 	public static BlockMod storonOre;
 	public static BlockMod flairiumOre;
 	public static BlockMod desOre;
+	
+	public static BlockMod bleedstone;
+	public static BlockMod smithstone;
+	
 	public static BlockMod enderilliumOre;
 	public static BlockMod gorbiteOre;
 	public static BlockMod orbaditeOre;
@@ -458,6 +462,7 @@ public class JourneyBlocks {
 	public static BlockMod netherFurnaceActive;
 	
 	public static BlockFruitCrop bleedheartFruit;
+
 	
 	/* public static void registerBlocks(IForgeRegistry<Block> registry) {
 		System.out.print("Fucking Blocks Loading");
@@ -494,6 +499,10 @@ public class JourneyBlocks {
 		storonOre = new BlockModOre("storonOre", "Storon Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
 		flairiumOre = (BlockMod) new BlockModOre("flairiumOre", "Flairium Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK).setLightLevel(0.5F);
 		desOre = (BlockMod) new BlockModOre("desOre", "Des Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK).setLightLevel(0.5F);
+		
+		bleedstone = (BlockMod) new BlockModOre("BleedstoneOre", "Bleedstone", false).setHarvestLevel(EnumToolType.DIAMOND_PICK).setLightLevel(10.5F);
+		smithstone = (BlockMod) new BlockModOre("smithstoneOre", "Smithstone", false).setHarvestLevel(EnumToolType.DIAMOND_PICK).setLightLevel(10.5F);
+		
 		enderilliumOre = new BlockModOre("enderilliumOre", "Enderillium Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
 		gorbiteOre = new BlockModOre("gorbiteOre", "Gorbite Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
 		orbaditeOre = new BlockModOre("orbaditeOre", "Orbadite Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);

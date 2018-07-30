@@ -117,19 +117,26 @@ public class JourneyItems {
 	public static ToolMaterial storonSwordMat = addToolMaterial(3120, 13F, 25F, true);
 	public static ToolMaterial koriteSwordMat = addToolMaterial(3120, 13F, 25F, true);
 
-	public static ToolMaterial hellstone = addToolMaterial(1600, 10F, 5F, true);
-	public static ToolMaterial flairium = addToolMaterial(3000, 15F, 5F, true);
-	public static ToolMaterial lunium = addToolMaterial(3000, 9F, 5F, true);
-	public static ToolMaterial celestium = addToolMaterial(1600, 13F, 5F, true);
-	public static ToolMaterial mekyum = addToolMaterial(1600, 13F, 5F, true);
-	public static ToolMaterial storon = addToolMaterial(1600, 13F, 5F, true);
-	public static ToolMaterial korite = addToolMaterial(1600, 13F, 5F, true);
-	public static ToolMaterial shadium = addToolMaterial(1600, 10F, 5F, true);
-	public static ToolMaterial sapphiretool = addToolMaterial(1561, 8F, 5F, true);
-	public static ToolMaterial orbadite = addToolMaterial(3000, 15F, 5F, true);
-	public static ToolMaterial gorbite = addToolMaterial(3000, 15F, 5F, true);
-	public static ToolMaterial des = addToolMaterial(3000, 15F, 5F, true);
+	
+	public static ToolMaterial sapphiretool = addToolMaterial(1461, 10F, 5F, true);
+	public static ToolMaterial lunium = addToolMaterial(1490, 12F, 5F, true);
+	public static ToolMaterial shadium = addToolMaterial(1521, 12F, 5F, true);
+	
+	public static ToolMaterial hellstone = addToolMaterial(1432, 15F, 5F, true);
+	public static ToolMaterial nethic = addToolMaterial(781, 28F, 5F, true);
 
+	public static ToolMaterial celestium = addToolMaterial(1621, 18F, 5F, true);
+	public static ToolMaterial mekyum = addToolMaterial(1621, 18F, 5F, true);
+	public static ToolMaterial storon = addToolMaterial(1621, 18F, 5F, true);
+	public static ToolMaterial korite = addToolMaterial(1621, 18F, 5F, true);
+
+	public static ToolMaterial flairium = addToolMaterial(2130, 21F, 5F, true);
+	public static ToolMaterial des = addToolMaterial(2130, 25F, 5F, true);
+	
+	public static ToolMaterial orbadite = addToolMaterial(3142, 28F, 5F, true);
+	public static ToolMaterial gorbite = addToolMaterial(3142, 28F, 5F, true);
+
+	
 	public static ToolMaterial hellstoneMulti = addToolMaterial(3000, 12F, 5F, false);
 	public static ToolMaterial flairiumMulti = addToolMaterial(3000, 15F, 5F, false);
 	public static ToolMaterial luniumMulti = addToolMaterial(3000, 9F, 5F, false);
@@ -175,6 +182,14 @@ public class JourneyItems {
 	public static Item orbaditeIngot;
 	public static Item gorbiteGem;
 	public static Item desIngot;
+	
+	public static Item bleedstone;
+	public static Item smithstone;
+	
+	public static Item bleedstonedust;
+	public static Item smithstonedust;
+	
+	public static Item nethicgemstone;
 	
 	public static Item verditeIngot;
 	
@@ -312,6 +327,7 @@ public class JourneyItems {
 	public static Item gorbitePickaxe;
 	public static Item orbaditePickaxe;
 	public static Item desPickaxe;
+	public static Item nethicPickaxe;
 	public static Item koritePickaxe;
 	public static Item storonPickaxe;
 	public static Item mekyumPickaxe;
@@ -325,6 +341,7 @@ public class JourneyItems {
 	public static Item gorbiteShovel;
 	public static Item orbaditeShovel;
 	public static Item desShovel;
+	public static Item nethicShovel;
 	public static Item koriteShovel;
 	public static Item storonShovel;
 	public static Item mekyumShovel;
@@ -841,6 +858,14 @@ public class JourneyItems {
 		gorbiteGem = new ItemMod("gorbiteGem", "Gorbite Gem");
 		desIngot = new ItemMod("desIngot", "Des Ingot");
 
+		bleedstone = new ItemMod("bleedstone", "Bleedstone");
+		smithstone= new ItemMod("smithstone", "Smithstone");
+		
+		bleedstonedust = new ItemMod("bleedstonedust", "Bleedstone Dust");
+		smithstonedust = new ItemMod("smithstonedust", "Smithstone Dust");
+		
+		nethicgemstone = new ItemMod("nethicgemstone", "Nethic Gemstone");
+		
 		obsidianrod = new ItemMod("obsidianrod", "Obsidian Rod");
 		elderKey = new ItemMod("elderKey", "Elder Key").setMaxStackSize(1);
 		boilPowder = new ItemMod("boilPowder", "Boiling Powder");
@@ -966,22 +991,23 @@ public class JourneyItems {
 		diamondMultiTool = new ItemMultiTool("diamondMultiTool", "Diamond Multi Tool", JourneyToolMaterial.DIAMOND_MULTI_TOOL, 1562);
 
 
-		sapphirePickaxe = new ItemModPickaxe("sapphirePickaxe", "Sapphire Pickaxe", JourneyToolMaterial.SAPPHIRE, 11);
-		shadiumPickaxe = new ItemModPickaxe("shadiumPickaxe", "Shadium Pickaxe", JourneyToolMaterial.SHADIUM, 13);
-		luniumPickaxe = new ItemModPickaxe("luniumPickaxe", "Lunium Pickaxe", JourneyToolMaterial.LUNIUM, 13);
+		sapphirePickaxe = new ItemModPickaxe("sapphirePickaxe", "Sapphire Pickaxe", JourneyToolMaterial.SAPPHIRE);
+		shadiumPickaxe = new ItemModPickaxe("shadiumPickaxe", "Shadium Pickaxe", JourneyToolMaterial.SHADIUM);
+		luniumPickaxe = new ItemModPickaxe("luniumPickaxe", "Lunium Pickaxe", JourneyToolMaterial.LUNIUM);
 		
-		hellstonePickaxe = new ItemModPickaxe("hellstonePickaxe", "Bloodcrust Pickaxe", JourneyToolMaterial.HELLSTONE, 15);
+		hellstonePickaxe = new ItemModPickaxe("hellstonePickaxe", "Bloodcrust Pickaxe", JourneyToolMaterial.HELLSTONE);
+		nethicPickaxe = new ItemModPickaxe("nethicPickaxe", "Nethic Pickaxe", JourneyToolMaterial.NETHIC);
 		
-		koritePickaxe = new ItemModPickaxe("koritePickaxe", "Korite Pickaxe", JourneyToolMaterial.KORITE, 17);
-		storonPickaxe = new ItemModPickaxe("storonPickaxe", "Storon Pickaxe", JourneyToolMaterial.KORITE, 17);
-		mekyumPickaxe = new ItemModPickaxe("mekyumPickaxe", "Mekyum Pickaxe", JourneyToolMaterial.KORITE, 17); 
-		celestiumPickaxe = new ItemModPickaxe("celestiumPickaxe", "Celestium Pickaxe", JourneyToolMaterial.CELESTIUM, 17);
+		koritePickaxe = new ItemModPickaxe("koritePickaxe", "Korite Pickaxe", JourneyToolMaterial.KORITE);
+		storonPickaxe = new ItemModPickaxe("storonPickaxe", "Storon Pickaxe", JourneyToolMaterial.KORITE);
+		mekyumPickaxe = new ItemModPickaxe("mekyumPickaxe", "Mekyum Pickaxe", JourneyToolMaterial.KORITE); 
+		celestiumPickaxe = new ItemModPickaxe("celestiumPickaxe", "Celestium Pickaxe", JourneyToolMaterial.CELESTIUM);
 
-		flairiumPickaxe = new ItemModPickaxe("flairiumPickaxe", "Flairium Pickaxe", JourneyToolMaterial.FLAIRIUM, 19);
-		desPickaxe = new ItemModPickaxe("desPickaxe", "Des Pickaxe", JourneyToolMaterial.DES, 19);
+		flairiumPickaxe = new ItemModPickaxe("flairiumPickaxe", "Flairium Pickaxe", JourneyToolMaterial.FLAIRIUM);
+		desPickaxe = new ItemModPickaxe("desPickaxe", "Des Pickaxe", JourneyToolMaterial.DES);
 		
-		gorbitePickaxe = new ItemModPickaxe("gorbitePickaxe", "Gorbite Pickaxe", JourneyToolMaterial.GORBITE, 21);
-		orbaditePickaxe = new ItemModPickaxe("orbaditePickaxe", "Orbadite Pickaxe", JourneyToolMaterial.ORBADITE, 21);
+		gorbitePickaxe = new ItemModPickaxe("gorbitePickaxe", "Gorbite Pickaxe", JourneyToolMaterial.GORBITE);
+		orbaditePickaxe = new ItemModPickaxe("orbaditePickaxe", "Orbadite Pickaxe", JourneyToolMaterial.ORBADITE);
 
 		hellstoneShovel = new ItemModShovel("hellstoneShovel", "Bloodcrust Shovel", JourneyToolMaterial.HELLSTONE);
 		shadiumShovel = new ItemModShovel("shadiumShovel", "Shadium Shovel", JourneyToolMaterial.SHADIUM);
@@ -992,6 +1018,7 @@ public class JourneyItems {
 		gorbiteShovel = new ItemModShovel("gorbiteShovel", "Gorbite Shovel", JourneyToolMaterial.GORBITE);
 		orbaditeShovel = new ItemModShovel("orbaditeShovel", "Orbadite Shovel", JourneyToolMaterial.ORBADITE);
 		desShovel = new ItemModShovel("desShovel", "Des Shovel", JourneyToolMaterial.DES);
+		nethicShovel = new ItemModShovel("nethicShovel", "Nethic Shovel", JourneyToolMaterial.NETHIC);
 		koriteShovel = new ItemModShovel("koriteShovel", "Korite Shovel", JourneyToolMaterial.KORITE);
 		storonShovel = new ItemModShovel("storonShovel", "Storon Shovel", JourneyToolMaterial.KORITE);
 		mekyumShovel = new ItemModShovel("mekyumShovel", "Mekyum Shovel", JourneyToolMaterial.KORITE);

@@ -19,14 +19,13 @@ public class ItemModPickaxe extends ItemPickaxe {
 	
 	protected JourneyToolMaterial mat;
 
-    public ItemModPickaxe(String name, String f, JourneyToolMaterial tool, float eff) {
+    public ItemModPickaxe(String name, String f, JourneyToolMaterial tool) {
         super(tool.getToolMaterial());
         LangRegistry.addItem(name, f);
 		mat = tool;
         setUnlocalizedName(name);
         setCreativeTab(JourneyTabs.tools);
         setHarvestLevel("pickaxe", tool.getHarvestLevel());
-        this.efficiency = eff;
         JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
         JourneyItems.items.add(this);
         setRegistryName(SlayerAPI.MOD_ID, name);

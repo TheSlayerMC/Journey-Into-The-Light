@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shapeless",
+ 
+    "ingredients":
+    [
+
+    {
+      "item": "journey:smithstone"
+    }
+   
+    ],
+ 
+    "result":
+    {
+        "item": "journey:smithstonedust",
+        "count": 1
+    }
+}
