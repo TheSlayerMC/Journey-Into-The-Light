@@ -5,6 +5,7 @@ import net.journey.blocks.tileentity.*;
 import net.journey.client.render.*;
 import net.journey.client.render.block.*;
 import net.journey.client.render.mob.*;
+import net.journey.client.render.model.item.ModelObsidianBoat;
 import net.journey.client.render.model.mob.boil.*;
 import net.journey.client.render.model.mob.boss.*;
 import net.journey.client.render.model.mob.cloudia.*;
@@ -37,6 +38,7 @@ import net.journey.client.render.model.mob.terrania.mob.ModelTerralight;
 import net.journey.client.render.model.mob.terrania.mob.ModelTerraslug;
 import net.journey.client.render.model.mob.terrania.npc.ModelTerranianTrader;
 import net.journey.entity.*;
+import net.journey.entity.item.EntityObsidianBoat;
 import net.journey.entity.mob.boiling.*;
 import net.journey.entity.mob.boiling.npc.*;
 import net.journey.entity.mob.boss.*;
@@ -238,6 +240,8 @@ public class EntityRendering {
 		
 		RenderingRegistry.registerEntityRenderingHandler(EntityJungleGolem.class, new RenderModMob(new ModelJungleGolem(), Textures.jungleGolem));
 				
+		RenderingRegistry.registerEntityRenderingHandler(EntityObsidianBoat.class, new RenderModBoat(new ModelObsidianBoat(), 0.5F));
+		
 		RenderingRegistry.registerEntityRenderingHandler(EntityShatterer.class, new RenderShatterer());
 		RenderingRegistry.registerEntityRenderingHandler(EntityFrozenTroll.class, new RenderModMob(new ModelFrozenTroll(), Textures.frozenTroll));
 		RenderingRegistry.registerEntityRenderingHandler(EntityPermafraust.class, new RenderModMob(new ModelPermafraust(), Textures.permafraust));

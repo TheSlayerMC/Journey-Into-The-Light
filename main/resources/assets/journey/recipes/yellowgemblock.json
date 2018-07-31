@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+   
+    "pattern":
+    [
+        "RR",
+        "RR"
+    ],
+   
+    "key":
+    {
+        "R":
+        {
+            "item": "journey:yellowgem"
+        }
+    },
+   
+    "result":
+    {
+        "item": "journey:yellowgemblock",
+        "count": 1
+    }
+}

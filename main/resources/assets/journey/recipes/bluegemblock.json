@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+   
+    "pattern":
+    [
+        "RR",
+        "RR"
+    ],
+   
+    "key":
+    {
+        "R":
+        {
+            "item": "journey:bluegem"
+        }
+    },
+   
+    "result":
+    {
+        "item": "journey:bluegemblock",
+        "count": 1
+    }
+}

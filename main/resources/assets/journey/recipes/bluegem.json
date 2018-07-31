@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shapeless",
+ 
+    "ingredients":
+    [
+
+    {
+      "item": "journey:bluegemblock"
+    }
+   
+    ],
+ 
+    "result":
+    {
+        "item": "journey:bluegem",
+        "count": 4
+    }
+}

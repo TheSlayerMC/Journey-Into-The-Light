@@ -1,5 +1,6 @@
 package net.journey.util;
 
+import net.journey.entity.item.EntityObsidianBoat;
 import net.journey.entity.mob.boiling.*;
 import net.journey.entity.mob.boiling.npc.*;
 import net.journey.entity.mob.boss.*;
@@ -272,5 +273,5 @@ public class EntityRegistry {
 		SlayerAPI.registerTerraniaMob(EntityTerrashroom.class, "terrashroom", "Terrashroom");
 	}
 
-	public static void registerEntitys() { }
+	public static void registerEntitys() { SlayerAPI.registerEntity(EntityObsidianBoat.class, "obsidianboat", 16);}
 }

@@ -57,6 +57,7 @@ import net.journey.items.ItemModBow;
 import net.journey.items.ItemModRecord;
 import net.journey.items.ItemMultiTool;
 import net.journey.items.ItemNetherBossSpawner;
+import net.journey.items.ItemObsidianBoat;
 import net.journey.items.ItemPiercer;
 import net.journey.items.ItemPresent;
 import net.journey.items.ItemSentryEye;
@@ -833,6 +834,8 @@ public class JourneyItems {
 	public static Item sizzlingKnife;
 	public static Item iridium;
 	
+	public static Item obsidianBoat;
+	
 	public static void init() {
 		heartSml = new ItemHealth("heartSml", "Heart: Tier 1", 1, 2, 0.2F, false, false, 60, false, true);
 		heartMed = new ItemHealth("heartMed", "Heart: Tier 2", 2, 2, 0.2F, false, false, 60, false, true);
@@ -1514,6 +1517,8 @@ public class JourneyItems {
 		bloodKnife = new ItemThrowable("bloodKnife", "Blood Knife", 6F, EntityFrostyPiercer.class);
 		charredKnife = new ItemThrowable("charredKnife", "Charred Knife", 6F, EntityFrostyPiercer.class);
 		sizzlingKnife = new ItemThrowable("sizzlingKnife", "Sizzling Knife", 6F, EntityFrostyPiercer.class);
+		
+		obsidianBoat = new ItemObsidianBoat("obsidianboat", "Obsidian Boat");
 	}
 
 	public static ToolMaterial addToolMaterial(int uses, float efficiency, float dam, boolean breakable) {
