@@ -1,0 +1,49 @@
+{
+    "type": "minecraft:crafting_shaped",
+   
+    "pattern":
+    [
+        "JIJ",
+        "PKP",
+        "CFC"
+    ],
+   
+    "key":
+    {
+        "I":
+        {
+            "item": "minecraft:netherrack"
+        },
+
+        "J":
+        {
+            "item": "minecraft:iron_ingot"
+        },
+
+        "F":
+        {
+            "item": "minecraft:redstone"
+        },
+
+        "C":
+        {
+            "item": "minecraft:cobblestone"
+        },
+
+        "P":
+        {
+            "item": "minecraft:gold_ingot"
+        },
+
+        "K":
+        {
+            "item": "minecraft:flint_and_steel"
+        }
+    },
+   
+    "result":
+    {
+        "item": "journey:igniter",
+        "count": 1
+    }
+}

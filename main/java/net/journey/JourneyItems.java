@@ -124,7 +124,7 @@ public class JourneyItems {
 	public static ToolMaterial shadium = addToolMaterial(1521, 12F, 5F, true);
 	
 	public static ToolMaterial hellstone = addToolMaterial(1432, 15F, 5F, true);
-	public static ToolMaterial nethic = addToolMaterial(681, 32F, 5F, true);
+	public static ToolMaterial nethic = addToolMaterial(481, 32F, 5F, true);
 
 	public static ToolMaterial celestium = addToolMaterial(1621, 18F, 5F, true);
 	public static ToolMaterial mekyum = addToolMaterial(1621, 18F, 5F, true);
@@ -132,31 +132,31 @@ public class JourneyItems {
 	public static ToolMaterial korite = addToolMaterial(1621, 18F, 5F, true);
 
 	public static ToolMaterial flairium = addToolMaterial(2130, 21F, 5F, true);
-	public static ToolMaterial des = addToolMaterial(2130, 25F, 5F, true);
+	public static ToolMaterial des = addToolMaterial(2130, 21F, 5F, true);
 	
 	public static ToolMaterial orbadite = addToolMaterial(3142, 28F, 5F, true);
 	public static ToolMaterial gorbite = addToolMaterial(3142, 28F, 5F, true);
 
 	
-	public static ToolMaterial hellstoneMulti = addToolMaterial(3000, 12F, 5F, false);
-	public static ToolMaterial flairiumMulti = addToolMaterial(3000, 15F, 5F, false);
-	public static ToolMaterial luniumMulti = addToolMaterial(3000, 9F, 5F, false);
+	public static ToolMaterial hellstoneMulti = addToolMaterial(3000, 10F, 5F, false);
+	public static ToolMaterial flairiumMulti = addToolMaterial(3000, 16F, 5F, false);
+	public static ToolMaterial luniumMulti = addToolMaterial(3000, 7F, 5F, false);
 	public static ToolMaterial celestiumMulti = addToolMaterial(3000, 13F, 5F, false);
 	public static ToolMaterial mekyumMulti = addToolMaterial(3000, 13F, 5F, false);
 	public static ToolMaterial storonMulti = addToolMaterial(3000, 13F, 5F, false);
 	public static ToolMaterial koriteMulti = addToolMaterial(3000, 13F, 5F, false);
-	public static ToolMaterial shadiumMulti = addToolMaterial(3000, 10F, 5F, false);
-	public static ToolMaterial sapphireMulti = addToolMaterial(3000, 8F, 5F, false);
-	public static ToolMaterial orbaditeMulti = addToolMaterial(3000, 15F, 5F, false);
-	public static ToolMaterial gorbiteMulti = addToolMaterial(3000, 15F, 5F, false);
-	public static ToolMaterial desMulti = addToolMaterial(3000, 15F, 5F, false);
-	public static ToolMaterial smeltingMulti = addToolMaterial(3000, 15F, 5F, false);
+	public static ToolMaterial shadiumMulti = addToolMaterial(3000, 9F, 5F, false);
+	public static ToolMaterial sapphireMulti = addToolMaterial(3000, 7F, 5F, false);
+	public static ToolMaterial orbaditeMulti = addToolMaterial(3000, 20F, 5F, false);
+	public static ToolMaterial gorbiteMulti = addToolMaterial(3000, 20F, 5F, false);
+	public static ToolMaterial desMulti = addToolMaterial(3000, 16F, 5F, false);
+	public static ToolMaterial smeltingMulti = addToolMaterial(3000, 8F, 5F, false);
 	//TODO MATERIALS
-	public static ToolMaterial woodMulti = addToolMaterial(60, 2F, 5F, false);
-	public static ToolMaterial stoneMulti = addToolMaterial(132, 4F, 5F, false);
-	public static ToolMaterial ironMulti = addToolMaterial(251, 8F, 5F, false);
-	public static ToolMaterial goldMulti = addToolMaterial(33, 10F, 5F, false);
-	public static ToolMaterial diamondMulti = addToolMaterial(1562, 13F, 5F, false);
+	public static ToolMaterial woodMulti = addToolMaterial(60, 1F, 5F, false);
+	public static ToolMaterial stoneMulti = addToolMaterial(132, 2F, 5F, false);
+	public static ToolMaterial ironMulti = addToolMaterial(251, 4F, 5F, false);
+	public static ToolMaterial goldMulti = addToolMaterial(33, 5F, 5F, false);
+	public static ToolMaterial diamondMulti = addToolMaterial(1562, 6F, 5F, false);
 
 	public static ArrayList<String> itemNames = new ArrayList<String>();
 	public static ArrayList<Item> items = new ArrayList<Item>();
