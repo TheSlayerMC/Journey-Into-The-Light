@@ -38,11 +38,11 @@ public class EntityDarkSorcerer extends EntityModMob implements IRangedAttackMob
     @Override
     public void onLivingUpdate() {
         super.onLivingUpdate();
-        if(this.worldObj.isDaytime() && !this.worldObj.isRemote) {
+        if(this.world.isDaytime() && !this.world.isRemote) {
             float var1 = getBrightness(1.0F);
         }
         
-        List<Entity> e = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox());        
+        List<Entity> e = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox());        
         for(Entity entity : e) {
         	if(entity instanceof EntityPlayer && canEntityBeSeen(entity)) ((EntityPlayer)entity).addPotionEffect(new PotionEffect(Potion.blindness.id, 60, 1));
         }        
@@ -57,17 +57,17 @@ public class EntityDarkSorcerer extends EntityModMob implements IRangedAttackMob
 	@Override
 	public void setCurrentItemOrArmor(int par1, ItemStack par2ItemStack) {
 		super.setCurrentItemOrArmor(par1, par2ItemStack);
-		if(!this.worldObj.isRemote && par1 == 0) {
+		if(!this.world.isRemote && par1 == 0) {
 			this.setCombatTask();
 		}
 	}
 
 	@Override
 	public void attackEntityWithRangedAttack(EntityLivingBase e, float f) {
-        EntityBouncingProjectile b = new EntityBouncingProjectile(this.worldObj);
+        EntityBouncingProjectile b = new EntityBouncingProjectile(this.world);
         b.setThrowableHeading(e.posX-this.posX, e.posY-this.posY, e.posZ-this.posZ, 1.6f, 12);
-        EnumSounds.playSound(EnumSounds.SPARKLE, worldObj, this);
-        this.worldObj.spawnEntityInWorld(b);
+        EnumSounds.playSound(EnumSounds.SPARKLE, world, this);
+        this.world.spawnEntity(b);
 	}
 
 	@Override

@@ -9,6 +9,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.EntityAIAttackMelee;
 import net.minecraft.entity.ai.EntityAIFollowOwner;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILeapAtTarget;
@@ -50,7 +51,7 @@ public class EntityTameRoc extends EntityModTameable {
         this.tasks.addTask(1, new EntityAISwimming(this));
         this.tasks.addTask(2, this.aiSit);
         this.tasks.addTask(3, new EntityAILeapAtTarget(this, 0.4F));
-        //this.tasks.addTask(4, new EntityAIAttackOnCollide(this, 1.0F, true));
+        this.tasks.addTask(4, new EntityAIAttackMelee(this, 1.0F, true));
         this.tasks.addTask(5, new EntityAIFollowOwner(this, 1.0F, 10.0F, 2.0F));
         this.tasks.addTask(6, new EntityAIMate(this, 1.0F));
         this.tasks.addTask(7, new EntityAIWander(this, 1.0F));

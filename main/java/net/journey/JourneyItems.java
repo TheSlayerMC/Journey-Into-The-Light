@@ -123,7 +123,7 @@ public class JourneyItems {
 	public static ToolMaterial shadium = addToolMaterial(1521, 12F, 5F, true);
 	
 	public static ToolMaterial hellstone = addToolMaterial(1432, 15F, 5F, true);
-	public static ToolMaterial nethic = addToolMaterial(781, 28F, 5F, true);
+	public static ToolMaterial nethic = addToolMaterial(681, 32F, 5F, true);
 
 	public static ToolMaterial celestium = addToolMaterial(1621, 18F, 5F, true);
 	public static ToolMaterial mekyum = addToolMaterial(1621, 18F, 5F, true);
