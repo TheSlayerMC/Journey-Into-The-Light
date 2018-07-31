@@ -2,17 +2,14 @@ package net.journey.client.server;
 
 import net.journey.JITL;
 import net.journey.event.message.MessageDarkEnergyBar;
-import net.journey.util.Helper;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 
-public class DarkEnergyBar implements ICapabilityProvider  {
+public class DarkEnergyBar implements ICapabilitySerializable<>  {
 
 	private int darkEnergy, regenDelay;
 	private final EntityPlayer player;

@@ -3,16 +3,12 @@ package net.journey.items;
 import java.util.List;
 
 import net.journey.JourneyTabs;
-import net.journey.client.server.DarkEnergyBar;
 import net.journey.client.server.EssenceBar;
-import net.journey.entity.projectile.EntityBasicProjectile;
+import net.journey.client.server.EssenceProvider;
+import net.journey.client.server.IEssence;
 import net.journey.entity.projectile.EntityBouncingProjectile;
-import net.journey.entity.projectile.EntityChaosProjectile;
-import net.journey.entity.projectile.EntityNetherPlasma;
 import net.journey.enums.EnumSounds;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
@@ -39,7 +35,8 @@ public class ItemChaosCannon extends ItemMod {
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand handIn) {
 		ItemStack stack = player.getActiveItemStack();
-		if(EssenceBar.getProperties(player).useBar(2)) {
+		IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
+		if(mana.useEssence(2)) {
 			world.spawnEntity(new EntityBouncingProjectile(world, player, damage, bounces));
 			EnumSounds.playSound(EnumSounds.CANNON, world, player);
 			stack.damageItem(1, player);

@@ -8,15 +8,12 @@ import net.journey.JourneyTabs;
 import net.journey.achievement.event.JourneyDungeonEvent;
 import net.journey.achievement.event.JourneySapphireEvent;
 import net.journey.achievement.event.JourneySapphireSwordEvent;
-import net.journey.blocks.tileentity.TileEntityGrindstone;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
-import net.journey.blocks.tileentity.TileEntityNetherFurnace;
-import net.journey.blocks.tileentity.TileEntitySenterianPortal;
-import net.journey.blocks.tileentity.TileEntitySummoningTable;
 import net.journey.client.BarTickHandler;
 import net.journey.client.JourneyCapabilityHandler;
-import net.journey.client.server.TestMana;
-import net.journey.client.server.TestManaStorage;
+import net.journey.client.server.EssenceBar;
+import net.journey.client.server.EssenceStorage;
+import net.journey.client.server.IEssence;
 import net.journey.dimension.DimensionHelper;
 import net.journey.dimension.WorldGenEssence;
 import net.journey.enums.EnumParticlesClasses;
@@ -24,7 +21,6 @@ import net.journey.event.ArmorAbilityEvent;
 import net.journey.event.PlayerEvent;
 import net.journey.util.Config;
 import net.journey.util.EntityRegistry;
-import net.journey.util.IJourneyMana;
 import net.journey.util.JourneyFuelHandler;
 import net.journey.util.LangRegistry;
 import net.journey.util.recipes.JourneyBlockRecipes;
@@ -47,9 +43,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.oredict.OreDictionary;
 import net.slayer.api.SlayerAPI;
-import net.slayer.api.item.ItemMod;
 
 public class CommonProxy {
 
@@ -81,7 +75,6 @@ public class CommonProxy {
 		addOreDictionary();
 		SlayerAPI.registerEvent(new ArmorAbilityEvent());
 		SlayerAPI.registerEvent(new PlayerEvent());
-		SlayerAPI.registerEvent(new BarTickHandler());
 		GameRegistry.registerFuelHandler(new JourneyFuelHandler());
 		MinecraftForge.addGrassSeed(new ItemStack(JourneyCrops.tomatoSeeds), 5);
 		FMLCommonHandler.instance().bus().register(new JourneySapphireSwordEvent());
@@ -91,8 +84,9 @@ public class CommonProxy {
 		DimensionHelper.init();
 		DimensionHelper.addSpawns();
 		
-		CapabilityManager.INSTANCE.register(IJourneyMana.class, new TestManaStorage(), TestMana.class);
 		MinecraftForge.EVENT_BUS.register(JourneyCapabilityHandler.class);
+		CapabilityManager.INSTANCE.register(IEssence.class, new EssenceStorage(), EssenceBar.class);
+		SlayerAPI.registerEvent(new BarTickHandler());
 	}
 	
 	public void init(FMLInitializationEvent event) {
