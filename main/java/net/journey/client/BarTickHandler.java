@@ -21,9 +21,7 @@ import net.slayer.api.SlayerAPI;
 
 public class BarTickHandler {
 	
-	private EntityPlayer player;
 	private int ticks = 10;
-
 
 	@SubscribeEvent
 	public void onTick(PlayerTickEvent event) {
