@@ -2,7 +2,7 @@ package net.journey.event.message;
 
 import io.netty.buffer.ByteBuf;
 import net.journey.JITL;
-import net.journey.client.BarTickHandler;
+import net.journey.client.server.BarTickHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;

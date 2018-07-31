@@ -193,19 +193,19 @@ public class Textures {
 
 	
     private static ResourceLocation addMob(String tex){
-    	return new ResourceLocation(prefix + tex + ".png");
+    	return new ResourceLocation(prefix + tex.toLowerCase() + ".png");
     }
     
     private static ResourceLocation addProjectile(String tex){
-    	return new ResourceLocation(projectilePrefix + tex + ".png");
+    	return new ResourceLocation(projectilePrefix + tex.toLowerCase() + ".png");
     }
     
     private static ResourceLocation addModel(String tex){
-    	return new ResourceLocation(modelPrefix + tex + ".png");
+    	return new ResourceLocation(modelPrefix + tex.toLowerCase() + ".png");
     }
     
     private static ResourceLocation addSlot(String tex){
-    	return new ResourceLocation(slotPrefix + tex + ".png");
+    	return new ResourceLocation(slotPrefix + tex.toLowerCase() + ".png");
     }
 
 }
