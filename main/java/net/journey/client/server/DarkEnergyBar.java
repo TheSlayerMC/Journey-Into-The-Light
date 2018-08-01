@@ -7,9 +7,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 
-public class DarkEnergyBar implements ICapabilitySerializable<>  {
+public class DarkEnergyBar implements ICapabilityProvider  {
 
 	private int darkEnergy, regenDelay;
 	private final EntityPlayer player;
