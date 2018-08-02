@@ -10,7 +10,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 
-public class DarkEnergyBar implements ICapabilityProvider  {
+public class DarkEnergyBar implements Capability.IStorage<IEssence>  {
 
 	private int darkEnergy, regenDelay;
 	private final EntityPlayer player;
