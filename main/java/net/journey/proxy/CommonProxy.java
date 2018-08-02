@@ -9,7 +9,6 @@ import net.journey.achievement.event.JourneyDungeonEvent;
 import net.journey.achievement.event.JourneySapphireEvent;
 import net.journey.achievement.event.JourneySapphireSwordEvent;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
-import net.journey.client.JourneyCapabilityHandler;
 import net.journey.client.server.BarTickHandler;
 import net.journey.client.server.EssenceBar;
 import net.journey.client.server.EssenceStorage;
@@ -85,12 +84,12 @@ public class CommonProxy {
 		DimensionHelper.addSpawns();
 		
 		
-		SlayerAPI.registerEvent(new BarTickHandler());
+		//SlayerAPI.registerEvent(new BarTickHandler());
+		MinecraftForge.EVENT_BUS.register(BarTickHandler.class);
+		CapabilityManager.INSTANCE.register(IEssence.class, new EssenceStorage(), EssenceBar.class);
 	}
 	
 	public void init(FMLInitializationEvent event) {
-		MinecraftForge.EVENT_BUS.register(JourneyCapabilityHandler.class);
-		CapabilityManager.INSTANCE.register(IEssence.class, new EssenceStorage(), EssenceBar.class);
 		GameRegistry.registerWorldGenerator(new WorldGenEssence(), 2);
 		SlayerAPI.registerEvent(new PlayerEvent());
 		JourneySmeltingRecipes.initSmeltingCrafting();

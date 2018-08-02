@@ -4,7 +4,6 @@ import net.journey.JITL;
 import net.journey.client.BossTickHandler;
 import net.journey.client.EntityRendering;
 import net.journey.client.GuiHandler;
-import net.journey.client.JourneyCapabilityHandler;
 import net.journey.client.PlayerStats;
 import net.journey.client.RenderHandler;
 import net.journey.client.server.DarkEnergyBar;
