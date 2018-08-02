@@ -23,7 +23,8 @@ public class BarTickHandler {
 
 	private int ticks = 10;
 
-	public static final ResourceLocation ESSENCE_CAP  = new ResourceLocation(SlayerAPI.MOD_ID, "textures/gui/misc.png"); 
+	public static final ResourceLocation TEXTURE  = new ResourceLocation(SlayerAPI.MOD_ID, "textures/gui/misc.png"); 
+	public static final ResourceLocation ESSENCE_CAP  = new ResourceLocation(SlayerAPI.MOD_ID, "essence_mana"); 
 
 	@SubscribeEvent
 	public void attachCapability(AttachCapabilitiesEvent<Entity> event) {
@@ -55,7 +56,7 @@ public class BarTickHandler {
 					GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 					GuiIngame gig = mc.ingameGUI;
 					ScaledResolution scaledresolution = new ScaledResolution(mc);
-					mc.getTextureManager().bindTexture(ESSENCE_CAP);
+					mc.getTextureManager().bindTexture(TEXTURE);
 					// int sw = scaledresolution.getScaledWidth(), sh =
 					// scaledresolution.getScaledHeight();
 					int y = scaledresolution.getScaledHeight() - 30, x = 10, x1 = 10, x2 = 10;
