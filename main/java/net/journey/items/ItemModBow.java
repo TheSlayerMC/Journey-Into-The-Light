@@ -115,36 +115,36 @@ public class ItemModBow extends ItemMod {
 
                     if (!worldIn.isRemote) {
                         ItemEssenceArrow itemarrow = (ItemEssenceArrow)(itemstack.getItem() instanceof ItemEssenceArrow ? itemstack.getItem() : JourneyItems.essenceArrow);
-                        EntityArrow entityarrow = (EntityArrow) itemarrow.createArrow(worldIn, itemstack, entityplayer);
-                        entityarrow.shoot(entityplayer, entityplayer.rotationPitch, entityplayer.rotationYaw, 0.0F, f * 3.0F, 1.0F);
+                        arrowClass = itemarrow.createArrow(worldIn, itemstack, entityplayer);
+                        arrowClass.shoot(entityplayer, entityplayer.rotationPitch, entityplayer.rotationYaw, 0.0F, f * 3.0F, 1.0F);
 
                         if (f == 1.0F){
-                            entityarrow.setIsCritical(true);
+                            arrowClass.setIsCritical(true);
                         }
 
                         int j = EnchantmentHelper.getEnchantmentLevel(Enchantments.POWER, stack);
 
                         if (j > 0){
-                            entityarrow.setDamage(entityarrow.getDamage() + (double)j * 0.5D + 0.5D);
+                            arrowClass.setDamage(arrowClass.getDamage() + (double)j * 0.5D + 0.5D);
                         }
 
                         int k = EnchantmentHelper.getEnchantmentLevel(Enchantments.PUNCH, stack);
 
                         if (k > 0){
-                            entityarrow.setKnockbackStrength(k);
+                            arrowClass.setKnockbackStrength(k);
                         }
 
                         if (EnchantmentHelper.getEnchantmentLevel(Enchantments.FLAME, stack) > 0){
-                            entityarrow.setFire(100);
+                            arrowClass.setFire(100);
                         }
 
                         stack.damageItem(1, entityplayer);
 
                         if (flag1 || entityplayer.capabilities.isCreativeMode && (itemstack.getItem() == Items.SPECTRAL_ARROW || itemstack.getItem() == Items.TIPPED_ARROW)){
-                            entityarrow.pickupStatus = EntityArrow.PickupStatus.CREATIVE_ONLY;
+                            arrowClass.pickupStatus = EntityArrow.PickupStatus.CREATIVE_ONLY;
                         }
 
-                        worldIn.spawnEntity(entityarrow);
+                        worldIn.spawnEntity(arrowClass);
                     }
 
                     worldIn.playSound((EntityPlayer)null, entityplayer.posX, entityplayer.posY, entityplayer.posZ, SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
