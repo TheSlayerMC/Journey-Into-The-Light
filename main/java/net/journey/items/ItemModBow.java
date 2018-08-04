@@ -20,7 +20,7 @@ import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemArrow;
+import net.minecraft.item.ItemEssenceArrow;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.util.ActionResult;
@@ -90,7 +90,7 @@ public class ItemModBow extends ItemMod {
         }
     }
 
-    protected boolean isArrow(ItemStack stack) {return stack.getItem() instanceof ItemArrow;}
+    protected boolean isArrow(ItemStack stack) {return stack.getItem() instanceof ItemEssenceArrow;}
     
     @Override
 	public void onPlayerStoppedUsing(ItemStack stack, World worldIn, EntityLivingBase entityLiving, int timeLeft) {
@@ -111,10 +111,10 @@ public class ItemModBow extends ItemMod {
                 float f = getArrowVelocity(i);
 
                 if ((double)f >= 0.1D) {
-                    boolean flag1 = entityplayer.capabilities.isCreativeMode || (itemstack.getItem() instanceof ItemArrow && ((ItemArrow) itemstack.getItem()).isInfinite(itemstack, stack, entityplayer));
+                    boolean flag1 = entityplayer.capabilities.isCreativeMode || (itemstack.getItem() instanceof ItemEssenceArrow && ((ItemEssenceArrow) itemstack.getItem()).isInfinite(itemstack, stack, entityplayer));
 
                     if (!worldIn.isRemote) {
-                        ItemArrow itemarrow = (ItemArrow)(itemstack.getItem() instanceof ItemArrow ? itemstack.getItem() : JourneyItems.essenceArrow);
+                        ItemEssenceArrow itemarrow = (ItemEssenceArrow)(itemstack.getItem() instanceof ItemEssenceArrow ? itemstack.getItem() : JourneyItems.essenceArrow);
                         EntityArrow entityarrow = (EntityArrow) itemarrow.createArrow(worldIn, itemstack, entityplayer);
                         entityarrow.shoot(entityplayer, entityplayer.rotationPitch, entityplayer.rotationYaw, 0.0F, f * 3.0F, 1.0F);
 

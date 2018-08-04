@@ -35,6 +35,7 @@ public class JourneySmeltingRecipes {
 
 		GameRegistry.addSmelting(i.spawnerClump, new ItemStack(i.spawnerBar), 1.0F);
 		GameRegistry.addSmelting(Blocks.GLASS, new ItemStack(b.smoothGlass, 1), 1.0F);
+		GameRegistry.addSmelting(b.verditeOre, new ItemStack(i.verditeIngot, 1), 1.0F);
 		GameRegistry.addSmelting(i.flamingBeef, new ItemStack(JourneyItems.flamingBeefCooked), 0.5F);
 		GameRegistry.addSmelting(i.ironDust, new ItemStack(Items.IRON_INGOT), 0.5F);
 		GameRegistry.addSmelting(i.goldDust, new ItemStack(Items.GOLD_INGOT), 0.5F);

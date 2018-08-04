@@ -41,6 +41,7 @@ import net.journey.items.ItemCrakeBulb;
 import net.journey.items.ItemCreativeHammer;
 import net.journey.items.ItemDemonicEye;
 import net.journey.items.ItemDetractor;
+import net.journey.items.ItemEssenceArrow;
 import net.journey.items.ItemEssencePotion;
 import net.journey.items.ItemFlameCoin;
 import net.journey.items.ItemFruit;
@@ -1320,7 +1321,7 @@ public class JourneyItems {
 		overgrownStaff = new ItemStaff("overgrownStaff", "Overgrown Staff", true, 3, 1000, 5, false, EntityOvergrown.class);
 
 		//flameArrow = new ItemMod("flameArrow", EssenceTabs.ranged);
-		essenceArrow = new ItemMod("essenceArrow", "Essence Arrow", JourneyTabs.misc);
+		essenceArrow = new ItemEssenceArrow("essenceArrow", "Essence Arrow");
 
 		flameBow = new ItemModBow("flameBow", "Flame Bow", 384, 3, essenceArrow, "Sets enemies ablaze", EntityFlameArrow.class);
 		poisonBow = new ItemModBow("poisonBow", "Poison Bow", 384, 3, essenceArrow, "Poisons enemies", EntityPoisonArrow.class);
