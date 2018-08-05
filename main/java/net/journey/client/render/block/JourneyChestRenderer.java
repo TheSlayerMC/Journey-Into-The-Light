@@ -8,6 +8,7 @@ import net.journey.client.render.model.block.ModelJoureyLargeChest;
 import net.journey.client.render.model.block.ModelJourneyChest;
 import net.journey.util.Textures;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockChest;
 import net.minecraft.client.model.ModelChest;
 import net.minecraft.client.model.ModelLargeChest;
 import net.minecraft.client.renderer.GlStateManager;
@@ -19,32 +20,36 @@ import net.slayer.api.SlayerAPI;
 
 @SideOnly(Side.CLIENT)
 public class JourneyChestRenderer extends TileEntitySpecialRenderer<TileEntityJourneyChest> {
-	private static final ResourceLocation NETHER = new ResourceLocation(
-			SlayerAPI.PREFIX + "textures/models/blocks/chestnether.png");
-	private static final ResourceLocation EUCA = new ResourceLocation(
-			SlayerAPI.PREFIX + "textures/models/blocks/chesteuca.png");
-	private static final ResourceLocation BOIL = new ResourceLocation(
-			SlayerAPI.PREFIX + "textures/models/blocks/chestboil.png");
-	private static final ResourceLocation FROZEN = new ResourceLocation(
-			SlayerAPI.PREFIX + "textures/models/blocks/chestfrozen.png");
-	private static final ResourceLocation DEPTHS = new ResourceLocation(
-			SlayerAPI.PREFIX + "textures/models/blocks/chestdepths.png");
-	private static final ResourceLocation CORBA = new ResourceLocation(
-			SlayerAPI.PREFIX + "textures/models/blocks/chestcorba.png");
+	
+	private static final ResourceLocation NETHER = new ResourceLocation(SlayerAPI.PREFIX + "textures/models/blocks/chestnether.png");
+	private static final ResourceLocation NETHER_DOUBLE = new ResourceLocation(SlayerAPI.PREFIX + "textures/models/blocks/chestnether_double.png");
+	
+	private static final ResourceLocation EUCA = new ResourceLocation(SlayerAPI.PREFIX + "textures/models/blocks/chesteuca.png");
+	private static final ResourceLocation EUCA_DOUBLE = new ResourceLocation(SlayerAPI.PREFIX + "textures/models/blocks/chesteuca_double.png");
+	
+	private static final ResourceLocation BOIL = new ResourceLocation(SlayerAPI.PREFIX + "textures/models/blocks/chestboil.png");
+	private static final ResourceLocation BOIL_DOUBLE = new ResourceLocation(SlayerAPI.PREFIX + "textures/models/blocks/chestboil_double.png");
+	
+	private static final ResourceLocation FROZEN = new ResourceLocation(SlayerAPI.PREFIX + "textures/models/blocks/chestfrozen.png");
+	private static final ResourceLocation FROZEN_DOUBLE = new ResourceLocation(SlayerAPI.PREFIX + "textures/models/blocks/chestfrozen_doublee.png");
+	
+	private static final ResourceLocation DEPTHS = new ResourceLocation(SlayerAPI.PREFIX + "textures/models/blocks/chestdepths.png");
+	private static final ResourceLocation DEPTHS_DOUBLE = new ResourceLocation(SlayerAPI.PREFIX + "textures/models/blocks/chestdepths_double.png");
+	
+	private static final ResourceLocation CORBA = new ResourceLocation(SlayerAPI.PREFIX + "textures/models/blocks/chestcorba.png");
+	private static final ResourceLocation CORBA_DOUBLE = new ResourceLocation(SlayerAPI.PREFIX + "textures/models/blocks/chestcorba_double.png");
+	
+	private static final ResourceLocation TERRA = new ResourceLocation(SlayerAPI.PREFIX + "textures/models/blocks/chestterra.png");
+	private static final ResourceLocation TERRA_DOUBLE = new ResourceLocation(SlayerAPI.PREFIX + "textures/models/blocks/chestterra_double.png");
+	
+	private static final ResourceLocation CLOUDIA = new ResourceLocation(SlayerAPI.PREFIX + "textures/models/blocks/chestcloudia.png");
+	private static final ResourceLocation CLOUDIA_DOUBLE = new ResourceLocation(SlayerAPI.PREFIX + "textures/models/blocks/chestcloudia_double.png");
 
-	private static final ResourceLocation JOURNEY = new ResourceLocation(
-			SlayerAPI.PREFIX + "textures/models/blocks/chestjourney.png");
-	private static final ResourceLocation JOURNEY_DOUBLE = new ResourceLocation(
-			SlayerAPI.PREFIX + "textures/models/blocks/chestjourney_double.png");
+	private static final ResourceLocation JOURNEY = new ResourceLocation(SlayerAPI.PREFIX + "textures/models/blocks/chestjourney.png");
+	private static final ResourceLocation JOURNEY_DOUBLE = new ResourceLocation(SlayerAPI.PREFIX + "textures/models/blocks/chestjourney_double.png");
 	
 	private final ModelJourneyChest simpleChest = new ModelJourneyChest();
 	private final ModelJourneyChest largeChest = new ModelJoureyLargeChest();
-	private boolean isEuca;
-	private boolean isNether;
-	private boolean isBoil;
-	private boolean isFrozen;
-	private boolean isDepths;
-	private boolean isCorba;
 
 	public JourneyChestRenderer() {
 	}
@@ -85,8 +90,24 @@ public class JourneyChestRenderer extends TileEntitySpecialRenderer<TileEntityJo
 					GlStateManager.scale(4.0F, 4.0F, 1.0F);
 					GlStateManager.translate(0.0625F, 0.0625F, 0.0625F);
 					GlStateManager.matrixMode(5888);
-				} else {
+				} else if(te.getChestType() == BlockJourneyChest.Type.JOURNEY) {
 					this.bindTexture(JOURNEY);
+				} else if(te.getChestType() == BlockJourneyChest.Type.NETHER) {
+					this.bindTexture(NETHER);
+				} else if(te.getChestType() == BlockJourneyChest.Type.EUCA) {
+					this.bindTexture(EUCA);
+				} else if(te.getChestType() == BlockJourneyChest.Type.BOIL) {
+					this.bindTexture(BOIL);
+				} else if(te.getChestType() == BlockJourneyChest.Type.FROZEN) {
+					this.bindTexture(FROZEN);
+				} else if(te.getChestType() == BlockJourneyChest.Type.DEPTHS) {
+					this.bindTexture(DEPTHS);
+				} else if(te.getChestType() == BlockJourneyChest.Type.CORBA) {
+					this.bindTexture(CORBA);
+				} else if(te.getChestType() == BlockJourneyChest.Type.TERRA) {
+					this.bindTexture(TERRA);
+				} else if(te.getChestType() == BlockJourneyChest.Type.CLOUDIA) {
+					this.bindTexture(CLOUDIA);
 				}
 			} else {
 				modelchest = this.largeChest;
@@ -98,8 +119,24 @@ public class JourneyChestRenderer extends TileEntitySpecialRenderer<TileEntityJo
 					GlStateManager.scale(8.0F, 4.0F, 1.0F);
 					GlStateManager.translate(0.0625F, 0.0625F, 0.0625F);
 					GlStateManager.matrixMode(5888);
-				} else {
+				} else if(te.getChestType() == BlockJourneyChest.Type.JOURNEY){
 					this.bindTexture(JOURNEY_DOUBLE);
+				} else if(te.getChestType() == BlockJourneyChest.Type.NETHER){
+					this.bindTexture(NETHER_DOUBLE);
+				} else if(te.getChestType() == BlockJourneyChest.Type.EUCA){
+					this.bindTexture(EUCA_DOUBLE);
+				} else if(te.getChestType() == BlockJourneyChest.Type.BOIL){
+					this.bindTexture(BOIL_DOUBLE);
+				} else if(te.getChestType() == BlockJourneyChest.Type.FROZEN){
+					this.bindTexture(FROZEN_DOUBLE);
+				} else if(te.getChestType() == BlockJourneyChest.Type.DEPTHS){
+					this.bindTexture(DEPTHS_DOUBLE);
+				} else if(te.getChestType() == BlockJourneyChest.Type.CORBA){
+					this.bindTexture(CORBA_DOUBLE);
+				} else if(te.getChestType() == BlockJourneyChest.Type.TERRA){
+					this.bindTexture(TERRA_DOUBLE);
+				} else if(te.getChestType() == BlockJourneyChest.Type.CLOUDIA){
+					this.bindTexture(CLOUDIA_DOUBLE);
 				}
 			}
 

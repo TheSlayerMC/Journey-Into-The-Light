@@ -6,6 +6,7 @@ import net.journey.JourneyTabs;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.enums.EnumSounds;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockChest;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
@@ -47,9 +48,11 @@ public class BlockJourneyChest extends BlockModContainer {
     protected static final AxisAlignedBB WEST_CHEST_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0625D, 0.9375D, 0.875D, 0.9375D);
     protected static final AxisAlignedBB EAST_CHEST_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 1.0D, 0.875D, 0.9375D);
     protected static final AxisAlignedBB NOT_CONNECTED_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.875D, 0.9375D);
+    public final BlockJourneyChest.Type chestType;
     
-	public BlockJourneyChest(String name, String f) {
+	public BlockJourneyChest(String name, String f, BlockJourneyChest.Type chestTypeIn) {
 		super(EnumMaterialTypes.WOOD, name, f, 2.0F, JourneyTabs.machineBlocks);
+        this.chestType = chestTypeIn;
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 	}
 
@@ -467,68 +470,62 @@ public class BlockJourneyChest extends BlockModContainer {
 		return new TileEntityJourneyChest();
     }
 
-    public int isProvidingWeakPower(IBlockAccess worldIn, BlockPos pos, IBlockState state, EnumFacing side)
-    {
-        if (!this.canProvidePower(state))
-        {
-            return 0;
-        }
-        else
-        {
-            int i = 0;
-            TileEntity tileentity = worldIn.getTileEntity(pos);
+	public int isProvidingWeakPower(IBlockAccess worldIn, BlockPos pos, IBlockState state, EnumFacing side) {
+		if (!this.canProvidePower(state)) {
+			return 0;
+		} else {
+			int i = 0;
+			TileEntity tileentity = worldIn.getTileEntity(pos);
 
-            if (tileentity instanceof TileEntityJourneyChest)
-            {
-                i = ((TileEntityJourneyChest)tileentity).numPlayersUsing;
-            }
+			if (tileentity instanceof TileEntityJourneyChest) {
+				i = ((TileEntityJourneyChest) tileentity).numPlayersUsing;
+			}
 
-            return MathHelper.clamp(i, 0, 15);
-        }
-    }
+			return MathHelper.clamp(i, 0, 15);
+		}
+	}
 
-    public int isProvidingStrongPower(IBlockAccess worldIn, BlockPos pos, IBlockState state, EnumFacing side)
-    {
-        return side == EnumFacing.UP ? this.isProvidingWeakPower(worldIn, pos, state, side) : 0;
-    }
+	public int isProvidingStrongPower(IBlockAccess worldIn, BlockPos pos, IBlockState state, EnumFacing side) {
+		return side == EnumFacing.UP ? this.isProvidingWeakPower(worldIn, pos, state, side) : 0;
+	}
 
-    private boolean isBlocked(World worldIn, BlockPos pos)
-    {
-        return this.isBelowSolidBlock(worldIn, pos) || this.isOcelotSittingOnChest(worldIn, pos);
-    }
+	private boolean isBlocked(World worldIn, BlockPos pos) {
+		return this.isBelowSolidBlock(worldIn, pos) || this.isOcelotSittingOnChest(worldIn, pos);
+	}
 
-    private boolean isBelowSolidBlock(World worldIn, BlockPos pos)
-    {
-        return worldIn.isSideSolid(pos.up(), EnumFacing.DOWN, false);
-    }
+	private boolean isBelowSolidBlock(World worldIn, BlockPos pos) {
+		return worldIn.isSideSolid(pos.up(), EnumFacing.DOWN, false);
+	}
 
-    private boolean isOcelotSittingOnChest(World worldIn, BlockPos pos)
-    {
-        Iterator iterator = worldIn.getEntitiesWithinAABB(EntityOcelot.class, new AxisAlignedBB((double)pos.getX(), (double)(pos.getY() + 1), (double)pos.getZ(), (double)(pos.getX() + 1), (double)(pos.getY() + 2), (double)(pos.getZ() + 1))).iterator();
-        EntityOcelot entityocelot;
+	private boolean isOcelotSittingOnChest(World worldIn, BlockPos pos) {
+		Iterator iterator = worldIn
+				.getEntitiesWithinAABB(EntityOcelot.class,
+						new AxisAlignedBB((double) pos.getX(), (double) (pos.getY() + 1), (double) pos.getZ(),
+								(double) (pos.getX() + 1), (double) (pos.getY() + 2), (double) (pos.getZ() + 1)))
+				.iterator();
+		EntityOcelot entityocelot;
 
-        do
-        {
-            if (!iterator.hasNext())
-            {
-                return false;
-            }
+		do {
+			if (!iterator.hasNext()) {
+				return false;
+			}
 
-            Entity entity = (Entity)iterator.next();
-            entityocelot = (EntityOcelot)entity;
-        }
-        while (!entityocelot.isSitting());
+			Entity entity = (Entity) iterator.next();
+			entityocelot = (EntityOcelot) entity;
+		} while (!entityocelot.isSitting());
 
-        return true;
-    }
+		return true;
+	}
 
-    public boolean hasComparatorInputOverride()
-    {
-        return true;
-    }
+	public boolean hasComparatorInputOverride() {
+		return true;
+	}
 
-    public int getComparatorInputOverride(World worldIn, BlockPos pos)
-    {
-        return Container.calcRedstoneFromInventory(this.getLockableContainer(worldIn, pos));
-    }
+	public int getComparatorInputOverride(World worldIn, BlockPos pos) {
+		return Container.calcRedstoneFromInventory(this.getLockableContainer(worldIn, pos));
+	}
+
+	public static enum Type {
+		JOURNEY, NETHER, EUCA, BOIL, DEPTHS, CORBA, TERRA, CLOUDIA, FROZEN;
+	}
 }
