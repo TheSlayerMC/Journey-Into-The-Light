@@ -8,7 +8,11 @@ import net.journey.JourneyTabs;
 import net.journey.achievement.event.JourneyDungeonEvent;
 import net.journey.achievement.event.JourneySapphireEvent;
 import net.journey.achievement.event.JourneySapphireSwordEvent;
+import net.journey.blocks.tileentity.TileEntityGrindstone;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
+import net.journey.blocks.tileentity.TileEntityNetherFurnace;
+import net.journey.blocks.tileentity.TileEntitySummoningTable;
+import net.journey.blocks.tileentity.TileEntityTrap;
 import net.journey.client.server.BarTickHandler;
 import net.journey.client.server.EssenceBar;
 import net.journey.client.server.EssenceStorage;
@@ -68,8 +72,12 @@ public class CommonProxy {
 		JourneyMiscRecipes.init();
 		JourneyWeaponRecipes.init();
 		JourneyTabs.init();
-		GameRegistry.registerTileEntity(TileEntityJourneyChest.class, "Journey Chest");
-		
+		GameRegistry.registerTileEntity(TileEntityJourneyChest.class, SlayerAPI.PREFIX + "Journey Chest");
+		GameRegistry.registerTileEntity(TileEntitySummoningTable.class, SlayerAPI.PREFIX + "Summoning Table");
+		GameRegistry.registerTileEntity(TileEntityGrindstone.class, SlayerAPI.PREFIX + "Grindstone");
+		GameRegistry.registerTileEntity(TileEntityNetherFurnace.class, SlayerAPI.PREFIX + "Nether Furnace");
+		GameRegistry.registerTileEntity(TileEntityTrap.class, SlayerAPI.PREFIX + "Trap");
+
 		addOreDictionary();
 		SlayerAPI.registerEvent(new ArmorAbilityEvent());
 		SlayerAPI.registerEvent(new PlayerEvent());
