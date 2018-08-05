@@ -86,7 +86,6 @@ import net.journey.entity.mob.overworld.underground.EntityGreenHonglow;
 import net.journey.entity.mob.overworld.underground.EntityHonglow;
 import net.journey.entity.mob.overworld.underground.EntityStonewalker;
 import net.journey.entity.mob.overworld.underground.npc.EntityRockiteGolem;
-import net.journey.entity.mob.pet.EntityFerret;
 import net.journey.entity.mob.terrania.mob.EntityTerraScatterer;
 import net.journey.entity.mob.terrania.mob.EntityTerragrow;
 import net.journey.entity.mob.terrania.mob.EntityTerralight;

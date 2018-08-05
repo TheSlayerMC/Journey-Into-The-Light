@@ -87,7 +87,7 @@ public class EntityShatterer extends EntityModFlying {
         }
 
         @Override
-        public boolean continueExecuting() {
+        public boolean shouldContinueExecuting() {
             return false;
         }
 
@@ -111,20 +111,20 @@ public class EntityShatterer extends EntityModFlying {
 
         @Override
         public void onUpdateMoveHelper() {
-            if(this.update) {
+            if (this.action == EntityMoveHelper.Action.MOVE_TO) {
                 double d0 = this.posX - this.e.posX;
                 double d1 = this.posY - this.e.posY;
                 double d2 = this.posZ - this.e.posZ;
                 double d3 = d0 * d0 + d1 * d1 + d2 * d2;
                 if(this.height-- <= 0) {
                     this.height += this.e.getRNG().nextInt(5) + 2;
-                    d3 = (double)MathHelper.sqrt_double(d3);
+                    d3 = (double)MathHelper.sqrt(d3);
                     if(this.canMove(this.posX, this.posY, this.posZ, d3)) {
                         this.e.motionX += d0 / d3 * 0.1D;
                         this.e.motionY += d1 / d3 * 0.1D;
                         this.e.motionZ += d2 / d3 * 0.1D;
                     } else {
-                        this.update = false;
+                    	this.action = EntityMoveHelper.Action.WAIT;
                     }
                 }
             }
@@ -137,7 +137,7 @@ public class EntityShatterer extends EntityModFlying {
             AxisAlignedBB axisalignedbb = this.e.getEntityBoundingBox();
             for(int i = 1; i < h; ++i) {
                 axisalignedbb = axisalignedbb.offset(d4, d5, d6);
-                if(!this.e.world.getCollidingBoundingBoxes(this.e, axisalignedbb).isEmpty()) {
+                if(!this.e.world.getCollisionBoxes(this.e, axisalignedbb).isEmpty()) {
                     return false;
                 }
             }

@@ -116,7 +116,7 @@ public class EntityEudor extends EntityEssenceBoss {
 			te.setInventorySlotContents(1, new ItemStack(JourneyItems.kingsSword, 1));
 			break;
 		case 1:
-			te.setInventorySlotContents(1, new ItemStack(JourneyItems.depthsPortalGem, 10));
+			te.setInventorySlotContents(1, new ItemStack(JourneyItems.depthsPortalGem, 7));
 			te.setInventorySlotContents(10, new ItemStack(JourneyItems.kingsSword, 1));
 			break;
 		}

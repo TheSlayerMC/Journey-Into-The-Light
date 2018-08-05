@@ -41,7 +41,7 @@ import net.slayer.api.entity.EntityModFlying;
 
 public class EntityLavasnake extends EntityModFlying {
 
-	private static final DataParameter<Boolean> ATTACKING = EntityDataManager.<Boolean>createKey(EntityMiniGhast.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Boolean> ATTACKING = EntityDataManager.<Boolean>createKey(EntityLavasnake.class, DataSerializers.BOOLEAN);
     private int explosionStrength = 1;
     
 	public EntityLavasnake(World par1World) {

@@ -100,7 +100,7 @@ public class EntityCorallator extends EntityEssenceBoss implements IRangedAttack
 			te.setInventorySlotContents(5, new ItemStack(JourneyItems.coreExpender, 1));
 			break;
 		case 1:
-			te.setInventorySlotContents(1, new ItemStack(JourneyItems.depthsPortalGem, 10));
+			te.setInventorySlotContents(1, new ItemStack(JourneyItems.depthsPortalGem, 6));
 			te.setInventorySlotContents(2, new ItemStack(JourneyItems.coreMender, 1));
 			te.setInventorySlotContents(10, new ItemStack(JourneyItems.coreExpender, 1));
 			break;
