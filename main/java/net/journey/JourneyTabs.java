@@ -18,7 +18,6 @@ public class JourneyTabs extends CreativeTabs {
 	public static final JourneyTabs piercers = new JourneyTabs("journey.piercers");
 	public static final JourneyTabs staves = new JourneyTabs("journey.staves");
 	public static final JourneyTabs util = new JourneyTabs("journey.util");
-	public static final JourneyTabs misc = new JourneyTabs("journey.misc");
 	public static final JourneyTabs armor = new JourneyTabs("journey.armor");
 	public static final JourneyTabs spawners = new JourneyTabs("journey.spawners");
 	public static final JourneyTabs crops = new JourneyTabs("journey.crops");
@@ -61,7 +60,6 @@ public class JourneyTabs extends CreativeTabs {
 		piercers.setIcon(JourneyItems.eucaPiercer);
 		staves.setIcon(JourneyItems.conjuringStaff);
 		util.setIcon(JourneyItems.flameCoin);
-		misc.setIcon(JourneyItems.weakEssencePotion);
 		armor.setIcon(JourneyItems.twilightHelmet);
 		spawners.setIcon(JourneyItems.sentryKingOrb);
 		crops.setIcon(JourneyCrops.crackenCaneSeeds);
