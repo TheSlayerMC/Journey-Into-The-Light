@@ -18,7 +18,7 @@ public class RenderShatterer extends RenderLiving {
 
 	@Override
 	protected ResourceLocation getEntityTexture(Entity var1) {
-		return new ResourceLocation("essence:textures/models/mobs/shatterer.png");
+		return new ResourceLocation("journey:textures/models/mobs/shatterer.png");
 	}
 	
 	@Override
