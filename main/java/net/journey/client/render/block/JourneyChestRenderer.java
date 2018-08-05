@@ -90,8 +90,7 @@ public class JourneyChestRenderer extends TileEntitySpecialRenderer<TileEntityJo
 					GlStateManager.scale(4.0F, 4.0F, 1.0F);
 					GlStateManager.translate(0.0625F, 0.0625F, 0.0625F);
 					GlStateManager.matrixMode(5888);
-				} else if(te.getChestType() == BlockJourneyChest.Type.JOURNEY) {
-					this.bindTexture(JOURNEY);
+
 				} else if(te.getChestType() == BlockJourneyChest.Type.NETHER) {
 					this.bindTexture(NETHER);
 				} else if(te.getChestType() == BlockJourneyChest.Type.EUCA) {
@@ -108,6 +107,8 @@ public class JourneyChestRenderer extends TileEntitySpecialRenderer<TileEntityJo
 					this.bindTexture(TERRA);
 				} else if(te.getChestType() == BlockJourneyChest.Type.CLOUDIA) {
 					this.bindTexture(CLOUDIA);
+				} else {
+					this.bindTexture(JOURNEY);
 				}
 			} else {
 				modelchest = this.largeChest;
@@ -119,8 +120,7 @@ public class JourneyChestRenderer extends TileEntitySpecialRenderer<TileEntityJo
 					GlStateManager.scale(8.0F, 4.0F, 1.0F);
 					GlStateManager.translate(0.0625F, 0.0625F, 0.0625F);
 					GlStateManager.matrixMode(5888);
-				} else if(te.getChestType() == BlockJourneyChest.Type.JOURNEY){
-					this.bindTexture(JOURNEY_DOUBLE);
+
 				} else if(te.getChestType() == BlockJourneyChest.Type.NETHER){
 					this.bindTexture(NETHER_DOUBLE);
 				} else if(te.getChestType() == BlockJourneyChest.Type.EUCA){
@@ -137,6 +137,8 @@ public class JourneyChestRenderer extends TileEntitySpecialRenderer<TileEntityJo
 					this.bindTexture(TERRA_DOUBLE);
 				} else if(te.getChestType() == BlockJourneyChest.Type.CLOUDIA){
 					this.bindTexture(CLOUDIA_DOUBLE);
+				} else {
+					this.bindTexture(JOURNEY_DOUBLE);
 				}
 			}
 

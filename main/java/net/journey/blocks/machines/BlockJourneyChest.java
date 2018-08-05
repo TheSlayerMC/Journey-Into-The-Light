@@ -526,6 +526,14 @@ public class BlockJourneyChest extends BlockModContainer {
 	}
 
 	public static enum Type {
-		JOURNEY, NETHER, EUCA, BOIL, DEPTHS, CORBA, TERRA, CLOUDIA, FROZEN;
+		JOURNEY, 
+		NETHER, 
+		EUCA, 
+		BOIL,
+		DEPTHS, 
+		CORBA, 
+		TERRA, 
+		CLOUDIA, 
+		FROZEN;
 	}
 }
