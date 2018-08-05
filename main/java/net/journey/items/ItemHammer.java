@@ -4,13 +4,9 @@ import java.util.List;
 
 import net.journey.JourneyItems;
 import net.journey.JourneyTabs;
-import net.journey.client.server.DarkEnergyBar;
-import net.journey.client.server.EssenceBar;
-import net.journey.client.server.PowerBar;
+import net.journey.client.server.EssenceProvider;
+import net.journey.client.server.IEssence;
 import net.journey.entity.projectile.EntityBasicProjectile;
-import net.journey.entity.projectile.EntityChaosProjectile;
-import net.journey.entity.projectile.EntityIceBall;
-import net.journey.entity.projectile.EntityLightningBall;
 import net.journey.enums.EnumSounds;
 import net.journey.util.JourneyToolMaterial;
 import net.journey.util.LangHelper;
@@ -24,7 +20,6 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.SlayerAPI;
@@ -36,15 +31,12 @@ public class ItemHammer extends ItemSword {
 	protected boolean essence, unbreakable;
 	protected Class<? extends EntityBasicProjectile> projectile;
 	protected JourneyToolMaterial mat;
-	private boolean power;
 
-	public ItemHammer(String name, String f, JourneyToolMaterial toolMaterial, boolean durability, Class<? extends EntityBasicProjectile> projectile, boolean essence, boolean power, int dam, int magic, int uses) {
+	public ItemHammer(String name, String f, JourneyToolMaterial toolMaterial, boolean durability, Class<? extends EntityBasicProjectile> projectile, int dam, int magic, int uses) {
 		super(toolMaterial.getToolMaterial());
 		this.projectile=projectile;
 		damage = dam;
 		usage = magic;
-		this.essence = essence;
-		this.power = power;
 		setMaxDamage(uses);
 		setMaxStackSize(1);
 		LangRegistry.addItem(name, f);
@@ -59,33 +51,20 @@ public class ItemHammer extends ItemSword {
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand handIn) {
 		ItemStack stack = player.getHeldItem(handIn);
-		if(power) {
-			if(!world.isRemote && PowerBar.getProperties(player).useBar(usage)) {
-				EnumSounds.playSound(EnumSounds.HAMMER, world, player);
-				if(!unbreakable) stack.damageItem(1, player);
-				try {
-					world.spawnEntity(projectile.getConstructor(World.class, EntityLivingBase.class, float.class).newInstance(world, player, damage));
-					return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);	
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-			if(essence) {
-				if(!world.isRemote && EssenceBar.getProperties(player).useBar(usage)) {
-					EnumSounds.playSound(EnumSounds.HAMMER, world, player);
-					if(!unbreakable) stack.damageItem(1, player);
-					try {
-						world.spawnEntity(projectile.getConstructor(World.class, EntityLivingBase.class, float.class).newInstance(world, player, damage));
-						return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);	
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
+		IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
+		if(!world.isRemote && mana.useEssence(usage)) {
+			EnumSounds.playSound(EnumSounds.HAMMER, world, player);
+			if(!unbreakable) stack.damageItem(1, player);
+			try {
+				world.spawnEntity(projectile.getConstructor(World.class, EntityLivingBase.class, float.class).newInstance(world, player, damage));
+				return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);	
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 		}
 		return new ActionResult<ItemStack>(EnumActionResult.FAIL, stack);	
 	}
-	
+
 	@Override
 	public boolean isEnchantable(ItemStack stack) {
 		return true;
@@ -97,14 +76,13 @@ public class ItemHammer extends ItemSword {
 		if(canRepair) return mat.getRepairItem() == i1.getItem() ? true : super.getIsRepairable(i, i1);
 		return super.getIsRepairable(i, i1);
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack item, World worldIn, List<String> l, ITooltipFlag flagIn) {		
 		if(item.getMaxDamage() != -1) l.add(item.getMaxDamage() - item.getItemDamage() + " " + LangHelper.getUsesRemaining());
 		else l.add(SlayerAPI.Colour.GREEN + LangHelper.getInfiniteUses());
-		if(essence) LangHelper.useDarkEnergy(usage);
-		else LangHelper.useDarkEnergy(usage);
+		LangHelper.useEssence(usage);
 		l.add(SlayerAPI.Colour.DARK_GREEN + "+" + LangHelper.rangedDamage(damage));
 	}
 }

@@ -26,10 +26,6 @@ public class LangHelper {
 		return getFormattedText("journey.uses") + " " + amount + " " + getFormattedText("journey.essence");
 	}
 	
-	public static String useDarkEnergy(int amount) {
-		return getFormattedText("journey.uses") + " " + amount + " " + getFormattedText("journey.dark");
-	}
-	
 	public static String rangedDamage(int damage) {
 		return damage + " " + getFormattedText("journey.rangedDamage");
 	}

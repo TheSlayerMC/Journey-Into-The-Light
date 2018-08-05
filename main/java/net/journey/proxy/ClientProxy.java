@@ -6,18 +6,11 @@ import net.journey.client.EntityRendering;
 import net.journey.client.GuiHandler;
 import net.journey.client.PlayerStats;
 import net.journey.client.RenderHandler;
-import net.journey.client.server.DarkEnergyBar;
-import net.journey.client.server.EssenceBar;
-import net.journey.client.server.EssenceStorage;
-import net.journey.client.server.IEssence;
 import net.journey.enums.EnumParticlesClasses;
 import net.journey.event.ClientTickEvent;
 import net.journey.event.UpdateCheckerEvent;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.world.World;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
@@ -61,7 +54,7 @@ public class ClientProxy extends CommonProxy {
 
 	@Override
 	public void updateDarkEnergy(int amount) {
-		DarkEnergyBar.getProperties(Minecraft.getMinecraft().player).setBarValue(amount);
+		//DarkEnergyBar.getProperties(Minecraft.getMinecraft().player).setBarValue(amount);
 	}
 
 	@Override

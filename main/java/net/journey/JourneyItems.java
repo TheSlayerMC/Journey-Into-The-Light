@@ -460,8 +460,6 @@ public class JourneyItems {
 	public static Item scaleOrb;
 	public static Item enchantedTerrastar;
 
-	public static Item weakDarkEnergyPotion;
-	public static Item strongDarkEnergyPotion;
 	public static Item weakEssencePotion;
 	public static Item strongEssencePotion;
 
@@ -1142,10 +1140,8 @@ public class JourneyItems {
 		scaleOrb = new ItemSpecificDimensionSpawner(Config.depths, "scaleOrb", "Aquatic Egg", "Depths");
 		enchantedTerrastar = new ItemSpecificDimensionSpawner(Config.terrania, "enchantedTerrastar", "Enchanted Terrastar", "Terrania");
 
-		weakDarkEnergyPotion = new ItemEssencePotion("weakDarkEnergyPotion", "Weak Dark Energy Potion", false, false);
-		strongDarkEnergyPotion = new ItemEssencePotion("strongDarkEnergyPotion", "Strong Dark Energy Potion", true, false);
-		weakEssencePotion = new ItemEssencePotion("weakEssencePotion", "Weak Essence Potion", false, true);
-		strongEssencePotion = new ItemEssencePotion("strongEssencePotion", "Strong Essence Potion", true, true);
+		weakEssencePotion = new ItemEssencePotion("weakEssencePotion", "Weak Essence Potion", false);
+		strongEssencePotion = new ItemEssencePotion("strongEssencePotion", "Strong Essence Potion", true);
 
 		/*hellstoneHelmet = new ItemModArmor(EnumArmor.HELLSTONE, HEAD);
 		hellstoneChest = new ItemModArmor(EnumArmor.HELLSTONE, BODY);
@@ -1309,16 +1305,16 @@ public class JourneyItems {
 		thunderbirdBattleaxe = new ItemBattleAxe("thunderbirdBattleaxe", "Thunderbird Battleaxe", EssenceToolMaterial.THUNDERBIRD_BATTLEAXE); */
 		 
 		
-		staffOfCrystal = new ItemStaff("staffOfCrystal", "Staff of Crystal", false, 3, 1000, 10, false, EntityIceBall.class);
-		staffOfDivineStone = new ItemStaff("staffOfDivineStone", "Staff of Divine Stone", false, 3, 1000, 9, false, EntityRock.class);
-		staffOfHellstone = new ItemStaff("staffOfHellstone", "Staff of Hellstone", false, 3, 1000, 7, false, EntityHellstone.class);
-		doomsBringer = new ItemStaff("doomsBringer", "Dooms Bringer", false, 3, 1000, 12, false, EntityDoomsBringer.class);
-		conjuringStaff = new ItemStaff("conjuringStaff", "Conjuring Staff", false, 3, 1000, 18, false, EntityConjuring.class);
-		staffOfEnlightenment = new ItemStaff("staffOfEnlightenment", "Staff Of Enlightenment", true, 3, 1000, 14, false, EntityEnlightenment.class);
-		staffOfGreenpace = new ItemStaff("staffOfGreenpace", "Staff Of Greenpace", true, 3, 1000, 10, false, EntityGreenpace.class);
-		wizardsStar = new ItemStaff("wizardsStar", "Wizards Star", true, 3, 1000, 5, false, EntityWizardsStar.class);
+		staffOfCrystal = new ItemStaff("staffOfCrystal", "Staff of Crystal", 3, 1000, 10, false, EntityIceBall.class);
+		staffOfDivineStone = new ItemStaff("staffOfDivineStone", "Staff of Divine Stone", 3, 1000, 9, false, EntityRock.class);
+		staffOfHellstone = new ItemStaff("staffOfHellstone", "Staff of Hellstone", 3, 1000, 7, false, EntityHellstone.class);
+		doomsBringer = new ItemStaff("doomsBringer", "Dooms Bringer", 3, 1000, 12, false, EntityDoomsBringer.class);
+		conjuringStaff = new ItemStaff("conjuringStaff", "Conjuring Staff", 3, 1000, 18, false, EntityConjuring.class);
+		staffOfEnlightenment = new ItemStaff("staffOfEnlightenment", "Staff Of Enlightenment", 3, 1000, 14, false, EntityEnlightenment.class);
+		staffOfGreenpace = new ItemStaff("staffOfGreenpace", "Staff Of Greenpace", 3, 1000, 10, false, EntityGreenpace.class);
+		wizardsStar = new ItemStaff("wizardsStar", "Wizards Star", 3, 1000, 5, false, EntityWizardsStar.class);
 		teleportationStaff = new ItemTeleport("teleportationStaff", "Teleportation Staff");
-		overgrownStaff = new ItemStaff("overgrownStaff", "Overgrown Staff", true, 3, 1000, 5, false, EntityOvergrown.class);
+		overgrownStaff = new ItemStaff("overgrownStaff", "Overgrown Staff", 3, 1000, 5, false, EntityOvergrown.class);
 
 		//flameArrow = new ItemMod("flameArrow", EssenceTabs.ranged);
 		essenceArrow = new ItemEssenceArrow("essenceArrow", "Essence Arrow");
@@ -1362,14 +1358,14 @@ public class JourneyItems {
 		lightningWand = new ItemWand("lightningWand", "Lightning Wand", false, 10, 600, 8, false, EntityLightningBall.class);
 
 		hammerCreative = new ItemCreativeHammer("hammerCreative", "Hammer of Creative Spellbinding", JourneyToolMaterial.CREATIVE, false, EntityLightningBall.class);
-		earthenHammer = new ItemHammer("earthenHammer", "Earthen Hammer", JourneyToolMaterial.EARTHEN_HAMMER, false, EntityEarthen.class, false, true, 4, 4, 642);
-		flamingHammer = new ItemHammer("flamingHammer", "Flaming Hammer", JourneyToolMaterial.FLAMING_HAMMER, false, EntityFireBall.class, false, true, 10, 4, 1230);
-		nethicHammer = new ItemHammer("nethicHammer", "Nethic Hammer", JourneyToolMaterial.NETHIC_HAMMER, false, EntityFireBall.class, false, true, 8, 4, 825);
-		withicHammer = new ItemHammer("withicHammer", "Withic Hammer", JourneyToolMaterial.WITHIC_HAMMER, false, EntityWithic.class, false, true, 9, 4, 1230);
-		royalHammer = new ItemHammer("royalHammer", "Royal Hammer", JourneyToolMaterial.ROYAL_HAMMER, false, EntityFireBall.class, false, true, 12, 4, 1320);
-		overgrownHammer = new ItemHammer("overgrownHammer", "Overgrown Hammer", JourneyToolMaterial.OVERGROWN_HAMMER, false, EntityOvergrown.class, false, true, 12, 4, 1320);
-		rockyHammer = new ItemHammer("rockyHammer", "Rocky Hammer", JourneyToolMaterial.ROCKY_HAMMER, false, EntityRock.class, false, true, 6, 4, 2230);
-		crystalizedHammer = new ItemHammer("crystalizedHammer", "Crystalized Hammer", JourneyToolMaterial.CRYSTAL_HAMMER, false, EntityIceBall.class, false, true, 7, 4, 3320);
+		earthenHammer = new ItemHammer("earthenHammer", "Earthen Hammer", JourneyToolMaterial.EARTHEN_HAMMER, false, EntityEarthen.class, 4, 4, 642);
+		flamingHammer = new ItemHammer("flamingHammer", "Flaming Hammer", JourneyToolMaterial.FLAMING_HAMMER, false, EntityFireBall.class, 10, 4, 1230);
+		nethicHammer = new ItemHammer("nethicHammer", "Nethic Hammer", JourneyToolMaterial.NETHIC_HAMMER, false, EntityFireBall.class, 8, 4, 825);
+		withicHammer = new ItemHammer("withicHammer", "Withic Hammer", JourneyToolMaterial.WITHIC_HAMMER, false, EntityWithic.class, 9, 4, 1230);
+		royalHammer = new ItemHammer("royalHammer", "Royal Hammer", JourneyToolMaterial.ROYAL_HAMMER, false, EntityFireBall.class, 12, 4, 1320);
+		overgrownHammer = new ItemHammer("overgrownHammer", "Overgrown Hammer", JourneyToolMaterial.OVERGROWN_HAMMER, false, EntityOvergrown.class, 12, 4, 1320);
+		rockyHammer = new ItemHammer("rockyHammer", "Rocky Hammer", JourneyToolMaterial.ROCKY_HAMMER, false, EntityRock.class, 6, 4, 2230);
+		crystalizedHammer = new ItemHammer("crystalizedHammer", "Crystalized Hammer", JourneyToolMaterial.CRYSTAL_HAMMER, false, EntityIceBall.class, 7, 4, 3320);
 
 		chaosCannon = new ItemChaosCannon("chaosCannon", "Chaos Cannon", 6, 4, "Shoots a bouncing projectile");
 		rockLauncher = new ItemGun("rockLauncher", "Rock Launcher", 4, "Stuns mobs for 10 seconds", EntityRock.class);

@@ -67,26 +67,25 @@ public class CommonProxy {
 		JourneyBlockRecipes.init();
 		JourneyMiscRecipes.init();
 		JourneyWeaponRecipes.init();
+		JourneyTabs.init();
 		GameRegistry.registerTileEntity(TileEntityJourneyChest.class, "Journey Chest");
-		//BiomeDictionary.addTypes(new BiomeHell(), Type.NETHER);
 		
-		if(SlayerAPI.DEVMODE) LangRegistry.instance.register();
 		addOreDictionary();
 		SlayerAPI.registerEvent(new ArmorAbilityEvent());
 		SlayerAPI.registerEvent(new PlayerEvent());
 		GameRegistry.registerFuelHandler(new JourneyFuelHandler());
 		MinecraftForge.addGrassSeed(new ItemStack(JourneyCrops.tomatoSeeds), 5);
-		FMLCommonHandler.instance().bus().register(new JourneySapphireSwordEvent());
-		FMLCommonHandler.instance().bus().register(new JourneySapphireEvent());
-		FMLCommonHandler.instance().bus().register(new JourneyDungeonEvent());
-		JourneyTabs.init();
+		//FMLCommonHandler.instance().bus().register(new JourneySapphireSwordEvent());
+		//FMLCommonHandler.instance().bus().register(new JourneySapphireEvent());
+		//FMLCommonHandler.instance().bus().register(new JourneyDungeonEvent());
 		DimensionHelper.init();
 		DimensionHelper.addSpawns();
-		
 		
 		//SlayerAPI.registerEvent(new BarTickHandler());
 		MinecraftForge.EVENT_BUS.register(BarTickHandler.class);
 		CapabilityManager.INSTANCE.register(IEssence.class, new EssenceStorage(), EssenceBar.class);
+		
+		if(SlayerAPI.DEVMODE) LangRegistry.instance.register();
 	}
 	
 	public void init(FMLInitializationEvent event) {

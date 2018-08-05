@@ -35,8 +35,7 @@ public class MessagePowerBar implements IMessage {
 
 		@Override
 		public IMessage onMessage(MessagePowerBar message, MessageContext ctx) {
-			BarTickHandler.powerAmount = message.amount;
-			BarTickHandler.regenPower = message.shouldRegen;
+
 			JITL.proxy.updatePower(message.amount);
 			return null;
 		}

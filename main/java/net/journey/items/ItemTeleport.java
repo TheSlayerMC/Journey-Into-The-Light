@@ -4,6 +4,8 @@ import java.util.List;
 
 import net.journey.JourneyTabs;
 import net.journey.client.server.EssenceBar;
+import net.journey.client.server.EssenceProvider;
+import net.journey.client.server.IEssence;
 import net.journey.util.LangHelper;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
@@ -32,6 +34,7 @@ public class ItemTeleport extends ItemMod {
 
 	@Override
     public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
 		float var4 = player.rotationPitch;
 		float var5 = player.rotationYaw;
 		double var6 = player.posX;
@@ -63,7 +66,7 @@ public class ItemTeleport extends ItemMod {
 				if (var26 == 4) --var23;                
 				if (var26 == 5) ++var23;                
 
-				if(EssenceBar.getProperties(player).useBar(5)) {
+				if(mana.useEssence(5)) {
 					player.getLook(1);
 					this.teleportTo(player, worldIn, var23, var24, var25);
 				}

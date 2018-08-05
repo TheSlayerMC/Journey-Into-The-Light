@@ -35,8 +35,7 @@ public class MessageDarkEnergyBar implements IMessage {
 
 		@Override
 		public IMessage onMessage(MessageDarkEnergyBar message, MessageContext ctx) {
-			BarTickHandler.darkAmount = message.amount;
-			BarTickHandler.regenDark = message.shouldRegen;
+
 			JITL.proxy.updateDarkEnergy(message.amount);
 			return null;
 		}

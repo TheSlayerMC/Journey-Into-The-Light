@@ -4,7 +4,8 @@ import java.util.List;
 import java.util.Random;
 
 import net.journey.JourneyTabs;
-import net.journey.client.server.DarkEnergyBar;
+import net.journey.client.server.EssenceProvider;
+import net.journey.client.server.IEssence;
 import net.journey.entity.projectile.EntityAttractor;
 import net.journey.entity.projectile.EntityDetractor;
 import net.journey.enums.EnumSounds;
@@ -39,15 +40,17 @@ public class ItemDetractor extends ItemMod {
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand handIn) {
 		Random r = new Random();
+		IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
+
 		if (detracts) {
-			if(!world.isRemote && DarkEnergyBar.getProperties(player).useBar(magic)) {
+			if(!world.isRemote && mana.useEssence(magic)) {
 				EnumSounds.playSound(EnumSounds.HAMMER, world, player);
 				EntityThrowable entity = new EntityDetractor(world, player);
 				world.spawnEntity(entity);
 			}
 		}
 		if (attracts) {
-			if(!world.isRemote && DarkEnergyBar.getProperties(player).useBar(magic)) {
+			if(!world.isRemote && mana.useEssence(magic)) {
 				EnumSounds.playSound(EnumSounds.HAMMER, world, player);
 				EntityThrowable entity = new EntityAttractor(world, player);
 				world.spawnEntity(entity);
@@ -60,11 +63,11 @@ public class ItemDetractor extends ItemMod {
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack i, World worldIn, List<String> l, ITooltipFlag flagIn) {
 		if (detracts) {
-			l.add(SlayerAPI.Colour.AQUA + "Uses " + magic + " Dark Energy");
+			l.add(SlayerAPI.Colour.DARK_GREEN + "Uses " + magic + " Essence");
 			l.add(SlayerAPI.Colour.AQUA + "Fires a mob away from you");
 		}
 		if (attracts) {
-			l.add(SlayerAPI.Colour.AQUA + "Uses " + magic + " Dark Energy");
+			l.add(SlayerAPI.Colour.DARK_GREEN + "Uses " + magic + " Essence");
 			l.add(SlayerAPI.Colour.AQUA + "Pulls a mob towards you");
 		}
 	}

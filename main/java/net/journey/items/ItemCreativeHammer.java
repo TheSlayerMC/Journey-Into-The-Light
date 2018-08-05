@@ -4,10 +4,7 @@ import java.util.List;
 
 import net.journey.JourneyItems;
 import net.journey.JourneyTabs;
-import net.journey.client.server.DarkEnergyBar;
-import net.journey.client.server.EssenceBar;
 import net.journey.entity.projectile.EntityBasicProjectile;
-import net.journey.entity.projectile.EntityChaosProjectile;
 import net.journey.entity.projectile.EntityLightningBall;
 import net.journey.enums.EnumSounds;
 import net.journey.util.JourneyToolMaterial;
@@ -22,7 +19,6 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.SlayerAPI;

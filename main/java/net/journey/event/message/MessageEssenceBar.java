@@ -35,8 +35,7 @@ public class MessageEssenceBar implements IMessage {
 
 		@Override
 		public IMessage onMessage(MessageEssenceBar message, MessageContext ctx) {
-			BarTickHandler.essenceAmount = message.amount;
-			BarTickHandler.regenEssence = message.shouldRegen;
+
 			JITL.proxy.updateEssence(message.amount);
 			return null;
 		}
