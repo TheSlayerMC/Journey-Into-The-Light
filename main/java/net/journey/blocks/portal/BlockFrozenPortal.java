@@ -19,6 +19,7 @@ import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
@@ -187,14 +188,19 @@ public class BlockFrozenPortal extends BlockBreakable {
 	}
 
 	public boolean makePortal(World worldIn, BlockPos p) {
+		EntityLightningBolt bolt = new EntityLightningBolt(worldIn, p.getX(), p.getY(), p.getZ(), false);
 		BlockFrozenPortal.Size size = new BlockFrozenPortal.Size(worldIn, p, EnumFacing.Axis.X);
 		if(size.isValid() && size.portalBlockCount == 0) {
 			size.placePortalBlocks();
+			worldIn.addWeatherEffect(bolt);
+			worldIn.createExplosion(bolt, p.getX(), p.getY(), p.getZ(), 0.0F, true);
 			return true;
 		} else {
 			BlockFrozenPortal.Size size1 = new BlockFrozenPortal.Size(worldIn, p, EnumFacing.Axis.Z);
 			if(size1.isValid() && size1.portalBlockCount == 0) {
 				size1.placePortalBlocks();
+				worldIn.addWeatherEffect(bolt);
+				worldIn.createExplosion(bolt, p.getX(), p.getY(), p.getZ(), 0.0F, true);
 				return true;
 			} else {
 				return false;

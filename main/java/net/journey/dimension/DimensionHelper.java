@@ -298,21 +298,26 @@ public class DimensionHelper {
 				EntityRegistry.addSpawn(EntityBigHongo.class, amount, 1, 1, EnumCreatureType.MONSTER, biome);
 				EntityRegistry.addSpawn(EntityMediumHongo.class, amount, 1, 1, EnumCreatureType.MONSTER, biome);
 			}
+			
+			if (BiomeDictionary.hasType(b, BiomeDictionary.Type.MUSHROOM)) {
+				EntityRegistry.addSpawn(EntityBigHongo.class, amount, 1, 1, EnumCreatureType.MONSTER, biome);
+				EntityRegistry.addSpawn(EntityMediumHongo.class, amount, 1, 1, EnumCreatureType.MONSTER, biome);
+			}
 
-			if (BiomeDictionary.hasType(biome, BiomeDictionary.Type.SANDY)) {
+			if (BiomeDictionary.hasType(b, BiomeDictionary.Type.SANDY)) {
 				EntityRegistry.addSpawn(EntitySandCrawler.class, amount, 1, 1, EnumCreatureType.MONSTER, biome);
 				EntityRegistry.addSpawn(EntitySpyclops.class, amount, 1, 1, EnumCreatureType.MONSTER, biome);
 				EntityRegistry.addSpawn(EntityFireMage.class, amount, 1, 1, EnumCreatureType.MONSTER, biome);
+				EntityRegistry.addSpawn(EntityBoom.class, amount, 1, 1, EnumCreatureType.MONSTER, biome); 
 			}
 
-			if (BiomeDictionary.hasType(biome, BiomeDictionary.Type.JUNGLE)) {
+			if (BiomeDictionary.hasType(b, BiomeDictionary.Type.JUNGLE)) {
 				EntityRegistry.addSpawn(EntityJungleGolem.class, 150, 1, 1, EnumCreatureType.MONSTER, biome);
 				EntityRegistry.addSpawn(EntityJungleTurtle.class, 400, 1, 1, EnumCreatureType.MONSTER, biome);
 				EntityRegistry.addSpawn(EntityJungleSpider.class, 400, 1, 1, EnumCreatureType.MONSTER, biome);
+				EntityRegistry.addSpawn(EntityFloro.class, amount, 1, 1, EnumCreatureType.MONSTER, biome);
 			}
 		}
-		
-		EntityRegistry.addSpawn(EntityBoom.class, amount, 1, 1, EnumCreatureType.MONSTER, Biomes.DESERT); 
 		
 		for(Biome b1 : Biome.REGISTRY) {
 			Biome biome1 = b1;
