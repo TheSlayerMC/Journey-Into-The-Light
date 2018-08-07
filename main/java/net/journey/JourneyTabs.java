@@ -54,8 +54,7 @@ public class JourneyTabs extends CreativeTabs {
 		items.setIcon(JourneyItems.koriteIngot);
 		tools.setIcon(JourneyItems.multiToolOfEternalSmelting);
 		swords.setIcon(JourneyItems.terronicBlade);
-		//battleaxes.setIcon(JourneyItems.backBiter);
-		battleaxes.setIcon(Items.APPLE);
+		battleaxes.setIcon(JourneyItems.backBiter);
 		bows.setIcon(JourneyItems.flamingBow);
 		piercers.setIcon(JourneyItems.eucaPiercer);
 		staves.setIcon(JourneyItems.conjuringStaff);

@@ -53,7 +53,6 @@ import net.journey.items.ItemHealth;
 import net.journey.items.ItemHonglow;
 import net.journey.items.ItemKnife;
 import net.journey.items.ItemKnowledge;
-import net.journey.items.ItemModArmor;
 import net.journey.items.ItemModBow;
 import net.journey.items.ItemModRecord;
 import net.journey.items.ItemMultiTool;
@@ -86,18 +85,14 @@ import net.journey.items.swords.ItemStunSword;
 import net.journey.items.swords.ItemStunWitherSword;
 import net.journey.items.swords.ItemWitherSword;
 import net.journey.util.Config;
-import net.journey.util.EnumArmor;
 import net.journey.util.JourneyToolMaterial;
 import net.journey.util.PotionEffects;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraftforge.common.util.EnumHelper;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.slayer.api.SlayerAPI;
 import net.slayer.api.item.ItemMod;
+import net.slayer.api.item.ItemModAxe;
 import net.slayer.api.item.ItemModFood;
 import net.slayer.api.item.ItemModHoe;
 import net.slayer.api.item.ItemModPickaxe;
@@ -348,18 +343,18 @@ public class JourneyItems {
 	public static Item storonShovel;
 	public static Item mekyumShovel;
 
-	/*public static Item hellstoneAxe = new ItemModAxe("hellstoneAxe", "Bloodcrust Axe", EssenceToolMaterial.HELLSTONE);
-	public static Item shadiumAxe = new ItemModAxe("shadiumAxe", "Shadium Axe", EssenceToolMaterial.SHADIUM);
-	public static Item celestiumAxe = new ItemModAxe("celestiumAxe", "Celestium Axe", EssenceToolMaterial.CELESTIUM);
-	public static Item luniumAxe = new ItemModAxe("luniumAxe", "Lunium Axe", EssenceToolMaterial.LUNIUM);
-	public static Item flairiumAxe = new ItemModAxe("flairiumAxe", "Flairium Axe", EssenceToolMaterial.FLAIRIUM);
-	public static Item sapphireAxe = new ItemModAxe("sapphireAxe", "Sapphire Axe", EssenceToolMaterial.SAPPHIRE);
-	public static Item gorbiteAxe = new ItemModAxe("gorbiteAxe", "Gorbite Axe", EssenceToolMaterial.GORBITE);
-	public static Item orbaditeAxe = new ItemModAxe("orbaditeAxe", "Orbadite Axe", EssenceToolMaterial.ORBADITE);
-	public static Item desAxe = new ItemModAxe("desAxe", "Des Axe", EssenceToolMaterial.DES);
-	public static Item koriteAxe = new ItemModAxe("koriteAxe", "Korite Axe", EssenceToolMaterial.KORITE);
-	public static Item storonAxe = new ItemModAxe("storonAxe", "Storon Axe", EssenceToolMaterial.KORITE);
-	public static Item mekyumAxe = new ItemModAxe("mekyumAxe", "Mekyum Axe", EssenceToolMaterial.KORITE);*/
+	public static Item hellstoneAxe;
+	public static Item shadiumAxe;
+	public static Item celestiumAxe;
+	public static Item luniumAxe;
+	public static Item flairiumAxe;
+	public static Item sapphireAxe;
+	public static Item gorbiteAxe;
+	public static Item orbaditeAxe;
+	public static Item desAxe;
+	public static Item koriteAxe;
+	public static Item storonAxe;
+	public static Item mekyumAxe;
 
 	public static Item hellstoneHoe;
 	public static Item shadiumHoe;
@@ -616,14 +611,14 @@ public class JourneyItems {
 	public static Item rockyBattleaxe;
 	public static Item crystalizedBattleaxe;
 	public static Item backBiter;
-	/*public static Item dawnBreaker = new ItemBattleAxe("dawnBreaker", "Dawn Breaker", EssenceToolMaterial.DAWN_BREAKER);
-	public static Item tempestBattleaxe = new ItemBattleAxe("tempestBattleaxe", "Tempest Battleaxe", EssenceToolMaterial.TEMPEST_BATTLEAXE);
-	public static Item bronzedBattleaxe = new ItemBattleAxe("bronzedBattleaxe", "Bronzed Battleaxe", EssenceToolMaterial.BRONZED_BATTLEAXE);
-	public static Item celestiteBattleaxe = new ItemBattleAxe("celestiteBattleaxe", "Celestite Battleaxe", EssenceToolMaterial.CELESTITE_BATTLEAXE);
-	public static Item storumBattleaxe = new ItemBattleAxe("storumBattleaxe", "Storum Battleaxe", EssenceToolMaterial.STORUM_BATTLEAXE);
-	public static Item celekiumBattleaxe = new ItemBattleAxe("celekiumBattleaxe", "Celekium Battleaxe", EssenceToolMaterial.CELEKIUM_BATTLEAXE);
-	public static Item thunderbirdBattleaxe = new ItemBattleAxe("thunderbirdBattleaxe", "Thunderbird Battleaxe", EssenceToolMaterial.THUNDERBIRD_BATTLEAXE);
-	 */
+	public static Item dawnBreaker;
+	public static Item tempestBattleaxe;
+	public static Item bronzedBattleaxe;
+	public static Item celestiteBattleaxe;
+	public static Item storumBattleaxe;
+	public static Item celekiumBattleaxe;
+	public static Item thunderbirdBattleaxe;
+	 
 	public static Item staffOfCrystal;
 	public static Item staffOfDivineStone;
 	public static Item staffOfHellstone;
@@ -1025,18 +1020,18 @@ public class JourneyItems {
 		storonShovel = new ItemModShovel("storonShovel", "Storon Shovel", JourneyToolMaterial.KORITE);
 		mekyumShovel = new ItemModShovel("mekyumShovel", "Mekyum Shovel", JourneyToolMaterial.KORITE);
 
-		/*hellstoneAxe = new ItemModAxe("hellstoneAxe", "Bloodcrust Axe", EssenceToolMaterial.HELLSTONE);
-		shadiumAxe = new ItemModAxe("shadiumAxe", "Shadium Axe", EssenceToolMaterial.SHADIUM);
-		celestiumAxe = new ItemModAxe("celestiumAxe", "Celestium Axe", EssenceToolMaterial.CELESTIUM);
-		luniumAxe = new ItemModAxe("luniumAxe", "Lunium Axe", EssenceToolMaterial.LUNIUM);
-		flairiumAxe = new ItemModAxe("flairiumAxe", "Flairium Axe", EssenceToolMaterial.FLAIRIUM);
-		sapphireAxe = new ItemModAxe("sapphireAxe", "Sapphire Axe", EssenceToolMaterial.SAPPHIRE);
-		gorbiteAxe = new ItemModAxe("gorbiteAxe", "Gorbite Axe", EssenceToolMaterial.GORBITE);
-		orbaditeAxe = new ItemModAxe("orbaditeAxe", "Orbadite Axe", EssenceToolMaterial.ORBADITE);
-		desAxe = new ItemModAxe("desAxe", "Des Axe", EssenceToolMaterial.DES);
-		koriteAxe = new ItemModAxe("koriteAxe", "Korite Axe", EssenceToolMaterial.KORITE);
-		storonAxe = new ItemModAxe("storonAxe", "Storon Axe", EssenceToolMaterial.KORITE);
-		mekyumAxe = new ItemModAxe("mekyumAxe", "Mekyum Axe", EssenceToolMaterial.KORITE);*/
+		hellstoneAxe = new ItemModAxe("hellstoneAxe", "Bloodcrust Axe", JourneyToolMaterial.HELLSTONE);
+		shadiumAxe = new ItemModAxe("shadiumAxe", "Shadium Axe", JourneyToolMaterial.SHADIUM);
+		celestiumAxe = new ItemModAxe("celestiumAxe", "Celestium Axe", JourneyToolMaterial.CELESTIUM);
+		luniumAxe = new ItemModAxe("luniumAxe", "Lunium Axe", JourneyToolMaterial.LUNIUM);
+		flairiumAxe = new ItemModAxe("flairiumAxe", "Flairium Axe", JourneyToolMaterial.FLAIRIUM);
+		sapphireAxe = new ItemModAxe("sapphireAxe", "Sapphire Axe", JourneyToolMaterial.SAPPHIRE);
+		gorbiteAxe = new ItemModAxe("gorbiteAxe", "Gorbite Axe", JourneyToolMaterial.GORBITE);
+		orbaditeAxe = new ItemModAxe("orbaditeAxe", "Orbadite Axe", JourneyToolMaterial.ORBADITE);
+		desAxe = new ItemModAxe("desAxe", "Des Axe", JourneyToolMaterial.DES);
+		koriteAxe = new ItemModAxe("koriteAxe", "Korite Axe", JourneyToolMaterial.KORITE);
+		storonAxe = new ItemModAxe("storonAxe", "Storon Axe", JourneyToolMaterial.KORITE);
+		mekyumAxe = new ItemModAxe("mekyumAxe", "Mekyum Axe", JourneyToolMaterial.KORITE);
 
 		hellstoneHoe = new ItemModHoe("hellstoneHoe", "Bloodcrust Hoe", JourneyToolMaterial.HELLSTONE);
 		shadiumHoe = new ItemModHoe("shadiumHoe", "Shadium Hoe", JourneyToolMaterial.SHADIUM);
@@ -1293,16 +1288,16 @@ public class JourneyItems {
 		bleedrockLegs = new ItemModArmor(EnumArmor.BLEEDROCK, LEGS);
 		bleedrockBoots = new ItemModArmor(EnumArmor.BLEEDROCK, BOOTS); */
 
-		/*rockyBattleaxe = new ItemBattleAxe("rockyBattleaxe", "Rocky Battleaxe", JourneyToolMaterial.ROCKY_BATTLEAXE);
+		rockyBattleaxe = new ItemBattleAxe("rockyBattleaxe", "Rocky Battleaxe", JourneyToolMaterial.ROCKY_BATTLEAXE);
 		crystalizedBattleaxe = new ItemBattleAxe("crystalizedBattleaxe", "Crystalized Battleaxe", JourneyToolMaterial.CRYSTAL_BATTLEAXE);
 		backBiter = new ItemBattleAxe("backBiter", "Back Biter", JourneyToolMaterial.BACK_BITER); 
-		dawnBreaker = new ItemBattleAxe("dawnBreaker", "Dawn Breaker", EssenceToolMaterial.DAWN_BREAKER);
-		tempestBattleaxe = new ItemBattleAxe("tempestBattleaxe", "Tempest Battleaxe", EssenceToolMaterial.TEMPEST_BATTLEAXE);
-		bronzedBattleaxe = new ItemBattleAxe("bronzedBattleaxe", "Bronzed Battleaxe", EssenceToolMaterial.BRONZED_BATTLEAXE);
-		celestiteBattleaxe = new ItemBattleAxe("celestiteBattleaxe", "Celestite Battleaxe", EssenceToolMaterial.CELESTITE_BATTLEAXE);
-		storumBattleaxe = new ItemBattleAxe("storumBattleaxe", "Storum Battleaxe", EssenceToolMaterial.STORUM_BATTLEAXE);
-		celekiumBattleaxe = new ItemBattleAxe("celekiumBattleaxe", "Celekium Battleaxe", EssenceToolMaterial.CELEKIUM_BATTLEAXE);
-		thunderbirdBattleaxe = new ItemBattleAxe("thunderbirdBattleaxe", "Thunderbird Battleaxe", EssenceToolMaterial.THUNDERBIRD_BATTLEAXE); */
+		dawnBreaker = new ItemBattleAxe("dawnBreaker", "Dawn Breaker", JourneyToolMaterial.DAWN_BREAKER);
+		tempestBattleaxe = new ItemBattleAxe("tempestBattleaxe", "Tempest Battleaxe", JourneyToolMaterial.TEMPEST_BATTLEAXE);
+		bronzedBattleaxe = new ItemBattleAxe("bronzedBattleaxe", "Bronzed Battleaxe", JourneyToolMaterial.BRONZED_BATTLEAXE);
+		celestiteBattleaxe = new ItemBattleAxe("celestiteBattleaxe", "Celestite Battleaxe", JourneyToolMaterial.CELESTITE_BATTLEAXE);
+		storumBattleaxe = new ItemBattleAxe("storumBattleaxe", "Storum Battleaxe", JourneyToolMaterial.STORUM_BATTLEAXE);
+		celekiumBattleaxe = new ItemBattleAxe("celekiumBattleaxe", "Celekium Battleaxe", JourneyToolMaterial.CELEKIUM_BATTLEAXE);
+		thunderbirdBattleaxe = new ItemBattleAxe("thunderbirdBattleaxe", "Thunderbird Battleaxe", JourneyToolMaterial.THUNDERBIRD_BATTLEAXE); 
 		 
 		
 		staffOfCrystal = new ItemStaff("staffOfCrystal", "Staff of Crystal", 3, 1000, 10, false, EntityIceBall.class);
