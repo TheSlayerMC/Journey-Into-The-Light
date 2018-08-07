@@ -17,7 +17,7 @@ public class ItemEssenceArrow extends ItemMod {
         this.setCreativeTab(JourneyTabs.bows);
     }
 
-    public Class<? extends EntityArrow> createArrow(World worldIn, ItemStack stack, EntityLivingBase shooter) {
+    public EntityEssenceArrow createArrow(World worldIn, ItemStack stack, EntityLivingBase shooter) {
     	EntityEssenceArrow e = new EntityEssenceArrow(worldIn);
 		return null;
     }

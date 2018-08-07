@@ -1,5 +1,6 @@
 package net.journey.items;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import javax.annotation.Nullable;
@@ -20,7 +21,6 @@ import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemEssenceArrow;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.util.ActionResult;
@@ -115,36 +115,43 @@ public class ItemModBow extends ItemMod {
 
                     if (!worldIn.isRemote) {
                         ItemEssenceArrow itemarrow = (ItemEssenceArrow)(itemstack.getItem() instanceof ItemEssenceArrow ? itemstack.getItem() : JourneyItems.essenceArrow);
-                        arrowClass = itemarrow.createArrow(worldIn, itemstack, entityplayer);
-                        arrowClass.shoot(entityplayer, entityplayer.rotationPitch, entityplayer.rotationYaw, 0.0F, f * 3.0F, 1.0F);
+                        EntityArrow arrow = null;
+						try {
+							arrow = arrowClass.getConstructor(World.class, EntityLivingBase.class).newInstance(worldIn, entityplayer);
+						} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
+								| InvocationTargetException | NoSuchMethodException | SecurityException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}//itemarrow.createArrow(worldIn, itemstack, entityplayer);
+                        arrow.shoot(entityplayer, entityplayer.rotationPitch, entityplayer.rotationYaw, 0.0F, f * 3.0F, 1.0F);
 
                         if (f == 1.0F){
-                            arrowClass.setIsCritical(true);
+                        	arrow.setIsCritical(true);
                         }
 
                         int j = EnchantmentHelper.getEnchantmentLevel(Enchantments.POWER, stack);
 
                         if (j > 0){
-                            arrowClass.setDamage(arrowClass.getDamage() + (double)j * 0.5D + 0.5D);
+                        	arrow.setDamage(arrow.getDamage() + (double)j * 0.5D + 0.5D);
                         }
 
                         int k = EnchantmentHelper.getEnchantmentLevel(Enchantments.PUNCH, stack);
 
                         if (k > 0){
-                            arrowClass.setKnockbackStrength(k);
+                        	arrow.setKnockbackStrength(k);
                         }
 
                         if (EnchantmentHelper.getEnchantmentLevel(Enchantments.FLAME, stack) > 0){
-                            arrowClass.setFire(100);
+                        	arrow.setFire(100);
                         }
 
                         stack.damageItem(1, entityplayer);
 
                         if (flag1 || entityplayer.capabilities.isCreativeMode && (itemstack.getItem() == Items.SPECTRAL_ARROW || itemstack.getItem() == Items.TIPPED_ARROW)){
-                            arrowClass.pickupStatus = EntityArrow.PickupStatus.CREATIVE_ONLY;
+                        	arrow.pickupStatus = EntityArrow.PickupStatus.CREATIVE_ONLY;
                         }
 
-                        worldIn.spawnEntity(arrowClass);
+                        worldIn.spawnEntity(arrow);
                     }
 
                     worldIn.playSound((EntityPlayer)null, entityplayer.posX, entityplayer.posY, entityplayer.posZ, SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + f * 0.5F);

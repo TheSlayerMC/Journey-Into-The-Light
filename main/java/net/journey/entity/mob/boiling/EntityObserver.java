@@ -172,9 +172,9 @@ public class EntityObserver extends EntityModMob {
 	}
 
 	class AIFireballAttack extends EntityAIBase {
-		private EntityObserver field_179469_a = EntityObserver.this;
-		private int field_179467_b;
-		private int field_179468_c;
+		private EntityObserver entity = EntityObserver.this;
+		private int x;
+		private int y;
 
 		public AIFireballAttack() {
 			this.setMutexBits(3);
@@ -182,70 +182,70 @@ public class EntityObserver extends EntityModMob {
 
 		@Override
 		public boolean shouldExecute() {
-			EntityLivingBase entitylivingbase = this.field_179469_a.getAttackTarget();
+			EntityLivingBase entitylivingbase = this.entity.getAttackTarget();
 			return entitylivingbase != null && entitylivingbase.isEntityAlive();
 		}
 
 		@Override
 		public void startExecuting() {
-			this.field_179467_b = 0;
+			this.x = 0;
 		}
 
 		@Override
 		public void resetTask() {
-			this.field_179469_a.setFlying(false);
+			this.entity.setFlying(false);
 		}
 
 		@Override
 		public void updateTask() {
-			--this.field_179468_c;
-			EntityLivingBase entitylivingbase = this.field_179469_a.getAttackTarget();
-			double d0 = this.field_179469_a.getDistanceSq(entitylivingbase);
+			--this.y;
+			EntityLivingBase entitylivingbase = this.entity.getAttackTarget();
+			double d0 = this.entity.getDistanceSq(entitylivingbase);
 
 			if (d0 < 4.0D) {
-				if (this.field_179468_c <= 0) {
-					this.field_179468_c = 20;
-					this.field_179469_a.attackEntityAsMob(entitylivingbase);
+				if (this.y <= 0) {
+					this.y = 20;
+					this.entity.attackEntityAsMob(entitylivingbase);
 				}
 
-				this.field_179469_a.getMoveHelper().setMoveTo(entitylivingbase.posX, entitylivingbase.posY, entitylivingbase.posZ, 1.0D);
+				this.entity.getMoveHelper().setMoveTo(entitylivingbase.posX, entitylivingbase.posY, entitylivingbase.posZ, 1.0D);
 			}
 			else if (d0 < 256.0D) {
-				double d1 = entitylivingbase.posX - this.field_179469_a.posX;
-				double d2 = entitylivingbase.getEntityBoundingBox().minY + entitylivingbase.height / 2.0F - (this.field_179469_a.posY + this.field_179469_a.height / 2.0F);
-				double d3 = entitylivingbase.posZ - this.field_179469_a.posZ;
+				double d1 = entitylivingbase.posX - this.entity.posX;
+				double d2 = entitylivingbase.getEntityBoundingBox().minY + entitylivingbase.height / 2.0F - (this.entity.posY + this.entity.height / 2.0F);
+				double d3 = entitylivingbase.posZ - this.entity.posZ;
 
-				if (this.field_179468_c <= 0) {
-					++this.field_179467_b;
+				if (this.y <= 0) {
+					++this.x;
 
-					if (this.field_179467_b == 1) {
-						this.field_179468_c = 60;
-						this.field_179469_a.setFlying(true);
+					if (this.x == 1) {
+						this.y = 60;
+						this.entity.setFlying(true);
 					}
-					else if (this.field_179467_b <= 4) {
-						this.field_179468_c = 6;
+					else if (this.x <= 4) {
+						this.y = 6;
 					} else {
-						this.field_179468_c = 100;
-						this.field_179467_b = 0;
-						this.field_179469_a.setFlying(false);
+						this.y = 100;
+						this.x = 0;
+						this.entity.setFlying(false);
 					}
 
-					if (this.field_179467_b > 1) {
+					if (this.x > 1) {
 						float f = MathHelper.sqrt(MathHelper.sqrt(d0)) * 0.5F;
-						this.field_179469_a.world.playBroadcastSound(1009, new BlockPos((int)this.field_179469_a.posX, (int)this.field_179469_a.posY, (int)this.field_179469_a.posZ), 0);
+						this.entity.world.playBroadcastSound(1009, new BlockPos((int)this.entity.posX, (int)this.entity.posY, (int)this.entity.posZ), 0);
 
 						for (int i = 0; i < 1; ++i) {
-							EntityMagmaFireball entitysmallfireball = new EntityMagmaFireball(this.field_179469_a.world, this.field_179469_a, d1 + this.field_179469_a.getRNG().nextGaussian() * f, d2, d3 + this.field_179469_a.getRNG().nextGaussian() * f);
-							entitysmallfireball.posY = this.field_179469_a.posY + this.field_179469_a.height / 2.0F + 0.5D;
-							this.field_179469_a.world.spawnEntity(entitysmallfireball);
+							EntityMagmaFireball entitysmallfireball = new EntityMagmaFireball(this.entity.world, this.entity, d1 + this.entity.getRNG().nextGaussian() * f, d2, d3 + this.entity.getRNG().nextGaussian() * f);
+							entitysmallfireball.posY = this.entity.posY + this.entity.height / 2.0F + 0.5D;
+							this.entity.world.spawnEntity(entitysmallfireball);
 						}
 					}
 				}
 
-				this.field_179469_a.getLookHelper().setLookPositionWithEntity(entitylivingbase, 10.0F, 10.0F);
+				this.entity.getLookHelper().setLookPositionWithEntity(entitylivingbase, 10.0F, 10.0F);
 			} else {
-				this.field_179469_a.getNavigator().clearPath();
-				this.field_179469_a.getMoveHelper().setMoveTo(entitylivingbase.posX, entitylivingbase.posY, entitylivingbase.posZ, 1.0D);
+				this.entity.getNavigator().clearPath();
+				this.entity.getMoveHelper().setMoveTo(entitylivingbase.posX, entitylivingbase.posY, entitylivingbase.posZ, 1.0D);
 			}
 
 			super.updateTask();
