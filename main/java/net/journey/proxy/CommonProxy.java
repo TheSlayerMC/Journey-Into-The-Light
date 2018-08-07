@@ -50,9 +50,6 @@ import net.slayer.api.SlayerAPI;
 
 public class CommonProxy {
 
-	public void updateDarkEnergy(int amount) { }
-	public void updateEssence(int amount) { }
-	public void updatePower(int amount) { }
 	public void registerClient() { }
 	public void clientInit(FMLInitializationEvent event) { }
 	public void clientPreInit() { }
@@ -88,10 +85,10 @@ public class CommonProxy {
 		//FMLCommonHandler.instance().bus().register(new JourneyDungeonEvent());
 		DimensionHelper.init();
 		DimensionHelper.addSpawns();
-		
-		//SlayerAPI.registerEvent(new BarTickHandler());
-		MinecraftForge.EVENT_BUS.register(BarTickHandler.class);
 		CapabilityManager.INSTANCE.register(IEssence.class, new EssenceStorage(), EssenceBar.class);
+
+		SlayerAPI.registerEvent(new BarTickHandler());
+		MinecraftForge.EVENT_BUS.register(BarTickHandler.class);
 		
 		if(SlayerAPI.DEVMODE) LangRegistry.instance.register();
 	}

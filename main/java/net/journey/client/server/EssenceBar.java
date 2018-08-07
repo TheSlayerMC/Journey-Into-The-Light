@@ -1,8 +1,11 @@
 package net.journey.client.server;
 
+import net.minecraft.entity.player.EntityPlayer;
+
 public class EssenceBar implements IEssence {
 
 	private int essenceValue = 10;
+	private int regenValue = 20;
 	
 	@Override
 	public boolean useEssence(int points) {
@@ -30,11 +33,19 @@ public class EssenceBar implements IEssence {
 
 	@Override
 	public void update() {
-		if(essenceValue > 10) essenceValue = 10;		
+		if(essenceValue > 10) essenceValue = 10;
+		
+		if(regenValue-- <= 0) regenValue = 20;
+		if(regenValue >= 20) regen();
+		regenValue = 0;
 	}
 	
 	@Override
 	public void regen() {
 		essenceValue += 1;
+	}
+
+	public EntityPlayer getPlayer(EntityPlayer player) {
+		return player;
 	}
 }

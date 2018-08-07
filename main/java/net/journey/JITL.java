@@ -2,22 +2,12 @@ package net.journey;
 
 import java.util.ArrayList;
 
-import net.journey.event.message.MessageDarkEnergyBar;
-import net.journey.event.message.MessageEssenceBar;
-import net.journey.event.message.MessagePowerBar;
 import net.journey.misc.EnchantmentHotTouch;
 import net.journey.misc.EnchantmentWaterWalk;
 import net.journey.proxy.CommonProxy;
-import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.item.Item;
-import net.minecraft.world.DimensionType;
-import net.minecraftforge.client.event.ModelRegistryEvent;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -26,13 +16,8 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.fml.relauncher.Side;
 import net.slayer.api.SlayerAPI;
-import net.slayer.api.item.ItemMod;
 
 @Mod(name = SlayerAPI.MOD_NAME, modid = SlayerAPI.MOD_ID, version = SlayerAPI.MOD_VERSION)
 public class JITL {
@@ -51,10 +36,6 @@ public class JITL {
 		
 	@EventHandler
 	public static void preInit(FMLPreInitializationEvent event) {
-		wrapper = NetworkRegistry.INSTANCE.newSimpleChannel("EssenceNetwork");
-		wrapper.registerMessage(MessageDarkEnergyBar.DarkEnergyHandler.class, MessageDarkEnergyBar.class, 0, Side.CLIENT);
-		wrapper.registerMessage(MessageEssenceBar.EssenceHandler.class, MessageEssenceBar.class, 1, Side.CLIENT);
-		wrapper.registerMessage(MessagePowerBar.PowerHandler.class, MessagePowerBar.class, 2, Side.CLIENT);
 		proxy.preInit(event);
 		proxy.registerClient();
 		proxy.clientPreInit();
@@ -68,10 +49,10 @@ public class JITL {
 		
 		event.getModMetadata().description = "A full progressional experience that adds weapons, mobs, dimensions, bosses, and much more to your game.";
 		event.getModMetadata().modId = SlayerAPI.MOD_ID;
-		event.getModMetadata().url = "wiki.essenceofthegods.net";
+		//event.getModMetadata().url = "wiki.essenceofthegods.net";
 		event.getModMetadata().name = SlayerAPI.MOD_NAME;
 		event.getModMetadata().version = SlayerAPI.MOD_VERSION;
-		event.getModMetadata().logoFile = "assets/essence/textures/logo.png";
+		event.getModMetadata().logoFile = "assets/journey/textures/logo.png";
 		event.getModMetadata().authorList = author;
 	}
 

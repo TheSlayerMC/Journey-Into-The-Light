@@ -21,8 +21,6 @@ import net.slayer.api.SlayerAPI;
 
 public class BarTickHandler {
 
-	private int ticks = 10;
-
 	public static final ResourceLocation TEXTURE  = new ResourceLocation(SlayerAPI.MOD_ID, "textures/gui/misc.png"); 
 	public static final ResourceLocation ESSENCE_CAP  = new ResourceLocation(SlayerAPI.MOD_ID, "essence_mana"); 
 
@@ -35,8 +33,12 @@ public class BarTickHandler {
 	
 	@SubscribeEvent
 	public void onTick(PlayerTickEvent event) {
-		if (event.phase == Phase.END && event.side == Side.SERVER)
-			tickEnd(event.player);
+		if(event.phase == Phase.END) {
+			if(event.player != null) {
+				IEssence mana = event.player.getCapability(EssenceProvider.ESSENCE_CAP, null);
+				mana.update();
+			}
+		}
 	}
 
 	@SubscribeEvent
@@ -57,18 +59,13 @@ public class BarTickHandler {
 					GuiIngame gig = mc.ingameGUI;
 					ScaledResolution scaledresolution = new ScaledResolution(mc);
 					mc.getTextureManager().bindTexture(TEXTURE);
-					// int sw = scaledresolution.getScaledWidth(), sh =
-					// scaledresolution.getScaledHeight();
 					int y = scaledresolution.getScaledHeight() - 30, x = 10, x1 = 10, x2 = 10;
 					gig.drawTexturedModalRect(x - 10, y + 10, 0, 177, 117, 19);
-					gig.drawTexturedModalRect(x - 10, y - 5, 0, 177, 117, 19);
-					gig.drawTexturedModalRect(x - 10, y - 20, 0, 177, 117, 19);
-
-					gig.drawTexturedModalRect(x - 6, y - 13, 0, 23, 109, 5);
+					gig.drawTexturedModalRect(x - 6, y + 17, 0, 23, 109, 5);
 					for (int i = 0; i < mana.getEssenceValue(); i++) {
 						if (!(i >= 10)) {
 							x += 11;
-							gig.drawTexturedModalRect(x - 17, y - 13, 0, 0, 10, 5);
+							gig.drawTexturedModalRect(x - 17, y + 17, 0, 0, 10, 5);
 						}
 					}
 					GlStateManager.disableAlpha();
@@ -76,19 +73,6 @@ public class BarTickHandler {
 					GL11.glPopMatrix();
 				}
 			}
-		}
-	}
-
-	private void tickEnd(EntityPlayer player) {
-		if (player != null) {
-			IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
-			if (ticks-- <= 0)
-				ticks = 10;
-
-			if (ticks >= 10)
-				mana.regen();
-
-			mana.update();
 		}
 	}
 }
