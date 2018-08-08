@@ -1,6 +1,7 @@
 package net.journey.client.server;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTBase;
 
 public class EssenceBar implements IEssence {
 
@@ -45,7 +46,13 @@ public class EssenceBar implements IEssence {
 		essenceValue += 1;
 	}
 
-	public EntityPlayer getPlayer(EntityPlayer player) {
-		return player;
+	@Override
+	public NBTBase writeNBT() {
+		return null;
+	}
+
+	@Override
+	public void readNBT(NBTBase nbt) {
+		
 	}
 }

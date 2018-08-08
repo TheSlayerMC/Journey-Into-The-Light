@@ -10,11 +10,13 @@ public class EssenceStorage implements IStorage<IEssence> {
 
 	@Override
 	public NBTBase writeNBT(Capability<IEssence> capability, IEssence instance, EnumFacing side) {
-		return new NBTTagInt(instance.getEssenceValue());
+		return instance.writeNBT();
+		//return new NBTTagInt(instance.getEssenceValue());
 	}
 
 	@Override
 	public void readNBT(Capability<IEssence> capability, IEssence instance, EnumFacing side, NBTBase nbt) {
-		instance.setEssence(((NBTTagInt)nbt).getInt());
+		//instance.setEssence(((NBTTagInt)nbt).getInt());
+		instance.readNBT(nbt);
 	}
 }

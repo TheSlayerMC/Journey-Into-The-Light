@@ -1,6 +1,6 @@
 package net.journey.client.server;
 
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTBase;
 
 public interface IEssence {
 
@@ -10,6 +10,7 @@ public interface IEssence {
 	public int getEssenceValue();
 	public void update();
 	public void regen();
-	
-	public EntityPlayer getPlayer(EntityPlayer player);
+	public NBTBase writeNBT();
+	public void readNBT(NBTBase nbt);
+
 }
