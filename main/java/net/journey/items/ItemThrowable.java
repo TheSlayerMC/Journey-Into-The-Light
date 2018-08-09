@@ -28,7 +28,9 @@ public class ItemThrowable extends ItemMod {
 		ItemStack stack = player.getHeldItem(handIn);
 		try {
 			if(!world.isRemote) {
-				world.spawnEntity(entity.getConstructor(World.class, EntityLivingBase.class, float.class).newInstance(world, player, damage));
+				EntityThrowable t = entity.getConstructor(World.class, EntityLivingBase.class, float.class).newInstance(world, player, damage);
+				t.shoot(player, player.rotationPitch, player.rotationYaw, -20.0F, 0.5F, 1.0F);
+				world.spawnEntity(t);
 				if(!player.capabilities.isCreativeMode) stack.shrink(1);
 			}
 		} catch(Exception e) {

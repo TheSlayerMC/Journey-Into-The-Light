@@ -2,8 +2,12 @@ package net.journey.items;
 
 import java.util.List;
 
+import net.journey.JourneyItems;
 import net.journey.JourneyTabs;
+import net.journey.client.server.EssenceProvider;
+import net.journey.client.server.IEssence;
 import net.journey.entity.projectile.EntityBasicProjectile;
+import net.journey.entity.projectile.EntityBouncingProjectile;
 import net.journey.enums.EnumSounds;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
@@ -35,16 +39,34 @@ public class ItemGun extends ItemMod {
 
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand handIn) {
+		IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
 		ItemStack stack = player.getHeldItem(handIn);
-		EnumSounds.playSound(EnumSounds.PLASMA, world, player);
-		try {
-			world.spawnEntity(projectile.getConstructor(World.class, EntityLivingBase.class, float.class).newInstance(world, player, damage));
-			stack.damageItem(1, player);
-			return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);	
-		} catch (Exception e) {
-			e.printStackTrace();
+		if(!world.isRemote) {
+			if(this == JourneyItems.chaosCannon) {
+				if(mana.useEssence(2)) {
+					EnumSounds.playSound(EnumSounds.CANNON, world, player);
+					EntityBouncingProjectile bouncing = new EntityBouncingProjectile(world, player, damage, 4);
+					bouncing.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.0F, 1.0F);
+					world.spawnEntity(bouncing);
+					stack.damageItem(1, player);
+					return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
+				}
+			} else if(projectile != null) {
+				EnumSounds.playSound(EnumSounds.PLASMA, world, player);
+				if(mana.useEssence(2)) {
+					try {
+						EntityBasicProjectile shoot = projectile.getConstructor(World.class, EntityLivingBase.class, float.class).newInstance(world, player, damage);
+						shoot.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F, 1.0F);
+						world.spawnEntity(shoot);
+						stack.damageItem(1, player);
+						return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			}
 		}
-		return new ActionResult<ItemStack>(EnumActionResult.FAIL, stack);	
+		return new ActionResult<ItemStack>(EnumActionResult.PASS, stack);	
 	}
 
 	@Override

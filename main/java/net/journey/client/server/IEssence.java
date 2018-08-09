@@ -1,6 +1,7 @@
 package net.journey.client.server;
 
 import net.minecraft.nbt.NBTBase;
+import net.minecraft.nbt.NBTTagCompound;
 
 public interface IEssence {
 
@@ -10,7 +11,7 @@ public interface IEssence {
 	public int getEssenceValue();
 	public void update();
 	public void regen();
-	public NBTBase writeNBT();
-	public void readNBT(NBTBase nbt);
+	public NBTBase writeNBT(IEssence essence, NBTTagCompound tag);
+	public void readNBT(NBTBase nbt, IEssence essence, NBTTagCompound tag);
 
 }

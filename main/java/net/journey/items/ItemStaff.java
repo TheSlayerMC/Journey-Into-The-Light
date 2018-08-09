@@ -44,16 +44,21 @@ public class ItemStaff extends ItemMod {
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand handIn) {
 		ItemStack stack = player.getHeldItem(handIn);
 		IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
+
 		if(!world.isRemote && mana.useEssence(usage)) {
 			EnumSounds.playSound(EnumSounds.SPARKLE, world, player);
 			if(!unBreakable) stack.damageItem(1, player);
 			try {
-				world.spawnEntity(projectile.getConstructor(World.class, EntityLivingBase.class, float.class).newInstance(world, player, damage));
+				EntityBasicProjectile shoot = projectile.getConstructor(World.class, EntityLivingBase.class, float.class).newInstance(world, player, damage);
+				shoot.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 0.8F, 1.0F);
+				world.spawnEntity(shoot);
+				stack.damageItem(1, player);
+				return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);	
+		return new ActionResult<ItemStack>(EnumActionResult.FAIL, stack);	
 	}
 
 	@Override

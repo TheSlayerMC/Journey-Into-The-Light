@@ -35,7 +35,6 @@ import net.journey.entity.projectile.EntityWizardsStar;
 import net.journey.enums.EnumKnowledge;
 import net.journey.items.ItemBattleAxe;
 import net.journey.items.ItemCandyCane;
-import net.journey.items.ItemChaosCannon;
 import net.journey.items.ItemCrackenCanes;
 import net.journey.items.ItemCrakeBulb;
 import net.journey.items.ItemCreativeHammer;
@@ -51,7 +50,6 @@ import net.journey.items.ItemGun;
 import net.journey.items.ItemHammer;
 import net.journey.items.ItemHealth;
 import net.journey.items.ItemHonglow;
-import net.journey.items.ItemKnife;
 import net.journey.items.ItemKnowledge;
 import net.journey.items.ItemModBow;
 import net.journey.items.ItemModRecord;
@@ -67,6 +65,7 @@ import net.journey.items.ItemSpineberries;
 import net.journey.items.ItemStaff;
 import net.journey.items.ItemTeleport;
 import net.journey.items.ItemThrowable;
+import net.journey.items.ItemThrowableBounces;
 import net.journey.items.ItemWand;
 import net.journey.items.ItemZatPedal;
 import net.journey.items.swords.ItemBubbleSword;
@@ -1362,7 +1361,7 @@ public class JourneyItems {
 		rockyHammer = new ItemHammer("rockyHammer", "Rocky Hammer", JourneyToolMaterial.ROCKY_HAMMER, false, EntityRock.class, 6, 4, 2230);
 		crystalizedHammer = new ItemHammer("crystalizedHammer", "Crystalized Hammer", JourneyToolMaterial.CRYSTAL_HAMMER, false, EntityIceBall.class, 7, 4, 3320);
 
-		chaosCannon = new ItemChaosCannon("chaosCannon", "Chaos Cannon", 6, 4, "Shoots a bouncing projectile");
+		chaosCannon = new ItemGun("chaosCannon", "Chaos Cannon", 6, "Shoots a bouncing projectile", null);
 		rockLauncher = new ItemGun("rockLauncher", "Rock Launcher", 4, "Stuns mobs for 10 seconds", EntityRock.class);
 		netherPlasma = new ItemGun("netherPlasma", "Nether Plasma", 10, "Burns mobs for 10 seconds", EntityNetherPlasma.class);
 		oceanPlasma = new ItemGun("oceanPlasma", "Ocean Plasma", 4, "Harms mobs", EntityFloroWater.class);
@@ -1501,14 +1500,15 @@ public class JourneyItems {
 		corbaPiercer = new ItemPiercer("corbaPiercer", "Corba Piercer", 29F, 6, EntityCorbaPiercer.class);
 		frostbittenPiercer = new ItemPiercer("frostbittenPiercer", "Frostbitten Piercer", 10F, 6, EntityFrostbittenPiercer.class);
 		frostyPiercer = new ItemPiercer("frostyPiercer", "Frosty Piercer", 9F, 6, EntityFrostyPiercer.class);
+		//TODO
 		sunsetPiercer = new ItemPiercer("sunsetPiercer", "Sunset Piercer", 10F, 6, EntityFrostyPiercer.class);
 		skyPiercer = new ItemPiercer("skyPiercer", "Sky Piercer", 10F, 6, EntityFrostyPiercer.class);
 
-		moltenKnife = new ItemKnife("moltenKnife", "Molten Knife", 10F, EntityFrostyPiercer.class);
-		aquaticKnife = new ItemThrowable("aquaticKnife", "Aquatic Knife", 6F, EntityFrostyPiercer.class);
-		bloodKnife = new ItemThrowable("bloodKnife", "Blood Knife", 6F, EntityFrostyPiercer.class);
-		charredKnife = new ItemThrowable("charredKnife", "Charred Knife", 6F, EntityFrostyPiercer.class);
-		sizzlingKnife = new ItemThrowable("sizzlingKnife", "Sizzling Knife", 6F, EntityFrostyPiercer.class);
+		moltenKnife = new ItemThrowableBounces("moltenKnife", "Molten Knife", 10F, 5, EntityFrostyPiercer.class);
+		aquaticKnife = new ItemThrowableBounces("aquaticKnife", "Aquatic Knife", 6F, 5, EntityFrostyPiercer.class);
+		bloodKnife = new ItemThrowableBounces("bloodKnife", "Blood Knife", 6F, 5, EntityFrostyPiercer.class);
+		charredKnife = new ItemThrowableBounces("charredKnife", "Charred Knife", 6F, 5, EntityFrostyPiercer.class);
+		sizzlingKnife = new ItemThrowableBounces("sizzlingKnife", "Sizzling Knife", 6F, 5, EntityFrostyPiercer.class);
 		
 		obsidianBoat = new ItemObsidianBoat("obsidianboat", "Obsidian Boat");
 	}
