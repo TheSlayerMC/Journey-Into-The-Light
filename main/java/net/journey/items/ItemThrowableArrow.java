@@ -11,14 +11,14 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 import net.slayer.api.item.ItemMod;
 
-public class ItemThrowableBounces extends ItemMod {
+public class ItemThrowableArrow extends ItemMod {
 
 	private Class<? extends EntityThrowable> entity;
 	private float damage = 0;
 	private int bounces = 0;
 	private float vel = 1.0F;
 	
-	public ItemThrowableBounces(String name, String f, float damage, int bounces, Class<? extends EntityThrowable> entity) {
+	public ItemThrowableArrow(String name, String f, float damage, int bounces, Class<? extends EntityThrowable> entity) {
 		super(name, f);
 		this.damage = damage;
 		this.entity = entity;
@@ -31,7 +31,7 @@ public class ItemThrowableBounces extends ItemMod {
 		ItemStack stack = player.getHeldItem(handIn);
 		try {
 			if(!world.isRemote) {
-				EntityThrowable t = entity.getConstructor(World.class, EntityLivingBase.class, float.class, float.class).newInstance(world, player, damage, vel);
+				EntityThrowable t = entity.getConstructor(World.class, EntityLivingBase.class, float.class).newInstance(world, player, damage);
 				t.shoot(player, player.rotationPitch, player.rotationYaw, -20.0F, 0.5F, 1.0F);
 				world.spawnEntity(t);
 				if(!player.capabilities.isCreativeMode) stack.shrink(1);

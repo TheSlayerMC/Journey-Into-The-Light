@@ -1,12 +1,9 @@
 package net.journey.entity.projectile;
 
-import java.util.List;
-
-import javax.annotation.Nullable;
-
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
-
+import java.util.List;
+import javax.annotation.Nullable;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -14,10 +11,12 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IProjectile;
+import net.minecraft.entity.MoverType;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.projectile.EntityThrowable;
+import net.minecraft.init.Enchantments;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -29,113 +28,77 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntitySelectors;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.datafix.DataFixer;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public abstract class EntityMoltenKnife extends EntityThrowable implements IProjectile {
-
-	private static final Predicate<Entity> TARGETS = Predicates.and(EntitySelectors.NOT_SPECTATING,
+	
+	private static final Predicate<Entity> ARROW_TARGETS = Predicates.and(EntitySelectors.NOT_SPECTATING,
 			EntitySelectors.IS_ALIVE, new Predicate<Entity>() {
-				public boolean apply(@Nullable Entity entity) {
-					return entity.canBeCollidedWith();
+				public boolean apply(@Nullable Entity p_apply_1_) {
+					return p_apply_1_.canBeCollidedWith();
 				}
 			});
-
 	private static final DataParameter<Byte> CRITICAL = EntityDataManager.<Byte>createKey(EntityMoltenKnife.class,
 			DataSerializers.BYTE);
-	private int xTile = -1;
-	private int yTile = -1;
-	private int zTile = -1;
+	private int xTile;
+	private int yTile;
+	private int zTile;
 	private Block inTile;
 	private int inData;
-	private boolean inGround;
-	public int canBePickedUp;
+	protected boolean inGround;
 	protected int timeInGround;
 	public EntityMoltenKnife.PickupStatus pickupStatus;
-	public Entity thrower;
+	public int arrowShake;
+	public Entity shootingEntity;
 	private int ticksInGround;
 	private int ticksInAir;
-	public int knifeShake;
-	public float damage;
+	private double damage;
 	private int knockbackStrength;
 
-	public EntityMoltenKnife(World var1) {
-		super(var1);
-		Entity.setRenderDistanceWeight(10.0D);
+	public EntityMoltenKnife(World worldIn) {
+		super(worldIn);
 		this.xTile = -1;
 		this.yTile = -1;
 		this.zTile = -1;
 		this.pickupStatus = EntityMoltenKnife.PickupStatus.DISALLOWED;
-		this.setSize(0.2F, 0.2F);
-		this.setSize(0.2F, 0.2F);
+		this.setSize(0.5F, 0.5F);
 	}
 
-	public EntityMoltenKnife(World var1, EntityLivingBase var3, float dam, double x, double y, double z) {
-		super(var1, var3);
-		damage = dam;
-		Entity.setRenderDistanceWeight(10.0D);
-		this.xTile = -1;
-		this.yTile = -1;
-		this.zTile = -1;
-		this.pickupStatus = EntityMoltenKnife.PickupStatus.DISALLOWED;
-		this.setSize(0.2F, 0.2F);
-		this.setSize(0.2F, 0.2F);
+	public EntityMoltenKnife(World worldIn, double x, double y, double z, double dam) {
+		this(worldIn);
+		this.damage = dam;
 		this.setPosition(x, y, z);
 	}
 
-	public EntityMoltenKnife(World worldIn, EntityLivingBase thrower, EntityLivingBase entity, float dam, float par1,
-			float par2) {
-		super(worldIn);
-		damage = dam;
-		Entity.setRenderDistanceWeight(10.0D);
-		this.thrower = thrower;
-		if (thrower instanceof EntityPlayer) {
-			this.canBePickedUp = 1;
-		}
-		this.posY = thrower.posY + thrower.getEyeHeight() - 0.10000000149011612D;
-		double d0 = entity.posX - thrower.posX;
-		double d1 = entity.getEntityBoundingBox().minY + entity.height / 3.0F - this.posY;
-		double d2 = entity.posZ - thrower.posZ;
-		double d3 = (double) MathHelper.sqrt(d0 * d0 + d2 * d2);
-
-		if (d3 >= 1.0E-7D) {
-			float f = (float) (MathHelper.atan2(d2, d0) * 180.0D / Math.PI) - 90.0F;
-			float f1 = (float) (-(MathHelper.atan2(d1, d3) * 180.0D / Math.PI));
-			double d4 = d0 / d3;
-			double d5 = d2 / d3;
-			this.setLocationAndAngles(thrower.posX + d4, this.posY, thrower.posZ + d5, f, f1);
-			float f2 = (float) (d3 * 0.20000000298023224D);
-			this.shoot(d0, d1 + f2, d2, par1, par2);
+	public EntityMoltenKnife(World worldIn, EntityLivingBase shooter, float dam) {
+		this(worldIn, shooter.posX, shooter.posY + (double) shooter.getEyeHeight() - 0.10000000149011612D,
+				shooter.posZ, dam);
+		this.shootingEntity = shooter;
+		this.damage = dam;
+		if (shooter instanceof EntityPlayer) {
+			this.pickupStatus = EntityMoltenKnife.PickupStatus.ALLOWED;
 		}
 	}
 
-	public EntityMoltenKnife(World worldIn, EntityLivingBase shooter, float dam, float velocity) {
-		super(worldIn);
-		damage = dam;
-		Entity.setRenderDistanceWeight(10.0D);
-		this.thrower = shooter;
+	@SideOnly(Side.CLIENT)
+	@Override
+	public boolean isInRangeToRenderDist(double distance) {
+		double d0 = this.getEntityBoundingBox().getAverageEdgeLength() * 10.0D;
 
-		if (shooter instanceof EntityPlayer) {
-			this.canBePickedUp = 1;
+		if (Double.isNaN(d0)) {
+			d0 = 1.0D;
 		}
 
-		this.setSize(0.5F, 0.5F);
-		this.setLocationAndAngles(shooter.posX, shooter.posY + shooter.getEyeHeight(), shooter.posZ,
-				shooter.rotationYaw, shooter.rotationPitch);
-		this.posX -= (double) (MathHelper.cos(this.rotationYaw / 180.0F * (float) Math.PI) * 0.16F);
-		this.posY -= 0.10000000149011612D;
-		this.posZ -= (double) (MathHelper.sin(this.rotationYaw / 180.0F * (float) Math.PI) * 0.16F);
-		this.setPosition(this.posX, this.posY, this.posZ);
-		this.motionX = (double) (-MathHelper.sin(this.rotationYaw / 180.0F * (float) Math.PI)
-				* MathHelper.cos(this.rotationPitch / 180.0F * (float) Math.PI));
-		this.motionZ = (double) (MathHelper.cos(this.rotationYaw / 180.0F * (float) Math.PI)
-				* MathHelper.cos(this.rotationPitch / 180.0F * (float) Math.PI));
-		this.motionY = (double) (-MathHelper.sin(this.rotationPitch / 180.0F * (float) Math.PI));
-		this.shoot(this.motionX, this.motionY, this.motionZ, velocity * 1.5F, 1.0F);
+		d0 = d0 * 64.0D * getRenderDistanceWeight();
+		return distance < d0 * d0;
 	}
 
 	@Override
@@ -143,9 +106,67 @@ public abstract class EntityMoltenKnife extends EntityThrowable implements IProj
 		this.dataManager.register(CRITICAL, Byte.valueOf((byte) 0));
 	}
 
-	public boolean getIsCritical() {
-		byte b0 = ((Byte) this.dataManager.get(CRITICAL)).byteValue();
-		return (b0 & 1) != 0;
+	@Override
+	public void shoot(Entity shooter, float pitch, float yaw, float p_184547_4_, float velocity, float inaccuracy) {
+		float f = -MathHelper.sin(yaw * 0.017453292F) * MathHelper.cos(pitch * 0.017453292F);
+		float f1 = -MathHelper.sin(pitch * 0.017453292F);
+		float f2 = MathHelper.cos(yaw * 0.017453292F) * MathHelper.cos(pitch * 0.017453292F);
+		this.shoot((double) f, (double) f1, (double) f2, velocity, inaccuracy);
+		this.motionX += shooter.motionX;
+		this.motionZ += shooter.motionZ;
+
+		if (!shooter.onGround) {
+			this.motionY += shooter.motionY;
+		}
+	}
+
+	@Override
+	public void shoot(double x, double y, double z, float velocity, float inaccuracy) {
+		float f = MathHelper.sqrt(x * x + y * y + z * z);
+		x = x / (double) f;
+		y = y / (double) f;
+		z = z / (double) f;
+		x = x + this.rand.nextGaussian() * 0.007499999832361937D * (double) inaccuracy;
+		y = y + this.rand.nextGaussian() * 0.007499999832361937D * (double) inaccuracy;
+		z = z + this.rand.nextGaussian() * 0.007499999832361937D * (double) inaccuracy;
+		x = x * (double) velocity;
+		y = y * (double) velocity;
+		z = z * (double) velocity;
+		this.motionX = x;
+		this.motionY = y;
+		this.motionZ = z;
+		float f1 = MathHelper.sqrt(x * x + z * z);
+		this.rotationYaw = (float) (MathHelper.atan2(x, z) * (180D / Math.PI));
+		this.rotationPitch = (float) (MathHelper.atan2(y, (double) f1) * (180D / Math.PI));
+		this.prevRotationYaw = this.rotationYaw;
+		this.prevRotationPitch = this.rotationPitch;
+		this.ticksInGround = 0;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void setPositionAndRotationDirect(double x, double y, double z, float yaw, float pitch,
+			int posRotationIncrements, boolean teleport) {
+		this.setPosition(x, y, z);
+		this.setRotation(yaw, pitch);
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void setVelocity(double x, double y, double z) {
+		this.motionX = x;
+		this.motionY = y;
+		this.motionZ = z;
+
+		if (this.prevRotationPitch == 0.0F && this.prevRotationYaw == 0.0F) {
+			float f = MathHelper.sqrt(x * x + z * z);
+			this.rotationPitch = (float) (MathHelper.atan2(y, (double) f) * (180D / Math.PI));
+			this.rotationYaw = (float) (MathHelper.atan2(x, z) * (180D / Math.PI));
+			this.prevRotationPitch = this.rotationPitch;
+			this.prevRotationYaw = this.rotationYaw;
+			this.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, this.rotationPitch);
+			this.ticksInGround = 0;
+		}
 	}
 
 	@Override
@@ -171,6 +192,10 @@ public abstract class EntityMoltenKnife extends EntityThrowable implements IProj
 					&& axisalignedbb.offset(blockpos).contains(new Vec3d(this.posX, this.posY, this.posZ))) {
 				this.inGround = true;
 			}
+		}
+
+		if (this.arrowShake > 0) {
+			--this.arrowShake;
 		}
 
 		if (this.inGround) {
@@ -215,8 +240,8 @@ public abstract class EntityMoltenKnife extends EntityThrowable implements IProj
 			if (raytraceresult != null && raytraceresult.entityHit instanceof EntityPlayer) {
 				EntityPlayer entityplayer = (EntityPlayer) raytraceresult.entityHit;
 
-				if (this.thrower instanceof EntityPlayer
-						&& !((EntityPlayer) this.thrower).canAttackPlayer(entityplayer)) {
+				if (this.shootingEntity instanceof EntityPlayer
+						&& !((EntityPlayer) this.shootingEntity).canAttackPlayer(entityplayer)) {
 					raytraceresult = null;
 				}
 			}
@@ -291,68 +316,6 @@ public abstract class EntityMoltenKnife extends EntityThrowable implements IProj
 		}
 	}
 
-	@Override
-	public void writeEntityToNBT(NBTTagCompound tagCompound) {
-		tagCompound.setShort("xTile", (short) this.xTile);
-		tagCompound.setShort("yTile", (short) this.yTile);
-		tagCompound.setShort("zTile", (short) this.zTile);
-		tagCompound.setShort("life", (short) this.ticksInGround);
-		ResourceLocation resourcelocation = (ResourceLocation) Block.REGISTRY.getNameForObject(this.inTile);
-		tagCompound.setString("inTile", resourcelocation == null ? "" : resourcelocation.toString());
-		tagCompound.setByte("inData", (byte) this.inData);
-		tagCompound.setByte("shake", (byte) this.knifeShake);
-		tagCompound.setByte("inGround", (byte) (this.inGround ? 1 : 0));
-		tagCompound.setByte("pickup", (byte) this.canBePickedUp);
-		tagCompound.setDouble("damage", this.damage);
-	}
-
-	@Override
-	public void readEntityFromNBT(NBTTagCompound tagCompund) {
-		this.xTile = tagCompund.getShort("xTile");
-		this.yTile = tagCompund.getShort("yTile");
-		this.zTile = tagCompund.getShort("zTile");
-		this.ticksInGround = tagCompund.getShort("life");
-
-		if (tagCompund.hasKey("inTile", 8)) {
-			this.inTile = Block.getBlockFromName(tagCompund.getString("inTile"));
-		} else {
-			this.inTile = Block.getBlockById(tagCompund.getByte("inTile") & 255);
-		}
-
-		this.inData = tagCompund.getByte("inData") & 255;
-		this.knifeShake = tagCompund.getByte("shake") & 255;
-		this.inGround = tagCompund.getByte("inGround") == 1;
-
-		if (tagCompund.hasKey("damage", 99)) {
-			this.damage = (float) tagCompund.getDouble("damage");
-		}
-
-		if (tagCompund.hasKey("pickup", 99)) {
-			this.canBePickedUp = tagCompund.getByte("pickup");
-		} else if (tagCompund.hasKey("player", 99)) {
-			this.canBePickedUp = tagCompund.getBoolean("player") ? 1 : 0;
-		}
-	}
-
-	@Override
-	public void onCollideWithPlayer(EntityPlayer entityIn) {
-		if (!this.world.isRemote && this.inGround && this.knifeShake <= 0) {
-			boolean flag = this.pickupStatus == EntityMoltenKnife.PickupStatus.ALLOWED
-					|| this.pickupStatus == EntityMoltenKnife.PickupStatus.CREATIVE_ONLY
-							&& entityIn.capabilities.isCreativeMode;
-
-			if (this.pickupStatus == EntityMoltenKnife.PickupStatus.ALLOWED
-					&& !entityIn.inventory.addItemStackToInventory(this.getArrowStack())) {
-				flag = false;
-			}
-
-			if (flag) {
-				entityIn.onItemPickup(this, 1);
-				this.setDead();
-			}
-		}
-	}
-
 	protected void onHit(RayTraceResult raytraceResultIn) {
 		Entity entity = raytraceResultIn.entityHit;
 
@@ -367,10 +330,10 @@ public abstract class EntityMoltenKnife extends EntityThrowable implements IProj
 
 			DamageSource damagesource;
 
-			if (this.thrower == null) {
+			if (this.shootingEntity == null) {
 				damagesource = DamageSource.causeThrownDamage(this, this);
 			} else {
-				damagesource = DamageSource.causeThrownDamage(this, this.thrower);
+				damagesource = DamageSource.causeThrownDamage(this, this.shootingEntity);
 			}
 
 			if (this.isBurning() && !(entity instanceof EntityEnderman)) {
@@ -396,16 +359,19 @@ public abstract class EntityMoltenKnife extends EntityThrowable implements IProj
 						}
 					}
 
-					if (this.thrower instanceof EntityLivingBase) {
-						EnchantmentHelper.applyThornEnchantments(entitylivingbase, this.thrower);
-						EnchantmentHelper.applyArthropodEnchantments((EntityLivingBase) this.thrower, entitylivingbase);
+					if (this.shootingEntity instanceof EntityLivingBase) {
+						EnchantmentHelper.applyThornEnchantments(entitylivingbase, this.shootingEntity);
+						EnchantmentHelper.applyArthropodEnchantments((EntityLivingBase) this.shootingEntity,
+								entitylivingbase);
 					}
 
 					this.arrowHit(entitylivingbase);
 
-					if (this.thrower != null && entitylivingbase != this.thrower
-							&& entitylivingbase instanceof EntityPlayer && this.thrower instanceof EntityPlayerMP) {
-						((EntityPlayerMP) this.thrower).connection.sendPacket(new SPacketChangeGameState(6, 0.0F));
+					if (this.shootingEntity != null && entitylivingbase != this.shootingEntity
+							&& entitylivingbase instanceof EntityPlayer
+							&& this.shootingEntity instanceof EntityPlayerMP) {
+						((EntityPlayerMP) this.shootingEntity).connection
+								.sendPacket(new SPacketChangeGameState(6, 0.0F));
 					}
 				}
 
@@ -449,7 +415,7 @@ public abstract class EntityMoltenKnife extends EntityThrowable implements IProj
 			this.posZ -= this.motionZ / (double) f2 * 0.05000000074505806D;
 			this.playSound(SoundEvents.ENTITY_ARROW_HIT, 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
 			this.inGround = true;
-			this.knifeShake = 7;
+			this.arrowShake = 7;
 			this.setIsCritical(false);
 
 			if (iblockstate.getMaterial() != Material.AIR) {
@@ -458,37 +424,30 @@ public abstract class EntityMoltenKnife extends EntityThrowable implements IProj
 		}
 	}
 
-	public float getDamage() {
-		return damage;
-	}
-
-	public void setDamage(float damage) {
-		this.damage = damage;
-	}
-
-	public void setKnockbackStrength(int knockbackStrengthIn) {
-		this.knockbackStrength = knockbackStrengthIn;
-	}
-
 	@Override
-	protected void onImpact(RayTraceResult var1) {
-		if (var1.entityHit != null)
-			var1.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), damage);
-		if (!world.isRemote)
-			this.setDead();
+	public void move(MoverType type, double x, double y, double z) {
+		super.move(type, x, y, z);
+
+		if (this.inGround) {
+			this.xTile = MathHelper.floor(this.posX);
+			this.yTile = MathHelper.floor(this.posY);
+			this.zTile = MathHelper.floor(this.posZ);
+		}
 	}
+
+	protected void arrowHit(EntityLivingBase living) {}
 
 	@Nullable
 	protected Entity findEntityOnPath(Vec3d start, Vec3d end) {
 		Entity entity = null;
 		List<Entity> list = this.world.getEntitiesInAABBexcluding(this,
-				this.getEntityBoundingBox().expand(this.motionX, this.motionY, this.motionZ).grow(1.0D), TARGETS);
+				this.getEntityBoundingBox().expand(this.motionX, this.motionY, this.motionZ).grow(1.0D), ARROW_TARGETS);
 		double d0 = 0.0D;
 
 		for (int i = 0; i < list.size(); ++i) {
 			Entity entity1 = list.get(i);
 
-			if (entity1 != this.thrower || this.ticksInAir >= 5) {
+			if (entity1 != this.shootingEntity || this.ticksInAir >= 5) {
 				AxisAlignedBB axisalignedbb = entity1.getEntityBoundingBox().grow(0.30000001192092896D);
 				RayTraceResult raytraceresult = axisalignedbb.calculateIntercept(start, end);
 
@@ -506,9 +465,105 @@ public abstract class EntityMoltenKnife extends EntityThrowable implements IProj
 		return entity;
 	}
 
+	public static void registerFixesArrow(DataFixer fixer, String name) {}
+
+	public static void registerFixesArrow(DataFixer fixer) {
+		registerFixesArrow(fixer, "Arrow");
+	}
+
 	@Override
-	protected float getGravityVelocity() {
-		return 0.032F;
+	public void writeEntityToNBT(NBTTagCompound compound) {
+		compound.setInteger("xTile", this.xTile);
+		compound.setInteger("yTile", this.yTile);
+		compound.setInteger("zTile", this.zTile);
+		compound.setShort("life", (short) this.ticksInGround);
+		ResourceLocation resourcelocation = Block.REGISTRY.getNameForObject(this.inTile);
+		compound.setString("inTile", resourcelocation == null ? "" : resourcelocation.toString());
+		compound.setByte("inData", (byte) this.inData);
+		compound.setByte("shake", (byte) this.arrowShake);
+		compound.setByte("inGround", (byte) (this.inGround ? 1 : 0));
+		compound.setByte("pickup", (byte) this.pickupStatus.ordinal());
+		compound.setDouble("damage", this.damage);
+		compound.setBoolean("crit", this.getIsCritical());
+	}
+	
+	@Override
+	public void readEntityFromNBT(NBTTagCompound compound) {
+		this.xTile = compound.getInteger("xTile");
+		this.yTile = compound.getInteger("yTile");
+		this.zTile = compound.getInteger("zTile");
+		this.ticksInGround = compound.getShort("life");
+
+		if (compound.hasKey("inTile", 8)) {
+			this.inTile = Block.getBlockFromName(compound.getString("inTile"));
+		} else {
+			this.inTile = Block.getBlockById(compound.getByte("inTile") & 255);
+		}
+
+		this.inData = compound.getByte("inData") & 255;
+		this.arrowShake = compound.getByte("shake") & 255;
+		this.inGround = compound.getByte("inGround") == 1;
+
+		if (compound.hasKey("damage", 99)) {
+			this.damage = compound.getDouble("damage");
+		}
+
+		if (compound.hasKey("pickup", 99)) {
+			this.pickupStatus = EntityMoltenKnife.PickupStatus.getByOrdinal(compound.getByte("pickup"));
+		} else if (compound.hasKey("player", 99)) {
+			this.pickupStatus = compound.getBoolean("player") ? EntityMoltenKnife.PickupStatus.ALLOWED
+					: EntityMoltenKnife.PickupStatus.DISALLOWED;
+		}
+
+		this.setIsCritical(compound.getBoolean("crit"));
+	}
+
+	@Override
+	public void onCollideWithPlayer(EntityPlayer entityIn) {
+		if (!this.world.isRemote && this.inGround && this.arrowShake <= 0) {
+			boolean flag = this.pickupStatus == EntityMoltenKnife.PickupStatus.ALLOWED
+					|| this.pickupStatus == EntityMoltenKnife.PickupStatus.CREATIVE_ONLY
+							&& entityIn.capabilities.isCreativeMode;
+
+			if (this.pickupStatus == EntityMoltenKnife.PickupStatus.ALLOWED
+					&& !entityIn.inventory.addItemStackToInventory(this.getArrowStack())) {
+				flag = false;
+			}
+
+			if (flag) {
+				entityIn.onItemPickup(this, 1);
+				this.setDead();
+			}
+		}
+	}
+
+	protected abstract ItemStack getArrowStack();
+
+	@Override
+	protected boolean canTriggerWalking() {
+		return false;
+	}
+
+	public void setDamage(double damageIn) {
+		this.damage = damageIn;
+	}
+
+	public double getDamage() {
+		return this.damage;
+	}
+
+	public void setKnockbackStrength(int knockbackStrengthIn) {
+		this.knockbackStrength = knockbackStrengthIn;
+	}
+
+	@Override
+	public boolean canBeAttackedWithItem() {
+		return false;
+	}
+
+	@Override
+	public float getEyeHeight() {
+		return 0.0F;
 	}
 
 	public void setIsCritical(boolean critical) {
@@ -521,17 +576,38 @@ public abstract class EntityMoltenKnife extends EntityThrowable implements IProj
 		}
 	}
 
-	protected void arrowHit(EntityLivingBase living) {
+	public boolean getIsCritical() {
+		byte b0 = ((Byte) this.dataManager.get(CRITICAL)).byteValue();
+		return (b0 & 1) != 0;
 	}
 
-	protected abstract ItemStack getArrowStack();
+	public void setEnchantmentEffectsFromEntity(EntityLivingBase p_190547_1_, float p_190547_2_) {
+		int i = EnchantmentHelper.getMaxEnchantmentLevel(Enchantments.POWER, p_190547_1_);
+		int j = EnchantmentHelper.getMaxEnchantmentLevel(Enchantments.PUNCH, p_190547_1_);
+		this.setDamage((double) (p_190547_2_ * 2.0F) + this.rand.nextGaussian() * 0.25D
+				+ (double) ((float) this.world.getDifficulty().getDifficultyId() * 0.11F));
+
+		if (i > 0) {
+			this.setDamage(this.getDamage() + (double) i * 0.5D + 0.5D);
+		}
+
+		if (j > 0) {
+			this.setKnockbackStrength(j);
+		}
+
+		if (EnchantmentHelper.getMaxEnchantmentLevel(Enchantments.FLAME, p_190547_1_) > 0) {
+			this.setFire(100);
+		}
+	}
 
 	public static enum PickupStatus {
 		DISALLOWED, ALLOWED, CREATIVE_ONLY;
-		public static PickupStatus getByOrdinal(int ordinal) {
+
+		public static EntityMoltenKnife.PickupStatus getByOrdinal(int ordinal) {
 			if (ordinal < 0 || ordinal > values().length) {
 				ordinal = 0;
 			}
+
 			return values()[ordinal];
 		}
 	}

@@ -69,7 +69,7 @@ import net.journey.items.ItemSpineberries;
 import net.journey.items.ItemStaff;
 import net.journey.items.ItemTeleport;
 import net.journey.items.ItemThrowable;
-import net.journey.items.ItemThrowableBounces;
+import net.journey.items.ItemThrowableArrow;
 import net.journey.items.ItemWand;
 import net.journey.items.ItemZatPedal;
 import net.journey.items.swords.ItemBubbleSword;
@@ -1498,11 +1498,11 @@ public class JourneyItems {
 		sunsetPiercer = new ItemPiercer("sunsetPiercer", "Sunset Piercer", 10F, 6, EntitySunsetPiercer.class);
 		skyPiercer = new ItemPiercer("skyPiercer", "Sky Piercer", 10F, 6, EntitySkyPiercer.class);
 
-		moltenKnife = new ItemThrowableBounces("moltenKnife", "Molten Knife", 10F, 5, EntityMoltenKnife.class);
-		aquaticKnife = new ItemThrowableBounces("aquaticKnife", "Aquatic Knife", 6F, 5, EntityFrostyPiercer.class);
-		bloodKnife = new ItemThrowableBounces("bloodKnife", "Blood Knife", 6F, 5, EntityFrostyPiercer.class);
-		charredKnife = new ItemThrowableBounces("charredKnife", "Charred Knife", 6F, 5, EntityFrostyPiercer.class);
-		sizzlingKnife = new ItemThrowableBounces("sizzlingKnife", "Sizzling Knife", 6F, 5, EntityFrostyPiercer.class);
+		moltenKnife = new ItemThrowableArrow("moltenKnife", "Molten Knife", 10F, 5, EntityMoltenKnife.class);
+		aquaticKnife = new ItemThrowableArrow("aquaticKnife", "Aquatic Knife", 6F, 5, EntityFrostyPiercer.class);
+		bloodKnife = new ItemThrowableArrow("bloodKnife", "Blood Knife", 6F, 5, EntityFrostyPiercer.class);
+		charredKnife = new ItemThrowableArrow("charredKnife", "Charred Knife", 6F, 5, EntityFrostyPiercer.class);
+		sizzlingKnife = new ItemThrowableArrow("sizzlingKnife", "Sizzling Knife", 6F, 5, EntityFrostyPiercer.class);
 		
 		obsidianBoat = new ItemObsidianBoat("obsidianboat", "Obsidian Boat");
 	}
