@@ -63,7 +63,7 @@ public class CommonProxy {
 		JourneyItems.init();
 		EntityRegistry.init();
 		JourneyChestGenerator.init();
-		//JourneyAchievements.init();
+		//JourneyAchievements.init()
 		JourneyMaterialRecipes.init();
 		JourneyBlockRecipes.init();
 		JourneyMiscRecipes.init();

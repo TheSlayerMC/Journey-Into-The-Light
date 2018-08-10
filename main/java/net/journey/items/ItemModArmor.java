@@ -2,6 +2,7 @@ package net.journey.items;
 
 import java.util.List;
 
+import net.journey.JITL;
 import net.journey.JourneyItems;
 import net.journey.JourneyTabs;
 import net.journey.client.ArmorDescription;
@@ -35,6 +36,7 @@ public class ItemModArmor extends ItemArmor implements ISpecialArmor {
 
 	public ItemModArmor(EnumArmor armorMaterial, EntityEquipmentSlot type, String name) {
 		super(armorMaterial.getArmorMaterial(), type.getIndex(), type);
+		LangRegistry.addArmour(this, armorMaterial, type);
 		this.armorMaterial = armorMaterial;
 		this.fullReduction = armorMaterial.getDamageReduction();
 		if (armorType == EntityEquipmentSlot.HEAD) damageReduction = ((((double)fullReduction) / 24) * 5) / 100;
@@ -42,12 +44,11 @@ public class ItemModArmor extends ItemArmor implements ISpecialArmor {
 		else if (armorType == EntityEquipmentSlot.LEGS) damageReduction = ((((double)fullReduction) / 24) * 7) / 100;
 		else if (armorType == EntityEquipmentSlot.FEET) damageReduction = ((((double)fullReduction) / 24) * 4) / 100;
 		this.unbreakable = armorMaterial.isUndamageable();
-		setCreativeTab(JourneyTabs.armor);
 		setArmorType(name, armorType);
+		setCreativeTab(JourneyTabs.armor);
 		setUnlocalizedName(this.name);
-		JourneyItems.itemNames.add(SlayerAPI.PREFIX + this.name);
+		JourneyItems.itemNames.add(SlayerAPI.PREFIX + name.toLowerCase());
 		JourneyItems.items.add(this);
-		LangRegistry.addArmour(this, armorMaterial, type);
 		setRegistryName(SlayerAPI.MOD_ID, name);
 	}
 
@@ -93,5 +94,9 @@ public class ItemModArmor extends ItemArmor implements ISpecialArmor {
 	@Override
 	public ArmorProperties getProperties(EntityLivingBase l, ItemStack s, DamageSource d, double amount, int slot) {
 		return new ISpecialArmor.ArmorProperties(0, damageReduction, 50000);
+	}
+	
+	public void registerItemModel() {
+		JITL.proxy.registerItemRenderer(this, 0, name);
 	}
 }

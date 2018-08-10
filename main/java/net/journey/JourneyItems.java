@@ -30,6 +30,8 @@ import net.journey.entity.projectile.EntityNethicPiercer;
 import net.journey.entity.projectile.EntityOvergrown;
 import net.journey.entity.projectile.EntityPoisonArrow;
 import net.journey.entity.projectile.EntityRock;
+import net.journey.entity.projectile.EntitySkyPiercer;
+import net.journey.entity.projectile.EntitySunsetPiercer;
 import net.journey.entity.projectile.EntityWithic;
 import net.journey.entity.projectile.EntityWizardsStar;
 import net.journey.enums.EnumKnowledge;
@@ -51,6 +53,7 @@ import net.journey.items.ItemHammer;
 import net.journey.items.ItemHealth;
 import net.journey.items.ItemHonglow;
 import net.journey.items.ItemKnowledge;
+import net.journey.items.ItemModArmor;
 import net.journey.items.ItemModBow;
 import net.journey.items.ItemModRecord;
 import net.journey.items.ItemMultiTool;
@@ -84,6 +87,7 @@ import net.journey.items.swords.ItemStunSword;
 import net.journey.items.swords.ItemStunWitherSword;
 import net.journey.items.swords.ItemWitherSword;
 import net.journey.util.Config;
+import net.journey.util.EnumArmor;
 import net.journey.util.JourneyToolMaterial;
 import net.journey.util.PotionEffects;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -1460,7 +1464,7 @@ public class JourneyItems {
 
 		demonicEye = new ItemDemonicEye("demonicEye", "Demonic Eye");
 
-		overworldKnowledge = new ItemKnowledge("overworldKnowledge", "Overworld Knowledge", EnumKnowledge.OVERWORLD);
+		/* overworldKnowledge = new ItemKnowledge("overworldKnowledge", "Overworld Knowledge", EnumKnowledge.OVERWORLD);
 		netherKnowledge = new ItemKnowledge("netherKnowledge", "Nether Knowledge", EnumKnowledge.NETHER);
 		endKnowledge = new ItemKnowledge("endKnowledge", "End knowledge", EnumKnowledge.END);
 		boilKnowledge = new ItemKnowledge("boilingKnowledge", "Boiling Knowledge", EnumKnowledge.BOIL);
@@ -1468,25 +1472,14 @@ public class JourneyItems {
 		eucaKnowledge = new ItemKnowledge("eucaKnowledge", "Euca Knowledge", EnumKnowledge.EUCA);
 		depthsKnowledge = new ItemKnowledge("depthsKnowledge", "Depths Knowledge", EnumKnowledge.DEPTHS);
 		corbaKnowledge = new ItemKnowledge("corbaKnowledge", "Corba Knowledge", EnumKnowledge.CORBA);
-		cloudiaKnowledge = new ItemKnowledge("cloudiaKnowledge", "Cloudia Knowledge", EnumKnowledge.CLOUDIA);
-		//public static final ItemKnowledge wastelandsKnowledge = new ItemKnowledge("wastelandsKnowledge", EnumKnowledge.WASTELANDS);
-		//public static final ItemKnowledge lithiumKnowledge = new ItemKnowledge("lithiumKnowledge", EnumKnowledge.LITHIUM);
-		//public static final ItemKnowledge libraryKnowledge = new ItemKnowledge("libraryKnowledge", EnumKnowledge.LIBRARY);
-		//public static final ItemKnowledge blazeKnowledge = new ItemKnowledge("blazeKnowledge", EnumKnowledge.BLAZE);
-		//public static final ItemKnowledge witherKnowledge = new ItemKnowledge("witherKnowledge", EnumKnowledge.WITHER);
+		cloudiaKnowledge = new ItemKnowledge("cloudiaKnowledge", "Cloudia Knowledge", EnumKnowledge.CLOUDIA); */
 
-		boilingPointEssence = new ItemMod("boilingPointEssence", "Boiling Point Essence");
+		/* boilingPointEssence = new ItemMod("boilingPointEssence", "Boiling Point Essence");
 		cloudiaEssence = new ItemMod("cloudiaEssence", "Cloudia Essence");
 		corbaEssence = new ItemMod("corbaEssence", "Corba Essence");
 		depthsEssence = new ItemMod("depthsEssence", "Depths Essence");
 		eucaEssence = new ItemMod("eucaEssence", " Euca Essence");
-		frozenLandsEssence = new ItemMod("frozenLandsEssence", "Frozen Lands Essence");
-		//public static final ItemMod wastelandsEssence = new ItemMod("wastelandsEssence");
-		//public static final ItemMod lithiumEssence = new ItemMod("lithiumEssence");
-		//public static final ItemMod nethicEssence = new ItemMod("nethicEssence");
-		//public static final ItemMod subterrianEssence = new ItemMod("subterrianEssence");
-		//public static final ItemMod withicEssence = new ItemMod("withicEssence");
-		//public static final ItemMod blazesEssence = new ItemMod("blazesEssence");
+		frozenLandsEssence = new ItemMod("frozenLandsEssence", "Frozen Lands Essence"); */
 
 		//TODO
 		demonicBomb = new ItemThrowable("demonicBomb", "Demonic Bomb", 8F, EntityDemonicBomb.class);
@@ -1501,8 +1494,8 @@ public class JourneyItems {
 		frostbittenPiercer = new ItemPiercer("frostbittenPiercer", "Frostbitten Piercer", 10F, 6, EntityFrostbittenPiercer.class);
 		frostyPiercer = new ItemPiercer("frostyPiercer", "Frosty Piercer", 9F, 6, EntityFrostyPiercer.class);
 		//TODO
-		sunsetPiercer = new ItemPiercer("sunsetPiercer", "Sunset Piercer", 10F, 6, EntityFrostyPiercer.class);
-		skyPiercer = new ItemPiercer("skyPiercer", "Sky Piercer", 10F, 6, EntityFrostyPiercer.class);
+		sunsetPiercer = new ItemPiercer("sunsetPiercer", "Sunset Piercer", 10F, 6, EntitySunsetPiercer.class);
+		skyPiercer = new ItemPiercer("skyPiercer", "Sky Piercer", 10F, 6, EntitySkyPiercer.class);
 
 		moltenKnife = new ItemThrowableBounces("moltenKnife", "Molten Knife", 10F, 5, EntityFrostyPiercer.class);
 		aquaticKnife = new ItemThrowableBounces("aquaticKnife", "Aquatic Knife", 6F, 5, EntityFrostyPiercer.class);

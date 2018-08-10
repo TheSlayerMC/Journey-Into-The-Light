@@ -94,6 +94,8 @@ public class EntityRegistry {
 		SlayerAPI.registerProjectile(EntityCorbaPiercer.class, "corbapiercer");
 		SlayerAPI.registerProjectile(EntityFrostbittenPiercer.class, "frostbittenpiercer");
 		SlayerAPI.registerProjectile(EntityFrostyPiercer.class, "frostypiercer");
+		SlayerAPI.registerProjectile(EntitySunsetPiercer.class, "sunsetpiercer");
+		SlayerAPI.registerProjectile(EntitySkyPiercer.class, "skypiercer");
 		SlayerAPI.registerProjectile(EntityBubbleProjectile.class, "bubbleprojectile");
 		SlayerAPI.registerProjectile(EntityDetractor.class, "detractor");
 		

@@ -51,6 +51,6 @@ public class ItemPiercer extends ItemMod {
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack i, World worldIn, List<String> l, ITooltipFlag flagIn) {
 		ItemDescription.addInformation(i, l);
-		l.add(damage + "Ranged Damage");
+		l.add(damage + " Ranged Damage");
 	}
 }
