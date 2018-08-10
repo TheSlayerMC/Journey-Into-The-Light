@@ -125,7 +125,7 @@ public class EntityRendering {
 		
 		RenderingRegistry.registerEntityRenderingHandler(EntitySunsetPiercer.class, new RenderItemProjectile(JourneyItems.sunsetPiercer));
 		RenderingRegistry.registerEntityRenderingHandler(EntitySkyPiercer.class, new RenderItemProjectile(JourneyItems.skyPiercer));
-		
+		RenderingRegistry.registerEntityRenderingHandler(EntityMoltenKnife.class, new RenderItemProjectile(JourneyItems.moltenKnife));
 		RenderingRegistry.registerEntityRenderingHandler(EntityShimmererProjectile.class, new RenderProjectile(Textures.shimmererProjectile));
 		RenderingRegistry.registerEntityRenderingHandler(EntityDemonicBomb.class, new RenderItemProjectile(JourneyItems.demonicBomb));
 		RenderingRegistry.registerEntityRenderingHandler(EntityFireBomb.class, new RenderItemProjectile(JourneyItems.fireBomb));

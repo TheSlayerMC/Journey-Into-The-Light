@@ -16,6 +16,7 @@ public class ItemThrowableBounces extends ItemMod {
 	private Class<? extends EntityThrowable> entity;
 	private float damage = 0;
 	private int bounces = 0;
+	private float vel = 1.0F;
 	
 	public ItemThrowableBounces(String name, String f, float damage, int bounces, Class<? extends EntityThrowable> entity) {
 		super(name, f);
@@ -30,7 +31,7 @@ public class ItemThrowableBounces extends ItemMod {
 		ItemStack stack = player.getHeldItem(handIn);
 		try {
 			if(!world.isRemote) {
-				EntityThrowable t = entity.getConstructor(World.class, EntityLivingBase.class, float.class, int.class).newInstance(world, player, damage, bounces);
+				EntityThrowable t = entity.getConstructor(World.class, EntityLivingBase.class, float.class, float.class).newInstance(world, player, damage, vel);
 				t.shoot(player, player.rotationPitch, player.rotationYaw, -20.0F, 0.5F, 1.0F);
 				world.spawnEntity(t);
 				if(!player.capabilities.isCreativeMode) stack.shrink(1);

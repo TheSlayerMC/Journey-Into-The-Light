@@ -25,6 +25,7 @@ import net.journey.entity.projectile.EntityGreenpace;
 import net.journey.entity.projectile.EntityHellstone;
 import net.journey.entity.projectile.EntityIceBall;
 import net.journey.entity.projectile.EntityLightningBall;
+import net.journey.entity.projectile.EntityMoltenKnife;
 import net.journey.entity.projectile.EntityNetherPlasma;
 import net.journey.entity.projectile.EntityNethicPiercer;
 import net.journey.entity.projectile.EntityOvergrown;
@@ -1497,7 +1498,7 @@ public class JourneyItems {
 		sunsetPiercer = new ItemPiercer("sunsetPiercer", "Sunset Piercer", 10F, 6, EntitySunsetPiercer.class);
 		skyPiercer = new ItemPiercer("skyPiercer", "Sky Piercer", 10F, 6, EntitySkyPiercer.class);
 
-		moltenKnife = new ItemThrowableBounces("moltenKnife", "Molten Knife", 10F, 5, EntityFrostyPiercer.class);
+		moltenKnife = new ItemThrowableBounces("moltenKnife", "Molten Knife", 10F, 5, EntityMoltenKnife.class);
 		aquaticKnife = new ItemThrowableBounces("aquaticKnife", "Aquatic Knife", 6F, 5, EntityFrostyPiercer.class);
 		bloodKnife = new ItemThrowableBounces("bloodKnife", "Blood Knife", 6F, 5, EntityFrostyPiercer.class);
 		charredKnife = new ItemThrowableBounces("charredKnife", "Charred Knife", 6F, 5, EntityFrostyPiercer.class);
