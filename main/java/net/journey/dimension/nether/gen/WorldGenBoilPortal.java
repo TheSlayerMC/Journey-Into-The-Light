@@ -8,13 +8,17 @@ import com.google.common.collect.Lists;
 import net.journey.JourneyBlocks;
 import net.journey.JourneyItems;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
+import net.journey.util.JourneyLootTables;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraft.world.storage.loot.LootTableList;
 import net.slayer.api.worldgen.WorldGenAPI;
 
 public class WorldGenBoilPortal extends WorldGenerator {
@@ -112,11 +116,10 @@ public class WorldGenBoilPortal extends WorldGenerator {
 		world.setBlockState(new BlockPos(i + 3, j + 1, k + 5), JourneyBlocks.compactNetherBrick.getDefaultState());
 		world.setBlockState(new BlockPos(i + 3, j + 2, k + 1), JourneyBlocks.compactNetherBrick.getDefaultState());
 		world.setBlockState(new BlockPos(i + 3, j + 4, k + 3), JourneyBlocks.netherChest.getStateFromMeta(2));
-		TileEntityJourneyChest te = (TileEntityJourneyChest)world.getTileEntity(new BlockPos(i + 3, j + 4, k + 3));
-		if(te != null) {
-			//WeightedRandomChestContent.generateChestContents(rand, Lists.newArrayList(loot), te, 4);
+        TileEntity chest = world.getTileEntity(new BlockPos(i + 3, j + 4, k + 3));
+		if (chest instanceof TileEntityChest) {
+			((TileEntityJourneyChest) chest).setLootTable(JourneyLootTables.BOIL_CHEST, rand.nextLong());
 		}
-		
 		world.setBlockState(new BlockPos(i + 3, j + 2, k + 5), JourneyBlocks.compactNetherBrick.getDefaultState());
 		world.setBlockState(new BlockPos(i + 3, j + 3, k + 1), JourneyBlocks.compactNetherBrick.getDefaultState());
 		world.setBlockState(new BlockPos(i + 3, j + 3, k + 5), JourneyBlocks.compactNetherBrick.getDefaultState());
