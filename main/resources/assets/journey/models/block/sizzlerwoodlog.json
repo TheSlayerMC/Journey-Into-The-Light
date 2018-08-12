@@ -1,9 +1,13 @@
 {
-	"parent": "journey:block/grass",
+    
+	"parent": "block/cube_column",
+    
 	"textures": {
-		"particle": "journey:blocks/sizzlerWoodLog_top",
-		"bottom": "journey:blocks/sizzlerWoodLog_top",
-		"top": "journey:blocks/sizzlerWoodLog_top",
-		"side": "journey:blocks/sizzlerWoodLog_side"
+        
+		"end": "journey:blocks/sizzlerwoodlog_top",
+        
+		"side": "journey:blocks/sizzlerwoodlog_side"
+    
 	}
+
 }
