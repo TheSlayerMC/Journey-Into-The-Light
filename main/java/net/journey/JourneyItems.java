@@ -636,6 +636,7 @@ public class JourneyItems {
 
 	//public static Item flameArrow = new ItemMod("flameArrow", EssenceTabs.ranged);
 	public static Item essenceArrow;
+	public static Item tippedEssenceArrow;
 
 	public static Item flameBow;
 	public static Item poisonBow;
@@ -1317,6 +1318,7 @@ public class JourneyItems {
 
 		//flameArrow = new ItemMod("flameArrow", EssenceTabs.ranged);
 		essenceArrow = new ItemEssenceArrow("essenceArrow", "Essence Arrow");
+		tippedEssenceArrow = new ItemEssenceArrow("tippedEssenceArrow", "Tipped Essence Arrow");
 
 		flameBow = new ItemModBow("flameBow", "Flame Bow", 384, 3, essenceArrow, "Sets enemies ablaze", EntityFlameArrow.class);
 		poisonBow = new ItemModBow("poisonBow", "Poison Bow", 384, 3, essenceArrow, "Poisons enemies", EntityPoisonArrow.class);

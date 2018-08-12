@@ -29,7 +29,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.EnumMaterialTypes;
 
-public class BlockModBush extends BlockMod implements IGrowable, IPlantable {
+public class BlockModBush extends BlockMod implements IPlantable, IGrowable {
 
 	private boolean isNether;
 	private ItemStack berry;
@@ -162,31 +162,25 @@ public class BlockModBush extends BlockMod implements IGrowable, IPlantable {
 		return this.canPlaceBlockAt(world, pos1);
 	}
 	
-	public void setDrop(ItemStack itemIn) {
-        this.berry = itemIn;
-    }
-    
     @Override
     public int damageDropped(IBlockState state) {
         return 0;
     }
-
 	@Override
-	public boolean onBlockActivated(World w, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+	public boolean onBlockActivated(World w, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
+		double 
+		x = player.posX,
+		y = player.posY - 1.0D, 
+		z = player.posZ;
 		if (state.getValue(AGE) == 2) {
 			if (w.isRemote) { 
 				return true;
 			}
-            w.setBlockState(pos, this.getDefaultState().withProperty(AGE, Integer.valueOf(0)), 1);
-            ItemStack itemDrop = new ItemStack(this.berry.getItem(), 1, this.berry.getItemDamage());
-            EntityItem entityitem = new EntityItem(w, player.posX, player.posY - 1.0D, player.posZ, itemDrop);
-            w.spawnEntity(entityitem);
-            if (!(player instanceof FakePlayer)) {
-                entityitem.onCollideWithPlayer(player);
-            }
+			EntityItem drop = new EntityItem(w, x, y, z, berry);
+			w.spawnEntity(drop);
+			w.setBlockState(pos, state.withProperty(AGE, 0), 1);
 			return true;
 		}
 		return false;
 	}
-
 }

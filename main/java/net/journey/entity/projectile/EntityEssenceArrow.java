@@ -54,7 +54,7 @@ public class EntityEssenceArrow extends EntityArrow implements IProjectile {
 	private int zTile = -1;
 	private Block inTile;
 	private int inData;
-	private boolean inGround;
+	protected boolean inGround;
 	public int canBePickedUp;
 	public int arrowShake;
 	protected int timeInGround;
