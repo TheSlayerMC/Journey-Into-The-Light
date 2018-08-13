@@ -1,5 +1,5 @@
 {
-	"parent": "journey:block/grass",
+	"parent": "cube_bottom_top",
 	"textures": {
 		"particle": "journey:blocks/brittleIce",
 		"bottom": "journey:blocks/brittleIce_bottom",

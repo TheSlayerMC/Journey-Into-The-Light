@@ -1,5 +1,5 @@
 {
-	"parent": "minecraft:block/grass",
+	"parent": "cube_bottom_top",
 	"textures": {
 		"particle": "journey:blocks/eucaGoldLeaves_side",
 		"bottom": "journey:blocks/eucaGoldLeaves_bottom",

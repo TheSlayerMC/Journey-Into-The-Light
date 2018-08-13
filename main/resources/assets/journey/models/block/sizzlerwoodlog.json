@@ -1,6 +1,6 @@
 {
     
-	"parent": "block/cube_column",
+	"parent": "block/cube_bottom_top",
     
 	"textures": {
         
