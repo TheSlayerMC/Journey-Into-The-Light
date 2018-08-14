@@ -1,5 +1,6 @@
 {
 	"variants": {
-		"normal": { "model": "journey:sizzlerWoodLog"}
+		"normal": { "model": "journey:sizzlerwoodlog"}
 	}
 }
+

@@ -62,11 +62,11 @@ public class WorldGenEssence implements IWorldGenerator {
 	public WorldGenEssence() {
 		r = new Random();
 		LogHelper.info("Loading world generator");
-		trees = new ArrayList<WorldGenerator>(3);
+		trees = new ArrayList<WorldGenerator>(1);
 		trees.add(new WorldGenBleedheartTree0());
 		trees.add(new WorldGenBleedheartTree1());
-		trees.add(new WorldGenBleedheartTree2());
-		trees.add(new WorldGenSizzlerWoodTree0());
+		//trees.add(new WorldGenBleedheartTree2());
+		//trees.add(new WorldGenSizzlerWoodTree0());
 	}
 	
 	@Override

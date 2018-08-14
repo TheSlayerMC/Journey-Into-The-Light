@@ -1,13 +1,9 @@
 {
-    
-	"parent": "block/cube_bottom_top",
-    
+	"parent": "minecraft:cube_bottom_top",
 	"textures": {
-        
-		"end": "journey:blocks/sizzlerwoodlog_top",
-        
+		"particle": "journey:blocks/sizzlerwoodlog_top",
+		"bottom": "journey:blocks/sizzlerwoodlog_top",
+		"top": "journey:blocks/sizzlerwoodlog_top",
 		"side": "journey:blocks/sizzlerwoodlog_side"
-    
 	}
-
 }
