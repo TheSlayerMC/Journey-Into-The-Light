@@ -4,6 +4,7 @@ import net.journey.JourneyBlocks;
 import net.journey.JourneyChestGenerator;
 import net.journey.JourneyCrops;
 import net.journey.JourneyItems;
+import net.journey.JourneySounds;
 import net.journey.JourneyTabs;
 import net.journey.achievement.event.JourneyDungeonEvent;
 import net.journey.achievement.event.JourneySapphireEvent;
@@ -68,6 +69,7 @@ public class CommonProxy {
 		JourneyBlockRecipes.init();
 		JourneyMiscRecipes.init();
 		JourneyWeaponRecipes.init();
+		JourneySounds.init();
 		JourneyTabs.init();
 		GameRegistry.registerTileEntity(TileEntityJourneyChest.class, SlayerAPI.PREFIX + "Journey Chest");
 		GameRegistry.registerTileEntity(TileEntitySummoningTable.class, SlayerAPI.PREFIX + "Summoning Table");
