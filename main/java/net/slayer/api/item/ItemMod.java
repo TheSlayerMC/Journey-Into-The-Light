@@ -4,9 +4,9 @@ import java.util.List;
 
 import net.journey.JITL;
 import net.journey.JourneyItems;
+import net.journey.JourneySounds;
 import net.journey.JourneyTabs;
 import net.journey.client.ItemDescription;
-import net.journey.enums.EnumSounds;
 import net.journey.util.LangRegistry;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
@@ -17,6 +17,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -60,25 +61,25 @@ public class ItemMod extends Item {
 		return super.onItemRightClick(worldIn, player, handIn);
 	}
 
-	public void spawnEntityIntoWorld(World w, EntityPlayer p, Entity entity, boolean magic, String sound, boolean damage, ItemStack item, int dam) {
+	public void spawnEntityIntoWorld(World w, EntityPlayer p, Entity entity, boolean magic, SoundEvent sound, boolean damage, ItemStack item, int dam) {
 		if(!w.isRemote) {
 			if(magic) w.spawnEntity(entity);
 		}
 		if(magic) {
-			EnumSounds.playSound(sound, w, p);
+			JourneySounds.playSound(sound, w, p);
 			if(damage) item.damageItem(dam, p);
 		}
 	}
 
-	public void spawnEntityIntoWorld(World w, EntityPlayer p, Entity entity, String sound, boolean damage, ItemStack item, int dam) {
+	public void spawnEntityIntoWorld(World w, EntityPlayer p, Entity entity, SoundEvent sound, boolean damage, ItemStack item, int dam) {
 		if(!w.isRemote) {
 			w.spawnEntity(entity);
-			EnumSounds.playSound(sound, w, p);
+			JourneySounds.playSound(sound, w, p);
 			if(damage) item.damageItem(dam, p);
 		}
 	}
 
-	public void spawnEntityIntoWorld(World w, EntityPlayer p, Entity entity, boolean magic, String sound) {
+	public void spawnEntityIntoWorld(World w, EntityPlayer p, Entity entity, boolean magic, SoundEvent sound) {
 		spawnEntityIntoWorld(w, p, entity, magic, sound, false, new ItemStack(Items.APPLE), 0);
 	}
 

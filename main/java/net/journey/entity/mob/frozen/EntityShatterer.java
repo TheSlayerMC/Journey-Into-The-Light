@@ -3,11 +3,12 @@ package net.journey.entity.mob.frozen;
 import java.util.Random;
 
 import net.journey.JourneyBlocks;
+import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
-import net.journey.enums.EnumSounds;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.item.Item;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -36,18 +37,18 @@ public class EntityShatterer extends EntityModFlying {
 	}
 
 	@Override
-	public EnumSounds setLivingSound() {
-		return EnumSounds.HONGO;
+	public SoundEvent setLivingSound() {
+		return JourneySounds.HONGO;
 	}
 
 	@Override
-	public EnumSounds setHurtSound() {
-		return EnumSounds.SAND_CRAWLER;
+	public SoundEvent setHurtSound() {
+		return JourneySounds.SAND_CRAWLER;
 	}
 
 	@Override
-	public EnumSounds setDeathSound() {
-		return EnumSounds.SAND_CRAWLER;
+	public SoundEvent setDeathSound() {
+		return JourneySounds.SAND_CRAWLER;
 	}
 	
 	@Override

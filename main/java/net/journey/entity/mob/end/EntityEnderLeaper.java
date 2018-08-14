@@ -1,8 +1,9 @@
 package net.journey.entity.mob.end;
 
+import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
-import net.journey.enums.EnumSounds;
 import net.minecraft.item.Item;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityModMob;
 
@@ -25,18 +26,18 @@ public class EntityEnderLeaper extends EntityModMob {
 	}
 
 	@Override
-	public EnumSounds setLivingSound() {
-		return EnumSounds.SHIMMERER;
+	public SoundEvent setLivingSound() {
+		return JourneySounds.SHIMMERER;
 	}
 
 	@Override
-	public EnumSounds setHurtSound() {
-		return EnumSounds.SHIMMERER_HURT;
+	public SoundEvent setHurtSound() {
+		return JourneySounds.SHIMMERER_HURT;
 	}
 
 	@Override
-	public EnumSounds setDeathSound() {
-		return EnumSounds.SHIMMERER_DEATH;
+	public SoundEvent setDeathSound() {
+		return JourneySounds.SHIMMERER_DEATH;
 	}
 	
 	@Override

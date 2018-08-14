@@ -1,13 +1,14 @@
 package net.journey.entity.mob.overworld.jungle;
 
+import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
-import net.journey.enums.EnumSounds;
 import net.journey.util.PotionEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.item.Item;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityModMob;
@@ -50,18 +51,18 @@ public class EntityJungleTurtle extends EntityModMob {
 	}
 
 	@Override
-	public EnumSounds setLivingSound() {
-		return EnumSounds.SMALL_HONGO;
+	public SoundEvent setLivingSound() {
+		return JourneySounds.SMALL_HONGO;
 	}
 
 	@Override
-	public EnumSounds setHurtSound() {
-		return EnumSounds.SMALL_HONGO_HURT;
+	public SoundEvent setHurtSound() {
+		return JourneySounds.SMALL_HONGO_HURT;
 	}
 
 	@Override
-	public EnumSounds setDeathSound() {
-		return EnumSounds.SMALL_HONGO_HURT;
+	public SoundEvent setDeathSound() {
+		return JourneySounds.SMALL_HONGO_HURT;
 	}
 	
 	@Override

@@ -1,33 +1,26 @@
 package net.journey.entity.mob.overworld.jungle;
 
 import java.util.Random;
+
 import javax.annotation.Nullable;
 
-import org.lwjgl.opengl.GL11;
-
 import net.journey.entity.MobStats;
-import net.journey.enums.EnumSounds;
 import net.journey.util.PotionEffects;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.IEntityLivingData;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackMelee;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILeapAtTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAIMoveThroughVillage;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWanderAvoidWater;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityIronGolem;
-import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.entity.monster.EntitySkeleton;
-import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
@@ -322,17 +315,17 @@ public class EntityJungleSpider extends EntityModMob
 	}
 	
 	@Override
-	public EnumSounds setLivingSound() {
+	public SoundEvent setLivingSound() {
 		return null;
 	}
 
 	@Override
-	public EnumSounds setHurtSound() {
+	public SoundEvent setHurtSound() {
 		return null;
 	}
 
 	@Override
-	public EnumSounds setDeathSound() {
+	public SoundEvent setDeathSound() {
 		return null;
 	}
 

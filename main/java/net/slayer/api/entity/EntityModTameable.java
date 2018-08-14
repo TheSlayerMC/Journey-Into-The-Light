@@ -6,7 +6,6 @@ import javax.annotation.Nullable;
 
 import com.google.common.base.Optional;
 
-import net.journey.enums.EnumSounds;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -55,26 +54,26 @@ public abstract class EntityModTameable extends EntityTameable {
 	public double getFollowRange(){return getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).getAttributeValue();}
 	public double getKnockbackResistance(){return getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).getAttributeValue();}
 
-	public abstract EnumSounds setLivingSound();
-	public abstract EnumSounds setHurtSound();
-	public abstract EnumSounds setDeathSound();
+	public abstract SoundEvent setLivingSound();
+	public abstract SoundEvent setHurtSound();
+	public abstract SoundEvent setDeathSound();
 
 	@Override
 	protected SoundEvent getAmbientSound() {
 		super.getAmbientSound();
-		return setLivingSound().getNonPrefixedName();
+		return setLivingSound();
 	}
 
 	@Override
 	protected SoundEvent getHurtSound(DamageSource d) {
 		super.getHurtSound(d);
-		return setHurtSound().getNonPrefixedName();
+		return setHurtSound();
 	}
 
 	@Override
 	protected SoundEvent getDeathSound() {
 		super.getDeathSound();
-		return setDeathSound().getNonPrefixedName();
+		return setDeathSound();
 	}
 
 	@Override

@@ -1,9 +1,10 @@
 package net.journey.entity.mob.euca;
 
 import net.journey.JourneyItems;
+import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
-import net.journey.enums.EnumSounds;
 import net.minecraft.item.Item;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityModMob;
 
@@ -27,18 +28,18 @@ public class EntityEucaFighter extends EntityModMob {
 	}
 
 	@Override
-	public EnumSounds setLivingSound() {
-		return EnumSounds.INSECTO;
+	public SoundEvent setLivingSound() {
+		return JourneySounds.INSECTO;
 	}
 
 	@Override
-	public EnumSounds setHurtSound() {
-		return EnumSounds.INSECTO_HURT;
+	public SoundEvent setHurtSound() {
+		return JourneySounds.INSECTO_HURT;
 	}
 
 	@Override
-	public EnumSounds setDeathSound() {
-		return EnumSounds.INSECTO_HURT;
+	public SoundEvent setDeathSound() {
+		return JourneySounds.INSECTO_HURT;
 	}
 
 	@Override

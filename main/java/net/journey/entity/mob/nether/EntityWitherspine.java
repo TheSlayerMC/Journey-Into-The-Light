@@ -1,8 +1,8 @@
 package net.journey.entity.mob.nether;
 
 import net.journey.JourneyItems;
+import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
-import net.journey.enums.EnumSounds;
 import net.journey.util.PotionEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -55,36 +55,33 @@ public class EntityWitherspine extends EntityModMob {
 	}
 
 	@Override
-	public EnumSounds setLivingSound() {
-		return EnumSounds.EMPTY;
+	public SoundEvent setLivingSound() {
+		return JourneySounds.EMPTY;
 	}
 
 	@Override
-    protected SoundEvent getAmbientSound()
-    {
+    protected SoundEvent getAmbientSound() {
         return SoundEvents.ENTITY_WITHER_AMBIENT;
     }
 
 	@Override
-    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
-    {
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
         return SoundEvents.ENTITY_SKELETON_HURT;
     }
 	
 	@Override
-    protected SoundEvent getDeathSound()
-    {
+    protected SoundEvent getDeathSound() {
         return SoundEvents.ENTITY_SKELETON_DEATH;
     }
     
 	@Override
-	public EnumSounds setHurtSound() {
-		return EnumSounds.EMPTY;
+	public SoundEvent setHurtSound() {
+		return JourneySounds.EMPTY;
 	}
 
 	@Override
-	public EnumSounds setDeathSound() {
-		return EnumSounds.EMPTY;
+	public SoundEvent setDeathSound() {
+		return JourneySounds.EMPTY;
 	}
 	
 	@Override

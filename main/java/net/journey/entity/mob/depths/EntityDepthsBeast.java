@@ -3,12 +3,13 @@ package net.journey.entity.mob.depths;
 import java.util.List;
 
 import net.journey.JourneyItems;
+import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
-import net.journey.enums.EnumSounds;
 import net.journey.util.PotionEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityModMob;
 
@@ -44,18 +45,18 @@ public class EntityDepthsBeast extends EntityModMob{
 	}
 
 	@Override
-	public EnumSounds setLivingSound() {
-		return EnumSounds.MAGMA_GIANT;
+	public SoundEvent setLivingSound() {
+		return JourneySounds.MAGMA_GIANT;
 	}
 
 	@Override
-	public EnumSounds setHurtSound() {
-		return EnumSounds.SPYCLOPS_HURT;
+	public SoundEvent setHurtSound() {
+		return JourneySounds.SPYCLOPS_HURT;
 	}
 
 	@Override
-	public EnumSounds setDeathSound() {
-		return EnumSounds.SPYCLOPS_HURT;
+	public SoundEvent setDeathSound() {
+		return JourneySounds.SPYCLOPS_HURT;
 	}
 	
 	@Override

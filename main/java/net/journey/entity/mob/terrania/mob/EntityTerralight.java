@@ -2,11 +2,12 @@ package net.journey.entity.mob.terrania.mob;
 
 import java.util.Random;
 
+import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
-import net.journey.enums.EnumSounds;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.item.Item;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -36,18 +37,18 @@ public class EntityTerralight extends EntityModFlying {
 	}
 
 	@Override
-	public EnumSounds setLivingSound() {
-		return EnumSounds.EMPTY;
+	public SoundEvent setLivingSound() {
+		return JourneySounds.EMPTY;
 	}
 
 	@Override
-	public EnumSounds setHurtSound() {
-		return EnumSounds.EMPTY;
+	public SoundEvent setHurtSound() {
+		return JourneySounds.EMPTY;
 	}
 
 	@Override
-	public EnumSounds setDeathSound() {
-		return EnumSounds.EMPTY;
+	public SoundEvent setDeathSound() {
+		return JourneySounds.EMPTY;
 	}
 	
 	@Override

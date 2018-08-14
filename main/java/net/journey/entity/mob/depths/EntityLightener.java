@@ -8,10 +8,10 @@ package net.journey.entity.mob.depths;
 import java.util.Random;
 
 import net.journey.JourneyItems;
+import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityMagmaFireball;
 import net.journey.entity.projectile.EntityShimmererProjectile;
-import net.journey.enums.EnumSounds;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
@@ -400,19 +400,19 @@ public class EntityLightener extends EntityModFlying {
         }
 
 	@Override
-	public EnumSounds setLivingSound() {
+	public SoundEvent setLivingSound() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public EnumSounds setHurtSound() {
+	public SoundEvent setHurtSound() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public EnumSounds setDeathSound() {
+	public SoundEvent setDeathSound() {
 		// TODO Auto-generated method stub
 		return null;
 	}

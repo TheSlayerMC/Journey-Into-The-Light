@@ -3,10 +3,10 @@ package net.journey.blocks.tileentity;
 import java.util.Random;
 
 import net.journey.JourneyItems;
+import net.journey.JourneySounds;
 import net.journey.client.render.particles.EntityModFireFX;
 import net.journey.client.render.particles.EntityModSnowFX;
 import net.journey.client.render.particles.EntitySummoningFX;
-import net.journey.enums.EnumSounds;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;

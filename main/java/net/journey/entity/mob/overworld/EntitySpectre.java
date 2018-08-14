@@ -1,14 +1,14 @@
 package net.journey.entity.mob.overworld;
 
 import net.journey.JourneyItems;
+import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
-import net.journey.enums.EnumSounds;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.passive.EntityChicken;
-import net.minecraft.init.Blocks;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityModMob;
@@ -84,18 +84,18 @@ public class EntitySpectre extends EntityModMob {
 	}
 
 	@Override
-	public EnumSounds setLivingSound() {
-		return EnumSounds.WRAITH;
+	public SoundEvent setLivingSound() {
+		return JourneySounds.WRAITH;
 	}
 
 	@Override
-	public EnumSounds setHurtSound() {
-		return EnumSounds.WRAITH_HURT;
+	public SoundEvent setHurtSound() {
+		return JourneySounds.WRAITH_HURT;
 	}
 
 	@Override
-	public EnumSounds setDeathSound() {
-		return EnumSounds.WRAITH_DEATH;
+	public SoundEvent setDeathSound() {
+		return JourneySounds.WRAITH_DEATH;
 	}
 
 	@Override

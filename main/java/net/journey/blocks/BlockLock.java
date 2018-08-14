@@ -1,6 +1,6 @@
 package net.journey.blocks;
 
-import net.journey.enums.EnumSounds;
+import net.journey.JourneySounds;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;

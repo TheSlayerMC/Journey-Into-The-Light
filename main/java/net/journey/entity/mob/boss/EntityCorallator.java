@@ -4,11 +4,11 @@ import java.util.Random;
 
 import net.journey.JourneyBlocks;
 import net.journey.JourneyItems;
+import net.journey.JourneySounds;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.entity.MobStats;
 import net.journey.entity.mob.euca.EntityShimmerer;
 import net.journey.entity.projectile.EntityMagmaFireball;
-import net.journey.enums.EnumSounds;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.ai.EntityAIBase;
@@ -23,6 +23,7 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -62,18 +63,18 @@ public class EntityCorallator extends EntityEssenceBoss implements IRangedAttack
 	}
 
 	@Override
-	public EnumSounds setLivingSound() {
-		return EnumSounds.WITHER;
+	public SoundEvent setLivingSound() {
+		return SoundEvents.ENTITY_WITHER_AMBIENT;
 	}
 
 	@Override
-	public EnumSounds setHurtSound() {
-		return EnumSounds.WITHER_HURT;
+	public SoundEvent setHurtSound() {
+		return SoundEvents.ENTITY_WITHER_HURT;
 	}
 
 	@Override
-	public EnumSounds setDeathSound() {
-		return EnumSounds.BOSS_DEATH;
+	public SoundEvent setDeathSound() {
+		return JourneySounds.BOSS_DEATH;
 	}
 	
 	@Override

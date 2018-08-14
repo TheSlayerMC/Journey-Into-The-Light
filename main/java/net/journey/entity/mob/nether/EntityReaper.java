@@ -1,16 +1,13 @@
 package net.journey.entity.mob.nether;
 
 import net.journey.JourneyItems;
+import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
-import net.journey.enums.EnumSounds;
 import net.journey.util.PotionEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
@@ -92,17 +89,17 @@ public class EntityReaper extends EntityModMob {
 	}
 
 	@Override
-	public EnumSounds setLivingSound() {
-		return EnumSounds.EMPTY;
+	public SoundEvent setLivingSound() {
+		return JourneySounds.EMPTY;
 	}
 
 	@Override
-	public EnumSounds setHurtSound() {
-		return EnumSounds.EMPTY;
+	public SoundEvent setHurtSound() {
+		return JourneySounds.EMPTY;
 	}
 
 	@Override
-	public EnumSounds setDeathSound() {
-		return EnumSounds.EMPTY;
+	public SoundEvent setDeathSound() {
+		return JourneySounds.EMPTY;
 	}
 }

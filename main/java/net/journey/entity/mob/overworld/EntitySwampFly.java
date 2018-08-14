@@ -3,20 +3,19 @@ package net.journey.entity.mob.overworld;
 import java.util.Random;
 
 import net.journey.JourneyBlocks;
-import net.journey.JourneyItems;
+import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
-import net.journey.enums.EnumSounds;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -52,18 +51,18 @@ public class EntitySwampFly extends EntityModFlying {
 	}
 
 	@Override
-	public EnumSounds setLivingSound() {
-		return EnumSounds.EMPTY;
+	public SoundEvent setLivingSound() {
+		return JourneySounds.EMPTY;
 	}
 
 	@Override
-	public EnumSounds setHurtSound() {
-		return EnumSounds.EMPTY;
+	public SoundEvent setHurtSound() {
+		return JourneySounds.EMPTY;
 	}
 
 	@Override
-	public EnumSounds setDeathSound() {
-		return EnumSounds.EMPTY;
+	public SoundEvent setDeathSound() {
+		return JourneySounds.EMPTY;
 	}
 
 	@Override

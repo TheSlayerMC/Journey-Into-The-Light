@@ -1,12 +1,11 @@
 package net.journey.entity.mob.boss;
 
-import net.journey.JourneyAchievements;
 import net.journey.JourneyBlocks;
 import net.journey.JourneyItems;
+import net.journey.JourneySounds;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityMagmaFireball;
-import net.journey.enums.EnumSounds;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.ai.EntityAIBase;
@@ -203,18 +202,18 @@ public class EntityBlazier extends EntityEssenceBoss implements IRangedAttackMob
 	}
 
 	@Override
-	public EnumSounds setLivingSound() {
-		return EnumSounds.BLAZE;
+	public SoundEvent setLivingSound() {
+		return SoundEvents.ENTITY_WITHER_AMBIENT;
 	}
 
 	@Override
-	public EnumSounds setHurtSound() {
-		return EnumSounds.BLAZE_HURT;
+	public SoundEvent setHurtSound() {
+		return SoundEvents.ENTITY_WITHER_HURT;
 	}
 
 	@Override
-	public EnumSounds setDeathSound() {
-		return EnumSounds.BOSS_DEATH;
+	public SoundEvent setDeathSound() {
+		return JourneySounds.BOSS_DEATH;
 	}
 
 	@Override

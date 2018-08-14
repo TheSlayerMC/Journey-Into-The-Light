@@ -3,12 +3,12 @@ package net.journey.entity.mob.boss;
 import javax.annotation.Nullable;
 
 import net.journey.JourneyItems;
+import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityDarknessArrow;
 import net.journey.entity.projectile.EntityFlameArrow;
 import net.journey.entity.projectile.EntityFrozenArrow;
 import net.journey.entity.projectile.EntityPoisonArrow;
-import net.journey.enums.EnumSounds;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.IRangedAttackMob;
@@ -19,6 +19,7 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityEssenceBoss;
@@ -128,18 +129,18 @@ public class EntityFourfa extends EntityEssenceBoss implements IRangedAttackMob 
 	}
 
 	@Override
-	public EnumSounds setLivingSound() {
-		return EnumSounds.WITHER;
+	public SoundEvent setLivingSound() {
+		return SoundEvents.ENTITY_WITHER_AMBIENT;
 	}
 
 	@Override
-	public EnumSounds setHurtSound() {
-		return EnumSounds.WITHER_HURT;
+	public SoundEvent setHurtSound() {
+		return SoundEvents.ENTITY_WITHER_HURT;
 	}
 
 	@Override
-	public EnumSounds setDeathSound() {
-		return EnumSounds.WITHER_DEATH;
+	public SoundEvent setDeathSound() {
+		return SoundEvents.ENTITY_WITHER_DEATH;
 	}
 
 	@Override

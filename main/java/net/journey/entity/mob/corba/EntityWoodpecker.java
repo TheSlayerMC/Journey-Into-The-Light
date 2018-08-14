@@ -1,9 +1,10 @@
 package net.journey.entity.mob.corba;
 
 import net.journey.JourneyItems;
+import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
-import net.journey.enums.EnumSounds;
 import net.minecraft.item.Item;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityPeacefullUntillAttacked;
 
@@ -24,18 +25,18 @@ public class EntityWoodpecker extends EntityPeacefullUntillAttacked {
 	}
 	
 	@Override
-	public EnumSounds setLivingSound() {
-		return EnumSounds.BIRD;
+	public SoundEvent setLivingSound() {
+		return JourneySounds.BIRD;
 	}
 
 	@Override
-	public EnumSounds setHurtSound() {
-		return EnumSounds.BIRD_HURT;
+	public SoundEvent setHurtSound() {
+		return JourneySounds.BIRD_HURT;
 	}
 
 	@Override
-	public EnumSounds setDeathSound() {
-		return EnumSounds.BIRD_DEATH;
+	public SoundEvent setDeathSound() {
+		return JourneySounds.BIRD_DEATH;
 	}
 
 	@Override

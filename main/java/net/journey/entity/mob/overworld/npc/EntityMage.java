@@ -53,7 +53,7 @@ public class EntityMage extends EntityModVillager {
 		list.add(new MerchantRecipe(new ItemStack(JourneyItems.staffBase, 1), new ItemStack(JourneyItems.hellstoneIngot, 10), new ItemStack(JourneyItems.staffOfHellstone)));
 		list.add(new MerchantRecipe(new ItemStack(JourneyItems.staffBase, 1), new ItemStack(JourneyItems.purpleGem, 10), new ItemStack(JourneyItems.doomsBringer)));
 		list.add(new MerchantRecipe(new ItemStack(JourneyItems.staffBase, 1), new ItemStack(JourneyItems.yellowGem, 10), new ItemStack(JourneyItems.wizardsStar)));
-		//list.add(new MerchantRecipe(new ItemStack(EssenceItems.staffBase, 1), new ItemStack(EssenceItems.hellstoneIngot, 5), new ItemStack(EssenceItems.chaosCannon)));
+		list.add(new MerchantRecipe(new ItemStack(JourneyItems.staffBase, 1), new ItemStack(JourneyItems.hellstoneIngot, 5), new ItemStack(JourneyItems.chaosCannon)));
 		list.add(new MerchantRecipe(new ItemStack(JourneyItems.staffBase, 1), new ItemStack(JourneyItems.blueGem, 10), new ItemStack(JourneyItems.staffOfEnlightenment)));
 		list.add(new MerchantRecipe(new ItemStack(JourneyItems.greenGem, 10), new ItemStack(JourneyItems.staffOfGreenpace, 1), new ItemStack(JourneyItems.conjuringStaff)));		
 		list.add(new MerchantRecipe(new ItemStack(JourneyItems.wandBase, 1), new ItemStack(Blocks.ICE, 32), new ItemStack(JourneyItems.iceWand)));

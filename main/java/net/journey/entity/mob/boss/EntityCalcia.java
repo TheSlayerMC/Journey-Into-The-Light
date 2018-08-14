@@ -1,13 +1,14 @@
 package net.journey.entity.mob.boss;
 
 import net.journey.JourneyItems;
+import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
-import net.journey.enums.EnumSounds;
 import net.journey.util.PotionEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityEssenceBoss;
 
@@ -39,18 +40,18 @@ public class EntityCalcia extends EntityEssenceBoss {
 	}
 
 	@Override
-	public EnumSounds setLivingSound() {
-		return EnumSounds.CALCIA;
+	public SoundEvent setLivingSound() {
+		return JourneySounds.CALCIA;
 	}
 
 	@Override
-	public EnumSounds setHurtSound() {
-		return EnumSounds.CALCIA_HURT;
+	public SoundEvent setHurtSound() {
+		return JourneySounds.CALCIA_HURT;
 	}
 
 	@Override
-	public EnumSounds setDeathSound() {
-		return EnumSounds.CALCIA_HURT;
+	public SoundEvent setDeathSound() {
+		return JourneySounds.CALCIA_HURT;
 	}
 
 	public boolean isInv() {

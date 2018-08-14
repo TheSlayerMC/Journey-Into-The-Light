@@ -3,13 +3,15 @@ package net.journey.entity.mob.corba;
 import java.util.List;
 
 import net.journey.JourneyItems;
+import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
-import net.journey.enums.EnumSounds;
 import net.journey.util.PotionEffects;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityModMob;
@@ -46,23 +48,23 @@ public class EntityTreeGolem extends EntityModMob{
 	}
 
 	@Override
-	public EnumSounds setLivingSound() {
-		return EnumSounds.BUSH;
+	public SoundEvent setLivingSound() {
+		return JourneySounds.BUSH;
 	}
 
 	@Override
     protected void playStepSound(BlockPos pos, Block blockIn) {
-        //this.playSound("mob.irongolem.walk", 1.0F, 1.0F);
+        this.playSound(SoundEvents.ENTITY_IRONGOLEM_STEP, 1.0F, 1.0F);
     }
 	
 	@Override
-	public EnumSounds setHurtSound() {
-		return EnumSounds.BUSH_HURT;
+	public SoundEvent setHurtSound() {
+		return JourneySounds.BUSH_HURT;
 	}
 
 	@Override
-	public EnumSounds setDeathSound() {
-		return EnumSounds.BUSH_DEATH;
+	public SoundEvent setDeathSound() {
+		return JourneySounds.BUSH_DEATH;
 	}
 	
 	@Override

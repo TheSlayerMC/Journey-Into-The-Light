@@ -3,11 +3,11 @@ package net.journey.items;
 import java.util.List;
 
 import net.journey.JourneyItems;
+import net.journey.JourneySounds;
 import net.journey.JourneyTabs;
 import net.journey.client.server.EssenceProvider;
 import net.journey.client.server.IEssence;
 import net.journey.entity.projectile.EntityBasicProjectile;
-import net.journey.enums.EnumSounds;
 import net.journey.util.JourneyToolMaterial;
 import net.journey.util.LangHelper;
 import net.journey.util.LangRegistry;
@@ -53,7 +53,7 @@ public class ItemHammer extends ItemSword {
 		ItemStack stack = player.getHeldItem(handIn);
 		IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
 		if(!world.isRemote && mana.useEssence(usage)) {
-			EnumSounds.playSound(EnumSounds.HAMMER, world, player);
+			JourneySounds.playSound(JourneySounds.HAMMER, world, player);
 			if(!unbreakable) stack.damageItem(1, player);
 			try {
 				world.spawnEntity(projectile.getConstructor(World.class, EntityLivingBase.class, float.class).newInstance(world, player, damage));

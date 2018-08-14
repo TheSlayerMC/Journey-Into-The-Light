@@ -1,9 +1,10 @@
 package net.slayer.api.entity;
 
-import net.journey.enums.EnumSounds;
+import net.journey.JourneySounds;
 import net.journey.util.IEssenceBoss;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
 public abstract class EntityEssenceBoss extends EntityModMob implements IEssenceBoss {
@@ -25,8 +26,8 @@ public abstract class EntityEssenceBoss extends EntityModMob implements IEssence
 	}
 	
 	@Override
-	public EnumSounds setDeathSound() {
-		return EnumSounds.BOSS_DEATH;
+	public SoundEvent setDeathSound() {
+		return JourneySounds.BOSS_DEATH;
     }
     
     @Override

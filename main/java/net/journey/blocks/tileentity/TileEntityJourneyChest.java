@@ -5,8 +5,8 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import net.journey.JourneySounds;
 import net.journey.blocks.machines.BlockJourneyChest;
-import net.journey.enums.EnumSounds;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
 import net.minecraft.entity.player.EntityPlayer;

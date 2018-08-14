@@ -1,13 +1,14 @@
 package net.journey.entity.mob.euca;
 
 import net.journey.JourneyItems;
+import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
-import net.journey.enums.EnumSounds;
 import net.journey.util.PotionEffects;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityModMob;
 
@@ -36,18 +37,18 @@ public class EntityGolder extends EntityModMob{
 	}
 
 	@Override
-	public EnumSounds setLivingSound() {
-		return EnumSounds.REAPER;
+	public SoundEvent setLivingSound() {
+		return JourneySounds.REAPER;
 	}
 
 	@Override
-	public EnumSounds setHurtSound() {
-		return EnumSounds.REAPER_HURT;
+	public SoundEvent setHurtSound() {
+		return JourneySounds.REAPER_HURT;
 	}
 
 	@Override
-	public EnumSounds setDeathSound() {
-		return EnumSounds.REAPER_HURT;
+	public SoundEvent setDeathSound() {
+		return JourneySounds.REAPER_HURT;
 	}
 	
 	@Override

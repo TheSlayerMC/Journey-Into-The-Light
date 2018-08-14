@@ -3,9 +3,9 @@ package net.journey.entity.mob.nether;
 import java.util.List;
 
 import net.journey.JourneyBlocks;
+import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityMagmaFireball;
-import net.journey.enums.EnumSounds;
 import net.journey.util.PotionEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -224,18 +224,18 @@ public class EntityInfernoBlaze extends EntityModMob {
 	}
 
 	@Override
-	public EnumSounds setLivingSound() {
-		return EnumSounds.BLAZE;
+	public SoundEvent setLivingSound() {
+		return SoundEvents.ENTITY_BLAZE_AMBIENT;
 	}
 
 	@Override
-	public EnumSounds setHurtSound() {
-		return EnumSounds.BLAZE_HURT;
+	public SoundEvent setHurtSound() {
+		return SoundEvents.ENTITY_BLAZE_HURT;
 	}
 
 	@Override
-	public EnumSounds setDeathSound() {
-		return EnumSounds.BLAZE_DEATH;
+	public SoundEvent setDeathSound() {
+		return SoundEvents.ENTITY_BLAZE_DEATH;
 	}
 
 	@Override

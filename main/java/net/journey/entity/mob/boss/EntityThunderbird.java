@@ -1,11 +1,10 @@
 package net.journey.entity.mob.boss;
 
-import net.journey.JourneyAchievements;
 import net.journey.JourneyBlocks;
 import net.journey.JourneyItems;
+import net.journey.JourneySounds;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.entity.MobStats;
-import net.journey.enums.EnumSounds;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -16,6 +15,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -70,18 +70,18 @@ public class EntityThunderbird extends EntityEssenceBoss {
 	}
 
 	@Override
-	public EnumSounds setLivingSound() {
-		return EnumSounds.NETHER_BEAST;
+	public SoundEvent setLivingSound() {
+		return JourneySounds.NETHER_BEAST;
 	}
 
 	@Override
-	public EnumSounds setHurtSound() {
-		return EnumSounds.NETHER_BEAST_HURT;
+	public SoundEvent setHurtSound() {
+		return JourneySounds.NETHER_BEAST_HURT;
 	}
 
 	@Override
-	public EnumSounds setDeathSound() {
-		return EnumSounds.BOSS_DEATH;
+	public SoundEvent setDeathSound() {
+		return JourneySounds.BOSS_DEATH;
 	}
 
 	@Override
@@ -89,7 +89,6 @@ public class EntityThunderbird extends EntityEssenceBoss {
 		return JourneyItems.corbaPortalGem;
 	}
 
-	@SuppressWarnings("")
 	@Override
 	public void onDeath(DamageSource damage) {
 		if(damage.getImmediateSource() instanceof EntityPlayer) {
@@ -104,14 +103,14 @@ public class EntityThunderbird extends EntityEssenceBoss {
 			te.setInventorySlotContents(2, new ItemStack(JourneyItems.rocsWing, 1));
 			te.setInventorySlotContents(4, new ItemStack(JourneyItems.rocSword, 1));
 			te.setInventorySlotContents(1, new ItemStack(JourneyItems.swordOfTheThunderbird, 1));
-			//te.setInventorySlotContents(18, new ItemStack(JourneyItems.thunderbirdBattleaxe, 1));
+			te.setInventorySlotContents(18, new ItemStack(JourneyItems.thunderbirdBattleaxe, 1));
 			te.setInventorySlotContents(11, new ItemStack(JourneyItems.corbaPortalGem, 5));
 			break;
 		case 1:
 			te.setInventorySlotContents(1, new ItemStack(JourneyItems.rocsWing, 1));
 			te.setInventorySlotContents(5, new ItemStack(JourneyItems.rocSword, 1));
 			te.setInventorySlotContents(2, new ItemStack(JourneyItems.swordOfTheThunderbird, 1));
-			//te.setInventorySlotContents(14, new ItemStack(JourneyItems.thunderbirdBattleaxe, 1));
+			te.setInventorySlotContents(14, new ItemStack(JourneyItems.thunderbirdBattleaxe, 1));
 			te.setInventorySlotContents(13, new ItemStack(JourneyItems.corbaPortalGem, 5));
 			break;
 		}

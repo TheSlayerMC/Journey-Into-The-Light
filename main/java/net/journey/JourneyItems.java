@@ -1496,7 +1496,6 @@ public class JourneyItems {
 		corbaPiercer = new ItemPiercer("corbaPiercer", "Corba Piercer", 29F, 6, EntityCorbaPiercer.class);
 		frostbittenPiercer = new ItemPiercer("frostbittenPiercer", "Frostbitten Piercer", 10F, 6, EntityFrostbittenPiercer.class);
 		frostyPiercer = new ItemPiercer("frostyPiercer", "Frosty Piercer", 9F, 6, EntityFrostyPiercer.class);
-		//TODO
 		sunsetPiercer = new ItemPiercer("sunsetPiercer", "Sunset Piercer", 10F, 6, EntitySunsetPiercer.class);
 		skyPiercer = new ItemPiercer("skyPiercer", "Sky Piercer", 10F, 6, EntitySkyPiercer.class);
 

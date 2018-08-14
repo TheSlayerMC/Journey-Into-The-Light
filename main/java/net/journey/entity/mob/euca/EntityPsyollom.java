@@ -1,9 +1,10 @@
 package net.journey.entity.mob.euca;
 
 import net.journey.JourneyItems;
+import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
-import net.journey.enums.EnumSounds;
 import net.minecraft.item.Item;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityModMob;
 
@@ -28,18 +29,18 @@ public class EntityPsyollom extends EntityModMob {
 	}
 
 	@Override
-	public EnumSounds setLivingSound() {
-		return EnumSounds.PSYOLLOM;
+	public SoundEvent setLivingSound() {
+		return JourneySounds.PSYOLLOM;
 	}
 
 	@Override
-	public EnumSounds setHurtSound() {
-		return EnumSounds.PSYOLLOM_HURT;
+	public SoundEvent setHurtSound() {
+		return JourneySounds.PSYOLLOM_HURT;
 	}
 
 	@Override
-	public EnumSounds setDeathSound() {
-		return EnumSounds.PSYOLLOM_HURT;
+	public SoundEvent setDeathSound() {
+		return JourneySounds.PSYOLLOM_HURT;
 	}
 	
 	@Override

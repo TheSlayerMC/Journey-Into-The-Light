@@ -3,9 +3,9 @@ package net.journey.entity.mob.frozen;
 import java.util.Random;
 
 import net.journey.JourneyItems;
+import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityShimmererProjectile;
-import net.journey.enums.EnumSounds;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
@@ -14,6 +14,7 @@ import net.minecraft.item.Item;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -48,18 +49,18 @@ public class EntityCrystalCluster extends EntityModFlying {
     }
 
 	@Override
-	public EnumSounds setLivingSound() {
-		return EnumSounds.SHIMMERER;
+	public SoundEvent setLivingSound() {
+		return JourneySounds.SHIMMERER;
 	}
 
 	@Override
-	public EnumSounds setHurtSound() {
-		return EnumSounds.SHIMMERER_HURT;
+	public SoundEvent setHurtSound() {
+		return JourneySounds.SHIMMERER_HURT;
 	}
 
 	@Override
-	public EnumSounds setDeathSound() {
-		return EnumSounds.SHIMMERER_DEATH;
+	public SoundEvent setDeathSound() {
+		return JourneySounds.SHIMMERER_DEATH;
 	}
 	
 	@Override

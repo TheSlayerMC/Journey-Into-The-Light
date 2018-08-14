@@ -2,8 +2,8 @@ package net.journey.entity.mob.pet;
 
 import java.util.UUID;
 
+import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
-import net.journey.enums.EnumSounds;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
@@ -214,17 +214,17 @@ public class EntityEucaHopper extends EntityModTameable {
 	}
 
 	@Override
-	public EnumSounds setLivingSound() {
-		return EnumSounds.HONGO;
+	public SoundEvent setLivingSound() {
+		return JourneySounds.HONGO;
 	}
 
 	@Override
-	public EnumSounds setHurtSound() {
-		return EnumSounds.TURTLE;
+	public SoundEvent setHurtSound() {
+		return JourneySounds.TURTLE_HURT;
 	}
 
 	@Override
-	public EnumSounds setDeathSound() {
-		return EnumSounds.TURTLE;
+	public SoundEvent setDeathSound() {
+		return JourneySounds.TURTLE_HURT;
 	}
 }

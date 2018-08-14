@@ -2,11 +2,11 @@ package net.journey.items;
 
 import java.util.List;
 
+import net.journey.JourneySounds;
 import net.journey.JourneyTabs;
 import net.journey.client.server.EssenceProvider;
 import net.journey.client.server.IEssence;
 import net.journey.entity.projectile.EntityBasicProjectile;
-import net.journey.enums.EnumSounds;
 import net.journey.util.LangHelper;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
@@ -46,7 +46,7 @@ public class ItemStaff extends ItemMod {
 		IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
 
 		if(!world.isRemote && mana.useEssence(usage)) {
-			EnumSounds.playSound(EnumSounds.SPARKLE, world, player);
+			JourneySounds.playSound(JourneySounds.MAGIC_SPARKLE, world, player);
 			if(!unBreakable) stack.damageItem(1, player);
 			try {
 				EntityBasicProjectile shoot = projectile.getConstructor(World.class, EntityLivingBase.class, float.class).newInstance(world, player, damage);

@@ -3,11 +3,10 @@ package net.journey.entity.mob.boss;
 import javax.annotation.Nullable;
 
 import net.journey.JourneyItems;
+import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
-import net.journey.entity.projectile.EntityFireBall;
 import net.journey.entity.projectile.EntityFloroWater;
 import net.journey.entity.projectile.EntityMagmaFireball;
-import net.journey.enums.EnumSounds;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.IRangedAttackMob;
@@ -21,6 +20,7 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -28,6 +28,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
@@ -119,7 +120,7 @@ public class EntityTempleGuardian extends EntityEssenceBoss implements IRangedAt
         double d2 = target.posZ - this.posZ;
         double d3 = (double)MathHelper.sqrt(d0 * d0 + d2 * d2);
         b.shoot(d0, d1 + d3 * 0.20000000298023224D, d2, 1.6F, (float)(14 - this.world.getDifficulty().getDifficultyId() * 4));
-		EnumSounds.playSound(EnumSounds.HAMMER, world, this);
+		JourneySounds.playSound(JourneySounds.HAMMER, world, this);
         this.world.spawnEntity(b);
     }
 
@@ -171,13 +172,13 @@ public class EntityTempleGuardian extends EntityEssenceBoss implements IRangedAt
 	}
 	
 	@Override
-	public EnumSounds setDeathSound() {
-		return EnumSounds.BOSS_DEATH;
+	public SoundEvent setDeathSound() {
+		return JourneySounds.BOSS_DEATH;
 	}
 	
 	@Override
-	public EnumSounds setLivingSound() {
-		return EnumSounds.BLAZE;
+	public SoundEvent setLivingSound() {
+		return SoundEvents.ENTITY_BLAZE_AMBIENT;
 	}
 
 	@Override
@@ -191,8 +192,8 @@ public class EntityTempleGuardian extends EntityEssenceBoss implements IRangedAt
 	}
 
 	@Override
-	public EnumSounds setHurtSound() {
-		return EnumSounds.BLAZE_HURT;
+	public SoundEvent setHurtSound() {
+		return SoundEvents.ENTITY_BLAZE_HURT;
 	}
     
     private void launchWitherSkullToEntity(int var1, EntityLivingBase e) {

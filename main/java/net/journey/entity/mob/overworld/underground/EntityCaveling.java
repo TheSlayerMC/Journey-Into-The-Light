@@ -1,13 +1,13 @@
 package net.journey.entity.mob.overworld.underground;
 
-import net.journey.JourneyAchievements;
 import net.journey.JourneyItems;
+import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
-import net.journey.enums.EnumSounds;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.slayer.api.SlayerAPI;
@@ -32,18 +32,18 @@ public class EntityCaveling extends EntityModMob {
 	}
 
 	@Override
-	public EnumSounds setLivingSound() {
-		return EnumSounds.CAVE_MOB;
+	public SoundEvent setLivingSound() {
+		return JourneySounds.CAVE_MOB;
 	}
 
 	@Override
-	public EnumSounds setHurtSound() {
-		return EnumSounds.ROCK;
+	public SoundEvent setHurtSound() {
+		return JourneySounds.ROCK;
 	}
 
 	@Override
-	public EnumSounds setDeathSound() {
-		return EnumSounds.BASE_MOB_HURT;
+	public SoundEvent setDeathSound() {
+		return JourneySounds.BASE_MOB_HURT;
 	}
 
 	@Override

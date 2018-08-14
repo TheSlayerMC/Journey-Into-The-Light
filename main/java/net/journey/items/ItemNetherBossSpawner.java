@@ -3,13 +3,13 @@ package net.journey.items;
 import java.util.List;
 
 import net.journey.JourneyItems;
+import net.journey.JourneySounds;
 import net.journey.JourneyTabs;
 import net.journey.entity.mob.boss.EntityCalcia;
 import net.journey.entity.mob.boss.EntityNetherBeast;
 import net.journey.entity.mob.boss.EntitySoulWatcher;
 import net.journey.entity.mob.boss.EntityWitheringBeast;
 import net.journey.entity.projectile.EntityLightningBall;
-import net.journey.enums.EnumSounds;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -45,7 +45,7 @@ public class ItemNetherBossSpawner extends ItemMod {
 				EntityNetherBeast nether = new EntityNetherBeast(w);
 
 				if(item == JourneyItems.calciaOrb) {
-					EnumSounds.playSound(EnumSounds.SUMMON, w, p);
+					JourneySounds.playSound(JourneySounds.SUMMON_BOSS, w, p);
 					light.setPosition(pos.getX(), pos.getY(), pos.getZ());
 					w.spawnEntity(light);
 					SlayerAPI.sendMessageToAll("Calcia has been summoned", true);
@@ -54,7 +54,7 @@ public class ItemNetherBossSpawner extends ItemMod {
 					if(!p.capabilities.isCreativeMode) i.shrink(1);
 				}
 				if(item == JourneyItems.netherBeastOrb) {
-					EnumSounds.playSound(EnumSounds.SUMMON, w, p);
+					JourneySounds.playSound(JourneySounds.SUMMON_BOSS, w, p);
 					light.setPosition(pos.getX(), pos.getY(), pos.getZ());
 					w.spawnEntity(light);
 					SlayerAPI.sendMessageToAll("The Nether Beast has been summoned", true);
@@ -63,7 +63,7 @@ public class ItemNetherBossSpawner extends ItemMod {
 					if(!p.capabilities.isCreativeMode) i.shrink(1);
 				}
 				if(item == JourneyItems.witheringBeastOrb) {
-					EnumSounds.playSound(EnumSounds.SUMMON, w, p);
+					JourneySounds.playSound(JourneySounds.SUMMON_BOSS, w, p);
 					light.setPosition(pos.getX(), pos.getY(), pos.getZ());
 					w.spawnEntity(light);
 					SlayerAPI.sendMessageToAll("The Withering Beast has been summoned", true);
@@ -72,7 +72,7 @@ public class ItemNetherBossSpawner extends ItemMod {
 					if(!p.capabilities.isCreativeMode) i.shrink(1);
 				}
 				if(item == JourneyItems.soulWatcherOrb) {
-					EnumSounds.playSound(EnumSounds.SUMMON, w, p);
+					JourneySounds.playSound(JourneySounds.SUMMON_BOSS, w, p);
 					light.setPosition(pos.getX(), pos.getY(), pos.getZ());
 					w.spawnEntity(light);
 					SlayerAPI.sendMessageToAll("The Soul Watcher has been summoned", true);

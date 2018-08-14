@@ -11,7 +11,7 @@ public class EssenceBar implements IEssence {
 
 	@Override
 	public boolean useEssence(int points) {
-		if(essenceValue < points) 
+		if(getEssenceValue() < points) 
 			return false;
 		essenceValue -= points;
 		return true;
@@ -20,12 +20,13 @@ public class EssenceBar implements IEssence {
 	@Override
 	public void addEssence(int points) {
 		essenceValue += points;
-		if(essenceValue > 10) essenceValue = 10;
+		if(getEssenceValue() > 10) setEssence(10);
 	}
 
 	@Override
 	public void setEssence(int essence) {
 		essenceValue = essence;
+		if(getEssenceValue() > 10) essenceValue = 10;
 	}
 
 	@Override

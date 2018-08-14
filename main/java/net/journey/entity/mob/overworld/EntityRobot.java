@@ -1,10 +1,11 @@
 package net.journey.entity.mob.overworld;
 
+import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
-import net.journey.enums.EnumSounds;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityModMob;
@@ -28,18 +29,18 @@ public class EntityRobot extends EntityModMob {
 	}
 
 	@Override
-	public EnumSounds setLivingSound() {
-		return EnumSounds.ROBOT;
+	public SoundEvent setLivingSound() {
+		return JourneySounds.ROBOT;
 	}
 
 	@Override
-	public EnumSounds setHurtSound() {
-		return EnumSounds.ROBOT_HURT;
+	public SoundEvent setHurtSound() {
+		return JourneySounds.ROBOT_HURT;
 	}
 
 	@Override
-	public EnumSounds setDeathSound() {
-		return EnumSounds.ROBOT_HURT;
+	public SoundEvent setDeathSound() {
+		return JourneySounds.ROBOT_HURT;
 	}
 	
 	@Override

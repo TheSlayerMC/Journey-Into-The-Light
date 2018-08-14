@@ -1,10 +1,9 @@
 package net.journey.entity.mob.overworld.underground;
 
-import net.journey.JourneyAchievements;
 import net.journey.JourneyItems;
+import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityConjuring;
-import net.journey.enums.EnumSounds;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.ai.EntityAIAttackRangedBow;
@@ -18,6 +17,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -71,7 +71,7 @@ public class EntityCaveMage extends EntityModMob implements IRangedAttackMob {
         double d2 = target.posZ - this.posZ;
         double d3 = (double)MathHelper.sqrt(d0 * d0 + d2 * d2);
         b.shoot(d0, d1 + d3 * 0.20000000298023224D, d2, 1.6F, (float)(14 - this.world.getDifficulty().getDifficultyId() * 4));
-		EnumSounds.playSound(EnumSounds.SPARKLE, world, this);
+		JourneySounds.playSound(JourneySounds.MAGIC_SPARKLE, world, this);
         this.world.spawnEntity(b);
     }
 
@@ -86,18 +86,18 @@ public class EntityCaveMage extends EntityModMob implements IRangedAttackMob {
 	}
 
 	@Override
-	public EnumSounds setLivingSound() {
-		return EnumSounds.INSECTO;
+	public SoundEvent setLivingSound() {
+		return JourneySounds.INSECTO;
 	}
 
 	@Override
-	public EnumSounds setHurtSound() {
-		return EnumSounds.INSECTO_HURT;
+	public SoundEvent setHurtSound() {
+		return JourneySounds.INSECTO_HURT;
 	}
 
 	@Override
-	public EnumSounds setDeathSound() {
-		return EnumSounds.INSECTO_HURT;
+	public SoundEvent setDeathSound() {
+		return JourneySounds.INSECTO_HURT;
 	}
 
 	@Override

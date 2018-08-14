@@ -3,15 +3,17 @@ package net.journey.entity.mob.boiling;
 import java.util.List;
 
 import net.journey.JourneyItems;
+import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
-import net.journey.enums.EnumSounds;
 import net.journey.util.PotionEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityModMob;
 
@@ -33,20 +35,20 @@ public class EntityBurningLight extends EntityModMob{
 	public double setMaxHealth(MobStats s) {
 		return MobStats.boilHealth;
 	}
-
+	
 	@Override
-	public EnumSounds setLivingSound() {
-		return EnumSounds.BLAZE;
+	public SoundEvent setLivingSound() {
+		return SoundEvents.ENTITY_BLAZE_AMBIENT;
 	}
 
 	@Override
-	public EnumSounds setHurtSound() {
-		return EnumSounds.BLAZE_HURT;
+	public SoundEvent setHurtSound() {
+		return SoundEvents.ENTITY_BLAZE_HURT;
 	}
 
 	@Override
-	public EnumSounds setDeathSound() {
-		return EnumSounds.BLAZE_DEATH;
+	public SoundEvent setDeathSound() {
+		return SoundEvents.ENTITY_BLAZE_DEATH;
 	}
 	
     @Override

@@ -2,8 +2,8 @@ package net.journey.entity.mob.pet;
 
 import java.util.UUID;
 
+import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
-import net.journey.enums.EnumSounds;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
@@ -28,7 +28,6 @@ import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
@@ -36,6 +35,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityModTameable;
@@ -259,17 +259,17 @@ public class EntityTameRoc extends EntityModTameable {
 	}
 
 	@Override
-	public EnumSounds setLivingSound() {
-		return EnumSounds.BIRD;
+	public SoundEvent setLivingSound() {
+		return JourneySounds.BIRD;
 	}
 
 	@Override
-	public EnumSounds setHurtSound() {
-		return EnumSounds.BIRD_HURT;
+	public SoundEvent setHurtSound() {
+		return JourneySounds.BIRD_HURT;
 	}
 
 	@Override
-	public EnumSounds setDeathSound() {
-		return EnumSounds.BIRD_DEATH;
+	public SoundEvent setDeathSound() {
+		return JourneySounds.BIRD_DEATH;
 	}
 }

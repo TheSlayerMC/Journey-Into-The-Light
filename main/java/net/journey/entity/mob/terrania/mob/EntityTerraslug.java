@@ -1,9 +1,10 @@
 package net.journey.entity.mob.terrania.mob;
 
 import net.journey.JourneyItems;
+import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
-import net.journey.enums.EnumSounds;
 import net.minecraft.item.Item;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityModMob;
 
@@ -26,18 +27,18 @@ public class EntityTerraslug extends EntityModMob {
 	}
 	
 	@Override
-	public EnumSounds setLivingSound() {
-		return EnumSounds.SLUG;
+	public SoundEvent setLivingSound() {
+		return JourneySounds.TERRA_SLUG;
 	}
 
 	@Override
-	public EnumSounds setHurtSound() {
-		return EnumSounds.SLUG_HURT;
+	public SoundEvent setHurtSound() {
+		return JourneySounds.TERRA_SLUG_HURT;
 	}
 
 	@Override
-	public EnumSounds setDeathSound() {
-		return EnumSounds.SLUG_DEATH;
+	public SoundEvent setDeathSound() {
+		return JourneySounds.TERRA_SLUG_DEATH;
 	}
 
 	@Override

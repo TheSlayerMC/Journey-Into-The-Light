@@ -3,8 +3,8 @@ package net.journey.items;
 import java.util.List;
 
 import net.journey.JourneyItems;
+import net.journey.JourneySounds;
 import net.journey.JourneyTabs;
-import net.journey.enums.EnumSounds;
 import net.journey.util.Config;
 import net.journey.util.LangRegistry;
 import net.minecraft.client.Minecraft;
@@ -48,12 +48,12 @@ public class ItemHealth extends ItemFood {
     	if(isntSentry && p.getMaxHealth() < max) {
     		p.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(p.getMaxHealth() + hearts);
     		PlayerHelper.getPersistedpTag(p).setDouble("health", p.getMaxHealth());
-    		EnumSounds.playSound(EnumSounds.SUMMON_TABLE, w, p);
+    		JourneySounds.playSound(JourneySounds.SUMMON_TABLE, w, p);
     	}
     	else if(isSentry && p.getMaxHealth() >= max) {
     		p.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(p.getMaxHealth() + hearts);
     		PlayerHelper.getPersistedpTag(p).setDouble("health", p.getMaxHealth());
-    		EnumSounds.playSound(EnumSounds.SUMMON_TABLE, w, p);
+    		JourneySounds.playSound(JourneySounds.SUMMON_TABLE, w, p);
     	}
     }
 	

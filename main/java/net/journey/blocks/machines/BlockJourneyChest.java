@@ -2,9 +2,9 @@ package net.journey.blocks.machines;
 
 import java.util.Iterator;
 
+import net.journey.JourneySounds;
 import net.journey.JourneyTabs;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
-import net.journey.enums.EnumSounds;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
 import net.minecraft.block.BlockHorizontal;
@@ -393,7 +393,7 @@ public class BlockJourneyChest extends BlockModContainer {
 	@Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		//EnumSounds.playSound(EnumSounds.CHEST_OPEN_0, worldIn, playerIn);
-		EnumSounds.playSound(EnumSounds.CHEST_OPEN, worldIn, playerIn);
+		JourneySounds.playSound(JourneySounds.CHEST_OPEN, worldIn, playerIn);
         if (worldIn.isRemote)
         {
             return true;

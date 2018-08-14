@@ -1,12 +1,13 @@
 package net.journey.entity.mob.boiling;
 
+import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
-import net.journey.enums.EnumSounds;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -32,18 +33,18 @@ public class EntityMagmaGiant extends EntityModMob{
 	}
 
 	@Override
-	public EnumSounds setLivingSound() {
-		return EnumSounds.MAGMA_GIANT;
+	public SoundEvent setLivingSound() {
+		return JourneySounds.MAGMA_GIANT;
 	}
 
 	@Override
-	public EnumSounds setHurtSound() {
-		return EnumSounds.MAGMA_GIANT_HURT;
+	public SoundEvent setHurtSound() {
+		return JourneySounds.MAGMA_GIANT_HURT;
 	}
 
 	@Override
-	public EnumSounds setDeathSound() {
-		return EnumSounds.MAGMA_GIANT_HURT;
+	public SoundEvent setDeathSound() {
+		return JourneySounds.MAGMA_GIANT_HURT;
 	}
 	
 	@Override

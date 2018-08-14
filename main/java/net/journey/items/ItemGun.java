@@ -3,12 +3,12 @@ package net.journey.items;
 import java.util.List;
 
 import net.journey.JourneyItems;
+import net.journey.JourneySounds;
 import net.journey.JourneyTabs;
 import net.journey.client.server.EssenceProvider;
 import net.journey.client.server.IEssence;
 import net.journey.entity.projectile.EntityBasicProjectile;
 import net.journey.entity.projectile.EntityBouncingProjectile;
-import net.journey.enums.EnumSounds;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -44,7 +44,7 @@ public class ItemGun extends ItemMod {
 		if(!world.isRemote) {
 			if(this == JourneyItems.chaosCannon) {
 				if(mana.useEssence(2)) {
-					EnumSounds.playSound(EnumSounds.CANNON, world, player);
+					JourneySounds.playSound(JourneySounds.CANNON, world, player);
 					EntityBouncingProjectile bouncing = new EntityBouncingProjectile(world, player, damage, 4);
 					bouncing.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.0F, 1.0F);
 					world.spawnEntity(bouncing);
@@ -52,7 +52,7 @@ public class ItemGun extends ItemMod {
 					return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
 				}
 			} else if(projectile != null) {
-				EnumSounds.playSound(EnumSounds.PLASMA, world, player);
+				JourneySounds.playSound(JourneySounds.PLASMA, world, player);
 				if(mana.useEssence(2)) {
 					try {
 						EntityBasicProjectile shoot = projectile.getConstructor(World.class, EntityLivingBase.class, float.class).newInstance(world, player, damage);

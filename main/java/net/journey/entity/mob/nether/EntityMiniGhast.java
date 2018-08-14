@@ -2,15 +2,10 @@ package net.journey.entity.mob.nether;
 
 import java.util.Random;
 
-import javax.annotation.Nullable;
-
 import net.journey.JourneyItems;
 import net.journey.entity.MobStats;
-import net.journey.entity.projectile.EntityShimmererProjectile;
-import net.journey.enums.EnumSounds;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
 import net.minecraft.entity.ai.EntityMoveHelper;
@@ -23,7 +18,6 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.datafix.DataFixer;
@@ -33,7 +27,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.entity.EntityModFlying;
@@ -403,19 +396,19 @@ public class EntityMiniGhast extends EntityModFlying {
         }
 
 	@Override
-	public EnumSounds setLivingSound() {
+	public SoundEvent setLivingSound() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public EnumSounds setHurtSound() {
+	public SoundEvent setHurtSound() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public EnumSounds setDeathSound() {
+	public SoundEvent setDeathSound() {
 		// TODO Auto-generated method stub
 		return null;
 	}

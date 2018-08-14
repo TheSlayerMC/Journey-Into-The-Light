@@ -2,16 +2,18 @@ package net.journey.entity.mob.boss;
 
 import net.journey.JourneyBlocks;
 import net.journey.JourneyItems;
+import net.journey.JourneySounds;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityDeathSkull;
-import net.journey.enums.EnumSounds;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.ai.EntityAIAttackRangedBow;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -62,18 +64,18 @@ public class EntityWitheringBeast extends EntityEssenceBoss implements IRangedAt
 	}
 
 	@Override
-	public EnumSounds setLivingSound() {
-		return EnumSounds.WITHER;
+	public SoundEvent setLivingSound() {
+		return SoundEvents.ENTITY_WITHER_AMBIENT;
 	}
 
 	@Override
-	public EnumSounds setHurtSound() {
-		return EnumSounds.WITHER_HURT;
+	public SoundEvent setHurtSound() {
+		return SoundEvents.ENTITY_WITHER_HURT;
 	}
 
 	@Override
-	public EnumSounds setDeathSound() {
-		return EnumSounds.BOSS_DEATH;
+	public SoundEvent setDeathSound() {
+		return JourneySounds.BOSS_DEATH;
 	}
 
 	@Override

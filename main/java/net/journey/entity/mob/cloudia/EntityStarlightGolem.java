@@ -1,15 +1,14 @@
 package net.journey.entity.mob.cloudia;
 
 import net.journey.JourneyItems;
+import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
-import net.journey.enums.EnumSounds;
 import net.minecraft.block.Block;
-import net.minecraft.client.audio.Sound;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.client.event.sound.SoundEvent;
-import net.minecraftforge.client.event.sound.SoundSetupEvent;
 import net.slayer.api.entity.EntityModMob;
 
 public class EntityStarlightGolem extends EntityModMob {
@@ -31,18 +30,18 @@ public class EntityStarlightGolem extends EntityModMob {
 	}
 
 	@Override
-	public EnumSounds setLivingSound() {
-		return EnumSounds.EMPTY;
+	public SoundEvent setLivingSound() {
+		return JourneySounds.EMPTY;
 	}
 
 	@Override
-	public EnumSounds setHurtSound() {
-		return EnumSounds.IRON_GOLEM_HURT;
+	public SoundEvent setHurtSound() {
+		return SoundEvents.ENTITY_IRONGOLEM_HURT;
 	}
 
 	@Override
-	public EnumSounds setDeathSound() {
-		return EnumSounds.IRON_GOLEM_DEATH;
+	public SoundEvent setDeathSound() {
+		return SoundEvents.ENTITY_IRONGOLEM_DEATH;
 	}
 	
 	@Override

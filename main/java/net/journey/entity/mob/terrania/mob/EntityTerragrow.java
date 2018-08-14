@@ -1,13 +1,12 @@
 package net.journey.entity.mob.terrania.mob;
 
 import net.journey.JourneyItems;
+import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
-import net.journey.enums.EnumSounds;
-import net.minecraft.block.material.Material;
-import net.minecraft.init.Blocks;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
-import net.slayer.api.SlayerAPI;
 import net.slayer.api.entity.EntityModMob;
 
 public class EntityTerragrow extends EntityModMob {
@@ -27,18 +26,18 @@ public class EntityTerragrow extends EntityModMob {
 	}
 
 	@Override
-	public EnumSounds setLivingSound() {
-		return EnumSounds.WRAITH;
+	public SoundEvent setLivingSound() {
+		return JourneySounds.WRAITH;
 	}
 
 	@Override
-	public EnumSounds setHurtSound() {
-		return EnumSounds.CREEPER;
+	public SoundEvent setHurtSound() {
+		return SoundEvents.ENTITY_CREEPER_HURT;
 	}
 
 	@Override
-	public EnumSounds setDeathSound() {
-		return EnumSounds.WRAITH_DEATH;
+	public SoundEvent setDeathSound() {
+		return JourneySounds.WRAITH_DEATH;
 	}
 	
 	@Override

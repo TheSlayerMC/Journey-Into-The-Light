@@ -4,7 +4,7 @@ import java.util.UUID;
 
 import com.google.common.base.Predicate;
 
-import net.journey.enums.EnumSounds;
+import net.journey.JourneySounds;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
@@ -512,17 +512,17 @@ public class EntityShiverwolf extends EntityModTameable {
     }
 
 	@Override
-	public EnumSounds setLivingSound() {
-		return EnumSounds.EMPTY;
+	public SoundEvent setLivingSound() {
+		return JourneySounds.EMPTY;
 	}
 
 	@Override
-	public EnumSounds setHurtSound() {
-		return EnumSounds.EMPTY;
+	public SoundEvent setHurtSound() {
+		return JourneySounds.EMPTY;
 	}
 
 	@Override
-	public EnumSounds setDeathSound() {
-		return EnumSounds.EMPTY;
+	public SoundEvent setDeathSound() {
+		return JourneySounds.EMPTY;
 	}
 }

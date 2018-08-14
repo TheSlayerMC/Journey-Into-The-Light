@@ -1,9 +1,10 @@
 package net.journey.entity.mob.euca;
 
 import net.journey.JourneyItems;
+import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
-import net.journey.enums.EnumSounds;
 import net.minecraft.item.Item;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityModMob;
 
@@ -32,18 +33,18 @@ public class EntityEucaCharger extends EntityModMob {
 	}
 
 	@Override
-	public EnumSounds setLivingSound() {
-		return EnumSounds.HONGO;
+	public SoundEvent setLivingSound() {
+		return JourneySounds.HONGO;
 	}
 
 	@Override
-	public EnumSounds setHurtSound() {
-		return EnumSounds.SAND_CRAWLER;
+	public SoundEvent setHurtSound() {
+		return JourneySounds.SAND_CRAWLER;
 	}
 
 	@Override
-	public EnumSounds setDeathSound() {
-		return EnumSounds.SAND_CRAWLER;
+	public SoundEvent setDeathSound() {
+		return JourneySounds.SAND_CRAWLER;
 	}
 	
 	@Override

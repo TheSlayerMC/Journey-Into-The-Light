@@ -3,17 +3,12 @@ package net.journey.entity.mob.overworld;
 import javax.annotation.Nullable;
 
 import net.journey.JourneyItems;
+import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityFloroWater;
-import net.journey.entity.projectile.EntityGreenpace;
-import net.journey.entity.projectile.EntityIceBall;
-import net.journey.enums.EnumSounds;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.IRangedAttackMob;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackRangedBow;
 import net.minecraft.entity.ai.EntityAIAvoidEntity;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
@@ -21,18 +16,14 @@ import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.monster.EntityIronGolem;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
@@ -96,7 +87,7 @@ public class EntityFloro extends EntityModMob implements IRangedAttackMob {
         double d2 = target.posZ - this.posZ;
         double d3 = (double)MathHelper.sqrt(d0 * d0 + d2 * d2);
         b.shoot(d0, d1 + d3 * 0.20000000298023224D, d2, 1.6F, (float)(14 - this.world.getDifficulty().getDifficultyId() * 4));
-		EnumSounds.playSound(EnumSounds.SPARKLE, world, this);
+		JourneySounds.playSound(JourneySounds.MAGIC_SPARKLE, world, this);
         this.world.spawnEntity(b);
     }
 
@@ -120,18 +111,18 @@ public class EntityFloro extends EntityModMob implements IRangedAttackMob {
 	}
 
 	@Override
-	public EnumSounds setLivingSound() {
-		return EnumSounds.HONGO;
+	public SoundEvent setLivingSound() {
+		return JourneySounds.HONGO;
 	}
 
 	@Override
-	public EnumSounds setHurtSound() {
-		return EnumSounds.HONGO_HURT;
+	public SoundEvent setHurtSound() {
+		return JourneySounds.HONGO_HURT;
 	}
 
 	@Override
-	public EnumSounds setDeathSound() {
-		return EnumSounds.HONGO;
+	public SoundEvent setDeathSound() {
+		return JourneySounds.HONGO;
 	}
 	
 	@Override

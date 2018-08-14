@@ -1,8 +1,9 @@
 package net.journey.entity.mob.cloudia;
 
+import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
-import net.journey.enums.EnumSounds;
 import net.minecraft.item.Item;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityModMob;
 
@@ -25,18 +26,18 @@ public class EntityCloudGhost extends EntityModMob{
 	}
 
 	@Override
-	public EnumSounds setLivingSound() {
-		return EnumSounds.SPIKED_BEAST;
+	public SoundEvent setLivingSound() {
+		return JourneySounds.SPIKED_BEAST;
 	}
 
 	@Override
-	public EnumSounds setHurtSound() {
-		return EnumSounds.SPIKED_BEAST_HURT;
+	public SoundEvent setHurtSound() {
+		return JourneySounds.SPIKED_BEAST_HURT;
 	}
 
 	@Override
-	public EnumSounds setDeathSound() {
-		return EnumSounds.SPIKED_BEAST_HURT;
+	public SoundEvent setDeathSound() {
+		return JourneySounds.SPIKED_BEAST_HURT;
 	}
 	
 	@Override

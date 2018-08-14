@@ -3,9 +3,9 @@ package net.journey.entity.mob.boiling;
 import java.util.List;
 
 import net.journey.JourneyBlocks;
+import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityMagmaFireball;
-import net.journey.enums.EnumSounds;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
@@ -25,6 +25,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -174,18 +175,18 @@ public class EntityMagmaBlaze extends EntityModMob {
 	}
 
 	@Override
-	public EnumSounds setLivingSound() {
-		return EnumSounds.BLAZE;
+	public SoundEvent setLivingSound() {
+		return SoundEvents.ENTITY_BLAZE_AMBIENT;
 	}
 
 	@Override
-	public EnumSounds setHurtSound() {
-		return EnumSounds.BLAZE_HURT;
+	public SoundEvent setHurtSound() {
+		return SoundEvents.ENTITY_BLAZE_HURT;
 	}
 
 	@Override
-	public EnumSounds setDeathSound() {
-		return EnumSounds.BLAZE_DEATH;
+	public SoundEvent setDeathSound() {
+		return SoundEvents.ENTITY_BLAZE_DEATH;
 	}
 
 	@Override

@@ -1,15 +1,15 @@
 package net.journey.entity.mob.nether;
 
 import net.journey.JourneyBlocks;
+import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
-import net.journey.enums.EnumSounds;
 import net.journey.util.PotionEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -62,18 +62,18 @@ public class EntityHellTurtle extends EntityModMob {
 	}
 
 	@Override
-	public EnumSounds setLivingSound() {
-		return EnumSounds.SMALL_HONGO;
+	public SoundEvent setLivingSound() {
+		return JourneySounds.SMALL_HONGO;
 	}
 
 	@Override
-	public EnumSounds setHurtSound() {
-		return EnumSounds.SMALL_HONGO_HURT;
+	public SoundEvent setHurtSound() {
+		return JourneySounds.SMALL_HONGO_HURT;
 	}
 
 	@Override
-	public EnumSounds setDeathSound() {
-		return EnumSounds.SMALL_HONGO_HURT;
+	public SoundEvent setDeathSound() {
+		return JourneySounds.SMALL_HONGO_HURT;
 	}
 	
 	@Override

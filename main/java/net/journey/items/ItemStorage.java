@@ -3,8 +3,8 @@ package net.journey.items;
 import java.util.List;
 
 import net.journey.JourneyItems;
+import net.journey.JourneySounds;
 import net.journey.JourneyTabs;
-import net.journey.enums.EnumSounds;
 import net.journey.util.LangRegistry;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
@@ -16,6 +16,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -43,25 +44,25 @@ public class ItemStorage extends Item {
 		return this;
 	}
 
-	public void spawnEntityIntoWorld(World w, EntityPlayer p, Entity entity, boolean magic, String sound, boolean damage, ItemStack item, int dam) {
+	public void spawnEntityIntoWorld(World w, EntityPlayer p, Entity entity, boolean magic, SoundEvent sound, boolean damage, ItemStack item, int dam) {
 		if(!w.isRemote){
 			if(magic) w.spawnEntity(entity);
 		}
 		if(magic) {
-			EnumSounds.playSound(sound, w, p);
+			JourneySounds.playSound(sound, w, p);
 			if(damage) item.damageItem(dam, p);
 		}
 	}
 
-	public void spawnEntityIntoWorld(World w, EntityPlayer p, Entity entity, String sound, boolean damage, ItemStack item, int dam) {
+	public void spawnEntityIntoWorld(World w, EntityPlayer p, Entity entity, SoundEvent sound, boolean damage, ItemStack item, int dam) {
 		if(!w.isRemote){
 			w.spawnEntity(entity);
-			EnumSounds.playSound(sound, w, p);
+			JourneySounds.playSound(sound, w, p);
 			if(damage) item.damageItem(dam, p);
 		}
 	}
 
-	public void spawnEntityIntoWorld(World w, EntityPlayer p, Entity entity, boolean magic, String sound) {
+	public void spawnEntityIntoWorld(World w, EntityPlayer p, Entity entity, boolean magic, SoundEvent sound) {
 		spawnEntityIntoWorld(w, p, entity, magic, sound, false, new ItemStack(Items.APPLE), 0);
 	}
 
@@ -76,7 +77,7 @@ public class ItemStorage extends Item {
 
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
-		EnumSounds.playSound(EnumSounds.CHEST_OPEN, world, player);
+		JourneySounds.playSound(JourneySounds.CHEST_OPEN, world, player);
 		if (world.isRemote) player.displayGUIChest(null);
 		return ActionResult.newResult(EnumActionResult.PASS, player.getHeldItem(hand));
 	}

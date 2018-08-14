@@ -6,8 +6,8 @@ import java.util.Random;
 
 import net.journey.JourneyBlocks;
 import net.journey.JourneyItems;
+import net.journey.JourneySounds;
 import net.journey.JourneyTabs;
-import net.journey.enums.EnumSounds;
 import net.journey.util.LangHelper;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.item.EntityItem;
@@ -41,7 +41,7 @@ public class ItemPresent extends ItemMod {
 		items.add(new ItemStack(Blocks.ICE, 4));
 		items.add(new ItemStack(Items.DIAMOND));
 		if(!world.isRemote) {
-			EnumSounds.playSound(EnumSounds.WRAPPER, world, player);
+			JourneySounds.playSound(JourneySounds.WRAPPER, world, player);
 			int index = r.nextInt(items.size());
 			String name = LangHelper.getFormattedText(items.get(index).getItem().getUnlocalizedName() + ".name");
 			SlayerAPI.addChatMessage(player, "You recieved " + name);

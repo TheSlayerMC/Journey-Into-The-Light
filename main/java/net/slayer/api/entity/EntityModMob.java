@@ -1,7 +1,7 @@
 package net.slayer.api.entity;
 
+import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
-import net.journey.enums.EnumSounds;
 import net.minecraft.block.Block;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackMelee;
@@ -63,9 +63,9 @@ public abstract class EntityModMob extends EntityMob {
 
 	public abstract double setAttackDamage(MobStats s);
 	public abstract double setMaxHealth(MobStats s);
-	public abstract EnumSounds setLivingSound();
-	public abstract EnumSounds setHurtSound();
-	public abstract EnumSounds setDeathSound();
+	public abstract SoundEvent setLivingSound();
+	public abstract SoundEvent setHurtSound();
+	public abstract SoundEvent setDeathSound();
 	public abstract Item getItemDropped();
 
 	@Override
@@ -87,19 +87,19 @@ public abstract class EntityModMob extends EntityMob {
 	@Override
 	protected SoundEvent getAmbientSound() {
 		super.getAmbientSound();
-		return setLivingSound().getNonPrefixedName();
+		return setLivingSound();
 	}
 
 	@Override
 	protected SoundEvent getHurtSound(DamageSource d) {
 		super.getHurtSound(d);
-		return setHurtSound().getNonPrefixedName();
+		return setHurtSound();
 	}
 
 	@Override
 	protected SoundEvent getDeathSound() {
 		super.getDeathSound();
-		return setDeathSound().getNonPrefixedName();
+		return setDeathSound();
 	}
 	
 	@Override

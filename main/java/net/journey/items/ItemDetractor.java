@@ -3,12 +3,12 @@ package net.journey.items;
 import java.util.List;
 import java.util.Random;
 
+import net.journey.JourneySounds;
 import net.journey.JourneyTabs;
 import net.journey.client.server.EssenceProvider;
 import net.journey.client.server.IEssence;
 import net.journey.entity.projectile.EntityAttractor;
 import net.journey.entity.projectile.EntityDetractor;
-import net.journey.enums.EnumSounds;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
@@ -44,14 +44,14 @@ public class ItemDetractor extends ItemMod {
 
 		if (detracts) {
 			if(!world.isRemote && mana.useEssence(magic)) {
-				EnumSounds.playSound(EnumSounds.HAMMER, world, player);
+				JourneySounds.playSound(JourneySounds.HAMMER, world, player);
 				EntityThrowable entity = new EntityDetractor(world, player);
 				world.spawnEntity(entity);
 			}
 		}
 		if (attracts) {
 			if(!world.isRemote && mana.useEssence(magic)) {
-				EnumSounds.playSound(EnumSounds.HAMMER, world, player);
+				JourneySounds.playSound(JourneySounds.HAMMER, world, player);
 				EntityThrowable entity = new EntityAttractor(world, player);
 				world.spawnEntity(entity);
 			}

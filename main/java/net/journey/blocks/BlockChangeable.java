@@ -1,6 +1,6 @@
 package net.journey.blocks;
 
-import net.journey.enums.EnumSounds;
+import net.journey.JourneySounds;
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
@@ -58,8 +58,8 @@ public class BlockChangeable extends BlockMod {
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		if(playerIn.getHeldItemMainhand() !=null && playerIn.getHeldItemMainhand().getItem() == key) {
-			EnumSounds.playSound(EnumSounds.UNLOCK, worldIn, playerIn);
-			EnumSounds.playSound(EnumSounds.CREAK, worldIn, playerIn);
+			JourneySounds.playSound(JourneySounds.UNLOCK, worldIn, playerIn);
+			JourneySounds.playSound(JourneySounds.GATE_CREAK, worldIn, playerIn);
 			worldIn.setBlockState(pos.add(0, 0, 0), blockChangedInto.getDefaultState());
 			return true;
 		}

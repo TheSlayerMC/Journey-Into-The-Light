@@ -37,16 +37,15 @@ public class EntityAlloyMender extends EntityModVillager {
 		return GuiHandler.alloyMender;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public void addRecipies(MerchantRecipeList list) {
 		list.add(new MerchantRecipe(new ItemStack(JourneyItems.shimmerdust, 64), new ItemStack(JourneyItems.metalDisk, 1), new ItemStack(JourneyItems.royalBow, 1)));
 		list.add(new MerchantRecipe(new ItemStack(JourneyItems.golderDust, 16), new ItemStack(JourneyItems.goldClump, 16), new ItemStack(JourneyItems.royalBlade, 1)));
 		list.add(new MerchantRecipe(new ItemStack(JourneyItems.shimmerdust, 64), new ItemStack(JourneyItems.metalDisk, 2), new ItemStack(JourneyItems.royalHammer, 1)));
 		//list.add(new MerchantRecipe(new ItemStack(JourneyItems.golderDust, 10), new ItemStack(JourneyItems.goldClump, 10), new ItemStack(JourneyItems.royalKnife, 16)));
-	/*	list.add(new MerchantRecipe(new ItemStack(JourneyBlocks.celestiumBlock, 8), new ItemStack(JourneyBlocks.mekyumBlock, 8), new ItemStack(JourneyItems.celekiumBattleaxe, 1)));
+		list.add(new MerchantRecipe(new ItemStack(JourneyBlocks.celestiumBlock, 8), new ItemStack(JourneyBlocks.mekyumBlock, 8), new ItemStack(JourneyItems.celekiumBattleaxe, 1)));
 		list.add(new MerchantRecipe(new ItemStack(JourneyBlocks.celestiumBlock, 7), new ItemStack(JourneyBlocks.koriteBlock, 7), new ItemStack(JourneyItems.celestiteBattleaxe, 1)));
 		list.add(new MerchantRecipe(new ItemStack(JourneyBlocks.storonBlock, 6), new ItemStack(JourneyItems.mekyumIngot, 6), new ItemStack(JourneyItems.storumBattleaxe, 1)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyBlocks.storonBlock, 5), new ItemStack(JourneyItems.koriteIngot, 5), new ItemStack(JourneyItems.bronzedBattleaxe, 1))); */
+		list.add(new MerchantRecipe(new ItemStack(JourneyBlocks.storonBlock, 5), new ItemStack(JourneyItems.koriteIngot, 5), new ItemStack(JourneyItems.bronzedBattleaxe, 1))); 
 	}
 }

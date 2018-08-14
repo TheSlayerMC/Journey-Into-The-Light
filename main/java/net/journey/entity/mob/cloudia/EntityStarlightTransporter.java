@@ -1,9 +1,10 @@
 package net.journey.entity.mob.cloudia;
 
 import net.journey.JourneyItems;
+import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
-import net.journey.enums.EnumSounds;
 import net.minecraft.item.Item;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityPeacefullUntillAttacked;
 
@@ -25,18 +26,18 @@ public class EntityStarlightTransporter extends EntityPeacefullUntillAttacked {
 	}
 
 	@Override
-	public EnumSounds setLivingSound() {
-		return EnumSounds.BUSH;
+	public SoundEvent setLivingSound() {
+		return JourneySounds.BUSH;
 	}
 
 	@Override
-	public EnumSounds setHurtSound() {
-		return EnumSounds.BUSH_HURT;
+	public SoundEvent setHurtSound() {
+		return JourneySounds.BUSH_HURT;
 	}
 
 	@Override
-	public EnumSounds setDeathSound() {
-		return EnumSounds.BUSH_DEATH;
+	public SoundEvent setDeathSound() {
+		return JourneySounds.BUSH_DEATH;
 	}
 	
 	@Override

@@ -1,8 +1,8 @@
 package net.journey.entity.mob.overworld;
 
+import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
 import net.journey.entity.AI.EntityAIBoomSwell;
-import net.journey.enums.EnumSounds;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAIRestrictSun;
@@ -21,6 +21,7 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -95,19 +96,20 @@ public class EntityBoom extends EntityModMob {
 	}
 
 	@Override
-	public EnumSounds setLivingSound() {
-		return EnumSounds.CREEPER;
+	public SoundEvent setLivingSound() {
+		return SoundEvents.ENTITY_CREEPER_PRIMED;
 	}
 
 	@Override
-	public EnumSounds setHurtSound() {
-		return EnumSounds.CREEPER;
+	public SoundEvent setHurtSound() {
+		return SoundEvents.ENTITY_CREEPER_HURT;
 	}
 
 	@Override
-	public EnumSounds setDeathSound() {
-		return EnumSounds.CREEPER_DEATH;
+	public SoundEvent setDeathSound() {
+		return SoundEvents.ENTITY_CREEPER_DEATH;
 	}
+
 
 	@Override
 	public boolean getCanSpawnHere() {

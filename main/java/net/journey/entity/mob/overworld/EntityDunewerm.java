@@ -1,9 +1,10 @@
 package net.journey.entity.mob.overworld;
 
+import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
-import net.journey.enums.EnumSounds;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.slayer.api.SlayerAPI;
@@ -28,18 +29,18 @@ public class EntityDunewerm extends EntityModMob {
 	}
 
 	@Override
-	public EnumSounds setLivingSound() {
-		return EnumSounds.SAND_CRAWLER;
+	public SoundEvent setLivingSound() {
+		return JourneySounds.SAND_CRAWLER;
 	}
 
 	@Override
-	public EnumSounds setHurtSound() {
-		return EnumSounds.MAGMA_GIANT_HURT;
+	public SoundEvent setHurtSound() {
+		return JourneySounds.MAGMA_GIANT_HURT;
 	}
 
 	@Override
-	public EnumSounds setDeathSound() {
-		return EnumSounds.MAGMA_GIANT_HURT;
+	public SoundEvent setDeathSound() {
+		return JourneySounds.MAGMA_GIANT_HURT;
 	}
 
 	@Override

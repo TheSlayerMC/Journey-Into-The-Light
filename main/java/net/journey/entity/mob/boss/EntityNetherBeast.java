@@ -1,16 +1,14 @@
 package net.journey.entity.mob.boss;
 
-import net.journey.JourneyAchievements;
 import net.journey.JourneyBlocks;
 import net.journey.JourneyItems;
+import net.journey.JourneySounds;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.entity.MobStats;
-import net.journey.enums.EnumSounds;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -71,18 +69,18 @@ public class EntityNetherBeast extends EntityEssenceBoss {
 	}
 
 	@Override
-	public EnumSounds setLivingSound() {
-		return EnumSounds.NETHER_BEAST;
+	public SoundEvent setLivingSound() {
+		return JourneySounds.NETHER_BEAST;
 	}
 
 	@Override
-	public EnumSounds setHurtSound() {
-		return EnumSounds.NETHER_BEAST_HURT;
+	public SoundEvent setHurtSound() {
+		return JourneySounds.NETHER_BEAST_HURT;
 	}
 
 	@Override
-	public EnumSounds setDeathSound() {
-		return EnumSounds.BOSS_DEATH;
+	public SoundEvent setDeathSound() {
+		return JourneySounds.BOSS_DEATH;
 	}
 	
 	@Override

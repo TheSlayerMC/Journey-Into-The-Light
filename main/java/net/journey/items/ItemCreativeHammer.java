@@ -3,10 +3,10 @@ package net.journey.items;
 import java.util.List;
 
 import net.journey.JourneyItems;
+import net.journey.JourneySounds;
 import net.journey.JourneyTabs;
 import net.journey.entity.projectile.EntityBasicProjectile;
 import net.journey.entity.projectile.EntityLightningBall;
-import net.journey.enums.EnumSounds;
 import net.journey.util.JourneyToolMaterial;
 import net.journey.util.LangHelper;
 import net.journey.util.LangRegistry;
@@ -48,7 +48,7 @@ public class ItemCreativeHammer extends ItemSword {
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand handIn) {
 		ItemStack stack = player.getHeldItem(handIn);
-		EnumSounds.playSound(EnumSounds.PLASMA, world, player);
+		JourneySounds.playSound(JourneySounds.PLASMA, world, player);
 		if(!unbreakable) stack.damageItem(1, player);
 		try {
 			world.spawnEntity(projectile.getConstructor(World.class, EntityLivingBase.class, float.class).newInstance(world, player, dam));
