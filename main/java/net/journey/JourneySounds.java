@@ -82,10 +82,7 @@ public class JourneySounds {
 	public static SoundEvent UNLOCK;
 	public static SoundEvent EMPTY;
 
-	public static int size = 0;
-
 	public static void init() {
-		size = SoundEvent.REGISTRY.getKeys().size();
 
 		CAVE_MOB = registerSounds("cave_mob");
 		ROCK = registerSounds("rock");
@@ -162,10 +159,6 @@ public class JourneySounds {
 	public static SoundEvent registerSounds(String sound) {
 		ResourceLocation LOC = new ResourceLocation(SlayerAPI.MOD_ID, sound);
 		SoundEvent s = new SoundEvent(LOC);
-
-		SoundEvent.REGISTRY.register(size, LOC, s);
-		size++;
-
 		return s;
 	}
 
