@@ -5,8 +5,10 @@
             "data": 1
         },
         "title": {
+            "translate": "journey.journeyachievements.title"
         },
         "description": {
+            "translate": "journey.journeyachievements.description"
         }, 
 	   "background": "journey:textures/blocks/eucabricks.png",
 	   "show_toast": false,
