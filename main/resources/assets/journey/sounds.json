@@ -1,7 +1,7 @@
 {
- "rock":{"category":"master","sounds": [{"name":"rock","stream": false}]},
+ "rock": {"category": "neutral","subtitle": "rock","sounds": ["rock"]},
  "baseMobHurt":{"category":"master","sounds": [{"name":"baseMobHurt","stream": false}]},
- "caveMob":{"category":"master","sounds": [{"name":"caveMob","stream": false}]},
+ "cavemob": {"category": "neutral","subtitle": "cavemob","sounds": [ "cavemob"]},
  "bossDeath":{"category":"master","sounds": [{"name":"bossDeath","stream": false}]},
  "terraSlug":{"category":"master","sounds": [{"name":"terraSlug","stream": false}]},
  "terraSlugHurt":{"category":"master","sounds": [{"name":"terraSlugHurt","stream": false}]},
