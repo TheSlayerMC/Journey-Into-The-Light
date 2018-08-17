@@ -2,8 +2,7 @@ BEFORE RELEASE 1.12 List
 
 Items:
 Armour needs to be added back
-Axes / Battleaxes need to be added back
-Bows need to be fixed (should be easy)
+Bows need to be fixed
 All items need to be tested and checked that no crash occures
 
 Blocks:
@@ -11,23 +10,25 @@ All blocks need to be placed down and used if an interaction is avaliable to che
 Fix tileentities (summoning and grindstone)
 remove unused blocks
 Make certain blocks use metadata types (Ryan can do this)
+Fix corba portal frame so it creates the portal when the eyes are placed inside the slots
 
 Rendering:
 Item JSONS need to written in the way of the new ones (refer to vanilla basic items using the parent "item/handheld" to assure of proper perspective in first and third person)
-column / grass type blocks need new Item jsons
-fix custom chest rendering (remove block jsons so the new model renders like a normal chest)
+column / grass type blocks need new Item jsons 
+fix custom chest rendering (different chest types should be rendered with different textures)
 
 Registrys:
 Finish crafting recipes
-Sound registrys have to be done
+Finish sounds
 
 Structures:
 Make mage and blacksmith buildings village pieces (maybe) or make them much less common
 Fix nether trees so they properly generate over nethic soil
-add chest loot jsons to structures with chest loot
+correctly register and add all loot tables
 
 Dimensions:
 Add mob spawning to dimensions (All dimensions are read as plains biomes, should be changed to the correct biomes)
+Fix certain teleporters (corba and depths specifically)
 
 Entitys:
 Make sure all mobs are placed to prevent crashes on spawn
@@ -36,7 +37,7 @@ get obsidian boat to move
 make certain bosses actually challenging and unique (later)
 
 Misc:
-Fix mana bars and only keep one (remove 2 mana bars)
+Fix essence bar so that the HUD updates (maybe change it to be more like the xp bar and have it overlap it when being used, frees up space and allows for more precise mana consumption)
 Make sure everything is fairly balanced (weapons, tools, armor, mobs, etc.)
 
 CODE:
