@@ -34,6 +34,7 @@ import net.journey.blocks.machines.BlockGrindstone;
 import net.journey.blocks.machines.BlockIgniter;
 import net.journey.blocks.machines.BlockJourneyChest;
 import net.journey.blocks.machines.BlockSummoningTable;
+import net.journey.blocks.meta.BlockMetaBase;
 import net.journey.blocks.portal.BlockBoilPortal;
 import net.journey.blocks.portal.BlockCloudiaPortal;
 import net.journey.blocks.portal.BlockCorbaPortal;
@@ -45,6 +46,7 @@ import net.journey.blocks.portal.BlockSenterianPortal;
 import net.journey.blocks.portal.BlockTerraniaPortal;
 import net.journey.blocks.portal.BlockWitherPortal;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.RegistryEvent;
@@ -201,10 +203,13 @@ public class JourneyBlocks {
 	public static BlockMod blazierBricks; 
 	public static BlockMod ashBlock;
 	public static BlockMod hotBlock;
-	public static BlockMod brisonStone;
+	/*public static BlockMod brisonStone;
 	public static BlockMod darkBrisonBrick;
 	public static BlockMod redBrisonBrick;
-	public static BlockMod smallBrisonBrick;
+	public static BlockMod smallBrisonBrick; */
+	
+	public static BlockMetaBase brisonblocks;
+	
 	public static BlockMod boilingBars;
 	public static BlockMod burningLeaves;
 	public static BlockMod boilingLog; 
@@ -466,6 +471,7 @@ public class JourneyBlocks {
 	
 	public static BlockFruitCrop bleedheartFruit;
 
+
 	
 	/* public static void registerBlocks(IForgeRegistry<Block> registry) {
 		System.out.print("Fucking Blocks Loading");
@@ -611,10 +617,12 @@ public class JourneyBlocks {
 		blazierBricks = new BlockMod("blazierBricks", "Blazier Bricks"); 
 		ashBlock = new BlockMod("ashBlock", "Ash");
 		hotBlock = new BlockModGrass(ashBlock, "hotGround", "Hot Ground", 2.0F);
-		brisonStone = new BlockMod("brisonStone", "Brison Stone", 2.0F);
+		/*brisonStone = new BlockMod("brisonStone", "Brison Stone", 2.0F);
 		darkBrisonBrick = new BlockMod("darkBrisonBrick", "Dark Brison Brick", 2.0F);
 		redBrisonBrick = new BlockMod("redBrisonBrick", "Red Brison Brick", 2.0F);
-		smallBrisonBrick = new BlockMod("smallBrisonBrick", "Small Brison Brick", 2.0F);
+		smallBrisonBrick = new BlockMod("smallBrisonBrick", "Small Brison Brick", 2.0F); */
+		
+		brisonblocks = new BlockMetaBase("brison", Material.ROCK);
 		boilingBars = new BlockModBars("boilingBars", "Brison Bars", 5.0F);
 		burningLeaves = new BlockModLeaves("burningLeaves", "Burning Leaves", 0.5F).setBurningPlant();
 		boilingLog = new BlockModLog("boilingLog", "Boiling Log"); 

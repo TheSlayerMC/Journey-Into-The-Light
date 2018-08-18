@@ -100,6 +100,7 @@ import net.slayer.api.item.ItemModAxe;
 import net.slayer.api.item.ItemModFood;
 import net.slayer.api.item.ItemModHoe;
 import net.slayer.api.item.ItemModPickaxe;
+import net.slayer.api.item.ItemModShield;
 import net.slayer.api.item.ItemModShovel;
 import net.slayer.api.item.ItemModSword;
 
@@ -835,6 +836,8 @@ public class JourneyItems {
 	
 	public static Item obsidianBoat;
 	
+	public static Item infernoshield;
+	
 	public static void init() {
 		heartSml = new ItemHealth("heartSml", "Heart: Tier 1", 1, 2, 0.2F, false, false, 60, false, true);
 		heartMed = new ItemHealth("heartMed", "Heart: Tier 2", 2, 2, 0.2F, false, false, 60, false, true);
@@ -1506,6 +1509,7 @@ public class JourneyItems {
 		sizzlingKnife = new ItemThrowableArrow("sizzlingKnife", "Sizzling Knife", 6F, 5, EntityFrostyPiercer.class);
 		
 		obsidianBoat = new ItemObsidianBoat("obsidianboat", "Obsidian Boat");
+		infernoshield = new ItemModShield("infernoshield", "Inferno Shield", 2, false);
 	}
 
 	public static ToolMaterial addToolMaterial(int uses, float efficiency, float dam, boolean breakable) {

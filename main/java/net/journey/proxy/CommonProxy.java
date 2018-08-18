@@ -111,9 +111,12 @@ public class CommonProxy {
 	
 	public void registerEntityRenderer(Entity entity, int i, String name) { }
 	
+	public void registerVariantRenderer(Item item, int meta, String name, String id) {}
+	
 	public void postInit(FMLPostInitializationEvent event) { }
 	
 	public void serverStarting(FMLServerStartingEvent event) { }
 	
 	private void addOreDictionary() { }
+	
 }
