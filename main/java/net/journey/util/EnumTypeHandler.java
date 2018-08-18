@@ -7,7 +7,7 @@ public class EnumTypeHandler {
 		BRISON_STONE(0, "brisonstone"),
 		DARK_BRISON_BRICK(1, "darkbrisonbrick"),
 		RED_BRISON_BRICK(2, "redbrisonbrick"),
-		SMALL_BRISON_BRICK(3, "redbrisonbrick");
+		SMALL_BRISON_BRICK(3, "smallbrisonbrick");
 
 		private static final EnumType[] META_LOOKUP = new EnumType[values().length];
 		private final int meta;

@@ -37,7 +37,7 @@ public class BlockMetaBase extends Block implements IMetaName, IHasModel {
 	public static final PropertyEnum<EnumTypeHandler.EnumType> VARIANT = PropertyEnum.<EnumTypeHandler.EnumType>create(
 			"variant", EnumTypeHandler.EnumType.class, new Predicate<EnumTypeHandler.EnumType>() {
 				public boolean apply(@Nullable EnumTypeHandler.EnumType apply) {
-					return apply.getMeta() < 2;
+					return apply.getMeta() < 4;
 				}
 			});
 
@@ -66,7 +66,7 @@ public class BlockMetaBase extends Block implements IMetaName, IHasModel {
 
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		IBlockState state = this.getDefaultState().withProperty(VARIANT, EnumTypeHandler.EnumType.byMetadata((meta & 1) % 2));
+		IBlockState state = this.getDefaultState().withProperty(VARIANT, EnumTypeHandler.EnumType.byMetadata((meta & 1) % 4));
 		return state;
 	}
 	
