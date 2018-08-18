@@ -622,7 +622,7 @@ public class JourneyBlocks {
 		redBrisonBrick = new BlockMod("redBrisonBrick", "Red Brison Brick", 2.0F);
 		smallBrisonBrick = new BlockMod("smallBrisonBrick", "Small Brison Brick", 2.0F); */
 		
-		brisonblocks = new BlockMetaBase("brison", Material.ROCK);
+		brisonblocks = new BlockMetaBase("brison", Material.ROCK, "brison");
 		boilingBars = new BlockModBars("boilingBars", "Brison Bars", 5.0F);
 		burningLeaves = new BlockModLeaves("burningLeaves", "Burning Leaves", 0.5F).setBurningPlant();
 		boilingLog = new BlockModLog("boilingLog", "Boiling Log"); 
