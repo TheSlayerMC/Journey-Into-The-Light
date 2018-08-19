@@ -52,5 +52,7 @@ public class ItemPiercer extends ItemMod {
 	public void addInformation(ItemStack i, World worldIn, List<String> l, ITooltipFlag flagIn) {
 		ItemDescription.addInformation(i, l);
 		l.add(damage + " Ranged Damage");
+		if(maxBounces != 1)
+			l.add(maxBounces + " Max Bounces");
 	}
 }

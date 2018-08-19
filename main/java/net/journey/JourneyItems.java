@@ -37,6 +37,7 @@ import net.journey.entity.projectile.EntityWithic;
 import net.journey.entity.projectile.EntityWizardsStar;
 import net.journey.enums.EnumKnowledge;
 import net.journey.items.ItemBattleAxe;
+import net.journey.items.ItemBonemealHoe;
 import net.journey.items.ItemCandyCane;
 import net.journey.items.ItemCrackenCanes;
 import net.journey.items.ItemCrakeBulb;
@@ -138,6 +139,8 @@ public class JourneyItems {
 	public static ToolMaterial orbadite = addToolMaterial(3142, 28F, 5F, true);
 	public static ToolMaterial gorbite = addToolMaterial(3142, 28F, 5F, true);
 
+	public static ToolMaterial hoeoflife = addToolMaterial(126, 28F, 5F, true);
+	
 	
 	public static ToolMaterial hellstoneMulti = addToolMaterial(3000, 10F, 5F, false);
 	public static ToolMaterial flairiumMulti = addToolMaterial(3000, 16F, 5F, false);
@@ -374,6 +377,8 @@ public class JourneyItems {
 	public static Item storonHoe;
 	public static Item mekyumHoe;
 
+	public static Item hoeOfEternalLife;
+	
 	public static Item multiToolOfEternalSmelting;
 
 	public static Item hellstoneSword;
@@ -1053,6 +1058,8 @@ public class JourneyItems {
 		koriteHoe = new ItemModHoe("koriteHoe", "Korite Hoe", JourneyToolMaterial.KORITE);
 		storonHoe = new ItemModHoe("storonHoe", "Storon Hoe", JourneyToolMaterial.KORITE);
 		mekyumHoe = new ItemModHoe("mekyumHoe", "Storon Hoe", JourneyToolMaterial.KORITE);
+		
+		hoeOfEternalLife = new ItemBonemealHoe("hoeofeternallife", "Hoe Of Eternal Life", JourneyToolMaterial.HOEOFLIFE);
 
 		multiToolOfEternalSmelting = new ItemMultiTool("multiToolOfEternalSmelting", "Multi Tool of Eternal Smelting", JourneyToolMaterial.SMELTING_TOOL, 512);
 
@@ -1491,16 +1498,16 @@ public class JourneyItems {
 		demonicBomb = new ItemThrowable("demonicBomb", "Demonic Bomb", 8F, EntityDemonicBomb.class);
 		fireBomb = new ItemThrowable("fireBomb", "Fire Bomb", 12F, EntityFireBomb.class);
 
-		boilingPiercer = new ItemPiercer("boilingPiercer", "Boiling Piercer", 12F, 6, EntityBoilingPiercer.class);
-		nethicPiercer = new ItemPiercer("nethicPiercer", "Nethic Piercer", 11F, 6, EntityNethicPiercer.class);
-		frozenPiercer = new ItemPiercer("frozenPiercer", "Frozen Piercer", 9F, 6, EntityFrozenPiercer.class);
-		eucaPiercer = new ItemPiercer("eucaPiercer", "Euca Piercer", 12F, 6, EntityEucaPiercer.class);
-		depthsPiercer = new ItemPiercer("depthsPiercer", "Depths Piercer", 21F, 6, EntityDepthsPiercer.class);
-		corbaPiercer = new ItemPiercer("corbaPiercer", "Corba Piercer", 29F, 6, EntityCorbaPiercer.class);
-		frostbittenPiercer = new ItemPiercer("frostbittenPiercer", "Frostbitten Piercer", 10F, 6, EntityFrostbittenPiercer.class);
-		frostyPiercer = new ItemPiercer("frostyPiercer", "Frosty Piercer", 9F, 6, EntityFrostyPiercer.class);
-		sunsetPiercer = new ItemPiercer("sunsetPiercer", "Sunset Piercer", 10F, 6, EntitySunsetPiercer.class);
-		skyPiercer = new ItemPiercer("skyPiercer", "Sky Piercer", 10F, 6, EntitySkyPiercer.class);
+		boilingPiercer = new ItemPiercer("boilingPiercer", "Boiling Piercer", 15F, 4, EntityBoilingPiercer.class);
+		nethicPiercer = new ItemPiercer("nethicPiercer", "Nethic Piercer", 11F, 3, EntityNethicPiercer.class);
+		frozenPiercer = new ItemPiercer("frozenPiercer", "Frozen Piercer", 9F, 2, EntityFrozenPiercer.class);
+		eucaPiercer = new ItemPiercer("eucaPiercer", "Euca Piercer", 14F, 4, EntityEucaPiercer.class);
+		depthsPiercer = new ItemPiercer("depthsPiercer", "Depths Piercer", 18F, 5, EntityDepthsPiercer.class);
+		corbaPiercer = new ItemPiercer("corbaPiercer", "Corba Piercer", 20F, 6, EntityCorbaPiercer.class);
+		frostbittenPiercer = new ItemPiercer("frostbittenPiercer", "Frostbitten Piercer", 12F, 2, EntityFrostbittenPiercer.class);
+		frostyPiercer = new ItemPiercer("frostyPiercer", "Frosty Piercer", 10F, 2, EntityFrostyPiercer.class);
+		sunsetPiercer = new ItemPiercer("sunsetPiercer", "Sunset Piercer", 7F, 1, EntitySunsetPiercer.class);
+		skyPiercer = new ItemPiercer("skyPiercer", "Sky Piercer", 29F, 6, EntitySkyPiercer.class);
 
 		moltenKnife = new ItemThrowableArrow("moltenKnife", "Molten Knife", 10F, 5, EntityMoltenKnife.class);
 		aquaticKnife = new ItemThrowableArrow("aquaticKnife", "Aquatic Knife", 6F, 5, EntityFrostyPiercer.class);

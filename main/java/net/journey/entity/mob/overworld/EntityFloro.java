@@ -132,17 +132,12 @@ public class EntityFloro extends EntityModMob implements IRangedAttackMob {
 	
 	@Override
 	protected void dropFewItems(boolean b, int j) {
-		if(rand.nextInt(6) == 0) dropItem(JourneyItems.floroPedal, 4);
-		super.dropFewItems(b, j);
-		if(rand.nextInt(3) == 0) dropItem(JourneyItems.floroPedal, 2);
-		super.dropFewItems(b, j);
-		if(rand.nextInt(1) == 0) dropItem(JourneyItems.floroPedal, 1);
+		if(rand.nextInt(24) == 0) dropItem(JourneyItems.floroPedal, 1);
+		if(rand.nextInt(65) == 0) dropItem(JourneyItems.hoeOfEternalLife, 1);
 		super.dropFewItems(b, j);
 	
 	}
 
 	@Override
-	public void setSwingingArms(boolean swingingArms) {
-		
-	}
+	public void setSwingingArms(boolean swingingArms) {}
 }
