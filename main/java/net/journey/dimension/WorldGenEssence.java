@@ -394,14 +394,13 @@ public class WorldGenEssence implements IWorldGenerator {
 			}
 		}
 		
-		if(r.nextInt(6)==0) {
 			y = r.nextInt(200); 
 			x = chunkX + r.nextInt(16) + 8; 
 			z = chunkZ + r.nextInt(16) + 8;
 			if(w.getBlockState(new BlockPos(x, y - 1, z)) == Blocks.GRASS.getDefaultState()) 
 				new WorldGenTowerDungeon().generate(w, r, new BlockPos(x, y, z));
 		}
-		if(r.nextInt(10)==0) {
+		if(r.nextInt(100)==0) {
 			y = r.nextInt(200); 
 			x = chunkX + r.nextInt(16) + 8; 
 			z = chunkZ + r.nextInt(16) + 8;
@@ -411,7 +410,7 @@ public class WorldGenEssence implements IWorldGenerator {
 				w.getBlockState(new BlockPos(x, y, z)) == Blocks.SAND.getDefaultState())
 			new WorldGenMageHouse().generate(w, r, new BlockPos(x, y, z));
 		}
-		if(r.nextInt(10)==0) {
+		if(r.nextInt(100)==0) {
 			y = r.nextInt(200); x = chunkX + r.nextInt(16) + 8; z = chunkZ + r.nextInt(16) + 8;
 			if(w.getBlockState(new BlockPos(x, y - 1, z)) == Blocks.GRASS.getDefaultState() || 
 				w.getBlockState(new BlockPos(x, y, z)) == Blocks.GRASS.getDefaultState() ||
@@ -419,14 +418,14 @@ public class WorldGenEssence implements IWorldGenerator {
 			    w.getBlockState(new BlockPos(x, y, z)) == Blocks.SAND.getDefaultState())
 			new WorldGenBlacksmithHouse().generate(w, r, new BlockPos(x, y, z));
 		}
-		if(r.nextInt(10)==0) {
+		/*if(r.nextInt(10)==0) {
 			y = r.nextInt(200); x = chunkX + r.nextInt(16) + 8; z = chunkZ + r.nextInt(16) + 8;
 			if(w.getBlockState(new BlockPos(x, y - 1, z)) == Blocks.GRASS.getDefaultState() || 
 				w.getBlockState(new BlockPos(x, y, z)) == Blocks.GRASS.getDefaultState() ||
 				w.getBlockState(new BlockPos(x, y - 1, z)) == Blocks.SAND.getDefaultState() || 
 				w.getBlockState(new BlockPos(x, y, z)) == Blocks.SAND.getDefaultState())
 			new WorldGenMerchant().generate(w, r, new BlockPos(x, y, z));
-		}
+		} */
 	}
 
 	public void generateEnd(World w, Random r, int chunkX, int chunkZ) {
