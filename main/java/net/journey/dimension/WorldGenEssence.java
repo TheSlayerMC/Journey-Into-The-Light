@@ -394,6 +394,7 @@ public class WorldGenEssence implements IWorldGenerator {
 			}
 		}
 		
+		if(r.nextInt(16)==0) {
 			y = r.nextInt(200); 
 			x = chunkX + r.nextInt(16) + 8; 
 			z = chunkZ + r.nextInt(16) + 8;
