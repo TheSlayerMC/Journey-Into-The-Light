@@ -1,0 +1,30 @@
+{
+    "type": "minecraft:crafting_shapeless",
+ 
+    "ingredients":
+    [
+
+    {
+      "item": "minecraft:wooden_pickaxe"
+    },
+
+    {
+      "item": "minecraft:wooden_axe"
+    },
+
+    {
+      "item": "minecraft:wooden_hoe"
+    },
+   
+    {
+      "item": "minecraft:wooden_shovel"
+    }
+
+    ],
+ 
+    "result":
+    {
+        "item": "journey:woodmultitool",
+        "count": 1
+    }
+}

@@ -11,6 +11,7 @@ import net.journey.dimension.corba.BiomeGenCorba;
 import net.journey.dimension.corba.WorldProviderCorba;
 import net.journey.dimension.depths.BiomeGenDepths;
 import net.journey.dimension.depths.WorldProviderDepths;
+import net.journey.dimension.end.WorldProviderEndJourney;
 import net.journey.dimension.euca.BiomeGenEuca;
 import net.journey.dimension.euca.WorldProviderEuca;
 import net.journey.dimension.frozen.BiomeGenFrozenLands;
@@ -141,6 +142,10 @@ public class DimensionHelper {
 		if(Config.overrideNether = true) {
 			DimensionManager.unregisterDimension(-1);
 			DimensionManager.registerDimension(-1, DimensionType.register("Nether", "NETHER", -1, WorldProviderNetherJourney.class, true));
+		}
+		if(Config.overrideEnd = true) {
+			DimensionManager.unregisterDimension(1);
+			DimensionManager.registerDimension(1, DimensionType.register("End", "END", 1, WorldProviderEndJourney.class, true));
 		}
 		addDimension(Config.euca, eucaType);
 		addDimension(Config.boil, boilingType);

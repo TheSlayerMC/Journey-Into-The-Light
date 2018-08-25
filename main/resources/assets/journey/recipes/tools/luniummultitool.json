@@ -1,0 +1,30 @@
+{
+    "type": "minecraft:crafting_shapeless",
+ 
+    "ingredients":
+    [
+
+    {
+      "item": "journey:luniumpickaxe"
+    },
+
+    {
+      "item": "journey:luniumaxe"
+    },
+
+    {
+      "item": "journey:luniumhoe"
+    },
+   
+    {
+      "item": "journey:luniumshovel"
+    }
+
+    ],
+ 
+    "result":
+    {
+        "item": "journey:luniummultitool",
+        "count": 1
+    }
+}

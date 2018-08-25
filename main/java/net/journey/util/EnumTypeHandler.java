@@ -1,5 +1,6 @@
 package net.journey.util;
 
+import net.minecraft.init.Items;
 import net.minecraft.util.IStringSerializable;
 
 public class EnumTypeHandler {

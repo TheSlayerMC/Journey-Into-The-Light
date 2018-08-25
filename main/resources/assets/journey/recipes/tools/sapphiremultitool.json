@@ -1,0 +1,30 @@
+{
+    "type": "minecraft:crafting_shapeless",
+ 
+    "ingredients":
+    [
+
+    {
+      "item": "journey:sapphirepickaxe"
+    },
+
+    {
+      "item": "journey:sapphireaxe"
+    },
+
+    {
+      "item": "journey:sapphirehoe"
+    },
+   
+    {
+      "item": "journey:sapphireshovel"
+    }
+
+    ],
+ 
+    "result":
+    {
+        "item": "journey:sapphiremultitool",
+        "count": 1
+    }
+}

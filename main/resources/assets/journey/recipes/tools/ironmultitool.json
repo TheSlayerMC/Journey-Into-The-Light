@@ -1,0 +1,30 @@
+{
+    "type": "minecraft:crafting_shapeless",
+ 
+    "ingredients":
+    [
+
+    {
+      "item": "minecraft:iron_pickaxe"
+    },
+
+    {
+      "item": "minecraft:iron_axe"
+    },
+
+    {
+      "item": "minecraft:iron_hoe"
+    },
+   
+    {
+      "item": "minecraft:iron_shovel"
+    }
+
+    ],
+ 
+    "result":
+    {
+        "item": "journey:ironmultitool",
+        "count": 1
+    }
+}

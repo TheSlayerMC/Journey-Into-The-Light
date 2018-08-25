@@ -156,8 +156,8 @@ public class JourneyItems {
 	public static ToolMaterial desMulti = addToolMaterial(3000, 16F, 5F, false);
 	public static ToolMaterial smeltingMulti = addToolMaterial(3000, 8F, 5F, false);
 	//TODO MATERIALS
-	public static ToolMaterial woodMulti = addToolMaterial(60, 1F, 5F, false);
-	public static ToolMaterial stoneMulti = addToolMaterial(132, 2F, 5F, false);
+	public static ToolMaterial woodMulti = addToolMaterial(60, 2F, 5F, false);
+	public static ToolMaterial stoneMulti = addToolMaterial(132, 3F, 5F, false);
 	public static ToolMaterial ironMulti = addToolMaterial(251, 4F, 5F, false);
 	public static ToolMaterial goldMulti = addToolMaterial(33, 5F, 5F, false);
 	public static ToolMaterial diamondMulti = addToolMaterial(1562, 6F, 5F, false);
@@ -360,6 +360,7 @@ public class JourneyItems {
 	public static Item gorbiteAxe;
 	public static Item orbaditeAxe;
 	public static Item desAxe;
+	public static Item nethicAxe;
 	public static Item koriteAxe;
 	public static Item storonAxe;
 	public static Item mekyumAxe;
@@ -874,7 +875,7 @@ public class JourneyItems {
 		bleedstonedust = new ItemMod("bleedstonedust", "Bleedstone Dust");
 		smithstonedust = new ItemMod("smithstonedust", "Smithstone Dust");
 		
-		nethicgemstone = new ItemMod("nethicgemstone", "Nethic Gemstone");
+		nethicgemstone = new ItemMod("soulstone", "Soulstone");
 		
 		obsidianrod = new ItemMod("obsidianrod", "Obsidian Rod");
 		elderKey = new ItemMod("elderKey", "Elder Key").setMaxStackSize(1);
@@ -1007,6 +1008,7 @@ public class JourneyItems {
 		
 		hellstonePickaxe = new ItemModPickaxe("hellstonePickaxe", "Bloodcrust Pickaxe", JourneyToolMaterial.HELLSTONE);
 		nethicPickaxe = new ItemModPickaxe("nethicPickaxe", "Nethic Pickaxe", JourneyToolMaterial.NETHIC);
+		nethicAxe = new ItemModAxe("nethicaxe", "Nethic Axe", JourneyToolMaterial.NETHIC);
 		
 		koritePickaxe = new ItemModPickaxe("koritePickaxe", "Korite Pickaxe", JourneyToolMaterial.KORITE);
 		storonPickaxe = new ItemModPickaxe("storonPickaxe", "Storon Pickaxe", JourneyToolMaterial.KORITE);
