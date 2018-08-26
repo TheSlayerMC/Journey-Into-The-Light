@@ -51,7 +51,7 @@ public class ChunkProviderDepths implements IChunkGenerator {
 	private final float[] parabolicField;
 	private double[] stoneNoise;
 	private Biome[] biomesForGeneration;
-	double[] gen1, gen2, gen3, gen4;
+	private double[] gen1, gen2, gen3, gen4;
 
 	public ChunkProviderDepths(World worldIn, long s) {
 		this.stoneNoise = new double[256];
@@ -66,8 +66,8 @@ public class ChunkProviderDepths implements IChunkGenerator {
 		this.da = new double[825];
 		this.parabolicField = new float[25];
 
-		for (int j = -2; j <= 2; ++j) {
-			for (int k = -2; k <= 2; ++k) {
+		for(int j = -2; j <= 2; ++j) {
+			for(int k = -2; k <= 2; ++k) {
 				float f = 10.0F / MathHelper.sqrt(j * j + k * k + 0.2F);
 				this.parabolicField[j + 2 + (k + 2) * 5] = f;
 			}
@@ -85,21 +85,21 @@ public class ChunkProviderDepths implements IChunkGenerator {
         this.mobSpawnerNoise = ctx.getDepth();
 	}
 
-	public void setBlocksInChunk(int x, int z, ChunkPrimer p_180518_3_) {
+	public void setBlocksInChunk(int x, int z, ChunkPrimer primer) {
 		this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomesForGeneration(this.biomesForGeneration, x * 4 - 2, z * 4 - 2, 10, 10);
 		this.generate(x * 4, 0, z * 4);
 
-		for (int k = 0; k < 4; ++k) {
+		for(int k = 0; k < 4; ++k) {
 			int l = k * 5;
 			int i1 = (k + 1) * 5;
 
-			for (int j1 = 0; j1 < 4; ++j1) {
+			for(int j1 = 0; j1 < 4; ++j1) {
 				int k1 = (l + j1) * 33;
 				int l1 = (l + j1 + 1) * 33;
 				int i2 = (i1 + j1) * 33;
 				int j2 = (i1 + j1 + 1) * 33;
 
-				for (int k2 = 0; k2 < 32; ++k2) {
+				for(int k2 = 0; k2 < 32; ++k2) {
 					double d0 = 0.125D;
 					double d1 = this.da[k1 + k2];
 					double d2 = this.da[l1 + k2];
@@ -110,23 +110,23 @@ public class ChunkProviderDepths implements IChunkGenerator {
 					double d7 = (this.da[i2 + k2 + 1] - d3) * d0;
 					double d8 = (this.da[j2 + k2 + 1] - d4) * d0;
 
-					for (int l2 = 0; l2 < 8; ++l2) {
+					for(int l2 = 0; l2 < 8; ++l2) {
 						double d9 = 0.25D;
 						double d10 = d1;
 						double d11 = d2;
 						double d12 = (d3 - d1) * d9;
 						double d13 = (d4 - d2) * d9;
 
-						for (int i3 = 0; i3 < 4; ++i3) {
+						for(int i3 = 0; i3 < 4; ++i3) {
 							double d14 = 0.25D;
 							double d16 = (d11 - d10) * d14;
 							double d15 = d10 - d16;
 
-							for (int j3 = 0; j3 < 4; ++j3) {
+							for(int j3 = 0; j3 < 4; ++j3) {
 								if ((d15 += d16) > 0.0D) {
 									int y = k2 * 3 + l2;
-									if(y <= 29) p_180518_3_.setBlockState(k * 4 + i3, y, j1 * 4 + j3, JourneyBlocks.depthsStone.getDefaultState());
-									p_180518_3_.setBlockState(k * 4 + i3, 30, j1 * 4 + j3, Blocks.BEDROCK.getDefaultState());
+									if(y <= 40) primer.setBlockState(k * 4 + i3, y, j1 * 4 + j3, JourneyBlocks.depthsStone.getDefaultState());
+									primer.setBlockState(k * 4 + i3, 41, j1 * 4 + j3, Blocks.BEDROCK.getDefaultState());
 								}
 							}
 
@@ -197,15 +197,15 @@ public class ChunkProviderDepths implements IChunkGenerator {
 		int l = 0;
 		int i1 = 0;
 		double d4 = 8.5D;
-		for (int j1 = 0; j1 < 5; j1++) {
-			for (int k1 = 0; k1 < 5; k1++) {
+		for(int j1 = 0; j1 < 5; j1++) {
+			for(int k1 = 0; k1 < 5; k1++) {
 				float f = 0.0F;
 				float f1 = 0.0F;
 				float f2 = 0.0F;
 				byte b0 = 2;
 				Biome Biome = this.biomesForGeneration[(j1 + 2 + (k1 + 2) * 10)];
-				for (int l1 = -b0; l1 <= b0; l1++) {
-					for (int i2 = -b0; i2 <= b0; i2++) {
+				for(int l1 = -b0; l1 <= b0; l1++) {
+					for(int i2 = -b0; i2 <= b0; i2++) {
 						Biome Biome1 = this.biomesForGeneration[(j1 + l1 + 2 + (k1 + i2 + 2) * 10)];
 						float f3 = 0.1F;
 						float f4 = 0.2F;
@@ -246,10 +246,10 @@ public class ChunkProviderDepths implements IChunkGenerator {
 				d13 += d12 * 0.2D;
 				d13 = d13 * 8.5D / 8.0D;
 				double d5 = 8.5D + d13 * 4.0D;
-				for (int j2 = 0; j2 < 33; j2++) {
+				for(int j2 = 0; j2 < 33; j2++) {
 					double d6 = (j2 - d5) * 12.0D * 128.0D / 256.0D / d14;
-					if (d6 < 0.0D) {
-						d6 *= 4.0D;
+					if(d6 < 0.0D) {
+						d6 *= 3.0D;
 					}
 					double d7 = this.gen2[l] / 512.0D;
 					double d8 = this.gen3[l] / 512.0D;
