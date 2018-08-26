@@ -3,9 +3,9 @@
    
     "pattern":
     [
-        "R",
-        "I",
-        "I"
+        "RR ",
+        "RI ",
+        " I "
     ],
    
     "key":
@@ -23,7 +23,7 @@
    
     "result":
     {
-        "item": "journey:nethicshovel",
+        "item": "journey:nethicaxe",
         "count": 1
     }
 }

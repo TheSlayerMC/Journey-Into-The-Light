@@ -1,0 +1,30 @@
+{
+    "type": "minecraft:crafting_shapeless",
+ 
+    "ingredients":
+    [
+
+    {
+      "item": "journey:shadiumpickaxe"
+    },
+
+    {
+      "item": "journey:shadiumaxe"
+    },
+
+    {
+      "item": "journey:shadiumhoe"
+    },
+   
+    {
+      "item": "journey:shadiumshovel"
+    }
+
+    ],
+ 
+    "result":
+    {
+        "item": "journey:shadiummultitool",
+        "count": 1
+    }
+}

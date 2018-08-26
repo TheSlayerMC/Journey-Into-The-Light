@@ -12,7 +12,7 @@
     {
         "R":
         {
-            "item": "journey:soulstone"
+            "item": "journey:sapphire"
         },
 
         "I":
@@ -23,7 +23,7 @@
    
     "result":
     {
-        "item": "journey:nethicshovel",
+        "item": "journey:sapphireshovel",
         "count": 1
     }
 }
