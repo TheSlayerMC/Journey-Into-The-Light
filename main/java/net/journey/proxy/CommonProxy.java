@@ -6,9 +6,6 @@ import net.journey.JourneyCrops;
 import net.journey.JourneyItems;
 import net.journey.JourneySounds;
 import net.journey.JourneyTabs;
-import net.journey.achievement.event.JourneyDungeonEvent;
-import net.journey.achievement.event.JourneySapphireEvent;
-import net.journey.achievement.event.JourneySapphireSwordEvent;
 import net.journey.blocks.tileentity.TileEntityGrindstone;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.blocks.tileentity.TileEntityNetherFurnace;
@@ -40,7 +37,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -76,15 +72,13 @@ public class CommonProxy {
 		GameRegistry.registerTileEntity(TileEntityGrindstone.class, SlayerAPI.PREFIX + "Grindstone");
 		GameRegistry.registerTileEntity(TileEntityNetherFurnace.class, SlayerAPI.PREFIX + "Nether Furnace");
 		GameRegistry.registerTileEntity(TileEntityTrap.class, SlayerAPI.PREFIX + "Trap");
-
+		
 		addOreDictionary();
 		SlayerAPI.registerEvent(new ArmorAbilityEvent());
 		SlayerAPI.registerEvent(new PlayerEvent());
 		GameRegistry.registerFuelHandler(new JourneyFuelHandler());
 		MinecraftForge.addGrassSeed(new ItemStack(JourneyCrops.tomatoSeeds), 5);
-		//FMLCommonHandler.instance().bus().register(new JourneySapphireSwordEvent());
-		//FMLCommonHandler.instance().bus().register(new JourneySapphireEvent());
-		//FMLCommonHandler.instance().bus().register(new JourneyDungeonEvent());
+		//FMLCommonHandler.instance().bus().register(new JourneyAdvancementEvent());
 		DimensionHelper.init();
 		DimensionHelper.addSpawns();
 		CapabilityManager.INSTANCE.register(IEssence.class, new EssenceStorage(), EssenceBar.class);
@@ -102,7 +96,7 @@ public class CommonProxy {
 	}
 	
     @SubscribeEvent
-    public static void registerBlocks(RegistryEvent.Register<Block> event) {  }
+    public static void registerBlocks(RegistryEvent.Register<Block> event) { }
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) { }

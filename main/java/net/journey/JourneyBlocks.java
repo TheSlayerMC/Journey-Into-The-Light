@@ -471,21 +471,6 @@ public class JourneyBlocks {
 	
 	public static BlockFruitCrop bleedheartFruit;
 
-
-	
-	/* public static void registerBlocks(IForgeRegistry<Block> registry) {
-		System.out.print("Fucking Blocks Loading");
-		registry.registerAll(
-				cobaltOre);
-		System.out.print("The Fucking Blocks Loaded");
-	}
-	
-	public static void registerItemBlocks(IForgeRegistry<Item> registry) {
-		registry.registerAll(
-				cobaltOre.createItemBlock());
-	} */
-
-
 	/**
 	public static BlockMod boilingFurnace = new BlockNetherFurnace("boilingFurnace", "Boiling Furnace", false);
 	public static BlockMod boilingFurnaceActive = new BlockNetherFurnace("boilingFurnaceActive", "Boiling Furnace", true).setLightLevel(1).setCreativeTab(null);

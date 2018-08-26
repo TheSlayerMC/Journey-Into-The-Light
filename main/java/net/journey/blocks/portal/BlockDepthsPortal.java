@@ -7,7 +7,7 @@ import net.journey.JourneyBlocks;
 import net.journey.JourneyItems;
 import net.journey.JourneyTabs;
 import net.journey.client.render.particles.EntityDepthsPotalFX;
-import net.journey.dimension.ModTeleporter;
+import net.journey.dimension.depths.TeleporterDepths;
 import net.journey.util.Config;
 import net.journey.util.LangRegistry;
 import net.minecraft.block.Block;
@@ -114,10 +114,10 @@ public class BlockDepthsPortal extends BlockBreakable {
 				thePlayer.timeUntilPortal = 10;
 			else if(thePlayer.dimension != dimensionID) {
 				thePlayer.timeUntilPortal = 10;
-				thePlayer.mcServer.getPlayerList().transferPlayerToDimension(thePlayer, dimensionID, new ModTeleporter(thePlayer.mcServer.getWorld(dimensionID), dimensionID, this, blockFrame));
+				thePlayer.mcServer.getPlayerList().transferPlayerToDimension(thePlayer, dimensionID, new TeleporterDepths(thePlayer.mcServer.getWorld(dimensionID), dimensionID, this, blockFrame));
 			} else {
 				thePlayer.timeUntilPortal = 10;
-				thePlayer.mcServer.getPlayerList().transferPlayerToDimension(thePlayer, 0, new ModTeleporter(thePlayer.mcServer.getWorld(0), 0, this, blockFrame));
+				thePlayer.mcServer.getPlayerList().transferPlayerToDimension(thePlayer, 0, new TeleporterDepths(thePlayer.mcServer.getWorld(0), 0, this, blockFrame));
 			}
 		}
 	}
