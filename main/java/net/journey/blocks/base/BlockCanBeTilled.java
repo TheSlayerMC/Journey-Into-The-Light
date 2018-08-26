@@ -3,7 +3,7 @@ package net.journey.blocks.base;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
+import net.minecraft.item.ItemHoe;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
@@ -21,14 +21,7 @@ public class BlockCanBeTilled extends BlockMod {
 	
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
-		if(
-		playerIn.getHeldItem(hand) != null && 
-		playerIn.getHeldItem(hand).getItem() == Items.DIAMOND_HOE || 
-		playerIn.getHeldItem(hand).getItem() == Items.IRON_HOE || 
-		playerIn.getHeldItem(hand).getItem() == Items.GOLDEN_HOE || 
-		playerIn.getHeldItem(hand).getItem() == Items.STONE_HOE || 
-		playerIn.getHeldItem(hand).getItem() == Items.WOODEN_HOE) {
-			if(worldIn.isRemote);
+		if(!(worldIn.isRemote) && playerIn.getHeldItem(hand) != null &&  playerIn.getHeldItem(hand).getItem() instanceof ItemHoe) {
 			worldIn.setBlockState(new BlockPos(0, 0, 0), farmland.getDefaultState());
 			return true;
 		}
