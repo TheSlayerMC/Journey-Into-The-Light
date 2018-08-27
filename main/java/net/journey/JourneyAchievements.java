@@ -34,7 +34,7 @@ public class JourneyAchievements {
 	public static StatBase achievementTrophy;
 	
 	public static void init() {
-		//AdvancementProgress.registerAchievementPage(ap);
+		//AdvancementsProgress.registerAchievementPage(ap);
 		//registerMiscAchievements();
 	}
 

@@ -30,7 +30,6 @@ public class JITL {
 
 	public static final Enchantment hotTouch = new EnchantmentHotTouch();
 	public static final Enchantment waterWalk = new EnchantmentWaterWalk();
-	public static final Material tropicalMat = new Material(MapColor.BLUE);
 	
 	public static SimpleNetworkWrapper wrapper;
 		
