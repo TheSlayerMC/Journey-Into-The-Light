@@ -1408,7 +1408,7 @@ public class JourneyItems {
 		friedGhastTentacale = new ItemModFood("friedGhastTentacle", "Fried Ghast Tentacale", 4, 0.6F, 10, true);
 		ghastTentacle = new ItemModFood("ghastTentacle", "Ghast Tentacale", 1, 0.6F, 10, true);
 		friedEgg = new ItemModFood("friedEgg", "Fried Egg", 2, 0.6F, 10, false);
-		floroPedal = new ItemModFood("floroPetal", "Floro Petal", 3, 0.6F, 10, false).setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.confusion, 100, 40), 1.0F);
+		floroPedal = new ItemModFood("floroPedal", "Floro Pedal", 3, 0.6F, 10, false).setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.confusion, 100, 40), 1.0F);
 		tomato = new ItemModFood("tomato", "Tomato", 3, 0.6F, 10, false);
 		airMelon = new ItemModFood("airMelon", "Air Melon", 10, 3.0F, 2, false).setAlwaysEdible().setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.digSpeed, 100, 40), 1.0F);
 		glowshroom = new ItemModFood("glowshroom", "Glowshroom", 4, 0.6F, 10, false).setAlwaysEdible().setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.nightVision, 100, 1), 1.0F).setAlwaysEdible();
