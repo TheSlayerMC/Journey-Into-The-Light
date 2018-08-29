@@ -5,12 +5,15 @@ import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
+import net.minecraft.util.ResourceLocation;
+import net.slayer.api.SlayerAPI;
 
 public class EnchantmentHotTouch extends Enchantment {
 
 	public EnchantmentHotTouch(EntityEquipmentSlot ... slot) {
 		super(Rarity.RARE, EnumEnchantmentType.DIGGER, slot);
 		this.setName("Hot Touch");
+		setRegistryName(new ResourceLocation(SlayerAPI.MOD_ID, "Hot Touch"));
 	}
 
 	@Override

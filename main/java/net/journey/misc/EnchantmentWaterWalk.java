@@ -12,12 +12,14 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.slayer.api.SlayerAPI;
 
 public class EnchantmentWaterWalk extends Enchantment {
 
 	public EnchantmentWaterWalk(EntityEquipmentSlot ... slot) {
 		super(Rarity.RARE, EnumEnchantmentType.ARMOR_FEET, slot);
 		this.setName("Water Walker");
+		setRegistryName(new ResourceLocation(SlayerAPI.MOD_ID, "Water Walker"));
 	}
 
 	@Override

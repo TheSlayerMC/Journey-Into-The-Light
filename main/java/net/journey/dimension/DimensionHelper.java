@@ -119,7 +119,6 @@ public class DimensionHelper {
 	public static Biome boiling = new BiomeGenBoiling(Config.boilBiome);
 	public static Biome cloudia = new BiomeGenCloudia(Config.cloudiaBiome);
 	public static Biome corba = new BiomeGenCorba(Config.corbaBiome);
-
 	public static Biome depths = new BiomeGenDepths(Config.depthsBiome);
 	public static Biome frozen = new BiomeGenFrozenLands(Config.frozenBiome);
 	public static Biome terrania = new BiomeGenTerrania(Config.terraniaBiome);

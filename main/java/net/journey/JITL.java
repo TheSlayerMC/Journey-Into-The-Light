@@ -45,8 +45,7 @@ public class JITL {
 				SlayerAPI.Colour.AQUA +		 "The_SlayerMC - Owner/Creator/Developer/Code " + 
 				SlayerAPI.Colour.BLUE + 	 "Dizzlepop12 - Artist/Models/Code/Assistant Developer, " + 
 				SlayerAPI.Colour.DARK_AQUA + "Eternaldoom - Ex-Assistant Developer/Code/Some Textures";
-		
-		event.getModMetadata().description = "A full progressional experience that adds weapons, mobs, dimensions, bosses, and much more to your game.";
+		event.getModMetadata().description = "A full progressional experience that adds Weapons, Mobs, Dimensions, Bosses, and much more to your game.";
 		event.getModMetadata().modId = SlayerAPI.MOD_ID;
 		//event.getModMetadata().url = "wiki.essenceofthegods.net";
 		event.getModMetadata().name = SlayerAPI.MOD_NAME;
