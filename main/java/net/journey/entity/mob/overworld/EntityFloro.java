@@ -23,6 +23,7 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -110,6 +111,21 @@ public class EntityFloro extends EntityModMob implements IRangedAttackMob {
 		return MobStats.overworldHealth;
 	}
 
+	@Override
+	protected SoundEvent getAmbientSound() {
+		return JourneySounds.HONGO;
+	}
+
+	@Override
+	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
+		return JourneySounds.HONGO_HURT;
+	}
+
+	@Override
+	protected SoundEvent getDeathSound() {
+		return JourneySounds.BIRD_DEATH;
+	}
+	
 	@Override
 	public SoundEvent setLivingSound() {
 		return JourneySounds.HONGO;

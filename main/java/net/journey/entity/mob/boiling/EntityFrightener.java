@@ -8,8 +8,10 @@ import net.journey.entity.MobStats;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityModMob;
@@ -34,18 +36,18 @@ public class EntityFrightener extends EntityModMob{
 	}
 
 	@Override
-	public SoundEvent setLivingSound() {
-		return JourneySounds.MAGMA_GIANT;
+	protected SoundEvent getAmbientSound() {
+		return JourneySounds.HONGO;
 	}
 
 	@Override
-	public SoundEvent setHurtSound() {
-		return JourneySounds.MAGMA_GIANT_HURT;
+	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
+		return JourneySounds.HONGO_HURT;
 	}
 
 	@Override
-	public SoundEvent setDeathSound() {
-		return JourneySounds.MAGMA_GIANT_HURT;
+	protected SoundEvent getDeathSound() {
+		return JourneySounds.BIRD_DEATH;
 	}
 	
     @Override
@@ -85,4 +87,22 @@ public class EntityFrightener extends EntityModMob{
 		if(rand.nextInt(65) == 0) dropItem(JourneyItems.sizzlingEye, 4);
 		super.dropFewItems(b, j); 
 		}
+
+	@Override
+	public SoundEvent setLivingSound() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public SoundEvent setHurtSound() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public SoundEvent setDeathSound() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	}
