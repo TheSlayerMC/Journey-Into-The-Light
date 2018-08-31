@@ -6,11 +6,16 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.registry.RegistryNamespaced;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import net.minecraftforge.registries.GameData;
 import net.slayer.api.SlayerAPI;
 
 public class JourneySounds {
 
+	private static int size = 0;
+	
 	public static SoundEvent CAVE_MOB;
 	public static SoundEvent ROCK;
 	public static SoundEvent BASE_MOB_HURT;
@@ -159,6 +164,8 @@ public class JourneySounds {
 	public static SoundEvent registerSounds(String sound) {
 		ResourceLocation LOC = new ResourceLocation(SlayerAPI.MOD_ID, sound);
 		SoundEvent s = new SoundEvent(LOC);
+		
+		ForgeRegistries.SOUND_EVENTS.register(s);
 		return s;
 	}
 
