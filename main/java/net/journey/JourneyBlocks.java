@@ -123,10 +123,10 @@ public class JourneyBlocks {
 	public static BlockMod orbaditeBlock;
 	public static BlockMod luniteBlock;
 
-	public static BlockModLog witherwoodLog;
+	public static BlockMod witherwoodLog;
 	public static BlockMod witherwoodLeaves;
 	public static BlockMod sizzlerWoodLeaves;
-	public static BlockModLog sizzlerWoodLog;
+	public static BlockMod sizzlerWoodLog;
 	public static BlockNetherFlower deathGrass;
 	public static BlockNetherFlower hellBell;
 	public static BlockMod hellshroom;
@@ -150,7 +150,7 @@ public class JourneyBlocks {
 
 	public static BlockMod eucaGrass;
 	public static BlockMod eucaStone;
-	public static BlockModLog eucaGoldLog;
+	public static BlockMod eucaGoldLog;
 	public static BlockMod goldEucaPlank;
 	public static BlockModStairs eucaGoldStairs;
 	public static BlockMod eucaGoldLeaves;
@@ -162,7 +162,7 @@ public class JourneyBlocks {
 	public static BlockMod depthsDirt;
 	public static BlockMod depthsGrass;
 	public static BlockMod depthsStone;
-	public static BlockModLog depthsLog;
+	public static BlockMod depthsLog;
 	public static BlockMod depthsPlank;
 	public static BlockModStairs depthsStairs;
 	public static BlockMod depthsLeaves;
@@ -175,14 +175,14 @@ public class JourneyBlocks {
 	public static BlockMod frozenStone;
 	public static BlockMod frozenGrass;
 	public static BlockMod frozenLeaves;
-	public static BlockModLog frozenBark;
+	public static BlockMod frozenBark;
 	public static BlockMod frozenPlanks;
 
 	public static BlockMod withanDirt;
 	public static BlockMod withanRock;
 	public static BlockMod withanGrass;
 	public static BlockMod withanLeaves;
-	public static BlockModLog withanBark;
+	public static BlockMod withanBark;
 	public static BlockMod withanRockReinforced;
 	public static BlockMod withanLamp;
 	public static BlockMod withanLight; 
@@ -192,7 +192,7 @@ public class JourneyBlocks {
 
 	public static BlockMod corbaStone;
 	public static BlockMod corbaGrass;
-	public static BlockModLog corbaLog;
+	public static BlockMod corbaLog;
 	public static BlockMod corbaLeaves;
 	public static BlockMod corbaPillar;
 	public static BlockMod corbaPlank;
@@ -212,11 +212,11 @@ public class JourneyBlocks {
 	
 	public static BlockMod boilingBars;
 	public static BlockMod burningLeaves;
-	public static BlockModLog boilingLog; 
+	public static BlockMod boilingLog; 
 
 	public static BlockMod cloudiaDirt;
 	public static BlockMod cloudiaGrass;
-	public static BlockModLog cloudiaLog; 
+	public static BlockMod cloudiaLog; 
 	public static BlockMod cloudiaRock; 
 	public static BlockMod cloudiaBrick; 
 	public static BlockMod cloudiaWall;  
@@ -343,7 +343,7 @@ public class JourneyBlocks {
 	public static BlockMod terraniaLeaves;
 	public static BlockMod terraniaVine;
 	public static BlockMod terranianDirt;
-	public static BlockModLog terranianLog;
+	public static BlockMod terranianLog;
 	public static BlockMod terranianGrass;
 	public static BlockMod terranianStone;
 	public static BlockMod terranianBars;
@@ -411,7 +411,7 @@ public class JourneyBlocks {
 	public static BlockModFlower permaFlower;
 	public static BlockModFlower shiverFlower;
 	public static BlockModFlower iceBush;
-	public static BlockIceLog iceLog;
+	public static BlockMod iceLog;
 	public static BlockMod brittleIce;
 
 	public static BlockModFlower eucaTallGrass;
