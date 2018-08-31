@@ -9,9 +9,9 @@ import net.journey.JourneyBlocks;
 import net.journey.JourneyItems;
 import net.journey.blocks.meta.ItemBlockVarients;
 import net.journey.client.IHasModel;
-import net.journey.util.EnumTypeHandler;
 import net.journey.util.IMetaName;
 import net.journey.util.LangRegistry;
+import net.journey.util.enums.EnumTypeLogs;
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
@@ -31,9 +31,9 @@ public class BlockModLog extends BlockLog implements IMetaName, IHasModel{
 	
 	protected boolean isOpaque = true, isNormalCube = true;
 	
-	public static final PropertyEnum<EnumTypeHandler.EnumType> VARIANT = PropertyEnum.<EnumTypeHandler.EnumType>create("variant", EnumTypeHandler.EnumType.class, new Predicate<EnumTypeHandler.EnumType>()
+	public static final PropertyEnum<EnumTypeLogs.EnumType> VARIANT = PropertyEnum.<EnumTypeLogs.EnumType>create("variant", EnumTypeLogs.EnumType.class, new Predicate<EnumTypeLogs.EnumType>()
 	{
-		public boolean apply(@Nullable EnumTypeHandler.EnumType apply)
+		public boolean apply(@Nullable EnumTypeLogs.EnumType apply)
 		{
 			return apply.getMeta() < 2;
 		}
@@ -63,14 +63,14 @@ public class BlockModLog extends BlockLog implements IMetaName, IHasModel{
 	
 	@Override
 	public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items) {
-		for(EnumTypeHandler.EnumType customblockplanks$enumtype : EnumTypeHandler.EnumType.values()) {
+		for(EnumTypeLogs.EnumType customblockplanks$enumtype : EnumTypeLogs.EnumType.values()) {
 			items.add(new ItemStack(this, 1, customblockplanks$enumtype.getMeta()));
 		}
 	}
 	
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		IBlockState state = this.getDefaultState().withProperty(VARIANT, EnumTypeHandler.EnumType.byMetadata((meta & 1) % 2));
+		IBlockState state = this.getDefaultState().withProperty(VARIANT, EnumTypeLogs.EnumType.byMetadata((meta & 1) % 2));
 		switch(meta & 6) {
 		case 0:
 			state = state.withProperty(LOG_AXIS, EnumAxis.Y);
@@ -91,7 +91,7 @@ public class BlockModLog extends BlockLog implements IMetaName, IHasModel{
 	@Override
 	public int getMetaFromState(IBlockState state) {
 		int i = 0;
-		i = i | ((EnumTypeHandler.EnumType)state.getValue(VARIANT)).getMeta();
+		i = i | ((EnumTypeLogs.EnumType)state.getValue(VARIANT)).getMeta();
 		switch((BlockLog.EnumAxis)state.getValue(LOG_AXIS)) {
 		case X:
 			i |= 2;
@@ -112,23 +112,23 @@ public class BlockModLog extends BlockLog implements IMetaName, IHasModel{
 	
 	@Override
 	protected ItemStack getSilkTouchDrop(IBlockState state) {
-		return new ItemStack(Item.getItemFromBlock(this), 1, ((EnumTypeHandler.EnumType)state.getValue(VARIANT)).getMeta());
+		return new ItemStack(Item.getItemFromBlock(this), 1, ((EnumTypeLogs.EnumType)state.getValue(VARIANT)).getMeta());
 	}
 	
 	@Override
 	public int damageDropped(IBlockState state) {
-		return ((EnumTypeHandler.EnumType)state.getValue(VARIANT)).getMeta();
+		return ((EnumTypeLogs.EnumType)state.getValue(VARIANT)).getMeta();
 	}
 	
 	@Override
 	public String getSpecialName(ItemStack stack) {
-		return EnumTypeHandler.EnumType.values()[stack.getItemDamage()].getName();
+		return EnumTypeLogs.EnumType.values()[stack.getItemDamage()].getName();
 	}
 
 	@Override
 	public void registerModels(ModelRegistryEvent e) {
-		for(int i = 0; i < EnumTypeHandler.EnumType.values().length; i++) {
-			JITL.proxy.registerVariantRenderer(Item.getItemFromBlock(this), i, "logs_" + EnumTypeHandler.EnumType.values()[i].getName(), "inventory");
+		for(int i = 0; i < EnumTypeLogs.EnumType.values().length; i++) {
+			JITL.proxy.registerVariantRenderer(Item.getItemFromBlock(this), i, "logs_" + EnumTypeLogs.EnumType.values()[i].getName(), "inventory");
 		}
 	}
 }

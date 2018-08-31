@@ -1,4 +1,4 @@
-package net.journey.util;
+package net.journey.util.enums;
 
 import net.minecraft.init.Items;
 import net.minecraft.util.IStringSerializable;
@@ -8,17 +8,7 @@ public class EnumTypeHandler {
 		BRISON_STONE(0, "brisonstone"),
 		DARK_BRISON_BRICK(1, "darkbrisonbrick"),
 		RED_BRISON_BRICK(2, "redbrisonbrick"),
-		SMALL_BRISON_BRICK(3, "smallbrisonbrick"),
-		
-		SIZZLER_LOG(4, "sizzlerlog"),
-		EUCA_LOG(5, "eucalog"),
-		DEPTHS_LOG(6, "depthslog"),
-		FROZEN_LOG(7, "frozenlog"),
-		CORBA_LOG(8, "corbalog"),
-		BOILING_LOG(9, "boilinglog"),
-		CLOUDIA_LOG(10, "cloudialog"),
-		TERRANIAN_LOG(11, "terranianlog"),
-		ICE_LOG(12, "icelog");
+		SMALL_BRISON_BRICK(3, "smallbrisonbrick");
 
 		private static final EnumType[] META_LOOKUP = new EnumType[values().length];
 		private final int meta;
