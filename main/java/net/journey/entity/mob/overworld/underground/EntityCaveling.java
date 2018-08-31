@@ -31,22 +31,7 @@ public class EntityCaveling extends EntityModMob {
 	public double setMaxHealth(MobStats s) {
 		return MobStats.overworldHealth;
 	}
-	
-	@Override
-	protected SoundEvent getAmbientSound() {
-		return JourneySounds.CAVE_MOB;
-	}
 
-	@Override
-	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return JourneySounds.ROCK;
-	}
-
-	@Override
-	protected SoundEvent getDeathSound() {
-		return JourneySounds.BASE_MOB_HURT;
-	}
-	
 	@Override
 	public SoundEvent setLivingSound() {
 		return JourneySounds.CAVE_MOB;
