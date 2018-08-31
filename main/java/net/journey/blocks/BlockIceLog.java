@@ -1,6 +1,7 @@
 package net.journey.blocks;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
@@ -13,7 +14,7 @@ import net.slayer.api.block.BlockModLog;
 public class BlockIceLog extends BlockModLog {
 
 	public BlockIceLog() {
-		super("iceLog", "Ice Log");
+		super("iceLog", "Ice Log", Material.WOOD);
 		isOpaque = false;
 		isNormalCube = false;
 		setLightOpacity(3);
