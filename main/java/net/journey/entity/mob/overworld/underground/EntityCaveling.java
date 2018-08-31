@@ -3,6 +3,7 @@ package net.journey.entity.mob.overworld.underground;
 import net.journey.JourneyItems;
 import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -30,7 +31,22 @@ public class EntityCaveling extends EntityModMob {
 	public double setMaxHealth(MobStats s) {
 		return MobStats.overworldHealth;
 	}
+	
+	@Override
+	protected SoundEvent getAmbientSound() {
+		return JourneySounds.CAVE_MOB;
+	}
 
+	@Override
+	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
+		return JourneySounds.ROCK;
+	}
+
+	@Override
+	protected SoundEvent getDeathSound() {
+		return JourneySounds.BASE_MOB_HURT;
+	}
+	
 	@Override
 	public SoundEvent setLivingSound() {
 		return JourneySounds.CAVE_MOB;
@@ -64,20 +80,14 @@ public class EntityCaveling extends EntityModMob {
 	@Override
 	public boolean getCanSpawnHere() {
 		return this.posY < 40.0D && super.getCanSpawnHere() && 
-				this.world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.STONE;
+				this.world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getMaterial() == Material.ROCK && this.dimension == 0;
 	}
 
 	@Override
 	protected void dropFewItems(boolean b, int j) {
 		if(rand.nextInt(15) == 0) dropItem(JourneyItems.caveCrystal, 1);
-		super.dropFewItems(b, j);
-		if(rand.nextInt(2) == 0) dropItem(JourneyItems.caveDust, 1);
-		super.dropFewItems(b, j);
-		if(rand.nextInt(4) == 0) dropItem(JourneyItems.caveDust, 3);
-		super.dropFewItems(b, j);
 		if(rand.nextInt(3) == 0) dropItem(JourneyItems.stoneClump, 2);
-		super.dropFewItems(b, j);
-		if(rand.nextInt(6) == 0) dropItem(JourneyItems.caveDust, 6);
+		if(rand.nextInt(rand.nextInt(6)) == 0) dropItem(JourneyItems.caveDust, 1);
 		super.dropFewItems(b, j);
 	}
 }
