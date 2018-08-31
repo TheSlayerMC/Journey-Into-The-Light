@@ -1,11 +1,16 @@
 package net.journey;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.journey.client.IHasModel;
 import net.journey.util.recipes.JourneySmeltingRecipes;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.util.SoundEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.RegistryEvent.Register;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -14,6 +19,8 @@ import net.slayer.api.SlayerAPI;
 @EventBusSubscriber(modid=SlayerAPI.MOD_ID)
 public class Registrys {
 
+    public static final List<SoundEvent> SOUNDS = new ArrayList<>();
+    
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event) {
 		for(int i = 0; i < JourneyItems.items.size(); i++)
@@ -45,6 +52,16 @@ public class Registrys {
 			if(item instanceof IHasModel)
 				((IHasModel)item).registerModels(event);
 	}
+	
+    @SubscribeEvent
+    public void onSoundRegistry(Register<SoundEvent> event){
+        JourneySounds.init();
+
+        for(SoundEvent sound : SOUNDS){
+            event.getRegistry().register(sound);
+        }
+        SOUNDS.clear();
+    }
 	
 	public static void otherRegistries() {
 		JourneySmeltingRecipes.init();

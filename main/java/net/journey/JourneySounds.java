@@ -164,8 +164,10 @@ public class JourneySounds {
 	public static SoundEvent registerSounds(String sound) {
 		ResourceLocation LOC = new ResourceLocation(SlayerAPI.MOD_ID, sound);
 		SoundEvent s = new SoundEvent(LOC);
+		s.setRegistryName(LOC);
 		
 		ForgeRegistries.SOUND_EVENTS.register(s);
+        Registrys.SOUNDS.add(s);
 		return s;
 	}
 
