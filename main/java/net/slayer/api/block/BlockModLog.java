@@ -1,33 +1,16 @@
 package net.slayer.api.block;
 
-import javax.annotation.Nullable;
-
-import com.google.common.base.Predicate;
-
-import net.journey.JITL;
-import net.journey.JourneyBlocks;
-import net.journey.JourneyItems;
-import net.journey.blocks.meta.ItemBlockVarients;
-import net.journey.client.IHasModel;
-import net.journey.util.IMetaName;
-import net.journey.util.LangRegistry;
-import net.journey.util.enums.EnumTypeLogs;
-import net.minecraft.block.BlockLog;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.block.state.BlockStateContainer;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
-import net.minecraftforge.client.event.ModelRegistryEvent;
 
-public class BlockModLog extends BlockLog implements IMetaName, IHasModel{
+public class BlockModLog extends BlockMod {
+
+	public BlockModLog(String name, String finalName, Material t) {
+		super(name, finalName);
+	}
+	
+	
+
+/*public class BlockModLog extends BlockLog implements IMetaName, IHasModel{
 	
 	protected boolean isOpaque = true, isNormalCube = true;
 	
@@ -130,5 +113,5 @@ public class BlockModLog extends BlockLog implements IMetaName, IHasModel{
 		for(int i = 0; i < EnumTypeLogs.EnumType.values().length; i++) {
 			JITL.proxy.registerVariantRenderer(Item.getItemFromBlock(this), i, "logs_" + EnumTypeLogs.EnumType.values()[i].getName(), "inventory");
 		}
-	}
+	}*/
 }

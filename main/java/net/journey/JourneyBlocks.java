@@ -551,7 +551,7 @@ public class JourneyBlocks {
 
 		eucaGrass = new BlockModGrass(null, "eucaGrass", "Euca Grass", 2.0F);
 		eucaStone = new BlockMod("eucaStone", "Euca Stone", 2.0F);
-		//eucaGoldLog = new BlockModLog("eucaGoldLog", "Golden Euca Log");
+		eucaGoldLog = new BlockModLog("eucaGoldLog", "Golden Euca Log", null);
 		goldEucaPlank = new BlockMod(EnumMaterialTypes.WOOD, "goldEucaPlank", "Golden Euca Plank", 1.0F);
 		eucaGoldStairs = new BlockModStairs(goldEucaPlank, "eucaGoldStairs", "Golden Euca Stairs");
 		eucaGoldLeaves = new BlockModLeaves("eucaGoldLeaves", "Golden Euca Leaves", 1.0F);
