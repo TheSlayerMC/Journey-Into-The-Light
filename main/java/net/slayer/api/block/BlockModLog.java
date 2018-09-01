@@ -12,6 +12,7 @@ import net.journey.client.IHasModel;
 import net.journey.util.IMetaName;
 import net.journey.util.LangRegistry;
 import net.journey.util.enums.EnumTypeLogs;
+import net.journey.util.enums.EnumTypeLogs.EnumType;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.SoundType;
@@ -45,7 +46,6 @@ import net.slayer.api.EnumMaterialTypes;
 public class BlockModLog extends BlockLog implements IMetaName, IHasModel{
 	
 	protected boolean isOpaque = true, isNormalCube = true;
-	public boolean isIceLog = false;
 	
 	public static final PropertyEnum<EnumTypeLogs.EnumType> VARIANT = PropertyEnum.<EnumTypeLogs.EnumType>create("variant", EnumTypeLogs.EnumType.class, new Predicate<EnumTypeLogs.EnumType>()
 	{
@@ -56,16 +56,6 @@ public class BlockModLog extends BlockLog implements IMetaName, IHasModel{
 	});
 	
 	private String name;
-
-	public BlockModLog(String name, String finalname, Boolean isIceLog) {
-		this.isIceLog = isIceLog;
-		if(isIceLog = true) {
-			isOpaque = false;
-			isNormalCube = false;
-			setLightOpacity(3);
-		}
-		this.setSoundType(SoundType.GLASS);
-	}
 	
 	public BlockModLog(String name, String finalname, Material m) {
 		super();
@@ -75,6 +65,12 @@ public class BlockModLog extends BlockLog implements IMetaName, IHasModel{
 		this.setSoundType(SoundType.WOOD);
 		this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
 		this.name = name;
+		if(VARIANT.equals(EnumTypeLogs.EnumType.ICE_LOG)) {
+			isOpaque = false;
+			isNormalCube = false;
+			setLightOpacity(3);
+			this.setSoundType(SoundType.GLASS);
+		}
 		
 		JourneyBlocks.blocks.add(this);
 		JourneyItems.items.add(new ItemBlockVarients(this).setRegistryName(this.getRegistryName()));
