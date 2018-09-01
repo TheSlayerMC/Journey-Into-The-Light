@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "axis=y,variant=sizzlerlog": { "model": "journey:logs_sizzlerlog" },
+        "axis=z,variant=sizzlerlog": { "model": "journey:logs_sizzlerlog", "x": 90 },
+        "axis=x,variant=sizzlerlog": { "model": "journey:logs_sizzlerlog", "x": 90, "y": 90 },
+        "axis=none,variant=sizzlerlog": { "model": "journey:logs_sizzlerlog" }
+    }
+}

@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "journey:blocks/sizzlerwoodlog_top",
+        "side": "journey:blocks/sizzlerwoodlog_side"
+    }
+}

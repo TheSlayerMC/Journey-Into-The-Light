@@ -150,7 +150,7 @@ public class JourneyBlocks {
 
 	public static BlockMod eucaGrass;
 	public static BlockMod eucaStone;
-	public static BlockMod eucaGoldLog;
+	public static BlockModLog eucaGoldLog;
 	public static BlockMod goldEucaPlank;
 	public static BlockModStairs eucaGoldStairs;
 	public static BlockMod eucaGoldLeaves;
@@ -551,7 +551,7 @@ public class JourneyBlocks {
 
 		eucaGrass = new BlockModGrass(null, "eucaGrass", "Euca Grass", 2.0F);
 		eucaStone = new BlockMod("eucaStone", "Euca Stone", 2.0F);
-		eucaGoldLog = new BlockModLog("eucaGoldLog", "Golden Euca Log", null);
+		//eucaGoldLog = new BlockModLog("eucaGoldLog", "Golden Euca Log", Material.WOOD);
 		goldEucaPlank = new BlockMod(EnumMaterialTypes.WOOD, "goldEucaPlank", "Golden Euca Plank", 1.0F);
 		eucaGoldStairs = new BlockModStairs(goldEucaPlank, "eucaGoldStairs", "Golden Euca Stairs");
 		eucaGoldLeaves = new BlockModLeaves("eucaGoldLeaves", "Golden Euca Leaves", 1.0F);
@@ -811,7 +811,7 @@ public class JourneyBlocks {
 		permaFlower = new BlockModFlower("permaFlower", "Perma Flower").setFrozenPlant();
 		shiverFlower = new BlockModFlower("shiverFlower", "Shiver Flower").setFrozenPlant();
 		iceBush = new BlockModFlower("iceBush", "Ice Bush").setFrozenPlant();
-		iceLog = new BlockIceLog();
+		//iceLog = new BlockIceLog();
 		brittleIce = new BlockBrittleIce(JourneyBlocks.brittleIce, "brittleIce", "Brittle Ice", 2);
 
 		eucaTallGrass = new BlockModFlower("eucaTallGrass", "Euca Tall Grass");

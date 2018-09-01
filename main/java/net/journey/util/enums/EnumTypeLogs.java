@@ -6,15 +6,15 @@ import net.minecraft.util.IStringSerializable;
 public class EnumTypeLogs {
 	public static enum EnumType implements IStringSerializable {
 		
-		SIZZLER_LOG(4, "sizzlerlog"),
-		EUCA_LOG(5, "eucalog"),
-		DEPTHS_LOG(6, "depthslog"),
-		FROZEN_LOG(7, "frozenlog"),
-		CORBA_LOG(8, "corbalog"),
-		BOILING_LOG(9, "boilinglog"),
-		CLOUDIA_LOG(10, "cloudialog"),
-		TERRANIAN_LOG(11, "terranianlog"),
-		ICE_LOG(12, "icelog");
+		SIZZLER_LOG(0, "sizzlerlog"),
+		EUCA_LOG(1, "eucalog"),
+		DEPTHS_LOG(2, "depthslog"),
+		FROZEN_LOG(3, "frozenlog"),
+		CORBA_LOG(4, "corbalog"),
+		BOILING_LOG(5, "boilinglog"),
+		CLOUDIA_LOG(6, "cloudialog"),
+		TERRANIAN_LOG(7, "terranianlog"),
+		ICE_LOG(8, "icelog");
 
 		private static final EnumType[] META_LOOKUP = new EnumType[values().length];
 		private final int meta;
