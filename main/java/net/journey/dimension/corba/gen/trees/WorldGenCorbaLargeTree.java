@@ -5,6 +5,7 @@ import java.util.Random;
 import net.journey.JourneyBlocks;
 import net.journey.util.enums.EnumTypeLogs;
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -13,10 +14,11 @@ import net.slayer.api.worldgen.WorldGenAPI;
 
 public class WorldGenCorbaLargeTree extends WorldGenerator {
 
+	public static IBlockState log = JourneyBlocks.logs.getDefaultState().withProperty(BlockModLog.VARIANT, EnumTypeLogs.EnumType.CORBA_LOG);
+	
 	@Override
 	public boolean generate(World world, Random r, BlockPos pos) {
 		int i = pos.getX() - 6, j = pos.getY() - 1, k = pos.getZ() - 6;
-		Block log = JourneyBlocks.logs.getDefaultState().withProperty(BlockModLog.VARIANT, EnumTypeLogs.EnumType.CORBA_LOG).getBlock();
 		Block leaves = JourneyBlocks.corbaLeaves;
 		int height = r.nextInt(3);
 		WorldGenAPI.addRectangle(2, 2, 16 + height, world, i + 6, j + 1, k + 6, log);
