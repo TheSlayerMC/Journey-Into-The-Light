@@ -3,6 +3,7 @@ package net.journey.dimension.corba.gen.trees;
 import java.util.Random;
 
 import net.journey.JourneyBlocks;
+import net.journey.util.enums.EnumTypeLogs;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.init.Blocks;
@@ -10,11 +11,12 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import net.slayer.api.block.BlockModLog;
 
 public class WorldGenHugeCorbaSpruceTree extends WorldGenCorbaHugeTree
 {
 	private boolean field_150542_e;
-	private Block log = JourneyBlocks.corbaLog;
+	private Block log = JourneyBlocks.logs.getDefaultState().withProperty(BlockModLog.VARIANT, EnumTypeLogs.EnumType.CORBA_LOG).getBlock();
 	Block leaves = JourneyBlocks.corbaLeaves;
 	
 	public WorldGenHugeCorbaSpruceTree(boolean par1, boolean par2)

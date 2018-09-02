@@ -3,9 +3,11 @@ package net.journey.dimension.depths.gen;
 import java.util.Random;
 
 import net.journey.JourneyBlocks;
+import net.journey.util.enums.EnumTypeLogs;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
+import net.slayer.api.block.BlockModLog;
 
 public class WorldGenDepthsTree1 extends WorldGenAbstractTree {
 
@@ -134,18 +136,18 @@ public class WorldGenDepthsTree1 extends WorldGenAbstractTree {
 		world.setBlockState(new BlockPos(i + 2, j + 8, k + 4), JourneyBlocks.depthsLeaves.getDefaultState());
 		world.setBlockState(new BlockPos(i + 2, j + 8, k + 5), JourneyBlocks.depthsLeaves.getDefaultState());
 		world.setBlockState(new BlockPos(i + 2, j + 8, k + 6), JourneyBlocks.depthsLeaves.getDefaultState());
-		world.setBlockState(new BlockPos(i + 3, j + 0, k + 3), JourneyBlocks.depthsLog.getDefaultState());
-		world.setBlockState(new BlockPos(i + 3, j + 1, k + 3), JourneyBlocks.depthsLog.getDefaultState());
+		world.setBlockState(new BlockPos(i + 3, j + 0, k + 3), JourneyBlocks.logs.getDefaultState().withProperty(BlockModLog.VARIANT, EnumTypeLogs.EnumType.DEPTHS_LOG));
+		world.setBlockState(new BlockPos(i + 3, j + 1, k + 3), JourneyBlocks.logs.getDefaultState().withProperty(BlockModLog.VARIANT, EnumTypeLogs.EnumType.DEPTHS_LOG));
 		world.setBlockState(new BlockPos(i + 3, j + 2, k + 0), JourneyBlocks.depthsLeaves.getDefaultState());
-		world.setBlockState(new BlockPos(i + 3, j + 2, k + 3), JourneyBlocks.depthsLog.getDefaultState());
+		world.setBlockState(new BlockPos(i + 3, j + 2, k + 3), JourneyBlocks.logs.getDefaultState().withProperty(BlockModLog.VARIANT, EnumTypeLogs.EnumType.DEPTHS_LOG));
 		world.setBlockState(new BlockPos(i + 3, j + 2, k + 6), JourneyBlocks.depthsLeaves.getDefaultState());
 		world.setBlockState(new BlockPos(i + 3, j + 3, k + 0), JourneyBlocks.depthsLeaves.getDefaultState());
-		world.setBlockState(new BlockPos(i + 3, j + 3, k + 3), JourneyBlocks.depthsLog.getDefaultState());
+		world.setBlockState(new BlockPos(i + 3, j + 3, k + 3), JourneyBlocks.logs.getDefaultState().withProperty(BlockModLog.VARIANT, EnumTypeLogs.EnumType.DEPTHS_LOG));
 		world.setBlockState(new BlockPos(i + 3, j + 3, k + 6), JourneyBlocks.depthsLeaves.getDefaultState());
 		world.setBlockState(new BlockPos(i + 3, j + 4, k + 0), JourneyBlocks.depthsLeaves.getDefaultState());
 		world.setBlockState(new BlockPos(i + 3, j + 4, k + 1), JourneyBlocks.depthsLeaves.getDefaultState());
 		world.setBlockState(new BlockPos(i + 3, j + 4, k + 2), JourneyBlocks.depthsLeaves.getDefaultState());
-		world.setBlockState(new BlockPos(i + 3, j + 4, k + 3), JourneyBlocks.depthsLog.getDefaultState());
+		world.setBlockState(new BlockPos(i + 3, j + 4, k + 3), JourneyBlocks.logs.getDefaultState().withProperty(BlockModLog.VARIANT, EnumTypeLogs.EnumType.DEPTHS_LOG));
 		world.setBlockState(new BlockPos(i + 3, j + 4, k + 4), JourneyBlocks.depthsLeaves.getDefaultState());
 		world.setBlockState(new BlockPos(i + 3, j + 4, k + 5), JourneyBlocks.depthsLeaves.getDefaultState());
 		world.setBlockState(new BlockPos(i + 3, j + 4, k + 6), JourneyBlocks.depthsLeaves.getDefaultState());

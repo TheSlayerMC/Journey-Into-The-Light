@@ -3,10 +3,12 @@ package net.journey.dimension.terrania.gen.trees;
 import java.util.Random;
 
 import net.journey.JourneyBlocks;
+import net.journey.util.enums.EnumTypeLogs;
 import net.minecraft.block.Block;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.slayer.api.block.BlockModLog;
 import net.slayer.api.worldgen.WorldGenAPI;
 
 public class WorldGenTerraniaSmallTree extends WorldGenerator {
@@ -14,7 +16,7 @@ public class WorldGenTerraniaSmallTree extends WorldGenerator {
 	@Override
 	public boolean generate(World world, Random r, BlockPos pos) {
 		int i = pos.getX() - 2, j = pos.getY() - 1, k = pos.getZ() - 2;
-		Block log = JourneyBlocks.terranianLog;
+		Block log = JourneyBlocks.logs.getDefaultState().withProperty(BlockModLog.VARIANT, EnumTypeLogs.EnumType.TERRANIAN_LOG).getBlock();
 		Block leaves = JourneyBlocks.terraniaLeaves;
 		int height = r.nextInt(3);
 		WorldGenAPI.addRectangle(1, 1, 4 + height, world, i + 2, j + 1, k + 2, log);

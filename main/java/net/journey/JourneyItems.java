@@ -92,10 +92,12 @@ import net.journey.util.Config;
 import net.journey.util.EnumArmor;
 import net.journey.util.JourneyToolMaterial;
 import net.journey.util.PotionEffects;
+import net.journey.util.enums.EnumTypeLogs;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraftforge.common.util.EnumHelper;
+import net.slayer.api.block.BlockModLog;
 import net.slayer.api.item.ItemMod;
 import net.slayer.api.item.ItemModAxe;
 import net.slayer.api.item.ItemModFood;
@@ -1426,7 +1428,9 @@ public class JourneyItems {
 		jellyBeans = new ItemModFood("jellyBeans", "Jelly Beans", 1, 0.1F, 2, false);
 		chocolate = new ItemModFood("chocolate", "Chocolate Bar", 2, 0.1F, 2, false);
 		vanillaWafer = new ItemModFood("vanillaWafer", "Vanilla Wafer", 1, 0.1F, 2, false);
-		bleedheart = new ItemFruit("bleedheart", "Bleedheart Fruit", 2, 0.1F, false, JourneyBlocks.bleedheartFruit, JourneyBlocks.sizzlerWoodLog).setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.moveSlow, 100, 10), 1.0F);
+		bleedheart = new ItemFruit("bleedheart", "Bleedheart Fruit", 2, 0.1F, false, JourneyBlocks.bleedheartFruit, 
+				JourneyBlocks.logs.getDefaultState().withProperty(BlockModLog.VARIANT, EnumTypeLogs.EnumType.SIZZLER_LOG).getBlock())
+				.setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.moveSlow, 100, 10), 1.0F);
 
 		sizzleberry = new ItemModFood("sizzleberry", "Sizzleberry", 1, 4.0F, 5, false).setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.fireResistance, 20, 1), 1.0F).setAlwaysEdible();
 		bradberry = new ItemModFood("bradberry", "Bradberry", 1, 8, 4, false);
