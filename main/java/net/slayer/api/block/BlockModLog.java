@@ -44,7 +44,7 @@ import net.slayer.api.EnumMaterialTypes;
 	
 	
 
-public class BlockModLog extends BlockLog implements IMetaName, IHasModel{
+public class BlockModLog extends BlockLog implements IMetaName, IHasModel {
 	
 	protected boolean isOpaque = true, isNormalCube = true;
 	
@@ -52,7 +52,7 @@ public class BlockModLog extends BlockLog implements IMetaName, IHasModel{
 	{
 		public boolean apply(@Nullable EnumTypeLogs.EnumType apply)
 		{
-			return apply.getMeta() < 2;
+			return apply.getMeta() < 9;
 		}
 	});
 	
@@ -93,7 +93,7 @@ public class BlockModLog extends BlockLog implements IMetaName, IHasModel{
 	
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		IBlockState state = this.getDefaultState().withProperty(VARIANT, EnumTypeLogs.EnumType.byMetadata((meta & 1) % 2));
+		IBlockState state = this.getDefaultState().withProperty(VARIANT, EnumTypeLogs.EnumType.byMetadata((meta & 1) % 9));
 		switch(meta & 6) {
 		case 0:
 			state = state.withProperty(LOG_AXIS, EnumAxis.Y);
