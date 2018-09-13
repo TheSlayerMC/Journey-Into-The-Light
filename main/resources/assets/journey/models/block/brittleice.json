@@ -1,9 +1,6 @@
 {
-	"parent": "cube_bottom_top",
+	"parent": "block/cube_all",
 	"textures": {
-		"particle": "journey:blocks/brittleIce",
-		"bottom": "journey:blocks/brittleIce_bottom",
-		"top": "journey:blocks/brittleIce_top",
-		"side": "journey:blocks/brittleIce_side"
+		"all": "journey:blocks/brittleice"
 	}
 }
