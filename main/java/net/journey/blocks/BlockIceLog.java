@@ -12,6 +12,8 @@ import net.slayer.api.block.BlockModLog;
 
 public class BlockIceLog extends BlockModLog {
 
+	protected boolean isOpaque = true, isNormalCube = true;
+	
 	public BlockIceLog() {
 		super("iceLog", "Ice Log");
 		isOpaque = false;
