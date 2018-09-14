@@ -45,7 +45,6 @@ import net.journey.blocks.portal.BlockGoldenPortal;
 import net.journey.blocks.portal.BlockSenterianPortal;
 import net.journey.blocks.portal.BlockTerraniaPortal;
 import net.journey.blocks.portal.BlockWitherPortal;
-import net.journey.util.enums.EnumTypeLogs;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
@@ -127,7 +126,7 @@ public class JourneyBlocks {
 	public static BlockModLog logs;
 	public static BlockMod witherwoodLeaves;
 	public static BlockMod sizzlerWoodLeaves;
-	//public static BlockMod sizzlerWoodLog;
+	public static BlockMod sizzlerWoodLog;
 	public static BlockNetherFlower deathGrass;
 	public static BlockNetherFlower hellBell;
 	public static BlockMod hellshroom;
@@ -151,7 +150,7 @@ public class JourneyBlocks {
 
 	public static BlockMod eucaGrass;
 	public static BlockMod eucaStone;
-	//public static BlockModLog eucaGoldLog;
+	public static BlockModLog eucaGoldLog;
 	public static BlockMod goldEucaPlank;
 	public static BlockModStairs eucaGoldStairs;
 	public static BlockMod eucaGoldLeaves;
@@ -163,7 +162,7 @@ public class JourneyBlocks {
 	public static BlockMod depthsDirt;
 	public static BlockMod depthsGrass;
 	public static BlockMod depthsStone;
-	//public static BlockMod depthsLog;
+	public static BlockMod depthsLog;
 	public static BlockMod depthsPlank;
 	public static BlockModStairs depthsStairs;
 	public static BlockMod depthsLeaves;
@@ -193,7 +192,7 @@ public class JourneyBlocks {
 
 	public static BlockMod corbaStone;
 	public static BlockMod corbaGrass;
-	//public static BlockMod corbaLog;
+	public static BlockMod corbaLog;
 	public static BlockMod corbaLeaves;
 	public static BlockMod corbaPillar;
 	public static BlockMod corbaPlank;
@@ -213,11 +212,11 @@ public class JourneyBlocks {
 	
 	public static BlockMod boilingBars;
 	public static BlockMod burningLeaves;
-	//public static BlockMod boilingLog; 
+	public static BlockMod boilingLog; 
 
 	public static BlockMod cloudiaDirt;
 	public static BlockMod cloudiaGrass;
-	//public static BlockMod cloudiaLog; 
+	public static BlockMod cloudiaLog; 
 	public static BlockMod cloudiaRock; 
 	public static BlockMod cloudiaBrick; 
 	public static BlockMod cloudiaWall;  
@@ -344,7 +343,7 @@ public class JourneyBlocks {
 	public static BlockMod terraniaLeaves;
 	public static BlockMod terraniaVine;
 	public static BlockMod terranianDirt;
-	//public static BlockMod terranianLog;
+	public static BlockMod terranianLog;
 	public static BlockMod terranianGrass;
 	public static BlockMod terranianStone;
 	public static BlockMod terranianBars;
@@ -412,7 +411,7 @@ public class JourneyBlocks {
 	public static BlockModFlower permaFlower;
 	public static BlockModFlower shiverFlower;
 	public static BlockModFlower iceBush;
-	//public static BlockIceLog iceLog;
+	public static BlockIceLog iceLog;
 	public static BlockMod brittleIce;
 
 	public static BlockModFlower eucaTallGrass;
@@ -871,7 +870,7 @@ public class JourneyBlocks {
 		netherFurnace = new BlockNetherFurnace("netherFurnace", "Nethic Furnace", false);
 		netherFurnaceActive = (BlockMod) new BlockNetherFurnace("netherFurnaceActive", "Nethic Furnace", true).setLightLevel(0.7F).setCreativeTab(null);
 		
-	 	bleedheartFruit = new BlockFruitCrop("bleedheartFruit", "Bleedheart Fruit", JourneyItems.bleedheart, logs.getDefaultState().withProperty(BlockModLog.VARIANT, EnumTypeLogs.EnumType.SIZZLER_LOG).getBlock());
+	 	bleedheartFruit = new BlockFruitCrop("bleedheartFruit", "Bleedheart Fruit", JourneyItems.bleedheart, sizzlerWoodLog);
 		
 	    }
 }

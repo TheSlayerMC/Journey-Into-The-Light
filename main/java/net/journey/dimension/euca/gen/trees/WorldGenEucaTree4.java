@@ -3,12 +3,10 @@ package net.journey.dimension.euca.gen.trees;
 import java.util.Random;
 
 import net.journey.JourneyBlocks;
-import net.journey.util.enums.EnumTypeLogs;
 import net.minecraft.block.Block;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.slayer.api.block.BlockModLog;
 import net.slayer.api.worldgen.WorldGenAPI;
 
 public class WorldGenEucaTree4 extends WorldGenerator {
@@ -17,7 +15,7 @@ public class WorldGenEucaTree4 extends WorldGenerator {
 	public boolean generate(World world, Random r, BlockPos pos) {
 		int i = pos.getX() - 3, j = pos.getY() - 1, k = pos.getZ() - 3;
 		int height = r.nextInt(4);
-		Block log = JourneyBlocks.logs.getDefaultState().withProperty(BlockModLog.VARIANT, EnumTypeLogs.EnumType.EUCA_LOG).getBlock();
+		Block log = JourneyBlocks.eucaGoldLog;
 		Block leaves = JourneyBlocks.eucaGoldLeaves;
 		WorldGenAPI.addRectangle(1, 1, 9 + height, world, i + 3, j + 1, k + 3, log);
 		j = j + height + 2;

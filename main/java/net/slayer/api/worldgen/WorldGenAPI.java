@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import net.journey.JourneyBlocks;
-import net.journey.util.enums.EnumTypeLogs;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -13,7 +12,6 @@ import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.slayer.api.block.BlockModLog;
 
 public class WorldGenAPI {
 
@@ -36,15 +34,15 @@ public class WorldGenAPI {
 	}
 	
 	public static Block getEucaLog() {
-		return JourneyBlocks.logs.getDefaultState().withProperty(BlockModLog.VARIANT, EnumTypeLogs.EnumType.EUCA_LOG).getBlock();
+		return JourneyBlocks.eucaGoldLog;
 	}
 	
 	public static Block getCorbaLog() {
-		return JourneyBlocks.logs.getDefaultState().withProperty(BlockModLog.VARIANT, EnumTypeLogs.EnumType.EUCA_LOG).getBlock();
+		return JourneyBlocks.corbaLog;
 	}
 	
 	public static Block getTerranianLog() {
-		return JourneyBlocks.logs.getDefaultState().withProperty(BlockModLog.VARIANT, EnumTypeLogs.EnumType.TERRANIAN_LOG).getBlock();
+		return JourneyBlocks.terranianLog;
 	}
 	
 	public static Block getTerraniaLeaves() {
