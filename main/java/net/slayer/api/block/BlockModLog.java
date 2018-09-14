@@ -28,7 +28,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.client.event.ModelRegistryEvent;
@@ -65,7 +64,7 @@ public class BlockModLog extends BlockLog implements IMetaName, IHasModel{
 		this.setRegistryName(name);
 		this.setSoundType(SoundType.WOOD);
 		this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
-		this.setDefaultState(this.getDefaultState().withProperty(LOG_AXIS, EnumAxis.Y));
+		this.setDefaultState(this.getStateFromMeta(1));
 		this.name = name;
 		if(VARIANT.equals(EnumTypeLogs.EnumType.ICE_LOG)) {
 			isOpaque = false;
