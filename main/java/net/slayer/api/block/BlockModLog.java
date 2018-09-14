@@ -1,16 +1,10 @@
 package net.slayer.api.block;
 
-import net.journey.JITL;
-import net.journey.JourneyBlocks;
-import net.journey.JourneyItems;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.Rotation;
@@ -18,7 +12,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.slayer.api.EnumMaterialTypes;
-import net.slayer.api.SlayerAPI;
 
 public class BlockModLog extends BlockModPillar {
 
@@ -93,18 +86,5 @@ public class BlockModLog extends BlockModPillar {
 		public String getName() {
 			return this.name;
 		}
-	}
-	
-	public void registerItemModel(Item itemBlock) {
-		JITL.proxy.registerItemRenderer(itemBlock, 0, name);
-	}
-	
-	public Item createItemBlock() {
-		return new ItemBlock(this).setRegistryName(getRegistryName());
-	}
-
-	public Block addName(String name) {
-		JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
-		return this;
 	}
 }
