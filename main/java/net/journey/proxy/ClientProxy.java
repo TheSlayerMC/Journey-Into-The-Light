@@ -14,11 +14,7 @@ import net.journey.event.ClientTickEvent;
 import net.journey.event.UpdateCheckerEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.item.Item;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
@@ -58,15 +54,5 @@ public class ClientProxy extends CommonProxy {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-	
-	@Override
-	public void registerItemRenderer(Item item, int metadata, String id) {
-		ModelLoader.setCustomModelResourceLocation(item, metadata, new ModelResourceLocation(item.getRegistryName(), id));
-	}
-	
-	@Override
-	public void registerVariantRenderer(Item item, int metadata, String filename, String id) {
-		ModelLoader.setCustomModelResourceLocation(item, metadata, new ModelResourceLocation(new ResourceLocation(SlayerAPI.MOD_ID, filename), id));
 	}
 }
