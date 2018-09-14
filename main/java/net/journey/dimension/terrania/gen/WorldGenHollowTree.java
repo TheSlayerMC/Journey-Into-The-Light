@@ -17,7 +17,7 @@ public class WorldGenHollowTree extends WorldGenerator {
 		Block post = JourneyBlocks.terranianPost;
 		Block plank = JourneyBlocks.terranianPanels;
 		int i = pos.getX(), j = pos.getY(), k = pos.getZ();
-		IBlockState leaves = WorldGenAPI.getTerraniaLeaves().getDefaultState(), log = WorldGenAPI.getTerranianLog(), vine = WorldGenAPI.getTerraniaVine().getDefaultState();
+		IBlockState leaves = WorldGenAPI.getTerraniaLeaves().getDefaultState(), log = WorldGenAPI.getTerranianLog().getDefaultState(), vine = WorldGenAPI.getTerraniaVine().getDefaultState();
 		i-=5;
 		k-=5;
 		world.setBlockState(new BlockPos(i + 1, j + 0, k + 5), JourneyBlocks.terranianDirt.getDefaultState());

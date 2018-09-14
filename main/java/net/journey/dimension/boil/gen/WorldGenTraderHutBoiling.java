@@ -16,7 +16,7 @@ public class WorldGenTraderHutBoiling extends WorldGenerator {
 	@Override
 	public boolean generate(World world, Random rand, BlockPos pos) {
 		int i = pos.getX(), j = pos.getY(), k = pos.getZ();
-		IBlockState leaves = WorldGenAPI.getCorbaLeaves().getDefaultState(), log = WorldGenAPI.getCorbaLog();
+		IBlockState leaves = WorldGenAPI.getCorbaLeaves().getDefaultState(), log = WorldGenAPI.getCorbaLog().getDefaultState();
 		i-=5;
 		k-=5;
 		world.setBlockState(new BlockPos(i + 0, j + 7, k + 1), JourneyBlocks.brisonblocks.getStateFromMeta(0));

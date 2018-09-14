@@ -6,7 +6,6 @@ import net.journey.JourneyBlocks;
 import net.journey.util.enums.EnumTypeLogs;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSapling;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -17,7 +16,7 @@ import net.slayer.api.block.BlockModLog;
 public class WorldGenHugeCorbaSpruceTree extends WorldGenCorbaHugeTree
 {
 	private boolean field_150542_e;
-	private static IBlockState log = JourneyBlocks.logs.getDefaultState().withProperty(BlockModLog.VARIANT, EnumTypeLogs.EnumType.CORBA_LOG);
+	private Block log = JourneyBlocks.logs.getDefaultState().withProperty(BlockModLog.VARIANT, EnumTypeLogs.EnumType.CORBA_LOG).getBlock();
 	Block leaves = JourneyBlocks.corbaLeaves;
 	
 	public WorldGenHugeCorbaSpruceTree(boolean par1, boolean par2)
@@ -46,7 +45,7 @@ public class WorldGenHugeCorbaSpruceTree extends WorldGenCorbaHugeTree
 
 				if (block.isAir(w.getBlockState(new BlockPos(pos)), w, new BlockPos(posX, posY + i1, posZ)) || block.isLeaves(w.getBlockState(new BlockPos(pos)), w, new BlockPos(posX, posY + i1, posZ)))
 				{
-					this.setBlockAndNotifyAdequately(w, new BlockPos(posX, posY + i1, posZ), log);
+					this.setBlockAndNotifyAdequately(w, new BlockPos(posX, posY + i1, posZ), log.getDefaultState());
 					//this.setBlockAndNotifyAdequately(w, new BlockPos(posX, posY + i1, posZ), log.getDefaultState());
 				}
 
@@ -56,21 +55,21 @@ public class WorldGenHugeCorbaSpruceTree extends WorldGenCorbaHugeTree
 
 					if (block.isAir(w.getBlockState(new BlockPos(pos)), w, new BlockPos(posX + 1, posY + i1, posZ)) || block.isLeaves(w.getBlockState(new BlockPos(pos)), w, new BlockPos(posX + 1, posY + i1, posZ)))
 					{
-						this.setBlockAndNotifyAdequately(w, new BlockPos(posX + 1, posY + i1, posZ), log);
+						this.setBlockAndNotifyAdequately(w, new BlockPos(posX + 1, posY + i1, posZ), log.getDefaultState());
 					}
 
 					block = w.getBlockState(new BlockPos(posX + 1, posY + i1, posZ + 1)).getBlock();
 
 					if (block.isAir(w.getBlockState(new BlockPos(pos)), w, new BlockPos(posX + 1, posY + i1, posZ + 1)) || block.isLeaves(w.getBlockState(new BlockPos(pos)), w, new BlockPos(posX + 1, posY + i1, posZ + 1)))
 					{
-						this.setBlockAndNotifyAdequately(w, new BlockPos(posX + 1, posY + i1, posZ + 1), log);
+						this.setBlockAndNotifyAdequately(w, new BlockPos(posX + 1, posY + i1, posZ + 1), log.getDefaultState());
 					}
 
 					block = w.getBlockState(new BlockPos(posX, posY + i1, posZ + 1)).getBlock();
 
 					if (block.isAir(w.getBlockState(new BlockPos(pos)), w, new BlockPos(posX, posY + i1, posZ + 1)) || block.isLeaves(w.getBlockState(new BlockPos(pos)), w, new BlockPos(posX, posY + i1, posZ + 1)))
 					{
-						this.setBlockAndNotifyAdequately(w, new BlockPos(posX, posY + i1, posZ + 1), log);
+						this.setBlockAndNotifyAdequately(w, new BlockPos(posX, posY + i1, posZ + 1), log.getDefaultState());
 					}
 				}
 			}

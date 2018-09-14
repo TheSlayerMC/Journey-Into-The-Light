@@ -6,18 +6,16 @@ import net.journey.JourneyBlocks;
 import net.journey.util.enums.EnumTypeLogs;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSapling;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.slayer.api.block.BlockModLog;
-import net.slayer.api.worldgen.WorldGenAPI;
 
 public class WorldGenCorbaSpruceTree1 extends WorldGenAbstractTree {
 
-	private IBlockState log = WorldGenAPI.getCorbaLog();
+	private Block log = JourneyBlocks.logs.getDefaultState().withProperty(BlockModLog.VARIANT, EnumTypeLogs.EnumType.CORBA_LOG).getBlock();
 	private Block leaves = JourneyBlocks.corbaLeaves;
 
     public WorldGenCorbaSpruceTree1() {
@@ -133,7 +131,7 @@ public class WorldGenCorbaSpruceTree1 extends WorldGenAbstractTree {
 
                         if (block2.isAir(w.getBlockState(new BlockPos(pos)), w, new BlockPos(p_76484_3_, p_76484_4_ + k2, p_76484_5_)) || block2.isLeaves(w.getBlockState(new BlockPos(pos)), w, new BlockPos(p_76484_3_, p_76484_4_ + k2, p_76484_5_)))
                         {
-                            this.setBlockAndNotifyAdequately(w, new BlockPos(p_76484_3_, p_76484_4_ + k2, p_76484_5_), log);
+                            this.setBlockAndNotifyAdequately(w, new BlockPos(p_76484_3_, p_76484_4_ + k2, p_76484_5_), log.getDefaultState());
                         }
                     }
 

@@ -6,7 +6,6 @@ import java.util.Random;
 import net.journey.JourneyBlocks;
 import net.journey.util.enums.EnumTypeLogs;
 import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityChest;
@@ -36,16 +35,16 @@ public class WorldGenAPI {
 		return i == 0 ? JourneyBlocks.eucaSilverLeaves : JourneyBlocks.eucaGoldLeaves;
 	}
 	
-	public static IBlockState getEucaLog() {
-		return JourneyBlocks.logs.getDefaultState().withProperty(BlockModLog.VARIANT, EnumTypeLogs.EnumType.SIZZLER_LOG);
+	public static Block getEucaLog() {
+		return JourneyBlocks.logs.getDefaultState().withProperty(BlockModLog.VARIANT, EnumTypeLogs.EnumType.EUCA_LOG).getBlock();
 	}
 	
-	public static IBlockState getCorbaLog() {
-		return JourneyBlocks.logs.getDefaultState().withProperty(BlockModLog.VARIANT, EnumTypeLogs.EnumType.EUCA_LOG);
+	public static Block getCorbaLog() {
+		return JourneyBlocks.logs.getDefaultState().withProperty(BlockModLog.VARIANT, EnumTypeLogs.EnumType.EUCA_LOG).getBlock();
 	}
 	
-	public static IBlockState getTerranianLog() {
-		return JourneyBlocks.logs.getDefaultState().withProperty(BlockModLog.VARIANT, EnumTypeLogs.EnumType.TERRANIAN_LOG);
+	public static Block getTerranianLog() {
+		return JourneyBlocks.logs.getDefaultState().withProperty(BlockModLog.VARIANT, EnumTypeLogs.EnumType.TERRANIAN_LOG).getBlock();
 	}
 	
 	public static Block getTerraniaLeaves() {
@@ -128,16 +127,6 @@ public class WorldGenAPI {
 			for(int z1 = 0; z1 < south; z1++){
 				for(int y1 = 0; y1 < height; y1++){
 					w.setBlockState(new BlockPos(x + x1, y + y1, z + z1), b.getDefaultState());
-				}
-			}
-		}
-	}
-	
-	public static void addRectangle(int east, int south, int height, World w, int x, int y, int z, IBlockState b){
-		for(int x1 = 0; x1 < east; x1++){
-			for(int z1 = 0; z1 < south; z1++){
-				for(int y1 = 0; y1 < height; y1++){
-					w.setBlockState(new BlockPos(x + x1, y + y1, z + z1), b);
 				}
 			}
 		}
