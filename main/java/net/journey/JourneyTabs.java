@@ -12,11 +12,7 @@ public class JourneyTabs extends CreativeTabs {
 	public static final JourneyTabs decoration = new JourneyTabs("journey.decoration");
 	public static final JourneyTabs items = new JourneyTabs("journey.items");
 	public static final JourneyTabs tools = new JourneyTabs("journey.tools");
-	public static final JourneyTabs swords = new JourneyTabs("journey.swords");
-	public static final JourneyTabs battleaxes = new JourneyTabs("journey.battleaxes");
-	public static final JourneyTabs bows = new JourneyTabs("journey.bows");
-	public static final JourneyTabs piercers = new JourneyTabs("journey.piercers");
-	public static final JourneyTabs staves = new JourneyTabs("journey.staves");
+	public static final JourneyTabs weapons = new JourneyTabs("journey.weapons");
 	public static final JourneyTabs util = new JourneyTabs("journey.util");
 	public static final JourneyTabs armor = new JourneyTabs("journey.armor");
 	public static final JourneyTabs spawners = new JourneyTabs("journey.spawners");
@@ -53,11 +49,7 @@ public class JourneyTabs extends CreativeTabs {
 		decoration.setIcon(JourneyBlocks.boilingLamp);
 		items.setIcon(JourneyItems.koriteIngot);
 		tools.setIcon(JourneyItems.multiToolOfEternalSmelting);
-		swords.setIcon(JourneyItems.terronicBlade);
-		battleaxes.setIcon(JourneyItems.backBiter);
-		bows.setIcon(JourneyItems.flamingBow);
-		piercers.setIcon(JourneyItems.eucaPiercer);
-		staves.setIcon(JourneyItems.conjuringStaff);
+		weapons.setIcon(JourneyItems.terronicBlade);
 		util.setIcon(JourneyItems.flameCoin);
 		armor.setIcon(JourneyItems.twilightHelmet);
 		spawners.setIcon(JourneyItems.sentryKingOrb);

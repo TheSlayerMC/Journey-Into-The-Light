@@ -28,7 +28,7 @@ public class ItemGun extends ItemMod {
 	protected Class<? extends EntityBasicProjectile> projectile; 
 	public String ability;
 	public ItemGun(String name, String f, int damage, String ability, Class<? extends EntityBasicProjectile> projectile) {
-		super(name, f, JourneyTabs.staves);
+		super(name, f, JourneyTabs.weapons);
 		this.ability = ability;
 		this.projectile = projectile;
 		this.damage = damage;

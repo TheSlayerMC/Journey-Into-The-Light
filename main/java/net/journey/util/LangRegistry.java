@@ -47,11 +47,7 @@ public class LangRegistry {
 		writeToFile("itemGroup.journey.decoration=Journey into the Light: Decoration Blocks");
 		writeToFile("itemGroup.journey.items=Journey into the Light: Items");
 		writeToFile("itemGroup.journey.tools=Journey into the Light: Tools");
-		writeToFile("itemGroup.journey.swords=Journey into the Light: Swords");
-		writeToFile("itemGroup.journey.battleaxes=Journey into the Light: Battleaxes");
-		writeToFile("itemGroup.journey.bows=Journey into the Light: Bows");
-		writeToFile("itemGroup.journey.piercers=Journey into the Light: Piercers");
-		writeToFile("itemGroup.journey.staves=Journey into the Light: Staves and Wands");
+		writeToFile("itemGroup.journey.weapons=Journey into the Light: Weapons");
 		writeToFile("itemGroup.journey.util=Journey into the Light: Utilities");
 		writeToFile("itemGroup.journey.misc=Journey into the Light: Miscellaneous");
 		writeToFile("itemGroup.journey.armor=Journey into the Light: Armor");

@@ -28,19 +28,9 @@ public class Registrys {
 	}
 	
 	@SubscribeEvent
-	public static void onItemRegister(RegistryEvent.Register<Item> event) {
-		event.getRegistry().registerAll(JourneyItems.items.toArray(new Item[0]));
-	}
-	
-	@SubscribeEvent
 	public static void registerBlocks(RegistryEvent.Register<Block> event) {
 		for(int i = 0; i < JourneyBlocks.blocks.size(); i++)
 			event.getRegistry().registerAll(JourneyBlocks.blocks.get(i));
-	}
-	
-	@SubscribeEvent
-	public static void onBlockRegister(RegistryEvent.Register<Block> event) {
-		event.getRegistry().registerAll(JourneyBlocks.blocks.toArray(new Block[0]));
 	}
 	
 	@SubscribeEvent

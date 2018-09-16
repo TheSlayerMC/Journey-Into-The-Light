@@ -23,7 +23,7 @@ public class ItemThrowableArrow extends ItemMod {
 		this.damage = damage;
 		this.entity = entity;
 		this.bounces = bounces;
-		setCreativeTab(JourneyTabs.piercers);
+		setCreativeTab(JourneyTabs.weapons);
 	}
 
 	@Override

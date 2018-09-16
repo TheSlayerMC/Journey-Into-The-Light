@@ -44,7 +44,7 @@ public class ItemModBow extends ItemMod {
 	public String ability;
 
 	public ItemModBow(String name, String f, int uses, int damage, /**String damageString,*/ Item arrow, int duration, String ability, Class<? extends EntityArrow> arrowEnt) {
-		super(name, f, JourneyTabs.bows);
+		super(name, f, JourneyTabs.weapons);
 		this.maxStackSize = 1;
 		this.dur = duration;
 		this.arrowClass = arrowEnt;
@@ -58,7 +58,7 @@ public class ItemModBow extends ItemMod {
 	}
 	
 	public ItemModBow(String name, String f, int uses, int damage, /**String damageString*/ Item arrow, String ability, Class<? extends EntityArrow> arrowEnt) {
-		super(name, f, JourneyTabs.bows);
+		super(name, f, JourneyTabs.weapons);
 		this.maxStackSize = 1;
 		this.ability = ability;
 		this.arrowClass = arrowEnt;
