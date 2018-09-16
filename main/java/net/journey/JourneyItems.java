@@ -64,7 +64,6 @@ import net.journey.items.ItemObsidianBoat;
 import net.journey.items.ItemPiercer;
 import net.journey.items.ItemPresent;
 import net.journey.items.ItemSentryEye;
-import net.journey.items.ItemSoul;
 import net.journey.items.ItemSpecificDimensionSpawner;
 import net.journey.items.ItemSpineberries;
 import net.journey.items.ItemStaff;
@@ -946,7 +945,7 @@ public class JourneyItems {
 		concentratedBlood = new ItemMod("concentratedBlood", "Concentrated Blood");
 		snakeSkin = new ItemMod("snakeSkin", "Snake Skin");
 		withicSpine = new ItemMod("withicSpine", "Withic Spine");
-		lostSoul = new ItemSoul("lostSoul", "Lost Soul");
+		lostSoul = new ItemMod("lostSoul", "Lost Soul");
 		withicSoul = new ItemMod("withicSoul", "Withic Soul");
 		eucaPortalPiece = new ItemMod("eucaPortalPiece", "Euca Portal Piece");
 		eucaPortalPiece_1 = new ItemMod("eucaPortalPiece_1", "Euca Portal Piece");
