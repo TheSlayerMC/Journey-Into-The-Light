@@ -28,6 +28,7 @@ import net.journey.blocks.base.BlockModOre;
 import net.journey.blocks.base.BlockNetherFlower;
 import net.journey.blocks.base.BlockNetherPlant;
 import net.journey.blocks.crop.base.BlockFruitCrop;
+import net.journey.blocks.machines.BlockCrafting;
 import net.journey.blocks.machines.BlockGrindstone;
 import net.journey.blocks.machines.BlockIgniter;
 import net.journey.blocks.machines.BlockJourneyChest;
@@ -442,6 +443,7 @@ public class JourneyBlocks {
 	public static BlockMod nethicLamp;
 
 	public static BlockMod knowledgeTable;
+	public static BlockMod stoneCraftingTable;
 	public static BlockMod summoningTable;
 	public static BlockMod bossAltar;
 
@@ -827,6 +829,7 @@ public class JourneyBlocks {
 		compactNetherBrick = (BlockMod) new BlockMod("compactNetherBrick", "Compact Nether Brick").setBlockUnbreakable().setResistance(10000000.0F);
 		nethicLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "nethicLamp", "Nethic Lamp", 0.1F).setLightLevel(1).setCreativeTab(JourneyTabs.decoration);
 		
+		stoneCraftingTable = (BlockMod) new BlockCrafting("stoneCraftingTable", "Stone Crafting Table").setCreativeTab(JourneyTabs.machineBlocks);
 		summoningTable = new BlockSummoningTable("summoningTable", "Summoning Table");
 
 		observerSpawner = new BlockModSpawner("observerSpawner", "Observer Spawner", "observer");

@@ -40,6 +40,7 @@ import net.journey.items.ItemBattleAxe;
 import net.journey.items.ItemBonemealHoe;
 import net.journey.items.ItemCandyCane;
 import net.journey.items.ItemCrackenCanes;
+import net.journey.items.ItemCrafting;
 import net.journey.items.ItemCrakeBulb;
 import net.journey.items.ItemCreativeHammer;
 import net.journey.items.ItemDemonicEye;
@@ -710,6 +711,7 @@ public class JourneyItems {
 
 	public static Item frostyGift;
 
+	public static Item pocketCrafting;
 	public static Item firestoneClump;
 
 	//TODO
@@ -882,6 +884,8 @@ public class JourneyItems {
 		blazingFireball = new ItemMod("blazingFireball", "Blazing Fireball");
 		hellTurtleShell = new ItemMod("hellTurtleShell", "Hell Turtle Shell");
 		sizzlingEye = new ItemMod("sizzlingEye", "Sizzling Eye");
+		
+		pocketCrafting = new ItemCrafting("pocketCrafting", "Sizzling Crafting Pack", 0);
 
 		sentryEye = new ItemSentryEye("sentryEye", "Sentry Eye");
 		boilingSkull = new ItemMod("boilingskull", "Boiling Skull");
