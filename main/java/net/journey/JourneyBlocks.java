@@ -8,7 +8,6 @@ import net.journey.blocks.BlockCloud;
 import net.journey.blocks.BlockCorbaPortalFrame;
 import net.journey.blocks.BlockDarkbloom;
 import net.journey.blocks.BlockDepthsLeaves;
-import net.journey.blocks.BlockDungeonBlock;
 import net.journey.blocks.BlockEucaPumpkin;
 import net.journey.blocks.BlockEucaSapling;
 import net.journey.blocks.BlockGemBlock;
@@ -282,9 +281,6 @@ public class JourneyBlocks {
 	public static BlockMod wastelandsGrass = new BlockModGrass((BlockMod)null, "wastelandsGrass", 2.0F);
 	public static BlockMod wastelandsLog = new BlockModLog("wastelandsLog");
 	public static BlockMod wastelandsBranches = new BlockModLeaves("wastelandsBranches", 2.0F).setStepSound(EnumMaterialTypes.WOOD.getSound());*/
-
-	public static BlockWitherPortal witherPortal;
-	public static BlockMod witherPortalFrame;
 
 	public static BlockEucaPortal eucaPortal;
 	public static BlockMod eucaPortalFrame;
@@ -577,15 +573,6 @@ public class JourneyBlocks {
 		frozenBark = new BlockModLog("frozenBark", "Frozen Bark");
 		frozenPlanks = new BlockMod(EnumMaterialTypes.WOOD, "frozenPlanks", "Frozen Planks", 0.5F);
 
-		withanDirt = new BlockMod(EnumMaterialTypes.DIRT, "withanDirt", "Withan Dirt", 2.0F);
-		withanRock = new BlockMod(EnumMaterialTypes.STONE, "withanRock", "Withan Rock", 5.0F);
-		withanGrass = new BlockModGrass(withanDirt, "withanGrass", "Withan Grass", 2.0F);
-		withanLeaves = new BlockModLeaves("withanLeaves", "Withering Leaves", 0.5F);
-		withanBark = new BlockModLog("withanBark", "Withering Bark");
-		withanRockReinforced = (BlockMod) new BlockMod("reinforcedWithan", "Withan Rock").setResistance(10000000000F).setBlockUnbreakable();
-		withanLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "withanLamp", "Withan Lamp", 0.1F).setLightLevel(1.0F).setCreativeTab(JourneyTabs.decoration);
-		withanLight = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "withanLight", "Withan Light", 0.1F).setLightLevel(1.0F).setCreativeTab(JourneyTabs.decoration); 
-
 		goldenGrass = new BlockModGrass((BlockMod)null, "goldenGrass", "Golden Grass", 0.5F);
 		goldenStone = new BlockMod("goldenStone", "Golden Stone");
 
@@ -680,9 +667,6 @@ public class JourneyBlocks {
 	 wastelandsGrass = new BlockModGrass((BlockMod)null, "wastelandsGrass", 2.0F);
 	 wastelandsLog = new BlockModLog("wastelandsLog");
 	 wastelandsBranches = new BlockModLeaves("wastelandsBranches", 2.0F).setStepSound(EnumMaterialTypes.WOOD.getSound()); */
-
-		witherPortal = new BlockWitherPortal("witherPortal", "Withanian Portal");
-		witherPortalFrame = new BlockWitherFrame("witherPortalFrame", "Withanian Portal Frame");
 
 		eucaPortal = new BlockEucaPortal("eucaPortal");
 		eucaPortalFrame = new BlockMod("eucaPortalFrame", "Euca Portal Frame", 3.0F);
