@@ -23,7 +23,6 @@ import net.journey.blocks.BlockStalks;
 import net.journey.blocks.BlockSwampLamp;
 import net.journey.blocks.BlockTerraFlower;
 import net.journey.blocks.BlockTrophy;
-import net.journey.blocks.BlockWitherFrame;
 import net.journey.blocks.base.BlockModFire;
 import net.journey.blocks.base.BlockModOre;
 import net.journey.blocks.base.BlockNetherFlower;
