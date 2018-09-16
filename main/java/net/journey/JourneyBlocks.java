@@ -718,11 +718,11 @@ public class JourneyBlocks {
 
 		mossyEssenceStone = new BlockMod("mossyEssenceStone", "Mossy Essence Stone", 2.0F);
 
-		dungeonBrick = new BlockDungeonBlock("dungeonBrick", "Dungeon Brick");
-		dungeonCrackedBrick = new BlockDungeonBlock("dungeonCrackedBrick", "Dungeon Cracked Brick");
-		dungeonChisledBrick = new BlockDungeonBlock("dungeonChiseledBrick", "Dungeon Chiseled Brick");
-		dungeonBrickCarved = new BlockDungeonBlock("dungeonBrickCarved", "Dungeon Carved Brick");
-		dungeonLamp = (BlockDungeonBlock) new BlockDungeonBlock("dungeonLamp", "Dungeon Lamp", true).setLightLevel(0.5F).setCreativeTab(JourneyTabs.decoration);
+		dungeonBrick = new BlockMod(EnumMaterialTypes.STONE, "dungeonBrick", "Dungeon Brick", -1F);
+		dungeonCrackedBrick = new BlockMod(EnumMaterialTypes.STONE, "dungeonCrackedBrick", "Dungeon Cracked Brick", -1F);
+		dungeonChisledBrick = new BlockMod(EnumMaterialTypes.STONE, "dungeonChiseledBrick", "Dungeon Chiseled Brick", -1F);
+		dungeonBrickCarved = new BlockMod(EnumMaterialTypes.STONE, "dungeonBrickCarved", "Dungeon Carved Brick", -1F);
+		dungeonLamp = (BlockMod) new BlockMod(EnumMaterialTypes.STONE, "dungeonLamp", "Dungeon Lamp", -1F).setLightLevel(0.5F);
 
 		dungeonBrickStairs = new BlockModStairs(dungeonBrick, "dungeonBrickStairs", "Dungeon Brick Stairs");
 		dungeonCrackedBrickStairs = new BlockModStairs(dungeonCrackedBrick, "dungeonCrackedBrickStairs", "Cracked Dungeon Brick Stairs");
