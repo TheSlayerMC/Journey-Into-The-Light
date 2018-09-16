@@ -4,35 +4,38 @@ Items:
 Armour needs to be added back
 Bows need to be fixed
 All items need to be tested and checked that no crash occures
+Remove unused items
 
 Blocks:
+Fix berry bushes so they drop berries into the inventory when right-clicked
+Fix BlockModLock 
 All blocks need to be placed down and used if an interaction is avaliable to check crashes
 Fix tileentities (summoning and grindstone)
 remove unused blocks
 Make certain blocks use metadata types (Ryan can do this)
 Fix corba portal frame so it creates the portal when the eyes are placed inside the slots
+Remove unused blocks
 
 Rendering:
 Item JSONS need to written in the way of the new ones (refer to vanilla basic items using the parent "item/handheld" to assure of proper perspective in first and third person)
 column / grass type blocks need new Item jsons 
 fix custom chest rendering (different chest types should be rendered with different textures)
+Fix log rendering
 
 Registrys:
 Finish crafting recipes
 Finish sounds
 
 Structures:
-Make mage and blacksmith buildings village pieces (maybe) or make them much less common
-Fix nether trees so they properly generate over nethic soil
 correctly register and add all loot tables
 
 Dimensions:
 Add mob spawning to dimensions (All dimensions are read as plains biomes, should be changed to the correct biomes)
-Fix certain teleporters (corba and depths specifically)
+Fix certain teleporters (corba specifically)
 
 Entitys:
 Make sure all mobs are placed to prevent crashes on spawn
-Fix bosses, flying mobs, ranged mobs and pets
+Fix bosses, ranged mobs and pets
 get obsidian boat to move
 make certain bosses actually challenging and unique (later)
 
