@@ -1,6 +1,6 @@
 {
 	"parent": "item/generated",
 	"textures": {
-		"layer0": "journey:items/blueGem"
-	} 
+		"layer0": "journey:items/bluegem"
+	}
 }

@@ -1,6 +1,6 @@
 {
 	"parent": "item/generated",
 	"textures": {
-		"layer0": "journey:items/withicSoul"
-	} 
+		"layer0": "journey:items/withicsoul"
+	}
 }

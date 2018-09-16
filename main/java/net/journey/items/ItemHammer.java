@@ -42,7 +42,7 @@ public class ItemHammer extends ItemSword {
 		LangRegistry.addItem(name, f);
 		setUnlocalizedName(name);
 		mat = toolMaterial;
-		setCreativeTab(JourneyTabs.hammers);
+		setCreativeTab(JourneyTabs.weapons);
 		JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
 		JourneyItems.items.add(this);
 		setRegistryName(SlayerAPI.MOD_ID, name);

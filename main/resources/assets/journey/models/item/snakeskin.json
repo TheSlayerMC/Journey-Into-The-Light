@@ -1,6 +1,6 @@
 {
 	"parent": "item/generated",
 	"textures": {
-		"layer0": "journey:items/snakeSkin"
-	} 
+		"layer0": "journey:items/snakeskin"
+	}
 }

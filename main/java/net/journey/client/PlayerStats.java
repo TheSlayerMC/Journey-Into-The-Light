@@ -24,7 +24,7 @@ public class PlayerStats {
 				if(SlayerAPI.BETA) mc.fontRenderer.drawString(Colour.DARK_GREEN + "Journey Into The Light: " + Colour.DARK_RED + SlayerAPI.MOD_VERSION, 5, 5, 0);
 
 			if(mc.gameSettings.showDebugInfo) {
-				String st = I18n.format("essence.time", new Object[0]) + " " + formatTime(getWorldTime(mc));
+				String st = I18n.format("journey.time", new Object[0]) + " " + formatTime(getWorldTime(mc));
 				font.drawString(st, 2, 138, 0xFFFFFF);
 			}
 		}

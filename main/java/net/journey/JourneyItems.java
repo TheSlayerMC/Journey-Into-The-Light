@@ -952,8 +952,8 @@ public class JourneyItems {
 		eucaPortalPiece_1 = new ItemMod("eucaPortalPiece_1", "Euca Portal Piece");
 		eucaPortalPiece_0 = new ItemMod("eucaPortalPiece_0", "Euca Portal Piece");
 		flamingHide = new ItemMod("flamingHide", "Flaming Hide");
-		boilKey = new ItemMod("boilKey", "Boil Key").setMaxStackSize(1);;
-		darkKey = new ItemMod("darkkey", "Dark Key").setMaxStackSize(1);;
+		boilKey = new ItemMod("boilKey", "Boil Key").setMaxStackSize(1);
+		darkKey = new ItemMod("darkkey", "Dark Key").setMaxStackSize(1);
 
 		hellstoneDust = new ItemMod("hellstoneDust", "Bloodcrust Dust");
 		shadiumDust = new ItemMod("shadiumDust", "Shadium Dust");
@@ -1001,15 +1001,12 @@ public class JourneyItems {
 		goldMultiTool = new ItemMultiTool("goldMultiTool", "Gold Multi Tool", JourneyToolMaterial.GOLD_MULTI_TOOL, 33);
 		diamondMultiTool = new ItemMultiTool("diamondMultiTool", "Diamond Multi Tool", JourneyToolMaterial.DIAMOND_MULTI_TOOL, 1562);
 
-
 		sapphirePickaxe = new ItemModPickaxe("sapphirePickaxe", "Sapphire Pickaxe", JourneyToolMaterial.SAPPHIRE);
 		shadiumPickaxe = new ItemModPickaxe("shadiumPickaxe", "Shadium Pickaxe", JourneyToolMaterial.SHADIUM);
 		luniumPickaxe = new ItemModPickaxe("luniumPickaxe", "Lunium Pickaxe", JourneyToolMaterial.LUNIUM);
-		
 		hellstonePickaxe = new ItemModPickaxe("hellstonePickaxe", "Bloodcrust Pickaxe", JourneyToolMaterial.HELLSTONE);
 		nethicPickaxe = new ItemModPickaxe("nethicPickaxe", "Nethic Pickaxe", JourneyToolMaterial.NETHIC);
 		nethicAxe = new ItemModAxe("nethicaxe", "Nethic Axe", JourneyToolMaterial.NETHIC);
-		
 		koritePickaxe = new ItemModPickaxe("koritePickaxe", "Korite Pickaxe", JourneyToolMaterial.KORITE);
 		storonPickaxe = new ItemModPickaxe("storonPickaxe", "Storon Pickaxe", JourneyToolMaterial.KORITE);
 		mekyumPickaxe = new ItemModPickaxe("mekyumPickaxe", "Mekyum Pickaxe", JourneyToolMaterial.KORITE); 
@@ -1121,15 +1118,11 @@ public class JourneyItems {
 		demonicSword = new ItemWitherSword("demonicSword", "Wither Sword", JourneyToolMaterial.DEMONIC_SWORD);
 		vinestrandBlade = new ItemPoisionSword("vinestrandBlade", "Vinestrand Blade", JourneyToolMaterial.VINESTRAND_BLADE);
 		darkPineSword = new ItemWitherSword("darkPineSword", "Dark Pine Sword", JourneyToolMaterial.DARK_PINE_SWORD);
-
 		healersBlade = new ItemHealthSword("healersBlade", "Healers Blade", JourneyToolMaterial.HEALERS_BLADE, 1);
 		terronicBlade = new ItemHealthSword("terronicBlade", "Terronic Blade", JourneyToolMaterial.TERRONIC_BLADE, 2);
-
 		developerSword = new ItemModSword("developerSword", "Creative Sword", JourneyToolMaterial.DEVELOPER_SWORD).setCreativeTab(JourneyTabs.util);
 
 		slugSlime = new ItemMod("slugSlime", "Slug Slime");
-
-
 		eucaPortalGem = new ItemMod("eucaPortalGem", "Euca Portal Gem");
 		depthsPortalGem = new ItemMod("depthsPortalGem", "Depths Portal Gem");
 		corbaPortalGem = new ItemMod("corbaPortalGem", "Corba Portal Gem");
@@ -1316,7 +1309,6 @@ public class JourneyItems {
 		celekiumBattleaxe = new ItemBattleAxe("celekiumBattleaxe", "Celekium Battleaxe", JourneyToolMaterial.CELEKIUM_BATTLEAXE);
 		thunderbirdBattleaxe = new ItemBattleAxe("thunderbirdBattleaxe", "Thunderbird Battleaxe", JourneyToolMaterial.THUNDERBIRD_BATTLEAXE); 
 		 
-		
 		staffOfCrystal = new ItemStaff("staffOfCrystal", "Staff of Crystal", 3, 1000, 10, false, EntityIceBall.class);
 		staffOfDivineStone = new ItemStaff("staffOfDivineStone", "Staff of Divine Stone", 3, 1000, 9, false, EntityRock.class);
 		staffOfHellstone = new ItemStaff("staffOfHellstone", "Staff of Hellstone", 3, 1000, 7, false, EntityHellstone.class);
@@ -1327,6 +1319,9 @@ public class JourneyItems {
 		wizardsStar = new ItemStaff("wizardsStar", "Wizards Star", 3, 1000, 5, false, EntityWizardsStar.class);
 		teleportationStaff = new ItemTeleport("teleportationStaff", "Teleportation Staff");
 		overgrownStaff = new ItemStaff("overgrownStaff", "Overgrown Staff", 3, 1000, 5, false, EntityOvergrown.class);
+		fireWand = new ItemWand("fireWand", "Fire Wand", false, 5, 600, 8, false, EntityFireBall.class);
+		iceWand = new ItemWand("iceWand", "Ice Wand", true, 5, 600, 8, false, EntityIceBall.class);
+		lightningWand = new ItemWand("lightningWand", "Lightning Wand", false, 10, 600, 8, false, EntityLightningBall.class);
 
 		//flameArrow = new ItemMod("flameArrow", EssenceTabs.ranged);
 		essenceArrow = new ItemEssenceArrow("essenceArrow", "Essence Arrow");
@@ -1364,11 +1359,6 @@ public class JourneyItems {
 		lavenderBow = new ItemModBow("lavenderBow", "Lavender Bow", 892, 6, essenceArrow, "Slows enemies", EntityFrozenArrow.class);
 		terralightBow = new ItemModBow("terralightBow", "Terralight Bow", 384, 7, essenceArrow, "Poisons enemies", EntityPoisonArrow.class);
 		terrianBow = new ItemModBow("terrianBow", "Terrian Bow", 384, 6, essenceArrow, "Poisons enemies", EntityPoisonArrow.class);
-
-
-		fireWand = new ItemWand("fireWand", "Fire Wand", false, 5, 600, 8, false, EntityFireBall.class);
-		iceWand = new ItemWand("iceWand", "Ice Wand", true, 5, 600, 8, false, EntityIceBall.class);
-		lightningWand = new ItemWand("lightningWand", "Lightning Wand", false, 10, 600, 8, false, EntityLightningBall.class);
 
 		hammerCreative = new ItemCreativeHammer("hammerCreative", "Hammer of Creative Spellbinding", JourneyToolMaterial.CREATIVE, false, EntityLightningBall.class);
 		earthenHammer = new ItemHammer("earthenHammer", "Earthen Hammer", JourneyToolMaterial.EARTHEN_HAMMER, false, EntityEarthen.class, 4, 4, 642);

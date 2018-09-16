@@ -1,6 +1,6 @@
 {
 	"parent": "item/generated",
 	"textures": {
-		"layer0": "journey:items/darkOrb"
-	} 
+		"layer0": "journey:items/darkorb"
+	}
 }

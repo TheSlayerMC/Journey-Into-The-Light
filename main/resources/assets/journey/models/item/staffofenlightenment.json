@@ -1,6 +1,6 @@
 {
-	"parent": "item/generated",
+	"parent": "item/handheld",
 	"textures": {
-		"layer0": "journey:items/staffOfEnlightenment"
-	} 
+		"layer0": "journey:items/staffofenlightenment"
+	}
 }

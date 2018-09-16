@@ -1,6 +1,7 @@
 package net.slayer.api.block;
 
 import net.journey.JITL;
+import net.journey.JourneyBlocks;
 import net.journey.JourneyItems;
 import net.journey.JourneyTabs;
 import net.journey.util.LangRegistry;
@@ -25,7 +26,7 @@ public class BlockModLog extends BlockLog {
 		this.setSoundType(SoundType.WOOD);
 		this.setDefaultState(this.getDefaultState().withProperty(LOG_AXIS, EnumAxis.Y));
 		setRegistryName(SlayerAPI.MOD_ID, name);
-		JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
+		JourneyBlocks.blocks.add(this);
 	}
 
 	@Override

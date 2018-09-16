@@ -7,8 +7,6 @@ public class KeyInputHandler {
 
 	@SubscribeEvent
 	public void onKeyInput(KeyInputEvent event) {
-		//if(Keybinding.stats.isPressed())
-		//	Essence.packetHandler.sendToServer(new PacketOpenGui().setID(GuiIDs.STATS.ordinal()));
 		
 	}
 }

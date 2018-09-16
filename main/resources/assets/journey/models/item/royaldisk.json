@@ -1,6 +1,6 @@
 {
 	"parent": "item/generated",
 	"textures": {
-		"layer0": "journey:items/royalDisk"
-	} 
+		"layer0": "journey:items/royaldisk"
+	}
 }

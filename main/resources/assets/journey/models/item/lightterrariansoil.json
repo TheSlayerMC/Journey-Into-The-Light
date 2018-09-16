@@ -1,6 +1,6 @@
 {
 	"parent": "item/generated",
 	"textures": {
-		"layer0": "journey:items/lightTerrarianSoil"
-	} 
+		"layer0": "journey:items/lightterrariansoil"
+	}
 }

@@ -1,6 +1,6 @@
 {
 	"parent": "item/generated",
 	"textures": {
-		"layer0": "journey:items/eucaPortalPiece"
-	} 
+		"layer0": "journey:items/eucaportalpiece"
+	}
 }
