@@ -975,15 +975,8 @@ public class JourneyItems {
 		hellstoneClump = new ItemMod("hellstoneClump", "Bloodcrust Clump");
 		shadiumClump = new ItemMod("shadiumClump", "Shadium Clump");
 		luniumClump = new ItemMod("luniumClump", "Lunium Clump");
-		spawnerClump = new ItemMod("spawnerClump", "Spawner Clump");
-		spawnerBar = new ItemMod("spawnerBar", "Spawner Bar");
 
 		flameCoin = new ItemFlameCoin("flameCoin", "Flame Coin");
-		essenceDetractor = new ItemDetractor("essenceDetractor", "Essence Detractor", 1, false, true);
-		essenceAttractor = new ItemDetractor("essenceAttractor", "Essence Attractor", 1, true, false);
-
-		rockChunk = new ItemMod("rockChunk", "Rock Chunk");
-		rockShard = new ItemMod("rockShard", "Rock Shard");
 		//plasmaBall = new ItemMod("plasmaBall");
 
 		hellstoneMultiTool = new ItemMultiTool("hellstoneMultiTool", "Bloodcrust Multi Tool", JourneyToolMaterial.HELLSTONE_MULTI_TOOL, 1750);
