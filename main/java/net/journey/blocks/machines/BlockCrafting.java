@@ -16,6 +16,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ContainerWorkbench;
 import net.minecraft.item.Item;
+import net.minecraft.stats.StatList;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
@@ -43,7 +44,8 @@ public class BlockCrafting extends BlockMod {
 			return true;
 		} else {
 			playerIn.displayGui(new BlockCrafting.InterfaceStoneCraftingTable(worldIn, pos));
-			return true;
+            playerIn.addStat(StatList.CRAFTING_TABLE_INTERACTION);
+            return true;
 		}
 	}
 
@@ -56,23 +58,28 @@ public class BlockCrafting extends BlockMod {
 			this.position = p;
 		}
 
+		@Override
 		public String getName() {
 			return null;
 		}
 
+		@Override
 		public boolean hasCustomName() {
 			return false;
 		}
 
+		@Override
 		public ITextComponent getDisplayName() {
 			return new TextComponentTranslation(JourneyBlocks.stoneCraftingTable.getUnlocalizedName() + ".name",
 					new Object[0]);
 		}
 
+		@Override
 		public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) {
 			return new ContainerCrafting(playerInventory, this.world, this.position);
 		}
 
+		@Override
 		public String getGuiID() {
 			return "minecraft:crafting_table";
 		}
