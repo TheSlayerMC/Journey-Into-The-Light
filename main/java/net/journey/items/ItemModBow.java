@@ -115,7 +115,7 @@ public class ItemModBow extends ItemMod {
 
                     if (!worldIn.isRemote) {
                         ItemEssenceArrow itemarrow = (ItemEssenceArrow)(itemstack.getItem() instanceof ItemEssenceArrow ? itemstack.getItem() : JourneyItems.essenceArrow);
-                        EntityArrow arrow = null;
+                        EntityArrow arrow = itemarrow.createArrow(worldIn, itemstack, entityplayer);
 						try {
 							arrow = arrowClass.getConstructor(World.class, EntityLivingBase.class).newInstance(worldIn, entityplayer);
 						} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
