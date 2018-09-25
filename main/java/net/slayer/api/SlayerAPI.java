@@ -19,6 +19,7 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.command.ICommand;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
@@ -48,9 +49,9 @@ public class SlayerAPI {
 			MOD_NAME = "Journey Into the Light", 
 			MOD_ID = "journey", 
 			PREFIX = MOD_ID + ":", 
-			MOD_VERSION = "1.2"; 
+			MOD_VERSION = "1.0.2"; 
 	public static final boolean 
-			DEVMODE = true, 
+			DEVMODE = false, 
 			BETA = true;
 
 	public static void addRecipe(ItemStack i, Object... o) {
@@ -172,9 +173,9 @@ public class SlayerAPI {
 		projectileID++;
 	}
 
-    public static ArmorMaterial addArmorMaterial(String name, int durability, int[] oldArmor, int enchantability) {
+    public static ArmorMaterial addArmorMaterial(String name, int durability, int[] oldArmor, int enchantability, float toughness) {
         int duraNew = (int) Math.round(durability / 13.75);
-        return EnumHelper.addArmorMaterial(name, name, duraNew, oldArmor, enchantability, null, duraNew);
+        return EnumHelper.addArmorMaterial(name, SlayerAPI.PREFIX + name, duraNew, oldArmor, enchantability, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, toughness);
     }
 
     @SideOnly(Side.CLIENT)

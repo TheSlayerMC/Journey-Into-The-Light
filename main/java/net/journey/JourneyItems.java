@@ -1144,7 +1144,7 @@ public class JourneyItems {
 		weakEssencePotion = new ItemEssencePotion("weakEssencePotion", "Weak Essence Potion", false);
 		strongEssencePotion = new ItemEssencePotion("strongEssencePotion", "Strong Essence Potion", true);
 
-		/*hellstoneHelmet = new ItemModArmor(EnumArmor.HELLSTONE, HEAD);
+		hellstoneHelmet = new ItemModArmor(EnumArmor.HELLSTONE, HEAD);
 		hellstoneChest = new ItemModArmor(EnumArmor.HELLSTONE, BODY);
 		hellstoneLegs = new ItemModArmor(EnumArmor.HELLSTONE, LEGS);
 		hellstoneBoots = new ItemModArmor(EnumArmor.HELLSTONE, BOOTS);
@@ -1292,7 +1292,7 @@ public class JourneyItems {
 		bleedrockHelmet = new ItemModArmor(EnumArmor.BLEEDROCK, HEAD);
 		bleedrockChest = new ItemModArmor(EnumArmor.BLEEDROCK, BODY);
 		bleedrockLegs = new ItemModArmor(EnumArmor.BLEEDROCK, LEGS);
-		bleedrockBoots = new ItemModArmor(EnumArmor.BLEEDROCK, BOOTS); */
+		bleedrockBoots = new ItemModArmor(EnumArmor.BLEEDROCK, BOOTS);
 
 		rockyBattleaxe = new ItemBattleAxe("rockyBattleaxe", "Rocky Battleaxe", JourneyToolMaterial.ROCKY_BATTLEAXE);
 		crystalizedBattleaxe = new ItemBattleAxe("crystalizedBattleaxe", "Crystalized Battleaxe", JourneyToolMaterial.CRYSTAL_BATTLEAXE);

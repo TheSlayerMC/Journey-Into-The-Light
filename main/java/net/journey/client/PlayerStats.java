@@ -21,7 +21,7 @@ public class PlayerStats {
 		EntityPlayer player = mc.player;
 		if(mc.currentScreen == null) {
 			if(!mc.gameSettings.showDebugInfo) 
-				if(SlayerAPI.BETA) mc.fontRenderer.drawString(Colour.DARK_GREEN + "Journey Into The Light: " + Colour.DARK_RED + SlayerAPI.MOD_VERSION, 5, 5, 0);
+				if(SlayerAPI.BETA) mc.fontRenderer.drawString(Colour.DARK_GREEN + "Journey Into The Light: " + Colour.DARK_RED + SlayerAPI.MOD_VERSION + " PRE RELEASE", 5, 5, 0);
 
 			if(mc.gameSettings.showDebugInfo) {
 				String st = I18n.format("journey.time", new Object[0]) + " " + formatTime(getWorldTime(mc));

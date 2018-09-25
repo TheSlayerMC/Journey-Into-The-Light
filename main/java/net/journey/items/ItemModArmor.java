@@ -36,7 +36,6 @@ public class ItemModArmor extends ItemArmor implements ISpecialArmor {
 
 	public ItemModArmor(EnumArmor armorMaterial, EntityEquipmentSlot type, String name) {
 		super(armorMaterial.getArmorMaterial(), type.getIndex(), type);
-		LangRegistry.addArmour(this, armorMaterial, type);
 		this.armorMaterial = armorMaterial;
 		this.fullReduction = armorMaterial.getDamageReduction();
 		if (armorType == EntityEquipmentSlot.HEAD) damageReduction = ((((double)fullReduction) / 24) * 5) / 100;
@@ -49,7 +48,8 @@ public class ItemModArmor extends ItemArmor implements ISpecialArmor {
 		setUnlocalizedName(this.name);
 		JourneyItems.itemNames.add(SlayerAPI.PREFIX + name.toLowerCase());
 		JourneyItems.items.add(this);
-		setRegistryName(SlayerAPI.MOD_ID, name);
+		LangRegistry.addArmour(this, armorMaterial, type);
+		setRegistryName(SlayerAPI.MOD_ID, this.name);
 	}
 
 	@Override
