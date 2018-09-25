@@ -134,4 +134,13 @@ public class ItemBonemealHoe extends ItemModHoe {
 			}
 		}
 	}
+	
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, World player, List<String> list, ITooltipFlag par4) {
+    	list.add(SlayerAPI.Colour.GOLD + "Crouch + Right Click to Bonemeal, Right Click to Till");
+        list.add(SlayerAPI.Colour.BLUE + "Efficiency: " + toolMaterial.getEfficiency());
+        if (stack.getMaxDamage() != -1) list.add(stack.getMaxDamage() - stack.getItemDamage() + " Uses");
+        else list.add(SlayerAPI.Colour.GREEN + "Infinite Uses");
+    }
 }
