@@ -54,7 +54,7 @@ public class BlockLock extends BlockMod {
 	
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		if(!worldIn.isRemote && playerIn.getHeldItem(hand) !=null && playerIn.getHeldItem(hand).getItem() == key) {
+		if(!worldIn.isRemote && playerIn.getHeldItem(hand.MAIN_HAND) !=null && playerIn.getHeldItem(hand.MAIN_HAND).getItem() == key) {
 			JourneySounds.playSound(JourneySounds.UNLOCK, worldIn, playerIn);
 			JourneySounds.playSound(JourneySounds.GATE_CREAK, worldIn, playerIn);
 			worldIn.setBlockState(pos.add(0, 0, 0), Blocks.AIR.getDefaultState());

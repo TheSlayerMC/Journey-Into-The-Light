@@ -15,6 +15,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.stats.StatList;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -32,11 +34,11 @@ import net.slayer.api.EnumMaterialTypes;
 public class BlockModBush extends BlockMod implements IPlantable, IGrowable {
 
 	private boolean isNether;
-	private ItemStack berry;
+	private Item berry;
 	
 	public static final PropertyInteger AGE = PropertyInteger.create("age", 0, 2);
 
-	public BlockModBush(String name, String finalName, ItemStack berry, boolean isNether) {
+	public BlockModBush(String name, String finalName, Item berry, boolean isNether) {
 		super(EnumMaterialTypes.LEAVES, name, finalName, 1.0F);
 		this.berry = berry;
 		this.isNether = isNether;
@@ -166,21 +168,22 @@ public class BlockModBush extends BlockMod implements IPlantable, IGrowable {
     public int damageDropped(IBlockState state) {
         return 0;
     }
+    
 	@Override
-	public boolean onBlockActivated(World w, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
-		double 
-		x = player.posX,
-		y = player.posY - 1.0D, 
-		z = player.posZ;
-		if (state.getValue(AGE) == 2) {
-			if (w.isRemote) { 
-				return true;
-			}
-			EntityItem drop = new EntityItem(w, x, y, z, berry);
-			w.spawnEntity(drop);
+	public void harvestBlock(World w, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity te,
+			ItemStack stackIn) {
+		int min = 1, max = 2;
+		
+		if (state.getValue(AGE) == 2 && !w.isRemote) {
+			int rand = w.rand.nextInt(max - min + 1) + min;
+			
+			player.addStat(StatList.getBlockStats(this), 1);
+			player.addExhaustion(0.025F);
 			w.setBlockState(pos, state.withProperty(AGE, 0), 1);
-			return true;
+
+			if (rand != 0) {
+				spawnAsEntity(w, pos, new ItemStack(berry, rand, 0));
+			}
 		}
-		return false;
 	}
 }
