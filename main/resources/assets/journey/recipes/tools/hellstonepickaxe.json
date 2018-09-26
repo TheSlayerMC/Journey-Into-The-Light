@@ -10,11 +10,11 @@
       "item": "minecraft:stick"
     },
     "X": {
-	  "item": "journey:sapphire"
+	  "item": "journey:hellstoneingot"
     }
   },
   "result": {
-	"item": "journey:sapphirepickaxe",
+	"item": "journey:hellstonepickaxe",
     "count": 1
   }
 }

@@ -173,6 +173,7 @@ public class JourneyItems {
 	public static Item heartUlt;
 	public static Item heartSentry;
 	public static Item hellstoneIngot;
+	public static Item bloodcrustIngot;
 	public static Item shadiumIngot;
 	public static Item celestiumIngot;
 	public static Item mekyumIngot;
@@ -851,8 +852,9 @@ public class JourneyItems {
 		heartLrg = new ItemHealth("heartLrg", "Heart: Tier 3", 4, 2, 0.2F, false, false, 60, false, true);
 		heartUlt = new ItemHealth("heartUlt", "Heart: Ultimate", 8, 2, 0.2F, false, false, 60, false, true);
 		heartSentry = new ItemHealth("heartSen", "Sentry's Heart", 10, 2, 0.2F, false, false, 20, true, false);
-		hellstoneIngot = new ItemMod("hellstoneIngot", "Bloodcrust Ingot");
-		
+		hellstoneIngot = new ItemMod("hellstoneIngot", "Hellstone Ingot");
+		bloodcrustIngot = new ItemMod("bloodcrustIngot", "Bloodcrust Ingot");
+
 		verditeIngot = new ItemMod("verditeIngot", "Verdite Ingot");
 		
 		shadiumIngot = new ItemMod("shadiumIngot", "Shadium Ingot");
