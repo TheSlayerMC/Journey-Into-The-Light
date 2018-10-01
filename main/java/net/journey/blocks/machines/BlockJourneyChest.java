@@ -23,7 +23,6 @@ import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.inventory.InventoryLargeChest;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -150,8 +149,8 @@ public class BlockJourneyChest extends BlockModContainer {
 		if(stack.hasDisplayName()) {
 			TileEntity tileentity = worldIn.getTileEntity(pos);
 
-			if(tileentity instanceof TileEntityChest) {
-				((TileEntityChest) tileentity).setCustomName(stack.getDisplayName());
+			if(tileentity instanceof TileEntityJourneyChest) {
+				((TileEntityJourneyChest) tileentity).setCustomName(stack.getDisplayName());
 			}
 		}
 	}
@@ -332,7 +331,7 @@ public class BlockJourneyChest extends BlockModContainer {
 		super.neighborChanged(state, worldIn, pos, blockIn, fromPos);
 		TileEntity tileentity = worldIn.getTileEntity(pos);
 
-		if(tileentity instanceof TileEntityChest) {
+		if(tileentity instanceof TileEntityJourneyChest) {
 			tileentity.updateContainingBlockInfo();
 		}
 	}
