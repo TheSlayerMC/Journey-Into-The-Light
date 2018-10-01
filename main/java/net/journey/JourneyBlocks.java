@@ -231,7 +231,6 @@ public class JourneyBlocks {
 	public static BlockMod corbaChest;
 	public static BlockMod cloudiaChest;
 	public static BlockMod terraniaChest;
-	
 	public static BlockMod journeyChest;
 
 	public static BlockMod nethicDungeonBricks;

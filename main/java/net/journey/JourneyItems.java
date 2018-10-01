@@ -2,7 +2,10 @@ package net.journey;
 
 import java.util.ArrayList;
 
+import net.journey.entity.projectile.EntityAquaticKnife;
+import net.journey.entity.projectile.EntityBloodKnife;
 import net.journey.entity.projectile.EntityBoilingPiercer;
+import net.journey.entity.projectile.EntityCharredKnife;
 import net.journey.entity.projectile.EntityConjuring;
 import net.journey.entity.projectile.EntityCorbaPiercer;
 import net.journey.entity.projectile.EntityDarknessArrow;
@@ -31,6 +34,7 @@ import net.journey.entity.projectile.EntityNethicPiercer;
 import net.journey.entity.projectile.EntityOvergrown;
 import net.journey.entity.projectile.EntityPoisonArrow;
 import net.journey.entity.projectile.EntityRock;
+import net.journey.entity.projectile.EntitySizzlingKnife;
 import net.journey.entity.projectile.EntitySkyPiercer;
 import net.journey.entity.projectile.EntitySunsetPiercer;
 import net.journey.entity.projectile.EntityWithic;
@@ -851,12 +855,10 @@ public class JourneyItems {
 		heartMed = new ItemHealth("heartMed", "Heart: Tier 2", 2, 2, 0.2F, false, false, 60, false, true);
 		heartLrg = new ItemHealth("heartLrg", "Heart: Tier 3", 4, 2, 0.2F, false, false, 60, false, true);
 		heartUlt = new ItemHealth("heartUlt", "Heart: Ultimate", 8, 2, 0.2F, false, false, 60, false, true);
+		
 		heartSentry = new ItemHealth("heartSen", "Sentry's Heart", 10, 2, 0.2F, false, false, 20, true, false);
 		hellstoneIngot = new ItemMod("hellstoneIngot", "Hellstone Ingot");
-		bloodcrustIngot = new ItemMod("bloodcrustIngot", "Bloodcrust Ingot");
-
 		verditeIngot = new ItemMod("verditeIngot", "Verdite Ingot");
-		
 		shadiumIngot = new ItemMod("shadiumIngot", "Shadium Ingot");
 		celestiumIngot = new ItemMod("celestiumIngot", "Celestium Ingot");
 		mekyumIngot = new ItemMod("mekyumIngot", "Mekyum Ingot");
@@ -871,24 +873,19 @@ public class JourneyItems {
 		orbaditeIngot = new ItemMod("orbaditeIngot", "Orbadite Ingot");
 		gorbiteGem = new ItemMod("gorbiteGem", "Gorbite Gem");
 		desIngot = new ItemMod("desIngot", "Des Ingot");
-
 		bleedstone = new ItemMod("bleedstone", "Bleedstone");
-		smithstone= new ItemMod("smithstone", "Smithstone");
-		
-		bleedstonedust = new ItemMod("bleedstonedust", "Bleedstone Dust");
-		smithstonedust = new ItemMod("smithstonedust", "Smithstone Dust");
-		
+		smithstone = new ItemMod("smithstone", "Smithstone");
 		nethicgemstone = new ItemMod("soulstone", "Soulstone");
-		
+
+		hellstoneClump = new ItemMod("hellstoneClump", "Bloodcrust Clump");
+		shadiumClump = new ItemMod("shadiumClump", "Shadium Clump");
+		luniumClump = new ItemMod("luniumClump", "Lunium Clump");
 		obsidianrod = new ItemMod("obsidianrod", "Obsidian Rod");
 		elderKey = new ItemMod("elderKey", "Elder Key").setMaxStackSize(1);
 		boilPowder = new ItemMod("boilPowder", "Boiling Powder");
 		blazingFireball = new ItemMod("blazingFireball", "Blazing Fireball");
 		hellTurtleShell = new ItemMod("hellTurtleShell", "Hell Turtle Shell");
 		sizzlingEye = new ItemMod("sizzlingEye", "Sizzling Eye");
-		
-		pocketCrafting = new ItemCrafting("pocketCrafting", "Sizzling Crafting Pack", 0);
-
 		sentryEye = new ItemSentryEye("sentryEye", "Sentry Eye");
 		boilingSkull = new ItemMod("boilingskull", "Boiling Skull");
 		overgrownNatureBall = new ItemMod("overgrownNatureBall", "Overgrown Natureball");
@@ -959,7 +956,22 @@ public class JourneyItems {
 		flamingHide = new ItemMod("flamingHide", "Flaming Hide");
 		boilKey = new ItemMod("boilKey", "Boil Key").setMaxStackSize(1);
 		darkKey = new ItemMod("darkkey", "Dark Key").setMaxStackSize(1);
-
+		slugSlime = new ItemMod("slugSlime", "Slug Slime");
+		eucaPortalGem = new ItemMod("eucaPortalGem", "Euca Portal Gem");
+		depthsPortalGem = new ItemMod("depthsPortalGem", "Depths Portal Gem");
+		corbaPortalGem = new ItemMod("corbaPortalGem", "Corba Portal Gem");
+		terraniaPortalGem = new ItemMod("terraniaPortalGem", "Terrania Portal Gem");
+		cloudiaPortalGem = new ItemMod("cloudiaPortalGem", "Cloudia Portal Gem");
+		//wastelandPortalGem = new ItemMod("wastelandPortalGem");
+		greenGem = new ItemMod("greenGem", "Green Gem");
+		purpleGem = new ItemMod("purpleGem", "Purple Gem");
+		blueGem = new ItemMod("blueGem", "Blue Gem");
+		yellowGem = new ItemMod("yellowGem", "Yellow Gem");
+		eucaTablet = new ItemMod("eucaTablet", "Euca Tablet");
+		wandBase = new ItemMod("wandBase", "Wand Base");
+		staffBase = new ItemMod("staffBase", "Staff Base");
+		firestoneClump = new ItemMod("firestoneClump", "Firestone Clump");
+		iridium = new ItemMod("iridium", "Iridium");
 		hellstoneDust = new ItemMod("hellstoneDust", "Bloodcrust Dust");
 		shadiumDust = new ItemMod("shadiumDust", "Shadium Dust");
 		celestiumDust = new ItemMod("celestiumDust", "Celestium Dust");
@@ -973,11 +985,11 @@ public class JourneyItems {
 		diamondDust = new ItemMod("diamondDust", "Diamond Dust");
 		goldDust = new ItemMod("goldDust", "Gold Dust");
 		ironDust = new ItemMod("ironDust", "Iron Dust");
-
-		hellstoneClump = new ItemMod("hellstoneClump", "Bloodcrust Clump");
-		shadiumClump = new ItemMod("shadiumClump", "Shadium Clump");
-		luniumClump = new ItemMod("luniumClump", "Lunium Clump");
-
+		bleedstonedust = new ItemMod("bleedstonedust", "Bleedstone Dust");
+		smithstonedust = new ItemMod("smithstonedust", "Smithstone Dust");
+		
+		frostyGift = new ItemPresent("frostyGift", "Frosty Gift");
+		pocketCrafting = new ItemCrafting("pocketCrafting", "Sizzling Crafting Pack", 0);
 		flameCoin = new ItemFlameCoin("flameCoin", "Flame Coin");
 		//plasmaBall = new ItemMod("plasmaBall");
 
@@ -998,6 +1010,7 @@ public class JourneyItems {
 		ironMultiTool = new ItemMultiTool("ironMultiTool", "Iron Multi Tool", JourneyToolMaterial.IRON_MULTI_TOOL, 251);
 		goldMultiTool = new ItemMultiTool("goldMultiTool", "Gold Multi Tool", JourneyToolMaterial.GOLD_MULTI_TOOL, 33);
 		diamondMultiTool = new ItemMultiTool("diamondMultiTool", "Diamond Multi Tool", JourneyToolMaterial.DIAMOND_MULTI_TOOL, 1562);
+		multiToolOfEternalSmelting = new ItemMultiTool("multiToolOfEternalSmelting", "Multi Tool of Eternal Smelting", JourneyToolMaterial.SMELTING_TOOL, 512);
 
 		sapphirePickaxe = new ItemModPickaxe("sapphirePickaxe", "Sapphire Pickaxe", JourneyToolMaterial.SAPPHIRE);
 		shadiumPickaxe = new ItemModPickaxe("shadiumPickaxe", "Shadium Pickaxe", JourneyToolMaterial.SHADIUM);
@@ -1009,10 +1022,8 @@ public class JourneyItems {
 		storonPickaxe = new ItemModPickaxe("storonPickaxe", "Storon Pickaxe", JourneyToolMaterial.KORITE);
 		mekyumPickaxe = new ItemModPickaxe("mekyumPickaxe", "Mekyum Pickaxe", JourneyToolMaterial.KORITE); 
 		celestiumPickaxe = new ItemModPickaxe("celestiumPickaxe", "Celestium Pickaxe", JourneyToolMaterial.CELESTIUM);
-
 		flairiumPickaxe = new ItemModPickaxe("flairiumPickaxe", "Flairium Pickaxe", JourneyToolMaterial.FLAIRIUM);
 		desPickaxe = new ItemModPickaxe("desPickaxe", "Des Pickaxe", JourneyToolMaterial.DES);
-		
 		gorbitePickaxe = new ItemModPickaxe("gorbitePickaxe", "Gorbite Pickaxe", JourneyToolMaterial.GORBITE);
 		orbaditePickaxe = new ItemModPickaxe("orbaditePickaxe", "Orbadite Pickaxe", JourneyToolMaterial.ORBADITE);
 
@@ -1055,10 +1066,7 @@ public class JourneyItems {
 		koriteHoe = new ItemModHoe("koriteHoe", "Korite Hoe", JourneyToolMaterial.KORITE);
 		storonHoe = new ItemModHoe("storonHoe", "Storon Hoe", JourneyToolMaterial.KORITE);
 		mekyumHoe = new ItemModHoe("mekyumHoe", "Storon Hoe", JourneyToolMaterial.KORITE);
-		
 		hoeOfEternalLife = new ItemBonemealHoe("hoeofeternallife", "Hoe Of Eternal Life", JourneyToolMaterial.HOEOFLIFE);
-
-		multiToolOfEternalSmelting = new ItemMultiTool("multiToolOfEternalSmelting", "Multi Tool of Eternal Smelting", JourneyToolMaterial.SMELTING_TOOL, 512);
 
 		hellstoneSword = new ItemFireSword("hellstoneSword", "Bloodcrust Sword", JourneyToolMaterial.HELLSTONE_SWORD);
 		shadiumSword = new ItemFreezeSword("shadiumSword", "Shadium Sword", JourneyToolMaterial.SHADIUM_SWORD);
@@ -1119,14 +1127,6 @@ public class JourneyItems {
 		healersBlade = new ItemHealthSword("healersBlade", "Healers Blade", JourneyToolMaterial.HEALERS_BLADE, 1);
 		terronicBlade = new ItemHealthSword("terronicBlade", "Terronic Blade", JourneyToolMaterial.TERRONIC_BLADE, 2);
 		developerSword = new ItemModSword("developerSword", "Creative Sword", JourneyToolMaterial.DEVELOPER_SWORD).setCreativeTab(JourneyTabs.util);
-
-		slugSlime = new ItemMod("slugSlime", "Slug Slime");
-		eucaPortalGem = new ItemMod("eucaPortalGem", "Euca Portal Gem");
-		depthsPortalGem = new ItemMod("depthsPortalGem", "Depths Portal Gem");
-		corbaPortalGem = new ItemMod("corbaPortalGem", "Corba Portal Gem");
-		terraniaPortalGem = new ItemMod("terraniaPortalGem", "Terrania Portal Gem");
-		cloudiaPortalGem = new ItemMod("cloudiaPortalGem", "Cloudia Portal Gem");
-		//wastelandPortalGem = new ItemMod("wastelandPortalGem");
 
 		calciaOrb = new ItemNetherBossSpawner("calciaOrb", "Calcia Orb");
 		netherBeastOrb = new ItemNetherBossSpawner("netherBeastOrb", "Nether Beast Orb");
@@ -1375,21 +1375,6 @@ public class JourneyItems {
 		forestPlasma = new ItemGun("forestPlasma", "Forest Plasma", 4, "Poisons Mobs for 10 seconds", EntityOvergrown.class);
 		eyeBlaster = new ItemGun("eyeBlaster", "Eye Blaster", 12, "Harms and burns mobs for 10 seconds", EntityEyeBlaster.class);
 
-		greenGem = new ItemMod("greenGem", "Green Gem");
-		purpleGem = new ItemMod("purpleGem", "Purple Gem");
-		blueGem = new ItemMod("blueGem", "Blue Gem");
-		yellowGem = new ItemMod("yellowGem", "Yellow Gem");
-
-		eucaTablet = new ItemMod("eucaTablet", "Euca Tablet");
-
-		wandBase = new ItemMod("wandBase", "Wand Base");
-		staffBase = new ItemMod("staffBase", "Staff Base");
-
-		frostyGift = new ItemPresent("frostyGift", "Frosty Gift");
-
-		firestoneClump = new ItemMod("firestoneClump", "Firestone Clump");
-		iridium = new ItemMod("iridium", "Iridium");
-
 		//TODO
 		friedFlamingGhastTentacale = new ItemModFood("friedFlamingGhastTentacle", "Fried Flaming Tentacale", 4, 0.6F, 10, true).setAlwaysEdible().setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.fireResistance, 5, 1), 1.0F);
 		flamingGhastTentacle = new ItemModFood("flamingGhastTentacle", "Flaming Ghast Tentacale", 1, 0.6F, 10, true).setAlwaysEdible().setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.fireResistance, 5, 1), 1.0F);
@@ -1500,10 +1485,10 @@ public class JourneyItems {
 		skyPiercer = new ItemPiercer("skyPiercer", "Sky Piercer", 29F, 6, EntitySkyPiercer.class);
 
 		moltenKnife = new ItemThrowableArrow("moltenKnife", "Molten Knife", 10F, 5, EntityMoltenKnife.class);
-		aquaticKnife = new ItemThrowableArrow("aquaticKnife", "Aquatic Knife", 6F, 5, EntityFrostyPiercer.class);
-		bloodKnife = new ItemThrowableArrow("bloodKnife", "Blood Knife", 6F, 5, EntityFrostyPiercer.class);
-		charredKnife = new ItemThrowableArrow("charredKnife", "Charred Knife", 6F, 5, EntityFrostyPiercer.class);
-		sizzlingKnife = new ItemThrowableArrow("sizzlingKnife", "Sizzling Knife", 6F, 5, EntityFrostyPiercer.class);
+		aquaticKnife = new ItemThrowableArrow("aquaticKnife", "Aquatic Knife", 6F, 5, EntityAquaticKnife.class);
+		bloodKnife = new ItemThrowableArrow("bloodKnife", "Blood Knife", 6F, 5, EntityBloodKnife.class);
+		charredKnife = new ItemThrowableArrow("charredKnife", "Charred Knife", 6F, 5, EntityCharredKnife.class);
+		sizzlingKnife = new ItemThrowableArrow("sizzlingKnife", "Sizzling Knife", 6F, 5, EntitySizzlingKnife.class);
 		
 		obsidianBoat = new ItemObsidianBoat("obsidianboat", "Obsidian Boat");
 		infernoshield = new ItemModShield("infernoshield", "Inferno Shield", 2, false);

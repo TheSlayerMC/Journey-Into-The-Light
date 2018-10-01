@@ -66,7 +66,6 @@ public class CommonProxy {
 		JourneyMiscRecipes.init();
 		JourneyWeaponRecipes.init();
 		JourneySounds.init();
-		JourneyTabs.init();
 		GameRegistry.registerTileEntity(TileEntityJourneyChest.class, SlayerAPI.PREFIX + "Journey Chest");
 		GameRegistry.registerTileEntity(TileEntitySummoningTable.class, SlayerAPI.PREFIX + "Summoning Table");
 		GameRegistry.registerTileEntity(TileEntityGrindstone.class, SlayerAPI.PREFIX + "Grindstone");
@@ -86,6 +85,8 @@ public class CommonProxy {
 		SlayerAPI.registerEvent(new BarTickHandler());
 		MinecraftForge.EVENT_BUS.register(BarTickHandler.class);
 		
+		JourneyTabs.init();
+
 		if(SlayerAPI.DEVMODE) LangRegistry.instance.register();
 	}
 	

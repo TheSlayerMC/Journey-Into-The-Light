@@ -86,6 +86,7 @@ import net.journey.entity.projectile.*;
 import net.journey.util.*;
 import net.minecraft.client.model.*;
 import net.minecraftforge.fml.client.registry.*;
+import net.slayer.api.SlayerAPI;
 
 public class EntityRendering {
 
@@ -122,10 +123,14 @@ public class EntityRendering {
 		RenderingRegistry.registerEntityRenderingHandler(EntityCorbaPiercer.class, new RenderItemProjectile(JourneyItems.corbaPiercer));
 		RenderingRegistry.registerEntityRenderingHandler(EntityFrostbittenPiercer.class, new RenderItemProjectile(JourneyItems.frostbittenPiercer));
 		RenderingRegistry.registerEntityRenderingHandler(EntityFrostyPiercer.class, new RenderItemProjectile(JourneyItems.frostyPiercer));
-		
 		RenderingRegistry.registerEntityRenderingHandler(EntitySunsetPiercer.class, new RenderItemProjectile(JourneyItems.sunsetPiercer));
 		RenderingRegistry.registerEntityRenderingHandler(EntitySkyPiercer.class, new RenderItemProjectile(JourneyItems.skyPiercer));
 		RenderingRegistry.registerEntityRenderingHandler(EntityMoltenKnife.class, new RenderItemProjectile(JourneyItems.moltenKnife));
+		RenderingRegistry.registerEntityRenderingHandler(EntityAquaticKnife.class, new RenderItemProjectile(JourneyItems.aquaticKnife));
+		RenderingRegistry.registerEntityRenderingHandler(EntityBloodKnife.class, new RenderItemProjectile(JourneyItems.bloodKnife));
+		RenderingRegistry.registerEntityRenderingHandler(EntityCharredKnife.class, new RenderItemProjectile(JourneyItems.charredKnife));
+		RenderingRegistry.registerEntityRenderingHandler(EntitySizzlingKnife.class, new RenderItemProjectile(JourneyItems.sizzlingKnife));
+		
 		RenderingRegistry.registerEntityRenderingHandler(EntityShimmererProjectile.class, new RenderProjectile(Textures.shimmererProjectile));
 		RenderingRegistry.registerEntityRenderingHandler(EntityDemonicBomb.class, new RenderItemProjectile(JourneyItems.demonicBomb));
 		RenderingRegistry.registerEntityRenderingHandler(EntityFireBomb.class, new RenderItemProjectile(JourneyItems.fireBomb));

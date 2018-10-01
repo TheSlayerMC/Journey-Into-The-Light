@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "journey:journeyChest" },
+        "facing=south": { "model": "journey:journeyChest", "y": 180 },
+        "facing=west":  { "model": "journey:journeyChest", "y": 270 },
+        "facing=east":  { "model": "journey:journeyChest", "y": 90 }
+    }
+}

@@ -40,7 +40,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public abstract class EntityMoltenKnife extends EntityThrowable implements IProjectile {
+public abstract class EntityCharredKnife extends EntityThrowable implements IProjectile {
 	
 	private static final Predicate<Entity> ARROW_TARGETS = Predicates.and(EntitySelectors.NOT_SPECTATING,
 			EntitySelectors.IS_ALIVE, new Predicate<Entity>() {
@@ -48,7 +48,7 @@ public abstract class EntityMoltenKnife extends EntityThrowable implements IProj
 					return p_apply_1_.canBeCollidedWith();
 				}
 			});
-	private static final DataParameter<Byte> CRITICAL = EntityDataManager.<Byte>createKey(EntityMoltenKnife.class,
+	private static final DataParameter<Byte> CRITICAL = EntityDataManager.<Byte>createKey(EntityCharredKnife.class,
 			DataSerializers.BYTE);
 	private int xTile;
 	private int yTile;
@@ -57,7 +57,7 @@ public abstract class EntityMoltenKnife extends EntityThrowable implements IProj
 	private int inData;
 	protected boolean inGround;
 	protected int timeInGround;
-	public EntityMoltenKnife.PickupStatus pickupStatus;
+	public EntityCharredKnife.PickupStatus pickupStatus;
 	public int arrowShake;
 	public Entity shootingEntity;
 	private int ticksInGround;
@@ -65,28 +65,28 @@ public abstract class EntityMoltenKnife extends EntityThrowable implements IProj
 	private double damage;
 	private int knockbackStrength;
 
-	public EntityMoltenKnife(World worldIn) {
+	public EntityCharredKnife(World worldIn) {
 		super(worldIn);
 		this.xTile = -1;
 		this.yTile = -1;
 		this.zTile = -1;
-		this.pickupStatus = EntityMoltenKnife.PickupStatus.DISALLOWED;
+		this.pickupStatus = EntityCharredKnife.PickupStatus.DISALLOWED;
 		this.setSize(0.5F, 0.5F);
 	}
 
-	public EntityMoltenKnife(World worldIn, double x, double y, double z, double dam) {
+	public EntityCharredKnife(World worldIn, double x, double y, double z, double dam) {
 		this(worldIn);
 		this.damage = dam;
 		this.setPosition(x, y, z);
 	}
 
-	public EntityMoltenKnife(World worldIn, EntityLivingBase shooter, float dam) {
+	public EntityCharredKnife(World worldIn, EntityLivingBase shooter, float dam) {
 		this(worldIn, shooter.posX, shooter.posY + (double) shooter.getEyeHeight() - 0.10000000149011612D,
 				shooter.posZ, dam);
 		this.shootingEntity = shooter;
 		this.damage = dam;
 		if (shooter instanceof EntityPlayer) {
-			this.pickupStatus = EntityMoltenKnife.PickupStatus.ALLOWED;
+			this.pickupStatus = EntityCharredKnife.PickupStatus.ALLOWED;
 		}
 	}
 
@@ -392,7 +392,7 @@ public abstract class EntityMoltenKnife extends EntityThrowable implements IProj
 
 				if (!this.world.isRemote && this.motionX * this.motionX + this.motionY * this.motionY
 						+ this.motionZ * this.motionZ < 0.0010000000474974513D) {
-					if (this.pickupStatus == EntityMoltenKnife.PickupStatus.ALLOWED) {
+					if (this.pickupStatus == EntityCharredKnife.PickupStatus.ALLOWED) {
 						this.entityDropItem(this.getDropStack(), 0.1F);
 					}
 
@@ -511,10 +511,10 @@ public abstract class EntityMoltenKnife extends EntityThrowable implements IProj
 		}
 
 		if (compound.hasKey("pickup", 99)) {
-			this.pickupStatus = EntityMoltenKnife.PickupStatus.getByOrdinal(compound.getByte("pickup"));
+			this.pickupStatus = EntityCharredKnife.PickupStatus.getByOrdinal(compound.getByte("pickup"));
 		} else if (compound.hasKey("player", 99)) {
-			this.pickupStatus = compound.getBoolean("player") ? EntityMoltenKnife.PickupStatus.ALLOWED
-					: EntityMoltenKnife.PickupStatus.DISALLOWED;
+			this.pickupStatus = compound.getBoolean("player") ? EntityCharredKnife.PickupStatus.ALLOWED
+					: EntityCharredKnife.PickupStatus.DISALLOWED;
 		}
 
 		this.setIsCritical(compound.getBoolean("crit"));
@@ -523,11 +523,11 @@ public abstract class EntityMoltenKnife extends EntityThrowable implements IProj
 	@Override
 	public void onCollideWithPlayer(EntityPlayer entityIn) {
 		if (!this.world.isRemote && this.inGround && this.arrowShake <= 0) {
-			boolean flag = this.pickupStatus == EntityMoltenKnife.PickupStatus.ALLOWED
-					|| this.pickupStatus == EntityMoltenKnife.PickupStatus.CREATIVE_ONLY
+			boolean flag = this.pickupStatus == EntityCharredKnife.PickupStatus.ALLOWED
+					|| this.pickupStatus == EntityCharredKnife.PickupStatus.CREATIVE_ONLY
 							&& entityIn.capabilities.isCreativeMode;
 
-			if (this.pickupStatus == EntityMoltenKnife.PickupStatus.ALLOWED
+			if (this.pickupStatus == EntityCharredKnife.PickupStatus.ALLOWED
 					&& !entityIn.inventory.addItemStackToInventory(this.getDropStack())) {
 				flag = false;
 			}
@@ -540,7 +540,7 @@ public abstract class EntityMoltenKnife extends EntityThrowable implements IProj
 	}
 
 	protected ItemStack getDropStack() {
-		return new ItemStack(JourneyItems.moltenKnife);
+		return new ItemStack(JourneyItems.charredKnife);
 	}
 
 	@Override
@@ -607,7 +607,7 @@ public abstract class EntityMoltenKnife extends EntityThrowable implements IProj
 	public static enum PickupStatus {
 		DISALLOWED, ALLOWED, CREATIVE_ONLY;
 
-		public static EntityMoltenKnife.PickupStatus getByOrdinal(int ordinal) {
+		public static EntityCharredKnife.PickupStatus getByOrdinal(int ordinal) {
 			if (ordinal < 0 || ordinal > values().length) {
 				ordinal = 0;
 			}
