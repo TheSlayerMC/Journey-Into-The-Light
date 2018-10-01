@@ -375,11 +375,11 @@ public class WorldGenEssence implements IWorldGenerator {
 			z = chunkZ + r.nextInt(16) + 8;
 			worldMinableGenVanilla(JourneyBlocks.sapphireOre, 5, w, x, y, z);
 		}
-		for(times = 0; times < 10; times++) {
+		for(times = 0; times < 5; times++) {
 			y = r.nextInt(16); 
 			x = chunkX + r.nextInt(16) + 8; 
 			z = chunkZ + r.nextInt(16) + 8;
-			worldMinableGenVanilla(JourneyBlocks.iridiumOre, 5, w, x, y, z);
+			worldMinableGenVanilla(JourneyBlocks.iridiumOre, 4, w, x, y, z);
 		}
 		
 		if (biome == Biomes.JUNGLE) {

@@ -1,0 +1,9 @@
+{
+	"parent": "block/cube_bottom_top",
+	"textures": {
+		"particle": "journey:blocks/witherwoodlog_top",
+		"bottom": "journey:blocks/witherwoodlog_top",
+		"top": "journey:blocks/witherwoodlog_top",
+		"side": "journey:blocks/witherwoodlog_side"
+	}
+}

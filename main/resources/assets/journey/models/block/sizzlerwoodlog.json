@@ -1,5 +1,5 @@
 {
-	"parent": "minecraft:cube_bottom_top",
+	"parent": "block/cube_bottom_top",
 	"textures": {
 		"particle": "journey:blocks/sizzlerwoodlog_top",
 		"bottom": "journey:blocks/sizzlerwoodlog_top",

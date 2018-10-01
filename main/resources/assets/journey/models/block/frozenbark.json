@@ -1,9 +1,9 @@
 {
-	"parent": "cube_bottom_top",
+	"parent": "block/cube_bottom_top",
 	"textures": {
-		"particle": "journey:blocks/frozenBark_top",
-		"bottom": "journey:blocks/frozenBark_top",
-		"top": "journey:blocks/frozenBark_top",
-		"side": "journey:blocks/frozenBark_side"
+		"particle": "journey:blocks/frozenbark_top",
+		"bottom": "journey:blocks/frozenbark_top",
+		"top": "journey:blocks/frozenbark_top",
+		"side": "journey:blocks/frozenbark_side"
 	}
 }
