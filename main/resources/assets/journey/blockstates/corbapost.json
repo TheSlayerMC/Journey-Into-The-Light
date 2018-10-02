@@ -1,20 +1,43 @@
 {
-    "variants": {
-        "east=false,north=false,south=false,west=false": { "model": "journey:corbaPost" },
-        "east=false,north=true,south=false,west=false": { "model": "journey:corbaPost_n", "uvlock": true },
-        "east=true,north=false,south=false,west=false": { "model": "journey:corbaPost_n", "y": 90, "uvlock": true },
-        "east=false,north=false,south=true,west=false": { "model": "journey:corbaPost_n", "y": 180, "uvlock": true },
-        "east=false,north=false,south=false,west=true": { "model": "journey:corbaPost_n", "y": 270, "uvlock": true },
-        "east=true,north=true,south=false,west=false": { "model": "journey:corbaPost_ne", "uvlock": true },
-        "east=true,north=false,south=true,west=false": { "model": "journey:corbaPost_ne", "y": 90, "uvlock": true },
-        "east=false,north=false,south=true,west=true": { "model": "journey:corbaPost_ne", "y": 180, "uvlock": true },
-        "east=false,north=true,south=false,west=true": { "model": "journey:corbaPost_ne", "y": 270, "uvlock": true },
-        "east=false,north=true,south=true,west=false": { "model": "journey:corbaPost_ns", "uvlock": true },
-        "east=true,north=false,south=false,west=true": { "model": "journey:corbaPost_ns", "y": 90, "uvlock": true },
-        "east=true,north=true,south=true,west=false": { "model": "journey:corbaPost_nse", "uvlock": true },
-        "east=true,north=false,south=true,west=true": { "model": "journey:corbaPost_nse", "y": 90, "uvlock": true },
-        "east=false,north=true,south=true,west=true": { "model": "journey:corbaPost_nse", "y": 180, "uvlock": true },
-        "east=true,north=true,south=false,west=true": { "model": "journey:corbaPost_nse", "y": 270, "uvlock": true },
-        "east=true,north=true,south=true,west=true": { "model": "journey:corbaPost_nsew", "uvlock": true }
+    
+	"multipart": [
+        
+	{   
+		"apply": { "model": "journey:corbapost" }
+	},
+        
+	{   
+		"when": { "north": "true" },
+            
+		"apply": { "model": "journey:corbapost_side", 
+		"uvlock": true }
+
+	},
+       
+	{   
+		"when": { "east": "true" },
+            
+		"apply": { "model": "journey:corbapost_side", 
+		"y": 90, "uvlock": true }
+        
+	},
+        
+	{   
+		"when": { "south": "true" },
+            
+		"apply": { "model": "journey:corbapost_side",
+		"y": 180, "uvlock": true }
+       
+	},
+        
+	{   
+		"when": { "west": "true" },
+            
+		"apply": { "model": "journey:corbapost_side", 
+		"y": 270, "uvlock": true }
+        	
 	}
+    
+	]
+
 }
