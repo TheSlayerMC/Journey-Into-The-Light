@@ -1,0 +1,7 @@
+{
+    "parent": "block/pane_post",
+    "textures": {
+        "pane": "journey:blocks/terranianbars",
+        "edge": "journey:blocks/terranianbars"
+    }
+}
