@@ -5,6 +5,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldProvider;
+import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.biome.BiomeProviderSingle;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.IChunkGenerator;
@@ -39,6 +40,11 @@ public class WorldProviderBoiling extends WorldProvider {
 	@Override
 	public IChunkGenerator createChunkGenerator() {
 		return new ChunkProviderBoiling(this.world, this.world.getSeed());
+	}
+	
+	@Override
+    public BiomeProvider getBiomeProvider() {
+		return this.biomeProvider = new BiomeProviderBoil();
 	}
 	
 	@Override

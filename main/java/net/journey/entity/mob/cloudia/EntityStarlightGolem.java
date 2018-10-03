@@ -21,7 +21,7 @@ public class EntityStarlightGolem extends EntityModMob {
 
 	@Override
 	public double setAttackDamage(MobStats s) {
-		return MobStats.baseJourneyDamage;
+		return MobStats.veryHardJourneyDamage;
 	}
 
 	@Override

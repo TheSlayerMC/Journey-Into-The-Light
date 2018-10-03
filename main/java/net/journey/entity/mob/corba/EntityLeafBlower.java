@@ -23,7 +23,7 @@ public class EntityLeafBlower extends EntityModMob{
 
 	@Override
 	public double setAttackDamage(MobStats s) {
-		return MobStats.baseJourneyDamage;
+		return MobStats.hardJourneyDamage;
 	}
 
 	@Override
@@ -70,15 +70,10 @@ public class EntityLeafBlower extends EntityModMob{
 		Item it = getItemDropped();
 		this.dropItem(it, 1);
 		if(rand.nextInt(6) == 0) dropItem(JourneyItems.corbaStick, 2);
-		super.dropFewItems(b, j);
 		if(rand.nextInt(12) == 0) dropItem(JourneyItems.corbaStick, 4);
-		super.dropFewItems(b, j); 
 		if(rand.nextInt(6) == 0) dropItem(JourneyItems.enchantedLeaf, 2);
-		super.dropFewItems(b, j); 
 		if(rand.nextInt(12) == 0) dropItem(JourneyItems.enchantedLeaf, 4);
-		super.dropFewItems(b, j); 
-		if(rand.nextInt(24) == 0) dropItem(JourneyItems.natureTablet, 2);
-		super.dropFewItems(b, j); 
+		if(rand.nextInt(24) == 0) dropItem(JourneyItems.natureTablet, 1);
 		if(rand.nextInt(48) == 0) dropItem(JourneyItems.natureTablet, 4);
 			super.dropFewItems(b, j); 
 	}

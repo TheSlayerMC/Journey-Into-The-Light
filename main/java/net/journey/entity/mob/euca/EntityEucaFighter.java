@@ -19,7 +19,7 @@ public class EntityEucaFighter extends EntityModMob {
 
 	@Override
 	public double setAttackDamage(MobStats s) {
-		return MobStats.baseJourneyDamage;
+		return MobStats.highJourneyDamage;
 	}
 
 	@Override

@@ -17,7 +17,7 @@ public class EntityStarlightWalker extends EntityModMob {
 	
 	@Override
 	public double setAttackDamage(MobStats s) {
-		return MobStats.baseJourneyDamage;
+		return MobStats.veryHardJourneyDamage;
 	}
 
 	@Override

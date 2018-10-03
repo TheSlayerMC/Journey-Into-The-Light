@@ -796,34 +796,6 @@ public class JourneyItems {
 
 	public static Item demonicEye;
 
-	public static ItemKnowledge overworldKnowledge;
-	public static ItemKnowledge netherKnowledge;
-	public static ItemKnowledge endKnowledge;
-	public static ItemKnowledge boilKnowledge;
-	public static ItemKnowledge frozenKnowledge;
-	public static ItemKnowledge eucaKnowledge;
-	public static ItemKnowledge depthsKnowledge;
-	public static ItemKnowledge corbaKnowledge;
-	public static ItemKnowledge cloudiaKnowledge;
-	//public static ItemKnowledge wastelandsKnowledge = new ItemKnowledge("wastelandsKnowledge", EnumKnowledge.WASTELANDS);
-	//public static ItemKnowledge lithiumKnowledge = new ItemKnowledge("lithiumKnowledge", EnumKnowledge.LITHIUM);
-	//public static ItemKnowledge libraryKnowledge = new ItemKnowledge("libraryKnowledge", EnumKnowledge.LIBRARY);
-	//public static ItemKnowledge blazeKnowledge = new ItemKnowledge("blazeKnowledge", EnumKnowledge.BLAZE);
-	//public static ItemKnowledge witherKnowledge = new ItemKnowledge("witherKnowledge", EnumKnowledge.WITHER);
-
-	public static ItemMod boilingPointEssence;
-	public static ItemMod cloudiaEssence;
-	public static ItemMod corbaEssence;
-	public static ItemMod depthsEssence;
-	public static ItemMod eucaEssence;
-	public static ItemMod frozenLandsEssence;
-	//public static ItemMod wastelandsEssence = new ItemMod("wastelandsEssence");
-	//public static ItemMod lithiumEssence = new ItemMod("lithiumEssence");
-	//public static ItemMod nethicEssence = new ItemMod("nethicEssence");
-	//public static ItemMod subterrianEssence = new ItemMod("subterrianEssence");
-	//public static ItemMod withicEssence = new ItemMod("withicEssence");
-	//public static ItemMod blazesEssence = new ItemMod("blazesEssence");
-
 	//TODO
 	public static Item demonicBomb;
 	public static Item fireBomb;
@@ -892,7 +864,6 @@ public class JourneyItems {
 		overseeingTablet = new ItemMod("overseeingTablet", "Overseeing Tablet");
 		overseeingEye = new ItemMod("overseeingEye", "Overseeing Eye");
 		darkCrystal = new ItemMod("darkCrystal", "Dark Crystal");
-		blankKnowledge = new ItemMod("blankKnowledge", "Blank Knowledge");
 		darkOrb = new ItemMod("darkOrb", "Dark Orb");
 		depthsFlake = new ItemMod("depthsFlake", "Depths Flake");
 		beastlyStomach = new ItemMod("beastlyStomach", "Beastly Stomach");

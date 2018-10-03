@@ -2,6 +2,6 @@
     "parent": "block/pane_side_alt",
     "textures": {
         "edge": "journey:blocks/terranianbars",
-        "bars": "journey:blocks/terranianbars"
+        "pane": "journey:blocks/terranianbars"
     }
 }

@@ -16,7 +16,7 @@ public class EntityRoc extends EntityPeacefullUntillAttacked {
 
 	@Override
 	public double setAttackDamage(MobStats s) {
-		return MobStats.baseJourneyDamage;
+		return MobStats.mediumJourneyDamage;
 	}
 
 	@Override

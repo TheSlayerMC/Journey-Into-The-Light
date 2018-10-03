@@ -18,7 +18,7 @@ public class EntityGoldbot extends EntityModMob {
 
 	@Override
 	public double setAttackDamage(MobStats s) {
-		return MobStats.baseJourneyDamage;
+		return MobStats.highJourneyDamage;
 	}
 
 	@Override

@@ -13,6 +13,7 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityModMob;
 
@@ -36,10 +37,19 @@ public class EntityTreeGolem extends EntityModMob{
         	if(entity instanceof EntityPlayer && canEntityBeSeen(entity)) ((EntityPlayer)entity).addPotionEffect(PotionEffects.setPotionEffect(PotionEffects.poison, 60, 1));
         }        
     }
-
+	
+	@Override
+	public boolean attackEntityAsMob(Entity e) {
+		boolean attacked = super.attackEntityAsMob(e);
+		if(attacked) {
+			e.addVelocity((double)(-MathHelper.sin(this.rotationYaw * (float)Math.PI / 180.0F)) * 4, 0.1D, (double)(MathHelper.cos(this.rotationYaw * (float)Math.PI / 180.0F)) * 4);
+		}
+		return attacked;
+	}
+	
 	@Override
 	public double setAttackDamage(MobStats s) {
-		return MobStats.baseJourneyDamage;
+		return MobStats.hardJourneyDamage;
 	}
 
 	@Override
@@ -75,15 +85,10 @@ public class EntityTreeGolem extends EntityModMob{
 	@Override
 	protected void dropFewItems(boolean b, int j) {
 		if(rand.nextInt(1) == 0) dropItem(JourneyItems.corbaStick, 2);
-		super.dropFewItems(b, j);
 		if(rand.nextInt(10) == 0) dropItem(JourneyItems.corbaStick, 3);
-		super.dropFewItems(b, j);
 		if(rand.nextInt(5) == 0) dropItem(JourneyItems.enchantedLeaf, 1);
-		super.dropFewItems(b, j);
 		if(rand.nextInt(10) == 0) dropItem(JourneyItems.enchantedLeaf, 2);
-		super.dropFewItems(b, j);
 		if(rand.nextInt(15) == 0) dropItem(JourneyItems.natureTablet, 1);
-		super.dropFewItems(b, j);
 		if(rand.nextInt(30) == 0) dropItem(JourneyItems.natureTablet, 2);
 		super.dropFewItems(b, j);
 	

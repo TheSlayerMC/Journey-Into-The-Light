@@ -104,11 +104,15 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.MapGenBase;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
+import net.minecraftforge.common.BiomeManager;
+import net.minecraftforge.common.BiomeManager.BiomeEntry;
+import net.minecraftforge.common.BiomeManager.BiomeType;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.InitMapGenEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 public class DimensionHelper {
 	
@@ -146,6 +150,9 @@ public class DimensionHelper {
 			DimensionManager.unregisterDimension(1);
 			DimensionManager.registerDimension(1, DimensionType.register("End", "END", 1, WorldProviderEndJourney.class, true));
 		}
+		addBiome(euca, "Euca", BiomeType.WARM, Type.SPOOKY);
+		addBiome(boiling, "Boiling Point", BiomeType.WARM, Type.SPOOKY);
+		
 		addDimension(Config.euca, eucaType);
 		addDimension(Config.boil, boilingType);
 		addDimension(Config.cloudia, cloudiaType);
@@ -160,6 +167,17 @@ public class DimensionHelper {
 	private static void addDimension(int id, DimensionType type) {
 		LogHelper.info("Registering dimension ID: " + id);
 		DimensionManager.registerDimension(id, type);
+	}
+	
+	private static Biome addBiome(Biome biome, String name, BiomeType biomeType, Type...types) {
+		biome.setRegistryName(name);
+		ForgeRegistries.BIOMES.register(biome);
+		LogHelper.info("Biome Registered");
+		BiomeDictionary.addTypes(biome, types);
+		BiomeManager.addBiome(biomeType, new BiomeEntry(biome, 10));
+		BiomeManager.addSpawnBiome(biome);
+		LogHelper.info("Biome Added");
+		return biome;
 	}
 
 	public static void addSpawns() {
