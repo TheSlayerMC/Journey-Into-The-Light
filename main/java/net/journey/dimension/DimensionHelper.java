@@ -150,8 +150,8 @@ public class DimensionHelper {
 			DimensionManager.unregisterDimension(1);
 			DimensionManager.registerDimension(1, DimensionType.register("End", "END", 1, WorldProviderEndJourney.class, true));
 		}
-		addBiome(euca, "Euca", BiomeType.WARM, Type.SPOOKY);
-		addBiome(boiling, "Boiling Point", BiomeType.WARM, Type.SPOOKY);
+		addBiome(euca, Config.eucaBiome, BiomeType.WARM, Type.SPOOKY);
+		addBiome(boiling, Config.boilBiome, BiomeType.WARM, Type.SPOOKY);
 		
 		addDimension(Config.euca, eucaType);
 		addDimension(Config.boil, boilingType);
