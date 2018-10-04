@@ -120,7 +120,7 @@ public class DimensionHelper {
 	public static final float[] corbaHeight = new float[] {0.2F, 0.2F}; 
 
 	public static Biome euca = new BiomeGenEuca(Config.eucaBiome);
-	public static Biome boiling = new BiomeGenBoiling(Config.boilBiome);
+	public static Biome boiling = new BiomeGenBoiling();
 	public static Biome cloudia = new BiomeGenCloudia(Config.cloudiaBiome);
 	public static Biome corba = new BiomeGenCorba(Config.corbaBiome);
 	public static Biome depths = new BiomeGenDepths(Config.depthsBiome);
@@ -150,7 +150,7 @@ public class DimensionHelper {
 			DimensionManager.unregisterDimension(1);
 			DimensionManager.registerDimension(1, DimensionType.register("End", "END", 1, WorldProviderEndJourney.class, true));
 		}
-		addBiome(euca, "Euca", BiomeType.WARM, Type.SPOOKY);
+		//addBiome(euca, "Euca", BiomeType.WARM, Type.SPOOKY);
 		addBiome(boiling, "Boiling Point", BiomeType.WARM, Type.SPOOKY);
 		
 		addDimension(Config.euca, eucaType);

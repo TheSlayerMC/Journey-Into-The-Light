@@ -9,9 +9,8 @@ import net.minecraft.world.biome.Biome.BiomeProperties;
 
 public class BiomeGenBoiling extends Biome {
 
-	public BiomeGenBoiling(String par1) {
-		super(new BiomeProperties(par1).setBaseHeight(DimensionHelper.boilHeight[0]).setHeightVariation(DimensionHelper.boilHeight[1]));
-		this.setRegistryName(par1);
+	public BiomeGenBoiling() {
+		super(new BiomePropertiesBoil());
 		this.topBlock = JourneyBlocks.hotBlock.getDefaultState();
 		this.fillerBlock = JourneyBlocks.hotBlock.getDefaultState();
 		this.spawnableCreatureList.clear();
