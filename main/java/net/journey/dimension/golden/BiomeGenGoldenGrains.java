@@ -9,9 +9,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BiomeGenGoldenGrains extends Biome {
 
-	public BiomeGenGoldenGrains(String par1) {
-		super(new BiomeProperties(par1));
-		this.setRegistryName(par1);
+	public BiomeGenGoldenGrains() {
+		super(new BiomeProperties("Golden Grains"));
 		this.topBlock = JourneyBlocks.goldenGrass.getDefaultState();
 		this.fillerBlock = JourneyBlocks.goldenStone.getDefaultState();
 		this.spawnableCreatureList.clear();

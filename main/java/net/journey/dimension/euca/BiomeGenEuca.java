@@ -6,9 +6,8 @@ import net.minecraft.world.biome.Biome;
 
 public class BiomeGenEuca extends Biome {
 
-	public BiomeGenEuca(String par1) {
-		super(new BiomeProperties(par1));
-		this.setRegistryName(par1);
+	public BiomeGenEuca() {
+		super(new BiomeProperties("Euca"));
 		this.topBlock = JourneyBlocks.eucaGrass.getDefaultState();
 		this.fillerBlock = JourneyBlocks.eucaStone.getDefaultState();
 		this.spawnableCreatureList.clear();

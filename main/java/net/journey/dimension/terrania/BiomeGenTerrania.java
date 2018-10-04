@@ -9,9 +9,8 @@ import net.minecraft.world.biome.Biome.BiomeProperties;
 
 public class BiomeGenTerrania extends Biome {
 
-	public BiomeGenTerrania(String par1) {
-		super(new BiomeProperties(par1));
-		this.setRegistryName(par1);
+	public BiomeGenTerrania() {
+		super(new BiomeProperties("Terrania"));
 		this.topBlock = JourneyBlocks.terranianGrass.getDefaultState();
 		this.fillerBlock = JourneyBlocks.terranianDirt.getDefaultState();
 		this.spawnableCreatureList.clear();

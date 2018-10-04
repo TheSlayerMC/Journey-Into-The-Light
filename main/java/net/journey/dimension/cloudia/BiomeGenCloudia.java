@@ -7,9 +7,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BiomeGenCloudia extends Biome {
 
-	public BiomeGenCloudia(String par1) {
-		super(new BiomeProperties(par1));
-		this.setRegistryName(par1);
+	public BiomeGenCloudia() {
+		super(new BiomeProperties("Cloudia"));
 		this.topBlock = JourneyBlocks.cloudiaGrass.getDefaultState();
 		this.fillerBlock = JourneyBlocks.cloudiaDirt.getDefaultState();
 		this.spawnableCreatureList.clear();

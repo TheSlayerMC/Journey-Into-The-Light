@@ -1,9 +1,11 @@
 package net.journey.dimension.depths;
 
 import net.journey.dimension.DimensionHelper;
+import net.journey.dimension.cloudia.BiomeProviderCloudia;
 import net.journey.util.Config;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldProvider;
+import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.biome.BiomeProviderSingle;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
@@ -41,6 +43,11 @@ public class WorldProviderDepths extends WorldProvider {
     public IChunkGenerator createChunkGenerator() {
         return new ChunkProviderDepths(this.world, this.world.getSeed());
     }
+    
+	@Override
+    public BiomeProvider getBiomeProvider() {
+		return this.biomeProvider = new BiomeProviderDepths();
+	}
 
     @Override
     public boolean isSurfaceWorld() {

@@ -119,15 +119,15 @@ public class DimensionHelper {
 	public static final float[] boilHeight = new float[] {0.125F, 0.1F}; 
 	public static final float[] corbaHeight = new float[] {0.2F, 0.2F}; 
 
-	public static Biome euca = new BiomeGenEuca(Config.eucaBiome);
+	public static Biome euca = new BiomeGenEuca();
 	public static Biome boiling = new BiomeGenBoiling();
-	public static Biome cloudia = new BiomeGenCloudia(Config.cloudiaBiome);
+	public static Biome cloudia = new BiomeGenCloudia();
 	public static Biome corba = new BiomeGenCorba();
-	public static Biome depths = new BiomeGenDepths(Config.depthsBiome);
-	public static Biome frozen = new BiomeGenFrozenLands(Config.frozenBiome);
-	public static Biome terrania = new BiomeGenTerrania(Config.terraniaBiome);
-	public static Biome golden = new BiomeGenGoldenGrains(Config.goldenBiome);
-	public static Biome senterian = new BiomeGenSenterian(Config.senterianBiome);
+	public static Biome depths = new BiomeGenDepths();
+	public static Biome frozen = new BiomeGenFrozenLands();
+	public static Biome terrania = new BiomeGenTerrania();
+	public static Biome golden = new BiomeGenGoldenGrains();
+	public static Biome senterian = new BiomeGenSenterian();
 
 	public static DimensionType eucaType = DimensionType.register("Euca", "euca", Config.euca, WorldProviderEuca.class, Config.keepLoadingEuca);
 	public static DimensionType boilingType = DimensionType.register("Boiling Point", "boilingPoint", Config.boil, WorldProviderBoiling.class, Config.keepLoadingBoil);
@@ -150,9 +150,15 @@ public class DimensionHelper {
 			DimensionManager.unregisterDimension(1);
 			DimensionManager.registerDimension(1, DimensionType.register("End", "END", 1, WorldProviderEndJourney.class, true));
 		}
-		//addBiome(euca, "Euca", BiomeType.WARM, Type.SPOOKY);
-		addBiome(boiling, "Boiling Point", BiomeType.WARM, Type.SPOOKY);
+		addBiome(euca, "Euca", BiomeType.WARM, Type.SPOOKY);
+		addBiome(boiling, "Boiling Point", BiomeType.WARM, Type.SPOOKY, Type.DEAD, Type.HOT);
+		addBiome(cloudia, "Cloudia", BiomeType.COOL, Type.SPOOKY, Type.MAGICAL, Type.LUSH);
 		addBiome(corba, "Corba", BiomeType.WARM, Type.DENSE, Type.SPOOKY, Type.CONIFEROUS);
+		addBiome(depths, "Depths", BiomeType.COOL, Type.MAGICAL, Type.SPOOKY);
+		addBiome(frozen, "Frozen Lands", BiomeType.ICY, Type.COLD, Type.SNOWY);
+		addBiome(terrania, "Terrania", BiomeType.WARM, Type.DENSE, Type.MAGICAL);
+		addBiome(golden, "Golden Grains", BiomeType.WARM, Type.PLAINS, Type.MAGICAL);
+		addBiome(senterian, "Senterian Labyrinth", BiomeType.ICY, Type.DEAD, Type.SPOOKY);
 		
 		addDimension(Config.euca, eucaType);
 		addDimension(Config.boil, boilingType);

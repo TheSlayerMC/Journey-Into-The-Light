@@ -1,9 +1,11 @@
 package net.journey.dimension.frozen;
 
 import net.journey.dimension.DimensionHelper;
+import net.journey.dimension.boil.BiomeProviderBoil;
 import net.journey.util.Config;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldProvider;
+import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.biome.BiomeProviderSingle;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
@@ -23,6 +25,11 @@ public class WorldProviderFrozenLands extends WorldProvider {
 	public IChunkGenerator createChunkGenerator() {
         return new ChunkProviderFrozenLands(world, world.getSeed(), world.getWorldInfo().getGeneratorOptions());
     }
+	
+	@Override
+    public BiomeProvider getBiomeProvider() {
+		return this.biomeProvider = new BiomeProviderFrozenLands();
+	}
 	
 	@Override
 	@SideOnly(Side.CLIENT)

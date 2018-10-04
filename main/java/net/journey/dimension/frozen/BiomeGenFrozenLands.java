@@ -6,9 +6,8 @@ import net.minecraft.world.biome.Biome.BiomeProperties;
 
 public class BiomeGenFrozenLands extends Biome {
 
-	public BiomeGenFrozenLands(String par1) {
-		super(new BiomeProperties(par1));
-		this.setRegistryName(par1);
+	public BiomeGenFrozenLands() {
+		super(new BiomeProperties("Frozen Lands"));
 		this.topBlock = JourneyBlocks.frozenGrass.getDefaultState();
 		this.fillerBlock = JourneyBlocks.frozenDirt.getDefaultState();
 		this.spawnableCreatureList.clear();

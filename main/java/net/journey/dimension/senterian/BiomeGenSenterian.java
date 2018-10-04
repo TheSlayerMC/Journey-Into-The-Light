@@ -9,9 +9,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BiomeGenSenterian extends Biome {
 
-	public BiomeGenSenterian(String par1) {
-		super(new BiomeProperties(par1));
-		this.setRegistryName(par1);
+	public BiomeGenSenterian() {
+		super(new BiomeProperties("Senterian Labyrinth"));
 		this.topBlock = JourneyBlocks.senterianFloor.getDefaultState();
 		this.fillerBlock = JourneyBlocks.senterianBricks.getDefaultState();
 		this.spawnableCreatureList.clear();

@@ -1,11 +1,13 @@
 package net.journey.dimension.euca;
 
 import net.journey.dimension.DimensionHelper;
+import net.journey.dimension.cloudia.BiomeProviderCloudia;
 import net.journey.util.Config;
 import net.minecraft.init.Biomes;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldProvider;
+import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.biome.BiomeProviderSingle;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.ChunkGeneratorHell;
@@ -42,6 +44,11 @@ public class WorldProviderEuca extends WorldProvider {
 	@Override
 	public IChunkGenerator createChunkGenerator() {
 		return new ChunkProviderEuca(world, world.getSeed());
+	}
+	
+	@Override
+    public BiomeProvider getBiomeProvider() {
+		return this.biomeProvider = new BiomeProviderEuca();
 	}
 
 	@Override
