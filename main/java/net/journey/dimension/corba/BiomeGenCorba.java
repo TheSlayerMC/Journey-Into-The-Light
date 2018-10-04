@@ -9,9 +9,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BiomeGenCorba extends Biome {
 
-	public BiomeGenCorba(String par1) {
-		super(new BiomeProperties(par1).setBaseHeight(DimensionHelper.corbaHeight[0]).setHeightVariation(DimensionHelper.corbaHeight[1]));
-		this.setRegistryName(par1);
+	public BiomeGenCorba() {
+		super(new BiomePropertiesCorba());
 		this.topBlock = JourneyBlocks.corbaGrass.getDefaultState();
 		this.fillerBlock = JourneyBlocks.corbaStone.getDefaultState();
 		this.spawnableCreatureList.clear();

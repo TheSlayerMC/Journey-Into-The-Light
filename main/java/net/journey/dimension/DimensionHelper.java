@@ -122,7 +122,7 @@ public class DimensionHelper {
 	public static Biome euca = new BiomeGenEuca(Config.eucaBiome);
 	public static Biome boiling = new BiomeGenBoiling();
 	public static Biome cloudia = new BiomeGenCloudia(Config.cloudiaBiome);
-	public static Biome corba = new BiomeGenCorba(Config.corbaBiome);
+	public static Biome corba = new BiomeGenCorba();
 	public static Biome depths = new BiomeGenDepths(Config.depthsBiome);
 	public static Biome frozen = new BiomeGenFrozenLands(Config.frozenBiome);
 	public static Biome terrania = new BiomeGenTerrania(Config.terraniaBiome);
@@ -152,6 +152,7 @@ public class DimensionHelper {
 		}
 		//addBiome(euca, "Euca", BiomeType.WARM, Type.SPOOKY);
 		addBiome(boiling, "Boiling Point", BiomeType.WARM, Type.SPOOKY);
+		addBiome(corba, "Corba", BiomeType.WARM, Type.DENSE, Type.SPOOKY, Type.CONIFEROUS);
 		
 		addDimension(Config.euca, eucaType);
 		addDimension(Config.boil, boilingType);
