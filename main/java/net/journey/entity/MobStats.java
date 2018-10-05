@@ -5,7 +5,7 @@ public class MobStats {
 	public static double normalSpeed = 0.2D, fastSpeed = 10.0D, follow = 30D, knockBackResistance = 0.0D;
 	
 	public static double hardestJourneyDamage = 65.0D;
-	public static double veryHardJourneyDamage = 50.0D;
+	public static double veryHardJourneyDamage = 60.0D;
 	public static double hardJourneyDamage = 40.0D;
 	public static double highJourneyDamage = 30.0D;
 	public static double mediumJourneyDamage = 20.0D;

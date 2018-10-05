@@ -17,7 +17,7 @@ public class EntityCloudGhost extends EntityModMob{
 
 	@Override
 	public double setAttackDamage(MobStats s) {
-		return MobStats.veryHardJourneyDamage;
+		return MobStats.hardestJourneyDamage;
 	}
 
 	@Override

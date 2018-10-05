@@ -17,7 +17,7 @@ public class EntityStarlightTransporter extends EntityPeacefullUntillAttacked {
 
 	@Override
 	public double setAttackDamage(MobStats s) {
-		return MobStats.veryHardJourneyDamage;
+		return MobStats.hardestJourneyDamage;
 	}
 
 	@Override
