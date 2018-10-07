@@ -4,6 +4,7 @@ import net.journey.JourneyItems;
 import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
 import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIPanic;
@@ -20,6 +21,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityPeacefullUntillAttacked;
 
@@ -39,7 +41,16 @@ public class EntityHellCow extends EntityPeacefullUntillAttacked {
 
 	@Override
 	public double setMovementSpeed() {
-		return 0.5F;
+		return 0.3F;
+	}
+	
+	@Override
+	public boolean attackEntityAsMob(Entity e) {
+		boolean attacked = super.attackEntityAsMob(e);
+		if(attacked) {
+			e.addVelocity((double)(-MathHelper.sin(this.rotationYaw * (float)Math.PI / 180.0F)) * 4, 0.1D, (double)(MathHelper.cos(this.rotationYaw * (float)Math.PI / 180.0F)) * 4);
+		}
+		return attacked;
 	}
 	
 	@Override
