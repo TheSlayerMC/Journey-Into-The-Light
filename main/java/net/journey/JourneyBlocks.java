@@ -527,12 +527,6 @@ public class JourneyBlocks {
 		blueGemBlock = new BlockMod("blueGemBlock", "Blue Gem Block");
 		yellowGemBlock = new BlockMod("yellowGemBlock", "Yellow Gem Block");
 
-		sizzleberryBush = new BlockModBush("sizzleberryBush", "Sizzleberry Bush", new ItemStack(JourneyItems.sizzleberry), true);
-	 	bradberryBush = new BlockModBush("bradberryBush", "Bradberry Bush", new ItemStack(JourneyItems.bradberry), false);
-	 	tangleberryBush = new BlockModBush("tangleberryBush", "Tangleberry Bush", new ItemStack(JourneyItems.tangleberry), false);
-	 	juiceberryBush = new BlockModBush("juiceberryBush", "Juiceberry Bush", new ItemStack(JourneyItems.juiceberry), false);
-	 	bogberryBush = new BlockModBush("bogberryBush", "Bogberry Bush", new ItemStack(JourneyItems.bogberry), false); 
-
 		nethicanSludge = new BlockMod(EnumMaterialTypes.SLIME, "nethicanSludge", "Nethican Sludge", 1.0F);
 
 		eucaGrass = new BlockModGrass(null, "eucaGrass", "Euca Grass", 2.0F);
@@ -846,6 +840,12 @@ public class JourneyBlocks {
 		netherFurnaceActive = (BlockMod) new BlockNetherFurnace("netherFurnaceActive", "Nethic Furnace", true).setLightLevel(0.7F).setCreativeTab(null);
 		
 	 	bleedheartFruit = new BlockFruitCrop("bleedheartFruit", "Bleedheart Fruit", JourneyItems.bleedheart, sizzlerWoodLog);
+	 	
+		sizzleberryBush = new BlockModBush("sizzleberryBush", "Sizzleberry Bush", JourneyItems.sizzleberry, true);
+	 	bradberryBush = new BlockModBush("bradberryBush", "Bradberry Bush", JourneyItems.bradberry, false);
+	 	tangleberryBush = new BlockModBush("tangleberryBush", "Tangleberry Bush", JourneyItems.tangleberry, false);
+	 	juiceberryBush = new BlockModBush("juiceberryBush", "Juiceberry Bush", JourneyItems.juiceberry, false);
+	 	bogberryBush = new BlockModBush("bogberryBush", "Bogberry Bush", JourneyItems.bogberry, false); 
 		
 	    }
 }

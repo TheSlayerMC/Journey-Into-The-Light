@@ -171,6 +171,12 @@ public class JourneyItems {
 
 	public static final EntityEquipmentSlot HEAD = EntityEquipmentSlot.HEAD, BODY = EntityEquipmentSlot.CHEST, LEGS = EntityEquipmentSlot.LEGS, BOOTS = EntityEquipmentSlot.FEET;
 
+	public static Item sizzleberry;
+	public static Item bradberry;
+	public static Item tangleberry;
+	public static Item juiceberry;
+	public static Item bogberry;
+	
 	public static Item heartSml;
 	public static Item heartMed;
 	public static Item heartLrg;
@@ -745,12 +751,6 @@ public class JourneyItems {
 	public static Item vanillaWafer;
 	public static Item bleedheart;
 
-	public static Item sizzleberry;
-	public static Item bradberry;
-	public static Item tangleberry;
-	public static Item juiceberry;
-	public static Item bogberry;
-
 	public static Item goldenSteak;
 	public static Item goldenSteakOP;
 
@@ -823,6 +823,13 @@ public class JourneyItems {
 	public static Item infernoshield;
 	
 	public static void init() {
+		
+		sizzleberry = new ItemModFood("sizzleberry", "Sizzleberry", 1, 4.0F, 5, false).setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.fireResistance, 20, 1), 1.0F).setAlwaysEdible();
+		bradberry = new ItemModFood("bradberry", "Bradberry", 1, 8, 4, false);
+		tangleberry = new ItemModFood("tangleberry", "Tangleberry", 2, 4, 1, false);
+		juiceberry = new ItemModFood("juiceberry", "Juiceberry", 1, 6, 1, false);
+		bogberry = new ItemModFood("bogberry", "Bogberry", 2, 6, 3, false);
+		
 		heartSml = new ItemHealth("heartSml", "Heart: Tier 1", 1, 2, 0.2F, false, false, 60, false, true);
 		heartMed = new ItemHealth("heartMed", "Heart: Tier 2", 2, 2, 0.2F, false, false, 60, false, true);
 		heartLrg = new ItemHealth("heartLrg", "Heart: Tier 3", 4, 2, 0.2F, false, false, 60, false, true);
@@ -1371,12 +1378,6 @@ public class JourneyItems {
 		chocolate = new ItemModFood("chocolate", "Chocolate Bar", 2, 0.1F, 2, false);
 		vanillaWafer = new ItemModFood("vanillaWafer", "Vanilla Wafer", 1, 0.1F, 2, false);
 		bleedheart = new ItemFruit("bleedheart", "Bleedheart Fruit", 2, 0.1F, false, JourneyBlocks.bleedheartFruit, JourneyBlocks.sizzlerWoodLog).setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.moveSlow, 100, 10), 1.0F);
-
-		sizzleberry = new ItemModFood("sizzleberry", "Sizzleberry", 1, 4.0F, 5, false).setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.fireResistance, 20, 1), 1.0F).setAlwaysEdible();
-		bradberry = new ItemModFood("bradberry", "Bradberry", 1, 8, 4, false);
-		tangleberry = new ItemModFood("tangleberry", "Tangleberry", 2, 4, 1, false);
-		juiceberry = new ItemModFood("juiceberry", "Juiceberry", 1, 6, 1, false);
-		bogberry = new ItemModFood("bogberry", "Bogberry", 2, 6, 3, false);
 
 		goldenSteak = new ItemGoldenFood("normalGoldenSteak", "Golden Steak", 6, 1.2F, false, false);
 		goldenSteakOP = new ItemGoldenFood("OPGoldenSteak", "Golden Steak", 10, 2.2F, false, true);

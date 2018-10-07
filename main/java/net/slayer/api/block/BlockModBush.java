@@ -2,6 +2,7 @@ package net.slayer.api.block;
 
 import java.util.Random;
 
+import net.journey.JourneyItems;
 import net.journey.JourneyTabs;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
@@ -35,11 +36,11 @@ import net.slayer.api.EnumMaterialTypes;
 public class BlockModBush extends BlockMod implements IPlantable, IGrowable {
 
 	private boolean isNether;
-	private ItemStack berry;
+	private Item berry;
 
 	public static final PropertyInteger AGE = PropertyInteger.create("age", 0, 2);
 
-	public BlockModBush(String name, String finalName, ItemStack berry, boolean isNether) {
+	public BlockModBush(String name, String finalName, Item berry, boolean isNether) {
 		super(EnumMaterialTypes.LEAVES, name, finalName, 1.0F);
 		this.berry = berry;
 		this.isNether = isNether;
@@ -177,49 +178,19 @@ public class BlockModBush extends BlockMod implements IPlantable, IGrowable {
 	}
 
 	@Override
-	public void onBlockClicked(World worldIn, BlockPos pos, EntityPlayer playerIn) {
-		if (worldIn.isRemote) {
-			return;
-		}
-
-		int age = worldIn.getBlockState(pos).getValue(AGE).intValue();
-
-		if (age == 2) {
-			worldIn.setBlockState(pos, this.getDefaultState().withProperty(AGE, Integer.valueOf(2)), 2);
-
-			ItemStack itemDrop = new ItemStack(this.berry.getItem(), 1, this.berry.getItemDamage());
-			EntityItem entityitem = new EntityItem(worldIn, playerIn.posX, playerIn.posY - 1.0D, playerIn.posZ,
-					itemDrop);
-
-			worldIn.spawnEntity(entityitem);
-
-			if (!(playerIn instanceof FakePlayer)) {
-				entityitem.onCollideWithPlayer(playerIn);
-			}
-		}
-	}
-
-	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
+	public boolean onBlockActivated(World w, BlockPos pos, IBlockState state, EntityPlayer player,
 			EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
-		int age = state.getValue(AGE).intValue();
-
-		if (age == 2) {
-			if (worldIn.isRemote) {
+		double 
+		x = player.posX,
+		y = player.posY, 
+		z = player.posZ;
+		if (state.getValue(AGE) == 2) {
+			if (w.isRemote) { 
 				return true;
 			}
-
-			worldIn.setBlockState(pos, this.getDefaultState().withProperty(AGE, Integer.valueOf(2)), 2);
-
-			ItemStack itemDrop = new ItemStack(this.berry.getItem(), 1, this.berry.getItemDamage());
-			EntityItem entityitem = new EntityItem(worldIn, playerIn.posX, playerIn.posY - 1.0D, playerIn.posZ,
-					itemDrop);
-
-			worldIn.spawnEntity(entityitem);
-
-			if (!(playerIn instanceof FakePlayer)) {
-				entityitem.onCollideWithPlayer(playerIn);
-			}
+			EntityItem drop = new EntityItem(w, x, y, z, new ItemStack(berry));
+			w.spawnEntity(drop);
+			w.setBlockState(pos, state.withProperty(AGE, 0), 1);
 			return true;
 		}
 		return false;
