@@ -26,10 +26,11 @@ public class EntityBoilingPiercer extends EntityThrowable {
 
 	@Override
 	protected void onImpact(RayTraceResult par1) {
-		if(par1.entityHit != null && par1.entityHit != this.thrower) {
-			par1.entityHit.setFire(10);
+		if (par1.entityHit != null && par1.entityHit != this.thrower) {
+			par1.entityHit.setFire(15);
 			par1.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.thrower), this.damage);
-			if(!this.world.isRemote) this.setDead();
+			if (!this.world.isRemote)
+				this.setDead();
 			return;
 		}
 	}

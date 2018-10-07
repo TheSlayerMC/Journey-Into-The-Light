@@ -9,28 +9,29 @@ import net.minecraft.world.World;
 public class EntityNethicPiercer extends EntityThrowable {
 
 	public float damage;
+	public EntityLivingBase thrower;
+	protected int bounces, maxBounces;
 
 	public EntityNethicPiercer(World var1) {
 		super(var1);
 	}
 
-	public EntityNethicPiercer(World var1, EntityLivingBase var3, float dam) {
+	public EntityNethicPiercer(World var1, EntityLivingBase var3, float dam, int max) {
 		super(var1, var3);
-		damage = dam;
-	}
-	
-	public float getDamage() {
-		return damage;
-	}
-	
-	public void setDamage(float damage) {
-		this.damage = damage;
+		this.damage = dam;
+		this.thrower = var3;
+		this.maxBounces = max;
 	}
 
 	@Override
-	protected void onImpact(RayTraceResult var1) {
-		if(var1.entityHit != null) var1.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), damage);
-		if(!world.isRemote) this.setDead();
+	protected void onImpact(RayTraceResult par1) {
+		if (par1.entityHit != null && par1.entityHit != this.thrower) {
+			par1.entityHit.setFire(5);
+			par1.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.thrower), this.damage);
+			if (!this.world.isRemote)
+				this.setDead();
+			return;
+		}
 	}
 
 	@Override
