@@ -40,6 +40,9 @@ public class BlockModBush extends BlockMod implements IPlantable, IGrowable {
 
 	public static final PropertyInteger AGE = PropertyInteger.create("age", 0, 2);
 
+	public static final AxisAlignedBB smallbush = new AxisAlignedBB(0.5F - 0.3F, 0.0F, 0.5F - 0.3F, 0.5F + 0.3F, 0.3F * 1.0F, 0.5F + 0.3F);
+	public static final AxisAlignedBB fullbush = new AxisAlignedBB(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
+
 	public BlockModBush(String name, String finalName, Item berry, boolean isNether) {
 		super(EnumMaterialTypes.LEAVES, name, finalName, 1.0F);
 		this.berry = berry;
@@ -53,18 +56,18 @@ public class BlockModBush extends BlockMod implements IPlantable, IGrowable {
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess access, BlockPos pos) {
 		float f = 0.3F;
-		if (access.getBlockState(pos).getValue(AGE) == 0) {
-			return new AxisAlignedBB(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, f * 1.0F, 0.5F + f);
+		if (state.getValue(AGE).intValue() == 0) {
+			return smallbush;
 		}
 
-		if (access.getBlockState(pos).getValue(AGE) == 1) {
-			return new AxisAlignedBB(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
+		if (state.getValue(AGE).intValue() == 1) {
+			return fullbush;
 		}
 
-		if (access.getBlockState(pos).getValue(AGE) == 2) {
-			return new AxisAlignedBB(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
+		if (state.getValue(AGE).intValue() == 2) {
+			return fullbush;
 		}
-		return null;
+		return fullbush;
 	}
 	
 	@Override
@@ -158,7 +161,7 @@ public class BlockModBush extends BlockMod implements IPlantable, IGrowable {
 			return false;
 		}
 		if (age == 1) {
-			return false;
+			return true;
 		}
 		if (age == 2) {
 			return true;
@@ -178,8 +181,7 @@ public class BlockModBush extends BlockMod implements IPlantable, IGrowable {
 	}
 
 	@Override
-	public boolean onBlockActivated(World w, BlockPos pos, IBlockState state, EntityPlayer player,
-			EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
+	public boolean onBlockActivated(World w, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
 		double 
 		x = player.posX,
 		y = player.posY, 
