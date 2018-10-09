@@ -21,6 +21,7 @@ import net.journey.dimension.nether.gen.trees.WorldGenBleedheartTree0;
 import net.journey.dimension.nether.gen.trees.WorldGenBleedheartTree1;
 import net.journey.dimension.nether.gen.trees.WorldGenBleedheartTree2;
 import net.journey.dimension.overworld.gen.WorldGenBlacksmithHouse;
+import net.journey.dimension.overworld.gen.WorldGenCaveVines;
 import net.journey.dimension.overworld.gen.WorldGenMageHouse;
 import net.journey.dimension.overworld.gen.WorldGenModFlower;
 import net.journey.dimension.overworld.gen.WorldGenSmallGlowshrooms;
@@ -350,6 +351,12 @@ public class WorldGenEssence implements IWorldGenerator {
 			x = chunkX + r.nextInt(16) + 8; 
 			z = chunkZ + r.nextInt(16) + 8;
 			(new WorldGenTallGlowshrooms()).generate(w, r, new BlockPos(x, y, z));
+		}
+		for(times = 0; times < 100; times++) {
+			y = r.nextInt(63); 
+			x = chunkX + r.nextInt(16) + 8; 
+			z = chunkZ + r.nextInt(16) + 8;
+			(new WorldGenCaveVines()).generate(w, r, new BlockPos(x, y, z));
 		}
 		for(times = 0; times < 100; times++) {
 			y = r.nextInt(63);  
