@@ -1,6 +1,10 @@
 package net.journey.blocks;
 
+import java.util.Random;
+
 import net.journey.JourneySounds;
+import net.journey.client.render.particles.EntityRockFX;
+import net.journey.client.render.particles.OreParticleFX;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
@@ -11,8 +15,10 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.client.FMLClientHandler;
 import net.slayer.api.EnumMaterialTypes;
 import net.slayer.api.block.BlockMod;
 
@@ -54,27 +60,37 @@ public class BlockLock extends BlockMod {
 	
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		if(!worldIn.isRemote && playerIn.getHeldItem(hand.MAIN_HAND) !=null && playerIn.getHeldItem(hand.MAIN_HAND).getItem() == key) {
+		float 
+		x = hitX,
+		y = hitY,
+		z = hitZ;
+		float 
+		r = 0.0F, 
+		g = 0.0F, 
+		b = 0.0F;
+		if (!worldIn.isRemote && playerIn.getHeldItem(hand.MAIN_HAND) != null
+				&& playerIn.getHeldItem(hand.MAIN_HAND).getItem() == key) {
 			JourneySounds.playSound(JourneySounds.UNLOCK, worldIn, playerIn);
 			JourneySounds.playSound(JourneySounds.GATE_CREAK, worldIn, playerIn);
+			worldIn.spawnParticle(EnumParticleTypes.SPELL, x, y, z, 2.0F, 2.0F, 2.0F, 2);
 			worldIn.setBlockState(pos.add(0, 0, 0), Blocks.AIR.getDefaultState());
 			worldIn.setBlockState(pos.add(0, 1, 0), Blocks.AIR.getDefaultState());
 			worldIn.setBlockState(pos.add(0, 0, 1), Blocks.AIR.getDefaultState());
 			worldIn.setBlockState(pos.add(-1, 0, 0), Blocks.AIR.getDefaultState());
-			worldIn.setBlockState(pos.add(0, -1, 0), Blocks.AIR.getDefaultState());		
+			worldIn.setBlockState(pos.add(0, -1, 0), Blocks.AIR.getDefaultState());
 			worldIn.setBlockState(pos.add(0, 0, -1), Blocks.AIR.getDefaultState());
 			worldIn.setBlockState(pos.add(1, 0, 0), Blocks.AIR.getDefaultState());
 			worldIn.setBlockState(pos.add(1, 1, 0), Blocks.AIR.getDefaultState());
 			worldIn.setBlockState(pos.add(-1, -1, 0), Blocks.AIR.getDefaultState());
 			worldIn.setBlockState(pos.add(-1, 1, 0), Blocks.AIR.getDefaultState());
-			worldIn.setBlockState(pos.add(1, -1, 0), Blocks.AIR.getDefaultState());	
+			worldIn.setBlockState(pos.add(1, -1, 0), Blocks.AIR.getDefaultState());
 			worldIn.setBlockState(pos.add(0, 0, 1), Blocks.AIR.getDefaultState());
 			worldIn.setBlockState(pos.add(0, 1, 1), Blocks.AIR.getDefaultState());
 			worldIn.setBlockState(pos.add(0, -1, -1), Blocks.AIR.getDefaultState());
 			worldIn.setBlockState(pos.add(0, 1, -1), Blocks.AIR.getDefaultState());
 			worldIn.setBlockState(pos.add(0, -1, 1), Blocks.AIR.getDefaultState());
-			return true;
 		}
+	
 		return false;
 	}
 }

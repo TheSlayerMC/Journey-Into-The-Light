@@ -303,8 +303,10 @@ public class JourneyBlocks {
 
 	public static BlockMod depthsLights;
 
-	public static BlockMod fire;
+	public static BlockModFire fire;
 
+	public static BlockMod caveVine;
+	
 	public static BlockMod mossyEssenceStone;
 
 	public static BlockMod dungeonBrick;
@@ -686,6 +688,8 @@ public class JourneyBlocks {
 
 		fire = new BlockModFire("fire", "Essential Fire");
 
+		caveVine = new BlockModVine("cavevine", "Cave Vine", 12);
+		
 		mossyEssenceStone = new BlockMod("mossyEssenceStone", "Mossy Essence Stone", 2.0F);
 
 		dungeonBrick = new BlockMod(EnumMaterialTypes.STONE, "dungeonBrick", "Dungeon Brick", -1F);
