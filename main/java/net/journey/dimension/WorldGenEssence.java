@@ -305,7 +305,7 @@ public class WorldGenEssence implements IWorldGenerator {
 		Biome biome = chunk.getBiome(pos, chunkManager);
 		BiomeDictionary biomeD = new BiomeDictionary();
 		
-		for(times = 0; times < 1; times++) {
+		for(times = 0; times < 2; times++) {
 			y = r.nextInt(128) + 1;
 			x = chunkX + r.nextInt(16);
 			z = chunkZ + r.nextInt(16);
@@ -315,7 +315,7 @@ public class WorldGenEssence implements IWorldGenerator {
 			}
 		}
 		
-		for(times = 0; times < 1; times++) {
+		for(times = 0; times < 2; times++) {
 			y = r.nextInt(128) + 1;
 			x = chunkX + r.nextInt(16);
 			z = chunkZ + r.nextInt(16);
@@ -335,7 +335,7 @@ public class WorldGenEssence implements IWorldGenerator {
 			}
 		}
 		
-		for(times = 0; times < 1; times++) {
+		for(times = 0; times < 2; times++) {
 			y = r.nextInt(128) + 1;
 			x = chunkX + r.nextInt(16);
 			z = chunkZ + r.nextInt(16);

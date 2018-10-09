@@ -824,11 +824,11 @@ public class JourneyItems {
 	
 	public static void init() {
 		
-		sizzleberry = new ItemModFood("sizzleberry", "Sizzleberry", 1, 4.0F, 5, false).setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.fireResistance, 20, 1), 1.0F).setAlwaysEdible();
-		bradberry = new ItemModFood("bradberry", "Bradberry", 1, 8, 4, false);
-		tangleberry = new ItemModFood("tangleberry", "Tangleberry", 2, 4, 1, false);
-		juiceberry = new ItemModFood("juiceberry", "Juiceberry", 1, 6, 1, false);
-		bogberry = new ItemModFood("bogberry", "Bogberry", 2, 6, 3, false);
+		sizzleberry = new ItemModFood("sizzleberry", "Sizzleberry", 1, 4.0F, 5, false).setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.fireResistance, 50, 1), 1.0F).setAlwaysEdible().setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.moveSlow, 50, 1), 1.0F);
+		bradberry = new ItemModFood("bradberry", "Bradberry", 1, 8, 4, false).setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.confusion, 50, 1), 1.0F);
+		tangleberry = new ItemModFood("tangleberry", "Tangleberry", 2, 4, 1, false).setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.poison, 50, 1), 1.0F).setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.confusion, 50, 1), 1.0F);
+		juiceberry = new ItemModFood("juiceberry", "Juiceberry", 1, 6, 1, false).setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.confusion, 50, 1), 1.0F);
+		bogberry = new ItemModFood("bogberry", "Bogberry", 2, 6, 3, false).setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.confusion, 50, 1), 1.0F);
 		
 		heartSml = new ItemHealth("heartSml", "Heart: Tier 1", 1, 2, 0.2F, false, false, 60, false, true);
 		heartMed = new ItemHealth("heartMed", "Heart: Tier 2", 2, 2, 0.2F, false, false, 60, false, true);
