@@ -14,15 +14,14 @@ import net.slayer.api.item.ItemMod;
 public class ItemThrowableArrow extends ItemMod {
 
 	private Class<? extends EntityThrowable> entity;
-	private float damage = 0;
+	private float damage;
 	private int maxBounces = 0;
-	private float vel = 1.0F;
 	
 	public ItemThrowableArrow(String name, String f, float damage, int bounces, Class<? extends EntityThrowable> entity) {
 		super(name, f);
+		this.maxBounces = bounces;
 		this.damage = damage;
 		this.entity = entity;
-		this.maxBounces = bounces;
 		setCreativeTab(JourneyTabs.weapons);
 	}
 

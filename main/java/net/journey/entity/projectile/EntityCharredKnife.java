@@ -40,7 +40,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public abstract class EntityCharredKnife extends EntityThrowable {
+public class EntityCharredKnife extends EntityThrowable {
 
 	private static final Predicate<Entity> ARROW_TARGETS = Predicates.and(EntitySelectors.NOT_SPECTATING,
 			EntitySelectors.IS_ALIVE, new Predicate<Entity>() {
@@ -77,65 +77,12 @@ public abstract class EntityCharredKnife extends EntityThrowable {
 	}
 
 	public EntityCharredKnife(World var1, EntityLivingBase var3, float dam, int max) {
-		this(var1);
+		this(var1); 
 		this.shootingEntity = var3;
 		this.damage = dam;
 		if (var3 instanceof EntityPlayer) {
 			this.pickupStatus = EntityCharredKnife.PickupStatus.ALLOWED;
 		}
-	}
-
-	@SideOnly(Side.CLIENT)
-	@Override
-	public boolean isInRangeToRenderDist(double distance) {
-		double d0 = this.getEntityBoundingBox().getAverageEdgeLength() * 10.0D;
-
-		if (Double.isNaN(d0)) {
-			d0 = 1.0D;
-		}
-
-		d0 = d0 * 64.0D * getRenderDistanceWeight();
-		return distance < d0 * d0;
-	}
-
-	@Override
-	protected void entityInit() {
-		this.dataManager.register(CRITICAL, Byte.valueOf((byte) 0));
-	}
-
-	/*
-	 * @Override public void shoot(Entity shooter, float pitch, float yaw, float
-	 * p_184547_4_, float velocity, float inaccuracy) { float f =
-	 * -MathHelper.sin(yaw * 0.017453292F) * MathHelper.cos(pitch *
-	 * 0.017453292F); float f1 = -MathHelper.sin(pitch * 0.017453292F); float f2
-	 * = MathHelper.cos(yaw * 0.017453292F) * MathHelper.cos(pitch *
-	 * 0.017453292F); this.shoot((double) f, (double) f1, (double) f2, velocity,
-	 * inaccuracy); this.motionX += shooter.motionX; this.motionZ +=
-	 * shooter.motionZ;
-	 * 
-	 * if (!shooter.onGround) { this.motionY += shooter.motionY; } }
-	 * 
-	 * @Override public void shoot(double x, double y, double z, float velocity,
-	 * float inaccuracy) { float f = MathHelper.sqrt(x * x + y * y + z * z); x =
-	 * x / (double) f; y = y / (double) f; z = z / (double) f; x = x +
-	 * this.rand.nextGaussian() * 0.007499999832361937D * (double) inaccuracy; y
-	 * = y + this.rand.nextGaussian() * 0.007499999832361937D * (double)
-	 * inaccuracy; z = z + this.rand.nextGaussian() * 0.007499999832361937D *
-	 * (double) inaccuracy; x = x * (double) velocity; y = y * (double)
-	 * velocity; z = z * (double) velocity; this.motionX = x; this.motionY = y;
-	 * this.motionZ = z; float f1 = MathHelper.sqrt(x * x + z * z);
-	 * this.rotationYaw = (float) (MathHelper.atan2(x, z) * (180D / Math.PI));
-	 * this.rotationPitch = (float) (MathHelper.atan2(y, (double) f1) * (180D /
-	 * Math.PI)); this.prevRotationYaw = this.rotationYaw;
-	 * this.prevRotationPitch = this.rotationPitch; this.ticksInGround = 0; }
-	 */
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void setPositionAndRotationDirect(double x, double y, double z, float yaw, float pitch,
-			int posRotationIncrements, boolean teleport) {
-		this.setPosition(x, y, z);
-		this.setRotation(yaw, pitch);
 	}
 
 	@Override
@@ -146,14 +93,6 @@ public abstract class EntityCharredKnife extends EntityThrowable {
 	@Override
 	public void onUpdate() {
 		super.onUpdate();
-
-		if (this.prevRotationPitch == 0.0F && this.prevRotationYaw == 0.0F) {
-			float f = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
-			this.rotationYaw = (float) (MathHelper.atan2(this.motionX, this.motionZ) * (180D / Math.PI));
-			this.rotationPitch = (float) (MathHelper.atan2(this.motionY, (double) f) * (180D / Math.PI));
-			this.prevRotationYaw = this.rotationYaw;
-			this.prevRotationPitch = this.rotationPitch;
-		}
 
 		BlockPos blockpos = new BlockPos(this.xTile, this.yTile, this.zTile);
 		IBlockState iblockstate = this.world.getBlockState(blockpos);
@@ -166,10 +105,6 @@ public abstract class EntityCharredKnife extends EntityThrowable {
 					&& axisalignedbb.offset(blockpos).contains(new Vec3d(this.posX, this.posY, this.posZ))) {
 				this.inGround = true;
 			}
-		}
-
-		if (this.arrowShake > 0) {
-			--this.arrowShake;
 		}
 
 		if (this.inGround) {
@@ -225,43 +160,6 @@ public abstract class EntityCharredKnife extends EntityThrowable {
 				this.onHit(raytraceresult);
 			}
 
-			if (this.getIsCritical()) {
-				for (int k = 0; k < 4; ++k) {
-					this.world.spawnParticle(EnumParticleTypes.CRIT, this.posX + this.motionX * (double) k / 4.0D,
-							this.posY + this.motionY * (double) k / 4.0D, this.posZ + this.motionZ * (double) k / 4.0D,
-							-this.motionX, -this.motionY + 0.2D, -this.motionZ);
-				}
-			}
-
-			this.posX += this.motionX;
-			this.posY += this.motionY;
-			this.posZ += this.motionZ;
-			float f4 = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
-			this.rotationYaw = (float) (MathHelper.atan2(this.motionX, this.motionZ) * (180D / Math.PI));
-
-			for (this.rotationPitch = (float) (MathHelper.atan2(this.motionY, (double) f4)
-					* (180D / Math.PI)); this.rotationPitch
-							- this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F) {
-				;
-			}
-
-			while (this.rotationPitch - this.prevRotationPitch >= 180.0F) {
-				this.prevRotationPitch += 360.0F;
-			}
-
-			while (this.rotationYaw - this.prevRotationYaw < -180.0F) {
-				this.prevRotationYaw -= 360.0F;
-			}
-
-			while (this.rotationYaw - this.prevRotationYaw >= 180.0F) {
-				this.prevRotationYaw += 360.0F;
-			}
-
-			this.rotationPitch = this.prevRotationPitch + (this.rotationPitch - this.prevRotationPitch) * 0.2F;
-			this.rotationYaw = this.prevRotationYaw + (this.rotationYaw - this.prevRotationYaw) * 0.2F;
-			float f1 = 0.99F;
-			float f2 = 0.05F;
-
 			if (this.isInWater()) {
 				for (int i = 0; i < 4; ++i) {
 					float f3 = 0.25F;
@@ -269,18 +167,12 @@ public abstract class EntityCharredKnife extends EntityThrowable {
 							this.posY - this.motionY * 0.25D, this.posZ - this.motionZ * 0.25D, this.motionX,
 							this.motionY, this.motionZ);
 				}
-
-				f1 = 0.6F;
 			}
 
 			if (this.isWet()) {
 				this.extinguish();
 			}
-
-			this.motionX *= (double) f1;
-			this.motionY *= (double) f1;
-			this.motionZ *= (double) f1;
-
+			
 			if (!this.hasNoGravity()) {
 				this.motionY -= 0.05000000074505806D;
 			}
@@ -331,12 +223,6 @@ public abstract class EntityCharredKnife extends EntityThrowable {
 									0.1D,
 									this.motionZ * (double) this.knockbackStrength * 0.6000000238418579D / (double) f1);
 						}
-					}
-
-					if (this.shootingEntity instanceof EntityLivingBase) {
-						EnchantmentHelper.applyThornEnchantments(entitylivingbase, this.shootingEntity);
-						EnchantmentHelper.applyArthropodEnchantments((EntityLivingBase) this.shootingEntity,
-								entitylivingbase);
 					}
 
 					this.arrowHit(entitylivingbase);
@@ -409,8 +295,7 @@ public abstract class EntityCharredKnife extends EntityThrowable {
 		}
 	}
 
-	protected void arrowHit(EntityLivingBase living) {
-	}
+	protected void arrowHit(EntityLivingBase living) {}
 
 	@Nullable
 	protected Entity findEntityOnPath(Vec3d start, Vec3d end) {
@@ -438,13 +323,6 @@ public abstract class EntityCharredKnife extends EntityThrowable {
 		}
 
 		return entity;
-	}
-
-	public static void registerFixesArrow(DataFixer fixer, String name) {
-	}
-
-	public static void registerFixesArrow(DataFixer fixer) {
-		registerFixesArrow(fixer, "Arrow");
 	}
 
 	@Override
@@ -517,11 +395,6 @@ public abstract class EntityCharredKnife extends EntityThrowable {
 		return new ItemStack(JourneyItems.charredKnife);
 	}
 
-	@Override
-	protected boolean canTriggerWalking() {
-		return false;
-	}
-
 	public void setDamage(double damageIn) {
 		this.damage = damageIn;
 	}
@@ -532,16 +405,6 @@ public abstract class EntityCharredKnife extends EntityThrowable {
 
 	public void setKnockbackStrength(int knockbackStrengthIn) {
 		this.knockbackStrength = knockbackStrengthIn;
-	}
-
-	@Override
-	public boolean canBeAttackedWithItem() {
-		return false;
-	}
-
-	@Override
-	public float getEyeHeight() {
-		return 0.0F;
 	}
 
 	public void setIsCritical(boolean critical) {
@@ -559,25 +422,6 @@ public abstract class EntityCharredKnife extends EntityThrowable {
 		return (b0 & 1) != 0;
 	}
 
-	public void setEnchantmentEffectsFromEntity(EntityLivingBase p_190547_1_, float p_190547_2_) {
-		int i = EnchantmentHelper.getMaxEnchantmentLevel(Enchantments.POWER, p_190547_1_);
-		int j = EnchantmentHelper.getMaxEnchantmentLevel(Enchantments.PUNCH, p_190547_1_);
-		this.setDamage((double) (p_190547_2_ * 2.0F) + this.rand.nextGaussian() * 0.25D
-				+ (double) ((float) this.world.getDifficulty().getDifficultyId() * 0.11F));
-
-		if (i > 0) {
-			this.setDamage(this.getDamage() + (double) i * 0.5D + 0.5D);
-		}
-
-		if (j > 0) {
-			this.setKnockbackStrength(j);
-		}
-
-		if (EnchantmentHelper.getMaxEnchantmentLevel(Enchantments.FLAME, p_190547_1_) > 0) {
-			this.setFire(100);
-		}
-	}
-
 	public static enum PickupStatus {
 		DISALLOWED, ALLOWED, CREATIVE_ONLY;
 
@@ -588,5 +432,10 @@ public abstract class EntityCharredKnife extends EntityThrowable {
 
 			return values()[ordinal];
 		}
+	}
+
+	@Override
+	protected void onImpact(RayTraceResult result) {
+		this.onHit(result);
 	}
 }
