@@ -40,8 +40,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public abstract class EntityCharredKnife extends EntityThrowable implements IProjectile {
-	
+public abstract class EntityCharredKnife extends EntityThrowable {
+
 	private static final Predicate<Entity> ARROW_TARGETS = Predicates.and(EntitySelectors.NOT_SPECTATING,
 			EntitySelectors.IS_ALIVE, new Predicate<Entity>() {
 				public boolean apply(@Nullable Entity p_apply_1_) {
@@ -64,6 +64,8 @@ public abstract class EntityCharredKnife extends EntityThrowable implements IPro
 	private int ticksInAir;
 	private double damage;
 	private int knockbackStrength;
+	public EntityLivingBase thrower;
+	protected int bounces, maxBounces;
 
 	public EntityCharredKnife(World worldIn) {
 		super(worldIn);
@@ -74,18 +76,11 @@ public abstract class EntityCharredKnife extends EntityThrowable implements IPro
 		this.setSize(0.5F, 0.5F);
 	}
 
-	public EntityCharredKnife(World worldIn, double x, double y, double z, double dam) {
-		this(worldIn);
+	public EntityCharredKnife(World var1, EntityLivingBase var3, float dam, int max) {
+		this(var1);
+		this.shootingEntity = var3;
 		this.damage = dam;
-		this.setPosition(x, y, z);
-	}
-
-	public EntityCharredKnife(World worldIn, EntityLivingBase shooter, float dam) {
-		this(worldIn, shooter.posX, shooter.posY + (double) shooter.getEyeHeight() - 0.10000000149011612D,
-				shooter.posZ, dam);
-		this.shootingEntity = shooter;
-		this.damage = dam;
-		if (shooter instanceof EntityPlayer) {
+		if (var3 instanceof EntityPlayer) {
 			this.pickupStatus = EntityCharredKnife.PickupStatus.ALLOWED;
 		}
 	}
@@ -108,42 +103,32 @@ public abstract class EntityCharredKnife extends EntityThrowable implements IPro
 		this.dataManager.register(CRITICAL, Byte.valueOf((byte) 0));
 	}
 
-	@Override
-	public void shoot(Entity shooter, float pitch, float yaw, float p_184547_4_, float velocity, float inaccuracy) {
-		float f = -MathHelper.sin(yaw * 0.017453292F) * MathHelper.cos(pitch * 0.017453292F);
-		float f1 = -MathHelper.sin(pitch * 0.017453292F);
-		float f2 = MathHelper.cos(yaw * 0.017453292F) * MathHelper.cos(pitch * 0.017453292F);
-		this.shoot((double) f, (double) f1, (double) f2, velocity, inaccuracy);
-		this.motionX += shooter.motionX;
-		this.motionZ += shooter.motionZ;
-
-		if (!shooter.onGround) {
-			this.motionY += shooter.motionY;
-		}
-	}
-
-	@Override
-	public void shoot(double x, double y, double z, float velocity, float inaccuracy) {
-		float f = MathHelper.sqrt(x * x + y * y + z * z);
-		x = x / (double) f;
-		y = y / (double) f;
-		z = z / (double) f;
-		x = x + this.rand.nextGaussian() * 0.007499999832361937D * (double) inaccuracy;
-		y = y + this.rand.nextGaussian() * 0.007499999832361937D * (double) inaccuracy;
-		z = z + this.rand.nextGaussian() * 0.007499999832361937D * (double) inaccuracy;
-		x = x * (double) velocity;
-		y = y * (double) velocity;
-		z = z * (double) velocity;
-		this.motionX = x;
-		this.motionY = y;
-		this.motionZ = z;
-		float f1 = MathHelper.sqrt(x * x + z * z);
-		this.rotationYaw = (float) (MathHelper.atan2(x, z) * (180D / Math.PI));
-		this.rotationPitch = (float) (MathHelper.atan2(y, (double) f1) * (180D / Math.PI));
-		this.prevRotationYaw = this.rotationYaw;
-		this.prevRotationPitch = this.rotationPitch;
-		this.ticksInGround = 0;
-	}
+	/*
+	 * @Override public void shoot(Entity shooter, float pitch, float yaw, float
+	 * p_184547_4_, float velocity, float inaccuracy) { float f =
+	 * -MathHelper.sin(yaw * 0.017453292F) * MathHelper.cos(pitch *
+	 * 0.017453292F); float f1 = -MathHelper.sin(pitch * 0.017453292F); float f2
+	 * = MathHelper.cos(yaw * 0.017453292F) * MathHelper.cos(pitch *
+	 * 0.017453292F); this.shoot((double) f, (double) f1, (double) f2, velocity,
+	 * inaccuracy); this.motionX += shooter.motionX; this.motionZ +=
+	 * shooter.motionZ;
+	 * 
+	 * if (!shooter.onGround) { this.motionY += shooter.motionY; } }
+	 * 
+	 * @Override public void shoot(double x, double y, double z, float velocity,
+	 * float inaccuracy) { float f = MathHelper.sqrt(x * x + y * y + z * z); x =
+	 * x / (double) f; y = y / (double) f; z = z / (double) f; x = x +
+	 * this.rand.nextGaussian() * 0.007499999832361937D * (double) inaccuracy; y
+	 * = y + this.rand.nextGaussian() * 0.007499999832361937D * (double)
+	 * inaccuracy; z = z + this.rand.nextGaussian() * 0.007499999832361937D *
+	 * (double) inaccuracy; x = x * (double) velocity; y = y * (double)
+	 * velocity; z = z * (double) velocity; this.motionX = x; this.motionY = y;
+	 * this.motionZ = z; float f1 = MathHelper.sqrt(x * x + z * z);
+	 * this.rotationYaw = (float) (MathHelper.atan2(x, z) * (180D / Math.PI));
+	 * this.rotationPitch = (float) (MathHelper.atan2(y, (double) f1) * (180D /
+	 * Math.PI)); this.prevRotationYaw = this.rotationYaw;
+	 * this.prevRotationPitch = this.rotationPitch; this.ticksInGround = 0; }
+	 */
 
 	@Override
 	@SideOnly(Side.CLIENT)
@@ -154,21 +139,8 @@ public abstract class EntityCharredKnife extends EntityThrowable implements IPro
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public void setVelocity(double x, double y, double z) {
-		this.motionX = x;
-		this.motionY = y;
-		this.motionZ = z;
-
-		if (this.prevRotationPitch == 0.0F && this.prevRotationYaw == 0.0F) {
-			float f = MathHelper.sqrt(x * x + z * z);
-			this.rotationPitch = (float) (MathHelper.atan2(y, (double) f) * (180D / Math.PI));
-			this.rotationYaw = (float) (MathHelper.atan2(x, z) * (180D / Math.PI));
-			this.prevRotationPitch = this.rotationPitch;
-			this.prevRotationYaw = this.rotationYaw;
-			this.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, this.rotationPitch);
-			this.ticksInGround = 0;
-		}
+	protected float getGravityVelocity() {
+		return 0.031F;
 	}
 
 	@Override
@@ -437,7 +409,8 @@ public abstract class EntityCharredKnife extends EntityThrowable implements IPro
 		}
 	}
 
-	protected void arrowHit(EntityLivingBase living) {}
+	protected void arrowHit(EntityLivingBase living) {
+	}
 
 	@Nullable
 	protected Entity findEntityOnPath(Vec3d start, Vec3d end) {
@@ -467,7 +440,8 @@ public abstract class EntityCharredKnife extends EntityThrowable implements IPro
 		return entity;
 	}
 
-	public static void registerFixesArrow(DataFixer fixer, String name) {}
+	public static void registerFixesArrow(DataFixer fixer, String name) {
+	}
 
 	public static void registerFixesArrow(DataFixer fixer) {
 		registerFixesArrow(fixer, "Arrow");
@@ -488,7 +462,7 @@ public abstract class EntityCharredKnife extends EntityThrowable implements IPro
 		compound.setDouble("damage", this.damage);
 		compound.setBoolean("crit", this.getIsCritical());
 	}
-	
+
 	@Override
 	public void readEntityFromNBT(NBTTagCompound compound) {
 		this.xTile = compound.getInteger("xTile");

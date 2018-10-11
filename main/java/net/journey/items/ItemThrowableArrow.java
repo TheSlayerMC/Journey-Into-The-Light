@@ -15,14 +15,14 @@ public class ItemThrowableArrow extends ItemMod {
 
 	private Class<? extends EntityThrowable> entity;
 	private float damage = 0;
-	private int bounces = 0;
+	private int maxBounces = 0;
 	private float vel = 1.0F;
 	
 	public ItemThrowableArrow(String name, String f, float damage, int bounces, Class<? extends EntityThrowable> entity) {
 		super(name, f);
 		this.damage = damage;
 		this.entity = entity;
-		this.bounces = bounces;
+		this.maxBounces = bounces;
 		setCreativeTab(JourneyTabs.weapons);
 	}
 
@@ -31,14 +31,14 @@ public class ItemThrowableArrow extends ItemMod {
 		ItemStack stack = player.getHeldItem(handIn);
 		try {
 			if(!world.isRemote) {
-				EntityThrowable t = entity.getConstructor(World.class, EntityLivingBase.class, float.class).newInstance(world, player, damage);
-				t.shoot(player, player.rotationPitch, player.rotationYaw, -20.0F, 0.5F, 1.0F);
+				EntityThrowable t = entity.getConstructor(World.class, EntityLivingBase.class, float.class, int.class).newInstance(world, player, damage, maxBounces);
+				t.shoot(player, player.rotationPitch, player.rotationYaw, -10.0F, 0.8F, 1.0F);
 				world.spawnEntity(t);
 				if(!player.capabilities.isCreativeMode) stack.shrink(1);
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);	
+		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getHeldItem(handIn));	
 	}
 }
