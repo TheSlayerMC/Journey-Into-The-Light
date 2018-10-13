@@ -1,5 +1,7 @@
 package net.journey.blocks;
 
+import java.util.Random;
+
 import javax.annotation.Nullable;
 
 import net.minecraft.block.Block;
@@ -51,6 +53,23 @@ public class BlockCaveVine extends BlockMod {
 	@Override
 	public boolean canPlaceBlockAt(World world, BlockPos pos) {
 		return super.canPlaceBlockAt(world, pos) && this.canBlockStay(world, pos);
+	}
+	
+	@Override
+	public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
+		this.checkAndDropBlock(world, pos);
+	}
+
+	@Override
+	@Deprecated
+	public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos) {
+		this.checkAndDropBlock(world, pos);
+	}
+	
+	private void checkAndDropBlock(World world, BlockPos pos) {
+		if (!this.canBlockStay(world, pos)) {
+			world.destroyBlock(pos, true);
+		}
 	}
 	
 	@Override
