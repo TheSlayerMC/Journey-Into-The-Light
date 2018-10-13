@@ -55,6 +55,7 @@ public class CommonProxy {
 
 	public void preInit(FMLPreInitializationEvent event) {
 		Config.init(event);
+		JourneySounds.init();
 		JourneyCrops.init();
 		JourneyItems.init();
 		JourneyBlocks.init();
@@ -65,7 +66,6 @@ public class CommonProxy {
 		JourneyBlockRecipes.init();
 		JourneyMiscRecipes.init();
 		JourneyWeaponRecipes.init();
-		JourneySounds.init();
 		GameRegistry.registerTileEntity(TileEntityJourneyChest.class, SlayerAPI.PREFIX + "Journey Chest");
 		GameRegistry.registerTileEntity(TileEntitySummoningTable.class, SlayerAPI.PREFIX + "Summoning Table");
 		GameRegistry.registerTileEntity(TileEntityGrindstone.class, SlayerAPI.PREFIX + "Grindstone");
