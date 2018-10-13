@@ -3,6 +3,7 @@ package net.journey;
 import java.util.ArrayList;
 
 import net.journey.blocks.BlockBrittleIce;
+import net.journey.blocks.BlockCaveVine;
 import net.journey.blocks.BlockChangeable;
 import net.journey.blocks.BlockCloud;
 import net.journey.blocks.BlockCorbaPortalFrame;
@@ -688,7 +689,7 @@ public class JourneyBlocks {
 
 		fire = new BlockModFire("fire", "Essential Fire");
 
-		caveVine = new BlockModVine("cavevine", "Cave Vine", 12);
+		caveVine = new BlockCaveVine("cavevine", "Cave Vine");
 		
 		mossyEssenceStone = new BlockMod("mossyEssenceStone", "Mossy Essence Stone", 2.0F);
 

@@ -1,6 +1,9 @@
 package net.journey.dimension.overworld.gen;
 
 import java.util.Random;
+
+import net.journey.JourneyBlocks;
+import net.journey.blocks.BlockCaveVine;
 import net.minecraft.block.BlockVine;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -12,22 +15,16 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 public class WorldGenCaveVines extends WorldGenerator {
 
 	@Override
-	public boolean generate(World worldIn, Random rand, BlockPos position) {
-		if (worldIn.isAirBlock(position) && position == position.up()) {
-			for (EnumFacing enumfacing : EnumFacing.Plane.HORIZONTAL.facings()) {
-				if (Blocks.VINE.canPlaceBlockOnSide(worldIn, position, enumfacing)) {
-					IBlockState iblockstate = Blocks.VINE.getDefaultState()
-							.withProperty(BlockVine.NORTH, Boolean.valueOf(enumfacing == EnumFacing.NORTH))
-							.withProperty(BlockVine.EAST, Boolean.valueOf(enumfacing == EnumFacing.EAST))
-							.withProperty(BlockVine.SOUTH, Boolean.valueOf(enumfacing == EnumFacing.SOUTH))
-							.withProperty(BlockVine.WEST, Boolean.valueOf(enumfacing == EnumFacing.WEST));
-					worldIn.setBlockState(position, iblockstate, 2);
-					break;
-				}
-			}
+	public boolean generate(World world, Random random, BlockPos pos) {
+		int copyX = pos.getX();
+		int copyZ = pos.getZ();
+		if (world.isAirBlock(pos) && BlockCaveVine.canPlaceBelow(world, pos) && random.nextInt(6) > 0) {
+			world.setBlockState(pos, JourneyBlocks.caveVine.getDefaultState(), 2);
 		} else {
-			position = position.add(rand.nextInt(4) - rand.nextInt(4), 0, rand.nextInt(4) - rand.nextInt(4));
+			pos = new BlockPos(copyX + random.nextInt(4) - random.nextInt(4), pos.getY(),
+					copyZ + random.nextInt(4) - random.nextInt(4));
 		}
+
 		return true;
 	}
 }
