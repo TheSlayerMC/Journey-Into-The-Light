@@ -85,12 +85,13 @@ public class CommonProxy {
 		SlayerAPI.registerEvent(new BarTickHandler());
 		MinecraftForge.EVENT_BUS.register(BarTickHandler.class);
 		
-		JourneyTabs.init();
+
 
 		if(SlayerAPI.DEVMODE) LangRegistry.instance.register();
 	}
 	
 	public void init(FMLInitializationEvent event) {
+		JourneyTabs.init();
 		GameRegistry.registerWorldGenerator(new WorldGenEssence(), 2);
 		SlayerAPI.registerEvent(new PlayerEvent());
 		JourneySmeltingRecipes.initSmeltingCrafting();

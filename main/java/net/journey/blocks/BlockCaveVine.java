@@ -8,6 +8,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -25,7 +26,7 @@ public class BlockCaveVine extends BlockMod {
     
 	public BlockCaveVine(String name, String f) {
 		super(EnumMaterialTypes.PLANT, name, f, 2);
-		setLightLevel(0.6F);
+		setLightLevel(0.2F);
 	}
 	
 	@Override

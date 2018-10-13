@@ -18,11 +18,13 @@ public class WorldGenCaveVines extends WorldGenerator {
 	public boolean generate(World world, Random random, BlockPos pos) {
 		int copyX = pos.getX();
 		int copyZ = pos.getZ();
-		if (world.isAirBlock(pos) && BlockCaveVine.canPlaceBelow(world, pos) && random.nextInt(6) > 0) {
-			world.setBlockState(pos, JourneyBlocks.caveVine.getDefaultState(), 2);
-		} else {
-			pos = new BlockPos(copyX + random.nextInt(4) - random.nextInt(4), pos.getY(),
-					copyZ + random.nextInt(4) - random.nextInt(4));
+		for (; pos.getY() > 5; pos = pos.down()) {
+			if (world.isAirBlock(pos) && BlockCaveVine.canPlaceBelow(world, pos) && random.nextInt(6) > 0) {
+				world.setBlockState(pos, JourneyBlocks.caveVine.getDefaultState(), 2);
+			} else {
+				pos = new BlockPos(copyX + random.nextInt(4) - random.nextInt(4), pos.getY(),
+						copyZ + random.nextInt(4) - random.nextInt(4));
+			}
 		}
 
 		return true;

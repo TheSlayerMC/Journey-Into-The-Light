@@ -1,26 +1,19 @@
 BEFORE RELEASE 1.12 List
 
 Items:
-Armour needs to be added back
 Bows need to be fixed
 All items need to be tested and checked that no crash occures
 Remove unused items
 
 Blocks:
-Fix berry bushes so they drop berries into the inventory when right-clicked
-Fix BlockModLock 
 All blocks need to be placed down and used if an interaction is avaliable to check crashes
 Fix tileentities (summoning and grindstone)
 remove unused blocks
-Make certain blocks use metadata types (Ryan can do this)
 Fix corba portal frame so it creates the portal when the eyes are placed inside the slots
-Remove unused blocks
 
 Rendering:
-Item JSONS need to written in the way of the new ones (refer to vanilla basic items using the parent "item/handheld" to assure of proper perspective in first and third person)
 column / grass type blocks need new Item jsons 
 fix custom chest rendering (different chest types should be rendered with different textures)
-Fix log rendering
 
 Registrys:
 Finish crafting recipes
@@ -30,7 +23,7 @@ Structures:
 correctly register and add all loot tables
 
 Dimensions:
-Add mob spawning to dimensions (All dimensions are read as plains biomes, should be changed to the correct biomes)
+Fix dimension biomes generating in overworld (should be easy)
 Fix certain teleporters (corba specifically)
 
 Entitys:
@@ -42,6 +35,11 @@ make certain bosses actually challenging and unique (later)
 Misc:
 Fix essence bar so that the HUD updates (maybe change it to be more like the xp bar and have it overlap it when being used, frees up space and allows for more precise mana consumption)
 Make sure everything is fairly balanced (weapons, tools, armor, mobs, etc.)
+Run as server and make sure there's no crash
 
 CODE:
 Brock is to check through code and get rid of un useless classes and combine others such as food classes
+
+
+Future plans:
+Overworld biomes, more dimension biomes, more staves and wands
