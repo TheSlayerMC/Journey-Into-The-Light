@@ -7,6 +7,9 @@ import javax.annotation.Nullable;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyInteger;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -28,9 +31,11 @@ public class BlockCaveVine extends BlockMod implements IPlantable, IGrowable {
 
     protected static final AxisAlignedBB BUSH_AABB = new AxisAlignedBB(0.30000001192092896D, 0.0D, 0.30000001192092896D, 0.699999988079071D, 1.0D, 0.699999988079071D);
     
+	public static final PropertyInteger AGE = PropertyInteger.create("age", 0, 2);
+	
 	public BlockCaveVine(String name, String f) {
 		super(EnumMaterialTypes.PLANT, name, f, 2);
-		setLightLevel(0.2F);
+		setLightLevel(0.5F);
 	}
 	
 	@Override
@@ -43,6 +48,21 @@ public class BlockCaveVine extends BlockMod implements IPlantable, IGrowable {
     public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
         return NULL_AABB;
     }
+	
+	@Override
+	public IBlockState getStateFromMeta(int meta) {
+		return this.getDefaultState().withProperty(AGE, Integer.valueOf(meta));
+	}
+	
+	@Override
+	public int getMetaFromState(IBlockState state) {
+		return state.getValue(AGE).intValue();
+	}
+
+	@Override
+	protected BlockStateContainer createBlockState() {
+		return new BlockStateContainer(this, new IProperty[] { AGE });
+	}
 	
 	private boolean canBlockStay(World world, BlockPos pos) {
 		return canPlaceBelow(world, pos.up());
@@ -64,8 +84,11 @@ public class BlockCaveVine extends BlockMod implements IPlantable, IGrowable {
 	public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
 		super.updateTick(world, pos, state, rand);
 		this.checkAndDropBlock(world, pos);
-		if (world.rand.nextInt(2) == 0 && world.getBlockState(pos.down()).getBlock() == Blocks.AIR) {
-			world.setBlockState(pos.down(), state, 2);
+		if (world.getBlockState(pos.down()).getBlock() == Blocks.AIR) {
+			int age = state.getValue(AGE).intValue();
+			if (age == 2) {
+				world.setBlockState(pos.down(), state.withProperty(AGE, Integer.valueOf(state.getValue(AGE).intValue() + 1)), 2);
+			}
 		}
 	}
 
@@ -135,8 +158,12 @@ public class BlockCaveVine extends BlockMod implements IPlantable, IGrowable {
 
 	@Override
 	public void grow(World worldIn, Random rand, BlockPos pos, IBlockState state) {
-		if(worldIn.getBlockState(pos.down()).getBlock() == Blocks.AIR) {
-			worldIn.setBlockState(pos.down(), state, 2);
+		if (worldIn.getBlockState(pos.down()).getBlock() == Blocks.AIR) {
+			if (state.getValue(AGE).intValue() == 2) {
+				worldIn.setBlockState(pos.down(),
+						state.withProperty(AGE, Integer.valueOf(state.getValue(AGE).intValue() + 1)), 2);
+			}
+			worldIn.setBlockState(pos, state.withProperty(AGE, Integer.valueOf(state.getValue(AGE).intValue() + 1)), 2);
 		}
 	}
 }

@@ -2,6 +2,8 @@ package net.journey.blocks;
 
 import java.util.Random;
 
+import javax.annotation.Nullable;
+
 import net.journey.JITL;
 import net.journey.JourneyBlocks;
 import net.journey.JourneyItems;
@@ -26,6 +28,8 @@ import net.slayer.api.SlayerAPI;
 
 public class BlockGlowshroom extends Block {
 
+    protected static final AxisAlignedBB BUSH_AABB = new AxisAlignedBB(0.30000001192092896D, 0.0D, 0.30000001192092896D, 0.699999988079071D, 1.0D, 0.699999988079071D);
+    
 	public String name;
 	
 	public BlockGlowshroom(String name, String f, boolean top) {
@@ -46,9 +50,15 @@ public class BlockGlowshroom extends Block {
 	}
 
 	@Override
-	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
-		return null;
-	}
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+        return BUSH_AABB;
+    }
+
+	@Override
+    @Nullable
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
+        return NULL_AABB;
+    }
 
 	@Override
 	@SideOnly(Side.CLIENT)

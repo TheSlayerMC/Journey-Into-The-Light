@@ -1,6 +1,6 @@
 {
 	"parent": "block/cross",
 	"textures": {
-		"cross": "journey:blocks/cavevine"
+		"cross": "journey:blocks/cavevine_1"
 	}
 }
