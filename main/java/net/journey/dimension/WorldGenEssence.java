@@ -352,7 +352,7 @@ public class WorldGenEssence implements IWorldGenerator {
 			z = chunkZ + r.nextInt(16) + 8;
 			(new WorldGenTallGlowshrooms()).generate(w, r, new BlockPos(x, y, z));
 		}
-		for(times = 0; times < 200; times++) {
+		for(times = 0; times < 100; times++) {
 			y = r.nextInt(63); 
 			x = chunkX + r.nextInt(16) + 8; 
 			z = chunkZ + r.nextInt(16) + 8;

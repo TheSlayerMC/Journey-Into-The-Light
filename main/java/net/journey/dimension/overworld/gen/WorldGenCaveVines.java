@@ -11,22 +11,22 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.slayer.api.block.BlockModBush;
+import net.slayer.api.block.BlockModVine;
 
 public class WorldGenCaveVines extends WorldGenerator {
-
+	
 	@Override
-	public boolean generate(World world, Random random, BlockPos pos) {
-		int copyX = pos.getX();
-		int copyZ = pos.getZ();
-		for (; pos.getY() > 5; pos = pos.down()) {
-			if (world.isAirBlock(pos) && BlockCaveVine.canPlaceBelow(world, pos) && random.nextInt(6) > 0) {
-				world.setBlockState(pos, JourneyBlocks.caveVine.getDefaultState(), 2);
-			} else {
-				pos = new BlockPos(copyX + random.nextInt(4) - random.nextInt(4), pos.getY(),
-						copyZ + random.nextInt(4) - random.nextInt(4));
+	public boolean generate(World worldIn, Random rand, BlockPos position) {
+		for (int i = 0; i < 64; ++i) {
+            BlockPos blockpos = position.add(rand.nextInt(4) - rand.nextInt(4), 0, rand.nextInt(4) - rand.nextInt(4));
+            if (worldIn.isAirBlock(blockpos) && 
+            	worldIn.getBlockState(blockpos.up()).getBlock() == Blocks.STONE && 
+            	BlockCaveVine.canPlaceBelow(worldIn, position)) { 
+            	worldIn.setBlockState(blockpos, 
+                JourneyBlocks.caveVine.getDefaultState());
 			}
 		}
-
 		return true;
 	}
 }
