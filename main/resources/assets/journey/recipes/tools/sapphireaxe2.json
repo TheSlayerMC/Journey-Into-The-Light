@@ -1,0 +1,29 @@
+{
+    "type": "minecraft:crafting_shaped",
+   
+    "pattern":
+    [
+        "RR",
+        "IR",
+        "I "
+    ],
+   
+    "key":
+    {
+        "R":
+        {
+            "item": "journey:sapphire"
+        },
+
+        "I":
+        {
+            "item": "journey:obsidianrod"
+        }
+    },
+   
+    "result":
+    {
+        "item": "journey:sapphireaxe",
+        "count": 1
+    }
+}

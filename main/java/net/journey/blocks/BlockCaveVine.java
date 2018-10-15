@@ -86,7 +86,7 @@ public class BlockCaveVine extends BlockMod implements IPlantable, IGrowable {
 		this.checkAndDropBlock(world, pos);
 		if (world.getBlockState(pos.down()).getBlock() == Blocks.AIR) {
 			int age = state.getValue(AGE).intValue();
-			if (age == 2) {
+			if (age == 1) {
 				world.setBlockState(pos.down(), state.withProperty(AGE, Integer.valueOf(state.getValue(AGE).intValue() + 1)), 2);
 			}
 		}
@@ -159,7 +159,7 @@ public class BlockCaveVine extends BlockMod implements IPlantable, IGrowable {
 	@Override
 	public void grow(World worldIn, Random rand, BlockPos pos, IBlockState state) {
 		if (worldIn.getBlockState(pos.down()).getBlock() == Blocks.AIR) {
-			if (state.getValue(AGE).intValue() == 2) {
+			if (state.getValue(AGE).intValue() == 1) {
 				worldIn.setBlockState(pos.down(),
 						state.withProperty(AGE, Integer.valueOf(state.getValue(AGE).intValue() + 1)), 2);
 			}

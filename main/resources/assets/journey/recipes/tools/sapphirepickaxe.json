@@ -2,11 +2,11 @@
   "type": "crafting_shaped",
   "pattern": [
     "XXX",
-    " # ",
-    " # "
+    " I ",
+    " I "
   ],
   "key": {
-    "#": {
+    "I": {
       "item": "minecraft:stick"
     },
     "X": {
