@@ -150,15 +150,15 @@ public class DimensionHelper {
 			DimensionManager.unregisterDimension(1);
 			DimensionManager.registerDimension(1, DimensionType.register("End", "END", 1, WorldProviderEndJourney.class, true));
 		}
-		addBiome(euca, "Euca", BiomeType.WARM, Type.SPOOKY);
-		addBiome(boiling, "Boiling Point", BiomeType.WARM, Type.SPOOKY, Type.DEAD, Type.HOT);
-		addBiome(cloudia, "Cloudia", BiomeType.COOL, Type.SPOOKY, Type.MAGICAL, Type.LUSH);
-		addBiome(corba, "Corba", BiomeType.WARM, Type.DENSE, Type.SPOOKY, Type.CONIFEROUS);
-		addBiome(depths, "Depths", BiomeType.COOL, Type.MAGICAL, Type.SPOOKY);
-		addBiome(frozen, "Frozen Lands", BiomeType.ICY, Type.COLD, Type.SNOWY);
-		addBiome(terrania, "Terrania", BiomeType.WARM, Type.DENSE, Type.MAGICAL);
-		addBiome(golden, "Golden Grains", BiomeType.WARM, Type.PLAINS, Type.MAGICAL);
-		addBiome(senterian, "Senterian Labyrinth", BiomeType.ICY, Type.DEAD, Type.SPOOKY);
+		addDimBiome(euca, "Euca");
+		addDimBiome(boiling, "Boiling Point");
+		addDimBiome(cloudia, "Cloudia");
+		addDimBiome(corba, "Corba");
+		addDimBiome(depths, "Depths");
+		addDimBiome(frozen, "Frozen Lands");
+		addDimBiome(terrania, "Terrania");
+		addDimBiome(golden, "Golden Grains");
+		addDimBiome(senterian, "Senterian Labyrinth");
 		
 		addDimension(Config.euca, eucaType);
 		addDimension(Config.boil, boilingType);
@@ -176,7 +176,14 @@ public class DimensionHelper {
 		DimensionManager.registerDimension(id, type);
 	}
 	
-	private static Biome addBiome(Biome biome, String name, BiomeType biomeType, Type...types) {
+	private static Biome addDimBiome(Biome biome, String name) {
+		biome.setRegistryName(name);
+		ForgeRegistries.BIOMES.register(biome);
+		LogHelper.info("Biome Registered");
+		return biome;
+	}
+	
+	private static Biome addOverworldBiome(Biome biome, String name, BiomeType biomeType, Type...types) {
 		biome.setRegistryName(name);
 		ForgeRegistries.BIOMES.register(biome);
 		LogHelper.info("Biome Registered");
