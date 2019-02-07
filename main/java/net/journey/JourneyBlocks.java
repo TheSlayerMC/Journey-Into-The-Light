@@ -693,22 +693,22 @@ public class JourneyBlocks {
 		
 		mossyEssenceStone = new BlockMod("mossyEssenceStone", "Mossy Essence Stone", 2.0F);
 
-		dungeonBrick = new BlockMod(EnumMaterialTypes.STONE, "dungeonBrick", "Dungeon Brick", -1F);
-		dungeonCrackedBrick = new BlockMod(EnumMaterialTypes.STONE, "dungeonCrackedBrick", "Dungeon Cracked Brick", -1F);
-		dungeonChisledBrick = new BlockMod(EnumMaterialTypes.STONE, "dungeonChiseledBrick", "Dungeon Chiseled Brick", -1F);
-		dungeonBrickCarved = new BlockMod(EnumMaterialTypes.STONE, "dungeonBrickCarved", "Dungeon Carved Brick", -1F);
-		dungeonLamp = (BlockMod) new BlockMod(EnumMaterialTypes.STONE, "dungeonLamp", "Dungeon Lamp", -1F).setLightLevel(0.5F);
+		dungeonBrick = (BlockMod)new BlockMod(EnumMaterialTypes.STONE, "dungeonBrick", "Dungeon Brick", -1F).setBlockUnbreakable();
+		dungeonCrackedBrick = (BlockMod)new BlockMod(EnumMaterialTypes.STONE, "dungeonCrackedBrick", "Dungeon Cracked Brick", -1F).setBlockUnbreakable();
+		dungeonChisledBrick = (BlockMod)new BlockMod(EnumMaterialTypes.STONE, "dungeonChiseledBrick", "Dungeon Chiseled Brick", -1F).setBlockUnbreakable();
+		dungeonBrickCarved = (BlockMod)new BlockMod(EnumMaterialTypes.STONE, "dungeonBrickCarved", "Dungeon Carved Brick", -1F).setBlockUnbreakable();
+		dungeonLamp = (BlockMod)new BlockMod(EnumMaterialTypes.STONE, "dungeonLamp", "Dungeon Lamp", -1F).setLightLevel(0.5F).setBlockUnbreakable();
 
-		dungeonBrickStairs = new BlockModStairs(dungeonBrick, "dungeonBrickStairs", "Dungeon Brick Stairs");
-		dungeonCrackedBrickStairs = new BlockModStairs(dungeonCrackedBrick, "dungeonCrackedBrickStairs", "Cracked Dungeon Brick Stairs");
-		dungeonChisledBrickStairs = new BlockModStairs(dungeonChisledBrick, "dungeonChiseledBrickStairs", "Chiseled Dungeon Brick Stairs");
-		dungeonBrickCarvedStairs = new BlockModStairs(dungeonBrickCarved, "dungeonBrickCarvedStairs", "Carved Dungeon Brick Stairs");
-		dungeonLampStairs = new BlockModStairs(dungeonLamp, "dungeonLampStairs", "Dungeon Lamp Stairs", true);
+		dungeonBrickStairs = (BlockModStairs)new BlockModStairs(dungeonBrick, "dungeonBrickStairs", "Dungeon Brick Stairs").setBlockUnbreakable();
+		dungeonCrackedBrickStairs = (BlockModStairs)new BlockModStairs(dungeonCrackedBrick, "dungeonCrackedBrickStairs", "Cracked Dungeon Brick Stairs").setBlockUnbreakable();
+		dungeonChisledBrickStairs = (BlockModStairs)new BlockModStairs(dungeonChisledBrick, "dungeonChiseledBrickStairs", "Chiseled Dungeon Brick Stairs").setBlockUnbreakable();
+		dungeonBrickCarvedStairs = (BlockModStairs)new BlockModStairs(dungeonBrickCarved, "dungeonBrickCarvedStairs", "Carved Dungeon Brick Stairs").setBlockUnbreakable();
+		dungeonLampStairs = (BlockModStairs)new BlockModStairs(dungeonLamp, "dungeonLampStairs", "Dungeon Lamp Stairs", true).setBlockUnbreakable();
 
-		dungeonBrickFence = new BlockModFence(dungeonBrick, "dungeonBrickFence", "Dungeon Brick Fence");
-		dungeonCrackedBrickFence = new BlockModFence(dungeonCrackedBrick, "dungeonCrackedBrickFence", "Cracked Dungeon Brick Fence");
-		dungeonChisledBrickFence = new BlockModFence(dungeonChisledBrick, "dungeonChiseledBrickFence", "Chiseled Dungeon Brick Fence");
-		dungeonBrickCarvedFence = new BlockModFence(dungeonBrickCarved, "dungeonBrickCarvedFence", "Carved Dungeon Brick Fence");
+		dungeonBrickFence = (BlockModFence)new BlockModFence(dungeonBrick, "dungeonBrickFence", "Dungeon Brick Fence").setBlockUnbreakable();
+		dungeonCrackedBrickFence = (BlockModFence)new BlockModFence(dungeonCrackedBrick, "dungeonCrackedBrickFence", "Cracked Dungeon Brick Fence").setBlockUnbreakable();
+		dungeonChisledBrickFence = (BlockModFence)new BlockModFence(dungeonChisledBrick, "dungeonChiseledBrickFence", "Chiseled Dungeon Brick Fence").setBlockUnbreakable();
+		dungeonBrickCarvedFence = (BlockModFence)new BlockModFence(dungeonBrickCarved, "dungeonBrickCarvedFence", "Carved Dungeon Brick Fence").setBlockUnbreakable();
 		cloudiaPost = new BlockModFence(pinkCloudiaCloud, "cloudiaPost", "Cloudia Post");
 		terranianPost = new BlockModFence(pinkCloudiaCloud, "terranianPost", "Terranian Post");
 		dungeonLampFence = new BlockModFence(dungeonLamp, "dungeonLampFence", "Dungeon Lamp Fence", true);

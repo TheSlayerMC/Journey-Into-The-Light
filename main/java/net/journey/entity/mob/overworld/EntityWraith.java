@@ -44,26 +44,20 @@ public class EntityWraith extends EntityModMob {
 	}
 	
 	@Override
-    public void onLivingUpdate()
-    {
-        if (this.world.isDaytime() && !this.world.isRemote && !this.isChild())
-        {
+    public void onLivingUpdate() {
+        if(this.world.isDaytime() && !this.world.isRemote && !this.isChild()) {
             float f = this.getBrightness();
             BlockPos blockpos = new BlockPos(this.posX, Math.round(this.posY), this.posZ);
 
-            if (f > 0.5F && this.rand.nextFloat() * 30.0F < (f - 0.4F) * 2.0F && this.world.canSeeSky(blockpos))
-            {
+            if(f > 0.5F && this.rand.nextFloat() * 30.0F < (f - 0.4F) * 2.0F && this.world.canSeeSky(blockpos)) {
                 boolean flag = true;
                 ItemStack itemstack = this.getItemStackFromSlot(EntityEquipmentSlot.MAINHAND);
 
-                if (itemstack != null)
-                {
-                    if (itemstack.isItemStackDamageable())
-                    {
+                if(itemstack != null) {
+                    if(itemstack.isItemStackDamageable()) {
                         itemstack.setItemDamage(itemstack.getItemDamage() + this.rand.nextInt(2));
 
-                        if (itemstack.getItemDamage() >= itemstack.getMaxDamage())
-                        {
+                        if(itemstack.getItemDamage() >= itemstack.getMaxDamage()) {
                             this.renderBrokenItemStack(itemstack);
                             setItemStackToSlot(EntityEquipmentSlot.MAINHAND, null);
                         }
@@ -72,15 +66,13 @@ public class EntityWraith extends EntityModMob {
                     flag = false;
                 }
 
-                if (flag)
-                {
+                if(flag) {
                     this.setDead();
                 }
             }
         }
 
-        if (this.isRiding() && this.getAttackTarget() != null && this.getRidingEntity() instanceof EntityChicken)
-        {
+        if(this.isRiding() && this.getAttackTarget() != null && this.getRidingEntity() instanceof EntityChicken) {
             ((EntityLiving)this.getRidingEntity()).getNavigator().setPath(this.getNavigator().getPath(), 1.5D);
         }
 

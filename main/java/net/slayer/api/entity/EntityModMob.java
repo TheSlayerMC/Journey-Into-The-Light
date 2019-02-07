@@ -13,6 +13,7 @@ import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
@@ -58,7 +59,7 @@ public abstract class EntityModMob extends EntityMob {
 	}
 
 	public double setFollowRange(){return MobStats.follow;}
-	public double setMovementSpeed(){return 0.200000011920929D;}
+	public double setMovementSpeed(){return MobStats.normalSpeed;}
 	public double setKnockbackResistance() {return MobStats.knockBackResistance;}
 
 	public abstract double setAttackDamage(MobStats s);
@@ -81,7 +82,7 @@ public abstract class EntityModMob extends EntityMob {
 	
 	@Override
     protected void playStepSound(BlockPos pos, Block blockIn) {
-        //his.playSound("mob.wolf.step", 0.15F, 1.0F);
+		 this.playSound(SoundEvents.ENTITY_WOLF_STEP, 0.15F, 1.0F);
     }
 
 	@Override

@@ -286,7 +286,7 @@ public class DimensionHelper {
 	}
 	
 	private static void addCaveSpawns() {
-		int amount = 300;
+		int amount = 200;
 		int amount2 = 10;
 		for(Biome b : Biome.REGISTRY) {
 			Biome biome = b;
@@ -355,10 +355,9 @@ public class DimensionHelper {
 		}
 		
 		for(Biome b1 : Biome.REGISTRY) {
-			Biome biome1 = b1;
-			if (biome1 != null) {
-				EntityRegistry.addSpawn(EntitySpectre.class, 20, 1, 1, EnumCreatureType.MONSTER, biome1);
-				EntityRegistry.addSpawn(EntityWraith.class, 20, 1, 1, EnumCreatureType.MONSTER, biome1);
+			if (b1 != null) {
+				EntityRegistry.addSpawn(EntitySpectre.class, 20, 1, 1, EnumCreatureType.MONSTER, b1);
+				EntityRegistry.addSpawn(EntityWraith.class, 20, 1, 1, EnumCreatureType.MONSTER, b1);
 			}
 		}
     }
