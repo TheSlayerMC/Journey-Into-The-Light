@@ -42,7 +42,7 @@ public class EntityEucaHopper extends EntityModTameable {
 	@Override
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(MobStats.fastSpeed);
+		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(MobStats.normalSpeed);
 		if(this.isTamed()) this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(MobStats.baseNetherHealth);
 		else this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(MobStats.baseNetherHealth);
 	}
