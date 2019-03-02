@@ -722,7 +722,7 @@ public class JourneyItems {
 
 	public static Item frostyGift;
 
-	public static Item pocketCrafting;
+	//public static Item pocketCrafting;
 	public static Item firestoneClump;
 
 	//TODO
@@ -967,7 +967,7 @@ public class JourneyItems {
 		smithstonedust = new ItemMod("smithstonedust", "Smithstone Dust");
 		
 		frostyGift = new ItemPresent("frostyGift", "Frosty Gift");
-		pocketCrafting = new ItemCrafting("pocketCrafting", "Sizzling Crafting Pack", 0);
+		//pocketCrafting = new ItemCrafting("pocketCrafting", "Sizzling Crafting Pack", 0);
 		flameCoin = new ItemFlameCoin("flameCoin", "Flame Coin");
 		//plasmaBall = new ItemMod("plasmaBall");
 
@@ -1301,7 +1301,7 @@ public class JourneyItems {
 
 		//flameArrow = new ItemMod("flameArrow", EssenceTabs.ranged);
 		essenceArrow = new ItemEssenceArrow("essenceArrow", "Essence Arrow");
-		tippedEssenceArrow = new ItemEssenceArrow("tippedEssenceArrow", "Tipped Essence Arrow");
+		//tippedEssenceArrow = new ItemEssenceArrow("tippedEssenceArrow", "Tipped Essence Arrow");
 
 		flameBow = new ItemModBow("flameBow", "Flame Bow", 384, 3, essenceArrow, "Sets enemies ablaze", EntityFlameArrow.class);
 		poisonBow = new ItemModBow("poisonBow", "Poison Bow", 384, 3, essenceArrow, "Poisons enemies", EntityPoisonArrow.class);
@@ -1346,12 +1346,12 @@ public class JourneyItems {
 		rockyHammer = new ItemHammer("rockyHammer", "Rocky Hammer", JourneyToolMaterial.ROCKY_HAMMER, false, EntityRock.class, 6, 4, 2230);
 		crystalizedHammer = new ItemHammer("crystalizedHammer", "Crystalized Hammer", JourneyToolMaterial.CRYSTAL_HAMMER, false, EntityIceBall.class, 7, 4, 3320);
 
-		chaosCannon = new ItemGun("chaosCannon", "Chaos Cannon", 6, "Shoots a bouncing projectile", null);
-		rockLauncher = new ItemGun("rockLauncher", "Rock Launcher", 4, "Stuns mobs for 10 seconds", EntityRock.class);
-		netherPlasma = new ItemGun("netherPlasma", "Nether Plasma", 10, "Burns mobs for 10 seconds", EntityNetherPlasma.class);
-		oceanPlasma = new ItemGun("oceanPlasma", "Ocean Plasma", 4, "Harms mobs", EntityFloroWater.class);
-		forestPlasma = new ItemGun("forestPlasma", "Forest Plasma", 4, "Poisons Mobs for 10 seconds", EntityOvergrown.class);
-		eyeBlaster = new ItemGun("eyeBlaster", "Eye Blaster", 12, "Harms and burns mobs for 10 seconds", EntityEyeBlaster.class);
+		//chaosCannon = new ItemGun("chaosCannon", "Chaos Cannon", 6, "Shoots a bouncing projectile", null);
+		//rockLauncher = new ItemGun("rockLauncher", "Rock Launcher", 4, "Stuns mobs for 10 seconds", EntityRock.class);
+		//netherPlasma = new ItemGun("netherPlasma", "Nether Plasma", 10, "Burns mobs for 10 seconds", EntityNetherPlasma.class);
+		//oceanPlasma = new ItemGun("oceanPlasma", "Ocean Plasma", 4, "Harms mobs", EntityFloroWater.class);
+		//forestPlasma = new ItemGun("forestPlasma", "Forest Plasma", 4, "Poisons Mobs for 10 seconds", EntityOvergrown.class);
+		//eyeBlaster = new ItemGun("eyeBlaster", "Eye Blaster", 12, "Harms and burns mobs for 10 seconds", EntityEyeBlaster.class);
 
 		//TODO
 		friedFlamingGhastTentacale = new ItemModFood("friedFlamingGhastTentacle", "Fried Flaming Tentacale", 4, 0.6F, 10, true).setAlwaysEdible().setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.fireResistance, 5, 1), 1.0F);
@@ -1456,13 +1456,13 @@ public class JourneyItems {
 		sunsetPiercer = new ItemPiercer("sunsetPiercer", "Sunset Piercer", 7F, 1, EntitySunsetPiercer.class);
 		skyPiercer = new ItemPiercer("skyPiercer", "Sky Piercer", 29F, 6, EntitySkyPiercer.class);
 
-		moltenKnife = new ItemThrowableArrow("moltenKnife", "Molten Knife", 10F, 5, EntityMoltenKnife.class);
-		aquaticKnife = new ItemThrowableArrow("aquaticKnife", "Aquatic Knife", 6F, 5, EntityAquaticKnife.class);
-		bloodKnife = new ItemThrowableArrow("bloodKnife", "Blood Knife", 6F, 5, EntityBloodKnife.class);
-		charredKnife = new ItemThrowableArrow("charredKnife", "Charred Knife", 6F, 5, EntityCharredKnife.class);
-		sizzlingKnife = new ItemThrowableArrow("sizzlingKnife", "Sizzling Knife", 6F, 5, EntitySizzlingKnife.class);
+		//moltenKnife = new ItemThrowableArrow("moltenKnife", "Molten Knife", 10F, 5, EntityMoltenKnife.class);
+		//aquaticKnife = new ItemThrowableArrow("aquaticKnife", "Aquatic Knife", 6F, 5, EntityAquaticKnife.class);
+		//bloodKnife = new ItemThrowableArrow("bloodKnife", "Blood Knife", 6F, 5, EntityBloodKnife.class);
+		//charredKnife = new ItemThrowableArrow("charredKnife", "Charred Knife", 6F, 5, EntityCharredKnife.class);
+		//sizzlingKnife = new ItemThrowableArrow("sizzlingKnife", "Sizzling Knife", 6F, 5, EntitySizzlingKnife.class);
 		
-		obsidianBoat = new ItemObsidianBoat("obsidianboat", "Obsidian Boat");
+		//obsidianBoat = new ItemObsidianBoat("obsidianboat", "Obsidian Boat");
 		infernoshield = new ItemModShield("infernoshield", "Inferno Shield", 2, false);
 	}
 
