@@ -352,7 +352,7 @@ public class WorldGenEssence implements IWorldGenerator {
 			z = chunkZ + r.nextInt(16) + 8;
 			(new WorldGenTallGlowshrooms()).generate(w, r, new BlockPos(x, y, z));
 		}
-		for(times = 0; times < 70; times++) {
+		for(times = 0; times < 55; times++) {
 			y = r.nextInt(63); 
 			x = chunkX + r.nextInt(16) + 8; 
 			z = chunkZ + r.nextInt(16) + 8;
@@ -366,42 +366,42 @@ public class WorldGenEssence implements IWorldGenerator {
 		}
 		if(r.nextInt(1)==0) {
 			y = r.nextInt(20); 
-			x = chunkX + r.nextInt(16) + 8; 
-			z = chunkZ + r.nextInt(16) + 8;
+			x = chunkX + r.nextInt(16); 
+			z = chunkZ + r.nextInt(16);
 			worldMinableGenVanilla(JourneyBlocks.shadiumOre, 6, w, x, y, z);
 		}
 		if(r.nextInt(1)==0) {
 			y = r.nextInt(26); 
-			x = chunkX + r.nextInt(16) + 8; 
-			z = chunkZ + r.nextInt(16) + 8;
+			x = chunkX + r.nextInt(16); 
+			z = chunkZ + r.nextInt(16);
 			worldMinableGenVanilla(JourneyBlocks.luniumOre, 7, w, x, y, z);
 		}
 		if(r.nextInt(1)==0) {
 			y = r.nextInt(20); 
-			x = chunkX + r.nextInt(16) + 8; 
-			z = chunkZ + r.nextInt(16) + 8;
+			x = chunkX + r.nextInt(16); 
+			z = chunkZ + r.nextInt(16);
 			worldMinableGenVanilla(JourneyBlocks.sapphireOre, 5, w, x, y, z);
 		}
 		for(times = 0; times < 5; times++) {
 			y = r.nextInt(16); 
-			x = chunkX + r.nextInt(16) + 8; 
-			z = chunkZ + r.nextInt(16) + 8;
+			x = chunkX + r.nextInt(16); 
+			z = chunkZ + r.nextInt(16);
 			worldMinableGenVanilla(JourneyBlocks.iridiumOre, 4, w, x, y, z);
 		}
 		
 		if (biome == Biomes.JUNGLE) {
 			for(times = 0; times < 7; times++) {
 				y = r.nextInt(128); 
-				x = chunkX + r.nextInt(16) + 8; 
-				z = chunkZ + r.nextInt(16) + 8;
+				x = chunkX + r.nextInt(16); 
+				z = chunkZ + r.nextInt(16);
 				worldMinableGenVanilla(JourneyBlocks.verditeOre, 10, w, x, y, z);
 			}
 		}
 		
 		if(r.nextInt(16)==0) {
 			y = r.nextInt(200); 
-			x = chunkX + r.nextInt(16) + 8; 
-			z = chunkZ + r.nextInt(16) + 8;
+			x = chunkX + r.nextInt(16); 
+			z = chunkZ + r.nextInt(16);
 			if(w.getBlockState(new BlockPos(x, y - 1, z)) == Blocks.GRASS.getDefaultState()) 
 				new WorldGenTowerDungeon().generate(w, r, new BlockPos(x, y, z));
 		}

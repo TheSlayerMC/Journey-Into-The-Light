@@ -31,8 +31,8 @@ import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraft.world.gen.structure.MapGenNetherBridge;
 
-public class ChunkProviderNether implements IChunkGenerator
-{
+public class ChunkProviderNether implements IChunkGenerator {
+	
     protected static final IBlockState AIR = Blocks.AIR.getDefaultState();
     protected static final IBlockState NETHERRACK = Blocks.NETHERRACK.getDefaultState();
     protected static final IBlockState BEDROCK = Blocks.BEDROCK.getDefaultState();
