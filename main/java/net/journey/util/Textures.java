@@ -171,7 +171,7 @@ public class Textures {
     public static final ResourceLocation templeGuardian = addMob("templeguardian");
     public static final ResourceLocation logger = addMob("logger");
     public static final ResourceLocation corallator = addMob("corallator");
-    public static final ResourceLocation skyStalker = addMob("skydtalker");
+    public static final ResourceLocation skyStalker = addMob("skystalker");
     public static final ResourceLocation eudor = addMob("eudor");
 	public static final ResourceLocation soulWatcher = addMob("soulwatcher");
 	public static final ResourceLocation scale = addMob("scale");

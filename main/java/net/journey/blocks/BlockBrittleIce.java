@@ -25,6 +25,7 @@ public class BlockBrittleIce extends BlockModGrass {
 		this.isOpaque = false;
 		setCreativeTab(JourneyTabs.blocks);
 		setTickRandomly(true);
+        this.slipperiness = 0.98F;
 	}
 
     @Override 
