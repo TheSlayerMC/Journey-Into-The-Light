@@ -38,7 +38,7 @@ public class EntityStaringGuardian extends EntityModVillager {
 	
 	@Override
 	public boolean shouldRenderInPass(int pass) {
-		return pass == 1;
+		return pass == 0;
 	}
 
 	@Override

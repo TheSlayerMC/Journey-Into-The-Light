@@ -301,12 +301,12 @@ public class ChunkProviderDepths implements IChunkGenerator {
 		}
 
 		for(i = 0; i < 25; i++) {
-			y = r.nextInt(250); x = x1 + this.rand.nextInt(16) + 8; z = z1 + this.rand.nextInt(16) + 8;
+			y = r.nextInt(250); x = x1 + this.rand.nextInt(16); z = z1 + this.rand.nextInt(16);
 			(new WorldGenMinable(JourneyBlocks.flairiumOre.getDefaultState(), 8, BlockStateMatcher.forBlock(JourneyBlocks.depthsStone))).generate(worldObj, r, new BlockPos(x, y, z));
 		}
 
 		for(i = 0; i < 25; i++) {
-			y = r.nextInt(250); x = x1 + this.rand.nextInt(16) + 8; z = z1 + this.rand.nextInt(16) + 8;
+			y = r.nextInt(250); x = x1 + this.rand.nextInt(16); z = z1 + this.rand.nextInt(16);
 			(new WorldGenMinable(JourneyBlocks.desOre.getDefaultState(), 8, BlockStateMatcher.forBlock(JourneyBlocks.depthsStone))).generate(worldObj, r, new BlockPos(x, y, z));
 		}
 
@@ -381,7 +381,7 @@ public class ChunkProviderDepths implements IChunkGenerator {
 			}
 		}
 		
-		if(rand.nextInt(3)==0) {
+		if(rand.nextInt(3) == 0) {
 			x = x1 + this.rand.nextInt(16) + 8;
 			z = z1 + this.rand.nextInt(16) + 8;
 			int yCoord = rand.nextInt(128) + 1;
@@ -390,7 +390,7 @@ public class ChunkProviderDepths implements IChunkGenerator {
 			}
 		}
 		
-		if(rand.nextInt(2)==0) {
+		if(rand.nextInt(2) == 0) {
 			x = x1 + this.rand.nextInt(16) + 8;
 			z = z1 + this.rand.nextInt(16) + 8;
 			int yCoord = rand.nextInt(128) + 1;

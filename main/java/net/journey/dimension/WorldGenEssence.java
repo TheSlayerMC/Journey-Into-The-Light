@@ -88,7 +88,7 @@ public class WorldGenEssence implements IWorldGenerator {
 	public void generateNether(World w, Random r, int chunkX, int chunkZ) {
 		int x, y, z;
 		int times;
-		BlockPos pos = new BlockPos(chunkX * 16, 0, chunkZ * 16);
+		BlockPos pos = new BlockPos(chunkX, 0, chunkZ);
 		Chunk chunk = w.getChunkFromBlockCoords(pos);
 		BiomeProvider chunkManager = w.getBiomeProvider();
 		Biome biome = chunk.getBiome(pos, chunkManager);
@@ -448,7 +448,7 @@ public class WorldGenEssence implements IWorldGenerator {
 		int x, y, z;
 		switch(gen) {
 		case 0:
-			y = r.nextInt(250); x = chunkX + r.nextInt(16) + 8; z = chunkZ + r.nextInt(16) + 8;
+			y = r.nextInt(250); x = chunkX + r.nextInt(16); z = chunkZ + r.nextInt(16);
 			(new WorldGenMinable(JourneyBlocks.celestiumOre.getDefaultState(), 10, BlockStateMatcher.forBlock(JourneyBlocks.eucaStone))).generate(w, r, new BlockPos(x, y, z));
 			break;
 		case 1:
@@ -509,15 +509,15 @@ public class WorldGenEssence implements IWorldGenerator {
 			(new WorldGenMinable(JourneyBlocks.orbaditeOre.getDefaultState(), 6, BlockStateMatcher.forBlock(JourneyBlocks.corbaStone))).generate(w, r, new BlockPos(x, y, z));
 			break;
 		case 15:
-			y = r.nextInt(250); x = chunkX + r.nextInt(16) + 8; z = chunkZ + r.nextInt(16) + 8;
+			y = r.nextInt(250); x = chunkX + r.nextInt(16); z = chunkZ + r.nextInt(16);
 			(new WorldGenMinable(JourneyBlocks.storonOre.getDefaultState(), 10, BlockStateMatcher.forBlock(JourneyBlocks.eucaStone))).generate(w, r, new BlockPos(x, y, z));
 			break;
 		case 16:
-			y = r.nextInt(250); x = chunkX + r.nextInt(16) + 8; z = chunkZ + r.nextInt(16) + 8;
+			y = r.nextInt(250); x = chunkX + r.nextInt(16); z = chunkZ + r.nextInt(16);
 			(new WorldGenMinable(JourneyBlocks.koriteOre.getDefaultState(), 10, BlockStateMatcher.forBlock(JourneyBlocks.eucaStone))).generate(w, r, new BlockPos(x, y, z));
 			break;
 		case 17:
-			y = r.nextInt(250); x = chunkX + r.nextInt(16) + 8; z = chunkZ + r.nextInt(16) + 8;
+			y = r.nextInt(250); x = chunkX + r.nextInt(16); z = chunkZ + r.nextInt(16);
 			(new WorldGenMinable(JourneyBlocks.mekyumOre.getDefaultState(), 10, BlockStateMatcher.forBlock(JourneyBlocks.eucaStone))).generate(w, r, new BlockPos(x, y, z));
 			break;
 		case 18:

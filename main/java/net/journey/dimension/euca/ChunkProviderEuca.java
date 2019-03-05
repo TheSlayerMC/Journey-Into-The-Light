@@ -226,10 +226,8 @@ public class ChunkProviderEuca implements IChunkGenerator {
 		int x1 = i * 16;
 		int z1 = j * 16;
 		int x, z, times;
-		x = x1 + this.rand.nextInt(16) + 8;
-		z = z1 + this.rand.nextInt(16) + 8;
 
-		if(rand.nextInt(9)==0) {
+		if(rand.nextInt(3)==0) {
 			x = x1 + this.rand.nextInt(16) + 8;
 			z = z1 + this.rand.nextInt(16) + 8;
 			int yCoord = rand.nextInt(128) + 1;
@@ -238,14 +236,14 @@ public class ChunkProviderEuca implements IChunkGenerator {
 			}
 		}
 
-		if(rand.nextInt(10)==0) {
+		for(times = 0; times < 2; times++) {
 			x = x1 + this.rand.nextInt(16) + 8;
 			z = z1 + this.rand.nextInt(16) + 8;
-			int yCoord = rand.nextInt(128) + 1;
+			int yCoord = rand.nextInt(128);
 			if(isBlockTop(x, yCoord - 1, z, JourneyBlocks.eucaGrass)) new WorldGenBotSpawner().generate(worldObj, rand, new BlockPos(x, yCoord, z));
 		}
 
-		for(times = 0; times < 210; times++) {
+		for(times = 0; times < 180; times++) {
 			x = x1 + this.rand.nextInt(16) + 8;
 			z = z1 + this.rand.nextInt(16) + 8;
 			int yCoord = rand.nextInt(128) + 1;
