@@ -41,7 +41,7 @@ public class EntitySkyStalker extends EntityEssenceBoss implements IRangedAttack
 		this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
 		//this.tasks.addTask(1, new EntityAIArrowAttack(this, 1.0D, 40, 20.0F));
 		addAttackingAI();
-		setSize(2.0F, 2F);
+		setSize(3.0F, 3.0F);
 	}
 
 	@Override
