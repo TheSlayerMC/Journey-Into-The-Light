@@ -116,7 +116,7 @@ public class WorldGenSorcererShrine extends WorldGenerator {
 		world.setBlockState(new BlockPos(i + 5, j + 1, k + 4), JourneyBlocks.sorcererSpawner.getDefaultState());
 		world.setBlockState(new BlockPos(i + 5, j + 1, k + 7), JourneyBlocks.darklyGate.getDefaultState());
 		world.setBlockState(new BlockPos(i + 5, j + 2, k + 1), JourneyBlocks.darklyLock.getDefaultState());
-		world.setBlockState(new BlockPos(i + 5, j + 2, k + 4), JourneyBlocks.depthsChest.getStateFromMeta(2));
+		world.setBlockState(new BlockPos(i + 5, j + 2, k + 4), JourneyBlocks.journeyChest.getStateFromMeta(2));
 		TileEntityJourneyChest te = (TileEntityJourneyChest)world.getTileEntity(new BlockPos(i + 5, j + 2, k + 4));
 		if(te != null) {
 		//	WeightedRandomChestContent.generateChestContents(rand, Lists.newArrayList(loot), te, 4);

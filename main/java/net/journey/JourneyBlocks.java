@@ -224,14 +224,14 @@ public class JourneyBlocks {
 
 	public static BlockMod swampLamp;
 
-	public static BlockMod frozenChest;
-	public static BlockMod netherChest;
-	public static BlockMod boilingChest;
-	public static BlockMod eucaChest;
-	public static BlockMod depthsChest;
-	public static BlockMod corbaChest;
-	public static BlockMod cloudiaChest;
-	public static BlockMod terraniaChest;
+	//public static BlockMod frozenChest;
+	//public static BlockMod netherChest;
+	//public static BlockMod boilingChest;
+	//public static BlockMod eucaChest;
+	//public static BlockMod depthsChest;
+	//public static BlockMod corbaChest;
+	//public static BlockMod cloudiaChest;
+	//public static BlockMod terraniaChest;
 	public static BlockMod journeyChest;
 
 	public static BlockMod nethicDungeonBricks;
@@ -606,14 +606,14 @@ public class JourneyBlocks {
 
 		swampLamp = (BlockMod) new BlockSwampLamp("swampLamp", "Swamp Fly Bottle", 0).setLightLevel(1);
 
-		frozenChest = new BlockJourneyChest("frozenChest", "Frozen Chest", BlockJourneyChest.Type.FROZEN);
+		/*frozenChest = new BlockJourneyChest("frozenChest", "Frozen Chest", BlockJourneyChest.Type.FROZEN);
 		netherChest = new BlockJourneyChest("netherChest", "Nether Chest", BlockJourneyChest.Type.NETHER);
 		boilingChest = new BlockJourneyChest("boilingChest", "Boiling Chest", BlockJourneyChest.Type.BOIL);
 		eucaChest = new BlockJourneyChest("eucaChest", "Euca Chest", BlockJourneyChest.Type.EUCA);
 		depthsChest = new BlockJourneyChest("depthsChest", "Depths Chest", BlockJourneyChest.Type.DEPTHS);
 		corbaChest = new BlockJourneyChest("corbaChest", "Corba Chest", BlockJourneyChest.Type.CORBA);
 		cloudiaChest = new BlockJourneyChest("cloudiaChest", "Cloudia Chest", BlockJourneyChest.Type.CLOUDIA);
-		terraniaChest = new BlockJourneyChest("terraniaChest", "Terrania Chest", BlockJourneyChest.Type.TERRA);
+		terraniaChest = new BlockJourneyChest("terraniaChest", "Terrania Chest", BlockJourneyChest.Type.TERRA);*/
 		
 		journeyChest = new BlockJourneyChest("journeychest", "Journey Chest", BlockJourneyChest.Type.JOURNEY);
 

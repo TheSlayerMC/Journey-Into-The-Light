@@ -93,7 +93,7 @@ public class WorldGenTreeHut extends WorldGenerator {
 		world.setBlockState(new BlockPos(i + 3, j + 15, k + 2), log);
 		world.setBlockState(new BlockPos(i + 3, j + 15, k + 5), log);
 		world.setBlockState(new BlockPos(i + 3, j + 16, k + 1), plank.getDefaultState());
-		world.setBlockState(new BlockPos(i + 0, j + 14, k + 0), JourneyBlocks.terraniaChest.getDefaultState());
+		world.setBlockState(new BlockPos(i + 0, j + 14, k + 0), JourneyBlocks.journeyChest.getDefaultState());
 		
 		TileEntityJourneyChest te = (TileEntityJourneyChest)world.getTileEntity(new BlockPos(i + 0, j + 14, k + 0));
 		if(te != null) {

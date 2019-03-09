@@ -124,7 +124,7 @@ public class WorldGenNetherDungeons extends WorldGenerator {
 		world.setBlockState (new BlockPos (i + 4, j + 0, k + 6), JourneyBlocks.largeNetherBrick.getDefaultState());
 		world.setBlockState (new BlockPos (i + 4, j + 0, k + 7), JourneyBlocks.largeNetherBrick.getDefaultState());
 		world.setBlockState (new BlockPos (i + 4, j + 1, k + 4), JourneyBlocks.hellbotSpawner.getDefaultState());
-		world.setBlockState (new BlockPos (i + 4, j + 1, k + 6), JourneyBlocks.netherChest.getStateFromMeta(2));
+		world.setBlockState (new BlockPos (i + 4, j + 1, k + 6), JourneyBlocks.journeyChest.getStateFromMeta(2));
 		TileEntityJourneyChest te = (TileEntityJourneyChest)world.getTileEntity(new BlockPos(i + 4, j + 1, k + 6));
 		if(te != null) {
 			//WeightedRandomChestContent.generateChestContents(r, Lists.newArrayList(loot), te, 4);
@@ -158,7 +158,7 @@ public class WorldGenNetherDungeons extends WorldGenerator {
 		world.setBlockState (new BlockPos (i + 6, j + 0, k + 6), JourneyBlocks.nethicLamp.getDefaultState());
 		world.setBlockState (new BlockPos (i + 6, j + 0, k + 7), JourneyBlocks.largeNetherBrick.getDefaultState());
 		world.setBlockState (new BlockPos (i + 6, j + 1, k + 1), JourneyBlocks.boilingBars.getDefaultState());
-		world.setBlockState (new BlockPos (i + 6, j + 1, k + 4), JourneyBlocks.netherChest.getStateFromMeta(4));
+		world.setBlockState (new BlockPos (i + 6, j + 1, k + 4), JourneyBlocks.journeyChest.getStateFromMeta(4));
 		TileEntityJourneyChest te1 = (TileEntityJourneyChest)world.getTileEntity(new BlockPos(i + 6, j + 1, k + 4));
 		if(te1 != null) {
 			//WeightedRandomChestContent.generateChestContents(r, Lists.newArrayList(loot), te1, 4);

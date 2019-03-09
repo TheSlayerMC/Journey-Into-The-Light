@@ -123,16 +123,16 @@ public class WorldGenMerchantHouse extends WorldGenerator {
 		w.setBlockState(new BlockPos(x + 2, y + 0, z + 9), JourneyBlocks.frozenPlanks.getDefaultState());
 		w.setBlockState(new BlockPos(x + 2, y + 0, z + 10), JourneyBlocks.frozenBrick.getDefaultState());
 		w.setBlockState(new BlockPos(x + 2, y + 1, z + 2), JourneyBlocks.frozenBrick.getDefaultState());
-		w.setBlockState(new BlockPos(x + 2, y + 1, z + 5), JourneyBlocks.frozenChest.getStateFromMeta(3));
+		w.setBlockState(new BlockPos(x + 2, y + 1, z + 5), JourneyBlocks.journeyChest.getStateFromMeta(3));
 		
 		TileEntityJourneyChest te = (TileEntityJourneyChest)w.getTileEntity(new BlockPos(x + 2, y + 1, z + 5));
 		if(te != null) {
 		//	WeightedRandomChestContent.generateChestContents(r, Lists.newArrayList(loot), te, 4);
 		}
 		
-		w.setBlockState(new BlockPos(x + 2, y + 1, z + 6), JourneyBlocks.frozenChest.getStateFromMeta(3));
+		w.setBlockState(new BlockPos(x + 2, y + 1, z + 6), JourneyBlocks.journeyChest.getStateFromMeta(3));
 		w.setBlockState(new BlockPos(x + 2, y + 1, z + 8), JourneyBlocks.frozenBrick.getDefaultState());
-		w.setBlockState(new BlockPos(x + 2, y + 1, z + 9), JourneyBlocks.frozenChest.getStateFromMeta(3));
+		w.setBlockState(new BlockPos(x + 2, y + 1, z + 9), JourneyBlocks.journeyChest.getStateFromMeta(3));
 		
 		TileEntityJourneyChest te2 = (TileEntityJourneyChest)w.getTileEntity(new BlockPos(x + 2, y + 1, z + 9));
 		if(te2 != null) {
