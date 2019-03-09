@@ -1,6 +1,8 @@
 package net.journey.dimension.boil;
 
+import net.journey.dimension.BoilSkyRenderer;
 import net.journey.dimension.DimensionHelper;
+import net.minecraft.client.Minecraft;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DimensionType;
@@ -9,6 +11,7 @@ import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.biome.BiomeProviderSingle;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.IChunkGenerator;
+import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -66,7 +69,12 @@ public class WorldProviderBoiling extends WorldProvider {
 	public boolean isSurfaceWorld() {
 		return false;
 	}
-
+	
+	@Override
+	public IRenderHandler getSkyRenderer() {
+		return new BoilSkyRenderer();
+	}
+	
 	@Override
 	public float calculateCelestialAngle(long var1, float var3) {
 		return 0.6F; 
