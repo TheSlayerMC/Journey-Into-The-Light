@@ -24,7 +24,6 @@ import net.slayer.api.SlayerAPI;
 
 public class BoilSkyRenderer extends IRenderHandler {
 
-    private static final ResourceLocation SUN_TEXTURE = new ResourceLocation(SlayerAPI.MOD_ID + "textures/environment/boilSun.png");
     //private final Minecraft mc;
 	private int starGLCallList;
 	private int glSkyList;
@@ -82,13 +81,20 @@ public class BoilSkyRenderer extends IRenderHandler {
             f7 = afloat[1];
             f8 = afloat[2];
             float f11;
-            
+			if (mc.gameSettings.anaglyph) {
+				f9 = (f3 * 30.0F + f7 * 59.0F + f8 * 11.0F) / 100.0F;
+				f10 = (f3 * 30.0F + f7 * 70.0F) / 100.0F;
+				f11 = (f3 * 30.0F + f8 * 70.0F) / 100.0F;
+				f3 = f9;
+				f7 = f10;
+				f8 = f11;
+			}
             bufferbuilder.begin(6, DefaultVertexFormats.POSITION_COLOR);
             bufferbuilder.pos(0.0D, 100.0D, 0.0D).color(f3, f7, f8, afloat[3]).endVertex();
             int l1 = 16;
 
-            for (int j2 = 0; j2 <= 16; ++j2) {
-                float f21 = (float)j2 * ((float)Math.PI * 2F) / 16.0F;
+            for (int j = 0; j <= 16; ++j) {
+                float f21 = (float)j * (float)Math.PI * 2F / l1;
                 float f12 = MathHelper.sin(f21);
                 float f13 = MathHelper.cos(f21);
                 bufferbuilder.pos((double)(f12 * 120.0F), (double)(f13 * 120.0F), (double)(-f13 * 40.0F * afloat[3])).color(afloat[0], afloat[1], afloat[2], 0.0F).endVertex();
@@ -98,36 +104,99 @@ public class BoilSkyRenderer extends IRenderHandler {
             GlStateManager.popMatrix();
             GlStateManager.shadeModel(7424);
         }
-        double d3 = mc.player.getPositionEyes(partialTicks).y - world.getHorizon();
-
         GlStateManager.enableTexture2D();
         GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
         GlStateManager.pushMatrix();
-        float f16 = 1.0F - world.getRainStrength(partialTicks);
-        GlStateManager.color(1.0F, 1.0F, 1.0F, f16);
+		f3 = 1.0F - world.getRainStrength(partialTicks);
+		f7 = 0.0F;
+		f8 = 0.0F;
+		f9 = 0.0F;
+        GlStateManager.color(1.0F, 1.0F, 1.0F, f3);
+        GlStateManager.translate(f7, f8, f9);
         GlStateManager.rotate(-90.0F, 0.0F, 1.0F, 0.0F);
         GlStateManager.rotate(world.getCelestialAngle(partialTicks) * 360.0F, 1.0F, 0.0F, 0.0F);
-        float f17 = 30.0F;
-        mc.renderEngine.bindTexture(SUN_TEXTURE);
-        bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
-        bufferbuilder.pos((double)(-f17), 100.0D, (double)(-f17)).tex(0.0D, 0.0D).endVertex();
-        bufferbuilder.pos((double)f17, 100.0D, (double)(-f17)).tex(1.0D, 0.0D).endVertex();
-        bufferbuilder.pos((double)f17, 100.0D, (double)f17).tex(1.0D, 1.0D).endVertex();
-        bufferbuilder.pos((double)(-f17), 100.0D, (double)f17).tex(0.0D, 1.0D).endVertex();
-        tessellator.draw();
-        f17 = 20.0F;
         
-        if (world.provider.isSkyColored())
-        {
-            GlStateManager.color(f * 0.2F + 0.04F, f1 * 0.2F + 0.04F, f2 * 0.6F + 0.1F);
+        f10 = 30.0F;
+        mc.renderEngine.bindTexture(new ResourceLocation(SlayerAPI.MOD_ID + "textures/environment/boilSun.png"));
+        
+        bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
+        bufferbuilder.pos((double)(-f10), 100.0D, (double)(-f10)).tex(0.0D, 0.0D).endVertex();
+        bufferbuilder.pos((double)f10, 100.0D, (double)(-f10)).tex(1.0D, 0.0D).endVertex();
+        bufferbuilder.pos((double)f10, 100.0D, (double)f10).tex(1.0D, 1.0D).endVertex();
+        bufferbuilder.pos((double)(-f10), 100.0D, (double)f10).tex(0.0D, 1.0D).endVertex();
+        
+        tessellator.draw(); //draws sun
+        
+        f10 = 20.0F;
+        mc.renderEngine.bindTexture(new ResourceLocation(SlayerAPI.MOD_ID + "textures/environment/boilMoon.png"));
+        
+        int k = world.getMoonPhase();
+		int l = k % 4;
+		int i1 = k / 4 % 2;
+		float f14 = (float) (l + 0) / 4.0F;
+		float f15 = (float) (i1 + 0) / 2.0F;
+		float f16 = (float) (l + 1) / 4.0F;
+		float f17 = (float) (i1 + 1) / 2.0F;
+        bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
+        bufferbuilder.pos((double)(-f10), -100.0D, (double) f10).tex((double) f16, (double) f17).endVertex();
+        bufferbuilder.pos((double)f10, -100.0D, (double) f10).tex((double) f14, (double) f17).endVertex();
+        bufferbuilder.pos((double)f10, -100.0D, (double) (-f10)).tex((double) f14, (double) f15).endVertex();
+        bufferbuilder.pos((double)(-f10), -100.0D, (double) (-f10)).tex((double) f16, (double) f15).endVertex();
+        tessellator.draw();
+        GlStateManager.disableTexture2D();
+        float f18 = world.getStarBrightness(partialTicks) * f3;
+        if (f18 > 0.0F) {
+            GlStateManager.color(f18, f18, f18, f18);
+            GlStateManager.callList(this.starGLCallList);
         }
-        else
-        {
+        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+        GlStateManager.disableBlend();
+        GlStateManager.enableAlpha();
+        GlStateManager.enableFog();
+        GlStateManager.popMatrix();
+        GlStateManager.disableTexture2D();
+        GlStateManager.color(0F, 0F, 0F);
+        double d0 = mc.player.getPosition().getY() - world.getHorizon();
+        if (d0 < 0.0D) {
+            GlStateManager.pushMatrix();
+            GlStateManager.translate(0.0F, 12.0F, 0.0F);
+            GlStateManager.callList(this.glSkyList2);
+            GlStateManager.popMatrix();
+            float f118 = 1.0F;
+            float f19 = -((float)(d0 + 65.0D));
+            float f20 = -f8;
+            bufferbuilder.begin(7, DefaultVertexFormats.POSITION_COLOR);
+            bufferbuilder.pos(-1.0D, (double)f118, 1.0D).color(0, 0, 0, 255).endVertex();
+            bufferbuilder.pos(1.0D, (double)f118, 1.0D).color(0, 0, 0, 255).endVertex();
+            bufferbuilder.pos(1.0D, -1.0D, 1.0D).color(0, 0, 0, 255).endVertex();
+            bufferbuilder.pos(-1.0D, -1.0D, 1.0D).color(0, 0, 0, 255).endVertex();
+            bufferbuilder.pos(-1.0D, -1.0D, -1.0D).color(0, 0, 0, 255).endVertex();
+            bufferbuilder.pos(1.0D, -1.0D, -1.0D).color(0, 0, 0, 255).endVertex();
+            bufferbuilder.pos(1.0D, (double)f118, -1.0D).color(0, 0, 0, 255).endVertex();
+            bufferbuilder.pos(-1.0D, (double)f118, -1.0D).color(0, 0, 0, 255).endVertex();
+            bufferbuilder.pos(1.0D, -1.0D, -1.0D).color(0, 0, 0, 255).endVertex();
+            bufferbuilder.pos(1.0D, -1.0D, 1.0D).color(0, 0, 0, 255).endVertex();
+            bufferbuilder.pos(1.0D, (double)f118, 1.0D).color(0, 0, 0, 255).endVertex();
+            bufferbuilder.pos(1.0D, (double)f118, -1.0D).color(0, 0, 0, 255).endVertex();
+            bufferbuilder.pos(-1.0D, (double)f118, -1.0D).color(0, 0, 0, 255).endVertex();
+            bufferbuilder.pos(-1.0D, (double)f118, 1.0D).color(0, 0, 0, 255).endVertex();
+            bufferbuilder.pos(-1.0D, -1.0D, 1.0D).color(0, 0, 0, 255).endVertex();
+            bufferbuilder.pos(-1.0D, -1.0D, -1.0D).color(0, 0, 0, 255).endVertex();
+            bufferbuilder.pos(-1.0D, -1.0D, -1.0D).color(0, 0, 0, 255).endVertex();
+            bufferbuilder.pos(-1.0D, -1.0D, 1.0D).color(0, 0, 0, 255).endVertex();
+            bufferbuilder.pos(1.0D, -1.0D, 1.0D).color(0, 0, 0, 255).endVertex();
+            bufferbuilder.pos(1.0D, -1.0D, -1.0D).color(0, 0, 0, 255).endVertex();
+            tessellator.draw();
+        }  
+        if (world.provider.isSkyColored()) {
+            GlStateManager.color(0.2F + 0.04F, f2 * 0.2F + 0.04F, f3 * 0.6F + 0.1F);
+        }
+        else {
             GlStateManager.color(f, f1, f2);
         }
 
         GlStateManager.pushMatrix();
-        GlStateManager.translate(0.0F, -((float)(d3 - 16.0D)), 0.0F);
+        GlStateManager.translate(0.0F, -((float)(d0 - 16.0D)), 0.0F);
         GlStateManager.callList(this.glSkyList2);
         GlStateManager.popMatrix();
         GlStateManager.enableTexture2D();
