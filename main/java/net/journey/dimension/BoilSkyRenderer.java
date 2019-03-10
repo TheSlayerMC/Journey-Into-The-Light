@@ -116,6 +116,7 @@ public class BoilSkyRenderer extends IRenderHandler {
         GlStateManager.rotate(-90.0F, 0.0F, 1.0F, 0.0F);
         GlStateManager.rotate(world.getCelestialAngle(partialTicks) * 360.0F, 1.0F, 0.0F, 0.0F);
         
+        /* sun rendering starts here */
         f10 = 30.0F;
         mc.renderEngine.bindTexture(new ResourceLocation(SlayerAPI.PREFIX + "textures/environment/boilSun.png"));
         
@@ -124,11 +125,12 @@ public class BoilSkyRenderer extends IRenderHandler {
         bufferbuilder.pos((double)f10, 100.0D, (double)(-f10)).tex(1.0D, 0.0D).endVertex();
         bufferbuilder.pos((double)f10, 100.0D, (double)f10).tex(1.0D, 1.0D).endVertex();
         bufferbuilder.pos((double)(-f10), 100.0D, (double)f10).tex(0.0D, 1.0D).endVertex();
-        
-        tessellator.draw(); //draws sun
-        
+        /* sun rendering ends here */
+
+        tessellator.draw(); 
         f10 = 20.0F;
         mc.renderEngine.bindTexture(new ResourceLocation(SlayerAPI.PREFIX + "textures/environment/boilMoon.png"));
+
         
         int k = world.getMoonPhase();
 		int l = k % 4;
