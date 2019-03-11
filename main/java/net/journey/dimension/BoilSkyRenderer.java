@@ -13,6 +13,7 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.profiler.Profiler;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -37,6 +38,8 @@ public class BoilSkyRenderer extends IRenderHandler {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void render(float partialTicks, WorldClient world, Minecraft mc) {
+		Profiler profiler = Minecraft.getMinecraft().mcProfiler;
+		
         GlStateManager.disableTexture2D();
         Vec3d vec3d = world.getSkyColor(mc.getRenderViewEntity(), partialTicks);
         float f = (float)vec3d.x;
@@ -104,6 +107,9 @@ public class BoilSkyRenderer extends IRenderHandler {
             GlStateManager.popMatrix();
             GlStateManager.shadeModel(7424);
         }
+        
+		profiler.startSection("BoilSkyRenderer");
+		
         GlStateManager.enableTexture2D();
         GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
         GlStateManager.pushMatrix();
@@ -126,6 +132,8 @@ public class BoilSkyRenderer extends IRenderHandler {
         bufferbuilder.pos((double)f10, 100.0D, (double)f10).tex(1.0D, 1.0D).endVertex();
         bufferbuilder.pos((double)(-f10), 100.0D, (double)f10).tex(0.0D, 1.0D).endVertex();
         /* sun rendering ends here */
+        
+        profiler.endSection();
 
         tessellator.draw(); 
         f10 = 20.0F;
