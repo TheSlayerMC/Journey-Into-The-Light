@@ -1,3 +1,7 @@
 {
-	"parent": "journey:block/trophyCor" 
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "journey:items/trophysmelt"
+	}
 }
+

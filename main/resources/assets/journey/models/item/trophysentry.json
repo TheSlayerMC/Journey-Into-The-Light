@@ -1,3 +1,7 @@
 {
-	"parent": "journey:block/trophySentry" 
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "journey:items/trophysentry"
+	}
 }
+

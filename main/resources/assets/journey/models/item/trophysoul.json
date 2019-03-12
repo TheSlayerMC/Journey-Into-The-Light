@@ -1,3 +1,7 @@
 {
-	"parent": "journey:block/trophySoul" 
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "journey:items/trophysoul"
+	}
 }
+

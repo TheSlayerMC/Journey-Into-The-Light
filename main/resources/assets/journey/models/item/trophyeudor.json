@@ -1,3 +1,7 @@
 {
-	"parent": "journey:block/trophyEudor" 
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "journey:items/trophyeudor"
+	}
 }
+

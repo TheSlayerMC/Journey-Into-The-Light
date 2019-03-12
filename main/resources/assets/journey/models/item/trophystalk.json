@@ -1,3 +1,7 @@
 {
-	"parent": "journey:block/trophyStalk" 
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "journey:items/trophystalk"
+	}
 }
+

@@ -1,3 +1,7 @@
 {
-	"parent": "journey:block/trophyRoc" 
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "journey:items/trophyroc"
+	}
 }
+
