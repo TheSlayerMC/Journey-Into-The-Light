@@ -689,7 +689,7 @@ public class JourneyBlocks {
 
 		fire = new BlockModFire("fire", "Essential Fire");
 
-		//caveVine = new BlockCaveVine("cavevine", "Cave Vine");
+		caveVine = new BlockCaveVine("cavevine", "Cave Vine");
 		
 		mossyEssenceStone = new BlockMod("mossyEssenceStone", "Mossy Essence Stone", 2.0F);
 
