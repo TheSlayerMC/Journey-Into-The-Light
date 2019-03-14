@@ -12,7 +12,7 @@ public class JourneyFuelHandler implements IFuelHandler {
 			return 3200;
 		}
 		if (fuel.getItem() == JourneyItems.firestoneClump) {
-			return 1000;
+			return 500;
 		}
 		if (fuel.getItem() == JourneyItems.iridium) {
 			return 2600;
