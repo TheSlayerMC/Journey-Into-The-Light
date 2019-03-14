@@ -7,11 +7,24 @@ import com.google.common.collect.Lists;
 import net.journey.JourneyBlocks;
 import net.journey.JourneyItems;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
+import net.journey.util.JourneyLootTables;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
 public class WorldGenSorcererShrine extends WorldGenerator {
+	
+	public boolean locationIsValidSpawn(World w, int x, int y, int z) {
+		for(int i = 0; i < 11; i++) {
+			for(int l = 0; l < 11; l++) {
+				if(w.getBlockState(new BlockPos(x + i, y, z + l)) != JourneyBlocks.depthsGrass) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
 	
 	/*private static WeightedRandomChestContent[] loot = {
 			new WeightedRandomChestContent(JourneyItems.depthsFlake, 0, 1, 5, 10), 
@@ -20,6 +33,7 @@ public class WorldGenSorcererShrine extends WorldGenerator {
 	@Override
 	public boolean generate(World world, Random rand, BlockPos pos) {
 		int i = pos.getX(), j = pos.getY(), k = pos.getZ();
+		if(locationIsValidSpawn(world, i, j, k)) return true;
 		i-=5;
 		k-=5;
 		world.setBlockState(new BlockPos(i + 0, j + 4, k + 3), JourneyBlocks.darkShingle.getDefaultState());
@@ -117,9 +131,9 @@ public class WorldGenSorcererShrine extends WorldGenerator {
 		world.setBlockState(new BlockPos(i + 5, j + 1, k + 7), JourneyBlocks.darklyGate.getDefaultState());
 		world.setBlockState(new BlockPos(i + 5, j + 2, k + 1), JourneyBlocks.darklyLock.getDefaultState());
 		world.setBlockState(new BlockPos(i + 5, j + 2, k + 4), JourneyBlocks.journeyChest.getStateFromMeta(2));
-		TileEntityJourneyChest te = (TileEntityJourneyChest)world.getTileEntity(new BlockPos(i + 5, j + 2, k + 4));
-		if(te != null) {
-		//	WeightedRandomChestContent.generateChestContents(rand, Lists.newArrayList(loot), te, 4);
+        TileEntity chest = world.getTileEntity(new BlockPos(i + 5, j + 2, k + 4));
+		if (chest instanceof TileEntityJourneyChest) {
+			((TileEntityJourneyChest) chest).setLootTable(JourneyLootTables.DEPTHS_SHRINE_CHEST, rand.nextLong());
 		}
 		
 		world.setBlockState(new BlockPos(i + 5, j + 2, k + 7), JourneyBlocks.darklyGate.getDefaultState());

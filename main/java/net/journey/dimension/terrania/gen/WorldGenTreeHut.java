@@ -7,25 +7,34 @@ import com.google.common.collect.Lists;
 import net.journey.JourneyBlocks;
 import net.journey.JourneyItems;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
+import net.journey.util.JourneyLootTables;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.slayer.api.worldgen.WorldGenAPI;
 
-public class WorldGenTreeHut extends WorldGenerator {
+public class WorldGenTreeHut extends WorldGenerator {	
+
+	public boolean locationIsValidSpawn(World w, int x, int y, int z) {
+		for(int i = 0; i < 11; i++) {
+			for(int l = 0; l < 11; l++) {
+				if(w.getBlockState(new BlockPos(x + i, y, z + l)) != JourneyBlocks.terranianGrass) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
 	
-	/*private static WeightedRandomChestContent[] loot = {
-			new WeightedRandomChestContent(JourneyItems.slugSlime, 0, 1, 5, 10), 
-			new WeightedRandomChestContent(JourneyItems.darkTerrarianSoil, 0, 1, 10, 40), 
-			new WeightedRandomChestContent(JourneyItems.earthenCrystal, 0, 1, 10, 40), 
-			new WeightedRandomChestContent(JourneyItems.lightTerrarianSoil, 0, 1, 5, 40)};*/
 	@Override
 	public boolean generate(World world, Random rand, BlockPos pos) {
 		Block post = JourneyBlocks.terranianPost;
 		Block plank = JourneyBlocks.terranianPanels;
 		int i = pos.getX(), j = pos.getY(), k = pos.getZ();
+		if(locationIsValidSpawn(world, i, j, k)) return true;
 		IBlockState leaves = WorldGenAPI.getTerraniaLeaves().getDefaultState(), log = WorldGenAPI.getTerranianLog().getDefaultState(), vine = WorldGenAPI.getTerraniaVine().getDefaultState();
 		i-=5;
 		k-=5;
@@ -94,10 +103,9 @@ public class WorldGenTreeHut extends WorldGenerator {
 		world.setBlockState(new BlockPos(i + 3, j + 15, k + 5), log);
 		world.setBlockState(new BlockPos(i + 3, j + 16, k + 1), plank.getDefaultState());
 		world.setBlockState(new BlockPos(i + 0, j + 14, k + 0), JourneyBlocks.journeyChest.getDefaultState());
-		
-		TileEntityJourneyChest te = (TileEntityJourneyChest)world.getTileEntity(new BlockPos(i + 0, j + 14, k + 0));
-		if(te != null) {
-			//WeightedRandomChestContent.generateChestContents(rand, Lists.newArrayList(loot), te, 4);
+        TileEntity chest = world.getTileEntity(new BlockPos(i + 0, j + 14, k + 0));
+		if (chest instanceof TileEntityJourneyChest) {
+			((TileEntityJourneyChest) chest).setLootTable(JourneyLootTables.TERRANIA_TREE_HUT_CHEST, rand.nextLong());
 		}
 		
 		world.setBlockState(new BlockPos(i + 3, j + 16, k + 2), JourneyBlocks.terranianDarkPanels.getDefaultState());

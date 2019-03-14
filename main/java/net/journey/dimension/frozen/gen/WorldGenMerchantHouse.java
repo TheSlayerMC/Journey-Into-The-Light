@@ -8,7 +8,9 @@ import net.journey.JourneyBlocks;
 import net.journey.JourneyItems;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.entity.mob.frozen.npc.EntityFrozenMerchant;
+import net.journey.util.JourneyLootTables;
 import net.minecraft.init.Blocks;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -125,18 +127,18 @@ public class WorldGenMerchantHouse extends WorldGenerator {
 		w.setBlockState(new BlockPos(x + 2, y + 1, z + 2), JourneyBlocks.frozenBrick.getDefaultState());
 		w.setBlockState(new BlockPos(x + 2, y + 1, z + 5), JourneyBlocks.journeyChest.getStateFromMeta(3));
 		
-		TileEntityJourneyChest te = (TileEntityJourneyChest)w.getTileEntity(new BlockPos(x + 2, y + 1, z + 5));
-		if(te != null) {
-		//	WeightedRandomChestContent.generateChestContents(r, Lists.newArrayList(loot), te, 4);
+        TileEntity chest = w.getTileEntity(new BlockPos(x + 2, y + 1, z + 5));
+		if (chest instanceof TileEntityJourneyChest) {
+			((TileEntityJourneyChest) chest).setLootTable(JourneyLootTables.FROZEN_MERCH_CHEST, r.nextLong());
 		}
 		
 		w.setBlockState(new BlockPos(x + 2, y + 1, z + 6), JourneyBlocks.journeyChest.getStateFromMeta(3));
 		w.setBlockState(new BlockPos(x + 2, y + 1, z + 8), JourneyBlocks.frozenBrick.getDefaultState());
 		w.setBlockState(new BlockPos(x + 2, y + 1, z + 9), JourneyBlocks.journeyChest.getStateFromMeta(3));
 		
-		TileEntityJourneyChest te2 = (TileEntityJourneyChest)w.getTileEntity(new BlockPos(x + 2, y + 1, z + 9));
-		if(te2 != null) {
-			//WeightedRandomChestContent.generateChestContents(r, Lists.newArrayList(loot), te2, 12);
+        TileEntity chest1 = w.getTileEntity(new BlockPos(x + 2, y + 1, z + 9));
+		if (chest1 instanceof TileEntityJourneyChest) {
+			((TileEntityJourneyChest) chest1).setLootTable(JourneyLootTables.FROZEN_MERCH_CHEST, r.nextLong());
 		}
 		
 		w.setBlockState(new BlockPos(x + 2, y + 1, z + 10), JourneyBlocks.frozenBrick.getDefaultState());

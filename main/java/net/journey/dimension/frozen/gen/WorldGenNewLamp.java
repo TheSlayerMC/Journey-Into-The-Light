@@ -9,8 +9,21 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 
 public class WorldGenNewLamp extends WorldGenerator {
 
+	public boolean locationIsValidSpawn(World w, int x, int y, int z) {
+		for(int i = 0; i < 11; i++) {
+			for(int l = 0; l < 11; l++) {
+				if(w.getBlockState(new BlockPos(x + i, y, z + l)) != JourneyBlocks.frozenGrass) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+	
 	@Override
 	public boolean generate(World w, Random rand, BlockPos pos) {
+		int x = pos.getX(), y = pos.getY() - 1, z = pos.getZ();
+		if(locationIsValidSpawn(w, x, y, z)) return true;
 		if(!w.getBlockState(pos.down()).getBlock().isFullBlock(null))return false;
 		w.setBlockState(pos, JourneyBlocks.workshopStone.getDefaultState());
 		w.setBlockState(pos.up(), JourneyBlocks.workshopStone.getDefaultState());

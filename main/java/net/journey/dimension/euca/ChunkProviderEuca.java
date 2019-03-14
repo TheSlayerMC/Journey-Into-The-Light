@@ -227,7 +227,7 @@ public class ChunkProviderEuca implements IChunkGenerator {
 		int z1 = j * 16;
 		int x, z, times;
 
-		if(rand.nextInt(3)==0) {
+		if(rand.nextInt(1)==0) {
 			x = x1 + this.rand.nextInt(16) + 8;
 			z = z1 + this.rand.nextInt(16) + 8;
 			int yCoord = rand.nextInt(128) + 1;

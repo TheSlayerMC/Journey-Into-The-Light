@@ -9,9 +9,21 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 
 public class WorldGenHugeCorbaTree extends WorldGenerator {
 	
+	public boolean locationIsValidSpawn(World w, int x, int y, int z) {
+		for(int i = 0; i < 11; i++) {
+			for(int l = 0; l < 11; l++) {
+				if(w.getBlockState(new BlockPos(x + i, y, z + l)) != JourneyBlocks.corbaGrass) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+	
 	@Override
 	public boolean generate(World world, Random rand, BlockPos pos) {
 		int i = pos.getX(), j = pos.getY(), k = pos.getZ();
+		if(locationIsValidSpawn(world, i, j, k)) return true;
 		i-=5;
 		k-=5;
 

@@ -27,6 +27,11 @@
       "entries": [
         {
           "type": "loot_table",
+          "name": "journey:chests/netherdungeon_3",
+          "weight": 25
+        },
+        {
+          "type": "loot_table",
           "name": "journey:chests/netherdungeon_2",
           "weight": 75
         }

@@ -18,8 +18,11 @@ public class JourneyLootTables extends LootTableList {
 	
 	public static final ResourceLocation BOIL_CHEST = register("chests/boilportal");
 	public static final ResourceLocation NETHER_DUNGEON_CHEST = register("chests/netherdungeon");
-	public static final ResourceLocation EUCA_SMITH_CHEST = register("chests/eucasmithchest");
-	public static final ResourceLocation FROZEN_MERCH_CHEST = register("chests/frozenmerchantchest");
+	public static final ResourceLocation EUCA_SMITH_CHEST = register("chests/eucasmith");
+	public static final ResourceLocation FROZEN_MERCH_CHEST = register("chests/frozenmerchant");
+	
+	public static final ResourceLocation DEPTHS_SHRINE_CHEST = register("chests/depthsshrine");
+	public static final ResourceLocation TERRANIA_TREE_HUT_CHEST = register("chests/terraniatreehut");
 
 	private static ResourceLocation register(String id) {
 		return register(new ResourceLocation("journey", id));

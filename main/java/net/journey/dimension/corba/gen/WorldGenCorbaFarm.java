@@ -13,9 +13,21 @@ import net.slayer.api.worldgen.WorldGenAPI;
 
 public class WorldGenCorbaFarm extends WorldGenerator {
 
+	public boolean locationIsValidSpawn(World w, int x, int y, int z) {
+		for(int i = 0; i < 11; i++) {
+			for(int l = 0; l < 11; l++) {
+				if(w.getBlockState(new BlockPos(x + i, y, z + l)) != JourneyBlocks.corbaGrass) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+	
 	@Override
 	public boolean generate(World w, Random r, BlockPos pos) {
 		int x = pos.getX(), y = pos.getY(), z = pos.getZ();
+		if(locationIsValidSpawn(w, x, y, z)) return true;
 		Block crop = JourneyCrops.tomatoCrop;
 		WorldGenAPI.addRectangle(11, 9, 5, w, x, y - 4, z, JourneyBlocks.corbaStone);
 		WorldGenAPI.addRectangle(11, 9, 1, w, x, y + 1, z, JourneyBlocks.corbaGrass);

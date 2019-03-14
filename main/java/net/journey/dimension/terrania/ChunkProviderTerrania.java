@@ -369,7 +369,7 @@ public class ChunkProviderTerrania implements IChunkGenerator {
 			}
 		}
 
-		if(rand.nextInt(8)==0) {
+		if(rand.nextInt(1)==0) {
 			x = x1 + this.rand.nextInt(16) + 8;
 			z = z1 + this.rand.nextInt(16) + 8;
 			int yCoord = rand.nextInt(128) + 1;
@@ -378,7 +378,7 @@ public class ChunkProviderTerrania implements IChunkGenerator {
 			}
 		}
 
-		if(rand.nextInt(7)==0) {
+		if(rand.nextInt(1)==0) {
 			x = x1 + this.rand.nextInt(16) + 8;
 			z = z1 + this.rand.nextInt(16) + 8;
 			int yCoord = rand.nextInt(128) + 1;

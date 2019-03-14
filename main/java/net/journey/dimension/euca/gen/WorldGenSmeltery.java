@@ -5,7 +5,9 @@ import java.util.Random;
 import net.journey.JourneyBlocks;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.entity.mob.euca.npc.EntityAlloyMender;
+import net.journey.util.JourneyLootTables;
 import net.minecraft.init.Blocks;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -121,21 +123,19 @@ public class WorldGenSmeltery extends WorldGenerator {
 		w.setBlockState(new BlockPos(x + 2, y, z + 9), JourneyBlocks.goldEucaPlank.getDefaultState());
 		w.setBlockState(new BlockPos(x + 2, y, z + 10), JourneyBlocks.eucaBricks.getDefaultState());
 		w.setBlockState(new BlockPos(x + 2, y + 1, z + 2), JourneyBlocks.eucaBricks.getDefaultState());
-		//w.setBlockState(new BlockPos(x + 2, y + 1, z + 5), JourneyBlocks.eucaChest.getStateFromMeta(3));
-		
-		/* TileEntityJourneyChest te = (TileEntityJourneyChest)w.getTileEntity(new BlockPos(x + 2, y + 1, z + 5));
-		if(te != null) {
-			//WeightedRandomChestContent.generateChestContents(r, Lists.newArrayList(loot), te, 4);
-		} */
 		
 		w.setBlockState(new BlockPos(x + 2, y + 1, z + 6), JourneyBlocks.journeyChest.getStateFromMeta(3));
+        TileEntity chest = w.getTileEntity(new BlockPos(x + 2, y + 1, z + 6));
+		if (chest instanceof TileEntityJourneyChest) {
+			((TileEntityJourneyChest) chest).setLootTable(JourneyLootTables.EUCA_SMITH_CHEST, r.nextLong());
+		}
 		w.setBlockState(new BlockPos(x + 2, y + 1, z + 8), JourneyBlocks.eucaBricks.getDefaultState());
 		w.setBlockState(new BlockPos(x + 2, y + 1, z + 9), JourneyBlocks.journeyChest.getStateFromMeta(3));
-		
-		/* TileEntityJourneyChest te2 = (TileEntityJourneyChest)w.getTileEntity(new BlockPos(x + 2, y + 1, z + 9));
-		if(te2 != null) {
-			//WeightedRandomChestContent.generateChestContents(r, Lists.newArrayList(loot), te2, 12);
-		} */
+        TileEntity chest1 = w.getTileEntity(new BlockPos(x + 2, y + 1, z + 9));
+		if (chest1 instanceof TileEntityJourneyChest) {
+			((TileEntityJourneyChest) chest1).setLootTable(JourneyLootTables.EUCA_SMITH_CHEST, r.nextLong());
+		}
+
 		
 		w.setBlockState(new BlockPos(x + 2, y + 1, z + 10), JourneyBlocks.eucaBricks.getDefaultState());
 		w.setBlockState(new BlockPos(x + 2, y + 2, z + 2), JourneyBlocks.eucaBricks.getDefaultState());
