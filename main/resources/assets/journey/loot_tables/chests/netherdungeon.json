@@ -1,0 +1,36 @@
+{
+  "pools": [
+    {
+      "name": "common",
+      "rolls": 4,
+      "entries": [
+        {
+          "type": "loot_table",
+          "name": "journey:chests/netherdungeon_0",
+          "weight": 75
+        }
+      ]
+    },
+
+    {
+      "name": "uncommon",
+      "rolls": 2,
+      "entries": [{
+        "type": "loot_table",
+        "name": "journey:chests/netherdungeon_1"
+      }]
+    },
+
+    {
+      "name": "rare",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "loot_table",
+          "name": "journey:chests/netherdungeon_2",
+          "weight": 75
+        }
+      ]
+    }
+  ]
+}

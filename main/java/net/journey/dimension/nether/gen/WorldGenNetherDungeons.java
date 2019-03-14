@@ -7,8 +7,10 @@ import com.google.common.collect.Lists;
 import net.journey.JourneyBlocks;
 import net.journey.JourneyItems;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
+import net.journey.util.JourneyLootTables;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -125,9 +127,9 @@ public class WorldGenNetherDungeons extends WorldGenerator {
 		world.setBlockState (new BlockPos (i + 4, j + 0, k + 7), JourneyBlocks.largeNetherBrick.getDefaultState());
 		world.setBlockState (new BlockPos (i + 4, j + 1, k + 4), JourneyBlocks.hellbotSpawner.getDefaultState());
 		world.setBlockState (new BlockPos (i + 4, j + 1, k + 6), JourneyBlocks.journeyChest.getStateFromMeta(2));
-		TileEntityJourneyChest te = (TileEntityJourneyChest)world.getTileEntity(new BlockPos(i + 4, j + 1, k + 6));
-		if(te != null) {
-			//WeightedRandomChestContent.generateChestContents(r, Lists.newArrayList(loot), te, 4);
+        TileEntity chest = world.getTileEntity(new BlockPos(i + 4, j + 1, k + 6));
+		if (chest instanceof TileEntityJourneyChest) {
+			((TileEntityJourneyChest) chest).setLootTable(JourneyLootTables.NETHER_DUNGEON_CHEST, r.nextLong());
 		}
 		world.setBlockState (new BlockPos (i + 4, j + 1, k + 7), JourneyBlocks.boilingBars.getDefaultState());
 		world.setBlockState (new BlockPos (i + 4, j + 2, k + 7), JourneyBlocks.boilingBars.getDefaultState());
@@ -159,9 +161,9 @@ public class WorldGenNetherDungeons extends WorldGenerator {
 		world.setBlockState (new BlockPos (i + 6, j + 0, k + 7), JourneyBlocks.largeNetherBrick.getDefaultState());
 		world.setBlockState (new BlockPos (i + 6, j + 1, k + 1), JourneyBlocks.boilingBars.getDefaultState());
 		world.setBlockState (new BlockPos (i + 6, j + 1, k + 4), JourneyBlocks.journeyChest.getStateFromMeta(4));
-		TileEntityJourneyChest te1 = (TileEntityJourneyChest)world.getTileEntity(new BlockPos(i + 6, j + 1, k + 4));
-		if(te1 != null) {
-			//WeightedRandomChestContent.generateChestContents(r, Lists.newArrayList(loot), te1, 4);
+        TileEntity chest1 = world.getTileEntity(new BlockPos(i + 6, j + 1, k + 4));
+		if (chest1 instanceof TileEntityJourneyChest) {
+			((TileEntityJourneyChest) chest1).setLootTable(JourneyLootTables.NETHER_DUNGEON_CHEST, r.nextLong());
 		}
 		world.setBlockState (new BlockPos (i + 6, j + 1, k + 7), JourneyBlocks.nethicDungeonBricks.getDefaultState());
 		world.setBlockState (new BlockPos (i + 6, j + 2, k + 1), JourneyBlocks.boilingBars.getDefaultState());

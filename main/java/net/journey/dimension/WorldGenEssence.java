@@ -14,6 +14,7 @@ import net.journey.dimension.nether.gen.WorldGenHellThorn;
 import net.journey.dimension.nether.gen.WorldGenHellThornMedium;
 import net.journey.dimension.nether.gen.WorldGenHellThornTall;
 import net.journey.dimension.nether.gen.WorldGenModGlowstone;
+import net.journey.dimension.nether.gen.WorldGenNetherDungeons;
 import net.journey.dimension.nether.gen.WorldGenNetherFlower;
 import net.journey.dimension.nether.gen.WorldGenNetherShroom;
 import net.journey.dimension.nether.gen.WorldGenNetherTower;
@@ -240,7 +241,7 @@ public class WorldGenEssence implements IWorldGenerator {
 				new WorldGenNetherFlower(w, r, new BlockPos(x, y, z), JourneyBlocks.hellBell);
 		} 
 
-		if(r.nextInt(1)==0) {
+		if(r.nextInt(20)==0) {
 			y = r.nextInt(128) + 1;
 			x = chunkX + r.nextInt(16);
 			z = chunkZ + r.nextInt(16);
@@ -248,13 +249,13 @@ public class WorldGenEssence implements IWorldGenerator {
 			new WorldGenBoilPortal().generate(w, r, new BlockPos(x, y, z));
 		} 
 		
-		/*if(r.nextInt(30)==0) {
+		if(r.nextInt(1)==0) {
 			y = r.nextInt(128) + 1;
 			x = chunkX + r.nextInt(16);
 			z = chunkZ + r.nextInt(16);
 			if(y > 20 && y < 110) if(isBlockTop(x, y, z, Blocks.NETHERRACK, w))
 			new WorldGenNetherDungeons().generate(w, r, new BlockPos(x, y, z));
-		} */
+		}
 		
 		for(times = 0; times < 5; times++) {
 			y = r.nextInt(128) + 1;

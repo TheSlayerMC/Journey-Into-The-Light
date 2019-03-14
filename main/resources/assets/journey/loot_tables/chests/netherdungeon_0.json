@@ -1,0 +1,32 @@
+{
+  "pools": [{
+    "name": "main",
+    "rolls": 1,
+    "entries": [
+      {
+        "type": "item",
+        "name": "minecraft:gold_nugget",
+        "functions": [{ "function": "set_count", "count": { "min": 0, "max": 3 } }]
+      },
+      {
+        "type": "item",
+        "name": "minecraft:iron_ingot",
+        "functions": [{ "function": "set_count", "count": { "min": 0, "max": 3 } }]
+      },
+      {
+        "type": "item",
+        "name": "minecraft:saddle"
+      },
+      {
+        "type": "item",
+        "name": "journey:blood",
+        "functions": [{ "function": "set_count", "count": { "min": 2, "max": 5 } }]
+      },
+      {
+        "type": "item",
+        "name": "journey:flamingHide",
+        "functions": [{ "function": "set_count", "count": { "min": 2, "max": 5 } }]
+      }
+    ]
+  }]
+}
