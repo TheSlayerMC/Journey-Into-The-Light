@@ -142,7 +142,7 @@ public class BoilSkyRenderer extends IRenderHandler {
         
         /* sun rendering starts here */
         float f17 = 30.0F;
-        mc.renderEngine.bindTexture(SUN_TEXTURES);
+        mc.getRenderManager().renderEngine.bindTexture(SUN_TEXTURES);
         
         bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
         bufferbuilder.pos((double)(-f17), 100.0D, (double)(-f17)).tex(0.0D, 0.0D).endVertex();
@@ -155,7 +155,7 @@ public class BoilSkyRenderer extends IRenderHandler {
 
         tessellator.draw(); 
         f17 = 20.0F;
-        mc.renderEngine.bindTexture(MOON_PHASES_TEXTURES);
+        mc.getRenderManager().renderEngine.bindTexture(MOON_PHASES_TEXTURES);
 
         
         int k1 = world.getMoonPhase();
