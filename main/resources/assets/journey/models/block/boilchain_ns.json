@@ -1,7 +1,0 @@
-{
-    "parent": "block/pane_ns",
-    "textures": {
-        "edge": "journey:blocks/boilChain",
-        "pane": "journey:blocks/boilChain"
-    }
-}

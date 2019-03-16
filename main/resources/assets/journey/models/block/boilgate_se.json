@@ -1,7 +1,0 @@
-{
-    "parent": "block/pane_se",
-    "textures": {
-        "edge": "journey:blocks/boilGate",
-        "pane": "journey:blocks/boilGate"
-    }
-}

@@ -15,7 +15,7 @@ public class WorldGenBleedheartTree0 extends WorldGenerator {
 
 	@Override
 	public boolean generate(World world, Random r, BlockPos pos) {
-		int i = pos.getX() - 2, j = pos.getY() - 1, k = pos.getZ() - 2;
+		int i = pos.getX(), j = pos.getY(), k = pos.getZ();
 		Block log = JourneyBlocks.sizzlerWoodLog;
 		Block leaves = JourneyBlocks.sizzlerWoodLeaves;
 		int height = r.nextInt(3);

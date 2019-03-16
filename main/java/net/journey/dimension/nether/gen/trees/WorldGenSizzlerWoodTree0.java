@@ -11,11 +11,7 @@ public class WorldGenSizzlerWoodTree0 extends WorldGenerator {
 
 	@Override
 	public boolean generate(World world, Random rand, BlockPos pos) {
-		int i = pos.getX(), 
-			j = pos.getY(), 
-			k = pos.getZ();
-		i-=5;
-		k-=5;
+		int i = pos.getX(), j = pos.getY(), k = pos.getZ();
 		world.setBlockState(new BlockPos(i + 0, j + 4, k + 2), JourneyBlocks.sizzlerWoodLog.getDefaultState());
 		world.setBlockState(new BlockPos(i + 0, j + 5, k + 2), JourneyBlocks.sizzlerWoodLeaves.getDefaultState());
 		world.setBlockState(new BlockPos(i + 1, j + 3, k + 2), JourneyBlocks.sizzlerWoodLog.getDefaultState());
