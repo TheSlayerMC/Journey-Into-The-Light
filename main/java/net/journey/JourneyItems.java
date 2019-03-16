@@ -54,6 +54,7 @@ import net.journey.items.ItemEssencePotion;
 import net.journey.items.ItemFlameCoin;
 import net.journey.items.ItemFruit;
 import net.journey.items.ItemGlowa;
+import net.journey.items.ItemGlowshroomBlock;
 import net.journey.items.ItemGoldenFood;
 import net.journey.items.ItemGun;
 import net.journey.items.ItemHammer;
@@ -287,6 +288,9 @@ public class JourneyItems {
 	public static Item flamingHide;
 	public static Item boilKey;
 	public static Item darkKey;
+	public static Item redGlowShroom;
+	public static Item greenGlowShroom;
+	public static Item blueGlowShroom;
 
 	public static Item hellstoneDust;
 	public static Item shadiumDust;
@@ -934,6 +938,10 @@ public class JourneyItems {
 		flamingHide = new ItemMod("flamingHide", "Flaming Hide");
 		boilKey = new ItemMod("boilKey", "Boil Key").setMaxStackSize(1);
 		darkKey = new ItemMod("darkkey", "Dark Key").setMaxStackSize(1);
+		redGlowShroom = new ItemGlowshroomBlock("redGlowShroom", "Red Glowshroom", JourneyBlocks.redGlowshroomBottom, JourneyBlocks.redGlowshroomTop);
+		greenGlowShroom = new ItemGlowshroomBlock("greenGlowShroom", "Green Glowshroom", JourneyBlocks.greenGlowshroomBottom, JourneyBlocks.greenGlowshroomTop);
+		blueGlowShroom = new ItemGlowshroomBlock("blueGlowShroom", "Blue Glowshroom", JourneyBlocks.blueGlowshroomBottom, JourneyBlocks.blueGlowshroomTop);
+		
 		slugSlime = new ItemMod("slugSlime", "Slug Slime");
 		eucaPortalGem = new ItemMod("eucaPortalGem", "Euca Portal Gem");
 		depthsPortalGem = new ItemMod("depthsPortalGem", "Depths Portal Gem");
