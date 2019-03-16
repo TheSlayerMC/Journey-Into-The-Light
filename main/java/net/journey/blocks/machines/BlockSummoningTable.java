@@ -3,20 +3,29 @@ package net.journey.blocks.machines;
 import java.util.List;
 
 import net.journey.JITL;
+import net.journey.JourneyBlocks;
 import net.journey.JourneyTabs;
 import net.journey.blocks.tileentity.TileEntitySummoningTable;
+import net.journey.blocks.tileentity.container.ContainerCrafting;
+import net.journey.blocks.tileentity.container.ContainerSummoningTable;
 import net.journey.client.GuiHandler;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.Container;
 import net.minecraft.inventory.InventoryHelper;
+import net.minecraft.stats.StatList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.IInteractionObject;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -35,15 +44,13 @@ public class BlockSummoningTable extends BlockModContainer {
 	}
 
 	@Override
-    public boolean onBlockActivated(World w, BlockPos pos, IBlockState state, EntityPlayer p, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		TileEntity tile  = w.getTileEntity(pos);
-		if(tile != null){
-			if(!p.isSneaking()){
-				if(!w.isRemote) p.openGui(JITL.instance, GuiHandler.summoning, w, pos.getX(), pos.getY(), pos.getZ());
-				return true;
-			}
+	public boolean onBlockActivated(World w, BlockPos pos, IBlockState state, EntityPlayer p, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		if (w.isRemote) {
+			return true;
+		} else {
+			p.displayGui(new BlockSummoningTable.InterfaceSummoningTable(w, pos));
+            return true;
 		}
-		return false;
 	}
 
 	@Override
@@ -78,5 +85,41 @@ public class BlockSummoningTable extends BlockModContainer {
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
 		return new TileEntitySummoningTable();
+	}
+	
+	public static class InterfaceSummoningTable implements IInteractionObject {
+		private final World world;
+		private final BlockPos position;
+
+		public InterfaceSummoningTable(World w, BlockPos p) {
+			this.world = w;
+			this.position = p;
+		}
+
+		@Override
+		public String getName() {
+			return null;
+		}
+
+		@Override
+		public boolean hasCustomName() {
+			return false;
+		}
+
+		@Override
+		public ITextComponent getDisplayName() {
+			return new TextComponentTranslation(JourneyBlocks.summoningTable.getUnlocalizedName() + ".name",
+					new Object[0]);
+		}
+
+		@Override
+		public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) {
+			return new ContainerSummoningTable(playerInventory, new TileEntitySummoningTable(), world);
+		}
+
+		@Override
+		public String getGuiID() {
+			return "journey:summoning_table";
+		}
 	}
 }
