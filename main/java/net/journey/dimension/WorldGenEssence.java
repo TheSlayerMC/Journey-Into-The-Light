@@ -526,12 +526,12 @@ public class WorldGenEssence implements IWorldGenerator {
 			if(w.getBlockState(new BlockPos(x, y - 1, z)) == JourneyBlocks.eucaGrass.getDefaultState()) new WorldGenSmeltery().generate(w, r, new BlockPos(x, y, z));
 			break;
 		case 19:
-			y = r.nextInt(250); x = chunkX + r.nextInt(16) + 8; z = chunkZ + r.nextInt(16) + 8;
+			y = r.nextInt(250); x = chunkX + r.nextInt(16); z = chunkZ + r.nextInt(16);
 			if(y < 64 && y > 30)
 			(new WorldGenMinable(JourneyBlocks.pinkCloudiaCloud.getDefaultState(), 40, BlockStateMatcher.forBlock(Blocks.AIR))).generate(w, r, new BlockPos(x, y, z));
 			break;
 		case 20:
-			y = r.nextInt(250); x = chunkX + r.nextInt(16) + 8; z = chunkZ + r.nextInt(16) + 8;
+			y = r.nextInt(250); x = chunkX + r.nextInt(16); z = chunkZ + r.nextInt(16);
 			if(y > 99 && y < 130)
 			(new WorldGenMinable(JourneyBlocks.lightBlueCloudiaCloud.getDefaultState(), 40, BlockStateMatcher.forBlock(Blocks.AIR))).generate(w, r, new BlockPos(x, y, z));
 			break;

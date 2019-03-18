@@ -84,49 +84,56 @@ public class ChunkProviderCloudia implements IChunkGenerator {
 		
 		if (this.rand.nextInt(60) == 0) {
 			int yCoord = rand.nextInt(20) + 64;
-			if(worldObj.isAirBlock(new BlockPos(x, yCoord, z)))castle.generate(worldObj, rand, new BlockPos(x, yCoord, z));
+			if(worldObj.isAirBlock(new BlockPos(x, yCoord, z)))
+				castle.generate(worldObj, rand, new BlockPos(x, yCoord, z));
 		}
 		
 		if (this.rand.nextInt(60) == 0) {
-			x = x1 + this.rand.nextInt(16) + 8;
-			z = z1 + this.rand.nextInt(16) + 8;
+			x = x1 + this.rand.nextInt(16);
+			z = z1 + this.rand.nextInt(16);
 			int yCoord = rand.nextInt(20) + 64;
-			if(worldObj.isAirBlock(new BlockPos(x, yCoord, z)))tower.generate(worldObj, rand, new BlockPos(x, yCoord, z));
+			if(worldObj.isAirBlock(new BlockPos(x, yCoord, z)))
+				tower.generate(worldObj, rand, new BlockPos(x, yCoord, z));
 		}
 
 		if (this.rand.nextInt(30) == 0) {
 			x = x1 + this.rand.nextInt(16) + 8;
 			z = z1 + this.rand.nextInt(16) + 8;
 			int yCoord = rand.nextInt(20) + 64;
-			if(worldObj.isAirBlock(new BlockPos(x, yCoord, z)))hut.generate(worldObj, rand, new BlockPos(x, yCoord, z));
+			if(worldObj.isAirBlock(new BlockPos(x, yCoord, z)))
+				hut.generate(worldObj, rand, new BlockPos(x, yCoord, z));
 		}
 
 		if (this.rand.nextInt(2) == 0) {
-			x = x1 + this.rand.nextInt(16) + 8;
-			z = z1 + this.rand.nextInt(16) + 8;
+			x = x1 + this.rand.nextInt(16);
+			z = z1 + this.rand.nextInt(16);
 			int yCoord = rand.nextInt(20) + 64;
-			if(worldObj.isAirBlock(new BlockPos(x, yCoord, z)))lamp.generate(worldObj, rand, new BlockPos(x, yCoord, z));
+			if(worldObj.isAirBlock(new BlockPos(x, yCoord, z)))
+				lamp.generate(worldObj, rand, new BlockPos(x, yCoord, z));
 		}
 		
 		if (this.rand.nextInt(2) == 0) {
-			x = x1 + this.rand.nextInt(16) + 8;
-			z = z1 + this.rand.nextInt(16) + 8;
+			x = x1 + this.rand.nextInt(16);
+			z = z1 + this.rand.nextInt(16);
 			int yCoord = rand.nextInt(20) + 64;
-			if(worldObj.isAirBlock(new BlockPos(x, yCoord, z)))tree.generate(worldObj, rand, new BlockPos(x, yCoord, z));
+			if(worldObj.isAirBlock(new BlockPos(x, yCoord, z)))
+				tree.generate(worldObj, rand, new BlockPos(x, yCoord, z));
 		}
 		
 		if (this.rand.nextInt(2) == 0) {
-			x = x1 + this.rand.nextInt(16) + 8;
-			z = z1 + this.rand.nextInt(16) + 8;
+			x = x1 + this.rand.nextInt(16);
+			z = z1 + this.rand.nextInt(16);
 			int yCoord = rand.nextInt(20) + 64;
-			if(worldObj.isAirBlock(new BlockPos(x, yCoord, z)))island.generate(worldObj, rand, new BlockPos(x, yCoord, z));
+			if(worldObj.isAirBlock(new BlockPos(x, yCoord, z)))
+				island.generate(worldObj, rand, new BlockPos(x, yCoord, z));
 		}
 		
 		if (this.rand.nextInt(40) == 0) {
-			x = x1 + this.rand.nextInt(16) + 8;
-			z = z1 + this.rand.nextInt(16) + 8;
+			x = x1 + this.rand.nextInt(16);
+			z = z1 + this.rand.nextInt(16);
 			int yCoord = rand.nextInt(20) + 64;
-			if(worldObj.isAirBlock(new BlockPos(x, yCoord, z)))village.generate(worldObj, rand, new BlockPos(x, yCoord, z));
+			if(worldObj.isAirBlock(new BlockPos(x, yCoord, z)))
+				village.generate(worldObj, rand, new BlockPos(x, yCoord, z));
 		}
 		
 		/**if (this.rand.nextInt(15) == 0) {
