@@ -33,8 +33,8 @@ import net.slayer.api.SlayerAPI;
 public class BoilSkyRenderer extends IRenderHandler {
 
     //private final Minecraft mc;
-    private static final ResourceLocation MOON_PHASES_TEXTURES = new ResourceLocation(SlayerAPI.PREFIX + "textures/environment/boilMoon.png");
-    private static final ResourceLocation SUN_TEXTURES = new ResourceLocation(SlayerAPI.PREFIX + "textures/environment/boilSun.png");
+    private static final ResourceLocation MOON_PHASES_TEXTURES = new ResourceLocation("textures/environment/sun.png");
+    private static final ResourceLocation SUN_TEXTURES = new ResourceLocation("textures/environment/moon_phases.png");
 	private int starGLCallList;
 	private int glSkyList;
 	private int glSkyList2;
@@ -59,17 +59,24 @@ public class BoilSkyRenderer extends IRenderHandler {
             this.renderChunkFactory = new ListChunkFactory();
         }
 	}
+	
 
 	@Override
-	@SideOnly(Side.CLIENT)
 	public void render(float partialTicks, WorldClient world, Minecraft mc) {
-		Profiler profiler = Minecraft.getMinecraft().mcProfiler;
+		this.renderSky(partialTicks, world, mc);
+	}
+
+	@SideOnly(Side.CLIENT)
+	public void renderSky(float partialTicks, WorldClient world, Minecraft mc) {
 		
-        GlStateManager.disableTexture2D();
         Vec3d vec3d = world.getSkyColor(mc.getRenderViewEntity(), partialTicks);
         float f = (float)vec3d.x;
         float f1 = (float)vec3d.y;
         float f2 = (float)vec3d.z;
+        
+		float anaglyphR = 0.0F;
+		float anaglyphG = 0.0F;
+		float anaglyphB = 0.0F;
 
 		if (mc.gameSettings.anaglyph) {
             float f3 = (f * 30.0F + f1 * 59.0F + f2 * 11.0F) / 100.0F;
@@ -130,8 +137,6 @@ public class BoilSkyRenderer extends IRenderHandler {
             GlStateManager.shadeModel(7424);
         }
         
-		profiler.startSection("BoilSkyRenderer");
-		
         GlStateManager.enableTexture2D();
         GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
         GlStateManager.pushMatrix();
@@ -142,7 +147,7 @@ public class BoilSkyRenderer extends IRenderHandler {
         
         /* sun rendering starts here */
         float f17 = 30.0F;
-        mc.getRenderManager().renderEngine.bindTexture(SUN_TEXTURES);
+        mc.renderEngine.bindTexture(SUN_TEXTURES);
         
         bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
         bufferbuilder.pos((double)(-f17), 100.0D, (double)(-f17)).tex(0.0D, 0.0D).endVertex();
@@ -150,12 +155,10 @@ public class BoilSkyRenderer extends IRenderHandler {
         bufferbuilder.pos((double)f17, 100.0D, (double)f17).tex(1.0D, 1.0D).endVertex();
         bufferbuilder.pos((double)(-f17), 100.0D, (double)f17).tex(0.0D, 1.0D).endVertex();
         /* sun rendering ends here */
-        
-        profiler.endSection();
 
         tessellator.draw(); 
         f17 = 20.0F;
-        mc.getRenderManager().renderEngine.bindTexture(MOON_PHASES_TEXTURES);
+        mc.renderEngine.bindTexture(MOON_PHASES_TEXTURES);
 
         
         int k1 = world.getMoonPhase();
@@ -232,4 +235,5 @@ public class BoilSkyRenderer extends IRenderHandler {
         GlStateManager.enableTexture2D();
         GlStateManager.depthMask(true);
 	}
+
 }
