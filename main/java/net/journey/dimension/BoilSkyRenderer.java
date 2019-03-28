@@ -33,7 +33,7 @@ import net.slayer.api.SlayerAPI;
 public class BoilSkyRenderer extends IRenderHandler {
 
     //private final Minecraft mc;
-    private static final ResourceLocation MOON_PHASES_TEXTURES = new ResourceLocation("textures/environment/sun.png");
+    private static final ResourceLocation MOON_PHASES_TEXTURES = new ResourceLocation(SlayerAPI.PREFIX + "textures/environment/boil_sun.png");
     private static final ResourceLocation SUN_TEXTURES = new ResourceLocation("textures/environment/moon_phases.png");
 	private int starGLCallList;
 	private int glSkyList;
