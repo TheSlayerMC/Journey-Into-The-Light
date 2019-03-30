@@ -69,6 +69,8 @@ public class JourneyBlocks {
 	public static ArrayList<String> blockName = new ArrayList<String>();
 	public static ArrayList<Block> blocks = new ArrayList<Block>();
 
+	public static BlockFruitCrop bleedheartFruit;
+	
 	public static BlockMod iridiumOre;
 	public static BlockMod verditeOre;
 	
@@ -460,7 +462,7 @@ public class JourneyBlocks {
 	public static BlockMod netherFurnace;
 	public static BlockMod netherFurnaceActive;
 	
-	public static BlockFruitCrop bleedheartFruit;
+
 
 	/**
 	public static BlockMod boilingFurnace = new BlockNetherFurnace("boilingFurnace", "Boiling Furnace", false);
@@ -468,6 +470,9 @@ public class JourneyBlocks {
 	 */
 
 	 public static void init() {
+		 
+		bleedheartFruit = (BlockFruitCrop) new BlockFruitCrop("bleedheartFruit", "Bleedheart Fruit", JourneyItems.bleedheart, sizzlerWoodLog).setCreativeTab(null);
+		 
 		iridiumOre = new BlockModOre("iridiumOre", "Iridium Ore", true).setHarvestLevel(EnumToolType.DIAMOND_PICK);
 		verditeOre = new BlockModOre("verditeOre", "Verdite Ore", false).setHarvestLevel(EnumToolType.STONE_PICK);
 		
@@ -523,7 +528,7 @@ public class JourneyBlocks {
 		hellshroom = new BlockNetherPlant("hellshroom", "Hellshroom");
 		heatSoil = new BlockMod(EnumMaterialTypes.DIRT, "heatSoil", "Nethic Soil", 2.0F);
 
-		igniterOn = new BlockIgniter("igniterOn", "Redstone Igniter");
+		igniterOn = (BlockMod) new BlockIgniter("igniterOn", "Redstone Igniter").setCreativeTab(null);
 		igniter = new BlockIgniter("igniter", "Redstone Igniter");
 		greenGemBlock = new BlockMod("greenGemBlock", "Green Gem Block");
 		purpleGemBlock = new BlockMod("purpleGemBlock", "Purple Gem Block");
@@ -843,8 +848,6 @@ public class JourneyBlocks {
 
 		netherFurnace = new BlockNetherFurnace("netherFurnace", "Nethic Furnace", false);
 		netherFurnaceActive = (BlockMod) new BlockNetherFurnace("netherFurnaceActive", "Nethic Furnace", true).setLightLevel(0.7F).setCreativeTab(null);
-		
-	 	bleedheartFruit = new BlockFruitCrop("bleedheartFruit", "Bleedheart Fruit", JourneyItems.bleedheart, sizzlerWoodLog);
 	 	
 		sizzleberryBush = new BlockModBush("sizzleberryBush", "Sizzleberry Bush", JourneyItems.sizzleberry, true);
 	 	bradberryBush = new BlockModBush("bradberryBush", "Bradberry Bush", JourneyItems.bradberry, false);
