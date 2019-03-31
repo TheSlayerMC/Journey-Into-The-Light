@@ -1,4 +1,4 @@
-package net.journey.dimension;
+package net.journey.dimension.boil;
 
 import org.lwjgl.opengl.GL11;
 
@@ -33,8 +33,9 @@ import net.slayer.api.SlayerAPI;
 public class BoilSkyRenderer extends IRenderHandler {
 
     //private final Minecraft mc;
-    private static final ResourceLocation MOON_PHASES_TEXTURES = new ResourceLocation(SlayerAPI.PREFIX + "textures/environment/boil_sun.png");
-    private static final ResourceLocation SUN_TEXTURES = new ResourceLocation("textures/environment/moon_phases.png");
+    private static final ResourceLocation SECOND_SUN_TEXTURES = new ResourceLocation(SlayerAPI.PREFIX + "textures/environment/boil_sun2.png");
+    private static final ResourceLocation SUN_TEXTURES = new ResourceLocation(SlayerAPI.PREFIX + "textures/environment/boil_sun.png");
+    private static final ResourceLocation SKY_TEXTURES = new ResourceLocation(SlayerAPI.PREFIX + "textures/environment/boil_sky.png");
 	private int starGLCallList;
 	private int glSkyList;
 	private int glSkyList2;
@@ -57,17 +58,18 @@ public class BoilSkyRenderer extends IRenderHandler {
         else {
             this.renderContainer = new RenderList();
             this.renderChunkFactory = new ListChunkFactory();
-        }
+        } 
 	}
 	
 
 	@Override
 	public void render(float partialTicks, WorldClient world, Minecraft mc) {
 		this.renderSky(partialTicks, world, mc);
+		this.renderSunAndMoon(partialTicks, world, mc);
 	}
 
 	@SideOnly(Side.CLIENT)
-	public void renderSky(float partialTicks, WorldClient world, Minecraft mc) {
+	public void renderSunAndMoon(float partialTicks, WorldClient world, Minecraft mc) {
 		
         Vec3d vec3d = world.getSkyColor(mc.getRenderViewEntity(), partialTicks);
         float f = (float)vec3d.x;
@@ -158,7 +160,7 @@ public class BoilSkyRenderer extends IRenderHandler {
 
         tessellator.draw(); 
         f17 = 20.0F;
-        mc.renderEngine.bindTexture(MOON_PHASES_TEXTURES);
+        mc.renderEngine.bindTexture(SECOND_SUN_TEXTURES);
 
         
         int k1 = world.getMoonPhase();
@@ -235,5 +237,55 @@ public class BoilSkyRenderer extends IRenderHandler {
         GlStateManager.enableTexture2D();
         GlStateManager.depthMask(true);
 	}
+	
+    private void renderSky(float partialTicks, WorldClient world, Minecraft mc) {
+		GlStateManager.disableFog();
+		GlStateManager.disableAlpha();
+		GlStateManager.enableBlend();
+		GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA,
+											GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, 
+											GlStateManager.SourceFactor.ONE,
+											GlStateManager.DestFactor.ZERO);
+		RenderHelper.disableStandardItemLighting();
+		GlStateManager.depthMask(false);
+		mc.renderEngine.bindTexture(SKY_TEXTURES);
+		Tessellator tessellator = Tessellator.getInstance();
+		BufferBuilder bufferbuilder = tessellator.getBuffer();
 
+		for (int k1 = 0; k1 < 6; ++k1) {
+			GlStateManager.pushMatrix();
+
+			if (k1 == 1) {
+				GlStateManager.rotate(90.0F, 1.0F, 0.0F, 0.0F);
+			}
+
+			if (k1 == 2) {
+				GlStateManager.rotate(-90.0F, 1.0F, 0.0F, 0.0F);
+			}
+
+			if (k1 == 3) {
+				GlStateManager.rotate(180.0F, 1.0F, 0.0F, 0.0F);
+			}
+
+			if (k1 == 4) {
+				GlStateManager.rotate(90.0F, 0.0F, 0.0F, 1.0F);
+			}
+
+			if (k1 == 5) {
+				GlStateManager.rotate(-90.0F, 0.0F, 0.0F, 1.0F);
+			}
+
+			bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
+			bufferbuilder.pos(-100.0D, -100.0D, -100.0D).tex(0.0D, 0.0D).color(40, 40, 40, 255).endVertex();
+			bufferbuilder.pos(-100.0D, -100.0D, 100.0D).tex(0.0D, 16.0D).color(40, 40, 40, 255).endVertex();
+			bufferbuilder.pos(100.0D, -100.0D, 100.0D).tex(16.0D, 16.0D).color(40, 40, 40, 255).endVertex();
+			bufferbuilder.pos(100.0D, -100.0D, -100.0D).tex(16.0D, 0.0D).color(40, 40, 40, 255).endVertex();
+			tessellator.draw();
+			GlStateManager.popMatrix();
+		}
+
+		GlStateManager.depthMask(true);
+		GlStateManager.enableTexture2D();
+		GlStateManager.enableAlpha();
+    }
 }

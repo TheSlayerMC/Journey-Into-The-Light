@@ -1,6 +1,5 @@
 package net.journey.dimension.boil;
 
-import net.journey.dimension.BoilSkyRenderer;
 import net.journey.dimension.DimensionHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.math.BlockPos;
@@ -77,7 +76,7 @@ public class WorldProviderBoiling extends WorldProvider {
 	
 	@Override
 	public float calculateCelestialAngle(long var1, float var3) {
-		return 0.6F; 
+		return 0.25F; 
 	}
 
 	@Override

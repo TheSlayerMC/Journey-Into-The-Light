@@ -17,6 +17,7 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.stats.StatList;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -48,7 +49,10 @@ public class BlockSummoningTable extends BlockModContainer {
 		if (w.isRemote) {
 			return true;
 		} else {
-			p.displayGui(new BlockSummoningTable.InterfaceSummoningTable(w, pos));
+            TileEntity tileentity = w.getTileEntity(pos);
+
+            if (tileentity instanceof TileEntitySummoningTable)
+			p.displayGUIChest((TileEntitySummoningTable)(tileentity));
             return true;
 		}
 	}
