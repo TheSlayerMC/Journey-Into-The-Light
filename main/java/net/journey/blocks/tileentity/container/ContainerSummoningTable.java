@@ -4,6 +4,7 @@ import net.journey.blocks.tileentity.TileEntitySummoningTable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
+import net.minecraft.inventory.IContainerListener;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
@@ -11,12 +12,13 @@ import net.minecraft.world.World;
 
 public class ContainerSummoningTable extends Container {
 
+	private final TileEntitySummoningTable tileentity;
 	public IInventory tableInventory;
 	private World world;
 
 	public ContainerSummoningTable(InventoryPlayer inventory, TileEntitySummoningTable entity, World w) {
-		world = w;
-		tableInventory = entity;
+		this.tileentity = entity;
+		this.world = w;
 		this.addSlotToContainer(new Slot(entity, 0, 44, 17));
 		this.addSlotToContainer(new Slot(entity, 1, 44, 35));
 		this.addSlotToContainer(new Slot(entity, 2, 44, 53));
@@ -29,6 +31,12 @@ public class ContainerSummoningTable extends Container {
 		for(int i = 0; i < 9; ++i) this.addSlotToContainer(new Slot(inventory, i, 8 + i * 18, 142));
 	}
 
+	@Override
+	public void addListener(IContainerListener l) {
+		super.addListener(l);
+		l.sendAllWindowProperties(this, this.tileentity);
+	}
+	
 	@Override
 	public boolean canInteractWith(EntityPlayer playerIn) {
 		return true;

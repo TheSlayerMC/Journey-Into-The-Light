@@ -3,6 +3,7 @@ package net.journey;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.journey.blocks.tileentity.TileEntityHandler;
 import net.journey.client.IHasModel;
 import net.journey.util.recipes.JourneySmeltingRecipes;
 import net.minecraft.block.Block;
@@ -31,6 +32,7 @@ public class Registrys {
 	public static void registerBlocks(RegistryEvent.Register<Block> event) {
 		for(int i = 0; i < JourneyBlocks.blocks.size(); i++)
 			event.getRegistry().registerAll(JourneyBlocks.blocks.get(i));
+		TileEntityHandler.register();
 	}
 	
 	@SubscribeEvent
