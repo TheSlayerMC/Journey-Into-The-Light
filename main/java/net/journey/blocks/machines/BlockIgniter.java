@@ -8,11 +8,13 @@ import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.Item;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.slayer.api.SlayerAPI;
 import net.slayer.api.block.BlockMod;
 
 public class BlockIgniter extends BlockMod {
@@ -30,6 +32,11 @@ public class BlockIgniter extends BlockMod {
 	@Override
 	public boolean canConnectRedstone(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side) {
 		return true;
+	}
+	
+	@Override
+	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+		return SlayerAPI.toItem(JourneyBlocks.igniter);
 	}
 	
 	@Override

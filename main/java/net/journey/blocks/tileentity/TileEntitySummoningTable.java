@@ -35,6 +35,7 @@ import net.slayer.api.SlayerAPI;
 public class TileEntitySummoningTable extends TileEntity implements ITickable, IInventory {
 
     private NonNullList<ItemStack> summoningItemStacks = NonNullList.<ItemStack>withSize(7, ItemStack.EMPTY);
+    private String customName;
 	//private ItemStack[] inventory;
 
 	public TileEntitySummoningTable() {

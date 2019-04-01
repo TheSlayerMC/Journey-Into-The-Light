@@ -1,5 +1,12 @@
 {
 	"variants": {
-		"normal": { "model": "journey:summoningTable"}
+		"creating=false,facing=north": { "model": "journey:summoningtable" },
+		"creating=false,facing=east": { "model": "journey:summoningtable", "y" : 90 },
+		"creating=false,facing=south": { "model": "journey:summoningtable", "y" : 180 },
+		"creating=false,facing=west": { "model": "journey:summoningtable" , "y" : 270 },
+		"creating=true,facing=north": { "model": "journey:summoningtable_active" },
+		"creating=true,facing=east": { "model": "journey:summoningtable_active", "y" : 90 },
+		"creating=true,facing=south": { "model": "journey:summoningtable_active", "y" : 180 },
+		"creating=true,facing=west": { "model": "journey:summoningtable_active" , "y" : 270 },
 	}
 }
