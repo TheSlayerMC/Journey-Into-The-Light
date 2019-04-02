@@ -38,6 +38,14 @@ import net.slayer.api.SlayerAPI;
 
 public class TileEntitySummoningTable extends TileEntity implements ITickable, IInventory {
 
+
+	/* TODO:
+	 * Finish slot index in container for blood and rotten flesh
+	 * Create custom burn time for rotten flesh
+	 * Finish slots for 6 summoning items, 1 result item, blood slot and flesh slot
+	 * Create summoning recipe class
+	 */
+	
     private NonNullList<ItemStack> inventory = NonNullList.<ItemStack>withSize(7, ItemStack.EMPTY);
     private String customName;
     
