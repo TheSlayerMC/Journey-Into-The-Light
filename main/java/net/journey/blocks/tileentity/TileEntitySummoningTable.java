@@ -26,73 +26,87 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.datafix.DataFixer;
 import net.minecraft.util.datafix.FixTypes;
 import net.minecraft.util.datafix.walkers.ItemStackDataLists;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.client.FMLClientHandler;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.SlayerAPI;
 
 public class TileEntitySummoningTable extends TileEntity implements ITickable, IInventory {
 
-    private NonNullList<ItemStack> summoningItemStacks = NonNullList.<ItemStack>withSize(7, ItemStack.EMPTY);
+    private NonNullList<ItemStack> inventory = NonNullList.<ItemStack>withSize(7, ItemStack.EMPTY);
     private String customName;
-	//private ItemStack[] inventory;
+    
+    private int bloodTime;
+    private int currentBloodTime;
+    private int creationTime;
+    private int totalCreationTime;
 
-	public TileEntitySummoningTable() {
-		//this.inventory = new ItemStack[7];
-		EntityPlayer EntityPlayer;
+	@Override
+	public String getName() {
+		return this.hasCustomName() ? this.customName : "container.summoningtable";
 	}
 
 	@Override
+	public boolean hasCustomName() {
+		return this.customName!= null && !this.customName.isEmpty();
+	}
+	
+	public void setCustomName(String name) {
+		this.customName = name;
+	}
+	
+	@Override
+	public ITextComponent getDisplayName() {
+		return this.hasCustomName() ? new TextComponentString(this.getName()) : new TextComponentTranslation(this.getName());
+	}
+	
+	@Override
 	public int getSizeInventory() {
-		return summoningItemStacks.size();
+		return this.inventory.size();
 	}
 
 	@Override
 	public boolean isEmpty() {
-		for (ItemStack itemstack : this.summoningItemStacks) {
+		for (ItemStack itemstack : this.inventory) {
 			if (!itemstack.isEmpty()) {
 				return false;
 			}
 		}
-
 		return true;
 	}
 	
 	@Override
 	public ItemStack getStackInSlot(int i) {
-		return summoningItemStacks.get(i);
+		return this.inventory.get(i);
 	}
 	
 	@Override
 	public ItemStack decrStackSize(int i, int j) {
-		return ItemStackHelper.getAndSplit(this.summoningItemStacks, i, j);
+		return ItemStackHelper.getAndSplit(this.inventory, i, j);
 	}
 	
 	@Override
 	public ItemStack removeStackFromSlot(int index) {
-		return ItemStackHelper.getAndRemove(this.summoningItemStacks, index);
+		return ItemStackHelper.getAndRemove(this.inventory, index);
 	}
 	
 	@Override
 	public void setInventorySlotContents(int index, ItemStack stack) {
-		ItemStack itemstack = this.summoningItemStacks.get(index);
-		
-		boolean flag = stack != null && stack.isItemEqual(itemstack) && ItemStack.areItemStackTagsEqual(stack, itemstack);
+		ItemStack itemstack = (ItemStack)this.inventory.get(index);
+		boolean flag = !stack.isEmpty() && stack.isItemEqual(itemstack) && ItemStack.areItemStackTagsEqual(stack, itemstack);
+		this.inventory.set(index, stack);
 
 		if(stack != null && stack.getCount() > this.getInventoryStackLimit())
 			stack.setCount(this.getInventoryStackLimit()); 
-		if(index == 0 && !flag) this.markDirty();
-	}
-	
-	@Override
-	public String getName() {
-		return "Summoning Table";
-	}
-	
-	@Override
-	public boolean hasCustomName() {
-		return true;
+		if(index == 0 && index + 1 == 1 && !flag) {
+			ItemStack stack1 = (ItemStack)this.inventory.get(index + 1);
+			this.totalCreationTime = this.getCreationTime(stack, stack1);
+		}
 	}
 	
     public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) {
@@ -106,39 +120,45 @@ public class TileEntitySummoningTable extends TileEntity implements ITickable, I
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
-        this.summoningItemStacks = NonNullList.<ItemStack>withSize(this.getSizeInventory(), ItemStack.EMPTY);
-        ItemStackHelper.loadAllItems(nbt, this.summoningItemStacks);
-		NBTTagList nbttaglist = nbt.getTagList("Items", 10);
-		for(int i = 0; i < nbttaglist.tagCount(); i++) {
-			NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
-			byte b0 = nbttagcompound1.getByte("Slot");
-			//if(b0 >= 0 && b0 < this.inventory.length)
-			//	this.inventory[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
-		} 
+        this.inventory = NonNullList.<ItemStack>withSize(this.getSizeInventory(), ItemStack.EMPTY);
+        ItemStackHelper.loadAllItems(nbt, this.inventory);
+		this.bloodTime = nbt.getInteger("BloodTime");
+		this.creationTime = nbt.getInteger("CreationTime");
+		this.totalCreationTime = nbt.getInteger("CreationTimeTotal");
+		this.currentBloodTime = getItemCreationTime((ItemStack)this.inventory.get(2));
+		
+		if(nbt.hasKey("CustomName", 8)) this.setCustomName(nbt.getString("CustomName"));
 	}
 	
 	@Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
-        ItemStackHelper.saveAllItems(nbt, this.summoningItemStacks);
-		NBTTagList nbttaglist = new NBTTagList();
-		for(int i = 0; i < this.summoningItemStacks.size(); i++) {
-			if(this.summoningItemStacks.get(i) != null) {
-				NBTTagCompound nbttagcompound1 = new NBTTagCompound();
-				nbttagcompound1.setByte("Slot", (byte)i);
-				this.summoningItemStacks.get(i).writeToNBT(nbttagcompound1);
-				nbttaglist.appendTag(nbttagcompound1);
-			}
-		}
-		nbt.setTag("Items", nbttaglist);
+        nbt.setInteger("BloodTime", (short)this.bloodTime);
+        nbt.setInteger("CreationTime", (short)this.creationTime);
+        nbt.setInteger("CreationTimeTotal", (short)this.totalCreationTime);
+        ItemStackHelper.saveAllItems(nbt, this.inventory);
+        
+        if (this.hasCustomName()) nbt.setString("CustomName", this.customName);
 		return nbt;
 	}
 
-
+	@Override
+	public int getInventoryStackLimit() {
+		return 1;
+	}
+	
+	public boolean isBloodActive() {
+		return this.bloodTime > 0;
+	}
+	
+	@SideOnly(Side.CLIENT)
+	public static boolean isBloodActive(IInventory i) {
+		return i.getField(0) > 0;
+	}
 
 	@Override
 	public void update() {
-		if(this.summoningItemStacks.get(0) != null && this.summoningItemStacks.get(1) != null && this.summoningItemStacks.get(2) != null && this.summoningItemStacks.get(3) != null && this.summoningItemStacks.get(4) != null && this.summoningItemStacks.get(5) != null && this.summoningItemStacks.get(6) != null) {
+		if(this.inventory.get(0) != null && this.inventory.get(1) != null && this.inventory.get(2) != null && this.inventory.get(3) != null && this.inventory.get(4) != null && this.inventory.get(5) != null && this.inventory.get(6) != null) {
 			if(areItemsInSlots(
 					JourneyItems.boilPowder, 
 					JourneyItems.boilPowder, 
@@ -148,7 +168,7 @@ public class TileEntitySummoningTable extends TileEntity implements ITickable, I
 					JourneyItems.boilPowder, 
 					JourneyItems.boilPowder)) {
 				setAllSlotsToNull();
-				this.summoningItemStacks.set(3, new ItemStack(JourneyItems.blazierOrb));
+				this.inventory.set(3, new ItemStack(JourneyItems.blazierOrb));
 				addSound();
 				addParticles();
 			} /*
@@ -297,7 +317,93 @@ public class TileEntitySummoningTable extends TileEntity implements ITickable, I
 			}**/
 		}
 	}
+	
+	public int getCreationTime(ItemStack input1, ItemStack input2) {
+		return 1000;
+	}
+	
+	private boolean canCreate() {
+		if(((ItemStack)this.inventory.get(0)).isEmpty() || ((ItemStack)this.inventory.get(1)).isEmpty()) return false;
+		else {
+			ItemStack result = SummoningTableRecipes.getInstance().getSummonResult((ItemStack)this.inventory.get(0), (ItemStack)this.inventory.get(1));
+			if(result.isEmpty()) return false;
+			else {
+				ItemStack output = (ItemStack)this.inventory.get(3);
+				if(output.isEmpty()) return true;
+				if(!output.isItemEqual(result)) return false;
+				int res = output.getCount() + result.getCount();
+				return res <= getInventoryStackLimit() && res <= output.getMaxStackSize();
+			}
+		}
+	}
+	
+	public void createItem() {
+		if(this.canCreate()) {
+			ItemStack i1 = (ItemStack)this.inventory.get(0);
+			ItemStack i2 = (ItemStack)this.inventory.get(1);
+			ItemStack result = SummoningTableRecipes.getInstance().getSummonResult(i1, i2);
+			ItemStack output = (ItemStack)this.inventory.get(3);
+			
+			if(output.isEmpty()) this.inventory.set(3, result.copy());
+			else if(output.getItem() == result.getItem()) output.grow(result.getCount());
+			
+			i1.shrink(1);
+			i2.shrink(1);
+		}
+	}
+	
+	public static int getItemCreationTime(ItemStack stack) {
+		if(stack.isEmpty()) return 0;
+		else {
+			Item item = stack.getItem();
+			
+			if(item == JourneyItems.concentratedBlood) return 200;
+			return GameRegistry.getFuelValue(stack);
+		}
+	}
 
+	public static boolean isItemFuel(ItemStack stack) {
+		return getItemCreationTime(stack) > 0;
+	}
+	
+	@Override
+	public boolean isUsableByPlayer(EntityPlayer player) {
+		double x = this.pos.getX() + 0.5D;
+		double y = this.pos.getY() + 0.5D;
+		double z = this.pos.getZ() + 0.5D;
+		
+		return this.world.getTileEntity(this.pos) != this ? false : player.getDistanceSq(x, y, z) <= 64;
+	}
+	
+	@Override
+	public boolean isItemValidForSlot(int index, ItemStack stack) {
+		if(index == 3) return false;
+		else if(index !=2) return true;
+		else {
+			return isItemFuel(stack);
+		}
+	}
+	
+	public String getGuiID() {
+		return "journey:summoningtable";
+	}
+	
+	@Override
+	public int getField(int id) {
+		switch(id) {
+		case 0:
+			return this.bloodTime;
+		case 1:
+			return this.currentBloodTime;
+		case 2:
+			return this.creationTime;
+		case 3:
+			return this.totalCreationTime;
+		default:
+			return 0;
+		}
+	}
+	
 	@SideOnly(Side.CLIENT)
 	public void addSound() {
 		double x = pos.getX();
@@ -315,11 +421,11 @@ public class TileEntitySummoningTable extends TileEntity implements ITickable, I
 	}
 
 	public boolean areItemStacksInSlots(ItemStack s, ItemStack s1, ItemStack s2, ItemStack s3, ItemStack s4, ItemStack s5, ItemStack s6) {
-		return this.summoningItemStacks.get(0) == s && this.summoningItemStacks.get(1) == s1 && this.summoningItemStacks.get(2) == s2 && this.summoningItemStacks.get(3) == s3 && this.summoningItemStacks.get(4) == s4 && this.summoningItemStacks.get(5) == s5 && this.summoningItemStacks.get(6) == s6;
+		return this.inventory.get(0) == s && this.inventory.get(1) == s1 && this.inventory.get(2) == s2 && this.inventory.get(3) == s3 && this.inventory.get(4) == s4 && this.inventory.get(5) == s5 && this.inventory.get(6) == s6;
 	}
 
 	public boolean areItemsInSlots(Item s, Item s1, Item s2, Item s3, Item s4, Item s5, Item s6) {
-		return this.summoningItemStacks.get(0).getItem() == s && this.summoningItemStacks.get(1).getItem() == s1 && this.summoningItemStacks.get(2).getItem() == s2 && this.summoningItemStacks.get(3).getItem() == s3 && this.summoningItemStacks.get(4).getItem() == s4 && this.summoningItemStacks.get(5).getItem() == s5 && this.summoningItemStacks.get(6).getItem() == s6;
+		return this.inventory.get(0).getItem() == s && this.inventory.get(1).getItem() == s1 && this.inventory.get(2).getItem() == s2 && this.inventory.get(3).getItem() == s3 && this.inventory.get(4).getItem() == s4 && this.inventory.get(5).getItem() == s5 && this.inventory.get(6).getItem() == s6;
 	}
 
 	public void setAllSlotsToNull() {
@@ -327,18 +433,13 @@ public class TileEntitySummoningTable extends TileEntity implements ITickable, I
 	}
 
 	public void setInventorySlots(ItemStack s, ItemStack s1, ItemStack s2, ItemStack s3, ItemStack s4, ItemStack s5, ItemStack s6) {
-		s = this.summoningItemStacks.get(0);
-		s1 = this.summoningItemStacks.get(1);
-		s2 = this.summoningItemStacks.get(2);
-		s3 = this.summoningItemStacks.get(3);
-		s4 = this.summoningItemStacks.get(4);
-		s5 = this.summoningItemStacks.get(5);
-		s6 = this.summoningItemStacks.get(6);
-	}
-
-	@Override
-	public int getInventoryStackLimit() {
-		return 1;
+		s = this.inventory.get(0);
+		s1 = this.inventory.get(1);
+		s2 = this.inventory.get(2);
+		s3 = this.inventory.get(3);
+		s4 = this.inventory.get(4);
+		s5 = this.inventory.get(5);
+		s6 = this.inventory.get(6);
 	}
 
 	@Override
@@ -346,16 +447,6 @@ public class TileEntitySummoningTable extends TileEntity implements ITickable, I
 
 	@Override
 	public void closeInventory(EntityPlayer player) { }
-
-	@Override
-	public boolean isItemValidForSlot(int index, ItemStack stack) {
-		return stack.getItem() != null;
-	}
-
-	@Override
-	public int getField(int id) {
-		return 0;
-	}
 
 	@Override
 	public void setField(int id, int value) { }
@@ -367,11 +458,6 @@ public class TileEntitySummoningTable extends TileEntity implements ITickable, I
 
 	@Override
 	public void clear() {
-		this.summoningItemStacks.clear();
-	}
-
-	@Override
-	public boolean isUsableByPlayer(EntityPlayer player) {
-		return true;
+		this.inventory.clear();
 	}
 }
