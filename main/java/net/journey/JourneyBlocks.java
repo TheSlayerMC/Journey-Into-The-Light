@@ -91,6 +91,8 @@ public class JourneyBlocks {
 	public static BlockMod bleedstone;
 	public static BlockMod smithstone;
 	
+	public static BlockMod heatstoneOre;
+	
 	public static BlockMod enderilliumOre;
 	public static BlockMod gorbiteOre;
 	public static BlockMod orbaditeOre;
@@ -125,6 +127,7 @@ public class JourneyBlocks {
 	public static BlockNetherFlower hellBell;
 	public static BlockMod hellshroom;
 	public static BlockMod heatSoil;
+	public static BlockMod heatSand;
 
 	public static BlockMod igniterOn;
 	public static BlockMod igniter;
@@ -478,7 +481,7 @@ public class JourneyBlocks {
 		iridiumOre = new BlockModOre("iridiumOre", "Iridium Ore", true).setHarvestLevel(EnumToolType.DIAMOND_PICK);
 		verditeOre = new BlockModOre("verditeOre", "Verdite Ore", false).setHarvestLevel(EnumToolType.STONE_PICK);
 		
-		sapphireOre = new BlockModOre("sapphireOre", "Sapphire Ore", false).setHarvestLevel(EnumToolType.IRON_PICK);
+		sapphireOre = new BlockModOre("sapphireOre", "Sapphire Ore", false).setHarvestLevel(EnumToolType.DIAMOND_PICK);
 		lavaRock = new BlockMod("lavaRock", "Lava Rock").setHarvestLevel(EnumToolType.DIAMOND_PICK);
 		shadiumOre = new BlockModOre("shadiumOre", "Shadium Ore", false).setHarvestLevel(EnumToolType.DIAMOND_PICK);
 		luniumOre = new BlockModOre("luniumOre", "Lunium Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
@@ -494,6 +497,7 @@ public class JourneyBlocks {
 		
 		bleedstone = (BlockMod) new BlockModOre("bleedstoneOre", "Bleedstone", false).setHarvestLevel(EnumToolType.DIAMOND_PICK).setLightLevel(10.5F);
 		smithstone = (BlockMod) new BlockModOre("smithstoneOre", "Smithstone", false).setHarvestLevel(EnumToolType.DIAMOND_PICK).setLightLevel(10.5F);
+		heatstoneOre = (BlockMod) new BlockModOre(EnumMaterialTypes.SAND, "heatstoneOre", "Heatstone Ore", false).setHarvestLevel(EnumToolType.DIAMOND_SHOVEL).setLightLevel(0.5F);
 		
 		enderilliumOre = new BlockModOre("enderilliumOre", "Enderillium Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
 		gorbiteOre = new BlockModOre("gorbiteOre", "Gorbite Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
@@ -529,6 +533,7 @@ public class JourneyBlocks {
 		hellBell = new BlockNetherFlower("hellBell", "Hell Bell");
 		hellshroom = new BlockNetherPlant("hellshroom", "Hellshroom");
 		heatSoil = new BlockMod(EnumMaterialTypes.DIRT, "heatSoil", "Nethic Soil", 2.0F);
+		heatSand = new BlockMod(EnumMaterialTypes.SAND, "heatSand", "Heat Sand", 2.0F);
 
 		igniterOn = (BlockMod) new BlockIgniter("igniterOn", "Redstone Igniter").setCreativeTab(null);
 		igniter = new BlockIgniter("igniter", "Redstone Igniter");

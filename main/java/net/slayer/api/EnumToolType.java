@@ -8,12 +8,18 @@ public enum EnumToolType {
     GOLD_PICK("pickaxe", Item.ToolMaterial.GOLD.getHarvestLevel()),
     STONE_PICK("pickaxe", Item.ToolMaterial.STONE.getHarvestLevel()),
     IRON_PICK("pickaxe", Item.ToolMaterial.IRON.getHarvestLevel()),
-    DIAMOND_PICK("pickaxe", Item.ToolMaterial.DIAMOND.getHarvestLevel());
+    DIAMOND_PICK("pickaxe", Item.ToolMaterial.DIAMOND.getHarvestLevel()),
    /* HELLSTONE("pickaxe", EssenceToolMaterial.HELLSTONE_PICKAXE.getHarvestLevel()),
     CELESTIUM("pickaxe", EssenceToolMaterial.CELESTIUM_PICKAXE.getHarvestLevel()),
     LUNIUM("pickaxe", EssenceToolMaterial.LUNIUM_PICKAXE.getHarvestLevel()),
     FLAIRIUM("pickaxe", EssenceToolMaterial.FLAIRIUM_PICKAXE.getHarvestLevel()),
     SHADIUM("pickaxe", EssenceToolMaterial.SHADIUM_PICKAXE.getHarvestLevel());*/
+	
+    WOOD_SHOVEL("shovel", Item.ToolMaterial.WOOD.getHarvestLevel()),
+    GOLD_SHOVEL("shovel", Item.ToolMaterial.GOLD.getHarvestLevel()),
+    STONE_SHOVEL("shovel", Item.ToolMaterial.STONE.getHarvestLevel()),
+    IRON_SHOVEL("shovel", Item.ToolMaterial.IRON.getHarvestLevel()),
+    DIAMOND_SHOVEL("shovel", Item.ToolMaterial.DIAMOND.getHarvestLevel());
     
     private String toolType;
     private int harvestLevel;

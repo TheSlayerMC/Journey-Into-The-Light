@@ -40,12 +40,14 @@ public class ChunkProviderNether implements IChunkGenerator {
     protected static final IBlockState GRAVEL = Blocks.GRAVEL.getDefaultState();
     protected static final IBlockState SOUL_SAND = Blocks.SOUL_SAND.getDefaultState();
     protected static final IBlockState SOIL = JourneyBlocks.heatSoil.getDefaultState();
+    protected static final IBlockState SAND = JourneyBlocks.heatSand.getDefaultState();
     private final World world;
     private final boolean generateStructures;
     private final Random rand;
     private double[] slowsandNoise = new double[256];
     private double[] gravelNoise = new double[256];
     private double[] heatsoilNoise = new double[256];
+    private double[] heatsandNoise = new double[256];
     private double[] depthBuffer = new double[256];
     private double[] buffer;
     private NoiseGeneratorOctaves lperlinNoise1;
@@ -194,6 +196,7 @@ public class ChunkProviderNether implements IChunkGenerator {
                 boolean flag = this.slowsandNoise[j + k * 16] + this.rand.nextDouble() * 0.2D > 0.0D;
                 boolean flag1 = this.gravelNoise[j + k * 16] + this.rand.nextDouble() * 0.2D > 0.0D;
                 boolean flag2 = this.heatsoilNoise[j + k * 16] + this.rand.nextDouble() * 0.2D > 0.0D;
+                boolean flag3 = this.heatsandNoise[j + k * 16] + this.rand.nextDouble() * 0.2D > 0.0D;
                 
                 int l = (int)(this.depthBuffer[j + k * 16] / 3.0D + 3.0D + this.rand.nextDouble() * 0.25D);
                 int i1 = -1;
@@ -238,6 +241,12 @@ public class ChunkProviderNether implements IChunkGenerator {
                                         {
                                             iblockstate = SOIL;
                                             iblockstate1 = SOIL;
+                                        }
+                                        
+                                        if (flag3)
+                                        {
+                                            iblockstate = SAND;
+                                            iblockstate1 = SAND;
                                         }
                                     }
 

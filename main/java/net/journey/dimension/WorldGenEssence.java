@@ -127,22 +127,29 @@ public class WorldGenEssence implements IWorldGenerator {
 			y = r.nextInt(255) + 1;
 			x = chunkX + r.nextInt(16);
 			z = chunkZ + r.nextInt(16);
-			worldGenNetherFeature(JourneyBlocks.nethicanSludge, 10, w, x, y, z);
+			worldGenNetherFeature(JourneyBlocks.nethicanSludge, JourneyBlocks.heatSoil, 10, w, x, y, z);
 		}
 
 		for(times = 0; times < 100; times++) {
 			y = r.nextInt(250) + 1;
 			x = chunkX + r.nextInt(16);
 			z = chunkZ + r.nextInt(16);
-			worldGenNetherFeature(JourneyBlocks.lavaRock, 40, w, x, y, z);
+			worldGenNetherFeature(JourneyBlocks.lavaRock, JourneyBlocks.heatSoil, 40, w, x, y, z);
+		}
+		
+		for(times = 0; times < 5; times++) {
+			y = r.nextInt(250) + 1;
+			x = chunkX + r.nextInt(16);
+			z = chunkZ + r.nextInt(16);
+			worldGenNetherFeature(JourneyBlocks.heatstoneOre, JourneyBlocks.heatSand, 40, w, x, y, z);
 		}
 
 		if(Config.overrideNether = false) {
-			for(times = 0; times < 500; times++) {
+			for(times = 0; times < 200; times++) {
 				y = r.nextInt(250) + 1;
 				x = chunkX + r.nextInt(16);
 				z = chunkZ + r.nextInt(16);
-				worldGenNetherFeature(JourneyBlocks.heatSoil, 500, w, x, y, z);
+				worldGenNetherFeature(JourneyBlocks.heatSoil, Blocks.NETHERRACK, 50, w, x, y, z);
 			}
 		}
 
@@ -203,7 +210,7 @@ public class WorldGenEssence implements IWorldGenerator {
 			y = r.nextInt(250); 
 			x = chunkX + r.nextInt(16) + 8; 
 			z = chunkZ + r.nextInt(16) + 8;
-			if(isBlockTop(x, y, z, Blocks.SOUL_SAND, w))
+			if(isBlockTop(x, y, z, JourneyBlocks.heatSand, w))
 				(new WorldGenNetherShroom()).generate(w, r, new BlockPos(x, y, z));
 		}
 
@@ -241,7 +248,7 @@ public class WorldGenEssence implements IWorldGenerator {
 				new WorldGenNetherFlower(w, r, new BlockPos(x, y, z), JourneyBlocks.hellBell);
 		} 
 
-		if(r.nextInt(20)==0) {
+		if(r.nextInt(1)==0) {
 			y = r.nextInt(128) + 1;
 			x = chunkX + r.nextInt(16);
 			z = chunkZ + r.nextInt(16);
@@ -257,7 +264,7 @@ public class WorldGenEssence implements IWorldGenerator {
 				new WorldGenNetherDungeons().generate(w, r, new BlockPos(x, y, z));
 		}
 
-		for(times = 0; times < 5; times++) {
+		/*for(times = 0; times < 5; times++) {
 			y = r.nextInt(128) + 1;
 			x = chunkX + r.nextInt(16);
 			z = chunkZ + r.nextInt(16);
@@ -271,9 +278,9 @@ public class WorldGenEssence implements IWorldGenerator {
 			z = chunkZ + r.nextInt(16);
 			if(isBlockTop(x, y, z, Blocks.NETHERRACK, w))
 				new WorldGenHellThornMedium().generate(w, r, new BlockPos(x, y, z));
-		}
+		}*/
 
-		for(times = 0; times < 5; times++) {
+		for(times = 0; times < 50; times++) {
 			y = r.nextInt(64); 
 			x = chunkX + r.nextInt(16);
 			z = chunkZ + r.nextInt(16);
@@ -554,8 +561,8 @@ public class WorldGenEssence implements IWorldGenerator {
 		(new WorldGenMinable(spawn.getDefaultState(), vein, BlockStateMatcher.forBlock(Blocks.GLOWSTONE))).generate(w, r, new BlockPos(x, y, z));
 	}
 
-	private static void worldGenNetherFeature(Block spawn, int vein, World w, int x, int y, int z){
-		(new WorldGenMinable(spawn.getDefaultState(), vein, BlockStateMatcher.forBlock(JourneyBlocks.heatSoil))).generate(w, r, new BlockPos(x, y, z));
+	private static void worldGenNetherFeature(Block spawn, Block toGenerateIn, int vein, World w, int x, int y, int z){
+		(new WorldGenMinable(spawn.getDefaultState(), vein, BlockStateMatcher.forBlock(toGenerateIn))).generate(w, r, new BlockPos(x, y, z));
 	}
 
 	private static void worldGenSoulsandFeature(Block spawn, int vein, World w, int x, int y, int z){
