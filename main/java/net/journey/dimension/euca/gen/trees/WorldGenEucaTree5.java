@@ -15,7 +15,7 @@ public class WorldGenEucaTree5 extends WorldGenerator {
 
 	@Override
 	public boolean generate(World world, Random r, BlockPos pos) {
-		int i = pos.getX() - 2, j = pos.getY(), k = pos.getZ() - 2;
+		int i = pos.getX() - 2, j = pos.getY() - 1, k = pos.getZ() - 2;
 		Block log = JourneyBlocks.eucaGoldLog;
 		Block leaves = JourneyBlocks.eucaSilverLeaves;
 		int height = r.nextInt(3);
