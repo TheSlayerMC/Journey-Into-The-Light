@@ -13,6 +13,10 @@ import net.journey.dimension.euca.gen.trees.WorldGenEucaTree2;
 import net.journey.dimension.euca.gen.trees.WorldGenEucaTree3;
 import net.journey.dimension.euca.gen.trees.WorldGenEucaTree4;
 import net.journey.dimension.euca.gen.trees.WorldGenEucaTree5;
+import net.journey.dimension.euca.gen.trees.WorldGenEucaTree6;
+import net.journey.dimension.euca.gen.trees.WorldGenEucaTree7;
+import net.journey.dimension.euca.gen.trees.WorldGenEucaTree8;
+import net.journey.dimension.euca.gen.trees.WorldGenEucaTree9;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -39,7 +43,9 @@ public class ChunkProviderEuca implements IChunkGenerator {
 	private double[] noiseArray;
 	private Biome[] biomesForGeneration;
 	private double[] noise3, noise1, noise2, noise5, noise6;
-	private ArrayList<WorldGenerator> trees;
+	private ArrayList<WorldGenerator> treesgreen;
+	private ArrayList<WorldGenerator> treesnormal;
+	private ArrayList<WorldGenerator> treestall;
 
 	public ChunkProviderEuca(World var1, long var2){
 		this.worldObj = var1;
@@ -53,13 +59,21 @@ public class ChunkProviderEuca implements IChunkGenerator {
 		this.noiseGen6 = new NoiseGeneratorOctaves(this.rand, 16);
 		new WorldGenEucaWater(Blocks.FLOWING_WATER, true);
 		new WorldGenEucaWater(Blocks.FLOWING_WATER, false);
+		
+		treesgreen = new ArrayList<WorldGenerator>(6);
+		treesgreen.add(new WorldGenEucaTree6());
+		treesgreen.add(new WorldGenEucaTree7());
+		treesgreen.add(new WorldGenEucaTree8());
+		treesgreen.add(new WorldGenEucaTree9());
 
-		trees = new ArrayList<WorldGenerator>(3);
-		trees.add(new WorldGenEucaTree());
-		trees.add(new WorldGenEucaTree2());
-		trees.add(new WorldGenEucaTree3());
-		trees.add(new WorldGenEucaTree4());
-		trees.add(new WorldGenEucaTree5());
+		treesnormal = new ArrayList<WorldGenerator>(6);
+		treesnormal.add(new WorldGenEucaTree4());
+		treesnormal.add(new WorldGenEucaTree5());
+		
+		treestall = new ArrayList<WorldGenerator>(3);
+		treestall.add(new WorldGenEucaTree());
+		treestall.add(new WorldGenEucaTree2());
+		treestall.add(new WorldGenEucaTree3());
 	}
 
 	@Override
@@ -242,13 +256,31 @@ public class ChunkProviderEuca implements IChunkGenerator {
 			int yCoord = rand.nextInt(128);
 			if(isBlockTop(x, yCoord - 1, z, JourneyBlocks.eucaGrass)) new WorldGenBotSpawner().generate(worldObj, rand, new BlockPos(x, yCoord, z));
 		}
-
-		for(times = 0; times < 180; times++) {
+		
+		for(times = 0; times < 5; times++) {
 			x = x1 + this.rand.nextInt(16) + 8;
 			z = z1 + this.rand.nextInt(16) + 8;
 			int yCoord = rand.nextInt(128) + 1;
 			if(isBlockTop(x, yCoord - 1, z, JourneyBlocks.eucaGrass)) {
-				trees.get(rand.nextInt(trees.size())).generate(worldObj, rand, new BlockPos(x, yCoord, z));
+				treesgreen.get(rand.nextInt(treesgreen.size())).generate(worldObj, rand, new BlockPos(x, yCoord, z));
+			}
+		}
+
+		for(times = 0; times < 300; times++) {
+			x = x1 + this.rand.nextInt(16) + 8;
+			z = z1 + this.rand.nextInt(16) + 8;
+			int yCoord = rand.nextInt(128) + 1;
+			if(isBlockTop(x, yCoord - 1, z, JourneyBlocks.eucaGrass)) {
+				treesnormal.get(rand.nextInt(treesnormal.size())).generate(worldObj, rand, new BlockPos(x, yCoord, z));
+			}
+		}
+		
+		for(times = 0; times < 10; times++) {
+			x = x1 + this.rand.nextInt(16) + 8;
+			z = z1 + this.rand.nextInt(16) + 8;
+			int yCoord = rand.nextInt(128) + 1;
+			if(isBlockTop(x, yCoord - 1, z, JourneyBlocks.eucaGrass)) {
+				treestall.get(rand.nextInt(treestall.size())).generate(worldObj, rand, new BlockPos(x, yCoord, z));
 			}
 		}
 	}

@@ -1,6 +1,7 @@
 package net.journey.dimension.terrania;
 
 import net.journey.dimension.DimensionHelper;
+import net.journey.dimension.cloudia.CloudiaSkyRenderer;
 import net.journey.dimension.depths.BiomeProviderDepths;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
@@ -10,6 +11,7 @@ import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.biome.BiomeProviderSingle;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.IChunkGenerator;
+import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -26,6 +28,11 @@ public class WorldProviderTerrania extends WorldProvider {
     public Vec3d getFogColor(float x, float z) {
         return new Vec3d(0.6, 0, 1.0);
     }
+	
+	@Override
+	public IRenderHandler getSkyRenderer() {
+		return new CloudiaSkyRenderer();
+	}
 	
 	@Override
 	public boolean canBlockFreeze(BlockPos pos, boolean byWater) {
@@ -69,7 +76,7 @@ public class WorldProviderTerrania extends WorldProvider {
 
 	@Override
 	public float calculateCelestialAngle(long var1, float var3) {
-		return 0.5F; 
+		return 0.3F; 
 	}
 
     @Override

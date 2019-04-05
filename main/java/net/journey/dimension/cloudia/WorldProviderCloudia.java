@@ -2,12 +2,14 @@ package net.journey.dimension.cloudia;
 
 import net.journey.dimension.DimensionHelper;
 import net.journey.dimension.boil.BiomeProviderBoil;
+import net.journey.dimension.boil.BoilSkyRenderer;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.biome.BiomeProviderSingle;
 import net.minecraft.world.gen.IChunkGenerator;
+import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -15,7 +17,7 @@ public class WorldProviderCloudia extends WorldProvider {
 	
 	@Override
 	public void init() {
-		this.biomeProvider = new BiomeProviderSingle(DimensionHelper.euca);
+		this.biomeProvider = new BiomeProviderSingle(DimensionHelper.cloudia);
 		this.nether = false;
 		this.hasSkyLight = true;
 	}
@@ -28,6 +30,11 @@ public class WorldProviderCloudia extends WorldProvider {
 	@Override
     public BiomeProvider getBiomeProvider() {
 		return this.biomeProvider = new BiomeProviderCloudia();
+	}
+	
+	@Override
+	public IRenderHandler getSkyRenderer() {
+		return new CloudiaSkyRenderer();
 	}
 	
     @Override

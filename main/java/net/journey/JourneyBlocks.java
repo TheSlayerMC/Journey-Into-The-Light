@@ -149,6 +149,8 @@ public class JourneyBlocks {
 	public static BlockModStairs eucaGoldStairs;
 	public static BlockMod eucaGoldLeaves;
 	public static BlockMod eucaSilverLeaves;
+	public static BlockMod eucaLightGreenLeaves;
+	public static BlockMod eucaDarkGreenLeaves;
 	public static BlockMod eucaSapling;
 	public static BlockMod eucaBricks;
 	public static BlockMod eucaTile;
@@ -544,6 +546,8 @@ public class JourneyBlocks {
 		eucaGoldStairs = new BlockModStairs(eucaGoldLog, "eucaGoldStairs", "Golden Euca Stairs");
 		eucaGoldLeaves = new BlockModLeaves("eucaGoldLeaves", "Golden Euca Leaves", 1.0F);
 		eucaSilverLeaves = new BlockModLeaves("eucaSilverLeaves", "Silver Euca Leaves", 1.0F);
+		eucaLightGreenLeaves = new BlockModLeaves("eucaLightGreenLeaves", "Light Green Euca Leaves", 1.0F);
+		eucaDarkGreenLeaves = new BlockModLeaves("eucaDarkGreenLeaves", "Dark Green Euca Leaves", 1.0F);
 		eucaSapling = new BlockEucaSapling("eucaSapling", "Euca Sapling");
 		eucaBricks = new BlockMod("eucaBricks", "Euca Bricks", 2.0F);
 		eucaTile = new BlockMod("eucaTile", "Euca Tile", 2.0F);

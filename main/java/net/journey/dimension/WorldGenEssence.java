@@ -612,15 +612,15 @@ public class WorldGenEssence implements IWorldGenerator {
 		for(i = 0; i < 15; i++) WorldGenEssence.generateJourneyDimensions(19, w, chunkX, chunkZ);
 		for(i = 0; i < 3; i++) WorldGenEssence.generateJourneyDimensions(20, w, chunkX, chunkZ);
 		
-		for(i = 0; i < 15; i++) {
-			int y = r.nextInt(250); 
+		for(i = 0; i < 5; i++) {
+			int y = r.nextInt(64); 
 			int x = chunkX + r.nextInt(16);
 			int z = chunkZ + r.nextInt(16);
 			(new WorldGenMinable(JourneyBlocks.cloudiaRock.getDefaultState(), 55, BlockStateMatcher.forBlock(Blocks.AIR))).generate(w, r, new BlockPos(x, y, z));
 		}
 		
 		for(i = 0; i < 5; i++) {
-			int y = r.nextInt(250); 
+			int y = r.nextInt(64); 
 			int x = chunkX + r.nextInt(16);
 			int z = chunkZ + r.nextInt(16);
 			(new WorldGenMinable(JourneyBlocks.luniteOre.getDefaultState(), 10, BlockStateMatcher.forBlock(JourneyBlocks.cloudiaRock))).generate(w, r, new BlockPos(x, y, z));
