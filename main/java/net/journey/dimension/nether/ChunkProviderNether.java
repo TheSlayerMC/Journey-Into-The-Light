@@ -55,6 +55,7 @@ public class ChunkProviderNether implements IChunkGenerator {
     private NoiseGeneratorOctaves perlinNoise1;
     private NoiseGeneratorOctaves slowsandGravelNoiseGen;
     private NoiseGeneratorOctaves heatsoilNoiseGen;
+    private NoiseGeneratorOctaves heatsandNoiseGen;
     private NoiseGeneratorOctaves netherrackExculsivityNoiseGen;
     public NoiseGeneratorOctaves scaleNoise;
     public NoiseGeneratorOctaves depthNoise;
@@ -85,6 +86,7 @@ public class ChunkProviderNether implements IChunkGenerator {
         this.perlinNoise1 = new NoiseGeneratorOctaves(this.rand, 8);
         this.slowsandGravelNoiseGen = new NoiseGeneratorOctaves(this.rand, 4);
         this.heatsoilNoiseGen = new NoiseGeneratorOctaves(this.rand, 4);
+        this.heatsandNoiseGen = new NoiseGeneratorOctaves(this.rand, 4);
         this.netherrackExculsivityNoiseGen = new NoiseGeneratorOctaves(this.rand, 4);
         this.scaleNoise = new NoiseGeneratorOctaves(this.rand, 10);
         this.depthNoise = new NoiseGeneratorOctaves(this.rand, 16);
@@ -98,6 +100,7 @@ public class ChunkProviderNether implements IChunkGenerator {
         this.perlinNoise1 = ctx.getPerlin();
         this.slowsandGravelNoiseGen = ctx.getPerlin2();
         this.heatsoilNoiseGen = ctx.getPerlin2();
+        this.heatsandNoiseGen = ctx.getPerlin2();
         this.netherrackExculsivityNoiseGen = ctx.getPerlin3();
         this.scaleNoise = ctx.getScale();
         this.depthNoise = ctx.getDepth();
@@ -186,7 +189,8 @@ public class ChunkProviderNether implements IChunkGenerator {
         double d0 = 0.03125D;
         this.slowsandNoise = this.slowsandGravelNoiseGen.generateNoiseOctaves(this.slowsandNoise, p_185937_1_ * 16, p_185937_2_ * 16, 0, 16, 16, 1, 0.03125D, 0.03125D, 1.0D);
         this.gravelNoise = this.slowsandGravelNoiseGen.generateNoiseOctaves(this.gravelNoise, p_185937_1_ * 16, 109, p_185937_2_ * 16, 16, 1, 16, 0.03125D, 1.0D, 0.03125D);
-        this.heatsoilNoise = this.heatsoilNoiseGen.generateNoiseOctaves(this.heatsoilNoise, p_185937_1_ * 24, p_185937_2_ * 16, 0, 16, 16, 1, 0.03125D, 0.03125D, 1.0D);
+        this.heatsoilNoise = this.heatsoilNoiseGen.generateNoiseOctaves(this.heatsoilNoise, p_185937_1_ * 30, p_185937_2_ * 16, 0, 16, 16, 1, 0.03125D, 0.03125D, 1.0D);
+        this.heatsandNoise = this.heatsandNoiseGen.generateNoiseOctaves(this.heatsandNoise, p_185937_1_ * 10, p_185937_2_ * 16, 0, 16, 16, 1, 0.03125D, 0.03125D, 1.0D);
         this.depthBuffer = this.netherrackExculsivityNoiseGen.generateNoiseOctaves(this.depthBuffer, p_185937_1_ * 16, p_185937_2_ * 16, 0, 16, 16, 1, 0.0625D, 0.0625D, 0.0625D);
 
         for (int j = 0; j < 16; ++j)
@@ -246,7 +250,7 @@ public class ChunkProviderNether implements IChunkGenerator {
                                         if (flag3)
                                         {
                                             iblockstate = SAND;
-                                            iblockstate1 = SAND;
+                                            iblockstate1 = SOIL;
                                         }
                                     }
 

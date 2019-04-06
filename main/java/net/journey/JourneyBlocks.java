@@ -26,6 +26,7 @@ import net.journey.blocks.BlockTerraFlower;
 import net.journey.blocks.BlockTrophy;
 import net.journey.blocks.base.BlockModFire;
 import net.journey.blocks.base.BlockModOre;
+import net.journey.blocks.base.BlockModOreFalling;
 import net.journey.blocks.base.BlockNetherFlower;
 import net.journey.blocks.base.BlockNetherPlant;
 import net.journey.blocks.crop.base.BlockFruitCrop;
@@ -56,6 +57,7 @@ import net.slayer.api.block.BlockModDoor;
 import net.slayer.api.block.BlockModFence;
 import net.slayer.api.block.BlockModFlower;
 import net.slayer.api.block.BlockModGrass;
+import net.slayer.api.block.BlockModGravity;
 import net.slayer.api.block.BlockModLadder;
 import net.slayer.api.block.BlockModLeaves;
 import net.slayer.api.block.BlockModLog;
@@ -91,7 +93,7 @@ public class JourneyBlocks {
 	public static BlockMod bleedstone;
 	public static BlockMod smithstone;
 	
-	public static BlockMod heatstoneOre;
+	public static BlockModGravity heatstoneOre;
 	
 	public static BlockMod enderilliumOre;
 	public static BlockMod gorbiteOre;
@@ -127,7 +129,7 @@ public class JourneyBlocks {
 	public static BlockNetherFlower hellBell;
 	public static BlockMod hellshroom;
 	public static BlockMod heatSoil;
-	public static BlockMod heatSand;
+	public static BlockModGravity heatSand;
 
 	public static BlockMod igniterOn;
 	public static BlockMod igniter;
@@ -497,7 +499,7 @@ public class JourneyBlocks {
 		
 		bleedstone = (BlockMod) new BlockModOre("bleedstoneOre", "Bleedstone", false).setHarvestLevel(EnumToolType.DIAMOND_PICK).setLightLevel(10.5F);
 		smithstone = (BlockMod) new BlockModOre("smithstoneOre", "Smithstone", false).setHarvestLevel(EnumToolType.DIAMOND_PICK).setLightLevel(10.5F);
-		heatstoneOre = (BlockMod) new BlockModOre(EnumMaterialTypes.SAND, "heatstoneOre", "Heatstone Ore", false).setHarvestLevel(EnumToolType.DIAMOND_SHOVEL).setLightLevel(0.5F);
+		heatstoneOre = (BlockModGravity) new BlockModOreFalling(EnumMaterialTypes.SAND, "heatstoneOre", "Heatstone Ore", false).setHarvestLevel(EnumToolType.DIAMOND_SHOVEL).setLightLevel(0.5F);
 		
 		enderilliumOre = new BlockModOre("enderilliumOre", "Enderillium Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
 		gorbiteOre = new BlockModOre("gorbiteOre", "Gorbite Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
@@ -533,7 +535,7 @@ public class JourneyBlocks {
 		hellBell = new BlockNetherFlower("hellBell", "Hell Bell");
 		hellshroom = new BlockNetherPlant("hellshroom", "Hellshroom");
 		heatSoil = new BlockMod(EnumMaterialTypes.DIRT, "heatSoil", "Nethic Soil", 2.0F);
-		heatSand = new BlockMod(EnumMaterialTypes.SAND, "heatSand", "Heat Sand", 2.0F);
+		heatSand = new BlockModGravity(EnumMaterialTypes.SAND, "heatSand", "Heat Sand", 2.0F);
 
 		igniterOn = (BlockMod) new BlockIgniter("igniterOn", "Redstone Igniter").setCreativeTab(null);
 		igniter = new BlockIgniter("igniter", "Redstone Igniter");
