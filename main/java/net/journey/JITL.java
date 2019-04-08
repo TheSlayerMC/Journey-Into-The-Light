@@ -68,6 +68,7 @@ public class JITL {
 
 	@EventHandler
 	public static void serverStarting(FMLServerStartingEvent event) {
+		SlayerAPI.logger.info("Starting server...");
 		proxy.serverStarting(event);
 	}
 }

@@ -17,6 +17,7 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.command.ICommand;
+import net.minecraft.command.ServerCommandManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
@@ -25,6 +26,7 @@ import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
@@ -94,11 +96,11 @@ public class SlayerAPI {
 		VillagerRegistry.instance().registerVillageCreationHandler(v);
 	}
 
-	public static void registerCommand(ICommand o){
-		//if (MinecraftServer.getServer().getCommandManager() instanceof ServerCommandManager) {
-		//	((CommandHandler)MinecraftServer.getServer().getCommandManager()).registerCommand(o);
-		//}
-	}
+	/*public static void registerCommand(ICommand o){
+		if (MinecraftServer.getServer().getCommandManager() instanceof ServerCommandManager) {
+			((CommandHandler)MinecraftServer.getServer().getCommandManager()).registerCommand(o);
+		}
+	}*/
 
 	public static void registerEvent(Object o) {
 		MinecraftForge.EVENT_BUS.register(o);

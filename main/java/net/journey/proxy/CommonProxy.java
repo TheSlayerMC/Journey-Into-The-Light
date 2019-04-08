@@ -15,11 +15,13 @@ import net.journey.client.server.BarTickHandler;
 import net.journey.client.server.EssenceBar;
 import net.journey.client.server.EssenceStorage;
 import net.journey.client.server.IEssence;
+import net.journey.dimension.DimensionCommand;
 import net.journey.dimension.DimensionHelper;
 import net.journey.dimension.WorldGenEssence;
 import net.journey.enums.EnumParticlesClasses;
 import net.journey.event.ArmorAbilityEvent;
 import net.journey.event.PlayerEvent;
+import net.journey.misc.JourneyCommands;
 import net.journey.util.Config;
 import net.journey.util.EntityRegistry;
 import net.journey.util.JourneyFuelHandler;
@@ -91,7 +93,7 @@ public class CommonProxy {
 		SlayerAPI.registerEvent(new PlayerEvent());
 		JourneySmeltingRecipes.initSmeltingCrafting();
 	}
-	
+
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) { }
 
@@ -106,7 +108,10 @@ public class CommonProxy {
 	
 	public void postInit(FMLPostInitializationEvent event) { }
 	
-	public void serverStarting(FMLServerStartingEvent event) { }
+	public void serverStarting(FMLServerStartingEvent event) {
+		event.registerServerCommand(new JourneyCommands());
+		event.registerServerCommand(new DimensionCommand());
+	}
 	
 	private void addOreDictionary() { }
 	

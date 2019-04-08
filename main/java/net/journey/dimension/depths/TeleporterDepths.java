@@ -36,6 +36,12 @@ public class TeleporterDepths extends Teleporter {
 		this.random = new Random(worldServer.getSeed());
 	}
 
+	public TeleporterDepths(WorldServer worldServer) {
+		super(worldServer);
+		this.worldServerInstance = worldServer;
+		this.random = new Random(worldServer.getSeed());
+	}
+
 	@Override
 	public void placeInPortal(Entity entity, float par8) {
 		if (this.worldServerInstance.provider.getDimension() != Config.corba) {
