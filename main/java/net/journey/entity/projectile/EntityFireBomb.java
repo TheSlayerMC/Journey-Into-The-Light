@@ -2,6 +2,9 @@ package net.journey.entity.projectile;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.PotionTypes;
+import net.minecraft.potion.PotionUtils;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
@@ -15,6 +18,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class EntityFireBomb extends EntityThrowable {
 
 	public float damage;
+	public EntityLivingBase thrower;
 
 	public EntityFireBomb(World var1) {
 		super(var1);
@@ -23,6 +27,11 @@ public class EntityFireBomb extends EntityThrowable {
 	public EntityFireBomb(World var1, EntityLivingBase var3, float dam) {
 		super(var1, var3);
 		damage = dam;
+		thrower = var3;
+	}
+	
+	protected float getGravityVelocity() {
+		return 0.07F;
 	}
 
 	public float getDamage() {
@@ -52,19 +61,26 @@ public class EntityFireBomb extends EntityThrowable {
 		float f = (this.rand.nextFloat() - 0.0F) * 0.0F;
 		float f1 = (this.rand.nextFloat() - 0.0F) * 0.0F;
 		float f2 = (this.rand.nextFloat() - 0.0F) * 0.0F;
-		if (j.entityHit != null)
-			j.entityHit.setFire(10);
-		this.world.spawnParticle(EnumParticleTypes.FLAME, this.posX + f, this.posY + 0.0D + f1, this.posZ + f2, 0.0D,
-				0.0D, 0.0D, new int[0]);
-		if (j.entityHit != null)
-			j.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), damage);
-		this.world.playBroadcastSound(2002, new BlockPos(this), 5);
-		int i = 3 + this.world.rand.nextInt(5) + this.world.rand.nextInt(5);
-		this.setDead();
-	}
-	
-	@Override
-	protected float getGravityVelocity() {
-		return 0.031F;
+
+		if (j.entityHit == null) {
+			if (!this.world.isRemote) {
+				float x = (rand.nextFloat() + 3.0F) * 1.0F, y = 1, z = (rand.nextFloat() + 3.0F) * 1.0F;
+				this.world.spawnParticle(EnumParticleTypes.FLAME, this.posX + f, this.posY + 0.0D + f1, this.posZ + f2, 0.0D, 0.0D, 0.0D, new int[0]);
+				this.world.playEvent(2002, new BlockPos(this), PotionUtils.getPotionColor(PotionTypes.FIRE_RESISTANCE));
+				this.setDead();
+			}
+		}
+
+		if(j.entityHit != null && j.entityHit != this.thrower) {			
+			
+	        if(!this.world.isRemote) {
+				j.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.thrower), this.damage);
+				j.entityHit.setFire(10);
+	        	this.world.spawnParticle(EnumParticleTypes.FLAME, this.posX + f, this.posY + 0.0D + f1, this.posZ + f2, 0.0D, 0.0D, 0.0D, new int[0]);
+		        this.world.playEvent(2002, new BlockPos(this), PotionUtils.getPotionColor(PotionTypes.FIRE_RESISTANCE));
+	        }
+			if(!this.world.isRemote) this.setDead();
+			return;
+		}
 	}
 }

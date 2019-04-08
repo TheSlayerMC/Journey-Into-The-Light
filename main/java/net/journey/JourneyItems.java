@@ -1450,8 +1450,8 @@ public class JourneyItems {
 		frozenLandsEssence = new ItemMod("frozenLandsEssence", "Frozen Lands Essence"); */
 
 		//TODO
-		demonicBomb = new ItemThrowable("demonicBomb", "Demonic Bomb", 8F, EntityDemonicBomb.class);
-		fireBomb = new ItemThrowable("fireBomb", "Fire Bomb", 12F, EntityFireBomb.class);
+		demonicBomb = new ItemThrowable("demonicBomb", "Demonic Bomb", 4F, EntityDemonicBomb.class);
+		fireBomb = new ItemThrowable("fireBomb", "Fire Bomb", 6F, EntityFireBomb.class);
 
 		boilingPiercer = new ItemPiercer("boilingPiercer", "Boiling Piercer", 15F, 4, EntityBoilingPiercer.class);
 		nethicPiercer = new ItemPiercer("nethicPiercer", "Nethic Piercer", 11F, 3, EntityNethicPiercer.class);
