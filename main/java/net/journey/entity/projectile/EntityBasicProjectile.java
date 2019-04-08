@@ -43,8 +43,11 @@ public class EntityBasicProjectile extends EntityThrowable {
 
 	@Override
 	protected void onImpact(RayTraceResult var1) {
-		if(var1.entityHit != null) var1.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), damage);
-		if(!world.isRemote) this.setDead();
+		if (var1.entityHit != null && var1.entityHit != this.thrower) {
+			if (var1.entityHit != null)
+				var1.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), damage);
+			if(!world.isRemote) this.setDead();
+		}
 	}
 
 	@Override

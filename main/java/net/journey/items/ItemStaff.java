@@ -50,7 +50,7 @@ public class ItemStaff extends ItemMod {
 			if(!unBreakable) stack.damageItem(1, player);
 			try {
 				EntityBasicProjectile shoot = projectile.getConstructor(World.class, EntityLivingBase.class, float.class).newInstance(world, player, damage);
-				shoot.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 0.8F, 1.0F);
+				shoot.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 3.5F, 0.2F);
 				world.spawnEntity(shoot);
 				stack.damageItem(1, player);
 				return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
