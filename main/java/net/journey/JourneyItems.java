@@ -1432,23 +1432,6 @@ public class JourneyItems {
 
 		demonicEye = new ItemDemonicEye("demonicEye", "Demonic Eye");
 
-		/* overworldKnowledge = new ItemKnowledge("overworldKnowledge", "Overworld Knowledge", EnumKnowledge.OVERWORLD);
-		netherKnowledge = new ItemKnowledge("netherKnowledge", "Nether Knowledge", EnumKnowledge.NETHER);
-		endKnowledge = new ItemKnowledge("endKnowledge", "End knowledge", EnumKnowledge.END);
-		boilKnowledge = new ItemKnowledge("boilingKnowledge", "Boiling Knowledge", EnumKnowledge.BOIL);
-		frozenKnowledge = new ItemKnowledge("frozenKnowledge", "Frozen Knowledge", EnumKnowledge.FROZEN);
-		eucaKnowledge = new ItemKnowledge("eucaKnowledge", "Euca Knowledge", EnumKnowledge.EUCA);
-		depthsKnowledge = new ItemKnowledge("depthsKnowledge", "Depths Knowledge", EnumKnowledge.DEPTHS);
-		corbaKnowledge = new ItemKnowledge("corbaKnowledge", "Corba Knowledge", EnumKnowledge.CORBA);
-		cloudiaKnowledge = new ItemKnowledge("cloudiaKnowledge", "Cloudia Knowledge", EnumKnowledge.CLOUDIA); */
-
-		/* boilingPointEssence = new ItemMod("boilingPointEssence", "Boiling Point Essence");
-		cloudiaEssence = new ItemMod("cloudiaEssence", "Cloudia Essence");
-		corbaEssence = new ItemMod("corbaEssence", "Corba Essence");
-		depthsEssence = new ItemMod("depthsEssence", "Depths Essence");
-		eucaEssence = new ItemMod("eucaEssence", " Euca Essence");
-		frozenLandsEssence = new ItemMod("frozenLandsEssence", "Frozen Lands Essence"); */
-
 		//TODO
 		demonicBomb = new ItemThrowable("demonicBomb", "Demonic Bomb", 4F, EntityDemonicBomb.class);
 		fireBomb = new ItemThrowable("fireBomb", "Fire Bomb", 6F, EntityFireBomb.class);

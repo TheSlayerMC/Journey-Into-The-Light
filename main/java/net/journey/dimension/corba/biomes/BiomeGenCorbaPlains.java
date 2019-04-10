@@ -1,15 +1,16 @@
-package net.journey.dimension.corba;
+package net.journey.dimension.corba.biomes;
 
 import net.journey.JourneyBlocks;
 import net.journey.dimension.DimensionHelper;
+import net.journey.dimension.corba.BiomePropertiesCorba;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BiomeGenCorba extends Biome {
+public class BiomeGenCorbaPlains extends Biome {
 
-	public BiomeGenCorba() {
+	public BiomeGenCorbaPlains() {
 		super(new BiomePropertiesCorba());
 		this.topBlock = JourneyBlocks.corbaGrass.getDefaultState();
 		this.fillerBlock = JourneyBlocks.corbaStone.getDefaultState();
@@ -17,7 +18,6 @@ public class BiomeGenCorba extends Biome {
         this.spawnableMonsterList.clear();
         this.spawnableCaveCreatureList.clear();
         this.spawnableWaterCreatureList.clear();
-        this.decorator.mushroomsPerChunk = 64;
 	}
 	
 	@Override

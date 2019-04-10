@@ -9,6 +9,7 @@ import net.journey.dimension.cloudia.BiomeGenCloudia;
 import net.journey.dimension.cloudia.WorldProviderCloudia;
 import net.journey.dimension.corba.BiomeGenCorba;
 import net.journey.dimension.corba.WorldProviderCorba;
+import net.journey.dimension.corba.biomes.BiomeGenCorbaPlains;
 import net.journey.dimension.depths.BiomeGenDepths;
 import net.journey.dimension.depths.WorldProviderDepths;
 import net.journey.dimension.end.WorldProviderEndJourney;
@@ -122,7 +123,9 @@ public class DimensionHelper {
 	public static Biome euca = new BiomeGenEuca();
 	public static Biome boiling = new BiomeGenBoiling();
 	public static Biome cloudia = new BiomeGenCloudia();
-	public static Biome corba = new BiomeGenCorba();
+		public static Biome corba = new BiomeGenCorba();	
+		public static Biome corbaPlains = new BiomeGenCorbaPlains();
+	
 	public static Biome depths = new BiomeGenDepths();
 	public static Biome frozen = new BiomeGenFrozenLands();
 	public static Biome terrania = new BiomeGenTerrania();
@@ -154,6 +157,7 @@ public class DimensionHelper {
 		addDimBiome(boiling, "Boiling Point");
 		addDimBiome(cloudia, "Cloudia");
 		addDimBiome(corba, "Corba");
+		addDimBiome(corbaPlains, "Corba Plains");
 		addDimBiome(depths, "Depths");
 		addDimBiome(frozen, "Frozen Lands");
 		addDimBiome(terrania, "Terrania");
