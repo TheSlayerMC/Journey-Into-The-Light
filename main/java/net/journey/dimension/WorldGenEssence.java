@@ -47,7 +47,7 @@ import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
-public class WorldGenJourney implements IWorldGenerator {
+public class WorldGenEssence implements IWorldGenerator {
 
 	private World worldObj;
 	private ArrayList<WorldGenerator> trees;
@@ -58,7 +58,7 @@ public class WorldGenJourney implements IWorldGenerator {
 
 	private static Random r = new Random();
 
-	public WorldGenJourney() {
+	public WorldGenEssence() {
 		r = new Random();
 		LogHelper.info("Loading world generator");
 		trees = new ArrayList<WorldGenerator>(1);
@@ -351,7 +351,7 @@ public class WorldGenJourney implements IWorldGenerator {
 			if(isBlockTop(x, y, z, Blocks.GRASS, w)) 
 				if(BiomeDictionary.hasType(biome, Type.SWAMP)) {
 					new WorldGenBush(w, r, new BlockPos(x, y, z), JourneyBlocks.bogberryBush, Blocks.GRASS).generate(w, r, new BlockPos(x, y, z));
-				} else {}
+				}
 		}
 
 		for(times = 0; times < 70; times++) {
@@ -575,20 +575,20 @@ public class WorldGenJourney implements IWorldGenerator {
 
 	private void generateCorba(World w, Random r, int chunkX, int chunkZ) {
 		int i = 0;
-		for(i = 0; i < 10; i++) WorldGenJourney.generateJourneyDimensions(13, w, chunkX, chunkZ);
-		for(i = 0; i < 10; i++) WorldGenJourney.generateJourneyDimensions(14, w, chunkX, chunkZ);
+		for(i = 0; i < 10; i++) WorldGenEssence.generateJourneyDimensions(13, w, chunkX, chunkZ);
+		for(i = 0; i < 10; i++) WorldGenEssence.generateJourneyDimensions(14, w, chunkX, chunkZ);
 	}
 
 	private void generateFrozen(World w, Random r, int chunkX, int chunkZ) {
 		int i = 0;
-		for(i = 0; i < 25; i++) WorldGenJourney.generateJourneyDimensions(9, w, chunkX, chunkZ);
+		for(i = 0; i < 25; i++) WorldGenEssence.generateJourneyDimensions(9, w, chunkX, chunkZ);
 	}
 
 	private void generateBoilingPoint(World w, Random r, int chunkX, int chunkZ) {
 		int i = 0;
 		//if(rand.nextInt(4) == 0) GenerationHelper.generateJourneyDimensions(4, w, chunkX, chunkZ);
-		for(i = 0; i < 50; i++) WorldGenJourney.generateJourneyDimensions(5, w, chunkX , chunkZ);
-		for(i = 0; i < 40; i++) WorldGenJourney.generateJourneyDimensions(3, w, chunkX , chunkZ);
+		for(i = 0; i < 50; i++) WorldGenEssence.generateJourneyDimensions(5, w, chunkX , chunkZ);
+		for(i = 0; i < 40; i++) WorldGenEssence.generateJourneyDimensions(3, w, chunkX , chunkZ);
 	}
 
 	private void generateDepths(World w, Random r, int chunkX, int chunkZ) {
@@ -600,24 +600,24 @@ public class WorldGenJourney implements IWorldGenerator {
 
 	private void generateWither(World w, Random r, int chunkX, int chunkZ) {
 		int i = 0;
-		for(i = 0; i < 25; i++) WorldGenJourney.generateJourneyDimensions(21, w, chunkX, chunkZ);
+		for(i = 0; i < 25; i++) WorldGenEssence.generateJourneyDimensions(21, w, chunkX, chunkZ);
 	}
 
 	private void generateEuca(World w, Random r, int chunkX, int chunkZ) {
 		int i = 0;
-		for(i = 0; i < 30; i++) WorldGenJourney.generateJourneyDimensions(0, w, chunkX, chunkZ);
-		for(i = 0; i < 30; i++) WorldGenJourney.generateJourneyDimensions(15, w, chunkX, chunkZ);
-		for(i = 0; i < 30; i++) WorldGenJourney.generateJourneyDimensions(16, w, chunkX, chunkZ);
-		for(i = 0; i < 30; i++) WorldGenJourney.generateJourneyDimensions(17, w, chunkX, chunkZ);
-		for(i = 0; i < 70; i++) WorldGenJourney.generateJourneyDimensions(6, w, chunkX, chunkZ);
-		for(i = 0; i < 15; i++) WorldGenJourney.generateJourneyDimensions(7, w, chunkX, chunkZ);
-		for(i = 0; i < 15; i++) WorldGenJourney.generateJourneyDimensions(8, w, chunkX, chunkZ);
+		for(i = 0; i < 30; i++) WorldGenEssence.generateJourneyDimensions(0, w, chunkX, chunkZ);
+		for(i = 0; i < 30; i++) WorldGenEssence.generateJourneyDimensions(15, w, chunkX, chunkZ);
+		for(i = 0; i < 30; i++) WorldGenEssence.generateJourneyDimensions(16, w, chunkX, chunkZ);
+		for(i = 0; i < 30; i++) WorldGenEssence.generateJourneyDimensions(17, w, chunkX, chunkZ);
+		for(i = 0; i < 70; i++) WorldGenEssence.generateJourneyDimensions(6, w, chunkX, chunkZ);
+		for(i = 0; i < 15; i++) WorldGenEssence.generateJourneyDimensions(7, w, chunkX, chunkZ);
+		for(i = 0; i < 15; i++) WorldGenEssence.generateJourneyDimensions(8, w, chunkX, chunkZ);
 	}
 
 	private void generateCloudia(World w, Random r, int chunkX, int chunkZ) {
 		int i = 0;
-		for(i = 0; i < 15; i++) WorldGenJourney.generateJourneyDimensions(19, w, chunkX, chunkZ);
-		for(i = 0; i < 3; i++) WorldGenJourney.generateJourneyDimensions(20, w, chunkX, chunkZ);
+		for(i = 0; i < 15; i++) WorldGenEssence.generateJourneyDimensions(19, w, chunkX, chunkZ);
+		for(i = 0; i < 3; i++) WorldGenEssence.generateJourneyDimensions(20, w, chunkX, chunkZ);
 		
 		for(i = 0; i < 5; i++) {
 			int y = r.nextInt(64); 
