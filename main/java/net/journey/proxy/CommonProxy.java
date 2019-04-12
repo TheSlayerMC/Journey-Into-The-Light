@@ -18,9 +18,11 @@ import net.journey.client.server.IEssence;
 import net.journey.dimension.DimensionCommand;
 import net.journey.dimension.DimensionHelper;
 import net.journey.dimension.WorldGenJourney;
-import net.journey.dimension.nether.region.NetherRegistry;
+import net.journey.dimension.nether.WorldGeneratorNether;
+import net.journey.dimension.nether.biomes.BiomeRegistry;
 import net.journey.enums.EnumParticlesClasses;
 import net.journey.event.ArmorAbilityEvent;
+import net.journey.event.NetherEvent;
 import net.journey.event.PlayerEvent;
 import net.journey.misc.JourneyCommands;
 import net.journey.util.Config;
@@ -58,11 +60,12 @@ public class CommonProxy {
 
 	public void preInit(FMLPreInitializationEvent event) {
 		Config.init(event);
+		NetherEvent.init();
 		JourneySounds.init();
 		JourneyCrops.init();
 		JourneyItems.init();
 		JourneyBlocks.init();
-		NetherRegistry.init();
+		BiomeRegistry.init();
 		EntityRegistry.init();
 		JourneyChestGenerator.init();
 		//JourneyAchievements.init()
@@ -70,6 +73,7 @@ public class CommonProxy {
 		JourneyBlockRecipes.init();
 		JourneyMiscRecipes.init();
 		JourneyWeaponRecipes.init();
+		WorldGeneratorNether.updateGenSettings();
 		
 		addOreDictionary();
 		SlayerAPI.registerEvent(new ArmorAbilityEvent());

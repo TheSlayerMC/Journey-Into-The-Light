@@ -145,14 +145,14 @@ public class DimensionHelper {
 	public static void init(){
 
 		LogHelper.info("Registering Dimensions...");
-		if(Config.overrideNether = true) {
+		/*if(Config.overrideNether = true) {
 			DimensionManager.unregisterDimension(-1);
 			DimensionManager.registerDimension(-1, DimensionType.register("Nether", "NETHER", -1, WorldProviderNetherJourney.class, true));
 		}
 		if(Config.overrideEnd = true) {
 			DimensionManager.unregisterDimension(1);
 			DimensionManager.registerDimension(1, DimensionType.register("End", "END", 1, WorldProviderEndJourney.class, true));
-		}
+		} */
 		addDimBiome(euca, "Euca");
 		addDimBiome(boiling, "Boiling Point");
 		addDimBiome(cloudia, "Cloudia");
