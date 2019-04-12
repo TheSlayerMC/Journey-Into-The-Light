@@ -17,7 +17,8 @@ import net.journey.client.server.EssenceStorage;
 import net.journey.client.server.IEssence;
 import net.journey.dimension.DimensionCommand;
 import net.journey.dimension.DimensionHelper;
-import net.journey.dimension.WorldGenEssence;
+import net.journey.dimension.WorldGenJourney;
+import net.journey.dimension.nether.region.NetherRegistry;
 import net.journey.enums.EnumParticlesClasses;
 import net.journey.event.ArmorAbilityEvent;
 import net.journey.event.PlayerEvent;
@@ -61,6 +62,7 @@ public class CommonProxy {
 		JourneyCrops.init();
 		JourneyItems.init();
 		JourneyBlocks.init();
+		NetherRegistry.init();
 		EntityRegistry.init();
 		JourneyChestGenerator.init();
 		//JourneyAchievements.init()
@@ -89,7 +91,7 @@ public class CommonProxy {
 	
 	public void init(FMLInitializationEvent event) {
 		JourneyTabs.init();
-		GameRegistry.registerWorldGenerator(new WorldGenEssence(), 2);
+		GameRegistry.registerWorldGenerator(new WorldGenJourney(), 2);
 		SlayerAPI.registerEvent(new PlayerEvent());
 		JourneySmeltingRecipes.initSmeltingCrafting();
 	}
