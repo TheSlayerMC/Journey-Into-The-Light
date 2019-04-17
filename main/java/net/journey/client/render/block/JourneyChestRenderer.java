@@ -202,7 +202,7 @@ public class JourneyChestRenderer extends TileEntitySpecialRenderer<TileEntityJo
 
 			f = 1.0F - f;
 			f = 1.0F - f * f * f;
-			modelchest.chestLid.rotateAngleX = -(f * ((float) Math.PI / 2F));
+			modelchest.chestlid.rotateAngleX = -(f * ((float) Math.PI / 2F));
 			modelchest.renderAll();
 			GlStateManager.disableRescaleNormal();
 			GlStateManager.popMatrix();
