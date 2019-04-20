@@ -87,6 +87,7 @@ public class CommonProxy {
 
 		SlayerAPI.registerEvent(new BarTickHandler());
 		MinecraftForge.EVENT_BUS.register(BarTickHandler.class);
+		MinecraftForge.EVENT_BUS.register(NetherEvent.class);
 		
 
 

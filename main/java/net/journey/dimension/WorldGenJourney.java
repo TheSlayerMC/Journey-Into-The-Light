@@ -144,15 +144,6 @@ public class WorldGenJourney implements IWorldGenerator {
 			worldGenNetherFeature(JourneyBlocks.heatstoneOre, JourneyBlocks.heatSand, 40, w, x, y, z);
 		}
 
-		if(Config.overrideNether = false) {
-			for(times = 0; times < 200; times++) {
-				y = r.nextInt(250) + 1;
-				x = chunkX + r.nextInt(16);
-				z = chunkZ + r.nextInt(16);
-				worldGenNetherFeature(JourneyBlocks.heatSoil, Blocks.NETHERRACK, 50, w, x, y, z);
-			}
-		}
-
 		/* for(times = 0; times < 150; times++) {
 			y = r.nextInt(35); 
 			x = chunkX + r.nextInt(16) + 8; 

@@ -13,11 +13,13 @@ public class BiomeRegistry {
 	public static int biomeCount;
 	public static NetherBiomeBase[] BiomeRegistry;
 	public static NetherBiomeBase BIOME_HEATSANDS;
+	public static NetherBiomeBase BIOME_BLOODLANDS;
 
 	public static void init() {
 		List<NetherBiomeBase> biomes = new ArrayList<NetherBiomeBase>();
 		
 		BIOME_HEATSANDS = registerBiome(new NetherBiomeBase("Heatsands"), biomes);
+		BIOME_BLOODLANDS = registerBiome(new NetherBiomeBase("Bloodlands"), biomes);
 		
 		biomeCount = biomes.size();
 		BiomeRegistry = new NetherBiomeBase[biomeCount];
@@ -26,7 +28,7 @@ public class BiomeRegistry {
 	}
 
 	private static NetherBiomeBase registerBiome(NetherBiomeBase biome, List<NetherBiomeBase> biomes) {
-		if (Config.overrideNether) {
+		if (Config.mustInitBiome()) {
 			biomes.add(biome);
 			return biome;
 		} else
@@ -34,7 +36,7 @@ public class BiomeRegistry {
 	}
 
 	private static NetherBiomeBase registerEdgeBiome(NetherBiomeBase biome, NetherBiomeBase mainBiome, int size) {
-		if (Config.overrideNether && mainBiome != null) {
+		if (Config.mustInitBiome() && mainBiome != null) {
 			mainBiome.setEdge(biome);
 			mainBiome.setEdgeSize(size);
 			return biome;
@@ -43,7 +45,7 @@ public class BiomeRegistry {
 	}
 
 	private static NetherBiomeBase registerSubBiome(NetherBiomeBase biome, NetherBiomeBase mainBiome) {
-		if (Config.overrideNether && mainBiome != null) {
+		if (Config.mustInitBiome() && mainBiome != null) {
 			mainBiome.addSubBiome(biome);
 			return biome;
 		} else

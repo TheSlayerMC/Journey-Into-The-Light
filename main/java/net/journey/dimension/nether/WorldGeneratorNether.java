@@ -8,8 +8,10 @@ import net.journey.dimension.nether.biomes.BiomeRegistry;
 import net.journey.dimension.nether.biomes.NetherBiomeBase;
 import net.journey.dimension.nether.noise.Dither;
 import net.journey.dimension.nether.noise.WorleyNoiseIDDistorted3D;
+import net.journey.util.Config;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockGravel;
+import net.minecraft.block.BlockNetherBrick;
 import net.minecraft.block.BlockNetherrack;
 import net.minecraft.block.BlockSoulSand;
 import net.minecraft.block.material.Material;
@@ -20,10 +22,12 @@ import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 
 public class WorldGeneratorNether {
-	
-	/* Created by paulevs, from the Better Nether mod 
-	 * Big thanks to him*/
 
+	/*
+	 * Created by paulevs, from the Better Nether mod 
+	 * Big thanks to him
+	 */
+	
 	public static boolean hasCleaningPass = true;
 	private static WorleyNoiseIDDistorted3D noise3d;
 	private static WorleyNoiseIDDistorted3D subbiomesNoise;
@@ -130,10 +134,6 @@ public class WorldGeneratorNether {
 										pos = origin.west();
 									boolean bDown = chunk.getBlockState(pos.up()).getBlock() == Blocks.AIR;
 									boolean bUp = chunk.getBlockState(pos.down()).getBlock() == Blocks.AIR;
-									if (bDown && bUp) {
-										if (random.nextFloat() <= plantDensity)
-											biome.genWallObjects(chunk, origin, pos, random);
-									}
 								}
 							}
 						}
@@ -220,9 +220,10 @@ public class WorldGeneratorNether {
 	}
 
 	public static void updateGenSettings() {
-		biomeSizeXZ = 1.0 / (double) 1.0;
-		biomeSizeY = 1.0 / (double) 1.0;
+		biomeSizeXZ = 1.0 / (double) Config.getBiomeSizeXZ();
+		biomeSizeY = 1.0 / (double) Config.getBiomeSizeY();
 		subBiomeSize = biomeSizeXZ * 3;
+		hasCleaningPass = Config.hasCleaningPass();
 	}
 
 	private static BlockPos downRay(Chunk chunk, BlockPos start) {

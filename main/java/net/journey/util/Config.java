@@ -1,6 +1,12 @@
 package net.journey.util;
 
 import java.io.File;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
+
+import net.journey.dimension.nether.biomes.BiomeRegistry;
+import net.journey.dimension.nether.biomes.NetherBiomeBase;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
@@ -19,7 +25,11 @@ public class Config {
 	public static boolean keepLoadingEuca, keepLoadingTerrania, keepLoadingDepths, keepLoadingBoil, keepLoadingFrozen, keepLoadingGolden, reRenderPlayerStats, spawnNetherBossesInNether, showDimensionChange, showDeathMessage, boilBlockSpawnSmoke;
 	public static boolean keepLoadingCorba, keepLoadingWastelands, keepLoadingCloudia, keepLoadingSenterian, keepLoadingWither;
 	
-	public static boolean overrideNether, overrideEnd;
+	private static boolean[] registerBiomes;
+	private static int indexBiome;
+	private static int biomeSizeXZ;
+	private static int biomeSizeY;
+	private static boolean hasCleaningPass;
 	
 	public static boolean spawnSwordParticles, showEntityHealth;
 
@@ -77,8 +87,38 @@ public class Config {
 		entityHealthDistance = cfg.get("Entity", "The distance the player can see the mobs health", 10).getInt();
 		showEntityHealth = cfg.get("Entity", "Show the health bar above the entitys head?", true).getBoolean(true);
 		
-		overrideNether = cfg.get("Nether", "Override the Nether's chunk provider?", true).getBoolean(true);
-		overrideEnd = cfg.get("End", "Override The End's chunk provider?", false).getBoolean(false);
+		List<Boolean> items= new ArrayList<Boolean>();
+		biomeSizeXZ = cfg.getInt("BiomeSizeXZ", "Nether", 100, 1, 4096, "The horizontal Nether biome size");
+		biomeSizeY = cfg.getInt("BiomeSizeY", "Nether", 32, 1, 4096, "The vertical Nether biome size");
+		hasCleaningPass = cfg.getBoolean("SecondPass", "Nether", true, "Enable second pass for smooth Nether terrain?");
+		for (Field f : BiomeRegistry.class.getDeclaredFields())
+			if (f.getType().isAssignableFrom(NetherBiomeBase.class))
+				items.add(cfg.getBoolean(f.getName().toLowerCase(), "Nether", true, "Enable Nether biomes?"));
+		registerBiomes = new boolean[items.size()];
+		for (int i = 0; i < items.size(); i++)
+			registerBiomes[i] = items.get(i);
+		items.clear();
+		resetBiomeIndex();
+	}
+	
+	public static boolean mustInitBiome() {
+		return registerBiomes[indexBiome++];
+	}
+
+	public static void resetBiomeIndex() {
+		indexBiome = 0;
+	}
+
+	public static int getBiomeSizeXZ() {
+		return biomeSizeXZ;
+	}
+
+	public static int getBiomeSizeY() {
+		return biomeSizeY;
+	}
+
+	public static boolean hasCleaningPass() {
+		return hasCleaningPass;
 	}
 
 	public static void miscInit() {}

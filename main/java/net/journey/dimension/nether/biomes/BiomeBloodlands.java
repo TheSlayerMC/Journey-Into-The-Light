@@ -7,12 +7,12 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.chunk.Chunk;
 
-public class BiomeHeatsands extends NetherBiomeBase {
+public class BiomeBloodlands extends NetherBiomeBase {
 	
 	/* Created by paulevs, from the Better Nether mod 
 	 * Big thanks to him*/
 	
-	public BiomeHeatsands(String name) {
+	public BiomeBloodlands(String name) {
 		super(name);
 	}
 
@@ -24,15 +24,15 @@ public class BiomeHeatsands extends NetherBiomeBase {
 				if (chunk.getBlockState(p2.down()).getBlock() == Blocks.AIR)
 					chunk.setBlockState(p2, Blocks.NETHERRACK.getDefaultState());
 				else
-					chunk.setBlockState(p2, JourneyBlocks.heatSand.getDefaultState());
+					chunk.setBlockState(p2, JourneyBlocks.heatSoil.getDefaultState());
 		}
 		if (chunk.getBlockState(pos).getBlock() == Blocks.NETHERRACK)
-			chunk.setBlockState(pos, JourneyBlocks.heatSand.getDefaultState());
+			chunk.setBlockState(pos, JourneyBlocks.heatSoil.getDefaultState());
 	}
 
 	@Override
 	public void genFloorObjects(Chunk chunk, BlockPos pos, Random random) {
-		if (random.nextFloat() <= plantDensity && chunk.getBlockState(pos).getBlock() == JourneyBlocks.heatSand
+		if (random.nextFloat() <= plantDensity && chunk.getBlockState(pos).getBlock() == JourneyBlocks.heatSoil
 				&& ((random.nextInt(16) == 0 || getFeatureNoise(pos, chunk.x, chunk.z) > 0.3))) {
 			if (JourneyBlocks.hellThornTop != Blocks.AIR && random.nextInt(8) == 0) {
 				int h = 1 + random.nextInt(3);

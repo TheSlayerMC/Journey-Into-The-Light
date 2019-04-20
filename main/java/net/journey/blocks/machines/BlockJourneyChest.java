@@ -50,7 +50,7 @@ public class BlockJourneyChest extends BlockModContainer {
     public final BlockJourneyChest.Type chestType;
     
 	public BlockJourneyChest(String name, String f, BlockJourneyChest.Type chestTypeIn) {
-		super(EnumMaterialTypes.WOOD, name, f, 2.0F, JourneyTabs.machineBlocks);
+		super(EnumMaterialTypes.STONE, name, f, 2.0F, JourneyTabs.machineBlocks);
         this.chestType = chestTypeIn;
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 	}
@@ -391,10 +391,10 @@ public class BlockJourneyChest extends BlockModContainer {
 
 	@Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		JourneySounds.playSound(JourneySounds.CHEST_OPEN, worldIn, playerIn);
         if(worldIn.isRemote) {
             return true;
         } else {
+    		JourneySounds.playSound(JourneySounds.CHEST_OPEN, worldIn, playerIn);
             ILockableContainer ilockablecontainer = this.getLockableContainer(worldIn, pos);
 
             if(ilockablecontainer != null) {

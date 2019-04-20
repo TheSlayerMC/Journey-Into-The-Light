@@ -12,10 +12,12 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.client.FMLClientHandler;
@@ -70,8 +72,8 @@ public class BlockLock extends BlockMod {
 		b = 0.0F;
 		if (!worldIn.isRemote && playerIn.getHeldItem(hand.MAIN_HAND) != null
 				&& playerIn.getHeldItem(hand.MAIN_HAND).getItem() == key) {
-			JourneySounds.playSound(JourneySounds.UNLOCK, worldIn, playerIn);
-			JourneySounds.playSound(JourneySounds.GATE_CREAK, worldIn, playerIn);
+			worldIn.playSound((EntityPlayer) null, x, (double) y + 0.5D, z, SoundEvents.BLOCK_IRON_TRAPDOOR_OPEN,
+					SoundCategory.BLOCKS, 0.5F, worldIn.rand.nextFloat() * 0.1F + 0.735F);
 			worldIn.spawnParticle(EnumParticleTypes.SPELL, x, y, z, 2.0F, 2.0F, 2.0F, 2);
 			worldIn.setBlockState(pos.add(0, 0, 0), Blocks.AIR.getDefaultState());
 			worldIn.setBlockState(pos.add(0, 1, 0), Blocks.AIR.getDefaultState());
