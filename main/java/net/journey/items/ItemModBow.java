@@ -128,18 +128,32 @@ public class ItemModBow extends ItemMod {
 		}
 	}
 
-    protected boolean isArrow(ItemStack stack) {return stack.getItem() instanceof ItemEssenceArrow;}
+    protected boolean isArrow(ItemStack stack) {return stack.getItem() instanceof ItemArrow;}
     
 	@Override
 	public void onPlayerStoppedUsing(ItemStack stack, World worldIn, EntityLivingBase entityLiving, int timeLeft) {
+
 		if (entityLiving instanceof EntityPlayer) {
 			EntityPlayer entityplayer = (EntityPlayer) entityLiving;
+			int j1 = this.getMaxItemUseDuration(stack) - timeLeft;
+			float f1 = (float)j1 / 20.0F;
+			f1 = (f1 * f1 + f1 * 2.0F) / 3.0F;
+			if((double)f1 < 0.1D) return;
+			if(f1 > 1.0F) f1 = 1.0F;
+
+
 			boolean flag = entityplayer.capabilities.isCreativeMode
 					|| EnchantmentHelper.getEnchantmentLevel(Enchantments.INFINITY, stack) > 0;
 			ItemStack itemstack = this.findAmmo(entityplayer);
 			ItemArrow itemarrow = (ItemArrow) (itemstack.getItem() instanceof ItemArrow ? itemstack.getItem()
 					: Items.ARROW);
-			EntityArrow entityarrow = itemarrow.createArrow(worldIn, itemstack, entityplayer);
+			EntityArrow entityarrow = null;
+			try {
+				entityarrow = arrowClass.getConstructor(World.class, EntityLivingBase.class, float.class).newInstance(worldIn, entityLiving instanceof EntityPlayer, f1 * 2.0F);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			entityarrow = itemarrow.createArrow(worldIn, itemstack, entityplayer);
 			boolean flag1 = entityplayer.capabilities.isCreativeMode || (itemstack.getItem() instanceof ItemArrow
 					&& ((ItemArrow) itemstack.getItem()).isInfinite(itemstack, stack, entityplayer));
 
