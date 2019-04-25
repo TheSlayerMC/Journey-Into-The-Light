@@ -1,5 +1,9 @@
 package net.journey.proxy;
 
+import java.io.File;
+
+import org.apache.logging.log4j.core.config.Configurator;
+
 import net.journey.JourneyBlocks;
 import net.journey.JourneyChestGenerator;
 import net.journey.JourneyCrops;
@@ -29,9 +33,9 @@ import net.journey.util.Config;
 import net.journey.util.EntityRegistry;
 import net.journey.util.JourneyFuelHandler;
 import net.journey.util.LangRegistry;
-import net.journey.util.recipes.JourneyBlockRecipes;
 import net.journey.util.recipes.JourneyMaterialRecipes;
 import net.journey.util.recipes.JourneyMiscRecipes;
+import net.journey.util.recipes.JourneyRecipes;
 import net.journey.util.recipes.JourneySmeltingRecipes;
 import net.journey.util.recipes.JourneyWeaponRecipes;
 import net.minecraft.block.Block;
@@ -41,6 +45,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
+import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -69,10 +74,6 @@ public class CommonProxy {
 		EntityRegistry.init();
 		JourneyChestGenerator.init();
 		//JourneyAchievements.init()
-		JourneyMaterialRecipes.init();
-		JourneyBlockRecipes.init();
-		JourneyMiscRecipes.init();
-		JourneyWeaponRecipes.init();
 		WorldGeneratorNether.updateGenSettings();
 		
 		addOreDictionary();
@@ -83,6 +84,7 @@ public class CommonProxy {
 		//FMLCommonHandler.instance().bus().register(new JourneyAdvancementEvent());
 		DimensionHelper.init();
 		DimensionHelper.addSpawns();
+        
 		CapabilityManager.INSTANCE.register(IEssence.class, new EssenceStorage(), EssenceBar.class);
 
 		SlayerAPI.registerEvent(new BarTickHandler());
@@ -113,7 +115,11 @@ public class CommonProxy {
 	
 	public void registerVariantRenderer(Item item, int meta, String name, String id) {}
 	
-	public void postInit(FMLPostInitializationEvent event) { }
+	public void postInit(FMLPostInitializationEvent event) { 
+        if (Config.JSON) {
+            JourneyRecipes recipe = new JourneyRecipes();
+        }
+	}
 	
 	public void serverStarting(FMLServerStartingEvent event) {
 		event.registerServerCommand(new JourneyCommands());
