@@ -2,7 +2,7 @@ package net.journey.event;
 
 import java.util.Random;
 
-import net.journey.dimension.nether.WorldGeneratorNether;
+import net.journey.dimension.nether.JNWorldGenerator;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
@@ -28,7 +28,7 @@ public class NetherEvent {
 	@SubscribeEvent
 	public void onWorldLoad(WorldEvent.Load event) {
 		if (!worldLoaded && event.getWorld().provider.getDimensionType() == DimensionType.NETHER) {
-			WorldGeneratorNether.init(event.getWorld().getSeed());
+			JNWorldGenerator.init(event.getWorld().getSeed());
 			worldLoaded = true;
 		}
 	}
@@ -39,7 +39,7 @@ public class NetherEvent {
 			Random random = event.getRand();
 			World world = event.getWorld();
 			Chunk chunk = world.getChunkFromChunkCoords(event.getChunkX(), event.getChunkZ());
-			WorldGeneratorNether.generate(world, chunk, world.rand);
+			JNWorldGenerator.generate(world, chunk, world.rand);
 		}
 	}
 
@@ -47,7 +47,7 @@ public class NetherEvent {
 	public void onPrePopulate(PopulateChunkEvent.Pre event) {
 		if (event.getWorld().provider.getDimensionType() == DimensionType.NETHER) {
 			Chunk chunk = event.getWorld().getChunkFromChunkCoords(event.getChunkX(), event.getChunkZ());
-			WorldGeneratorNether.smoothChunk(chunk);
+			JNWorldGenerator.smoothChunk(chunk);
 		}
 	}
 }

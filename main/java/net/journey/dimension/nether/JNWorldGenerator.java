@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import net.journey.dimension.nether.biomes.BiomeRegistry;
-import net.journey.dimension.nether.biomes.NetherBiomeBase;
+import net.journey.JourneyBlocks;
+import net.journey.dimension.nether.biomes.BiomeRegister;
+import net.journey.dimension.nether.biomes.NetherBiome;
+import net.journey.dimension.nether.biomes.structure.IStructureWorld;
+import net.journey.dimension.nether.biomes.structure.StructureDeathGrass;
 import net.journey.dimension.nether.noise.Dither;
 import net.journey.dimension.nether.noise.WorleyNoiseIDDistorted3D;
 import net.journey.util.Config;
@@ -21,14 +24,17 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 
-public class WorldGeneratorNether {
+public class JNWorldGenerator {
 
-	/*
-	 * Created by paulevs, from the Better Nether mod 
-	 * Big thanks to him
-	 */
-	
+	public static StructureDeathGrass deathgrassgen = new StructureDeathGrass();
+
+	public static IStructureWorld[] globalStructuresLand;
+	public static IStructureWorld[] globalStructuresLava;
+	public static IStructureWorld[] globalStructuresCave;
+
 	public static boolean hasCleaningPass = true;
+	public static boolean hasDeathGrassGen = true;
+
 	private static WorleyNoiseIDDistorted3D noise3d;
 	private static WorleyNoiseIDDistorted3D subbiomesNoise;
 	private static Dither dither;
@@ -43,14 +49,14 @@ public class WorldGeneratorNether {
 	private static Random coordinateRandom;
 
 	public static void init(long seed) {
-		noise3d = new WorleyNoiseIDDistorted3D(seed, BiomeRegistry.biomeCount);
+		noise3d = new WorleyNoiseIDDistorted3D(seed, BiomeRegister.biomeCount);
 		subbiomesNoise = new WorleyNoiseIDDistorted3D(~seed, 256);
 		dither = new Dither(seed);
 		coordinateRandom = new Random();
 	}
 
 	public static void generate(World world, Chunk chunk, Random random) {
-		NetherBiomeBase biome;
+		NetherBiome biome;
 		int id;
 		if (!world.isRemote) {
 			int sx = chunk.x << 4;
@@ -67,6 +73,8 @@ public class WorldGeneratorNether {
 							generate = false;
 							break;
 						}
+					}
+					if (generate) {
 					}
 				}
 			}
@@ -85,6 +93,23 @@ public class WorldGeneratorNether {
 							break;
 						}
 					}
+					if (terrain) {
+						if (globalStructuresLava.length > 0
+								&& chunk.getBlockState(start).getMaterial() == Material.LAVA)
+							;
+						// globalStructuresLava[coordinateRandom.nextInt(globalStructuresLava.length)].generate(chunk.getWorld(),
+						// start.add(sx, 1, sz), coordinateRandom);
+						else if (globalStructuresLand.length > 0)
+							globalStructuresLand[coordinateRandom.nextInt(globalStructuresLand.length)]
+									.generateSurface(chunk.getWorld(), start.add(sx, 1, sz), coordinateRandom);// .generate(chunk.getWorld(),
+																												// start.add(sx,
+																												// 1,
+																												// sz),
+																												// coordinateRandom);
+					} else if (globalStructuresCave.length > 0) {
+						globalStructuresCave[coordinateRandom.nextInt(globalStructuresCave.length)]
+								.generateSubterrain(chunk.getWorld(), start.add(sx, 0, sz), coordinateRandom);
+					}
 				}
 			}
 
@@ -96,7 +121,7 @@ public class WorldGeneratorNether {
 					for (int y = 5; y < 126; y++) {
 						if (chunk.getBlockState(x, y, z).isFullBlock()) {
 							id = getBiome(wx, y, wz);
-							biome = BiomeRegistry.getBiomeID(id);
+							biome = BiomeRegister.getBiomeID(id);
 							if (isEdge(id, wx, y, wz, biome.getEdgeSize()))
 								biome = biome.getEdge();
 							else
@@ -134,9 +159,21 @@ public class WorldGeneratorNether {
 										pos = origin.west();
 									boolean bDown = chunk.getBlockState(pos.up()).getBlock() == Blocks.AIR;
 									boolean bUp = chunk.getBlockState(pos.down()).getBlock() == Blocks.AIR;
+									if (bDown && bUp) {
+										if (random.nextFloat() <= plantDensity)
+											biome.genWallObjects(chunk, origin, pos, random);
+										if (y < 50
+												&& chunk.getBlockState(x, y, z).getBlock() instanceof BlockNetherBrick
+												&& random.nextInt(16) == 0)
+											;
+										// wartCapGen.generate(chunk, origin,
+										// random);
+									}
 								}
 							}
 						}
+						if (JourneyBlocks.blueCloudiaCloud != Blocks.AIR && random.nextInt(1024) == 0)
+							spawnOre(JourneyBlocks.blueCloudiaCloud.getDefaultState(), chunk, x, y, z, random);
 					}
 				}
 			}
@@ -224,6 +261,13 @@ public class WorldGeneratorNether {
 		biomeSizeY = 1.0 / (double) Config.getBiomeSizeY();
 		subBiomeSize = biomeSizeXZ * 3;
 		hasCleaningPass = Config.hasCleaningPass();
+		hasDeathGrassGen = JourneyBlocks.deathGrass != Blocks.AIR;
+
+		globalStructuresLand = new IStructureWorld[] {};
+
+		globalStructuresLava = new IStructureWorld[] {};
+
+		globalStructuresCave = new IStructureWorld[] {};
 	}
 
 	private static BlockPos downRay(Chunk chunk, BlockPos start) {
@@ -250,9 +294,9 @@ public class WorldGeneratorNether {
 		return subbiomesNoise.GetValue(px, py, pz) % count;
 	}
 
-	public static NetherBiomeBase getBiome(BlockPos pos) {
+	public static NetherBiome getBiome(BlockPos pos) {
 		int id = getBiome(pos.getX(), pos.getY(), pos.getZ());
-		NetherBiomeBase biome = BiomeRegistry.getBiomeID(id);
+		NetherBiome biome = BiomeRegister.getBiomeID(id);
 		if (isEdge(id, pos.getX(), pos.getY(), pos.getZ(), biome.getEdgeSize()))
 			biome = biome.getEdge();
 		else

@@ -22,8 +22,8 @@ import net.journey.client.server.IEssence;
 import net.journey.dimension.DimensionCommand;
 import net.journey.dimension.DimensionHelper;
 import net.journey.dimension.WorldGenJourney;
-import net.journey.dimension.nether.WorldGeneratorNether;
-import net.journey.dimension.nether.biomes.BiomeRegistry;
+import net.journey.dimension.nether.JNWorldGenerator;
+import net.journey.dimension.nether.biomes.BiomeRegister;
 import net.journey.enums.EnumParticlesClasses;
 import net.journey.event.ArmorAbilityEvent;
 import net.journey.event.NetherEvent;
@@ -66,17 +66,21 @@ public class CommonProxy {
 	public void preInit(FMLPreInitializationEvent event) {
 		Config.init(event);
 		NetherEvent.init();
+
 		JourneySounds.init();
 		JourneyItems.init();
 		JourneyBlocks.init();
 		JourneyCrops.init();
-		BiomeRegistry.init();
+		BiomeRegister.registerBiomes();
+		Config.postBiomeInit();
+		JNWorldGenerator.updateGenSettings();
 		EntityRegistry.init();
+
 		JourneyChestGenerator.init();
 		//JourneyAchievements.init()
-		WorldGeneratorNether.updateGenSettings();
 		
 		addOreDictionary();
+		SlayerAPI.registerEvent(new NetherEvent());
 		SlayerAPI.registerEvent(new ArmorAbilityEvent());
 		SlayerAPI.registerEvent(new PlayerEvent());
 		GameRegistry.registerFuelHandler(new JourneyFuelHandler());
@@ -89,9 +93,6 @@ public class CommonProxy {
 
 		SlayerAPI.registerEvent(new BarTickHandler());
 		MinecraftForge.EVENT_BUS.register(BarTickHandler.class);
-		MinecraftForge.EVENT_BUS.register(NetherEvent.class);
-		
-
 
 		if(SlayerAPI.DEVMODE) LangRegistry.instance.register();
 	}

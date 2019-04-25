@@ -4,30 +4,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import net.journey.dimension.nether.WorldGeneratorNether;
+import net.journey.dimension.nether.JNWorldGenerator;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 
-public class NetherBiomeBase {
-	
-	/* Created by paulevs, from the Better Nether mod 
-	 * Big thanks to him*/
-
+public class NetherBiome {
 	static NoiseGeneratorOctaves featureScatter = new NoiseGeneratorOctaves(new Random(1337), 3);
 	float plantDensity = 1;
 	String name;
-	NetherBiomeBase edge;
+	NetherBiome edge;
 	int edgeSize;
-	List<NetherBiomeBase> subbiomes;
+	List<NetherBiome> subbiomes;
 	int sl;
 
-	public NetherBiomeBase(String name) {
+	public NetherBiome(String name) {
 		this.name = name;
 		edge = this;
 		edgeSize = 0;
 		sl = 0;
-		subbiomes = new ArrayList<NetherBiomeBase>();
+		subbiomes = new ArrayList<NetherBiome>();
 	}
 
 	public void genSurfColumn(Chunk chunk, BlockPos pos, Random random) {
@@ -58,11 +54,11 @@ public class NetherBiomeBase {
 		return name;
 	}
 
-	public NetherBiomeBase getEdge() {
+	public NetherBiome getEdge() {
 		return edge;
 	}
 
-	public void setEdge(NetherBiomeBase edge) {
+	public void setEdge(NetherBiome edge) {
 		this.edge = edge;
 	}
 
@@ -74,14 +70,14 @@ public class NetherBiomeBase {
 		edgeSize = size;
 	}
 
-	public void addSubBiome(NetherBiomeBase biome) {
+	public void addSubBiome(NetherBiome biome) {
 		subbiomes.add(biome);
 		sl = subbiomes.size() << 3;
 	}
 
-	public NetherBiomeBase getSubBiome(int x, int y, int z) {
+	public NetherBiome getSubBiome(int x, int y, int z) {
 		if (sl > 0) {
-			int id = WorldGeneratorNether.getSubBiome(x, y, z, sl);
+			int id = JNWorldGenerator.getSubBiome(x, y, z, sl);
 			if (id < subbiomes.size())
 				return subbiomes.get(id);
 			else

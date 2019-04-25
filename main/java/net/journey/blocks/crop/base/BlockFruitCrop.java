@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import net.journey.JourneyBlocks;
+import net.journey.JourneyCrops;
 import net.journey.JourneyItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
@@ -179,7 +180,7 @@ public class BlockFruitCrop extends BlockMod implements IGrowable {
             j = 3;
         }
         for (int k = 0; k < j; ++k) {
-            dropped.add(new ItemStack(this.fruitItem));
+            dropped.add(new ItemStack(JourneyCrops.bleedheart));
         }
         return dropped;
     }

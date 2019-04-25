@@ -5,8 +5,9 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.journey.dimension.nether.biomes.BiomeRegistry;
-import net.journey.dimension.nether.biomes.NetherBiomeBase;
+import net.journey.dimension.nether.JNWorldGenerator;
+import net.journey.dimension.nether.biomes.BiomeRegister;
+import net.journey.dimension.nether.biomes.NetherBiome;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
@@ -93,8 +94,8 @@ public class Config {
 		biomeSizeXZ = cfg.getInt("BiomeSizeXZ", "Nether", 100, 1, 4096, "The horizontal Nether biome size");
 		biomeSizeY = cfg.getInt("BiomeSizeY", "Nether", 32, 1, 4096, "The vertical Nether biome size");
 		hasCleaningPass = cfg.getBoolean("SecondPass", "Nether", true, "Enable second pass for smooth Nether terrain?");
-		for (Field f : BiomeRegistry.class.getDeclaredFields())
-			if (f.getType().isAssignableFrom(NetherBiomeBase.class))
+		for (Field f : BiomeRegister.class.getDeclaredFields())
+			if (f.getType().isAssignableFrom(NetherBiome.class))
 				items.add(cfg.getBoolean(f.getName().toLowerCase(), "Nether", true, "Enable Nether biomes?"));
 		registerBiomes = new boolean[items.size()];
 		for (int i = 0; i < items.size(); i++)
@@ -103,6 +104,16 @@ public class Config {
 		resetBiomeIndex();
 	}
 	
+	public static void postBiomeInit() {
+		// Plant density
+		JNWorldGenerator.setDensity(
+				cfg.getFloat("GlobalDensity", "Generator", 1, 0, 1, "Global plant density, multiplied on other"));
+		for (NetherBiome biome : BiomeRegister.getBiomes()) {
+			biome.setDensity(cfg.getFloat(biome.getName().replace(" ", "") + "Density", "Generator", 1, 0, 1,
+					"Density for " + biome.getName() + " biome"));
+		}
+	}
+
 	public static boolean mustInitBiome() {
 		return registerBiomes[indexBiome++];
 	}
