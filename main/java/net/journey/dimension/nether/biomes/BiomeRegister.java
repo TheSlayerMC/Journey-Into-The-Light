@@ -9,14 +9,14 @@ public class BiomeRegister {
 	public static int biomeCount;
 	public static NetherBiome[] BiomeRegistry;
 	public static NetherBiome BIOME_EMPTY_NETHER;
-	public static NetherBiome BIOME_TEST;
-	public static NetherBiome BIOME_TEST_EDGE;
+	public static NetherBiome BIOME_FOREST;
+	public static NetherBiome BIOME_FOREST_EDGE;
 
 	public static void registerBiomes() {
 		List<NetherBiome> biomes = new ArrayList<NetherBiome>();
 		BIOME_EMPTY_NETHER = registerBiome(new NetherBiome("Empty Nether"), biomes);
-		BIOME_TEST = registerBiome(new NetherBiomeTest("Test"), biomes);
-		BIOME_TEST_EDGE = registerEdgeBiome(new NetherBiomeTestEdge("TEST Edge"), BIOME_TEST, 10);
+		BIOME_FOREST = registerBiome(new NetherBiomeForest("Test"), biomes);
+		BIOME_FOREST_EDGE = registerEdgeBiome(new NetherBiomeTestEdge("TEST Edge"), BIOME_FOREST, 10);
 		biomeCount = biomes.size();
 		BiomeRegistry = new NetherBiome[biomeCount];
 		for (int i = 0; i < biomeCount; i++)

@@ -8,7 +8,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.chunk.Chunk;
 
-public class NetherBiomeTestEdge extends NetherBiomeTest {
+public class NetherBiomeTestEdge extends NetherBiomeForest {
 	public NetherBiomeTestEdge(String name) {
 		super(name);
 	}

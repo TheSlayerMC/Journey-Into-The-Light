@@ -152,7 +152,7 @@ public class WorldGenJourney implements IWorldGenerator {
 			(new WorldGenSizzlerWoodTree0()).generate(w, r, new BlockPos(x, y - 1, z));
 		} */
 
-		for(times = 0; times < 150; times++) {
+		for(times = 0; times < 450; times++) {
 			y = r.nextInt(256); 
 			x = chunkX + r.nextInt(16) + 8; 
 			z = chunkZ + r.nextInt(16) + 8;
@@ -160,20 +160,12 @@ public class WorldGenJourney implements IWorldGenerator {
 				(new WorldGenBleedheartTree0()).generate(w, r, new BlockPos(x, y - 1, z));
 		}
 
-		for(times = 0; times < 150; times++) {
+		for(times = 0; times < 450; times++) {
 			y = r.nextInt(256); 
 			x = chunkX + r.nextInt(16) + 8; 
 			z = chunkZ + r.nextInt(16) + 8;
 			if(isBlockTop(x, y, z, JourneyBlocks.heatSoil, w))
 				(new WorldGenBleedheartTree1()).generate(w, r, new BlockPos(x, y - 1, z));
-		}
-
-		for(times = 0; times < 150; times++) {
-			y = r.nextInt(256); 
-			x = chunkX + r.nextInt(16) + 8; 
-			z = chunkZ + r.nextInt(16) + 8;
-			if(isBlockTop(x, y, z, JourneyBlocks.heatSoil, w))
-				(new WorldGenBleedheartTree2()).generate(w, r, new BlockPos(x, y - 1, z));
 		}
 
 		/* for(times = 0; times < 100; times++) {
