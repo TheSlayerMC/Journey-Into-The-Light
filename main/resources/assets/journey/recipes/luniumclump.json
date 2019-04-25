@@ -1,0 +1,14 @@
+{
+  "result": {
+    "item": "journey:luniumclump"
+  },
+  "pattern": [
+    "iii"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "i": {
+      "item": "journey:luniumingot"
+    }
+  }
+}

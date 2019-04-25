@@ -1,0 +1,22 @@
+{
+  "result": {
+    "item": "journey:boilkey"
+  },
+  "pattern": [
+    "dgd",
+    "did",
+    "dgd"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "d": {
+      "item": "journey:flamingspring"
+    },
+    "g": {
+      "item": "minecraft:gold_ingot"
+    },
+    "i": {
+      "item": "journey:flamingsprocket"
+    }
+  }
+}

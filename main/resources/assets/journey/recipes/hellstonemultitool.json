@@ -1,0 +1,20 @@
+{
+  "result": {
+    "item": "journey:hellstonemultitool"
+  },
+  "ingredients": [
+    {
+      "item": "journey:hellstonepickaxe"
+    },
+    {
+      "item": "journey:hellstoneshovel"
+    },
+    {
+      "item": "journey:hellstonehoe"
+    },
+    {
+      "item": "journey:hellstoneaxe"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless"
+}

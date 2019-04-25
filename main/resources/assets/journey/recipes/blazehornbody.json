@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "journey:blazehornbody"
+  },
+  "pattern": [
+    "i i",
+    "did",
+    "idi"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "d": {
+      "item": "minecraft:blaze_rod"
+    },
+    "i": {
+      "item": "journey:horn"
+    }
+  }
+}

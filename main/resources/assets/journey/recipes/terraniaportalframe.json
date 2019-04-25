@@ -1,0 +1,17 @@
+{
+  "result": {
+    "item": "journey:terraniaportalframe",
+    "count": 10
+  },
+  "pattern": [
+    "iii",
+    "iii",
+    "iii"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "i": {
+      "item": "journey:terraniaportalgem"
+    }
+  }
+}

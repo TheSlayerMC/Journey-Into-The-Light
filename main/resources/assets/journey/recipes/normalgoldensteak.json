@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "journey:normalgoldensteak"
+  },
+  "pattern": [
+    "iii",
+    "ibi",
+    "iii"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "b": {
+      "item": "minecraft:beef"
+    },
+    "i": {
+      "item": "minecraft:gold_ingot"
+    }
+  }
+}

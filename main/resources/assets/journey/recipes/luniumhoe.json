@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "journey:luniumhoe"
+  },
+  "pattern": [
+    " ii",
+    " s ",
+    " s "
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "s": {
+      "item": "minecraft:stick"
+    },
+    "i": {
+      "item": "journey:luniumingot"
+    }
+  }
+}

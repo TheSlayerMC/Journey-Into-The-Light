@@ -1,0 +1,20 @@
+{
+  "result": {
+    "item": "journey:storonmultitool"
+  },
+  "ingredients": [
+    {
+      "item": "journey:storonpickaxe"
+    },
+    {
+      "item": "journey:storonshovel"
+    },
+    {
+      "item": "journey:storonhoe"
+    },
+    {
+      "item": "journey:storonaxe"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless"
+}

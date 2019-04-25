@@ -1,0 +1,22 @@
+{
+  "result": {
+    "item": "journey:grindstone"
+  },
+  "pattern": [
+    " o ",
+    "bib",
+    "bbb"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "b": {
+      "item": "minecraft:brick_block"
+    },
+    "i": {
+      "item": "minecraft:iron_ingot"
+    },
+    "o": {
+      "item": "minecraft:obsidian"
+    }
+  }
+}

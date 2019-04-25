@@ -1,0 +1,12 @@
+{
+  "result": {
+    "item": "journey:sapphire",
+    "count": 9
+  },
+  "ingredients": [
+    {
+      "item": "journey:sapphireblock"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless"
+}

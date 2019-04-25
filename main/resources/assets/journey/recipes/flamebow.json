@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "journey:flamebow"
+  },
+  "pattern": [
+    " fs",
+    "f s",
+    " fs"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "s": {
+      "item": "minecraft:string"
+    },
+    "f": {
+      "item": "minecraft:fire_charge"
+    }
+  }
+}

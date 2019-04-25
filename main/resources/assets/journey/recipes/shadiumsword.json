@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "journey:shadiumsword"
+  },
+  "pattern": [
+    "b",
+    "b",
+    "s"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "b": {
+      "item": "journey:shadiumblock"
+    },
+    "s": {
+      "item": "minecraft:stick"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "result": {
+    "item": "journey:gorbitemultitool"
+  },
+  "ingredients": [
+    {
+      "item": "journey:gorbitepickaxe"
+    },
+    {
+      "item": "journey:gorbiteshovel"
+    },
+    {
+      "item": "journey:gorbitehoe"
+    },
+    {
+      "item": "journey:gorbiteaxe"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless"
+}

@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "journey:bleedrocklegs"
+  },
+  "pattern": [
+    "idi",
+    "d d",
+    "i i"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "d": {
+      "item": "journey:lavarock"
+    },
+    "i": {
+      "item": "journey:concentratedblood"
+    }
+  }
+}

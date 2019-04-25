@@ -1,0 +1,14 @@
+{
+  "result": {
+    "item": "journey:hellstoneclump"
+  },
+  "pattern": [
+    "iii"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "i": {
+      "item": "journey:hellstoneingot"
+    }
+  }
+}

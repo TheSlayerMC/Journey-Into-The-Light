@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "minecraft:web"
+  },
+  "pattern": [
+    "sss",
+    "sss",
+    "sss"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "s": {
+      "item": "minecraft:string"
+    }
+  }
+}

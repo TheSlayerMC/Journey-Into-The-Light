@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "journey:koritesword"
+  },
+  "pattern": [
+    "b",
+    "b",
+    "s"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "b": {
+      "item": "journey:koriteblock"
+    },
+    "s": {
+      "item": "minecraft:stick"
+    }
+  }
+}

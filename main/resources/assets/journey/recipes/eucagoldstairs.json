@@ -1,0 +1,17 @@
+{
+  "result": {
+    "item": "journey:eucagoldstairs",
+    "count": 4
+  },
+  "pattern": [
+    "i  ",
+    "ii ",
+    "iii"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "i": {
+      "item": "journey:goldeucaplank"
+    }
+  }
+}

@@ -14,12 +14,16 @@ import net.journey.blocks.crop.BlockSpineberryCrop;
 import net.journey.blocks.crop.BlockTomatoCrop;
 import net.journey.blocks.crop.BlockZatPedalsCrop;
 import net.journey.blocks.crop.base.BlockFruitCrop;
+import net.journey.items.ItemFruit;
+import net.journey.util.PotionEffects;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.slayer.api.block.BlockMod;
 import net.slayer.api.item.ItemModSeeds;
 
 public class JourneyCrops {
 
+	public static BlockMod bleedheartFruit;
 	public static Block tomatoCrop;
 	public static Block corveggieCrop;
 	public static Block crackenCaneCrop;
@@ -32,6 +36,7 @@ public class JourneyCrops {
 	public static Block airRootCrop;
 	public static Block airRootMelon;
 
+	public static Item bleedheart;
 	public static Item glowshroomPowder;
 	public static Item tomatoSeeds;
 	public static Item corveggieSeeds;
@@ -44,6 +49,7 @@ public class JourneyCrops {
 	public static Item airRootSeed;
 
 	public static void init() {
+		bleedheartFruit = (BlockFruitCrop) new BlockFruitCrop("bleedheartFruit", "Bleedheart Fruit", JourneyCrops.bleedheart, JourneyBlocks.sizzlerWoodLog).setCreativeTab(null);
 		tomatoCrop = new BlockTomatoCrop("tomatoCrop");
 		corveggieCrop = new BlockCorveggieCrop("corveggiesCrop");
 		crackenCaneCrop = new BlockCrackenCaneCrop("crackenCanesCrop");
@@ -56,6 +62,7 @@ public class JourneyCrops {
 		airRootCrop = new BlockAirRootCrop("airRootCrop");
 		airRootMelon = new BlockMelon("airRootMelon", "Air Root", JourneyItems.airMelon);
 
+		bleedheart = new ItemFruit("bleedheart", "Bleedheart Fruit", 2, 0.1F, false, (BlockFruitCrop) JourneyCrops.bleedheartFruit, JourneyBlocks.sizzlerWoodLog).setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.moveSlow, 100, 10), 1.0F);
 		glowshroomPowder = new ItemModSeeds("glowshroomPowder", "Glowshroom Powder", JourneyCrops.glowshroomCrop);
 		tomatoSeeds = new ItemModSeeds("tomatoSeeds", "Tomato Seeds", JourneyCrops.tomatoCrop);
 		corveggieSeeds = new ItemModSeeds("corveggieSeeds", "Corveggie", JourneyCrops.corveggieCrop);

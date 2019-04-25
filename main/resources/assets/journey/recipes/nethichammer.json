@@ -1,0 +1,22 @@
+{
+  "result": {
+    "item": "journey:nethichammer"
+  },
+  "pattern": [
+    "jdj",
+    "did",
+    " i "
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "d": {
+      "item": "journey:hellstoneblock"
+    },
+    "i": {
+      "item": "journey:hellstoneclump"
+    },
+    "j": {
+      "item": "journey:flamingspring"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "journey:withichammer"
+  },
+  "pattern": [
+    "ddd",
+    "did",
+    " i "
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "d": {
+      "item": "journey:hellcrustingot"
+    },
+    "i": {
+      "item": "journey:withicspine"
+    }
+  }
+}

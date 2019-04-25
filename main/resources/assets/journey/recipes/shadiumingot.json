@@ -1,0 +1,12 @@
+{
+  "result": {
+    "item": "journey:shadiumingot",
+    "count": 9
+  },
+  "ingredients": [
+    {
+      "item": "journey:shadiumblock"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless"
+}

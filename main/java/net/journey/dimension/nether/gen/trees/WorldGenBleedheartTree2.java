@@ -3,6 +3,7 @@ package net.journey.dimension.nether.gen.trees;
 import java.util.Random;
 
 import net.journey.JourneyBlocks;
+import net.journey.JourneyCrops;
 import net.journey.blocks.crop.base.BlockFruitCrop;
 import net.minecraft.block.BlockCocoa;
 import net.minecraft.util.math.BlockPos;
@@ -33,7 +34,7 @@ public class WorldGenBleedheartTree2 extends WorldGenerator {
 		world.setBlockState(new BlockPos(i + 2, j + 5, k + 2), JourneyBlocks.sizzlerWoodLeaves.getDefaultState());
 		world.setBlockState(new BlockPos(i + 3, j + 5, k + 2), JourneyBlocks.sizzlerWoodLog.getDefaultState());
 		world.setBlockState(new BlockPos(i + 3, j + 6, k + 2), JourneyBlocks.sizzlerWoodLeaves.getDefaultState());
-		world.setBlockState(new BlockPos(i + 1, j + 5, k + 1), JourneyBlocks.bleedheartFruit.getStateFromMeta(4).withProperty(BlockFruitCrop.AGE, 0));
+		world.setBlockState(new BlockPos(i + 1, j + 5, k + 1), JourneyCrops.bleedheartFruit.getStateFromMeta(4).withProperty(BlockFruitCrop.AGE, 0));
 		return true;
 	}
 }

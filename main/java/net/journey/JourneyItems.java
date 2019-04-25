@@ -753,7 +753,6 @@ public class JourneyItems {
 	public static Item jellyBeans;
 	public static Item chocolate;
 	public static Item vanillaWafer;
-	public static Item bleedheart;
 
 	public static Item goldenSteak;
 	public static Item goldenSteakOP;
@@ -1385,7 +1384,6 @@ public class JourneyItems {
 		jellyBeans = new ItemModFood("jellyBeans", "Jelly Beans", 1, 0.1F, 2, false);
 		chocolate = new ItemModFood("chocolate", "Chocolate Bar", 2, 0.1F, 2, false);
 		vanillaWafer = new ItemModFood("vanillaWafer", "Vanilla Wafer", 1, 0.1F, 2, false);
-		bleedheart = new ItemFruit("bleedheart", "Bleedheart Fruit", 2, 0.1F, false, JourneyBlocks.bleedheartFruit, JourneyBlocks.sizzlerWoodLog).setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.moveSlow, 100, 10), 1.0F);
 
 		goldenSteak = new ItemGoldenFood("normalGoldenSteak", "Golden Steak", 6, 1.2F, false, false);
 		goldenSteakOP = new ItemGoldenFood("OPGoldenSteak", "Golden Steak", 10, 2.2F, false, true);

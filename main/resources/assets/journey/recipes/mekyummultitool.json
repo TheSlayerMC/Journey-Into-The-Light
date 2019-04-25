@@ -1,0 +1,20 @@
+{
+  "result": {
+    "item": "journey:mekyummultitool"
+  },
+  "ingredients": [
+    {
+      "item": "journey:mekyumpickaxe"
+    },
+    {
+      "item": "journey:mekyumshovel"
+    },
+    {
+      "item": "journey:mekyumhoe"
+    },
+    {
+      "item": "journey:mekyumaxe"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless"
+}

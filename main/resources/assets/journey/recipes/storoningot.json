@@ -1,0 +1,12 @@
+{
+  "result": {
+    "item": "journey:storoningot",
+    "count": 9
+  },
+  "ingredients": [
+    {
+      "item": "journey:storonblock"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless"
+}

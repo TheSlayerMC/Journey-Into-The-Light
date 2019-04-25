@@ -1,0 +1,14 @@
+{
+  "result": {
+    "item": "journey:shadiumclump"
+  },
+  "pattern": [
+    "iii"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "i": {
+      "item": "journey:shadiumingot"
+    }
+  }
+}

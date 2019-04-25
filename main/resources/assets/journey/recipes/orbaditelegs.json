@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "journey:orbaditelegs"
+  },
+  "pattern": [
+    "iii",
+    "i i",
+    "i i"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "i": {
+      "item": "journey:orbaditeingot"
+    }
+  }
+}

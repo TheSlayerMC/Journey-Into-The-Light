@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "journey:flairiumblock"
+  },
+  "pattern": [
+    "iii",
+    "iii",
+    "iii"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "i": {
+      "item": "journey:flairiumingot"
+    }
+  }
+}

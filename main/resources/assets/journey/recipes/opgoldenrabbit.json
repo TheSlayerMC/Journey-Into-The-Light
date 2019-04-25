@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "journey:opgoldenrabbit"
+  },
+  "pattern": [
+    "iii",
+    "ibi",
+    "iii"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "b": {
+      "item": "minecraft:rabbit"
+    },
+    "i": {
+      "item": "minecraft:gold_block"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "journey:despickaxe"
+  },
+  "pattern": [
+    "iii",
+    " s ",
+    " s "
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "s": {
+      "item": "minecraft:stick"
+    },
+    "i": {
+      "item": "journey:desingot"
+    }
+  }
+}

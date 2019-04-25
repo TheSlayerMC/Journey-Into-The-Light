@@ -1,0 +1,20 @@
+{
+  "result": {
+    "item": "journey:flairiummultitool"
+  },
+  "ingredients": [
+    {
+      "item": "journey:flairiumpickaxe"
+    },
+    {
+      "item": "journey:flairiumshovel"
+    },
+    {
+      "item": "journey:flairiumhoe"
+    },
+    {
+      "item": "journey:flairiumaxe"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless"
+}

@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "journey:mekyumsword"
+  },
+  "pattern": [
+    "b",
+    "b",
+    "s"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "b": {
+      "item": "journey:mekyumblock"
+    },
+    "s": {
+      "item": "minecraft:stick"
+    }
+  }
+}

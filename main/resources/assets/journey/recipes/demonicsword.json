@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "journey:demonicsword"
+  },
+  "pattern": [
+    "d",
+    "d",
+    "i"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "d": {
+      "item": "journey:demonicbone"
+    },
+    "i": {
+      "item": "journey:demonicdust"
+    }
+  }
+}

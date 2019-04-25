@@ -67,9 +67,9 @@ public class CommonProxy {
 		Config.init(event);
 		NetherEvent.init();
 		JourneySounds.init();
-		JourneyCrops.init();
 		JourneyItems.init();
 		JourneyBlocks.init();
+		JourneyCrops.init();
 		BiomeRegistry.init();
 		EntityRegistry.init();
 		JourneyChestGenerator.init();

@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "journey:reinforcedcrystalsword"
+  },
+  "pattern": [
+    "d",
+    "d",
+    "i"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "d": {
+      "item": "journey:reinforcedcrystalingot"
+    },
+    "i": {
+      "item": "journey:stonestick"
+    }
+  }
+}

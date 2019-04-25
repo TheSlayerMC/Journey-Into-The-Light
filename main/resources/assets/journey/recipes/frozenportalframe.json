@@ -1,0 +1,20 @@
+{
+  "result": {
+    "item": "journey:frozenportalframe",
+    "count": 10
+  },
+  "pattern": [
+    "iii",
+    "idi",
+    "iii"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "d": {
+      "item": "minecraft:diamond"
+    },
+    "i": {
+      "item": "minecraft:snowball"
+    }
+  }
+}

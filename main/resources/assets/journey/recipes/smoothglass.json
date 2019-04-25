@@ -1,0 +1,11 @@
+{
+  "result": {
+    "item": "journey:smoothglass"
+  },
+  "ingredient": {
+    "item": "minecraft:glass"
+  },
+  "type": "minecraft:smelting",
+  "experience": 1.0,
+  "cookingtime": 200
+}

@@ -71,7 +71,7 @@ public class JourneyBlocks {
 	public static ArrayList<String> blockName = new ArrayList<String>();
 	public static ArrayList<Block> blocks = new ArrayList<Block>();
 
-	public static BlockFruitCrop bleedheartFruit;
+
 	
 	public static BlockMod iridiumOre;
 	public static BlockMod verditeOre;
@@ -477,8 +477,6 @@ public class JourneyBlocks {
 	 */
 
 	 public static void init() {
-		 
-		bleedheartFruit = (BlockFruitCrop) new BlockFruitCrop("bleedheartFruit", "Bleedheart Fruit", JourneyItems.bleedheart, sizzlerWoodLog).setCreativeTab(null);
 		 
 		iridiumOre = new BlockModOre("iridiumOre", "Iridium Ore", true).setHarvestLevel(EnumToolType.DIAMOND_PICK);
 		verditeOre = new BlockModOre("verditeOre", "Verdite Ore", false).setHarvestLevel(EnumToolType.STONE_PICK);

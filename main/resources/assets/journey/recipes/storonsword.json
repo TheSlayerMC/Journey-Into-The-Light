@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "journey:storonsword"
+  },
+  "pattern": [
+    "b",
+    "b",
+    "s"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "b": {
+      "item": "journey:storonblock"
+    },
+    "s": {
+      "item": "minecraft:stick"
+    }
+  }
+}

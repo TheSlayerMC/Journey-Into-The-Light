@@ -1,0 +1,17 @@
+{
+  "result": {
+    "item": "journey:stoneclump",
+    "count": 16
+  },
+  "pattern": [
+    "ddd",
+    "ddd",
+    "ddd"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "d": {
+      "item": "minecraft:cobblestone"
+    }
+  }
+}

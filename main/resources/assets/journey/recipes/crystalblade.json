@@ -1,0 +1,20 @@
+{
+  "result": {
+    "item": "journey:crystalblade"
+  },
+  "pattern": [
+    "d",
+    "d",
+    "i"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "d": {
+      "item": "journey:cavecrystal"
+    },
+    "i": {
+      "item": "minecraft:stone",
+      "data": 0
+    }
+  }
+}

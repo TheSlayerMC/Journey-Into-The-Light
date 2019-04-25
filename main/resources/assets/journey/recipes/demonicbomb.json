@@ -1,0 +1,20 @@
+{
+  "result": {
+    "item": "journey:demonicbomb",
+    "count": 16
+  },
+  "pattern": [
+    "ddd",
+    "did",
+    "ddd"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "d": {
+      "item": "journey:demonicdust"
+    },
+    "i": {
+      "item": "journey:crystalball"
+    }
+  }
+}

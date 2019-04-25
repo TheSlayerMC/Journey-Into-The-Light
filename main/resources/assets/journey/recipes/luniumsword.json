@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "journey:luniumsword"
+  },
+  "pattern": [
+    "b",
+    "b",
+    "s"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "b": {
+      "item": "journey:luniumblock"
+    },
+    "s": {
+      "item": "minecraft:stick"
+    }
+  }
+}

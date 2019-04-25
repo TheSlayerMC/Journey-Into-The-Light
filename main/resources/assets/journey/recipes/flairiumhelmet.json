@@ -1,0 +1,15 @@
+{
+  "result": {
+    "item": "journey:flairiumhelmet"
+  },
+  "pattern": [
+    "iii",
+    "i i"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "i": {
+      "item": "journey:flairiumingot"
+    }
+  }
+}

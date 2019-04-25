@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "journey:normalgoldenwing"
+  },
+  "pattern": [
+    "iii",
+    "ibi",
+    "iii"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "b": {
+      "item": "journey:rocmeat"
+    },
+    "i": {
+      "item": "minecraft:gold_ingot"
+    }
+  }
+}

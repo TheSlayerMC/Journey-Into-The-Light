@@ -1,0 +1,22 @@
+{
+  "result": {
+    "item": "journey:summoningtable"
+  },
+  "pattern": [
+    "dsd",
+    "iii",
+    "iii"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "s": {
+      "item": "journey:sapphire"
+    },
+    "d": {
+      "item": "minecraft:diamond"
+    },
+    "i": {
+      "item": "journey:shadiumingot"
+    }
+  }
+}

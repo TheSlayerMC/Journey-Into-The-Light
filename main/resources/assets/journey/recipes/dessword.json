@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "journey:dessword"
+  },
+  "pattern": [
+    "b",
+    "b",
+    "s"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "b": {
+      "item": "journey:desblock"
+    },
+    "s": {
+      "item": "minecraft:stick"
+    }
+  }
+}

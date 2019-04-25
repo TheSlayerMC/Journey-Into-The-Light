@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "journey:bloodcrustbody"
+  },
+  "pattern": [
+    "i i",
+    "did",
+    "idi"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "d": {
+      "item": "journey:hellstoneingot"
+    },
+    "i": {
+      "item": "journey:hellcrustingot"
+    }
+  }
+}

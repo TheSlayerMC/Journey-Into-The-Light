@@ -1,0 +1,15 @@
+{
+  "result": {
+    "item": "minecraft:crafting_table"
+  },
+  "pattern": [
+    "ii",
+    "ii"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "i": {
+      "item": "journey:goldeucaplank"
+    }
+  }
+}

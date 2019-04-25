@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "journey:bloodcrustlegs"
+  },
+  "pattern": [
+    "idi",
+    "d d",
+    "i i"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "d": {
+      "item": "journey:hellstoneingot"
+    },
+    "i": {
+      "item": "journey:hellcrustingot"
+    }
+  }
+}

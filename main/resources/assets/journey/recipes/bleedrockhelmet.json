@@ -1,0 +1,18 @@
+{
+  "result": {
+    "item": "journey:bleedrockhelmet"
+  },
+  "pattern": [
+    "idi",
+    "d d"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "d": {
+      "item": "journey:lavarock"
+    },
+    "i": {
+      "item": "journey:concentratedblood"
+    }
+  }
+}

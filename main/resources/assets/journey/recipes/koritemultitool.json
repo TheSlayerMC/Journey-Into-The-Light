@@ -1,0 +1,20 @@
+{
+  "result": {
+    "item": "journey:koritemultitool"
+  },
+  "ingredients": [
+    {
+      "item": "journey:koritepickaxe"
+    },
+    {
+      "item": "journey:koriteshovel"
+    },
+    {
+      "item": "journey:koritehoe"
+    },
+    {
+      "item": "journey:koriteaxe"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless"
+}

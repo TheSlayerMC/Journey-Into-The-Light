@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "journey:sapphirelegs"
+  },
+  "pattern": [
+    "iii",
+    "i i",
+    "i i"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "i": {
+      "item": "journey:sapphire"
+    }
+  }
+}

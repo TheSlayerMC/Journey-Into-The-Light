@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "minecraft:stick",
+    "count": 4
+  },
+  "pattern": [
+    "i",
+    "i"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "i": {
+      "item": "journey:goldeucaplank"
+    }
+  }
+}

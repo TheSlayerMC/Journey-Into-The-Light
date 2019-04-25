@@ -17,54 +17,10 @@ public class JourneyMaterialRecipes {
 	public static void initMaterialCrafting() {
 		//JourneyBlocks b = new JourneyBlocks();
 		//JourneyItems i = new JourneyItems();
-		/*GameRegistry.addRecipe(new ItemStack(JourneyItems.flameCoin), new Object[] {"iii", "idi", "iii", 'i', Items.GOLD_INGOT, 'd', Items.DIAMOND});
-		GameRegistry.addRecipe(new ItemStack(JourneyItems.hellcrustIngot), new Object[] {"iii", "idi", "iii", 'i', JourneyItems.ash, 'd', JourneyItems.hellstoneIngot});
-		GameRegistry.addRecipe(new ItemStack(JourneyItems.reinforcedStoneIngot), new Object[] {"ddd", "did", "ddd", 'd', JourneyItems.stoneClump, 'i', Blocks.STONE});
-		GameRegistry.addRecipe(new ItemStack(JourneyItems.reinforcedCrystalIngot), new Object[] {"ddd", "did", "ddd", 'd', JourneyItems.stoneClump, 'i', JourneyItems.caveCrystal});
-		GameRegistry.addRecipe(new ItemStack(JourneyItems.crystalBall), new Object[] {"idi", "ixi", 'i', Items.DIAMOND, 'd', Items.ENDER_PEARL, 'x', JourneyItems.sapphire});
-		GameRegistry.addRecipe(new ItemStack(JourneyItems.demonicBomb, 16), new Object[] {"ddd", "did", "ddd", 'd', JourneyItems.demonicDust, 'i', JourneyItems.crystalBall});
-		GameRegistry.addRecipe(new ItemStack(JourneyItems.stoneClump, 4), new Object[] {"ddd", "ddd", "ddd", 'd', JourneyItems.caveDust});
-		GameRegistry.addRecipe(new ItemStack(JourneyItems.stoneStick, 16), new Object[] {"d", "d", "d", 'd', Blocks.STONE});
-		GameRegistry.addRecipe(new ItemStack(JourneyItems.stoneClump, 16), new Object[] {"ddd", "ddd", "ddd", 'd', Blocks.STONE});
-		GameRegistry.addRecipe(new ItemStack(JourneyItems.stoneClump, 16), new Object[] {"ddd", "ddd", "ddd", 'd', Blocks.COBBLESTONE});
-		GameRegistry.addRecipe(new ItemStack(JourneyItems.withicSoul, 1), new Object[] {"ddd", "did", "ddd", 'i', JourneyItems.lostSoul, 'd', JourneyItems.withicDust});
-		GameRegistry.addRecipe(new ItemStack(JourneyItems.concentratedBlood, 1), new Object[] {"ddd", "did", "ddd", 'i', JourneyItems.lostSoul, 'd', JourneyItems.blood});
-		GameRegistry.addRecipe(new ItemStack(JourneyItems.boilKey, 1), new Object[] {"dgd", "did", "dgd", 'd', JourneyItems.flamingSpring, 'i', JourneyItems.flamingSprocket, 'g', Items.GOLD_INGOT});
-		GameRegistry.addRecipe(new ItemStack(JourneyItems.essenceArrow, 4), new Object[] {"d", "i", "g", 'd', Items.IRON_INGOT, 'i', JourneyItems.stoneStick, 'g', JourneyItems.rocFeather});
-		GameRegistry.addRecipe(new ItemStack(JourneyItems.withicHammer, 1),new Object[] {"ddd", "did", " i ", 'd', JourneyItems.hellcrustIngot, 'i', JourneyItems.withicSpine});
-		GameRegistry.addRecipe(new ItemStack(JourneyItems.nethicHammer, 1),new Object[] {"jdj", "did", " i ", 'd', JourneyBlocks.hellstoneBlock, 'i', JourneyItems.hellstoneClump, 'j', JourneyItems.flamingSpring});
-		GameRegistry.addRecipe(new ItemStack(JourneyItems.pocketCrafting, 1),new Object[] {"ddd", "did", "ddd", 'd', JourneyItems.flamingHide, 'i', JourneyItems.concentratedBlood});
-		GameRegistry.addShapelessRecipe(new ItemStack(JourneyItems.demonicDust, 5), new Object[]{JourneyItems.demonicBone});*/
+		/**/
 		
-		addOPFood(JourneyItems.goldenPork, JourneyItems.goldenPorkOP, Items.PORKCHOP);
-		addOPFood(JourneyItems.goldenSteak, JourneyItems.goldenSteakOP, Items.BEEF);
-		addOPFood(JourneyItems.goldenPotato, JourneyItems.goldenPotatoOP, Items.POTATO);
-		addOPFood(JourneyItems.goldenFish, JourneyItems.goldenFishOP, Items.FISH);
-		addOPFood(JourneyItems.goldenChicken, JourneyItems.goldenChickenOP, Items.CHICKEN);
-		addOPFood(JourneyItems.goldenRabbit, JourneyItems.goldenRabbitOP, Items.RABBIT);
-		addOPFood(JourneyItems.goldenMutton, JourneyItems.goldenMuttonOP, Items.MUTTON);
-		addOPFood(JourneyItems.goldenWing, JourneyItems.goldenWingOP, JourneyItems.rocMeat);
-		/*GameRegistry.addRecipe(new ItemStack(JourneyItems.hellstoneClump), new Object[] {"iii", 'i', JourneyItems.hellstoneIngot});
-		GameRegistry.addRecipe(new ItemStack(JourneyItems.shadiumClump), new Object[] {"iii", 'i', JourneyItems.shadiumIngot});
-		GameRegistry.addRecipe(new ItemStack(JourneyItems.luniumClump), new Object[] {"iii", 'i', JourneyItems.luniumIngot});
-		GameRegistry.addShapelessRecipe(new ItemStack(JourneyItems.spawnerClump), new Object[]{JourneyItems.shadiumClump, JourneyItems.luniumClump, JourneyItems.hellstoneClump});
-		GameRegistry.addShapelessRecipe(new ItemStack(JourneyCrops.glowshroomPowder, 4), new Object[]{JourneyBlocks.redGlowshroomTop});
-		GameRegistry.addShapelessRecipe(new ItemStack(JourneyCrops.glowshroomPowder, 4), new Object[]{JourneyBlocks.redGlowshroomBottom});
-		GameRegistry.addShapelessRecipe(new ItemStack(JourneyCrops.glowshroomPowder, 4), new Object[]{JourneyBlocks.blueGlowshroomTop});
-		GameRegistry.addShapelessRecipe(new ItemStack(JourneyCrops.glowshroomPowder, 4), new Object[]{JourneyBlocks.blueGlowshroomBottom});
-		GameRegistry.addShapelessRecipe(new ItemStack(JourneyCrops.glowshroomPowder, 4), new Object[]{JourneyBlocks.greenGlowshroomTop});
-		GameRegistry.addShapelessRecipe(new ItemStack(JourneyCrops.glowshroomPowder, 4), new Object[]{JourneyBlocks.greenGlowshroomBottom});
-		GameRegistry.addShapelessRecipe(new ItemStack(JourneyCrops.glowshroomPowder, 4), new Object[]{JourneyItems.glowshroom});
-		GameRegistry.addShapelessRecipe(new ItemStack(JourneyCrops.floroSeeds, 4), new Object[]{JourneyItems.floroPedal});
-		GameRegistry.addShapelessRecipe(new ItemStack(JourneyItems.eucaPortalGem, 10), new Object[]{JourneyItems.eucaPortalPiece, JourneyItems.eucaPortalPiece_0, JourneyItems.eucaPortalPiece_1});*/
-		GameRegistry.addSmelting(JourneyItems.spawnerClump, new ItemStack(JourneyItems.spawnerBar), 1.0F);
-		GameRegistry.addSmelting(JourneyItems.flamingBeef, new ItemStack(JourneyItems.flamingBeefCooked), 0.5F);
-		GameRegistry.addSmelting(JourneyItems.ironDust, new ItemStack(Items.IRON_INGOT), 0.5F);
-		GameRegistry.addSmelting(JourneyItems.goldDust, new ItemStack(Items.GOLD_INGOT), 0.5F);
-		GameRegistry.addSmelting(JourneyItems.diamondDust, new ItemStack(Items.DIAMOND), 0.5F);
-		GameRegistry.addSmelting(JourneyItems.enderilliumDust, new ItemStack(JourneyItems.enderilliumShard), 0.5F);
+		/**/
 
-		GameRegistry.addSmelting(new ItemStack(Items.LEATHER), new ItemStack(Items.ROTTEN_FLESH), 0.5F);
 	}
 	
 	public static void addBlock(Block made, Item used) {

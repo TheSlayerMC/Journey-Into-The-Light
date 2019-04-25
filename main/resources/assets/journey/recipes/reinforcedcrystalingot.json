@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "journey:reinforcedcrystalingot"
+  },
+  "pattern": [
+    "ddd",
+    "did",
+    "ddd"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "d": {
+      "item": "journey:stoneclump"
+    },
+    "i": {
+      "item": "journey:cavecrystal"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "journey:boilingbars",
+    "count": 4
+  },
+  "pattern": [
+    "ddd",
+    "ddd"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "d": {
+      "item": "minecraft:blaze_rod"
+    }
+  }
+}

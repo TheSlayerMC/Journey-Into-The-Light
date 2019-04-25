@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "journey:trophy"
+  },
+  "pattern": [
+    "d d",
+    "ddd",
+    " d "
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "d": {
+      "item": "minecraft:gold_ingot"
+    }
+  }
+}
