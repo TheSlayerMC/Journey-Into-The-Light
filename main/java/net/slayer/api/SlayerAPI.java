@@ -51,9 +51,9 @@ public class SlayerAPI {
 			MOD_NAME = "Journey Into the Light", 
 			MOD_ID = "journey", 
 			PREFIX = MOD_ID + ":", 
-			MOD_VERSION = "1.0.4";
+			MOD_VERSION = "1.0.5";
 	public static final boolean 
-			DEVMODE = true, 
+			DEVMODE = false,
 			BETA = true;
 
 	public static void addRecipe(ItemStack i, Object... o) {

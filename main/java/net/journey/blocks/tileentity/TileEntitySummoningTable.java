@@ -330,7 +330,7 @@ public class TileEntitySummoningTable extends TileEntity implements ITickable, I
 		return 1000;
 	}
 	
-	private boolean canCreate() {
+	/*private boolean canCreate() {
 		if(((ItemStack)this.inventory.get(0)).isEmpty() || ((ItemStack)this.inventory.get(1)).isEmpty()) return false;
 		else {
 			ItemStack result = SummoningTableRecipes.getInstance().getSummonResult((ItemStack)this.inventory.get(0), (ItemStack)this.inventory.get(1));
@@ -358,7 +358,7 @@ public class TileEntitySummoningTable extends TileEntity implements ITickable, I
 			i1.shrink(1);
 			i2.shrink(1);
 		}
-	}
+	}*/
 	
 	public static int getItemCreationTime(ItemStack stack) {
 		if(stack.isEmpty()) return 0;
