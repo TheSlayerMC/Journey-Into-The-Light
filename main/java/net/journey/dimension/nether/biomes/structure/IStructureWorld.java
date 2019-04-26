@@ -8,6 +8,9 @@ import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+/* Created by paulevs, from the Better Nether mod 
+ * Big thanks to him*/
+
 public interface IStructureWorld {
 	static final boolean doBlockNotify = false;
 

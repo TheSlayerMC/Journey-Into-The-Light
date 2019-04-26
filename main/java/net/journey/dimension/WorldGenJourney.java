@@ -21,6 +21,7 @@ import net.journey.dimension.nether.gen.WorldGenNetherTower;
 import net.journey.dimension.nether.gen.trees.WorldGenBleedheartTree0;
 import net.journey.dimension.nether.gen.trees.WorldGenBleedheartTree1;
 import net.journey.dimension.nether.gen.trees.WorldGenBleedheartTree2;
+import net.journey.dimension.nether.gen.trees.WorldGenEarthenTree;
 import net.journey.dimension.overworld.gen.WorldGenBlacksmithHouse;
 import net.journey.dimension.overworld.gen.WorldGenCaveVines;
 import net.journey.dimension.overworld.gen.WorldGenMageHouse;
@@ -42,6 +43,7 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.feature.WorldGenMinable;
+import net.minecraft.world.gen.feature.WorldGenVines;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
@@ -152,7 +154,7 @@ public class WorldGenJourney implements IWorldGenerator {
 			(new WorldGenSizzlerWoodTree0()).generate(w, r, new BlockPos(x, y - 1, z));
 		} */
 
-		for(times = 0; times < 450; times++) {
+		for(times = 0; times < 550; times++) {
 			y = r.nextInt(256); 
 			x = chunkX + r.nextInt(16) + 8; 
 			z = chunkZ + r.nextInt(16) + 8;
@@ -160,12 +162,20 @@ public class WorldGenJourney implements IWorldGenerator {
 				(new WorldGenBleedheartTree0()).generate(w, r, new BlockPos(x, y - 1, z));
 		}
 
-		for(times = 0; times < 450; times++) {
+		for(times = 0; times < 550; times++) {
 			y = r.nextInt(256); 
 			x = chunkX + r.nextInt(16) + 8; 
 			z = chunkZ + r.nextInt(16) + 8;
 			if(isBlockTop(x, y, z, JourneyBlocks.heatSoil, w))
 				(new WorldGenBleedheartTree1()).generate(w, r, new BlockPos(x, y - 1, z));
+		}
+		
+		for(times = 0; times < 1500; times++) {
+			y = r.nextInt(256); 
+			x = chunkX + r.nextInt(16) + 8; 
+			z = chunkZ + r.nextInt(16) + 8;
+			if(isBlockTop(x, y, z, JourneyBlocks.earthenNetherrack, w))
+				(new WorldGenEarthenTree()).generate(w, r, new BlockPos(x, y, z));
 		}
 
 		/* for(times = 0; times < 100; times++) {

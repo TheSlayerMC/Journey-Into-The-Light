@@ -9,6 +9,7 @@ import net.journey.dimension.nether.biomes.BiomeRegister;
 import net.journey.dimension.nether.biomes.NetherBiome;
 import net.journey.dimension.nether.biomes.structure.IStructureWorld;
 import net.journey.dimension.nether.biomes.structure.StructureDeathGrass;
+import net.journey.dimension.nether.biomes.structure.StructureThornRoot;
 import net.journey.dimension.nether.noise.Dither;
 import net.journey.dimension.nether.noise.WorleyNoiseIDDistorted3D;
 import net.journey.util.Config;
@@ -25,15 +26,18 @@ import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 
 public class JNWorldGenerator {
+	
+	/* Created by paulevs, from the Better Nether mod 
+	 * Big thanks to him*/
 
-	public static StructureDeathGrass deathgrassgen = new StructureDeathGrass();
+	public static StructureThornRoot thornGen = new StructureThornRoot();
 
 	public static IStructureWorld[] globalStructuresLand;
 	public static IStructureWorld[] globalStructuresLava;
 	public static IStructureWorld[] globalStructuresCave;
 
 	public static boolean hasCleaningPass = true;
-	public static boolean hasDeathGrassGen = true;
+	public static boolean hasThornGen = true;
 
 	private static WorleyNoiseIDDistorted3D noise3d;
 	private static WorleyNoiseIDDistorted3D subbiomesNoise;
@@ -166,14 +170,10 @@ public class JNWorldGenerator {
 												&& chunk.getBlockState(x, y, z).getBlock() instanceof BlockNetherBrick
 												&& random.nextInt(16) == 0)
 											;
-										// wartCapGen.generate(chunk, origin,
-										// random);
 									}
 								}
 							}
 						}
-						if (JourneyBlocks.blueCloudiaCloud != Blocks.AIR && random.nextInt(1024) == 0)
-							spawnOre(JourneyBlocks.blueCloudiaCloud.getDefaultState(), chunk, x, y, z, random);
 					}
 				}
 			}
@@ -261,8 +261,8 @@ public class JNWorldGenerator {
 		biomeSizeY = 1.0 / (double) Config.getBiomeSizeY();
 		subBiomeSize = biomeSizeXZ * 3;
 		hasCleaningPass = Config.hasCleaningPass();
-		hasDeathGrassGen = JourneyBlocks.deathGrass != Blocks.AIR;
-
+		hasThornGen = JourneyBlocks.hellThornBottom != Blocks.AIR && JourneyBlocks.hellThornRoot != Blocks.AIR;
+		
 		globalStructuresLand = new IStructureWorld[] {};
 
 		globalStructuresLava = new IStructureWorld[] {};

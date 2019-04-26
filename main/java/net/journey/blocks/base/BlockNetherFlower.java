@@ -81,7 +81,11 @@ public class BlockNetherFlower extends BlockMod implements IPlantable {
 
 	@Override
 	public boolean canPlaceBlockAt(World worldIn, BlockPos pos) {
-		return super.canPlaceBlockAt(worldIn, pos) && worldIn.getBlockState(pos.down()).getBlock() == Blocks.NETHERRACK || worldIn.getBlockState(pos.down()).getBlock() == JourneyBlocks.heatSoil;
+		return super.canPlaceBlockAt(worldIn, pos) && worldIn.getBlockState(pos.down()).getBlock() == Blocks.NETHERRACK
+				|| worldIn.getBlockState(pos.down()).getBlock() == JourneyBlocks.heatSoil
+				|| worldIn.getBlockState(pos.down()).getBlock() == JourneyBlocks.heatSand
+				|| worldIn.getBlockState(pos.down()).getBlock() == JourneyBlocks.earthenNetherrack
+				|| worldIn.getBlockState(pos.down()).getBlock() == Blocks.SOUL_SAND;
 	}
 
 	@Override
@@ -103,9 +107,15 @@ public class BlockNetherFlower extends BlockMod implements IPlantable {
 		}
 	}
 
-	public boolean canBlockStay(World w, BlockPos pos, boolean b) {
-		if(b) return w.getBlockState(pos.down()).getBlock() == Blocks.NETHERRACK || w.getBlockState(pos.down()).getBlock() == JourneyBlocks.heatSoil;
-		else return w.getBlockState(pos.down()).getBlock().getMaterial(getDefaultState()) == Material.GRASS;
+	public boolean canBlockStay(World worldIn, BlockPos pos, boolean b) {
+		if (b)
+			return worldIn.getBlockState(pos.down()).getBlock() == Blocks.NETHERRACK
+					|| worldIn.getBlockState(pos.down()).getBlock() == JourneyBlocks.heatSoil
+					|| worldIn.getBlockState(pos.down()).getBlock() == JourneyBlocks.heatSand
+					|| worldIn.getBlockState(pos.down()).getBlock() == JourneyBlocks.earthenNetherrack
+					|| worldIn.getBlockState(pos.down()).getBlock() == Blocks.SOUL_SAND;
+		else
+			return worldIn.getBlockState(pos.down()).getBlock().getMaterial(getDefaultState()) == Material.GRASS;
 	}
 
 	@Override

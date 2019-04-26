@@ -10,6 +10,10 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 
 public class NetherBiome {
+	
+	/* Created by paulevs, from the Better Nether mod 
+	 * Big thanks to him*/
+	
 	static NoiseGeneratorOctaves featureScatter = new NoiseGeneratorOctaves(new Random(1337), 3);
 	float plantDensity = 1;
 	String name;

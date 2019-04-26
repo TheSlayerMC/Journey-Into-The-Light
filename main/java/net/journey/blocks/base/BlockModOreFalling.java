@@ -3,6 +3,7 @@ package net.journey.blocks.base;
 import java.util.Random;
 
 import net.journey.JourneyBlocks;
+import net.journey.JourneyTabs;
 import net.journey.client.render.particles.OreParticleFX;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;

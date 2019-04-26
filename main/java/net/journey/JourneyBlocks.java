@@ -126,9 +126,20 @@ public class JourneyBlocks {
 	public static BlockMod sizzlerWoodLeaves;
 	public static BlockModLog sizzlerWoodLog;
 	public static BlockNetherFlower deathGrass;
+	public static BlockNetherFlower netherweed;
 	public static BlockNetherFlower hellBell;
 	public static BlockMod hellshroom;
+	
+	public static BlockMod earthenNetherLeaves;
+	public static BlockModLog earthenNetherLog;
+	public static BlockMod earthenNetherPlanks;
+	
+	public static BlockMod earthenNetherTallGrass;
+	public static BlockMod earthenNetherShortGrass;
+	public static BlockMod earthenNetherFlower;
+	
 	public static BlockMod heatSoil;
+	public static BlockMod earthenNetherrack;
 	public static BlockModGravity heatSand;
 
 	public static BlockMod igniterOn;
@@ -497,7 +508,7 @@ public class JourneyBlocks {
 		
 		bleedstone = (BlockMod) new BlockModOre("bleedstoneOre", "Bleedstone", false).setHarvestLevel(EnumToolType.DIAMOND_PICK).setLightLevel(10.5F);
 		smithstone = (BlockMod) new BlockModOre("smithstoneOre", "Smithstone", false).setHarvestLevel(EnumToolType.DIAMOND_PICK).setLightLevel(10.5F);
-		heatstoneOre = (BlockModGravity) new BlockModOreFalling(EnumMaterialTypes.SAND, "heatstoneOre", "Heatstone Ore", false).setHarvestLevel(EnumToolType.DIAMOND_SHOVEL).setLightLevel(0.5F);
+		heatstoneOre = (BlockModGravity) new BlockModOreFalling(EnumMaterialTypes.SAND, "heatstoneOre", "Heatstone Ore", false).setHarvestLevel(EnumToolType.DIAMOND_SHOVEL).setLightLevel(0.5F).setHardness(0.5F);
 		
 		enderilliumOre = new BlockModOre("enderilliumOre", "Enderillium Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
 		gorbiteOre = new BlockModOre("gorbiteOre", "Gorbite Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
@@ -530,9 +541,20 @@ public class JourneyBlocks {
 		sizzlerWoodLeaves = new BlockModLeaves("sizzlerWoodLeaves", "Deadblood Leaves", 2.0F);
 		sizzlerWoodLog = new BlockModLog("sizzlerWoodLog", "Deadblood Bark");
 		deathGrass = new BlockNetherFlower("deathGrass", "Death Grass");
+		netherweed = new BlockNetherFlower("netherWeeds", "Netherweed");
 		hellBell = new BlockNetherFlower("hellBell", "Hell Bell");
 		hellshroom = new BlockNetherPlant("hellshroom", "Hellshroom");
+		
+		earthenNetherLeaves = new BlockModLeaves("earthenNetherLeaves", "Earthenwood Leaves", 2.0F);
+		earthenNetherLog = new BlockModLog("earthenNetherLog", "Earthenwood Log");
+		earthenNetherPlanks = new BlockMod(EnumMaterialTypes.WOOD, "earthenNetherPlank", "Earthenwood Planks", 1.0F);
+		
+		earthenNetherTallGrass = new BlockNetherPlant("earthenNetherTallGrass", "Earthen Nethigrass");
+		earthenNetherShortGrass = new BlockNetherPlant("earthenNetherShortGrass", "Earthen Nethigrass");
+		earthenNetherFlower = new BlockNetherPlant("earthenNetherFlower", "Earthen Heatflower");
+		
 		heatSoil = new BlockMod(EnumMaterialTypes.DIRT, "heatSoil", "Nethic Soil", 2.0F);
+		earthenNetherrack = new BlockMod(EnumMaterialTypes.STONE, "earthenNetherrack", "Earthen Netherrack", 2.0F);
 		heatSand = new BlockModGravity(EnumMaterialTypes.SAND, "heatSand", "Heat Sand", 2.0F);
 
 		igniterOn = (BlockMod) new BlockIgniter("igniterOn", "Redstone Igniter").setCreativeTab(null);

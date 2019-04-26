@@ -8,6 +8,10 @@ import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 
 public interface IStructure {
+	
+	/* Created by paulevs, from the Better Nether mod 
+	 * Big thanks to him*/
+	
 	static final boolean doBlockNotify = false;
 
 	public void generate(Chunk chunk, BlockPos pos, Random random);

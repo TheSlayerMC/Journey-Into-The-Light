@@ -1,0 +1,9 @@
+{
+	"parent": "block/cube_bottom_top",
+	"textures": {
+		"particle": "journey:blocks/earthennetherlog_top",
+		"bottom": "journey:blocks/earthennetherlog_top",
+		"top": "journey:blocks/earthennetherlog_top",
+		"side": "journey:blocks/earthennetherlog_side"
+	}
+}
