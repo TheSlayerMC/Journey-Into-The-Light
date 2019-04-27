@@ -1,11 +1,10 @@
 BEFORE RELEASE 1.12 List
 
 General important things:
-ADD MOD SUPPORT!!!! (JEI, Biomes O' Plenty (nether), etc etc)
+ADD MOD SUPPORT!!!! (JEI, etc etc)
 
 Items:
 Bows need to be fixed
-Remove essence arrows because they're unnecessary
 All items need to be tested and checked that no crash occures
 Remove unused items
 
@@ -19,22 +18,18 @@ remove unused blocks
 Fix corba portal frame so it creates the portal when the eyes are placed inside the slots
 
 Rendering:
-column / grass type blocks need new Item jsons 
-fix custom chest rendering (different chest types should be rendered with different textures)
 Fix essence bar so that the HUD updates (maybe change it to be more like the xp bar and have it overlap it when being used, frees up space and allows for more precise mana consumption)
 
 Registrys:
-Finish crafting recipes
 Finish sounds
 
 Structures:
-correctly register and add all loot tables (almost done)
+finish loot tables
 
 Dimensions:
 Fix certain teleporters (corba specifically)
 
 Entitys:
-Make sure all mobs are placed to prevent crashes on spawn
 Fix bosses, ranged mobs and pets
 get obsidian boat to move
 All bosses suck. They're either too challenging, not challenging at all, or just repetitive and boring.

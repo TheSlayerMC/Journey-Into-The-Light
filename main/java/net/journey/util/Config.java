@@ -91,7 +91,7 @@ public class Config {
 		JSON = cfg.getBoolean("Generate JSON", "Misc", JSON, "Enable recipe JSON generator");
 		
 		List<Boolean> items= new ArrayList<Boolean>();
-		biomeSizeXZ = cfg.getInt("BiomeSizeXZ", "Nether", 100, 1, 4096, "The horizontal Nether biome size");
+		biomeSizeXZ = cfg.getInt("BiomeSizeXZ", "Nether", 512, 1, 4096, "The horizontal Nether biome size");
 		biomeSizeY = cfg.getInt("BiomeSizeY", "Nether", 32, 1, 4096, "The vertical Nether biome size");
 		hasCleaningPass = cfg.getBoolean("SecondPass", "Nether", true, "Enable second pass for smooth Nether terrain?");
 		for (Field f : BiomeRegister.class.getDeclaredFields())

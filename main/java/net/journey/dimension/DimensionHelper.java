@@ -290,7 +290,7 @@ public class DimensionHelper {
 	}
 	
 	private static void addCaveSpawns() {
-		int amount = 200;
+		int amount = 100;
 		int amount2 = 10;
 		for(Biome b : Biome.REGISTRY) {
 			Biome biome = b;
@@ -313,12 +313,12 @@ public class DimensionHelper {
 		
 	}
 	private static void addNetherSpawns() {
-		EntityRegistry.addSpawn(EntityLavasnake.class, 120, 1, 1, EnumCreatureType.MONSTER, Biomes.HELL);
-		EntityRegistry.addSpawn(EntityWitherspine.class, 100, 1, 1, EnumCreatureType.MONSTER, Biomes.HELL);
-		EntityRegistry.addSpawn(EntityReaper.class, 60, 1, 1, EnumCreatureType.MONSTER, Biomes.HELL);
+		EntityRegistry.addSpawn(EntityLavasnake.class, 80, 1, 1, EnumCreatureType.MONSTER, Biomes.HELL);
+		EntityRegistry.addSpawn(EntityWitherspine.class, 80, 1, 1, EnumCreatureType.MONSTER, Biomes.HELL);
+		EntityRegistry.addSpawn(EntityReaper.class, 50, 1, 1, EnumCreatureType.MONSTER, Biomes.HELL);
 		EntityRegistry.addSpawn(EntityHellCow.class, 100, 1, 1, EnumCreatureType.MONSTER, Biomes.HELL);
-		EntityRegistry.addSpawn(EntityMiniGhast.class, 120, 1, 1, EnumCreatureType.MONSTER, Biomes.HELL);
-		EntityRegistry.addSpawn(EntityInfernoBlaze.class, 80, 1, 2, EnumCreatureType.MONSTER, Biomes.HELL);
+		EntityRegistry.addSpawn(EntityMiniGhast.class, 80, 1, 1, EnumCreatureType.MONSTER, Biomes.HELL);
+		EntityRegistry.addSpawn(EntityInfernoBlaze.class, 20, 1, 2, EnumCreatureType.MONSTER, Biomes.HELL);
 		EntityRegistry.addSpawn(EntityHellTurtle.class, 300, 1, 2, EnumCreatureType.MONSTER, Biomes.HELL);
 	}
 	private static void addVanillaSpawns() {

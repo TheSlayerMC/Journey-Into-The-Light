@@ -35,7 +35,6 @@ public class BoilSkyRenderer extends IRenderHandler {
     private static final ResourceLocation SECOND_SUN_TEXTURES = new ResourceLocation(SlayerAPI.PREFIX + "textures/environment/boil_sun2.png");
     private static final ResourceLocation SUN_TEXTURES = new ResourceLocation(SlayerAPI.PREFIX + "textures/environment/boil_sun.png");
     private static final ResourceLocation SKY_TEXTURES = new ResourceLocation(SlayerAPI.PREFIX + "textures/environment/boil_sky.png");
-	private int starGLCallList;
 	private int glSkyList;
 	private int glSkyList2;
     private VertexBuffer starVBO;
@@ -47,7 +46,6 @@ public class BoilSkyRenderer extends IRenderHandler {
 
 	public BoilSkyRenderer() {
 		RenderGlobal renderGlobal = Minecraft.getMinecraft().renderGlobal;
-		this.glSkyList2 = (this.glSkyList = (this.starGLCallList = ReflectionHelper.getPrivateValue(RenderGlobal.class, renderGlobal, "starGLCallList")) + 1) + 1;
         this.vboEnabled = OpenGlHelper.useVbo();
 
         if (this.vboEnabled) {
@@ -159,28 +157,11 @@ public class BoilSkyRenderer extends IRenderHandler {
 
         tessellator.draw(); 
         f17 = 20.0F;
-        mc.renderEngine.bindTexture(SECOND_SUN_TEXTURES);
 
-        
-        int k1 = world.getMoonPhase();
-        int i2 = k1 % 4;
-        int k2 = k1 / 4 % 2;
-        float f22 = (float)(i2 + 0) / 4.0F;
-        float f23 = (float)(k2 + 0) / 2.0F;
-        float f24 = (float)(i2 + 1) / 4.0F;
-        float f14 = (float)(k2 + 1) / 2.0F;
-        bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
-        bufferbuilder.pos((double)(-f17), -100.0D, (double)f17).tex((double)f24, (double)f14).endVertex();
-        bufferbuilder.pos((double)f17, -100.0D, (double)f17).tex((double)f22, (double)f14).endVertex();
-        bufferbuilder.pos((double)f17, -100.0D, (double)(-f17)).tex((double)f22, (double)f23).endVertex();
-        bufferbuilder.pos((double)(-f17), -100.0D, (double)(-f17)).tex((double)f24, (double)f23).endVertex();
-        tessellator.draw();
-        GlStateManager.disableTexture2D();
         float f15 = world.getStarBrightness(partialTicks) * f16;
 
         if (f15 > 0.0F) {
             GlStateManager.color(f15, f15, f15, f15);
-            GlStateManager.callList(this.starGLCallList);
         }
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         GlStateManager.disableBlend();
