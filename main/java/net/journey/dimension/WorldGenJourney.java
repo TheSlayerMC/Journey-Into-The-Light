@@ -612,14 +612,14 @@ public class WorldGenJourney implements IWorldGenerator {
 		for(i = 0; i < 15; i++) WorldGenJourney.generateJourneyDimensions(19, w, chunkX, chunkZ);
 		for(i = 0; i < 3; i++) WorldGenJourney.generateJourneyDimensions(20, w, chunkX, chunkZ);
 		
-		for(i = 0; i < 5; i++) {
+		if(r.nextInt(2)==0) {
 			int y = r.nextInt(64); 
 			int x = chunkX + r.nextInt(16);
 			int z = chunkZ + r.nextInt(16);
 			(new WorldGenMinable(JourneyBlocks.cloudiaRock.getDefaultState(), 55, BlockStateMatcher.forBlock(Blocks.AIR))).generate(w, r, new BlockPos(x, y, z));
 		}
 		
-		for(i = 0; i < 5; i++) {
+		if(r.nextInt(2)==0) {
 			int y = r.nextInt(64); 
 			int x = chunkX + r.nextInt(16);
 			int z = chunkZ + r.nextInt(16);

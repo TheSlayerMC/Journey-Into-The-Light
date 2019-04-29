@@ -8,6 +8,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.ChunkRenderContainer;
+import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.GLAllocation;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -44,45 +45,28 @@ public class CloudiaSkyRenderer extends IRenderHandler {
     private static final ResourceLocation SKY_TEXTURES = new ResourceLocation(SlayerAPI.PREFIX + "textures/environment/cloudia_sky.png");
     private static final ResourceLocation CLOUDS_TEXTURES = new ResourceLocation(SlayerAPI.PREFIX + "textures/environment/cloudia_clouds.png");
 	private int starGLCallList;
-	private int glSkyList;
-	private int glSkyList2;
-    private int cloudTickCounter;
-    private final VertexFormat vertexBufferFormat;
+    private int glSkyList = -1;
+    private int glSkyList2 = -1;
     private VertexBuffer starVBO;
-    private VertexBuffer skyVBO;
-    private VertexBuffer sky2VBO;
-    private ChunkRenderContainer renderContainer;
     IRenderChunkFactory renderChunkFactory;
-    private boolean vboEnabled;
 
 	public CloudiaSkyRenderer() {
 		RenderGlobal renderGlobal = Minecraft.getMinecraft().renderGlobal;
-		this.glSkyList2 = (this.glSkyList = (this.starGLCallList = ReflectionHelper.getPrivateValue(RenderGlobal.class, renderGlobal, "starGLCallList")) + 1) + 1;
-        this.vboEnabled = OpenGlHelper.useVbo();
-
-        if (this.vboEnabled) {
-            this.renderContainer = new VboRenderList();
-            this.renderChunkFactory = new VboChunkFactory();
-        }
-        else {
-            this.renderContainer = new RenderList();
-            this.renderChunkFactory = new ListChunkFactory();
-        } 
-        this.vertexBufferFormat = new VertexFormat();
-        this.vertexBufferFormat.addElement(new VertexFormatElement(0, VertexFormatElement.EnumType.FLOAT, VertexFormatElement.EnumUsage.POSITION, 3));
 	}
 	
-
 	@Override
 	public void render(float partialTicks, WorldClient world, Minecraft mc) {
 		this.generateStars();
-		this.renderSky(partialTicks, world, mc);
+		//this.renderSky(partialTicks, world, mc);
 		this.renderSunAndMoon(partialTicks, world, mc);
 	}
 
 	@SideOnly(Side.CLIENT)
 	public void renderSunAndMoon(float partialTicks, WorldClient world, Minecraft mc) {
-		
+		RenderGlobal rg = mc.renderGlobal;
+		int pass = EntityRenderer.anaglyphField;
+
+		GlStateManager.disableTexture2D();
         Vec3d vec3d = world.getSkyColor(mc.getRenderViewEntity(), partialTicks);
         float f = (float)vec3d.x;
         float f1 = (float)vec3d.y;
@@ -92,14 +76,14 @@ public class CloudiaSkyRenderer extends IRenderHandler {
 		float anaglyphG = 0.0F;
 		float anaglyphB = 0.0F;
 
-		if (mc.gameSettings.anaglyph) {
-            float f3 = (f * 30.0F + f1 * 59.0F + f2 * 11.0F) / 100.0F;
-            float f4 = (f * 30.0F + f1 * 70.0F) / 100.0F;
-            float f5 = (f * 30.0F + f2 * 70.0F) / 100.0F;
-            f = f3;
-            f1 = f4;
-            f2 = f5;
-        }
+		if (pass != 2) {
+			float f3 = (f * 30.0F + f1 * 59.0F + f2 * 11.0F) / 100.0F;
+			float f4 = (f * 30.0F + f1 * 70.0F) / 100.0F;
+			float f5 = (f * 30.0F + f2 * 70.0F) / 100.0F;
+			f = f3;
+			f1 = f4;
+			f2 = f5;
+		}
 		
         GlStateManager.color(f, f1, f2);
         Tessellator tessellator = Tessellator.getInstance();
@@ -302,8 +286,11 @@ public class CloudiaSkyRenderer extends IRenderHandler {
     }
     
 	private void generateStars() {
+		VertexFormat vertexBufferFormat = new VertexFormat();
+		vertexBufferFormat.addElement(new VertexFormatElement(0, VertexFormatElement.EnumType.FLOAT, VertexFormatElement.EnumUsage.POSITION, 3));
+
 		Tessellator tessellator = Tessellator.getInstance();
-		BufferBuilder bufferbuilder = tessellator.getBuffer();
+		BufferBuilder vertexbuffer = tessellator.getBuffer();
 
 		if (this.starVBO != null) {
 			this.starVBO.deleteGlBuffers();
@@ -314,20 +301,29 @@ public class CloudiaSkyRenderer extends IRenderHandler {
 			this.starGLCallList = -1;
 		}
 
-		this.starGLCallList = GLAllocation.generateDisplayLists(1);
-		GlStateManager.pushMatrix();
-		GlStateManager.glNewList(this.starGLCallList, 4864);
-		this.renderStars(bufferbuilder);
-		tessellator.draw();
-		GlStateManager.glEndList();
-		GlStateManager.popMatrix();
+		if (OpenGlHelper.useVbo()) {
+			this.starVBO = new net.minecraft.client.renderer.vertex.VertexBuffer(vertexBufferFormat);
+			this.renderStars(vertexbuffer);
+			vertexbuffer.finishDrawing();
+			vertexbuffer.reset();
+			this.starVBO.bufferData(vertexbuffer.getByteBuffer());
+		} else {
+			this.starGLCallList = GLAllocation.generateDisplayLists(1);
+			GlStateManager.pushMatrix();
+			GlStateManager.glNewList(this.starGLCallList, 4864);
+			this.renderStars(vertexbuffer);
+			tessellator.draw();
+			GlStateManager.glEndList();
+			GlStateManager.popMatrix();
+		}
 	}
-    
-    private void renderStars(BufferBuilder bufferBuilderIn) {
-		Random random = new Random(10842L);
-		bufferBuilderIn.begin(7, DefaultVertexFormats.POSITION);
 
-		for (int i = 0; i < 1500; ++i) {
+	private void renderStars(BufferBuilder worldRendererIn) {
+		Random random = new Random(10842L);
+		worldRendererIn.begin(7, DefaultVertexFormats.POSITION);
+
+		for (int i = 0; i < 3000; ++i) // TF - 1500 -> 3000
+		{
 			double d0 = (double) (random.nextFloat() * 2.0F - 1.0F);
 			double d1 = (double) (random.nextFloat() * 2.0F - 1.0F);
 			double d2 = (double) (random.nextFloat() * 2.0F - 1.0F);
@@ -363,7 +359,7 @@ public class CloudiaSkyRenderer extends IRenderHandler {
 					double d24 = 0.0D * d12 - d21 * d13;
 					double d25 = d24 * d9 - d22 * d10;
 					double d26 = d22 * d9 + d24 * d10;
-					bufferBuilderIn.pos(d5 + d25, d6 + d23, d7 + d26).endVertex();
+					worldRendererIn.pos(d5 + d25, d6 + d23, d7 + d26).endVertex();
 				}
 			}
 		}

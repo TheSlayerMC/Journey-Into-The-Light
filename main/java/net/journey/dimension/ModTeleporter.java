@@ -22,7 +22,8 @@ public class ModTeleporter extends Teleporter {
 
 	protected final WorldServer worldServerInstance;
 	protected final Random random;
-    protected final Long2ObjectMap<ModTeleporter.PortalPosition> destinationCoordinateCache = new Long2ObjectOpenHashMap<ModTeleporter.PortalPosition>(4096);
+	protected final Long2ObjectMap<ModTeleporter.PortalPosition> destinationCoordinateCache = new Long2ObjectOpenHashMap<ModTeleporter.PortalPosition>(
+			4096);
 	protected final List destinationCoordinateKeys = new ArrayList();
 	protected int dimensionID;
 	protected Block portal, frameBlock;
@@ -56,39 +57,33 @@ public class ModTeleporter extends Teleporter {
 		BlockPos object = BlockPos.ORIGIN;
 		long k = ChunkPos.asLong(i, j);
 
-		if (this.destinationCoordinateCache.containsKey(k))
-		{
+		if (this.destinationCoordinateCache.containsKey(k)) {
 			Teleporter.PortalPosition portalposition = this.destinationCoordinateCache.get(k);
 			d0 = 0.0D;
 			object = portalposition;
 			portalposition.lastUpdateTime = this.worldServerInstance.getTotalWorldTime();
 			flag1 = false;
-		}
-		else
-		{
+		} else {
 			BlockPos blockpos4 = new BlockPos(e);
 
-			for (int l = -128; l <= 128; ++l)
-			{
+			for (int l = -128; l <= 128; ++l) {
 				BlockPos blockpos1;
 
-				for (int i1 = -128; i1 <= 128; ++i1)
-				{
-					for (BlockPos blockpos = blockpos4.add(l, this.worldServerInstance.getActualHeight() - 1 - blockpos4.getY(), i1); blockpos.getY() >= 0; blockpos = blockpos1)
-					{
+				for (int i1 = -128; i1 <= 128; ++i1) {
+					for (BlockPos blockpos = blockpos4.add(l,
+							this.worldServerInstance.getActualHeight() - 1 - blockpos4.getY(), i1); blockpos
+									.getY() >= 0; blockpos = blockpos1) {
 						blockpos1 = blockpos.down();
 
-						if (this.worldServerInstance.getBlockState(blockpos).getBlock() == portal)
-						{
-							while (this.worldServerInstance.getBlockState(blockpos1 = blockpos.down()).getBlock() == portal)
-							{
+						if (this.worldServerInstance.getBlockState(blockpos).getBlock() == portal) {
+							while (this.worldServerInstance.getBlockState(blockpos1 = blockpos.down())
+									.getBlock() == portal) {
 								blockpos = blockpos1;
 							}
 
 							double d1 = blockpos.distanceSq(blockpos4);
 
-							if (d0 < 0.0D || d1 < d0)
-							{
+							if (d0 < 0.0D || d1 < d0) {
 								d0 = d1;
 								object = blockpos;
 							}
@@ -98,11 +93,10 @@ public class ModTeleporter extends Teleporter {
 			}
 		}
 
-		if (d0 >= 0.0D)
-		{
-			if (flag1)
-			{
-                this.destinationCoordinateCache.put(k, new ModTeleporter.PortalPosition(object, this.world.getTotalWorldTime()));
+		if (d0 >= 0.0D) {
+			if (flag1) {
+				this.destinationCoordinateCache.put(k,
+						new ModTeleporter.PortalPosition(object, this.world.getTotalWorldTime()));
 			}
 
 			double d4 = object.getX() + 0.5D;
@@ -110,38 +104,33 @@ public class ModTeleporter extends Teleporter {
 			double d6 = object.getZ() + 0.5D;
 			EnumFacing enumfacing = null;
 
-			if (this.worldServerInstance.getBlockState(object.west()).getBlock() == portal)
-			{
+			if (this.worldServerInstance.getBlockState(object.west()).getBlock() == portal) {
 				enumfacing = EnumFacing.NORTH;
 			}
 
-			if (this.worldServerInstance.getBlockState(object.east()).getBlock() == portal)
-			{
+			if (this.worldServerInstance.getBlockState(object.east()).getBlock() == portal) {
 				enumfacing = EnumFacing.SOUTH;
 			}
 
-			if (this.worldServerInstance.getBlockState(object.north()).getBlock() == portal)
-			{
+			if (this.worldServerInstance.getBlockState(object.north()).getBlock() == portal) {
 				enumfacing = EnumFacing.EAST;
 			}
 
-			if (this.worldServerInstance.getBlockState(object.south()).getBlock() == portal)
-			{
+			if (this.worldServerInstance.getBlockState(object.south()).getBlock() == portal) {
 				enumfacing = EnumFacing.WEST;
 			}
 
 			EnumFacing enumfacing1 = EnumFacing.getHorizontal(0);
-			//EnumFacing enumfacing1 = EnumFacing.getHorizontal(e.func_181012_aH());
+			// EnumFacing enumfacing1 =
+			// EnumFacing.getHorizontal(e.func_181012_aH());
 
-			if (enumfacing != null)
-			{
+			if (enumfacing != null) {
 				EnumFacing enumfacing2 = enumfacing.rotateYCCW();
 				BlockPos blockpos2 = object.offset(enumfacing);
 				boolean flag2 = this.func_180265_a(blockpos2);
 				boolean flag3 = this.func_180265_a(blockpos2.offset(enumfacing2));
 
-				if (flag3 && flag2)
-				{
+				if (flag3 && flag2) {
 					object = object.offset(enumfacing2);
 					enumfacing = enumfacing.getOpposite();
 					enumfacing2 = enumfacing2.getOpposite();
@@ -153,16 +142,11 @@ public class ModTeleporter extends Teleporter {
 				float f6 = 0.5F;
 				float f1 = 0.5F;
 
-				if (!flag3 && flag2)
-				{
+				if (!flag3 && flag2) {
 					f6 = 1.0F;
-				}
-				else if (flag3 && !flag2)
-				{
+				} else if (flag3 && !flag2) {
 					f6 = 0.0F;
-				}
-				else if (flag3)
-				{
+				} else if (flag3) {
 					f1 = 0.0F;
 				}
 
@@ -176,23 +160,16 @@ public class ModTeleporter extends Teleporter {
 				float f4 = 0.0F;
 				float f5 = 0.0F;
 
-				if (enumfacing == enumfacing1)
-				{
+				if (enumfacing == enumfacing1) {
 					f2 = 1.0F;
 					f3 = 1.0F;
-				}
-				else if (enumfacing == enumfacing1.getOpposite())
-				{
+				} else if (enumfacing == enumfacing1.getOpposite()) {
 					f2 = -1.0F;
 					f3 = -1.0F;
-				}
-				else if (enumfacing == enumfacing1.rotateY())
-				{
+				} else if (enumfacing == enumfacing1.rotateY()) {
 					f4 = 1.0F;
 					f5 = -1.0F;
-				}
-				else
-				{
+				} else {
 					f4 = -1.0F;
 					f5 = 1.0F;
 				}
@@ -202,24 +179,20 @@ public class ModTeleporter extends Teleporter {
 				e.motionX = d2 * f2 + d3 * f5;
 				e.motionZ = d2 * f4 + d3 * f3;
 				e.rotationYaw = par2 - enumfacing1.getHorizontalIndex() * 90 + enumfacing.getHorizontalIndex() * 90;
-			}
-			else
-			{
+			} else {
 				e.motionX = e.motionY = e.motionZ = 0.0D;
 			}
 
 			e.setLocationAndAngles(d4, d5, d6, e.rotationYaw, e.rotationPitch);
 			return true;
-		}
-		else
-		{
+		} else {
 			return false;
 		}
 	}
 
-	private boolean func_180265_a(BlockPos p_180265_1_)
-	{
-		return !this.worldServerInstance.isAirBlock(p_180265_1_) || !this.worldServerInstance.isAirBlock(p_180265_1_.up());
+	private boolean func_180265_a(BlockPos p_180265_1_) {
+		return !this.worldServerInstance.isAirBlock(p_180265_1_)
+				|| !this.worldServerInstance.isAirBlock(p_180265_1_.up());
 	}
 
 	@Override
@@ -257,46 +230,50 @@ public class ModTeleporter extends Teleporter {
 				d2 = k2 + 0.5D - entity.posZ;
 				label274:
 
-					for (i3 = this.worldServerInstance.getActualHeight() - 1; i3 >= 0; --i3) {
-						if (this.worldServerInstance.isAirBlock(new BlockPos(i2, i3, k2))) {
-							while (i3 > 0 && this.worldServerInstance.isAirBlock(new BlockPos(i2, i3 - 1, k2)))
-								--i3;
+				for (i3 = this.worldServerInstance.getActualHeight() - 1; i3 >= 0; --i3) {
+					if (this.worldServerInstance.isAirBlock(new BlockPos(i2, i3, k2))) {
+						while (i3 > 0 && this.worldServerInstance.isAirBlock(new BlockPos(i2, i3 - 1, k2)))
+							--i3;
 
-							for (j3 = l1; j3 < l1 + 4; ++j3) {
-								k3 = j3 % 2;
-								l3 = 1 - k3;
+						for (j3 = l1; j3 < l1 + 4; ++j3) {
+							k3 = j3 % 2;
+							l3 = 1 - k3;
 
-								if (j3 % 4 >= 2) {
-									k3 = -k3;
-									l3 = -l3;
-								}
+							if (j3 % 4 >= 2) {
+								k3 = -k3;
+								l3 = -l3;
+							}
 
-								for (i4 = 0; i4 < 3; ++i4) {
-									for (j4 = 0; j4 < 4; ++j4) {
-										for (k4 = -1; k4 < 4; ++k4) {
-											l4 = i2 + (j4 - 1) * k3 + i4 * l3;
-											i5 = i3 + k4;
-											int j5 = k2 + (j4 - 1) * l3 - i4 * k3;
+							for (i4 = 0; i4 < 3; ++i4) {
+								for (j4 = 0; j4 < 4; ++j4) {
+									for (k4 = -1; k4 < 4; ++k4) {
+										l4 = i2 + (j4 - 1) * k3 + i4 * l3;
+										i5 = i3 + k4;
+										int j5 = k2 + (j4 - 1) * l3 - i4 * k3;
 
-											if (k4 < 0 && !this.worldServerInstance.getBlockState(new BlockPos(l4, i5, j5)).getMaterial().isSolid() || k4 >= 0 && !this.worldServerInstance.isAirBlock(new BlockPos(l4, i5, j5)))
-												continue label274;
-										}
+										if (k4 < 0
+												&& !this.worldServerInstance.getBlockState(new BlockPos(l4, i5, j5))
+														.getMaterial().isSolid()
+												|| k4 >= 0 && !this.worldServerInstance
+														.isAirBlock(new BlockPos(l4, i5, j5)))
+											continue label274;
 									}
 								}
+							}
 
-								d4 = i3 + 0.5D - entity.posY;
-								d3 = d1 * d1 + d4 * d4 + d2 * d2;
+							d4 = i3 + 0.5D - entity.posY;
+							d3 = d1 * d1 + d4 * d4 + d2 * d2;
 
-								if (d0 < 0.0D || d3 < d0) {
-									d0 = d3;
-									l = i2;
-									i1 = i3;
-									j1 = k2;
-									k1 = j3 % 4;
-								}
+							if (d0 < 0.0D || d3 < d0) {
+								d0 = d3;
+								l = i2;
+								i1 = i3;
+								j1 = k2;
+								k1 = j3 % 4;
 							}
 						}
 					}
+				}
 			}
 		}
 
@@ -308,39 +285,43 @@ public class ModTeleporter extends Teleporter {
 					d2 = k2 + 0.5D - entity.posZ;
 					label222:
 
-						for (i3 = this.worldServerInstance.getActualHeight() - 1; i3 >= 0; --i3) {
-							if (this.worldServerInstance.isAirBlock(new BlockPos(i2, i3, k2))) {
-								while (i3 > 0 && this.worldServerInstance.isAirBlock(new BlockPos(i2, i3 - 1, k2)))
-									--i3;
+					for (i3 = this.worldServerInstance.getActualHeight() - 1; i3 >= 0; --i3) {
+						if (this.worldServerInstance.isAirBlock(new BlockPos(i2, i3, k2))) {
+							while (i3 > 0 && this.worldServerInstance.isAirBlock(new BlockPos(i2, i3 - 1, k2)))
+								--i3;
 
-								for (j3 = l1; j3 < l1 + 2; ++j3) {
-									k3 = j3 % 2;
-									l3 = 1 - k3;
+							for (j3 = l1; j3 < l1 + 2; ++j3) {
+								k3 = j3 % 2;
+								l3 = 1 - k3;
 
-									for (i4 = 0; i4 < 4; ++i4) {
-										for (j4 = -1; j4 < 4; ++j4) {
-											k4 = i2 + (i4 - 1) * k3;
-											l4 = i3 + j4;
-											i5 = k2 + (i4 - 1) * l3;
+								for (i4 = 0; i4 < 4; ++i4) {
+									for (j4 = -1; j4 < 4; ++j4) {
+										k4 = i2 + (i4 - 1) * k3;
+										l4 = i3 + j4;
+										i5 = k2 + (i4 - 1) * l3;
 
-											if (j4 < 0 && !this.worldServerInstance.getBlockState(new BlockPos(k4, l4, i5)).getMaterial().isSolid() || j4 >= 0 && !this.worldServerInstance.isAirBlock(new BlockPos(k4, l4, i5)))
-												continue label222;
-										}
+										if (j4 < 0
+												&& !this.worldServerInstance.getBlockState(new BlockPos(k4, l4, i5))
+														.getMaterial().isSolid()
+												|| j4 >= 0 && !this.worldServerInstance
+														.isAirBlock(new BlockPos(k4, l4, i5)))
+											continue label222;
 									}
+								}
 
-									d4 = i3 + 0.5D - entity.posY;
-									d3 = d1 * d1 + d4 * d4 + d2 * d2;
+								d4 = i3 + 0.5D - entity.posY;
+								d3 = d1 * d1 + d4 * d4 + d2 * d2;
 
-									if (d0 < 0 || d3 < d0) {
-										d0 = d3;
-										l = i2;
-										i1 = i3;
-										j1 = k2;
-										k1 = j3 % 2;
-									}
+								if (d0 < 0 || d3 < d0) {
+									d0 = d3;
+									l = i2;
+									i1 = i3;
+									j1 = k2;
+									k1 = j3 % 2;
 								}
 							}
 						}
+					}
 				}
 			}
 		}
@@ -374,7 +355,8 @@ public class ModTeleporter extends Teleporter {
 						i4 = j2 + k3;
 						j4 = k2 + (j3 - 1) * l2 - i3 * l5;
 						flag = k3 < 0;
-						this.worldServerInstance.setBlockState(new BlockPos(l3, i4, j4), flag ? frameBlock.getDefaultState() : Blocks.AIR.getDefaultState());
+						this.worldServerInstance.setBlockState(new BlockPos(l3, i4, j4),
+								flag ? frameBlock.getDefaultState() : Blocks.AIR.getDefaultState());
 					}
 				}
 			}
@@ -387,7 +369,8 @@ public class ModTeleporter extends Teleporter {
 					i4 = j2 + k3;
 					j4 = k2 + (j3 - 1) * l2;
 					flag = j3 == 0 || j3 == 3 || k3 == -1 || k3 == 3;
-					this.worldServerInstance.setBlockState(new BlockPos(l3, i4, j4), (flag ? frameBlock.getDefaultState() : portal.getDefaultState()), 2);
+					this.worldServerInstance.setBlockState(new BlockPos(l3, i4, j4),
+							(flag ? frameBlock.getDefaultState() : portal.getDefaultState()), 2);
 				}
 			}
 
@@ -397,7 +380,8 @@ public class ModTeleporter extends Teleporter {
 					i4 = j2 + k3;
 					j4 = k2 + (j3 - 1) * l2;
 					BlockPos pos = new BlockPos(l3, i4, j4);
-					this.worldServerInstance.notifyNeighborsOfStateChange(pos, this.worldServerInstance.getBlockState(pos).getBlock(), false);
+					this.worldServerInstance.notifyNeighborsOfStateChange(pos,
+							this.worldServerInstance.getBlockState(pos).getBlock(), false);
 				}
 			}
 		}
