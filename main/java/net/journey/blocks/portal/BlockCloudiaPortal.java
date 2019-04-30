@@ -7,7 +7,7 @@ import net.journey.JourneyBlocks;
 import net.journey.JourneyItems;
 import net.journey.JourneyTabs;
 import net.journey.client.render.particles.EntityCloudiaPortalFX;
-import net.journey.dimension.ModTeleporter;
+import net.journey.dimension.cloudia.TeleporterCloudia;
 import net.journey.util.Config;
 import net.journey.util.LangRegistry;
 import net.minecraft.block.Block;
@@ -43,6 +43,7 @@ import net.slayer.api.SlayerAPI;
 public class BlockCloudiaPortal extends BlockBreakable {
 
 	public String name;
+	
     public static final PropertyEnum<EnumFacing.Axis> AXIS = PropertyEnum.<EnumFacing.Axis>create("axis", EnumFacing.Axis.class, EnumFacing.Axis.X, EnumFacing.Axis.Z);
 	protected static final AxisAlignedBB X_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.375D, 1.0D, 1.0D, 0.625D);
 	protected static final AxisAlignedBB Z_AABB = new AxisAlignedBB(0.375D, 0.0D, 0.0D, 0.625D, 1.0D, 1.0D);
@@ -106,17 +107,17 @@ public class BlockCloudiaPortal extends BlockBreakable {
 		if ((entity.getRidingEntity() == null) && ((entity instanceof EntityPlayerMP))) {
 			EntityPlayerMP thePlayer = (EntityPlayerMP)entity;
 			WorldServer worldserver = thePlayer.mcServer.getWorld(thePlayer.dimension);
-			//thePlayer.triggerAchievement(JourneyAchievements.achievementCloudia);
+			//thePlayer.triggerAchievement(JourneyAchievements.achievementcloudia);
 			int dimensionID = Config.cloudia;
 			Block blockFrame = JourneyBlocks.cloudiaPortalFrame;
 			if(thePlayer.timeUntilPortal > 0) 
 				thePlayer.timeUntilPortal = 10;
 			else if(thePlayer.dimension != dimensionID) {
 				thePlayer.timeUntilPortal = 10;
-				thePlayer.mcServer.getPlayerList().transferPlayerToDimension(thePlayer, dimensionID, new ModTeleporter(thePlayer.mcServer.getWorld(dimensionID), dimensionID, this, blockFrame));
+				thePlayer.mcServer.getPlayerList().transferPlayerToDimension(thePlayer, dimensionID, new TeleporterCloudia(thePlayer.mcServer.getWorld(dimensionID), dimensionID, this, blockFrame));
 			} else {
 				thePlayer.timeUntilPortal = 10;
-				thePlayer.mcServer.getPlayerList().transferPlayerToDimension(thePlayer, 0, new ModTeleporter(thePlayer.mcServer.getWorld(0), 0, this, blockFrame));
+				thePlayer.mcServer.getPlayerList().transferPlayerToDimension(thePlayer, 0, new TeleporterCloudia(thePlayer.mcServer.getWorld(0), 0, this, blockFrame));
 			}
 		}
 	}
@@ -196,12 +197,11 @@ public class BlockCloudiaPortal extends BlockBreakable {
 			worldIn.createExplosion(bolt, p.getX(), p.getY(), p.getZ(), 0.0F, true);
 			return true;
 		} else {
-			EntityLightningBolt bolt1 = new EntityLightningBolt(worldIn, p.getX(), p.getY(), p.getZ(), false);
 			BlockCloudiaPortal.Size size1 = new BlockCloudiaPortal.Size(worldIn, p, EnumFacing.Axis.Z);
 			if(size1.isValid() && size1.portalBlockCount == 0) {
 				size1.placePortalBlocks();
-				worldIn.addWeatherEffect(bolt1);
-				worldIn.createExplosion(bolt1, p.getX(), p.getY(), p.getZ(), 0.0F, true);
+				worldIn.addWeatherEffect(bolt);
+				worldIn.createExplosion(bolt, p.getX(), p.getY(), p.getZ(), 0.0F, true);
 				return true;
 			} else {
 				return false;

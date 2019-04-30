@@ -194,9 +194,9 @@ public class TeleporterCorba extends Teleporter {
 		this.makePortalAt(this.myWorld, var10, var11, var12);
 		return true;
 	}
-
+	
 	private void makePortalAt(World world, int x, int y, int z) {
-		y = 90;
+		y = 13;
 		world.setBlockState(new BlockPos(x, y, z), JourneyBlocks.corbaPortalFrame.getDefaultState());
 		world.setBlockState(new BlockPos(x, y, z + 1), JourneyBlocks.corbaPortalFrame.getDefaultState());
 		world.setBlockState(new BlockPos(x, y, z + 2), JourneyBlocks.corbaPortalFrame.getDefaultState());

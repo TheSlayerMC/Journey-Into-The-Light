@@ -6,7 +6,6 @@ import java.util.Random;
 import net.journey.JourneyAchievements;
 import net.journey.JourneyBlocks;
 import net.journey.JourneyTabs;
-import net.journey.dimension.ModTeleporter;
 import net.journey.dimension.corba.TeleporterCorba;
 import net.journey.util.Config;
 import net.journey.util.LangRegistry;
@@ -81,10 +80,10 @@ public class BlockCorbaPortal extends BlockMod {
 				thePlayer.timeUntilPortal = 10;
 			else if(thePlayer.dimension != dimensionID) {
 				thePlayer.timeUntilPortal = 10;
-				thePlayer.mcServer.getPlayerList().transferPlayerToDimension(thePlayer, dimensionID, new ModTeleporter(thePlayer.mcServer.getWorld(dimensionID), dimensionID, this, blockFrame));
+				thePlayer.mcServer.getPlayerList().transferPlayerToDimension(thePlayer, dimensionID, new TeleporterCorba(thePlayer.mcServer.getWorld(dimensionID)));
 			} else {
 				thePlayer.timeUntilPortal = 10;
-				thePlayer.mcServer.getPlayerList().transferPlayerToDimension(thePlayer, 0, new ModTeleporter(thePlayer.mcServer.getWorld(0), 0, this, blockFrame));
+				thePlayer.mcServer.getPlayerList().transferPlayerToDimension(thePlayer, 0, new TeleporterCorba(thePlayer.mcServer.getWorld(0)));
 			}
 		}
 	}
