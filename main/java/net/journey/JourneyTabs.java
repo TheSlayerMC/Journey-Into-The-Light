@@ -44,15 +44,15 @@ public class JourneyTabs extends CreativeTabs {
 	}
 	
 	public static void init(){
-		blocks.setIcon(JourneyBlocks.cloudiaRock);
+		blocks.setIcon(JourneyBlocks.eucaGrass);
 		decoration.setIcon(JourneyBlocks.boilingLamp);
 		items.setIcon(JourneyItems.koriteIngot);
 		tools.setIcon(JourneyItems.multiToolOfEternalSmelting);
-		weapons.setIcon(JourneyItems.terronicBlade);
+		weapons.setIcon(JourneyItems.coreMender);
 		util.setIcon(JourneyItems.flameCoin);
-		armor.setIcon(JourneyItems.twilightHelmet);
+		armor.setIcon(JourneyItems.blazehornHelmet);
 		spawners.setIcon(JourneyItems.sentryKingOrb);
-		crops.setIcon(JourneyCrops.crackenCaneSeeds);
+		crops.setIcon(JourneyItems.hongoShroom);
 		machineBlocks.setIcon(JourneyBlocks.summoningTable);
 		portalBlocks.setIcon(JourneyBlocks.eucaPortal);
 	}

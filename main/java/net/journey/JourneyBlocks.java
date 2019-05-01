@@ -159,6 +159,7 @@ public class JourneyBlocks {
 	public static BlockMod nethicanSludge;
 
 	public static BlockMod eucaGrass;
+	public static BlockMod eucaDirt;
 	public static BlockMod eucaStone;
 	public static BlockModLog eucaGoldLog;
 	public static BlockMod goldEucaPlank;
@@ -567,6 +568,7 @@ public class JourneyBlocks {
 		nethicanSludge = new BlockMod(EnumMaterialTypes.SLIME, "nethicanSludge", "Nethican Sludge", 1.0F);
 
 		eucaGrass = new BlockModGrass(null, "eucaGrass", "Euca Grass", 2.0F);
+		eucaDirt = new BlockMod(EnumMaterialTypes.DIRT, "eucaDirt", "Euca Dirt", 2.0F);
 		eucaStone = new BlockMod("eucaStone", "Euca Stone", 2.0F);
 		eucaGoldLog = new BlockModLog("eucaGoldLog", "Golden Euca Log");
 		goldEucaPlank = new BlockMod(EnumMaterialTypes.WOOD, "goldEucaPlank", "Golden Euca Plank", 1.0F);

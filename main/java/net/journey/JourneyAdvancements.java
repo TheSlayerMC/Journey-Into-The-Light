@@ -2,7 +2,7 @@ package net.journey;
 
 import net.minecraft.stats.StatBase;
 
-public class JourneyAchievements {
+public class JourneyAdvancements {
 	
 	//public static final AdvancementEvent ap = new AchievementPage("Journey Achievements");
 	public static StatBase achievementOre;

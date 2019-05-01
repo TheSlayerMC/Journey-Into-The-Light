@@ -2,7 +2,6 @@ package net.journey.entity.mob.boss;
 
 import java.util.Random;
 
-import net.journey.JourneyAchievements;
 import net.journey.JourneyBlocks;
 import net.journey.JourneyItems;
 import net.journey.JourneySounds;

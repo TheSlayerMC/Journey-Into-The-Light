@@ -1,7 +1,7 @@
 {
     "display": {
         "icon": {
-            "item": "journey:sapphire",
+         "item":"journey:sapphire",
             "data": 1
         },
         "title": {
@@ -11,7 +11,7 @@
             "translate": "journey.getmodore.description"
         }
     },
-    "parent": "minecraft:recipes/tools/diamond_pickaxe",
+    "parent": "journey:root",
     "criteria": {
         "sapphire": {
             "trigger": "minecraft:inventory_changed",

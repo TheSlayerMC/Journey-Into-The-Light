@@ -3,7 +3,6 @@ package net.journey.blocks.portal;
 import java.util.List;
 import java.util.Random;
 
-import net.journey.JourneyAchievements;
 import net.journey.JourneyBlocks;
 import net.journey.JourneyTabs;
 import net.journey.dimension.corba.TeleporterCorba;

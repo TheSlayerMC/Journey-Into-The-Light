@@ -26,9 +26,9 @@ public class NetherBiomeEarthen extends NetherBiome {
 				chunk.setBlockState(pos.up(), JourneyBlocks.earthenNetherTallGrass.getDefaultState());
 
 		}
-		if (random.nextFloat() <= plantDensity && ground == Blocks.GRASS) {
+		if (random.nextFloat() <= plantDensity && ground == JourneyBlocks.nethicGrass) {
 			if (Blocks.TALLGRASS != Blocks.AIR && random.nextInt(6) == 0)
-				chunk.setBlockState(pos.up(), Blocks.TALLGRASS.getStateFromMeta(random.nextInt(3)));
+				chunk.setBlockState(pos.up(), Blocks.TALLGRASS.getStateFromMeta(0));
 
 		}
 		if (random.nextFloat() <= plantDensity && ground == JourneyBlocks.earthenNetherrack) {
@@ -52,7 +52,7 @@ public class NetherBiomeEarthen extends NetherBiome {
 					chunk.setBlockState(pos, JourneyBlocks.earthenNetherrack.getDefaultState());
 					break;
 				case 2:
-					chunk.setBlockState(pos, Blocks.GRASS.getDefaultState());
+					chunk.setBlockState(pos, JourneyBlocks.nethicGrass.getDefaultState());
 					break;
 				}
 			} else {

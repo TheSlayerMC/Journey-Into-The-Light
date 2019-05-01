@@ -87,7 +87,8 @@ public class BlockNetherPlant extends BlockMod implements IPlantable {
 				|| worldIn.getBlockState(pos.down()).getBlock() == JourneyBlocks.heatSoil
 				|| worldIn.getBlockState(pos.down()).getBlock() == JourneyBlocks.heatSand
 				|| worldIn.getBlockState(pos.down()).getBlock() == JourneyBlocks.earthenNetherrack
-				|| worldIn.getBlockState(pos.down()).getBlock() == Blocks.SOUL_SAND;
+				|| worldIn.getBlockState(pos.down()).getBlock() == Blocks.SOUL_SAND 				
+				|| worldIn.getBlockState(pos.down()).getBlock() == JourneyBlocks.nethicGrass;
 	}
 
 	@Override

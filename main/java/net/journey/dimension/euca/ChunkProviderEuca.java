@@ -38,28 +38,20 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 public class ChunkProviderEuca implements IChunkGenerator {
 
 	private Random rand;
-	private NoiseGeneratorOctaves noiseGen1, noiseGen2, noiseGen3, noiseGen5, noiseGen6;
 	private World worldObj;
-	private double[] noiseArray;
-	private Biome[] biomesForGeneration;
-	private double[] noise3, noise1, noise2, noise5, noise6;
+	private NoiseGeneratorOctaves noiseGen1, perlinNoise1;
+	private double buffer[];
+	double pnr[], ar[], br[];
 	private ArrayList<WorldGenerator> treesgreen;
 	private ArrayList<WorldGenerator> treesnormal;
 	private ArrayList<WorldGenerator> treestall;
 
-	public ChunkProviderEuca(World var1, long var2){
-		this.worldObj = var1;
-		this.rand = new Random(var2);
+	public ChunkProviderEuca(World world, long seed) {
+		this.worldObj = world;
+		this.rand = new Random(seed);
 		this.noiseGen1 = new NoiseGeneratorOctaves(this.rand, 16);
-		this.noiseGen2 = new NoiseGeneratorOctaves(this.rand, 16);
-		this.noiseGen3 = new NoiseGeneratorOctaves(this.rand, 8);
-		new NoiseGeneratorOctaves(this.rand, 4);
-		new NoiseGeneratorOctaves(this.rand, 4);
-		this.noiseGen5 = new NoiseGeneratorOctaves(this.rand, 10);
-		this.noiseGen6 = new NoiseGeneratorOctaves(this.rand, 16);
-		new WorldGenEucaWater(Blocks.FLOWING_WATER, true);
-		new WorldGenEucaWater(Blocks.FLOWING_WATER, false);
-		
+		this.perlinNoise1 = new NoiseGeneratorOctaves(this.rand, 8);
+
 		treesgreen = new ArrayList<WorldGenerator>(6);
 		treesgreen.add(new WorldGenEucaTree6());
 		treesgreen.add(new WorldGenEucaTree7());
@@ -69,66 +61,67 @@ public class ChunkProviderEuca implements IChunkGenerator {
 		treesnormal = new ArrayList<WorldGenerator>(6);
 		treesnormal.add(new WorldGenEucaTree4());
 		treesnormal.add(new WorldGenEucaTree5());
-		
+
 		treestall = new ArrayList<WorldGenerator>(3);
 		treestall.add(new WorldGenEucaTree());
 		treestall.add(new WorldGenEucaTree2());
 		treestall.add(new WorldGenEucaTree3());
 	}
 
-	@Override
-	public Chunk generateChunk(int par1, int par2) {
-		this.rand.setSeed(par1 * 391279512714L + par2 * 132894987741L);
-		ChunkPrimer primer = new ChunkPrimer();
-		this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomesForGeneration(this.biomesForGeneration, par1 * 16, par2 * 16, 16, 16);
-		this.generateTerrain(par1, par2, primer);
-		this.replaceBlocksForBiome(primer);
-		Chunk chunk = new Chunk(this.worldObj, primer, par1, par2);
-		chunk.generateSkylightMap();
-		return chunk;
-	}
+	public void setBlocksInChunk(int x, int z, ChunkPrimer chunkPrimer) {
+		this.buffer = this.setupNoiseGenerators(this.buffer, x * 2, z * 2);
 
-	public void generateTerrain(int var1, int var2, ChunkPrimer primer) {
-		byte b0 = 2;
-		int k = b0 + 1;
-		byte b1 = 33;
-		int l = b0 + 1;
-		this.noiseArray = this.initializeNoiseField(this.noiseArray, var1 * b0, 0, var2 * b0, k, b1, l);
+		for (int i1 = 0; i1 < 2; i1++) {
+			for (int j1 = 0; j1 < 2; j1++) {
+				for (int k1 = 0; k1 < 32; k1++) {
+					double d1 = this.buffer[(i1 * 3 + j1) * 33 + k1];
+					double d2 = this.buffer[(i1 * 3 + (j1 + 1)) * 33 + k1];
+					double d3 = this.buffer[((i1 + 1) * 3 + j1) * 33 + k1];
+					double d4 = this.buffer[((i1 + 1) * 3 + (j1 + 1)) * 33 + k1];
 
-		for (int i1 = 0; i1 < b0; ++i1) {
-			for (int j1 = 0; j1 < b0; ++j1) {
-				for (int k1 = 0; k1 < 32; ++k1) {
-					double d0 = 0.25D;
-					double d1 = this.noiseArray[((i1 + 0) * l + j1 + 0) * b1 + k1 + 0];
-					double d2 = this.noiseArray[((i1 + 0) * l + j1 + 1) * b1 + k1 + 0];
-					double d3 = this.noiseArray[((i1 + 1) * l + j1 + 0) * b1 + k1 + 0];
-					double d4 = this.noiseArray[((i1 + 1) * l + j1 + 1) * b1 + k1 + 0];
-					double d5 = (this.noiseArray[((i1 + 0) * l + j1 + 0) * b1 + k1 + 1] - d1) * d0;
-					double d6 = (this.noiseArray[((i1 + 0) * l + j1 + 1) * b1 + k1 + 1] - d2) * d0;
-					double d7 = (this.noiseArray[((i1 + 1) * l + j1 + 0) * b1 + k1 + 1] - d3) * d0;
-					double d8 = (this.noiseArray[((i1 + 1) * l + j1 + 1) * b1 + k1 + 1] - d4) * d0;
-					for (int l1 = 0; l1 < 4; ++l1) {
-						double d9 = 0.125D;
+					double d5 = (this.buffer[(i1 * 3 + j1) * 33 + (k1 + 1)] - d1) * 0.25D;
+					double d6 = (this.buffer[(i1 * 3 + (j1 + 1)) * 33 + (k1 + 1)] - d2) * 0.25D;
+					double d7 = (this.buffer[((i1 + 1) * 3 + j1) * 33 + (k1 + 1)] - d3) * 0.25D;
+					double d8 = (this.buffer[((i1 + 1) * 3 + (j1 + 1)) * 33 + (k1 + 1)] - d4) * 0.25D;
+
+					for (int l1 = 0; l1 < 4; l1++) {
 						double d10 = d1;
 						double d11 = d2;
-						double d12 = (d3 - d1) * d9;
-						double d13 = (d4 - d2) * d9;
-						for (int i2 = 0; i2 < 8; ++i2) {
-							double d14 = 0.125D;
+						double d12 = (d3 - d1) * 0.125D;
+						double d13 = (d4 - d2) * 0.125D;
+
+						for (int i2 = 0; i2 < 8; i2++) {
 							double d15 = d10;
-							double d16 = (d11 - d10) * d14;
-							for (int j2 = 0; j2 < 8; ++j2) {
-								IBlockState iblockstate = null;
-								if(d15 > 0.0D) iblockstate = JourneyBlocks.eucaStone.getDefaultState();
-								int k2 = i2 + i1 * 8;
-								int l2 = l1 + k1 * 4;
-								int i3 = j2 + j1 * 8;
-								primer.setBlockState(k2, l2, i3, iblockstate);
+							double d16 = (d11 - d10) * 0.125D;
+
+							for (int k2 = 0; k2 < 8; k2++) {
+								int x1 = i2 + i1 * 8;
+								int y = l1 + k1 * 4;
+								int z1 = k2 + j1 * 8;
+
+								IBlockState filler = Blocks.AIR.getDefaultState();
+
+								if (d15 < -38D) {
+								}
+								if (d15 < -39D && d15 > -43D) {
+									if (d15 < -41D) {
+									}
+								}
+								if (d15 < -44D && d15 > -46D) {
+									if (d15 < -44.25D) {
+									}
+								}
+								if (d15 > 0.0D) {
+									filler = JourneyBlocks.eucaStone.getDefaultState();
+								}
+								chunkPrimer.setBlockState(x1, y, z1, filler);
 								d15 += d16;
 							}
+
 							d10 += d12;
 							d11 += d13;
 						}
+
 						d1 += d5;
 						d2 += d6;
 						d3 += d7;
@@ -139,39 +132,37 @@ public class ChunkProviderEuca implements IChunkGenerator {
 		}
 	}
 
-	public final void replaceBlocksForBiome(ChunkPrimer c) {
-		for (int i = 0; i < 16; ++i) {
-			for (int j = 0; j < 16; ++j) {
-				byte b0 = 1;
-				int k = -1;
-				IBlockState iblockstate = JourneyBlocks.eucaGrass.getDefaultState();
-				IBlockState iblockstate1 = JourneyBlocks.eucaStone.getDefaultState();
+	public void buildSurfaces(int i, int j, ChunkPrimer chunkPrimer) {
+		for (int k = 0; k < 16; k++) {
+			for (int l = 0; l < 16; l++) {
+				int j1 = -1;
+				int i1 = (int) (3.0D + this.rand.nextDouble() * 0.25D);
 
-				for (int l = 127; l >= 0; --l) {
-					IBlockState iblockstate2 = c.getBlockState(i, l, j);
-					if (iblockstate2.getBlock().getMaterial(iblockstate2) == Material.AIR) 
-						k = -1;
+				IBlockState top = JourneyBlocks.eucaGrass.getDefaultState();
+				IBlockState filler = JourneyBlocks.eucaDirt.getDefaultState();
 
-					else if (iblockstate2.getBlock() == JourneyBlocks.eucaStone) {
-						if (k == -1) {
-							if (b0 <= 0) {
-								iblockstate = Blocks.AIR.getDefaultState();
-								iblockstate1 = JourneyBlocks.eucaGrass.getDefaultState();
+				for (int k1 = 127; k1 >= 0; k1--) {
+					Block block = chunkPrimer.getBlockState(k, k1, l).getBlock();
+
+					if (block == Blocks.AIR) {
+						j1 = -1;
+					} else if (block == JourneyBlocks.eucaStone) {
+						if (j1 == -1) {
+							if (i1 <= 0) {
+								top = Blocks.AIR.getDefaultState();
+								filler = JourneyBlocks.eucaStone.getDefaultState();
 							}
-							k = b0;
-							if(l >= 0) {
-								c.setBlockState(i, l, j, iblockstate);
+
+							j1 = i1;
+
+							if (k1 >= 0) {
+								chunkPrimer.setBlockState(k, k1, l, top);
 							} else {
-								c.setBlockState(i, l, j, iblockstate1);
-								if(c.getBlockState(i, l - 1, j) == JourneyBlocks.eucaStone.getDefaultState()) c.setBlockState(i, l - 1, j, iblockstate1);
-								//if(c.getBlockState(i, l - 2, j) == EssenceBlocks.eucaStone.getDefaultState() && rand.nextInt(2) == 0) c.setBlockState(i, l - 2, j, iblockstate1);
+								chunkPrimer.setBlockState(k, k1, l, filler);
 							}
-						}
-						else if (k > 0) {
-							--k;
-							c.setBlockState(i, l, j, iblockstate1);
-							if(c.getBlockState(i, l - 1, j) == JourneyBlocks.eucaStone.getDefaultState()) c.setBlockState(i, l - 1, j, iblockstate1);
-							//if(c.getBlockState(i, l - 2, j) == EssenceBlocks.eucaStone.getDefaultState() && rand.nextInt(2) == 0) c.setBlockState(i, l - 2, j, iblockstate1);
+						} else if (j1 > 0) {
+							--j1;
+							chunkPrimer.setBlockState(k, k1, l, filler);
 						}
 					}
 				}
@@ -179,60 +170,66 @@ public class ChunkProviderEuca implements IChunkGenerator {
 		}
 	}
 
-	private double[] initializeNoiseField(double[] var1, int var2, int var3, int var4, int var5, int var6, int var7) {
-		if(var1 == null) var1 = new double[var5 * var6 * var7];
-		double var8 = 684.412D;
-		double var10 = 684.412D;
-		this.noise5 = this.noiseGen5.generateNoiseOctaves(this.noise5, var2, var4, var5, var7, 1.121D, 1.121D, 0.5D);
-		this.noise6 = this.noiseGen6.generateNoiseOctaves(this.noise6, var2, var4, var5, var7, 1.0D, 1.0D, 0.5D);
-		var8 *= 2.0D;
-		this.noise3 = this.noiseGen3.generateNoiseOctaves(this.noise3, var2, var3, var4, var5, var6, var7, var8 / 80.0D, var8 / 160.0D, var8 / 80.0D);
-		this.noise1 = this.noiseGen1.generateNoiseOctaves(this.noise1, var2, var3, var4, var5, var6, var7, var8, var10, var8);
-		this.noise2 = this.noiseGen2.generateNoiseOctaves(this.noise2, var2, var3, var4, var5, var6, var7, var8, var10, var8);
-		int var12 = 0;
-		int var13 = 0;
-		for(int var15 = 0; var15 < var5; var15++) {
-			for(int var17 = 0; var17 < var7; var17++) {
-				double var19 = (this.noise5[var13] + 64.0D) / 64.0D;
-				double var21 = this.noise6[var13] / 6000.0D;
-				if(var21 < 0.0D) var21 = -var21 * 0.3D;
-				var21 = var21 * 3.0D - 2.0D;
-				if(var21 > 1.0D) var21 = 1.0D;
-				var21 /= 8.0D;
-				var21 = 0.0D;
-				if(var19 < 0.0D) var19 = 0.0D;
-				var19 += 0.5D;
-				var21 = var21 * var6 / 8.0D;
-				var13++;
-				double var23 = var6 / 2.0D;
-				for(int var25 = 0; var25 < var6; var25++) {
-					double var26 = 0.0D;
-					double var28 = (var25 - var23) * 8.0D / var19;
-					if(var28 < 0.0D) var28 *= -1.0D;
-					double var30 = this.noise1[var12] / 128.0D / 1.5D;
-					double var32 = this.noise2[var12] / 128.0D;
-					double var34 = (this.noise3[var12] / 10.0D + 1.0D);
-					if(var34 < 0.0D) var26 = var30;
-					else if(var34 > 1.0D) var26 = var32;
-					else var26 = var30 + (var32 - var30) * var34;
-					var26 -= 8.0D;
-					byte var36 = 32;
-					double var37;
-					if(var25 > var6 - var36) {
-						var37 = (var25 - (var6 - var36)) / (var36 - 1.0F);
-						var26 = var26 * (1.0D - var37) + -30.0D * var37;
+	private double[] setupNoiseGenerators(double buffer[], int x, int z) {
+		if (buffer == null) {
+			buffer = new double[3366];
+		}
+
+		double d = 1368.824D;
+		double d1 = 684.41200000000003D;
+
+		this.pnr = this.perlinNoise1.generateNoiseOctaves(this.pnr, x, 0, z, 3, 33, 3, d / 80D, d1 / 160D, d / 80D);
+		this.ar = this.noiseGen1.generateNoiseOctaves(this.ar, x, 0, z, 3, 33, 3, d, d1, d);
+		this.br = this.noiseGen1.generateNoiseOctaves(this.br, x, 0, z, 3, 33, 3, d, d1, d);
+
+		int id = 0;
+
+		for (int j2 = 0; j2 < 3; j2++) {
+			for (int l2 = 0; l2 < 3; l2++) {
+				for (int j3 = 0; j3 < 33; j3++) {
+					double d8;
+
+					double d10 = this.ar[id] / 512D;
+					double d11 = this.br[id] / 512D;
+					double d12 = (this.pnr[id] / 10D + 1.0D) / 2D;
+
+					if (d12 < 0.0D) {
+						d8 = d10;
+					} else if (d12 > 1.0D) {
+						d8 = d11;
+					} else {
+						d8 = d10 + (d11 - d10) * d12;
 					}
-					var36 = 8;
-					if(var25 < var36) {
-						var37 = (var36 - var25) / (var36 - 1.0F);
-						var26 = var26 * (1.0D - var37) + -30.0D * var37;
+					d8 -= 8D;
+					if (j3 > 33 - 32) {
+						double d13 = (float) (j3 - (33 - 32)) / ((float) 32 - 1.0F);
+						d8 = d8 * (1.0D - d13) + -30D * d13;
 					}
-					var1[var12] = var26;
-					++var12;
+					if (j3 < 8) {
+						double d14 = (float) (8 - j3) / ((float) 8 - 1.0F);
+						d8 = d8 * (1.0D - d14) + -30D * d14;
+					}
+					buffer[id] = d8;
+					id++;
 				}
 			}
 		}
-		return var1;
+
+		return buffer;
+	}
+
+	@Override
+	public Chunk generateChunk(int x, int z) {
+		this.rand.setSeed((long) x * 341873128712L + (long) z * 132897987541L);
+		ChunkPrimer chunkPrimer = new ChunkPrimer();
+
+		this.setBlocksInChunk(x, z, chunkPrimer);
+		this.buildSurfaces(x, z, chunkPrimer);
+
+		Chunk chunk = new Chunk(this.worldObj, chunkPrimer, x, z);
+		chunk.generateSkylightMap();
+
+		return chunk;
 	}
 
 	@Override
@@ -241,58 +238,62 @@ public class ChunkProviderEuca implements IChunkGenerator {
 		int z1 = j * 16;
 		int x, z, times;
 
-		if(rand.nextInt(1)==0) {
+		if (rand.nextInt(1) == 0) {
 			x = x1 + this.rand.nextInt(16) + 8;
 			z = z1 + this.rand.nextInt(16) + 8;
 			int yCoord = rand.nextInt(128) + 1;
-			if(isBlockTop(x, yCoord - 1, z, JourneyBlocks.eucaGrass)) {
+			if (isBlockTop(x, yCoord - 1, z, JourneyBlocks.eucaGrass)) {
 				new WorldGenSmeltery().generate(worldObj, rand, new BlockPos(x, yCoord, z));
 			}
 		}
 
-		for(times = 0; times < 2; times++) {
+		for (times = 0; times < 2; times++) {
 			x = x1 + this.rand.nextInt(16) + 8;
 			z = z1 + this.rand.nextInt(16) + 8;
 			int yCoord = rand.nextInt(128);
-			if(isBlockTop(x, yCoord - 1, z, JourneyBlocks.eucaGrass)) new WorldGenBotSpawner().generate(worldObj, rand, new BlockPos(x, yCoord, z));
+			if (isBlockTop(x, yCoord - 1, z, JourneyBlocks.eucaGrass))
+				new WorldGenBotSpawner().generate(worldObj, rand, new BlockPos(x, yCoord, z));
 		}
-		
-		for(times = 0; times < 5; times++) {
+
+		for (times = 0; times < 5; times++) {
 			x = x1 + this.rand.nextInt(16) + 8;
 			z = z1 + this.rand.nextInt(16) + 8;
 			int yCoord = rand.nextInt(128) + 1;
-			if(isBlockTop(x, yCoord - 1, z, JourneyBlocks.eucaGrass)) {
+			if (isBlockTop(x, yCoord - 1, z, JourneyBlocks.eucaGrass)) {
 				treesgreen.get(rand.nextInt(treesgreen.size())).generate(worldObj, rand, new BlockPos(x, yCoord, z));
 			}
 		}
 
-		for(times = 0; times < 300; times++) {
+		for (times = 0; times < 500; times++) {
 			x = x1 + this.rand.nextInt(16) + 8;
 			z = z1 + this.rand.nextInt(16) + 8;
 			int yCoord = rand.nextInt(128) + 1;
-			if(isBlockTop(x, yCoord - 1, z, JourneyBlocks.eucaGrass)) {
+			if (isBlockTop(x, yCoord - 1, z, JourneyBlocks.eucaGrass)) {
 				treesnormal.get(rand.nextInt(treesnormal.size())).generate(worldObj, rand, new BlockPos(x, yCoord, z));
 			}
 		}
-		
-		for(times = 0; times < 10; times++) {
+
+		for (times = 0; times < 10; times++) {
 			x = x1 + this.rand.nextInt(16) + 8;
 			z = z1 + this.rand.nextInt(16) + 8;
 			int yCoord = rand.nextInt(128) + 1;
-			if(isBlockTop(x, yCoord - 1, z, JourneyBlocks.eucaGrass)) {
+			if (isBlockTop(x, yCoord - 1, z, JourneyBlocks.eucaGrass)) {
 				treestall.get(rand.nextInt(treestall.size())).generate(worldObj, rand, new BlockPos(x, yCoord, z));
 			}
 		}
 	}
 
 	public boolean isBlockTop(int x, int y, int z, Block grass) {
-		return worldObj.getBlockState(new BlockPos(x, y, z)) == grass.getDefaultState() && worldObj.getBlockState(new BlockPos(x, y + 1, z)) == Blocks.AIR.getDefaultState()
-				&& worldObj.getBlockState(new BlockPos(x, y + 2, z)) == Blocks.AIR.getDefaultState() && worldObj.getBlockState(new BlockPos(x, y + 3, z)) == Blocks.AIR.getDefaultState()
-				&& worldObj.getBlockState(new BlockPos(x, y + 4, z)) == Blocks.AIR.getDefaultState() && worldObj.getBlockState(new BlockPos(x, y + 5, z)) == Blocks.AIR.getDefaultState();
+		return worldObj.getBlockState(new BlockPos(x, y, z)) == grass.getDefaultState()
+				&& worldObj.getBlockState(new BlockPos(x, y + 1, z)) == Blocks.AIR.getDefaultState()
+				&& worldObj.getBlockState(new BlockPos(x, y + 2, z)) == Blocks.AIR.getDefaultState()
+				&& worldObj.getBlockState(new BlockPos(x, y + 3, z)) == Blocks.AIR.getDefaultState()
+				&& worldObj.getBlockState(new BlockPos(x, y + 4, z)) == Blocks.AIR.getDefaultState()
+				&& worldObj.getBlockState(new BlockPos(x, y + 5, z)) == Blocks.AIR.getDefaultState();
 	}
 
 	@Override
-	public List <SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos) {
+	public List<SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos) {
 		Biome biome = this.worldObj.getBiome(pos);
 		return biome.getSpawnableList(creatureType);
 	}
@@ -308,7 +309,7 @@ public class ChunkProviderEuca implements IChunkGenerator {
 	}
 
 	@Override
-	public void recreateStructures(Chunk chunkIn, int x, int z) { }
+	public void recreateStructures(Chunk chunkIn, int x, int z) {}
 
 	@Override
 	public boolean isInsideStructure(World worldIn, String structureName, BlockPos pos) {
