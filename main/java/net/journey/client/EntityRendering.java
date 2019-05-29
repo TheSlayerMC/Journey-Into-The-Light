@@ -84,7 +84,12 @@ import net.journey.entity.mob.terrania.npc.EntityTerranianEnchanter;
 import net.journey.entity.mob.terrania.npc.EntityTerranianTrader;
 import net.journey.entity.projectile.*;
 import net.journey.util.*;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.*;
+import net.minecraft.client.renderer.entity.RenderArrow;
+import net.minecraft.client.renderer.entity.RenderSnowball;
+import net.minecraft.client.renderer.entity.RenderTippedArrow;
+import net.minecraft.init.Items;
 import net.minecraftforge.fml.client.registry.*;
 import net.slayer.api.SlayerAPI;
 
@@ -105,8 +110,9 @@ public class EntityRendering {
 		RenderingRegistry.registerEntityRenderingHandler(EntityMagmaFireball.class, new RenderProjectile(Textures.magmaBall));
 		//RenderingRegistry.registerEntityRenderingHandler(EntityFlameArrow.class, new RenderModArrow());
 		//RenderingRegistry.registerEntityRenderingHandler(EntityPoisonArrow.class, new RenderModArrow());
-		//RenderingRegistry.registerEntityRenderingHandler(EntityDarknessArrow.class, new RenderModArrow());
+		RenderingRegistry.registerEntityRenderingHandler(EntityDarknessArrow.class, new RenderTippedArrow(Minecraft.getMinecraft().getRenderManager())); //temporary because RenderModArrow appears to be broken
 		//RenderingRegistry.registerEntityRenderingHandler(EntityFrozenArrow.class, new RenderModArrow());
+		RenderingRegistry.registerEntityRenderingHandler(EntityEssenceArrow.class, new RenderEssenceArrow(Minecraft.getMinecraft().getRenderManager()));
 		RenderingRegistry.registerEntityRenderingHandler(EntityFireBall.class, new RenderStaffProjectile(Textures.empty, 1F, 1F, 1F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityIceBall.class, new RenderStaffProjectile(Textures.empty, 1F, 1F, 1F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityTempleBall.class, new RenderStaffProjectile(Textures.templeBall, 0F, 0F, 0F));

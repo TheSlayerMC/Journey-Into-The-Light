@@ -9,6 +9,7 @@ import net.journey.JITL;
 import net.journey.JourneyItems;
 import net.journey.JourneyTabs;
 import net.journey.client.ItemDescription;
+import net.journey.entity.projectile.EntityEssenceArrow;
 import net.journey.util.LangHelper;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.util.ITooltipFlag;
@@ -44,10 +45,26 @@ public class ItemModBow extends ItemMod {
 	public int dur = 18;
 	protected int damage;
 	protected int uses;
-	//protected String damageString;
 	public String ability;
 
-	public ItemModBow(String name, String f, int uses, int damage, /**String damageString,*/ Item arrow, int duration, String ability, Class<? extends EntityArrow> arrowEnt) {
+	protected EntityEssenceArrow.BowEffects effect;
+
+	public ItemModBow(String name, String properName, int uses, int damage, String ability) {
+		super(name, properName, JourneyTabs.weapons);
+		this.maxStackSize = 1;
+		this.arrowItem = JourneyItems.essenceArrow;
+		this.arrowClass = EntityEssenceArrow.class;
+		this.damage = damage;
+		this.uses = uses;
+
+		this.setMaxDamage(uses);
+		this.setFull3D();
+		this.ability = ability;
+		addPropertyOverrides();
+
+	}
+
+	public ItemModBow(String name, String f, int uses, int damage, Item arrow, int duration, String ability, Class<? extends EntityArrow> arrowEnt) {
 		super(name, f, JourneyTabs.weapons);
 		this.maxStackSize = 1;
 		this.dur = duration;
@@ -59,27 +76,10 @@ public class ItemModBow extends ItemMod {
 		this.setMaxDamage(uses);
 		this.setFull3D();
 		this.ability = ability;
-		this.addPropertyOverride(new ResourceLocation("pull"), new IItemPropertyGetter() {
-			@SideOnly(Side.CLIENT)
-			public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {
-				if (entityIn == null) {
-					return 0.0F;
-				} else {
-					return entityIn.getActiveItemStack().getItem() != Items.BOW ? 0.0F
-							: (float) (stack.getMaxItemUseDuration() - entityIn.getItemInUseCount()) / 20.0F;
-				}
-			}
-		});
-		this.addPropertyOverride(new ResourceLocation("pulling"), new IItemPropertyGetter() {
-			@SideOnly(Side.CLIENT)
-			public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {
-				return entityIn != null && entityIn.isHandActive() && entityIn.getActiveItemStack() == stack ? 1.0F
-						: 0.0F;
-			}
-		});
+		addPropertyOverrides();
 	}
 	
-	public ItemModBow(String name, String f, int uses, int damage, /**String damageString*/ Item arrow, String ability, Class<? extends EntityArrow> arrowEnt) {
+	public ItemModBow(String name, String f, int uses, int damage, Item arrow, String ability, Class<? extends EntityArrow> arrowEnt) {
 		super(name, f, JourneyTabs.weapons);
 		this.maxStackSize = 1;
 		this.ability = ability;
@@ -87,9 +87,13 @@ public class ItemModBow extends ItemMod {
 		this.arrowItem = arrow;
 		this.damage = damage;
 		this.uses = uses;
-		//this.damageString = damageString;
+
 		this.setMaxDamage(uses);
 		this.setFull3D();
+		addPropertyOverrides();
+	}
+
+	private void addPropertyOverrides() {
 		this.addPropertyOverride(new ResourceLocation("pull"), new IItemPropertyGetter() {
 			@SideOnly(Side.CLIENT)
 			public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {
@@ -128,90 +132,81 @@ public class ItemModBow extends ItemMod {
 		}
 	}
 
-    protected boolean isArrow(ItemStack stack) {return stack.getItem() instanceof ItemArrow;}
+    protected boolean isArrow(ItemStack stack) {return stack.getItem() instanceof ItemEssenceArrow;}
     
 	@Override
 	public void onPlayerStoppedUsing(ItemStack stack, World worldIn, EntityLivingBase entityLiving, int timeLeft) {
 
 		if (entityLiving instanceof EntityPlayer) {
-			EntityPlayer entityplayer = (EntityPlayer) entityLiving;
-			int j1 = this.getMaxItemUseDuration(stack) - timeLeft;
-			float f1 = (float)j1 / 20.0F;
-			f1 = (f1 * f1 + f1 * 2.0F) / 3.0F;
-			if((double)f1 < 0.1D) return;
-			if(f1 > 1.0F) f1 = 1.0F;
-
-
-			boolean flag = entityplayer.capabilities.isCreativeMode
-					|| EnchantmentHelper.getEnchantmentLevel(Enchantments.INFINITY, stack) > 0;
+			EntityPlayer entityplayer = (EntityPlayer)entityLiving;
+			boolean flag = entityplayer.capabilities.isCreativeMode || EnchantmentHelper.getEnchantmentLevel(Enchantments.INFINITY, stack) > 0;
 			ItemStack itemstack = this.findAmmo(entityplayer);
-			ItemArrow itemarrow = (ItemArrow) (itemstack.getItem() instanceof ItemArrow ? itemstack.getItem()
-					: Items.ARROW);
-			EntityArrow entityarrow = null;
-			try {
-				entityarrow = arrowClass.getConstructor(World.class, EntityLivingBase.class, float.class).newInstance(worldIn, entityLiving instanceof EntityPlayer, f1 * 2.0F);
-			} catch(Exception e) {
-				e.printStackTrace();
-			}
-			entityarrow = itemarrow.createArrow(worldIn, itemstack, entityplayer);
-			boolean flag1 = entityplayer.capabilities.isCreativeMode || (itemstack.getItem() instanceof ItemArrow
-					&& ((ItemArrow) itemstack.getItem()).isInfinite(itemstack, stack, entityplayer));
 
 			int i = this.getMaxItemUseDuration(stack) - timeLeft;
-			i = net.minecraftforge.event.ForgeEventFactory.onArrowLoose(stack, worldIn, entityplayer, i,
-					!itemstack.isEmpty() || flag);
-			if (i < 0)
-				return;
+			i = net.minecraftforge.event.ForgeEventFactory.onArrowLoose(stack, worldIn, entityplayer, i, !itemstack.isEmpty() || flag);
+			if (i < 0) return;
 
-			float f = getArrowVelocity(i);
-			
+			/*
+			EntityPlayer entityplayer = (EntityPlayer)entityLiving;
+			int j1 = this.getMaxItemUseDuration(stack) - timeLeft;
+			float f1 = (float) j1 / 20.0F;
+			f1 = (f1 * f1 + f1 * 2.0F) / 3.0F;
+			if ((double) f1 < 0.1D) return;
+			if (f1 > 1.0F) f1 = 1.0F;
+			*/
+
 			if (!itemstack.isEmpty() || flag) {
 				if (itemstack.isEmpty()) {
 					itemstack = new ItemStack(arrowItem);
 				}
 
+				float f = getArrowVelocity(i);
 				if ((double) f >= 0.1D) {
 
 					if (!worldIn.isRemote) {
-						
-						} else {
-							entityarrow.shoot(entityplayer, entityplayer.rotationPitch, entityplayer.rotationYaw, 0.0F,
-									f * 3.0F, 1.0F);
+						EntityArrow entityarrow = null;
+						try {
+							entityarrow = new EntityEssenceArrow(worldIn, entityplayer, effect);
+						} catch (Exception e) {
+							e.printStackTrace();
 						}
+
+						entityarrow.shoot(entityplayer, entityplayer.rotationPitch, entityplayer.rotationYaw, 0.0F,
+								f * 3.0F, 1.0F);
+
 						if (f == 1.0F) {
-						} else {
 							entityarrow.setIsCritical(true);
 						}
+
+						int j = EnchantmentHelper.getEnchantmentLevel(Enchantments.POWER, stack);
+
+						int k = EnchantmentHelper.getEnchantmentLevel(Enchantments.PUNCH, stack);
+
+						if (k > 0) {
+							entityarrow.setKnockbackStrength(k);
+						}
+
+						if (EnchantmentHelper.getEnchantmentLevel(Enchantments.FLAME, stack) > 0) {
+							entityarrow.setFire(100);
+						}
+
+						stack.damageItem(1, entityplayer);
+
+						if (flag
+								|| entityplayer.capabilities.isCreativeMode && (itemstack.getItem() == Items.SPECTRAL_ARROW
+								|| itemstack.getItem() == Items.TIPPED_ARROW)) {
+							entityarrow.pickupStatus = EntityArrow.PickupStatus.CREATIVE_ONLY;
+						}
+
+						worldIn.spawnEntity(entityarrow);
 					}
-
-					int j = EnchantmentHelper.getEnchantmentLevel(Enchantments.POWER, stack);
-
-					int k = EnchantmentHelper.getEnchantmentLevel(Enchantments.PUNCH, stack);
-
-					if (k > 0) {
-						entityarrow.setKnockbackStrength(k);
-					}
-
-					if (EnchantmentHelper.getEnchantmentLevel(Enchantments.FLAME, stack) > 0) {
-						entityarrow.setFire(100);
-					}
-
-					stack.damageItem(1, entityplayer);
-
-					if (flag1
-							|| entityplayer.capabilities.isCreativeMode && (itemstack.getItem() == Items.SPECTRAL_ARROW
-									|| itemstack.getItem() == Items.TIPPED_ARROW)) {
-						entityarrow.pickupStatus = EntityArrow.PickupStatus.CREATIVE_ONLY;
-					}
-
-					worldIn.spawnEntity(entityarrow);
 				}
 
 				worldIn.playSound((EntityPlayer) null, entityplayer.posX, entityplayer.posY, entityplayer.posZ,
 						SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 1.0F,
 						1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
 
-				if (!flag1 && !entityplayer.capabilities.isCreativeMode) {
+				if (!flag && !entityplayer.capabilities.isCreativeMode) {
 					itemstack.shrink(1);
 
 					if (itemstack.isEmpty()) {
@@ -222,13 +217,14 @@ public class ItemModBow extends ItemMod {
 				entityplayer.addStat(StatList.getObjectUseStats(this));
 			}
 		}
+	}
 
 	public static float getArrowVelocity(int charge) {
 		float f = (float) charge / 20.0F;
 		f = (f * f + f * 2.0F) / 2.0F;
 
 		if (f > 1.0F) {
-			f = 5.0F;
+			f = 1.0F;
 		}
 
 		return f;
