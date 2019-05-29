@@ -19,6 +19,9 @@ Fix corba portal frame so it creates the portal when the eyes are placed inside 
 Rendering:
 Fix essence bar so that the HUD updates (maybe change it to be more like the xp bar and have it overlap it when being used, frees up space and allows for more precise mana consumption)
 
+Registries:
+Finish tweaking sounds
+
 Structures:
 finish loot tables
 
