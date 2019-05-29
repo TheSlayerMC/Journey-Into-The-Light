@@ -8,6 +8,7 @@ import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 
 import net.journey.JourneyItems;
+import net.journey.items.ItemModBow;
 import net.journey.util.PotionEffects;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -42,6 +43,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class EntityEssenceArrow extends EntityArrow implements IProjectile {
 
+	public enum BowEffects {
+		DARKNESS_BOW, FROZEN_BOW, FLAME_BOW, POISON_BOW;
+	}
+
 	private static final Predicate<Entity> ARROW_TARGETS = Predicates.and(EntitySelectors.NOT_SPECTATING, EntitySelectors.IS_ALIVE, new Predicate<Entity>() {
 		public boolean apply(@Nullable Entity e) {
 			return e.canBeCollidedWith();
@@ -65,29 +70,22 @@ public class EntityEssenceArrow extends EntityArrow implements IProjectile {
 	private double damage = 0.0D;
 	private int knockbackStrength;
 
+	private BowEffects effect;
+
 	public EntityEssenceArrow(World worldIn)
 	{
 		super(worldIn);
-		Entity.setRenderDistanceWeight(10.0D);
-		this.xTile = -1;
-		this.yTile = -1;
-		this.zTile = -1;
-		this.pickupStatus = EntityArrow.PickupStatus.DISALLOWED;
-		this.setSize(0.5F, 0.5F);
-		this.setSize(0.5F, 0.5F);
 	}
 
 	public EntityEssenceArrow(World worldIn, double x, double y, double z)
 	{
-		super(worldIn);
-		Entity.setRenderDistanceWeight(10.0D);
-		this.xTile = -1;
-		this.yTile = -1;
-		this.zTile = -1;
-		this.pickupStatus = EntityArrow.PickupStatus.DISALLOWED;
-		this.setSize(0.5F, 0.5F);
-		this.setSize(0.5F, 0.5F);
-		this.setPosition(x, y, z);
+		super(worldIn, x, y, z);
+	}
+
+	public EntityEssenceArrow(World worldIn, EntityLivingBase shooter, BowEffects effect) {
+		super(worldIn, shooter);
+		this.shootingEntity = shooter;
+		this.effect = effect;
 	}
 
 	public EntityEssenceArrow(World worldIn, EntityLivingBase shooter, EntityLivingBase p_i1755_3_, float p_i1755_4_, float p_i1755_5_)
@@ -129,7 +127,6 @@ public class EntityEssenceArrow extends EntityArrow implements IProjectile {
 		{
 			this.canBePickedUp = 1;
 		}
-
 		this.setSize(0.5F, 0.5F);
 		this.setLocationAndAngles(shooter.posX, shooter.posY + shooter.getEyeHeight(), shooter.posZ, shooter.rotationYaw, shooter.rotationPitch);
 		this.posX -= (double)(MathHelper.cos(this.rotationYaw / 180.0F * (float)Math.PI) * 0.16F);
@@ -139,9 +136,46 @@ public class EntityEssenceArrow extends EntityArrow implements IProjectile {
 		this.motionX = (double)(-MathHelper.sin(this.rotationYaw / 180.0F * (float)Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float)Math.PI));
 		this.motionZ = (double)(MathHelper.cos(this.rotationYaw / 180.0F * (float)Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float)Math.PI));
 		this.motionY = (double)(-MathHelper.sin(this.rotationPitch / 180.0F * (float)Math.PI));
-		this.shoot(this.motionX, this.motionY, this.motionZ, velocity * 1.5F, 1.0F);
+		this.shoot(this.motionX, this.motionY, this.motionZ, velocity, 1.0F);
 	}
 
+	@Override
+	protected void onHit(RayTraceResult target){
+		super.onHit(target);
+
+		Entity hitEntity = target.entityHit;
+		if(hitEntity != null && shootingEntity != null && hitEntity instanceof EntityLivingBase) {
+			switch(this.effect) {
+				case DARKNESS_BOW:
+					((EntityLivingBase)hitEntity).addPotionEffect(new PotionEffect(PotionEffects.getPotionFromID(PotionEffects.wither), 100, 2));
+					break;
+				case FLAME_BOW:
+					hitEntity.setFire(5);
+					break;
+				case FROZEN_BOW:
+					((EntityLivingBase)hitEntity).addPotionEffect(new PotionEffect(PotionEffects.getPotionFromID(PotionEffects.moveSlow), 100, 2));
+					break;
+				case POISON_BOW:
+					((EntityLivingBase)hitEntity).addPotionEffect(new PotionEffect(PotionEffects.getPotionFromID(PotionEffects.poison), 100, 2));
+					break;
+				default:
+					break;
+
+			}
+		}
+
+
+	}
+
+	@Override
+	protected ItemStack getArrowStack() {
+		return new ItemStack(JourneyItems.essenceArrow);
+	}
+
+
+	//Leaving the rest of this class commented out. For now the above seems to fit the mod purposes
+
+	/*
 	@Override
 	protected void entityInit() {
 		this.dataManager.register(CRITICAL, Byte.valueOf((byte)0));
@@ -178,7 +212,6 @@ public class EntityEssenceArrow extends EntityArrow implements IProjectile {
 		this.setRotation(yaw, pitch);
 	}
 
-	@Override
 	@SideOnly(Side.CLIENT)
 	public void setVelocity(double x, double y, double z)
 	{
@@ -189,8 +222,8 @@ public class EntityEssenceArrow extends EntityArrow implements IProjectile {
 		if (this.prevRotationPitch == 0.0F && this.prevRotationYaw == 0.0F)
 		{
 			float f = MathHelper.sqrt(x * x + z * z);
-			this.prevRotationYaw = this.rotationYaw = (float)(MathHelper.atan2(x, z) * 180.0D / Math.PI);
-			this.prevRotationPitch = this.rotationPitch = (float)(MathHelper.atan2(y, (double)f) * 180.0D / Math.PI);
+			this.rotationPitch = (float)(MathHelper.atan2(y, (double)f) * (180D / Math.PI));
+			this.rotationYaw = (float)(MathHelper.atan2(x, z) * (180D / Math.PI));
 			this.prevRotationPitch = this.rotationPitch;
 			this.prevRotationYaw = this.rotationYaw;
 			this.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, this.rotationPitch);
@@ -412,7 +445,10 @@ public class EntityEssenceArrow extends EntityArrow implements IProjectile {
 		{
 			this.canBePickedUp = tagCompund.getBoolean("player") ? 1 : 0;
 		}
-	}
+	}*/
+
+
+	/*
 
 	@Override
 	public void onCollideWithPlayer(EntityPlayer entityIn)
@@ -435,12 +471,6 @@ public class EntityEssenceArrow extends EntityArrow implements IProjectile {
 	}
 
 	@Override
-	protected boolean canTriggerWalking()
-	{
-		return false;
-	}
-
-	@Override
 	public void setDamage(double damageIn)
 	{
 		this.damage = damageIn;
@@ -453,21 +483,9 @@ public class EntityEssenceArrow extends EntityArrow implements IProjectile {
 	}
 
 	@Override
-	public void setKnockbackStrength(int knockbackStrengthIn)
+	public void setKnockbackStrength(int knockback)
 	{
-		this.knockbackStrength = knockbackStrengthIn;
-	}
-
-
-	public boolean canAttackWithItem()
-	{
-		return false;
-	}
-
-	@Override
-	public float getEyeHeight()
-	{
-		return 0.0F;
+		this.knockbackStrength = knockback;
 	}
 
 	@Override
@@ -484,6 +502,7 @@ public class EntityEssenceArrow extends EntityArrow implements IProjectile {
 			this.dataManager.set(CRITICAL, Byte.valueOf((byte)(b0 & -2)));
 		}
 	}
+
 	@Override
 	public boolean getIsCritical()
 	{
@@ -491,8 +510,8 @@ public class EntityEssenceArrow extends EntityArrow implements IProjectile {
 		return (b0 & 1) != 0;
 	}
 
-	@Override
-	protected ItemStack getArrowStack() {
-		return null;
-	}
+*/
+
+
+
 }

@@ -79,6 +79,7 @@ public class EntityRegistry {
 		SlayerAPI.registerProjectile(EntityIceBall.class, "iceball");
 		SlayerAPI.registerProjectile(EntityTempleBall.class, "templeball");
 		SlayerAPI.registerProjectile(EntityLightningBall.class, "lightningball");
+		SlayerAPI.registerProjectile(EntityEssenceArrow.class, "essencearrow");
 		SlayerAPI.registerProjectile(EntityPoisonArrow.class, "poisonarrow");
 		SlayerAPI.registerProjectile(EntityDarknessArrow.class, "darknessarrow");
 		SlayerAPI.registerProjectile(EntityFrozenArrow.class, "frozenarrow");
