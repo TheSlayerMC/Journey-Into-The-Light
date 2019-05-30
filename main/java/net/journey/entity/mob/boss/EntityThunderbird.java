@@ -71,12 +71,12 @@ public class EntityThunderbird extends EntityEssenceBoss {
 
 	@Override
 	public SoundEvent setLivingSound() {
-		return JourneySounds.NETHER_BEAST;
+		return JourneySounds.BEAST_OF_THE_NETHER;
 	}
 
 	@Override
 	public SoundEvent setHurtSound() {
-		return JourneySounds.NETHER_BEAST_HURT;
+		return JourneySounds.BEAST_OF_THE_NETHER_HURT;
 	}
 
 	@Override

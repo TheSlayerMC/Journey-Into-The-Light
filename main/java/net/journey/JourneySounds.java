@@ -56,8 +56,8 @@ public class JourneySounds {
 	public static SoundEvent SAND_CRAWLER;
 	public static SoundEvent DEPTHS_HUNTER;
 	public static SoundEvent DEPTHS_HUNTER_HURT;
-	public static SoundEvent NETHER_BEAST;
-	public static SoundEvent NETHER_BEAST_HURT;
+	public static SoundEvent BEAST_OF_THE_NETHER;
+	public static SoundEvent BEAST_OF_THE_NETHER_HURT;
 	public static SoundEvent CALCIA;
 	public static SoundEvent CALCIA_HURT;
 	public static SoundEvent STAFF;
@@ -95,9 +95,9 @@ public class JourneySounds {
 		ROCK = registerSound("rock");
 		BASE_MOB_HURT = registerSound("base_mob_hurt");
 		BOSS_DEATH = registerSound("boss_death");
-		TERRA_SLUG = registerSound("terra_slug");
-		TERRA_SLUG_HURT = registerSound("terra_slug_hurt");
-		TERRA_SLUG_DEATH = registerSound("terra_slug_death");
+		TERRA_SLUG = registerSound("terraslug");
+		TERRA_SLUG_HURT = registerSound("terraslug_hurt");
+		TERRA_SLUG_DEATH = registerSound("terraslug_death");
 		SUMMON_BOSS = registerSound("summon_boss");
 		SUMMON_TABLE = registerSound("summon_table");
 		SORCERER_DEATH = registerSound("sorcerer_death");
@@ -129,8 +129,8 @@ public class JourneySounds {
 		SAND_CRAWLER = registerSound("sand_crawler");
 		DEPTHS_HUNTER = registerSound("depths_hunter");
 		DEPTHS_HUNTER_HURT = registerSound("depths_hunter_hurt");
-		NETHER_BEAST = registerSound("nether_beast");
-		NETHER_BEAST_HURT = registerSound("nether_beast_hurt");
+		BEAST_OF_THE_NETHER = registerSound("beast_of_the_nether");
+		BEAST_OF_THE_NETHER_HURT = registerSound("beast_of_the_nether_hurt");
 		CALCIA = registerSound("calcia");
 		CALCIA_HURT = registerSound("calcia_hurt");
 		STAFF = registerSound("staff");

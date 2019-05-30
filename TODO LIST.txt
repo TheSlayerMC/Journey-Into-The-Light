@@ -4,8 +4,7 @@ General important things:
 ADD MOD SUPPORT!!!! (JEI, etc etc)
 
 Items:
-Bows need to be fixed
-All items need to be tested and checked that no crash occures
+All items need to be tested and checked that no crash occurs
 Remove unused items
 
 Blocks:
@@ -20,8 +19,8 @@ Fix corba portal frame so it creates the portal when the eyes are placed inside 
 Rendering:
 Fix essence bar so that the HUD updates (maybe change it to be more like the xp bar and have it overlap it when being used, frees up space and allows for more precise mana consumption)
 
-Registrys:
-Finish sounds
+Registries:
+Finish tweaking sounds
 
 Structures:
 finish loot tables
@@ -40,7 +39,6 @@ Run as server and make sure there's no crash
 
 CODE:
 Brock is to check through code and get rid of un useless classes and combine others such as food classes
-
 
 Future plans:
 Overworld biomes, dimension biomes, more staves and wands, End update
