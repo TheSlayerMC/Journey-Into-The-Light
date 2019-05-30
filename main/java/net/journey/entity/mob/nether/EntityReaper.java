@@ -70,7 +70,7 @@ public class EntityReaper extends EntityModMob {
     }
 	
 	@Override
-	public Item getItemDropped() {
+	public Item getDropItem() {
 		return JourneyItems.withicDust;
 	}
 	
@@ -82,20 +82,5 @@ public class EntityReaper extends EntityModMob {
 		if(rand.nextInt(22) == 0) dropItem(JourneyItems.lostSoul, 1);
 		if(rand.nextInt(33) == 0) dropItem(JourneyItems.lostSoul, 2);
 		super.dropFewItems(b, j);
-	}
-
-	@Override
-	public SoundEvent setLivingSound() {
-		return JourneySounds.EMPTY;
-	}
-
-	@Override
-	public SoundEvent setHurtSound() {
-		return JourneySounds.EMPTY;
-	}
-
-	@Override
-	public SoundEvent setDeathSound() {
-		return JourneySounds.EMPTY;
 	}
 }

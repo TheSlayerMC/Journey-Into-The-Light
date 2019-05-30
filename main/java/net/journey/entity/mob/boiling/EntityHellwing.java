@@ -24,6 +24,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.datafix.DataFixer;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -82,17 +83,17 @@ public class EntityHellwing extends EntityModMob {
     }
     
 	@Override
-	public SoundEvent setLivingSound() {
+	public SoundEvent getAmbientSound() {
 		return JourneySounds.EMPTY;
 	}
 
 	@Override
-	public SoundEvent setHurtSound() {
+	public SoundEvent getHurtSound(DamageSource sourceIn) {
 		return JourneySounds.OVERSEER_HURT;
 	}
 
 	@Override
-	public SoundEvent setDeathSound() {
+	public SoundEvent getDeathSound() {
 		return JourneySounds.OVERSEER_DEATH;
 	}
 	
@@ -189,7 +190,7 @@ public class EntityHellwing extends EntityModMob {
 	}
 
 	@Override
-	public Item getItemDropped() {
+	public Item getDropItem() {
 		return null;
 	}
 	

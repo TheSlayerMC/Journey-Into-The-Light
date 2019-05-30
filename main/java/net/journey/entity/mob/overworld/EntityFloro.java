@@ -123,29 +123,9 @@ public class EntityFloro extends EntityModMob implements IRangedAttackMob {
 
 	@Override
 	protected SoundEvent getDeathSound() {
-		return JourneySounds.BIRD_DEATH;
-	}
-	
-	@Override
-	public SoundEvent setLivingSound() {
-		return JourneySounds.HONGO;
-	}
-
-	@Override
-	public SoundEvent setHurtSound() {
 		return JourneySounds.HONGO_HURT;
 	}
 
-	@Override
-	public SoundEvent setDeathSound() {
-		return JourneySounds.HONGO;
-	}
-	
-	@Override
-	public Item getItemDropped() {
-		return null;
-	}
-	
 	@Override
 	protected void dropFewItems(boolean b, int j) {
 		if(rand.nextInt(16) == 0) dropItem(JourneyItems.floroPedal, rand.nextInt(3));

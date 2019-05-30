@@ -55,11 +55,6 @@ public class EntityWitherspine extends EntityModMob {
 	}
 
 	@Override
-	public SoundEvent setLivingSound() {
-		return JourneySounds.EMPTY;
-	}
-
-	@Override
     protected SoundEvent getAmbientSound() {
         return SoundEvents.ENTITY_WITHER_AMBIENT;
     }
@@ -73,16 +68,6 @@ public class EntityWitherspine extends EntityModMob {
     protected SoundEvent getDeathSound() {
         return SoundEvents.ENTITY_SKELETON_DEATH;
     }
-    
-	@Override
-	public SoundEvent setHurtSound() {
-		return JourneySounds.EMPTY;
-	}
-
-	@Override
-	public SoundEvent setDeathSound() {
-		return JourneySounds.EMPTY;
-	}
 	
 	@Override
 	protected void dropFewItems(boolean b, int j) {
@@ -99,7 +84,7 @@ public class EntityWitherspine extends EntityModMob {
 	}
 
 	@Override
-	public Item getItemDropped() {
+	public Item getDropItem() {
 		return null;
 	}
 }

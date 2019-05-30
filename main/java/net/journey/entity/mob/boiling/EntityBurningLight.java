@@ -37,17 +37,17 @@ public class EntityBurningLight extends EntityModMob{
 	}
 	
 	@Override
-	public SoundEvent setLivingSound() {
+	public SoundEvent getAmbientSound() {
 		return SoundEvents.ENTITY_BLAZE_AMBIENT;
 	}
 
 	@Override
-	public SoundEvent setHurtSound() {
+	public SoundEvent getHurtSound(DamageSource sourceIn) {
 		return SoundEvents.ENTITY_BLAZE_HURT;
 	}
 
 	@Override
-	public SoundEvent setDeathSound() {
+	public SoundEvent getDeathSound() {
 		return SoundEvents.ENTITY_BLAZE_DEATH;
 	}
 	
@@ -74,7 +74,7 @@ public class EntityBurningLight extends EntityModMob{
 	}
 	
 	@Override
-	public Item getItemDropped() {
+	public Item getDropItem() {
 		return null;
 	}
 	
@@ -85,7 +85,7 @@ public class EntityBurningLight extends EntityModMob{
 	
 	@Override
 	protected void dropFewItems(boolean b, int j) {
-		Item it = getItemDropped();
+		Item it = getDropItem();
 		this.dropItem(it, 1);
 		if(rand.nextInt(14) == 0) dropItem(JourneyItems.boilPowder, 2);
 		super.dropFewItems(b, j);

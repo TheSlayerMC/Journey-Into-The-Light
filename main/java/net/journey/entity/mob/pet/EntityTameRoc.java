@@ -259,17 +259,17 @@ public class EntityTameRoc extends EntityModTameable {
 	}
 
 	@Override
-	public SoundEvent setLivingSound() {
+	public SoundEvent getAmbientSound() {
 		return JourneySounds.BIRD;
 	}
 
 	@Override
-	public SoundEvent setHurtSound() {
+	public SoundEvent getHurtSound(DamageSource sourceIn) {
 		return JourneySounds.BIRD_HURT;
 	}
 
 	@Override
-	public SoundEvent setDeathSound() {
+	public SoundEvent getDeathSound() {
 		return JourneySounds.BIRD_DEATH;
 	}
 }

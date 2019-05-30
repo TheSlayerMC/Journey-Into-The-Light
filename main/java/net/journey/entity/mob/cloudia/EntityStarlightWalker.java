@@ -5,6 +5,7 @@ import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityModMob;
@@ -27,17 +28,17 @@ public class EntityStarlightWalker extends EntityModMob {
 	}
 
 	@Override
-	public SoundEvent setLivingSound() {
+	public SoundEvent getAmbientSound() {
 		return JourneySounds.EMPTY;
 	}
 
 	@Override
-	public SoundEvent setHurtSound() {
+	public SoundEvent getHurtSound(DamageSource sourceIn) {
 		return SoundEvents.ENTITY_IRONGOLEM_HURT;
 	}
 
 	@Override
-	public SoundEvent setDeathSound() {
+	public SoundEvent getDeathSound() {
 		return SoundEvents.ENTITY_IRONGOLEM_DEATH;
 	}
 	
@@ -49,7 +50,7 @@ public class EntityStarlightWalker extends EntityModMob {
 	}
 
 	@Override
-	public Item getItemDropped() {
+	public Item getDropItem() {
 		return null;
 	}
 

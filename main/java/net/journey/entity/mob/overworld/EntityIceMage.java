@@ -18,6 +18,7 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
@@ -123,22 +124,22 @@ public class EntityIceMage extends EntityModMob implements IRangedAttackMob {
 	}
 
 	@Override
-	public SoundEvent setLivingSound() {
+	public SoundEvent getAmbientSound() {
 		return JourneySounds.INSECTO;
 	}
 
 	@Override
-	public SoundEvent setHurtSound() {
+	public SoundEvent getHurtSound(DamageSource sourceIn) {
 		return JourneySounds.INSECTO_HURT;
 	}
 
 	@Override
-	public SoundEvent setDeathSound() {
+	public SoundEvent getDeathSound() {
 		return JourneySounds.INSECTO_HURT;
 	}
 
 	@Override
-	public Item getItemDropped() {
+	public Item getDropItem() {
 		return null;
 	}
 

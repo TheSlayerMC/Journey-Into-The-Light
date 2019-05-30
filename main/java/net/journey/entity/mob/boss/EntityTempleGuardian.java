@@ -172,17 +172,17 @@ public class EntityTempleGuardian extends EntityEssenceBoss implements IRangedAt
 	}
 	
 	@Override
-	public SoundEvent setDeathSound() {
+	public SoundEvent getDeathSound() {
 		return JourneySounds.BOSS_DEATH;
 	}
 	
 	@Override
-	public SoundEvent setLivingSound() {
+	public SoundEvent getAmbientSound() {
 		return SoundEvents.ENTITY_BLAZE_AMBIENT;
 	}
 
 	@Override
-	public Item getItemDropped() {
+	public Item getDropItem() {
 		return null;
 	}
 
@@ -192,7 +192,7 @@ public class EntityTempleGuardian extends EntityEssenceBoss implements IRangedAt
 	}
 
 	@Override
-	public SoundEvent setHurtSound() {
+	public SoundEvent getHurtSound(DamageSource sourceIn) {
 		return SoundEvents.ENTITY_BLAZE_HURT;
 	}
     

@@ -26,7 +26,7 @@ public abstract class EntityEssenceBoss extends EntityModMob implements IEssence
 	}
 	
 	@Override
-	public SoundEvent setDeathSound() {
+	public SoundEvent getDeathSound() {
 		return JourneySounds.BOSS_DEATH;
     }
     

@@ -3,6 +3,7 @@ package net.journey.entity.mob.frozen;
 import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
 import net.minecraft.item.Item;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityModMob;
@@ -26,17 +27,17 @@ public class EntityShiveringShrieker extends EntityModMob {
 	}
 
 	@Override
-	public SoundEvent setLivingSound() {
+	public SoundEvent getAmbientSound() {
 		return JourneySounds.SMALL_HONGO;
 	}
 
 	@Override
-	public SoundEvent setHurtSound() {
+	public SoundEvent getHurtSound(DamageSource sourceIn) {
 		return JourneySounds.SMALL_HONGO_HURT;
 	}
 
 	@Override
-	public SoundEvent setDeathSound() {
+	public SoundEvent getDeathSound() {
 		return JourneySounds.SMALL_HONGO_HURT;
 	}
 	
@@ -46,7 +47,7 @@ public class EntityShiveringShrieker extends EntityModMob {
 	}
 	
 	@Override
-	public Item getItemDropped() {
+	public Item getDropItem() {
 		return null;
 	}
 }

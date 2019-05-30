@@ -31,17 +31,17 @@ public class EntityEnderCrawler extends EntityModMob{
 	}
 
 	@Override
-	public SoundEvent setLivingSound() {
+	public SoundEvent getAmbientSound() {
 		return JourneySounds.REAPER;
 	}
 
 	@Override
-	public SoundEvent setHurtSound() {
+	public SoundEvent getHurtSound(DamageSource sourceIn) {
 		return JourneySounds.REAPER_HURT;
 	}
 
 	@Override
-	public SoundEvent setDeathSound() {
+	public SoundEvent getDeathSound() {
 		return JourneySounds.REAPER_HURT;
 	}
 	
@@ -53,7 +53,7 @@ public class EntityEnderCrawler extends EntityModMob{
 	}
 	
 	@Override
-	public Item getItemDropped() {
+	public Item getDropItem() {
 		return null;
 	}
 	

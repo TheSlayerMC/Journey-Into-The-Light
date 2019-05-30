@@ -71,7 +71,7 @@ public class EntitySkyEel extends EntityModFlying {
 	}		
 
 	@Override
-	public Item getItemDropped() {
+	public Item getDropItem() {
 		return null;
 	}
 
@@ -395,24 +395,6 @@ public class EntitySkyEel extends EntityModFlying {
                 return true;
             }
         }
-
-	@Override
-	public SoundEvent setLivingSound() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public SoundEvent setHurtSound() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public SoundEvent setDeathSound() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public double setMaxHealth(MobStats s) {

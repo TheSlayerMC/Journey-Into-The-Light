@@ -82,7 +82,7 @@ public class EntityHellCow extends EntityPeacefullUntillAttacked {
     }
 	
 	@Override
-	public Item getItemDropped() {
+	public Item getDropItem() {
 		return JourneyItems.flamingHide;
 	}
 	
@@ -139,20 +139,5 @@ public class EntityHellCow extends EntityPeacefullUntillAttacked {
 			if(rand.nextInt(1) == 0)dropItem(JourneyItems.flamingBeef, 1); 
 			}
 		super.dropFewItems(b, j);
-	}
-
-	@Override
-	public SoundEvent setLivingSound() {
-		return JourneySounds.EMPTY;
-	}
-
-	@Override
-	public SoundEvent setHurtSound() {
-		return JourneySounds.EMPTY;
-	}
-
-	@Override
-	public SoundEvent setDeathSound() {
-		return JourneySounds.EMPTY;
 	}
 }

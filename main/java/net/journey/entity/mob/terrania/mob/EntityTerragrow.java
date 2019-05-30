@@ -5,6 +5,7 @@ import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityModMob;
@@ -26,17 +27,17 @@ public class EntityTerragrow extends EntityModMob {
 	}
 
 	@Override
-	public SoundEvent setLivingSound() {
+	public SoundEvent getAmbientSound() {
 		return JourneySounds.WRAITH;
 	}
 
 	@Override
-	public SoundEvent setHurtSound() {
+	public SoundEvent getHurtSound(DamageSource sourceIn) {
 		return SoundEvents.ENTITY_CREEPER_HURT;
 	}
 
 	@Override
-	public SoundEvent setDeathSound() {
+	public SoundEvent getDeathSound() {
 		return JourneySounds.WRAITH_DEATH;
 	}
 	
@@ -49,7 +50,7 @@ public class EntityTerragrow extends EntityModMob {
 	}
 
 	@Override
-	public Item getItemDropped() {
+	public Item getDropItem() {
 		return null;
 	}
 

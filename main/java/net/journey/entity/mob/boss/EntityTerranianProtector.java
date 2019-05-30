@@ -111,17 +111,17 @@ public class EntityTerranianProtector extends EntityEssenceBoss implements IRang
 	}
 
 	@Override
-	public SoundEvent setLivingSound() {
+	public SoundEvent getAmbientSound() {
 		return SoundEvents.ENTITY_WITHER_AMBIENT;
 	}
 
 	@Override
-	public SoundEvent setHurtSound() {
+	public SoundEvent getHurtSound(DamageSource sourceIn) {
 		return SoundEvents.ENTITY_WITHER_HURT;
 	}
 
 	@Override
-	public SoundEvent setDeathSound() {
+	public SoundEvent getDeathSound() {
 		return JourneySounds.BOSS_DEATH;
 	}
 	
@@ -132,7 +132,7 @@ public class EntityTerranianProtector extends EntityEssenceBoss implements IRang
 	}
 
 	@Override
-	public Item getItemDropped() {
+	public Item getDropItem() {
 		return null;
 	}
 	

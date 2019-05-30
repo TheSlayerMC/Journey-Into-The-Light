@@ -7,6 +7,7 @@ import net.journey.util.PotionEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
@@ -40,17 +41,17 @@ public class EntityCalcia extends EntityEssenceBoss {
 	}
 
 	@Override
-	public SoundEvent setLivingSound() {
+	public SoundEvent getAmbientSound() {
 		return JourneySounds.CALCIA;
 	}
 
 	@Override
-	public SoundEvent setHurtSound() {
+	public SoundEvent getHurtSound(DamageSource sourceIn) {
 		return JourneySounds.CALCIA_HURT;
 	}
 
 	@Override
-	public SoundEvent setDeathSound() {
+	public SoundEvent getDeathSound() {
 		return JourneySounds.CALCIA_HURT;
 	}
 
@@ -88,7 +89,7 @@ public class EntityCalcia extends EntityEssenceBoss {
 	}
 
 	@Override
-	public Item getItemDropped() {
+	public Item getDropItem() {
 		return JourneyItems.eucaPortalGem;
 	}
 

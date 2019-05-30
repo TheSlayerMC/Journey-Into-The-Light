@@ -37,17 +37,17 @@ public class EntityInsecto extends EntityModMob{
 	}
 
 	@Override
-	public SoundEvent setLivingSound() {
+	public SoundEvent getAmbientSound() {
 		return JourneySounds.INSECTO;
 	}
 
 	@Override
-	public SoundEvent setHurtSound() {
+	public SoundEvent getHurtSound(DamageSource sourceIn) {
 		return JourneySounds.INSECTO_HURT;
 	}
 
 	@Override
-	public SoundEvent setDeathSound() {
+	public SoundEvent getDeathSound() {
 		return JourneySounds.INSECTO_HURT;
 	}
 	
@@ -59,7 +59,7 @@ public class EntityInsecto extends EntityModMob{
 	}
 	
 	@Override
-	public Item getItemDropped() {
+	public Item getDropItem() {
 		return JourneyItems.eucaMeat;
 	}
 	

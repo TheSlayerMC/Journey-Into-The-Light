@@ -3,6 +3,7 @@ package net.journey.entity.mob.frozen;
 import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
 import net.minecraft.item.Item;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityModMob;
@@ -13,6 +14,7 @@ public class EntityShiveringBushwalker extends EntityModMob {
 		super(par1World);
 		addAttackingAI();
 		this.setSize(0.65F, 1F);
+
 	}
 
 	@Override
@@ -26,27 +28,22 @@ public class EntityShiveringBushwalker extends EntityModMob {
 	}
 
 	@Override
-	public SoundEvent setLivingSound() {
+	public SoundEvent getAmbientSound() {
 		return JourneySounds.SMALL_HONGO;
 	}
 
 	@Override
-	public SoundEvent setHurtSound() {
+	public SoundEvent getHurtSound(DamageSource sourceIn) {
 		return JourneySounds.SMALL_HONGO_HURT;
 	}
 
 	@Override
-	public SoundEvent setDeathSound() {
+	public SoundEvent getDeathSound() {
 		return JourneySounds.SMALL_HONGO_HURT;
 	}
 	
 	@Override
 	public boolean getCanSpawnHere() {
 		return this.posY < 60.0D && super.getCanSpawnHere();
-	}
-	
-	@Override
-	public Item getItemDropped() {
-		return null;
 	}
 }

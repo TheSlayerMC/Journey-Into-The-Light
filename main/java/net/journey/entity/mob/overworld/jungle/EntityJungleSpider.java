@@ -272,22 +272,7 @@ public class EntityJungleSpider extends EntityModMob {
 	}
 
 	@Override
-	public SoundEvent setLivingSound() {
-		return null;
-	}
-
-	@Override
-	public SoundEvent setHurtSound() {
-		return null;
-	}
-
-	@Override
-	public SoundEvent setDeathSound() {
-		return null;
-	}
-
-	@Override
-	public Item getItemDropped() {
+	public Item getDropItem() {
 		return null;
 	}
 }

@@ -33,17 +33,17 @@ public class EntityMagmaGiant extends EntityModMob{
 	}
 
 	@Override
-	public SoundEvent setLivingSound() {
+	public SoundEvent getAmbientSound() {
 		return JourneySounds.MAGMA_GIANT;
 	}
 
 	@Override
-	public SoundEvent setHurtSound() {
+	public SoundEvent getHurtSound(DamageSource sourceIn) {
 		return JourneySounds.MAGMA_GIANT_HURT;
 	}
 
 	@Override
-	public SoundEvent setDeathSound() {
+	public SoundEvent getDeathSound() {
 		return JourneySounds.MAGMA_GIANT_HURT;
 	}
 	
@@ -65,7 +65,7 @@ public class EntityMagmaGiant extends EntityModMob{
     }
     
 	@Override
-	public Item getItemDropped() {
+	public Item getDropItem() {
 		return null;
 	}
 	

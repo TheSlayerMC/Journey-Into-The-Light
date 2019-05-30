@@ -67,6 +67,8 @@ public class ItemTeleport extends ItemMod {
 				if (var26 == 5) ++var23;                
 
 				if(mana.useEssence(5)) {
+					System.out.println(player);
+					System.out.println(mana.getEssenceValue());
 					player.getLook(1);
 					this.teleportTo(player, worldIn, var23, var24, var25);
 				}

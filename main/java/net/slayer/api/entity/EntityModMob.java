@@ -64,45 +64,12 @@ public abstract class EntityModMob extends EntityMob {
 
 	public abstract double setAttackDamage(MobStats s);
 	public abstract double setMaxHealth(MobStats s);
-	public abstract SoundEvent setLivingSound();
-	public abstract SoundEvent setHurtSound();
-	public abstract SoundEvent setDeathSound();
-	public abstract Item getItemDropped();
 
-	@Override
-	protected Item getDropItem() {
-		return getItemDropped();
-	}
-	
-	@Override
-	protected void dropFewItems(boolean b, int j) {
-		for(int i = 0; i < 1 + rand.nextInt(1); i++)
-			this.dropItem(getItemDropped(), 1);
-	}
-	
 	@Override
     protected void playStepSound(BlockPos pos, Block blockIn) {
 		 this.playSound(SoundEvents.ENTITY_WOLF_STEP, 0.15F, 1.0F);
     }
 
-	@Override
-	protected SoundEvent getAmbientSound() {
-		super.getAmbientSound();
-		return setLivingSound();
-	}
-
-	@Override
-	protected SoundEvent getHurtSound(DamageSource d) {
-		super.getHurtSound(d);
-		return setHurtSound();
-	}
-
-	@Override
-	protected SoundEvent getDeathSound() {
-		super.getDeathSound();
-		return setDeathSound();
-	}
-	
 	@Override
 	public boolean getCanSpawnHere() {
 		return world.getDifficulty() != EnumDifficulty.PEACEFUL && this.world.checkNoEntityCollision(this.getEntityBoundingBox()) && this.world.getCollisionBoxes(this, this.getEntityBoundingBox()).isEmpty() && !this.world.containsAnyLiquid(this.getEntityBoundingBox());

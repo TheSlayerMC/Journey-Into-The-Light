@@ -18,6 +18,7 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.DifficultyInstance;
@@ -129,28 +130,28 @@ public class EntityFourfa extends EntityEssenceBoss implements IRangedAttackMob 
 	}
 
 	@Override
-	public SoundEvent setLivingSound() {
+	public SoundEvent getAmbientSound() {
 		return SoundEvents.ENTITY_WITHER_AMBIENT;
 	}
 
 	@Override
-	public SoundEvent setHurtSound() {
+	public SoundEvent getHurtSound(DamageSource sourceIn) {
 		return SoundEvents.ENTITY_WITHER_HURT;
 	}
 
 	@Override
-	public SoundEvent setDeathSound() {
+	public SoundEvent getDeathSound() {
 		return SoundEvents.ENTITY_WITHER_DEATH;
 	}
 
 	@Override
-	public Item getItemDropped() {
+	public Item getDropItem() {
 		return JourneyItems.depthsPortalGem;
 	}
 
 	@Override
 	protected void dropFewItems(boolean par1, int par2) {
-		this.dropItem(getItemDropped(), 6 + rand.nextInt(4));
+		this.dropItem(getDropItem(), 6 + rand.nextInt(4));
 	//	if(rand.nextInt(1) == 0) this.dropItem(Item.getItemFromBlock(EssenceBlocks.eudorStatue), 1);
 	}
 

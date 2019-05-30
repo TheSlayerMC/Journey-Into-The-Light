@@ -44,6 +44,8 @@ public class ItemGun extends ItemMod {
 		if(!world.isRemote) {
 			if(this == JourneyItems.chaosCannon) {
 				if(mana.useEssence(2)) {
+					System.out.println(player);
+					System.out.println(mana.getEssenceValue());
 					JourneySounds.playSound(JourneySounds.CANNON, world, player);
 					EntityBouncingProjectile bouncing = new EntityBouncingProjectile(world, player, damage, 4);
 					bouncing.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.0F, 1.0F);

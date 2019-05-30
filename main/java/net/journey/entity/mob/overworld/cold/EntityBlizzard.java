@@ -253,23 +253,4 @@ public class EntityBlizzard extends EntityModMob {
 		return 60;
 	}
 
-	@Override
-	public SoundEvent setLivingSound() {
-		return JourneySounds.EMPTY;
-	}
-
-	@Override
-	public SoundEvent setHurtSound() {
-		return JourneySounds.EMPTY;
-	}
-
-	@Override
-	public SoundEvent setDeathSound() {
-		return JourneySounds.EMPTY;
-	}
-
-	@Override
-	public Item getItemDropped() {
-		return Items.SNOWBALL;
-	}
 }

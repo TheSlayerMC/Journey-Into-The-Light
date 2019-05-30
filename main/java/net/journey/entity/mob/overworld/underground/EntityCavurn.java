@@ -92,17 +92,17 @@ public class EntityCavurn extends EntityModMob implements IRangedAttackMob {
 	}
 
 	@Override
-	public SoundEvent setLivingSound() {
+	public SoundEvent getAmbientSound() {
 		return JourneySounds.BASE_MOB_HURT;
 	}
 
 	@Override
-	public SoundEvent setHurtSound() {
+	public SoundEvent getHurtSound(DamageSource sourceIn) {
 		return JourneySounds.ROCK;
 	}
 
 	@Override
-	public SoundEvent setDeathSound() {
+	public SoundEvent getDeathSound() {
 		return JourneySounds.CAVE_MOB;
 	}
 	
@@ -122,7 +122,7 @@ public class EntityCavurn extends EntityModMob implements IRangedAttackMob {
 	}
 	
 	@Override
-	public Item getItemDropped() {
+	public Item getDropItem() {
 		return null;
 	}
 	

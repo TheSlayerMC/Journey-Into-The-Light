@@ -54,28 +54,6 @@ public abstract class EntityModTameable extends EntityTameable {
 	public double getFollowRange(){return getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).getAttributeValue();}
 	public double getKnockbackResistance(){return getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).getAttributeValue();}
 
-	public abstract SoundEvent setLivingSound();
-	public abstract SoundEvent setHurtSound();
-	public abstract SoundEvent setDeathSound();
-
-	@Override
-	protected SoundEvent getAmbientSound() {
-		super.getAmbientSound();
-		return setLivingSound();
-	}
-
-	@Override
-	protected SoundEvent getHurtSound(DamageSource d) {
-		super.getHurtSound(d);
-		return setHurtSound();
-	}
-
-	@Override
-	protected SoundEvent getDeathSound() {
-		super.getDeathSound();
-		return setDeathSound();
-	}
-
 	@Override
 	protected void entityInit() {
 		super.entityInit();

@@ -224,22 +224,7 @@ public class EntityInfernoBlaze extends EntityModMob {
 	}
 
 	@Override
-	public SoundEvent setLivingSound() {
-		return SoundEvents.ENTITY_BLAZE_AMBIENT;
-	}
-
-	@Override
-	public SoundEvent setHurtSound() {
-		return SoundEvents.ENTITY_BLAZE_HURT;
-	}
-
-	@Override
-	public SoundEvent setDeathSound() {
-		return SoundEvents.ENTITY_BLAZE_DEATH;
-	}
-
-	@Override
-	public Item getItemDropped() {
+	public Item getDropItem() {
 		return Items.BLAZE_ROD;
 	}
 	

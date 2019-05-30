@@ -9,6 +9,7 @@ import net.journey.util.PotionEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityModMob;
@@ -32,22 +33,22 @@ public class EntityLeafBlower extends EntityModMob{
 	}
 
 	@Override
-	public SoundEvent setLivingSound() {
+	public SoundEvent getAmbientSound() {
 		return JourneySounds.BUSH;
 	}
 
 	@Override
-	public SoundEvent setHurtSound() {
+	public SoundEvent getHurtSound(DamageSource sourceIn) {
 		return JourneySounds.BUSH_HURT;
 	}
 
 	@Override
-	public SoundEvent setDeathSound() {
+	public SoundEvent getDeathSound() {
 		return JourneySounds.BUSH_DEATH;
 	}
 	
 	@Override
-	public Item getItemDropped() {
+	public Item getDropItem() {
 		return null; 
 	
 	}
@@ -67,7 +68,7 @@ public class EntityLeafBlower extends EntityModMob{
 		
 	@Override
 	protected void dropFewItems(boolean b, int j) {
-		Item it = getItemDropped();
+		Item it = getDropItem();
 		this.dropItem(it, 1);
 		if(rand.nextInt(6) == 0) dropItem(JourneyItems.corbaStick, 2);
 		if(rand.nextInt(12) == 0) dropItem(JourneyItems.corbaStick, 4);

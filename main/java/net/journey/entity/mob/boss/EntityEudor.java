@@ -46,17 +46,17 @@ public class EntityEudor extends EntityEssenceBoss {
 	}
 
 	@Override
-	public SoundEvent setLivingSound() {
+	public SoundEvent getAmbientSound() {
 		return JourneySounds.CALCIA;
 	}
 
 	@Override
-	public SoundEvent setHurtSound() {
+	public SoundEvent getHurtSound(DamageSource sourceIn) {
 		return JourneySounds.CALCIA_HURT;
 	}
 
 	@Override
-	public SoundEvent setDeathSound() {
+	public SoundEvent getDeathSound() {
 		return JourneySounds.BOSS_DEATH;
 	}
 
@@ -93,7 +93,7 @@ public class EntityEudor extends EntityEssenceBoss {
 		super.onLivingUpdate();
 	}
 	@Override
-	public Item getItemDropped() {
+	public Item getDropItem() {
 		return null;
 	}
 	

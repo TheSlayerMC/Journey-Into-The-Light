@@ -33,22 +33,22 @@ public class EntityCaveling extends EntityModMob {
 	}
 
 	@Override
-	public SoundEvent setLivingSound() {
+	public SoundEvent getAmbientSound() {
 		return JourneySounds.CAVE_MOB;
 	}
 
 	@Override
-	public SoundEvent setHurtSound() {
+	public SoundEvent getHurtSound(DamageSource sourceIn) {
 		return JourneySounds.ROCK;
 	}
 
 	@Override
-	public SoundEvent setDeathSound() {
+	public SoundEvent getDeathSound() {
 		return JourneySounds.BASE_MOB_HURT;
 	}
 
 	@Override
-	public Item getItemDropped() {
+	public Item getDropItem() {
 		return SlayerAPI.toItem(Blocks.STONE);
 
 	}

@@ -69,14 +69,14 @@ public class EntityFrightener extends EntityModMob{
 	}
 	
 	@Override
-	public Item getItemDropped() {
+	public Item getDropItem() {
 		return null;
 
 	}
 	
 	@Override
 	protected void dropFewItems(boolean b, int j) {
-		Item it = getItemDropped();
+		Item it = getDropItem();
 		this.dropItem(it, 1);
 		if(rand.nextInt(14) == 0) dropItem(JourneyItems.boilPowder, 2);
 		super.dropFewItems(b, j);
@@ -86,23 +86,5 @@ public class EntityFrightener extends EntityModMob{
 		super.dropFewItems(b, j); 
 		if(rand.nextInt(65) == 0) dropItem(JourneyItems.sizzlingEye, 4);
 		super.dropFewItems(b, j); 
-		}
-
-	@Override
-	public SoundEvent setLivingSound() {
-		// TODO Auto-generated method stub
-		return null;
 	}
-
-	@Override
-	public SoundEvent setHurtSound() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public SoundEvent setDeathSound() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	}
+}

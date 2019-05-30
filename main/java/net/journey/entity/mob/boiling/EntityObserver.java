@@ -153,22 +153,22 @@ public class EntityObserver extends EntityModMob {
 	}
 
 	@Override
-	public SoundEvent setLivingSound() {
+	public SoundEvent getAmbientSound() {
 		return SoundEvents.ENTITY_BLAZE_AMBIENT;
 	}
 
 	@Override
-	public SoundEvent setHurtSound() {
+	public SoundEvent getHurtSound(DamageSource sourceIn) {
 		return SoundEvents.ENTITY_BLAZE_HURT;
 	}
 
 	@Override
-	public SoundEvent setDeathSound() {
+	public SoundEvent getDeathSound() {
 		return SoundEvents.ENTITY_BLAZE_DEATH;
 	}
 
 	@Override
-	public Item getItemDropped() {
+	public Item getDropItem() {
 		return Items.BLAZE_ROD;
 	}
 
