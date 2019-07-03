@@ -189,6 +189,8 @@ public class ItemModBow extends ItemMod {
 						if (EnchantmentHelper.getEnchantmentLevel(Enchantments.FLAME, stack) > 0) {
 							entityarrow.setFire(100);
 						}
+						
+						entityarrow.setDamage(this.damage);
 
 						stack.damageItem(1, entityplayer);
 
