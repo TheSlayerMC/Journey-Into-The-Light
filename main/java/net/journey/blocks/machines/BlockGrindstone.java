@@ -20,6 +20,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
@@ -27,6 +28,8 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.EnumMaterialTypes;
 import net.slayer.api.SlayerAPI;
 import net.slayer.api.entity.tileentity.container.BlockModContainer;
@@ -38,7 +41,7 @@ public class BlockGrindstone extends BlockModContainer {
 	public BlockGrindstone(String name) {
 		super(EnumMaterialTypes.STONE, name, "", 3.0F, JourneyTabs.machineBlocks);
 	}
-	
+
 	@Override
 	public TileEntity createTileEntity(World worldIn, IBlockState state) {
 		return new TileEntityGrindstone();
@@ -48,9 +51,9 @@ public class BlockGrindstone extends BlockModContainer {
 	public int quantityDropped(Random random) {
 		return 1;
 	}
-	
+
 	@Override
-    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
+	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
 		TileEntityGrindstone stone = (TileEntityGrindstone)worldIn.getTileEntity(pos);
 		if(!worldIn.isRemote) {
 			if(worldIn.isBlockPowered(pos)) {
@@ -83,7 +86,7 @@ public class BlockGrindstone extends BlockModContainer {
 	}
 
 	@Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		if(world.isRemote) return false;
 		TileEntityGrindstone stone = (TileEntityGrindstone) world.getTileEntity(pos);
 		if(((TileEntityGrindstone) world.getTileEntity(pos)).itemOnGrind != null) {
@@ -93,7 +96,7 @@ public class BlockGrindstone extends BlockModContainer {
 				return true;
 			}
 			if(stone.getItem() instanceof ItemBlock) SlayerAPI.giveItemStackToPlayer(player, 1, new ItemStack(item));
-			else SlayerAPI.giveItemStackToPlayer(player, new Random().nextInt(3) + 1, new ItemStack(item));
+			else SlayerAPI.giveItemStackToPlayer(player, new Random().nextInt(3) + 2, new ItemStack(item));
 			((TileEntityGrindstone) world.getTileEntity(pos)).itemOnGrind = null;
 			((TileEntityGrindstone) world.getTileEntity(pos)).state = 0;
 		}
@@ -105,7 +108,7 @@ public class BlockGrindstone extends BlockModContainer {
 					|| item == SlayerAPI.toItem(Blocks.IRON_ORE) || item == SlayerAPI.toItem(JourneyBlocks.gorbiteOre) || item == SlayerAPI.toItem(JourneyBlocks.orbaditeOre)) {
 				if(stone.getItem() == null) {
 					((TileEntityGrindstone) world.getTileEntity(pos)).itemOnGrind = player.getHeldItemMainhand().getItem();
-					player.getHeldItemMainhand().shrink(1);;
+					player.getHeldItemMainhand().shrink(1);
 					((WorldServer)world).getPlayerChunkMap().markBlockForUpdate(pos);
 					return true;
 				}
@@ -142,6 +145,11 @@ public class BlockGrindstone extends BlockModContainer {
 	@Override
 	protected BlockStateContainer createBlockState() {
 		return new BlockStateContainer(this, new IProperty[] {FACING});
+	}
+
+	@SideOnly(Side.CLIENT)
+	public BlockRenderLayer getBlockLayer() {
+		return BlockRenderLayer.CUTOUT_MIPPED;
 	}
 
 	@Override

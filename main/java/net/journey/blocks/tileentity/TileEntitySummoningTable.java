@@ -48,11 +48,6 @@ public class TileEntitySummoningTable extends TileEntity implements ITickable, I
 	
     private NonNullList<ItemStack> inventory = NonNullList.<ItemStack>withSize(7, ItemStack.EMPTY);
     private String customName;
-    
-    private int bloodTime;
-    private int currentBloodTime;
-    private int creationTime;
-    private int totalCreationTime;
 
 	@Override
 	public String getName() {
@@ -113,7 +108,6 @@ public class TileEntitySummoningTable extends TileEntity implements ITickable, I
 			stack.setCount(this.getInventoryStackLimit()); 
 		if(index == 0 && index + 1 == 1 && !flag) {
 			ItemStack stack1 = (ItemStack)this.inventory.get(index + 1);
-			this.totalCreationTime = this.getCreationTime(stack, stack1);
 		}
 	}
 	
@@ -130,10 +124,6 @@ public class TileEntitySummoningTable extends TileEntity implements ITickable, I
 		super.readFromNBT(nbt);
         this.inventory = NonNullList.<ItemStack>withSize(this.getSizeInventory(), ItemStack.EMPTY);
         ItemStackHelper.loadAllItems(nbt, this.inventory);
-		this.bloodTime = nbt.getInteger("BloodTime");
-		this.creationTime = nbt.getInteger("CreationTime");
-		this.totalCreationTime = nbt.getInteger("CreationTimeTotal");
-		this.currentBloodTime = getItemCreationTime((ItemStack)this.inventory.get(2));
 		
 		if(nbt.hasKey("CustomName", 8)) this.setCustomName(nbt.getString("CustomName"));
 	}
@@ -141,9 +131,6 @@ public class TileEntitySummoningTable extends TileEntity implements ITickable, I
 	@Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
-        nbt.setInteger("BloodTime", (short)this.bloodTime);
-        nbt.setInteger("CreationTime", (short)this.creationTime);
-        nbt.setInteger("CreationTimeTotal", (short)this.totalCreationTime);
         ItemStackHelper.saveAllItems(nbt, this.inventory);
         
         if (this.hasCustomName()) nbt.setString("CustomName", this.customName);
@@ -153,10 +140,6 @@ public class TileEntitySummoningTable extends TileEntity implements ITickable, I
 	@Override
 	public int getInventoryStackLimit() {
 		return 1;
-	}
-	
-	public boolean isBloodActive() {
-		return this.bloodTime > 0;
 	}
 	
 	@SideOnly(Side.CLIENT)
@@ -396,22 +379,6 @@ public class TileEntitySummoningTable extends TileEntity implements ITickable, I
 		return "journey:summoningtable";
 	}
 	
-	@Override
-	public int getField(int id) {
-		switch(id) {
-		case 0:
-			return this.bloodTime;
-		case 1:
-			return this.currentBloodTime;
-		case 2:
-			return this.creationTime;
-		case 3:
-			return this.totalCreationTime;
-		default:
-			return 0;
-		}
-	}
-	
 	@SideOnly(Side.CLIENT)
 	public void addSound() {
 		double x = pos.getX();
@@ -467,5 +434,10 @@ public class TileEntitySummoningTable extends TileEntity implements ITickable, I
 	@Override
 	public void clear() {
 		this.inventory.clear();
+	}
+
+	@Override
+	public int getField(int id) {
+		return id;
 	}
 }
