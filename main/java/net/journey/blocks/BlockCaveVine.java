@@ -20,6 +20,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
+import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -31,7 +32,7 @@ public class BlockCaveVine extends BlockMod implements IPlantable, IGrowable {
 
     protected static final AxisAlignedBB BUSH_AABB = new AxisAlignedBB(0.30000001192092896D, 0.0D, 0.30000001192092896D, 0.699999988079071D, 1.0D, 0.699999988079071D);
     
-	public static final PropertyInteger AGE = PropertyInteger.create("age", 0, 2);
+	public static final PropertyInteger AGE = PropertyInteger.create("age", 0, 3);
 	
 	public BlockCaveVine(String name, String f) {
 		super(EnumMaterialTypes.PLANT, name, f, 2);
@@ -84,11 +85,24 @@ public class BlockCaveVine extends BlockMod implements IPlantable, IGrowable {
 	public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
 		super.updateTick(world, pos, state, rand);
 		this.checkAndDropBlock(world, pos);
-		if (world.getBlockState(pos.down()).getBlock() == Blocks.AIR) {
+		
+		int size;
+
+		for (size = 1; world.getBlockState(pos.up(size)).getBlock() == this; ++size) {
+			;
+		}
+		boolean canGrow = (rand.nextInt(5) == 0);
+
+		if (ForgeHooks.onCropsGrowPre(world, pos, state, canGrow)) {
 			int age = state.getValue(AGE).intValue();
-			if (age == 1) {
-				world.setBlockState(pos.down(), state.withProperty(AGE, Integer.valueOf(state.getValue(AGE).intValue() + 1)), 2);
+			if (age < 3) {
+				world.setBlockState(pos, this.getDefaultState().withProperty(AGE, Integer.valueOf(age + 1)), 2);
 			}
+			if (rand.nextInt(3) == 0 && size < 3 && world.getBlockState(pos.up()).getBlock() == Blocks.AIR
+					&& age >= 2) {
+				world.setBlockState(pos.up(), this.getDefaultState().withProperty(AGE, Integer.valueOf(0)), 2);
+			}
+			ForgeHooks.onCropsGrowPost(world, pos, state, world.getBlockState(pos));
 		}
 	}
 
@@ -158,12 +172,20 @@ public class BlockCaveVine extends BlockMod implements IPlantable, IGrowable {
 
 	@Override
 	public void grow(World worldIn, Random rand, BlockPos pos, IBlockState state) {
-		if (worldIn.getBlockState(pos.down()).getBlock() == Blocks.AIR) {
-			if (state.getValue(AGE).intValue() == 1) {
-				worldIn.setBlockState(pos.down(),
-						state.withProperty(AGE, Integer.valueOf(state.getValue(AGE).intValue() + 1)), 2);
-			}
-			worldIn.setBlockState(pos, state.withProperty(AGE, Integer.valueOf(state.getValue(AGE).intValue() + 1)), 2);
+		int age = state.getValue(AGE).intValue();
+		IBlockState bottom = worldIn.getBlockState(pos.down());
+		
+        if (age < 2) {
+            int setMeta = rand.nextInt(2) + 1 + age;
+            worldIn.setBlockState(pos, this.getDefaultState().withProperty(AGE, Integer.valueOf(setMeta)), 4);
+            return;
+        }
+        
+		if (bottom == null || worldIn.isAirBlock(pos.down())) {
+            if (rand.nextInt(1) == 0) {
+                worldIn.setBlockState(pos.down(), this.getDefaultState().withProperty(AGE, Integer.valueOf(0)), 2);
+            }
+            return;
 		}
 	}
 }
