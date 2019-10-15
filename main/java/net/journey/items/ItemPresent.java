@@ -26,7 +26,7 @@ import net.slayer.api.item.ItemMod;
 public class ItemPresent extends ItemMod {
 
 	public ItemPresent(String name, String f) {
-		super(name, f, JourneyTabs.items);
+		super(name, f, JourneyTabs.util);
 	}
 
 	@Override

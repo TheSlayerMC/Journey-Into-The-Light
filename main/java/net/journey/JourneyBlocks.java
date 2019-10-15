@@ -842,7 +842,7 @@ public class JourneyBlocks {
 		infernoPlant = new BlockModFlower("infernoPlant", "Inferno Plant");
 		burntGrass = new BlockModFlower("burntGrass", "Burnt Grass");
 
-		grindstone = new BlockGrindstone("grindstone");
+		grindstone = new BlockGrindstone("grindstone", "Grindstone");
 		blueGems = new BlockGemBlock("blueGems", "Blue Gems", false);
 		redGems = new BlockGemBlock("redGems", "Red Gems", true);
 

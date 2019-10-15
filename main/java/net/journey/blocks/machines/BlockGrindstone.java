@@ -38,8 +38,8 @@ public class BlockGrindstone extends BlockModContainer {
 
 	public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
 
-	public BlockGrindstone(String name) {
-		super(EnumMaterialTypes.STONE, name, "", 3.0F, JourneyTabs.machineBlocks);
+	public BlockGrindstone(String name, String finalName) {
+		super(EnumMaterialTypes.STONE, name, finalName, 3.0F, JourneyTabs.machineBlocks);
 	}
 
 	@Override
