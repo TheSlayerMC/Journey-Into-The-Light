@@ -17,11 +17,6 @@ public abstract class BlockModContainer extends BlockMod implements ITileEntityP
         this.hasTileEntity = true;
     }
 
-	@Override
-	public EnumBlockRenderType getRenderType(IBlockState state) {
-        return EnumBlockRenderType.INVISIBLE;
-    }
-
     @Override
     public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
         super.breakBlock(worldIn, pos, state);
