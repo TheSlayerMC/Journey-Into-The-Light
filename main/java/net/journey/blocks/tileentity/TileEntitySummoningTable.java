@@ -100,15 +100,15 @@ public class TileEntitySummoningTable extends TileEntity implements ITickable, I
 	
 	@Override
 	public void setInventorySlotContents(int index, ItemStack stack) {
-		ItemStack itemstack = this.inventory.get(index);
+        ItemStack itemstack = this.inventory.get(index);
         boolean flag = !stack.isEmpty() && stack.isItemEqual(itemstack) && ItemStack.areItemStackTagsEqual(stack, itemstack);
         this.inventory.set(index, stack);
 
-        if (stack.getCount() > this.getInventoryStackLimit()) {
+        if(stack.getCount() > this.getInventoryStackLimit()) {
             stack.setCount(this.getInventoryStackLimit());
         }
 
-        if (index == 0 && !flag) {
+        if(index == 0 && !flag) {
             this.markDirty();
         }
 	}
@@ -126,7 +126,6 @@ public class TileEntitySummoningTable extends TileEntity implements ITickable, I
 		super.readFromNBT(nbt);
         this.inventory = NonNullList.<ItemStack>withSize(this.getSizeInventory(), ItemStack.EMPTY);
         ItemStackHelper.loadAllItems(nbt, this.inventory);
-		
 		if(nbt.hasKey("CustomName", 8)) this.setCustomName(nbt.getString("CustomName"));
 	}
 	
