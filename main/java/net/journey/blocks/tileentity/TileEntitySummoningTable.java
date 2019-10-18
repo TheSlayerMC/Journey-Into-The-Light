@@ -100,15 +100,17 @@ public class TileEntitySummoningTable extends TileEntity implements ITickable, I
 	
 	@Override
 	public void setInventorySlotContents(int index, ItemStack stack) {
-		ItemStack itemstack = (ItemStack)this.inventory.get(index);
-		boolean flag = !stack.isEmpty() && stack.isItemEqual(itemstack) && ItemStack.areItemStackTagsEqual(stack, itemstack);
-		this.inventory.set(index, stack);
+		ItemStack itemstack = this.inventory.get(index);
+        boolean flag = !stack.isEmpty() && stack.isItemEqual(itemstack) && ItemStack.areItemStackTagsEqual(stack, itemstack);
+        this.inventory.set(index, stack);
 
-		if(stack != null && stack.getCount() > this.getInventoryStackLimit())
-			stack.setCount(this.getInventoryStackLimit()); 
-		if(index == 0 && index + 1 == 1 && !flag) {
-			ItemStack stack1 = (ItemStack)this.inventory.get(index + 1);
-		}
+        if (stack.getCount() > this.getInventoryStackLimit()) {
+            stack.setCount(this.getInventoryStackLimit());
+        }
+
+        if (index == 0 && !flag) {
+            this.markDirty();
+        }
 	}
 	
     public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) {
@@ -139,7 +141,7 @@ public class TileEntitySummoningTable extends TileEntity implements ITickable, I
 
 	@Override
 	public int getInventoryStackLimit() {
-		return 1;
+		return 64;
 	}
 	
 	@SideOnly(Side.CLIENT)
@@ -149,7 +151,7 @@ public class TileEntitySummoningTable extends TileEntity implements ITickable, I
 
 	@Override
 	public void update() {
-		if(this.inventory.get(0) != null && this.inventory.get(1) != null && this.inventory.get(2) != null && this.inventory.get(3) != null && this.inventory.get(4) != null && this.inventory.get(5) != null && this.inventory.get(6) != null) {
+		/*if(this.inventory.get(0) != null && this.inventory.get(1) != null && this.inventory.get(2) != null && this.inventory.get(3) != null && this.inventory.get(4) != null && this.inventory.get(5) != null && this.inventory.get(6) != null) {
 			if(areItemsInSlots(
 					JourneyItems.boilPowder, 
 					JourneyItems.boilPowder, 
@@ -306,7 +308,7 @@ public class TileEntitySummoningTable extends TileEntity implements ITickable, I
 				addParticles();
 				
 			}**/
-		}
+		//}
 	}
 	
 	public int getCreationTime(ItemStack input1, ItemStack input2) {
@@ -359,20 +361,21 @@ public class TileEntitySummoningTable extends TileEntity implements ITickable, I
 	
 	@Override
 	public boolean isUsableByPlayer(EntityPlayer player) {
-		double x = this.pos.getX() + 0.5D;
-		double y = this.pos.getY() + 0.5D;
-		double z = this.pos.getZ() + 0.5D;
-		
-		return this.world.getTileEntity(this.pos) != this ? false : player.getDistanceSq(x, y, z) <= 64;
+		if(this.world.getTileEntity(this.pos) != this) {
+            return false;
+        } else {
+            return player.getDistanceSq((double)this.pos.getX() + 0.5D, (double)this.pos.getY() + 0.5D, (double)this.pos.getZ() + 0.5D) <= 64.0D;
+        }
 	}
 	
 	@Override
 	public boolean isItemValidForSlot(int index, ItemStack stack) {
-		if(index == 3) return false;
-		else if(index !=2) return true;
-		else {
-			return isItemFuel(stack);
-		}
+		//if(index == 3) return false;
+		//else if(index !=2) return true;
+		//else {
+		//	return isItemFuel(stack);
+		//}
+		return true;
 	}
 	
 	public String getGuiID() {
