@@ -14,6 +14,8 @@ public class EntityEscapedConvict extends EntityModVillager {
 
 	public EntityEscapedConvict(World var1) {
 		super(var1);
+		this.isImmuneToFire = true;
+
 	}
 
 	@Override

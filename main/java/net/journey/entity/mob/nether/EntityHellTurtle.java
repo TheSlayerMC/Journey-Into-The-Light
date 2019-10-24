@@ -21,6 +21,8 @@ public class EntityHellTurtle extends EntityModMob {
 		super(par1World);
 		addAttackingAI();
 		this.setSize(2.0F, 1.3F);
+		this.isImmuneToFire = true;
+
 	}
 	
 	@Override

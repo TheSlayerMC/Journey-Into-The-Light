@@ -14,6 +14,8 @@ public class EntityBoilTrader extends EntityModVillager {
 
 	public EntityBoilTrader(World var1) {
 		super(var1);
+		this.isImmuneToFire = true;
+
 	}
 
 	@Override
