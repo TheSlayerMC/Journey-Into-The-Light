@@ -54,8 +54,4 @@ public class Registrys {
         }
         SOUNDS.clear();
     }
-	
-	public static void otherRegistries() {
-		JourneySmeltingRecipes.init();
-	}
 }

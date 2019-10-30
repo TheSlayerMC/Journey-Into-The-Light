@@ -101,7 +101,8 @@ public class CommonProxy {
 		JourneyTabs.init();
 		GameRegistry.registerWorldGenerator(new WorldGenJourney(), 2);
 		SlayerAPI.registerEvent(new PlayerEvent());
-		JourneySmeltingRecipes.initSmeltingCrafting();
+		JourneySmeltingRecipes.init();
+
 	}
 
     @SubscribeEvent
