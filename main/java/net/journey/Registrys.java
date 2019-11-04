@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.journey.blocks.tileentity.TileEntityHandler;
+import net.journey.blocks.tileentity.TileEntitySummoningTable;
 import net.journey.client.IHasModel;
-import net.journey.util.recipes.JourneySmeltingRecipes;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.RegistryEvent.Register;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.slayer.api.SlayerAPI;
 
 @EventBusSubscriber(modid=SlayerAPI.MOD_ID)

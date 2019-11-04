@@ -21,6 +21,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.datafix.DataFixer;
@@ -30,49 +31,23 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
+import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.ItemStackHandler;
 import net.slayer.api.SlayerAPI;
 
-public class TileEntitySummoningTable extends TileEntity implements ITickable, IInventory {
+public class TileEntitySummoningTable extends TileEntity implements ITickable, IItemHandler {
 
     private NonNullList<ItemStack> inventory = NonNullList.<ItemStack>withSize(7, ItemStack.EMPTY);
     private String customName;
-
-	@Override
-	public String getName() {
-		return this.hasCustomName() ? this.customName : "container.summoningtable";
-	}
-
-	@Override
-	public boolean hasCustomName() {
-		return this.customName!= null && !this.customName.isEmpty();
-	}
 	
 	public void setCustomName(String name) {
 		this.customName = name;
-	}
-	
-	@Override
-	public ITextComponent getDisplayName() {
-		return this.hasCustomName() ? new TextComponentString(this.getName()) : new TextComponentTranslation(this.getName());
-	}
-	
-	@Override
-	public int getSizeInventory() {
-		return this.inventory.size();
-	}
-
-	@Override
-	public boolean isEmpty() {
-		for (ItemStack itemstack : this.inventory) {
-			if (!itemstack.isEmpty()) {
-				return false;
-			}
-		}
-		return true;
 	}
 	
 	@Override
@@ -80,17 +55,7 @@ public class TileEntitySummoningTable extends TileEntity implements ITickable, I
 		return this.inventory.get(i);
 	}
 	
-	@Override
-	public ItemStack decrStackSize(int i, int j) {
-		return ItemStackHelper.getAndSplit(this.inventory, i, j);
-	}
-	
-	@Override
-	public ItemStack removeStackFromSlot(int index) {
-		return ItemStackHelper.getAndRemove(this.inventory, index);
-	}
-	
-	@Override
+	/*@Override
 	public void setInventorySlotContents(int index, ItemStack stack) {
         ItemStack itemstack = this.inventory.get(index);
         boolean flag = !stack.isEmpty() && stack.isItemEqual(itemstack) && ItemStack.areItemStackTagsEqual(stack, itemstack);
@@ -103,7 +68,7 @@ public class TileEntitySummoningTable extends TileEntity implements ITickable, I
         if(index == 0 && !flag) {
             this.markDirty();
         }
-	}
+	}*/
 	
     public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) {
         return new ContainerSummoningTable(playerInventory, this, world);
@@ -116,7 +81,6 @@ public class TileEntitySummoningTable extends TileEntity implements ITickable, I
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
-        this.inventory = NonNullList.<ItemStack>withSize(this.getSizeInventory(), ItemStack.EMPTY);
         ItemStackHelper.loadAllItems(nbt, this.inventory);
 		if(nbt.hasKey("CustomName", 8)) this.setCustomName(nbt.getString("CustomName"));
 	}
@@ -126,18 +90,8 @@ public class TileEntitySummoningTable extends TileEntity implements ITickable, I
 		super.writeToNBT(nbt);
         ItemStackHelper.saveAllItems(nbt, this.inventory);
         
-        if(this.hasCustomName()) nbt.setString("CustomName", this.customName);
+        //if(this.hasCustomName()) nbt.setString("CustomName", this.customName);
 		return nbt;
-	}
-
-	@Override
-	public int getInventoryStackLimit() {
-		return 64;
-	}
-	
-	@SideOnly(Side.CLIENT)
-	public static boolean isBloodActive(IInventory i) {
-		return i.getField(0) > 0;
 	}
 
 	@Override
@@ -302,20 +256,6 @@ public class TileEntitySummoningTable extends TileEntity implements ITickable, I
 		//}
 	}
 	
-	@Override
-	public boolean isUsableByPlayer(EntityPlayer player) {
-		if(this.world.getTileEntity(this.pos) != this) {
-            return false;
-        } else {
-            return player.getDistanceSq((double)this.pos.getX() + 0.5D, (double)this.pos.getY() + 0.5D, (double)this.pos.getZ() + 0.5D) <= 64.0D;
-        }
-	}
-	
-	@Override
-	public boolean isItemValidForSlot(int index, ItemStack stack) {
-		return true;
-	}
-	
 	public String getGuiID() {
 		return "journey:summoningtable";
 	}
@@ -345,7 +285,7 @@ public class TileEntitySummoningTable extends TileEntity implements ITickable, I
 	}
 
 	public void setAllSlotsToNull() {
-		clear();
+		this.inventory.clear();
 	}
 
 	public void setInventorySlots(ItemStack s, ItemStack s1, ItemStack s2, ItemStack s3, ItemStack s4, ItemStack s5, ItemStack s6) {
@@ -359,26 +299,29 @@ public class TileEntitySummoningTable extends TileEntity implements ITickable, I
 	}
 
 	@Override
-	public void openInventory(EntityPlayer player) { }
-
+	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+		if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
+			return (T) new ItemStackHandler(1);
+		return super.getCapability(capability, facing);
+	}
+	
 	@Override
-	public void closeInventory(EntityPlayer player) { }
-
-	@Override
-	public void setField(int id, int value) { }
-
-	@Override
-	public int getFieldCount() {
-		return 0;
+	public int getSlots() {
+		return inventory.size();
 	}
 
 	@Override
-	public void clear() {
-		this.inventory.clear();
+	public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
+		return null;
 	}
 
 	@Override
-	public int getField(int id) {
-		return id;
+	public ItemStack extractItem(int slot, int amount, boolean simulate) {
+		return ItemStackHelper.getAndRemove(this.inventory, slot);
+	}
+
+	@Override
+	public int getSlotLimit(int slot) {
+		return 64;
 	}
 }

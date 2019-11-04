@@ -115,7 +115,7 @@ public class BlockSummoningTable extends BlockModContainer {
 	@Override
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
 		TileEntitySummoningTable tile = (TileEntitySummoningTable)worldIn.getTileEntity(pos);
-		InventoryHelper.dropInventoryItems(worldIn, pos, tile);
+		//InventoryHelper.dropInventoryItems(worldIn, pos, tile);
 		super.breakBlock(worldIn, pos, state);
 	}
 }
