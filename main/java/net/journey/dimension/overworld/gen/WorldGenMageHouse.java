@@ -2,6 +2,7 @@ package net.journey.dimension.overworld.gen;
 
 import java.util.Random;
 
+import net.journey.JourneyBlocks;
 import net.journey.entity.mob.overworld.npc.EntityMage;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemDoor;
@@ -18,9 +19,9 @@ public class WorldGenMageHouse extends WorldGenerator {
 		int x = pos.getX(), y = pos.getY() - 1, z = pos.getZ();
 		WorldGenAPI.addRectangle(11, 11, 1, w, x - 1, y + 1, z - 1, Blocks.GRASS);
 		WorldGenAPI.addRectangle(11, 11, 4, w, x - 1, y - 3, z - 1, Blocks.DIRT);
-		WorldGenAPI.addHollowCube(9, w, x, y, z, Blocks.END_STONE);
+		WorldGenAPI.addHollowCube(9, w, x, y, z, JourneyBlocks.mageWall);
 		WorldGenAPI.addRectangle(9, 9, 4, w, x, y + 6, z, Blocks.AIR);
-		WorldGenAPI.addRectangle(9, 9, 1, w, x, y + 5, z, Blocks.END_STONE);
+		WorldGenAPI.addRectangle(9, 9, 1, w, x, y + 5, z, JourneyBlocks.mageWall);
 		WorldGenAPI.addRectangleWithMetadata(1, 7, 1, w, x, y + 3, z + 1, Blocks.STAINED_GLASS, 2);
 		WorldGenAPI.addRectangleWithMetadata(1, 3, 2, w, x, y + 3, z + 3, Blocks.STAINED_GLASS, 2);
 		WorldGenAPI.addRectangleWithMetadata(1, 7, 1, w, x + 8, y + 3, z + 1, Blocks.STAINED_GLASS, 2);
@@ -53,23 +54,23 @@ public class WorldGenMageHouse extends WorldGenerator {
 		WorldGenAPI.addBlock(w, x + 6, y + 2, z + 6, Blocks.WOODEN_PRESSURE_PLATE);
 		WorldGenAPI.addBlock(w, x + 6, y + 2, z + 2, Blocks.WOODEN_PRESSURE_PLATE);
 		WorldGenAPI.addBlock(w, x + 2, y + 2, z + 6, Blocks.WOODEN_PRESSURE_PLATE);
-		WorldGenAPI.addBlock(w, x, y + 5, z, Blocks.END_STONE);
-		WorldGenAPI.addBlock(w, x + 2, y + 5, z, Blocks.END_STONE);
-		WorldGenAPI.addBlock(w, x + 4, y + 5, z, Blocks.END_STONE);
-		WorldGenAPI.addBlock(w, x + 6, y + 5, z, Blocks.END_STONE);
-		WorldGenAPI.addBlock(w, x + 8, y + 5, z, Blocks.END_STONE);
-		WorldGenAPI.addBlock(w, x, y + 5, z + 2, Blocks.END_STONE);
-		WorldGenAPI.addBlock(w, x, y + 5, z + 4, Blocks.END_STONE);
-		WorldGenAPI.addBlock(w, x, y + 5, z + 6, Blocks.END_STONE);
-		WorldGenAPI.addBlock(w, x, y + 5, z + 8, Blocks.END_STONE);
-		WorldGenAPI.addBlock(w, x + 2, y + 5, z + 8, Blocks.END_STONE);
-		WorldGenAPI.addBlock(w, x + 4, y + 5, z + 8, Blocks.END_STONE);
-		WorldGenAPI.addBlock(w, x + 6, y + 5, z + 8, Blocks.END_STONE);
-		WorldGenAPI.addBlock(w, x + 8, y + 5, z + 8, Blocks.END_STONE);
-		WorldGenAPI.addBlock(w, x + 8, y + 5, z + 2, Blocks.END_STONE);
-		WorldGenAPI.addBlock(w, x + 8, y + 5, z + 4, Blocks.END_STONE);
-		WorldGenAPI.addBlock(w, x + 8, y + 5, z + 6, Blocks.END_STONE);
-		WorldGenAPI.addBlock(w, x + 8, y + 5, z + 8, Blocks.END_STONE);
+		WorldGenAPI.addBlock(w, x, y + 5, z, JourneyBlocks.mageWall);
+		WorldGenAPI.addBlock(w, x + 2, y + 5, z, JourneyBlocks.mageWall);
+		WorldGenAPI.addBlock(w, x + 4, y + 5, z, JourneyBlocks.mageWall);
+		WorldGenAPI.addBlock(w, x + 6, y + 5, z, JourneyBlocks.mageWall);
+		WorldGenAPI.addBlock(w, x + 8, y + 5, z, JourneyBlocks.mageWall);
+		WorldGenAPI.addBlock(w, x, y + 5, z + 2, JourneyBlocks.mageWall);
+		WorldGenAPI.addBlock(w, x, y + 5, z + 4, JourneyBlocks.mageWall);
+		WorldGenAPI.addBlock(w, x, y + 5, z + 6, JourneyBlocks.mageWall);
+		WorldGenAPI.addBlock(w, x, y + 5, z + 8, JourneyBlocks.mageWall);
+		WorldGenAPI.addBlock(w, x + 2, y + 5, z + 8, JourneyBlocks.mageWall);
+		WorldGenAPI.addBlock(w, x + 4, y + 5, z + 8, JourneyBlocks.mageWall);
+		WorldGenAPI.addBlock(w, x + 6, y + 5, z + 8, JourneyBlocks.mageWall);
+		WorldGenAPI.addBlock(w, x + 8, y + 5, z + 8, JourneyBlocks.mageWall);
+		WorldGenAPI.addBlock(w, x + 8, y + 5, z + 2, JourneyBlocks.mageWall);
+		WorldGenAPI.addBlock(w, x + 8, y + 5, z + 4, JourneyBlocks.mageWall);
+		WorldGenAPI.addBlock(w, x + 8, y + 5, z + 6, JourneyBlocks.mageWall);
+		WorldGenAPI.addBlock(w, x + 8, y + 5, z + 8, JourneyBlocks.mageWall);
 		
 		if(!w.isRemote) {
 			EntityMage mage = new EntityMage(w);

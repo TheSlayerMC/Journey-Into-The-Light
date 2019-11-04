@@ -92,7 +92,8 @@ public class JourneyBlocks {
 	
 	public static BlockMod bleedstone;
 	public static BlockMod smithstone;
-	
+	public static BlockMod mageWall;
+
 	public static BlockModGravity heatstoneOre;
 	
 	public static BlockMod enderilliumOre;
@@ -536,7 +537,8 @@ public class JourneyBlocks {
 		gorbiteBlock = new BlockModOre("gorbiteBlock", "Gorbite Block").setHarvestLevel(EnumToolType.STONE_PICK);
 		orbaditeBlock = new BlockModOre("orbaditeBlock", "Orbadite Block").setHarvestLevel(EnumToolType.STONE_PICK);
 		luniteBlock = new BlockModOre("luniteBlock", "Lunite Block").setHarvestLevel(EnumToolType.STONE_PICK);
-
+		mageWall = new BlockMod("magewall", "Mage Wall");
+		
 		witherwoodLog = new BlockModLog("witherwoodLog", "Witherwood Log");
 		witherwoodLeaves = new BlockModLeaves("witherwoodLeaves", "Witherwood Leaves", 1.0F);
 		sizzlerWoodLeaves = new BlockModLeaves("sizzlerWoodLeaves", "Deadblood Leaves", 2.0F);
