@@ -1,5 +1,4 @@
 {
-    "__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
     "textures": {
         "particle": "journey:blocks/summoningTable_side",
         "0": "journey:blocks/summoningTable_legs",

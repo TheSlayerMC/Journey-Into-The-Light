@@ -38,14 +38,6 @@ import net.slayer.api.SlayerAPI;
 
 public class TileEntitySummoningTable extends TileEntity implements ITickable, IInventory {
 
-
-	/* TODO:
-	 * Finish slot index in container for blood and rotten flesh
-	 * Create custom burn time for rotten flesh
-	 * Finish slots for 6 summoning items, 1 result item, blood slot and flesh slot
-	 * Create summoning recipe class
-	 */
-	
     private NonNullList<ItemStack> inventory = NonNullList.<ItemStack>withSize(7, ItemStack.EMPTY);
     private String customName;
 
@@ -134,7 +126,7 @@ public class TileEntitySummoningTable extends TileEntity implements ITickable, I
 		super.writeToNBT(nbt);
         ItemStackHelper.saveAllItems(nbt, this.inventory);
         
-        if (this.hasCustomName()) nbt.setString("CustomName", this.customName);
+        if(this.hasCustomName()) nbt.setString("CustomName", this.customName);
 		return nbt;
 	}
 
@@ -310,54 +302,6 @@ public class TileEntitySummoningTable extends TileEntity implements ITickable, I
 		//}
 	}
 	
-	public int getCreationTime(ItemStack input1, ItemStack input2) {
-		return 1000;
-	}
-	
-	/*private boolean canCreate() {
-		if(((ItemStack)this.inventory.get(0)).isEmpty() || ((ItemStack)this.inventory.get(1)).isEmpty()) return false;
-		else {
-			ItemStack result = SummoningTableRecipes.getInstance().getSummonResult((ItemStack)this.inventory.get(0), (ItemStack)this.inventory.get(1));
-			if(result.isEmpty()) return false;
-			else {
-				ItemStack output = (ItemStack)this.inventory.get(3);
-				if(output.isEmpty()) return true;
-				if(!output.isItemEqual(result)) return false;
-				int res = output.getCount() + result.getCount();
-				return res <= getInventoryStackLimit() && res <= output.getMaxStackSize();
-			}
-		}
-	}
-	
-	public void createItem() {
-		if(this.canCreate()) {
-			ItemStack i1 = (ItemStack)this.inventory.get(0);
-			ItemStack i2 = (ItemStack)this.inventory.get(1);
-			ItemStack result = SummoningTableRecipes.getInstance().getSummonResult(i1, i2);
-			ItemStack output = (ItemStack)this.inventory.get(3);
-			
-			if(output.isEmpty()) this.inventory.set(3, result.copy());
-			else if(output.getItem() == result.getItem()) output.grow(result.getCount());
-			
-			i1.shrink(1);
-			i2.shrink(1);
-		}
-	}*/
-	
-	public static int getItemCreationTime(ItemStack stack) {
-		if(stack.isEmpty()) return 0;
-		else {
-			Item item = stack.getItem();
-			
-			if(item == JourneyItems.concentratedBlood) return 200;
-			return GameRegistry.getFuelValue(stack);
-		}
-	}
-
-	public static boolean isItemFuel(ItemStack stack) {
-		return getItemCreationTime(stack) > 0;
-	}
-	
 	@Override
 	public boolean isUsableByPlayer(EntityPlayer player) {
 		if(this.world.getTileEntity(this.pos) != this) {
@@ -369,11 +313,6 @@ public class TileEntitySummoningTable extends TileEntity implements ITickable, I
 	
 	@Override
 	public boolean isItemValidForSlot(int index, ItemStack stack) {
-		//if(index == 3) return false;
-		//else if(index !=2) return true;
-		//else {
-		//	return isItemFuel(stack);
-		//}
 		return true;
 	}
 	
@@ -386,7 +325,7 @@ public class TileEntitySummoningTable extends TileEntity implements ITickable, I
 		double x = pos.getX();
 		double y = pos.getY();
 		double z = pos.getZ();
-		//world.playSoundEffect(x, y, z, "essence:summon", 1.0F, 1.0F);
+		//world.playSoundEffect(x, y, z, "journey:summon", 1.0F, 1.0F);
 	}
 	@SideOnly(Side.CLIENT)
 	public void addParticles() {

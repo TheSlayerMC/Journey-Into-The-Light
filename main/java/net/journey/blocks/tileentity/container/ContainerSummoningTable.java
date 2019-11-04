@@ -39,12 +39,6 @@ public class ContainerSummoningTable extends Container {
 	
 	@Override
 	public boolean canInteractWith(EntityPlayer playerIn) {
-		return tileentity.isUsableByPlayer(playerIn);
-	}
-
-	@Override
-	public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2) {
-		ItemStack itemstack = ItemStack.EMPTY;
-		return itemstack;
+		return true;
 	}
 }

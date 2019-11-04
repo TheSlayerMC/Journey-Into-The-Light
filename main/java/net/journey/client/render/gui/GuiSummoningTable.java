@@ -34,7 +34,7 @@ public class GuiSummoningTable extends GuiContainer {
 
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-		String s = "essence.summoningTable";
+		String s = "journey.summoningTable";
 		this.fontRenderer.drawString(I18n.format(s), this.xSize / 2 - this.fontRenderer.getStringWidth(s) / 2, 6, 0xFFFFFF);
 		this.fontRenderer.drawString(I18n.format("container.inventory", new Object[0]), 8, this.ySize - 96 + 2, 0xFFFFFF);
 	}
@@ -61,7 +61,7 @@ public class GuiSummoningTable extends GuiContainer {
 		super.actionPerformed(button);
 		//table.update();
 		PacketBuffer packetbuffer = new PacketBuffer(Unpooled.buffer());
-		this.mc.getConnection().sendPacket(new CPacketCustomPayload("EOTG|SUMMONING", packetbuffer));
+		this.mc.getConnection().sendPacket(new CPacketCustomPayload("Journey|SUMMONING", packetbuffer));
 	}
 
 	@SideOnly(Side.CLIENT)
