@@ -63,7 +63,7 @@ public class GuiHandler implements IGuiHandler {
 		if(ID == frozenMerchant) 
 			return new ContainerModVillager(player.inventory, (IMerchant)getEntityByID(x, world), world);
 		if(ID == summoning) 
-			return new ContainerSummoningTable(player.inventory, (TileEntitySummoningTable)entity, world);
+			return new ContainerSummoningTable(player.inventory, (TileEntitySummoningTable)entity);
 		/*if(ID == netherfurnace) 
 			return new ContainerModFurnace(player.inventory, (TileEntityModFurnace)entity, world); */
 		if(ID == staringGuardian) 

@@ -28,7 +28,7 @@ public class GuiSummoningTable extends GuiContainer {
 	private TileEntitySummoningTable table;
 
 	public GuiSummoningTable(InventoryPlayer inventory, TileEntitySummoningTable table, World w) {
-		super(new ContainerSummoningTable(inventory, table, w));
+		super(new ContainerSummoningTable(inventory, table));
 		this.table = table;
 	}
 

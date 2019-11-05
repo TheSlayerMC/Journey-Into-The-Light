@@ -2,97 +2,26 @@ package net.journey.blocks.tileentity;
 
 import java.util.Random;
 
-import net.journey.JourneyItems;
-import net.journey.JourneySounds;
 import net.journey.blocks.tileentity.container.ContainerSummoningTable;
-import net.journey.client.render.particles.EntityModFireFX;
-import net.journey.client.render.particles.EntityModSnowFX;
 import net.journey.client.render.particles.EntitySummoningFX;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
-import net.minecraft.inventory.ContainerFurnace;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityFurnace;
-import net.minecraft.util.EnumFacing;
+import net.minecraft.tileentity.TileEntityLockableLoot;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.datafix.DataFixer;
-import net.minecraft.util.datafix.FixTypes;
-import net.minecraft.util.datafix.walkers.ItemStackDataLists;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
-import net.minecraft.util.text.TextComponentTranslation;
-import net.minecraft.world.World;
-import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.client.FMLClientHandler;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.ItemStackHandler;
-import net.slayer.api.SlayerAPI;
 
-public class TileEntitySummoningTable extends TileEntity implements ITickable, IItemHandler {
+public class TileEntitySummoningTable extends TileEntityLockableLoot implements ITickable {
 
     private NonNullList<ItemStack> inventory = NonNullList.<ItemStack>withSize(7, ItemStack.EMPTY);
     private String customName;
-	
-	public void setCustomName(String name) {
-		this.customName = name;
-	}
-	
-	@Override
-	public ItemStack getStackInSlot(int i) {
-		return this.inventory.get(i);
-	}
-	
-	/*@Override
-	public void setInventorySlotContents(int index, ItemStack stack) {
-        ItemStack itemstack = this.inventory.get(index);
-        boolean flag = !stack.isEmpty() && stack.isItemEqual(itemstack) && ItemStack.areItemStackTagsEqual(stack, itemstack);
-        this.inventory.set(index, stack);
-
-        if(stack.getCount() > this.getInventoryStackLimit()) {
-            stack.setCount(this.getInventoryStackLimit());
-        }
-
-        if(index == 0 && !flag) {
-            this.markDirty();
-        }
-	}*/
-	
-    public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) {
-        return new ContainerSummoningTable(playerInventory, this, world);
-    }
-    
-	public static void registerFixesFurnace(DataFixer fixer) {
-		fixer.registerWalker(FixTypes.BLOCK_ENTITY, new ItemStackDataLists(TileEntitySummoningTable.class, new String[] { "Items" }));
-	}
-	
-	@Override
-	public void readFromNBT(NBTTagCompound nbt) {
-		super.readFromNBT(nbt);
-        ItemStackHelper.loadAllItems(nbt, this.inventory);
-		if(nbt.hasKey("CustomName", 8)) this.setCustomName(nbt.getString("CustomName"));
-	}
-	
-	@Override
-    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
-		super.writeToNBT(nbt);
-        ItemStackHelper.saveAllItems(nbt, this.inventory);
-        
-        //if(this.hasCustomName()) nbt.setString("CustomName", this.customName);
-		return nbt;
-	}
 
 	@Override
 	public void update() {
@@ -255,17 +184,14 @@ public class TileEntitySummoningTable extends TileEntity implements ITickable, I
 			}**/
 		//}
 	}
-	
-	public String getGuiID() {
-		return "journey:summoningtable";
-	}
+
 	
 	@SideOnly(Side.CLIENT)
 	public void addSound() {
 		double x = pos.getX();
 		double y = pos.getY();
 		double z = pos.getZ();
-		//world.playSoundEffect(x, y, z, "journey:summon", 1.0F, 1.0F);
+		//world.playSoundEffect(x, y, z, "essence:summon", 1.0F, 1.0F);
 	}
 	@SideOnly(Side.CLIENT)
 	public void addParticles() {
@@ -285,7 +211,7 @@ public class TileEntitySummoningTable extends TileEntity implements ITickable, I
 	}
 
 	public void setAllSlotsToNull() {
-		this.inventory.clear();
+		clear();
 	}
 
 	public void setInventorySlots(ItemStack s, ItemStack s1, ItemStack s2, ItemStack s3, ItemStack s4, ItemStack s5, ItemStack s6) {
@@ -299,29 +225,67 @@ public class TileEntitySummoningTable extends TileEntity implements ITickable, I
 	}
 
 	@Override
-	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-		if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
-			return (T) new ItemStackHandler(1);
-		return super.getCapability(capability, facing);
+	public int getSizeInventory() {
+		return 7;
+	}
+
+
+	@Override
+	public boolean isEmpty() {
+		for(ItemStack s : this.inventory) {
+			if(!s.isEmpty()) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	@Override
+	public int getInventoryStackLimit() {
+		return 64;
+	}
+
+	@Override
+	public String getName() {
+		return this.hasCustomName() ? this.customName : "Summoning Table";
 	}
 	
 	@Override
-	public int getSlots() {
-		return inventory.size();
+	public void readFromNBT(NBTTagCompound compound) {
+		super.readFromNBT(compound);
+		this.inventory = NonNullList.<ItemStack>withSize(getSizeInventory(), ItemStack.EMPTY);
+		if(!this.checkLootAndRead(compound)) {
+			ItemStackHelper.loadAllItems(compound, inventory);
+		}
+		if(compound.hasKey("CustomName", 8)) {
+			this.customName = compound.getString("CustomName");
+		}
+	}
+	
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+		super.writeToNBT(compound);
+		if(!this.checkLootAndWrite(compound)) {
+			ItemStackHelper.saveAllItems(compound, inventory);
+		}
+		if(compound.hasKey("CustomName", 8)) {
+			compound.setString("CustomName", this.customName);
+		}
+		return compound;
 	}
 
 	@Override
-	public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
-		return null;
+	public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) {
+		return new ContainerSummoningTable(playerInventory, this);
 	}
 
 	@Override
-	public ItemStack extractItem(int slot, int amount, boolean simulate) {
-		return ItemStackHelper.getAndRemove(this.inventory, slot);
+	public String getGuiID() {
+		return "journey:summoningtable";
 	}
 
 	@Override
-	public int getSlotLimit(int slot) {
-		return 64;
+	protected NonNullList<ItemStack> getItems() {
+		return inventory;
 	}
 }
