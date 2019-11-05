@@ -2,6 +2,7 @@ package net.journey.blocks.tileentity;
 
 import java.util.Random;
 
+import net.journey.JourneyItems;
 import net.journey.blocks.tileentity.container.ContainerSummoningTable;
 import net.journey.client.render.particles.EntitySummoningFX;
 import net.minecraft.entity.player.EntityPlayer;
@@ -25,7 +26,7 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 
 	@Override
 	public void update() {
-		/*if(this.inventory.get(0) != null && this.inventory.get(1) != null && this.inventory.get(2) != null && this.inventory.get(3) != null && this.inventory.get(4) != null && this.inventory.get(5) != null && this.inventory.get(6) != null) {
+		if(this.inventory.get(0) != null && this.inventory.get(1) != null && this.inventory.get(2) != null && this.inventory.get(3) != null && this.inventory.get(4) != null && this.inventory.get(5) != null && this.inventory.get(6) != null) {
 			if(areItemsInSlots(
 					JourneyItems.boilPowder, 
 					JourneyItems.boilPowder, 
@@ -38,7 +39,7 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 				this.inventory.set(3, new ItemStack(JourneyItems.blazierOrb));
 				addSound();
 				addParticles();
-			} /*
+			}
 			else if(areItemsInSlots(
 					JourneyItems.snakeSkin, 
 					JourneyItems.concentratedBlood, 
@@ -48,7 +49,7 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 					JourneyItems.concentratedBlood, 
 					JourneyItems.snakeSkin)) {
 				setAllSlotsToNull();
-				inventory[3] = new ItemStack(JourneyItems.soulWatcherOrb);
+				inventory.set(3, new ItemStack(JourneyItems.soulWatcherOrb));
 				addSound();
 				addParticles();
 			}
@@ -61,7 +62,7 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 					JourneyItems.enchantedLeaf, 
 					JourneyItems.natureTablet)) {
 				setAllSlotsToNull();
-				inventory[3] = new ItemStack(JourneyItems.loggerOrb);
+				inventory.set(3, new ItemStack(JourneyItems.loggerOrb));
 				addSound();
 				addParticles();
 			}
@@ -74,7 +75,7 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 					JourneyItems.collectorRock, 
 					JourneyItems.overseeingEye)) {
 				setAllSlotsToNull();
-				inventory[3] = new ItemStack(JourneyItems.sentryKingOrb);
+				inventory.set(3, new ItemStack(JourneyItems.sentryKingOrb));
 				addSound();
 				addParticles();
 			}
@@ -87,7 +88,7 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 					JourneyItems.beastlyStomach, 
 					JourneyItems.scale)) {
 				setAllSlotsToNull();
-				inventory[3] = new ItemStack(JourneyItems.scaleOrb);
+				inventory.set(3, new ItemStack(JourneyItems.scaleOrb));
 				addSound();
 				addParticles();
 			}
@@ -100,7 +101,7 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 					JourneyItems.darkCrystal, 
 					JourneyItems.rocFeather)) {
 				setAllSlotsToNull();
-				inventory[3] = new ItemStack(JourneyItems.thunderbirdOrb);
+				inventory.set(3, new ItemStack(JourneyItems.thunderbirdOrb));
 				addSound();
 				addParticles();
 			}
@@ -113,7 +114,7 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 					JourneyItems.silverClump, 
 					JourneyItems.gateKeys)) {
 				setAllSlotsToNull();
-				inventory[3] = new ItemStack(JourneyItems.corallatorOrb);
+				inventory.set(3, new ItemStack(JourneyItems.corallatorOrb));
 				addSound();
 				addParticles();
 			}
@@ -126,7 +127,7 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 					JourneyItems.goldClump, 
 					JourneyItems.gateKeys)) {
 				setAllSlotsToNull();
-				inventory[3] = new ItemStack(JourneyItems.eudorOrb);
+				inventory.set(3, new ItemStack(JourneyItems.eudorOrb));
 				addSound();
 				addParticles();
 			}
@@ -139,7 +140,7 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 					JourneyItems.hellShards, 
 					JourneyItems.hellstoneIngot)) {
 				setAllSlotsToNull();
-				inventory[3] = new ItemStack(JourneyItems.netherBeastOrb);
+				inventory.set(3, new ItemStack(JourneyItems.netherBeastOrb));
 				addSound();
 				addParticles();
 			}
@@ -152,7 +153,7 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 					JourneyItems.lostSoul, 
 					JourneyItems.withicSpine)) {
 				setAllSlotsToNull();
-				inventory[3] = new ItemStack(JourneyItems.witheringBeastOrb);
+				inventory.set(3, new ItemStack(JourneyItems.witheringBeastOrb));
 				addSound();
 				addParticles();
 			}		
@@ -165,11 +166,11 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 					JourneyItems.purplePowder, 
 					JourneyItems.earthenCrystal)) {
 				setAllSlotsToNull();
-				inventory[3] = new ItemStack(JourneyItems.enchantedTerrastar);
+				inventory.set(3, new ItemStack(JourneyItems.enchantedTerrastar));
 				addSound();
 				addParticles();
 			}
-			/**else if(areItemsInSlots(
+			else if(areItemsInSlots(
 					JourneyItems.spawnerBar, 
 					JourneyItems.ash, 
 					JourneyItems.spawnerBar, 
@@ -178,11 +179,11 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 					JourneyItems.ash, 
 					JourneyItems.spawnerBar)) {
 				setAllSlotsToNull();
-				inventory[3] = new ItemStack(JourneyItems.calciaOrb);
+				inventory.set(3, new ItemStack(JourneyItems.calciaOrb));
 				addParticles();
 				
-			}**/
-		//}
+			}
+		}
 	}
 
 	
