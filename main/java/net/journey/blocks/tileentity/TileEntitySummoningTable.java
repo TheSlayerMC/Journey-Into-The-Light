@@ -188,7 +188,6 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 		}
 	}
 
-	
 	@SideOnly(Side.CLIENT)
 	public void addSound() {
 		double x = pos.getX();
@@ -196,6 +195,7 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 		double z = pos.getZ();
 		world.playSound(x, y, z, JourneySounds.SUMMON_TABLE, SoundCategory.BLOCKS, 1.0f, 1.0f, false);
 	}
+	
 	@SideOnly(Side.CLIENT)
 	public void addParticles() {
 		Random r = new Random();
@@ -231,7 +231,6 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 	public int getSizeInventory() {
 		return 7;
 	}
-
 
 	@Override
 	public boolean isEmpty() {

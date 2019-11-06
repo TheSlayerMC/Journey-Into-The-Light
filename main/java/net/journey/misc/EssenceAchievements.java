@@ -13,7 +13,6 @@ public class EssenceAchievements {
 	public static Advancement makeOreBlock = addAchievement("journey.getOreBlock", 0, 20, JourneyBlocks.shadiumOre, null, false);
 	public static Advancement makeSpawner = addAchievement("journey.getSpawner", 0, 30, JourneyItems.spawnerBar, null, false);
 
-	@SuppressWarnings("")
     private static Advancement addAchievement(String name, int x, int y, Block image, Advancement haveFirst, boolean isSpecial){
 		return null;//(Advancement) (isSpecial ? new Advancement(name, name, x, y, image, (Advancement)haveFirst).registerStat() : new Achievement(name, name, x, y, image, (Achievement)haveFirst).registerStat());
 	}

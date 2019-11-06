@@ -316,7 +316,6 @@ public class TileEntityJourneyChest extends TileEntityLockableLoot implements IT
 
 	public JourneyDoubleChestHandler doubleChestHandler;
 
-	@SuppressWarnings("unchecked")
 	@Override
 	@Nullable
 	public <T> T getCapability(net.minecraftforge.common.capabilities.Capability<T> capability,

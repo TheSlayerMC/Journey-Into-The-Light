@@ -26,7 +26,6 @@ public class EntityStarlightVillager extends EntityModVillager {
 		return GuiHandler.starlightVillager;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public void addRecipies(MerchantRecipeList list) {
 		list.add(new MerchantRecipe(new ItemStack(JourneyItems.fluffyFeather, 32), new ItemStack(JourneyItems.golemChunk, 16), new ItemStack(JourneyItems.cloudiaOrb, 1)));

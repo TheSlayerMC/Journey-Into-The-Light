@@ -38,7 +38,6 @@ public class EntityStarlightBlacksmith extends EntityModVillager {
 		return GuiHandler.starlightBlacksmith;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public void addRecipies(MerchantRecipeList list) {
 		list.add(new MerchantRecipe(new ItemStack(JourneyItems.fluffyFeather, 15), new ItemStack(JourneyItems.golemChunk, 5), new ItemStack(JourneyItems.golemSword, 1)));

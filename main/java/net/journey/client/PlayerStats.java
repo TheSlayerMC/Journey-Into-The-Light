@@ -25,7 +25,7 @@ public class PlayerStats {
 
 			if(mc.gameSettings.showDebugInfo) {
 				String st = I18n.format("journey.time", new Object[0]) + " " + formatTime(getWorldTime(mc));
-				font.drawString(st, 2, 138, 0xFFFFFF);
+				font.drawString(st, 2, 200, 0xFFFFFF);
 			}
 		}
 	}

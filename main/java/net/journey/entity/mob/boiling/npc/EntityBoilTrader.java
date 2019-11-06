@@ -38,12 +38,11 @@ public class EntityBoilTrader extends EntityModVillager {
 		return GuiHandler.boilTrader;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public void addRecipies(MerchantRecipeList list) {
 		list.add(new MerchantRecipe(new ItemStack(JourneyItems.ash, 15), new ItemStack(JourneyItems.boilPowder, 10), new ItemStack(JourneyItems.flamingBow, 1)));
 		list.add(new MerchantRecipe(new ItemStack(JourneyItems.ash, 15), new ItemStack(JourneyItems.boilPowder, 10), new ItemStack(JourneyItems.boilingBlade, 1)));
-		//list.add(new MerchantRecipe(new ItemStack(JourneyItems.ash, 10), new ItemStack(JourneyItems.boilPowder, 10), new ItemStack(JourneyItems.moltenKnife, 15)));
+		list.add(new MerchantRecipe(new ItemStack(JourneyItems.ash, 10), new ItemStack(JourneyItems.boilPowder, 10), new ItemStack(JourneyItems.moltenKnife, 15)));
 		list.add(new MerchantRecipe(new ItemStack(JourneyItems.boilingSkull, 15), new ItemStack(JourneyItems.boilPowder, 10), new ItemStack(JourneyItems.charskullHelmet, 1)));
 		list.add(new MerchantRecipe(new ItemStack(JourneyItems.boilingSkull, 15), new ItemStack(JourneyItems.boilPowder, 10), new ItemStack(JourneyItems.charskullChest, 1)));
 		list.add(new MerchantRecipe(new ItemStack(JourneyItems.boilingSkull, 15), new ItemStack(JourneyItems.boilPowder, 10), new ItemStack(JourneyItems.charskullLegs, 1)));

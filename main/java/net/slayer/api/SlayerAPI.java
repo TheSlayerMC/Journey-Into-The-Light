@@ -55,10 +55,6 @@ public class SlayerAPI {
 	public static final boolean 
 			DEVMODE =  true,
 			BETA = true;
-
-	public static void addRecipe(ItemStack i, Object... o) {
-		//GameRegistry.addRecipe(i, o);
-	}
 	
 	public static ToolMaterial addMeleeMaterial(int uses, float efficiency, float dam){
 		return EnumHelper.addToolMaterial("tool", 3, uses, dam, efficiency, 30);
@@ -78,10 +74,6 @@ public class SlayerAPI {
 		GL11.glScaled(fixScale, fixScale, fixScale);
 		GL11.glPopMatrix();
 	}
-
-	//public static void addBucket(Fluid fluid, ItemStack modBucket) {
-		//FluidContainerRegistry.registerFluidContainer(new FluidContainerData(FluidRegistry.getFluidStack(fluid.getName(), FluidContainerRegistry.BUCKET_VOLUME), modBucket, new ItemStack(Items.bucket)));
-	//}
 	
 	public static void addMapGen(Class c, String s){
 		try {
@@ -96,15 +88,8 @@ public class SlayerAPI {
 		VillagerRegistry.instance().registerVillageCreationHandler(v);
 	}
 
-	/*public static void registerCommand(ICommand o){
-		if (MinecraftServer.getServer().getCommandManager() instanceof ServerCommandManager) {
-			((CommandHandler)MinecraftServer.getServer().getCommandManager()).registerCommand(o);
-		}
-	}*/
-
 	public static void registerEvent(Object o) {
 		MinecraftForge.EVENT_BUS.register(o);
-		FMLCommonHandler.instance().bus().register(o);
 	}
 
 	public static void registerMob(Class entityClass, String name, String finalN, int base, int fore) {
@@ -237,63 +222,6 @@ public class SlayerAPI {
 	public static void sendContinuedMessageToAll(String message) {
 		FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(new TextComponentString(SlayerAPI.Colour.GREEN + message));
 	}
-
-	public static void removeCraftingRecipe(Item removed) {
-		/*ItemStack recipeResult = null;
-		ArrayList recipes = (ArrayList)CraftingManager.getInstance().getRecipeList();
-
-		for (int i = 0; i < recipes.size(); i++) {
-			IRecipe tmpRecipe = (IRecipe) recipes.get(i);
-
-			if (tmpRecipe instanceof ShapedRecipes) {
-				ShapedRecipes recipe = (ShapedRecipes) tmpRecipe;
-				recipeResult = recipe.getRecipeOutput();
-			}
-
-			if (ItemStack.areItemStacksEqual(new ItemStack(removed), recipeResult)) {
-				System.out.println("[" + MOD_NAME + "] Removed Recipe: " + recipes.get(i) + " -> " + recipeResult);
-				recipes.remove(i);
-			}
-		}*/
-	}
-
-	public static void removeCraftingRecipe(Block removed) {
-		/*ItemStack recipeResult = null;
-		ArrayList recipes = (ArrayList)CraftingManager.getInstance().getRecipeList();
-
-		for (int i = 0; i < recipes.size(); i++) {
-			IRecipe tmpRecipe = (IRecipe) recipes.get(i);
-
-			if (tmpRecipe instanceof ShapedRecipes) {
-				ShapedRecipes recipe = (ShapedRecipes) tmpRecipe;
-				recipeResult = recipe.getRecipeOutput();
-			}
-
-			if (ItemStack.areItemStacksEqual(new ItemStack(removed), recipeResult)) {
-				System.out.println("[" + MOD_NAME + "] Removed Recipe: " + recipes.get(i) + " -> " + recipeResult);
-				recipes.remove(i);
-			}
-		}*/
-	}
-	
-	public static void removeCraftingRecipe(ItemStack removed) {
-		/*ItemStack recipeResult = null;
-		ArrayList recipes = (ArrayList)CraftingManager.getInstance().getRecipeList();
-
-		for (int i = 0; i < recipes.size(); i++) {
-			IRecipe tmpRecipe = (IRecipe) recipes.get(i);
-
-			if (tmpRecipe instanceof ShapedRecipes) {
-				ShapedRecipes recipe = (ShapedRecipes) tmpRecipe;
-				recipeResult = recipe.getRecipeOutput();
-			}
-
-			if (ItemStack.areItemStacksEqual(removed, recipeResult)) {
-				System.out.println("[" + MOD_NAME + "] Removed Recipe: " + recipes.get(i) + " -> " + recipeResult);
-				recipes.remove(i);
-			}
-		}*/
-	}
 	
 	public static void removeSmeltingRecipe(ItemStack removed) {
 		FurnaceRecipes.instance().getSmeltingList().remove(removed);
@@ -346,15 +274,5 @@ public class SlayerAPI {
 			}
 		}
 		return boolAddedToInventory;
-	}
-	
-	@SideOnly(Side.CLIENT)
-	public static void renderItem(ItemStack stack, double x, double y, double z, float scale) {
-		RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
-		if(stack != null) {
-			GL11.glTranslated(x, y, z);
-			GL11Helper.scale(scale);
-			//renderItem.renderItemModelForEntity(stack, null, null);
-		}
 	}
 }

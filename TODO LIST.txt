@@ -1,20 +1,13 @@
 BEFORE RELEASE 1.12 List
 
 General important things:
-ADD MOD SUPPORT!!!! (JEI, etc etc)
 
 Items:
 All items need to be tested and checked that no crash occurs
 Remove unused items
 
 Blocks:
-SUMMONING TABLE CHANGE:
-	> will now take longer to produce the result, like a furnace
-	> now requires blood to operate
-All blocks need to be placed down and used if an interaction is avaliable to check crashes
-Fix tileentities (summoning and grindstone)
 remove unused blocks
-Fix corba portal frame so it creates the portal when the eyes are placed inside the slots
 
 Rendering:
 Fix essence bar so that the HUD updates (maybe change it to be more like the xp bar and have it overlap it when being used, frees up space and allows for more precise mana consumption)
@@ -38,7 +31,6 @@ Make sure everything is fairly balanced (weapons, tools, armor, mobs, etc.)
 Run as server and make sure there's no crash
 
 CODE:
-Brock is to check through code and get rid of un useless classes and combine others such as food classes
 
 Future plans:
 Overworld biomes, dimension biomes, more staves and wands, End update

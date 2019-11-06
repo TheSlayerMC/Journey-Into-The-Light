@@ -38,7 +38,6 @@ public class EntityTordo extends EntityModVillager {
 		return GuiHandler.tordo;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public void addRecipies(MerchantRecipeList list) {
 		list.add(new MerchantRecipe(new ItemStack(JourneyItems.natureTablet, 15), new ItemStack(JourneyItems.overseeingEye, 15), new ItemStack(JourneyItems.healersBlade, 1)));

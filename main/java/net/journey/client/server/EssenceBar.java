@@ -6,7 +6,7 @@ import net.minecraft.nbt.NBTTagInt;
 
 public class EssenceBar implements IEssence {
 
-	private int essenceValue = 10;
+	private int essenceValue = 0;
 	private int regenValue = 0;
 
 	@Override
@@ -20,13 +20,11 @@ public class EssenceBar implements IEssence {
 	@Override
 	public void addEssence(int points) {
 		essenceValue += points;
-		if(getEssenceValue() > 10) setEssence(10);
 	}
 
 	@Override
 	public void setEssence(int essence) {
 		essenceValue = essence;
-		if(getEssenceValue() > 10) essenceValue = 10;
 	}
 
 	@Override
@@ -39,6 +37,8 @@ public class EssenceBar implements IEssence {
 		if(getEssenceValue() > 10) setEssence(10);
 		if(regenValue-- <= 0) regenValue = 30;
 		if(regenValue >= 30) regen();
+		//essenceValue = 0;
+		System.out.println(getEssenceValue());
 	}
 
 	@Override

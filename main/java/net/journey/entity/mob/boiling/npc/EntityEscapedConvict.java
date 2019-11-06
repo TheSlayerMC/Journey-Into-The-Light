@@ -38,7 +38,6 @@ public class EntityEscapedConvict extends EntityModVillager {
 		return GuiHandler.escaped;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public void addRecipies(MerchantRecipeList list) {
 		list.add(new MerchantRecipe(new ItemStack(JourneyItems.boilingSkull, 1), new ItemStack(JourneyItems.boilPowder, 10), new ItemStack(JourneyItems.charredBow, 1)));
