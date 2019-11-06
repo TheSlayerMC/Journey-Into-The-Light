@@ -68,22 +68,20 @@ public class BlockSummoningTable extends BlockModContainer {
 		return SlayerAPI.toItem(JourneyBlocks.summoningTable);
 	}
 	
+	@Override
 	public ItemStack getItem(World w, BlockPos pos, IBlockState state) {
 		return new ItemStack(JourneyBlocks.summoningTable);
-	}
-
-	@Override
-	public boolean onBlockActivated(World w, BlockPos pos, IBlockState state, EntityPlayer p, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		int x = pos.getX(), y = pos.getY(), z = pos.getZ();
-		if (w.isRemote) {
-			p.openGui(JITL.instance, GuiHandler.summoning, w, x, y, z);
-		}
-		return true;
 	}
 	
 	@Override
 	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
 		return new AxisAlignedBB(0.0F, 0.0F, 0.0F, 1.0F, 0.8125F, 1.0F);
+	}
+
+	@Override
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		playerIn.openGui(SlayerAPI.MOD_ID, GuiHandler.summoning, worldIn, pos.getX(), pos.getY(), pos.getZ());
+		return true;
 	}
 	
 	@Override
@@ -101,21 +99,16 @@ public class BlockSummoningTable extends BlockModContainer {
 	public boolean isFullCube(IBlockState state) {
 		return false;
 	}
-
-	@Override
-	public TileEntity createNewTileEntity(World worldIn, int meta) {
-		return new TileEntitySummoningTable();
-	}
-	
-	@Override
-	public boolean hasTileEntity() {
-		return true;
-	}
 	
 	@Override
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
 		TileEntitySummoningTable tile = (TileEntitySummoningTable)worldIn.getTileEntity(pos);
-		//InventoryHelper.dropInventoryItems(worldIn, pos, tile);
+		InventoryHelper.dropInventoryItems(worldIn, pos, tile);
 		super.breakBlock(worldIn, pos, state);
+	}
+
+	@Override
+	public TileEntity createNewTileEntity(World worldIn, int meta) {
+		return new TileEntitySummoningTable();
 	}
 }

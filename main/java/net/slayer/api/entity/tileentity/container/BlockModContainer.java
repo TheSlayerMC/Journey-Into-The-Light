@@ -1,116 +1,148 @@
 package net.slayer.api.entity.tileentity.container;
 
-import javax.annotation.Nullable;
+import java.util.Random;
 
-import net.minecraft.block.ITileEntityProvider;
-import net.minecraft.block.material.MapColor;
-import net.minecraft.block.material.Material;
+import net.journey.JITL;
+import net.journey.JourneyBlocks;
+import net.journey.JourneyItems;
+import net.journey.JourneyTabs;
+import net.journey.util.LangRegistry;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Enchantments;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.stats.StatList;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumBlockRenderType;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorldNameable;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.EnumMaterialTypes;
+import net.slayer.api.EnumToolType;
+import net.slayer.api.SlayerAPI;
 import net.slayer.api.block.BlockMod;
 
-public abstract class BlockModContainer extends BlockMod implements ITileEntityProvider {
+public abstract class BlockModContainer extends BlockContainer {
 
-	public BlockModContainer(EnumMaterialTypes type, String name, String n, float hardness, CreativeTabs tab) {
-        super(type, name, n, hardness, tab);
-        this.hasTileEntity = true;
-    }
+	protected EnumMaterialTypes blockType;
+	protected Item drop = null;
+	protected Random rand;
+	public int boostBrightnessLow;
+	public int boostBrightnessHigh;
+	public boolean enhanceBrightness;
+	public String name;
+	protected boolean isOpaque = true, isNormalCube = true;
 	
-    protected boolean isInvalidNeighbor(World worldIn, BlockPos pos, EnumFacing facing)
-    {
-        return worldIn.getBlockState(pos.offset(facing)).getMaterial() == Material.CACTUS;
-    }
+	public BlockModContainer(String name, String finalName, float hardness) {
+		this(EnumMaterialTypes.STONE, name, finalName, hardness, JourneyTabs.blocks);
+	}
 
-    protected boolean hasInvalidNeighbor(World worldIn, BlockPos pos)
-    {
-        return this.isInvalidNeighbor(worldIn, pos, EnumFacing.NORTH) || this.isInvalidNeighbor(worldIn, pos, EnumFacing.SOUTH) || this.isInvalidNeighbor(worldIn, pos, EnumFacing.WEST) || this.isInvalidNeighbor(worldIn, pos, EnumFacing.EAST);
-    }
+	public BlockModContainer(String name, String finalName) {
+		this(EnumMaterialTypes.STONE, name, finalName, 2.0F, JourneyTabs.blocks);
+	}
 
-    /**
-     * The type of render function called. MODEL for mixed tesr and static model, MODELBLOCK_ANIMATED for TESR-only,
-     * LIQUID for vanilla liquids, INVISIBLE to skip all rendering
-     */
-    public EnumBlockRenderType getRenderType(IBlockState state)
-    {
-        return EnumBlockRenderType.INVISIBLE;
-    }
+	public BlockModContainer(EnumMaterialTypes type, String name, String finalName, float hardness) {
+		this(type, name, finalName, hardness, JourneyTabs.blocks);
+	}
 
-    /**
-     * Called serverside after this block is replaced with another in Chunk, but before the Tile Entity is updated
-     */
-    public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
-    {
-        super.breakBlock(worldIn, pos, state);
-        worldIn.removeTileEntity(pos);
-    }
+	public BlockModContainer(String name, String finalName, boolean breakable, CreativeTabs tab) {
+		this(EnumMaterialTypes.STONE, name, finalName, tab);
+	}
 
-    /**
-     * Spawns the block's drops in the world. By the time this is called the Block has possibly been set to air via
-     * Block.removedByPlayer
-     */
-    public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity te, ItemStack stack)
-    {
-        if (te instanceof IWorldNameable && ((IWorldNameable)te).hasCustomName())
-        {
-            player.addStat(StatList.getBlockStats(this));
-            player.addExhaustion(0.005F);
+	public BlockModContainer(String name, String finalName, boolean breakable) {
+		this(name, finalName, breakable, JourneyTabs.blocks);
+	}
 
-            if (worldIn.isRemote)
-            {
-                return;
-            }
+	public BlockModContainer(EnumMaterialTypes blockType, String name, String finalName, CreativeTabs tab) {
+		super(blockType.getMaterial());
+		LangRegistry.addBlock(name, finalName);
+		this.blockType = blockType;
+		setHardness(2.0F);
+		rand = new Random();
+		setSoundType(blockType.getSound());
+		setCreativeTab(tab);
+		setUnlocalizedName(name);
+		this.name = name; 
+		JourneyBlocks.blocks.add(this);
+		JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
+		setRegistryName(SlayerAPI.MOD_ID, name);
+		JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
+	}
 
-            int i = EnchantmentHelper.getEnchantmentLevel(Enchantments.FORTUNE, stack);
-            Item item = this.getItemDropped(state, worldIn.rand, i);
+	public BlockModContainer(EnumMaterialTypes blockType, String name, String finalName, float hardness, CreativeTabs tab) {
+		super(blockType.getMaterial());
+		LangRegistry.addBlock(name, finalName);
+		this.blockType = blockType;
+		rand = new Random();
+		setSoundType(blockType.getSound());
+		setCreativeTab(tab);
+		setUnlocalizedName(name);
+		setHardness(hardness);
+		this.name = name;
+		JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
+		JourneyBlocks.blocks.add(this);
+		setRegistryName(SlayerAPI.MOD_ID, name);
+		JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
+	}
+	
+	public void registerItemModel(Item itemBlock) {
+		JITL.proxy.registerItemRenderer(itemBlock, 0, name);
+	}
+	
+	public Item createItemBlock() {
+		return new ItemBlock(this).setRegistryName(getRegistryName());
+	}
 
-            if (item == Items.AIR)
-            {
-                return;
-            }
+	public Block addName(String name) {
+		JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
+		return this;
+	}
 
-            ItemStack itemstack = new ItemStack(item, this.quantityDropped(worldIn.rand));
-            itemstack.setStackDisplayName(((IWorldNameable)te).getName());
-            spawnAsEntity(worldIn, pos, itemstack);
-        }
-        else
-        {
-            super.harvestBlock(worldIn, player, pos, state, (TileEntity)null, stack);
-        }
-    }
-
-    /**
-     * Called on server when World#addBlockEvent is called. If server returns true, then also called on the client. On
-     * the Server, this may perform additional changes to the world, like pistons replacing the block with an extended
-     * base. On the client, the update may involve replacing tile entities or effects such as sounds or particles
-     */
-    public boolean eventReceived(IBlockState state, World worldIn, BlockPos pos, int id, int param)
-    {
-        super.eventReceived(state, worldIn, pos, id, param);
-        TileEntity tileentity = worldIn.getTileEntity(pos);
-        return tileentity == null ? false : tileentity.receiveClientEvent(id, param);
-    }
-    
-    @Override
-	public boolean isOpaqueCube(IBlockState state) {
-        return false;
-    }
+	public String getName() {
+		return name;
+	}
 
 	@Override
-    public boolean isFullCube(IBlockState state) {
-        return false;
-    }
+	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+		if(drop == null) return SlayerAPI.toItem(this);
+		return drop;
+	}
+
+	public BlockModContainer setHarvestLevel(EnumToolType type) {
+		setHarvestLevel(type.getType(), type.getLevel());
+		return this;
+	}
+
+    @Override
+	@SideOnly(Side.CLIENT) 
+	public BlockRenderLayer getBlockLayer() {
+		return BlockRenderLayer.CUTOUT;
+	}
+
+	@Override
+	public int quantityDropped(Random rand) {
+		return 1;
+	}
+	
+	@Override
+	public boolean isOpaqueCube(IBlockState state) {
+		return isOpaque;
+	}
+	
+	@Override
+	public boolean isNormalCube(IBlockState state, IBlockAccess world, BlockPos pos) {
+		return false;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) { }
+
+	@Override
+	public boolean isFireSource(World world, BlockPos pos, EnumFacing side) {
+		return true;
+	}
 }

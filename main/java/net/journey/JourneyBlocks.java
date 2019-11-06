@@ -254,7 +254,7 @@ public class JourneyBlocks {
 	//public static BlockMod corbaChest;
 	//public static BlockMod cloudiaChest;
 	//public static BlockMod terraniaChest;
-	public static BlockMod journeyChest;
+	public static BlockJourneyChest journeyChest;
 
 	public static BlockMod nethicDungeonBricks;
 	public static BlockMod boilChain;
@@ -443,7 +443,7 @@ public class JourneyBlocks {
 	public static BlockModFlower infernoPlant;
 	public static BlockModFlower burntGrass;
 
-	public static BlockMod grindstone;
+	public static BlockGrindstone grindstone;
 	public static BlockMod blueGems;
 	public static BlockMod redGems;
 
@@ -460,27 +460,27 @@ public class JourneyBlocks {
 
 	public static BlockMod knowledgeTable;
 	public static BlockMod stoneCraftingTable;
-	public static BlockMod summoningTable;
+	public static BlockSummoningTable summoningTable;
 	public static BlockMod bossAltar;
 
-	public static BlockMod observerSpawner;
-	public static BlockMod screamerSpawner;
-	public static BlockMod goldbotSpawner;
-	public static BlockMod silverbotSpawner;
-	public static BlockMod hellbotSpawner;
-	public static BlockMod purplianSpawner;
-	public static BlockMod starlightGolemSpawner;
-	public static BlockMod starlightTransporterSpawner;
+	public static BlockModSpawner observerSpawner;
+	public static BlockModSpawner screamerSpawner;
+	public static BlockModSpawner goldbotSpawner;
+	public static BlockModSpawner silverbotSpawner;
+	public static BlockModSpawner hellbotSpawner;
+	public static BlockModSpawner purplianSpawner;
+	public static BlockModSpawner starlightGolemSpawner;
+	public static BlockModSpawner starlightTransporterSpawner;
 	public static BlockMod sentarAlter;
-	public static BlockMod sorcererSpawner;
-	public static BlockMod frostbiterSpawner;
-	public static BlockMod overseerSpawner;
-	public static BlockMod overseerElderSpawner;
+	public static BlockModSpawner sorcererSpawner;
+	public static BlockModSpawner frostbiterSpawner;
+	public static BlockModSpawner overseerSpawner;
+	public static BlockModSpawner overseerElderSpawner;
 
 	public static BlockMod elderBlock;
 
-	public static BlockMod netherFurnace;
-	public static BlockMod netherFurnaceActive;
+	public static BlockNetherFurnace netherFurnace;
+	public static BlockNetherFurnace netherFurnaceActive;
 	
 
 
@@ -882,7 +882,7 @@ public class JourneyBlocks {
 		elderBlock = new BlockChangeable("elderBlock", "Elder Block", JourneyItems.elderKey, JourneyBlocks.overseerElderSpawner);
 
 		netherFurnace = new BlockNetherFurnace("netherFurnace", "Nethic Furnace", false);
-		netherFurnaceActive = (BlockMod) new BlockNetherFurnace("netherFurnaceActive", "Nethic Furnace", true).setLightLevel(0.7F).setCreativeTab(null);
+		netherFurnaceActive = (BlockNetherFurnace) new BlockNetherFurnace("netherFurnaceActive", "Nethic Furnace", true).setLightLevel(0.7F).setCreativeTab(null);
 	 	
 		sizzleberryBush = new BlockModBush("sizzleberryBush", "Sizzleberry Bush", JourneyItems.sizzleberry, true);
 	 	bradberryBush = new BlockModBush("bradberryBush", "Bradberry Bush", JourneyItems.bradberry, false);
