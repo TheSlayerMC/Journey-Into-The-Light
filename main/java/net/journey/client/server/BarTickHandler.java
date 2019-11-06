@@ -25,8 +25,7 @@ public class BarTickHandler {
 
 	@SubscribeEvent
 	public void attachCapability(AttachCapabilitiesEvent<Entity> event) {
-		if(!(event.getObject() instanceof EntityPlayer))
-			return;
-		event.addCapability(ESSENCE_CAP, new EssenceProvider());
+		if(event.getObject() instanceof EntityPlayer)
+			event.addCapability(ESSENCE_CAP, new EssenceProvider());
 	}
 }
