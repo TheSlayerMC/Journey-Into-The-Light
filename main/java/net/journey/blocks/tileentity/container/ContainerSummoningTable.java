@@ -6,6 +6,7 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemStack;
 
 public class ContainerSummoningTable extends Container {
 
@@ -29,5 +30,10 @@ public class ContainerSummoningTable extends Container {
 	@Override
 	public boolean canInteractWith(EntityPlayer playerIn) {
 		return true;
+	}
+	
+	@Override
+	public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2) {
+		return ItemStack.EMPTY;
 	}
 }

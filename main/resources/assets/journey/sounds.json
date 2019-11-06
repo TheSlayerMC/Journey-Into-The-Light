@@ -70,7 +70,7 @@
  "unlock":{"category":"master","sounds": ["journey:unlock"]},
  "wrapper":{"category":"neutral","sounds": ["journey:wrapper"]},
  "summon_boss":{"category":"master","sounds": ["journey:summon_boss"]},
- "summon":{"category":"master","sounds": ["journey:summon"]},
+ "summon_table":{"category":"master","sounds": ["journey:summon_table"]},
  "music.records.underwaterWorld":{"category": "music", "sounds": [{"name": "journey:music/records/underwaterWorld", "stream": true}]},
  "music.records.blueWater":{"category": "music", "sounds": [{"name": "journey:music/records/blueWater", "stream": true}]},
  "music.records.raceStar":{"category": "music", "sounds": [{"name": "journey:music/records/raceStar", "stream": true}]},

@@ -3,6 +3,7 @@ package net.journey.blocks.tileentity;
 import java.util.Random;
 
 import net.journey.JourneyItems;
+import net.journey.JourneySounds;
 import net.journey.blocks.tileentity.container.ContainerSummoningTable;
 import net.journey.client.render.particles.EntitySummoningFX;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,6 +16,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntityLockableLoot;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.SoundCategory;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -181,7 +183,7 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 				setAllSlotsToNull();
 				inventory.set(3, new ItemStack(JourneyItems.calciaOrb));
 				addParticles();
-				
+				addSound();
 			}
 		}
 	}
@@ -192,7 +194,7 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 		double x = pos.getX();
 		double y = pos.getY();
 		double z = pos.getZ();
-		//world.playSoundEffect(x, y, z, "essence:summon", 1.0F, 1.0F);
+		world.playSound(x, y, z, JourneySounds.SUMMON_TABLE, SoundCategory.BLOCKS, 1.0f, 1.0f, false);
 	}
 	@SideOnly(Side.CLIENT)
 	public void addParticles() {

@@ -40,7 +40,7 @@ public class SummoningTableRenderer extends TileEntitySpecialRenderer {
 	}
 	
 	@Override
-	public void renderTileEntityFast(TileEntity t, double x, double y, double z, float partialTicks, int destroyStage, float partial, BufferBuilder buffer) {
+	public void render(TileEntity t, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
 		TileEntitySummoningTable tile = (TileEntitySummoningTable)t;
 		renderItem(tile.getStackInSlot(0), t.getWorld(), x + 0.85D, y, z + 0.85D, false);
 		renderItem(tile.getStackInSlot(1), t.getWorld(), x + 0.85D, y, z + 0.5D, false);
@@ -61,7 +61,7 @@ public class SummoningTableRenderer extends TileEntitySpecialRenderer {
 			ItemStack i = stack;
 			EntityItem item = new EntityItem(w, x, y, z, i);
 			GL11.glScalef(scale, scale, scale);
-			//item.setEntityItemStack(i);
+			item.setItem(i);
 			item.hoverStart = 0.0F;
 			renderEntity.doRender(item, 0, 0, 0, 0, 0);
 			GL11.glPopMatrix();
