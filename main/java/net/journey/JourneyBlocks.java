@@ -94,7 +94,7 @@ public class JourneyBlocks {
 	public static BlockMod smithstone;
 	public static BlockMod mageWall;
 
-	public static BlockModGravity heatstoneOre;
+	//public static BlockModGravity heatstoneOre;
 	
 	public static BlockMod enderilliumOre;
 	public static BlockMod gorbiteOre;
@@ -510,7 +510,7 @@ public class JourneyBlocks {
 		
 		bleedstone = (BlockMod) new BlockModOre("bleedstoneOre", "Bleedstone", false).setHarvestLevel(EnumToolType.DIAMOND_PICK).setLightLevel(10.5F);
 		smithstone = (BlockMod) new BlockModOre("smithstoneOre", "Smithstone", false).setHarvestLevel(EnumToolType.DIAMOND_PICK).setLightLevel(10.5F);
-		heatstoneOre = (BlockModGravity) new BlockModOreFalling(EnumMaterialTypes.SAND, "heatstoneOre", "Heatstone Ore", false).setHarvestLevel(EnumToolType.DIAMOND_SHOVEL).setLightLevel(0.5F).setHardness(0.5F);
+		//heatstoneOre = (BlockModGravity) new BlockModOreFalling(EnumMaterialTypes.SAND, "heatstoneOre", "Heatstone Ore", false).setHarvestLevel(EnumToolType.DIAMOND_SHOVEL).setLightLevel(0.5F).setHardness(0.5F);
 		
 		enderilliumOre = new BlockModOre("enderilliumOre", "Enderillium Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
 		gorbiteOre = new BlockModOre("gorbiteOre", "Gorbite Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
