@@ -46,11 +46,6 @@ public class BlockModOreFalling extends BlockModGravity {
 	@SideOnly(Side.CLIENT)
 	private void renderParticle(World w, int x, int y, int z, BlockPos pos) {
 		float r = 0.0F, g = 0.0F, b = 0.0F;
-		if(this == JourneyBlocks.heatstoneOre) {
-			r = 1.0F;
-			g = 0.5F;
-			b = 0.0F;
-		}
 		Random random = w.rand;
 		double d0 = 0.0625D;
 		for(int l = 0; l < 6; ++l) {
