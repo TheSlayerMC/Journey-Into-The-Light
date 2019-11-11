@@ -1446,11 +1446,11 @@ public class JourneyItems {
 		sunsetPiercer = new ItemPiercer("sunsetPiercer", "Sunset Piercer", 7F, 1, EntitySunsetPiercer.class);
 		skyPiercer = new ItemPiercer("skyPiercer", "Sky Piercer", 29F, 6, EntitySkyPiercer.class);
 
-		//moltenKnife = new ItemThrowableArrow("moltenKnife", "Molten Knife", 10F, 5, EntityMoltenKnife.class);
-		//aquaticKnife = new ItemThrowableArrow("aquaticKnife", "Aquatic Knife", 6F, 5, EntityAquaticKnife.class);
-		//bloodKnife = new ItemThrowableArrow("bloodKnife", "Blood Knife", 6F, 5, EntityBloodKnife.class);
-		//charredKnife = new ItemThrowableArrow("charredKnife", "Charred Knife", 6F, 5, EntityCharredKnife.class);
-		//sizzlingKnife = new ItemThrowableArrow("sizzlingKnife", "Sizzling Knife", 6F, 5, EntitySizzlingKnife.class);
+		moltenKnife = new ItemThrowableArrow("moltenKnife", "Molten Knife", 10F, 5, EntityMoltenKnife.class);
+		aquaticKnife = new ItemThrowableArrow("aquaticKnife", "Aquatic Knife", 6F, 5, EntityAquaticKnife.class);
+		bloodKnife = new ItemThrowableArrow("bloodKnife", "Blood Knife", 6F, 5, EntityBloodKnife.class);
+		charredKnife = new ItemThrowableArrow("charredKnife", "Charred Knife", 6F, 5, EntityCharredKnife.class);
+		sizzlingKnife = new ItemThrowableArrow("sizzlingKnife", "Sizzling Knife", 6F, 5, EntitySizzlingKnife.class);
 		
 		//obsidianBoat = new ItemObsidianBoat("obsidianboat", "Obsidian Boat");
 		infernoshield = new ItemModShield("infernoshield", "Inferno Shield", 2, false);

@@ -146,6 +146,7 @@ public class ItemMultiTool extends ItemTool {
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack item, World worldIn, List<String> infoList, ITooltipFlag flagIn) {
 		ItemDescription.addInformation(item, infoList);
+		infoList.add(SlayerAPI.Colour.BLUE + LangHelper.getEfficiency() + ": " + toolMaterial.getEfficiency());
 		if(item.getMaxDamage() != -1) infoList.add(item.getMaxDamage() - item.getItemDamage() + " " + LangHelper.getUsesRemaining());
 	}
 }
