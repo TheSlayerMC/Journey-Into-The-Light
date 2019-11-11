@@ -38,7 +38,7 @@ public class EssenceBar implements IEssence {
 		if(regenValue-- <= 0) regenValue = 30;
 		if(regenValue >= 30) regen();
 		//essenceValue = 0;
-		System.out.println(getEssenceValue());
+		//System.out.println(getEssenceValue());
 	}
 
 	@Override
