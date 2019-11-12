@@ -834,12 +834,12 @@ public class JourneyItems {
 		juiceberry = new ItemModFood("juiceberry", "Juiceberry", 1, 6, 1, false).setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.confusion, 50, 1), 1.0F);
 		bogberry = new ItemModFood("bogberry", "Bogberry", 2, 6, 3, false).setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.confusion, 50, 1), 1.0F);
 		
-		heartSml = new ItemHealth("heartSml", "Heart: Tier 1", 1, 2, 0.2F, false, false, 60, false, true);
-		heartMed = new ItemHealth("heartMed", "Heart: Tier 2", 2, 2, 0.2F, false, false, 60, false, true);
-		heartLrg = new ItemHealth("heartLrg", "Heart: Tier 3", 4, 2, 0.2F, false, false, 60, false, true);
-		heartUlt = new ItemHealth("heartUlt", "Heart: Ultimate", 8, 2, 0.2F, false, false, 60, false, true);
+		heartSml = new ItemHealth("heartSml", "Heart: Tier 1", 1, 2, 0.2F, false, 60, false, true);
+		heartMed = new ItemHealth("heartMed", "Heart: Tier 2", 2, 2, 0.2F, false, 60, false, true);
+		heartLrg = new ItemHealth("heartLrg", "Heart: Tier 3", 4, 2, 0.2F, false, 60, false, true);
+		heartUlt = new ItemHealth("heartUlt", "Heart: Ultimate", 8, 2, 0.2F, false, 60, false, true);
 		
-		heartSentry = new ItemHealth("heartSen", "Sentry's Heart", 10, 2, 0.2F, false, false, 20, true, false);
+		heartSentry = new ItemHealth("heartSen", "Sentry's Heart", 10, 2, 0.2F, false, 20, true, false);
 		hellstoneIngot = new ItemMod("hellstoneIngot", "Hellstone Ingot");
 		verditeIngot = new ItemMod("verditeIngot", "Verdite Ingot");
 		shadiumIngot = new ItemMod("shadiumIngot", "Shadium Ingot");
@@ -1354,12 +1354,12 @@ public class JourneyItems {
 		rockyHammer = new ItemHammer("rockyHammer", "Rocky Hammer", JourneyToolMaterial.ROCKY_HAMMER, false, EntityRock.class, 6, 4, 2230);
 		crystalizedHammer = new ItemHammer("crystalizedHammer", "Crystalized Hammer", JourneyToolMaterial.CRYSTAL_HAMMER, false, EntityIceBall.class, 7, 4, 3320);
 
-		//chaosCannon = new ItemGun("chaosCannon", "Chaos Cannon", 6, "Shoots a bouncing projectile", null);
-		//rockLauncher = new ItemGun("rockLauncher", "Rock Launcher", 4, "Stuns mobs for 10 seconds", EntityRock.class);
-		//netherPlasma = new ItemGun("netherPlasma", "Nether Plasma", 10, "Burns mobs for 10 seconds", EntityNetherPlasma.class);
-		//oceanPlasma = new ItemGun("oceanPlasma", "Ocean Plasma", 4, "Harms mobs", EntityFloroWater.class);
-		//forestPlasma = new ItemGun("forestPlasma", "Forest Plasma", 4, "Poisons Mobs for 10 seconds", EntityOvergrown.class);
-		//eyeBlaster = new ItemGun("eyeBlaster", "Eye Blaster", 12, "Harms and burns mobs for 10 seconds", EntityEyeBlaster.class);
+		chaosCannon = new ItemGun("chaosCannon", "Chaos Cannon", 6, "Shoots a bouncing projectile", null);
+		rockLauncher = new ItemGun("rockLauncher", "Rock Launcher", 4, "Stuns mobs for 10 seconds", EntityRock.class);
+		netherPlasma = new ItemGun("netherPlasma", "Nether Plasma", 10, "Burns mobs for 10 seconds", EntityNetherPlasma.class);
+		oceanPlasma = new ItemGun("oceanPlasma", "Ocean Plasma", 4, "Harms mobs", EntityFloroWater.class);
+		forestPlasma = new ItemGun("forestPlasma", "Forest Plasma", 4, "Poisons Mobs for 10 seconds", EntityOvergrown.class);
+		eyeBlaster = new ItemGun("eyeBlaster", "Eye Blaster", 12, "Harms and burns mobs for 10 seconds", EntityEyeBlaster.class);
 
 		//TODO
 		friedFlamingGhastTentacale = new ItemModFood("friedFlamingGhastTentacle", "Fried Flaming Tentacale", 4, 0.6F, 10, true).setAlwaysEdible().setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.fireResistance, 5, 1), 1.0F);

@@ -399,8 +399,8 @@ public class JourneyRecipes {
 			addOre(JourneyBlocks.mekyumOre, JourneyItems.mekyumIngot, JourneyBlocks.mekyumBlock, JourneyItems.mekyumAxe,
 					JourneyItems.mekyumPickaxe, JourneyItems.mekyumShovel, JourneyItems.mekyumHoe,
 					JourneyItems.mekyumSword, JourneyItems.mekyumMultiTool, null, null, null, null, null);
-			// addOre(b.ashualOre, i.ash, b.ashualBlock, null, null, null, null,
-			// null, null, null, null, null, null, i.ashDust);
+			addOre(b.ashualOre, i.ash, b.ashualBlock, null, null, null, null,
+			 null, null, null, null, null, null, i.ashDust);
 			
 			addShapedRecipe(new ItemStack(JourneyItems.demonicBomb, 16),
 					new Object[] { "ddd", "did", "ddd", 'd', JourneyItems.demonicDust, 'i', JourneyItems.crystalBall });

@@ -27,7 +27,7 @@ public class ItemHealth extends ItemFood {
 	public double hearts;
 	public boolean isSentry;
 	public boolean isntSentry;
-    public ItemHealth(String name, String actual, int hearts, int heal, float f, boolean sat, boolean b, int max, boolean isSentry, boolean isntSentry) {
+    public ItemHealth(String name, String actual, int hearts, int heal, float f, boolean sat, int max, boolean isSentry, boolean isntSentry) {
         super(heal, sat);
         this.hearts = hearts;
         this.isSentry = isSentry;
