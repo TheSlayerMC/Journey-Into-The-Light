@@ -103,14 +103,14 @@ public class EntitySoulWatcher extends EntityEssenceBoss implements IRangedAttac
 		case 0:
 			te.setInventorySlotContents(2, new ItemStack(JourneyItems.staringBow, 1));
 			te.setInventorySlotContents(11, new ItemStack(JourneyItems.eucaPortalPiece_1, 1));
-			te.setInventorySlotContents(12, new ItemStack(JourneyItems.demonicEye, 13));
+			te.setInventorySlotContents(12, new ItemStack(JourneyItems.demonicEye, 12));
 			te.setInventorySlotContents(16, new ItemStack(JourneyItems.twilightBoots, 1));
 			te.setInventorySlotContents(5, new ItemStack(JourneyItems.twilightChest, 1));
 			te.setInventorySlotContents(10, new ItemStack(JourneyItems.twilightHelmet, 1));
 			te.setInventorySlotContents(20, new ItemStack(JourneyItems.twilightLegs, 1));
 			break;
 		case 1:
-			te.setInventorySlotContents(12, new ItemStack(JourneyItems.demonicEye, 13));
+			te.setInventorySlotContents(12, new ItemStack(JourneyItems.demonicEye, 12));
 			te.setInventorySlotContents(5, new ItemStack(JourneyItems.staringBow, 1));
 			te.setInventorySlotContents(15, new ItemStack(JourneyItems.eucaPortalPiece_1, 2));
 			te.setInventorySlotContents(17, new ItemStack(JourneyItems.twilightBoots, 1));

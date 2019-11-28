@@ -51,10 +51,10 @@ public class SlayerAPI {
 			MOD_NAME = "Journey Into the Light", 
 			MOD_ID = "journey", 
 			PREFIX = MOD_ID + ":", 
-			MOD_VERSION = "1.0.5b4";
+			MOD_VERSION = "1.0.5";
 	public static final boolean 
 			DEVMODE =  true,
-			BETA = true;
+			BETA = false;
 	
 	public static ToolMaterial addMeleeMaterial(int uses, float efficiency, float dam){
 		return EnumHelper.addToolMaterial("tool", 3, uses, dam, efficiency, 30);
