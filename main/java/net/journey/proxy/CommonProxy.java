@@ -77,7 +77,6 @@ public class CommonProxy {
 		DimensionHelper.init();
 		DimensionHelper.addSpawns();
         
-		CapabilityManager.INSTANCE.register(IEssence.class, new EssenceStorage(), EssenceBar.class);
 
 		SlayerAPI.registerEvent(new BarTickHandler());
 		SlayerAPI.registerEvent(new RenderBar());
@@ -90,7 +89,7 @@ public class CommonProxy {
 		GameRegistry.registerWorldGenerator(new WorldGenJourney(), 2);
 		SlayerAPI.registerEvent(new PlayerEvent());
 		JourneySmeltingRecipes.init();
-
+		CapabilityManager.INSTANCE.register(IEssence.class, new EssenceStorage(), EssenceBar.class);
 	}
 
     @SubscribeEvent
