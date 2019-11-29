@@ -70,7 +70,7 @@ public class ItemEssencePotion extends ItemMod {
 		int amount = isStrong ? 10 : 5;
 		if(!world.isRemote) {
 			IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
-			mana.addEssence(amount);
+			mana.fill(player, amount);
 			if(!player.capabilities.isCreativeMode) stack.shrink(1);
 		}
 		return stack;

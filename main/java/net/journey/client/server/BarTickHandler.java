@@ -1,31 +1,60 @@
 package net.journey.client.server;
 
-import org.lwjgl.opengl.GL11;
+import static net.journey.essence.EssenceProvider.ESSENCE_CAP;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiIngame;
-import net.minecraft.client.gui.ScaledResolution;
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent.RenderTickEvent;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import net.slayer.api.SlayerAPI;
 
 public class BarTickHandler {
 
-	public static final ResourceLocation ESSENCE_CAP  = new ResourceLocation(SlayerAPI.MOD_ID, "essence_mana"); 
+	@SubscribeEvent
+	public void onTick(PlayerTickEvent event) {
+		if (event.phase == Phase.END) {
+			getEssence(event.player).regen(event.player);
+		}
+	}
 
 	@SubscribeEvent
-	public void attachCapability(AttachCapabilitiesEvent<Entity> event) {
-		if(event.getObject() instanceof EntityPlayer)
-			event.addCapability(ESSENCE_CAP, new EssenceProvider());
+	public void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
+		refillEssence(event.player);
+	}
+
+	@SubscribeEvent
+	public void onPlayerLoggedOut(PlayerEvent.PlayerLoggedOutEvent event) {
+		drainEssence(event.player);
+	}
+
+	@SubscribeEvent
+	public void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event) {
+		refillEssence(event.player);
+	}
+
+	@SubscribeEvent
+	public void onPlayerChangedDimension(PlayerEvent.PlayerChangedDimensionEvent event) {
+		refillEssence(event.player);
+		event.player.addExperienceLevel(0);
+	}
+
+	private void drainEssence(EntityPlayer player) {
+		IEssence essence = getEssence(player);
+		essence.useEssence(player, essence.getEssence());
+	}
+
+
+	public static IEssence getEssence(Entity entity){
+		return entity.getCapability(ESSENCE_CAP, null);
+	}
+
+	private void refillEssence(EntityPlayer player) {
+		IEssence essence = getEssence(player);
+		essence.fill(player, essence.getMaxEssence());
+
+		if (!player.isServerWorld()) {
+			EssenceRenderer.percantage = 100 * (essence.getEssence() / essence.getMaxEssence());
+		}
 	}
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import net.journey.JourneyItems;
 import net.journey.JourneySounds;
 import net.journey.JourneyTabs;
+import net.journey.client.server.BarTickHandler;
 import net.journey.client.server.EssenceProvider;
 import net.journey.client.server.IEssence;
 import net.journey.entity.projectile.EntityBasicProjectile;
@@ -48,11 +49,29 @@ public class ItemHammer extends ItemSword {
 		setRegistryName(SlayerAPI.MOD_ID, name);
 	}
 
+	protected ActionResult<IEssence> tryCheckEssence(EntityPlayer player, int uses) {
+
+		IEssence essence = BarTickHandler.getEssence(player);;
+		EnumActionResult result = EnumActionResult.SUCCESS;
+
+		if(!player.capabilities.isCreativeMode && uses > 0) {
+			if (essence == null || essence.getEssence() < uses) {
+				result = EnumActionResult.FAIL;
+			}
+		} else {
+			essence.useEssence(player, uses);
+		}
+
+		return new ActionResult<>(result, essence);
+	}
+
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand handIn) {
 		ItemStack stack = player.getHeldItem(handIn);
 		IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
-		if(!world.isRemote && mana.useEssence(usage)) {
+		ActionResult<IEssence> checkEssence = tryCheckEssence(player, usage);
+
+		if(!world.isRemote && checkEssence.getType() == EnumActionResult.SUCCESS) {
 			JourneySounds.playSound(JourneySounds.HAMMER, world, player);
 			if(!unbreakable) stack.damageItem(1, player);
 			try {

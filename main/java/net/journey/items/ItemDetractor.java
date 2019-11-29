@@ -42,15 +42,17 @@ public class ItemDetractor extends ItemMod {
 		Random r = new Random();
 		IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
 
+        ActionResult<IEssence> checkEssence = tryCheckEssence(player, magic);
+		
 		if (detracts) {
-			if(!world.isRemote && mana.useEssence(magic)) {
+			if(!world.isRemote && checkEssence.getType() == EnumActionResult.SUCCESS) {
 				JourneySounds.playSound(JourneySounds.HAMMER, world, player);
 				EntityThrowable entity = new EntityDetractor(world, player);
 				world.spawnEntity(entity);
 			}
 		}
 		if (attracts) {
-			if(!world.isRemote && mana.useEssence(magic)) {
+			if(!world.isRemote && checkEssence.getType() == EnumActionResult.SUCCESS) {
 				JourneySounds.playSound(JourneySounds.HAMMER, world, player);
 				EntityThrowable entity = new EntityAttractor(world, player);
 				world.spawnEntity(entity);

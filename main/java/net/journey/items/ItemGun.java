@@ -41,9 +41,11 @@ public class ItemGun extends ItemMod {
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand handIn) {
 		IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
 		ItemStack stack = player.getHeldItem(handIn);
+        ActionResult<IEssence> checkEssence = tryCheckEssence(player, 2);
+
 		if(!world.isRemote) {
 			if(this == JourneyItems.chaosCannon) {
-				if(mana.useEssence(2)) {
+				if(checkEssence.getType() == EnumActionResult.SUCCESS) {
 					JourneySounds.playSound(JourneySounds.CANNON, world, player);
 					EntityBouncingProjectile bouncing = new EntityBouncingProjectile(world, player, damage, 4);
 					bouncing.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.0F, 1.0F);
@@ -53,7 +55,7 @@ public class ItemGun extends ItemMod {
 				}
 			} else if(projectile != null) {
 				JourneySounds.playSound(JourneySounds.PLASMA, world, player);
-				if(mana.useEssence(2)) {
+				if(checkEssence.getType() == EnumActionResult.SUCCESS) {
 					try {
 						EntityBasicProjectile shoot = projectile.getConstructor(World.class, EntityLivingBase.class, float.class).newInstance(world, player, damage);
 						shoot.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F, 1.0F);

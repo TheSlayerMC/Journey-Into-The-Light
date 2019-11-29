@@ -1,60 +1,79 @@
 package net.journey.client.server;
 
-import net.minecraft.nbt.NBTBase;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagInt;
+import net.journey.JITL;
+import net.journey.essence.MessageEssenceBar;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.util.math.MathHelper;
 
 public class EssenceBar implements IEssence {
 
+	private int tickDelay = 40;
+	private int max = 10; 
 	private int essenceValue = 0;
 	private int regenValue = 0;
 
 	@Override
-	public boolean useEssence(int points) {
-		if(getEssenceValue() < points) 
-			return false;
-		essenceValue -= points;
-		return true;
+	public void useEssence(EntityPlayer player, int points) {
+		 if (player.capabilities.isCreativeMode) return;
+	        set(getEssence() - points);
+	        sendPacket(player);
 	}
 
 	@Override
-	public void addEssence(int points) {
-		essenceValue += points;
+	public void fill(EntityPlayer player, int points) {
+       /* int prev = getEssence();
+        
+        set(prev + points);
+        if(prev != getEssence()) sendPacket(player);*/
+		essenceValue += 1;
 	}
 
 	@Override
-	public void setEssence(int essence) {
-		essenceValue = essence;
+	public void regen(EntityPlayer player) {
+		int delay = tickDelay;
+        if(delay-- <= 0) delay = 500;
+        if(delay >= 0) fill(player, 1);
+		if(getEssence() > 10) set(10);
+       // essenceValue = 0;
+        System.out.println(getEssence());
 	}
 
 	@Override
-	public int getEssenceValue() {
+	public void set(int points) {
+        essenceValue = MathHelper.clamp(points, 0, getMaxEssence());
+	}
+
+	@Override
+	public int getEssence() {
 		return essenceValue;
 	}
 
 	@Override
-	public void update() {
-		if(getEssenceValue() > 10) setEssence(10);
-		if(regenValue-- <= 0) regenValue = 30;
-		if(regenValue >= 30) regen();
-		//essenceValue = 0;
-		//System.out.println(getEssenceValue());
+	public int getMaxEssence() {
+		return max;
 	}
 
 	@Override
-	public void regen() {
-		addEssence(1);
+	public void setMaxEssence(int max) {
+		if(max < 0) throw new IllegalArgumentException("Max of essence cn't be less then null!");
+
+		this.max = max;
 	}
 
 	@Override
-	public NBTBase writeNBT(IEssence essence, NBTTagCompound tag) {
-		tag.setInteger("regen", 30);
-		return new NBTTagInt(essence.getEssenceValue());
+	public int getRegenDelay() {
+		return tickDelay;
 	}
 
 	@Override
-	public void readNBT(NBTBase nbt, IEssence essence, NBTTagCompound tag) {
-		essence.setEssence(((NBTTagInt)nbt).getInt());
-		regenValue = tag.getInteger("regen");
+	public void setRegenDelay(int delay) {
+		//if(delay < 1)  throw new IllegalArgumentException("Tick delay beetween regen can't be less than one!");
+		//tickDelay = delay;
+	}
+
+	private void sendPacket(EntityPlayer player) {
+		if(player instanceof EntityPlayerMP)
+			JITL.network.sendTo(new MessageEssenceBar(this), (EntityPlayerMP) player);
 	}
 }

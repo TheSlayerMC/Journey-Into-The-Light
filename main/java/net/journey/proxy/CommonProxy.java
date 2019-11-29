@@ -8,15 +8,16 @@ import net.journey.JourneySounds;
 import net.journey.JourneyTabs;
 import net.journey.client.server.BarTickHandler;
 import net.journey.client.server.EssenceBar;
-import net.journey.client.server.EssenceStorage;
 import net.journey.client.server.IEssence;
-import net.journey.client.server.RenderBar;
 import net.journey.dimension.DimensionCommand;
 import net.journey.dimension.DimensionHelper;
 import net.journey.dimension.WorldGenJourney;
 import net.journey.dimension.nether.JNWorldGenerator;
 import net.journey.dimension.nether.biomes.BiomeRegister;
 import net.journey.enums.EnumParticlesClasses;
+import net.journey.essence.CapabilityEssence;
+import net.journey.essence.CapabilityHandler;
+import net.journey.essence.ModMessages;
 import net.journey.event.ArmorAbilityEvent;
 import net.journey.event.NetherEvent;
 import net.journey.event.PlayerEvent;
@@ -29,6 +30,7 @@ import net.journey.util.recipes.JourneyRecipes;
 import net.journey.util.recipes.JourneySmeltingRecipes;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -51,6 +53,10 @@ public class CommonProxy {
 	public void registerSounds() { }
 	public void spawnParticle(EnumParticlesClasses particle, World worldObj, double x, double y, double z, boolean b) { }
 
+	public EntityPlayer getPlayer() {
+        return null;
+    }
+	
 	public void preInit(FMLPreInitializationEvent event) {
 		Config.init(event);
 		NetherEvent.init();
@@ -77,10 +83,10 @@ public class CommonProxy {
 		DimensionHelper.init();
 		DimensionHelper.addSpawns();
         
-		CapabilityManager.INSTANCE.register(IEssence.class, new EssenceStorage(), EssenceBar.class);
+		//CapabilityManager.INSTANCE.register(IEssence.class, new EssenceStorage(), EssenceBar.class);
 
 		SlayerAPI.registerEvent(new BarTickHandler());
-		SlayerAPI.registerEvent(new RenderBar());
+        ModMessages.initServer();
 
 		if(SlayerAPI.DEVMODE) LangRegistry.instance.register();
 	}
@@ -90,6 +96,10 @@ public class CommonProxy {
 		GameRegistry.registerWorldGenerator(new WorldGenJourney(), 2);
 		SlayerAPI.registerEvent(new PlayerEvent());
 		JourneySmeltingRecipes.init();
+		
+
+        MinecraftForge.EVENT_BUS.register(new CapabilityHandler());
+        CapabilityManager.INSTANCE.register(IEssence.class, new CapabilityEssence(), EssenceBar::new);
 
 	}
 
