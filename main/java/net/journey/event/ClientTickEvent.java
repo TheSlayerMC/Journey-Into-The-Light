@@ -53,7 +53,7 @@ public class ClientTickEvent {
 		}
 	}
 	
-	/*@SubscribeEvent
+	@SubscribeEvent
 	public void renderEvent(RenderTickEvent event) {
 		onTickRender(Minecraft.getMinecraft().player);
 	}
@@ -86,5 +86,5 @@ public class ClientTickEvent {
 				}
 			}
 		}
-	}*/
+	}
 }

@@ -44,9 +44,8 @@ public class ItemStaff extends ItemMod {
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand handIn) {
 		ItemStack stack = player.getHeldItem(handIn);
 		IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
-        ActionResult<IEssence> checkEssence = tryCheckEssence(player, usage);
 
-		if(!world.isRemote && checkEssence.getType() == EnumActionResult.SUCCESS) {
+		if(!world.isRemote && mana.useEssence(usage)) {
 			JourneySounds.playSound(JourneySounds.MAGIC_SPARKLE, world, player);
 			if(!unBreakable) stack.damageItem(1, player);
 			try {

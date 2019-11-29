@@ -30,9 +30,9 @@ public class JITL {
 
 	public static final Enchantment hotTouch = new EnchantmentHotTouch();
 	public static final Enchantment waterWalk = new EnchantmentWaterWalk();
-			
-    public static SimpleNetworkWrapper network = new SimpleNetworkWrapper(SlayerAPI.MOD_ID);
-
+	
+	public static SimpleNetworkWrapper wrapper;
+		
 	@EventHandler
 	public static void preInit(FMLPreInitializationEvent event) {
 		proxy.preInit(event);

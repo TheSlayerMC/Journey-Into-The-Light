@@ -10,7 +10,6 @@ import net.journey.util.LangHelper;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -35,8 +34,6 @@ public class ItemTeleport extends ItemMod {
 
 	@Override
     public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        ActionResult<IEssence> checkEssence = tryCheckEssence(player, 5);
-
 		IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
 		float var4 = player.rotationPitch;
 		float var5 = player.rotationYaw;
@@ -69,7 +66,7 @@ public class ItemTeleport extends ItemMod {
 				if (var26 == 4) --var23;                
 				if (var26 == 5) ++var23;                
 
-				if(checkEssence.getType() == EnumActionResult.SUCCESS) {
+				if(mana.useEssence(5)) {
 					player.getLook(1);
 					this.teleportTo(player, worldIn, var23, var24, var25);
 				}

@@ -1,16 +1,17 @@
 package net.journey.client.server;
 
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTBase;
+import net.minecraft.nbt.NBTTagCompound;
 
 public interface IEssence {
 
-    void useEssence(EntityPlayer player, int points);
-    void fill(EntityPlayer player, int points);
-    void regen(EntityPlayer player);
-    void set(int points);
-    int getEssence();
-    int getMaxEssence();
-    void setMaxEssence(int max);
-    int getRegenDelay();
-    void setRegenDelay(int delay);
+	public boolean useEssence(int points);
+	public void addEssence(int points);
+	public void setEssence(int essence);
+	public int getEssenceValue();
+	public void update();
+	public void regen();
+	public NBTBase writeNBT(IEssence essence, NBTTagCompound tag);
+	public void readNBT(NBTBase nbt, IEssence essence, NBTTagCompound tag);
+
 }

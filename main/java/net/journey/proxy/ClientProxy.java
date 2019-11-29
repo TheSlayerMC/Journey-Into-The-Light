@@ -6,13 +6,14 @@ import net.journey.client.EntityRendering;
 import net.journey.client.GuiHandler;
 import net.journey.client.PlayerStats;
 import net.journey.client.RenderHandler;
-import net.journey.client.server.EssenceRenderer;
+import net.journey.client.server.EssenceBar;
+import net.journey.client.server.EssenceProvider;
+import net.journey.client.server.IEssence;
 import net.journey.enums.EnumParticlesClasses;
-import net.journey.essence.ModMessages;
 import net.journey.event.ClientTickEvent;
 import net.journey.event.UpdateCheckerEvent;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -22,11 +23,6 @@ import net.slayer.api.SlayerAPI;
 public class ClientProxy extends CommonProxy {
 
 	@Override
-    public EntityPlayer getPlayer() {
-        return FMLClientHandler.instance().getClientPlayerEntity();
-    }
-	
-	@Override
 	public void registerClient() {
 		NetworkRegistry.INSTANCE.registerGuiHandler(JITL.instance, new GuiHandler());
 		if(!SlayerAPI.DEVMODE) SlayerAPI.registerEvent(new UpdateCheckerEvent());
@@ -35,7 +31,6 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public void clientPreInit() {
 		SlayerAPI.registerEvent(new RenderHandler());
-        ModMessages.initClient();
 	}
 
 	@Override
@@ -43,7 +38,6 @@ public class ClientProxy extends CommonProxy {
 		EntityRendering.init();
 		SlayerAPI.registerEvent(new BossTickHandler());
 		SlayerAPI.registerEvent(new ClientTickEvent());
-		SlayerAPI.registerEvent(new EssenceRenderer());
 		SlayerAPI.registerEvent(new PlayerStats());
 	}
 

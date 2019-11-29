@@ -74,7 +74,7 @@ public class ItemModShield extends ItemMod {
 		return 72000;
 	}
 
-	/*@Override
+	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand handIn) {
 		IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
 		ItemStack itemstack = player.getHeldItem(handIn);
@@ -91,7 +91,7 @@ public class ItemModShield extends ItemMod {
 			}
 		}
 		return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemstack);	
-	}*/
+	}
 
 	@Override
 	public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {

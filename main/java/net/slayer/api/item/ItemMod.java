@@ -7,9 +7,6 @@ import net.journey.JourneyItems;
 import net.journey.JourneySounds;
 import net.journey.JourneyTabs;
 import net.journey.client.ItemDescription;
-import net.journey.client.server.BarTickHandler;
-import net.journey.client.server.EssenceProvider;
-import net.journey.client.server.IEssence;
 import net.journey.util.LangRegistry;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
@@ -19,7 +16,6 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
@@ -105,21 +101,4 @@ public class ItemMod extends Item {
 	public void registerItemModel() {
 		JITL.proxy.registerItemRenderer(this, 0, name);
 	}
-	
-	 protected ActionResult<IEssence> tryCheckEssence(EntityPlayer player, int uses) {
-
-	        IEssence essence = BarTickHandler.getEssence(player);
-	        EnumActionResult result = EnumActionResult.SUCCESS;
-
-	        if(!player.capabilities.isCreativeMode && uses > 0) {
-	            if (essence == null || essence.getEssence() < uses) {
-	                result = EnumActionResult.FAIL;
-	            }
-	        } else {
-	        	essence.useEssence(player, uses);
-	        }
-        	essence.useEssence(player, uses);
-
-	        return new ActionResult<>(result, essence);
-	    }
 }
