@@ -3,6 +3,7 @@ package net.journey.entity.mob.boss;
 import net.journey.JourneyBlocks;
 import net.journey.JourneyItems;
 import net.journey.JourneySounds;
+import net.journey.JourneyWeapons;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityDeathSkull;
@@ -43,11 +44,11 @@ public class EntityWitheringBeast extends EntityEssenceBoss implements IRangedAt
 		TileEntityJourneyChest te = (TileEntityJourneyChest)world.getTileEntity(new BlockPos((int)Math.floor(this.posX + 0), ((int)Math.floor(this.posY + 0)), ((int)Math.floor(this.posZ + 0))));
 		switch(rand.nextInt(2)) {
 		case 0:
-			te.setInventorySlotContents(2, new ItemStack(JourneyItems.witheringBeastSword, 1));
+			te.setInventorySlotContents(2, new ItemStack(JourneyWeapons.witheringBeastSword, 1));
 			te.setInventorySlotContents(11, new ItemStack(JourneyItems.eucaPortalPiece_0, 1));
 			break;
 		case 1:
-			te.setInventorySlotContents(5, new ItemStack(JourneyItems.witheringBeastSword, 1));
+			te.setInventorySlotContents(5, new ItemStack(JourneyWeapons.witheringBeastSword, 1));
 			te.setInventorySlotContents(15, new ItemStack(JourneyItems.eucaPortalPiece_0, 2));
 			break;
 		}

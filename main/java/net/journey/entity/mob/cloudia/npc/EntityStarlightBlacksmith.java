@@ -1,6 +1,7 @@
 package net.journey.entity.mob.cloudia.npc;
 
 import net.journey.JourneyItems;
+import net.journey.JourneyWeapons;
 import net.journey.client.GuiHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -40,10 +41,10 @@ public class EntityStarlightBlacksmith extends EntityModVillager {
 
 	@Override
 	public void addRecipies(MerchantRecipeList list) {
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.fluffyFeather, 15), new ItemStack(JourneyItems.golemChunk, 5), new ItemStack(JourneyItems.golemSword, 1)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.fluffyFeather, 15), new ItemStack(JourneyItems.golemChunk, 5), new ItemStack(JourneyItems.golemBow, 1)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.luniteChunk, 15), new ItemStack(JourneyItems.golemChunk, 15), new ItemStack(JourneyItems.starlightBlade, 1)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.luniteChunk, 15), new ItemStack(JourneyItems.golemChunk, 15), new ItemStack(JourneyItems.starlightBow, 1)));
+		list.add(new MerchantRecipe(new ItemStack(JourneyItems.fluffyFeather, 15), new ItemStack(JourneyItems.golemChunk, 5), new ItemStack(JourneyWeapons.golemSword, 1)));
+		list.add(new MerchantRecipe(new ItemStack(JourneyItems.fluffyFeather, 15), new ItemStack(JourneyItems.golemChunk, 5), new ItemStack(JourneyWeapons.golemBow, 1)));
+		list.add(new MerchantRecipe(new ItemStack(JourneyItems.luniteChunk, 15), new ItemStack(JourneyItems.golemChunk, 15), new ItemStack(JourneyWeapons.starlightBlade, 1)));
+		list.add(new MerchantRecipe(new ItemStack(JourneyItems.luniteChunk, 15), new ItemStack(JourneyItems.golemChunk, 15), new ItemStack(JourneyWeapons.starlightBow, 1)));
 		
 	}
 }

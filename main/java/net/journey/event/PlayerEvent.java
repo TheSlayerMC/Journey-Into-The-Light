@@ -1,7 +1,8 @@
 package net.journey.event;
 
 import net.journey.JITL;
-import net.journey.JourneyItems;
+import net.journey.JourneyArmory;
+import net.journey.JourneyConsumables;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.enchantment.Enchantment;
@@ -43,7 +44,7 @@ public class PlayerEvent {
 				}
 			}
 		}
-		if(event.getHarvester() != null && event.getHarvester() instanceof EntityPlayer && event.getHarvester().getHeldItemMainhand() != null && event.getHarvester().getHeldItemMainhand().getItem() == JourneyItems.multiToolOfEternalSmelting) {
+		if(event.getHarvester() != null && event.getHarvester() instanceof EntityPlayer && event.getHarvester().getHeldItemMainhand() != null && event.getHarvester().getHeldItemMainhand().getItem() == JourneyArmory.multiToolOfEternalSmelting) {
 			if(!event.isSilkTouching()){
 				ItemStack stack = FurnaceRecipes.instance().getSmeltingResult(new ItemStack(event.getState().getBlock()));
 				if(stack != null && event.getState().getBlock() != Blocks.REDSTONE_ORE && event.getState().getBlock() != Blocks.LAPIS_ORE && event.getState().getBlock() != Blocks.LAPIS_ORE) {
@@ -73,7 +74,7 @@ public class PlayerEvent {
 			PlayerEvent.rand = Math.random();
 			if (event.getEntityLiving() instanceof EntityGhast) {
 				if (PlayerEvent.rand < 3){ 
-					event.getEntityLiving().dropItem(JourneyItems.ghastTentacle, 1);
+					event.getEntityLiving().dropItem(JourneyConsumables.ghastTentacle, 1);
 				}
 			}
 		}

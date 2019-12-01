@@ -30,7 +30,7 @@ public class ItemThrowableArrow extends ItemMod {
 		ItemStack stack = player.getHeldItem(handIn);
 		try {
 			if(!world.isRemote) {
-				EntityThrowable t = entity.getConstructor(World.class, EntityLivingBase.class, float.class, int.class).newInstance(world, player, damage, maxBounces);
+				EntityThrowable t = entity.getConstructor(World.class, EntityLivingBase.class, float.class).newInstance(world, player, damage);
 				t.shoot(player, player.rotationPitch, player.rotationYaw, -10.0F, 0.8F, 1.0F);
 				world.spawnEntity(t);
 				if(!player.capabilities.isCreativeMode) stack.shrink(1);

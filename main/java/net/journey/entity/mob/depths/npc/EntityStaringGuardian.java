@@ -1,6 +1,7 @@
 package net.journey.entity.mob.depths.npc;
 
 import net.journey.JourneyItems;
+import net.journey.JourneyWeapons;
 import net.journey.client.GuiHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -43,10 +44,10 @@ public class EntityStaringGuardian extends EntityModVillager {
 
 	@Override
 	public void addRecipies(MerchantRecipeList list) {
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.depthsFlake, 15), new ItemStack(JourneyItems.darkCrystal, 16), new ItemStack(JourneyItems.depthsSlayer, 1)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.depthsFlake, 15), new ItemStack(JourneyItems.beastlyStomach, 16), new ItemStack(JourneyItems.depthsBow, 1)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.depthsFlake, 15), new ItemStack(JourneyItems.depthsSlayer, 1), new ItemStack(JourneyItems.depthsDarksword, 1)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.depthsFlake, 15), new ItemStack(JourneyItems.depthsBow, 1), new ItemStack(JourneyItems.darkEnforcer, 1)));
+		list.add(new MerchantRecipe(new ItemStack(JourneyItems.depthsFlake, 15), new ItemStack(JourneyItems.darkCrystal, 16), new ItemStack(JourneyWeapons.depthsSlayer, 1)));
+		list.add(new MerchantRecipe(new ItemStack(JourneyItems.depthsFlake, 15), new ItemStack(JourneyItems.beastlyStomach, 16), new ItemStack(JourneyWeapons.depthsBow, 1)));
+		list.add(new MerchantRecipe(new ItemStack(JourneyItems.depthsFlake, 15), new ItemStack(JourneyWeapons.depthsSlayer, 1), new ItemStack(JourneyWeapons.depthsDarksword, 1)));
+		list.add(new MerchantRecipe(new ItemStack(JourneyItems.depthsFlake, 15), new ItemStack(JourneyWeapons.depthsBow, 1), new ItemStack(JourneyWeapons.darkEnforcer, 1)));
 		list.add(new MerchantRecipe(new ItemStack(JourneyItems.depthsFlake, 15), new ItemStack(JourneyItems.darkCrystal, 16), new ItemStack(JourneyItems.darkKey, 1)));
 		
 	}

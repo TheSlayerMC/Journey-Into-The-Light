@@ -1,6 +1,8 @@
 package net.journey.entity.mob.terrania.npc;
 
+import net.journey.JourneyArmory;
 import net.journey.JourneyItems;
+import net.journey.JourneyWeapons;
 import net.journey.client.GuiHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -39,11 +41,11 @@ public class EntityTerranianEnchanter extends EntityModVillager {
 
 	@Override
 	public void addRecipies(MerchantRecipeList list) {
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.slugSlime, 64), new ItemStack(JourneyItems.earthenCrystal, 4), new ItemStack(JourneyItems.terrolicaSword)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.purplePowder, 16), new ItemStack(JourneyItems.earthenCrystal, 4), new ItemStack(JourneyItems.terralightBow)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.purplePowder, 4), new ItemStack(JourneyItems.earthenCrystal, 1), new ItemStack(JourneyItems.enlightenerHelmet)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.purplePowder, 4), new ItemStack(JourneyItems.earthenCrystal, 1), new ItemStack(JourneyItems.enlightenerChest)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.purplePowder, 4), new ItemStack(JourneyItems.earthenCrystal, 1), new ItemStack(JourneyItems.enlightenerLegs)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.purplePowder, 4), new ItemStack(JourneyItems.earthenCrystal, 1), new ItemStack(JourneyItems.enlightenerBoots)));
+		list.add(new MerchantRecipe(new ItemStack(JourneyItems.slugSlime, 64), new ItemStack(JourneyItems.earthenCrystal, 4), new ItemStack(JourneyWeapons.terrolicaSword)));
+		list.add(new MerchantRecipe(new ItemStack(JourneyItems.purplePowder, 16), new ItemStack(JourneyItems.earthenCrystal, 4), new ItemStack(JourneyWeapons.terralightBow)));
+		list.add(new MerchantRecipe(new ItemStack(JourneyItems.purplePowder, 4), new ItemStack(JourneyItems.earthenCrystal, 1), new ItemStack(JourneyArmory.enlightenerHelmet)));
+		list.add(new MerchantRecipe(new ItemStack(JourneyItems.purplePowder, 4), new ItemStack(JourneyItems.earthenCrystal, 1), new ItemStack(JourneyArmory.enlightenerChest)));
+		list.add(new MerchantRecipe(new ItemStack(JourneyItems.purplePowder, 4), new ItemStack(JourneyItems.earthenCrystal, 1), new ItemStack(JourneyArmory.enlightenerLegs)));
+		list.add(new MerchantRecipe(new ItemStack(JourneyItems.purplePowder, 4), new ItemStack(JourneyItems.earthenCrystal, 1), new ItemStack(JourneyArmory.enlightenerBoots)));
 	}
 }

@@ -1,5 +1,6 @@
 package net.journey.entity.mob.euca;
 
+import net.journey.JourneyConsumables;
 import net.journey.JourneyItems;
 import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
@@ -45,7 +46,7 @@ public class EntityPsyollom extends EntityModMob {
 	
 	@Override
 	public Item getItemDropped() {
-		return JourneyItems.eucaMeat;
+		return JourneyConsumables.eucaMeat;
 	}
 	
 	@Override

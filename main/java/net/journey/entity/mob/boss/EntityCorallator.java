@@ -5,6 +5,7 @@ import java.util.Random;
 import net.journey.JourneyBlocks;
 import net.journey.JourneyItems;
 import net.journey.JourneySounds;
+import net.journey.JourneyWeapons;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.entity.MobStats;
 import net.journey.entity.mob.euca.EntityShimmerer;
@@ -101,13 +102,13 @@ public class EntityCorallator extends EntityEssenceBoss implements IRangedAttack
 		switch(rand.nextInt(2)) {
 		case 0:
 			te.setInventorySlotContents(15, new ItemStack(JourneyItems.depthsPortalGem, 8));
-			te.setInventorySlotContents(1, new ItemStack(JourneyItems.coreMender, 1));
-			te.setInventorySlotContents(5, new ItemStack(JourneyItems.coreExpender, 1));
+			te.setInventorySlotContents(1, new ItemStack(JourneyWeapons.coreMender, 1));
+			te.setInventorySlotContents(5, new ItemStack(JourneyWeapons.coreExpender, 1));
 			break;
 		case 1:
 			te.setInventorySlotContents(1, new ItemStack(JourneyItems.depthsPortalGem, 6));
-			te.setInventorySlotContents(2, new ItemStack(JourneyItems.coreMender, 1));
-			te.setInventorySlotContents(10, new ItemStack(JourneyItems.coreExpender, 1));
+			te.setInventorySlotContents(2, new ItemStack(JourneyWeapons.coreMender, 1));
+			te.setInventorySlotContents(10, new ItemStack(JourneyWeapons.coreExpender, 1));
 			break;
 		}
 	}

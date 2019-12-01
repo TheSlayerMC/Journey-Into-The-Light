@@ -1,6 +1,7 @@
 package net.journey.entity.mob.terrania.npc;
 
 import net.journey.JourneyItems;
+import net.journey.JourneyWeapons;
 import net.journey.client.GuiHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -39,7 +40,7 @@ public class EntityTerranianTrader extends EntityModVillager {
 
 	@Override
 	public void addRecipies(MerchantRecipeList list) {
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.purplePowder, 16), new ItemStack(JourneyItems.darkTerrarianSoil, 32), new ItemStack(JourneyItems.darkTerraBow)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.purplePowder, 16), new ItemStack(JourneyItems.lightTerrarianSoil, 32), new ItemStack(JourneyItems.lavenderBow)));
+		list.add(new MerchantRecipe(new ItemStack(JourneyItems.purplePowder, 16), new ItemStack(JourneyItems.darkTerrarianSoil, 32), new ItemStack(JourneyWeapons.darkTerraBow)));
+		list.add(new MerchantRecipe(new ItemStack(JourneyItems.purplePowder, 16), new ItemStack(JourneyItems.lightTerrarianSoil, 32), new ItemStack(JourneyWeapons.lavenderBow)));
 	}
 }

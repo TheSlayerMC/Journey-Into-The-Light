@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 
 import net.journey.JourneyItems;
 import net.journey.JourneySounds;
+import net.journey.JourneyWeapons;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityFireBall;
 import net.minecraft.entity.EntityLivingBase;
@@ -43,7 +44,7 @@ public class EntityDarkSorcerer extends EntityModMob implements IRangedAttackMob
 		if(this.world != null && !this.world.isRemote) {
 			this.tasks.removeTask(this.aiArrowAttack);
 			ItemStack itemstack = this.getHeldItemMainhand();
-			if(itemstack.getItem() == JourneyItems.fireWand) {
+			if(itemstack.getItem() == JourneyWeapons.fireWand) {
 				int i = 20;
 				if(this.world.getDifficulty() != EnumDifficulty.HARD) {
 					i = 40;
@@ -57,7 +58,7 @@ public class EntityDarkSorcerer extends EntityModMob implements IRangedAttackMob
 	@Override
     protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty) {
         super.setEquipmentBasedOnDifficulty(difficulty);
-        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(JourneyItems.fireWand));
+        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(JourneyWeapons.fireWand));
     }
 
 	@Override
@@ -87,7 +88,7 @@ public class EntityDarkSorcerer extends EntityModMob implements IRangedAttackMob
 
 	@Override
 	public ItemStack getHeldItem(EnumHand hand) {
-		return new ItemStack(JourneyItems.fireWand);
+		return new ItemStack(JourneyWeapons.fireWand);
 	}
 	
 	@Override

@@ -1,6 +1,7 @@
 package net.journey.entity.mob.overworld.npc;
 
 import net.journey.JourneyItems;
+import net.journey.JourneyWeapons;
 import net.journey.client.GuiHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -36,7 +37,7 @@ public class EntityMage extends EntityModVillager {
 	
 	@Override
 	public ItemStack getHeldItem(EnumHand hand) {
-		return new ItemStack(JourneyItems.conjuringStaff);
+		return new ItemStack(JourneyWeapons.conjuringStaff);
 	}
 
 	@Override
@@ -48,16 +49,16 @@ public class EntityMage extends EntityModVillager {
 	public void addRecipies(MerchantRecipeList list) {
 		list.add(new MerchantRecipe(new ItemStack(Items.STICK, 1), new ItemStack(Items.GOLD_INGOT, 5), new ItemStack(JourneyItems.wandBase)));
 		list.add(new MerchantRecipe(new ItemStack(Items.STICK, 1), new ItemStack(Items.DIAMOND, 2), new ItemStack(JourneyItems.staffBase)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.stoneStick, 1), new ItemStack(JourneyItems.greenGem, 10), new ItemStack(JourneyItems.earthenHammer)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.staffBase, 1), new ItemStack(JourneyItems.greenGem, 10), new ItemStack(JourneyItems.staffOfGreenpace)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.staffBase, 1), new ItemStack(JourneyItems.hellstoneIngot, 10), new ItemStack(JourneyItems.staffOfHellstone)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.staffBase, 1), new ItemStack(JourneyItems.purpleGem, 10), new ItemStack(JourneyItems.doomsBringer)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.staffBase, 1), new ItemStack(JourneyItems.yellowGem, 10), new ItemStack(JourneyItems.wizardsStar)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.staffBase, 1), new ItemStack(JourneyItems.hellstoneIngot, 5), new ItemStack(JourneyItems.chaosCannon)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.staffBase, 1), new ItemStack(JourneyItems.blueGem, 10), new ItemStack(JourneyItems.staffOfEnlightenment)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.greenGem, 10), new ItemStack(JourneyItems.staffOfGreenpace, 1), new ItemStack(JourneyItems.conjuringStaff)));		
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.wandBase, 1), new ItemStack(Blocks.ICE, 32), new ItemStack(JourneyItems.iceWand)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.wandBase, 1), new ItemStack(Items.FIRE_CHARGE, 32), new ItemStack(JourneyItems.fireWand)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.wandBase, 1), new ItemStack(Items.DIAMOND, 32), new ItemStack(JourneyItems.lightningWand)));
+		list.add(new MerchantRecipe(new ItemStack(JourneyItems.stoneStick, 1), new ItemStack(JourneyItems.greenGem, 10), new ItemStack(JourneyWeapons.earthenHammer)));
+		list.add(new MerchantRecipe(new ItemStack(JourneyItems.staffBase, 1), new ItemStack(JourneyItems.greenGem, 10), new ItemStack(JourneyWeapons.staffOfGreenpace)));
+		list.add(new MerchantRecipe(new ItemStack(JourneyItems.staffBase, 1), new ItemStack(JourneyItems.hellstoneIngot, 10), new ItemStack(JourneyWeapons.staffOfHellstone)));
+		list.add(new MerchantRecipe(new ItemStack(JourneyItems.staffBase, 1), new ItemStack(JourneyItems.purpleGem, 10), new ItemStack(JourneyWeapons.doomsBringer)));
+		list.add(new MerchantRecipe(new ItemStack(JourneyItems.staffBase, 1), new ItemStack(JourneyItems.yellowGem, 10), new ItemStack(JourneyWeapons.wizardsStar)));
+		list.add(new MerchantRecipe(new ItemStack(JourneyItems.staffBase, 1), new ItemStack(JourneyItems.hellstoneIngot, 5), new ItemStack(JourneyWeapons.chaosCannon)));
+		list.add(new MerchantRecipe(new ItemStack(JourneyItems.staffBase, 1), new ItemStack(JourneyItems.blueGem, 10), new ItemStack(JourneyWeapons.staffOfEnlightenment)));
+		list.add(new MerchantRecipe(new ItemStack(JourneyItems.greenGem, 10), new ItemStack(JourneyWeapons.staffOfGreenpace, 1), new ItemStack(JourneyWeapons.conjuringStaff)));		
+		list.add(new MerchantRecipe(new ItemStack(JourneyItems.wandBase, 1), new ItemStack(Blocks.ICE, 32), new ItemStack(JourneyWeapons.iceWand)));
+		list.add(new MerchantRecipe(new ItemStack(JourneyItems.wandBase, 1), new ItemStack(Items.FIRE_CHARGE, 32), new ItemStack(JourneyWeapons.fireWand)));
+		list.add(new MerchantRecipe(new ItemStack(JourneyItems.wandBase, 1), new ItemStack(Items.DIAMOND, 32), new ItemStack(JourneyWeapons.lightningWand)));
 	}
 }

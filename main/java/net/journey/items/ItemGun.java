@@ -2,9 +2,9 @@ package net.journey.items;
 
 import java.util.List;
 
-import net.journey.JourneyItems;
 import net.journey.JourneySounds;
 import net.journey.JourneyTabs;
+import net.journey.JourneyWeapons;
 import net.journey.client.server.EssenceProvider;
 import net.journey.client.server.IEssence;
 import net.journey.entity.projectile.EntityBasicProjectile;
@@ -42,7 +42,7 @@ public class ItemGun extends ItemMod {
 		IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
 		ItemStack stack = player.getHeldItem(handIn);
 		if(!world.isRemote) {
-			if(this == JourneyItems.chaosCannon) {
+			if(this == JourneyWeapons.chaosCannon) {
 				if(mana.useEssence(2)) {
 					JourneySounds.playSound(JourneySounds.CANNON, world, player);
 					EntityBouncingProjectile bouncing = new EntityBouncingProjectile(world, player, damage, 4);

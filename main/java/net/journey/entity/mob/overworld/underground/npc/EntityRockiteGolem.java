@@ -1,6 +1,7 @@
 package net.journey.entity.mob.overworld.underground.npc;
 
 import net.journey.JourneyItems;
+import net.journey.JourneyWeapons;
 import net.journey.client.GuiHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -46,12 +47,12 @@ public class EntityRockiteGolem extends EntityModVillager {
 
 	@Override
 	public void addRecipies(MerchantRecipeList list) {
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.reinforcedStoneIngot, 4), new ItemStack(JourneyItems.backBiter, 1), new ItemStack(JourneyItems.rockyBattleaxe, 1)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.reinforcedCrystalIngot, 4), new ItemStack(JourneyItems.backBiter, 1), new ItemStack(JourneyItems.crystalizedBattleaxe, 1)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.reinforcedStoneIngot, 4), new ItemStack(JourneyItems.earthenHammer, 1), new ItemStack(JourneyItems.rockyHammer, 1)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.reinforcedCrystalIngot, 4), new ItemStack(JourneyItems.earthenHammer, 1), new ItemStack(JourneyItems.crystalizedHammer, 1)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.reinforcedStoneIngot, 4), new ItemStack(JourneyItems.stoneClump, 1), new ItemStack(JourneyItems.rockLauncher, 1)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.reinforcedCrystalIngot, 4), new ItemStack(JourneyItems.staffOfEnlightenment, 1), new ItemStack(JourneyItems.staffOfDivineStone, 1)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.reinforcedCrystalIngot, 4), new ItemStack(JourneyItems.staffOfDivineStone, 1), new ItemStack(JourneyItems.staffOfCrystal, 1)));
+		list.add(new MerchantRecipe(new ItemStack(JourneyItems.reinforcedStoneIngot, 4), new ItemStack(JourneyWeapons.backBiter, 1), new ItemStack(JourneyWeapons.rockyBattleaxe, 1)));
+		list.add(new MerchantRecipe(new ItemStack(JourneyItems.reinforcedCrystalIngot, 4), new ItemStack(JourneyWeapons.backBiter, 1), new ItemStack(JourneyWeapons.crystalizedBattleaxe, 1)));
+		list.add(new MerchantRecipe(new ItemStack(JourneyItems.reinforcedStoneIngot, 4), new ItemStack(JourneyWeapons.earthenHammer, 1), new ItemStack(JourneyWeapons.rockyHammer, 1)));
+		list.add(new MerchantRecipe(new ItemStack(JourneyItems.reinforcedCrystalIngot, 4), new ItemStack(JourneyWeapons.earthenHammer, 1), new ItemStack(JourneyWeapons.crystalizedHammer, 1)));
+		list.add(new MerchantRecipe(new ItemStack(JourneyItems.reinforcedStoneIngot, 4), new ItemStack(JourneyItems.stoneClump, 1), new ItemStack(JourneyWeapons.rockLauncher, 1)));
+		list.add(new MerchantRecipe(new ItemStack(JourneyItems.reinforcedCrystalIngot, 4), new ItemStack(JourneyWeapons.staffOfEnlightenment, 1), new ItemStack(JourneyWeapons.staffOfDivineStone, 1)));
+		list.add(new MerchantRecipe(new ItemStack(JourneyItems.reinforcedCrystalIngot, 4), new ItemStack(JourneyWeapons.staffOfDivineStone, 1), new ItemStack(JourneyWeapons.staffOfCrystal, 1)));
 	}
 } 

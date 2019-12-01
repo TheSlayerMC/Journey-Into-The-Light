@@ -3,6 +3,7 @@ package net.journey.blocks.crop;
 import java.util.List;
 import java.util.Random;
 
+import net.journey.JourneyConsumables;
 import net.journey.JourneyCrops;
 import net.journey.JourneyItems;
 import net.minecraft.block.properties.PropertyInteger;
@@ -38,7 +39,7 @@ public class BlockAirRootCrop extends BlockModCrop {
     
 	@Override
 	public Item getCrop() {
-		return JourneyItems.airMelon;
+		return JourneyConsumables.airMelon;
 	}
 	
 	@Override

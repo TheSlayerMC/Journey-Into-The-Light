@@ -1,6 +1,7 @@
 package net.journey.entity.mob.boiling.npc;
 
 import net.journey.JourneyItems;
+import net.journey.JourneyWeapons;
 import net.journey.client.GuiHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -40,9 +41,9 @@ public class EntityEscapedConvict extends EntityModVillager {
 
 	@Override
 	public void addRecipies(MerchantRecipeList list) {
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.boilingSkull, 1), new ItemStack(JourneyItems.boilPowder, 10), new ItemStack(JourneyItems.charredBow, 1)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.boilingSkull, 1), new ItemStack(JourneyItems.boilPowder, 10), new ItemStack(JourneyItems.charredBlade, 1)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.boilingSkull, 6), new ItemStack(JourneyItems.boilPowder, 64), new ItemStack(JourneyItems.bloodwieldSword, 1)));
+		list.add(new MerchantRecipe(new ItemStack(JourneyItems.boilingSkull, 1), new ItemStack(JourneyItems.boilPowder, 10), new ItemStack(JourneyWeapons.charredBow, 1)));
+		list.add(new MerchantRecipe(new ItemStack(JourneyItems.boilingSkull, 1), new ItemStack(JourneyItems.boilPowder, 10), new ItemStack(JourneyWeapons.charredBlade, 1)));
+		list.add(new MerchantRecipe(new ItemStack(JourneyItems.boilingSkull, 6), new ItemStack(JourneyItems.boilPowder, 64), new ItemStack(JourneyWeapons.bloodwieldSword, 1)));
 		
 	}
 }

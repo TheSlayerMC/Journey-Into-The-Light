@@ -7,6 +7,7 @@ package net.journey.entity.mob.nether;
 
 import java.util.Random;
 
+import net.journey.JourneyConsumables;
 import net.journey.JourneyItems;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityMagmaFireball;
@@ -57,11 +58,11 @@ public class EntityLavasnake extends EntityModFlying {
 	@Override
 	protected void dropFewItems(boolean b, int j) {
 		if (rand.nextInt(1) == 0)
-			dropItem(JourneyItems.snakeFlesh, 2);
+			dropItem(JourneyConsumables.snakeFlesh, 2);
 		if (rand.nextInt(4) == 0)
-			dropItem(JourneyItems.snakeFlesh, 4);
+			dropItem(JourneyConsumables.snakeFlesh, 4);
 		if (rand.nextInt(2) == 0)
-			dropItem(JourneyItems.snakeFlesh, 1);
+			dropItem(JourneyConsumables.snakeFlesh, 1);
 		if (rand.nextInt(3) == 0)
 			dropItem(JourneyItems.blood, 1);
 		if (rand.nextInt(5) == 0)
@@ -360,19 +361,16 @@ public class EntityLavasnake extends EntityModFlying {
 
 	@Override
 	public SoundEvent setLivingSound() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public SoundEvent setHurtSound() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public SoundEvent setDeathSound() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

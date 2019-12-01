@@ -1,8 +1,11 @@
 package net.journey.util.recipes;
 
+import net.journey.JourneyArmory;
 import net.journey.JourneyBlocks;
+import net.journey.JourneyConsumables;
 import net.journey.JourneyCrops;
 import net.journey.JourneyItems;
+import net.journey.JourneyWeapons;
 import net.journey.util.Config;
 import net.journey.util.JourneyJSONGenerator;
 import net.minecraft.block.Block;
@@ -235,7 +238,7 @@ public class JourneyRecipes {
 					new Object[] { "ddd", "did", "ddd", 'd', JourneyItems.stoneClump, 'i', JourneyItems.caveCrystal });
 			addShapedRecipe(new ItemStack(JourneyItems.crystalBall), new Object[] { "idi", "ixi", 'i', Items.DIAMOND,
 					'd', Items.ENDER_PEARL, 'x', JourneyItems.sapphire });
-			addShapedRecipe(new ItemStack(JourneyItems.demonicBomb, 16),
+			addShapedRecipe(new ItemStack(JourneyWeapons.demonicBomb, 16),
 					new Object[] { "ddd", "did", "ddd", 'd', JourneyItems.demonicDust, 'i', JourneyItems.crystalBall });
 			addShapedRecipe(new ItemStack(JourneyItems.stoneClump, 4),
 					new Object[] { "ddd", "ddd", "ddd", 'd', JourneyItems.caveDust });
@@ -253,9 +256,9 @@ public class JourneyRecipes {
 					JourneyItems.flamingSpring, 'i', JourneyItems.flamingSprocket, 'g', Items.GOLD_INGOT });
 			addShapedRecipe(new ItemStack(JourneyItems.essenceArrow, 4), new Object[] { "d", "i", "g", 'd',
 					Items.IRON_INGOT, 'i', JourneyItems.stoneStick, 'g', JourneyItems.rocFeather });
-			addShapedRecipe(new ItemStack(JourneyItems.withicHammer, 1), new Object[] { "ddd", "did", " i ", 'd',
+			addShapedRecipe(new ItemStack(JourneyWeapons.withicHammer, 1), new Object[] { "ddd", "did", " i ", 'd',
 					JourneyItems.hellcrustIngot, 'i', JourneyItems.withicSpine });
-			addShapedRecipe(new ItemStack(JourneyItems.nethicHammer, 1), new Object[] { "jdj", "did", " i ", 'd',
+			addShapedRecipe(new ItemStack(JourneyWeapons.nethicHammer, 1), new Object[] { "jdj", "did", " i ", 'd',
 					JourneyBlocks.hellstoneBlock, 'i', JourneyItems.hellstoneClump, 'j', JourneyItems.flamingSpring });
 			/*
 			 * addShapedRecipe(new ItemStack(JourneyItems.pocketCrafting, 1),
@@ -264,14 +267,14 @@ public class JourneyRecipes {
 			 */
 			addShapelessRecipe(new ItemStack(JourneyItems.demonicDust, 5), new Object[] { JourneyItems.demonicBone });
 
-			addOPFood(JourneyItems.goldenPork, JourneyItems.goldenPorkOP, Items.PORKCHOP);
-			addOPFood(JourneyItems.goldenSteak, JourneyItems.goldenSteakOP, Items.BEEF);
-			addOPFood(JourneyItems.goldenPotato, JourneyItems.goldenPotatoOP, Items.POTATO);
-			addOPFood(JourneyItems.goldenFish, JourneyItems.goldenFishOP, Items.FISH);
-			addOPFood(JourneyItems.goldenChicken, JourneyItems.goldenChickenOP, Items.CHICKEN);
-			addOPFood(JourneyItems.goldenRabbit, JourneyItems.goldenRabbitOP, Items.RABBIT);
-			addOPFood(JourneyItems.goldenMutton, JourneyItems.goldenMuttonOP, Items.MUTTON);
-			addOPFood(JourneyItems.goldenWing, JourneyItems.goldenWingOP, JourneyItems.rocMeat);
+			addOPFood(JourneyConsumables.goldenPork, JourneyConsumables.goldenPorkOP, Items.PORKCHOP);
+			addOPFood(JourneyConsumables.goldenSteak, JourneyConsumables.goldenSteakOP, Items.BEEF);
+			addOPFood(JourneyConsumables.goldenPotato, JourneyConsumables.goldenPotatoOP, Items.POTATO);
+			addOPFood(JourneyConsumables.goldenFish, JourneyConsumables.goldenFishOP, Items.FISH);
+			addOPFood(JourneyConsumables.goldenChicken, JourneyConsumables.goldenChickenOP, Items.CHICKEN);
+			addOPFood(JourneyConsumables.goldenRabbit, JourneyConsumables.goldenRabbitOP, Items.RABBIT);
+			addOPFood(JourneyConsumables.goldenMutton, JourneyConsumables.goldenMuttonOP, Items.MUTTON);
+			addOPFood(JourneyConsumables.goldenWing, JourneyConsumables.goldenWingOP, JourneyConsumables.rocMeat);
 
 			addShapedRecipe(new ItemStack(JourneyItems.hellstoneClump),
 					new Object[] { "iii", 'i', JourneyItems.hellstoneIngot });
@@ -294,8 +297,8 @@ public class JourneyRecipes {
 			addShapelessRecipe(new ItemStack(JourneyCrops.glowshroomPowder, 4),
 					new Object[] { JourneyBlocks.greenGlowshroomBottom });
 			addShapelessRecipe(new ItemStack(JourneyCrops.glowshroomPowder, 4),
-					new Object[] { JourneyItems.glowshroom });
-			addShapelessRecipe(new ItemStack(JourneyCrops.floroSeeds, 4), new Object[] { JourneyItems.floroPedal });
+					new Object[] { JourneyConsumables.glowshroom });
+			addShapelessRecipe(new ItemStack(JourneyCrops.floroSeeds, 4), new Object[] { JourneyConsumables.floroPedal });
 			addShapelessRecipe(new ItemStack(JourneyItems.eucaPortalGem, 10), new Object[] {
 					JourneyItems.eucaPortalPiece, JourneyItems.eucaPortalPiece_0, JourneyItems.eucaPortalPiece_1 });
 			addWood(JourneyBlocks.eucaGoldLog, JourneyBlocks.goldEucaPlank, JourneyBlocks.eucaGoldStairs, 0, true);
@@ -303,120 +306,120 @@ public class JourneyRecipes {
 			addWood(JourneyBlocks.corbaLog, JourneyBlocks.corbaPlank, JourneyBlocks.corbaLog, 1, true);
 			addWood(JourneyBlocks.frozenBark, JourneyBlocks.frozenPlanks, JourneyBlocks.corbaLog, 1, true);
 
-			addShapedRecipe(new ItemStack(JourneyItems.blazehornHelmet),
+			addShapedRecipe(new ItemStack(JourneyArmory.blazehornHelmet),
 					new Object[] { "idi", "d d", 'd', Items.BLAZE_ROD, 'i', JourneyItems.horn });
-			addShapedRecipe(new ItemStack(JourneyItems.blazehornChest),
+			addShapedRecipe(new ItemStack(JourneyArmory.blazehornChest),
 					new Object[] { "i i", "did", "idi", 'd', Items.BLAZE_ROD, 'i', JourneyItems.horn });
-			addShapedRecipe(new ItemStack(JourneyItems.blazehornLegs),
+			addShapedRecipe(new ItemStack(JourneyArmory.blazehornLegs),
 					new Object[] { "idi", "d d", "i i", 'd', Items.BLAZE_ROD, 'i', JourneyItems.horn });
-			addShapedRecipe(new ItemStack(JourneyItems.blazehornBoots),
+			addShapedRecipe(new ItemStack(JourneyArmory.blazehornBoots),
 					new Object[] { "d d", "i i", 'd', Items.BLAZE_ROD, 'i', JourneyItems.horn });
 
-			addShapedRecipe(new ItemStack(JourneyItems.fireboundHelmet),
+			addShapedRecipe(new ItemStack(JourneyArmory.fireboundHelmet),
 					new Object[] { "idi", "d d", 'd', Items.BLAZE_ROD, 'i', JourneyBlocks.hellstoneBlock });
-			addShapedRecipe(new ItemStack(JourneyItems.fireboundChest),
+			addShapedRecipe(new ItemStack(JourneyArmory.fireboundChest),
 					new Object[] { "i i", "did", "idi", 'd', Items.BLAZE_ROD, 'i', JourneyItems.horn });
-			addShapedRecipe(new ItemStack(JourneyItems.fireboundLegs),
+			addShapedRecipe(new ItemStack(JourneyArmory.fireboundLegs),
 					new Object[] { "idi", "d d", "i i", 'd', Items.BLAZE_ROD, 'i', JourneyItems.horn });
-			addShapedRecipe(new ItemStack(JourneyItems.fireboundBoots),
+			addShapedRecipe(new ItemStack(JourneyArmory.fireboundBoots),
 					new Object[] { "d d", "i i", 'd', Items.BLAZE_ROD, 'i', JourneyBlocks.hellstoneBlock });
 
-			addShapedRecipe(new ItemStack(JourneyItems.bloodcrustHelmet),
+			addShapedRecipe(new ItemStack(JourneyArmory.bloodcrustHelmet),
 					new Object[] { "idi", "d d", 'd', JourneyItems.hellstoneIngot, 'i', JourneyItems.hellcrustIngot });
-			addShapedRecipe(new ItemStack(JourneyItems.bloodcrustChest), new Object[] { "i i", "did", "idi", 'd',
+			addShapedRecipe(new ItemStack(JourneyArmory.bloodcrustChest), new Object[] { "i i", "did", "idi", 'd',
 					JourneyItems.hellstoneIngot, 'i', JourneyItems.hellcrustIngot });
-			addShapedRecipe(new ItemStack(JourneyItems.bloodcrustLegs), new Object[] { "idi", "d d", "i i", 'd',
+			addShapedRecipe(new ItemStack(JourneyArmory.bloodcrustLegs), new Object[] { "idi", "d d", "i i", 'd',
 					JourneyItems.hellstoneIngot, 'i', JourneyItems.hellcrustIngot });
-			addShapedRecipe(new ItemStack(JourneyItems.bloodcrustBoots),
+			addShapedRecipe(new ItemStack(JourneyArmory.bloodcrustBoots),
 					new Object[] { "d d", "i i", 'd', JourneyItems.hellstoneIngot, 'i', JourneyItems.hellcrustIngot });
 
-			addShapedRecipe(new ItemStack(JourneyItems.bleedrockHelmet),
+			addShapedRecipe(new ItemStack(JourneyArmory.bleedrockHelmet),
 					new Object[] { "idi", "d d", 'd', JourneyBlocks.lavaRock, 'i', JourneyItems.concentratedBlood });
-			addShapedRecipe(new ItemStack(JourneyItems.bleedrockChest), new Object[] { "i i", "did", "idi", 'd',
+			addShapedRecipe(new ItemStack(JourneyArmory.bleedrockChest), new Object[] { "i i", "did", "idi", 'd',
 					JourneyBlocks.lavaRock, 'i', JourneyItems.concentratedBlood });
-			addShapedRecipe(new ItemStack(JourneyItems.bleedrockLegs), new Object[] { "idi", "d d", "i i", 'd',
+			addShapedRecipe(new ItemStack(JourneyArmory.bleedrockLegs), new Object[] { "idi", "d d", "i i", 'd',
 					JourneyBlocks.lavaRock, 'i', JourneyItems.concentratedBlood });
-			addShapedRecipe(new ItemStack(JourneyItems.bleedrockBoots),
+			addShapedRecipe(new ItemStack(JourneyArmory.bleedrockBoots),
 					new Object[] { "d d", "i i", 'd', JourneyBlocks.lavaRock, 'i', JourneyItems.concentratedBlood });
-			addShapelessRecipe(new ItemStack(JourneyItems.woodMultiTool),
+			addShapelessRecipe(new ItemStack(JourneyArmory.woodMultiTool),
 					new Object[] { Items.WOODEN_PICKAXE, Items.WOODEN_SHOVEL, Items.WOODEN_HOE, Items.WOODEN_AXE });
-			addShapelessRecipe(new ItemStack(JourneyItems.stoneMultiTool),
+			addShapelessRecipe(new ItemStack(JourneyArmory.stoneMultiTool),
 					new Object[] { Items.STONE_PICKAXE, Items.STONE_SHOVEL, Items.STONE_HOE, Items.STONE_AXE });
-			addShapelessRecipe(new ItemStack(JourneyItems.ironMultiTool),
+			addShapelessRecipe(new ItemStack(JourneyArmory.ironMultiTool),
 					new Object[] { Items.IRON_PICKAXE, Items.IRON_SHOVEL, Items.IRON_HOE, Items.IRON_AXE });
-			addShapelessRecipe(new ItemStack(JourneyItems.diamondMultiTool),
+			addShapelessRecipe(new ItemStack(JourneyArmory.diamondMultiTool),
 					new Object[] { Items.DIAMOND_PICKAXE, Items.DIAMOND_SHOVEL, Items.DIAMOND_HOE, Items.DIAMOND_AXE });
 
 			addOre(JourneyBlocks.celestiumOre, JourneyItems.celestiumIngot, JourneyBlocks.celestiumBlock,
-					JourneyItems.celestiumAxe, JourneyItems.celestiumPickaxe, JourneyItems.celestiumShovel,
-					JourneyItems.celestiumHoe, JourneyItems.celestiumSword, JourneyItems.celestiumMultiTool,
-					JourneyItems.celestiumHelmet, JourneyItems.celestiumChest, JourneyItems.celestiumLegs,
-					JourneyItems.celestiumBoots, JourneyItems.celestiumDust);
+					JourneyArmory.celestiumAxe, JourneyArmory.celestiumPickaxe, JourneyArmory.celestiumShovel,
+					JourneyArmory.celestiumHoe, JourneyWeapons.celestiumSword, JourneyArmory.celestiumMultiTool,
+					JourneyArmory.celestiumHelmet, JourneyArmory.celestiumChest, JourneyArmory.celestiumLegs,
+					JourneyArmory.celestiumBoots, JourneyItems.celestiumDust);
 			addOre(JourneyBlocks.hellstoneOre, JourneyItems.hellstoneIngot, JourneyBlocks.hellstoneBlock,
-					JourneyItems.hellstoneAxe, JourneyItems.hellstonePickaxe, JourneyItems.hellstoneShovel,
-					JourneyItems.hellstoneHoe, JourneyItems.hellstoneSword, JourneyItems.hellstoneMultiTool,
-					JourneyItems.hellstoneHelmet, JourneyItems.hellstoneChest, JourneyItems.hellstoneLegs,
-					JourneyItems.hellstoneBoots, JourneyItems.hellstoneDust);
+					JourneyArmory.hellstoneAxe, JourneyArmory.hellstonePickaxe, JourneyArmory.hellstoneShovel,
+					JourneyArmory.hellstoneHoe, JourneyWeapons.hellstoneSword, JourneyArmory.hellstoneMultiTool,
+					JourneyArmory.hellstoneHelmet, JourneyArmory.hellstoneChest, JourneyArmory.hellstoneLegs,
+					JourneyArmory.hellstoneBoots, JourneyItems.hellstoneDust);
 			addOre(JourneyBlocks.flairiumOre, JourneyItems.flairiumIngot, JourneyBlocks.flairiumBlock,
-					JourneyItems.flairiumAxe, JourneyItems.flairiumPickaxe, JourneyItems.flairiumShovel,
-					JourneyItems.flairiumHoe, JourneyItems.flairiumSword, JourneyItems.flairiumMultiTool,
-					JourneyItems.flairiumHelmet, JourneyItems.flairiumChest, JourneyItems.flairiumLegs,
-					JourneyItems.flairiumBoots, JourneyItems.flairiumDust);
-			addOre(JourneyBlocks.desOre, JourneyItems.desIngot, JourneyBlocks.desBlock, JourneyItems.desAxe,
-					JourneyItems.desPickaxe, JourneyItems.desShovel, JourneyItems.desHoe, JourneyItems.desSword,
-					JourneyItems.desMultiTool, null, null, null, null, null);
+					JourneyArmory.flairiumAxe, JourneyArmory.flairiumPickaxe, JourneyArmory.flairiumShovel,
+					JourneyArmory.flairiumHoe, JourneyWeapons.flairiumSword, JourneyArmory.flairiumMultiTool,
+					JourneyArmory.flairiumHelmet, JourneyArmory.flairiumChest, JourneyArmory.flairiumLegs,
+					JourneyArmory.flairiumBoots, JourneyItems.flairiumDust);
+			addOre(JourneyBlocks.desOre, JourneyItems.desIngot, JourneyBlocks.desBlock, JourneyArmory.desAxe,
+					JourneyArmory.desPickaxe, JourneyArmory.desShovel, JourneyArmory.desHoe, JourneyWeapons.desSword,
+					JourneyArmory.desMultiTool, null, null, null, null, null);
 			addOre(JourneyBlocks.shadiumOre, JourneyItems.shadiumIngot, JourneyBlocks.shadiumBlock,
-					JourneyItems.shadiumAxe, JourneyItems.shadiumPickaxe, JourneyItems.shadiumShovel,
-					JourneyItems.shadiumHoe, JourneyItems.shadiumSword, JourneyItems.shadiumMultiTool,
-					JourneyItems.shadiumHelmet, JourneyItems.shadiumChest, JourneyItems.shadiumLegs,
-					JourneyItems.shadiumBoots, JourneyItems.shadiumDust);
-			addOre(JourneyBlocks.luniumOre, JourneyItems.luniumIngot, JourneyBlocks.luniumBlock, JourneyItems.luniumAxe,
-					JourneyItems.luniumPickaxe, JourneyItems.luniumShovel, JourneyItems.luniumHoe,
-					JourneyItems.luniumSword, JourneyItems.luniumMultiTool, JourneyItems.luniumHelmet,
-					JourneyItems.luniumChest, JourneyItems.luniumLegs, JourneyItems.luniumBoots,
+					JourneyArmory.shadiumAxe, JourneyArmory.shadiumPickaxe, JourneyArmory.shadiumShovel,
+					JourneyArmory.shadiumHoe, JourneyWeapons.shadiumSword, JourneyArmory.shadiumMultiTool,
+					JourneyArmory.shadiumHelmet, JourneyArmory.shadiumChest, JourneyArmory.shadiumLegs,
+					JourneyArmory.shadiumBoots, JourneyItems.shadiumDust);
+			addOre(JourneyBlocks.luniumOre, JourneyItems.luniumIngot, JourneyBlocks.luniumBlock, JourneyArmory.luniumAxe,
+					JourneyArmory.luniumPickaxe, JourneyArmory.luniumShovel, JourneyArmory.luniumHoe,
+					JourneyWeapons.luniumSword, JourneyArmory.luniumMultiTool, JourneyArmory.luniumHelmet,
+					JourneyArmory.luniumChest, JourneyArmory.luniumLegs, JourneyArmory.luniumBoots,
 					JourneyItems.luniumDust);
 			addOre(JourneyBlocks.sapphireOre, JourneyItems.sapphire, JourneyBlocks.sapphireBlock,
-					JourneyItems.sapphireAxe, JourneyItems.sapphirePickaxe, JourneyItems.sapphireShovel,
-					JourneyItems.sapphireHoe, JourneyItems.sapphireSword, JourneyItems.sapphireMultiTool,
-					JourneyItems.sapphireHelmet, JourneyItems.sapphireChest, JourneyItems.sapphireLegs,
-					JourneyItems.sapphireBoots, JourneyItems.sapphireDust);
+					JourneyArmory.sapphireAxe, JourneyArmory.sapphirePickaxe, JourneyArmory.sapphireShovel,
+					JourneyArmory.sapphireHoe, JourneyWeapons.sapphireSword, JourneyArmory.sapphireMultiTool,
+					JourneyArmory.sapphireHelmet, JourneyArmory.sapphireChest, JourneyArmory.sapphireLegs,
+					JourneyArmory.sapphireBoots, JourneyItems.sapphireDust);
 			addOre(JourneyBlocks.gorbiteOre, JourneyItems.gorbiteGem, JourneyBlocks.gorbiteBlock,
-					JourneyItems.gorbiteAxe, JourneyItems.gorbitePickaxe, JourneyItems.gorbiteShovel,
-					JourneyItems.gorbiteHoe, JourneyItems.gorbiteSword, JourneyItems.gorbiteMultiTool,
-					JourneyItems.gorbiteHelmet, JourneyItems.gorbiteChest, JourneyItems.gorbiteLegs,
-					JourneyItems.gorbiteBoots, JourneyItems.gorbiteDust);
+					JourneyArmory.gorbiteAxe, JourneyArmory.gorbitePickaxe, JourneyArmory.gorbiteShovel,
+					JourneyArmory.gorbiteHoe, JourneyWeapons.gorbiteSword, JourneyArmory.gorbiteMultiTool,
+					JourneyArmory.gorbiteHelmet, JourneyArmory.gorbiteChest, JourneyArmory.gorbiteLegs,
+					JourneyArmory.gorbiteBoots, JourneyItems.gorbiteDust);
 			addOre(JourneyBlocks.orbaditeOre, JourneyItems.orbaditeIngot, JourneyBlocks.orbaditeBlock,
-					JourneyItems.orbaditeAxe, JourneyItems.orbaditePickaxe, JourneyItems.orbaditeShovel,
-					JourneyItems.orbaditeHoe, JourneyItems.orbaditeSword, JourneyItems.orbaditeMultiTool,
-					JourneyItems.orbaditeHelmet, JourneyItems.orbaditeChest, JourneyItems.orbaditeLegs,
-					JourneyItems.orbaditeBoots, JourneyItems.orbaditeDust);
-			addOre(JourneyBlocks.koriteOre, JourneyItems.koriteIngot, JourneyBlocks.koriteBlock, JourneyItems.koriteAxe,
-					JourneyItems.koritePickaxe, JourneyItems.koriteShovel, JourneyItems.koriteHoe,
-					JourneyItems.koriteSword, JourneyItems.koriteMultiTool, null, null, null, null, null);
-			addOre(JourneyBlocks.storonOre, JourneyItems.storonIngot, JourneyBlocks.storonBlock, JourneyItems.storonAxe,
-					JourneyItems.storonPickaxe, JourneyItems.storonShovel, JourneyItems.storonHoe,
-					JourneyItems.storonSword, JourneyItems.storonMultiTool, null, null, null, null, null);
-			addOre(JourneyBlocks.mekyumOre, JourneyItems.mekyumIngot, JourneyBlocks.mekyumBlock, JourneyItems.mekyumAxe,
-					JourneyItems.mekyumPickaxe, JourneyItems.mekyumShovel, JourneyItems.mekyumHoe,
-					JourneyItems.mekyumSword, JourneyItems.mekyumMultiTool, null, null, null, null, null);
+					JourneyArmory.orbaditeAxe, JourneyArmory.orbaditePickaxe, JourneyArmory.orbaditeShovel,
+					JourneyArmory.orbaditeHoe, JourneyWeapons.orbaditeSword, JourneyArmory.orbaditeMultiTool,
+					JourneyArmory.orbaditeHelmet, JourneyArmory.orbaditeChest, JourneyArmory.orbaditeLegs,
+					JourneyArmory.orbaditeBoots, JourneyItems.orbaditeDust);
+			addOre(JourneyBlocks.koriteOre, JourneyItems.koriteIngot, JourneyBlocks.koriteBlock, JourneyArmory.koriteAxe,
+					JourneyArmory.koritePickaxe, JourneyArmory.koriteShovel, JourneyArmory.koriteHoe,
+					JourneyWeapons.koriteSword, JourneyArmory.koriteMultiTool, null, null, null, null, null);
+			addOre(JourneyBlocks.storonOre, JourneyItems.storonIngot, JourneyBlocks.storonBlock, JourneyArmory.storonAxe,
+					JourneyArmory.storonPickaxe, JourneyArmory.storonShovel, JourneyArmory.storonHoe,
+					JourneyWeapons.storonSword, JourneyArmory.storonMultiTool, null, null, null, null, null);
+			addOre(JourneyBlocks.mekyumOre, JourneyItems.mekyumIngot, JourneyBlocks.mekyumBlock, JourneyArmory.mekyumAxe,
+					JourneyArmory.mekyumPickaxe, JourneyArmory.mekyumShovel, JourneyArmory.mekyumHoe,
+					JourneyWeapons.mekyumSword, JourneyArmory.mekyumMultiTool, null, null, null, null, null);
 			addOre(b.ashualOre, i.ash, b.ashualBlock, null, null, null, null,
 			 null, null, null, null, null, null, i.ashDust);
 			
-			addShapedRecipe(new ItemStack(JourneyItems.demonicBomb, 16),
+			addShapedRecipe(new ItemStack(JourneyWeapons.demonicBomb, 16),
 					new Object[] { "ddd", "did", "ddd", 'd', JourneyItems.demonicDust, 'i', JourneyItems.crystalBall });
-			addShapedRecipe(new ItemStack(JourneyItems.withicBlade),
+			addShapedRecipe(new ItemStack(JourneyWeapons.withicBlade),
 					new Object[] { "i", "i", "d", 'd', JourneyItems.withicDust, 'i', JourneyItems.hellcrustIngot });
-			addShapedRecipe(new ItemStack(JourneyItems.reinforcedStoneSword), new Object[] { "d", "d", "i", 'd',
+			addShapedRecipe(new ItemStack(JourneyWeapons.reinforcedStoneSword), new Object[] { "d", "d", "i", 'd',
 					JourneyItems.reinforcedStoneIngot, 'i', JourneyItems.stoneStick });
-			addShapedRecipe(new ItemStack(JourneyItems.reinforcedCrystalSword), new Object[] { "d", "d", "i", 'd',
+			addShapedRecipe(new ItemStack(JourneyWeapons.reinforcedCrystalSword), new Object[] { "d", "d", "i", 'd',
 					JourneyItems.reinforcedCrystalIngot, 'i', JourneyItems.stoneStick });
-			addShapedRecipe(new ItemStack(JourneyItems.pedalSword),
-					new Object[] { "d", "d", "i", 'd', JourneyItems.floroPedal, 'i', JourneyItems.stoneClump });
-			addShapedRecipe(new ItemStack(JourneyItems.crystalBlade),
+			addShapedRecipe(new ItemStack(JourneyWeapons.pedalSword),
+					new Object[] { "d", "d", "i", 'd', JourneyConsumables.floroPedal, 'i', JourneyItems.stoneClump });
+			addShapedRecipe(new ItemStack(JourneyWeapons.crystalBlade),
 					new Object[] { "d", "d", "i", 'd', JourneyItems.caveCrystal, 'i', Blocks.STONE });
-			addShapedRecipe(new ItemStack(JourneyItems.flameBow),
+			addShapedRecipe(new ItemStack(JourneyWeapons.flameBow),
 					new Object[] { " fs", "f s", " fs", 'f', Items.FIRE_CHARGE, 's', Items.STRING });
-			addShapedRecipe(new ItemStack(JourneyItems.demonicSword),
+			addShapedRecipe(new ItemStack(JourneyWeapons.demonicSword),
 					new Object[] { "d", "d", "i", 'd', JourneyItems.demonicBone, 'i', JourneyItems.demonicDust });
 
 			addSmelting(Blocks.GLASS, b.smoothGlass, 1);

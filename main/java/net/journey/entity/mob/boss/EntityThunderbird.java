@@ -1,8 +1,10 @@
 package net.journey.entity.mob.boss;
 
 import net.journey.JourneyBlocks;
+import net.journey.JourneyConsumables;
 import net.journey.JourneyItems;
 import net.journey.JourneySounds;
+import net.journey.JourneyWeapons;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.entity.MobStats;
 import net.minecraft.block.Block;
@@ -100,17 +102,17 @@ public class EntityThunderbird extends EntityEssenceBoss {
 		TileEntityJourneyChest te = (TileEntityJourneyChest)world.getTileEntity(new BlockPos((int)Math.floor(this.posX + 0), ((int)Math.floor(this.posY + 0)), ((int)Math.floor(this.posZ + 0))));
 		switch(rand.nextInt(2)) {
 		case 0:
-			te.setInventorySlotContents(2, new ItemStack(JourneyItems.rocsWing, 1));
-			te.setInventorySlotContents(4, new ItemStack(JourneyItems.rocSword, 1));
-			te.setInventorySlotContents(1, new ItemStack(JourneyItems.swordOfTheThunderbird, 1));
-			te.setInventorySlotContents(18, new ItemStack(JourneyItems.thunderbirdBattleaxe, 1));
+			te.setInventorySlotContents(2, new ItemStack(JourneyWeapons.rocsWing, 1));
+			te.setInventorySlotContents(4, new ItemStack(JourneyWeapons.rocSword, 1));
+			te.setInventorySlotContents(1, new ItemStack(JourneyWeapons.swordOfTheThunderbird, 1));
+			te.setInventorySlotContents(18, new ItemStack(JourneyWeapons.thunderbirdBattleaxe, 1));
 			te.setInventorySlotContents(11, new ItemStack(JourneyItems.corbaPortalGem, 5));
 			break;
 		case 1:
-			te.setInventorySlotContents(1, new ItemStack(JourneyItems.rocsWing, 1));
-			te.setInventorySlotContents(5, new ItemStack(JourneyItems.rocSword, 1));
-			te.setInventorySlotContents(2, new ItemStack(JourneyItems.swordOfTheThunderbird, 1));
-			te.setInventorySlotContents(14, new ItemStack(JourneyItems.thunderbirdBattleaxe, 1));
+			te.setInventorySlotContents(1, new ItemStack(JourneyWeapons.rocsWing, 1));
+			te.setInventorySlotContents(5, new ItemStack(JourneyWeapons.rocSword, 1));
+			te.setInventorySlotContents(2, new ItemStack(JourneyWeapons.swordOfTheThunderbird, 1));
+			te.setInventorySlotContents(14, new ItemStack(JourneyWeapons.thunderbirdBattleaxe, 1));
 			te.setInventorySlotContents(13, new ItemStack(JourneyItems.corbaPortalGem, 5));
 			break;
 		}

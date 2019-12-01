@@ -2,7 +2,7 @@ package net.journey.blocks;
 
 import java.util.Random;
 
-import net.journey.JourneyItems;
+import net.journey.JourneyConsumables;
 import net.journey.JourneyTabs;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
@@ -22,6 +22,6 @@ public class BlockMelon extends BlockMod {
 	
 	@Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-        return JourneyItems.airMelon;
+        return JourneyConsumables.airMelon;
     }
 }

@@ -2,7 +2,7 @@ package net.journey.entity.mob.nether;
 
 import java.util.Random;
 
-import net.journey.JourneyItems;
+import net.journey.JourneyConsumables;
 import net.journey.entity.MobStats;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -67,7 +67,7 @@ public class EntityMiniGhast extends EntityModFlying {
 	@Override
 	protected void dropFewItems(boolean b, int j) {
 		if (rand.nextInt(1) == 0)
-			dropItem(JourneyItems.flamingGhastTentacle, 2);
+			dropItem(JourneyConsumables.flamingGhastTentacle, 2);
 		super.dropFewItems(b, j);
 	}
 
@@ -346,20 +346,16 @@ public class EntityMiniGhast extends EntityModFlying {
 
 	@Override
 	public SoundEvent setLivingSound() {
-		// TODO Auto-generated method stub
-		return null;
+		return SoundEvents.ENTITY_GHAST_AMBIENT;
 	}
 
 	@Override
 	public SoundEvent setHurtSound() {
-		// TODO Auto-generated method stub
-		return null;
+		return SoundEvents.ENTITY_GHAST_HURT;
 	}
 
 	@Override
 	public SoundEvent setDeathSound() {
-		// TODO Auto-generated method stub
-		return null;
+		return SoundEvents.ENTITY_GHAST_DEATH;
 	}
-
 }

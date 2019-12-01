@@ -1,5 +1,6 @@
 package net.journey.entity.mob.nether;
 
+import net.journey.JourneyConsumables;
 import net.journey.JourneyItems;
 import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
@@ -131,12 +132,12 @@ public class EntityHellCow extends EntityPeacefullUntillAttacked {
 		if(rand.nextInt(30) == 0) dropItem(JourneyItems.horn, 1);
 		if(rand.nextInt(40) == 0) dropItem(JourneyItems.horn, 2);
 		if (this.isBurning()) {
-			if(rand.nextInt(4) == 0)dropItem(JourneyItems.flamingBeefCooked, 2);
-			if(rand.nextInt(1) == 0)dropItem(JourneyItems.flamingBeefCooked, 1); 
+			if(rand.nextInt(4) == 0)dropItem(JourneyConsumables.flamingBeefCooked, 2);
+			if(rand.nextInt(1) == 0)dropItem(JourneyConsumables.flamingBeefCooked, 1); 
 			}
 		else {
-			if(rand.nextInt(4) == 0)dropItem(JourneyItems.flamingBeef, 2); 
-			if(rand.nextInt(1) == 0)dropItem(JourneyItems.flamingBeef, 1); 
+			if(rand.nextInt(4) == 0)dropItem(JourneyConsumables.flamingBeef, 2); 
+			if(rand.nextInt(1) == 0)dropItem(JourneyConsumables.flamingBeef, 1); 
 			}
 		super.dropFewItems(b, j);
 	}

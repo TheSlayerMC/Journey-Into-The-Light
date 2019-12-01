@@ -3,7 +3,7 @@ package net.journey.entity.mob.boss;
 import javax.annotation.Nullable;
 
 import net.journey.JourneyItems;
-import net.journey.JourneySounds;
+import net.journey.JourneyWeapons;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityDarknessArrow;
 import net.journey.entity.projectile.EntityFlameArrow;
@@ -85,7 +85,7 @@ public class EntityFourfa extends EntityEssenceBoss implements IRangedAttackMob 
 	public void setCombatTask() {
 		this.tasks.removeTask(this.aiArrowAttack);
 		ItemStack itemstack = this.getHeldItemMainhand();
-		if(itemstack != null && itemstack.getItem() == JourneyItems.darknessBow)
+		if(itemstack != null && itemstack.getItem() == JourneyWeapons.darknessBow)
 			this.tasks.addTask(4, this.aiArrowAttack);
 	}
 
@@ -110,7 +110,7 @@ public class EntityFourfa extends EntityEssenceBoss implements IRangedAttackMob 
 
 	@Override
 	public ItemStack getHeldItem(EnumHand hand) {
-		return new ItemStack(JourneyItems.darknessBow);
+		return new ItemStack(JourneyWeapons.darknessBow);
 	}
 
 	@Override

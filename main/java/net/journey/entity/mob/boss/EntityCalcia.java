@@ -2,6 +2,7 @@ package net.journey.entity.mob.boss;
 
 import net.journey.JourneyItems;
 import net.journey.JourneySounds;
+import net.journey.JourneyWeapons;
 import net.journey.entity.MobStats;
 import net.journey.util.PotionEffects;
 import net.minecraft.entity.Entity;
@@ -95,7 +96,7 @@ public class EntityCalcia extends EntityEssenceBoss {
 	@Override
 	protected void dropFewItems(boolean par1, int par2) {
 		this.dropItem(JourneyItems.eucaPortalGem, 6 + rand.nextInt(4));
-		this.dropItem(JourneyItems.calciaSword, 1);
+		this.dropItem(JourneyWeapons.calciaSword, 1);
 
 		//if(rand.nextInt(1) == 0)
 		//	this.dropItem(Item.getItemFromBlock(EssenceBlocks.calciaStatue), 1);

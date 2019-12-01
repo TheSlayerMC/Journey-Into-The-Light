@@ -1,7 +1,7 @@
 package net.journey.entity.mob.overworld.underground;
 
-import net.journey.JourneyItems;
 import net.journey.JourneySounds;
+import net.journey.JourneyWeapons;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityConjuring;
 import net.minecraft.entity.EntityLivingBase;
@@ -39,14 +39,14 @@ public class EntityCaveMage extends EntityModMob implements IRangedAttackMob {
 	public void setCombatTask() {
 		this.tasks.removeTask(this.aiArrowAttack);
 		ItemStack itemstack = getHeldItemMainhand();
-		if(itemstack != null && itemstack.getItem() == JourneyItems.fireWand) {
+		if(itemstack != null && itemstack.getItem() == JourneyWeapons.fireWand) {
 			this.tasks.addTask(4, this.aiArrowAttack);
 		}
 	}
 
 	@Override
 	public ItemStack getHeldItem(EnumHand hand) {
-		return new ItemStack(JourneyItems.fireWand);
+		return new ItemStack(JourneyWeapons.fireWand);
 	}
 
 	@Override

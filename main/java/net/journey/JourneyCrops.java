@@ -60,7 +60,7 @@ public class JourneyCrops {
 		glowshroomCrop = new BlockGlowshroomCrop("glowshroomCrop");
 		floroCrop = new BlockFloroCrop("floroCrop");
 		airRootCrop = new BlockAirRootCrop("airRootCrop");
-		airRootMelon = new BlockMelon("airRootMelon", "Air Root", JourneyItems.airMelon);
+		airRootMelon = new BlockMelon("airRootMelon", "Air Root", JourneyConsumables.airMelon);
 
 		bleedheart = new ItemFruit("bleedheart", "Bleedheart Fruit", 2, 0.1F, false, (BlockFruitCrop) JourneyCrops.bleedheartFruit, JourneyBlocks.sizzlerWoodLog).setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.moveSlow, 100, 10), 1.0F);
 		glowshroomPowder = new ItemModSeeds("glowshroomPowder", "Glowshroom Powder", JourneyCrops.glowshroomCrop);

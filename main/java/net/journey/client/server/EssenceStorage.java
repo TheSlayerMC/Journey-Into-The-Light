@@ -18,7 +18,6 @@ public class EssenceStorage implements IStorage<IEssence> {
 
 	@Override
 	public void readNBT(Capability<IEssence> capability, IEssence instance, EnumFacing side, NBTBase nbt) {
-		if(nbt instanceof NBTTagCompound)
-			instance.readNBT(nbt, instance, new NBTTagCompound());
+		instance.readNBT(nbt, instance, new NBTTagCompound());
 	}
 }

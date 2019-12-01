@@ -3,6 +3,7 @@ package net.journey.entity.mob.boss;
 import net.journey.JourneyBlocks;
 import net.journey.JourneyItems;
 import net.journey.JourneySounds;
+import net.journey.JourneyWeapons;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.entity.MobStats;
 import net.journey.util.PotionEffects;
@@ -110,11 +111,11 @@ public class EntityEudor extends EntityEssenceBoss {
 		switch(rand.nextInt(2)) {
 		case 0:
 			te.setInventorySlotContents(15, new ItemStack(JourneyItems.depthsPortalGem, 8));
-			te.setInventorySlotContents(1, new ItemStack(JourneyItems.kingsSword, 1));
+			te.setInventorySlotContents(1, new ItemStack(JourneyWeapons.kingsSword, 1));
 			break;
 		case 1:
 			te.setInventorySlotContents(1, new ItemStack(JourneyItems.depthsPortalGem, 7));
-			te.setInventorySlotContents(10, new ItemStack(JourneyItems.kingsSword, 1));
+			te.setInventorySlotContents(10, new ItemStack(JourneyWeapons.kingsSword, 1));
 			break;
 		}
 	}

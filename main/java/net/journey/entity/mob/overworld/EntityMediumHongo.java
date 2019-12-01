@@ -1,6 +1,6 @@
 package net.journey.entity.mob.overworld;
 
-import net.journey.JourneyItems;
+import net.journey.JourneyConsumables;
 import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
 import net.minecraft.item.Item;
@@ -50,6 +50,6 @@ public class EntityMediumHongo extends EntityModMob {
 	
 	@Override
 	public Item getItemDropped() {
-		return JourneyItems.hongoShroom;
+		return JourneyConsumables.hongoShroom;
 	}
 }

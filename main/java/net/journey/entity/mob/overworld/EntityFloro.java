@@ -2,7 +2,8 @@ package net.journey.entity.mob.overworld;
 
 import javax.annotation.Nullable;
 
-import net.journey.JourneyItems;
+import net.journey.JourneyArmory;
+import net.journey.JourneyConsumables;
 import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityFloroWater;
@@ -148,8 +149,8 @@ public class EntityFloro extends EntityModMob implements IRangedAttackMob {
 	
 	@Override
 	protected void dropFewItems(boolean b, int j) {
-		if(rand.nextInt(16) == 0) dropItem(JourneyItems.floroPedal, rand.nextInt(3));
-		if(rand.nextInt(55) == 0) dropItem(JourneyItems.hoeOfEternalLife, 1);
+		if(rand.nextInt(16) == 0) dropItem(JourneyConsumables.floroPedal, rand.nextInt(3));
+		if(rand.nextInt(55) == 0) dropItem(JourneyArmory.hoeOfEternalLife, 1);
 		super.dropFewItems(b, j);
 	
 	}

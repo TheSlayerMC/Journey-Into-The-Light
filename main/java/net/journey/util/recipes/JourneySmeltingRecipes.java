@@ -8,6 +8,7 @@ import com.google.common.collect.Maps;
 import com.google.common.collect.Table;
 
 import net.journey.JourneyBlocks;
+import net.journey.JourneyConsumables;
 import net.journey.JourneyItems;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -37,16 +38,16 @@ public class JourneySmeltingRecipes {
 		FurnaceRecipes.instance().addSmelting(i.spawnerClump, new ItemStack(i.spawnerBar), 1.0F);
 		//FurnaceRecipes.instance().addSmelting(SlayerAPI.toItem(Blocks.GLASS), new ItemStack(b.smoothGlass, 1), 1.0F);
 		FurnaceRecipes.instance().addSmelting(SlayerAPI.toItem(b.verditeOre), new ItemStack(i.verditeIngot, 1), 1.0F);
-		FurnaceRecipes.instance().addSmelting(i.flamingBeef, new ItemStack(JourneyItems.flamingBeefCooked), 0.5F);
+		FurnaceRecipes.instance().addSmelting(JourneyConsumables.flamingBeef, new ItemStack(JourneyConsumables.flamingBeefCooked), 0.5F);
 		FurnaceRecipes.instance().addSmelting(i.ironDust, new ItemStack(Items.IRON_INGOT), 0.5F);
 		FurnaceRecipes.instance().addSmelting(i.goldDust, new ItemStack(Items.GOLD_INGOT), 0.5F);
 		FurnaceRecipes.instance().addSmelting(i.diamondDust, new ItemStack(Items.DIAMOND), 0.5F);
 		FurnaceRecipes.instance().addSmelting(i.enderilliumDust, new ItemStack(JourneyItems.enderilliumShard), 0.5F);
 		FurnaceRecipes.instance().addSmelting(Items.ROTTEN_FLESH, new ItemStack(Items.LEATHER), 0.5F);
-		FurnaceRecipes.instance().addSmelting(Items.EGG, new ItemStack(i.friedEgg), 0.5F);
-		FurnaceRecipes.instance().addSmelting(i.rocMeat, new ItemStack(i.cookedRocMeat), 0.5F);
-		FurnaceRecipes.instance().addSmelting(i.ghastTentacle, new ItemStack(i.friedGhastTentacale), 0.5F);
-		FurnaceRecipes.instance().addSmelting(i.flamingGhastTentacle, new ItemStack(i.friedFlamingGhastTentacale), 0.5F);
+		FurnaceRecipes.instance().addSmelting(Items.EGG, new ItemStack(JourneyConsumables.friedEgg), 0.5F);
+		FurnaceRecipes.instance().addSmelting(JourneyConsumables.rocMeat, new ItemStack(JourneyConsumables.cookedRocMeat), 0.5F);
+		FurnaceRecipes.instance().addSmelting(JourneyConsumables.ghastTentacle, new ItemStack(JourneyConsumables.friedGhastTentacale), 0.5F);
+		FurnaceRecipes.instance().addSmelting(JourneyConsumables.flamingGhastTentacle, new ItemStack(JourneyConsumables.friedFlamingGhastTentacale), 0.5F);
 	
 		FurnaceRecipes.instance().addSmelting(SlayerAPI.toItem(b.shadiumOre), new ItemStack(i.shadiumIngot), 0.5F);
 		FurnaceRecipes.instance().addSmelting(SlayerAPI.toItem(b.luniumOre), new ItemStack(i.luniumIngot), 0.5F);

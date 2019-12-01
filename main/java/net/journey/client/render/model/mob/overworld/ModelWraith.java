@@ -1,14 +1,12 @@
 package net.journey.client.render.model.mob.overworld;
 
 import net.journey.JourneyItems;
+import net.journey.JourneyWeapons;
 import net.journey.entity.mob.overworld.EntityWraith;
-import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.monster.AbstractSkeleton;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumHandSide;
@@ -68,7 +66,7 @@ public class ModelWraith extends ModelBiped
         this.leftArmPose = ModelBiped.ArmPose.EMPTY;
         ItemStack itemstack = entitylivingbaseIn.getHeldItem(EnumHand.MAIN_HAND);
         
-        if (itemstack.getItem() == JourneyItems.demonicSword) {
+        if (itemstack.getItem() == JourneyWeapons.demonicSword) {
             if (entitylivingbaseIn.getPrimaryHand() == EnumHandSide.RIGHT) {
                 this.rightArmPose = ModelBiped.ArmPose.ITEM;
             }
@@ -107,7 +105,7 @@ public class ModelWraith extends ModelBiped
         ItemStack itemstack = ((EntityLivingBase)entityIn).getHeldItemMainhand();
         EntityWraith w = (EntityWraith)entityIn;
 
-        if (itemstack.getItem() != JourneyItems.demonicSword) {
+        if (itemstack.getItem() != JourneyWeapons.demonicSword) {
             float f = MathHelper.sin(this.swingProgress * (float)Math.PI);
             float f1 = MathHelper.sin((1.0F - (1.0F - this.swingProgress) * (1.0F - this.swingProgress)) * (float)Math.PI);
             this.bipedRightArm.rotateAngleZ = 0.0F;

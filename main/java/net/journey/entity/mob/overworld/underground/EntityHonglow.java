@@ -1,5 +1,6 @@
 package net.journey.entity.mob.overworld.underground;
 
+import net.journey.JourneyConsumables;
 import net.journey.JourneyItems;
 import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
@@ -71,9 +72,9 @@ public class EntityHonglow extends EntityModMob {
 
 	@Override
 	protected void dropFewItems(boolean b, int j) {
-		if(rand.nextInt(1) == 0) dropItem(JourneyItems.redHonglowShroom, 1);
+		if(rand.nextInt(1) == 0) dropItem(JourneyConsumables.redHonglowShroom, 1);
 		super.dropFewItems(b, j);
-		if(rand.nextInt(5) == 0) dropItem(JourneyItems.redHonglowShroom, 2);
+		if(rand.nextInt(5) == 0) dropItem(JourneyConsumables.redHonglowShroom, 2);
 		super.dropFewItems(b, j);
 	}
 

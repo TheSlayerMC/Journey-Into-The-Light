@@ -1,11 +1,14 @@
 package net.journey.proxy;
 
+import net.journey.JourneyArmory;
 import net.journey.JourneyBlocks;
 import net.journey.JourneyChestGenerator;
+import net.journey.JourneyConsumables;
 import net.journey.JourneyCrops;
 import net.journey.JourneyItems;
 import net.journey.JourneySounds;
 import net.journey.JourneyTabs;
+import net.journey.JourneyWeapons;
 import net.journey.client.server.BarTickHandler;
 import net.journey.client.server.EssenceBar;
 import net.journey.client.server.EssenceStorage;
@@ -57,6 +60,9 @@ public class CommonProxy {
 
 		JourneySounds.init();
 		JourneyItems.init();
+		JourneyWeapons.init();
+		JourneyArmory.init();
+		JourneyConsumables.init();
 		JourneyBlocks.init();
 		JourneyCrops.init();
 		BiomeRegister.registerBiomes();

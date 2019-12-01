@@ -2,8 +2,8 @@ package net.journey.blocks.crop;
 
 import java.util.Random;
 
+import net.journey.JourneyConsumables;
 import net.journey.JourneyCrops;
-import net.journey.JourneyItems;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
@@ -29,7 +29,7 @@ public class BlockFloroCrop extends BlockModCrop {
 
 	@Override
 	public Item getCrop() {
-		return JourneyItems.floroPedal;
+		return JourneyConsumables.floroPedal;
 	}
 
 	@Override

@@ -1,11 +1,13 @@
 package net.journey.entity.projectile;
 
-import com.google.common.base.Predicate;
-import com.google.common.base.Predicates;
 import java.util.List;
+
 import javax.annotation.Nullable;
 
-import net.journey.JourneyItems;
+import com.google.common.base.Predicate;
+import com.google.common.base.Predicates;
+
+import net.journey.JourneyWeapons;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -540,7 +542,7 @@ public abstract class EntitySizzlingKnife extends EntityThrowable implements IPr
 	}
 
 	protected ItemStack getDropStack() {
-		return new ItemStack(JourneyItems.sizzlingKnife);
+		return new ItemStack(JourneyWeapons.sizzlingKnife);
 	}
 
 	@Override

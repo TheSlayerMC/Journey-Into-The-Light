@@ -1,7 +1,7 @@
 package net.journey.blocks.crop;
 
+import net.journey.JourneyConsumables;
 import net.journey.JourneyCrops;
-import net.journey.JourneyItems;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.item.Item;
 import net.slayer.api.block.BlockModCrop;
@@ -24,7 +24,7 @@ public class BlockTomatoCrop extends BlockModCrop {
 
 	@Override
 	public Item getCrop() {
-		return JourneyItems.tomato;
+		return JourneyConsumables.tomato;
 	}
 
 	@Override

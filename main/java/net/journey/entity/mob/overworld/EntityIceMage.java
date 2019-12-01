@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 
 import net.journey.JourneyItems;
 import net.journey.JourneySounds;
+import net.journey.JourneyWeapons;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityIceBall;
 import net.minecraft.entity.EntityLivingBase;
@@ -44,7 +45,7 @@ public class EntityIceMage extends EntityModMob implements IRangedAttackMob {
 		if(this.world != null && !this.world.isRemote) {
 			this.tasks.removeTask(this.aiArrowAttack);
 			ItemStack itemstack = this.getHeldItemMainhand();
-			if(itemstack.getItem() == JourneyItems.iceWand) {
+			if(itemstack.getItem() == JourneyWeapons.iceWand) {
 				int i = 20;
 				if(this.world.getDifficulty() != EnumDifficulty.HARD) {
 					i = 40;
@@ -58,7 +59,7 @@ public class EntityIceMage extends EntityModMob implements IRangedAttackMob {
 	@Override
     protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty) {
         super.setEquipmentBasedOnDifficulty(difficulty);
-        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(JourneyItems.iceWand));
+        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(JourneyWeapons.iceWand));
     }
 
 	@Override
@@ -88,7 +89,7 @@ public class EntityIceMage extends EntityModMob implements IRangedAttackMob {
 
 	@Override
 	public ItemStack getHeldItem(EnumHand hand) {
-		return new ItemStack(JourneyItems.iceWand);
+		return new ItemStack(JourneyWeapons.iceWand);
 	}
 	
 	@Override

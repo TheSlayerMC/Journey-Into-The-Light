@@ -1,6 +1,7 @@
 package net.journey.client.render.mob.layers;
 
 import net.journey.JourneyItems;
+import net.journey.JourneyWeapons;
 import net.journey.client.render.model.mob.boss.ModelFourfa;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
@@ -43,15 +44,15 @@ public class LayerFourfaHeldItem implements LayerRenderer {
             GL11.glPopMatrix();     
             GL11.glPushMatrix();
             GL11.glTranslatef(0.5F, 0.6F, 0.0F);
-            minecraft.getItemRenderer().renderItem(e, new ItemStack(JourneyItems.flameBow), ItemCameraTransforms.TransformType.THIRD_PERSON_RIGHT_HAND);
+            minecraft.getItemRenderer().renderItem(e, new ItemStack(JourneyWeapons.flameBow), ItemCameraTransforms.TransformType.THIRD_PERSON_RIGHT_HAND);
             GL11.glPopMatrix();          
             GL11.glPushMatrix();
             GL11.glTranslatef(-0.75F, 0.6F, 0.0F);
-            minecraft.getItemRenderer().renderItem(e, new ItemStack(JourneyItems.frozenBow), ItemCameraTransforms.TransformType.THIRD_PERSON_RIGHT_HAND);
+            minecraft.getItemRenderer().renderItem(e, new ItemStack(JourneyWeapons.frozenBow), ItemCameraTransforms.TransformType.THIRD_PERSON_RIGHT_HAND);
             GL11.glPopMatrix();
             GL11.glPushMatrix();
             GL11.glTranslatef(-1.25F, 0.6F, 0.0F);
-            minecraft.getItemRenderer().renderItem(e, new ItemStack(JourneyItems.poisonBow), ItemCameraTransforms.TransformType.THIRD_PERSON_RIGHT_HAND);
+            minecraft.getItemRenderer().renderItem(e, new ItemStack(JourneyWeapons.poisonBow), ItemCameraTransforms.TransformType.THIRD_PERSON_RIGHT_HAND);
             GL11.glPopMatrix();
             GlStateManager.popMatrix();
         }

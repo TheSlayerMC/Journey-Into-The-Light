@@ -2,9 +2,11 @@ package net.journey.entity.mob.boss;
 
 import java.util.Random;
 
+import net.journey.JourneyArmory;
 import net.journey.JourneyBlocks;
 import net.journey.JourneyItems;
 import net.journey.JourneySounds;
+import net.journey.JourneyWeapons;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.client.render.particles.EntityHellstoneFX;
 import net.journey.entity.MobStats;
@@ -101,22 +103,22 @@ public class EntitySoulWatcher extends EntityEssenceBoss implements IRangedAttac
 		TileEntityJourneyChest te = (TileEntityJourneyChest)world.getTileEntity(new BlockPos((int)Math.floor(this.posX + 0), ((int)Math.floor(this.posY + 0)), ((int)Math.floor(this.posZ + 0))));
 		switch(rand.nextInt(2)) {
 		case 0:
-			te.setInventorySlotContents(2, new ItemStack(JourneyItems.staringBow, 1));
+			te.setInventorySlotContents(2, new ItemStack(JourneyWeapons.staringBow, 1));
 			te.setInventorySlotContents(11, new ItemStack(JourneyItems.eucaPortalPiece_1, 1));
 			te.setInventorySlotContents(12, new ItemStack(JourneyItems.demonicEye, 12));
-			te.setInventorySlotContents(16, new ItemStack(JourneyItems.twilightBoots, 1));
-			te.setInventorySlotContents(5, new ItemStack(JourneyItems.twilightChest, 1));
-			te.setInventorySlotContents(10, new ItemStack(JourneyItems.twilightHelmet, 1));
-			te.setInventorySlotContents(20, new ItemStack(JourneyItems.twilightLegs, 1));
+			te.setInventorySlotContents(16, new ItemStack(JourneyArmory.twilightBoots, 1));
+			te.setInventorySlotContents(5, new ItemStack(JourneyArmory.twilightChest, 1));
+			te.setInventorySlotContents(10, new ItemStack(JourneyArmory.twilightHelmet, 1));
+			te.setInventorySlotContents(20, new ItemStack(JourneyArmory.twilightLegs, 1));
 			break;
 		case 1:
 			te.setInventorySlotContents(12, new ItemStack(JourneyItems.demonicEye, 12));
-			te.setInventorySlotContents(5, new ItemStack(JourneyItems.staringBow, 1));
+			te.setInventorySlotContents(5, new ItemStack(JourneyWeapons.staringBow, 1));
 			te.setInventorySlotContents(15, new ItemStack(JourneyItems.eucaPortalPiece_1, 2));
-			te.setInventorySlotContents(17, new ItemStack(JourneyItems.twilightBoots, 1));
-			te.setInventorySlotContents(2, new ItemStack(JourneyItems.twilightChest, 1));
-			te.setInventorySlotContents(20, new ItemStack(JourneyItems.twilightHelmet, 1));
-			te.setInventorySlotContents(11, new ItemStack(JourneyItems.twilightLegs, 1));
+			te.setInventorySlotContents(17, new ItemStack(JourneyArmory.twilightBoots, 1));
+			te.setInventorySlotContents(2, new ItemStack(JourneyArmory.twilightChest, 1));
+			te.setInventorySlotContents(20, new ItemStack(JourneyArmory.twilightHelmet, 1));
+			te.setInventorySlotContents(11, new ItemStack(JourneyArmory.twilightLegs, 1));
 			break;
 		}
 	}

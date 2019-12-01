@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 
 import net.journey.JourneyItems;
 import net.journey.JourneySounds;
+import net.journey.JourneyWeapons;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityFloroWater;
 import net.journey.entity.projectile.EntityMagmaFireball;
@@ -65,7 +66,7 @@ public class EntityTempleGuardian extends EntityEssenceBoss implements IRangedAt
 		if(this.world != null && !this.world.isRemote) {
 			this.tasks.removeTask(this.aiArrowAttack);
 			ItemStack itemstack = this.getHeldItemMainhand();
-			if(itemstack.getItem() == JourneyItems.staffOfHellstone) {
+			if(itemstack.getItem() == JourneyWeapons.staffOfHellstone) {
 				int i = 20;
 				if(this.world.getDifficulty() != EnumDifficulty.HARD) {
 					i = 40;
@@ -79,7 +80,7 @@ public class EntityTempleGuardian extends EntityEssenceBoss implements IRangedAt
 	@Override
     protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty) {
         super.setEquipmentBasedOnDifficulty(difficulty);
-        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(JourneyItems.staffOfHellstone));
+        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(JourneyWeapons.staffOfHellstone));
     }
 
 	@Override
@@ -109,7 +110,7 @@ public class EntityTempleGuardian extends EntityEssenceBoss implements IRangedAt
 
 	@Override
 	public ItemStack getHeldItem(EnumHand hand) {
-		return new ItemStack(JourneyItems.staffOfHellstone);
+		return new ItemStack(JourneyWeapons.staffOfHellstone);
 	}
 	
 	@Override

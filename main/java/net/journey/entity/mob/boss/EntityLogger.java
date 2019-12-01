@@ -1,8 +1,10 @@
 package net.journey.entity.mob.boss;
 
+import net.journey.JourneyArmory;
 import net.journey.JourneyBlocks;
 import net.journey.JourneyItems;
 import net.journey.JourneySounds;
+import net.journey.JourneyWeapons;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.entity.MobStats;
 import net.minecraft.block.Block;
@@ -96,23 +98,23 @@ public class EntityLogger extends EntityEssenceBoss {
 		switch(rand.nextInt(2)) {
 		case 0:
 			te.setInventorySlotContents(15, new ItemStack(JourneyItems.terraniaPortalGem, 8));
-			te.setInventorySlotContents(1, new ItemStack(JourneyItems.naturesBlade, 1));
-			te.setInventorySlotContents(5, new ItemStack(JourneyItems.loggersBow, 1));
+			te.setInventorySlotContents(1, new ItemStack(JourneyWeapons.naturesBlade, 1));
+			te.setInventorySlotContents(5, new ItemStack(JourneyWeapons.loggersBow, 1));
 
-			te.setInventorySlotContents(3, new ItemStack(JourneyItems.hollowChest, 1));
-			te.setInventorySlotContents(11, new ItemStack(JourneyItems.hollowHelmet, 1));
-			te.setInventorySlotContents(7, new ItemStack(JourneyItems.hollowLegs, 1));
-			te.setInventorySlotContents(8, new ItemStack(JourneyItems.hollowBoots, 1));
+			te.setInventorySlotContents(3, new ItemStack(JourneyArmory.hollowChest, 1));
+			te.setInventorySlotContents(11, new ItemStack(JourneyArmory.hollowHelmet, 1));
+			te.setInventorySlotContents(7, new ItemStack(JourneyArmory.hollowLegs, 1));
+			te.setInventorySlotContents(8, new ItemStack(JourneyArmory.hollowBoots, 1));
 			break;
 		case 1:
 			te.setInventorySlotContents(1, new ItemStack(JourneyItems.terraniaPortalGem, 10));
-			te.setInventorySlotContents(2, new ItemStack(JourneyItems.loggersSword, 1));
-			te.setInventorySlotContents(10, new ItemStack(JourneyItems.loggersBow, 1));
+			te.setInventorySlotContents(2, new ItemStack(JourneyWeapons.loggersSword, 1));
+			te.setInventorySlotContents(10, new ItemStack(JourneyWeapons.loggersBow, 1));
 
-			te.setInventorySlotContents(3, new ItemStack(JourneyItems.hollowChest, 1));
-			te.setInventorySlotContents(11, new ItemStack(JourneyItems.hollowHelmet, 1));
-			te.setInventorySlotContents(5, new ItemStack(JourneyItems.hollowLegs, 1));
-			te.setInventorySlotContents(6, new ItemStack(JourneyItems.hollowBoots, 1));
+			te.setInventorySlotContents(3, new ItemStack(JourneyArmory.hollowChest, 1));
+			te.setInventorySlotContents(11, new ItemStack(JourneyArmory.hollowHelmet, 1));
+			te.setInventorySlotContents(5, new ItemStack(JourneyArmory.hollowLegs, 1));
+			te.setInventorySlotContents(6, new ItemStack(JourneyArmory.hollowBoots, 1));
 			break;
 		}
 	}

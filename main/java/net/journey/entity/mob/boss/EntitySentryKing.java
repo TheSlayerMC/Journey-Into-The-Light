@@ -5,6 +5,7 @@ import java.util.Random;
 import net.journey.JourneyBlocks;
 import net.journey.JourneyItems;
 import net.journey.JourneySounds;
+import net.journey.JourneyWeapons;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityMagmaFireball;
@@ -148,13 +149,13 @@ public class EntitySentryKing extends EntityEssenceBoss implements IRangedAttack
 		switch(rand.nextInt(2)) {
 		case 0:
 			te.setInventorySlotContents(15, new ItemStack(JourneyItems.terraniaPortalGem, 4));
-			te.setInventorySlotContents(1, new ItemStack(JourneyItems.sentrySword, 1));
-			te.setInventorySlotContents(4, new ItemStack(JourneyItems.overseerBow, 1));
+			te.setInventorySlotContents(1, new ItemStack(JourneyWeapons.sentrySword, 1));
+			te.setInventorySlotContents(4, new ItemStack(JourneyWeapons.overseerBow, 1));
 			break;
 		case 1:
 			te.setInventorySlotContents(1, new ItemStack(JourneyItems.terraniaPortalGem, 5));
-			te.setInventorySlotContents(10, new ItemStack(JourneyItems.sentrySword, 1));
-			te.setInventorySlotContents(16, new ItemStack(JourneyItems.overseerBow, 1));
+			te.setInventorySlotContents(10, new ItemStack(JourneyWeapons.sentrySword, 1));
+			te.setInventorySlotContents(16, new ItemStack(JourneyWeapons.overseerBow, 1));
 			break;
 		}
 	}

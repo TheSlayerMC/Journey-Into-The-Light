@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 
 import net.journey.JourneyItems;
 import net.journey.JourneySounds;
+import net.journey.JourneyWeapons;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityFireBall;
 import net.minecraft.entity.EntityLivingBase;
@@ -40,7 +41,7 @@ public class EntityGolditeMage extends EntityModMob implements IRangedAttackMob 
 	public void setCombatTask() {
 		this.tasks.removeTask(this.aiArrowAttack);
 		ItemStack itemstack = this.getHeldItemMainhand();
-		if(itemstack != null && itemstack.getItem() == JourneyItems.fireWand) {
+		if(itemstack != null && itemstack.getItem() == JourneyWeapons.fireWand) {
 			this.tasks.addTask(4, this.aiArrowAttack);
 		}
 	}
@@ -48,7 +49,7 @@ public class EntityGolditeMage extends EntityModMob implements IRangedAttackMob 
 	@Override
     protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty) {
         super.setEquipmentBasedOnDifficulty(difficulty);
-        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(JourneyItems.fireWand));
+        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(JourneyWeapons.fireWand));
     }
 	
 	@Override
@@ -78,7 +79,7 @@ public class EntityGolditeMage extends EntityModMob implements IRangedAttackMob 
 	
 	@Override
 	public ItemStack getHeldItem(EnumHand hand) {
-		return new ItemStack(JourneyItems.iceWand);
+		return new ItemStack(JourneyWeapons.iceWand);
 	}
 	
 	@Override

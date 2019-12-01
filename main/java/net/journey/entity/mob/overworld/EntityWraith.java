@@ -2,6 +2,7 @@ package net.journey.entity.mob.overworld;
 
 import net.journey.JourneyItems;
 import net.journey.JourneySounds;
+import net.journey.JourneyWeapons;
 import net.journey.entity.MobStats;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.passive.EntityChicken;
@@ -30,7 +31,7 @@ public class EntityWraith extends EntityModMob {
 	
 	@Override
 	public ItemStack getHeldItem(EnumHand hand) {
-		return new ItemStack(JourneyItems.demonicSword);
+		return new ItemStack(JourneyWeapons.demonicSword);
 	}
 
 	@Override

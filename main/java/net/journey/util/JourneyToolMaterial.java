@@ -1,5 +1,6 @@
 package net.journey.util;
 
+import net.journey.JourneyConsumables;
 import net.journey.JourneyItems;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -30,7 +31,7 @@ public enum JourneyToolMaterial {
 	DES(JourneyItems.des, JourneyItems.desIngot, 20),
 	NETHIC(JourneyItems.nethic, JourneyItems.bleedstone, 20),
 	KORITE(JourneyItems.korite, JourneyItems.koriteIngot, 14),
-	HOEOFLIFE(JourneyItems.hoeoflife, JourneyItems.floroPedal, 14),
+	HOEOFLIFE(JourneyItems.hoeoflife, JourneyConsumables.floroPedal, 14),
 	
 	NETHER_BEAST_SWORD(SlayerAPI.addMeleeMaterial(3000, 16-4, 25)),
 	WITHERING_BEAST_SWORD(SlayerAPI.addMeleeMaterial(3000, 16-4, 25)),

@@ -884,11 +884,11 @@ public class JourneyBlocks {
 		netherFurnace = new BlockNetherFurnace("netherFurnace", "Nethic Furnace", false);
 		netherFurnaceActive = (BlockNetherFurnace) new BlockNetherFurnace("netherFurnaceActive", "Nethic Furnace", true).setLightLevel(0.7F).setCreativeTab(null);
 	 	
-		sizzleberryBush = new BlockModBush("sizzleberryBush", "Sizzleberry Bush", JourneyItems.sizzleberry, true);
-	 	bradberryBush = new BlockModBush("bradberryBush", "Bradberry Bush", JourneyItems.bradberry, false);
-	 	tangleberryBush = new BlockModBush("tangleberryBush", "Tangleberry Bush", JourneyItems.tangleberry, false);
-	 	juiceberryBush = new BlockModBush("juiceberryBush", "Juiceberry Bush", JourneyItems.juiceberry, false);
-	 	bogberryBush = new BlockModBush("bogberryBush", "Bogberry Bush", JourneyItems.bogberry, false); 
+		sizzleberryBush = new BlockModBush("sizzleberryBush", "Sizzleberry Bush", JourneyConsumables.sizzleberry, true);
+	 	bradberryBush = new BlockModBush("bradberryBush", "Bradberry Bush", JourneyConsumables.bradberry, false);
+	 	tangleberryBush = new BlockModBush("tangleberryBush", "Tangleberry Bush", JourneyConsumables.tangleberry, false);
+	 	juiceberryBush = new BlockModBush("juiceberryBush", "Juiceberry Bush", JourneyConsumables.juiceberry, false);
+	 	bogberryBush = new BlockModBush("bogberryBush", "Bogberry Bush", JourneyConsumables.bogberry, false); 
 		
 	    }
 }

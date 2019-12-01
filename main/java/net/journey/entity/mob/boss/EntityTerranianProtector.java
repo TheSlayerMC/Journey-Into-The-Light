@@ -5,6 +5,7 @@ import java.util.Random;
 import net.journey.JourneyBlocks;
 import net.journey.JourneyItems;
 import net.journey.JourneySounds;
+import net.journey.JourneyWeapons;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityIceBall;
@@ -13,8 +14,6 @@ import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
 import net.minecraft.entity.ai.EntityMoveHelper;
-import net.minecraft.entity.ai.EntityMoveHelper.Action;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -321,11 +320,11 @@ public class EntityTerranianProtector extends EntityEssenceBoss implements IRang
 		TileEntityJourneyChest te = (TileEntityJourneyChest)world.getTileEntity(new BlockPos((int)Math.floor(this.posX + 0), ((int)Math.floor(this.posY + 0)), ((int)Math.floor(this.posZ + 0))));
 		switch(rand.nextInt(2)) {
 		case 0:
-			te.setInventorySlotContents(2, new ItemStack(JourneyItems.terronicBlade, 1));
+			te.setInventorySlotContents(2, new ItemStack(JourneyWeapons.terronicBlade, 1));
 			te.setInventorySlotContents(11, new ItemStack(JourneyItems.cloudiaPortalGem, 9));
 			break;
 		case 1:
-			te.setInventorySlotContents(1, new ItemStack(JourneyItems.terralightBlade, 1));
+			te.setInventorySlotContents(1, new ItemStack(JourneyWeapons.terralightBlade, 1));
 			te.setInventorySlotContents(14, new ItemStack(JourneyItems.cloudiaPortalGem, 12));
 			break;
 		}

@@ -3,7 +3,7 @@ package net.journey.entity.mob.boiling;
 import java.util.List;
 
 import net.journey.JourneyItems;
-import net.journey.JourneySounds;
+import net.journey.JourneyWeapons;
 import net.journey.entity.MobStats;
 import net.journey.util.PotionEffects;
 import net.minecraft.entity.Entity;
@@ -80,7 +80,7 @@ public class EntityBurningLight extends EntityModMob{
 	
 	@Override
 	public ItemStack getHeldItemMainhand() {
-		return new ItemStack(JourneyItems.boilingBlade);
+		return new ItemStack(JourneyWeapons.boilingBlade);
 	}
 	
 	@Override

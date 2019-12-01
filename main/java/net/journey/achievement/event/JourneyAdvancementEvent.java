@@ -3,6 +3,7 @@ package net.journey.achievement.event;
 import net.journey.JourneyAdvancements;
 import net.journey.JourneyBlocks;
 import net.journey.JourneyItems;
+import net.journey.JourneyWeapons;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
@@ -31,7 +32,7 @@ public class JourneyAdvancementEvent {
 
 	@SubscribeEvent
 	public void onCraftSwordEvent(PlayerEvent.ItemCraftedEvent e) {
-		if(e.crafting.getItem().equals(JourneyItems.sapphireSword)) {
+		if(e.crafting.getItem().equals(JourneyWeapons.sapphireSword)) {
 			e.player.addStat(JourneyAdvancements.achievementSapphireSword, 1);
 		}
 	}

@@ -1,24 +1,23 @@
 package net.journey.entity.projectile;
 
-import com.google.common.base.Predicate;
-import com.google.common.base.Predicates;
 import java.util.List;
+
 import javax.annotation.Nullable;
 
-import net.journey.JourneyItems;
+import com.google.common.base.Predicate;
+import com.google.common.base.Predicates;
+
+import net.journey.JourneyWeapons;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.projectile.EntityThrowable;
-import net.minecraft.init.Enchantments;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -30,15 +29,12 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntitySelectors;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.datafix.DataFixer;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class EntityCharredKnife extends EntityThrowable {
 
@@ -392,7 +388,7 @@ public class EntityCharredKnife extends EntityThrowable {
 	}
 
 	protected ItemStack getDropStack() {
-		return new ItemStack(JourneyItems.charredKnife);
+		return new ItemStack(JourneyWeapons.charredKnife);
 	}
 
 	public void setDamage(double damageIn) {
