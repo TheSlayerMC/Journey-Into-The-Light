@@ -66,7 +66,7 @@ public class ItemGun extends ItemMod {
 				}
 			}
 		}
-		return new ActionResult<ItemStack>(EnumActionResult.PASS, stack);	
+		return new ActionResult<ItemStack>(EnumActionResult.FAIL, stack);	
 	}
 
 	@Override

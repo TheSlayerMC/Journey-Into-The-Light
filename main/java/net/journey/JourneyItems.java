@@ -322,11 +322,6 @@ public class JourneyItems {
 	public static Item rockChunk;
 	public static Item rockShard;
 	//public static Item plasmaBall = new ItemMod("plasmaBall");
-
-	
-
-
-
 	public static Item slugSlime;
 
 	public static Item eucaPortalGem;
@@ -353,10 +348,6 @@ public class JourneyItems {
 
 	public static Item weakEssencePotion;
 	public static Item strongEssencePotion;
-
-	
-
-
 	//public static Item flameArrow = new ItemMod("flameArrow", EssenceTabs.ranged);
 	public static Item essenceArrow;
 	public static Item tippedEssenceArrow;
@@ -374,10 +365,6 @@ public class JourneyItems {
 	public static Item frostyGift;
 
 	public static Item firestoneClump;
-
-	//TODO
-	
-
 	public static Item underwaterWorldRecord;
 	public static Item blueWater;
 	public static Item raceStar;
@@ -534,8 +521,6 @@ public class JourneyItems {
 		flameCoin = new ItemFlameCoin("flameCoin", "Flame Coin");
 		//plasmaBall = new ItemMod("plasmaBall");
 
-		
-
 		calciaOrb = new ItemNetherBossSpawner("calciaOrb", "Calcia Orb");
 		netherBeastOrb = new ItemNetherBossSpawner("netherBeastOrb", "Nether Beast Orb");
 		witheringBeastOrb = new ItemNetherBossSpawner("witheringBeastOrb", "Withering Soul");
@@ -554,17 +539,9 @@ public class JourneyItems {
 		weakEssencePotion = new ItemEssencePotion("weakEssencePotion", "Weak Essence Potion", false);
 		strongEssencePotion = new ItemEssencePotion("strongEssencePotion", "Strong Essence Potion", true);
 
-		
-
-		
-
 		//flameArrow = new ItemMod("flameArrow", EssenceTabs.ranged);
 		essenceArrow = new ItemEssenceArrow("essenceArrow", "Essence Arrow");
 		//tippedEssenceArrow = new ItemEssenceArrow("tippedEssenceArrow", "Tipped Essence Arrow");
-
-		
-
-		//TODO
 
 		underwaterWorldRecord = new ItemModRecord("underwaterWorld", "Underwater World", null);
 		blueWater = new ItemModRecord("blueWater", "Blue Water", null);
