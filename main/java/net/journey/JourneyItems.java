@@ -187,7 +187,6 @@ public class JourneyItems {
 	public static final EntityEquipmentSlot HEAD = EntityEquipmentSlot.HEAD, BODY = EntityEquipmentSlot.CHEST, LEGS = EntityEquipmentSlot.LEGS, BOOTS = EntityEquipmentSlot.FEET;
 
 	public static Item hellstoneIngot;
-	public static Item bloodcrustIngot;
 	public static Item shadiumIngot;
 	public static Item celestiumIngot;
 	public static Item mekyumIngot;
@@ -402,7 +401,9 @@ public class JourneyItems {
 		smithstone = new ItemMod("smithstone", "Smithstone");
 		nethicgemstone = new ItemMod("soulstone", "Soulstone");
 
-		hellstoneClump = new ItemMod("hellstoneClump", "Bloodcrust Clump");
+		spawnerBar = new ItemMod("spawnerBar", "Spawner Bar");
+		spawnerClump = new ItemMod("spawnerClump", "Spawner Clump");
+		hellstoneClump = new ItemMod("hellstoneClump", "Hellstone Clump");
 		shadiumClump = new ItemMod("shadiumClump", "Shadium Clump");
 		luniumClump = new ItemMod("luniumClump", "Lunium Clump");
 		obsidianrod = new ItemMod("obsidianrod", "Obsidian Rod");
@@ -500,7 +501,7 @@ public class JourneyItems {
 		staffBase = new ItemMod("staffBase", "Staff Base");
 		firestoneClump = new ItemMod("firestoneClump", "Firestone Clump");
 		iridium = new ItemMod("iridium", "Iridium");
-		hellstoneDust = new ItemMod("hellstoneDust", "Bloodcrust Dust");
+		hellstoneDust = new ItemMod("hellstoneDust", "hellstone Dust");
 		shadiumDust = new ItemMod("shadiumDust", "Shadium Dust");
 		celestiumDust = new ItemMod("celestiumDust", "Celestium Dust");
 		luniumDust = new ItemMod("luniumDust", "Lunium Dust");
