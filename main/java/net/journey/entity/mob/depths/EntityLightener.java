@@ -75,7 +75,7 @@ public class EntityLightener extends EntityModFlying {
 
 	@Override
 	public Item getItemDropped() {
-		return null;
+		return JourneyItems.darkCrystal;
 	}
 
 	@Override

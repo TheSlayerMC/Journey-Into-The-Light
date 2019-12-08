@@ -2,7 +2,7 @@ package net.journey.entity;
 
 public class MobStats {
 
-	public static double normalSpeed = 0.3D, follow = 26D, knockBackResistance = 0.0D;
+	public static double normalSpeed = 0.26D, follow = 26D, knockBackResistance = 0.0D;
 	
 	public static double hardestJourneyDamage = 30.0D;
 	public static double veryHardJourneyDamage = 25.0D;

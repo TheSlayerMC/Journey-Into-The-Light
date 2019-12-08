@@ -136,7 +136,7 @@ public class EntityDarkSorcerer extends EntityModMob implements IRangedAttackMob
 
 	@Override
 	public Item getItemDropped() {
-		return null;
+		return JourneyItems.darkCrystal;
 	}
 	
 	@Override

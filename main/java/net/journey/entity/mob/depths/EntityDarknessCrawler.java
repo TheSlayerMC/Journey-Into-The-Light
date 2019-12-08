@@ -2,6 +2,7 @@ package net.journey.entity.mob.depths;
 
 import java.util.List;
 
+import net.journey.JourneyItems;
 import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
 import net.journey.util.PotionEffects;
@@ -60,6 +61,6 @@ public class EntityDarknessCrawler extends EntityModMob{
 	
 	@Override
 	public Item getItemDropped() {
-		return null;
+		return JourneyItems.darkCrystal;
 	}
 }

@@ -59,7 +59,7 @@ public class EntityDarkener extends EntityModFlying {
 	protected void dropFewItems(boolean b, int j) {
 		if(rand.nextInt(1) == 0) dropItem(JourneyItems.depthsFlake, 2);
 		super.dropFewItems(b, j);
-		//if(rand.nextInt(50) == 0) dropItem(JourneyItems.darkOrb, 1);
+		if(rand.nextInt(25) == 0) dropItem(JourneyItems.darkOrb, 1);
 	}
 	
 	@Override
@@ -75,7 +75,7 @@ public class EntityDarkener extends EntityModFlying {
 
 	@Override
 	public Item getItemDropped() {
-		return null;
+		return JourneyItems.darkCrystal;
 	}
 
 	@Override

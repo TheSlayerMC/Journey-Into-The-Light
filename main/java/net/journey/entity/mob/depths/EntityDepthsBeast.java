@@ -68,7 +68,8 @@ public class EntityDepthsBeast extends EntityModMob{
 	protected void dropFewItems(boolean b, int j) {
 		if(rand.nextInt(6) == 0) dropItem(JourneyItems.beastlyStomach, 2);
 		super.dropFewItems(b, j);
-		
+		if(rand.nextInt(6) == 0) dropItem(JourneyItems.darkCrystal, 1);
+
 		
 	}
 	

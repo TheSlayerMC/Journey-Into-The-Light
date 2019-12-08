@@ -53,6 +53,8 @@ public class EntityDarkfish extends EntityModFlying {
 	@Override
 	protected void dropFewItems(boolean b, int j) {
 		if(rand.nextInt(14) == 0) dropItem(JourneyItems.scale, 2);
+		if(rand.nextInt(25) == 0) dropItem(JourneyItems.darkOrb, 1);
+		if(rand.nextInt(5) == 0) dropItem(JourneyItems.darkCrystal, 1);
 	}
 
 	@Override
