@@ -72,7 +72,7 @@ public class CommonProxy {
 
 		JourneyChestGenerator.init();
 		//JourneyAchievements.init()
-		
+
 		addOreDictionary();
 		SlayerAPI.registerEvent(new NetherEvent());
 		SlayerAPI.registerEvent(new ArmorAbilityEvent());
@@ -82,45 +82,48 @@ public class CommonProxy {
 		//FMLCommonHandler.instance().bus().register(new JourneyAdvancementEvent());
 		DimensionHelper.init();
 		DimensionHelper.addSpawns();
-        
+
 
 		SlayerAPI.registerEvent(new BarTickHandler());
 		SlayerAPI.registerEvent(new RenderBar());
 
 		if(SlayerAPI.DEVMODE) LangRegistry.instance.register();
 	}
-	
+
 	public void init(FMLInitializationEvent event) {
 		JourneyTabs.init();
 		GameRegistry.registerWorldGenerator(new WorldGenJourney(), 2);
 		SlayerAPI.registerEvent(new PlayerEvent());
 		JourneySmeltingRecipes.init();
+
 		CapabilityManager.INSTANCE.register(IEssence.class, new EssenceStorage(), EssenceBar.class);
+		
+		if(SlayerAPI.DEVMODE) {
+			JourneyRecipes recipe = new JourneyRecipes();
+		}
 	}
 
-    @SubscribeEvent
-    public static void registerBlocks(RegistryEvent.Register<Block> event) { }
+	@SubscribeEvent
+	public static void registerBlocks(RegistryEvent.Register<Block> event) { }
 
-    @SubscribeEvent
-    public static void registerItems(RegistryEvent.Register<Item> event) { }
-    
+	@SubscribeEvent
+	public static void registerItems(RegistryEvent.Register<Item> event) { }
+
 	public void registerItemRenderer(Item itemBlock, int i, String name) { }
-	
+
 	public void registerEntityRenderer(Entity entity, int i, String name) { }
-	
+
 	public void registerVariantRenderer(Item item, int meta, String name, String id) {}
-	
+
 	public void postInit(FMLPostInitializationEvent event) { 
-        if (Config.JSON) {
-            JourneyRecipes recipe = new JourneyRecipes();
-        }
+		
 	}
-	
+
 	public void serverStarting(FMLServerStartingEvent event) {
 		event.registerServerCommand(new JourneyCommands());
 		event.registerServerCommand(new DimensionCommand());
 	}
-	
+
 	private void addOreDictionary() { }
-	
+
 }

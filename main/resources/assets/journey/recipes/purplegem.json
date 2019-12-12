@@ -1,18 +1,15 @@
 {
-    "type": "minecraft:crafting_shapeless",
- 
-    "ingredients":
-    [
-
-    {
+  "result": {
+    "item": "journey:purplegem",
+    "count": 9
+  },
+  "pattern": [
+    "i"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "i": {
       "item": "journey:purplegemblock"
     }
-   
-    ],
- 
-    "result":
-    {
-        "item": "journey:purplegem",
-        "count": 4
-    }
+  }
 }

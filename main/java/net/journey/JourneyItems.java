@@ -210,7 +210,7 @@ public class JourneyItems {
 	
 	public static Item nethicgemstone;
 	
-	public static Item verditeIngot;
+	public static Item verditeIngot1;
 	
 	public static Item obsidianrod;
 
@@ -382,7 +382,7 @@ public class JourneyItems {
 	public static void init() {
 		
 		hellstoneIngot = new ItemMod("hellstoneIngot", "Hellstone Ingot");
-		verditeIngot = new ItemMod("verditeIngot", "Verdite Ingot");
+		//verditeIngot = new ItemMod("verditeIngot", "Verdite Ingot");
 		shadiumIngot = new ItemMod("shadiumIngot", "Shadium Ingot");
 		celestiumIngot = new ItemMod("celestiumIngot", "Celestium Ingot");
 		mekyumIngot = new ItemMod("mekyumIngot", "Mekyum Ingot");

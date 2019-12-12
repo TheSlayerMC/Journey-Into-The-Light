@@ -1,24 +1,16 @@
 {
-    "type": "minecraft:crafting_shaped",
-   
-    "pattern":
-    [
-        "RRR",
-        "RRR",
-        "RRR"
-    ],
-   
-    "key":
-    {
-        "R":
-        {
-            "item": "journey:shadiumIngot"
-        }
-    },
-   
-    "result":
-    {
-        "item": "journey:shadiumBlock",
-        "count": 1
+  "result": {
+    "item": "journey:shadiumblock"
+  },
+  "pattern": [
+    "iii",
+    "iii",
+    "iii"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "i": {
+      "item": "journey:shadiumingot"
     }
+  }
 }

@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "minecraft:air"
+  },
+  "pattern": [
+    "i i",
+    "iii",
+    "iii"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "i": {
+      "item": "journey:koriteingot"
+    }
+  }
+}

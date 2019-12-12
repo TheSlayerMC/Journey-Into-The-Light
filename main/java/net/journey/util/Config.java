@@ -31,7 +31,6 @@ public class Config {
 	private static int biomeSizeXZ;
 	private static int biomeSizeY;
 	private static boolean hasCleaningPass;
-	public static boolean JSON = false;
 	
 	public static boolean spawnSwordParticles, showEntityHealth;
 
@@ -88,7 +87,6 @@ public class Config {
 		baseEntityListID = cfg.get("Entity", "The starting 'Entity List ID'", 2650).getInt();
 		entityHealthDistance = cfg.get("Entity", "The distance the player can see the mobs health", 10).getInt();
 		showEntityHealth = cfg.get("Entity", "Show the health bar above the entitys head?", true).getBoolean(true);
-		JSON = cfg.getBoolean("Generate JSON", "Misc", JSON, "Enable recipe JSON generator");
 		
 		List<Boolean> items= new ArrayList<Boolean>();
 		biomeSizeXZ = cfg.getInt("BiomeSizeXZ", "Nether", 512, 1, 4096, "The horizontal Nether biome size");

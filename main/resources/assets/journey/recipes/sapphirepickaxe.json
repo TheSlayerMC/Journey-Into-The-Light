@@ -1,20 +1,19 @@
 {
-  "type": "crafting_shaped",
-  "pattern": [
-    "XXX",
-    " I ",
-    " I "
-  ],
-  "key": {
-    "I": {
-      "item": "minecraft:stick"
-    },
-    "X": {
-	  "item": "journey:sapphire"
-    }
-  },
   "result": {
-	"item": "journey:sapphirepickaxe",
-    "count": 1
+    "item": "journey:sapphirepickaxe"
+  },
+  "pattern": [
+    "iii",
+    " s ",
+    " s "
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "s": {
+      "item": "journey:obsidianrod"
+    },
+    "i": {
+      "item": "journey:sapphire"
+    }
   }
 }

@@ -1,0 +1,17 @@
+{
+  "result": {
+    "item": "journey:spawnerclump"
+  },
+  "ingredients": [
+    {
+      "item": "journey:shadiumclump"
+    },
+    {
+      "item": "journey:luniumclump"
+    },
+    {
+      "item": "journey:hellstoneclump"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless"
+}

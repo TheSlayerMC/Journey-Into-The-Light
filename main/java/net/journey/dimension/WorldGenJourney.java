@@ -376,21 +376,21 @@ public class WorldGenJourney implements IWorldGenerator {
 			z = chunkZ + r.nextInt(16);
 			worldMinableGenVanilla(JourneyBlocks.sapphireOre, 5, w, x, y, z);
 		}
-		for(times = 0; times < 5; times++) {
+		/*for(times = 0; times < 5; times++) {
 			y = r.nextInt(16); 
 			x = chunkX + r.nextInt(16); 
 			z = chunkZ + r.nextInt(16);
 			worldMinableGenVanilla(JourneyBlocks.iridiumOre, 4, w, x, y, z);
-		}
+		}*/
 
-		if (biome == Biomes.JUNGLE) {
+		/*if (biome == Biomes.JUNGLE) {
 			for(times = 0; times < 7; times++) {
 				y = r.nextInt(128); 
 				x = chunkX + r.nextInt(16); 
 				z = chunkZ + r.nextInt(16);
 				worldMinableGenVanilla(JourneyBlocks.verditeOre, 10, w, x, y, z);
 			}
-		}
+		}*/
 
 		if(r.nextInt(16)==0) {
 			y = r.nextInt(200); 

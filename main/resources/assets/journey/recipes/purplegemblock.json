@@ -1,23 +1,16 @@
 {
-    "type": "minecraft:crafting_shaped",
-   
-    "pattern":
-    [
-        "RR",
-        "RR"
-    ],
-   
-    "key":
-    {
-        "R":
-        {
-            "item": "journey:purplegem"
-        }
-    },
-   
-    "result":
-    {
-        "item": "journey:purplegemblock",
-        "count": 1
+  "result": {
+    "item": "journey:purplegemblock"
+  },
+  "pattern": [
+    "iii",
+    "iii",
+    "iii"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "i": {
+      "item": "journey:purplegem"
     }
+  }
 }

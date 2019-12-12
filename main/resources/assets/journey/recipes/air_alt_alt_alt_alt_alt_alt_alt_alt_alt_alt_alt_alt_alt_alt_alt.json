@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "minecraft:air"
+  },
+  "pattern": [
+    "iii",
+    "i i",
+    "i i"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "i": {
+      "item": "journey:mekyumingot"
+    }
+  }
+}

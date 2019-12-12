@@ -74,7 +74,7 @@ public class JourneyBlocks {
 
 	
 	public static BlockMod iridiumOre;
-	public static BlockMod verditeOre;
+	//public static BlockMod verditeOre;
 	
 	public static BlockMod sapphireOre;
 	public static BlockMod lavaRock;
@@ -103,7 +103,7 @@ public class JourneyBlocks {
 	public static BlockMod firestoneOre;
 
 	public static BlockMod iridiumBlock;
-	public static BlockMod verditeBlock;
+	//public static BlockMod verditeBlock;
 	
 	public static BlockMod sapphireBlock;
 	public static BlockMod shadiumBlock;
@@ -492,7 +492,7 @@ public class JourneyBlocks {
 	 public static void init() {
 		 
 		iridiumOre = new BlockModOre("iridiumOre", "Iridium Ore", true).setHarvestLevel(EnumToolType.DIAMOND_PICK);
-		verditeOre = new BlockModOre("verditeOre", "Verdite Ore", false).setHarvestLevel(EnumToolType.STONE_PICK);
+		//verditeOre = new BlockModOre("verditeOre", "Verdite Ore", false).setHarvestLevel(EnumToolType.STONE_PICK);
 		
 		sapphireOre = new BlockModOre("sapphireOre", "Sapphire Ore", false).setHarvestLevel(EnumToolType.DIAMOND_PICK);
 		lavaRock = new BlockMod("lavaRock", "Lava Rock").setHarvestLevel(EnumToolType.DIAMOND_PICK);
@@ -519,7 +519,7 @@ public class JourneyBlocks {
 		firestoneOre = new BlockModOre("firestoneOre", "Firestone Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
 
 		iridiumBlock = new BlockModOre("iridiumBlock", "Iridium Block").setHarvestLevel(EnumToolType.IRON_PICK);
-		verditeBlock = new BlockModOre("verditeBlock", "Verdite Block").setHarvestLevel(EnumToolType.STONE_PICK);
+		//verditeBlock = new BlockModOre("verditeBlock", "Verdite Block").setHarvestLevel(EnumToolType.STONE_PICK);
 		
 		sapphireBlock = new BlockModOre("sapphireBlock", "Sapphire Block").setHarvestLevel(EnumToolType.STONE_PICK);
 		shadiumBlock = new BlockModOre("shadiumBlock", "Shadium Block").setHarvestLevel(EnumToolType.STONE_PICK);

@@ -3,6 +3,7 @@ package net.journey.client;
 import java.util.List;
 
 import net.journey.JourneyConsumables;
+import net.journey.JourneyItems;
 import net.journey.JourneyConsumables;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -31,5 +32,6 @@ public class ItemDescription {
 		if(item == JourneyConsumables.blueHonglowShroom) list.add(SlayerAPI.Colour.BLUE + "Blue - Speed Boost");
 		if(item == JourneyConsumables.redHonglowShroom) list.add(SlayerAPI.Colour.RED + "Red - Regeneration");
 		if(item == JourneyConsumables.honglowShroom) list.add(SlayerAPI.Colour.GREEN + "Light Green - Nightvision (only)");
+		if(item == JourneyItems.iridium) list.add("Longer Smelting Fuel");
 	}
 }

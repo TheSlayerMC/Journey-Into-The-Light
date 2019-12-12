@@ -19,87 +19,73 @@ import net.slayer.api.SlayerAPI;
 public class JourneyRecipes {
 
 	public void addOredictRecipe(Block result, Object... materials) {
-		if (Config.JSON) {
-			JourneyJSONGenerator.addRecipe(new ItemStack(result, 1), materials);
-		}
+		JourneyJSONGenerator.addRecipe(new ItemStack(result, 1), materials);
+
 	}
 
 	public void addOredictRecipe(Item result, Object... materials) {
-		if (Config.JSON) {
-			JourneyJSONGenerator.addRecipe(new ItemStack(result, 1), materials);
-		}
+		JourneyJSONGenerator.addRecipe(new ItemStack(result, 1), materials);
+
 	}
 
 	public void addOredictRecipe(ItemStack result, Object... materials) {
-		if (Config.JSON) {
-			JourneyJSONGenerator.addShapedRecipe(result, materials);
-		}
+		JourneyJSONGenerator.addShapedRecipe(result, materials);
+
 	}
 
 	protected void addShapedRecipe(Block b, Object... o) {
-		if (Config.JSON) {
-			JourneyJSONGenerator.addShapedRecipe(new ItemStack(b, 1), o);
-		}
+		JourneyJSONGenerator.addShapedRecipe(new ItemStack(b, 1), o);
+
 	}
 
 	protected void addShapedRecipe(Item i, Object... o) {
-		if (Config.JSON) {
-			JourneyJSONGenerator.addShapedRecipe(new ItemStack(i, 1), o);
-		}
+		JourneyJSONGenerator.addShapedRecipe(new ItemStack(i, 1), o);
+
 	}
 
 	protected void addShapedRecipe(ItemStack i, Object... o) {
-		if (Config.JSON) {
-			JourneyJSONGenerator.addShapedRecipe(i, o);
-		}
+		JourneyJSONGenerator.addShapedRecipe(i, o);
+
 	}
 
 	protected void addShapelessRecipe(Block b, Object... o) {
-		if (Config.JSON) {
-			JourneyJSONGenerator.addShapelessRecipe(new ItemStack(b, 1), o);
-		}
+		JourneyJSONGenerator.addShapelessRecipe(new ItemStack(b, 1), o);
+
 	}
 
 	protected void addShapelessRecipe(Item i, Object... o) {
-		if (Config.JSON) {
-			JourneyJSONGenerator.addShapelessRecipe(new ItemStack(i, 1), o);
-		}
+		JourneyJSONGenerator.addShapelessRecipe(new ItemStack(i, 1), o);
+
 	}
 
 	protected void addShapelessRecipe(ItemStack i, Object... o) {
-		if (Config.JSON) {
-			JourneyJSONGenerator.addShapelessRecipe(i, o);
-		}
+		JourneyJSONGenerator.addShapelessRecipe(i, o);
+
 	}
 
 	protected void addSmelting(Block input, Block output, float XP) {
-		if (Config.JSON) {
-			JourneyJSONGenerator.addSmelting(new ItemStack(input, 1), new ItemStack(output, 1), XP);
-		}
+		JourneyJSONGenerator.addSmelting(new ItemStack(input, 1), new ItemStack(output, 1), XP);
+
 	}
 
 	protected void addSmelting(Block input, Item output, float XP) {
-		if (Config.JSON) {
-			JourneyJSONGenerator.addSmelting(new ItemStack(input, 1), new ItemStack(output, 1), XP);
-		}
+		JourneyJSONGenerator.addSmelting(new ItemStack(input, 1), new ItemStack(output, 1), XP);
+
 	}
 
 	protected void addSmelting(Item input, Block output, float XP) {
-		if (Config.JSON) {
-			JourneyJSONGenerator.addSmelting(new ItemStack(input, 1), new ItemStack(output, 1), XP);
-		}
+		JourneyJSONGenerator.addSmelting(new ItemStack(input, 1), new ItemStack(output, 1), XP);
+
 	}
 
 	protected void addSmelting(Item input, Item output, float XP) {
-		if (Config.JSON) {
-			JourneyJSONGenerator.addSmelting(new ItemStack(input, 1), new ItemStack(output, 1), XP);
-		}
+		JourneyJSONGenerator.addSmelting(new ItemStack(input, 1), new ItemStack(output, 1), XP);
+
 	}
 
 	protected void addSmelting(ItemStack input, ItemStack output, float XP) {
-		if (Config.JSON) {
-			JourneyJSONGenerator.addSmelting(input, output, XP);
-		}
+		JourneyJSONGenerator.addSmelting(input, output, XP);
+
 	}
 
 	protected void addBlock(Block made, Item used) {
@@ -402,9 +388,9 @@ public class JourneyRecipes {
 			addOre(JourneyBlocks.mekyumOre, JourneyItems.mekyumIngot, JourneyBlocks.mekyumBlock, JourneyArmory.mekyumAxe,
 					JourneyArmory.mekyumPickaxe, JourneyArmory.mekyumShovel, JourneyArmory.mekyumHoe,
 					JourneyWeapons.mekyumSword, JourneyArmory.mekyumMultiTool, null, null, null, null, null);
-			addOre(b.ashualOre, i.ash, b.ashualBlock, null, null, null, null,
-			 null, null, null, null, null, null, i.ashDust);
-			
+			//addOre(b.ashualOre, i.ash, b.ashualBlock, null, null, null, null,
+			// null, null, null, null, null, null, i.ashDust);
+
 			addShapedRecipe(new ItemStack(JourneyWeapons.demonicBomb, 16),
 					new Object[] { "ddd", "did", "ddd", 'd', JourneyItems.demonicDust, 'i', JourneyItems.crystalBall });
 			addShapedRecipe(new ItemStack(JourneyWeapons.withicBlade),
@@ -422,9 +408,29 @@ public class JourneyRecipes {
 			addShapedRecipe(new ItemStack(JourneyWeapons.demonicSword),
 					new Object[] { "d", "d", "i", 'd', JourneyItems.demonicBone, 'i', JourneyItems.demonicDust });
 
+			addShapedRecipe(new ItemStack(JourneyBlocks.iridiumBlock), new Object[] { "iii", "iii", "iii", 'i', JourneyItems.iridium });
+			addShapelessRecipe(new ItemStack(JourneyItems.iridium, 9), new Object[] { JourneyBlocks.iridiumBlock });
+
+			addShapedRecipe(new ItemStack(JourneyBlocks.ashualBlock), new Object[] { "iii", "iii", "iii", 'i', JourneyItems.ash });
+			addShapelessRecipe(new ItemStack(JourneyItems.ash, 9), new Object[] { JourneyBlocks.ashualBlock });
+
+			addShapedRecipe(new ItemStack(JourneyBlocks.blaziumOre), new Object[] { "iii", "iii", "iii", 'i', JourneyItems.blazium });
+			addShapelessRecipe(new ItemStack(JourneyItems.blazium, 9), new Object[] { JourneyBlocks.blaziumBlock });
+
+			addShapedRecipe(new ItemStack(JourneyBlocks.enderilliumBlock), new Object[] { "iii", "iii", "iii", 'i', JourneyItems.enderilliumShard });
+			addShapelessRecipe(new ItemStack(JourneyItems.enderilliumShard, 9), new Object[] { JourneyBlocks.enderilliumBlock });
+
+			addShapedRecipe(new ItemStack(JourneyBlocks.luniteBlock), new Object[] { "iii", "iii", "iii", 'i', JourneyItems.luniteChunk });
+			addShapelessRecipe(new ItemStack(JourneyItems.luniteChunk, 9), new Object[] { JourneyBlocks.luniteBlock });
+
 			addSmelting(Blocks.GLASS, b.smoothGlass, 1);
 
 			JourneyJSONGenerator.generateConstants();
+			
+			for(int i1 = 0; i1 < 100; i1++) {
+				System.out.println("GENERATED");
+			}
+			
 		}
 	}
 }

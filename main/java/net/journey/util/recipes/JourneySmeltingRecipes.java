@@ -37,7 +37,7 @@ public class JourneySmeltingRecipes {
 
 		FurnaceRecipes.instance().addSmelting(i.spawnerClump, new ItemStack(i.spawnerBar), 1.0F);
 		//FurnaceRecipes.instance().addSmelting(SlayerAPI.toItem(Blocks.GLASS), new ItemStack(b.smoothGlass, 1), 1.0F);
-		FurnaceRecipes.instance().addSmelting(SlayerAPI.toItem(b.verditeOre), new ItemStack(i.verditeIngot, 1), 1.0F);
+		//FurnaceRecipes.instance().addSmelting(SlayerAPI.toItem(b.verditeOre), new ItemStack(i.verditeIngot, 1), 1.0F);
 		FurnaceRecipes.instance().addSmelting(JourneyConsumables.flamingBeef, new ItemStack(JourneyConsumables.flamingBeefCooked), 0.5F);
 		FurnaceRecipes.instance().addSmelting(i.ironDust, new ItemStack(Items.IRON_INGOT), 0.5F);
 		FurnaceRecipes.instance().addSmelting(i.goldDust, new ItemStack(Items.GOLD_INGOT), 0.5F);

@@ -1,29 +1,19 @@
 {
-    "type": "minecraft:crafting_shaped",
-   
-    "pattern":
-    [
-        "R",
-        "R",
-        "I"
-    ],
-   
-    "key":
-    {
-        "R":
-        {
-            "item": "journey:sapphire"
-        },
-
-        "I":
-        {
-            "item": "journey:obsidianrod"
-        }
+  "result": {
+    "item": "journey:sapphiresword"
+  },
+  "pattern": [
+    "b",
+    "b",
+    "s"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "b": {
+      "item": "journey:sapphireblock"
     },
-   
-    "result":
-    {
-        "item": "journey:sapphiresword",
-        "count": 1
+    "s": {
+      "item": "minecraft:stick"
     }
+  }
 }

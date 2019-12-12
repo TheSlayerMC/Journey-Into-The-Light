@@ -1,49 +1,28 @@
 {
-    "type": "minecraft:crafting_shaped",
-   
-    "pattern":
-    [
-        "JIJ",
-        "PKP",
-        "CFC"
-    ],
-   
-    "key":
-    {
-        "I":
-        {
-            "item": "minecraft:netherrack"
-        },
-
-        "J":
-        {
-            "item": "minecraft:iron_ingot"
-        },
-
-        "F":
-        {
-            "item": "minecraft:redstone"
-        },
-
-        "C":
-        {
-            "item": "minecraft:cobblestone"
-        },
-
-        "P":
-        {
-            "item": "minecraft:gold_ingot"
-        },
-
-        "K":
-        {
-            "item": "minecraft:flint_and_steel"
-        }
+  "result": {
+    "item": "journey:igniter"
+  },
+  "pattern": [
+    "iii",
+    "jkj",
+    "cfc"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "c": {
+      "item": "minecraft:cobblestone"
     },
-   
-    "result":
-    {
-        "item": "journey:igniter",
-        "count": 1
+    "f": {
+      "item": "minecraft:flint_and_steel"
+    },
+    "i": {
+      "item": "minecraft:netherrack"
+    },
+    "j": {
+      "item": "minecraft:iron_ingot"
+    },
+    "k": {
+      "item": "journey:lavarock"
     }
+  }
 }

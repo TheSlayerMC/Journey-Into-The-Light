@@ -1,24 +1,16 @@
 {
-    "type": "minecraft:crafting_shaped",
-   
-    "pattern":
-    [
-        "RRR",
-        "RRR",
-        "RRR"
-    ],
-   
-    "key":
-    {
-        "R":
-        {
-            "item": "journey:sapphire"
-        }
-    },
-   
-    "result":
-    {
-        "item": "journey:sapphireBlock",
-        "count": 1
+  "result": {
+    "item": "journey:sapphireblock"
+  },
+  "pattern": [
+    "iii",
+    "iii",
+    "iii"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "i": {
+      "item": "journey:sapphire"
     }
+  }
 }

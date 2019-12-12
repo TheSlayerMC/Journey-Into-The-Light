@@ -1,24 +1,16 @@
 {
-    "type": "minecraft:crafting_shaped",
-   
-    "pattern":
-    [
-        "RRR",
-        "RRR",
-        "RRR"
-    ],
-   
-    "key":
-    {
-        "R":
-        {
-            "item": "journey:luniumIngot"
-        }
-    },
-   
-    "result":
-    {
-        "item": "journey:luniumBlock",
-        "count": 1
+  "result": {
+    "item": "journey:luniumblock"
+  },
+  "pattern": [
+    "iii",
+    "iii",
+    "iii"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "i": {
+      "item": "journey:luniumingot"
     }
+  }
 }

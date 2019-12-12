@@ -1,29 +1,19 @@
 {
-    "type": "minecraft:crafting_shaped",
-   
-    "pattern":
-    [
-        "R",
-        "I",
-        "I"
-    ],
-   
-    "key":
-    {
-        "R":
-        {
-            "item": "journey:sapphire"
-        },
-
-        "I":
-        {
-            "item": "journey:obsidianrod"
-        }
+  "result": {
+    "item": "journey:sapphireshovel"
+  },
+  "pattern": [
+    " i ",
+    " s ",
+    " s "
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "s": {
+      "item": "journey:obsidianrod"
     },
-   
-    "result":
-    {
-        "item": "journey:sapphireshovel",
-        "count": 1
+    "i": {
+      "item": "journey:sapphire"
     }
+  }
 }

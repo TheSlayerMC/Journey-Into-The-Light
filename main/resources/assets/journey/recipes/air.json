@@ -1,0 +1,15 @@
+{
+  "result": {
+    "item": "minecraft:air"
+  },
+  "pattern": [
+    "dd",
+    "dd"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "d": {
+      "item": "minecraft:cobblestone"
+    }
+  }
+}
