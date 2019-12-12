@@ -7,7 +7,6 @@ import net.journey.JourneyCrops;
 import net.journey.JourneyItems;
 import net.journey.JourneyWeapons;
 import net.journey.util.Config;
-import net.journey.util.JourneyJSONGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -422,15 +421,10 @@ public class JourneyRecipes {
 
 			addShapedRecipe(new ItemStack(JourneyBlocks.luniteBlock), new Object[] { "iii", "iii", "iii", 'i', JourneyItems.luniteChunk });
 			addShapelessRecipe(new ItemStack(JourneyItems.luniteChunk, 9), new Object[] { JourneyBlocks.luniteBlock });
-
+			
 			addSmelting(Blocks.GLASS, b.smoothGlass, 1);
 
 			JourneyJSONGenerator.generateConstants();
-			
-			for(int i1 = 0; i1 < 100; i1++) {
-				System.out.println("GENERATED");
-			}
-			
 		}
 	}
 }

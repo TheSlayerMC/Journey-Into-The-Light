@@ -320,7 +320,6 @@ public class JourneyItems {
 
 	public static Item rockChunk;
 	public static Item rockShard;
-	//public static Item plasmaBall = new ItemMod("plasmaBall");
 	public static Item slugSlime;
 
 	public static Item eucaPortalGem;
@@ -347,7 +346,6 @@ public class JourneyItems {
 
 	public static Item weakEssencePotion;
 	public static Item strongEssencePotion;
-	//public static Item flameArrow = new ItemMod("flameArrow", EssenceTabs.ranged);
 	public static Item essenceArrow;
 	public static Item tippedEssenceArrow;
 
@@ -518,9 +516,7 @@ public class JourneyItems {
 		smithstonedust = new ItemMod("smithstonedust", "Smithstone Dust");
 		
 		frostyGift = new ItemPresent("frostyGift", "Frosty Gift");
-		//pocketCrafting = new ItemCrafting("pocketCrafting", "Sizzling Crafting Pack", 0);
 		flameCoin = new ItemFlameCoin("flameCoin", "Flame Coin");
-		//plasmaBall = new ItemMod("plasmaBall");
 
 		calciaOrb = new ItemNetherBossSpawner("calciaOrb", "Calcia Orb");
 		netherBeastOrb = new ItemNetherBossSpawner("netherBeastOrb", "Nether Beast Orb");
@@ -544,12 +540,12 @@ public class JourneyItems {
 		essenceArrow = new ItemEssenceArrow("essenceArrow", "Essence Arrow");
 		//tippedEssenceArrow = new ItemEssenceArrow("tippedEssenceArrow", "Tipped Essence Arrow");
 
-		underwaterWorldRecord = new ItemModRecord("underwaterWorld", "Underwater World", null);
-		blueWater = new ItemModRecord("blueWater", "Blue Water", null);
-		raceStar = new ItemModRecord("raceStar", "Race Star", null);
-		compBegins = new ItemModRecord("compBegins", "Compition Begins", null);
-		deepBlue = new ItemModRecord("deepBlue", "Deep Blue", null);
-		raceShore = new ItemModRecord("raceShore", "Race to Shore", null);
+		underwaterWorldRecord = new ItemModRecord("underwaterWorld", "Underwater World", JourneySounds.UNDERWATER_WORLD);
+		blueWater = new ItemModRecord("blueWater", "Blue Water", JourneySounds.BLUE_WATER);
+		raceStar = new ItemModRecord("raceStar", "Race Star", JourneySounds.RACE_STAR);
+		compBegins = new ItemModRecord("compBegins", "Competition Begins", JourneySounds.COMPETITION_BEGINS);
+		deepBlue = new ItemModRecord("deepBlue", "Deep Blue", JourneySounds.DEEP_BLUE);
+		raceShore = new ItemModRecord("raceShore", "Race to Shore", JourneySounds.RACE_TO_SHORE);
 
 		demonicEye = new ItemDemonicEye("demonicEye", "Demonic Eye");
 

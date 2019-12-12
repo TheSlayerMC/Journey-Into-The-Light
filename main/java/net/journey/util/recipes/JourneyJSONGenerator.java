@@ -1,4 +1,4 @@
-package net.journey.util;
+package net.journey.util.recipes;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -16,6 +16,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import net.journey.proxy.CommonProxy;
+import net.journey.util.Config;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

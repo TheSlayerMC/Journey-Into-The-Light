@@ -48,17 +48,6 @@ public class JourneySmeltingRecipes {
 		FurnaceRecipes.instance().addSmelting(JourneyConsumables.rocMeat, new ItemStack(JourneyConsumables.cookedRocMeat), 0.5F);
 		FurnaceRecipes.instance().addSmelting(JourneyConsumables.ghastTentacle, new ItemStack(JourneyConsumables.friedGhastTentacale), 0.5F);
 		FurnaceRecipes.instance().addSmelting(JourneyConsumables.flamingGhastTentacle, new ItemStack(JourneyConsumables.friedFlamingGhastTentacale), 0.5F);
-	
-		FurnaceRecipes.instance().addSmelting(SlayerAPI.toItem(b.shadiumOre), new ItemStack(i.shadiumIngot), 0.5F);
-		FurnaceRecipes.instance().addSmelting(SlayerAPI.toItem(b.luniumOre), new ItemStack(i.luniumIngot), 0.5F);
-		FurnaceRecipes.instance().addSmelting(SlayerAPI.toItem(b.hellstoneOre), new ItemStack(i.hellstoneIngot), 0.5F);
-		FurnaceRecipes.instance().addSmelting(SlayerAPI.toItem(b.celestiumOre), new ItemStack(i.celestiumIngot), 0.5F);
-		FurnaceRecipes.instance().addSmelting(SlayerAPI.toItem(b.mekyumOre), new ItemStack(i.mekyumIngot), 0.5F);
-		FurnaceRecipes.instance().addSmelting(SlayerAPI.toItem(b.koriteOre), new ItemStack(i.koriteIngot), 0.5F);
-		FurnaceRecipes.instance().addSmelting(SlayerAPI.toItem(b.storonOre), new ItemStack(i.storonIngot), 0.5F);
-		FurnaceRecipes.instance().addSmelting(SlayerAPI.toItem(b.flairiumOre), new ItemStack(i.flairiumIngot), 0.5F);
-		FurnaceRecipes.instance().addSmelting(SlayerAPI.toItem(b.orbaditeOre), new ItemStack(i.orbaditeIngot), 0.5F);
-
 	}
 	public static void addOre(Block ore, Item ingot, Block block, Item axe, Item pick, Item shovel, Item hoe, Item sword, Item multiTool, Item helmet, Item chest, Item legs, Item boots, Item dust) {
 		GameRegistry.addSmelting(ore, new ItemStack(ingot), 0.5F);

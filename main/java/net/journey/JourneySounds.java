@@ -88,6 +88,14 @@ public class JourneySounds {
 	public static SoundEvent GATE_CREAK;
 	public static SoundEvent UNLOCK;
 	public static SoundEvent EMPTY;
+	
+	public static SoundEvent RACE_TO_SHORE;
+	public static SoundEvent DEEP_BLUE;
+	public static SoundEvent COMPETITION_BEGINS; 
+	public static SoundEvent RACE_STAR;
+	public static SoundEvent BLUE_WATER;
+	public static SoundEvent UNDERWATER_WORLD;
+	
 
 	public static void init() {
 
@@ -161,6 +169,12 @@ public class JourneySounds {
 		GATE_CREAK = registerSound("gate_creak");
 		UNLOCK = registerSound("unlock");
 		EMPTY = registerSound("empty");
+		RACE_TO_SHORE = registerSound("race_shore");
+		DEEP_BLUE = registerSound("deep_blue");
+		COMPETITION_BEGINS = registerSound("comp_begins");
+		RACE_STAR = registerSound("race_star");
+		BLUE_WATER = registerSound("blue_water");
+		UNDERWATER_WORLD = registerSound("underwater_world");
 	}
 
 	public static SoundEvent registerSound(String sound) {

@@ -43,14 +43,14 @@ public class ItemModRecord extends ItemRecord {
 		super(name, sound);
 		setUnlocalizedName(name + "Record");
 		soundName = name;
-		LangRegistry.addItem(SlayerAPI.PREFIX + name + "Record", finalName);
+		setRegistryName(SlayerAPI.MOD_ID, name + "Record");
+		LangRegistry.addItem(name + "Record", finalName);
 		setCreativeTab(JourneyTabs.util);
 		JourneyItems.itemNames.add(SlayerAPI.PREFIX + name + "Record");
 		this.sound = sound;
         this.maxStackSize = 1;
 		RECORDS.put(name, this);
 		JourneyItems.items.add(this);
-		setRegistryName(SlayerAPI.MOD_ID, name + "Record");
 	}
 	
 	@Override
@@ -67,7 +67,7 @@ public class ItemModRecord extends ItemRecord {
             return EnumActionResult.SUCCESS;
         }
         else {
-            return EnumActionResult.PASS;
+            return EnumActionResult.FAIL;
         }
     }
 	
