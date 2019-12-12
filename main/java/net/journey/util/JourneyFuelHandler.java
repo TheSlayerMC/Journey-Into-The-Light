@@ -1,22 +1,25 @@
 package net.journey.util;
 
+import net.journey.JourneyBlocks;
 import net.journey.JourneyItems;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.IFuelHandler;
+import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.slayer.api.SlayerAPI;
 
-public class JourneyFuelHandler implements IFuelHandler {
+public class JourneyFuelHandler {
 
-	@Override
-	public int getBurnTime(ItemStack fuel) {
-		if (fuel.getItem() == JourneyItems.blazium) {
-			return 3200;
-		}
-		if (fuel.getItem() == JourneyItems.firestoneClump) {
-			return 500;
-		}
-		if (fuel.getItem() == JourneyItems.iridium) {
-			return 2600;
-		}
-		return 0;
+	@SubscribeEvent
+	public void fuelEvent(FurnaceFuelBurnTimeEvent event) {
+		ItemStack i = event.getItemStack();
+		
+		if(i.getItem() == JourneyItems.blazium) event.setBurnTime(3200);
+		
+		if(i.getItem() == JourneyItems.firestoneClump) event.setBurnTime(500);
+		
+		if(i.getItem() == JourneyItems.iridium) event.setBurnTime(2600);
+		
+		if(i.getItem() == SlayerAPI.toItem(JourneyBlocks.iridiumBlock)) event.setBurnTime(2600 * 2);
 	}
 }

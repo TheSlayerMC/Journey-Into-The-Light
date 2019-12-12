@@ -77,15 +77,15 @@ public class CommonProxy {
 		SlayerAPI.registerEvent(new NetherEvent());
 		SlayerAPI.registerEvent(new ArmorAbilityEvent());
 		SlayerAPI.registerEvent(new PlayerEvent());
-		GameRegistry.registerFuelHandler(new JourneyFuelHandler());
+		SlayerAPI.registerEvent(new JourneyFuelHandler());
 		MinecraftForge.addGrassSeed(new ItemStack(JourneyCrops.tomatoSeeds), 5);
 		//FMLCommonHandler.instance().bus().register(new JourneyAdvancementEvent());
 		DimensionHelper.init();
 		DimensionHelper.addSpawns();
 
-
 		SlayerAPI.registerEvent(new BarTickHandler());
 		SlayerAPI.registerEvent(new RenderBar());
+		CapabilityManager.INSTANCE.register(IEssence.class, new EssenceStorage(), EssenceBar.class);
 
 		if(SlayerAPI.DEVMODE) LangRegistry.instance.register();
 	}
@@ -96,8 +96,6 @@ public class CommonProxy {
 		SlayerAPI.registerEvent(new PlayerEvent());
 		JourneySmeltingRecipes.init();
 
-		CapabilityManager.INSTANCE.register(IEssence.class, new EssenceStorage(), EssenceBar.class);
-		
 		if(SlayerAPI.DEVMODE) {
 			JourneyRecipes recipe = new JourneyRecipes();
 		}
