@@ -10,7 +10,7 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "s": {
-      "item": "journey:obsidianrod"
+      "item": "minecraft:stick"
     },
     "i": {
       "item": "journey:luniumingot"

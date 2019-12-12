@@ -111,41 +111,40 @@ public class JourneyRecipes {
 
 	protected void addOre(Block ore, Item ingot, Block block, Item axe, Item pick, Item shovel, Item hoe, Item sword,
 			Item multiTool, Item helmet, Item chest, Item legs, Item boots, Item dust) {
-		addAxe(axe, ingot);
-		addPickaxe(pick, ingot);
-		addShovel(shovel, ingot);
-		addHoe(hoe, ingot);
-		addShapedRecipe(new ItemStack(sword), new Object[] { "b", "b", "s", 'b', block, 's', Items.STICK });
-		addBlock(block, ingot);
-		addHelmet(helmet, ingot);
-		addChestplate(chest, ingot);
-		addLeggings(legs, ingot);
-		addBoots(boots, ingot);
-		addShapelessRecipe(new ItemStack(multiTool), new Object[] { pick, shovel, hoe, axe });
-		addShapelessRecipe(new ItemStack(ingot, 9), new Object[] { block });
-		GameRegistry.addSmelting(ore, new ItemStack(ingot), 0.5F);
-		if (dust != null)
-			GameRegistry.addSmelting(dust, new ItemStack(ingot), 0.5F);
+		if(axe != null) addAxe(axe, ingot);
+		if(pick != null) addPickaxe(pick, ingot);
+		if(shovel != null) addShovel(shovel, ingot);
+		if(hoe != null) addHoe(hoe, ingot);
+		if(sword != null) addShapedRecipe(new ItemStack(sword), new Object[] { "b", "b", "s", 'b', block, 's', Items.STICK });
+		if(block != null) addBlock(block, ingot);
+		if(helmet != null) addHelmet(helmet, ingot);
+		if(chest != null) addChestplate(chest, ingot);
+		if(legs != null) addLeggings(legs, ingot);
+		if(boots != null) addBoots(boots, ingot);
+		if(multiTool != null) addShapelessRecipe(new ItemStack(multiTool), new Object[] { pick, shovel, hoe, axe });
+		if(ingot != null) addShapelessRecipe(new ItemStack(ingot, 9), new Object[] { block });
+		if(ore != null)GameRegistry.addSmelting(ore, new ItemStack(ingot), 0.5F);
+		if(dust != null) GameRegistry.addSmelting(dust, new ItemStack(ingot), 0.5F);
 	}
 
 	protected void addAxe(Item axe, Item ingot) {
-		addShapedRecipe(new ItemStack(axe), new Object[] { " ii", " si", " s ", 'i', ingot, 's', JourneyItems.obsidianrod });
+		addShapedRecipe(new ItemStack(axe), new Object[] { " ii", " si", " s ", 'i', ingot, 's', Items.STICK });
 	}
 
 	protected void addPickaxe(Item pick, Item ingot) {
-		addShapedRecipe(new ItemStack(pick), new Object[] { "iii", " s ", " s ", 'i', ingot, 's', JourneyItems.obsidianrod });
+		addShapedRecipe(new ItemStack(pick), new Object[] { "iii", " s ", " s ", 'i', ingot, 's', Items.STICK });
 	}
 
 	protected void addShovel(Item shovel, Item ingot) {
-		addShapedRecipe(new ItemStack(shovel), new Object[] { " i ", " s ", " s ", 'i', ingot, 's', JourneyItems.obsidianrod });
+		addShapedRecipe(new ItemStack(shovel), new Object[] { " i ", " s ", " s ", 'i', ingot, 's', Items.STICK });
 	}
 
 	protected void addSword(Item sword, Item ingot) {
-		addShapedRecipe(new ItemStack(sword), new Object[] { " i ", " i ", " s ", 'i', ingot, 's', JourneyItems.obsidianrod });
+		addShapedRecipe(new ItemStack(sword), new Object[] { " i ", " i ", " s ", 'i', ingot, 's', Items.STICK });
 	}
 
 	protected void addHoe(Item hoe, Item ingot) {
-		addShapedRecipe(new ItemStack(hoe), new Object[] { " ii", " s ", " s ", 'i', ingot, 's', JourneyItems.obsidianrod });
+		addShapedRecipe(new ItemStack(hoe), new Object[] { " ii", " s ", " s ", 'i', ingot, 's', Items.STICK });
 	}
 
 	protected void addHelmet(Item helmet, Item ingot) {

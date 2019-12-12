@@ -46,8 +46,8 @@ public class ItemGlowshroomBlock extends ItemMod {
 
 			ItemStack itemstack = player.getHeldItem(hand);
 			//if (player.canPlayerEdit(pos, facing, itemstack) && this.shroombottom.canPlaceBlockAt(worldIn, pos) && this.shroomtop.canPlaceBlockAt(worldIn, pos)) {
-			//worldIn.setBlockState(new BlockPos(hitX, hitY, hitZ), shroombottom.getDefaultState());
-			//worldIn.setBlockState(new BlockPos(hitX, hitY + 1, hitZ), shroomtop.getDefaultState());
+			worldIn.setBlockState(new BlockPos(hitX, hitY, hitZ), shroombottom.getDefaultState());
+			worldIn.setBlockState(new BlockPos(hitX, hitY + 1, hitZ), shroomtop.getDefaultState());
 			SoundType soundtype = worldIn.getBlockState(pos).getBlock().getSoundType(worldIn.getBlockState(pos), worldIn, pos, player);
 			worldIn.playSound(player, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
 			itemstack.shrink(1);

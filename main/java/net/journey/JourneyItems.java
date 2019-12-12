@@ -212,8 +212,6 @@ public class JourneyItems {
 	
 	public static Item verditeIngot1;
 	
-	public static Item obsidianrod;
-
 	public static Item elderKey;
 	public static Item boilPowder;
 	public static Item blazingFireball;
@@ -375,7 +373,7 @@ public class JourneyItems {
 	
 	public static Item obsidianBoat;
 	
-	public static Item infernoshield;
+	//public static Item infernoshield;
 	
 	public static void init() {
 		
@@ -404,7 +402,6 @@ public class JourneyItems {
 		hellstoneClump = new ItemMod("hellstoneClump", "Hellstone Clump");
 		shadiumClump = new ItemMod("shadiumClump", "Shadium Clump");
 		luniumClump = new ItemMod("luniumClump", "Lunium Clump");
-		obsidianrod = new ItemMod("obsidianrod", "Obsidian Rod");
 		elderKey = new ItemMod("elderKey", "Elder Key").setMaxStackSize(1);
 		boilPowder = new ItemMod("boilPowder", "Boiling Powder");
 		blazingFireball = new ItemMod("blazingFireball", "Blazing Fireball");
@@ -550,7 +547,7 @@ public class JourneyItems {
 		demonicEye = new ItemDemonicEye("demonicEye", "Demonic Eye");
 
 		//obsidianBoat = new ItemObsidianBoat("obsidianboat", "Obsidian Boat");
-		infernoshield = new ItemModShield("infernoshield", "Inferno Shield", 2, false);
+		//infernoshield = new ItemModShield("infernoshield", "Inferno Shield", 2, false);
 	}
 
 	public static ToolMaterial addToolMaterial(int uses, float efficiency, float dam, boolean breakable) {
