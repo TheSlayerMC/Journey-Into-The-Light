@@ -788,14 +788,13 @@ public class JourneyBlocks {
 		darkbloomTop = new BlockDarkbloom("darkbloomTop", "Darkbloom", true);
 		darkbloomBottom = new BlockDarkbloom("darkbloomBottom", "Darkbloom", false);
 
-		redGlowshroomTop = new BlockGlowshroom("redGlowshroomTop", "Red Glowshroom", true);
-		redGlowshroomBottom = new BlockGlowshroom("redGlowshroomBottom", "Red Glowshroom", false);
-
 		hellThornTop = new BlockHellThorn("hellThornTop", "Hell Thorn", true);
 		hellThornBottom = new BlockHellThorn("hellThornBottom", "Hell Thorn", false);
 		hellThornRoot = new BlockRoot("hellThornRoot", "HellThornRoot");
 		nethicGrass = new BlockModGrass(null, "nethicGrass", "Nethic Grass", 2.0F);
 
+		redGlowshroomTop = new BlockGlowshroom("redGlowshroomTop", "Red Glowshroom", true);
+		redGlowshroomBottom = new BlockGlowshroom("redGlowshroomBottom", "Red Glowshroom", false);
 		greenGlowshroomTop = new BlockGlowshroom("greenGlowshroomTop", "Green Glowshroom", true);
 		greenGlowshroomBottom = new BlockGlowshroom("greenGlowshroomBottom", "Green Glowshroom", false);
 		blueGlowshroomTop = new BlockGlowshroom("blueGlowshroomTop", "Blue Glowshroom", true);

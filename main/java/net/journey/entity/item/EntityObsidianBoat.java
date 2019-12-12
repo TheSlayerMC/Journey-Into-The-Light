@@ -723,7 +723,7 @@ public class EntityObsidianBoat extends Entity
                             }
 
                             for (int j = 0; j < 2; ++j) {
-                                this.dropItemWithOffset(JourneyItems.obsidianrod, 1, 0.0F);
+                                //this.dropItemWithOffset(JourneyItems.obsidianrod, 1, 0.0F);
                             }
                         }
                     }

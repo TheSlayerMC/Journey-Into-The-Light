@@ -139,7 +139,6 @@ public class JourneyItems {
 	public static ToolMaterial storonSwordMat = addToolMaterial(3120, 13F, 25F, true);
 	public static ToolMaterial koriteSwordMat = addToolMaterial(3120, 13F, 25F, true);
 
-	
 	public static ToolMaterial sapphiretool = addToolMaterial(1461, 10F, 5F, true);
 	public static ToolMaterial lunium = addToolMaterial(1490, 12F, 5F, true);
 	public static ToolMaterial shadium = addToolMaterial(1521, 12F, 5F, true);
@@ -159,7 +158,6 @@ public class JourneyItems {
 	public static ToolMaterial gorbite = addToolMaterial(3142, 28F, 5F, true);
 
 	public static ToolMaterial hoeoflife = addToolMaterial(126, 28F, 5F, true);
-	
 	
 	public static ToolMaterial hellstoneMulti = addToolMaterial(3000, 10F, 5F, false);
 	public static ToolMaterial flairiumMulti = addToolMaterial(3000, 16F, 5F, false);
@@ -325,7 +323,7 @@ public class JourneyItems {
 	public static Item corbaPortalGem;
 	public static Item terraniaPortalGem;
 	public static Item cloudiaPortalGem;
-	//public static Item wastelandPortalGem = new ItemMod("wastelandPortalGem");
+	//public static Item wastelandPortalGem;
 
 	public static Item calciaOrb;
 	public static Item netherBeastOrb;
@@ -371,7 +369,7 @@ public class JourneyItems {
 
 	public static Item iridium;
 	
-	public static Item obsidianBoat;
+	//public static Item obsidianBoat;
 	
 	//public static Item infernoshield;
 	
@@ -532,10 +530,7 @@ public class JourneyItems {
 
 		weakEssencePotion = new ItemEssencePotion("weakEssencePotion", "Weak Essence Potion", false);
 		strongEssencePotion = new ItemEssencePotion("strongEssencePotion", "Strong Essence Potion", true);
-
-		//flameArrow = new ItemMod("flameArrow", EssenceTabs.ranged);
 		essenceArrow = new ItemEssenceArrow("essenceArrow", "Essence Arrow");
-		//tippedEssenceArrow = new ItemEssenceArrow("tippedEssenceArrow", "Tipped Essence Arrow");
 
 		underwaterWorldRecord = new ItemModRecord("underwaterWorld", "Underwater World", JourneySounds.UNDERWATER_WORLD);
 		blueWater = new ItemModRecord("blueWater", "Blue Water", JourneySounds.BLUE_WATER);
