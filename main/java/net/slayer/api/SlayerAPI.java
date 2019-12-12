@@ -46,24 +46,24 @@ public class SlayerAPI {
 
 	public static int mobID = Config.baseMobID, projectileID = Config.baseProjectileID, entityListID = Config.baseEntityListID;
 	public static Logger logger = Logger.getLogger(SlayerAPI.MOD_ID);
-	
+
 	public static final String 
-			MOD_NAME = "Journey Into the Light", 
-			MOD_ID = "journey", 
-			PREFIX = MOD_ID + ":", 
-			MOD_VERSION = "1.0.5";
+	MOD_NAME = "Journey Into the Light", 
+	MOD_ID = "journey", 
+	PREFIX = MOD_ID + ":", 
+	MOD_VERSION = "1.0.6";
 	public static final boolean 
-			DEVMODE =  false,
-			BETA = false;
-	
+	DEVMODE =  true,
+	BETA = false;
+
 	public static ToolMaterial addMeleeMaterial(int uses, float efficiency, float dam){
 		return EnumHelper.addToolMaterial("tool", 3, uses, dam, efficiency, 30);
 	}
-	
+
 	public static ToolMaterial addAxeMaterial(int uses, int level, float efficiency, float dam, int enchant) {
 		return EnumHelper.addToolMaterial("tool", level, uses, dam, efficiency, enchant);
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	public static void scaleFont(FontRenderer f, String s, int x, int y, int color, double scale){
 		GL11.glPushMatrix();
@@ -74,7 +74,7 @@ public class SlayerAPI {
 		GL11.glScaled(fixScale, fixScale, fixScale);
 		GL11.glPopMatrix();
 	}
-	
+
 	public static void addMapGen(Class c, String s){
 		try {
 			MapGenStructureIO.registerStructureComponent(c, s);
@@ -96,56 +96,56 @@ public class SlayerAPI {
 		LangRegistry.addMob(name, finalN);
 		EntityRegistry.registerModEntity(new ResourceLocation(MOD_ID, name), entityClass, name, mobID++, JITL.instance, 128, 5, true, base, fore);
 	}
-	
+
 	public static void registerEndMob(Class entityClass, String entityName, String finalN) {
 		registerMob(entityClass, entityName, finalN, 0x440089, 0xBC00BC);
 	}
-	
+
 	public static void registerOverworldMob(Class entityClass, String entityName, String finalN) {
 		registerMob(entityClass, entityName, finalN, 0x7c4c2c, 0x26b530);
 	}
-	
+
 	public static void registerNetherMob(Class entityClass, String entityName, String finalN) {
 		registerMob(entityClass, entityName, finalN, 0xff0000, 0xffd800);
 	}
-	
+
 	public static void registerPets(Class entityClass, String entityName, String finalN) {
 		registerMob(entityClass, entityName, finalN, 0x64ffe4, 0x009cff);
 	}
-	
+
 	public static void registerBPMob(Class entityClass, String entityName, String finalN) {
 		registerMob(entityClass, entityName, finalN, 0xff7800, 0xffa800);
 	}
-	
+
 	public static void registerFLMob(Class entityClass, String entityName, String finalN) {
 		registerMob(entityClass, entityName, finalN, 0x00d8ff, 0xd8f9ff);
 	}
-	
+
 	public static void registerEucaMob(Class entityClass, String entityName, String finalN) {
 		registerMob(entityClass, entityName, finalN, 0xffba00, 0xe0e0e0);
 	}
-	
+
 	public static void registerDepthsMob(Class entityClass, String entityName, String finalN) {
 		registerMob(entityClass, entityName, finalN, 0x003CA5, 0x0098A3);
 	}
-	
+
 	public static void registerCorbaMob(Class entityClass, String entityName, String finalN) {
 		registerMob(entityClass, entityName, finalN, 0x1e8c00, 0x36ff00);
 	}
-	
+
 	public static void registerCloudiaMob(Class entityClass, String entityName, String finalN) {
 		registerMob(entityClass, entityName, finalN, 0xa87abd, 0x9000ff);
 	}
-	
+
 	public static void registerTerraniaMob(Class entityClass, String entityName, String finalN) {
 		registerMob(entityClass, entityName, finalN, 0x7813ff, 0xff58f5);
 	}
-	
+
 	public static void registerNPC(Class entityClass, String entityName, String finalN) {
 		LangRegistry.addMob(entityName, finalN);
 		EntityRegistry.registerModEntity(new ResourceLocation(entityName), entityClass, entityName, mobID++, JITL.instance, 128, 5, true, 0x00FF8C, 0x00F6FF);
 	}
-	
+
 	public static void registerEntity(Class entityClass, String entityName, int ID) {
 		EntityRegistry.registerModEntity(new ResourceLocation(entityName), entityClass, entityName, ID, JITL.instance, 120, 5, true);
 	}
@@ -160,12 +160,12 @@ public class SlayerAPI {
 		projectileID++;
 	}
 
-    public static ArmorMaterial addArmorMaterial(String name, int durability, int[] oldArmor, int enchantability, float toughness) {
-        int duraNew = (int) Math.round(durability / 13.75);
-        return EnumHelper.addArmorMaterial(name, SlayerAPI.PREFIX + name, duraNew, oldArmor, enchantability, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, toughness);
-    }
+	public static ArmorMaterial addArmorMaterial(String name, int durability, int[] oldArmor, int enchantability, float toughness) {
+		int duraNew = (int) Math.round(durability / 13.75);
+		return EnumHelper.addArmorMaterial(name, SlayerAPI.PREFIX + name, duraNew, oldArmor, enchantability, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, toughness);
+	}
 
-    @SideOnly(Side.CLIENT)
+	@SideOnly(Side.CLIENT)
 	public static void addChatMessageWithColour(EntityPlayer p, String colour, String str) {
 		p.sendMessage(new TextComponentString(SlayerAPI.Colour.YELLOW + "[" + SlayerAPI.Colour.GOLD + MOD_NAME + SlayerAPI.Colour.YELLOW + "] " + colour + str));
 	}
@@ -175,7 +175,7 @@ public class SlayerAPI {
 		TextComponentString ret = new TextComponentString(str);
 		p.sendMessage(ret);
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	public static void addFormattedChatMessage(EntityPlayer p, String str) {
 		TextComponentString ret = new TextComponentString(I18n.format(str, new Object[0]));
@@ -222,7 +222,7 @@ public class SlayerAPI {
 	public static void sendContinuedMessageToAll(String message) {
 		FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(new TextComponentString(SlayerAPI.Colour.GREEN + message));
 	}
-	
+
 	public static void removeSmeltingRecipe(ItemStack removed) {
 		FurnaceRecipes.instance().getSmeltingList().remove(removed);
 	}
@@ -230,15 +230,15 @@ public class SlayerAPI {
 	public static Item toItem(Block block){
 		return Item.getItemFromBlock(block);
 	}
-	
+
 	public static ItemStack toItemStack(Block block){
 		return new ItemStack(Item.getItemFromBlock(block));
 	}
-	
+
 	public static ItemStack toItemStack(Item item){
 		return new ItemStack(item);
 	}
-	
+
 	public static boolean giveItemStackToPlayer(EntityPlayer player, Integer count, ItemStack itemstack) {
 		if (player.world.isRemote) {
 			boolean boolAddedToInventory = true;
@@ -255,11 +255,34 @@ public class SlayerAPI {
 			return giveItemStackToPlayer((EntityPlayerMP)player, count, itemstack);
 		}
 	}
-	
+
 	public static void giveItemStackToPlayer(EntityPlayer player, ItemStack itemstack) {
 		giveItemStackToPlayer(player, 1, itemstack);
 	}
-	
+
+	public static void decreaseExp(EntityPlayer player, float amount) {
+		if(player.experienceTotal - amount <= 0)  {
+			player.experienceLevel = 0;
+			player.experience = 0;
+			player.experienceTotal = 0;
+			return;
+		}
+
+		player.experienceTotal -= amount;
+
+		if(player.experience * (float)player.xpBarCap() < amount)  {
+			amount -= player.experience * (float)player.xpBarCap();
+			player.experience = 1.0f;
+			player.experienceLevel--;
+		}
+
+		while(player.xpBarCap() < amount)  {
+			amount -= player.xpBarCap();
+			player.experienceLevel--;
+		}
+		player.experience -= amount / (float)player.xpBarCap();
+	}
+
 	public static boolean giveItemStackToPlayer(EntityPlayerMP player, Integer count, ItemStack itemstack) {
 		boolean boolAddedToInventory = true;
 		for (int i = 0; i < count; i++) {
