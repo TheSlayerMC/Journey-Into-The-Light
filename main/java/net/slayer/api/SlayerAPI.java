@@ -51,9 +51,9 @@ public class SlayerAPI {
 	MOD_NAME = "Journey Into the Light", 
 	MOD_ID = "journey", 
 	PREFIX = MOD_ID + ":", 
-	MOD_VERSION = "1.0.6";
+	MOD_VERSION = "1.0.5.1";
 	public static final boolean 
-	DEVMODE =  true,
+	DEVMODE = true,
 	BETA = false;
 
 	public static ToolMaterial addMeleeMaterial(int uses, float efficiency, float dam){
