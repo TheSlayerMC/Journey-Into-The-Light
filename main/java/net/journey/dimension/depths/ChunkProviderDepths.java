@@ -292,12 +292,12 @@ public class ChunkProviderDepths implements IChunkGenerator {
 
 		for(i = 0; i < 17; i++) {
 			y = r.nextInt(250); x = x1 + this.rand.nextInt(16) + 8; z = z1 + this.rand.nextInt(16) + 8;
-			new WorldGenModFlower(JourneyBlocks.depthsFlower).generate(worldObj, r, new BlockPos(x, y, z));
+			new WorldGenModFlower(JourneyBlocks.depthsFlower, JourneyBlocks.depthsGrass).generate(worldObj, r, new BlockPos(x, y, z));
 		}
 
 		for(i = 0; i < 17; i++) {
 			y = r.nextInt(250); x = x1 + this.rand.nextInt(16) + 8; z = z1 + this.rand.nextInt(16) + 8;
-			new WorldGenModFlower(JourneyBlocks.depthsBlueFlower).generate(worldObj, r, new BlockPos(x, y, z));
+			new WorldGenModFlower(JourneyBlocks.depthsBlueFlower, JourneyBlocks.depthsGrass).generate(worldObj, r, new BlockPos(x, y, z));
 		}
 
 		for(i = 0; i < 25; i++) {

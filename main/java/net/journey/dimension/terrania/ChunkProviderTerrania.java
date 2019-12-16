@@ -340,21 +340,21 @@ public class ChunkProviderTerrania implements IChunkGenerator {
 			y = r.nextInt(220); 
 			x = x1 + this.rand.nextInt(16) + 8; 
 			z = z1 + this.rand.nextInt(16) + 8;
-			new WorldGenModFlower(JourneyBlocks.terranianTallgrass).generate(worldObj, r, new BlockPos(x, y, z));
+			new WorldGenModFlower(JourneyBlocks.terranianTallgrass, JourneyBlocks.terranianGrass).generate(worldObj, r, new BlockPos(x, y, z));
 		}
 
 		for(i = 0; i < 20; i++) {
 			y = r.nextInt(220); 
 			x = x1 + this.rand.nextInt(16) + 8; 
 			z = z1 + this.rand.nextInt(16) + 8;
-			new WorldGenModFlower(JourneyBlocks.terramushroom).generate(worldObj, r, new BlockPos(x, y, z));
+			new WorldGenModFlower(JourneyBlocks.terramushroom, JourneyBlocks.terranianGrass).generate(worldObj, r, new BlockPos(x, y, z));
 		}
 		
 		for(i = 0; i < 1; i++) {
 			y = r.nextInt(220); 
 			x = x1 + this.rand.nextInt(16) + 8; 
 			z = z1 + this.rand.nextInt(16) + 8;
-			new WorldGenModFlower(JourneyBlocks.tallterramushroom).generate(worldObj, r, new BlockPos(x, y, z));
+			new WorldGenModFlower(JourneyBlocks.tallterramushroom, JourneyBlocks.terranianGrass).generate(worldObj, r, new BlockPos(x, y, z));
 		}
 		
 		for(times = 0; times < 275; times++) {

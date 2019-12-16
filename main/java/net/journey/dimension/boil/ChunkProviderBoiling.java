@@ -333,9 +333,9 @@ public class ChunkProviderBoiling implements IChunkGenerator {
 
 		for(i = 0; i < 100; i++) {
 			y = r.nextInt(256); x = x1 + this.rand.nextInt(16) + 8; z = z1 + this.rand.nextInt(16) + 8;
-			new WorldGenModFlower(JourneyBlocks.burntGrass).generate(worldObj, r, new BlockPos(x, y, z));
-			new WorldGenModFlower(JourneyBlocks.flameFlower).generate(worldObj, r, new BlockPos(x, y, z));
-			new WorldGenModFlower(JourneyBlocks.infernoPlant).generate(worldObj, r, new BlockPos(x, y, z));
+			new WorldGenModFlower(JourneyBlocks.burntGrass, JourneyBlocks.hotBlock).generate(worldObj, r, new BlockPos(x, y, z));
+			new WorldGenModFlower(JourneyBlocks.flameFlower, JourneyBlocks.hotBlock).generate(worldObj, r, new BlockPos(x, y, z));
+			new WorldGenModFlower(JourneyBlocks.infernoPlant, JourneyBlocks.hotBlock).generate(worldObj, r, new BlockPos(x, y, z));
 		}
 		
 		for(times = 0; times < 30; times++) {

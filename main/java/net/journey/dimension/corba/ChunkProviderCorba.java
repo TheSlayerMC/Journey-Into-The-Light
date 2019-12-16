@@ -338,17 +338,17 @@ public class ChunkProviderCorba implements IChunkGenerator {
 
 		for(i = 0; i < 100; i++) {
 			y = r.nextInt(256); x = x1 + this.rand.nextInt(16) + 8; z = z1 + this.rand.nextInt(16) + 8;
-			new WorldGenModFlower(JourneyBlocks.corbaTallGrass).generate(worldObj, r, new BlockPos(x, y, z));
-			new WorldGenModFlower(JourneyBlocks.corbaFlower).generate(worldObj, r, new BlockPos(x, y, z));
+			new WorldGenModFlower(JourneyBlocks.corbaTallGrass, JourneyBlocks.corbaGrass).generate(worldObj, r, new BlockPos(x, y, z));
+			new WorldGenModFlower(JourneyBlocks.corbaFlower, JourneyBlocks.corbaGrass).generate(worldObj, r, new BlockPos(x, y, z));
 		}
 		
 		for(i = 0; i < 16; i++) {
 			y = r.nextInt(256); x = x1 + this.rand.nextInt(16) + 8; z = z1 + this.rand.nextInt(16) + 8;
-			new WorldGenModFlower(JourneyBlocks.corbaSpeckledFlower).generate(worldObj, r, new BlockPos(x, y, z));
-			new WorldGenModFlower(JourneyBlocks.corbaDarkPurpleFlower).generate(worldObj, r, new BlockPos(x, y, z));
-			new WorldGenModFlower(JourneyBlocks.corbaRedFlower).generate(worldObj, r, new BlockPos(x, y, z));
-			new WorldGenModFlower(JourneyBlocks.corbaBlueFlower).generate(worldObj, r, new BlockPos(x, y, z));
-			new WorldGenModFlower(JourneyBlocks.corbaLightPurpleFlower).generate(worldObj, r, new BlockPos(x, y, z));
+			new WorldGenModFlower(JourneyBlocks.corbaSpeckledFlower, JourneyBlocks.corbaGrass).generate(worldObj, r, new BlockPos(x, y, z));
+			new WorldGenModFlower(JourneyBlocks.corbaDarkPurpleFlower, JourneyBlocks.corbaGrass).generate(worldObj, r, new BlockPos(x, y, z));
+			new WorldGenModFlower(JourneyBlocks.corbaRedFlower, JourneyBlocks.corbaGrass).generate(worldObj, r, new BlockPos(x, y, z));
+			new WorldGenModFlower(JourneyBlocks.corbaBlueFlower, JourneyBlocks.corbaGrass).generate(worldObj, r, new BlockPos(x, y, z));
+			new WorldGenModFlower(JourneyBlocks.corbaLightPurpleFlower, JourneyBlocks.corbaGrass).generate(worldObj, r, new BlockPos(x, y, z));
 		}
 		
 		if(rand.nextInt(6)==0) {

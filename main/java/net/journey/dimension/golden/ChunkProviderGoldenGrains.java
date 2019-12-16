@@ -331,12 +331,12 @@ public class ChunkProviderGoldenGrains implements IChunkGenerator {
 
 		for(i = 0; i < 1024; i++) {
 			y = r.nextInt(256); x = x1 + this.rand.nextInt(16) + 8; z = z1 + this.rand.nextInt(16) + 8;
-			new WorldGenModFlower(JourneyBlocks.goldenStalks).generate(worldObj, r, new BlockPos(x, y, z));
+			new WorldGenModFlower(JourneyBlocks.goldenStalks, JourneyBlocks.goldenGrass).generate(worldObj, r, new BlockPos(x, y, z));
 		}
 		for(i = 0; i < 128; i++) {
 			y = r.nextInt(256); x = x1 + this.rand.nextInt(16) + 8; z = z1 + this.rand.nextInt(16) + 8;
-			new WorldGenModFlower(JourneyBlocks.goldenBloom).generate(worldObj, r, new BlockPos(x, y, z));
-			new WorldGenModFlower(JourneyBlocks.goldenBulb).generate(worldObj, r, new BlockPos(x, y, z));
+			new WorldGenModFlower(JourneyBlocks.goldenBloom, JourneyBlocks.goldenGrass).generate(worldObj, r, new BlockPos(x, y, z));
+			new WorldGenModFlower(JourneyBlocks.goldenBulb, JourneyBlocks.goldenGrass).generate(worldObj, r, new BlockPos(x, y, z));
 		}
 
 		for(i = 0; i < 29900; i++) {

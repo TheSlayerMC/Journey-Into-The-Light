@@ -248,7 +248,7 @@ public class ChunkProviderEuca implements IChunkGenerator {
 			}
 		}
 
-		for (times = 0; times < 2; times++) {
+		for (times = 0; times < 1; times++) {
 			x = x1 + this.rand.nextInt(chunkSize);
 			z = z1 + this.rand.nextInt(chunkSize);
 			int yCoord = rand.nextInt(128);

@@ -468,19 +468,19 @@ public class WorldGenJourney implements IWorldGenerator {
 			break;
 		case 6:
 			y = r.nextInt(300); x = chunkX + r.nextInt(16) + 8; z = chunkZ + r.nextInt(16) + 8;
-			(new WorldGenModFlower(JourneyBlocks.eucaTallGrass)).generate(w, r, new BlockPos(x, y, z));
+			(new WorldGenModFlower(JourneyBlocks.eucaTallGrass, JourneyBlocks.eucaGrass)).generate(w, r, new BlockPos(x, y, z));
 			break;
 		case 7:
 			y = r.nextInt(300); x = chunkX + r.nextInt(16) + 8; z = chunkZ + r.nextInt(16) + 8;
-			(new WorldGenModFlower(JourneyBlocks.eucaTallFlowers)).generate(w, r, new BlockPos(x, y, z));
+			(new WorldGenModFlower(JourneyBlocks.eucaTallFlowers, JourneyBlocks.eucaGrass)).generate(w, r, new BlockPos(x, y, z));
 			break;
 		case 8:
 			y = r.nextInt(300); x = chunkX + r.nextInt(16) + 8; z = chunkZ + r.nextInt(16) + 8;
-			(new WorldGenModFlower(JourneyBlocks.eucaBlueFlower)).generate(w, r, new BlockPos(x, y, z));
+			(new WorldGenModFlower(JourneyBlocks.eucaBlueFlower, JourneyBlocks.eucaGrass)).generate(w, r, new BlockPos(x, y, z));
 			break;
 		case 9:
 			y = r.nextInt(60); x = chunkX + r.nextInt(16) + 8; z = chunkZ + r.nextInt(16) + 8;
-			(new WorldGenModFlower(JourneyBlocks.frozenFlower)).generate(w, r, new BlockPos(x, y, z));
+			(new WorldGenModFlower(JourneyBlocks.frozenFlower, JourneyBlocks.frozenGrass)).generate(w, r, new BlockPos(x, y, z));
 			break;
 		case 10:
 			y = r.nextInt(250); x = chunkX + r.nextInt(16) + 8; z = chunkZ + r.nextInt(16) + 8;
@@ -492,7 +492,7 @@ public class WorldGenJourney implements IWorldGenerator {
 			break;
 		case 12:
 			y = r.nextInt(250); x = chunkX + r.nextInt(16) + 8; z = chunkZ + r.nextInt(16) + 8;
-			(new WorldGenModFlower(JourneyBlocks.depthsFlower)).generate(w, r, new BlockPos(x, y, z));
+			(new WorldGenModFlower(JourneyBlocks.depthsFlower, JourneyBlocks.depthsGrass)).generate(w, r, new BlockPos(x, y, z));
 			break;
 		case 13:
 			y = r.nextInt(250); x = chunkX + r.nextInt(16) + 8; z = chunkZ + r.nextInt(16) + 8;

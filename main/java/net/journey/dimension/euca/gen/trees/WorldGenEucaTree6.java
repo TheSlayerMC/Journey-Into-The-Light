@@ -13,7 +13,7 @@ public class WorldGenEucaTree6 extends WorldGenerator {
 
 	@Override
 	public boolean generate(World world, Random r, BlockPos pos) {
-		int i = pos.getX() - 3, j = pos.getY() - 1, k = pos.getZ() - 3;
+		int i = pos.getX(), j = pos.getY() - 1, k = pos.getZ();
 		int height = r.nextInt(5);
 		Block log = JourneyBlocks.eucaGoldLog;
 		Block leaves = JourneyBlocks.eucaLightGreenLeaves;
