@@ -42,7 +42,7 @@ public class ChunkProviderEuca implements IChunkGenerator {
 	private NoiseGeneratorOctaves noiseGen1, perlinNoise1;
 	private double buffer[];
 	double pnr[], ar[], br[];
-	private ArrayList<WorldGenerator> treesgreen;
+	//private ArrayList<WorldGenerator> treesgreen;
 	private ArrayList<WorldGenerator> treesnormal;
 	private ArrayList<WorldGenerator> treestall;
 
@@ -52,11 +52,11 @@ public class ChunkProviderEuca implements IChunkGenerator {
 		this.noiseGen1 = new NoiseGeneratorOctaves(this.rand, 16);
 		this.perlinNoise1 = new NoiseGeneratorOctaves(this.rand, 8);
 
-		treesgreen = new ArrayList<WorldGenerator>(3);
-		treesgreen.add(new WorldGenEucaTree6());
-		treesgreen.add(new WorldGenEucaTree7());
-		treesgreen.add(new WorldGenEucaTree8());
-		treesgreen.add(new WorldGenEucaTree9());
+	//	treesgreen = new ArrayList<WorldGenerator>(3);
+	//	treesgreen.add(new WorldGenEucaTree6());
+		//treesgreen.add(new WorldGenEucaTree7());
+		//treesgreen.add(new WorldGenEucaTree8());
+		//treesgreen.add(new WorldGenEucaTree9());
 
 		treesnormal = new ArrayList<WorldGenerator>(1);
 		treesnormal.add(new WorldGenEucaTree4());
@@ -256,14 +256,14 @@ public class ChunkProviderEuca implements IChunkGenerator {
 				new WorldGenBotSpawner().generate(worldObj, rand, new BlockPos(x, yCoord - 1, z));
 		}
 
-		for (times = 0; times < 5; times++) {
+		/*for (times = 0; times < 5; times++) {
 			x = x1 + this.rand.nextInt(chunkSize);
 			z = z1 + this.rand.nextInt(chunkSize);
 			int yCoord = rand.nextInt(128) + 1;
 			if (isBlockTop(x, yCoord - 1, z, JourneyBlocks.eucaGrass)) {
 				treesgreen.get(rand.nextInt(treesgreen.size())).generate(worldObj, rand, new BlockPos(x, yCoord, z));
 			}
-		}
+		} */
 
 		for (times = 0; times < 400; times++) {
 			x = x1 + this.rand.nextInt(chunkSize);

@@ -38,7 +38,7 @@ public class WorldProviderEuca extends WorldProvider {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public Vec3d getFogColor(float f1, float f2) {
-		return new Vec3d(1.5, 1.1, 1);
+		return new Vec3d(1.5, 1.4, 1);
 	}
 
 	@Override
