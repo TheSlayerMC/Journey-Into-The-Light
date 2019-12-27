@@ -1,6 +1,7 @@
 package net.journey.dimension.golden;
 
 import net.journey.dimension.DimensionHelper;
+import net.journey.dimension.base.BaseWorldProvider;
 import net.journey.util.Config;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DimensionType;
@@ -10,11 +11,13 @@ import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class WorldProviderGoldenGrains extends WorldProvider {
-	
+public class WorldProviderGoldenGrains extends BaseWorldProvider {
+	public WorldProviderGoldenGrains(BiomeProviderSingle provider) {
+		super(new BiomeProviderSingle(DimensionHelper.golden), new Vec3d(1.3, 1.5, 0.0));
+	}
+
 	@Override
 	public void init() {
-		this.biomeProvider = new BiomeProviderSingle(DimensionHelper.corba);
 		this.nether = false;
 		hasSkyLight = true;
 	}
@@ -23,12 +26,6 @@ public class WorldProviderGoldenGrains extends WorldProvider {
 	public IChunkGenerator createChunkGenerator() {
 		return new ChunkProviderGoldenGrains(this.world, this.world.getSeed());
 	}
-	
-	@Override
-    @SideOnly(Side.CLIENT)
-    public Vec3d getFogColor(float f1, float f2) {
-    	return new Vec3d(1.3, 1.5, 0.0);
-    }
 
 	@Override
     public boolean canRespawnHere() {

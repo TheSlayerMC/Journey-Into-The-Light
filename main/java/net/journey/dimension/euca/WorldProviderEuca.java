@@ -1,6 +1,7 @@
 package net.journey.dimension.euca;
 
 import net.journey.dimension.DimensionHelper;
+import net.journey.dimension.base.BaseWorldProvider;
 import net.journey.dimension.cloudia.BiomeProviderCloudia;
 import net.journey.util.Config;
 import net.minecraft.init.Biomes;
@@ -16,65 +17,57 @@ import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class WorldProviderEuca extends WorldProvider {
+public class WorldProviderEuca extends BaseWorldProvider {
 
-	@Override
-	public void init() {
-		this.biomeProvider = new BiomeProviderSingle(DimensionHelper.euca);
-		this.nether = false;
-		this.hasSkyLight = true;
-	}
+    protected WorldProviderEuca() {
+        super(new BiomeProviderSingle(DimensionHelper.euca), new Vec3d(1.5, 1.4, 1));
+    }
 
-	@Override
-	public String getSaveFolder() {
-		return "Euca";
-	}
+    @Override
+    public void init() {
+        this.nether = false;
+        this.hasSkyLight = true;
+    }
 
-	@Override
-	public float getCloudHeight() {
-		return 128.0F;
-	}
+    @Override
+    public String getSaveFolder() {
+        return "Euca";
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public Vec3d getFogColor(float f1, float f2) {
-		return new Vec3d(1.5, 1.4, 1);
-	}
+    @Override
+    public float getCloudHeight() {
+        return 128.0F;
+    }
 
-	@Override
-	public IChunkGenerator createChunkGenerator() {
-		return new ChunkProviderEuca(world, world.getSeed());
-	}
-	
-	@Override
-    public BiomeProvider getBiomeProvider() {
-		return this.biomeProvider = new BiomeProviderEuca();
-	}
+    @Override
+    public IChunkGenerator createChunkGenerator() {
+        return new ChunkProviderEuca(world, world.getSeed());
+    }
 
-	@Override
-	public boolean isSurfaceWorld() {
-		return false;
-	}
+    @Override
+    public boolean isSurfaceWorld() {
+        return false;
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public boolean doesXZShowFog(int x, int z) {
-		return false;
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public boolean doesXZShowFog(int x, int z) {
+        return false;
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public float calculateCelestialAngle(long var1, float var3) {
-		return 0.18F;
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public float calculateCelestialAngle(long var1, float var3) {
+        return 0.18F;
+    }
 
-	@Override
-	public boolean canRespawnHere() {
-		return false;
-	}
+    @Override
+    public boolean canRespawnHere() {
+        return false;
+    }
 
-	@Override
-	public DimensionType getDimensionType() {
-		return DimensionHelper.eucaType;
-	}
+    @Override
+    public DimensionType getDimensionType() {
+        return DimensionHelper.eucaType;
+    }
 }
