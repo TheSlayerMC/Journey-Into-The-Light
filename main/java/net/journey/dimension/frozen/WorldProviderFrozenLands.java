@@ -1,6 +1,7 @@
 package net.journey.dimension.frozen;
 
 import net.journey.dimension.DimensionHelper;
+import net.journey.dimension.base.BaseWorldProvider;
 import net.journey.dimension.boil.BiomeProviderBoil;
 import net.journey.util.Config;
 import net.minecraft.world.DimensionType;
@@ -12,11 +13,14 @@ import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class WorldProviderFrozenLands extends WorldProvider {
+public class WorldProviderFrozenLands extends BaseWorldProvider {
+
+	public WorldProviderFrozenLands() {
+		super(new BiomeProviderSingle(DimensionHelper.frozen));
+	}
 
 	@Override
 	public void init(){
-		this.biomeProvider = new BiomeProviderSingle(DimensionHelper.euca);
 		this.nether = false;
 		this.hasSkyLight = true;
 	}
@@ -25,11 +29,6 @@ public class WorldProviderFrozenLands extends WorldProvider {
 	public IChunkGenerator createChunkGenerator() {
         return new ChunkProviderFrozenLands(world, world.getSeed(), world.getWorldInfo().getGeneratorOptions());
     }
-	
-	@Override
-    public BiomeProvider getBiomeProvider() {
-		return this.biomeProvider = new BiomeProviderFrozenLands();
-	}
 	
 	@Override
 	@SideOnly(Side.CLIENT)

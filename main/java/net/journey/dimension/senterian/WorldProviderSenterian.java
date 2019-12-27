@@ -1,6 +1,7 @@
 package net.journey.dimension.senterian;
 
 import net.journey.dimension.DimensionHelper;
+import net.journey.dimension.base.BaseWorldProvider;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DimensionType;
@@ -11,20 +12,17 @@ import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class WorldProviderSenterian extends WorldProvider {
+public class WorldProviderSenterian extends BaseWorldProvider {
+
+	public WorldProviderSenterian() {
+		super(new BiomeProviderSingle(DimensionHelper.senterian), new Vec3d(0.2, 0.1, 0));
+	}
 
 	@Override
 	public void init() {
-		this.biomeProvider = new BiomeProviderSingle(DimensionHelper.senterian);
 		nether = true;
 		hasSkyLight = true;
 	}
-	
-	@Override
-	@SideOnly(Side.CLIENT)
-    public Vec3d getFogColor(float par1, float par2) {
-        return new Vec3d(0.2, 0.1, 0);
-    }
 	
 	@Override
 	public boolean canBlockFreeze(BlockPos pos, boolean byWater) {

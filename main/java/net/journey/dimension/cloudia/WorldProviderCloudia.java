@@ -1,6 +1,7 @@
 package net.journey.dimension.cloudia;
 
 import net.journey.dimension.DimensionHelper;
+import net.journey.dimension.base.BaseWorldProvider;
 import net.journey.dimension.boil.BiomeProviderBoil;
 import net.journey.dimension.boil.BoilSkyRenderer;
 import net.minecraft.util.math.Vec3d;
@@ -13,70 +14,58 @@ import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class WorldProviderCloudia extends WorldProvider {
-	
-	@Override
-	public void init() {
-		this.biomeProvider = new BiomeProviderSingle(DimensionHelper.cloudia);
-		this.nether = false;
-		this.hasSkyLight = true;
-	}
-	
-	@Override
-	public IChunkGenerator createChunkGenerator() {
-		return new ChunkProviderCloudia(this.world, this.world.getSeed());
-	}
-	
-	@Override
-    public BiomeProvider getBiomeProvider() {
-		return this.biomeProvider = new BiomeProviderCloudia();
-	}
-	
-	@Override
-	public IRenderHandler getSkyRenderer() {
-		return new CloudiaSkyRenderer();
-	}
-	
-    @Override
-	public int getMoonPhase(long s) {
-        return (int)(s / 24000L % 8L + 8L) % 8;
-    }
-    
-	@Override
-    @SideOnly(Side.CLIENT)
-    public Vec3d getFogColor(float f1, float f2) {
-    	return new Vec3d(1.7, 0.7, 1.2333);
+public class WorldProviderCloudia extends BaseWorldProvider {
+
+    protected WorldProviderCloudia() {
+        super(new BiomeProviderSingle(DimensionHelper.cloudia), new CloudiaSkyRenderer(), new Vec3d(1.7, 0.7, 1.2333));
     }
 
-	@Override
+    @Override
+    public void init() {
+        this.nether = false;
+        this.hasSkyLight = true;
+    }
+
+    @Override
+    public IChunkGenerator createChunkGenerator() {
+        return new ChunkProviderCloudia(this.world, this.world.getSeed());
+    }
+
+    @Override
+    public int getMoonPhase(long s) {
+        return (int) (s / 24000L % 8L + 8L) % 8;
+    }
+
+
+    @Override
     public boolean canRespawnHere() {
         return false;
     }
 
-	@Override
+    @Override
     public boolean isSurfaceWorld() {
         return false;
     }
 
-	@Override
+    @Override
     @SideOnly(Side.CLIENT)
     public float getCloudHeight() {
         return 8.0F;
     }
 
-	@Override
+    @Override
     public int getAverageGroundLevel() {
         return 70;
     }
 
-	@Override
+    @Override
     @SideOnly(Side.CLIENT)
     public boolean doesXZShowFog(int x, int z) {
         return true;
     }
 
-	@Override
-	public DimensionType getDimensionType() {
-		return DimensionHelper.cloudiaType;
-	}
+    @Override
+    public DimensionType getDimensionType() {
+        return DimensionHelper.cloudiaType;
+    }
 }
