@@ -15,7 +15,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WorldProviderCorba extends BaseWorldProvider {
 
-	protected WorldProviderCorba() {
+	public WorldProviderCorba() {
 		super(new BiomeProviderSingle(DimensionHelper.corba), new Vec3d(0.5, 0.55, 0));
 	}
 

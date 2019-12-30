@@ -14,7 +14,7 @@ import net.minecraft.world.gen.IChunkGenerator;
 
 public class WorldProviderDepths extends BaseWorldProvider {
 
-    protected WorldProviderDepths() {
+    public WorldProviderDepths() {
         super(new BiomeProviderSingle(DimensionHelper.depths));
     }
 
