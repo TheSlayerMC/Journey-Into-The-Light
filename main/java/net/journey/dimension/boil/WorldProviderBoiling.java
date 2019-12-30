@@ -1,24 +1,22 @@
 package net.journey.dimension.boil;
 
 import net.journey.dimension.DimensionHelper;
-import net.minecraft.client.Minecraft;
+import net.journey.dimension.base.BaseWorldProvider;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DimensionType;
-import net.minecraft.world.WorldProvider;
-import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.biome.BiomeProviderSingle;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.IChunkGenerator;
-import net.minecraftforge.client.IRenderHandler;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class WorldProviderBoiling extends WorldProvider {
+public class WorldProviderBoiling extends BaseWorldProvider {
 
-	@Override
+    protected WorldProviderBoiling() {
+        super(new BiomeProviderSingle(DimensionHelper.boiling), new BoilSkyRenderer(), new Vec3d(0.2, 0.1, 0));
+    }
+
+    @Override
 	public void init() {
-		this.biomeProvider = new BiomeProviderSingle(DimensionHelper.boiling);
 		nether = true;
 		hasSkyLight = true;
 	}
@@ -32,21 +30,10 @@ public class WorldProviderBoiling extends WorldProvider {
 	public float getCloudHeight() {
 		return 128.0F;
 	}
-	
-	@Override
-	@SideOnly(Side.CLIENT)
-    public Vec3d getFogColor(float p_76562_1_, float p_76562_2_) {
-        return new Vec3d(0.2, 0.1, 0);
-    }
 
 	@Override
 	public IChunkGenerator createChunkGenerator() {
 		return new ChunkProviderBoiling(this.world, this.world.getSeed());
-	}
-	
-	@Override
-    public BiomeProvider getBiomeProvider() {
-		return this.biomeProvider = new BiomeProviderBoil();
 	}
 	
 	@Override
@@ -67,11 +54,6 @@ public class WorldProviderBoiling extends WorldProvider {
 	@Override
 	public boolean isSurfaceWorld() {
 		return false;
-	}
-	
-	@Override
-	public IRenderHandler getSkyRenderer() {
-		return new BoilSkyRenderer();
 	}
 	
 	@Override
