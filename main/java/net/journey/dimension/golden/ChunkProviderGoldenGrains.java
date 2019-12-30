@@ -196,7 +196,7 @@ public class ChunkProviderGoldenGrains implements IChunkGenerator {
 						else if(k1 < 56 - l) {
 							iblockstate = null;
 							iblockstate1 = JourneyBlocks.goldenStone.getDefaultState();
-						} 
+						}
 						else c.setBlockState(j1, k1, i1, iblockstate1);
 					}
 					else if(k > 0) {
@@ -276,13 +276,13 @@ public class ChunkProviderGoldenGrains implements IChunkGenerator {
 				if(d12 < 0.0D) {
 					d12 /= 2.0D;
 
-					if(d12 < -1.0D) 
+					if(d12 < -1.0D)
 						d12 = -1.0D;
 
 					d12 /= 1.4D;
 					d12 /= 2.0D;
 				} else {
-					if(d12 > 1.0D) 
+					if(d12 > 1.0D)
 						d12 = 1.0D;
 
 					d12 /= 8.0D;
@@ -298,7 +298,7 @@ public class ChunkProviderGoldenGrains implements IChunkGenerator {
 				for(int j2 = 0; j2 < 33; ++j2) {
 					double d6 = (j2 - d5) * 12.0D * 128.0D / 256.0D / d14;
 
-					if(d6 < 0.0D) 
+					if(d6 < 0.0D)
 						d6 *= 4.0D;
 
 
@@ -339,12 +339,12 @@ public class ChunkProviderGoldenGrains implements IChunkGenerator {
 			new WorldGenModFlower(JourneyBlocks.goldenBulb, JourneyBlocks.goldenGrass).generate(worldObj, r, new BlockPos(x, y, z));
 		}
 
-		for(i = 0; i < 29900; i++) {
+		for(i = 0; i < 512; i++) {
 			y = r.nextInt(256); x = x1 + this.rand.nextInt(16) + 8; z = z1 + this.rand.nextInt(16) + 8;
 			new WorldGenGoldenStalks().generate(worldObj, rand, new BlockPos(x, y, z));
 		}
 	}
-	
+
 	public boolean isBlockTop(int x, int y, int z, Block grass) {
 		return worldObj.getBlockState(new BlockPos(x, y, z)) == grass.getDefaultState() && worldObj.getBlockState(new BlockPos(x, y + 1, z)) == Blocks.AIR.getDefaultState()
 				&& worldObj.getBlockState(new BlockPos(x, y + 2, z)) == Blocks.AIR.getDefaultState() && worldObj.getBlockState(new BlockPos(x, y + 3, z)) == Blocks.AIR.getDefaultState()
@@ -357,7 +357,7 @@ public class ChunkProviderGoldenGrains implements IChunkGenerator {
 		Biome biome = this.worldObj.getBiome(pos);
 		return biome.getSpawnableList(creatureType);
 	}
-	
+
 	@Override
 	public void recreateStructures(Chunk p_180514_1_, int p_180514_2_, int p_180514_3_) { }
 
