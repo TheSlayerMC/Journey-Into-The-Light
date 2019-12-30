@@ -11,7 +11,7 @@ import net.minecraft.world.gen.IChunkGenerator;
 
 public class WorldProviderBoiling extends BaseWorldProvider {
 
-    protected WorldProviderBoiling() {
+    public WorldProviderBoiling() {
         super(new BiomeProviderSingle(DimensionHelper.boiling), new BoilSkyRenderer(), new Vec3d(0.2, 0.1, 0));
     }
 

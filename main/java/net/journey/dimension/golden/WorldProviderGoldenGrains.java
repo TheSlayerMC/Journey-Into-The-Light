@@ -12,7 +12,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WorldProviderGoldenGrains extends BaseWorldProvider {
-	public WorldProviderGoldenGrains(BiomeProviderSingle provider) {
+	public WorldProviderGoldenGrains() {
 		super(new BiomeProviderSingle(DimensionHelper.golden), new Vec3d(1.3, 1.5, 0.0));
 	}
 
