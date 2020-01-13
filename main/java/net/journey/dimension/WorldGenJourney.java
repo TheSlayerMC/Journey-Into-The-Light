@@ -609,15 +609,15 @@ public class WorldGenJourney implements IWorldGenerator {
 		
 		if(r.nextInt(2)==0) {
 			int y = r.nextInt(64); 
-			int x = chunkX + r.nextInt(16);
-			int z = chunkZ + r.nextInt(16);
+			int x = chunkX + r.nextInt(8);
+			int z = chunkZ + r.nextInt(8);
 			(new WorldGenMinable(JourneyBlocks.cloudiaRock.getDefaultState(), 55, BlockStateMatcher.forBlock(Blocks.AIR))).generate(w, r, new BlockPos(x, y, z));
 		}
 		
 		if(r.nextInt(2)==0) {
 			int y = r.nextInt(64); 
-			int x = chunkX + r.nextInt(16);
-			int z = chunkZ + r.nextInt(16);
+			int x = chunkX + r.nextInt(8);
+			int z = chunkZ + r.nextInt(8);
 			(new WorldGenMinable(JourneyBlocks.luniteOre.getDefaultState(), 10, BlockStateMatcher.forBlock(JourneyBlocks.cloudiaRock))).generate(w, r, new BlockPos(x, y, z));
 		}
 	}
