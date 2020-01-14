@@ -8,18 +8,12 @@ import net.journey.entity.mob.corba.npc.EntityTordo;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.slayer.api.worldgen.WorldGenAPI;
 
 public class WorldGenCorbaVillage extends WorldGenerator {
 	
 	public boolean locationIsValidSpawn(World w, int x, int y, int z) {
-		for(int i = 0; i < 11; i++) {
-			for(int l = 0; l < 11; l++) {
-				if(w.getBlockState(new BlockPos(x + i, y, z + l)) != JourneyBlocks.corbaGrass) {
-					return false;
-				}
-			}
-		}
-		return true;
+		return WorldGenAPI.checkRadius(w, new BlockPos(x,y,z), 11, JourneyBlocks.corbaGrass);
 	}
 	
 	@Override

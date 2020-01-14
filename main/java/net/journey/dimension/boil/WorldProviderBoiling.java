@@ -18,6 +18,7 @@ public class WorldProviderBoiling extends BaseWorldProvider {
 
     private static IRenderHandler getSkyRender() {
 //    	return new BoilSkyRenderer();
+        // todo fix BoilSkyRenderer!
         return null;
     }
 

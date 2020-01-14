@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 import net.journey.JourneyBlocks;
+import net.journey.dimension.cloudia.ChunkProviderCloudia;
 import net.journey.dimension.euca.gen.WorldGenEucaWater;
 import net.journey.dimension.euca.gen.WorldGenSmeltery;
 import net.journey.dimension.euca.gen.trees.WorldGenBotSpawner;
@@ -240,8 +241,8 @@ public class ChunkProviderEuca implements IChunkGenerator {
 		int x, z, times;
 
 		if (rand.nextInt(1) == 0) {
-			x = x1 + this.rand.nextInt(chunkSize);
-			z = z1 + this.rand.nextInt(chunkSize);
+			x = x1 + this.rand.nextInt(chunkSize / 2) + 8;
+			z = z1 + this.rand.nextInt(chunkSize / 2) + 8;
 			int yCoord = rand.nextInt(128) + 1;
 			if (isBlockTop(x, yCoord - 1, z, JourneyBlocks.eucaGrass)) {
 				new WorldGenSmeltery().generate(worldObj, rand, new BlockPos(x, yCoord, z));
@@ -249,8 +250,8 @@ public class ChunkProviderEuca implements IChunkGenerator {
 		}
 
 		for (times = 0; times < 1; times++) {
-			x = x1 + this.rand.nextInt(chunkSize);
-			z = z1 + this.rand.nextInt(chunkSize);
+			x = x1 + this.rand.nextInt(chunkSize / 2) + 8;
+			z = z1 + this.rand.nextInt(chunkSize / 2) + 8;
 			int yCoord = rand.nextInt(128);
 			if (isBlockTop(x, yCoord - 1, z, JourneyBlocks.eucaGrass))
 				new WorldGenBotSpawner().generate(worldObj, rand, new BlockPos(x, yCoord - 1, z));
@@ -266,8 +267,8 @@ public class ChunkProviderEuca implements IChunkGenerator {
 		} */
 
 		for (times = 0; times < 400; times++) {
-			x = x1 + this.rand.nextInt(chunkSize);
-			z = z1 + this.rand.nextInt(chunkSize);
+			x = x1 + this.rand.nextInt(chunkSize / 2) + 8;
+			z = z1 + this.rand.nextInt(chunkSize / 2) + 8;
 			int yCoord = rand.nextInt(128) + 1;
 			if (isBlockTop(x, yCoord - 1, z, JourneyBlocks.eucaGrass)) {
 				treesnormal.get(rand.nextInt(treesnormal.size())).generate(worldObj, rand, new BlockPos(x, yCoord, z));
@@ -275,8 +276,8 @@ public class ChunkProviderEuca implements IChunkGenerator {
 		}
 
 		for (times = 0; times < 50; times++) {
-			x = x1 + this.rand.nextInt(16);
-			z = z1 + this.rand.nextInt(16);
+			x = x1 + this.rand.nextInt(chunkSize / 2) + 8;
+			z = z1 + this.rand.nextInt(chunkSize / 2) + 8;
 			int yCoord = rand.nextInt(128) + 1;
 			if (isBlockTop(x, yCoord - 1, z, JourneyBlocks.eucaGrass)) {
 				treestall.get(rand.nextInt(treestall.size())).generate(worldObj, rand, new BlockPos(x, yCoord, z));
@@ -285,12 +286,7 @@ public class ChunkProviderEuca implements IChunkGenerator {
 	}
 
 	public boolean isBlockTop(int x, int y, int z, Block grass) {
-		return worldObj.getBlockState(new BlockPos(x, y, z)) == grass.getDefaultState()
-				&& worldObj.getBlockState(new BlockPos(x, y + 1, z)) == Blocks.AIR.getDefaultState()
-				&& worldObj.getBlockState(new BlockPos(x, y + 2, z)) == Blocks.AIR.getDefaultState()
-				&& worldObj.getBlockState(new BlockPos(x, y + 3, z)) == Blocks.AIR.getDefaultState()
-				&& worldObj.getBlockState(new BlockPos(x, y + 4, z)) == Blocks.AIR.getDefaultState()
-				&& worldObj.getBlockState(new BlockPos(x, y + 5, z)) == Blocks.AIR.getDefaultState();
+		return ChunkProviderCloudia.isBlockTop(x, y, z, grass, worldObj);
 	}
 
 	@Override
