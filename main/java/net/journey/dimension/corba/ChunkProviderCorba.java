@@ -19,7 +19,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.IProgressUpdate;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -27,18 +26,14 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
-import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.MapGenBase;
 import net.minecraft.world.gen.MapGenCaves;
 import net.minecraft.world.gen.MapGenRavine;
-import net.minecraft.world.gen.NoiseGenerator;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.NoiseGeneratorPerlin;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.terraingen.TerrainGen;
-import net.minecraftforge.fml.common.eventhandler.Event.Result;
+import net.slayer.api.worldgen.WorldGenAPI;
 
 public class ChunkProviderCorba implements IChunkGenerator {
 
@@ -62,6 +57,8 @@ public class ChunkProviderCorba implements IChunkGenerator {
     double[] gen2;
     double[] gen3;
     double[] gen4;
+
+
 
     public ChunkProviderCorba(World worldIn, long p_i45636_2_) {
         this.stoneNoise = new double[256];
@@ -324,64 +321,78 @@ public class ChunkProviderCorba implements IChunkGenerator {
         }
     }
 
+    private WorldGenModFlower flower1 = new WorldGenModFlower(JourneyBlocks.corbaSpeckledFlower, JourneyBlocks.corbaGrass);
+    private WorldGenModFlower flower2 = new WorldGenModFlower(JourneyBlocks.corbaDarkPurpleFlower, JourneyBlocks.corbaGrass);
+    private WorldGenModFlower flower3 = new WorldGenModFlower(JourneyBlocks.corbaRedFlower, JourneyBlocks.corbaGrass);
+    private WorldGenModFlower flower4 = new WorldGenModFlower(JourneyBlocks.corbaBlueFlower, JourneyBlocks.corbaGrass);
+    private WorldGenModFlower flower5 = new WorldGenModFlower(JourneyBlocks.corbaLightPurpleFlower, JourneyBlocks.corbaGrass);
+
+    private WorldGenModFlower tall = new WorldGenModFlower(JourneyBlocks.corbaTallGrass, JourneyBlocks.corbaGrass);
+    private WorldGenModFlower flower = new WorldGenModFlower(JourneyBlocks.corbaFlower, JourneyBlocks.corbaGrass);
+
+    private WorldGenTreehouse worldGenTreehouse = new WorldGenTreehouse();
+    private WorldGenCorbaVillage village = new WorldGenCorbaVillage();
+    private WorldGenHugeCorbaTree tree = new WorldGenHugeCorbaTree();
+    private WorldGenCorbaLamp lamp = new WorldGenCorbaLamp();
+
     @Override
     public void populate(int cx, int cz) {
-        int x1 = cx * 16;
-        int z1 = cz * 16;
-        int x, y, z, i;
+        final int x1 = cx * 16;
+        final int z1 = cz * 16;
+        int i;
         int times;
-        x = x1 + this.rand.nextInt(8) + 8;
-        z = z1 + this.rand.nextInt(8) + 8;
         Random r = rand;
 
         for (i = 0; i < 100; i++) {
-            y = r.nextInt(256);
-            new WorldGenModFlower(JourneyBlocks.corbaTallGrass, JourneyBlocks.corbaGrass).generate(worldObj, r, new BlockPos(x, y, z));
-            new WorldGenModFlower(JourneyBlocks.corbaFlower, JourneyBlocks.corbaGrass).generate(worldObj, r, new BlockPos(x, y, z));
+            tall.generate(worldObj, r, WorldGenAPI.createRandom(x1, 256, z1, r));
+            flower.generate(worldObj, r, WorldGenAPI.createRandom(x1, 256, z1, r));
         }
 
         for (i = 0; i < 16; i++) {
-            y = r.nextInt(256);
-            new WorldGenModFlower(JourneyBlocks.corbaSpeckledFlower, JourneyBlocks.corbaGrass).generate(worldObj, r, new BlockPos(x, y, z));
-            new WorldGenModFlower(JourneyBlocks.corbaDarkPurpleFlower, JourneyBlocks.corbaGrass).generate(worldObj, r, new BlockPos(x, y, z));
-            new WorldGenModFlower(JourneyBlocks.corbaRedFlower, JourneyBlocks.corbaGrass).generate(worldObj, r, new BlockPos(x, y, z));
-            new WorldGenModFlower(JourneyBlocks.corbaBlueFlower, JourneyBlocks.corbaGrass).generate(worldObj, r, new BlockPos(x, y, z));
-            new WorldGenModFlower(JourneyBlocks.corbaLightPurpleFlower, JourneyBlocks.corbaGrass).generate(worldObj, r, new BlockPos(x, y, z));
+            flower1.generate(worldObj, r, WorldGenAPI.createRandom(x1, 256, z1, r));
+            flower2.generate(worldObj, r, WorldGenAPI.createRandom(x1, 256, z1, r));
+            flower3.generate(worldObj, r, WorldGenAPI.createRandom(x1, 256, z1, r));
+            flower4.generate(worldObj, r, WorldGenAPI.createRandom(x1, 256, z1, r));
+            flower5.generate(worldObj, r, WorldGenAPI.createRandom(x1, 256, z1, r));
+        }
+
+        worldGenTreehouse = new WorldGenTreehouse();
+
+        if (rand.nextInt(6) == 0) {
+            generateStructure(x1, z1, worldGenTreehouse);
         }
 
         if (rand.nextInt(6) == 0) {
-            int yCoord = rand.nextInt(128) + 1;
-            if (isBlockTop(x, yCoord - 0, z, JourneyBlocks.corbaGrass)) {
-                new WorldGenTreehouse().generate(worldObj, rand, new BlockPos(x, yCoord, z));
+            BlockPos pos = new BlockPos(x1, r.nextInt(128) + 1,
+                    z1 + r.nextInt(8) + 8);
+
+            if (isBlockTop(pos.getX(), pos.getY(), pos.getZ(), JourneyBlocks.corbaGrass)) {
+                village.generate(worldObj, rand, pos);
             }
+
+            generateStructure(x1, z1, village);
         }
 
         if (rand.nextInt(6) == 0) {
-            int yCoord = rand.nextInt(128) + 1;
-            if (isBlockTop(x, yCoord - 0, z, JourneyBlocks.corbaGrass)) {
-                new WorldGenCorbaVillage().generate(worldObj, rand, new BlockPos(x, yCoord, z));
-            }
-        }
-
-        if (rand.nextInt(6) == 0) {
-            int yCoord = rand.nextInt(128) + 1;
-            if (isBlockTop(x, yCoord - 0, z, JourneyBlocks.corbaGrass)) {
-                new WorldGenHugeCorbaTree().generate(worldObj, rand, new BlockPos(x, yCoord, z));
-            }
+            generateStructure(x1, z1, tree);
         }
 
         for (times = 0; times < 30; times++) {
-            int yCoord = rand.nextInt(128) + 1;
-            if (isBlockTop(x, yCoord - 0, z, JourneyBlocks.corbaGrass)) {
-                new WorldGenCorbaLamp().generate(worldObj, rand, new BlockPos(x, yCoord, z));
-            }
+            generateStructure(x1, z1, lamp);
         }
 
         for (times = 0; times < 450; times++) {
-            int yCoord = rand.nextInt(128) + 1;
-            if (isBlockTop(x, yCoord - 1, z, JourneyBlocks.corbaGrass)) {
-                trees.get(rand.nextInt(trees.size())).generate(worldObj, rand, new BlockPos(x, yCoord, z));
+            BlockPos pos = WorldGenAPI.createRandom(x1, 1, 128 + 1, z1, rand, 8);
+            if (isBlockTop(pos.getX(), pos.getY(), pos.getZ(), JourneyBlocks.corbaGrass)) {
+                trees.get(rand.nextInt(trees.size())).generate(worldObj, rand, pos);
             }
+        }
+    }
+
+    private void generateStructure(int x, int z, WorldGenerator generator){
+        BlockPos pos = WorldGenAPI.createRandom(x, 1, 128 + 1, z, rand, 10);
+        if (isBlockTop(pos.getX(), pos.getY(), pos.getZ(), JourneyBlocks.corbaGrass)) {
+            generator.generate(worldObj, rand, pos);
         }
     }
 
