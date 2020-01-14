@@ -117,6 +117,7 @@ public class EntityHellwing extends EntityModMob {
     @Override
     public void writeEntityToNBT(NBTTagCompound compound) {
         super.writeEntityToNBT(compound); {
+            // todo null check error
             compound.setInteger("BoundX", this.boundOrigin.getX());
             compound.setInteger("BoundY", this.boundOrigin.getY());
             compound.setInteger("BoundZ", this.boundOrigin.getZ());

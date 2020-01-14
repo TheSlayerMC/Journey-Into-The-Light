@@ -59,6 +59,13 @@ public class ChunkProviderBoiling implements IChunkGenerator {
 	double[] gen3;
 	double[] gen4;
 
+	private final WorldGenModFlower flameFlower;
+	private final WorldGenModFlower flameFlower2;
+	private final WorldGenModFlower infernoPlant;
+	private final WorldGenBoilingLamp boilLamp;
+	private final WorldGenBrisonNetwork brison;
+	private final WorldGenTraderHutBoiling hut;
+
 	public ChunkProviderBoiling(World worldIn, long p_i45636_2_) {
 		this.stoneNoise = new double[256];
 		this.caveGenerator = new MapGenCaves();
@@ -95,6 +102,13 @@ public class ChunkProviderBoiling implements IChunkGenerator {
         this.noiseGen6 = ctx.getPerlin3();
         this.mobSpawnerNoise = ctx.getScale();
         this.mobSpawnerNoise = ctx.getDepth();
+
+		flameFlower = new WorldGenModFlower(JourneyBlocks.burntGrass, JourneyBlocks.hotBlock);
+		flameFlower2 = new WorldGenModFlower(JourneyBlocks.flameFlower, JourneyBlocks.hotBlock);
+		infernoPlant = new WorldGenModFlower(JourneyBlocks.infernoPlant, JourneyBlocks.hotBlock);
+		boilLamp = new WorldGenBoilingLamp();
+		brison = new WorldGenBrisonNetwork();
+		hut = new WorldGenTraderHutBoiling();
 	}
 
 	public void setBlocksInChunk(int p_180518_1_, int p_180518_2_, ChunkPrimer p_180518_3_) {
@@ -333,9 +347,9 @@ public class ChunkProviderBoiling implements IChunkGenerator {
 
 		for(i = 0; i < 100; i++) {
 			y = r.nextInt(256); x = x1 + this.rand.nextInt(16) + 8; z = z1 + this.rand.nextInt(16) + 8;
-			new WorldGenModFlower(JourneyBlocks.burntGrass, JourneyBlocks.hotBlock).generate(worldObj, r, new BlockPos(x, y, z));
-			new WorldGenModFlower(JourneyBlocks.flameFlower, JourneyBlocks.hotBlock).generate(worldObj, r, new BlockPos(x, y, z));
-			new WorldGenModFlower(JourneyBlocks.infernoPlant, JourneyBlocks.hotBlock).generate(worldObj, r, new BlockPos(x, y, z));
+			flameFlower.generate(worldObj, r, new BlockPos(x, y, z));
+			flameFlower2.generate(worldObj, r, new BlockPos(x, y, z));
+			infernoPlant.generate(worldObj, r, new BlockPos(x, y, z));
 		}
 		
 		for(times = 0; times < 30; times++) {
@@ -343,7 +357,7 @@ public class ChunkProviderBoiling implements IChunkGenerator {
 			z = z1 + this.rand.nextInt(16) + 8;
 			int yCoord = rand.nextInt(128) + 1;
 			if(isBlockTop(x, yCoord - 1, z, JourneyBlocks.hotBlock)) {
-				new WorldGenBoilingLamp().generate(worldObj, rand, new BlockPos(x, yCoord, z));
+				boilLamp.generate(worldObj, rand, new BlockPos(x, yCoord, z));
 				break;
 			}
 		}
@@ -353,7 +367,7 @@ public class ChunkProviderBoiling implements IChunkGenerator {
 			z = z1 + this.rand.nextInt(16) + 8;
 			int yCoord = rand.nextInt(128) + 1;
 			if(isBlockTop(x, yCoord - 1, z, JourneyBlocks.hotBlock)) {
-				new WorldGenBrisonNetwork().generate(worldObj, rand, new BlockPos(x, yCoord, z));
+				brison.generate(worldObj, rand, new BlockPos(x, yCoord, z));
 			}
 		}
 		
@@ -362,10 +376,11 @@ public class ChunkProviderBoiling implements IChunkGenerator {
 			z = z1 + this.rand.nextInt(16) + 8;
 			int yCoord = rand.nextInt(128) + 1;
 			if(isBlockTop(x, yCoord - 1, z, JourneyBlocks.hotBlock)) {
-				new WorldGenTraderHutBoiling().generate(worldObj, rand, new BlockPos(x, yCoord, z));
+				hut.generate(worldObj, rand, new BlockPos(x, yCoord, z));
 			}
 		}
-		
+
+		// TODO 450 trees in chunk!?
 		for(times = 0; times < 450; times++) {
 			x = x1 + this.rand.nextInt(16) + 8;
 			z = z1 + this.rand.nextInt(16) + 8;

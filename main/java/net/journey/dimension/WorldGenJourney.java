@@ -455,7 +455,8 @@ public class WorldGenJourney implements IWorldGenerator {
 				new WorldGenDepthsTree(true).generate(w, r, new BlockPos(x, y, z));
 			break;
 		case 3:
-			y = r.nextInt(250) + 1; x = chunkX + r.nextInt(16) + 8; z = chunkZ + r.nextInt(16) + 8;
+			// WorldGenMinable don't need offset!
+			y = r.nextInt(250) + 1; x = chunkX + r.nextInt(16); z = chunkZ + r.nextInt(16);
 			(new WorldGenMinable(JourneyBlocks.ashualOre.getDefaultState(), 7, BlockStateMatcher.forBlock(JourneyBlocks.ashBlock))).generate(w, r, new BlockPos(x, y, z));
 			break;
 		case 4:
@@ -567,6 +568,7 @@ public class WorldGenJourney implements IWorldGenerator {
 
 	private void generateFrozen(World w, Random r, int chunkX, int chunkZ) {
 		int i = 0;
+		// todo 25 (here) * 64 (inside flower) per chunk!!!11!!
 		for(i = 0; i < 25; i++) WorldGenJourney.generateJourneyDimensions(9, w, chunkX, chunkZ);
 	}
 
@@ -607,15 +609,15 @@ public class WorldGenJourney implements IWorldGenerator {
 		
 		if(r.nextInt(2)==0) {
 			int y = r.nextInt(64); 
-			int x = chunkX + r.nextInt(16);
-			int z = chunkZ + r.nextInt(16);
+			int x = chunkX + r.nextInt(8);
+			int z = chunkZ + r.nextInt(8);
 			(new WorldGenMinable(JourneyBlocks.cloudiaRock.getDefaultState(), 55, BlockStateMatcher.forBlock(Blocks.AIR))).generate(w, r, new BlockPos(x, y, z));
 		}
 		
 		if(r.nextInt(2)==0) {
 			int y = r.nextInt(64); 
-			int x = chunkX + r.nextInt(16);
-			int z = chunkZ + r.nextInt(16);
+			int x = chunkX + r.nextInt(8);
+			int z = chunkZ + r.nextInt(8);
 			(new WorldGenMinable(JourneyBlocks.luniteOre.getDefaultState(), 10, BlockStateMatcher.forBlock(JourneyBlocks.cloudiaRock))).generate(w, r, new BlockPos(x, y, z));
 		}
 	}
