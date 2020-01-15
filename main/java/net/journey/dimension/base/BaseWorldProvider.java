@@ -43,7 +43,7 @@ public abstract class BaseWorldProvider extends WorldProvider {
     @Override
     public final Vec3d getFogColor(float var1, float var2) {
         return fog == null
-                ? getFogColor(var1, var2)
+                ? super.getFogColor(var1, var2)
                 : fog;
     }
 }

@@ -16,20 +16,7 @@ import net.slayer.api.worldgen.WorldGenAPI;
 public class WorldGenBoilingLamp extends WorldGenerator {
 
     public boolean locationIsValidSpawn(World w, int x, int y, int z) {
-        ArrayList<IBlockState> illegalStates = new ArrayList<>();
-
-        BlockPos start = new BlockPos(x + 8, y, z + 8);
-
-        BlockPos.getAllInBoxMutable(start, start.add(-11, 0, -11))
-                .forEach(mutableBlockPos -> {
-                    IBlockState state = w.getBlockState(mutableBlockPos);
-                    if (state.getBlock() != JourneyBlocks.hotBlock) {
-                        illegalStates.add(state);
-                        return;
-                    }
-                });
-
-        return illegalStates.isEmpty();
+        return WorldGenAPI.checkRadius(w, new BlockPos(x,y,z), 11, JourneyBlocks.hotBlock);
     }
 
     @Override

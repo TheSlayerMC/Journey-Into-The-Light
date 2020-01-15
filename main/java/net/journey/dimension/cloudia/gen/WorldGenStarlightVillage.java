@@ -8,24 +8,18 @@ import net.journey.entity.mob.cloudia.npc.EntityStarlightVillager;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.slayer.api.worldgen.WorldGenAPI;
 
 public class WorldGenStarlightVillage extends WorldGenerator {
 	
 	public boolean locationIsValidSpawn(World w, int x, int y, int z) {
-		for(int i = 0; i < 11; i++) {
-			for(int l = 0; l < 11; l++) {
-				if(w.getBlockState(new BlockPos(x + i, y, z + l)) != JourneyBlocks.cloudiaTile) {
-					return false;
-				}
-			}
-		}
-		return true;
+		return WorldGenAPI.checkRadius(w, new BlockPos(x,y,z), 11, JourneyBlocks.cloudiaTile);
 	}
 	
 	@Override
 	public boolean generate(World world, Random rand, BlockPos pos) {
 		int i = pos.getX(), j = pos.getY(), k = pos.getZ();
-		if(locationIsValidSpawn(world, i, j, k)) return true;
+		if(locationIsValidSpawn(world, i + 6, j, k + 6)) return true;
 
 		
 
