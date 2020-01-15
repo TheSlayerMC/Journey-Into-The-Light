@@ -379,7 +379,7 @@ public class WorldGenAPI {
      *
      * @param x      - x cord
      * @param minY   - min Y (inclusive)
-     * @param maxY   - max Y (exclusive)
+     * @param maxY   - max Y (inclusive)
      * @param z      - z cord
      * @param r      - random
      * @param offset - vanilla offset
