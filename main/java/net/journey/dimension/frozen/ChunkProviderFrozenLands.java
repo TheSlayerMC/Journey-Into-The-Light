@@ -52,9 +52,9 @@ public class ChunkProviderFrozenLands implements IChunkGenerator {
     private static WorldGenIceTree2 iceTree2 = new WorldGenIceTree2();
     private WorldGenMerchantHouse house = new WorldGenMerchantHouse();
 
-    private WorldGenModFlower flower = new WorldGenModFlower(JourneyBlocks.iceBud, JourneyBlocks.frozenGrass);
-    private WorldGenModFlower flower1 = new WorldGenModFlower(JourneyBlocks.frostberryThorn, JourneyBlocks.frozenGrass);
-    private WorldGenModFlower flower2 = new WorldGenModFlower(JourneyBlocks.frozenBlooms, JourneyBlocks.frozenGrass);
+    private WorldGenModFlower flower = new WorldGenModFlower(JourneyBlocks.iceBud, JourneyBlocks.frozenGrass, false);
+    private WorldGenModFlower flower1 = new WorldGenModFlower(JourneyBlocks.frostberryThorn, JourneyBlocks.frozenGrass, false);
+    private WorldGenModFlower flower2 = new WorldGenModFlower(JourneyBlocks.frozenBlooms, JourneyBlocks.frozenGrass, false);
 
     private WorldGenModFlower flower3 = new WorldGenModFlower(JourneyBlocks.permaFlower, JourneyBlocks.brittleIce);
     private WorldGenModFlower flower4 = new WorldGenModFlower(JourneyBlocks.shiverFlower, JourneyBlocks.brittleIce);
@@ -470,20 +470,25 @@ public class ChunkProviderFrozenLands implements IChunkGenerator {
         }
 
 
-        for (int i = 0; i < 10; i++) {
-            generateStructure(flower, x, z);
-            generateStructure(flower1, x, z);
-            generateStructure(flower2, x, z);
+        BlockPos chunkStart = new BlockPos(x, 0, z);
 
-            generateStructure(flower3, x, z);
-            generateStructure(flower4, x, z);
-            generateStructure(flower5, x, z);
+        for (int i = 0; i < 4; i++) {
+            flower3.generate(worldObj, rand, chunkStart);
+            flower4.generate(worldObj, rand, chunkStart);
+            flower5.generate(worldObj, rand, chunkStart);
+
+
+            for (int j = 0; j < 16; j++) {
+                flower.generate(worldObj, rand, chunkStart);
+                flower1.generate(worldObj, rand, chunkStart);
+                flower2.generate(worldObj, rand, chunkStart);
+            }
         }
     }
 
 
     private void generateStructureHeightmap(WorldGenerator gen, int chunkX, int chunkZ) {
-        BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos(WorldGenAPI.createRandom(chunkX, 1,40, chunkZ, rand, 8));
+        BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos(WorldGenAPI.createRandom(chunkX, 1, 40, chunkZ, rand, 8));
         generateStructureHeightmap(gen, pos);
     }
 

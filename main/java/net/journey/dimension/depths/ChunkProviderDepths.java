@@ -58,8 +58,8 @@ public class ChunkProviderDepths implements IChunkGenerator {
     private double[] gen1, gen2, gen3, gen4;
 
     private WorldGenSpike spike = new WorldGenSpike();
-    private WorldGenModFlower flower = new WorldGenModFlower(JourneyBlocks.depthsFlower, JourneyBlocks.depthsGrass);
-    private WorldGenModFlower flower2 = new WorldGenModFlower(JourneyBlocks.depthsBlueFlower, JourneyBlocks.depthsGrass);
+    private WorldGenModFlower flower = new WorldGenModFlower(JourneyBlocks.depthsFlower, JourneyBlocks.depthsGrass, false);
+    private WorldGenModFlower flower2 = new WorldGenModFlower(JourneyBlocks.depthsBlueFlower, JourneyBlocks.depthsGrass, false);
     private WorldGenDepthsLights lights = new WorldGenDepthsLights();
     private WorldGenDepthsLights.WorldGendepthsLights2 lights2 = new WorldGenDepthsLights.WorldGendepthsLights2();
     private WorldGenDepthsTree tree = new WorldGenDepthsTree(true);
@@ -310,7 +310,7 @@ public class ChunkProviderDepths implements IChunkGenerator {
 
         BlockPos chunkStart = new BlockPos(x1, 0, z1);
 
-        for (i = 0; i < 17; i++) {
+        for (i = 0; i < 32; i++) {
             flower.generate(worldObj, rand,  chunkStart);
             flower2.generate(worldObj, rand, chunkStart);
         }

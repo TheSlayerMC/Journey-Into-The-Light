@@ -19,21 +19,40 @@ public class WorldGenModFlower extends WorldGenerator {
     private BlockModFlower flower;
     private Block grass;
 
+    private final boolean onSurface;
+
     public WorldGenModFlower(BlockModFlower b, Block grass) {
-        this.flower = b;
-        this.grass = grass;
+        this(b, grass, true);
     }
 
+    /**
+     * @param b         - flower
+     * @param grass     - grass
+     * @param onSurface - using top solid block
+     */
+    public WorldGenModFlower(BlockModFlower b, Block grass, boolean onSurface) {
+        this.flower = b;
+        this.grass = grass;
+        this.onSurface = onSurface;
+    }
+
+
+    /**
+     * Generates single flower
+     */
     @Override
     public boolean generate(World w, Random rand, BlockPos chunkStart) {
-        BlockPos offset = WorldGenAPI.createRandom(chunkStart.getX(), 0, 1, chunkStart.getZ(), rand, 10);
-        offset = w.getPrecipitationHeight(offset);
+        BlockPos offset = WorldGenAPI.createRandom(chunkStart.getX(), 0, w.getHeight(), chunkStart.getZ(), rand, 10);
+
+        if (onSurface)
+            offset = w.getPrecipitationHeight(offset);
 
         for (int i = 0; i < 64; i++) {
             BlockPos copy = offset.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
 
             if (w.isAirBlock(copy) && w.getBlockState(copy.down()).getBlock() == grass && flower.canPlaceBlockAt(w, copy)) {
                 w.setBlockState(copy, flower.getDefaultState(), 2);
+                return true;
             }
         }
 

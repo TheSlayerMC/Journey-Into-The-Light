@@ -344,21 +344,15 @@ public class ChunkProviderCorba implements IChunkGenerator {
         Random r = rand;
         BlockPos chunkStart = new BlockPos(x1, 0, z1);
 
-        for (i = 0; i < 100; i++) {
+        for (i = 0; i < 5; i++) {
             tall.generate(worldObj, r,   chunkStart);
             flower.generate(worldObj, r, chunkStart);
-        }
-
-
-        for (i = 0; i < 16; i++) {
             flower1.generate(worldObj, r, chunkStart);
             flower2.generate(worldObj, r, chunkStart);
             flower3.generate(worldObj, r, chunkStart);
             flower4.generate(worldObj, r, chunkStart);
             flower5.generate(worldObj, r, chunkStart);
         }
-
-        worldGenTreehouse = new WorldGenTreehouse();
 
         if (rand.nextInt(6) == 0) {
             generateStructure(x1, z1, worldGenTreehouse);

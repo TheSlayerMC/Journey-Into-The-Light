@@ -110,10 +110,8 @@ public class WorldGenJourney implements IWorldGenerator {
         eucaTallGrass = create(() -> new WorldGenModFlower(JourneyBlocks.eucaTallGrass, JourneyBlocks.eucaGrass));
         eucaTallFlowers = create(() -> new WorldGenModFlower(JourneyBlocks.eucaTallFlowers, JourneyBlocks.eucaGrass));
         eucaBlueFlower = create(() -> new WorldGenModFlower(JourneyBlocks.eucaBlueFlower, JourneyBlocks.eucaGrass));
-
-        depthsFlower = create(() -> new WorldGenModFlower(JourneyBlocks.depthsFlower, JourneyBlocks.depthsGrass));
-
-        frozenFlower = create(() -> new WorldGenModFlower(JourneyBlocks.frozenFlower, JourneyBlocks.frozenGrass));
+        depthsFlower = create(() -> new WorldGenModFlower(JourneyBlocks.depthsFlower, JourneyBlocks.depthsGrass, false));
+        frozenFlower = create(() -> new WorldGenModFlower(JourneyBlocks.frozenFlower, JourneyBlocks.frozenGrass, false));
 
         boilLava = create(() -> new WorldGenBoilingLava(Blocks.LAVA));
     }
@@ -653,13 +651,17 @@ public class WorldGenJourney implements IWorldGenerator {
 
     private void generateEuca(World w, Random r, int chunkX, int chunkZ) {
         int i = 0;
+
+        for (i = 0; i < 8; i++){
+            WorldGenJourney.generateJourneyDimensions(7, w, chunkX, chunkZ);
+            WorldGenJourney.generateJourneyDimensions(8, w, chunkX, chunkZ);
+            WorldGenJourney.generateJourneyDimensions(6, w, chunkX, chunkZ);
+        }
+
         for (i = 0; i < 30; i++) WorldGenJourney.generateJourneyDimensions(0, w, chunkX, chunkZ);
         for (i = 0; i < 30; i++) WorldGenJourney.generateJourneyDimensions(15, w, chunkX, chunkZ);
         for (i = 0; i < 30; i++) WorldGenJourney.generateJourneyDimensions(16, w, chunkX, chunkZ);
         for (i = 0; i < 30; i++) WorldGenJourney.generateJourneyDimensions(17, w, chunkX, chunkZ);
-        for (i = 0; i < 70; i++) WorldGenJourney.generateJourneyDimensions(6, w, chunkX, chunkZ);
-        for (i = 0; i < 15; i++) WorldGenJourney.generateJourneyDimensions(7, w, chunkX, chunkZ);
-        for (i = 0; i < 15; i++) WorldGenJourney.generateJourneyDimensions(8, w, chunkX, chunkZ);
     }
 
     private void generateCloudia(World w, Random r, int chunkX, int chunkZ) {
