@@ -342,10 +342,12 @@ public class ChunkProviderBoiling implements IChunkGenerator {
         int times;
         Random r = rand;
 
+        BlockPos chunkStart = new BlockPos(x1, 0, z1);
+
         for (i = 0; i < 100; i++) {
-            flameFlower.generate(worldObj, r, WorldGenAPI.createRandom(x1, 256, z1, r));
-            flameFlower2.generate(worldObj, r, WorldGenAPI.createRandom(x1, 256, z1, r));
-            infernoPlant.generate(worldObj, r, WorldGenAPI.createRandom(x1, 256, z1, r));
+            flameFlower.generate(worldObj, r, chunkStart);
+            flameFlower2.generate(worldObj, r, chunkStart);
+            infernoPlant.generate(worldObj, r, chunkStart);
         }
 
         for (times = 0; times < 30; times++) {

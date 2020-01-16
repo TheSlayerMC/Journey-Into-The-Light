@@ -36,6 +36,7 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.TerrainGen;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
+import net.slayer.api.worldgen.WorldGenAPI;
 
 public class ChunkProviderGoldenGrains implements IChunkGenerator {
 
@@ -59,6 +60,11 @@ public class ChunkProviderGoldenGrains implements IChunkGenerator {
     double[] gen2;
     double[] gen3;
     double[] gen4;
+
+    private WorldGenModFlower flower1 = new WorldGenModFlower(JourneyBlocks.goldenStalks, JourneyBlocks.goldenGrass);
+    private WorldGenModFlower flower2 = new WorldGenModFlower(JourneyBlocks.goldenBloom, JourneyBlocks.goldenGrass);
+    private WorldGenModFlower flower3 = new WorldGenModFlower(JourneyBlocks.goldenBulb, JourneyBlocks.goldenGrass);
+    private WorldGenGoldenStalks stalks = new WorldGenGoldenStalks();
 
     public ChunkProviderGoldenGrains(World worldIn, long p_i45636_2_) {
         this.stoneNoise = new double[256];
@@ -321,25 +327,19 @@ public class ChunkProviderGoldenGrains implements IChunkGenerator {
     public void populate(int cx, int cz) {
         int x1 = cx * 16;
         int z1 = cz * 16;
-        int x, y, z, i;
-        int times;
-        x = x1 + this.rand.nextInt(8) + 8;
-        z = z1 + this.rand.nextInt(8) + 8;
         Random r = rand;
 
-        for (i = 0; i < 1024; i++) {
-            y = r.nextInt(256);
-            new WorldGenModFlower(JourneyBlocks.goldenStalks, JourneyBlocks.goldenGrass).generate(worldObj, r, new BlockPos(x, y, z));
-        }
-        for (i = 0; i < 128; i++) {
-            y = r.nextInt(256);
-            new WorldGenModFlower(JourneyBlocks.goldenBloom, JourneyBlocks.goldenGrass).generate(worldObj, r, new BlockPos(x, y, z));
-            new WorldGenModFlower(JourneyBlocks.goldenBulb, JourneyBlocks.goldenGrass).generate(worldObj, r, new BlockPos(x, y, z));
-        }
+        r.setSeed(r.nextLong());
 
-        for (i = 0; i < 512; i++) {
-            y = r.nextInt(256);
-            new WorldGenGoldenStalks().generate(worldObj, rand, new BlockPos(x, y, z));
+        BlockPos chunkStart = new BlockPos(x1, 0, z1);
+
+        // todo calibrate values
+
+        for (int j = 0; j < 64; j++) {
+            flower1.generate(worldObj, r, chunkStart);
+            flower2.generate(worldObj, r, chunkStart);
+            flower3.generate(worldObj, r, chunkStart);
+            stalks.generate(worldObj, r, chunkStart);
         }
     }
 

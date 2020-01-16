@@ -18,6 +18,7 @@ import net.journey.dimension.depths.gen.WorldGenSorcererShrine;
 import net.journey.dimension.depths.gen.WorldGenSpike;
 import net.journey.dimension.overworld.gen.WorldGenModFlower;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockBanner;
 import net.minecraft.block.state.pattern.BlockStateMatcher;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
@@ -307,56 +308,33 @@ public class ChunkProviderDepths implements IChunkGenerator {
         int z1 = cz * 16;
         int i;
 
-        for (i = 0; i < 17; i++) {
-            flower.generate(worldObj, rand, WorldGenAPI.createRandom(x1, 250, z1, rand));
-        }
+        BlockPos chunkStart = new BlockPos(x1, 0, z1);
 
         for (i = 0; i < 17; i++) {
-            flower2.generate(worldObj, rand, WorldGenAPI.createRandom(x1, 250, z1, rand));
+            flower.generate(worldObj, rand,  chunkStart);
+            flower2.generate(worldObj, rand, chunkStart);
         }
-
 
         for (i = 0; i < 25; i++) {
             flairum.generate(worldObj, rand, new BlockPos(x1, rand.nextInt(250), z1));
-        }
-
-        for (i = 0; i < 25; i++) {
             des.generate(worldObj, rand, new BlockPos(x1, rand.nextInt(250), z1));
         }
 
         for (i = 0; i < 15; i++) {
             lights.generate(this.worldObj, rand, WorldGenAPI.createRandom(x1, 4, 120, z1, rand, 16));
-        }
-
-        for (i = 0; i < 15; i++) {
             lights2.generate(this.worldObj, rand, WorldGenAPI.createRandom(x1, 4, 120, z1, rand, 16));
         }
 
         for (i = 0; i < 70; i++) {
             generateStructure(tree, x1, z1);
-        }
-
-        for (i = 0; i < 70; i++) {
             generateStructure(tree1, x1, z1);
-        }
-
-        for (i = 0; i < 70; i++) {
             generateStructure(tree2, x1, z1);
         }
 
         for (i = 0; i < 100; i++) {
             generateStructure(plant1, x1, z1);
-        }
-
-        for (i = 0; i < 100; i++) {
             generateStructure(plant2, x1, z1);
-        }
-
-        for (i = 0; i < 100; i++) {
             generateStructure(plant3, x1, z1);
-        }
-
-        for (i = 0; i < 100; i++) {
             generateStructure(darkbloom, x1, z1);
         }
 

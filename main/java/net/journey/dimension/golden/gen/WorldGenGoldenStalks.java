@@ -9,6 +9,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.slayer.api.worldgen.WorldGenAPI;
 
 public class WorldGenGoldenStalks extends WorldGenerator {
 
@@ -20,22 +21,25 @@ public class WorldGenGoldenStalks extends WorldGenerator {
 
     @Override
     public boolean generate(World worldIn, Random rand, BlockPos position) {
-        boolean flag = false;
+
+        BlockPos offset = WorldGenAPI.createRandom(position.getX(), 0, 1, position.getZ(), rand, 10);
+        offset = worldIn.getPrecipitationHeight(offset);
 
         for (int i = 0; i < frequency; ++i) {
-            BlockPos blockpos = position.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
+            // top solid block
+            BlockPos pos = worldIn.getPrecipitationHeight(offset);
 
-            if (blockpos.getY() < worldIn.getHeight() - 1
-                    && worldIn.isAirBlock(blockpos)
-                    && worldIn.isAirBlock(blockpos.up())
-                    && worldIn.getBlockState(blockpos.down()).getBlock() == grass) {
+            if (pos.getY() < worldIn.getHeight() - 1
+                    && worldIn.isAirBlock(pos)
+                    && worldIn.isAirBlock(pos.up())
+                    && worldIn.getBlockState(pos.down()).getBlock() == grass) {
 
-                worldIn.setBlockState(blockpos, bottom.getDefaultState(), 2);
-                worldIn.setBlockState(blockpos.up(), top.getDefaultState(), 2);
-                flag = true;
+                worldIn.setBlockState(pos, bottom.getDefaultState(), 2);
+                worldIn.setBlockState(pos.up(), top.getDefaultState(), 2);
+                return true;
             }
         }
 
-        return flag;
+        return false;
     }
 }

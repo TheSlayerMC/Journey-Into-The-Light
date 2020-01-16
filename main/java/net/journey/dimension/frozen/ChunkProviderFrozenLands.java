@@ -55,9 +55,10 @@ public class ChunkProviderFrozenLands implements IChunkGenerator {
     private WorldGenModFlower flower = new WorldGenModFlower(JourneyBlocks.iceBud, JourneyBlocks.frozenGrass);
     private WorldGenModFlower flower1 = new WorldGenModFlower(JourneyBlocks.frostberryThorn, JourneyBlocks.frozenGrass);
     private WorldGenModFlower flower2 = new WorldGenModFlower(JourneyBlocks.frozenBlooms, JourneyBlocks.frozenGrass);
-    private WorldGenModFlower flower3 = new WorldGenModFlower(JourneyBlocks.permaFlower, JourneyBlocks.frozenGrass);
-    private WorldGenModFlower flower4 = new WorldGenModFlower(JourneyBlocks.shiverFlower, JourneyBlocks.frozenGrass);
-    private WorldGenModFlower flower5 = new WorldGenModFlower(JourneyBlocks.iceBush, JourneyBlocks.frozenGrass);
+
+    private WorldGenModFlower flower3 = new WorldGenModFlower(JourneyBlocks.permaFlower, JourneyBlocks.brittleIce);
+    private WorldGenModFlower flower4 = new WorldGenModFlower(JourneyBlocks.shiverFlower, JourneyBlocks.brittleIce);
+    private WorldGenModFlower flower5 = new WorldGenModFlower(JourneyBlocks.iceBush, JourneyBlocks.brittleIce);
 
 
     public ChunkProviderFrozenLands(World worldIn, long seed, String st) {
@@ -470,9 +471,9 @@ public class ChunkProviderFrozenLands implements IChunkGenerator {
 
 
         for (int i = 0; i < 10; i++) {
-            flower.generate(worldObj, rand, new BlockPos(x, rand.nextInt(40), z));
-            flower1.generate(worldObj, rand, new BlockPos(x, rand.nextInt(40), z));
-            flower2.generate(worldObj, rand, new BlockPos(x, rand.nextInt(40), z));
+            generateStructure(flower, x, z);
+            generateStructure(flower1, x, z);
+            generateStructure(flower2, x, z);
 
             generateStructure(flower3, x, z);
             generateStructure(flower4, x, z);
