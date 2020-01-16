@@ -342,35 +342,29 @@ public class ChunkProviderCorba implements IChunkGenerator {
         int i;
         int times;
         Random r = rand;
+        BlockPos chunkStart = new BlockPos(x1, 0, z1);
 
-        for (i = 0; i < 100; i++) {
-            tall.generate(worldObj, r, WorldGenAPI.createRandom(x1, 256, z1, r));
-            flower.generate(worldObj, r, WorldGenAPI.createRandom(x1, 256, z1, r));
+        for (i = 0; i < 5; i++) {
+            tall.generate(worldObj, r,   chunkStart);
+            flower.generate(worldObj, r, chunkStart);
+            flower1.generate(worldObj, r, chunkStart);
+            flower2.generate(worldObj, r, chunkStart);
+            flower3.generate(worldObj, r, chunkStart);
+            flower4.generate(worldObj, r, chunkStart);
+            flower5.generate(worldObj, r, chunkStart);
         }
-
-        for (i = 0; i < 16; i++) {
-            flower1.generate(worldObj, r, WorldGenAPI.createRandom(x1, 256, z1, r));
-            flower2.generate(worldObj, r, WorldGenAPI.createRandom(x1, 256, z1, r));
-            flower3.generate(worldObj, r, WorldGenAPI.createRandom(x1, 256, z1, r));
-            flower4.generate(worldObj, r, WorldGenAPI.createRandom(x1, 256, z1, r));
-            flower5.generate(worldObj, r, WorldGenAPI.createRandom(x1, 256, z1, r));
-        }
-
-        worldGenTreehouse = new WorldGenTreehouse();
 
         if (rand.nextInt(6) == 0) {
             generateStructure(x1, z1, worldGenTreehouse);
         }
 
         if (rand.nextInt(6) == 0) {
-            BlockPos pos = new BlockPos(x1, r.nextInt(128) + 1,
+            BlockPos pos = new BlockPos(x1 + 1, r.nextInt(128) + 1,
                     z1 + r.nextInt(8) + 8);
 
             if (isBlockTop(pos.getX(), pos.getY(), pos.getZ(), JourneyBlocks.corbaGrass)) {
                 village.generate(worldObj, rand, pos);
             }
-
-            generateStructure(x1, z1, village);
         }
 
         if (rand.nextInt(6) == 0) {

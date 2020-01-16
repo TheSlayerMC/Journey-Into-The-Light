@@ -41,12 +41,20 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.TerrainGen;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
+import net.slayer.api.worldgen.WorldGenAPI;
 
 public class ChunkProviderTerrania implements IChunkGenerator {
 
     private Random rand;
-    private ArrayList<WorldGenerator> trees;
-    private ArrayList<WorldGenerator> smalltrees;
+    private final WorldGenerator[] trees = {
+            new WorldGenTerraniaBigTree1(),
+            new WorldGenTerraniaBigTree2(),
+            new WorldGenTerraniaBigTree3(),
+    };
+    private final WorldGenerator[] smalltrees = {
+            new WorldGenTerraniaSmallTree()
+    };
+
     private NoiseGeneratorOctaves noiseGen1;
     private NoiseGeneratorOctaves noiseGen2;
     private NoiseGeneratorOctaves noiseGen3;
@@ -66,6 +74,14 @@ public class ChunkProviderTerrania implements IChunkGenerator {
     double[] gen3;
     double[] gen4;
 
+    WorldGenModFlower flower = new WorldGenModFlower(JourneyBlocks.terranianTallgrass, JourneyBlocks.terranianGrass);
+    WorldGenModFlower flower1 = new WorldGenModFlower(JourneyBlocks.terramushroom, JourneyBlocks.terranianGrass);
+    WorldGenModFlower flower2 = new WorldGenModFlower(JourneyBlocks.tallterramushroom, JourneyBlocks.terranianGrass);
+    WorldGenTreeHut hut = new WorldGenTreeHut();
+    WorldGenHollowTree hollowTree = new WorldGenHollowTree();
+    WorldGenTallTree tallTree = new WorldGenTallTree();
+    WorldGenTerranianLamp lamp = new WorldGenTerranianLamp();
+
     public ChunkProviderTerrania(World worldIn, long p_i45636_2_) {
         this.stoneNoise = new double[256];
         this.caveGenerator = new MapGenCaves();
@@ -81,12 +97,6 @@ public class ChunkProviderTerrania implements IChunkGenerator {
         this.mobSpawnerNoise = new NoiseGeneratorOctaves(this.rand, 8);
         this.da = new double[825];
         this.parabolicField = new float[25];
-        trees = new ArrayList<WorldGenerator>(3);
-        trees.add(new WorldGenTerraniaBigTree1());
-        trees.add(new WorldGenTerraniaBigTree2());
-        trees.add(new WorldGenTerraniaBigTree3());
-        smalltrees = new ArrayList<WorldGenerator>(1);
-        smalltrees.add(new WorldGenTerraniaSmallTree());
         for (int j = -2; j <= 2; ++j) {
             for (int k = -2; k <= 2; ++k) {
                 float f = 10.0F / MathHelper.sqrt(j * j + k * k + 0.2F);
@@ -328,86 +338,59 @@ public class ChunkProviderTerrania implements IChunkGenerator {
     public void populate(int cx, int cz) {
         int x1 = cx * 16;
         int z1 = cz * 16;
-        int x, y, z, i;
         int times;
-        x = x1 + this.rand.nextInt(16);
-        z = z1 + this.rand.nextInt(16);
         Random r = rand;
 
-        for (i = 0; i < 100; i++) {
-            y = r.nextInt(220);
-            x = x1 + this.rand.nextInt(16) + 8;
-            z = z1 + this.rand.nextInt(16) + 8;
-            new WorldGenModFlower(JourneyBlocks.terranianTallgrass, JourneyBlocks.terranianGrass).generate(worldObj, r, new BlockPos(x, y, z));
+        BlockPos chunkStart = new BlockPos(x1, 0, z1);
+
+        for (int i = 0; i < 100; i++) {
+            flower.generate(worldObj, r, chunkStart);
         }
 
-        for (i = 0; i < 20; i++) {
-            y = r.nextInt(220);
-            x = x1 + this.rand.nextInt(16) + 8;
-            z = z1 + this.rand.nextInt(16) + 8;
-            new WorldGenModFlower(JourneyBlocks.terramushroom, JourneyBlocks.terranianGrass).generate(worldObj, r, new BlockPos(x, y, z));
+        for (int i = 0; i < 20; i++) {
+            flower1.generate(worldObj, r, chunkStart);
         }
 
-        for (i = 0; i < 1; i++) {
-            y = r.nextInt(220);
-            x = x1 + this.rand.nextInt(16) + 8;
-            z = z1 + this.rand.nextInt(16) + 8;
-            new WorldGenModFlower(JourneyBlocks.tallterramushroom, JourneyBlocks.terranianGrass).generate(worldObj, r, new BlockPos(x, y, z));
+        for (int i = 0; i < 1; i++) {
+            flower2.generate(worldObj, r, chunkStart);
         }
 
         for (times = 0; times < 275; times++) {
-            x = x1 + this.rand.nextInt(16);
-            z = z1 + this.rand.nextInt(16);
-            int yCoord = rand.nextInt(128);
-            if (isBlockTop(x, yCoord - 1, z, JourneyBlocks.terranianGrass)) {
-                trees.get(rand.nextInt(trees.size())).generate(worldObj, rand, new BlockPos(x, yCoord, z));
-            }
+            generateStructure(x1, z1, trees);
         }
 
         for (times = 0; times < 325; times++) {
-            x = x1 + this.rand.nextInt(16);
-            z = z1 + this.rand.nextInt(16);
-            int yCoord = rand.nextInt(128);
-            if (isBlockTop(x, yCoord - 1, z, JourneyBlocks.terranianGrass)) {
-                smalltrees.get(rand.nextInt(smalltrees.size())).generate(worldObj, rand, new BlockPos(x, yCoord, z));
-            }
+            generateStructure(x1, z1, trees);
+        }
+
+
+        if (rand.nextInt(1) == 0) {
+            generateStructure(x1, z1, hut);
         }
 
         if (rand.nextInt(1) == 0) {
-            x = x1 + this.rand.nextInt(16);
-            z = z1 + this.rand.nextInt(16);
-            int yCoord = rand.nextInt(128);
-            if (isBlockTop(x, yCoord, z, JourneyBlocks.terranianGrass)) {
-                new WorldGenTreeHut().generate(worldObj, rand, new BlockPos(x, yCoord, z));
-            }
-        }
-
-        if (rand.nextInt(1) == 0) {
-            x = x1 + this.rand.nextInt(16);
-            z = z1 + this.rand.nextInt(16);
-            int yCoord = rand.nextInt(128);
-            if (isBlockTop(x, yCoord, z, JourneyBlocks.terranianGrass)) {
-                new WorldGenHollowTree().generate(worldObj, rand, new BlockPos(x, yCoord, z));
+            BlockPos pos = WorldGenAPI.createRandom(x1, 1, 128, z1, rand, 2);
+            if (isBlockTop(pos.getX(), pos.getY() - 1, pos.getZ(), JourneyBlocks.terranianGrass)) {
+                hollowTree.generate(worldObj, rand, pos);
             }
         }
 
         if (rand.nextInt(8) == 0) {
-            x = x1 + this.rand.nextInt(16);
-            z = z1 + this.rand.nextInt(16);
-            int yCoord = rand.nextInt(128);
-            if (isBlockTop(x, yCoord, z, JourneyBlocks.terranianGrass)) {
-                new WorldGenTallTree().generate(worldObj, rand, new BlockPos(x, yCoord, z));
+            BlockPos pos = WorldGenAPI.createRandom(x1, 1, 128, z1, rand, 2);
+            if (isBlockTop(pos.getX(), pos.getY() - 1, pos.getZ(), JourneyBlocks.terranianGrass)) {
+                tallTree.generate(worldObj, rand, pos);
             }
         }
 
         for (times = 0; times < 10; times++) {
-            x = x1 + this.rand.nextInt(16);
-            z = z1 + this.rand.nextInt(16);
-            int yCoord = rand.nextInt(128);
-            if (isBlockTop(x, yCoord, z, JourneyBlocks.terranianGrass)) {
-                new WorldGenTerranianLamp().generate(worldObj, rand, new BlockPos(x, yCoord, z));
-                break;
-            }
+            generateStructure(x1, z1, lamp);
+        }
+    }
+
+    private void generateStructure(int x, int z, WorldGenerator... generators) {
+        BlockPos pos = WorldGenAPI.createRandom(x, 1, 128, z, rand, 8);
+        if (isBlockTop(pos.getX(), pos.getY() - 1, pos.getZ(), JourneyBlocks.terranianGrass)) {
+            generators[rand.nextInt(generators.length)].generate(worldObj, rand, pos);
         }
     }
 

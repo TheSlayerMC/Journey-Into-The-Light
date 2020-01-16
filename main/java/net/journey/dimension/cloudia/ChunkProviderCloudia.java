@@ -54,8 +54,8 @@ public class ChunkProviderCloudia implements IChunkGenerator {
     private static WorldGenerator island = new WorldGenIsland();
     private static WorldGenerator village = new WorldGenStarlightVillage();
 
-    private WorldGenerator tallGrass = new WorldGenModFlower(JourneyBlocks.cloudiaTallGrass, JourneyBlocks.cloudiaGrass);
-    private WorldGenerator flower = new WorldGenModFlower(JourneyBlocks.cloudiaFlower, JourneyBlocks.cloudiaGrass);
+    private WorldGenerator tallGrass = new WorldGenModFlower(JourneyBlocks.cloudiaTallGrass, JourneyBlocks.cloudiaGrass ,false);
+    private WorldGenerator flower = new WorldGenModFlower(JourneyBlocks.cloudiaFlower, JourneyBlocks.cloudiaGrass, false);
 
     @Override
     public void populate(int cx, int cz) {
@@ -65,9 +65,11 @@ public class ChunkProviderCloudia implements IChunkGenerator {
         int i;
         final Random r = rand;
 
-        for (i = 0; i < 150; i++) {
-            tallGrass.generate(worldObj, r, WorldGenAPI.createRandom(x1, 256, z1, r));
-            flower.generate(worldObj, r, WorldGenAPI.createRandom(x1, 256, z1, r));
+        BlockPos chunkStart = new BlockPos(x1, 0, z1);
+
+        for (i = 0; i < 128; i++) {
+            tallGrass.generate(worldObj, r, chunkStart);
+            flower.generate(worldObj, r,    chunkStart);
         }
 		
 		/* for(i = 0; i < 100; i++) {
@@ -110,9 +112,10 @@ public class ChunkProviderCloudia implements IChunkGenerator {
 
         // strucutre too big, will lag anyway
         if (this.rand.nextInt(40) == 0) {
-            BlockPos pos = new BlockPos(x1, rand.nextInt(20) + 64 , z1 + r.nextInt(8));
-            if (worldObj.isAirBlock(pos))
-                village.generate(worldObj, rand, pos);
+            BlockPos pos = new BlockPos(x1 + 1, rand.nextInt(20) + 64 , z1 + r.nextInt(8));
+            if (worldObj.isAirBlock(pos)){
+                //village.generate(worldObj, rand, pos);
+            }
         }
 
         /**if (this.rand.nextInt(15) == 0) {
