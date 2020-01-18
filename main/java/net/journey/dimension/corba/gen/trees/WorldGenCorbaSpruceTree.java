@@ -23,7 +23,7 @@ public class WorldGenCorbaSpruceTree extends WorldGenAbstractTree {
     }
 
     public boolean generate(World w, Random r, BlockPos pos) {
-    	int p_76484_3_ = pos.getX(), p_76484_4_ = pos.getY(), p_76484_5_ = pos.getZ();
+    	int p_76484_3_ = pos.getX(), p_76484_4_ = pos.getY() + 1, p_76484_5_ = pos.getZ();
         int l = r.nextInt(5) + 7;
         int i1 = l - r.nextInt(2) - 3;
         int j1 = l - i1;

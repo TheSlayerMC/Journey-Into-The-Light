@@ -13,7 +13,7 @@ public class WorldGenCorbaMediumTree extends WorldGenerator {
 
 	@Override
 	public boolean generate(World world, Random r, BlockPos pos) {
-		int i = pos.getX() - 3, j = pos.getY() - 1, k = pos.getZ() - 3;
+		int i = pos.getX() - 3, j = pos.getY(), k = pos.getZ() - 3;
 		int height = r.nextInt(4);
 		Block log = JourneyBlocks.corbaLog;
 		Block leaves = JourneyBlocks.corbaLeaves;

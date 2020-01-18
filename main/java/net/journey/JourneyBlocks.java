@@ -150,7 +150,6 @@ public class JourneyBlocks {
 	public static BlockMod blueGemBlock;
 	public static BlockMod yellowGemBlock;
 
-	//@SuppressWarnings("")
 	 public static BlockModBush sizzleberryBush;
 	public static BlockModBush bradberryBush;
 	public static BlockModBush tangleberryBush;
