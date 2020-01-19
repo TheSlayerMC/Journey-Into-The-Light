@@ -429,84 +429,150 @@ public class ChunkProviderFrozenLands implements IChunkGenerator {
 
     @Override
     public void populate(int chunkX, int chunkZ) {
-        int x = chunkX * 16;
-        int z = chunkZ * 16;
+        int k = chunkX * 16;
+        int l = chunkZ * 16;
         this.rand.setSeed(chunkX * this.rand.nextInt() + chunkZ * this.rand.nextInt() ^ this.worldObj.getSeed());
 
         for (int n = 0; n < 6; n++) {
-            generateStructureHeightmap(tree, x, z);
+            int x = chunkX * 16 + rand.nextInt(16) + 8, z = chunkZ * 16 + rand.nextInt(16) + 8;
+            int y = 0;
+            for (int j = 5; j < 100; j++) {
+                if (worldObj.getBlockState(new BlockPos(x, j, z)).getBlock() == Blocks.AIR) {
+                    y = j;
+                    break;
+                }
+            }
+            tree.generate(worldObj, rand, new BlockPos(x, y, z));
         }
 
         if (rand.nextInt(100) == 0) {
-            generateStructureHeightmap(house, x, z);
+            int x = chunkX * 16 + rand.nextInt(10) + 8, z = chunkZ * 16 + rand.nextInt(10) + 8;
+            int y = 0;
+            for (int j = 5; j < 100; j++) {
+                if (worldObj.getBlockState(new BlockPos(x, j, z)).getBlock() == JourneyBlocks.frozenGrass) {
+                    y = j;
+                    break;
+                }
+            }
+            house.generate(worldObj, rand, new BlockPos(x, y, z));
         }
 
         for (int n = 0; n < 2; n++) {
-            generateStructureHeightmap(tree2, x, z);
+            int x = chunkX * 16 + rand.nextInt(16) + 8, z = chunkZ * 16 + rand.nextInt(16) + 8;
+            int y = 0;
+            for (int j = 5; j < 100; j++) {
+                if (worldObj.getBlockState(new BlockPos(x, j, z)).getBlock() == Blocks.AIR) {
+                    y = j;
+                    break;
+                }
+            }
+            tree2.generate(worldObj, rand, new BlockPos(x, y, z));
         }
 
         if (rand.nextInt(4) == 0) {
-            generateStructureHeightmap(lamp, x, z);
+            int x = chunkX * 16 + rand.nextInt(16) + 8, z = chunkZ * 16 + rand.nextInt(16) + 8;
+            int y = 0;
+            for (int j = 5; j < 100; j++) {
+                if (worldObj.getBlockState(new BlockPos(x, j, z)).getBlock() == Blocks.AIR) {
+                    y = j;
+                    break;
+                }
+            }
+            lamp.generate(worldObj, rand, new BlockPos(x, y, z));
         }
 
         if (rand.nextInt(380) == 0) {
-            generateStructureHeightmap(dungeon, new BlockPos.MutableBlockPos(x + 1, 1, z + 8));
+            BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos(k + 1, 150, l + 1 + rand.nextInt(5));
+            for (int j = 150; j > 50; j--) {
+                pos.setY(j);
+                if (worldObj.getBlockState(pos).getBlock() == JourneyBlocks.brittleIce) {
+                    break;
+                }
+            }
+            dungeon.generate(worldObj, rand, pos);
         }
 
         for (int n = 0; n < 2; n++) {
-            generateStructureHeightmap(crystal1, x, z);
+            int x = k + rand.nextInt(16) + 8, z = l + rand.nextInt(16) + 8;
+            int y = 0;
+            for (int j = 150; j > 50; j--) {
+                if (worldObj.getBlockState(new BlockPos(x, j, z)).getBlock() == JourneyBlocks.brittleIce) {
+                    y = j;
+                    break;
+                }
+            }
+            crystal1.generate(worldObj, rand, new BlockPos(x, y, z));
         }
 
         for (int n = 0; n < 2; n++) {
-            generateStructureHeightmap(iceTree, x, z);
+            int x = k + rand.nextInt(16) + 8, z = l + rand.nextInt(16) + 8;
+            int y = 0;
+            for (int j = 150; j > 50; j--) {
+                if (worldObj.getBlockState(new BlockPos(x, j, z)).getBlock() == JourneyBlocks.brittleIce) {
+                    y = j;
+                    break;
+                }
+            }
+            iceTree.generate(worldObj, rand, new BlockPos(x, y, z));
         }
 
         for (int n = 0; n < 2; n++) {
-            generateStructureHeightmap(iceTree2, x, z);
+            int x = k + rand.nextInt(16) + 8, z = l + rand.nextInt(16) + 8;
+            int y = 0;
+            for (int j = 150; j > 50; j--) {
+                if (worldObj.getBlockState(new BlockPos(x, j, z)).getBlock() == JourneyBlocks.brittleIce) {
+                    y = j;
+                    break;
+                }
+            }
+            iceTree2.generate(worldObj, rand, new BlockPos(x, y, z));
         }
 
         if (rand.nextInt(4) == 0) {
-            generateStructureHeightmap(crystal2, x, z);
-        }
-
-
-        BlockPos chunkStart = new BlockPos(x, 0, z);
-
-        for (int i = 0; i < 4; i++) {
-            flower3.generate(worldObj, rand, chunkStart);
-            flower4.generate(worldObj, rand, chunkStart);
-            flower5.generate(worldObj, rand, chunkStart);
-
-
-            for (int j = 0; j < 16; j++) {
-                flower.generate(worldObj, rand, chunkStart);
-                flower1.generate(worldObj, rand, chunkStart);
-                flower2.generate(worldObj, rand, chunkStart);
+            int x = chunkX * 16 + rand.nextInt(16) + 8, z = chunkZ * 16 + rand.nextInt(16) + 8;
+            int y = 0;
+            for (int j = 150; j > 50; j--) {
+                if (worldObj.getBlockState(new BlockPos(x, j, z)).getBlock() == JourneyBlocks.brittleIce) {
+                    y = j;
+                    break;
+                }
             }
+            crystal2.generate(worldObj, rand, new BlockPos(x, y, z));
         }
-    }
 
+        BlockPos chunkStart = new BlockPos(k, rand.nextInt(40), l);
 
-    private void generateStructureHeightmap(WorldGenerator gen, int chunkX, int chunkZ) {
-        BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos(WorldGenAPI.createRandom(chunkX, 1, 40, chunkZ, rand, 8));
-        generateStructureHeightmap(gen, pos);
-    }
-
-    private void generateStructureHeightmap(WorldGenerator gen, BlockPos.MutableBlockPos pos) {
-        for (int y = 150; y > 50; y--) {
-            pos.setY(y);
-
-            if (worldObj.getBlockState(pos).getBlock() == JourneyBlocks.brittleIce) {
-                gen.generate(worldObj, rand, pos);
-                return;
-            }
+        //Bottom flowers
+        for (int i = 0; i < 50; i++) {
+            flower.generate(worldObj, rand, chunkStart);
+            flower1.generate(worldObj, rand, chunkStart);
+            flower2.generate(worldObj, rand, chunkStart);
         }
-    }
 
-    private void generateStructure(WorldGenerator gen, int chunkX, int chunkZ) {
-        BlockPos pos = new BlockPos(chunkX, rand.nextInt(40), chunkZ);
-        if (worldObj.getBlockState(pos).getBlock() == JourneyBlocks.brittleIce)
-            gen.generate(worldObj, rand, pos);
+        //Top flowers
+        for (int i = 0; i < 10; i++) {
+                flower3.generate(worldObj, rand, chunkStart);
+                flower4.generate(worldObj, rand, chunkStart);
+                flower5.generate(worldObj, rand, chunkStart);
+
+//            int x = chunkX * 16 + rand.nextInt(16) + 8, y = rand.nextInt(70), z = chunkZ * 16 + rand.nextInt(16) + 8;
+//            if (worldObj.getBlockState(new BlockPos(x, y, z)).getBlock() == JourneyBlocks.brittleIce) {
+//            }
+        }
+//
+//        for (int i = 0; i < 10; i++) {
+//            int x = chunkX * 16 + rand.nextInt(16) + 8, y = rand.nextInt(70), z = chunkZ * 16 + rand.nextInt(16) + 8;
+//            if (worldObj.getBlockState(new BlockPos(x, y, z)).getBlock() == JourneyBlocks.brittleIce) {
+//                flower4.generate(worldObj, rand, chunkStart);
+//            }
+//        }
+//
+//        for (int i = 0; i < 10; i++) {
+//            int x = chunkX * 16 + rand.nextInt(16) + 8, y = rand.nextInt(70), z = chunkZ * 16 + rand.nextInt(16) + 8;
+//            if (worldObj.getBlockState(new BlockPos(x, y, z)).getBlock() == JourneyBlocks.brittleIce) {
+//                flower5.generate(worldObj, rand, chunkStart);
+//            }
+//        }
     }
 
     @Override
