@@ -481,7 +481,7 @@ public class ChunkProviderFrozenLands implements IChunkGenerator {
             lamp.generate(worldObj, rand, new BlockPos(x, y, z));
         }
 
-        if (rand.nextInt(380) == 0) {
+        if (rand.nextInt(300) == 0) {
             BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos(k + 1, 150, l + 1 + rand.nextInt(5));
             for (int j = 150; j > 50; j--) {
                 pos.setY(j);

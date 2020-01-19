@@ -85,8 +85,7 @@ public class BlockStalks extends Block {
 
 	@Override
 	public boolean canPlaceBlockAt(World w, BlockPos pos) {
-		return w.getBlockState(pos.down()).getBlock() == JourneyBlocks.depthsGrass
-				|| w.getBlockState(pos.down()).getBlock().getMaterial(w.getBlockState(pos.down())) == Material.PLANTS;
+		return true;
 	}
 
 	@Override

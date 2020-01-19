@@ -10,7 +10,7 @@ public class WorldGenIceTree2 extends WorldGenerator {
 
 	@Override
 	public boolean generate(World world, Random rand, BlockPos pos) {
-		int i = pos.getX(), j = pos.getY(), k = pos.getZ();
+		int i = pos.getX(), j = pos.getY() + 1, k = pos.getZ();
 		world.setBlockState(new BlockPos(i + 0, j + 4, k + 2), JourneyBlocks.iceLeaves.getDefaultState());
 		world.setBlockState(new BlockPos(i + 0, j + 7, k + 2), JourneyBlocks.iceLeaves.getDefaultState());
 		world.setBlockState(new BlockPos(i + 1, j + 2, k + 2), JourneyBlocks.iceLeaves.getDefaultState());

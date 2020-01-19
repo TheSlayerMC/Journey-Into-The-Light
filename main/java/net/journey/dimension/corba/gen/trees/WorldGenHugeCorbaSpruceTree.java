@@ -25,7 +25,7 @@ public class WorldGenHugeCorbaSpruceTree extends WorldGenCorbaHugeTree
 
 	public boolean generate(World w, Random rand, BlockPos pos) {
 
-		int posX = pos.getX(), posY = pos.getY(), posZ = pos.getZ();
+		int posX = pos.getX(), posY = pos.getY() + 1, posZ = pos.getZ();
 
 		int l = this.setHeight(rand);
 
