@@ -449,7 +449,7 @@ public class ChunkProviderFrozenLands implements IChunkGenerator {
             generateStructureHeightmap(lamp, x, z);
         }
 
-        if (rand.nextInt(380) == 0) {
+        if (rand.nextInt(300) == 0) {
             generateStructureHeightmap(dungeon, new BlockPos.MutableBlockPos(x + 1, 1, z + 8));
         }
 
