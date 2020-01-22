@@ -79,19 +79,19 @@ public class ChunkProviderCloudia implements IChunkGenerator {
 		} */
 
         if (this.rand.nextInt(60) == 0) {
-            BlockPos pos = WorldGenAPI.createRandom(x1, 20, 64, z1, r, 8);
+            BlockPos pos = WorldGenAPI.createRandom(x1, 20, 84, z1, r, 8);
             if (worldObj.isAirBlock(pos))
                 tower.generate(worldObj, rand, pos);
         }
 
         if (this.rand.nextInt(60) == 0) {
-            BlockPos pos = WorldGenAPI.createRandom(x1, 20, 64, z1, r, 8);
+            BlockPos pos = WorldGenAPI.createRandom(x1, 20, 84, z1, r, 8);
             if (worldObj.isAirBlock(pos))
                 tower.generate(worldObj, rand, pos);
         }
 
         if (this.rand.nextInt(30) == 0) {
-            BlockPos pos = WorldGenAPI.createRandom(x1, 20, 64, z1, r, 8);
+            BlockPos pos = WorldGenAPI.createRandom(x1, 20, 84, z1, r, 8);
             if (worldObj.isAirBlock(pos))
                 island.generate(worldObj, rand, pos);
         }
@@ -105,7 +105,7 @@ public class ChunkProviderCloudia implements IChunkGenerator {
         }
 
         if (this.rand.nextInt(2) == 0) {
-            BlockPos pos = WorldGenAPI.createRandom(x1, 20, 64, z1, r, 8);
+            BlockPos pos = WorldGenAPI.createRandom(x1, 20, 84, z1, r, 8);
             if (worldObj.isAirBlock(pos))
                 island.generate(worldObj, rand, pos);
         }
@@ -114,7 +114,7 @@ public class ChunkProviderCloudia implements IChunkGenerator {
         if (this.rand.nextInt(40) == 0) {
             BlockPos pos = new BlockPos(x1 + 1, rand.nextInt(20) + 64 , z1 + r.nextInt(8));
             if (worldObj.isAirBlock(pos)){
-                //village.generate(worldObj, rand, pos);
+                village.generate(worldObj, rand, pos);
             }
         }
 
