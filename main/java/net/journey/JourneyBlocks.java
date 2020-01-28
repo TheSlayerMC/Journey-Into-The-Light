@@ -470,7 +470,7 @@ public class JourneyBlocks {
 	public static BlockModSpawner purplianSpawner;
 	public static BlockModSpawner starlightGolemSpawner;
 	public static BlockModSpawner starlightTransporterSpawner;
-	public static BlockMod sentarAlter;
+	//public static BlockMod sentarAlter;
 	public static BlockModSpawner sorcererSpawner;
 	public static BlockModSpawner frostbiterSpawner;
 	public static BlockModSpawner overseerSpawner;
@@ -871,7 +871,7 @@ public class JourneyBlocks {
 		purplianSpawner = new BlockModSpawner("purplianSpawner", "Purplian Spawner", "purplian");
 		starlightGolemSpawner = new BlockModSpawner("starlightGolemSpawner", "Starlight Golem Spawner", "starlightGolem");
 		starlightTransporterSpawner = new BlockModSpawner("starlightTransporterSpawner", "Starlight Transporter Spawner", "starlightTransporter");
-		sentarAlter = new BlockMod("sentarAlter", "Sentar Alter");
+		//sentarAlter = new BlockMod("sentarAlter", "Sentar Alter");
 		sorcererSpawner = new BlockModSpawner("sorcererSpawner", "Sorcerer Spawner", "darkSorcerer");
 		frostbiterSpawner = new BlockModSpawner("frostbiterSpawner", "Frostbiter Spawner", "frozenFrostbiter");
 		overseerSpawner = new BlockModSpawner("overseerSpawner", "Overseer Spawner", "overseer");

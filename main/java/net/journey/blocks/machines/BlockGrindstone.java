@@ -41,6 +41,8 @@ public class BlockGrindstone extends BlockModContainer {
 
 	public BlockGrindstone(String name, String finalName) {
 		super(EnumMaterialTypes.STONE, name, finalName, 3.0F, JourneyTabs.machineBlocks);
+		isOpaque = false;
+		isNormalCube = false;
 	}
 	
 	@Override
@@ -69,10 +71,6 @@ public class BlockGrindstone extends BlockModContainer {
 			}
 		}
 	}
-
-	//public void setBlockBounds(int stage) {
-	//	this.setBlockBounds(0f, 0, 0f, 4f, 1.0f, 1f);
-	//}
 
 	@Override
 	public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest) {
@@ -155,7 +153,7 @@ public class BlockGrindstone extends BlockModContainer {
 
 	@SideOnly(Side.CLIENT)
 	public BlockRenderLayer getBlockLayer() {
-		return BlockRenderLayer.CUTOUT_MIPPED;
+		return BlockRenderLayer.SOLID;
 	}
 
 	@Override

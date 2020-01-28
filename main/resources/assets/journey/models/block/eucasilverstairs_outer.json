@@ -1,5 +1,5 @@
 {
-	"parent": "block/stairs",
+	"parent": "block/outer_stairs",
 	"textures": {
 		"bottom": "journey:blocks/silverEucaPlank",
 		"top": "journey:blocks/silverEucaPlank",

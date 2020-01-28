@@ -1,4 +1,4 @@
-{
+{   "parent": "block/block",
     "textures": {
         "particle": "journey:blocks/corbaPortalFrame_side",
         "bottom": "journey:blocks/corbaPortalFrame_bottom",

@@ -1,6 +1,6 @@
 {
     "parent": "block/fence_inventory",
     "textures": {
-        "texture": "journey:blocks/cloudiaPost"
+        "texture": "journey:blocks/senterianpost"
     }
 }

@@ -134,7 +134,7 @@ public abstract class BlockModContainer extends BlockContainer {
 	
 	@Override
 	public boolean isNormalCube(IBlockState state, IBlockAccess world, BlockPos pos) {
-		return false;
+		return isNormalCube;
 	}
 
 	@Override

@@ -12,6 +12,7 @@ import net.minecraft.world.chunk.ChunkPrimer;
 public class RoomSpawner1 extends RoomBase {
 	public RoomSpawner1() { }
 
+	@SuppressWarnings("altar")
 	@Override
 	public boolean generate(ChunkPrimer world, Random rand, BlockPos pos) {
 		int i = pos.getX(), 
@@ -362,7 +363,8 @@ public class RoomSpawner1 extends RoomBase {
 		world.setBlockState(i + 7, j + 0, k + 12, JourneyBlocks.senterianFloor.getDefaultState());
 		world.setBlockState(i + 7, j + 0, k + 13, JourneyBlocks.senterianFloor.getDefaultState());
 		world.setBlockState(i + 7, j + 0, k + 14, JourneyBlocks.senterianFloor.getDefaultState());
-		world.setBlockState(i + 7, j + 1, k + 7, JourneyBlocks.sentarAlter.getDefaultState());
+		//TODO
+		//world.setBlockState(i + 7, j + 1, k + 7, JourneyBlocks.sentarAlter.getDefaultState());
 		world.setBlockState(i + 7, j + 4, k + 0, JourneyBlocks.senterianFloor.getDefaultState());
 		world.setBlockState(i + 7, j + 4, k + 1, JourneyBlocks.senterianFloor.getDefaultState());
 		world.setBlockState(i + 7, j + 4, k + 2, JourneyBlocks.senterianFloor.getDefaultState());
