@@ -20,10 +20,10 @@ import net.slayer.api.item.ItemMod;
 
 public class ItemGlowshroomBlock extends ItemMod {
 
-	private Block shroombottom;
-	private Block shroomtop;
+	private BlockGlowshroom shroombottom;
+	private BlockGlowshroom shroomtop;
 
-	public ItemGlowshroomBlock(String name, String finalName, Block shroombottom, Block shroomtop) {
+	public ItemGlowshroomBlock(String name, String finalName, BlockGlowshroom shroombottom, BlockGlowshroom shroomtop) {
 		super(name, finalName);
 		this.shroombottom = shroombottom;
 		this.shroomtop = shroomtop;
@@ -43,8 +43,8 @@ public class ItemGlowshroomBlock extends ItemMod {
 			}
 
 			ItemStack itemstack = player.getHeldItem(hand);
-			//worldIn.setBlockState(new BlockPos(pos.getX(), pos.getY(), pos.getZ()), shroombottom.getDefaultState());
-			//worldIn.setBlockState(new BlockPos(pos.getX(), pos.getY() + 1, pos.getZ()), shroomtop.getDefaultState());
+			worldIn.setBlockState(pos, shroombottom.getDefaultState());
+			worldIn.setBlockState(pos.up(), shroomtop.getDefaultState());
 			SoundType soundtype = worldIn.getBlockState(pos).getBlock().getSoundType(worldIn.getBlockState(pos), worldIn, pos, player);
 			worldIn.playSound(player, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
 			itemstack.shrink(1);

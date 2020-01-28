@@ -767,7 +767,6 @@ public class JourneyBlocks {
 		terragrow = new BlockTerraFlower("terragrow", "Terranian Flower");
 		terraniaLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "terraniaLamp", "Terrania Lamp", 0.1F).setLightLevel(1.0F).setCreativeTab(JourneyTabs.decoration);
 
-
 		hotBrick = new BlockMod("hotBrick", "Hot Brick", 2.0F);
 		hotBrick_fence = new BlockModFence(hotBrick, "hotBrickFence", "Hot Brick Fence");
 		hotBrick_stairs = new BlockModStairs(hotBrick, "hotBrickStairs", "Hot Brick Stairs");
@@ -807,7 +806,7 @@ public class JourneyBlocks {
 
 		workshopCarpet = new BlockMod(EnumMaterialTypes.WOOL, "workshopCarpet", "Workshop Carpet", 0.5F);
 		frozenGlass = new BlockJoinedGlass("frozenGlass", "Frozen Glass");
-		// frozenPane = new BlockJoinedPane("frozenGlass");
+		//frozenPane = new BlockJoinedPane("frozenGlass");
 		frozenLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "frozenLamp", "Frozen Lamp", 0.5F).setLightLevel(1.0F).setCreativeTab(JourneyTabs.decoration);
 		workshopStone = new BlockMod(EnumMaterialTypes.STONE, "workshopStone", "Workshop Stone", 0.5F);
 		workshopStoneStair = new BlockModStairs(workshopStone, "workshopStairs", "Workshop Stairs");
