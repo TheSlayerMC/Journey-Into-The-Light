@@ -195,9 +195,9 @@ public class ChunkProviderDepths implements IChunkGenerator {
         this.setBlocksInChunk(x, z, chunkprimer);
         this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomes(this.biomesForGeneration, x * 16, z * 16, 16, 16);
         this.biomeBlocks(x, z, chunkprimer, this.biomesForGeneration);
-        for (int i = 0; i < 10; i++) {
-            int ycoord = rand.nextInt(249) + 1;
-            if (chunkprimer.getBlockState(8, ycoord, 8).getBlock() == Blocks.AIR && chunkprimer.getBlockState(8, ycoord - 1, 8).getBlock() == JourneyBlocks.darkFloor && chunkprimer.getBlockState(8, ycoord + 1, 8).getBlock() == Blocks.AIR) {
+        if (rand.nextInt(50) == 0) {
+            int ycoord = 2;
+            if (chunkprimer.getBlockState(8, ycoord, 8).getBlock() == Blocks.AIR && chunkprimer.getBlockState(8, ycoord + 1, 8).getBlock() == Blocks.AIR) {
                 spike.generate(chunkprimer, rand, new BlockPos(8, ycoord, 8));
             }
         }
@@ -299,8 +299,7 @@ public class ChunkProviderDepths implements IChunkGenerator {
     }
 
     @Override
-    public void recreateStructures(Chunk c, int x, int z) {
-    }
+    public void recreateStructures(Chunk c, int x, int z) { }
 
     @Override
     public void populate(int cx, int cz) {
@@ -310,7 +309,7 @@ public class ChunkProviderDepths implements IChunkGenerator {
 
         BlockPos chunkStart = new BlockPos(x1, 0, z1);
 
-        for (i = 0; i < 32; i++) {
+        for (i = 0; i < 40; i++) {
             flower.generate(worldObj, rand,  chunkStart);
             flower2.generate(worldObj, rand, chunkStart);
         }
@@ -325,13 +324,13 @@ public class ChunkProviderDepths implements IChunkGenerator {
             lights2.generate(this.worldObj, rand, WorldGenAPI.createRandom(x1, 4, 120, z1, rand, 16));
         }
 
-        for (i = 0; i < 70; i++) {
+        for (i = 0; i < 80; i++) {
             generateStructure(tree, x1, z1);
             generateStructure(tree1, x1, z1);
             generateStructure(tree2, x1, z1);
         }
 
-        for (i = 0; i < 100; i++) {
+        for (i = 0; i < 120; i++) {
             generateStructure(plant1, x1, z1);
             generateStructure(plant2, x1, z1);
             generateStructure(plant3, x1, z1);

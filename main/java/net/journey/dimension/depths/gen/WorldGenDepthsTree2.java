@@ -27,7 +27,7 @@ public class WorldGenDepthsTree2 extends WorldGenAbstractTree {
 
 	@Override
 	public boolean generate(World world, Random r, BlockPos pos) {
-		int i = pos.getX() - 6, j = pos.getY() - 1, k = pos.getZ() - 6;
+		int i = pos.getX() - 6, j = pos.getY(), k = pos.getZ() - 6;
 
 		world.setBlockState(new BlockPos(i + 0, j + 2, k + 1), JourneyBlocks.depthsLeaves.getDefaultState());
 		world.setBlockState(new BlockPos(i + 0, j + 2, k + 3), JourneyBlocks.depthsLeaves.getDefaultState());

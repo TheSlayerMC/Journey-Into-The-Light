@@ -27,7 +27,7 @@ public class WorldGenPlant3 extends WorldGenAbstractTree {
 
 	@Override
 	public boolean generate(World world, Random r, BlockPos pos) {
-		int i = pos.getX() - 6, j = pos.getY() - 1, k = pos.getZ() - 6;
+		int i = pos.getX() - 6, j = 2, k = pos.getZ() - 6;
 		world.setBlockState(new BlockPos(i + 0, j + 0, k + 0), JourneyBlocks.darkbloomBottom.getDefaultState());
 		world.setBlockState(new BlockPos(i + 0, j + 1, k + 0), JourneyBlocks.darkbloomBottom.getDefaultState());
 		world.setBlockState(new BlockPos(i + 0, j + 2, k + 0), JourneyBlocks.darkbloomTop.getDefaultState());

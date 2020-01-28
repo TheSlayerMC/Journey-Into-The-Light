@@ -45,7 +45,7 @@ public class BlockModLeaves extends BlockMod implements IShearable {
 	@SideOnly(Side.CLIENT)
 	public void randomDisplayTick(IBlockState stateIn, World w, BlockPos pos, Random random) {
 		if(isFrozenPlant) {
-			if(random.nextInt(2) == 0) {
+			if(random.nextInt(15) == 0) {
 				for(int i = 0; i < 20; ++i) {
 					double d0 = (double)pos.getX() + rand.nextDouble() * 2;
 					double d1 = (double)pos.getY() + rand.nextDouble() * 0.5D + 0.7D;

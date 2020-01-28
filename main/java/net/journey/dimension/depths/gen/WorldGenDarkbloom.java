@@ -13,6 +13,7 @@ public class WorldGenDarkbloom extends WorldGenerator {
 
 	@Override
 	public boolean generate(World w, Random r, BlockPos pos) {
+		pos = new BlockPos(pos.getX(), 2, pos.getZ());
 		Block top = JourneyBlocks.darkbloomTop, bottom = JourneyBlocks.darkbloomBottom;
 			if(w.getBlockState(pos.down()).getBlock() == JourneyBlocks.depthsGrass && w.getBlockState(pos) == Blocks.AIR.getDefaultState() && w.getBlockState(pos.up()) == Blocks.AIR.getDefaultState()) {
 				w.setBlockState(pos, bottom.getDefaultState(), 2);
