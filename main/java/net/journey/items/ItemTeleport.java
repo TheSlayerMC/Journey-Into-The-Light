@@ -9,10 +9,12 @@ import net.journey.client.server.IEssence;
 import net.journey.util.LangHelper;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
@@ -68,7 +70,8 @@ public class ItemTeleport extends ItemMod {
 
 				if(mana.useEssence(5)) {
 					player.getLook(1);
-					this.teleportTo(player, worldIn, var23, var24, var25);
+					this.teleportTo(player, worldIn, var23, var24 + 1, var25);
+					player.getHeldItem(EnumHand.MAIN_HAND).damageItem(1, player);
 				}
 			}
 		}
@@ -77,7 +80,7 @@ public class ItemTeleport extends ItemMod {
 
 	protected void teleportTo(EntityPlayer par1, World par2, double par3, double par4, double par5) {
 		par1.setPosition(par3, par4, par5);
-	//	par2.playSoundAtEntity(par1, "mob.endermen.portal", 1.0F, 1.0F);
+		par2.playSound(par1, new BlockPos(par3, par4, par5), SoundEvents.ENTITY_ENDERMEN_TELEPORT, SoundCategory.PLAYERS, 1.0F, 1.0F);
 	}
 
 	@Override
