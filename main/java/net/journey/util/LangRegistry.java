@@ -43,19 +43,19 @@ public class LangRegistry {
 	}
 
 	public void creativeTabs() {
-		writeToFile("itemGroup.journey.blocks=Journey into the Light: Blocks");
-		writeToFile("itemGroup.journey.decoration=Journey into the Light: Decoration Blocks");
-		writeToFile("itemGroup.journey.items=Journey into the Light: Items");
-		writeToFile("itemGroup.journey.tools=Journey into the Light: Tools");
-		writeToFile("itemGroup.journey.weapons=Journey into the Light: Weapons");
-		writeToFile("itemGroup.journey.util=Journey into the Light: Utilities");
-		writeToFile("itemGroup.journey.misc=Journey into the Light: Miscellaneous");
-		writeToFile("itemGroup.journey.armor=Journey into the Light: Armor");
-		writeToFile("itemGroup.journey.spawners=Journey into the Light: Spawners");
-		writeToFile("itemGroup.journey.crops=Journey into the Light: Crops");
-		writeToFile("itemGroup.journey.machineBlocks=Journey into the Light: Machine Blocks");
-		writeToFile("itemGroup.journey.portalBlocks=Journey into the Light: Portal Blocks");
-		writeToFile("itemGroup.journey.hammers=Journey into the Light: Hammers");
+		writeToFile("itemGroup.journey.blocks=JITL: Blocks");
+		writeToFile("itemGroup.journey.decoration=JITL: Decoration Blocks");
+		writeToFile("itemGroup.journey.items=JITL: Items");
+		writeToFile("itemGroup.journey.tools=JITL: Tools");
+		writeToFile("itemGroup.journey.weapons=JITL: Weapons");
+		writeToFile("itemGroup.journey.util=JITL: Utilities");
+		writeToFile("itemGroup.journey.misc=JITL: Miscellaneous");
+		writeToFile("itemGroup.journey.armor=JITL: Armor");
+		writeToFile("itemGroup.journey.spawners=JITL: Spawners");
+		writeToFile("itemGroup.journey.crops=JITL: Crops");
+		writeToFile("itemGroup.journey.machineBlocks=JITL: Machine Blocks");
+		writeToFile("itemGroup.journey.portalBlocks=JITL: Portal Blocks");
+		writeToFile("itemGroup.journey.hammers=JITL: Hammers");
 	}
 	
 	public void achievements() {

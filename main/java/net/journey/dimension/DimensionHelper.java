@@ -17,8 +17,6 @@ import net.journey.dimension.euca.BiomeGenEuca;
 import net.journey.dimension.euca.WorldProviderEuca;
 import net.journey.dimension.frozen.BiomeGenFrozenLands;
 import net.journey.dimension.frozen.WorldProviderFrozenLands;
-import net.journey.dimension.golden.BiomeGenGoldenGrains;
-import net.journey.dimension.golden.WorldProviderGoldenGrains;
 import net.journey.dimension.nether.WorldProviderNetherJourney;
 import net.journey.dimension.senterian.BiomeGenSenterian;
 import net.journey.dimension.senterian.WorldProviderSenterian;
@@ -116,20 +114,20 @@ import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 public class DimensionHelper {
-	
+
 	public static final float[] boilHeight = new float[] {0.125F, 0.1F}; 
 	public static final float[] corbaHeight = new float[] {0.2F, 0.2F}; 
 
 	public static Biome euca = new BiomeGenEuca();
 	public static Biome boiling = new BiomeGenBoiling();
 	public static Biome cloudia = new BiomeGenCloudia();
-		public static Biome corba = new BiomeGenCorba();	
-		public static Biome corbaPlains = new BiomeGenCorbaPlains();
+	
+	public static Biome corba = new BiomeGenCorba();	
+	public static Biome corbaPlains = new BiomeGenCorbaPlains();
 	
 	public static Biome depths = new BiomeGenDepths();
 	public static Biome frozen = new BiomeGenFrozenLands();
 	public static Biome terrania = new BiomeGenTerrania();
-	public static Biome golden = new BiomeGenGoldenGrains();
 	public static Biome senterian = new BiomeGenSenterian();
 
 	public static DimensionType eucaType = DimensionType.register("Euca", "euca", Config.euca, WorldProviderEuca.class, Config.keepLoadingEuca);
@@ -139,9 +137,8 @@ public class DimensionHelper {
 	public static DimensionType depthsType = DimensionType.register("Depths", "depths", Config.depths, WorldProviderDepths.class, Config.keepLoadingDepths);
 	public static DimensionType frozenType = DimensionType.register("Frozen", "frozen", Config.frozen, WorldProviderFrozenLands.class, Config.keepLoadingFrozen);
 	public static DimensionType terraniaType = DimensionType.register("Terrania", "terrania", Config.terrania, WorldProviderTerrania.class, Config.keepLoadingTerrania);
-	public static DimensionType goldenType = DimensionType.register("Golden Grains", "goldenGrains", Config.golden, WorldProviderGoldenGrains.class, Config.keepLoadingGolden);
 	public static DimensionType senterianType = DimensionType.register("Senterian", "senterian", Config.senterian, WorldProviderSenterian.class, Config.keepLoadingSenterian);
-	
+
 	public static void init(){
 
 		LogHelper.info("Registering Dimensions...");
@@ -161,9 +158,8 @@ public class DimensionHelper {
 		addDimBiome(depths, "Depths");
 		addDimBiome(frozen, "Frozen Lands");
 		addDimBiome(terrania, "Terrania");
-		addDimBiome(golden, "Golden Grains");
 		addDimBiome(senterian, "Senterian Labyrinth");
-		
+
 		addDimension(Config.euca, eucaType);
 		addDimension(Config.boil, boilingType);
 		addDimension(Config.cloudia, cloudiaType);
@@ -171,7 +167,6 @@ public class DimensionHelper {
 		addDimension(Config.depths, depthsType);
 		addDimension(Config.frozen, frozenType);
 		addDimension(Config.terrania, terraniaType);
-		addDimension(Config.golden, goldenType);
 		addDimension(Config.senterian, senterianType);
 	}
 
@@ -179,14 +174,14 @@ public class DimensionHelper {
 		LogHelper.info("Registering dimension ID: " + id);
 		DimensionManager.registerDimension(id, type);
 	}
-	
+
 	private static Biome addDimBiome(Biome biome, String name) {
 		biome.setRegistryName(name);
 		ForgeRegistries.BIOMES.register(biome);
 		LogHelper.info("Biome Registered");
 		return biome;
 	}
-	
+
 	private static Biome addOverworldBiome(Biome biome, String name, BiomeType biomeType, Type...types) {
 		biome.setRegistryName(name);
 		ForgeRegistries.BIOMES.register(biome);
@@ -212,7 +207,7 @@ public class DimensionHelper {
 		addCommonVanillaSpawns();
 		addNetherSpawns();
 	}
-	
+
 	private static void addCloudiaSpawns() {
 		int amount = 1000;
 		EntityRegistry.addSpawn(EntityStarlightTransporter.class, amount, 10, 20, EnumCreatureType.MONSTER, cloudia);
@@ -238,7 +233,7 @@ public class DimensionHelper {
 		EntityRegistry.addSpawn(EntityShiveringBushwalker.class, amount, 10, amount, EnumCreatureType.MONSTER, frozen);
 		EntityRegistry.addSpawn(EntityIceMage.class, amount, 10, amount, EnumCreatureType.MONSTER, frozen);
 		EntityRegistry.addSpawn(EntityShiverwing.class, amount, 10, amount, EnumCreatureType.CREATURE, frozen);
-		
+
 	}
 
 	private static void addFrostFrozenSpawns() {
@@ -250,7 +245,7 @@ public class DimensionHelper {
 		EntityRegistry.addSpawn(EntityIceMage.class, amount, 10, amount, EnumCreatureType.MONSTER, frozen);
 		EntityRegistry.addSpawn(EntityShiverwing.class, amount, 10, amount, EnumCreatureType.CREATURE, frozen);
 	}
-	
+
 	private static void addTerraniaSpawns() {
 		int amount = 20;
 		EntityRegistry.addSpawn(EntityTerraScatterer.class, 5, 1, 1, EnumCreatureType.MONSTER, terrania);
@@ -288,7 +283,7 @@ public class DimensionHelper {
 		EntityRegistry.addSpawn(EntityDarkener.class, amount, 10, 1, EnumCreatureType.MONSTER, depths);
 		EntityRegistry.addSpawn(EntityLightener.class, 4, 10, 1, EnumCreatureType.MONSTER, depths);
 	}
-	
+
 	private static void addCaveSpawns() {
 		int amount = 100;
 		int amount2 = 10;
@@ -310,7 +305,7 @@ public class DimensionHelper {
 	private static void addCommonVanillaSpawns() {
 		int amount = 100;
 		//EntityRegistry.addSpawn(EntitySwampFly.class, amount, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomes(Type.SWAMP));
-		
+
 	}
 	private static void addNetherSpawns() {
 		EntityRegistry.addSpawn(EntityLavasnake.class, 80, 1, 1, EnumCreatureType.MONSTER, Biomes.HELL);
@@ -337,7 +332,7 @@ public class DimensionHelper {
 				EntityRegistry.addSpawn(EntityBigHongo.class, amount, 1, 1, EnumCreatureType.MONSTER, biome);
 				EntityRegistry.addSpawn(EntityMediumHongo.class, amount, 1, 1, EnumCreatureType.MONSTER, biome);
 			}
-			
+
 			if (BiomeDictionary.hasType(b, BiomeDictionary.Type.MUSHROOM)) {
 				EntityRegistry.addSpawn(EntityBigHongo.class, amount, 1, 1, EnumCreatureType.MONSTER, biome);
 				EntityRegistry.addSpawn(EntityMediumHongo.class, amount, 1, 1, EnumCreatureType.MONSTER, biome);
@@ -357,12 +352,12 @@ public class DimensionHelper {
 				EntityRegistry.addSpawn(EntityFloro.class, amount, 1, 1, EnumCreatureType.MONSTER, biome);
 			}
 		}
-		
+
 		for(Biome b1 : Biome.REGISTRY) {
 			if (b1 != null) {
 				EntityRegistry.addSpawn(EntitySpectre.class, 20, 1, 1, EnumCreatureType.MONSTER, b1);
 				EntityRegistry.addSpawn(EntityWraith.class, 20, 1, 1, EnumCreatureType.MONSTER, b1);
 			}
 		}
-    }
+	}
 }

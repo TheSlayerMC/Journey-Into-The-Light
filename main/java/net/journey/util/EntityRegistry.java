@@ -105,10 +105,7 @@ public class EntityRegistry {
 		SlayerAPI.registerProjectile(EntityBubbleProjectile.class, "bubbleprojectile");
 		SlayerAPI.registerProjectile(EntityDetractor.class, "detractor");
 		SlayerAPI.registerProjectile(EntityRock.class, "rock");
-
-		//SlayerAPI.registerProjectile(EntityRoyalKnife.class, "royalKnife");
-		
-		SlayerAPI.registerProjectile(EntityPower.class, "power");
+		SlayerAPI.registerProjectile(EntityOvergrown.class, "overgrown");
 		SlayerAPI.registerProjectile(EntityShimmererProjectile.class, "shimmererprojectile");
 		SlayerAPI.registerProjectile(EntityDemonicBomb.class, "demonicbomb");
 		SlayerAPI.registerProjectile(EntityFireBomb.class, "firebomb");

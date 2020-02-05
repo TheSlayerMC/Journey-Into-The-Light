@@ -48,7 +48,7 @@ public class UpdateCheckerEvent {
 							SlayerAPI.addChatMessage(p, Colour.GOLD + "[|--------------------------------------------------|]"); 
 							SlayerAPI.addChatMessage(p, Colour.GRAY + "[Journey into the Light] [Version: " + SlayerAPI.MOD_VERSION + "]");
 							SlayerAPI.addChatMessageWithColour(p, Colour.GOLD, "Journey into the Light is up to date.");
-							SlayerAPI.addChatMessageWithColour(p, Colour.YELLOW, "Follow @EssenceMod on twitter for update teasers.");
+							SlayerAPI.addChatMessageWithColour(p, Colour.YELLOW, "Follow @'NEWTWITTER' on twitter for update teasers.");
 							SlayerAPI.addChatMessage(p, Colour.GOLD + "[|--------------------------------------------------|]"); 
 						}
 					} catch(MalformedURLException e1) {

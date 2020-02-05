@@ -26,7 +26,7 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public void registerClient() {
 		NetworkRegistry.INSTANCE.registerGuiHandler(JITL.instance, new GuiHandler());
-		if(!SlayerAPI.DEVMODE) SlayerAPI.registerEvent(new UpdateCheckerEvent());
+		SlayerAPI.registerEvent(new UpdateCheckerEvent());
 	}
 
 	@Override

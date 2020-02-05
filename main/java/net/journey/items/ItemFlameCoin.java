@@ -37,7 +37,7 @@ public class ItemFlameCoin extends ItemMod {
 		} else {
 			Block block = w.getBlockState(pos).getBlock();
 			if(block == JourneyBlocks.frozenPortalFrame ||block == JourneyBlocks.eucaPortalFrame || block == JourneyBlocks.depthsPortalFrame || block == JourneyBlocks.boilPortalFrame 
-					 || block == JourneyBlocks.cloudiaPortalFrame || block == JourneyBlocks.terraniaPortalFrame || block == JourneyBlocks.goldenPortalFrame){
+					 || block == JourneyBlocks.cloudiaPortalFrame || block == JourneyBlocks.terraniaPortalFrame){
 				w.setBlockState(new BlockPos(pos.up()), JourneyBlocks.fire.getDefaultState(), 2);
 				return EnumActionResult.SUCCESS;
 			}

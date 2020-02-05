@@ -23,7 +23,7 @@ import net.slayer.api.item.ItemMod;
 
 public class ItemStaff extends ItemMod {
 
-	protected int usage;
+	protected final int usage;
 	protected int damage;
 	protected boolean unBreakable;
 	protected Class<? extends EntityBasicProjectile> projectile; 
@@ -44,18 +44,19 @@ public class ItemStaff extends ItemMod {
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand handIn) {
 		ItemStack stack = player.getHeldItem(handIn);
 		IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
-
-		if(!world.isRemote && mana.useEssence(usage)) {
-			JourneySounds.playSound(JourneySounds.MAGIC_SPARKLE, world, player);
-			if(!unBreakable) stack.damageItem(1, player);
-			try {
-				EntityBasicProjectile shoot = projectile.getConstructor(World.class, EntityLivingBase.class, float.class).newInstance(world, player, damage);
-				shoot.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 2.5F, 0.2F);
-				world.spawnEntity(shoot);
-				stack.damageItem(1, player);
-				return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
-			} catch (Exception e) {
-				e.printStackTrace();
+		if(!world.isRemote) {
+			if(mana.useEssence(usage)) {
+				JourneySounds.playSound(JourneySounds.MAGIC_SPARKLE, world, player);
+				if(!unBreakable) stack.damageItem(1, player);
+				try {
+					EntityBasicProjectile shoot = projectile.getConstructor(World.class, EntityLivingBase.class, float.class).newInstance(world, player, damage);
+					shoot.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 2.5F, 0.2F);
+					world.spawnEntity(shoot);
+					stack.damageItem(1, player);
+					return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 		}
 		return new ActionResult<ItemStack>(EnumActionResult.FAIL, stack);	

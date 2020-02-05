@@ -34,8 +34,8 @@ public class Config {
 	
 	public static boolean spawnSwordParticles, showEntityHealth;
 
-	public static int euca, depths, boil, frozen, corba, wastelands, cloudia, terrania, golden, senterian, wither;
-	public static String eucaBiome, depthsBiome, boilBiome, frozenBiome, corbaBiome, wastelandsBiome, cloudiaBiome, terraniaBiome, goldenBiome, senterianBiome, witherBiome;
+	public static int euca, depths, boil, frozen, corba, wastelands, cloudia, terrania, senterian, wither;
+	public static String eucaBiome, depthsBiome, boilBiome, frozenBiome, corbaBiome, wastelandsBiome, cloudiaBiome, terraniaBiome, senterianBiome, witherBiome;
 	public static String witherSandsBiome, lushLandsBiome;
 
 	public static int baseMobID, baseProjectileID, baseEntityListID, entityHealthDistance;
@@ -61,8 +61,6 @@ public class Config {
 		cloudiaBiome = cfg.get("Dimension", "Cloudia biome ID", 66).getString();
 		terrania = cfg.get("Dimension", "Terrania ID", 27).getInt();
 		terraniaBiome = cfg.get("Dimension", "Terrania biome ID", 67).getString();
-		golden = cfg.get("Dimension", "Golden Grains ID", 28).getInt();
-		goldenBiome = cfg.get("Dimension", "Golden Grains biome ID", 68).getString();
 		senterian = cfg.get("Dimension", "Senterian Labirynth ID", 29).getInt();
 		senterianBiome = cfg.get("Dimension", "Senterian Labirynth biome ID", 69).getString();
 		wither = cfg.get("Dimension", "Withanian Lands ID", 30).getInt();

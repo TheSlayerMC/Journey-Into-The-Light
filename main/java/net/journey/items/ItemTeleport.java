@@ -11,6 +11,7 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -35,7 +36,7 @@ public class ItemTeleport extends ItemMod {
 	}
 
 	@Override
-    public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer player, EnumHand handIn) {
 		IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
 		float var4 = player.rotationPitch;
 		float var5 = player.rotationYaw;
@@ -53,7 +54,7 @@ public class ItemTeleport extends ItemMod {
 		Vec3d var21 = var12.addVector(var17 * var19, var16 * var19, var18 * var19);
 		RayTraceResult var22 = worldIn.rayTraceBlocks(var12, var21);
 		if(var22 == null) {
-			return EnumActionResult.FAIL;
+			return new ActionResult<ItemStack>(EnumActionResult.FAIL, player.getHeldItem(handIn));
 		} else {
 			if (var22.typeOfHit == Type.BLOCK) {
 				int var23 = var22.getBlockPos().getX();
@@ -75,7 +76,7 @@ public class ItemTeleport extends ItemMod {
 				}
 			}
 		}
-		return EnumActionResult.SUCCESS;
+		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getHeldItem(handIn));
 	}
 
 	protected void teleportTo(EntityPlayer par1, World par2, double par3, double par4, double par5) {

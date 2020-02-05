@@ -42,7 +42,6 @@ import net.journey.blocks.portal.BlockCorbaPortal;
 import net.journey.blocks.portal.BlockDepthsPortal;
 import net.journey.blocks.portal.BlockEucaPortal;
 import net.journey.blocks.portal.BlockFrozenPortal;
-import net.journey.blocks.portal.BlockGoldenPortal;
 import net.journey.blocks.portal.BlockSenterianPortal;
 import net.journey.blocks.portal.BlockTerraniaPortal;
 import net.minecraft.block.Block;
@@ -70,11 +69,6 @@ public class JourneyBlocks {
 
 	public static ArrayList<String> blockName = new ArrayList<String>();
 	public static ArrayList<Block> blocks = new ArrayList<Block>();
-
-
-	
-	public static BlockMod iridiumOre;
-	//public static BlockMod verditeOre;
 	
 	public static BlockMod sapphireOre;
 	public static BlockMod lavaRock;
@@ -89,22 +83,13 @@ public class JourneyBlocks {
 	public static BlockMod storonOre;
 	public static BlockMod flairiumOre;
 	public static BlockMod desOre;
-	
-	public static BlockMod bleedstone;
-	public static BlockMod smithstone;
-	public static BlockMod mageWall;
-
-	//public static BlockModGravity heatstoneOre;
-	
+	public static BlockMod iridiumOre;
 	public static BlockMod enderilliumOre;
 	public static BlockMod gorbiteOre;
 	public static BlockMod orbaditeOre;
 	public static BlockMod luniteOre;
 	public static BlockMod firestoneOre;
 
-	public static BlockMod iridiumBlock;
-	//public static BlockMod verditeBlock;
-	
 	public static BlockMod sapphireBlock;
 	public static BlockMod shadiumBlock;
 	public static BlockMod luniumBlock;
@@ -121,7 +106,12 @@ public class JourneyBlocks {
 	public static BlockMod gorbiteBlock;
 	public static BlockMod orbaditeBlock;
 	public static BlockMod luniteBlock;
+	public static BlockMod iridiumBlock;
 
+	public static BlockMod bleedstone;
+	public static BlockMod smithstone;
+	public static BlockMod mageWall;
+	
 	public static BlockModLog witherwoodLog;
 	public static BlockMod witherwoodLeaves;
 	public static BlockMod sizzlerWoodLeaves;
@@ -200,9 +190,6 @@ public class JourneyBlocks {
 	public static BlockMod withanLamp;
 	public static BlockMod withanLight; 
 
-	public static BlockMod goldenGrass;
-	public static BlockMod goldenStone;
-
 	public static BlockMod corbaStone;
 	public static BlockMod corbaGrass;
 	public static BlockModLog corbaLog;
@@ -216,13 +203,7 @@ public class JourneyBlocks {
 	public static BlockMod blazierBricks; 
 	public static BlockMod ashBlock;
 	public static BlockMod hotBlock;
-	/*public static BlockMod brisonStone;
-	public static BlockMod darkBrisonBrick;
-	public static BlockMod redBrisonBrick;
-	public static BlockMod smallBrisonBrick; */
-	
 	public static BlockMetaBase brisonblocks;
-	
 	public static BlockMod boilingBars;
 	public static BlockMod burningLeaves;
 	public static BlockModLog boilingLog; 
@@ -290,16 +271,8 @@ public class JourneyBlocks {
 	public static BlockMod trophyNetherBeast;
 	public static BlockMod trophyWitherBeast;
 
-	/*public static BlockMod wastelandsStone = new BlockWastelandsStone("wastelandsStone");
-	public static BlockMod wastelandsGrass = new BlockModGrass((BlockMod)null, "wastelandsGrass", 2.0F);
-	public static BlockMod wastelandsLog = new BlockModLog("wastelandsLog");
-	public static BlockMod wastelandsBranches = new BlockModLeaves("wastelandsBranches", 2.0F).setStepSound(EnumMaterialTypes.WOOD.getSound());*/
-
 	public static BlockEucaPortal eucaPortal;
 	public static BlockMod eucaPortalFrame;
-
-	public static BlockGoldenPortal goldenPortal;
-	public static BlockMod goldenPortalFrame;
 
 	public static BlockDepthsPortal depthsPortal;
 	public static BlockMod depthsPortalFrame;
@@ -318,12 +291,10 @@ public class JourneyBlocks {
 
 	public static BlockSenterianPortal senterianPortal;
 	public static BlockMod senterianPortalFrame;
-	//public static BlockWastelandsPortal wastelandsPortal = (BlockWastelandsPortal)new BlockWastelandsPortal("wastelandsPortal");
-	//public static BlockMod wastelandsPortalFrame = new BlockMod("wastelandsPortalFrame");
+	
 	public static BlockCloudiaPortal cloudiaPortal;
 	public static BlockMod cloudiaPortalFrame;
 
-	public static BlockMod depthsLights;
 
 	public static BlockModFire fire;
 
@@ -373,18 +344,10 @@ public class JourneyBlocks {
 
 	public static BlockMod hotGlass;
 	public static BlockMod smoothGlass;
-	//public static BlockMod hotGlassPane = new BlockJoinedPane("hotGlass");
-	//public static BlockMod smoothGlassPane = new BlockJoinedPane("smoothGlass");
-
-	//public static BlockMod witheringBeastStatue = new BlockStatue("witheringBeastStatue", new ModelWitheringBeastStatue(), EnumSounds.WITHER);
-	//public static BlockMod netherBeastStatue = new BlockStatue("netherBeastStatue", new ModelNetherBeastStatue(), EnumSounds.NETHER_BEAST);
-	//public static BlockMod calciaStatue = new BlockStatue("calciaStatue", new ModelCalciaStatue(), EnumSounds.CALCIA);
-	//public static BlockMod eudorStatue = new BlockStatue("eudorStatue", new ModelEudorStatue(), EnumSounds.CALCIA);
-	//public static BlockMod enderChampionStatue = new BlockStatue("enderChampionStatue", new ModelEnderChampionStatue());
-	//public static BlockMod wraithStatue = new BlockStatue("wraithStatue", new ModelWraithStatue());
 
 	public static BlockDarkbloom darkbloomTop;
 	public static BlockDarkbloom darkbloomBottom;
+	public static BlockMod depthsLights;
 
 	public static BlockGlowshroom redGlowshroomTop;
 	public static BlockGlowshroom redGlowshroomBottom;
@@ -407,7 +370,6 @@ public class JourneyBlocks {
 
 	public static BlockMod workshopCarpet;
 	public static BlockMod frozenGlass;
-	//public static BlockMod frozenPane = new BlockJoinedPane("frozenGlass");
 	public static BlockMod frozenLamp;
 	public static BlockMod workshopStone;
 	public static BlockModStairs workshopStoneStair;
@@ -480,18 +442,10 @@ public class JourneyBlocks {
 
 	public static BlockNetherFurnace netherFurnace;
 	public static BlockNetherFurnace netherFurnaceActive;
-	
-
-
-	/**
-	public static BlockMod boilingFurnace = new BlockNetherFurnace("boilingFurnace", "Boiling Furnace", false);
-	public static BlockMod boilingFurnaceActive = new BlockNetherFurnace("boilingFurnaceActive", "Boiling Furnace", true).setLightLevel(1).setCreativeTab(null);
-	 */
 
 	 public static void init() {
 		 
 		iridiumOre = new BlockModOre("iridiumOre", "Iridium Ore", true).setHarvestLevel(EnumToolType.DIAMOND_PICK);
-		//verditeOre = new BlockModOre("verditeOre", "Verdite Ore", false).setHarvestLevel(EnumToolType.STONE_PICK);
 		
 		sapphireOre = new BlockModOre("sapphireOre", "Sapphire Ore", false).setHarvestLevel(EnumToolType.DIAMOND_PICK);
 		lavaRock = new BlockMod("lavaRock", "Lava Rock").setHarvestLevel(EnumToolType.DIAMOND_PICK);
@@ -506,20 +460,12 @@ public class JourneyBlocks {
 		storonOre = new BlockModOre("storonOre", "Storon Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
 		flairiumOre = (BlockMod) new BlockModOre("flairiumOre", "Flairium Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK).setLightLevel(0.5F);
 		desOre = (BlockMod) new BlockModOre("desOre", "Des Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK).setLightLevel(0.5F);
-		
-		bleedstone = (BlockMod) new BlockModOre("bleedstoneOre", "Bleedstone", false).setHarvestLevel(EnumToolType.DIAMOND_PICK).setLightLevel(10.5F);
-		smithstone = (BlockMod) new BlockModOre("smithstoneOre", "Smithstone", false).setHarvestLevel(EnumToolType.DIAMOND_PICK).setLightLevel(10.5F);
-		//heatstoneOre = (BlockModGravity) new BlockModOreFalling(EnumMaterialTypes.SAND, "heatstoneOre", "Heatstone Ore", false).setHarvestLevel(EnumToolType.DIAMOND_SHOVEL).setLightLevel(0.5F).setHardness(0.5F);
-		
 		enderilliumOre = new BlockModOre("enderilliumOre", "Enderillium Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
 		gorbiteOre = new BlockModOre("gorbiteOre", "Gorbite Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
 		orbaditeOre = new BlockModOre("orbaditeOre", "Orbadite Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
 		luniteOre = new BlockModOre("luniteOre", "Lunite Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
 		firestoneOre = new BlockModOre("firestoneOre", "Firestone Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
 
-		iridiumBlock = new BlockModOre("iridiumBlock", "Iridium Block").setHarvestLevel(EnumToolType.IRON_PICK);
-		//verditeBlock = new BlockModOre("verditeBlock", "Verdite Block").setHarvestLevel(EnumToolType.STONE_PICK);
-		
 		sapphireBlock = new BlockModOre("sapphireBlock", "Sapphire Block").setHarvestLevel(EnumToolType.STONE_PICK);
 		shadiumBlock = new BlockModOre("shadiumBlock", "Shadium Block").setHarvestLevel(EnumToolType.STONE_PICK);
 		luniumBlock = new BlockModOre("luniumBlock", "Lunium Block").setHarvestLevel(EnumToolType.STONE_PICK);
@@ -536,7 +482,11 @@ public class JourneyBlocks {
 		gorbiteBlock = new BlockModOre("gorbiteBlock", "Gorbite Block").setHarvestLevel(EnumToolType.STONE_PICK);
 		orbaditeBlock = new BlockModOre("orbaditeBlock", "Orbadite Block").setHarvestLevel(EnumToolType.STONE_PICK);
 		luniteBlock = new BlockModOre("luniteBlock", "Lunite Block").setHarvestLevel(EnumToolType.STONE_PICK);
+		iridiumBlock = new BlockModOre("iridiumBlock", "Iridium Block").setHarvestLevel(EnumToolType.IRON_PICK);
+
 		mageWall = new BlockMod("magewall", "Mage Wall");
+		bleedstone = (BlockMod) new BlockModOre("bleedstoneOre", "Bleedstone", false).setHarvestLevel(EnumToolType.DIAMOND_PICK).setLightLevel(10.5F);
+		smithstone = (BlockMod) new BlockModOre("smithstoneOre", "Smithstone", false).setHarvestLevel(EnumToolType.DIAMOND_PICK).setLightLevel(10.5F);
 		
 		witherwoodLog = new BlockModLog("witherwoodLog", "Witherwood Log");
 		witherwoodLeaves = new BlockModLeaves("witherwoodLeaves", "Witherwood Leaves", 1.0F);
@@ -550,7 +500,6 @@ public class JourneyBlocks {
 		earthenNetherLeaves = new BlockModLeaves("earthenNetherLeaves", "Earthenwood Leaves", 2.0F);
 		earthenNetherLog = new BlockModLog("earthenNetherLog", "Earthenwood Log");
 		earthenNetherPlanks = new BlockMod(EnumMaterialTypes.WOOD, "earthenNetherPlank", "Earthenwood Planks", 1.0F);
-		
 		earthenNetherTallGrass = new BlockNetherPlant("earthenNetherTallGrass", "Earthen Nethigrass");
 		earthenNetherShortGrass = new BlockNetherPlant("earthenNetherShortGrass", "Earthen Nethigrass");
 		earthenNetherFlower = new BlockNetherPlant("earthenNetherFlower", "Earthen Heatflower");
@@ -600,9 +549,6 @@ public class JourneyBlocks {
 		frozenLeaves = (BlockMod) new BlockModLeaves("frozenLeaves", "Frozen Leaves", 0.5F).setFrozenPlant().setLightLevel(1);
 		frozenBark = new BlockModLog("frozenBark", "Frozen Bark");
 		frozenPlanks = new BlockMod(EnumMaterialTypes.WOOD, "frozenPlanks", "Frozen Planks", 0.5F);
-
-		goldenGrass = new BlockModGrass((BlockMod)null, "goldenGrass", "Golden Grass", 0.5F);
-		goldenStone = new BlockMod("goldenStone", "Golden Stone");
 
 		corbaStone = new BlockMod("corbaStone", "Corba Stone");
 		corbaGrass = new BlockModGrass((BlockMod)null, "corbaGrass", "Corba Grass", 0.5F);
@@ -698,10 +644,7 @@ public class JourneyBlocks {
 
 		eucaPortal = new BlockEucaPortal("eucaPortal");
 		eucaPortalFrame = new BlockMod("eucaPortalFrame", "Euca Portal Frame", 3.0F);
-
-		goldenPortal = new BlockGoldenPortal("goldenPortal");
-		goldenPortalFrame = new BlockMod("goldenPortalFrame", "Golden Portal Frame", 3.0F);
-
+		
 		depthsPortal = new BlockDepthsPortal("depthsPortal");
 		depthsPortalFrame = new BlockMod("depthsPortalFrame", "Depths Portal Frame", 3.0F);
 
