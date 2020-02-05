@@ -55,12 +55,12 @@ public class EntityHellTurtle extends EntityModMob {
 
 	@Override
 	public double setAttackDamage(MobStats s) {
-		return MobStats.baseJourneyDamage;
+		return MobStats.HellTurtleDamage;
 	}
 
 	@Override
 	public double setMaxHealth(MobStats s) {
-		return MobStats.overworldHealth;
+		return MobStats.HellTurtleHealth;
 	}
 
 	@Override

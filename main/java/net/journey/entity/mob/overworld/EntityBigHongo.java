@@ -19,12 +19,12 @@ public class EntityBigHongo extends EntityModMob {
 
 	@Override
 	public double setAttackDamage(MobStats s) {
-		return MobStats.lowJourneyDamage;
+		return MobStats.BigHongoDamage;
 	}
 
 	@Override
 	public double setMaxHealth(MobStats s) {
-		return MobStats.overworldHealth;
+		return MobStats.BigHongoHealth;
 	}
 
 	@Override

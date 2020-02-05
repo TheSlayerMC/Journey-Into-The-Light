@@ -247,12 +247,12 @@ public class EntityJungleSpider extends EntityModMob {
 
 	@Override
 	public double setAttackDamage(MobStats s) {
-		return MobStats.baseJourneyDamage;
+		return MobStats.JungleSpiderDamage;
 	}
 
 	@Override
 	public double setMaxHealth(MobStats s) {
-		return MobStats.overworldHealth;
+		return MobStats.JungleSpiderHealth;
 	}
 
 	@Override

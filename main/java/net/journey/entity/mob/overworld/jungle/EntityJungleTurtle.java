@@ -42,12 +42,12 @@ public class EntityJungleTurtle extends EntityModMob {
 
 	@Override
 	public double setAttackDamage(MobStats s) {
-		return MobStats.baseJourneyDamage;
+		return MobStats.JungleTurtleDamage;
 	}
 
 	@Override
 	public double setMaxHealth(MobStats s) {
-		return MobStats.overworldHealth;
+		return MobStats.JungleTurtleHealth;
 	}
 
 	@Override

@@ -41,12 +41,12 @@ public class EntityWitherspine extends EntityModMob {
 	
 	@Override
 	public double setAttackDamage(MobStats s) {
-		return MobStats.baseJourneyDamage;
+		return MobStats.WitherSpineDamage;
 	}
 
 	@Override
 	public double setMaxHealth(MobStats s) {
-		return MobStats.highNetherHealth;
+		return MobStats.WitherSpineHealth;
 	}
 	
 	@Override

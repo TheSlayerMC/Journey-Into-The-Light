@@ -18,12 +18,12 @@ public class EntityGoldwing extends EntityPeacefullUntillAttacked {
 
 	@Override
 	public double setAttackDamage(MobStats s) {
-		return MobStats.highJourneyDamage;
+		return MobStats.GoldwingDamage;
 	}
 
 	@Override
 	public double setMaxHealth(MobStats s) {
-		return MobStats.eucaHealth;
+		return MobStats.GoldwingHealth;
 	}
 
 	@Override

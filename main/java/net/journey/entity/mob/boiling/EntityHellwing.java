@@ -50,7 +50,7 @@ public class EntityHellwing extends EntityModMob {
 
 	@Override
 	public double setMaxHealth(MobStats s) {
-		return MobStats.flyingHealth;
+		return MobStats.HellwingHealth;
 	}
 	
 	@Override
@@ -539,6 +539,6 @@ public class EntityHellwing extends EntityModMob {
 
 	@Override
 	public double setAttackDamage(MobStats s) {
-		return MobStats.baseJourneyDamage;
+		return MobStats.HellwingDamage;
 	}
 }

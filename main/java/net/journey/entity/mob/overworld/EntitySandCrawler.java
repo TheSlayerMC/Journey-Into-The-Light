@@ -20,12 +20,12 @@ public class EntitySandCrawler extends EntityModMob {
 
 	@Override
 	public double setAttackDamage(MobStats s) {
-		return MobStats.lowJourneyDamage;
+		return MobStats.SandCrawlerDamage;
 	}
 
 	@Override
 	public double setMaxHealth(MobStats s) {
-		return MobStats.overworldHealth;
+		return MobStats.SandCrawlerHealth;
 	}
 
 	@Override

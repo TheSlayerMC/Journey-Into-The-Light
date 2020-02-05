@@ -18,12 +18,12 @@ public class EntityPhoenix extends EntityPeacefullUntillAttacked {
 
 	@Override
 	public double setAttackDamage(MobStats s) {
-		return MobStats.baseJourneyDamage;
+		return MobStats.PhoenixDamage;
 	}
 
 	@Override
 	public double setMaxHealth(MobStats s) {
-		return MobStats.boilHealth;
+		return MobStats.PhoenixHealth;
 	}
 
 	@Override

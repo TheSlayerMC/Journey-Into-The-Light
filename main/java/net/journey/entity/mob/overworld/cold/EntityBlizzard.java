@@ -250,7 +250,7 @@ public class EntityBlizzard extends EntityModMob {
 
 	@Override
 	public double setMaxHealth(MobStats s) {
-		return 60;
+		return s.BlizzardHealth;
 	}
 
 	@Override

@@ -144,12 +144,12 @@ public class EntityObserver extends EntityModMob {
 
 	@Override
 	public double setAttackDamage(MobStats s) {
-		return MobStats.baseJourneyDamage;
+		return MobStats.ObserverDamage;
 	}
 
 	@Override
 	public double setMaxHealth(MobStats s) {
-		return MobStats.boilHealth;
+		return MobStats.ObserverHealth;
 	}
 
 	@Override

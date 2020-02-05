@@ -36,12 +36,12 @@ public class EntityWraith extends EntityModMob {
 
 	@Override
 	public double setAttackDamage(MobStats s) {
-		return MobStats.lowJourneyDamage;
+		return MobStats.WraithDamage;
 	}
 
 	@Override
 	public double setMaxHealth(MobStats s) {
-		return MobStats.overworldHealth;
+		return MobStats.WraithDamage;
 	}
 	
 	@Override

@@ -166,12 +166,12 @@ public class EntityMagmaBlaze extends EntityModMob {
 	
 	@Override
 	public double setAttackDamage(MobStats s) {
-		return MobStats.baseJourneyDamage;
+		return MobStats.MagmaBlazeDamage;
 	}
 
 	@Override
 	public double setMaxHealth(MobStats s) {
-		return MobStats.boilHealth;
+		return MobStats.MagmaBlazeHealth;
 	}
 
 	@Override

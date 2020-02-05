@@ -43,12 +43,12 @@ public class EntityReaper extends EntityModMob {
 	
 	@Override
 	public double setAttackDamage(MobStats s) {
-		return MobStats.highJourneyDamage;
+		return MobStats.ReaperDamage;
 	}
 
 	@Override
 	public double setMaxHealth(MobStats s) {
-		return MobStats.baseNetherHealth;
+		return MobStats.ReaperHealth;
 	}
 
 	@Override

@@ -19,12 +19,12 @@ public class EntityTurducken extends EntityPeacefullUntillAttacked {
 
 	@Override
 	public double setAttackDamage(MobStats s) {
-		return MobStats.lowJourneyDamage;
+		return MobStats.TurduckenDamage;
 	}
 
 	@Override
 	public double setMaxHealth(MobStats s) {
-		return MobStats.overworldHealth;
+		return MobStats.TurduckenHealth;
 	}
 
 	@Override

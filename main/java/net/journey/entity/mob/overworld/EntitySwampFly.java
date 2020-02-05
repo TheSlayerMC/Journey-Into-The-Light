@@ -47,7 +47,7 @@ public class EntitySwampFly extends EntityModFlying {
 
 	@Override
 	public double setMaxHealth(MobStats s) {
-		return MobStats.flyingHealth;
+		return MobStats.SwampFlyHealth;
 	}
 
 	@Override

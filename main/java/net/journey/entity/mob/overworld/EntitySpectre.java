@@ -24,7 +24,7 @@ public class EntitySpectre extends EntityModMob {
 
 	@Override
 	public double setAttackDamage(MobStats s) {
-		return MobStats.lowJourneyDamage;
+		return MobStats.SpectreDamage;
 	}
 	
 	@Override
@@ -80,7 +80,7 @@ public class EntitySpectre extends EntityModMob {
 
 	@Override
 	public double setMaxHealth(MobStats s) {
-		return MobStats.overworldHealth;
+		return MobStats.SpectreHealth;
 	}
 
 	@Override

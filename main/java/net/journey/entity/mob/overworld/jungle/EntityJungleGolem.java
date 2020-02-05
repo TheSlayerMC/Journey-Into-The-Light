@@ -65,12 +65,12 @@ public class EntityJungleGolem extends EntityModMob{
 	
 	@Override
 	public double setAttackDamage(MobStats s) {
-		return MobStats.baseJourneyDamage;
+		return MobStats.JungleGolemDamage;
 	}
 
 	@Override
 	public double setMaxHealth(MobStats s) {
-		return MobStats.overworldHealth;
+		return MobStats.JungleGolemHealth;
 	}
 
 	@Override

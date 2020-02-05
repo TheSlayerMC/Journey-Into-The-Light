@@ -56,29 +56,26 @@ public class EntityHellCow extends EntityPeacefullUntillAttacked {
 	
 	@Override
 	public double setAttackDamage(MobStats s) {
-		return MobStats.baseJourneyDamage;
+		return MobStats.HellCowDamage;
 	}
 
 	@Override
 	public double setMaxHealth(MobStats s) {
-		return MobStats.baseNetherHealth;
+		return MobStats.HellCowHealth;
 	}
 
 	@Override
-    protected SoundEvent getAmbientSound()
-    {
+    protected SoundEvent getAmbientSound() {
         return SoundEvents.ENTITY_COW_AMBIENT;
     }
 
 	@Override
-    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
-    {
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
         return SoundEvents.ENTITY_COW_HURT;
     }
 	
 	@Override
-    protected SoundEvent getDeathSound()
-    {
+    protected SoundEvent getDeathSound() {
         return SoundEvents.ENTITY_COW_DEATH;
     }
 	

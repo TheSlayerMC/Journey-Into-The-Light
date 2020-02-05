@@ -23,12 +23,12 @@ public class EntityStonewalker extends EntityModMob {
 
 	@Override
 	public double setAttackDamage(MobStats s) {
-		return MobStats.lowJourneyDamage;
+		return MobStats.StoneWalkerDamage;
 	}
 
 	@Override
 	public double setMaxHealth(MobStats s) {
-		return MobStats.overworldHealth;
+		return MobStats.StoneWalkerHealth;
 	}
 	
 	@Override

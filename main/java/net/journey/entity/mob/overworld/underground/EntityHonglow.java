@@ -21,23 +21,24 @@ public class EntityHonglow extends EntityModMob {
 		this.setSize(1.0F, 2.0F);
 	}
 	
-    public int getBrightnessForRender(float p_70070_1_)
-    {
-        return 15728880;
+    @Override
+    public float getBrightness() {
+    	return 15728880F;
     }
     
-    public float getBrightness(float p_70013_1_) {
-        return 20.0F;
+    @Override
+    public int getBrightnessForRender() {
+    	return 20;
     }
 
 	@Override
 	public double setAttackDamage(MobStats s) {
-		return MobStats.lowJourneyDamage;
+		return MobStats.HonglowDamage;
 	}
 
 	@Override
 	public double setMaxHealth(MobStats s) {
-		return MobStats.overworldHealth;
+		return MobStats.HonglowHealth;
 	}
 
 	@Override
