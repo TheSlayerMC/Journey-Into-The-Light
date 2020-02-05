@@ -19,7 +19,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class WorldProviderTerrania extends BaseWorldProvider {
 
     public WorldProviderTerrania() {
-        super(new BiomeProviderSingle(DimensionHelper.terrania), new CloudiaSkyRenderer(), new Vec3d(0.6, 0, 1.0));
+        super(new BiomeProviderSingle(DimensionHelper.terrania));
     }
 
     @Override

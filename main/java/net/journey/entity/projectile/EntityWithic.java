@@ -2,8 +2,10 @@ package net.journey.entity.projectile;
 
 import java.util.Random;
 
+import net.journey.JITL;
 import net.journey.client.render.particles.EntityFireballFX;
 import net.journey.client.render.particles.EntityWitherFX;
+import net.journey.enums.EnumParticlesClasses;
 import net.journey.util.PotionEffects;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.entity.EntityLivingBase;
@@ -32,8 +34,7 @@ public class EntityWithic extends EntityBasicProjectile {
 		Random rand = new Random();
 		super.onUpdate();
 		for(int i = 0; i < 20; ++i) {
-			Particle effect = new EntityWitherFX(this.world, this.posX, this.posY - 1, this.posZ, 0.0D, 0.0D, 0.0D);
-			FMLClientHandler.instance().getClient().effectRenderer.addEffect(effect);
+			JITL.proxy.spawnParticle(EnumParticlesClasses.WITHER, this.world, this.posX, this.posY - 1.0F, this.posZ, false);
 		}
 	}
 	

@@ -1,13 +1,11 @@
 package net.journey.dimension.euca;
 
+import java.awt.Color;
+
 import net.journey.JourneyBlocks;
 import net.journey.dimension.BiomeGenJourney;
-import net.journey.dimension.DimensionHelper;
-import net.journey.dimension.euca.gen.trees.WorldGenEucaTree;
-import net.journey.dimension.euca.gen.trees.WorldGenEucaTree2;
-import net.journey.dimension.overworld.gen.WorldGenModFlower;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.biome.Biome;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BiomeGenEuca extends BiomeGenJourney {
 
@@ -26,7 +24,6 @@ public class BiomeGenEuca extends BiomeGenJourney {
 		this.spawnableMonsterList.clear();
 		this.spawnableWaterCreatureList.clear();
 		this.spawnableCaveCreatureList.clear();
-		getSkyColorByTemp(0xffd800);
 		
 		//this.decorator = new BiomeDecoratorEuca();
 		
@@ -34,4 +31,10 @@ public class BiomeGenEuca extends BiomeGenJourney {
        // this.decorator.flowersPerChunk = 0;
        // this.decorator.grassPerChunk = 0;
 	}
+	
+	@Override
+    @SideOnly(Side.CLIENT)
+    public int getSkyColorByTemp(float par1) {
+        return Color.getHSBColor(0.255F, 0.216F, 0.0F).getRGB();
+    }
 }

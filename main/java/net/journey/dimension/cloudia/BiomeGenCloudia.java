@@ -1,5 +1,7 @@
 package net.journey.dimension.cloudia;
 
+import java.awt.Color;
+
 import net.journey.JourneyBlocks;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.relauncher.Side;
@@ -15,12 +17,11 @@ public class BiomeGenCloudia extends Biome {
         this.spawnableMonsterList.clear();
         this.spawnableCaveCreatureList.clear();
         this.spawnableWaterCreatureList.clear();
-        getSkyColorByTemp(0x00FFD0);
 	}
 	
 	@Override
     @SideOnly(Side.CLIENT)
-	public int getSkyColorByTemp(float f) {
-		return 0xFFB3DC;
+    public int getSkyColorByTemp(float par1) {
+        return Color.getHSBColor(0.0F, 0.255F, 0.208F).getRGB();
     }
 }

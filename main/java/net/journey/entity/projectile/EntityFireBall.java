@@ -2,7 +2,9 @@ package net.journey.entity.projectile;
 
 import java.util.Random;
 
+import net.journey.JITL;
 import net.journey.client.render.particles.EntityFireballFX;
+import net.journey.enums.EnumParticlesClasses;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.DamageSource;
@@ -28,8 +30,7 @@ public class EntityFireBall extends EntityBasicProjectile {
 		Random rand = new Random();
 		super.onUpdate();
 		for(int i = 0; i < 20; ++i) {
-			Particle effect = new EntityFireballFX(this.world, this.posX, this.posY - 1, this.posZ, 0.0D, 0.0D, 0.0D);
-			FMLClientHandler.instance().getClient().effectRenderer.addEffect(effect);
+			JITL.proxy.spawnParticle(EnumParticlesClasses.FIRE_BALL, this.world, this.posX, this.posY - 1.0F, this.posZ, false);
 		}
 	}
 	

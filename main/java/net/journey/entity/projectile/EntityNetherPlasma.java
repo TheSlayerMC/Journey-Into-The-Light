@@ -2,9 +2,11 @@ package net.journey.entity.projectile;
 
 import java.util.Random;
 
+import net.journey.JITL;
 import net.journey.client.render.particles.EntityDoomFX;
 import net.journey.client.render.particles.EntityEnlightmentFX;
 import net.journey.client.render.particles.EntityRockFX;
+import net.journey.enums.EnumParticlesClasses;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.potion.Potion;
@@ -32,8 +34,7 @@ public class EntityNetherPlasma extends EntityBasicProjectile {
 		Random rand = new Random();
 		super.onUpdate();
 		for(int i = 0; i < 6; ++i) {
-			Particle effect = new EntityDoomFX(this.world, this.posX, this.posY - 1.0F, this.posZ, 0.0D, 0.0D, 0.0D);
-			FMLClientHandler.instance().getClient().effectRenderer.addEffect(effect);
+			JITL.proxy.spawnParticle(EnumParticlesClasses.DOOM, this.world, this.posX, this.posY - 1.0F, this.posZ, false);
 		}
 	}
 	

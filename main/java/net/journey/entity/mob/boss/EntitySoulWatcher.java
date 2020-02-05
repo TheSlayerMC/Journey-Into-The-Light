@@ -2,6 +2,7 @@ package net.journey.entity.mob.boss;
 
 import java.util.Random;
 
+import net.journey.JITL;
 import net.journey.JourneyArmory;
 import net.journey.JourneyBlocks;
 import net.journey.JourneyItems;
@@ -12,6 +13,7 @@ import net.journey.client.render.particles.EntityHellstoneFX;
 import net.journey.entity.MobStats;
 import net.journey.entity.mob.nether.EntityLavasnake;
 import net.journey.entity.projectile.EntityMagmaFireball;
+import net.journey.enums.EnumParticlesClasses;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.ai.EntityAIBase;
@@ -46,7 +48,7 @@ public class EntitySoulWatcher extends EntityEssenceBoss implements IRangedAttac
 		this.tasks.addTask(7, new EntitySoulWatcher.AILookAround());
 		this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
 		addAttackingAI();
-		setSize(7.0F, 4.0F);
+		setSize(4.0F, 2.0F);
 		spawnTimer = 0;
 	}
 
@@ -277,8 +279,8 @@ public class EntitySoulWatcher extends EntityEssenceBoss implements IRangedAttac
 				this.world.playSound(this.posX + 0.5D, this.posY + 0.5D, this.posZ + 0.5D, SoundEvents.BLOCK_FIRE_AMBIENT, SoundCategory.AMBIENT, 1.0F + this.rand.nextFloat(), this.rand.nextFloat() * 0.7F + 0.3F, false);
             }
 
-            for (int i = 0; i < 2; ++i) {
-            	FMLClientHandler.instance().getClient().effectRenderer.addEffect(new EntityHellstoneFX(world, getPosition().getX() + rand.nextFloat(), getPosition().getY() + 1.2D, getPosition().getZ() + rand.nextFloat(), 0, 0, 0));
+            for (int i = 0; i < 3; ++i) {
+    			JITL.proxy.spawnParticle(EnumParticlesClasses.HELLSTONE, this.world, getPosition().getX() + rand.nextFloat() * 2, getPosition().getY() + 1.2D, getPosition().getZ() + rand.nextFloat() * 2, false);
             }
         }
 

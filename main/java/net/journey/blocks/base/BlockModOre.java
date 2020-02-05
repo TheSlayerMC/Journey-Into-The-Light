@@ -2,6 +2,7 @@ package net.journey.blocks.base;
 
 import java.util.Random;
 
+import net.journey.JITL;
 import net.journey.JourneyBlocks;
 import net.journey.JourneyItems;
 import net.journey.client.render.particles.OreParticleFX;
@@ -113,8 +114,7 @@ public class BlockModOre extends BlockMod {
 			if(l == 4 && !w.getBlockState(pos.east()).isOpaqueCube()) d1 = x + 1 + d0;
 			if(l == 5 && !w.getBlockState(pos.west()).isOpaqueCube()) d1 = x + 0 - d0;
 			if(d1 < x || d1 > x + 1 || d2 < 0.0D || d2 > y + 1 || d3 < z || d3 > z + 1) {
-				OreParticleFX var20 = new OreParticleFX(w, d1, d2, d3, r, g, b);
-				FMLClientHandler.instance().getClient().effectRenderer.addEffect(var20);
+				JITL.proxy.spawnOreParticle(w, d1, d2, d3, r, g, b);
 			}
 		}
 	}
