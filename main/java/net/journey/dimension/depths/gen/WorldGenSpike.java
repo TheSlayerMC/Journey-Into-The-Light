@@ -11,7 +11,7 @@ public class WorldGenSpike {
 	public boolean generate(ChunkPrimer w, Random r, BlockPos p) {
 		int x = p.getX(), y = p.getY(), z = p.getZ();
 		int width = r.nextInt(4) + 3;
-		int height = 70;
+		int height = 30;
 		for(int j = 0; j < height; j++) placeCircle(w, x, j + y, z, Math.abs(((height / 2) - j)) / 5 + width);
 		return true;
 	}
