@@ -49,12 +49,12 @@ public class EntityTreeGolem extends EntityModMob{
 	
 	@Override
 	public double setAttackDamage(MobStats s) {
-		return MobStats.hardJourneyDamage;
+		return MobStats.TreeGolemDamage;
 	}
 
 	@Override
 	public double setMaxHealth(MobStats s) {
-		return MobStats.corbaHealth;
+		return MobStats.TreeGolemHealth;
 	}
 
 	@Override

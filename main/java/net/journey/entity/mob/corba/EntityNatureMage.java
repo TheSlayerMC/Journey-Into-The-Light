@@ -115,7 +115,7 @@ public class EntityNatureMage extends EntityModMob implements IRangedAttackMob {
 
 	@Override
 	public double setMaxHealth(MobStats s) {
-		return MobStats.overworldHealth;
+		return MobStats.NatureMageHealth;
 	}
 
 	@Override

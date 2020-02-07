@@ -23,12 +23,12 @@ public class EntityWoodCreature extends EntityModMob{
 
 	@Override
 	public double setAttackDamage(MobStats s) {
-		return MobStats.hardJourneyDamage;
+		return MobStats.WoodCreatureDamage;
 	}
 
 	@Override
 	public double setMaxHealth(MobStats s) {
-		return MobStats.corbaHealth;
+		return MobStats.WoodCreatureHealth;
 	}
 
 	@Override

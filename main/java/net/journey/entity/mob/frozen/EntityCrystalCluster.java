@@ -39,7 +39,7 @@ public class EntityCrystalCluster extends EntityModFlying {
 
 	@Override
 	public double setMaxHealth(MobStats s) {
-		return MobStats.flyingHealth;
+		return MobStats.CrystalClusterHealth;
 	}
 	
 	@Override

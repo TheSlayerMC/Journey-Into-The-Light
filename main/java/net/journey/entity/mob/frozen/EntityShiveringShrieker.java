@@ -17,12 +17,12 @@ public class EntityShiveringShrieker extends EntityModMob {
 
 	@Override
 	public double setAttackDamage(MobStats s) {
-		return MobStats.baseJourneyDamage;
+		return MobStats.ShiveringShriekerDamage;
 	}
 
 	@Override
 	public double setMaxHealth(MobStats s) {
-		return MobStats.frozenHealth;
+		return MobStats.ShiveringShriekerHealth;
 	}
 
 	@Override

@@ -18,12 +18,12 @@ public class EntityStarlightWalker extends EntityModMob {
 	
 	@Override
 	public double setAttackDamage(MobStats s) {
-		return MobStats.veryHardJourneyDamage;
+		return MobStats.StarlightWalkerDamage;
 	}
 
 	@Override
 	public double setMaxHealth(MobStats s) {
-		return MobStats.cloudiaHealth;
+		return MobStats.StarlightWalkerHealth;
 	}
 
 	@Override

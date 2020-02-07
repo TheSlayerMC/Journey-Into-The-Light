@@ -70,8 +70,58 @@ public class MobStats {
 	public static double ShimmerHealth = 0.0D;
 	public static double SilverbotHealth = 0.0D, SilverbotDamage = 0.0D;
 
+	//Frozen
+	public static double CrystalClusterHealth = 0.0D, CrystalClusterDamage = 0.0D;
+	public static double FrozenFrostbiterHealth = 0.0D, FrozenFrostbiterDamage = 0.0D;
+	public static double FrozenTrollHealth = 0.0D, FrozenTrollDamage = 0.0D;
+	public static double PermafraustHealth = 0.0D, PermafraustDamage = 0.0D;
+	public static double ShattererHealth = 0.0D, ShattererDamage = 0.0D;
+	public static double ShiveringBushwalkerHealth = 0.0D, ShiveringBushwalkerDamage = 0.0D;
+	public static double ShiveringShriekerHealth = 0.0D, ShiveringShriekerDamage = 0.0D;
+	public static double ShiverwingHealth = 0.0D, ShiverwingDamage = 0.0D;
 	
+	//Depths
+	public static double DarkenerHealth = 0.0D, DarkenerDamage = 0.0D;
+	public static double DarkfishHealth = 0.0D, DarkfishDamage = 0.0D;
+	public static double DarknessCrawlerHealth = 0.0D, DarknessCrawlerDamage = 0.0D;
+	public static double DarkSorcererHealth = 0.0D, DarkSorcererDamage = 0.0D;
+	public static double DepthsBeastHealth = 0.0D, DepthsBeastDamage = 0.0D;
+	public static double DepthsHunterHealth = 0.0D, DepthsHunterDamage = 0.0D;
+	public static double LightenerHealth = 0.0D, LightenerDamage = 0.0D;
+	public static double RocHealth = 0.0D, RocDamage = 0.0D;
+	public static double SpikedBeastHealth = 0.0D, SpikedBeastDamage = 0.0D;
+	
+	//Corba
+	public static double LeafBlowerHealth = 0.0D, LeafBlowerDamage = 0.0D;
+	public static double NatureMageHealth = 0.0D, NatureMageDamage = 0.0D;
+	public static double OverseerHealth = 0.0D, OverseerDamage = 0.0D;
+	public static double OverseerElderHealth = 0.0D, OverseerElderDamage = 0.0D;
+	public static double SurfaceSeerHealth = 0.0D, SurfaceSeerDamage = 0.0D;
+	public static double TreeGolemHealth = 0.0D, TreeGolemDamage = 0.0D;
+	public static double WoodCreatureHealth = 0.0D, WoodCreatureDamage = 0.0D;
+	public static double WoodpeckerHealth = 0.0D, WoodpeckerDamage = 0.0D;
+	
+	//Terrania
+	public static double PurplianHealth = 0.0D, PurplianDamage = 0.0D;
+	public static double TerragrowHealth = 0.0D, TerragrowDamage = 0.0D;
+	public static double TerralightHealth = 0.0D, TerralightDamage = 0.0D;
+	public static double TerraScattererHealth = 0.0D, TerraScattererDamage = 0.0D;
+	public static double TerrashroomHealth = 0.0D, TerrashroomDamage = 0.0D;
+	public static double TerraslugHealth = 0.0D, TerraslugDamage = 0.0D;
+	
+	//Cloudia
+	public static double CloudFlyerHealth = 0.0D, CloudFlyerDamage = 0.0D;
+	public static double CloudGhostHealth = 0.0D, CloudGhostDamage = 0.0D;
+	public static double SkyEelHealth = 0.0D, SkyEelDamage = 0.0D;
+	public static double StarlightGolemHealth = 0.0D, StarlightGolemDamage = 0.0D;
+	public static double StarlightTransporterHealth = 0.0D, StarlightTransporterDamage = 0.0D;
+	public static double StarlightWalkerHealth = 0.0D, StarlightWalkerDamage = 0.0D;
+	
+	//Misc
 	public static double Health = 0.0D, Damage = 0.0D;
+	public static double EucaHopperHealth = 0.0D, EucaHopperDamage = 0.0D;
+	public static double EucaHopperTameHealth = 0.0D, EucaHopperTameDamage = 0.0D;
+	public static double TameRocHealth = 0.0D, TameRocDamage = 0.0D;
 
 	//Boss
 	public static double soulWatcherHealth = 700.0D, soulWatcherDamage = 10.0D, soulWatcherSpeed = normalSpeed, soulWatcherFollowRange = follow;

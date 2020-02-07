@@ -17,12 +17,12 @@ public class EntityShiverwing extends EntityPeacefullUntillAttacked {
 
 	@Override
 	public double setAttackDamage(MobStats s) {
-		return MobStats.baseJourneyDamage;
+		return MobStats.ShiverwingDamage;
 	}
 
 	@Override
 	public double setMaxHealth(MobStats s) {
-		return MobStats.frozenHealth;
+		return MobStats.ShiverwingHealth;
 	}
 
 	@Override

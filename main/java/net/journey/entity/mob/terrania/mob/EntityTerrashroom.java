@@ -19,12 +19,12 @@ public class EntityTerrashroom extends EntityModMob {
 	
 	@Override
 	public double setAttackDamage(MobStats s) {
-		return MobStats.baseJourneyDamage;
+		return MobStats.TerrashroomDamage;
 	}
 
 	@Override
 	public double setMaxHealth(MobStats s) {
-		return MobStats.terraniaHealth;
+		return MobStats.TerrashroomHealth;
 	}
 
 	@Override

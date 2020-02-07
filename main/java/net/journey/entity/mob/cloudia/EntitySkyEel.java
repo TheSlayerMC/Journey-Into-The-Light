@@ -416,7 +416,7 @@ public class EntitySkyEel extends EntityModFlying {
 
 	@Override
 	public double setMaxHealth(MobStats s) {
-		return s.flyingHealth;
+		return s.SkyEelHealth;
 	}
 
 }

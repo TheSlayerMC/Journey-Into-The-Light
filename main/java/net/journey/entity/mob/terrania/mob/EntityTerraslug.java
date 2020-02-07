@@ -13,17 +13,17 @@ public class EntityTerraslug extends EntityModMob {
 	public EntityTerraslug(World par1World) {
 		super(par1World);
 		addAttackingAI();
-		setSize(0.1F, 0.1F);
+		setSize(0.25F, 0.25F);
 	}
 
 	@Override
 	public double setAttackDamage(MobStats s) {
-		return MobStats.baseJourneyDamage;
+		return MobStats.TerraslugDamage;
 	}
 
 	@Override
 	public double setMaxHealth(MobStats s) {
-		return MobStats.terraniaHealth;
+		return MobStats.TerraslugHealth;
 	}
 	
 	@Override

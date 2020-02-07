@@ -17,12 +17,12 @@ public class EntityTerraScatterer extends EntityModMob {
 
 	@Override
 	public double setAttackDamage(MobStats s) {
-		return MobStats.baseJourneyDamage;
+		return MobStats.TerraScattererDamage;
 	}
 
 	@Override
 	public double setMaxHealth(MobStats s) {
-		return MobStats.terraniaHealth;
+		return MobStats.TerraScattererHealth;
 	}
 
 	@Override

@@ -414,7 +414,7 @@ public class EntitySurfaceSeer extends EntityModFlying {
 
 	@Override
 	public double setMaxHealth(MobStats s) {
-		return s.flyingHealth;
+		return s.SurfaceSeerHealth;
 	}
 
 }

@@ -17,12 +17,12 @@ public class EntityPermafraust extends EntityModMob {
 	
 	@Override
 	public double setAttackDamage(MobStats s) {
-		return MobStats.baseJourneyDamage;
+		return MobStats.PermafraustDamage;
 	}
 
 	@Override
 	public double setMaxHealth(MobStats s) {
-		return MobStats.frozenHealth;
+		return MobStats.PermafraustHealth;
 	}
 
 	@Override

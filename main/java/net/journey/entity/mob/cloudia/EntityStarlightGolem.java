@@ -21,12 +21,12 @@ public class EntityStarlightGolem extends EntityModMob {
 
 	@Override
 	public double setAttackDamage(MobStats s) {
-		return MobStats.veryHardJourneyDamage;
+		return MobStats.StarlightGolemDamage;
 	}
 
 	@Override
 	public double setMaxHealth(MobStats s) {
-		return MobStats.cloudiaHealth;
+		return MobStats.StarlightGolemHealth;
 	}
 
 	@Override

@@ -17,12 +17,12 @@ public class EntityStarlightTransporter extends EntityPeacefullUntillAttacked {
 
 	@Override
 	public double setAttackDamage(MobStats s) {
-		return MobStats.hardestJourneyDamage;
+		return MobStats.StarlightTransporterDamage;
 	}
 
 	@Override
 	public double setMaxHealth(MobStats s) {
-		return MobStats.cloudiaHealth;
+		return MobStats.StarlightTransporterHealth;
 	}
 
 	@Override
