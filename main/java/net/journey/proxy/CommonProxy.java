@@ -23,6 +23,7 @@ import net.journey.enums.EnumParticlesClasses;
 import net.journey.event.ArmorAbilityEvent;
 import net.journey.event.NetherEvent;
 import net.journey.event.PlayerEvent;
+import net.journey.event.VanillaFixEvent;
 import net.journey.misc.JourneyCommands;
 import net.journey.util.Config;
 import net.journey.util.EntityRegistry;
@@ -80,6 +81,7 @@ public class CommonProxy {
 		SlayerAPI.registerEvent(new ArmorAbilityEvent());
 		SlayerAPI.registerEvent(new PlayerEvent());
 		SlayerAPI.registerEvent(new JourneyFuelHandler());
+		SlayerAPI.registerEvent(new VanillaFixEvent());
 		MinecraftForge.addGrassSeed(new ItemStack(JourneyCrops.tomatoSeeds), 5);
 		//FMLCommonHandler.instance().bus().register(new JourneyAdvancementEvent());
 		DimensionHelper.init();
