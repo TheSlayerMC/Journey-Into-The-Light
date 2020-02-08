@@ -30,9 +30,6 @@ public class BlockMod extends Block {
 	protected EnumMaterialTypes blockType;
 	protected Item drop = null;
 	protected Random rand;
-	public int boostBrightnessLow;
-	public int boostBrightnessHigh;
-	public boolean enhanceBrightness;
 	public String name;
 	protected boolean isOpaque = true, isNormalCube = true;
 	
@@ -119,22 +116,12 @@ public class BlockMod extends Block {
     @Override
 	@SideOnly(Side.CLIENT) 
 	public BlockRenderLayer getBlockLayer() {
-		return BlockRenderLayer.CUTOUT;
+		return BlockRenderLayer.SOLID;
 	}
 
 	@Override
 	public int quantityDropped(Random rand) {
 		return 1;
-	}
-	
-	@Override
-	public boolean isOpaqueCube(IBlockState state) {
-		return isOpaque;
-	}
-	
-	@Override
-	public boolean isNormalCube(IBlockState state, IBlockAccess world, BlockPos pos) {
-		return isNormalCube;
 	}
 
 	@Override

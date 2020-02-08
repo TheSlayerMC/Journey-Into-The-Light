@@ -73,6 +73,7 @@ public class ChunkProviderDepths implements IChunkGenerator {
     private WorldGenPlant1 plant1 = new WorldGenPlant1(true);
     private WorldGenMinable flairum = new WorldGenMinable(JourneyBlocks.flairiumOre.getDefaultState(), 8, BlockStateMatcher.forBlock(JourneyBlocks.depthsStone));
     private WorldGenMinable des = new WorldGenMinable(JourneyBlocks.desOre.getDefaultState(), 8, BlockStateMatcher.forBlock(JourneyBlocks.depthsStone));
+    private WorldGenMinable floorgems = new WorldGenMinable(JourneyBlocks.depthsLights.getDefaultState(), 40, BlockStateMatcher.forBlock(JourneyBlocks.depthsGrass));
 
     public ChunkProviderDepths(World worldIn, long s) {
         this.stoneNoise = new double[256];
@@ -317,6 +318,10 @@ public class ChunkProviderDepths implements IChunkGenerator {
         for (i = 0; i < 25; i++) {
             flairum.generate(worldObj, rand, new BlockPos(x1, rand.nextInt(250), z1));
             des.generate(worldObj, rand, new BlockPos(x1, rand.nextInt(250), z1));
+        }
+        
+        for(i = 0; i < 20; i++) {
+            floorgems.generate(worldObj, rand, new BlockPos(x1, rand.nextInt(250), z1));
         }
 
         for (i = 0; i < 15; i++) {
