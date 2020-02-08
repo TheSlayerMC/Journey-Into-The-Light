@@ -134,7 +134,7 @@ public class BlockMod extends Block {
 	
 	@Override
 	public boolean isNormalCube(IBlockState state, IBlockAccess world, BlockPos pos) {
-		return false;
+		return isNormalCube;
 	}
 
 	@Override

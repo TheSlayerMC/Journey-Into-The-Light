@@ -67,6 +67,7 @@ public class WorldGenJourney implements IWorldGenerator {
     private final static LazyLoadBase<WorldGenMinable> celestium;
     private final static LazyLoadBase<WorldGenMinable> flairium;
     private final static LazyLoadBase<WorldGenMinable> ashual;
+    private final static LazyLoadBase<WorldGenMinable> blazium;
     private final static LazyLoadBase<WorldGenMinable> gorbite;
     private final static LazyLoadBase<WorldGenMinable> orbaditeOre;
     private final static LazyLoadBase<WorldGenMinable> depthsLights;
@@ -94,6 +95,7 @@ public class WorldGenJourney implements IWorldGenerator {
         celestium = create(JourneyBlocks.celestiumOre, 10, JourneyBlocks.eucaStone);
         flairium = create(JourneyBlocks.flairiumOre, 8, JourneyBlocks.depthsStone);
         ashual = create(JourneyBlocks.ashualOre, 7, JourneyBlocks.ashBlock);
+        blazium = create(JourneyBlocks.blaziumOre, 6, JourneyBlocks.ashBlock);
         depthsLights = create(JourneyBlocks.depthsLights, 25, JourneyBlocks.depthsGrass);
         depthsLightsForStone = create(JourneyBlocks.depthsLights, 25, JourneyBlocks.depthsStone);
         gorbite = create(JourneyBlocks.gorbiteOre, 6, JourneyBlocks.depthsStone);
@@ -448,12 +450,12 @@ public class WorldGenJourney implements IWorldGenerator {
             z = chunkZ + r.nextInt(16);
             worldMinableGenVanilla(JourneyBlocks.sapphireOre, 5, w, x, y, z);
         }
-		/*for(times = 0; times < 5; times++) {
+		for(times = 0; times < 5; times++) {
 			y = r.nextInt(16); 
 			x = chunkX + r.nextInt(16); 
 			z = chunkZ + r.nextInt(16);
 			worldMinableGenVanilla(JourneyBlocks.iridiumOre, 4, w, x, y, z);
-		}*/
+		}
 
 		/*if (biome == Biomes.JUNGLE) {
 			for(times = 0; times < 7; times++) {
@@ -631,9 +633,13 @@ public class WorldGenJourney implements IWorldGenerator {
 
     private void generateBoilingPoint(World w, Random r, int chunkX, int chunkZ) {
         int i = 0;
-        //if(rand.nextInt(4) == 0) GenerationHelper.generateJourneyDimensions(4, w, chunkX, chunkZ);
+        BlockPos chunkStart = new BlockPos(chunkX, 0, chunkZ);
+        BlockPos randomPosForMinable = chunkStart.add(r.nextInt(16), r.nextInt(w.getHeight()), r.nextInt(16));
+
+        if(r.nextInt(4) == 0) WorldGenJourney.generateJourneyDimensions(4, w, chunkX, chunkZ);
         for (i = 0; i < 50; i++) WorldGenJourney.generateJourneyDimensions(5, w, chunkX, chunkZ);
-        for (i = 0; i < 40; i++) WorldGenJourney.generateJourneyDimensions(3, w, chunkX, chunkZ);
+        for (i = 0; i < 10; i++) blazium.getValue().generate(w, r, randomPosForMinable);
+        for (i = 0; i < 10; i++) ashual.getValue().generate(w, r, randomPosForMinable);
     }
 
     private void generateDepths(World w, Random r, int chunkX, int chunkZ) {

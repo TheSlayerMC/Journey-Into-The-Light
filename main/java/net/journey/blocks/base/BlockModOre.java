@@ -95,11 +95,11 @@ public class BlockModOre extends BlockMod {
 			b = 0.8F;
 		}
 		
-		/*if(this == JourneyBlocks.iridiumOre || this == JourneyBlocks.iridiumBlock) {
+		if(this == JourneyBlocks.iridiumOre || this == JourneyBlocks.iridiumBlock) {
 			r = 0.55F;
 			g = 0.7F;
 			b = 0.2F;
-		}*/
+		}
 		
 		Random random = w.rand;
 		double d0 = 0.0625D;
@@ -146,7 +146,7 @@ public class BlockModOre extends BlockMod {
 		if(this == JourneyBlocks.gorbiteOre) return JourneyItems.gorbiteGem;
 		if(this == JourneyBlocks.luniteOre) return JourneyItems.luniteChunk;
 		if(this == JourneyBlocks.firestoneOre) return JourneyItems.firestoneClump;
-		//if(this == JourneyBlocks.iridiumOre) return JourneyItems.iridium;
+		if(this == JourneyBlocks.iridiumOre) return JourneyItems.iridium;
 		return Item.getItemFromBlock(this);
 	}
 }

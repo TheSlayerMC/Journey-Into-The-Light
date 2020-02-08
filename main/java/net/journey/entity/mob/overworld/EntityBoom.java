@@ -7,7 +7,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAIRestrictSun;
 import net.minecraft.entity.effect.EntityLightningBolt;
-import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -32,9 +31,9 @@ import net.slayer.api.entity.EntityModMob;
 public class EntityBoom extends EntityModMob {
 
 	private int fuseTime = 40, lastActiveTime, timeSinceIgnited, explosionRadius = 4;
-	private static final DataParameter<Integer> STATE = EntityDataManager.<Integer>createKey(EntityCreeper.class, DataSerializers.VARINT);
-    private static final DataParameter<Boolean> POWERED = EntityDataManager.<Boolean>createKey(EntityCreeper.class, DataSerializers.BOOLEAN);
-    private static final DataParameter<Boolean> IGNITED = EntityDataManager.<Boolean>createKey(EntityCreeper.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Integer> STATE = EntityDataManager.<Integer>createKey(EntityBoom.class, DataSerializers.VARINT);
+    private static final DataParameter<Boolean> POWERED = EntityDataManager.<Boolean>createKey(EntityBoom.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Boolean> IGNITED = EntityDataManager.<Boolean>createKey(EntityBoom.class, DataSerializers.BOOLEAN);
     
 	public EntityBoom(World par1World) {
 		super(par1World);

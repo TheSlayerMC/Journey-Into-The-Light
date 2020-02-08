@@ -451,7 +451,7 @@ public class JourneyBlocks {
 		lavaRock = new BlockMod("lavaRock", "Lava Rock").setHarvestLevel(EnumToolType.DIAMOND_PICK);
 		shadiumOre = new BlockModOre("shadiumOre", "Shadium Ore", false).setHarvestLevel(EnumToolType.DIAMOND_PICK);
 		luniumOre = new BlockModOre("luniumOre", "Lunium Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
-		hellstoneOre = new BlockModOre("hellstoneOre", "Bloodcrust Ore", false).setHarvestLevel(EnumToolType.DIAMOND_PICK);
+		hellstoneOre = new BlockModOre("hellstoneOre", "Hellstone Ore", false).setHarvestLevel(EnumToolType.DIAMOND_PICK);
 		ashualOre = new BlockModOre("ashualOre", "Ashual Ore", false);
 		blaziumOre = new BlockModOre("blaziumOre", "Blazium Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
 		celestiumOre = new BlockModOre("celestiumOre", "Celestium Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
