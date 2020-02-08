@@ -118,6 +118,16 @@ public class BlockMod extends Block {
 	public BlockRenderLayer getBlockLayer() {
 		return BlockRenderLayer.SOLID;
 	}
+    
+    @Override
+    public boolean isOpaqueCube(IBlockState state) {
+    	return true;
+    }
+    
+    @Override
+    public boolean isNormalCube(IBlockState state) {
+    	return true;
+    }
 
 	@Override
 	public int quantityDropped(Random rand) {
