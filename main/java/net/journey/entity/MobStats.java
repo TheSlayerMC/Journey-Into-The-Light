@@ -5,123 +5,122 @@ public class MobStats {
 	public static double normalSpeed = 0.26D, follow = 26D, knockBackResistance = 0.0D;
 	
 	//Overworld
-	public static double BigHongoHealth = 20.0D, BigHongoDamage = 7.25D;
-	public static double BoomHealth = 0.0D;
-	public static double DunewormHealth = 0.0D, DunewormDamage = 0.0D;
-	public static double FireMageHealth = 0.0D;
-	public static double FloroHealth = 0.0D, FloroDamage = 0.0D;
-	public static double IceMageHealth = 0.0D;
-	public static double MediumHongoHealth = 0.0D, MediumHongoDamage = 0.0D;
-	public static double RobotHealth = 0.0D, RobotDamage = 0.0D;
-	public static double SandCrawlerHealth = 0.0D, SandCrawlerDamage = 0.0D;
-	public static double SmallHongoHealth = 0.0D, SmallHongoDamage = 0.0D;
-	public static double SpectreHealth = 0.0D, SpectreDamage = 0.0D;
-	public static double SpyclopseHealth = 0.0D, SpyclopseDamage = 0.0D;
-	public static double SwampFlyHealth = 0.0D;
-	public static double TurduckenHealth = 0.0D, TurduckenDamage = 0.0D;
-	public static double WraithHealth = 0.0D, WraithDamage = 0.0D;
-	public static double BlizzardHealth = 0.0D;
-	public static double JungleGolemHealth = 0.0D, JungleGolemDamage = 0.0D;
-	public static double JungleTurtleHealth = 0.0D, JungleTurtleDamage = 0.0D;
-	public static double JungleSpiderHealth = 0.0D, JungleSpiderDamage = 0.0D;
-	public static double BlueHonglowHealth = 0.0D, BlueHonglowDamage = 0.0D;
-	public static double CavelingHealth = 0.0D, CavelingDamage = 0.0D;
-	public static double CaveMageHealth = 0.0D;
-	public static double CavurnHealth = 0.0D;
-	public static double GreenHonglowHealth = 0.0D, GreenHonglowDamage = 0.0D;
-	public static double HonglowHealth = 0.0D, HonglowDamage = 0.0D;
-	public static double StoneWalkerHealth = 0.0D, StoneWalkerDamage = 0.0D;
+	public static double BigHongoHealth = 40.0D, BigHongoDamage = 8.25D;
+	public static double BoomHealth = 20.0D;
+	public static double DunewormHealth = 25.0D, DunewormDamage = 6.0D;
+	public static double FireMageHealth = 25.0D;
+	public static double FloroHealth = 25.0D, FloroDamage = 5.0D;
+	public static double IceMageHealth = 25.0D;
+	public static double MediumHongoHealth = 30.0D, MediumHongoDamage = 5.0D;
+	public static double RobotHealth = 20.0D, RobotDamage = 4.0D;
+	public static double SandCrawlerHealth = 20.0D, SandCrawlerDamage = 4.0D;
+	public static double SmallHongoHealth = 20.0D, SmallHongoDamage = 3.0D;
+	public static double SpectreHealth = 25.0D, SpectreDamage = 4.0D;
+	public static double SpyclopseHealth = 30.0D, SpyclopseDamage = 3.0D;
+	public static double SwampFlyHealth = 10.0D;
+	public static double TurduckenHealth = 20.0D, TurduckenDamage = 5.0D;
+	public static double WraithHealth = 30.0D, WraithDamage = 6.0D;
+	public static double BlizzardHealth = 20.0D;
+	public static double JungleGolemHealth = 25.0D, JungleGolemDamage = 4.0D;
+	public static double JungleTurtleHealth = 30.0D, JungleTurtleDamage = 4.0D;
+	public static double JungleSpiderHealth = 18.0D, JungleSpiderDamage = 4.0D;
+	public static double BlueHonglowHealth = 20.0D, BlueHonglowDamage = 4.0D;
+	public static double CavelingHealth = 25.0D, CavelingDamage = 4.0D;
+	public static double CaveMageHealth = 30.0D;
+	public static double CavurnHealth = 30.0D;
+	public static double GreenHonglowHealth = 20.0D, GreenHonglowDamage = 4.0D;
+	public static double HonglowHealth = 20.0D, HonglowDamage = 4.0D;
+	public static double StoneWalkerHealth = 30.0D, StoneWalkerDamage = 3.0D;
 	
 	//Nether
-	public static double HellbotHealth = 0.0D, HellbotDamage = 0.0D;
-	public static double HellCowHealth = 0.0D, HellCowDamage = 0.0D;
-	public static double HellTurtleHealth = 0.0D, HellTurtleDamage = 0.0D;
-	public static double InfernoBlazeHealth = 0.0D, InfernoBlazeDamage = 0.0D;
-	public static double LavaSnakeHealth = 0.0D;
-	public static double MiniGhastHealth = 0.0D;
-	public static double ReaperHealth = 0.0D, ReaperDamage = 0.0D;
-	public static double WitherSpineHealth = 0.0D, WitherSpineDamage = 0.0D;
+	public static double HellbotHealth = 30.0D, HellbotDamage = 8.0D;
+	public static double HellCowHealth = 35.0D, HellCowDamage = 7.0D;
+	public static double HellTurtleHealth = 40.0D, HellTurtleDamage = 7.0D;
+	public static double InfernoBlazeHealth = 30.0D, InfernoBlazeDamage = 8.0D;
+	public static double LavaSnakeHealth = 30.0D;
+	public static double MiniGhastHealth = 20.0D;
+	public static double ReaperHealth = 35.0D, ReaperDamage = 7.0D;
+	public static double WitherSpineHealth = 40.0D, WitherSpineDamage = 8.0D;
 
 	//End
-	public static double EnderCrawlerHealth = 0.0D, EnderCrawlerDamage = 0.0D;
-	public static double EnderLeaperHealth = 0.0D, EnderLeaperDamage = 0.0D;
+	public static double EnderCrawlerHealth = 40.0D, EnderCrawlerDamage = 7.0D;
+	public static double EnderLeaperHealth = 40.0D, EnderLeaperDamage = 6.0D;
 	
 	//Boiling
-	public static double BurningLightHealth = 0.0D, BurningLightDamage = 0.0D;
-	public static double ExposedFlameHealth = 0.0D, ExposedFlameDamage = 0.0D;
-	public static double FrightenerHealth = 0.0D, FrightenerDamage = 0.0D;
-	public static double HellwingHealth = 0.0D, HellwingDamage = 0.0D;
-	public static double MagmaBlazeHealth = 0.0D, MagmaBlazeDamage = 0.0D;
-	public static double MagmaGiantHealth = 0.0D, MagmaGiantDamage = 0.0D;
-	public static double ObserverHealth = 0.0D, ObserverDamage = 0.0D;
-	public static double PhoenixHealth = 0.0D, PhoenixDamage = 0.0D;
-	public static double ScreamerHealth = 0.0D, ScreamerDamage = 0.0D;
+	public static double BurningLightHealth = 45.0D, BurningLightDamage = 8.0D;
+	public static double ExposedFlameHealth = 45.0D, ExposedFlameDamage = 9.0D;
+	public static double FrightenerHealth = 40.0D, FrightenerDamage = 9.0D;
+	public static double HellwingHealth = 40.0D, HellwingDamage = 8.0D;
+	public static double MagmaBlazeHealth = 40.0D, MagmaBlazeDamage = 8.0D;
+	public static double MagmaGiantHealth = 50.0D, MagmaGiantDamage = 10.0D;
+	public static double ObserverHealth = 58.0D, ObserverDamage = 8.0D;
+	public static double PhoenixHealth = 46.0D, PhoenixDamage = 8.0D;
+	public static double ScreamerHealth = 48.0D, ScreamerDamage = 9.0D;
 	
 	//Euca
-	public static double DynasterHealth = 0.0D, DynasterDamage = 0.0D;
-	public static double EucaChargerHealth = 0.0D, EucaChargerDamage = 0.0D;
-	public static double EucaFighterHealth = 0.0D, EucaFighterDamage = 0.0D;
-	public static double GoldbotHealth = 0.0D, GoldbotDamage = 0.0D;
-	public static double GolderHealth = 0.0D, GolderDamage = 0.0D;
-	public static double GolditeMageHealth = 0.0D;
-	public static double GoldwingHealth = 0.0D, GoldwingDamage = 0.0D;
-	public static double InsectoHealth = 0.0D, InsectoDamage = 0.0D;
-	public static double PsyollomHealth = 0.0D, PsyollomDamage = 0.0D;
-	public static double ShimmerHealth = 0.0D;
-	public static double SilverbotHealth = 0.0D, SilverbotDamage = 0.0D;
+	public static double DynasterHealth = 46.0D, DynasterDamage = 7.0D;
+	public static double EucaChargerHealth = 44.0D, EucaChargerDamage = 8.0D;
+	public static double EucaFighterHealth = 46.0D, EucaFighterDamage = 8.0D;
+	public static double GoldbotHealth = 30.0D, GoldbotDamage = 7.0D;
+	public static double GolderHealth = 45.0D, GolderDamage = 8.0D;
+	public static double GolditeMageHealth = 40.0D;
+	public static double GoldwingHealth = 45.0D, GoldwingDamage = 7.0D;
+	public static double InsectoHealth = 42.0D, InsectoDamage = 9.0D;
+	public static double PsyollomHealth = 44.0D, PsyollomDamage = 10.0D;
+	public static double ShimmerHealth = 46.0D;
+	public static double SilverbotHealth = 30.0D, SilverbotDamage = 7.0D;
 
 	//Frozen
-	public static double CrystalClusterHealth = 0.0D, CrystalClusterDamage = 0.0D;
-	public static double FrozenFrostbiterHealth = 0.0D, FrozenFrostbiterDamage = 0.0D;
-	public static double FrozenTrollHealth = 0.0D, FrozenTrollDamage = 0.0D;
-	public static double PermafraustHealth = 0.0D, PermafraustDamage = 0.0D;
-	public static double ShattererHealth = 0.0D, ShattererDamage = 0.0D;
-	public static double ShiveringBushwalkerHealth = 0.0D, ShiveringBushwalkerDamage = 0.0D;
-	public static double ShiveringShriekerHealth = 0.0D, ShiveringShriekerDamage = 0.0D;
-	public static double ShiverwingHealth = 0.0D, ShiverwingDamage = 0.0D;
+	public static double CrystalClusterHealth = 44.0D, CrystalClusterDamage = 7.0D;
+	public static double FrozenFrostbiterHealth = 45.0D, FrozenFrostbiterDamage = 8.0D;
+	public static double FrozenTrollHealth = 42.0D, FrozenTrollDamage = 10.0D;
+	public static double PermafraustHealth = 44.0D, PermafraustDamage = 10.0D;
+	public static double ShattererHealth = 45.0D, ShattererDamage = 9.0D;
+	public static double ShiveringBushwalkerHealth = 42.0D, ShiveringBushwalkerDamage = 9.0D;
+	public static double ShiveringShriekerHealth = 40.0D, ShiveringShriekerDamage = 8.0D;
+	public static double ShiverwingHealth = 40.0D, ShiverwingDamage = 8.0D;
 	
 	//Depths
-	public static double DarkenerHealth = 0.0D, DarkenerDamage = 0.0D;
-	public static double DarkfishHealth = 0.0D, DarkfishDamage = 0.0D;
-	public static double DarknessCrawlerHealth = 0.0D, DarknessCrawlerDamage = 0.0D;
-	public static double DarkSorcererHealth = 0.0D, DarkSorcererDamage = 0.0D;
-	public static double DepthsBeastHealth = 0.0D, DepthsBeastDamage = 0.0D;
-	public static double DepthsHunterHealth = 0.0D, DepthsHunterDamage = 0.0D;
-	public static double LightenerHealth = 0.0D, LightenerDamage = 0.0D;
-	public static double RocHealth = 0.0D, RocDamage = 0.0D;
-	public static double SpikedBeastHealth = 0.0D, SpikedBeastDamage = 0.0D;
+	public static double DarkenerHealth = 55.0D, DarkenerDamage = 11.0D;
+	public static double DarkfishHealth = 55.0D, DarkfishDamage = 10.0D;
+	public static double DarknessCrawlerHealth = 58.0D, DarknessCrawlerDamage = 11.0D;
+	public static double DarkSorcererHealth = 50.0D;
+	public static double DepthsBeastHealth = 60.0D, DepthsBeastDamage = 15.0D;
+	public static double DepthsHunterHealth = 58.0D, DepthsHunterDamage = 13.0D;
+	public static double LightenerHealth = 50.0D, LightenerDamage = 10.0D;
+	public static double RocHealth = 55.0D, RocDamage = 10.0D;
+	public static double SpikedBeastHealth = 55.0D, SpikedBeastDamage = 11.0D;
 	
 	//Corba
-	public static double LeafBlowerHealth = 0.0D, LeafBlowerDamage = 0.0D;
-	public static double NatureMageHealth = 0.0D, NatureMageDamage = 0.0D;
-	public static double OverseerHealth = 0.0D, OverseerDamage = 0.0D;
-	public static double OverseerElderHealth = 0.0D, OverseerElderDamage = 0.0D;
-	public static double SurfaceSeerHealth = 0.0D, SurfaceSeerDamage = 0.0D;
-	public static double TreeGolemHealth = 0.0D, TreeGolemDamage = 0.0D;
-	public static double WoodCreatureHealth = 0.0D, WoodCreatureDamage = 0.0D;
-	public static double WoodpeckerHealth = 0.0D, WoodpeckerDamage = 0.0D;
+	public static double LeafBlowerHealth = 65.0D, LeafBlowerDamage = 13.0D;
+	public static double NatureMageHealth = 60.0D, NatureMageDamage = 13.0D;
+	public static double OverseerHealth = 62.0D, OverseerDamage = 14.0D;
+	public static double OverseerElderHealth = 68.0D, OverseerElderDamage = 16.0D;
+	public static double SurfaceSeerHealth = 65.0D, SurfaceSeerDamage = 15.0D;
+	public static double TreeGolemHealth = 62.0D, TreeGolemDamage = 14.0D;
+	public static double WoodCreatureHealth = 62.0D, WoodCreatureDamage = 12.0D;
+	public static double WoodpeckerHealth = 60.0D, WoodpeckerDamage = 12.0D;
 	
 	//Terrania
-	public static double PurplianHealth = 0.0D, PurplianDamage = 0.0D;
-	public static double TerragrowHealth = 0.0D, TerragrowDamage = 0.0D;
-	public static double TerralightHealth = 0.0D, TerralightDamage = 0.0D;
-	public static double TerraScattererHealth = 0.0D, TerraScattererDamage = 0.0D;
-	public static double TerrashroomHealth = 0.0D, TerrashroomDamage = 0.0D;
-	public static double TerraslugHealth = 0.0D, TerraslugDamage = 0.0D;
+	public static double PurplianHealth = 75.0D, PurplianDamage = 16.0D;
+	public static double TerragrowHealth = 75.0D, TerragrowDamage = 17.0D;
+	public static double TerralightHealth = 75.0D, TerralightDamage = 18.0D;
+	public static double TerraScattererHealth = 75.0D, TerraScattererDamage = 17.0D;
+	public static double TerrashroomHealth = 75.0D, TerrashroomDamage = 16.0D;
+	public static double TerraslugHealth = 75.0D, TerraslugDamage = 15.0D;
 	
 	//Cloudia
-	public static double CloudFlyerHealth = 0.0D, CloudFlyerDamage = 0.0D;
-	public static double CloudGhostHealth = 0.0D, CloudGhostDamage = 0.0D;
-	public static double SkyEelHealth = 0.0D, SkyEelDamage = 0.0D;
-	public static double StarlightGolemHealth = 0.0D, StarlightGolemDamage = 0.0D;
-	public static double StarlightTransporterHealth = 0.0D, StarlightTransporterDamage = 0.0D;
-	public static double StarlightWalkerHealth = 0.0D, StarlightWalkerDamage = 0.0D;
+	public static double CloudFlyerHealth = 70.0D, CloudFlyerDamage = 15.0D;
+	public static double CloudGhostHealth = 75.0D, CloudGhostDamage = 18.0D;
+	public static double SkyEelHealth = 70.0D, SkyEelDamage = 13.0D;
+	public static double StarlightGolemHealth = 75.0D, StarlightGolemDamage = 17.0D;
+	public static double StarlightTransporterHealth = 75.0D, StarlightTransporterDamage = 18.0D;
+	public static double StarlightWalkerHealth = 75.0D, StarlightWalkerDamage = 17.0D;
 	
 	//Misc
-	public static double Health = 0.0D, Damage = 0.0D;
-	public static double EucaHopperHealth = 0.0D, EucaHopperDamage = 0.0D;
-	public static double EucaHopperTameHealth = 0.0D, EucaHopperTameDamage = 0.0D;
-	public static double TameRocHealth = 0.0D, TameRocDamage = 0.0D;
+	public static double EucaHopperHealth = 40.0D, EucaHopperDamage = 7.5D;
+	public static double EucaHopperTameHealth = 40.0D, EucaHopperTameDamage = 7.5D;
+	public static double TameRocHealth = 60.0D, TameRocDamage = 7.0D;
 
 	//Boss
 	public static double soulWatcherHealth = 700.0D, soulWatcherDamage = 10.0D, soulWatcherSpeed = normalSpeed, soulWatcherFollowRange = follow;
