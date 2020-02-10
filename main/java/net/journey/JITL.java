@@ -54,7 +54,6 @@ public class JITL {
 	public static void init(FMLInitializationEvent event) {
 		proxy.init(event);
 		proxy.clientInit(event);
-		//JourneySmeltingRecipes.init();
 		JourneyRecipes recipe = new JourneyRecipes();
 	}
 

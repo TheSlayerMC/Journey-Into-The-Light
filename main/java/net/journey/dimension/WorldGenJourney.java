@@ -587,7 +587,7 @@ public class WorldGenJourney implements IWorldGenerator {
                     pinkCloudiaCloud.getValue().generate(w, r, randomPosForMinable);
                 break;
             case 20:
-                if (130 < randomPosForMinable.getY() && randomPosForMinable.getY() < 99)
+                if (32 < randomPosForMinable.getY() && randomPosForMinable.getY() < 180)
                     lightBlueCloudiaCloud.getValue().generate(w, r, randomPosForMinable);
                 break;
             case 21:
