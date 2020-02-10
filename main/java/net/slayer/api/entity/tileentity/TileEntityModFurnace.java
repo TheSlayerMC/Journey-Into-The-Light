@@ -1,6 +1,5 @@
 package net.slayer.api.entity.tileentity;
 
-import net.journey.util.recipes.JourneySmeltingRecipes;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFurnace;
 import net.minecraft.block.material.Material;

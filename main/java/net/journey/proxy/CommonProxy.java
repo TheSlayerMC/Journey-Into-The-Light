@@ -30,7 +30,6 @@ import net.journey.util.EntityRegistry;
 import net.journey.util.JourneyFuelHandler;
 import net.journey.util.LangRegistry;
 import net.journey.util.recipes.JourneyRecipes;
-import net.journey.util.recipes.JourneySmeltingRecipes;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
@@ -98,11 +97,8 @@ public class CommonProxy {
 		JourneyTabs.init();
 		GameRegistry.registerWorldGenerator(new WorldGenJourney(), 2);
 		SlayerAPI.registerEvent(new PlayerEvent());
-		JourneySmeltingRecipes.init();
 
-		if(SlayerAPI.DEVMODE) {
-			JourneyRecipes recipe = new JourneyRecipes();
-		}
+		
 	}
 
 	@SubscribeEvent

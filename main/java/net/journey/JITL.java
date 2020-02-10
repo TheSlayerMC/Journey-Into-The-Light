@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import net.journey.misc.EnchantmentHotTouch;
 import net.journey.misc.EnchantmentWaterWalk;
 import net.journey.proxy.CommonProxy;
+import net.journey.util.recipes.JourneyRecipes;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -53,6 +54,8 @@ public class JITL {
 	public static void init(FMLInitializationEvent event) {
 		proxy.init(event);
 		proxy.clientInit(event);
+		//JourneySmeltingRecipes.init();
+		JourneyRecipes recipe = new JourneyRecipes();
 	}
 
 	@EventHandler

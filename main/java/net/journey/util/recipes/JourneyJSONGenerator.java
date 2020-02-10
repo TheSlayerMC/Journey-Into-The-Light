@@ -20,6 +20,7 @@ import net.journey.util.Config;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.slayer.api.SlayerAPI;
 
 public class JourneyJSONGenerator {
 
@@ -61,178 +62,186 @@ public class JourneyJSONGenerator {
 	}
 
 	private static void addSmelting(ItemStack in, ItemStack result, float xp, int cookTime) {
-		setupDir();
+		if(SlayerAPI.DEVMODE) {
+			setupDir();
 
-		// GameRegistry.addSmelting(in, out, xp);
-		Map<String, Object> json = new HashMap<>();
-		json.put("type", "minecraft:smelting");
-		json.put("ingredient", serializeItem(in));
-		json.put("result", serializeItem(result)); // vanilla jsons just have
-														// a string?
-		json.put("experience", xp);
-		json.put("cookingtime", cookTime);
+			// GameRegistry.addSmelting(in, out, xp);
+			Map<String, Object> json = new HashMap<>();
+			json.put("type", "minecraft:smelting");
+			json.put("ingredient", serializeItem(in));
+			json.put("result", serializeItem(result)); // vanilla jsons just have
+			// a string?
+			json.put("experience", xp);
+			json.put("cookingtime", cookTime);
 
-		// names the json the same name as the output's registry name
-		// repeatedly adds _alt if a file already exists
-		// janky I know but it works
-		String suffix = result.getItem().getHasSubtypes() ? "_" + result.getItemDamage() : "";
-		File f = new File(RECIPE_DIR, result.getItem().getRegistryName().getResourcePath() + suffix + ".json");
+			// names the json the same name as the output's registry name
+			// repeatedly adds _alt if a file already exists
+			// janky I know but it works
+			String suffix = result.getItem().getHasSubtypes() ? "_" + result.getItemDamage() : "";
+			File f = new File(RECIPE_DIR, result.getItem().getRegistryName().getResourcePath() + suffix + ".json");
 
-		while (f.exists()) {
-			suffix += "_alt";
-			f = new File(RECIPE_DIR, result.getItem().getRegistryName().getResourcePath() + suffix + ".json");
-		}
+			while (f.exists()) {
+				suffix += "_alt";
+				f = new File(RECIPE_DIR, result.getItem().getRegistryName().getResourcePath() + suffix + ".json");
+			}
 
-		try (FileWriter w = new FileWriter(f)) {
-			GSON.toJson(json, w);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-    public static void addRecipe(ItemStack result, Object... components) {
-        setupDir();
-
-        // GameRegistry.addShapedRecipe(result, components);
-
-        Map<String, Object> json = new HashMap<>();
-
-        List<String> pattern = new ArrayList<>();
-        int i = 0;
-        while (i < components.length && components[i] instanceof String) {
-            pattern.add((String) components[i]);
-            i++;
-        }
-        json.put("pattern", pattern);
-
-        boolean isOreDict = false;
-        Map<String, Map<String, Object>> key = new HashMap<>();
-        Character curKey = null;
-        for (; i < components.length; i++) {
-            Object o = components[i];
-            if (o instanceof Character) {
-                if (curKey != null)
-                    throw new IllegalArgumentException("Provided two char keys in a row");
-                curKey = (Character) o;
-            } else {
-                if (curKey == null)
-                    throw new IllegalArgumentException("Providing object without a char key");
-                if (o instanceof String)
-                    isOreDict = true;
-                key.put(Character.toString(curKey), serializeItem(o));
-                curKey = null;
-            }
-        }
-        json.put("key", key);
-        json.put("type", isOreDict ? "forge:ore_shaped" : "minecraft:crafting_shaped");
-        json.put("result", serializeItem(result));
-
-        // names the json the same name as the output's registry name
-        // repeatedly adds _alt if a file already exists
-        // janky I know but it works
-        String suffix = result.getItem().getHasSubtypes() ? "_" + result.getItemDamage() : "";
-        File f = new File(RECIPE_DIR, result.getItem().getRegistryName().getResourcePath() + suffix + ".json");
-
-        //while (f.exists()) {
-        //    suffix += "_alt";
-        //    f = new File(RECIPE_DIR, result.getItem().getRegistryName().getResourcePath() + suffix + ".json");
-        //}
-
-        try (FileWriter w = new FileWriter(f)) {
-            GSON.toJson(json, w);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-	public static void addShapedRecipe(ItemStack result, Object... components) {
-		setupDir();
-
-		// GameRegistry.addShapedRecipe(result, components);
-
-		Map<String, Object> json = new HashMap<>();
-
-		List<String> pattern = new ArrayList<>();
-		int i = 0;
-		while (i < components.length && components[i] instanceof String) {
-			pattern.add((String) components[i]);
-			i++;
-		}
-		json.put("pattern", pattern);
-
-		boolean isOreDict = false;
-		Map<String, Map<String, Object>> key = new HashMap<>();
-		Character curKey = null;
-		for (; i < components.length; i++) {
-			Object o = components[i];
-			if (o instanceof Character) {
-				if (curKey != null)
-					throw new IllegalArgumentException("Provided two char keys in a row");
-				curKey = (Character) o;
-			} else {
-				if (curKey == null)
-					throw new IllegalArgumentException("Providing object without a char key");
-				if (o instanceof String)
-					isOreDict = true;
-				key.put(Character.toString(curKey), serializeItem(o));
-				curKey = null;
+			try (FileWriter w = new FileWriter(f)) {
+				GSON.toJson(json, w);
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
 		}
-		json.put("key", key);
-		json.put("type", isOreDict ? "forge:ore_shaped" : "minecraft:crafting_shaped");
-		json.put("result", serializeItem(result));
+	}
 
-		// names the json the same name as the output's registry name
-		// repeatedly adds _alt if a file already exists
-		// janky I know but it works
-		String suffix = result.getItem().getHasSubtypes() ? "_" + result.getItemDamage() : "";
-		File f = new File(RECIPE_DIR, result.getItem().getRegistryName().getResourcePath() + suffix + ".json");
+	public static void addRecipe(ItemStack result, Object... components) {
+		if(SlayerAPI.DEVMODE) {
+			setupDir();
 
-		while (f.exists()) {
-			suffix += "_alt";
-			f = new File(RECIPE_DIR, result.getItem().getRegistryName().getResourcePath() + suffix + ".json");
+			// GameRegistry.addShapedRecipe(result, components);
+
+			Map<String, Object> json = new HashMap<>();
+
+			List<String> pattern = new ArrayList<>();
+			int i = 0;
+			while (i < components.length && components[i] instanceof String) {
+				pattern.add((String) components[i]);
+				i++;
+			}
+			json.put("pattern", pattern);
+
+			boolean isOreDict = false;
+			Map<String, Map<String, Object>> key = new HashMap<>();
+			Character curKey = null;
+			for (; i < components.length; i++) {
+				Object o = components[i];
+				if (o instanceof Character) {
+					if (curKey != null)
+						throw new IllegalArgumentException("Provided two char keys in a row");
+					curKey = (Character) o;
+				} else {
+					if (curKey == null)
+						throw new IllegalArgumentException("Providing object without a char key");
+					if (o instanceof String)
+						isOreDict = true;
+					key.put(Character.toString(curKey), serializeItem(o));
+					curKey = null;
+				}
+			}
+			json.put("key", key);
+			json.put("type", isOreDict ? "forge:ore_shaped" : "minecraft:crafting_shaped");
+			json.put("result", serializeItem(result));
+
+			// names the json the same name as the output's registry name
+			// repeatedly adds _alt if a file already exists
+			// janky I know but it works
+			String suffix = result.getItem().getHasSubtypes() ? "_" + result.getItemDamage() : "";
+			File f = new File(RECIPE_DIR, result.getItem().getRegistryName().getResourcePath() + suffix + ".json");
+
+			//while (f.exists()) {
+			//    suffix += "_alt";
+			//    f = new File(RECIPE_DIR, result.getItem().getRegistryName().getResourcePath() + suffix + ".json");
+			//}
+
+			try (FileWriter w = new FileWriter(f)) {
+				GSON.toJson(json, w);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
+	}
 
-		try (FileWriter w = new FileWriter(f)) {
-			GSON.toJson(json, w);
-		} catch (IOException e) {
-			e.printStackTrace();
+	public static void addShapedRecipe(ItemStack result, Object... components) {
+		if(SlayerAPI.DEVMODE) {
+			setupDir();
+
+			// GameRegistry.addShapedRecipe(result, components);
+
+			Map<String, Object> json = new HashMap<>();
+
+			List<String> pattern = new ArrayList<>();
+			int i = 0;
+			while (i < components.length && components[i] instanceof String) {
+				pattern.add((String) components[i]);
+				i++;
+			}
+			json.put("pattern", pattern);
+
+			boolean isOreDict = false;
+			Map<String, Map<String, Object>> key = new HashMap<>();
+			Character curKey = null;
+			for (; i < components.length; i++) {
+				Object o = components[i];
+				if (o instanceof Character) {
+					if (curKey != null)
+						throw new IllegalArgumentException("Provided two char keys in a row");
+					curKey = (Character) o;
+				} else {
+					if (curKey == null)
+						throw new IllegalArgumentException("Providing object without a char key");
+					if (o instanceof String)
+						isOreDict = true;
+					key.put(Character.toString(curKey), serializeItem(o));
+					curKey = null;
+				}
+			}
+			json.put("key", key);
+			json.put("type", isOreDict ? "forge:ore_shaped" : "minecraft:crafting_shaped");
+			json.put("result", serializeItem(result));
+
+			// names the json the same name as the output's registry name
+			// repeatedly adds _alt if a file already exists
+			// janky I know but it works
+			String suffix = result.getItem().getHasSubtypes() ? "_" + result.getItemDamage() : "";
+			File f = new File(RECIPE_DIR, result.getItem().getRegistryName().getResourcePath() + suffix + ".json");
+
+			while (f.exists()) {
+				suffix += "_alt";
+				f = new File(RECIPE_DIR, result.getItem().getRegistryName().getResourcePath() + suffix + ".json");
+			}
+
+			try (FileWriter w = new FileWriter(f)) {
+				GSON.toJson(json, w);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
 	public static void addShapelessRecipe(ItemStack result, Object... components) {
-		setupDir();
+		if(SlayerAPI.DEVMODE) {
+			setupDir();
 
-		// addShapelessRecipe(result, components);
+			// addShapelessRecipe(result, components);
 
-		Map<String, Object> json = new HashMap<>();
+			Map<String, Object> json = new HashMap<>();
 
-		boolean isOreDict = false;
-		List<Map<String, Object>> ingredients = new ArrayList<>();
-		for (Object o : components) {
-			if (o instanceof String)
-				isOreDict = true;
-			ingredients.add(serializeItem(o));
-		}
-		json.put("ingredients", ingredients);
-		json.put("type", isOreDict ? "forge:ore_shapeless" : "minecraft:crafting_shapeless");
-		json.put("result", serializeItem(result));
+			boolean isOreDict = false;
+			List<Map<String, Object>> ingredients = new ArrayList<>();
+			for (Object o : components) {
+				if (o instanceof String)
+					isOreDict = true;
+				ingredients.add(serializeItem(o));
+			}
+			json.put("ingredients", ingredients);
+			json.put("type", isOreDict ? "forge:ore_shapeless" : "minecraft:crafting_shapeless");
+			json.put("result", serializeItem(result));
 
-		// names the json the same name as the output's registry name
-		// repeatedly adds _alt if a file already exists
-		// janky I know but it works
-		String suffix = result.getItem().getHasSubtypes() ? "_" + result.getItemDamage() : "";
-		File f = new File(RECIPE_DIR, result.getItem().getRegistryName().getResourcePath() + suffix + ".json");
+			// names the json the same name as the output's registry name
+			// repeatedly adds _alt if a file already exists
+			// janky I know but it works
+			String suffix = result.getItem().getHasSubtypes() ? "_" + result.getItemDamage() : "";
+			File f = new File(RECIPE_DIR, result.getItem().getRegistryName().getResourcePath() + suffix + ".json");
 
-		while (f.exists()) {
-			suffix += "_alt";
-			f = new File(RECIPE_DIR, result.getItem().getRegistryName().getResourcePath() + suffix + ".json");
-		}
+			while (f.exists()) {
+				suffix += "_alt";
+				f = new File(RECIPE_DIR, result.getItem().getRegistryName().getResourcePath() + suffix + ".json");
+			}
 
-		try (FileWriter w = new FileWriter(f)) {
-			GSON.toJson(json, w);
-		} catch (IOException e) {
-			e.printStackTrace();
+			try (FileWriter w = new FileWriter(f)) {
+				GSON.toJson(json, w);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -273,18 +282,20 @@ public class JourneyJSONGenerator {
 
 	// Call this after you are done generating
 	public static void generateConstants() {
-		List<Map<String, Object>> json = new ArrayList<>();
-		for (String s : USED_OD_NAMES) {
-			Map<String, Object> entry = new HashMap<>();
-			entry.put("name", s.toUpperCase(Locale.ROOT));
-			entry.put("ingredient", ImmutableMap.of("type", "forge:ore_dict", "ore", s));
-			json.add(entry);
-		}
+		if(SlayerAPI.DEVMODE) {
+			List<Map<String, Object>> json = new ArrayList<>();
+			for (String s : USED_OD_NAMES) {
+				Map<String, Object> entry = new HashMap<>();
+				entry.put("name", s.toUpperCase(Locale.ROOT));
+				entry.put("ingredient", ImmutableMap.of("type", "forge:ore_dict", "ore", s));
+				json.add(entry);
+			}
 
-		try (FileWriter w = new FileWriter(new File(RECIPE_DIR, "_constants.json"))) {
-			GSON.toJson(json, w);
-		} catch (IOException e) {
-			e.printStackTrace();
+			try (FileWriter w = new FileWriter(new File(RECIPE_DIR, "_constants.json"))) {
+				GSON.toJson(json, w);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }

@@ -51,7 +51,7 @@ public class SlayerAPI {
 	MOD_NAME = "Journey Into the Light", 
 	MOD_ID = "journey", 
 	PREFIX = MOD_ID + ":", 
-	MOD_VERSION = "1.0.5.1";
+	MOD_VERSION = "1.0.5.2";
 	public static final boolean 
 	DEVMODE = true,
 	BETA = false;
