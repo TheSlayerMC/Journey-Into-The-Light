@@ -133,7 +133,7 @@ public class BlockModFlower extends BlockMod implements IPlantable {
 	
 	@Override
 	public boolean isNormalCube(IBlockState state) {
-		return false;
+		return false; 
 	}
 	
 	@Override
