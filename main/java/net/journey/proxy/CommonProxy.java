@@ -61,8 +61,8 @@ public class CommonProxy {
 		NetherEvent.init();
 
 		JourneySounds.init();
-		JourneyBlocks.init();
 		JourneyItems.init();
+		JourneyBlocks.init();
 		JourneyWeapons.init();
 		JourneyArmory.init();
 		JourneyConsumables.init();
