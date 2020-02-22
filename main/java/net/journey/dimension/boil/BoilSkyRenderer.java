@@ -44,6 +44,7 @@ public class BoilSkyRenderer extends IRenderHandler {
     IRenderChunkFactory renderChunkFactory;
     private boolean vboEnabled;
 
+	@SideOnly(Side.CLIENT)
 	public BoilSkyRenderer() {
 		RenderGlobal renderGlobal = Minecraft.getMinecraft().renderGlobal;
         this.vboEnabled = OpenGlHelper.useVbo();
@@ -60,6 +61,7 @@ public class BoilSkyRenderer extends IRenderHandler {
 	
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void render(float partialTicks, WorldClient world, Minecraft mc) {
 		this.renderSky(partialTicks, world, mc);
 		this.renderSunAndMoon(partialTicks, world, mc);
@@ -218,6 +220,7 @@ public class BoilSkyRenderer extends IRenderHandler {
         GlStateManager.depthMask(true);
 	}
 	
+	@SideOnly(Side.CLIENT)
     private void renderSky(float partialTicks, WorldClient world, Minecraft mc) {
 		GlStateManager.disableFog();
 		GlStateManager.disableAlpha();
