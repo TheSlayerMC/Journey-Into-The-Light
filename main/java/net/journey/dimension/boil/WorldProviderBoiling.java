@@ -9,23 +9,28 @@ import net.minecraft.world.biome.BiomeProviderSingle;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.client.IRenderHandler;
+import net.minecraftforge.fml.client.FMLClientHandler;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WorldProviderBoiling extends BaseWorldProvider {
 
     public WorldProviderBoiling() {
-        super(new BiomeProviderSingle(DimensionHelper.boiling), getSkyRender(), new Vec3d(0.2, 0.1, 0));
+        super(new BiomeProviderSingle(DimensionHelper.boiling), new Vec3d(0.2, 0.1, 0));
     }
 
+    @SideOnly(Side.CLIENT)
     private static IRenderHandler getSkyRender() {
-    	return new BoilSkyRenderer();
-        // todo fix BoilSkyRenderer!
-        //return null;
+    //	return new BoilSkyRenderer();
+        //TODO fix BoilSkyRenderer!
+        return null;
     }
 
     @Override
     public void init() {
         nether = true;
         hasSkyLight = true;
+        doesWaterVaporize = true;
     }
 
     @Override

@@ -44,7 +44,7 @@ public class BoilSkyRenderer extends IRenderHandler {
     IRenderChunkFactory renderChunkFactory;
     private boolean vboEnabled;
 
-	@SideOnly(Side.CLIENT)
+	//@SideOnly(Side.CLIENT)
 	public BoilSkyRenderer() {
 		RenderGlobal renderGlobal = Minecraft.getMinecraft().renderGlobal;
         this.vboEnabled = OpenGlHelper.useVbo();
