@@ -62,11 +62,11 @@ public class CommonProxy {
 
 		JourneySounds.init();
 		JourneyItems.init();
+		JourneyConsumables.init();
+		JourneyCrops.init();
 		JourneyBlocks.init();
 		JourneyWeapons.init();
 		JourneyArmory.init();
-		JourneyConsumables.init();
-		JourneyCrops.init();
 		BiomeRegister.registerBiomes();
 		Config.postBiomeInit();
 		JNWorldGenerator.updateGenSettings();
