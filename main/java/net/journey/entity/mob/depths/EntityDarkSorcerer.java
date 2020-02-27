@@ -38,6 +38,7 @@ public class EntityDarkSorcerer extends EntityModMob implements IRangedAttackMob
 		if(par1World != null && !par1World.isRemote) {
 			this.setCombatTask();
 		}
+		setSize(1.0F, 3.0F);
 	}
 
 	public void setCombatTask() {

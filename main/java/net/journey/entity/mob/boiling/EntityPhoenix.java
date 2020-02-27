@@ -14,6 +14,7 @@ public class EntityPhoenix extends EntityPeacefullUntillAttacked {
 	public EntityPhoenix(World w) {
 		super(w);
 		this.isImmuneToFire = true;
+		setSize(1.0F, 1.0F);
 	}
 
 	@Override

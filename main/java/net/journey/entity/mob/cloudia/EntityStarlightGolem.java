@@ -16,7 +16,7 @@ public class EntityStarlightGolem extends EntityModMob {
 	public EntityStarlightGolem(World par1World) {
 		super(par1World);
 		addAttackingAI();
-		this.setSize((float) 2.0, 2);
+		setSize(1.7F, 3.0F);
 	}
 
 	@Override

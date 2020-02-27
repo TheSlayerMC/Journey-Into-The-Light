@@ -15,6 +15,7 @@ public class EntityTurducken extends EntityPeacefullUntillAttacked {
 
 	public EntityTurducken(World w) {
 		super(w);
+		setSize(0.7F, 1.0F);
 	}
 
 	@Override

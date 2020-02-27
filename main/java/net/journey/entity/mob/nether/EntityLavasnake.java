@@ -52,7 +52,7 @@ public class EntityLavasnake extends EntityModFlying {
 		this.tasks.addTask(7, new EntityLavasnake.AILookAround(this));
 		this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
 		this.isImmuneToFire = true;
-		setSize(0.7F, 1.2F);
+		setSize(1.0F, 1.2F);
 	}
 
 	@Override

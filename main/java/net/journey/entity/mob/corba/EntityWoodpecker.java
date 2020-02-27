@@ -13,6 +13,7 @@ public class EntityWoodpecker extends EntityPeacefullUntillAttacked {
 
 	public EntityWoodpecker(World w) {
 		super(w);
+		setSize(1.0F, 1.5F);
 	}
 	
 	@Override

@@ -14,7 +14,7 @@ public class EntityHellbot extends EntityModMob {
 		super(par1World);
 		addAttackingAI();
 		this.isImmuneToFire = true;
-		setSize(0.7F, 1.2F);
+		setSize(0.7F, 1.5F);
 	}
 
 	@Override

@@ -13,6 +13,7 @@ public class EntityRoc extends EntityPeacefullUntillAttacked {
 	
 	public EntityRoc(World w) {
 		super(w);
+		setSize(1.0F, 1.0F);
 	}
 
 	@Override

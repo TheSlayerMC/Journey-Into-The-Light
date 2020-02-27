@@ -13,7 +13,7 @@ public class EntityCloudFlyer extends EntityPeacefullUntillAttacked {
 
 	public EntityCloudFlyer(World w) {
 		super(w);
-		this.setSize((float) 1.5, 2);
+		setSize(1.0F, 1.5F);
 	}
 
 	@Override

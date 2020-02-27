@@ -19,7 +19,7 @@ public class EntityTerralight extends EntityModFlying {
 		super(par1World);
 		this.moveHelper = new EntityTerralight.ShattererMoveHelper();
         this.tasks.addTask(5, new EntityTerralight.AIRandomFly());
-		setSize(1F, 1F);
+		setSize(0.5F, 0.5F);
 	}
 
     public int getBrightnessForRender(float p_70070_1_)

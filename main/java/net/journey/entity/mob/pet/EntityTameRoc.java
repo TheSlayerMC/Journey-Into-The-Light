@@ -49,7 +49,7 @@ public class EntityTameRoc extends EntityModTameable {
 	public EntityTameRoc(World w) {
 		super(w);		
         this.tasks.addTask(1, new EntityAISwimming(this));
-        this.tasks.addTask(2, this.aiSit);
+        //this.tasks.addTask(2, this.aiSit);
         this.tasks.addTask(3, new EntityAILeapAtTarget(this, 0.4F));
         this.tasks.addTask(4, new EntityAIAttackMelee(this, 1.0F, true));
         this.tasks.addTask(5, new EntityAIFollowOwner(this, 1.0F, 10.0F, 2.0F));

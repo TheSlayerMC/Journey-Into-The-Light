@@ -28,7 +28,7 @@ public class EntityWitheringBeast extends EntityEssenceBoss implements IRangedAt
 	public EntityWitheringBeast(World par1World) {
 		super(par1World);
 		addAttackingAI();
-		setSize(2.0F, 3.8F);
+		setSize(2.0F, 4.8F);
 		this.tasks.addTask(1, aiArrowAttack);
 	}
 

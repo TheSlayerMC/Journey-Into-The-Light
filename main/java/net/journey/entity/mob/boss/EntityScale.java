@@ -43,7 +43,7 @@ public class EntityScale extends EntityEssenceBoss implements IRangedAttackMob {
 		this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
 		//this.tasks.addTask(1, new EntityAIArrowAttack(this, 1.0D, 40, 20.0F));
 		addAttackingAI();
-		setSize(7.0F, 4.0F);
+		setSize(3.0F, 2.0F);
 	}
 
 	@Override

@@ -37,6 +37,7 @@ public class EntityCavurn extends EntityModMob implements IRangedAttackMob {
 		if(par1World != null && !par1World.isRemote) {
 			this.setCombatTask();
 		}
+		setSize(0.7F, 2.0F);
 	}
 
 	public void setCombatTask() {

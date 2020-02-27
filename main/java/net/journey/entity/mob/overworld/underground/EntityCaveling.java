@@ -19,7 +19,7 @@ public class EntityCaveling extends EntityModMob {
 	public EntityCaveling(World par1World) {
 		super(par1World);
 		addAttackingAI();
-		this.setSize(1.0F, 2.0F);
+		this.setSize(1.0F, 1.0F);
 	}
 
 	@Override

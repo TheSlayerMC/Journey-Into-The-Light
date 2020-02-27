@@ -18,7 +18,7 @@ public class EntityFrozenTroll extends EntityModMob {
 	public EntityFrozenTroll(World par1World) {
 		super(par1World);
 		addAttackingAI();
-		this.setSize(0.5F, 0.7F);
+		this.setSize(0.5F, 1.2F);
 	}
 	
 	@Override

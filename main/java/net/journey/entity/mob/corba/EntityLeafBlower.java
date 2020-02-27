@@ -18,7 +18,7 @@ public class EntityLeafBlower extends EntityModMob{
 	public EntityLeafBlower(World par1World) {
 		super(par1World);
 		addAttackingAI();
-		setSize(1.2F, 2.5F);
+		setSize(1.0F, 2.0F);
 	}
 
 	@Override

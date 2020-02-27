@@ -11,13 +11,11 @@ import net.minecraft.world.World;
 import net.slayer.api.entity.EntityModMob;
 
 public class EntitySpyclops extends EntityModMob {
-
-	public static final int ENTITY_TYPE = 24;
 	
 	public EntitySpyclops(World par1World) {
 		super(par1World);
 		addAttackingAI();
-		setSize(1.5F, 2.0F);
+		setSize(1.0F, 2.0F);
 	}
 	
 	@Override

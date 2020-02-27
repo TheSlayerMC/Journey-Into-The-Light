@@ -45,6 +45,7 @@ public abstract class EntityModTameable extends EntityTameable {
 
 	public EntityModTameable(World w) {
 		super(w);
+        this.aiSit = new EntityAISit(this);
 		addBasicAI();
 	}
 

@@ -14,6 +14,7 @@ public class EntityGoldwing extends EntityPeacefullUntillAttacked {
 
 	public EntityGoldwing(World w) {
 		super(w);
+		setSize(1.0F, 1.0F);
 	}
 
 	@Override

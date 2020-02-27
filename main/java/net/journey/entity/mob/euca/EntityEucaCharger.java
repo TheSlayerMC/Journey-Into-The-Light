@@ -14,7 +14,7 @@ public class EntityEucaCharger extends EntityModMob {
 		super(par1World);
 		addAttackingAI();
 		this.setMovementSpeed();
-		setSize(0.7F, 1.2F);
+		setSize(0.7F, 1.0F);
 	}
 
 	@Override

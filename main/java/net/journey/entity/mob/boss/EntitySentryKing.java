@@ -41,7 +41,7 @@ public class EntitySentryKing extends EntityEssenceBoss implements IRangedAttack
 		this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
 		//this.tasks.addTask(1, new EntityAIArrowAttack(this, 1.0D, 40, 20.0F));
 		addAttackingAI();
-		setSize(7.0F, 12F);
+		setSize(5.0F, 12F);
 	}
 
 	@Override

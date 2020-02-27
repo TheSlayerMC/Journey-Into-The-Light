@@ -68,7 +68,7 @@ public abstract class EntityModVillager extends EntityVillager implements INpc, 
 	@Override
 	protected void applyEntityAttributes() {
 	    super.applyEntityAttributes();
-	    this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(100.0D);
+	    this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(100000.0D);
 	    this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.23000000417232513D);
 	}
 

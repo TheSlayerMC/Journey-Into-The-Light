@@ -47,7 +47,7 @@ public class EntityOverseerElder extends EntityModFlying {
 		this.tasks.addTask(7, new EntityOverseerElder.AILookAround(this));
 		this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
 		this.isImmuneToFire = true;
-		setSize(2.0F, 1.2F);
+		setSize(2.0F, 3.2F);
 	}
 
 	@Override

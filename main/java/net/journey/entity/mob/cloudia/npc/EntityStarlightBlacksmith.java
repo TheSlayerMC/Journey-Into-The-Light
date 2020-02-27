@@ -15,7 +15,7 @@ public class EntityStarlightBlacksmith extends EntityModVillager {
 
 	public EntityStarlightBlacksmith(World par1World) {
 		super(par1World);
-		setSize(2.2F, 2.5F);
+		setSize(1.7F, 2.5F);
 	}
 
 	@Override

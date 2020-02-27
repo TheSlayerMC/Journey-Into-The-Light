@@ -86,6 +86,7 @@ import net.journey.entity.projectile.*;
 import net.journey.util.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.*;
+import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderArrow;
 import net.minecraft.client.renderer.entity.RenderSnowball;
 import net.minecraft.client.renderer.entity.RenderTippedArrow;
@@ -146,7 +147,7 @@ public class EntityRendering {
 		/**Overworld Mobs*/
 		RenderingRegistry.registerEntityRenderingHandler(EntityRobot.class, new RenderModMob(new ModelRobot(), Textures.robot));
 		RenderingRegistry.registerEntityRenderingHandler(EntitySpikedBeast.class, new RenderModMob(new ModelSpikedBeast(), Textures.spikedBeast));
-		RenderingRegistry.registerEntityRenderingHandler(EntitySpyclops.class, new RenderSpyclops(new ModelSpyclops()));
+		RenderingRegistry.registerEntityRenderingHandler(EntitySpyclops.class, new RenderModMob(new ModelSpyclops(), Textures.spyclops));
 		//RenderingRegistry.registerEntityRenderingHandler(EntityMagmaGiant.class, new RenderModMob(new ModelMagmaGiant(), tex.magmaGiant));
 		//RenderingRegistry.registerEntityRenderingHandler(EntityInsecto.class, new RenderInsecto(new ModelInsecto()));
 		//RenderingRegistry.registerEntityRenderingHandler(EntityPsyollom.class, new RenderPsyollom(new ModelPsyollom()));
@@ -250,7 +251,7 @@ public class EntityRendering {
 		RenderingRegistry.registerEntityRenderingHandler(EntityRockiteGolem.class, new RenderModMob(new ModelRockiteGolem(), Textures.rockiteGolem));
 		RenderingRegistry.registerEntityRenderingHandler(EntityInfernoBlaze.class, new RenderModMob(new ModelInfernoBlaze(), Textures.infernoBlaze));
 		RenderingRegistry.registerEntityRenderingHandler(EntityHellTurtle.class, new RenderModMob(new ModelJungleTurtle(), Textures.hellTurtle));
-		
+
 		RenderingRegistry.registerEntityRenderingHandler(EntityJungleGolem.class, new RenderModMob(new ModelJungleGolem(), Textures.jungleGolem));
 				
 		RenderingRegistry.registerEntityRenderingHandler(EntityObsidianBoat.class, new RenderModBoat(new ModelObsidianBoat(), 0.5F));

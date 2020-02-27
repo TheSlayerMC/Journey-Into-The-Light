@@ -18,7 +18,7 @@ public class EntityWoodCreature extends EntityModMob{
 	public EntityWoodCreature(World par1World) {
 		super(par1World);
 		addAttackingAI();
-		setSize(1.2F, 2.5F);
+		setSize(1.2F, 1.5F);
 	}
 
 	@Override

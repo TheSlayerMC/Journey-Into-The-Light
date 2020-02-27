@@ -24,7 +24,7 @@ public class EntityJungleGolem extends EntityModMob{
 	public EntityJungleGolem(World par1World) {
 		super(par1World);
 		addAttackingAI();
-		setSize(1.2F, 2.5F);
+		setSize(1.0F, 2.5F);
 	}
 	
 	@Override
