@@ -173,16 +173,16 @@ public class JourneyWeapons {
 	public static Item celekiumBattleaxe;
 	public static Item thunderbirdBattleaxe;
 	 
-	public static Item staffOfCrystal;
-	public static Item staffOfDivineStone;
-	public static Item staffOfHellstone;
-	public static Item doomsBringer;
-	public static Item conjuringStaff;
-	public static Item staffOfEnlightenment;
-	public static Item staffOfGreenpace;
-	public static Item wizardsStar;
+	public static ItemStaff staffOfCrystal;
+	public static ItemStaff staffOfDivineStone;
+	public static ItemStaff staffOfHellstone;
+	public static ItemStaff doomsBringer;
+	public static ItemStaff conjuringStaff;
+	public static ItemStaff staffOfEnlightenment;
+	public static ItemStaff staffOfGreenpace;
+	public static ItemStaff wizardsStar;
 	public static Item teleportationStaff;
-	public static Item overgrownStaff;
+	public static ItemStaff overgrownStaff;
 	
 	public static Item chaosCannon;
 	public static Item rockLauncher;

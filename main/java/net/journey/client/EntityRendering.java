@@ -166,13 +166,13 @@ public class EntityRendering {
 		//RenderingRegistry.registerEntityRenderingHandler(EntityEucaHopper.class, new RenderEucaHopper(new ModelEucaHopper(), tex.eucaHopper));
 		//RenderingRegistry.registerEntityRenderingHandler(EntityAshHoarder.class, new RenderSizeable(new ModelDepthsBeast(), 0.8F, 1.5F, tex.ashHoarder));
 		//RenderingRegistry.registerEntityRenderingHandler(EntityBurntAsh.class, new RenderSizeable(new ModelPsyollom(), 0.5F, 1.5F, tex.burntAsh));
-		RenderingRegistry.registerEntityRenderingHandler(EntityReaper.class, new RenderReaper(new ModelReaper(), Textures.reaper));
+		RenderingRegistry.registerEntityRenderingHandler(EntityReaper.class, new RenderModMob(new ModelReaper(), Textures.reaper));
 		RenderingRegistry.registerEntityRenderingHandler(EntityDepthsHunter.class, new RenderSizeable(new ModelDepthsHunter(), 0.5F, 1.5F, Textures.depthsHunter));
 		RenderingRegistry.registerEntityRenderingHandler(EntityEucaCharger.class, new RenderSizeable(new ModelEucaCharger(), 0.5F, 1.5F, Textures.eucaCharger));
 		RenderingRegistry.registerEntityRenderingHandler(EntitySandCrawler.class, new RenderModMob(new ModelSandCrawler(), 0.5F, Textures.sandCrawler));
-		RenderingRegistry.registerEntityRenderingHandler(EntityFireMage.class, new RenderMage(new ModelMage(), Textures.fireMage));
-		RenderingRegistry.registerEntityRenderingHandler(EntityIceMage.class, new RenderMage(new ModelMageTransparent(), Textures.iceMage));
-		RenderingRegistry.registerEntityRenderingHandler(EntityMage.class, new RenderMage(new ModelMage(), Textures.mage));
+		RenderingRegistry.registerEntityRenderingHandler(EntityFireMage.class, new RenderModMob(new ModelMage(), Textures.fireMage));
+		RenderingRegistry.registerEntityRenderingHandler(EntityIceMage.class, new RenderModMob(new ModelMageTransparent(), Textures.iceMage));
+		RenderingRegistry.registerEntityRenderingHandler(EntityMage.class, new RenderModMob(new ModelMage(), Textures.mage));
 		RenderingRegistry.registerEntityRenderingHandler(EntityBlacksmith.class, new RenderModBiped(new ModelBiped(), Textures.blacksmith));
 		RenderingRegistry.registerEntityRenderingHandler(EntityFrozenMerchant.class, new RenderModMob(new ModelFrozenMerchant(), Textures.frozenMerchant));
 		RenderingRegistry.registerEntityRenderingHandler(EntityEscapedConvict.class, new RenderModMob(new ModelEscapedConvict(), Textures.escapedConvict));
