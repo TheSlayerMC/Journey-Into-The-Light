@@ -4,9 +4,9 @@ import net.journey.JourneyArmory;
 import net.journey.JourneyItems;
 import net.journey.JourneyWeapons;
 import net.journey.client.GuiHandler;
+import net.journey.entity.JourneyMerchantRecipe;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
 import net.minecraft.world.World;
 import net.slayer.api.SlayerAPI;
@@ -45,22 +45,21 @@ public class EntityFrozenMerchant extends EntityModVillager {
 
 	@Override
 	public void addRecipies(MerchantRecipeList list) {
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.crystalFlake, 15), new ItemStack(JourneyItems.frostGem, 15), new ItemStack(JourneyWeapons.frostySword, 1)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.crystalFlake, 15), new ItemStack(JourneyItems.frostGem, 15), new ItemStack(JourneyWeapons.frostyBow, 1)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.crystalFlake, 10), new ItemStack(JourneyItems.frostGem, 10), new ItemStack(JourneyWeapons.frostyPiercer, 15)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.frostFlake, 15), new ItemStack(JourneyWeapons.frostySword, 1), new ItemStack(JourneyWeapons.frostbittenSword, 1)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.frostFlake, 15), new ItemStack(JourneyWeapons.frostyBow, 1), new ItemStack(JourneyWeapons.frostbittenBow, 1)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.frostFlake, 10), new ItemStack(JourneyWeapons.frostyPiercer, 10), new ItemStack(JourneyWeapons.frostbittenPiercer, 15)));
+		list.add(new JourneyMerchantRecipe(new ItemStack(JourneyItems.crystalFlake, 15), new ItemStack(JourneyItems.frostGem, 15), new ItemStack(JourneyWeapons.frostySword, 1)));
+		list.add(new JourneyMerchantRecipe(new ItemStack(JourneyItems.crystalFlake, 15), new ItemStack(JourneyItems.frostGem, 15), new ItemStack(JourneyWeapons.frostyBow, 1)));
+		list.add(new JourneyMerchantRecipe(new ItemStack(JourneyItems.crystalFlake, 10), new ItemStack(JourneyItems.frostGem, 10), new ItemStack(JourneyWeapons.frostyPiercer, 15)));
+		list.add(new JourneyMerchantRecipe(new ItemStack(JourneyItems.frostFlake, 15), new ItemStack(JourneyWeapons.frostySword, 1), new ItemStack(JourneyWeapons.frostbittenSword, 1)));
+		list.add(new JourneyMerchantRecipe(new ItemStack(JourneyItems.frostFlake, 15), new ItemStack(JourneyWeapons.frostyBow, 1), new ItemStack(JourneyWeapons.frostbittenBow, 1)));
+		list.add(new JourneyMerchantRecipe(new ItemStack(JourneyItems.frostFlake, 10), new ItemStack(JourneyWeapons.frostyPiercer, 10), new ItemStack(JourneyWeapons.frostbittenPiercer, 15)));
 		
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.crystalFlake, 4), new ItemStack(JourneyItems.frostGem, 15), new ItemStack(JourneyArmory.crystalFlakeHelmet, 1)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.crystalFlake, 4), new ItemStack(JourneyItems.frostGem, 15), new ItemStack(JourneyArmory.crystalFlakeChest, 1)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.crystalFlake, 4), new ItemStack(JourneyItems.frostGem, 15), new ItemStack(JourneyArmory.crystalFlakeLegs, 1)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.crystalFlake, 4), new ItemStack(JourneyItems.frostGem, 15), new ItemStack(JourneyArmory.crystalFlakeBoots, 1)));
+		list.add(new JourneyMerchantRecipe(new ItemStack(JourneyItems.crystalFlake, 4), new ItemStack(JourneyItems.frostGem, 15), new ItemStack(JourneyArmory.crystalFlakeHelmet, 1)));
+		list.add(new JourneyMerchantRecipe(new ItemStack(JourneyItems.crystalFlake, 4), new ItemStack(JourneyItems.frostGem, 15), new ItemStack(JourneyArmory.crystalFlakeChest, 1)));
+		list.add(new JourneyMerchantRecipe(new ItemStack(JourneyItems.crystalFlake, 4), new ItemStack(JourneyItems.frostGem, 15), new ItemStack(JourneyArmory.crystalFlakeLegs, 1)));
+		list.add(new JourneyMerchantRecipe(new ItemStack(JourneyItems.crystalFlake, 4), new ItemStack(JourneyItems.frostGem, 15), new ItemStack(JourneyArmory.crystalFlakeBoots, 1)));
 		
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.frostFlake, 4), new ItemStack(JourneyArmory.crystalFlakeHelmet), new ItemStack(JourneyArmory.frostbittenHelmet, 1)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.frostFlake, 4), new ItemStack(JourneyArmory.crystalFlakeChest), new ItemStack(JourneyArmory.frostbittenChest, 1)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.frostFlake, 4), new ItemStack(JourneyArmory.crystalFlakeLegs), new ItemStack(JourneyArmory.frostbittenLegs, 1)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.frostFlake, 4), new ItemStack(JourneyArmory.crystalFlakeBoots), new ItemStack(JourneyArmory.frostbittenBoots, 1)));
-		
+		list.add(new JourneyMerchantRecipe(new ItemStack(JourneyItems.frostFlake, 4), new ItemStack(JourneyArmory.crystalFlakeHelmet), new ItemStack(JourneyArmory.frostbittenHelmet, 1)));
+		list.add(new JourneyMerchantRecipe(new ItemStack(JourneyItems.frostFlake, 4), new ItemStack(JourneyArmory.crystalFlakeChest), new ItemStack(JourneyArmory.frostbittenChest, 1)));
+		list.add(new JourneyMerchantRecipe(new ItemStack(JourneyItems.frostFlake, 4), new ItemStack(JourneyArmory.crystalFlakeLegs), new ItemStack(JourneyArmory.frostbittenLegs, 1)));
+		list.add(new JourneyMerchantRecipe(new ItemStack(JourneyItems.frostFlake, 4), new ItemStack(JourneyArmory.crystalFlakeBoots), new ItemStack(JourneyArmory.frostbittenBoots, 1)));
 	}
 }

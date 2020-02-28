@@ -93,46 +93,6 @@ public abstract class EntityModVillager extends EntityVillager implements INpc, 
     }
 
 	@Override
-	protected void updateAITasks() {
-		if(this.randomTickDivider-- <= 0) {
-			this.randomTickDivider = 70 + this.rand.nextInt(50);
-			this.villageObj = this.world.getVillageCollection().getNearestVillage(new BlockPos(MathHelper.floor(this.posX), MathHelper.floor(this.posY), MathHelper.floor(this.posZ)), 32);
-
-			if(this.villageObj == null) {
-				this.detachHome();
-			} else {
-				this.villageObj.setDefaultPlayerReputation(30);
-			}
-		}
-
-		if(this.timeUntilReset > 0) {
-			if(this.timeUntilReset <= 0) {
-				if(this.buyingList.size() > 1) {
-					Iterator iterator = this.buyingList.iterator();
-					if(needsInitilization){
-						while (iterator.hasNext()) {
-							MerchantRecipe merchantrecipe = (MerchantRecipe)iterator.next();
-
-							if (merchantrecipe.isRecipeDisabled()) {
-								merchantrecipe.increaseMaxTradeUses(this.rand.nextInt(6) + this.rand.nextInt(6) + 2);
-							}
-						}
-					}
-
-					this.addDefaultEquipmentAndRecipies(30);
-					this.needsInitilization = false;
-
-					if(this.villageObj != null && this.lastBuyingPlayer != null) {
-						this.villageObj.modifyPlayerReputation(this.lastBuyingPlayer, 30);
-					}
-				}
-				this.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 200, 0));
-			}
-		}
-		super.updateAITasks();
-	}
-	
-	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean processInteract(EntityPlayer var1, EnumHand hand) {
 		if(!this.world.isRemote) {
@@ -149,49 +109,6 @@ public abstract class EntityModVillager extends EntityVillager implements INpc, 
 	public abstract int guiID();
 
 	public abstract void addRecipies(MerchantRecipeList list);
-
-	@Override
-	public void writeEntityToNBT(NBTTagCompound var1) {
-		super.writeEntityToNBT(var1);
-		var1.setInteger("Profession", this.getProfession());
-		var1.setInteger("Riches", this.wealth);
-
-		if(this.buyingList != null) {
-			var1.setTag("Offers", this.buyingList.getRecipiesAsTags());
-		}
-	}
-
-	@Override
-	public void readEntityFromNBT(NBTTagCompound var1) {
-		super.readEntityFromNBT(var1);
-		this.setProfession(var1.getInteger("Profession"));
-		this.wealth = var1.getInteger("Riches");
-
-		if(var1.hasKey("Offers")) {
-			NBTTagCompound var2 = var1.getCompoundTag("Offers");
-			this.buyingList = new MerchantRecipeList(var2);
-		}
-	}
-
-	@Override
-	public void useRecipe(MerchantRecipe var1) {
-		var1.incrementToolUses();
-
-		if(var1.getToolUses() == 1 || this.rand.nextInt(5) == 0) {
-			this.timeUntilReset = 40;
-			this.needsInitilization = true;
-
-			if(this.buyingPlayer != null) {
-				this.buyersName = this.buyingPlayer.getName();
-			} else {
-				this.buyersName = null;
-			}
-		}
-
-		if(var1.getItemToBuy().getItem() == Items.EMERALD) {
-			this.wealth += var1.getItemToBuy().getCount();
-		}
-	}
 
 	@Override
 	public MerchantRecipeList getRecipes(EntityPlayer var1) {

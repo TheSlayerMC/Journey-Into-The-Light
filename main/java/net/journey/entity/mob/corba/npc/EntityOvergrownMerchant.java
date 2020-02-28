@@ -4,9 +4,9 @@ import net.journey.JourneyArmory;
 import net.journey.JourneyItems;
 import net.journey.JourneyWeapons;
 import net.journey.client.GuiHandler;
+import net.journey.entity.JourneyMerchantRecipe;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
 import net.minecraft.world.World;
 import net.slayer.api.SlayerAPI;
@@ -48,15 +48,15 @@ public class EntityOvergrownMerchant extends EntityModVillager {
 
 	@Override
 	public void addRecipies(MerchantRecipeList list) {
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.enchantedLeaf, 64), new ItemStack(JourneyItems.gorbiteGem, 16), new ItemStack(JourneyWeapons.overgrownHammer, 1)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.enchantedLeaf, 64), new ItemStack(JourneyItems.orbaditeIngot, 16), new ItemStack(JourneyWeapons.overgrownStaff, 1)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.enchantedLeaf, 64), new ItemStack(JourneyItems.gorbiteGem, 20), new ItemStack(JourneyWeapons.darkPineSword, 1)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.enchantedLeaf, 48), new ItemStack(JourneyItems.gorbiteGem, 16), new ItemStack(JourneyWeapons.vinestrandBlade, 1)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.collectorRock, 24), new ItemStack(JourneyItems.overseeingEye, 16), new ItemStack(JourneyItems.elderKey, 1)));
+		list.add(new JourneyMerchantRecipe(new ItemStack(JourneyItems.enchantedLeaf, 64), new ItemStack(JourneyItems.gorbiteGem, 16), new ItemStack(JourneyWeapons.overgrownHammer, 1)));
+		list.add(new JourneyMerchantRecipe(new ItemStack(JourneyItems.enchantedLeaf, 64), new ItemStack(JourneyItems.orbaditeIngot, 16), new ItemStack(JourneyWeapons.overgrownStaff, 1)));
+		list.add(new JourneyMerchantRecipe(new ItemStack(JourneyItems.enchantedLeaf, 64), new ItemStack(JourneyItems.gorbiteGem, 20), new ItemStack(JourneyWeapons.darkPineSword, 1)));
+		list.add(new JourneyMerchantRecipe(new ItemStack(JourneyItems.enchantedLeaf, 48), new ItemStack(JourneyItems.gorbiteGem, 16), new ItemStack(JourneyWeapons.vinestrandBlade, 1)));
+		list.add(new JourneyMerchantRecipe(new ItemStack(JourneyItems.collectorRock, 24), new ItemStack(JourneyItems.overseeingEye, 16), new ItemStack(JourneyItems.elderKey, 1)));
 		
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.enchantedLeaf, 16), new ItemStack(JourneyItems.orbaditeIngot, 16), new ItemStack(JourneyArmory.livegreenHelmet, 1)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.enchantedLeaf, 16), new ItemStack(JourneyItems.orbaditeIngot, 16), new ItemStack(JourneyArmory.livegreenChest, 1)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.enchantedLeaf, 16), new ItemStack(JourneyItems.orbaditeIngot, 16), new ItemStack(JourneyArmory.livegreenLegs, 1)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.enchantedLeaf, 16), new ItemStack(JourneyItems.orbaditeIngot, 16), new ItemStack(JourneyArmory.livegreenBoots, 1)));
+		list.add(new JourneyMerchantRecipe(new ItemStack(JourneyItems.enchantedLeaf, 16), new ItemStack(JourneyItems.orbaditeIngot, 16), new ItemStack(JourneyArmory.livegreenHelmet, 1)));
+		list.add(new JourneyMerchantRecipe(new ItemStack(JourneyItems.enchantedLeaf, 16), new ItemStack(JourneyItems.orbaditeIngot, 16), new ItemStack(JourneyArmory.livegreenChest, 1)));
+		list.add(new JourneyMerchantRecipe(new ItemStack(JourneyItems.enchantedLeaf, 16), new ItemStack(JourneyItems.orbaditeIngot, 16), new ItemStack(JourneyArmory.livegreenLegs, 1)));
+		list.add(new JourneyMerchantRecipe(new ItemStack(JourneyItems.enchantedLeaf, 16), new ItemStack(JourneyItems.orbaditeIngot, 16), new ItemStack(JourneyArmory.livegreenBoots, 1)));
 	}
 }

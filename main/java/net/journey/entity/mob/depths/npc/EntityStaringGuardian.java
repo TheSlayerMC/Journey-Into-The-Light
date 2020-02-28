@@ -3,9 +3,9 @@ package net.journey.entity.mob.depths.npc;
 import net.journey.JourneyItems;
 import net.journey.JourneyWeapons;
 import net.journey.client.GuiHandler;
+import net.journey.entity.JourneyMerchantRecipe;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
 import net.minecraft.world.World;
 import net.slayer.api.SlayerAPI;
@@ -44,11 +44,11 @@ public class EntityStaringGuardian extends EntityModVillager {
 
 	@Override
 	public void addRecipies(MerchantRecipeList list) {
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.depthsFlake, 15), new ItemStack(JourneyItems.darkCrystal, 16), new ItemStack(JourneyWeapons.depthsSlayer, 1)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.depthsFlake, 15), new ItemStack(JourneyItems.beastlyStomach, 16), new ItemStack(JourneyWeapons.depthsBow, 1)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.depthsFlake, 15), new ItemStack(JourneyWeapons.depthsSlayer, 1), new ItemStack(JourneyWeapons.depthsDarksword, 1)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.depthsFlake, 15), new ItemStack(JourneyWeapons.depthsBow, 1), new ItemStack(JourneyWeapons.darkEnforcer, 1)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.depthsFlake, 15), new ItemStack(JourneyItems.darkCrystal, 16), new ItemStack(JourneyItems.darkKey, 1)));
+		list.add(new JourneyMerchantRecipe(new ItemStack(JourneyItems.depthsFlake, 15), new ItemStack(JourneyItems.darkCrystal, 16), new ItemStack(JourneyWeapons.depthsSlayer, 1)));
+		list.add(new JourneyMerchantRecipe(new ItemStack(JourneyItems.depthsFlake, 15), new ItemStack(JourneyItems.beastlyStomach, 16), new ItemStack(JourneyWeapons.depthsBow, 1)));
+		list.add(new JourneyMerchantRecipe(new ItemStack(JourneyItems.depthsFlake, 15), new ItemStack(JourneyWeapons.depthsSlayer, 1), new ItemStack(JourneyWeapons.depthsDarksword, 1)));
+		list.add(new JourneyMerchantRecipe(new ItemStack(JourneyItems.depthsFlake, 15), new ItemStack(JourneyWeapons.depthsBow, 1), new ItemStack(JourneyWeapons.darkEnforcer, 1)));
+		list.add(new JourneyMerchantRecipe(new ItemStack(JourneyItems.depthsFlake, 15), new ItemStack(JourneyItems.darkCrystal, 16), new ItemStack(JourneyItems.darkKey, 1)));
 		
 	}
 }

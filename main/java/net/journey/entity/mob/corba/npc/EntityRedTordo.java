@@ -3,9 +3,9 @@ package net.journey.entity.mob.corba.npc;
 import net.journey.JourneyCrops;
 import net.journey.JourneyItems;
 import net.journey.client.GuiHandler;
+import net.journey.entity.JourneyMerchantRecipe;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
 import net.minecraft.world.World;
 import net.slayer.api.SlayerAPI;
@@ -41,13 +41,13 @@ public class EntityRedTordo extends EntityModVillager {
 
 	@Override
 	public void addRecipies(MerchantRecipeList list) {
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.natureTablet, 15), new ItemStack(JourneyItems.collectorRock, 15), new ItemStack(JourneyCrops.tomatoSeeds, 15)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.natureTablet, 15), new ItemStack(JourneyItems.collectorRock, 15), new ItemStack(JourneyCrops.corveggieSeeds, 15)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.natureTablet, 15), new ItemStack(JourneyItems.collectorRock, 15), new ItemStack(JourneyCrops.crackenCaneSeeds, 15)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.natureTablet, 15), new ItemStack(JourneyItems.collectorRock, 15), new ItemStack(JourneyCrops.crakeBulbSeeds, 15)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.natureTablet, 15), new ItemStack(JourneyItems.collectorRock, 15), new ItemStack(JourneyCrops.spineberrySeeds, 15)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.natureTablet, 15), new ItemStack(JourneyItems.collectorRock, 15), new ItemStack(JourneyCrops.glowaSeeds, 15)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.natureTablet, 15), new ItemStack(JourneyItems.collectorRock, 15), new ItemStack(JourneyCrops.zatSeeds, 15)));
+		list.add(new JourneyMerchantRecipe(new ItemStack(JourneyItems.natureTablet, 15), new ItemStack(JourneyItems.collectorRock, 15), new ItemStack(JourneyCrops.tomatoSeeds, 15)));
+		list.add(new JourneyMerchantRecipe(new ItemStack(JourneyItems.natureTablet, 15), new ItemStack(JourneyItems.collectorRock, 15), new ItemStack(JourneyCrops.corveggieSeeds, 15)));
+		list.add(new JourneyMerchantRecipe(new ItemStack(JourneyItems.natureTablet, 15), new ItemStack(JourneyItems.collectorRock, 15), new ItemStack(JourneyCrops.crackenCaneSeeds, 15)));
+		list.add(new JourneyMerchantRecipe(new ItemStack(JourneyItems.natureTablet, 15), new ItemStack(JourneyItems.collectorRock, 15), new ItemStack(JourneyCrops.crakeBulbSeeds, 15)));
+		list.add(new JourneyMerchantRecipe(new ItemStack(JourneyItems.natureTablet, 15), new ItemStack(JourneyItems.collectorRock, 15), new ItemStack(JourneyCrops.spineberrySeeds, 15)));
+		list.add(new JourneyMerchantRecipe(new ItemStack(JourneyItems.natureTablet, 15), new ItemStack(JourneyItems.collectorRock, 15), new ItemStack(JourneyCrops.glowaSeeds, 15)));
+		list.add(new JourneyMerchantRecipe(new ItemStack(JourneyItems.natureTablet, 15), new ItemStack(JourneyItems.collectorRock, 15), new ItemStack(JourneyCrops.zatSeeds, 15)));
 		
 	}
 }

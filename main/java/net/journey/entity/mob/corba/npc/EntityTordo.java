@@ -4,9 +4,9 @@ import net.journey.JourneyArmory;
 import net.journey.JourneyItems;
 import net.journey.JourneyWeapons;
 import net.journey.client.GuiHandler;
+import net.journey.entity.JourneyMerchantRecipe;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
 import net.minecraft.world.World;
 import net.slayer.api.SlayerAPI;
@@ -42,17 +42,17 @@ public class EntityTordo extends EntityModVillager {
 
 	@Override
 	public void addRecipies(MerchantRecipeList list) {
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.natureTablet, 15), new ItemStack(JourneyItems.overseeingEye, 15), new ItemStack(JourneyWeapons.healersBlade, 1)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.natureTablet, 32), new ItemStack(JourneyItems.collectorRock, 32), new ItemStack(JourneyWeapons.treeHugger, 1)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.natureTablet, 32), new ItemStack(JourneyItems.collectorRock, 64), new ItemStack(JourneyArmory.multiToolOfEternalSmelting, 1)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.enchantedLeaf, 32), new ItemStack(JourneyItems.corbaStick, 10), new ItemStack(JourneyArmory.treehuggersHelmet, 1)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.enchantedLeaf, 32), new ItemStack(JourneyItems.corbaStick, 10), new ItemStack(JourneyArmory.treehuggersChest, 1)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.enchantedLeaf, 32), new ItemStack(JourneyItems.corbaStick, 10), new ItemStack(JourneyArmory.treehuggersLegs, 1)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.enchantedLeaf, 32), new ItemStack(JourneyItems.corbaStick, 10), new ItemStack(JourneyArmory.treehuggersBoots, 1)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.natureTablet, 10), new ItemStack(JourneyItems.overseeingEye, 32), new ItemStack(JourneyArmory.leapersHelmet, 1)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.natureTablet, 10), new ItemStack(JourneyItems.overseeingEye, 32), new ItemStack(JourneyArmory.leapersChest, 1)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.natureTablet, 10), new ItemStack(JourneyItems.overseeingEye, 32), new ItemStack(JourneyArmory.leapersLegs, 1)));
-		list.add(new MerchantRecipe(new ItemStack(JourneyItems.natureTablet, 10), new ItemStack(JourneyItems.overseeingEye, 32), new ItemStack(JourneyArmory.leapersBoots, 1)));
+		list.add(new JourneyMerchantRecipe(new ItemStack(JourneyItems.natureTablet, 15), new ItemStack(JourneyItems.overseeingEye, 15), new ItemStack(JourneyWeapons.healersBlade, 1)));
+		list.add(new JourneyMerchantRecipe(new ItemStack(JourneyItems.natureTablet, 32), new ItemStack(JourneyItems.collectorRock, 32), new ItemStack(JourneyWeapons.treeHugger, 1)));
+		list.add(new JourneyMerchantRecipe(new ItemStack(JourneyItems.natureTablet, 32), new ItemStack(JourneyItems.collectorRock, 64), new ItemStack(JourneyArmory.multiToolOfEternalSmelting, 1)));
+		list.add(new JourneyMerchantRecipe(new ItemStack(JourneyItems.enchantedLeaf, 32), new ItemStack(JourneyItems.corbaStick, 10), new ItemStack(JourneyArmory.treehuggersHelmet, 1)));
+		list.add(new JourneyMerchantRecipe(new ItemStack(JourneyItems.enchantedLeaf, 32), new ItemStack(JourneyItems.corbaStick, 10), new ItemStack(JourneyArmory.treehuggersChest, 1)));
+		list.add(new JourneyMerchantRecipe(new ItemStack(JourneyItems.enchantedLeaf, 32), new ItemStack(JourneyItems.corbaStick, 10), new ItemStack(JourneyArmory.treehuggersLegs, 1)));
+		list.add(new JourneyMerchantRecipe(new ItemStack(JourneyItems.enchantedLeaf, 32), new ItemStack(JourneyItems.corbaStick, 10), new ItemStack(JourneyArmory.treehuggersBoots, 1)));
+		list.add(new JourneyMerchantRecipe(new ItemStack(JourneyItems.natureTablet, 10), new ItemStack(JourneyItems.overseeingEye, 32), new ItemStack(JourneyArmory.leapersHelmet, 1)));
+		list.add(new JourneyMerchantRecipe(new ItemStack(JourneyItems.natureTablet, 10), new ItemStack(JourneyItems.overseeingEye, 32), new ItemStack(JourneyArmory.leapersChest, 1)));
+		list.add(new JourneyMerchantRecipe(new ItemStack(JourneyItems.natureTablet, 10), new ItemStack(JourneyItems.overseeingEye, 32), new ItemStack(JourneyArmory.leapersLegs, 1)));
+		list.add(new JourneyMerchantRecipe(new ItemStack(JourneyItems.natureTablet, 10), new ItemStack(JourneyItems.overseeingEye, 32), new ItemStack(JourneyArmory.leapersBoots, 1)));
 		
 	}
 }
