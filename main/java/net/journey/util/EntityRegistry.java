@@ -235,7 +235,6 @@ public class EntityRegistry {
     		SlayerAPI.buildEntityEntry(EntityEudor.class, "eudor", 0x000000, 0x9B0000),
     		SlayerAPI.buildEntityEntry(EntityScale.class, "scale", 0x000000, 0x9B0000),
     		SlayerAPI.buildEntityEntry(EntityTerranianProtector.class, "terranianprotector", 0x000000, 0x9B0000),
-    		//SlayerAPI.buildEntityEntry(EntityWraith.class, "wraith");
     		//Terrania
     		SlayerAPI.buildEntityEntry(EntityTerralight.class, "terralight", 0x7813ff, 0xff58f5),
     		SlayerAPI.buildEntityEntry(EntityTerraScatterer.class, "terrascatterer", 0x7813ff, 0xff58f5),
