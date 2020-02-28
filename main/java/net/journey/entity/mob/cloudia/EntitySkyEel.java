@@ -42,13 +42,17 @@ public class EntitySkyEel extends EntityModFlying {
 	public EntitySkyEel(World par1World) {
 		super(par1World);
         this.moveHelper = new EntitySkyEel.LavasnakeMoveHelper(this);
+		initEntityAI();
+		this.isImmuneToFire = true;
+		setSize(0.7F, 1.2F);
+	}
+	public void initEntityAI()
+    {
 		this.tasks.addTask(5, new EntitySkyEel.AIRandomFly(this));
 		this.tasks.addTask(7, new EntitySkyEel.AIFireballAttack(this));
 		this.tasks.addTask(7, new EntitySkyEel.AILookAround(this));
 		this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
-		this.isImmuneToFire = true;
-		setSize(0.7F, 1.2F);
-	}
+    }
 
 	@Override
 	protected void dropFewItems(boolean b, int j) {
@@ -74,15 +78,6 @@ public class EntitySkyEel extends EntityModFlying {
 	public Item getItemDropped() {
 		return null;
 	}
-
-	@Override
-    protected void initEntityAI()
-    {
-        this.tasks.addTask(5, new EntitySkyEel.AIRandomFly(this));
-        this.tasks.addTask(7, new EntitySkyEel.AILookAround(this));
-        this.tasks.addTask(7, new EntitySkyEel.AIFireballAttack(this));
-        this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
-    }
 
     @SideOnly(Side.CLIENT)
     public boolean isAttacking()

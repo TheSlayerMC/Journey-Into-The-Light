@@ -47,10 +47,7 @@ public class EntityLightener extends EntityModFlying {
 	public EntityLightener(World par1World) {
 		super(par1World);
         this.moveHelper = new EntityLightener.LavasnakeMoveHelper(this);
-		this.tasks.addTask(5, new EntityLightener.AIRandomFly(this));
-		this.tasks.addTask(7, new EntityLightener.AIFireballAttack(this));
-		this.tasks.addTask(7, new EntityLightener.AILookAround(this));
-		this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
+        initEntityAI();
 		this.isImmuneToFire = true;
 		setSize(0.7F, 1.2F);
 	}
@@ -78,13 +75,12 @@ public class EntityLightener extends EntityModFlying {
 		return JourneyItems.darkCrystal;
 	}
 
-	@Override
     protected void initEntityAI()
     {
-        this.tasks.addTask(5, new EntityLightener.AIRandomFly(this));
-        this.tasks.addTask(7, new EntityLightener.AILookAround(this));
-        this.tasks.addTask(7, new EntityLightener.AIFireballAttack(this));
-        this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
+		this.tasks.addTask(5, new EntityLightener.AIRandomFly(this));
+		this.tasks.addTask(7, new EntityLightener.AIFireballAttack(this));
+		this.tasks.addTask(7, new EntityLightener.AILookAround(this));
+		this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
     }
 
     @SideOnly(Side.CLIENT)

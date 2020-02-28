@@ -42,10 +42,17 @@ public class EntityOverseerElder extends EntityModFlying {
 	public EntityOverseerElder(World par1World) {
 		super(par1World);
         this.moveHelper = new EntityOverseerElder.LavasnakeMoveHelper(this);
+		initEntityAI();
+		this.isImmuneToFire = true;
+		setSize(2.0F, 1.2F);
+	}
+	public void initEntityAI()
+    {
 		this.tasks.addTask(5, new EntityOverseerElder.AIRandomFly(this));
 		this.tasks.addTask(7, new EntityOverseerElder.AIFireballAttack(this));
 		this.tasks.addTask(7, new EntityOverseerElder.AILookAround(this));
 		this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
+    }
 		this.isImmuneToFire = true;
 		setSize(2.0F, 3.2F);
 	}
@@ -74,15 +81,6 @@ public class EntityOverseerElder extends EntityModFlying {
 	public Item getItemDropped() {
 		return null;
 	}
-
-	@Override
-    protected void initEntityAI()
-    {
-        this.tasks.addTask(5, new EntityOverseerElder.AIRandomFly(this));
-        this.tasks.addTask(7, new EntityOverseerElder.AILookAround(this));
-        this.tasks.addTask(7, new EntityOverseerElder.AIFireballAttack(this));
-        this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
-    }
 
     @SideOnly(Side.CLIENT)
     public boolean isAttacking()

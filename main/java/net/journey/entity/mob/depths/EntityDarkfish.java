@@ -42,12 +42,9 @@ public class EntityDarkfish extends EntityModFlying {
 	public EntityDarkfish(World par1World) {
 		super(par1World);
         this.moveHelper = new EntityDarkfish.LavasnakeMoveHelper(this);
-		this.tasks.addTask(5, new EntityDarkfish.AIRandomFly(this));
-		this.tasks.addTask(7, new EntityDarkfish.AIFireballAttack(this));
-		this.tasks.addTask(7, new EntityDarkfish.AILookAround(this));
-		this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
 		this.isImmuneToFire = true;
 		setSize(0.7F, 1.2F);
+		initEntityAI();
 	}
 
 	@Override
@@ -73,7 +70,6 @@ public class EntityDarkfish extends EntityModFlying {
 		return null;
 	}
 
-	@Override
     protected void initEntityAI()
     {
         this.tasks.addTask(5, new EntityDarkfish.AIRandomFly(this));

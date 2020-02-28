@@ -4,6 +4,7 @@ import java.util.Random;
 
 import net.journey.JourneyItems;
 import net.journey.entity.MobStats;
+import net.journey.entity.mob.euca.EntityShimmerer;
 import net.journey.entity.projectile.EntityMagmaFireball;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -40,14 +41,17 @@ public class EntityOverseer extends EntityModFlying {
 	public EntityOverseer(World par1World) {
 		super(par1World);
         this.moveHelper = new EntityOverseer.LavasnakeMoveHelper(this);
-		this.tasks.addTask(5, new EntityOverseer.AIRandomFly(this));
-		this.tasks.addTask(7, new EntityOverseer.AIFireballAttack(this));
-		this.tasks.addTask(7, new EntityOverseer.AILookAround(this));
-		this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
+		initEntityAI();
 		this.isImmuneToFire = true;
 		setSize(0.7F, 1.2F);
 	}
-
+	public void initEntityAI()
+    {
+		this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
+		this.tasks.addTask(5, new EntityOverseer.AIRandomFly(this));
+		this.tasks.addTask(7, new EntityOverseer.AIFireballAttack(this));
+		this.tasks.addTask(7, new EntityOverseer.AILookAround(this));
+    }
 	@Override
 	protected void dropFewItems(boolean b, int j) {
 		if(rand.nextInt(1) == 0) dropItem(JourneyItems.overseeingEye, 1);
@@ -71,15 +75,6 @@ public class EntityOverseer extends EntityModFlying {
 	public Item getItemDropped() {
 		return null;
 	}
-
-	@Override
-    protected void initEntityAI()
-    {
-        this.tasks.addTask(5, new EntityOverseer.AIRandomFly(this));
-        this.tasks.addTask(7, new EntityOverseer.AILookAround(this));
-        this.tasks.addTask(7, new EntityOverseer.AIFireballAttack(this));
-        this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
-    }
 
     @SideOnly(Side.CLIENT)
     public boolean isAttacking()

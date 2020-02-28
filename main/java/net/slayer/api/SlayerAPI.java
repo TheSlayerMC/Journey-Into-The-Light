@@ -35,6 +35,8 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.registry.EntityEntry;
+import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.common.registry.VillagerRegistry;
@@ -92,73 +94,33 @@ public class SlayerAPI {
 		MinecraftForge.EVENT_BUS.register(o);
 	}
 
-	public static void registerMob(Class entityClass, String name, String finalN, int base, int fore) {
-		LangRegistry.addMob(name, finalN);
-		EntityRegistry.registerModEntity(new ResourceLocation(MOD_ID, name), entityClass, name, mobID++, JITL.instance, 128, 5, true, base, fore);
-	}
-
-	public static void registerEndMob(Class entityClass, String entityName, String finalN) {
-		registerMob(entityClass, entityName, finalN, 0x440089, 0xBC00BC);
-	}
-
-	public static void registerOverworldMob(Class entityClass, String entityName, String finalN) {
-		registerMob(entityClass, entityName, finalN, 0x7c4c2c, 0x26b530);
-	}
-
-	public static void registerNetherMob(Class entityClass, String entityName, String finalN) {
-		registerMob(entityClass, entityName, finalN, 0xff0000, 0xffd800);
+	public static EntityEntry buildEntityEntry(Class entityClass, String entityID, int base, int fore) {
+		
+        return EntityEntryBuilder.create().entity(entityClass)
+                .id(new ResourceLocation(MOD_ID, entityID), mobID++).name(MOD_ID + "." + entityID).tracker(128, 3, true)
+                .egg(base, fore).build();
+        
+    }
+	public static EntityEntry buildEntityEntryNoEgg(Class entityClass, String entityID, int id) {
+	
+    return EntityEntryBuilder.create().entity(entityClass)
+            .id(new ResourceLocation(MOD_ID, entityID), id).name(MOD_ID + "." + entityID).tracker(128, 3, true).build();
+    
 	}
 
 	public static void registerPets(Class entityClass, String entityName, String finalN) {
-		registerMob(entityClass, entityName, finalN, 0x64ffe4, 0x009cff);
-	}
-
-	public static void registerBPMob(Class entityClass, String entityName, String finalN) {
-		registerMob(entityClass, entityName, finalN, 0xff7800, 0xffa800);
-	}
-
-	public static void registerFLMob(Class entityClass, String entityName, String finalN) {
-		registerMob(entityClass, entityName, finalN, 0x00d8ff, 0xd8f9ff);
-	}
-
-	public static void registerEucaMob(Class entityClass, String entityName, String finalN) {
-		registerMob(entityClass, entityName, finalN, 0xffba00, 0xe0e0e0);
-	}
-
-	public static void registerDepthsMob(Class entityClass, String entityName, String finalN) {
-		registerMob(entityClass, entityName, finalN, 0x003CA5, 0x0098A3);
-	}
-
-	public static void registerCorbaMob(Class entityClass, String entityName, String finalN) {
-		registerMob(entityClass, entityName, finalN, 0x1e8c00, 0x36ff00);
-	}
-
-	public static void registerCloudiaMob(Class entityClass, String entityName, String finalN) {
-		registerMob(entityClass, entityName, finalN, 0xa87abd, 0x9000ff);
-	}
-
-	public static void registerTerraniaMob(Class entityClass, String entityName, String finalN) {
-		registerMob(entityClass, entityName, finalN, 0x7813ff, 0xff58f5);
-	}
-
-	public static void registerNPC(Class entityClass, String entityName, String finalN) {
-		LangRegistry.addMob(entityName, finalN);
-		EntityRegistry.registerModEntity(new ResourceLocation(entityName), entityClass, entityName, mobID++, JITL.instance, 128, 5, true, 0x00FF8C, 0x00F6FF);
+		buildEntityEntry(entityClass, entityName, 0x64ffe4, 0x009cff);
 	}
 
 	public static void registerEntity(Class entityClass, String entityName, int ID) {
 		EntityRegistry.registerModEntity(new ResourceLocation(entityName), entityClass, entityName, ID, JITL.instance, 120, 5, true);
 	}
 
-	public static void registerBossMob(Class entityClass, String entityName, String finalN) {
-		LangRegistry.addMob(entityName, finalN);
-		EntityRegistry.registerModEntity(new ResourceLocation(entityName), entityClass, entityName, mobID++, JITL.instance, 128, 5, true, 0x000000, 0x9B0000);
-	}
-
-	public static void registerProjectile(Class entityClass, String entityName) {
-		EntityRegistry.registerModEntity(new ResourceLocation(entityName), entityClass, entityName + " Projectile", projectileID, JITL.instance, 250, 5, true);
-		projectileID++;
-	}
+	public static EntityEntry registerProjectile(Class entityClass, String entityID) {
+        return EntityEntryBuilder.create().entity(entityClass)
+                .id(new ResourceLocation(MOD_ID, entityID), projectileID++).name(MOD_ID + "." + entityID)
+                .tracker(250, 5, true).build();
+    }
 
 	public static ArmorMaterial addArmorMaterial(String name, int durability, int[] oldArmor, int enchantability, float toughness) {
 		int duraNew = (int) Math.round(durability / 13.75);

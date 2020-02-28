@@ -70,7 +70,6 @@ public class CommonProxy {
 		BiomeRegister.registerBiomes();
 		Config.postBiomeInit();
 		JNWorldGenerator.updateGenSettings();
-		EntityRegistry.init();
 
 		JourneyChestGenerator.init();
 		//JourneyAchievements.init()

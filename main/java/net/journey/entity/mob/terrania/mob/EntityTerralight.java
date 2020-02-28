@@ -5,8 +5,14 @@ import java.util.Random;
 import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
 import net.minecraft.entity.ai.EntityAIBase;
+import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
+import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
+import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
+import net.minecraft.entity.ai.EntityAIWanderAvoidWater;
 import net.minecraft.entity.ai.EntityMoveHelper;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.MathHelper;
@@ -18,10 +24,16 @@ public class EntityTerralight extends EntityModFlying {
 	public EntityTerralight(World par1World) {
 		super(par1World);
 		this.moveHelper = new EntityTerralight.ShattererMoveHelper();
+		setSize(1F, 1F);
+		initEntityAI();
         this.tasks.addTask(5, new EntityTerralight.AIRandomFly());
 		setSize(0.5F, 0.5F);
 	}
-
+	public void initEntityAI()
+    {
+        this.tasks.addTask(5, new EntityTerralight.AIRandomFly());
+        this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
+    }
     public int getBrightnessForRender(float p_70070_1_)
     {
         return 15728880;

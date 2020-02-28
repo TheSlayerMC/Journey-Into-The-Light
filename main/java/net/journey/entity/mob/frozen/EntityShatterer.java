@@ -5,7 +5,9 @@ import java.util.Random;
 import net.journey.JourneyBlocks;
 import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
+import net.journey.entity.mob.terrania.mob.EntityTerralight;
 import net.minecraft.entity.ai.EntityAIBase;
+import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
 import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.item.Item;
 import net.minecraft.util.SoundEvent;
@@ -21,10 +23,14 @@ public class EntityShatterer extends EntityModFlying {
 	public EntityShatterer(World par1World) {
 		super(par1World);
 		this.moveHelper = new EntityShatterer.ShattererMoveHelper();
-        this.tasks.addTask(5, new EntityShatterer.AIRandomFly());
+        initEntityAI();
 		setSize(2F, 2F);
 	}
-
+	public void initEntityAI()
+    {
+        this.tasks.addTask(5, new EntityShatterer.AIRandomFly());
+        this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
+    }
 	@Override
 	public void onUpdate() {
         super.onUpdate();

@@ -55,6 +55,7 @@ public class JITL {
 		proxy.init(event);
 		proxy.clientInit(event);
 		JourneyRecipes recipe = new JourneyRecipes();
+		recipe.furnaceRecipes();
 	}
 
 	@EventHandler
