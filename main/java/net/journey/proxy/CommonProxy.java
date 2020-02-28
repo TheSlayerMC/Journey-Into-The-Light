@@ -26,7 +26,6 @@ import net.journey.event.PlayerEvent;
 import net.journey.event.VanillaFixEvent;
 import net.journey.misc.JourneyCommands;
 import net.journey.util.Config;
-import net.journey.util.EntityRegistry;
 import net.journey.util.JourneyFuelHandler;
 import net.journey.util.LangRegistry;
 import net.journey.util.recipes.JourneyRecipes;
@@ -96,8 +95,6 @@ public class CommonProxy {
 		JourneyTabs.init();
 		GameRegistry.registerWorldGenerator(new WorldGenJourney(), 2);
 		SlayerAPI.registerEvent(new PlayerEvent());
-
-		
 	}
 
 	@SubscribeEvent

@@ -198,7 +198,7 @@ public class LangRegistry {
 
 	public void mob() {
 		for(int i = 0; i < mobUnloc.size(); i++)
-			writeToFile("entity." + mobUnloc.get(i) + ".name=" + mobFinal.get(i));
+			writeToFile("entity.journey." + mobUnloc.get(i) + ".name=" + mobFinal.get(i));
 	}
 
 	public void item() {

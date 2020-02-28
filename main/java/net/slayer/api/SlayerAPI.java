@@ -94,8 +94,8 @@ public class SlayerAPI {
 		MinecraftForge.EVENT_BUS.register(o);
 	}
 
-	public static EntityEntry buildEntityEntry(Class entityClass, String entityID, int base, int fore) {
-		
+	public static EntityEntry buildEntityEntry(Class entityClass, String entityID, String finalName, int base, int fore) {
+		LangRegistry.addMob(entityID, finalName);
         return EntityEntryBuilder.create().entity(entityClass)
                 .id(new ResourceLocation(MOD_ID, entityID), mobID++).name(MOD_ID + "." + entityID).tracker(128, 3, true)
                 .egg(base, fore).build();
@@ -108,8 +108,8 @@ public class SlayerAPI {
     
 	}
 
-	public static void registerPets(Class entityClass, String entityName, String finalN) {
-		buildEntityEntry(entityClass, entityName, 0x64ffe4, 0x009cff);
+	public static void registerPets(Class entityClass, String entityName, String finalName, String finalN) {
+		buildEntityEntry(entityClass, entityName, finalName, 0x64ffe4, 0x009cff);
 	}
 
 	public static void registerEntity(Class entityClass, String entityName, int ID) {
