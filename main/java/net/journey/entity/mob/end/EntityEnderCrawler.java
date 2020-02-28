@@ -17,7 +17,7 @@ public class EntityEnderCrawler extends EntityModMob{
 	public EntityEnderCrawler(World par1World) {
 		super(par1World);
 		addAttackingAI();
-		setSize(0.2F, 1.7F);
+		setSize(1.0F, 1.0F);
 	}
 
 	@Override

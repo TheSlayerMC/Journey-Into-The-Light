@@ -186,11 +186,9 @@ public class BlockModBush extends BlockMod implements IPlantable, IGrowable {
 		x = player.posX,
 		y = player.posY, 
 		z = player.posZ;
-		if (state.getValue(AGE) == 2) {
-			if (w.isRemote) { 
-				return true;
-			}
+		if(state.getValue(AGE) == 2 && !w.isRemote) {
 			EntityItem drop = new EntityItem(w, x, y, z, new ItemStack(berry));
+			System.out.print(berry);
 			w.spawnEntity(drop);
 			w.setBlockState(pos, state.withProperty(AGE, 0), 1);
 			return true;

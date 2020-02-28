@@ -310,6 +310,10 @@ public class ChunkProviderDepths implements IChunkGenerator {
 
         BlockPos chunkStart = new BlockPos(x1, 0, z1);
 
+        for(i = 0; i < 20; i++) {
+            floorgems.generate(worldObj, rand, new BlockPos(x1, rand.nextInt(250), z1));
+        }
+        
         for (i = 0; i < 40; i++) {
             flower.generate(worldObj, rand,  chunkStart);
             flower2.generate(worldObj, rand, chunkStart);
@@ -318,10 +322,6 @@ public class ChunkProviderDepths implements IChunkGenerator {
         for (i = 0; i < 25; i++) {
             flairum.generate(worldObj, rand, new BlockPos(x1, rand.nextInt(250), z1));
             des.generate(worldObj, rand, new BlockPos(x1, rand.nextInt(250), z1));
-        }
-        
-        for(i = 0; i < 20; i++) {
-            floorgems.generate(worldObj, rand, new BlockPos(x1, rand.nextInt(250), z1));
         }
 
         for (i = 0; i < 15; i++) {

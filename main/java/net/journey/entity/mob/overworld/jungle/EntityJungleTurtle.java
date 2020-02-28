@@ -18,7 +18,7 @@ public class EntityJungleTurtle extends EntityModMob {
 	public EntityJungleTurtle(World par1World) {
 		super(par1World);
 		addAttackingAI();
-		this.setSize(2.0F, 1.3F);
+		this.setSize(2.0F, 2.0F);
 	}
 	
 	@Override

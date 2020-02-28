@@ -18,7 +18,7 @@ public class EntitySpikedBeast extends EntityModMob{
 	public EntitySpikedBeast(World par1World) {
 		super(par1World);
 		addAttackingAI();
-		setSize(0.7F, 1.7F);
+		setSize(0.7F, 1.5F);
 	}
 	
 	@Override

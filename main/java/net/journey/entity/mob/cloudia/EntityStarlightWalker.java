@@ -14,6 +14,7 @@ public class EntityStarlightWalker extends EntityModMob {
 	public EntityStarlightWalker(World w) {
 		super(w);
 		addAttackingAI();
+		setSize(1.0F, 1.0F);
 	}
 	
 	@Override

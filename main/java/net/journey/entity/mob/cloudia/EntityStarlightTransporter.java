@@ -12,7 +12,7 @@ public class EntityStarlightTransporter extends EntityPeacefullUntillAttacked {
 
 	public EntityStarlightTransporter(World w) {
 		super(w);
-		this.setSize((float) 1.5, 2);
+		setSize(1.5F, 1.7F);
 	}
 
 	@Override

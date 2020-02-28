@@ -26,6 +26,8 @@ public class EntityTerralight extends EntityModFlying {
 		this.moveHelper = new EntityTerralight.ShattererMoveHelper();
 		setSize(1F, 1F);
 		initEntityAI();
+        this.tasks.addTask(5, new EntityTerralight.AIRandomFly());
+		setSize(0.5F, 0.5F);
 	}
 	public void initEntityAI()
     {

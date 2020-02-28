@@ -30,7 +30,7 @@ public class EntityThunderbird extends EntityEssenceBoss {
 	public EntityThunderbird(World par1World) {
 		super(par1World);
 		addAttackingAI();
-		setSize(3.0F, 3.5F);
+		setSize(2.0F, 2.5F);
 	}
 
 	@Override

@@ -61,12 +61,12 @@ public class CommonProxy {
 		NetherEvent.init();
 
 		JourneySounds.init();
-		JourneyBlocks.init();
 		JourneyItems.init();
-		JourneyWeapons.init();
-		JourneyArmory.init();
 		JourneyConsumables.init();
 		JourneyCrops.init();
+		JourneyBlocks.init();
+		JourneyWeapons.init();
+		JourneyArmory.init();
 		BiomeRegister.registerBiomes();
 		Config.postBiomeInit();
 		JNWorldGenerator.updateGenSettings();

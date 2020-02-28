@@ -18,7 +18,7 @@ public class EntityDynaster extends EntityModMob{
 	public EntityDynaster(World par1World) {
 		super(par1World);
 		addAttackingAI();
-		setSize(1.0F, 1.7F);
+		setSize(1.0F, 1.0F);
 	}
 
 	@Override

@@ -20,7 +20,8 @@ public class EntityWraith extends EntityModMob {
 	public EntityWraith(World par1World) {
 		super(par1World);
 		addAttackingAI();
-		setSize(1.0F, 2.0F);
+		setSize(0.7F, 2.0F);
+
 	}
 	
 	@Override

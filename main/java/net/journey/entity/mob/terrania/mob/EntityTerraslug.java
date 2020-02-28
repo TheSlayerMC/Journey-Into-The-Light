@@ -13,7 +13,7 @@ public class EntityTerraslug extends EntityModMob {
 	public EntityTerraslug(World par1World) {
 		super(par1World);
 		addAttackingAI();
-		setSize(0.25F, 0.25F);
+		setSize(0.4F, 0.4F);
 	}
 
 	@Override

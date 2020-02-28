@@ -49,7 +49,7 @@ public class EntityLavasnake extends EntityModFlying {
 		this.moveHelper = new EntityLavasnake.LavasnakeMoveHelper(this);
 		initEntityAI();
 		this.isImmuneToFire = true;
-		setSize(0.7F, 1.2F);
+		setSize(1.0F, 1.2F);
 	}
 
 	@Override

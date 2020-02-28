@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.client.renderer.entity.layers.LayerHeldItem;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -22,12 +23,18 @@ public class RenderModMob<T> extends RenderLiving {
 
 	public RenderModMob(ModelBase model, float shadow, ResourceLocation tex) {
 		super(Minecraft.getMinecraft().getRenderManager(), model, shadow);
+        this.addLayer(new LayerHeldItem(this));
 		texture = tex;
 	}
 
 	public RenderModMob(ModelBase model, ResourceLocation tex) {
 		this(model, 0.5F, tex);
 	}
+	
+	@Override
+	public void transformHeldFull3DItemLayer() {
+        GlStateManager.translate(0.09375F, 0.1875F, 0.0F);
+    }
 
 	@Override
 	public void doRender(EntityLiving entity, double x, double y, double z, float f, float partialTicks) {

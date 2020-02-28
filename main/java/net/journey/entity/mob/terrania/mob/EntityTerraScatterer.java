@@ -13,6 +13,7 @@ public class EntityTerraScatterer extends EntityModMob {
 
 	public EntityTerraScatterer(World w) {
 		super(w);
+		setSize(1.0F, 1.5F);
 	}
 
 	@Override

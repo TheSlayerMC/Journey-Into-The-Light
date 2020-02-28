@@ -27,7 +27,7 @@ public class EntityGreenHonglow extends EntityModMob {
 
     @Override
     public int getBrightnessForRender() {
-    	return 20;
+    	return 2000000;
     }
     
 	@Override

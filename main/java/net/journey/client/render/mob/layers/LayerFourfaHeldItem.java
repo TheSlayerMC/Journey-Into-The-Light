@@ -40,6 +40,7 @@ public class LayerFourfaHeldItem implements LayerRenderer {
             Minecraft minecraft = Minecraft.getMinecraft();
             GL11.glPushMatrix();
             GL11.glTranslatef(1.0F, 0.6F, 0.0F);
+            //GL11.glRotatef(90F, 30F, 30F, 30F);
             minecraft.getItemRenderer().renderItem(e, itemstack, ItemCameraTransforms.TransformType.THIRD_PERSON_RIGHT_HAND);
             GL11.glPopMatrix();     
             GL11.glPushMatrix();

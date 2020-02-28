@@ -50,6 +50,7 @@ public class EntityObserver extends EntityModMob {
 		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, new Class[0]));
 		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
 		this.isImmuneToFire = true;
+		setSize(0.8F, 2.0F);
 	}
 
 	@Override

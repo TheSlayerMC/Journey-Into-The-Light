@@ -13,6 +13,7 @@ public class EntityShiverwing extends EntityPeacefullUntillAttacked {
 
 	public EntityShiverwing(World w) {
 		super(w);
+		setSize(1.0F, 1.0F);
 	}
 
 	@Override

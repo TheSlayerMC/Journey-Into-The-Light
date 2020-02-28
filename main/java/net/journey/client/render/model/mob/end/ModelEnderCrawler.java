@@ -84,9 +84,9 @@ public class ModelEnderCrawler extends ModelBase {
 	      snout.setRotationPoint(-2F, 12F, -16F);
 	      snout.setTextureSize(64, 64);
 	      setRotation(snout, 0F, 0F, 0F);
-	      head.addChild(ear1);
-	      head.addChild(ear2);
-	      head.addChild(snout);
+	      //head.addChild(ear1);
+	      //head.addChild(ear2);
+	     // head.addChild(snout);
 
 	}
 
@@ -123,5 +123,7 @@ public class ModelEnderCrawler extends ModelBase {
 		this.leg4.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * 1.4F * f1;
 		this.head.rotateAngleY = f3 / (180F / (float)Math.PI);
 		this.head.rotateAngleX = f4 / (180F / (float)Math.PI);
+		
+		
 	}
 }
