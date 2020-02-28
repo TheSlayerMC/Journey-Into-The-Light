@@ -43,6 +43,7 @@ public class EntityMiniGhast extends EntityModFlying {
 		this.experienceValue = 5;
 		this.moveHelper = new EntityMiniGhast.GhastMoveHelper(this);
 		this.isImmuneToFire = true;
+		initEntityAI();
 		setSize(0.7F, 1.2F);
 	}
 
@@ -76,7 +77,6 @@ public class EntityMiniGhast extends EntityModFlying {
 		return null;
 	}
 
-	@Override
 	protected void initEntityAI() {
 		this.tasks.addTask(5, new EntityMiniGhast.AIRandomFly(this));
 		this.tasks.addTask(7, new EntityMiniGhast.AILookAround(this));

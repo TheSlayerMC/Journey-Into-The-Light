@@ -47,10 +47,7 @@ public class EntityLavasnake extends EntityModFlying {
 	public EntityLavasnake(World par1World) {
 		super(par1World);
 		this.moveHelper = new EntityLavasnake.LavasnakeMoveHelper(this);
-		this.tasks.addTask(5, new EntityLavasnake.AIRandomFly(this));
-		this.tasks.addTask(7, new EntityLavasnake.AIFireballAttack(this));
-		this.tasks.addTask(7, new EntityLavasnake.AILookAround(this));
-		this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
+		initEntityAI();
 		this.isImmuneToFire = true;
 		setSize(0.7F, 1.2F);
 	}
@@ -92,11 +89,10 @@ public class EntityLavasnake extends EntityModFlying {
 		return null;
 	}
 
-	@Override
 	protected void initEntityAI() {
 		this.tasks.addTask(5, new EntityLavasnake.AIRandomFly(this));
-		this.tasks.addTask(7, new EntityLavasnake.AILookAround(this));
 		this.tasks.addTask(7, new EntityLavasnake.AIFireballAttack(this));
+		this.tasks.addTask(7, new EntityLavasnake.AILookAround(this));
 		this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
 	}
 

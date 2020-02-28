@@ -29,13 +29,16 @@ public class EntityShimmerer extends EntityModFlying {
 	public EntityShimmerer(World par1World) {
 		super(par1World);
 		this.moveHelper = new EntityShimmerer.MoveHelper();
+		initEntityAI();
+		setSize(0.7F, 1.2F);
+	}
+	public void initEntityAI()
+    {
+		this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
 		this.tasks.addTask(5, new EntityShimmerer.AIRandomFly());
 		this.tasks.addTask(7, new EntityShimmerer.AIFireballAttack());
         this.tasks.addTask(7, new EntityShimmerer.AILookAround());
-		this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
-		setSize(0.7F, 1.2F);
-	}
-
+    }
 	@Override
 	public double setMaxHealth(MobStats s) {
 		return MobStats.ShimmerHealth;

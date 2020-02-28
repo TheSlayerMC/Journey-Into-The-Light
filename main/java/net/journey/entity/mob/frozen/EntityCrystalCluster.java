@@ -5,6 +5,7 @@ import java.util.Random;
 import net.journey.JourneyItems;
 import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
+import net.journey.entity.mob.terrania.mob.EntityTerralight;
 import net.journey.entity.projectile.EntityShimmererProjectile;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
@@ -30,13 +31,16 @@ public class EntityCrystalCluster extends EntityModFlying {
 	public EntityCrystalCluster(World par1World) {
 		super(par1World);
 		this.moveHelper = new EntityCrystalCluster.MoveHelper();
+		initEntityAI();
+		setSize(0.7F, 1.2F);
+	}
+	public void initEntityAI()
+    {
+		this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
 		this.tasks.addTask(5, new EntityCrystalCluster.AIRandomFly());
 		this.tasks.addTask(7, new EntityCrystalCluster.AIFireballAttack());
         this.tasks.addTask(7, new EntityCrystalCluster.AILookAround());
-		this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
-		setSize(0.7F, 1.2F);
-	}
-
+    }
 	@Override
 	public double setMaxHealth(MobStats s) {
 		return MobStats.CrystalClusterHealth;

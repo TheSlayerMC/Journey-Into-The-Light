@@ -6,6 +6,7 @@ import java.util.List;
 import net.journey.blocks.tileentity.TileEntityHandler;
 import net.journey.blocks.tileentity.TileEntitySummoningTable;
 import net.journey.client.IHasModel;
+import net.journey.util.EntityRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
@@ -15,6 +16,8 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.RegistryEvent.Register;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.EntityEntry;
+import net.minecraftforge.registries.IForgeRegistry;
 import net.slayer.api.SlayerAPI;
 
 @EventBusSubscriber(modid=SlayerAPI.MOD_ID)
@@ -53,5 +56,13 @@ public class Registrys {
             event.getRegistry().register(sound);
         }
         SOUNDS.clear();
+    }
+    
+    @SubscribeEvent
+    public static void registerEnities(RegistryEvent.Register<EntityEntry> event) {
+        IForgeRegistry<EntityEntry> registry = event.getRegistry();
+
+        registry.registerAll(EntityRegistry.initProjectiles());
+        registry.registerAll(EntityRegistry.initMobs());
     }
 }

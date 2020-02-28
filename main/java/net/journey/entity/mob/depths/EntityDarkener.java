@@ -10,6 +10,7 @@ import java.util.Random;
 import net.journey.JourneyItems;
 import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
+import net.journey.entity.mob.frozen.EntityCrystalCluster;
 import net.journey.entity.projectile.EntityMagmaFireball;
 import net.journey.entity.projectile.EntityShimmererProjectile;
 import net.minecraft.entity.EntityLiving;
@@ -47,14 +48,17 @@ public class EntityDarkener extends EntityModFlying {
 	public EntityDarkener(World par1World) {
 		super(par1World);
         this.moveHelper = new EntityDarkener.LavasnakeMoveHelper(this);
-		this.tasks.addTask(5, new EntityDarkener.AIRandomFly(this));
-		this.tasks.addTask(7, new EntityDarkener.AIFireballAttack(this));
-		this.tasks.addTask(7, new EntityDarkener.AILookAround(this));
-		this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
 		this.isImmuneToFire = true;
 		setSize(0.7F, 1.2F);
+		initEntityAI();
 	}
-
+	public void initEntityAI()
+    {
+        this.tasks.addTask(5, new EntityDarkener.AIRandomFly(this));
+        this.tasks.addTask(7, new EntityDarkener.AILookAround(this));
+        this.tasks.addTask(7, new EntityDarkener.AIFireballAttack(this));
+        this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
+    }
 	@Override
 	protected void dropFewItems(boolean b, int j) {
 		if(rand.nextInt(1) == 0) dropItem(JourneyItems.depthsFlake, 2);
@@ -77,15 +81,6 @@ public class EntityDarkener extends EntityModFlying {
 	public Item getItemDropped() {
 		return JourneyItems.darkCrystal;
 	}
-
-	@Override
-    protected void initEntityAI()
-    {
-        this.tasks.addTask(5, new EntityDarkener.AIRandomFly(this));
-        this.tasks.addTask(7, new EntityDarkener.AILookAround(this));
-        this.tasks.addTask(7, new EntityDarkener.AIFireballAttack(this));
-        this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
-    }
 
     @SideOnly(Side.CLIENT)
     public boolean isAttacking()

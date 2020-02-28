@@ -42,14 +42,18 @@ public class EntitySurfaceSeer extends EntityModFlying {
 	public EntitySurfaceSeer(World par1World) {
 		super(par1World);
         this.moveHelper = new EntitySurfaceSeer.LavasnakeMoveHelper(this);
-		this.tasks.addTask(5, new EntitySurfaceSeer.AIRandomFly(this));
-		this.tasks.addTask(7, new EntitySurfaceSeer.AIFireballAttack(this));
-		this.tasks.addTask(7, new EntitySurfaceSeer.AILookAround(this));
-		this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
+        initEntityAI();
 		this.isImmuneToFire = true;
 		setSize(0.7F, 1.2F);
 	}
-	
+	public void initEntityAI()
+    {
+        this.tasks.addTask(5, new EntitySurfaceSeer.AIRandomFly(this));
+        this.tasks.addTask(7, new EntitySurfaceSeer.AILookAround(this));
+        this.tasks.addTask(7, new EntitySurfaceSeer.AIFireballAttack(this));
+        this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
+    }
+
 	@Override
 	protected void dropFewItems(boolean b, int j) {
 		if(rand.nextInt(40) == 0) dropItem(JourneyItems.natureTablet, 1);
@@ -72,15 +76,6 @@ public class EntitySurfaceSeer extends EntityModFlying {
 	public Item getItemDropped() {
 		return null;
 	}
-
-	@Override
-    protected void initEntityAI()
-    {
-        this.tasks.addTask(5, new EntitySurfaceSeer.AIRandomFly(this));
-        this.tasks.addTask(7, new EntitySurfaceSeer.AILookAround(this));
-        this.tasks.addTask(7, new EntitySurfaceSeer.AIFireballAttack(this));
-        this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
-    }
 
     @SideOnly(Side.CLIENT)
     public boolean isAttacking()
