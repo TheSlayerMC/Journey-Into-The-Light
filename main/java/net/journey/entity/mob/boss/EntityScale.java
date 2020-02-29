@@ -11,6 +11,7 @@ import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityBubbleProjectile;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
+import net.minecraft.entity.ai.EntityAIAttackRanged;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
 import net.minecraft.entity.ai.EntityMoveHelper;
@@ -38,12 +39,17 @@ public class EntityScale extends EntityEssenceBoss implements IRangedAttackMob {
 	public EntityScale(World par1World) {
 		super(par1World);
 		this.moveHelper = new EntityScale.MoveHelper();
+		setSize(3.0F, 2.0F);
+	}
+	
+	@Override
+	protected void initEntityAI() {
+		super.initEntityAI();
 		this.tasks.addTask(5, new EntityScale.AIRandomFly());
 		this.tasks.addTask(7, new EntityScale.AILookAround());
 		this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
-		//this.tasks.addTask(1, new EntityAIArrowAttack(this, 1.0D, 40, 20.0F));
+        this.tasks.addTask(0, new EntityAIAttackRanged(this, 1.0D, 40, 20.0F));
 		addAttackingAI();
-		setSize(3.0F, 2.0F);
 	}
 
 	@Override

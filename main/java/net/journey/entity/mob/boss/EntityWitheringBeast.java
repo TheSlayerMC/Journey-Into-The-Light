@@ -9,6 +9,7 @@ import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityDeathSkull;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
+import net.minecraft.entity.ai.EntityAIAttackRanged;
 import net.minecraft.entity.ai.EntityAIAttackRangedBow;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
@@ -22,14 +23,18 @@ import net.slayer.api.entity.EntityEssenceBoss;
 
 public class EntityWitheringBeast extends EntityEssenceBoss implements IRangedAttackMob {
 
-	private final EntityAIAttackRangedBow<EntityWitheringBeast> aiArrowAttack = new EntityAIAttackRangedBow<EntityWitheringBeast>(this, 1.0D, 40, 20.0F);
 
 	
 	public EntityWitheringBeast(World par1World) {
 		super(par1World);
-		addAttackingAI();
 		setSize(2.0F, 4.8F);
-		this.tasks.addTask(1, aiArrowAttack);
+    }
+	
+	@Override
+	protected void initEntityAI() {
+		super.initEntityAI();
+        this.tasks.addTask(0, new EntityAIAttackRanged(this, 0.27F, 30, 10.0F));
+        addAttackingAI();
 	}
 
 	@Override

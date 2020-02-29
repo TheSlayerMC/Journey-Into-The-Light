@@ -11,6 +11,7 @@ import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityMagmaFireball;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
+import net.minecraft.entity.ai.EntityAIAttackRanged;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
 import net.minecraft.entity.ai.EntityMoveHelper;
@@ -37,12 +38,17 @@ public class EntitySkyStalker extends EntityEssenceBoss implements IRangedAttack
 	public EntitySkyStalker(World par1World) {
 		super(par1World);
 		this.moveHelper = new EntitySkyStalker.MoveHelper();
-		this.tasks.addTask(5, new EntitySkyStalker.AIRandomFly());
+		setSize(3.0F, 3.0F);
+	}
+	
+	@Override
+	protected void initEntityAI() {
+		super.initEntityAI();
+        this.tasks.addTask(0, new EntityAIAttackRanged(this, 0.27F, 30, 10.0F));
+        addAttackingAI();
+        this.tasks.addTask(5, new EntitySkyStalker.AIRandomFly());
 		this.tasks.addTask(7, new EntitySkyStalker.AILookAround());
 		this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
-		//this.tasks.addTask(1, new EntityAIArrowAttack(this, 1.0D, 40, 20.0F));
-		addAttackingAI();
-		setSize(3.0F, 3.0F);
 	}
 
 	@Override

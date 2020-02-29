@@ -12,7 +12,9 @@ import net.journey.entity.projectile.EntityPoisonArrow;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.IRangedAttackMob;
+import net.minecraft.entity.ai.EntityAIAttackRanged;
 import net.minecraft.entity.ai.EntityAIAttackRangedBow;
+import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -26,7 +28,6 @@ import net.slayer.api.entity.EntityEssenceBoss;
 
 public class EntityFourfa extends EntityEssenceBoss implements IRangedAttackMob {
 
-	private final EntityAIAttackRangedBow<EntityFourfa> aiArrowAttack = new EntityAIAttackRangedBow<EntityFourfa>(this, 1.0D, 15, 60.0F);
 
 
 	public final int DARKNESS = 0, FLAME = 1, SLOWNESS = 2, POISON = 3;
@@ -35,9 +36,16 @@ public class EntityFourfa extends EntityEssenceBoss implements IRangedAttackMob 
 
 	public EntityFourfa(World par1World) {
 		super(par1World);
-		setSize(2.0F, 4.0F);
-		if(par1World != null && !par1World.isRemote) this.setCombatTask();
-		STAGE = SLOWNESS;
+		setSize(2.0F, 4.0F);		
+		this.STAGE = SLOWNESS;
+	}
+	
+	@Override
+	protected void initEntityAI() {
+		super.initEntityAI();
+		this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
+        this.tasks.addTask(0, new EntityAIAttackRanged(this, 1.0D, 15, 60.0F));
+		addAttackingAI();
 	}
 
 	public int getStage() {
@@ -81,37 +89,20 @@ public class EntityFourfa extends EntityEssenceBoss implements IRangedAttackMob 
         this.playSound(SoundEvents.ENTITY_SKELETON_SHOOT, 1.0F, 1.0F / (this.getRNG().nextFloat() * 0.4F + 0.8F));
 		this.world.spawnEntity(arrow);
 	}
-
-	public void setCombatTask() {
-		this.tasks.removeTask(this.aiArrowAttack);
-		ItemStack itemstack = this.getHeldItemMainhand();
-		if(itemstack != null && itemstack.getItem() == JourneyWeapons.darknessBow)
-			this.tasks.addTask(4, this.aiArrowAttack);
-	}
+	
+	@Override
+    protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty) {
+        super.setEquipmentBasedOnDifficulty(difficulty);
+        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(JourneyWeapons.darknessBow));
+    }
 
 	@Override
 	@Nullable
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata) {
         livingdata = super.onInitialSpawn(difficulty, livingdata);
         this.setEquipmentBasedOnDifficulty(difficulty);
-        this.setEnchantmentBasedOnDifficulty(difficulty);
-        this.setCombatTask();
-        this.setCanPickUpLoot(this.rand.nextFloat() < 0.55F * difficulty.getClampedAdditionalDifficulty());
         return livingdata;
     }
-	
-	@Override
-	public void setItemStackToSlot(EntityEquipmentSlot slotIn, ItemStack stack) {
-        super.setItemStackToSlot(slotIn, stack);
-        if (!this.world.isRemote && slotIn == EntityEquipmentSlot.MAINHAND) {
-            this.setCombatTask();
-        }
-    }
-
-	@Override
-	public ItemStack getHeldItem(EnumHand hand) {
-		return new ItemStack(JourneyWeapons.darknessBow);
-	}
 
 	@Override
 	public double setAttackDamage(MobStats s) {
