@@ -41,7 +41,7 @@ public class JITL {
 				SlayerAPI.Colour.AQUA +		 "The_SlayerMC - Owner/Creator/Developer/Code/Assets, " + 
 				SlayerAPI.Colour.GREEN +	 "Dash - Code Helper/Gen Tweaker, " + 
 				SlayerAPI.Colour.BLUE + 	 "Dizzlepop12 - Artist/Models/Code/Assistant Developer, " + 
-				SlayerAPI.Colour.DARK_AQUA + 	 "NicosaurusRex99 - Code ";
+				SlayerAPI.Colour.DARK_AQUA + "NicosaurusRex99 - Code ";
 		event.getModMetadata().description = "A full progressional experience that adds Weapons, Mobs, Dimensions, Bosses, and much more to your game.";
 		event.getModMetadata().modId = SlayerAPI.MOD_ID;
 		event.getModMetadata().url = "slayermods.net";

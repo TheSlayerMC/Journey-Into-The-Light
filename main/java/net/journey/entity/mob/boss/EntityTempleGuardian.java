@@ -80,6 +80,11 @@ public class EntityTempleGuardian extends EntityEssenceBoss implements IRangedAt
     }
 	
 	@Override
+	public ItemStack getHeldItem(EnumHand hand) {
+		return new ItemStack(JourneyWeapons.staffOfHellstone);
+	}
+	
+	@Override
 	public void attackEntityWithRangedAttack(EntityLivingBase target, float distanceFactor) {
 		EntityFloroWater b = new EntityFloroWater(this.world, this, 10F);
         double d0 = target.posX - this.posX;
