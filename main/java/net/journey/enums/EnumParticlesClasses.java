@@ -10,6 +10,7 @@ import net.journey.client.render.particles.EntityFloroWaterFX;
 import net.journey.client.render.particles.EntityGreenpaceFX;
 import net.journey.client.render.particles.EntityHellstoneFX;
 import net.journey.client.render.particles.EntityIceballFX;
+import net.journey.client.render.particles.EntityModLavaFX;
 import net.journey.client.render.particles.EntityOvergrownFX;
 import net.journey.client.render.particles.EntityRockFX;
 import net.journey.client.render.particles.EntityWitherFX;
@@ -22,6 +23,7 @@ import net.minecraft.client.particle.ParticleSnowShovel;
 public enum EnumParticlesClasses {
 
 	LAVA(ParticleLava.class),
+	MOD_LAVA(EntityModLavaFX.class),
 	SMOKE(ParticleSmokeLarge.class),
 	FLAME(ParticleFlame.class),
 	SNOWBALL_POOF(ParticleSnowShovel.class),

@@ -7,6 +7,7 @@ import org.lwjgl.opengl.GL11;
 import net.journey.JourneyArmory;
 import net.journey.client.server.EssenceProvider;
 import net.journey.client.server.IEssence;
+import net.journey.util.Config;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiIngame;
 import net.minecraft.client.gui.ScaledResolution;
@@ -55,7 +56,8 @@ public class ClientTickEvent {
 	
 	@SubscribeEvent
 	public void renderEvent(RenderTickEvent event) {
-		onTickRender(Minecraft.getMinecraft().player);
+		if(Config.showManaBar)
+			onTickRender(Minecraft.getMinecraft().player);
 	}
 
 	private void onTickRender(EntityPlayer player) {
