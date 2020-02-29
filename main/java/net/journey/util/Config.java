@@ -41,7 +41,7 @@ public class Config {
 	public static int baseMobID, baseProjectileID, baseEntityListID, entityHealthDistance;
 
 	public static void dimensionInit() {
-		eucaBiome = cfg.get("Biome", "Euca biome ID", 60).getString();
+		eucaBiome = cfg.get("Dimension", "Euca biome ID", 60).getString();
 		euca = cfg.get("Dimension", "Euca ID", 20).getInt();
 		keepLoadingEuca = cfg.get("Dimension", "Keep loading Euca", false).getBoolean(false);
 		depthsBiome = cfg.get("Dimension", "Depths biome ID", 61).getString();
