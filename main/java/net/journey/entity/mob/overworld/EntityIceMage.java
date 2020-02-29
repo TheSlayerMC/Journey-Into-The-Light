@@ -10,6 +10,7 @@ import net.journey.entity.projectile.EntityIceBall;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.IRangedAttackMob;
+import net.minecraft.entity.ai.EntityAIAttackRanged;
 import net.minecraft.entity.ai.EntityAIAttackRangedBow;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
@@ -30,32 +31,17 @@ import net.slayer.api.entity.EntityModMob;
 
 public class EntityIceMage extends EntityModMob implements IRangedAttackMob {
 
-	private final EntityAIAttackRangedBow<EntityIceMage> aiArrowAttack = new EntityAIAttackRangedBow<EntityIceMage>(this, 1.0D, 20, 15.0F);
-
 	public EntityIceMage(World par1World) {
 		super(par1World);
-		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false, new Class[0]));
-		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
-		if(par1World != null && !par1World.isRemote) {
-			this.setCombatTask();
-		}
 	}
 
-	public void setCombatTask() {
-		if(this.world != null && !this.world.isRemote) {
-			this.tasks.removeTask(this.aiArrowAttack);
-			ItemStack itemstack = this.getHeldItemMainhand();
-			if(itemstack.getItem() == JourneyWeapons.iceWand) {
-				int i = 20;
-				if(this.world.getDifficulty() != EnumDifficulty.HARD) {
-					i = 40;
-				}
-				this.aiArrowAttack.setAttackCooldown(i);
-				this.tasks.addTask(4, this.aiArrowAttack);
-			}
-		}
+	@Override
+	protected void initEntityAI() {
+		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false, new Class[0]));
+		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
+        this.tasks.addTask(0, new EntityAIAttackRanged(this, 0.27F, 30, 10.0F));
 	}
-	
+
 	@Override
     protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty) {
         super.setEquipmentBasedOnDifficulty(difficulty);
@@ -67,24 +53,7 @@ public class EntityIceMage extends EntityModMob implements IRangedAttackMob {
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata) {
         livingdata = super.onInitialSpawn(difficulty, livingdata);
         this.setEquipmentBasedOnDifficulty(difficulty);
-        this.setEnchantmentBasedOnDifficulty(difficulty);
-        this.setCombatTask();
-        this.setCanPickUpLoot(this.rand.nextFloat() < 0.55F * difficulty.getClampedAdditionalDifficulty());
         return livingdata;
-    }
-	
-	@Override
-	public void readEntityFromNBT(NBTTagCompound compound) {
-        super.readEntityFromNBT(compound);
-        this.setCombatTask();
-    }
-	
-	@Override
-	public void setItemStackToSlot(EntityEquipmentSlot slotIn, ItemStack stack) {
-        super.setItemStackToSlot(slotIn, stack);
-        if (!this.world.isRemote && slotIn == EntityEquipmentSlot.MAINHAND) {
-            this.setCombatTask();
-        }
     }
 
 	@Override

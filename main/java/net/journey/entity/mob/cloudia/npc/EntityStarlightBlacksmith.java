@@ -22,13 +22,13 @@ public class EntityStarlightBlacksmith extends EntityModVillager {
 	public void abstractInteract(EntityPlayer p) {
 		switch(rand.nextInt(3)) {
 		case 0:
-			SlayerAPI.addFormattedChatMessage(p, "Blacksmith: You're a tiny creature, aren't you?");
+			SlayerAPI.addFormattedChatMessage(p, "Starlight Blacksmith: You're a tiny creature, aren't you?");
 			break;
 		case 1:
-			SlayerAPI.addFormattedChatMessage(p, "Blacksmith: I have some great weapons. Is there anything you'd like in particular?");
+			SlayerAPI.addFormattedChatMessage(p, "Starlight Blacksmith: I have some great weapons. Is there anything you'd like in particular?");
 			break;
 		case 2:
-			SlayerAPI.addFormattedChatMessage(p, "Blacksmith: I always fear that I'll fall off the edge one day.");
+			SlayerAPI.addFormattedChatMessage(p, "Starlight Blacksmith: I always fear that I'll fall off the edge one day.");
 			break;
 		}
 		

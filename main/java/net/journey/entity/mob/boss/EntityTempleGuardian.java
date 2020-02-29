@@ -11,6 +11,7 @@ import net.journey.entity.projectile.EntityMagmaFireball;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.IRangedAttackMob;
+import net.minecraft.entity.ai.EntityAIAttackRanged;
 import net.minecraft.entity.ai.EntityAIAttackRangedBow;
 import net.minecraft.entity.ai.EntityAIAvoidEntity;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
@@ -40,42 +41,29 @@ import net.slayer.api.entity.EntityEssenceBoss;
 public class EntityTempleGuardian extends EntityEssenceBoss implements IRangedAttackMob {
 
 	private int ticks;
-	private final EntityAIAttackRangedBow<EntityTempleGuardian> aiArrowAttack = new EntityAIAttackRangedBow<EntityTempleGuardian>(this, 1.0D, 20, 15.0F);
 	
 	public EntityTempleGuardian(World par1World) {
 		super(par1World);
-		addAttackingAI();
 		setSize(2.0F, 3.8F);
-		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, false, new Class[0]));
+	}
+	
+	@Override
+	protected void initEntityAI() {
+        super.initEntityAI();
+        addAttackingAI();
+        this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, false, new Class[0]));
         this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
 		this.tasks.addTask(4, new EntityAIAvoidEntity(this, EntityWolf.class, 6.0F, 1.0D, 1.2D));
         this.tasks.addTask(5, new EntityAIWander(this, 1.0D));
         this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(7, new EntityAILookIdle(this));
-		if(par1World != null && !par1World.isRemote) {
-			this.setCombatTask();
-		}
-	}
+        this.tasks.addTask(0, new EntityAIAttackRanged(this, 0.27F, 30, 10.0F));
+    }
 	
     @Override
     public float getSoundVolume() {
     	return 1.0F;
     }
-	
-	public void setCombatTask() {
-		if(this.world != null && !this.world.isRemote) {
-			this.tasks.removeTask(this.aiArrowAttack);
-			ItemStack itemstack = this.getHeldItemMainhand();
-			if(itemstack.getItem() == JourneyWeapons.staffOfHellstone) {
-				int i = 20;
-				if(this.world.getDifficulty() != EnumDifficulty.HARD) {
-					i = 40;
-				}
-				this.aiArrowAttack.setAttackCooldown(i);
-				this.tasks.addTask(4, this.aiArrowAttack);
-			}
-		}
-	}
 	
 	@Override
     protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty) {
@@ -88,30 +76,8 @@ public class EntityTempleGuardian extends EntityEssenceBoss implements IRangedAt
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata) {
         livingdata = super.onInitialSpawn(difficulty, livingdata);
         this.setEquipmentBasedOnDifficulty(difficulty);
-        this.setEnchantmentBasedOnDifficulty(difficulty);
-        this.setCombatTask();
-        this.setCanPickUpLoot(this.rand.nextFloat() < 0.55F * difficulty.getClampedAdditionalDifficulty());
         return livingdata;
     }
-	
-	@Override
-	public void readEntityFromNBT(NBTTagCompound compound) {
-        super.readEntityFromNBT(compound);
-        this.setCombatTask();
-    }
-	
-	@Override
-	public void setItemStackToSlot(EntityEquipmentSlot slotIn, ItemStack stack) {
-        super.setItemStackToSlot(slotIn, stack);
-        if (!this.world.isRemote && slotIn == EntityEquipmentSlot.MAINHAND) {
-            this.setCombatTask();
-        }
-    }
-
-	@Override
-	public ItemStack getHeldItem(EnumHand hand) {
-		return new ItemStack(JourneyWeapons.staffOfHellstone);
-	}
 	
 	@Override
 	public void attackEntityWithRangedAttack(EntityLivingBase target, float distanceFactor) {
@@ -125,8 +91,6 @@ public class EntityTempleGuardian extends EntityEssenceBoss implements IRangedAt
         this.world.spawnEntity(b);
     }
 
-	
-	
 	@Override
 	public void onDeath(DamageSource damage){
 		this.world.setBlockState(new BlockPos((int)Math.floor(this.posX + 0), ((int)Math.floor(this.posY + 0)), ((int)Math.floor(this.posZ + 0))), Blocks.CHEST.getStateFromMeta(5));

@@ -23,13 +23,13 @@ public class EntityEscapedConvict extends EntityModVillager {
 	public void abstractInteract(EntityPlayer p) {
 		switch(rand.nextInt(3)) {
 		case 0:
-			SlayerAPI.addFormattedChatMessage(p, "Convict: I'm an innocent man! I have no reason to be in this realm!");
+			SlayerAPI.addFormattedChatMessage(p, "Escaped Convict: I'm an innocent man! I have no reason to be in this realm!");
 			break;
 		case 1:
-			SlayerAPI.addFormattedChatMessage(p, "Convict: Don't be threatened by me, strange thing!");
+			SlayerAPI.addFormattedChatMessage(p, "Escaped Convict: Don't be threatened by me, strange thing!");
 			break;
 		case 2:
-			SlayerAPI.addFormattedChatMessage(p, "Convict: I managed to find some great loot on my way here. If you can help me out of here, I'll give back in return.");
+			SlayerAPI.addFormattedChatMessage(p, "Escaped Convict: I managed to find some great loot on my way here. If you can help me out of here, I'll give back in return.");
 			break;
 		}
 	}

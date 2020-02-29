@@ -1,15 +1,23 @@
 package net.journey.entity.mob.overworld.npc;
 
+import javax.annotation.Nullable;
+
 import net.journey.JourneyItems;
 import net.journey.JourneyWeapons;
 import net.journey.client.GuiHandler;
 import net.journey.entity.JourneyMerchantRecipe;
+import net.minecraft.entity.IEntityLivingData;
+import net.minecraft.entity.ai.EntityAIAttackRanged;
+import net.minecraft.entity.ai.EntityAIHurtByTarget;
+import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraft.village.MerchantRecipeList;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import net.slayer.api.SlayerAPI;
 import net.slayer.api.entity.EntityModVillager;
@@ -34,6 +42,20 @@ public class EntityMage extends EntityModVillager {
 			break;
 		}
 	}
+	
+	@Override
+    protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty) {
+        super.setEquipmentBasedOnDifficulty(difficulty);
+        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(JourneyWeapons.conjuringStaff));
+    }
+
+	@Override
+	@Nullable
+    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata) {
+        livingdata = super.onInitialSpawn(difficulty, livingdata);
+        this.setEquipmentBasedOnDifficulty(difficulty);
+        return livingdata;
+    }
 	
 	@Override
 	public ItemStack getHeldItem(EnumHand hand) {
