@@ -56,7 +56,6 @@ public class ItemModBow extends ItemMod {
 		this.arrowClass = EntityEssenceArrow.class;
 		this.damage = damage;
 		this.uses = uses;
-
 		this.setMaxDamage(uses);
 		this.setFull3D();
 		this.ability = ability;
@@ -72,7 +71,6 @@ public class ItemModBow extends ItemMod {
 		this.arrowItem = arrow;
 		this.damage = damage;
 		this.uses = uses;
-		//this.damageString = damageString;
 		this.setMaxDamage(uses);
 		this.setFull3D();
 		this.ability = ability;
@@ -87,32 +85,12 @@ public class ItemModBow extends ItemMod {
 		this.arrowItem = arrow;
 		this.damage = damage;
 		this.uses = uses;
-
 		this.setMaxDamage(uses);
 		this.setFull3D();
 		addPropertyOverrides();
 	}
 
-	private void addPropertyOverrides() {
-		this.addPropertyOverride(new ResourceLocation("pull"), new IItemPropertyGetter() {
-			@SideOnly(Side.CLIENT)
-			public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {
-				if (entityIn == null) {
-					return 0.0F;
-				} else {
-					return entityIn.getActiveItemStack().getItem() != Items.BOW ? 0.0F
-							: (float) (stack.getMaxItemUseDuration() - entityIn.getItemInUseCount()) / 20.0F;
-				}
-			}
-		});
-		this.addPropertyOverride(new ResourceLocation("pulling"), new IItemPropertyGetter() {
-			@SideOnly(Side.CLIENT)
-			public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {
-				return entityIn != null && entityIn.isHandActive() && entityIn.getActiveItemStack() == stack ? 1.0F
-						: 0.0F;
-			}
-		});
-	}
+	public void addPropertyOverrides() { }
 
 	private ItemStack findAmmo(EntityPlayer player) {
 		if (this.isArrow(player.getHeldItem(EnumHand.OFF_HAND))) {
