@@ -26,11 +26,7 @@ import net.journey.blocks.BlockTerraFlower;
 import net.journey.blocks.BlockTrophy;
 import net.journey.blocks.base.BlockModFire;
 import net.journey.blocks.base.BlockModOre;
-import net.journey.blocks.base.BlockModOreFalling;
 import net.journey.blocks.base.BlockNetherFlower;
-import net.journey.blocks.base.BlockNetherPlant;
-import net.journey.blocks.crop.base.BlockFruitCrop;
-import net.journey.blocks.machines.BlockCrafting;
 import net.journey.blocks.machines.BlockGrindstone;
 import net.journey.blocks.machines.BlockIgniter;
 import net.journey.blocks.machines.BlockJourneyChest;
@@ -46,7 +42,6 @@ import net.journey.blocks.portal.BlockSenterianPortal;
 import net.journey.blocks.portal.BlockTerraniaPortal;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.item.ItemStack;
 import net.slayer.api.EnumMaterialTypes;
 import net.slayer.api.EnumToolType;
 import net.slayer.api.block.BlockMod;
@@ -495,14 +490,14 @@ public class JourneyBlocks {
 		deathGrass = new BlockNetherFlower("deathGrass", "Death Grass");
 		netherweed = new BlockNetherFlower("netherWeeds", "Netherweed");
 		hellBell = new BlockNetherFlower("hellBell", "Hell Bell");
-		hellshroom = new BlockNetherPlant("hellshroom", "Hellshroom");
+		hellshroom = new BlockNetherFlower("hellshroom", "Hellshroom");
 		
 		earthenNetherLeaves = new BlockModLeaves("earthenNetherLeaves", "Earthenwood Leaves", 2.0F);
 		earthenNetherLog = new BlockModLog("earthenNetherLog", "Earthenwood Log");
 		earthenNetherPlanks = new BlockMod(EnumMaterialTypes.WOOD, "earthenNetherPlank", "Earthenwood Planks", 1.0F);
-		earthenNetherTallGrass = new BlockNetherPlant("earthenNetherTallGrass", "Earthen Nethigrass");
-		earthenNetherShortGrass = new BlockNetherPlant("earthenNetherShortGrass", "Earthen Nethigrass");
-		earthenNetherFlower = new BlockNetherPlant("earthenNetherFlower", "Earthen Heatflower");
+		earthenNetherTallGrass = new BlockNetherFlower("earthenNetherTallGrass", "Earthen Nethigrass");
+		earthenNetherShortGrass = new BlockNetherFlower("earthenNetherShortGrass", "Earthen Nethigrass");
+		earthenNetherFlower = new BlockNetherFlower("earthenNetherFlower", "Earthen Heatflower");
 		
 		heatSoil = new BlockMod(EnumMaterialTypes.DIRT, "heatSoil", "Nethic Soil", 2.0F);
 		earthenNetherrack = new BlockMod(EnumMaterialTypes.STONE, "earthenNetherrack", "Earthen Netherrack", 2.0F);

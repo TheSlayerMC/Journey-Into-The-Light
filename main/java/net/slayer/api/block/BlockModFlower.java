@@ -29,7 +29,7 @@ import net.slayer.api.EnumMaterialTypes;
 
 public class BlockModFlower extends BlockMod implements IPlantable {
 
-	private boolean damageWhenContact = false;
+	protected boolean damageWhenContact = false;
 	private boolean isFrozenPlant = false;
     protected static final AxisAlignedBB BUSH_AABB = new AxisAlignedBB(0.30000001192092896D, 0.0D, 0.30000001192092896D, 0.699999988079071D, 0.6000000238418579D, 0.699999988079071D);
 	
@@ -75,10 +75,10 @@ public class BlockModFlower extends BlockMod implements IPlantable {
 		}
 	}
 
-	/*@Override
+	@Override
 	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
 		if(damageWhenContact) entityIn.attackEntityFrom(DamageSource.CACTUS, 1.0F);
-	}*/
+	}
 
 	protected boolean canSustainBush(IBlockState state) {
 		return state.getBlock() == Blocks.GRASS || state.getBlock() == Blocks.DIRT || state.getBlock() == Blocks.FARMLAND;
