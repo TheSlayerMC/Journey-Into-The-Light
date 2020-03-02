@@ -33,5 +33,6 @@ public class ItemDescription {
 		if(item == JourneyConsumables.redHonglowShroom) list.add(SlayerAPI.Colour.RED + "Red - Regeneration");
 		if(item == JourneyConsumables.honglowShroom) list.add(SlayerAPI.Colour.GREEN + "Light Green - Nightvision (only)");
 		if(item == JourneyItems.iridium) list.add("Longer Smelting Fuel");
+		if(item == JourneyItems.demonicEye) list.add("Inserted into the Corba Portal Frame");
 	}
 }
