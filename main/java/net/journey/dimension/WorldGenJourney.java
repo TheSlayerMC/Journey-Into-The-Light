@@ -66,8 +66,6 @@ public class WorldGenJourney implements IWorldGenerator {
 
     private final static LazyLoadBase<WorldGenMinable> celestium;
     private final static LazyLoadBase<WorldGenMinable> flairium;
-    private final static LazyLoadBase<WorldGenMinable> ashual;
-    private final static LazyLoadBase<WorldGenMinable> blazium;
     private final static LazyLoadBase<WorldGenMinable> gorbite;
     private final static LazyLoadBase<WorldGenMinable> orbaditeOre;
     private final static LazyLoadBase<WorldGenMinable> depthsLights;
@@ -93,8 +91,6 @@ public class WorldGenJourney implements IWorldGenerator {
 
     static {
         flairium = create(JourneyBlocks.flairiumOre, 8, JourneyBlocks.depthsStone);
-        ashual = create(JourneyBlocks.ashualOre, 7, JourneyBlocks.ashBlock);
-        blazium = create(JourneyBlocks.blaziumOre, 6, JourneyBlocks.ashBlock);
         depthsLights = create(JourneyBlocks.depthsLights, 25, JourneyBlocks.depthsGrass);
         depthsLightsForStone = create(JourneyBlocks.depthsLights, 25, JourneyBlocks.depthsStone);
         gorbite = create(JourneyBlocks.gorbiteOre, 6, JourneyBlocks.depthsStone);
@@ -638,8 +634,6 @@ public class WorldGenJourney implements IWorldGenerator {
 
         if(r.nextInt(4) == 0) WorldGenJourney.generateJourneyDimensions(4, w, chunkX, chunkZ);
         for (i = 0; i < 50; i++) WorldGenJourney.generateJourneyDimensions(5, w, chunkX, chunkZ);
-        for (i = 0; i < 8; i++) blazium.getValue().generate(w, r, randomPosForMinable);
-        for (i = 0; i < 7; i++) ashual.getValue().generate(w, r, randomPosForMinable);
     }
 
     private void generateDepths(World w, Random r, int chunkX, int chunkZ) {

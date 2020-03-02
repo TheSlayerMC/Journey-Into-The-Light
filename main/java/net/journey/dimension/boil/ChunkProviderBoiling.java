@@ -16,6 +16,7 @@ import net.journey.dimension.overworld.gen.WorldGenModFlower;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.block.state.pattern.BlockStateMatcher;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.IProgressUpdate;
@@ -33,6 +34,7 @@ import net.minecraft.world.gen.MapGenCaves;
 import net.minecraft.world.gen.MapGenRavine;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.NoiseGeneratorPerlin;
+import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
@@ -67,6 +69,10 @@ public class ChunkProviderBoiling implements IChunkGenerator {
     private final WorldGenBoilingLamp boilLamp;
     private final WorldGenBrisonNetwork brison;
     private final WorldGenTraderHutBoiling hut;
+    
+    private WorldGenMinable ashual = new WorldGenMinable(JourneyBlocks.ashualOre.getDefaultState(), 7, BlockStateMatcher.forBlock(JourneyBlocks.ashBlock));
+    private WorldGenMinable blazium = new WorldGenMinable(JourneyBlocks.blaziumOre.getDefaultState(), 7, BlockStateMatcher.forBlock(JourneyBlocks.ashBlock));
+
 
     public ChunkProviderBoiling(World worldIn, long p_i45636_2_) {
         this.stoneNoise = new double[256];
@@ -348,6 +354,11 @@ public class ChunkProviderBoiling implements IChunkGenerator {
             flameFlower.generate(worldObj, r, chunkStart);
             flameFlower2.generate(worldObj, r, chunkStart);
             infernoPlant.generate(worldObj, r, chunkStart);
+        }
+        
+        for (i = 0; i < 30; i++) {
+            blazium.generate(worldObj, rand, new BlockPos(x1, rand.nextInt(250), z1));
+            ashual.generate(worldObj, rand, new BlockPos(x1, rand.nextInt(250), z1));
         }
 
         for (times = 0; times < 30; times++) {
