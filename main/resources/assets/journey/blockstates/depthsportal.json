@@ -1,6 +1,5 @@
 {
-    "variants": {
-        "axis=z": { "model": "journey:depthsPortal_ew" },
-        "axis=x": { "model": "journey:depthsPortal_ns" }
-    }
+	"variants": {
+		"normal": { "model": "journey:depthsPortal"}
+	}
 }

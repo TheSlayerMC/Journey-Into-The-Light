@@ -36,6 +36,7 @@ import net.journey.blocks.portal.BlockBoilPortal;
 import net.journey.blocks.portal.BlockCloudiaPortal;
 import net.journey.blocks.portal.BlockCorbaPortal;
 import net.journey.blocks.portal.BlockDepthsPortal;
+import net.journey.blocks.portal.BlockDepthsPortalFrame;
 import net.journey.blocks.portal.BlockEucaPortal;
 import net.journey.blocks.portal.BlockFrozenPortal;
 import net.journey.blocks.portal.BlockSenterianPortal;
@@ -640,8 +641,8 @@ public class JourneyBlocks {
 		eucaPortal = new BlockEucaPortal("eucaPortal");
 		eucaPortalFrame = new BlockMod("eucaPortalFrame", "Euca Portal Frame", 3.0F);
 		
-		depthsPortal = new BlockDepthsPortal("depthsPortal");
-		depthsPortalFrame = new BlockMod("depthsPortalFrame", "Depths Portal Frame", 3.0F);
+		depthsPortal = new BlockDepthsPortal("depthsPortal", "Depths Portal");
+		depthsPortalFrame = new BlockDepthsPortalFrame("depthsPortalFrame", "Depths Portal Frame");
 
 		boilPortal = new BlockBoilPortal("boilingPortal");
 		boilPortalFrame = new BlockMod("boilingPortalFrame", "Boiling Portal Frame", 3.0F);

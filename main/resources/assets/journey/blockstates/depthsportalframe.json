@@ -1,5 +1,12 @@
 {
-	"variants": {
-		"normal": { "model": "journey:depthsPortalFrame"}
-	}
+    "variants": {
+        "eye=false,facing=south": { "model": "journey:depths_portal_frame_empty" },
+        "eye=false,facing=west": { "model": "journey:depths_portal_frame_empty", "y": 90 },
+        "eye=false,facing=north": { "model": "journey:depths_portal_frame_empty", "y": 180 },
+        "eye=false,facing=east": { "model": "journey:depths_portal_frame_empty", "y": 270 },
+        "eye=true,facing=south": { "model": "journey:depths_portal_frame_filled" },
+        "eye=true,facing=west": { "model": "journey:depths_portal_frame_filled", "y": 90 },
+        "eye=true,facing=north": { "model": "journey:depths_portal_frame_filled", "y": 180 },
+        "eye=true,facing=east": { "model": "journey:depths_portal_frame_filled", "y": 270 }
+    }
 }

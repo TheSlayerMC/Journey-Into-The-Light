@@ -1,9 +1,12 @@
 package net.journey.client.render;
 
+import org.lwjgl.opengl.GL11;
+
 import net.journey.util.Config;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
@@ -15,15 +18,13 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
 import net.slayer.api.SlayerAPI.Colour;
 
-import org.lwjgl.opengl.GL11;
-
 public class RenderModMob<T> extends RenderLiving {
 
 	private ResourceLocation texture;
 
 	public RenderModMob(ModelBase model, float shadow, ResourceLocation tex) {
 		super(Minecraft.getMinecraft().getRenderManager(), model, shadow);
-        this.addLayer(new LayerHeldItem(this));
+		if(model instanceof ModelBiped) this.addLayer(new LayerHeldItem(this));
 		texture = tex;
 	}
 

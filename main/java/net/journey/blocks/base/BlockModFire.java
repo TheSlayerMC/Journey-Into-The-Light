@@ -352,12 +352,6 @@ public class BlockModFire extends BlockMod {
 			else
 				world.scheduleUpdate(pos, this, this.tickRate(world) + world.rand.nextInt(10));
 		}
-		if (!JourneyBlocks.depthsPortal.makePortal(world, pos)) {
-			if (!world.getBlockState(pos.down()).isTopSolid())
-				world.setBlockToAir(pos);
-			else
-				world.scheduleUpdate(pos, this, this.tickRate(world) + world.rand.nextInt(10));
-		}
 		if (!JourneyBlocks.boilPortal.makePortal(world, pos)) {
 			if (!world.getBlockState(pos.down()).isTopSolid())
 				world.setBlockToAir(pos);

@@ -1,130 +1,52 @@
 package net.journey.blocks.portal;
 
+import java.util.List;
 import java.util.Random;
 
-import net.journey.JITL;
-import net.journey.JourneyBlocks;
-import net.journey.JourneyItems;
 import net.journey.JourneyTabs;
-import net.journey.client.render.particles.EntityDepthsPotalFX;
 import net.journey.dimension.depths.TeleporterDepths;
 import net.journey.util.Config;
-import net.journey.util.LangRegistry;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockBreakable;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.block.state.BlockFaceShape;
-import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.SoundEvents;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumFacing.Axis;
-import net.minecraft.util.Rotation;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.EnumBlockRenderType;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
-import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.slayer.api.SlayerAPI;
+import net.slayer.api.EnumMaterialTypes;
+import net.slayer.api.block.BlockMod;
 
-public class BlockDepthsPortal extends BlockBreakable {
+public class BlockDepthsPortal extends BlockMod {
 
-	public String name;
-	
-    public static final PropertyEnum<EnumFacing.Axis> AXIS = PropertyEnum.<EnumFacing.Axis>create("axis", EnumFacing.Axis.class, EnumFacing.Axis.X, EnumFacing.Axis.Z);
-	protected static final AxisAlignedBB X_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.375D, 1.0D, 1.0D, 0.625D);
-	protected static final AxisAlignedBB Z_AABB = new AxisAlignedBB(0.375D, 0.0D, 0.0D, 0.625D, 1.0D, 1.0D);
-	protected static final AxisAlignedBB Y_AABB = new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 1.0D, 0.625D);
-
-	public BlockDepthsPortal(String name) {
-		super(Material.PORTAL, false);
-		this.name = name;
-        this.setDefaultState(this.blockState.getBaseState().withProperty(AXIS, EnumFacing.Axis.X));
-		LangRegistry.addBlock(name, "Depths Portal");
+	public BlockDepthsPortal(String name, String f) {
+		super(EnumMaterialTypes.PORTAL, name, f, 1.0F);
 		this.setTickRandomly(true);
 		setCreativeTab(JourneyTabs.portalBlocks);
-		setUnlocalizedName(name);
-		JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
-		JourneyBlocks.blocks.add(this);
-		setRegistryName(SlayerAPI.MOD_ID, name);
-		
-		JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
 	}
 	
 	@Override
-	protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, new IProperty[] {AXIS});
-    }
-
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-		return null;
-	}
-
-	@Override
-	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) { 
-		return null;
-	}
+	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean isActualState) { }
 
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-		switch ((EnumFacing.Axis)state.getValue(AXIS)) {
-		case X:
-			return X_AABB;
-		case Y:
-		default:
-			return Y_AABB;
-		case Z:
-			return Z_AABB;
-		}
+		return new AxisAlignedBB(0.0F, 0.0F, 0.0F, 1.0F, 0.5345F, 1.0F);
 	}
 
 	@Override
-	public boolean isFullCube(IBlockState state) {
-		return false;
+	public boolean isPassable(IBlockAccess access, BlockPos pos) {
+		return true;
 	}
 
 	@Override
-	public int quantityDropped(Random p_149745_1_) {
-		return 0;
-	}
-
-	@Override
-	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entity) {
-		if ((entity.getRidingEntity() == null) && ((entity instanceof EntityPlayerMP))) {
-			EntityPlayerMP thePlayer = (EntityPlayerMP)entity;
-			WorldServer worldserver = thePlayer.mcServer.getWorld(thePlayer.dimension);
-			//thePlayer.triggerAchievement(JourneyAchievements.achievementDepths);
-			int dimensionID = Config.depths;
-			Block blockFrame = JourneyBlocks.depthsPortalFrame;
-			if(thePlayer.timeUntilPortal > 0) 
-				thePlayer.timeUntilPortal = 10;
-			else if(thePlayer.dimension != dimensionID) {
-				thePlayer.timeUntilPortal = 10;
-				thePlayer.mcServer.getPlayerList().transferPlayerToDimension(thePlayer, dimensionID, new TeleporterDepths(thePlayer.mcServer.getWorld(dimensionID), dimensionID, this, blockFrame));
-			} else {
-				thePlayer.timeUntilPortal = 10;
-				thePlayer.mcServer.getPlayerList().transferPlayerToDimension(thePlayer, 0, new TeleporterDepths(thePlayer.mcServer.getWorld(0), 0, this, blockFrame));
-			}
-		}
-	}
-
-	@Override
-	public IBlockState getStateFromMeta(int meta) {
-		return this.getDefaultState().withProperty(AXIS, (meta & 3) == 2 ? EnumFacing.Axis.Z : EnumFacing.Axis.X);
+	@SideOnly(Side.CLIENT)
+	public EnumBlockRenderType getRenderType(IBlockState state) {
+		return EnumBlockRenderType.MODEL;
 	}
 
 	@Override
@@ -134,259 +56,39 @@ public class BlockDepthsPortal extends BlockBreakable {
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public void randomDisplayTick(IBlockState state, World worldIn, BlockPos pos, Random rand) {
-		if(rand.nextInt(100) == 0)
-			worldIn.playSound((double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, SoundEvents.BLOCK_PORTAL_AMBIENT, SoundCategory.BLOCKS, 0.5F, rand.nextFloat() * 0.4F + 0.8F, false);
+	public boolean isFullCube(IBlockState state) {
+		return false;
+	}
 
-		for(int i = 0; i < 4; ++i) {
-			double d0 = (float)pos.getX() + rand.nextFloat();
-			double d1 = (float)pos.getY() + rand.nextFloat();
-			double d2 = (float)pos.getZ() + rand.nextFloat();
-			double d3 = (rand.nextFloat() - 0.5D) * 0.5D;
-			double d4 = (rand.nextFloat() - 0.5D) * 0.5D;
-			double d5 = (rand.nextFloat() - 0.5D) * 0.5D;
-			int j = rand.nextInt(2) * 2 - 1;
-			if(worldIn.getBlockState(pos.west()).getBlock() != this && worldIn.getBlockState(pos.east()).getBlock() != this) {
-				d0 = (double)pos.getX() + 0.5D + 0.25D * j;
-				d3 = rand.nextFloat() * 2.0F * j;
+	@Override
+	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entity) {
+		if ((entity.getRidingEntity() == null) && ((entity instanceof EntityPlayerMP))) {
+			EntityPlayerMP thePlayer = (EntityPlayerMP)entity;
+			WorldServer worldserver = thePlayer.mcServer.getWorld(thePlayer.dimension);
+			int dimensionID = Config.depths;
+			if(thePlayer.timeUntilPortal > 0) 
+				thePlayer.timeUntilPortal = 10;
+			else if(thePlayer.dimension != dimensionID) {
+				thePlayer.timeUntilPortal = 10;
+				thePlayer.mcServer.getPlayerList().transferPlayerToDimension(thePlayer, dimensionID, new TeleporterDepths(thePlayer.mcServer.getWorld(dimensionID)));
 			} else {
-				d2 = (double)pos.getZ() + 0.5D + 0.25D * j;
-				d5 = rand.nextFloat() * 2.0F * j;
+				thePlayer.timeUntilPortal = 10;
+				thePlayer.mcServer.getPlayerList().transferPlayerToDimension(thePlayer, 0, new TeleporterDepths(thePlayer.mcServer.getWorld(0)));
 			}
-			EntityDepthsPotalFX var20 = new EntityDepthsPotalFX(worldIn, d0, d1, d2, d3, d4, d5);
-			FMLClientHandler.instance().getClient().effectRenderer.addEffect(var20);
 		}
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
-		pos = pos.offset(side);
-		EnumFacing.Axis enumfacing$axis = null;
-
-		if(blockState.getBlock() == this) {
-			enumfacing$axis = (EnumFacing.Axis)blockState.getValue(AXIS);
-			if(enumfacing$axis == null) 
-				return false;
-			if(enumfacing$axis == EnumFacing.Axis.Z && side != EnumFacing.EAST && side != EnumFacing.WEST) 
-				return false;
-			if(enumfacing$axis == EnumFacing.Axis.X && side != EnumFacing.SOUTH && side != EnumFacing.NORTH) 
-				return false;
-		}
-
-		boolean flag = blockAccess.getBlockState(pos.west()).getBlock() == this && blockAccess.getBlockState(pos.west(2)).getBlock() != this;
-		boolean flag1 = blockAccess.getBlockState(pos.east()).getBlock() == this && blockAccess.getBlockState(pos.east(2)).getBlock() != this;
-		boolean flag2 = blockAccess.getBlockState(pos.north()).getBlock() == this && blockAccess.getBlockState(pos.north(2)).getBlock() != this;
-		boolean flag3 = blockAccess.getBlockState(pos.south()).getBlock() == this && blockAccess.getBlockState(pos.south(2)).getBlock() != this;
-		boolean flag4 = flag || flag1 || enumfacing$axis == EnumFacing.Axis.X;
-		boolean flag5 = flag2 || flag3 || enumfacing$axis == EnumFacing.Axis.Z;
-
-		if(flag4 && side == EnumFacing.WEST) return true;
-		else if(flag4 && side == EnumFacing.EAST)return true;
-		else if(flag5 && side == EnumFacing.NORTH) return true;      
-		else return flag5 && side == EnumFacing.SOUTH;
-	}
-
-	public boolean makePortal(World worldIn, BlockPos p) {
-		EntityLightningBolt bolt = new EntityLightningBolt(worldIn, p.getX(), p.getY(), p.getZ(), false);
-		BlockDepthsPortal.Size size = new BlockDepthsPortal.Size(worldIn, p, EnumFacing.Axis.X);
-		if(size.isValid() && size.portalBlockCount == 0) {
-			size.placePortalBlocks();
-			worldIn.addWeatherEffect(bolt);
-			worldIn.createExplosion(bolt, p.getX(), p.getY(), p.getZ(), 0.0F, true);
-			return true;
-		} else {
-			BlockDepthsPortal.Size size1 = new BlockDepthsPortal.Size(worldIn, p, EnumFacing.Axis.Z);
-			if(size1.isValid() && size1.portalBlockCount == 0) {
-				size1.placePortalBlocks();
-				worldIn.addWeatherEffect(bolt);
-				worldIn.createExplosion(bolt, p.getX(), p.getY(), p.getZ(), 0.0F, true);
-				return true;
-			} else {
-				return false;
-			}
-		}
-	}
-
-	@Override
-	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
-		return new ItemStack(this);
-	}
-
-	@Override
-	public int getMetaFromState(IBlockState state) {
-		return meta((EnumFacing.Axis)state.getValue(AXIS));
-	}
-
-	public static int meta(Axis a) {
-		return a == EnumFacing.Axis.X ? 1 : (a == EnumFacing.Axis.Z ? 2 : 0);
-	}
-
-	@Override
-	public IBlockState withRotation(IBlockState state, Rotation rot) {
-		switch (rot) {
-		case COUNTERCLOCKWISE_90:
-		case CLOCKWISE_90:
-
-			switch ((EnumFacing.Axis)state.getValue(AXIS)) {
-			case X:
-				return state.withProperty(AXIS, EnumFacing.Axis.Z);
-			case Z:
-				return state.withProperty(AXIS, EnumFacing.Axis.X);
-			default:
-				return state;
-			}
-		default:
-			return state;
-		}
-	}
-
-	@Override
-	public BlockFaceShape getBlockFaceShape(IBlockAccess i, IBlockState i2, BlockPos p, EnumFacing f) {
-		return BlockFaceShape.UNDEFINED;
-	}
-
-	public static class Size {
-		private final World world;
-		private final EnumFacing.Axis axis;
-		private final EnumFacing rightDir;
-		private final EnumFacing leftDir;
-		private int portalBlockCount;
-		private BlockPos bottomLeft;
-		private int height;
-		private int width;
-
-		public Size(World worldIn, BlockPos pos, EnumFacing.Axis axis) {
-			this.world = worldIn;
-			this.axis = axis;
-
-			if(axis == EnumFacing.Axis.X) {
-				this.leftDir = EnumFacing.EAST;
-				this.rightDir = EnumFacing.WEST;
-			} else {
-				this.leftDir = EnumFacing.NORTH;
-				this.rightDir = EnumFacing.SOUTH;
-			}
-
-			for(BlockPos blockpos = pos; pos.getY() > blockpos.getY() - 21 && pos.getY() > 0 && this.isEmptyBlock(worldIn.getBlockState(pos.down()).getBlock()); pos = pos.down()) {
-				;
-			}
-
-			int i = this.getDistanceUntilEdge(pos, this.leftDir) - 1;
-
-			if(i >= 0) {
-				this.bottomLeft = pos.offset(this.leftDir, i);
-				this.width = this.getDistanceUntilEdge(this.bottomLeft, this.rightDir);
-
-				if(this.width < 2 || this.width > 21) {
-					this.bottomLeft = null;
-					this.width = 0;
-				}
-			}
-
-			if(this.bottomLeft != null) {
-				this.height = this.calculatePortalHeight();
-			}
-		}
-
-		protected int getDistanceUntilEdge(BlockPos pos, EnumFacing facing) {
-			int i;
-
-			for(i = 0; i < 22; ++i) {
-				BlockPos blockpos = pos.offset(facing, i);
-
-				if(!this.isEmptyBlock(this.world.getBlockState(blockpos).getBlock()) || this.world.getBlockState(blockpos.down()).getBlock() != JourneyBlocks.depthsPortalFrame) {
-					break;
-				}
-			}
-
-			Block block = this.world.getBlockState(pos.offset(facing, i)).getBlock();
-			return block == JourneyBlocks.depthsPortalFrame ? i : 0;
-		}
-
-		public int getHeight() {
-			return this.height;
-		}
-
-		public int getWidth() {
-			return this.width;
-		}
-
-		protected int calculatePortalHeight() {
-			label56:
-
-				for(this.height = 0; this.height < 21; ++this.height) {
-					for(int i = 0; i < this.width; ++i) {
-						BlockPos blockpos = this.bottomLeft.offset(this.rightDir, i).up(this.height);
-						Block block = this.world.getBlockState(blockpos).getBlock();
-
-						if(!this.isEmptyBlock(block)) {
-							break label56;
-						}
-
-						if(block == JourneyBlocks.depthsPortal) {
-							++this.portalBlockCount;
-						}
-
-						if(i == 0) {
-							block = this.world.getBlockState(blockpos.offset(this.leftDir)).getBlock();
-
-							if(block != JourneyBlocks.depthsPortalFrame) {
-								break label56;
-							}
-						}
-						else if(i == this.width - 1) {
-							block = this.world.getBlockState(blockpos.offset(this.rightDir)).getBlock();
-
-							if(block != JourneyBlocks.depthsPortalFrame) {
-								break label56;
-							}
-						}
-					}
-				}
-
-		for(int j = 0; j < this.width; ++j) {
-			if (this.world.getBlockState(this.bottomLeft.offset(this.rightDir, j).up(this.height)).getBlock() != JourneyBlocks.depthsPortalFrame) {
-				this.height = 0;
-				break;
-			}
-		}
-
-		if (this.height <= 21 && this.height >= 3) {
-			return this.height;
-		} else {
-			this.bottomLeft = null;
-			this.width = 0;
-			this.height = 0;
-			return 0;
-		}
-		}
-
-		protected boolean isEmptyBlock(Block blockIn) {
-			return blockIn.getMaterial(blockIn.getDefaultState()) == Material.AIR || blockIn == JourneyBlocks.fire || blockIn == JourneyBlocks.depthsPortal;
-		}
-
-		public boolean isValid() {
-			return this.bottomLeft != null && this.width >= 2 && this.width <= 21 && this.height >= 3 && this.height <= 21;
-		}
-
-		public void placePortalBlocks() {
-			for(int i = 0; i < this.width; ++i) {
-				BlockPos blockpos = this.bottomLeft.offset(this.rightDir, i);
-
-				for(int j = 0; j < this.height; ++j) {
-					this.world.setBlockState(blockpos.up(j), JourneyBlocks.depthsPortal.getDefaultState().withProperty(BlockDepthsPortal.AXIS, this.axis), 2);
-				}
-			}
-		}
-	}
-
-	public void registerItemModel(Item itemBlock) {
-		JITL.proxy.registerItemRenderer(itemBlock, 0, name);
-	}
-	
-	public Item createItemBlock() {
-		return new ItemBlock(this).setRegistryName(getRegistryName());
+	public void randomDisplayTick(IBlockState state, World worldIn, BlockPos pos, Random rand) {
+		double d0 = (float)pos.getX() + rand.nextFloat();
+		double d1 = (float)pos.getY() + 0.8F;
+		double d2 = (float)pos.getZ() + rand.nextFloat();
+		double d3 = 0.0D;
+		double d4 = 0.0D;
+		double d5 = 0.0D;
+		worldIn.spawnParticle(EnumParticleTypes.SLIME, d0, d1, d2, d3, d4, d5, new int[0]);
+		worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0, d1, d2, d3, d4, d5, new int[0]);
+		worldIn.spawnParticle(EnumParticleTypes.SMOKE_LARGE, d0, d1, d2, d3, d4, d5, new int[0]);
 	}
 }

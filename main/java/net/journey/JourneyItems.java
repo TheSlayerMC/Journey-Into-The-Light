@@ -38,6 +38,7 @@ import net.journey.entity.projectile.EntityWizardsStar;
 import net.journey.items.ItemBattleAxe;
 import net.journey.items.ItemBonemealHoe;
 import net.journey.items.ItemCreativeHammer;
+import net.journey.items.ItemDarkGem;
 import net.journey.items.ItemDemonicEye;
 import net.journey.items.ItemEssenceArrow;
 import net.journey.items.ItemEssencePotion;
@@ -199,6 +200,7 @@ public class JourneyItems {
 	public static Item orbaditeIngot;
 	public static Item gorbiteGem;
 	public static Item desIngot;
+	public static Item darkGem;
 	
 	public static Item bleedstone;
 	public static Item smithstone;
@@ -207,8 +209,6 @@ public class JourneyItems {
 	public static Item smithstonedust;
 	
 	public static Item nethicgemstone;
-	
-	public static Item verditeIngot1;
 	
 	public static Item elderKey;
 	public static Item boilPowder;
@@ -376,7 +376,6 @@ public class JourneyItems {
 	public static void init() {
 		
 		hellstoneIngot = new ItemMod("hellstoneIngot", "Hellstone Ingot");
-		//verditeIngot = new ItemMod("verditeIngot", "Verdite Ingot");
 		shadiumIngot = new ItemMod("shadiumIngot", "Shadium Ingot");
 		celestiumIngot = new ItemMod("celestiumIngot", "Celestium Ingot");
 		mekyumIngot = new ItemMod("mekyumIngot", "Mekyum Ingot");
@@ -394,7 +393,7 @@ public class JourneyItems {
 		bleedstone = new ItemMod("bleedstone", "Bleedstone");
 		smithstone = new ItemMod("smithstone", "Smithstone");
 		nethicgemstone = new ItemMod("soulstone", "Soulstone");
-
+				
 		spawnerBar = new ItemMod("spawnerBar", "Spawner Bar");
 		spawnerClump = new ItemMod("spawnerClump", "Spawner Clump");
 		hellstoneClump = new ItemMod("hellstoneClump", "Hellstone Clump");
@@ -540,6 +539,7 @@ public class JourneyItems {
 		raceShore = new ItemModRecord("raceShore", "Race to Shore", JourneySounds.RACE_TO_SHORE);
 
 		demonicEye = new ItemDemonicEye("demonicEye", "Demonic Eye");
+		darkGem = new ItemDarkGem("darkGem", "Dark Gem");
 
 		//obsidianBoat = new ItemObsidianBoat("obsidianboat", "Obsidian Boat");
 		//infernoshield = new ItemModShield("infernoshield", "Inferno Shield", 2, false);
