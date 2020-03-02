@@ -136,7 +136,7 @@ public class JourneyBlocks {
 	public static BlockMod blueGemBlock;
 	public static BlockMod yellowGemBlock;
 
-	 public static BlockModBush sizzleberryBush;
+	public static BlockModBush sizzleberryBush;
 	public static BlockModBush bradberryBush;
 	public static BlockModBush tangleberryBush;
 	public static BlockModBush juiceberryBush;

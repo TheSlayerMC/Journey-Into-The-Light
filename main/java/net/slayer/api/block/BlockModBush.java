@@ -19,6 +19,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -155,18 +156,6 @@ public class BlockModBush extends BlockMod implements IPlantable, IGrowable {
 
 	@Override
 	public boolean isFullCube(IBlockState state) {
-		int age = state.getValue(AGE).intValue();
-
-		if (age == 0) {
-			return false;
-		}
-		if (age == 1) {
-			return true;
-		}
-		if (age == 2) {
-			return true;
-		}
-
 		return false;
 	}
 
@@ -179,7 +168,17 @@ public class BlockModBush extends BlockMod implements IPlantable, IGrowable {
 	public int damageDropped(IBlockState state) {
 		return 0;
 	}
+	
+	@Override
+	public EnumBlockRenderType getRenderType(IBlockState state) {
+		return EnumBlockRenderType.MODEL;
+	}
 
+	@Override
+	public BlockRenderLayer getBlockLayer() {
+		return BlockRenderLayer.TRANSLUCENT;
+	}
+	
 	@Override
 	public boolean onBlockActivated(World w, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
 		double 
