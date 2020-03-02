@@ -1,6 +1,7 @@
 package net.journey.dimension.depths;
 
 import net.journey.JourneyBlocks;
+import net.journey.blocks.portal.BlockDepthsPortalFrame;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -196,18 +197,18 @@ public class TeleporterDepths extends Teleporter {
 	
 	private void makePortalAt(World world, int x, int z) {
 		int y = 2;
-		world.setBlockState(new BlockPos(x, y, z), JourneyBlocks.depthsPortalFrame.getDefaultState());
-		world.setBlockState(new BlockPos(x, y, z + 1), JourneyBlocks.depthsPortalFrame.getDefaultState());
-		world.setBlockState(new BlockPos(x, y, z + 2), JourneyBlocks.depthsPortalFrame.getDefaultState());
-		world.setBlockState(new BlockPos(x + 1, y, z + 3), JourneyBlocks.depthsPortalFrame.getDefaultState());
-		world.setBlockState(new BlockPos(x + 2, y, z + 3), JourneyBlocks.depthsPortalFrame.getDefaultState());
-		world.setBlockState(new BlockPos(x + 3, y, z + 3), JourneyBlocks.depthsPortalFrame.getDefaultState());
-		world.setBlockState(new BlockPos(x + 4, y, z), JourneyBlocks.depthsPortalFrame.getDefaultState());
-		world.setBlockState(new BlockPos(x + 4, y, z + 1), JourneyBlocks.depthsPortalFrame.getDefaultState());
-		world.setBlockState(new BlockPos(x + 4, y, z + 2), JourneyBlocks.depthsPortalFrame.getDefaultState());
-		world.setBlockState(new BlockPos(x + 1, y, z - 1), JourneyBlocks.depthsPortalFrame.getDefaultState());
-		world.setBlockState(new BlockPos(x + 2, y, z - 1), JourneyBlocks.depthsPortalFrame.getDefaultState());
-		world.setBlockState(new BlockPos(x + 3, y, z - 1), JourneyBlocks.depthsPortalFrame.getDefaultState());
+		world.setBlockState(new BlockPos(x, y, z), JourneyBlocks.depthsPortalFrame.getDefaultState().withProperty(BlockDepthsPortalFrame.EYE, true));
+		world.setBlockState(new BlockPos(x, y, z + 1), JourneyBlocks.depthsPortalFrame.getDefaultState().withProperty(BlockDepthsPortalFrame.EYE, true));
+		world.setBlockState(new BlockPos(x, y, z + 2), JourneyBlocks.depthsPortalFrame.getDefaultState().withProperty(BlockDepthsPortalFrame.EYE, true));
+		world.setBlockState(new BlockPos(x + 1, y, z + 3), JourneyBlocks.depthsPortalFrame.getDefaultState().withProperty(BlockDepthsPortalFrame.EYE, true));
+		world.setBlockState(new BlockPos(x + 2, y, z + 3), JourneyBlocks.depthsPortalFrame.getDefaultState().withProperty(BlockDepthsPortalFrame.EYE, true));
+		world.setBlockState(new BlockPos(x + 3, y, z + 3), JourneyBlocks.depthsPortalFrame.getDefaultState().withProperty(BlockDepthsPortalFrame.EYE, true));
+		world.setBlockState(new BlockPos(x + 4, y, z), JourneyBlocks.depthsPortalFrame.getDefaultState().withProperty(BlockDepthsPortalFrame.EYE, true));
+		world.setBlockState(new BlockPos(x + 4, y, z + 1), JourneyBlocks.depthsPortalFrame.getDefaultState().withProperty(BlockDepthsPortalFrame.EYE, true));
+		world.setBlockState(new BlockPos(x + 4, y, z + 2), JourneyBlocks.depthsPortalFrame.getDefaultState().withProperty(BlockDepthsPortalFrame.EYE, true));
+		world.setBlockState(new BlockPos(x + 1, y, z - 1), JourneyBlocks.depthsPortalFrame.getDefaultState().withProperty(BlockDepthsPortalFrame.EYE, true));
+		world.setBlockState(new BlockPos(x + 2, y, z - 1), JourneyBlocks.depthsPortalFrame.getDefaultState().withProperty(BlockDepthsPortalFrame.EYE, true));
+		world.setBlockState(new BlockPos(x + 3, y, z - 1), JourneyBlocks.depthsPortalFrame.getDefaultState().withProperty(BlockDepthsPortalFrame.EYE, true));
 
 		world.setBlockState(new BlockPos(x + 1, y, z), JourneyBlocks.depthsPortal.getDefaultState());
 		world.setBlockState(new BlockPos(x + 2, y, z), JourneyBlocks.depthsPortal.getDefaultState());

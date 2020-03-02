@@ -1,6 +1,7 @@
 package net.journey.dimension.corba;
 
 import net.journey.JourneyBlocks;
+import net.journey.blocks.BlockCorbaPortalFrame;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -191,24 +192,24 @@ public class TeleporterCorba extends Teleporter {
 			var20 = -var20;
 		}
 
-		this.makePortalAt(this.myWorld, var10, var11, var12);
+		this.makePortalAt(this.myWorld, var10, var12);
 		return true;
 	}
 	
-	private void makePortalAt(World world, int x, int y, int z) {
-		y = 13;
-		world.setBlockState(new BlockPos(x, y, z), JourneyBlocks.corbaPortalFrame.getDefaultState());
-		world.setBlockState(new BlockPos(x, y, z + 1), JourneyBlocks.corbaPortalFrame.getDefaultState());
-		world.setBlockState(new BlockPos(x, y, z + 2), JourneyBlocks.corbaPortalFrame.getDefaultState());
-		world.setBlockState(new BlockPos(x + 1, y, z + 3), JourneyBlocks.corbaPortalFrame.getDefaultState());
-		world.setBlockState(new BlockPos(x + 2, y, z + 3), JourneyBlocks.corbaPortalFrame.getDefaultState());
-		world.setBlockState(new BlockPos(x + 3, y, z + 3), JourneyBlocks.corbaPortalFrame.getDefaultState());
-		world.setBlockState(new BlockPos(x + 4, y, z), JourneyBlocks.corbaPortalFrame.getDefaultState());
-		world.setBlockState(new BlockPos(x + 4, y, z + 1), JourneyBlocks.corbaPortalFrame.getDefaultState());
-		world.setBlockState(new BlockPos(x + 4, y, z + 2), JourneyBlocks.corbaPortalFrame.getDefaultState());
-		world.setBlockState(new BlockPos(x + 1, y, z - 1), JourneyBlocks.corbaPortalFrame.getDefaultState());
-		world.setBlockState(new BlockPos(x + 2, y, z - 1), JourneyBlocks.corbaPortalFrame.getDefaultState());
-		world.setBlockState(new BlockPos(x + 3, y, z - 1), JourneyBlocks.corbaPortalFrame.getDefaultState());
+	private void makePortalAt(World world, int x, int z) {
+		int y = 14;
+		world.setBlockState(new BlockPos(x, y, z), JourneyBlocks.corbaPortalFrame.getDefaultState().withProperty(BlockCorbaPortalFrame.EYE, true));
+		world.setBlockState(new BlockPos(x, y, z + 1), JourneyBlocks.corbaPortalFrame.getDefaultState().withProperty(BlockCorbaPortalFrame.EYE, true));
+		world.setBlockState(new BlockPos(x, y, z + 2), JourneyBlocks.corbaPortalFrame.getDefaultState().withProperty(BlockCorbaPortalFrame.EYE, true));
+		world.setBlockState(new BlockPos(x + 1, y, z + 3), JourneyBlocks.corbaPortalFrame.getDefaultState().withProperty(BlockCorbaPortalFrame.EYE, true));
+		world.setBlockState(new BlockPos(x + 2, y, z + 3), JourneyBlocks.corbaPortalFrame.getDefaultState().withProperty(BlockCorbaPortalFrame.EYE, true));
+		world.setBlockState(new BlockPos(x + 3, y, z + 3), JourneyBlocks.corbaPortalFrame.getDefaultState().withProperty(BlockCorbaPortalFrame.EYE, true));
+		world.setBlockState(new BlockPos(x + 4, y, z), JourneyBlocks.corbaPortalFrame.getDefaultState().withProperty(BlockCorbaPortalFrame.EYE, true));
+		world.setBlockState(new BlockPos(x + 4, y, z + 1), JourneyBlocks.corbaPortalFrame.getDefaultState().withProperty(BlockCorbaPortalFrame.EYE, true));
+		world.setBlockState(new BlockPos(x + 4, y, z + 2), JourneyBlocks.corbaPortalFrame.getDefaultState().withProperty(BlockCorbaPortalFrame.EYE, true));
+		world.setBlockState(new BlockPos(x + 1, y, z - 1), JourneyBlocks.corbaPortalFrame.getDefaultState().withProperty(BlockCorbaPortalFrame.EYE, true));
+		world.setBlockState(new BlockPos(x + 2, y, z - 1), JourneyBlocks.corbaPortalFrame.getDefaultState().withProperty(BlockCorbaPortalFrame.EYE, true));
+		world.setBlockState(new BlockPos(x + 3, y, z - 1), JourneyBlocks.corbaPortalFrame.getDefaultState().withProperty(BlockCorbaPortalFrame.EYE, true));
 
 		world.setBlockState(new BlockPos(x + 1, y, z), JourneyBlocks.corbaPortal.getDefaultState());
 		world.setBlockState(new BlockPos(x + 2, y, z), JourneyBlocks.corbaPortal.getDefaultState());

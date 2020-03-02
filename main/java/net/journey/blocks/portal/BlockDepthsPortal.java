@@ -3,8 +3,10 @@ package net.journey.blocks.portal;
 import java.util.List;
 import java.util.Random;
 
+import net.journey.JITL;
 import net.journey.JourneyTabs;
 import net.journey.dimension.depths.TeleporterDepths;
+import net.journey.enums.EnumParticlesClasses;
 import net.journey.util.Config;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -61,6 +63,11 @@ public class BlockDepthsPortal extends BlockMod {
 	}
 
 	@Override
+	public boolean isOpaqueCube(IBlockState state) {
+		return false;
+	}
+	
+	@Override
 	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entity) {
 		if ((entity.getRidingEntity() == null) && ((entity instanceof EntityPlayerMP))) {
 			EntityPlayerMP thePlayer = (EntityPlayerMP)entity;
@@ -87,7 +94,7 @@ public class BlockDepthsPortal extends BlockMod {
 		double d3 = 0.0D;
 		double d4 = 0.0D;
 		double d5 = 0.0D;
-		worldIn.spawnParticle(EnumParticleTypes.SLIME, d0, d1, d2, d3, d4, d5, new int[0]);
+		JITL.proxy.spawnParticle(EnumParticlesClasses.DEPTHS, worldIn, d0, d1, d2, d3, d4, d5);
 		worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0, d1, d2, d3, d4, d5, new int[0]);
 		worldIn.spawnParticle(EnumParticleTypes.SMOKE_LARGE, d0, d1, d2, d3, d4, d5, new int[0]);
 	}

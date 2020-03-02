@@ -2,6 +2,7 @@ package net.journey.enums;
 
 import net.journey.client.render.particles.EntityCloudiaPortalFX;
 import net.journey.client.render.particles.EntityConjuringFX;
+import net.journey.client.render.particles.EntityDepthsPortalFX;
 import net.journey.client.render.particles.EntityDoomFX;
 import net.journey.client.render.particles.EntityEarthenFX;
 import net.journey.client.render.particles.EntityEnlightmentFX;
@@ -40,7 +41,8 @@ public enum EnumParticlesClasses {
 	FIRE_BALL(EntityFireballFX.class),
 	ENLIGHTMENT(EntityEnlightmentFX.class),
 	EARTHEN(EntityEarthenFX.class),
-	CONJURING(EntityConjuringFX.class);
+	CONJURING(EntityConjuringFX.class),
+	DEPTHS(EntityDepthsPortalFX.class);
 	
 	private Class particle;
 	
