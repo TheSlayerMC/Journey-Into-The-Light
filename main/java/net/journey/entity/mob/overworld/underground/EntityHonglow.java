@@ -4,6 +4,7 @@ import net.journey.JourneyConsumables;
 import net.journey.JourneyItems;
 import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -68,7 +69,7 @@ public class EntityHonglow extends EntityModMob {
 	@Override
 	public boolean getCanSpawnHere() {
 		return this.posY < 40.0D && super.getCanSpawnHere() && 
-				this.world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.STONE;
+				this.world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getMaterial() == Material.ROCK && this.dimension == 0;
 	}
 
 	@Override

@@ -6,6 +6,7 @@ import net.journey.JourneyItems;
 import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityConjuring;
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.IRangedAttackMob;
@@ -91,7 +92,7 @@ public class EntityCavurn extends EntityModMob implements IRangedAttackMob {
 	@Override
 	public boolean getCanSpawnHere() {
 		return this.posY < 40.0D && super.getCanSpawnHere() && 
-				this.world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.STONE;
+				this.world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getMaterial() == Material.ROCK && this.dimension == 0;
 	}
 
 	@Override
