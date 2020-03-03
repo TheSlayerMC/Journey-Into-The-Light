@@ -117,7 +117,7 @@ public class JourneyRecipes {
 			if(pick != null) addPickaxe(pick, ingot);
 			if(shovel != null) addShovel(shovel, ingot);
 			if(hoe != null) addHoe(hoe, ingot);
-			if(sword != null) addShapedRecipe(new ItemStack(sword), new Object[] { "b", "b", "s", 'b', block, 's', Items.STICK });
+			if(sword != null) addShapedRecipe(new ItemStack(sword), new Object[] { "b", "b", "s", 'b', block, 's', JourneyItems.obsidianRod });
 			if(block != null) addBlock(block, ingot);
 			if(helmet != null) addHelmet(helmet, ingot);
 			if(chest != null) addChestplate(chest, ingot);
@@ -205,6 +205,8 @@ public class JourneyRecipes {
 				JourneyItems.shadiumIngot, 'd', Items.DIAMOND, 's', JourneyItems.sapphire });
 		addShapedRecipe(new ItemStack(JourneyBlocks.boilingBars, 4),
 				new Object[] { "ddd", "ddd", 'd', Items.BLAZE_ROD });
+		addShapedRecipe(new ItemStack(JourneyItems.obsidianRod, 2),
+				new Object[] { "d", "d", 'd', Blocks.OBSIDIAN });
 		addShapedRecipe(new ItemStack(JourneyBlocks.stoneCraftingTable, 1),
 				new Object[] { "dd", "dd", 'd', Blocks.COBBLESTONE });
 		addShapedRecipe(new ItemStack(JourneyBlocks.trophy, 1),

@@ -202,6 +202,8 @@ public class JourneyItems {
 	public static Item desIngot;
 	public static Item darkGem;
 	
+	public static Item obsidianRod;
+	
 	public static Item bleedstone;
 	public static Item smithstone;
 	
@@ -540,6 +542,7 @@ public class JourneyItems {
 
 		demonicEye = new ItemDemonicEye("demonicEye", "Demonic Eye");
 		darkGem = new ItemDarkGem("darkGem", "Dark Gem");
+		obsidianRod = new ItemMod("obsidianRod", "Obsidian Rod");
 
 		//obsidianBoat = new ItemObsidianBoat("obsidianboat", "Obsidian Boat");
 		//infernoshield = new ItemModShield("infernoshield", "Inferno Shield", 2, false);
