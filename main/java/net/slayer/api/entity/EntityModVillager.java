@@ -68,15 +68,15 @@ public abstract class EntityModVillager extends EntityVillager implements INpc, 
 		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
 		this.tasks.removeTask(new EntityAIHarvestFarmland(this, 0.6D));
 	}
-	
+
 	@Override
 	protected void applyEntityAttributes() {
-	    super.applyEntityAttributes();
-        this.getAttributeMap().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
+		super.applyEntityAttributes();
+		this.getAttributeMap().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
 
-	    this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(100000.0D);
-	    this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.23000000417232513D);
-	    this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(10.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(100000.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.23000000417232513D);
+		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(10.0D);
 	}
 
 	@Override
@@ -86,71 +86,63 @@ public abstract class EntityModVillager extends EntityVillager implements INpc, 
 
 	@Override
 	protected SoundEvent getAmbientSound(){
-        return null;
-    }
+		return null;
+	}
 
 	@Override
-    protected SoundEvent getHurtSound(DamageSource p_184601_1_) {
-        return null;
-    }
+	protected SoundEvent getHurtSound(DamageSource p_184601_1_) {
+		return null;
+	}
 
-    @Override
-    protected SoundEvent getDeathSound(){
-        return null;
-    }
-    
-    @Override
-    public boolean attackEntityAsMob(Entity entityIn) {
-        float f = (float)this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue();
-        int i = 0;
+	@Override
+	protected SoundEvent getDeathSound(){
+		return null;
+	}
 
-        if (entityIn instanceof EntityLivingBase)
-        {
-            f += EnchantmentHelper.getModifierForCreature(this.getHeldItemMainhand(), ((EntityLivingBase)entityIn).getCreatureAttribute());
-            i += EnchantmentHelper.getKnockbackModifier(this);
-        }
+	@Override
+	public boolean attackEntityAsMob(Entity entityIn) {
+		float f = (float)this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue();
+		int i = 0;
 
-        boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), f);
+		if(entityIn instanceof EntityLivingBase) {
+			f += EnchantmentHelper.getModifierForCreature(this.getHeldItemMainhand(), ((EntityLivingBase)entityIn).getCreatureAttribute());
+			i += EnchantmentHelper.getKnockbackModifier(this);
+		}
 
-        if (flag)
-        {
-            if (i > 0 && entityIn instanceof EntityLivingBase)
-            {
-                ((EntityLivingBase)entityIn).knockBack(this, (float)i * 0.5F, (double)MathHelper.sin(this.rotationYaw * 0.017453292F), (double)(-MathHelper.cos(this.rotationYaw * 0.017453292F)));
-                this.motionX *= 0.6D;
-                this.motionZ *= 0.6D;
-            }
+		boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), f);
 
-            int j = EnchantmentHelper.getFireAspectModifier(this);
+		if(flag) {
+			if(i > 0 && entityIn instanceof EntityLivingBase) {
+				((EntityLivingBase)entityIn).knockBack(this, (float)i * 0.5F, (double)MathHelper.sin(this.rotationYaw * 0.017453292F), (double)(-MathHelper.cos(this.rotationYaw * 0.017453292F)));
+				this.motionX *= 0.6D;
+				this.motionZ *= 0.6D;
+			}
 
-            if (j > 0)
-            {
-                entityIn.setFire(j * 4);
-            }
+			int j = EnchantmentHelper.getFireAspectModifier(this);
 
-            if (entityIn instanceof EntityPlayer)
-            {
-                EntityPlayer entityplayer = (EntityPlayer)entityIn;
-                ItemStack itemstack = this.getHeldItemMainhand();
-                ItemStack itemstack1 = entityplayer.isHandActive() ? entityplayer.getActiveItemStack() : ItemStack.EMPTY;
+			if(j > 0) {
+				entityIn.setFire(j * 4);
+			}
 
-                if (!itemstack.isEmpty() && !itemstack1.isEmpty() && itemstack.getItem().canDisableShield(itemstack, itemstack1, entityplayer, this) && itemstack1.getItem().isShield(itemstack1, entityplayer))
-                {
-                    float f1 = 0.25F + (float)EnchantmentHelper.getEfficiencyModifier(this) * 0.05F;
+			if(entityIn instanceof EntityPlayer) {
+				EntityPlayer entityplayer = (EntityPlayer)entityIn;
+				ItemStack itemstack = this.getHeldItemMainhand();
+				ItemStack itemstack1 = entityplayer.isHandActive() ? entityplayer.getActiveItemStack() : ItemStack.EMPTY;
 
-                    if (this.rand.nextFloat() < f1)
-                    {
-                        entityplayer.getCooldownTracker().setCooldown(itemstack1.getItem(), 100);
-                        this.world.setEntityState(entityplayer, (byte)30);
-                    }
-                }
-            }
+				if(!itemstack.isEmpty() && !itemstack1.isEmpty() && itemstack.getItem().canDisableShield(itemstack, itemstack1, entityplayer, this) && itemstack1.getItem().isShield(itemstack1, entityplayer)) {
+					float f1 = 0.25F + (float)EnchantmentHelper.getEfficiencyModifier(this) * 0.05F;
 
-            this.applyEnchantments(this, entityIn);
-        }
+					if(this.rand.nextFloat() < f1) {
+						entityplayer.getCooldownTracker().setCooldown(itemstack1.getItem(), 100);
+						this.world.setEntityState(entityplayer, (byte)30);
+					}
+				}
+			}
+			this.applyEnchantments(this, entityIn);
+		}
 
-        return flag;
-    }
+		return flag;
+	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
