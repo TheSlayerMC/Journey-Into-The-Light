@@ -25,10 +25,14 @@ public abstract class EntityModMob extends EntityMob {
 
 	public EntityModMob(World par1World) {
 		super(par1World);
-		addBasicAI();
 		setSize(1.0F, 2.0F);
 	}
 
+	@Override
+	protected void initEntityAI() {
+		addBasicAI();
+	}
+	
 	public double getHP(){return getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getAttributeValue();}
 	public double getMoveSpeed(){return getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue();}
 	public double getAttackDamage(){return getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue();}
