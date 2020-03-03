@@ -4,7 +4,7 @@ import net.minecraft.stats.StatBase;
 
 public class JourneyAdvancements {
 	
-	//public static final AdvancementEvent ap = new AchievementPage("Journey Achievements");
+	/*public static final AdvancementEvent ap = new AchievementPage("Journey Achievements");
 	public static StatBase achievementOre;
 	public static StatBase achievementGem;
 	public static StatBase achievementBoil;
@@ -31,7 +31,7 @@ public class JourneyAdvancements {
 	public static StatBase achievementSentry;
 	public static StatBase achievementTerra;
 	public static StatBase achievementSkyStalker;
-	public static StatBase achievementTrophy;
+	public static StatBase achievementTrophy;*
 	
 	public static void init() {
 		//AdvancementsProgress.registerAchievementPage(ap);

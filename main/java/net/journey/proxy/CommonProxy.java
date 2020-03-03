@@ -34,6 +34,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.event.RegistryEvent;
@@ -83,7 +84,6 @@ public class CommonProxy {
 		//FMLCommonHandler.instance().bus().register(new JourneyAdvancementEvent());
 		DimensionHelper.init();
 		DimensionHelper.addSpawns();
-
 		SlayerAPI.registerEvent(new BarTickHandler());
 		SlayerAPI.registerEvent(new RenderBar());
 		CapabilityManager.INSTANCE.register(IEssence.class, new EssenceStorage(), EssenceBar.class);

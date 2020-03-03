@@ -10,10 +10,12 @@ import net.minecraft.entity.ai.EntityAIAvoidEntity;
 import net.minecraft.entity.ai.EntityAIHarvestFarmland;
 import net.minecraft.entity.ai.EntityAILookAtTradePlayer;
 import net.minecraft.entity.ai.EntityAIMoveIndoors;
+import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAIOpenDoor;
 import net.minecraft.entity.ai.EntityAIRestrictOpenDoor;
 import net.minecraft.entity.ai.EntityAITradePlayer;
 import net.minecraft.entity.ai.EntityAIWander;
+import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.ai.EntityAIWatchClosest2;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.monster.IMob;
@@ -53,7 +55,6 @@ public abstract class EntityModVillager extends EntityVillager implements INpc, 
 		this.setSize(1.0F, 2.0F);
 		this.randomTickDivider = 0;
 		this.villageObj = null;
-		this.tasks.addTask(1, new EntityAIAvoidEntity(this, EntityZombie.class, 8.0F, 0.6D, 0.6D));
 		this.tasks.addTask(1, new EntityAITradePlayer(this));
 		this.tasks.addTask(1, new EntityAILookAtTradePlayer(this));
 		this.tasks.addTask(2, new EntityAIMoveIndoors(this));
@@ -61,6 +62,7 @@ public abstract class EntityModVillager extends EntityVillager implements INpc, 
 		this.tasks.addTask(4, new EntityAIOpenDoor(this, true));
 		this.tasks.addTask(5, new EntityAIWatchClosest2(this, EntityPlayer.class, 3.0F, 1.0F));
 		this.tasks.addTask(5, new EntityAIWander(this, 1.0F));
+		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityZombie.class, true));
 		this.setCanPickUpLoot(false);
 		this.tasks.removeTask(new EntityAIHarvestFarmland(this, 0.6D));
 	}

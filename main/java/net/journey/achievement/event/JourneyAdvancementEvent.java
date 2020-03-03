@@ -11,7 +11,7 @@ import net.slayer.api.SlayerAPI;
 
 public class JourneyAdvancementEvent {
 
-	@SubscribeEvent
+	/*@SubscribeEvent
 	public void onGemMineEvent(PlayerEvent.ItemPickupEvent e) {
 		if(e.getOriginalEntity().getItem().isItemEqual(new ItemStack(JourneyItems.greenGem))) {
 			e.player.addStat(JourneyAdvancements.achievementGem, 1); 
@@ -42,5 +42,5 @@ public class JourneyAdvancementEvent {
 		if(e.crafting.getItem().equals(SlayerAPI.toItem(JourneyBlocks.trophy))) {
 			e.player.addStat(JourneyAdvancements.achievementTrophy, 1);
 		}
-	}
+	}*/
 }

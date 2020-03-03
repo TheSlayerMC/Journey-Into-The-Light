@@ -112,6 +112,7 @@ import net.minecraftforge.event.terraingen.InitMapGenEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import scala.reflect.internal.Symbols.TypeSkolem;
 
 public class DimensionHelper {
 
@@ -150,16 +151,15 @@ public class DimensionHelper {
 			DimensionManager.unregisterDimension(1);
 			DimensionManager.registerDimension(1, DimensionType.register("End", "END", 1, WorldProviderEndJourney.class, true));
 		} */
-		addDimBiome(euca, "Euca");
-		addDimBiome(boiling, "Boiling Point");
-		addDimBiome(cloudia, "Cloudia");
-		addDimBiome(corba, "Corba");
-		addDimBiome(corbaPlains, "Corba Plains");
-		addDimBiome(depths, "Depths");
-		addDimBiome(frozen, "Frozen Lands");
-		addDimBiome(terrania, "Terrania");
-		addDimBiome(senterian, "Senterian Labyrinth");
-
+		addDimBiome(euca, "Euca", Type.MAGICAL, Type.MOUNTAIN);
+		addDimBiome(boiling, "Boiling Point", Type.HOT);
+		addDimBiome(cloudia, "Cloudia", Type.MAGICAL);
+		addDimBiome(corba, "Corba", Type.DRY, Type.PLAINS, Type.DEAD);
+		addDimBiome(corbaPlains, "Corba Plains", Type.DRY, Type.PLAINS, Type.DEAD);
+		addDimBiome(depths, "Depths", Type.MAGICAL, Type.SPOOKY);
+		addDimBiome(frozen, "Frozen Lands", Type.COLD);
+		addDimBiome(terrania, "Terrania", Type.MAGICAL, Type.SPOOKY);
+		addDimBiome(senterian, "Senterian Labyrinth", Type.MAGICAL, Type.SPOOKY);
 		addDimension(Config.euca, eucaType);
 		addDimension(Config.boil, boilingType);
 		addDimension(Config.cloudia, cloudiaType);
@@ -175,9 +175,10 @@ public class DimensionHelper {
 		DimensionManager.registerDimension(id, type);
 	}
 
-	private static Biome addDimBiome(Biome biome, String name) {
+	private static Biome addDimBiome(Biome biome, String name, Type... t) {
 		biome.setRegistryName(name);
 		ForgeRegistries.BIOMES.register(biome);
+		BiomeDictionary.addTypes(biome, t);
 		LogHelper.info("Biome Registered");
 		return biome;
 	}
