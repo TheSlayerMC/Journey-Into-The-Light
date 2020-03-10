@@ -1,0 +1,14 @@
+{
+  "result": {
+    "item": "journey:darkgem"
+  },
+  "ingredients": [
+    {
+      "item": "journey:shadiumingot"
+    },
+    {
+      "item": "minecraft:diamond"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless"
+}

@@ -191,7 +191,7 @@ public class JourneyRecipes {
 						JourneyBlocks.lavaRock, 'c', Blocks.COBBLESTONE, 'f', Items.FLINT_AND_STEEL });
 		addShapedRecipe(new ItemStack(JourneyBlocks.eucaPortalFrame, 10),
 				new Object[] { "iii", "iii", "iii", 'i', JourneyItems.eucaPortalGem });
-		addShapedRecipe(new ItemStack(JourneyBlocks.depthsPortalFrame, 10),
+		addShapedRecipe(new ItemStack(JourneyBlocks.depthsPortalFrame, 12),
 				new Object[] { "iii", "iii", "iii", 'i', JourneyItems.depthsPortalGem });
 		addShapedRecipe(new ItemStack(JourneyBlocks.cloudiaPortalFrame, 10),
 				new Object[] { "iii", "iii", "iii", 'i', JourneyItems.cloudiaPortalGem });
@@ -254,6 +254,7 @@ public class JourneyRecipes {
 		 * JourneyItems.flamingHide, 'i', JourneyItems.concentratedBlood });
 		 */
 		addShapelessRecipe(new ItemStack(JourneyItems.demonicDust, 5), new Object[] { JourneyItems.demonicBone });
+		addShapelessRecipe(new ItemStack(JourneyItems.darkGem, 1), new Object[] { JourneyItems.shadiumIngot, Items.DIAMOND });
 
 		addOPFood(JourneyConsumables.goldenPork, JourneyConsumables.goldenPorkOP, Items.PORKCHOP);
 		addOPFood(JourneyConsumables.goldenSteak, JourneyConsumables.goldenSteakOP, Items.BEEF);
