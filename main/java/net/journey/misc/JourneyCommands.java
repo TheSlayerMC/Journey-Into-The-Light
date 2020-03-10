@@ -1,6 +1,9 @@
 package net.journey.misc;
 
 import net.journey.JourneyBlocks;
+import net.journey.blocks.portal.BlockBoilPortal;
+import net.journey.blocks.portal.BlockEucaPortal;
+import net.journey.blocks.portal.BlockFrozenPortal;
 import net.journey.dimension.ModTeleporter;
 import net.journey.dimension.corba.TeleporterCorba;
 import net.journey.dimension.depths.TeleporterDepths;
@@ -62,13 +65,13 @@ public class JourneyCommands extends CommandBase {
 
 			if(var2[0].equalsIgnoreCase("Euca")) {
 				if(playerMP.dimension != Config.euca) {
-					playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, Config.euca, new ModTeleporter(playerMP.mcServer.getWorld(Config.euca), Config.euca, JourneyBlocks.eucaPortal, JourneyBlocks.eucaPortalFrame));
+					playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, Config.euca, new ModTeleporter(playerMP.mcServer.getWorld(Config.euca), Config.euca, JourneyBlocks.eucaPortal, JourneyBlocks.eucaPortalFrame, BlockEucaPortal.AXIS));
 				}
 			}
 
 			if(var2[0].equalsIgnoreCase("BoilingPoint")) {
 				if(playerMP.dimension != Config.boil) {
-					playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, Config.boil, new ModTeleporter(playerMP.mcServer.getWorld(Config.boil), Config.boil, JourneyBlocks.boilPortal, JourneyBlocks.boilPortalFrame));
+					playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, Config.boil, new ModTeleporter(playerMP.mcServer.getWorld(Config.boil), Config.boil, JourneyBlocks.boilPortal, JourneyBlocks.boilPortalFrame, BlockBoilPortal.AXIS));
 				}
 			}
 
@@ -80,7 +83,7 @@ public class JourneyCommands extends CommandBase {
 			
 			if(var2[0].equalsIgnoreCase("FrozenLands")) {
 				if(playerMP.dimension != Config.frozen) {
-					playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, Config.frozen, new ModTeleporter(playerMP.mcServer.getWorld(Config.frozen), Config.frozen, JourneyBlocks.frozenPortal, Blocks.SNOW));
+					playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, Config.frozen, new ModTeleporter(playerMP.mcServer.getWorld(Config.frozen), Config.frozen, JourneyBlocks.frozenPortal, JourneyBlocks.frozenPortalFrame, BlockFrozenPortal.AXIS));
 				}
 			}
 			

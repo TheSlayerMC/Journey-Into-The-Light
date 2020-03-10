@@ -1,7 +1,7 @@
 package net.journey.dimension.corba;
 
 import net.journey.JourneyBlocks;
-import net.journey.blocks.BlockCorbaPortalFrame;
+import net.journey.blocks.portal.BlockCorbaPortalFrame;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;

@@ -1,7 +1,7 @@
 package net.journey.items;
 
 import net.journey.JourneyBlocks;
-import net.journey.blocks.BlockCorbaPortalFrame;
+import net.journey.blocks.portal.BlockCorbaPortalFrame;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockPattern;
 import net.minecraft.entity.player.EntityPlayer;

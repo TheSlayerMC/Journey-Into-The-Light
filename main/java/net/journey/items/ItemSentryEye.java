@@ -1,8 +1,7 @@
 package net.journey.items;
 
 import net.journey.JourneyBlocks;
-import net.journey.blocks.BlockSenterianPortalFrame;
-import net.journey.blocks.BlockSenterianPortalFrame;
+import net.journey.blocks.portal.BlockSenterianPortalFrame;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;

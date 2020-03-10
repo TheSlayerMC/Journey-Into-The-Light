@@ -31,10 +31,10 @@ import net.slayer.api.EnumToolType;
 import net.slayer.api.SlayerAPI;
 import net.slayer.api.block.BlockMod;
 
-public class BlockSenterianPortal extends BlockMod {
+public class BlockSenterianPortal extends BlockModPortal {
 
 	public BlockSenterianPortal(String name, String f) {
-		super(EnumMaterialTypes.PORTAL, name, f, -1.0F);
+		super(name, f);
 		this.setTickRandomly(true);
 		setCreativeTab(JourneyTabs.portalBlocks);
 	}
@@ -71,21 +71,7 @@ public class BlockSenterianPortal extends BlockMod {
 
 	@Override
 	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entity) {
-		if ((entity.getRidingEntity() == null) && ((entity instanceof EntityPlayerMP))) {
-			EntityPlayerMP thePlayer = (EntityPlayerMP)entity;
-			WorldServer worldserver = thePlayer.mcServer.getWorld(thePlayer.dimension);
-			int dimensionID = Config.senterian;
-			Block blockFrame = JourneyBlocks.corbaStone;
-			if(thePlayer.timeUntilPortal > 0) 
-				thePlayer.timeUntilPortal = 10;
-			else if(thePlayer.dimension != dimensionID) {
-				thePlayer.timeUntilPortal = 10;
-				thePlayer.mcServer.getPlayerList().transferPlayerToDimension(thePlayer, dimensionID, new ModTeleporter(thePlayer.mcServer.getWorld(dimensionID), dimensionID, this, blockFrame));
-			} else {
-				thePlayer.timeUntilPortal = 10;
-				thePlayer.mcServer.getPlayerList().transferPlayerToDimension(thePlayer, 0, new ModTeleporter(thePlayer.mcServer.getWorld(0), 0, this, blockFrame));
-			}
-		}
+		
 	}
 
 	@Override
@@ -100,5 +86,10 @@ public class BlockSenterianPortal extends BlockMod {
 		worldIn.spawnParticle(EnumParticleTypes.SLIME, d0, d1, d2, d3, d4, d5, new int[0]);
 		worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0, d1, d2, d3, d4, d5, new int[0]);
 		worldIn.spawnParticle(EnumParticleTypes.SMOKE_LARGE, d0, d1, d2, d3, d4, d5, new int[0]);
+	}
+
+	@Override
+	public boolean makePortal(World worldIn, BlockPos p) {
+		return false;
 	}
 }

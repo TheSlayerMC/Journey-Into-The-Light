@@ -1,4 +1,4 @@
-package net.journey.blocks;
+package net.journey.blocks.portal;
 
 import java.util.ArrayList;
 import java.util.List;

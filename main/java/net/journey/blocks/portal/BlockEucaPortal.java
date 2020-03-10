@@ -108,10 +108,10 @@ public class BlockEucaPortal extends BlockBreakable {
 				thePlayer.timeUntilPortal = 10;
 			else if(thePlayer.dimension != dimensionID) {
 				thePlayer.timeUntilPortal = 10;
-				thePlayer.mcServer.getPlayerList().transferPlayerToDimension(thePlayer, dimensionID, new ModTeleporter(thePlayer.mcServer.getWorld(dimensionID), dimensionID, this, blockFrame));
+				thePlayer.mcServer.getPlayerList().transferPlayerToDimension(thePlayer, dimensionID, new ModTeleporter(thePlayer.mcServer.getWorld(dimensionID), dimensionID, this, blockFrame, AXIS));
 			} else {
 				thePlayer.timeUntilPortal = 10;
-				thePlayer.mcServer.getPlayerList().transferPlayerToDimension(thePlayer, 0, new ModTeleporter(thePlayer.mcServer.getWorld(0), 0, this, blockFrame));
+				thePlayer.mcServer.getPlayerList().transferPlayerToDimension(thePlayer, 0, new ModTeleporter(thePlayer.mcServer.getWorld(0), 0, this, blockFrame, AXIS));
 			}
 		}
 	}

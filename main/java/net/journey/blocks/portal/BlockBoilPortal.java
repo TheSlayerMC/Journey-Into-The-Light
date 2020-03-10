@@ -41,66 +41,10 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.SlayerAPI;
 
-public class BlockBoilPortal extends BlockBreakable {
-
-	public String name; 
+public class BlockBoilPortal extends BlockModPortal {
 	
-    public static final PropertyEnum<EnumFacing.Axis> AXIS = PropertyEnum.<EnumFacing.Axis>create("axis", EnumFacing.Axis.class, EnumFacing.Axis.X, EnumFacing.Axis.Z);
-	protected static final AxisAlignedBB X_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.375D, 1.0D, 1.0D, 0.625D);
-	protected static final AxisAlignedBB Z_AABB = new AxisAlignedBB(0.375D, 0.0D, 0.0D, 0.625D, 1.0D, 1.0D);
-	protected static final AxisAlignedBB Y_AABB = new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 1.0D, 0.625D);
-
 	public BlockBoilPortal(String name) {
-		super(Material.PORTAL, false);
-		this.name = name;
-        this.setDefaultState(this.blockState.getBaseState().withProperty(AXIS, EnumFacing.Axis.X));
-		LangRegistry.addBlock(name, "Boiling Portal");
-		this.setTickRandomly(true);
-		setCreativeTab(JourneyTabs.portalBlocks);
-		setUnlocalizedName(name);
-		JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
-		JourneyBlocks.blocks.add(this);
-		setRegistryName(SlayerAPI.MOD_ID, name);
-		
-		JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
-	}
-	
-	@Override
-	protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, new IProperty[] {AXIS});
-    }
-
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-		return null;
-	}
-
-	@Override
-	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) { 
-		return null;
-	}
-
-	@Override
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-		switch ((EnumFacing.Axis)state.getValue(AXIS)) {
-		case X:
-			return X_AABB;
-		case Y:
-		default:
-			return Y_AABB;
-		case Z:
-			return Z_AABB;
-		}
-	}
-
-	@Override
-	public boolean isFullCube(IBlockState state) {
-		return false;
-	}
-
-	@Override
-	public int quantityDropped(Random p_149745_1_) {
-		return 0;
+		super(name, "Boiling Portal");
 	}
 
 	@Override
@@ -115,13 +59,21 @@ public class BlockBoilPortal extends BlockBreakable {
 				thePlayer.timeUntilPortal = 10;
 			else if(thePlayer.dimension != dimensionID) {
 				thePlayer.timeUntilPortal = 10;
-				thePlayer.mcServer.getPlayerList().transferPlayerToDimension(thePlayer, dimensionID, new ModTeleporter(thePlayer.mcServer.getWorld(dimensionID), dimensionID, this, blockFrame));
+				thePlayer.mcServer.getPlayerList().transferPlayerToDimension(thePlayer, dimensionID, new ModTeleporter(thePlayer.mcServer.getWorld(dimensionID), dimensionID, this, blockFrame, AXIS));
 			} else {
 				thePlayer.timeUntilPortal = 10;
-				thePlayer.mcServer.getPlayerList().transferPlayerToDimension(thePlayer, 0, new ModTeleporter(thePlayer.mcServer.getWorld(0), 0, this, blockFrame));
+				thePlayer.mcServer.getPlayerList().transferPlayerToDimension(thePlayer, 0, new ModTeleporter(thePlayer.mcServer.getWorld(0), 0, this, blockFrame, AXIS));
 			}
 		}
 	}
+	
+	public static int getMetaForAxis(EnumFacing.Axis axis) {
+        if(axis == EnumFacing.Axis.X) {
+            return 1;
+        } else {
+            return axis == EnumFacing.Axis.Z ? 2 : 0;
+        }
+    }
 
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
@@ -161,34 +113,6 @@ public class BlockBoilPortal extends BlockBreakable {
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
-		pos = pos.offset(side);
-		EnumFacing.Axis enumfacing$axis = null;
-
-		if(blockState.getBlock() == this) {
-			enumfacing$axis = (EnumFacing.Axis)blockState.getValue(AXIS);
-			if(enumfacing$axis == null) 
-				return false;
-			if(enumfacing$axis == EnumFacing.Axis.Z && side != EnumFacing.EAST && side != EnumFacing.WEST) 
-				return false;
-			if(enumfacing$axis == EnumFacing.Axis.X && side != EnumFacing.SOUTH && side != EnumFacing.NORTH) 
-				return false;
-		}
-
-		boolean flag = blockAccess.getBlockState(pos.west()).getBlock() == this && blockAccess.getBlockState(pos.west(2)).getBlock() != this;
-		boolean flag1 = blockAccess.getBlockState(pos.east()).getBlock() == this && blockAccess.getBlockState(pos.east(2)).getBlock() != this;
-		boolean flag2 = blockAccess.getBlockState(pos.north()).getBlock() == this && blockAccess.getBlockState(pos.north(2)).getBlock() != this;
-		boolean flag3 = blockAccess.getBlockState(pos.south()).getBlock() == this && blockAccess.getBlockState(pos.south(2)).getBlock() != this;
-		boolean flag4 = flag || flag1 || enumfacing$axis == EnumFacing.Axis.X;
-		boolean flag5 = flag2 || flag3 || enumfacing$axis == EnumFacing.Axis.Z;
-
-		if(flag4 && side == EnumFacing.WEST) return true;
-		else if(flag4 && side == EnumFacing.EAST)return true;
-		else if(flag5 && side == EnumFacing.NORTH) return true;      
-		else return flag5 && side == EnumFacing.SOUTH;
-	}
-
 	public boolean makePortal(World worldIn, BlockPos p) {
 		EntityLightningBolt bolt = new EntityLightningBolt(worldIn, p.getX(), p.getY(), p.getZ(), false);
 		BlockBoilPortal.Size size = new BlockBoilPortal.Size(worldIn, p, EnumFacing.Axis.X);
@@ -209,44 +133,6 @@ public class BlockBoilPortal extends BlockBreakable {
 				return false;
 			}
 		}
-	}
-
-	@Override
-	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
-		return new ItemStack(this);
-	}
-
-	@Override
-	public int getMetaFromState(IBlockState state) {
-		return meta((EnumFacing.Axis)state.getValue(AXIS));
-	}
-
-	public static int meta(Axis a) {
-		return a == EnumFacing.Axis.X ? 1 : (a == EnumFacing.Axis.Z ? 2 : 0);
-	}
-
-	@Override
-	public IBlockState withRotation(IBlockState state, Rotation rot) {
-		switch (rot) {
-		case COUNTERCLOCKWISE_90:
-		case CLOCKWISE_90:
-
-			switch ((EnumFacing.Axis)state.getValue(AXIS)) {
-			case X:
-				return state.withProperty(AXIS, EnumFacing.Axis.Z);
-			case Z:
-				return state.withProperty(AXIS, EnumFacing.Axis.X);
-			default:
-				return state;
-			}
-		default:
-			return state;
-		}
-	}
-
-	@Override
-	public BlockFaceShape getBlockFaceShape(IBlockAccess i, IBlockState i2, BlockPos p, EnumFacing f) {
-		return BlockFaceShape.UNDEFINED;
 	}
 
 	public static class Size {
@@ -382,13 +268,5 @@ public class BlockBoilPortal extends BlockBreakable {
 				}
 			}
 		}
-	}
-
-	public void registerItemModel(Item itemBlock) {
-		JITL.proxy.registerItemRenderer(itemBlock, 0, name);
-	}
-	
-	public Item createItemBlock() {
-		return new ItemBlock(this).setRegistryName(getRegistryName());
 	}
 }

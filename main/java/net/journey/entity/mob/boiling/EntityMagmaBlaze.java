@@ -15,7 +15,6 @@ import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.monster.EntityBlaze;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
@@ -38,7 +37,7 @@ public class EntityMagmaBlaze extends EntityModMob {
 	private float heightOffset = 0.5F;
 	private int heightOffsetUpdateTime;
 	private int attackTimer;
-    private static final DataParameter<Byte> ON_FIRE = EntityDataManager.<Byte>createKey(EntityBlaze.class, DataSerializers.BYTE);
+    private static final DataParameter<Byte> ON_FIRE = EntityDataManager.<Byte>createKey(EntityMagmaBlaze.class, DataSerializers.BYTE);
 
 	public EntityMagmaBlaze(World w) {
 		super(w);
