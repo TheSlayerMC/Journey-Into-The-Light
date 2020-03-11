@@ -499,8 +499,7 @@ public class WorldGenStarlightVillage extends WorldGenerator {
 		setBlockAndNotifyAdequately(world, new BlockPos(i + 11, j + 4, k + 7), JourneyBlocks.cloudiaTile.getDefaultState());
 		setBlockAndNotifyAdequately(world, new BlockPos(i + 11, j + 5, k + 4), JourneyBlocks.cloudiaWall.getDefaultState());
 		setBlockAndNotifyAdequately(world, new BlockPos(i + 11, j + 5, k + 7), JourneyBlocks.cloudiaWall.getDefaultState());
-		setBlockAndNotifyAdequately(world, new BlockPos(i + 11, j + 6, k + 4), JourneyBlocks.cloudiaPost.getDefaultState());
-		setBlockAndNotifyAdequately(world, new BlockPos(i + 11, j + 6, k + 7), JourneyBlocks.cloudiaPost.getDefaultState());
+		i = i -= 3;
 		setBlockAndNotifyAdequately(world, new BlockPos(i + 11, j + 9, k + 2), JourneyBlocks.cloudiaWall.getDefaultState());
 		setBlockAndNotifyAdequately(world, new BlockPos(i + 11, j + 9, k + 3), JourneyBlocks.cloudiaBrick.getDefaultState());
 		setBlockAndNotifyAdequately(world, new BlockPos(i + 11, j + 9, k + 4), JourneyBlocks.cloudiaBrick.getDefaultState());
@@ -511,10 +510,6 @@ public class WorldGenStarlightVillage extends WorldGenerator {
 		setBlockAndNotifyAdequately(world, new BlockPos(i + 11, j + 9, k + 9), JourneyBlocks.cloudiaWall.getDefaultState());
 		setBlockAndNotifyAdequately(world, new BlockPos(i + 12, j + 4, k + 5), JourneyBlocks.cloudiaBrick.getDefaultState());
 		setBlockAndNotifyAdequately(world, new BlockPos(i + 12, j + 4, k + 6), JourneyBlocks.cloudiaBrick.getDefaultState());
-		setBlockAndNotifyAdequately(world, new BlockPos(i + 12, j + 5, k + 4), JourneyBlocks.cloudiaTile.getDefaultState());
-		setBlockAndNotifyAdequately(world, new BlockPos(i + 12, j + 5, k + 7), JourneyBlocks.cloudiaTile.getDefaultState());
-		setBlockAndNotifyAdequately(world, new BlockPos(i + 12, j + 6, k + 4), JourneyBlocks.cloudiaPost.getDefaultState());
-		setBlockAndNotifyAdequately(world, new BlockPos(i + 12, j + 6, k + 7), JourneyBlocks.cloudiaPost.getDefaultState());
 		setBlockAndNotifyAdequately(world, new BlockPos(i + 12, j + 9, k + 3), JourneyBlocks.cloudiaWall.getDefaultState());
 		setBlockAndNotifyAdequately(world, new BlockPos(i + 12, j + 9, k + 4), JourneyBlocks.cloudiaWall.getDefaultState());
 		setBlockAndNotifyAdequately(world, new BlockPos(i + 12, j + 9, k + 5), JourneyBlocks.cloudiaWall.getDefaultState());
@@ -523,18 +518,14 @@ public class WorldGenStarlightVillage extends WorldGenerator {
 		setBlockAndNotifyAdequately(world, new BlockPos(i + 12, j + 9, k + 8), JourneyBlocks.cloudiaWall.getDefaultState());
 		setBlockAndNotifyAdequately(world, new BlockPos(i + 13, j + 4, k + 5), JourneyBlocks.cloudiaBrick.getDefaultState());
 		setBlockAndNotifyAdequately(world, new BlockPos(i + 13, j + 4, k + 6), JourneyBlocks.cloudiaBrick.getDefaultState());
-		setBlockAndNotifyAdequately(world, new BlockPos(i + 13, j + 5, k + 4), JourneyBlocks.cloudiaTile.getDefaultState());
-		setBlockAndNotifyAdequately(world, new BlockPos(i + 13, j + 5, k + 7), JourneyBlocks.cloudiaTile.getDefaultState());
-		setBlockAndNotifyAdequately(world, new BlockPos(i + 13, j + 6, k + 4), JourneyBlocks.cloudiaPost.getDefaultState());
-		setBlockAndNotifyAdequately(world, new BlockPos(i + 13, j + 6, k + 7), JourneyBlocks.cloudiaPost.getDefaultState());
 		setBlockAndNotifyAdequately(world, new BlockPos(i + 14, j + 4, k + 5), JourneyBlocks.cloudiaBrick.getDefaultState());
 		setBlockAndNotifyAdequately(world, new BlockPos(i + 14, j + 4, k + 6), JourneyBlocks.cloudiaBrick.getDefaultState());
 		setBlockAndNotifyAdequately(world, new BlockPos(i + 14, j + 5, k + 4), JourneyBlocks.cloudiaTile.getDefaultState());
 		setBlockAndNotifyAdequately(world, new BlockPos(i + 14, j + 5, k + 7), JourneyBlocks.cloudiaTile.getDefaultState());
 		setBlockAndNotifyAdequately(world, new BlockPos(i + 14, j + 6, k + 4), JourneyBlocks.cloudiaPost.getDefaultState());
 		setBlockAndNotifyAdequately(world, new BlockPos(i + 14, j + 6, k + 7), JourneyBlocks.cloudiaPost.getDefaultState());
-		setBlockAndNotifyAdequately(world, new BlockPos(i + 14, j + 7, k + 4), JourneyBlocks.cloudiaLamp.getDefaultState());
-		setBlockAndNotifyAdequately(world, new BlockPos(i + 14, j + 7, k + 7), JourneyBlocks.cloudiaLamp.getDefaultState());
+		setBlockAndNotifyAdequately(world, new BlockPos(i + 16, j + 7, k + 4), JourneyBlocks.cloudiaLamp.getDefaultState());
+		setBlockAndNotifyAdequately(world, new BlockPos(i + 16, j + 7, k + 7), JourneyBlocks.cloudiaLamp.getDefaultState());
 		setBlockAndNotifyAdequately(world, new BlockPos(i + 15, j + 4, k + 5), JourneyBlocks.cloudiaBrick.getDefaultState());
 		setBlockAndNotifyAdequately(world, new BlockPos(i + 15, j + 4, k + 6), JourneyBlocks.cloudiaBrick.getDefaultState());
 		setBlockAndNotifyAdequately(world, new BlockPos(i + 15, j + 5, k + 4), JourneyBlocks.cloudiaTile.getDefaultState());
@@ -897,6 +888,7 @@ public class WorldGenStarlightVillage extends WorldGenerator {
 		setBlockAndNotifyAdequately(world, new BlockPos(i + 28, j + 9, k + 6), JourneyBlocks.cloudiaBrick.getDefaultState());
 		setBlockAndNotifyAdequately(world, new BlockPos(i + 28, j + 9, k + 7), JourneyBlocks.cloudiaBrick.getDefaultState());
 		setBlockAndNotifyAdequately(world, new BlockPos(i + 28, j + 9, k + 8), JourneyBlocks.cloudiaBrick.getDefaultState());
+		
 		setBlockAndNotifyAdequately(world, new BlockPos(i + 28, j + 9, k + 9), JourneyBlocks.cloudiaBrick.getDefaultState());
 		setBlockAndNotifyAdequately(world, new BlockPos(i + 28, j + 9, k + 10), JourneyBlocks.cloudiaBrick.getDefaultState());
 		setBlockAndNotifyAdequately(world, new BlockPos(i + 28, j + 9, k + 11), JourneyBlocks.cloudiaWall.getDefaultState());
@@ -1073,10 +1065,10 @@ public class WorldGenStarlightVillage extends WorldGenerator {
 
 		if(!world.isRemote) {
 			EntityStarlightVillager smith = new EntityStarlightVillager(world);
-				smith.setLocationAndAngles(i + 6, j + 5, k + 6, 0.0F, 0.0F);
+				smith.setLocationAndAngles(i + 9, j + 5, k + 6, 0.0F, 0.0F);
 				world.spawnEntity(smith);
 			EntityStarlightBlacksmith smith1 = new EntityStarlightBlacksmith(world);
-				smith1.setLocationAndAngles(i + 6, j + 5, k + 6, 0.0F, 0.0F);
+				smith1.setLocationAndAngles(i + 28, j + 5, k + 6, 0.0F, 0.0F);
 				world.spawnEntity(smith1);
 		}
 		return false;

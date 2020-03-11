@@ -110,7 +110,6 @@ public class ChunkProviderCloudia implements IChunkGenerator {
                 island.generate(worldObj, rand, pos);
         }
 
-        // strucutre too big, will lag anyway
         if (this.rand.nextInt(40) == 0) {
             BlockPos pos = new BlockPos(x1 + 1, rand.nextInt(20) + 64 , z1 + r.nextInt(8));
             if (worldObj.isAirBlock(pos)){

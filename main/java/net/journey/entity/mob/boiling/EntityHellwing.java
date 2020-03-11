@@ -46,6 +46,7 @@ public class EntityHellwing extends EntityModMob {
         this.setSize(0.4F, 0.8F);
         this.experienceValue = 3;
 		setSize(0.7F, 1.2F);
+        this.boundOrigin = new BlockPos((int)this.posX + this.rand.nextInt(7) - this.rand.nextInt(7), (int)this.posY + this.rand.nextInt(6) - 2, (int)this.posZ + this.rand.nextInt(7) - this.rand.nextInt(7));
 	}
 
 	@Override
