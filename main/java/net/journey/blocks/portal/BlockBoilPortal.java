@@ -66,25 +66,6 @@ public class BlockBoilPortal extends BlockModPortal {
 			}
 		}
 	}
-	
-	public static int getMetaForAxis(EnumFacing.Axis axis) {
-        if(axis == EnumFacing.Axis.X) {
-            return 1;
-        } else {
-            return axis == EnumFacing.Axis.Z ? 2 : 0;
-        }
-    }
-
-	@Override
-	public IBlockState getStateFromMeta(int meta) {
-		return this.getDefaultState().withProperty(AXIS, (meta & 3) == 2 ? EnumFacing.Axis.Z : EnumFacing.Axis.X);
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getBlockLayer() {
-		return BlockRenderLayer.TRANSLUCENT;
-	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
