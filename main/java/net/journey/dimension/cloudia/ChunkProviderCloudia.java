@@ -84,11 +84,7 @@ public class ChunkProviderCloudia implements IChunkGenerator {
                 tower.generate(worldObj, rand, pos);
         }
 
-        if (this.rand.nextInt(60) == 0) {
-            BlockPos pos = WorldGenAPI.createRandom(x1, 20, 84, z1, r, 8);
-            if (worldObj.isAirBlock(pos))
-                tower.generate(worldObj, rand, pos);
-        }
+        
 
         if (this.rand.nextInt(30) == 0) {
             BlockPos pos = WorldGenAPI.createRandom(x1, 20, 84, z1, r, 8);

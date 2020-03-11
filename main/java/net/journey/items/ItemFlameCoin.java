@@ -33,7 +33,7 @@ public class ItemFlameCoin extends ItemMod {
 	public EnumActionResult onItemUse(EntityPlayer player, World w, BlockPos pos, EnumHand hand, EnumFacing fa, float hitX, float hitY, float hitZ) {
 		Random r = new Random();
 		int x = pos.getX(), y = pos.getY(), z = pos.getZ();
-		/*if(fa != EnumFacing.UP && w.getBlockState(pos.up()).getBlock() != Blocks.AIR){
+		if(fa != EnumFacing.UP && w.getBlockState(pos.up()).getBlock() != Blocks.AIR){
 			return EnumActionResult.FAIL;
 		} else {
 			Block block = w.getBlockState(pos).getBlock();
@@ -43,11 +43,10 @@ public class ItemFlameCoin extends ItemMod {
 				return EnumActionResult.SUCCESS;
 			}
 			else return EnumActionResult.FAIL;
-		}*/
+		}
 		
-		new WorldGenStarlightVillage().generate(w, r, new BlockPos(x, y, z));
 		
-		return EnumActionResult.SUCCESS;
+		//return EnumActionResult.SUCCESS;
 		
 		//BARN
 		/*WorldGenAPI.addRectangle(7, 5, 1, w, x, y, z, EssenceBlocks.greenCorbaPlank);
