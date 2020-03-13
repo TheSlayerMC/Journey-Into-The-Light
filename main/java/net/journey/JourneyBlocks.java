@@ -168,6 +168,11 @@ public class JourneyBlocks {
 	public static BlockMod darkBrick;
 	public static BlockMod darkFloor;
 	public static BlockMod darkShingle;
+	public static BlockMod depthsCarpet;
+	public static BlockMod depthsBookshelf;
+	public static BlockMod depthsBrick;
+	public static BlockMod depthsGlass;
+	public static BlockModDoor depthsDoor;
 
 	public static BlockMod iceLeaves;
 	public static BlockMod frozenDirt;
@@ -537,6 +542,12 @@ public class JourneyBlocks {
 		darkBrick = (BlockMod) new BlockMod("darkBrick", "Dark Brick", 2.0F).setBlockUnbreakable().setResistance(10000000.0F);
 		darkFloor = (BlockMod) new BlockMod("darkFloor", "Dark Floor", 2.0F).setBlockUnbreakable().setResistance(10000000.0F);
 		darkShingle = (BlockMod) new BlockMod("darkShingle", "Dark Shingle", 2.0F).setBlockUnbreakable().setResistance(10000000.0F);
+		
+		depthsCarpet = new BlockMod("depthsCarpet", "Depths Carpet");
+		depthsBookshelf = new BlockMod("depthsBookshelf", "Depths Bookshelf");
+		depthsBrick = new BlockMod("depthsBrick", "Depths Brick");
+		depthsGlass = new BlockMod("depthsGlass", "Depths Glass");
+		depthsDoor = new BlockModDoor(EnumMaterialTypes.WOOD, 2.0F, "depthsDoor", "Depths Door");
 
 		iceLeaves = new BlockDepthsLeaves("iceLeaves", "Ice Leaves", 1.0F);
 		frozenDirt = new BlockMod(EnumMaterialTypes.DIRT, "frozenDirt", "Frozen Dirt", 2.0F);
