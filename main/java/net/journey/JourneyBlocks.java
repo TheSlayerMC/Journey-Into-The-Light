@@ -51,6 +51,7 @@ import net.slayer.api.block.BlockModBush;
 import net.slayer.api.block.BlockModDoor;
 import net.slayer.api.block.BlockModFence;
 import net.slayer.api.block.BlockModFlower;
+import net.slayer.api.block.BlockModGlass;
 import net.slayer.api.block.BlockModGrass;
 import net.slayer.api.block.BlockModGravity;
 import net.slayer.api.block.BlockModLadder;
@@ -546,8 +547,8 @@ public class JourneyBlocks {
 		depthsCarpet = new BlockMod("depthsCarpet", "Depths Carpet");
 		depthsBookshelf = new BlockMod("depthsBookshelf", "Depths Bookshelf");
 		depthsBrick = new BlockMod("depthsBrick", "Depths Brick");
-		depthsGlass = new BlockMod("depthsGlass", "Depths Glass");
-		depthsDoor = new BlockModDoor(EnumMaterialTypes.WOOD, 2.0F, "depthsDoor", "Depths Door");
+		depthsGlass = new BlockModGlass("depthsGlass", "Depths Glass", 1.0F);
+		depthsDoor = new BlockModDoor("depthsDoor", "Depths Door", Material.WOOD, 2.0F);
 
 		iceLeaves = new BlockDepthsLeaves("iceLeaves", "Ice Leaves", 1.0F);
 		frozenDirt = new BlockMod(EnumMaterialTypes.DIRT, "frozenDirt", "Frozen Dirt", 2.0F);
@@ -761,7 +762,7 @@ public class JourneyBlocks {
 		workshopStone = new BlockMod(EnumMaterialTypes.STONE, "workshopStone", "Workshop Stone", 0.5F);
 		workshopStoneStair = new BlockModStairs(workshopStone, "workshopStairs", "Workshop Stairs");
 		workshopStoneFence = new BlockModFence(workshopStone, "workshopStoneFence", "Workshop Fence");
-		frozenDoor = new BlockModDoor(EnumMaterialTypes.STONE, 5.0F, "frozenDoorBlock", "Workshop Fence");
+		frozenDoor = new BlockModDoor("frozenDoorBlock", "Workshop Fence", Material.WOOD, 5F);
 		candyCane = new BlockMod(EnumMaterialTypes.WOOD, "candyCane", "Candy Cane", 2.0F);
 		frozenBrick = new BlockMod("frozenBricks", "Frozen Bricks");
 		icicle = new BlockIcicle("icicle", "Icicle");

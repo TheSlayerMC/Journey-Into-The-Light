@@ -5,11 +5,9 @@ import java.util.Random;
 
 import net.journey.JourneyBlocks;
 import net.journey.JourneyTabs;
-import net.journey.dimension.cloudia.gen.WorldGenStarlightVillage;
-import net.minecraft.block.Block;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemDoor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
@@ -33,7 +31,7 @@ public class ItemFlameCoin extends ItemMod {
 	public EnumActionResult onItemUse(EntityPlayer player, World w, BlockPos pos, EnumHand hand, EnumFacing fa, float hitX, float hitY, float hitZ) {
 		Random r = new Random();
 		int x = pos.getX(), y = pos.getY(), z = pos.getZ();
-		if(fa != EnumFacing.UP && w.getBlockState(pos.up()).getBlock() != Blocks.AIR){
+		/*if(fa != EnumFacing.UP && w.getBlockState(pos.up()).getBlock() != Blocks.AIR){
 			return EnumActionResult.FAIL;
 		} else {
 			Block block = w.getBlockState(pos).getBlock();
@@ -43,10 +41,10 @@ public class ItemFlameCoin extends ItemMod {
 				return EnumActionResult.SUCCESS;
 			}
 			else return EnumActionResult.FAIL;
-		}
+		}*/
 		
-		
-		//return EnumActionResult.SUCCESS;
+		ItemDoor.placeDoor(w, pos.up(1), EnumFacing.fromAngle(player.rotationYaw), JourneyBlocks.frozenDoor, false);
+		return EnumActionResult.SUCCESS;
 		
 		//BARN
 		/*WorldGenAPI.addRectangle(7, 5, 1, w, x, y, z, EssenceBlocks.greenCorbaPlank);

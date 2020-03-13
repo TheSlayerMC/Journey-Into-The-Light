@@ -1,0 +1,7 @@
+{
+    "parent": "block/door_top_rh",
+    "textures": {
+        "bottom": "journey:blocks/depthsdoor_bottom",
+        "top": "journey:blocks/depthsdoor_top"
+    }
+}

@@ -1,0 +1,9 @@
+{
+	"parent": "block/cube_bottom_top",
+	"textures": {
+		"particle": "journey:blocks/depthsbookshelf_side",
+		"bottom": "journey:blocks/depthsbrick",
+		"top": "journey:blocks/depthsbrick",
+		"side": "journey:blocks/depthsbookshelf_side"
+	}
+}

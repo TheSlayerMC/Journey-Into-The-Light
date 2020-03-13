@@ -118,6 +118,7 @@ import net.minecraft.item.Item.ToolMaterial;
 import net.minecraftforge.common.util.EnumHelper;
 import net.slayer.api.item.ItemMod;
 import net.slayer.api.item.ItemModAxe;
+import net.slayer.api.item.ItemModDoor;
 import net.slayer.api.item.ItemModFood;
 import net.slayer.api.item.ItemModHoe;
 import net.slayer.api.item.ItemModPickaxe;
@@ -543,7 +544,6 @@ public class JourneyItems {
 		demonicEye = new ItemDemonicEye("demonicEye", "Demonic Eye");
 		darkGem = new ItemDarkGem("darkGem", "Dark Gem");
 		obsidianRod = new ItemMod("obsidianRod", "Obsidian Rod");
-
 		//obsidianBoat = new ItemObsidianBoat("obsidianboat", "Obsidian Boat");
 		//infernoshield = new ItemModShield("infernoshield", "Inferno Shield", 2, false);
 	}
