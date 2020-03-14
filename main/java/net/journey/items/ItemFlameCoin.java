@@ -47,7 +47,6 @@ public class ItemFlameCoin extends ItemMod {
 		}*/
 		
 		//ItemDoor.placeDoor(w, pos.up(1), EnumFacing.fromAngle(player.rotationYaw), JourneyBlocks.frozenDoor, false);
-		new WorldGenDepthsTree(true).generate(w, r, pos);
 		return EnumActionResult.SUCCESS;
 		
 		//BARN
