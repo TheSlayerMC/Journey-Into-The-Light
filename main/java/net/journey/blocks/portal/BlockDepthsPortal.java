@@ -8,11 +8,14 @@ import net.journey.JourneyTabs;
 import net.journey.dimension.depths.TeleporterDepths;
 import net.journey.enums.EnumParticlesClasses;
 import net.journey.util.Config;
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumBlockRenderType;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -65,6 +68,21 @@ public class BlockDepthsPortal extends BlockMod {
 	@Override
 	public boolean isOpaqueCube(IBlockState state) {
 		return false;
+	}
+	
+	@Override
+	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
+        IBlockState iblockstate = blockAccess.getBlockState(pos.offset(side));
+        Block block = iblockstate.getBlock();
+        if(this.getMaterial(getDefaultState()) == Material.PORTAL) {
+            if(blockState != iblockstate) {
+                return true;
+            }
+            if(block == this) {
+                return false;
+            }
+        }
+        return block == this ? false : super.shouldSideBeRendered(blockState, blockAccess, pos, side);
 	}
 	
 	@Override
