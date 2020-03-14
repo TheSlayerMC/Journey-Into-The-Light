@@ -44,7 +44,7 @@ public class JourneyCommands extends CommandBase {
 				p.getFoodStats().addStats(20, 1);}
 
 		EntityPlayerMP playerMP = (EntityPlayerMP)var1;
-		if(!playerMP.world.isRemote) {
+		/*if(!playerMP.world.isRemote) {
 			if(var2[0].equalsIgnoreCase("Overworld")) {
 				if(playerMP.dimension != 0) {
 					playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, 0, new Teleporter(playerMP.mcServer.getWorld(0)));
@@ -92,6 +92,6 @@ public class JourneyCommands extends CommandBase {
 					playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, Config.corba, new TeleporterCorba(playerMP.mcServer.getWorld(Config.corba)));
 				}
 			}
-		}
+		}*/
 	}
 }

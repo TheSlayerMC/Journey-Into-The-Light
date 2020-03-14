@@ -26,7 +26,7 @@ public class WorldGenSorcererShrine extends WorldGenerator {
 			new WeightedRandomChestContent(JourneyItems.beastlyStomach, 0, 1, 5, 40)};*/
 	@Override
 	public boolean generate(World world, Random rand, BlockPos pos) {
-		int i = pos.getX(), j = pos.getY(), k = pos.getZ();
+		int i = pos.getX(), j = pos.getY() - 1, k = pos.getZ();
 		if(locationIsValidSpawn(world, i, j, k)) return true;
 		world.setBlockState(new BlockPos(i + 0, j + 4, k + 3), JourneyBlocks.darkShingle.getDefaultState());
 		world.setBlockState(new BlockPos(i + 0, j + 4, k + 5), JourneyBlocks.darkShingle.getDefaultState());

@@ -17,7 +17,7 @@ public class WorldGenGuardianTower extends WorldGenerator {
 	
 	@Override
 	public boolean generate(World world, Random rand, BlockPos pos) {
-		int i = pos.getX(), j = pos.getY(), k = pos.getZ();
+		int i = pos.getX(), j = pos.getY() - 1, k = pos.getZ();
 		if(locationIsValidSpawn(world, i, j, k)) return true;
 		i-=5;
 		k-=5;

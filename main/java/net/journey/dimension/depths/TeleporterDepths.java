@@ -42,9 +42,7 @@ public class TeleporterDepths extends Teleporter {
 			}
 
 		}
-
 		return false;
-
 	}
 
 	public static int getTopBlock(World world, int x, int z) {

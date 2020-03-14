@@ -5,6 +5,9 @@ import java.util.Random;
 
 import net.journey.JourneyBlocks;
 import net.journey.JourneyTabs;
+import net.journey.dimension.depths.gen.WorldGenDepthsTree;
+import net.journey.dimension.depths.gen.WorldGenDepthsTree1;
+import net.journey.dimension.depths.gen.WorldGenDepthsTree2;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemDoor;
@@ -44,6 +47,7 @@ public class ItemFlameCoin extends ItemMod {
 		}*/
 		
 		//ItemDoor.placeDoor(w, pos.up(1), EnumFacing.fromAngle(player.rotationYaw), JourneyBlocks.frozenDoor, false);
+		new WorldGenDepthsTree(true).generate(w, r, pos);
 		return EnumActionResult.SUCCESS;
 		
 		//BARN
