@@ -29,6 +29,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
+import net.minecraft.world.gen.ChunkGeneratorSettings;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.NoiseGenerator;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
@@ -56,6 +57,7 @@ public class ChunkProviderDepths implements IChunkGenerator {
     private double[] stoneNoise;
     private Biome[] biomesForGeneration;
     private double[] gen1, gen2, gen3, gen4;
+    private ChunkGeneratorSettings settings;
 
     private WorldGenSpike spike = new WorldGenSpike();
     private WorldGenModFlower flower = new WorldGenModFlower(JourneyBlocks.depthsFlower, JourneyBlocks.depthsGrass, false);
@@ -75,7 +77,7 @@ public class ChunkProviderDepths implements IChunkGenerator {
     private WorldGenMinable des = new WorldGenMinable(JourneyBlocks.desOre.getDefaultState(), 8, BlockStateMatcher.forBlock(JourneyBlocks.depthsStone));
     private WorldGenMinable floorgems = new WorldGenMinable(JourneyBlocks.depthsLights.getDefaultState(), 40, BlockStateMatcher.forBlock(JourneyBlocks.depthsGrass));
 
-    public ChunkProviderDepths(World worldIn, long s) {
+    public ChunkProviderDepths(World worldIn, long s, String st) {
         this.stoneNoise = new double[256];
         this.worldObj = worldIn;
         this.rand = new Random(s);
@@ -88,6 +90,8 @@ public class ChunkProviderDepths implements IChunkGenerator {
         this.da = new double[825];
         this.parabolicField = new float[25];
 
+        if (st != null) this.settings = ChunkGeneratorSettings.Factory.jsonToFactory(st).build();
+        
         for (int j = -2; j <= 2; ++j) {
             for (int k = -2; k <= 2; ++k) {
                 float f = 10.0F / MathHelper.sqrt(j * j + k * k + 0.2F);
@@ -107,9 +111,9 @@ public class ChunkProviderDepths implements IChunkGenerator {
         this.mobSpawnerNoise = ctx.getDepth();
     }
 
-    public void setBlocksInChunk(int x, int z, ChunkPrimer primer) {
-        this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomesForGeneration(this.biomesForGeneration, x * 4 - 2, z * 4 - 2, 10, 10);
-        this.generate(x * 4, 0, z * 4);
+    public void setBlocksInChunk(int x, int z, ChunkPrimer cp) {
+    	this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomesForGeneration(this.biomesForGeneration, x * 4 - 2, z * 4 - 2, 10, 10);
+        this.generateNoise(x * 4, 0, z * 4);
 
         for (int k = 0; k < 4; ++k) {
             int l = k * 5;
@@ -146,22 +150,268 @@ public class ChunkProviderDepths implements IChunkGenerator {
 
                             for (int j3 = 0; j3 < 4; ++j3) {
                                 if ((d15 += d16) > 0.0D) {
-                                    int y = k2 * 3 + l2;
-                                    if (y <= 40)
-                                        primer.setBlockState(k * 4 + i3, y, j1 * 4 + j3, JourneyBlocks.depthsStone.getDefaultState());
-                                    primer.setBlockState(k * 4 + i3, 41, j1 * 4 + j3, Blocks.BEDROCK.getDefaultState());
+                                    cp.setBlockState(k * 4 + i3, k2 * 8 + l2, j1 * 4 + j3, JourneyBlocks.depthsStone.getDefaultState());
+                                    cp.setBlockState(k * 4 + i3, k2 * 8 + l2 + 1, j1 * 4 + j3, JourneyBlocks.depthsDirt.getDefaultState());
+                                    cp.setBlockState(k * 4 + i3, k2 * 8 + l2 + 2, j1 * 4 + j3, JourneyBlocks.depthsDirt.getDefaultState());
+                                    cp.setBlockState(k * 4 + i3, k2 * 8 + l2 + 3, j1 * 4 + j3, JourneyBlocks.depthsDirt.getDefaultState());
+                                    cp.setBlockState(k * 4 + i3, k2 * 8 + l2 + 4, j1 * 4 + j3, JourneyBlocks.depthsGrass.getDefaultState());
                                 }
                             }
-
                             d10 += d12;
                             d11 += d13;
                         }
-
                         d1 += d5;
                         d2 += d6;
                         d3 += d7;
                         d4 += d8;
                     }
+                }
+            }
+        }
+        int top = 0;
+        for (int i = 0; i < 16; i++) {
+            for (int k = 0; k < 16; k++) {
+                for (int j = 175; j > 0; j--) {
+                    if (cp.getBlockState(i, j, k) != Blocks.AIR.getDefaultState()) {
+                        top = j;
+                        break;
+                    }
+                }
+                for (int j = top - 10; j > top - 40; j--) {
+                    if (cp.getBlockState(i, j, k) != Blocks.BEDROCK.getDefaultState()) {
+                        cp.setBlockState(i, j, k, Blocks.AIR.getDefaultState());
+                    }
+                }
+            }
+        }
+        this.rand.setSeed(this.rand.nextInt(100));
+        this.generateLowerNoise(x * 4, 0, z * 4);
+
+        for (int k = 0; k < 4; ++k) {
+            int l = k * 5;
+            int i1 = (k + 1) * 5;
+
+            for (int j1 = 0; j1 < 4; ++j1) {
+                int k1 = (l + j1) * 33;
+                int l1 = (l + j1 + 1) * 33;
+                int i2 = (i1 + j1) * 33;
+                int j2 = (i1 + j1 + 1) * 33;
+
+                for (int k2 = 0; k2 < 32; ++k2) {
+                    double d0 = 0.125D;
+                    double d1 = this.da[k1 + k2];
+                    double d2 = this.da[l1 + k2];
+                    double d3 = this.da[i2 + k2];
+                    double d4 = this.da[j2 + k2];
+                    double d5 = (this.da[k1 + k2 + 1] - d1) * d0;
+                    double d6 = (this.da[l1 + k2 + 1] - d2) * d0;
+                    double d7 = (this.da[i2 + k2 + 1] - d3) * d0;
+                    double d8 = (this.da[j2 + k2 + 1] - d4) * d0;
+
+                    for (int l2 = 0; l2 < 8; ++l2) {
+                        double d9 = 0.25D;
+                        double d10 = d1;
+                        double d11 = d2;
+                        double d12 = (d3 - d1) * d9;
+                        double d13 = (d4 - d2) * d9;
+
+                        for (int i3 = 0; i3 < 4; ++i3) {
+                            double d14 = 0.25D;
+                            double d16 = (d11 - d10) * d14;
+                            double d15 = d10 - d16;
+
+                            for (int j3 = 0; j3 < 4; ++j3) {
+                                if ((d15 += d16) > 0.0D) {
+                                    cp.setBlockState(k * 4 + i3, k2 * 8 + l2, j1 * 4 + j3, JourneyBlocks.depthsDirt.getDefaultState());
+                                }
+                            }
+                            d10 += d12;
+                            d11 += d13;
+                        }
+                        d1 += d5;
+                        d2 += d6;
+                        d3 += d7;
+                        d4 += d8;
+                    }
+                }
+            }
+        }
+
+        for (int i = 0; i < 16; i++) {
+            for (int k = 0; k < 16; k++) {
+                for (int j = 48; j > 0; j--) {
+                    if (cp.getBlockState(i, j, k) == JourneyBlocks.depthsStone.getDefaultState()) {
+                        cp.setBlockState(i, j, k, JourneyBlocks.depthsDirt.getDefaultState());
+                    }
+                }
+                for (int j = 48; j > 0; j--) {
+                    if (cp.getBlockState(i, j, k) == JourneyBlocks.depthsDirt.getDefaultState()) {
+                        cp.setBlockState(i, j, k, JourneyBlocks.depthsGrass.getDefaultState());
+                        break;
+                    }
+                }
+                for (int j = 0; j < 64; j++) {
+                    if (cp.getBlockState(i, j, k) == JourneyBlocks.depthsGrass.getDefaultState()) {
+                        top = j;
+                        break;
+                    }
+                }
+                for (int j = top - 8; j > 0; j--) {
+                    if (cp.getBlockState(i, j, k) == JourneyBlocks.depthsDirt.getDefaultState()) {
+                        cp.setBlockState(i, j, k, JourneyBlocks.depthsStone.getDefaultState());
+                    }
+                }
+            }
+        }
+    }
+    
+    private void generateNoise(int x, int y, int z) {
+        this.gen4 = this.noiseGen6.generateNoiseOctaves(this.gen4, x, z, 5, 5, (double) this.settings.depthNoiseScaleX, (double) this.settings.depthNoiseScaleZ, (double) this.settings.depthNoiseScaleExponent);
+        float f = this.settings.coordinateScale;
+        float f1 = this.settings.heightScale;
+        this.gen1 = this.noiseGen3.generateNoiseOctaves(this.gen1, x, y, z, 5, 33, 5, (double) (f / this.settings.mainNoiseScaleX / 500), (double) (f1 / this.settings.mainNoiseScaleY), (double) (f / this.settings.mainNoiseScaleZ / 500));
+        this.gen2 = this.noiseGen1.generateNoiseOctaves(this.gen2, x, y, z, 5, 33, 5, f, f1, f);
+        this.gen3 = this.noiseGen2.generateNoiseOctaves(this.gen3, x, y, z, 5, 33, 5, f, f1, f);
+        int l = 0;
+        int i1 = 0;
+        for (int j1 = 0; j1 < 5; j1++) {
+            for (int k1 = 0; k1 < 5; k1++) {
+                float f2 = 0.0F;
+                float f3 = 0.0F;
+                float f4 = 0.0F;
+                byte b0 = 2;
+                //Biome biome = this.biomesForGeneration[j1 + 2 + (l + 2) * 10];
+                for (int l1 = -b0; l1 <= b0; l1++) {
+                    for (int i2 = -b0; i2 <= b0; i2++) {
+                        Biome biome1 = this.biomesForGeneration[j1 + l1 + 2 + (k1 + i2 + 2) * 10];
+                        float f5 = this.settings.biomeDepthOffSet + biome1.getBaseHeight() * this.settings.biomeDepthWeight;
+                        float f6 = this.settings.biomeScaleOffset + biome1.getHeightVariation() * this.settings.biomeScaleWeight;
+                        float f7 = this.parabolicField[l1 + 2 + (i2 + 2) * 5] / (f5 + 2.0F);
+                        if (biome1.getBaseHeight() > biome1.getBaseHeight()) f7 /= 2.0F;
+                        f2 += f6 * f7;
+                        f3 += f5 * f7;
+                        f4 += f7;
+                    }
+                }
+
+                f2 /= f4;
+                f3 /= f4;
+                f2 = f2 * 0.9F + 0.1F;
+                f3 = (f3 * 4.0F - 1.0F) / 8.0F;
+                double d7 = this.gen4[i1] / 8000.0D;
+                if (d7 < 0.0D) d7 = -d7 * 0.3D;
+                d7 = d7 * 3.0D - 2.0D;
+                if (d7 < 0.0D) {
+                    d7 /= 2.0D;
+                    if (d7 < -1.0D) d7 = -1.0D;
+                    d7 /= 1.4D;
+                    d7 /= 2.0D;
+                } else {
+                    if (d7 > 1.0D) d7 = 1.0D;
+                    d7 /= 8.0D;
+                }
+
+                i1++;
+                double d8 = f3;
+                double d9 = f2;
+                d8 += d7 * 0.2D;
+                d8 = d8 * (double) this.settings.baseSize / 8.0D;
+                double d0 = (double) this.settings.baseSize + d8 * 4.0D;
+
+                for (int j2 = 0; j2 < 33; ++j2) {
+                    double d1 = (j2 - d0) * (double) this.settings.stretchY * 128.0D / 256.0D / d9;
+
+                    if (d1 < 0.0D) d1 *= 4.0D;
+                    double d2 = this.gen2[l] / ((double) this.settings.lowerLimitScale);
+                    double d3 = this.gen3[l] / (double) this.settings.upperLimitScale;
+                    double d4 = (this.gen1[l] / 10.0D + 1.0D) / 2.0D;
+                    double d5 = MathHelper.clampedLerp(d2, d3, d4) - d1;
+
+                    if (j2 > 29) {
+                        double d6 = (j2 - 29) / 3.0F;
+                        d5 = d5 * (1.0D - d6) + -10.0D * d6;
+                    }
+
+                    this.da[l] = d5;
+                    l++;
+                }
+            }
+        }
+    }
+
+    private void generateLowerNoise(int x, int y, int z) {
+        this.gen4 = this.noiseGen6.generateNoiseOctaves(this.gen4, x, z, 5, 5, (double) this.settings.depthNoiseScaleX, (double) this.settings.depthNoiseScaleZ, (double) this.settings.depthNoiseScaleExponent);
+        float f = this.settings.coordinateScale;
+        float f1 = this.settings.heightScale;
+        this.gen1 = this.noiseGen3.generateNoiseOctaves(this.gen1, x, y, z, 5, 33, 5, (double) (f / (this.settings.mainNoiseScaleX / 2)), (double) (f1 / this.settings.mainNoiseScaleY), (double) (f / (this.settings.mainNoiseScaleZ / 2)));
+        this.gen2 = this.noiseGen1.generateNoiseOctaves(this.gen2, x, y, z, 5, 33, 5, f, f1, f);
+        this.gen3 = this.noiseGen2.generateNoiseOctaves(this.gen3, x, y, z, 5, 33, 5, f, f1, f);
+        int l = 0;
+        int i1 = 0;
+
+        for (int j1 = 0; j1 < 5; ++j1) {
+            for (int k1 = 0; k1 < 5; ++k1) {
+                float f2 = 0.0F;
+                float f3 = 0.0F;
+                float f4 = 0.0F;
+                byte b0 = 2;
+                Biome biome = this.biomesForGeneration[j1 + 2 + (k1 + 2) * 10];
+
+                for (int l1 = -b0; l1 <= b0; ++l1) {
+                    for (int i2 = -b0; i2 <= b0; ++i2) {
+                        Biome biome1 = this.biomesForGeneration[j1 + l1 + 2 + (k1 + i2 + 2) * 10];
+                        float f5 = this.settings.biomeDepthOffSet + biome1.getBaseHeight() * this.settings.biomeDepthWeight;
+                        float f6 = this.settings.biomeScaleOffset + biome1.getHeightVariation() * this.settings.biomeScaleWeight;
+
+                        float f7 = this.parabolicField[l1 + 2 + (i2 + 2) * 5] / (f5 + 2.0F);
+
+                        if (biome1.getBaseHeight() > biome.getBaseHeight()) f7 /= 2.0F;
+                        f2 += f6 * f7;
+                        f3 += f5 * f7;
+                        f4 += f7;
+                    }
+                }
+
+                f2 /= f4;
+                f3 /= f4;
+                f2 = f2 * 0.9F + 0.1F;
+                f3 = (f3 * 4.0F - 1.0F) / 8.0F;
+                double d7 = this.gen4[i1] / 8000.0D;
+                if (d7 < 0.0D) d7 = -d7 * 0.3D;
+                d7 = d7 * 3.0D - 2.0D;
+                if (d7 < 0.0D) {
+                    d7 /= 2.0D;
+                    if (d7 < -1.0D) d7 = -1.0D;
+                    d7 /= 1.4D;
+                    d7 /= 2.0D;
+                } else {
+                    if (d7 > 1.0D) d7 = 1.0D;
+                    d7 /= 8.0D;
+                }
+
+                i1++;
+                double d8 = f3;
+                double d9 = f2;
+                d8 += d7 * 0.2D;
+                d8 = d8 * (double) this.settings.baseSize / 8.0D;
+                double d0 = (double) this.settings.baseSize + d8 * 4.0D;
+
+                for (int j2 = 0; j2 < 33; ++j2) {
+                    double d1 = 100 + (j2 - d0) * (double) this.settings.stretchY * 128.0D / 256.0D / d9;
+
+                    if (d1 < 0.0D) d1 *= 4.0D;
+                    double d2 = this.gen2[l] / ((double) this.settings.lowerLimitScale);
+                    double d3 = this.gen3[l] / (double) this.settings.upperLimitScale;
+                    double d4 = (this.gen1[l] / 10.0D + 1.0D) / 2.0D;
+                    double d5 = MathHelper.clampedLerp(d2, d3, d4) - d1;
+
+                    if (j2 > 29) {
+                        double d6 = (j2 - 29) / 3.0F;
+                        d5 = d5 * (1.0D - d6) + -10.0D * d6;
+                    }
+
+                    this.da[l] = d5;
+                    l++;
                 }
             }
         }
@@ -181,7 +431,6 @@ public class ChunkProviderDepths implements IChunkGenerator {
     public final void generateBiomeTerrain(Random r, ChunkPrimer c, int x, int z, double d) {
         int i1 = x & 15;
         int j1 = z & 15;
-        c.setBlockState(j1, 1, i1, JourneyBlocks.depthsGrass.getDefaultState());
         c.setBlockState(j1, 0, i1, Blocks.BEDROCK.getDefaultState());
     }
 

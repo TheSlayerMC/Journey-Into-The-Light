@@ -43,7 +43,7 @@ public class ItemFlameCoin extends ItemMod {
 			else return EnumActionResult.FAIL;
 		}*/
 		
-		ItemDoor.placeDoor(w, pos.up(1), EnumFacing.fromAngle(player.rotationYaw), JourneyBlocks.frozenDoor, false);
+		//ItemDoor.placeDoor(w, pos.up(1), EnumFacing.fromAngle(player.rotationYaw), JourneyBlocks.frozenDoor, false);
 		return EnumActionResult.SUCCESS;
 		
 		//BARN
