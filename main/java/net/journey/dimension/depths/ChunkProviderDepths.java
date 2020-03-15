@@ -240,6 +240,8 @@ public class ChunkProviderDepths implements IChunkGenerator {
         for (int i = 0; i < 16; i++) {
             for (int k = 0; k < 16; k++) {
                 for (int j = 48; j > 0; j--) {
+                    cp.setBlockState(i, 100, k, JourneyBlocks.depthsStone.getDefaultState());
+                    cp.setBlockState(i, 101, k, Blocks.BEDROCK.getDefaultState());
                     if (cp.getBlockState(i, j, k) == JourneyBlocks.depthsStone.getDefaultState()) {
                         cp.setBlockState(i, j, k, JourneyBlocks.depthsDirt.getDefaultState());
                     }

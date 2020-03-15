@@ -46,7 +46,7 @@ public class TeleporterDepths extends Teleporter {
 	}
 
 	public static int getTopBlock(World world, int x, int z) {
-		for(int i = 128; i > 0; i--) {
+		for(int i = 90; i > 0; i--) {
 			if(world.getBlockState(new BlockPos(x, i, z)) != Blocks.AIR.getDefaultState()) {
 				return i;
 			}
