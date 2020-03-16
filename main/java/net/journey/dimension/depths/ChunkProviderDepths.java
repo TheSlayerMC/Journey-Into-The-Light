@@ -558,6 +558,9 @@ public class ChunkProviderDepths implements IChunkGenerator {
         int x1 = cx * 16;
         int z1 = cz * 16;
         int i;
+        
+        int top = 64;
+        int bottom = 0;
 
         BlockPos chunkStart = new BlockPos(x1, 0, z1);
 
@@ -594,16 +597,30 @@ public class ChunkProviderDepths implements IChunkGenerator {
         }
 
         if (rand.nextInt(1) == 0) {
-            generateStructure(shrine, x1, z1);
+        	generateBottomStructure(shrine, x1, z1);
         }
 
         if (rand.nextInt(2) == 0) {
-            generateStructure(tower, x1, z1);
+            generateBottomStructure(tower, x1, z1);
+        }
+    }
+    
+    private void generateStructure(WorldGenerator gen, int x, int z){
+        BlockPos pos = WorldGenAPI.createRandom(x, 1, 90 + 1, z, rand, 8);
+        if (isBlockTop(pos.getX(), pos.getY() - 1, pos.getZ(), JourneyBlocks.depthsGrass)) {
+            gen.generate(worldObj, rand, pos);
         }
     }
 
-    private void generateStructure(WorldGenerator gen, int x, int z){
-        BlockPos pos = WorldGenAPI.createRandom(x, 1, 128 + 1, z, rand, 8);
+    private void generateTopStructure(WorldGenerator gen, int x, int z){
+        BlockPos pos = WorldGenAPI.createRandom(x, 64, 90 + 1, z, rand, 8);
+        if (isBlockTop(pos.getX(), pos.getY() - 1, pos.getZ(), JourneyBlocks.depthsGrass)) {
+            gen.generate(worldObj, rand, pos);
+        }
+    }
+    
+    private void generateBottomStructure(WorldGenerator gen, int x, int z){
+        BlockPos pos = WorldGenAPI.createRandom(x, 1, 64 + 1, z, rand, 8);
         if (isBlockTop(pos.getX(), pos.getY() - 1, pos.getZ(), JourneyBlocks.depthsGrass)) {
             gen.generate(worldObj, rand, pos);
         }
