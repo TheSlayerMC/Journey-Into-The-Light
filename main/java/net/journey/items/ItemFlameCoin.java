@@ -3,15 +3,11 @@ package net.journey.items;
 import java.util.List;
 import java.util.Random;
 
-import net.journey.JourneyBlocks;
 import net.journey.JourneyTabs;
-import net.journey.dimension.depths.gen.WorldGenDepthsPillar;
-import net.journey.dimension.depths.gen.WorldGenDepthsTree;
-import net.journey.dimension.depths.gen.WorldGenDepthsTree1;
-import net.journey.dimension.depths.gen.WorldGenDepthsTree2;
+import net.journey.dimension.WorldGenStructure;
+import net.journey.util.JourneyLootTables;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemDoor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
@@ -48,8 +44,12 @@ public class ItemFlameCoin extends ItemMod {
 		}*/
 		
 		//ItemDoor.placeDoor(w, pos.up(1), EnumFacing.fromAngle(player.rotationYaw), JourneyBlocks.frozenDoor, false);
+			//new WorldGenDepthsPillar().generate(w, itemRand, pos);
+		
+		WorldGenStructure structure = new WorldGenStructure("big", JourneyLootTables.TEST_CHEST);
 		if(!w.isRemote)
-			new WorldGenDepthsPillar().generate(w, itemRand, pos);
+		structure.generate(w, r, pos);
+		
 		return EnumActionResult.SUCCESS;
 		
 		//BARN

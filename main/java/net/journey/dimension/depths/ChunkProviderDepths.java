@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import net.journey.JourneyBlocks;
+import net.journey.dimension.WorldGenStructure;
 import net.journey.dimension.cloudia.ChunkProviderCloudia;
 import net.journey.dimension.depths.gen.WorldGenDarkbloom;
 import net.journey.dimension.depths.gen.WorldGenDepthsLights;
@@ -17,6 +18,7 @@ import net.journey.dimension.depths.gen.WorldGenPlant3;
 import net.journey.dimension.depths.gen.WorldGenSorcererShrine;
 import net.journey.dimension.depths.gen.WorldGenSpike;
 import net.journey.dimension.overworld.gen.WorldGenModFlower;
+import net.journey.util.JourneyLootTables;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBanner;
 import net.minecraft.block.state.pattern.BlockStateMatcher;
@@ -76,7 +78,10 @@ public class ChunkProviderDepths implements IChunkGenerator {
     private WorldGenMinable flairum = new WorldGenMinable(JourneyBlocks.flairiumOre.getDefaultState(), 8, BlockStateMatcher.forBlock(JourneyBlocks.depthsStone));
     private WorldGenMinable des = new WorldGenMinable(JourneyBlocks.desOre.getDefaultState(), 8, BlockStateMatcher.forBlock(JourneyBlocks.depthsStone));
     private WorldGenMinable floorgems = new WorldGenMinable(JourneyBlocks.depthsLights.getDefaultState(), 40, BlockStateMatcher.forBlock(JourneyBlocks.depthsGrass));
+    private WorldGenStructure depthsHouse = new WorldGenStructure("depths_house1");
+    private WorldGenStructure dungeon = new WorldGenStructure("big", JourneyLootTables.TEST_CHEST);
 
+    
     public ChunkProviderDepths(World worldIn, long s, String st) {
         this.stoneNoise = new double[256];
         this.worldObj = worldIn;
@@ -568,7 +573,7 @@ public class ChunkProviderDepths implements IChunkGenerator {
             floorgems.generate(worldObj, rand, new BlockPos(x1, rand.nextInt(250), z1));
         }
         
-        for (i = 0; i < 40; i++) {
+       /* for (i = 0; i < 40; i++) {
             flower.generate(worldObj, rand,  chunkStart);
             flower2.generate(worldObj, rand, chunkStart);
         }
@@ -581,6 +586,10 @@ public class ChunkProviderDepths implements IChunkGenerator {
         for (i = 0; i < 15; i++) {
             lights.generate(this.worldObj, rand, WorldGenAPI.createRandom(x1, 4, 120, z1, rand, 16));
             lights2.generate(this.worldObj, rand, WorldGenAPI.createRandom(x1, 4, 120, z1, rand, 16));
+        }*/
+        
+        if(rand.nextInt(1000) == 0) {
+        	//generateBottomStructure(dungeon, x1, z1);
         }
 
         for (i = 0; i < 80; i++) {
@@ -594,6 +603,10 @@ public class ChunkProviderDepths implements IChunkGenerator {
             generateStructure(plant2, x1, z1);
             generateStructure(plant3, x1, z1);
             generateStructure(darkbloom, x1, z1);
+        }
+        
+        for(i = 0; i < 10; i++) {
+        	generateTopStructure(depthsHouse, x1, z1);
         }
 
         if (rand.nextInt(1) == 0) {
