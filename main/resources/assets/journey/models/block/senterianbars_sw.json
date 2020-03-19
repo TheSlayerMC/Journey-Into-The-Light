@@ -1,7 +1,0 @@
-{
-    "parent": "block/pane_sw",
-    "textures": {
-        "edge": "blocks/journey:blocks/senterianBars",
-        "pane": "blocks/journey:blocks/senterianBars"
-    }
-}
