@@ -7,6 +7,7 @@ import net.journey.JourneyBlocks;
 import net.journey.JourneyTabs;
 import net.journey.dimension.ModTeleporter;
 import net.journey.dimension.corba.TeleporterCorba;
+import net.journey.dimension.senterian.TeleporterSenterian;
 import net.journey.util.Config;
 import net.journey.util.LangRegistry;
 import net.minecraft.block.Block;
@@ -31,7 +32,7 @@ import net.slayer.api.EnumToolType;
 import net.slayer.api.SlayerAPI;
 import net.slayer.api.block.BlockMod;
 
-public class BlockSenterianPortal extends BlockModPortal {
+public class BlockSenterianPortal extends BlockMod {
 
 	public BlockSenterianPortal(String name, String f) {
 		super(name, f);
@@ -71,7 +72,20 @@ public class BlockSenterianPortal extends BlockModPortal {
 
 	@Override
 	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entity) {
-		
+		if ((entity.getRidingEntity() == null) && ((entity instanceof EntityPlayerMP))) {
+			EntityPlayerMP thePlayer = (EntityPlayerMP)entity;
+			WorldServer worldserver = thePlayer.mcServer.getWorld(thePlayer.dimension);
+			int dimensionID = Config.senterian;
+			if(thePlayer.timeUntilPortal > 0) 
+				thePlayer.timeUntilPortal = 10;
+			else if(thePlayer.dimension != dimensionID) {
+				thePlayer.timeUntilPortal = 10;
+				thePlayer.mcServer.getPlayerList().transferPlayerToDimension(thePlayer, dimensionID, new TeleporterSenterian(thePlayer.mcServer.getWorld(dimensionID)));
+			} else {
+				thePlayer.timeUntilPortal = 10;
+				thePlayer.mcServer.getPlayerList().transferPlayerToDimension(thePlayer, 0, new TeleporterSenterian(thePlayer.mcServer.getWorld(0)));
+			}
+		}
 	}
 
 	@Override
@@ -86,10 +100,5 @@ public class BlockSenterianPortal extends BlockModPortal {
 		worldIn.spawnParticle(EnumParticleTypes.SLIME, d0, d1, d2, d3, d4, d5, new int[0]);
 		worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0, d1, d2, d3, d4, d5, new int[0]);
 		worldIn.spawnParticle(EnumParticleTypes.SMOKE_LARGE, d0, d1, d2, d3, d4, d5, new int[0]);
-	}
-
-	@Override
-	public boolean makePortal(World worldIn, BlockPos p) {
-		return false;
 	}
 }

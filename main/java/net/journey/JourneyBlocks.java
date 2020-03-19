@@ -248,7 +248,7 @@ public class JourneyBlocks {
 
 	public static BlockModFence corbaPost;
 	public static BlockModFence sizzlingPost;
-
+	
 	public static BlockMod senterianBricks;
 	public static BlockMod senterianRock;
 	public static BlockMod senterianCarvedRock;
@@ -665,8 +665,8 @@ public class JourneyBlocks {
 		terraniaPortal = new BlockTerraniaPortal("terraniaPortal");
 		terraniaPortalFrame = new BlockMod("terraniaPortalFrame", "Terrania Portal Frame", 3.0F);
 
-		senterianPortal = (BlockSenterianPortal)new BlockSenterianPortal("senterianPortal", "senterianPortal").setCreativeTab(null);
-		senterianPortalFrame = (BlockMod) new BlockSenterianPortalFrame("senterianPortalFrame", "Senterian Portal Frame").setCreativeTab(null);
+		senterianPortal = (BlockSenterianPortal)new BlockSenterianPortal("senterianPortal", "senterianPortal");
+		senterianPortalFrame = (BlockMod) new BlockSenterianPortalFrame("senterianPortalFrame", "Senterian Portal Frame");
 		//WastelandsPortal wastelandsPortal = (BlockWastelandsPortal)new BlockWastelandsPortal("wastelandsPortal");
 		// wastelandsPortalFrame = new BlockMod("wastelandsPortalFrame");
 		cloudiaPortal = new BlockCloudiaPortal("cloudiaPortal");

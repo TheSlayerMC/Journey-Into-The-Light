@@ -3,17 +3,19 @@ package net.journey.dimension.senterian.room;
 import java.util.Random;
 
 import net.journey.JourneyBlocks;
+import net.journey.dimension.senterian.SenterianChunkPrimer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.chunk.ChunkPrimer;
 
 public class SenterianCeiling extends RoomBase {
-	public SenterianCeiling() {}
+	
+	public SenterianCeiling() { }
 
 	@Override
-	public boolean generate(ChunkPrimer world, Random rand, BlockPos pos) {
-		int i = pos.getX(), 
-			j = pos.getY() - 1, 
-			k = pos.getZ();
+	public boolean generate(SenterianChunkPrimer world, Random rand, int x, int y, int z) {
+		int i = x, 
+			j = y - 1, 
+			k = z;
 		world.setBlockState(i + 0, j + 0, k + 0, JourneyBlocks.senterianRock.getDefaultState());
 		world.setBlockState(i + 0, j + 0, k + 1, JourneyBlocks.senterianRock.getDefaultState());
 		world.setBlockState(i + 0, j + 0, k + 2, JourneyBlocks.senterianRock.getDefaultState());
