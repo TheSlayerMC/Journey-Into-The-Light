@@ -3,6 +3,7 @@ package net.journey.items;
 import java.util.List;
 import java.util.Random;
 
+import net.journey.JourneyBlocks;
 import net.journey.JourneyTabs;
 import net.journey.dimension.WorldGenStructure;
 import net.journey.util.JourneyLootTables;
@@ -28,7 +29,7 @@ public class ItemFlameCoin extends ItemMod {
 	}
 
 	@Override
-	public EnumActionResult onItemUse(EntityPlayer player, World w, BlockPos pos, EnumHand hand, EnumFacing fa, float hitX, float hitY, float hitZ) {
+	public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing fa, float hitX, float hitY, float hitZ) {
 		Random r = new Random();
 		int x = pos.getX(), y = pos.getY(), z = pos.getZ();
 		/*if(fa != EnumFacing.UP && w.getBlockState(pos.up()).getBlock() != Blocks.AIR){
@@ -46,9 +47,11 @@ public class ItemFlameCoin extends ItemMod {
 		//ItemDoor.placeDoor(w, pos.up(1), EnumFacing.fromAngle(player.rotationYaw), JourneyBlocks.frozenDoor, false);
 			//new WorldGenDepthsPillar().generate(w, itemRand, pos);
 		
-		WorldGenStructure structure = new WorldGenStructure("big", JourneyLootTables.TEST_CHEST);
-		if(!w.isRemote)
-		structure.generate(w, r, pos);
+		//WorldGenStructure structure = new WorldGenStructure("big", JourneyLootTables.TEST_CHEST);
+		//if(!w.isRemote)
+		//structure.generate(w, r, pos);
+		
+		int i = pos.getX(), j = pos.getY(), k = pos.getZ();
 		
 		return EnumActionResult.SUCCESS;
 		

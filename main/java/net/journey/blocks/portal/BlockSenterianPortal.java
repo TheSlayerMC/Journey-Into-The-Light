@@ -3,22 +3,14 @@ package net.journey.blocks.portal;
 import java.util.List;
 import java.util.Random;
 
-import net.journey.JourneyBlocks;
 import net.journey.JourneyTabs;
-import net.journey.dimension.ModTeleporter;
-import net.journey.dimension.corba.TeleporterCorba;
 import net.journey.dimension.senterian.TeleporterSenterian;
 import net.journey.util.Config;
-import net.journey.util.LangRegistry;
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumBlockRenderType;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -28,14 +20,12 @@ import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.EnumMaterialTypes;
-import net.slayer.api.EnumToolType;
-import net.slayer.api.SlayerAPI;
 import net.slayer.api.block.BlockMod;
 
 public class BlockSenterianPortal extends BlockMod {
 
 	public BlockSenterianPortal(String name, String f) {
-		super(name, f);
+		super(EnumMaterialTypes.PORTAL, name, f, 2.0F);
 		this.setTickRandomly(true);
 		setCreativeTab(JourneyTabs.portalBlocks);
 	}

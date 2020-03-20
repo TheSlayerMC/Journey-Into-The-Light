@@ -1,8 +1,22 @@
 {
-    "__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
     "textures": {
-        "particle": "journey:blocks/sentryFrameEye"
+        "particle": "journey:blocks/senterianportal",
+        "bottom": "journey:blocks/senterianportal",
+        "top": "journey:blocks/senterianportal",
+        "side": "journey:blocks/senterianportal"
     },
     "elements": [
+        {   "from": [ 0, 0, 0 ],
+            "to": [ 16, 8, 16 ],
+            "faces": {
+                "down":  { "uv": [ 0, 0, 16, 16 ], "texture": "#bottom" },
+                "up":    { "uv": [ 0, 0, 16, 16 ], "texture": "#top" },
+                "north": { "uv": [ 0, 3, 16, 16 ], "texture": "#side" },
+                "south": { "uv": [ 0, 3, 16, 16 ], "texture": "#side" },
+                "west":  { "uv": [ 0, 3, 16, 16 ], "texture": "#side" },
+                "east":  { "uv": [ 0, 3, 16, 16 ], "texture": "#side" }
+            }
+        }
     ]
+
 }

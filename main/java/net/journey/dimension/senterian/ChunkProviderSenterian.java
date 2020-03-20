@@ -7,8 +7,11 @@ import java.util.Map;
 import java.util.Random;
 
 import net.journey.dimension.senterian.room.RoomBase;
+import net.journey.dimension.senterian.room.RoomChest;
 import net.journey.dimension.senterian.room.RoomHall;
+import net.journey.dimension.senterian.room.RoomNPC;
 import net.journey.dimension.senterian.room.RoomSpawner1;
+import net.journey.dimension.senterian.room.RoomStairs;
 import net.journey.dimension.senterian.room.SenterianCeiling;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -54,18 +57,19 @@ public class ChunkProviderSenterian implements IChunkGenerator {
 	private World worldObj;
 	private Random random;
 	private Map chunkTileEntityMap;
-    private Biome[] biomesForGeneration;
+	private Biome[] biomesForGeneration;
 
 	public ChunkProviderSenterian(World world, long seed) {
 
 		worldObj = world;
 		random = new Random(seed);
 
-		Rooms = new ArrayList(2);
+		Rooms = new ArrayList(4);
 
 		Rooms.add(new RoomHall());
 		//Rooms.add(new RoomChest());
-		//Rooms.add(new RoomNPC());
+		Rooms.add(new RoomStairs());
+		Rooms.add(new RoomNPC());
 		Rooms.add(new RoomSpawner1());
 		/*Rooms.add(new RoomSpawner2());
         Rooms.add(new RoomSpawner3());
@@ -77,28 +81,34 @@ public class ChunkProviderSenterian implements IChunkGenerator {
 	@Override
 	public Chunk generateChunk(int chunkX, int chunkZ) {
 		SenterianChunkPrimer senterianChunk = new SenterianChunkPrimer();
-		 this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomes(this.biomesForGeneration, chunkX * 16, chunkZ * 16, 16, 16);
-		 
-		for (int i = 4; i > 0; i--) {
-			RoomBase room = (RoomBase) (Rooms.get(random.nextInt(2)));
-			if (room instanceof RoomHall && i >= 3)
-				room = (RoomBase) (Rooms.get(this.random.nextInt(1) + 1));
+		
+		RoomBase room = (RoomBase) (Rooms.get(random.nextInt(Rooms.size())));
+		room.generate(senterianChunk, random, 0, 15, 0);
+		
+		room = (RoomBase) (Rooms.get(random.nextInt(Rooms.size())));
+		room.generate(senterianChunk, random, 0, 10, 0);
 
-			room.generate(senterianChunk, random, 0, i * 8, 0);
-		}
-
-		Ceiling.generate(senterianChunk, random, 0, 40, 0);
-
+		room = (RoomBase) (Rooms.get(random.nextInt(Rooms.size())));
+		room.generate(senterianChunk, random, 0, 5, 0);
+		
+		room = (RoomBase) (Rooms.get(random.nextInt(Rooms.size())));
+		room.generate(senterianChunk, random, 0, 0, 0);
+		
+		Ceiling.generate(senterianChunk, random, 0, 19, 0);
+		
 		chunkTileEntityMap.put(new ChunkCoords(chunkX, chunkZ), senterianChunk.chunkTileEntityPositions);
 
-        Chunk chunk = new Chunk(this.worldObj, senterianChunk, chunkX, chunkZ);
-        byte[] abyte = chunk.getBiomeArray();
+		Chunk chunk = new Chunk(this.worldObj, senterianChunk, chunkX, chunkZ);
+		byte[] abyte = chunk.getBiomeArray();
+		this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomes(this.biomesForGeneration, chunkX * 16, chunkZ * 16, 16, 16);
 
-        for (int i = 0; i < abyte.length; ++i) {
-            abyte[i] = (byte) Biome.getIdForBiome(this.biomesForGeneration[i]);
-        }
-
-        chunk.generateSkylightMap();
+		for (int i = 0; i < abyte.length; ++i) {
+			abyte[i] = (byte) Biome.getIdForBiome(this.biomesForGeneration[i]);
+		}
+		if(random.nextInt(2) == 0)
+		new RoomStairs().generate(senterianChunk, random, 0, 0, 0);
+		
+		chunk.generateSkylightMap();
 		return chunk;
 	}
 
@@ -106,61 +116,30 @@ public class ChunkProviderSenterian implements IChunkGenerator {
 	public void populate(int chunkX, int chunkZ) {
 		int x = chunkX * 16;
 		int z = chunkZ * 16;
-		Biome biome = this.worldObj.getBiome(new BlockPos(x + 16, z + 16, 0));
-		boolean flag = false;
-		this.random.setSeed(this.worldObj.getSeed());
-		long var8 = this.random.nextLong() / 2L * 2L + 1L;
-		long var10 = this.random.nextLong() / 2L * 2L + 1L;
-		this.random.setSeed(chunkX * var8 + chunkZ * var10 ^ this.worldObj.getSeed());
-		int roomToGenerate;
-
-		Random rand = random;
-		Chunk chunk = this.worldObj.getChunkFromChunkCoords(chunkX, chunkZ);
-
-		ChunkCoords chunkCoords = new ChunkCoords(chunkX, chunkZ);
-		List<BlockPos> chunkTileEntityPositions = (List<BlockPos>)chunkTileEntityMap.get(chunkCoords);
-		if (chunkTileEntityPositions != null) {
-			for (int i = 0; i < chunkTileEntityPositions.size(); i++) {
-				BlockPos ChunkCoordIntPair = chunkTileEntityPositions.get(i);
-				IBlockState b = chunk.getBlockState(ChunkCoordIntPair.getX(), ChunkCoordIntPair.getZ(), i);
-				TileEntity te = b.getBlock().createTileEntity(this.worldObj, null);
-				this.worldObj.setTileEntity(new BlockPos(x + ChunkCoordIntPair.getX(), z + ChunkCoordIntPair.getZ(), i), te);
-			}
-			chunkTileEntityMap.remove(chunkCoords);
-		}
-		if ((chunkX & 1) == 1 && (chunkZ & 1) == 1) {
-			for(int i = 1; i < 4; i++) {
-				if(this.random.nextInt(30) == 0 || this.random.nextInt(30) == 0 || this.random.nextInt(30) == 0) {
-					roomToGenerate = rand.nextInt(2);
-					this.random.setSeed(chunkX * var8 + chunkZ * var10 ^ this.worldObj.getSeed() * i << 2 | var10);
-					break;
-				}
-			}
-		}
+		
 	}
 
 	@Override
-    public List<SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos) {
-        Biome biome = this.worldObj.getBiome(pos);
-        return biome.getSpawnableList(creatureType);
-    }
+	public List<SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos) {
+		Biome biome = this.worldObj.getBiome(pos);
+		return biome.getSpawnableList(creatureType);
+	}
 
-    @Override
-    public void recreateStructures(Chunk c, int x, int z) {
-    }
+	@Override
+	public void recreateStructures(Chunk c, int x, int z) { }
 
-    @Override
-    public boolean generateStructures(Chunk chunkIn, int x, int z) {
-        return false;
-    }
+	@Override
+	public boolean generateStructures(Chunk chunkIn, int x, int z) {
+		return false;
+	}
 
-    @Override
-    public BlockPos getNearestStructurePos(World worldIn, String structureName, BlockPos position, boolean findUnexplored) {
-        return null;
-    }
+	@Override
+	public BlockPos getNearestStructurePos(World worldIn, String structureName, BlockPos position, boolean findUnexplored) {
+		return null;
+	}
 
-    @Override
-    public boolean isInsideStructure(World worldIn, String structureName, BlockPos pos) {
-        return false;
-    }
+	@Override
+	public boolean isInsideStructure(World worldIn, String structureName, BlockPos pos) {
+		return false;
+	}
 }

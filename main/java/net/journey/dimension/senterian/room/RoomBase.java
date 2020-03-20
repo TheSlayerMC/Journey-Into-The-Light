@@ -2,6 +2,7 @@ package net.journey.dimension.senterian.room;
 
 import java.util.Random;
 
+import net.journey.JourneyBlocks;
 import net.journey.dimension.senterian.SenterianChunkPrimer;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
