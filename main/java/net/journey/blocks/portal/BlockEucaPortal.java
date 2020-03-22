@@ -2,43 +2,26 @@ package net.journey.blocks.portal;
 
 import java.util.Random;
 
-import net.journey.JITL;
 import net.journey.JourneyBlocks;
-import net.journey.JourneyItems;
-import net.journey.JourneyTabs;
 import net.journey.client.render.particles.EntityEucaPotalFX;
 import net.journey.dimension.ModTeleporter;
 import net.journey.util.Config;
-import net.journey.util.LangRegistry;
+
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockBreakable;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.block.state.BlockFaceShape;
-import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumFacing.Axis;
-import net.minecraft.util.Rotation;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
+
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.slayer.api.SlayerAPI;
 
 public class BlockEucaPortal extends BlockModPortal {
 
@@ -95,7 +78,7 @@ public class BlockEucaPortal extends BlockModPortal {
 	@Override
 	public boolean makePortal(World worldIn, BlockPos p) {
 		EntityLightningBolt bolt = new EntityLightningBolt(worldIn, p.getX(), p.getY(), p.getZ(), false);
-		BlockEucaPortal.Size size = new BlockEucaPortal.Size(worldIn, p, EnumFacing.Axis.X);
+		PortalSize size = new PortalSize(JourneyBlocks.eucaPortalFrame, JourneyBlocks.eucaPortal, worldIn, p, EnumFacing.Axis.X);
 		if(size.isValid() && size.portalBlockCount == 0) {
 			size.placePortalBlocks();
 			worldIn.addWeatherEffect(bolt);
@@ -103,149 +86,14 @@ public class BlockEucaPortal extends BlockModPortal {
 			return true;
 		} else {
 			EntityLightningBolt bolt1 = new EntityLightningBolt(worldIn, p.getX(), p.getY(), p.getZ(), false);
-			BlockEucaPortal.Size size1 = new BlockEucaPortal.Size(worldIn, p, EnumFacing.Axis.Z);
-			if(size1.isValid() && size1.portalBlockCount == 0) {
-				size1.placePortalBlocks();
+			size = size.spin(EnumFacing.Axis.Z);
+			if(size.isValid() && size.portalBlockCount == 0) {
+				size.placePortalBlocks();
 				worldIn.addWeatherEffect(bolt1);
 				worldIn.createExplosion(bolt1, p.getX(), p.getY(), p.getZ(), 0.0F, true);
 				return true;
 			} else {
 				return false;
-			}
-		}
-	}
-
-	public static class Size {
-		private final World world;
-		private final EnumFacing.Axis axis;
-		private final EnumFacing rightDir;
-		private final EnumFacing leftDir;
-		private int portalBlockCount;
-		private BlockPos bottomLeft;
-		private int height;
-		private int width;
-
-		public Size(World worldIn, BlockPos pos, EnumFacing.Axis axis) {
-			this.world = worldIn;
-			this.axis = axis;
-
-			if(axis == EnumFacing.Axis.X) {
-				this.leftDir = EnumFacing.EAST;
-				this.rightDir = EnumFacing.WEST;
-			} else {
-				this.leftDir = EnumFacing.NORTH;
-				this.rightDir = EnumFacing.SOUTH;
-			}
-
-			for(BlockPos blockpos = pos; pos.getY() > blockpos.getY() - 21 && pos.getY() > 0 && this.isEmptyBlock(worldIn.getBlockState(pos.down()).getBlock()); pos = pos.down()) {
-				;
-			}
-
-			int i = this.getDistanceUntilEdge(pos, this.leftDir) - 1;
-
-			if(i >= 0) {
-				this.bottomLeft = pos.offset(this.leftDir, i);
-				this.width = this.getDistanceUntilEdge(this.bottomLeft, this.rightDir);
-
-				if(this.width < 2 || this.width > 21) {
-					this.bottomLeft = null;
-					this.width = 0;
-				}
-			}
-
-			if(this.bottomLeft != null) {
-				this.height = this.calculatePortalHeight();
-			}
-		}
-
-		protected int getDistanceUntilEdge(BlockPos pos, EnumFacing facing) {
-			int i;
-
-			for(i = 0; i < 22; ++i) {
-				BlockPos blockpos = pos.offset(facing, i);
-
-				if(!this.isEmptyBlock(this.world.getBlockState(blockpos).getBlock()) || this.world.getBlockState(blockpos.down()).getBlock() != JourneyBlocks.eucaPortalFrame) {
-					break;
-				}
-			}
-
-			Block block = this.world.getBlockState(pos.offset(facing, i)).getBlock();
-			return block == JourneyBlocks.eucaPortalFrame ? i : 0;
-		}
-
-		public int getHeight() {
-			return this.height;
-		}
-
-		public int getWidth() {
-			return this.width;
-		}
-
-		protected int calculatePortalHeight() {
-			label56:
-
-				for(this.height = 0; this.height < 21; ++this.height) {
-					for(int i = 0; i < this.width; ++i) {
-						BlockPos blockpos = this.bottomLeft.offset(this.rightDir, i).up(this.height);
-						Block block = this.world.getBlockState(blockpos).getBlock();
-
-						if(!this.isEmptyBlock(block)) {
-							break label56;
-						}
-
-						if(block == JourneyBlocks.eucaPortal) {
-							++this.portalBlockCount;
-						}
-
-						if(i == 0) {
-							block = this.world.getBlockState(blockpos.offset(this.leftDir)).getBlock();
-
-							if(block != JourneyBlocks.eucaPortalFrame) {
-								break label56;
-							}
-						}
-						else if(i == this.width - 1) {
-							block = this.world.getBlockState(blockpos.offset(this.rightDir)).getBlock();
-
-							if(block != JourneyBlocks.eucaPortalFrame) {
-								break label56;
-							}
-						}
-					}
-				}
-
-		for(int j = 0; j < this.width; ++j) {
-			if (this.world.getBlockState(this.bottomLeft.offset(this.rightDir, j).up(this.height)).getBlock() != JourneyBlocks.eucaPortalFrame) {
-				this.height = 0;
-				break;
-			}
-		}
-
-		if (this.height <= 21 && this.height >= 3) {
-			return this.height;
-		} else {
-			this.bottomLeft = null;
-			this.width = 0;
-			this.height = 0;
-			return 0;
-		}
-		}
-
-		protected boolean isEmptyBlock(Block blockIn) {
-			return blockIn.getMaterial(blockIn.getDefaultState()) == Material.AIR || blockIn == JourneyBlocks.fire || blockIn == JourneyBlocks.eucaPortal;
-		}
-
-		public boolean isValid() {
-			return this.bottomLeft != null && this.width >= 2 && this.width <= 21 && this.height >= 3 && this.height <= 21;
-		}
-
-		public void placePortalBlocks() {
-			for(int i = 0; i < this.width; ++i) {
-				BlockPos blockpos = this.bottomLeft.offset(this.rightDir, i);
-
-				for(int j = 0; j < this.height; ++j) {
-					this.world.setBlockState(blockpos.up(j), JourneyBlocks.eucaPortal.getDefaultState().withProperty(BlockEucaPortal.AXIS, this.axis), 2);
-				}
 			}
 		}
 	}
