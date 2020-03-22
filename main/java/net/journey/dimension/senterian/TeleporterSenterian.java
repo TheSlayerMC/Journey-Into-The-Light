@@ -2,9 +2,11 @@ package net.journey.dimension.senterian;
 
 import net.journey.JourneyBlocks;
 import net.journey.blocks.portal.BlockSenterianPortalFrame;
+import net.journey.util.NbtUtil;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
+import net.minecraft.nbt.NBTTagLong;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Teleporter;
 import net.minecraft.world.World;
@@ -25,6 +27,8 @@ public class TeleporterSenterian extends Teleporter {
 
 	@Override
 	public boolean placeInExistingPortal(Entity entity, float f) {
+		rememberLocation(entity);
+
 		entity.setLocationAndAngles(3, 16, 3, 180F, 0.0F);
 		this.makePortalAt(this.myWorld, 0, 15, 0);
 		SlayerAPI.addChatMessageWithColour(player, Colour.RED, "Don't place any blocks in the spawner room, they will be removed upon entry");
@@ -2347,5 +2351,13 @@ public class TeleporterSenterian extends Teleporter {
 		world.setBlockState(new BlockPos(x + 15, y + 8, z + 13), Blocks.AIR.getDefaultState());
 		world.setBlockState(new BlockPos(x + 15, y + 8, z + 14), Blocks.AIR.getDefaultState());
 		world.setBlockState(new BlockPos(x + 15, y + 8, z + 15), Blocks.AIR.getDefaultState());
+	}
+
+	private void rememberLocation(Entity e) {
+		if (e.world.isRemote)
+			return;
+
+		NBTTagLong tag = new NBTTagLong(e.getPosition().toLong());
+		NbtUtil.writeToEntity(e, tag, "senterian_position");
 	}
 }
