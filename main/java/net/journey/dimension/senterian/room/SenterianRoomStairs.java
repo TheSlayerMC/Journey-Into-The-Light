@@ -11,7 +11,6 @@ public class SenterianRoomStairs extends SenterianRoomBase {
 
 	@Override
 	public boolean generate(SenterianChunkPrimer world, Random rand, int i, int j, int k) {
-		Helper.printCoords(i, j, k);
 		this.setBlock(world, i + 0, j + 0, k + 0, JourneyBlocks.senterianFloor);
 		this.setBlock(world, i + 0, j + 0, k + 1, JourneyBlocks.senterianFloor);
 		this.setBlock(world, i + 0, j + 0, k + 2, JourneyBlocks.senterianFloor);
@@ -700,8 +699,12 @@ public class SenterianRoomStairs extends SenterianRoomBase {
 		this.setBlock(world, i + 10, j + 4, k + 7, Blocks.AIR);
 		this.setBlock(world, i + 10, j + 4, k + 8, Blocks.AIR);
 		this.setBlock(world, i + 10, j + 4, k + 9, Blocks.AIR);
+		
+		this.setBlock(world, i + 9, j + 4, k + 9, Blocks.AIR);
+		
 		for(int x = 0 ; x < 4; x++) {
 			for(int y = 0; y < 4; y++) {
+				this.setBlock(world, i + 10 - x, j + 4, k + 9 - y, Blocks.AIR);
 				for(int z = 0; z < 4; z++) {
 					this.setBlock(world, i + 6 + x, j + 5 + y, k + 6 + z, Blocks.AIR);
 				}
