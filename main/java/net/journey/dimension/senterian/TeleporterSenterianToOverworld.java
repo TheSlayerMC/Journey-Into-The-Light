@@ -114,7 +114,7 @@ public class TeleporterSenterianToOverworld extends Teleporter {
 											var29 = var21 + var27;
 											int var30 = var18 + (var26 - 1) * var24 - var25 * var23;
 
-											if(var27 < 0 && !this.myWorld.getBlockState(new BlockPos(var28, var29, var30)).getBlock().getMaterial(null).isSolid() || var27 >= 0 && !this.myWorld.isAirBlock(new BlockPos(var28, var29, var30))) {
+											if(var27 < 0 && !this.myWorld.getBlockState(new BlockPos(var28, var29, var30)).getMaterial().isSolid() || var27 >= 0 && !this.myWorld.isAirBlock(new BlockPos(var28, var29, var30))) {
 												continue label178;
 											}
 										}
@@ -161,7 +161,7 @@ public class TeleporterSenterianToOverworld extends Teleporter {
 											var28 = var21 + var26;
 											var29 = var18 + (var25 - 1) * var24;
 
-											if(var26 < 0 && !this.myWorld.getBlockState(new BlockPos(var27, var28, var29)).getBlock().getMaterial(null).isSolid() || var26 >= 0 && !this.myWorld.isAirBlock(new BlockPos(var27, var28, var29))) {
+											if(var26 < 0 && !this.myWorld.getBlockState(new BlockPos(var27, var28, var29)).getMaterial().isSolid() || var26 >= 0 && !this.myWorld.isAirBlock(new BlockPos(var27, var28, var29))) {
 												continue label126;
 											}
 										}

@@ -7,7 +7,6 @@ import net.journey.JourneyWeapons;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.entity.MobStats;
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.SoundEvents;
@@ -39,10 +38,11 @@ public class EntityNetherBeast extends EntityEssenceBoss {
 			int i = MathHelper.floor(this.posX);
 			int j = MathHelper.floor(this.posY - 0.20000000298023224D);
 			int k = MathHelper.floor(this.posZ);
-			IBlockState iblockstate = this.world.getBlockState(new BlockPos(i, j, k));
-            Block block = iblockstate.getBlock();
-			if(block.getMaterial(iblockstate) != Material.AIR)
-				 this.world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, this.posX + (this.rand.nextFloat() - 0.5D) * this.width, this.getEntityBoundingBox().minY + 0.1D, this.posZ + (this.rand.nextFloat() - 0.5D) * this.width, 4.0D * (this.rand.nextFloat() - 0.5D), 0.5D, (this.rand.nextFloat() - 0.5D) * 4.0D, new int[] {Block.getStateId(iblockstate)});
+
+			if (!world.isAirBlock(new BlockPos(i, j, k))) {
+				IBlockState iblockstate = this.world.getBlockState(new BlockPos(i, j, k));
+				this.world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, this.posX + (this.rand.nextFloat() - 0.5D) * this.width, this.getEntityBoundingBox().minY + 0.1D, this.posZ + (this.rand.nextFloat() - 0.5D) * this.width, 4.0D * (this.rand.nextFloat() - 0.5D), 0.5D, (this.rand.nextFloat() - 0.5D) * 4.0D, new int[] {Block.getStateId(iblockstate)});
+			}
 		}
 	}
 

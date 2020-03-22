@@ -9,7 +9,6 @@ import net.journey.util.LangHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirt;
 import net.minecraft.block.IGrowable;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
@@ -110,8 +109,8 @@ public class ItemBonemealHoe extends ItemModHoe {
 		if (amount == 0) {
 			amount = 15;
 		}
-		IBlockState iblockstate = worldIn.getBlockState(pos);
-		if (iblockstate.getMaterial() != Material.AIR) {
+		if (!worldIn.isAirBlock(pos)) {
+			IBlockState iblockstate = worldIn.getBlockState(pos);
 			for (int i = 0; i < amount; ++i) {
 				double d0 = itemRand.nextGaussian() * 0.02D;
 				double d1 = itemRand.nextGaussian() * 0.02D;

@@ -197,7 +197,7 @@ public class ChunkProviderBoiling implements IChunkGenerator {
             } else {
                 IBlockState iblockstate2 = c.getBlockState(j1, k1, i1);
 
-                if (iblockstate2.getBlock().getMaterial(iblockstate2) == Material.AIR) k = -1;
+                if (iblockstate2.getMaterial() == Material.AIR) k = -1;
                 else if (iblockstate2.getBlock() == JourneyBlocks.ashBlock) {
                     if (k == -1) {
                         if (l <= 0) {
@@ -208,7 +208,7 @@ public class ChunkProviderBoiling implements IChunkGenerator {
                             iblockstate1 = JourneyBlocks.ashBlock.getDefaultState();
                         }
 
-                        if (k1 < 16 && (iblockstate == null || iblockstate.getBlock().getMaterial(iblockstate2) == Material.AIR))
+                        if (k1 < 16 && (iblockstate == null || iblockstate.getMaterial() == Material.AIR))
                             iblockstate = JourneyBlocks.ashBlock.getDefaultState();
                         k = l;
                         if (k1 >= 16) c.setBlockState(j1, k1, i1, iblockstate);

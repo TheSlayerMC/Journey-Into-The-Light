@@ -22,7 +22,7 @@ public class WorldGenDepthsLights extends WorldGenerator {
 			w.setBlockState(pos, JourneyBlocks.depthsLights.getDefaultState(), 2);
 			for(int i = 0; i < 1500; i++) {
 				BlockPos blockpos1 = pos.add(r.nextInt(8) - r.nextInt(8), -r.nextInt(12), r.nextInt(8) - r.nextInt(8));
-				if(w.getBlockState(blockpos1).getBlock().getMaterial(null) == Material.AIR) {
+				if(w.isAirBlock(blockpos1)) {
 					int j = 0;
 					EnumFacing[] aenumfacing = EnumFacing.values();
 					int k = aenumfacing.length;
@@ -51,7 +51,7 @@ public class WorldGenDepthsLights extends WorldGenerator {
 				w.setBlockState(pos, JourneyBlocks.depthsLights.getDefaultState(), 2);
 				for(int i = 0; i < 1500; ++i) {
 					BlockPos blockpos1 = pos.add(r.nextInt(8) - r.nextInt(8), r.nextInt(12), r.nextInt(8) - r.nextInt(8));
-					if(w.getBlockState(blockpos1).getBlock().getMaterial(null) == Material.AIR) {
+					if(w.isAirBlock(blockpos1)) {
 						int j = 0;
 						EnumFacing[] aenumfacing = EnumFacing.values();
 						int k = aenumfacing.length;

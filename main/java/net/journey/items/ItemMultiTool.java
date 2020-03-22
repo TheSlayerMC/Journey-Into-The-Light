@@ -13,7 +13,6 @@ import net.journey.util.LangHelper;
 import net.journey.util.LangRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirt;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
@@ -76,25 +75,6 @@ public class ItemMultiTool extends ItemTool {
 
 	public float getCorrectEfficiency(ItemStack is, Block b) {
 		return this.toolMaterial.getEfficiency();
-	}
-
-	protected boolean isEfficient(Block block) {
-		return block == Blocks.OBSIDIAN ? this.toolMaterial.getHarvestLevel() == 3 :
-			(block != Blocks.DIAMOND_BLOCK && block != Blocks.DIAMOND_ORE ?
-					(block != Blocks.EMERALD_ORE && block != Blocks.EMERALD_BLOCK ?
-							(block != Blocks.GOLD_BLOCK && block != Blocks.GOLD_ORE ?
-									(block != Blocks.IRON_BLOCK && block != Blocks.IRON_ORE ?
-											(block != Blocks.LAPIS_BLOCK && block != Blocks.LAPIS_ORE ?
-													(block != Blocks.REDSTONE_ORE && block != Blocks.LIT_REDSTONE_ORE ?
-															(block.getMaterial(null) == Material.ROCK ? true :
-																(block.getMaterial(null) == Material.IRON ? true :
-																	block.getMaterial(null) == Material.ANVIL)) :
-																		this.toolMaterial.getHarvestLevel() >= 2) :
-																			this.toolMaterial.getHarvestLevel() >= 1) :
-																				this.toolMaterial.getHarvestLevel() >= 1) :
-																					this.toolMaterial.getHarvestLevel() >= 2) :
-																						this.toolMaterial.getHarvestLevel() >= 2) :
-																							this.toolMaterial.getHarvestLevel() >= 2);
 	}
 
 	@SuppressWarnings("incomplete-switch")
