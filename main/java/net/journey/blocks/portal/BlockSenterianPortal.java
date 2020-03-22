@@ -5,6 +5,7 @@ import java.util.Random;
 
 import net.journey.JourneyTabs;
 import net.journey.dimension.senterian.TeleporterSenterian;
+import net.journey.dimension.senterian.TeleporterSenterianToOverworld;
 import net.journey.util.Config;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -70,10 +71,10 @@ public class BlockSenterianPortal extends BlockMod {
 				thePlayer.timeUntilPortal = 10;
 			else if(thePlayer.dimension != dimensionID) {
 				thePlayer.timeUntilPortal = 10;
-				thePlayer.mcServer.getPlayerList().transferPlayerToDimension(thePlayer, dimensionID, new TeleporterSenterian(thePlayer.mcServer.getWorld(dimensionID)));
+				thePlayer.mcServer.getPlayerList().transferPlayerToDimension(thePlayer, dimensionID, new TeleporterSenterian(thePlayer.mcServer.getWorld(dimensionID), thePlayer));
 			} else {
 				thePlayer.timeUntilPortal = 10;
-				thePlayer.mcServer.getPlayerList().transferPlayerToDimension(thePlayer, 0, new TeleporterSenterian(thePlayer.mcServer.getWorld(0)));
+				thePlayer.mcServer.getPlayerList().transferPlayerToDimension(thePlayer, 0, new TeleporterSenterianToOverworld(thePlayer.mcServer.getWorld(0)));
 			}
 		}
 	}
