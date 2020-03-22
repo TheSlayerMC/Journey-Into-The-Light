@@ -5,14 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-
-import net.journey.dimension.senterian.room.RoomBase;
-import net.journey.dimension.senterian.room.RoomChest;
-import net.journey.dimension.senterian.room.RoomHall;
-import net.journey.dimension.senterian.room.RoomNPC;
-import net.journey.dimension.senterian.room.RoomSpawner1;
-import net.journey.dimension.senterian.room.RoomStairs;
-import net.journey.dimension.senterian.room.SenterianCeiling;
+import net.journey.dimension.senterian.room.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
@@ -51,9 +44,9 @@ public class ChunkProviderSenterian implements IChunkGenerator {
 		}
 	}
 
-	private ArrayList Rooms;
-	private ArrayList BossRooms;
-	private SenterianCeiling Ceiling;
+	private ArrayList rooms;
+	private SenterianCeiling ceiling;
+	private SenterianRoomStairs stairs;
 	private World worldObj;
 	private Random random;
 	private Map chunkTileEntityMap;
@@ -64,17 +57,17 @@ public class ChunkProviderSenterian implements IChunkGenerator {
 		worldObj = world;
 		random = new Random(seed);
 
-		Rooms = new ArrayList(4);
+		rooms = new ArrayList(6);
+		rooms.add(new SenterianRoomHall1());
+		rooms.add(new SenterianRoomHall2());
+		rooms.add(new SenterianRoomHall3());
+		rooms.add(new SenterianRoomStairs());
+		//rooms.add(new RoomChest());
+		rooms.add(new SenterianRoomNPC());
+		rooms.add(new SenterianRoomSpawner1());
 
-		Rooms.add(new RoomHall());
-		//Rooms.add(new RoomChest());
-		Rooms.add(new RoomStairs());
-		Rooms.add(new RoomNPC());
-		Rooms.add(new RoomSpawner1());
-		/*Rooms.add(new RoomSpawner2());
-        Rooms.add(new RoomSpawner3());
-        Rooms.add(new RoomSpawner4());*/
-		Ceiling = new SenterianCeiling();
+		stairs = new SenterianRoomStairs();
+		ceiling = new SenterianCeiling();
 		this.chunkTileEntityMap = new HashMap();
 	}
 
@@ -82,19 +75,28 @@ public class ChunkProviderSenterian implements IChunkGenerator {
 	public Chunk generateChunk(int chunkX, int chunkZ) {
 		SenterianChunkPrimer senterianChunk = new SenterianChunkPrimer();
 		
-		RoomBase room = (RoomBase) (Rooms.get(random.nextInt(Rooms.size())));
+		SenterianRoomBase room = (SenterianRoomBase) (rooms.get(random.nextInt(rooms.size())));
 		room.generate(senterianChunk, random, 0, 15, 0);
 		
-		room = (RoomBase) (Rooms.get(random.nextInt(Rooms.size())));
+		room = (SenterianRoomBase) (rooms.get(random.nextInt(rooms.size())));
 		room.generate(senterianChunk, random, 0, 10, 0);
 
-		room = (RoomBase) (Rooms.get(random.nextInt(Rooms.size())));
+		room = (SenterianRoomBase) (rooms.get(random.nextInt(rooms.size())));
 		room.generate(senterianChunk, random, 0, 5, 0);
 		
-		room = (RoomBase) (Rooms.get(random.nextInt(Rooms.size())));
+		room = (SenterianRoomBase) (rooms.get(random.nextInt(rooms.size())));
 		room.generate(senterianChunk, random, 0, 0, 0);
 		
-		Ceiling.generate(senterianChunk, random, 0, 19, 0);
+		ceiling.generate(senterianChunk, random, 0, 20, 0);
+		
+		/*if(random.nextInt(15) == 0)
+			stairs.generate(senterianChunk, random, 0, 0, 0);
+		
+		if(random.nextInt(15) == 0)
+			stairs.generate(senterianChunk, random, 0, 5, 0);
+		
+		if(random.nextInt(15) == 0)
+			stairs.generate(senterianChunk, random, 0, 10, 0);*/
 		
 		chunkTileEntityMap.put(new ChunkCoords(chunkX, chunkZ), senterianChunk.chunkTileEntityPositions);
 
@@ -105,9 +107,7 @@ public class ChunkProviderSenterian implements IChunkGenerator {
 		for (int i = 0; i < abyte.length; ++i) {
 			abyte[i] = (byte) Biome.getIdForBiome(this.biomesForGeneration[i]);
 		}
-		if(random.nextInt(2) == 0)
-		new RoomStairs().generate(senterianChunk, random, 0, 0, 0);
-		
+			
 		chunk.generateSkylightMap();
 		return chunk;
 	}

@@ -7,7 +7,7 @@ import net.journey.dimension.senterian.SenterianChunkPrimer;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 
-public abstract class RoomBase {
+public abstract class SenterianRoomBase {
 
 	public abstract boolean generate(SenterianChunkPrimer chunk, Random rand, int x, int y, int z);
 

@@ -8,7 +8,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.slayer.api.worldgen.WorldGenAPI;
 
-public class SenterianCeiling extends RoomBase {
+public class SenterianCeiling extends SenterianRoomBase {
 	
 	public SenterianCeiling() { }
 

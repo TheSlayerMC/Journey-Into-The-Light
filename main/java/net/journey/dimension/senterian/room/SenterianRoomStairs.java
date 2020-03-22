@@ -7,11 +7,11 @@ import net.journey.dimension.senterian.SenterianChunkPrimer;
 import net.journey.util.Helper;
 import net.minecraft.init.Blocks;
 
-public class RoomStairs extends RoomBase {
+public class SenterianRoomStairs extends SenterianRoomBase {
 
 	@Override
 	public boolean generate(SenterianChunkPrimer world, Random rand, int i, int j, int k) {
-		//Helper.printCoords(i, j, k);
+		Helper.printCoords(i, j, k);
 		this.setBlock(world, i + 0, j + 0, k + 0, JourneyBlocks.senterianFloor);
 		this.setBlock(world, i + 0, j + 0, k + 1, JourneyBlocks.senterianFloor);
 		this.setBlock(world, i + 0, j + 0, k + 2, JourneyBlocks.senterianFloor);

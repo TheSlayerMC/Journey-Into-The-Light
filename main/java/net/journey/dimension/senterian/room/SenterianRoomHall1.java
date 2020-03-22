@@ -6,7 +6,7 @@ import net.journey.JourneyBlocks;
 import net.journey.dimension.senterian.SenterianChunkPrimer;
 import net.minecraft.init.Blocks;
 
-public class RoomHall extends RoomBase {
+public class SenterianRoomHall1 extends SenterianRoomBase {
 
 	@Override
 	public boolean generate(SenterianChunkPrimer world, Random rand, int i, int j, int k) {
