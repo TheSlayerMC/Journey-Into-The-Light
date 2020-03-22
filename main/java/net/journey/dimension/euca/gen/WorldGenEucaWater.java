@@ -26,7 +26,7 @@ public class WorldGenEucaWater extends WorldGenerator {
 		if (w.getBlockState(p.up()).getBlock() != genOn) {
 			return false;
 		}
-		else if (w.getBlockState(p).getBlock().getMaterial(null) != Material.AIR && w.getBlockState(p).getBlock() != genOn) {
+		else if (!w.isAirBlock(p) && w.getBlockState(p).getBlock() != genOn) {
 			return false;
 		} else {
 			int i = 0;

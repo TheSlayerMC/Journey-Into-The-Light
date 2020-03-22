@@ -7,7 +7,6 @@ import javax.annotation.Nullable;
 import net.journey.JourneyTabs;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockShulkerBox;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockFaceShape;
@@ -246,9 +245,8 @@ public class BlockModVine extends BlockMod implements net.minecraftforge.common.
 					if (pos.getY() > 1) {
 						BlockPos blockpos3 = pos.down();
 						IBlockState iblockstate = worldIn.getBlockState(blockpos3);
-						Block block = iblockstate.getBlock();
 
-						if (block.getMaterial(null) == Material.AIR) {
+						if (worldIn.isAirBlock(blockpos3)) {
 							IBlockState iblockstate1 = state;
 
 							for (EnumFacing enumfacing : EnumFacing.Plane.HORIZONTAL) {
@@ -261,7 +259,7 @@ public class BlockModVine extends BlockMod implements net.minecraftforge.common.
 								worldIn.setBlockState(blockpos3, iblockstate1, 2);
 							}
 						}
-						else if (block == this) {
+						else if (iblockstate.getBlock() == this) {
 							IBlockState iblockstate4 = iblockstate;
 
 							for (EnumFacing enumfacing5 : EnumFacing.Plane.HORIZONTAL) {

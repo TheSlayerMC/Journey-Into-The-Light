@@ -2,7 +2,6 @@ package net.journey.entity.mob.boiling;
 
 import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -82,7 +81,7 @@ public class EntityMagmaGiant extends EntityModMob{
             i = MathHelper.floor(this.posX + (l % 2 * 2 - 1) * 0.25F);
             j = MathHelper.floor(this.posY);
             k = MathHelper.floor(this.posZ + (l / 2 % 2 * 2 - 1) * 0.25F);
-            if(this.world.getBlockState(new BlockPos(i, j, k)).getBlock().getMaterial(null) == Material.AIR && Blocks.FIRE.canPlaceBlockAt(this.world, new BlockPos(i, j, k))) 
+            if (this.world.isAirBlock(new BlockPos(i, j, k)) && Blocks.FIRE.canPlaceBlockAt(this.world, new BlockPos(i, j, k))) 
             	this.world.setBlockState(new BlockPos(i, j, k), Blocks.FIRE.getDefaultState());
         }
     }

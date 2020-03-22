@@ -93,16 +93,9 @@ public class PlayerEvent {
 		int i = MathHelper.floor(player.posX);
 		int j = MathHelper.floor(player.posY);
 		int k = MathHelper.floor(player.posZ);
-		Material m = event.player.world.getBlockState(new BlockPos(i, j, k)).getBlock().getMaterial(null);
-		boolean mat = (m == Material.WATER);
-		boolean isWorking = false;
-		if(hasArmorEnchantment(JITL.waterWalk, player)) isWorking = true;
-		if(isWorking) {
-			if(mat && player.motionY < 0.0D) {
-				if(player.world.getBlockState(new BlockPos(i, j - 1, k)).getBlock().getMaterial(null) == Material.WATER || player.world.getBlockState(new BlockPos(i, j, k)).getBlock().getMaterial(null) == Material.WATER) player.motionY = 0.0D;
-				if(!Minecraft.getMinecraft().gameSettings.keyBindJump.isKeyDown()) player.motionY = 0.0D; 
-				else if(Minecraft.getMinecraft().gameSettings.keyBindJump.isKeyDown()) player.motionY = 0.5D;
-			}
+
+		if (hasArmorEnchantment(JITL.waterWalk, player) && player.world.getBlockState(new BlockPos(i, j, k)).getMaterial() == Material.WATER && player.motionY < 0) {
+			player.motionY = Minecraft.getMinecraft().gameSettings.keyBindJump.isKeyDown() ? 0.5D : 0;
 		}
 	}
 
