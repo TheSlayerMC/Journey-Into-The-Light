@@ -289,6 +289,7 @@ public class JourneyItems {
 	public static Item flamingHide;
 	public static Item boilKey;
 	public static Item darkKey;
+	public static Item depthsKey;
 	public static Item redGlowShroom;
 	public static Item greenGlowShroom;
 	public static Item blueGlowShroom;
@@ -476,6 +477,7 @@ public class JourneyItems {
 		flamingHide = new ItemMod("flamingHide", "Flaming Hide");
 		boilKey = new ItemMod("boilKey", "Boil Key").setMaxStackSize(1);
 		darkKey = new ItemMod("darkkey", "Dark Key").setMaxStackSize(1);
+		depthsKey = new ItemMod("depthskey", "Depths Key").setMaxStackSize(1);
 		redGlowShroom = new ItemGlowshroomBlock("redGlowShroom", "Red Glowshroom", JourneyBlocks.redGlowshroomBottom, JourneyBlocks.redGlowshroomTop);
 		greenGlowShroom = new ItemGlowshroomBlock("greenGlowShroom", "Green Glowshroom", JourneyBlocks.greenGlowshroomBottom, JourneyBlocks.greenGlowshroomTop);
 		blueGlowShroom = new ItemGlowshroomBlock("blueGlowShroom", "Blue Glowshroom", JourneyBlocks.blueGlowshroomBottom, JourneyBlocks.blueGlowshroomTop);

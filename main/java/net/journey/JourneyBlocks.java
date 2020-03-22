@@ -169,10 +169,17 @@ public class JourneyBlocks {
 	public static BlockMod darkBrick;
 	public static BlockMod darkFloor;
 	public static BlockMod darkShingle;
+	public static BlockMod depthsShingle;
 	public static BlockMod depthsCarpet;
 	public static BlockMod depthsBookshelf;
 	public static BlockMod depthsBrick;
 	public static BlockMod depthsGlass;
+	public static BlockMod depthsCobblestone;
+	public static BlockMod depthsPillar;
+	public static BlockMod depthsLantern;
+	public static BlockModBars depthsGate;
+	public static BlockMod depthsLock;
+	public static BlockMod depthsTile;
 	public static BlockModDoor depthsDoor;
 
 	public static BlockMod iceLeaves;
@@ -545,6 +552,13 @@ public class JourneyBlocks {
 		depthsBookshelf = new BlockMod("depthsBookshelf", "Depths Bookshelf");
 		depthsBrick = new BlockMod("depthsBrick", "Depths Brick");
 		depthsGlass = new BlockModGlass("depthsGlass", "Depths Glass", 1.0F);
+		depthsShingle = new BlockMod("depthsShingle", "Depths Shingle", 1.0F);
+		depthsCobblestone = new BlockMod("depthsCobblestone", "Depths Cobblestone", 1.0F);
+		depthsTile = new BlockMod("depthsTile", "Depths Tile", 1.0F);
+		depthsPillar = new BlockMod("depthsPillar", "Depths Pillar", 1.0F);
+		depthsLantern = (BlockMod) new BlockMod("depthsLantern", "Depths Lantern", 1.0F).setLightLevel(1);
+		depthsGate = new BlockModBars("depthsGate", "Depths Gate", 1.0F);
+		depthsLock = new BlockLock("depthsLock", "Depths Lock", JourneyItems.depthsKey);
 		depthsDoor = new BlockModDoor("depthsDoor", "Depths Door", Material.WOOD, 2.0F);
 
 		iceLeaves = new BlockDepthsLeaves("iceLeaves", "Ice Leaves", 1.0F);

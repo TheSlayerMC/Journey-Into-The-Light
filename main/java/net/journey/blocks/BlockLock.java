@@ -91,6 +91,7 @@ public class BlockLock extends BlockMod {
 			worldIn.setBlockState(pos.add(0, -1, -1), Blocks.AIR.getDefaultState());
 			worldIn.setBlockState(pos.add(0, 1, -1), Blocks.AIR.getDefaultState());
 			worldIn.setBlockState(pos.add(0, -1, 1), Blocks.AIR.getDefaultState());
+			playerIn.getHeldItem(hand.MAIN_HAND).shrink(1);
 		}
 	
 		return false;
