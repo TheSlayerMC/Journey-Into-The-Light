@@ -14,8 +14,8 @@ public abstract class SenterianRoomBase {
 	public void setBlock(SenterianChunkPrimer chunk, int x, int y, int z, Block block) {
 		chunk.setBlockState(x, y, z, block.getDefaultState());
 	}
-
-	public void setBlockState(SenterianChunkPrimer chunk, int x, int y, int z, IBlockState state) {
-		chunk.setBlockState(x, y, z, state);
+	
+	public void setBlock(SenterianChunkPrimer chunk, int x, int y, int z, IBlockState block) {
+		chunk.setBlockState(x, y, z, block);
 	}
 }
