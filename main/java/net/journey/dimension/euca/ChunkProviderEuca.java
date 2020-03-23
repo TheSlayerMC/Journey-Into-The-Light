@@ -268,7 +268,7 @@ public class ChunkProviderEuca implements IChunkGenerator {
 	}
 
 	private void generateStructure(int x, int z, WorldGenerator... generators){
-		BlockPos pos = WorldGenAPI.createRandom(x, 1, 128, z, rand, 8);
+		BlockPos pos = WorldGenAPI.createRandom(x, 40, 128, z, rand, 8);
 		if (isBlockTop(pos.getX(), pos.getY() - 1, pos.getZ(), JourneyBlocks.eucaGrass)) {
 			generators[rand.nextInt(generators.length)].generate(worldObj, rand, pos);
 		}
