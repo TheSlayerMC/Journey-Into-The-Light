@@ -13,8 +13,9 @@ import net.journey.dimension.corba.biomes.BiomeGenCorbaPlains;
 import net.journey.dimension.depths.BiomeGenDepths;
 import net.journey.dimension.depths.WorldProviderDepths;
 import net.journey.dimension.end.WorldProviderEndJourney;
-import net.journey.dimension.euca.BiomeGenEuca;
 import net.journey.dimension.euca.WorldProviderEuca;
+import net.journey.dimension.euca.biomes.BiomeGenEuca;
+import net.journey.dimension.euca.biomes.BiomeGenEucaSilver;
 import net.journey.dimension.frozen.BiomeGenFrozenLands;
 import net.journey.dimension.frozen.WorldProviderFrozenLands;
 import net.journey.dimension.nether.WorldProviderNetherJourney;
@@ -119,7 +120,8 @@ public class DimensionHelper {
 	public static final float[] boilHeight = new float[] {0.125F, 0.1F}; 
 	public static final float[] corbaHeight = new float[] {0.2F, 0.2F}; 
 
-	public static Biome euca = new BiomeGenEuca();
+	public static Biome euca = new BiomeGenEuca("Euca");
+	public static Biome eucaSilver = new BiomeGenEucaSilver("Silver Euca");
 	public static Biome boiling = new BiomeGenBoiling();
 	public static Biome cloudia = new BiomeGenCloudia();
 
@@ -152,6 +154,7 @@ public class DimensionHelper {
 			DimensionManager.registerDimension(1, DimensionType.register("End", "END", 1, WorldProviderEndJourney.class, true));
 		} */
 		addDimBiome(euca, "Euca", Type.MAGICAL, Type.MOUNTAIN);
+		addDimBiome(eucaSilver, "Euca Silver", Type.MAGICAL, Type.MOUNTAIN);
 		addDimBiome(boiling, "Boiling Point", Type.HOT);
 		addDimBiome(cloudia, "Cloudia", Type.MAGICAL);
 		addDimBiome(corba, "Corba", Type.DRY, Type.PLAINS, Type.DEAD);

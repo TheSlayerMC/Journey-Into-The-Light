@@ -191,9 +191,9 @@ public class ChunkProviderEuca implements IChunkGenerator {
 				for (int j3 = 0; j3 < 33; j3++) {
 					double d8;
 
-					double d10 = this.ar[id] / 512D;
-					double d11 = this.br[id] / 512D;
-					double d12 = (this.pnr[id] / 10D + 1.0D) / 2D;
+					double d10 = this.ar[id] / 128D;
+					double d11 = this.br[id] / 128D;
+					double d12 = (this.pnr[id] / 60D + 1.0D) / 2D;
 
 					if (d12 < 0.0D) {
 						d8 = d10;
@@ -265,7 +265,6 @@ public class ChunkProviderEuca implements IChunkGenerator {
 				treesgreen.get(rand.nextInt(treesgreen.size())).generate(worldObj, rand, new BlockPos(x, yCoord, z));
 			}
 		} */
-
 	}
 
 	private void generateStructure(int x, int z, WorldGenerator... generators){

@@ -1,4 +1,4 @@
-package net.journey.dimension.euca;
+package net.journey.dimension.euca.biomes;
 
 import java.awt.Color;
 
@@ -9,8 +9,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BiomeGenEuca extends BiomeGenJourney {
 
-	public BiomeGenEuca() {
-		super("Euca");
+	public BiomeGenEuca(String name) {
+		super(name);
 		this.topBlock = JourneyBlocks.eucaGrass.getDefaultState();
 		this.fillerBlock = JourneyBlocks.eucaStone.getDefaultState();
 		this.spawnableCreatureList.clear();
