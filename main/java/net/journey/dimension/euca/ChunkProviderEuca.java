@@ -249,11 +249,11 @@ public class ChunkProviderEuca implements IChunkGenerator {
 			generateStructure(x1, z1, spawner);
 		}
 
-		for (times = 0; times < 400; times++) {
+		for (times = 0; times < 500; times++) {
 			generateStructure(x1, z1, treesnormal);
 		}
 
-		for (times = 0; times < 50; times++) {
+		for (times = 0; times < 70; times++) {
 			generateStructure(x1, z1, treestall);
 		}
 
