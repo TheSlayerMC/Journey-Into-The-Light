@@ -34,15 +34,9 @@ import net.journey.entity.mob.overworld.underground.*;
 import net.journey.entity.mob.overworld.underground.npc.EntityRockiteGolem;
 import net.journey.entity.mob.pet.EntityShiverwolf;
 import net.journey.entity.mob.pet.EntityTameRoc;
-import net.journey.entity.mob.senterian.mob.EntitySentryBlock;
-import net.journey.entity.mob.terrania.mob.EntityPurplian;
-import net.journey.entity.mob.terrania.mob.EntityTerraScatterer;
-import net.journey.entity.mob.terrania.mob.EntityTerragrow;
-import net.journey.entity.mob.terrania.mob.EntityTerralight;
-import net.journey.entity.mob.terrania.mob.EntityTerrashroom;
-import net.journey.entity.mob.terrania.mob.EntityTerraslug;
-import net.journey.entity.mob.terrania.npc.EntityTerranianEnchanter;
-import net.journey.entity.mob.terrania.npc.EntityTerranianTrader;
+import net.journey.entity.mob.senterian.mob.*;
+import net.journey.entity.mob.terrania.mob.*;
+import net.journey.entity.mob.terrania.npc.*;
 import net.journey.entity.projectile.*;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.slayer.api.SlayerAPI;
@@ -234,7 +228,11 @@ public class EntityRegistry {
 				SlayerAPI.buildEntityEntry(EntityTerragrow.class, "terragrow", "Terragrow", 0x7813ff, 0xff58f5),
 				SlayerAPI.buildEntityEntry(EntityTerrashroom.class, "terrashroom", "Terrashroom", 0x7813ff, 0xff58f5),
 				//Senterian
-				SlayerAPI.buildEntityEntry(EntitySentryBlock.class, "sentryBlock", "Sentry Block", 0x584040, 0x1C1C1C),
+				SlayerAPI.buildEntityEntry(EntitySentryBlock.class, "sentryblock", "Sentry Block", 0x584040, 0x1C1C1C),
+				SlayerAPI.buildEntityEntry(EntitySentryLord.class, "sentrylord", "Sentry Lord", 0x584040, 0x1C1C1C),
+				SlayerAPI.buildEntityEntry(EntitySentryStalker.class, "sentrystalker", "Sentry Stalker", 0x584040, 0x1C1C1C),
+				SlayerAPI.buildEntityEntry(EntitySentryWalker.class, "sentrywalker", "Sentry Walker", 0x584040, 0x1C1C1C),
+
 				//OBSIDIANBOAT
 				SlayerAPI.buildEntityEntryNoEgg(EntityObsidianBoat.class, "obsidianboat", 16)
 		};
