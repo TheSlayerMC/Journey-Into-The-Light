@@ -375,7 +375,7 @@ public class WorldGenJourney implements IWorldGenerator {
             x = chunkX + r.nextInt(16) + 8;
             z = chunkZ + r.nextInt(16) + 8;
             if (isBlockTop(x, y, z, Blocks.GRASS, w))
-                if (BiomeDictionary.hasType(biome, Type.FOREST)) {
+                if (biome == Biomes.FOREST) {
                     new WorldGenBush(w, r, new BlockPos(x, y, z), JourneyBlocks.juiceberryBush, Blocks.GRASS).generate(w, r, new BlockPos(x, y, z));
                 }
         }
@@ -385,7 +385,7 @@ public class WorldGenJourney implements IWorldGenerator {
             x = chunkX + r.nextInt(16) + 8;
             z = chunkZ + r.nextInt(16) + 8;
             if (isBlockTop(x, y, z, Blocks.GRASS, w))
-                if (BiomeDictionary.hasType(biome, Type.CONIFEROUS)) {
+                if (biome == Biomes.TAIGA || biome == Biomes.TAIGA_HILLS) {
                     new WorldGenBush(w, r, new BlockPos(x, y, z), JourneyBlocks.bradberryBush, Blocks.GRASS).generate(w, r, new BlockPos(x, y, z));
                 }
         }
@@ -395,7 +395,7 @@ public class WorldGenJourney implements IWorldGenerator {
             x = chunkX + r.nextInt(16) + 8;
             z = chunkZ + r.nextInt(16) + 8;
             if (isBlockTop(x, y, z, Blocks.GRASS, w))
-                if (BiomeDictionary.hasType(biome, Type.JUNGLE)) {
+                if (biome == Biomes.JUNGLE || biome == Biomes.JUNGLE_HILLS) {
                     new WorldGenBush(w, r, new BlockPos(x, y, z), JourneyBlocks.tangleberryBush, Blocks.GRASS).generate(w, r, new BlockPos(x, y, z));
                 }
         }
@@ -405,7 +405,7 @@ public class WorldGenJourney implements IWorldGenerator {
             x = chunkX + r.nextInt(16) + 8;
             z = chunkZ + r.nextInt(16) + 8;
             if (isBlockTop(x, y, z, Blocks.GRASS, w))
-                if (BiomeDictionary.hasType(biome, Type.SWAMP)) {
+                if (biome == Biomes.SWAMPLAND) {
                     new WorldGenBush(w, r, new BlockPos(x, y, z), JourneyBlocks.bogberryBush, Blocks.GRASS).generate(w, r, new BlockPos(x, y, z));
                 }
         }
