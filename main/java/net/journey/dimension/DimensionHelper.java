@@ -27,8 +27,6 @@ import net.journey.entity.mob.boiling.EntityBurningLight;
 import net.journey.entity.mob.boiling.EntityFrightener;
 import net.journey.entity.mob.boiling.EntityHellwing;
 import net.journey.entity.mob.boiling.EntityMagmaBlaze;
-import net.journey.entity.mob.boiling.EntityPhoenix;
-import net.journey.entity.mob.cloudia.EntityCloudFlyer;
 import net.journey.entity.mob.cloudia.EntitySkyEel;
 import net.journey.entity.mob.cloudia.EntityStarlightGolem;
 import net.journey.entity.mob.cloudia.EntityStarlightTransporter;
@@ -37,25 +35,21 @@ import net.journey.entity.mob.corba.EntityLeafBlower;
 import net.journey.entity.mob.corba.EntitySurfaceSeer;
 import net.journey.entity.mob.corba.EntityTreeGolem;
 import net.journey.entity.mob.corba.EntityWoodCreature;
-import net.journey.entity.mob.corba.EntityWoodpecker;
 import net.journey.entity.mob.depths.EntityDarkener;
 import net.journey.entity.mob.depths.EntityDarknessCrawler;
 import net.journey.entity.mob.depths.EntityDepthsBeast;
 import net.journey.entity.mob.depths.EntityDepthsHunter;
 import net.journey.entity.mob.depths.EntityLightener;
-import net.journey.entity.mob.depths.EntityRoc;
 import net.journey.entity.mob.depths.EntitySpikedBeast;
 import net.journey.entity.mob.euca.EntityDynaster;
 import net.journey.entity.mob.euca.EntityEucaCharger;
 import net.journey.entity.mob.euca.EntityGolditeMage;
-import net.journey.entity.mob.euca.EntityGoldwing;
 import net.journey.entity.mob.euca.EntityShimmerer;
 import net.journey.entity.mob.frozen.EntityCrystalCluster;
 import net.journey.entity.mob.frozen.EntityFrozenTroll;
 import net.journey.entity.mob.frozen.EntityPermafraust;
 import net.journey.entity.mob.frozen.EntityShatterer;
 import net.journey.entity.mob.frozen.EntityShiveringBushwalker;
-import net.journey.entity.mob.frozen.EntityShiverwing;
 import net.journey.entity.mob.nether.EntityHellCow;
 import net.journey.entity.mob.nether.EntityHellTurtle;
 import net.journey.entity.mob.nether.EntityInfernoBlaze;
@@ -216,7 +210,6 @@ public class DimensionHelper {
 		int amount = 1000;
 		EntityRegistry.addSpawn(EntityStarlightTransporter.class, amount, 10, 20, EnumCreatureType.MONSTER, cloudia);
 		EntityRegistry.addSpawn(EntityStarlightGolem.class, amount, 10, 20, EnumCreatureType.MONSTER, cloudia);
-		EntityRegistry.addSpawn(EntityCloudFlyer.class, amount, 1, 1, EnumCreatureType.MONSTER, cloudia);
 		EntityRegistry.addSpawn(EntityStarlightWalker.class, amount, 10, 20, EnumCreatureType.MONSTER, cloudia);
 		EntityRegistry.addSpawn(EntitySkyEel.class, amount, 10, 20, EnumCreatureType.MONSTER, cloudia);
 	}
@@ -227,7 +220,6 @@ public class DimensionHelper {
 		EntityRegistry.addSpawn(EntityLeafBlower.class, amount, 1, 1, EnumCreatureType.MONSTER, corba);
 		EntityRegistry.addSpawn(EntitySurfaceSeer.class, amount, 1, 1, EnumCreatureType.MONSTER, corba);
 		EntityRegistry.addSpawn(EntityWoodCreature.class, amount, 1, 1, EnumCreatureType.MONSTER, corba);
-		EntityRegistry.addSpawn(EntityWoodpecker.class, amount, 1, 1, EnumCreatureType.CREATURE, corba);
 	}
 	private static void addColdFrozenSpawns() {
 		int amount = 80;
@@ -236,7 +228,6 @@ public class DimensionHelper {
 		EntityRegistry.addSpawn(EntityPermafraust.class, amount, 10, 20, EnumCreatureType.MONSTER, frozen);
 		EntityRegistry.addSpawn(EntityShiveringBushwalker.class, amount, 10, amount, EnumCreatureType.MONSTER, frozen);
 		EntityRegistry.addSpawn(EntityIceMage.class, amount, 10, amount, EnumCreatureType.MONSTER, frozen);
-		EntityRegistry.addSpawn(EntityShiverwing.class, amount, 10, amount, EnumCreatureType.CREATURE, frozen);
 
 	}
 
@@ -247,7 +238,6 @@ public class DimensionHelper {
 		EntityRegistry.addSpawn(EntityShatterer.class, amount, 10, amount, EnumCreatureType.MONSTER, frozen);
 		EntityRegistry.addSpawn(EntityCrystalCluster.class, amount, 10, amount, EnumCreatureType.MONSTER, frozen);
 		EntityRegistry.addSpawn(EntityIceMage.class, amount, 10, amount, EnumCreatureType.MONSTER, frozen);
-		EntityRegistry.addSpawn(EntityShiverwing.class, amount, 10, amount, EnumCreatureType.CREATURE, frozen);
 	}
 
 	private static void addTerraniaSpawns() {
@@ -265,7 +255,6 @@ public class DimensionHelper {
 		EntityRegistry.addSpawn(EntityDynaster.class, amount, 1, 1, EnumCreatureType.MONSTER, euca);
 		EntityRegistry.addSpawn(EntityShimmerer.class, amount, 1, 1, EnumCreatureType.MONSTER, euca);
 		EntityRegistry.addSpawn(EntityGolditeMage.class, amount, 1, 1, EnumCreatureType.MONSTER, euca);
-		EntityRegistry.addSpawn(EntityGoldwing.class, amount, 1, 1, EnumCreatureType.CREATURE, euca);
 	}
 
 	private static void addBoilSpawns() {
@@ -274,7 +263,6 @@ public class DimensionHelper {
 		EntityRegistry.addSpawn(EntityBurningLight.class, amount, 1, 1, EnumCreatureType.MONSTER, boiling);
 		EntityRegistry.addSpawn(EntityMagmaBlaze.class, amount, 1, 1, EnumCreatureType.MONSTER, boiling);
 		EntityRegistry.addSpawn(EntityHellwing.class, amount, 1, 1, EnumCreatureType.MONSTER, boiling);
-		EntityRegistry.addSpawn(EntityPhoenix.class, amount, 1, 1, EnumCreatureType.MONSTER, boiling);
 	}
 
 	private static void addDepthsSpawns() {
@@ -283,7 +271,6 @@ public class DimensionHelper {
 		EntityRegistry.addSpawn(EntityDepthsBeast.class, amount, 10, 1, EnumCreatureType.MONSTER, depths);
 		EntityRegistry.addSpawn(EntitySpikedBeast.class, amount, 10, 1, EnumCreatureType.MONSTER, depths);
 		EntityRegistry.addSpawn(EntityDepthsHunter.class, amount, 10, 1, EnumCreatureType.MONSTER, depths);
-		EntityRegistry.addSpawn(EntityRoc.class, amount, 10, 1, EnumCreatureType.MONSTER, depths);
 		EntityRegistry.addSpawn(EntityDarkener.class, amount, 10, 1, EnumCreatureType.MONSTER, depths);
 		EntityRegistry.addSpawn(EntityLightener.class, 4, 10, 1, EnumCreatureType.MONSTER, depths);
 	}
@@ -328,6 +315,7 @@ public class DimensionHelper {
 			if(b != Biomes.HELL && b != Biomes.SKY && b != euca && b != boiling && b != cloudia && b != corba && b != depths && b != corbaPlains && b != frozen && b != terrania && b != senterian) {
 				if (BiomeDictionary.hasType(b, BiomeDictionary.Type.SNOWY) || BiomeDictionary.hasType(b, BiomeDictionary.Type.COLD)) {
 					EntityRegistry.addSpawn(EntityBlizzard.class, amount, 1, 1, EnumCreatureType.MONSTER, biome);
+					EntityRegistry.addSpawn(EntityIceMage.class, amount, 1, 1, EnumCreatureType.MONSTER, biome);
 				}
 
 				if (BiomeDictionary.hasType(b, BiomeDictionary.Type.FOREST) || BiomeDictionary.hasType(b, BiomeDictionary.Type.LUSH) || BiomeDictionary.hasType(b, BiomeDictionary.Type.PLAINS)) {

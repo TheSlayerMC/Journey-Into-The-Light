@@ -5,8 +5,10 @@ import javax.annotation.Nullable;
 import net.journey.JourneyItems;
 import net.journey.JourneySounds;
 import net.journey.JourneyWeapons;
+import net.journey.dimension.DimensionHelper;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityIceBall;
+import net.journey.util.Config;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.IRangedAttackMob;
@@ -79,7 +81,7 @@ public class EntityIceMage extends EntityModMob implements IRangedAttackMob {
 				this.world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.GRASS || 
 				this.world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.LEAVES || 
 				this.world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.SAND || 
-				this.world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.DIRT;
+				this.world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.DIRT && this.dimension == 0 || this.dimension == Config.frozen;
 	}
 
 	@Override

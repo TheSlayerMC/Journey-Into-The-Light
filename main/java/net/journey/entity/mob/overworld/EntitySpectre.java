@@ -75,7 +75,7 @@ public class EntitySpectre extends EntityModMob {
 	@Override
 	public boolean getCanSpawnHere() {
 		return 	this.isValidLightLevel() && 
-				this.world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).isFullBlock();
+				this.world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).isFullBlock() && this.dimension == 0 || this.dimension == -1;
 	}
 
 	@Override

@@ -189,7 +189,6 @@ public class EntityRendering {
 		RenderingRegistry.registerEntityRenderingHandler(EntityStaringGuardian.class, new RenderModMob(new ModelStaringGuardian(), Textures.staringGuardian));
 		RenderingRegistry.registerEntityRenderingHandler(EntityTreeGolem.class, new RenderModMob(new ModelTreeGolem(), Textures.treeGolem));
 		RenderingRegistry.registerEntityRenderingHandler(EntityWoodCreature.class, new RenderModMob(new ModelWoodCreature(), Textures.woodCreature));
-		RenderingRegistry.registerEntityRenderingHandler(EntityRoc.class, new RenderModMob(new ModelRoc(), Textures.roc));
 		RenderingRegistry.registerEntityRenderingHandler(EntityDynaster.class, new RenderModMob(new ModelDynaster(), Textures.dynaster));
 		RenderingRegistry.registerEntityRenderingHandler(EntityGolder.class, new RenderModMob(new ModelGolder(), Textures.golder));
 		RenderingRegistry.registerEntityRenderingHandler(EntityCrystalCluster.class, new RenderModMob(new ModelCrystalCluster(), Textures.crystalCluster));
@@ -212,11 +211,6 @@ public class EntityRendering {
 		RenderingRegistry.registerEntityRenderingHandler(EntityShiveringShrieker.class, new RenderModMob(new ModelShiveringShrieker(), Textures.shiveringShrieker));
 		RenderingRegistry.registerEntityRenderingHandler(EntityFrozenFrostbiter.class, new RenderModMob(new ModelFrozenFrostbiter(), Textures.frozenFrostbiter));
 		RenderingRegistry.registerEntityRenderingHandler(EntityWraith.class, new RenderWraith(new ModelWraith(), Textures.wraith));
-		RenderingRegistry.registerEntityRenderingHandler(EntityPhoenix.class, new RenderModMob(new ModelRoc(), Textures.phoenix));
-		RenderingRegistry.registerEntityRenderingHandler(EntityCloudFlyer.class, new RenderModMob(new ModelRoc(), Textures.cloudFlyer));
-		RenderingRegistry.registerEntityRenderingHandler(EntityWoodpecker.class, new RenderModMob(new ModelRoc(), Textures.woodpecker));
-		RenderingRegistry.registerEntityRenderingHandler(EntityGoldwing.class, new RenderModMob(new ModelRoc(), Textures.goldwing));
-		RenderingRegistry.registerEntityRenderingHandler(EntityShiverwing.class, new RenderModMob(new ModelRoc(), Textures.shiverwing));
 		RenderingRegistry.registerEntityRenderingHandler(EntityTurducken.class, new RenderModMob(new ModelRoc(), Textures.turducken));
 		RenderingRegistry.registerEntityRenderingHandler(EntityFloro.class, new RenderModMob(new ModelFloro(), Textures.floro));
 		RenderingRegistry.registerEntityRenderingHandler(EntityDarkener.class, new RenderModMob(new ModelDarkener(), Textures.darkener));

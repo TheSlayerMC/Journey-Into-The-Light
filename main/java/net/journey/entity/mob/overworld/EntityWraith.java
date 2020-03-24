@@ -27,7 +27,7 @@ public class EntityWraith extends EntityModMob {
 	@Override
 	public boolean getCanSpawnHere() {
 		return 	this.isValidLightLevel() && 
-				this.world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).isFullBlock();
+				this.world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).isFullBlock() && this.dimension == 0 || this.dimension == -1;
 	}
 	
 	@Override
@@ -101,6 +101,8 @@ public class EntityWraith extends EntityModMob {
 		return JourneyItems.demonicBone;
 		
 	}
+	
+	
 	
 	@Override
 	protected void dropFewItems(boolean b, int j) {

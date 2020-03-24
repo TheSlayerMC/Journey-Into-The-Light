@@ -150,7 +150,6 @@ public class EntityRegistry {
 				SlayerAPI.buildEntityEntry(EntityHellwing.class, "hellwing", "Hellwing", 0xff7800, 0xffa800),
 				SlayerAPI.buildEntityEntry(EntityObserver.class, "observer", "Observer", 0xff7800, 0xffa800),
 				SlayerAPI.buildEntityEntry(EntityScreamer.class, "screamer", "Screamer", 0xff7800, 0xffa800),
-				SlayerAPI.buildEntityEntry(EntityPhoenix.class, "phoenix", "Phoenix", 0xff7800, 0xffa800),
 				//FL
 				SlayerAPI.buildEntityEntry(EntityShatterer.class, "shatterer", "Shatterer", 0x00d8ff, 0xd8f9ff),
 				SlayerAPI.buildEntityEntry(EntityFrozenTroll.class, "frozentroll", "Frozen Troll", 0x00d8ff, 0xd8f9ff),
@@ -160,7 +159,6 @@ public class EntityRegistry {
 				SlayerAPI.buildEntityEntry(EntityShiveringShrieker.class, "shiveringshrieker", "Sjoveromg Shrieker", 0x00d8ff, 0xd8f9ff),
 				SlayerAPI.buildEntityEntry(EntityFrozenFrostbiter.class, "frozenfrostbiter", "Frozen Frost Biter", 0x00d8ff, 0xd8f9ff),
 				SlayerAPI.buildEntityEntry(EntityCrystalCluster.class, "crystalcluster", "Crystal Cluster", 0x00d8ff, 0xd8f9ff),
-				SlayerAPI.buildEntityEntry(EntityShiverwing.class, "shiverwing", "Shiverwing", 0x00d8ff, 0xd8f9ff),
 				//EUCA
 				//SlayerAPI.buildEntityEntry(EntityInsecto.class, "insecto");
 				//SlayerAPI.buildEntityEntry(EntityPsyollom.class, "psyollom");
@@ -173,13 +171,11 @@ public class EntityRegistry {
 				SlayerAPI.buildEntityEntry(EntitySilverbot.class, "silverbot", "Silver Bot", 0xffba00, 0xe0e0e0),
 				SlayerAPI.buildEntityEntry(EntityGoldbot.class, "goldbot", "Gold Bot", 0xffba00, 0xe0e0e0),
 				SlayerAPI.buildEntityEntry(EntityShimmerer.class, "shimmerer", "Shimmerer", 0xffba00, 0xe0e0e0),
-				SlayerAPI.buildEntityEntry(EntityGoldwing.class, "goldwing", "Goldwing", 0xffba00, 0xe0e0e0),
 				//DEPTH
 				SlayerAPI.buildEntityEntry(EntitySpikedBeast.class, "spikedbeast", "Spiked Beast", 0x003CA5, 0x0098A3),
 				SlayerAPI.buildEntityEntry(EntityDarknessCrawler.class, "darknesscrawler", "Darkness Crawler0", 0x003CA5, 0x0098A3),
 				SlayerAPI.buildEntityEntry(EntityDepthsBeast.class, "depthsbeast", "Deapths Beast", 0x003CA5, 0x0098A3),
 				SlayerAPI.buildEntityEntry(EntityDepthsHunter.class, "depthshunter", "Deapther Hunter", 0x003CA5, 0x0098A3),
-				SlayerAPI.buildEntityEntry(EntityRoc.class, "roc", "Rox", 0x003CA5, 0x0098A3),
 				SlayerAPI.buildEntityEntry(EntityDarkener.class, "darkener", "Darkener", 0x003CA5, 0x0098A3),
 				SlayerAPI.buildEntityEntry(EntityLightener.class, "lightener", "Lightener", 0x003CA5, 0x0098A3),
 				SlayerAPI.buildEntityEntry(EntityDarkSorcerer.class, "darksorcerer", "Dark Sorcerer", 0x003CA5, 0x0098A3),
@@ -191,10 +187,8 @@ public class EntityRegistry {
 				SlayerAPI.buildEntityEntry(EntityWoodCreature.class, "woodcreature", "Wood Creature", 0x1e8c00, 0x36ff00),
 				SlayerAPI.buildEntityEntry(EntityNatureMage.class, "naturemage", "Nature Mage", 0x1e8c00, 0x36ff00),
 				SlayerAPI.buildEntityEntry(EntityLeafBlower.class, "leafblower", "Leaf Blower", 0x1e8c00, 0x36ff00),
-				SlayerAPI.buildEntityEntry(EntityWoodpecker.class, "woodpecker", "Woodpecker", 0x1e8c00, 0x36ff00),
 				//CLOUDIA
 				SlayerAPI.buildEntityEntry(EntityCloudGhost.class, "cloudghost", "Cloud Ghost", 0xa87abd, 0x9000ff),
-				SlayerAPI.buildEntityEntry(EntityCloudFlyer.class, "cloudflyer", "Cloud Flyer", 0xa87abd, 0x9000ff),
 				SlayerAPI.buildEntityEntry(EntityStarlightGolem.class, "starlightgolem", "Starlight Golem", 0xa87abd, 0x9000ff),
 				SlayerAPI.buildEntityEntry(EntityStarlightTransporter.class, "starlighttransporter", "Starlight Transporter", 0xa87abd, 0x9000ff),
 				SlayerAPI.buildEntityEntry(EntityStarlightWalker.class, "starlightwalker", "Starlight Walker", 0xa87abd, 0x9000ff),

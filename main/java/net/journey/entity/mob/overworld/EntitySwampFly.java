@@ -39,7 +39,7 @@ public class EntitySwampFly extends EntityModFlying {
     }
 	@Override
 	public boolean getCanSpawnHere() {
-		return this.world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).isFullBlock();
+		return this.world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).isFullBlock() && this.dimension == 0;
 	}
 
 	@Override
