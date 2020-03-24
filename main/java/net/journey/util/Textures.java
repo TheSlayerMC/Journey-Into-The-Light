@@ -185,6 +185,9 @@ public class Textures {
 	public static final ResourceLocation terragrow = addMob("terragrow");
 	public static final ResourceLocation terrashroom = addMob("terrashroom");
     
+	//Senterian
+	public static final ResourceLocation sentryBlock = addMob("sentryblockawake");
+
 	//Pets
 	public static final ResourceLocation tameRoc = addMob("tameRoc");
 	public static final ResourceLocation dunewerm = addMob("dunewerm");

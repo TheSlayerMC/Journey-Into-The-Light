@@ -31,6 +31,7 @@ import net.journey.client.render.model.mob.overworld.jungle.ModelJungleSpider;
 import net.journey.client.render.model.mob.overworld.jungle.ModelJungleTurtle;
 import net.journey.client.render.model.mob.overworld.underground.*;
 import net.journey.client.render.model.mob.overworld.underground.npc.ModelRockiteGolem;
+import net.journey.client.render.model.mob.senterian.ModelSentryBlock;
 import net.journey.client.render.model.mob.terrania.mob.ModelPurplian;
 import net.journey.client.render.model.mob.terrania.mob.ModelTerraScatterer;
 import net.journey.client.render.model.mob.terrania.mob.ModelTerragrow;
@@ -74,6 +75,7 @@ import net.journey.entity.mob.overworld.underground.*;
 import net.journey.entity.mob.overworld.underground.npc.EntityRockiteGolem;
 import net.journey.entity.mob.pet.EntityShiverwolf;
 import net.journey.entity.mob.pet.EntityTameRoc;
+import net.journey.entity.mob.senterian.mob.EntitySentryBlock;
 import net.journey.entity.mob.terrania.mob.EntityPurplian;
 import net.journey.entity.mob.terrania.mob.EntityTerraScatterer;
 import net.journey.entity.mob.terrania.mob.EntityTerragrow;
@@ -245,9 +247,10 @@ public class EntityRendering {
 		RenderingRegistry.registerEntityRenderingHandler(EntityRockiteGolem.class, new RenderModMob(new ModelRockiteGolem(), Textures.rockiteGolem));
 		RenderingRegistry.registerEntityRenderingHandler(EntityInfernoBlaze.class, new RenderModMob(new ModelInfernoBlaze(), Textures.infernoBlaze));
 		RenderingRegistry.registerEntityRenderingHandler(EntityHellTurtle.class, new RenderModMob(new ModelJungleTurtle(), Textures.hellTurtle));
-
 		RenderingRegistry.registerEntityRenderingHandler(EntityJungleGolem.class, new RenderModMob(new ModelJungleGolem(), Textures.jungleGolem));
 				
+		RenderingRegistry.registerEntityRenderingHandler(EntitySentryBlock.class, new RenderModMob(new ModelSentryBlock(), Textures.sentryBlock));
+		
 		RenderingRegistry.registerEntityRenderingHandler(EntityObsidianBoat.class, new RenderModBoat(new ModelObsidianBoat(), 0.5F));
 		
 		RenderingRegistry.registerEntityRenderingHandler(EntityShatterer.class, new RenderShatterer());
