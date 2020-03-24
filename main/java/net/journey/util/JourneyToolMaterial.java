@@ -112,16 +112,16 @@ public enum JourneyToolMaterial {
 	GOLD_MULTI_TOOL(JourneyItems.goldMulti, Items.GOLD_INGOT, 3),
 	DIAMOND_MULTI_TOOL(JourneyItems.diamondMulti, Items.DIAMOND, 3),
 
-	CRYSTAL_BATTLEAXE(SlayerAPI.addAxeMaterial(3, 3600, 13, 17, 25)),
-	ROCKY_BATTLEAXE(SlayerAPI.addAxeMaterial(3, 2600, 13, 16, 25)),
-	BACK_BITER(SlayerAPI.addAxeMaterial(3, 1300, 13, 15, 25)),
-	DAWN_BREAKER(SlayerAPI.addAxeMaterial(3, 1300, 13, 10, 25)),
-	TEMPEST_BATTLEAXE(SlayerAPI.addAxeMaterial(3, 1300, 13, 13, 25)),
-	BRONZED_BATTLEAXE(SlayerAPI.addAxeMaterial(3, 1300, 13, 16, 25)),
-	STORUM_BATTLEAXE(SlayerAPI.addAxeMaterial(3, 1300, 13, 17, 25)),
-	CELESTITE_BATTLEAXE(SlayerAPI.addAxeMaterial(3, 1300, 13, 18, 25)),
-	CELEKIUM_BATTLEAXE(SlayerAPI.addAxeMaterial(3, 1300, 13, 19, 25)),
-	THUNDERBIRD_BATTLEAXE(SlayerAPI.addAxeMaterial(3, 1300, 13, 27, 25));
+	CRYSTAL_BATTLEAXE(SlayerAPI.addAxeMaterial(3600, 3, 13, 17, 25)),
+	ROCKY_BATTLEAXE(SlayerAPI.addAxeMaterial(2600, 3, 13, 16, 25)),
+	BACK_BITER(SlayerAPI.addAxeMaterial(1300, 3, 13, 15, 25)),
+	DAWN_BREAKER(SlayerAPI.addAxeMaterial(1300, 3, 13, 10, 25)),
+	TEMPEST_BATTLEAXE(SlayerAPI.addAxeMaterial(1300, 3, 13, 13, 25)),
+	BRONZED_BATTLEAXE(SlayerAPI.addAxeMaterial(1300, 3, 13, 16, 25)),
+	STORUM_BATTLEAXE(SlayerAPI.addAxeMaterial(1300, 3, 13, 17, 25)),
+	CELESTITE_BATTLEAXE(SlayerAPI.addAxeMaterial(1300, 3, 13, 18, 25)),
+	CELEKIUM_BATTLEAXE(SlayerAPI.addAxeMaterial(1300, 3, 13, 19, 25)),
+	THUNDERBIRD_BATTLEAXE(SlayerAPI.addAxeMaterial(1300, 3, 13, 27, 25));
 
 	private ToolMaterial toolMaterial;
 	private Item repairItem;

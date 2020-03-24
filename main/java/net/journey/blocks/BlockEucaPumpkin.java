@@ -12,8 +12,10 @@ import net.minecraft.block.state.pattern.BlockPattern.PatternHelper;
 import net.minecraft.block.state.pattern.BlockStateMatcher;
 import net.minecraft.block.state.pattern.FactoryBlockPattern;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -56,7 +58,7 @@ public class BlockEucaPumpkin extends BlockMod {
 			entity.setLocationAndAngles((double)blockpos2.getX() + 0.5D, (double)blockpos2.getY() + 0.05D, (double)blockpos2.getZ() + 0.5D, 0.0F, 0.0F);
 			worldIn.spawnEntity(entity);
 			
-			if(entity instanceof EntityFourfa) WorldGenAPI.addRectangle(2, 2, 3, worldIn, pos.getX() - 1, pos.getY() - 2, pos.getZ() - 1, Blocks.AIR);
+			if(entity instanceof EntityFourfa) WorldGenAPI.addRectangle(3, 3, 3, worldIn, pos.getX() - 2, pos.getY() - 2, pos.getZ() - 2, Blocks.AIR);
 		}
 	}
 
@@ -65,6 +67,11 @@ public class BlockEucaPumpkin extends BlockMod {
         return worldIn.getBlockState(pos).getBlock().isReplaceable(worldIn, pos) && worldIn.getBlockState(pos.down()).isSideSolid(worldIn, pos, EnumFacing.UP);
     }
 
+	@Override
+    public IBlockState withMirror(IBlockState state, Mirror mirrorIn) {
+        return state.withRotation(mirrorIn.toRotation((EnumFacing)state.getValue(FACING)));
+    }
+	
     @Override
     public IBlockState withRotation(IBlockState state, Rotation rot) {
         return state.withProperty(FACING, rot.rotate((EnumFacing)state.getValue(FACING)));
@@ -74,6 +81,11 @@ public class BlockEucaPumpkin extends BlockMod {
 	public IBlockState getStateFromMeta(int meta) {
 		return this.getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta));
 	}
+	
+	@Override
+    public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)  {
+        return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite());
+    }
 
 	@Override
 	public int getMetaFromState(IBlockState state) {
