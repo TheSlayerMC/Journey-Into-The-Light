@@ -3,6 +3,7 @@ package net.journey.client.render.model.mob.senterian;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.math.MathHelper;
 
 public class ModelSentryStalker extends ModelBase {
 	
@@ -60,5 +61,22 @@ public class ModelSentryStalker extends ModelBase {
         modelRenderer.rotateAngleX = x;
         modelRenderer.rotateAngleY = y;
         modelRenderer.rotateAngleZ = z;
+    }
+    
+    @Override
+	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity) {
+		this.head1.rotateAngleY = f4 / (180F / (float)Math.PI);
+		this.head1.rotateAngleX = f5 / (180F / (float)Math.PI);
+		
+		this.head2.rotateAngleY = f4 / (180F / (float)Math.PI);
+		this.head2.rotateAngleX = f5 / (180F / (float)Math.PI);
+		
+		this.torso.rotateAngleY = f4 / (180F / (float)Math.PI);
+		this.torso.rotateAngleX = f5 / (180F / (float)Math.PI);
+		
+		this.frontleg1.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.0F * f1;
+		this.frontleg2.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * 1.4F * f1;
+		this.backleg1.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * 1.4F * f1;
+		this.backleg2.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
     }
 }
