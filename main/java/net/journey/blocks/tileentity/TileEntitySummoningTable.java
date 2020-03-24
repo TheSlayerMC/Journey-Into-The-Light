@@ -23,9 +23,14 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TileEntitySummoningTable extends TileEntityLockableLoot implements ITickable {
 
+	public static final TileEntitySummoningTable INSTANCE = new TileEntitySummoningTable();
+	
     private NonNullList<ItemStack> inventory = NonNullList.<ItemStack>withSize(7, ItemStack.EMPTY);
     private String customName;
 
+    public static TileEntitySummoningTable getInstance() {
+    	return INSTANCE;
+    }
 	@Override
 	public void update() {
 		if(this.inventory.get(0) != null && this.inventory.get(1) != null && this.inventory.get(2) != null && this.inventory.get(3) != null && this.inventory.get(4) != null && this.inventory.get(5) != null && this.inventory.get(6) != null) {
