@@ -76,9 +76,7 @@ public class WorldGenJourney implements IWorldGenerator {
     private final static WorldGenSmeltery smeltery = new WorldGenSmeltery();
 
     private final static WorldGenBoilingFire fire = new WorldGenBoilingFire();
-    private final static LazyLoadBase<WorldGenModFlower> eucaTallGrass;
-    private final static LazyLoadBase<WorldGenModFlower> eucaTallFlowers;
-    private final static LazyLoadBase<WorldGenModFlower> eucaBlueFlower;
+
     private final static LazyLoadBase<WorldGenModFlower> frozenFlower;
     private final static LazyLoadBase<WorldGenModFlower> depthsFlower;
     private final static LazyLoadBase<WorldGenBoilingLava> boilLava;
@@ -105,9 +103,7 @@ public class WorldGenJourney implements IWorldGenerator {
         cloudiaRock = create(JourneyBlocks.cloudiaRock, 40, Blocks.AIR);
         luniteOre = create(JourneyBlocks.luniteOre, 10, JourneyBlocks.cloudiaRock);
 
-        eucaTallGrass = create(() -> new WorldGenModFlower(JourneyBlocks.eucaTallGrass, JourneyBlocks.eucaGrass));
-        eucaTallFlowers = create(() -> new WorldGenModFlower(JourneyBlocks.eucaTallFlowers, JourneyBlocks.eucaGrass));
-        eucaBlueFlower = create(() -> new WorldGenModFlower(JourneyBlocks.eucaBlueFlower, JourneyBlocks.eucaGrass));
+        
         depthsFlower = create(() -> new WorldGenModFlower(JourneyBlocks.depthsFlower, JourneyBlocks.depthsGrass, false));
         frozenFlower = create(() -> new WorldGenModFlower(JourneyBlocks.frozenFlower, JourneyBlocks.frozenGrass, false));
 
@@ -118,7 +114,7 @@ public class WorldGenJourney implements IWorldGenerator {
         return create(() -> new WorldGenMinable(ore.getDefaultState(), count, BlockStateMatcher.forBlock(stone)));
     }
 
-    private static <T> LazyLoadBase<T> create(Supplier<T> createFunc) {
+    public static <T> LazyLoadBase<T> create(Supplier<T> createFunc) {
         return new LazyLoadBase<T>() {
             @Override
             protected T load() {
@@ -150,7 +146,6 @@ public class WorldGenJourney implements IWorldGenerator {
         }
         if (dim == Config.boil) generateBoilingPoint(w, r, chunkX * 16, chunkZ * 16);
         if (dim == Config.depths) generateDepths(w, r, chunkX * 16, chunkZ * 16);
-        if (dim == Config.euca) generateEuca(w, r, chunkX * 16, chunkZ * 16);
         if (dim == Config.frozen) generateFrozen(w, r, chunkX * 16, chunkZ * 16);
         if (dim == Config.corba) generateCorba(w, r, chunkX * 16, chunkZ * 16);
         if (dim == Config.cloudia) generateCloudia(w, r, chunkX * 16, chunkZ * 16);
@@ -538,15 +533,7 @@ public class WorldGenJourney implements IWorldGenerator {
             case 5:
                 fire.generate(w, r, randWithOffset);
                 break;
-            case 6:
-                eucaTallGrass.getValue().generate(w, r, chunkStart);
-                break;
-            case 7:
-                eucaTallFlowers.getValue().generate(w, r, chunkStart);
-                break;
-            case 8:
-                eucaBlueFlower.getValue().generate(w, r, chunkStart);
-                break;
+            
             case 9:
                 frozenFlower.getValue().generate(w, r, chunkStart);
                 break;
@@ -648,20 +635,7 @@ public class WorldGenJourney implements IWorldGenerator {
         for (i = 0; i < 25; i++) WorldGenJourney.generateJourneyDimensions(21, w, chunkX, chunkZ);
     }
 
-    private void generateEuca(World w, Random r, int chunkX, int chunkZ) {
-        int i = 0;
 
-        for (i = 0; i < 8; i++){
-            WorldGenJourney.generateJourneyDimensions(7, w, chunkX, chunkZ);
-            WorldGenJourney.generateJourneyDimensions(8, w, chunkX, chunkZ);
-            WorldGenJourney.generateJourneyDimensions(6, w, chunkX, chunkZ);
-        }
-
-        for (i = 0; i < 30; i++) WorldGenJourney.generateJourneyDimensions(0, w, chunkX, chunkZ);
-        for (i = 0; i < 30; i++) WorldGenJourney.generateJourneyDimensions(15, w, chunkX, chunkZ);
-        for (i = 0; i < 30; i++) WorldGenJourney.generateJourneyDimensions(16, w, chunkX, chunkZ);
-        for (i = 0; i < 30; i++) WorldGenJourney.generateJourneyDimensions(17, w, chunkX, chunkZ);
-    }
 
     private void generateCloudia(World w, Random r, int chunkX, int chunkZ) {
         int i = 0;
