@@ -16,7 +16,13 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.EntityAIBase;
+import net.minecraft.entity.ai.EntityAIHurtByTarget;
+import net.minecraft.entity.ai.EntityAILookIdle;
+import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.monster.EntityShulker;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
@@ -32,6 +38,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.entity.EntityModMob;
@@ -54,6 +61,15 @@ public class EntitySentryBlock extends EntityModMob {
         this.currentAttachmentPosition = null;
 	}
 	
+	@Override
+    protected void initEntityAI() {
+        this.tasks.addTask(1, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
+        this.tasks.addTask(7, new EntitySentryBlock.AIPeek());
+        this.tasks.addTask(8, new EntityAILookIdle(this));
+        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, new Class[0]));
+    }
+	
+	@Override
     protected void entityInit() {
         super.entityInit();
         this.dataManager.register(ATTACHED_FACE, EnumFacing.DOWN);
@@ -61,6 +77,7 @@ public class EntitySentryBlock extends EntityModMob {
         this.dataManager.register(PEEK_TICK, Byte.valueOf((byte)0));
     }
     
+	@Override
     public void readEntityFromNBT(NBTTagCompound compound) {
         super.readEntityFromNBT(compound);
         this.dataManager.set(ATTACHED_FACE, EnumFacing.getFront(compound.getByte("AttachFace")));
@@ -76,6 +93,7 @@ public class EntitySentryBlock extends EntityModMob {
         }
     }
     
+	@Override
     public void writeEntityToNBT(NBTTagCompound compound) {
         super.writeEntityToNBT(compound);
         compound.setByte("AttachFace", (byte)((EnumFacing)this.dataManager.get(ATTACHED_FACE)).getIndex());
@@ -450,6 +468,56 @@ public class EntitySentryBlock extends EntityModMob {
     @SideOnly(Side.CLIENT)
     public boolean isAttachedToBlock() {
         return this.currentAttachmentPosition != null && this.getAttachmentPos() != null;
+    }
+    
+    class AIPeek extends EntityAIBase
+    {
+        private int peekTime;
+
+        private AIPeek()
+        {
+        }
+
+        /**
+         * Returns whether the EntityAIBase should begin execution.
+         */
+        public boolean shouldExecute()
+        {
+            return EntitySentryBlock.this.getAttackTarget() == null && EntitySentryBlock.this.rand.nextInt(40) == 0;
+        }
+
+        /**
+         * Returns whether an in-progress EntityAIBase should continue executing
+         */
+        public boolean shouldContinueExecuting()
+        {
+            return EntitySentryBlock.this.getAttackTarget() == null && this.peekTime > 0;
+        }
+
+        /**
+         * Execute a one shot task or start executing a continuous task
+         */
+        public void startExecuting()
+        {
+            this.peekTime = 20 * (1 + EntitySentryBlock.this.rand.nextInt(3));
+            EntitySentryBlock.this.updateArmorModifier(30);
+        }
+
+        /**
+         * Reset the task's internal state. Called when this task is interrupted by another one
+         */
+        public void resetTask()
+        {
+            if (EntitySentryBlock.this.getAttackTarget() == null)
+            {
+            	EntitySentryBlock.this.updateArmorModifier(0);
+            }
+        }
+        
+        public void updateTask()
+        {
+            --this.peekTime;
+        }
     }
 	
 	@Override
