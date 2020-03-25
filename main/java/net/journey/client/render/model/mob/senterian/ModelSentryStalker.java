@@ -68,8 +68,7 @@ public class ModelSentryStalker extends ModelBase {
 		this.head1.rotateAngleY = f4 / (180F / (float)Math.PI);
 		this.head1.rotateAngleX = f5 / (180F / (float)Math.PI);
 		
-		this.head2.rotateAngleY = f4 / (180F / (float)Math.PI);
-		this.head2.rotateAngleX = f5 / (180F / (float)Math.PI);
+		this.head2.rotateAngleY = f2/15;
 		
 		this.torso.rotateAngleY = f4 / (180F / (float)Math.PI);
 		this.torso.rotateAngleX = f5 / (180F / (float)Math.PI);
