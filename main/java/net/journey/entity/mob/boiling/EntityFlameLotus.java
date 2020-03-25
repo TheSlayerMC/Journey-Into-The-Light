@@ -10,6 +10,7 @@ public class EntityFlameLotus extends EntityModMob {
 
 	public EntityFlameLotus(World par1World) {
 		super(par1World);
+		this.setSize(2.0F, 0.4F);
 	}
 
 	@Override
