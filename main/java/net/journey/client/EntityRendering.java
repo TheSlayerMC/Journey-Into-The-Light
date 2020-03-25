@@ -218,11 +218,10 @@ public class EntityRendering {
 		RenderingRegistry.registerEntityRenderingHandler(EntityHellTurtle.class, new RenderModMob(new ModelJungleTurtle(), Textures.hellTurtle));
 		RenderingRegistry.registerEntityRenderingHandler(EntityJungleGolem.class, new RenderModMob(new ModelJungleGolem(), Textures.jungleGolem));
 				
-		RenderingRegistry.registerEntityRenderingHandler(EntitySentryBlock.class, new RenderModMob(new ModelSentryBlock(), Textures.sentryBlock));
-		RenderingRegistry.registerEntityRenderingHandler(EntitySentryLord.class, new RenderModMob(new ModelSentryLord(), Textures.sentryLord));
-		RenderingRegistry.registerEntityRenderingHandler(EntitySentryStalker.class, new RenderModMob(new ModelSentryStalker(), Textures.sentryStalker));
-		RenderingRegistry.registerEntityRenderingHandler(EntitySentryWalker.class, new RenderModMob(new ModelSentryWalker(), Textures.sentryWalker));
-
+		RenderingRegistry.registerEntityRenderingHandler(EntitySentryBlock.class, new RenderSentryBlock(new ModelSentryBlock(), Textures.sentryBlock));
+		RenderingRegistry.registerEntityRenderingHandler(EntitySentryLord.class, new RenderSizeable(new ModelSentryLord(), 0, 0.8F, Textures.sentryLord));
+		RenderingRegistry.registerEntityRenderingHandler(EntitySentryStalker.class, new RenderSizeable(new ModelSentryStalker(), 0, 0.65F, Textures.sentryStalker));
+		RenderingRegistry.registerEntityRenderingHandler(EntitySentryWalker.class, new RenderSizeable(new ModelSentryWalker(), 0, 0.65F, Textures.sentryWalker));
 		RenderingRegistry.registerEntityRenderingHandler(EntityFlameLotus.class, new RenderModMob(new ModelFlameLotus(), Textures.flameLotus));
 		
 		RenderingRegistry.registerEntityRenderingHandler(EntityObsidianBoat.class, new RenderModBoat(new ModelObsidianBoat(), 0.5F));

@@ -8,7 +8,7 @@ import org.lwjgl.opengl.GL11;
 
 public class RenderSizeable extends RenderModMob {
 
-	protected float scale;
+	protected float scale = 1F;
 
 	public RenderSizeable(ModelBase model, float shadow, float size, ResourceLocation texture) {
 		super(model, shadow, texture);

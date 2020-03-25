@@ -186,7 +186,8 @@ public class Textures {
 	public static final ResourceLocation terrashroom = addMob("terrashroom");
     
 	//Senterian
-	public static final ResourceLocation sentryBlock = addMob("sentryblockawake");
+	public static final ResourceLocation sentryBlock = addMob("sentryblock");
+	public static final ResourceLocation sentryBlockAwake = addMob("sentryblockawake");
 	public static final ResourceLocation sentryLord = addMob("sentrylord");
 	public static final ResourceLocation sentryStalker = addMob("sentrystalker");
 	public static final ResourceLocation sentryWalker = addMob("sentrywalker");
