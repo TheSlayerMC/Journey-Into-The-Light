@@ -5,6 +5,7 @@ import java.util.Random;
 import net.journey.JourneyBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPumpkin;
+import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -20,7 +21,18 @@ public class WorldGenBush extends WorldGenerator {
 	public WorldGenBush(World w, Random rand, BlockPos pos, Block bush, Block top) {
 		this.top = top;
 		this.bush = bush;
-		generate(w, rand, pos);
+		if(bush == JourneyBlocks.juiceberryBush && w.getChunkFromBlockCoords(pos).getBiome(pos, w.getBiomeProvider()) == Biomes.FOREST || w.getChunkFromBlockCoords(pos).getBiome(pos, w.getBiomeProvider()) == Biomes.PLAINS) {
+			generate(w, rand, pos);
+		}
+		if(bush == JourneyBlocks.bogberryBush && w.getChunkFromBlockCoords(pos).getBiome(pos, w.getBiomeProvider()) == Biomes.SWAMPLAND) {
+			generate(w, rand, pos);
+		}
+		if(bush == JourneyBlocks.bradberryBush && w.getChunkFromBlockCoords(pos).getBiome(pos, w.getBiomeProvider()) == Biomes.TAIGA_HILLS || w.getChunkFromBlockCoords(pos).getBiome(pos, w.getBiomeProvider()) == Biomes.TAIGA) {
+			generate(w, rand, pos);
+		}
+		if(bush == JourneyBlocks.tangleberryBush && w.getChunkFromBlockCoords(pos).getBiome(pos, w.getBiomeProvider()) == Biomes.JUNGLE || w.getChunkFromBlockCoords(pos).getBiome(pos, w.getBiomeProvider()) == Biomes.JUNGLE_HILLS) {
+			generate(w, rand, pos);
+		}
 	}
 
 	@Override
