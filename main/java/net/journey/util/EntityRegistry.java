@@ -145,6 +145,7 @@ public class EntityRegistry {
 				SlayerAPI.buildEntityEntry(EntityHellwing.class, "hellwing", "Hellwing", 0xff7800, 0xffa800),
 				SlayerAPI.buildEntityEntry(EntityObserver.class, "observer", "Observer", 0xff7800, 0xffa800),
 				SlayerAPI.buildEntityEntry(EntityScreamer.class, "screamer", "Screamer", 0xff7800, 0xffa800),
+				SlayerAPI.buildEntityEntry(EntityFlameLotus.class, "flamelotus", "Flame Lotus", 0xff7800, 0xffa800),
 				//FL
 				SlayerAPI.buildEntityEntry(EntityShatterer.class, "shatterer", "Shatterer", 0x00d8ff, 0xd8f9ff),
 				SlayerAPI.buildEntityEntry(EntityFrozenTroll.class, "frozentroll", "Frozen Troll", 0x00d8ff, 0xd8f9ff),

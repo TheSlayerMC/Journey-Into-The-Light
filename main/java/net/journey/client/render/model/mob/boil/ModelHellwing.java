@@ -71,10 +71,10 @@ public class ModelHellwing extends ModelBiped {
 	@Override
 	public void setRotationAngles(float par1, float par2, float par3, float par4, float par5, float par6, Entity par7Entity) {
 		
-        this.rightwing.rotateAngleY = MathHelper.cos(par3 * 1.3F) * (float)Math.PI * 0.25F;
-        this.leftwing.rotateAngleY = -this.rightwing.rotateAngleY;
-        this.rightwing1.rotateAngleY = this.rightwing.rotateAngleY * 0.5F;
-        this.leftwing1.rotateAngleY = -this.rightwing.rotateAngleY * 0.5F;
+        this.rightwing.rotateAngleX = MathHelper.cos(par3 * 1.3F) * (float)Math.PI * 0.25F;
+        this.leftwing.rotateAngleX = -this.rightwing.rotateAngleX;
+        this.rightwing1.rotateAngleX = this.rightwing.rotateAngleX * 0.5F;
+        this.leftwing1.rotateAngleX = -this.rightwing.rotateAngleX * 0.5F;
 		
 	}
 }
