@@ -223,6 +223,7 @@ public class EntityRendering {
 		RenderingRegistry.registerEntityRenderingHandler(EntitySentryStalker.class, new RenderSizeable(new ModelSentryStalker(), 0, 0.65F, Textures.sentryStalker));
 		RenderingRegistry.registerEntityRenderingHandler(EntitySentryWalker.class, new RenderSizeable(new ModelSentryWalker(), 0, 0.65F, Textures.sentryWalker));
 		RenderingRegistry.registerEntityRenderingHandler(EntityFlameLotus.class, new RenderModMob(new ModelFlameLotus(), Textures.flameLotus));
+		RenderingRegistry.registerEntityRenderingHandler(EntityCloudFlower.class, new RenderModMob(new ModelFlameLotus(), Textures.cloudFlower));
 		
 		RenderingRegistry.registerEntityRenderingHandler(EntityObsidianBoat.class, new RenderModBoat(new ModelObsidianBoat(), 0.5F));
 		

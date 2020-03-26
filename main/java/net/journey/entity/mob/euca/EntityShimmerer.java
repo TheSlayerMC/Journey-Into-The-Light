@@ -82,13 +82,8 @@ public class EntityShimmerer extends EntityModFlying {
 
 	@Override
 	protected void dropFewItems(boolean b, int j) {
-		if(rand.nextInt(1) == 0) dropItem(JourneyItems.shimmerdust, 2);
-		super.dropFewItems(b, j);
-		if(rand.nextInt(1) == 0) dropItem(JourneyItems.shimmerdust, 4);
-		super.dropFewItems(b, j);
-		if(rand.nextInt(30) == 0) dropItem(JourneyItems.gateKeys, 2);
-		super.dropFewItems(b, j);
-		if(rand.nextInt(60) == 0) dropItem(JourneyItems.gateKeys, 4);
+		if(rand.nextInt(1) == 0) dropItem(JourneyItems.shimmerdust, rand.nextInt(4));
+		if(rand.nextInt(5) == 0) dropItem(JourneyItems.gateKeys, rand.nextInt(3));
 		super.dropFewItems(b, j);
 	}
 

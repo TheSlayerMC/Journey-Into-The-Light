@@ -34,7 +34,7 @@ public class EntityWitherspine extends EntityModMob {
 		boolean attacked = super.attackEntityAsMob(e);
 		if(attacked) {
 			if(e instanceof EntityLivingBase) 
-				((EntityLivingBase)e).addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.wither, 100, 2)));
+				((EntityLivingBase)e).addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.wither, 50, 2)));
 		}
 		return attacked;
 	}

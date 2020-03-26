@@ -140,19 +140,19 @@ public class ModelFlameLotus extends ModelBiped {
         this.pedaltop3.rotateAngleZ = MathHelper.cos(par3 * 0.11F) * (float)Math.PI * 0.01F;
         this.pedaltop4.rotateAngleZ = MathHelper.cos(par3 * 0.125F) * (float)Math.PI * 0.01F;
         
-        this.pedalmid1.rotateAngleX = MathHelper.cos(par3 * 0.0551F) * (float)Math.PI * 0.01F;
+        this.pedalmid1.rotateAngleZ = MathHelper.cos(par3 * 0.0551F) * (float)Math.PI * 0.01F;
         this.pedalmid2.rotateAngleZ = MathHelper.cos(par3 * 0.055F) * (float)Math.PI * 0.01F;
-        this.pedalmid3.rotateAngleX = MathHelper.cos(par3 * 0.054F) * (float)Math.PI * 0.01F;
+        this.pedalmid3.rotateAngleZ = MathHelper.cos(par3 * 0.054F) * (float)Math.PI * 0.01F;
         this.pedalmid4.rotateAngleZ = MathHelper.cos(par3 * 0.055F) * (float)Math.PI * 0.01F;
-        this.pedalmid5.rotateAngleX = MathHelper.cos(par3 * 0.056F) * (float)Math.PI * 0.01F;
+        this.pedalmid5.rotateAngleZ = MathHelper.cos(par3 * 0.056F) * (float)Math.PI * 0.01F;
         this.pedalmid6.rotateAngleZ = MathHelper.cos(par3 * 0.055F) * (float)Math.PI * 0.01F;
-        this.pedalmid7.rotateAngleX = MathHelper.cos(par3 * 0.0552F) * (float)Math.PI * 0.01F;
+        this.pedalmid7.rotateAngleZ = MathHelper.cos(par3 * 0.0552F) * (float)Math.PI * 0.01F;
         this.pedalmid8.rotateAngleZ = MathHelper.cos(par3 * 0.055F) * (float)Math.PI * 0.01F;
         
-        this.pedalbottom1.rotateAngleZ = MathHelper.cos(par3 * 0.05F) * (float)Math.PI * 0.01F;
-        this.pedalbottom2.rotateAngleZ = MathHelper.cos(par3 * 0.05F) * (float)Math.PI * 0.01F;
-        this.pedalbottom3.rotateAngleZ = MathHelper.cos(par3 * 0.0511F) * (float)Math.PI * 0.01F;
-        this.pedalbottom4.rotateAngleZ = MathHelper.cos(par3 * 0.0525F) * (float)Math.PI * 0.01F;
+        this.pedalbottom1.rotateAngleX = MathHelper.cos(par3 * 0.01F) * (float)Math.PI * 0.005F;
+        this.pedalbottom2.rotateAngleX = MathHelper.cos(par3 * 0.01F) * (float)Math.PI * 0.005F;
+        this.pedalbottom3.rotateAngleX = MathHelper.cos(par3 * 0.01F) * (float)Math.PI * 0.005F;
+        this.pedalbottom4.rotateAngleX = MathHelper.cos(par3 * 0.01F) * (float)Math.PI * 0.005F;
 		
 	}
 }

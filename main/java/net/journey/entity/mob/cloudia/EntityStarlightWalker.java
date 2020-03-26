@@ -44,7 +44,7 @@ public class EntityStarlightWalker extends EntityModMob {
 	
 	@Override
 	protected void dropFewItems(boolean b, int j) {
-		if(rand.nextInt(30) == 0) dropItem(JourneyItems.cloudiaOrb, 1);
+		if(rand.nextInt(25) == 0) dropItem(JourneyItems.cloudiaOrb, 1);
 		super.dropFewItems(b, j);
 		
 	}

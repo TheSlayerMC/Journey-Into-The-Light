@@ -63,15 +63,6 @@ public class EntityBurningLight extends EntityModMob{
         	if(entity instanceof EntityPlayer && canEntityBeSeen(entity)) ((EntityPlayer)entity).setFire(5 + rand.nextInt(7));
         }        
     }
-    
-	@Override
-	public boolean attackEntityFrom(DamageSource e, float a) {
-		if(e.getImmediateSource() instanceof EntityPlayer)
-			((EntityPlayer)e.getImmediateSource()).addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.moveSlow, 60, 5)));
-		if(e.getImmediateSource() instanceof EntityPlayer)
-			((EntityPlayer)e.getImmediateSource()).addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.blindness, 60, 5)));
-		return super.attackEntityFrom(e, a);
-	}
 	
 	@Override
 	public Item getItemDropped() {
@@ -87,10 +78,7 @@ public class EntityBurningLight extends EntityModMob{
 	protected void dropFewItems(boolean b, int j) {
 		Item it = getItemDropped();
 		this.dropItem(it, 1);
-		if(rand.nextInt(14) == 0) dropItem(JourneyItems.boilPowder, 2);
-		super.dropFewItems(b, j);
-	    if(rand.nextInt(20) == 0) dropItem(JourneyItems.boilPowder, 4);
-		super.dropFewItems(b, j); 
+		if(rand.nextInt(14) == 0) dropItem(JourneyItems.boilPowder, rand.nextInt(4));
 		if(rand.nextInt(40) == 0) dropItem(JourneyItems.blazingFireball, 1);
 		super.dropFewItems(b, j); 
 		

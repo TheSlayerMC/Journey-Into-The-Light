@@ -7,6 +7,7 @@ import net.journey.entity.MobStats;
 import net.journey.util.PotionEffects;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -46,19 +47,13 @@ public class EntityJungleGolem extends EntityModMob{
         }   
 
     }
-
-	@Override
-	public boolean attackEntityFrom(DamageSource e, float a) {
-		if(e.getImmediateSource() instanceof EntityPlayer)
-			((EntityPlayer)e.getImmediateSource()).addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.poison, 60, 1)));
-		return super.attackEntityFrom(e, a);
-	}
     
 	@Override
 	public boolean attackEntityAsMob(Entity e) {
 		boolean attacked = super.attackEntityAsMob(e);
 		if(attacked) {
 			e.addVelocity((double)(-MathHelper.sin(this.rotationYaw * (float)Math.PI / 180.0F)) * 4, 0.1D, (double)(MathHelper.cos(this.rotationYaw * (float)Math.PI / 180.0F)) * 4);
+			((EntityLivingBase)e).addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.poison, 50, 2)));
 		}
 		return attacked;
 	}

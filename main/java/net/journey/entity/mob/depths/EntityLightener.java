@@ -54,8 +54,8 @@ public class EntityLightener extends EntityModFlying {
 
 	@Override
 	protected void dropFewItems(boolean b, int j) {
-		if(rand.nextInt(1) == 0) dropItem(JourneyItems.depthsFlake, 2);
-		if(rand.nextInt(1) == 0) dropItem(JourneyItems.scale, 2);
+		if(rand.nextInt(1) == 0) dropItem(JourneyItems.depthsFlake, rand.nextInt(2));
+		if(rand.nextInt(1) == 0) dropItem(JourneyItems.scale, rand.nextInt(2));
 		super.dropFewItems(b, j);
 	}
 

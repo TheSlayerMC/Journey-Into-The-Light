@@ -116,6 +116,7 @@ public class MobStats {
 	public static double StarlightGolemHealth = 75.0D, StarlightGolemDamage = 17.0D;
 	public static double StarlightTransporterHealth = 75.0D, StarlightTransporterDamage = 18.0D;
 	public static double StarlightWalkerHealth = 75.0D, StarlightWalkerDamage = 17.0D;
+	public static double CLoudFlower = 75.0D, CloudFlowerDamage = 17.0D;
 	
 	//Misc
 	public static double EucaHopperHealth = 40.0D, EucaHopperDamage = 7.5D;

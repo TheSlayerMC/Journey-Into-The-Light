@@ -27,6 +27,7 @@ import net.journey.entity.mob.boiling.EntityBurningLight;
 import net.journey.entity.mob.boiling.EntityFrightener;
 import net.journey.entity.mob.boiling.EntityHellwing;
 import net.journey.entity.mob.boiling.EntityMagmaBlaze;
+import net.journey.entity.mob.cloudia.EntityCloudFlower;
 import net.journey.entity.mob.cloudia.EntitySkyEel;
 import net.journey.entity.mob.cloudia.EntityStarlightGolem;
 import net.journey.entity.mob.cloudia.EntityStarlightTransporter;
@@ -207,11 +208,12 @@ public class DimensionHelper {
 	}
 
 	private static void addCloudiaSpawns() {
-		int amount = 1000;
+		int amount = 500;
 		EntityRegistry.addSpawn(EntityStarlightTransporter.class, amount, 10, 20, EnumCreatureType.MONSTER, cloudia);
 		EntityRegistry.addSpawn(EntityStarlightGolem.class, amount, 10, 20, EnumCreatureType.MONSTER, cloudia);
 		EntityRegistry.addSpawn(EntityStarlightWalker.class, amount, 10, 20, EnumCreatureType.MONSTER, cloudia);
 		EntityRegistry.addSpawn(EntitySkyEel.class, amount, 10, 20, EnumCreatureType.MONSTER, cloudia);
+		EntityRegistry.addSpawn(EntityCloudFlower.class, amount, 10, 20, EnumCreatureType.MONSTER, cloudia);
 	}
 
 	private static void addCorbaSpawns() {

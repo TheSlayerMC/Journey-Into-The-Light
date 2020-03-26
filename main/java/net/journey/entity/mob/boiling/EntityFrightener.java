@@ -78,13 +78,8 @@ public class EntityFrightener extends EntityModMob{
 	protected void dropFewItems(boolean b, int j) {
 		Item it = getItemDropped();
 		this.dropItem(it, 1);
-		if(rand.nextInt(14) == 0) dropItem(JourneyItems.boilPowder, 2);
-		super.dropFewItems(b, j);
-	    if(rand.nextInt(20) == 0) dropItem(JourneyItems.boilPowder, 4);
-		super.dropFewItems(b, j); 
-		if(rand.nextInt(50) == 0) dropItem(JourneyItems.sizzlingEye, 2);
-		super.dropFewItems(b, j); 
-		if(rand.nextInt(65) == 0) dropItem(JourneyItems.sizzlingEye, 4);
+		if(rand.nextInt(14) == 0) dropItem(JourneyItems.boilPowder, rand.nextInt(3));
+		if(rand.nextInt(45) == 0) dropItem(JourneyItems.sizzlingEye, rand.nextInt(4));
 		super.dropFewItems(b, j); 
 		}
 

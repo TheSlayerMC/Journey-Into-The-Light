@@ -111,7 +111,7 @@ public class EntityDarkSorcerer extends EntityModMob implements IRangedAttackMob
 	
 	@Override
 	protected void dropFewItems(boolean b, int j) {
-		if(rand.nextInt(90) == 0) dropItem(JourneyItems.darkOrb, 1);
+		if(rand.nextInt(30) == 0) dropItem(JourneyItems.darkOrb, 1);
 		super.dropFewItems(b, j);
 	}
 

@@ -69,12 +69,9 @@ public class EntityLeafBlower extends EntityModMob{
 	protected void dropFewItems(boolean b, int j) {
 		Item it = getItemDropped();
 		this.dropItem(it, 1);
-		if(rand.nextInt(6) == 0) dropItem(JourneyItems.corbaStick, 2);
-		if(rand.nextInt(12) == 0) dropItem(JourneyItems.corbaStick, 4);
-		if(rand.nextInt(6) == 0) dropItem(JourneyItems.enchantedLeaf, 2);
-		if(rand.nextInt(12) == 0) dropItem(JourneyItems.enchantedLeaf, 4);
-		if(rand.nextInt(24) == 0) dropItem(JourneyItems.natureTablet, 1);
-		if(rand.nextInt(48) == 0) dropItem(JourneyItems.natureTablet, 4);
+		if(rand.nextInt(6) == 0) dropItem(JourneyItems.corbaStick, rand.nextInt(4));
+		if(rand.nextInt(6) == 0) dropItem(JourneyItems.enchantedLeaf, rand.nextInt(4));
+		if(rand.nextInt(24) == 0) dropItem(JourneyItems.natureTablet, rand.nextInt(4));
 			super.dropFewItems(b, j); 
 	}
 }

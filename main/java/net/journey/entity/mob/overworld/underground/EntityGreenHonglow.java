@@ -79,8 +79,7 @@ public class EntityGreenHonglow extends EntityModMob {
 
 	@Override
 	protected void dropFewItems(boolean b, int j) {
-		if(rand.nextInt(1) == 0) dropItem(JourneyConsumables.greenHonglowShroom, 1);
-		if(rand.nextInt(5) == 0) dropItem(JourneyConsumables.greenHonglowShroom, 2);
+		if(rand.nextInt(1) == 0) dropItem(JourneyConsumables.greenHonglowShroom, rand.nextInt(2));
 		super.dropFewItems(b, j);
 	}
 }

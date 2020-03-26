@@ -106,11 +106,7 @@ public class EntitySpectre extends EntityModMob {
 	
 	@Override
 	protected void dropFewItems(boolean b, int j) {
-		if(rand.nextInt(5) == 0) dropItem(JourneyItems.demonicDust, 1);
-		super.dropFewItems(b, j);
-		if(rand.nextInt(10) == 0) dropItem(JourneyItems.demonicDust, 2);
-		super.dropFewItems(b, j);
-		if(rand.nextInt(20) == 0) dropItem(JourneyItems.demonicDust, 5);
+		if(rand.nextInt(5) == 0) dropItem(JourneyItems.demonicDust, rand.nextInt(5));
 		super.dropFewItems(b, j);
 		
 	}

@@ -59,10 +59,8 @@ public class EntityTurducken extends EntityPeacefullUntillAttacked {
 
 	@Override
 	protected void dropFewItems(boolean b, int j) {
-		if(rand.nextInt(2) == 0) dropItem(JourneyItems.rocFeather, 4);
-		if(rand.nextInt(1) == 0) dropItem(JourneyItems.rocFeather, 2);
-		if(rand.nextInt(4) == 0) dropItem(JourneyConsumables.rocMeat, 1);
-		if(rand.nextInt(6) == 0) dropItem(JourneyConsumables.rocMeat, 2);
+		if(rand.nextInt(2) == 0) dropItem(JourneyItems.rocFeather, rand.nextInt(4));
+		if(rand.nextInt(3) == 0) dropItem(JourneyConsumables.rocMeat, rand.nextInt(2));
 		super.dropFewItems(b, j);
 	}
 

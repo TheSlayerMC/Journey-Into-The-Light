@@ -55,17 +55,15 @@ public class EntityStonewalker extends EntityModMob {
 
 	@Override
 	protected void dropFewItems(boolean b, int j) {
-		if(rand.nextInt(13) == 0) dropItem(JourneyItems.caveCrystal, 1);
+		if(rand.nextInt(10) == 0) dropItem(JourneyItems.caveCrystal, 1);
 		super.dropFewItems(b, j);
-		if(rand.nextInt(2) == 0) dropItem(JourneyItems.caveDust, 1);
+		if(rand.nextInt(1) == 0) dropItem(JourneyItems.caveDust, rand.nextInt(3));
 		super.dropFewItems(b, j);
-		if(rand.nextInt(4) == 0) dropItem(JourneyItems.caveDust, 3);
+		if(rand.nextInt(10) == 0) dropItem(JourneyItems.sapphire, rand.nextInt(4));
 		super.dropFewItems(b, j);
-		if(rand.nextInt(15) == 0) dropItem(JourneyItems.sapphire, 4);
+		if(rand.nextInt(15) == 0) dropItem(JourneyItems.shadiumIngot, rand.nextInt(4));
 		super.dropFewItems(b, j);
-		if(rand.nextInt(12) == 0) dropItem(JourneyItems.shadiumIngot, 4);
-		super.dropFewItems(b, j);
-		if(rand.nextInt(12) == 0) dropItem(JourneyItems.luniumIngot, 4);
+		if(rand.nextInt(15) == 0) dropItem(JourneyItems.luniumIngot, rand.nextInt(4));
 		super.dropFewItems(b, j);
 	}
 	@Override

@@ -134,13 +134,6 @@ public class EntityInfernoBlaze extends EntityModMob {
 				world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.RED_NETHER_BRICK || 
 				world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.NETHER_WART;
 	} */
-
-	@Override
-	public boolean attackEntityFrom(DamageSource e, float a) {
-		if(e.getImmediateSource() instanceof EntityPlayer)
-			((EntityPlayer)e.getImmediateSource()).setFire(5);
-		return super.attackEntityFrom(e, a);
-	}
 	
 	@Override
 	public boolean attackEntityAsMob(Entity e) {

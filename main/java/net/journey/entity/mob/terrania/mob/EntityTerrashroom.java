@@ -44,8 +44,7 @@ public class EntityTerrashroom extends EntityModMob {
 
 	@Override
 	protected void dropFewItems(boolean b, int j) {
-		if(rand.nextInt(1) == 0) dropItem(JourneyConsumables.terrashroom, 1);
-		if(rand.nextInt(5) == 0) dropItem(JourneyConsumables.terrashroom, 2);
+		if(rand.nextInt(1) == 0) dropItem(JourneyConsumables.terrashroom, rand.nextInt(2));
 		super.dropFewItems(b, j);
 	}
 

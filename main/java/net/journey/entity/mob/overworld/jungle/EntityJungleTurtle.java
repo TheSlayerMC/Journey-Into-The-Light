@@ -33,7 +33,6 @@ public class EntityJungleTurtle extends EntityModMob {
 		if(attacked) {
 			if(e instanceof EntityLivingBase) 
 				((EntityLivingBase)e).addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.moveSlow, 100, 2)));
-			if(e instanceof EntityLivingBase) 
 				((EntityLivingBase)e).addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.poison, 100, 2)));
 			e.addVelocity((double)(-MathHelper.sin(this.rotationYaw * (float)Math.PI / 180.0F)) * 2, 0.1D, (double)(MathHelper.cos(this.rotationYaw * (float)Math.PI / 180.0F)) * 2);
 		}

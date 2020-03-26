@@ -48,8 +48,7 @@ public class EntityTerraslug extends EntityModMob {
 	
 	@Override
 	protected void dropFewItems(boolean b, int j) {
-		if(rand.nextInt(1) == 0) dropItem(JourneyItems.slugSlime, 1);
-		if(rand.nextInt(3) == 0) dropItem(JourneyItems.slugSlime, 2);
+		if(rand.nextInt(1) == 0) dropItem(JourneyItems.slugSlime, rand.nextInt(3));
 		
 	}
 }

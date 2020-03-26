@@ -66,13 +66,8 @@ public class EntityWoodCreature extends EntityModMob{
 	
 	@Override
 	protected void dropFewItems(boolean b, int j) {
-		if(rand.nextInt(1) == 0) dropItem(JourneyItems.enchantedLeaf, 2);
-		super.dropFewItems(b, j);
-		if(rand.nextInt(5) == 0) dropItem(JourneyItems.enchantedLeaf, 4);
-		super.dropFewItems(b, j);
-		if(rand.nextInt(5) == 0) dropItem(JourneyItems.corbaStick, 1);
-		super.dropFewItems(b, j);
-		if(rand.nextInt(10) == 0) dropItem(JourneyItems.corbaStick, 2);
+		if(rand.nextInt(1) == 0) dropItem(JourneyItems.enchantedLeaf, rand.nextInt(4));
+		if(rand.nextInt(5) == 0) dropItem(JourneyItems.corbaStick, rand.nextInt(2));
 		super.dropFewItems(b, j);
 	}
 }

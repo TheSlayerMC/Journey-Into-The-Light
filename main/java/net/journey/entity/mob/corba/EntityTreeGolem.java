@@ -84,12 +84,9 @@ public class EntityTreeGolem extends EntityModMob{
 	
 	@Override
 	protected void dropFewItems(boolean b, int j) {
-		if(rand.nextInt(1) == 0) dropItem(JourneyItems.corbaStick, 2);
-		if(rand.nextInt(10) == 0) dropItem(JourneyItems.corbaStick, 3);
-		if(rand.nextInt(5) == 0) dropItem(JourneyItems.enchantedLeaf, 1);
-		if(rand.nextInt(10) == 0) dropItem(JourneyItems.enchantedLeaf, 2);
-		if(rand.nextInt(15) == 0) dropItem(JourneyItems.natureTablet, 1);
-		if(rand.nextInt(30) == 0) dropItem(JourneyItems.natureTablet, 2);
+		if(rand.nextInt(1) == 0) dropItem(JourneyItems.corbaStick, rand.nextInt(3));
+		if(rand.nextInt(5) == 0) dropItem(JourneyItems.enchantedLeaf, rand.nextInt(3));
+		if(rand.nextInt(10) == 0) dropItem(JourneyItems.natureTablet, rand.nextInt(2));
 		super.dropFewItems(b, j);
 	
 	}

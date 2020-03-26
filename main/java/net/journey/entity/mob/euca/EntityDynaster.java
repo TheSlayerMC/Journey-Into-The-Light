@@ -4,6 +4,8 @@ import net.journey.JourneyItems;
 import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
 import net.journey.util.PotionEffects;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.potion.PotionEffect;
@@ -47,19 +49,20 @@ public class EntityDynaster extends EntityModMob{
 	}
 	
 	@Override
-	public boolean attackEntityFrom(DamageSource e, float a) {
-		if(e.getImmediateSource() instanceof EntityPlayer)
-			((EntityPlayer)e.getImmediateSource()).addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.blindness, 60, 10)));
-		if(e.getImmediateSource() instanceof EntityPlayer)
-			((EntityPlayer)e.getImmediateSource()).addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.moveSlow, 60, 10)));
-		return super.attackEntityFrom(e, a);
+	public boolean attackEntityAsMob(Entity e) {
+		boolean attacked = super.attackEntityAsMob(e);
+		if(attacked) {
+			if(e instanceof EntityLivingBase) 
+				((EntityLivingBase)e).addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.moveSlow, 50, 2)));
+			((EntityLivingBase)e).addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.blindness, 50, 2)));
+		}
+		return attacked;
 	}
 	
 	@Override
 	protected void dropFewItems(boolean b, int j) {
-		if(rand.nextInt(54) == 0) dropItem(JourneyItems.royalDisk, 1);
-		if(rand.nextInt(5) == 0) dropItem(JourneyItems.shimmerdust, 2);
-		if(rand.nextInt(10) == 0) dropItem(JourneyItems.shimmerdust, 4);
+		if(rand.nextInt(45) == 0) dropItem(JourneyItems.royalDisk, rand.nextInt(2));
+		if(rand.nextInt(5) == 0) dropItem(JourneyItems.shimmerdust, rand.nextInt(3));
 		super.dropFewItems(b, j);
 	}
 

@@ -84,8 +84,8 @@ public class EntityCrystalCluster extends EntityModFlying {
 
 	@Override
 	protected void dropFewItems(boolean b, int j) {
-		if(rand.nextInt(1) == 0) dropItem(JourneyItems.crystalFlake, 2);
-		if(rand.nextInt(1) == 0) dropItem(JourneyItems.crystalFlake, 4);
+		if(rand.nextInt(1) == 0) dropItem(JourneyItems.crystalFlake, rand.nextInt(2));
+		if(rand.nextInt(1) == 0) dropItem(JourneyItems.crystalFlake, rand.nextInt(4));
 		super.dropFewItems(b, j);
 	}
 

@@ -49,11 +49,8 @@ public class EntityEucaCharger extends EntityModMob {
 	
 	@Override
 	protected void dropFewItems(boolean b, int j) {
-		if(rand.nextInt(54) == 0) dropItem(JourneyItems.gateKeys, 2);
-		super.dropFewItems(b, j);
-		if(rand.nextInt(5) == 0) dropItem(JourneyItems.shimmerdust, 2);
-		super.dropFewItems(b, j);
-		if(rand.nextInt(10) == 0) dropItem(JourneyItems.shimmerdust, 4);
+		if(rand.nextInt(2) == 0) dropItem(JourneyItems.gateKeys, rand.nextInt(4));
+		if(rand.nextInt(5) == 0) dropItem(JourneyItems.shimmerdust, rand.nextInt(5));
 		super.dropFewItems(b, j);
 	}
 

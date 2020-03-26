@@ -43,13 +43,9 @@ public class EntitySilverbot extends EntityModMob {
 	
 	@Override
 	protected void dropFewItems(boolean b, int j) {
-		if(rand.nextInt(32) == 0) dropItem(JourneyItems.silverClump, 1);
-		super.dropFewItems(b, j);
-		if(rand.nextInt(37) == 0) dropItem(JourneyItems.silverClump, 4);
-		super.dropFewItems(b, j);
-		if(rand.nextInt(60) == 0) dropItem(JourneyItems.gateKeys, 4);
-		super.dropFewItems(b, j);
-		if(rand.nextInt(60) == 0) dropItem(JourneyItems.metalDisk, 1);
+		if(rand.nextInt(15) == 0) dropItem(JourneyItems.silverClump, rand.nextInt(4));
+		if(rand.nextInt(25) == 0) dropItem(JourneyItems.gateKeys, rand.nextInt(4));
+		if(rand.nextInt(25) == 0) dropItem(JourneyItems.metalDisk, rand.nextInt(1));
 		super.dropFewItems(b, j);
 	}
 

@@ -52,26 +52,14 @@ public class EntityGolder extends EntityModMob{
 	}
 	
 	@Override
-	public boolean attackEntityFrom(DamageSource e, float a) {
-		if(e.getImmediateSource() instanceof EntityPlayer)
-			((EntityPlayer)e.getImmediateSource()).addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.poison, 60, 1)));
-		return super.attackEntityFrom(e, a);
-	}
-	
-	@Override
 	public Item getItemDropped() {
 		return null;
 	}
 	
 	@Override
 	protected void dropFewItems(boolean b, int j) {
-		if(rand.nextInt(5) == 0) dropItem(JourneyItems.golderDust, 2);
-		super.dropFewItems(b, j);
-		if(rand.nextInt(10) == 0) dropItem(JourneyItems.golderDust, 4);
-		super.dropFewItems(b, j);
-		if(rand.nextInt(10) == 0) dropItem(JourneyItems.goldClump, 1);
-		super.dropFewItems(b, j);
-		if(rand.nextInt(10) == 0) dropItem(JourneyItems.goldClump, 3);
+		if(rand.nextInt(5) == 0) dropItem(JourneyItems.golderDust, rand.nextInt(3));
+		if(rand.nextInt(35) == 0) dropItem(JourneyItems.silverClump, rand.nextInt(3));
 		super.dropFewItems(b, j);
 	}
 }

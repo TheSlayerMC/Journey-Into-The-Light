@@ -44,8 +44,7 @@ public class EntityTerragrow extends EntityModMob {
 	@Override
 	protected void dropFewItems(boolean b, int j) {
 		if(rand.nextInt(15) == 0) dropItem(JourneyItems.earthenCrystal, 1);
-		if(rand.nextInt(4) == 0) dropItem(JourneyItems.darkTerrarianSoil, 4);
-		if(rand.nextInt(2) == 0) dropItem(JourneyItems.darkTerrarianSoil, 2);
+		if(rand.nextInt(4) == 0) dropItem(JourneyItems.darkTerrarianSoil, rand.nextInt(4));
 		super.dropFewItems(b, j);
 	}
 

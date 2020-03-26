@@ -51,10 +51,8 @@ public class EntityStarlightGolem extends EntityModMob {
 	
 	@Override
 	protected void dropFewItems(boolean b, int j) {
-		if(rand.nextInt(1) == 0) dropItem(JourneyItems.golemChunk, 1);
-		if(rand.nextInt(2) == 0) dropItem(JourneyItems.golemChunk, 2);
-		if(rand.nextInt(4) == 0) dropItem(JourneyItems.golemChunk, 4);
-		if(rand.nextInt(40) == 0) dropItem(JourneyItems.cloudiaOrb, 1);
+		if(rand.nextInt(1) == 0) dropItem(JourneyItems.golemChunk, rand.nextInt(4));
+		if(rand.nextInt(25) == 0) dropItem(JourneyItems.cloudiaOrb, 1);
 		super.dropFewItems(b, j);
 		
 	}

@@ -55,8 +55,7 @@ public class EntityOverseer extends EntityModFlying {
 	@Override
 	protected void dropFewItems(boolean b, int j) {
 		if(rand.nextInt(1) == 0) dropItem(JourneyItems.overseeingEye, 1);
-		if(rand.nextInt(1) == 0) dropItem(JourneyItems.collectorRock, 2);
-		if(rand.nextInt(5) == 0) dropItem(JourneyItems.collectorRock, 4);
+		if(rand.nextInt(1) == 0) dropItem(JourneyItems.collectorRock, rand.nextInt(4));
 		super.dropFewItems(b, j);
 	}
 
