@@ -189,7 +189,7 @@ public class EntityRegistry {
 				SlayerAPI.buildEntityEntry(EntityStarlightTransporter.class, "starlighttransporter", "Starlight Transporter", 0xa87abd, 0x9000ff),
 				SlayerAPI.buildEntityEntry(EntityStarlightWalker.class, "starlightwalker", "Starlight Walker", 0xa87abd, 0x9000ff),
 				SlayerAPI.buildEntityEntry(EntitySkyEel.class, "skyeel", "Sky Eel", 0xa87abd, 0x9000ff),
-				SlayerAPI.buildEntityEntry(EntityCloudFlower.class, "cloudflower", "Cloud Flower", 0xff7800, 0x9000ff),
+				SlayerAPI.buildEntityEntry(EntityCloudFlower.class, "cloudflower", "Cloud Flower", 0xa87abd, 0x9000ff),
 				//NPC
 				SlayerAPI.buildEntityEntry(EntityStarlightVillager.class, "starlightvillager", "Starlight Villager", 0x00FF8C, 0x00F6FF),
 				SlayerAPI.buildEntityEntry(EntityStarlightBlacksmith.class, "starlightblacksmith", "Starlight Blacksmith", 0x00FF8C, 0x00F6FF),
