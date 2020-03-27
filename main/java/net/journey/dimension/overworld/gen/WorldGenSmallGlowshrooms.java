@@ -21,7 +21,7 @@ public class WorldGenSmallGlowshrooms extends WorldGenerator {
 		}
 		for(int i = 0; i < 50; i++) {
 			if(w.getBlockState(pos.down()).getBlock() == Blocks.STONE && w.getBlockState(pos) == Blocks.AIR.getDefaultState() && pos.getY() < 60) {
-				w.setBlockState(pos, top.getDefaultState(), 2);
+				this.setBlockAndNotifyAdequately(w, pos, top.getDefaultState());
 			}
 		}
 		return true;

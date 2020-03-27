@@ -73,27 +73,27 @@ public class WorldGenTowerDungeon extends WorldGenerator {
 		WorldGenAPI.addRectangle(4, 2, 1, w, x + 2, y + height + 8, z + 1, Blocks.AIR);
 
 		for(int i = 0; i < 4; i++) {
-			w.setBlockState(new BlockPos(x + 5 - i, y + i + height + 5, z + 1), JourneyBlocks.dungeonBrickStairs.getStateFromMeta(1), 2);
-			w.setBlockState(new BlockPos(x + 5 - i, y + i + height + 5, z + 2), JourneyBlocks.dungeonBrickStairs.getStateFromMeta(1), 2);
+			this.setBlockAndNotifyAdequately(w, new BlockPos(x + 5 - i, y + i + height + 5, z + 1), JourneyBlocks.dungeonBrickStairs.getStateFromMeta(1));
+			this.setBlockAndNotifyAdequately(w, new BlockPos(x + 5 - i, y + i + height + 5, z + 2), JourneyBlocks.dungeonBrickStairs.getStateFromMeta(1));
 		}
 		
-		w.setBlockState(new BlockPos(x + 13, y + height + 9, z + 1), JourneyBlocks.dungeonLamp.getDefaultState());
-		w.setBlockState(new BlockPos(x + 1, y + height + 9, z + 8), JourneyBlocks.dungeonLamp.getDefaultState());
-		w.setBlockState(new BlockPos(x + 13, y + height + 9, z + 8), JourneyBlocks.dungeonLamp.getDefaultState());
+		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 13, y + height + 9, z + 1), JourneyBlocks.dungeonLamp.getDefaultState());
+		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 1, y + height + 9, z + 8), JourneyBlocks.dungeonLamp.getDefaultState());
+		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 13, y + height + 9, z + 8), JourneyBlocks.dungeonLamp.getDefaultState());
 
-		w.setBlockState(new BlockPos(x + 13, y + height + 10, z + 1), JourneyBlocks.blueGems.getDefaultState());
-		w.setBlockState(new BlockPos(x + 1, y + height + 10, z + 8), JourneyBlocks.blueGems.getDefaultState());
-		w.setBlockState(new BlockPos(x + 13, y + height + 10, z + 8), JourneyBlocks.blueGems.getDefaultState());
+		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 13, y + height + 10, z + 1), JourneyBlocks.blueGems.getDefaultState());
+		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 1, y + height + 10, z + 8), JourneyBlocks.blueGems.getDefaultState());
+		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 13, y + height + 10, z + 8), JourneyBlocks.blueGems.getDefaultState());
 		
-		w.setBlockState(new BlockPos(x + 12, y + height + 9, z + 8), JourneyBlocks.dungeonLampStairs.getStateFromMeta(0), 2);
-		w.setBlockState(new BlockPos(x + 12, y + height + 9, z + 7), JourneyBlocks.dungeonLampStairs.getStateFromMeta(0), 2);
-		w.setBlockState(new BlockPos(x + 13, y + height + 9, z + 7), JourneyBlocks.dungeonLampStairs.getStateFromMeta(2), 2);
-		w.setBlockState(new BlockPos(x + 12, y + height + 9, z + 2), JourneyBlocks.dungeonLampStairs.getStateFromMeta(0), 2);
-		w.setBlockState(new BlockPos(x + 12, y + height + 9, z + 1), JourneyBlocks.dungeonLampStairs.getStateFromMeta(0), 2);
-		w.setBlockState(new BlockPos(x + 13, y + height + 9, z + 2), JourneyBlocks.dungeonLampStairs.getStateFromMeta(3), 2);
-		w.setBlockState(new BlockPos(x + 2, y + height + 9, z + 7), JourneyBlocks.dungeonLampStairs.getStateFromMeta(2), 2);
-		w.setBlockState(new BlockPos(x + 1, y + height + 9, z + 7), JourneyBlocks.dungeonLampStairs.getStateFromMeta(2), 2);
-		w.setBlockState(new BlockPos(x + 2, y + height + 9, z + 8), JourneyBlocks.dungeonLampStairs.getStateFromMeta(1), 2);
+		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 12, y + height + 9, z + 8), JourneyBlocks.dungeonLampStairs.getStateFromMeta(0));
+		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 12, y + height + 9, z + 7), JourneyBlocks.dungeonLampStairs.getStateFromMeta(0));
+		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 13, y + height + 9, z + 7), JourneyBlocks.dungeonLampStairs.getStateFromMeta(2));
+		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 12, y + height + 9, z + 2), JourneyBlocks.dungeonLampStairs.getStateFromMeta(0));
+		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 12, y + height + 9, z + 1), JourneyBlocks.dungeonLampStairs.getStateFromMeta(0));
+		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 13, y + height + 9, z + 2), JourneyBlocks.dungeonLampStairs.getStateFromMeta(3));
+		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 2, y + height + 9, z + 7), JourneyBlocks.dungeonLampStairs.getStateFromMeta(2));
+		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 1, y + height + 9, z + 7), JourneyBlocks.dungeonLampStairs.getStateFromMeta(2));
+		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 2, y + height + 9, z + 8), JourneyBlocks.dungeonLampStairs.getStateFromMeta(1));
 		
 		addDifferentBlocks(w, x, y, z);
 		
@@ -111,7 +111,7 @@ public class WorldGenTowerDungeon extends WorldGenerator {
 			for(int y1 = 0; y1 < 200; y1++) {
 				for(int z1 = 0; z1 < 15; z1++) {
 					if(w.getBlockState(new BlockPos(x + x1, y + y1, z + z1)) == JourneyBlocks.dungeonBrick.getDefaultState() && r.nextInt(15) == 0) {
-						w.setBlockState(new BlockPos(x + x1, y + y1, z + z1), JourneyBlocks.dungeonChisledBrick.getDefaultState());
+						this.setBlockAndNotifyAdequately(w, new BlockPos(x + x1, y + y1, z + z1), JourneyBlocks.dungeonChisledBrick.getDefaultState());
 						break;
 					}
 				}
@@ -122,7 +122,7 @@ public class WorldGenTowerDungeon extends WorldGenerator {
 			for(int y1 = 0; y1 < 200; y1++) {
 				for(int z1 = 0; z1 < 15; z1++) {
 					if(w.getBlockState(new BlockPos(x + x1, y + y1, z + z1)) == JourneyBlocks.dungeonBrick.getDefaultState() && r.nextInt(10) == 0) {
-						w.setBlockState(new BlockPos(x + x1, y + y1, z + z1), JourneyBlocks.dungeonBrickCarved.getDefaultState());
+						this.setBlockAndNotifyAdequately(w, new BlockPos(x + x1, y + y1, z + z1), JourneyBlocks.dungeonBrickCarved.getDefaultState());
 						break;
 					}
 				}
@@ -133,7 +133,7 @@ public class WorldGenTowerDungeon extends WorldGenerator {
 			for(int y1 = 0; y1 < 200; y1++) {
 				for(int z1 = 0; z1 < 15; z1++) {
 					if(w.getBlockState(new BlockPos(x + x1, y + y1, z + z1)) == JourneyBlocks.dungeonBrick.getDefaultState() && r.nextInt(10) == 0) {
-						w.setBlockState(new BlockPos(x + x1, y + y1, z + z1), JourneyBlocks.dungeonCrackedBrick.getDefaultState());
+						this.setBlockAndNotifyAdequately(w, new BlockPos(x + x1, y + y1, z + z1), JourneyBlocks.dungeonCrackedBrick.getDefaultState());
 						break;
 					}
 				}
@@ -144,7 +144,7 @@ public class WorldGenTowerDungeon extends WorldGenerator {
 			for(int j = 0; j < 200; j++) {
 				for(int k = 0; k < 50; k++) {
 					if(w.getBlockState(new BlockPos(i, j, k)) == JourneyBlocks.dungeonBrick.getDefaultState()) {
-						if(r.nextInt(10) == 0) w.setBlockState(new BlockPos(i, j, k), JourneyBlocks.dungeonCrackedBrick.getDefaultState());
+						if(r.nextInt(10) == 0) this.setBlockAndNotifyAdequately(w, new BlockPos(i, j, k), JourneyBlocks.dungeonCrackedBrick.getDefaultState());
 					}
 				}
 			}
@@ -166,10 +166,10 @@ public class WorldGenTowerDungeon extends WorldGenerator {
 		WorldGenAPI.addBlock(w, x + 1, y + height - 5, z + 8, JourneyBlocks.dungeonLamp);
 		WorldGenAPI.addBlock(w, x + 13, y + height - 5, z + 8, JourneyBlocks.dungeonLamp);
 		
-		w.setBlockState(new BlockPos(x + 11, y + height - 3, z + 2), Blocks.MOB_SPAWNER.getDefaultState());
-		w.setBlockState(new BlockPos(x + 11, y + height - 3, z + 7), Blocks.MOB_SPAWNER.getDefaultState());
-		w.setBlockState(new BlockPos(x + 11, y + height + 1, z + 2), Blocks.MOB_SPAWNER.getDefaultState());
-		w.setBlockState(new BlockPos(x + 11, y + height + 1, z + 7), Blocks.MOB_SPAWNER.getDefaultState());
+		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 11, y + height - 3, z + 2), Blocks.MOB_SPAWNER.getDefaultState());
+		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 11, y + height - 3, z + 7), Blocks.MOB_SPAWNER.getDefaultState());
+		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 11, y + height + 1, z + 2), Blocks.MOB_SPAWNER.getDefaultState());
+		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 11, y + height + 1, z + 7), Blocks.MOB_SPAWNER.getDefaultState());
 		
 		TileEntityMobSpawner spawner1 = (TileEntityMobSpawner)w.getTileEntity(new BlockPos(x + 11, y + height - 3, z + 2));
 		TileEntityMobSpawner spawner2 = (TileEntityMobSpawner)w.getTileEntity(new BlockPos(x + 11, y + height - 3, z + 7));
@@ -187,21 +187,21 @@ public class WorldGenTowerDungeon extends WorldGenerator {
 		
 		for(int i = 0; i < 4; i++) {
 			if(lor == 0) {
-				w.setBlockState(new BlockPos(x + 5 - i, y + i + 1 + height, z + 1), JourneyBlocks.dungeonBrickStairs.getStateFromMeta(1), 2);
-				w.setBlockState(new BlockPos(x + 5 - i, y + i + 1 + height, z + 2), JourneyBlocks.dungeonBrickStairs.getStateFromMeta(1), 2);
+				this.setBlockAndNotifyAdequately(w, new BlockPos(x + 5 - i, y + i + 1 + height, z + 1), JourneyBlocks.dungeonBrickStairs.getStateFromMeta(1));
+				this.setBlockAndNotifyAdequately(w, new BlockPos(x + 5 - i, y + i + 1 + height, z + 2), JourneyBlocks.dungeonBrickStairs.getStateFromMeta(1));
 			} else {
-				w.setBlockState(new BlockPos(x + 5 - i, y + i + 1 + height - 4, z + 7), JourneyBlocks.dungeonBrickStairs.getStateFromMeta(1), 2);
-				w.setBlockState(new BlockPos(x + 5 - i, y + i + 1 + height - 4, z + 8), JourneyBlocks.dungeonBrickStairs.getStateFromMeta(1), 2);
+				this.setBlockAndNotifyAdequately(w, new BlockPos(x + 5 - i, y + i + 1 + height - 4, z + 7), JourneyBlocks.dungeonBrickStairs.getStateFromMeta(1));
+				this.setBlockAndNotifyAdequately(w, new BlockPos(x + 5 - i, y + i + 1 + height - 4, z + 8), JourneyBlocks.dungeonBrickStairs.getStateFromMeta(1));
 			}
 		}
-		w.setBlockState(new BlockPos(x + 2, y + 1 + height - 1, z + 7), JourneyBlocks.dungeonBrickStairs.getStateFromMeta(1), 2);
-		w.setBlockState(new BlockPos(x + 2, y + 1 + height - 1, z + 8), JourneyBlocks.dungeonBrickStairs.getStateFromMeta(1), 2);
+		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 2, y + 1 + height - 1, z + 7), JourneyBlocks.dungeonBrickStairs.getStateFromMeta(1));
+		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 2, y + 1 + height - 1, z + 8), JourneyBlocks.dungeonBrickStairs.getStateFromMeta(1));
 		
 		for(int x1 = 0; x1 < 15; x1++) {
 			for(int y1 = 0; y1 < 200; y1++) {
 				for(int z1 = 0; z1 < 15; z1++) {
 					if(w.getBlockState(new BlockPos(x + x1, y + y1, z + z1)) == JourneyBlocks.dungeonBrickStairs.getDefaultState() && r.nextInt(15) == 0) {
-						w.setBlockState(new BlockPos(x + x1, y + y1, z + z1), JourneyBlocks.dungeonChisledBrickStairs.getStateFromMeta(1), 2);
+						this.setBlockAndNotifyAdequately(w, new BlockPos(x + x1, y + y1, z + z1), JourneyBlocks.dungeonChisledBrickStairs.getStateFromMeta(1));
 						break;
 					}
 				}
@@ -212,7 +212,7 @@ public class WorldGenTowerDungeon extends WorldGenerator {
 			for(int y1 = 0; y1 < 200; y1++) {
 				for(int z1 = 0; z1 < 15; z1++) {
 					if(w.getBlockState(new BlockPos(x + x1, y + y1, z + z1)) == JourneyBlocks.dungeonBrickStairs.getDefaultState() && r.nextInt(10) == 0) {
-						w.setBlockState(new BlockPos(x + x1, y + y1, z + z1), JourneyBlocks.dungeonBrickCarvedStairs.getStateFromMeta(1), 2);
+						this.setBlockAndNotifyAdequately(w, new BlockPos(x + x1, y + y1, z + z1), JourneyBlocks.dungeonBrickCarvedStairs.getStateFromMeta(1));
 						break;
 					}
 				}
@@ -223,7 +223,7 @@ public class WorldGenTowerDungeon extends WorldGenerator {
 			for(int y1 = 0; y1 < 200; y1++) {
 				for(int z1 = 0; z1 < 15; z1++) {
 					if(w.getBlockState(new BlockPos(x + x1, y + y1, z + z1)) == JourneyBlocks.dungeonBrickStairs.getDefaultState() && r.nextInt(10) == 0) {
-						w.setBlockState(new BlockPos(x + x1, y + y1, z + z1), JourneyBlocks.dungeonCrackedBrickStairs.getStateFromMeta(1), 2);
+						this.setBlockAndNotifyAdequately(w, new BlockPos(x + x1, y + y1, z + z1), JourneyBlocks.dungeonCrackedBrickStairs.getStateFromMeta(1));
 						break;
 					}
 				}
@@ -234,7 +234,7 @@ public class WorldGenTowerDungeon extends WorldGenerator {
 			for(int j = 0; j < 200; j++) {
 				for(int k = 0; k < 50; k++) {
 					if(w.getBlockState(new BlockPos(i, j, k)) == JourneyBlocks.dungeonBrickStairs.getDefaultState()) {
-						if(r.nextInt(10) == 0) w.setBlockState(new BlockPos(i, j, k), JourneyBlocks.dungeonCrackedBrickStairs.getStateFromMeta(1), 2);
+						if(r.nextInt(10) == 0) this.setBlockAndNotifyAdequately(w, new BlockPos(i, j, k), JourneyBlocks.dungeonCrackedBrickStairs.getStateFromMeta(1));
 					}
 				}
 			}

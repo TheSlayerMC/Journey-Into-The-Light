@@ -15,7 +15,7 @@ public class WorldGenBoilingFire extends WorldGenerator {
         for (int i = 0; i < 100; i++) {
             BlockPos pos1 = new BlockPos(p.getX() + r.nextInt(8) - r.nextInt(8), p.getY() + r.nextInt(4) - r.nextInt(4), p.getZ() + r.nextInt(8) - r.nextInt(8));
             if (w.isAirBlock(pos1) && !w.isAirBlock(pos1.down())) {
-                w.setBlockState(pos1, Blocks.FIRE.getDefaultState(), 2);
+            	this.setBlockAndNotifyAdequately(w, pos1, Blocks.FIRE.getDefaultState());
                 return true;
             }
         }

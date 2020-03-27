@@ -21,24 +21,24 @@ public class WorldGenEucaTree5 extends WorldGenerator {
 		int height = r.nextInt(3);
 		WorldGenAPI.addRectangle(1, 1, 4 + height, world, i, j + 1, k, log);
 		j = j + height;
-		world.setBlockState(new BlockPos(i, j + 2, k - 2), leaves.getDefaultState());
-		world.setBlockState(new BlockPos(i - 1, j + 2, k - 1), leaves.getDefaultState());
-		world.setBlockState(new BlockPos(i - 1, j + 2, k), leaves.getDefaultState());
-		world.setBlockState(new BlockPos(i - 1, j + 2, k + 1), leaves.getDefaultState());
-		world.setBlockState(new BlockPos(i - 1, j + 4, k), leaves.getDefaultState());
+		this.setBlockAndNotifyAdequately(world, new BlockPos(i, j + 2, k - 2), leaves.getDefaultState());
+		this.setBlockAndNotifyAdequately(world, new BlockPos(i - 1, j + 2, k - 1), leaves.getDefaultState());
+		this.setBlockAndNotifyAdequately(world, new BlockPos(i - 1, j + 2, k), leaves.getDefaultState());
+		this.setBlockAndNotifyAdequately(world, new BlockPos(i - 1, j + 2, k + 1), leaves.getDefaultState());
+		this.setBlockAndNotifyAdequately(world, new BlockPos(i - 1, j + 4, k), leaves.getDefaultState());
 		
-		world.setBlockState(new BlockPos(i - 2, j + 2, k), leaves.getDefaultState());
-		world.setBlockState(new BlockPos(i, j + 2, k - 1), leaves.getDefaultState());
-		world.setBlockState(new BlockPos(i, j + 2, k + 1), leaves.getDefaultState());
-		world.setBlockState(new BlockPos(i, j + 2, k + 2), leaves.getDefaultState());
-		world.setBlockState(new BlockPos(i, j + 4, k - 1), leaves.getDefaultState());
-		world.setBlockState(new BlockPos(i, j + 4, k + 1), leaves.getDefaultState());
-		world.setBlockState(new BlockPos(i, j + 5, k), leaves.getDefaultState());
-		world.setBlockState(new BlockPos(i + 1, j + 2, k - 1), leaves.getDefaultState());
-		world.setBlockState(new BlockPos(i + 1, j + 2, k), leaves.getDefaultState());
-		world.setBlockState(new BlockPos(i + 1, j + 2, k + 1), leaves.getDefaultState());
-		world.setBlockState(new BlockPos(i + 1, j + 4, k), leaves.getDefaultState());
-		world.setBlockState(new BlockPos(i + 2, j + 2, k), leaves.getDefaultState());
+		this.setBlockAndNotifyAdequately(world, new BlockPos(i - 2, j + 2, k), leaves.getDefaultState());
+		this.setBlockAndNotifyAdequately(world, new BlockPos(i, j + 2, k - 1), leaves.getDefaultState());
+		this.setBlockAndNotifyAdequately(world, new BlockPos(i, j + 2, k + 1), leaves.getDefaultState());
+		this.setBlockAndNotifyAdequately(world, new BlockPos(i, j + 2, k + 2), leaves.getDefaultState());
+		this.setBlockAndNotifyAdequately(world, new BlockPos(i, j + 4, k - 1), leaves.getDefaultState());
+		this.setBlockAndNotifyAdequately(world, new BlockPos(i, j + 4, k + 1), leaves.getDefaultState());
+		this.setBlockAndNotifyAdequately(world, new BlockPos(i, j + 5, k), leaves.getDefaultState());
+		this.setBlockAndNotifyAdequately(world, new BlockPos(i + 1, j + 2, k - 1), leaves.getDefaultState());
+		this.setBlockAndNotifyAdequately(world, new BlockPos(i + 1, j + 2, k), leaves.getDefaultState());
+		this.setBlockAndNotifyAdequately(world, new BlockPos(i + 1, j + 2, k + 1), leaves.getDefaultState());
+		this.setBlockAndNotifyAdequately(world, new BlockPos(i + 1, j + 4, k), leaves.getDefaultState());
+		this.setBlockAndNotifyAdequately(world, new BlockPos(i + 2, j + 2, k), leaves.getDefaultState());
 		return true;
 	}
 }

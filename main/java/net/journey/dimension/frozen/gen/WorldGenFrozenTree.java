@@ -14,21 +14,21 @@ public class WorldGenFrozenTree extends WorldGenerator {
 		if(world.getBlockState(p.down()).getBlock() != JourneyBlocks.frozenGrass) return false;
 		int height = 11+rand.nextInt(5)*2;
 		for(int y = 0; y<height; y++) {
-			world.setBlockState(p.up(y), JourneyBlocks.frozenBark.getDefaultState());
+			this.setBlockAndNotifyAdequately(world, p.up(y), JourneyBlocks.frozenBark.getDefaultState());
 		}
 		
 		for(int y = height/4; y<height; y+=2) {
-			world.setBlockState(p.up(y).east(1), JourneyBlocks.frozenLeaves.getDefaultState());
-			world.setBlockState(p.up(y).west(1), JourneyBlocks.frozenLeaves.getDefaultState());
-			world.setBlockState(p.up(y).north(1), JourneyBlocks.frozenLeaves.getDefaultState());
-			world.setBlockState(p.up(y).south(1), JourneyBlocks.frozenLeaves.getDefaultState());
-			world.setBlockState(p.up(y).east(1).north(1), JourneyBlocks.frozenLeaves.getDefaultState());
-			world.setBlockState(p.up(y).west(1).north(1), JourneyBlocks.frozenLeaves.getDefaultState());
-			world.setBlockState(p.up(y).east(1).south(1), JourneyBlocks.frozenLeaves.getDefaultState());
-			world.setBlockState(p.up(y).west(1).south(1), JourneyBlocks.frozenLeaves.getDefaultState());
+			this.setBlockAndNotifyAdequately(world, p.up(y).east(1), JourneyBlocks.frozenLeaves.getDefaultState());
+			this.setBlockAndNotifyAdequately(world, p.up(y).west(1), JourneyBlocks.frozenLeaves.getDefaultState());
+			this.setBlockAndNotifyAdequately(world, p.up(y).north(1), JourneyBlocks.frozenLeaves.getDefaultState());
+			this.setBlockAndNotifyAdequately(world, p.up(y).south(1), JourneyBlocks.frozenLeaves.getDefaultState());
+			this.setBlockAndNotifyAdequately(world, p.up(y).east(1).north(1), JourneyBlocks.frozenLeaves.getDefaultState());
+			this.setBlockAndNotifyAdequately(world, p.up(y).west(1).north(1), JourneyBlocks.frozenLeaves.getDefaultState());
+			this.setBlockAndNotifyAdequately(world, p.up(y).east(1).south(1), JourneyBlocks.frozenLeaves.getDefaultState());
+			this.setBlockAndNotifyAdequately(world, p.up(y).west(1).south(1), JourneyBlocks.frozenLeaves.getDefaultState());
 		}
 		
-		world.setBlockState(p.up(height), JourneyBlocks.frozenLeaves.getDefaultState());
+		this.setBlockAndNotifyAdequately(world, p.up(height), JourneyBlocks.frozenLeaves.getDefaultState());
 		
 		return true;
 	}

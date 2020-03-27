@@ -15,8 +15,8 @@ public class WorldGenHellThorn extends WorldGenerator {
 	public boolean generate(World w, Random r, BlockPos pos) {
 		Block top = JourneyBlocks.hellThornTop, bottom = JourneyBlocks.hellThornBottom;
 			if(w.getBlockState(pos.down()).getBlock() == Blocks.NETHERRACK && w.getBlockState(pos) == Blocks.AIR.getDefaultState() && w.getBlockState(pos.up()) == Blocks.AIR.getDefaultState()) {
-				w.setBlockState(pos, bottom.getDefaultState(), 2);
-				w.setBlockState(pos.up(), top.getDefaultState(), 2);
+				this.setBlockAndNotifyAdequately(w, pos, bottom.getDefaultState());
+				this.setBlockAndNotifyAdequately(w, pos.up(), top.getDefaultState());
 			}
 		return true;
 	}

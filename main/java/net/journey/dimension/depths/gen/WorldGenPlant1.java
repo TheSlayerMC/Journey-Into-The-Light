@@ -28,11 +28,11 @@ public class WorldGenPlant1 extends WorldGenAbstractTree {
 	@Override
 	public boolean generate(World world, Random r, BlockPos pos) {
 		int i = pos.getX() - 6, j = 2, k = pos.getZ() - 6;
-		world.setBlockState(new BlockPos(i + 0, j + 0, k + 0), JourneyBlocks.darkbloomBottom.getDefaultState());
-		world.setBlockState(new BlockPos(i + 0, j + 1, k + 0), JourneyBlocks.darkbloomBottom.getDefaultState());
-		world.setBlockState(new BlockPos(i + 0, j + 2, k + 0), JourneyBlocks.darkbloomBottom.getDefaultState());
-		world.setBlockState(new BlockPos(i + 0, j + 3, k + 0), JourneyBlocks.darkbloomBottom.getDefaultState());
-		world.setBlockState(new BlockPos(i + 0, j + 4, k + 0), JourneyBlocks.darkbloomTop.getDefaultState());
+		this.setBlockAndNotifyAdequately(world, new BlockPos(i + 0, j + 0, k + 0), JourneyBlocks.darkbloomBottom.getDefaultState());
+		this.setBlockAndNotifyAdequately(world, new BlockPos(i + 0, j + 1, k + 0), JourneyBlocks.darkbloomBottom.getDefaultState());
+		this.setBlockAndNotifyAdequately(world, new BlockPos(i + 0, j + 2, k + 0), JourneyBlocks.darkbloomBottom.getDefaultState());
+		this.setBlockAndNotifyAdequately(world, new BlockPos(i + 0, j + 3, k + 0), JourneyBlocks.darkbloomBottom.getDefaultState());
+		this.setBlockAndNotifyAdequately(world, new BlockPos(i + 0, j + 4, k + 0), JourneyBlocks.darkbloomTop.getDefaultState());
 		return true;
 
 	}

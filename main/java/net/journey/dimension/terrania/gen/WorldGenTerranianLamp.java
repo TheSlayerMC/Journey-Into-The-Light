@@ -20,14 +20,14 @@ public class WorldGenTerranianLamp extends WorldGenerator {
 		int i = pos.getX(), j = pos.getY(), k = pos.getZ();
 		if(locationIsValidSpawn(world, i, j, k)) return true;
 		IBlockState leaves = WorldGenAPI.getCorbaLeaves().getDefaultState(), log = WorldGenAPI.getCorbaLog().getDefaultState();
-			world.setBlockState(new BlockPos(i + 0, j + 0, k + 1), JourneyBlocks.terranianPost.getDefaultState());
-			world.setBlockState(new BlockPos(i + 1, j + 0, k + 0), JourneyBlocks.terranianPost.getDefaultState());
-			world.setBlockState(new BlockPos(i + 1, j + 0, k + 1), JourneyBlocks.terranianPanels.getDefaultState());
-			world.setBlockState(new BlockPos(i + 1, j + 0, k + 2), JourneyBlocks.terranianPost.getDefaultState());
-			world.setBlockState(new BlockPos(i + 1, j + 1, k + 1), JourneyBlocks.terranianPost.getDefaultState());
-			world.setBlockState(new BlockPos(i + 1, j + 2, k + 1), JourneyBlocks.terranianPost.getDefaultState());
-			world.setBlockState(new BlockPos(i + 1, j + 3, k + 1), JourneyBlocks.terraniaLamp.getDefaultState());
-			world.setBlockState(new BlockPos(i + 2, j + 0, k + 1), JourneyBlocks.terranianPost.getDefaultState());
+			this.setBlockAndNotifyAdequately(world, new BlockPos(i + 0, j + 0, k + 1), JourneyBlocks.terranianPost.getDefaultState());
+			this.setBlockAndNotifyAdequately(world, new BlockPos(i + 1, j + 0, k + 0), JourneyBlocks.terranianPost.getDefaultState());
+			this.setBlockAndNotifyAdequately(world, new BlockPos(i + 1, j + 0, k + 1), JourneyBlocks.terranianPanels.getDefaultState());
+			this.setBlockAndNotifyAdequately(world, new BlockPos(i + 1, j + 0, k + 2), JourneyBlocks.terranianPost.getDefaultState());
+			this.setBlockAndNotifyAdequately(world, new BlockPos(i + 1, j + 1, k + 1), JourneyBlocks.terranianPost.getDefaultState());
+			this.setBlockAndNotifyAdequately(world, new BlockPos(i + 1, j + 2, k + 1), JourneyBlocks.terranianPost.getDefaultState());
+			this.setBlockAndNotifyAdequately(world, new BlockPos(i + 1, j + 3, k + 1), JourneyBlocks.terraniaLamp.getDefaultState());
+			this.setBlockAndNotifyAdequately(world, new BlockPos(i + 2, j + 0, k + 1), JourneyBlocks.terranianPost.getDefaultState());
 		return true;
 	}
 }

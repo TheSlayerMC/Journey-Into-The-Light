@@ -66,27 +66,27 @@ public class WorldGenNetherTower extends WorldGenerator {
 		WorldGenAPI.addRectangle(4, 2, 1, w, x + 2, y + height + 8, z + 1, Blocks.AIR);
 
 		for(int i = 0; i < 4; i++) {
-			w.setBlockState(new BlockPos(x + 5 - i, y + i + height + 5, z + 1), Blocks.NETHER_BRICK_STAIRS.getStateFromMeta(1), 2);
-			w.setBlockState(new BlockPos(x + 5 - i, y + i + height + 5, z + 2), Blocks.NETHER_BRICK_STAIRS.getStateFromMeta(1), 2);
+			this.setBlockAndNotifyAdequately(w, new BlockPos(x + 5 - i, y + i + height + 5, z + 1), Blocks.NETHER_BRICK_STAIRS.getStateFromMeta(1));
+			this.setBlockAndNotifyAdequately(w, new BlockPos(x + 5 - i, y + i + height + 5, z + 2), Blocks.NETHER_BRICK_STAIRS.getStateFromMeta(1));
 		}
 		
-		w.setBlockState(new BlockPos(x + 13, y + height + 9, z + 1), JourneyBlocks.dungeonLamp.getDefaultState());
-		w.setBlockState(new BlockPos(x + 1, y + height + 9, z + 8), JourneyBlocks.dungeonLamp.getDefaultState());
-		w.setBlockState(new BlockPos(x + 13, y + height + 9, z + 8), JourneyBlocks.dungeonLamp.getDefaultState());
+		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 13, y + height + 9, z + 1), JourneyBlocks.dungeonLamp.getDefaultState());
+		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 1, y + height + 9, z + 8), JourneyBlocks.dungeonLamp.getDefaultState());
+		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 13, y + height + 9, z + 8), JourneyBlocks.dungeonLamp.getDefaultState());
 
-		w.setBlockState(new BlockPos(x + 13, y + height + 10, z + 1), JourneyBlocks.redGems.getDefaultState());
-		w.setBlockState(new BlockPos(x + 1, y + height + 10, z + 8), JourneyBlocks.redGems.getDefaultState());
-		w.setBlockState(new BlockPos(x + 13, y + height + 10, z + 8), JourneyBlocks.redGems.getDefaultState());
+		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 13, y + height + 10, z + 1), JourneyBlocks.redGems.getDefaultState());
+		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 1, y + height + 10, z + 8), JourneyBlocks.redGems.getDefaultState());
+		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 13, y + height + 10, z + 8), JourneyBlocks.redGems.getDefaultState());
 		
-		w.setBlockState(new BlockPos(x + 12, y + height + 9, z + 8), JourneyBlocks.dungeonLampStairs.getStateFromMeta(0), 2);
-		w.setBlockState(new BlockPos(x + 12, y + height + 9, z + 7), JourneyBlocks.dungeonLampStairs.getStateFromMeta(0), 2);
-		w.setBlockState(new BlockPos(x + 13, y + height + 9, z + 7), JourneyBlocks.dungeonLampStairs.getStateFromMeta(2), 2);
-		w.setBlockState(new BlockPos(x + 12, y + height + 9, z + 2), JourneyBlocks.dungeonLampStairs.getStateFromMeta(0), 2);
-		w.setBlockState(new BlockPos(x + 12, y + height + 9, z + 1), JourneyBlocks.dungeonLampStairs.getStateFromMeta(0), 2);
-		w.setBlockState(new BlockPos(x + 13, y + height + 9, z + 2), JourneyBlocks.dungeonLampStairs.getStateFromMeta(3), 2);
-		w.setBlockState(new BlockPos(x + 2, y + height + 9, z + 7), JourneyBlocks.dungeonLampStairs.getStateFromMeta(2), 2);
-		w.setBlockState(new BlockPos(x + 1, y + height + 9, z + 7), JourneyBlocks.dungeonLampStairs.getStateFromMeta(2), 2);
-		w.setBlockState(new BlockPos(x + 2, y + height + 9, z + 8), JourneyBlocks.dungeonLampStairs.getStateFromMeta(1), 2);
+		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 12, y + height + 9, z + 8), JourneyBlocks.dungeonLampStairs.getStateFromMeta(0));
+		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 12, y + height + 9, z + 7), JourneyBlocks.dungeonLampStairs.getStateFromMeta(0));
+		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 13, y + height + 9, z + 7), JourneyBlocks.dungeonLampStairs.getStateFromMeta(2));
+		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 12, y + height + 9, z + 2), JourneyBlocks.dungeonLampStairs.getStateFromMeta(0));
+		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 12, y + height + 9, z + 1), JourneyBlocks.dungeonLampStairs.getStateFromMeta(0));
+		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 13, y + height + 9, z + 2), JourneyBlocks.dungeonLampStairs.getStateFromMeta(3));
+		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 2, y + height + 9, z + 7), JourneyBlocks.dungeonLampStairs.getStateFromMeta(2));
+		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 1, y + height + 9, z + 7), JourneyBlocks.dungeonLampStairs.getStateFromMeta(2));
+		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 2, y + height + 9, z + 8), JourneyBlocks.dungeonLampStairs.getStateFromMeta(1));
 				
 		if(!w.isRemote) {
 			EntityTempleGuardian guard = new EntityTempleGuardian(w);
@@ -111,10 +111,10 @@ public class WorldGenNetherTower extends WorldGenerator {
 		WorldGenAPI.addBlock(w, x + 1, y + height - 5, z + 8, JourneyBlocks.dungeonLamp);
 		WorldGenAPI.addBlock(w, x + 13, y + height - 5, z + 8, JourneyBlocks.dungeonLamp);
 		
-		w.setBlockState(new BlockPos(x + 11, y + height - 3, z + 2), Blocks.MOB_SPAWNER.getDefaultState());
-		w.setBlockState(new BlockPos(x + 11, y + height - 3, z + 7), Blocks.MOB_SPAWNER.getDefaultState());
-		w.setBlockState(new BlockPos(x + 11, y + height + 1, z + 2), Blocks.MOB_SPAWNER.getDefaultState());
-		w.setBlockState(new BlockPos(x + 11, y + height + 1, z + 7), Blocks.MOB_SPAWNER.getDefaultState());
+		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 11, y + height - 3, z + 2), Blocks.MOB_SPAWNER.getDefaultState());
+		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 11, y + height - 3, z + 7), Blocks.MOB_SPAWNER.getDefaultState());
+		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 11, y + height + 1, z + 2), Blocks.MOB_SPAWNER.getDefaultState());
+		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 11, y + height + 1, z + 7), Blocks.MOB_SPAWNER.getDefaultState());
 		TileEntityMobSpawner spawner1 = (TileEntityMobSpawner)w.getTileEntity(new BlockPos(x + 11, y + height - 3, z + 2));
 		TileEntityMobSpawner spawner2 = (TileEntityMobSpawner)w.getTileEntity(new BlockPos(x + 11, y + height - 3, z + 7));
 		TileEntityMobSpawner spawner3 = (TileEntityMobSpawner)w.getTileEntity(new BlockPos(x + 11, y + height + 1, z + 2));
@@ -131,14 +131,14 @@ public class WorldGenNetherTower extends WorldGenerator {
 		
 		for(int i = 0; i < 4; i++) {
 			if(lor == 0) {
-				w.setBlockState(new BlockPos(x + 5 - i, y + i + 1 + height, z + 1), Blocks.NETHER_BRICK_STAIRS.getStateFromMeta(1), 2);
-				w.setBlockState(new BlockPos(x + 5 - i, y + i + 1 + height, z + 2), Blocks.NETHER_BRICK_STAIRS.getStateFromMeta(1), 2);
+				this.setBlockAndNotifyAdequately(w, new BlockPos(x + 5 - i, y + i + 1 + height, z + 1), Blocks.NETHER_BRICK_STAIRS.getStateFromMeta(1));
+				this.setBlockAndNotifyAdequately(w, new BlockPos(x + 5 - i, y + i + 1 + height, z + 2), Blocks.NETHER_BRICK_STAIRS.getStateFromMeta(1));
 			} else {
-				w.setBlockState(new BlockPos(x + 5 - i, y + i + 1 + height - 4, z + 7), Blocks.NETHER_BRICK_STAIRS.getStateFromMeta(1), 2);
-				w.setBlockState(new BlockPos(x + 5 - i, y + i + 1 + height - 4, z + 8), Blocks.NETHER_BRICK_STAIRS.getStateFromMeta(1), 2);
+				this.setBlockAndNotifyAdequately(w, new BlockPos(x + 5 - i, y + i + 1 + height - 4, z + 7), Blocks.NETHER_BRICK_STAIRS.getStateFromMeta(1));
+				this.setBlockAndNotifyAdequately(w, new BlockPos(x + 5 - i, y + i + 1 + height - 4, z + 8), Blocks.NETHER_BRICK_STAIRS.getStateFromMeta(1));
 			}
 		}
-		w.setBlockState(new BlockPos(x + 2, y + 1 + height - 1, z + 7), Blocks.NETHER_BRICK_STAIRS.getStateFromMeta(1), 2);
-		w.setBlockState(new BlockPos(x + 2, y + 1 + height - 1, z + 8), Blocks.NETHER_BRICK_STAIRS.getStateFromMeta(1), 2);
+		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 2, y + 1 + height - 1, z + 7), Blocks.NETHER_BRICK_STAIRS.getStateFromMeta(1));
+		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 2, y + 1 + height - 1, z + 8), Blocks.NETHER_BRICK_STAIRS.getStateFromMeta(1));
 	}
 }

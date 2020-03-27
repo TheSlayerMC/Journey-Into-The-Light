@@ -605,9 +605,9 @@ public class ChunkProviderDepths implements IChunkGenerator {
             generateStructure(darkbloom, x1, z1);
         }
         
-        for(i = 0; i < 10; i++) {
+        /*for(i = 0; i < 10; i++) {
         	generateTopStructure(depthsHouse, x1, z1);
-        }
+        }*/
 
         if (rand.nextInt(1) == 0) {
         	generateBottomStructure(shrine, x1, z1);

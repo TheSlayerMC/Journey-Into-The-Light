@@ -17,21 +17,21 @@ public class WorldGenFrozenTree2 extends WorldGenerator {
 		for(int y = height / 4; y < height; y+=2) {
 			for(int x = -3; x <= 3; x++) {
 				for(int z = -3; z <= 3; z++) {
-					world.setBlockState(p.east(x).north(z).up(y), JourneyBlocks.frozenLeaves.getDefaultState());
+					this.setBlockAndNotifyAdequately(world, p.east(x).north(z).up(y), JourneyBlocks.frozenLeaves.getDefaultState());
 				}
 			}
 			for(int x = -1; x <= 1; x++) {
 				for(int z = -1; z <= 1; z++) {
-					world.setBlockState(p.east(x).north(z).up(y+1), JourneyBlocks.frozenLeaves.getDefaultState());
+					this.setBlockAndNotifyAdequately(world, p.east(x).north(z).up(y+1), JourneyBlocks.frozenLeaves.getDefaultState());
 				}
 			}
 		}
 		
 		for(int y = 0; y < height; y++) {
-			world.setBlockState(p.up(y), JourneyBlocks.frozenBark.getDefaultState());
+			this.setBlockAndNotifyAdequately(world, p.up(y), JourneyBlocks.frozenBark.getDefaultState());
 		}
 		
-		world.setBlockState(p.up(height), JourneyBlocks.frozenLeaves.getDefaultState());
+		this.setBlockAndNotifyAdequately(world, p.up(height), JourneyBlocks.frozenLeaves.getDefaultState());
 		
 		return true;
 	}

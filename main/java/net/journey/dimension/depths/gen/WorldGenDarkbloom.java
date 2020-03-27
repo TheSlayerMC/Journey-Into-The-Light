@@ -16,8 +16,8 @@ public class WorldGenDarkbloom extends WorldGenerator {
 		pos = new BlockPos(pos.getX(), 2, pos.getZ());
 		Block top = JourneyBlocks.darkbloomTop, bottom = JourneyBlocks.darkbloomBottom;
 			if(w.getBlockState(pos.down()).getBlock() == JourneyBlocks.depthsGrass && w.getBlockState(pos) == Blocks.AIR.getDefaultState() && w.getBlockState(pos.up()) == Blocks.AIR.getDefaultState()) {
-				w.setBlockState(pos, bottom.getDefaultState(), 2);
-				w.setBlockState(pos.up(), top.getDefaultState(), 2);
+				this.setBlockAndNotifyAdequately(w, pos, bottom.getDefaultState());
+				this.setBlockAndNotifyAdequately(w, pos.up(), top.getDefaultState());
 			}
 		return true;
 	}

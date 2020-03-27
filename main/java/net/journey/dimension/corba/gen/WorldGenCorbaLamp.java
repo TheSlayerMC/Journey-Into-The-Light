@@ -20,14 +20,14 @@ public class WorldGenCorbaLamp extends WorldGenerator {
 		int i = pos.getX(), j = pos.getY() + 1, k = pos.getZ();
 		if(locationIsValidSpawn(world, i, j, k)) return true;
 		IBlockState leaves = WorldGenAPI.getCorbaLeaves().getDefaultState(), log = WorldGenAPI.getCorbaLog().getDefaultState();
-			world.setBlockState(new BlockPos(i + 0, j + 0, k + 1), JourneyBlocks.corbaPost.getDefaultState());
-			world.setBlockState(new BlockPos(i + 1, j + 0, k + 0), JourneyBlocks.corbaPost.getDefaultState());
-			world.setBlockState(new BlockPos(i + 1, j + 0, k + 1), JourneyBlocks.corbaPlank.getDefaultState());
-			world.setBlockState(new BlockPos(i + 1, j + 0, k + 2), JourneyBlocks.corbaPost.getDefaultState());
-			world.setBlockState(new BlockPos(i + 1, j + 1, k + 1), JourneyBlocks.corbaPost.getDefaultState());
-			world.setBlockState(new BlockPos(i + 1, j + 2, k + 1), JourneyBlocks.corbaPost.getDefaultState());
-			world.setBlockState(new BlockPos(i + 1, j + 3, k + 1), JourneyBlocks.corbaLamp.getDefaultState());
-			world.setBlockState(new BlockPos(i + 2, j + 0, k + 1), JourneyBlocks.corbaPost.getDefaultState());
+			this.setBlockAndNotifyAdequately(world, new BlockPos(i + 0, j + 0, k + 1), JourneyBlocks.corbaPost.getDefaultState());
+			this.setBlockAndNotifyAdequately(world, new BlockPos(i + 1, j + 0, k + 0), JourneyBlocks.corbaPost.getDefaultState());
+			this.setBlockAndNotifyAdequately(world, new BlockPos(i + 1, j + 0, k + 1), JourneyBlocks.corbaPlank.getDefaultState());
+			this.setBlockAndNotifyAdequately(world, new BlockPos(i + 1, j + 0, k + 2), JourneyBlocks.corbaPost.getDefaultState());
+			this.setBlockAndNotifyAdequately(world, new BlockPos(i + 1, j + 1, k + 1), JourneyBlocks.corbaPost.getDefaultState());
+			this.setBlockAndNotifyAdequately(world, new BlockPos(i + 1, j + 2, k + 1), JourneyBlocks.corbaPost.getDefaultState());
+			this.setBlockAndNotifyAdequately(world, new BlockPos(i + 1, j + 3, k + 1), JourneyBlocks.corbaLamp.getDefaultState());
+			this.setBlockAndNotifyAdequately(world, new BlockPos(i + 2, j + 0, k + 1), JourneyBlocks.corbaPost.getDefaultState());
 		return true;
 	}
 }

@@ -17,7 +17,7 @@ public class WorldGenBotSpawner extends WorldGenerator {
 	@Override
 	public boolean generate(World w, Random r, BlockPos pos) {
 		int x = pos.getX(), y = pos.getY(), z = pos.getZ();
-		if(locationIsValidSpawn(w, x, y, z)) return true;
+		if(locationIsValidSpawn(w, x, y - 4, z)) return true;
 		int height = r.nextInt(10) + 10;
 		WorldGenAPI.addRectangle(1, 1, 1, w, x + 3, y + height + 2, z + 1, JourneyBlocks.goldbotSpawner);
 		WorldGenAPI.addRectangle(1, 1, 1, w, x + 3, y + height + 3, z + 1, JourneyBlocks.silverbotSpawner);

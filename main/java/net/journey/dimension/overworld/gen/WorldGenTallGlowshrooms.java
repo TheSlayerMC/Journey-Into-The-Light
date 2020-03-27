@@ -30,8 +30,8 @@ public class WorldGenTallGlowshrooms extends WorldGenerator {
 		}
 		for(int i = 0; i < 50; i++) {
 			if(w.getBlockState(pos.down()).getBlock() == Blocks.STONE && w.getBlockState(pos) == Blocks.AIR.getDefaultState() && w.getBlockState(pos.up()) == Blocks.AIR.getDefaultState() && pos.getY() < 60) {
-				w.setBlockState(pos, bottom.getDefaultState(), 2);
-				w.setBlockState(pos.up(), top.getDefaultState(), 2);
+				this.setBlockAndNotifyAdequately(w, pos, bottom.getDefaultState());
+				this.setBlockAndNotifyAdequately(w, pos.up(), top.getDefaultState());
 			}
 		}
 		return true;

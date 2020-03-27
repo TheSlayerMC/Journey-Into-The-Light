@@ -19,7 +19,7 @@ public class WorldGenDepthsLights extends WorldGenerator {
 		else if (w.getBlockState(pos.up()).getBlock() != JourneyBlocks.depthsStone) {
 			return false;
 		} else {
-			w.setBlockState(pos, JourneyBlocks.depthsLights.getDefaultState(), 2);
+			this.setBlockAndNotifyAdequately(w, pos, JourneyBlocks.depthsLights.getDefaultState());
 			for(int i = 0; i < 1500; i++) {
 				BlockPos blockpos1 = pos.add(r.nextInt(8) - r.nextInt(8), -r.nextInt(12), r.nextInt(8) - r.nextInt(8));
 				if(w.isAirBlock(blockpos1)) {
@@ -31,7 +31,7 @@ public class WorldGenDepthsLights extends WorldGenerator {
 						if (w.getBlockState(blockpos1.offset(enumfacing)).getBlock() == JourneyBlocks.depthsLights) j++;
 						if(j > 1) break;
 					}
-					if(j == 1) w.setBlockState(blockpos1, JourneyBlocks.depthsLights.getDefaultState(), 2);
+					if(j == 1) this.setBlockAndNotifyAdequately(w, blockpos1, JourneyBlocks.depthsLights.getDefaultState());
 				}
 			}
 			return true;
@@ -48,7 +48,7 @@ public class WorldGenDepthsLights extends WorldGenerator {
 			else if (w.getBlockState(pos.up()).getBlock() != JourneyBlocks.depthsStone) {
 				return false;
 			} else {
-				w.setBlockState(pos, JourneyBlocks.depthsLights.getDefaultState(), 2);
+				this.setBlockAndNotifyAdequately(w, pos, JourneyBlocks.depthsLights.getDefaultState());
 				for(int i = 0; i < 1500; ++i) {
 					BlockPos blockpos1 = pos.add(r.nextInt(8) - r.nextInt(8), r.nextInt(12), r.nextInt(8) - r.nextInt(8));
 					if(w.isAirBlock(blockpos1)) {
@@ -60,7 +60,7 @@ public class WorldGenDepthsLights extends WorldGenerator {
 							if (w.getBlockState(blockpos1.offset(enumfacing)).getBlock() == JourneyBlocks.depthsLights) j++;
 							if (j > 1) break;
 						}
-						if(j == 1) w.setBlockState(blockpos1, JourneyBlocks.depthsLights.getDefaultState(), 2);
+						if(j == 1) this.setBlockAndNotifyAdequately(w, blockpos1, JourneyBlocks.depthsLights.getDefaultState());
 					}
 				}
 				return true;

@@ -61,13 +61,13 @@ public class WorldGenCloudiaLand extends WorldGenerator {
                                     int x = blockpos1.getX(), y = blockpos1.getY(), z = blockpos1.getZ();
                                     IBlockState state = w.getBlockState(blockpos1);
                                     if(w.getBlockState(blockpos1).getBlock().isReplaceableOreGen(state, w, blockpos1, this.replace)) {
-                                    	w.setBlockState(new BlockPos(x, y, z), JourneyBlocks.cloudiaGrass.getDefaultState(), 2);
-                                    	w.setBlockState(new BlockPos(x, y - 1, z), JourneyBlocks.cloudiaDirt.getDefaultState(), 2);
-                                    	w.setBlockState(new BlockPos(x, y - 2, z), this.stone, 2);
-                                    	w.setBlockState(new BlockPos(x, y - 3, z), this.stone, 2);
+                                    	this.setBlockAndNotifyAdequately(w, new BlockPos(x, y, z), JourneyBlocks.cloudiaGrass.getDefaultState());
+                                    	this.setBlockAndNotifyAdequately(w, new BlockPos(x, y - 1, z), JourneyBlocks.cloudiaDirt.getDefaultState());
+                                    	this.setBlockAndNotifyAdequately(w, new BlockPos(x, y - 2, z), this.stone);
+                                    	this.setBlockAndNotifyAdequately(w, new BlockPos(x, y - 3, z), this.stone);
                                     	
                                     	if(r.nextInt(18) == 0) {
-                                    		w.setBlockState(blockpos1.down(3), JourneyBlocks.luniteOre.getDefaultState(), 2);
+                                    		this.setBlockAndNotifyAdequately(w, blockpos1.down(3), JourneyBlocks.luniteOre.getDefaultState());
                                     	}
                                     }
                                 }

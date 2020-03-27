@@ -21,18 +21,18 @@ public class WorldGenEarthenTree extends WorldGenerator {
 		WorldGenAPI.addRectangle(1, 1, 1 + height, world, i, j, k, log);
 		j = j + height;
 		if(height < 2) {
-			world.setBlockState(new BlockPos(i, j + 1 , k), leaves.getDefaultState());
-			world.setBlockState(new BlockPos(i - 1, j, k), leaves.getDefaultState());
-			world.setBlockState(new BlockPos(i, j, k - 1), leaves.getDefaultState());
-			world.setBlockState(new BlockPos(i + 1, j, k), leaves.getDefaultState());
-			world.setBlockState(new BlockPos(i, j, k + 1), leaves.getDefaultState());
+			this.setBlockAndNotifyAdequately(world, new BlockPos(i, j + 1 , k), leaves.getDefaultState());
+			this.setBlockAndNotifyAdequately(world, new BlockPos(i - 1, j, k), leaves.getDefaultState());
+			this.setBlockAndNotifyAdequately(world, new BlockPos(i, j, k - 1), leaves.getDefaultState());
+			this.setBlockAndNotifyAdequately(world, new BlockPos(i + 1, j, k), leaves.getDefaultState());
+			this.setBlockAndNotifyAdequately(world, new BlockPos(i, j, k + 1), leaves.getDefaultState());
 		}
 		if(height >= 2) {
-			world.setBlockState(new BlockPos(i, j + 2, k), leaves.getDefaultState());
-			world.setBlockState(new BlockPos(i - 1, j + 1 - 1, k), leaves.getDefaultState());
-			world.setBlockState(new BlockPos(i, j + 1 - 1, k - 1), leaves.getDefaultState());
-			world.setBlockState(new BlockPos(i + 1, j + 1 - 1, k), leaves.getDefaultState());
-			world.setBlockState(new BlockPos(i, j + 1 - 1, k + 1), leaves.getDefaultState());
+			this.setBlockAndNotifyAdequately(world, new BlockPos(i, j + 2, k), leaves.getDefaultState());
+			this.setBlockAndNotifyAdequately(world, new BlockPos(i - 1, j + 1 - 1, k), leaves.getDefaultState());
+			this.setBlockAndNotifyAdequately(world, new BlockPos(i, j + 1 - 1, k - 1), leaves.getDefaultState());
+			this.setBlockAndNotifyAdequately(world, new BlockPos(i + 1, j + 1 - 1, k), leaves.getDefaultState());
+			this.setBlockAndNotifyAdequately(world, new BlockPos(i, j + 1 - 1, k + 1), leaves.getDefaultState());
 		}
 		
 		return true;
