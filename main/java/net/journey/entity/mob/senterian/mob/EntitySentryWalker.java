@@ -12,6 +12,11 @@ public class EntitySentryWalker extends EntityModMob {
 		super(par1World);
 		this.setSize(1.0F, 2.5F);
 	}
+	
+	@Override
+	public boolean getCanSpawnHere() {
+		return this.posY < 20.0D && /**this.posY <  && */super.getCanSpawnHere();
+	}
 
 	@Override
 	public double setAttackDamage(MobStats s) {

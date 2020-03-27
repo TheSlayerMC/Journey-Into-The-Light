@@ -1,8 +1,5 @@
 package net.journey.dimension;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import net.journey.dimension.boil.BiomeGenBoiling;
 import net.journey.dimension.boil.WorldProviderBoiling;
 import net.journey.dimension.cloudia.BiomeGenCloudia;
@@ -12,13 +9,11 @@ import net.journey.dimension.corba.WorldProviderCorba;
 import net.journey.dimension.corba.biomes.BiomeGenCorbaPlains;
 import net.journey.dimension.depths.BiomeGenDepths;
 import net.journey.dimension.depths.WorldProviderDepths;
-import net.journey.dimension.end.WorldProviderEndJourney;
 import net.journey.dimension.euca.WorldProviderEuca;
 import net.journey.dimension.euca.biomes.BiomeGenEuca;
 import net.journey.dimension.euca.biomes.BiomeGenEucaSilver;
 import net.journey.dimension.frozen.BiomeGenFrozenLands;
 import net.journey.dimension.frozen.WorldProviderFrozenLands;
-import net.journey.dimension.nether.WorldProviderNetherJourney;
 import net.journey.dimension.senterian.BiomeGenSenterian;
 import net.journey.dimension.senterian.WorldProviderSenterian;
 import net.journey.dimension.terrania.BiomeGenTerrania;
@@ -82,6 +77,10 @@ import net.journey.entity.mob.overworld.underground.EntityGreenHonglow;
 import net.journey.entity.mob.overworld.underground.EntityHonglow;
 import net.journey.entity.mob.overworld.underground.EntityStonewalker;
 import net.journey.entity.mob.overworld.underground.npc.EntityRockiteGolem;
+import net.journey.entity.mob.senterian.mob.EntitySentryBlock;
+import net.journey.entity.mob.senterian.mob.EntitySentryLord;
+import net.journey.entity.mob.senterian.mob.EntitySentryStalker;
+import net.journey.entity.mob.senterian.mob.EntitySentryWalker;
 import net.journey.entity.mob.terrania.mob.EntityTerraScatterer;
 import net.journey.entity.mob.terrania.mob.EntityTerragrow;
 import net.journey.entity.mob.terrania.mob.EntityTerralight;
@@ -89,26 +88,19 @@ import net.journey.entity.mob.terrania.mob.EntityTerrashroom;
 import net.journey.entity.mob.terrania.mob.EntityTerraslug;
 import net.journey.util.Config;
 import net.journey.util.LogHelper;
-import net.minecraft.block.Block;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.monster.EntitySnowman;
 import net.minecraft.init.Biomes;
 import net.minecraft.world.DimensionType;
-import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.MapGenBase;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.BiomeManager.BiomeEntry;
 import net.minecraftforge.common.BiomeManager.BiomeType;
 import net.minecraftforge.common.DimensionManager;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.terraingen.InitMapGenEvent;
-import net.minecraftforge.event.terraingen.TerrainGen;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import scala.reflect.internal.Symbols.TypeSkolem;
 
 public class DimensionHelper {
 
@@ -203,8 +195,18 @@ public class DimensionHelper {
 		addCorbaSpawns();
 		addCloudiaSpawns();
 		addTerraniaSpawns();
+		addSenterainSpawns();
 		addCommonVanillaSpawns();
 		addNetherSpawns();
+	}
+
+	private static void addSenterainSpawns() {
+		int amount = 500;
+		EntityRegistry.addSpawn(EntitySentryBlock.class, amount, 10, 20, EnumCreatureType.MONSTER, senterian);
+		EntityRegistry.addSpawn(EntitySentryLord.class, amount, 10, 20, EnumCreatureType.MONSTER, senterian);
+		EntityRegistry.addSpawn(EntitySentryStalker.class, amount, 10, 20, EnumCreatureType.MONSTER, senterian);
+		EntityRegistry.addSpawn(EntitySentryWalker.class, amount, 10, 20, EnumCreatureType.MONSTER, senterian);
+
 	}
 
 	private static void addCloudiaSpawns() {

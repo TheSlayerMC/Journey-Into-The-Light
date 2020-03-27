@@ -14,6 +14,11 @@ public class EntitySentryStalker extends EntityModMob {
 	}
 
 	@Override
+	public boolean getCanSpawnHere() {
+		return this.posY < 20.0D && /**this.posY <  && */super.getCanSpawnHere();
+	}
+	
+	@Override
 	public double setAttackDamage(MobStats s) {
 		return 0;
 	}

@@ -22,7 +22,10 @@ public class SenterianRoomSpawner2 extends SenterianRoomBase {
 	@Override
 	public boolean generate(SenterianChunkPrimer world, Random rand, int i, int j, int k) {
 		ArrayList<String> mobs = new ArrayList<String>();
-		mobs.add("");
+		mobs.add("journey:sentrylord");
+		mobs.add("journey:sentrystalker");
+		mobs.add("journey:sentrywalker");
+
 		//TODO
 		this.setBlock(world, i + 0, j + 0, k + 0, JourneyBlocks.senterianFloor);
 		this.setBlock(world, i + 0, j + 0, k + 1, JourneyBlocks.senterianFloor);
@@ -135,8 +138,7 @@ public class SenterianRoomSpawner2 extends SenterianRoomBase {
 		this.setBlock(world, i + 1, j + 1, k + 12, Blocks.AIR);
 		this.setBlock(world, i + 1, j + 1, k + 13, Blocks.AIR);
 		this.setBlock(world, i + 1, j + 1, k + 14, Blocks.MOB_SPAWNER);
-		//TileEntityMobSpawner spawner1 = (TileEntityMobSpawner)w.getTileEntity(new BlockPos(i + 1, j + 1, k + 14));
-		//spawner1.getSpawnerBaseLogic().setEntityId(new ResourceLocation(mobs.get(rand.nextInt(mobs.size()))));
+		
 		this.setBlock(world, i + 1, j + 1, k + 15, JourneyBlocks.senterianCarvedRock);
 		this.setBlock(world, i + 1, j + 2, k + 0, JourneyBlocks.senterianCarvedRock);
 		this.setBlock(world, i + 1, j + 2, k + 1, JourneyBlocks.senterianBricks);
@@ -1164,8 +1166,7 @@ public class SenterianRoomSpawner2 extends SenterianRoomBase {
 		this.setBlock(world, i + 14, j + 0, k + 15, JourneyBlocks.senterianFloor);
 		this.setBlock(world, i + 14, j + 1, k + 0, JourneyBlocks.senterianCarvedRock);
 		this.setBlock(world, i + 14, j + 1, k + 1, Blocks.MOB_SPAWNER);
-		//TileEntityMobSpawner spawner2 = (TileEntityMobSpawner)w.getTileEntity(new BlockPos(i + 14, j + 1, k + 1));
-		//spawner2.getSpawnerBaseLogic().setEntityId(new ResourceLocation(mobs.get(rand.nextInt(mobs.size()))));
+
 		this.setBlock(world, i + 14, j + 1, k + 2, Blocks.AIR);
 		this.setBlock(world, i + 14, j + 1, k + 3, Blocks.AIR);
 		this.setBlock(world, i + 14, j + 1, k + 4, JourneyBlocks.senterianCarvedRock);
@@ -1309,6 +1310,11 @@ public class SenterianRoomSpawner2 extends SenterianRoomBase {
 		this.setBlock(world, i + 15, j + 4, k + 14, JourneyBlocks.senterianFloor);
 		this.setBlock(world, i + 15, j + 4, k + 15, JourneyBlocks.senterianFloor);
 		
+		TileEntityMobSpawner spawner2 = (TileEntityMobSpawner)w.getTileEntity(new BlockPos(i + 14, j + 1, k + 1));
+		if(spawner2 != null) spawner2.getSpawnerBaseLogic().setEntityId(new ResourceLocation(mobs.get(rand.nextInt(mobs.size()))));
+		
+		TileEntityMobSpawner spawner1 = (TileEntityMobSpawner)w.getTileEntity(new BlockPos(i + 1, j + 1, k + 14));
+		if(spawner1 != null) spawner1.getSpawnerBaseLogic().setEntityId(new ResourceLocation(mobs.get(rand.nextInt(mobs.size()))));
 		return true;
 	}
 }

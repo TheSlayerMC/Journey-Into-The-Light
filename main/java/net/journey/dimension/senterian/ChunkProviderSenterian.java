@@ -96,7 +96,7 @@ public class ChunkProviderSenterian implements IChunkGenerator {
 		room.generate(senterianChunk, random, 0, bottomLayer, 0);
 
 		//Chance to generate stair room on all but top layer
-		int stairRarity = 10;
+		int stairRarity = 20;
 		if(random.nextInt(stairRarity) == 0)
 			stairs.generate(senterianChunk, random, 0, bottomLayer, 0);
 
