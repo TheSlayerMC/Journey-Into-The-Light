@@ -39,7 +39,7 @@ public class BlockGlowshroom extends Block {
 		setSoundType(EnumMaterialTypes.PLANT.getSound());
 		setCreativeTab(JourneyTabs.decoration);
 		setHardness(0.0F);
-		setLightLevel(0.6F);
+		setLightLevel(0.3F);
 		setTickRandomly(true);
 		setUnlocalizedName(name);
 		JourneyBlocks.blocks.add(this);

@@ -18,21 +18,9 @@ public class WorldGenBush extends WorldGenerator {
 	public Block top;
 	public Block bush;
 	
-	public WorldGenBush(World w, Random rand, BlockPos pos, Block bush, Block top) {
+	public WorldGenBush(Block bush, Block top) {
 		this.top = top;
 		this.bush = bush;
-		if(bush == JourneyBlocks.juiceberryBush && w.getChunkFromBlockCoords(pos).getBiome(pos, w.getBiomeProvider()) == Biomes.FOREST || w.getChunkFromBlockCoords(pos).getBiome(pos, w.getBiomeProvider()) == Biomes.PLAINS) {
-			generate(w, rand, pos);
-		}
-		if(bush == JourneyBlocks.bogberryBush && w.getChunkFromBlockCoords(pos).getBiome(pos, w.getBiomeProvider()) == Biomes.SWAMPLAND) {
-			generate(w, rand, pos);
-		}
-		if(bush == JourneyBlocks.bradberryBush && w.getChunkFromBlockCoords(pos).getBiome(pos, w.getBiomeProvider()) == Biomes.TAIGA_HILLS || w.getChunkFromBlockCoords(pos).getBiome(pos, w.getBiomeProvider()) == Biomes.TAIGA) {
-			generate(w, rand, pos);
-		}
-		if(bush == JourneyBlocks.tangleberryBush && w.getChunkFromBlockCoords(pos).getBiome(pos, w.getBiomeProvider()) == Biomes.JUNGLE || w.getChunkFromBlockCoords(pos).getBiome(pos, w.getBiomeProvider()) == Biomes.JUNGLE_HILLS) {
-			generate(w, rand, pos);
-		}
 	}
 
 	@Override

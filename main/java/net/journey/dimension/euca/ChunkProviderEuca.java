@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Random;
 
 import net.journey.JourneyBlocks;
-import net.journey.dimension.WorldGenJourney;
 import net.journey.dimension.cloudia.ChunkProviderCloudia;
 import net.journey.dimension.euca.gen.WorldGenEucaWater;
 import net.journey.dimension.euca.gen.WorldGenSmeltery;
@@ -19,14 +18,12 @@ import net.journey.dimension.euca.gen.trees.WorldGenEucaTree6;
 import net.journey.dimension.euca.gen.trees.WorldGenEucaTree7;
 import net.journey.dimension.euca.gen.trees.WorldGenEucaTree8;
 import net.journey.dimension.euca.gen.trees.WorldGenEucaTree9;
-import net.journey.dimension.overworld.gen.WorldGenModFlower;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.IProgressUpdate;
-import net.minecraft.util.LazyLoadBase;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -59,21 +56,15 @@ public class ChunkProviderEuca implements IChunkGenerator {
 	};
 	private WorldGenSmeltery worldGenSmeltery = new WorldGenSmeltery();
 	private WorldGenBotSpawner spawner = new WorldGenBotSpawner();
-	private static WorldGenModFlower eucaTallGrass;
-	private static WorldGenModFlower eucaTallFlowers;
-	private static WorldGenModFlower eucaBlueFlower;
 
 	public ChunkProviderEuca(World world, long seed) {
 		this.worldObj = world;
 		this.rand = new Random(seed);
 		this.noiseGen1 = new NoiseGeneratorOctaves(this.rand, 16);
 		this.perlinNoise1 = new NoiseGeneratorOctaves(this.rand, 8);
-		eucaTallGrass = new WorldGenModFlower(JourneyBlocks.eucaTallGrass, JourneyBlocks.eucaGrass);
-		eucaTallFlowers = new WorldGenModFlower(JourneyBlocks.eucaTallFlowers, JourneyBlocks.eucaGrass);
-		eucaBlueFlower = new WorldGenModFlower(JourneyBlocks.eucaBlueFlower, JourneyBlocks.eucaGrass);
 
-		//	treesgreen = new ArrayList<WorldGenerator>(3);
-		//	treesgreen.add(new WorldGenEucaTree6());
+	//	treesgreen = new ArrayList<WorldGenerator>(3);
+	//	treesgreen.add(new WorldGenEucaTree6());
 		//treesgreen.add(new WorldGenEucaTree7());
 		//treesgreen.add(new WorldGenEucaTree8());
 		//treesgreen.add(new WorldGenEucaTree9());
@@ -243,17 +234,6 @@ public class ChunkProviderEuca implements IChunkGenerator {
 		return chunk;
 	}
 
-	private void generateEuca(World w, Random r, int chunkX, int chunkZ) {
-		int i = 0;
-
-
-
-		for (i = 0; i < 30; i++) WorldGenJourney.generateJourneyDimensions(0, w, chunkX, chunkZ);
-		for (i = 0; i < 30; i++) WorldGenJourney.generateJourneyDimensions(15, w, chunkX, chunkZ);
-		for (i = 0; i < 30; i++) WorldGenJourney.generateJourneyDimensions(16, w, chunkX, chunkZ);
-		for (i = 0; i < 30; i++) WorldGenJourney.generateJourneyDimensions(17, w, chunkX, chunkZ);
-	}
-
 	@Override
 	public void populate(int i, int j) {
 		int chunkSize = 16;
@@ -262,25 +242,19 @@ public class ChunkProviderEuca implements IChunkGenerator {
 		int x, z, times;
 
 		if (rand.nextInt(1) == 0) {
-			generateStructure(x1, z1, false, worldGenSmeltery);
+			generateStructure(x1, z1, worldGenSmeltery);
 		}
 
 		for (times = 0; times < 1; times++) {
-			generateStructure(x1, z1, false, spawner);
+			generateStructure(x1, z1, spawner);
 		}
 
 		for (times = 0; times < 500; times++) {
-			generateStructure(x1, z1, false, treesnormal);
+			generateStructure(x1, z1, treesnormal);
 		}
 
 		for (times = 0; times < 70; times++) {
-			generateStructure(x1, z1, false, treestall);
-		}
-
-		for (i = 0; i < 15; i++){		
-			generateStructure(x1, z1, true, eucaTallGrass);
-			generateStructure(x1, z1, true, eucaTallFlowers);
-			generateStructure(x1, z1, true, eucaBlueFlower);
+			generateStructure(x1, z1, treestall);
 		}
 
 		/*for (times = 0; times < 5; times++) {
@@ -293,13 +267,8 @@ public class ChunkProviderEuca implements IChunkGenerator {
 		} */
 	}
 
-	private void generateStructure(int x, int z, boolean flower, WorldGenerator... generators){
+	private void generateStructure(int x, int z, WorldGenerator... generators){
 		BlockPos pos = WorldGenAPI.createRandom(x, 40, 128, z, rand, 8);
-		if(flower) {
-			pos = WorldGenAPI.createRandom(x, 40, 128, z, rand, 8);
-		} else {
-			//pos = WorldGenAPI.createRandom(x, 40, 128, z, rand, 0);
-		}
 		if (isBlockTop(pos.getX(), pos.getY() - 1, pos.getZ(), JourneyBlocks.eucaGrass)) {
 			generators[rand.nextInt(generators.length)].generate(worldObj, rand, pos);
 		}

@@ -36,7 +36,7 @@ public class BlockCaveVine extends BlockMod implements IPlantable, IGrowable {
 	
 	public BlockCaveVine(String name, String f) {
 		super(EnumMaterialTypes.PLANT, name, f, 2);
-		setLightLevel(0.5F);
+		setLightLevel(0.3F);
 	}
 	
 	@Override

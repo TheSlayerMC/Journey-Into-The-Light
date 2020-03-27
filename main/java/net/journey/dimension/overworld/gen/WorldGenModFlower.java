@@ -48,9 +48,9 @@ public class WorldGenModFlower extends WorldGenerator {
             offset = w.getPrecipitationHeight(offset);
 
         for (int i = 0; i < 64; i++) {
-            BlockPos copy = offset.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
+        	BlockPos copy = offset.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
 
-            if (w.isAirBlock(copy) && w.getBlockState(copy.down()).getBlock() == grass && flower.canPlaceBlockAt(w, copy)) {
+        	if (w.isAirBlock(copy) && w.getBlockState(copy.down()).getBlock() == grass && flower.canPlaceBlockAt(w, copy)) {
                 w.setBlockState(copy, flower.getDefaultState(), 2);
                 return true;
             }
