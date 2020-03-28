@@ -25,9 +25,11 @@ import net.slayer.api.item.ItemMod;
 public class ItemGun extends ItemMod {
 
 	public int damage;
-	protected Class<? extends EntityBasicProjectile> projectile; 
+	protected Class<? extends EntityBasicProjectile> projectile;
 	public String ability;
-	public ItemGun(String name, String f, int damage, String ability, Class<? extends EntityBasicProjectile> projectile) {
+
+	public ItemGun(String name, String f, int damage, String ability,
+			Class<? extends EntityBasicProjectile> projectile) {
 		super(name, f, JourneyTabs.weapons);
 		this.ability = ability;
 		this.projectile = projectile;
@@ -41,32 +43,30 @@ public class ItemGun extends ItemMod {
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand handIn) {
 		IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
 		ItemStack stack = player.getHeldItem(handIn);
-		if(!world.isRemote) {
-			if(this == JourneyWeapons.chaosCannon) {
-				if(mana.useEssence(2)) {
-					JourneySounds.playSound(JourneySounds.CANNON, world, player);
-					EntityBouncingProjectile bouncing = new EntityBouncingProjectile(world, player, damage, 4);
-					bouncing.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.0F, 1.0F);
-					world.spawnEntity(bouncing);
+		if (mana.useEssence(2)) {
+			JourneySounds.playSound(JourneySounds.CANNON, world, player);
+			if (this == JourneyWeapons.chaosCannon && !world.isRemote) {
+				EntityBouncingProjectile bouncing = new EntityBouncingProjectile(world, player, damage, 4);
+				bouncing.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.0F, 1.0F);
+				world.spawnEntity(bouncing);
+				stack.damageItem(1, player);
+				return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
+			} else if (projectile != null && !world.isRemote) { 
+				// JourneySounds.playSound(JourneySounds.PLASMA, world, player);
+				try {
+					EntityBasicProjectile shoot = projectile
+							.getConstructor(World.class, EntityLivingBase.class, float.class)
+							.newInstance(world, player, damage);
+					shoot.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F, 1.0F);
+					world.spawnEntity(shoot);
 					stack.damageItem(1, player);
 					return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
-				}
-			} else if(projectile != null) {
-				JourneySounds.playSound(JourneySounds.PLASMA, world, player);
-				if(mana.useEssence(2)) {
-					try {
-						EntityBasicProjectile shoot = projectile.getConstructor(World.class, EntityLivingBase.class, float.class).newInstance(world, player, damage);
-						shoot.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F, 1.0F);
-						world.spawnEntity(shoot);
-						stack.damageItem(1, player);
-						return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
 			}
 		}
-		return new ActionResult<ItemStack>(EnumActionResult.FAIL, stack);	
+		return new ActionResult<ItemStack>(EnumActionResult.FAIL, stack);
 	}
 
 	@Override
