@@ -58,10 +58,10 @@ public class BlockModLeaves extends BlockMod implements IShearable {
 			if(random.nextInt(2) == 0) {
 				for(int i = 0; i < 100; ++i) {
 					double d0 = (double)pos.getX() + rand.nextDouble() * 0;
-					double d1 = (double)pos.getY() + rand.nextDouble() * 0D + 0D;
+					double d1 = (double)pos.getY() + rand.nextDouble() * 0D - 6D;
 					double d2 = (double)pos.getZ() + rand.nextDouble() * 0;
 					//w.spawnParticle(EnumParticleTypes.LAVA, d0 * rand.nextFloat(), d1, d2 * rand.nextFloat(), 0, 0D, 0, new int[0]);
-					w.spawnParticle(EnumParticleTypes.FLAME, d0 * rand.nextFloat(), d1, d2 * rand.nextFloat(), 0, 0D, 0, new int[0]);
+					w.spawnParticle(EnumParticleTypes.FLAME, d0 * rand.nextFloat(), d1 + rand.nextInt(10), d2 * rand.nextFloat(), 0, 0D, 0, new int[0]);
 					w.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 * rand.nextFloat(), d1, d2 * rand.nextFloat(), 0, 0D, 0, new int[0]);
 				}
 			}

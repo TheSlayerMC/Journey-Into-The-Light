@@ -21,9 +21,9 @@ public class WorldProviderBoiling extends BaseWorldProvider {
 
     @SideOnly(Side.CLIENT)
     private static IRenderHandler getSkyRender() {
-    //	return new BoilSkyRenderer();
+    	return new BoilSkyRenderer();
         //TODO fix BoilSkyRenderer!
-        return null;
+        //return null;
     }
 
     @Override

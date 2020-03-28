@@ -140,7 +140,7 @@ public class BlockMod extends Block {
 	@SideOnly(Side.CLIENT)
 	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) { 
 		if(this == JourneyBlocks.ashBlock && worldIn.getBlockState(pos.up()) == Blocks.AIR.getDefaultState())
-			if(rand.nextInt(30) == 0) {
+			if(rand.nextInt(40) == 0) {
 				JITL.instance.proxy.spawnParticle(EnumParticlesClasses.SMOKE, worldIn, pos.getX(), pos.getY() + rand.nextInt(3), pos.getZ(), 0, 0, 0);
 			}
 	}
