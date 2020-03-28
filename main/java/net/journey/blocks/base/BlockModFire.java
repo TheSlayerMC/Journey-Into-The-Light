@@ -121,6 +121,9 @@ public class BlockModFire extends BlockMod {
 			else
 				world.scheduleUpdate(pos, this, this.tickRate(world) + world.rand.nextInt(10));
 		}
+		if(world.isAirBlock(pos.down())) {
+			world.setBlockToAir(pos);
+		}
 	}
 
 	@Override
