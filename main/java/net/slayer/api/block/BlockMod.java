@@ -6,10 +6,12 @@ import net.journey.JITL;
 import net.journey.JourneyBlocks;
 import net.journey.JourneyItems;
 import net.journey.JourneyTabs;
+import net.journey.enums.EnumParticlesClasses;
 import net.journey.util.LangRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.BlockRenderLayer;
@@ -32,7 +34,7 @@ public class BlockMod extends Block {
 	protected Random rand;
 	public String name;
 	protected boolean isOpaque = true, isNormalCube = true;
-	
+
 	public BlockMod(String name, String finalName, float hardness) {
 		this(EnumMaterialTypes.STONE, name, finalName, hardness, JourneyTabs.blocks);
 	}
@@ -84,11 +86,11 @@ public class BlockMod extends Block {
 		setRegistryName(SlayerAPI.MOD_ID, name);
 		JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
 	}
-	
+
 	public void registerItemModel(Item itemBlock) {
 		JITL.proxy.registerItemRenderer(itemBlock, 0, name);
 	}
-	
+
 	public Item createItemBlock() {
 		return new ItemBlock(this).setRegistryName(getRegistryName());
 	}
@@ -113,21 +115,21 @@ public class BlockMod extends Block {
 		return this;
 	}
 
-    @Override
+	@Override
 	@SideOnly(Side.CLIENT) 
 	public BlockRenderLayer getBlockLayer() {
 		return BlockRenderLayer.SOLID;
 	}
-    
-    @Override
-    public boolean isOpaqueCube(IBlockState state) {
-    	return true;
-    }
-    
-    @Override
-    public boolean isNormalCube(IBlockState state) {
-    	return true;
-    }
+
+	@Override
+	public boolean isOpaqueCube(IBlockState state) {
+		return true;
+	}
+
+	@Override
+	public boolean isNormalCube(IBlockState state) {
+		return true;
+	}
 
 	@Override
 	public int quantityDropped(Random rand) {
@@ -136,7 +138,12 @@ public class BlockMod extends Block {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) { }
+	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) { 
+		if(this == JourneyBlocks.ashBlock && worldIn.getBlockState(pos.up()) == Blocks.AIR.getDefaultState())
+			if(rand.nextInt(30) == 0) {
+				JITL.instance.proxy.spawnParticle(EnumParticlesClasses.SMOKE, worldIn, pos.getX(), pos.getY() + rand.nextInt(3), pos.getZ(), 0, 0, 0);
+			}
+	}
 
 	@Override
 	public boolean isFireSource(World world, BlockPos pos, EnumFacing side) {

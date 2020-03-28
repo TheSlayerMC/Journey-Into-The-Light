@@ -16,9 +16,9 @@ import net.journey.client.render.particles.EntityOvergrownFX;
 import net.journey.client.render.particles.EntityRockFX;
 import net.journey.client.render.particles.EntityWitherFX;
 import net.journey.client.render.particles.EntityWizardsFX;
+import net.journey.client.render.particles.ParticleSmokeLarge;
 import net.minecraft.client.particle.ParticleFlame;
 import net.minecraft.client.particle.ParticleLava;
-import net.minecraft.client.particle.ParticleSmokeLarge;
 import net.minecraft.client.particle.ParticleSnowShovel;
 
 public enum EnumParticlesClasses {
