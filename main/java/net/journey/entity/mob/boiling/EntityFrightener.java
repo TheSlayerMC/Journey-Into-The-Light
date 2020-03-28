@@ -62,11 +62,6 @@ public class EntityFrightener extends EntityModMob{
         	if(entity instanceof EntityPlayer && canEntityBeSeen(entity)) ((EntityPlayer)entity).setFire(5 + rand.nextInt(7));
         }        
     }
-
-	@Override
-	public ItemStack getHeldItemMainhand() {
-		return new ItemStack(Items.DIAMOND_AXE);
-	}
 	
 	@Override
 	public Item getItemDropped() {
