@@ -55,7 +55,7 @@ public class SlayerAPI {
 	PREFIX = MOD_ID + ":", 
 	MOD_VERSION = "1.0.5.6";
 	public static final boolean 
-	DEVMODE = false,
+	DEVMODE = true,
 	BETA = false;
 
 	public static ToolMaterial addMeleeMaterial(int uses, float efficiency, float dam){
