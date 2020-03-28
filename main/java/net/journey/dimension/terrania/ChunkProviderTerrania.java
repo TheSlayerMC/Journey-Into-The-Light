@@ -306,8 +306,8 @@ public class ChunkProviderTerrania implements IChunkGenerator {
                  ++i1;
                  double d13 = f1;
                  double d14 = f;
-                 d13 += d12 * 0.2D;
-                 d13 = d13 * 8.5D / 8.0D;
+                 d13 += d12 * 0.4D;
+                 d13 = d13 * 10.5D / 8.0D;
                  double d5 = 8.5D + d13 * 4.0D;
 
                  for (int j2 = 0; j2 < 33; ++j2) {
@@ -318,7 +318,7 @@ public class ChunkProviderTerrania implements IChunkGenerator {
 
 
                      double d7 = this.gen2[l] / 128.0D;
-                     double d8 = this.gen3[l] / 128.0D;
+                     double d8 = this.gen3[l] / 64.0D;
                      double d9 = (this.gen1[l] / 10.0D + 1.0D) / 2.0D;
                      double d10 = MathHelper.clampedLerp(d7, d8, d9) - d6;
 
