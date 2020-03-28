@@ -77,7 +77,7 @@ public class ClientTickEvent {
 					GuiIngame gig = mc.ingameGUI;
 					ScaledResolution scaledresolution = new ScaledResolution(mc);
 					mc.getTextureManager().bindTexture(TEXTURE);
-					int y = scaledresolution.getScaledHeight() - 30, x = 10, x1 = 10, x2 = 10;
+					int y = scaledresolution.getScaledHeight() - 30, x = 10;
 					gig.drawTexturedModalRect(x - 10, y + 10, 0, 177, 117, 19);
 					gig.drawTexturedModalRect(x - 6, y + 17, 0, 23, 109, 5);
 					for (int i = 0; i < mana.getEssenceValue(); i++) {
