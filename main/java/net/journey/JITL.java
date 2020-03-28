@@ -44,7 +44,7 @@ public class JITL {
 				SlayerAPI.Colour.DARK_AQUA + "NicosaurusRex99 - Code ";
 		event.getModMetadata().description = "A full progressional experience that adds Weapons, Mobs, Dimensions, Bosses, and much more to your game.";
 		event.getModMetadata().modId = SlayerAPI.MOD_ID;
-		event.getModMetadata().url = "slayermods.net";
+		event.getModMetadata().url = "https://slayermods.net";
 		event.getModMetadata().name = SlayerAPI.MOD_NAME;
 		event.getModMetadata().version = SlayerAPI.MOD_VERSION;
 		event.getModMetadata().logoFile = "assets/journey/textures/logo.png";
