@@ -323,8 +323,8 @@ public class ChunkProviderBoiling implements IChunkGenerator {
                         d6 *= 4.0D;
 
 
-                    double d7 = this.gen2[l] / 512.0D;
-                    double d8 = this.gen3[l] / 512.0D;
+                    double d7 = this.gen2[l] / 50.0D;
+                    double d8 = this.gen3[l] / 50.0D;
                     double d9 = (this.gen1[l] / 10.0D + 1.0D) / 2.0D;
                     double d10 = MathHelper.clampedLerp(d7, d8, d9) - d6;
 
