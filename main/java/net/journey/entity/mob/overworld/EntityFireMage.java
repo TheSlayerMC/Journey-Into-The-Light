@@ -62,7 +62,7 @@ public class EntityFireMage extends EntityModMob implements IRangedAttackMob {
 	
 	@Override
 	public void attackEntityWithRangedAttack(EntityLivingBase target, float distanceFactor) {
-		EntityFireBall b = new EntityFireBall(this.world, this, 10F);
+		EntityFireBall b = new EntityFireBall(this.world, this, 1.0F);
         double d0 = target.posX - this.posX;
         double d1 = target.getEntityBoundingBox().minY + (double)(target.height / 3.0F) - b.posY;
         double d2 = target.posZ - this.posZ;
