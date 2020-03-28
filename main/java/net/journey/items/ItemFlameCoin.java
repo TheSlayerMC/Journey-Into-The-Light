@@ -5,10 +5,10 @@ import java.util.Random;
 
 import net.journey.JourneyBlocks;
 import net.journey.JourneyTabs;
-import net.journey.dimension.WorldGenStructure;
-import net.journey.util.JourneyLootTables;
+import net.minecraft.block.Block;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
@@ -32,17 +32,17 @@ public class ItemFlameCoin extends ItemMod {
 	public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing fa, float hitX, float hitY, float hitZ) {
 		Random r = new Random();
 		int x = pos.getX(), y = pos.getY(), z = pos.getZ();
-		/*if(fa != EnumFacing.UP && w.getBlockState(pos.up()).getBlock() != Blocks.AIR){
+		if(fa != EnumFacing.UP && world.getBlockState(pos.up()).getBlock() != Blocks.AIR){
 			return EnumActionResult.FAIL;
 		} else {
-			Block block = w.getBlockState(pos).getBlock();
-			if(block == JourneyBlocks.frozenPortalFrame ||block == JourneyBlocks.eucaPortalFrame || block == JourneyBlocks.depthsPortalFrame || block == JourneyBlocks.boilPortalFrame 
+			Block block = world.getBlockState(pos).getBlock();
+			if(block == JourneyBlocks.frozenPortalFrame ||block == JourneyBlocks.eucaPortalFrame || block == JourneyBlocks.boilPortalFrame 
 					 || block == JourneyBlocks.cloudiaPortalFrame || block == JourneyBlocks.terraniaPortalFrame){
-				w.setBlockState(new BlockPos(pos.up()), JourneyBlocks.fire.getDefaultState(), 2);
+				world.setBlockState(new BlockPos(pos.up()), JourneyBlocks.fire.getDefaultState(), 2);
 				return EnumActionResult.SUCCESS;
 			}
 			else return EnumActionResult.FAIL;
-		}*/
+		}
 		
 		//ItemDoor.placeDoor(w, pos.up(1), EnumFacing.fromAngle(player.rotationYaw), JourneyBlocks.frozenDoor, false);
 			//new WorldGenDepthsPillar().generate(w, itemRand, pos);
@@ -51,9 +51,9 @@ public class ItemFlameCoin extends ItemMod {
 		//if(!w.isRemote)
 		//structure.generate(w, r, pos);
 		
-		int i = pos.getX(), j = pos.getY(), k = pos.getZ();
+		//int i = pos.getX(), j = pos.getY(), k = pos.getZ();
 		
-		return EnumActionResult.SUCCESS;
+		//return EnumActionResult.SUCCESS;
 		
 		//BARN
 		/*WorldGenAPI.addRectangle(7, 5, 1, w, x, y, z, EssenceBlocks.greenCorbaPlank);
