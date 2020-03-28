@@ -336,9 +336,9 @@ public class JourneyWeapons {
 		wizardsStar = new ItemStaff("wizardsStar", "Wizards Star", 3, 1000, 5, false, EntityWizardsStar.class);
 		teleportationStaff = new ItemTeleport("teleportationStaff", "Teleportation Staff");
 		overgrownStaff = new ItemStaff("overgrownStaff", "Overgrown Staff", 3, 1000, 5, false, EntityOvergrown.class);
-		fireWand = new ItemWand("fireWand", "Fire Wand", false, 5, 600, 8, false, EntityFireBall.class);
-		iceWand = new ItemWand("iceWand", "Ice Wand", true, 5, 600, 8, false, EntityIceBall.class);
-		lightningWand = new ItemWand("lightningWand", "Lightning Wand", false, 10, 600, 8, false, EntityLightningBall.class);
+		fireWand = new ItemWand("fireWand", "Fire Wand", true, 5, 600, 5, false, EntityFireBall.class);
+		iceWand = new ItemWand("iceWand", "Ice Wand", true, 5, 600, 5, false, EntityIceBall.class);
+		lightningWand = new ItemWand("lightningWand", "Lightning Wand", true, 10, 600, 5, false, EntityLightningBall.class);
 		
 		flameBow = new FlameBow("flameBow", 3, 384);
 		poisonBow = new PoisonBow("poisonBow", 3, 384);

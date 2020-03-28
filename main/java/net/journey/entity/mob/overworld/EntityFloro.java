@@ -10,6 +10,7 @@ import net.journey.entity.projectile.EntityFloroWater;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.IRangedAttackMob;
+import net.minecraft.entity.ai.EntityAIAttackRanged;
 import net.minecraft.entity.ai.EntityAIAttackRangedBow;
 import net.minecraft.entity.ai.EntityAIAvoidEntity;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
@@ -41,6 +42,7 @@ public class EntityFloro extends EntityModMob implements IRangedAttackMob {
 		super(par1World);
 		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false, new Class[0]));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
+        this.tasks.addTask(0, new EntityAIAttackRanged(this, 0.27F, 30, 10.0F));
 		this.tasks.addTask(3, new EntityAIAvoidEntity(this, EntityWolf.class, 6.0F, 1.0D, 1.2D));
         this.tasks.addTask(4, new EntityAIWander(this, 1.0D));
         this.tasks.addTask(5, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
@@ -83,7 +85,7 @@ public class EntityFloro extends EntityModMob implements IRangedAttackMob {
 	
 	@Override
 	public void attackEntityWithRangedAttack(EntityLivingBase target, float f) {
-        EntityFloroWater b = new EntityFloroWater(this.world, this, 8F);
+        EntityFloroWater b = new EntityFloroWater(this.world, this, 1.0F);
         double d0 = target.posX - this.posX;
         double d1 = target.getEntityBoundingBox().minY + (double)(target.height / 3.0F) - b.posY;
         double d2 = target.posZ - this.posZ;
