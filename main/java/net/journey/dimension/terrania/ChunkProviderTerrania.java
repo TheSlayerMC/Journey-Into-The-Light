@@ -117,7 +117,7 @@ public class ChunkProviderTerrania implements IChunkGenerator {
     }
 
     public void setBlocksInChunk(int x, int z, ChunkPrimer p_180518_3_) {
-        this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomesForGeneration(this.biomesForGeneration, x * 4 - 2, z * 4 - 2, 10, 10);
+    	this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomesForGeneration(this.biomesForGeneration, x * 4 - 2, z * 4 - 2, 10, 10);
         this.generate(x * 4, 0, z * 4);
         for (int k = 0; k < 4; ++k) {
             int l = k * 5;
@@ -127,7 +127,7 @@ public class ChunkProviderTerrania implements IChunkGenerator {
                 int l1 = (l + j1 + 1) * 33;
                 int i2 = (i1 + j1) * 33;
                 int j2 = (i1 + j1 + 1) * 33;
-                for (int k2 = 0; k2 < 8; ++k2) {
+                for (int k2 = 0; k2 < 32; ++k2) {
                     double d0 = 0.125D;
                     double d1 = this.da[k1 + k2];
                     double d2 = this.da[l1 + k2];
@@ -155,7 +155,6 @@ public class ChunkProviderTerrania implements IChunkGenerator {
                                     p_180518_3_.setBlockState(k * 4 + i3, k2 * 2 + l2, j1 * 4 + j3, JourneyBlocks.terranianStone.getDefaultState());
                                 }
                             }
-
                             d10 += d12;
                             d11 += d13;
                         }
@@ -317,8 +316,8 @@ public class ChunkProviderTerrania implements IChunkGenerator {
                          d6 *= 4.0D;
 
 
-                     double d7 = this.gen2[l] / 128.0D;
-                     double d8 = this.gen3[l] / 64.0D;
+                     double d7 = this.gen2[l] / 256.0D;
+                     double d8 = this.gen3[l] / 256.0D;
                      double d9 = (this.gen1[l] / 10.0D + 1.0D) / 2.0D;
                      double d10 = MathHelper.clampedLerp(d7, d8, d9) - d6;
 
