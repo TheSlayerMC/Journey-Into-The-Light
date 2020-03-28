@@ -7,6 +7,9 @@ import org.lwjgl.opengl.GL11;
 import net.journey.JourneyArmory;
 import net.journey.client.server.EssenceProvider;
 import net.journey.client.server.IEssence;
+import net.journey.items.ItemGun;
+import net.journey.items.ItemStaff;
+import net.journey.items.ItemTeleport;
 import net.journey.util.Config;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiIngame;
@@ -63,7 +66,8 @@ public class ClientTickEvent {
 	private void onTickRender(EntityPlayer player) {
 		Minecraft mc = Minecraft.getMinecraft();
 		if (player != null) {
-			if (mc.currentScreen == null) {
+			if (mc.currentScreen == null && player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() instanceof ItemStaff || player.getHeldItemMainhand().getItem() instanceof ItemTeleport 
+					|| player.getHeldItemMainhand().getItem() instanceof ItemGun) {
 				if (!player.capabilities.isCreativeMode) {
 					IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
 					GL11.glPushMatrix();
