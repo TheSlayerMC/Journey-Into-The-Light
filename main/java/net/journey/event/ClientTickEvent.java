@@ -66,8 +66,8 @@ public class ClientTickEvent {
 	private void onTickRender(EntityPlayer player) {
 		Minecraft mc = Minecraft.getMinecraft();
 		if (player != null) {
-			if (mc.currentScreen == null && player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() instanceof ItemStaff || player.getHeldItemMainhand().getItem() instanceof ItemTeleport 
-					|| player.getHeldItemMainhand().getItem() instanceof ItemGun) {
+			if (mc.currentScreen == null && player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() instanceof ItemStaff 
+					|| player.getHeldItemMainhand().getItem() instanceof ItemTeleport || player.getHeldItemMainhand().getItem() instanceof ItemGun) {
 				if (!player.capabilities.isCreativeMode) {
 					IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
 					GL11.glPushMatrix();
