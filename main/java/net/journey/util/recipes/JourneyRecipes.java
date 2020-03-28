@@ -131,23 +131,23 @@ public class JourneyRecipes {
 	}
 
 	protected void addAxe(Item axe, Item ingot) {
-		addShapedRecipe(new ItemStack(axe), new Object[] { " ii", " si", " s ", 'i', ingot, 's', Items.STICK });
+		addShapedRecipe(new ItemStack(axe), new Object[] { " ii", " si", " s ", 'i', ingot, 's', JourneyItems.obsidianRod });
 	}
 
 	protected void addPickaxe(Item pick, Item ingot) {
-		addShapedRecipe(new ItemStack(pick), new Object[] { "iii", " s ", " s ", 'i', ingot, 's', Items.STICK });
+		addShapedRecipe(new ItemStack(pick), new Object[] { "iii", " s ", " s ", 'i', ingot, 's', JourneyItems.obsidianRod });
 	}
 
 	protected void addShovel(Item shovel, Item ingot) {
-		addShapedRecipe(new ItemStack(shovel), new Object[] { " i ", " s ", " s ", 'i', ingot, 's', Items.STICK });
+		addShapedRecipe(new ItemStack(shovel), new Object[] { " i ", " s ", " s ", 'i', ingot, 's', JourneyItems.obsidianRod });
 	}
 
 	protected void addSword(Item sword, Item ingot) {
-		addShapedRecipe(new ItemStack(sword), new Object[] { " i ", " i ", " s ", 'i', ingot, 's', Items.STICK });
+		addShapedRecipe(new ItemStack(sword), new Object[] { " i ", " i ", " s ", 'i', ingot, 's', JourneyItems.obsidianRod });
 	}
 
 	protected void addHoe(Item hoe, Item ingot) {
-		addShapedRecipe(new ItemStack(hoe), new Object[] { " ii", " s ", " s ", 'i', ingot, 's', Items.STICK });
+		addShapedRecipe(new ItemStack(hoe), new Object[] { " ii", " s ", " s ", 'i', ingot, 's', JourneyItems.obsidianRod });
 	}
 
 	protected void addHelmet(Item helmet, Item ingot) {
