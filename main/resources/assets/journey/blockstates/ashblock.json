@@ -1,5 +1,11 @@
 {
 	"variants": {
-		"normal": { "model": "journey:ashBlock"}
+        "normal": [
+            { "model": "journey:ashBlock" },
+            { "model": "journey:ashBlock", "y": 90 },
+            { "model": "journey:ashBlock", "y": 180 },
+            { "model": "journey:ashBlock", "y": 270 }
+        ]
+
 	}
 }

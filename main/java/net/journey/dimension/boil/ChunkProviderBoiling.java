@@ -186,7 +186,7 @@ public class ChunkProviderBoiling implements IChunkGenerator {
     public final void generateBiomeTerrain(Random r, ChunkPrimer c, int x, int z, double s) {
         boolean flag = true;
         IBlockState iblockstate = JourneyBlocks.hotBlock.getDefaultState();
-        IBlockState iblockstate1 = JourneyBlocks.ashBlock.getDefaultState();
+        IBlockState iblockstate1 = JourneyBlocks.rubble.getDefaultState();
         int k = -1;
         int l = (int) (s / 3.0D + 3.0D + r.nextDouble() * 0.25D);
         int i1 = x & 15;
@@ -202,10 +202,10 @@ public class ChunkProviderBoiling implements IChunkGenerator {
                     if (k == -1) {
                         if (l <= 0) {
                             iblockstate = null;
-                            iblockstate1 = JourneyBlocks.ashBlock.getDefaultState();
+                            iblockstate1 = JourneyBlocks.rubble.getDefaultState();
                         } else if (k1 >= 14 && k1 <= 16) {
                             iblockstate = JourneyBlocks.hotBlock.getDefaultState();
-                            iblockstate1 = JourneyBlocks.ashBlock.getDefaultState();
+                            iblockstate1 = JourneyBlocks.rubble.getDefaultState();
                         }
 
                         if (k1 < 16 && (iblockstate == null || iblockstate.getMaterial() == Material.AIR))
@@ -214,7 +214,7 @@ public class ChunkProviderBoiling implements IChunkGenerator {
                         if (k1 >= 16) c.setBlockState(j1, k1, i1, iblockstate);
                         else if (k1 < 14 - l) {
                             iblockstate = null;
-                            iblockstate1 = JourneyBlocks.ashBlock.getDefaultState();
+                            iblockstate1 = JourneyBlocks.rubble.getDefaultState();
                         } else c.setBlockState(j1, k1, i1, iblockstate1);
                     } else if (k > 0) {
                         --k;

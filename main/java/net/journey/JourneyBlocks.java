@@ -213,6 +213,7 @@ public class JourneyBlocks {
 	public static BlockMod blazierBricks; 
 	public static BlockMod ashBlock;
 	public static BlockMod hotBlock;
+	public static BlockMod rubble;
 	public static BlockMetaBase brisonblocks;
 	public static BlockMod boilingBars;
 	public static BlockMod burningLeaves;
@@ -585,6 +586,7 @@ public class JourneyBlocks {
 		blazierBricks = new BlockMod("blazierBricks", "Blazier Bricks"); 
 		ashBlock = new BlockMod("ashBlock", "Ash");
 		hotBlock = new BlockModGrass(ashBlock, "hotGround", "Hot Ground", 2.0F);
+		rubble = new BlockMod("rubble", "Rubble", 2.0F);
 		/*brisonStone = new BlockMod("brisonStone", "Brison Stone", 2.0F);
 		darkBrisonBrick = new BlockMod("darkBrisonBrick", "Dark Brison Brick", 2.0F);
 		redBrisonBrick = new BlockMod("redBrisonBrick", "Red Brison Brick", 2.0F);

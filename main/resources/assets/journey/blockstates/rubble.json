@@ -1,0 +1,11 @@
+{
+	"variants": {
+        "normal": [
+            { "model": "journey:rubble" },
+            { "model": "journey:rubble", "y": 90 },
+            { "model": "journey:rubble", "y": 180 },
+            { "model": "journey:rubble", "y": 270 }
+        ]
+
+	}
+}
