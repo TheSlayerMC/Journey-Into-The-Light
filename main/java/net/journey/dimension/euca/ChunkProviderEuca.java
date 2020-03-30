@@ -57,6 +57,7 @@ public class ChunkProviderEuca implements IChunkGenerator {
 	private WorldGenSmeltery worldGenSmeltery = new WorldGenSmeltery();
 	private WorldGenBotSpawner spawner = new WorldGenBotSpawner();
 	private WorldGenEucaWater water = new WorldGenEucaWater(Blocks.FLOWING_WATER, false);
+	protected Biome[] biomesForGeneration;
 
 	public ChunkProviderEuca(World world, long seed) {
 		this.worldObj = world;
@@ -73,6 +74,7 @@ public class ChunkProviderEuca implements IChunkGenerator {
 
 	public void setBlocksInChunk(int x, int z, ChunkPrimer chunkPrimer) {
 		this.buffer = this.setupNoiseGenerators(this.buffer, x * 2, z * 2);
+		this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomesForGeneration(this.biomesForGeneration, x * 4 - 2, z * 4 - 2, 10, 10);
 
 		for (int i1 = 0; i1 < 2; i1++) {
 			for (int j1 = 0; j1 < 2; j1++) {
@@ -140,8 +142,8 @@ public class ChunkProviderEuca implements IChunkGenerator {
 			for (int l = 0; l < 16; l++) {
 				int j1 = -1;
 				int i1 = (int) (3.0D + this.rand.nextDouble() * 0.25D);
-
-				IBlockState top = JourneyBlocks.eucaGrass.getDefaultState();
+				Biome biome = worldObj.getBiome(new BlockPos(i * 16, 0, j * 16));
+				IBlockState top = biome.topBlock;
 				IBlockState filler = JourneyBlocks.eucaDirt.getDefaultState();
 
 				for (int k1 = 127; k1 >= 0; k1--) {
@@ -225,11 +227,15 @@ public class ChunkProviderEuca implements IChunkGenerator {
 	public Chunk generateChunk(int x, int z) {
 		this.rand.setSeed((long) x * 341873128712L + (long) z * 132897987541L);
 		ChunkPrimer chunkPrimer = new ChunkPrimer();
-
 		this.setBlocksInChunk(x, z, chunkPrimer);
+        this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomes(this.biomesForGeneration, x * 16, z * 16, 16, 16);
 		this.buildSurfaces(x, z, chunkPrimer);
-
 		Chunk chunk = new Chunk(this.worldObj, chunkPrimer, x, z);
+
+		byte[] chunkBiomes = chunk.getBiomeArray();
+		for (int i = 0; i < chunkBiomes.length; ++i) {
+			chunkBiomes[i] = (byte) Biome.getIdForBiome(this.biomesForGeneration[i]);
+		}
 		chunk.generateSkylightMap();
 
 		return chunk;
