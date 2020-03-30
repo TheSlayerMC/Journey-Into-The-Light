@@ -107,7 +107,7 @@ public class MusicTicker {
 		EUCA_1(JourneySounds.EUCA_1, 1200, 1500),
 		EUCA_2(JourneySounds.EUCA_2, 1200, 1500),
 		DEPTHS_1(JourneySounds.DEPTHS_1, 1200, 1500),
-		CORBA_1(JourneySounds.CORBA_1, 1200, 1500),
+		CORBA_1(JourneySounds.CORBA_1, 5100, 5400),
 		CLOUDIA_1(JourneySounds.CLOUDIA_1, 1200, 1500);
 
 		private final SoundEvent musicLocation;
