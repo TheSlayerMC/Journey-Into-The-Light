@@ -25,16 +25,20 @@ import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.IProgressUpdate;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.chunk.storage.ExtendedBlockStorage;
 import net.minecraft.world.gen.ChunkGeneratorOverworld;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
+import net.minecraft.world.gen.NoiseGeneratorPerlin;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.event.ForgeEventFactory;
 import net.slayer.api.worldgen.WorldGenAPI;
 
 public class ChunkProviderEuca implements IChunkGenerator {
@@ -42,6 +46,7 @@ public class ChunkProviderEuca implements IChunkGenerator {
 	private Random rand;
 	private World worldObj;
 	private NoiseGeneratorOctaves noiseGen1, perlinNoise1;
+	private final NoiseGeneratorPerlin surfaceNoise;
 	private double buffer[];
 	double pnr[], ar[], br[];
 	//private ArrayList<WorldGenerator> treesgreen;
@@ -58,12 +63,17 @@ public class ChunkProviderEuca implements IChunkGenerator {
 	private WorldGenBotSpawner spawner = new WorldGenBotSpawner();
 	private WorldGenEucaWater water = new WorldGenEucaWater(Blocks.FLOWING_WATER, false);
 	protected Biome[] biomesForGeneration;
+	
+	protected static long getSeed(int x, int z) {
+		return x * 0x4f9939f508L + z * 0x1ef1565bd5L;
+	}
 
 	public ChunkProviderEuca(World world, long seed) {
 		this.worldObj = world;
 		this.rand = new Random(seed);
 		this.noiseGen1 = new NoiseGeneratorOctaves(this.rand, 16);
 		this.perlinNoise1 = new NoiseGeneratorOctaves(this.rand, 8);
+		this.surfaceNoise = new NoiseGeneratorPerlin(this.rand, 4);
 
 		//	treesgreen = new ArrayList<WorldGenerator>(3);
 		//	treesgreen.add(new WorldGenEucaTree6());
@@ -71,6 +81,51 @@ public class ChunkProviderEuca implements IChunkGenerator {
 		//treesgreen.add(new WorldGenEucaTree8());
 		//treesgreen.add(new WorldGenEucaTree9());
 	}
+	
+	protected final Chunk makeChunk(int x, int z, ChunkPrimer primer) {
+
+		Chunk chunk = new Chunk(worldObj, x, z);
+
+		fillChunk(chunk, primer);
+
+		// load in biomes, to prevent striping?!
+		byte[] chunkBiomes = chunk.getBiomeArray();
+		for (int i = 0; i < chunkBiomes.length; ++i) {
+			chunkBiomes[i] = (byte) Biome.getIdForBiome(this.biomesForGeneration[i]);
+		}
+
+		chunk.generateSkylightMap();
+
+		return chunk;
+	}
+	
+	private void fillChunk(Chunk chunk, ChunkPrimer primer) {
+
+		int i = 256;
+		boolean flag = worldObj.provider.hasSkyLight();
+		ExtendedBlockStorage[] storageArrays = chunk.getBlockStorageArray();
+
+		for (int j = 0; j < 16; ++j) {
+			for (int k = 0; k < 16; ++k) {
+				for (int l = 0; l < 256; ++l) {
+
+					IBlockState iblockstate = primer.getBlockState(j, l, k);
+
+					if (iblockstate.getBlock() != Blocks.AIR) {
+
+						int i1 = l >> 4;
+
+						if (storageArrays[i1] == Chunk.NULL_BLOCK_STORAGE) {
+							storageArrays[i1] = new ExtendedBlockStorage(i1 << 4, flag);
+						}
+
+						storageArrays[i1].set(j, l & 15, k, iblockstate);
+					}
+				}
+			}
+		}
+	}
+
 
 	public void setBlocksInChunk(int x, int z, ChunkPrimer chunkPrimer) {
 		this.buffer = this.setupNoiseGenerators(this.buffer, x * 2, z * 2);
@@ -133,6 +188,20 @@ public class ChunkProviderEuca implements IChunkGenerator {
 						d4 += d8;
 					}
 				}
+			}
+		}
+	}
+
+	public void replaceBiomeBlocks(int x, int z, ChunkPrimer primer, Biome[] biomesIn) {
+
+		if (!ForgeEventFactory.onReplaceBiomeBlocks(this, x, z, primer, this.worldObj)) return;
+		double d0 = 0.03125D;
+		this.buffer = this.surfaceNoise.getRegion(this.buffer, (double)(x * 16), (double)(z * 16), 16, 16, 0.0625D, 0.0625D, 1.0D);
+
+		for (int i = 0; i < 16; ++i) {
+			for (int j = 0; j < 16; ++j) {
+				Biome biome = biomesIn[j + i * 16];
+				biome.genTerrainBlocks(this.worldObj, this.rand, primer, x * 16 + i, z * 16 + j, this.buffer[j + i * 16]);
 			}
 		}
 	}

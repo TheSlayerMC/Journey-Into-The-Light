@@ -29,38 +29,33 @@ public class BiomeProviderEuca extends BiomeProvider {
 		return eucaBiomes;
 	}
 
-	public Biome[] getBiomesForGeneration(Biome[] biomes, int x, int z, int width, int height)
-	{
-		if (biomes == null || biomes.length < width * height)
-		{
+	public Biome[] getBiomesForGeneration(Biome[] biomes, int x, int z, int width, int height) {
+		if (biomes == null || biomes.length < width * height) {
 			biomes = new Biome[width * height];
 		}
 
 		int check = new Random().nextInt(2);
-		if(check == 0)
+		if (check == 0)
 			Arrays.fill(biomes, 0, width * height, this.eucaBiomes1[0]);
-		if(check == 1)
+		if (check == 1)
 			Arrays.fill(biomes, 0, width * height, this.eucaBiomes1[1]);
 		return biomes;
 	}
 
-	public Biome[] getBiomes(@Nullable Biome[] oldBiomeList, int x, int z, int width, int depth)
-	{
-		if (oldBiomeList == null || oldBiomeList.length < width * depth)
-		{
+	public Biome[] getBiomes(@Nullable Biome[] oldBiomeList, int x, int z, int width, int depth) {
+		if (oldBiomeList == null || oldBiomeList.length < width * depth) {
 			oldBiomeList = new Biome[width * depth];
 		}
 
 		int check = new Random().nextInt(2);
-		if(check == 0)
+		if (check == 0)
 			Arrays.fill(oldBiomeList, 0, width * depth, this.eucaBiomes1[0]);
-		if(check == 1)
+		if (check == 1)
 			Arrays.fill(oldBiomeList, 0, width * depth, this.eucaBiomes1[1]);
 		return oldBiomeList;
 	}
 
-	public Biome[] getBiomes(@Nullable Biome[] listToReuse, int x, int z, int width, int length, boolean cacheFlag)
-	{
+	public Biome[] getBiomes(@Nullable Biome[] listToReuse, int x, int z, int width, int length, boolean cacheFlag) {
 		return this.getBiomes(listToReuse, x, z, width, length);
 	}
 }
