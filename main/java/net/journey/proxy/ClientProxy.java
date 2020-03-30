@@ -2,6 +2,7 @@ package net.journey.proxy;
 
 import net.journey.JITL;
 import net.journey.client.BossTickHandler;
+import net.journey.client.ClientDimensionMusic;
 import net.journey.client.EntityRendering;
 import net.journey.client.GuiHandler;
 import net.journey.client.PlayerStats;
@@ -37,6 +38,7 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public void clientInit(FMLInitializationEvent event) {
 		EntityRendering.init();
+		SlayerAPI.registerEvent(new ClientDimensionMusic());
 		SlayerAPI.registerEvent(new BossTickHandler());
 		SlayerAPI.registerEvent(new ClientTickEvent());
 		SlayerAPI.registerEvent(new PlayerStats());

@@ -4,6 +4,7 @@ import java.lang.reflect.Field;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Predicate;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.SoundEventAccessor;
@@ -12,11 +13,13 @@ import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.client.resources.IResourceManagerReloadListener;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
+import net.minecraftforge.client.resource.IResourceType;
+import net.minecraftforge.client.resource.ISelectiveResourceReloadListener;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class MusicHandler implements IResourceManagerReloadListener {
+public class MusicHandler implements ISelectiveResourceReloadListener {
 
 	private static Map getMap(SoundRegistry reg) {
 		Field[] fields = reg.getClass().getDeclaredFields();
@@ -48,11 +51,6 @@ public class MusicHandler implements IResourceManagerReloadListener {
 			}
 		}
 		return null;
-	}
-
-	@Override
-	public void onResourceManagerReload(IResourceManager var1) {
-		clearMusic();
 	}
 
 	public void clearMusic() {
@@ -91,5 +89,10 @@ public class MusicHandler implements IResourceManagerReloadListener {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	@Override
+	public void onResourceManagerReload(IResourceManager resourceManager, Predicate<IResourceType> resourcePredicate) {
+		clearMusic();
 	}
 }

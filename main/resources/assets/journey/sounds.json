@@ -76,5 +76,7 @@
  "race_star":{"category": "music", "sounds": [{"name": "journey:music/records/race_star", "stream": true}]},
  "comp_begins":{"category": "music", "sounds": [{"name": "journey:music/records/comp_begins", "stream": true}]},
  "deep_blue":{"category": "music", "sounds": [{"name": "journey:music/records/deep_blue", "stream": true}]},
- "race_shore":{"category": "music", "sounds": [{"name": "journey:music/records/race_shore", "stream": true}]}
+ "race_shore":{"category": "music", "sounds": [{"name": "journey:music/records/race_shore", "stream": true}],
+ "euca_1":{"category": "music", "sounds": [{"name": "journey:music/dimensions/euca/euca_1", "stream": true}]};
+
 }

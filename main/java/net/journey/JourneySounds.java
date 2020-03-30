@@ -95,7 +95,8 @@ public class JourneySounds {
 	public static SoundEvent RACE_STAR;
 	public static SoundEvent BLUE_WATER;
 	public static SoundEvent UNDERWATER_WORLD;
-	
+	public static SoundEvent EUCA_1;
+
 
 	public static void init() {
 
