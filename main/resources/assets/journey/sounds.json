@@ -78,6 +78,7 @@
  "deep_blue":{"category": "music", "sounds": [{"name": "journey:music/records/deep_blue", "stream": true}]},
  "race_shore":{"category": "music", "sounds": [{"name": "journey:music/records/race_shore", "stream": true}]},
  "euca_1": {"category": "music", "sounds": [{"name": "journey:music/dimensions/euca/euca_1", "stream": true}]},
+  "euca_2": {"category": "music", "sounds": [{"name": "journey:music/dimensions/euca/euca_2", "stream": true}]},
   "corba_1": {"category": "music", "sounds": [{"name": "journey:music/dimensions/corba/corba_1", "stream": true}]},
  "depths_1": {"category": "music", "sounds": [{"name": "journey:music/dimensions/depths/depths_1", "stream": true}]},
   "cloudia_1": {"category": "music", "sounds": [{"name": "journey:music/dimensions/cloudia/cloudia_1", "stream": true}]}

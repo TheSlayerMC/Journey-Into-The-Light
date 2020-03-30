@@ -29,21 +29,19 @@ public class MusicTicker {
 	public void update() {
 		TrackType tracktype = this.getRandomTrack();
 
-		if (this.mc.player != null) {
-			if (this.mc.player.dimension != getDimensionID()) {
+		if(this.mc.player != null) {
+			if(this.mc.player.dimension != getDimensionID()) {
 				this.stopMusic();
 			}
-			else if (this.mc.player.dimension == getDimensionID()) {
-				if (this.currentMusic != null) {
+			else if(this.mc.player.dimension == getDimensionID()) {
+				if(this.currentMusic != null) {
 					if (!this.mc.getSoundHandler().isSoundPlaying(this.currentMusic)) {
 						this.currentMusic = null;
 						this.timeUntilNextMusic = Math.min(MathHelper.getInt(this.rand, tracktype.getMinDelay(), tracktype.getMaxDelay()), this.timeUntilNextMusic);
 					}
 				}
-
 				this.timeUntilNextMusic = Math.min(this.timeUntilNextMusic, tracktype.getMaxDelay());
-
-				if (this.currentMusic == null && this.timeUntilNextMusic-- <= 0) {
+				if(this.currentMusic == null && this.timeUntilNextMusic-- <= 0) {
 					this.playMusic(tracktype);
 				}
 			}
@@ -72,7 +70,7 @@ public class MusicTicker {
 		
 		if(dimID == Config.euca) {
 			int tracks = rand.nextInt(1);
-			return tracks == 0 ? TrackType.EUCA_1 : TrackType.EUCA_1;
+			return tracks == 0 ? TrackType.EUCA_1 : tracks == 1 ? TrackType.EUCA_2 : TrackType.EUCA_1;
 		}
 		
 		if(dimID == Config.corba) {
@@ -83,7 +81,9 @@ public class MusicTicker {
 		if(dimID == Config.cloudia) {
 			int tracks = rand.nextInt(1);
 			return tracks == 0 ? TrackType.CLOUDIA_1 : TrackType.CLOUDIA_1;
-		}		
+		}
+		
+		//return num == 0 ? TrackType.TRACK_ONE : num == 1 ? TrackType.TRACK_TWO : num == 2 ? TrackType.TRACK_THREE : TrackType.TRACK_FOUR;
 		return type;
 	}
 
@@ -104,6 +104,7 @@ public class MusicTicker {
 	@SideOnly(Side.CLIENT)
 	public static enum TrackType {
 		EUCA_1(JourneySounds.EUCA_1, 1200, 1500),
+		EUCA_2(JourneySounds.EUCA_2, 1200, 1500),
 		DEPTHS_1(JourneySounds.DEPTHS_1, 1200, 1500),
 		CORBA_1(JourneySounds.CORBA_1, 1200, 1500),
 		CLOUDIA_1(JourneySounds.CLOUDIA_1, 1200, 1500);

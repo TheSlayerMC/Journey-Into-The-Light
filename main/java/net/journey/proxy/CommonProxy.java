@@ -31,6 +31,7 @@ import net.journey.util.LangRegistry;
 import net.journey.util.recipes.JourneyRecipes;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -57,6 +58,10 @@ public class CommonProxy {
 	public void spawnOreParticle(World worldObj, double x, double y, double z, float r, float g, float b) { }
 	public void spawnParticle(EnumParticlesClasses particle, World worldObj, double x, double y, double z, double x1, double y2, double z2) { }
 
+	public EntityPlayer getPlayer() {
+		return null;
+	}
+	
 	public void preInit(FMLPreInitializationEvent event) {
 		Config.init(event);
 		NetherEvent.init();

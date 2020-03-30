@@ -16,6 +16,7 @@ import net.journey.event.ClientTickEvent;
 import net.journey.event.UpdateCheckerEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -25,6 +26,11 @@ import net.slayer.api.SlayerAPI;
 
 public class ClientProxy extends CommonProxy {
 
+	@Override
+	public EntityPlayer getPlayer() {
+		return FMLClientHandler.instance().getClientPlayerEntity();
+	}
+	
 	@Override
 	public void registerClient() {
 		NetworkRegistry.INSTANCE.registerGuiHandler(JITL.instance, new GuiHandler());
