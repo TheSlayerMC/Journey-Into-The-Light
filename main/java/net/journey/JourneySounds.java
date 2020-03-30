@@ -176,6 +176,8 @@ public class JourneySounds {
 		RACE_STAR = registerSound("race_star");
 		BLUE_WATER = registerSound("blue_water");
 		UNDERWATER_WORLD = registerSound("underwater_world");
+		EUCA_1 = registerSound("euca_1");
+
 	}
 
 	public static SoundEvent registerSound(String sound) {
