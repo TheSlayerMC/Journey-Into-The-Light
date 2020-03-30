@@ -1,5 +1,11 @@
 {
 	"variants": {
-		"normal": { "model": "journey:eucaGrass"}
+        "normal": [
+            { "model": "journey:eucaGrass" },
+            { "model": "journey:eucaGrass", "y": 90 },
+            { "model": "journey:eucaGrass", "y": 180 },
+            { "model": "journey:eucaGrass", "y": 270 }
+        ]
+
 	}
 }

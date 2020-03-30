@@ -1,5 +1,11 @@
 {
 	"variants": {
-		"normal": { "model": "journey:terranianGrass"}
+        "normal": [
+            { "model": "journey:terranianGrass" },
+            { "model": "journey:terranianGrass", "y": 90 },
+            { "model": "journey:terranianGrass", "y": 180 },
+            { "model": "journey:terranianGrass", "y": 270 }
+        ]
+
 	}
 }

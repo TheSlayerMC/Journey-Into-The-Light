@@ -1,11 +1,10 @@
 {
-	"variants": {
+    "variants": {
         "normal": [
             { "model": "journey:ashBlock" },
-            { "model": "journey:ashBlock", "y": 90 },
+            { "model": "journey:ashBlock_mirrored" },
             { "model": "journey:ashBlock", "y": 180 },
-            { "model": "journey:ashBlock", "y": 270 }
+            { "model": "journey:ashBlock_mirrored", "y": 180 }
         ]
-
-	}
+    }
 }

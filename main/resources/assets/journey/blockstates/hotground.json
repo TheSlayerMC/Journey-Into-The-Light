@@ -1,11 +1,10 @@
 {
-	"variants": {
+    "variants": {
         "normal": [
             { "model": "journey:hotGround" },
-            { "model": "journey:hotGround", "y": 90 },
+            { "model": "journey:hotGround_mirrored" },
             { "model": "journey:hotGround", "y": 180 },
-            { "model": "journey:hotGround", "y": 270 }
+            { "model": "journey:hotGround_mirrored", "y": 180 }
         ]
-
-	}
+    }
 }

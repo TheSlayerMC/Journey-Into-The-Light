@@ -1,5 +1,11 @@
 {
 	"variants": {
-		"normal": { "model": "journey:corbaGrass"}
+        "normal": [
+            { "model": "journey:corbaGrass" },
+            { "model": "journey:corbaGrass", "y": 90 },
+            { "model": "journey:corbaGrass", "y": 180 },
+            { "model": "journey:corbaGrass", "y": 270 }
+        ]
+
 	}
 }

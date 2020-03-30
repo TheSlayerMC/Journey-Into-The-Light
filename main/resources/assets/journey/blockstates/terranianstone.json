@@ -1,5 +1,10 @@
 {
-	"variants": {
-		"normal": { "model": "journey:terranianStone"}
-	}
+    "variants": {
+        "normal": [
+            { "model": "journey:terranianStone" },
+            { "model": "journey:terranianStone_mirrored" },
+            { "model": "journey:terranianStone", "y": 180 },
+            { "model": "journey:terranianStone_mirrored", "y": 180 }
+        ]
+    }
 }
