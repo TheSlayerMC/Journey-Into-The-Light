@@ -24,4 +24,10 @@ public class BiomeGenEuca extends BiomeGenJourney {
     public int getSkyColorByTemp(float par1) {
         return Color.getHSBColor(0.255F, 0.216F, 0.0F).getRGB();
     }
+	
+	@Override
+    @SideOnly(Side.CLIENT)
+	public int getWaterColorMultiplier() {
+        return 0xFFFB00;
+	}
 }

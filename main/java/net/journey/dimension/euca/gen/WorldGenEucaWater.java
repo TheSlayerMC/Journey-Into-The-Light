@@ -3,6 +3,7 @@ package net.journey.dimension.euca.gen;
 import java.util.Random;
 
 import net.journey.JourneyBlocks;
+import net.journey.util.Helper;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -46,6 +47,7 @@ public class WorldGenEucaWater extends WorldGenerator {
 				w.setBlockState(p, iblockstate, 2);
 				w.immediateBlockTick(p, iblockstate, r);
 			}
+			
 			return true;
 		}
 	}

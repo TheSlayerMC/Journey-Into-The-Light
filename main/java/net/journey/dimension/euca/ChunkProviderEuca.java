@@ -56,6 +56,7 @@ public class ChunkProviderEuca implements IChunkGenerator {
 	};
 	private WorldGenSmeltery worldGenSmeltery = new WorldGenSmeltery();
 	private WorldGenBotSpawner spawner = new WorldGenBotSpawner();
+	private WorldGenEucaWater water = new WorldGenEucaWater(Blocks.FLOWING_WATER, false);
 
 	public ChunkProviderEuca(World world, long seed) {
 		this.worldObj = world;
@@ -63,8 +64,8 @@ public class ChunkProviderEuca implements IChunkGenerator {
 		this.noiseGen1 = new NoiseGeneratorOctaves(this.rand, 16);
 		this.perlinNoise1 = new NoiseGeneratorOctaves(this.rand, 8);
 
-	//	treesgreen = new ArrayList<WorldGenerator>(3);
-	//	treesgreen.add(new WorldGenEucaTree6());
+		//	treesgreen = new ArrayList<WorldGenerator>(3);
+		//	treesgreen.add(new WorldGenEucaTree6());
 		//treesgreen.add(new WorldGenEucaTree7());
 		//treesgreen.add(new WorldGenEucaTree8());
 		//treesgreen.add(new WorldGenEucaTree9());
@@ -241,20 +242,24 @@ public class ChunkProviderEuca implements IChunkGenerator {
 		int z1 = j * chunkSize;
 		int x, z, times;
 
-		if (rand.nextInt(1) == 0) {
+		if(rand.nextInt(1) == 0) {
 			generateStructure(x1, z1, worldGenSmeltery);
 		}
 
-		for (times = 0; times < 1; times++) {
+		for(times = 0; times < 1; times++) {
 			generateStructure(x1, z1, spawner);
 		}
 
-		for (times = 0; times < 500; times++) {
+		for(times = 0; times < 500; times++) {
 			generateStructure(x1, z1, treesnormal);
 		}
 
-		for (times = 0; times < 70; times++) {
+		for(times = 0; times < 70; times++) {
 			generateStructure(x1, z1, treestall);
+		}
+
+		for(times = 0; times < 20; times++) {
+			water.generate(worldObj, rand, new BlockPos(x1 + this.rand.nextInt(16) + 8, this.rand.nextInt(120) + 4, z1 + this.rand.nextInt(16) + 8));
 		}
 
 		/*for (times = 0; times < 5; times++) {

@@ -61,7 +61,7 @@ public class MusicTicker {
 	}
 
 	public MusicTicker.TrackType getRandomTrack() {
-		TrackType type = TrackType.EUCA_1;
+		TrackType type = TrackType.EMPTY;
 		int dimID = getDimensionID();
 		if(dimID == Config.depths) {
 			int tracks = rand.nextInt(1);
@@ -103,6 +103,7 @@ public class MusicTicker {
 
 	@SideOnly(Side.CLIENT)
 	public static enum TrackType {
+		EMPTY(JourneySounds.EMPTY, 300, 700),
 		EUCA_1(JourneySounds.EUCA_1, 1200, 1500),
 		EUCA_2(JourneySounds.EUCA_2, 1200, 1500),
 		DEPTHS_1(JourneySounds.DEPTHS_1, 1200, 1500),
