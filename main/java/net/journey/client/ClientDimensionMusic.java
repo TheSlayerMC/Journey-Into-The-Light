@@ -34,9 +34,10 @@ public class ClientDimensionMusic {
 	public void onMusicControl(PlaySoundEvent event) {
 		ISound sound = event.getSound();
 		SoundCategory category = sound.getCategory();
-
 		if (category == SoundCategory.MUSIC) {
-			if (this.mc.player != null && this.mc.player.dimension == Config.euca) {
+			if (this.mc.player != null && this.mc.player.dimension == Config.euca || this.mc.player.dimension == Config.depths || this.mc.player.dimension == Config.corba
+					|| this.mc.player.dimension == Config.cloudia) {
+				musicTicker.setDimensionID(mc.player.dimension);
 				if (!sound.getSoundLocation().toString().contains("journey") && (this.musicTicker.playingMusic() || !this.musicTicker.playingMusic())) {
 					event.setResultSound(null);
 					return;

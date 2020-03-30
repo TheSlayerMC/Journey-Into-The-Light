@@ -96,6 +96,9 @@ public class JourneySounds {
 	public static SoundEvent BLUE_WATER;
 	public static SoundEvent UNDERWATER_WORLD;
 	public static SoundEvent EUCA_1;
+	public static SoundEvent DEPTHS_1;
+	public static SoundEvent CORBA_1;
+	public static SoundEvent CLOUDIA_1;
 
 
 	public static void init() {
@@ -177,6 +180,9 @@ public class JourneySounds {
 		BLUE_WATER = registerSound("blue_water");
 		UNDERWATER_WORLD = registerSound("underwater_world");
 		EUCA_1 = registerSound("euca_1");
+		DEPTHS_1 = registerSound("depths_1");
+		CORBA_1 = registerSound("corba_1");
+		CLOUDIA_1 = registerSound("cloudia_1");
 
 	}
 

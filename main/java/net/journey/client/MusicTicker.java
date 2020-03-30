@@ -14,13 +14,14 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class MusicTicker implements ITickable {
+public class MusicTicker {
 
 	private final Random rand = new Random();
 	private final Minecraft mc;
 	private ISound currentMusic;
 	private int timeUntilNextMusic = 100;
-
+	private int id;
+	
 	public MusicTicker(Minecraft mcIn)	{
 		this.mc = mcIn;
 	}
@@ -29,10 +30,10 @@ public class MusicTicker implements ITickable {
 		TrackType tracktype = this.getRandomTrack();
 
 		if (this.mc.player != null) {
-			if (this.mc.player.dimension != Config.euca) {
+			if (this.mc.player.dimension != getDimensionID()) {
 				this.stopMusic();
 			}
-			else if (this.mc.player.dimension == Config.euca) {
+			else if (this.mc.player.dimension == getDimensionID()) {
 				if (this.currentMusic != null) {
 					if (!this.mc.getSoundHandler().isSoundPlaying(this.currentMusic)) {
 						this.currentMusic = null;
@@ -48,16 +49,42 @@ public class MusicTicker implements ITickable {
 			}
 		}
 	}
+	
+	public void setDimensionID(int id) {
+		this.id = id;
+	}
+	
+	public int getDimensionID() {
+		return id;
+	}
 
 	public boolean playingMusic() {
 		return this.currentMusic != null;
 	}
 
 	public MusicTicker.TrackType getRandomTrack() {
-		int num = this.rand.nextInt(1);
-
-		//return num == 0 ? TrackType.TRACK_ONE : num == 1 ? TrackType.TRACK_TWO : num == 2 ? TrackType.TRACK_THREE : TrackType.TRACK_FOUR;
-		return TrackType.TRACK_ONE;
+		TrackType type = TrackType.EUCA_1;
+		int dimID = getDimensionID();
+		if(dimID == Config.depths) {
+			int tracks = rand.nextInt(1);
+			return tracks == 0 ? TrackType.DEPTHS_1 : TrackType.DEPTHS_1;
+		}
+		
+		if(dimID == Config.euca) {
+			int tracks = rand.nextInt(1);
+			return tracks == 0 ? TrackType.EUCA_1 : TrackType.EUCA_1;
+		}
+		
+		if(dimID == Config.corba) {
+			int tracks = rand.nextInt(1);
+			return tracks == 0 ? TrackType.CORBA_1 : TrackType.CORBA_1;
+		}
+		
+		if(dimID == Config.cloudia) {
+			int tracks = rand.nextInt(1);
+			return tracks == 0 ? TrackType.CLOUDIA_1 : TrackType.CLOUDIA_1;
+		}		
+		return type;
 	}
 
 	public void playMusic(TrackType requestedMusicType) {
@@ -76,7 +103,10 @@ public class MusicTicker implements ITickable {
 
 	@SideOnly(Side.CLIENT)
 	public static enum TrackType {
-		TRACK_ONE(JourneySounds.EUCA_1, 1200, 1500);
+		EUCA_1(JourneySounds.EUCA_1, 1200, 1500),
+		DEPTHS_1(JourneySounds.DEPTHS_1, 1200, 1500),
+		CORBA_1(JourneySounds.CORBA_1, 1200, 1500),
+		CLOUDIA_1(JourneySounds.CLOUDIA_1, 1200, 1500);
 
 		private final SoundEvent musicLocation;
 		private final int minDelay;

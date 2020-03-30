@@ -19,6 +19,7 @@ import net.minecraft.client.particle.Particle;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.slayer.api.SlayerAPI;
 
@@ -38,10 +39,14 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public void clientInit(FMLInitializationEvent event) {
 		EntityRendering.init();
-		SlayerAPI.registerEvent(new ClientDimensionMusic());
 		SlayerAPI.registerEvent(new BossTickHandler());
 		SlayerAPI.registerEvent(new ClientTickEvent());
 		SlayerAPI.registerEvent(new PlayerStats());
+	}
+	
+	@Override
+	public void clientPostInit() {
+		SlayerAPI.registerEvent(new ClientDimensionMusic());
 	}
 
 	@Override

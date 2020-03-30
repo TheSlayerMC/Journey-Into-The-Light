@@ -63,6 +63,7 @@ public class JITL {
 	public static void postInit(FMLPostInitializationEvent event) {
 		proxy.postInit(event);
 		proxy.registerSounds();
+		proxy.clientPostInit();
 	}
 
 	@EventHandler
