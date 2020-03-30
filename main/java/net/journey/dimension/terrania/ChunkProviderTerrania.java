@@ -15,6 +15,7 @@ import net.journey.dimension.terrania.gen.trees.WorldGenTerraniaBigTree1;
 import net.journey.dimension.terrania.gen.trees.WorldGenTerraniaBigTree2;
 import net.journey.dimension.terrania.gen.trees.WorldGenTerraniaBigTree3;
 import net.journey.dimension.terrania.gen.trees.WorldGenTerraniaSmallTree;
+import net.journey.dimension.terrania.gen.trees.WorldGenTerraniaTree;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -46,11 +47,6 @@ import net.slayer.api.worldgen.WorldGenAPI;
 public class ChunkProviderTerrania implements IChunkGenerator {
 
     private Random rand;
-    private final WorldGenerator[] trees = {
-            new WorldGenTerraniaBigTree1(),
-            new WorldGenTerraniaBigTree2(),
-            new WorldGenTerraniaBigTree3(),
-    };
     private final WorldGenerator[] smalltrees = {
             new WorldGenTerraniaSmallTree()
     };
@@ -342,6 +338,11 @@ public class ChunkProviderTerrania implements IChunkGenerator {
 
         BlockPos chunkStart = new BlockPos(x1, 0, z1);
 
+
+        for (times = 0; times < 750; times++) {
+            generateStructure(x1, z1, new WorldGenTerraniaTree(true, 5, 10, JourneyBlocks.terranianLog.getDefaultState(), JourneyBlocks.terraniaLeaves.getDefaultState()));
+        }
+        
         for (int i = 0; i < 100; i++) {
             flower.generate(worldObj, r, chunkStart);
         }
@@ -353,15 +354,6 @@ public class ChunkProviderTerrania implements IChunkGenerator {
         for (int i = 0; i < 1; i++) {
             flower2.generate(worldObj, r, chunkStart);
         }
-
-        for (times = 0; times < 275; times++) {
-            generateStructure(x1, z1, trees);
-        }
-
-        for (times = 0; times < 325; times++) {
-            generateStructure(x1, z1, trees);
-        }
-
 
         if (rand.nextInt(1) == 0) {
             generateStructure(x1, z1, hut);
