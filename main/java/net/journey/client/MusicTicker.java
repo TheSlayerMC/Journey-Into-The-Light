@@ -69,7 +69,7 @@ public class MusicTicker {
 		}
 		
 		if(dimID == Config.euca) {
-			int tracks = rand.nextInt(1);
+			int tracks = rand.nextInt(2);
 			return tracks == 0 ? TrackType.EUCA_1 : tracks == 1 ? TrackType.EUCA_2 : TrackType.EUCA_1;
 		}
 		
