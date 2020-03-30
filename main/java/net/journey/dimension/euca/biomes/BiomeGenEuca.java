@@ -28,6 +28,6 @@ public class BiomeGenEuca extends BiomeGenJourney {
 	@Override
     @SideOnly(Side.CLIENT)
 	public int getWaterColorMultiplier() {
-        return 0xFFFB00;
+        return 0xff9c00;
 	}
 }
