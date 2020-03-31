@@ -1,6 +1,7 @@
 package net.slayer.api.entity;
 
 import java.util.Iterator;
+import java.util.UUID;
 
 import net.journey.JITL;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -15,11 +16,14 @@ import net.minecraft.entity.ai.EntityAIHarvestFarmland;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookAtTradePlayer;
 import net.minecraft.entity.ai.EntityAIMoveIndoors;
+import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAIOpenDoor;
 import net.minecraft.entity.ai.EntityAIRestrictOpenDoor;
+import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAITradePlayer;
 import net.minecraft.entity.ai.EntityAIWander;
+import net.minecraft.entity.ai.EntityAIWanderAvoidWater;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.ai.EntityAIWatchClosest2;
 import net.minecraft.entity.monster.EntityZombie;
@@ -44,7 +48,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public abstract class EntityModVillager extends EntityVillager implements INpc, IMerchant, IMob {
-
+	
+    private UUID lastBuyingPlayer;
+    private EntityPlayer buyingPlayer;
 	private MerchantRecipeList buyingList;
 	private float buying;
 
@@ -52,21 +58,18 @@ public abstract class EntityModVillager extends EntityVillager implements INpc, 
 		super(var1);
 		this.setSize(1.0F, 2.0F);
 		this.setCanPickUpLoot(false);
+        this.addDefaultEquipmentAndRecipies(75);
 	}
 
 	@Override
 	protected void initEntityAI() {
-		this.tasks.addTask(1, new EntityAITradePlayer(this));
-		this.tasks.addTask(1, new EntityAILookAtTradePlayer(this));
-		this.tasks.addTask(2, new EntityAIMoveIndoors(this));
-		this.tasks.addTask(3, new EntityAIRestrictOpenDoor(this));
-		this.tasks.addTask(4, new EntityAIOpenDoor(this, true));
-		this.tasks.addTask(5, new EntityAIWatchClosest2(this, EntityPlayer.class, 3.0F, 1.0F));
-		this.tasks.addTask(5, new EntityAIWander(this, 1.0F));
-		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityZombie.class, true));
-		this.tasks.addTask(2, new EntityAIAttackMelee(this, 1.4D, false));
-		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
-		this.tasks.removeTask(new EntityAIHarvestFarmland(this, 0.6D));
+        this.tasks.addTask(0, new EntityAISwimming(this));
+        this.tasks.addTask(1, new EntityAIAvoidEntity(this, EntityZombie.class, 8.0F, 0.6D, 0.6D));
+        this.tasks.addTask(2, new EntityAITradePlayer(this));
+        this.tasks.addTask(2, new EntityAILookAtTradePlayer(this));
+        this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 0.27D));
+        this.tasks.addTask(9, new EntityAIWatchClosest2(this, EntityPlayer.class, 3.0F, 1.0F));
+        this.tasks.addTask(9, new EntityAIWanderAvoidWater(this, 0.27D));
 	}
 
 	@Override
@@ -84,6 +87,14 @@ public abstract class EntityModVillager extends EntityVillager implements INpc, 
 		return false;
 	}
 
+    @Override
+    protected void updateAITasks() {}
+    
+    @Override
+    public void setProfession(int professionId) {
+        super.setProfession(5);
+    }
+    
 	@Override
 	protected SoundEvent getAmbientSound(){
 		return null;
@@ -161,6 +172,36 @@ public abstract class EntityModVillager extends EntityVillager implements INpc, 
 	public abstract int guiID();
 
 	public abstract void addRecipies(MerchantRecipeList list);
+	
+	@Override
+	public void writeEntityToNBT(NBTTagCompound var1) {
+		super.writeEntityToNBT(var1);
+		if (this.buyingList != null) {
+			var1.setTag("Trades", this.buyingList.getRecipiesAsTags());
+		}
+	}
+
+	@Override
+	public void readEntityFromNBT(NBTTagCompound var1) {
+		super.readEntityFromNBT(var1);
+		if (var1.hasKey("Trades")) {
+			NBTTagCompound var2 = var1.getCompoundTag("Trades");
+				this.buyingList = new MerchantRecipeList(var2);
+		}
+	}
+
+	@Override
+	public void useRecipe(MerchantRecipe recipe) {
+		recipe.incrementToolUses();
+
+		if (recipe.getToolUses() == 1) {
+			if (this.buyingPlayer != null) {
+				this.lastBuyingPlayer = this.buyingPlayer.getUniqueID();
+			} else {
+				this.lastBuyingPlayer = null;
+			}
+		}
+	}
 
 	@Override
 	public MerchantRecipeList getRecipes(EntityPlayer var1) {
