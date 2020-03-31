@@ -89,6 +89,7 @@ public class JourneySounds {
 	public static SoundEvent UNLOCK;
 	public static SoundEvent EMPTY;
 	
+	public static SoundEvent UNTITLED_DISK;
 	public static SoundEvent RACE_TO_SHORE;
 	public static SoundEvent DEEP_BLUE;
 	public static SoundEvent COMPETITION_BEGINS; 
@@ -173,6 +174,7 @@ public class JourneySounds {
 		GATE_CREAK = registerSound("gate_creak");
 		UNLOCK = registerSound("unlock");
 		EMPTY = registerSound("empty");
+		UNTITLED_DISK = registerSound("untitled_disk");
 		RACE_TO_SHORE = registerSound("race_shore");
 		DEEP_BLUE = registerSound("deep_blue");
 		COMPETITION_BEGINS = registerSound("comp_begins");

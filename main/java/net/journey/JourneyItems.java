@@ -262,6 +262,12 @@ public class JourneyItems {
 	public static Item compBegins;
 	public static Item deepBlue;
 	public static Item raceShore;
+	public static Item untitled_disk;
+	public static Item bog;
+	public static Item clouds;
+	public static Item stalactite;
+	public static Item gold;
+	public static Item gate;
 
 	public static Item demonicEye;
 
@@ -436,6 +442,12 @@ public class JourneyItems {
 		compBegins = new ItemModRecord("compBegins", "Competition Begins", JourneySounds.COMPETITION_BEGINS);
 		deepBlue = new ItemModRecord("deepBlue", "Deep Blue", JourneySounds.DEEP_BLUE);
 		raceShore = new ItemModRecord("raceShore", "Race to Shore", JourneySounds.RACE_TO_SHORE);
+		untitled_disk = new ItemModRecord("untitled_disk", "untitled_disk", JourneySounds.UNTITLED_DISK);
+		bog = new ItemModRecord("bog", "Bog", JourneySounds.CORBA_1);
+		clouds = new ItemModRecord("clouds", "Clouds", JourneySounds.CLOUDIA_1);
+		stalactite = new ItemModRecord("stalactite", "Stalactite", JourneySounds.DEPTHS_1);
+		gold = new ItemModRecord("gold", "Gold", JourneySounds.EUCA_1);
+		gate = new ItemModRecord("gate", "Gate", JourneySounds.EUCA_2);
 
 		demonicEye = new ItemDemonicEye("demonicEye", "Demonic Eye");
 		darkGem = new ItemDarkGem("darkGem", "Dark Gem");
