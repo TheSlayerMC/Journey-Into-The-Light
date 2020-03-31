@@ -81,55 +81,10 @@ public class ChunkProviderEuca implements IChunkGenerator {
 		//treesgreen.add(new WorldGenEucaTree8());
 		//treesgreen.add(new WorldGenEucaTree9());
 	}
-	
-	protected final Chunk makeChunk(int x, int z, ChunkPrimer primer) {
-
-		Chunk chunk = new Chunk(worldObj, x, z);
-
-		fillChunk(chunk, primer);
-
-		// load in biomes, to prevent striping?!
-		byte[] chunkBiomes = chunk.getBiomeArray();
-		for (int i = 0; i < chunkBiomes.length; ++i) {
-			chunkBiomes[i] = (byte) Biome.getIdForBiome(this.biomesForGeneration[i]);
-		}
-
-		chunk.generateSkylightMap();
-
-		return chunk;
-	}
-	
-	private void fillChunk(Chunk chunk, ChunkPrimer primer) {
-
-		int i = 256;
-		boolean flag = worldObj.provider.hasSkyLight();
-		ExtendedBlockStorage[] storageArrays = chunk.getBlockStorageArray();
-
-		for (int j = 0; j < 16; ++j) {
-			for (int k = 0; k < 16; ++k) {
-				for (int l = 0; l < 256; ++l) {
-
-					IBlockState iblockstate = primer.getBlockState(j, l, k);
-
-					if (iblockstate.getBlock() != Blocks.AIR) {
-
-						int i1 = l >> 4;
-
-						if (storageArrays[i1] == Chunk.NULL_BLOCK_STORAGE) {
-							storageArrays[i1] = new ExtendedBlockStorage(i1 << 4, flag);
-						}
-
-						storageArrays[i1].set(j, l & 15, k, iblockstate);
-					}
-				}
-			}
-		}
-	}
-
 
 	public void setBlocksInChunk(int x, int z, ChunkPrimer chunkPrimer) {
 		this.buffer = this.setupNoiseGenerators(this.buffer, x * 2, z * 2);
-		this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomesForGeneration(this.biomesForGeneration, x * 4 - 2, z * 4 - 2, 10, 10);
+		this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomesForGeneration(this.biomesForGeneration, x * 4 - 2, z * 4 - 2, 100, 100);
 
 		for (int i1 = 0; i1 < 2; i1++) {
 			for (int j1 = 0; j1 < 2; j1++) {
