@@ -15,15 +15,16 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WorldProviderBoiling extends BaseWorldProvider {
 
+	@SideOnly(Side.CLIENT)
+	private static BoilSkyRenderer skyRenderer;
+	
     public WorldProviderBoiling() {
         super(new BiomeProviderSingle(DimensionHelper.boiling), new Vec3d(0.2, 0.1, 0));
     }
 
     @SideOnly(Side.CLIENT)
     private static IRenderHandler getSkyRender() {
-    	return new BoilSkyRenderer();
-        //TODO fix BoilSkyRenderer!
-        //return null;
+    	return getBoilSkyRenderer();
     }
 
     @Override
@@ -47,6 +48,14 @@ public class WorldProviderBoiling extends BaseWorldProvider {
     public IChunkGenerator createChunkGenerator() {
         return new ChunkProviderBoiling(this.world, this.world.getSeed());
     }
+    
+	@SideOnly(Side.CLIENT)
+	public static BoilSkyRenderer getBoilSkyRenderer() {
+		if(skyRenderer == null) {
+			skyRenderer = new BoilSkyRenderer();
+		}
+		return skyRenderer;
+	}
 
     @Override
     public boolean canBlockFreeze(BlockPos pos, boolean byWater) {

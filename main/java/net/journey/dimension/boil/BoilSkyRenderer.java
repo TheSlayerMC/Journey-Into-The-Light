@@ -61,13 +61,11 @@ public class BoilSkyRenderer extends IRenderHandler {
 	
 
 	@Override
-	@SideOnly(Side.CLIENT)
 	public void render(float partialTicks, WorldClient world, Minecraft mc) {
 		this.renderSky(partialTicks, world, mc);
 		this.renderSunAndMoon(partialTicks, world, mc);
 	}
 
-	@SideOnly(Side.CLIENT)
 	public void renderSunAndMoon(float partialTicks, WorldClient world, Minecraft mc) {
 		
         Vec3d vec3d = world.getSkyColor(mc.getRenderViewEntity(), partialTicks);
