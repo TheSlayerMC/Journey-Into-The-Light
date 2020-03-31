@@ -268,6 +268,8 @@ public class JourneyItems {
 	public static Item stalactite;
 	public static Item gold;
 	public static Item gate;
+	public static Item journey;
+	public static Item sizzle;
 
 	public static Item demonicEye;
 
@@ -448,6 +450,8 @@ public class JourneyItems {
 		stalactite = new ItemModRecord("stalactite", "Stalactite", JourneySounds.DEPTHS_1);
 		gold = new ItemModRecord("gold", "Gold", JourneySounds.EUCA_1);
 		gate = new ItemModRecord("gate", "Gate", JourneySounds.EUCA_2);
+		journey = new ItemModRecord("journey", "Journey Into the Light", JourneySounds.EUCA_3);
+		sizzle = new ItemModRecord("sizzle", "Sizzle", JourneySounds.BOIL_1);
 
 		demonicEye = new ItemDemonicEye("demonicEye", "Demonic Eye");
 		darkGem = new ItemDarkGem("darkGem", "Dark Gem");
