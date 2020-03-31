@@ -18,8 +18,7 @@ public class WorldProviderEuca extends WorldProvider {
         this.nether = false;
         this.hasSkyLight = true;
         this.biomeProvider = new BiomeProviderEuca();
-        BiomeManager.addBiome(BiomeType.WARM, new BiomeEntry(DimensionHelper.euca, 10));
-        BiomeManager.addBiome(BiomeType.WARM, new BiomeEntry(DimensionHelper.eucaSilver, 10));
+
     }
 
     @Override
