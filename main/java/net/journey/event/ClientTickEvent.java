@@ -4,8 +4,10 @@ import java.util.Random;
 
 import org.lwjgl.opengl.GL11;
 
+import net.journey.JITL;
 import net.journey.JourneyArmory;
 import net.journey.JourneyLoadingScreen;
+import net.journey.JourneyMainMenu;
 import net.journey.client.server.EssenceProvider;
 import net.journey.client.server.IEssence;
 import net.journey.items.ItemGun;
@@ -14,6 +16,7 @@ import net.journey.items.ItemTeleport;
 import net.journey.util.Config;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiIngame;
+import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
@@ -21,6 +24,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.event.GuiOpenEvent;
+import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
@@ -49,6 +55,16 @@ public class ClientTickEvent {
 			}
 		}
 	}
+
+	/*@SubscribeEvent(priority = EventPriority.LOWEST)
+	public void openGui(GuiOpenEvent event) {
+		if (event.getGui() instanceof GuiMainMenu) {
+			JourneyMainMenu customMainMenu = JITL.instance.;
+			if (customMainMenu != null) {
+				event.setGui(customMainMenu);
+			}
+		}
+	} */
 
 	@SubscribeEvent
 	public void clientTickEvent(PlayerTickEvent event) {
