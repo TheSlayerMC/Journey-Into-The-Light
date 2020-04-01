@@ -26,6 +26,7 @@ public class Config {
 	public static boolean keepLoadingEuca, keepLoadingTerrania, keepLoadingDepths, keepLoadingBoil, keepLoadingFrozen, boilBlockSpawnSmoke;
 	public static boolean keepLoadingCorba, keepLoadingWastelands, keepLoadingCloudia, keepLoadingSenterian, keepLoadingWither;
 	public static boolean showManaBar;
+	public static boolean changeBackground;
 	
 	private static boolean[] registerBiomes;
 	private static int indexBiome;
@@ -73,6 +74,7 @@ public class Config {
 		boilBlockSpawnSmoke = cfg.get("Dimension", "Boiling Point blocks spawn smoke (More lag)", true).getBoolean(true);
 		spawnSwordParticles = cfg.get("Items", "Swords spawn particles", true).getBoolean(true);
 		showManaBar = cfg.get("Gui", "Show Mana Bar?", true).getBoolean(true);
+		changeBackground = cfg.get("Gui", "Change loading screen background?", true).getBoolean(true);
 		baseMobID = cfg.get("Entity", "The starting ID for the mobs (only gets greater the more mobs this mod has registered)", 350).getInt();
 		baseProjectileID = cfg.get("Entity", "The starting ID for the projectiles (only gets greater the more projectiles this mod has registered)", 230).getInt();
 		baseEntityListID = cfg.get("Entity", "The starting 'Entity List ID'", 2650).getInt();

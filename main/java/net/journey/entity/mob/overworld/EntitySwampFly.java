@@ -17,6 +17,7 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -72,47 +73,13 @@ public class EntitySwampFly extends EntityModFlying {
 	}
 
 	@Override
-	public void onLivingUpdate()
-	{
-		if (this.world.isDaytime() && !this.world.isRemote && !this.isChild())
-		{
-			float f = this.getBrightness();
-			BlockPos blockpos = new BlockPos(this.posX, Math.round(this.posY), this.posZ);
-
-			if (f > 0.5F && this.rand.nextFloat() * 30.0F < (f - 0.4F) * 2.0F && this.world.canSeeSky(blockpos))
-			{
-				boolean flag = true;
-				ItemStack itemstack = this.getItemStackFromSlot(EntityEquipmentSlot.MAINHAND);
-
-				if (itemstack != null)
-				{
-					if (itemstack.isItemStackDamageable())
-					{
-						itemstack.setItemDamage(itemstack.getItemDamage() + this.rand.nextInt(2));
-
-						if (itemstack.getItemDamage() >= itemstack.getMaxDamage())
-						{
-							this.renderBrokenItemStack(itemstack);
-							setItemStackToSlot(EntityEquipmentSlot.MAINHAND, null);
-						}
-					}
-
-					flag = false;
-				}
-
-				if (flag)
-				{
-					this.setDead();
-				}
-			}
-		}
-
-		if (this.isRiding() && this.getAttackTarget() != null && this.getRidingEntity() instanceof EntityChicken)
-		{
-			((EntityLiving)this.getRidingEntity()).getNavigator().setPath(this.getNavigator().getPath(), 1.5D);
-		}
-
+	public void onLivingUpdate() {
 		super.onLivingUpdate();
+
+		for (int i = 0; i < 1; ++i) {
+			this.world.spawnParticle(EnumParticleTypes.CRIT_MAGIC, this.posX + (this.rand.nextDouble() - 0.5D) * this.width, this.posY + this.rand.nextDouble() * (this.height - 0.75D) + 0.5D, this.posZ + (this.rand.nextDouble() - 0.5D) * this.width,
+					0, 0.5, 0);
+		}
 	}
 
 	@Override

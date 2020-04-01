@@ -5,6 +5,7 @@ import java.util.Random;
 import org.lwjgl.opengl.GL11;
 
 import net.journey.JourneyArmory;
+import net.journey.JourneyLoadingScreen;
 import net.journey.client.server.EssenceProvider;
 import net.journey.client.server.IEssence;
 import net.journey.items.ItemGun;
@@ -21,6 +22,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.RenderTickEvent;
@@ -31,6 +33,22 @@ public class ClientTickEvent {
 	private Item boots = null, body = null, legs = null, helmet = null;
 	public static final ResourceLocation TEXTURE  = new ResourceLocation(SlayerAPI.MOD_ID, "textures/gui/misc.png"); 
 
+	@SubscribeEvent
+	public void onClientTick(TickEvent.ClientTickEvent event) throws Exception {
+		Minecraft mc = Minecraft.getMinecraft();
+		TickEvent.Phase phase = event.phase;
+		TickEvent.Type type = event.type;
+
+		if (phase == TickEvent.Phase.END) {
+			if (type.equals(TickEvent.Type.CLIENT)) {
+				if (Config.changeBackground == true) {
+					if (!(mc.loadingScreen instanceof JourneyLoadingScreen)) {
+						mc.loadingScreen = new JourneyLoadingScreen(mc);
+					}
+				}
+			}
+		}
+	}
 
 	@SubscribeEvent
 	public void clientTickEvent(PlayerTickEvent event) {
