@@ -26,7 +26,7 @@ public class Config {
 	public static boolean keepLoadingEuca, keepLoadingTerrania, keepLoadingDepths, keepLoadingBoil, keepLoadingFrozen, boilBlockSpawnSmoke;
 	public static boolean keepLoadingCorba, keepLoadingWastelands, keepLoadingCloudia, keepLoadingSenterian, keepLoadingWither;
 	public static boolean showManaBar;
-	public static boolean changeBackground;
+	public static boolean changeBackground, changeMainMenu;
 	
 	private static boolean[] registerBiomes;
 	private static int indexBiome;
@@ -73,13 +73,15 @@ public class Config {
 		keepLoadingSenterian = cfg.get("Dimension", "Keep loading the Withanian Lands", false).getBoolean(false);
 		boilBlockSpawnSmoke = cfg.get("Dimension", "Boiling Point blocks spawn smoke (More lag)", true).getBoolean(true);
 		spawnSwordParticles = cfg.get("Items", "Swords spawn particles", true).getBoolean(true);
-		showManaBar = cfg.get("Gui", "Show Mana Bar?", true).getBoolean(true);
-		changeBackground = cfg.get("Gui", "Change loading screen background?", true).getBoolean(true);
 		baseMobID = cfg.get("Entity", "The starting ID for the mobs (only gets greater the more mobs this mod has registered)", 350).getInt();
 		baseProjectileID = cfg.get("Entity", "The starting ID for the projectiles (only gets greater the more projectiles this mod has registered)", 230).getInt();
 		baseEntityListID = cfg.get("Entity", "The starting 'Entity List ID'", 2650).getInt();
 		entityHealthDistance = cfg.get("Entity", "The distance the player can see the mobs health", 10).getInt();
 		showEntityHealth = cfg.get("Entity", "Show the health bar above the entitys head?", true).getBoolean(true);
+		
+		showManaBar = cfg.get("Gui", "Show Mana Bar?", true).getBoolean(true);
+		changeBackground = cfg.get("Gui", "Change loading screen background?", true).getBoolean(true);
+		changeMainMenu = cfg.get("Gui", "Use custom title screen?", true).getBoolean(true);
 		
 		List<Boolean> items= new ArrayList<Boolean>();
 		biomeSizeXZ = cfg.getInt("BiomeSizeXZ", "Nether", 512, 1, 4096, "The horizontal Nether biome size");
