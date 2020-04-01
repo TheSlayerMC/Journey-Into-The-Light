@@ -11,10 +11,11 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.shader.Framebuffer;
 import net.minecraft.util.ResourceLocation;
+import net.slayer.api.SlayerAPI;
 
 public class JourneyLoadingScreen extends LoadingScreenRenderer {
 
-    public static final ResourceLocation BACKGROUND = new ResourceLocation("textures/blocks/eucabricks.png");
+    public static final ResourceLocation BACKGROUND = new ResourceLocation(SlayerAPI.PREFIX + "textures/blocks/eucabricks.png");
     
 	private String message = "";
 	/** A reference to the Minecraft object. */
