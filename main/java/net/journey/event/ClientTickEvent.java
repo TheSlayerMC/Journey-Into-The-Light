@@ -56,15 +56,15 @@ public class ClientTickEvent {
 		}
 	}
 
-	/*@SubscribeEvent(priority = EventPriority.LOWEST)
+	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public void openGui(GuiOpenEvent event) {
 		if (event.getGui() instanceof GuiMainMenu) {
-			JourneyMainMenu customMainMenu = JITL.instance.;
+			JourneyMainMenu customMainMenu = new JourneyMainMenu();
 			if (customMainMenu != null) {
 				event.setGui(customMainMenu);
 			}
 		}
-	} */
+	} 
 
 	@SubscribeEvent
 	public void clientTickEvent(PlayerTickEvent event) {

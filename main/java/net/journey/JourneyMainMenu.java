@@ -608,7 +608,7 @@ public class JourneyMainMenu extends GuiMainMenu {
 					(this.buttonList.get(0)).y - 12, -1);
 		}
 
-		super.drawScreen(mouseX, mouseY, partialTicks);
+		//super.drawScreen(mouseX, mouseY, partialTicks);
 
 		if (this.areRealmsNotificationsEnabled()) {
 			this.realmsNotification.drawScreen(mouseX, mouseY, partialTicks);
