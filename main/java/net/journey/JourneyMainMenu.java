@@ -12,8 +12,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
+
+import net.journey.client.render.gui.GuiJourneyButton;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiButtonLanguage;
 import net.minecraft.client.gui.GuiConfirmOpenLink;
 import net.minecraft.client.gui.GuiLanguage;
@@ -66,7 +67,7 @@ public class JourneyMainMenu extends GuiMainMenu {
 	private final float minceraftRoll;
 	/** The splash message. */
 	private String splashText;
-	private GuiButton buttonResetDemo;
+	private GuiJourneyButton buttonResetDemo;
 	/** Timer used to rotate the panorama, increases every tick. */
 	private float panoramaTimer;
 	/**
@@ -113,7 +114,7 @@ public class JourneyMainMenu extends GuiMainMenu {
 			new ResourceLocation(SlayerAPI.PREFIX+"textures/gui/title/background/panorama_5.png") };
 	private ResourceLocation backgroundTexture;
 	/** Minecraft Realms button. */
-	private GuiButton realmsButton;
+	private GuiJourneyButton realmsButton;
 	/** Has the check for a realms notification screen been performed? */
 	private boolean hasCheckedForRealmsNotification;
 	/**
@@ -124,7 +125,7 @@ public class JourneyMainMenu extends GuiMainMenu {
 	private GuiScreen realmsNotification;
 	private int widthCopyright;
 	private int widthCopyrightRest;
-	private GuiButton modButton;
+	private GuiJourneyButton modButton;
 	private net.minecraftforge.client.gui.NotificationModUpdateScreen modUpdateNotification;
 
 	public JourneyMainMenu() {
@@ -237,8 +238,8 @@ public class JourneyMainMenu extends GuiMainMenu {
 			this.addSingleplayerMultiplayerButtons(j, 24);
 		}
 
-		this.buttonList.add(new GuiButton(0, this.width / 2 - 100, j + 72 + 12, 98, 20, I18n.format("menu.options")));
-		this.buttonList.add(new GuiButton(4, this.width / 2 + 2, j + 72 + 12, 98, 20, I18n.format("menu.quit")));
+		this.buttonList.add(new GuiJourneyButton(0, this.width / 2 - 100, j + 72 + 12, 98, 20, I18n.format("menu.options")));
+		this.buttonList.add(new GuiJourneyButton(4, this.width / 2 + 2, j + 72 + 12, 98, 20, I18n.format("menu.quit")));
 		this.buttonList.add(new GuiButtonLanguage(5, this.width / 2 - 124, j + 72 + 12));
 
 		synchronized (this.threadLock) {
@@ -272,12 +273,12 @@ public class JourneyMainMenu extends GuiMainMenu {
 	 * have bought the game.
 	 */
 	private void addSingleplayerMultiplayerButtons(int p_73969_1_, int p_73969_2_) {
-		this.buttonList.add(new GuiButton(1, this.width / 2 - 100, p_73969_1_, I18n.format("menu.singleplayer")));
+		this.buttonList.add(new GuiJourneyButton(1, this.width / 2 - 100, p_73969_1_, p_73969_2_, p_73969_2_, I18n.format("menu.singleplayer")));
 		this.buttonList.add(
-				new GuiButton(2, this.width / 2 - 100, p_73969_1_ + p_73969_2_ * 1, I18n.format("menu.multiplayer")));
-		this.realmsButton = this.addButton(new GuiButton(14, this.width / 2 + 2, p_73969_1_ + p_73969_2_ * 2, 98, 20,
+				new GuiJourneyButton(2, this.width / 2 - 100, p_73969_1_ + p_73969_2_ * 1, p_73969_2_, p_73969_2_, I18n.format("menu.multiplayer")));
+		this.realmsButton = this.addButton(new GuiJourneyButton(14, this.width / 2 + 2, p_73969_1_ + p_73969_2_ * 2, 98, 20,
 				I18n.format("menu.online").replace("Minecraft", "").trim()));
-		this.buttonList.add(modButton = new GuiButton(6, this.width / 2 - 100, p_73969_1_ + p_73969_2_ * 2, 98, 20,
+		this.buttonList.add(modButton = new GuiJourneyButton(6, this.width / 2 - 100, p_73969_1_ + p_73969_2_ * 2, 98, 20,
 				I18n.format("fml.menu.mods")));
 	}
 
@@ -285,9 +286,9 @@ public class JourneyMainMenu extends GuiMainMenu {
 	 * Adds Demo buttons on Main Menu for players who are playing Demo.
 	 */
 	private void addDemoButtons(int p_73972_1_, int p_73972_2_) {
-		this.buttonList.add(new GuiButton(11, this.width / 2 - 100, p_73972_1_, I18n.format("menu.playdemo")));
+		this.buttonList.add(new GuiJourneyButton(11, this.width / 2 - 100, p_73972_1_, p_73972_2_, p_73972_2_, I18n.format("menu.playdemo")));
 		this.buttonResetDemo = this.addButton(
-				new GuiButton(12, this.width / 2 - 100, p_73972_1_ + p_73972_2_ * 1, I18n.format("menu.resetdemo")));
+				new GuiJourneyButton(12, this.width / 2 - 100, p_73972_1_ + p_73972_2_ * 1, p_73972_2_, p_73972_2_, I18n.format("menu.resetdemo")));
 		ISaveFormat isaveformat = this.mc.getSaveLoader();
 		WorldInfo worldinfo = isaveformat.getWorldInfo("Demo_World");
 
@@ -300,7 +301,7 @@ public class JourneyMainMenu extends GuiMainMenu {
 	 * Called by the controls from the buttonList when activated. (Mouse pressed
 	 * for buttons)
 	 */
-	protected void actionPerformed(GuiButton button) throws IOException {
+	protected void actionPerformed(GuiJourneyButton button) throws IOException {
 		if (button.id == 0) {
 			this.mc.displayGuiScreen(new GuiOptions(this, this.mc.gameSettings));
 		}
@@ -373,9 +374,6 @@ public class JourneyMainMenu extends GuiMainMenu {
 		}
 	}
 
-	/**
-	 * Draws the main menu panorama
-	 */
 	private void drawPanorama(int mouseX, int mouseY, float partialTicks) {
 		Tessellator tessellator = Tessellator.getInstance();
 		BufferBuilder bufferbuilder = tessellator.getBuffer();
@@ -531,9 +529,7 @@ public class JourneyMainMenu extends GuiMainMenu {
 		tessellator.draw();
 	}
 
-	/**
-	 * Draws the screen and all the components in it.
-	 */
+	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
 		this.panoramaTimer += partialTicks;
 		GlStateManager.disableAlpha();
@@ -614,11 +610,5 @@ public class JourneyMainMenu extends GuiMainMenu {
 			this.realmsNotification.drawScreen(mouseX, mouseY, partialTicks);
 		}
 		modUpdateNotification.drawScreen(mouseX, mouseY, partialTicks);
-	}
-
-	public void onGuiClosed() {
-		if (this.realmsNotification != null) {
-			this.realmsNotification.onGuiClosed();
-		}
 	}
 }
