@@ -6,6 +6,7 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 import net.journey.JourneyBlocks;
+import net.journey.dimension.base.gen.WorldGenAncientBlock;
 import net.journey.dimension.boil.gen.WorldGenBoilingFire;
 import net.journey.dimension.boil.gen.WorldGenBoilingLava;
 import net.journey.dimension.depths.gen.WorldGenDepthsTree;
@@ -198,7 +199,9 @@ public class WorldGenJourney implements IWorldGenerator {
 		BiomeProvider chunkManager = w.getBiomeProvider();
 		Biome biome = chunk.getBiome(pos, chunkManager);
 		BiomeDictionary biomeD = new BiomeDictionary();
+		
 
+		
 		for (times = 0; times < 10; times++) {
 			y = r.nextInt(128) + 1;
 			x = chunkX + r.nextInt(16);
@@ -271,6 +274,13 @@ public class WorldGenJourney implements IWorldGenerator {
 			z = chunkZ + r.nextInt(16) + 8;
 			if (isBlockTop(x, y, z, JourneyBlocks.earthenNetherrack, w))
 				(new WorldGenEarthenTree()).generate(w, r, new BlockPos(x, y, z));
+		}
+		
+		for (times = 0; times < 1; times++) {
+			y = r.nextInt(256) + 1;
+			x = chunkX + r.nextInt(16) + 8;
+			z = chunkZ + r.nextInt(16) + 8;
+			(new WorldGenAncientBlock()).generate(w, r, new BlockPos(x, y, z));
 		}
 
 		/* for(times = 0; times < 100; times++) {
@@ -400,6 +410,13 @@ public class WorldGenJourney implements IWorldGenerator {
 		Biome biome = w.getBiomeForCoordsBody(pos);
 		BiomeDictionary biomeD = new BiomeDictionary();
 
+		for (times = 0; times < 1; times++) {
+			y = r.nextInt(256) + 1;
+			x = chunkX + r.nextInt(16) + 8;
+			z = chunkZ + r.nextInt(16) + 8;
+			(new WorldGenAncientBlock()).generate(w, r, new BlockPos(x, y, z));
+		}
+		
 		if (biome == Biomes.FOREST) {
 			for (times = 0; times < 2; times++) {
 				y = r.nextInt(128) + 1;

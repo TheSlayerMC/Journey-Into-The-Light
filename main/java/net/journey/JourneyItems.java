@@ -99,6 +99,11 @@ public class JourneyItems {
 	
 	public static Item obsidianRod;
 	
+	public static Item ancientPiece_1;
+	public static Item ancientPiece_2;
+	public static Item ancientPiece_3;
+	public static Item ancientPiece_4;
+	
 	public static Item bleedstone;
 	public static Item smithstone;
 	
@@ -299,6 +304,11 @@ public class JourneyItems {
 		bleedstone = new ItemMod("bleedstone", "Bleedstone");
 		smithstone = new ItemMod("smithstone", "Smithstone");
 		nethicgemstone = new ItemMod("soulstone", "Soulstone");
+		
+		ancientPiece_1 = new ItemMod("ancientpiece_1", "Ancient Piece");
+		ancientPiece_2 = new ItemMod("ancientpiece_2", "Ancient Shard");
+		ancientPiece_3 = new ItemMod("ancientpiece_3", "Ancient Chunk");
+		ancientPiece_4 = new ItemMod("ancientpiece_4", "Ancient Fragment");
 				
 		spawnerBar = new ItemMod("spawnerBar", "Spawner Bar");
 		spawnerClump = new ItemMod("spawnerClump", "Spawner Clump");

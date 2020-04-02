@@ -2,6 +2,7 @@ package net.journey;
 
 import java.util.ArrayList;
 
+import net.journey.blocks.BlockAncientBlock;
 import net.journey.blocks.BlockBrittleIce;
 import net.journey.blocks.BlockCaveVine;
 import net.journey.blocks.BlockChangeable;
@@ -448,6 +449,7 @@ public class JourneyBlocks {
 	public static BlockModSpawner overseerElderSpawner;
 
 	public static BlockMod elderBlock;
+	public static BlockMod ancientMachineBlock;
 
 	public static BlockNetherFurnace netherFurnace;
 	public static BlockNetherFurnace netherFurnaceActive;
@@ -845,6 +847,7 @@ public class JourneyBlocks {
 		overseerElderSpawner = new BlockModSpawner("overseerElderSpawner", "Overseer Elder Spawner", "overseerElder");
 
 		elderBlock = new BlockChangeable("elderBlock", "Elder Block", JourneyItems.elderKey, JourneyBlocks.overseerElderSpawner);
+		ancientMachineBlock = new BlockAncientBlock("ancientMachineBlock", "Ancient Machine Block");
 
 		netherFurnace = new BlockNetherFurnace("netherFurnace", "Nethic Furnace", false);
 		netherFurnaceActive = (BlockNetherFurnace) new BlockNetherFurnace("netherFurnaceActive", "Nethic Furnace", true).setLightLevel(0.7F).setCreativeTab(null);
