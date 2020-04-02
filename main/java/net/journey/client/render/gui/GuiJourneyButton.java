@@ -16,29 +16,39 @@ import net.slayer.api.SlayerAPI;
 @SideOnly(Side.CLIENT)
 public class GuiJourneyButton extends GuiButton {
 
-	protected static final ResourceLocation BUTTON_TEXTURES = new ResourceLocation(
-			SlayerAPI.PREFIX + "textures/gui/title/widgets.png");
-	public int width;
-	public int height;
-	public int x;
-	public int y;
-	public String displayString;
-	public int id;
-	public boolean enabled;
-	public boolean visible;
-	protected boolean hovered;
-	public int packedFGColour; // FML
+	public boolean isReversed;
 	
-	public GuiJourneyButton(int buttonId, int x, int y, int widthIn, int heightIn, String buttonText) {
-		super(buttonId, x, y, widthIn, heightIn, buttonText);
+	protected static final ResourceLocation GOLD_BUTTON_TEXTURES = new ResourceLocation(
+			SlayerAPI.PREFIX + "textures/gui/title/widgets.png");
+	protected static final ResourceLocation REVERSE_BUTTON_TEXTURES = new ResourceLocation(
+			SlayerAPI.PREFIX + "textures/gui/title/widgets_mirrored.png");
+
+	public GuiJourneyButton(int buttonId, int x, int y, String buttonText, Boolean isFlipped) {
+		super(buttonId, x, y, buttonText);
+		this.isReversed = isFlipped;
+	}
+	
+	public GuiJourneyButton(int buttonId, int x, int y, String buttonText) {
+		super(buttonId, x, y, buttonText);
 	}
 
+	public GuiJourneyButton(int buttonId, int x, int y, int widthIn, int heightIn, String buttonText) {
+		super(buttonId, x, y, widthIn, heightIn, buttonText);
+
+	}
 
 	@Override
 	public void drawButton(Minecraft mc, int mouseX, int mouseY, float partialTicks) {
 		if (this.visible) {
 			FontRenderer fontrenderer = mc.fontRenderer;
-			mc.getTextureManager().bindTexture(BUTTON_TEXTURES);
+			if(this.isReversed == false) {
+				mc.getTextureManager().bindTexture(GOLD_BUTTON_TEXTURES);
+			}
+				else if (this.isReversed == true){
+					mc.getTextureManager().bindTexture(REVERSE_BUTTON_TEXTURES); {
+				}
+			}
+
 			GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 			this.hovered = mouseX >= this.x && mouseY >= this.y && mouseX < this.x + this.width
 					&& mouseY < this.y + this.height;
