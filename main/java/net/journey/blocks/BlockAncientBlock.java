@@ -42,7 +42,7 @@ public class BlockAncientBlock extends BlockMod {
 			gem = JourneyItems.ancientPiece_4;
 			break;
 		}
-		if(rand.nextInt(8) == 0) {
+		if(rand.nextInt(10) == 0) {
 			gem = JourneyItems.untitled_disk;
 		}
 		drops.add(new ItemStack(gem, rand.nextInt(1) + 1));
