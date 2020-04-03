@@ -536,7 +536,7 @@ public class JourneyBlocks {
 
 		nethicanSludge = new BlockMod(EnumMaterialTypes.SLIME, "nethicanSludge", "Nethican Sludge", 1.0F);
 
-		eucaSapling = new BlockModSapling("eucaSapling", "Euca Sapling", WorldGenEucaTree.class);
+		eucaSapling = new BlockModSapling("eucaSapling", "Euca Sapling", new WorldGenEucaTree());
 		
 		eucaDirt = new BlockMod(EnumMaterialTypes.DIRT, "eucaDirt", "Euca Dirt", 2.0F);
 		eucaGrass = new BlockModGrass(eucaDirt, "eucaGrass", "Euca Grass", 2.0F);
