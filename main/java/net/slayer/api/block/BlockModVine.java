@@ -55,13 +55,13 @@ public class BlockModVine extends BlockMod implements net.minecraftforge.common.
 		this.setCreativeTab(CreativeTabs.DECORATIONS);
 		this.isNormalCube = false;
 	}
-
+	
 	@Override
-	@Nullable
-	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
-		return NULL_AABB;
-	}
-
+    @Nullable
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
+        return NULL_AABB;
+    }
+	
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 		state = state.getActualState(source, pos);
