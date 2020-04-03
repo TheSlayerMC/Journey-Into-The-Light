@@ -59,6 +59,7 @@ import net.slayer.api.block.BlockModGravity;
 import net.slayer.api.block.BlockModLadder;
 import net.slayer.api.block.BlockModLeaves;
 import net.slayer.api.block.BlockModLog;
+import net.slayer.api.block.BlockModMushroom;
 import net.slayer.api.block.BlockModSpawner;
 import net.slayer.api.block.BlockModStairs;
 import net.slayer.api.block.BlockModVine;
@@ -738,7 +739,7 @@ public class JourneyBlocks {
 		terranianDarkPanels = new BlockMod("terranianDarkPanels", "Terranian Dark Panels", 2.0F);
 		terranianPanels = new BlockMod("terranianPanels", "Terranian Panels", 2.0F);
 		terranianTallgrass = new BlockModFlower("terranianTallgrass", "Terranian Tallgrass", true);
-		terramushroom = new BlockModFlower("terramushroom", "Terranian Shroom").setLightLevel(5.0F);
+		terramushroom = new BlockModMushroom("terramushroom", "Terranian Shroom").setLightLevel(5.0F);
 		tallterramushroom = new BlockModFlower("tallterramushroom", "Tall Terranian Shroom").setLightLevel(5.0F);
 		terragrow = new BlockTerraFlower("terragrow", "Terranian Flower");
 		terraniaLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "terraniaLamp", "Terrania Lamp", 0.1F).setLightLevel(1.0F).setCreativeTab(JourneyTabs.decoration);
