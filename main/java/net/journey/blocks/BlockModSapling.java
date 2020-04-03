@@ -14,15 +14,18 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.EnumPlantType;
 import net.slayer.api.block.BlockModFlower;
 
-public class BlockEucaSapling extends BlockModFlower implements IGrowable {
+public class BlockModSapling extends BlockModFlower implements IGrowable {
 
+	Class<? extends WorldGenerator> treeStructure;
+	
     protected static final AxisAlignedBB SAPLING_AABB = new AxisAlignedBB(0.09999999403953552D, 0.0D, 0.09999999403953552D, 0.8999999761581421D, 0.800000011920929D, 0.8999999761581421D);
 
 	
-	public BlockEucaSapling(String name, String f1) {
+	public BlockModSapling(String name, String f1, Class<? extends WorldGenerator> treeStructure) {
 		super(name, f1);
 		this.setTickRandomly(true);
 		float f = 0.4F;
+		this.treeStructure = treeStructure;
 	}
 	
 	@Override
@@ -41,15 +44,8 @@ public class BlockEucaSapling extends BlockModFlower implements IGrowable {
 	}
 
 	private void generate(World w, BlockPos pos, Random r) {
-		Object tree = new WorldGenEucaTree();
-		/*switch(r.nextInt(2)) {
-		case 0:
-			tree = new WorldGenBigEucaTree();
-			break;
-		case 1:
-			tree = new WorldGenSmallEucaTree();
-			break;
-		}*/
+		w.setBlockToAir(pos);
+		Object tree = treeStructure.getClass();
 		((WorldGenerator)tree).generate(w, r, pos);
 	}
 

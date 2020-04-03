@@ -10,7 +10,6 @@ import net.journey.blocks.BlockCloud;
 import net.journey.blocks.BlockDarkbloom;
 import net.journey.blocks.BlockDepthsLeaves;
 import net.journey.blocks.BlockEucaPumpkin;
-import net.journey.blocks.BlockEucaSapling;
 import net.journey.blocks.BlockGemBlock;
 import net.journey.blocks.BlockGlowshroom;
 import net.journey.blocks.BlockHellThorn;
@@ -19,6 +18,7 @@ import net.journey.blocks.BlockIcicle;
 import net.journey.blocks.BlockJoinedGlass;
 import net.journey.blocks.BlockJourneyMushroom;
 import net.journey.blocks.BlockLock;
+import net.journey.blocks.BlockModSapling;
 import net.journey.blocks.BlockRoot;
 import net.journey.blocks.BlockStalks;
 import net.journey.blocks.BlockSwampLamp;
@@ -43,6 +43,7 @@ import net.journey.blocks.portal.BlockFrozenPortal;
 import net.journey.blocks.portal.BlockSenterianPortal;
 import net.journey.blocks.portal.BlockSenterianPortalFrame;
 import net.journey.blocks.portal.BlockTerraniaPortal;
+import net.journey.dimension.euca.gen.trees.WorldGenEucaTree;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.slayer.api.EnumMaterialTypes;
@@ -535,6 +536,8 @@ public class JourneyBlocks {
 
 		nethicanSludge = new BlockMod(EnumMaterialTypes.SLIME, "nethicanSludge", "Nethican Sludge", 1.0F);
 
+		eucaSapling = new BlockModSapling("eucaSapling", "Euca Sapling", WorldGenEucaTree.class);
+		
 		eucaDirt = new BlockMod(EnumMaterialTypes.DIRT, "eucaDirt", "Euca Dirt", 2.0F);
 		eucaGrass = new BlockModGrass(eucaDirt, "eucaGrass", "Euca Grass", 2.0F);
 		eucaSilverGrass = new BlockModGrass(eucaDirt, "eucaSilverGrass", "Euca Grass", 2.0F);
@@ -546,10 +549,9 @@ public class JourneyBlocks {
 		eucaSilverLeaves = new BlockModLeaves("eucaSilverLeaves", "Silver Euca Leaves", 1.0F);
 		eucaLightGreenLeaves = new BlockModLeaves("eucaLightGreenLeaves", "Light Green Euca Leaves", 1.0F);
 		eucaDarkGreenLeaves = new BlockModLeaves("eucaDarkGreenLeaves", "Dark Green Euca Leaves", 1.0F);
-		eucaSapling = new BlockEucaSapling("eucaSapling", "Euca Sapling");
+
 		eucaBricks = new BlockMod("eucaBricks", "Euca Bricks", 2.0F);
 		eucaTile = new BlockMod("eucaTile", "Euca Tile", 2.0F);
-
 		depthsDirt = new BlockMod(EnumMaterialTypes.DIRT, "depthsDirt", "Depths Dirt", 2.0F);
 		depthsGrass = new BlockModGrass(depthsDirt, "depthsGrass", "Depths Grass", 2.0F);
 		depthsStone = new BlockMod("depthsStone", "Depths Stone", 2.0F);
