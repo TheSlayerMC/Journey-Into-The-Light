@@ -508,16 +508,16 @@ public class JourneyBlocks {
 		witherwoodLeaves = new BlockModLeaves("witherwoodLeaves", "Witherwood Leaves", 1.0F);
 		sizzlerWoodLeaves = new BlockModLeaves("sizzlerWoodLeaves", "Deadblood Leaves", 2.0F);
 		sizzlerWoodLog = new BlockModLog("sizzlerWoodLog", "Deadblood Bark");
-		deathGrass = new BlockNetherFlower("deathGrass", "Death Grass");
-		netherweed = new BlockNetherFlower("netherWeeds", "Netherweed");
+		deathGrass = new BlockNetherFlower("deathGrass", "Death Grass", true);
+		netherweed = new BlockNetherFlower("netherWeeds", "Netherweed", true);
 		hellBell = new BlockNetherFlower("hellBell", "Hell Bell");
 		hellshroom = new BlockNetherFlower("hellshroom", "Hellshroom");
 
 		earthenNetherLeaves = new BlockModLeaves("earthenNetherLeaves", "Earthenwood Leaves", 2.0F);
 		earthenNetherLog = new BlockModLog("earthenNetherLog", "Earthenwood Log");
 		earthenNetherPlanks = new BlockMod(EnumMaterialTypes.WOOD, "earthenNetherPlank", "Earthenwood Planks", 1.0F);
-		earthenNetherTallGrass = new BlockNetherFlower("earthenNetherTallGrass", "Earthen Nethigrass");
-		earthenNetherShortGrass = new BlockNetherFlower("earthenNetherShortGrass", "Earthen Nethigrass");
+		earthenNetherTallGrass = new BlockNetherFlower("earthenNetherTallGrass", "Earthen Nethigrass", true);
+		earthenNetherShortGrass = new BlockNetherFlower("earthenNetherShortGrass", "Earthen Nethigrass", true);
 		earthenNetherFlower = new BlockNetherFlower("earthenNetherFlower", "Earthen Heatflower");
 
 		heatSoil = new BlockMod(EnumMaterialTypes.DIRT, "heatSoil", "Nethic Soil", 0.5F);
@@ -737,7 +737,7 @@ public class JourneyBlocks {
 		terranianBars = new BlockModBars("terranianBars", "Terranian Bars", 5.0F);
 		terranianDarkPanels = new BlockMod("terranianDarkPanels", "Terranian Dark Panels", 2.0F);
 		terranianPanels = new BlockMod("terranianPanels", "Terranian Panels", 2.0F);
-		terranianTallgrass = new BlockModFlower("terranianTallgrass", "Terranian Tallgrass");
+		terranianTallgrass = new BlockModFlower("terranianTallgrass", "Terranian Tallgrass", true);
 		terramushroom = new BlockModFlower("terramushroom", "Terranian Shroom").setLightLevel(5.0F);
 		tallterramushroom = new BlockModFlower("tallterramushroom", "Tall Terranian Shroom").setLightLevel(5.0F);
 		terragrow = new BlockTerraFlower("terragrow", "Terranian Flower");
@@ -804,14 +804,14 @@ public class JourneyBlocks {
 		iceLog = new BlockIceLog();
 		brittleIce = new BlockBrittleIce(JourneyBlocks.brittleIce, "brittleIce", "Brittle Ice", 2);
 
-		eucaTallGrass = new BlockModFlower("eucaTallGrass", "Euca Tall Grass");
+		eucaTallGrass = new BlockModFlower("eucaTallGrass", "Euca Tall Grass", true);
 		eucaTallFlowers = new BlockModFlower("eucaTallFlowers", "Euca Tall Flowers");
 		eucaBlueFlower = new BlockModFlower("eucaBlueFlower", "Euca Blue Flower");
 		frozenFlower = new BlockModFlower("frozenFlower", "Frozen Flower");
 		depthsFlower = new BlockModFlower("depthsFlower", "Depths Flower");
 		depthsBlueFlower = new BlockModFlower("depthsBlueFlower", "Depths Blue Flower").setLightLevel(0.625F);
 		corbaFlower = new BlockModFlower("corbaFlower", "Corba Flower");
-		corbaTallGrass = new BlockModFlower("corbaTallGrass", "Corba Tall Grass");
+		corbaTallGrass = new BlockModFlower("corbaTallGrass", "Corba Tall Grass", true);
 		corbaSpeckledFlower = new BlockModFlower("corbaSpeckledFlower", "Speckled Flower");
 		corbaLightPurpleFlower = new BlockModFlower("corbaLightPurpleFlower", "Light Purple Flower");
 		corbaRedFlower = new BlockModFlower("corbaRedFlower", "Red Flower");
@@ -819,7 +819,7 @@ public class JourneyBlocks {
 		corbaDarkPurpleFlower = new BlockModFlower("corbaDarkPurpleFlower", "Dark Purple Flower");
 		flameFlower = new BlockModFlower("flameFlower", "Flame Flower");
 		infernoPlant = new BlockModFlower("infernoPlant", "Inferno Plant");
-		burntGrass = new BlockModFlower("burntGrass", "Burnt Grass");
+		burntGrass = new BlockModFlower("burntGrass", "Burnt Grass", true);
 
 		grindstone = new BlockGrindstone("grindstone", "Grindstone");
 		blueGems = new BlockGemBlock("blueGems", "Blue Gems", false);

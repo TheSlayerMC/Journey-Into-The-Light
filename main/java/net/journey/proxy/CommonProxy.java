@@ -69,8 +69,8 @@ public class CommonProxy {
 		JourneySounds.init();
 		JourneyItems.init();
 		JourneyConsumables.init();
-		JourneyCrops.init();
 		JourneyBlocks.init();
+		JourneyCrops.init();
 		JourneyWeapons.init();
 		JourneyArmory.init();
 		BiomeRegister.registerBiomes();

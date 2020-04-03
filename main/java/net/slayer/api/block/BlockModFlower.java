@@ -8,10 +8,17 @@ import javax.annotation.Nullable;
 import net.journey.JourneyBlocks;
 import net.journey.JourneyTabs;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockTallGrass;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.stats.StatList;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
@@ -26,10 +33,12 @@ import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.EnumMaterialTypes;
+import net.slayer.api.SlayerAPI;
 
 public class BlockModFlower extends BlockMod implements IPlantable {
 
 	protected boolean damageWhenContact = false;
+	private boolean isTallGrass = false;
 	private boolean isFrozenPlant = false;
     protected static final AxisAlignedBB BUSH_AABB = new AxisAlignedBB(0.30000001192092896D, 0.0D, 0.30000001192092896D, 0.699999988079071D, 0.6000000238418579D, 0.699999988079071D);
 	
@@ -37,6 +46,13 @@ public class BlockModFlower extends BlockMod implements IPlantable {
 		super(EnumMaterialTypes.PLANT, name, finalName, 0.0F);
 		this.setTickRandomly(true);
 		this.setCreativeTab(JourneyTabs.decoration);
+	}
+	
+	public BlockModFlower(String name, String finalName, boolean tallgrass) {
+		super(EnumMaterialTypes.PLANT, name, finalName, 0.0F);
+		this.setTickRandomly(true);
+		this.setCreativeTab(JourneyTabs.decoration);
+		this.isTallGrass = tallgrass;
 	}
 	
 	@Override
@@ -60,6 +76,26 @@ public class BlockModFlower extends BlockMod implements IPlantable {
 		return this;
 	}
 
+	@Override
+    public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+    	if (isTallGrass) {
+            return null;
+    	}
+    	else {
+    		return SlayerAPI.toItem(this);
+    	}
+    }
+	
+	@Override
+	public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity te, ItemStack stack) {
+		if (!worldIn.isRemote && stack.getItem() == Items.SHEARS) {
+			player.addStat(StatList.getBlockStats(this));
+			spawnAsEntity(worldIn, pos, new ItemStack(this, 1));
+		} else {
+			super.harvestBlock(worldIn, player, pos, state, te, stack);
+		}
+	}
+    
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void randomDisplayTick(IBlockState stateIn, World w, BlockPos pos, Random random) {

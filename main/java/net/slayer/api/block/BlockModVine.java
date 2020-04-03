@@ -4,6 +4,7 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
+import net.journey.JourneyBlocks;
 import net.journey.JourneyTabs;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockShulkerBox;
@@ -52,6 +53,7 @@ public class BlockModVine extends BlockMod implements net.minecraftforge.common.
 		this.setDefaultState(this.blockState.getBaseState().withProperty(UP, Boolean.valueOf(false)).withProperty(NORTH, Boolean.valueOf(false)).withProperty(EAST, Boolean.valueOf(false)).withProperty(SOUTH, Boolean.valueOf(false)).withProperty(WEST, Boolean.valueOf(false)));
 		this.setTickRandomly(true);
 		this.setCreativeTab(CreativeTabs.DECORATIONS);
+		this.isNormalCube = false;
 	}
 
 	@Override
@@ -122,7 +124,7 @@ public class BlockModVine extends BlockMod implements net.minecraftforge.common.
 
 	public boolean canAttachTo(World p_193395_1_, BlockPos p_193395_2_, EnumFacing p_193395_3_) {
 		Block block = p_193395_1_.getBlockState(p_193395_2_.up()).getBlock();
-		return this.isAcceptableNeighbor(p_193395_1_, p_193395_2_.offset(p_193395_3_.getOpposite()), p_193395_3_) && (block == Blocks.AIR || block == Blocks.VINE || this.isAcceptableNeighbor(p_193395_1_, p_193395_2_.up(), EnumFacing.UP));
+		return this.isAcceptableNeighbor(p_193395_1_, p_193395_2_.offset(p_193395_3_.getOpposite()), p_193395_3_) && (block == Blocks.AIR || block == Blocks.VINE || block == JourneyBlocks.terraniaVine || this.isAcceptableNeighbor(p_193395_1_, p_193395_2_.up(), EnumFacing.UP));
 	}
 
 	private boolean isAcceptableNeighbor(World p_193396_1_, BlockPos p_193396_2_, EnumFacing p_193396_3_) {
@@ -281,9 +283,13 @@ public class BlockModVine extends BlockMod implements net.minecraftforge.common.
 	}
 
 	@Override
-	public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
-		IBlockState iblockstate = this.getDefaultState().withProperty(UP, Boolean.valueOf(false)).withProperty(NORTH, Boolean.valueOf(false)).withProperty(EAST, Boolean.valueOf(false)).withProperty(SOUTH, Boolean.valueOf(false)).withProperty(WEST, Boolean.valueOf(false));
-		return facing.getAxis().isHorizontal() ? iblockstate.withProperty(getPropertyFor(facing.getOpposite()), Boolean.valueOf(true)) : iblockstate;
+	public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY,
+			float hitZ, int meta, EntityLivingBase placer) {
+		IBlockState iblockstate = this.getDefaultState().withProperty(UP, Boolean.valueOf(false))
+				.withProperty(NORTH, Boolean.valueOf(false)).withProperty(EAST, Boolean.valueOf(false))
+				.withProperty(SOUTH, Boolean.valueOf(false)).withProperty(WEST, Boolean.valueOf(false));
+		return facing.getAxis().isHorizontal()
+				? iblockstate.withProperty(getPropertyFor(facing.getOpposite()), Boolean.valueOf(true)) : iblockstate;
 	}
 
 	@Override
@@ -370,7 +376,7 @@ public class BlockModVine extends BlockMod implements net.minecraftforge.common.
 			return super.withMirror(state, mirrorIn);
 		}
 	}
-
+	
 	public static PropertyBool getPropertyFor(EnumFacing side) {
 		switch (side) {
 		case UP:

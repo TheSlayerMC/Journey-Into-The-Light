@@ -14,6 +14,10 @@ public class BlockNetherFlower extends BlockModFlower {
 		super(name, finalName);
 	}
 
+	public BlockNetherFlower(String name, String finalName, boolean tallgrass) {
+		super(name, finalName, tallgrass);
+	}
+
 	@Override
 	public boolean canPlaceBlockAt(World worldIn, BlockPos pos) {
 		return super.canPlaceBlockAt(worldIn, pos) && worldIn.getBlockState(pos.down()).getBlock() == Blocks.NETHERRACK
