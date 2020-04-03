@@ -43,7 +43,14 @@ import net.journey.blocks.portal.BlockFrozenPortal;
 import net.journey.blocks.portal.BlockSenterianPortal;
 import net.journey.blocks.portal.BlockSenterianPortalFrame;
 import net.journey.blocks.portal.BlockTerraniaPortal;
+import net.journey.dimension.boil.trees.WorldGenBoilTree1;
+import net.journey.dimension.corba.gen.trees.WorldGenCorbaSmallTree;
+import net.journey.dimension.depths.gen.WorldGenDepthsTree;
 import net.journey.dimension.euca.gen.trees.WorldGenEucaTree;
+import net.journey.dimension.frozen.gen.WorldGenFrozenTree;
+import net.journey.dimension.frozen.gen.WorldGenIceTree;
+import net.journey.dimension.nether.gen.trees.WorldGenBleedheartTree0;
+import net.journey.dimension.terrania.gen.trees.WorldGenTerraniaSmallTree;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.slayer.api.EnumMaterialTypes;
@@ -150,6 +157,15 @@ public class JourneyBlocks {
 
 	public static BlockMod nethicanSludge;
 
+	public static BlockMod eucaSapling;
+	public static BlockMod boilSapling;
+	public static BlockMod depthsSapling;
+	public static BlockMod corbaSapling;
+	public static BlockMod netherSapling;
+	public static BlockMod frozenSapling;
+	public static BlockMod frozenIceSapling;
+	public static BlockMod terraniaSapling;
+	
 	public static BlockMod eucaGrass;
 	public static BlockMod eucaSilverGrass;
 	public static BlockMod eucaDirt;
@@ -161,10 +177,9 @@ public class JourneyBlocks {
 	public static BlockMod eucaSilverLeaves;
 	public static BlockMod eucaLightGreenLeaves;
 	public static BlockMod eucaDarkGreenLeaves;
-	public static BlockMod eucaSapling;
+
 	public static BlockMod eucaBricks;
 	public static BlockMod eucaTile;
-
 	public static BlockMod depthsDirt;
 	public static BlockMod depthsGrass;
 	public static BlockMod depthsStone;
@@ -537,6 +552,13 @@ public class JourneyBlocks {
 		nethicanSludge = new BlockMod(EnumMaterialTypes.SLIME, "nethicanSludge", "Nethican Sludge", 1.0F);
 
 		eucaSapling = new BlockModSapling("eucaSapling", "Euca Sapling", new WorldGenEucaTree());
+		boilSapling = new BlockModSapling("boilSapling", "Boiling Sapling", new WorldGenBoilTree1());
+		corbaSapling = new BlockModSapling("corbaSapling", "Corba Sapling", new WorldGenCorbaSmallTree());
+		depthsSapling = new BlockModSapling("depthsSapling", "Depths Sapling", new WorldGenTerraniaSmallTree());
+		terraniaSapling = new BlockModSapling("terraniaSapling", "Terrania Sapling", new WorldGenEucaTree());
+		netherSapling = new BlockModSapling("netherSapling", "Deadblood Sapling", new WorldGenBleedheartTree0());
+		frozenIceSapling = new BlockModSapling("frozenIceSapling", "Ice Sapling", new WorldGenIceTree());
+		frozenSapling = new BlockModSapling("frozenSapling", "Frozen Sapling", new WorldGenFrozenTree());
 		
 		eucaDirt = new BlockMod(EnumMaterialTypes.DIRT, "eucaDirt", "Euca Dirt", 2.0F);
 		eucaGrass = new BlockModGrass(eucaDirt, "eucaGrass", "Euca Grass", 2.0F);
