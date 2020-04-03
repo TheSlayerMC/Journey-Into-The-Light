@@ -34,7 +34,7 @@ public class WorldGenTerrashroom extends WorldGenerator {
 			block = rand.nextBoolean() ? JourneyBlocks.terrashroomBlockPink : JourneyBlocks.terrashroomBlockPurple;
 		}
 
-		int i = rand.nextInt(3) + 4;
+		int i = rand.nextInt(3) + 2;
 
 		if (rand.nextInt(12) == 0) {
 			i *= 2;
@@ -79,7 +79,7 @@ public class WorldGenTerrashroom extends WorldGenerator {
 					int k2 = position.getY() + i;
 
 					if (block == JourneyBlocks.terrashroomBlockPurple) {
-						k2 = position.getY() + i - 3;
+						k2 = position.getY() + i - rand.nextInt(5);
 					}
 					
 					if (block == JourneyBlocks.terrashroomBlockPink) {
