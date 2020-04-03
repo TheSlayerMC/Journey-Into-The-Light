@@ -130,6 +130,7 @@ public class JourneyBlocks {
 	public static BlockMod heatSoil;
 	public static BlockMod earthenNetherrack;
 	public static BlockModGravity heatSand;
+	public static BlockModGravity sizzleSand;
 
 	public static BlockMod igniterOn;
 	public static BlockMod igniter;
@@ -515,9 +516,10 @@ public class JourneyBlocks {
 		earthenNetherShortGrass = new BlockNetherFlower("earthenNetherShortGrass", "Earthen Nethigrass");
 		earthenNetherFlower = new BlockNetherFlower("earthenNetherFlower", "Earthen Heatflower");
 
-		heatSoil = new BlockMod(EnumMaterialTypes.DIRT, "heatSoil", "Nethic Soil", 2.0F);
+		heatSoil = new BlockMod(EnumMaterialTypes.DIRT, "heatSoil", "Nethic Soil", 0.5F);
 		earthenNetherrack = new BlockMod(EnumMaterialTypes.STONE, "earthenNetherrack", "Earthen Netherrack", 2.0F);
-		heatSand = new BlockModGravity(EnumMaterialTypes.SAND, "heatSand", "Heat Sand", 2.0F);
+		heatSand = new BlockModGravity(EnumMaterialTypes.SAND, "heatSand", "Heat Sand", 0.5F);
+		sizzleSand = new BlockModGravity(EnumMaterialTypes.SAND, "sizzleSand", "Sizzle Sand", 0.5F);
 
 		igniterOn = (BlockMod) new BlockIgniter("igniterOn", "Redstone Igniter").setCreativeTab(null);
 		igniter = new BlockIgniter("igniter", "Redstone Igniter");
