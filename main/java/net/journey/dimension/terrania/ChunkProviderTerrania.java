@@ -11,6 +11,7 @@ import net.journey.dimension.terrania.gen.WorldGenHollowTree;
 import net.journey.dimension.terrania.gen.WorldGenTallTree;
 import net.journey.dimension.terrania.gen.WorldGenTerranianLamp;
 import net.journey.dimension.terrania.gen.WorldGenTreeHut;
+import net.journey.dimension.terrania.gen.shroom.WorldGenTerrashroom;
 import net.journey.dimension.terrania.gen.trees.WorldGenTerraniaBigTree1;
 import net.journey.dimension.terrania.gen.trees.WorldGenTerraniaBigTree2;
 import net.journey.dimension.terrania.gen.trees.WorldGenTerraniaBigTree3;
@@ -339,7 +340,15 @@ public class ChunkProviderTerrania implements IChunkGenerator {
         BlockPos chunkStart = new BlockPos(x1, 0, z1);
 
 
-        for (times = 0; times < 750; times++) {
+        for (times = 0; times < 25; times++) {
+            generateStructure(x1, z1, new WorldGenTerrashroom(JourneyBlocks.terrashroomBlockPink));
+        }
+        
+        for (times = 0; times < 25; times++) {
+            generateStructure(x1, z1, new WorldGenTerrashroom(JourneyBlocks.terrashroomBlockPurple));
+        }
+        
+        for (times = 0; times < 850; times++) {
             generateStructure(x1, z1, new WorldGenTerraniaTree(true, 5, 10, JourneyBlocks.terranianLog.getDefaultState(), JourneyBlocks.terraniaLeaves.getDefaultState()));
         }
         

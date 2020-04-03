@@ -1,0 +1,12 @@
+{
+    "parent": "block/cube",
+    "textures": {
+        "particle": "journey:blocks/terrashroom_inside",
+        "down": "journey:blocks/terrashroom_inside",
+        "up": "journey:blocks/terrashroom_skin",
+        "north": "journey:blocks/terrashroom_inside",
+        "east": "journey:blocks/terrashroom_inside",
+        "south": "journey:blocks/terrashroom_inside",
+        "west": "journey:blocks/terrashroom_skin"
+    }
+}

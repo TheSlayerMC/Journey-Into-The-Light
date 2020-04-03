@@ -1,0 +1,18 @@
+{
+    "variants": {
+        "variant=north_west": { "model": "journey:purple_mushroom_block_nw" },
+        "variant=north": { "model": "journey:purple_mushroom_block_n" },
+        "variant=north_east": { "model": "journey:purple_mushroom_block_ne" },
+        "variant=west": { "model": "journey:purple_mushroom_block_w" },
+        "variant=center": { "model": "journey:purple_mushroom_block_c" },
+        "variant=east": { "model": "journey:purple_mushroom_block_e" },
+        "variant=south_west": { "model": "journey:purple_mushroom_block_sw" },
+        "variant=south": { "model": "journey:purple_mushroom_block_s" },
+        "variant=south_east": { "model": "journey:purple_mushroom_block_se" },
+        "variant=stem": { "model": "journey:purple_mushroom_block_stem" },
+        "variant=all_stem": { "model": "journey:purple_mushroom_block_stem_all" },
+        "variant=all_outside": { "model": "journey:purple_mushroom_block_cap_all" },
+        "variant=all_inside": { "model": "journey:purple_mushroom_block_inside_all" }
+    }
+}
+

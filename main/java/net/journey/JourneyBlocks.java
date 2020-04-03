@@ -17,6 +17,7 @@ import net.journey.blocks.BlockHellThorn;
 import net.journey.blocks.BlockIceLog;
 import net.journey.blocks.BlockIcicle;
 import net.journey.blocks.BlockJoinedGlass;
+import net.journey.blocks.BlockJourneyMushroom;
 import net.journey.blocks.BlockLock;
 import net.journey.blocks.BlockRoot;
 import net.journey.blocks.BlockStalks;
@@ -347,6 +348,9 @@ public class JourneyBlocks {
 	public static BlockModFlower tallterramushroom;
 	public static BlockMod terragrow;
 	public static BlockMod terraniaLamp;
+	public static BlockMod terrashroomBlockPink;
+	public static BlockMod terrashroomBlockPurple;
+	public static BlockMod terrashroomStem;
 
 
 	public static BlockMod hotBrick;
@@ -738,6 +742,10 @@ public class JourneyBlocks {
 		tallterramushroom = new BlockModFlower("tallterramushroom", "Tall Terranian Shroom").setLightLevel(5.0F);
 		terragrow = new BlockTerraFlower("terragrow", "Terranian Flower");
 		terraniaLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "terraniaLamp", "Terrania Lamp", 0.1F).setLightLevel(1.0F).setCreativeTab(JourneyTabs.decoration);
+		
+		terrashroomBlockPink = new BlockJourneyMushroom(EnumMaterialTypes.WOOD,"terrashroomBlockPink", "Terrashroom Block", 0.5F, terramushroom);
+		terrashroomBlockPurple = new BlockJourneyMushroom(EnumMaterialTypes.WOOD,"terrashroomBlockPurple", "Terrashroom Block", 0.5F, terramushroom);
+		//terrashroomStem = new BlockMod(EnumMaterialTypes.WOOD,"terrashroomStem", "Terrashroom Stem", 0.5F);
 
 		hotBrick = new BlockMod("hotBrick", "Hot Brick", 2.0F);
 		hotBrick_fence = new BlockModFence(hotBrick, "hotBrickFence", "Hot Brick Fence");
