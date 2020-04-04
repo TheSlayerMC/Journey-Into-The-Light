@@ -84,5 +84,6 @@
   "corba_1": {"category": "music", "sounds": [{"name": "journey:music/dimensions/corba/corba_1", "stream": true}]},
  "depths_1": {"category": "music", "sounds": [{"name": "journey:music/dimensions/depths/depths_1", "stream": true}]},
  "boil_1": {"category": "music", "sounds": [{"name": "journey:music/dimensions/boil/boil_1", "stream": true}]},
+ "terrania_1": {"category": "music", "sounds": [{"name": "journey:music/dimensions/terrania/terrania_1", "stream": true}]},
   "cloudia_1": {"category": "music", "sounds": [{"name": "journey:music/dimensions/cloudia/cloudia_1", "stream": true}]}
 }

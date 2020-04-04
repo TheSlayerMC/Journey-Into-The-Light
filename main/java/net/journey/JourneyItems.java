@@ -275,6 +275,7 @@ public class JourneyItems {
 	public static Item gate;
 	public static Item journey;
 	public static Item sizzle;
+	public static Item firefly;
 
 	public static Item demonicEye;
 
@@ -462,6 +463,7 @@ public class JourneyItems {
 		gate = new ItemModRecord("gate", "Gate", JourneySounds.EUCA_2);
 		journey = new ItemModRecord("journey", "Journey Into the Light", JourneySounds.EUCA_3);
 		sizzle = new ItemModRecord("sizzle", "Sizzle", JourneySounds.BOIL_1);
+		firefly = new ItemModRecord("firefly", "Firefly", JourneySounds.TERRANIA_1);
 
 		demonicEye = new ItemDemonicEye("demonicEye", "Demonic Eye");
 		darkGem = new ItemDarkGem("darkGem", "Dark Gem");
