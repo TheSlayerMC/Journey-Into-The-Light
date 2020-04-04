@@ -36,13 +36,15 @@ public class Config {
 	
 	public static boolean spawnSwordParticles, showEntityHealth;
 
+	public static int eucaSilverBiome, eucaBiome;
 	public static int euca, depths, boil, frozen, corba, wastelands, cloudia, terrania, senterian, wither;
-	public static String eucaBiome, depthsBiome, boilBiome, frozenBiome, corbaBiome, wastelandsBiome, cloudiaBiome, terraniaBiome, senterianBiome;
+	public static String depthsBiome, boilBiome, frozenBiome, corbaBiome, wastelandsBiome, cloudiaBiome, terraniaBiome, senterianBiome;
 
 	public static int baseMobID, baseProjectileID, baseEntityListID, entityHealthDistance;
 
 	public static void dimensionInit() {
-		eucaBiome = cfg.get("Dimension", "Euca biome ID", 60).getString();
+		eucaBiome = cfg.get("Dimension", "Euca biome ID", 60).getInt();
+		eucaSilverBiome = cfg.get("Dimension", "Euca Silver biome ID", 70).getInt();
 		euca = cfg.get("Dimension", "Euca ID", 20).getInt();
 		keepLoadingEuca = cfg.get("Dimension", "Keep loading Euca", false).getBoolean(false);
 		depthsBiome = cfg.get("Dimension", "Depths biome ID", 61).getString();
