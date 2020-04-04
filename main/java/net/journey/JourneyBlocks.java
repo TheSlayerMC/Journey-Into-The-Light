@@ -27,6 +27,7 @@ import net.journey.blocks.BlockTrophy;
 import net.journey.blocks.base.BlockModFire;
 import net.journey.blocks.base.BlockModOre;
 import net.journey.blocks.base.BlockNetherFlower;
+import net.journey.blocks.machines.BlockCloudAltar;
 import net.journey.blocks.machines.BlockGrindstone;
 import net.journey.blocks.machines.BlockIgniter;
 import net.journey.blocks.machines.BlockJourneyChest;
@@ -437,6 +438,7 @@ public class JourneyBlocks {
 	public static BlockModFlower burntGrass;
 
 	public static BlockGrindstone grindstone;
+	public static BlockCloudAltar cloudAltar;
 	public static BlockMod blueGems;
 	public static BlockMod redGems;
 
@@ -847,6 +849,7 @@ public class JourneyBlocks {
 		burntGrass = new BlockModFlower("burntGrass", "Burnt Grass", true);
 
 		grindstone = new BlockGrindstone("grindstone", "Grindstone");
+		cloudAltar = new BlockCloudAltar("cloudaltar", "Cloud Altar");
 		blueGems = new BlockGemBlock("blueGems", "Blue Gems", false);
 		redGems = new BlockGemBlock("redGems", "Red Gems", true);
 
