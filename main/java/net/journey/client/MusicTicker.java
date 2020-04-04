@@ -69,13 +69,23 @@ public class MusicTicker {
 		}
 		
 		if(dimID == Config.euca) {
-			int tracks = rand.nextInt(2);
-			return tracks == 0 ? TrackType.EUCA_1 : tracks == 1 ? TrackType.EUCA_2 : TrackType.EUCA_1;
+			int tracks = rand.nextInt(3);
+			return tracks == 0 ? TrackType.EUCA_1 : tracks == 1 ? TrackType.EUCA_2 : tracks == 1 ? TrackType.EUCA_3 : TrackType.EUCA_1;
 		}
 		
 		if(dimID == Config.corba) {
 			int tracks = rand.nextInt(1);
 			return tracks == 0 ? TrackType.CORBA_1 : TrackType.CORBA_1;
+		}
+		
+		if(dimID == Config.terrania) {
+			int tracks = rand.nextInt(1);
+			return tracks == 0 ? TrackType.TERRANIA_1 : TrackType.TERRANIA_1;
+		}
+		
+		if(dimID == Config.boil) {
+			int tracks = rand.nextInt(1);
+			return tracks == 0 ? TrackType.BOIL_1 : TrackType.BOIL_1;
 		}
 		
 		if(dimID == Config.cloudia) {
@@ -106,9 +116,12 @@ public class MusicTicker {
 		EMPTY(JourneySounds.EMPTY, 300, 700),
 		EUCA_1(JourneySounds.EUCA_1, 1200, 1500),
 		EUCA_2(JourneySounds.EUCA_2, 1200, 1500),
+		EUCA_3(JourneySounds.EUCA_3, 1200, 1500),
 		DEPTHS_1(JourneySounds.DEPTHS_1, 1200, 1500),
 		CORBA_1(JourneySounds.CORBA_1, 5100, 5400),
-		CLOUDIA_1(JourneySounds.CLOUDIA_1, 1200, 1500);
+		CLOUDIA_1(JourneySounds.CLOUDIA_1, 1200, 1500),
+		TERRANIA_1(JourneySounds.TERRANIA_1, 1200, 1500),
+		BOIL_1(JourneySounds.BOIL_1, 1200, 1500);
 
 		private final SoundEvent musicLocation;
 		private final int minDelay;
