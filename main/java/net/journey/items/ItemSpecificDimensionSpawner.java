@@ -50,7 +50,6 @@ public class ItemSpecificDimensionSpawner extends ItemMod {
 		Item item = i.getItem();
 		if(!w.isRemote) {
 			if(w.provider.getDimension() == dimID) {
-				EntityLightningBall light = new EntityLightningBall(w);
 				EntityBlazier blaze = new EntityBlazier(w);
 				EntitySoulWatcher soul = new EntitySoulWatcher(w);
 				EntitySentryKing sentry = new EntitySentryKing(w);
@@ -63,8 +62,6 @@ public class ItemSpecificDimensionSpawner extends ItemMod {
 				EntityTerranianProtector terrastar = new EntityTerranianProtector(w);
 				if(item == JourneyItems.blazierOrb) {			
 				    JourneySounds.playSound(JourneySounds.SUMMON_BOSS, w, p);
-					light.setPosition(pos.getX(), pos.getY(), pos.getZ());
-					w.spawnEntity(light);
 					SlayerAPI.sendMessageToAll("You're playing with hot fire. It's not too late to turn back...", true);
 				    blaze.setPosition(pos.getX(), pos.getY() + 1, pos.getZ());
 				    w.spawnEntity(blaze);
@@ -77,8 +74,6 @@ public class ItemSpecificDimensionSpawner extends ItemMod {
 				}
 				if(item == JourneyItems.sentryKingOrb) {
 					SlayerAPI.sendMessageToAll("It sucked all the energy out of this world, don't let it suck the energy out of you...", true);
-					light.setPosition(pos.getX(), pos.getY(), pos.getZ());
-					w.spawnEntity(light);
 				    JourneySounds.playSound(JourneySounds.SUMMON_BOSS, w, p);
 					sentry.setPosition(pos.getX(), pos.getY() + 1, pos.getZ());
 					w.spawnEntity(sentry);
@@ -86,40 +81,30 @@ public class ItemSpecificDimensionSpawner extends ItemMod {
 				if(item == JourneyItems.mysteriousDisk) {
 					SlayerAPI.sendMessageToAll("The purple flying fish monster is not happy...", true);
 				    JourneySounds.playSound(JourneySounds.SUMMON_BOSS, w, p);
-					light.setPosition(pos.getX(), pos.getY(), pos.getZ());
-					w.spawnEntity(light);
 					sky.setPosition(pos.getX(), pos.getY() + 1, pos.getZ());
 					w.spawnEntity(sky);
 				}
 				if(item == JourneyItems.corallatorOrb) {
 					SlayerAPI.sendMessageToAll("You will regret this mistake for the rest of your life - if you'll still have one, that is...", true);
 				    JourneySounds.playSound(JourneySounds.SUMMON_BOSS, w, p);
-					light.setPosition(pos.getX(), pos.getY(), pos.getZ());
-					w.spawnEntity(light);
 					corallator.setPosition(pos.getX(), pos.getY() + 1, pos.getZ());
 					w.spawnEntity(corallator);
 				}
 				if(item == JourneyItems.loggerOrb) {
 					SlayerAPI.sendMessageToAll("You'll get chopped to pieces with this one...", true);
 				    JourneySounds.playSound(JourneySounds.SUMMON_BOSS, w, p);
-					light.setPosition(pos.getX(), pos.getY(), pos.getZ());
-					w.spawnEntity(light);
 					logger.setPosition(pos.getX(), pos.getY() + 1, pos.getZ());
 					w.spawnEntity(logger);
 				}
 				if(item == JourneyItems.scaleOrb) {
 					SlayerAPI.sendMessageToAll("(W.I.P) The blue blubby fish monster has been summoned!", true);
 				    JourneySounds.playSound(JourneySounds.SUMMON_BOSS, w, p);
-					light.setPosition(pos.getX(), pos.getY(), pos.getZ());
-					w.spawnEntity(light);
 					scale.setPosition(pos.getX(), pos.getY() + 1, pos.getZ());
 					w.spawnEntity(scale);
 				}
 				EntityEudor eudor = new EntityEudor(w);
 				if(item == JourneyItems.eudorOrb){
 				    JourneySounds.playSound(JourneySounds.SUMMON_BOSS, w, p);
-					light.setPosition(pos.getX(), pos.getY(), pos.getZ());
-					w.spawnEntity(light);
 					SlayerAPI.sendMessageToAll("The King has been summoned", true);
 					eudor.setPosition(pos.getX(), pos.getY() + 1, pos.getZ());
 					w.spawnEntity(eudor);
@@ -127,16 +112,12 @@ public class ItemSpecificDimensionSpawner extends ItemMod {
 				if(item == JourneyItems.thunderbirdOrb) {
 					SlayerAPI.sendMessageToAll("The thunderbird is not pleased with its awakening...", true);
 				    JourneySounds.playSound(JourneySounds.SUMMON_BOSS, w, p);
-					light.setPosition(pos.getX(), pos.getY(), pos.getZ());
-					w.spawnEntity(light);
 					thunder.setPosition(pos.getX(), pos.getY() + 1, pos.getZ());
 					w.spawnEntity(thunder);
 				}
 				if(item == JourneyItems.enchantedTerrastar) {
 					SlayerAPI.sendMessageToAll("It's sole purpose was to protect this land. Why would you try to destroy it?", true);
 				    JourneySounds.playSound(JourneySounds.SUMMON_BOSS, w, p);
-					light.setPosition(pos.getX(), pos.getY(), pos.getZ());
-					w.spawnEntity(light);
 					terrastar.setPosition(pos.getX(), pos.getY() + 1, pos.getZ());
 					w.spawnEntity(terrastar);
 					

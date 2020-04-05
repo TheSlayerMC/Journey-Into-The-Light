@@ -32,7 +32,7 @@ public class ItemRegenSword extends ItemModSword {
 
 	@Override
 	public boolean hitEntity(ItemStack par1ItemStack, EntityLivingBase hit, EntityLivingBase player) {
-		player.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.regeneration, 100, 5)));
+		player.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.regeneration, 100, 1)));
 		addParticles(hit);
 		return super.hitEntity(par1ItemStack, hit, player);
 	}
