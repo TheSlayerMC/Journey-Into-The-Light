@@ -1,0 +1,9 @@
+{
+	"parent": "block/cube_bottom_top",
+	"textures": {
+		"particle": "journey:blocks/bloodpillar_top",
+		"bottom": "journey:blocks/bloodpillar_top",
+		"top": "journey:blocks/bloodpillar_top",
+		"side": "journey:blocks/bloodpillar_side"
+	}
+}

@@ -19,8 +19,10 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.Item;
@@ -80,7 +82,76 @@ public class BlockSummoningTable extends BlockModContainer {
 
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		playerIn.openGui(SlayerAPI.MOD_ID, GuiHandler.summoning, worldIn, pos.getX(), pos.getY(), pos.getZ());
+		if(worldIn.getBlockState(
+				//base
+				pos.add(hitX, hitY - 1, hitZ)).getBlock() == JourneyBlocks.bloodRock && worldIn.getBlockState(
+				pos.add(hitX, hitY - 1, hitZ - 1)).getBlock() == JourneyBlocks.bloodRock && worldIn.getBlockState(
+				pos.add(hitX, hitY - 1, hitZ + 1)).getBlock() == JourneyBlocks.bloodRock && worldIn.getBlockState(
+				pos.add(hitX - 1, hitY - 1, hitZ)).getBlock() == JourneyBlocks.bloodRock && worldIn.getBlockState(
+				pos.add(hitX + 1, hitY - 1, hitZ)).getBlock() == JourneyBlocks.bloodRock && worldIn.getBlockState(
+						
+				pos.add(hitX - 2, hitY - 1, hitZ)).getBlock() == JourneyBlocks.bloodRune && worldIn.getBlockState(
+				pos.add(hitX + 2, hitY - 1, hitZ)).getBlock() == JourneyBlocks.bloodRune && worldIn.getBlockState(
+				pos.add(hitX, hitY - 1, hitZ - 2)).getBlock() == JourneyBlocks.bloodRune && worldIn.getBlockState(
+				pos.add(hitX, hitY - 1, hitZ + 2)).getBlock() == JourneyBlocks.bloodRune && worldIn.getBlockState(
+						
+				pos.add(hitX - 1, hitY - 1, hitZ + 2)).getBlock() == JourneyBlocks.bloodRock && worldIn.getBlockState(
+				pos.add(hitX - 1, hitY - 1, hitZ - 2)).getBlock() == JourneyBlocks.bloodRock && worldIn.getBlockState(
+				pos.add(hitX + 1, hitY - 1, hitZ + 2)).getBlock() == JourneyBlocks.bloodRock && worldIn.getBlockState(
+				pos.add(hitX + 1, hitY - 1, hitZ - 2)).getBlock() == JourneyBlocks.bloodRock && worldIn.getBlockState(
+						
+				pos.add(hitX - 2, hitY - 1, hitZ - 1)).getBlock() == JourneyBlocks.bloodRock && worldIn.getBlockState(
+				pos.add(hitX + 2, hitY - 1, hitZ - 1)).getBlock() == JourneyBlocks.bloodRock && worldIn.getBlockState(
+				pos.add(hitX + 2, hitY - 1, hitZ + 1)).getBlock() == JourneyBlocks.bloodRock && worldIn.getBlockState(
+				pos.add(hitX - 2, hitY - 1, hitZ + 1)).getBlock() == JourneyBlocks.bloodRock && worldIn.getBlockState(
+						
+				//pillars
+				pos.add(hitX - 2, hitY, hitZ - 2)).getBlock() == JourneyBlocks.bloodPillar && worldIn.getBlockState(
+				pos.add(hitX + 2, hitY, hitZ + 2)).getBlock() == JourneyBlocks.bloodPillar && worldIn.getBlockState(
+				pos.add(hitX + 2, hitY, hitZ - 2)).getBlock() == JourneyBlocks.bloodPillar && worldIn.getBlockState(
+				pos.add(hitX - 2, hitY, hitZ + 2)).getBlock() == JourneyBlocks.bloodPillar && worldIn.getBlockState(
+						
+				pos.add(hitX - 2, hitY + 1, hitZ - 2)).getBlock() == JourneyBlocks.bloodPillar && worldIn.getBlockState(
+				pos.add(hitX + 2, hitY + 1, hitZ + 2)).getBlock() == JourneyBlocks.bloodPillar && worldIn.getBlockState(
+				pos.add(hitX + 2, hitY + 1, hitZ - 2)).getBlock() == JourneyBlocks.bloodPillar && worldIn.getBlockState(
+				pos.add(hitX - 2, hitY + 1, hitZ + 2)).getBlock() == JourneyBlocks.bloodPillar && worldIn.getBlockState(
+						
+				pos.add(hitX - 2, hitY + 2, hitZ - 2)).getBlock() == JourneyBlocks.carvedBloodRock && worldIn.getBlockState(
+				pos.add(hitX + 2, hitY + 2, hitZ + 2)).getBlock() == JourneyBlocks.carvedBloodRock && worldIn.getBlockState(
+				pos.add(hitX + 2, hitY + 2, hitZ - 2)).getBlock() == JourneyBlocks.carvedBloodRock && worldIn.getBlockState(
+				pos.add(hitX - 2, hitY + 2, hitZ + 2)).getBlock() == JourneyBlocks.carvedBloodRock && worldIn.getBlockState(
+				
+				//top layer
+				pos.add(hitX - 1, hitY + 2, hitZ - 1)).getBlock() == JourneyBlocks.bloodBricks && worldIn.getBlockState(
+				pos.add(hitX + 1, hitY + 2, hitZ + 1)).getBlock() == JourneyBlocks.bloodBricks && worldIn.getBlockState(
+				pos.add(hitX + 1, hitY + 2, hitZ - 1)).getBlock() == JourneyBlocks.bloodBricks && worldIn.getBlockState(
+				pos.add(hitX - 1, hitY + 2, hitZ + 1)).getBlock() == JourneyBlocks.bloodBricks && worldIn.getBlockState(
+
+				pos.add(hitX - 2, hitY + 2, hitZ - 1)).getBlock() == JourneyBlocks.bloodBricks && worldIn.getBlockState(
+				pos.add(hitX - 2, hitY + 2, hitZ + 1)).getBlock() == JourneyBlocks.bloodBricks && worldIn.getBlockState(
+				pos.add(hitX + 2, hitY + 2, hitZ - 1)).getBlock() == JourneyBlocks.bloodBricks && worldIn.getBlockState(
+				pos.add(hitX + 2, hitY + 2, hitZ + 1)).getBlock() == JourneyBlocks.bloodBricks && worldIn.getBlockState(
+
+				pos.add(hitX - 1, hitY + 2, hitZ - 2)).getBlock() == JourneyBlocks.bloodBricks && worldIn.getBlockState(
+				pos.add(hitX - 1, hitY + 2, hitZ + 2)).getBlock() == JourneyBlocks.bloodBricks && worldIn.getBlockState(
+				pos.add(hitX + 1, hitY + 2, hitZ - 2)).getBlock() == JourneyBlocks.bloodBricks && worldIn.getBlockState(
+				pos.add(hitX + 1, hitY + 2, hitZ + 2)).getBlock() == JourneyBlocks.bloodBricks && worldIn.getBlockState(
+						
+				//roof
+				pos.add(hitX - 1, hitY + 3, hitZ - 1)).getBlock() == JourneyBlocks.bloodBricks && worldIn.getBlockState(
+				pos.add(hitX + 1, hitY + 3, hitZ + 1)).getBlock() == JourneyBlocks.bloodBricks && worldIn.getBlockState(
+				pos.add(hitX + 1, hitY + 3, hitZ - 1)).getBlock() == JourneyBlocks.bloodBricks && worldIn.getBlockState(
+				pos.add(hitX - 1, hitY + 3, hitZ + 1)).getBlock() == JourneyBlocks.bloodBricks && worldIn.getBlockState(
+
+				pos.add(hitX - 1, hitY + 3, hitZ)).getBlock() == JourneyBlocks.bloodBricks && worldIn.getBlockState(
+				pos.add(hitX + 1, hitY + 3, hitZ)).getBlock() == JourneyBlocks.bloodBricks && worldIn.getBlockState(
+				pos.add(hitX, hitY + 3, hitZ - 1)).getBlock() == JourneyBlocks.bloodBricks && worldIn.getBlockState(
+				pos.add(hitX, hitY + 3, hitZ + 1)).getBlock() == JourneyBlocks.bloodBricks && worldIn.getBlockState(
+						
+				pos.add(hitX, hitY + 2, hitZ)).getBlock() == JourneyBlocks.obelisk) { 
+
+			playerIn.openGui(SlayerAPI.MOD_ID, GuiHandler.summoning, worldIn, pos.getX(), pos.getY(), pos.getZ());
+		}
 		return true;
 	}
 	
