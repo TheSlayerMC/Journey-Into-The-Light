@@ -2,6 +2,7 @@ package net.journey.dimension.boil;
 
 import net.journey.dimension.DimensionHelper;
 import net.journey.dimension.base.BaseWorldProvider;
+import net.journey.proxy.ClientProxy;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DimensionType;
@@ -15,17 +16,16 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WorldProviderBoiling extends BaseWorldProvider {
 
-	@SideOnly(Side.CLIENT)
-	private static BoilSkyRenderer skyRenderer;
 	
     public WorldProviderBoiling() {
         super(new BiomeProviderSingle(DimensionHelper.boiling), new Vec3d(0.2, 0.1, 0));
     }
 
-    @SideOnly(Side.CLIENT)
-    private static IRenderHandler getSkyRender() {
-    	return getBoilSkyRenderer();
-    }
+	@Override
+	@SideOnly(Side.CLIENT)
+	public IRenderHandler getSkyRenderer() {
+		return ClientProxy.boilSkyRenderer;
+	}
 
     @Override
     public void init() {
@@ -48,14 +48,6 @@ public class WorldProviderBoiling extends BaseWorldProvider {
     public IChunkGenerator createChunkGenerator() {
         return new ChunkProviderBoiling(this.world, this.world.getSeed());
     }
-    
-	@SideOnly(Side.CLIENT)
-	public static BoilSkyRenderer getBoilSkyRenderer() {
-		if(skyRenderer == null) {
-			skyRenderer = new BoilSkyRenderer();
-		}
-		return skyRenderer;
-	}
 
     @Override
     public boolean canBlockFreeze(BlockPos pos, boolean byWater) {

@@ -34,7 +34,7 @@ public abstract class BaseWorldProvider extends WorldProvider {
 
     @Nullable
     @Override
-    public final IRenderHandler getSkyRenderer() {
+    public IRenderHandler getSkyRenderer() {
         return skyRender == null
                 ? super.getSkyRenderer()
                 : skyRender;

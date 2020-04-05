@@ -11,6 +11,7 @@ import net.journey.client.render.particles.OreParticleFX;
 import net.journey.client.server.EssenceBar;
 import net.journey.client.server.EssenceProvider;
 import net.journey.client.server.IEssence;
+import net.journey.dimension.boil.BoilSkyRenderer;
 import net.journey.enums.EnumParticlesClasses;
 import net.journey.event.ClientTickEvent;
 import net.journey.event.UpdateCheckerEvent;
@@ -18,6 +19,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
+import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -26,6 +28,8 @@ import net.slayer.api.SlayerAPI;
 
 public class ClientProxy extends CommonProxy {
 
+	public static final IRenderHandler boilSkyRenderer = new BoilSkyRenderer();
+	
 	@Override
 	public EntityPlayer getPlayer() {
 		return FMLClientHandler.instance().getClientPlayerEntity();
