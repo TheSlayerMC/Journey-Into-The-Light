@@ -143,6 +143,34 @@ public class ModelCloudAltar extends ModelBase {
         this.top2.render(f5);
         this.edge3.render(f5);
     }
+    
+    public void render(float f5) {
+    	this.edge8.render(f5);
+        this.rotator.render(f5);
+        this.edge4.render(f5);
+        this.mainside4.render(f5);
+        this.edge6.render(f5);
+        this.mainsidebottom2.render(f5);
+        this.mainsidetop4.render(f5);
+        this.mainsidebottom4.render(f5);
+        this.edge2.render(f5);
+        this.rotator2.render(f5);
+        this.edge1.render(f5);
+        this.mainsidebottom3.render(f5);
+        this.mainsidetop3.render(f5);
+        this.edge7.render(f5);
+        this.edge5.render(f5);
+        this.mainside2.render(f5);
+        this.top1.render(f5);
+        this.mainsidetop1.render(f5);
+        this.mainsidetop2.render(f5);
+        this.mainsidebottom1.render(f5);
+        this.top3.render(f5);
+        this.mainside1.render(f5);
+        this.mainside3.render(f5);
+        this.top2.render(f5);
+        this.edge3.render(f5);
+	}
 
     /**
      * This is a helper function from Tabula to set the rotation of model parts

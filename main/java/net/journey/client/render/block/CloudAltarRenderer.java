@@ -7,6 +7,7 @@ import net.journey.util.GL11Helper;
 import net.journey.util.Textures;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -24,13 +25,16 @@ public class CloudAltarRenderer extends TileEntitySpecialRenderer {
 	
 	@Override
 	public void render(TileEntity e, double x, double y, double z, float f, int i1, float i) {
-		int rotation = 0;
-		if(e.getWorld() != null) rotation = e.getBlockMetadata();    
+		float timeD = (float) (360.0 * (System.currentTimeMillis() & 0x3FFFL) / 0x3FFFL) * 3;
+		float scale = 1.0F;
 		GL11.glPushMatrix();
+		GL11.glTranslated(x + 0.5, y + 1.3, z + 0.5);
 		bindTexture(Textures.cloudaltar);
+		GlStateManager.rotate(timeD, 0.0F, 1.0F, 0.0F);
+		GL11.glScalef(scale, scale, scale);
+		altar.render(0.0625F);
 		GL11.glTranslated(x + 0.5, y + 1.5, z + 0.5);
 		GL11.glRotatef(180F, 0.0F, 0F, 1.0F);
-		float scale = 1.0F;
 		GL11.glPopMatrix();
 		GL11.glPushMatrix();
 		GL11.glPopMatrix();
