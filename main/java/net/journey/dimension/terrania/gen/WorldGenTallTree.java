@@ -21,7 +21,7 @@ public class WorldGenTallTree extends WorldGenerator {
 	public boolean generate(World world, Random rand, BlockPos pos) {
 		Block post = JourneyBlocks.terranianPost;
 		Block plank = JourneyBlocks.terranianPanels;
-		int i = pos.getX(), j = pos.getY(), k = pos.getZ();
+		int i = pos.getX(), j = pos.getY() - 1, k = pos.getZ();
 		if(locationIsValidSpawn(world, i, j, k)) return true;
 		IBlockState leaves = WorldGenAPI.getTerraniaLeaves().getDefaultState(), log = WorldGenAPI.getTerranianLog().getDefaultState(), vine = WorldGenAPI.getTerraniaVine().getDefaultState();
 		i-=5;
