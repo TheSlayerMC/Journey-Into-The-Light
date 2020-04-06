@@ -2,21 +2,16 @@ package net.journey.dimension.cloudia;
 
 import net.journey.JourneyBlocks;
 import net.journey.dimension.cloudia.gen.*;
+import net.journey.dimension.cloudia.zone.CloudiaAltar;
 import net.journey.dimension.cloudia.zone.CloudiaBridgeAll;
+import net.journey.dimension.cloudia.zone.CloudiaBridgeEW;
+import net.journey.dimension.cloudia.zone.CloudiaBridgeNS;
+import net.journey.dimension.cloudia.zone.CloudiaDungeon1;
 import net.journey.dimension.cloudia.zone.CloudiaZoneBase;
 import net.journey.dimension.overworld.gen.WorldGenModFlower;
 import net.journey.dimension.senterian.SenterianChunkPrimer;
 import net.journey.dimension.senterian.ChunkProviderSenterian.ChunkCoords;
-import net.journey.dimension.senterian.room.SenterianCeiling;
-import net.journey.dimension.senterian.room.SenterianRoomChest;
-import net.journey.dimension.senterian.room.SenterianRoomHall1;
-import net.journey.dimension.senterian.room.SenterianRoomHall2;
-import net.journey.dimension.senterian.room.SenterianRoomHall3;
-import net.journey.dimension.senterian.room.SenterianRoomMaze1;
-import net.journey.dimension.senterian.room.SenterianRoomNPC;
-import net.journey.dimension.senterian.room.SenterianRoomSpawner1;
-import net.journey.dimension.senterian.room.SenterianRoomSpawner2;
-import net.journey.dimension.senterian.room.SenterianRoomStairs;
+import net.journey.dimension.senterian.room.SenterianRoomBase;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.util.math.BlockPos;
@@ -62,30 +57,67 @@ public class ChunkProviderCloudia implements IChunkGenerator {
 		}
 	}
 	
-    private Random rand;
-    private World worldObj;
-    private Biome[] biomesForGeneration;
+	private ArrayList rooms;
+	private ArrayList bigRooms;
+	//private SenterianRoomStairs stairs;
 	private CloudiaZoneBase[] bridges;
+	private World worldObj;
 	private Random random;
 	private Map chunkTileEntityMap;
+	private Biome[] biomesForGeneration;
 
     public ChunkProviderCloudia(World worldIn, long seed) {
-        this.worldObj = worldIn;
-        this.rand = new Random(seed);
-		bridges = new CloudiaZoneBase[] { new CloudiaBridgeAll()};
+		worldObj = worldIn;
+		random = new Random(seed);
+		rooms = new ArrayList(3);
+		rooms.add(new CloudiaDungeon1());
+		//Rooms.add(new SenterianRoomChest());
+		rooms.add(new CloudiaAltar());
+		//rooms.add(new SenterianRoomSpawner1());
+		/*Rooms.add(new SenterianRoomSpawner2());
+        Rooms.add(new SenterianRoomSpawner3());
+        Rooms.add(new SenterianRoomSpawner4());*/
+		bridges = new CloudiaZoneBase[] {new CloudiaBridgeAll(), new CloudiaBridgeNS(), new CloudiaBridgeEW()};
+		//stairs = new SenterianRoomStairs();
 		this.chunkTileEntityMap = new HashMap();
-        new NoiseGeneratorOctaves(this.rand, 4);
-        new NoiseGeneratorOctaves(this.rand, 4);
+		this.chunkTileEntityMap = new HashMap();
+        new NoiseGeneratorOctaves(this.random, 4);
+        new NoiseGeneratorOctaves(this.random, 4);
     }
 
     @Override
     public Chunk generateChunk(int cx, int cz) {
-        this.rand.setSeed(cx * 391279512714L + cz * 132894987741L);		CloudiaChunkPrimer cloudiaChunk = new CloudiaChunkPrimer();
+        //this.random.setSeed(cx * 391279512714L + cz * 132894987741L);		
+        CloudiaChunkPrimer cloudiaChunk = new CloudiaChunkPrimer();
 
 		int bottomLayer = 0;
 		int secondLayer = 16;
+
+		//Generates all rooms
+		CloudiaZoneBase room = (CloudiaZoneBase) (rooms.get(random.nextInt(rooms.size())));
+		room = (CloudiaZoneBase) (rooms.get(random.nextInt(rooms.size())));
+		room.generate(cloudiaChunk, random, 0, secondLayer, 0);
+
+		room = (CloudiaZoneBase) (rooms.get(random.nextInt(rooms.size())));
+		room.generate(cloudiaChunk, random, 0, bottomLayer, 0);
+
+		//Chance to generate stair room on all but top layer
+
+		//These double as a hallway and a blocker on the exit of the room next to it
+		int hallwayRarity = 8;
+		if(random.nextInt(hallwayRarity) == 0)
+			bridges[random.nextInt(bridges.length)].generate(cloudiaChunk, random, 0, bottomLayer, 0);
+
+		if(random.nextInt(hallwayRarity) == 0)
+			bridges[random.nextInt(bridges.length)].generate(cloudiaChunk, random, 0, secondLayer, 0);
+
+
+		//These rooms need to be generated last
 		
-        ChunkPrimer primer = new ChunkPrimer();
+		//Forces a roof over the whole room, gets generated at final set
+		chunkTileEntityMap.put(new ChunkCoords(cx, cz), cloudiaChunk.chunkTileEntityPositions);
+		
+        CloudiaChunkPrimer primer = new CloudiaChunkPrimer();
         this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomesForGeneration(this.biomesForGeneration, cx * 16, cz * 16, 16, 16);
         Chunk chunk = new Chunk(this.worldObj, primer, cx, cz);
         byte[] abyte = chunk.getBiomeArray();
@@ -107,11 +139,11 @@ public class ChunkProviderCloudia implements IChunkGenerator {
 
     @Override
     public void populate(int cx, int cz) {
-        this.rand.setSeed(this.worldObj.getSeed() * (cx + cz) * this.rand.nextInt());
+        this.random.setSeed(this.worldObj.getSeed() * (cx + cz) * this.random.nextInt());
         final int x1 = cx * 16;
         final int z1 = cz * 16;
         int i;
-        final Random r = rand;
+        final Random r = random;
 
         BlockPos chunkStart = new BlockPos(x1, 0, z1);
 
@@ -126,38 +158,38 @@ public class ChunkProviderCloudia implements IChunkGenerator {
 				new WorldGenMelon(worldObj, r, new BlockPos(x, y, z), JourneyCrops.airRootMelon, JourneyBlocks.cloudiaGrass).generate(worldObj, r, new BlockPos(x, y, z));
 		} */
 
-        if (this.rand.nextInt(60) == 0) {
+        if (this.random.nextInt(60) == 0) {
             BlockPos pos = WorldGenAPI.createRandom(x1, 20, 84, z1, r, 8);
             if (worldObj.isAirBlock(pos))
-                tower.generate(worldObj, rand, pos);
+                tower.generate(worldObj, random, pos);
         }
 
         
 
-        if (this.rand.nextInt(30) == 0) {
+        if (this.random.nextInt(30) == 0) {
             BlockPos pos = WorldGenAPI.createRandom(x1, 20, 84, z1, r, 8);
             if (worldObj.isAirBlock(pos))
-                island.generate(worldObj, rand, pos);
+                island.generate(worldObj, random, pos);
         }
 
-        if (this.rand.nextInt(2) == 0) {
+        if (this.random.nextInt(2) == 0) {
             generateStructure(x1, z1, r, lamp);
         }
 
-        if (this.rand.nextInt(2) == 0) {
+        if (this.random.nextInt(2) == 0) {
             generateStructure(x1, z1, r, tree);
         }
 
-        if (this.rand.nextInt(2) == 0) {
+        if (this.random.nextInt(2) == 0) {
             BlockPos pos = WorldGenAPI.createRandom(x1, 20, 84, z1, r, 8);
             if (worldObj.isAirBlock(pos))
-                island.generate(worldObj, rand, pos);
+                island.generate(worldObj, random, pos);
         }
 
-        if (this.rand.nextInt(40) == 0) {
-            BlockPos pos = new BlockPos(x1, rand.nextInt(20) + 64 , z1 + r.nextInt(8));
+        if (this.random.nextInt(40) == 0) {
+            BlockPos pos = new BlockPos(x1, random.nextInt(20) + 64 , z1 + r.nextInt(8));
             if (worldObj.isAirBlock(pos)){
-                village.generate(worldObj, rand, pos);
+                village.generate(worldObj, random, pos);
             }
         }
 
@@ -172,7 +204,7 @@ public class ChunkProviderCloudia implements IChunkGenerator {
     private void generateStructure(int x1, int z1, Random r, WorldGenerator tower) {
         BlockPos pos = WorldGenAPI.createRandom(x1, 20, z1, r).up(64);
         if (worldObj.isAirBlock(pos))
-            tower.generate(worldObj, rand, pos);
+            tower.generate(worldObj, random, pos);
     }
 
     public static boolean isBlockTop(int x, int y, int z, Block grass, World w) {
