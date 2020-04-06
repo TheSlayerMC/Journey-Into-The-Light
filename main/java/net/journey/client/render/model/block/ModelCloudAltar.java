@@ -141,7 +141,7 @@ public class ModelCloudAltar extends ModelBase {
 			this.mainside3.render(f5);
 			this.top2.render(f5);
 			this.edge3.render(f5);
-		}else {
+		} else {
 			this.rotator.render(f5);
 		}
 	}
