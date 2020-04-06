@@ -2530,6 +2530,12 @@ public class CloudiaDungeon1 extends CloudiaZoneBase {
 		this.setBlock(worldIn, i + 8, j + 13, k + 1, Blocks.AIR.getDefaultState());
 		this.setBlock(worldIn, i + 8, j + 13, k + 2, Blocks.AIR.getDefaultState());
 		this.setBlock(worldIn, i + 8, j + 13, k + 3, Blocks.AIR.getDefaultState());
+
+		this.generate1(worldIn, rand, i, j, k);
+		return true;
+	}
+
+	public boolean generate1(CloudiaChunkPrimer worldIn, Random rand, int i, int j, int k) {
 		this.setBlock(worldIn, i + 8, j + 13, k + 4, Blocks.AIR.getDefaultState());
 		this.setBlock(worldIn, i + 8, j + 13, k + 5, Blocks.AIR.getDefaultState());
 		this.setBlock(worldIn, i + 8, j + 13, k + 6, Blocks.AIR.getDefaultState());
