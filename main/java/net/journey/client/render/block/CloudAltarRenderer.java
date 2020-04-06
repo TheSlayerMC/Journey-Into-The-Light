@@ -32,11 +32,14 @@ public class CloudAltarRenderer extends TileEntitySpecialRenderer {
 		bindTexture(Textures.cloudaltar);
 		GlStateManager.rotate(timeD, 0.0F, 1.0F, 0.0F);
 		GL11.glScalef(scale, scale, scale);
-		altar.render(0.0625F);
-		GL11.glTranslated(x + 0.5, y + 1.5, z + 0.5);
+		altar.render(0.0625F, false);
 		GL11.glRotatef(180F, 0.0F, 0F, 1.0F);
 		GL11.glPopMatrix();
+		
 		GL11.glPushMatrix();
+		GL11.glTranslated(x + 0.5, y + 1.3, z + 0.5);
+		GlStateManager.rotate(-timeD, 0.0F, 1.0F, 0.0F);
+		altar.render(0.0625F, true);
 		GL11.glPopMatrix();
 	}
 }
