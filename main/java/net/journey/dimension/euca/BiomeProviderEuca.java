@@ -45,6 +45,9 @@ public class BiomeProviderEuca extends BiomeProvider {
 		getBiomesToSpawnIn().add(DimensionHelper.euca);
 		getBiomesToSpawnIn().add(DimensionHelper.eucaSilver);
 		
+		allowedBiomes.add(DimensionHelper.euca);
+		allowedBiomes.add(DimensionHelper.eucaSilver);
+		
 		this.biomeCache = new BiomeCache(this);
 		this.biomes = new ArrayList<Biome>();
 		this.addBiomes(this.biomes);
@@ -58,6 +61,8 @@ public class BiomeProviderEuca extends BiomeProvider {
 		list.add(DimensionHelper.euca);
 		list.add(DimensionHelper.eucaSilver);
 	}
+	
+	
 	
 	public static GenLayer[] getLayers(long seed) {
 		GenLayer biomes = new GenLayerEucaBiome(seed);
@@ -186,11 +191,6 @@ public class BiomeProviderEuca extends BiomeProvider {
 		}
 
 		return chunkposition;
-	}
-
-	@Override
-	public final List getBiomesToSpawnIn() {
-		return this.biomes;
 	}
 	
 	@Override

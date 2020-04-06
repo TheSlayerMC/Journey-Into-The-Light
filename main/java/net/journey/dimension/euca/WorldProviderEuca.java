@@ -1,25 +1,23 @@
 package net.journey.dimension.euca;
 
 import net.journey.dimension.DimensionHelper;
-import net.journey.dimension.base.BaseWorldProvider;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DimensionType;
-import net.minecraft.world.biome.BiomeProviderSingle;
+import net.minecraft.world.WorldProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class WorldProviderEuca extends BaseWorldProvider {
+public class WorldProviderEuca extends WorldProvider {
 
 	public WorldProviderEuca() {
-        super(new BiomeProviderSingle(DimensionHelper.euca), new Vec3d(1.5, 1.4, 1));
+        super();
     }
 	
     @Override
     public void init() {
         this.nether = false;
         this.hasSkyLight = true;
-
+        this.biomeProvider = new BiomeProviderEuca(world);
     }
 
     @Override
