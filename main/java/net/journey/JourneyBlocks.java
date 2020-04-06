@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import net.journey.blocks.BlockAncientBlock;
 import net.journey.blocks.BlockBrittleIce;
+import net.journey.blocks.BlockCatalyst;
 import net.journey.blocks.BlockCaveVine;
 import net.journey.blocks.BlockChangeable;
 import net.journey.blocks.BlockCloud;
@@ -129,6 +130,7 @@ public class JourneyBlocks {
 	public static BlockMod bloodBricks;
 	public static BlockMod obelisk;
 	public static BlockMod bloodLamp;
+	public static BlockMod bloodCatalyst;
 	
 	public static BlockModLog witherwoodLog;
 	public static BlockMod witherwoodLeaves;
@@ -545,6 +547,7 @@ public class JourneyBlocks {
 		bloodPillar = new BlockMod("bloodPillar", "Blood Pillar");
 		obelisk = (BlockMod) new BlockObelisk("obelisk", "Obelisk").setLightLevel(0.5F);
 		bloodLamp = (BlockMod) new BlockMod("bloodLamp", "Blood Lamp").setLightLevel(2.0F);
+		bloodCatalyst = (BlockMod) new BlockCatalyst("bloodCatalyst", "Blood Catalyst", JourneyItems.blood).setLightLevel(0.1F);
 
 		witherwoodLog = new BlockModLog("witherwoodLog", "Witherwood Log");
 		witherwoodLeaves = new BlockModLeaves("witherwoodLeaves", "Witherwood Leaves", 1.0F);

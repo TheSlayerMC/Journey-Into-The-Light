@@ -1,0 +1,15 @@
+{
+  "result": {
+    "item": "journey:bloodpillar"
+  },
+  "pattern": [
+    "dd",
+    "dd"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "d": {
+      "item": "journey:carvedbloodrock"
+    }
+  }
+}

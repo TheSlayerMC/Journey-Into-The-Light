@@ -234,6 +234,22 @@ public class JourneyRecipes {
 				new Object[] { "d", "d", "d", 'd', Blocks.STONE });
 		addShapedRecipe(new ItemStack(JourneyItems.stoneClump, 16),
 				new Object[] { "ddd", "ddd", "ddd", 'd', Blocks.STONE });
+		
+		addShapedRecipe(new ItemStack(JourneyBlocks.bloodBricks, 4),
+				new Object[] { "dd", "dd", 'd', JourneyBlocks.bloodRock });
+		addShapedRecipe(new ItemStack(JourneyBlocks.carvedBloodRock, 4),
+				new Object[] { "dd", "dd", 'd', JourneyBlocks.bloodBricks });
+		addShapedRecipe(new ItemStack(JourneyBlocks.bloodLamp, 4),
+				new Object[] { "ddd", "did", "ddd", 'i', Blocks.GLOWSTONE, 'd', JourneyBlocks.bloodRock});
+		addShapedRecipe(new ItemStack(JourneyBlocks.obelisk, 1),
+				new Object[] { "ddd", "did", "ddd", 'i', JourneyBlocks.bloodRock, 'd', JourneyItems.boilPowder});
+		addShapedRecipe(new ItemStack(JourneyBlocks.bloodCatalyst, 1),
+				new Object[] { "ddd", "did", "ddd", 'i', JourneyBlocks.bloodRock, 'd', JourneyItems.blood});
+		addShapedRecipe(new ItemStack(JourneyBlocks.bloodRune, 1),
+				new Object[] { "ddd", "did", "ddd", 'd', JourneyBlocks.bloodRock, 'i', JourneyItems.withicSoul});
+		addShapedRecipe(new ItemStack(JourneyBlocks.bloodPillar, 1),
+				new Object[] { "dd", "dd", 'd', JourneyBlocks.carvedBloodRock});
+		
 		addShapedRecipe(new ItemStack(JourneyItems.stoneClump, 16),
 				new Object[] { "ddd", "ddd", "ddd", 'd', Blocks.COBBLESTONE });
 		addShapedRecipe(new ItemStack(JourneyItems.withicSoul, 1),

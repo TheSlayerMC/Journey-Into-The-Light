@@ -2,6 +2,7 @@ package net.journey.blocks;
 
 import java.util.Random;
 
+import net.journey.JourneyItems;
 import net.journey.JourneySounds;
 import net.journey.client.render.particles.EntityRockFX;
 import net.journey.client.render.particles.OreParticleFX;
@@ -70,28 +71,28 @@ public class BlockLock extends BlockMod {
 		r = 0.0F, 
 		g = 0.0F, 
 		b = 0.0F;
-		if (!worldIn.isRemote && playerIn.getHeldItem(hand.MAIN_HAND) != null
-				&& playerIn.getHeldItem(hand.MAIN_HAND).getItem() == key) {
-			worldIn.playSound((EntityPlayer) null, x, (double) y + 0.5D, z, SoundEvents.BLOCK_IRON_TRAPDOOR_OPEN,
-					SoundCategory.BLOCKS, 0.5F, worldIn.rand.nextFloat() * 0.1F + 0.735F);
+		if (playerIn.getHeldItem(hand.MAIN_HAND) != null && playerIn.getHeldItem(hand.MAIN_HAND).getItem() == key) {
+			worldIn.playSound((EntityPlayer) null, x, (double) y + 0.5D, z, SoundEvents.BLOCK_IRON_TRAPDOOR_OPEN, SoundCategory.BLOCKS, 0.5F, worldIn.rand.nextFloat() * 0.1F + 0.735F);
 			worldIn.spawnParticle(EnumParticleTypes.SPELL, x, y, z, 2.0F, 2.0F, 2.0F, 2);
-			worldIn.setBlockState(pos.add(0, 0, 0), Blocks.AIR.getDefaultState());
-			worldIn.setBlockState(pos.add(0, 1, 0), Blocks.AIR.getDefaultState());
-			worldIn.setBlockState(pos.add(0, 0, 1), Blocks.AIR.getDefaultState());
-			worldIn.setBlockState(pos.add(-1, 0, 0), Blocks.AIR.getDefaultState());
-			worldIn.setBlockState(pos.add(0, -1, 0), Blocks.AIR.getDefaultState());
-			worldIn.setBlockState(pos.add(0, 0, -1), Blocks.AIR.getDefaultState());
-			worldIn.setBlockState(pos.add(1, 0, 0), Blocks.AIR.getDefaultState());
-			worldIn.setBlockState(pos.add(1, 1, 0), Blocks.AIR.getDefaultState());
-			worldIn.setBlockState(pos.add(-1, -1, 0), Blocks.AIR.getDefaultState());
-			worldIn.setBlockState(pos.add(-1, 1, 0), Blocks.AIR.getDefaultState());
-			worldIn.setBlockState(pos.add(1, -1, 0), Blocks.AIR.getDefaultState());
-			worldIn.setBlockState(pos.add(0, 0, 1), Blocks.AIR.getDefaultState());
-			worldIn.setBlockState(pos.add(0, 1, 1), Blocks.AIR.getDefaultState());
-			worldIn.setBlockState(pos.add(0, -1, -1), Blocks.AIR.getDefaultState());
-			worldIn.setBlockState(pos.add(0, 1, -1), Blocks.AIR.getDefaultState());
-			worldIn.setBlockState(pos.add(0, -1, 1), Blocks.AIR.getDefaultState());
-			playerIn.getHeldItem(hand.MAIN_HAND).shrink(1);
+			if (!worldIn.isRemote) {
+				worldIn.setBlockState(pos.add(0, 0, 0), Blocks.AIR.getDefaultState());
+				worldIn.setBlockState(pos.add(0, 1, 0), Blocks.AIR.getDefaultState());
+				worldIn.setBlockState(pos.add(0, 0, 1), Blocks.AIR.getDefaultState());
+				worldIn.setBlockState(pos.add(-1, 0, 0), Blocks.AIR.getDefaultState());
+				worldIn.setBlockState(pos.add(0, -1, 0), Blocks.AIR.getDefaultState());
+				worldIn.setBlockState(pos.add(0, 0, -1), Blocks.AIR.getDefaultState());
+				worldIn.setBlockState(pos.add(1, 0, 0), Blocks.AIR.getDefaultState());
+				worldIn.setBlockState(pos.add(1, 1, 0), Blocks.AIR.getDefaultState());
+				worldIn.setBlockState(pos.add(-1, -1, 0), Blocks.AIR.getDefaultState());
+				worldIn.setBlockState(pos.add(-1, 1, 0), Blocks.AIR.getDefaultState());
+				worldIn.setBlockState(pos.add(1, -1, 0), Blocks.AIR.getDefaultState());
+				worldIn.setBlockState(pos.add(0, 0, 1), Blocks.AIR.getDefaultState());
+				worldIn.setBlockState(pos.add(0, 1, 1), Blocks.AIR.getDefaultState());
+				worldIn.setBlockState(pos.add(0, -1, -1), Blocks.AIR.getDefaultState());
+				worldIn.setBlockState(pos.add(0, 1, -1), Blocks.AIR.getDefaultState());
+				worldIn.setBlockState(pos.add(0, -1, 1), Blocks.AIR.getDefaultState());
+				playerIn.getHeldItem(hand.MAIN_HAND).shrink(1);
+			}
 		}
 	
 		return false;

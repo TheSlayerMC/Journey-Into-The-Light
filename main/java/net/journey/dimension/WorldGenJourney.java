@@ -215,6 +215,13 @@ public class WorldGenJourney implements IWorldGenerator {
 			z = chunkZ + r.nextInt(16);
 			worldMinableGenNether(JourneyBlocks.firestoneOre, 10, w, x, y, z);
 		}
+		
+		for (times = 0; times < 15; times++) {
+			y = r.nextInt(128) + 1;
+			x = chunkX + r.nextInt(16);
+			z = chunkZ + r.nextInt(16);
+			worldMinableGenNether(JourneyBlocks.bloodRock, 10, w, x, y, z);
+		}
 
 		if (r.nextInt(20) == 0) {
 			y = r.nextInt(256) + 1;
@@ -472,19 +479,19 @@ public class WorldGenJourney implements IWorldGenerator {
 			z = chunkZ + r.nextInt(16) + 8;
 			smallGlowshrooms.getValue().generate(w, r, new BlockPos(x, y, z));
 		}
-		if (r.nextInt(1) == 0) {
-			y = r.nextInt(20);
+		if (r.nextInt(3) == 0) {
+			y = r.nextInt(13);
 			x = chunkX + r.nextInt(16);
 			z = chunkZ + r.nextInt(16);
 			shadiumOre.getValue().generate(w, r, new BlockPos(x, y, z));
 		}
-		if (r.nextInt(1) == 0) {
+		if (r.nextInt(3) == 0) {
 			y = r.nextInt(26);
 			x = chunkX + r.nextInt(16);
 			z = chunkZ + r.nextInt(16);
 			luniumOre.getValue().generate(w, r, new BlockPos(x, y, z));
 		}
-		if (r.nextInt(1) == 0) {
+		if (r.nextInt(3) == 0) {
 			y = r.nextInt(20);
 			x = chunkX + r.nextInt(16);
 			z = chunkZ + r.nextInt(16);
