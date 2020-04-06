@@ -543,8 +543,8 @@ public class JourneyBlocks {
 		carvedBloodRock = new BlockMod("carvedBloodRock", "Carved Blood Rock");
 		bloodRune = new BlockMod("bloodRune", "Blood Rune");
 		bloodPillar = new BlockMod("bloodPillar", "Blood Pillar");
-		obelisk = (BlockMod) new BlockObelisk("obelisk", "Obelisk").setLightLevel(2.0F);
-		bloodLamp = (BlockMod) new BlockMod("bloodLamp", "Blood Lamp").setLightLevel(10.0F);
+		obelisk = (BlockMod) new BlockObelisk("obelisk", "Obelisk").setLightLevel(0.5F);
+		bloodLamp = (BlockMod) new BlockMod("bloodLamp", "Blood Lamp").setLightLevel(2.0F);
 
 		witherwoodLog = new BlockModLog("witherwoodLog", "Witherwood Log");
 		witherwoodLeaves = new BlockModLeaves("witherwoodLeaves", "Witherwood Leaves", 1.0F);
