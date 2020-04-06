@@ -2,7 +2,21 @@ package net.journey.dimension.cloudia;
 
 import net.journey.JourneyBlocks;
 import net.journey.dimension.cloudia.gen.*;
+import net.journey.dimension.cloudia.zone.CloudiaBridgeAll;
+import net.journey.dimension.cloudia.zone.CloudiaZoneBase;
 import net.journey.dimension.overworld.gen.WorldGenModFlower;
+import net.journey.dimension.senterian.SenterianChunkPrimer;
+import net.journey.dimension.senterian.ChunkProviderSenterian.ChunkCoords;
+import net.journey.dimension.senterian.room.SenterianCeiling;
+import net.journey.dimension.senterian.room.SenterianRoomChest;
+import net.journey.dimension.senterian.room.SenterianRoomHall1;
+import net.journey.dimension.senterian.room.SenterianRoomHall2;
+import net.journey.dimension.senterian.room.SenterianRoomHall3;
+import net.journey.dimension.senterian.room.SenterianRoomMaze1;
+import net.journey.dimension.senterian.room.SenterianRoomNPC;
+import net.journey.dimension.senterian.room.SenterianRoomSpawner1;
+import net.journey.dimension.senterian.room.SenterianRoomSpawner2;
+import net.journey.dimension.senterian.room.SenterianRoomStairs;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.util.math.BlockPos;
@@ -16,27 +30,61 @@ import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.slayer.api.worldgen.WorldGenAPI;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class ChunkProviderCloudia implements IChunkGenerator {
 
+	public class ChunkCoords {
+		public final int chunkCoordX;
+		public final int chunkCoordZ;
+
+		public ChunkCoords(int X, int Z) {
+			this.chunkCoordX = X;
+			this.chunkCoordZ = Z;
+		}
+
+		public boolean equals(Object o) {
+			if (!(o instanceof ChunkCoords)) {
+				return false;
+			} else {
+				ChunkCoords chunkCoords = (ChunkCoords) o;
+				return chunkCoords.chunkCoordX == this.chunkCoordX && chunkCoords.chunkCoordZ == this.chunkCoordZ;
+			}
+		}
+
+		public int hashCode() {
+			return this.chunkCoordX + this.chunkCoordZ * 31;
+		}
+	}
+	
     private Random rand;
     private World worldObj;
     private Biome[] biomesForGeneration;
-
+	private CloudiaZoneBase[] bridges;
+	private Random random;
+	private Map chunkTileEntityMap;
 
     public ChunkProviderCloudia(World worldIn, long seed) {
         this.worldObj = worldIn;
         this.rand = new Random(seed);
+		bridges = new CloudiaZoneBase[] { new CloudiaBridgeAll()};
+		this.chunkTileEntityMap = new HashMap();
         new NoiseGeneratorOctaves(this.rand, 4);
         new NoiseGeneratorOctaves(this.rand, 4);
     }
 
     @Override
     public Chunk generateChunk(int cx, int cz) {
-        this.rand.setSeed(cx * 391279512714L + cz * 132894987741L);
+        this.rand.setSeed(cx * 391279512714L + cz * 132894987741L);		CloudiaChunkPrimer cloudiaChunk = new CloudiaChunkPrimer();
+
+		int bottomLayer = 0;
+		int secondLayer = 16;
+		
         ChunkPrimer primer = new ChunkPrimer();
         this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomesForGeneration(this.biomesForGeneration, cx * 16, cz * 16, 16, 16);
         Chunk chunk = new Chunk(this.worldObj, primer, cx, cz);
