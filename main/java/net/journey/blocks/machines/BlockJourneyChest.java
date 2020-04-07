@@ -50,7 +50,6 @@ public class BlockJourneyChest extends BlockModContainer {
     protected static final AxisAlignedBB NOT_CONNECTED_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 1D, 1D, 1D);
     public final BlockJourneyChest.Type chestType;
     public boolean isLocked;
-    public boolean isUnLocked;
     Item key;
 
 	public BlockJourneyChest(String name, String f, BlockJourneyChest.Type chestTypeIn, boolean isLocked, Item key) {
@@ -421,7 +420,7 @@ public class BlockJourneyChest extends BlockModContainer {
 	public boolean isLocked(EntityPlayer playerIn, World worldIn) {
 		if(this.isLocked == true) {
         	if(playerIn.getHeldItemMainhand() != null && playerIn.getHeldItemMainhand().getItem() == key) {
-        		this.isUnLocked = true;
+        		this.isLocked = false;
         		playerIn.getHeldItemMainhand().shrink(1);
         	}
 		}
