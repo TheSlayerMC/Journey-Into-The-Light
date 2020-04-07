@@ -91,7 +91,9 @@ public class EntityRegistry {
 				SlayerAPI.registerProjectile(EntityShimmererProjectile.class, "shimmererprojectile"),
 				SlayerAPI.registerProjectile(EntityDemonicBomb.class, "demonicbomb"),
 				SlayerAPI.registerProjectile(EntityFireBomb.class, "firebomb"),
-				SlayerAPI.registerProjectile(EntityFloroWater.class, "florowater")
+				SlayerAPI.registerProjectile(EntityFloroWater.class, "florowater"),
+				SlayerAPI.registerProjectile(EntityFrozenSnowball.class, "frozensnowball"),
+				
 		};
 
 		return JourneyProjectiles;
@@ -149,6 +151,7 @@ public class EntityRegistry {
 				//FL
 				SlayerAPI.buildEntityEntry(EntityShatterer.class, "shatterer", "Shatterer", 0x00d8ff, 0xd8f9ff),
 				SlayerAPI.buildEntityEntry(EntityFrozenTroll.class, "frozentroll", "Frozen Troll", 0x00d8ff, 0xd8f9ff),
+				SlayerAPI.buildEntityEntry(EntityIceman.class, "iceman", "Ice Man", 0x00d8ff, 0xd8f9ff),
 				SlayerAPI.buildEntityEntry(EntityPermafraust.class, "permafraust", "Permafraust", 0x00d8ff, 0xd8f9ff),
 				SlayerAPI.buildEntityEntry(EntityShiveringBushwalker.class, "shiveringbushwalker", "Shivering Bushwalker", 0x00d8ff, 0xd8f9ff),
 				SlayerAPI.buildEntityEntry(EntityShiverwolf.class, "shiverwolf", "Shiver Wolf", 0x00d8ff, 0xd8f9ff),

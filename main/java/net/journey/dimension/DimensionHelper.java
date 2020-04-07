@@ -43,6 +43,7 @@ import net.journey.entity.mob.euca.EntityGolditeMage;
 import net.journey.entity.mob.euca.EntityShimmerer;
 import net.journey.entity.mob.frozen.EntityCrystalCluster;
 import net.journey.entity.mob.frozen.EntityFrozenTroll;
+import net.journey.entity.mob.frozen.EntityIceman;
 import net.journey.entity.mob.frozen.EntityPermafraust;
 import net.journey.entity.mob.frozen.EntityShatterer;
 import net.journey.entity.mob.frozen.EntityShiveringBushwalker;
@@ -227,7 +228,7 @@ public class DimensionHelper {
 	}
 	private static void addColdFrozenSpawns() {
 		int amount = 80;
-		EntityRegistry.addSpawn(EntitySnowman.class, 2, 1, 6, EnumCreatureType.CREATURE, frozen);
+		EntityRegistry.addSpawn(EntityIceman.class, amount, 1, amount, EnumCreatureType.CREATURE, frozen);
 		EntityRegistry.addSpawn(EntityFrozenTroll.class, amount, 10,  amount, EnumCreatureType.MONSTER, frozen);
 		EntityRegistry.addSpawn(EntityPermafraust.class, amount, 10, 20, EnumCreatureType.MONSTER, frozen);
 		EntityRegistry.addSpawn(EntityShiveringBushwalker.class, amount, 10, amount, EnumCreatureType.MONSTER, frozen);
@@ -237,7 +238,7 @@ public class DimensionHelper {
 
 	private static void addFrostFrozenSpawns() {
 		int amount = 80;
-		EntityRegistry.addSpawn(EntitySnowman.class, 2, 1, 6, EnumCreatureType.CREATURE, frozen);
+		EntityRegistry.addSpawn(EntityIceman.class, amount, 1, amount, EnumCreatureType.CREATURE, frozen);
 		EntityRegistry.addSpawn(EntityPermafraust.class, amount, 10, amount, EnumCreatureType.MONSTER, frozen);
 		EntityRegistry.addSpawn(EntityShatterer.class, amount, 10, amount, EnumCreatureType.MONSTER, frozen);
 		EntityRegistry.addSpawn(EntityCrystalCluster.class, amount, 10, amount, EnumCreatureType.MONSTER, frozen);

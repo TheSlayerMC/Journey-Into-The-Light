@@ -7,6 +7,7 @@ import net.journey.JourneyBlocks;
 import net.journey.dimension.cloudia.ChunkProviderCloudia;
 import net.journey.dimension.frozen.gen.WorldGenFrozenTree;
 import net.journey.dimension.frozen.gen.WorldGenFrozenTree2;
+import net.journey.dimension.frozen.gen.WorldGenFrozenTree3;
 import net.journey.dimension.frozen.gen.WorldGenIceCrystal1;
 import net.journey.dimension.frozen.gen.WorldGenIceCrystal2;
 import net.journey.dimension.frozen.gen.WorldGenIceDungeon;
@@ -51,7 +52,7 @@ public class ChunkProviderFrozenLands implements IChunkGenerator {
 	private Biome[] biomesForGeneration;
 	private double[] n3, n4, n5, n6;
 	
-	private WorldGenerator[] bottomTrees = new WorldGenerator[]{new WorldGenFrozenTree(), new WorldGenFrozenTree2()};
+	private WorldGenerator[] bottomTrees = new WorldGenerator[]{new WorldGenFrozenTree(true, true), /*new WorldGenFrozenTree2(), new WorldGenFrozenTree3()*/};
 	private WorldGenerator[] crystals = new WorldGenerator[]{new WorldGenIceCrystal1(), new WorldGenIceCrystal2()};
 
 	private WorldGenerator[] topTrees = new WorldGenerator[]{new WorldGenIceTree(), new WorldGenIceTree2()};
@@ -440,12 +441,12 @@ public class ChunkProviderFrozenLands implements IChunkGenerator {
 		int bottomYMax = 50;
 
 		//ALOT of lag is coming from these trees
-		for(times = 0; times < 100; times++) {
+		for(times = 0; times < 250; times++) {
 			int randX = i * 16 + 8 + rand.nextInt(16);
 			int randZ = j * 16 + 8 + rand.nextInt(16);
 			int randY = rand.nextInt(bottomYMax) + 1;
 			if(isBlockTop(randX, randY - 1, randZ, JourneyBlocks.frozenGrass)) {
-				//bottomTrees[rand.nextInt(bottomTrees.length)].generate(worldObj, rand, new BlockPos(randX, randY, randZ));
+				bottomTrees[rand.nextInt(bottomTrees.length)].generate(worldObj, rand, new BlockPos(randX, randY, randZ));
 			}
 		}
 		

@@ -1,5 +1,7 @@
 package net.journey.client.render.mob;
 
+import org.lwjgl.opengl.GL11;
+
 import net.journey.client.render.model.mob.frozen.ModelShatterer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
@@ -29,5 +31,8 @@ public class RenderShatterer extends RenderLiving {
 		//GlStateManager.rotate(System.currentTimeMillis(), 0, 0, 1);
 		GlStateManager.rotate(time, 0, 0, 1);
 		GlStateManager.translate(0, 1.5, 0);
+		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glDepthMask(true);
+		GL11.glEnable(GL11.GL_ALPHA_TEST);
 	}
 }

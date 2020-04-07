@@ -586,7 +586,7 @@ public class JourneyBlocks {
 		terraniaSapling = new BlockModSapling("terraniaSapling", "Terrania Sapling", new WorldGenEucaTree());
 		netherSapling = new BlockModSapling("netherSapling", "Deadblood Sapling", new WorldGenBleedheartTree0());
 		frozenIceSapling = new BlockModSapling("frozenIceSapling", "Ice Sapling", new WorldGenIceTree());
-		frozenSapling = new BlockModSapling("frozenSapling", "Frozen Sapling", new WorldGenFrozenTree());
+		//frozenSapling = new BlockModSapling("frozenSapling", "Frozen Sapling", new WorldGenFrozenTree(false, false));
 
 		eucaDirt = new BlockMod(EnumMaterialTypes.DIRT, "eucaDirt", "Euca Dirt", 2.0F);
 		eucaGrass = new BlockModGrass(eucaDirt, "eucaGrass", "Euca Grass", 2.0F);
