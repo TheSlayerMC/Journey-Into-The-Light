@@ -63,7 +63,7 @@ public class ChunkProviderEuca implements IChunkGenerator {
 	private WorldGenBotSpawner spawner = new WorldGenBotSpawner();
 	private WorldGenEucaWater water = new WorldGenEucaWater(Blocks.FLOWING_WATER, false);
 	protected Biome[] biomesForGeneration;
-	
+
 	protected static long getSeed(int x, int z) {
 		return x * 0x4f9939f508L + z * 0x1ef1565bd5L;
 	}
@@ -252,7 +252,7 @@ public class ChunkProviderEuca implements IChunkGenerator {
 		this.rand.setSeed((long) x * 341873128712L + (long) z * 132897987541L);
 		ChunkPrimer chunkPrimer = new ChunkPrimer();
 		this.setBlocksInChunk(x, z, chunkPrimer);
-        this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomes(this.biomesForGeneration, x * 16, z * 16, 16, 16);
+		this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomes(this.biomesForGeneration, x * 16, z * 16, 16, 16);
 		this.buildSurfaces(x, z, chunkPrimer);
 		Chunk chunk = new Chunk(this.worldObj, chunkPrimer, x, z);
 
@@ -272,7 +272,7 @@ public class ChunkProviderEuca implements IChunkGenerator {
 		int z1 = j * chunkSize;
 		int x, z, times;
 
-		if(rand.nextInt(1) == 0) {
+		if(rand.nextInt(5) == 0) {
 			generateStructure(x1, z1, worldGenSmeltery);
 		}
 
@@ -281,11 +281,21 @@ public class ChunkProviderEuca implements IChunkGenerator {
 		}
 
 		for(times = 0; times < 500; times++) {
-			generateStructure(x1, z1, treesnormal);
+			int randX = i * 16 + 8 + rand.nextInt(16);
+			int randZ = j * 16 + 8 + rand.nextInt(16);
+			int randY = rand.nextInt(150) + 1;
+			if (isBlockTop(randX, randY - 1, randZ, JourneyBlocks.eucaGrass)) {
+				treesnormal[rand.nextInt(treesnormal.length)].generate(worldObj, rand, new BlockPos(randX, randY, randZ));
+			}
 		}
 
 		for(times = 0; times < 70; times++) {
-			generateStructure(x1, z1, treestall);
+			int randX = i * 16 + 8 + rand.nextInt(16);
+			int randZ = j * 16 + 8 + rand.nextInt(16);
+			int randY = rand.nextInt(150) + 1;
+			if (isBlockTop(randX, randY - 1, randZ, JourneyBlocks.eucaGrass)) {
+				treestall[rand.nextInt(treestall.length)].generate(worldObj, rand, new BlockPos(randX, randY, randZ));
+			}
 		}
 
 		for(times = 0; times < 20; times++) {
