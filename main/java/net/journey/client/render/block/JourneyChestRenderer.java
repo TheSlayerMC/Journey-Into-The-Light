@@ -31,7 +31,7 @@ public class JourneyChestRenderer extends TileEntitySpecialRenderer<TileEntityJo
 	private static final ResourceLocation BOIL_DOUBLE = new ResourceLocation(SlayerAPI.PREFIX + "textures/models/blocks/chestboil_double.png");
 	
 	private static final ResourceLocation FROZEN = new ResourceLocation(SlayerAPI.PREFIX + "textures/models/blocks/chestfrozen.png");
-	private static final ResourceLocation FROZEN_DOUBLE = new ResourceLocation(SlayerAPI.PREFIX + "textures/models/blocks/chestfrozen_doublee.png");
+	private static final ResourceLocation FROZEN_DOUBLE = new ResourceLocation(SlayerAPI.PREFIX + "textures/models/blocks/chestfrozen_double.png");
 	
 	private static final ResourceLocation DEPTHS = new ResourceLocation(SlayerAPI.PREFIX + "textures/models/blocks/chestdepths.png");
 	private static final ResourceLocation DEPTHS_DOUBLE = new ResourceLocation(SlayerAPI.PREFIX + "textures/models/blocks/chestdepths_double.png");

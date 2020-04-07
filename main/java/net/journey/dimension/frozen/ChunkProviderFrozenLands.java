@@ -53,11 +53,13 @@ public class ChunkProviderFrozenLands implements IChunkGenerator {
 	private Biome[] biomesForGeneration;
 	private double[] n3, n4, n5, n6;
 
-	private WorldGenerator[] bottomTrees = new WorldGenerator[]{
+	private WorldGenerator[] largeBottomTrees = new WorldGenerator[]{
+			new WorldGenFrozenTree4(false, true)};
+	
+	private WorldGenerator[] smallBottomTrees = new WorldGenerator[]{
 			new WorldGenFrozenTree(),
 			new WorldGenFrozenTree2(),
-			new WorldGenFrozenTree3(), 
-			new WorldGenFrozenTree4(), 
+			new WorldGenFrozenTree3(),
 			new WorldGenFrozenTree5()};
 	
 	private WorldGenerator[] crystals = new WorldGenerator[]{new WorldGenIceCrystal1(), new WorldGenIceCrystal2()};
@@ -448,12 +450,21 @@ public class ChunkProviderFrozenLands implements IChunkGenerator {
 		int bottomYMax = 50;
 
 		//ALOT of lag is coming from these trees
-		for(times = 0; times < 200; times++) {
+		for(times = 0; times < 300; times++) {
 			int randX = i * 16 + 8 + rand.nextInt(16);
 			int randZ = j * 16 + 8 + rand.nextInt(16);
 			int randY = rand.nextInt(topYMax) + 1;
 			if(isBlockTop(randX, randY - 1, randZ, JourneyBlocks.frozenGrass)) {
-				bottomTrees[rand.nextInt(bottomTrees.length)].generate(worldObj, rand, new BlockPos(randX, randY, randZ));
+				largeBottomTrees[rand.nextInt(largeBottomTrees.length)].generate(worldObj, rand, new BlockPos(randX, randY, randZ));
+			}
+		}
+		
+		for(times = 0; times < 50; times++) {
+			int randX = i * 16 + 8 + rand.nextInt(16);
+			int randZ = j * 16 + 8 + rand.nextInt(16);
+			int randY = rand.nextInt(topYMax) + 1;
+			if(isBlockTop(randX, randY - 1, randZ, JourneyBlocks.frozenGrass)) {
+				smallBottomTrees[rand.nextInt(largeBottomTrees.length)].generate(worldObj, rand, new BlockPos(randX, randY, randZ));
 			}
 		}
 

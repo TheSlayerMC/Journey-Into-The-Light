@@ -79,7 +79,7 @@ public class MobStats {
 	public static double ShiveringBushwalkerHealth = 42.0D, ShiveringBushwalkerDamage = 9.0D;
 	public static double ShiveringShriekerHealth = 40.0D, ShiveringShriekerDamage = 8.0D;
 	public static double ShiverwingHealth = 40.0D, ShiverwingDamage = 8.0D;
-	public static double IceGolemHealth = 250.0D, IceGolemDamage = 10.0D;
+	public static double IceGolemHealth = 250.0D, IceGolemDamage = 20.0D;
 	
 	//Depths
 	public static double DarkenerHealth = 55.0D, DarkenerDamage = 11.0D;

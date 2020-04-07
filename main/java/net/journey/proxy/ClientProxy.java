@@ -58,6 +58,11 @@ public class ClientProxy extends CommonProxy {
 	public void clientPostInit() {
 		SlayerAPI.registerEvent(new ClientDimensionMusic());
 	}
+	
+    @Override
+    public void registerTEISR() {
+    	
+    }
 
 	@Override
 	public void spawnParticle(EnumParticlesClasses particle, World worldObj, double posX, double posY, double posZ, boolean b) {

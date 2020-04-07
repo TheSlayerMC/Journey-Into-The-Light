@@ -21,6 +21,7 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.inventory.InventoryLargeChest;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
@@ -42,19 +43,30 @@ import net.slayer.api.entity.tileentity.container.BlockModContainer;
 public class BlockJourneyChest extends BlockModContainer {
 
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
-    protected static final AxisAlignedBB NORTH_CHEST_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0D, 0.9375D, 0.875D, 0.9375D);
-    protected static final AxisAlignedBB SOUTH_CHEST_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.875D, 1.0D);
-    protected static final AxisAlignedBB WEST_CHEST_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0625D, 0.9375D, 0.875D, 0.9375D);
-    protected static final AxisAlignedBB EAST_CHEST_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 1.0D, 0.875D, 0.9375D);
-    protected static final AxisAlignedBB NOT_CONNECTED_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.875D, 0.9375D);
+    protected static final AxisAlignedBB NORTH_CHEST_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0D, 1D, 1D, 1D);
+    protected static final AxisAlignedBB SOUTH_CHEST_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 1D, 1D, 1.0D);
+    protected static final AxisAlignedBB WEST_CHEST_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0625D, 1D, 1D, 1D);
+    protected static final AxisAlignedBB EAST_CHEST_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 1D, 1D, 1D);
+    protected static final AxisAlignedBB NOT_CONNECTED_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 1D, 1D, 1D);
     public final BlockJourneyChest.Type chestType;
-    
+    public boolean isLocked;
+    public boolean isUnLocked;
+    Item key;
+
+	public BlockJourneyChest(String name, String f, BlockJourneyChest.Type chestTypeIn, boolean isLocked, Item key) {
+		super(EnumMaterialTypes.STONE, name, f, 2.0F, JourneyTabs.machineBlocks);
+        this.chestType = chestTypeIn;
+        this.isLocked = isLocked;
+        this.key = key;
+		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
+	}
+	
 	public BlockJourneyChest(String name, String f, BlockJourneyChest.Type chestTypeIn) {
 		super(EnumMaterialTypes.STONE, name, f, 2.0F, JourneyTabs.machineBlocks);
         this.chestType = chestTypeIn;
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 	}
-
+	
 	@Override
 	public boolean isOpaqueCube(IBlockState state) {
 		return false;
@@ -394,16 +406,30 @@ public class BlockJourneyChest extends BlockModContainer {
         if(worldIn.isRemote) {
             return true;
         } else {
-    		JourneySounds.playSound(JourneySounds.CHEST_OPEN, worldIn, playerIn);
-            ILockableContainer ilockablecontainer = this.getLockableContainer(worldIn, pos);
+        	if(this.isLocked(playerIn, worldIn) == false) {
+        		JourneySounds.playSound(JourneySounds.CHEST_OPEN, worldIn, playerIn);
+                ILockableContainer ilockablecontainer = this.getLockableContainer(worldIn, pos);
 
-            if(ilockablecontainer != null) {
-                playerIn.displayGUIChest(ilockablecontainer);
-            }
-
+                if(ilockablecontainer != null) {
+                    playerIn.displayGUIChest(ilockablecontainer);
+                }
+        	}
             return true;
         }
     }
+	
+	public boolean isLocked(EntityPlayer playerIn, World worldIn) {
+		if(this.isLocked == true) {
+        	if(playerIn.getHeldItemMainhand() != null && playerIn.getHeldItemMainhand().getItem() == key) {
+        		this.isUnLocked = true;
+        		playerIn.getHeldItemMainhand().shrink(1);
+        	}
+		}
+		else {
+			return false;
+		}
+		return false;
+	}
 
     public ILockableContainer getLockableContainer(World worldIn, BlockPos pos) {
         TileEntity tileentity = worldIn.getTileEntity(pos);
@@ -514,6 +540,6 @@ public class BlockJourneyChest extends BlockModContainer {
 		CORBA, 
 		TERRA, 
 		CLOUDIA, 
-		FROZEN;
+		FROZEN,
 	}
 }

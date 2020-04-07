@@ -344,9 +344,34 @@ public class TileEntityJourneyChest extends TileEntityLockableLoot implements IT
 	public BlockJourneyChest.Type getChestType() {
 		if (this.cachedChestType == null) {
 			if (this.world == null || !(this.getBlockType() instanceof BlockChest)) {
-				return BlockJourneyChest.Type.JOURNEY;
+				if (this.cachedChestType == BlockJourneyChest.Type.JOURNEY) {
+					return BlockJourneyChest.Type.JOURNEY;
+				}
+				if (this.cachedChestType == BlockJourneyChest.Type.BOIL) {
+					return BlockJourneyChest.Type.BOIL;
+				}
+				if (this.cachedChestType == BlockJourneyChest.Type.CLOUDIA) {
+					return BlockJourneyChest.Type.CLOUDIA;
+				}
+				if (this.cachedChestType == BlockJourneyChest.Type.CORBA) {
+					return BlockJourneyChest.Type.CORBA;
+				}
+				if (this.cachedChestType == BlockJourneyChest.Type.DEPTHS) {
+					return BlockJourneyChest.Type.DEPTHS;
+				}
+				if (this.cachedChestType == BlockJourneyChest.Type.EUCA) {
+					return BlockJourneyChest.Type.EUCA;
+				}
+				if (this.cachedChestType == BlockJourneyChest.Type.FROZEN) {
+					return BlockJourneyChest.Type.FROZEN;
+				}
+				if (this.cachedChestType == BlockJourneyChest.Type.NETHER) {
+					return BlockJourneyChest.Type.NETHER;
+				}
+				if (this.cachedChestType == BlockJourneyChest.Type.TERRA) {
+					return BlockJourneyChest.Type.TERRA;
+				}
 			}
-
 			this.cachedChestType = ((BlockJourneyChest) this.getBlockType()).chestType;
 		}
 

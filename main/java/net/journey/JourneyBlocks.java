@@ -278,6 +278,16 @@ public class JourneyBlocks {
 	// public static BlockMod cloudiaChest;
 	// public static BlockMod terraniaChest;
 	public static BlockJourneyChest journeyChest;
+	public static BlockJourneyChest netherChest;
+	public static BlockJourneyChest boilChest;
+	public static BlockJourneyChest eucaChest;
+	public static BlockJourneyChest frozenChest;
+	public static BlockJourneyChest depthsChest;
+	public static BlockJourneyChest corbaChest;
+	public static BlockJourneyChest terraniaChest;
+	public static BlockJourneyChest cloudiaChest;
+	public static BlockJourneyChest lockedChest;
+	
 
 	public static BlockMod nethicDungeonBricks;
 	public static BlockMod boilChain;
@@ -707,6 +717,16 @@ public class JourneyBlocks {
 		 */
 
 		journeyChest = new BlockJourneyChest("journeychest", "Journey Chest", BlockJourneyChest.Type.JOURNEY);
+		netherChest = new BlockJourneyChest("netherchest", "Nether Chest", BlockJourneyChest.Type.NETHER);
+		boilChest = new BlockJourneyChest("boilchest", "Boil Chest", BlockJourneyChest.Type.BOIL);
+		eucaChest = new BlockJourneyChest("eucachest", "Euca Chest", BlockJourneyChest.Type.EUCA);
+		frozenChest = new BlockJourneyChest("frozenchest", "Frozen Chest", BlockJourneyChest.Type.FROZEN);
+		depthsChest = new BlockJourneyChest("depthschest", "Depths Chest", BlockJourneyChest.Type.DEPTHS);
+		corbaChest = new BlockJourneyChest("corbachest", "Corba Chest", BlockJourneyChest.Type.CORBA);
+		terraniaChest = new BlockJourneyChest("terraniachest", "Terrania Chest", BlockJourneyChest.Type.TERRA);
+		cloudiaChest = new BlockJourneyChest("cloudiachest", "Cloudia Chest", BlockJourneyChest.Type.CLOUDIA);
+		
+		lockedChest = new BlockJourneyChest("lockedchest", "Locked Chest", BlockJourneyChest.Type.JOURNEY, true, JourneyItems.boilKey);
 
 		nethicDungeonBricks = new BlockMod("nethicDungeonBricks", "Nethic Dungeon Bricks");
 		boilChain = (BlockMod) new BlockModBars("boilChain", "Boil Chain", 5.0F).setBlockUnbreakable()
