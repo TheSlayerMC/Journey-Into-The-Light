@@ -8,6 +8,8 @@ import net.journey.dimension.cloudia.ChunkProviderCloudia;
 import net.journey.dimension.frozen.gen.WorldGenFrozenTree;
 import net.journey.dimension.frozen.gen.WorldGenFrozenTree2;
 import net.journey.dimension.frozen.gen.WorldGenFrozenTree3;
+import net.journey.dimension.frozen.gen.WorldGenFrozenTree4;
+import net.journey.dimension.frozen.gen.WorldGenFrozenTree5;
 import net.journey.dimension.frozen.gen.WorldGenIceCrystal1;
 import net.journey.dimension.frozen.gen.WorldGenIceCrystal2;
 import net.journey.dimension.frozen.gen.WorldGenIceDungeon;
@@ -23,7 +25,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.chunk.Chunk;
@@ -51,8 +52,14 @@ public class ChunkProviderFrozenLands implements IChunkGenerator {
 	private ChunkGeneratorSettings settings;
 	private Biome[] biomesForGeneration;
 	private double[] n3, n4, n5, n6;
+
+	private WorldGenerator[] bottomTrees = new WorldGenerator[]{
+			new WorldGenFrozenTree(),
+			new WorldGenFrozenTree2(),
+			new WorldGenFrozenTree3(), 
+			new WorldGenFrozenTree4(), 
+			new WorldGenFrozenTree5()};
 	
-	private WorldGenerator[] bottomTrees = new WorldGenerator[]{new WorldGenFrozenTree(true, true), /*new WorldGenFrozenTree2(), new WorldGenFrozenTree3()*/};
 	private WorldGenerator[] crystals = new WorldGenerator[]{new WorldGenIceCrystal1(), new WorldGenIceCrystal2()};
 
 	private WorldGenerator[] topTrees = new WorldGenerator[]{new WorldGenIceTree(), new WorldGenIceTree2()};
@@ -61,7 +68,7 @@ public class ChunkProviderFrozenLands implements IChunkGenerator {
 			new WorldGenModFlower(JourneyBlocks.iceBud, JourneyBlocks.frozenGrass, false), 
 			new WorldGenModFlower(JourneyBlocks.frostberryThorn, JourneyBlocks.frozenGrass, false), 
 			new WorldGenModFlower(JourneyBlocks.frozenBlooms, JourneyBlocks.frozenGrass, false)};
-	
+
 	private WorldGenerator[] topFlowers = new WorldGenerator[]{
 			new WorldGenModFlower(JourneyBlocks.permaFlower, JourneyBlocks.brittleIce),
 			new WorldGenModFlower(JourneyBlocks.shiverFlower, JourneyBlocks.brittleIce), 
@@ -434,22 +441,22 @@ public class ChunkProviderFrozenLands implements IChunkGenerator {
 		BlockPos chunkStart = new BlockPos(i * chunkSize, 0, j * chunkSize);
 		int x1 = i * chunkSize;
 		int z1 = j * chunkSize;
-		
+
 		int times = 0;
 
 		int topYMax = 100;
 		int bottomYMax = 50;
 
 		//ALOT of lag is coming from these trees
-		for(times = 0; times < 250; times++) {
+		for(times = 0; times < 200; times++) {
 			int randX = i * 16 + 8 + rand.nextInt(16);
 			int randZ = j * 16 + 8 + rand.nextInt(16);
-			int randY = rand.nextInt(bottomYMax) + 1;
+			int randY = rand.nextInt(topYMax) + 1;
 			if(isBlockTop(randX, randY - 1, randZ, JourneyBlocks.frozenGrass)) {
 				bottomTrees[rand.nextInt(bottomTrees.length)].generate(worldObj, rand, new BlockPos(randX, randY, randZ));
 			}
 		}
-		
+
 		for(times = 0; times < 100; times++) {
 			int randX = i * 16 + 8 + rand.nextInt(16);
 			int randZ = j * 16 + 8 + rand.nextInt(16);
@@ -462,23 +469,23 @@ public class ChunkProviderFrozenLands implements IChunkGenerator {
 		if(rand.nextInt(5) == 0) {
 			generateStructure(x1, z1, JourneyBlocks.frozenGrass, house);
 		}
-		
+
 		for(times = 0; times < 8; times++) {
 			generateStructure(x1, z1, JourneyBlocks.frozenGrass, lamp);
 		}
-		
+
 		for(times = 0; times < 8; times++) {
 			generateStructure(x1, z1, JourneyBlocks.brittleIce, crystals);
 		}
-		
+
 		for(times = 0; times < 100; times++) {
 			bottomFlowers[rand.nextInt(bottomFlowers.length)].generate(worldObj, rand, chunkStart);
 		}
-		
+
 		for(times = 0; times < 80; times++) {
 			topFlowers[rand.nextInt(topFlowers.length)].generate(worldObj, rand, chunkStart);
 		}
-		
+
 		//Causes gen lag because of size
 		for(times = 0; times < 1; times++) {
 			generateStructure(x1, z1, JourneyBlocks.brittleIce, dungeon);
