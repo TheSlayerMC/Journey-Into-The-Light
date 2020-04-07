@@ -11,9 +11,9 @@ public class WorldGenFrozenTree extends WorldGenerator {
 
 	@Override
 	public boolean generate(World world, Random rand, BlockPos p) {
-		if(world.getBlockState(p.down()).getBlock() != JourneyBlocks.frozenGrass) return false;
-		int height = 11+rand.nextInt(5)*2;
-		for(int y = 0; y<height; y++) {
+		int height = 11 + rand.nextInt(5) * 2;
+		
+		for(int y = 0; y < height; y++) {
 			this.setBlockAndNotifyAdequately(world, p.up(y), JourneyBlocks.frozenBark.getDefaultState());
 		}
 		

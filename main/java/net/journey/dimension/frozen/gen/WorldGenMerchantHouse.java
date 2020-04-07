@@ -31,7 +31,7 @@ public class WorldGenMerchantHouse extends WorldGenerator {
 	@Override
 	public boolean generate(World w, Random r, BlockPos pos) {
 		int x = pos.getX(), y = pos.getY(), z = pos.getZ();
-		if(locationIsValidSpawn(w, x, y, z)) return true;
+		//if(locationIsValidSpawn(w, x, y, z)) return true;
 		
 		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 0, y + 5, z + 1), JourneyBlocks.frozenBrick.getDefaultState());
 		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 0, y + 5, z + 2), JourneyBlocks.frozenBrick.getDefaultState());
