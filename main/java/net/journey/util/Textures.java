@@ -137,6 +137,7 @@ public class Textures {
     public static final ResourceLocation frozenFrostbiter = addMob("frozenfrostbiter");
     public static final ResourceLocation shiverwing = addMob("shiverwing");
     public static final ResourceLocation iceman = addMob("iceman");
+    public static final ResourceLocation iceGolem = addMob("icegolem");
     
     //Boil
     public static final ResourceLocation magmaBlaze = addMob("magmablaze");

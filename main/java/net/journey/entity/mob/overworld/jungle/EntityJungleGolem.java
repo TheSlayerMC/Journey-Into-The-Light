@@ -20,7 +20,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityModMob;
 
-public class EntityJungleGolem extends EntityModMob{
+public class EntityJungleGolem extends EntityModMob {
 
 	public EntityJungleGolem(World par1World) {
 		super(par1World);

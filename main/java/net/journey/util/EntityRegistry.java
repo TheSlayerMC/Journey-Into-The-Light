@@ -137,6 +137,7 @@ public class EntityRegistry {
 				SlayerAPI.buildEntityEntry(EntityBlizzard.class, "blizzard", "Blizzard", 0x7c4c2c, 0x26b530),
 				SlayerAPI.buildEntityEntry(EntityDunewerm.class, "dunewerm", "Dunewerm", 0x7c4c2c, 0x26b530),
 				SlayerAPI.buildEntityEntry(EntityJungleGolem.class, "junglegolem", "Jungle Golem", 0x7c4c2c, 0x26b530),
+	
 				SlayerAPI.buildEntityEntry(EntityJungleTurtle.class, "jungleturtle", "Jungle Turtle", 0x7c4c2c, 0x26b530),
 				SlayerAPI.buildEntityEntry(EntityJungleSpider.class, "jungleSpider", "Jungle Spider", 0x7c4c2c, 0x26b530),
 				SlayerAPI.buildEntityEntry(EntityTameRoc.class, "tameroc", "Roc", 0x7c4c2c, 0x26b530),
@@ -158,6 +159,7 @@ public class EntityRegistry {
 				SlayerAPI.buildEntityEntry(EntityShiveringShrieker.class, "shiveringshrieker", "Sjoveromg Shrieker", 0x00d8ff, 0xd8f9ff),
 				SlayerAPI.buildEntityEntry(EntityFrozenFrostbiter.class, "frozenfrostbiter", "Frozen Frost Biter", 0x00d8ff, 0xd8f9ff),
 				SlayerAPI.buildEntityEntry(EntityCrystalCluster.class, "crystalcluster", "Crystal Cluster", 0x00d8ff, 0xd8f9ff),
+				SlayerAPI.buildEntityEntry(EntityIceGolem.class, "icegolem", "Ice Golem", 0x00d8ff, 0xd8f9ff),
 				//EUCA
 				//SlayerAPI.buildEntityEntry(EntityInsecto.class, "insecto");
 				//SlayerAPI.buildEntityEntry(EntityPsyollom.class, "psyollom");
