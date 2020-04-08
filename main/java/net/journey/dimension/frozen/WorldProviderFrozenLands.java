@@ -4,10 +4,12 @@ import net.journey.dimension.DimensionHelper;
 import net.journey.dimension.base.BaseWorldProvider;
 import net.journey.dimension.boil.BiomeProviderBoil;
 import net.journey.util.Config;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.biome.BiomeProviderSingle;
+import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.relauncher.Side;
@@ -24,6 +26,17 @@ public class WorldProviderFrozenLands extends BaseWorldProvider {
 		this.nether = false;
 		this.hasSkyLight = true;
 	}
+	
+    @Override
+    public boolean canBlockFreeze(BlockPos pos, boolean byWater) {
+        return true;
+    }
+
+    @Override
+    public boolean canDoRainSnowIce(Chunk chunk) {
+        return true;
+
+    }
 	
 	@Override
 	public IChunkGenerator createChunkGenerator() {
