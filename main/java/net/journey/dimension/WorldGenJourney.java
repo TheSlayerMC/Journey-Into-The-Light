@@ -425,7 +425,7 @@ public class WorldGenJourney implements IWorldGenerator {
 		}
 		
 		if (biome == Biomes.FOREST) {
-			for (times = 0; times < 2; times++) {
+			for (times = 0; times < 1; times++) {
 				y = r.nextInt(128) + 1;
 				x = chunkX + r.nextInt(16) + 8;
 				z = chunkZ + r.nextInt(16) + 8;
@@ -434,7 +434,7 @@ public class WorldGenJourney implements IWorldGenerator {
 		}
 
 		if (biome == Biomes.TAIGA || biome == Biomes.TAIGA_HILLS) {
-			for (times = 0; times < 2; times++) {
+			for (times = 0; times < 1; times++) {
 				y = r.nextInt(128) + 1;
 				x = chunkX + r.nextInt(16) + 8;
 				z = chunkZ + r.nextInt(16) + 8;
@@ -443,7 +443,7 @@ public class WorldGenJourney implements IWorldGenerator {
 		}
 
 		if (biome == Biomes.JUNGLE || biome == Biomes.JUNGLE_HILLS) {
-			for (times = 0; times < 20; times++) {
+			for (times = 0; times < 1; times++) {
 				y = r.nextInt(128) + 1;
 				x = chunkX + r.nextInt(16) + 8;
 				z = chunkZ + r.nextInt(16) + 8;
@@ -452,7 +452,7 @@ public class WorldGenJourney implements IWorldGenerator {
 		}
 
 		if (biome == Biomes.SWAMPLAND) {
-			for (times = 0; times < 2; times++) {
+			for (times = 0; times < 1; times++) {
 				y = r.nextInt(128) + 1;
 				x = chunkX + r.nextInt(16) + 8;
 				z = chunkZ + r.nextInt(16) + 8;
