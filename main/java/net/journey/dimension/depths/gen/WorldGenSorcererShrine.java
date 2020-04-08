@@ -122,7 +122,7 @@ public class WorldGenSorcererShrine extends WorldGenerator {
 		this.setBlockAndNotifyAdequately(world, new BlockPos(i + 5, j + 1, k + 4), JourneyBlocks.sorcererSpawner.getDefaultState());
 		this.setBlockAndNotifyAdequately(world, new BlockPos(i + 5, j + 1, k + 7), JourneyBlocks.darklyGate.getDefaultState());
 		this.setBlockAndNotifyAdequately(world, new BlockPos(i + 5, j + 2, k + 1), JourneyBlocks.darklyLock.getDefaultState());
-		this.setBlockAndNotifyAdequately(world, new BlockPos(i + 5, j + 2, k + 4), JourneyBlocks.journeyChest.getStateFromMeta(2));
+		this.setBlockAndNotifyAdequately(world, new BlockPos(i + 5, j + 2, k + 4), JourneyBlocks.depthsChest.getStateFromMeta(2));
         TileEntity chest = world.getTileEntity(new BlockPos(i + 5, j + 2, k + 4));
 		if (chest instanceof TileEntityJourneyChest) {
 			((TileEntityJourneyChest) chest).setLootTable(JourneyLootTables.DEPTHS_SHRINE_CHEST, rand.nextLong());

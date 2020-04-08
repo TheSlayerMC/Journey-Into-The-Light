@@ -126,7 +126,7 @@ public class WorldGenNetherDungeons extends WorldGenerator {
 		this.setBlockAndNotifyAdequately(world, new BlockPos (i + 4, j + 0, k + 6), JourneyBlocks.largeNetherBrick.getDefaultState());
 		this.setBlockAndNotifyAdequately(world, new BlockPos (i + 4, j + 0, k + 7), JourneyBlocks.largeNetherBrick.getDefaultState());
 		this.setBlockAndNotifyAdequately(world, new BlockPos (i + 4, j + 1, k + 4), JourneyBlocks.hellbotSpawner.getDefaultState());
-		this.setBlockAndNotifyAdequately(world, new BlockPos (i + 4, j + 1, k + 6), JourneyBlocks.journeyChest.getStateFromMeta(2));
+		this.setBlockAndNotifyAdequately(world, new BlockPos (i + 4, j + 1, k + 6), JourneyBlocks.netherChest.getStateFromMeta(2));
         TileEntity chest = world.getTileEntity(new BlockPos(i + 4, j + 1, k + 6));
 		if (chest instanceof TileEntityJourneyChest) {
 			((TileEntityJourneyChest) chest).setLootTable(JourneyLootTables.NETHER_DUNGEON_CHEST, r.nextLong());
@@ -160,7 +160,7 @@ public class WorldGenNetherDungeons extends WorldGenerator {
 		this.setBlockAndNotifyAdequately(world, new BlockPos (i + 6, j + 0, k + 6), JourneyBlocks.nethicLamp.getDefaultState());
 		this.setBlockAndNotifyAdequately(world, new BlockPos (i + 6, j + 0, k + 7), JourneyBlocks.largeNetherBrick.getDefaultState());
 		this.setBlockAndNotifyAdequately(world, new BlockPos (i + 6, j + 1, k + 1), JourneyBlocks.boilingBars.getDefaultState());
-		this.setBlockAndNotifyAdequately(world, new BlockPos (i + 6, j + 1, k + 4), JourneyBlocks.journeyChest.getStateFromMeta(4));
+		this.setBlockAndNotifyAdequately(world, new BlockPos (i + 6, j + 1, k + 4), JourneyBlocks.netherChest.getStateFromMeta(4));
         TileEntity chest1 = world.getTileEntity(new BlockPos(i + 6, j + 1, k + 4));
 		if (chest1 instanceof TileEntityJourneyChest) {
 			((TileEntityJourneyChest) chest1).setLootTable(JourneyLootTables.NETHER_DUNGEON_CHEST, r.nextLong());

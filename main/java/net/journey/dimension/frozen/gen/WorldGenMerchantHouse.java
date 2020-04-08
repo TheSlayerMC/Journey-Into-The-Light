@@ -119,16 +119,16 @@ public class WorldGenMerchantHouse extends WorldGenerator {
 		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 2, y + 0, z + 9), JourneyBlocks.frozenPlanks.getDefaultState());
 		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 2, y + 0, z + 10), JourneyBlocks.frozenBrick.getDefaultState());
 		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 2, y + 1, z + 2), JourneyBlocks.frozenBrick.getDefaultState());
-		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 2, y + 1, z + 5), JourneyBlocks.journeyChest.getStateFromMeta(3));
+		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 2, y + 1, z + 5), JourneyBlocks.frozenChest.getStateFromMeta(3));
 		
         TileEntity chest = w.getTileEntity(new BlockPos(x + 2, y + 1, z + 5));
 		if (chest instanceof TileEntityJourneyChest) {
 			((TileEntityJourneyChest) chest).setLootTable(JourneyLootTables.FROZEN_MERCH_CHEST, r.nextLong());
 		}
 		
-		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 2, y + 1, z + 6), JourneyBlocks.journeyChest.getStateFromMeta(3));
+		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 2, y + 1, z + 6), JourneyBlocks.frozenChest.getStateFromMeta(3));
 		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 2, y + 1, z + 8), JourneyBlocks.frozenBrick.getDefaultState());
-		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 2, y + 1, z + 9), JourneyBlocks.journeyChest.getStateFromMeta(3));
+		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 2, y + 1, z + 9), JourneyBlocks.frozenChest.getStateFromMeta(3));
 		
         TileEntity chest1 = w.getTileEntity(new BlockPos(x + 2, y + 1, z + 9));
 		if (chest1 instanceof TileEntityJourneyChest) {

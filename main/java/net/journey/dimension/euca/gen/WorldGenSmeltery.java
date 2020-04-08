@@ -118,13 +118,13 @@ public class WorldGenSmeltery extends WorldGenerator {
 		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 2, y, z + 10), JourneyBlocks.eucaBricks.getDefaultState());
 		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 2, y + 1, z + 2), JourneyBlocks.eucaBricks.getDefaultState());
 		
-		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 2, y + 1, z + 6), JourneyBlocks.journeyChest.getStateFromMeta(3));
+		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 2, y + 1, z + 6), JourneyBlocks.eucaChest.getStateFromMeta(3));
         TileEntity chest = w.getTileEntity(new BlockPos(x + 2, y + 1, z + 6));
 		if (chest instanceof TileEntityJourneyChest) {
 			((TileEntityJourneyChest) chest).setLootTable(JourneyLootTables.EUCA_SMITH_CHEST, r.nextLong());
 		}
 		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 2, y + 1, z + 8), JourneyBlocks.eucaBricks.getDefaultState());
-		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 2, y + 1, z + 9), JourneyBlocks.journeyChest.getStateFromMeta(3));
+		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 2, y + 1, z + 9), JourneyBlocks.eucaChest.getStateFromMeta(3));
         TileEntity chest1 = w.getTileEntity(new BlockPos(x + 2, y + 1, z + 9));
 		if (chest1 instanceof TileEntityJourneyChest) {
 			((TileEntityJourneyChest) chest1).setLootTable(JourneyLootTables.EUCA_SMITH_CHEST, r.nextLong());

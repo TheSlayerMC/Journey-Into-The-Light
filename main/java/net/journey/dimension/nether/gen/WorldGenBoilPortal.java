@@ -115,7 +115,7 @@ public class WorldGenBoilPortal extends WorldGenerator {
 		this.setBlockAndNotifyAdequately(world, new BlockPos(i + 3, j + 1, k + 1), JourneyBlocks.compactNetherBrick.getDefaultState());
 		this.setBlockAndNotifyAdequately(world, new BlockPos(i + 3, j + 1, k + 5), JourneyBlocks.compactNetherBrick.getDefaultState());
 		this.setBlockAndNotifyAdequately(world, new BlockPos(i + 3, j + 2, k + 1), JourneyBlocks.compactNetherBrick.getDefaultState());
-		this.setBlockAndNotifyAdequately(world, new BlockPos(i + 3, j + 4, k + 3), JourneyBlocks.journeyChest.getStateFromMeta(2));
+		this.setBlockAndNotifyAdequately(world, new BlockPos(i + 3, j + 4, k + 3), JourneyBlocks.netherChest.getStateFromMeta(2));
         TileEntity chest = world.getTileEntity(new BlockPos(i + 3, j + 4, k + 3));
 		if (chest instanceof TileEntityJourneyChest) {
 			((TileEntityJourneyChest) chest).setLootTable(JourneyLootTables.BOIL_CHEST, rand.nextLong());
