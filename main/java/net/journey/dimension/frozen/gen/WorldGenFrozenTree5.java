@@ -3,48 +3,113 @@ package net.journey.dimension.frozen.gen;
 import java.util.Random;
 
 import net.journey.JourneyBlocks;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockLeaves;
+import net.minecraft.block.BlockOldLeaf;
+import net.minecraft.block.BlockOldLog;
+import net.minecraft.block.BlockPlanks;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 
-public class WorldGenFrozenTree5 extends WorldGenerator {
+public class WorldGenFrozenTree5 extends WorldGenAbstractTree {
+	private static final IBlockState TRUNK = JourneyBlocks.frozenBark.getDefaultState();
+	private static final IBlockState LEAF = JourneyBlocks.frozenLeaves.getDefaultState();
 
-	@Override
-	public boolean generate(World worldIn, Random r, BlockPos bp) {
-		int i = bp.getX() - 1, j = bp.getY(), k = bp.getZ() - 1;
-		IBlockState leaves = JourneyBlocks.frozenLeaves.getDefaultState();
-		IBlockState log = JourneyBlocks.frozenBark.getDefaultState();
-		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i, j + 3, k + 1), leaves);
-		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i, j + 4, k + 1), leaves);
-		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i, j + 5, k + 1), leaves);
-		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i, j + 6, k + 1), leaves);
-		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i, j + 7, k + 1), leaves);
-		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j, k + 1), log);
-		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 1, k + 1), log);
-		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 2, k + 1), log);
-		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 3, k), leaves);
-		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 3, k + 1), log);
-		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 3, k + 2), leaves);
-		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 4, k), leaves);
-		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 4, k + 1), log);
-		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 4, k + 2), leaves);
-		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 5, k), leaves);
-		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 5, k + 1), log);
-		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 5, k + 2), leaves);
-		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 6, k), leaves);
-		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 6, k + 1), log);
-		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 6, k + 2), leaves);
-		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 7, k), leaves);
-		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 7, k + 1), log);
-		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 7, k + 2), leaves);
-		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 8, k + 1), leaves);
-		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 2, j + 3, k + 1), leaves);
-		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 2, j + 4, k + 1), leaves);
-		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 2, j + 5, k + 1), leaves);
-		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 2, j + 6, k + 1), leaves);
-		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 2, j + 7, k + 1), leaves);
-		return true;
+	public WorldGenFrozenTree5() {
+		super(false);
+	}
+
+	public boolean generate(World worldIn, Random rand, BlockPos position) {
+		int i = rand.nextInt(5) + 7;
+		int j = i - rand.nextInt(2) - 3;
+		int k = i - j;
+		int l = 1 + rand.nextInt(k + 1);
+
+		if (position.getY() >= 1 && position.getY() + i + 1 <= 256) {
+			boolean flag = true;
+
+			for (int i1 = position.getY(); i1 <= position.getY() + 1 + i && flag; ++i1) {
+				int j1 = 1;
+
+				if (i1 - position.getY() < j) {
+					j1 = 0;
+				} else {
+					j1 = l;
+				}
+
+				BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+
+				for (int k1 = position.getX() - j1; k1 <= position.getX() + j1 && flag; ++k1) {
+					for (int l1 = position.getZ() - j1; l1 <= position.getZ() + j1 && flag; ++l1) {
+						if (i1 >= 0 && i1 < 256) {
+							if (!this.isReplaceable(worldIn, blockpos$mutableblockpos.setPos(k1, i1, l1))) {
+								flag = false;
+							}
+						} else {
+							flag = false;
+						}
+					}
+				}
+			}
+
+			if (!flag) {
+				return false;
+			} else {
+				BlockPos down = position.down();
+				IBlockState state = worldIn.getBlockState(down);
+				boolean isSoil = state.getBlock().canSustainPlant(state, worldIn, down,
+						net.minecraft.util.EnumFacing.UP, (net.minecraft.block.BlockSapling) Blocks.SAPLING);
+
+				if (isSoil && position.getY() < 256 - i - 1) {
+					state.getBlock().onPlantGrow(state, worldIn, down, position);
+					int k2 = 0;
+
+					for (int l2 = position.getY() + i; l2 >= position.getY() + j; --l2) {
+						for (int j3 = position.getX() - k2; j3 <= position.getX() + k2; ++j3) {
+							int k3 = j3 - position.getX();
+
+							for (int i2 = position.getZ() - k2; i2 <= position.getZ() + k2; ++i2) {
+								int j2 = i2 - position.getZ();
+
+								if (Math.abs(k3) != k2 || Math.abs(j2) != k2 || k2 <= 0) {
+									BlockPos blockpos = new BlockPos(j3, l2, i2);
+									state = worldIn.getBlockState(blockpos);
+
+									if (state.getBlock().canBeReplacedByLeaves(state, worldIn, blockpos)) {
+										this.setBlockAndNotifyAdequately(worldIn, blockpos, LEAF);
+									}
+								}
+							}
+						}
+
+						if (k2 >= 1 && l2 == position.getY() + j + 1) {
+							--k2;
+						} else if (k2 < l) {
+							++k2;
+						}
+					}
+
+					for (int i3 = 0; i3 < i - 1; ++i3) {
+						BlockPos upN = position.up(i3);
+						state = worldIn.getBlockState(upN);
+
+						if (state.getBlock().isAir(state, worldIn, upN)
+								|| state.getBlock().isLeaves(state, worldIn, upN)) {
+							this.setBlockAndNotifyAdequately(worldIn, position.up(i3), TRUNK);
+						}
+					}
+
+					return true;
+				} else {
+					return false;
+				}
+			}
+		} else {
+			return false;
+		}
 	}
 }
