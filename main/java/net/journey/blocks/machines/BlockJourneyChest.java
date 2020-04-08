@@ -42,30 +42,30 @@ import net.slayer.api.entity.tileentity.container.BlockModContainer;
 
 public class BlockJourneyChest extends BlockModContainer {
 
-    public static final PropertyDirection FACING = BlockHorizontal.FACING;
-    protected static final AxisAlignedBB NORTH_CHEST_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0D, 1D, 1D, 1D);
-    protected static final AxisAlignedBB SOUTH_CHEST_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 1D, 1D, 1.0D);
-    protected static final AxisAlignedBB WEST_CHEST_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0625D, 1D, 1D, 1D);
-    protected static final AxisAlignedBB EAST_CHEST_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 1D, 1D, 1D);
-    protected static final AxisAlignedBB NOT_CONNECTED_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 1D, 1D, 1D);
-    public final BlockJourneyChest.Type chestType;
-    public boolean isLocked;
-    Item key;
+	public static final PropertyDirection FACING = BlockHorizontal.FACING;
+	protected static final AxisAlignedBB NORTH_CHEST_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0D, 1D, 1D, 1D);
+	protected static final AxisAlignedBB SOUTH_CHEST_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 1D, 1D, 1.0D);
+	protected static final AxisAlignedBB WEST_CHEST_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0625D, 1D, 1D, 1D);
+	protected static final AxisAlignedBB EAST_CHEST_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 1D, 1D, 1D);
+	protected static final AxisAlignedBB NOT_CONNECTED_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 1D, 1D, 1D);
+	public final BlockJourneyChest.Type chestType;
+	public boolean isLocked;
+	private Item key;
 
 	public BlockJourneyChest(String name, String f, BlockJourneyChest.Type chestTypeIn, boolean isLocked, Item key) {
 		super(EnumMaterialTypes.STONE, name, f, 2.0F, JourneyTabs.machineBlocks);
-        this.chestType = chestTypeIn;
-        this.isLocked = isLocked;
-        this.key = key;
+		this.chestType = chestTypeIn;
+		this.isLocked = isLocked;
+		this.key = key;
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 	}
-	
+
 	public BlockJourneyChest(String name, String f, BlockJourneyChest.Type chestTypeIn) {
 		super(EnumMaterialTypes.STONE, name, f, 2.0F, JourneyTabs.machineBlocks);
-        this.chestType = chestTypeIn;
+		this.chestType = chestTypeIn;
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 	}
-	
+
 	@Override
 	public boolean isOpaqueCube(IBlockState state) {
 		return false;
@@ -86,7 +86,7 @@ public class BlockJourneyChest extends BlockModContainer {
 	public EnumBlockRenderType getRenderType(IBlockState state) {
 		return EnumBlockRenderType.ENTITYBLOCK_ANIMATED;
 	}
-	
+
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 		if(source.getBlockState(pos.north()).getBlock() == this) {
@@ -99,7 +99,7 @@ public class BlockJourneyChest extends BlockModContainer {
 			return source.getBlockState(pos.east()).getBlock() == this ? EAST_CHEST_AABB : NOT_CONNECTED_AABB;
 		}
 	}
-	
+
 	@Override
 	public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state) {
 		this.checkForSurroundingChests(worldIn, pos, state);
@@ -279,7 +279,7 @@ public class BlockJourneyChest extends BlockModContainer {
 			return state.withProperty(FACING, enumfacing2);
 		}
 	}
-	
+
 	@Override
 	public boolean canPlaceBlockAt(World worldIn, BlockPos pos) {
 		int i = 0;
@@ -336,7 +336,7 @@ public class BlockJourneyChest extends BlockModContainer {
 			return false;
 		}
 	}
-	
+
 	@Override
 	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
 		super.neighborChanged(state, worldIn, pos, blockIn, fromPos);
@@ -377,7 +377,7 @@ public class BlockJourneyChest extends BlockModContainer {
 	protected BlockStateContainer createBlockState() {
 		return new BlockStateContainer(this, new IProperty[] { FACING });
 	}
-	
+
 	@Override
 	public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face) {
 		return BlockFaceShape.UNDEFINED;
@@ -387,93 +387,93 @@ public class BlockJourneyChest extends BlockModContainer {
 	public boolean rotateBlock(World world, BlockPos pos, EnumFacing axis) {
 		return !isDoubleChest(world, pos) && super.rotateBlock(world, pos, axis);
 	}
-	
-	@Override
-    public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
-        TileEntity tileentity = worldIn.getTileEntity(pos);
-
-        if(tileentity instanceof IInventory) {
-            InventoryHelper.dropInventoryItems(worldIn, pos, (IInventory)tileentity);
-            worldIn.updateComparatorOutputLevel(pos, this);
-        }
-
-        super.breakBlock(worldIn, pos, state);
-    }
 
 	@Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        if(worldIn.isRemote) {
-            return true;
-        } else {
-        	if(this.isLocked(playerIn, worldIn) == false) {
-        		JourneySounds.playSound(JourneySounds.CHEST_OPEN, worldIn, playerIn);
-                ILockableContainer ilockablecontainer = this.getLockableContainer(worldIn, pos);
+	public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
+		TileEntity tileentity = worldIn.getTileEntity(pos);
 
-                if(ilockablecontainer != null) {
-                    playerIn.displayGUIChest(ilockablecontainer);
-                }
-        	}
-            return true;
-        }
-    }
-	
-	public boolean isLocked(EntityPlayer playerIn, World worldIn) {
-		if(this.isLocked == true) {
-        	if(playerIn.getHeldItemMainhand() != null && playerIn.getHeldItemMainhand().getItem() == key) {
-        		this.isLocked = false;
-        		playerIn.getHeldItemMainhand().shrink(1);
-        	}
+		if(tileentity instanceof IInventory) {
+			InventoryHelper.dropInventoryItems(worldIn, pos, (IInventory)tileentity);
+			worldIn.updateComparatorOutputLevel(pos, this);
 		}
-		else {
-			return false;
-		}
-		return false;
+
+		super.breakBlock(worldIn, pos, state);
 	}
 
-    public ILockableContainer getLockableContainer(World worldIn, BlockPos pos) {
-        TileEntity tileentity = worldIn.getTileEntity(pos);
+	@Override
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		if(worldIn.isRemote) {
+			return true;
+		} else {
+			if(this.isLocked(playerIn, worldIn, pos) || !isLocked) {
+				JourneySounds.playSound(JourneySounds.CHEST_OPEN, worldIn, playerIn);
+				ILockableContainer ilockablecontainer = this.getLockableContainer(worldIn, pos);
 
-        if(!(tileentity instanceof TileEntityJourneyChest)) {
-            return null;
-        } else {
-            Object object = tileentity;
+				if(ilockablecontainer != null) {
+					playerIn.displayGUIChest(ilockablecontainer);
+				}
+			}
+			return true;
+		}
+	}
 
-            if(this.isBlocked(worldIn, pos)) {
-                return null;
-            } else {
-                Iterator iterator = EnumFacing.Plane.HORIZONTAL.iterator();
+	public boolean isLocked(EntityPlayer playerIn, World worldIn, BlockPos pos) {
+		TileEntityJourneyChest te = (TileEntityJourneyChest)worldIn.getTileEntity(pos);
+		if(playerIn.getHeldItemMainhand() != null && playerIn.getHeldItemMainhand().getItem() == key) {
+			if(te.isLocked == true) {
+				te.isLocked = false;
+				playerIn.getHeldItemMainhand().damageItem(1, playerIn);
+			}
+		} else {
+			return false;
+		}
+		return true;
+	}
 
-                while (iterator.hasNext()) {
-                    EnumFacing enumfacing = (EnumFacing)iterator.next();
-                    BlockPos blockpos1 = pos.offset(enumfacing);
-                    Block block = worldIn.getBlockState(blockpos1).getBlock();
+	public ILockableContainer getLockableContainer(World worldIn, BlockPos pos) {
+		TileEntity tileentity = worldIn.getTileEntity(pos);
 
-                    if(block == this) {
-                        if(this.isBlocked(worldIn, blockpos1)) {
-                            return null;
-                        }
+		if(!(tileentity instanceof TileEntityJourneyChest)) {
+			return null;
+		} else {
+			Object object = tileentity;
 
-                        TileEntity tileentity1 = worldIn.getTileEntity(blockpos1);
+			if(this.isBlocked(worldIn, pos)) {
+				return null;
+			} else {
+				Iterator iterator = EnumFacing.Plane.HORIZONTAL.iterator();
 
-                        if(tileentity1 instanceof TileEntityJourneyChest) {
-                            if(enumfacing != EnumFacing.WEST && enumfacing != EnumFacing.NORTH) {
-                                object = new InventoryLargeChest("container.chestDouble", (ILockableContainer)object, (TileEntityJourneyChest)tileentity1);
-                            } else {
-                                object = new InventoryLargeChest("container.chestDouble", (TileEntityJourneyChest)tileentity1, (ILockableContainer)object);
-                            }
-                        }
-                    }
-                }
+				while (iterator.hasNext()) {
+					EnumFacing enumfacing = (EnumFacing)iterator.next();
+					BlockPos blockpos1 = pos.offset(enumfacing);
+					Block block = worldIn.getBlockState(blockpos1).getBlock();
 
-                return (ILockableContainer)object;
-            }
-        }
-    }
+					if(block == this) {
+						if(this.isBlocked(worldIn, blockpos1)) {
+							return null;
+						}
+
+						TileEntity tileentity1 = worldIn.getTileEntity(blockpos1);
+
+						if(tileentity1 instanceof TileEntityJourneyChest) {
+							if(enumfacing != EnumFacing.WEST && enumfacing != EnumFacing.NORTH) {
+								object = new InventoryLargeChest("container.chestDouble", (ILockableContainer)object, (TileEntityJourneyChest)tileentity1);
+							} else {
+								object = new InventoryLargeChest("container.chestDouble", (TileEntityJourneyChest)tileentity1, (ILockableContainer)object);
+							}
+						}
+					}
+				}
+
+				return (ILockableContainer)object;
+			}
+		}
+	}
 
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
 		return new TileEntityJourneyChest();
-    }
+	}
 
 	public int isProvidingWeakPower(IBlockAccess worldIn, BlockPos pos, IBlockState state, EnumFacing side) {
 		if(!this.canProvidePower(state)) {

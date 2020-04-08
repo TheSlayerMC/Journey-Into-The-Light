@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 
 import net.journey.JourneySounds;
 import net.journey.blocks.machines.BlockJourneyChest;
+import net.journey.util.Helper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
 import net.minecraft.entity.player.EntityPlayer;
@@ -48,7 +49,8 @@ public class TileEntityJourneyChest extends TileEntityLockableLoot implements IT
 	public int numPlayersUsing;
 	private int ticksSinceSync;
 	private BlockJourneyChest.Type cachedChestType;
-
+	public boolean isLocked = true;
+	
 	public TileEntityJourneyChest() {
 	}
 
@@ -85,7 +87,7 @@ public class TileEntityJourneyChest extends TileEntityLockableLoot implements IT
 	public void readFromNBT(NBTTagCompound compound) {
 		super.readFromNBT(compound);
 		this.chestContents = NonNullList.<ItemStack>withSize(this.getSizeInventory(), ItemStack.EMPTY);
-
+		isLocked = compound.getBoolean("isLocked");
 		if (!this.checkLootAndRead(compound)) {
 			ItemStackHelper.loadAllItems(compound, this.chestContents);
 		}
@@ -98,7 +100,7 @@ public class TileEntityJourneyChest extends TileEntityLockableLoot implements IT
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
 		super.writeToNBT(compound);
-
+		compound.setBoolean("isLocked", true);
 		if (!this.checkLootAndWrite(compound)) {
 			ItemStackHelper.saveAllItems(compound, this.chestContents);
 		}
@@ -215,10 +217,14 @@ public class TileEntityJourneyChest extends TileEntityLockableLoot implements IT
 							(double) ((float) (j + 1) + 5.0F), (double) ((float) (k + 1) + 5.0F)))) {
 				if (entityplayer.openContainer instanceof ContainerChest) {
 					IInventory iinventory = ((ContainerChest) entityplayer.openContainer).getLowerChestInventory();
-
 					if (iinventory == this || iinventory instanceof InventoryLargeChest
 							&& ((InventoryLargeChest) iinventory).isPartOfLargeChest(this)) {
 						++this.numPlayersUsing;
+						
+						if(isLocked) {
+							numPlayersUsing = 0;
+						}
+						
 					}
 				}
 			}
@@ -239,7 +245,7 @@ public class TileEntityJourneyChest extends TileEntityLockableLoot implements IT
 			if (this.adjacentChestXPos != null) {
 				d1 += 0.5D;
 			}
-
+			
 			this.world.playSound((EntityPlayer) null, d1, (double) j + 0.5D, d2, SoundEvents.BLOCK_CHEST_OPEN,
 					SoundCategory.BLOCKS, 0.5F, this.world.rand.nextFloat() * 0.1F + 0.735F);
 		}

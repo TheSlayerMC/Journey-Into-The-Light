@@ -388,7 +388,7 @@ public class JourneyItems {
 		eucaPortalPiece_1 = new ItemMod("eucaPortalPiece_1", "Euca Portal Piece");
 		eucaPortalPiece_0 = new ItemMod("eucaPortalPiece_0", "Euca Portal Piece");
 		flamingHide = new ItemMod("flamingHide", "Flaming Hide");
-		boilKey = new ItemMod("boilKey", "Boil Key").setMaxStackSize(1);
+		boilKey = new ItemMod("boilKey", "Boil Key").setMaxStackSize(1).setMaxDamage(15);
 		darkKey = new ItemMod("darkkey", "Dark Key").setMaxStackSize(1);
 		depthsKey = new ItemMod("depthskey", "Depths Key").setMaxStackSize(1);
 		redGlowShroom = new ItemGlowshroomBlock("redGlowShroom", "Red Glowshroom", JourneyBlocks.redGlowshroomBottom, JourneyBlocks.redGlowshroomTop);
