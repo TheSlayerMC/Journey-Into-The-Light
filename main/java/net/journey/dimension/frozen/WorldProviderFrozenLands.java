@@ -27,10 +27,10 @@ public class WorldProviderFrozenLands extends BaseWorldProvider {
 		this.hasSkyLight = true;
 	}
 	
-    /*@Override
+    @Override
     public boolean canBlockFreeze(BlockPos pos, boolean byWater) {
         return true;
-    }*/
+    }
 
     @Override
     public boolean canDoRainSnowIce(Chunk chunk) {
