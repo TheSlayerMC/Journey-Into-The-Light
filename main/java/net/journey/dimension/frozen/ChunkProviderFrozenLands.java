@@ -321,7 +321,7 @@ public class ChunkProviderFrozenLands implements IChunkGenerator {
 		int topYMax = 100;
 		int bottomYMax = 50;
 
-		for (times = 0; times < 2; times++) {
+		if(rand.nextInt(5) == 0) {
 			int randX = i * 16 + 7 + rand.nextInt(9);
 			int randZ = j * 16 + 7 + rand.nextInt(9);
 			int randY = rand.nextInt(bottomYMax) + 1;
@@ -331,21 +331,23 @@ public class ChunkProviderFrozenLands implements IChunkGenerator {
 		}
 		
 		//ALOT of lag is coming from these trees
-		for(times = 0; times < 300; times++) {
-			int randX = i * 16 + 8 + rand.nextInt(5);
-			int randZ = j * 16 + 8 + rand.nextInt(5);
+		for(times = 0; times < 80; times++) {
+			int randX = i * 16 + 8 + rand.nextInt(16);
+			int randZ = j * 16 + 8 + rand.nextInt(16);
 			int randY = rand.nextInt(bottomYMax) + 1;
 			if(isBlockTop(randX, randY - 1, randZ, JourneyBlocks.frozenGrass)) {
-				//largeBottomTrees[rand.nextInt(largeBottomTrees.length)].generate(worldObj, rand, new BlockPos(randX, randY, randZ));
+				if(randY > 12 && randY < 50)
+					largeBottomTrees[rand.nextInt(largeBottomTrees.length)].generate(worldObj, rand, new BlockPos(randX, randY, randZ));
 			}
 		}
 		
 		for(times = 0; times < 50; times++) {
-			int randX = i * 16 + 8 + rand.nextInt(8);
-			int randZ = j * 16 + 8 + rand.nextInt(8);
+			int randX = i * 16 + 8 + rand.nextInt(16);
+			int randZ = j * 16 + 8 + rand.nextInt(16);
 			int randY = rand.nextInt(topYMax) + 1;
 			if(isBlockTop(randX, randY - 1, randZ, JourneyBlocks.frozenGrass)) {
-				smallBottomTrees[rand.nextInt(largeBottomTrees.length)].generate(worldObj, rand, new BlockPos(randX, randY, randZ));
+				if(randY > 12 && randY < 50)
+					smallBottomTrees[rand.nextInt(largeBottomTrees.length)].generate(worldObj, rand, new BlockPos(randX, randY, randZ));
 			}
 		}
 
