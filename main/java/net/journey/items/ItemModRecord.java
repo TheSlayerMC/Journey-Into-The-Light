@@ -38,11 +38,13 @@ public class ItemModRecord extends ItemRecord {
     private static final Map RECORDS = Maps.newHashMap();
     private final SoundEvent sound;
     private String soundName;
+    private String description;
 
-	public ItemModRecord(String name, String finalName, SoundEvent sound) {
+	public ItemModRecord(String name, String finalName, /*String desc,*/ SoundEvent sound) {
 		super(name, sound);
 		setUnlocalizedName(name + "Record");
 		soundName = name;
+		//description = desc;
 		setRegistryName(SlayerAPI.MOD_ID, name + "Record");
 		LangRegistry.addItem(name + "Record", finalName);
 		setCreativeTab(JourneyTabs.util);

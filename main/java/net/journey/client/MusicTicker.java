@@ -65,7 +65,7 @@ public class MusicTicker {
 		int dimID = getDimensionID();
 		if(dimID == Config.depths) {
 			int tracks = rand.nextInt(1);
-			return tracks == 0 ? TrackType.DEPTHS_1 : TrackType.DEPTHS_1;
+			return tracks == 0 ? TrackType.DEPTHS_1 : tracks == 1 ? TrackType.DEPTHS_2 : TrackType.DEPTHS_1;
 		}
 		
 		if(dimID == Config.euca) {
@@ -93,6 +93,11 @@ public class MusicTicker {
 			return tracks == 0 ? TrackType.CLOUDIA_1 : TrackType.CLOUDIA_1;
 		}
 		
+		if(dimID == Config.frozen) {
+			int tracks = rand.nextInt(1);
+			return tracks == 0 ? TrackType.FROZEN_1: TrackType.FROZEN_1;
+		}
+		
 		//return num == 0 ? TrackType.TRACK_ONE : num == 1 ? TrackType.TRACK_TWO : num == 2 ? TrackType.TRACK_THREE : TrackType.TRACK_FOUR;
 		return type;
 	}
@@ -115,13 +120,15 @@ public class MusicTicker {
 	public static enum TrackType {
 		EMPTY(JourneySounds.EMPTY, 300, 700),
 		EUCA_1(JourneySounds.EUCA_1, 1200, 1500),
-		EUCA_2(JourneySounds.EUCA_2, 1200, 1500),
-		EUCA_3(JourneySounds.EUCA_3, 1200, 1500),
-		DEPTHS_1(JourneySounds.DEPTHS_1, 1200, 1500),
+		EUCA_2(JourneySounds.EUCA_2, 620, 900),
+		EUCA_3(JourneySounds.EUCA_3, 3300, 3600),
+		DEPTHS_1(JourneySounds.DEPTHS_1, 2400, 2700),
+		DEPTHS_2(JourneySounds.DEPTHS_2, 4300, 4600),
 		CORBA_1(JourneySounds.CORBA_1, 5100, 5400),
-		CLOUDIA_1(JourneySounds.CLOUDIA_1, 1200, 1500),
-		TERRANIA_1(JourneySounds.TERRANIA_1, 1200, 1500),
-		BOIL_1(JourneySounds.BOIL_1, 1200, 1500);
+		CLOUDIA_1(JourneySounds.CLOUDIA_1, 2500, 2800),
+		TERRANIA_1(JourneySounds.TERRANIA_1, 3300, 3600),
+		BOIL_1(JourneySounds.BOIL_1, 3140, 3440),
+		FROZEN_1(JourneySounds.FROZEN_1, 3500, 3800);
 
 		private final SoundEvent musicLocation;
 		private final int minDelay;

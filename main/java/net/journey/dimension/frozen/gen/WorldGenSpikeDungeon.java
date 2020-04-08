@@ -24,7 +24,7 @@ public class WorldGenSpikeDungeon extends WorldGenerator {
 	public boolean generate(World worldIn, Random r, BlockPos bp) {
 		// Change k, i, or j to offset the structure
 		int i = bp.getX() - 6;
-		int j = bp.getY();
+		int j = bp.getY()- 1;
 		int k = bp.getZ() - 6;
 
 		for(int i1 = 0; i1 < 5; i1++) {

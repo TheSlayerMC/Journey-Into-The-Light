@@ -242,40 +242,37 @@ public class JourneyItems {
 	public static Item corallatorOrb;
 	public static Item scaleOrb;
 	public static Item enchantedTerrastar;
-
 	public static Item weakEssencePotion;
 	public static Item strongEssencePotion;
 	public static Item essenceArrow;
 	public static Item tippedEssenceArrow;
-
 	public static Item greenGem;
 	public static Item purpleGem;
 	public static Item blueGem;
 	public static Item yellowGem;
-
 	public static Item eucaTablet;
-
 	public static Item wandBase;
 	public static Item staffBase;
-
 	public static Item frostyGift;
-
 	public static Item firestoneClump;
+	
 	public static Item underwaterWorldRecord;
-	public static Item blueWater;
-	public static Item raceStar;
-	public static Item compBegins;
-	public static Item deepBlue;
-	public static Item raceShore;
-	public static Item untitled_disk;
-	public static Item bog;
-	public static Item clouds;
-	public static Item stalactite;
-	public static Item gold;
-	public static Item gate;
-	public static Item journey;
-	public static Item sizzle;
-	public static Item firefly;
+	public static Item blueWaterRecord;
+	public static Item raceStarRecord;
+	public static Item compBeginsRecord;
+	public static Item deepBlueRecord;
+	public static Item raceShoreRecord;
+	public static Item untitled_disc;
+	public static Item bogRecord;
+	public static Item cloudsRecord;
+	public static Item stalactiteRecord;
+	public static Item cavernRecord;
+	public static Item goldRecord;
+	public static Item gateRecord;
+	public static Item journeyRecord;
+	public static Item sizzleRecord;
+	public static Item fireflyRecord;
+	public static Item snowbellsRecord;
 
 	public static Item demonicEye;
 
@@ -450,20 +447,22 @@ public class JourneyItems {
 		essenceArrow = new ItemEssenceArrow("essenceArrow", "Essence Arrow");
 
 		underwaterWorldRecord = new ItemModRecord("underwaterWorld", "Underwater World", JourneySounds.UNDERWATER_WORLD);
-		blueWater = new ItemModRecord("blueWater", "Blue Water", JourneySounds.BLUE_WATER);
-		raceStar = new ItemModRecord("raceStar", "Race Star", JourneySounds.RACE_STAR);
-		compBegins = new ItemModRecord("compBegins", "Competition Begins", JourneySounds.COMPETITION_BEGINS);
-		deepBlue = new ItemModRecord("deepBlue", "Deep Blue", JourneySounds.DEEP_BLUE);
-		raceShore = new ItemModRecord("raceShore", "Race to Shore", JourneySounds.RACE_TO_SHORE);
-		untitled_disk = new ItemModRecord("untitled_disk", "untitled_disk", JourneySounds.UNTITLED_DISK);
-		bog = new ItemModRecord("bog", "Bog", JourneySounds.CORBA_1);
-		clouds = new ItemModRecord("clouds", "Clouds", JourneySounds.CLOUDIA_1);
-		stalactite = new ItemModRecord("stalactite", "Stalactite", JourneySounds.DEPTHS_1);
-		gold = new ItemModRecord("gold", "Gold", JourneySounds.EUCA_1);
-		gate = new ItemModRecord("gate", "Gate", JourneySounds.EUCA_2);
-		journey = new ItemModRecord("journey", "Journey Into the Light", JourneySounds.EUCA_3);
-		sizzle = new ItemModRecord("sizzle", "Sizzle", JourneySounds.BOIL_1);
-		firefly = new ItemModRecord("firefly", "Firefly", JourneySounds.TERRANIA_1);
+		blueWaterRecord = new ItemModRecord("blueWater", "Blue Water", JourneySounds.BLUE_WATER);
+		raceStarRecord = new ItemModRecord("raceStar", "Race Star", JourneySounds.RACE_STAR);
+		compBeginsRecord = new ItemModRecord("compBegins", "Competition Begins", JourneySounds.COMPETITION_BEGINS);
+		deepBlueRecord = new ItemModRecord("deepBlue", "Deep Blue", JourneySounds.DEEP_BLUE);
+		raceShoreRecord = new ItemModRecord("raceShore", "Race to Shore", JourneySounds.RACE_TO_SHORE);
+		untitled_disc = new ItemModRecord("untitled_disc", "untitled_disc", JourneySounds.UNTITLED_DISK);
+		bogRecord = new ItemModRecord("bog", "Bog", JourneySounds.CORBA_1);
+		cloudsRecord = new ItemModRecord("clouds", "Clouds", JourneySounds.CLOUDIA_1);
+		stalactiteRecord = new ItemModRecord("stalactite", "Stalactite", JourneySounds.DEPTHS_1);
+		cavernRecord = new ItemModRecord("cavern", "Cavern", JourneySounds.DEPTHS_2);
+		goldRecord = new ItemModRecord("gold", "Gold", JourneySounds.EUCA_1);
+		gateRecord = new ItemModRecord("gate", "Gate", JourneySounds.EUCA_2);
+		journeyRecord = new ItemModRecord("journey", "Journey Into the Light", JourneySounds.EUCA_3);
+		sizzleRecord = new ItemModRecord("sizzle", "Sizzle", JourneySounds.BOIL_1);
+		fireflyRecord = new ItemModRecord("firefly", "Firefly", JourneySounds.TERRANIA_1);
+		snowbellsRecord = new ItemModRecord("snowbells", "Snow Bells", JourneySounds.FROZEN_1);
 
 		demonicEye = new ItemDemonicEye("demonicEye", "Demonic Eye");
 		darkGem = new ItemDarkGem("darkGem", "Dark Gem");

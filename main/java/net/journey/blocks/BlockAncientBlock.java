@@ -43,7 +43,7 @@ public class BlockAncientBlock extends BlockMod {
 			break;
 		}
 		if(rand.nextInt(10) == 0) {
-			gem = JourneyItems.untitled_disk;
+			gem = JourneyItems.untitled_disc;
 		}
 		drops.add(new ItemStack(gem, rand.nextInt(1) + 1));
 		return drops;

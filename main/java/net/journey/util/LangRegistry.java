@@ -20,6 +20,8 @@ public class LangRegistry {
 		blockFinal = new ArrayList<String>(), 
 		itemUnloc = new ArrayList<String>(), 
 		itemFinal = new ArrayList<String>(), 
+		recordDescUnloc = new ArrayList<String>(), 
+		recordDescFinal = new ArrayList<String>(), 
 		fileText = new ArrayList<String>();
 	
 	public static ArrayList<String> 
@@ -127,6 +129,16 @@ public class LangRegistry {
 		writeToFile("item.record.compBegins.desc=Chris Geddes - Comp Begins");
 		writeToFile("item.record.deepBlue.desc=Chris Geddes - Deep Blue");
 		writeToFile("item.record.raceShore.desc=Chris Geddes - Race Shore");
+		writeToFile("item.record.untitled_disk.desc=Dizzlepop12 - untitled_disc");
+		writeToFile("item.record.bog.desc=Dizzlepop12 - Bog");
+		writeToFile("item.record.clouds.desc=Dizzlepop12 - Clouds");
+		writeToFile("item.record.stalactite.desc=Dizzlepop12 - Stalactite");
+		writeToFile("item.record.gold.desc=The_SlayerMC - Gold");
+		writeToFile("item.record.gate.desc=The_SlayerMC - Gate");
+		writeToFile("item.record.journey.desc=Dizzlepop12 - Journey Into the Light");
+		writeToFile("item.record.sizzle.desc=Dizzlepop12 - Sizzle");
+		writeToFile("item.record.firefly.desc=Dizzlepop12 - Firefly");
+		writeToFile("item.record.snowbells.desc=Dizzlepop12 - Snow Bells");
 		writeToFile("enchantment.Hot Touch=Hot Touch");
 		writeToFile("enchantment.Water Walker=Water Walker");
 		writeToFile("journey.knowledgeTable=Knowledge Table");
