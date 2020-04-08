@@ -1,6 +1,7 @@
 {
   "result": {
-    "item": "journey:bloodrune"
+    "item": "journey:bloodrune",
+    "count": 4
   },
   "pattern": [
     "ddd",

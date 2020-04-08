@@ -1,6 +1,7 @@
 {
   "result": {
-    "item": "journey:bloodpillar"
+    "item": "journey:bloodpillar",
+    "count": 4
   },
   "pattern": [
     "dd",

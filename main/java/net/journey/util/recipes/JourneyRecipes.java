@@ -201,8 +201,6 @@ public class JourneyRecipes {
 				new Object[] { "iii", "iii", "iii", 'i', JourneyItems.terraniaPortalGem });
 		addShapedRecipe(new ItemStack(JourneyBlocks.frozenPortalFrame, 10),
 				new Object[] { "iii", "idi", "iii", 'i', Items.SNOWBALL, 'd', Items.DIAMOND });
-		addShapedRecipe(new ItemStack(JourneyBlocks.summoningTable, 1), new Object[] { "dsd", "iii", "iii", 'i',
-				JourneyItems.shadiumIngot, 'd', Items.DIAMOND, 's', JourneyItems.sapphire });
 		addShapedRecipe(new ItemStack(JourneyBlocks.boilingBars, 4),
 				new Object[] { "ddd", "ddd", 'd', Items.BLAZE_ROD });
 		addShapedRecipe(new ItemStack(JourneyItems.obsidianRod, 2),
