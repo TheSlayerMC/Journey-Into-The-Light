@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import net.journey.blocks.BlockAncientBlock;
 import net.journey.blocks.BlockBrittleIce;
-import net.journey.blocks.BlockCatalyst;
 import net.journey.blocks.BlockCaveVine;
 import net.journey.blocks.BlockChangeable;
 import net.journey.blocks.BlockCloud;
@@ -118,6 +117,7 @@ public class JourneyBlocks {
 	public static BlockMod orbaditeBlock;
 	public static BlockMod luniteBlock;
 	public static BlockMod iridiumBlock;
+	public static BlockMod nethicGemstoneBlock;
 
 	public static BlockMod bleedstone;
 	public static BlockMod smithstone;
@@ -424,6 +424,7 @@ public class JourneyBlocks {
 	public static BlockMod workshopCarpet;
 	public static BlockMod frozenGlass;
 	public static BlockMod frozenLamp;
+	public static BlockMod iceStone;
 	public static BlockMod workshopStone;
 	public static BlockModStairs workshopStoneStair;
 	public static BlockModFence workshopStoneFence;
@@ -543,6 +544,7 @@ public class JourneyBlocks {
 		orbaditeBlock = new BlockModOre("orbaditeBlock", "Orbadite Block").setHarvestLevel(EnumToolType.STONE_PICK);
 		luniteBlock = new BlockModOre("luniteBlock", "Lunite Block").setHarvestLevel(EnumToolType.STONE_PICK);
 		iridiumBlock = new BlockModOre("iridiumBlock", "Iridium Block").setHarvestLevel(EnumToolType.IRON_PICK);
+		nethicGemstoneBlock = new BlockModOre("nethicGemstoneBlock", "Nethic Gemstone Block").setHarvestLevel(EnumToolType.STONE_PICK);
 
 		mageWall = new BlockMod("magewall", "Mage Wall");
 		bleedstone = (BlockMod) new BlockModOre("bleedstoneOre", "Bleedstone", false)
@@ -557,7 +559,7 @@ public class JourneyBlocks {
 		bloodPillar = new BlockMod("bloodPillar", "Blood Pillar");
 		obelisk = (BlockMod) new BlockObelisk("obelisk", "Obelisk").setLightLevel(0.5F);
 		bloodLamp = (BlockMod) new BlockMod("bloodLamp", "Blood Lamp").setLightLevel(2.0F);
-		bloodCatalyst = (BlockMod) new BlockCatalyst("bloodCatalyst", "Blood Catalyst", JourneyItems.blood).setLightLevel(0.1F);
+		bloodCatalyst = (BlockMod) new BlockMod("bloodCatalyst", "Blood Catalyst").setLightLevel(0.1F);
 
 		witherwoodLog = new BlockModLog("witherwoodLog", "Witherwood Log");
 		witherwoodLeaves = new BlockModLeaves("witherwoodLeaves", "Witherwood Leaves", 1.0F);
@@ -932,8 +934,8 @@ public class JourneyBlocks {
 		workshopCarpet = new BlockMod(EnumMaterialTypes.WOOL, "workshopCarpet", "Workshop Carpet", 0.5F);
 		frozenGlass = new BlockJoinedGlass("frozenGlass", "Frozen Glass");
 		// frozenPane = new BlockJoinedPane("frozenGlass");
-		frozenLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "frozenLamp", "Frozen Lamp", 0.5F)
-				.setLightLevel(1.0F).setCreativeTab(JourneyTabs.decoration);
+		frozenLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "frozenLamp", "Frozen Lamp", 0.5F).setLightLevel(1.0F).setCreativeTab(JourneyTabs.decoration);
+		iceStone = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "iceStone", "Ice Stone", 0.5F).setLightLevel(1.0F).setCreativeTab(JourneyTabs.decoration);
 		workshopStone = new BlockMod(EnumMaterialTypes.STONE, "workshopStone", "Workshop Stone", 0.5F);
 		workshopStoneStair = new BlockModStairs(workshopStone, "workshopStairs", "Workshop Stairs");
 		workshopStoneFence = new BlockModFence(workshopStone, "workshopStoneFence", "Workshop Fence");
