@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "journey:depthsLock" },
+        "facing=south": { "model": "journey:depthsLock", "y": 180 },
+        "facing=west":  { "model": "journey:depthsLock", "y": 270 },
+        "facing=east":  { "model": "journey:depthslock", "y": 90 }
+    }
+}

@@ -1,0 +1,9 @@
+{
+	"parent": "block/cube_bottom_top",
+	"textures": {
+		"particle": "journey:blocks/depthspillar_top",
+		"bottom": "journey:blocks/depthspillar_top",
+		"top": "journey:blocks/depthspillar_top",
+		"side": "journey:blocks/depthspillar_side"
+	}
+}
