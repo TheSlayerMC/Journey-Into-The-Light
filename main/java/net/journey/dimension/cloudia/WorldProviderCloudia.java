@@ -4,6 +4,7 @@ import net.journey.dimension.DimensionHelper;
 import net.journey.dimension.base.BaseWorldProvider;
 import net.journey.dimension.boil.BiomeProviderBoil;
 import net.journey.dimension.boil.BoilSkyRenderer;
+import net.journey.proxy.ClientProxy;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldProvider;
@@ -25,6 +26,12 @@ public class WorldProviderCloudia extends BaseWorldProvider {
         this.nether = false;
         this.hasSkyLight = true;
     }
+    
+	@Override
+	@SideOnly(Side.CLIENT)
+	public IRenderHandler getSkyRenderer() {
+		return ClientProxy.cloudiaSkyRenderer;
+	}
 
     @Override
     public IChunkGenerator createChunkGenerator() {

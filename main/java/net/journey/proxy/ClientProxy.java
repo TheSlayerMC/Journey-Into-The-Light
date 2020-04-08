@@ -12,6 +12,7 @@ import net.journey.client.server.EssenceBar;
 import net.journey.client.server.EssenceProvider;
 import net.journey.client.server.IEssence;
 import net.journey.dimension.boil.BoilSkyRenderer;
+import net.journey.dimension.cloudia.CloudiaSkyRenderer;
 import net.journey.enums.EnumParticlesClasses;
 import net.journey.event.ClientTickEvent;
 import net.journey.event.UpdateCheckerEvent;
@@ -29,6 +30,8 @@ import net.slayer.api.SlayerAPI;
 public class ClientProxy extends CommonProxy {
 
 	public static final IRenderHandler boilSkyRenderer = new BoilSkyRenderer();
+	public static final IRenderHandler terraniaSkyRenderer = new CloudiaSkyRenderer();
+	public static final IRenderHandler cloudiaSkyRenderer = new CloudiaSkyRenderer();
 	
 	@Override
 	public EntityPlayer getPlayer() {
