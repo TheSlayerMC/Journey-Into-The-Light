@@ -64,7 +64,7 @@ public class MusicTicker {
 		TrackType type = TrackType.EMPTY;
 		int dimID = getDimensionID();
 		if(dimID == Config.depths) {
-			int tracks = rand.nextInt(1);
+			int tracks = rand.nextInt(2);
 			return tracks == 0 ? TrackType.DEPTHS_1 : tracks == 1 ? TrackType.DEPTHS_2 : TrackType.DEPTHS_1;
 		}
 		
