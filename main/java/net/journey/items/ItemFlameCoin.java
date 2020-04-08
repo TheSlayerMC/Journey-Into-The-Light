@@ -5,6 +5,7 @@ import java.util.Random;
 
 import net.journey.JourneyBlocks;
 import net.journey.JourneyTabs;
+import net.journey.dimension.frozen.gen.WorldGenSpikeDungeon;
 import net.minecraft.block.Block;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
@@ -45,7 +46,7 @@ public class ItemFlameCoin extends ItemMod {
 		}
 		
 		//ItemDoor.placeDoor(w, pos.up(1), EnumFacing.fromAngle(player.rotationYaw), JourneyBlocks.frozenDoor, false);
-			//new WorldGenDepthsPillar().generate(w, itemRand, pos);
+			//new WorldGenSpikeDungeon().generate(world, r, pos);
 		
 		//WorldGenStructure structure = new WorldGenStructure("big", JourneyLootTables.TEST_CHEST);
 		//if(!w.isRemote)

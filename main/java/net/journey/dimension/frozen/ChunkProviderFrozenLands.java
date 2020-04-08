@@ -182,61 +182,9 @@ public class ChunkProviderFrozenLands implements IChunkGenerator {
 						break;
 					}
 				}
-				for (int j = top - 10; j > top - 40; j--) {
+				for (int j = top - 10; j > top - 47; j--) {
 					if (cp.getBlockState(i, j, k) != Blocks.BEDROCK.getDefaultState()) {
 						cp.setBlockState(i, j, k, Blocks.AIR.getDefaultState());
-					}
-				}
-			}
-		}
-		this.rand.setSeed(this.rand.nextInt(100));
-		this.generateLowerNoise(x * 4, 0, z * 4);
-
-		for (int k = 0; k < 4; ++k) {
-			int l = k * 5;
-			int i1 = (k + 1) * 5;
-
-			for (int j1 = 0; j1 < 4; ++j1) {
-				int k1 = (l + j1) * 33;
-				int l1 = (l + j1 + 1) * 33;
-				int i2 = (i1 + j1) * 33;
-				int j2 = (i1 + j1 + 1) * 33;
-
-				for (int k2 = 0; k2 < 32; ++k2) {
-					double d0 = 0.125D;
-					double d1 = this.doubleA[k1 + k2];
-					double d2 = this.doubleA[l1 + k2];
-					double d3 = this.doubleA[i2 + k2];
-					double d4 = this.doubleA[j2 + k2];
-					double d5 = (this.doubleA[k1 + k2 + 1] - d1) * d0;
-					double d6 = (this.doubleA[l1 + k2 + 1] - d2) * d0;
-					double d7 = (this.doubleA[i2 + k2 + 1] - d3) * d0;
-					double d8 = (this.doubleA[j2 + k2 + 1] - d4) * d0;
-
-					for (int l2 = 0; l2 < 8; ++l2) {
-						double d9 = 0.25D;
-						double d10 = d1;
-						double d11 = d2;
-						double d12 = (d3 - d1) * d9;
-						double d13 = (d4 - d2) * d9;
-
-						for (int i3 = 0; i3 < 4; ++i3) {
-							double d14 = 0.25D;
-							double d16 = (d11 - d10) * d14;
-							double d15 = d10 - d16;
-
-							for (int j3 = 0; j3 < 4; ++j3) {
-								if ((d15 += d16) > 0.0D) {
-									cp.setBlockState(k * 4 + i3, k2 * 8 + l2, j1 * 4 + j3, filler);
-								}
-							}
-							d10 += d12;
-							d11 += d13;
-						}
-						d1 += d5;
-						d2 += d6;
-						d3 += d7;
-						d4 += d8;
 					}
 				}
 			}
@@ -255,7 +203,7 @@ public class ChunkProviderFrozenLands implements IChunkGenerator {
 						break;
 					}
 				}
-				for (int j = 0; j < 64; j++) {
+				for (int j = 0; j < 90; j++) {
 					if (cp.getBlockState(i, j, k) == grass) {
 						top = j;
 						break;
@@ -361,84 +309,6 @@ public class ChunkProviderFrozenLands implements IChunkGenerator {
 		}
 	}
 
-	private void generateLowerNoise(int x, int y, int z) {
-		this.n6 = this.noiseGen6.generateNoiseOctaves(this.n6, x, z, 5, 5, (double) this.settings.depthNoiseScaleX, (double) this.settings.depthNoiseScaleZ, (double) this.settings.depthNoiseScaleExponent);
-		float f = this.settings.coordinateScale;
-		float f1 = this.settings.heightScale;
-		this.n3 = this.noiseGen3.generateNoiseOctaves(this.n3, x, y, z, 5, 33, 5, (double) (f / (this.settings.mainNoiseScaleX / 2)), (double) (f1 / this.settings.mainNoiseScaleY), (double) (f / (this.settings.mainNoiseScaleZ / 2)));
-		this.n4 = this.noiseGen1.generateNoiseOctaves(this.n4, x, y, z, 5, 33, 5, f, f1, f);
-		this.n5 = this.noiseGen2.generateNoiseOctaves(this.n5, x, y, z, 5, 33, 5, f, f1, f);
-		int l = 0;
-		int i1 = 0;
-
-		for (int j1 = 0; j1 < 5; ++j1) {
-			for (int k1 = 0; k1 < 5; ++k1) {
-				float f2 = 0.0F;
-				float f3 = 0.0F;
-				float f4 = 0.0F;
-				byte b0 = 2;
-				Biome biome = this.biomesForGeneration[j1 + 2 + (k1 + 2) * 10];
-
-				for (int l1 = -b0; l1 <= b0; ++l1) {
-					for (int i2 = -b0; i2 <= b0; ++i2) {
-						Biome biome1 = this.biomesForGeneration[j1 + l1 + 2 + (k1 + i2 + 2) * 10];
-						float f5 = this.settings.biomeDepthOffSet + biome1.getBaseHeight() * this.settings.biomeDepthWeight;
-						float f6 = this.settings.biomeScaleOffset + biome1.getHeightVariation() * this.settings.biomeScaleWeight;
-
-						float f7 = this.parabolicField[l1 + 2 + (i2 + 2) * 5] / (f5 + 2.0F);
-
-						if (biome1.getBaseHeight() > biome.getBaseHeight()) f7 /= 2.0F;
-						f2 += f6 * f7;
-						f3 += f5 * f7;
-						f4 += f7;
-					}
-				}
-
-				f2 /= f4;
-				f3 /= f4;
-				f2 = f2 * 0.9F + 0.1F;
-				f3 = (f3 * 4.0F - 1.0F) / 8.0F;
-				double d7 = this.n6[i1] / 8000.0D;
-				if (d7 < 0.0D) d7 = -d7 * 0.3D;
-				d7 = d7 * 3.0D - 2.0D;
-				if (d7 < 0.0D) {
-					d7 /= 2.0D;
-					if (d7 < -1.0D) d7 = -1.0D;
-					d7 /= 1.4D;
-					d7 /= 2.0D;
-				} else {
-					if (d7 > 1.0D) d7 = 1.0D;
-					d7 /= 8.0D;
-				}
-
-				i1++;
-				double d8 = f3;
-				double d9 = f2;
-				d8 += d7 * 0.2D;
-				d8 = d8 * (double) this.settings.baseSize / 8.0D;
-				double d0 = (double) this.settings.baseSize + d8 * 4.0D;
-
-				for (int j2 = 0; j2 < 33; ++j2) {
-					double d1 = 100 + (j2 - d0) * (double) this.settings.stretchY * 128.0D / 256.0D / d9;
-
-					if (d1 < 0.0D) d1 *= 4.0D;
-					double d2 = this.n4[l] / ((double) this.settings.lowerLimitScale);
-					double d3 = this.n5[l] / (double) this.settings.upperLimitScale;
-					double d4 = (this.n3[l] / 10.0D + 1.0D) / 2.0D;
-					double d5 = MathHelper.clampedLerp(d2, d3, d4) - d1;
-
-					if (j2 > 29) {
-						double d6 = (j2 - 29) / 3.0F;
-						d5 = d5 * (1.0D - d6) + -10.0D * d6;
-					}
-
-					this.doubleA[l] = d5;
-					l++;
-				}
-			}
-		}
-	}
-
 	@Override
 	public void populate(int i, int j) {
 		int chunkSize = 16;
@@ -451,19 +321,28 @@ public class ChunkProviderFrozenLands implements IChunkGenerator {
 		int topYMax = 100;
 		int bottomYMax = 50;
 
+		for (times = 0; times < 2; times++) {
+			int randX = i * 16 + 7 + rand.nextInt(9);
+			int randZ = j * 16 + 7 + rand.nextInt(9);
+			int randY = rand.nextInt(bottomYMax) + 1;
+			if(isBlockTop(randX, randY - 1, randZ, JourneyBlocks.frozenGrass)) {
+				spike.generate(worldObj, rand, new BlockPos(randX, randY, randZ));
+			}
+		}
+		
 		//ALOT of lag is coming from these trees
 		for(times = 0; times < 300; times++) {
-			int randX = i * 16 + 8 + rand.nextInt(16);
-			int randZ = j * 16 + 8 + rand.nextInt(16);
-			int randY = rand.nextInt(topYMax) + 1;
+			int randX = i * 16 + 8 + rand.nextInt(5);
+			int randZ = j * 16 + 8 + rand.nextInt(5);
+			int randY = rand.nextInt(bottomYMax) + 1;
 			if(isBlockTop(randX, randY - 1, randZ, JourneyBlocks.frozenGrass)) {
-				largeBottomTrees[rand.nextInt(largeBottomTrees.length)].generate(worldObj, rand, new BlockPos(randX, randY, randZ));
+				//largeBottomTrees[rand.nextInt(largeBottomTrees.length)].generate(worldObj, rand, new BlockPos(randX, randY, randZ));
 			}
 		}
 		
 		for(times = 0; times < 50; times++) {
-			int randX = i * 16 + 8 + rand.nextInt(16);
-			int randZ = j * 16 + 8 + rand.nextInt(16);
+			int randX = i * 16 + 8 + rand.nextInt(8);
+			int randZ = j * 16 + 8 + rand.nextInt(8);
 			int randY = rand.nextInt(topYMax) + 1;
 			if(isBlockTop(randX, randY - 1, randZ, JourneyBlocks.frozenGrass)) {
 				smallBottomTrees[rand.nextInt(largeBottomTrees.length)].generate(worldObj, rand, new BlockPos(randX, randY, randZ));
@@ -490,10 +369,6 @@ public class ChunkProviderFrozenLands implements IChunkGenerator {
 		for(times = 0; times < 8; times++) {
 			generateStructure(x1, z1, JourneyBlocks.brittleIce, crystals);
 		}
-
-		for (times = 0; times < 10; times++) {
-			generateStructure(x1, z1, JourneyBlocks.frozenGrass, spike);
-		}
 		
 		for(times = 0; times < 100; times++) {
 			bottomFlowers[rand.nextInt(bottomFlowers.length)].generate(worldObj, rand, chunkStart);
@@ -505,7 +380,7 @@ public class ChunkProviderFrozenLands implements IChunkGenerator {
 
 		//Causes gen lag because of size
 		for(times = 0; times < 1; times++) {
-			generateStructure(x1, z1, JourneyBlocks.brittleIce, dungeon);
+			//generateStructure(x1, z1, JourneyBlocks.brittleIce, dungeon);
 		}
 	}
 
