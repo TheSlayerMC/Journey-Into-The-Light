@@ -31,8 +31,11 @@ public class RenderShatterer extends RenderLiving {
 		//GlStateManager.rotate(System.currentTimeMillis(), 0, 0, 1);
 		GlStateManager.rotate(time, 0, 0, 1);
 		GlStateManager.translate(0, 1.5, 0);
-		GL11.glEnable(GL11.GL_BLEND);
-		GL11.glDepthMask(true);
+		GlStateManager.pushMatrix();
+		GlStateManager.enableBlend();
+		GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		GlStateManager.depthMask(true);
 		GL11.glEnable(GL11.GL_ALPHA_TEST);
+		GlStateManager.popMatrix();
 	}
 }

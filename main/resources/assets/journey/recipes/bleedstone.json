@@ -1,0 +1,12 @@
+{
+  "result": {
+    "item": "journey:bleedstone",
+    "count": 4
+  },
+  "ingredients": [
+    {
+      "item": "journey:bleedstoneore"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless"
+}

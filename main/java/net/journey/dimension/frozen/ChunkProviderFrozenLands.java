@@ -17,6 +17,7 @@ import net.journey.dimension.frozen.gen.WorldGenIceTree;
 import net.journey.dimension.frozen.gen.WorldGenIceTree2;
 import net.journey.dimension.frozen.gen.WorldGenMerchantHouse;
 import net.journey.dimension.frozen.gen.WorldGenNewLamp;
+import net.journey.dimension.frozen.gen.WorldGenSpikeDungeon;
 import net.journey.dimension.overworld.gen.WorldGenModFlower;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -77,6 +78,7 @@ public class ChunkProviderFrozenLands implements IChunkGenerator {
 			new WorldGenModFlower(JourneyBlocks.iceBush, JourneyBlocks.brittleIce)};
 
 	private static WorldGenNewLamp lamp = new WorldGenNewLamp();
+	private static WorldGenSpikeDungeon spike = new WorldGenSpikeDungeon();
 	private static WorldGenIceDungeon dungeon = new WorldGenIceDungeon();
 	private WorldGenMerchantHouse house = new WorldGenMerchantHouse();
 
@@ -489,6 +491,10 @@ public class ChunkProviderFrozenLands implements IChunkGenerator {
 			generateStructure(x1, z1, JourneyBlocks.brittleIce, crystals);
 		}
 
+		for (times = 0; times < 10; times++) {
+			generateStructure(x1, z1, JourneyBlocks.frozenGrass, spike);
+		}
+		
 		for(times = 0; times < 100; times++) {
 			bottomFlowers[rand.nextInt(bottomFlowers.length)].generate(worldObj, rand, chunkStart);
 		}

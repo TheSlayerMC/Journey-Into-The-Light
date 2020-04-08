@@ -201,6 +201,8 @@ public class JourneyRecipes {
 				new Object[] { "iii", "iii", "iii", 'i', JourneyItems.terraniaPortalGem });
 		addShapedRecipe(new ItemStack(JourneyBlocks.frozenPortalFrame, 10),
 				new Object[] { "iii", "idi", "iii", 'i', Items.SNOWBALL, 'd', Items.DIAMOND });
+		addShapedRecipe(new ItemStack(JourneyBlocks.summoningTable, 1), new Object[] { "dsd", "iii", 'i', 
+				JourneyBlocks.bloodRock, 'd', JourneyItems.hellstoneIngot, 's', JourneyItems.bleedstone });
 		addShapedRecipe(new ItemStack(JourneyBlocks.boilingBars, 4),
 				new Object[] { "ddd", "ddd", 'd', Items.BLAZE_ROD });
 		addShapedRecipe(new ItemStack(JourneyItems.obsidianRod, 2),
@@ -268,6 +270,9 @@ public class JourneyRecipes {
 		 * JourneyItems.flamingHide, 'i', JourneyItems.concentratedBlood });
 		 */
 		addShapelessRecipe(new ItemStack(JourneyItems.demonicDust, 5), new Object[] { JourneyItems.demonicBone });
+		addShapelessRecipe(new ItemStack(JourneyItems.smithstonedust, 4), new Object[] { JourneyItems.smithstone });
+		addShapelessRecipe(new ItemStack(JourneyItems.bleedstonedust, 4), new Object[] { JourneyItems.bleedstone });
+		addShapelessRecipe(new ItemStack(JourneyItems.nethicgemstone, 1), new Object[] { JourneyItems.bleedstonedust, JourneyItems.smithstonedust });
 		addShapelessRecipe(new ItemStack(JourneyItems.darkGem, 1), new Object[] { JourneyItems.shadiumIngot, Items.DIAMOND });
 
 		addOPFood(JourneyConsumables.goldenPork, JourneyConsumables.goldenPorkOP, Items.PORKCHOP);
@@ -321,9 +326,9 @@ public class JourneyRecipes {
 		addShapedRecipe(new ItemStack(JourneyArmory.fireboundHelmet),
 				new Object[] { "idi", "d d", 'd', Items.BLAZE_ROD, 'i', JourneyBlocks.hellstoneBlock });
 		addShapedRecipe(new ItemStack(JourneyArmory.fireboundChest),
-				new Object[] { "i i", "did", "idi", 'd', Items.BLAZE_ROD, 'i', JourneyItems.horn });
+				new Object[] { "i i", "did", "idi", 'd', Items.BLAZE_ROD, 'i', JourneyBlocks.hellstoneBlock });
 		addShapedRecipe(new ItemStack(JourneyArmory.fireboundLegs),
-				new Object[] { "idi", "d d", "i i", 'd', Items.BLAZE_ROD, 'i', JourneyItems.horn });
+				new Object[] { "idi", "d d", "i i", 'd', Items.BLAZE_ROD, 'i', JourneyBlocks.hellstoneBlock });
 		addShapedRecipe(new ItemStack(JourneyArmory.fireboundBoots),
 				new Object[] { "d d", "i i", 'd', Items.BLAZE_ROD, 'i', JourneyBlocks.hellstoneBlock });
 
@@ -405,6 +410,9 @@ public class JourneyRecipes {
 		addOre(JourneyBlocks.mekyumOre, JourneyItems.mekyumIngot, JourneyBlocks.mekyumBlock, JourneyArmory.mekyumAxe,
 				JourneyArmory.mekyumPickaxe, JourneyArmory.mekyumShovel, JourneyArmory.mekyumHoe,
 				JourneyWeapons.mekyumSword, JourneyArmory.mekyumMultiTool, null, null, null, null, null);
+		addOre(null, JourneyItems.nethicgemstone, JourneyBlocks.nethicGemstoneBlock, JourneyArmory.nethicAxe,
+				JourneyArmory.nethicPickaxe, JourneyArmory.nethicShovel, null,
+				null, null, null, null, null, null, null);
 		//addOre(b.ashualOre, i.ash, b.ashualBlock, null, null, null, null,
 		// null, null, null, null, null, null, i.ashDust);
 
@@ -439,6 +447,12 @@ public class JourneyRecipes {
 
 		addShapedRecipe(new ItemStack(JourneyBlocks.luniteBlock), new Object[] { "iii", "iii", "iii", 'i', JourneyItems.luniteChunk });
 		addShapelessRecipe(new ItemStack(JourneyItems.luniteChunk, 9), new Object[] { JourneyBlocks.luniteBlock });
+		
+		addShapedRecipe(new ItemStack(JourneyBlocks.smithstone), new Object[] { "ii", "ii", 'i', JourneyItems.smithstone });
+		addShapelessRecipe(new ItemStack(JourneyItems.smithstone, 4), new Object[] { JourneyBlocks.smithstone });
+		
+		addShapedRecipe(new ItemStack(JourneyBlocks.bleedstone), new Object[] { "ii", "ii", 'i', JourneyItems.bleedstone });
+		addShapelessRecipe(new ItemStack(JourneyItems.bleedstone, 4), new Object[] { JourneyBlocks.bleedstone });
 
 		
 		JourneyJSONGenerator.generateConstants();

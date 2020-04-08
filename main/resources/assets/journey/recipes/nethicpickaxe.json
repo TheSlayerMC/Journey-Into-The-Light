@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "journey:nethicpickaxe"
+  },
+  "pattern": [
+    "iii",
+    " s ",
+    " s "
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "s": {
+      "item": "journey:obsidianrod"
+    },
+    "i": {
+      "item": "journey:soulstone"
+    }
+  }
+}

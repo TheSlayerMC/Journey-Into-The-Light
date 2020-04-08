@@ -1,0 +1,21 @@
+{
+  "result": {
+    "item": "journey:summoningtable"
+  },
+  "pattern": [
+    "dsd",
+    "iii"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "s": {
+      "item": "journey:bleedstone"
+    },
+    "d": {
+      "item": "journey:hellstoneingot"
+    },
+    "i": {
+      "item": "journey:bloodrock"
+    }
+  }
+}

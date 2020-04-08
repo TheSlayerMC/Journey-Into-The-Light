@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "journey:nethicshovel"
+  },
+  "pattern": [
+    " i ",
+    " s ",
+    " s "
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "s": {
+      "item": "journey:obsidianrod"
+    },
+    "i": {
+      "item": "journey:soulstone"
+    }
+  }
+}
