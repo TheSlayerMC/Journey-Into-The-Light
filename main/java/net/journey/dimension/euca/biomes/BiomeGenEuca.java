@@ -8,7 +8,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BiomeGenEuca extends BiomeGenJourney {
-
+    
 	public BiomeGenEuca(String name) {
 		super(name);
 		this.topBlock = JourneyBlocks.eucaGrass.getDefaultState();
@@ -23,6 +23,11 @@ public class BiomeGenEuca extends BiomeGenJourney {
     @SideOnly(Side.CLIENT)
     public int getSkyColorByTemp(float par1) {
         return Color.getHSBColor(0.255F, 0.216F, 0.0F).getRGB();
+    }
+	
+    @Override
+    public boolean canRain() {
+        return false;
     }
 	
 	@Override

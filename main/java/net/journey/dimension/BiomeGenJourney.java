@@ -23,6 +23,10 @@ public class BiomeGenJourney extends Biome {
 	public BiomeGenJourney(String name) {
 		super(new BiomeProperties(name));
 	}
+	
+	public BiomeGenJourney(BiomeProperties properties) {
+		super(properties);
+	}
 
 	@Override
 	public void decorate(World worldIn, Random rand, BlockPos pos) {
