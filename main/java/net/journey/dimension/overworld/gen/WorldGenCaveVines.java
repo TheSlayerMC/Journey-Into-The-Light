@@ -23,8 +23,7 @@ public class WorldGenCaveVines extends WorldGenerator {
             if (worldIn.isAirBlock(blockpos) && 
             	worldIn.getBlockState(blockpos.up()).getBlock() == Blocks.STONE && 
             	BlockCaveVine.canPlaceBelow(worldIn, position)) { 
-            	worldIn.setBlockState(blockpos, 
-                JourneyBlocks.caveVine.getDefaultState());
+            	setBlockAndNotifyAdequately(worldIn, blockpos, JourneyBlocks.caveVine.getDefaultState());
 			}
 		}
 		return true;
