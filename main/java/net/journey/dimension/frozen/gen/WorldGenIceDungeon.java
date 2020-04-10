@@ -10,11 +10,7 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import net.slayer.api.worldgen.WorldGenAPI;
 
 public class WorldGenIceDungeon extends WorldGenerator {
-	
-	public boolean locationIsValidSpawn(World w, int x, int y, int z) {
-		return WorldGenAPI.checkRadius(w, new BlockPos(x,y,z), 11, JourneyBlocks.brittleIce);
-	}
-	
+
 	@Override
 	public boolean generate(World world, Random r, BlockPos pos) {
 		int i = pos.getX(), j = pos.getY() - 1, k = pos.getZ();

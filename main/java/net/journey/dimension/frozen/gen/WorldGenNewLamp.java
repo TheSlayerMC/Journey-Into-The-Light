@@ -9,16 +9,10 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import net.slayer.api.worldgen.WorldGenAPI;
 
 public class WorldGenNewLamp extends WorldGenerator {
-
-	public boolean locationIsValidSpawn(World w, int x, int y, int z) {
-		return WorldGenAPI.checkRadius(w, new BlockPos(x,y,z), 11, JourneyBlocks.frozenGrass);
-	}
 	
 	@Override
 	public boolean generate(World w, Random rand, BlockPos pos) {
 		int x = pos.getX(), y = pos.getY() - 1, z = pos.getZ();
-		if(locationIsValidSpawn(w, x, y, z)) return true;
-		if(!w.getBlockState(pos.down()).getBlock().isFullBlock(null))return false;
 		this.setBlockAndNotifyAdequately(w, pos, JourneyBlocks.workshopStone.getDefaultState());
 		this.setBlockAndNotifyAdequately(w, pos.up(), JourneyBlocks.workshopStone.getDefaultState());
 		this.setBlockAndNotifyAdequately(w, pos.up(2), JourneyBlocks.workshopStone.getDefaultState());
@@ -46,5 +40,4 @@ public class WorldGenNewLamp extends WorldGenerator {
 		this.setBlockAndNotifyAdequately(w, pos.up(2).south(2), JourneyBlocks.frozenLamp.getDefaultState());
 		return true;
 	}
-
 }

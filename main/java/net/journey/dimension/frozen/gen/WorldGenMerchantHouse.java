@@ -23,15 +23,9 @@ public class WorldGenMerchantHouse extends WorldGenerator {
 		new WeightedRandomChestContent(JourneyItems.frostGem, 0, 1, 5, 10), 
 		new WeightedRandomChestContent(JourneyItems.crystalFlake, 0, 1, 10, 40)};*/
 	
-
-	public boolean locationIsValidSpawn(World w, int x, int y, int z) {
-		return WorldGenAPI.checkRadius(w, new BlockPos(x,y,z), 11, JourneyBlocks.frozenGrass);
-	}
-	
 	@Override
 	public boolean generate(World w, Random r, BlockPos pos) {
 		int x = pos.getX(), y = pos.getY(), z = pos.getZ();
-		//if(locationIsValidSpawn(w, x, y, z)) return true;
 		
 		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 0, y + 5, z + 1), JourneyBlocks.frozenBrick.getDefaultState());
 		this.setBlockAndNotifyAdequately(w, new BlockPos(x + 0, y + 5, z + 2), JourneyBlocks.frozenBrick.getDefaultState());

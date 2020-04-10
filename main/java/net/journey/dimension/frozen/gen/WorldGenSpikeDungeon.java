@@ -15,11 +15,7 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import net.slayer.api.worldgen.WorldGenAPI;
 
 public class WorldGenSpikeDungeon extends WorldGenerator {
-
-	public boolean locationIsValidSpawn(World w, int x, int y, int z) {
-		return WorldGenAPI.checkRadius(w, new BlockPos(x, y-1, z), 16, JourneyBlocks.frozenGrass);
-	}
-
+	
 	@Override
 	public boolean generate(World worldIn, Random r, BlockPos bp) {
 		// Change k, i, or j to offset the structure
