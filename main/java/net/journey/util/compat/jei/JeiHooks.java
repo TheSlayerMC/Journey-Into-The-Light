@@ -37,6 +37,7 @@ public class JeiHooks implements IModPlugin {
 		ArrayList<SummoningRecipeWrapper> summonRecipes = new ArrayList<SummoningRecipeWrapper>(6);
 
 		summonRecipes.add(new SummoningRecipeWrapper(JourneyItems.blazierOrb));
+		summonRecipes.add(new SummoningRecipeWrapper(JourneyItems.soulWatcherOrb));
 
 		return summonRecipes;
 	}
