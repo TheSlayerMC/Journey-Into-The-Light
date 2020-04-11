@@ -14,7 +14,7 @@ import net.minecraft.item.ItemStack;
 public class SummoningRecipeWrapper implements IRecipeWrapper {
 
 	private final Item output;
-
+	
 	public SummoningRecipeWrapper(Item output) {
 		this.output = output;
 	}
@@ -32,6 +32,17 @@ public class SummoningRecipeWrapper implements IRecipeWrapper {
 			inputs.add(new ItemStack(JourneyItems.boilPowder));
 			inputs.add(new ItemStack(JourneyItems.boilPowder));
 			inputs.add(new ItemStack(JourneyItems.boilPowder));
+		}
+		else if (output == JourneyItems.soulWatcherOrb) {
+			inputs.add(new ItemStack(JourneyItems.snakeSkin));
+			inputs.add(new ItemStack(JourneyItems.concentratedBlood));
+			inputs.add(new ItemStack(JourneyItems.snakeSkin));
+			
+			inputs.add(new ItemStack(JourneyItems.sizzlingEye));
+			
+			inputs.add(new ItemStack(JourneyItems.snakeSkin));
+			inputs.add(new ItemStack(JourneyItems.concentratedBlood));
+			inputs.add(new ItemStack(JourneyItems.snakeSkin));
 		}
 		ingredients.setInputs(VanillaTypes.ITEM, inputs);
 		ingredients.setOutput(VanillaTypes.ITEM, new ItemStack(output, 1));

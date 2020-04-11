@@ -19,8 +19,8 @@ public class SummoningRecipeCategory implements IRecipeCategory<SummoningRecipeW
 	private final IDrawable icon;
 	
 	public SummoningRecipeCategory(IGuiHelper guiHelper) {
-		textureResource = new ResourceLocation(SlayerAPI.PREFIX + "textures/gui/summoning.png");
-		background = guiHelper.createDrawable(textureResource, 26, 22, 125, 18);
+		textureResource = new ResourceLocation(SlayerAPI.PREFIX + "textures/gui/summoning_jei.png");
+		background = guiHelper.createDrawable(textureResource, 0, 3, 176, 80);
 		icon = guiHelper.createDrawableIngredient(new ItemStack(JourneyBlocks.summoningTable));
 	}
 	
@@ -49,17 +49,17 @@ public class SummoningRecipeCategory implements IRecipeCategory<SummoningRecipeW
 	@Override
 	public void setRecipe(IRecipeLayout recipeLayout, SummoningRecipeWrapper recipeWrapper, IIngredients ingredients) {
 		IGuiItemStackGroup guiStacks = recipeLayout.getItemStacks();
-		guiStacks.init(0, true, 0, 0);
-		guiStacks.init(1, true, 16, 0);
-		guiStacks.init(2, true, 32, 0);
+		guiStacks.init(0, true, 20, 13);
+		guiStacks.init(1, true, 20, 31);
+		guiStacks.init(2, true, 20, 49);
 		
-		guiStacks.init(3, true, 0, 0);
+		guiStacks.init(3, true, 56, 31);
 		
-		guiStacks.init(4, true, 0, 16);
-		guiStacks.init(5, true, 16, 16);
-		guiStacks.init(6, true, 32, 16);
+		guiStacks.init(4, true, 93, 13);
+		guiStacks.init(5, true, 93, 31);
+		guiStacks.init(6, true, 93, 49);
 		
-		guiStacks.init(7, false, 64, 0);
+		guiStacks.init(7, false, 138, 31);
 		
 		guiStacks.set(0, ingredients.getInputs(VanillaTypes.ITEM).get(0));
 		guiStacks.set(1, ingredients.getInputs(VanillaTypes.ITEM).get(1));
