@@ -38,7 +38,17 @@ public class JeiHooks implements IModPlugin {
 
 		summonRecipes.add(new SummoningRecipeWrapper(JourneyItems.blazierOrb));
 		summonRecipes.add(new SummoningRecipeWrapper(JourneyItems.soulWatcherOrb));
-
+		summonRecipes.add(new SummoningRecipeWrapper(JourneyItems.loggerOrb));
+		summonRecipes.add(new SummoningRecipeWrapper(JourneyItems.sentryKingOrb));
+		summonRecipes.add(new SummoningRecipeWrapper(JourneyItems.scaleOrb));
+		summonRecipes.add(new SummoningRecipeWrapper(JourneyItems.thunderbirdOrb));
+		summonRecipes.add(new SummoningRecipeWrapper(JourneyItems.corallatorOrb));
+		summonRecipes.add(new SummoningRecipeWrapper(JourneyItems.eudorOrb));
+		summonRecipes.add(new SummoningRecipeWrapper(JourneyItems.netherBeastOrb));
+		summonRecipes.add(new SummoningRecipeWrapper(JourneyItems.witheringBeastOrb));
+		summonRecipes.add(new SummoningRecipeWrapper(JourneyItems.enchantedTerrastar));
+		summonRecipes.add(new SummoningRecipeWrapper(JourneyItems.calciaOrb));
+		
 		return summonRecipes;
 	}
 
