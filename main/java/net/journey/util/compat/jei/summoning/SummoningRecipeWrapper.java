@@ -22,7 +22,7 @@ public class SummoningRecipeWrapper implements IRecipeWrapper {
 	@Override
 	public void getIngredients(IIngredients ingredients) {
 		ArrayList<ItemStack> inputs = new ArrayList<ItemStack>(6);
-		if (output == JourneyItems.blazierOrb) {
+		/*if (output == JourneyItems.blazierOrb) {
 			inputs.add(new ItemStack(JourneyItems.boilPowder));
 			inputs.add(new ItemStack(JourneyItems.boilPowder));
 			inputs.add(new ItemStack(JourneyItems.boilPowder));
@@ -33,7 +33,7 @@ public class SummoningRecipeWrapper implements IRecipeWrapper {
 			inputs.add(new ItemStack(JourneyItems.boilPowder));
 			inputs.add(new ItemStack(JourneyItems.boilPowder));
 		}
-		else if (output == JourneyItems.soulWatcherOrb) {
+		else */if (output == JourneyItems.soulWatcherOrb) {
 			inputs.add(new ItemStack(JourneyItems.snakeSkin));
 			inputs.add(new ItemStack(JourneyItems.concentratedBlood));
 			inputs.add(new ItemStack(JourneyItems.snakeSkin));
