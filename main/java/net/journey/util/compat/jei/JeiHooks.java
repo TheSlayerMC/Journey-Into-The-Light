@@ -14,6 +14,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
+@JEIPlugin
 public class JeiHooks implements IModPlugin {
 
 	static {
