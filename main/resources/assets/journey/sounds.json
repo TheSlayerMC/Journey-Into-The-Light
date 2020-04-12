@@ -79,13 +79,14 @@
  "race_shore":{"category": "music", "sounds": [{"name": "journey:music/records/race_shore", "stream": true}]},
  "untitled_disk":{"category": "music", "sounds": [{"name": "journey:music/records/untitled_disk", "stream": true}]},
  "euca_1": {"category": "music", "sounds": [{"name": "journey:music/dimensions/euca/euca_1", "stream": true}]},
-  "euca_2": {"category": "music", "sounds": [{"name": "journey:music/dimensions/euca/euca_2", "stream": true}]},
-  "euca_3": {"category": "music", "sounds": [{"name": "journey:music/dimensions/euca/euca_3", "stream": true}]},
-  "corba_1": {"category": "music", "sounds": [{"name": "journey:music/dimensions/corba/corba_1", "stream": true}]},
+ "euca_2": {"category": "music", "sounds": [{"name": "journey:music/dimensions/euca/euca_2", "stream": true}]},
+ "euca_3": {"category": "music", "sounds": [{"name": "journey:music/dimensions/euca/euca_3", "stream": true}]},
+ "corba_1": {"category": "music", "sounds": [{"name": "journey:music/dimensions/corba/corba_1", "stream": true}]},
  "depths_1": {"category": "music", "sounds": [{"name": "journey:music/dimensions/depths/depths_1", "stream": true}]},
  "depths_2": {"category": "music", "sounds": [{"name": "journey:music/dimensions/depths/depths_2", "stream": true}]},
  "boil_1": {"category": "music", "sounds": [{"name": "journey:music/dimensions/boil/boil_1", "stream": true}]},
  "terrania_1": {"category": "music", "sounds": [{"name": "journey:music/dimensions/terrania/terrania_1", "stream": true}]},
  "frozen_1": {"category": "music", "sounds": [{"name": "journey:music/dimensions/frozen/frozen_1", "stream": true}]},
-  "cloudia_1": {"category": "music", "sounds": [{"name": "journey:music/dimensions/cloudia/cloudia_1", "stream": true}]}
+ "cloudia_1": {"category": "music", "sounds": [{"name": "journey:music/dimensions/cloudia/cloudia_1", "stream": true}]},
+ "cloudia_2": {"category": "music", "sounds": [{"name": "journey:music/dimensions/cloudia/cloudia_2", "stream": true}]}
 }

@@ -89,8 +89,8 @@ public class MusicTicker {
 		}
 		
 		if(dimID == Config.cloudia) {
-			int tracks = rand.nextInt(1);
-			return tracks == 0 ? TrackType.CLOUDIA_1 : TrackType.CLOUDIA_1;
+			int tracks = rand.nextInt(2);
+			return tracks == 0 ? TrackType.CLOUDIA_1 : tracks == 1 ? TrackType.CLOUDIA_2 : TrackType.CLOUDIA_1;
 		}
 		
 		if(dimID == Config.frozen) {
@@ -125,7 +125,8 @@ public class MusicTicker {
 		DEPTHS_1(JourneySounds.DEPTHS_1, 2400, 2700),
 		DEPTHS_2(JourneySounds.DEPTHS_2, 4300, 4600),
 		CORBA_1(JourneySounds.CORBA_1, 5100, 5400),
-		CLOUDIA_1(JourneySounds.CLOUDIA_1, 2500, 2800),
+		CLOUDIA_1(JourneySounds.CLOUDIA_1, 1000, 1200),
+		CLOUDIA_2(JourneySounds.CLOUDIA_2, 2500, 2800),
 		TERRANIA_1(JourneySounds.TERRANIA_1, 3300, 3600),
 		BOIL_1(JourneySounds.BOIL_1, 3140, 3440),
 		FROZEN_1(JourneySounds.FROZEN_1, 3500, 3800);

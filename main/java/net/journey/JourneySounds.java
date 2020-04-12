@@ -101,6 +101,7 @@ public class JourneySounds {
 	public static SoundEvent BOIL_1;
 	public static SoundEvent CORBA_1;
 	public static SoundEvent CLOUDIA_1;
+	public static SoundEvent CLOUDIA_2;
 	public static SoundEvent TERRANIA_1;
 	public static SoundEvent FROZEN_1;
 
@@ -191,6 +192,7 @@ public class JourneySounds {
 		DEPTHS_2 = registerSound("depths_2");
 		CORBA_1 = registerSound("corba_1");
 		CLOUDIA_1 = registerSound("cloudia_1");
+		CLOUDIA_2 = registerSound("cloudia_2");
 		BOIL_1 = registerSound("boil_1");
 		TERRANIA_1 = registerSound("terrania_1");
 		FROZEN_1 = registerSound("frozen_1");
