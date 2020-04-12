@@ -3,14 +3,23 @@ package net.journey.dimension.cloudia.zone;
 import java.util.Random;
 
 import net.journey.JourneyBlocks;
+import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.dimension.cloudia.CloudiaChunkPrimer;
+import net.journey.util.JourneyLootTables;
 import net.minecraft.init.Blocks;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 public class CloudiaAltar extends CloudiaZoneBase {
 
 	/*First Layer only*/
 	@Override
-	public boolean generate(CloudiaChunkPrimer worldIn, Random rand, int i, int j, int k) {
+	public boolean generate(CloudiaChunkPrimer worldIn, Random rand, int x, int y, int z) {
+		int i = x;
+		int j = y - 4;
+		int k = z;
+		
 		this.setBlock(worldIn, i + 0, j + 0, k + 0, Blocks.AIR);
 		this.setBlock(worldIn, i + 0, j + 0, k + 1, Blocks.AIR);
 		this.setBlock(worldIn, i + 0, j + 0, k + 2, Blocks.AIR);
@@ -705,7 +714,10 @@ public class CloudiaAltar extends CloudiaZoneBase {
 		this.setBlock(worldIn, i + 8, j + 3, k + 3, Blocks.AIR);
 		this.setBlock(worldIn, i + 8, j + 3, k + 4, Blocks.AIR);
 		this.setBlock(worldIn, i + 8, j + 3, k + 5, Blocks.AIR);
-		this.setBlock(worldIn, i + 8, j + 3, k + 6, Blocks.GOLD_BLOCK);
+		this.setBlock(worldIn, i + 8, j + 3, k + 6, JourneyBlocks.cloudAltar);
+		
+       // TileEntity altar = worldObj.getTileEntity(new BlockPos(i + 8, j + 3, k + 6));
+		
 		this.setBlock(worldIn, i + 8, j + 3, k + 7, Blocks.AIR);
 		this.setBlock(worldIn, i + 8, j + 3, k + 8, Blocks.AIR);
 		this.setBlock(worldIn, i + 8, j + 3, k + 9, Blocks.AIR);
