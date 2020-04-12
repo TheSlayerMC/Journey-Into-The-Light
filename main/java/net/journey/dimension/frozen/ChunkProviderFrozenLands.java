@@ -204,20 +204,8 @@ public class ChunkProviderFrozenLands implements IChunkGenerator {
 						break;
 					}
 				}
-				for (int j = 0; j < 90; j++) {
-					if (cp.getBlockState(i, j, k) == grass) {
-						top = j;
-						break;
-					}
-				}
-				for (int j = top - 8; j > 0; j--) {
-					if (cp.getBlockState(i, j, k) == filler) {
-						cp.setBlockState(i, j, k, stone);
-					}
-				}
 			}
 		}
-
 	}
 
 	@Override
@@ -226,12 +214,7 @@ public class ChunkProviderFrozenLands implements IChunkGenerator {
 		ChunkPrimer chunkprimer = new ChunkPrimer();
 		this.setBlocksInChunk(x, z, chunkprimer);
 		this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomes(this.biomesForGeneration, x * 16, z * 16, 16, 16);
-
 		Chunk chunk = new Chunk(this.worldObj, chunkprimer, x, z);
-		byte[] abyte = chunk.getBiomeArray();
-		for (int i = 0; i < abyte.length; ++i)
-			abyte[i] = (byte) Biome.getIdForBiome(this.biomesForGeneration[i]);
-
 		chunk.generateSkylightMap();
 		return chunk;
 	}
