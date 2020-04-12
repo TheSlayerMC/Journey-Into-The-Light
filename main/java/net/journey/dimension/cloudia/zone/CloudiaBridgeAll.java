@@ -9,7 +9,10 @@ import net.minecraft.init.Blocks;
 public class CloudiaBridgeAll extends CloudiaZoneBase {
 
 	@Override
-	public boolean generate(CloudiaChunkPrimer chunk, Random rand, int i, int j, int k) {
+	public boolean generate(CloudiaChunkPrimer chunk, Random rand, int x, int y, int z) {
+		int i = x;
+		int j = y + 1;
+		int k = z;
 		this.setBlock(chunk, i + 0, j + 0, k + 0, Blocks.AIR);
 		this.setBlock(chunk, i + 0, j + 0, k + 1, Blocks.AIR);
 		this.setBlock(chunk, i + 0, j + 0, k + 2, Blocks.AIR);
