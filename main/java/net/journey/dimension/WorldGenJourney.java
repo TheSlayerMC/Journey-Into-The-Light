@@ -699,17 +699,17 @@ public class WorldGenJourney implements IWorldGenerator {
 
 	private void generateCloudia(World w, Random r, int chunkX, int chunkZ) {
 		int i = 0;
-		for (i = 0; i < 15; i++) WorldGenJourney.generateJourneyDimensions(19, w, chunkX, chunkZ);
-		for (i = 0; i < 3; i++) WorldGenJourney.generateJourneyDimensions(20, w, chunkX, chunkZ);
+		//for (i = 0; i < 15; i++) WorldGenJourney.generateJourneyDimensions(19, w, chunkX, chunkZ);
+		//for (i = 0; i < 3; i++) WorldGenJourney.generateJourneyDimensions(20, w, chunkX, chunkZ);
 
 		BlockPos randomPosForMinable = new BlockPos(chunkX + r.nextInt(16), r.nextInt(64), chunkZ + r.nextInt(16));
 
-		if (r.nextInt(2) == 0) {
-			cloudiaRock.getValue().generate(w, r, randomPosForMinable);
-		}
+		//if (r.nextInt(2) == 0) {
+		//	cloudiaRock.getValue().generate(w, r, randomPosForMinable);
+		//}
 
-		if (r.nextInt(2) == 0) {
-			luniteOre.getValue().generate(w, r, randomPosForMinable);
-		}
+		//if (r.nextInt(2) == 0) {
+			//luniteOre.getValue().generate(w, r, randomPosForMinable);
+		//}
 	}
 }

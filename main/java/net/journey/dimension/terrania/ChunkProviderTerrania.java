@@ -399,7 +399,7 @@ public class ChunkProviderTerrania implements IChunkGenerator {
     }
 
     public boolean isBlockTop(int x, int y, int z, Block grass) {
-        return ChunkProviderCloudia.isBlockTop(x, y, z, grass, worldObj);
+        return WorldGenAPI.isBlockTop(x, y, z, grass, worldObj);
     }
 
     @Override

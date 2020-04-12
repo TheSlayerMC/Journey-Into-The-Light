@@ -29,6 +29,22 @@ public class WorldGenAPI {
         }
         return true;
     }
+    
+    public static boolean isBlockTop(int x, int y, int z, Block grass, World w) {
+        if (w.getBlockState(new BlockPos(x, y, z)).getBlock() != grass)
+            return false;
+
+        AtomicBoolean result = new AtomicBoolean(true);
+
+        BlockPos.getAllInBoxMutable(x, y + 1, z, x, y + 5, z).forEach(pos -> {
+            if (!w.isAirBlock(pos)) {
+                result.set(false);
+                return;
+            }
+        });
+
+        return result.get();
+    }
 
     public static Block getEucaLeaves() {
         int i = r.nextInt(2);
