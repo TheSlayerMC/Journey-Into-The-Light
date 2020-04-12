@@ -504,14 +504,14 @@ public class WorldGenJourney implements IWorldGenerator {
 			iridiumOre.getValue().generate(w, r, new BlockPos(x, y, z));
 		}
 
-		if (r.nextInt(16) == 0) {
+		if (r.nextInt(Config.towerDungeon) == 0) {
 			y = r.nextInt(200);
 			x = chunkX + r.nextInt(16) + 8;
 			z = chunkZ + r.nextInt(16) + 8;
 			if (w.getBlockState(new BlockPos(x, y - 1, z)) == Blocks.GRASS.getDefaultState())
 				new WorldGenTowerDungeon().generate(w, r, new BlockPos(x, y, z));
 		}
-		if (r.nextInt(40) == 0) {
+		if (r.nextInt(Config.mageHouse) == 0) {
 			y = r.nextInt(200);
 			x = chunkX + r.nextInt(16) + 8;
 			z = chunkZ + r.nextInt(16) + 8;
@@ -521,7 +521,7 @@ public class WorldGenJourney implements IWorldGenerator {
 					w.getBlockState(new BlockPos(x, y, z)) == Blocks.SAND.getDefaultState())
 				new WorldGenMageHouse().generate(w, r, new BlockPos(x, y, z));
 		}
-		if (r.nextInt(40) == 0) {
+		if (r.nextInt(Config.blacksmithHouse) == 0) {
 			y = r.nextInt(200);
 			x = chunkX + r.nextInt(16) + 8;
 			z = chunkZ + r.nextInt(16) + 8;

@@ -41,6 +41,8 @@ public class Config {
 	public static String depthsBiome, boilBiome, frozenBiome, corbaBiome, wastelandsBiome, cloudiaBiome, terraniaBiome, senterianBiome;
 
 	public static int baseMobID, baseProjectileID, baseEntityListID, entityHealthDistance;
+	
+	public static int towerDungeon, mageHouse, blacksmithHouse;
 
 	public static void dimensionInit() {
 		eucaBiome = cfg.get("Dimension", "Euca biome ID", 60).getInt();
@@ -84,6 +86,11 @@ public class Config {
 		showManaBar = cfg.get("Gui", "Show Mana Bar?", true).getBoolean(true);
 		changeBackground = cfg.get("Gui", "Change loading screen background?", true).getBoolean(true);
 		changeMainMenu = cfg.get("Gui", "Use custom title screen?", true).getBoolean(true);
+		
+		towerDungeon = cfg.get("Generation", "Dungeon tower spawn rate (The higher, the rarer)", 16).getInt();
+		mageHouse = cfg.get("Generation", "Mage House spawn rate (The higher, the rarer)", 40).getInt();
+		blacksmithHouse = cfg.get("Generation", "Blacksmith House spawn rate (The higher, the rarer)", 40).getInt();
+
 		
 		List<Boolean> items= new ArrayList<Boolean>();
 		biomeSizeXZ = cfg.getInt("BiomeSizeXZ", "Nether", 512, 1, 4096, "The horizontal Nether biome size");
