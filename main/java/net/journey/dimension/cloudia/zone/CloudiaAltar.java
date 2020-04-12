@@ -714,7 +714,7 @@ public class CloudiaAltar extends CloudiaZoneBase {
 		this.setBlock(worldIn, i + 8, j + 3, k + 3, Blocks.AIR);
 		this.setBlock(worldIn, i + 8, j + 3, k + 4, Blocks.AIR);
 		this.setBlock(worldIn, i + 8, j + 3, k + 5, Blocks.AIR);
-		this.setBlock(worldIn, i + 8, j + 3, k + 6, JourneyBlocks.cloudAltar);
+		worldIn.setBlockState(i + 8, j + 3, k + 6, JourneyBlocks.cloudAltar.getDefaultState());
 		
        // TileEntity altar = worldObj.getTileEntity(new BlockPos(i + 8, j + 3, k + 6));
 		

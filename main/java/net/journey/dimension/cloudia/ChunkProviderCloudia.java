@@ -79,7 +79,7 @@ public class ChunkProviderCloudia implements IChunkGenerator {
         CloudiaChunkPrimer cloudiaChunk = new CloudiaChunkPrimer();
 
 		int bottomLayer = 16;
-		int secondLayer = bottomLayer * 2 + 1;
+		int secondLayer = bottomLayer * 2 - 5;
 
 		//Generates all rooms
 		CloudiaZoneBase room = (CloudiaZoneBase) (rooms.get(random.nextInt(rooms.size())));
