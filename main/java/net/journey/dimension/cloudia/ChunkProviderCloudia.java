@@ -63,7 +63,6 @@ public class ChunkProviderCloudia implements IChunkGenerator {
 	private World worldObj;
 	private Random random;
 	private Map chunkTileEntityMap;
-	private Biome[] biomesForGeneration;
 
     public ChunkProviderCloudia(World worldIn, long seed) {
 		worldObj = worldIn;
@@ -79,8 +78,8 @@ public class ChunkProviderCloudia implements IChunkGenerator {
     public Chunk generateChunk(int chunkX, int chunkZ) {
         CloudiaChunkPrimer cloudiaChunk = new CloudiaChunkPrimer();
 
-		int bottomLayer = 0;
-		int secondLayer = 16;
+		int bottomLayer = 16;
+		int secondLayer = 32;
 
 		//Generates all rooms
 		CloudiaZoneBase room = (CloudiaZoneBase) (rooms.get(random.nextInt(rooms.size())));
@@ -107,12 +106,6 @@ public class ChunkProviderCloudia implements IChunkGenerator {
 		chunkTileEntityMap.put(new ChunkCoords(chunkX, chunkZ), cloudiaChunk.chunkTileEntityPositions);
 		
 		Chunk chunk = new Chunk(this.worldObj, cloudiaChunk, chunkX, chunkZ);
-		byte[] abyte = chunk.getBiomeArray();
-		this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomes(this.biomesForGeneration, chunkX * 16, chunkZ * 16, 16, 16);
-
-		for(int i = 0; i < abyte.length; ++i) 
-			abyte[i] = (byte) Biome.getIdForBiome(this.biomesForGeneration[i]);
-		
 		chunk.generateSkylightMap();
 		return chunk;
     }
