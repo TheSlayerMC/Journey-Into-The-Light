@@ -125,8 +125,8 @@ public class WorldGenJourney implements IWorldGenerator {
 
 		shadiumOre = create(JourneyBlocks.shadiumOre, 6, Blocks.STONE);
 		luniumOre = create(JourneyBlocks.luniumOre, 7, Blocks.STONE);
-		sapphireOre = create(JourneyBlocks.shadiumOre, 5, Blocks.STONE);
-		iridiumOre = create(JourneyBlocks.shadiumOre, 4, Blocks.STONE);
+		sapphireOre = create(JourneyBlocks.sapphireOre, 5, Blocks.STONE);
+		iridiumOre = create(JourneyBlocks.iridiumOre, 4, Blocks.STONE);
 		
 		eucaTallGrass = create(() -> new WorldGenModFlower(JourneyBlocks.eucaTallGrass, JourneyBlocks.eucaGrass));
 		eucaTallFlowers = create(() -> new WorldGenModFlower(JourneyBlocks.eucaTallFlowers, JourneyBlocks.eucaGrass));
@@ -491,13 +491,13 @@ public class WorldGenJourney implements IWorldGenerator {
 			z = chunkZ + r.nextInt(16);
 			luniumOre.getValue().generate(w, r, new BlockPos(x, y, z));
 		}
-		if (r.nextInt(3) == 0) {
-			y = r.nextInt(20);
+		if (r.nextInt(2) == 0) {
+			y = r.nextInt(24);
 			x = chunkX + r.nextInt(16);
 			z = chunkZ + r.nextInt(16);
 			sapphireOre.getValue().generate(w, r, new BlockPos(x, y, z));
 		}
-		for(times = 0; times < 5; times++) {
+		for(times = 0; times < 4; times++) {
 			y = r.nextInt(16); 
 			x = chunkX + r.nextInt(16); 
 			z = chunkZ + r.nextInt(16);
