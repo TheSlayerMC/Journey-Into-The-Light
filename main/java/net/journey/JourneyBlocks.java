@@ -260,6 +260,9 @@ public class JourneyBlocks {
 	public static BlockMod cloudiaTile;
 	public static BlockMod cloudiaLeaves;
 	public static BlockMod cloudiaLamp;
+	public static BlockMod cloudiaCobblestone;
+	public static BlockModStairs cloudiaBrickStairs;
+	public static BlockModStairs cloudiaTileStairs;
 	// public static BlockMod cloudiaPost = new BlockCloudiaPost("cloudiaPost");
 	public static BlockMod pinkCloudiaCloud;
 	public static BlockMod blueCloudiaCloud;
@@ -690,6 +693,9 @@ public class JourneyBlocks {
 		cloudiaLeaves = (BlockMod) new BlockModLeaves("cloudiaLeaves", "Cloudia Leaves", 0.5F).setLightLevel(2);
 		cloudiaLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "cloudiaLamp", "Cloudia Lamp", 0.1F)
 				.setLightLevel(1.0F).setCreativeTab(JourneyTabs.decoration);
+		cloudiaCobblestone = new BlockMod("cloudiaCobblestone", "Cloudia Cobblestone");
+		cloudiaBrickStairs = new BlockModStairs(cloudiaBrick, "cloudiaBrickStairs", "Cloudia Brick Stairs");
+		cloudiaTileStairs = new BlockModStairs(cloudiaTile, "cloudiaTileStairs", "Cloudia Tile Stairs");
 		// cloudiaPost = new BlockCloudiaPost("cloudiaPost");
 		pinkCloudiaCloud = new BlockCloud("pinkCloudiaCloud", "Pink Cloudia Cloud");
 		blueCloudiaCloud = new BlockCloud("blueCloudiaCloud", "Blue Cloudia Cloud");
