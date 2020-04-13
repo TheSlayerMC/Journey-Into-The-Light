@@ -27,6 +27,7 @@ public class Textures {
     public static final ResourceLocation empty = addProjectile("empty");
     public static final ResourceLocation templeBall = addProjectile("templeBall");
     public static final ResourceLocation essenceArrow = addProjectile("essenceArrow");
+    public static final ResourceLocation moltenKnife = new ResourceLocation(SlayerAPI.PREFIX + "textures/items/moltenknife.png");
     public static final ResourceLocation rockChunk = new ResourceLocation(SlayerAPI.PREFIX + "textures/items/rockchunk.png");
     public static final ResourceLocation plasma = new ResourceLocation(SlayerAPI.PREFIX + "textures/items/plasmaBall.png");
 

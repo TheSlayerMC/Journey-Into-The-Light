@@ -96,7 +96,4 @@ public class EntityDarknessArrow extends EntityTippedArrow implements IProjectil
 	protected ItemStack getArrowStack() {
 		return new ItemStack(JourneyItems.essenceArrow);
 	}
-
-
-
 }
