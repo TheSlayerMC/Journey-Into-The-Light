@@ -405,11 +405,11 @@ public class JourneyWeapons {
 		sunsetPiercer = new ItemPiercer("sunsetPiercer", "Sunset Piercer", 7F, 1, EntitySunsetPiercer.class);
 		skyPiercer = new ItemPiercer("skyPiercer", "Sky Piercer", 29F, 6, EntitySkyPiercer.class);
 
-		moltenKnife = new ItemThrowableArrow("moltenKnife", "Molten Knife", 10F, 5, EntityMoltenKnife.class);
-		//aquaticKnife = new ItemThrowableArrow("aquaticKnife", "Aquatic Knife", 6F, 5, EntityAquaticKnife.class);
-	//	bloodKnife = new ItemThrowableArrow("bloodKnife", "Blood Knife", 6F, 5, EntityBloodKnife.class);
-		//charredKnife = new ItemThrowableArrow("charredKnife", "Charred Knife", 6F, 5, EntityCharredKnife.class);
-		//sizzlingKnife = new ItemThrowableArrow("sizzlingKnife", "Sizzling Knife", 6F, 5, EntitySizzlingKnife.class);
+		moltenKnife = new ItemThrowableArrow("moltenKnife", "Molten Knife", EntityMoltenKnife.class, "Englufs enemies in flames for 5 seconds");
+		aquaticKnife = new ItemThrowableArrow("aquaticKnife", "Aquatic Knife", EntityAquaticKnife.class, "Slows enemies for 5 seconds");
+		bloodKnife = new ItemThrowableArrow("bloodKnife", "Blood Knife", EntityBloodKnife.class, "Stuns enemies for 10 seconds");
+		charredKnife = new ItemThrowableArrow("charredKnife", "Charred Knife", EntityCharredKnife.class, "Poisons and englufs enemies in flames for 5 seconds");
+		sizzlingKnife = new ItemThrowableArrow("sizzlingKnife", "Sizzling Knife", EntitySizzlingKnife.class, "Stuns and englufs enemies in flames for 10 seconds");
 		
 	}
 }

@@ -52,8 +52,6 @@ public class EntityMoltenKnife extends EntityTippedArrow implements IProjectile 
         }
     });
 
-    private PotionEffect potioneffect = new PotionEffect(PotionEffects.getPotionFromID(PotionEffects.wither), 100, 2);
-
 	public EntityMoltenKnife(World worldIn) {
 		super(worldIn);
 	}
@@ -90,6 +88,15 @@ public class EntityMoltenKnife extends EntityTippedArrow implements IProjectile 
 			this.setLocationAndAngles(e.posX + d4, this.posY, e.posZ + d5, f2, f3);
 			float f4 = (float)(d3 * 0.20000000298023224D);
 			this.shoot(d0, d1 + f4, d2, f, f1);
+		}
+	}
+	
+	@Override
+	protected void onHit(RayTraceResult target) {
+		super.onHit(target);
+		Entity hitEntity = target.entityHit;
+		if (hitEntity != null && shootingEntity != null && hitEntity instanceof EntityLivingBase) {
+			hitEntity.setFire(5);
 		}
 	}
 
