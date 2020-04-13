@@ -28,11 +28,9 @@ public class WorldGenTallGlowshrooms extends WorldGenerator {
 			top = JourneyBlocks.blueGlowshroomTop; 
 			break;
 		}
-		for(int i = 0; i < 50; i++) {
-			if(w.getBlockState(pos.down()).getBlock() == Blocks.STONE && w.getBlockState(pos) == Blocks.AIR.getDefaultState() && w.getBlockState(pos.up()) == Blocks.AIR.getDefaultState() && pos.getY() < 60) {
-				this.setBlockAndNotifyAdequately(w, pos, bottom.getDefaultState());
-				this.setBlockAndNotifyAdequately(w, pos.up(), top.getDefaultState());
-			}
+		if(w.getBlockState(pos.down()).getBlock() == Blocks.STONE && w.getBlockState(pos) == Blocks.AIR.getDefaultState() && w.getBlockState(pos.up()) == Blocks.AIR.getDefaultState() && pos.getY() < 60) {
+			this.setBlockAndNotifyAdequately(w, pos, bottom.getDefaultState());
+			this.setBlockAndNotifyAdequately(w, pos.up(), top.getDefaultState());
 		}
 		return true;
 	}

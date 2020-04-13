@@ -15,14 +15,19 @@ public class WorldGenSmallGlowshrooms extends WorldGenerator {
 	public boolean generate(World w, Random r, BlockPos pos) {
 		Block top = JourneyBlocks.greenGlowshroomTop;
 		switch(r.nextInt(3)){
-		case 0: top = JourneyBlocks.greenGlowshroomTop; break;
-		case 1: top = JourneyBlocks.redGlowshroomTop; break;
-		case 2: top = JourneyBlocks.blueGlowshroomTop; break;
+		case 0:
+			top = JourneyBlocks.greenGlowshroomTop; 
+			break;
+		case 1: 
+			top = JourneyBlocks.redGlowshroomTop; 
+			break;
+		case 2: 
+			top = JourneyBlocks.blueGlowshroomTop; 
+			break;
 		}
-		for(int i = 0; i < 50; i++) {
-			if(w.getBlockState(pos.down()).getBlock() == Blocks.STONE && w.getBlockState(pos) == Blocks.AIR.getDefaultState() && pos.getY() < 60) {
-				this.setBlockAndNotifyAdequately(w, pos, top.getDefaultState());
-			}
+		
+		if(w.getBlockState(pos.down()).getBlock() == Blocks.STONE && w.getBlockState(pos) == Blocks.AIR.getDefaultState() && pos.getY() < 60) {
+			this.setBlockAndNotifyAdequately(w, pos, top.getDefaultState());
 		}
 		return true;
 	}
