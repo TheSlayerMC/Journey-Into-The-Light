@@ -8,6 +8,7 @@ import net.journey.dimension.cloudia.zone.CloudiaBridgeEW;
 import net.journey.dimension.cloudia.zone.CloudiaBridgeNS;
 import net.journey.dimension.cloudia.zone.CloudiaDungeon1;
 import net.journey.dimension.cloudia.zone.CloudiaDungeon2;
+import net.journey.dimension.cloudia.zone.CloudiaGarden;
 import net.journey.dimension.cloudia.zone.CloudiaHouse1;
 import net.journey.dimension.cloudia.zone.CloudiaZoneBase;
 import net.journey.dimension.overworld.gen.WorldGenModFlower;
@@ -69,10 +70,11 @@ public class ChunkProviderCloudia implements IChunkGenerator {
     public ChunkProviderCloudia(World worldIn, long seed) {
 		worldObj = worldIn;
 		random = new Random(seed);
-		bottomrooms = new ArrayList(3);
+		bottomrooms = new ArrayList(4);
 		bottomrooms.add(new CloudiaDungeon1());
 		bottomrooms.add(new CloudiaAltar());
 		bottomrooms.add(new CloudiaDungeon2());
+		bottomrooms.add(new CloudiaGarden());
 
 		
 		toprooms = new ArrayList(1);
