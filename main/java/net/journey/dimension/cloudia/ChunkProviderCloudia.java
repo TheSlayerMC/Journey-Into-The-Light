@@ -59,8 +59,8 @@ public class ChunkProviderCloudia implements IChunkGenerator {
 		}
 	}
 	
-	private ArrayList rooms;
-	private ArrayList bigRooms;
+	private ArrayList bottomrooms;
+	private ArrayList toprooms;
 	private CloudiaZoneBase[] bridges;
 	private World worldObj;
 	private Random random;
@@ -69,11 +69,15 @@ public class ChunkProviderCloudia implements IChunkGenerator {
     public ChunkProviderCloudia(World worldIn, long seed) {
 		worldObj = worldIn;
 		random = new Random(seed);
-		rooms = new ArrayList(4);
-		rooms.add(new CloudiaDungeon1());
-		rooms.add(new CloudiaAltar());
-		rooms.add(new CloudiaDungeon2());
-		rooms.add(new CloudiaHouse1());
+		bottomrooms = new ArrayList(3);
+		bottomrooms.add(new CloudiaDungeon1());
+		bottomrooms.add(new CloudiaAltar());
+		bottomrooms.add(new CloudiaDungeon2());
+
+		
+		toprooms = new ArrayList(1);
+		toprooms.add(new CloudiaHouse1());
+		
 		bridges = new CloudiaZoneBase[] {new CloudiaBridgeAll()/*, new CloudiaBridgeNS(), new CloudiaBridgeEW()*/};
 		this.chunkTileEntityMap = new HashMap();
     }
@@ -86,13 +90,14 @@ public class ChunkProviderCloudia implements IChunkGenerator {
 		int secondLayer = 48 - 4;
 
 		//Generates all rooms
-		CloudiaZoneBase room = (CloudiaZoneBase) (rooms.get(random.nextInt(rooms.size())));
+		CloudiaZoneBase room = (CloudiaZoneBase) (toprooms.get(random.nextInt(toprooms.size())));
+		CloudiaZoneBase room2 = (CloudiaZoneBase) (bottomrooms.get(random.nextInt(bottomrooms.size())));
 		
-		room = (CloudiaZoneBase) (rooms.get(random.nextInt(rooms.size())));
+		room = (CloudiaZoneBase) (toprooms.get(random.nextInt(toprooms.size())));
 		room.generate(cloudiaChunk, random, 0, secondLayer, 0);
 
-		room = (CloudiaZoneBase) (rooms.get(random.nextInt(rooms.size())));
-		room.generate(cloudiaChunk, random, 0, bottomLayer, 0);
+		room2 = (CloudiaZoneBase) (bottomrooms.get(random.nextInt(bottomrooms.size())));
+		room2.generate(cloudiaChunk, random, 0, bottomLayer, 0);
 
 		//Chance to generate stair room on all but top layer
 
