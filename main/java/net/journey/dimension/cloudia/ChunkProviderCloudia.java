@@ -7,6 +7,8 @@ import net.journey.dimension.cloudia.zone.CloudiaBridgeAll;
 import net.journey.dimension.cloudia.zone.CloudiaBridgeEW;
 import net.journey.dimension.cloudia.zone.CloudiaBridgeNS;
 import net.journey.dimension.cloudia.zone.CloudiaDungeon1;
+import net.journey.dimension.cloudia.zone.CloudiaDungeon2;
+import net.journey.dimension.cloudia.zone.CloudiaHouse1;
 import net.journey.dimension.cloudia.zone.CloudiaZoneBase;
 import net.journey.dimension.overworld.gen.WorldGenModFlower;
 import net.journey.dimension.senterian.SenterianChunkPrimer;
@@ -67,10 +69,12 @@ public class ChunkProviderCloudia implements IChunkGenerator {
     public ChunkProviderCloudia(World worldIn, long seed) {
 		worldObj = worldIn;
 		random = new Random(seed);
-		rooms = new ArrayList(2);
+		rooms = new ArrayList(4);
 		rooms.add(new CloudiaDungeon1());
 		rooms.add(new CloudiaAltar());
-		bridges = new CloudiaZoneBase[] {new CloudiaBridgeAll(), new CloudiaBridgeNS(), new CloudiaBridgeEW()};
+		rooms.add(new CloudiaDungeon2());
+		rooms.add(new CloudiaHouse1());
+		bridges = new CloudiaZoneBase[] {new CloudiaBridgeAll()/*, new CloudiaBridgeNS(), new CloudiaBridgeEW()*/};
 		this.chunkTileEntityMap = new HashMap();
     }
 
@@ -83,6 +87,7 @@ public class ChunkProviderCloudia implements IChunkGenerator {
 
 		//Generates all rooms
 		CloudiaZoneBase room = (CloudiaZoneBase) (rooms.get(random.nextInt(rooms.size())));
+		
 		room = (CloudiaZoneBase) (rooms.get(random.nextInt(rooms.size())));
 		room.generate(cloudiaChunk, random, 0, secondLayer, 0);
 
@@ -92,7 +97,7 @@ public class ChunkProviderCloudia implements IChunkGenerator {
 		//Chance to generate stair room on all but top layer
 
 		//These double as a hallway and a blocker on the exit of the room next to it
-		int hallwayRarity = 8;
+		int hallwayRarity = 2;
 		if(random.nextInt(hallwayRarity) == 0)
 			bridges[random.nextInt(bridges.length)].generate(cloudiaChunk, random, 0, bottomLayer, 0);
 

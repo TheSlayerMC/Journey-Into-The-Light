@@ -1,0 +1,9 @@
+{
+	"parent": "block/cube_bottom_top",
+	"textures": {
+		"particle": "journey:blocks/cloudiapillar_top",
+		"bottom": "journey:blocks/cloudiapillar_top",
+		"top": "journey:blocks/cloudiapillar_top",
+		"side": "journey:blocks/cloudiapillar_side"
+	}
+}

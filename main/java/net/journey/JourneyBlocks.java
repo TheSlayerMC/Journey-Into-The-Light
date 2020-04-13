@@ -254,6 +254,8 @@ public class JourneyBlocks {
 	public static BlockMod cloudiaDirt;
 	public static BlockMod cloudiaGrass;
 	public static BlockModLog cloudiaLog;
+	public static BlockMod cloudiaPlanks;
+	public static BlockMod cloudiaPillar;
 	public static BlockMod cloudiaRock;
 	public static BlockMod cloudiaBrick;
 	public static BlockMod cloudiaWall;
@@ -687,6 +689,8 @@ public class JourneyBlocks {
 		cloudiaGrass = new BlockModGrass(cloudiaDirt, "cloudiaGrass", "Cloudia Grass", 2.0F);
 		cloudiaLog = new BlockModLog("cloudiaLog", "Cloudia Log");
 		cloudiaRock = new BlockMod("cloudiaRock", "Cloudia Rock");
+		cloudiaPillar = new BlockMod("cloudiaPillar", "Cloudia Pillar");
+		cloudiaPlanks = new BlockMod(EnumMaterialTypes.WOOD, "cloudwoodPlanks", "Cloudwood Planks", 1.0F);
 		cloudiaBrick = (BlockMod) new BlockMod("cloudiaBrick", "Cloudia Brick").setLightLevel(0.5F);
 		cloudiaWall = (BlockMod) new BlockMod("cloudiaWall", "Cloudia Wall").setLightLevel(0.5F);
 		cloudiaTile = (BlockMod) new BlockMod("cloudiaTile", "Cloudia Tile").setLightLevel(0.5F);
