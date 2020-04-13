@@ -78,8 +78,8 @@ public class BlockModLeaves extends BlockMod implements IShearable {
 				for (int k1 = -b0; k1 <= b0; ++k1) {
 					for (int l1 = -b0; l1 <= b0; ++l1) {
 						Block block = world.getBlockState(new BlockPos(x + j1, y + k1, z + l1)).getBlock();
-						if (block.isLeaves(s, world, new BlockPos(x + j1, y + k1, z + l1)))
-							block.beginLeavesDecay(s, world, new BlockPos(x + j1, y + k1, z + l1));
+						//if (block.isLeaves(s, world, new BlockPos(x + j1, y + k1, z + l1)))
+						//	block.beginLeavesDecay(s, world, new BlockPos(x + j1, y + k1, z + l1));
 					}
 				}
 			}
