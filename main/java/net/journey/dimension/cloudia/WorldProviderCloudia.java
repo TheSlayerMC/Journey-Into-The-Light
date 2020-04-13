@@ -18,7 +18,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class WorldProviderCloudia extends BaseWorldProvider {
 
     public WorldProviderCloudia() {
-        super(new BiomeProviderSingle(DimensionHelper.cloudia));
+        super(new BiomeProviderSingle(DimensionHelper.cloudia), new Vec3d(1.5, 1.12, 1.7));
     }
 
     @Override
