@@ -8,6 +8,7 @@ import net.journey.dimension.cloudia.zone.CloudiaBridgeEW;
 import net.journey.dimension.cloudia.zone.CloudiaBridgeNS;
 import net.journey.dimension.cloudia.zone.CloudiaDungeon1;
 import net.journey.dimension.cloudia.zone.CloudiaDungeon2;
+import net.journey.dimension.cloudia.zone.CloudiaEmptyChunk;
 import net.journey.dimension.cloudia.zone.CloudiaGarden;
 import net.journey.dimension.cloudia.zone.CloudiaHouse1;
 import net.journey.dimension.cloudia.zone.CloudiaZoneBase;
@@ -62,6 +63,7 @@ public class ChunkProviderCloudia implements IChunkGenerator {
 	
 	private ArrayList bottomrooms;
 	private ArrayList toprooms;
+	private CloudiaEmptyChunk emptyChunk;
 	private CloudiaZoneBase[] bridges;
 	private World worldObj;
 	private Random random;
@@ -76,6 +78,7 @@ public class ChunkProviderCloudia implements IChunkGenerator {
 		bottomrooms.add(new CloudiaDungeon2());
 		bottomrooms.add(new CloudiaGarden());
 
+		emptyChunk = new CloudiaEmptyChunk();
 		
 		toprooms = new ArrayList(1);
 		toprooms.add(new CloudiaHouse1());
@@ -89,7 +92,7 @@ public class ChunkProviderCloudia implements IChunkGenerator {
         CloudiaChunkPrimer cloudiaChunk = new CloudiaChunkPrimer();
 
 		int bottomLayer = 32;
-		int secondLayer = 48 - 4;
+		int secondLayer = 44;
 
 		//Generates all rooms
 		CloudiaZoneBase room = (CloudiaZoneBase) (toprooms.get(random.nextInt(toprooms.size())));
@@ -111,7 +114,14 @@ public class ChunkProviderCloudia implements IChunkGenerator {
 		if(random.nextInt(hallwayRarity) == 0)
 			bridges[random.nextInt(bridges.length)].generate(cloudiaChunk, random, 0, secondLayer, 0);
 
+		//figure out what height to fill with air and how often, or just scrap the idea
+		int emptyRarity = 60;
+		if(random.nextInt(hallwayRarity) == 0)
+			emptyChunk.generate(cloudiaChunk, random, 0, bottomLayer, 0, 12);
 
+		if(random.nextInt(hallwayRarity) == 0)
+			emptyChunk.generate(cloudiaChunk, random, 0, secondLayer, 0, 15);
+		
 		//These rooms need to be generated last
 		
 		//Forces a roof over the whole room, gets generated at final set
