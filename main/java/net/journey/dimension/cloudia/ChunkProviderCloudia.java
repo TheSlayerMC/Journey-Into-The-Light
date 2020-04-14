@@ -92,14 +92,23 @@ public class ChunkProviderCloudia implements IChunkGenerator {
         CloudiaChunkPrimer cloudiaChunk = new CloudiaChunkPrimer();
 
 		int bottomLayer = 32;
-		int secondLayer = 44;
+		int secondLayer = 51;
 
 		//Generates all rooms
 		CloudiaZoneBase room = (CloudiaZoneBase) (toprooms.get(random.nextInt(toprooms.size())));
 		CloudiaZoneBase room2 = (CloudiaZoneBase) (bottomrooms.get(random.nextInt(bottomrooms.size())));
+
+		int emptyRarity = 2;
+
+		//These double as a hallway and a blocker on the exit of the room next to it
+		int hallwayRarity = emptyRarity * 2;
+		if(random.nextInt(hallwayRarity) == 0)
+			bridges[random.nextInt(bridges.length)].generate(cloudiaChunk, random, 0, bottomLayer, 0);
+
+		if(random.nextInt(hallwayRarity) == 0)
+			bridges[random.nextInt(bridges.length)].generate(cloudiaChunk, random, 0, secondLayer, 0);
 		
 		room = (CloudiaZoneBase) (toprooms.get(random.nextInt(toprooms.size())));
-		int emptyRarity = 2;
 		if(random.nextInt(emptyRarity) == 0)
 		room.generate(cloudiaChunk, random, 0, secondLayer, 0);
 
@@ -109,13 +118,6 @@ public class ChunkProviderCloudia implements IChunkGenerator {
 
 		//Chance to generate stair room on all but top layer
 
-		//These double as a hallway and a blocker on the exit of the room next to it
-		int hallwayRarity = emptyRarity * 2;
-		if(random.nextInt(hallwayRarity) == 0)
-			bridges[random.nextInt(bridges.length)].generate(cloudiaChunk, random, 0, bottomLayer, 0);
-
-		if(random.nextInt(hallwayRarity) == 0)
-			bridges[random.nextInt(bridges.length)].generate(cloudiaChunk, random, 0, secondLayer, 0);
 
 		//figure out what height to fill with air and how often, or just scrap the idea
 		//int emptyRarity = 20;

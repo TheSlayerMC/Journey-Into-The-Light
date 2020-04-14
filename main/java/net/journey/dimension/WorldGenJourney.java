@@ -615,11 +615,11 @@ public class WorldGenJourney implements IWorldGenerator {
 				smeltery.generate(w, r, randWithOffset);
 			break;
 		case 19:
-			if (64 > randomPosForMinable.getY() && randomPosForMinable.getY() > 30)
+			if (120 > randomPosForMinable.getY() && randomPosForMinable.getY() > 10)
 				pinkCloudiaCloud.getValue().generate(w, r, randomPosForMinable);
 			break;
 		case 20:
-			if (32 < randomPosForMinable.getY() && randomPosForMinable.getY() < 180)
+			if (10 < randomPosForMinable.getY() && randomPosForMinable.getY() < 120)
 				lightBlueCloudiaCloud.getValue().generate(w, r, randomPosForMinable);
 			break;
 		case 21:
@@ -701,8 +701,8 @@ public class WorldGenJourney implements IWorldGenerator {
 
 	private void generateCloudia(World w, Random r, int chunkX, int chunkZ) {
 		int i = 0;
-		for (i = 0; i < 7; i++) WorldGenJourney.generateJourneyDimensions(19, w, chunkX, chunkZ);
-		for (i = 0; i < 3; i++) WorldGenJourney.generateJourneyDimensions(20, w, chunkX, chunkZ);
+		for (i = 0; i < 2; i++) WorldGenJourney.generateJourneyDimensions(19, w, chunkX, chunkZ);
+		for (i = 0; i < 2; i++) WorldGenJourney.generateJourneyDimensions(20, w, chunkX, chunkZ);
 
 		BlockPos randomPosForMinable = new BlockPos(chunkX + r.nextInt(16), r.nextInt(64), chunkZ + r.nextInt(16));
 
