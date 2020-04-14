@@ -1,4 +1,16 @@
-package net.journey.entity.mob.boss;
+/*
+TODO:
+
+ADJUST SPEEDPHASE VALUES SO THAT SPEED INCREASES ARE CONSTANT (MIN AND MAX VALUES HAVE BEEN SELECTED AND TESTED; THEY'RE BALANCED)
+
+MAKE FLAMETHROWER ATTACK MORE RANDOM
+
+REMOVE LEFTOVER CODE FROM SLAYER'S OLD AI
+
+ADD IDLE AI (ELSE STATEMENT UNDER ATTACK TARGET CHECK, LOCATED IN ONLIVINGUPDATE)
+
+CUSTOM PROJECTILES: A GRAVITY-AFFECTED GRENADE THAT CAUSES SMALL EXPLOSIONS FOR THE GENERIC RANGED ATTACK AND INVISIBLE FLAME PARTICLE PROJECTILES FOR THE FLAMETHROWER
+*/package net.journey.entity.mob.boss;
 
 import java.util.Random;
 
@@ -32,6 +44,9 @@ import net.slayer.api.entity.EntityEssenceBoss;
 
 public class EntitySentryKing extends EntityEssenceBoss implements IRangedAttackMob {
 	
+	private float speedPhase;
+	private int flamethrowerTimer;
+	private int flamethrowerCooldown;
 	private static final DataParameter<Byte> ON_FIRE = EntityDataManager.<Byte>createKey(EntitySentryKing.class, DataSerializers.BYTE);
 	
 	public EntitySentryKing(World par1World) {
@@ -66,10 +81,71 @@ public class EntitySentryKing extends EntityEssenceBoss implements IRangedAttack
         this.launchWitherSkullToEntity(0, e);
 	}
     
+    public void onLivingUpdate() {
+    	if(this.getHealth() >= 2250) {
+    		speedPhase = 0.0001953125f;
+    	}
+    	else if(this.getHealth() >= 2000) {
+			speedPhase = 0.125f;
+		}
+		else if(this.getHealth() >= 1750) {
+			speedPhase = 0.1875f;
+		}
+		else if(this.getHealth() >= 1500) {
+			speedPhase = 0.25f;
+		}
+		else if(this.getHealth() >= 1250) {
+			speedPhase = 0.375f;
+		}
+		else if(this.getHealth() >= 1000) {
+			speedPhase = 0.5f;
+		}
+		else if(this.getHealth() >= 750) {
+			speedPhase = 0.75f;
+		}
+		else if(this.getHealth() >= 500) {
+			speedPhase = 1f;
+		}
+		else if(this.getHealth() >= 250) {
+			speedPhase = 1.25f;
+		}
+		else if(this.getHealth() >= 0) {
+			speedPhase = 1.5f;
+		}
+    	if (this.getAttackTarget() != null) {
+    		EntityLivingBase target = this.getAttackTarget();
+    		this.motionX = (target.posX - this.posX) * speedPhase;
+    		this.motionY = (target.posY - this.posY + 7.5) * speedPhase;
+    		this.motionZ = (target.posZ - this.posZ) * speedPhase;
+    		if (flamethrowerTimer > 0) {
+    			this.world.playBroadcastSound(1014, new BlockPos(this), 0);
+    	        double d3 = this.posX;
+    	        double d4 = this.posY;
+    	        double d5 = this.posZ;
+    	        double d6 = target.posX - d3;
+    	        double d7 = target.posY + target.getEyeHeight() - d4;
+    	        double d8 = target.posZ - d5;
+    	        EntityMagmaFireball entitydeathskull = new EntityMagmaFireball(this.world, this, d6, d7, d8);
+    	        entitydeathskull.posY = d4;
+    	        entitydeathskull.posX = d3;
+    	        entitydeathskull.posZ = d5;
+    	        this.world.spawnEntity(entitydeathskull);
+    	        flamethrowerTimer--;
+    		}
+    		else if (flamethrowerCooldown == 0) {
+    			flamethrowerTimer = 200;
+    			flamethrowerCooldown = 400;
+    		}
+    		else {
+    			flamethrowerCooldown--;
+    		}
+    	}
+    	super.onLivingUpdate();
+    }
+    
     private void launchWitherSkullToEntity(int var1, EntityLivingBase e)
     {
         this.launchWitherSkullToCoords(var1, e.posX, e.posY + e.getEyeHeight() * 0.5D, e.posZ, var1 == 0 && this.rand.nextFloat() < 0.001F);
-        
     }
     
     private void launchWitherSkullToCoords(int var1, double f2, double f4, double f6, boolean f8) {
