@@ -176,10 +176,13 @@ public class WorldGenJourney implements IWorldGenerator {
 		switch (dim) {
 		case -1:
 			generateNether(w, r, chunkX * 16, chunkZ * 16);
+			break;
 		case 0:
 			generateOverworld(w, r, chunkX * 16, chunkZ * 16);
+			break;
 		case 1:
 			generateEnd(w, r, chunkX * 16, chunkZ * 16);
+			break;
 		}
 		if(dim == Config.boil) generateBoilingPoint(w, r, chunkX * 16, chunkZ * 16);
 		if(dim == Config.depths) generateDepths(w, r, chunkX * 16, chunkZ * 16);
