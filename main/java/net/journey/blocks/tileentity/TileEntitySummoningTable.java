@@ -6,6 +6,7 @@ import net.journey.JourneyItems;
 import net.journey.JourneySounds;
 import net.journey.blocks.tileentity.container.ContainerSummoningTable;
 import net.journey.client.render.particles.EntitySummoningFX;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -17,6 +18,7 @@ import net.minecraft.tileentity.TileEntityLockableLoot;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -33,7 +35,15 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
     }
 	@Override
 	public void update() {
-		if(this.inventory.get(0) != null && this.inventory.get(1) != null && this.inventory.get(2) != null && this.inventory.get(3) != null && this.inventory.get(4) != null && this.inventory.get(5) != null && this.inventory.get(6) != null) {
+		ItemStack slot1 = this.inventory.get(0);
+		ItemStack slot2 = this.inventory.get(1);
+		ItemStack slot3 = this.inventory.get(2);
+		ItemStack slot4 = this.inventory.get(3);
+		ItemStack slot5 = this.inventory.get(4);
+		ItemStack slot6 = this.inventory.get(5);
+		ItemStack slot7 = this.inventory.get(6);
+		
+		if(slot1 != null && slot2 != null && slot3 != null && slot4 != null && slot5 != null && slot6 != null && slot7 != null) {
 			if(areItemsInSlots(
 					JourneyItems.boilPowder, 
 					JourneyItems.boilPowder, 
@@ -42,8 +52,11 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 					JourneyItems.boilPowder, 
 					JourneyItems.boilPowder, 
 					JourneyItems.boilPowder)) {
-				setAllSlotsToNull();
-				this.inventory.set(3, new ItemStack(JourneyItems.blazierOrb));
+				shrinkAllSlots(slot1, slot2, slot3, slot4, slot5, slot6, slot7);
+				//this.inventory.set(3, new ItemStack(JourneyItems.blazierOrb));
+				if(!world.isRemote) {
+					this.world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(JourneyItems.blazierOrb, 1)));
+				}
 				addSound();
 				addParticles();
 			}
@@ -55,8 +68,10 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 					JourneyItems.snakeSkin, 
 					JourneyItems.concentratedBlood, 
 					JourneyItems.snakeSkin)) {
-				setAllSlotsToNull();
-				inventory.set(3, new ItemStack(JourneyItems.soulWatcherOrb));
+				shrinkAllSlots(slot1, slot2, slot3, slot4, slot5, slot6, slot7);
+				if(!world.isRemote) {
+					this.world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(JourneyItems.soulWatcherOrb, 1)));
+				}
 				addSound();
 				addParticles();
 			}
@@ -68,8 +83,10 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 					JourneyItems.natureTablet, 
 					JourneyItems.enchantedLeaf, 
 					JourneyItems.natureTablet)) {
-				setAllSlotsToNull();
-				inventory.set(3, new ItemStack(JourneyItems.loggerOrb));
+				shrinkAllSlots(slot1, slot2, slot3, slot4, slot5, slot6, slot7);
+				if(!world.isRemote) {
+					this.world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(JourneyItems.loggerOrb, 1)));
+				}
 				addSound();
 				addParticles();
 			}
@@ -81,8 +98,10 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 					JourneyItems.overseeingEye, 
 					JourneyItems.collectorRock, 
 					JourneyItems.overseeingEye)) {
-				setAllSlotsToNull();
-				inventory.set(3, new ItemStack(JourneyItems.sentryKingOrb));
+				shrinkAllSlots(slot1, slot2, slot3, slot4, slot5, slot6, slot7);
+				if(!world.isRemote) {
+					this.world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(JourneyItems.sentryKingOrb, 1)));
+				}
 				addSound();
 				addParticles();
 			}
@@ -94,8 +113,10 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 					JourneyItems.scale, 
 					JourneyItems.beastlyStomach, 
 					JourneyItems.scale)) {
-				setAllSlotsToNull();
-				inventory.set(3, new ItemStack(JourneyItems.scaleOrb));
+				shrinkAllSlots(slot1, slot2, slot3, slot4, slot5, slot6, slot7);
+				if(!world.isRemote) {
+					this.world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(JourneyItems.scale, 1)));
+				}
 				addSound();
 				addParticles();
 			}
@@ -107,8 +128,10 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 					JourneyItems.rocFeather, 
 					JourneyItems.darkCrystal, 
 					JourneyItems.rocFeather)) {
-				setAllSlotsToNull();
-				inventory.set(3, new ItemStack(JourneyItems.thunderbirdOrb));
+				shrinkAllSlots(slot1, slot2, slot3, slot4, slot5, slot6, slot7);
+				if(!world.isRemote) {
+					this.world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(JourneyItems.thunderbirdOrb, 1)));
+				}
 				addSound();
 				addParticles();
 			}
@@ -120,8 +143,10 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 					JourneyItems.gateKeys, 
 					JourneyItems.silverClump, 
 					JourneyItems.gateKeys)) {
-				setAllSlotsToNull();
-				inventory.set(3, new ItemStack(JourneyItems.corallatorOrb));
+				shrinkAllSlots(slot1, slot2, slot3, slot4, slot5, slot6, slot7);
+				if(!world.isRemote) {
+					this.world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(JourneyItems.corallatorOrb, 1)));
+				}
 				addSound();
 				addParticles();
 			}
@@ -133,8 +158,10 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 					JourneyItems.gateKeys, 
 					JourneyItems.goldClump, 
 					JourneyItems.gateKeys)) {
-				setAllSlotsToNull();
-				inventory.set(3, new ItemStack(JourneyItems.eudorOrb));
+				shrinkAllSlots(slot1, slot2, slot3, slot4, slot5, slot6, slot7);
+				if(!world.isRemote) {
+					this.world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(JourneyItems.eudorOrb, 1)));
+				}
 				addSound();
 				addParticles();
 			}
@@ -146,8 +173,10 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 					JourneyItems.hellstoneIngot, 
 					JourneyItems.hellShards, 
 					JourneyItems.hellstoneIngot)) {
-				setAllSlotsToNull();
-				inventory.set(3, new ItemStack(JourneyItems.netherBeastOrb));
+				shrinkAllSlots(slot1, slot2, slot3, slot4, slot5, slot6, slot7);
+				if(!world.isRemote) {
+					this.world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(JourneyItems.netherBeastOrb, 1)));
+				}
 				addSound();
 				addParticles();
 			}
@@ -159,8 +188,10 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 					JourneyItems.withicSpine, 
 					JourneyItems.lostSoul, 
 					JourneyItems.withicSpine)) {
-				setAllSlotsToNull();
-				inventory.set(3, new ItemStack(JourneyItems.witheringBeastOrb));
+				shrinkAllSlots(slot1, slot2, slot3, slot4, slot5, slot6, slot7);
+				if(!world.isRemote) {
+					this.world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(JourneyItems.witheringBeastOrb, 1)));
+				}
 				addSound();
 				addParticles();
 			}		
@@ -172,8 +203,10 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 					JourneyItems.earthenCrystal, 
 					JourneyItems.purplePowder, 
 					JourneyItems.earthenCrystal)) {
-				setAllSlotsToNull();
-				inventory.set(3, new ItemStack(JourneyItems.enchantedTerrastar));
+				shrinkAllSlots(slot1, slot2, slot3, slot4, slot5, slot6, slot7);
+				if(!world.isRemote) {
+					this.world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(JourneyItems.enchantedTerrastar, 1)));
+				}
 				addSound();
 				addParticles();
 			}
@@ -185,8 +218,10 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 					JourneyItems.spawnerBar, 
 					JourneyItems.ash, 
 					JourneyItems.spawnerBar)) {
-				setAllSlotsToNull();
-				inventory.set(3, new ItemStack(JourneyItems.calciaOrb));
+				shrinkAllSlots(slot1, slot2, slot3, slot4, slot5, slot6, slot7);
+				if(!world.isRemote) {
+					this.world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(JourneyItems.calciaOrb, 1)));
+				}
 				addParticles();
 				addSound();
 			}
@@ -218,8 +253,14 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 		return this.inventory.get(0).getItem() == s && this.inventory.get(1).getItem() == s1 && this.inventory.get(2).getItem() == s2 && this.inventory.get(3).getItem() == s3 && this.inventory.get(4).getItem() == s4 && this.inventory.get(5).getItem() == s5 && this.inventory.get(6).getItem() == s6;
 	}
 
-	public void setAllSlotsToNull() {
-		clear();
+	public void shrinkAllSlots(ItemStack s, ItemStack s1, ItemStack s2, ItemStack s3, ItemStack s4, ItemStack s5, ItemStack s6) {
+		s.shrink(1);
+		s1.shrink(1);
+		s2.shrink(1);
+		s3.shrink(1);
+		s4.shrink(1);
+		s5.shrink(1);
+		s6.shrink(1);
 	}
 
 	public void setInventorySlots(ItemStack s, ItemStack s1, ItemStack s2, ItemStack s3, ItemStack s4, ItemStack s5, ItemStack s6) {
