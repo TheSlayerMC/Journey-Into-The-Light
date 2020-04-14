@@ -15,6 +15,9 @@ public class CloudiaAltarRoom1 extends CloudiaZoneBase {
 
 	@Override
 	public boolean generate(CloudiaChunkPrimer worldIn, Random rand, int i, int j, int k) {
+		//int i = x - 1;
+		//int j = y + 0;
+		//int k = z;
 		this.setBlock(worldIn, i + 0, j + 0, k + 0, Blocks.AIR);
 		this.setBlock(worldIn, i + 0, j + 0, k + 1, Blocks.AIR);
 		this.setBlock(worldIn, i + 0, j + 0, k + 2, Blocks.AIR);
