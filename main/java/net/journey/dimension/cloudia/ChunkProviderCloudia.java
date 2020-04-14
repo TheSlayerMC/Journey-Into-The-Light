@@ -115,11 +115,11 @@ public class ChunkProviderCloudia implements IChunkGenerator {
 			bridges[random.nextInt(bridges.length)].generate(cloudiaChunk, random, 0, secondLayer, 0);
 
 		//figure out what height to fill with air and how often, or just scrap the idea
-		int emptyRarity = 60;
-		if(random.nextInt(hallwayRarity) == 0)
+		int emptyRarity = 20;
+		if(random.nextInt(emptyRarity) == 0)
 			emptyChunk.generate(cloudiaChunk, random, 0, bottomLayer, 0, 12);
 
-		if(random.nextInt(hallwayRarity) == 0)
+		if(random.nextInt(emptyRarity) == 0)
 			emptyChunk.generate(cloudiaChunk, random, 0, secondLayer, 0, 15);
 		
 		//These rooms need to be generated last
