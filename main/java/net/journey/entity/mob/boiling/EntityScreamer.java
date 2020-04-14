@@ -64,7 +64,7 @@ public class EntityScreamer extends EntityModMob {
 		if (rand.nextInt(10) == 0)
 			dropItem(JourneyItems.boilingSkull, 1);
 		if (rand.nextInt(3) == 0)
-			dropItem(JourneyItems.boilPowder, rand.nextInt(6));
+			dropItem(JourneyItems.boilPowder, 3);
 		if (rand.nextInt(35) == 0)
 			dropItem(JourneyItems.sizzlingEye, 1);
 		super.dropFewItems(b, j);

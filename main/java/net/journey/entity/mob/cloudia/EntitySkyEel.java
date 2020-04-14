@@ -57,8 +57,8 @@ public class EntitySkyEel extends EntityModFlying {
 
 	@Override
 	protected void dropFewItems(boolean b, int j) {
-		if (rand.nextInt(1) == 0) dropItem(JourneyItems.fluffyFeather, rand.nextInt(4));
-		if (rand.nextInt(10) == 0) dropItem(JourneyItems.cloudiaOrb, rand.nextInt(4));
+		if (rand.nextInt(1) == 0) dropItem(JourneyItems.fluffyFeather, 2);
+		if (rand.nextInt(10) == 0) dropItem(JourneyItems.cloudiaOrb, 1);
 		super.dropFewItems(b, j);
 	}
 

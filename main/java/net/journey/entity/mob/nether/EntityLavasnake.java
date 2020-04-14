@@ -55,11 +55,11 @@ public class EntityLavasnake extends EntityModFlying {
 	@Override
 	protected void dropFewItems(boolean b, int j) {
 		if (rand.nextInt(1) == 0)
-			dropItem(JourneyConsumables.snakeFlesh, rand.nextInt(3));
+			dropItem(JourneyConsumables.snakeFlesh, 2);
 		if (rand.nextInt(3) == 0)
-			dropItem(JourneyItems.blood, rand.nextInt(2));
+			dropItem(JourneyItems.blood, 2);
 		if (rand.nextInt(3) == 0)
-			dropItem(JourneyItems.snakeSkin, rand.nextInt(3));
+			dropItem(JourneyItems.snakeSkin, 2);
 		super.dropFewItems(b, j);
 	}
 

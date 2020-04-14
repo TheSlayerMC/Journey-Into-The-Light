@@ -76,8 +76,8 @@ public class EntityReaper extends EntityModMob {
 	
 	@Override
 	protected void dropFewItems(boolean b, int j) {
-		if(rand.nextInt(5) == 0) dropItem(JourneyItems.withicDust, rand.nextInt(3));
-		if(rand.nextInt(15) == 0) dropItem(JourneyItems.lostSoul, rand.nextInt(2));
+		if(rand.nextInt(5) == 0) dropItem(JourneyItems.withicDust, 2);
+		if(rand.nextInt(15) == 0) dropItem(JourneyItems.lostSoul, 1);
 		super.dropFewItems(b, j);
 	}
 

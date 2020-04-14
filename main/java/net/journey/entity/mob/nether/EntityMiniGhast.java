@@ -68,7 +68,7 @@ public class EntityMiniGhast extends EntityModFlying {
 	@Override
 	protected void dropFewItems(boolean b, int j) {
 		if (rand.nextInt(1) == 0)
-			dropItem(JourneyConsumables.flamingGhastTentacle, rand.nextInt(3));
+			dropItem(JourneyConsumables.flamingGhastTentacle, 2);
 		super.dropFewItems(b, j);
 	}
 

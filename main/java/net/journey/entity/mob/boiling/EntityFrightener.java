@@ -47,7 +47,7 @@ public class EntityFrightener extends EntityModMob{
 
 	@Override
 	protected SoundEvent getDeathSound() {
-		return JourneySounds.BIRD_DEATH;
+		return JourneySounds.CALCIA_HURT;
 	}
 	
     @Override
@@ -65,7 +65,7 @@ public class EntityFrightener extends EntityModMob{
 	
 	@Override
 	public Item getItemDropped() {
-		return null;
+		return JourneyItems.boilPowder;
 
 	}
 	
@@ -73,8 +73,7 @@ public class EntityFrightener extends EntityModMob{
 	protected void dropFewItems(boolean b, int j) {
 		Item it = getItemDropped();
 		this.dropItem(it, 1);
-		if(rand.nextInt(14) == 0) dropItem(JourneyItems.boilPowder, rand.nextInt(3));
-		if(rand.nextInt(45) == 0) dropItem(JourneyItems.sizzlingEye, rand.nextInt(4));
+		if(rand.nextInt(20) == 0) dropItem(JourneyItems.sizzlingEye, 1);
 		super.dropFewItems(b, j); 
 		}
 

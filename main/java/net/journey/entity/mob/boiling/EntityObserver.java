@@ -62,9 +62,9 @@ public class EntityObserver extends EntityModMob {
 	@Override
 	protected void dropFewItems(boolean b, int j) {
 		if (rand.nextInt(10) == 0)
-			dropItem(JourneyItems.hellcrustIngot, rand.nextInt(3));
+			dropItem(JourneyItems.hellcrustIngot, 2);
 		if (rand.nextInt(3) == 0)
-			dropItem(JourneyItems.boilPowder, rand.nextInt(8));
+			dropItem(JourneyItems.boilPowder, 3);
 		if (rand.nextInt(35) == 0)
 			dropItem(JourneyItems.sizzlingEye, 1);
 		super.dropFewItems(b, j);

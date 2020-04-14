@@ -87,14 +87,10 @@ public class EntityWitherspine extends EntityModMob {
 	@Override
 	protected void dropFewItems(boolean b, int j) {
 		if(rand.nextInt(5) == 0) dropItem(JourneyItems.withicDust, 1);
-		super.dropFewItems(b, j);
 		if(rand.nextInt(4) == 0) dropItem(JourneyItems.blood, 1);
-		super.dropFewItems(b, j);
 		if(rand.nextInt(6) == 0) dropItem(JourneyItems.withicDust, 2);
-		super.dropFewItems(b, j);
-		if(rand.nextInt(22) == 0) dropItem(JourneyItems.withicSpine, 1);
-		super.dropFewItems(b, j);
-		if(rand.nextInt(33) == 0) dropItem(JourneyItems.withicSpine, 2);
+		if(rand.nextInt(15) == 0) dropItem(JourneyItems.withicSpine, 1);
+		if(rand.nextInt(30) == 0) dropItem(JourneyItems.withicSpine, 2);
 		super.dropFewItems(b, j);
 	}
 

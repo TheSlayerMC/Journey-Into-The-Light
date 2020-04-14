@@ -44,8 +44,8 @@ public class EntityHellbot extends EntityModMob {
 	
 	@Override
 	protected void dropFewItems(boolean b, int j) {
-		if(rand.nextInt(3) == 0) dropItem(JourneyItems.flamingSpring, rand.nextInt(2));
-		if(rand.nextInt(20) == 0) dropItem(JourneyItems.flamingSprocket, rand.nextInt(2));
+		if(rand.nextInt(3) == 0) dropItem(JourneyItems.flamingSpring, 2);
+		if(rand.nextInt(20) == 0) dropItem(JourneyItems.flamingSprocket, 1);
 		super.dropFewItems(b, j);
 	}
 

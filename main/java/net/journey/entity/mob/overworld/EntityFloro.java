@@ -151,7 +151,7 @@ public class EntityFloro extends EntityModMob implements IRangedAttackMob {
 	
 	@Override
 	protected void dropFewItems(boolean b, int j) {
-		if(rand.nextInt(16) == 0) dropItem(JourneyConsumables.floroPedal, rand.nextInt(3));
+		if(rand.nextInt(12) == 0) dropItem(JourneyConsumables.floroPedal, 2);
 		if(rand.nextInt(55) == 0) dropItem(JourneyArmory.hoeOfEternalLife, 1);
 		super.dropFewItems(b, j);
 	

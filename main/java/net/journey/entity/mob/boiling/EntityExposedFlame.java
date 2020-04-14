@@ -63,7 +63,7 @@ public class EntityExposedFlame extends EntityModMob{
 	
 	@Override
 	public Item getItemDropped() {
-		return null;
+		return JourneyItems.boilPowder;
 	}
 	
 	@Override
@@ -75,8 +75,7 @@ public class EntityExposedFlame extends EntityModMob{
 	protected void dropFewItems(boolean b, int j) {
 		Item it = getItemDropped();
 		this.dropItem(it, 1);
-		if(rand.nextInt(14) == 0) dropItem(JourneyItems.boilPowder, rand.nextInt(4));
-		if(rand.nextInt(35) == 0) dropItem(JourneyItems.blazingFireball, 1);
+		if(rand.nextInt(20) == 0) dropItem(JourneyItems.blazingFireball, 1);
 		super.dropFewItems(b, j); 
 		}
 	}
