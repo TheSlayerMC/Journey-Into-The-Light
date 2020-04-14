@@ -3,6 +3,7 @@ package net.journey.dimension.cloudia;
 import net.journey.JourneyBlocks;
 import net.journey.dimension.cloudia.gen.*;
 import net.journey.dimension.cloudia.zone.CloudiaAltar;
+import net.journey.dimension.cloudia.zone.CloudiaAltarRoom1;
 import net.journey.dimension.cloudia.zone.CloudiaBridgeAll;
 import net.journey.dimension.cloudia.zone.CloudiaBridgeEW;
 import net.journey.dimension.cloudia.zone.CloudiaBridgeNS;
@@ -80,9 +81,10 @@ public class ChunkProviderCloudia implements IChunkGenerator {
 
 		emptyChunk = new CloudiaEmptyChunk();
 		
-		toprooms = new ArrayList(1);
+		toprooms = new ArrayList(2);
 		toprooms.add(new CloudiaHouse1());
-		
+		toprooms.add(new CloudiaAltarRoom1());
+
 		bridges = new CloudiaZoneBase[] {new CloudiaBridgeAll()/*, new CloudiaBridgeNS(), new CloudiaBridgeEW()*/};
 		this.chunkTileEntityMap = new HashMap();
     }
