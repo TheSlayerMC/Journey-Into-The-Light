@@ -181,14 +181,13 @@ public class WorldGenJourney implements IWorldGenerator {
 		case 1:
 			generateEnd(w, r, chunkX * 16, chunkZ * 16);
 		}
-		if (dim == Config.boil) generateBoilingPoint(w, r, chunkX * 16, chunkZ * 16);
-		if (dim == Config.depths) generateDepths(w, r, chunkX * 16, chunkZ * 16);
-		if (dim == Config.euca) generateEuca(w, r, chunkX * 16, chunkZ * 16);
-		if (dim == Config.frozen) generateFrozen(w, r, chunkX * 16, chunkZ * 16);
-		if (dim == Config.corba) generateCorba(w, r, chunkX * 16, chunkZ * 16);
-		if (dim == Config.cloudia) generateCloudia(w, r, chunkX * 16, chunkZ * 16);
+		if(dim == Config.boil) generateBoilingPoint(w, r, chunkX * 16, chunkZ * 16);
+		if(dim == Config.depths) generateDepths(w, r, chunkX * 16, chunkZ * 16);
+		if(dim == Config.euca) generateEuca(w, r, chunkX * 16, chunkZ * 16);
+		if(dim == Config.frozen) generateFrozen(w, r, chunkX * 16, chunkZ * 16);
+		if(dim == Config.corba) generateCorba(w, r, chunkX * 16, chunkZ * 16);
+		if(dim == Config.cloudia) generateCloudia(w, r, chunkX * 16, chunkZ * 16);
 		//if(dim == Config.terrania) generateTerrania(w, r, chunkX * 16, chunkZ * 16);
-		int i;
 	}
 
 	public void generateNether(World w, Random r, int chunkX, int chunkZ) {

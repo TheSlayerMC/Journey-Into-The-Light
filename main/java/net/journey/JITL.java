@@ -25,9 +25,6 @@ public class JITL {
 
 	@SidedProxy(clientSide = "net.journey.proxy.ClientProxy", serverSide = "net.journey.proxy.CommonProxy")
 	public static CommonProxy proxy;
-
-	public static final Enchantment hotTouch = new EnchantmentHotTouch();
-	public static final Enchantment waterWalk = new EnchantmentWaterWalk();
 			
 	@EventHandler
 	public static void preInit(FMLPreInitializationEvent event) {

@@ -31,19 +31,6 @@ public class PlayerEvent {
 	@SubscribeEvent
 	public void onBlockHarvested(HarvestDropsEvent event) {
 		EntityPlayer p = event.getHarvester();
-		boolean isWorking = false;
-		if(hasItemEnchantment(JITL.hotTouch, p)) isWorking = true;
-		if(isWorking){
-			if(event.getHarvester() != null && event.getHarvester() instanceof EntityPlayer && event.getHarvester().getHeldItemMainhand() != null) {
-				if(!event.isSilkTouching()){
-					ItemStack stack = FurnaceRecipes.instance().getSmeltingResult(new ItemStack(event.getState().getBlock()));
-					if(stack != null && event.getState().getBlock() != Blocks.REDSTONE_ORE && event.getState().getBlock() != Blocks.LAPIS_ORE && event.getState().getBlock() != Blocks.LAPIS_ORE) {
-						event.getDrops().clear();
-						event.getDrops().add(stack.copy());
-					}
-				}
-			}
-		}
 		if(event.getHarvester() != null && event.getHarvester() instanceof EntityPlayer && event.getHarvester().getHeldItemMainhand() != null && event.getHarvester().getHeldItemMainhand().getItem() == JourneyArmory.multiToolOfEternalSmelting) {
 			if(!event.isSilkTouching()){
 				ItemStack stack = FurnaceRecipes.instance().getSmeltingResult(new ItemStack(event.getState().getBlock()));
@@ -86,34 +73,4 @@ public class PlayerEvent {
 			((BlockModBush)JourneyBlocks.sizzleberryBush)
 		}
 	} */
-
-	@SubscribeEvent
-	public void onTick(TickEvent.PlayerTickEvent event) {
-		EntityPlayer player = event.player;
-		int i = MathHelper.floor(player.posX);
-		int j = MathHelper.floor(player.posY);
-		int k = MathHelper.floor(player.posZ);
-
-		if (hasArmorEnchantment(JITL.waterWalk, player) && player.world.getBlockState(new BlockPos(i, j, k)).getMaterial() == Material.WATER && player.motionY < 0) {
-			player.motionY = Minecraft.getMinecraft().gameSettings.keyBindJump.isKeyDown() ? 0.5D : 0;
-		}
-	}
-
-	public static int getItemEnchantment(Enchantment en, EntityLivingBase e) {
-		if(en != null && e != null) return EnchantmentHelper.getEnchantmentLevel(en, e.getHeldItemMainhand());
-		else return 0;
-	}
-
-	public static boolean hasItemEnchantment(Enchantment en, EntityLivingBase e) {
-		return getItemEnchantment(en, e) > 0;
-	}
-
-	public static int getArmorEnchantment(Enchantment en, EntityLivingBase e) {
-		if(en != null && e != null) return EnchantmentHelper.getEnchantmentLevel(en, e.getHeldItemMainhand());
-		else return 0;
-	}
-
-	public static boolean hasArmorEnchantment(Enchantment en, EntityLivingBase e) {
-		return getArmorEnchantment(en, e) > 0;
-	}
 }

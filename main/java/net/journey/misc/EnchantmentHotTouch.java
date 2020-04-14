@@ -1,7 +1,9 @@
 package net.journey.misc;
 
+import net.journey.JourneyEnchantments;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
+import net.minecraft.init.Enchantments;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
@@ -10,10 +12,11 @@ import net.slayer.api.SlayerAPI;
 
 public class EnchantmentHotTouch extends Enchantment {
 
-	public EnchantmentHotTouch(EntityEquipmentSlot ... slot) {
-		super(Rarity.RARE, EnumEnchantmentType.DIGGER, slot);
+	public EnchantmentHotTouch() {
+		super(Rarity.RARE, EnumEnchantmentType.DIGGER, new EntityEquipmentSlot[] {EntityEquipmentSlot.MAINHAND});
 		this.setName("Hot Touch");
 		setRegistryName(new ResourceLocation(SlayerAPI.MOD_ID, "Hot Touch"));
+		JourneyEnchantments.enchantments.add(this);
 	}
 
 	@Override
@@ -38,7 +41,6 @@ public class EnchantmentHotTouch extends Enchantment {
     
     @Override
     public boolean canApplyTogether(Enchantment e) {
-        //return super.canApplyTogether(e) && e.effectId != this.effectId && e.effectId != e.fortune.effectId && e.effectId != e.silkTouch.effectId;
-    	return true;
+        return super.canApplyTogether(e) && e != this && e != Enchantments.FORTUNE && e != Enchantments.SILK_TOUCH;
     }
 }

@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.journey.blocks.tileentity.TileEntityHandler;
-import net.journey.blocks.tileentity.TileEntitySummoningTable;
 import net.journey.client.IHasModel;
 import net.journey.util.EntityRegistry;
 import net.minecraft.block.Block;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.init.Enchantments;
 import net.minecraft.item.Item;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
@@ -56,6 +56,12 @@ public class Registrys {
             event.getRegistry().register(sound);
         }
         SOUNDS.clear();
+    }
+    
+    @SubscribeEvent
+    public void registerEnchantments(RegistryEvent.Register<Enchantment> event) {
+    	for(int i = 0; i < JourneyEnchantments.enchantments.size(); i++)
+			event.getRegistry().registerAll(JourneyEnchantments.enchantments.get(i));
     }
     
     @SubscribeEvent
