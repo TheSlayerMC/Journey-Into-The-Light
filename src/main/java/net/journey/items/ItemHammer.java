@@ -1,7 +1,5 @@
 package net.journey.items;
 
-import java.util.List;
-
 import net.journey.JourneyItems;
 import net.journey.JourneySounds;
 import net.journey.JourneyTabs;
@@ -24,68 +22,71 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.SlayerAPI;
 
+import java.util.List;
+
 public class ItemHammer extends ItemSword {
 
-	protected int usage;
-	protected int damage;
-	protected boolean essence, unbreakable;
-	protected Class<? extends EntityBasicProjectile> projectile;
-	protected JourneyToolMaterial mat;
+    protected int usage;
+    protected int damage;
+    protected boolean essence, unbreakable;
+    protected Class<? extends EntityBasicProjectile> projectile;
+    protected JourneyToolMaterial mat;
 
-	public ItemHammer(String name, String f, JourneyToolMaterial toolMaterial, boolean durability, Class<? extends EntityBasicProjectile> projectile, int dam, int magic, int uses) {
-		super(toolMaterial.getToolMaterial());
-		this.projectile=projectile;
-		damage = dam;
-		usage = magic;
-		setMaxDamage(uses);
-		setMaxStackSize(1);
-		LangRegistry.addItem(name, f);
-		setTranslationKey(name);
-		mat = toolMaterial;
-		setCreativeTab(JourneyTabs.weapons);
-		JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
-		JourneyItems.items.add(this);
-		setRegistryName(SlayerAPI.MOD_ID, name);
-	}
+    public ItemHammer(String name, String f, JourneyToolMaterial toolMaterial, boolean durability, Class<? extends EntityBasicProjectile> projectile, int dam, int magic, int uses) {
+        super(toolMaterial.getToolMaterial());
+        this.projectile = projectile;
+        damage = dam;
+        usage = magic;
+        setMaxDamage(uses);
+        setMaxStackSize(1);
+        LangRegistry.addItem(name, f);
+        setTranslationKey(name);
+        mat = toolMaterial;
+        setCreativeTab(JourneyTabs.weapons);
+        JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
+        JourneyItems.items.add(this);
+        setRegistryName(SlayerAPI.MOD_ID, name);
+    }
 
-	@Override
-	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand handIn) {
-		ItemStack stack = player.getHeldItem(handIn);
-		IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
-		if(!world.isRemote && mana.useEssence(usage)) {
-			JourneySounds.playSound(JourneySounds.HAMMER, world, player);
-			if(!unbreakable) stack.damageItem(1, player);
-			try {
-				EntityBasicProjectile shoot = projectile.getConstructor(World.class, EntityLivingBase.class, float.class).newInstance(world, player, damage);
-				shoot.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 3.5F, 0.2F);
-				world.spawnEntity(shoot);
-				stack.damageItem(1, player);
-				return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);	
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		return new ActionResult<ItemStack>(EnumActionResult.FAIL, stack);	
-	}
+    @Override
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand handIn) {
+        ItemStack stack = player.getHeldItem(handIn);
+        IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
+        if (!world.isRemote && mana.useEssence(usage)) {
+            JourneySounds.playSound(JourneySounds.HAMMER, world, player);
+            if (!unbreakable) stack.damageItem(1, player);
+            try {
+                EntityBasicProjectile shoot = projectile.getConstructor(World.class, EntityLivingBase.class, float.class).newInstance(world, player, damage);
+                shoot.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 3.5F, 0.2F);
+                world.spawnEntity(shoot);
+                stack.damageItem(1, player);
+                return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return new ActionResult<ItemStack>(EnumActionResult.FAIL, stack);
+    }
 
-	@Override
-	public boolean isEnchantable(ItemStack stack) {
-		return true;
-	}
+    @Override
+    public boolean isEnchantable(ItemStack stack) {
+        return true;
+    }
 
-	@Override
-	public boolean getIsRepairable(ItemStack i, ItemStack i1) {
-		boolean canRepair = mat.getRepairItem() != null;
-		if(canRepair) return mat.getRepairItem() == i1.getItem() ? true : super.getIsRepairable(i, i1);
-		return super.getIsRepairable(i, i1);
-	}
+    @Override
+    public boolean getIsRepairable(ItemStack i, ItemStack i1) {
+        boolean canRepair = mat.getRepairItem() != null;
+        if (canRepair) return mat.getRepairItem() == i1.getItem() || super.getIsRepairable(i, i1);
+        return super.getIsRepairable(i, i1);
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack item, World worldIn, List<String> l, ITooltipFlag flagIn) {		
-		if(item.getMaxDamage() != -1) l.add(item.getMaxDamage() - item.getItemDamage() + " " + LangHelper.getUsesRemaining());
-		else l.add(SlayerAPI.Colour.GREEN + LangHelper.getInfiniteUses());
-		LangHelper.useEssence(usage);
-		l.add(SlayerAPI.Colour.DARK_GREEN + "+" + LangHelper.rangedDamage(damage));
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack item, World worldIn, List<String> l, ITooltipFlag flagIn) {
+        if (item.getMaxDamage() != -1)
+            l.add(item.getMaxDamage() - item.getItemDamage() + " " + LangHelper.getUsesRemaining());
+        else l.add(SlayerAPI.Colour.GREEN + LangHelper.getInfiniteUses());
+        LangHelper.useEssence(usage);
+        l.add(SlayerAPI.Colour.DARK_GREEN + "+" + LangHelper.rangedDamage(damage));
+    }
 }

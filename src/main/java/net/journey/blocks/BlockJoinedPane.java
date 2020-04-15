@@ -1,7 +1,5 @@
 package net.journey.blocks;
 
-import java.util.Random;
-
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 import net.minecraft.util.BlockRenderLayer;
@@ -11,13 +9,15 @@ import net.slayer.api.EnumMaterialTypes;
 import net.slayer.api.SlayerAPI;
 import net.slayer.api.block.BlockMod;
 
+import java.util.Random;
+
 public class BlockJoinedPane extends BlockMod {
 
-	private String[] textures = new String[16];
-	//private IIcon[] icons = new IIcon[16];
+    private String[] textures = new String[16];
+    //private IIcon[] icons = new IIcon[16];
 
-	public BlockJoinedPane(String name, String f) {
-		super(EnumMaterialTypes.GLASS, name + "Pane", f, 0.2F);
+    public BlockJoinedPane(String name, String f) {
+        super(EnumMaterialTypes.GLASS, name + "Pane", f, 0.2F);
         textures[0] = SlayerAPI.PREFIX + "glass/" + name + "/glass";
         textures[1] = SlayerAPI.PREFIX + "glass/" + name + "/glass_1_d";
         textures[2] = SlayerAPI.PREFIX + "glass/" + name + "/glass_1_u";
@@ -34,7 +34,7 @@ public class BlockJoinedPane extends BlockMod {
         textures[13] = SlayerAPI.PREFIX + "glass/" + name + "/glass_3_l";
         textures[14] = SlayerAPI.PREFIX + "glass/" + name + "/glass_3_r";
         textures[15] = SlayerAPI.PREFIX + "glass/" + name + "/glass_4";
-	}
+    }
 	
 	/*@Override
     public void addCollisionBoxesToList(World p_149743_1_, int p_149743_2_, int p_149743_3_, int p_149743_4_, AxisAlignedBB p_149743_5_, List p_149743_6_, Entity p_149743_7_) {
@@ -266,35 +266,35 @@ public class BlockJoinedPane extends BlockMod {
 		return icons[0];
 	}*/
 
-	@Override
-	public boolean isOpaqueCube(IBlockState state) {
-		return false;
-	}
-	
-	@Override
-	public BlockRenderLayer getRenderLayer() {
-		return BlockRenderLayer.TRANSLUCENT;
-	}
-	
-	@Override
-	public boolean isFullCube(IBlockState state) {
-		return false;
-	}
-	
-	@Override
-	protected boolean canSilkHarvest() {
-		return true;
-	}
-	
-	@Override
-	public Item getItemDropped(IBlockState par1, Random par2, int par3) {
-		return null;
-	}
-	
-	@Override
-	public boolean canPlaceTorchOnTop(IBlockState state, IBlockAccess world, BlockPos pos) {
-		return true;
-	}
+    @Override
+    public boolean isOpaqueCube(IBlockState state) {
+        return false;
+    }
+
+    @Override
+    public BlockRenderLayer getRenderLayer() {
+        return BlockRenderLayer.TRANSLUCENT;
+    }
+
+    @Override
+    public boolean isFullCube(IBlockState state) {
+        return false;
+    }
+
+    @Override
+    protected boolean canSilkHarvest() {
+        return true;
+    }
+
+    @Override
+    public Item getItemDropped(IBlockState par1, Random par2, int par3) {
+        return null;
+    }
+
+    @Override
+    public boolean canPlaceTorchOnTop(IBlockState state, IBlockAccess world, BlockPos pos) {
+        return true;
+    }
 	
     /*@Override
     public boolean shouldSideBeRendered (IBlockAccess w, int x, int y, int z, int s) {

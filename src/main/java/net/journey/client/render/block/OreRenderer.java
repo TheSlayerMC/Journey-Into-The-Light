@@ -1,7 +1,7 @@
 package net.journey.client.render.block;
 
 public class OreRenderer {
-	
+
 }
 	/*implements ISimpleBlockRenderingHandler {
 

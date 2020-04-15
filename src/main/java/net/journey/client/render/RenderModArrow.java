@@ -13,12 +13,11 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.SlayerAPI;
-
 import org.lwjgl.opengl.GL11;
 
 @SideOnly(Side.CLIENT)
 public class RenderModArrow extends Render {
-	
+
     private static final ResourceLocation arrowTextures = new ResourceLocation(SlayerAPI.MOD_ID, "textures/projectile/essenceArrow.png");
 
     public RenderModArrow() {
@@ -27,9 +26,9 @@ public class RenderModArrow extends Render {
 
     public void doRender(EntityArrow p_180551_1_, double p_180551_2_, double p_180551_4_, double p_180551_6_, float p_180551_8_, float p_180551_9_) {
         this.bindEntityTexture(p_180551_1_);
-    	GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         GlStateManager.pushMatrix();
-        GlStateManager.translate((float)p_180551_2_, (float)p_180551_4_, (float)p_180551_6_);
+        GlStateManager.translate((float) p_180551_2_, (float) p_180551_4_, (float) p_180551_6_);
         GlStateManager.rotate(p_180551_1_.prevRotationYaw + (p_180551_1_.rotationYaw - p_180551_1_.prevRotationYaw) * p_180551_9_ - 90.0F, 0.0F, 1.0F, 0.0F);
         GlStateManager.rotate(p_180551_1_.prevRotationPitch + (p_180551_1_.rotationPitch - p_180551_1_.prevRotationPitch) * p_180551_9_, 0.0F, 0.0F, 1.0F);
         Tessellator tessellator = Tessellator.getInstance();
@@ -47,8 +46,7 @@ public class RenderModArrow extends Render {
         GlStateManager.enableRescaleNormal();
         float f11 = p_180551_1_.arrowShake - p_180551_9_;
 
-        if (f11 > 0.0F)
-        {
+        if (f11 > 0.0F) {
             float f12 = -MathHelper.sin(f11 * 3.0F) * f11;
             GlStateManager.rotate(f12, 0.0F, 0.0F, 1.0F);
         }
@@ -71,8 +69,7 @@ public class RenderModArrow extends Render {
         bufferbuilder.pos(-7.0D, -2.0D, -2.0D);
         tessellator.draw();
 
-        for (int i = 0; i < 4; ++i)
-        {
+        for (int i = 0; i < 4; ++i) {
             GlStateManager.rotate(90.0F, 1.0F, 0.0F, 0.0F);
             GL11.glNormal3f(0.0F, 0.0F, f10);
             bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
@@ -88,20 +85,17 @@ public class RenderModArrow extends Render {
         super.doRender(p_180551_1_, p_180551_2_, p_180551_4_, p_180551_6_, p_180551_8_, p_180551_9_);
     }
 
-    protected ResourceLocation getEntityTexture(EntityArrow p_180550_1_)
-    {
+    protected ResourceLocation getEntityTexture(EntityArrow p_180550_1_) {
         return arrowTextures;
     }
 
     @Override
-	protected ResourceLocation getEntityTexture(Entity p_110775_1_)
-    {
-        return this.getEntityTexture((EntityArrow)p_110775_1_);
+    protected ResourceLocation getEntityTexture(Entity p_110775_1_) {
+        return this.getEntityTexture((EntityArrow) p_110775_1_);
     }
 
     @Override
-	public void doRender(Entity p_76986_1_, double p_76986_2_, double p_76986_4_, double p_76986_6_, float p_76986_8_, float p_76986_9_)
-    {
-        this.doRender((EntityArrow)p_76986_1_, p_76986_2_, p_76986_4_, p_76986_6_, p_76986_8_, p_76986_9_);
+    public void doRender(Entity p_76986_1_, double p_76986_2_, double p_76986_4_, double p_76986_6_, float p_76986_8_, float p_76986_9_) {
+        this.doRender((EntityArrow) p_76986_1_, p_76986_2_, p_76986_4_, p_76986_6_, p_76986_8_, p_76986_9_);
     }
 }

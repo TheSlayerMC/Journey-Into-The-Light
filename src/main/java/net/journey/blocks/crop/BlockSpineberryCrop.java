@@ -8,27 +8,27 @@ import net.slayer.api.block.BlockModCrop;
 
 public class BlockSpineberryCrop extends BlockModCrop {
 
-	public BlockSpineberryCrop(String name) {
-		super(name);
-	}
+    public BlockSpineberryCrop(String name) {
+        super(name);
+    }
 
-	@Override
-	public PropertyInteger getAge() {
-		return PropertyInteger.create("age", 0, 6);
-	}
-	
-	@Override
-	public Item getSeed() {
-		return JourneyCrops.spineberrySeeds;
-	}
+    @Override
+    public PropertyInteger getAge() {
+        return PropertyInteger.create("age", 0, 6);
+    }
 
-	@Override
-	public Item getCrop() {
-		return JourneyConsumables.spineberries;
-	}
+    @Override
+    public Item getSeed() {
+        return JourneyCrops.spineberrySeeds;
+    }
 
-	@Override
-	public int getStages() {
-		return 6;
-	}
+    @Override
+    public Item getCrop() {
+        return JourneyConsumables.spineberries;
+    }
+
+    @Override
+    public int getStages() {
+        return 6;
+    }
 }

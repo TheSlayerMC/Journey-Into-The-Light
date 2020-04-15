@@ -12,21 +12,18 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.SlayerAPI;
 
 @SideOnly(Side.CLIENT)
-public class RenderShiverwolf extends RenderLiving<EntityShiverwolf>
-{
+public class RenderShiverwolf extends RenderLiving<EntityShiverwolf> {
     private static final ResourceLocation wolfTextures = new ResourceLocation(SlayerAPI.PREFIX + "textures/models/mobs/shiverwolf.png");
     private static final ResourceLocation tamedWolfTextures = new ResourceLocation(SlayerAPI.PREFIX + "textures/models/mobs/shiverwolf_tamed.png");
     private static final ResourceLocation anrgyWolfTextures = new ResourceLocation(SlayerAPI.PREFIX + "textures/models/mobs/shiverwolf_angry.png");
 
-    public RenderShiverwolf(RenderManager renderManagerIn, ModelBase modelBaseIn, float shadowSizeIn)
-    {
+    public RenderShiverwolf(RenderManager renderManagerIn, ModelBase modelBaseIn, float shadowSizeIn) {
         super(renderManagerIn, modelBaseIn, shadowSizeIn);
         this.addLayer(new LayerShiverwolfCollar(this));
     }
 
     @Override
-    protected float handleRotationFloat(EntityShiverwolf livingBase, float partialTicks)
-    {
+    protected float handleRotationFloat(EntityShiverwolf livingBase, float partialTicks) {
         return livingBase.getTailRotation();
     }
 

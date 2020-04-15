@@ -10,7 +10,7 @@ import net.slayer.api.EnumMaterialTypes;
 import net.slayer.api.block.BlockMod;
 
 public class BlockModLeavesBase extends BlockMod {
-	
+
     protected boolean fancyGraphics;
 
     protected BlockModLeavesBase(String name, String finalname, EnumMaterialTypes materialIn, boolean fancyGraphics) {
@@ -19,13 +19,13 @@ public class BlockModLeavesBase extends BlockMod {
     }
 
     @Override
-	public boolean isOpaqueCube(IBlockState state) {
+    public boolean isOpaqueCube(IBlockState state) {
         return false;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
-    	return !this.fancyGraphics && blockAccess.getBlockState(pos.offset(side)).getBlock() == this ? false : super.shouldSideBeRendered(blockState, blockAccess, pos, side);
+        return (this.fancyGraphics || blockAccess.getBlockState(pos.offset(side)).getBlock() != this) && super.shouldSideBeRendered(blockState, blockAccess, pos, side);
     }
 }

@@ -1,7 +1,5 @@
 package net.slayer.api.item;
 
-import java.util.List;
-
 import net.journey.JourneyItems;
 import net.journey.JourneyTabs;
 import net.journey.util.JourneyToolMaterial;
@@ -15,14 +13,16 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.SlayerAPI;
 
+import java.util.List;
+
 public class ItemModPickaxe extends ItemPickaxe {
-	
-	protected JourneyToolMaterial mat;
+
+    protected JourneyToolMaterial mat;
 
     public ItemModPickaxe(String name, String f, JourneyToolMaterial tool) {
         super(tool.getToolMaterial());
         LangRegistry.addItem(name, f);
-		mat = tool;
+        mat = tool;
         setTranslationKey(name);
         setCreativeTab(JourneyTabs.tools);
         setHarvestLevel("pickaxe", tool.getHarvestLevel());
@@ -30,24 +30,25 @@ public class ItemModPickaxe extends ItemPickaxe {
         JourneyItems.items.add(this);
         setRegistryName(SlayerAPI.MOD_ID, name);
     }
-    
+
     @Override
     public boolean isEnchantable(ItemStack stack) {
-    	return true;
+        return true;
     }
-    
-	@Override
-	public boolean getIsRepairable(ItemStack i, ItemStack i1) {
-		boolean canRepair = mat.getRepairItem() != null;
-		if(canRepair) return mat.getRepairItem() == i1.getItem() ? true : super.getIsRepairable(i, i1);
-		return super.getIsRepairable(i, i1);
-	}
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack item, World player, List<String> infoList, ITooltipFlag par4) {
-		infoList.add(SlayerAPI.Colour.BLUE + LangHelper.getEfficiency() + ": " + toolMaterial.getEfficiency());
-		if(item.getMaxDamage() != -1) infoList.add(item.getMaxDamage() - item.getItemDamage() + " " + LangHelper.getUsesRemaining());
-		else infoList.add(SlayerAPI.Colour.GREEN + LangHelper.getInfiniteUses());
-	}
+    @Override
+    public boolean getIsRepairable(ItemStack i, ItemStack i1) {
+        boolean canRepair = mat.getRepairItem() != null;
+        if (canRepair) return mat.getRepairItem() == i1.getItem() || super.getIsRepairable(i, i1);
+        return super.getIsRepairable(i, i1);
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack item, World player, List<String> infoList, ITooltipFlag par4) {
+        infoList.add(SlayerAPI.Colour.BLUE + LangHelper.getEfficiency() + ": " + toolMaterial.getEfficiency());
+        if (item.getMaxDamage() != -1)
+            infoList.add(item.getMaxDamage() - item.getItemDamage() + " " + LangHelper.getUsesRemaining());
+        else infoList.add(SlayerAPI.Colour.GREEN + LangHelper.getInfiniteUses());
+    }
 }

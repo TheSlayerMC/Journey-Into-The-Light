@@ -6,7 +6,7 @@ import net.slayer.api.entity.tileentity.container.ContainerModVillager;
 
 public class GuiMage extends GuiModVillager {
 
-	public GuiMage(ContainerModVillager container, IMerchant mer) {
-		super(container, mer, "Mage", "mage", true);
-	}
+    public GuiMage(ContainerModVillager container, IMerchant mer) {
+        super(container, mer, "Mage", "mage", true);
+    }
 }

@@ -1,11 +1,6 @@
 package net.journey.dimension.terrania;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 import net.journey.JourneyBlocks;
-import net.journey.dimension.cloudia.ChunkProviderCloudia;
 import net.journey.dimension.overworld.gen.WorldGenModFlower;
 import net.journey.dimension.terrania.gen.WorldGenHollowTree;
 import net.journey.dimension.terrania.gen.WorldGenTallTree;
@@ -13,9 +8,6 @@ import net.journey.dimension.terrania.gen.WorldGenTerranianLamp;
 import net.journey.dimension.terrania.gen.WorldGenTreeHut;
 import net.journey.dimension.terrania.gen.shroom.WorldGenMushroomDungeon;
 import net.journey.dimension.terrania.gen.shroom.WorldGenTerrashroom;
-import net.journey.dimension.terrania.gen.trees.WorldGenTerraniaBigTree1;
-import net.journey.dimension.terrania.gen.trees.WorldGenTerraniaBigTree2;
-import net.journey.dimension.terrania.gen.trees.WorldGenTerraniaBigTree3;
 import net.journey.dimension.terrania.gen.trees.WorldGenTerraniaSmallTree;
 import net.journey.dimension.terrania.gen.trees.WorldGenTerraniaTree;
 import net.minecraft.block.Block;
@@ -23,7 +15,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.IProgressUpdate;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -31,47 +22,27 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
-import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraft.world.gen.ChunkGeneratorSettings;
-import net.minecraft.world.gen.IChunkGenerator;
-import net.minecraft.world.gen.MapGenBase;
-import net.minecraft.world.gen.MapGenCaves;
-import net.minecraft.world.gen.MapGenRavine;
-import net.minecraft.world.gen.NoiseGenerator;
-import net.minecraft.world.gen.NoiseGeneratorOctaves;
-import net.minecraft.world.gen.NoiseGeneratorPerlin;
+import net.minecraft.world.gen.*;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.terraingen.TerrainGen;
-import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.slayer.api.worldgen.WorldGenAPI;
+
+import java.util.List;
+import java.util.Random;
 
 public class ChunkProviderTerrania implements IChunkGenerator {
 
-    private Random rand;
     private final WorldGenerator[] smalltrees = {
             new WorldGenTerraniaSmallTree()
     };
-
-    private NoiseGeneratorOctaves noiseGen1;
-    private NoiseGeneratorOctaves noiseGen2;
-    private NoiseGeneratorOctaves noiseGen3;
-    private NoiseGeneratorPerlin noiseGen4;
+    private final double[] da;
+    private final float[] parabolicField;
     public NoiseGeneratorOctaves noiseGen5;
     public NoiseGeneratorOctaves noiseGen6;
     public NoiseGeneratorOctaves mobSpawnerNoise;
-    private World worldObj;
-    private final double[] da;
-    private final float[] parabolicField;
-    private double[] stoneNoise;
-    private MapGenBase caveGenerator;
-    private MapGenBase ravineGenerator;
-    private Biome[] biomesForGeneration;
     double[] gen1;
     double[] gen2;
     double[] gen3;
     double[] gen4;
-
     WorldGenModFlower flower = new WorldGenModFlower(JourneyBlocks.terranianTallgrass, JourneyBlocks.terranianGrass);
     WorldGenModFlower flower1 = new WorldGenModFlower(JourneyBlocks.terramushroom, JourneyBlocks.terranianGrass);
     WorldGenModFlower flower2 = new WorldGenModFlower(JourneyBlocks.tallterramushroom, JourneyBlocks.terranianGrass);
@@ -80,6 +51,16 @@ public class ChunkProviderTerrania implements IChunkGenerator {
     WorldGenMushroomDungeon mushroomDungeon = new WorldGenMushroomDungeon();
     WorldGenTallTree tallTree = new WorldGenTallTree();
     WorldGenTerranianLamp lamp = new WorldGenTerranianLamp();
+    private Random rand;
+    private NoiseGeneratorOctaves noiseGen1;
+    private NoiseGeneratorOctaves noiseGen2;
+    private NoiseGeneratorOctaves noiseGen3;
+    private NoiseGeneratorPerlin noiseGen4;
+    private World worldObj;
+    private double[] stoneNoise;
+    private MapGenBase caveGenerator;
+    private MapGenBase ravineGenerator;
+    private Biome[] biomesForGeneration;
 
     public ChunkProviderTerrania(World worldIn, long p_i45636_2_) {
         this.stoneNoise = new double[256];
@@ -116,7 +97,7 @@ public class ChunkProviderTerrania implements IChunkGenerator {
     }
 
     public void setBlocksInChunk(int x, int z, ChunkPrimer p_180518_3_) {
-    	this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomesForGeneration(this.biomesForGeneration, x * 4 - 2, z * 4 - 2, 10, 10);
+        this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomesForGeneration(this.biomesForGeneration, x * 4 - 2, z * 4 - 2, 10, 10);
         this.generate(x * 4, 0, z * 4);
         for (int k = 0; k < 4; ++k) {
             int l = k * 5;
@@ -171,7 +152,7 @@ public class ChunkProviderTerrania implements IChunkGenerator {
 
     public void biomeBlocks(int x, int z, ChunkPrimer c, Biome[] b) {
         double d0 = 0.03125D;
-        this.stoneNoise = this.noiseGen4.getRegion(this.stoneNoise, (double) (x * 16), (double) (z * 16), 16, 16, d0 * 2.0D, d0 * 2.0D, 1.0D);
+        this.stoneNoise = this.noiseGen4.getRegion(this.stoneNoise, x * 16, z * 16, 16, 16, d0 * 2.0D, d0 * 2.0D, 1.0D);
         for (int k = 0; k < 16; ++k) {
             for (int l = 0; l < 16; ++l) {
                 generateBiomeTerrain(this.rand, c, x * 16 + k, z * 16 + l, this.stoneNoise[l + k * 16]);
@@ -238,98 +219,98 @@ public class ChunkProviderTerrania implements IChunkGenerator {
     }
 
     private void generate(int x, int y, int z) {
-    	 double d0 = 684.412D;
-         double d1 = 684.412D;
-         double d2 = 512.0D;
-         double d3 = 512.0D;
-         this.gen4 = this.noiseGen6.generateNoiseOctaves(this.gen4, x, z, 5, 5, 200.0D, 200.0D, 0.5D);
-         this.gen1 = this.noiseGen3.generateNoiseOctaves(this.gen1, x, y, z, 5, 33, 5, 8.555150000000001D, 4.277575000000001D, 8.555150000000001D);
-         this.gen2 = this.noiseGen1.generateNoiseOctaves(this.gen2, x, y, z, 5, 33, 5, 684.412D, 684.412D, 684.412D);
-         this.gen3 = this.noiseGen2.generateNoiseOctaves(this.gen3, x, y, z, 5, 33, 5, 684.412D, 684.412D, 684.412D);
-         boolean flag1 = false;
-         boolean flag = false;
-         int l = 0;
-         int i1 = 0;
-         double d4 = 8.5D;
+        double d0 = 684.412D;
+        double d1 = 684.412D;
+        double d2 = 512.0D;
+        double d3 = 512.0D;
+        this.gen4 = this.noiseGen6.generateNoiseOctaves(this.gen4, x, z, 5, 5, 200.0D, 200.0D, 0.5D);
+        this.gen1 = this.noiseGen3.generateNoiseOctaves(this.gen1, x, y, z, 5, 33, 5, 8.555150000000001D, 4.277575000000001D, 8.555150000000001D);
+        this.gen2 = this.noiseGen1.generateNoiseOctaves(this.gen2, x, y, z, 5, 33, 5, 684.412D, 684.412D, 684.412D);
+        this.gen3 = this.noiseGen2.generateNoiseOctaves(this.gen3, x, y, z, 5, 33, 5, 684.412D, 684.412D, 684.412D);
+        boolean flag1 = false;
+        boolean flag = false;
+        int l = 0;
+        int i1 = 0;
+        double d4 = 8.5D;
 
-         for (int j1 = 0; j1 < 5; ++j1) {
-             for (int k1 = 0; k1 < 5; ++k1) {
-                 float f = 0.0F;
-                 float f1 = 0.0F;
-                 float f2 = 0.0F;
-                 byte b0 = 2;
-                 Biome Biome = this.biomesForGeneration[j1 + 2 + (k1 + 2) * 10];
+        for (int j1 = 0; j1 < 5; ++j1) {
+            for (int k1 = 0; k1 < 5; ++k1) {
+                float f = 0.0F;
+                float f1 = 0.0F;
+                float f2 = 0.0F;
+                byte b0 = 2;
+                Biome Biome = this.biomesForGeneration[j1 + 2 + (k1 + 2) * 10];
 
-                 for (int l1 = -b0; l1 <= b0; ++l1) {
-                     for (int i2 = -b0; i2 <= b0; ++i2) {
-                         Biome Biome1 = this.biomesForGeneration[j1 + l1 + 2 + (k1 + i2 + 2) * 10];
-                         float f3 = 0.1F;
-                         float f4 = 0.125F;
+                for (int l1 = -b0; l1 <= b0; ++l1) {
+                    for (int i2 = -b0; i2 <= b0; ++i2) {
+                        Biome Biome1 = this.biomesForGeneration[j1 + l1 + 2 + (k1 + i2 + 2) * 10];
+                        float f3 = 0.1F;
+                        float f4 = 0.125F;
 
-                         float f5 = this.parabolicField[l1 + 2 + (i2 + 2) * 5] / (f3 + 2.0F);
+                        float f5 = this.parabolicField[l1 + 2 + (i2 + 2) * 5] / (f3 + 2.0F);
 
-                         f += f4 * f5 / 2;
-                         f1 += f3 * f5 / 2;
-                         f2 += f5 / 2;
-                     }
-                 }
+                        f += f4 * f5 / 2;
+                        f1 += f3 * f5 / 2;
+                        f2 += f5 / 2;
+                    }
+                }
 
-                 f /= f2;
-                 f1 /= f2;
-                 f = f * 0.9F + 0.1F;
-                 f1 = (f1 * 4.0F - 1.0F) / 8.0F;
-                 double d12 = this.gen4[i1] / 8000.0D;
+                f /= f2;
+                f1 /= f2;
+                f = f * 0.9F + 0.1F;
+                f1 = (f1 * 4.0F - 1.0F) / 8.0F;
+                double d12 = this.gen4[i1] / 8000.0D;
 
-                 if (d12 < 0.0D) {
-                     d12 = -d12 * 0.3D;
-                 }
+                if (d12 < 0.0D) {
+                    d12 = -d12 * 0.3D;
+                }
 
-                 d12 = d12 * 3.0D - 2.0D;
+                d12 = d12 * 3.0D - 2.0D;
 
-                 if (d12 < 0.0D) {
-                     d12 /= 2.0D;
+                if (d12 < 0.0D) {
+                    d12 /= 2.0D;
 
-                     if (d12 < -1.0D)
-                         d12 = -1.0D;
+                    if (d12 < -1.0D)
+                        d12 = -1.0D;
 
-                     d12 /= 1.4D;
-                     d12 /= 2.0D;
-                 } else {
-                     if (d12 > 1.0D)
-                         d12 = 1.0D;
+                    d12 /= 1.4D;
+                    d12 /= 2.0D;
+                } else {
+                    if (d12 > 1.0D)
+                        d12 = 1.0D;
 
-                     d12 /= 8.0D;
-                 }
+                    d12 /= 8.0D;
+                }
 
-                 ++i1;
-                 double d13 = f1;
-                 double d14 = f;
-                 d13 += d12 * 0.4D;
-                 d13 = d13 * 10.5D / 8.0D;
-                 double d5 = 8.5D + d13 * 4.0D;
+                ++i1;
+                double d13 = f1;
+                double d14 = f;
+                d13 += d12 * 0.4D;
+                d13 = d13 * 10.5D / 8.0D;
+                double d5 = 8.5D + d13 * 4.0D;
 
-                 for (int j2 = 0; j2 < 33; ++j2) {
-                     double d6 = (j2 - d5) * 12.0D * 128.0D / 256.0D / d14;
+                for (int j2 = 0; j2 < 33; ++j2) {
+                    double d6 = (j2 - d5) * 12.0D * 128.0D / 256.0D / d14;
 
-                     if (d6 < 0.0D)
-                         d6 *= 4.0D;
+                    if (d6 < 0.0D)
+                        d6 *= 4.0D;
 
 
-                     double d7 = this.gen2[l] / 256.0D;
-                     double d8 = this.gen3[l] / 256.0D;
-                     double d9 = (this.gen1[l] / 10.0D + 1.0D) / 2.0D;
-                     double d10 = MathHelper.clampedLerp(d7, d8, d9) - d6;
+                    double d7 = this.gen2[l] / 256.0D;
+                    double d8 = this.gen3[l] / 256.0D;
+                    double d9 = (this.gen1[l] / 10.0D + 1.0D) / 2.0D;
+                    double d10 = MathHelper.clampedLerp(d7, d8, d9) - d6;
 
-                     if (j2 > 29) {
-                         double d11 = (j2 - 29) / 3.0F;
-                         d10 = d10 * (1.0D - d11) + -10.0D * d11;
-                     }
+                    if (j2 > 29) {
+                        double d11 = (j2 - 29) / 3.0F;
+                        d10 = d10 * (1.0D - d11) + -10.0D * d11;
+                    }
 
-                     this.da[l] = d10;
-                     ++l;
-                 }
-             }
-         }
+                    this.da[l] = d10;
+                    ++l;
+                }
+            }
+        }
     }
 
     @Override
@@ -345,19 +326,19 @@ public class ChunkProviderTerrania implements IChunkGenerator {
         for (times = 0; times < 25; times++) {
             generateStructure(x1, z1, new WorldGenTerrashroom(JourneyBlocks.terrashroomBlockPink));
         }
-        
+
         for (times = 0; times < 25; times++) {
             generateStructure(x1, z1, new WorldGenTerrashroom(JourneyBlocks.terrashroomBlockPurple));
         }
-        
+
         for (times = 0; times < 850; times++) {
             generateStructure(x1, z1, new WorldGenTerraniaTree(true, 5, 10, JourneyBlocks.terranianLog.getDefaultState(), JourneyBlocks.terraniaLeaves.getDefaultState()));
         }
-        
+
         for (times = 0; times < 100; times++) {
             generateStructure(x1, z1, new WorldGenTerraniaTree(true, 0, 1, JourneyBlocks.terranianLog.getDefaultState(), JourneyBlocks.terraniaLeaves.getDefaultState()));
         }
-        
+
         for (int i = 0; i < 100; i++) {
             flower.generate(worldObj, r, chunkStart);
         }
@@ -380,7 +361,7 @@ public class ChunkProviderTerrania implements IChunkGenerator {
                 hollowTree.generate(worldObj, rand, pos);
             }
         }
-        
+
         for (times = 0; times < 10; times++) {
             BlockPos pos = WorldGenAPI.createRandom(x1, 1, 128, z1, rand, 2);
             if (isBlockTop(pos.getX(), pos.getY() - 1, pos.getZ(), JourneyBlocks.terranianGrass)) {

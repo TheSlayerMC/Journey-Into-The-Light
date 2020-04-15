@@ -1,9 +1,5 @@
 package net.slayer.api.worldgen;
 
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.concurrent.atomic.AtomicBoolean;
-
 import net.journey.JourneyBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -14,6 +10,10 @@ import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class WorldGenAPI {
 
@@ -29,7 +29,7 @@ public class WorldGenAPI {
         }
         return true;
     }
-    
+
     public static boolean isBlockTop(int x, int y, int z, Block grass, World w) {
         if (w.getBlockState(new BlockPos(x, y, z)).getBlock() != grass)
             return false;

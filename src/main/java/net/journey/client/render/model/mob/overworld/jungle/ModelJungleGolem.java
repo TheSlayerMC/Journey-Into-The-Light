@@ -36,11 +36,11 @@ public class ModelJungleGolem extends ModelBase {
     public ModelJungleGolem() {
         this.textureWidth = 64;
         this.textureHeight = 64;
-        
+
         this.body1 = new ModelRenderer(this, 0, 50);
         this.body1.setRotationPoint(-8.0F, 9.0F, -3.0F);
         this.body1.addBox(0.0F, 0.0F, 0.0F, 16, 3, 5, 0.0F);
-        
+
         this.face1 = new ModelRenderer(this, 0, 0);
         this.face1.setRotationPoint(-0.0F, -8.0F, 0.0F);
         this.face1.addBox(-5.0F, -8.0F, -7.0F, 10, 1, 1, 0.0F);
@@ -108,7 +108,7 @@ public class ModelJungleGolem extends ModelBase {
     }
 
     @Override
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) { 
+    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
         this.body1.render(f5);
         this.face1.render(f5);
         this.body2.render(f5);
@@ -138,39 +138,39 @@ public class ModelJungleGolem extends ModelBase {
         modelRenderer.rotateAngleY = y;
         modelRenderer.rotateAngleZ = z;
     }
-    
-	@Override
-	public void setRotationAngles(float f, float f2, float f3, float f4, float f5, float f7, Entity e) {
-    	super.setRotationAngles(f, f2, f3, f4, f5, f7, e);
-		this.head.rotateAngleY = f4 / (180F / (float)Math.PI);
-		this.head.rotateAngleX = f5 / (180F / (float)Math.PI);
-		this.face1.rotateAngleY = f4 / (180F / (float)Math.PI);
-		this.face1.rotateAngleX = f5 / (180F / (float)Math.PI);
-		this.face2.rotateAngleY = f4 / (180F / (float)Math.PI);
-		this.face2.rotateAngleX = f5 / (180F / (float)Math.PI);
-		this.face3.rotateAngleY = f4 / (180F / (float)Math.PI);
-		this.face3.rotateAngleX = f5 / (180F / (float)Math.PI);
-		this.face4.rotateAngleY = f4 / (180F / (float)Math.PI);
-		this.face4.rotateAngleX = f5 / (180F / (float)Math.PI);
-		this.face5.rotateAngleY = f4 / (180F / (float)Math.PI);
-		this.face5.rotateAngleX = f5 / (180F / (float)Math.PI);
-		this.face6.rotateAngleY = f4 / (180F / (float)Math.PI);
-		this.face6.rotateAngleX = f5 / (180F / (float)Math.PI);
-		this.face7.rotateAngleY = f4 / (180F / (float)Math.PI);
-		this.face7.rotateAngleX = f5 / (180F / (float)Math.PI);
-		this.face8.rotateAngleY = f4 / (180F / (float)Math.PI);
-		this.face8.rotateAngleX = f5 / (180F / (float)Math.PI);
-		this.face9.rotateAngleY = f4 / (180F / (float)Math.PI);
-		this.face9.rotateAngleX = f5 / (180F / (float)Math.PI);
-		this.face10.rotateAngleY = f4 / (180F / (float)Math.PI);
-		this.face10.rotateAngleX = f5 / (180F / (float)Math.PI);
-		this.face11.rotateAngleY = f4 / (180F / (float)Math.PI);
-		this.face11.rotateAngleX = f5 / (180F / (float)Math.PI);
-    	this.arm2.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * f2;
-    	this.arm1.rotateAngleX = MathHelper.cos(f * 0.6662F) * f2;
-    	this.foot2.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * f2;
-    	this.foot1.rotateAngleX = MathHelper.cos(f * 0.6662F) * f2;
-    	this.fist2.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * f2;
-    	this.fist1.rotateAngleX = MathHelper.cos(f * 0.6662F) * f2;
+
+    @Override
+    public void setRotationAngles(float f, float f2, float f3, float f4, float f5, float f7, Entity e) {
+        super.setRotationAngles(f, f2, f3, f4, f5, f7, e);
+        this.head.rotateAngleY = f4 / (180F / (float) Math.PI);
+        this.head.rotateAngleX = f5 / (180F / (float) Math.PI);
+        this.face1.rotateAngleY = f4 / (180F / (float) Math.PI);
+        this.face1.rotateAngleX = f5 / (180F / (float) Math.PI);
+        this.face2.rotateAngleY = f4 / (180F / (float) Math.PI);
+        this.face2.rotateAngleX = f5 / (180F / (float) Math.PI);
+        this.face3.rotateAngleY = f4 / (180F / (float) Math.PI);
+        this.face3.rotateAngleX = f5 / (180F / (float) Math.PI);
+        this.face4.rotateAngleY = f4 / (180F / (float) Math.PI);
+        this.face4.rotateAngleX = f5 / (180F / (float) Math.PI);
+        this.face5.rotateAngleY = f4 / (180F / (float) Math.PI);
+        this.face5.rotateAngleX = f5 / (180F / (float) Math.PI);
+        this.face6.rotateAngleY = f4 / (180F / (float) Math.PI);
+        this.face6.rotateAngleX = f5 / (180F / (float) Math.PI);
+        this.face7.rotateAngleY = f4 / (180F / (float) Math.PI);
+        this.face7.rotateAngleX = f5 / (180F / (float) Math.PI);
+        this.face8.rotateAngleY = f4 / (180F / (float) Math.PI);
+        this.face8.rotateAngleX = f5 / (180F / (float) Math.PI);
+        this.face9.rotateAngleY = f4 / (180F / (float) Math.PI);
+        this.face9.rotateAngleX = f5 / (180F / (float) Math.PI);
+        this.face10.rotateAngleY = f4 / (180F / (float) Math.PI);
+        this.face10.rotateAngleX = f5 / (180F / (float) Math.PI);
+        this.face11.rotateAngleY = f4 / (180F / (float) Math.PI);
+        this.face11.rotateAngleX = f5 / (180F / (float) Math.PI);
+        this.arm2.rotateAngleX = MathHelper.cos(f * 0.6662F + (float) Math.PI) * f2;
+        this.arm1.rotateAngleX = MathHelper.cos(f * 0.6662F) * f2;
+        this.foot2.rotateAngleX = MathHelper.cos(f * 0.6662F + (float) Math.PI) * f2;
+        this.foot1.rotateAngleX = MathHelper.cos(f * 0.6662F) * f2;
+        this.fist2.rotateAngleX = MathHelper.cos(f * 0.6662F + (float) Math.PI) * f2;
+        this.fist1.rotateAngleX = MathHelper.cos(f * 0.6662F) * f2;
     }
 }

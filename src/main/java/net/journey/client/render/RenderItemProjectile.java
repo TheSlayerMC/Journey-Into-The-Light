@@ -15,20 +15,20 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class RenderItemProjectile extends Render {
-	
+
     private RenderItem item;
     private Item damage;
 
     public RenderItemProjectile(Item par2) {
-    	super(Minecraft.getMinecraft().getRenderManager());
+        super(Minecraft.getMinecraft().getRenderManager());
         this.item = Minecraft.getMinecraft().getRenderItem();
         this.damage = par2;
     }
 
     @Override
     public void doRender(Entity par1Entity, double par2, double par4, double par6, float par8, float par9) {
-    	GlStateManager.pushMatrix();
-        GlStateManager.translate((float)par2, (float)par4, (float)par6);
+        GlStateManager.pushMatrix();
+        GlStateManager.translate((float) par2, (float) par4, (float) par6);
         GlStateManager.enableRescaleNormal();
         GlStateManager.scale(0.5F, 0.5F, 0.5F);
         GlStateManager.rotate(-this.renderManager.playerViewY, 0.0F, 1.0F, 0.0F);
@@ -38,7 +38,7 @@ public class RenderItemProjectile extends Render {
         GlStateManager.disableRescaleNormal();
         GlStateManager.popMatrix();
     }
-    
+
     public ItemStack getItem(Entity e) {
         return new ItemStack(this.damage, 1, 0);
     }

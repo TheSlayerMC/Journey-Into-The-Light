@@ -6,7 +6,7 @@ import net.slayer.api.entity.tileentity.container.ContainerModVillager;
 
 public class GuiBoilTrader extends GuiModVillager {
 
-	public GuiBoilTrader(ContainerModVillager container, IMerchant mer) {
-		super(container, mer, "BoilTrader", "boilTrader");
-	}
+    public GuiBoilTrader(ContainerModVillager container, IMerchant mer) {
+        super(container, mer, "BoilTrader", "boilTrader");
+    }
 }

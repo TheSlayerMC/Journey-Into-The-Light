@@ -9,19 +9,19 @@ import net.minecraft.util.ResourceLocation;
 
 public class RenderEucaHopper extends RenderModMob {
 
-	private static final ResourceLocation eucaHopper = Textures.eucaHopper;
-	private static final ResourceLocation eucaHopperTamed = Textures.eucaHopperTamed;
+    private static final ResourceLocation eucaHopper = Textures.eucaHopper;
+    private static final ResourceLocation eucaHopperTamed = Textures.eucaHopperTamed;
 
-	public RenderEucaHopper(ModelBase par1ModelBase, ResourceLocation tex) {
-		super(par1ModelBase, tex);
-	}
+    public RenderEucaHopper(ModelBase par1ModelBase, ResourceLocation tex) {
+        super(par1ModelBase, tex);
+    }
 
-	protected ResourceLocation texture(EntityEucaHopper b) {
-		return b.isTamed() ? eucaHopperTamed : eucaHopper;
-	}
+    protected ResourceLocation texture(EntityEucaHopper b) {
+        return b.isTamed() ? eucaHopperTamed : eucaHopper;
+    }
 
-	@Override
-	protected ResourceLocation getEntityTexture(Entity var1) {
-		return texture((EntityEucaHopper)var1);
-	}
+    @Override
+    protected ResourceLocation getEntityTexture(Entity var1) {
+        return texture((EntityEucaHopper) var1);
+    }
 }

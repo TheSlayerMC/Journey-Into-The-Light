@@ -1,7 +1,5 @@
 package net.journey.dimension;
 
-import java.util.Random;
-
 import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.objects.ObjectIterator;
@@ -19,6 +17,8 @@ import net.minecraft.world.Teleporter;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
+import java.util.Random;
+
 public class ModTeleporter extends Teleporter {
     private final WorldServer worldServerInstance;
     private final Random random;
@@ -34,6 +34,7 @@ public class ModTeleporter extends Teleporter {
         this.portal = portal;
         this.frame = frame;
     }
+
     public ModTeleporter(WorldServer par1WorldServer, Block portal) {
         super(par1WorldServer);
         worldServerInstance = par1WorldServer;
@@ -93,9 +94,9 @@ public class ModTeleporter extends Teleporter {
 
                                         if (l4 < 0
                                                 && !worldServerInstance.getBlockState(blockpos$mutableblockpos)
-                                                        .getMaterial().isSolid()
+                                                .getMaterial().isSolid()
                                                 || l4 >= 0
-                                                        && !worldServerInstance.isAirBlock(blockpos$mutableblockpos)) {
+                                                && !worldServerInstance.isAirBlock(blockpos$mutableblockpos)) {
                                             continue label142;
                                         }
                                     }
@@ -146,9 +147,9 @@ public class ModTeleporter extends Teleporter {
 
                                         if (j11 < 0
                                                 && !worldServerInstance.getBlockState(blockpos$mutableblockpos)
-                                                        .getMaterial().isSolid()
+                                                .getMaterial().isSolid()
                                                 || j11 >= 0
-                                                        && !worldServerInstance.isAirBlock(blockpos$mutableblockpos)) {
+                                                && !worldServerInstance.isAirBlock(blockpos$mutableblockpos)) {
                                             continue label562;
                                         }
                                     }
@@ -254,7 +255,7 @@ public class ModTeleporter extends Teleporter {
                 for (int i1 = -128; i1 <= 128; ++i1) {
                     for (BlockPos blockpos = blockpos4.add(l,
                             worldServerInstance.getActualHeight() - 1 - blockpos4.getY(), i1); blockpos
-                                    .getY() >= 0; blockpos = blockpos1) {
+                                 .getY() >= 0; blockpos = blockpos1) {
                         blockpos1 = blockpos.down();
 
                         if (worldServerInstance.getBlockState(blockpos).getBlock() == portal) {

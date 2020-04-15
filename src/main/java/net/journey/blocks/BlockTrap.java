@@ -11,30 +11,30 @@ import net.slayer.api.block.BlockMod;
 
 public class BlockTrap extends BlockMod {
 
-	public BlockTrap(String name, String finalName) {
-		super(name, finalName);
-	}
-	
-	@Override
-	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
+    public BlockTrap(String name, String finalName) {
+        super(name, finalName);
+    }
+
+    @Override
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
         return null;
     }
-	
-	@Override
-	public boolean isPassable(IBlockAccess worldIn, BlockPos pos) {
-		return true;
-	}
-	
-	@Override
-	public void onEntityCollision(World w, BlockPos pos, IBlockState state, Entity entityIn) {
-		EntityOverseerElder EntityOverseerElder = new EntityOverseerElder(w);
-		if(!w.isRemote) {
-			try {
-				w.spawnEntity(EntityOverseerElder);
-				EntityOverseerElder.setPosition(pos.getX(), pos.getY() + 1, pos.getZ());
-			} catch (Exception exception) {
-				exception.printStackTrace();
-			}
-		}
-	}
+
+    @Override
+    public boolean isPassable(IBlockAccess worldIn, BlockPos pos) {
+        return true;
+    }
+
+    @Override
+    public void onEntityCollision(World w, BlockPos pos, IBlockState state, Entity entityIn) {
+        EntityOverseerElder EntityOverseerElder = new EntityOverseerElder(w);
+        if (!w.isRemote) {
+            try {
+                w.spawnEntity(EntityOverseerElder);
+                EntityOverseerElder.setPosition(pos.getX(), pos.getY() + 1, pos.getZ());
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
+        }
+    }
 }

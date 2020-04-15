@@ -1,8 +1,6 @@
 package net.journey.entity.projectile;
 
 import com.google.common.collect.Sets;
-import java.util.Collection;
-import java.util.Set;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Items;
 import net.minecraft.init.PotionTypes;
@@ -22,231 +20,234 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.Collection;
+import java.util.Set;
+
 public class EntityTippedEssenceArrow extends EntityEssenceArrow {
-	
-	private static final DataParameter<Integer> COLOR = EntityDataManager.<Integer>createKey(EntityTippedEssenceArrow.class,
-			DataSerializers.VARINT);
-	private PotionType potion = PotionTypes.EMPTY;
-	private final Set<PotionEffect> customPotionEffects = Sets.<PotionEffect>newHashSet();
-	private boolean fixedColor;
-	float damage;
 
-	public EntityTippedEssenceArrow(World worldIn) {
-		super(worldIn);
-	}
+    private static final DataParameter<Integer> COLOR = EntityDataManager.createKey(EntityTippedEssenceArrow.class,
+            DataSerializers.VARINT);
+    private final Set<PotionEffect> customPotionEffects = Sets.newHashSet();
+    float damage;
+    private PotionType potion = PotionTypes.EMPTY;
+    private boolean fixedColor;
 
-	public EntityTippedEssenceArrow(World worldIn, double x, double y, double z) {
-		super(worldIn, x, y, z);
-	}
+    public EntityTippedEssenceArrow(World worldIn) {
+        super(worldIn);
+    }
 
-	public EntityTippedEssenceArrow(World worldIn, EntityLivingBase shooter, float dam) {
-		super(worldIn, shooter, dam);
-	}
+    public EntityTippedEssenceArrow(World worldIn, double x, double y, double z) {
+        super(worldIn, x, y, z);
+    }
 
-	public void setPotionEffect(ItemStack stack) {
-		if (stack.getItem() == Items.TIPPED_ARROW) {
-			this.potion = PotionUtils.getPotionFromItem(stack);
-			Collection<PotionEffect> collection = PotionUtils.getFullEffectsFromItem(stack);
+    public EntityTippedEssenceArrow(World worldIn, EntityLivingBase shooter, float dam) {
+        super(worldIn, shooter, dam);
+    }
 
-			if (!collection.isEmpty()) {
-				for (PotionEffect potioneffect : collection) {
-					this.customPotionEffects.add(new PotionEffect(potioneffect));
-				}
-			}
+    public static int getCustomColor(ItemStack stack) {
+        NBTTagCompound nbttagcompound = stack.getTagCompound();
+        return nbttagcompound != null && nbttagcompound.hasKey("CustomPotionColor", 99)
+                ? nbttagcompound.getInteger("CustomPotionColor") : -1;
+    }
 
-			int i = getCustomColor(stack);
+    public static void registerFixesTippedArrow(DataFixer fixer) {
+        EntityEssenceArrow.registerFixesArrow(fixer, "TippedEssenceArrow");
+    }
 
-			if (i == -1) {
-				this.refreshColor();
-			} else {
-				this.setFixedColor(i);
-			}
-		} else if (stack.getItem() == Items.ARROW) {
-			this.potion = PotionTypes.EMPTY;
-			this.customPotionEffects.clear();
-			this.dataManager.set(COLOR, Integer.valueOf(-1));
-		}
-	}
+    public void setPotionEffect(ItemStack stack) {
+        if (stack.getItem() == Items.TIPPED_ARROW) {
+            this.potion = PotionUtils.getPotionFromItem(stack);
+            Collection<PotionEffect> collection = PotionUtils.getFullEffectsFromItem(stack);
 
-	public static int getCustomColor(ItemStack stack) {
-		NBTTagCompound nbttagcompound = stack.getTagCompound();
-		return nbttagcompound != null && nbttagcompound.hasKey("CustomPotionColor", 99)
-				? nbttagcompound.getInteger("CustomPotionColor") : -1;
-	}
+            if (!collection.isEmpty()) {
+                for (PotionEffect potioneffect : collection) {
+                    this.customPotionEffects.add(new PotionEffect(potioneffect));
+                }
+            }
 
-	private void refreshColor() {
-		this.fixedColor = false;
-		this.dataManager.set(COLOR, Integer.valueOf(PotionUtils
-				.getPotionColorFromEffectList(PotionUtils.mergeEffects(this.potion, this.customPotionEffects))));
-	}
+            int i = getCustomColor(stack);
 
-	public void addEffect(PotionEffect effect) {
-		this.customPotionEffects.add(effect);
-		this.getDataManager().set(COLOR, Integer.valueOf(PotionUtils
-				.getPotionColorFromEffectList(PotionUtils.mergeEffects(this.potion, this.customPotionEffects))));
-	}
+            if (i == -1) {
+                this.refreshColor();
+            } else {
+                this.setFixedColor(i);
+            }
+        } else if (stack.getItem() == Items.ARROW) {
+            this.potion = PotionTypes.EMPTY;
+            this.customPotionEffects.clear();
+            this.dataManager.set(COLOR, Integer.valueOf(-1));
+        }
+    }
 
-	@Override
-	protected void entityInit() {
-		super.entityInit();
-		this.dataManager.register(COLOR, Integer.valueOf(-1));
-	}
+    private void refreshColor() {
+        this.fixedColor = false;
+        this.dataManager.set(COLOR, Integer.valueOf(PotionUtils
+                .getPotionColorFromEffectList(PotionUtils.mergeEffects(this.potion, this.customPotionEffects))));
+    }
 
-	@Override
-	public void onUpdate() {
-		super.onUpdate();
+    public void addEffect(PotionEffect effect) {
+        this.customPotionEffects.add(effect);
+        this.getDataManager().set(COLOR, Integer.valueOf(PotionUtils
+                .getPotionColorFromEffectList(PotionUtils.mergeEffects(this.potion, this.customPotionEffects))));
+    }
 
-		if (this.world.isRemote) {
-			if (this.inGround) {
-				if (this.timeInGround % 5 == 0) {
-					this.spawnPotionParticles(1);
-				}
-			} else {
-				this.spawnPotionParticles(2);
-			}
-		} else if (this.inGround && this.timeInGround != 0 && !this.customPotionEffects.isEmpty()
-				&& this.timeInGround >= 600) {
-			this.world.setEntityState(this, (byte) 0);
-			this.potion = PotionTypes.EMPTY;
-			this.customPotionEffects.clear();
-			this.dataManager.set(COLOR, Integer.valueOf(-1));
-		}
-	}
+    @Override
+    protected void entityInit() {
+        super.entityInit();
+        this.dataManager.register(COLOR, Integer.valueOf(-1));
+    }
 
-	private void spawnPotionParticles(int particleCount) {
-		int i = this.getColor();
+    @Override
+    public void onUpdate() {
+        super.onUpdate();
 
-		if (i != -1 && particleCount > 0) {
-			double d0 = (double) (i >> 16 & 255) / 255.0D;
-			double d1 = (double) (i >> 8 & 255) / 255.0D;
-			double d2 = (double) (i >> 0 & 255) / 255.0D;
+        if (this.world.isRemote) {
+            if (this.inGround) {
+                if (this.timeInGround % 5 == 0) {
+                    this.spawnPotionParticles(1);
+                }
+            } else {
+                this.spawnPotionParticles(2);
+            }
+        } else if (this.inGround && this.timeInGround != 0 && !this.customPotionEffects.isEmpty()
+                && this.timeInGround >= 600) {
+            this.world.setEntityState(this, (byte) 0);
+            this.potion = PotionTypes.EMPTY;
+            this.customPotionEffects.clear();
+            this.dataManager.set(COLOR, Integer.valueOf(-1));
+        }
+    }
 
-			for (int j = 0; j < particleCount; ++j) {
-				this.world.spawnParticle(EnumParticleTypes.SPELL_MOB,
-						this.posX + (this.rand.nextDouble() - 0.5D) * (double) this.width,
-						this.posY + this.rand.nextDouble() * (double) this.height,
-						this.posZ + (this.rand.nextDouble() - 0.5D) * (double) this.width, d0, d1, d2);
-			}
-		}
-	}
+    private void spawnPotionParticles(int particleCount) {
+        int i = this.getColor();
 
-	public int getColor() {
-		return ((Integer) this.dataManager.get(COLOR)).intValue();
-	}
+        if (i != -1 && particleCount > 0) {
+            double d0 = (double) (i >> 16 & 255) / 255.0D;
+            double d1 = (double) (i >> 8 & 255) / 255.0D;
+            double d2 = (double) (i >> 0 & 255) / 255.0D;
 
-	private void setFixedColor(int color) {
-		this.fixedColor = true;
-		this.dataManager.set(COLOR, Integer.valueOf(color));
-	}
+            for (int j = 0; j < particleCount; ++j) {
+                this.world.spawnParticle(EnumParticleTypes.SPELL_MOB,
+                        this.posX + (this.rand.nextDouble() - 0.5D) * (double) this.width,
+                        this.posY + this.rand.nextDouble() * (double) this.height,
+                        this.posZ + (this.rand.nextDouble() - 0.5D) * (double) this.width, d0, d1, d2);
+            }
+        }
+    }
 
-	public static void registerFixesTippedArrow(DataFixer fixer) {
-		EntityEssenceArrow.registerFixesArrow(fixer, "TippedEssenceArrow");
-	}
+    public int getColor() {
+        return this.dataManager.get(COLOR).intValue();
+    }
 
-	@Override
-	public void writeEntityToNBT(NBTTagCompound compound) {
-		super.writeEntityToNBT(compound);
+    private void setFixedColor(int color) {
+        this.fixedColor = true;
+        this.dataManager.set(COLOR, Integer.valueOf(color));
+    }
 
-		if (this.potion != PotionTypes.EMPTY && this.potion != null) {
-			compound.setString("Potion",
-					((ResourceLocation) PotionType.REGISTRY.getNameForObject(this.potion)).toString());
-		}
+    @Override
+    public void writeEntityToNBT(NBTTagCompound compound) {
+        super.writeEntityToNBT(compound);
 
-		if (this.fixedColor) {
-			compound.setInteger("Color", this.getColor());
-		}
+        if (this.potion != PotionTypes.EMPTY && this.potion != null) {
+            compound.setString("Potion",
+                    PotionType.REGISTRY.getNameForObject(this.potion).toString());
+        }
 
-		if (!this.customPotionEffects.isEmpty()) {
-			NBTTagList nbttaglist = new NBTTagList();
+        if (this.fixedColor) {
+            compound.setInteger("Color", this.getColor());
+        }
 
-			for (PotionEffect potioneffect : this.customPotionEffects) {
-				nbttaglist.appendTag(potioneffect.writeCustomPotionEffectToNBT(new NBTTagCompound()));
-			}
+        if (!this.customPotionEffects.isEmpty()) {
+            NBTTagList nbttaglist = new NBTTagList();
 
-			compound.setTag("CustomPotionEffects", nbttaglist);
-		}
-	}
+            for (PotionEffect potioneffect : this.customPotionEffects) {
+                nbttaglist.appendTag(potioneffect.writeCustomPotionEffectToNBT(new NBTTagCompound()));
+            }
 
-	@Override
-	public void readEntityFromNBT(NBTTagCompound compound) {
-		super.readEntityFromNBT(compound);
+            compound.setTag("CustomPotionEffects", nbttaglist);
+        }
+    }
 
-		if (compound.hasKey("Potion", 8)) {
-			this.potion = PotionUtils.getPotionTypeFromNBT(compound);
-		}
+    @Override
+    public void readEntityFromNBT(NBTTagCompound compound) {
+        super.readEntityFromNBT(compound);
 
-		for (PotionEffect potioneffect : PotionUtils.getFullEffectsFromTag(compound)) {
-			this.addEffect(potioneffect);
-		}
+        if (compound.hasKey("Potion", 8)) {
+            this.potion = PotionUtils.getPotionTypeFromNBT(compound);
+        }
 
-		if (compound.hasKey("Color", 99)) {
-			this.setFixedColor(compound.getInteger("Color"));
-		} else {
-			this.refreshColor();
-		}
-	}
+        for (PotionEffect potioneffect : PotionUtils.getFullEffectsFromTag(compound)) {
+            this.addEffect(potioneffect);
+        }
 
-	@Override
-	protected void arrowHit(EntityLivingBase living) {
-		super.arrowHit(living);
+        if (compound.hasKey("Color", 99)) {
+            this.setFixedColor(compound.getInteger("Color"));
+        } else {
+            this.refreshColor();
+        }
+    }
 
-		for (PotionEffect potioneffect : this.potion.getEffects()) {
-			living.addPotionEffect(new PotionEffect(potioneffect.getPotion(),
-					Math.max(potioneffect.getDuration() / 8, 1), potioneffect.getAmplifier(),
-					potioneffect.getIsAmbient(), potioneffect.doesShowParticles()));
-		}
+    @Override
+    protected void arrowHit(EntityLivingBase living) {
+        super.arrowHit(living);
 
-		if (!this.customPotionEffects.isEmpty()) {
-			for (PotionEffect potioneffect1 : this.customPotionEffects) {
-				living.addPotionEffect(potioneffect1);
-			}
-		}
-	}
+        for (PotionEffect potioneffect : this.potion.getEffects()) {
+            living.addPotionEffect(new PotionEffect(potioneffect.getPotion(),
+                    Math.max(potioneffect.getDuration() / 8, 1), potioneffect.getAmplifier(),
+                    potioneffect.getIsAmbient(), potioneffect.doesShowParticles()));
+        }
 
-	@Override
-	protected ItemStack getArrowStack() {
-		if (this.customPotionEffects.isEmpty() && this.potion == PotionTypes.EMPTY) {
-			return new ItemStack(Items.ARROW);
-		} else {
-			ItemStack itemstack = new ItemStack(Items.TIPPED_ARROW);
-			PotionUtils.addPotionToItemStack(itemstack, this.potion);
-			PotionUtils.appendEffects(itemstack, this.customPotionEffects);
+        if (!this.customPotionEffects.isEmpty()) {
+            for (PotionEffect potioneffect1 : this.customPotionEffects) {
+                living.addPotionEffect(potioneffect1);
+            }
+        }
+    }
 
-			if (this.fixedColor) {
-				NBTTagCompound nbttagcompound = itemstack.getTagCompound();
+    @Override
+    protected ItemStack getArrowStack() {
+        if (this.customPotionEffects.isEmpty() && this.potion == PotionTypes.EMPTY) {
+            return new ItemStack(Items.ARROW);
+        } else {
+            ItemStack itemstack = new ItemStack(Items.TIPPED_ARROW);
+            PotionUtils.addPotionToItemStack(itemstack, this.potion);
+            PotionUtils.appendEffects(itemstack, this.customPotionEffects);
 
-				if (nbttagcompound == null) {
-					nbttagcompound = new NBTTagCompound();
-					itemstack.setTagCompound(nbttagcompound);
-				}
+            if (this.fixedColor) {
+                NBTTagCompound nbttagcompound = itemstack.getTagCompound();
 
-				nbttagcompound.setInteger("CustomPotionColor", this.getColor());
-			}
+                if (nbttagcompound == null) {
+                    nbttagcompound = new NBTTagCompound();
+                    itemstack.setTagCompound(nbttagcompound);
+                }
 
-			return itemstack;
-		}
-	}
+                nbttagcompound.setInteger("CustomPotionColor", this.getColor());
+            }
 
-	@SideOnly(Side.CLIENT)
-	@Override
-	public void handleStatusUpdate(byte id) {
-		if (id == 0) {
-			int i = this.getColor();
+            return itemstack;
+        }
+    }
 
-			if (i != -1) {
-				double d0 = (double) (i >> 16 & 255) / 255.0D;
-				double d1 = (double) (i >> 8 & 255) / 255.0D;
-				double d2 = (double) (i >> 0 & 255) / 255.0D;
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void handleStatusUpdate(byte id) {
+        if (id == 0) {
+            int i = this.getColor();
 
-				for (int j = 0; j < 20; ++j) {
-					this.world.spawnParticle(EnumParticleTypes.SPELL_MOB,
-							this.posX + (this.rand.nextDouble() - 0.5D) * (double) this.width,
-							this.posY + this.rand.nextDouble() * (double) this.height,
-							this.posZ + (this.rand.nextDouble() - 0.5D) * (double) this.width, d0, d1, d2);
-				}
-			}
-		} else {
-			super.handleStatusUpdate(id);
-		}
-	}
+            if (i != -1) {
+                double d0 = (double) (i >> 16 & 255) / 255.0D;
+                double d1 = (double) (i >> 8 & 255) / 255.0D;
+                double d2 = (double) (i >> 0 & 255) / 255.0D;
+
+                for (int j = 0; j < 20; ++j) {
+                    this.world.spawnParticle(EnumParticleTypes.SPELL_MOB,
+                            this.posX + (this.rand.nextDouble() - 0.5D) * (double) this.width,
+                            this.posY + this.rand.nextDouble() * (double) this.height,
+                            this.posZ + (this.rand.nextDouble() - 0.5D) * (double) this.width, d0, d1, d2);
+                }
+            }
+        } else {
+            super.handleStatusUpdate(id);
+        }
+    }
 }

@@ -17,16 +17,16 @@ import net.slayer.api.block.BlockModDoor;
 
 public class ItemModDoor extends ItemMod {
 
-	private Block door;
+    private Block door;
 
-	public ItemModDoor(BlockModDoor block, String name, String f) {
-		super(name, f);
-		this.door = block;
-		setCreativeTab(JourneyTabs.blocks);
-	}
-	
-	@Override
-	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+    public ItemModDoor(BlockModDoor block, String name, String f) {
+        super(name, f);
+        this.door = block;
+        setCreativeTab(JourneyTabs.blocks);
+    }
+
+    @Override
+    public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         if (facing != EnumFacing.UP) {
             return EnumActionResult.FAIL;
         } else {
@@ -40,7 +40,7 @@ public class ItemModDoor extends ItemMod {
             ItemStack itemstack = player.getHeldItem(hand);
 
             if (player.canPlayerEdit(pos, facing, itemstack) && this.door.canPlaceBlockAt(worldIn, pos)) {
-                EnumFacing enumfacing = EnumFacing.fromAngle((double)player.rotationYaw);
+                EnumFacing enumfacing = EnumFacing.fromAngle(player.rotationYaw);
                 int i = enumfacing.getXOffset();
                 int j = enumfacing.getZOffset();
                 boolean flag = i < 0 && hitZ < 0.5F || i > 0 && hitZ > 0.5F || j < 0 && hitX > 0.5F || j > 0 && hitX < 0.5F;
@@ -53,5 +53,5 @@ public class ItemModDoor extends ItemMod {
                 return EnumActionResult.FAIL;
             }
         }
-	}
+    }
 }

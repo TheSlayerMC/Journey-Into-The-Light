@@ -1,7 +1,5 @@
 package net.journey.items;
 
-import java.util.List;
-
 import net.journey.JourneyItems;
 import net.journey.JourneySounds;
 import net.journey.JourneyTabs;
@@ -23,59 +21,62 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.SlayerAPI;
 
+import java.util.List;
+
 public class ItemCreativeHammer extends ItemSword {
 
-	protected int use;
-	protected int dam;
-	protected boolean unbreakable;
-	protected Class<? extends EntityBasicProjectile> projectile;
-	protected JourneyToolMaterial mat;
+    protected int use;
+    protected int dam;
+    protected boolean unbreakable;
+    protected Class<? extends EntityBasicProjectile> projectile;
+    protected JourneyToolMaterial mat;
 
-	public ItemCreativeHammer(String name, String f, JourneyToolMaterial toolMaterial, boolean unbreakable, Class<? extends EntityLightningBall> projectile) {
-		super(toolMaterial.getToolMaterial());
-		this.projectile=projectile;
-		this.unbreakable=unbreakable;
-		setMaxStackSize(1);
-		LangRegistry.addItem(name, f);
-		setTranslationKey(name);
-		mat = toolMaterial;
-		setCreativeTab(JourneyTabs.weapons);
-		JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
-		JourneyItems.items.add(this);
-		setRegistryName(SlayerAPI.MOD_ID, name);
-	}
+    public ItemCreativeHammer(String name, String f, JourneyToolMaterial toolMaterial, boolean unbreakable, Class<? extends EntityLightningBall> projectile) {
+        super(toolMaterial.getToolMaterial());
+        this.projectile = projectile;
+        this.unbreakable = unbreakable;
+        setMaxStackSize(1);
+        LangRegistry.addItem(name, f);
+        setTranslationKey(name);
+        mat = toolMaterial;
+        setCreativeTab(JourneyTabs.weapons);
+        JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
+        JourneyItems.items.add(this);
+        setRegistryName(SlayerAPI.MOD_ID, name);
+    }
 
-	@Override
-	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand handIn) {
-		ItemStack stack = player.getHeldItem(handIn);
-		JourneySounds.playSound(JourneySounds.PLASMA, world, player);
-		if(!unbreakable) stack.damageItem(1, player);
-		try {
-			world.spawnEntity(projectile.getConstructor(World.class, EntityLivingBase.class, float.class).newInstance(world, player, dam));
-			return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);	
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return new ActionResult<ItemStack>(EnumActionResult.FAIL, stack);	
-	}
+    @Override
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand handIn) {
+        ItemStack stack = player.getHeldItem(handIn);
+        JourneySounds.playSound(JourneySounds.PLASMA, world, player);
+        if (!unbreakable) stack.damageItem(1, player);
+        try {
+            world.spawnEntity(projectile.getConstructor(World.class, EntityLivingBase.class, float.class).newInstance(world, player, dam));
+            return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new ActionResult<ItemStack>(EnumActionResult.FAIL, stack);
+    }
 
-	@Override
-	public boolean isEnchantable(ItemStack stack) {
-		return true;
-	}
+    @Override
+    public boolean isEnchantable(ItemStack stack) {
+        return true;
+    }
 
-	@Override
-	public boolean getIsRepairable(ItemStack i, ItemStack i1) {
-		boolean canRepair = mat.getRepairItem() != null;
-		if(canRepair) return mat.getRepairItem() == i1.getItem() ? true : super.getIsRepairable(i, i1);
-		return super.getIsRepairable(i, i1);
-	}
+    @Override
+    public boolean getIsRepairable(ItemStack i, ItemStack i1) {
+        boolean canRepair = mat.getRepairItem() != null;
+        if (canRepair) return mat.getRepairItem() == i1.getItem() || super.getIsRepairable(i, i1);
+        return super.getIsRepairable(i, i1);
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack item, World worldIn, List<String> infoList, ITooltipFlag flagIn) {
-		if(item.getMaxDamage() != -1) infoList.add(item.getMaxDamage() - item.getItemDamage() + " " + LangHelper.getUsesRemaining());
-		else infoList.add(SlayerAPI.Colour.GREEN + LangHelper.getInfiniteUses());
-		infoList.add(SlayerAPI.Colour.YELLOW + "Creative Only");
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack item, World worldIn, List<String> infoList, ITooltipFlag flagIn) {
+        if (item.getMaxDamage() != -1)
+            infoList.add(item.getMaxDamage() - item.getItemDamage() + " " + LangHelper.getUsesRemaining());
+        else infoList.add(SlayerAPI.Colour.GREEN + LangHelper.getInfiniteUses());
+        infoList.add(SlayerAPI.Colour.YELLOW + "Creative Only");
+    }
 }

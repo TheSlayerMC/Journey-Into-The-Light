@@ -5,22 +5,19 @@ import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 public class RenderStaffProjectile extends Render {
-	
+
     public ResourceLocation texture;
     private float scale, red, green, blue;
 
     public RenderStaffProjectile(ResourceLocation par1, float red, float green, float blue) {
-    	super(Minecraft.getMinecraft().getRenderManager());
+        super(Minecraft.getMinecraft().getRenderManager());
         texture = par1;
         scale = 1F;
         this.red = red;
@@ -29,7 +26,7 @@ public class RenderStaffProjectile extends Render {
     }
 
     public RenderStaffProjectile(ResourceLocation par1, float scaleFactor, float red, float green, float blue) {
-    	super(Minecraft.getMinecraft().getRenderManager());
+        super(Minecraft.getMinecraft().getRenderManager());
         texture = par1;
         scale = scaleFactor;
         this.red = red;
@@ -40,13 +37,13 @@ public class RenderStaffProjectile extends Render {
     public void renderProjectile(EntityThrowable projectile, double x, double y, double z) {
         GL11.glPushMatrix();
         this.bindEntityTexture(projectile);
-        GL11.glTranslatef((float)x, (float)y, (float)z);
+        GL11.glTranslatef((float) x, (float) y, (float) z);
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         GlStateManager.enableBlend();
         GlStateManager.disableDepth();
         GL11.glColor4f(red, green, blue, 1.0F);
         GlStateManager.enableDepth();
-		GlStateManager.disableBlend();
+        GlStateManager.disableBlend();
         GL11.glEnable(GL12.GL_RESCALE_NORMAL);
         GL11.glScalef(scale * 0.5F, scale * 0.5F, scale * 0.5F);
         Tessellator t = Tessellator.getInstance();
@@ -74,12 +71,12 @@ public class RenderStaffProjectile extends Render {
 
     @Override
     public void doRender(Entity par1Entity, double par2, double par4, double par6, float par8, float par9) {
-        this.renderProjectile((EntityThrowable)par1Entity, par2, par4, par6);
+        this.renderProjectile((EntityThrowable) par1Entity, par2, par4, par6);
         super.doRender(par1Entity, par2, par4, par6, par8, par9);
     }
 
-	@Override
-	protected ResourceLocation getEntityTexture(Entity entity) {
-		return texture;
-	}
+    @Override
+    protected ResourceLocation getEntityTexture(Entity entity) {
+        return texture;
+    }
 }

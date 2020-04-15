@@ -8,27 +8,27 @@ import net.slayer.api.block.BlockModCrop;
 
 public class BlockCorveggieCrop extends BlockModCrop {
 
-	public BlockCorveggieCrop(String name) {
-		super(name);
-	}
+    public BlockCorveggieCrop(String name) {
+        super(name);
+    }
 
-	@Override
-	public PropertyInteger getAge() {
-		return PropertyInteger.create("age", 0, 2);
-	}
-	
-	@Override
-	public Item getSeed() {
-		return JourneyCrops.corveggieSeeds;
-	}
+    @Override
+    public PropertyInteger getAge() {
+        return PropertyInteger.create("age", 0, 2);
+    }
 
-	@Override
-	public Item getCrop() {
-		return JourneyConsumables.corveggies;
-	}
+    @Override
+    public Item getSeed() {
+        return JourneyCrops.corveggieSeeds;
+    }
 
-	@Override
-	public int getStages() {
-		return 2;
-	}
+    @Override
+    public Item getCrop() {
+        return JourneyConsumables.corveggies;
+    }
+
+    @Override
+    public int getStages() {
+        return 2;
+    }
 }

@@ -1,7 +1,5 @@
 package net.journey.blocks;
 
-import java.util.Random;
-
 import net.journey.JITL;
 import net.journey.JourneyBlocks;
 import net.journey.JourneyItems;
@@ -22,91 +20,93 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.EnumMaterialTypes;
 import net.slayer.api.SlayerAPI;
 
+import java.util.Random;
+
 public class BlockHellThorn extends Block {
 
-	public String name;
-	
-	public BlockHellThorn(String name, String f, boolean top) {
-		super(EnumMaterialTypes.PLANT.getMaterial());
-		this.name = name;
-		LangRegistry.addBlock(name, f);
-		setSoundType(EnumMaterialTypes.PLANT.getSound());
-		setCreativeTab(JourneyTabs.decoration);
-		setHardness(0.0F);
-		setLightLevel(0.6F);
-		setTickRandomly(true);
-		setTranslationKey(name);
-		setRegistryName(SlayerAPI.MOD_ID, name);
-		JourneyBlocks.blocks.add(this);
-		JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
-		
-		JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
-	}
+    public String name;
 
-	@Override
-	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
-		return null;
-	}
+    public BlockHellThorn(String name, String f, boolean top) {
+        super(EnumMaterialTypes.PLANT.getMaterial());
+        this.name = name;
+        LangRegistry.addBlock(name, f);
+        setSoundType(EnumMaterialTypes.PLANT.getSound());
+        setCreativeTab(JourneyTabs.decoration);
+        setHardness(0.0F);
+        setLightLevel(0.6F);
+        setTickRandomly(true);
+        setTranslationKey(name);
+        setRegistryName(SlayerAPI.MOD_ID, name);
+        JourneyBlocks.blocks.add(this);
+        JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getRenderLayer() {
-		return BlockRenderLayer.CUTOUT;
-	}
+        JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
+    }
 
-	@Override
-	public boolean isOpaqueCube(IBlockState state) {
-		return false;
-	}
+    @Override
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
+        return null;
+    }
 
-	@Override
-	public boolean isFullCube(IBlockState state) {
-		return false;
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public BlockRenderLayer getRenderLayer() {
+        return BlockRenderLayer.CUTOUT;
+    }
 
-	@Override
-	public int getPackedLightmapCoords(IBlockState state, IBlockAccess source, BlockPos pos)  {
-		return 220;
-	}
+    @Override
+    public boolean isOpaqueCube(IBlockState state) {
+        return false;
+    }
 
-	@Override
-	public void onPlayerDestroy(World w, BlockPos pos, IBlockState state) {
-		checkDestroyed(w, pos, JourneyBlocks.hellThornTop, JourneyBlocks.hellThornBottom);
-	}
-	
-	public void checkDestroyed(World w, BlockPos pos, Block top, Block bottom) {
-		if(w.getBlockState(pos.up()) == bottom.getDefaultState() || w.getBlockState(pos.up()) == top.getDefaultState()) 
-			w.setBlockState(pos.up(), Blocks.AIR.getDefaultState());
-		if(w.getBlockState(pos.down()) == bottom.getDefaultState() || w.getBlockState(pos.down()) == top.getDefaultState()) 
-			w.setBlockState(pos.down(), Blocks.AIR.getDefaultState());
-	}
+    @Override
+    public boolean isFullCube(IBlockState state) {
+        return false;
+    }
 
-	@Override
-	public boolean canPlaceBlockAt(World w, BlockPos pos) {
-		return true;
-	}
+    @Override
+    public int getPackedLightmapCoords(IBlockState state, IBlockAccess source, BlockPos pos) {
+        return 220;
+    }
 
-	@Override
-	public void updateTick(World w, BlockPos pos, IBlockState s, Random r) {
-		this.checkAndDropBlock(w, pos, s);
-	}
+    @Override
+    public void onPlayerDestroy(World w, BlockPos pos, IBlockState state) {
+        checkDestroyed(w, pos, JourneyBlocks.hellThornTop, JourneyBlocks.hellThornBottom);
+    }
 
-	public void checkAndDropBlock(World w, BlockPos pos, IBlockState s) {
-		if(!this.canBlockStay(w, pos)) {
-			this.dropBlockAsItem(w, pos, s, 0);
-			w.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
-		}
-	}
+    public void checkDestroyed(World w, BlockPos pos, Block top, Block bottom) {
+        if (w.getBlockState(pos.up()) == bottom.getDefaultState() || w.getBlockState(pos.up()) == top.getDefaultState())
+            w.setBlockState(pos.up(), Blocks.AIR.getDefaultState());
+        if (w.getBlockState(pos.down()) == bottom.getDefaultState() || w.getBlockState(pos.down()) == top.getDefaultState())
+            w.setBlockState(pos.down(), Blocks.AIR.getDefaultState());
+    }
 
-	public boolean canBlockStay(World w, BlockPos pos) {
-		return canPlaceBlockAt(w, pos);
-	}
+    @Override
+    public boolean canPlaceBlockAt(World w, BlockPos pos) {
+        return true;
+    }
 
-	public void registerItemModel(Item itemBlock) {
-		JITL.proxy.registerItemRenderer(itemBlock, 0, name);
-	}
-	
-	public Item createItemBlock() {
-		return new ItemBlock(this).setRegistryName(getRegistryName());
-	}
+    @Override
+    public void updateTick(World w, BlockPos pos, IBlockState s, Random r) {
+        this.checkAndDropBlock(w, pos, s);
+    }
+
+    public void checkAndDropBlock(World w, BlockPos pos, IBlockState s) {
+        if (!this.canBlockStay(w, pos)) {
+            this.dropBlockAsItem(w, pos, s, 0);
+            w.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
+        }
+    }
+
+    public boolean canBlockStay(World w, BlockPos pos) {
+        return canPlaceBlockAt(w, pos);
+    }
+
+    public void registerItemModel(Item itemBlock) {
+        JITL.proxy.registerItemRenderer(itemBlock, 0, name);
+    }
+
+    public Item createItemBlock() {
+        return new ItemBlock(this).setRegistryName(getRegistryName());
+    }
 }

@@ -1,12 +1,8 @@
 package net.journey.entity.mob.corba;
 
-import java.util.Random;
-
 import net.journey.JourneyItems;
-import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityMagmaFireball;
-import net.journey.entity.projectile.EntityShimmererProjectile;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
@@ -34,386 +30,329 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.entity.EntityModFlying;
 
+import java.util.Random;
+
 public class EntityOverseerElder extends EntityModFlying {
 
-	private static final DataParameter<Boolean> ATTACKING = EntityDataManager.<Boolean>createKey(EntityOverseerElder.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Boolean> ATTACKING = EntityDataManager.createKey(EntityOverseerElder.class, DataSerializers.BOOLEAN);
     private int explosionStrength = 1;
-    
-	public EntityOverseerElder(World par1World) {
-		super(par1World);
-        this.moveHelper = new EntityOverseerElder.LavasnakeMoveHelper(this);
-		initEntityAI();
-		this.isImmuneToFire = true;
-		setSize(2.0F, 1.2F);
-	}
-	
-	public void initEntityAI() {
-		this.tasks.addTask(5, new EntityOverseerElder.AIRandomFly(this));
-		this.tasks.addTask(7, new EntityOverseerElder.AIFireballAttack(this));
-		this.tasks.addTask(7, new EntityOverseerElder.AILookAround(this));
-		this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
-    
-		this.isImmuneToFire = true;
-		setSize(2.0F, 3.2F);
-	}
 
-	@Override
-	protected void dropFewItems(boolean b, int j) {
-		if(rand.nextInt(1) == 0) dropItem(JourneyItems.overseeingEye, 1);
-		if(rand.nextInt(5) == 0) dropItem(JourneyItems.collectorRock, rand.nextInt(4));
-		if(rand.nextInt(25) == 0) dropItem(JourneyItems.overseeingTablet, 1);
-		super.dropFewItems(b, j);
-	}
-	
-	@Override
-	public void onUpdate() {
-        super.onUpdate();
-        if(!this.world.isRemote && this.world.getDifficulty() == EnumDifficulty.PEACEFUL) this.setDead();
+    public EntityOverseerElder(World par1World) {
+        super(par1World);
+        this.moveHelper = new EntityOverseerElder.LavasnakeMoveHelper(this);
+        initEntityAI();
+        this.isImmuneToFire = true;
+        setSize(2.0F, 1.2F);
     }
 
-	@Override
-	public boolean getCanSpawnHere() {
-		return super.rand.nextInt(15) == 0 && super.getCanSpawnHere() && this.world.getDifficulty() != EnumDifficulty.PEACEFUL;
-	}		
+    public static void registerFixesLavasnake(DataFixer fixer) {
+        EntityLiving.registerFixesMob(fixer, EntityOverseerElder.class);
+    }
 
-	@Override
-	public Item getItemDropped() {
-		return null;
-	}
+    public void initEntityAI() {
+        this.tasks.addTask(5, new EntityOverseerElder.AIRandomFly(this));
+        this.tasks.addTask(7, new EntityOverseerElder.AIFireballAttack(this));
+        this.tasks.addTask(7, new EntityOverseerElder.AILookAround(this));
+        this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
+
+        this.isImmuneToFire = true;
+        setSize(2.0F, 3.2F);
+    }
+
+    @Override
+    protected void dropFewItems(boolean b, int j) {
+        if (rand.nextInt(1) == 0) dropItem(JourneyItems.overseeingEye, 1);
+        if (rand.nextInt(5) == 0) dropItem(JourneyItems.collectorRock, rand.nextInt(4));
+        if (rand.nextInt(25) == 0) dropItem(JourneyItems.overseeingTablet, 1);
+        super.dropFewItems(b, j);
+    }
+
+    @Override
+    public void onUpdate() {
+        super.onUpdate();
+        if (!this.world.isRemote && this.world.getDifficulty() == EnumDifficulty.PEACEFUL) this.setDead();
+    }
+
+    @Override
+    public boolean getCanSpawnHere() {
+        return super.rand.nextInt(15) == 0 && super.getCanSpawnHere() && this.world.getDifficulty() != EnumDifficulty.PEACEFUL;
+    }
+
+    @Override
+    public Item getItemDropped() {
+        return null;
+    }
 
     @SideOnly(Side.CLIENT)
-    public boolean isAttacking()
-    {
-        return ((Boolean)this.dataManager.get(ATTACKING)).booleanValue();
+    public boolean isAttacking() {
+        return this.dataManager.get(ATTACKING).booleanValue();
     }
 
-    public void setAttacking(boolean attacking)
-    {
+    public void setAttacking(boolean attacking) {
         this.dataManager.set(ATTACKING, Boolean.valueOf(attacking));
     }
 
-    public int getFireballStrength()
-    {
+    public int getFireballStrength() {
         return this.explosionStrength;
     }
-    
-	@Override
-    public boolean attackEntityFrom(DamageSource source, float amount)
-    {
-        if (this.isEntityInvulnerable(source))
-        {
+
+    @Override
+    public boolean attackEntityFrom(DamageSource source, float amount) {
+        if (this.isEntityInvulnerable(source)) {
             return false;
-        }
-        else if (source.getImmediateSource() instanceof EntityLargeFireball && source.getTrueSource() instanceof EntityPlayer)
-        {
+        } else if (source.getImmediateSource() instanceof EntityLargeFireball && source.getTrueSource() instanceof EntityPlayer) {
             super.attackEntityFrom(source, 1000.0F);
             return true;
-        }
-        else
-        {
+        } else {
             return super.attackEntityFrom(source, amount);
         }
     }
 
-	@Override
-    protected void entityInit()
-    {
+    @Override
+    protected void entityInit() {
         super.entityInit();
         this.dataManager.register(ATTACKING, Boolean.valueOf(false));
     }
 
-	@Override
-    public SoundCategory getSoundCategory()
-    {
+    @Override
+    public SoundCategory getSoundCategory() {
         return SoundCategory.HOSTILE;
     }
 
-	@Override
-    protected SoundEvent getAmbientSound()
-    {
+    @Override
+    protected SoundEvent getAmbientSound() {
         return SoundEvents.ENTITY_GUARDIAN_AMBIENT;
     }
 
-	@Override
-    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
-    {
+    @Override
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
         return SoundEvents.ENTITY_GUARDIAN_HURT;
     }
-	
-	@Override
-    protected SoundEvent getDeathSound()
-    {
+
+    @Override
+    protected SoundEvent getDeathSound() {
         return SoundEvents.ENTITY_GUARDIAN_DEATH;
     }
 
-	@Override
-    protected float getSoundVolume()
-    {
+    @Override
+    protected float getSoundVolume() {
         return 10.0F;
     }
 
-	@Override
-    public int getMaxSpawnedInChunk()
-    {
+    @Override
+    public int getMaxSpawnedInChunk() {
         return 4;
     }
 
-    public static void registerFixesLavasnake(DataFixer fixer)
-    {
-        EntityLiving.registerFixesMob(fixer, EntityOverseerElder.class);
-    }
-
-	@Override
-    public void writeEntityToNBT(NBTTagCompound compound)
-    {
+    @Override
+    public void writeEntityToNBT(NBTTagCompound compound) {
         super.writeEntityToNBT(compound);
         compound.setInteger("ExplosionPower", this.explosionStrength);
     }
 
-	@Override
-    public void readEntityFromNBT(NBTTagCompound compound)
-    {
+    @Override
+    public void readEntityFromNBT(NBTTagCompound compound) {
         super.readEntityFromNBT(compound);
 
-        if (compound.hasKey("ExplosionPower", 99))
-        {
+        if (compound.hasKey("ExplosionPower", 99)) {
             this.explosionStrength = compound.getInteger("ExplosionPower");
         }
     }
 
-	@Override
-    public float getEyeHeight()
-    {
+    @Override
+    public float getEyeHeight() {
         return 2.6F;
     }
 
-    static class AIFireballAttack extends EntityAIBase
-        {
-            private final EntityOverseerElder parentEntity;
-            public int attackTimer;
+    @Override
+    public SoundEvent setLivingSound() {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
-            public AIFireballAttack(EntityOverseerElder ghast)
-            {
-                this.parentEntity = ghast;
+    @Override
+    public SoundEvent setHurtSound() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public SoundEvent setDeathSound() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public double setMaxHealth(MobStats s) {
+        return MobStats.OverseerElderHealth;
+    }
+
+    static class AIFireballAttack extends EntityAIBase {
+        private final EntityOverseerElder parentEntity;
+        public int attackTimer;
+
+        public AIFireballAttack(EntityOverseerElder ghast) {
+            this.parentEntity = ghast;
+        }
+
+        public boolean shouldExecute() {
+            return this.parentEntity.getAttackTarget() != null;
+        }
+
+        public void startExecuting() {
+            this.attackTimer = 0;
+        }
+
+        public void resetTask() {
+            this.parentEntity.setAttacking(false);
+        }
+
+        public void updateTask() {
+            EntityLivingBase entitylivingbase = this.parentEntity.getAttackTarget();
+            double d0 = 64.0D;
+
+            if (entitylivingbase.getDistanceSq(this.parentEntity) < 4096.0D && this.parentEntity.canEntityBeSeen(entitylivingbase)) {
+                World world = this.parentEntity.world;
+                ++this.attackTimer;
+
+                if (this.attackTimer == 2) {
+                    world.playEvent(null, 1015, new BlockPos(this.parentEntity), 0);
+                }
+
+                if (this.attackTimer == 1) {
+                    double d1 = 4.0D;
+                    Vec3d vec3d = this.parentEntity.getLook(1.0F);
+                    double d2 = entitylivingbase.posX - (this.parentEntity.posX + vec3d.x * 4.0D);
+                    double d3 = entitylivingbase.getEntityBoundingBox().minY + (double) (entitylivingbase.height / 2.0F) - (0.5D + this.parentEntity.posY + (double) (this.parentEntity.height / 2.0F));
+                    double d4 = entitylivingbase.posZ - (this.parentEntity.posZ + vec3d.z * 4.0D);
+                    world.playEvent(null, 1016, new BlockPos(this.parentEntity), 0);
+                    EntityMagmaFireball entitylargefireball = new EntityMagmaFireball(world, this.parentEntity, d2, d3, d4);
+                    entitylargefireball.posX = this.parentEntity.posX + vec3d.x * 4.0D;
+                    entitylargefireball.posY = this.parentEntity.posY + (double) (this.parentEntity.height / 2.0F) + 0.5D;
+                    entitylargefireball.posZ = this.parentEntity.posZ + vec3d.z * 4.0D;
+                    world.spawnEntity(entitylargefireball);
+                    this.attackTimer = -40;
+                }
+            } else if (this.attackTimer > 0) {
+                --this.attackTimer;
             }
 
-            public boolean shouldExecute()
-            {
-                return this.parentEntity.getAttackTarget() != null;
-            }
+            this.parentEntity.setAttacking(this.attackTimer > 1);
+        }
+    }
 
-            public void startExecuting()
-            {
-                this.attackTimer = 0;
-            }
+    static class AILookAround extends EntityAIBase {
+        private final EntityOverseerElder parentEntity;
 
-            public void resetTask()
-            {
-                this.parentEntity.setAttacking(false);
-            }
+        public AILookAround(EntityOverseerElder ghast) {
+            this.parentEntity = ghast;
+            this.setMutexBits(2);
+        }
 
-            public void updateTask()
-            {
+        public boolean shouldExecute() {
+            return true;
+        }
+
+        public void updateTask() {
+            if (this.parentEntity.getAttackTarget() == null) {
+                this.parentEntity.rotationYaw = -((float) MathHelper.atan2(this.parentEntity.motionX, this.parentEntity.motionZ)) * (180F / (float) Math.PI);
+                this.parentEntity.renderYawOffset = this.parentEntity.rotationYaw;
+            } else {
                 EntityLivingBase entitylivingbase = this.parentEntity.getAttackTarget();
                 double d0 = 64.0D;
 
-                if (entitylivingbase.getDistanceSq(this.parentEntity) < 4096.0D && this.parentEntity.canEntityBeSeen(entitylivingbase))
-                {
-                    World world = this.parentEntity.world;
-                    ++this.attackTimer;
-
-                    if (this.attackTimer == 2)
-                    {
-                        world.playEvent((EntityPlayer)null, 1015, new BlockPos(this.parentEntity), 0);
-                    }
-
-                    if (this.attackTimer == 1)
-                    {
-                        double d1 = 4.0D;
-                        Vec3d vec3d = this.parentEntity.getLook(1.0F);
-                        double d2 = entitylivingbase.posX - (this.parentEntity.posX + vec3d.x * 4.0D);
-                        double d3 = entitylivingbase.getEntityBoundingBox().minY + (double)(entitylivingbase.height / 2.0F) - (0.5D + this.parentEntity.posY + (double)(this.parentEntity.height / 2.0F));
-                        double d4 = entitylivingbase.posZ - (this.parentEntity.posZ + vec3d.z * 4.0D);
-                        world.playEvent((EntityPlayer)null, 1016, new BlockPos(this.parentEntity), 0);
-                        EntityMagmaFireball entitylargefireball = new EntityMagmaFireball(world, this.parentEntity, d2, d3, d4);
-                        entitylargefireball.posX = this.parentEntity.posX + vec3d.x * 4.0D;
-                        entitylargefireball.posY = this.parentEntity.posY + (double)(this.parentEntity.height / 2.0F) + 0.5D;
-                        entitylargefireball.posZ = this.parentEntity.posZ + vec3d.z * 4.0D;
-                        world.spawnEntity(entitylargefireball);
-                        this.attackTimer = -40;
-                    }
-                }
-                else if (this.attackTimer > 0)
-                {
-                    --this.attackTimer;
-                }
-
-                this.parentEntity.setAttacking(this.attackTimer > 1);
-            }
-        }
-
-    static class AILookAround extends EntityAIBase
-        {
-            private final EntityOverseerElder parentEntity;
-
-            public AILookAround(EntityOverseerElder ghast)
-            {
-                this.parentEntity = ghast;
-                this.setMutexBits(2);
-            }
-
-            public boolean shouldExecute()
-            {
-                return true;
-            }
-
-            public void updateTask()
-            {
-                if (this.parentEntity.getAttackTarget() == null)
-                {
-                    this.parentEntity.rotationYaw = -((float)MathHelper.atan2(this.parentEntity.motionX, this.parentEntity.motionZ)) * (180F / (float)Math.PI);
+                if (entitylivingbase.getDistanceSq(this.parentEntity) < 4096.0D) {
+                    double d1 = entitylivingbase.posX - this.parentEntity.posX;
+                    double d2 = entitylivingbase.posZ - this.parentEntity.posZ;
+                    this.parentEntity.rotationYaw = -((float) MathHelper.atan2(d1, d2)) * (180F / (float) Math.PI);
                     this.parentEntity.renderYawOffset = this.parentEntity.rotationYaw;
                 }
-                else
-                {
-                    EntityLivingBase entitylivingbase = this.parentEntity.getAttackTarget();
-                    double d0 = 64.0D;
-
-                    if (entitylivingbase.getDistanceSq(this.parentEntity) < 4096.0D)
-                    {
-                        double d1 = entitylivingbase.posX - this.parentEntity.posX;
-                        double d2 = entitylivingbase.posZ - this.parentEntity.posZ;
-                        this.parentEntity.rotationYaw = -((float)MathHelper.atan2(d1, d2)) * (180F / (float)Math.PI);
-                        this.parentEntity.renderYawOffset = this.parentEntity.rotationYaw;
-                    }
-                }
             }
         }
+    }
 
-    static class AIRandomFly extends EntityAIBase
-        {
-            private final EntityOverseerElder parentEntity;
+    static class AIRandomFly extends EntityAIBase {
+        private final EntityOverseerElder parentEntity;
 
-            public AIRandomFly(EntityOverseerElder ghast)
-            {
-                this.parentEntity = ghast;
-                this.setMutexBits(1);
-            }
-
-            public boolean shouldExecute()
-            {
-                EntityMoveHelper entitymovehelper = this.parentEntity.getMoveHelper();
-
-                if (!entitymovehelper.isUpdating())
-                {
-                    return true;
-                }
-                else
-                {
-                    double d0 = entitymovehelper.getX() - this.parentEntity.posX;
-                    double d1 = entitymovehelper.getY() - this.parentEntity.posY;
-                    double d2 = entitymovehelper.getZ() - this.parentEntity.posZ;
-                    double d3 = d0 * d0 + d1 * d1 + d2 * d2;
-                    return d3 < 1.0D || d3 > 3600.0D;
-                }
-            }
-
-            public boolean shouldContinueExecuting()
-            {
-                return false;
-            }
-
-            public void startExecuting()
-            {
-                Random random = this.parentEntity.getRNG();
-                double d0 = this.parentEntity.posX + (double)((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
-                double d1 = this.parentEntity.posY + (double)((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
-                double d2 = this.parentEntity.posZ + (double)((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
-                this.parentEntity.getMoveHelper().setMoveTo(d0, d1, d2, 1.0D);
-            }
+        public AIRandomFly(EntityOverseerElder ghast) {
+            this.parentEntity = ghast;
+            this.setMutexBits(1);
         }
 
-    static class LavasnakeMoveHelper extends EntityMoveHelper
-        {
-            private final EntityOverseerElder parentEntity;
-            private int courseChangeCooldown;
+        public boolean shouldExecute() {
+            EntityMoveHelper entitymovehelper = this.parentEntity.getMoveHelper();
 
-            public LavasnakeMoveHelper(EntityOverseerElder ghast)
-            {
-                super(ghast);
-                this.parentEntity = ghast;
-            }
-
-            public void onUpdateMoveHelper()
-            {
-                if (this.action == EntityMoveHelper.Action.MOVE_TO)
-                {
-                    double d0 = this.posX - this.parentEntity.posX;
-                    double d1 = this.posY - this.parentEntity.posY;
-                    double d2 = this.posZ - this.parentEntity.posZ;
-                    double d3 = d0 * d0 + d1 * d1 + d2 * d2;
-
-                    if (this.courseChangeCooldown-- <= 0)
-                    {
-                        this.courseChangeCooldown += this.parentEntity.getRNG().nextInt(5) + 2;
-                        d3 = (double)MathHelper.sqrt(d3);
-
-                        if (this.isNotColliding(this.posX, this.posY, this.posZ, d3))
-                        {
-                            this.parentEntity.motionX += d0 / d3 * 0.1D;
-                            this.parentEntity.motionY += d1 / d3 * 0.1D;
-                            this.parentEntity.motionZ += d2 / d3 * 0.1D;
-                        }
-                        else
-                        {
-                            this.action = EntityMoveHelper.Action.WAIT;
-                        }
-                    }
-                }
-            }
-
-            private boolean isNotColliding(double x, double y, double z, double p_179926_7_)
-            {
-                double d0 = (x - this.parentEntity.posX) / p_179926_7_;
-                double d1 = (y - this.parentEntity.posY) / p_179926_7_;
-                double d2 = (z - this.parentEntity.posZ) / p_179926_7_;
-                AxisAlignedBB axisalignedbb = this.parentEntity.getEntityBoundingBox();
-
-                for (int i = 1; (double)i < p_179926_7_; ++i)
-                {
-                    axisalignedbb = axisalignedbb.offset(d0, d1, d2);
-
-                    if (!this.parentEntity.world.getCollisionBoxes(this.parentEntity, axisalignedbb).isEmpty())
-                    {
-                        return false;
-                    }
-                }
-
+            if (!entitymovehelper.isUpdating()) {
                 return true;
+            } else {
+                double d0 = entitymovehelper.getX() - this.parentEntity.posX;
+                double d1 = entitymovehelper.getY() - this.parentEntity.posY;
+                double d2 = entitymovehelper.getZ() - this.parentEntity.posZ;
+                double d3 = d0 * d0 + d1 * d1 + d2 * d2;
+                return d3 < 1.0D || d3 > 3600.0D;
             }
         }
 
-	@Override
-	public SoundEvent setLivingSound() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+        public boolean shouldContinueExecuting() {
+            return false;
+        }
 
-	@Override
-	public SoundEvent setHurtSound() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+        public void startExecuting() {
+            Random random = this.parentEntity.getRNG();
+            double d0 = this.parentEntity.posX + (double) ((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
+            double d1 = this.parentEntity.posY + (double) ((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
+            double d2 = this.parentEntity.posZ + (double) ((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
+            this.parentEntity.getMoveHelper().setMoveTo(d0, d1, d2, 1.0D);
+        }
+    }
 
-	@Override
-	public SoundEvent setDeathSound() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    static class LavasnakeMoveHelper extends EntityMoveHelper {
+        private final EntityOverseerElder parentEntity;
+        private int courseChangeCooldown;
 
-	@Override
-	public double setMaxHealth(MobStats s) {
-		return s.OverseerElderHealth;
-	}
+        public LavasnakeMoveHelper(EntityOverseerElder ghast) {
+            super(ghast);
+            this.parentEntity = ghast;
+        }
+
+        public void onUpdateMoveHelper() {
+            if (this.action == EntityMoveHelper.Action.MOVE_TO) {
+                double d0 = this.posX - this.parentEntity.posX;
+                double d1 = this.posY - this.parentEntity.posY;
+                double d2 = this.posZ - this.parentEntity.posZ;
+                double d3 = d0 * d0 + d1 * d1 + d2 * d2;
+
+                if (this.courseChangeCooldown-- <= 0) {
+                    this.courseChangeCooldown += this.parentEntity.getRNG().nextInt(5) + 2;
+                    d3 = MathHelper.sqrt(d3);
+
+                    if (this.isNotColliding(this.posX, this.posY, this.posZ, d3)) {
+                        this.parentEntity.motionX += d0 / d3 * 0.1D;
+                        this.parentEntity.motionY += d1 / d3 * 0.1D;
+                        this.parentEntity.motionZ += d2 / d3 * 0.1D;
+                    } else {
+                        this.action = EntityMoveHelper.Action.WAIT;
+                    }
+                }
+            }
+        }
+
+        private boolean isNotColliding(double x, double y, double z, double p_179926_7_) {
+            double d0 = (x - this.parentEntity.posX) / p_179926_7_;
+            double d1 = (y - this.parentEntity.posY) / p_179926_7_;
+            double d2 = (z - this.parentEntity.posZ) / p_179926_7_;
+            AxisAlignedBB axisalignedbb = this.parentEntity.getEntityBoundingBox();
+
+            for (int i = 1; (double) i < p_179926_7_; ++i) {
+                axisalignedbb = axisalignedbb.offset(d0, d1, d2);
+
+                if (!this.parentEntity.world.getCollisionBoxes(this.parentEntity, axisalignedbb).isEmpty()) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+    }
 
 }

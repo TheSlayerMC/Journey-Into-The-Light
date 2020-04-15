@@ -1,6 +1,5 @@
 package net.journey.client.render.model.mob.overworld.desert;
 
-import net.journey.entity.mob.nether.EntityLavasnake;
 import net.journey.entity.mob.overworld.EntityDunewerm;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
@@ -38,10 +37,10 @@ public class ModelDunewerm extends ModelBase {
     }
 
     @Override
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) { 
+    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
         this.head.render(f5);
     }
-    
+
     public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
         modelRenderer.rotateAngleX = x;
         modelRenderer.rotateAngleY = y;
@@ -50,26 +49,27 @@ public class ModelDunewerm extends ModelBase {
 
     @Override
     public void setRotationAngles(float par1, float par2, float par3, float par4, float par5, float par6, Entity par7Entity) {
-    	EntityDunewerm entitylavasnake = (EntityDunewerm)par7Entity;
+        EntityDunewerm entitylavasnake = (EntityDunewerm) par7Entity;
         float f6 = par3 - entitylavasnake.ticksExisted;
-        this.head.rotateAngleY = par4 / (180F / (float)Math.PI);
-        this.head.rotateAngleX = par5 / (180F / (float)Math.PI);
-        float[] afloat = new float[] {1.75F, 0.25F, 0.0F, 0.0F, 0.5F, 0.5F, 0.5F, 0.5F, 1.25F, 0.75F, 0.0F, 0.0F};
-        float[] afloat1 = new float[] {0.0F, 0.0F, 0.0F, 0.0F, 0.25F, 1.75F, 1.25F, 0.75F, 0.0F, 0.0F, 0.0F, 0.0F};
-        float[] afloat2 = new float[] {0.0F, 0.0F, 0.25F, 1.75F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.75F, 1.25F};
-        float[] afloat3 = new float[] {0.0F, 0.0F, 8.0F, -8.0F, -8.0F, 8.0F, 8.0F, -8.0F, 0.0F, 0.0F, 8.0F, -8.0F};
-        float[] afloat4 = new float[] { -8.0F, -8.0F, -8.0F, -8.0F, 0.0F, 0.0F, 0.0F, 0.0F, 8.0F, 8.0F, 8.0F, 8.0F};
-        float[] afloat5 = new float[] {8.0F, -8.0F, 0.0F, 0.0F, -8.0F, -8.0F, 8.0F, 8.0F, 8.0F, -8.0F, 0.0F, 0.0F};
+        this.head.rotateAngleY = par4 / (180F / (float) Math.PI);
+        this.head.rotateAngleX = par5 / (180F / (float) Math.PI);
+        float[] afloat = new float[]{1.75F, 0.25F, 0.0F, 0.0F, 0.5F, 0.5F, 0.5F, 0.5F, 1.25F, 0.75F, 0.0F, 0.0F};
+        float[] afloat1 = new float[]{0.0F, 0.0F, 0.0F, 0.0F, 0.25F, 1.75F, 1.25F, 0.75F, 0.0F, 0.0F, 0.0F, 0.0F};
+        float[] afloat2 = new float[]{0.0F, 0.0F, 0.25F, 1.75F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.75F, 1.25F};
+        float[] afloat3 = new float[]{0.0F, 0.0F, 8.0F, -8.0F, -8.0F, 8.0F, 8.0F, -8.0F, 0.0F, 0.0F, 8.0F, -8.0F};
+        float[] afloat4 = new float[]{-8.0F, -8.0F, -8.0F, -8.0F, 0.0F, 0.0F, 0.0F, 0.0F, 8.0F, 8.0F, 8.0F, 8.0F};
+        float[] afloat5 = new float[]{8.0F, -8.0F, 0.0F, 0.0F, -8.0F, -8.0F, 8.0F, 8.0F, 8.0F, -8.0F, 0.0F, 0.0F};
 
-        for (int i = 0; i < 12; ++i){}
+        for (int i = 0; i < 12; ++i) {
+        }
         Object object = Minecraft.getMinecraft().getRenderViewEntity();
 
-        this.tail[0].rotateAngleY = MathHelper.sin(par3) * (float)Math.PI * 0.01F;
-        this.tail[0].rotateAngleY = MathHelper.sin(par3) * (float)Math.PI * 0.1F;
+        this.tail[0].rotateAngleY = MathHelper.sin(par3) * (float) Math.PI * 0.01F;
+        this.tail[0].rotateAngleY = MathHelper.sin(par3) * (float) Math.PI * 0.1F;
         this.tail[0].rotationPointX = -1.5F;
         this.tail[0].rotationPointY = 0.5F;
         this.tail[0].rotationPointZ = 14.0F;
-        this.tail[1].rotateAngleY = MathHelper.sin(par3) * (float)Math.PI * 0.1F;
+        this.tail[1].rotateAngleY = MathHelper.sin(par3) * (float) Math.PI * 0.1F;
         this.tail[1].rotationPointX = 0.5F;
         this.tail[1].rotationPointY = 0.5F;
         this.tail[1].rotationPointZ = 6.0F;

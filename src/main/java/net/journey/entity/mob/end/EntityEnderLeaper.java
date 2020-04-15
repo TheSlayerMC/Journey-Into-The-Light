@@ -9,44 +9,44 @@ import net.slayer.api.entity.EntityModMob;
 
 public class EntityEnderLeaper extends EntityModMob {
 
-	public EntityEnderLeaper(World par1World) {
-		super(par1World);
-		addAttackingAI();
-		setSize(0.7F, 1.2F);
-	}
+    public EntityEnderLeaper(World par1World) {
+        super(par1World);
+        addAttackingAI();
+        setSize(0.7F, 1.2F);
+    }
 
-	@Override
-	public double setAttackDamage(MobStats s) {
-		return MobStats.EnderLeaperDamage;
-	}
+    @Override
+    public double setAttackDamage(MobStats s) {
+        return MobStats.EnderLeaperDamage;
+    }
 
-	@Override
-	public double setMaxHealth(MobStats s) {
-		return MobStats.EnderLeaperHealth;
-	}
+    @Override
+    public double setMaxHealth(MobStats s) {
+        return MobStats.EnderLeaperHealth;
+    }
 
-	@Override
-	public SoundEvent setLivingSound() {
-		return JourneySounds.SHIMMERER;
-	}
+    @Override
+    public SoundEvent setLivingSound() {
+        return JourneySounds.SHIMMERER;
+    }
 
-	@Override
-	public SoundEvent setHurtSound() {
-		return JourneySounds.SHIMMERER_HURT;
-	}
+    @Override
+    public SoundEvent setHurtSound() {
+        return JourneySounds.SHIMMERER_HURT;
+    }
 
-	@Override
-	public SoundEvent setDeathSound() {
-		return JourneySounds.SHIMMERER_DEATH;
-	}
-	
-	@Override
-	protected void dropFewItems(boolean b, int j) {
-		
-	}
+    @Override
+    public SoundEvent setDeathSound() {
+        return JourneySounds.SHIMMERER_DEATH;
+    }
 
-	@Override
-	public Item getItemDropped() {
-		return null;
-	}
+    @Override
+    protected void dropFewItems(boolean b, int j) {
+
+    }
+
+    @Override
+    public Item getItemDropped() {
+        return null;
+    }
 }

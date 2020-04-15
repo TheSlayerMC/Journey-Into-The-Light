@@ -6,7 +6,8 @@ import net.minecraft.world.gen.structure.template.PlacementSettings;
 
 public interface IGeneratedStructure {
 
-	public abstract WorldServer getWorldServer(World w);
-	public abstract PlacementSettings getSetting();
-	
+    WorldServer getWorldServer(World w);
+
+    PlacementSettings getSetting();
+
 }

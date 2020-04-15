@@ -10,30 +10,32 @@ import net.minecraft.item.ItemStack;
 
 public class ContainerSummoningTable extends Container {
 
-	private final TileEntitySummoningTable tileentity;
-	public IInventory tableInventory;
+    private final TileEntitySummoningTable tileentity;
+    public IInventory tableInventory;
 
-	public ContainerSummoningTable(InventoryPlayer inventory, TileEntitySummoningTable entity) {
-		this.tileentity = entity;
-		this.addSlotToContainer(new Slot(entity, 0, 44, 17));
-		this.addSlotToContainer(new Slot(entity, 1, 44, 35));
-		this.addSlotToContainer(new Slot(entity, 2, 44, 53));
-		this.addSlotToContainer(new Slot(entity, 3, 80, 35));
-		this.addSlotToContainer(new Slot(entity, 4, 117, 17));
-		this.addSlotToContainer(new Slot(entity, 5, 117, 35));
-		this.addSlotToContainer(new Slot(entity, 6, 117, 53));
+    public ContainerSummoningTable(InventoryPlayer inventory, TileEntitySummoningTable entity) {
+        this.tileentity = entity;
+        this.addSlotToContainer(new Slot(entity, 0, 44, 17));
+        this.addSlotToContainer(new Slot(entity, 1, 44, 35));
+        this.addSlotToContainer(new Slot(entity, 2, 44, 53));
+        this.addSlotToContainer(new Slot(entity, 3, 80, 35));
+        this.addSlotToContainer(new Slot(entity, 4, 117, 17));
+        this.addSlotToContainer(new Slot(entity, 5, 117, 35));
+        this.addSlotToContainer(new Slot(entity, 6, 117, 53));
 
-		for(int i = 0; i < 3; ++i) for(int j = 0; j < 9; ++j) this.addSlotToContainer(new Slot(inventory, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
-		for(int i = 0; i < 9; ++i) this.addSlotToContainer(new Slot(inventory, i, 8 + i * 18, 142));
-	}
-	
-	@Override
-	public boolean canInteractWith(EntityPlayer playerIn) {
-		return true;
-	}
-	
-	@Override
-	public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2) {
-		return ItemStack.EMPTY;
-	}
+        for (int i = 0; i < 3; ++i)
+            for (int j = 0; j < 9; ++j)
+                this.addSlotToContainer(new Slot(inventory, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
+        for (int i = 0; i < 9; ++i) this.addSlotToContainer(new Slot(inventory, i, 8 + i * 18, 142));
+    }
+
+    @Override
+    public boolean canInteractWith(EntityPlayer playerIn) {
+        return true;
+    }
+
+    @Override
+    public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2) {
+        return ItemStack.EMPTY;
+    }
 }

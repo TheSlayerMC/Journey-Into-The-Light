@@ -6,7 +6,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class RenderOverseerElder extends RenderModMob {
 
-	public RenderOverseerElder(ModelBase model, ResourceLocation tex) {
-		super(model, tex);
-	}
+    public RenderOverseerElder(ModelBase model, ResourceLocation tex) {
+        super(model, tex);
+    }
 }

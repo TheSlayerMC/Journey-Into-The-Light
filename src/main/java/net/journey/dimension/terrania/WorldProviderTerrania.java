@@ -2,14 +2,9 @@ package net.journey.dimension.terrania;
 
 import net.journey.dimension.DimensionHelper;
 import net.journey.dimension.base.BaseWorldProvider;
-import net.journey.dimension.cloudia.CloudiaSkyRenderer;
-import net.journey.dimension.depths.BiomeProviderDepths;
 import net.journey.proxy.ClientProxy;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DimensionType;
-import net.minecraft.world.WorldProvider;
-import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.biome.BiomeProviderSingle;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.IChunkGenerator;
@@ -28,12 +23,12 @@ public class WorldProviderTerrania extends BaseWorldProvider {
         hasSkyLight = true;
     }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public IRenderHandler getSkyRenderer() {
-		return ClientProxy.terraniaSkyRenderer;
-	}
-	
+    @Override
+    @SideOnly(Side.CLIENT)
+    public IRenderHandler getSkyRenderer() {
+        return ClientProxy.terraniaSkyRenderer;
+    }
+
     @Override
     public boolean canBlockFreeze(BlockPos pos, boolean byWater) {
         return false;

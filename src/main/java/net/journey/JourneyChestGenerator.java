@@ -2,7 +2,7 @@ package net.journey;
 
 public class JourneyChestGenerator {
 
-	public static void init() { 
+    public static void init() {
 		/*ChestGenHooks.getInfo(ChestGenHooks.NETHER_FORTRESS).addItem(new WeightedRandomChestContent(new ItemStack(JourneyItems.boilKey), 1, 1, 10));
 		
 		ChestGenHooks.getInfo(ChestGenHooks.NETHER_FORTRESS).addItem(new WeightedRandomChestContent(new ItemStack(JourneyItems.heartSml), 1, 1, 30));
@@ -46,5 +46,5 @@ public class JourneyChestGenerator {
 		ChestGenHooks.getInfo(ChestGenHooks.STRONGHOLD_CROSSING).addItem(new WeightedRandomChestContent(new ItemStack(JourneyItems.heartUlt), 1, 1, 5));
 		ChestGenHooks.getInfo(ChestGenHooks.STRONGHOLD_LIBRARY).addItem(new WeightedRandomChestContent(new ItemStack(JourneyItems.heartUlt), 1, 1, 5));
 		ChestGenHooks.getInfo(ChestGenHooks.VILLAGE_BLACKSMITH).addItem(new WeightedRandomChestContent(new ItemStack(JourneyItems.heartUlt), 1, 1, 5));*/
-	}
+    }
 }

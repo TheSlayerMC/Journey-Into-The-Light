@@ -9,14 +9,14 @@ import net.minecraft.item.ItemSeeds;
 import net.slayer.api.SlayerAPI;
 
 public class ItemModSeeds extends ItemSeeds {
-	
-	public ItemModSeeds(String name, String f, Block block) {
-		super(block, Blocks.FARMLAND);
-		LangRegistry.addItem(name, f);
-		setTranslationKey(name);
-		setCreativeTab(JourneyTabs.crops);
-		JourneyItems.items.add(this);
-		JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
-		setRegistryName(SlayerAPI.MOD_ID, name);
-	}
+
+    public ItemModSeeds(String name, String f, Block block) {
+        super(block, Blocks.FARMLAND);
+        LangRegistry.addItem(name, f);
+        setTranslationKey(name);
+        setCreativeTab(JourneyTabs.crops);
+        JourneyItems.items.add(this);
+        JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
+        setRegistryName(SlayerAPI.MOD_ID, name);
+    }
 }

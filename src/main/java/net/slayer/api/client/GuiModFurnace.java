@@ -8,12 +8,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.SlayerAPI;
 import net.slayer.api.entity.tileentity.TileEntityModFurnace;
 import net.slayer.api.entity.tileentity.container.ContainerModFurnace;
-
 import org.lwjgl.opengl.GL11;
 
 @SideOnly(Side.CLIENT)
 public class GuiModFurnace extends GuiContainer {
-	
+
     private TileEntityModFurnace tileFurnace;
     private String name, texture;
 
@@ -23,9 +22,9 @@ public class GuiModFurnace extends GuiContainer {
         this.name = name;
         this.texture = texture;
     }
-    
+
     public GuiModFurnace(InventoryPlayer par1InventoryPlayer, TileEntityModFurnace par2TileEntityFurnace, String name, boolean fuel) {
-       this(par1InventoryPlayer, par2TileEntityFurnace, name, name.toLowerCase(), fuel);
+        this(par1InventoryPlayer, par2TileEntityFurnace, name, name.toLowerCase(), fuel);
     }
 
     @Override
@@ -45,7 +44,7 @@ public class GuiModFurnace extends GuiContainer {
         this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
         int i1;
 
-        if(this.tileFurnace.isBurning()) {
+        if (this.tileFurnace.isBurning()) {
             i1 = getBurnLeftScaled(12);
             this.drawTexturedModalRect(k + 56, l + 36 + 12 - i1, 176, 12 - i1, 14, i1 + 2);
         }
@@ -53,16 +52,16 @@ public class GuiModFurnace extends GuiContainer {
         i1 = getCookProgressScaled(24);
         this.drawTexturedModalRect(k + 79, l + 34, 176, 14, i1 + 1, 16);
     }
-    
+
     private int getCookProgressScaled(int pixels) {
         int i = this.tileFurnace.getField(2);
         int j = this.tileFurnace.getField(3);
         return j != 0 && i != 0 ? i * pixels / j : 0;
     }
-    
+
     private int getBurnLeftScaled(int pixels) {
         int i = this.tileFurnace.getField(1);
-        if(i == 0) i = 200;
+        if (i == 0) i = 200;
         return this.tileFurnace.getField(0) * pixels / i;
     }
 }

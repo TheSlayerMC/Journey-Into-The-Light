@@ -8,27 +8,27 @@ import net.slayer.api.block.BlockModCrop;
 
 public class BlockCrakeBulbCrop extends BlockModCrop {
 
-	public BlockCrakeBulbCrop(String name) {
-		super(name);
-	}
+    public BlockCrakeBulbCrop(String name) {
+        super(name);
+    }
 
-	@Override
-	public PropertyInteger getAge() {
-		return PropertyInteger.create("age", 0, 3);
-	}
-	
-	@Override
-	public Item getSeed() {
-		return JourneyCrops.crakeBulbSeeds;
-	}
+    @Override
+    public PropertyInteger getAge() {
+        return PropertyInteger.create("age", 0, 3);
+    }
 
-	@Override
-	public Item getCrop() {
-		return JourneyConsumables.crakeBulb;
-	}
+    @Override
+    public Item getSeed() {
+        return JourneyCrops.crakeBulbSeeds;
+    }
 
-	@Override
-	public int getStages() {
-		return 3;
-	}
+    @Override
+    public Item getCrop() {
+        return JourneyConsumables.crakeBulb;
+    }
+
+    @Override
+    public int getStages() {
+        return 3;
+    }
 }

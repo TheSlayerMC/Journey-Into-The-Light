@@ -2,12 +2,7 @@ package net.slayer.api.entity.tileentity.container;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Container;
-import net.minecraft.inventory.IContainerListener;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Slot;
-import net.minecraft.inventory.SlotFurnaceFuel;
-import net.minecraft.inventory.SlotFurnaceOutput;
+import net.minecraft.inventory.*;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -15,65 +10,65 @@ import net.slayer.api.entity.tileentity.TileEntityModFurnace;
 
 public class ContainerModFurnace extends Container {
 
-	private TileEntityModFurnace tileFurnace;
-	private int lastCookTime, lastBurnTime, lastItemBurnTime;
-	private boolean hasFuel;
+    private TileEntityModFurnace tileFurnace;
+    private int lastCookTime, lastBurnTime, lastItemBurnTime;
+    private boolean hasFuel;
 
-	public ContainerModFurnace(InventoryPlayer player, TileEntityModFurnace furnace, boolean hasFuel) {
-		this.tileFurnace = furnace;
-		this.addSlotToContainer(new Slot(furnace, 0, 56, 17));
+    public ContainerModFurnace(InventoryPlayer player, TileEntityModFurnace furnace, boolean hasFuel) {
+        this.tileFurnace = furnace;
+        this.addSlotToContainer(new Slot(furnace, 0, 56, 17));
         this.addSlotToContainer(new SlotFurnaceFuel(furnace, 1, 56, 53));
         this.addSlotToContainer(new SlotFurnaceOutput(player.player, furnace, 2, 116, 35));
-		this.hasFuel = hasFuel;
-		int i;
-		for(i = 0; i < 3; ++i) {
-			for(int j = 0; j < 9; ++j) {
-				this.addSlotToContainer(new Slot(player, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
-			}
-		}
-		for(i = 0; i < 9; ++i) {
-			this.addSlotToContainer(new Slot(player, i, 8 + i * 18, 142));
-		}
-	}
+        this.hasFuel = hasFuel;
+        int i;
+        for (i = 0; i < 3; ++i) {
+            for (int j = 0; j < 9; ++j) {
+                this.addSlotToContainer(new Slot(player, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
+            }
+        }
+        for (i = 0; i < 9; ++i) {
+            this.addSlotToContainer(new Slot(player, i, 8 + i * 18, 142));
+        }
+    }
 
-	@Override
+    @Override
     public void addListener(IContainerListener listener) {
         super.addListener(listener);
         listener.sendAllWindowProperties(this, this.tileFurnace);
     }
 
-	@Override
-	public void detectAndSendChanges() {
-		super.detectAndSendChanges();
-		for (int i = 0; i < this.listeners.size(); ++i) {
+    @Override
+    public void detectAndSendChanges() {
+        super.detectAndSendChanges();
+        for (int i = 0; i < this.listeners.size(); ++i) {
             IContainerListener icontainerlistener = this.listeners.get(i);
-			if(this.lastCookTime != this.tileFurnace.cookTime) 
-				icontainerlistener.sendWindowProperty(this, 0, this.tileFurnace.cookTime);
-			if(this.lastBurnTime != this.tileFurnace.burnTime)
-				icontainerlistener.sendWindowProperty(this, 1, this.tileFurnace.burnTime);
-			if(this.lastItemBurnTime != this.tileFurnace.burnTime)
-				icontainerlistener.sendWindowProperty(this, 2, this.tileFurnace.currentBurnTime);
-		}
-		this.lastCookTime = this.tileFurnace.cookTime;
-		this.lastBurnTime = this.tileFurnace.burnTime;
-		this.lastItemBurnTime = this.tileFurnace.currentBurnTime;
-	}
+            if (this.lastCookTime != this.tileFurnace.cookTime)
+                icontainerlistener.sendWindowProperty(this, 0, this.tileFurnace.cookTime);
+            if (this.lastBurnTime != this.tileFurnace.burnTime)
+                icontainerlistener.sendWindowProperty(this, 1, this.tileFurnace.burnTime);
+            if (this.lastItemBurnTime != this.tileFurnace.burnTime)
+                icontainerlistener.sendWindowProperty(this, 2, this.tileFurnace.currentBurnTime);
+        }
+        this.lastCookTime = this.tileFurnace.cookTime;
+        this.lastBurnTime = this.tileFurnace.burnTime;
+        this.lastItemBurnTime = this.tileFurnace.currentBurnTime;
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void updateProgressBar(int par1, int par2) {
-		if(par1 == 0) this.tileFurnace.cookTime = par2;
-		if(par1 == 1) this.tileFurnace.burnTime = par2;
-		if(par1 == 2) this.tileFurnace.currentBurnTime = par2;
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void updateProgressBar(int par1, int par2) {
+        if (par1 == 0) this.tileFurnace.cookTime = par2;
+        if (par1 == 1) this.tileFurnace.burnTime = par2;
+        if (par1 == 2) this.tileFurnace.currentBurnTime = par2;
+    }
 
-	@Override
-	public boolean canInteractWith(EntityPlayer par1EntityPlayer) {
-		return true;
-	}
+    @Override
+    public boolean canInteractWith(EntityPlayer par1EntityPlayer) {
+        return true;
+    }
 
-	@Override
-	public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2) {
+    @Override
+    public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2) {
         ItemStack itemstack = null;
         Slot slot = this.inventorySlots.get(par2);
 
@@ -93,15 +88,14 @@ public class ContainerModFurnace extends Container {
                 if (itemstack1.hasTagCompound() && itemstack1.getCount() == 1) {
                     this.inventorySlots.get(0).putStack(itemstack1.copy());
                     itemstack1.setCount(0);
-                }
-                else if (itemstack1.getCount() >= 1) {
+                } else if (itemstack1.getCount() >= 1) {
                     this.inventorySlots.get(0).putStack(new ItemStack(itemstack1.getItem(), 1, itemstack1.getItemDamage()));
-                    itemstack1.shrink(1);;
+                    itemstack1.shrink(1);
                 }
             }
 
             if (itemstack1.getCount() == 0) {
-                slot.putStack((ItemStack)null);
+                slot.putStack(null);
             } else {
                 slot.onSlotChanged();
             }

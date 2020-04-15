@@ -1,7 +1,5 @@
 package net.journey.blocks;
 
-import java.util.Random;
-
 import net.journey.JourneyBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -14,13 +12,15 @@ import net.slayer.api.EnumMaterialTypes;
 import net.slayer.api.SlayerAPI;
 import net.slayer.api.block.BlockMod;
 
+import java.util.Random;
+
 public class BlockJoinedGlass extends BlockMod {
 
-	private String[] textures = new String[16];
-	//private IIcon[] icons = new IIcon[16];
+    private String[] textures = new String[16];
+    //private IIcon[] icons = new IIcon[16];
 
-	public BlockJoinedGlass(String name, String f) {
-		super(EnumMaterialTypes.GLASS, name, f, 0.5F);
+    public BlockJoinedGlass(String name, String f) {
+        super(EnumMaterialTypes.GLASS, name, f, 0.5F);
         textures[0] = SlayerAPI.PREFIX + "glass/" + name + "/glass";
         textures[1] = SlayerAPI.PREFIX + "glass/" + name + "/glass_1_d";
         textures[2] = SlayerAPI.PREFIX + "glass/" + name + "/glass_1_u";
@@ -37,12 +37,12 @@ public class BlockJoinedGlass extends BlockMod {
         textures[13] = SlayerAPI.PREFIX + "glass/" + name + "/glass_3_l";
         textures[14] = SlayerAPI.PREFIX + "glass/" + name + "/glass_3_r";
         textures[15] = SlayerAPI.PREFIX + "glass/" + name + "/glass_4";
-	}
-	
+    }
 
-	public boolean shouldConnectTo(IBlockAccess w, int x, int y, int z, Block b) {
-		return b == this;
-	}
+
+    public boolean shouldConnectTo(IBlockAccess w, int x, int y, int z, Block b) {
+        return b == this;
+    }
 
 	/*private IIcon getConnectedTexture(IBlockAccess w, int x, int y, int z, int side) {
 		boolean isOpenUp = false, isOpenDown = false, isOpenLeft = false, isOpenRight = false;
@@ -193,56 +193,56 @@ public class BlockJoinedGlass extends BlockMod {
 			icons[i] = r.registerIcon(textures[i]);
 		}
 	}*/
-	
-	@Override
-	public boolean isOpaqueCube(IBlockState state) {
-		return false;
-	}
-	
-	@Override
-	public BlockRenderLayer getRenderLayer() {
-		return BlockRenderLayer.TRANSLUCENT;
-	}
-	
-	@Override
-	public boolean isFullCube(IBlockState state) {
-		return false;
-	}
-	
-	@Override
-	protected boolean canSilkHarvest() {
-		return true;
-	}
-	
-	@Override
-	public Item getItemDropped(IBlockState par1, Random par2, int par3) {
-		return null;
-	}
-	
-	@Override
-	public boolean canPlaceTorchOnTop(IBlockState state, IBlockAccess world, BlockPos pos) {
-		return true;
-	}
+
+    @Override
+    public boolean isOpaqueCube(IBlockState state) {
+        return false;
+    }
+
+    @Override
+    public BlockRenderLayer getRenderLayer() {
+        return BlockRenderLayer.TRANSLUCENT;
+    }
+
+    @Override
+    public boolean isFullCube(IBlockState state) {
+        return false;
+    }
+
+    @Override
+    protected boolean canSilkHarvest() {
+        return true;
+    }
+
+    @Override
+    public Item getItemDropped(IBlockState par1, Random par2, int par3) {
+        return null;
+    }
+
+    @Override
+    public boolean canPlaceTorchOnTop(IBlockState state, IBlockAccess world, BlockPos pos) {
+        return true;
+    }
 	
 	/*@Override
 	public IIcon getIcon(int s, int m) {
 		return icons[0];
 	}*/
-    
-	@Override
-	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
+
+    @Override
+    public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
         IBlockState iblockstate = blockAccess.getBlockState(pos.offset(side));
         Block block = iblockstate.getBlock();
-        if(this == JourneyBlocks.hotGlass || this == JourneyBlocks.frozenGlass || this == JourneyBlocks.smoothGlass) {
-            if(blockState != iblockstate) {
+        if (this == JourneyBlocks.hotGlass || this == JourneyBlocks.frozenGlass || this == JourneyBlocks.smoothGlass) {
+            if (blockState != iblockstate) {
                 return true;
             }
-            if(block == this) {
+            if (block == this) {
                 return false;
             }
         }
-        return block == this ? false : super.shouldSideBeRendered(blockState, blockAccess, pos, side);
-	}
+        return block != this && super.shouldSideBeRendered(blockState, blockAccess, pos, side);
+    }
 
 
 	/*@Override

@@ -2,7 +2,7 @@ package net.journey.client.render.block;
 
 
 public class OtherBlockRenderer {
-	
+
 }
 
 /*implements ISimpleBlockRenderingHandler {

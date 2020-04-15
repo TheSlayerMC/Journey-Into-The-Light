@@ -6,23 +6,22 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 public class RenderProjectile extends Render {
-	
+
     public ResourceLocation texture;
     private float scale;
 
     public RenderProjectile(ResourceLocation par1) {
-    	super(Minecraft.getMinecraft().getRenderManager());
+        super(Minecraft.getMinecraft().getRenderManager());
         texture = par1;
         scale = 1F;
     }
 
     public RenderProjectile(ResourceLocation par1, float scaleFactor) {
-    	super(Minecraft.getMinecraft().getRenderManager());
+        super(Minecraft.getMinecraft().getRenderManager());
         texture = par1;
         scale = scaleFactor;
     }
@@ -30,7 +29,7 @@ public class RenderProjectile extends Render {
     public void renderProjectile(Entity projectile, double x, double y, double z) {
         GL11.glPushMatrix();
         this.bindEntityTexture(projectile);
-        GL11.glTranslatef((float)x, (float)y, (float)z);
+        GL11.glTranslatef((float) x, (float) y, (float) z);
         GL11.glEnable(GL12.GL_RESCALE_NORMAL);
         GL11.glScalef(scale * 0.5F, scale * 0.5F, scale * 0.5F);
         Tessellator t = Tessellator.getInstance();
@@ -61,8 +60,8 @@ public class RenderProjectile extends Render {
         this.renderProjectile(par1Entity, par2, par4, par6);
     }
 
-	@Override
-	protected ResourceLocation getEntityTexture(Entity entity) {
-		return texture;
-	}
+    @Override
+    protected ResourceLocation getEntityTexture(Entity entity) {
+        return texture;
+    }
 }

@@ -12,33 +12,33 @@ import net.slayer.api.SlayerAPI;
 
 public class EnchantmentHotTouch extends Enchantment {
 
-	public EnchantmentHotTouch() {
-		super(Rarity.RARE, EnumEnchantmentType.DIGGER, new EntityEquipmentSlot[] {EntityEquipmentSlot.MAINHAND});
-		this.setName("Hot Touch");
-		setRegistryName(new ResourceLocation(SlayerAPI.MOD_ID, "Hot Touch"));
-		JourneyEnchantments.enchantments.add(this);
-	}
-
-	@Override
-	public boolean canApply(ItemStack par1ItemStack) {
-		return par1ItemStack.getItem() instanceof ItemTool;
-	}
+    public EnchantmentHotTouch() {
+        super(Rarity.RARE, EnumEnchantmentType.DIGGER, new EntityEquipmentSlot[]{EntityEquipmentSlot.MAINHAND});
+        this.setName("Hot Touch");
+        setRegistryName(new ResourceLocation(SlayerAPI.MOD_ID, "Hot Touch"));
+        JourneyEnchantments.enchantments.add(this);
+    }
 
     @Override
-	public int getMaxEnchantability(int par1) {
+    public boolean canApply(ItemStack par1ItemStack) {
+        return par1ItemStack.getItem() instanceof ItemTool;
+    }
+
+    @Override
+    public int getMaxEnchantability(int par1) {
         return super.getMinEnchantability(par1) + 50;
     }
-    
+
     @Override
     public int getMinEnchantability(int par1) {
-    	return 20;
+        return 20;
     }
 
     @Override
     public int getMaxLevel() {
         return 1;
     }
-    
+
     @Override
     public boolean canApplyTogether(Enchantment e) {
         return super.canApplyTogether(e) && e != this && e != Enchantments.FORTUNE && e != Enchantments.SILK_TOUCH;

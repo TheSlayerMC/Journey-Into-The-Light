@@ -12,23 +12,23 @@ import net.slayer.api.SlayerAPI;
 
 public class BlockModRail extends BlockRail {
 
-	private boolean power;
-	private float speed;
-	
-	public BlockModRail(String name, boolean isPowered, float speed) {
-		setCreativeTab(JourneyTabs.blocks);
-		setTranslationKey(SlayerAPI.PREFIX + name);
-		JourneyBlocks.blocks.add(this);
-		JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
-		power = isPowered;
-		this.speed = speed;
-		setRegistryName(SlayerAPI.MOD_ID, name);
-		
-		JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
-	}
-	
-	@Override
-	public float getRailMaxSpeed(World world, EntityMinecart cart, BlockPos pos) {
-		return speed;
-	}
+    private boolean power;
+    private float speed;
+
+    public BlockModRail(String name, boolean isPowered, float speed) {
+        setCreativeTab(JourneyTabs.blocks);
+        setTranslationKey(SlayerAPI.PREFIX + name);
+        JourneyBlocks.blocks.add(this);
+        JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
+        power = isPowered;
+        this.speed = speed;
+        setRegistryName(SlayerAPI.MOD_ID, name);
+
+        JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
+    }
+
+    @Override
+    public float getRailMaxSpeed(World world, EntityMinecart cart, BlockPos pos) {
+        return speed;
+    }
 }

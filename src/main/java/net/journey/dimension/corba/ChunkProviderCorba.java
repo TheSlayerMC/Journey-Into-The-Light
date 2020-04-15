@@ -1,11 +1,6 @@
 package net.journey.dimension.corba;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 import net.journey.JourneyBlocks;
-import net.journey.dimension.cloudia.ChunkProviderCloudia;
 import net.journey.dimension.corba.gen.WorldGenCorbaLamp;
 import net.journey.dimension.corba.gen.WorldGenCorbaVillage;
 import net.journey.dimension.corba.gen.WorldGenHugeCorbaTree;
@@ -26,40 +21,47 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
-import net.minecraft.world.gen.IChunkGenerator;
-import net.minecraft.world.gen.MapGenBase;
-import net.minecraft.world.gen.MapGenCaves;
-import net.minecraft.world.gen.MapGenRavine;
-import net.minecraft.world.gen.NoiseGeneratorOctaves;
-import net.minecraft.world.gen.NoiseGeneratorPerlin;
+import net.minecraft.world.gen.*;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.slayer.api.worldgen.WorldGenAPI;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 public class ChunkProviderCorba implements IChunkGenerator {
 
+    private final double[] da;
+    private final float[] parabolicField;
+    public NoiseGeneratorOctaves noiseGen5;
+    public NoiseGeneratorOctaves noiseGen6;
+    public NoiseGeneratorOctaves mobSpawnerNoise;
+    double[] gen1;
+    double[] gen2;
+    double[] gen3;
+    double[] gen4;
     private Random rand;
     private ArrayList<WorldGenerator> trees;
     private NoiseGeneratorOctaves noiseGen1;
     private NoiseGeneratorOctaves noiseGen2;
     private NoiseGeneratorOctaves noiseGen3;
     private NoiseGeneratorPerlin noiseGen4;
-    public NoiseGeneratorOctaves noiseGen5;
-    public NoiseGeneratorOctaves noiseGen6;
-    public NoiseGeneratorOctaves mobSpawnerNoise;
     private World worldObj;
-    private final double[] da;
-    private final float[] parabolicField;
     private double[] stoneNoise;
     private MapGenBase caveGenerator;
     private MapGenBase ravineGenerator;
     private Biome[] biomesForGeneration;
-    double[] gen1;
-    double[] gen2;
-    double[] gen3;
-    double[] gen4;
-
-
-
+    private WorldGenModFlower flower1 = new WorldGenModFlower(JourneyBlocks.corbaSpeckledFlower, JourneyBlocks.corbaGrass);
+    private WorldGenModFlower flower2 = new WorldGenModFlower(JourneyBlocks.corbaDarkPurpleFlower, JourneyBlocks.corbaGrass);
+    private WorldGenModFlower flower3 = new WorldGenModFlower(JourneyBlocks.corbaRedFlower, JourneyBlocks.corbaGrass);
+    private WorldGenModFlower flower4 = new WorldGenModFlower(JourneyBlocks.corbaBlueFlower, JourneyBlocks.corbaGrass);
+    private WorldGenModFlower flower5 = new WorldGenModFlower(JourneyBlocks.corbaLightPurpleFlower, JourneyBlocks.corbaGrass);
+    private WorldGenModFlower tall = new WorldGenModFlower(JourneyBlocks.corbaTallGrass, JourneyBlocks.corbaGrass);
+    private WorldGenModFlower flower = new WorldGenModFlower(JourneyBlocks.corbaFlower, JourneyBlocks.corbaGrass);
+    private WorldGenTreehouse worldGenTreehouse = new WorldGenTreehouse();
+    private WorldGenCorbaVillage village = new WorldGenCorbaVillage();
+    private WorldGenHugeCorbaTree tree = new WorldGenHugeCorbaTree();
+    private WorldGenCorbaLamp lamp = new WorldGenCorbaLamp();
     public ChunkProviderCorba(World worldIn, long p_i45636_2_) {
         this.stoneNoise = new double[256];
         this.caveGenerator = new MapGenCaves();
@@ -152,11 +154,10 @@ public class ChunkProviderCorba implements IChunkGenerator {
         }
     }
 
-
     public void biomeBlocks(int x, int z, ChunkPrimer c, Biome[] b) {
         if (!net.minecraftforge.event.ForgeEventFactory.onReplaceBiomeBlocks(this, x, z, c, this.worldObj)) return;
         double d0 = 0.03125D;
-        this.stoneNoise = this.noiseGen4.getRegion(this.stoneNoise, (double) (x * 16), (double) (z * 16), 16, 16, d0 * 2.0D, d0 * 2.0D, 1.0D);
+        this.stoneNoise = this.noiseGen4.getRegion(this.stoneNoise, x * 16, z * 16, 16, 16, d0 * 2.0D, d0 * 2.0D, 1.0D);
         for (int k = 0; k < 16; ++k) {
             for (int l = 0; l < 16; ++l) {
                 generateBiomeTerrain(this.rand, c, x * 16 + k, z * 16 + l, this.stoneNoise[l + k * 16]);
@@ -321,20 +322,6 @@ public class ChunkProviderCorba implements IChunkGenerator {
         }
     }
 
-    private WorldGenModFlower flower1 = new WorldGenModFlower(JourneyBlocks.corbaSpeckledFlower, JourneyBlocks.corbaGrass);
-    private WorldGenModFlower flower2 = new WorldGenModFlower(JourneyBlocks.corbaDarkPurpleFlower, JourneyBlocks.corbaGrass);
-    private WorldGenModFlower flower3 = new WorldGenModFlower(JourneyBlocks.corbaRedFlower, JourneyBlocks.corbaGrass);
-    private WorldGenModFlower flower4 = new WorldGenModFlower(JourneyBlocks.corbaBlueFlower, JourneyBlocks.corbaGrass);
-    private WorldGenModFlower flower5 = new WorldGenModFlower(JourneyBlocks.corbaLightPurpleFlower, JourneyBlocks.corbaGrass);
-
-    private WorldGenModFlower tall = new WorldGenModFlower(JourneyBlocks.corbaTallGrass, JourneyBlocks.corbaGrass);
-    private WorldGenModFlower flower = new WorldGenModFlower(JourneyBlocks.corbaFlower, JourneyBlocks.corbaGrass);
-
-    private WorldGenTreehouse worldGenTreehouse = new WorldGenTreehouse();
-    private WorldGenCorbaVillage village = new WorldGenCorbaVillage();
-    private WorldGenHugeCorbaTree tree = new WorldGenHugeCorbaTree();
-    private WorldGenCorbaLamp lamp = new WorldGenCorbaLamp();
-
     @Override
     public void populate(int cx, int cz) {
         final int x1 = cx * 16;
@@ -345,7 +332,7 @@ public class ChunkProviderCorba implements IChunkGenerator {
         BlockPos chunkStart = new BlockPos(x1, 0, z1);
 
         for (i = 0; i < 5; i++) {
-            tall.generate(worldObj, r,   chunkStart);
+            tall.generate(worldObj, r, chunkStart);
             flower.generate(worldObj, r, chunkStart);
             flower1.generate(worldObj, r, chunkStart);
             flower2.generate(worldObj, r, chunkStart);
@@ -383,7 +370,7 @@ public class ChunkProviderCorba implements IChunkGenerator {
         }
     }
 
-    private void generateStructure(int x, int z, WorldGenerator generator){
+    private void generateStructure(int x, int z, WorldGenerator generator) {
         BlockPos pos = WorldGenAPI.createRandom(x, 1, 128 + 1, z, rand, 10);
         if (isBlockTop(pos.getX(), pos.getY(), pos.getZ(), JourneyBlocks.corbaGrass)) {
             generator.generate(worldObj, rand, pos);

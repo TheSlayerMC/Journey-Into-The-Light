@@ -9,7 +9,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class EntityDepthsPortalFX extends Particle {
-	
+
     private float portalParticleScale;
     private double portalPosX, portalPosY, portalPosZ;
 
@@ -26,10 +26,10 @@ public class EntityDepthsPortalFX extends Particle {
         this.particleBlue = 1.0F * rand.nextFloat();
         this.particleGreen = 1.0F * rand.nextFloat();
         this.particleRed = 1.0F * rand.nextFloat();
-        this.particleMaxAge = (int)(Math.random() * 10.0D) + 40;
-        this.setParticleTextureIndex((int)(Math.random() * 8.0D));
+        this.particleMaxAge = (int) (Math.random() * 10.0D) + 40;
+        this.setParticleTextureIndex((int) (Math.random() * 8.0D));
     }
-    
+
     @Override
     public int getFXLayer() {
         return 0;
@@ -37,7 +37,7 @@ public class EntityDepthsPortalFX extends Particle {
 
     @Override
     public void renderParticle(BufferBuilder p_180434_1_, Entity p_180434_2_, float par2, float p_180434_4_, float p_180434_5_, float p_180434_6_, float p_180434_7_, float p_180434_8_) {
-    	float var8 = (this.particleAge + par2) / this.particleMaxAge * 3;
+        float var8 = (this.particleAge + par2) / this.particleMaxAge * 3;
         var8 = 1.0F - var8;
         var8 *= var8;
         var8 = 1.0F - var8;
@@ -50,14 +50,14 @@ public class EntityDepthsPortalFX extends Particle {
         this.prevPosX = this.posX;
         this.prevPosY = this.posY;
         this.prevPosZ = this.posZ;
-        float var1 = (float)this.particleAge / (float)this.particleMaxAge;
+        float var1 = (float) this.particleAge / (float) this.particleMaxAge;
         float var2 = var1;
         var1 = -var1 + var1 * var1 * 2.0F;
         var1 = 1.0F - var1;
         this.posX = this.portalPosX + this.motionX * var1;
         this.posY = this.portalPosY + this.motionY * var1 + (1.0F - var2);
         this.posZ = this.portalPosZ + this.motionZ * var1;
-        if(this.particleAge++ >= this.particleMaxAge) 
+        if (this.particleAge++ >= this.particleMaxAge)
             this.setExpired();
     }
 }

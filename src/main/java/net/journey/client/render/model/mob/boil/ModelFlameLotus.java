@@ -26,7 +26,7 @@ public class ModelFlameLotus extends ModelBiped {
     public ModelRenderer flowerbud;
     public ModelRenderer pedaltop4;
 
-	public ModelFlameLotus() {
+    public ModelFlameLotus() {
 
         this.textureWidth = 128;
         this.textureHeight = 32;
@@ -100,11 +100,11 @@ public class ModelFlameLotus extends ModelBiped {
         this.pedalmid1.setRotationPoint(0.0F, 24.0F, 0.0F);
         this.pedalmid1.addBox(-4.0F, 0.0F, -20.0F, 8, 0, 20, 0.0F);
         this.setRotation(pedalmid1, -0.19198621771937624F, 2.7317893452215247F, 0.0F);
-	}
+    }
 
-	@Override
-	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-		setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+    @Override
+    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
+        setRotationAngles(f, f1, f2, f3, f4, f5, entity);
         this.flowerbud.render(f5);
         this.pedalbottom2.render(f5);
         this.pedaltop1.render(f5);
@@ -123,36 +123,36 @@ public class ModelFlameLotus extends ModelBiped {
         this.pedaltop2.render(f5);
         this.pedalmid7.render(f5);
         this.pedalmid1.render(f5);
-		   
-	}
 
-	private void setRotation(ModelRenderer model, float x, float y, float z) {
-		model.rotateAngleX = x;
-		model.rotateAngleY = y;
-		model.rotateAngleZ = z;
-	}
+    }
 
-	@Override
-	public void setRotationAngles(float par1, float par2, float par3, float par4, float par5, float par6, Entity par7Entity) {
-		
-        this.pedaltop1.rotateAngleZ = MathHelper.cos(par3 * 0.1F) * (float)Math.PI * 0.01F;
-        this.pedaltop2.rotateAngleZ = MathHelper.cos(par3 * 0.12F) * (float)Math.PI * 0.01F;
-        this.pedaltop3.rotateAngleZ = MathHelper.cos(par3 * 0.11F) * (float)Math.PI * 0.01F;
-        this.pedaltop4.rotateAngleZ = MathHelper.cos(par3 * 0.125F) * (float)Math.PI * 0.01F;
-        
-        this.pedalmid1.rotateAngleZ = MathHelper.cos(par3 * 0.0551F) * (float)Math.PI * 0.01F;
-        this.pedalmid2.rotateAngleZ = MathHelper.cos(par3 * 0.055F) * (float)Math.PI * 0.01F;
-        this.pedalmid3.rotateAngleZ = MathHelper.cos(par3 * 0.054F) * (float)Math.PI * 0.01F;
-        this.pedalmid4.rotateAngleZ = MathHelper.cos(par3 * 0.055F) * (float)Math.PI * 0.01F;
-        this.pedalmid5.rotateAngleZ = MathHelper.cos(par3 * 0.056F) * (float)Math.PI * 0.01F;
-        this.pedalmid6.rotateAngleZ = MathHelper.cos(par3 * 0.055F) * (float)Math.PI * 0.01F;
-        this.pedalmid7.rotateAngleZ = MathHelper.cos(par3 * 0.0552F) * (float)Math.PI * 0.01F;
-        this.pedalmid8.rotateAngleZ = MathHelper.cos(par3 * 0.055F) * (float)Math.PI * 0.01F;
-        
-        this.pedalbottom1.rotateAngleX = MathHelper.cos(par3 * 0.01F) * (float)Math.PI * 0.005F;
-        this.pedalbottom2.rotateAngleX = MathHelper.cos(par3 * 0.01F) * (float)Math.PI * 0.005F;
-        this.pedalbottom3.rotateAngleX = MathHelper.cos(par3 * 0.01F) * (float)Math.PI * 0.005F;
-        this.pedalbottom4.rotateAngleX = MathHelper.cos(par3 * 0.01F) * (float)Math.PI * 0.005F;
-		
-	}
+    private void setRotation(ModelRenderer model, float x, float y, float z) {
+        model.rotateAngleX = x;
+        model.rotateAngleY = y;
+        model.rotateAngleZ = z;
+    }
+
+    @Override
+    public void setRotationAngles(float par1, float par2, float par3, float par4, float par5, float par6, Entity par7Entity) {
+
+        this.pedaltop1.rotateAngleZ = MathHelper.cos(par3 * 0.1F) * (float) Math.PI * 0.01F;
+        this.pedaltop2.rotateAngleZ = MathHelper.cos(par3 * 0.12F) * (float) Math.PI * 0.01F;
+        this.pedaltop3.rotateAngleZ = MathHelper.cos(par3 * 0.11F) * (float) Math.PI * 0.01F;
+        this.pedaltop4.rotateAngleZ = MathHelper.cos(par3 * 0.125F) * (float) Math.PI * 0.01F;
+
+        this.pedalmid1.rotateAngleZ = MathHelper.cos(par3 * 0.0551F) * (float) Math.PI * 0.01F;
+        this.pedalmid2.rotateAngleZ = MathHelper.cos(par3 * 0.055F) * (float) Math.PI * 0.01F;
+        this.pedalmid3.rotateAngleZ = MathHelper.cos(par3 * 0.054F) * (float) Math.PI * 0.01F;
+        this.pedalmid4.rotateAngleZ = MathHelper.cos(par3 * 0.055F) * (float) Math.PI * 0.01F;
+        this.pedalmid5.rotateAngleZ = MathHelper.cos(par3 * 0.056F) * (float) Math.PI * 0.01F;
+        this.pedalmid6.rotateAngleZ = MathHelper.cos(par3 * 0.055F) * (float) Math.PI * 0.01F;
+        this.pedalmid7.rotateAngleZ = MathHelper.cos(par3 * 0.0552F) * (float) Math.PI * 0.01F;
+        this.pedalmid8.rotateAngleZ = MathHelper.cos(par3 * 0.055F) * (float) Math.PI * 0.01F;
+
+        this.pedalbottom1.rotateAngleX = MathHelper.cos(par3 * 0.01F) * (float) Math.PI * 0.005F;
+        this.pedalbottom2.rotateAngleX = MathHelper.cos(par3 * 0.01F) * (float) Math.PI * 0.005F;
+        this.pedalbottom3.rotateAngleX = MathHelper.cos(par3 * 0.01F) * (float) Math.PI * 0.005F;
+        this.pedalbottom4.rotateAngleX = MathHelper.cos(par3 * 0.01F) * (float) Math.PI * 0.005F;
+
+    }
 }

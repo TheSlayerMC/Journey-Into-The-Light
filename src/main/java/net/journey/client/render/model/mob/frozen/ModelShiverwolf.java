@@ -11,8 +11,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class ModelShiverwolf extends ModelBase
-{
+public class ModelShiverwolf extends ModelBase {
     public ModelRenderer wolfHeadMain;
     public ModelRenderer wolfBody;
     public ModelRenderer wolfLeg1;
@@ -22,8 +21,7 @@ public class ModelShiverwolf extends ModelBase
     ModelRenderer wolfTail;
     ModelRenderer wolfMane;
 
-    public ModelShiverwolf()
-    {
+    public ModelShiverwolf() {
         float f = 0.0F;
         float f1 = 13.5F;
         this.wolfHeadMain = new ModelRenderer(this, 0, 0);
@@ -77,8 +75,7 @@ public class ModelShiverwolf extends ModelBase
             this.wolfTail.renderWithRotation(scale);
             this.wolfMane.render(scale);
             GlStateManager.popMatrix();
-        }
-        else {
+        } else {
             this.wolfHeadMain.renderWithRotation(scale);
             this.wolfBody.render(scale);
             this.wolfLeg1.render(scale);
@@ -92,34 +89,32 @@ public class ModelShiverwolf extends ModelBase
 
     @Override
     public void setLivingAnimations(EntityLivingBase entitylivingbaseIn, float p_78086_2_, float p_78086_3_, float partialTickTime) {
-        EntityShiverwolf entitywolf = (EntityShiverwolf)entitylivingbaseIn;
+        EntityShiverwolf entitywolf = (EntityShiverwolf) entitylivingbaseIn;
 
         if (entitywolf.isAngry()) {
             //this.wolfTail.rotateAngleY = 0.0F;
-        }
-        else {
+        } else {
             //this.wolfTail.rotateAngleY = MathHelper.cos(p_78086_2_ * 0.6662F) * 1.4F * p_78086_3_;
         }
 
         if (entitywolf.isSitting()) {
             this.wolfMane.setRotationPoint(-1.0F, 16.0F, -3.0F);
-            this.wolfMane.rotateAngleX = ((float)Math.PI * 2F / 5F);
+            this.wolfMane.rotateAngleX = ((float) Math.PI * 2F / 5F);
             this.wolfMane.rotateAngleY = 0.0F;
             this.wolfBody.setRotationPoint(0.0F, 18.0F, 0.0F);
-            this.wolfBody.rotateAngleX = ((float)Math.PI / 4F);
+            this.wolfBody.rotateAngleX = ((float) Math.PI / 4F);
             this.wolfTail.setRotationPoint(-1.0F, 21.0F, 6.0F);
             this.wolfLeg1.setRotationPoint(-2.5F, 22.0F, 2.0F);
-            this.wolfLeg1.rotateAngleX = ((float)Math.PI * 3F / 2F);
+            this.wolfLeg1.rotateAngleX = ((float) Math.PI * 3F / 2F);
             this.wolfLeg2.setRotationPoint(0.5F, 22.0F, 2.0F);
-            this.wolfLeg2.rotateAngleX = ((float)Math.PI * 3F / 2F);
+            this.wolfLeg2.rotateAngleX = ((float) Math.PI * 3F / 2F);
             this.wolfLeg3.rotateAngleX = 5.811947F;
             this.wolfLeg3.setRotationPoint(-2.49F, 17.0F, -4.0F);
             this.wolfLeg4.rotateAngleX = 5.811947F;
             this.wolfLeg4.setRotationPoint(0.51F, 17.0F, -4.0F);
-        }
-        else {
+        } else {
             this.wolfBody.setRotationPoint(0.0F, 14.0F, 2.0F);
-            this.wolfBody.rotateAngleX = ((float)Math.PI / 2F);
+            this.wolfBody.rotateAngleX = ((float) Math.PI / 2F);
             this.wolfMane.setRotationPoint(-1.0F, 14.0F, -3.0F);
             this.wolfMane.rotateAngleX = this.wolfBody.rotateAngleX;
             this.wolfTail.setRotationPoint(-1.0F, 12.0F, 8.0F);
@@ -128,22 +123,22 @@ public class ModelShiverwolf extends ModelBase
             this.wolfLeg3.setRotationPoint(-2.5F, 16.0F, -4.0F);
             this.wolfLeg4.setRotationPoint(0.5F, 16.0F, -4.0F);
             this.wolfLeg1.rotateAngleX = MathHelper.cos(p_78086_2_ * 0.6662F) * 1.4F * p_78086_3_;
-            this.wolfLeg2.rotateAngleX = MathHelper.cos(p_78086_2_ * 0.6662F + (float)Math.PI) * 1.4F * p_78086_3_;
-            this.wolfLeg3.rotateAngleX = MathHelper.cos(p_78086_2_ * 0.6662F + (float)Math.PI) * 1.4F * p_78086_3_;
+            this.wolfLeg2.rotateAngleX = MathHelper.cos(p_78086_2_ * 0.6662F + (float) Math.PI) * 1.4F * p_78086_3_;
+            this.wolfLeg3.rotateAngleX = MathHelper.cos(p_78086_2_ * 0.6662F + (float) Math.PI) * 1.4F * p_78086_3_;
             this.wolfLeg4.rotateAngleX = MathHelper.cos(p_78086_2_ * 0.6662F) * 1.4F * p_78086_3_;
         }
 
         this.wolfHeadMain.rotateAngleZ = entitywolf.getInterestedAngle(partialTickTime) + entitywolf.getShakeAngle(partialTickTime, 0.0F);
         this.wolfMane.rotateAngleZ = entitywolf.getShakeAngle(partialTickTime, -0.08F);
         this.wolfBody.rotateAngleZ = entitywolf.getShakeAngle(partialTickTime, -0.16F);
-       // this.wolfTail.rotateAngleZ = entitywolf.getShakeAngle(partialTickTime, -0.2F);
+        // this.wolfTail.rotateAngleZ = entitywolf.getShakeAngle(partialTickTime, -0.2F);
     }
 
     @Override
     public void setRotationAngles(float p_78087_1_, float p_78087_2_, float p_78087_3_, float p_78087_4_, float p_78087_5_, float p_78087_6_, Entity entityIn) {
         super.setRotationAngles(p_78087_1_, p_78087_2_, p_78087_3_, p_78087_4_, p_78087_5_, p_78087_6_, entityIn);
-        this.wolfHeadMain.rotateAngleX = p_78087_5_ / (180F / (float)Math.PI);
-        this.wolfHeadMain.rotateAngleY = p_78087_4_ / (180F / (float)Math.PI);
+        this.wolfHeadMain.rotateAngleX = p_78087_5_ / (180F / (float) Math.PI);
+        this.wolfHeadMain.rotateAngleY = p_78087_4_ / (180F / (float) Math.PI);
         this.wolfTail.rotateAngleX = p_78087_1_;
     }
 }

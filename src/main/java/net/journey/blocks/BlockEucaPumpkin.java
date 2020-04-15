@@ -25,81 +25,82 @@ import net.slayer.api.worldgen.WorldGenAPI;
 
 public class BlockEucaPumpkin extends BlockMod {
 
-	private BlockPattern fourfaBasePattern;
-	private BlockPattern fourfaPattern;
-	public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
+    public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
+    private BlockPattern fourfaBasePattern;
+    private BlockPattern fourfaPattern;
 
-	public BlockEucaPumpkin(String name, String f) {
-		super(EnumMaterialTypes.GOURD, name, f, 0.5F);
-		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
-		this.setTickRandomly(true);
-	}
+    public BlockEucaPumpkin(String name, String f) {
+        super(EnumMaterialTypes.GOURD, name, f, 0.5F);
+        this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
+        this.setTickRandomly(true);
+    }
 
-	@Override
-	public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state) {
-		super.onBlockAdded(worldIn, pos, state);
-		this.spawn(worldIn, pos);
-	}
+    @Override
+    public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state) {
+        super.onBlockAdded(worldIn, pos, state);
+        this.spawn(worldIn, pos);
+    }
 
-	private void spawn(World worldIn, BlockPos pos) {
-		spawnEntity(new EntityFourfa(worldIn), getFourfaPattern(), worldIn, pos);
-	}
+    private void spawn(World worldIn, BlockPos pos) {
+        spawnEntity(new EntityFourfa(worldIn), getFourfaPattern(), worldIn, pos);
+    }
 
-	public void spawnEntity(Entity entity, BlockPattern blockPattern, World worldIn, BlockPos pos) {
-		PatternHelper patternhelper;
-		int i;
-		int j;
-		if ((patternhelper = blockPattern.match(worldIn, pos)) != null) {
-			for (i = 0; i < blockPattern.getThumbLength(); ++i) {
-				BlockWorldState blockworldstate = patternhelper.translateOffset(0, i, 0);
-				worldIn.setBlockState(blockworldstate.getPos(), Blocks.AIR.getDefaultState(), 2);
-			}
-			BlockPos blockpos2 = patternhelper.translateOffset(0, 2, 0).getPos();
-			entity.setLocationAndAngles((double)blockpos2.getX() + 0.5D, (double)blockpos2.getY() + 0.05D, (double)blockpos2.getZ() + 0.5D, 0.0F, 0.0F);
-			worldIn.spawnEntity(entity);
-			
-			if(entity instanceof EntityFourfa) WorldGenAPI.addRectangle(3, 3, 3, worldIn, pos.getX() - 2, pos.getY() - 2, pos.getZ() - 2, Blocks.AIR);
-		}
-	}
+    public void spawnEntity(Entity entity, BlockPattern blockPattern, World worldIn, BlockPos pos) {
+        PatternHelper patternhelper;
+        int i;
+        int j;
+        if ((patternhelper = blockPattern.match(worldIn, pos)) != null) {
+            for (i = 0; i < blockPattern.getThumbLength(); ++i) {
+                BlockWorldState blockworldstate = patternhelper.translateOffset(0, i, 0);
+                worldIn.setBlockState(blockworldstate.getPos(), Blocks.AIR.getDefaultState(), 2);
+            }
+            BlockPos blockpos2 = patternhelper.translateOffset(0, 2, 0).getPos();
+            entity.setLocationAndAngles((double) blockpos2.getX() + 0.5D, (double) blockpos2.getY() + 0.05D, (double) blockpos2.getZ() + 0.5D, 0.0F, 0.0F);
+            worldIn.spawnEntity(entity);
 
-	@Override
-	public boolean canPlaceBlockAt(World worldIn, BlockPos pos) {
+            if (entity instanceof EntityFourfa)
+                WorldGenAPI.addRectangle(3, 3, 3, worldIn, pos.getX() - 2, pos.getY() - 2, pos.getZ() - 2, Blocks.AIR);
+        }
+    }
+
+    @Override
+    public boolean canPlaceBlockAt(World worldIn, BlockPos pos) {
         return worldIn.getBlockState(pos).getBlock().isReplaceable(worldIn, pos) && worldIn.getBlockState(pos.down()).isSideSolid(worldIn, pos, EnumFacing.UP);
     }
 
-	@Override
-    public IBlockState withMirror(IBlockState state, Mirror mirrorIn) {
-        return state.withRotation(mirrorIn.toRotation((EnumFacing)state.getValue(FACING)));
-    }
-	
     @Override
-    public IBlockState withRotation(IBlockState state, Rotation rot) {
-        return state.withProperty(FACING, rot.rotate((EnumFacing)state.getValue(FACING)));
+    public IBlockState withMirror(IBlockState state, Mirror mirrorIn) {
+        return state.withRotation(mirrorIn.toRotation(state.getValue(FACING)));
     }
 
-	@Override
-	public IBlockState getStateFromMeta(int meta) {
-		return this.getDefaultState().withProperty(FACING, EnumFacing.byHorizontalIndex(meta));
-	}
-	
-	@Override
-    public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)  {
+    @Override
+    public IBlockState withRotation(IBlockState state, Rotation rot) {
+        return state.withProperty(FACING, rot.rotate(state.getValue(FACING)));
+    }
+
+    @Override
+    public IBlockState getStateFromMeta(int meta) {
+        return this.getDefaultState().withProperty(FACING, EnumFacing.byHorizontalIndex(meta));
+    }
+
+    @Override
+    public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
         return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite());
     }
 
-	@Override
-	public int getMetaFromState(IBlockState state) {
-		return state.getValue(FACING).getHorizontalIndex();
-	}
-
-	@Override
-	protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, new IProperty[] {FACING});
+    @Override
+    public int getMetaFromState(IBlockState state) {
+        return state.getValue(FACING).getHorizontalIndex();
     }
 
-	protected BlockPattern getFourfaPattern() {
-		if(this.fourfaPattern == null)
-			this.fourfaPattern = FactoryBlockPattern.start().aisle(new String[] {"^^", "OO", "##"}).where('O', BlockWorldState.hasState(BlockStateMatcher.forBlock(JourneyBlocks.celestiumOre))).where('^', BlockWorldState.hasState(BlockStateMatcher.forBlock(JourneyBlocks.eucaPumpkin))).where('#', BlockWorldState.hasState(BlockStateMatcher.forBlock(JourneyBlocks.eucaStone))).build();
-		return this.fourfaPattern;
-	}
+    @Override
+    protected BlockStateContainer createBlockState() {
+        return new BlockStateContainer(this, FACING);
+    }
+
+    protected BlockPattern getFourfaPattern() {
+        if (this.fourfaPattern == null)
+            this.fourfaPattern = FactoryBlockPattern.start().aisle("^^", "OO", "##").where('O', BlockWorldState.hasState(BlockStateMatcher.forBlock(JourneyBlocks.celestiumOre))).where('^', BlockWorldState.hasState(BlockStateMatcher.forBlock(JourneyBlocks.eucaPumpkin))).where('#', BlockWorldState.hasState(BlockStateMatcher.forBlock(JourneyBlocks.eucaStone))).build();
+        return this.fourfaPattern;
+    }
 }

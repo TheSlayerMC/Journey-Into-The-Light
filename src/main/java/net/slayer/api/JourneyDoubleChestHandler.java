@@ -1,31 +1,27 @@
 package net.slayer.api;
 
+import com.google.common.base.Objects;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 
-import java.lang.ref.WeakReference;
-
-import com.google.common.base.Objects;
-
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.lang.ref.WeakReference;
 
-public class JourneyDoubleChestHandler extends WeakReference<TileEntityJourneyChest> implements IItemHandlerModifiable
-{
+public class JourneyDoubleChestHandler extends WeakReference<TileEntityJourneyChest> implements IItemHandlerModifiable {
     public static final JourneyDoubleChestHandler NO_ADJACENT_CHESTS_INSTANCE = new JourneyDoubleChestHandler(null, null, false);
     private final boolean mainChestIsUpper;
     private final TileEntityJourneyChest mainChest;
     private final int hashCode;
 
-    public JourneyDoubleChestHandler(@Nullable TileEntityJourneyChest mainChest, @Nullable TileEntityJourneyChest other, boolean mainChestIsUpper)
-    {
+    public JourneyDoubleChestHandler(@Nullable TileEntityJourneyChest mainChest, @Nullable TileEntityJourneyChest other, boolean mainChestIsUpper) {
         super(other);
         this.mainChest = mainChest;
         this.mainChestIsUpper = mainChestIsUpper;
@@ -33,8 +29,7 @@ public class JourneyDoubleChestHandler extends WeakReference<TileEntityJourneyCh
     }
 
     @Nullable
-    public static JourneyDoubleChestHandler get(TileEntityJourneyChest chest)
-    {
+    public static JourneyDoubleChestHandler get(TileEntityJourneyChest chest) {
         World world = chest.getWorld();
         BlockPos pos = chest.getPos();
         if (world == null || pos == null || !world.isBlockLoaded(pos))
@@ -43,18 +38,15 @@ public class JourneyDoubleChestHandler extends WeakReference<TileEntityJourneyCh
         Block blockType = chest.getBlockType();
 
         EnumFacing[] horizontals = EnumFacing.HORIZONTALS;
-        for (int i = horizontals.length - 1; i >= 0; i--)
-        {
+        for (int i = horizontals.length - 1; i >= 0; i--) {
             EnumFacing enumfacing = horizontals[i];
             BlockPos blockpos = pos.offset(enumfacing);
             Block block = world.getBlockState(blockpos).getBlock();
 
-            if (block == blockType)
-            {
+            if (block == blockType) {
                 TileEntity otherTE = world.getTileEntity(blockpos);
 
-                if (otherTE instanceof TileEntityJourneyChest)
-                {
+                if (otherTE instanceof TileEntityJourneyChest) {
                     TileEntityJourneyChest otherChest = (TileEntityJourneyChest) otherTE;
                     return new JourneyDoubleChestHandler(chest, otherChest,
                             enumfacing != net.minecraft.util.EnumFacing.WEST && enumfacing != net.minecraft.util.EnumFacing.NORTH);
@@ -66,33 +58,28 @@ public class JourneyDoubleChestHandler extends WeakReference<TileEntityJourneyCh
     }
 
     @Nullable
-    public TileEntityJourneyChest getChest(boolean accessingUpper)
-    {
+    public TileEntityJourneyChest getChest(boolean accessingUpper) {
         if (accessingUpper == mainChestIsUpper)
             return mainChest;
-        else
-        {
+        else {
             return getOtherChest();
         }
     }
 
     @Nullable
-    private TileEntityJourneyChest getOtherChest()
-    {
+    private TileEntityJourneyChest getOtherChest() {
         TileEntityJourneyChest TileEntityJourneyChest = get();
         return TileEntityJourneyChest != null && !TileEntityJourneyChest.isInvalid() ? TileEntityJourneyChest : null;
     }
 
     @Override
-    public int getSlots()
-    {
+    public int getSlots() {
         return 27 * 2;
     }
 
     @Override
     @Nonnull
-    public ItemStack getStackInSlot(int slot)
-    {
+    public ItemStack getStackInSlot(int slot) {
         boolean accessingUpperChest = slot < 27;
         int targetSlot = accessingUpperChest ? slot : slot - 27;
         TileEntityJourneyChest chest = getChest(accessingUpperChest);
@@ -100,16 +87,13 @@ public class JourneyDoubleChestHandler extends WeakReference<TileEntityJourneyCh
     }
 
     @Override
-    public void setStackInSlot(int slot, @Nonnull ItemStack stack)
-    {
+    public void setStackInSlot(int slot, @Nonnull ItemStack stack) {
         boolean accessingUpperChest = slot < 27;
         int targetSlot = accessingUpperChest ? slot : slot - 27;
         TileEntityJourneyChest chest = getChest(accessingUpperChest);
-        if (chest != null)
-        {
+        if (chest != null) {
             IItemHandler singleHandler = chest.getSingleChestHandler();
-            if (singleHandler instanceof IItemHandlerModifiable)
-            {
+            if (singleHandler instanceof IItemHandlerModifiable) {
                 ((IItemHandlerModifiable) singleHandler).setStackInSlot(targetSlot, stack);
             }
         }
@@ -121,8 +105,7 @@ public class JourneyDoubleChestHandler extends WeakReference<TileEntityJourneyCh
 
     @Override
     @Nonnull
-    public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate)
-    {
+    public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
         boolean accessingUpperChest = slot < 27;
         int targetSlot = accessingUpperChest ? slot : slot - 27;
         TileEntityJourneyChest chest = getChest(accessingUpperChest);
@@ -131,8 +114,7 @@ public class JourneyDoubleChestHandler extends WeakReference<TileEntityJourneyCh
 
         int starting = stack.getCount();
         ItemStack ret = chest.getSingleChestHandler().insertItem(targetSlot, stack, simulate);
-        if (ret.getCount() != starting && !simulate)
-        {
+        if (ret.getCount() != starting && !simulate) {
             chest = getChest(!accessingUpperChest);
             if (chest != null)
                 chest.markDirty();
@@ -143,8 +125,7 @@ public class JourneyDoubleChestHandler extends WeakReference<TileEntityJourneyCh
 
     @Override
     @Nonnull
-    public ItemStack extractItem(int slot, int amount, boolean simulate)
-    {
+    public ItemStack extractItem(int slot, int amount, boolean simulate) {
         boolean accessingUpperChest = slot < 27;
         int targetSlot = accessingUpperChest ? slot : slot - 27;
         TileEntityJourneyChest chest = getChest(accessingUpperChest);
@@ -152,8 +133,7 @@ public class JourneyDoubleChestHandler extends WeakReference<TileEntityJourneyCh
             return ItemStack.EMPTY;
 
         ItemStack ret = chest.getSingleChestHandler().extractItem(targetSlot, amount, simulate);
-        if (!ret.isEmpty() && !simulate)
-        {
+        if (!ret.isEmpty() && !simulate) {
             chest = getChest(!accessingUpperChest);
             if (chest != null)
                 chest.markDirty();
@@ -163,15 +143,13 @@ public class JourneyDoubleChestHandler extends WeakReference<TileEntityJourneyCh
     }
 
     @Override
-    public int getSlotLimit(int slot)
-    {
+    public int getSlotLimit(int slot) {
         boolean accessingUpperChest = slot < 27;
         return getChest(accessingUpperChest).getInventoryStackLimit();
     }
 
     @Override
-    public boolean equals(Object o)
-    {
+    public boolean equals(Object o) {
         if (this == o)
             return true;
         if (o == null || getClass() != o.getClass())
@@ -190,13 +168,11 @@ public class JourneyDoubleChestHandler extends WeakReference<TileEntityJourneyCh
     }
 
     @Override
-    public int hashCode()
-    {
+    public int hashCode() {
         return hashCode;
     }
 
-    public boolean needsRefresh()
-    {
+    public boolean needsRefresh() {
         if (this == NO_ADJACENT_CHESTS_INSTANCE)
             return false;
         TileEntityJourneyChest TileEntityJourneyChest = get();

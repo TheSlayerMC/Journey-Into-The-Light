@@ -1,147 +1,97 @@
 package net.journey.dimension.cloudia;
 
-import net.journey.JourneyBlocks;
-import net.journey.dimension.cloudia.gen.*;
-import net.journey.dimension.cloudia.zone.CloudiaAltar;
-import net.journey.dimension.cloudia.zone.CloudiaAltarRoom1;
-import net.journey.dimension.cloudia.zone.CloudiaBridgeAll;
-import net.journey.dimension.cloudia.zone.CloudiaBridgeEW;
-import net.journey.dimension.cloudia.zone.CloudiaBridgeNS;
-import net.journey.dimension.cloudia.zone.CloudiaDungeon1;
-import net.journey.dimension.cloudia.zone.CloudiaDungeon2;
-import net.journey.dimension.cloudia.zone.CloudiaEmptyChunk;
-import net.journey.dimension.cloudia.zone.CloudiaGarden;
-import net.journey.dimension.cloudia.zone.CloudiaHouse1;
-import net.journey.dimension.cloudia.zone.CloudiaZoneBase;
-import net.journey.dimension.overworld.gen.WorldGenModFlower;
-import net.journey.dimension.senterian.SenterianChunkPrimer;
-import net.journey.dimension.senterian.ChunkProviderSenterian.ChunkCoords;
-import net.journey.dimension.senterian.room.SenterianRoomBase;
-import net.minecraft.block.Block;
+import net.journey.dimension.cloudia.zone.*;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.chunk.Chunk;
-import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.IChunkGenerator;
-import net.minecraft.world.gen.NoiseGeneratorOctaves;
-import net.minecraft.world.gen.feature.WorldGenerator;
-import net.slayer.api.worldgen.WorldGenAPI;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.*;
 
 public class ChunkProviderCloudia implements IChunkGenerator {
 
-	public class ChunkCoords {
-		public final int chunkCoordX;
-		public final int chunkCoordZ;
-
-		public ChunkCoords(int X, int Z) {
-			this.chunkCoordX = X;
-			this.chunkCoordZ = Z;
-		}
-
-		public boolean equals(Object o) {
-			if (!(o instanceof ChunkCoords)) {
-				return false;
-			} else {
-				ChunkCoords chunkCoords = (ChunkCoords) o;
-				return chunkCoords.chunkCoordX == this.chunkCoordX && chunkCoords.chunkCoordZ == this.chunkCoordZ;
-			}
-		}
-
-		public int hashCode() {
-			return this.chunkCoordX + this.chunkCoordZ * 31;
-		}
-	}
-	
-	private ArrayList bottomrooms;
-	private ArrayList toprooms;
-	private CloudiaEmptyChunk emptyChunk;
-	private CloudiaZoneBase[] bridges;
-	private World worldObj;
-	private Random random;
-	private Map chunkTileEntityMap;
-
+    private ArrayList bottomrooms;
+    private ArrayList toprooms;
+    private CloudiaEmptyChunk emptyChunk;
+    private CloudiaZoneBase[] bridges;
+    private World worldObj;
+    private Random random;
+    private Map chunkTileEntityMap;
     public ChunkProviderCloudia(World worldIn, long seed) {
-		worldObj = worldIn;
-		random = new Random(seed);
-		bottomrooms = new ArrayList(4);
-		bottomrooms.add(new CloudiaDungeon1());
-		bottomrooms.add(new CloudiaAltar());
-		bottomrooms.add(new CloudiaDungeon2());
-		bottomrooms.add(new CloudiaGarden());
+        worldObj = worldIn;
+        random = new Random(seed);
+        bottomrooms = new ArrayList(4);
+        bottomrooms.add(new CloudiaDungeon1());
+        bottomrooms.add(new CloudiaAltar());
+        bottomrooms.add(new CloudiaDungeon2());
+        bottomrooms.add(new CloudiaGarden());
 
-		emptyChunk = new CloudiaEmptyChunk();
-		
-		toprooms = new ArrayList(2);
-		toprooms.add(new CloudiaHouse1());
-		toprooms.add(new CloudiaAltarRoom1());
+        emptyChunk = new CloudiaEmptyChunk();
 
-		bridges = new CloudiaZoneBase[] {new CloudiaBridgeAll()/*, new CloudiaBridgeNS(), new CloudiaBridgeEW()*/};
-		this.chunkTileEntityMap = new HashMap();
+        toprooms = new ArrayList(2);
+        toprooms.add(new CloudiaHouse1());
+        toprooms.add(new CloudiaAltarRoom1());
+
+        bridges = new CloudiaZoneBase[]{new CloudiaBridgeAll()/*, new CloudiaBridgeNS(), new CloudiaBridgeEW()*/};
+        this.chunkTileEntityMap = new HashMap();
     }
 
     @Override
     public Chunk generateChunk(int chunkX, int chunkZ) {
         CloudiaChunkPrimer cloudiaChunk = new CloudiaChunkPrimer();
 
-		int bottomLayer = 32;
-		int secondLayer = 51;
+        int bottomLayer = 32;
+        int secondLayer = 51;
 
-		//Generates all rooms
-		CloudiaZoneBase room = (CloudiaZoneBase) (toprooms.get(random.nextInt(toprooms.size())));
-		CloudiaZoneBase room2 = (CloudiaZoneBase) (bottomrooms.get(random.nextInt(bottomrooms.size())));
+        //Generates all rooms
+        CloudiaZoneBase room = (CloudiaZoneBase) (toprooms.get(random.nextInt(toprooms.size())));
+        CloudiaZoneBase room2 = (CloudiaZoneBase) (bottomrooms.get(random.nextInt(bottomrooms.size())));
 
-		int emptyRarity = 2;
+        int emptyRarity = 2;
 
-		//These double as a hallway and a blocker on the exit of the room next to it
-		int hallwayRarity = emptyRarity * 2;
-		if(random.nextInt(hallwayRarity) == 0)
-			bridges[random.nextInt(bridges.length)].generate(cloudiaChunk, random, 0, bottomLayer, 0);
+        //These double as a hallway and a blocker on the exit of the room next to it
+        int hallwayRarity = emptyRarity * 2;
+        if (random.nextInt(hallwayRarity) == 0)
+            bridges[random.nextInt(bridges.length)].generate(cloudiaChunk, random, 0, bottomLayer, 0);
 
-		if(random.nextInt(hallwayRarity) == 0)
-			bridges[random.nextInt(bridges.length)].generate(cloudiaChunk, random, 0, secondLayer, 0);
-		
-		room = (CloudiaZoneBase) (toprooms.get(random.nextInt(toprooms.size())));
-		if(random.nextInt(emptyRarity) == 0)
-		room.generate(cloudiaChunk, random, 0, secondLayer, 0);
+        if (random.nextInt(hallwayRarity) == 0)
+            bridges[random.nextInt(bridges.length)].generate(cloudiaChunk, random, 0, secondLayer, 0);
 
-		room2 = (CloudiaZoneBase) (bottomrooms.get(random.nextInt(bottomrooms.size())));
-		if(random.nextInt(emptyRarity) == 0)
-		room2.generate(cloudiaChunk, random, 0, bottomLayer, 0);
+        room = (CloudiaZoneBase) (toprooms.get(random.nextInt(toprooms.size())));
+        if (random.nextInt(emptyRarity) == 0)
+            room.generate(cloudiaChunk, random, 0, secondLayer, 0);
 
-		//Chance to generate stair room on all but top layer
+        room2 = (CloudiaZoneBase) (bottomrooms.get(random.nextInt(bottomrooms.size())));
+        if (random.nextInt(emptyRarity) == 0)
+            room2.generate(cloudiaChunk, random, 0, bottomLayer, 0);
+
+        //Chance to generate stair room on all but top layer
 
 
-		//figure out what height to fill with air and how often, or just scrap the idea
-		//int emptyRarity = 20;
-		//if(random.nextInt(emptyRarity) == 0)
-		//	emptyChunk.generate(cloudiaChunk, random, 0, bottomLayer, 0, 12);
+        //figure out what height to fill with air and how often, or just scrap the idea
+        //int emptyRarity = 20;
+        //if(random.nextInt(emptyRarity) == 0)
+        //	emptyChunk.generate(cloudiaChunk, random, 0, bottomLayer, 0, 12);
 
-		//if(random.nextInt(emptyRarity) == 0)
-		//	emptyChunk.generate(cloudiaChunk, random, 0, secondLayer, 0, 15);
-		
-		//These rooms need to be generated last
-		
-		//Forces a roof over the whole room, gets generated at final set
-		chunkTileEntityMap.put(new ChunkCoords(chunkX, chunkZ), cloudiaChunk.chunkTileEntityPositions);
-		
-		Chunk chunk = new Chunk(this.worldObj, cloudiaChunk, chunkX, chunkZ);
-		chunk.generateSkylightMap();
-		return chunk;
+        //if(random.nextInt(emptyRarity) == 0)
+        //	emptyChunk.generate(cloudiaChunk, random, 0, secondLayer, 0, 15);
+
+        //These rooms need to be generated last
+
+        //Forces a roof over the whole room, gets generated at final set
+        chunkTileEntityMap.put(new ChunkCoords(chunkX, chunkZ), cloudiaChunk.chunkTileEntityPositions);
+
+        Chunk chunk = new Chunk(this.worldObj, cloudiaChunk, chunkX, chunkZ);
+        chunk.generateSkylightMap();
+        return chunk;
     }
 
     @Override
     public void populate(int cx, int cz) {
-       
+
     }
 
     @Override
@@ -167,5 +117,28 @@ public class ChunkProviderCloudia implements IChunkGenerator {
     @Override
     public boolean isInsideStructure(World worldIn, String structureName, BlockPos pos) {
         return false;
+    }
+
+    public class ChunkCoords {
+        public final int chunkCoordX;
+        public final int chunkCoordZ;
+
+        public ChunkCoords(int X, int Z) {
+            this.chunkCoordX = X;
+            this.chunkCoordZ = Z;
+        }
+
+        public boolean equals(Object o) {
+            if (!(o instanceof ChunkCoords)) {
+                return false;
+            } else {
+                ChunkCoords chunkCoords = (ChunkCoords) o;
+                return chunkCoords.chunkCoordX == this.chunkCoordX && chunkCoords.chunkCoordZ == this.chunkCoordZ;
+            }
+        }
+
+        public int hashCode() {
+            return this.chunkCoordX + this.chunkCoordZ * 31;
+        }
     }
 }

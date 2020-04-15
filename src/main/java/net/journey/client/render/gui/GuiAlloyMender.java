@@ -6,7 +6,7 @@ import net.slayer.api.entity.tileentity.container.ContainerModVillager;
 
 public class GuiAlloyMender extends GuiModVillager {
 
-	public GuiAlloyMender(ContainerModVillager container, IMerchant mer) {
-		super(container, mer, "Alloy Mender", "alloyMender");
-	}
+    public GuiAlloyMender(ContainerModVillager container, IMerchant mer) {
+        super(container, mer, "Alloy Mender", "alloyMender");
+    }
 }

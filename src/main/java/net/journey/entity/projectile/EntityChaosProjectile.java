@@ -5,11 +5,11 @@ import net.minecraft.world.World;
 
 public class EntityChaosProjectile extends EntityBouncingProjectile {
 
-	public EntityChaosProjectile(World w) {
-		super(w);
-	}
-	
-	public EntityChaosProjectile(World par1, EntityPlayer par2, float damage) {
-		super(par1, par2, 2, 3);
-	}
+    public EntityChaosProjectile(World w) {
+        super(w);
+    }
+
+    public EntityChaosProjectile(World par1, EntityPlayer par2, float damage) {
+        super(par1, par2, 2, 3);
+    }
 }

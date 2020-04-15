@@ -1,23 +1,15 @@
 package net.journey.blocks.portal;
 
-import java.util.List;
-import java.util.Random;
-
 import net.journey.JourneyBlocks;
 import net.journey.JourneyTabs;
 import net.journey.dimension.ModTeleporter;
-import net.journey.dimension.corba.TeleporterCorba;
 import net.journey.util.Config;
-import net.journey.util.LangRegistry;
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumBlockRenderType;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -27,78 +19,80 @@ import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.EnumMaterialTypes;
-import net.slayer.api.EnumToolType;
-import net.slayer.api.SlayerAPI;
 import net.slayer.api.block.BlockMod;
+
+import java.util.List;
+import java.util.Random;
 
 public class BlockWitherPortal extends BlockMod {
 
-	public BlockWitherPortal(String name, String f) {
-		super(EnumMaterialTypes.PORTAL, name, f, 1.0F);
-		this.setTickRandomly(true);
-		setCreativeTab(JourneyTabs.portalBlocks);
-	}
-	
-	@Override
-	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean isActualState) { }
+    public BlockWitherPortal(String name, String f) {
+        super(EnumMaterialTypes.PORTAL, name, f, 1.0F);
+        this.setTickRandomly(true);
+        setCreativeTab(JourneyTabs.portalBlocks);
+    }
 
-	@Override
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-		return new AxisAlignedBB(0.0F, 0.0F, 0.0F, 1.0F, 0.5345F, 1.0F);
-	}
+    @Override
+    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean isActualState) {
+    }
 
-	@Override
-	public boolean isPassable(IBlockAccess access, BlockPos pos) {
-		return true;
-	}
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+        return new AxisAlignedBB(0.0F, 0.0F, 0.0F, 1.0F, 0.5345F, 1.0F);
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public EnumBlockRenderType getRenderType(IBlockState state) {
-		return EnumBlockRenderType.MODEL;
-	}
+    @Override
+    public boolean isPassable(IBlockAccess access, BlockPos pos) {
+        return true;
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getRenderLayer() {
-		return BlockRenderLayer.TRANSLUCENT;
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public EnumBlockRenderType getRenderType(IBlockState state) {
+        return EnumBlockRenderType.MODEL;
+    }
 
-	@Override
-	public boolean isFullCube(IBlockState state) {
-		return false;
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public BlockRenderLayer getRenderLayer() {
+        return BlockRenderLayer.TRANSLUCENT;
+    }
 
-	@Override
-	public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entity) {
-		if ((entity.getRidingEntity() == null) && ((entity instanceof EntityPlayerMP))) {
-			EntityPlayerMP thePlayer = (EntityPlayerMP)entity;
-			WorldServer worldserver = thePlayer.server.getWorld(thePlayer.dimension);
-			int dimensionID = Config.wither;
-			Block blockFrame = JourneyBlocks.corbaStone;
-			if(thePlayer.timeUntilPortal > 0) 
-				thePlayer.timeUntilPortal = 10;
-			else if(thePlayer.dimension != dimensionID) {
-				thePlayer.timeUntilPortal = 10;
-				thePlayer.server.getPlayerList().transferPlayerToDimension(thePlayer, dimensionID, new ModTeleporter(thePlayer.server.getWorld(dimensionID), this, blockFrame.getDefaultState()));
-			} else {
-				thePlayer.timeUntilPortal = 10;
-				thePlayer.server.getPlayerList().transferPlayerToDimension(thePlayer, 0, new ModTeleporter(thePlayer.server.getWorld(0), this, blockFrame.getDefaultState()));
-			}
-		}
-	}
+    @Override
+    public boolean isFullCube(IBlockState state) {
+        return false;
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void randomDisplayTick(IBlockState state, World worldIn, BlockPos pos, Random rand) {
-		double d0 = (float)pos.getX() + rand.nextFloat();
-		double d1 = (float)pos.getY() + 0.8F;
-		double d2 = (float)pos.getZ() + rand.nextFloat();
-		double d3 = 0.0D;
-		double d4 = 0.0D;
-		double d5 = 0.0D;
-		worldIn.spawnParticle(EnumParticleTypes.SLIME, d0, d1, d2, d3, d4, d5, new int[0]);
-		worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0, d1, d2, d3, d4, d5, new int[0]);
-		worldIn.spawnParticle(EnumParticleTypes.SMOKE_LARGE, d0, d1, d2, d3, d4, d5, new int[0]);
-	}
+    @Override
+    public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entity) {
+        if ((entity.getRidingEntity() == null) && ((entity instanceof EntityPlayerMP))) {
+            EntityPlayerMP thePlayer = (EntityPlayerMP) entity;
+            WorldServer worldserver = thePlayer.server.getWorld(thePlayer.dimension);
+            int dimensionID = Config.wither;
+            Block blockFrame = JourneyBlocks.corbaStone;
+            if (thePlayer.timeUntilPortal > 0)
+                thePlayer.timeUntilPortal = 10;
+            else if (thePlayer.dimension != dimensionID) {
+                thePlayer.timeUntilPortal = 10;
+                thePlayer.server.getPlayerList().transferPlayerToDimension(thePlayer, dimensionID, new ModTeleporter(thePlayer.server.getWorld(dimensionID), this, blockFrame.getDefaultState()));
+            } else {
+                thePlayer.timeUntilPortal = 10;
+                thePlayer.server.getPlayerList().transferPlayerToDimension(thePlayer, 0, new ModTeleporter(thePlayer.server.getWorld(0), this, blockFrame.getDefaultState()));
+            }
+        }
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void randomDisplayTick(IBlockState state, World worldIn, BlockPos pos, Random rand) {
+        double d0 = (float) pos.getX() + rand.nextFloat();
+        double d1 = (float) pos.getY() + 0.8F;
+        double d2 = (float) pos.getZ() + rand.nextFloat();
+        double d3 = 0.0D;
+        double d4 = 0.0D;
+        double d5 = 0.0D;
+        worldIn.spawnParticle(EnumParticleTypes.SLIME, d0, d1, d2, d3, d4, d5);
+        worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0, d1, d2, d3, d4, d5);
+        worldIn.spawnParticle(EnumParticleTypes.SMOKE_LARGE, d0, d1, d2, d3, d4, d5);
+    }
 }

@@ -11,45 +11,45 @@ import net.slayer.api.entity.EntityModMob;
 
 public class EntityTerraScatterer extends EntityModMob {
 
-	public EntityTerraScatterer(World w) {
-		super(w);
-		setSize(1.0F, 1.5F);
-	}
+    public EntityTerraScatterer(World w) {
+        super(w);
+        setSize(1.0F, 1.5F);
+    }
 
-	@Override
-	public double setAttackDamage(MobStats s) {
-		return MobStats.TerraScattererDamage;
-	}
+    @Override
+    public double setAttackDamage(MobStats s) {
+        return MobStats.TerraScattererDamage;
+    }
 
-	@Override
-	public double setMaxHealth(MobStats s) {
-		return MobStats.TerraScattererHealth;
-	}
+    @Override
+    public double setMaxHealth(MobStats s) {
+        return MobStats.TerraScattererHealth;
+    }
 
-	@Override
-	public SoundEvent setLivingSound() {
-		return JourneySounds.WRAITH;
-	}
+    @Override
+    public SoundEvent setLivingSound() {
+        return JourneySounds.WRAITH;
+    }
 
-	@Override
-	public SoundEvent setHurtSound() {
-		return SoundEvents.ENTITY_CREEPER_HURT;
-	}
+    @Override
+    public SoundEvent setHurtSound() {
+        return SoundEvents.ENTITY_CREEPER_HURT;
+    }
 
-	@Override
-	public SoundEvent setDeathSound() {
-		return JourneySounds.WRAITH_DEATH;
-	}
-	
-	@Override
-	protected void dropFewItems(boolean b, int j) {
-		if(rand.nextInt(4) == 0) dropItem(JourneyItems.lightTerrarianSoil, rand.nextInt(4));
-		super.dropFewItems(b, j);
-	}
+    @Override
+    public SoundEvent setDeathSound() {
+        return JourneySounds.WRAITH_DEATH;
+    }
 
-	@Override
-	public Item getItemDropped() {
-		return null;
-	}
+    @Override
+    protected void dropFewItems(boolean b, int j) {
+        if (rand.nextInt(4) == 0) dropItem(JourneyItems.lightTerrarianSoil, rand.nextInt(4));
+        super.dropFewItems(b, j);
+    }
+
+    @Override
+    public Item getItemDropped() {
+        return null;
+    }
 
 }

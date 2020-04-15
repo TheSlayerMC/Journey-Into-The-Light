@@ -9,7 +9,7 @@ import net.minecraft.world.World;
 public class ContainerModVillager extends ContainerMerchant {
 
     public ContainerModVillager(InventoryPlayer par1InventoryPlayer, IMerchant par2IMerchant, World par3World) {
-    	super(par1InventoryPlayer, par2IMerchant, par3World);
+        super(par1InventoryPlayer, par2IMerchant, par3World);
     }
 
     @Override

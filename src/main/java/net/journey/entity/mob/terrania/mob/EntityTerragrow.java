@@ -11,46 +11,46 @@ import net.slayer.api.entity.EntityModMob;
 
 public class EntityTerragrow extends EntityModMob {
 
-	public EntityTerragrow(World w) {
-		super(w);
-		setSize(1.0F, 1.5F);
-	}
+    public EntityTerragrow(World w) {
+        super(w);
+        setSize(1.0F, 1.5F);
+    }
 
-	@Override
-	public double setAttackDamage(MobStats s) {
-		return MobStats.TerragrowDamage;
-	}
+    @Override
+    public double setAttackDamage(MobStats s) {
+        return MobStats.TerragrowDamage;
+    }
 
-	@Override
-	public double setMaxHealth(MobStats s) {
-		return MobStats.TerragrowHealth;
-	}
+    @Override
+    public double setMaxHealth(MobStats s) {
+        return MobStats.TerragrowHealth;
+    }
 
-	@Override
-	public SoundEvent setLivingSound() {
-		return JourneySounds.WRAITH;
-	}
+    @Override
+    public SoundEvent setLivingSound() {
+        return JourneySounds.WRAITH;
+    }
 
-	@Override
-	public SoundEvent setHurtSound() {
-		return SoundEvents.ENTITY_CREEPER_HURT;
-	}
+    @Override
+    public SoundEvent setHurtSound() {
+        return SoundEvents.ENTITY_CREEPER_HURT;
+    }
 
-	@Override
-	public SoundEvent setDeathSound() {
-		return JourneySounds.WRAITH_DEATH;
-	}
-	
-	@Override
-	protected void dropFewItems(boolean b, int j) {
-		if(rand.nextInt(15) == 0) dropItem(JourneyItems.earthenCrystal, 1);
-		if(rand.nextInt(4) == 0) dropItem(JourneyItems.darkTerrarianSoil, rand.nextInt(4));
-		super.dropFewItems(b, j);
-	}
+    @Override
+    public SoundEvent setDeathSound() {
+        return JourneySounds.WRAITH_DEATH;
+    }
 
-	@Override
-	public Item getItemDropped() {
-		return null;
-	}
+    @Override
+    protected void dropFewItems(boolean b, int j) {
+        if (rand.nextInt(15) == 0) dropItem(JourneyItems.earthenCrystal, 1);
+        if (rand.nextInt(4) == 0) dropItem(JourneyItems.darkTerrarianSoil, rand.nextInt(4));
+        super.dropFewItems(b, j);
+    }
+
+    @Override
+    public Item getItemDropped() {
+        return null;
+    }
 
 }

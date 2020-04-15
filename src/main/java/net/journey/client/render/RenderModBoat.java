@@ -5,10 +5,8 @@ import net.journey.entity.item.EntityObsidianBoat;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.IMultipassModel;
 import net.minecraft.client.model.ModelBase;
-import net.minecraft.client.model.ModelBoat;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
@@ -17,18 +15,18 @@ import net.slayer.api.SlayerAPI;
 
 @SideOnly(Side.CLIENT)
 public class RenderModBoat<T> extends Render<EntityObsidianBoat> {
-	
-    private static final ResourceLocation BOAT_TEXTURE = new ResourceLocation(SlayerAPI.PREFIX+"textures/models/entity/boat_obsidian.png");
-    
+
+    private static final ResourceLocation BOAT_TEXTURE = new ResourceLocation(SlayerAPI.PREFIX + "textures/models/entity/boat_obsidian.png");
+
     protected ModelBase model = new ModelObsidianBoat();
 
-	public RenderModBoat(ModelBase model, float shadow) {
-		super(Minecraft.getMinecraft().getRenderManager());
-	}
+    public RenderModBoat(ModelBase model, float shadow) {
+        super(Minecraft.getMinecraft().getRenderManager());
+    }
 
-	public RenderModBoat(ModelBase model, ResourceLocation tex) {
-		this(model, 0.5F);
-	}
+    public RenderModBoat(ModelBase model, ResourceLocation tex) {
+        this(model, 0.5F);
+    }
 
     @Override
     public void doRender(EntityObsidianBoat entity, double x, double y, double z, float entityYaw, float partialTicks) {
@@ -55,7 +53,7 @@ public class RenderModBoat<T> extends Render<EntityObsidianBoat> {
 
     public void setupRotation(EntityObsidianBoat boat, float par2, float par3) {
         GlStateManager.rotate(180.0F - par2, 0.0F, 1.0F, 0.0F);
-        float f = (float)boat.getTimeSinceHit() - par3;
+        float f = (float) boat.getTimeSinceHit() - par3;
         float f1 = boat.getDamageTaken() - par3;
 
         if (f1 < 0.0F) {
@@ -63,14 +61,14 @@ public class RenderModBoat<T> extends Render<EntityObsidianBoat> {
         }
 
         if (f > 0.0F) {
-            GlStateManager.rotate(MathHelper.sin(f) * f * f1 / 10.0F * (float)boat.getForwardDirection(), 1.0F, 0.0F, 0.0F);
+            GlStateManager.rotate(MathHelper.sin(f) * f * f1 / 10.0F * (float) boat.getForwardDirection(), 1.0F, 0.0F, 0.0F);
         }
 
         GlStateManager.scale(-1.0F, -1.0F, 1.0F);
     }
 
     public void setupTranslation(double p_188309_1_, double p_188309_3_, double p_188309_5_) {
-        GlStateManager.translate((float)p_188309_1_, (float)p_188309_3_ + 0.375F, (float)p_188309_5_);
+        GlStateManager.translate((float) p_188309_1_, (float) p_188309_3_ + 0.375F, (float) p_188309_5_);
     }
 
     @Override
@@ -89,7 +87,7 @@ public class RenderModBoat<T> extends Render<EntityObsidianBoat> {
         this.setupTranslation(p_188300_2_, p_188300_4_, p_188300_6_);
         this.setupRotation(p_188300_1_, p_188300_8_, p_188300_9_);
         this.bindEntityTexture(p_188300_1_);
-        ((IMultipassModel)this.model).renderMultipass(p_188300_1_, p_188300_9_, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
+        ((IMultipassModel) this.model).renderMultipass(p_188300_1_, p_188300_9_, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
         GlStateManager.popMatrix();
     }
 }

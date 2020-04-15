@@ -1,11 +1,7 @@
 package net.journey.items;
 
-import java.util.List;
-import java.util.Random;
-
 import net.journey.JourneyBlocks;
 import net.journey.JourneyTabs;
-import net.journey.dimension.frozen.gen.WorldGenSpikeDungeon;
 import net.minecraft.block.Block;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
@@ -21,42 +17,44 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.SlayerAPI;
 import net.slayer.api.item.ItemMod;
 
+import java.util.List;
+import java.util.Random;
+
 public class ItemFlameCoin extends ItemMod {
 
-	public ItemFlameCoin(String name, String f) {
-		super(name, f);
-		setCreativeTab(JourneyTabs.util);
-		setMaxStackSize(1);
-	}
+    public ItemFlameCoin(String name, String f) {
+        super(name, f);
+        setCreativeTab(JourneyTabs.util);
+        setMaxStackSize(1);
+    }
 
-	@Override
-	public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing fa, float hitX, float hitY, float hitZ) {
-		Random r = new Random();
-		int x = pos.getX(), y = pos.getY(), z = pos.getZ();
-		if(fa != EnumFacing.UP && world.getBlockState(pos.up()).getBlock() != Blocks.AIR){
-			return EnumActionResult.FAIL;
-		} else {
-			Block block = world.getBlockState(pos).getBlock();
-			if(block == JourneyBlocks.frozenPortalFrame ||block == JourneyBlocks.eucaPortalFrame || block == JourneyBlocks.boilPortalFrame 
-					 || block == JourneyBlocks.cloudiaPortalFrame || block == JourneyBlocks.terraniaPortalFrame){
-				world.setBlockState(new BlockPos(pos.up()), JourneyBlocks.fire.getDefaultState(), 2);
-				return EnumActionResult.SUCCESS;
-			}
-			else return EnumActionResult.FAIL;
-		}
-		
-		//ItemDoor.placeDoor(w, pos.up(1), EnumFacing.fromAngle(player.rotationYaw), JourneyBlocks.frozenDoor, false);
-			//new WorldGenSpikeDungeon().generate(world, r, pos);
-		
-		//WorldGenStructure structure = new WorldGenStructure("big", JourneyLootTables.TEST_CHEST);
-		//if(!w.isRemote)
-		//structure.generate(w, r, pos);
-		
-		//int i = pos.getX(), j = pos.getY(), k = pos.getZ();
-		
-		//return EnumActionResult.SUCCESS;
-		
-		//BARN
+    @Override
+    public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing fa, float hitX, float hitY, float hitZ) {
+        Random r = new Random();
+        int x = pos.getX(), y = pos.getY(), z = pos.getZ();
+        if (fa != EnumFacing.UP && world.getBlockState(pos.up()).getBlock() != Blocks.AIR) {
+            return EnumActionResult.FAIL;
+        } else {
+            Block block = world.getBlockState(pos).getBlock();
+            if (block == JourneyBlocks.frozenPortalFrame || block == JourneyBlocks.eucaPortalFrame || block == JourneyBlocks.boilPortalFrame
+                    || block == JourneyBlocks.cloudiaPortalFrame || block == JourneyBlocks.terraniaPortalFrame) {
+                world.setBlockState(new BlockPos(pos.up()), JourneyBlocks.fire.getDefaultState(), 2);
+                return EnumActionResult.SUCCESS;
+            } else return EnumActionResult.FAIL;
+        }
+
+        //ItemDoor.placeDoor(w, pos.up(1), EnumFacing.fromAngle(player.rotationYaw), JourneyBlocks.frozenDoor, false);
+        //new WorldGenSpikeDungeon().generate(world, r, pos);
+
+        //WorldGenStructure structure = new WorldGenStructure("big", JourneyLootTables.TEST_CHEST);
+        //if(!w.isRemote)
+        //structure.generate(w, r, pos);
+
+        //int i = pos.getX(), j = pos.getY(), k = pos.getZ();
+
+        //return EnumActionResult.SUCCESS;
+
+        //BARN
 		/*WorldGenAPI.addRectangle(7, 5, 1, w, x, y, z, EssenceBlocks.greenCorbaPlank);
 		WorldGenAPI.addRectangle(1, 5, 4, w, x, y + 1, z, EssenceBlocks.brownCorbaLog);
 		WorldGenAPI.addRectangle(1, 3, 4, w, x, y + 1, z + 1, EssenceBlocks.greenCorbaLog);
@@ -88,12 +86,12 @@ public class ItemFlameCoin extends ItemMod {
 		WorldGenAPI.addRectangle(4, 1, 4, w, x, y + 1, z + 3, EssenceBlocks.brownCorbaPlank);
 		WorldGenAPI.addRectangle(1, 8, 4, w, x + 9, y + 1, z, EssenceBlocks.brownCorbaPlank);*/
 
-		//return true;
-	}
+        //return true;
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack i, World worldIn, List<String> l, ITooltipFlag flagIn) {
-		l.add(SlayerAPI.Colour.GREEN + "Key item used to light all portals.");
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack i, World worldIn, List<String> l, ITooltipFlag flagIn) {
+        l.add(SlayerAPI.Colour.GREEN + "Key item used to light all portals.");
+    }
 }

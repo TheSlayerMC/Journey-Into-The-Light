@@ -11,12 +11,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.SlayerAPI;
-
 import org.lwjgl.opengl.GL11;
 
 @SideOnly(Side.CLIENT)
 public class EntityShimmererFX extends Particle {
-	
+
     private double portalPosX, portalPosY, portalPosZ;
 
     public EntityShimmererFX(World var1, double var2, double var4, double var6, double var8, double var10, double var12) {
@@ -31,10 +30,10 @@ public class EntityShimmererFX extends Particle {
         this.particleBlue = 0.7F;
         this.particleGreen = 1.0F;
         this.particleRed = 0.0F;
-        this.particleMaxAge = (int)(Math.random() * 10.0D) + 40;
-        this.setParticleTextureIndex((int)(Math.random() * 8.0D));
+        this.particleMaxAge = (int) (Math.random() * 10.0D) + 40;
+        this.setParticleTextureIndex((int) (Math.random() * 8.0D));
     }
-    
+
     @Override
     public void renderParticle(BufferBuilder worldRenderer, Entity e, float f1, float f2, float f3, float f4, float f5, float f6) {
         Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation(SlayerAPI.PREFIX + "textures/particles/shimmerer.png"));
@@ -46,7 +45,7 @@ public class EntityShimmererFX extends Particle {
         GlStateManager.disableBlend();
         GlStateManager.enableLighting();
     }
-    
+
     @Override
     public int getFXLayer() {
         return 3;
@@ -57,14 +56,14 @@ public class EntityShimmererFX extends Particle {
         this.prevPosX = this.posX;
         this.prevPosY = this.posY;
         this.prevPosZ = this.posZ;
-        float var1 = (float)this.particleAge / (float)this.particleMaxAge;
+        float var1 = (float) this.particleAge / (float) this.particleMaxAge;
         float var2 = var1;
         var1 = -var1 + var1 * var1 * 2.0F;
         var1 = 1.0F - var1;
         this.posX = this.portalPosX + this.motionX * var1;
         this.posY = this.portalPosY + this.motionY * var1 + (1.0F - var2);
         this.posZ = this.portalPosZ + this.motionZ * var1;
-        if(this.particleAge++ >= this.particleMaxAge) 
+        if (this.particleAge++ >= this.particleMaxAge)
             this.setExpired();
     }
 }

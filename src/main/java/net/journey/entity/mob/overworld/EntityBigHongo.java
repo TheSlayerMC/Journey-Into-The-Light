@@ -11,45 +11,45 @@ import net.slayer.api.entity.EntityModMob;
 
 public class EntityBigHongo extends EntityModMob {
 
-	public EntityBigHongo(World par1World) {
-		super(par1World);
-		addAttackingAI();
-		this.setSize(1.0F, 2.0F);
-	}
+    public EntityBigHongo(World par1World) {
+        super(par1World);
+        addAttackingAI();
+        this.setSize(1.0F, 2.0F);
+    }
 
-	@Override
-	public double setAttackDamage(MobStats s) {
-		return MobStats.BigHongoDamage;
-	}
+    @Override
+    public double setAttackDamage(MobStats s) {
+        return MobStats.BigHongoDamage;
+    }
 
-	@Override
-	public double setMaxHealth(MobStats s) {
-		return MobStats.BigHongoHealth;
-	}
+    @Override
+    public double setMaxHealth(MobStats s) {
+        return MobStats.BigHongoHealth;
+    }
 
-	@Override
-	public SoundEvent setLivingSound() {
-		return JourneySounds.HONGO;
-	}
+    @Override
+    public SoundEvent setLivingSound() {
+        return JourneySounds.HONGO;
+    }
 
-	@Override
-	public SoundEvent setHurtSound() {
-		return JourneySounds.HONGO_HURT;
-	}
+    @Override
+    public SoundEvent setHurtSound() {
+        return JourneySounds.HONGO_HURT;
+    }
 
-	@Override
-	public SoundEvent setDeathSound() {
-		return JourneySounds.HONGO_HURT;
-	}
-	
-	@Override
-	public boolean getCanSpawnHere() {
-		return 	this.isValidLightLevel() && 
-				this.world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).isFullBlock() && this.dimension == 0;
-	}
+    @Override
+    public SoundEvent setDeathSound() {
+        return JourneySounds.HONGO_HURT;
+    }
 
-	@Override
-	public Item getItemDropped() {
-		return JourneyConsumables.hongoShroom;
-	}
+    @Override
+    public boolean getCanSpawnHere() {
+        return this.isValidLightLevel() &&
+                this.world.getBlockState(new BlockPos(this.posX, this.posY - 1, this.posZ)).isFullBlock() && this.dimension == 0;
+    }
+
+    @Override
+    public Item getItemDropped() {
+        return JourneyConsumables.hongoShroom;
+    }
 }

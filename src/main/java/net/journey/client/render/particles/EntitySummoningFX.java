@@ -1,7 +1,5 @@
 package net.journey.client.render.particles;
 
-import java.util.Random;
-
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.entity.Entity;
@@ -10,29 +8,28 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.Random;
+
 @SideOnly(Side.CLIENT)
-public class EntitySummoningFX extends Particle
-{
+public class EntitySummoningFX extends Particle {
     private static final Random RANDOM = new Random();
     private int baseSpellTextureIndex = 128;
 
-    public EntitySummoningFX(World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double p_i1229_8_, double p_i1229_10_, double p_i1229_12_)
-    {
+    public EntitySummoningFX(World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double p_i1229_8_, double p_i1229_10_, double p_i1229_12_) {
         super(worldIn, xCoordIn, yCoordIn, zCoordIn, 0.5D - RANDOM.nextDouble(), p_i1229_10_, 0.5D - RANDOM.nextDouble());
         this.motionY *= 0.20000000298023224D;
 
-        if (p_i1229_8_ == 0.0D && p_i1229_12_ == 0.0D)
-        {
+        if (p_i1229_8_ == 0.0D && p_i1229_12_ == 0.0D) {
             this.motionX *= 0.10000000149011612D;
             this.motionZ *= 0.10000000149011612D;
         }
 
         this.particleScale *= 0.75F;
-        this.particleMaxAge = (int)(8.0D / (Math.random() * 0.8D + 0.2D));
+        this.particleMaxAge = (int) (8.0D / (Math.random() * 0.8D + 0.2D));
     }
 
     @Override
-	public void renderParticle(BufferBuilder worldRendererIn, Entity entityIn, float partialTicks, float p_180434_4_, float p_180434_5_, float p_180434_6_, float p_180434_7_, float p_180434_8_) {
+    public void renderParticle(BufferBuilder worldRendererIn, Entity entityIn, float partialTicks, float p_180434_4_, float p_180434_5_, float p_180434_6_, float p_180434_7_, float p_180434_8_) {
         float f = (this.particleAge + partialTicks) / this.particleMaxAge * 32.0F;
         f = MathHelper.clamp(f, 0.0F, 1.0F);
         super.renderParticle(worldRendererIn, entityIn, partialTicks, p_180434_4_, p_180434_5_, p_180434_6_, p_180434_7_, p_180434_8_);

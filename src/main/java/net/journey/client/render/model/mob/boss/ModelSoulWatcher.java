@@ -52,15 +52,14 @@ public class ModelSoulWatcher extends ModelBase {
         this.body_tails_parent.addChild(this.tail1);
         this.tail2.addChild(this.tail3);
     }
-    
+
     public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
         modelRenderer.rotateAngleX = x;
         modelRenderer.rotateAngleY = y;
         modelRenderer.rotateAngleZ = z;
     }
 
-    public int func_178706_a()
-    {
+    public int func_178706_a() {
         return 54;
     }
 
@@ -68,7 +67,7 @@ public class ModelSoulWatcher extends ModelBase {
      * Sets the models various rotation angles then renders the model.
      */
     @Override
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) { 
+    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
         this.head.render(f5);
         this.body_tails_parent.render(f5);
         this.body_seperate.render(f5);
@@ -81,14 +80,13 @@ public class ModelSoulWatcher extends ModelBase {
      * "far" arms and legs can swing at most.
      */
     @Override
-	public void setRotationAngles(float par1, float par2, float par3, float par4, float par5, float par6, Entity par7Entity)
-    {
-        this.tail1.rotateAngleY = MathHelper.sin(par3) * (float)Math.PI * 0.01F;
-        this.tail1.rotateAngleY = MathHelper.sin(par3) * (float)Math.PI * 0.1F;
+    public void setRotationAngles(float par1, float par2, float par3, float par4, float par5, float par6, Entity par7Entity) {
+        this.tail1.rotateAngleY = MathHelper.sin(par3) * (float) Math.PI * 0.01F;
+        this.tail1.rotateAngleY = MathHelper.sin(par3) * (float) Math.PI * 0.1F;
         this.tail1.rotationPointX = -1.5F;
         this.tail1.rotationPointY = 0.5F;
         this.tail1.rotationPointZ = 14.0F;
-        this.tail2.rotateAngleY = MathHelper.sin(par3) * (float)Math.PI * 0.1F;
+        this.tail2.rotateAngleY = MathHelper.sin(par3) * (float) Math.PI * 0.1F;
         this.tail2.rotationPointX = 0.5F;
         this.tail2.rotationPointY = 0.5F;
         this.tail2.rotationPointZ = 6.0F;

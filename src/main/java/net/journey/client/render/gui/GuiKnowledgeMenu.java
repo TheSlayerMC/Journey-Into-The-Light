@@ -8,5 +8,5 @@ public class GuiKnowledgeMenu extends GuiScreen {
 
     private static final ResourceLocation texture = new ResourceLocation(SlayerAPI.PREFIX + "textures/gui/knowledgeHUD.png");
 
-	
+
 }

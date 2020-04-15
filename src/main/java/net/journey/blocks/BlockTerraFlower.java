@@ -10,17 +10,17 @@ import net.slayer.api.block.BlockModFlower;
 
 public class BlockTerraFlower extends BlockModFlower {
 
-	public BlockTerraFlower(String name, String finalName) {
-		super(name, finalName);
-	}
+    public BlockTerraFlower(String name, String finalName) {
+        super(name, finalName);
+    }
 
-	@Override
-	public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entity) {
-		EntityTerragrow grow = new EntityTerragrow(worldIn);
-		if(!worldIn.isRemote) {
-			worldIn.spawnEntity(grow);
-			grow.setPosition(pos.getX(), pos.getY() + 1, pos.getZ());
-			worldIn.setBlockState(pos, Blocks.AIR.getDefaultState());
-		}
-	}
+    @Override
+    public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entity) {
+        EntityTerragrow grow = new EntityTerragrow(worldIn);
+        if (!worldIn.isRemote) {
+            worldIn.spawnEntity(grow);
+            grow.setPosition(pos.getX(), pos.getY() + 1, pos.getZ());
+            worldIn.setBlockState(pos, Blocks.AIR.getDefaultState());
+        }
+    }
 }

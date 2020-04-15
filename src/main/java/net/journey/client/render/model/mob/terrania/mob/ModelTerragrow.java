@@ -21,7 +21,7 @@ public class ModelTerragrow extends ModelBase {
     public ModelRenderer flower2;
 
     public ModelTerragrow() {
-    	this.textureWidth = 64;
+        this.textureWidth = 64;
         this.textureHeight = 64;
         this.body = new ModelRenderer(this, 0, 40);
         this.body.setRotationPoint(-4.0F, 11.0F, -5.0F);
@@ -56,7 +56,7 @@ public class ModelTerragrow extends ModelBase {
     }
 
     @Override
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) { 
+    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
         this.head.render(f5);
         this.neck.render(f5);
         this.leg2.render(f5);
@@ -67,21 +67,22 @@ public class ModelTerragrow extends ModelBase {
         this.flower1.render(f5);
         this.flower2.render(f5);
     }
-    
+
     public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
         modelRenderer.rotateAngleX = x;
         modelRenderer.rotateAngleY = y;
         modelRenderer.rotateAngleZ = z;
-	}
-	@Override
-	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity e) {
-		super.setRotationAngles(f, f1, f2, f3, f4, f5, e);
-		this.head.rotateAngleY = f4 / (180F / (float)Math.PI);
-		this.head.rotateAngleX = f5 / (180F / (float)Math.PI);
-		this.leg1.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * f1;
-		this.leg2.rotateAngleX = MathHelper.cos(f * 0.6662F) * f1;
-		this.leg3.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * f1;
-		this.leg4.rotateAngleX = MathHelper.cos(f * 0.6662F) * f1;
-	}
-    
+    }
+
+    @Override
+    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity e) {
+        super.setRotationAngles(f, f1, f2, f3, f4, f5, e);
+        this.head.rotateAngleY = f4 / (180F / (float) Math.PI);
+        this.head.rotateAngleX = f5 / (180F / (float) Math.PI);
+        this.leg1.rotateAngleX = MathHelper.cos(f * 0.6662F + (float) Math.PI) * f1;
+        this.leg2.rotateAngleX = MathHelper.cos(f * 0.6662F) * f1;
+        this.leg3.rotateAngleX = MathHelper.cos(f * 0.6662F + (float) Math.PI) * f1;
+        this.leg4.rotateAngleX = MathHelper.cos(f * 0.6662F) * f1;
+    }
+
 }

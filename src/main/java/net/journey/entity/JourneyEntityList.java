@@ -1,16 +1,16 @@
 package net.journey.entity;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 import net.journey.util.LogHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 /**
- * 
  * <b>A modified version of vanilla EntityList</b>
+ *
  * @author TheSlayerMC, Mojang
  */
 public class JourneyEntityList {
@@ -18,18 +18,18 @@ public class JourneyEntityList {
     public static Map<String, Class<?>> stringToClassMapping = new HashMap<String, Class<?>>();
     public static Map<Class<?>, String> classToStringMapping = new HashMap<Class<?>, String>();
     public static Map<Integer, Class<?>> IDtoClassMapping = new HashMap<Integer, Class<?>>();
+    public static HashMap<Integer, EntityEggInfo> entityEggs = new LinkedHashMap<Integer, EntityEggInfo>();
     private static Map<Class<?>, Integer> classToIDMapping = new HashMap<Class<?>, Integer>();
     private static Map<String, Integer> stringToIDMapping = new HashMap<String, Integer>();
-    public static HashMap<Integer, EntityEggInfo> entityEggs = new LinkedHashMap<Integer, EntityEggInfo>();
 
     public static void addMapping(Class<?> clazz, String name, int id) {
 
-        if(stringToClassMapping.containsKey(name))
+        if (stringToClassMapping.containsKey(name))
             throw new IllegalArgumentException("ID is already registered: " + name);
-        
-        else if(IDtoClassMapping.containsKey(Integer.valueOf(id))) 
+
+        else if (IDtoClassMapping.containsKey(Integer.valueOf(id)))
             throw new IllegalArgumentException("ID is already registered: " + id);
-        
+
         else {
             stringToClassMapping.put(name, clazz);
             classToStringMapping.put(clazz, name);
@@ -46,7 +46,7 @@ public class JourneyEntityList {
 
     public static String getStringFromID(int id) {
         Class<?> oclass = getClassFromID(id);
-        return oclass != null ? (String) classToStringMapping.get(oclass) : null;
+        return oclass != null ? classToStringMapping.get(oclass) : null;
     }
 
     public static Class<?> getClassFromID(int id) {
@@ -63,15 +63,13 @@ public class JourneyEntityList {
 
         try {
             Class<?> oclass = getClassFromID(id);
-            if(oclass != null) {
-                entity = (Entity) oclass.getConstructor(new Class[] { World.class }).newInstance(new Object[] { world });
+            if (oclass != null) {
+                entity = (Entity) oclass.getConstructor(new Class[]{World.class}).newInstance(new Object[]{world});
             }
-        }
-
-        catch(Exception exception) {
+        } catch (Exception exception) {
             exception.printStackTrace();
         }
-        if(entity == null) {
+        if (entity == null) {
             LogHelper.warn("Entity with ID " + id + " is null, it will be skipped.");
         }
 

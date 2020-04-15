@@ -1,27 +1,11 @@
 package net.slayer.api.entity;
 
-import java.util.UUID;
-
-import javax.annotation.Nullable;
-
 import com.google.common.base.Optional;
-
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIFollowOwner;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAILeapAtTarget;
-import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAIMate;
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAIOwnerHurtByTarget;
-import net.minecraft.entity.ai.EntityAIOwnerHurtTarget;
-import net.minecraft.entity.ai.EntityAISit;
-import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIWander;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -37,252 +21,269 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
+import java.util.UUID;
+
 public abstract class EntityModTameable extends EntityTameable {
 
-	protected static final DataParameter<Byte> TAMED = EntityDataManager.<Byte>createKey(EntityModTameable.class, DataSerializers.BYTE);
-	protected static final DataParameter<Optional<UUID>> OWNER_UNIQUE_ID = EntityDataManager.<Optional<UUID>>createKey(EntityModTameable.class, DataSerializers.OPTIONAL_UNIQUE_ID);
-	protected EntityAISit aiSit;
+    protected static final DataParameter<Byte> TAMED = EntityDataManager.createKey(EntityModTameable.class, DataSerializers.BYTE);
+    protected static final DataParameter<Optional<UUID>> OWNER_UNIQUE_ID = EntityDataManager.createKey(EntityModTameable.class, DataSerializers.OPTIONAL_UNIQUE_ID);
+    protected EntityAISit aiSit;
 
-	public EntityModTameable(World w) {
-		super(w);
+    public EntityModTameable(World w) {
+        super(w);
         this.aiSit = new EntityAISit(this);
-		addBasicAI();
-	}
+        addBasicAI();
+    }
 
-	public double getHP(){return getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getAttributeValue();}
-	public double getMoveSpeed(){return getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue();}
-	public double getAttackDamage(){return getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue();}
-	public double getFollowRange(){return getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).getAttributeValue();}
-	public double getKnockbackResistance(){return getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).getAttributeValue();}
+    public double getHP() {
+        return getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getAttributeValue();
+    }
 
-	public abstract SoundEvent setLivingSound();
-	public abstract SoundEvent setHurtSound();
-	public abstract SoundEvent setDeathSound();
+    public double getMoveSpeed() {
+        return getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue();
+    }
 
-	@Override
-	protected SoundEvent getAmbientSound() {
-		super.getAmbientSound();
-		return setLivingSound();
-	}
+    public double getAttackDamage() {
+        return getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue();
+    }
 
-	@Override
-	protected SoundEvent getHurtSound(DamageSource d) {
-		super.getHurtSound(d);
-		return setHurtSound();
-	}
+    public double getFollowRange() {
+        return getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).getAttributeValue();
+    }
 
-	@Override
-	protected SoundEvent getDeathSound() {
-		super.getDeathSound();
-		return setDeathSound();
-	}
+    public double getKnockbackResistance() {
+        return getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).getAttributeValue();
+    }
 
-	@Override
-	protected void entityInit() {
-		super.entityInit();
-		this.dataManager.register(TAMED, Byte.valueOf((byte)0));
-		this.dataManager.register(OWNER_UNIQUE_ID, Optional.absent());
-	}
+    public abstract SoundEvent setLivingSound();
 
-	@Override
-	public void writeEntityToNBT(NBTTagCompound compound) {
-		super.writeEntityToNBT(compound);
+    public abstract SoundEvent setHurtSound();
 
-		if (this.getOwnerId() == null) {
-			compound.setString("OwnerUUID", "");
-		} else {
-			compound.setString("OwnerUUID", this.getOwnerId().toString());
-		}
+    public abstract SoundEvent setDeathSound();
 
-		compound.setBoolean("Sitting", this.isSitting());
-	}
+    @Override
+    protected SoundEvent getAmbientSound() {
+        super.getAmbientSound();
+        return setLivingSound();
+    }
 
-	@Override
-	public void readEntityFromNBT(NBTTagCompound compound) {
-		super.readEntityFromNBT(compound);
-		String s;
+    @Override
+    protected SoundEvent getHurtSound(DamageSource d) {
+        super.getHurtSound(d);
+        return setHurtSound();
+    }
 
-		if (compound.hasKey("OwnerUUID", 8)) {
-			s = compound.getString("OwnerUUID");
-		} else {
-			String s1 = compound.getString("Owner");
-			s = PreYggdrasilConverter.convertMobOwnerIfNeeded(this.getServer(), s1);
-		}
+    @Override
+    protected SoundEvent getDeathSound() {
+        super.getDeathSound();
+        return setDeathSound();
+    }
 
-		if (!s.isEmpty()) {
-			try {
-				this.setOwnerId(UUID.fromString(s));
-				this.setTamed(true);
-			}
-			catch (Throwable var4) {
-				this.setTamed(false);
-			}
-		}
+    @Override
+    protected void entityInit() {
+        super.entityInit();
+        this.dataManager.register(TAMED, Byte.valueOf((byte) 0));
+        this.dataManager.register(OWNER_UNIQUE_ID, Optional.absent());
+    }
 
-		if (this.aiSit != null) {
-			this.aiSit.setSitting(compound.getBoolean("Sitting"));
-		}
+    @Override
+    public void writeEntityToNBT(NBTTagCompound compound) {
+        super.writeEntityToNBT(compound);
 
-		this.setSitting(compound.getBoolean("Sitting"));
-	}
+        if (this.getOwnerId() == null) {
+            compound.setString("OwnerUUID", "");
+        } else {
+            compound.setString("OwnerUUID", this.getOwnerId().toString());
+        }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void handleStatusUpdate(byte id) {
-		if (id == 7) {
-			this.playTameEffect(true);
-		}
-		else if (id == 6) {
-			this.playTameEffect(false);
-		} else {
-			super.handleStatusUpdate(id);
-		}
-	}
+        compound.setBoolean("Sitting", this.isSitting());
+    }
 
-	@Override
-	public boolean isTamed() {
-		return (((Byte)this.dataManager.get(TAMED)).byteValue() & 4) != 0;
-	}
+    @Override
+    public void readEntityFromNBT(NBTTagCompound compound) {
+        super.readEntityFromNBT(compound);
+        String s;
 
-	@Override
-	public void setTamed(boolean tamed) {
-		byte b0 = ((Byte)this.dataManager.get(TAMED)).byteValue();
+        if (compound.hasKey("OwnerUUID", 8)) {
+            s = compound.getString("OwnerUUID");
+        } else {
+            String s1 = compound.getString("Owner");
+            s = PreYggdrasilConverter.convertMobOwnerIfNeeded(this.getServer(), s1);
+        }
 
-		if (tamed) {
-			this.dataManager.set(TAMED, Byte.valueOf((byte)(b0 | 4)));
-		} else {
-			this.dataManager.set(TAMED, Byte.valueOf((byte)(b0 & -5)));
-		}
+        if (!s.isEmpty()) {
+            try {
+                this.setOwnerId(UUID.fromString(s));
+                this.setTamed(true);
+            } catch (Throwable var4) {
+                this.setTamed(false);
+            }
+        }
 
-		this.setupTamedAI();
-	}
+        if (this.aiSit != null) {
+            this.aiSit.setSitting(compound.getBoolean("Sitting"));
+        }
 
-	protected void setupTamedAI() { }
+        this.setSitting(compound.getBoolean("Sitting"));
+    }
 
-	@Override
-	public boolean isSitting() {
-		return (((Byte)this.dataManager.get(TAMED)).byteValue() & 1) != 0;
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void handleStatusUpdate(byte id) {
+        if (id == 7) {
+            this.playTameEffect(true);
+        } else if (id == 6) {
+            this.playTameEffect(false);
+        } else {
+            super.handleStatusUpdate(id);
+        }
+    }
 
-	@Override
-	public void setSitting(boolean sitting) {
-		byte b0 = ((Byte)this.dataManager.get(TAMED)).byteValue();
+    @Override
+    public boolean isTamed() {
+        return (this.dataManager.get(TAMED).byteValue() & 4) != 0;
+    }
 
-		if (sitting) {
-			this.dataManager.set(TAMED, Byte.valueOf((byte)(b0 | 1)));
-		} else {
-			this.dataManager.set(TAMED, Byte.valueOf((byte)(b0 & -2)));
-		}
-	}
+    @Override
+    public void setTamed(boolean tamed) {
+        byte b0 = this.dataManager.get(TAMED).byteValue();
 
-	@Override
-	@Nullable
-	public UUID getOwnerId() {
-		return (UUID)((Optional)this.dataManager.get(OWNER_UNIQUE_ID)).orNull();
-	}
+        if (tamed) {
+            this.dataManager.set(TAMED, Byte.valueOf((byte) (b0 | 4)));
+        } else {
+            this.dataManager.set(TAMED, Byte.valueOf((byte) (b0 & -5)));
+        }
 
-	@Override
-	public void setOwnerId(@Nullable UUID p_184754_1_) {
-		this.dataManager.set(OWNER_UNIQUE_ID, Optional.fromNullable(p_184754_1_));
-	}
+        this.setupTamedAI();
+    }
 
-	@Override
-	public void setTamedBy(EntityPlayer player) {
-		this.setTamed(true);
-		this.setOwnerId(player.getUniqueID());
+    protected void setupTamedAI() {
+    }
 
-		if (player instanceof EntityPlayerMP) {
-			CriteriaTriggers.TAME_ANIMAL.trigger((EntityPlayerMP)player, this);
-		}
-	}
+    @Override
+    public boolean isSitting() {
+        return (this.dataManager.get(TAMED).byteValue() & 1) != 0;
+    }
 
-	@Override
-	@Nullable
-	public EntityLivingBase getOwner() {
-		try {
-			UUID uuid = this.getOwnerId();
-			return uuid == null ? null : this.world.getPlayerEntityByUUID(uuid);
-		}
-		catch (IllegalArgumentException var2) {
-			return null;
-		}
-	}
+    @Override
+    public void setSitting(boolean sitting) {
+        byte b0 = this.dataManager.get(TAMED).byteValue();
 
-	public boolean isOwner(EntityLivingBase entityIn) {
-		return entityIn == this.getOwner();
-	}
+        if (sitting) {
+            this.dataManager.set(TAMED, Byte.valueOf((byte) (b0 | 1)));
+        } else {
+            this.dataManager.set(TAMED, Byte.valueOf((byte) (b0 & -2)));
+        }
+    }
 
-	@Override    
-	public EntityAISit getAISit() {
-		return this.aiSit;
-	}
+    @Override
+    @Nullable
+    public UUID getOwnerId() {
+        return (UUID) ((Optional) this.dataManager.get(OWNER_UNIQUE_ID)).orNull();
+    }
 
-	@Override
-	public boolean shouldAttackEntity(EntityLivingBase target, EntityLivingBase owner) {
-		return true;
-	}
+    @Override
+    public void setOwnerId(@Nullable UUID p_184754_1_) {
+        this.dataManager.set(OWNER_UNIQUE_ID, Optional.fromNullable(p_184754_1_));
+    }
 
-	@Override
-	public Team getTeam() {
-		if (this.isTamed()) {
-			EntityLivingBase entitylivingbase = this.getOwner();
+    @Override
+    public void setTamedBy(EntityPlayer player) {
+        this.setTamed(true);
+        this.setOwnerId(player.getUniqueID());
 
-			if (entitylivingbase != null) {
-				return entitylivingbase.getTeam();
-			}
-		}
+        if (player instanceof EntityPlayerMP) {
+            CriteriaTriggers.TAME_ANIMAL.trigger((EntityPlayerMP) player, this);
+        }
+    }
 
-		return super.getTeam();
-	}
+    @Override
+    @Nullable
+    public EntityLivingBase getOwner() {
+        try {
+            UUID uuid = this.getOwnerId();
+            return uuid == null ? null : this.world.getPlayerEntityByUUID(uuid);
+        } catch (IllegalArgumentException var2) {
+            return null;
+        }
+    }
 
-	@Override
-	public boolean isOnSameTeam(Entity entityIn) {
-		if (this.isTamed()) {
-			EntityLivingBase entitylivingbase = this.getOwner();
+    public boolean isOwner(EntityLivingBase entityIn) {
+        return entityIn == this.getOwner();
+    }
 
-			if (entityIn == entitylivingbase) {
-				return true;
-			}
+    @Override
+    public EntityAISit getAISit() {
+        return this.aiSit;
+    }
 
-			if (entitylivingbase != null) {
-				return entitylivingbase.isOnSameTeam(entityIn);
-			}
-		}
+    @Override
+    public boolean shouldAttackEntity(EntityLivingBase target, EntityLivingBase owner) {
+        return true;
+    }
 
-		return super.isOnSameTeam(entityIn);
-	}
+    @Override
+    public Team getTeam() {
+        if (this.isTamed()) {
+            EntityLivingBase entitylivingbase = this.getOwner();
 
-	@Override
-	public void onDeath(DamageSource cause) {
-		if (!this.world.isRemote && this.world.getGameRules().getBoolean("showDeathMessages") && this.getOwner() instanceof EntityPlayerMP) {
-			this.getOwner().sendMessage(this.getCombatTracker().getDeathMessage());
-		}
-		super.onDeath(cause);
-	}
+            if (entitylivingbase != null) {
+                return entitylivingbase.getTeam();
+            }
+        }
 
-	protected void addBasicAI(){
-		this.tasks.addTask(1, new EntityAISwimming(this));
-		this.tasks.addTask(2, this.aiSit);
-		this.tasks.addTask(3, new EntityAILeapAtTarget(this, 0.4F));
-		//this.tasks.addTask(4, new EntityAIAttackOnCollide(this, 1.0F, true));
-		this.tasks.addTask(5, new EntityAIFollowOwner(this, 1.0F, 10.0F, 2.0F));
-		this.tasks.addTask(6, new EntityAIMate(this, 1.0F));
-		this.tasks.addTask(7, new EntityAIWander(this, 1.0F));
-		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-		this.tasks.addTask(9, new EntityAILookIdle(this));
-		this.targetTasks.addTask(1, new EntityAIOwnerHurtByTarget(this));
-		this.targetTasks.addTask(2, new EntityAIOwnerHurtTarget(this));
-		this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));
-		this.setTamed(false);
-	}
+        return super.getTeam();
+    }
 
-	protected void addAttackingAI(){
-		//this.tasks.addTask(5, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1.0F, false));
-		this.targetTasks.addTask(6, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
-	}
+    @Override
+    public boolean isOnSameTeam(Entity entityIn) {
+        if (this.isTamed()) {
+            EntityLivingBase entitylivingbase = this.getOwner();
 
-	@Override
-	public boolean getCanSpawnHere() {
-		return true;
-	}
+            if (entityIn == entitylivingbase) {
+                return true;
+            }
+
+            if (entitylivingbase != null) {
+                return entitylivingbase.isOnSameTeam(entityIn);
+            }
+        }
+
+        return super.isOnSameTeam(entityIn);
+    }
+
+    @Override
+    public void onDeath(DamageSource cause) {
+        if (!this.world.isRemote && this.world.getGameRules().getBoolean("showDeathMessages") && this.getOwner() instanceof EntityPlayerMP) {
+            this.getOwner().sendMessage(this.getCombatTracker().getDeathMessage());
+        }
+        super.onDeath(cause);
+    }
+
+    protected void addBasicAI() {
+        this.tasks.addTask(1, new EntityAISwimming(this));
+        this.tasks.addTask(2, this.aiSit);
+        this.tasks.addTask(3, new EntityAILeapAtTarget(this, 0.4F));
+        //this.tasks.addTask(4, new EntityAIAttackOnCollide(this, 1.0F, true));
+        this.tasks.addTask(5, new EntityAIFollowOwner(this, 1.0F, 10.0F, 2.0F));
+        this.tasks.addTask(6, new EntityAIMate(this, 1.0F));
+        this.tasks.addTask(7, new EntityAIWander(this, 1.0F));
+        this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
+        this.tasks.addTask(9, new EntityAILookIdle(this));
+        this.targetTasks.addTask(1, new EntityAIOwnerHurtByTarget(this));
+        this.targetTasks.addTask(2, new EntityAIOwnerHurtTarget(this));
+        this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));
+        this.setTamed(false);
+    }
+
+    protected void addAttackingAI() {
+        //this.tasks.addTask(5, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1.0F, false));
+        this.targetTasks.addTask(6, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
+    }
+
+    @Override
+    public boolean getCanSpawnHere() {
+        return true;
+    }
 }

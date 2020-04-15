@@ -1,7 +1,5 @@
 package net.journey.blocks.crop;
 
-import java.util.Random;
-
 import net.journey.JourneyConsumables;
 import net.journey.JourneyCrops;
 import net.minecraft.block.properties.PropertyInteger;
@@ -11,44 +9,46 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.slayer.api.block.BlockModCrop;
 
+import java.util.Random;
+
 public class BlockFloroCrop extends BlockModCrop {
 
-	public BlockFloroCrop(String name) {
-		super(name);
-	}
+    public BlockFloroCrop(String name) {
+        super(name);
+    }
 
-	@Override
-	public PropertyInteger getAge() {
-		return PropertyInteger.create("age", 0, 6);
-	}
-	
-	@Override
-	public Item getSeed() {
-		return JourneyCrops.floroSeeds;
-	}
+    @Override
+    public PropertyInteger getAge() {
+        return PropertyInteger.create("age", 0, 6);
+    }
 
-	@Override
-	public Item getCrop() {
-		return JourneyConsumables.floroPedal;
-	}
+    @Override
+    public Item getSeed() {
+        return JourneyCrops.floroSeeds;
+    }
 
-	@Override
-	public int getStages() {
-		return 6;
-	}
+    @Override
+    public Item getCrop() {
+        return JourneyConsumables.floroPedal;
+    }
 
-	@Override
-	public boolean canGrow(World worldIn, BlockPos pos, IBlockState state, boolean isClient) {
-		return false;
-	}
+    @Override
+    public int getStages() {
+        return 6;
+    }
 
-	@Override
-	public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, IBlockState state) {
-		return false;
-	}
+    @Override
+    public boolean canGrow(World worldIn, BlockPos pos, IBlockState state, boolean isClient) {
+        return false;
+    }
 
-	@Override
-	public void grow(World worldIn, Random rand, BlockPos pos, IBlockState state) {
-		
-	}
+    @Override
+    public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, IBlockState state) {
+        return false;
+    }
+
+    @Override
+    public void grow(World worldIn, Random rand, BlockPos pos, IBlockState state) {
+
+    }
 }

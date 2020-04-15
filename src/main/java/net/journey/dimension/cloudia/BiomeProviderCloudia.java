@@ -5,7 +5,7 @@ import net.minecraft.world.biome.BiomeProviderSingle;
 
 public class BiomeProviderCloudia extends BiomeProviderSingle {
 
-	public BiomeProviderCloudia() {
-		super(DimensionHelper.cloudia);
-	}
+    public BiomeProviderCloudia() {
+        super(DimensionHelper.cloudia);
+    }
 }

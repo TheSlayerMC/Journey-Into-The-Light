@@ -1,7 +1,5 @@
 package net.journey.items;
 
-import java.util.List;
-
 import net.journey.JourneyTabs;
 import net.journey.client.server.EssenceProvider;
 import net.journey.client.server.IEssence;
@@ -24,41 +22,43 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.item.ItemMod;
 
+import java.util.List;
+
 public class ItemEssencePotion extends ItemMod {
 
-	private boolean isStrong;
+    private boolean isStrong;
 
-	public ItemEssencePotion(String name, String f, boolean strong) {
-		super(name, f, JourneyTabs.util);
-		isStrong = strong;
-	}
+    public ItemEssencePotion(String name, String f, boolean strong) {
+        super(name, f, JourneyTabs.util);
+        isStrong = strong;
+    }
 
-	@Override
+    @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-		ItemStack stack = playerIn .getHeldItem(handIn);
-		playerIn.setActiveHand(handIn);
-		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);	
-	}
+        ItemStack stack = playerIn.getHeldItem(handIn);
+        playerIn.setActiveHand(handIn);
+        return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
+    }
 
-	@Override
-	public int getMaxItemUseDuration(ItemStack par1ItemStack) {
-		return 20;
-	}
+    @Override
+    public int getMaxItemUseDuration(ItemStack par1ItemStack) {
+        return 20;
+    }
 
-	@Override
-	public EnumAction getItemUseAction(ItemStack par1ItemStack) {
-		return EnumAction.DRINK;
-	}
-	
-	@Override
-	public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving) {
+    @Override
+    public EnumAction getItemUseAction(ItemStack par1ItemStack) {
+        return EnumAction.DRINK;
+    }
+
+    @Override
+    public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving) {
         if (entityLiving instanceof EntityPlayer) {
-            EntityPlayer entityplayer = (EntityPlayer)entityLiving;
-            worldIn.playSound((EntityPlayer)null, entityplayer.posX, entityplayer.posY, entityplayer.posZ, SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS, 0.5F, worldIn.rand.nextFloat() * 0.1F + 0.9F);
+            EntityPlayer entityplayer = (EntityPlayer) entityLiving;
+            worldIn.playSound(null, entityplayer.posX, entityplayer.posY, entityplayer.posZ, SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS, 0.5F, worldIn.rand.nextFloat() * 0.1F + 0.9F);
             this.drink(stack, worldIn, entityplayer);
             entityplayer.addStat(StatList.getObjectUseStats(this));
-            if(entityplayer instanceof EntityPlayerMP) {
-                CriteriaTriggers.CONSUME_ITEM.trigger((EntityPlayerMP)entityplayer, stack);
+            if (entityplayer instanceof EntityPlayerMP) {
+                CriteriaTriggers.CONSUME_ITEM.trigger((EntityPlayerMP) entityplayer, stack);
             }
         }
 
@@ -66,31 +66,31 @@ public class ItemEssencePotion extends ItemMod {
         return stack;
     }
 
-	public ItemStack drink(ItemStack stack, World world, EntityPlayer player) {
-		int amount = isStrong ? 10 : 5;
-		if(!world.isRemote) {
-			IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
-			mana.addEssence(amount);
-			if(!player.capabilities.isCreativeMode) stack.shrink(1);
-		}
-		return stack;
-	}
+    public ItemStack drink(ItemStack stack, World world, EntityPlayer player) {
+        int amount = isStrong ? 10 : 5;
+        if (!world.isRemote) {
+            IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
+            mana.addEssence(amount);
+            if (!player.capabilities.isCreativeMode) stack.shrink(1);
+        }
+        return stack;
+    }
 
-	@Override
-	public EnumRarity getRarity(ItemStack par1ItemStack) {
-		return isStrong ? EnumRarity.EPIC : EnumRarity.RARE;
-	}
+    @Override
+    public EnumRarity getRarity(ItemStack par1ItemStack) {
+        return isStrong ? EnumRarity.EPIC : EnumRarity.RARE;
+    }
 
-	@Override
-	public boolean hasEffect(ItemStack par1ItemStack) {
-		return isStrong;
-	}
+    @Override
+    public boolean hasEffect(ItemStack par1ItemStack) {
+        return isStrong;
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack i, World worldIn, List<String> l, ITooltipFlag flagIn) {
-		String type = " Essence";
-		int amount = isStrong ? 10 : 5;
-		l.add("Replenishes " + amount + type);
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack i, World worldIn, List<String> l, ITooltipFlag flagIn) {
+        String type = " Essence";
+        int amount = isStrong ? 10 : 5;
+        l.add("Replenishes " + amount + type);
+    }
 }

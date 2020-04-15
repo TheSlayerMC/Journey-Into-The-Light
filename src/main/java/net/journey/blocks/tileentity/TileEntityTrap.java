@@ -3,39 +3,37 @@ package net.journey.blocks.tileentity;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.MobSpawnerBaseLogic;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.WeightedSpawnerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class TileEntityTrap extends TileEntity implements ITickable {
-	
-    private final MobSpawnerBaseLogic spawnerLogic = new MobSpawnerBaseLogic() {	
+
+    private final MobSpawnerBaseLogic spawnerLogic = new MobSpawnerBaseLogic() {
         @Override
-		public void broadcastEvent(int id) {
+        public void broadcastEvent(int id) {
             TileEntityTrap.this.world.addBlockEvent(TileEntityTrap.this.pos, Blocks.MOB_SPAWNER, id, 0);
         }
-        
+
         @Override
         public World getSpawnerWorld() {
             return TileEntityTrap.this.world;
         }
-        
+
         @Override
         public BlockPos getSpawnerPosition() {
             return TileEntityTrap.this.pos;
         }
-        
+
         @Override
         public void setNextSpawnData(WeightedSpawnerEntity s) {
             super.setNextSpawnData(s);
 
-            if(this.getSpawnerWorld() != null) {
+            if (this.getSpawnerWorld() != null) {
                 IBlockState iblockstate = this.getSpawnerWorld().getBlockState(this.getSpawnerPosition());
                 this.getSpawnerWorld().notifyBlockUpdate(TileEntityTrap.this.pos, iblockstate, iblockstate, 4);
             }
@@ -56,7 +54,7 @@ public class TileEntityTrap extends TileEntity implements ITickable {
     }
 
     @Override
-    public void update(){
+    public void update() {
         this.spawnerLogic.updateSpawner();
     }
 
@@ -70,7 +68,7 @@ public class TileEntityTrap extends TileEntity implements ITickable {
 
     @Override
     public boolean receiveClientEvent(int id, int type) {
-        return this.spawnerLogic.setDelayToMin(id) ? true : super.receiveClientEvent(id, type);
+        return this.spawnerLogic.setDelayToMin(id) || super.receiveClientEvent(id, type);
     }
 
     public MobSpawnerBaseLogic getSpawnerBaseLogic() {

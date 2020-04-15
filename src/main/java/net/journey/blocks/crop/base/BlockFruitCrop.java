@@ -1,11 +1,6 @@
 package net.journey.blocks.crop.base;
 
-import java.util.List;
-import java.util.Random;
-
-import net.journey.JourneyBlocks;
 import net.journey.JourneyCrops;
-import net.journey.JourneyItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.properties.IProperty;
@@ -31,32 +26,32 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.EnumMaterialTypes;
 import net.slayer.api.SlayerAPI;
 import net.slayer.api.block.BlockMod;
-import net.slayer.api.block.BlockModCrop;
+
+import java.util.List;
+import java.util.Random;
 
 public class BlockFruitCrop extends BlockMod implements IGrowable {
-	
-	public Item fruitItem;
-	public Block sustainableBlock;
-	
-    public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
-    protected static final AxisAlignedBB[] FRUIT_EAST_AABB = new AxisAlignedBB[] {
-    		new AxisAlignedBB(0.6875D, 0.4375D, 0.375D, 0.9375D, 0.75D, 0.625D), 
-    		new AxisAlignedBB(0.5625D, 0.3125D, 0.3125D, 0.9375D, 0.75D, 0.6875D), 
-    		new AxisAlignedBB(0.4375D, 0.1875D, 0.25D, 0.9375D, 0.75D, 0.75D)};
-    protected static final AxisAlignedBB[] FRUIT_WEST_AABB = new AxisAlignedBB[] {
-    		new AxisAlignedBB(0.0625D, 0.4375D, 0.375D, 0.3125D, 0.75D, 0.625D), 
-    		new AxisAlignedBB(0.0625D, 0.3125D, 0.3125D, 0.4375D, 0.75D, 0.6875D), 
-    		new AxisAlignedBB(0.0625D, 0.1875D, 0.25D, 0.5625D, 0.75D, 0.75D)};
-    protected static final AxisAlignedBB[] FRUIT_NORTH_AABB = new AxisAlignedBB[] {
-    		new AxisAlignedBB(0.375D, 0.4375D, 0.0625D, 0.625D, 0.75D, 0.3125D), 
-    		new AxisAlignedBB(0.3125D, 0.3125D, 0.0625D, 0.6875D, 0.75D, 0.4375D), 
-    		new AxisAlignedBB(0.25D, 0.1875D, 0.0625D, 0.75D, 0.75D, 0.5625D)};
-    protected static final AxisAlignedBB[] FRUIT_SOUTH_AABB = new AxisAlignedBB[] {
-    		new AxisAlignedBB(0.375D, 0.4375D, 0.6875D, 0.625D, 0.75D, 0.9375D), 
-    		new AxisAlignedBB(0.3125D, 0.3125D, 0.5625D, 0.6875D, 0.75D, 0.9375D), 
-    		new AxisAlignedBB(0.25D, 0.1875D, 0.4375D, 0.75D, 0.75D, 0.9375D)};
 
+    public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
     public static final PropertyInteger AGE = PropertyInteger.create("age", 0, 2);
+    protected static final AxisAlignedBB[] FRUIT_EAST_AABB = new AxisAlignedBB[]{
+            new AxisAlignedBB(0.6875D, 0.4375D, 0.375D, 0.9375D, 0.75D, 0.625D),
+            new AxisAlignedBB(0.5625D, 0.3125D, 0.3125D, 0.9375D, 0.75D, 0.6875D),
+            new AxisAlignedBB(0.4375D, 0.1875D, 0.25D, 0.9375D, 0.75D, 0.75D)};
+    protected static final AxisAlignedBB[] FRUIT_WEST_AABB = new AxisAlignedBB[]{
+            new AxisAlignedBB(0.0625D, 0.4375D, 0.375D, 0.3125D, 0.75D, 0.625D),
+            new AxisAlignedBB(0.0625D, 0.3125D, 0.3125D, 0.4375D, 0.75D, 0.6875D),
+            new AxisAlignedBB(0.0625D, 0.1875D, 0.25D, 0.5625D, 0.75D, 0.75D)};
+    protected static final AxisAlignedBB[] FRUIT_NORTH_AABB = new AxisAlignedBB[]{
+            new AxisAlignedBB(0.375D, 0.4375D, 0.0625D, 0.625D, 0.75D, 0.3125D),
+            new AxisAlignedBB(0.3125D, 0.3125D, 0.0625D, 0.6875D, 0.75D, 0.4375D),
+            new AxisAlignedBB(0.25D, 0.1875D, 0.0625D, 0.75D, 0.75D, 0.5625D)};
+    protected static final AxisAlignedBB[] FRUIT_SOUTH_AABB = new AxisAlignedBB[]{
+            new AxisAlignedBB(0.375D, 0.4375D, 0.6875D, 0.625D, 0.75D, 0.9375D),
+            new AxisAlignedBB(0.3125D, 0.3125D, 0.5625D, 0.6875D, 0.75D, 0.9375D),
+            new AxisAlignedBB(0.25D, 0.1875D, 0.4375D, 0.75D, 0.75D, 0.9375D)};
+    public Item fruitItem;
+    public Block sustainableBlock;
 
     public BlockFruitCrop(String name, String finalName) {
         super(EnumMaterialTypes.SLIME, name, finalName, 0.5F);
@@ -64,7 +59,7 @@ public class BlockFruitCrop extends BlockMod implements IGrowable {
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(AGE, Integer.valueOf(0)));
         this.setTickRandomly(true);
     }
-    
+
     public BlockFruitCrop(String name, String finalName, Item fruitItem, Block sustainableBlock) {
         super(EnumMaterialTypes.SLIME, name, finalName, 0.5F);
         this.fruitItem = fruitItem;
@@ -78,9 +73,8 @@ public class BlockFruitCrop extends BlockMod implements IGrowable {
     public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
         if (!this.canBlockStay(worldIn, pos, state)) {
             this.dropBlock(worldIn, pos, state);
-        }
-        else {
-            int i = ((Integer)state.getValue(AGE)).intValue();
+        } else {
+            int i = state.getValue(AGE).intValue();
 
             if (i < 2 && net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos, state, rand.nextInt(5) == 0)) {
                 worldIn.setBlockState(pos, state.withProperty(AGE, Integer.valueOf(i + 1)), 2);
@@ -90,11 +84,11 @@ public class BlockFruitCrop extends BlockMod implements IGrowable {
     }
 
     public boolean canBlockStay(World worldIn, BlockPos pos, IBlockState state) {
-        pos = pos.offset((EnumFacing)state.getValue(FACING));
+        pos = pos.offset(state.getValue(FACING));
         IBlockState iblockstate = worldIn.getBlockState(pos);
         return iblockstate.getBlock() == this.sustainableBlock;
     }
-    
+
     @Override
     public boolean isFullCube(IBlockState state) {
         return false;
@@ -106,12 +100,10 @@ public class BlockFruitCrop extends BlockMod implements IGrowable {
     }
 
     @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-    {
-        int i = ((Integer)state.getValue(AGE)).intValue();
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+        int i = state.getValue(AGE).intValue();
 
-        switch ((EnumFacing)state.getValue(FACING))
-        {
+        switch (state.getValue(FACING)) {
             case SOUTH:
                 return FRUIT_SOUTH_AABB[i];
             case NORTH:
@@ -123,20 +115,20 @@ public class BlockFruitCrop extends BlockMod implements IGrowable {
                 return FRUIT_EAST_AABB[i];
         }
     }
-    
+
     @Override
     public IBlockState withRotation(IBlockState state, Rotation rot) {
-        return state.withProperty(FACING, rot.rotate((EnumFacing)state.getValue(FACING)));
+        return state.withProperty(FACING, rot.rotate(state.getValue(FACING)));
     }
 
     @Override
     public IBlockState withMirror(IBlockState state, Mirror mirrorIn) {
-        return state.withRotation(mirrorIn.toRotation((EnumFacing)state.getValue(FACING)));
+        return state.withRotation(mirrorIn.toRotation(state.getValue(FACING)));
     }
 
     @Override
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
-        EnumFacing enumfacing = EnumFacing.fromAngle((double)placer.rotationYaw);
+        EnumFacing enumfacing = EnumFacing.fromAngle(placer.rotationYaw);
         worldIn.setBlockState(pos, state.withProperty(FACING, enumfacing), 2);
     }
 
@@ -155,11 +147,11 @@ public class BlockFruitCrop extends BlockMod implements IGrowable {
         }
     }
 
-	@Override
-	public Item getItemDropped(IBlockState par1, Random par2, int par3) {
-		return SlayerAPI.toItem(Blocks.AIR);
-	}
-	
+    @Override
+    public Item getItemDropped(IBlockState par1, Random par2, int par3) {
+        return SlayerAPI.toItem(Blocks.AIR);
+    }
+
     private void dropBlock(World worldIn, BlockPos pos, IBlockState state) {
         worldIn.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
         this.dropBlockAsItem(worldIn, pos, state, 0);
@@ -173,7 +165,7 @@ public class BlockFruitCrop extends BlockMod implements IGrowable {
     @Override
     public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
         List<ItemStack> dropped = super.getDrops(world, pos, state, fortune);
-        int i = ((Integer)state.getValue(AGE)).intValue();
+        int i = state.getValue(AGE).intValue();
         int j = 1;
 
         if (i >= 2) {
@@ -187,7 +179,7 @@ public class BlockFruitCrop extends BlockMod implements IGrowable {
 
     @Override
     public boolean canGrow(World worldIn, BlockPos pos, IBlockState state, boolean isClient) {
-        return ((Integer)state.getValue(AGE)).intValue() < 2;
+        return state.getValue(AGE).intValue() < 2;
     }
 
     @Override
@@ -197,33 +189,33 @@ public class BlockFruitCrop extends BlockMod implements IGrowable {
 
     @Override
     public void grow(World worldIn, Random rand, BlockPos pos, IBlockState state) {
-        worldIn.setBlockState(pos, state.withProperty(AGE, Integer.valueOf(((Integer)state.getValue(AGE)).intValue() + 1)), 2);
+        worldIn.setBlockState(pos, state.withProperty(AGE, Integer.valueOf(state.getValue(AGE).intValue() + 1)), 2);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getRenderLayer(){
+    public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.CUTOUT;
     }
 
     @Override
     public IBlockState getStateFromMeta(int meta) {
-    	return this.getDefaultState().withProperty(FACING, EnumFacing.byHorizontalIndex(meta)).withProperty(AGE, Integer.valueOf((meta & 15) >> 2));
+        return this.getDefaultState().withProperty(FACING, EnumFacing.byHorizontalIndex(meta)).withProperty(AGE, Integer.valueOf((meta & 15) >> 2));
     }
 
     @Override
     public int getMetaFromState(IBlockState state) {
         int i = 0;
-        i = i | ((EnumFacing)state.getValue(FACING)).getHorizontalIndex();
-        i = i | ((Integer)state.getValue(AGE)).intValue() << 2;
+        i = i | state.getValue(FACING).getHorizontalIndex();
+        i = i | state.getValue(AGE).intValue() << 2;
         return i;
     }
 
     @Override
     protected BlockStateContainer createBlockState() {
-    	return new BlockStateContainer(this, new IProperty[] {FACING, AGE});
+        return new BlockStateContainer(this, FACING, AGE);
     }
-    
+
     @Override
     public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face) {
         return BlockFaceShape.UNDEFINED;

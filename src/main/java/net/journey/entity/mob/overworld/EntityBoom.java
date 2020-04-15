@@ -1,8 +1,7 @@
 package net.journey.entity.mob.overworld;
 
-import net.journey.JourneySounds;
-import net.journey.entity.MobStats;
 import net.journey.entity.AI.EntityAIBoomSwell;
+import net.journey.entity.MobStats;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAIRestrictSun;
@@ -30,20 +29,20 @@ import net.slayer.api.entity.EntityModMob;
 
 public class EntityBoom extends EntityModMob {
 
-	private int fuseTime = 40, lastActiveTime, timeSinceIgnited, explosionRadius = 4;
-	private static final DataParameter<Integer> STATE = EntityDataManager.<Integer>createKey(EntityBoom.class, DataSerializers.VARINT);
-    private static final DataParameter<Boolean> POWERED = EntityDataManager.<Boolean>createKey(EntityBoom.class, DataSerializers.BOOLEAN);
-    private static final DataParameter<Boolean> IGNITED = EntityDataManager.<Boolean>createKey(EntityBoom.class, DataSerializers.BOOLEAN);
-    
-	public EntityBoom(World par1World) {
-		super(par1World);
-		this.tasks.addTask(1, new EntityAIBoomSwell(this));
+    private static final DataParameter<Integer> STATE = EntityDataManager.createKey(EntityBoom.class, DataSerializers.VARINT);
+    private static final DataParameter<Boolean> POWERED = EntityDataManager.createKey(EntityBoom.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Boolean> IGNITED = EntityDataManager.createKey(EntityBoom.class, DataSerializers.BOOLEAN);
+    private int fuseTime = 40, lastActiveTime, timeSinceIgnited, explosionRadius = 4;
+
+    public EntityBoom(World par1World) {
+        super(par1World);
+        this.tasks.addTask(1, new EntityAIBoomSwell(this));
         this.tasks.addTask(2, new EntityAIRestrictSun(this));
-		addAttackingAI();
-		this.setSize(1.0F, 2.0F);
-	}
-	
-	@Override
+        addAttackingAI();
+        this.setSize(1.0F, 2.0F);
+    }
+
+    @Override
     public void onLivingUpdate() {
         if (this.world.isDaytime() && !this.world.isRemote && !this.isChild()) {
             float f = this.getBrightness();
@@ -73,174 +72,174 @@ public class EntityBoom extends EntityModMob {
         }
 
         if (this.isRiding() && this.getAttackTarget() != null && this.getRidingEntity() instanceof EntityChicken) {
-            ((EntityLiving)this.getRidingEntity()).getNavigator().setPath(this.getNavigator().getPath(), 1.5D);
+            ((EntityLiving) this.getRidingEntity()).getNavigator().setPath(this.getNavigator().getPath(), 1.5D);
         }
 
         super.onLivingUpdate();
     }
-	
-	@Override
-	public double setMovementSpeed(){
-		return 0.200000011920929D;
-	}
 
-	@Override
-	public double setAttackDamage(MobStats s) {
-		return 0;
-	}
-
-	@Override
-	public double setMaxHealth(MobStats s) {
-		return MobStats.BoomHealth;
-	}
-
-	@Override
-	public SoundEvent setLivingSound() {
-		return SoundEvents.ENTITY_CREEPER_PRIMED;
-	}
-
-	@Override
-	public SoundEvent setHurtSound() {
-		return SoundEvents.ENTITY_CREEPER_HURT;
-	}
-
-	@Override
-	public SoundEvent setDeathSound() {
-		return SoundEvents.ENTITY_CREEPER_DEATH;
-	}
-
-
-	@Override
-	public boolean getCanSpawnHere() {
-		return 	this.isValidLightLevel() && 
-				this.world.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).isFullBlock() && this.dimension == 0;
-	}
-	
-	@Override
-	public Item getItemDropped() {
-		return null;
-	}
-
-	@Override
-	protected void dropFewItems(boolean b, int j) {
-		for(int i = 0; i < 1 + rand.nextInt(1); i++) this.dropItem(Items.GUNPOWDER, 1);
-		if(rand.nextInt(3) == 0) this.dropItem(SlayerAPI.toItem(Blocks.TNT), 1);
-	}
-
-	@Override
-    public int getMaxFallHeight() {
-        return this.getAttackTarget() == null ? 3 : 3 + (int)(this.getHealth() - 1.0F);
+    @Override
+    public double setMovementSpeed() {
+        return 0.200000011920929D;
     }
 
-	@Override
-	public void fall(float f, float f1) {
-		super.fall(f, f1);
-		this.timeSinceIgnited = (int)(this.timeSinceIgnited + f * 1.5F);
+    @Override
+    public double setAttackDamage(MobStats s) {
+        return 0;
+    }
 
-		if (this.timeSinceIgnited > this.fuseTime - 5)  {
-			this.timeSinceIgnited = this.fuseTime - 5;
-		}
-	}
+    @Override
+    public double setMaxHealth(MobStats s) {
+        return MobStats.BoomHealth;
+    }
 
-	@Override
-	protected void entityInit() {
-		super.entityInit();
+    @Override
+    public SoundEvent setLivingSound() {
+        return SoundEvents.ENTITY_CREEPER_PRIMED;
+    }
+
+    @Override
+    public SoundEvent setHurtSound() {
+        return SoundEvents.ENTITY_CREEPER_HURT;
+    }
+
+    @Override
+    public SoundEvent setDeathSound() {
+        return SoundEvents.ENTITY_CREEPER_DEATH;
+    }
+
+
+    @Override
+    public boolean getCanSpawnHere() {
+        return this.isValidLightLevel() &&
+                this.world.getBlockState(new BlockPos(this.posX, this.posY - 1, this.posZ)).isFullBlock() && this.dimension == 0;
+    }
+
+    @Override
+    public Item getItemDropped() {
+        return null;
+    }
+
+    @Override
+    protected void dropFewItems(boolean b, int j) {
+        for (int i = 0; i < 1 + rand.nextInt(1); i++) this.dropItem(Items.GUNPOWDER, 1);
+        if (rand.nextInt(3) == 0) this.dropItem(SlayerAPI.toItem(Blocks.TNT), 1);
+    }
+
+    @Override
+    public int getMaxFallHeight() {
+        return this.getAttackTarget() == null ? 3 : 3 + (int) (this.getHealth() - 1.0F);
+    }
+
+    @Override
+    public void fall(float f, float f1) {
+        super.fall(f, f1);
+        this.timeSinceIgnited = (int) (this.timeSinceIgnited + f * 1.5F);
+
+        if (this.timeSinceIgnited > this.fuseTime - 5) {
+            this.timeSinceIgnited = this.fuseTime - 5;
+        }
+    }
+
+    @Override
+    protected void entityInit() {
+        super.entityInit();
         this.dataManager.register(STATE, Integer.valueOf(-1));
         this.dataManager.register(POWERED, Boolean.valueOf(false));
         this.dataManager.register(IGNITED, Boolean.valueOf(false));
     }
 
-	@Override
-	public void writeEntityToNBT(NBTTagCompound nbt) {
-		super.writeEntityToNBT(nbt);
+    @Override
+    public void writeEntityToNBT(NBTTagCompound nbt) {
+        super.writeEntityToNBT(nbt);
 
-		if ((boolean)this.dataManager.get(POWERED).booleanValue()) {
-			nbt.setBoolean("powered", true);
-		}
+        if (this.dataManager.get(POWERED).booleanValue()) {
+            nbt.setBoolean("powered", true);
+        }
 
-		nbt.setShort("Fuse", (short)this.fuseTime);
-		nbt.setByte("ExplosionRadius", (byte)this.explosionRadius);
-		nbt.setBoolean("ignited", this.hasIgnited());
-	}
+        nbt.setShort("Fuse", (short) this.fuseTime);
+        nbt.setByte("ExplosionRadius", (byte) this.explosionRadius);
+        nbt.setBoolean("ignited", this.hasIgnited());
+    }
 
-	@Override
-	public void readEntityFromNBT(NBTTagCompound nbt) {
-		super.readEntityFromNBT(nbt);
+    @Override
+    public void readEntityFromNBT(NBTTagCompound nbt) {
+        super.readEntityFromNBT(nbt);
         this.dataManager.set(POWERED, Boolean.valueOf(nbt.getBoolean("powered")));
 
-		if (nbt.hasKey("Fuse", 99)) {
-			this.fuseTime = nbt.getShort("Fuse");
-		}
+        if (nbt.hasKey("Fuse", 99)) {
+            this.fuseTime = nbt.getShort("Fuse");
+        }
 
-		if (nbt.hasKey("ExplosionRadius", 99)) {
-			this.explosionRadius = nbt.getByte("ExplosionRadius");
-		}
+        if (nbt.hasKey("ExplosionRadius", 99)) {
+            this.explosionRadius = nbt.getByte("ExplosionRadius");
+        }
 
-		if (nbt.getBoolean("ignited")) {
-			this.ignite();
-		}
-	}
+        if (nbt.getBoolean("ignited")) {
+            this.ignite();
+        }
+    }
 
-	@Override
-	public void onUpdate() {
-		if (this.isEntityAlive()) {
-			this.lastActiveTime = this.timeSinceIgnited;
+    @Override
+    public void onUpdate() {
+        if (this.isEntityAlive()) {
+            this.lastActiveTime = this.timeSinceIgnited;
 
-			if (this.hasIgnited()) {
-				this.setBoomBoomState(1);
-			}
+            if (this.hasIgnited()) {
+                this.setBoomBoomState(1);
+            }
 
-			int i = this.getBoomBoomState();
+            int i = this.getBoomBoomState();
 
-			if (i > 0 && this.timeSinceIgnited == 0) {
+            if (i > 0 && this.timeSinceIgnited == 0) {
                 this.playSound(SoundEvents.ENTITY_CREEPER_PRIMED, 1.0F, 0.5F);
-			}
+            }
 
-			this.timeSinceIgnited += i;
+            this.timeSinceIgnited += i;
 
-			if (this.timeSinceIgnited < 0) {
-				this.timeSinceIgnited = 0;
-			}
+            if (this.timeSinceIgnited < 0) {
+                this.timeSinceIgnited = 0;
+            }
 
-			if (this.timeSinceIgnited >= this.fuseTime) {
-				this.timeSinceIgnited = this.fuseTime;
-				this.explode();
-			}
-		}
+            if (this.timeSinceIgnited >= this.fuseTime) {
+                this.timeSinceIgnited = this.fuseTime;
+                this.explode();
+            }
+        }
 
-		super.onUpdate();
-	}
+        super.onUpdate();
+    }
 
-	@Override
-	public boolean attackEntityAsMob(Entity e) {
-		return true;
-	}
+    @Override
+    public boolean attackEntityAsMob(Entity e) {
+        return true;
+    }
 
-	public boolean getPowered() {
-        return ((Boolean)this.dataManager.get(POWERED)).booleanValue();
-	}
+    public boolean getPowered() {
+        return this.dataManager.get(POWERED).booleanValue();
+    }
 
-	@SideOnly(Side.CLIENT)
-	public float getFlashIntensity(float f) {
-		return (this.lastActiveTime + (this.timeSinceIgnited - this.lastActiveTime) * f) / (this.fuseTime - 2);
-	}
+    @SideOnly(Side.CLIENT)
+    public float getFlashIntensity(float f) {
+        return (this.lastActiveTime + (this.timeSinceIgnited - this.lastActiveTime) * f) / (this.fuseTime - 2);
+    }
 
-	public int getBoomBoomState() {
-        return ((Integer)this.dataManager.get(STATE)).intValue();
-	}
+    public int getBoomBoomState() {
+        return this.dataManager.get(STATE).intValue();
+    }
 
-	public void setBoomBoomState(int state) {
+    public void setBoomBoomState(int state) {
         this.dataManager.set(STATE, Integer.valueOf(state));
-	}
+    }
 
-	@Override
-	public void onStruckByLightning(EntityLightningBolt e) {
-		super.onStruckByLightning(e);
+    @Override
+    public void onStruckByLightning(EntityLightningBolt e) {
+        super.onStruckByLightning(e);
         this.dataManager.set(POWERED, Boolean.valueOf(true));
-	}
+    }
 
-	@Override
-	protected boolean processInteract(EntityPlayer player, EnumHand hand) {
+    @Override
+    protected boolean processInteract(EntityPlayer player, EnumHand hand) {
         ItemStack itemstack = player.getHeldItem(hand);
 
         if (itemstack.getItem() == Items.FLINT_AND_STEEL) {
@@ -257,25 +256,25 @@ public class EntityBoom extends EntityModMob {
         return super.processInteract(player, hand);
     }
 
-	private void explode() {
-		if (!this.world.isRemote) {
-			boolean flag = this.world.getGameRules().getBoolean("mobGriefing");
+    private void explode() {
+        if (!this.world.isRemote) {
+            boolean flag = this.world.getGameRules().getBoolean("mobGriefing");
 
-			if (this.getPowered()) {
-				this.world.createExplosion(this, this.posX, this.posY, this.posZ, (float)(this.explosionRadius * 2), flag);
-			} else {
-				this.world.createExplosion(this, this.posX, this.posY, this.posZ, (float)this.explosionRadius, flag);
-			}
+            if (this.getPowered()) {
+                this.world.createExplosion(this, this.posX, this.posY, this.posZ, (float) (this.explosionRadius * 2), flag);
+            } else {
+                this.world.createExplosion(this, this.posX, this.posY, this.posZ, (float) this.explosionRadius, flag);
+            }
 
-			this.setDead();
-		}
-	}
+            this.setDead();
+        }
+    }
 
-	public boolean hasIgnited() {
-        return ((Boolean)this.dataManager.get(IGNITED)).booleanValue();
-	}
+    public boolean hasIgnited() {
+        return this.dataManager.get(IGNITED).booleanValue();
+    }
 
-	public void ignite() {
+    public void ignite() {
         this.dataManager.set(IGNITED, Boolean.valueOf(true));
-	}
+    }
 }

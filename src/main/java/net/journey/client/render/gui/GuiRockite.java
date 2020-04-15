@@ -6,7 +6,7 @@ import net.slayer.api.entity.tileentity.container.ContainerModVillager;
 
 public class GuiRockite extends GuiModVillager {
 
-	public GuiRockite(ContainerModVillager container, IMerchant mer) { 
-		super(container, mer, "Rockite Golem", "rockiteGolem", true);
-	}
+    public GuiRockite(ContainerModVillager container, IMerchant mer) {
+        super(container, mer, "Rockite Golem", "rockiteGolem", true);
+    }
 }

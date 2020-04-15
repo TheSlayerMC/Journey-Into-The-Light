@@ -6,7 +6,7 @@ import net.slayer.api.entity.tileentity.container.ContainerModVillager;
 
 public class GuiOvergrownMerchant extends GuiModVillager {
 
-	public GuiOvergrownMerchant(ContainerModVillager container, IMerchant mer) { 
-		super(container, mer, "Overgrown Merchant", "overgrownMerchant", true);
-	}
+    public GuiOvergrownMerchant(ContainerModVillager container, IMerchant mer) {
+        super(container, mer, "Overgrown Merchant", "overgrownMerchant", true);
+    }
 }

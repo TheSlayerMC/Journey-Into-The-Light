@@ -45,7 +45,7 @@ public class ModelTerraScatterer extends ModelBase {
     }
 
     @Override
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) { 
+    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
         this.head.render(f5);
         this.neck.render(f5);
         this.foot2.render(f5);
@@ -54,21 +54,22 @@ public class ModelTerraScatterer extends ModelBase {
         this.foot4.render(f5);
         this.foot3.render(f5);
     }
-    
+
     public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
         modelRenderer.rotateAngleX = x;
         modelRenderer.rotateAngleY = y;
         modelRenderer.rotateAngleZ = z;
-	}
-	@Override
-	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity e) {
-		super.setRotationAngles(f, f1, f2, f3, f4, f5, e);
-		this.head.rotateAngleY = f4 / (180F / (float)Math.PI);
-		this.head.rotateAngleX = f5 / (180F / (float)Math.PI);
-		this.foot1.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * f1;
-		this.foot2.rotateAngleX = MathHelper.cos(f * 0.6662F) * f1;
-		this.foot3.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * f1;
-		this.foot4.rotateAngleX = MathHelper.cos(f * 0.6662F) * f1;
-	}
-    
+    }
+
+    @Override
+    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity e) {
+        super.setRotationAngles(f, f1, f2, f3, f4, f5, e);
+        this.head.rotateAngleY = f4 / (180F / (float) Math.PI);
+        this.head.rotateAngleX = f5 / (180F / (float) Math.PI);
+        this.foot1.rotateAngleX = MathHelper.cos(f * 0.6662F + (float) Math.PI) * f1;
+        this.foot2.rotateAngleX = MathHelper.cos(f * 0.6662F) * f1;
+        this.foot3.rotateAngleX = MathHelper.cos(f * 0.6662F + (float) Math.PI) * f1;
+        this.foot4.rotateAngleX = MathHelper.cos(f * 0.6662F) * f1;
+    }
+
 }

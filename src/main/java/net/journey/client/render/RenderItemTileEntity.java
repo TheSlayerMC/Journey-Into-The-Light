@@ -9,20 +9,20 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class RenderItemTileEntity extends TileEntityItemStackRenderer {
-	
+
     private static final TileEntityJourneyChest JOURNEY_CHEST = new TileEntityJourneyChest();
-    
+
     public static RenderItemTileEntity instance = new RenderItemTileEntity();
 
-	@Override
-	public void renderByItem(ItemStack itemStackIn) {
-		Item item = itemStackIn.getItem();
-		if (Block.getBlockFromItem(item) instanceof BlockChest) {
-			{
-				TileEntityRendererDispatcher.instance.render(JOURNEY_CHEST, 0, 0);
-			}
-		} else {
-			super.renderByItem(itemStackIn);
-		}
-	}
+    @Override
+    public void renderByItem(ItemStack itemStackIn) {
+        Item item = itemStackIn.getItem();
+        if (Block.getBlockFromItem(item) instanceof BlockChest) {
+            {
+                TileEntityRendererDispatcher.instance.render(JOURNEY_CHEST, 0, 0);
+            }
+        } else {
+            super.renderByItem(itemStackIn);
+        }
+    }
 }

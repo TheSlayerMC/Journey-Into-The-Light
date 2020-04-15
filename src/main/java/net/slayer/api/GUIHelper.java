@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 
 public class GUIHelper extends Gui {
 
-	private void drawItemOrBlock(ItemStack stack, Minecraft mc, int x, int y) {
+    private void drawItemOrBlock(ItemStack stack, Minecraft mc, int x, int y) {
 		/*RenderItem itemRender = new RenderItem();
 		if(stack != null && stack.getItem() != null) {
 			GL11.glDisable(GL11.GL_LIGHTING);
@@ -23,5 +23,5 @@ public class GUIHelper extends Gui {
 			this.zLevel = 0.0F;
 			GL11.glPopMatrix();
 		}*/
-	}
+    }
 }

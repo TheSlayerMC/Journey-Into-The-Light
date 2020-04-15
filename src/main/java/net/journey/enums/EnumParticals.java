@@ -1,7 +1,7 @@
 package net.journey.enums;
 
 public enum EnumParticals {
-	
+
     EXPLOSION_NORMAL("explode"),
     EXPLOSION_LARGE("largeexplode"),
     EXPLOSION_HUGE("hugeexplosion"),
@@ -44,10 +44,10 @@ public enum EnumParticals {
     WATER_DROP("droplet"),
     ITEM_TAKE("take"),
     MOB_APPEARANCE("mobappearance");
-    
+
     private final String name;
 
-    private EnumParticals(String name) {
+    EnumParticals(String name) {
         this.name = name;
     }
 

@@ -17,11 +17,11 @@ public class ModelGrindstone extends ModelBase {
     public ModelRenderer stone;
     public ModelRenderer rod;
 
-	public ModelGrindstone() {
-		textureWidth = 64;
-		textureHeight = 64;
+    public ModelGrindstone() {
+        textureWidth = 64;
+        textureHeight = 64;
 
-		this.textureWidth = 64;
+        this.textureWidth = 64;
         this.textureHeight = 64;
         this.side3 = new ModelRenderer(this, 32, 40);
         this.side3.setRotationPoint(-8.0F, 3.0F, -6.0F);
@@ -58,11 +58,11 @@ public class ModelGrindstone extends ModelBase {
         this.leg2.addBox(0.0F, 0.0F, 0.0F, 2, 16, 2, 0.0F);
         this.setRotation(leg2, -0.08726646259971647F, 0.0F, 0.0F);
 
-	}
+    }
 
-	@Override
-	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-		super.render(entity, f, f1, f2, f3, f4, f5);
+    @Override
+    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
+        super.render(entity, f, f1, f2, f3, f4, f5);
         this.side3.render(f5);
         this.rod.render(f5);
         this.side1.render(f5);
@@ -73,10 +73,10 @@ public class ModelGrindstone extends ModelBase {
         this.side4.render(f5);
         this.leg1.render(f5);
         this.leg2.render(f5);
-		stone.rotateAngleY += 50;
-	}
-	
-	public void render(float f5, boolean b, float r) {
+        stone.rotateAngleY += 50;
+    }
+
+    public void render(float f5, boolean b, float r) {
         this.side3.render(f5);
         this.rod.render(f5);
         this.side1.render(f5);
@@ -87,17 +87,17 @@ public class ModelGrindstone extends ModelBase {
         this.side4.render(f5);
         this.leg1.render(f5);
         this.leg2.render(f5);
-		if(b) stone.render(0.0625F);
-		stone.rotateAngleZ += r;
-	}
-	
-	public void setGrindstoneRotation() {
-		stone.render(0.0625F);
-	}
+        if (b) stone.render(0.0625F);
+        stone.rotateAngleZ += r;
+    }
 
-	private void setRotation(ModelRenderer model, float x, float y, float z) {
-		model.rotateAngleX = x;
-		model.rotateAngleY = y;
-		model.rotateAngleZ = z;
-	}
+    public void setGrindstoneRotation() {
+        stone.render(0.0625F);
+    }
+
+    private void setRotation(ModelRenderer model, float x, float y, float z) {
+        model.rotateAngleX = x;
+        model.rotateAngleY = y;
+        model.rotateAngleZ = z;
+    }
 }

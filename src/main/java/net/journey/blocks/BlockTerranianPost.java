@@ -8,12 +8,12 @@ import net.slayer.api.block.BlockMod;
 
 public class BlockTerranianPost extends BlockMod {
 
-	public BlockTerranianPost(String name, String f) {
-		super(name, f);
-	}
+    public BlockTerranianPost(String name, String f) {
+        super(name, f);
+    }
 
-	@Override
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-		return new AxisAlignedBB(0.3F, 0.0F, 0.3F, 0.6F, 1.0F, 0.6F);
-	}
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+        return new AxisAlignedBB(0.3F, 0.0F, 0.3F, 0.6F, 1.0F, 0.6F);
+    }
 }

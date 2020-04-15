@@ -7,8 +7,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class RenderWraith extends RenderModMob {
 
-	public RenderWraith(ModelBase model, ResourceLocation tex) {
-		super(model, tex);
-		this.addLayer(new LayerHeldItem(this));
-	}
+    public RenderWraith(ModelBase model, ResourceLocation tex) {
+        super(model, tex);
+        this.addLayer(new LayerHeldItem(this));
+    }
 }

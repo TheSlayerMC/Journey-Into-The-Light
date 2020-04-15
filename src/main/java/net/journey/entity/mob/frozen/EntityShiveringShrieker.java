@@ -9,44 +9,44 @@ import net.slayer.api.entity.EntityModMob;
 
 public class EntityShiveringShrieker extends EntityModMob {
 
-	public EntityShiveringShrieker(World par1World) {
-		super(par1World);
-		addAttackingAI();
-		this.setSize(0.65F, 1F);
-	}
+    public EntityShiveringShrieker(World par1World) {
+        super(par1World);
+        addAttackingAI();
+        this.setSize(0.65F, 1F);
+    }
 
-	@Override
-	public double setAttackDamage(MobStats s) {
-		return MobStats.ShiveringShriekerDamage;
-	}
+    @Override
+    public double setAttackDamage(MobStats s) {
+        return MobStats.ShiveringShriekerDamage;
+    }
 
-	@Override
-	public double setMaxHealth(MobStats s) {
-		return MobStats.ShiveringShriekerHealth;
-	}
+    @Override
+    public double setMaxHealth(MobStats s) {
+        return MobStats.ShiveringShriekerHealth;
+    }
 
-	@Override
-	public SoundEvent setLivingSound() {
-		return JourneySounds.SMALL_HONGO;
-	}
+    @Override
+    public SoundEvent setLivingSound() {
+        return JourneySounds.SMALL_HONGO;
+    }
 
-	@Override
-	public SoundEvent setHurtSound() {
-		return JourneySounds.SMALL_HONGO_HURT;
-	}
+    @Override
+    public SoundEvent setHurtSound() {
+        return JourneySounds.SMALL_HONGO_HURT;
+    }
 
-	@Override
-	public SoundEvent setDeathSound() {
-		return JourneySounds.SMALL_HONGO_HURT;
-	}
-	
-	@Override
-	public boolean getCanSpawnHere() {
-		return this.posY < 60.0D && super.getCanSpawnHere();
-	}
-	
-	@Override
-	public Item getItemDropped() {
-		return null;
-	}
+    @Override
+    public SoundEvent setDeathSound() {
+        return JourneySounds.SMALL_HONGO_HURT;
+    }
+
+    @Override
+    public boolean getCanSpawnHere() {
+        return this.posY < 60.0D && super.getCanSpawnHere();
+    }
+
+    @Override
+    public Item getItemDropped() {
+        return null;
+    }
 }

@@ -20,14 +20,14 @@ public class OreParticleFX extends Particle {
         this.motionX *= 0.10000000149011612D;
         this.motionY *= 0.10000000149011612D;
         this.motionZ *= 0.10000000149011612D;
-        float f4 = (float)Math.random() * 0.4F + 0.6F;
+        float f4 = (float) Math.random() * 0.4F + 0.6F;
         setRBGColorF(r, g, b);
         this.particleScale *= 0.75F;
         this.particleScale *= scale;
         this.oreParticleScale = this.particleScale;
-        this.particleMaxAge = (int)(8.0D / (Math.random() * 0.8D + 0.2D));
+        this.particleMaxAge = (int) (8.0D / (Math.random() * 0.8D + 0.2D));
     }
-    
+
     @Override
     public int getFXLayer() {
         return 0;
@@ -35,7 +35,7 @@ public class OreParticleFX extends Particle {
 
     @Override
     public void renderParticle(BufferBuilder p_180434_1_, Entity p_180434_2_, float par2, float p_180434_4_, float p_180434_5_, float p_180434_6_, float p_180434_7_, float p_180434_8_) {
-    	float var8 = (this.particleAge + par2) / this.particleMaxAge * 3;
+        float var8 = (this.particleAge + par2) / this.particleMaxAge * 3;
         var8 = 1.0F - var8;
         var8 *= var8;
         var8 = 1.0F - var8;
@@ -48,20 +48,20 @@ public class OreParticleFX extends Particle {
         this.prevPosX = this.posX;
         this.prevPosY = this.posY;
         this.prevPosZ = this.posZ;
-        if(this.particleAge++ >= this.particleMaxAge)
+        if (this.particleAge++ >= this.particleMaxAge)
             this.setExpired();
-        
+
         this.setParticleTextureIndex(7 - this.particleAge * 8 / this.particleMaxAge);
         this.move(this.motionX, this.motionY, this.motionZ);
 
-        if(this.posY == this.prevPosY) {
+        if (this.posY == this.prevPosY) {
             this.motionX *= 1.1D;
             this.motionZ *= 1.1D;
         }
         this.motionX *= 0.9599999785423279D;
         this.motionY *= 0.9599999785423279D;
         this.motionZ *= 0.9599999785423279D;
-        if(this.onGround) {
+        if (this.onGround) {
             this.motionX *= 0.699999988079071D;
             this.motionZ *= 0.699999988079071D;
         }

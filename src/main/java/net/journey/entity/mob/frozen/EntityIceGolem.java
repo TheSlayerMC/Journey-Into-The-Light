@@ -1,38 +1,20 @@
 package net.journey.entity.mob.frozen;
 
-import java.util.List;
-
-import javax.annotation.Nullable;
-
 import com.google.common.base.Predicate;
-
 import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
-import net.journey.util.PotionEffects;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIAttackMelee;
-import net.minecraft.entity.ai.EntityAIDefendVillage;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAILookAtVillager;
-import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAIMoveThroughVillage;
-import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
-import net.minecraft.entity.ai.EntityAIMoveTowardsTarget;
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAIWanderAvoidWater;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundEvent;
@@ -43,148 +25,151 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.entity.EntityModMob;
 
-public class EntityIceGolem extends EntityModMob{
+import javax.annotation.Nullable;
+
+public class EntityIceGolem extends EntityModMob {
 
     private int attackTimer;
-    
-	public EntityIceGolem(World par1World) {
-		super(par1World);
-		initEntityAI();
-		setSize(1.0F, 2.5F);
-	}
-	
-	protected void initEntityAI() {
-		this.tasks.addTask(1, new EntityAIAttackMelee(this, 1.0D, true));
-		this.tasks.addTask(2, new EntityAIMoveTowardsTarget(this, 0.9D, 32.0F));
-		this.tasks.addTask(4, new EntityAIMoveTowardsRestriction(this, 1.0D));
-		this.tasks.addTask(6, new EntityAIWanderAvoidWater(this, 0.6D));
-		this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
-		this.tasks.addTask(8, new EntityAILookIdle(this));
-		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, false, new Class[0]));
-		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityLiving.class, 10, false, true,
-				new Predicate<EntityLiving>() {
-					public boolean apply(@Nullable EntityLiving p_apply_1_) {
-						return p_apply_1_ != null && IMob.VISIBLE_MOB_SELECTOR.apply(p_apply_1_)
-								&& !(p_apply_1_ instanceof EntityCreeper);
-					}
-				}));
-	}
 
-	@Override
-	protected void applyEntityAttributes() {
-		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(3);
-	}
-	
-	@Override
-	public void onLivingUpdate() {
-		super.onLivingUpdate();
+    public EntityIceGolem(World par1World) {
+        super(par1World);
+        initEntityAI();
+        setSize(1.0F, 2.5F);
+    }
 
-		if (this.attackTimer > 0) {
-			--this.attackTimer;
-		}
+    protected void initEntityAI() {
+        this.tasks.addTask(1, new EntityAIAttackMelee(this, 1.0D, true));
+        this.tasks.addTask(2, new EntityAIMoveTowardsTarget(this, 0.9D, 32.0F));
+        this.tasks.addTask(4, new EntityAIMoveTowardsRestriction(this, 1.0D));
+        this.tasks.addTask(6, new EntityAIWanderAvoidWater(this, 0.6D));
+        this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
+        this.tasks.addTask(8, new EntityAILookIdle(this));
+        this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, false));
+        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityLiving.class, 10, false, true,
+                new Predicate<EntityLiving>() {
+                    public boolean apply(@Nullable EntityLiving p_apply_1_) {
+                        return p_apply_1_ != null && IMob.VISIBLE_MOB_SELECTOR.apply(p_apply_1_)
+                                && !(p_apply_1_ instanceof EntityCreeper);
+                    }
+                }));
+    }
 
-		if (this.motionX * this.motionX + this.motionZ * this.motionZ > 2.500000277905201E-7D
-				&& this.rand.nextInt(5) == 0) {
-			int i = MathHelper.floor(this.posX);
-			int j = MathHelper.floor(this.posY - 0.20000000298023224D);
-			int k = MathHelper.floor(this.posZ);
-			IBlockState iblockstate = this.world.getBlockState(new BlockPos(i, j, k));
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+        this.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(3);
+    }
 
-			if (iblockstate.getMaterial() != Material.AIR) {
-				this.world.spawnParticle(EnumParticleTypes.BLOCK_CRACK,
-						this.posX + ((double) this.rand.nextFloat() - 0.5D) * (double) this.width,
-						this.getEntityBoundingBox().minY + 0.1D,
-						this.posZ + ((double) this.rand.nextFloat() - 0.5D) * (double) this.width,
-						4.0D * ((double) this.rand.nextFloat() - 0.5D), 0.5D,
-						((double) this.rand.nextFloat() - 0.5D) * 4.0D, Block.getStateId(iblockstate));
-			}
-		}
-	}
+    @Override
+    public void onLivingUpdate() {
+        super.onLivingUpdate();
 
-    
-	@Override
-	public boolean attackEntityAsMob(Entity entityIn) {
-		this.attackTimer = 10;
-		this.world.setEntityState(this, (byte) 4);
-		boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this),
-				(float) (7 + this.rand.nextInt(15)));
+        if (this.attackTimer > 0) {
+            --this.attackTimer;
+        }
 
-		if (flag) {
-			entityIn.addVelocity((double)(-MathHelper.sin(this.rotationYaw * (float)Math.PI / 180.0F)) * 4, 0.1D, (double)(MathHelper.cos(this.rotationYaw * (float)Math.PI / 180.0F)) * 4);
-			this.applyEnchantments(this, entityIn);
-		}
+        if (this.motionX * this.motionX + this.motionZ * this.motionZ > 2.500000277905201E-7D
+                && this.rand.nextInt(5) == 0) {
+            int i = MathHelper.floor(this.posX);
+            int j = MathHelper.floor(this.posY - 0.20000000298023224D);
+            int k = MathHelper.floor(this.posZ);
+            IBlockState iblockstate = this.world.getBlockState(new BlockPos(i, j, k));
 
-		this.playSound(SoundEvents.ENTITY_IRONGOLEM_ATTACK, 1.0F, 0.5F);
-		return flag;
-	}
-	
-	@SideOnly(Side.CLIENT)
-	@Override
-	public void handleStatusUpdate(byte id) {
-		if (id == 4) {
-			this.attackTimer = 10;
-			this.playSound(SoundEvents.ENTITY_IRONGOLEM_ATTACK, 1.0F, 0.5F);
-		} else {
-			super.handleStatusUpdate(id);
-		}
-	}
-	
-	@SideOnly(Side.CLIENT)
-	public int getAttackTimer() {
-		return this.attackTimer;
-	}
+            if (iblockstate.getMaterial() != Material.AIR) {
+                this.world.spawnParticle(EnumParticleTypes.BLOCK_CRACK,
+                        this.posX + ((double) this.rand.nextFloat() - 0.5D) * (double) this.width,
+                        this.getEntityBoundingBox().minY + 0.1D,
+                        this.posZ + ((double) this.rand.nextFloat() - 0.5D) * (double) this.width,
+                        4.0D * ((double) this.rand.nextFloat() - 0.5D), 0.5D,
+                        ((double) this.rand.nextFloat() - 0.5D) * 4.0D, Block.getStateId(iblockstate));
+            }
+        }
+    }
 
-	@Override
-	public double setAttackDamage(MobStats s) {
-		return MobStats.IceGolemDamage;
-	}
 
-	@Override
-	public double setMaxHealth(MobStats s) {
-		return MobStats.IceGolemHealth;
-	}
+    @Override
+    public boolean attackEntityAsMob(Entity entityIn) {
+        this.attackTimer = 10;
+        this.world.setEntityState(this, (byte) 4);
+        boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this),
+                (float) (7 + this.rand.nextInt(15)));
 
-	@Override
-	protected void playHurtSound(DamageSource source) {
-		this.playSound(SoundEvents.ENTITY_IRONGOLEM_HURT, 1.0F, 0.5F);
-	}
+        if (flag) {
+            entityIn.addVelocity((double) (-MathHelper.sin(this.rotationYaw * (float) Math.PI / 180.0F)) * 4, 0.1D, (double) (MathHelper.cos(this.rotationYaw * (float) Math.PI / 180.0F)) * 4);
+            this.applyEnchantments(this, entityIn);
+        }
 
-	@Override
-	protected SoundEvent getDeathSound() {
-		return SoundEvents.ENTITY_IRONGOLEM_DEATH;
-	}
-	
-	@Override
-	public void playLivingSound() {
-		this.playSound(SoundEvents.ENTITY_IRONGOLEM_HURT, 1.0F, 0.5F);
-	}
+        this.playSound(SoundEvents.ENTITY_IRONGOLEM_ATTACK, 1.0F, 0.5F);
+        return flag;
+    }
 
-	@Override
-	protected void playStepSound(BlockPos pos, Block blockIn) {
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void handleStatusUpdate(byte id) {
+        if (id == 4) {
+            this.attackTimer = 10;
+            this.playSound(SoundEvents.ENTITY_IRONGOLEM_ATTACK, 1.0F, 0.5F);
+        } else {
+            super.handleStatusUpdate(id);
+        }
+    }
+
+    @SideOnly(Side.CLIENT)
+    public int getAttackTimer() {
+        return this.attackTimer;
+    }
+
+    @Override
+    public double setAttackDamage(MobStats s) {
+        return MobStats.IceGolemDamage;
+    }
+
+    @Override
+    public double setMaxHealth(MobStats s) {
+        return MobStats.IceGolemHealth;
+    }
+
+    @Override
+    protected void playHurtSound(DamageSource source) {
+        this.playSound(SoundEvents.ENTITY_IRONGOLEM_HURT, 1.0F, 0.5F);
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return SoundEvents.ENTITY_IRONGOLEM_DEATH;
+    }
+
+    @Override
+    public void playLivingSound() {
+        this.playSound(SoundEvents.ENTITY_IRONGOLEM_HURT, 1.0F, 0.5F);
+    }
+
+    @Override
+    protected void playStepSound(BlockPos pos, Block blockIn) {
         this.playSound(SoundEvents.ENTITY_IRONGOLEM_STEP, 1.0F, 1.0F);
     }
-	
-	@Override
-	public SoundEvent setLivingSound() {
-		return JourneySounds.EMPTY;
-	}
 
-	@Override
-	public SoundEvent setHurtSound() {
-		return JourneySounds.EMPTY;
-	}
-	
-	@Override
-	public SoundEvent setDeathSound() {
-		return JourneySounds.EMPTY;
-	}
-	
-	@Override
-	public Item getItemDropped() {
-		return null;
-	}
-	
-	@Override
-	protected void dropFewItems(boolean b, int j) {}
+    @Override
+    public SoundEvent setLivingSound() {
+        return JourneySounds.EMPTY;
+    }
+
+    @Override
+    public SoundEvent setHurtSound() {
+        return JourneySounds.EMPTY;
+    }
+
+    @Override
+    public SoundEvent setDeathSound() {
+        return JourneySounds.EMPTY;
+    }
+
+    @Override
+    public Item getItemDropped() {
+        return null;
+    }
+
+    @Override
+    protected void dropFewItems(boolean b, int j) {
+    }
 }

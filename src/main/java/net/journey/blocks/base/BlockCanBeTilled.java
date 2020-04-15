@@ -13,18 +13,19 @@ import net.slayer.api.block.BlockMod;
 
 public class BlockCanBeTilled extends BlockMod {
 
-	Block farmland;
-	public BlockCanBeTilled(EnumMaterialTypes types, String name, String finalName, float hardness, Block farmland) {
-		super(types, name, finalName, hardness);
-		this.farmland = farmland;
-	}
-	
-	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
-		if(!(worldIn.isRemote) && playerIn.getHeldItem(hand) != null &&  playerIn.getHeldItem(hand).getItem() instanceof ItemHoe) {
-			worldIn.setBlockState(new BlockPos(0, 0, 0), farmland.getDefaultState());
-			return true;
-		}
-		return false;
-	}
+    Block farmland;
+
+    public BlockCanBeTilled(EnumMaterialTypes types, String name, String finalName, float hardness, Block farmland) {
+        super(types, name, finalName, hardness);
+        this.farmland = farmland;
+    }
+
+    @Override
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
+        if (!(worldIn.isRemote) && playerIn.getHeldItem(hand) != null && playerIn.getHeldItem(hand).getItem() instanceof ItemHoe) {
+            worldIn.setBlockState(new BlockPos(0, 0, 0), farmland.getDefaultState());
+            return true;
+        }
+        return false;
+    }
 }

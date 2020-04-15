@@ -6,7 +6,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class RenderTordo extends RenderModMob {
 
-	public RenderTordo(ModelBase model, ResourceLocation tex) {
-		super(model, tex);
-	}
+    public RenderTordo(ModelBase model, ResourceLocation tex) {
+        super(model, tex);
+    }
 }

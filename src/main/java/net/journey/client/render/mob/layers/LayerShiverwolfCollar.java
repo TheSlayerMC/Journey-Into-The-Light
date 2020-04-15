@@ -1,8 +1,8 @@
 package net.journey.client.render.mob.layers;
 
+import net.journey.client.render.mob.RenderShiverwolf;
 import net.journey.entity.mob.pet.EntityShiverwolf;
 import net.minecraft.client.renderer.GlStateManager;
-import net.journey.client.render.mob.RenderShiverwolf;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.item.EnumDyeColor;
@@ -20,8 +20,8 @@ public class LayerShiverwolfCollar implements LayerRenderer<EntityShiverwolf> {
         this.wolfRenderer = wolfRendererIn;
     }
 
-	@Override
-	public void doRenderLayer(EntityShiverwolf entitylivingbaseIn, float f, float f1, float t, float x, float y, float z, float scale) {
+    @Override
+    public void doRenderLayer(EntityShiverwolf entitylivingbaseIn, float f, float f1, float t, float x, float y, float z, float scale) {
         if (entitylivingbaseIn.isTamed() && !entitylivingbaseIn.isInvisible()) {
             this.wolfRenderer.bindTexture(WOLF_COLLAR);
             EnumDyeColor enumdyecolor = EnumDyeColor.byMetadata(entitylivingbaseIn.getCollarColor().getMetadata());
@@ -31,8 +31,8 @@ public class LayerShiverwolfCollar implements LayerRenderer<EntityShiverwolf> {
         }
     }
 
-	@Override
+    @Override
     public boolean shouldCombineTextures() {
         return true;
-	}
+    }
 }

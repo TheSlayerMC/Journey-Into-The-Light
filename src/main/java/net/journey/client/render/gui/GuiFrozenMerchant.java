@@ -6,7 +6,7 @@ import net.slayer.api.entity.tileentity.container.ContainerModVillager;
 
 public class GuiFrozenMerchant extends GuiModVillager {
 
-	public GuiFrozenMerchant(ContainerModVillager container, IMerchant mer) {
-		super(container, mer, "Frozen Merchant", "frozenMerchant");
-	}
+    public GuiFrozenMerchant(ContainerModVillager container, IMerchant mer) {
+        super(container, mer, "Frozen Merchant", "frozenMerchant");
+    }
 }

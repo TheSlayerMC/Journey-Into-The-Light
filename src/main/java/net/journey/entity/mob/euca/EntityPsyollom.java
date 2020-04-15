@@ -11,47 +11,47 @@ import net.slayer.api.entity.EntityModMob;
 
 public class EntityPsyollom extends EntityModMob {
 
-	public static final int ENTITY_TYPE = 25;
-	
-	public EntityPsyollom(World par1World) {
-		super(par1World);
-		addAttackingAI();
-		setSize(1.7F, 2.7F);
-	}
+    public static final int ENTITY_TYPE = 25;
 
-	@Override
-	public double setAttackDamage(MobStats s) {
-		return MobStats.PsyollomDamage;
-	}
+    public EntityPsyollom(World par1World) {
+        super(par1World);
+        addAttackingAI();
+        setSize(1.7F, 2.7F);
+    }
 
-	@Override
-	public double setMaxHealth(MobStats s) {
-		return MobStats.PsyollomHealth;
-	}
+    @Override
+    public double setAttackDamage(MobStats s) {
+        return MobStats.PsyollomDamage;
+    }
 
-	@Override
-	public SoundEvent setLivingSound() {
-		return JourneySounds.PSYOLLOM;
-	}
+    @Override
+    public double setMaxHealth(MobStats s) {
+        return MobStats.PsyollomHealth;
+    }
 
-	@Override
-	public SoundEvent setHurtSound() {
-		return JourneySounds.PSYOLLOM_HURT;
-	}
+    @Override
+    public SoundEvent setLivingSound() {
+        return JourneySounds.PSYOLLOM;
+    }
 
-	@Override
-	public SoundEvent setDeathSound() {
-		return JourneySounds.PSYOLLOM_HURT;
-	}
-	
-	@Override
-	public Item getItemDropped() {
-		return JourneyConsumables.eucaMeat;
-	}
-	
-	@Override
-	protected void dropFewItems(boolean b, int j) {
-		if(rand.nextInt(70) == 0) dropItem(JourneyItems.eucaTablet, 1);
-		super.dropFewItems(b, j);
-	}
+    @Override
+    public SoundEvent setHurtSound() {
+        return JourneySounds.PSYOLLOM_HURT;
+    }
+
+    @Override
+    public SoundEvent setDeathSound() {
+        return JourneySounds.PSYOLLOM_HURT;
+    }
+
+    @Override
+    public Item getItemDropped() {
+        return JourneyConsumables.eucaMeat;
+    }
+
+    @Override
+    protected void dropFewItems(boolean b, int j) {
+        if (rand.nextInt(70) == 0) dropItem(JourneyItems.eucaTablet, 1);
+        super.dropFewItems(b, j);
+    }
 }

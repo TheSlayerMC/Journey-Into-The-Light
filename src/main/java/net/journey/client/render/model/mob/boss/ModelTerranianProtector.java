@@ -28,7 +28,7 @@ public class ModelTerranianProtector extends ModelBase {
     public ModelRenderer head5;
 
     public ModelTerranianProtector() {
-    	this.textureWidth = 128;
+        this.textureWidth = 128;
         this.textureHeight = 128;
         this.spike8 = new ModelRenderer(this, 0, 68);
         this.spike8.setRotationPoint(-1.0F, 3.0F, -1.0F);
@@ -84,7 +84,7 @@ public class ModelTerranianProtector extends ModelBase {
     }
 
     @Override
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) { 
+    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
         this.spike8.render(f5);
         this.spike5.render(f5);
         this.spike7.render(f5);
@@ -110,19 +110,18 @@ public class ModelTerranianProtector extends ModelBase {
         modelRenderer.rotateAngleY = y;
         modelRenderer.rotateAngleZ = z;
     }
-    
-	@Override
-	public void setRotationAngles(float par1, float par2, float par3, float par4, float par5, float par6, Entity par7Entity) 
-	{
-		this.head2.rotateAngleY = par4 / (180F / (float)Math.PI);
-		this.head2.rotateAngleX = par5 / (180F / (float)Math.PI);
-		this.head3.rotateAngleY = par4 / (180F / (float)Math.PI);
-		this.head3.rotateAngleX = par5 / (180F / (float)Math.PI);
-		this.head4.rotateAngleY = par4 / (180F / (float)Math.PI);
-		this.head4.rotateAngleX = par5 / (180F / (float)Math.PI);
-		this.head5.rotateAngleY = par4 / (180F / (float)Math.PI);
-		this.head5.rotateAngleX = par5 / (180F / (float)Math.PI);
-		float f6;
-		float f7;
-	}
+
+    @Override
+    public void setRotationAngles(float par1, float par2, float par3, float par4, float par5, float par6, Entity par7Entity) {
+        this.head2.rotateAngleY = par4 / (180F / (float) Math.PI);
+        this.head2.rotateAngleX = par5 / (180F / (float) Math.PI);
+        this.head3.rotateAngleY = par4 / (180F / (float) Math.PI);
+        this.head3.rotateAngleX = par5 / (180F / (float) Math.PI);
+        this.head4.rotateAngleY = par4 / (180F / (float) Math.PI);
+        this.head4.rotateAngleX = par5 / (180F / (float) Math.PI);
+        this.head5.rotateAngleY = par4 / (180F / (float) Math.PI);
+        this.head5.rotateAngleX = par5 / (180F / (float) Math.PI);
+        float f6;
+        float f7;
+    }
 }

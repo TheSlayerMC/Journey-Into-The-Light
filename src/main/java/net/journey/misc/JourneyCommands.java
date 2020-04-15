@@ -1,49 +1,40 @@
 package net.journey.misc;
 
-import net.journey.JourneyBlocks;
-import net.journey.blocks.portal.BlockBoilPortal;
-import net.journey.blocks.portal.BlockEucaPortal;
-import net.journey.blocks.portal.BlockFrozenPortal;
-import net.journey.dimension.ModTeleporter;
-import net.journey.dimension.corba.TeleporterCorba;
-import net.journey.dimension.depths.TeleporterDepths;
-import net.journey.util.Config;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.PlayerNotFoundException;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.Blocks;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.world.Teleporter;
 
 public class JourneyCommands extends CommandBase {
 
-	@Override
-	public String getName() {
-		return "journey";
-	}
+    @Override
+    public String getName() {
+        return "journey";
+    }
 
-	@Override
-	public String getUsage(ICommandSender sender) {
-		return "/journey";
-	}
+    @Override
+    public String getUsage(ICommandSender sender) {
+        return "/journey";
+    }
 
-	@Override
-	public void execute(MinecraftServer server, ICommandSender var1, String[] var2) throws CommandException {
-		EntityPlayerMP p = null;
-		try {
-			p = getCommandSenderAsPlayer(var1);
-		} catch (PlayerNotFoundException e) {
-			e.printStackTrace();
-		}
-		if(var2[0].equalsIgnoreCase("Heal")){
-			if(p.getHealth() < p.getMaxHealth()) 
-				p.heal(20);
-			if(p.getFoodStats().needFood())
-				p.getFoodStats().addStats(20, 1);}
+    @Override
+    public void execute(MinecraftServer server, ICommandSender var1, String[] var2) throws CommandException {
+        EntityPlayerMP p = null;
+        try {
+            p = getCommandSenderAsPlayer(var1);
+        } catch (PlayerNotFoundException e) {
+            e.printStackTrace();
+        }
+        if (var2[0].equalsIgnoreCase("Heal")) {
+            if (p.getHealth() < p.getMaxHealth())
+                p.heal(20);
+            if (p.getFoodStats().needFood())
+                p.getFoodStats().addStats(20, 1);
+        }
 
-		EntityPlayerMP playerMP = (EntityPlayerMP)var1;
+        EntityPlayerMP playerMP = (EntityPlayerMP) var1;
 		/*if(!playerMP.world.isRemote) {
 			if(var2[0].equalsIgnoreCase("Overworld")) {
 				if(playerMP.dimension != 0) {
@@ -93,5 +84,5 @@ public class JourneyCommands extends CommandBase {
 				}
 			}
 		}*/
-	}
+    }
 }

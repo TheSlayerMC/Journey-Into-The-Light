@@ -3,10 +3,9 @@ package net.journey.entity.AI;
 import net.journey.entity.mob.overworld.EntityBoom;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
-import net.minecraft.entity.ai.EntityAICreeperSwell;
 
 public class EntityAIBoomSwell extends EntityAIBase {
-	
+
     EntityBoom swellingCreeper;
     EntityLivingBase creeperAttackTarget;
 
@@ -16,7 +15,7 @@ public class EntityAIBoomSwell extends EntityAIBase {
     }
 
     @Override
-    public boolean shouldExecute(){
+    public boolean shouldExecute() {
         EntityLivingBase entitylivingbase = this.swellingCreeper.getAttackTarget();
         return this.swellingCreeper.getBoomBoomState() > 0 || entitylivingbase != null && this.swellingCreeper.getDistanceSq(entitylivingbase) < 9.0D;
     }
@@ -36,11 +35,9 @@ public class EntityAIBoomSwell extends EntityAIBase {
     public void updateTask() {
         if (this.creeperAttackTarget == null) {
             this.swellingCreeper.setBoomBoomState(-1);
-        }
-        else if (this.swellingCreeper.getDistanceSq(this.creeperAttackTarget) > 49.0D) {
+        } else if (this.swellingCreeper.getDistanceSq(this.creeperAttackTarget) > 49.0D) {
             this.swellingCreeper.setBoomBoomState(-1);
-        }
-        else if (!this.swellingCreeper.getEntitySenses().canSee(this.creeperAttackTarget)) {
+        } else if (!this.swellingCreeper.getEntitySenses().canSee(this.creeperAttackTarget)) {
             this.swellingCreeper.setBoomBoomState(-1);
         } else {
             this.swellingCreeper.setBoomBoomState(1);

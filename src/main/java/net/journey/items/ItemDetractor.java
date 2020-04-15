@@ -1,8 +1,5 @@
 package net.journey.items;
 
-import java.util.List;
-import java.util.Random;
-
 import net.journey.JourneySounds;
 import net.journey.JourneyTabs;
 import net.journey.client.server.EssenceProvider;
@@ -22,53 +19,56 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.SlayerAPI;
 import net.slayer.api.item.ItemMod;
 
+import java.util.List;
+import java.util.Random;
+
 public class ItemDetractor extends ItemMod {
 
-	private int magic;
-	public boolean attracts;
-	public boolean detracts;
+    public boolean attracts;
+    public boolean detracts;
+    private int magic;
 
-	public ItemDetractor(String name, String finalName, int magic, boolean attracts, boolean detracts) {
-		super(name, finalName, JourneyTabs.weapons);
-		setMaxStackSize(1);
-		this.magic = magic;
-		this.attracts = attracts;
-		this.detracts = detracts;
-		this.setFull3D();
-	}
+    public ItemDetractor(String name, String finalName, int magic, boolean attracts, boolean detracts) {
+        super(name, finalName, JourneyTabs.weapons);
+        setMaxStackSize(1);
+        this.magic = magic;
+        this.attracts = attracts;
+        this.detracts = detracts;
+        this.setFull3D();
+    }
 
-	@Override
-	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand handIn) {
-		Random r = new Random();
-		IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
+    @Override
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand handIn) {
+        Random r = new Random();
+        IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
 
-		if (detracts) {
-			if(!world.isRemote && mana.useEssence(magic)) {
-				JourneySounds.playSound(JourneySounds.HAMMER, world, player);
-				EntityThrowable entity = new EntityDetractor(world, player);
-				world.spawnEntity(entity);
-			}
-		}
-		if (attracts) {
-			if(!world.isRemote && mana.useEssence(magic)) {
-				JourneySounds.playSound(JourneySounds.HAMMER, world, player);
-				EntityThrowable entity = new EntityAttractor(world, player);
-				world.spawnEntity(entity);
-			}
-		}
-		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getHeldItem(handIn));	
-	}
+        if (detracts) {
+            if (!world.isRemote && mana.useEssence(magic)) {
+                JourneySounds.playSound(JourneySounds.HAMMER, world, player);
+                EntityThrowable entity = new EntityDetractor(world, player);
+                world.spawnEntity(entity);
+            }
+        }
+        if (attracts) {
+            if (!world.isRemote && mana.useEssence(magic)) {
+                JourneySounds.playSound(JourneySounds.HAMMER, world, player);
+                EntityThrowable entity = new EntityAttractor(world, player);
+                world.spawnEntity(entity);
+            }
+        }
+        return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getHeldItem(handIn));
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack i, World worldIn, List<String> l, ITooltipFlag flagIn) {
-		if (detracts) {
-			l.add(SlayerAPI.Colour.DARK_GREEN + "Uses " + magic + " Essence");
-			l.add(SlayerAPI.Colour.AQUA + "Fires a mob away from you");
-		}
-		if (attracts) {
-			l.add(SlayerAPI.Colour.DARK_GREEN + "Uses " + magic + " Essence");
-			l.add(SlayerAPI.Colour.AQUA + "Pulls a mob towards you");
-		}
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack i, World worldIn, List<String> l, ITooltipFlag flagIn) {
+        if (detracts) {
+            l.add(SlayerAPI.Colour.DARK_GREEN + "Uses " + magic + " Essence");
+            l.add(SlayerAPI.Colour.AQUA + "Fires a mob away from you");
+        }
+        if (attracts) {
+            l.add(SlayerAPI.Colour.DARK_GREEN + "Uses " + magic + " Essence");
+            l.add(SlayerAPI.Colour.AQUA + "Pulls a mob towards you");
+        }
+    }
 }

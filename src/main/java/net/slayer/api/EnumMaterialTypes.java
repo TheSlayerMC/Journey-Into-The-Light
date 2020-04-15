@@ -1,7 +1,6 @@
 package net.slayer.api;
 
 import net.minecraft.block.SoundType;
-import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 
 public enum EnumMaterialTypes {
@@ -23,22 +22,22 @@ public enum EnumMaterialTypes {
     GLASS_SOUND(Material.GROUND, SoundType.GLASS),
     METAL_SOUND(Material.ROCK, SoundType.METAL),
     TROPHY(Material.GROUND, SoundType.METAL),
-	SLIME(Material.GROUND, SoundType.SLIME),
+    SLIME(Material.GROUND, SoundType.SLIME),
     SAND(Material.SAND, SoundType.SAND);
 
     private Material m;
     private SoundType s;
-    
-	private EnumMaterialTypes(Material m, SoundType s){
-		this.m = m;
-		this.s = s;
-	}
-	
-	public Material getMaterial(){
-		return m;
-	}
-	
-	public SoundType getSound(){
-		return s;
-	}
+
+    EnumMaterialTypes(Material m, SoundType s) {
+        this.m = m;
+        this.s = s;
+    }
+
+    public Material getMaterial() {
+        return m;
+    }
+
+    public SoundType getSound() {
+        return s;
+    }
 }

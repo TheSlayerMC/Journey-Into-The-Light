@@ -1,7 +1,5 @@
 package net.slayer.api.block;
 
-import java.util.Random;
-
 import net.journey.JITL;
 import net.journey.JourneyBlocks;
 import net.journey.JourneyItems;
@@ -24,124 +22,127 @@ import net.slayer.api.EnumMaterialTypes;
 import net.slayer.api.EnumToolType;
 import net.slayer.api.SlayerAPI;
 
+import java.util.Random;
+
 public class BlockModGravity extends BlockFalling {
 
-	protected EnumMaterialTypes blockType;
-	protected Item drop = null;
-	protected Random rand;
-	public int boostBrightnessLow;
-	public int boostBrightnessHigh;
-	public boolean enhanceBrightness;
-	public String name;
-	protected boolean isOpaque = true, isNormalCube = true;
-	
-	public BlockModGravity(String name, String finalName, float hardness) {
-		this(EnumMaterialTypes.STONE, name, finalName, hardness, JourneyTabs.blocks);
-	}
+    public int boostBrightnessLow;
+    public int boostBrightnessHigh;
+    public boolean enhanceBrightness;
+    public String name;
+    protected EnumMaterialTypes blockType;
+    protected Item drop = null;
+    protected Random rand;
+    protected boolean isOpaque = true, isNormalCube = true;
 
-	public BlockModGravity(String name, String finalName) {
-		this(EnumMaterialTypes.STONE, name, finalName, 2.0F, JourneyTabs.blocks);
-	}
+    public BlockModGravity(String name, String finalName, float hardness) {
+        this(EnumMaterialTypes.STONE, name, finalName, hardness, JourneyTabs.blocks);
+    }
 
-	public BlockModGravity(EnumMaterialTypes type, String name, String finalName, float hardness) {
-		this(type, name, finalName, hardness, JourneyTabs.blocks);
-	}
+    public BlockModGravity(String name, String finalName) {
+        this(EnumMaterialTypes.STONE, name, finalName, 2.0F, JourneyTabs.blocks);
+    }
 
-	public BlockModGravity(String name, String finalName, boolean breakable, CreativeTabs tab) {
-		this(EnumMaterialTypes.STONE, name, finalName, tab);
-	}
+    public BlockModGravity(EnumMaterialTypes type, String name, String finalName, float hardness) {
+        this(type, name, finalName, hardness, JourneyTabs.blocks);
+    }
 
-	public BlockModGravity(String name, String finalName, boolean breakable) {
-		this(name, finalName, breakable, JourneyTabs.blocks);
-	}
+    public BlockModGravity(String name, String finalName, boolean breakable, CreativeTabs tab) {
+        this(EnumMaterialTypes.STONE, name, finalName, tab);
+    }
 
-	public BlockModGravity(EnumMaterialTypes blockType, String name, String finalName, CreativeTabs tab) {
-		super(blockType.getMaterial());
-		LangRegistry.addBlock(name, finalName);
-		this.blockType = blockType;
-		setHardness(2.0F);
-		rand = new Random();
-		setSoundType(blockType.getSound());
-		setCreativeTab(tab);
-		setTranslationKey(name);
-		this.name = name; 
-		JourneyBlocks.blocks.add(this);
-		JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
-		setRegistryName(SlayerAPI.MOD_ID, name);
-		JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
-	}
+    public BlockModGravity(String name, String finalName, boolean breakable) {
+        this(name, finalName, breakable, JourneyTabs.blocks);
+    }
 
-	public BlockModGravity(EnumMaterialTypes blockType, String name, String finalName, float hardness, CreativeTabs tab) {
-		super(blockType.getMaterial());
-		LangRegistry.addBlock(name, finalName);
-		this.blockType = blockType;
-		rand = new Random();
-		setSoundType(blockType.getSound());
-		setCreativeTab(tab);
-		setTranslationKey(name);
-		setHardness(hardness);
-		this.name = name;
-		JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
-		JourneyBlocks.blocks.add(this);
-		setRegistryName(SlayerAPI.MOD_ID, name);
-		JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
-	}
-	
-	public void registerItemModel(Item itemBlock) {
-		JITL.proxy.registerItemRenderer(itemBlock, 0, name);
-	}
-	
-	public Item createItemBlock() {
-		return new ItemBlock(this).setRegistryName(getRegistryName());
-	}
+    public BlockModGravity(EnumMaterialTypes blockType, String name, String finalName, CreativeTabs tab) {
+        super(blockType.getMaterial());
+        LangRegistry.addBlock(name, finalName);
+        this.blockType = blockType;
+        setHardness(2.0F);
+        rand = new Random();
+        setSoundType(blockType.getSound());
+        setCreativeTab(tab);
+        setTranslationKey(name);
+        this.name = name;
+        JourneyBlocks.blocks.add(this);
+        JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
+        setRegistryName(SlayerAPI.MOD_ID, name);
+        JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
+    }
 
-	public Block addName(String name) {
-		JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
-		return this;
-	}
+    public BlockModGravity(EnumMaterialTypes blockType, String name, String finalName, float hardness, CreativeTabs tab) {
+        super(blockType.getMaterial());
+        LangRegistry.addBlock(name, finalName);
+        this.blockType = blockType;
+        rand = new Random();
+        setSoundType(blockType.getSound());
+        setCreativeTab(tab);
+        setTranslationKey(name);
+        setHardness(hardness);
+        this.name = name;
+        JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
+        JourneyBlocks.blocks.add(this);
+        setRegistryName(SlayerAPI.MOD_ID, name);
+        JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void registerItemModel(Item itemBlock) {
+        JITL.proxy.registerItemRenderer(itemBlock, 0, name);
+    }
 
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-		if(drop == null) return SlayerAPI.toItem(this);
-		return drop;
-	}
+    public Item createItemBlock() {
+        return new ItemBlock(this).setRegistryName(getRegistryName());
+    }
 
-	public BlockModGravity setHarvestLevel(EnumToolType type) {
-		setHarvestLevel(type.getType(), type.getLevel());
-		return this;
-	}
+    public Block addName(String name) {
+        JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
+        return this;
+    }
+
+    public String getName() {
+        return name;
+    }
 
     @Override
-	@SideOnly(Side.CLIENT) 
-	public BlockRenderLayer getRenderLayer() {
-		return BlockRenderLayer.CUTOUT;
-	}
+    public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+        if (drop == null) return SlayerAPI.toItem(this);
+        return drop;
+    }
 
-	@Override
-	public int quantityDropped(Random rand) {
-		return 1;
-	}
-	
-	@Override
-	public boolean isOpaqueCube(IBlockState state) {
-		return isOpaque;
-	}
-	
-	@Override
-	public boolean isNormalCube(IBlockState state, IBlockAccess world, BlockPos pos) {
-		return false;
-	}
+    public BlockModGravity setHarvestLevel(EnumToolType type) {
+        setHarvestLevel(type.getType(), type.getLevel());
+        return this;
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) { }
+    @Override
+    @SideOnly(Side.CLIENT)
+    public BlockRenderLayer getRenderLayer() {
+        return BlockRenderLayer.CUTOUT;
+    }
 
-	@Override
-	public boolean isFireSource(World world, BlockPos pos, EnumFacing side) {
-		return true;
-	}
+    @Override
+    public int quantityDropped(Random rand) {
+        return 1;
+    }
+
+    @Override
+    public boolean isOpaqueCube(IBlockState state) {
+        return isOpaque;
+    }
+
+    @Override
+    public boolean isNormalCube(IBlockState state, IBlockAccess world, BlockPos pos) {
+        return false;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
+    }
+
+    @Override
+    public boolean isFireSource(World world, BlockPos pos, EnumFacing side) {
+        return true;
+    }
 }

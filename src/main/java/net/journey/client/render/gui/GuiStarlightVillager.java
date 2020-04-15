@@ -6,7 +6,7 @@ import net.slayer.api.entity.tileentity.container.ContainerModVillager;
 
 public class GuiStarlightVillager extends GuiModVillager {
 
-	public GuiStarlightVillager(ContainerModVillager container, IMerchant mer) { 
-		super(container, mer, "Starlight Villager", "starlightVillager", true);
-	}
+    public GuiStarlightVillager(ContainerModVillager container, IMerchant mer) {
+        super(container, mer, "Starlight Villager", "starlightVillager", true);
+    }
 }

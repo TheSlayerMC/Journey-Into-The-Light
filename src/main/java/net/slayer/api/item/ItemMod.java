@@ -1,7 +1,5 @@
 package net.slayer.api.item;
 
-import java.util.List;
-
 import net.journey.JITL;
 import net.journey.JourneyItems;
 import net.journey.JourneySounds;
@@ -23,82 +21,86 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.SlayerAPI;
 
+import java.util.List;
+
 public class ItemMod extends Item {
 
-	protected int healAmount = 0;
-	protected String name;
+    protected int healAmount = 0;
+    protected String name;
 
-	public ItemMod(String name, String finalName){
-		this(name, finalName, JourneyTabs.items);
-		this.name = name;
-	}
+    public ItemMod(String name, String finalName) {
+        this(name, finalName, JourneyTabs.items);
+        this.name = name;
+    }
 
-	public ItemMod(String name, String finalName, CreativeTabs tab){
-		this.name = name;
-		LangRegistry.addItem(name.toLowerCase(), finalName);
-		setTranslationKey(name.toLowerCase());
-		setCreativeTab(tab);
-		JourneyItems.itemNames.add(SlayerAPI.PREFIX + name.toLowerCase());
-		JourneyItems.items.add(this);
-		setRegistryName(SlayerAPI.MOD_ID, name.toLowerCase());
-	}
+    public ItemMod(String name, String finalName, CreativeTabs tab) {
+        this.name = name;
+        LangRegistry.addItem(name.toLowerCase(), finalName);
+        setTranslationKey(name.toLowerCase());
+        setCreativeTab(tab);
+        JourneyItems.itemNames.add(SlayerAPI.PREFIX + name.toLowerCase());
+        JourneyItems.items.add(this);
+        setRegistryName(SlayerAPI.MOD_ID, name.toLowerCase());
+    }
 
-	public ItemMod setHealAmount(int healAmount){
-		this.healAmount = healAmount;
-		return this;
-	}
+    public ItemMod setHealAmount(int healAmount) {
+        this.healAmount = healAmount;
+        return this;
+    }
 
-	@Override
-	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer player, EnumHand handIn) {
-		if(player.getHeldItemMainhand().getItem() instanceof ItemMod) {
-			if(healAmount != 0){
-				if(player.getHealth() < player.getMaxHealth()) {
-					player.heal(healAmount);
-					player.getHeldItemMainhand().shrink(1);
-				}
-			}
-		}
-		return super.onItemRightClick(worldIn, player, handIn);
-	}
+    @Override
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer player, EnumHand handIn) {
+        if (player.getHeldItemMainhand().getItem() instanceof ItemMod) {
+            if (healAmount != 0) {
+                if (player.getHealth() < player.getMaxHealth()) {
+                    player.heal(healAmount);
+                    player.getHeldItemMainhand().shrink(1);
+                }
+            }
+        }
+        return super.onItemRightClick(worldIn, player, handIn);
+    }
 
-	public void spawnEntityIntoWorld(World w, EntityPlayer p, Entity entity, boolean magic, SoundEvent sound, boolean damage, ItemStack item, int dam) {
-		if(!w.isRemote) {
-			if(magic) w.spawnEntity(entity);
-		}
-		if(magic) {
-			JourneySounds.playSound(sound, w, p);
-			if(damage) item.damageItem(dam, p);
-		}
-	}
+    public void spawnEntityIntoWorld(World w, EntityPlayer p, Entity entity, boolean magic, SoundEvent sound, boolean damage, ItemStack item, int dam) {
+        if (!w.isRemote) {
+            if (magic) w.spawnEntity(entity);
+        }
+        if (magic) {
+            JourneySounds.playSound(sound, w, p);
+            if (damage) item.damageItem(dam, p);
+        }
+    }
 
-	public void spawnEntityIntoWorld(World w, EntityPlayer p, Entity entity, SoundEvent sound, boolean damage, ItemStack item, int dam) {
-		if(!w.isRemote) {
-			w.spawnEntity(entity);
-			JourneySounds.playSound(sound, w, p);
-			if(damage) item.damageItem(dam, p);
-		}
-	}
+    public void spawnEntityIntoWorld(World w, EntityPlayer p, Entity entity, SoundEvent sound, boolean damage, ItemStack item, int dam) {
+        if (!w.isRemote) {
+            w.spawnEntity(entity);
+            JourneySounds.playSound(sound, w, p);
+            if (damage) item.damageItem(dam, p);
+        }
+    }
 
-	public void spawnEntityIntoWorld(World w, EntityPlayer p, Entity entity, boolean magic, SoundEvent sound) {
-		spawnEntityIntoWorld(w, p, entity, magic, sound, false, new ItemStack(Items.APPLE), 0);
-	}
+    public void spawnEntityIntoWorld(World w, EntityPlayer p, Entity entity, boolean magic, SoundEvent sound) {
+        spawnEntityIntoWorld(w, p, entity, magic, sound, false, new ItemStack(Items.APPLE), 0);
+    }
 
 
-	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack stack, World player, List list){ }
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, World player, List list) {
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack item, World world, List<String> list, ITooltipFlag flagIn) {
-		ItemDescription.addInformation(item, list);
-		addInformation(item, world, list);
-		addInformation(item, list);
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack item, World world, List<String> list, ITooltipFlag flagIn) {
+        ItemDescription.addInformation(item, list);
+        addInformation(item, world, list);
+        addInformation(item, list);
+    }
 
-	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack i, List l) { }
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack i, List l) {
+    }
 
-	public void registerItemModel() {
-		JITL.proxy.registerItemRenderer(this, 0, name);
-	}
+    public void registerItemModel() {
+        JITL.proxy.registerItemRenderer(this, 0, name);
+    }
 }

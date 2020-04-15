@@ -1,8 +1,5 @@
 package net.journey.enums;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 
@@ -11,15 +8,15 @@ import net.minecraft.item.Item;
  */
 public enum EnumMobDrops {
 
-	ROBOT(Items.STICK, Items.IRON_INGOT);
+    ROBOT(Items.STICK, Items.IRON_INGOT);
 
-	private Item[] drops;
+    private Item[] drops;
 
-	private EnumMobDrops(Item...drops) {
-		this.drops = drops;
-	}
+    EnumMobDrops(Item... drops) {
+        this.drops = drops;
+    }
 
-	public Item[] getDrops() {
-		return drops;
-	}
+    public Item[] getDrops() {
+        return drops;
+    }
 }

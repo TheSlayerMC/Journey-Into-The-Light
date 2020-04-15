@@ -23,8 +23,8 @@ public class ModelWitheringBeast extends ModelBase {
     public ModelRenderer head_2;
     public ModelRenderer rib4_1;
 
-	public ModelWitheringBeast() {
-		this.textureWidth = 128;
+    public ModelWitheringBeast() {
+        this.textureWidth = 128;
         this.textureHeight = 128;
         this.head_2 = new ModelRenderer(this, 0, 0);
         this.head_2.setRotationPoint(-16.0F, -9.0F, 1.5F);
@@ -74,12 +74,12 @@ public class ModelWitheringBeast extends ModelBase {
         this.rib3 = new ModelRenderer(this, 80, 20);
         this.rib3.setRotationPoint(-9.0F, 4.0F, 0.5F);
         this.rib3.addBox(0.0F, 0.0F, 0.0F, 18, 2, 2, 0.0F);
-	}
+    }
 
-	@Override
-	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-		super.render(entity, f, f1, f2, f3, f4, f5);
-		setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+    @Override
+    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
+        super.render(entity, f, f1, f2, f3, f4, f5);
+        setRotationAngles(f, f1, f2, f3, f4, f5, entity);
         this.head_2.render(f5);
         this.rib2.render(f5);
         this.foot1.render(f5);
@@ -95,24 +95,24 @@ public class ModelWitheringBeast extends ModelBase {
         this.spine2.render(f5);
         this.rib1.render(f5);
         this.rib3.render(f5);
-	}
+    }
 
-	private void setRotation(ModelRenderer model, float x, float y, float z) {
-		model.rotateAngleX = x;
-		model.rotateAngleY = y;
-		model.rotateAngleZ = z;
-	}
+    private void setRotation(ModelRenderer model, float x, float y, float z) {
+        model.rotateAngleX = x;
+        model.rotateAngleY = y;
+        model.rotateAngleZ = z;
+    }
 
-	@Override
-	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity e) {
-		super.setRotationAngles(f, f1, f2, f3, f4, f5, e);
-		this.head.rotateAngleY = f3 / 57.29578f;
-		this.head.rotateAngleX= f4 / 57.29578f;
-		this.head_1.rotateAngleY = f3 / 57.29578f;
-		this.head_1.rotateAngleX= f4 / 57.29578f;
-		this.head_2.rotateAngleY = f3 / 57.29578f;
-		this.head_2.rotateAngleX= f4 / 57.29578f;
-		this.foot1.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * f1;
-		this.foot2.rotateAngleX = MathHelper.cos(f * 0.6662F) * f1;
-	}
+    @Override
+    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity e) {
+        super.setRotationAngles(f, f1, f2, f3, f4, f5, e);
+        this.head.rotateAngleY = f3 / 57.29578f;
+        this.head.rotateAngleX = f4 / 57.29578f;
+        this.head_1.rotateAngleY = f3 / 57.29578f;
+        this.head_1.rotateAngleX = f4 / 57.29578f;
+        this.head_2.rotateAngleY = f3 / 57.29578f;
+        this.head_2.rotateAngleX = f4 / 57.29578f;
+        this.foot1.rotateAngleX = MathHelper.cos(f * 0.6662F + (float) Math.PI) * f1;
+        this.foot2.rotateAngleX = MathHelper.cos(f * 0.6662F) * f1;
+    }
 }

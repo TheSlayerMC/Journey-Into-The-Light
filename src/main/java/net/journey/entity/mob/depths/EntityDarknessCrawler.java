@@ -1,7 +1,5 @@
 package net.journey.entity.mob.depths;
 
-import java.util.List;
-
 import net.journey.JourneyItems;
 import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
@@ -13,54 +11,57 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityModMob;
 
-public class EntityDarknessCrawler extends EntityModMob{
+import java.util.List;
 
-	public EntityDarknessCrawler(World par1World) {
-		super(par1World);
-		addAttackingAI();
-		setSize(0.7F, 1.0F);
-	}
-	
-	@Override
-    public void onLivingUpdate() {
-        super.onLivingUpdate();
-        if(this.world.isDaytime() && !this.world.isRemote) {
-            float var1 = getBrightness();
-        }
-        
-        List<Entity> e = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox());        
-        for(Entity entity : e) {
-        	if(entity instanceof EntityPlayer && canEntityBeSeen(entity)) ((EntityPlayer)entity).addPotionEffect(PotionEffects.setPotionEffect(PotionEffects.blindness, 60, 1));
-        }        
+public class EntityDarknessCrawler extends EntityModMob {
+
+    public EntityDarknessCrawler(World par1World) {
+        super(par1World);
+        addAttackingAI();
+        setSize(0.7F, 1.0F);
     }
 
-	@Override
-	public double setAttackDamage(MobStats s) {
-		return MobStats.DarknessCrawlerDamage;
-	}
+    @Override
+    public void onLivingUpdate() {
+        super.onLivingUpdate();
+        if (this.world.isDaytime() && !this.world.isRemote) {
+            float var1 = getBrightness();
+        }
 
-	@Override
-	public double setMaxHealth(MobStats s) {
-		return MobStats.DarknessCrawlerHealth;
-	}
+        List<Entity> e = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox());
+        for (Entity entity : e) {
+            if (entity instanceof EntityPlayer && canEntityBeSeen(entity))
+                ((EntityPlayer) entity).addPotionEffect(PotionEffects.setPotionEffect(PotionEffects.blindness, 60, 1));
+        }
+    }
 
-	@Override
-	public SoundEvent setLivingSound() {
-		return JourneySounds.SPIKED_BEAST;
-	}
+    @Override
+    public double setAttackDamage(MobStats s) {
+        return MobStats.DarknessCrawlerDamage;
+    }
 
-	@Override
-	public SoundEvent setHurtSound() {
-		return JourneySounds.SPIKED_BEAST_HURT;
-	}
+    @Override
+    public double setMaxHealth(MobStats s) {
+        return MobStats.DarknessCrawlerHealth;
+    }
 
-	@Override
-	public SoundEvent setDeathSound() {
-		return JourneySounds.SPIKED_BEAST_HURT;
-	}
-	
-	@Override
-	public Item getItemDropped() {
-		return JourneyItems.darkCrystal;
-	}
+    @Override
+    public SoundEvent setLivingSound() {
+        return JourneySounds.SPIKED_BEAST;
+    }
+
+    @Override
+    public SoundEvent setHurtSound() {
+        return JourneySounds.SPIKED_BEAST_HURT;
+    }
+
+    @Override
+    public SoundEvent setDeathSound() {
+        return JourneySounds.SPIKED_BEAST_HURT;
+    }
+
+    @Override
+    public Item getItemDropped() {
+        return JourneyItems.darkCrystal;
+    }
 }

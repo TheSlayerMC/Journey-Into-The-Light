@@ -68,7 +68,7 @@ public class ModelWitherspine extends ModelBase {
     }
 
     @Override
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) { 
+    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
         this.leg2.render(f5);
         this.spine2.render(f5);
         this.body.render(f5);
@@ -87,12 +87,13 @@ public class ModelWitherspine extends ModelBase {
         modelRenderer.rotateAngleY = y;
         modelRenderer.rotateAngleZ = z;
     }
-	@Override
-	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity e) {
-		super.setRotationAngles(f, f1, f2, f3, f4, f5, e);
-		this.head.rotateAngleY = f3 / 57.29578f;
-		this.head.rotateAngleX= f4 / 57.29578f;
-		this.leg1.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * f1;
-		this.leg2.rotateAngleX = MathHelper.cos(f * 0.6662F) * f1;
-	}
+
+    @Override
+    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity e) {
+        super.setRotationAngles(f, f1, f2, f3, f4, f5, e);
+        this.head.rotateAngleY = f3 / 57.29578f;
+        this.head.rotateAngleX = f4 / 57.29578f;
+        this.leg1.rotateAngleX = MathHelper.cos(f * 0.6662F + (float) Math.PI) * f1;
+        this.leg2.rotateAngleX = MathHelper.cos(f * 0.6662F) * f1;
+    }
 }

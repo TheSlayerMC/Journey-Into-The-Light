@@ -6,7 +6,7 @@ import net.slayer.api.entity.tileentity.container.ContainerModVillager;
 
 public class GuiStaringGuardian extends GuiModVillager {
 
-	public GuiStaringGuardian(ContainerModVillager container, IMerchant mer) { 
-		super(container, mer, "Staring Guardian", "staringGuardian", true);
-	}
+    public GuiStaringGuardian(ContainerModVillager container, IMerchant mer) {
+        super(container, mer, "Staring Guardian", "staringGuardian", true);
+    }
 }

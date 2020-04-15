@@ -1,9 +1,5 @@
 package net.journey.dimension.boil;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 import net.journey.JourneyBlocks;
 import net.journey.dimension.boil.gen.WorldGenBoilingLamp;
 import net.journey.dimension.boil.gen.WorldGenBrisonNetwork;
@@ -11,7 +7,6 @@ import net.journey.dimension.boil.gen.WorldGenTraderHutBoiling;
 import net.journey.dimension.boil.trees.WorldGenBoilTree1;
 import net.journey.dimension.boil.trees.WorldGenBoilTree2;
 import net.journey.dimension.boil.trees.WorldGenBoilTree3;
-import net.journey.dimension.cloudia.ChunkProviderCloudia;
 import net.journey.dimension.overworld.gen.WorldGenModFlower;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -19,7 +14,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockStateMatcher;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.IProgressUpdate;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -27,49 +21,43 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
-import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraft.world.gen.IChunkGenerator;
-import net.minecraft.world.gen.MapGenBase;
-import net.minecraft.world.gen.MapGenCaves;
-import net.minecraft.world.gen.MapGenRavine;
-import net.minecraft.world.gen.NoiseGeneratorOctaves;
-import net.minecraft.world.gen.NoiseGeneratorPerlin;
+import net.minecraft.world.gen.*;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.slayer.api.worldgen.WorldGenAPI;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class ChunkProviderBoiling implements IChunkGenerator {
 
-    private Random rand;
-    private ArrayList<WorldGenerator> trees;
-    private NoiseGeneratorOctaves noiseGen1;
-    private NoiseGeneratorOctaves noiseGen2;
-    private NoiseGeneratorOctaves noiseGen3;
-    private NoiseGeneratorPerlin noiseGen4;
-    public NoiseGeneratorOctaves noiseGen5;
-    public NoiseGeneratorOctaves noiseGen6;
-    public NoiseGeneratorOctaves mobSpawnerNoise;
-    private World worldObj;
     private final double[] da;
     private final float[] parabolicField;
-    private double[] stoneNoise;
-    private MapGenBase caveGenerator;
-    private MapGenBase ravineGenerator;
-    private Biome[] biomesForGeneration;
-    double[] gen1;
-    double[] gen2;
-    double[] gen3;
-    double[] gen4;
-
     private final WorldGenModFlower flameFlower;
     private final WorldGenModFlower flameFlower2;
     private final WorldGenModFlower infernoPlant;
     private final WorldGenBoilingLamp boilLamp;
     private final WorldGenBrisonNetwork brison;
     private final WorldGenTraderHutBoiling hut;
-    
+    public NoiseGeneratorOctaves noiseGen5;
+    public NoiseGeneratorOctaves noiseGen6;
+    public NoiseGeneratorOctaves mobSpawnerNoise;
+    double[] gen1;
+    double[] gen2;
+    double[] gen3;
+    double[] gen4;
+    private Random rand;
+    private ArrayList<WorldGenerator> trees;
+    private NoiseGeneratorOctaves noiseGen1;
+    private NoiseGeneratorOctaves noiseGen2;
+    private NoiseGeneratorOctaves noiseGen3;
+    private NoiseGeneratorPerlin noiseGen4;
+    private World worldObj;
+    private double[] stoneNoise;
+    private MapGenBase caveGenerator;
+    private MapGenBase ravineGenerator;
+    private Biome[] biomesForGeneration;
     private WorldGenMinable ashual = new WorldGenMinable(JourneyBlocks.ashualOre.getDefaultState(), 7, BlockStateMatcher.forBlock(JourneyBlocks.ashBlock));
     private WorldGenMinable blazium = new WorldGenMinable(JourneyBlocks.blaziumOre.getDefaultState(), 7, BlockStateMatcher.forBlock(JourneyBlocks.ashBlock));
 
@@ -175,7 +163,7 @@ public class ChunkProviderBoiling implements IChunkGenerator {
     public void biomeBlocks(int x, int z, ChunkPrimer c, Biome[] b) {
         if (!net.minecraftforge.event.ForgeEventFactory.onReplaceBiomeBlocks(this, x, z, c, this.worldObj)) return;
         double d0 = 0.03125D;
-        this.stoneNoise = this.noiseGen4.getRegion(this.stoneNoise, (double) (x * 16), (double) (z * 16), 16, 16, d0 * 2.0D, d0 * 2.0D, 1.0D);
+        this.stoneNoise = this.noiseGen4.getRegion(this.stoneNoise, x * 16, z * 16, 16, 16, d0 * 2.0D, d0 * 2.0D, 1.0D);
         for (int k = 0; k < 16; ++k) {
             for (int l = 0; l < 16; ++l) {
                 generateBiomeTerrain(this.rand, c, x * 16 + k, z * 16 + l, this.stoneNoise[l + k * 16]);
@@ -355,7 +343,7 @@ public class ChunkProviderBoiling implements IChunkGenerator {
             flameFlower2.generate(worldObj, r, chunkStart);
             infernoPlant.generate(worldObj, r, chunkStart);
         }
-        
+
         for (i = 0; i < 30; i++) {
             blazium.generate(worldObj, rand, new BlockPos(x1, rand.nextInt(250), z1));
             ashual.generate(worldObj, rand, new BlockPos(x1, rand.nextInt(250), z1));

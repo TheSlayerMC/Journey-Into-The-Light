@@ -33,7 +33,6 @@ public class ModelFerret extends ModelBase {
     public ModelRenderer tail2;
 
 
-
     public ModelFerret() {
         this.textureWidth = 64;
         this.textureHeight = 32;
@@ -112,7 +111,7 @@ public class ModelFerret extends ModelBase {
     }
 
     @Override
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) { 
+    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
         this.body2.render(f5);
         this.leg2_3.render(f5);
         this.neck.render(f5);
@@ -141,20 +140,20 @@ public class ModelFerret extends ModelBase {
         modelRenderer.rotateAngleY = y;
         modelRenderer.rotateAngleZ = z;
     }
-    
-	@Override
-	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity) {
-		this.leg1.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
-		this.leg1_2.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
-		this.leg1_3.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
-		this.leg2.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * 1.4F * f1;
-		this.leg2_2.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * 1.4F * f1;
-		this.leg2_3.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * 1.4F * f1;
-		this.leg3.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * 1.4F * f1;
-		this.leg3_2.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * 1.4F * f1;
-		this.leg3_3.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * 1.4F * f1;
-		this.leg4.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
-		this.leg4_2.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
-		this.leg4_3.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
-	}
+
+    @Override
+    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity) {
+        this.leg1.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
+        this.leg1_2.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
+        this.leg1_3.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
+        this.leg2.rotateAngleX = MathHelper.cos(f * 0.6662F + (float) Math.PI) * 1.4F * f1;
+        this.leg2_2.rotateAngleX = MathHelper.cos(f * 0.6662F + (float) Math.PI) * 1.4F * f1;
+        this.leg2_3.rotateAngleX = MathHelper.cos(f * 0.6662F + (float) Math.PI) * 1.4F * f1;
+        this.leg3.rotateAngleX = MathHelper.cos(f * 0.6662F + (float) Math.PI) * 1.4F * f1;
+        this.leg3_2.rotateAngleX = MathHelper.cos(f * 0.6662F + (float) Math.PI) * 1.4F * f1;
+        this.leg3_3.rotateAngleX = MathHelper.cos(f * 0.6662F + (float) Math.PI) * 1.4F * f1;
+        this.leg4.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
+        this.leg4_2.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
+        this.leg4_3.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
+    }
 }

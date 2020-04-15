@@ -1,10 +1,6 @@
 package net.journey.entity.item;
 
 import com.google.common.collect.Lists;
-import java.util.List;
-import javax.annotation.Nullable;
-
-import net.journey.JourneyItems;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.material.Material;
@@ -13,7 +9,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.passive.EntityAnimal;
-import net.minecraft.entity.passive.EntityWaterMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -25,12 +20,7 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.network.play.client.CPacketSteerBoat;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.EntityDamageSourceIndirect;
-import net.minecraft.util.EntitySelectors;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.SoundEvent;
+import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -39,13 +29,15 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class EntityObsidianBoat extends Entity
-{
-    private static final DataParameter<Integer> TIME_SINCE_HIT = EntityDataManager.<Integer>createKey(EntityObsidianBoat.class, DataSerializers.VARINT);
-    private static final DataParameter<Integer> FORWARD_DIRECTION = EntityDataManager.<Integer>createKey(EntityObsidianBoat.class, DataSerializers.VARINT);
-    private static final DataParameter<Float> DAMAGE_TAKEN = EntityDataManager.<Float>createKey(EntityObsidianBoat.class, DataSerializers.FLOAT);
-    private static final DataParameter<Integer> BOAT_TYPE = EntityDataManager.<Integer>createKey(EntityObsidianBoat.class, DataSerializers.VARINT);
-    private static final DataParameter<Boolean>[] DATA_ID_PADDLE = new DataParameter[] {EntityDataManager.createKey(EntityObsidianBoat.class, DataSerializers.BOOLEAN), EntityDataManager.createKey(EntityObsidianBoat.class, DataSerializers.BOOLEAN)};
+import javax.annotation.Nullable;
+import java.util.List;
+
+public class EntityObsidianBoat extends Entity {
+    private static final DataParameter<Integer> TIME_SINCE_HIT = EntityDataManager.createKey(EntityObsidianBoat.class, DataSerializers.VARINT);
+    private static final DataParameter<Integer> FORWARD_DIRECTION = EntityDataManager.createKey(EntityObsidianBoat.class, DataSerializers.VARINT);
+    private static final DataParameter<Float> DAMAGE_TAKEN = EntityDataManager.createKey(EntityObsidianBoat.class, DataSerializers.FLOAT);
+    private static final DataParameter<Integer> BOAT_TYPE = EntityDataManager.createKey(EntityObsidianBoat.class, DataSerializers.VARINT);
+    private static final DataParameter<Boolean>[] DATA_ID_PADDLE = new DataParameter[]{EntityDataManager.createKey(EntityObsidianBoat.class, DataSerializers.BOOLEAN), EntityDataManager.createKey(EntityObsidianBoat.class, DataSerializers.BOOLEAN)};
     private final float[] paddlePositions;
     private float momentum;
     private float outOfControlTicks;
@@ -130,17 +122,15 @@ public class EntityObsidianBoat extends Entity
     public boolean attackEntityFrom(DamageSource source, float amount) {
         if (this.isEntityInvulnerable(source)) {
             return false;
-        }
-        else if (!this.world.isRemote && !this.isDead) {
+        } else if (!this.world.isRemote && !this.isDead) {
             if (source instanceof EntityDamageSourceIndirect && source.getTrueSource() != null && this.isPassenger(source.getTrueSource())) {
                 return false;
-            }
-            else {
+            } else {
                 this.setForwardDirection(-this.getForwardDirection());
                 this.setTimeSinceHit(10);
                 this.setDamageTaken(this.getDamageTaken() + amount * 10.0F);
                 this.markVelocityChanged();
-                boolean flag = source.getTrueSource() instanceof EntityPlayer && ((EntityPlayer)source.getTrueSource()).capabilities.isCreativeMode;
+                boolean flag = source.getTrueSource() instanceof EntityPlayer && ((EntityPlayer) source.getTrueSource()).capabilities.isCreativeMode;
 
                 if (flag || this.getDamageTaken() > 40.0F) {
                     if (!flag && this.world.getGameRules().getBoolean("doEntityDrops")) {
@@ -152,8 +142,7 @@ public class EntityObsidianBoat extends Entity
 
                 return true;
             }
-        }
-        else {
+        } else {
             return true;
         }
     }
@@ -164,8 +153,7 @@ public class EntityObsidianBoat extends Entity
             if (entityIn.getEntityBoundingBox().minY < this.getEntityBoundingBox().maxY) {
                 super.applyEntityCollision(entityIn);
             }
-        }
-        else if (entityIn.getEntityBoundingBox().minY <= this.getEntityBoundingBox().minY) {
+        } else if (entityIn.getEntityBoundingBox().minY <= this.getEntityBoundingBox().minY) {
             super.applyEntityCollision(entityIn);
         }
     }
@@ -207,8 +195,8 @@ public class EntityObsidianBoat extends Entity
         this.lerpX = x;
         this.lerpY = y;
         this.lerpZ = z;
-        this.lerpYaw = (double)yaw;
-        this.lerpPitch = (double)pitch;
+        this.lerpYaw = yaw;
+        this.lerpPitch = pitch;
         this.lerpSteps = 10;
     }
 
@@ -224,8 +212,7 @@ public class EntityObsidianBoat extends Entity
 
         if (this.status != EntityObsidianBoat.Status.UNDER_LAVA && this.status != EntityObsidianBoat.Status.UNDER_FLOWING_LAVA) {
             this.outOfControlTicks = 0.0F;
-        }
-        else {
+        } else {
             ++this.outOfControlTicks;
         }
 
@@ -260,9 +247,7 @@ public class EntityObsidianBoat extends Entity
             }
 
             this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
-        }
-        
-        else {
+        } else {
             this.motionX = 0.0D;
             this.motionY = 0.0D;
             this.motionZ = 0.0D;
@@ -270,20 +255,19 @@ public class EntityObsidianBoat extends Entity
 
         for (int i = 0; i <= 1; ++i) {
             if (this.getPaddleState(i)) {
-                if (!this.isSilent() && (double)(this.paddlePositions[i] % ((float)Math.PI * 2F)) <= (Math.PI / 4D) && ((double)this.paddlePositions[i] + 0.39269909262657166D) % (Math.PI * 2D) >= (Math.PI / 4D)) {
+                if (!this.isSilent() && (double) (this.paddlePositions[i] % ((float) Math.PI * 2F)) <= (Math.PI / 4D) && ((double) this.paddlePositions[i] + 0.39269909262657166D) % (Math.PI * 2D) >= (Math.PI / 4D)) {
                     SoundEvent soundevent = this.getPaddleSound();
 
                     if (soundevent != null) {
                         Vec3d vec3d = this.getLook(1.0F);
                         double d0 = i == 1 ? -vec3d.z : vec3d.z;
                         double d1 = i == 1 ? vec3d.x : -vec3d.x;
-                        this.world.playSound((EntityPlayer)null, this.posX + d0, this.posY, this.posZ + d1, soundevent, this.getSoundCategory(), 1.0F, 0.8F + 0.4F * this.rand.nextFloat());
+                        this.world.playSound(null, this.posX + d0, this.posY, this.posZ + d1, soundevent, this.getSoundCategory(), 1.0F, 0.8F + 0.4F * this.rand.nextFloat());
                     }
                 }
 
-                this.paddlePositions[i] = (float)((double)this.paddlePositions[i] + 0.39269909262657166D);
-            }
-            else {
+                this.paddlePositions[i] = (float) ((double) this.paddlePositions[i] + 0.39269909262657166D);
+            } else {
                 this.paddlePositions[i] = 0.0F;
             }
         }
@@ -300,8 +284,7 @@ public class EntityObsidianBoat extends Entity
                 if (!entity.isPassenger(this)) {
                     if (flag && this.getPassengers().size() < 2 && !entity.isRiding() && entity.width < this.width && entity instanceof EntityLivingBase && !(entity instanceof EntityPlayer)) {
                         entity.startRiding(this);
-                    }
-                    else {
+                    } else {
                         this.applyEntityCollision(entity);
                     }
                 }
@@ -326,12 +309,12 @@ public class EntityObsidianBoat extends Entity
 
     private void tickLerp() {
         if (this.lerpSteps > 0 && !this.canPassengerSteer()) {
-            double d0 = this.posX + (this.lerpX - this.posX) / (double)this.lerpSteps;
-            double d1 = this.posY + (this.lerpY - this.posY) / (double)this.lerpSteps;
-            double d2 = this.posZ + (this.lerpZ - this.posZ) / (double)this.lerpSteps;
-            double d3 = MathHelper.wrapDegrees(this.lerpYaw - (double)this.rotationYaw);
-            this.rotationYaw = (float)((double)this.rotationYaw + d3 / (double)this.lerpSteps);
-            this.rotationPitch = (float)((double)this.rotationPitch + (this.lerpPitch - (double)this.rotationPitch) / (double)this.lerpSteps);
+            double d0 = this.posX + (this.lerpX - this.posX) / (double) this.lerpSteps;
+            double d1 = this.posY + (this.lerpY - this.posY) / (double) this.lerpSteps;
+            double d2 = this.posZ + (this.lerpZ - this.posZ) / (double) this.lerpSteps;
+            double d3 = MathHelper.wrapDegrees(this.lerpYaw - (double) this.rotationYaw);
+            this.rotationYaw = (float) ((double) this.rotationYaw + d3 / (double) this.lerpSteps);
+            this.rotationPitch = (float) ((double) this.rotationPitch + (this.lerpPitch - (double) this.rotationPitch) / (double) this.lerpSteps);
             --this.lerpSteps;
             this.setPosition(d0, d1, d2);
             this.setRotation(this.rotationYaw, this.rotationPitch);
@@ -345,7 +328,7 @@ public class EntityObsidianBoat extends Entity
 
     @SideOnly(Side.CLIENT)
     public float getRowingTime(int side, float limbSwing) {
-        return this.getPaddleState(side) ? (float)MathHelper.clampedLerp((double)this.paddlePositions[side] - 0.39269909262657166D, (double)this.paddlePositions[side], (double)limbSwing) : 0.0F;
+        return this.getPaddleState(side) ? (float) MathHelper.clampedLerp((double) this.paddlePositions[side] - 0.39269909262657166D, this.paddlePositions[side], limbSwing) : 0.0F;
     }
 
     private EntityObsidianBoat.Status getBoatStatus() {
@@ -354,18 +337,15 @@ public class EntityObsidianBoat extends Entity
         if (entityboat$status != null) {
             this.lavaLevel = this.getEntityBoundingBox().maxY;
             return entityboat$status;
-        }
-        else if (this.checkInlava()) {
+        } else if (this.checkInlava()) {
             return EntityObsidianBoat.Status.IN_LAVA;
-        }
-        else {
+        } else {
             float f = this.getBoatGlide();
 
             if (f > 0.0F) {
                 this.boatGlide = f;
                 return EntityObsidianBoat.Status.ON_LAND;
-            }
-            else {
+            } else {
                 return EntityObsidianBoat.Status.IN_AIR;
             }
         }
@@ -381,7 +361,8 @@ public class EntityObsidianBoat extends Entity
         int j1 = MathHelper.ceil(axisalignedbb.maxZ);
         BlockPos.PooledMutableBlockPos blockpos$pooledmutableblockpos = BlockPos.PooledMutableBlockPos.retain();
 
-        try { label108:
+        try {
+            label108:
 
             for (int k1 = k; k1 < l; ++k1) {
                 float f = 0.0F;
@@ -390,7 +371,7 @@ public class EntityObsidianBoat extends Entity
                 while (true) {
                     if (l1 >= j) {
                         if (f < 1.0F) {
-                            float f2 = (float)blockpos$pooledmutableblockpos.getY() + f;
+                            float f2 = (float) blockpos$pooledmutableblockpos.getY() + f;
                             return f2;
                         }
 
@@ -414,10 +395,9 @@ public class EntityObsidianBoat extends Entity
                 }
             }
 
-            float f1 = (float)(l + 1);
+            float f1 = (float) (l + 1);
             return f1;
-        }
-        finally {
+        } finally {
             blockpos$pooledmutableblockpos.release();
         }
     }
@@ -431,7 +411,7 @@ public class EntityObsidianBoat extends Entity
         int l = MathHelper.ceil(axisalignedbb1.maxY) + 1;
         int i1 = MathHelper.floor(axisalignedbb1.minZ) - 1;
         int j1 = MathHelper.ceil(axisalignedbb1.maxZ) + 1;
-        List<AxisAlignedBB> list = Lists.<AxisAlignedBB>newArrayList();
+        List<AxisAlignedBB> list = Lists.newArrayList();
         float f = 0.0F;
         int k1 = 0;
         BlockPos.PooledMutableBlockPos blockpos$pooledmutableblockpos = BlockPos.PooledMutableBlockPos.retain();
@@ -459,12 +439,11 @@ public class EntityObsidianBoat extends Entity
                     }
                 }
             }
-        }
-        finally {
+        } finally {
             blockpos$pooledmutableblockpos.release();
         }
 
-        return f / (float)k1;
+        return f / (float) k1;
     }
 
     private boolean checkInlava() {
@@ -488,14 +467,13 @@ public class EntityObsidianBoat extends Entity
 
                         if (iblockstate.getMaterial() == Material.LAVA) {
                             float f = BlockLiquid.getLiquidHeight(iblockstate, this.world, blockpos$pooledmutableblockpos);
-                            this.lavaLevel = Math.max((double)f, this.lavaLevel);
-                            flag |= axisalignedbb.minY < (double)f;
+                            this.lavaLevel = Math.max(f, this.lavaLevel);
+                            flag |= axisalignedbb.minY < (double) f;
                         }
                     }
                 }
             }
-        }
-        finally {
+        } finally {
             blockpos$pooledmutableblockpos.release();
         }
 
@@ -522,8 +500,8 @@ public class EntityObsidianBoat extends Entity
                         blockpos$pooledmutableblockpos.setPos(k1, l1, i2);
                         IBlockState iblockstate = this.world.getBlockState(blockpos$pooledmutableblockpos);
 
-                        if (iblockstate.getMaterial() == Material.LAVA && d0 < (double)BlockLiquid.getLiquidHeight(iblockstate, this.world, blockpos$pooledmutableblockpos)) {
-                            if (((Integer)iblockstate.getValue(BlockLiquid.LEVEL)).intValue() != 0) {
+                        if (iblockstate.getMaterial() == Material.LAVA && d0 < (double) BlockLiquid.getLiquidHeight(iblockstate, this.world, blockpos$pooledmutableblockpos)) {
+                            if (iblockstate.getValue(BlockLiquid.LEVEL).intValue() != 0) {
                                 EntityObsidianBoat.Status entityboat$status = EntityObsidianBoat.Status.UNDER_FLOWING_LAVA;
                                 return entityboat$status;
                             }
@@ -533,8 +511,7 @@ public class EntityObsidianBoat extends Entity
                     }
                 }
             }
-        }
-        finally {
+        } finally {
             blockpos$pooledmutableblockpos.release();
         }
 
@@ -548,29 +525,24 @@ public class EntityObsidianBoat extends Entity
         this.momentum = 0.05F;
 
         if (this.previousStatus == EntityObsidianBoat.Status.IN_AIR && this.status != EntityObsidianBoat.Status.IN_AIR && this.status != EntityObsidianBoat.Status.ON_LAND) {
-            this.lavaLevel = this.getEntityBoundingBox().minY + (double)this.height;
-            this.setPosition(this.posX, (double)(this.getlavaLevelAbove() - this.height) + 0.101D, this.posZ);
+            this.lavaLevel = this.getEntityBoundingBox().minY + (double) this.height;
+            this.setPosition(this.posX, (double) (this.getlavaLevelAbove() - this.height) + 0.101D, this.posZ);
             this.motionY = 0.0D;
             this.lastYd = 0.0D;
             this.status = EntityObsidianBoat.Status.IN_LAVA;
-        }
-        else {
+        } else {
             if (this.status == EntityObsidianBoat.Status.IN_LAVA) {
-                d2 = (this.lavaLevel - this.getEntityBoundingBox().minY) / (double)this.height;
+                d2 = (this.lavaLevel - this.getEntityBoundingBox().minY) / (double) this.height;
                 this.momentum = 0.9F;
-            }
-            else if (this.status == EntityObsidianBoat.Status.UNDER_FLOWING_LAVA) {
+            } else if (this.status == EntityObsidianBoat.Status.UNDER_FLOWING_LAVA) {
                 d1 = -7.0E-4D;
                 this.momentum = 0.9F;
-            }
-            else if (this.status == EntityObsidianBoat.Status.UNDER_LAVA) {
+            } else if (this.status == EntityObsidianBoat.Status.UNDER_LAVA) {
                 d2 = 0.009999999776482582D;
                 this.momentum = 0.45F;
-            }
-            else if (this.status == EntityObsidianBoat.Status.IN_AIR) {
+            } else if (this.status == EntityObsidianBoat.Status.IN_AIR) {
                 this.momentum = 0.9F;
-            }
-            else if (this.status == EntityObsidianBoat.Status.ON_LAND) {
+            } else if (this.status == EntityObsidianBoat.Status.ON_LAND) {
                 this.momentum = this.boatGlide;
 
                 if (this.getControllingPassenger() instanceof EntityPlayer) {
@@ -578,8 +550,8 @@ public class EntityObsidianBoat extends Entity
                 }
             }
 
-            this.motionX *= (double)this.momentum;
-            this.motionZ *= (double)this.momentum;
+            this.motionX *= this.momentum;
+            this.motionZ *= this.momentum;
             this.deltaRotation *= this.momentum;
             this.motionY += d1;
 
@@ -618,8 +590,8 @@ public class EntityObsidianBoat extends Entity
                 f -= 0.005F;
             }
 
-            this.motionX += (double)(MathHelper.sin(-this.rotationYaw * 0.017453292F) * f);
-            this.motionZ += (double)(MathHelper.cos(this.rotationYaw * 0.017453292F) * f);
+            this.motionX += MathHelper.sin(-this.rotationYaw * 0.017453292F) * f;
+            this.motionZ += MathHelper.cos(this.rotationYaw * 0.017453292F) * f;
             this.setPaddleState(this.rightInputDown && !this.leftInputDown || this.forwardInputDown, this.leftInputDown && !this.rightInputDown || this.forwardInputDown);
         }
     }
@@ -628,33 +600,32 @@ public class EntityObsidianBoat extends Entity
     public void updatePassenger(Entity passenger) {
         if (this.isPassenger(passenger)) {
             float f = 0.0F;
-            float f1 = (float)((this.isDead ? 0.009999999776482582D : this.getMountedYOffset()) + passenger.getYOffset());
+            float f1 = (float) ((this.isDead ? 0.009999999776482582D : this.getMountedYOffset()) + passenger.getYOffset());
 
             if (this.getPassengers().size() > 1) {
                 int i = this.getPassengers().indexOf(passenger);
 
                 if (i == 0) {
                     f = 0.2F;
-                }
-                else {
+                } else {
                     f = -0.6F;
                 }
 
                 if (passenger instanceof EntityAnimal) {
-                    f = (float)((double)f + 0.2D);
+                    f = (float) ((double) f + 0.2D);
                 }
             }
 
-            Vec3d vec3d = (new Vec3d((double)f, 0.0D, 0.0D)).rotateYaw(-this.rotationYaw * 0.017453292F - ((float)Math.PI / 2F));
-            passenger.setPosition(this.posX + vec3d.x, this.posY + (double)f1, this.posZ + vec3d.z);
+            Vec3d vec3d = (new Vec3d(f, 0.0D, 0.0D)).rotateYaw(-this.rotationYaw * 0.017453292F - ((float) Math.PI / 2F));
+            passenger.setPosition(this.posX + vec3d.x, this.posY + (double) f1, this.posZ + vec3d.z);
             passenger.rotationYaw += this.deltaRotation;
             passenger.setRotationYawHead(passenger.getRotationYawHead() + this.deltaRotation);
             this.applyYawToEntity(passenger);
 
             if (passenger instanceof EntityAnimal && this.getPassengers().size() > 1) {
                 int j = passenger.getEntityId() % 2 == 0 ? 90 : 270;
-                passenger.setRenderYawOffset(((EntityAnimal)passenger).renderYawOffset + (float)j);
-                passenger.setRotationYawHead(passenger.getRotationYawHead() + (float)j);
+                passenger.setRenderYawOffset(((EntityAnimal) passenger).renderYawOffset + (float) j);
+                passenger.setRotationYawHead(passenger.getRotationYawHead() + (float) j);
             }
         }
     }
@@ -690,8 +661,7 @@ public class EntityObsidianBoat extends Entity
     public boolean processInitialInteract(EntityPlayer player, EnumHand hand) {
         if (player.isSneaking()) {
             return false;
-        }
-        else {
+        } else {
             if (!this.world.isRemote && this.outOfControlTicks < 60.0F) {
                 player.startRiding(this);
             }
@@ -730,47 +700,46 @@ public class EntityObsidianBoat extends Entity
                 }
 
                 this.fallDistance = 0.0F;
-            }
-            else if (this.world.getBlockState((new BlockPos(this)).down()).getMaterial() != Material.LAVA && y < 0.0D) {
-                this.fallDistance = (float)((double)this.fallDistance - y);
+            } else if (this.world.getBlockState((new BlockPos(this)).down()).getMaterial() != Material.LAVA && y < 0.0D) {
+                this.fallDistance = (float) ((double) this.fallDistance - y);
             }
         }
     }
 
     public boolean getPaddleState(int side) {
-        return ((Boolean)this.dataManager.get(DATA_ID_PADDLE[side])).booleanValue() && this.getControllingPassenger() != null;
+        return this.dataManager.get(DATA_ID_PADDLE[side]).booleanValue() && this.getControllingPassenger() != null;
+    }
+
+    public float getDamageTaken() {
+        return this.dataManager.get(DAMAGE_TAKEN).floatValue();
     }
 
     public void setDamageTaken(float damageTaken) {
         this.dataManager.set(DAMAGE_TAKEN, Float.valueOf(damageTaken));
     }
 
-    public float getDamageTaken() {
-        return ((Float)this.dataManager.get(DAMAGE_TAKEN)).floatValue();
+    public int getTimeSinceHit() {
+        return this.dataManager.get(TIME_SINCE_HIT).intValue();
     }
 
     public void setTimeSinceHit(int timeSinceHit) {
         this.dataManager.set(TIME_SINCE_HIT, Integer.valueOf(timeSinceHit));
     }
 
-    public int getTimeSinceHit() {
-        return ((Integer)this.dataManager.get(TIME_SINCE_HIT)).intValue();
+    public int getForwardDirection() {
+        return this.dataManager.get(FORWARD_DIRECTION).intValue();
     }
 
     public void setForwardDirection(int forwardDirection) {
         this.dataManager.set(FORWARD_DIRECTION, Integer.valueOf(forwardDirection));
     }
 
-    public int getForwardDirection() {
-        return ((Integer)this.dataManager.get(FORWARD_DIRECTION)).intValue();
-    }
-    
-    public void setBoatType(EntityObsidianBoat.Type boatType) {
-        this.dataManager.set(BOAT_TYPE, Integer.valueOf(boatType.ordinal()));
+    public EntityObsidianBoat.Type getBoatType() {
+        return EntityObsidianBoat.Type.byId(this.dataManager.get(BOAT_TYPE).intValue());
     }
 
-    public EntityObsidianBoat.Type getBoatType() {
-        return EntityObsidianBoat.Type.byId(((Integer)this.dataManager.get(BOAT_TYPE)).intValue());
+    public void setBoatType(EntityObsidianBoat.Type boatType) {
+        this.dataManager.set(BOAT_TYPE, Integer.valueOf(boatType.ordinal()));
     }
 
     @Override
@@ -781,7 +750,7 @@ public class EntityObsidianBoat extends Entity
     @Nullable
     public Entity getControllingPassenger() {
         List<Entity> list = this.getPassengers();
-        return list.isEmpty() ? null : (Entity)list.get(0);
+        return list.isEmpty() ? null : list.get(0);
     }
 
     @SideOnly(Side.CLIENT)
@@ -792,15 +761,28 @@ public class EntityObsidianBoat extends Entity
         this.backInputDown = p_184442_4_;
     }
 
-    public static enum Status {
+    @Override
+    protected void addPassenger(Entity passenger) {
+        super.addPassenger(passenger);
+        if (this.canPassengerSteer() && this.lerpSteps > 0) {
+            this.lerpSteps = 0;
+            this.posX = this.lerpX;
+            this.posY = this.lerpY;
+            this.posZ = this.lerpZ;
+            this.rotationYaw = (float) this.lerpYaw;
+            this.rotationPitch = (float) this.lerpPitch;
+        }
+    }
+
+    public enum Status {
         IN_LAVA,
         UNDER_LAVA,
         UNDER_FLOWING_LAVA,
         ON_LAND,
-        IN_AIR;
+        IN_AIR
     }
 
-    public static enum Type  {
+    public enum Type {
         OAK(BlockPlanks.EnumType.OAK.getMetadata(), "oak"),
         SPRUCE(BlockPlanks.EnumType.SPRUCE.getMetadata(), "spruce"),
         BIRCH(BlockPlanks.EnumType.BIRCH.getMetadata(), "birch"),
@@ -811,26 +793,13 @@ public class EntityObsidianBoat extends Entity
         private final String name;
         private final int metadata;
 
-        private Type(int metadataIn, String nameIn) {
+        Type(int metadataIn, String nameIn) {
             this.name = nameIn;
             this.metadata = metadataIn;
         }
 
-        public String getName() {
-            return this.name;
-        }
-
-        public int getMetadata() {
-            return this.metadata;
-        }
-
-        public String toString() {
-            return this.name;
-        }
-
         public static EntityObsidianBoat.Type byId(int id) {
-            if (id < 0 || id >= values().length)
-            {
+            if (id < 0 || id >= values().length) {
                 id = 0;
             }
 
@@ -846,18 +815,17 @@ public class EntityObsidianBoat extends Entity
 
             return values()[0];
         }
-    }
 
-    @Override
-    protected void addPassenger(Entity passenger) {
-        super.addPassenger(passenger);
-        if(this.canPassengerSteer() && this.lerpSteps > 0) {
-            this.lerpSteps = 0;
-            this.posX = this.lerpX;
-            this.posY = this.lerpY;
-            this.posZ = this.lerpZ;
-            this.rotationYaw = (float)this.lerpYaw;
-            this.rotationPitch = (float)this.lerpPitch;
+        public String getName() {
+            return this.name;
+        }
+
+        public int getMetadata() {
+            return this.metadata;
+        }
+
+        public String toString() {
+            return this.name;
         }
     }
 }

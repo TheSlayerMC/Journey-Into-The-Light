@@ -12,15 +12,13 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
 
-public class ModelDarkfish extends ModelBase
-{
+public class ModelDarkfish extends ModelBase {
+    private static final String __OBFID = "CL_00002628";
     private ModelRenderer lavasnakeBody;
     private ModelRenderer lavasnakeEye;
     private ModelRenderer[] lavasnakeTail;
-    private static final String __OBFID = "CL_00002628";
 
-    public ModelDarkfish()
-    {
+    public ModelDarkfish() {
         this.textureWidth = 64;
         this.textureHeight = 64;
         this.lavasnakeBody = new ModelRenderer(this);
@@ -48,8 +46,7 @@ public class ModelDarkfish extends ModelBase
         this.lavasnakeTail[1].addChild(this.lavasnakeTail[2]);
     }
 
-    public int func_178706_a()
-    {
+    public int func_178706_a() {
         return 54;
     }
 
@@ -57,8 +54,7 @@ public class ModelDarkfish extends ModelBase
      * Sets the models various rotation angles then renders the model.
      */
     @Override
-	public void render(Entity p_78088_1_, float p_78088_2_, float p_78088_3_, float p_78088_4_, float p_78088_5_, float p_78088_6_, float p_78088_7_)
-    {
+    public void render(Entity p_78088_1_, float p_78088_2_, float p_78088_3_, float p_78088_4_, float p_78088_5_, float p_78088_6_, float p_78088_7_) {
         this.setRotationAngles(p_78088_2_, p_78088_3_, p_78088_4_, p_78088_5_, p_78088_6_, p_78088_7_, p_78088_1_);
         this.lavasnakeBody.render(p_78088_7_);
     }
@@ -69,21 +65,19 @@ public class ModelDarkfish extends ModelBase
      * "far" arms and legs can swing at most.
      */
     @Override
-	public void setRotationAngles(float par1, float par2, float par3, float par4, float par5, float par6, Entity par7Entity)
-    {
-        EntityLavasnake entitylavasnake = (EntityLavasnake)par7Entity;
+    public void setRotationAngles(float par1, float par2, float par3, float par4, float par5, float par6, Entity par7Entity) {
+        EntityLavasnake entitylavasnake = (EntityLavasnake) par7Entity;
         float f6 = par3 - entitylavasnake.ticksExisted;
-        this.lavasnakeBody.rotateAngleY = par4 / (180F / (float)Math.PI);
-        this.lavasnakeBody.rotateAngleX = par5 / (180F / (float)Math.PI);
-        float[] afloat = new float[] {1.75F, 0.25F, 0.0F, 0.0F, 0.5F, 0.5F, 0.5F, 0.5F, 1.25F, 0.75F, 0.0F, 0.0F};
-        float[] afloat1 = new float[] {0.0F, 0.0F, 0.0F, 0.0F, 0.25F, 1.75F, 1.25F, 0.75F, 0.0F, 0.0F, 0.0F, 0.0F};
-        float[] afloat2 = new float[] {0.0F, 0.0F, 0.25F, 1.75F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.75F, 1.25F};
-        float[] afloat3 = new float[] {0.0F, 0.0F, 8.0F, -8.0F, -8.0F, 8.0F, 8.0F, -8.0F, 0.0F, 0.0F, 8.0F, -8.0F};
-        float[] afloat4 = new float[] { -8.0F, -8.0F, -8.0F, -8.0F, 0.0F, 0.0F, 0.0F, 0.0F, 8.0F, 8.0F, 8.0F, 8.0F};
-        float[] afloat5 = new float[] {8.0F, -8.0F, 0.0F, 0.0F, -8.0F, -8.0F, 8.0F, 8.0F, 8.0F, -8.0F, 0.0F, 0.0F};
+        this.lavasnakeBody.rotateAngleY = par4 / (180F / (float) Math.PI);
+        this.lavasnakeBody.rotateAngleX = par5 / (180F / (float) Math.PI);
+        float[] afloat = new float[]{1.75F, 0.25F, 0.0F, 0.0F, 0.5F, 0.5F, 0.5F, 0.5F, 1.25F, 0.75F, 0.0F, 0.0F};
+        float[] afloat1 = new float[]{0.0F, 0.0F, 0.0F, 0.0F, 0.25F, 1.75F, 1.25F, 0.75F, 0.0F, 0.0F, 0.0F, 0.0F};
+        float[] afloat2 = new float[]{0.0F, 0.0F, 0.25F, 1.75F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.75F, 1.25F};
+        float[] afloat3 = new float[]{0.0F, 0.0F, 8.0F, -8.0F, -8.0F, 8.0F, 8.0F, -8.0F, 0.0F, 0.0F, 8.0F, -8.0F};
+        float[] afloat4 = new float[]{-8.0F, -8.0F, -8.0F, -8.0F, 0.0F, 0.0F, 0.0F, 0.0F, 8.0F, 8.0F, 8.0F, 8.0F};
+        float[] afloat5 = new float[]{8.0F, -8.0F, 0.0F, 0.0F, -8.0F, -8.0F, 8.0F, 8.0F, 8.0F, -8.0F, 0.0F, 0.0F};
 
-        for (int i = 0; i < 12; ++i)
-        {
+        for (int i = 0; i < 12; ++i) {
         }
 
         this.lavasnakeEye.rotationPointZ = -8.25F;
@@ -91,12 +85,12 @@ public class ModelDarkfish extends ModelBase
 
         //this.lavasnakeEye.showModel = true;
         //float f8 = entitylavasnake.func_175471_a(f6);
-        this.lavasnakeTail[0].rotateAngleY = MathHelper.sin(par3) * (float)Math.PI * 0.01F;
-        this.lavasnakeTail[1].rotateAngleY = MathHelper.sin(par3) * (float)Math.PI * 0.1F;
+        this.lavasnakeTail[0].rotateAngleY = MathHelper.sin(par3) * (float) Math.PI * 0.01F;
+        this.lavasnakeTail[1].rotateAngleY = MathHelper.sin(par3) * (float) Math.PI * 0.1F;
         this.lavasnakeTail[1].rotationPointX = -1.5F;
         this.lavasnakeTail[1].rotationPointY = 0.5F;
         this.lavasnakeTail[1].rotationPointZ = 14.0F;
-        this.lavasnakeTail[2].rotateAngleY = MathHelper.sin(par3) * (float)Math.PI * 0.1F;
+        this.lavasnakeTail[2].rotateAngleY = MathHelper.sin(par3) * (float) Math.PI * 0.1F;
         this.lavasnakeTail[2].rotationPointX = 0.5F;
         this.lavasnakeTail[2].rotationPointY = 0.5F;
         this.lavasnakeTail[2].rotationPointZ = 6.0F;

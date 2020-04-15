@@ -2,12 +2,11 @@ package net.journey.client.render.model.mob.senterian;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
 
 public class ModelSentryLord extends ModelBase {
-	
+
     public ModelRenderer frontleg1;
     public ModelRenderer backleg1;
     public ModelRenderer head;
@@ -41,25 +40,25 @@ public class ModelSentryLord extends ModelBase {
     }
 
     @Override
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) { 
-    	this.head.render(f5);
+    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
+        this.head.render(f5);
         this.torso.render(f5);
         this.backleg2.render(f5);
         this.frontleg1.render(f5);
         this.frontleg2.render(f5);
         this.backleg1.render(f5);
     }
-    
+
     @Override
-	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity) {
-		//this.head.rotateAngleY = f4 / (180F / (float)Math.PI);
-		//this.head.rotateAngleX = f5 / (180F / (float)Math.PI);
-		this.head.rotateAngleY = f2/30;
-		this.frontleg1.rotateAngleX = MathHelper.cos(f * 0.0662F) * 1.4F * f1;
-		this.backleg1.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * 1.4F * f1;
-		this.frontleg2.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * 1.4F * f1;
-		this.backleg2.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
-		
+    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity) {
+        //this.head.rotateAngleY = f4 / (180F / (float)Math.PI);
+        //this.head.rotateAngleX = f5 / (180F / (float)Math.PI);
+        this.head.rotateAngleY = f2 / 30;
+        this.frontleg1.rotateAngleX = MathHelper.cos(f * 0.0662F) * 1.4F * f1;
+        this.backleg1.rotateAngleX = MathHelper.cos(f * 0.6662F + (float) Math.PI) * 1.4F * f1;
+        this.frontleg2.rotateAngleX = MathHelper.cos(f * 0.6662F + (float) Math.PI) * 1.4F * f1;
+        this.backleg2.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
+
     }
 
     public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {

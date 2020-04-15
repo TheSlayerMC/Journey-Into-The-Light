@@ -1,21 +1,12 @@
 package net.journey.items;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.List;
-
-import javax.annotation.Nullable;
-
-import net.journey.JITL;
 import net.journey.JourneyItems;
 import net.journey.JourneyTabs;
 import net.journey.client.ItemDescription;
 import net.journey.entity.projectile.EntityEssenceArrow;
-import net.journey.util.LangHelper;
 import net.journey.util.LangRegistry;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -24,144 +15,154 @@ import net.minecraft.init.Enchantments;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumAction;
-import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemArrow;
 import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.SlayerAPI;
-import net.slayer.api.item.ItemMod;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class ItemModBow extends ItemBow {
 
-	private Class<? extends EntityArrow> arrowClass;
-	public Item arrowItem;
-	public int dur = 18;
-	protected int damage;
-	protected int uses;
-	public String ability;
-	protected String name;
+    public Item arrowItem;
+    public int dur = 18;
+    public String ability;
+    protected int damage;
+    protected int uses;
+    protected String name;
+    protected EntityEssenceArrow.BowEffects effect;
+    private Class<? extends EntityArrow> arrowClass;
 
-	protected EntityEssenceArrow.BowEffects effect;
+    public ItemModBow(String name, String properName, int uses, int damage, String ability) {
+        super();
+        this.maxStackSize = 1;
+        this.arrowItem = JourneyItems.essenceArrow;
+        this.arrowClass = EntityEssenceArrow.class;
+        this.damage = damage;
+        this.uses = uses;
+        this.setMaxDamage(uses);
+        this.setFull3D();
+        this.ability = ability;
+        this.name = name;
+        LangRegistry.addItem(name.toLowerCase(), properName);
+        setTranslationKey(name.toLowerCase());
+        setCreativeTab(JourneyTabs.weapons);
+        JourneyItems.itemNames.add(SlayerAPI.PREFIX + name.toLowerCase());
+        JourneyItems.items.add(this);
+        setRegistryName(SlayerAPI.MOD_ID, name.toLowerCase());
+        addPropertyOverrides();
+    }
 
-	public ItemModBow(String name, String properName, int uses, int damage, String ability) {
-		super();
-		this.maxStackSize = 1;
-		this.arrowItem = JourneyItems.essenceArrow;
-		this.arrowClass = EntityEssenceArrow.class;
-		this.damage = damage;
-		this.uses = uses;
-		this.setMaxDamage(uses);
-		this.setFull3D();
-		this.ability = ability;
-		this.name = name;
-		LangRegistry.addItem(name.toLowerCase(), properName);
-		setTranslationKey(name.toLowerCase());
-		setCreativeTab(JourneyTabs.weapons);
-		JourneyItems.itemNames.add(SlayerAPI.PREFIX + name.toLowerCase());
-		JourneyItems.items.add(this);
-		setRegistryName(SlayerAPI.MOD_ID, name.toLowerCase());
-		addPropertyOverrides();
-	}
+    public ItemModBow(String name, String f, int uses, int damage, Item arrow, int duration, String ability, Class<? extends EntityArrow> arrowEnt) {
+        super();
+        this.maxStackSize = 1;
+        this.dur = duration;
+        this.arrowClass = arrowEnt;
+        this.arrowItem = arrow;
+        this.damage = damage;
+        this.uses = uses;
+        this.setMaxDamage(uses);
+        this.setFull3D();
+        this.ability = ability;
+        this.name = name;
+        LangRegistry.addItem(name.toLowerCase(), f);
+        setTranslationKey(name.toLowerCase());
+        setCreativeTab(JourneyTabs.weapons);
+        JourneyItems.itemNames.add(SlayerAPI.PREFIX + name.toLowerCase());
+        JourneyItems.items.add(this);
+        setRegistryName(SlayerAPI.MOD_ID, name.toLowerCase());
+        addPropertyOverrides();
+    }
 
-	public ItemModBow(String name, String f, int uses, int damage, Item arrow, int duration, String ability, Class<? extends EntityArrow> arrowEnt) {
-		super();
-		this.maxStackSize = 1;
-		this.dur = duration;
-		this.arrowClass = arrowEnt;
-		this.arrowItem = arrow;
-		this.damage = damage;
-		this.uses = uses;
-		this.setMaxDamage(uses);
-		this.setFull3D();
-		this.ability = ability;
-		this.name = name;
-		LangRegistry.addItem(name.toLowerCase(), f);
-		setTranslationKey(name.toLowerCase());
-		setCreativeTab(JourneyTabs.weapons);
-		JourneyItems.itemNames.add(SlayerAPI.PREFIX + name.toLowerCase());
-		JourneyItems.items.add(this);
-		setRegistryName(SlayerAPI.MOD_ID, name.toLowerCase());
-		addPropertyOverrides();
-	}
-	
-	public ItemModBow(String name, String f, int uses, int damage, Item arrow, String ability, Class<? extends EntityArrow> arrowEnt) {
-		super();
-		this.maxStackSize = 1;
-		this.ability = ability;
-		this.arrowClass = arrowEnt;
-		this.arrowItem = arrow;
-		this.damage = damage;
-		this.uses = uses;
-		this.setMaxDamage(uses);
-		this.setFull3D();
-		this.name = name;
-		LangRegistry.addItem(name.toLowerCase(), f);
-		setTranslationKey(name.toLowerCase());
-		setCreativeTab(JourneyTabs.weapons);
-		JourneyItems.itemNames.add(SlayerAPI.PREFIX + name.toLowerCase());
-		JourneyItems.items.add(this);
-		setRegistryName(SlayerAPI.MOD_ID, name.toLowerCase());
-		addPropertyOverrides();
-	}
-	
-	public ItemModBow(String name, String finalName){
-		this(name, finalName, JourneyTabs.weapons);
-		this.name = name;
-	}
+    public ItemModBow(String name, String f, int uses, int damage, Item arrow, String ability, Class<? extends EntityArrow> arrowEnt) {
+        super();
+        this.maxStackSize = 1;
+        this.ability = ability;
+        this.arrowClass = arrowEnt;
+        this.arrowItem = arrow;
+        this.damage = damage;
+        this.uses = uses;
+        this.setMaxDamage(uses);
+        this.setFull3D();
+        this.name = name;
+        LangRegistry.addItem(name.toLowerCase(), f);
+        setTranslationKey(name.toLowerCase());
+        setCreativeTab(JourneyTabs.weapons);
+        JourneyItems.itemNames.add(SlayerAPI.PREFIX + name.toLowerCase());
+        JourneyItems.items.add(this);
+        setRegistryName(SlayerAPI.MOD_ID, name.toLowerCase());
+        addPropertyOverrides();
+    }
 
-	public ItemModBow(String name, String finalName, CreativeTabs tab){
-		this.name = name;
-		LangRegistry.addItem(name.toLowerCase(), finalName);
-		setTranslationKey(name.toLowerCase());
-		setCreativeTab(tab);
-		JourneyItems.itemNames.add(SlayerAPI.PREFIX + name.toLowerCase());
-		JourneyItems.items.add(this);
-		setRegistryName(SlayerAPI.MOD_ID, name.toLowerCase());
-	}
+    public ItemModBow(String name, String finalName) {
+        this(name, finalName, JourneyTabs.weapons);
+        this.name = name;
+    }
 
-	public void addPropertyOverrides() { }
+    public ItemModBow(String name, String finalName, CreativeTabs tab) {
+        this.name = name;
+        LangRegistry.addItem(name.toLowerCase(), finalName);
+        setTranslationKey(name.toLowerCase());
+        setCreativeTab(tab);
+        JourneyItems.itemNames.add(SlayerAPI.PREFIX + name.toLowerCase());
+        JourneyItems.items.add(this);
+        setRegistryName(SlayerAPI.MOD_ID, name.toLowerCase());
+    }
 
-	public ItemStack findAmmo(EntityPlayer player) {
-		if (this.isArrow(player.getHeldItem(EnumHand.OFF_HAND))) {
-			return player.getHeldItem(EnumHand.OFF_HAND);
-		} else if (this.isArrow(player.getHeldItem(EnumHand.MAIN_HAND))) {
-			return player.getHeldItem(EnumHand.MAIN_HAND);
-		} else {
-			for (int i = 0; i < player.inventory.getSizeInventory(); ++i) {
-				ItemStack itemstack = player.inventory.getStackInSlot(i);
+    public static float getArrowVelocity(int charge) {
+        float f = (float) charge / 20.0F;
+        f = (f * f + f * 2.0F) / 2.0F;
 
-				if (this.isArrow(itemstack)) {
-					return itemstack;
-				}
-			}
+        if (f > 1.0F) {
+            f = 1.0F;
+        }
 
-			return ItemStack.EMPTY;
-		}
-	}
+        return f;
+    }
 
-    protected boolean isArrow(ItemStack stack) {return stack.getItem() instanceof ItemEssenceArrow;}
-    
-	@Override
-	public void onPlayerStoppedUsing(ItemStack stack, World worldIn, EntityLivingBase entityLiving, int timeLeft) {
+    public void addPropertyOverrides() {
+    }
 
-		if (entityLiving instanceof EntityPlayer) {
-			EntityPlayer entityplayer = (EntityPlayer)entityLiving;
-			boolean flag = entityplayer.capabilities.isCreativeMode || EnchantmentHelper.getEnchantmentLevel(Enchantments.INFINITY, stack) > 0;
-			ItemStack itemstack = this.findAmmo(entityplayer);
+    public ItemStack findAmmo(EntityPlayer player) {
+        if (this.isArrow(player.getHeldItem(EnumHand.OFF_HAND))) {
+            return player.getHeldItem(EnumHand.OFF_HAND);
+        } else if (this.isArrow(player.getHeldItem(EnumHand.MAIN_HAND))) {
+            return player.getHeldItem(EnumHand.MAIN_HAND);
+        } else {
+            for (int i = 0; i < player.inventory.getSizeInventory(); ++i) {
+                ItemStack itemstack = player.inventory.getStackInSlot(i);
 
-			int i = this.getMaxItemUseDuration(stack) - timeLeft;
-			i = net.minecraftforge.event.ForgeEventFactory.onArrowLoose(stack, worldIn, entityplayer, i, !itemstack.isEmpty() || flag);
-			if (i < 0) return;
+                if (this.isArrow(itemstack)) {
+                    return itemstack;
+                }
+            }
+
+            return ItemStack.EMPTY;
+        }
+    }
+
+    protected boolean isArrow(ItemStack stack) {
+        return stack.getItem() instanceof ItemEssenceArrow;
+    }
+
+    @Override
+    public void onPlayerStoppedUsing(ItemStack stack, World worldIn, EntityLivingBase entityLiving, int timeLeft) {
+
+        if (entityLiving instanceof EntityPlayer) {
+            EntityPlayer entityplayer = (EntityPlayer) entityLiving;
+            boolean flag = entityplayer.capabilities.isCreativeMode || EnchantmentHelper.getEnchantmentLevel(Enchantments.INFINITY, stack) > 0;
+            ItemStack itemstack = this.findAmmo(entityplayer);
+
+            int i = this.getMaxItemUseDuration(stack) - timeLeft;
+            i = net.minecraftforge.event.ForgeEventFactory.onArrowLoose(stack, worldIn, entityplayer, i, !itemstack.isEmpty() || flag);
+            if (i < 0) return;
 
 			/*
 			EntityPlayer entityplayer = (EntityPlayer)entityLiving;
@@ -172,125 +173,114 @@ public class ItemModBow extends ItemBow {
 			if (f1 > 1.0F) f1 = 1.0F;
 			*/
 
-			if (!itemstack.isEmpty() || flag) {
-				if (itemstack.isEmpty()) {
-					itemstack = new ItemStack(arrowItem);
-				}
+            if (!itemstack.isEmpty() || flag) {
+                if (itemstack.isEmpty()) {
+                    itemstack = new ItemStack(arrowItem);
+                }
 
-				float f = getArrowVelocity(i);
-				if ((double) f >= 0.1D) {
+                float f = getArrowVelocity(i);
+                if ((double) f >= 0.1D) {
 
-					if (!worldIn.isRemote) {
-						EntityArrow entityarrow = null;
-						try {
-							entityarrow = new EntityEssenceArrow(worldIn, entityplayer, effect);
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
+                    if (!worldIn.isRemote) {
+                        EntityArrow entityarrow = null;
+                        try {
+                            entityarrow = new EntityEssenceArrow(worldIn, entityplayer, effect);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
 
-						entityarrow.shoot(entityplayer, entityplayer.rotationPitch, entityplayer.rotationYaw, 0.0F,
-								f * 3.0F, 1.0F);
+                        entityarrow.shoot(entityplayer, entityplayer.rotationPitch, entityplayer.rotationYaw, 0.0F,
+                                f * 3.0F, 1.0F);
 
-						if (f == 1.0F) {
-							entityarrow.setIsCritical(true);
-						}
+                        if (f == 1.0F) {
+                            entityarrow.setIsCritical(true);
+                        }
 
-						int j = EnchantmentHelper.getEnchantmentLevel(Enchantments.POWER, stack);
+                        int j = EnchantmentHelper.getEnchantmentLevel(Enchantments.POWER, stack);
 
-						int k = EnchantmentHelper.getEnchantmentLevel(Enchantments.PUNCH, stack);
+                        int k = EnchantmentHelper.getEnchantmentLevel(Enchantments.PUNCH, stack);
 
-						if (k > 0) {
-							entityarrow.setKnockbackStrength(k);
-						}
+                        if (k > 0) {
+                            entityarrow.setKnockbackStrength(k);
+                        }
 
-						if (EnchantmentHelper.getEnchantmentLevel(Enchantments.FLAME, stack) > 0) {
-							entityarrow.setFire(100);
-						}
-						
-						entityarrow.setDamage(this.damage);
+                        if (EnchantmentHelper.getEnchantmentLevel(Enchantments.FLAME, stack) > 0) {
+                            entityarrow.setFire(100);
+                        }
 
-						stack.damageItem(1, entityplayer);
+                        entityarrow.setDamage(this.damage);
 
-						if (flag
-								|| entityplayer.capabilities.isCreativeMode && (itemstack.getItem() == Items.SPECTRAL_ARROW
-								|| itemstack.getItem() == Items.TIPPED_ARROW)) {
-							entityarrow.pickupStatus = EntityArrow.PickupStatus.CREATIVE_ONLY;
-						}
+                        stack.damageItem(1, entityplayer);
 
-						worldIn.spawnEntity(entityarrow);
-					}
-				}
+                        if (flag
+                                || entityplayer.capabilities.isCreativeMode && (itemstack.getItem() == Items.SPECTRAL_ARROW
+                                || itemstack.getItem() == Items.TIPPED_ARROW)) {
+                            entityarrow.pickupStatus = EntityArrow.PickupStatus.CREATIVE_ONLY;
+                        }
 
-				worldIn.playSound((EntityPlayer) null, entityplayer.posX, entityplayer.posY, entityplayer.posZ,
-						SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 1.0F,
-						1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
+                        worldIn.spawnEntity(entityarrow);
+                    }
+                }
 
-				if (!flag && !entityplayer.capabilities.isCreativeMode) {
-					itemstack.shrink(1);
+                worldIn.playSound(null, entityplayer.posX, entityplayer.posY, entityplayer.posZ,
+                        SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 1.0F,
+                        1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
 
-					if (itemstack.isEmpty()) {
-						entityplayer.inventory.deleteStack(itemstack);
-					}
-				}
+                if (!flag && !entityplayer.capabilities.isCreativeMode) {
+                    itemstack.shrink(1);
 
-				entityplayer.addStat(StatList.getObjectUseStats(this));
-			}
-		}
-	}
+                    if (itemstack.isEmpty()) {
+                        entityplayer.inventory.deleteStack(itemstack);
+                    }
+                }
 
-	public static float getArrowVelocity(int charge) {
-		float f = (float) charge / 20.0F;
-		f = (f * f + f * 2.0F) / 2.0F;
-
-		if (f > 1.0F) {
-			f = 1.0F;
-		}
-
-		return f;
-	}
+                entityplayer.addStat(StatList.getObjectUseStats(this));
+            }
+        }
+    }
 
 	/* @Override
 	public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityPlayer playerIn) {
 		return stack;
 	} */
 
-	@Override
-	public int getMaxItemUseDuration(ItemStack stack) {
-		return 72000;
-	}
+    @Override
+    public int getMaxItemUseDuration(ItemStack stack) {
+        return 72000;
+    }
 
-	@Override
-	public EnumAction getItemUseAction(ItemStack stack) {
-		return EnumAction.BOW;
-	}
-	
-	@Override
+    @Override
+    public EnumAction getItemUseAction(ItemStack stack) {
+        return EnumAction.BOW;
+    }
+
+    @Override
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> list, ITooltipFlag flagIn) {
-		ItemDescription.addInformation(stack, list);
-		//list.add("Ammo: " + StatCollector.translateToLocal(arrowItem.getTranslationKey() + ".name"));
-		list.add("Damage: " +SlayerAPI.Colour.GOLD + damage + " - " + SlayerAPI.Colour.GOLD + damage*4);
-		list.add("Ability: " + SlayerAPI.Colour.GOLD + ability);
-		list.add("Uses remaining: " + SlayerAPI.Colour.GRAY + uses);
-	}
+        ItemDescription.addInformation(stack, list);
+        //list.add("Ammo: " + StatCollector.translateToLocal(arrowItem.getTranslationKey() + ".name"));
+        list.add("Damage: " + SlayerAPI.Colour.GOLD + damage + " - " + SlayerAPI.Colour.GOLD + damage * 4);
+        list.add("Ability: " + SlayerAPI.Colour.GOLD + ability);
+        list.add("Uses remaining: " + SlayerAPI.Colour.GRAY + uses);
+    }
 
-	@Override
-	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-		ItemStack itemstack = playerIn.getHeldItem(handIn);
-		boolean flag = !this.findAmmo(playerIn).isEmpty();
+    @Override
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
+        ItemStack itemstack = playerIn.getHeldItem(handIn);
+        boolean flag = !this.findAmmo(playerIn).isEmpty();
 
-		ActionResult<ItemStack> ret = net.minecraftforge.event.ForgeEventFactory.onArrowNock(itemstack, worldIn,
-				playerIn, handIn, flag);
-		if (ret != null)
-			return ret;
+        ActionResult<ItemStack> ret = net.minecraftforge.event.ForgeEventFactory.onArrowNock(itemstack, worldIn,
+                playerIn, handIn, flag);
+        if (ret != null)
+            return ret;
 
-		if (!playerIn.capabilities.isCreativeMode && !flag) {
-			return flag ? new ActionResult(EnumActionResult.PASS, itemstack)
-					: new ActionResult(EnumActionResult.FAIL, itemstack);
-		} else {
-			playerIn.setActiveHand(handIn);
-			return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
-		}
-	}
+        if (!playerIn.capabilities.isCreativeMode && !flag) {
+            return flag ? new ActionResult(EnumActionResult.PASS, itemstack)
+                    : new ActionResult(EnumActionResult.FAIL, itemstack);
+        } else {
+            playerIn.setActiveHand(handIn);
+            return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
+        }
+    }
 
 	/*@Override
 	@SideOnly(Side.CLIENT)
@@ -304,10 +294,10 @@ public class ItemModBow extends ItemBow {
 		return null;
 	} */
 
-	@Override
-	public int getItemEnchantability() {
-		return 1;
-	}
+    @Override
+    public int getItemEnchantability() {
+        return 1;
+    }
 	
 	/*@Override
 	public void registerItemModel() {

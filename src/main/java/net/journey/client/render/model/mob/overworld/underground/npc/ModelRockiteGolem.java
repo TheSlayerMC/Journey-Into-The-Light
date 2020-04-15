@@ -6,7 +6,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
 
 public class ModelRockiteGolem extends ModelBase {
-	
+
     public ModelRenderer body;
     public ModelRenderer lowerBody;
     public ModelRenderer arm1;
@@ -43,7 +43,7 @@ public class ModelRockiteGolem extends ModelBase {
     }
 
     @Override
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) { 
+    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
         this.arm1.render(f5);
         this.leg2.render(f5);
         this.arm2.render(f5);
@@ -58,14 +58,14 @@ public class ModelRockiteGolem extends ModelBase {
         modelRenderer.rotateAngleY = y;
         modelRenderer.rotateAngleZ = z;
     }
-    
+
     @Override
-	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity) {
-		this.head.rotateAngleY = f4 / (180F / (float)Math.PI);
-		this.head.rotateAngleX = f5 / (180F / (float)Math.PI);
-		this.leg1.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * 2.0F * f1 * 0.5F;
-		this.leg2.rotateAngleX = MathHelper.cos(f * 0.6662F) * 2.0F * f1 * 0.5F;
-		this.arm1.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
-		this.arm2.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * 1.4F * f1;
+    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity) {
+        this.head.rotateAngleY = f4 / (180F / (float) Math.PI);
+        this.head.rotateAngleX = f5 / (180F / (float) Math.PI);
+        this.leg1.rotateAngleX = MathHelper.cos(f * 0.6662F + (float) Math.PI) * 2.0F * f1 * 0.5F;
+        this.leg2.rotateAngleX = MathHelper.cos(f * 0.6662F) * 2.0F * f1 * 0.5F;
+        this.arm1.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
+        this.arm2.rotateAngleX = MathHelper.cos(f * 0.6662F + (float) Math.PI) * 1.4F * f1;
     }
 }

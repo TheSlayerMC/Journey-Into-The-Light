@@ -1,79 +1,74 @@
 package net.journey.entity.mob.terrania.mob;
 
-import java.util.Random;
-
 import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
-import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAIWanderAvoidWater;
 import net.minecraft.entity.ai.EntityMoveHelper;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityModFlying;
 
+import java.util.Random;
+
 public class EntityTerralight extends EntityModFlying {
 
-	public EntityTerralight(World par1World) {
-		super(par1World);
-		this.moveHelper = new EntityTerralight.ShattererMoveHelper();
-		setSize(1F, 1F);
-		initEntityAI();
+    public EntityTerralight(World par1World) {
+        super(par1World);
+        this.moveHelper = new EntityTerralight.ShattererMoveHelper();
+        setSize(1F, 1F);
+        initEntityAI();
         this.tasks.addTask(5, new EntityTerralight.AIRandomFly());
-		setSize(0.5F, 0.5F);
-	}
-	public void initEntityAI()
-    {
+        setSize(0.5F, 0.5F);
+    }
+
+    public void initEntityAI() {
         this.tasks.addTask(5, new EntityTerralight.AIRandomFly());
         this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
     }
-    public int getBrightnessForRender(float p_70070_1_)
-    {
+
+    public int getBrightnessForRender(float p_70070_1_) {
         return 15728880;
     }
-    
+
     public float getBrightness(float p_70013_1_) {
         return 10.0F;
     }
-    
-	@Override
-	public double setMaxHealth(MobStats s) {
-		return MobStats.TerralightDamage;
-	}
 
-	@Override
-	public SoundEvent setLivingSound() {
-		return JourneySounds.EMPTY;
-	}
+    @Override
+    public double setMaxHealth(MobStats s) {
+        return MobStats.TerralightDamage;
+    }
 
-	@Override
-	public SoundEvent setHurtSound() {
-		return JourneySounds.EMPTY;
-	}
+    @Override
+    public SoundEvent setLivingSound() {
+        return JourneySounds.EMPTY;
+    }
 
-	@Override
-	public SoundEvent setDeathSound() {
-		return JourneySounds.EMPTY;
-	}
-	
-	@Override
-	public Item getItemDropped() {
-		return null;
-	}
-	
-	@Override
-	public boolean shouldRenderInPass(int pass) {
-		return pass == 1;
-	}
-	
-	private class AIRandomFly extends EntityAIBase {
+    @Override
+    public SoundEvent setHurtSound() {
+        return JourneySounds.EMPTY;
+    }
+
+    @Override
+    public SoundEvent setDeathSound() {
+        return JourneySounds.EMPTY;
+    }
+
+    @Override
+    public Item getItemDropped() {
+        return null;
+    }
+
+    @Override
+    public boolean shouldRenderInPass(int pass) {
+        return pass == 1;
+    }
+
+    private class AIRandomFly extends EntityAIBase {
         private EntityTerralight e = EntityTerralight.this;
 
         public AIRandomFly() {
@@ -83,20 +78,20 @@ public class EntityTerralight extends EntityModFlying {
         @Override
         public boolean shouldExecute() {
             EntityMoveHelper entitymovehelper = this.e.getMoveHelper();
-            if(!entitymovehelper.isUpdating()) {
+            if (!entitymovehelper.isUpdating()) {
                 return true;
             } else {
-				double d0 = entitymovehelper.getX() - this.e.posX;
-				double d1 = entitymovehelper.getY() - this.e.posY;
-				double d2 = entitymovehelper.getZ() - this.e.posZ;
+                double d0 = entitymovehelper.getX() - this.e.posX;
+                double d1 = entitymovehelper.getY() - this.e.posY;
+                double d2 = entitymovehelper.getZ() - this.e.posZ;
                 double d3 = d0 * d0 + d1 * d1 + d2 * d2;
                 return d3 < 1.0D || d3 > 3600.0D;
             }
         }
-        
+
         @Override
         public boolean shouldContinueExecuting() {
-        	return false;
+            return false;
         }
 
         @Override
@@ -119,15 +114,15 @@ public class EntityTerralight extends EntityModFlying {
 
         @Override
         public void onUpdateMoveHelper() {
-            if(this.action == Action.MOVE_TO) {
+            if (this.action == Action.MOVE_TO) {
                 double d0 = this.posX - this.e.posX;
                 double d1 = this.posY - this.e.posY;
                 double d2 = this.posZ - this.e.posZ;
                 double d3 = d0 * d0 + d1 * d1 + d2 * d2;
-                if(this.height-- <= 0) {
+                if (this.height-- <= 0) {
                     this.height += this.e.getRNG().nextInt(5) + 2;
-                    d3 = (double)MathHelper.sqrt(d3);
-                    if(this.canMove(this.posX, this.posY, this.posZ, d3)) {
+                    d3 = MathHelper.sqrt(d3);
+                    if (this.canMove(this.posX, this.posY, this.posZ, d3)) {
                         this.e.motionX += d0 / d3 * 0.1D;
                         this.e.motionY += d1 / d3 * 0.1D;
                         this.e.motionZ += d2 / d3 * 0.1D;
@@ -138,14 +133,14 @@ public class EntityTerralight extends EntityModFlying {
             }
         }
 
-        private boolean canMove(double x, double y, double z, double h)  {
+        private boolean canMove(double x, double y, double z, double h) {
             double d4 = (x - this.e.posX) / h;
             double d5 = (y - this.e.posY) / h;
             double d6 = (z - this.e.posZ) / h;
             AxisAlignedBB axisalignedbb = this.e.getEntityBoundingBox();
-            for(int i = 1; i < h; ++i) {
+            for (int i = 1; i < h; ++i) {
                 axisalignedbb = axisalignedbb.offset(d4, d5, d6);
-                if(!this.e.world.getCollisionBoxes(this.e, axisalignedbb).isEmpty()) {
+                if (!this.e.world.getCollisionBoxes(this.e, axisalignedbb).isEmpty()) {
                     return false;
                 }
             }

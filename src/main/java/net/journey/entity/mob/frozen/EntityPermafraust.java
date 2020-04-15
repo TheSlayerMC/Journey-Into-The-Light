@@ -9,49 +9,49 @@ import net.slayer.api.entity.EntityModMob;
 
 public class EntityPermafraust extends EntityModMob {
 
-	public EntityPermafraust(World par1World) {
-		super(par1World);
-		addAttackingAI();
-		this.setSize(0.5F, 2F);
-	}
-	
-	@Override
-	public double setAttackDamage(MobStats s) {
-		return MobStats.PermafraustDamage;
-	}
+    public EntityPermafraust(World par1World) {
+        super(par1World);
+        addAttackingAI();
+        this.setSize(0.5F, 2F);
+    }
 
-	@Override
-	public double setMaxHealth(MobStats s) {
-		return MobStats.PermafraustHealth;
-	}
+    @Override
+    public double setAttackDamage(MobStats s) {
+        return MobStats.PermafraustDamage;
+    }
 
-	@Override
-	public SoundEvent setLivingSound() {
-		return JourneySounds.SMALL_HONGO;
-	}
+    @Override
+    public double setMaxHealth(MobStats s) {
+        return MobStats.PermafraustHealth;
+    }
 
-	@Override
-	public SoundEvent setHurtSound() {
-		return JourneySounds.SMALL_HONGO_HURT;
-	}
+    @Override
+    public SoundEvent setLivingSound() {
+        return JourneySounds.SMALL_HONGO;
+    }
 
-	@Override
-	public SoundEvent setDeathSound() {
-		return JourneySounds.SMALL_HONGO_HURT;
-	}
-	
-	@Override
-	public boolean shouldRenderInPass(int pass) {
-		return pass == 1;
-	}
-	
-	@Override
-	public boolean getCanSpawnHere() {
-		return this.posY > 60.0D && super.getCanSpawnHere();
-	}
+    @Override
+    public SoundEvent setHurtSound() {
+        return JourneySounds.SMALL_HONGO_HURT;
+    }
 
-	@Override
-	public Item getItemDropped() {
-		return null;
-	}
+    @Override
+    public SoundEvent setDeathSound() {
+        return JourneySounds.SMALL_HONGO_HURT;
+    }
+
+    @Override
+    public boolean shouldRenderInPass(int pass) {
+        return pass == 1;
+    }
+
+    @Override
+    public boolean getCanSpawnHere() {
+        return this.posY > 60.0D && super.getCanSpawnHere();
+    }
+
+    @Override
+    public Item getItemDropped() {
+        return null;
+    }
 }

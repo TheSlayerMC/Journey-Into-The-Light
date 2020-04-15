@@ -8,38 +8,38 @@ import net.slayer.api.entity.EntityEssenceBoss;
 
 public class EntityWraith extends EntityEssenceBoss {
 
-	public EntityWraith(World par1World) {
-		super(par1World);
-		addAttackingAI();
-	}
-	
-	@Override
-	public double setAttackDamage(MobStats s) {
-		return MobStats.wraithDamage;
-	}
+    public EntityWraith(World par1World) {
+        super(par1World);
+        addAttackingAI();
+    }
 
-	@Override
-	public double setMaxHealth(MobStats s) {
-		return MobStats.wraithHealth;
-	}
+    @Override
+    public double setAttackDamage(MobStats s) {
+        return MobStats.wraithDamage;
+    }
 
-	@Override
-	public SoundEvent setLivingSound() {
-		return null;
-	}
+    @Override
+    public double setMaxHealth(MobStats s) {
+        return MobStats.wraithHealth;
+    }
 
-	@Override
-	public SoundEvent setHurtSound() {
-		return null;
-	}
+    @Override
+    public SoundEvent setLivingSound() {
+        return null;
+    }
 
-	@Override
-	public SoundEvent setDeathSound() {
-		return null;
-	}
+    @Override
+    public SoundEvent setHurtSound() {
+        return null;
+    }
 
-	@Override
-	public Item getItemDropped() {
-		return null;
-	}
+    @Override
+    public SoundEvent setDeathSound() {
+        return null;
+    }
+
+    @Override
+    public Item getItemDropped() {
+        return null;
+    }
 }

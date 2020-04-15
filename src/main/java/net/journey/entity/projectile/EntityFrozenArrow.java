@@ -1,46 +1,33 @@
 package net.journey.entity.projectile;
 
-import java.util.List;
-
-import javax.annotation.Nullable;
-
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
-
 import net.journey.JourneyItems;
 import net.journey.util.PotionEffects;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.network.play.server.SPacketChangeGameState;
-import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.EntityDamageSourceIndirect;
 import net.minecraft.util.EntitySelectors;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.*;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
 
 public class EntityFrozenArrow extends EntityArrow implements IProjectile {
 
@@ -49,145 +36,143 @@ public class EntityFrozenArrow extends EntityArrow implements IProjectile {
             return e.canBeCollidedWith();
         }
     });
-    
+    private static final DataParameter<Byte> CRITICAL = EntityDataManager.createKey(EntityArrow.class, DataSerializers.BYTE);
+    public int canBePickedUp;
+    public int arrowShake;
+    public Entity shootingEntity;
     private PotionEffect potioneffect = new PotionEffect(PotionEffects.getPotionFromID(PotionEffects.moveSlow), 100, 2);
-    
-    private static final DataParameter<Byte> CRITICAL = EntityDataManager.<Byte>createKey(EntityArrow.class, DataSerializers.BYTE);
-	private int xTile = -1;
-	private int yTile = -1;
-	private int zTile = -1;
-	private Block inBlock;
-	private int inData;
-	private boolean inGround;
-	public int canBePickedUp;
-	public int arrowShake;
-	public Entity shootingEntity;
-	private int ticksInGround;
-	private int ticksInAir;
-	private double damage = 4.0D;
-	private int knockbackStrength;
+    private int xTile = -1;
+    private int yTile = -1;
+    private int zTile = -1;
+    private Block inBlock;
+    private int inData;
+    private boolean inGround;
+    private int ticksInGround;
+    private int ticksInAir;
+    private double damage = 4.0D;
+    private int knockbackStrength;
 
-	public EntityFrozenArrow(World worldIn) {
-		super(worldIn);
-		Entity.setRenderDistanceWeight(10.0D);
-		this.setSize(0.5F, 0.5F);
-	}
+    public EntityFrozenArrow(World worldIn) {
+        super(worldIn);
+        Entity.setRenderDistanceWeight(10.0D);
+        this.setSize(0.5F, 0.5F);
+    }
 
-	public EntityFrozenArrow(World worldIn, double d, double d1, double d2) {
-		super(worldIn);
-		Entity.setRenderDistanceWeight(10.0D);
-		this.setSize(0.5F, 0.5F);
-		this.setPosition(d, d1, d2);
-	}
+    public EntityFrozenArrow(World worldIn, double d, double d1, double d2) {
+        super(worldIn);
+        Entity.setRenderDistanceWeight(10.0D);
+        this.setSize(0.5F, 0.5F);
+        this.setPosition(d, d1, d2);
+    }
 
-	public EntityFrozenArrow(World worldIn, EntityLivingBase e, EntityLivingBase eb, float f, float f1) {
-		super(worldIn);
-		Entity.setRenderDistanceWeight(10.0D);
-		this.shootingEntity = e;
+    public EntityFrozenArrow(World worldIn, EntityLivingBase e, EntityLivingBase eb, float f, float f1) {
+        super(worldIn);
+        Entity.setRenderDistanceWeight(10.0D);
+        this.shootingEntity = e;
 
-		if (e instanceof EntityPlayer) {
-			this.canBePickedUp = 1;
-		}
+        if (e instanceof EntityPlayer) {
+            this.canBePickedUp = 1;
+        }
 
-		this.posY = e.posY + e.getEyeHeight() - 0.10000000149011612D;
-		double d0 = eb.posX - e.posX;
-		double d1 = eb.getEntityBoundingBox().minY + eb.height / 3.0F - this.posY;
-		double d2 = eb.posZ - e.posZ;
-		double d3 = (double)MathHelper.sqrt(d0 * d0 + d2 * d2);
+        this.posY = e.posY + e.getEyeHeight() - 0.10000000149011612D;
+        double d0 = eb.posX - e.posX;
+        double d1 = eb.getEntityBoundingBox().minY + eb.height / 3.0F - this.posY;
+        double d2 = eb.posZ - e.posZ;
+        double d3 = MathHelper.sqrt(d0 * d0 + d2 * d2);
 
-		if (d3 >= 1.0E-7D) {
-			float f2 = (float)(Math.atan2(d2, d0) * 180.0D / Math.PI) - 90.0F;
-			float f3 = (float)(-(Math.atan2(d1, d3) * 180.0D / Math.PI));
-			double d4 = d0 / d3;
-			double d5 = d2 / d3;
-			this.setLocationAndAngles(e.posX + d4, this.posY, e.posZ + d5, f2, f3);
-			float f4 = (float)(d3 * 0.20000000298023224D);
-			this.shoot(d0, d1 + f4, d2, f, f1);
-		}
-	}
+        if (d3 >= 1.0E-7D) {
+            float f2 = (float) (Math.atan2(d2, d0) * 180.0D / Math.PI) - 90.0F;
+            float f3 = (float) (-(Math.atan2(d1, d3) * 180.0D / Math.PI));
+            double d4 = d0 / d3;
+            double d5 = d2 / d3;
+            this.setLocationAndAngles(e.posX + d4, this.posY, e.posZ + d5, f2, f3);
+            float f4 = (float) (d3 * 0.20000000298023224D);
+            this.shoot(d0, d1 + f4, d2, f, f1);
+        }
+    }
 
-	public EntityFrozenArrow(World worldIn, EntityLivingBase e, float f) {
-		super(worldIn);
-		Entity.setRenderDistanceWeight(10.0D);
-		this.shootingEntity = e;
-		if(e instanceof EntityPlayer) this.canBePickedUp = 1;
-		this.setSize(0.5F, 0.5F);
-		this.setLocationAndAngles(e.posX, e.posY + e.getEyeHeight(), e.posZ, e.rotationYaw, e.rotationPitch);
-		this.posX -= (double)(MathHelper.cos(this.rotationYaw / 180.0F * (float)Math.PI) * 0.16F);
-		this.posY -= 0.10000000149011612D;
-		this.posZ -= (double)(MathHelper.sin(this.rotationYaw / 180.0F * (float)Math.PI) * 0.16F);
-		this.setPosition(this.posX, this.posY, this.posZ);
-		this.motionX = (double)(-MathHelper.sin(this.rotationYaw / 180.0F * (float)Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float)Math.PI));
-		this.motionZ = (double)(MathHelper.cos(this.rotationYaw / 180.0F * (float)Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float)Math.PI));
-		this.motionY = (double)(-MathHelper.sin(this.rotationPitch / 180.0F * (float)Math.PI));
-		this.shoot(this.motionX, this.motionY, this.motionZ, f * 1.5F, 1.0F);
-	}
+    public EntityFrozenArrow(World worldIn, EntityLivingBase e, float f) {
+        super(worldIn);
+        Entity.setRenderDistanceWeight(10.0D);
+        this.shootingEntity = e;
+        if (e instanceof EntityPlayer) this.canBePickedUp = 1;
+        this.setSize(0.5F, 0.5F);
+        this.setLocationAndAngles(e.posX, e.posY + e.getEyeHeight(), e.posZ, e.rotationYaw, e.rotationPitch);
+        this.posX -= MathHelper.cos(this.rotationYaw / 180.0F * (float) Math.PI) * 0.16F;
+        this.posY -= 0.10000000149011612D;
+        this.posZ -= MathHelper.sin(this.rotationYaw / 180.0F * (float) Math.PI) * 0.16F;
+        this.setPosition(this.posX, this.posY, this.posZ);
+        this.motionX = -MathHelper.sin(this.rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float) Math.PI);
+        this.motionZ = MathHelper.cos(this.rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float) Math.PI);
+        this.motionY = -MathHelper.sin(this.rotationPitch / 180.0F * (float) Math.PI);
+        this.shoot(this.motionX, this.motionY, this.motionZ, f * 1.5F, 1.0F);
+    }
 
-	@Override
-	protected void entityInit() {
-        this.dataManager.register(CRITICAL, Byte.valueOf((byte)0));
-	}
+    @Override
+    protected void entityInit() {
+        this.dataManager.register(CRITICAL, Byte.valueOf((byte) 0));
+    }
 
-	@Override
-	public void shoot(double d, double d1, double d2, float f, float f1) {
-		float f2 = MathHelper.sqrt(d * d + d1 * d1 + d2 * d2);
-		d /= f2;
-		d1 /= f2;
-		d2 /= f2;
-		d += this.rand.nextGaussian() * (this.rand.nextBoolean() ? -1 : 1) * 0.007499999832361937D * f1;
-		d1 += this.rand.nextGaussian() * (this.rand.nextBoolean() ? -1 : 1) * 0.007499999832361937D * f1;
-		d2 += this.rand.nextGaussian() * (this.rand.nextBoolean() ? -1 : 1) * 0.007499999832361937D * f1;
-		d *= f;
-		d1 *= f;
-		d2 *= f;
-		this.motionX = d;
-		this.motionY = d1;
-		this.motionZ = d2;
-		float f3 = MathHelper.sqrt(d * d + d2 * d2);
-		this.prevRotationYaw = this.rotationYaw = (float)(Math.atan2(d, d2) * 180.0D / Math.PI);
-		this.prevRotationPitch = this.rotationPitch = (float)(Math.atan2(d1, f3) * 180.0D / Math.PI);
-		this.ticksInGround = 0;
-	}
+    @Override
+    public void shoot(double d, double d1, double d2, float f, float f1) {
+        float f2 = MathHelper.sqrt(d * d + d1 * d1 + d2 * d2);
+        d /= f2;
+        d1 /= f2;
+        d2 /= f2;
+        d += this.rand.nextGaussian() * (this.rand.nextBoolean() ? -1 : 1) * 0.007499999832361937D * f1;
+        d1 += this.rand.nextGaussian() * (this.rand.nextBoolean() ? -1 : 1) * 0.007499999832361937D * f1;
+        d2 += this.rand.nextGaussian() * (this.rand.nextBoolean() ? -1 : 1) * 0.007499999832361937D * f1;
+        d *= f;
+        d1 *= f;
+        d2 *= f;
+        this.motionX = d;
+        this.motionY = d1;
+        this.motionZ = d2;
+        float f3 = MathHelper.sqrt(d * d + d2 * d2);
+        this.prevRotationYaw = this.rotationYaw = (float) (Math.atan2(d, d2) * 180.0D / Math.PI);
+        this.prevRotationPitch = this.rotationPitch = (float) (Math.atan2(d1, f3) * 180.0D / Math.PI);
+        this.ticksInGround = 0;
+    }
 
-	@SideOnly(Side.CLIENT)
-	public void setPositionAndRotation2(double x, double y, double z, float r, float yaw, int i, boolean b) {
-		this.setPosition(x, y, z);
-		this.setRotation(r, yaw);
-	}
+    @SideOnly(Side.CLIENT)
+    public void setPositionAndRotation2(double x, double y, double z, float r, float yaw, int i, boolean b) {
+        this.setPosition(x, y, z);
+        this.setRotation(r, yaw);
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void setVelocity(double x, double y, double z) {
-		this.motionX = x;
-		this.motionY = y;
-		this.motionZ = z;
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void setVelocity(double x, double y, double z) {
+        this.motionX = x;
+        this.motionY = y;
+        this.motionZ = z;
 
-		if (this.prevRotationPitch == 0.0F && this.prevRotationYaw == 0.0F) {
-			float f = MathHelper.sqrt(x * x + z * z);
-			this.prevRotationYaw = this.rotationYaw = (float)(Math.atan2(x, z) * 180.0D / Math.PI);
-			this.prevRotationPitch = this.rotationPitch = (float)(Math.atan2(y, f) * 180.0D / Math.PI);
-			this.prevRotationPitch = this.rotationPitch;
-			this.prevRotationYaw = this.rotationYaw;
-			this.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, this.rotationPitch);
-			this.ticksInGround = 0;
-		}
-	}
+        if (this.prevRotationPitch == 0.0F && this.prevRotationYaw == 0.0F) {
+            float f = MathHelper.sqrt(x * x + z * z);
+            this.prevRotationYaw = this.rotationYaw = (float) (Math.atan2(x, z) * 180.0D / Math.PI);
+            this.prevRotationPitch = this.rotationPitch = (float) (Math.atan2(y, f) * 180.0D / Math.PI);
+            this.prevRotationPitch = this.rotationPitch;
+            this.prevRotationYaw = this.rotationYaw;
+            this.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, this.rotationPitch);
+            this.ticksInGround = 0;
+        }
+    }
 
-	@Override
-	public void onUpdate() {
-		super.onEntityUpdate();
+    @Override
+    public void onUpdate() {
+        super.onEntityUpdate();
 
-		if(this.prevRotationPitch == 0.0F && this.prevRotationYaw == 0.0F) {
-			float f = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
-			this.prevRotationYaw = this.rotationYaw = (float)(Math.atan2(this.motionX, this.motionZ) * 180.0D / Math.PI);
-			this.prevRotationPitch = this.rotationPitch = (float)(Math.atan2(this.motionY, f) * 180.0D / Math.PI);
-		}
+        if (this.prevRotationPitch == 0.0F && this.prevRotationYaw == 0.0F) {
+            float f = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
+            this.prevRotationYaw = this.rotationYaw = (float) (Math.atan2(this.motionX, this.motionZ) * 180.0D / Math.PI);
+            this.prevRotationPitch = this.rotationPitch = (float) (Math.atan2(this.motionY, f) * 180.0D / Math.PI);
+        }
 
-		BlockPos blockpos = new BlockPos(this.xTile, this.yTile, this.zTile);
-		IBlockState iblockstate = this.world.getBlockState(blockpos);
-		Block block = iblockstate.getBlock();
+        BlockPos blockpos = new BlockPos(this.xTile, this.yTile, this.zTile);
+        IBlockState iblockstate = this.world.getBlockState(blockpos);
+        Block block = iblockstate.getBlock();
 
-		if (iblockstate.getMaterial() != Material.AIR) {
+        if (iblockstate.getMaterial() != Material.AIR) {
             AxisAlignedBB axisalignedbb = iblockstate.getCollisionBoundingBox(this.world, blockpos);
 
             if (axisalignedbb != Block.NULL_AABB && axisalignedbb.offset(blockpos).contains(new Vec3d(this.posX, this.posY, this.posZ))) {
@@ -195,29 +180,29 @@ public class EntityFrozenArrow extends EntityArrow implements IProjectile {
             }
         }
 
-		if (this.arrowShake > 0) {
-			--this.arrowShake;
-		}
+        if (this.arrowShake > 0) {
+            --this.arrowShake;
+        }
 
-		if (this.inGround) {
-			int j = block.getMetaFromState(iblockstate);
+        if (this.inGround) {
+            int j = block.getMetaFromState(iblockstate);
 
-			if (block == this.inBlock && j == this.inData) {
-				++this.ticksInGround;
+            if (block == this.inBlock && j == this.inData) {
+                ++this.ticksInGround;
 
-				if (this.ticksInGround >= 1200) {
-					this.setDead();
-				}
-			} else {
-				this.inGround = false;
-				this.motionX *= this.rand.nextFloat() * 0.2F;
-				this.motionY *= this.rand.nextFloat() * 0.2F;
-				this.motionZ *= this.rand.nextFloat() * 0.2F;
-				this.ticksInGround = 0;
-				this.ticksInAir = 0;
-			}
-		} else {
-			
+                if (this.ticksInGround >= 1200) {
+                    this.setDead();
+                }
+            } else {
+                this.inGround = false;
+                this.motionX *= this.rand.nextFloat() * 0.2F;
+                this.motionY *= this.rand.nextFloat() * 0.2F;
+                this.motionZ *= this.rand.nextFloat() * 0.2F;
+                this.ticksInGround = 0;
+                this.ticksInAir = 0;
+            }
+        } else {
+
             this.timeInGround = 0;
             ++this.ticksInAir;
             Vec3d vec3d1 = new Vec3d(this.posX, this.posY, this.posZ);
@@ -237,16 +222,16 @@ public class EntityFrozenArrow extends EntityArrow implements IProjectile {
             }
 
             if (raytraceresult != null && raytraceresult.entityHit instanceof EntityPlayer) {
-                EntityPlayer entityplayer = (EntityPlayer)raytraceresult.entityHit;
+                EntityPlayer entityplayer = (EntityPlayer) raytraceresult.entityHit;
 
-                if (this.shootingEntity instanceof EntityPlayer && !((EntityPlayer)this.shootingEntity).canAttackPlayer(entityplayer)) {
+                if (this.shootingEntity instanceof EntityPlayer && !((EntityPlayer) this.shootingEntity).canAttackPlayer(entityplayer)) {
                     raytraceresult = null;
                 }
             }
 
             if (raytraceresult.entityHit instanceof EntityLivingBase && !(raytraceresult.entityHit instanceof EntityEnderman) && raytraceresult.entityHit != shootingEntity) {
-				EntityLivingBase e = (EntityLivingBase)raytraceresult.entityHit;
-				e.addPotionEffect((potioneffect));
+                EntityLivingBase e = (EntityLivingBase) raytraceresult.entityHit;
+                e.addPotionEffect((potioneffect));
             }
 
 
@@ -256,7 +241,7 @@ public class EntityFrozenArrow extends EntityArrow implements IProjectile {
 
             if (this.getIsCritical()) {
                 for (int k = 0; k < 4; ++k) {
-                    this.world.spawnParticle(EnumParticleTypes.CRIT, this.posX + this.motionX * (double)k / 4.0D, this.posY + this.motionY * (double)k / 4.0D, this.posZ + this.motionZ * (double)k / 4.0D, -this.motionX, -this.motionY + 0.2D, -this.motionZ);
+                    this.world.spawnParticle(EnumParticleTypes.CRIT, this.posX + this.motionX * (double) k / 4.0D, this.posY + this.motionY * (double) k / 4.0D, this.posZ + this.motionZ * (double) k / 4.0D, -this.motionX, -this.motionY + 0.2D, -this.motionZ);
                 }
             }
 
@@ -264,10 +249,9 @@ public class EntityFrozenArrow extends EntityArrow implements IProjectile {
             this.posY += this.motionY;
             this.posZ += this.motionZ;
             float f4 = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
-            this.rotationYaw = (float)(MathHelper.atan2(this.motionX, this.motionZ) * (180D / Math.PI));
+            this.rotationYaw = (float) (MathHelper.atan2(this.motionX, this.motionZ) * (180D / Math.PI));
 
-            for (this.rotationPitch = (float)(MathHelper.atan2(this.motionY, (double)f4) * (180D / Math.PI)); this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F) {
-                ;
+            for (this.rotationPitch = (float) (MathHelper.atan2(this.motionY, f4) * (180D / Math.PI)); this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F) {
             }
 
             while (this.rotationPitch - this.prevRotationPitch >= 180.0F) {
@@ -300,9 +284,9 @@ public class EntityFrozenArrow extends EntityArrow implements IProjectile {
                 this.extinguish();
             }
 
-            this.motionX *= (double)f1;
-            this.motionY *= (double)f1;
-            this.motionZ *= (double)f1;
+            this.motionX *= f1;
+            this.motionY *= f1;
+            this.motionZ *= f1;
 
             if (!this.hasNoGravity()) {
                 this.motionY -= 0.05000000074505806D;
@@ -313,105 +297,104 @@ public class EntityFrozenArrow extends EntityArrow implements IProjectile {
         }
     }
 
-	@Override
-	public void writeEntityToNBT(NBTTagCompound tagCompound) {
-		tagCompound.setShort("xTile", (short)this.xTile);
-		tagCompound.setShort("yTile", (short)this.yTile);
-		tagCompound.setShort("zTile", (short)this.zTile);
-		tagCompound.setShort("life", (short)this.ticksInGround);
-		ResourceLocation resourcelocation = (ResourceLocation)Block.REGISTRY.getNameForObject(this.inBlock);
-		tagCompound.setString("inTile", resourcelocation == null ? "" : resourcelocation.toString());
-		tagCompound.setByte("inData", (byte)this.inData);
-		tagCompound.setByte("shake", (byte)this.arrowShake);
-		tagCompound.setByte("inGround", (byte)(this.inGround ? 1 : 0));
-		tagCompound.setByte("pickup", (byte)this.canBePickedUp);
-		tagCompound.setDouble("damage", this.damage);
-	}
+    @Override
+    public void writeEntityToNBT(NBTTagCompound tagCompound) {
+        tagCompound.setShort("xTile", (short) this.xTile);
+        tagCompound.setShort("yTile", (short) this.yTile);
+        tagCompound.setShort("zTile", (short) this.zTile);
+        tagCompound.setShort("life", (short) this.ticksInGround);
+        ResourceLocation resourcelocation = Block.REGISTRY.getNameForObject(this.inBlock);
+        tagCompound.setString("inTile", resourcelocation == null ? "" : resourcelocation.toString());
+        tagCompound.setByte("inData", (byte) this.inData);
+        tagCompound.setByte("shake", (byte) this.arrowShake);
+        tagCompound.setByte("inGround", (byte) (this.inGround ? 1 : 0));
+        tagCompound.setByte("pickup", (byte) this.canBePickedUp);
+        tagCompound.setDouble("damage", this.damage);
+    }
 
-	@Override
-	public void readEntityFromNBT(NBTTagCompound tagCompund) {
-		this.xTile = tagCompund.getShort("xTile");
-		this.yTile = tagCompund.getShort("yTile");
-		this.zTile = tagCompund.getShort("zTile");
-		this.ticksInGround = tagCompund.getShort("life");
+    @Override
+    public void readEntityFromNBT(NBTTagCompound tagCompund) {
+        this.xTile = tagCompund.getShort("xTile");
+        this.yTile = tagCompund.getShort("yTile");
+        this.zTile = tagCompund.getShort("zTile");
+        this.ticksInGround = tagCompund.getShort("life");
 
-		if (tagCompund.hasKey("inTile", 8)) {
-			this.inBlock = Block.getBlockFromName(tagCompund.getString("inTile"));
-		} else {
-			this.inBlock = Block.getBlockById(tagCompund.getByte("inTile") & 255);
-		}
+        if (tagCompund.hasKey("inTile", 8)) {
+            this.inBlock = Block.getBlockFromName(tagCompund.getString("inTile"));
+        } else {
+            this.inBlock = Block.getBlockById(tagCompund.getByte("inTile") & 255);
+        }
 
-		this.inData = tagCompund.getByte("inData") & 255;
-		this.arrowShake = tagCompund.getByte("shake") & 255;
-		this.inGround = tagCompund.getByte("inGround") == 1;
+        this.inData = tagCompund.getByte("inData") & 255;
+        this.arrowShake = tagCompund.getByte("shake") & 255;
+        this.inGround = tagCompund.getByte("inGround") == 1;
 
-		if (tagCompund.hasKey("damage", 99)) {
-			this.damage = tagCompund.getDouble("damage");
-		}
+        if (tagCompund.hasKey("damage", 99)) {
+            this.damage = tagCompund.getDouble("damage");
+        }
 
-		if (tagCompund.hasKey("pickup", 99)) {
-			this.canBePickedUp = tagCompund.getByte("pickup");
-		}
-		else if (tagCompund.hasKey("player", 99)) {
-			this.canBePickedUp = tagCompund.getBoolean("player") ? 1 : 0;
-		}
-	}
+        if (tagCompund.hasKey("pickup", 99)) {
+            this.canBePickedUp = tagCompund.getByte("pickup");
+        } else if (tagCompund.hasKey("player", 99)) {
+            this.canBePickedUp = tagCompund.getBoolean("player") ? 1 : 0;
+        }
+    }
 
-	@Override
-	public void onCollideWithPlayer(EntityPlayer entityIn) {
-		if (!this.world.isRemote && this.inGround && this.arrowShake <= 0) {
-			boolean flag = this.canBePickedUp == 1 || this.canBePickedUp == 2 && entityIn.capabilities.isCreativeMode;
+    @Override
+    public void onCollideWithPlayer(EntityPlayer entityIn) {
+        if (!this.world.isRemote && this.inGround && this.arrowShake <= 0) {
+            boolean flag = this.canBePickedUp == 1 || this.canBePickedUp == 2 && entityIn.capabilities.isCreativeMode;
 
-			if (this.canBePickedUp == 1 && !entityIn.inventory.addItemStackToInventory(new ItemStack(JourneyItems.essenceArrow, 1))) {
-				flag = false;
-			}
+            if (this.canBePickedUp == 1 && !entityIn.inventory.addItemStackToInventory(new ItemStack(JourneyItems.essenceArrow, 1))) {
+                flag = false;
+            }
 
-			if (flag) {
-				entityIn.onItemPickup(this, 1);
-				this.setDead();
-			}
-		}
-	}
+            if (flag) {
+                entityIn.onItemPickup(this, 1);
+                this.setDead();
+            }
+        }
+    }
 
-	@Override
-	protected boolean canTriggerWalking() {
-		return false;
-	}
+    @Override
+    protected boolean canTriggerWalking() {
+        return false;
+    }
 
-	@Override
-	public void setDamage(double d) {
-		this.damage = d;
-	}
+    @Override
+    public double getDamage() {
+        return this.damage;
+    }
 
-	@Override
-	public double getDamage() {
-		return this.damage;
-	}
+    @Override
+    public void setDamage(double d) {
+        this.damage = d;
+    }
 
-	@Override
-	public void setKnockbackStrength(int k) {
-		this.knockbackStrength = k;
-	}
+    @Override
+    public void setKnockbackStrength(int k) {
+        this.knockbackStrength = k;
+    }
 
-	@Override
-	public void setIsCritical(boolean c) {
-		byte b0 = ((Byte)this.dataManager.get(CRITICAL)).byteValue();
+    @Override
+    public boolean getIsCritical() {
+        byte b0 = this.dataManager.get(CRITICAL).byteValue();
+        return (b0 & 1) != 0;
+    }
 
-		if(c) {
-			this.dataManager.set(CRITICAL, Byte.valueOf((byte)(b0 | 1)));
-		} else {
-	        this.dataManager.set(CRITICAL, Byte.valueOf((byte)(b0 & -2)));
-		}
-	}
+    @Override
+    public void setIsCritical(boolean c) {
+        byte b0 = this.dataManager.get(CRITICAL).byteValue();
 
-	@Override
-	public boolean getIsCritical() {
-		byte b0 = ((Byte)this.dataManager.get(CRITICAL)).byteValue();
-		return (b0 & 1) != 0;
-	}
+        if (c) {
+            this.dataManager.set(CRITICAL, Byte.valueOf((byte) (b0 | 1)));
+        } else {
+            this.dataManager.set(CRITICAL, Byte.valueOf((byte) (b0 & -2)));
+        }
+    }
 
-	@Override
-	protected ItemStack getArrowStack() {
-		return null;
-	}
+    @Override
+    protected ItemStack getArrowStack() {
+        return null;
+    }
 }
