@@ -11,8 +11,10 @@ import net.journey.JourneyTabs;
 import net.journey.client.ItemDescription;
 import net.journey.entity.projectile.EntityEssenceArrow;
 import net.journey.util.LangHelper;
+import net.journey.util.LangRegistry;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
@@ -25,6 +27,7 @@ import net.minecraft.item.EnumAction;
 import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArrow;
+import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.util.ActionResult;
@@ -38,7 +41,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.SlayerAPI;
 import net.slayer.api.item.ItemMod;
 
-public class ItemModBow extends ItemMod {
+public class ItemModBow extends ItemBow {
 
 	private Class<? extends EntityArrow> arrowClass;
 	public Item arrowItem;
@@ -46,11 +49,12 @@ public class ItemModBow extends ItemMod {
 	protected int damage;
 	protected int uses;
 	public String ability;
+	protected String name;
 
 	protected EntityEssenceArrow.BowEffects effect;
 
 	public ItemModBow(String name, String properName, int uses, int damage, String ability) {
-		super(name, properName, JourneyTabs.weapons);
+		super();
 		this.maxStackSize = 1;
 		this.arrowItem = JourneyItems.essenceArrow;
 		this.arrowClass = EntityEssenceArrow.class;
@@ -59,12 +63,18 @@ public class ItemModBow extends ItemMod {
 		this.setMaxDamage(uses);
 		this.setFull3D();
 		this.ability = ability;
+		this.name = name;
+		LangRegistry.addItem(name.toLowerCase(), properName);
+		setUnlocalizedName(name.toLowerCase());
+		setCreativeTab(JourneyTabs.weapons);
+		JourneyItems.itemNames.add(SlayerAPI.PREFIX + name.toLowerCase());
+		JourneyItems.items.add(this);
+		setRegistryName(SlayerAPI.MOD_ID, name.toLowerCase());
 		addPropertyOverrides();
-
 	}
 
 	public ItemModBow(String name, String f, int uses, int damage, Item arrow, int duration, String ability, Class<? extends EntityArrow> arrowEnt) {
-		super(name, f, JourneyTabs.weapons);
+		super();
 		this.maxStackSize = 1;
 		this.dur = duration;
 		this.arrowClass = arrowEnt;
@@ -74,11 +84,18 @@ public class ItemModBow extends ItemMod {
 		this.setMaxDamage(uses);
 		this.setFull3D();
 		this.ability = ability;
+		this.name = name;
+		LangRegistry.addItem(name.toLowerCase(), f);
+		setUnlocalizedName(name.toLowerCase());
+		setCreativeTab(JourneyTabs.weapons);
+		JourneyItems.itemNames.add(SlayerAPI.PREFIX + name.toLowerCase());
+		JourneyItems.items.add(this);
+		setRegistryName(SlayerAPI.MOD_ID, name.toLowerCase());
 		addPropertyOverrides();
 	}
 	
 	public ItemModBow(String name, String f, int uses, int damage, Item arrow, String ability, Class<? extends EntityArrow> arrowEnt) {
-		super(name, f, JourneyTabs.weapons);
+		super();
 		this.maxStackSize = 1;
 		this.ability = ability;
 		this.arrowClass = arrowEnt;
@@ -87,12 +104,35 @@ public class ItemModBow extends ItemMod {
 		this.uses = uses;
 		this.setMaxDamage(uses);
 		this.setFull3D();
+		this.name = name;
+		LangRegistry.addItem(name.toLowerCase(), f);
+		setUnlocalizedName(name.toLowerCase());
+		setCreativeTab(JourneyTabs.weapons);
+		JourneyItems.itemNames.add(SlayerAPI.PREFIX + name.toLowerCase());
+		JourneyItems.items.add(this);
+		setRegistryName(SlayerAPI.MOD_ID, name.toLowerCase());
 		addPropertyOverrides();
+	}
+	
+	public ItemModBow(String name, String finalName){
+		this(name, finalName, JourneyTabs.weapons);
+		this.name = name;
+	}
+
+	public ItemModBow(String name, String finalName, CreativeTabs tab){
+		this.name = name;
+		LangRegistry.addItem(name.toLowerCase(), finalName);
+		setUnlocalizedName(name.toLowerCase());
+		setCreativeTab(tab);
+		JourneyItems.itemNames.add(SlayerAPI.PREFIX + name.toLowerCase());
+		JourneyItems.items.add(this);
+		setRegistryName(SlayerAPI.MOD_ID, name.toLowerCase());
 	}
 
 	public void addPropertyOverrides() { }
 
-	private ItemStack findAmmo(EntityPlayer player) {
+	@Override
+	public ItemStack findAmmo(EntityPlayer player) {
 		if (this.isArrow(player.getHeldItem(EnumHand.OFF_HAND))) {
 			return player.getHeldItem(EnumHand.OFF_HAND);
 		} else if (this.isArrow(player.getHeldItem(EnumHand.MAIN_HAND))) {
@@ -270,8 +310,8 @@ public class ItemModBow extends ItemMod {
 		return 1;
 	}
 	
-	@Override
+	/*@Override
 	public void registerItemModel() {
 		JITL.proxy.registerItemRenderer(this, 0, name);
-	}
+	}*/
 }
