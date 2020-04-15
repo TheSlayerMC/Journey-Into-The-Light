@@ -22,7 +22,7 @@ public class ItemBattleAxe extends ItemModAxe {
     public ItemBattleAxe(String name, String f, JourneyToolMaterial m) {
         super(name, f, m);
         setTranslationKey(name);
-        setCreativeTab(JourneyTabs.weapons);
+        setCreativeTab(JourneyTabs.WEAPONS);
     }
 
     @Override

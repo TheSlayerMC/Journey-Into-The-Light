@@ -22,7 +22,7 @@ public class ItemGoldenFood extends ItemModFood {
         op = isOP;
         setTranslationKey(name);
         JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
-        setCreativeTab(JourneyTabs.crops);
+        setCreativeTab(JourneyTabs.CROPS);
         this.setAlwaysEdible();
     }
 

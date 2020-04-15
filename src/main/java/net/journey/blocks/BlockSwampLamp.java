@@ -22,7 +22,7 @@ public class BlockSwampLamp extends BlockMod {
         super(EnumMaterialTypes.GLASS, name, finalName, hardness);
         this.isNormalCube = false;
         this.isOpaque = false;
-        setCreativeTab(JourneyTabs.decoration);
+        setCreativeTab(JourneyTabs.DECORATION);
         setTickRandomly(true);
     }
 

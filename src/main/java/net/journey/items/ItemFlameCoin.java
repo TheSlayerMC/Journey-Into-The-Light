@@ -24,7 +24,7 @@ public class ItemFlameCoin extends ItemMod {
 
     public ItemFlameCoin(String name, String f) {
         super(name, f);
-        setCreativeTab(JourneyTabs.util);
+        setCreativeTab(JourneyTabs.UTIL);
         setMaxStackSize(1);
     }
 

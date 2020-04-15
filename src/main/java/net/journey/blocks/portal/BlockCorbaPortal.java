@@ -27,7 +27,7 @@ public class BlockCorbaPortal extends BlockMod {
     public BlockCorbaPortal(String name, String f) {
         super(EnumMaterialTypes.PORTAL, name, f, 1.0F);
         this.setTickRandomly(true);
-        setCreativeTab(JourneyTabs.portalBlocks);
+        setCreativeTab(JourneyTabs.PORTAL_BLOCKS);
     }
 
     @Override

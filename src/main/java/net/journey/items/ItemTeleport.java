@@ -28,7 +28,7 @@ import java.util.List;
 public class ItemTeleport extends ItemMod {
 
     public ItemTeleport(String name, String f) {
-        super(name, f, JourneyTabs.util);
+        super(name, f, JourneyTabs.UTIL);
         setMaxStackSize(1);
         setMaxDamage(100);
     }

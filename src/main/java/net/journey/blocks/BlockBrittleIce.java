@@ -22,7 +22,7 @@ public class BlockBrittleIce extends BlockModGrass {
         this.dirt = dirt;
         this.isNormalCube = false;
         this.isOpaque = false;
-        setCreativeTab(JourneyTabs.blocks);
+        setCreativeTab(JourneyTabs.BLOCKS);
         setTickRandomly(true);
         this.slipperiness = 0.98F;
     }

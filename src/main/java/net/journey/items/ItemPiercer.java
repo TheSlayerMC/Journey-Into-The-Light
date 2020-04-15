@@ -30,7 +30,7 @@ public class ItemPiercer extends ItemMod {
         this.maxBounces = bounces;
         this.damage = damage;
         this.entity = entity;
-        setCreativeTab(JourneyTabs.weapons);
+        setCreativeTab(JourneyTabs.WEAPONS);
     }
 
     @Override

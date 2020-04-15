@@ -14,8 +14,6 @@ public class BlockIceLog extends BlockModLog {
 
     public BlockIceLog() {
         super("iceLog", "Ice Log");
-        isOpaque = false;
-        isNormalCube = false;
         setLightOpacity(3);
     }
 

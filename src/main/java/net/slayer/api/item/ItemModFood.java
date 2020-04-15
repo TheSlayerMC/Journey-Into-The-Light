@@ -27,7 +27,7 @@ public class ItemModFood extends ItemFood {
         super(food, sat, wolfFood);
         LangRegistry.addItem(name, f);
         setTranslationKey(name);
-        setCreativeTab(JourneyTabs.crops);
+        setCreativeTab(JourneyTabs.CROPS);
         JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
         JourneyItems.items.add(this);
         setRegistryName(SlayerAPI.MOD_ID, name);
@@ -49,7 +49,7 @@ public class ItemModFood extends ItemFood {
         setTranslationKey(name);
         JourneyItems.items.add(this);
         JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
-        setCreativeTab(JourneyTabs.crops);
+        setCreativeTab(JourneyTabs.CROPS);
         setRegistryName(SlayerAPI.MOD_ID, name);
         this.op = b;
     }

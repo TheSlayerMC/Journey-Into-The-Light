@@ -611,11 +611,11 @@ public class JourneyBlocks {
         corbaPillar = new BlockMod("corbaPillar", "Corba Pillar");
         corbaPlank = new BlockMod(EnumMaterialTypes.WOOD, "corbaPlank", "Corba Plank", 0.5F);
         corbaLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "corbaLamp", "Corba Lamp", 0.1F)
-                .setLightLevel(1.0F).setCreativeTab(JourneyTabs.decoration);
+                .setLightLevel(1.0F).setCreativeTab(JourneyTabs.DECORATION);
         corbaSentryBrick = new BlockMod("corbaSentryBrick", "Corba Sentry Brick");
 
         boilingLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "boilingLamp", "Boiling Lamp", 0.1F)
-                .setLightLevel(1.0F).setCreativeTab(JourneyTabs.decoration);
+                .setLightLevel(1.0F).setCreativeTab(JourneyTabs.DECORATION);
         blazierBricks = new BlockMod("blazierBricks", "Blazier Bricks");
         ashBlock = new BlockMod("ashBlock", "Ash");
         hotBlock = new BlockModGrass(ashBlock, "hotGround", "Hot Ground", 2.0F);
@@ -645,7 +645,7 @@ public class JourneyBlocks {
         cloudiaTile = (BlockMod) new BlockMod("cloudiaTile", "Cloudia Tile").setLightLevel(0.5F);
         cloudiaLeaves = (BlockMod) new BlockModLeaves("cloudiaLeaves", "Cloudia Leaves", 0.5F).setLightLevel(2);
         cloudiaLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "cloudiaLamp", "Cloudia Lamp", 0.1F)
-                .setLightLevel(1.0F).setCreativeTab(JourneyTabs.decoration);
+                .setLightLevel(1.0F).setCreativeTab(JourneyTabs.DECORATION);
         cloudiaCobblestone = new BlockMod("cloudiaCobblestone", "Cloudia Cobblestone");
         cloudiaBrickStairs = new BlockModStairs(cloudiaBrick, "cloudiaBrickStairs", "Cloudia Brick Stairs");
         cloudiaTileStairs = new BlockModStairs(cloudiaTile, "cloudiaTileStairs", "Cloudia Tile Stairs");
@@ -718,13 +718,13 @@ public class JourneyBlocks {
         senterianBars = (BlockMod) new BlockModBars("senterianBars", "Senterian Bars", 5.0F).setBlockUnbreakable()
                 .setResistance(10000000.0F);
         senterianLightLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "senterianLightLamp",
-                "Senterian Light Lamp", 0.1F).setLightLevel(0.5F).setCreativeTab(JourneyTabs.decoration)
+                "Senterian Light Lamp", 0.1F).setLightLevel(0.5F).setCreativeTab(JourneyTabs.DECORATION)
                 .setBlockUnbreakable().setResistance(10000000.0F);
         senterianMellowLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "senterianMellowLamp",
-                "Senterian Mellow Lamp", 0.1F).setLightLevel(0.5F).setCreativeTab(JourneyTabs.decoration)
+                "Senterian Mellow Lamp", 0.1F).setLightLevel(0.5F).setCreativeTab(JourneyTabs.DECORATION)
                 .setBlockUnbreakable().setResistance(10000000.0F);
         senterianGuardianLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "senterianGuardianLamp",
-                "Senterian Guardian Lamp", 0.1F).setLightLevel(0.5F).setCreativeTab(JourneyTabs.decoration)
+                "Senterian Guardian Lamp", 0.1F).setLightLevel(0.5F).setCreativeTab(JourneyTabs.DECORATION)
                 .setBlockUnbreakable().setResistance(10000000.0F);
         senterianPost = (BlockModFence) new BlockModFence(senterianBricks, "senterianPost", "Senterian Post")
                 .setBlockUnbreakable().setResistance(10000000.0F);
@@ -836,7 +836,7 @@ public class JourneyBlocks {
         tallterramushroom = new BlockModFlower("tallterramushroom", "Tall Terranian Shroom").setLightLevel(5.0F);
         terragrow = new BlockTerraFlower("terragrow", "Terranian Flower");
         terraniaLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "terraniaLamp", "Terrania Lamp", 0.1F)
-                .setLightLevel(1.0F).setCreativeTab(JourneyTabs.decoration);
+                .setLightLevel(1.0F).setCreativeTab(JourneyTabs.DECORATION);
 
         terrashroomBlockPink = new BlockJourneyMushroom(EnumMaterialTypes.WOOD, "terrashroomBlockPink",
                 "Terrashroom Block", 0.5F, terramushroom);
@@ -893,8 +893,8 @@ public class JourneyBlocks {
         workshopCarpet = new BlockMod(EnumMaterialTypes.WOOL, "workshopCarpet", "Workshop Carpet", 0.5F);
         frozenGlass = new BlockJoinedGlass("frozenGlass", "Frozen Glass");
         // frozenPane = new BlockJoinedPane("frozenGlass");
-        frozenLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "frozenLamp", "Frozen Lamp", 0.5F).setLightLevel(1.0F).setCreativeTab(JourneyTabs.decoration);
-        iceStone = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "iceStone", "Ice Stone", 0.5F).setLightLevel(1.0F).setCreativeTab(JourneyTabs.decoration);
+        frozenLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "frozenLamp", "Frozen Lamp", 0.5F).setLightLevel(1.0F).setCreativeTab(JourneyTabs.DECORATION);
+        iceStone = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "iceStone", "Ice Stone", 0.5F).setLightLevel(1.0F).setCreativeTab(JourneyTabs.DECORATION);
         workshopStone = new BlockMod(EnumMaterialTypes.STONE, "workshopStone", "Workshop Stone", 0.5F);
         workshopStoneStair = new BlockModStairs(workshopStone, "workshopStairs", "Workshop Stairs");
         workshopStoneFence = new BlockModFence(workshopStone, "workshopStoneFence", "Workshop Fence");
@@ -944,7 +944,7 @@ public class JourneyBlocks {
         compactNetherBrick = (BlockMod) new BlockMod("compactNetherBrick", "Compact Nether Brick").setBlockUnbreakable()
                 .setResistance(10000000.0F);
         nethicLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "nethicLamp", "Nethic Lamp", 0.1F)
-                .setLightLevel(1).setCreativeTab(JourneyTabs.decoration);
+                .setLightLevel(1).setCreativeTab(JourneyTabs.DECORATION);
 
         // stoneCraftingTable = (BlockMod) new
         // BlockCrafting("stoneCraftingTable", "Stone Crafting

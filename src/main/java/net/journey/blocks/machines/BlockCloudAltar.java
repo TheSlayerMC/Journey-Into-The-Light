@@ -25,7 +25,7 @@ public class BlockCloudAltar extends BlockModContainer {
 
     public BlockCloudAltar(String name, String finalName) {
         super(name, finalName);
-        setCreativeTab(JourneyTabs.machineBlocks);
+        setCreativeTab(JourneyTabs.MACHINE_BLOCKS);
     }
 
     @Override

@@ -11,7 +11,7 @@ public class ItemEssenceArrow extends ItemMod {
 
     public ItemEssenceArrow(String name, String finalname) {
         super(name, finalname);
-        this.setCreativeTab(JourneyTabs.weapons);
+        this.setCreativeTab(JourneyTabs.WEAPONS);
     }
 
     public EntityEssenceArrow createArrow(World worldIn, ItemStack stack, EntityLivingBase shooter) {

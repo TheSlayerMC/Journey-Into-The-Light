@@ -28,7 +28,7 @@ public class ItemMod extends Item {
     protected String name;
 
     public ItemMod(String name, String finalName) {
-        this(name, finalName, JourneyTabs.items);
+        this(name, finalName, JourneyTabs.ITEMS);
         this.name = name;
     }
 

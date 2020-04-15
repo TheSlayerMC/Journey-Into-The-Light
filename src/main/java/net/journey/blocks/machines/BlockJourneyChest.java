@@ -47,7 +47,7 @@ public class BlockJourneyChest extends BlockModContainer {
     private Item key;
 
     public BlockJourneyChest(String name, String f, BlockJourneyChest.Type chestTypeIn, boolean isLocked, Item key) {
-        super(EnumMaterialTypes.STONE, name, f, 2.0F, JourneyTabs.machineBlocks);
+        super(EnumMaterialTypes.STONE, name, f, 2.0F, JourneyTabs.MACHINE_BLOCKS);
         this.chestType = chestTypeIn;
         this.isLocked = isLocked;
         this.key = key;
@@ -55,7 +55,7 @@ public class BlockJourneyChest extends BlockModContainer {
     }
 
     public BlockJourneyChest(String name, String f, BlockJourneyChest.Type chestTypeIn) {
-        super(EnumMaterialTypes.STONE, name, f, 2.0F, JourneyTabs.machineBlocks);
+        super(EnumMaterialTypes.STONE, name, f, 2.0F, JourneyTabs.MACHINE_BLOCKS);
         this.chestType = chestTypeIn;
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
     }

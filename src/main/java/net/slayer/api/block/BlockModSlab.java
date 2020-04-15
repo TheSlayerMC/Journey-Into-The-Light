@@ -15,7 +15,7 @@ public class BlockModSlab extends BlockMod {
     public BlockModSlab(boolean full, String name, String finalName) {
         super(name, finalName, 1.0F);
         isFull = full;
-        setCreativeTab(JourneyTabs.decoration);
+        setCreativeTab(JourneyTabs.DECORATION);
         setSoundType(EnumMaterialTypes.WOOD.getSound());
         setHardness(1.0F);
         this.useNeighborBrightness = true;

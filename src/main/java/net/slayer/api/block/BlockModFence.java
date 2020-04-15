@@ -19,7 +19,7 @@ public class BlockModFence extends BlockFence {
         this.name = name;
         LangRegistry.addBlock(name, finalName);
         setTranslationKey(name);
-        setCreativeTab(JourneyTabs.blocks);
+        setCreativeTab(JourneyTabs.BLOCKS);
         if (light) setLightLevel(0.5F);
         setHardness(block.getBlockHardness(null, null, null));
         JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);

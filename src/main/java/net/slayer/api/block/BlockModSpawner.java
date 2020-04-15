@@ -22,7 +22,7 @@ public class BlockModSpawner extends BlockModContainer {
     protected String mobName;
 
     public BlockModSpawner(String name, String finalName, String mobName) {
-        super(EnumMaterialTypes.STONE, name, finalName, -1, JourneyTabs.spawners);
+        super(EnumMaterialTypes.STONE, name, finalName, -1, JourneyTabs.SPAWNERS);
         this.mobName = mobName;
     }
 

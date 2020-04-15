@@ -31,7 +31,7 @@ public class BlockModLadder extends BlockMod {
     public BlockModLadder(String name, String finalName, float hardness) {
         super(EnumMaterialTypes.WOOD, name, finalName, hardness);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
-        this.setCreativeTab(JourneyTabs.decoration);
+        this.setCreativeTab(JourneyTabs.DECORATION);
     }
 
     @Override

@@ -43,7 +43,7 @@ public class ItemModRecord extends ItemRecord {
         //description = desc;
         setRegistryName(SlayerAPI.MOD_ID, name + "Record");
         LangRegistry.addItem(name + "Record", finalName);
-        setCreativeTab(JourneyTabs.util);
+        setCreativeTab(JourneyTabs.UTIL);
         JourneyItems.itemNames.add(SlayerAPI.PREFIX + name + "Record");
         this.sound = sound;
         this.maxStackSize = 1;

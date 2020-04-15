@@ -24,7 +24,7 @@ public class ItemGlowshroomBlock extends ItemMod {
         super(name, finalName);
         this.shroombottom = shroombottom;
         this.shroomtop = shroomtop;
-        this.setCreativeTab(JourneyTabs.decoration);
+        this.setCreativeTab(JourneyTabs.DECORATION);
     }
 
     @Override

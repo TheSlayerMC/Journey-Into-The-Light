@@ -31,7 +31,7 @@ public class ItemHealth extends ItemFood {
         setMaxStackSize(8);
         setAlwaysEdible();
         setTranslationKey(name);
-        setCreativeTab(JourneyTabs.crops);
+        setCreativeTab(JourneyTabs.CROPS);
         LangRegistry.addItem(name, actual);
         JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
         JourneyItems.items.add(this);

@@ -12,7 +12,7 @@ import java.util.Random;
 public class BlockMelon extends BlockMod {
 
     public BlockMelon(String name, String finalName, Item drop) {
-        super(EnumMaterialTypes.GOURD, name, finalName, JourneyTabs.crops);
+        super(EnumMaterialTypes.GOURD, name, finalName, JourneyTabs.CROPS);
     }
 
     @Override

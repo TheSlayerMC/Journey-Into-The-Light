@@ -35,15 +35,15 @@ public abstract class BlockModContainer extends BlockContainer {
     protected boolean isOpaque = true, isNormalCube = true;
 
     public BlockModContainer(String name, String finalName, float hardness) {
-        this(EnumMaterialTypes.STONE, name, finalName, hardness, JourneyTabs.blocks);
+        this(EnumMaterialTypes.STONE, name, finalName, hardness, JourneyTabs.BLOCKS);
     }
 
     public BlockModContainer(String name, String finalName) {
-        this(EnumMaterialTypes.STONE, name, finalName, 2.0F, JourneyTabs.blocks);
+        this(EnumMaterialTypes.STONE, name, finalName, 2.0F, JourneyTabs.BLOCKS);
     }
 
     public BlockModContainer(EnumMaterialTypes type, String name, String finalName, float hardness) {
-        this(type, name, finalName, hardness, JourneyTabs.blocks);
+        this(type, name, finalName, hardness, JourneyTabs.BLOCKS);
     }
 
     public BlockModContainer(String name, String finalName, boolean breakable, CreativeTabs tab) {
@@ -51,7 +51,7 @@ public abstract class BlockModContainer extends BlockContainer {
     }
 
     public BlockModContainer(String name, String finalName, boolean breakable) {
-        this(name, finalName, breakable, JourneyTabs.blocks);
+        this(name, finalName, breakable, JourneyTabs.BLOCKS);
     }
 
     public BlockModContainer(EnumMaterialTypes blockType, String name, String finalName, CreativeTabs tab) {

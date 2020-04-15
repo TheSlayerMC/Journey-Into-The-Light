@@ -12,7 +12,7 @@ public class BlockModBookshelf extends BlockBookshelf {
 
     public BlockModBookshelf(String name) {
         setTranslationKey(name);
-        setCreativeTab(JourneyTabs.blocks);
+        setCreativeTab(JourneyTabs.BLOCKS);
         setSoundType(SoundType.WOOD);
         JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
         JourneyBlocks.blocks.add(this);

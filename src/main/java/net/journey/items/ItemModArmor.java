@@ -43,7 +43,7 @@ public class ItemModArmor extends ItemArmor implements ISpecialArmor {
         else if (armorType == EntityEquipmentSlot.FEET) damageReduction = ((((double) fullReduction) / 24) * 4) / 100;
         this.unbreakable = armorMaterial.isUndamageable();
         setArmorType(name, armorType);
-        setCreativeTab(JourneyTabs.armor);
+        setCreativeTab(JourneyTabs.ARMOR);
         setTranslationKey(this.name);
         JourneyItems.itemNames.add(SlayerAPI.PREFIX + name.toLowerCase());
         JourneyItems.items.add(this);

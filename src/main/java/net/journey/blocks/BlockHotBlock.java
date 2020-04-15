@@ -33,7 +33,7 @@ public class BlockHotBlock extends BlockMod {
     public BlockHotBlock(BlockMod dirt, String name, String finalName, float hardness) {
         super(EnumMaterialTypes.GRASS, name, finalName, hardness);
         this.dirt = dirt;
-        setCreativeTab(JourneyTabs.blocks);
+        setCreativeTab(JourneyTabs.BLOCKS);
         setTickRandomly(true);
     }
 

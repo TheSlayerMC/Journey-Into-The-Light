@@ -17,7 +17,7 @@ public class BlockModStairs extends BlockStairs {
         super(stair.getDefaultState());
         this.name = name;
         LangRegistry.addBlock(name, finalName);
-        setCreativeTab(JourneyTabs.blocks);
+        setCreativeTab(JourneyTabs.BLOCKS);
         setTranslationKey(name);
         if (light) setLightLevel(0.5F);
         this.setLightOpacity(1);

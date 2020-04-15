@@ -38,13 +38,13 @@ public class BlockModFlower extends BlockMod implements IPlantable {
     public BlockModFlower(String name, String finalName) {
         super(EnumMaterialTypes.PLANT, name, finalName, 0.0F);
         this.setTickRandomly(true);
-        this.setCreativeTab(JourneyTabs.decoration);
+        this.setCreativeTab(JourneyTabs.DECORATION);
     }
 
     public BlockModFlower(String name, String finalName, boolean tallgrass) {
         super(EnumMaterialTypes.PLANT, name, finalName, 0.0F);
         this.setTickRandomly(true);
-        this.setCreativeTab(JourneyTabs.decoration);
+        this.setCreativeTab(JourneyTabs.DECORATION);
         this.isTallGrass = tallgrass;
     }
 

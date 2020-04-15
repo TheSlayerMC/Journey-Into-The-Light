@@ -30,7 +30,7 @@ public class BlockDarkbloom extends Block {
         this.name = name;
         LangRegistry.addBlock(name, f);
         setSoundType(EnumMaterialTypes.PLANT.getSound());
-        setCreativeTab(JourneyTabs.decoration);
+        setCreativeTab(JourneyTabs.DECORATION);
         setHardness(0.0F);
         setLightLevel(0.6F);
         setTickRandomly(true);

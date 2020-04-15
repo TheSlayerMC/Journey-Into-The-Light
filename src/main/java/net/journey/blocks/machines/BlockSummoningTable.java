@@ -29,7 +29,7 @@ import java.util.Random;
 public class BlockSummoningTable extends BlockModContainer {
 
     public BlockSummoningTable(String name, String f) {
-        super(EnumMaterialTypes.STONE, name, f, 2.0F, JourneyTabs.machineBlocks);
+        super(EnumMaterialTypes.STONE, name, f, 2.0F, JourneyTabs.MACHINE_BLOCKS);
     }
 
     @Override

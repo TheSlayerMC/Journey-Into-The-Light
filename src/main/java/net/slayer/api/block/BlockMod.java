@@ -4,14 +4,12 @@ import net.journey.JITL;
 import net.journey.enums.EnumParticlesClasses;
 import net.journey.init.JourneyTabs;
 import net.journey.init.blocks.JourneyBlocks;
-import net.journey.init.items.JourneyItems;
-import net.journey.util.LangRegistry;
+import net.journey.util.StuffConstructor;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -25,48 +23,40 @@ import net.slayer.api.SlayerAPI;
 import java.util.Random;
 
 public class BlockMod extends Block {
-    protected EnumMaterialTypes blockType;
     protected Item drop = null;
     protected Random rand;
     protected boolean isOpaque = true, isNormalCube = true; //TODO seems unused, test and remove
 
-    public BlockMod(String name, String finalName, float hardness) {
-        this(EnumMaterialTypes.STONE, name, finalName, hardness, JourneyTabs.blocks);
+    public BlockMod(String name, String enName, float hardness) {
+        this(EnumMaterialTypes.STONE, name, enName, hardness, JourneyTabs.BLOCKS);
     }
 
-    public BlockMod(String name, String finalName) {
-        this(EnumMaterialTypes.STONE, name, finalName, JourneyTabs.blocks);
+    public BlockMod(String name, String enName) {
+        this(EnumMaterialTypes.STONE, name, enName, JourneyTabs.BLOCKS);
     }
 
-    public BlockMod(EnumMaterialTypes type, String name, String finalName, float hardness) {
-        this(type, name, finalName, hardness, JourneyTabs.blocks);
+    public BlockMod(EnumMaterialTypes type, String name, String enName, float hardness) {
+        this(type, name, enName, hardness, JourneyTabs.BLOCKS);
     }
 
-    public BlockMod(String name, String finalName, boolean breakable, CreativeTabs tab) {
-        this(EnumMaterialTypes.STONE, name, finalName, tab);
+    public BlockMod(String name, String enName, boolean breakable, CreativeTabs tab) {
+        this(EnumMaterialTypes.STONE, name, enName, tab);
     }
 
-    public BlockMod(String name, String finalName, boolean breakable) {
-        this(name, finalName, breakable, JourneyTabs.blocks);
+    public BlockMod(String name, String enName, boolean breakable) {
+        this(name, enName, breakable, JourneyTabs.BLOCKS);
     }
 
-    public BlockMod(EnumMaterialTypes blockType, String name, String finalName, CreativeTabs tab) {
-        this(blockType, name, finalName, 2.0F, tab);
+    public BlockMod(EnumMaterialTypes blockType, String name, String enName, CreativeTabs tab) {
+        this(blockType, name, enName, 2.0F, tab);
     }
 
-    public BlockMod(EnumMaterialTypes blockType, String name, String finalName, float hardness, CreativeTabs tab) {
+    public BlockMod(EnumMaterialTypes blockType, String name, String enName, float hardness, CreativeTabs tab) {
         super(blockType.getMaterial());
-        LangRegistry.addBlock(name, finalName);
-        this.blockType = blockType;
-        rand = new Random();
         setSoundType(blockType.getSound());
-        setCreativeTab(tab);
-        setTranslationKey(name);
-        setHardness(hardness);
-        JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
-        JourneyBlocks.blocks.add(this);
-        setRegistryName(SlayerAPI.MOD_ID, name);
-        JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
+        rand = new Random();
+
+        StuffConstructor.regAndSetupBlock(this, name, enName, hardness, tab);
     }
 
     public Block addName(String name) {

@@ -40,7 +40,7 @@ public class BlockModBush extends BlockMod implements IPlantable, IGrowable {
         this.setDefaultState(this.blockState.getBaseState().withProperty(AGE, Integer.valueOf(0)));
         this.setTickRandomly(true);
         this.setLightOpacity(-100000);
-        this.setCreativeTab(JourneyTabs.crops);
+        this.setCreativeTab(JourneyTabs.CROPS);
     }
 
     @Override

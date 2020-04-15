@@ -27,7 +27,7 @@ public class ItemStorage extends Item {
     protected int healAmount = 0;
 
     public ItemStorage(String name, String finalName) {
-        this(name, finalName, JourneyTabs.items);
+        this(name, finalName, JourneyTabs.ITEMS);
     }
 
     public ItemStorage(String name, String finalName, CreativeTabs tab) {

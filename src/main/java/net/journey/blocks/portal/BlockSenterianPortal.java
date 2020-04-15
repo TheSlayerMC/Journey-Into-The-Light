@@ -28,7 +28,7 @@ public class BlockSenterianPortal extends BlockMod {
     public BlockSenterianPortal(String name, String f) {
         super(EnumMaterialTypes.PORTAL, name, f, 2.0F);
         this.setTickRandomly(true);
-        setCreativeTab(JourneyTabs.portalBlocks);
+        setCreativeTab(JourneyTabs.PORTAL_BLOCKS);
     }
 
     @Override

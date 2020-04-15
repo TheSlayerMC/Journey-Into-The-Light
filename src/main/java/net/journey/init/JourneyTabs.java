@@ -12,17 +12,17 @@ import net.minecraft.item.ItemStack;
 
 public class JourneyTabs extends CreativeTabs {
 
-    public static final JourneyTabs blocks = new JourneyTabs("journey.blocks");
-    public static final JourneyTabs decoration = new JourneyTabs("journey.decoration");
-    public static final JourneyTabs items = new JourneyTabs("journey.items");
-    public static final JourneyTabs tools = new JourneyTabs("journey.tools");
-    public static final JourneyTabs weapons = new JourneyTabs("journey.weapons");
-    public static final JourneyTabs util = new JourneyTabs("journey.util");
-    public static final JourneyTabs armor = new JourneyTabs("journey.armor");
-    public static final JourneyTabs spawners = new JourneyTabs("journey.spawners");
-    public static final JourneyTabs crops = new JourneyTabs("journey.crops");
-    public static final JourneyTabs machineBlocks = new JourneyTabs("journey.machineBlocks");
-    public static final JourneyTabs portalBlocks = new JourneyTabs("journey.portalBlocks");
+    public static final JourneyTabs BLOCKS = new JourneyTabs("journey.blocks");
+    public static final JourneyTabs DECORATION = new JourneyTabs("journey.decoration");
+    public static final JourneyTabs ITEMS = new JourneyTabs("journey.items");
+    public static final JourneyTabs TOOLS = new JourneyTabs("journey.tools");
+    public static final JourneyTabs WEAPONS = new JourneyTabs("journey.weapons");
+    public static final JourneyTabs UTIL = new JourneyTabs("journey.util");
+    public static final JourneyTabs ARMOR = new JourneyTabs("journey.armor");
+    public static final JourneyTabs SPAWNERS = new JourneyTabs("journey.spawners");
+    public static final JourneyTabs CROPS = new JourneyTabs("journey.crops");
+    public static final JourneyTabs MACHINE_BLOCKS = new JourneyTabs("journey.machineBlocks");
+    public static final JourneyTabs PORTAL_BLOCKS = new JourneyTabs("journey.portalBlocks");
 
     public Item item;
 
@@ -31,17 +31,17 @@ public class JourneyTabs extends CreativeTabs {
     }
 
     public static void init() {
-        blocks.setIcon(JourneyBlocks.eucaGrass);
-        decoration.setIcon(JourneyBlocks.boilingLamp);
-        items.setIcon(JourneyItems.koriteIngot);
-        tools.setIcon(JourneyArmory.multiToolOfEternalSmelting);
-        weapons.setIcon(JourneyWeapons.coreMender);
-        util.setIcon(JourneyItems.flameCoin);
-        armor.setIcon(JourneyArmory.blazehornHelmet);
-        spawners.setIcon(JourneyItems.sentryKingOrb);
-        crops.setIcon(JourneyConsumables.hongoShroom);
-        machineBlocks.setIcon(JourneyBlocks.summoningTable);
-        portalBlocks.setIcon(JourneyBlocks.eucaPortal);
+        BLOCKS.setIcon(JourneyBlocks.eucaGrass);
+        DECORATION.setIcon(JourneyBlocks.boilingLamp);
+        ITEMS.setIcon(JourneyItems.koriteIngot);
+        TOOLS.setIcon(JourneyArmory.multiToolOfEternalSmelting);
+        WEAPONS.setIcon(JourneyWeapons.coreMender);
+        UTIL.setIcon(JourneyItems.flameCoin);
+        ARMOR.setIcon(JourneyArmory.blazehornHelmet);
+        SPAWNERS.setIcon(JourneyItems.sentryKingOrb);
+        CROPS.setIcon(JourneyConsumables.hongoShroom);
+        MACHINE_BLOCKS.setIcon(JourneyBlocks.summoningTable);
+        PORTAL_BLOCKS.setIcon(JourneyBlocks.eucaPortal);
     }
 
     public void setIcon(Item icon) {

@@ -31,7 +31,7 @@ public class BlockModMobFlower extends BlockMod implements IPlantable {
         super(EnumMaterialTypes.PLANT, name, finalName, 0.0F);
         this.setTickRandomly(true);
         float f = 0.3F;
-        this.setCreativeTab(JourneyTabs.decoration);
+        this.setCreativeTab(JourneyTabs.DECORATION);
     }
 
     @Override

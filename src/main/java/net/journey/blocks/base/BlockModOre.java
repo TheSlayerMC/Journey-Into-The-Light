@@ -9,7 +9,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.slayer.api.EnumMaterialTypes;
 import net.slayer.api.block.BlockMod;
 
 import java.util.Random;
@@ -26,12 +25,6 @@ public class BlockModOre extends BlockMod {
     public BlockModOre(String name, String finalName, Boolean hasParticle) {
         super(name, finalName);
         this.hasParticle = hasParticle;
-    }
-
-    public BlockModOre(EnumMaterialTypes material, String name, String finalName, Boolean hasParticle) {
-        super(name, finalName);
-        this.hasParticle = hasParticle;
-        this.blockType = material;
     }
 
     @Override

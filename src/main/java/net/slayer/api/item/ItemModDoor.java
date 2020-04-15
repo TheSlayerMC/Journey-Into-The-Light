@@ -22,7 +22,7 @@ public class ItemModDoor extends ItemMod {
     public ItemModDoor(BlockModDoor block, String name, String f) {
         super(name, f);
         this.door = block;
-        setCreativeTab(JourneyTabs.blocks);
+        setCreativeTab(JourneyTabs.BLOCKS);
     }
 
     @Override

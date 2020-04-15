@@ -29,7 +29,7 @@ public class ItemEssencePotion extends ItemMod {
     private boolean isStrong;
 
     public ItemEssencePotion(String name, String f, boolean strong) {
-        super(name, f, JourneyTabs.util);
+        super(name, f, JourneyTabs.UTIL);
         isStrong = strong;
     }
 

@@ -24,7 +24,7 @@ public class BlockModGrass extends BlockMod implements IGrowable {
     public BlockModGrass(BlockMod dirt, String name, String finalName, float hardness) {
         super(EnumMaterialTypes.GRASS, name, finalName, hardness);
         this.dirt = dirt;
-        setCreativeTab(JourneyTabs.blocks);
+        setCreativeTab(JourneyTabs.BLOCKS);
         setTickRandomly(true);
     }
 

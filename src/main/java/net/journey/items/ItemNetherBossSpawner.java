@@ -26,7 +26,7 @@ import java.util.List;
 public class ItemNetherBossSpawner extends ItemMod {
 
     public ItemNetherBossSpawner(String name, String f) {
-        super(name, f, JourneyTabs.spawners);
+        super(name, f, JourneyTabs.SPAWNERS);
         setMaxStackSize(1);
     }
 

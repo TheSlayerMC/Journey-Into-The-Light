@@ -24,7 +24,7 @@ import java.util.Random;
 public class ItemPresent extends ItemMod {
 
     public ItemPresent(String name, String f) {
-        super(name, f, JourneyTabs.util);
+        super(name, f, JourneyTabs.UTIL);
     }
 
     @Override

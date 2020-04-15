@@ -41,7 +41,7 @@ public abstract class BlockModPortal extends BlockBreakable {
         this.setDefaultState(this.blockState.getBaseState().withProperty(AXIS, EnumFacing.Axis.X));
         LangRegistry.addBlock(name, finalName);
         this.setTickRandomly(true);
-        setCreativeTab(JourneyTabs.portalBlocks);
+        setCreativeTab(JourneyTabs.PORTAL_BLOCKS);
         setTranslationKey(name);
         JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
         JourneyBlocks.blocks.add(this);

@@ -19,7 +19,7 @@ public class ItemCrafting extends Item {
     private int type;
 
     public ItemCrafting(String name, String finalName, int type) {
-        this(name, finalName, JourneyTabs.items);
+        this(name, finalName, JourneyTabs.ITEMS);
         this.maxStackSize = 1;
         this.type = type;
     }
@@ -29,7 +29,7 @@ public class ItemCrafting extends Item {
         setTranslationKey(name);
         JourneyItems.items.add(this);
         JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
-        setCreativeTab(JourneyTabs.util);
+        setCreativeTab(JourneyTabs.UTIL);
         setRegistryName(SlayerAPI.MOD_ID, name);
     }
 

@@ -24,7 +24,7 @@ public class ItemModShovel extends ItemSpade {
         LangRegistry.addItem(name, f);
         mat = tool;
         setTranslationKey(name);
-        setCreativeTab(JourneyTabs.tools);
+        setCreativeTab(JourneyTabs.TOOLS);
         JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
         JourneyItems.items.add(this);
         setRegistryName(SlayerAPI.MOD_ID, name);

@@ -47,7 +47,7 @@ public class BlockModVine extends BlockMod implements net.minecraftforge.common.
     protected static final AxisAlignedBB SOUTH_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.9375D, 1.0D, 1.0D, 1.0D);
 
     public BlockModVine(String name, String finalName, float hardness) {
-        super(EnumMaterialTypes.VINES, name, finalName, hardness, JourneyTabs.decoration);
+        super(EnumMaterialTypes.VINES, name, finalName, hardness, JourneyTabs.DECORATION);
         this.setDefaultState(this.blockState.getBaseState().withProperty(UP, Boolean.valueOf(false)).withProperty(NORTH, Boolean.valueOf(false)).withProperty(EAST, Boolean.valueOf(false)).withProperty(SOUTH, Boolean.valueOf(false)).withProperty(WEST, Boolean.valueOf(false)));
         this.setTickRandomly(true);
         this.setCreativeTab(CreativeTabs.DECORATIONS);

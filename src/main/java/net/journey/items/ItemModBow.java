@@ -53,7 +53,7 @@ public class ItemModBow extends ItemBow {
         this.name = name;
         LangRegistry.addItem(name.toLowerCase(), properName);
         setTranslationKey(name.toLowerCase());
-        setCreativeTab(JourneyTabs.weapons);
+        setCreativeTab(JourneyTabs.WEAPONS);
         JourneyItems.itemNames.add(SlayerAPI.PREFIX + name.toLowerCase());
         JourneyItems.items.add(this);
         setRegistryName(SlayerAPI.MOD_ID, name.toLowerCase());
@@ -74,7 +74,7 @@ public class ItemModBow extends ItemBow {
         this.name = name;
         LangRegistry.addItem(name.toLowerCase(), f);
         setTranslationKey(name.toLowerCase());
-        setCreativeTab(JourneyTabs.weapons);
+        setCreativeTab(JourneyTabs.WEAPONS);
         JourneyItems.itemNames.add(SlayerAPI.PREFIX + name.toLowerCase());
         JourneyItems.items.add(this);
         setRegistryName(SlayerAPI.MOD_ID, name.toLowerCase());
@@ -94,7 +94,7 @@ public class ItemModBow extends ItemBow {
         this.name = name;
         LangRegistry.addItem(name.toLowerCase(), f);
         setTranslationKey(name.toLowerCase());
-        setCreativeTab(JourneyTabs.weapons);
+        setCreativeTab(JourneyTabs.WEAPONS);
         JourneyItems.itemNames.add(SlayerAPI.PREFIX + name.toLowerCase());
         JourneyItems.items.add(this);
         setRegistryName(SlayerAPI.MOD_ID, name.toLowerCase());
@@ -102,7 +102,7 @@ public class ItemModBow extends ItemBow {
     }
 
     public ItemModBow(String name, String finalName) {
-        this(name, finalName, JourneyTabs.weapons);
+        this(name, finalName, JourneyTabs.WEAPONS);
         this.name = name;
     }
 

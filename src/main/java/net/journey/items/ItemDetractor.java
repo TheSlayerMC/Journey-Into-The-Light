@@ -29,7 +29,7 @@ public class ItemDetractor extends ItemMod {
     private int magic;
 
     public ItemDetractor(String name, String finalName, int magic, boolean attracts, boolean detracts) {
-        super(name, finalName, JourneyTabs.weapons);
+        super(name, finalName, JourneyTabs.WEAPONS);
         setMaxStackSize(1);
         this.magic = magic;
         this.attracts = attracts;

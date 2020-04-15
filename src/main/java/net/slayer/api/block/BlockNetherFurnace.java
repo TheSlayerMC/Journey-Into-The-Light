@@ -35,7 +35,7 @@ public class BlockNetherFurnace extends BlockModContainer {
     private final boolean isBurning;
 
     public BlockNetherFurnace(String name, String f, boolean isBurning) {
-        super(EnumMaterialTypes.STONE, name, f, 2.0F, JourneyTabs.machineBlocks);
+        super(EnumMaterialTypes.STONE, name, f, 2.0F, JourneyTabs.MACHINE_BLOCKS);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
         this.isBurning = isBurning;

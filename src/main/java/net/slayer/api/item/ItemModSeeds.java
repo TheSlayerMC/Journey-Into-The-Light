@@ -14,7 +14,7 @@ public class ItemModSeeds extends ItemSeeds {
         super(block, Blocks.FARMLAND);
         LangRegistry.addItem(name, f);
         setTranslationKey(name);
-        setCreativeTab(JourneyTabs.crops);
+        setCreativeTab(JourneyTabs.CROPS);
         JourneyItems.items.add(this);
         JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
         setRegistryName(SlayerAPI.MOD_ID, name);

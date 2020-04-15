@@ -29,7 +29,7 @@ public class ItemThrowableArrow extends ItemMod {
         super(name, f);
         this.entity = entity;
         this.string = description;
-        setCreativeTab(JourneyTabs.weapons);
+        setCreativeTab(JourneyTabs.WEAPONS);
     }
 
     @Override
