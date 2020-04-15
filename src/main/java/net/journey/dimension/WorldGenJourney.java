@@ -77,7 +77,7 @@ public class WorldGenJourney implements IWorldGenerator {
         flairium = create(JourneyBlocks.flairiumOre, 8, JourneyBlocks.depthsStone);
         depthsLights = create(JourneyBlocks.depthsLights, 25, JourneyBlocks.depthsGrass);
         depthsLightsForStone = create(JourneyBlocks.depthsLights, 25, JourneyBlocks.depthsStone);
-        gorbite = create(JourneyBlocks.gorbiteOre, 6, JourneyBlocks.depthsStone);
+        gorbite = create(JourneyBlocks.gorbiteOre, 6, JourneyBlocks.corbaStone);
         orbaditeOre = create(JourneyBlocks.orbaditeOre, 6, JourneyBlocks.corbaStone);
         celestium = create(JourneyBlocks.celestiumOre, 10, JourneyBlocks.eucaStone);
         storonOre = create(JourneyBlocks.storonOre, 6, JourneyBlocks.eucaStone);
