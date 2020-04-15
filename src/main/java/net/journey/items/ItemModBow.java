@@ -131,7 +131,6 @@ public class ItemModBow extends ItemBow {
 
 	public void addPropertyOverrides() { }
 
-	@Override
 	public ItemStack findAmmo(EntityPlayer player) {
 		if (this.isArrow(player.getHeldItem(EnumHand.OFF_HAND))) {
 			return player.getHeldItem(EnumHand.OFF_HAND);

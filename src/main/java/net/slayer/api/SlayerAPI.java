@@ -53,7 +53,7 @@ public class SlayerAPI {
 	MOD_NAME = "Journey Into the Light", 
 	MOD_ID = "journey", 
 	PREFIX = MOD_ID + ":", 
-	MOD_VERSION = "1.0.5.7";
+	MOD_VERSION = "GRADLETOKEN_VERSION"; //will be automatically changed during build task
 	public static final boolean 
 	DEVMODE = true,
 	BETA = false;
