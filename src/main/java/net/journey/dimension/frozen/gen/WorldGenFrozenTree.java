@@ -15,7 +15,7 @@ public class WorldGenFrozenTree extends WorldGenerator {
         int i = bp.getX() - 3, j = bp.getY(), k = bp.getZ() - 2;
 
         IBlockState leaves = JourneyBlocks.frozenLeaves.getDefaultState();
-        IBlockState log = JourneyBlocks.frozenBark.getDefaultState();
+        IBlockState log = JourneyBlocks.frozenLog.getDefaultState();
         this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i, j + 3, k + 2), leaves);
         this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i, j + 3, k + 3), leaves);
         this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 3, k + 1), leaves);

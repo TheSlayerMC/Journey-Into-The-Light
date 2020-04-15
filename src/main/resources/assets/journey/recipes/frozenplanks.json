@@ -5,7 +5,7 @@
   },
   "ingredients": [
     {
-      "item": "journey:frozenbark"
+      "item": "journey:frozenlog"
     }
   ],
   "type": "minecraft:crafting_shapeless"

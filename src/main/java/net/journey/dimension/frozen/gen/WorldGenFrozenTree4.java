@@ -13,7 +13,7 @@ import net.minecraft.world.gen.feature.WorldGenHugeTrees;
 import java.util.Random;
 
 public class WorldGenFrozenTree4 extends WorldGenHugeTrees {
-    private static final IBlockState TRUNK = JourneyBlocks.frozenBark.getDefaultState();
+    private static final IBlockState TRUNK = JourneyBlocks.frozenLog.getDefaultState();
     private static final IBlockState LEAF = JourneyBlocks.frozenLeaves.getDefaultState();
     private static final IBlockState PODZOL = JourneyBlocks.frozenGrass.getDefaultState();
     private final boolean useBaseHeight;

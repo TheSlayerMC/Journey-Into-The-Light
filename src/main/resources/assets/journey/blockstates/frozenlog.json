@@ -2,9 +2,9 @@
 	"forge_marker": 1,
 	"defaults": {
 		"textures": {
-			"particle": "journey:blocks/log/terranianlog_top",
-			"end": "journey:blocks/log/terranianlog_top",
-			"side": "journey:blocks/log/terranianlog_side"
+			"particle": "journey:blocks/log/frozenlog_top",
+			"end": "journey:blocks/log/frozenlog_top",
+			"side": "journey:blocks/log/frozenlog_side"
 		},
 		"model": "cube_column"
 	},
@@ -21,7 +21,7 @@
 			},
 			"none":  {
 				"textures": {
-					"all": "journey:blocks/log/terranianlog_side"
+					"all": "journey:blocks/log/frozenlog_side"
 				},
 				"model": "cube_all"
 			}

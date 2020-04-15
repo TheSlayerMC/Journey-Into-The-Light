@@ -1,5 +1,30 @@
 {
+	"forge_marker": 1,
+	"defaults": {
+		"textures": {
+			"particle": "journey:blocks/log/eucagoldlog_top",
+			"end": "journey:blocks/log/eucagoldlog_top",
+			"side": "journey:blocks/log/eucagoldlog_side"
+		},
+		"model": "cube_column"
+	},
 	"variants": {
-		"normal": { "model": "journey:eucaGoldLog"}
+		"axis": {
+			"x":  {
+				"x": 90, "y": 90
+			},
+			"y": {
+
+			},
+			"z":  {
+				"x": 90
+			},
+			"none":  {
+				"textures": {
+					"all": "journey:blocks/log/eucagoldlog_side"
+				},
+				"model": "cube_all"
+			}
+		}
 	}
 }

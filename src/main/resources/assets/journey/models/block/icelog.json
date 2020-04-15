@@ -1,9 +1,0 @@
-{
-	"parent": "block/cube_bottom_top",
-	"textures": {
-		"particle": "journey:blocks/iceLog_top",
-		"bottom": "journey:blocks/iceLog_top",
-		"top": "journey:blocks/iceLog_top",
-		"side": "journey:blocks/iceLog_side"
-	}
-}

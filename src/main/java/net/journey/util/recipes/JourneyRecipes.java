@@ -161,7 +161,7 @@ public class JourneyRecipes {
         addWood(JourneyBlocks.eucaGoldLog, JourneyBlocks.goldEucaPlank, JourneyBlocks.eucaGoldStairs, 0, true);
         addWood(JourneyBlocks.depthsLog, JourneyBlocks.depthsPlank, JourneyBlocks.depthsPlank, 1, true);
         addWood(JourneyBlocks.corbaLog, JourneyBlocks.corbaPlank, JourneyBlocks.corbaLog, 1, true);
-        addWood(JourneyBlocks.frozenBark, JourneyBlocks.frozenPlanks, JourneyBlocks.corbaLog, 1, true);
+        addWood(JourneyBlocks.frozenLog, JourneyBlocks.frozenPlanks, JourneyBlocks.corbaLog, 1, true);
 
         addShapedRecipe(new ItemStack(JourneyArmory.blazehornHelmet),
                 "idi", "d d", 'd', Items.BLAZE_ROD, 'i', JourneyItems.horn);

@@ -1,0 +1,8 @@
+{
+	"parent": "block/cube_column",
+	"textures": {
+		"particle": "journey:blocks/log/eucagoldlog_top",
+		"end": "journey:blocks/log/eucagoldlog_top",
+		"side": "journey:blocks/log/eucagoldlog_side"
+	}
+}

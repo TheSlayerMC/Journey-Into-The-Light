@@ -1,5 +1,30 @@
 {
+	"forge_marker": 1,
+	"defaults": {
+		"textures": {
+			"particle": "journey:blocks/log/corbalog_top",
+			"end": "journey:blocks/log/corbalog_top",
+			"side": "journey:blocks/log/corbalog_side"
+		},
+		"model": "cube_column"
+	},
 	"variants": {
-		"normal": { "model": "journey:corbaLog"}
+		"axis": {
+			"x":  {
+				"x": 90, "y": 90
+			},
+			"y": {
+
+			},
+			"z":  {
+				"x": 90
+			},
+			"none":  {
+				"textures": {
+					"all": "journey:blocks/log/corbalog_side"
+				},
+				"model": "cube_all"
+			}
+		}
 	}
 }

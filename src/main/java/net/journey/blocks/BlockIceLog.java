@@ -8,9 +8,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.slayer.api.block.BlockModLog;
+import net.slayer.api.block.JBlockLog;
 
-public class BlockIceLog extends BlockModLog {
+public class BlockIceLog extends JBlockLog {
 
     public BlockIceLog() {
         super("iceLog", "Ice Log");

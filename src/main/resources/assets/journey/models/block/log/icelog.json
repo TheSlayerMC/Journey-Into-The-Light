@@ -1,0 +1,8 @@
+{
+	"parent": "block/cube_column",
+	"textures": {
+		"particle": "journey:blocks/log/icelog_top",
+		"end": "journey:blocks/log/icelog_top",
+		"side": "journey:blocks/log/icelog_side"
+	}
+}

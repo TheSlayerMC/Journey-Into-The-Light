@@ -1,0 +1,8 @@
+{
+	"parent": "block/cube_column",
+	"textures": {
+		"particle": "journey:blocks/log/cloudialog_top",
+		"end": "journey:blocks/log/cloudialog_top",
+		"side": "journey:blocks/log/cloudialog_side"
+	}
+}
