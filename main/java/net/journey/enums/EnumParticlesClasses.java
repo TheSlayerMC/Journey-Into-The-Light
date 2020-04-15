@@ -14,6 +14,7 @@ import net.journey.client.render.particles.EntityIceballFX;
 import net.journey.client.render.particles.EntityModLavaFX;
 import net.journey.client.render.particles.EntityOvergrownFX;
 import net.journey.client.render.particles.EntityRockFX;
+import net.journey.client.render.particles.EntitySummoningFX;
 import net.journey.client.render.particles.EntityWitherFX;
 import net.journey.client.render.particles.EntityWizardsFX;
 import net.journey.client.render.particles.ParticleSmokeLarge;
@@ -42,7 +43,8 @@ public enum EnumParticlesClasses {
 	ENLIGHTMENT(EntityEnlightmentFX.class),
 	EARTHEN(EntityEarthenFX.class),
 	CONJURING(EntityConjuringFX.class),
-	DEPTHS(EntityDepthsPortalFX.class);
+	DEPTHS(EntityDepthsPortalFX.class),
+	SUMMONING(EntitySummoningFX.class);
 	
 	private Class particle;
 	

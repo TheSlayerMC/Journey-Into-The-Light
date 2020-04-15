@@ -2,10 +2,12 @@ package net.journey.blocks.tileentity;
 
 import java.util.Random;
 
+import net.journey.JITL;
 import net.journey.JourneyItems;
 import net.journey.JourneySounds;
 import net.journey.blocks.tileentity.container.ContainerSummoningTable;
 import net.journey.client.render.particles.EntitySummoningFX;
+import net.journey.enums.EnumParticlesClasses;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -53,10 +55,7 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 					JourneyItems.boilPowder, 
 					JourneyItems.boilPowder)) {
 				shrinkAllSlots(slot1, slot2, slot3, slot4, slot5, slot6, slot7);
-				//this.inventory.set(3, new ItemStack(JourneyItems.blazierOrb));
-				if(!world.isRemote) {
-					this.world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(JourneyItems.blazierOrb, 1)));
-				}
+				summonItem(new ItemStack(JourneyItems.blazierOrb));
 				addSound();
 				addParticles();
 			}
@@ -69,9 +68,7 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 					JourneyItems.concentratedBlood, 
 					JourneyItems.snakeSkin)) {
 				shrinkAllSlots(slot1, slot2, slot3, slot4, slot5, slot6, slot7);
-				if(!world.isRemote) {
-					this.world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(JourneyItems.soulWatcherOrb, 1)));
-				}
+				summonItem(new ItemStack(JourneyItems.soulWatcherOrb));
 				addSound();
 				addParticles();
 			}
@@ -84,9 +81,7 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 					JourneyItems.enchantedLeaf, 
 					JourneyItems.natureTablet)) {
 				shrinkAllSlots(slot1, slot2, slot3, slot4, slot5, slot6, slot7);
-				if(!world.isRemote) {
-					this.world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(JourneyItems.loggerOrb, 1)));
-				}
+				summonItem(new ItemStack(JourneyItems.loggerOrb));
 				addSound();
 				addParticles();
 			}
@@ -99,9 +94,7 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 					JourneyItems.collectorRock, 
 					JourneyItems.overseeingEye)) {
 				shrinkAllSlots(slot1, slot2, slot3, slot4, slot5, slot6, slot7);
-				if(!world.isRemote) {
-					this.world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(JourneyItems.sentryKingOrb, 1)));
-				}
+				summonItem(new ItemStack(JourneyItems.sentryKingOrb));
 				addSound();
 				addParticles();
 			}
@@ -114,9 +107,7 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 					JourneyItems.beastlyStomach, 
 					JourneyItems.scale)) {
 				shrinkAllSlots(slot1, slot2, slot3, slot4, slot5, slot6, slot7);
-				if(!world.isRemote) {
-					this.world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(JourneyItems.scale, 1)));
-				}
+				summonItem(new ItemStack(JourneyItems.scale));
 				addSound();
 				addParticles();
 			}
@@ -129,9 +120,7 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 					JourneyItems.darkCrystal, 
 					JourneyItems.rocFeather)) {
 				shrinkAllSlots(slot1, slot2, slot3, slot4, slot5, slot6, slot7);
-				if(!world.isRemote) {
-					this.world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(JourneyItems.thunderbirdOrb, 1)));
-				}
+				summonItem(new ItemStack(JourneyItems.thunderbirdOrb));
 				addSound();
 				addParticles();
 			}
@@ -144,9 +133,7 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 					JourneyItems.silverClump, 
 					JourneyItems.gateKeys)) {
 				shrinkAllSlots(slot1, slot2, slot3, slot4, slot5, slot6, slot7);
-				if(!world.isRemote) {
-					this.world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(JourneyItems.corallatorOrb, 1)));
-				}
+				summonItem(new ItemStack(JourneyItems.corallatorOrb));
 				addSound();
 				addParticles();
 			}
@@ -159,9 +146,7 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 					JourneyItems.goldClump, 
 					JourneyItems.gateKeys)) {
 				shrinkAllSlots(slot1, slot2, slot3, slot4, slot5, slot6, slot7);
-				if(!world.isRemote) {
-					this.world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(JourneyItems.eudorOrb, 1)));
-				}
+				summonItem(new ItemStack(JourneyItems.eudorOrb));
 				addSound();
 				addParticles();
 			}
@@ -174,9 +159,7 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 					JourneyItems.hellShards, 
 					JourneyItems.hellstoneIngot)) {
 				shrinkAllSlots(slot1, slot2, slot3, slot4, slot5, slot6, slot7);
-				if(!world.isRemote) {
-					this.world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(JourneyItems.netherBeastOrb, 1)));
-				}
+				summonItem(new ItemStack(JourneyItems.netherBeastOrb));
 				addSound();
 				addParticles();
 			}
@@ -189,9 +172,7 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 					JourneyItems.lostSoul, 
 					JourneyItems.withicSpine)) {
 				shrinkAllSlots(slot1, slot2, slot3, slot4, slot5, slot6, slot7);
-				if(!world.isRemote) {
-					this.world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(JourneyItems.witheringBeastOrb, 1)));
-				}
+				summonItem(new ItemStack(JourneyItems.witheringBeastOrb));
 				addSound();
 				addParticles();
 			}		
@@ -204,9 +185,7 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 					JourneyItems.purplePowder, 
 					JourneyItems.earthenCrystal)) {
 				shrinkAllSlots(slot1, slot2, slot3, slot4, slot5, slot6, slot7);
-				if(!world.isRemote) {
-					this.world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(JourneyItems.enchantedTerrastar, 1)));
-				}
+				summonItem(new ItemStack(JourneyItems.enchantedTerrastar));
 				addSound();
 				addParticles();
 			}
@@ -219,13 +198,15 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 					JourneyItems.ash, 
 					JourneyItems.spawnerBar)) {
 				shrinkAllSlots(slot1, slot2, slot3, slot4, slot5, slot6, slot7);
-				if(!world.isRemote) {
-					this.world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(JourneyItems.calciaOrb, 1)));
-				}
+				summonItem(new ItemStack(JourneyItems.calciaOrb));
 				addParticles();
 				addSound();
 			}
 		}
+	}
+	
+	public void summonItem(ItemStack orb) {
+		this.inventory.set(3, orb);
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -241,7 +222,7 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 		Random r = new Random();
 		if(!world.isRemote) {
 			for(int i = 0; i < 20; i++)
-				FMLClientHandler.instance().getClient().effectRenderer.addEffect(new EntitySummoningFX(world, getPos().getX() + r.nextFloat(), getPos().getY() + 1.2D, getPos().getZ() + r.nextFloat(), 0, 1, 0));
+				JITL.instance.proxy.spawnParticle(EnumParticlesClasses.SUMMONING, world, getPos().getX() + r.nextFloat(), getPos().getY() + 1.2D, getPos().getZ() + r.nextFloat(), 0, 1, 0);
 		}
 	}
 
@@ -290,7 +271,7 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 
 	@Override
 	public int getInventoryStackLimit() {
-		return 64;
+		return 1;
 	}
 
 	@Override
