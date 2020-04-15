@@ -3,6 +3,7 @@ package net.journey;
 import net.journey.blocks.tileentity.TileEntityHandler;
 import net.journey.client.IHasModel;
 import net.journey.util.EntityRegistry;
+import net.journey.util.LogHelper;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.Item;
@@ -28,12 +29,17 @@ public class Registrys {
     public static void registerItems(RegistryEvent.Register<Item> event) {
         for (int i = 0; i < JourneyItems.items.size(); i++)
             event.getRegistry().registerAll(JourneyItems.items.get(i));
+
+        LogHelper.info("Successfully Registered " + JourneyItems.items.size() + " Items");
     }
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
         for (int i = 0; i < JourneyBlocks.blocks.size(); i++)
             event.getRegistry().registerAll(JourneyBlocks.blocks.get(i));
+
+        LogHelper.info("Successfully Registered " + JourneyBlocks.blocks.size() + " Blocks");
+
         TileEntityHandler.register();
     }
 
@@ -53,6 +59,10 @@ public class Registrys {
 
         registry.registerAll(EntityRegistry.initProjectiles());
         registry.registerAll(EntityRegistry.initMobs());
+
+        LogHelper.info("Successfully Registered " + EntityRegistry.initMobs().length + " Mobs");
+        LogHelper.info("Successfully Registered " + EntityRegistry.initProjectiles().length + " Projectiles");
+
     }
 
     @SubscribeEvent
@@ -63,11 +73,15 @@ public class Registrys {
             event.getRegistry().register(sound);
         }
         SOUNDS.clear();
+
+        LogHelper.info("Successfully Registered " + SOUNDS.size() + " Sounds");
     }
 
     @SubscribeEvent
     public void registerEnchantments(RegistryEvent.Register<Enchantment> event) {
         for (int i = 0; i < JourneyEnchantments.enchantments.size(); i++)
             event.getRegistry().registerAll(JourneyEnchantments.enchantments.get(i));
+
+        LogHelper.info("Successfully Registered " + JourneyEnchantments.enchantments.size() + " Enchantments");
     }
 }

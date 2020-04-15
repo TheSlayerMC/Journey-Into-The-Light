@@ -4,7 +4,6 @@ import net.journey.JourneyBlocks;
 import net.journey.JourneyTabs;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockShulkerBox;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
@@ -52,7 +51,6 @@ public class BlockModVine extends BlockMod implements net.minecraftforge.common.
         this.setDefaultState(this.blockState.getBaseState().withProperty(UP, Boolean.valueOf(false)).withProperty(NORTH, Boolean.valueOf(false)).withProperty(EAST, Boolean.valueOf(false)).withProperty(SOUTH, Boolean.valueOf(false)).withProperty(WEST, Boolean.valueOf(false)));
         this.setTickRandomly(true);
         this.setCreativeTab(CreativeTabs.DECORATIONS);
-        this.isNormalCube = false;
     }
 
     protected static boolean isExceptBlockForAttaching(Block p_193397_0_) {
@@ -86,6 +84,11 @@ public class BlockModVine extends BlockMod implements net.minecraftforge.common.
         }
 
         return i;
+    }
+
+    @Override
+    public boolean isNormalCube(IBlockState state, IBlockAccess world, BlockPos pos) {
+        return false;
     }
 
     @Override
@@ -336,7 +339,7 @@ public class BlockModVine extends BlockMod implements net.minecraftforge.common.
 
     @Override
     public IBlockState getStateFromMeta(int meta) {
-        return this.getDefaultState().withProperty(SOUTH, Boolean.valueOf((meta & 1) > 0)).withProperty(WEST, Boolean.valueOf((meta & 2) > 0)).withProperty(NORTH, Boolean.valueOf((meta & 4) > 0)).withProperty(EAST, Boolean.valueOf((meta & 8) > 0));
+        return this.getDefaultState().withProperty(SOUTH, (meta & 1) > 0).withProperty(WEST, Boolean.valueOf((meta & 2) > 0)).withProperty(NORTH, Boolean.valueOf((meta & 4) > 0)).withProperty(EAST, Boolean.valueOf((meta & 8) > 0));
     }
 
     @Override

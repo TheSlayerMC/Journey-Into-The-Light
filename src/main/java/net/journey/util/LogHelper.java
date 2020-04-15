@@ -25,7 +25,7 @@ public class LogHelper {
     }
 
     private static void log(Level level, Object msg) {
-        FMLLog.log(SlayerAPI.MOD_NAME, level, "[Journey Into the Light] " + msg.toString());
+        FMLLog.log(SlayerAPI.MOD_NAME, level, msg.toString());
         if (SlayerAPI.DEVMODE) writeFile(msg);
     }
 

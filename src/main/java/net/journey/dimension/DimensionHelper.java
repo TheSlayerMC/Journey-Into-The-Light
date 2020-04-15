@@ -120,7 +120,7 @@ public class DimensionHelper {
     }
 
     private static void addDimension(int id, DimensionType type) {
-        LogHelper.info("Registering dimension ID: " + id);
+        LogHelper.info("Registering dimension ID: " + id + ", With Name: " + type.getName());
         DimensionManager.registerDimension(id, type);
     }
 
@@ -128,7 +128,7 @@ public class DimensionHelper {
         biome.setRegistryName(name);
         ForgeRegistries.BIOMES.register(biome);
         BiomeDictionary.addTypes(biome, t);
-        LogHelper.info("Biome Registered");
+        LogHelper.info("Biome Registered: " + name);
         return biome;
     }
 

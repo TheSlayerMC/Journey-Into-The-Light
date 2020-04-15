@@ -1,6 +1,7 @@
 package net.journey.util;
 
 import net.minecraft.util.math.BlockPos;
+import net.slayer.api.SlayerAPI;
 
 public class Helper {
 
@@ -17,6 +18,6 @@ public class Helper {
     }
 
     public static void print(Object o) {
-        System.out.println(o);
+        System.out.println("(" + SlayerAPI.MOD_NAME + ") " + o);
     }
 }
