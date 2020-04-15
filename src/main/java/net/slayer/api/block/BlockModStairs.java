@@ -1,6 +1,5 @@
 package net.slayer.api.block;
 
-import net.journey.JITL;
 import net.journey.JourneyBlocks;
 import net.journey.JourneyItems;
 import net.journey.JourneyTabs;
@@ -33,10 +32,6 @@ public class BlockModStairs extends BlockStairs {
     public BlockModStairs(Block b, String n, String n2) {
         this(b, n, n2, false);
         this.name = n;
-    }
-
-    public void registerItemModel(Item itemBlock) {
-        JITL.proxy.registerItemRenderer(itemBlock, 0, name);
     }
 
     public Item createItemBlock() {

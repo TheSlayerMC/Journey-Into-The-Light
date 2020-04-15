@@ -93,17 +93,17 @@ public class CommonProxy {
         //JourneyAchievements.init()
 
         addOreDictionary();
-        SlayerAPI.registerEvent(new NetherEvent());
-        SlayerAPI.registerEvent(new ArmorAbilityEvent());
-        SlayerAPI.registerEvent(new PlayerEvent());
-        SlayerAPI.registerEvent(new JourneyFuelHandler());
-        SlayerAPI.registerEvent(new VanillaFixEvent());
+        SlayerAPI.registerEventListener(new NetherEvent());
+        SlayerAPI.registerEventListener(new ArmorAbilityEvent());
+        SlayerAPI.registerEventListener(new PlayerEvent());
+        SlayerAPI.registerEventListener(new JourneyFuelHandler());
+        SlayerAPI.registerEventListener(new VanillaFixEvent());
         MinecraftForge.addGrassSeed(new ItemStack(JourneyCrops.tomatoSeeds), 5);
         //FMLCommonHandler.instance().bus().register(new JourneyAdvancementEvent());
         DimensionHelper.init();
         DimensionHelper.addSpawns();
-        SlayerAPI.registerEvent(new BarTickHandler());
-        SlayerAPI.registerEvent(new RenderBar());
+        SlayerAPI.registerEventListener(new BarTickHandler());
+        SlayerAPI.registerEventListener(new RenderBar());
         CapabilityManager.INSTANCE.register(IEssence.class, new EssenceStorage(), EssenceBar.class);
 
         if (SlayerAPI.DEVMODE) LangRegistry.instance.register();
@@ -112,10 +112,7 @@ public class CommonProxy {
     public void init(FMLInitializationEvent event) {
         JourneyTabs.init();
         GameRegistry.registerWorldGenerator(new WorldGenJourney(), 2);
-        SlayerAPI.registerEvent(new PlayerEvent());
-    }
-
-    public void registerItemRenderer(Item itemBlock, int i, String name) {
+        SlayerAPI.registerEventListener(new PlayerEvent());
     }
 
     public void registerEntityRenderer(Entity entity, int i, String name) {

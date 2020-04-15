@@ -23,8 +23,8 @@ import java.util.ArrayList;
 
 public class JourneyBlocks {
 
-    public static ArrayList<String> blockName = new ArrayList<String>();
-    public static ArrayList<Block> blocks = new ArrayList<Block>();
+    public static ArrayList<String> blockName = new ArrayList<>();
+    public static ArrayList<Block> blocks = new ArrayList<>();
 
     public static BlockMod sapphireOre;
     public static BlockMod lavaRock;

@@ -1,6 +1,5 @@
 package net.slayer.api.entity.tileentity.container;
 
-import net.journey.JITL;
 import net.journey.JourneyBlocks;
 import net.journey.JourneyItems;
 import net.journey.JourneyTabs;
@@ -85,10 +84,6 @@ public abstract class BlockModContainer extends BlockContainer {
         JourneyBlocks.blocks.add(this);
         setRegistryName(SlayerAPI.MOD_ID, name);
         JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
-    }
-
-    public void registerItemModel(Item itemBlock) {
-        JITL.proxy.registerItemRenderer(itemBlock, 0, name);
     }
 
     public Item createItemBlock() {

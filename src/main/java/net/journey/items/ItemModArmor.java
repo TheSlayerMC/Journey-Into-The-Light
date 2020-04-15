@@ -1,6 +1,5 @@
 package net.journey.items;
 
-import net.journey.JITL;
 import net.journey.JourneyItems;
 import net.journey.JourneyTabs;
 import net.journey.client.ArmorDescription;
@@ -94,9 +93,5 @@ public class ItemModArmor extends ItemArmor implements ISpecialArmor {
     @Override
     public ArmorProperties getProperties(EntityLivingBase l, ItemStack s, DamageSource d, double amount, int slot) {
         return new ISpecialArmor.ArmorProperties(0, damageReduction, 50000);
-    }
-
-    public void registerItemModel() {
-        JITL.proxy.registerItemRenderer(this, 0, name);
     }
 }

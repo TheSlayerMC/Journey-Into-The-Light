@@ -32,25 +32,25 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void registerClient() {
         NetworkRegistry.INSTANCE.registerGuiHandler(JITL.instance, new GuiHandler());
-        SlayerAPI.registerEvent(new UpdateCheckerEvent());
+        SlayerAPI.registerEventListener(new UpdateCheckerEvent());
     }
 
     @Override
     public void clientPreInit() {
-        SlayerAPI.registerEvent(new RenderHandler());
+
     }
 
     @Override
     public void clientInit(FMLInitializationEvent event) {
         EntityRendering.init();
-        SlayerAPI.registerEvent(new BossTickHandler());
-        SlayerAPI.registerEvent(new ClientTickEvent());
-        SlayerAPI.registerEvent(new PlayerStats());
+        SlayerAPI.registerEventListener(new BossTickHandler());
+        SlayerAPI.registerEventListener(new ClientTickEvent());
+        SlayerAPI.registerEventListener(new PlayerStats());
     }
 
     @Override
     public void clientPostInit() {
-        SlayerAPI.registerEvent(new ClientDimensionMusic());
+        SlayerAPI.registerEventListener(new ClientDimensionMusic());
     }
 
     @Override

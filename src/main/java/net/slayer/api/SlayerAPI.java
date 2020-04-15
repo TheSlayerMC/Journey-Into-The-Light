@@ -81,7 +81,7 @@ public class SlayerAPI {
         VillagerRegistry.instance().registerVillageCreationHandler(v);
     }
 
-    public static void registerEvent(Object o) {
+    public static void registerEventListener(Object o) {
         MinecraftForge.EVENT_BUS.register(o);
     }
 

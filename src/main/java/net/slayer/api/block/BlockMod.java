@@ -25,8 +25,6 @@ import net.slayer.api.SlayerAPI;
 import java.util.Random;
 
 public class BlockMod extends Block {
-
-    public String name;
     protected EnumMaterialTypes blockType;
     protected Item drop = null;
     protected Random rand;
@@ -37,7 +35,7 @@ public class BlockMod extends Block {
     }
 
     public BlockMod(String name, String finalName) {
-        this(EnumMaterialTypes.STONE, name, finalName, 2.0F, JourneyTabs.blocks);
+        this(EnumMaterialTypes.STONE, name, finalName, JourneyTabs.blocks);
     }
 
     public BlockMod(EnumMaterialTypes type, String name, String finalName, float hardness) {
@@ -53,19 +51,7 @@ public class BlockMod extends Block {
     }
 
     public BlockMod(EnumMaterialTypes blockType, String name, String finalName, CreativeTabs tab) {
-        super(blockType.getMaterial());
-        LangRegistry.addBlock(name, finalName);
-        this.blockType = blockType;
-        setHardness(2.0F);
-        rand = new Random();
-        setSoundType(blockType.getSound());
-        setCreativeTab(tab);
-        setTranslationKey(name);
-        this.name = name;
-        JourneyBlocks.blocks.add(this);
-        JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
-        setRegistryName(SlayerAPI.MOD_ID, name);
-        JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
+        this(blockType, name, finalName, 2.0F, tab);
     }
 
     public BlockMod(EnumMaterialTypes blockType, String name, String finalName, float hardness, CreativeTabs tab) {
@@ -77,15 +63,10 @@ public class BlockMod extends Block {
         setCreativeTab(tab);
         setTranslationKey(name);
         setHardness(hardness);
-        this.name = name;
         JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
         JourneyBlocks.blocks.add(this);
         setRegistryName(SlayerAPI.MOD_ID, name);
         JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
-    }
-
-    public void registerItemModel(Item itemBlock) {
-        JITL.proxy.registerItemRenderer(itemBlock, 0, name);
     }
 
     public Item createItemBlock() {
@@ -95,10 +76,6 @@ public class BlockMod extends Block {
     public Block addName(String name) {
         JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
         return this;
-    }
-
-    public String getName() {
-        return name;
     }
 
     @Override

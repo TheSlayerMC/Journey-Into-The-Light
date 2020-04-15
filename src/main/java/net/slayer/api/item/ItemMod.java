@@ -1,6 +1,5 @@
 package net.slayer.api.item;
 
-import net.journey.JITL;
 import net.journey.JourneyItems;
 import net.journey.JourneySounds;
 import net.journey.JourneyTabs;
@@ -98,9 +97,5 @@ public class ItemMod extends Item {
 
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack i, List l) {
-    }
-
-    public void registerItemModel() {
-        JITL.proxy.registerItemRenderer(this, 0, name);
     }
 }

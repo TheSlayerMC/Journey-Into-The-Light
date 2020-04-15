@@ -1,6 +1,5 @@
 package net.slayer.api.block;
 
-import net.journey.JITL;
 import net.journey.JourneyBlocks;
 import net.journey.JourneyItems;
 import net.journey.JourneyTabs;
@@ -34,10 +33,6 @@ public class BlockModFence extends BlockFence {
     public BlockModFence(Block b, String n, String finalName) {
         this(b, n, finalName, false);
         this.name = n;
-    }
-
-    public void registerItemModel(Item itemBlock) {
-        JITL.proxy.registerItemRenderer(itemBlock, 0, name);
     }
 
     public Item createItemBlock() {

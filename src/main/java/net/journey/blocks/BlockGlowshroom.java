@@ -1,6 +1,5 @@
 package net.journey.blocks;
 
-import net.journey.JITL;
 import net.journey.JourneyBlocks;
 import net.journey.JourneyItems;
 import net.journey.JourneyTabs;
@@ -111,10 +110,6 @@ public class BlockGlowshroom extends Block {
 
     public boolean canBlockStay(World w, BlockPos pos) {
         return canPlaceBlockAt(w, pos);
-    }
-
-    public void registerItemModel(Item itemBlock) {
-        JITL.proxy.registerItemRenderer(itemBlock, 0, name);
     }
 
     public Item createItemBlock() {

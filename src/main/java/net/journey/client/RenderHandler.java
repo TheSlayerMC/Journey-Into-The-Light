@@ -18,7 +18,7 @@ public class RenderHandler {
 
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
-    public void onRender(ModelRegistryEvent event) {
+    public static void onModelRegEvent(ModelRegistryEvent event) {
         for (Item i : JourneyItems.items)
             ModelLoader.setCustomModelResourceLocation(i, 0, new ModelResourceLocation(i.getRegistryName(), "inventory"));
 

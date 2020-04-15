@@ -1,6 +1,5 @@
 package net.journey.blocks;
 
-import net.journey.JITL;
 import net.journey.JourneyBlocks;
 import net.journey.JourneyItems;
 import net.journey.JourneyTabs;
@@ -24,11 +23,8 @@ import java.util.Random;
 
 public class BlockStalks extends Block {
 
-    public String name;
-
     public BlockStalks(String name, String f, boolean top) {
         super(EnumMaterialTypes.PLANT.getMaterial());
-        this.name = name;
         LangRegistry.addBlock(name, f);
         setSoundType(EnumMaterialTypes.PLANT.getSound());
         setCreativeTab(JourneyTabs.decoration);
@@ -100,10 +96,6 @@ public class BlockStalks extends Block {
 
     public boolean canBlockStay(World w, BlockPos pos) {
         return canPlaceBlockAt(w, pos);
-    }
-
-    public void registerItemModel(Item itemBlock) {
-        JITL.proxy.registerItemRenderer(itemBlock, 0, name);
     }
 
     public Item createItemBlock() {
