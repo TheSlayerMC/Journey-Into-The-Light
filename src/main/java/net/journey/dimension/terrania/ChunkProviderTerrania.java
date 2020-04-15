@@ -318,6 +318,9 @@ public class ChunkProviderTerrania implements IChunkGenerator {
         int x1 = cx * 16;
         int z1 = cz * 16;
         int times;
+        int chunkSize = 16;
+        int topYMax = 100;
+        int bottomYMax = 50;
         Random r = rand;
 
         BlockPos chunkStart = new BlockPos(x1, 0, z1);
@@ -363,9 +366,11 @@ public class ChunkProviderTerrania implements IChunkGenerator {
         }
 
         for (times = 0; times < 10; times++) {
-            BlockPos pos = WorldGenAPI.createRandom(x1, 1, 128, z1, rand, 2);
-            if (isBlockTop(pos.getX(), pos.getY() - 1, pos.getZ(), JourneyBlocks.terranianGrass)) {
-                mushroomDungeon.generate(worldObj, rand, pos);
+            int randX = cx * 16 + 7 + rand.nextInt(9);
+            int randZ = cz * 16 + 7 + rand.nextInt(9);
+            int randY = rand.nextInt(bottomYMax) + 1;
+            if (isBlockTop(randX, randY - 1, randZ, JourneyBlocks.terranianGrass)) {
+                mushroomDungeon.generate(worldObj, rand, new BlockPos(randX, randY, randZ));
             }
         }
 
