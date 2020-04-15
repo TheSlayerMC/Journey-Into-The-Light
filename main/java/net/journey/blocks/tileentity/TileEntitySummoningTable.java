@@ -44,7 +44,6 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 		ItemStack slot5 = this.inventory.get(4);
 		ItemStack slot6 = this.inventory.get(5);
 		ItemStack slot7 = this.inventory.get(6);
-		
 		if(slot1 != null && slot2 != null && slot3 != null && slot4 != null && slot5 != null && slot6 != null && slot7 != null) {
 			if(areItemsInSlots(
 					JourneyItems.boilPowder, 
@@ -54,10 +53,7 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 					JourneyItems.boilPowder, 
 					JourneyItems.boilPowder, 
 					JourneyItems.boilPowder)) {
-				shrinkAllSlots(slot1, slot2, slot3, slot4, slot5, slot6, slot7);
 				summonItem(new ItemStack(JourneyItems.blazierOrb));
-				addSound();
-				addParticles();
 			}
 			else if(areItemsInSlots(
 					JourneyItems.snakeSkin, 
@@ -67,10 +63,7 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 					JourneyItems.snakeSkin, 
 					JourneyItems.concentratedBlood, 
 					JourneyItems.snakeSkin)) {
-				shrinkAllSlots(slot1, slot2, slot3, slot4, slot5, slot6, slot7);
 				summonItem(new ItemStack(JourneyItems.soulWatcherOrb));
-				addSound();
-				addParticles();
 			}
 			else if(areItemsInSlots(
 					JourneyItems.natureTablet, 
@@ -80,10 +73,7 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 					JourneyItems.natureTablet, 
 					JourneyItems.enchantedLeaf, 
 					JourneyItems.natureTablet)) {
-				shrinkAllSlots(slot1, slot2, slot3, slot4, slot5, slot6, slot7);
 				summonItem(new ItemStack(JourneyItems.loggerOrb));
-				addSound();
-				addParticles();
 			}
 			else if(areItemsInSlots(
 					JourneyItems.overseeingEye, 
@@ -93,10 +83,7 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 					JourneyItems.overseeingEye, 
 					JourneyItems.collectorRock, 
 					JourneyItems.overseeingEye)) {
-				shrinkAllSlots(slot1, slot2, slot3, slot4, slot5, slot6, slot7);
 				summonItem(new ItemStack(JourneyItems.sentryKingOrb));
-				addSound();
-				addParticles();
 			}
 			else if(areItemsInSlots(
 					JourneyItems.scale, 
@@ -106,10 +93,7 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 					JourneyItems.scale, 
 					JourneyItems.beastlyStomach, 
 					JourneyItems.scale)) {
-				shrinkAllSlots(slot1, slot2, slot3, slot4, slot5, slot6, slot7);
 				summonItem(new ItemStack(JourneyItems.scale));
-				addSound();
-				addParticles();
 			}
 			else if(areItemsInSlots(
 					JourneyItems.rocFeather, 
@@ -119,10 +103,7 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 					JourneyItems.rocFeather, 
 					JourneyItems.darkCrystal, 
 					JourneyItems.rocFeather)) {
-				shrinkAllSlots(slot1, slot2, slot3, slot4, slot5, slot6, slot7);
 				summonItem(new ItemStack(JourneyItems.thunderbirdOrb));
-				addSound();
-				addParticles();
 			}
 			else if(areItemsInSlots(
 					JourneyItems.gateKeys, 
@@ -132,10 +113,7 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 					JourneyItems.gateKeys, 
 					JourneyItems.silverClump, 
 					JourneyItems.gateKeys)) {
-				shrinkAllSlots(slot1, slot2, slot3, slot4, slot5, slot6, slot7);
 				summonItem(new ItemStack(JourneyItems.corallatorOrb));
-				addSound();
-				addParticles();
 			}
 			else if(areItemsInSlots(
 					JourneyItems.gateKeys, 
@@ -145,10 +123,7 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 					JourneyItems.gateKeys, 
 					JourneyItems.goldClump, 
 					JourneyItems.gateKeys)) {
-				shrinkAllSlots(slot1, slot2, slot3, slot4, slot5, slot6, slot7);
 				summonItem(new ItemStack(JourneyItems.eudorOrb));
-				addSound();
-				addParticles();
 			}
 			else if(areItemsInSlots(
 					JourneyItems.hellstoneIngot, 
@@ -158,10 +133,7 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 					JourneyItems.hellstoneIngot, 
 					JourneyItems.hellShards, 
 					JourneyItems.hellstoneIngot)) {
-				shrinkAllSlots(slot1, slot2, slot3, slot4, slot5, slot6, slot7);
 				summonItem(new ItemStack(JourneyItems.netherBeastOrb));
-				addSound();
-				addParticles();
 			}
 			else if(areItemsInSlots(
 					JourneyItems.withicSpine, 
@@ -171,10 +143,7 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 					JourneyItems.withicSpine, 
 					JourneyItems.lostSoul, 
 					JourneyItems.withicSpine)) {
-				shrinkAllSlots(slot1, slot2, slot3, slot4, slot5, slot6, slot7);
 				summonItem(new ItemStack(JourneyItems.witheringBeastOrb));
-				addSound();
-				addParticles();
 			}		
 			else if(areItemsInSlots(
 					JourneyItems.earthenCrystal, 
@@ -184,10 +153,7 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 					JourneyItems.earthenCrystal, 
 					JourneyItems.purplePowder, 
 					JourneyItems.earthenCrystal)) {
-				shrinkAllSlots(slot1, slot2, slot3, slot4, slot5, slot6, slot7);
 				summonItem(new ItemStack(JourneyItems.enchantedTerrastar));
-				addSound();
-				addParticles();
 			}
 			else if(areItemsInSlots(
 					JourneyItems.spawnerBar, 
@@ -197,16 +163,27 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 					JourneyItems.spawnerBar, 
 					JourneyItems.ash, 
 					JourneyItems.spawnerBar)) {
-				shrinkAllSlots(slot1, slot2, slot3, slot4, slot5, slot6, slot7);
 				summonItem(new ItemStack(JourneyItems.calciaOrb));
-				addParticles();
-				addSound();
 			}
 		}
 	}
 	
 	public void summonItem(ItemStack orb) {
+		//Shrink all stacks
+		this.inventory.get(0).shrink(1);
+		this.inventory.get(1).shrink(1);
+		this.inventory.get(2).shrink(1);
+		this.inventory.get(3).shrink(1);
+		this.inventory.get(4).shrink(1);
+		this.inventory.get(5).shrink(1);
+		this.inventory.get(6).shrink(1);
+		
+		//Set boss orb in middle
 		this.inventory.set(3, orb);
+		
+		//Add effects
+		addSound();
+		addParticles();
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -234,16 +211,6 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 		return this.inventory.get(0).getItem() == s && this.inventory.get(1).getItem() == s1 && this.inventory.get(2).getItem() == s2 && this.inventory.get(3).getItem() == s3 && this.inventory.get(4).getItem() == s4 && this.inventory.get(5).getItem() == s5 && this.inventory.get(6).getItem() == s6;
 	}
 
-	public void shrinkAllSlots(ItemStack s, ItemStack s1, ItemStack s2, ItemStack s3, ItemStack s4, ItemStack s5, ItemStack s6) {
-		s.shrink(1);
-		s1.shrink(1);
-		s2.shrink(1);
-		s3.shrink(1);
-		s4.shrink(1);
-		s5.shrink(1);
-		s6.shrink(1);
-	}
-
 	public void setInventorySlots(ItemStack s, ItemStack s1, ItemStack s2, ItemStack s3, ItemStack s4, ItemStack s5, ItemStack s6) {
 		s = this.inventory.get(0);
 		s1 = this.inventory.get(1);
@@ -269,6 +236,7 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 		return true;
 	}
 
+	//Now you can only put one item in the each slot
 	@Override
 	public int getInventoryStackLimit() {
 		return 1;
