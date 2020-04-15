@@ -45,7 +45,7 @@ public abstract class BlockModPortal extends BlockBreakable {
 		LangRegistry.addBlock(name, finalName);
 		this.setTickRandomly(true);
 		setCreativeTab(JourneyTabs.portalBlocks);
-		setUnlocalizedName(name);
+		setTranslationKey(name);
 		JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
 		JourneyBlocks.blocks.add(this);
 		setRegistryName(SlayerAPI.MOD_ID, name);
@@ -107,7 +107,7 @@ public abstract class BlockModPortal extends BlockBreakable {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getBlockLayer() {
+	public BlockRenderLayer getRenderLayer() {
 		return BlockRenderLayer.TRANSLUCENT;
 	}
 

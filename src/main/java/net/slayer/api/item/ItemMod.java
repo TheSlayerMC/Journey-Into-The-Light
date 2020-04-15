@@ -36,7 +36,7 @@ public class ItemMod extends Item {
 	public ItemMod(String name, String finalName, CreativeTabs tab){
 		this.name = name;
 		LangRegistry.addItem(name.toLowerCase(), finalName);
-		setUnlocalizedName(name.toLowerCase());
+		setTranslationKey(name.toLowerCase());
 		setCreativeTab(tab);
 		JourneyItems.itemNames.add(SlayerAPI.PREFIX + name.toLowerCase());
 		JourneyItems.items.add(this);

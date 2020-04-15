@@ -15,7 +15,7 @@ public interface IHasModel {
 	@SideOnly(Side.CLIENT)
 	default public void registerModels(ModelRegistryEvent e) {
 		if(this instanceof Item)
-			sMRL("items", (Item) this, 0, "item=" + ((Item)this).getRegistryName().getResourcePath());
+			sMRL("items", (Item) this, 0, "item=" + ((Item)this).getRegistryName().getPath());
 		else if (this instanceof Block)
 			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock((Block)this), 0, 
 					new ModelResourceLocation(((IForgeRegistryEntry<?>) this).getRegistryName(), "inventory"));

@@ -45,7 +45,7 @@ public class BlockMetaBase extends Block implements IMetaName, IHasModel {
 	
 	public BlockMetaBase(String name, Material m, String metaName) {
 		super(m);
-		this.setUnlocalizedName(name);
+		this.setTranslationKey(name);
 		this.setRegistryName(name);
 		this.setSoundType(SoundType.STONE);
 		this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);

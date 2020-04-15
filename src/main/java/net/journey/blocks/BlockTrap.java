@@ -26,7 +26,7 @@ public class BlockTrap extends BlockMod {
 	}
 	
 	@Override
-	public void onEntityCollidedWithBlock(World w, BlockPos pos, IBlockState state, Entity entityIn) {
+	public void onEntityCollision(World w, BlockPos pos, IBlockState state, Entity entityIn) {
 		EntityOverseerElder EntityOverseerElder = new EntityOverseerElder(w);
 		if(!w.isRemote) {
 			try {

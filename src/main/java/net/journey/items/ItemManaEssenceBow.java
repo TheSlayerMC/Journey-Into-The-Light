@@ -196,7 +196,7 @@ public class ItemManaEssenceBow extends ItemMod {
 	@Override
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> list, ITooltipFlag flagIn) {
 		ItemDescription.addInformation(stack, list);
-		//list.add("Ammo: " + StatCollector.translateToLocal(arrowItem.getUnlocalizedName() + ".name"));
+		//list.add("Ammo: " + StatCollector.translateToLocal(arrowItem.getTranslationKey() + ".name"));
 		list.add("Damage: " +SlayerAPI.Colour.GOLD + damage + " - " + SlayerAPI.Colour.GOLD + damage*4);
 		list.add("Ability: " + SlayerAPI.Colour.GOLD + ability);
 		list.add("Uses remaining: " + SlayerAPI.Colour.GRAY + uses);

@@ -43,7 +43,7 @@ public class ItemPresent extends ItemMod {
 		if(!world.isRemote) {
 			JourneySounds.playSound(JourneySounds.WRAPPER, world, player);
 			int index = r.nextInt(items.size());
-			String name = LangHelper.getFormattedText(items.get(index).getItem().getUnlocalizedName() + ".name");
+			String name = LangHelper.getFormattedText(items.get(index).getItem().getTranslationKey() + ".name");
 			SlayerAPI.addChatMessage(player, "You recieved " + name);
 			EntityItem item = new EntityItem(world, player.posX, player.posY, player.posZ, items.get(index));
 			world.spawnEntity(item);

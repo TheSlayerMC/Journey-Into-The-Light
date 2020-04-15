@@ -112,7 +112,7 @@ public class BlockModFlower extends BlockMod implements IPlantable {
 	}
 
 	@Override
-	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
+	public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
 		if(damageWhenContact) entityIn.attackEntityFrom(DamageSource.CACTUS, 1.0F);
 	}
 
@@ -158,7 +158,7 @@ public class BlockModFlower extends BlockMod implements IPlantable {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getBlockLayer() {
+	public BlockRenderLayer getRenderLayer() {
 		return BlockRenderLayer.CUTOUT;
 	}
 

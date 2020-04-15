@@ -51,7 +51,7 @@ public class BlockCorbaPortal extends BlockMod {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getBlockLayer() {
+	public BlockRenderLayer getRenderLayer() {
 		return BlockRenderLayer.TRANSLUCENT;
 	}
 
@@ -61,19 +61,19 @@ public class BlockCorbaPortal extends BlockMod {
 	}
 
 	@Override
-	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entity) {
+	public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entity) {
 		if ((entity.getRidingEntity() == null) && ((entity instanceof EntityPlayerMP))) {
 			EntityPlayerMP thePlayer = (EntityPlayerMP)entity;
-			WorldServer worldserver = thePlayer.mcServer.getWorld(thePlayer.dimension);
+			WorldServer worldserver = thePlayer.server.getWorld(thePlayer.dimension);
 			int dimensionID = Config.corba;
 			if(thePlayer.timeUntilPortal > 0) 
 				thePlayer.timeUntilPortal = 10;
 			else if(thePlayer.dimension != dimensionID) {
 				thePlayer.timeUntilPortal = 10;
-				thePlayer.mcServer.getPlayerList().transferPlayerToDimension(thePlayer, dimensionID, new TeleporterCorba(thePlayer.mcServer.getWorld(dimensionID)));
+				thePlayer.server.getPlayerList().transferPlayerToDimension(thePlayer, dimensionID, new TeleporterCorba(thePlayer.server.getWorld(dimensionID)));
 			} else {
 				thePlayer.timeUntilPortal = 10;
-				thePlayer.mcServer.getPlayerList().transferPlayerToDimension(thePlayer, 0, new TeleporterCorba(thePlayer.mcServer.getWorld(0)));
+				thePlayer.server.getPlayerList().transferPlayerToDimension(thePlayer, 0, new TeleporterCorba(thePlayer.server.getWorld(0)));
 			}
 		}
 	}

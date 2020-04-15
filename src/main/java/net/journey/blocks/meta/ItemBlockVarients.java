@@ -13,8 +13,8 @@ public class ItemBlockVarients extends ItemBlock {
 	}
 	
 	@Override
-	public String getUnlocalizedName(ItemStack stack) {
-		return super.getUnlocalizedName() + "_" + ((IMetaName)this.block).getSpecialName(stack);
+	public String getTranslationKey(ItemStack stack) {
+		return super.getTranslationKey() + "_" + ((IMetaName)this.block).getSpecialName(stack);
 	}
 	
 	@Override

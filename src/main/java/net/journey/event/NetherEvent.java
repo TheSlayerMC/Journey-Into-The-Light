@@ -38,7 +38,7 @@ public class NetherEvent {
 		if (event.getWorld().provider.getDimensionType() == DimensionType.NETHER) {
 			Random random = event.getRand();
 			World world = event.getWorld();
-			Chunk chunk = world.getChunkFromChunkCoords(event.getChunkX(), event.getChunkZ());
+			Chunk chunk = world.getChunk(event.getChunkX(), event.getChunkZ());
 			JNWorldGenerator.generate(world, chunk, world.rand);
 		}
 	}
@@ -46,7 +46,7 @@ public class NetherEvent {
 	@SubscribeEvent(priority = EventPriority.HIGH)
 	public void onPrePopulate(PopulateChunkEvent.Pre event) {
 		if (event.getWorld().provider.getDimensionType() == DimensionType.NETHER) {
-			Chunk chunk = event.getWorld().getChunkFromChunkCoords(event.getChunkX(), event.getChunkZ());
+			Chunk chunk = event.getWorld().getChunk(event.getChunkX(), event.getChunkZ());
 			JNWorldGenerator.smoothChunk(chunk);
 		}
 	}

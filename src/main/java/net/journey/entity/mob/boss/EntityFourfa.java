@@ -73,19 +73,19 @@ public class EntityFourfa extends EntityEssenceBoss implements IRangedAttackMob 
 		EntityArrow arrow = null;
 		switch(STAGE) {
 		case 0:
-			arrow = new EntityDarknessArrow(this.world, this, e, 1.6F, (float)(14 - this.world.getDifficulty().getDifficultyId() * 4));
+			arrow = new EntityDarknessArrow(this.world, this, e, 1.6F, (float)(14 - this.world.getDifficulty().getId() * 4));
 			break;
 		case 1:
-			arrow = new EntityFlameArrow(this.world, this, e, 1.6F, (float)(14 - this.world.getDifficulty().getDifficultyId() * 4));
+			arrow = new EntityFlameArrow(this.world, this, e, 1.6F, (float)(14 - this.world.getDifficulty().getId() * 4));
 			break;
 		case 2:
-			arrow = new EntityFrozenArrow(this.world, this, e, 1.6F, (float)(14 - this.world.getDifficulty().getDifficultyId() * 4));
+			arrow = new EntityFrozenArrow(this.world, this, e, 1.6F, (float)(14 - this.world.getDifficulty().getId() * 4));
 			break;
 		case 3:
-			arrow = new EntityPoisonArrow(this.world, this, e, 1.6F, (float)(14 - this.world.getDifficulty().getDifficultyId() * 4));
+			arrow = new EntityPoisonArrow(this.world, this, e, 1.6F, (float)(14 - this.world.getDifficulty().getId() * 4));
 			break;
 		}
-		arrow.setDamage(f * 2.0F + this.rand.nextGaussian() * 0.25D + (float)this.world.getDifficulty().getDifficultyId() * 0.11F);
+		arrow.setDamage(f * 2.0F + this.rand.nextGaussian() * 0.25D + (float)this.world.getDifficulty().getId() * 0.11F);
         this.playSound(SoundEvents.ENTITY_SKELETON_SHOOT, 1.0F, 1.0F / (this.getRNG().nextFloat() * 0.4F + 0.8F));
 		this.world.spawnEntity(arrow);
 	}

@@ -101,7 +101,7 @@ public class BlockDepthsPortalFrame extends BlockMod {
     
     @Override
     public IBlockState getStateFromMeta(int meta) {
-        return this.getDefaultState().withProperty(EYE, Boolean.valueOf((meta & 4) != 0)).withProperty(FACING, EnumFacing.getHorizontal(meta & 3));
+        return this.getDefaultState().withProperty(EYE, Boolean.valueOf((meta & 4) != 0)).withProperty(FACING, EnumFacing.byHorizontalIndex(meta & 3));
     }
 
     @Override

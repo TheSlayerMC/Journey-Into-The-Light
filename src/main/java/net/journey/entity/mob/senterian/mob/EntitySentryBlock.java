@@ -85,7 +85,7 @@ public class EntitySentryBlock extends EntityModMob {
 	@Override
 	public void readEntityFromNBT(NBTTagCompound compound) {
 		super.readEntityFromNBT(compound);
-		this.dataManager.set(ATTACHED_FACE, EnumFacing.getFront(compound.getByte("AttachFace")));
+		this.dataManager.set(ATTACHED_FACE, EnumFacing.byIndex(compound.getByte("AttachFace")));
 		this.dataManager.set(PEEK_TICK, Byte.valueOf(compound.getByte("Peek")));
 
 		if (compound.hasKey("APX")) {

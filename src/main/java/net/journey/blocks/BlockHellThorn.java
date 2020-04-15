@@ -35,7 +35,7 @@ public class BlockHellThorn extends Block {
 		setHardness(0.0F);
 		setLightLevel(0.6F);
 		setTickRandomly(true);
-		setUnlocalizedName(name);
+		setTranslationKey(name);
 		setRegistryName(SlayerAPI.MOD_ID, name);
 		JourneyBlocks.blocks.add(this);
 		JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
@@ -50,7 +50,7 @@ public class BlockHellThorn extends Block {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getBlockLayer() {
+	public BlockRenderLayer getRenderLayer() {
 		return BlockRenderLayer.CUTOUT;
 	}
 
@@ -70,7 +70,7 @@ public class BlockHellThorn extends Block {
 	}
 
 	@Override
-	public void onBlockDestroyedByPlayer(World w, BlockPos pos, IBlockState state) {
+	public void onPlayerDestroy(World w, BlockPos pos, IBlockState state) {
 		checkDestroyed(w, pos, JourneyBlocks.hellThornTop, JourneyBlocks.hellThornBottom);
 	}
 	

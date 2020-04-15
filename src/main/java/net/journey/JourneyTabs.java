@@ -39,7 +39,7 @@ public class JourneyTabs extends CreativeTabs {
     }
 	
 	@Override
-	public ItemStack getTabIconItem() {
+	public ItemStack createIcon() {
 		return new ItemStack(item);
 	}
 	

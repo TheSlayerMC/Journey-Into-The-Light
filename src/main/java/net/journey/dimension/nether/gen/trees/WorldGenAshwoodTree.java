@@ -72,8 +72,8 @@ public class WorldGenAshwoodTree extends WorldGenAbstractTree {
                         int i2 = pos.getY() + l1;
 
                         if(l1 >= k2 && l2 > 0) {
-                            i3 += enumfacing.getFrontOffsetX();
-                            j1 += enumfacing.getFrontOffsetZ();
+                            i3 += enumfacing.getXOffset();
+                            j1 += enumfacing.getZOffset();
                             --l2;
                         }
 
@@ -121,8 +121,8 @@ public class WorldGenAshwoodTree extends WorldGenAbstractTree {
                         for(int l4 = l3; l4 < i && k4 > 0; --k4) {
                             if(l4 >= 1) {
                                 int j2 = pos.getY() + l4;
-                                i3 += enumfacing1.getFrontOffsetX();
-                                j1 += enumfacing1.getFrontOffsetZ();
+                                i3 += enumfacing1.getXOffset();
+                                j1 += enumfacing1.getZOffset();
                                 BlockPos blockpos1 = new BlockPos(i3, j2, j1);
                                 IBlockState state = world.getBlockState(blockpos1);
                                 block = state.getBlock();

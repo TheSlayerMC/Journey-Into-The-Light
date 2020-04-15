@@ -70,7 +70,7 @@ public class BlockCrafting extends BlockMod {
 
 		@Override
 		public ITextComponent getDisplayName() {
-			return new TextComponentTranslation(JourneyBlocks.stoneCraftingTable.getUnlocalizedName() + ".name",
+			return new TextComponentTranslation(JourneyBlocks.stoneCraftingTable.getTranslationKey() + ".name",
 					new Object[0]);
 		}
 

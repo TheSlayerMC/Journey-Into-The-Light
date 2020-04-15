@@ -303,7 +303,7 @@ public class ModTeleporter extends Teleporter {
             }
 
             EnumFacing enumfacing1 = EnumFacing
-                    .getHorizontal(MathHelper.floor(entityIn.rotationYaw * 4.0F / 360.0F + 0.5D) & 3);
+                    .byHorizontalIndex(MathHelper.floor(entityIn.rotationYaw * 4.0F / 360.0F + 0.5D) & 3);
 
             if (enumfacing != null) {
                 EnumFacing enumfacing2 = enumfacing.rotateYCCW();
@@ -334,8 +334,8 @@ public class ModTeleporter extends Teleporter {
                 d4 = ((BlockPos) object).getX() + 0.5D;
                 d5 = ((BlockPos) object).getY() + 0.5D;
                 d6 = ((BlockPos) object).getZ() + 0.5D;
-                d4 += enumfacing2.getFrontOffsetX() * f6 + enumfacing.getFrontOffsetX() * f1;
-                d6 += enumfacing2.getFrontOffsetZ() * f6 + enumfacing.getFrontOffsetZ() * f1;
+                d4 += enumfacing2.getXOffset() * f6 + enumfacing.getXOffset() * f1;
+                d6 += enumfacing2.getZOffset() * f6 + enumfacing.getZOffset() * f1;
                 float f2 = 0.0F;
                 float f3 = 0.0F;
                 float f4 = 0.0F;

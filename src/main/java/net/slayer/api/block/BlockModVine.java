@@ -319,7 +319,7 @@ public class BlockModVine extends BlockMod implements net.minecraftforge.common.
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getBlockLayer() {
+	public BlockRenderLayer getRenderLayer() {
 		return BlockRenderLayer.CUTOUT;
 	}
 

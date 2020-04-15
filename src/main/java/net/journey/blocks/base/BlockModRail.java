@@ -17,7 +17,7 @@ public class BlockModRail extends BlockRail {
 	
 	public BlockModRail(String name, boolean isPowered, float speed) {
 		setCreativeTab(JourneyTabs.blocks);
-		setUnlocalizedName(SlayerAPI.PREFIX + name);
+		setTranslationKey(SlayerAPI.PREFIX + name);
 		JourneyBlocks.blocks.add(this);
 		JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
 		power = isPowered;

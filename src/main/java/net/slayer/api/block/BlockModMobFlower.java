@@ -78,7 +78,7 @@ public class BlockModMobFlower extends BlockMod implements IPlantable {
 	}
 	
 	@Override
-	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entity) {
+	public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entity) {
 		if(!worldIn.isRemote) {
 			EntityTerragrow terra = new EntityTerragrow(worldIn);
 			worldIn.spawnEntity(terra);
@@ -129,7 +129,7 @@ public class BlockModMobFlower extends BlockMod implements IPlantable {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getBlockLayer() {
+	public BlockRenderLayer getRenderLayer() {
 		return BlockRenderLayer.CUTOUT;
 	}
 

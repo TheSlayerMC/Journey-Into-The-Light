@@ -197,7 +197,7 @@ public class LangRegistry {
 	}
 
 	public static void addArmour(ItemModArmor a, EnumArmor ar, EntityEquipmentSlot t) {
-		armourUnloc.add(a.getUnlocalizedName());
+		armourUnloc.add(a.getTranslationKey());
 		EntityEquipmentSlot HEAD = EntityEquipmentSlot.HEAD, BODY = EntityEquipmentSlot.CHEST, LEGS = EntityEquipmentSlot.LEGS, BOOTS = EntityEquipmentSlot.FEET;
 		armorType.add(ar.getFinalName());
 		String part = t == HEAD ? "Helmet" : t == BODY ? "Chestplate" : t == LEGS ? "Leggings" : t == BOOTS ? "Boots" : "UNKNOWN";

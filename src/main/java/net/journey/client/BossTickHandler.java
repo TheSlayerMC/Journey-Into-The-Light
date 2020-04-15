@@ -27,9 +27,9 @@ public class BossTickHandler {
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		GL11.glEnable(GL11.GL_BLEND);
 		OpenGlHelper.glBlendFunc(770, 771, 1, 0);
-		this.mc.mcProfiler.startSection("essenceBossHealth");
+		this.mc.profiler.startSection("essenceBossHealth");
 		this.renderBossHealth();
-		this.mc.mcProfiler.endSection();
+		this.mc.profiler.endSection();
 		GL11.glDisable(GL11.GL_BLEND);
 	}
 

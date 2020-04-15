@@ -40,7 +40,7 @@ private int type;
 
 	public ItemCrafting(String name, String finalName, CreativeTabs tab){
         LangRegistry.addItem(name, finalName);
-        setUnlocalizedName(name);
+        setTranslationKey(name);
         JourneyItems.items.add(this);
         JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
         setCreativeTab(JourneyTabs.util);

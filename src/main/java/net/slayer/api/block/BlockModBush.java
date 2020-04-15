@@ -175,7 +175,7 @@ public class BlockModBush extends BlockMod implements IPlantable, IGrowable {
 	}
 
 	@Override
-	public BlockRenderLayer getBlockLayer() {
+	public BlockRenderLayer getRenderLayer() {
 		return BlockRenderLayer.TRANSLUCENT;
 	}
 	

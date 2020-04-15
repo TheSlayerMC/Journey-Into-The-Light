@@ -13,7 +13,7 @@ public class ItemModSeeds extends ItemSeeds {
 	public ItemModSeeds(String name, String f, Block block) {
 		super(block, Blocks.FARMLAND);
 		LangRegistry.addItem(name, f);
-		setUnlocalizedName(name);
+		setTranslationKey(name);
 		setCreativeTab(JourneyTabs.crops);
 		JourneyItems.items.add(this);
 		JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);

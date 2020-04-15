@@ -25,14 +25,14 @@ public class BlockCloud extends BlockMod {
         return null;
     }
 	
-	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
+	public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
         entityIn.motionX *= 0.4D;
         entityIn.motionY *= 0.4D;
         entityIn.motionZ *= 0.4D;
     }
 	
 	@Override
-  public BlockRenderLayer getBlockLayer(){
+  public BlockRenderLayer getRenderLayer(){
         return BlockRenderLayer.TRANSLUCENT;
     }
 	

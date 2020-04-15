@@ -35,7 +35,7 @@ public class ItemModAxe extends ItemTool {
         this.attackDamage = tool.getToolMaterial().getAttackDamage();
         LangRegistry.addItem(name, f);
 		mat = tool;
-		setUnlocalizedName(name);
+		setTranslationKey(name);
 		setCreativeTab(JourneyTabs.tools);
 		JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
 		JourneyItems.items.add(this);

@@ -20,7 +20,7 @@ public class BlockModStairs extends BlockStairs {
 		this.name = name;
 		LangRegistry.addBlock(name, finalName);
 		setCreativeTab(JourneyTabs.blocks);
-		setUnlocalizedName(name);
+		setTranslationKey(name);
 		if(light) setLightLevel(0.5F);
 		this.setLightOpacity(1);
 		JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);

@@ -63,7 +63,7 @@ public class BlockModGravity extends BlockFalling {
 		rand = new Random();
 		setSoundType(blockType.getSound());
 		setCreativeTab(tab);
-		setUnlocalizedName(name);
+		setTranslationKey(name);
 		this.name = name; 
 		JourneyBlocks.blocks.add(this);
 		JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
@@ -78,7 +78,7 @@ public class BlockModGravity extends BlockFalling {
 		rand = new Random();
 		setSoundType(blockType.getSound());
 		setCreativeTab(tab);
-		setUnlocalizedName(name);
+		setTranslationKey(name);
 		setHardness(hardness);
 		this.name = name;
 		JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
@@ -117,7 +117,7 @@ public class BlockModGravity extends BlockFalling {
 
     @Override
 	@SideOnly(Side.CLIENT) 
-	public BlockRenderLayer getBlockLayer() {
+	public BlockRenderLayer getRenderLayer() {
 		return BlockRenderLayer.CUTOUT;
 	}
 

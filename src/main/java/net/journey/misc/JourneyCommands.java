@@ -47,49 +47,49 @@ public class JourneyCommands extends CommandBase {
 		/*if(!playerMP.world.isRemote) {
 			if(var2[0].equalsIgnoreCase("Overworld")) {
 				if(playerMP.dimension != 0) {
-					playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, 0, new Teleporter(playerMP.mcServer.getWorld(0)));
+					playerMP.server.getPlayerList().transferPlayerToDimension(playerMP, 0, new Teleporter(playerMP.server.getWorld(0)));
 				}
 			}
 
 			if(var2[0].equalsIgnoreCase("Nether")) {
 				if(playerMP.dimension != -1) {
-					playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, -1, new Teleporter(playerMP.mcServer.getWorld(-1)));
+					playerMP.server.getPlayerList().transferPlayerToDimension(playerMP, -1, new Teleporter(playerMP.server.getWorld(-1)));
 				}
 			}
 
 			if(var2[0].equalsIgnoreCase("End")) {
 				if(playerMP.dimension != 1) {
-					playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, 1, new Teleporter(playerMP.mcServer.getWorld(1)));
+					playerMP.server.getPlayerList().transferPlayerToDimension(playerMP, 1, new Teleporter(playerMP.server.getWorld(1)));
 				}
 			}
 
 			if(var2[0].equalsIgnoreCase("Euca")) {
 				if(playerMP.dimension != Config.euca) {
-					playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, Config.euca, new ModTeleporter(playerMP.mcServer.getWorld(Config.euca), Config.euca, JourneyBlocks.eucaPortal, JourneyBlocks.eucaPortalFrame, BlockEucaPortal.AXIS));
+					playerMP.server.getPlayerList().transferPlayerToDimension(playerMP, Config.euca, new ModTeleporter(playerMP.server.getWorld(Config.euca), Config.euca, JourneyBlocks.eucaPortal, JourneyBlocks.eucaPortalFrame, BlockEucaPortal.AXIS));
 				}
 			}
 
 			if(var2[0].equalsIgnoreCase("BoilingPoint")) {
 				if(playerMP.dimension != Config.boil) {
-					playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, Config.boil, new ModTeleporter(playerMP.mcServer.getWorld(Config.boil), Config.boil, JourneyBlocks.boilPortal, JourneyBlocks.boilPortalFrame, BlockBoilPortal.AXIS));
+					playerMP.server.getPlayerList().transferPlayerToDimension(playerMP, Config.boil, new ModTeleporter(playerMP.server.getWorld(Config.boil), Config.boil, JourneyBlocks.boilPortal, JourneyBlocks.boilPortalFrame, BlockBoilPortal.AXIS));
 				}
 			}
 
 			if(var2[0].equalsIgnoreCase("Depths")) {
 				if(playerMP.dimension != Config.depths) {
-					playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, Config.depths, new TeleporterDepths(playerMP.mcServer.getWorld(Config.depths)));
+					playerMP.server.getPlayerList().transferPlayerToDimension(playerMP, Config.depths, new TeleporterDepths(playerMP.server.getWorld(Config.depths)));
 				}
 			}
 			
 			if(var2[0].equalsIgnoreCase("FrozenLands")) {
 				if(playerMP.dimension != Config.frozen) {
-					playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, Config.frozen, new ModTeleporter(playerMP.mcServer.getWorld(Config.frozen), Config.frozen, JourneyBlocks.frozenPortal, JourneyBlocks.frozenPortalFrame, BlockFrozenPortal.AXIS));
+					playerMP.server.getPlayerList().transferPlayerToDimension(playerMP, Config.frozen, new ModTeleporter(playerMP.server.getWorld(Config.frozen), Config.frozen, JourneyBlocks.frozenPortal, JourneyBlocks.frozenPortalFrame, BlockFrozenPortal.AXIS));
 				}
 			}
 			
 			if(var2[0].equalsIgnoreCase("Corba")) {
 				if(playerMP.dimension != Config.corba) {
-					playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, Config.corba, new TeleporterCorba(playerMP.mcServer.getWorld(Config.corba)));
+					playerMP.server.getPlayerList().transferPlayerToDimension(playerMP, Config.corba, new TeleporterCorba(playerMP.server.getWorld(Config.corba)));
 				}
 			}
 		}*/

@@ -37,7 +37,7 @@ public class ItemCreativeHammer extends ItemSword {
 		this.unbreakable=unbreakable;
 		setMaxStackSize(1);
 		LangRegistry.addItem(name, f);
-		setUnlocalizedName(name);
+		setTranslationKey(name);
 		mat = toolMaterial;
 		setCreativeTab(JourneyTabs.weapons);
 		JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);

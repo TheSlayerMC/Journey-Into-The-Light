@@ -65,7 +65,7 @@ public class ItemModBow extends ItemBow {
 		this.ability = ability;
 		this.name = name;
 		LangRegistry.addItem(name.toLowerCase(), properName);
-		setUnlocalizedName(name.toLowerCase());
+		setTranslationKey(name.toLowerCase());
 		setCreativeTab(JourneyTabs.weapons);
 		JourneyItems.itemNames.add(SlayerAPI.PREFIX + name.toLowerCase());
 		JourneyItems.items.add(this);
@@ -86,7 +86,7 @@ public class ItemModBow extends ItemBow {
 		this.ability = ability;
 		this.name = name;
 		LangRegistry.addItem(name.toLowerCase(), f);
-		setUnlocalizedName(name.toLowerCase());
+		setTranslationKey(name.toLowerCase());
 		setCreativeTab(JourneyTabs.weapons);
 		JourneyItems.itemNames.add(SlayerAPI.PREFIX + name.toLowerCase());
 		JourneyItems.items.add(this);
@@ -106,7 +106,7 @@ public class ItemModBow extends ItemBow {
 		this.setFull3D();
 		this.name = name;
 		LangRegistry.addItem(name.toLowerCase(), f);
-		setUnlocalizedName(name.toLowerCase());
+		setTranslationKey(name.toLowerCase());
 		setCreativeTab(JourneyTabs.weapons);
 		JourneyItems.itemNames.add(SlayerAPI.PREFIX + name.toLowerCase());
 		JourneyItems.items.add(this);
@@ -122,7 +122,7 @@ public class ItemModBow extends ItemBow {
 	public ItemModBow(String name, String finalName, CreativeTabs tab){
 		this.name = name;
 		LangRegistry.addItem(name.toLowerCase(), finalName);
-		setUnlocalizedName(name.toLowerCase());
+		setTranslationKey(name.toLowerCase());
 		setCreativeTab(tab);
 		JourneyItems.itemNames.add(SlayerAPI.PREFIX + name.toLowerCase());
 		JourneyItems.items.add(this);
@@ -267,7 +267,7 @@ public class ItemModBow extends ItemBow {
 	@Override
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> list, ITooltipFlag flagIn) {
 		ItemDescription.addInformation(stack, list);
-		//list.add("Ammo: " + StatCollector.translateToLocal(arrowItem.getUnlocalizedName() + ".name"));
+		//list.add("Ammo: " + StatCollector.translateToLocal(arrowItem.getTranslationKey() + ".name"));
 		list.add("Damage: " +SlayerAPI.Colour.GOLD + damage + " - " + SlayerAPI.Colour.GOLD + damage*4);
 		list.add("Ability: " + SlayerAPI.Colour.GOLD + ability);
 		list.add("Uses remaining: " + SlayerAPI.Colour.GRAY + uses);

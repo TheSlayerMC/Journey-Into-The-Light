@@ -197,7 +197,7 @@ public class WorldGenJourney implements IWorldGenerator {
 		int x, y, z;
 		int times;
 		BlockPos pos = new BlockPos(chunkX, 0, chunkZ);
-		Chunk chunk = w.getChunkFromBlockCoords(pos);
+		Chunk chunk = w.getChunk(pos);
 		BiomeProvider chunkManager = w.getBiomeProvider();
 		Biome biome = chunk.getBiome(pos, chunkManager);
 		BiomeDictionary biomeD = new BiomeDictionary();
@@ -414,7 +414,7 @@ public class WorldGenJourney implements IWorldGenerator {
 		int x, y, z;
 		int times;
 		BlockPos pos = new BlockPos(chunkX * 16, 0, chunkZ * 16);
-		Chunk chunk = w.getChunkFromBlockCoords(pos);
+		Chunk chunk = w.getChunk(pos);
 		BiomeProvider chunkManager = w.getBiomeProvider();
 		Biome biome = w.getBiomeForCoordsBody(pos);
 		BiomeDictionary biomeD = new BiomeDictionary();

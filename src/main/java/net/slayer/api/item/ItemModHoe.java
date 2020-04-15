@@ -23,7 +23,7 @@ public class ItemModHoe extends ItemHoe {
         super(tool.getToolMaterial());
         LangRegistry.addItem(name, f);
 		mat = tool;
-        setUnlocalizedName(name);
+        setTranslationKey(name);
         setCreativeTab(JourneyTabs.tools);
         JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
         JourneyItems.items.add(this);

@@ -41,7 +41,7 @@ public class BlockModFire extends BlockMod {
 	public BlockModFire(String name, String finalN) {
 		super(name, finalN);
 		setLightLevel(1.0F);
-		setUnlocalizedName(name);
+		setTranslationKey(name);
 		setCreativeTab(null);
 	}
 
@@ -85,7 +85,7 @@ public class BlockModFire extends BlockMod {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getBlockLayer() {
+	public BlockRenderLayer getRenderLayer() {
 		return BlockRenderLayer.CUTOUT;
 	}
 

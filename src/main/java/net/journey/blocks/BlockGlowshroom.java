@@ -41,7 +41,7 @@ public class BlockGlowshroom extends Block {
 		setHardness(0.0F);
 		setLightLevel(0.3F);
 		setTickRandomly(true);
-		setUnlocalizedName(name);
+		setTranslationKey(name);
 		JourneyBlocks.blocks.add(this);
 		JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
 		setRegistryName(SlayerAPI.MOD_ID, name);
@@ -62,7 +62,7 @@ public class BlockGlowshroom extends Block {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getBlockLayer() {
+	public BlockRenderLayer getRenderLayer() {
 		return BlockRenderLayer.CUTOUT;
 	}
 
@@ -82,7 +82,7 @@ public class BlockGlowshroom extends Block {
 	}
 
 	@Override
-	public void onBlockDestroyedByPlayer(World w, BlockPos pos, IBlockState state) {
+	public void onPlayerDestroy(World w, BlockPos pos, IBlockState state) {
 		checkDestroyed(w, pos, JourneyBlocks.greenGlowshroomTop, JourneyBlocks.greenGlowshroomBottom);
 		checkDestroyed(w, pos, JourneyBlocks.redGlowshroomTop, JourneyBlocks.redGlowshroomBottom);
 		checkDestroyed(w, pos, JourneyBlocks.blueGlowshroomTop, JourneyBlocks.blueGlowshroomBottom);

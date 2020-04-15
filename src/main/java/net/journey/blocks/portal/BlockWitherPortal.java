@@ -60,7 +60,7 @@ public class BlockWitherPortal extends BlockMod {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getBlockLayer() {
+	public BlockRenderLayer getRenderLayer() {
 		return BlockRenderLayer.TRANSLUCENT;
 	}
 
@@ -70,20 +70,20 @@ public class BlockWitherPortal extends BlockMod {
 	}
 
 	@Override
-	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entity) {
+	public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entity) {
 		if ((entity.getRidingEntity() == null) && ((entity instanceof EntityPlayerMP))) {
 			EntityPlayerMP thePlayer = (EntityPlayerMP)entity;
-			WorldServer worldserver = thePlayer.mcServer.getWorld(thePlayer.dimension);
+			WorldServer worldserver = thePlayer.server.getWorld(thePlayer.dimension);
 			int dimensionID = Config.wither;
 			Block blockFrame = JourneyBlocks.corbaStone;
 			if(thePlayer.timeUntilPortal > 0) 
 				thePlayer.timeUntilPortal = 10;
 			else if(thePlayer.dimension != dimensionID) {
 				thePlayer.timeUntilPortal = 10;
-				thePlayer.mcServer.getPlayerList().transferPlayerToDimension(thePlayer, dimensionID, new ModTeleporter(thePlayer.mcServer.getWorld(dimensionID), this, blockFrame.getDefaultState()));
+				thePlayer.server.getPlayerList().transferPlayerToDimension(thePlayer, dimensionID, new ModTeleporter(thePlayer.server.getWorld(dimensionID), this, blockFrame.getDefaultState()));
 			} else {
 				thePlayer.timeUntilPortal = 10;
-				thePlayer.mcServer.getPlayerList().transferPlayerToDimension(thePlayer, 0, new ModTeleporter(thePlayer.mcServer.getWorld(0), this, blockFrame.getDefaultState()));
+				thePlayer.server.getPlayerList().transferPlayerToDimension(thePlayer, 0, new ModTeleporter(thePlayer.server.getWorld(0), this, blockFrame.getDefaultState()));
 			}
 		}
 	}

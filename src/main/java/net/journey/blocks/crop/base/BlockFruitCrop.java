@@ -202,13 +202,13 @@ public class BlockFruitCrop extends BlockMod implements IGrowable {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer(){
+    public BlockRenderLayer getRenderLayer(){
         return BlockRenderLayer.CUTOUT;
     }
 
     @Override
     public IBlockState getStateFromMeta(int meta) {
-    	return this.getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta)).withProperty(AGE, Integer.valueOf((meta & 15) >> 2));
+    	return this.getDefaultState().withProperty(FACING, EnumFacing.byHorizontalIndex(meta)).withProperty(AGE, Integer.valueOf((meta & 15) >> 2));
     }
 
     @Override

@@ -327,7 +327,7 @@ public class EntityRoyalKnife extends EntityThrowable{
 					this.setIsCritical(false);
 
 					if (this.inBlock.getMaterial() != Material.air) {
-						this.inBlock.onEntityCollidedWithBlock(this.worldObj, blockpos1, iblockstate, this);
+						this.inBlock.onEntityCollision(this.worldObj, blockpos1, iblockstate, this);
 					}
 				}
 			}

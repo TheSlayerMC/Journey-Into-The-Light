@@ -208,7 +208,7 @@ public class SlayerAPI {
 				boolAddedToInventory = player.inventory.addItemStackToInventory(itemstack);
 				if (!boolAddedToInventory && itemstack.getItemDamage() == 0) {
 					player.dropItem(itemstack.getItem(), 1);
-					String itemName = itemstack.getUnlocalizedName();
+					String itemName = itemstack.getTranslationKey();
 					ChatHandler.sendFormattedChat(player, TextFormatting.RED, "journey.fullinv " +  LangHelper.getFormattedText(itemName + ".name"));
 				}
 			}
@@ -252,7 +252,7 @@ public class SlayerAPI {
 			boolAddedToInventory = player.inventory.addItemStackToInventory(itemstack);
 			if (!boolAddedToInventory && itemstack.getItemDamage() == 0) {
 				player.dropItem(itemstack.getItem(), 1);
-				String itemName = itemstack.getUnlocalizedName();
+				String itemName = itemstack.getTranslationKey();
 				ChatHandler.sendFormattedChat(player, TextFormatting.RED, "journey.fullinv " + LangHelper.getFormattedText(itemName + ".name"));
 			} else {
 				player.sendContainerToPlayer(player.inventoryContainer);

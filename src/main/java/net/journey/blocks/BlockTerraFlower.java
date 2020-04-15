@@ -15,7 +15,7 @@ public class BlockTerraFlower extends BlockModFlower {
 	}
 
 	@Override
-	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entity) {
+	public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entity) {
 		EntityTerragrow grow = new EntityTerragrow(worldIn);
 		if(!worldIn.isRemote) {
 			worldIn.spawnEntity(grow);

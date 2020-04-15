@@ -30,7 +30,7 @@ public class BiomeGenJourney extends Biome {
 
 	@Override
 	public void decorate(World worldIn, Random rand, BlockPos pos) {
-		this.chunk = worldIn.getChunkFromBlockCoords(pos);
+		this.chunk = worldIn.getChunk(pos);
 
 		generate(worldIn, rand, chunk.x, chunk.z, 4, 13, 80 + 13, bloom, basicLargeTree);
 

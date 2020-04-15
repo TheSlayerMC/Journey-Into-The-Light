@@ -23,7 +23,7 @@ public class ItemModSword extends ItemSword {
     public ItemModSword(String name, String f, JourneyToolMaterial toolMaterial) {
         super(toolMaterial.getToolMaterial());
         LangRegistry.addItem(name, f);
-        setUnlocalizedName(name);
+        setTranslationKey(name);
         mat = toolMaterial;
         setCreativeTab(JourneyTabs.weapons);
         JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);

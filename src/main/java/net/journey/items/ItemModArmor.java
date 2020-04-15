@@ -45,7 +45,7 @@ public class ItemModArmor extends ItemArmor implements ISpecialArmor {
 		this.unbreakable = armorMaterial.isUndamageable();
 		setArmorType(name, armorType);
 		setCreativeTab(JourneyTabs.armor);
-		setUnlocalizedName(this.name);
+		setTranslationKey(this.name);
 		JourneyItems.itemNames.add(SlayerAPI.PREFIX + name.toLowerCase());
 		JourneyItems.items.add(this);
 		LangRegistry.addArmour(this, armorMaterial, type);

@@ -43,7 +43,7 @@ public class ItemMultiTool extends ItemTool {
 		LangRegistry.addItem(name, f);
 		mat = tool;
 		this.setMaxDamage(damage);
-		setUnlocalizedName(name);
+		setTranslationKey(name);
 		setCreativeTab(JourneyTabs.tools);
 		setHarvestLevel("pickaxe", tool.getHarvestLevel());
 		JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);

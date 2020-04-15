@@ -51,7 +51,7 @@ public class ItemTeleport extends ItemMod {
 		float var17 = var14 * var15;
 		float var18 = var13 * var15;
 		double var19 = 30.0D;
-		Vec3d var21 = var12.addVector(var17 * var19, var16 * var19, var18 * var19);
+		Vec3d var21 = var12.add(var17 * var19, var16 * var19, var18 * var19);
 		RayTraceResult var22 = worldIn.rayTraceBlocks(var12, var21);
 		if(var22 == null) {
 			return new ActionResult<ItemStack>(EnumActionResult.FAIL, player.getHeldItem(handIn));

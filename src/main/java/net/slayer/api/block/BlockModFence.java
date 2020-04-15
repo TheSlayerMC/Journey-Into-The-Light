@@ -27,7 +27,7 @@ public class BlockModFence extends BlockFence {
 		super(Material.ROCK, null);
 		this.name = name;
 		LangRegistry.addBlock(name, finalName);
-		setUnlocalizedName(name);
+		setTranslationKey(name);
 		setCreativeTab(JourneyTabs.blocks);
 		if(light) setLightLevel(0.5F);
 		setHardness(block.getBlockHardness(null, null, null));

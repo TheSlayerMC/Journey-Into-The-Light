@@ -42,7 +42,7 @@ public class ItemModRecord extends ItemRecord {
 
 	public ItemModRecord(String name, String finalName, /*String desc,*/ SoundEvent sound) {
 		super(name, sound);
-		setUnlocalizedName(name + "Record");
+		setTranslationKey(name + "Record");
 		soundName = name;
 		//description = desc;
 		setRegistryName(SlayerAPI.MOD_ID, name + "Record");

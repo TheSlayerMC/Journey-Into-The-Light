@@ -36,7 +36,7 @@ public class BlockWastelandsPortal extends BlockBreakable {
 		super(Material.portal, false);
 		this.setTickRandomly(true);
 		setCreativeTab(EssenceTabs.blocks);
-		setUnlocalizedName(name);
+		setTranslationKey(name);
 		EssenceBlocks.blockName.add(name);
 		GameRegistry.registerBlock(this, name);
 	}
@@ -102,7 +102,7 @@ public class BlockWastelandsPortal extends BlockBreakable {
 	}
 
 	@Override
-	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entity) {
+	public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entity) {
 		if ((entity.ridingEntity == null) && (entity.riddenByEntity == null) && ((entity instanceof EntityPlayerMP))) {
 			EntityPlayerMP thePlayer = (EntityPlayerMP)entity;
 			int dimensionID = Config.wastelands;
@@ -111,11 +111,11 @@ public class BlockWastelandsPortal extends BlockBreakable {
 				thePlayer.timeUntilPortal = 10;
 			else if(thePlayer.dimension != dimensionID) {
 				thePlayer.timeUntilPortal = 10;
-				thePlayer.mcServer.getConfigurationManager().transferPlayerToDimension(thePlayer, dimensionID, new ModTeleporter(thePlayer.mcServer.worldServerForDimension(dimensionID), dimensionID, this, blockFrame));
+				thePlayer.server.getConfigurationManager().transferPlayerToDimension(thePlayer, dimensionID, new ModTeleporter(thePlayer.server.worldServerForDimension(dimensionID), dimensionID, this, blockFrame));
 
 			} else {
 				thePlayer.timeUntilPortal = 10;
-				thePlayer.mcServer.getConfigurationManager().transferPlayerToDimension(thePlayer, 0, new ModTeleporter(thePlayer.mcServer.worldServerForDimension(0), 0, this, blockFrame));
+				thePlayer.server.getConfigurationManager().transferPlayerToDimension(thePlayer, 0, new ModTeleporter(thePlayer.server.worldServerForDimension(0), 0, this, blockFrame));
 			}
 		}
 	}
@@ -125,7 +125,7 @@ public class BlockWastelandsPortal extends BlockBreakable {
 	}
 
 	@SideOnly(Side.CLIENT)
-	public EnumWorldBlockLayer getBlockLayer() {
+	public EnumWorldBlockLayer getRenderLayer() {
 		return EnumWorldBlockLayer.TRANSLUCENT;
 	}
 

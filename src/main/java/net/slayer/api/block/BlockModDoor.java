@@ -25,7 +25,7 @@ public class BlockModDoor extends BlockDoor  {
 	
     public BlockModDoor(String name, String finalName, Material materialIn, float hardness) {
         super(materialIn); 
-        setUnlocalizedName(name);
+        setTranslationKey(name);
         setHardness(hardness);
         JourneyBlocks.blocks.add(this);
 		JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
