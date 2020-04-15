@@ -11,6 +11,7 @@ import net.journey.dimension.terrania.gen.WorldGenHollowTree;
 import net.journey.dimension.terrania.gen.WorldGenTallTree;
 import net.journey.dimension.terrania.gen.WorldGenTerranianLamp;
 import net.journey.dimension.terrania.gen.WorldGenTreeHut;
+import net.journey.dimension.terrania.gen.shroom.WorldGenMushroomDungeon;
 import net.journey.dimension.terrania.gen.shroom.WorldGenTerrashroom;
 import net.journey.dimension.terrania.gen.trees.WorldGenTerraniaBigTree1;
 import net.journey.dimension.terrania.gen.trees.WorldGenTerraniaBigTree2;
@@ -76,6 +77,7 @@ public class ChunkProviderTerrania implements IChunkGenerator {
     WorldGenModFlower flower2 = new WorldGenModFlower(JourneyBlocks.tallterramushroom, JourneyBlocks.terranianGrass);
     WorldGenTreeHut hut = new WorldGenTreeHut();
     WorldGenHollowTree hollowTree = new WorldGenHollowTree();
+    WorldGenMushroomDungeon mushroomDungeon = new WorldGenMushroomDungeon();
     WorldGenTallTree tallTree = new WorldGenTallTree();
     WorldGenTerranianLamp lamp = new WorldGenTerranianLamp();
 
@@ -376,6 +378,13 @@ public class ChunkProviderTerrania implements IChunkGenerator {
             BlockPos pos = WorldGenAPI.createRandom(x1, 1, 128, z1, rand, 2);
             if (isBlockTop(pos.getX(), pos.getY() - 1, pos.getZ(), JourneyBlocks.terranianGrass)) {
                 hollowTree.generate(worldObj, rand, pos);
+            }
+        }
+        
+        for (times = 0; times < 10; times++) {
+            BlockPos pos = WorldGenAPI.createRandom(x1, 1, 128, z1, rand, 2);
+            if (isBlockTop(pos.getX(), pos.getY() - 1, pos.getZ(), JourneyBlocks.terranianGrass)) {
+                mushroomDungeon.generate(worldObj, rand, pos);
             }
         }
 
