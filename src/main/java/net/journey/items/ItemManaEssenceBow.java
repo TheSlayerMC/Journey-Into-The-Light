@@ -1,8 +1,8 @@
 package net.journey.items;
 
-import net.journey.JourneyItems;
-import net.journey.JourneyTabs;
 import net.journey.client.ItemDescription;
+import net.journey.init.JourneyTabs;
+import net.journey.init.items.JourneyItems;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;

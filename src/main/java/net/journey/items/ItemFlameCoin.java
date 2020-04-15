@@ -1,7 +1,7 @@
 package net.journey.items;
 
-import net.journey.JourneyBlocks;
-import net.journey.JourneyTabs;
+import net.journey.init.JourneyTabs;
+import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;

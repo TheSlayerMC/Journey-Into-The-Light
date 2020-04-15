@@ -1,6 +1,5 @@
 package net.journey.dimension.terrania;
 
-import net.journey.JourneyBlocks;
 import net.journey.dimension.overworld.gen.WorldGenModFlower;
 import net.journey.dimension.terrania.gen.WorldGenHollowTree;
 import net.journey.dimension.terrania.gen.WorldGenTallTree;
@@ -10,6 +9,7 @@ import net.journey.dimension.terrania.gen.shroom.WorldGenMushroomDungeon;
 import net.journey.dimension.terrania.gen.shroom.WorldGenTerrashroom;
 import net.journey.dimension.terrania.gen.trees.WorldGenTerraniaSmallTree;
 import net.journey.dimension.terrania.gen.trees.WorldGenTerraniaTree;
+import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

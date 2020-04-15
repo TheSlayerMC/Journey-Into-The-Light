@@ -1,7 +1,7 @@
 package net.journey.blocks.machines;
 
-import net.journey.JourneyBlocks;
 import net.journey.blocks.tileentity.container.ContainerCrafting;
+import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;

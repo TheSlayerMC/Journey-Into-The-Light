@@ -3,7 +3,7 @@
  * <p>
  * import java.util.List;
  * <p>
- * import net.journey.JourneyItems;
+ * import net.journey.registry.items.JourneyItems;
  * import net.minecraft.block.Block;
  * import net.minecraft.block.material.Material;
  * import net.minecraft.block.state.IBlockState;

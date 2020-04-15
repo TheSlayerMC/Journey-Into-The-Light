@@ -1,7 +1,7 @@
 package net.journey.client.render.model.mob.overworld;
 
-import net.journey.JourneyWeapons;
 import net.journey.entity.mob.overworld.EntityWraith;
+import net.journey.init.items.JourneyWeapons;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;

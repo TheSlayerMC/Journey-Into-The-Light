@@ -1,10 +1,10 @@
 package net.journey.blocks.tileentity;
 
 import net.journey.JITL;
-import net.journey.JourneyItems;
-import net.journey.JourneySounds;
 import net.journey.blocks.tileentity.container.ContainerSummoningTable;
 import net.journey.enums.EnumParticlesClasses;
+import net.journey.init.JourneySounds;
+import net.journey.init.items.JourneyItems;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;

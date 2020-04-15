@@ -1,5 +1,7 @@
-package net.journey;
+package net.journey.init.items;
 
+import net.journey.init.JourneySounds;
+import net.journey.init.blocks.JourneyBlocks;
 import net.journey.items.*;
 import net.journey.util.Config;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -58,7 +60,7 @@ public class JourneyItems {
     public static ToolMaterial ironMulti = addToolMaterial(251, 4F, 5F, false);
     public static ToolMaterial goldMulti = addToolMaterial(33, 5F, 5F, false);
     public static ToolMaterial diamondMulti = addToolMaterial(1562, 6F, 5F, false);
-    public static ArrayList<String> itemNames = new ArrayList<String>();
+    public static ArrayList<String> itemNames = new ArrayList<String>();//TODO is it really needed?
     public static ArrayList<Item> items = new ArrayList<Item>();
     public static Item hellstoneIngot;
     public static Item shadiumIngot;

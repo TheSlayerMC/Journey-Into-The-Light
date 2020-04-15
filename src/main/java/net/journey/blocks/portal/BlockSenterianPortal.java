@@ -1,8 +1,8 @@
 package net.journey.blocks.portal;
 
-import net.journey.JourneyTabs;
 import net.journey.dimension.senterian.TeleporterSenterian;
 import net.journey.dimension.senterian.TeleporterSenterianToOverworld;
+import net.journey.init.JourneyTabs;
 import net.journey.util.Config;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;

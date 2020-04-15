@@ -1,6 +1,6 @@
 package net.journey.dimension.corba.gen.trees;
 
-import net.journey.JourneyBlocks;
+import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.init.Blocks;

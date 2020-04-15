@@ -1,7 +1,7 @@
 package net.journey.client;
 
-import net.journey.JourneyConsumables;
-import net.journey.JourneyItems;
+import net.journey.init.items.JourneyConsumables;
+import net.journey.init.items.JourneyItems;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.slayer.api.SlayerAPI;

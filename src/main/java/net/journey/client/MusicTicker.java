@@ -1,6 +1,6 @@
 package net.journey.client;
 
-import net.journey.JourneySounds;
+import net.journey.init.JourneySounds;
 import net.journey.util.Config;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.ISound;

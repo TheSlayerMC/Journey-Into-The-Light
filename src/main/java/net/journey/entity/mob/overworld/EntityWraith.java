@@ -1,9 +1,9 @@
 package net.journey.entity.mob.overworld;
 
-import net.journey.JourneyItems;
-import net.journey.JourneySounds;
-import net.journey.JourneyWeapons;
 import net.journey.entity.MobStats;
+import net.journey.init.JourneySounds;
+import net.journey.init.items.JourneyItems;
+import net.journey.init.items.JourneyWeapons;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.inventory.EntityEquipmentSlot;

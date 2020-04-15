@@ -1,8 +1,8 @@
 package net.journey.entity.mob.boiling;
 
-import net.journey.JourneyItems;
-import net.journey.JourneyWeapons;
 import net.journey.entity.MobStats;
+import net.journey.init.items.JourneyItems;
+import net.journey.init.items.JourneyWeapons;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;

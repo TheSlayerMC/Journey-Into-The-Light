@@ -1,6 +1,6 @@
 package net.journey.blocks;
 
-import net.journey.JourneyItems;
+import net.journey.init.items.JourneyItems;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

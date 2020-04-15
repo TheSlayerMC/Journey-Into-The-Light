@@ -1,7 +1,7 @@
 package net.journey.dimension.cloudia.zone;
 
-import net.journey.JourneyBlocks;
 import net.journey.dimension.cloudia.CloudiaChunkPrimer;
+import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.init.Blocks;
 
 import java.util.Random;

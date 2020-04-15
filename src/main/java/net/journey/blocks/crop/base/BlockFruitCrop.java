@@ -1,9 +1,8 @@
 package net.journey.blocks.crop.base;
 
-import net.journey.JourneyCrops;
+import net.journey.init.blocks.JourneyCrops;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockFaceShape;

@@ -1,6 +1,6 @@
 package net.journey.dimension.nether.gen.trees;
 
-import net.journey.JourneyBlocks;
+import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;

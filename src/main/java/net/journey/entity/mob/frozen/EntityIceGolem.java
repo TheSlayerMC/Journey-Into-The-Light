@@ -1,8 +1,8 @@
 package net.journey.entity.mob.frozen;
 
 import com.google.common.base.Predicate;
-import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
+import net.journey.init.JourneySounds;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

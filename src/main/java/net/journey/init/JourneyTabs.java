@@ -1,5 +1,10 @@
-package net.journey;
+package net.journey.init;
 
+import net.journey.init.blocks.JourneyBlocks;
+import net.journey.init.items.JourneyArmory;
+import net.journey.init.items.JourneyConsumables;
+import net.journey.init.items.JourneyItems;
+import net.journey.init.items.JourneyWeapons;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;

@@ -1,6 +1,6 @@
 package net.slayer.api.item;
 
-import net.journey.JourneyTabs;
+import net.journey.init.JourneyTabs;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;

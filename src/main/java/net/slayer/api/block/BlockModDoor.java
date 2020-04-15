@@ -1,7 +1,7 @@
 package net.slayer.api.block;
 
-import net.journey.JourneyBlocks;
-import net.journey.JourneyItems;
+import net.journey.init.blocks.JourneyBlocks;
+import net.journey.init.items.JourneyItems;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

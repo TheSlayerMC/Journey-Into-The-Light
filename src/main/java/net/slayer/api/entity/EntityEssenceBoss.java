@@ -1,6 +1,6 @@
 package net.slayer.api.entity;
 
-import net.journey.JourneySounds;
+import net.journey.init.JourneySounds;
 import net.journey.util.IEssenceBoss;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.util.EnumParticleTypes;

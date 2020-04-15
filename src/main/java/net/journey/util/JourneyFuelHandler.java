@@ -1,7 +1,7 @@
 package net.journey.util;
 
-import net.journey.JourneyBlocks;
-import net.journey.JourneyItems;
+import net.journey.init.blocks.JourneyBlocks;
+import net.journey.init.items.JourneyItems;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;

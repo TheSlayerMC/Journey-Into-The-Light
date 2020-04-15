@@ -1,6 +1,5 @@
 package net.journey.dimension.boil;
 
-import net.journey.JourneyBlocks;
 import net.journey.dimension.boil.gen.WorldGenBoilingLamp;
 import net.journey.dimension.boil.gen.WorldGenBrisonNetwork;
 import net.journey.dimension.boil.gen.WorldGenTraderHutBoiling;
@@ -8,6 +7,7 @@ import net.journey.dimension.boil.trees.WorldGenBoilTree1;
 import net.journey.dimension.boil.trees.WorldGenBoilTree2;
 import net.journey.dimension.boil.trees.WorldGenBoilTree3;
 import net.journey.dimension.overworld.gen.WorldGenModFlower;
+import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

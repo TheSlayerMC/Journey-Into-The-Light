@@ -1,8 +1,8 @@
 package net.journey.blocks.base;
 
-import net.journey.JourneyBlocks;
-import net.journey.JourneyItems;
-import net.journey.JourneyTabs;
+import net.journey.init.JourneyTabs;
+import net.journey.init.blocks.JourneyBlocks;
+import net.journey.init.items.JourneyItems;
 import net.minecraft.block.BlockRail;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.item.ItemBlock;

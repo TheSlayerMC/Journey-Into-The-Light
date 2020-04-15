@@ -1,11 +1,11 @@
 package net.journey.items;
 
-import net.journey.JourneySounds;
-import net.journey.JourneyTabs;
 import net.journey.client.server.EssenceProvider;
 import net.journey.client.server.IEssence;
 import net.journey.entity.projectile.EntityAttractor;
 import net.journey.entity.projectile.EntityDetractor;
+import net.journey.init.JourneySounds;
+import net.journey.init.JourneyTabs;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;

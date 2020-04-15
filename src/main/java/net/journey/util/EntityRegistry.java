@@ -103,7 +103,7 @@ public class EntityRegistry {
     }
 
     public static EntityEntry[] initMobs() {
-        EntityEntry[] JourneyMobs = {
+        return new EntityEntry[]{
                 //END
                 SlayerAPI.buildEntityEntry(EntityEnderLeaper.class, "enderleaper", "Ender Leaper", 0x440089, 0xBC00BC),
                 SlayerAPI.buildEntityEntry(EntityEnderCrawler.class, "endercrawler", "Ender Crawler", 0x440089, 0xBC00BC),
@@ -247,7 +247,6 @@ public class EntityRegistry {
                 //OBSIDIANBOAT
                 SlayerAPI.buildEntityEntryNoEgg(EntityObsidianBoat.class, "obsidianboat", 16)
         };
-        return JourneyMobs;
     }
 
 }

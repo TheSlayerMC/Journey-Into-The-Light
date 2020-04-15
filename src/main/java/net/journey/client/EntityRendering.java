@@ -1,6 +1,5 @@
 package net.journey.client;
 
-import net.journey.JourneyWeapons;
 import net.journey.blocks.tileentity.*;
 import net.journey.client.render.*;
 import net.journey.client.render.block.*;
@@ -77,6 +76,7 @@ import net.journey.entity.mob.terrania.mob.*;
 import net.journey.entity.mob.terrania.npc.EntityTerranianEnchanter;
 import net.journey.entity.mob.terrania.npc.EntityTerranianTrader;
 import net.journey.entity.projectile.*;
+import net.journey.init.items.JourneyWeapons;
 import net.journey.util.Textures;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBiped;

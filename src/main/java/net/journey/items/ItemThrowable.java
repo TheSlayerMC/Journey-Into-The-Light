@@ -1,7 +1,7 @@
 package net.journey.items;
 
-import net.journey.JourneyTabs;
 import net.journey.client.ItemDescription;
+import net.journey.init.JourneyTabs;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;

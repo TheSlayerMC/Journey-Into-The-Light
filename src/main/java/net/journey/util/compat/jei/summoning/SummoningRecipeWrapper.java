@@ -3,7 +3,7 @@ package net.journey.util.compat.jei.summoning;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.ingredients.VanillaTypes;
 import mezz.jei.api.recipe.IRecipeWrapper;
-import net.journey.JourneyItems;
+import net.journey.init.items.JourneyItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

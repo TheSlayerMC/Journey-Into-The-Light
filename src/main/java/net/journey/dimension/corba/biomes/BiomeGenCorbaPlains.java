@@ -1,7 +1,7 @@
 package net.journey.dimension.corba.biomes;
 
-import net.journey.JourneyBlocks;
 import net.journey.dimension.corba.BiomePropertiesCorba;
+import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.relauncher.Side;

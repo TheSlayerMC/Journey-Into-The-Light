@@ -1,10 +1,10 @@
 package net.journey.entity.mob.frozen;
 
-import net.journey.JourneyBlocks;
-import net.journey.JourneySounds;
-import net.journey.JourneyWeapons;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityFrozenSnowball;
+import net.journey.init.JourneySounds;
+import net.journey.init.blocks.JourneyBlocks;
+import net.journey.init.items.JourneyWeapons;
 import net.journey.util.Config;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;

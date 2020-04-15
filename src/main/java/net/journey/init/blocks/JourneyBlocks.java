@@ -1,4 +1,4 @@
-package net.journey;
+package net.journey.init.blocks;
 
 import net.journey.blocks.*;
 import net.journey.blocks.base.BlockModFire;
@@ -13,6 +13,9 @@ import net.journey.dimension.euca.gen.trees.WorldGenEucaTree;
 import net.journey.dimension.frozen.gen.WorldGenIceTree;
 import net.journey.dimension.nether.gen.trees.WorldGenBleedheartTree0;
 import net.journey.dimension.terrania.gen.trees.WorldGenTerraniaSmallTree;
+import net.journey.init.JourneyTabs;
+import net.journey.init.items.JourneyConsumables;
+import net.journey.init.items.JourneyItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.slayer.api.EnumMaterialTypes;
@@ -23,7 +26,7 @@ import java.util.ArrayList;
 
 public class JourneyBlocks {
 
-    public static ArrayList<String> blockName = new ArrayList<>();
+    public static ArrayList<String> blockName = new ArrayList<>();//TODO is it really needed?
     public static ArrayList<Block> blocks = new ArrayList<>();
 
     public static BlockMod sapphireOre;

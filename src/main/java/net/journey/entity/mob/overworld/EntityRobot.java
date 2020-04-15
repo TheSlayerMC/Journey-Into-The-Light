@@ -1,7 +1,7 @@
 package net.journey.entity.mob.overworld;
 
-import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
+import net.journey.init.JourneySounds;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;

@@ -1,6 +1,7 @@
-package net.journey;
+package net.journey.init.items;
 
 import net.journey.entity.projectile.*;
+import net.journey.init.JourneyTabs;
 import net.journey.items.*;
 import net.journey.items.bows.*;
 import net.journey.items.swords.*;

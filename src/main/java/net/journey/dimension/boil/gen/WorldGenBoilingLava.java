@@ -1,6 +1,6 @@
 package net.journey.dimension.boil.gen;
 
-import net.journey.JourneyBlocks;
+import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;

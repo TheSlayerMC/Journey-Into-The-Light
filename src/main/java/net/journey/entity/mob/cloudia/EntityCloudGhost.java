@@ -1,7 +1,7 @@
 package net.journey.entity.mob.cloudia;
 
-import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
+import net.journey.init.JourneySounds;
 import net.minecraft.item.Item;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;

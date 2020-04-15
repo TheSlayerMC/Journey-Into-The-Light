@@ -1,8 +1,8 @@
 package net.journey.dimension.frozen;
 
-import net.journey.JourneyBlocks;
 import net.journey.dimension.frozen.gen.*;
 import net.journey.dimension.overworld.gen.WorldGenModFlower;
+import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;

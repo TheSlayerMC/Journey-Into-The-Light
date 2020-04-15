@@ -1,7 +1,7 @@
 package net.slayer.api.item;
 
-import net.journey.JourneyItems;
-import net.journey.JourneyTabs;
+import net.journey.init.JourneyTabs;
+import net.journey.init.items.JourneyItems;
 import net.journey.util.LangRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;

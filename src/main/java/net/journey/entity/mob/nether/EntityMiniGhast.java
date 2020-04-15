@@ -1,7 +1,7 @@
 package net.journey.entity.mob.nether;
 
-import net.journey.JourneyConsumables;
 import net.journey.entity.MobStats;
+import net.journey.init.items.JourneyConsumables;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;

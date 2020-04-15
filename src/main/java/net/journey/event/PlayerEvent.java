@@ -1,7 +1,7 @@
 package net.journey.event;
 
-import net.journey.JourneyArmory;
-import net.journey.JourneyConsumables;
+import net.journey.init.items.JourneyArmory;
+import net.journey.init.items.JourneyConsumables;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.entity.player.EntityPlayer;

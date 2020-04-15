@@ -1,8 +1,8 @@
 package net.journey.dimension.corba.gen;
 
-import net.journey.JourneyBlocks;
 import net.journey.entity.mob.corba.npc.EntityRedTordo;
 import net.journey.entity.mob.corba.npc.EntityTordo;
+import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;

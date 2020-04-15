@@ -1,8 +1,8 @@
 package net.journey.entity.mob.terrania.mob;
 
-import net.journey.JourneyConsumables;
-import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
+import net.journey.init.JourneySounds;
+import net.journey.init.items.JourneyConsumables;
 import net.minecraft.item.Item;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;

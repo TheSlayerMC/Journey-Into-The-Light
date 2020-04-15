@@ -1,8 +1,8 @@
 package net.journey.entity.mob.depths;
 
-import net.journey.JourneyItems;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityMagmaFireball;
+import net.journey.init.items.JourneyItems;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;

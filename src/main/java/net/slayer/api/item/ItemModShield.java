@@ -1,8 +1,8 @@
 package net.slayer.api.item;
 
-import net.journey.JourneySounds;
 import net.journey.client.server.EssenceProvider;
 import net.journey.client.server.IEssence;
+import net.journey.init.JourneySounds;
 import net.journey.util.LangHelper;
 import net.journey.util.PotionEffects;
 import net.minecraft.block.BlockDispenser;

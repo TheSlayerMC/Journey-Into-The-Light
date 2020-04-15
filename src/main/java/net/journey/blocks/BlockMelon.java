@@ -1,7 +1,7 @@
 package net.journey.blocks;
 
-import net.journey.JourneyConsumables;
-import net.journey.JourneyTabs;
+import net.journey.init.JourneyTabs;
+import net.journey.init.items.JourneyConsumables;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 import net.slayer.api.EnumMaterialTypes;

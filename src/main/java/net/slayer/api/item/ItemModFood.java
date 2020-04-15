@@ -1,9 +1,9 @@
 package net.slayer.api.item;
 
-import net.journey.JourneyConsumables;
-import net.journey.JourneyItems;
-import net.journey.JourneyTabs;
 import net.journey.client.ItemDescription;
+import net.journey.init.JourneyTabs;
+import net.journey.init.items.JourneyConsumables;
+import net.journey.init.items.JourneyItems;
 import net.journey.util.LangRegistry;
 import net.journey.util.PotionEffects;
 import net.minecraft.client.util.ITooltipFlag;

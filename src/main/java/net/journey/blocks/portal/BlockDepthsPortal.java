@@ -1,9 +1,9 @@
 package net.journey.blocks.portal;
 
 import net.journey.JITL;
-import net.journey.JourneyTabs;
 import net.journey.dimension.depths.TeleporterDepths;
 import net.journey.enums.EnumParticlesClasses;
+import net.journey.init.JourneyTabs;
 import net.journey.util.Config;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

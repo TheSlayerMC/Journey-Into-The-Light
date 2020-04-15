@@ -1,12 +1,12 @@
 package net.journey.dimension.nether;
 
-import net.journey.JourneyBlocks;
 import net.journey.dimension.nether.biomes.BiomeRegister;
 import net.journey.dimension.nether.biomes.NetherBiome;
 import net.journey.dimension.nether.biomes.structure.IStructureWorld;
 import net.journey.dimension.nether.biomes.structure.StructureThornRoot;
 import net.journey.dimension.nether.noise.Dither;
 import net.journey.dimension.nether.noise.WorleyNoiseIDDistorted3D;
+import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.Config;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;

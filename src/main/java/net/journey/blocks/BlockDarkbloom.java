@@ -1,15 +1,13 @@
 package net.journey.blocks;
 
-import net.journey.JITL;
-import net.journey.JourneyBlocks;
-import net.journey.JourneyItems;
-import net.journey.JourneyTabs;
+import net.journey.init.JourneyTabs;
+import net.journey.init.blocks.JourneyBlocks;
+import net.journey.init.items.JourneyItems;
 import net.journey.util.LangRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -102,13 +100,5 @@ public class BlockDarkbloom extends Block {
 
     public boolean canBlockStay(World w, BlockPos pos) {
         return canPlaceBlockAt(w, pos);
-    }
-
-    public void registerItemModel(Item itemBlock) {
-        JITL.proxy.registerItemRenderer(itemBlock, 0, name);
-    }
-
-    public Item createItemBlock() {
-        return new ItemBlock(this).setRegistryName(getRegistryName());
     }
 }

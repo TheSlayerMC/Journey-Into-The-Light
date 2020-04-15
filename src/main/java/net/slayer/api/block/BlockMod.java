@@ -1,10 +1,10 @@
 package net.slayer.api.block;
 
 import net.journey.JITL;
-import net.journey.JourneyBlocks;
-import net.journey.JourneyItems;
-import net.journey.JourneyTabs;
 import net.journey.enums.EnumParticlesClasses;
+import net.journey.init.JourneyTabs;
+import net.journey.init.blocks.JourneyBlocks;
+import net.journey.init.items.JourneyItems;
 import net.journey.util.LangRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -28,7 +28,7 @@ public class BlockMod extends Block {
     protected EnumMaterialTypes blockType;
     protected Item drop = null;
     protected Random rand;
-    protected boolean isOpaque = true, isNormalCube = true;
+    protected boolean isOpaque = true, isNormalCube = true; //TODO seems unused, test and remove
 
     public BlockMod(String name, String finalName, float hardness) {
         this(EnumMaterialTypes.STONE, name, finalName, hardness, JourneyTabs.blocks);
@@ -67,10 +67,6 @@ public class BlockMod extends Block {
         JourneyBlocks.blocks.add(this);
         setRegistryName(SlayerAPI.MOD_ID, name);
         JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
-    }
-
-    public Item createItemBlock() {
-        return new ItemBlock(this).setRegistryName(getRegistryName());
     }
 
     public Block addName(String name) {

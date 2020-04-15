@@ -1,9 +1,9 @@
 package net.journey.entity.mob.euca;
 
-import net.journey.JourneyConsumables;
-import net.journey.JourneyItems;
-import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
+import net.journey.init.JourneySounds;
+import net.journey.init.items.JourneyConsumables;
+import net.journey.init.items.JourneyItems;
 import net.minecraft.item.Item;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;

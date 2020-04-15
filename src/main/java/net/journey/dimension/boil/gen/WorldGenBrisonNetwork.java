@@ -1,7 +1,7 @@
 package net.journey.dimension.boil.gen;
 
-import net.journey.JourneyBlocks;
 import net.journey.entity.mob.boiling.npc.EntityEscapedConvict;
+import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;

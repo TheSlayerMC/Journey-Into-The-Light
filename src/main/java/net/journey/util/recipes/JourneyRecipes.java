@@ -1,6 +1,11 @@
 package net.journey.util.recipes;
 
-import net.journey.*;
+import net.journey.init.blocks.JourneyBlocks;
+import net.journey.init.blocks.JourneyCrops;
+import net.journey.init.items.JourneyArmory;
+import net.journey.init.items.JourneyConsumables;
+import net.journey.init.items.JourneyItems;
+import net.journey.init.items.JourneyWeapons;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;

@@ -1,4 +1,4 @@
-package net.journey;
+package net.journey.init;
 
 public class JourneyAdvancements {
 	

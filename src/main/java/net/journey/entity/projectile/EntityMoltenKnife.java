@@ -2,7 +2,7 @@ package net.journey.entity.projectile;
 
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
-import net.journey.JourneyWeapons;
+import net.journey.init.items.JourneyWeapons;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IProjectile;

@@ -1,4 +1,4 @@
-package net.journey;
+package net.journey.init.items;
 
 import net.journey.items.ItemBonemealHoe;
 import net.journey.items.ItemModArmor;

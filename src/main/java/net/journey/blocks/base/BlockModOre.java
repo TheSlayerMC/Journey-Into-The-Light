@@ -1,8 +1,8 @@
 package net.journey.blocks.base;
 
 import net.journey.JITL;
-import net.journey.JourneyBlocks;
-import net.journey.JourneyItems;
+import net.journey.init.blocks.JourneyBlocks;
+import net.journey.init.items.JourneyItems;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 import net.minecraft.util.math.BlockPos;

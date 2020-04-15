@@ -1,7 +1,7 @@
 package net.journey.dimension.cloudia.gen;
 
-import net.journey.JourneyBlocks;
 import net.journey.entity.mob.cloudia.npc.EntityStarlightVillager;
+import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;

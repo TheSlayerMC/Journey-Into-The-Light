@@ -1,7 +1,7 @@
 package net.journey.dimension.nether.gen;
 
-import net.journey.JourneyBlocks;
 import net.journey.entity.mob.boss.EntityTempleGuardian;
+import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.LogHelper;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntityMobSpawner;

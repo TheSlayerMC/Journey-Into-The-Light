@@ -1,9 +1,8 @@
 package net.slayer.api.block;
 
-import net.journey.JourneyTabs;
+import net.journey.init.JourneyTabs;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;

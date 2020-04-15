@@ -1,10 +1,10 @@
 package net.journey.entity.mob.overworld;
 
-import net.journey.JourneyArmory;
-import net.journey.JourneyConsumables;
-import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityFloroWater;
+import net.journey.init.JourneySounds;
+import net.journey.init.items.JourneyArmory;
+import net.journey.init.items.JourneyConsumables;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.IRangedAttackMob;

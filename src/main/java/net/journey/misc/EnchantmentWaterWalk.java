@@ -1,6 +1,6 @@
 package net.journey.misc;
 
-import net.journey.JourneyEnchantments;
+import net.journey.init.JourneyEnchantments;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.init.Enchantments;

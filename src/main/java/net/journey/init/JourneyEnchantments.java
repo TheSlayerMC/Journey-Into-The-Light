@@ -1,4 +1,4 @@
-package net.journey;
+package net.journey.init;
 
 import net.journey.misc.EnchantmentHotTouch;
 import net.journey.misc.EnchantmentWaterWalk;

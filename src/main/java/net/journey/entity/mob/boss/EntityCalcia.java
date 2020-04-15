@@ -1,9 +1,9 @@
 package net.journey.entity.mob.boss;
 
-import net.journey.JourneyItems;
-import net.journey.JourneySounds;
-import net.journey.JourneyWeapons;
 import net.journey.entity.MobStats;
+import net.journey.init.JourneySounds;
+import net.journey.init.items.JourneyItems;
+import net.journey.init.items.JourneyWeapons;
 import net.journey.util.PotionEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;

@@ -1,11 +1,16 @@
 package net.journey.entity.mob.boss;
 
-import net.journey.*;
+import net.journey.JITL;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.entity.MobStats;
 import net.journey.entity.mob.nether.EntityLavasnake;
 import net.journey.entity.projectile.EntityMagmaFireball;
 import net.journey.enums.EnumParticlesClasses;
+import net.journey.init.JourneySounds;
+import net.journey.init.blocks.JourneyBlocks;
+import net.journey.init.items.JourneyArmory;
+import net.journey.init.items.JourneyItems;
+import net.journey.init.items.JourneyWeapons;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.ai.EntityAIBase;

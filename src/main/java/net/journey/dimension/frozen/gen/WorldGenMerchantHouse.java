@@ -1,8 +1,8 @@
 package net.journey.dimension.frozen.gen;
 
-import net.journey.JourneyBlocks;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.entity.mob.frozen.npc.EntityFrozenMerchant;
+import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.JourneyLootTables;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;

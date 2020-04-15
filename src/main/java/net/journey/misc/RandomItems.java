@@ -1,6 +1,6 @@
 package net.journey.misc;
 
-import net.journey.JourneyItems;
+import net.journey.init.items.JourneyItems;
 import net.minecraft.item.Item;
 
 import java.util.Random;

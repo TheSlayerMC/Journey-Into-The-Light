@@ -1,7 +1,7 @@
 package net.journey.dimension.depths.gen;
 
-import net.journey.JourneyBlocks;
 import net.journey.entity.mob.depths.npc.EntityStaringGuardian;
+import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;

@@ -1,8 +1,12 @@
 package net.journey.entity.mob.boss;
 
-import net.journey.*;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.entity.MobStats;
+import net.journey.init.JourneySounds;
+import net.journey.init.blocks.JourneyBlocks;
+import net.journey.init.items.JourneyArmory;
+import net.journey.init.items.JourneyItems;
+import net.journey.init.items.JourneyWeapons;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;

@@ -1,7 +1,7 @@
 package net.slayer.api.block;
 
-import net.journey.JourneyTabs;
 import net.journey.entity.mob.terrania.mob.EntityTerragrow;
+import net.journey.init.JourneyTabs;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;

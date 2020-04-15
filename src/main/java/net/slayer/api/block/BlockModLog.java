@@ -26,4 +26,9 @@ public class BlockModLog extends BlockMod {
     public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.TRANSLUCENT;
     }
+
+    @Override
+    public int getMetaFromState(IBlockState state) {
+        return super.getMetaFromState(state);
+    }
 }

@@ -1,6 +1,6 @@
 package net.journey.dimension.depths;
 
-import net.journey.JourneyBlocks;
+import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.world.biome.Biome;
 
 public class BiomeGenDepths extends Biome {

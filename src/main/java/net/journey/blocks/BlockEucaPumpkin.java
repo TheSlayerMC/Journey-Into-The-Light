@@ -1,8 +1,7 @@
 package net.journey.blocks;
 
-import net.journey.JourneyBlocks;
 import net.journey.entity.mob.boss.EntityFourfa;
-import net.minecraft.block.properties.IProperty;
+import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.BlockWorldState;

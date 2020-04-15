@@ -1,12 +1,11 @@
 package net.slayer.api.block;
 
-import net.journey.JourneyBlocks;
-import net.journey.JourneyItems;
-import net.journey.JourneyTabs;
+import net.journey.init.JourneyTabs;
+import net.journey.init.blocks.JourneyBlocks;
+import net.journey.init.items.JourneyItems;
 import net.journey.util.LangRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockStairs;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.slayer.api.SlayerAPI;
 
@@ -32,9 +31,5 @@ public class BlockModStairs extends BlockStairs {
     public BlockModStairs(Block b, String n, String n2) {
         this(b, n, n2, false);
         this.name = n;
-    }
-
-    public Item createItemBlock() {
-        return new ItemBlock(this).setRegistryName(getRegistryName());
     }
 }

@@ -2,6 +2,10 @@ package net.journey;
 
 import net.journey.blocks.tileentity.TileEntityHandler;
 import net.journey.client.IHasModel;
+import net.journey.init.JourneyEnchantments;
+import net.journey.init.JourneySounds;
+import net.journey.init.blocks.JourneyBlocks;
+import net.journey.init.items.JourneyItems;
 import net.journey.util.EntityRegistry;
 import net.journey.util.LogHelper;
 import net.minecraft.block.Block;
@@ -21,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @EventBusSubscriber(modid = SlayerAPI.MOD_ID)
-public class Registrys {
+public class Registries {
 
     public static final List<SoundEvent> SOUNDS = new ArrayList<>();
 
@@ -57,10 +61,13 @@ public class Registrys {
     public static void registerEnities(RegistryEvent.Register<EntityEntry> event) {
         IForgeRegistry<EntityEntry> registry = event.getRegistry();
 
-        registry.registerAll(EntityRegistry.initProjectiles());
-        registry.registerAll(EntityRegistry.initMobs());
+        EntityEntry[] mobs = EntityRegistry.initMobs();
+        EntityEntry[] projectiles = EntityRegistry.initProjectiles();
 
-        LogHelper.info("Successfully Registered " + EntityRegistry.initMobs().length + " Mobs");
+        registry.registerAll(mobs);
+        registry.registerAll(projectiles);
+
+        LogHelper.info("Successfully Registered " + mobs.length + " Mobs");
         LogHelper.info("Successfully Registered " + EntityRegistry.initProjectiles().length + " Projectiles");
 
     }

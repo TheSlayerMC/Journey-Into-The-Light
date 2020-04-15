@@ -1,8 +1,8 @@
 package net.journey.items;
 
-import net.journey.JourneyItems;
-import net.journey.JourneyTabs;
 import net.journey.blocks.machines.BlockCrafting;
+import net.journey.init.JourneyTabs;
+import net.journey.init.items.JourneyItems;
 import net.journey.util.LangRegistry;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;

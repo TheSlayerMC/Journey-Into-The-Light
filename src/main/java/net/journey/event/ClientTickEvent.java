@@ -1,10 +1,10 @@
 package net.journey.event;
 
-import net.journey.JourneyArmory;
 import net.journey.JourneyLoadingScreen;
 import net.journey.JourneyMainMenu;
 import net.journey.client.server.EssenceProvider;
 import net.journey.client.server.IEssence;
+import net.journey.init.items.JourneyArmory;
 import net.journey.items.ItemGun;
 import net.journey.items.ItemStaff;
 import net.journey.items.ItemTeleport;

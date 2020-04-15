@@ -1,7 +1,7 @@
 package net.journey.dimension.euca.biomes;
 
-import net.journey.JourneyBlocks;
 import net.journey.dimension.BiomeGenJourney;
+import net.journey.init.blocks.JourneyBlocks;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 

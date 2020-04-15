@@ -1,6 +1,6 @@
 package net.journey.dimension.euca;
 
-import net.journey.JourneyBlocks;
+import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.pattern.BlockStateMatcher;
 import net.minecraft.util.math.BlockPos;

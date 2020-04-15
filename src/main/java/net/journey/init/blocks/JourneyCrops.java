@@ -1,8 +1,9 @@
-package net.journey;
+package net.journey.init.blocks;
 
 import net.journey.blocks.BlockMelon;
 import net.journey.blocks.crop.*;
 import net.journey.blocks.crop.base.BlockFruitCrop;
+import net.journey.init.items.JourneyConsumables;
 import net.journey.items.ItemFruit;
 import net.journey.util.PotionEffects;
 import net.minecraft.block.Block;

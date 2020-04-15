@@ -1,7 +1,7 @@
 package net.journey.items;
 
-import net.journey.JourneyTabs;
 import net.journey.blocks.BlockGlowshroom;
+import net.journey.init.JourneyTabs;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;

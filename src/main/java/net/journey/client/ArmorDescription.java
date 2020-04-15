@@ -1,6 +1,6 @@
 package net.journey.client;
 
-import net.journey.JourneyArmory;
+import net.journey.init.items.JourneyArmory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.slayer.api.SlayerAPI;

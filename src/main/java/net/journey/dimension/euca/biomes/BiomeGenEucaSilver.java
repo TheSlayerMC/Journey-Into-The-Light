@@ -1,6 +1,6 @@
 package net.journey.dimension.euca.biomes;
 
-import net.journey.JourneyBlocks;
+import net.journey.init.blocks.JourneyBlocks;
 
 public class BiomeGenEucaSilver extends BiomeGenEuca {
 

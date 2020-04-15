@@ -1,8 +1,8 @@
 package net.slayer.api.block;
 
-import net.journey.JourneyBlocks;
-import net.journey.JourneyItems;
-import net.journey.JourneyTabs;
+import net.journey.init.JourneyTabs;
+import net.journey.init.blocks.JourneyBlocks;
+import net.journey.init.items.JourneyItems;
 import net.journey.util.LangRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
@@ -84,10 +84,6 @@ public class BlockModGravity extends BlockFalling {
         JourneyBlocks.blocks.add(this);
         setRegistryName(SlayerAPI.MOD_ID, name);
         JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
-    }
-
-    public Item createItemBlock() {
-        return new ItemBlock(this).setRegistryName(getRegistryName());
     }
 
     public Block addName(String name) {

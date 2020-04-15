@@ -1,10 +1,9 @@
 package net.journey.blocks.portal;
 
 import com.google.common.base.Predicates;
-import net.journey.JourneyBlocks;
-import net.journey.JourneyItems;
+import net.journey.init.blocks.JourneyBlocks;
+import net.journey.init.items.JourneyItems;
 import net.minecraft.block.BlockHorizontal;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockFaceShape;

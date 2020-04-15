@@ -1,11 +1,11 @@
 package net.journey.entity.mob.boss;
 
-import net.journey.JourneyItems;
-import net.journey.JourneySounds;
-import net.journey.JourneyWeapons;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityFloroWater;
 import net.journey.entity.projectile.EntityMagmaFireball;
+import net.journey.init.JourneySounds;
+import net.journey.init.items.JourneyItems;
+import net.journey.init.items.JourneyWeapons;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.IRangedAttackMob;

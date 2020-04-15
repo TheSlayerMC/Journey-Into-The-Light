@@ -1,5 +1,6 @@
-package net.journey;
+package net.journey.init;
 
+import net.journey.Registries;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
@@ -203,7 +204,7 @@ public class JourneySounds {
         s.setRegistryName(LOC);
 
         ForgeRegistries.SOUND_EVENTS.register(s);
-        Registrys.SOUNDS.add(s);
+        Registries.SOUNDS.add(s);
         return s;
     }
 

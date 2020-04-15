@@ -1,10 +1,9 @@
 package net.journey.blocks.machines;
 
-import net.journey.JourneyBlocks;
-import net.journey.JourneyTabs;
 import net.journey.blocks.tileentity.TileEntityGrindstone;
+import net.journey.init.JourneyTabs;
+import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.block.Block;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;

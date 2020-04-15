@@ -1,6 +1,5 @@
 package net.journey.dimension;
 
-import net.journey.JourneyBlocks;
 import net.journey.dimension.base.gen.WorldGenAncientBlock;
 import net.journey.dimension.boil.gen.WorldGenBoilingFire;
 import net.journey.dimension.boil.gen.WorldGenBoilingLava;
@@ -11,6 +10,7 @@ import net.journey.dimension.nether.gen.trees.WorldGenBleedheartTree0;
 import net.journey.dimension.nether.gen.trees.WorldGenBleedheartTree1;
 import net.journey.dimension.nether.gen.trees.WorldGenEarthenTree;
 import net.journey.dimension.overworld.gen.*;
+import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.Config;
 import net.journey.util.LogHelper;
 import net.minecraft.block.Block;

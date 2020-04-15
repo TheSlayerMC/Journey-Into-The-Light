@@ -1,7 +1,7 @@
 package net.journey.client;
 
-import net.journey.JourneyBlocks;
-import net.journey.JourneyItems;
+import net.journey.init.blocks.JourneyBlocks;
+import net.journey.init.items.JourneyItems;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;

@@ -1,7 +1,7 @@
 package net.journey.entity.mob.pet;
 
 import com.google.common.base.Predicate;
-import net.journey.JourneySounds;
+import net.journey.init.JourneySounds;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;

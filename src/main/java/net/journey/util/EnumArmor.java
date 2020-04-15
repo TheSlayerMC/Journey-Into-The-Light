@@ -1,6 +1,6 @@
 package net.journey.util;
 
-import net.journey.JourneyItems;
+import net.journey.init.items.JourneyItems;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor.ArmorMaterial;

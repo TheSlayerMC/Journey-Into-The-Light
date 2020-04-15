@@ -1,8 +1,8 @@
 package net.journey.entity.mob.overworld.cold;
 
-import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityBlizzardFireball;
+import net.journey.init.JourneySounds;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.player.EntityPlayer;

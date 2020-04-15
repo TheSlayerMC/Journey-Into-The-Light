@@ -1,10 +1,10 @@
 package net.journey.items;
 
-import net.journey.JourneySounds;
-import net.journey.JourneyTabs;
 import net.journey.client.server.EssenceProvider;
 import net.journey.client.server.IEssence;
 import net.journey.entity.projectile.EntityBasicProjectile;
+import net.journey.init.JourneySounds;
+import net.journey.init.JourneyTabs;
 import net.journey.util.LangHelper;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;

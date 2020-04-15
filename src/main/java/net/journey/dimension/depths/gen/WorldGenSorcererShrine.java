@@ -1,7 +1,7 @@
 package net.journey.dimension.depths.gen;
 
-import net.journey.JourneyBlocks;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
+import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.JourneyLootTables;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;

@@ -1,7 +1,7 @@
 package net.journey.util;
 
-import net.journey.JourneyConsumables;
-import net.journey.JourneyItems;
+import net.journey.init.items.JourneyConsumables;
+import net.journey.init.items.JourneyItems;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;

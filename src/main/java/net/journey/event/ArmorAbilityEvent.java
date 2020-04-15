@@ -1,6 +1,6 @@
 package net.journey.event;
 
-import net.journey.JourneyArmory;
+import net.journey.init.items.JourneyArmory;
 import net.journey.util.PotionEffects;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;

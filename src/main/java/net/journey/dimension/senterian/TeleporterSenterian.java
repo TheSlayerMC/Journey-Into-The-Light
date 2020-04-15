@@ -1,7 +1,7 @@
 package net.journey.dimension.senterian;
 
-import net.journey.JourneyBlocks;
 import net.journey.blocks.portal.BlockSenterianPortalFrame;
+import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.NbtUtil;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;

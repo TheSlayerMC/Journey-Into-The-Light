@@ -1,8 +1,8 @@
 package net.journey.dimension.nether.gen.trees;
 
-import net.journey.JourneyBlocks;
-import net.journey.JourneyCrops;
 import net.journey.blocks.crop.base.BlockFruitCrop;
+import net.journey.init.blocks.JourneyBlocks;
+import net.journey.init.blocks.JourneyCrops;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;

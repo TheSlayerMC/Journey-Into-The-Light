@@ -1,8 +1,8 @@
 package net.journey.blocks.portal;
 
-import net.journey.JourneyBlocks;
-import net.journey.JourneyItems;
-import net.journey.JourneyTabs;
+import net.journey.init.JourneyTabs;
+import net.journey.init.blocks.JourneyBlocks;
+import net.journey.init.items.JourneyItems;
 import net.journey.util.LangRegistry;
 import net.minecraft.block.BlockBreakable;
 import net.minecraft.block.material.Material;
@@ -173,9 +173,5 @@ public abstract class BlockModPortal extends BlockBreakable {
     @Override
     public BlockFaceShape getBlockFaceShape(IBlockAccess i, IBlockState i2, BlockPos p, EnumFacing f) {
         return BlockFaceShape.UNDEFINED;
-    }
-
-    public Item createItemBlock() {
-        return new ItemBlock(this).setRegistryName(getRegistryName());
     }
 }

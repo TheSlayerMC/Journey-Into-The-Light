@@ -1,7 +1,7 @@
 package net.journey.client.render.mob.layers;
 
-import net.journey.JourneyWeapons;
 import net.journey.client.render.model.mob.boss.ModelFourfa;
+import net.journey.init.items.JourneyWeapons;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;

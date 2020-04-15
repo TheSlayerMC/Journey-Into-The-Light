@@ -1,8 +1,8 @@
 package net.journey.blocks.portal;
 
-import net.journey.JourneyBlocks;
 import net.journey.client.render.particles.EntityBoilPotalFX;
 import net.journey.dimension.ModTeleporter;
+import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.Config;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;

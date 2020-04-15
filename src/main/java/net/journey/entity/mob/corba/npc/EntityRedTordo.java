@@ -1,9 +1,9 @@
 package net.journey.entity.mob.corba.npc;
 
-import net.journey.JourneyCrops;
-import net.journey.JourneyItems;
 import net.journey.client.GuiHandler;
 import net.journey.entity.JourneyMerchantRecipe;
+import net.journey.init.blocks.JourneyCrops;
+import net.journey.init.items.JourneyItems;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.village.MerchantRecipeList;

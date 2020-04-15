@@ -1,9 +1,9 @@
 package net.journey.entity.mob.overworld;
 
-import net.journey.JourneySounds;
-import net.journey.JourneyWeapons;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityIceBall;
+import net.journey.init.JourneySounds;
+import net.journey.init.items.JourneyWeapons;
 import net.journey.util.Config;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;

@@ -1,8 +1,8 @@
 package net.journey.entity.mob.overworld.underground;
 
-import net.journey.JourneyConsumables;
-import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
+import net.journey.init.JourneySounds;
+import net.journey.init.items.JourneyConsumables;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;

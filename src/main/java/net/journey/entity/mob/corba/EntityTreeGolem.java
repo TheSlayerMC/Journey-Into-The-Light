@@ -1,8 +1,8 @@
 package net.journey.entity.mob.corba;
 
-import net.journey.JourneyItems;
-import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
+import net.journey.init.JourneySounds;
+import net.journey.init.items.JourneyItems;
 import net.journey.util.PotionEffects;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;

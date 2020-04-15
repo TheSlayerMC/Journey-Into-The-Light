@@ -1,6 +1,6 @@
 package net.journey.proxy;
 
-import net.journey.*;
+import net.journey.JourneyChestGenerator;
 import net.journey.client.server.*;
 import net.journey.dimension.DimensionCommand;
 import net.journey.dimension.DimensionHelper;
@@ -12,6 +12,14 @@ import net.journey.event.ArmorAbilityEvent;
 import net.journey.event.NetherEvent;
 import net.journey.event.PlayerEvent;
 import net.journey.event.VanillaFixEvent;
+import net.journey.init.JourneySounds;
+import net.journey.init.JourneyTabs;
+import net.journey.init.blocks.JourneyBlocks;
+import net.journey.init.blocks.JourneyCrops;
+import net.journey.init.items.JourneyArmory;
+import net.journey.init.items.JourneyConsumables;
+import net.journey.init.items.JourneyItems;
+import net.journey.init.items.JourneyWeapons;
 import net.journey.misc.JourneyCommands;
 import net.journey.util.Config;
 import net.journey.util.JourneyFuelHandler;

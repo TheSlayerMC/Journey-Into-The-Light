@@ -1,10 +1,9 @@
 package net.journey.dimension.cloudia.zone;
 
-import net.journey.JourneyBlocks;
-import net.journey.JourneyCrops;
 import net.journey.dimension.cloudia.CloudiaChunkPrimer;
+import net.journey.init.blocks.JourneyBlocks;
+import net.journey.init.blocks.JourneyCrops;
 import net.minecraft.block.BlockStairs;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 

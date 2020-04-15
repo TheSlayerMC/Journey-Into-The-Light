@@ -1,13 +1,13 @@
 package net.journey.items;
 
-import net.journey.JourneyItems;
-import net.journey.JourneySounds;
-import net.journey.JourneyTabs;
 import net.journey.entity.mob.boss.EntityCalcia;
 import net.journey.entity.mob.boss.EntityNetherBeast;
 import net.journey.entity.mob.boss.EntitySoulWatcher;
 import net.journey.entity.mob.boss.EntityWitheringBeast;
 import net.journey.entity.projectile.EntityLightningBall;
+import net.journey.init.JourneySounds;
+import net.journey.init.JourneyTabs;
+import net.journey.init.items.JourneyItems;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;

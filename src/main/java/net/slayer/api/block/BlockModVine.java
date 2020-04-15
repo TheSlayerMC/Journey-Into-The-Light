@@ -1,7 +1,7 @@
 package net.slayer.api.block;
 
-import net.journey.JourneyBlocks;
-import net.journey.JourneyTabs;
+import net.journey.init.JourneyTabs;
+import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockShulkerBox;
 import net.minecraft.block.properties.PropertyBool;

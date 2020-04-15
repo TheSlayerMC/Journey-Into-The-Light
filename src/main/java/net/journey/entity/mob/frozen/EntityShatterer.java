@@ -1,8 +1,8 @@
 package net.journey.entity.mob.frozen;
 
-import net.journey.JourneyBlocks;
-import net.journey.JourneySounds;
 import net.journey.entity.MobStats;
+import net.journey.init.JourneySounds;
+import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
 import net.minecraft.entity.ai.EntityMoveHelper;

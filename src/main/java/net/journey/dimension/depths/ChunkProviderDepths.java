@@ -1,9 +1,9 @@
 package net.journey.dimension.depths;
 
-import net.journey.JourneyBlocks;
 import net.journey.dimension.WorldGenStructure;
 import net.journey.dimension.depths.gen.*;
 import net.journey.dimension.overworld.gen.WorldGenModFlower;
+import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.JourneyLootTables;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;

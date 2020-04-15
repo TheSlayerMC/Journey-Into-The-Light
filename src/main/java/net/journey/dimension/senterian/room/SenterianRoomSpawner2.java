@@ -1,7 +1,7 @@
 package net.journey.dimension.senterian.room;
 
-import net.journey.JourneyBlocks;
 import net.journey.dimension.senterian.SenterianChunkPrimer;
+import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.util.ResourceLocation;

@@ -1,6 +1,6 @@
 package net.journey.blocks.portal;
 
-import net.journey.JourneyBlocks;
+import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumFacing.Axis;

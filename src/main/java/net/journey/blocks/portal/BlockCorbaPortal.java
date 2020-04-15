@@ -1,7 +1,7 @@
 package net.journey.blocks.portal;
 
-import net.journey.JourneyTabs;
 import net.journey.dimension.corba.TeleporterCorba;
+import net.journey.init.JourneyTabs;
 import net.journey.util.Config;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;

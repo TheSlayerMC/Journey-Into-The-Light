@@ -1,6 +1,6 @@
 package net.journey.blocks;
 
-import net.journey.JourneyTabs;
+import net.journey.init.JourneyTabs;
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;

@@ -1,8 +1,8 @@
 package net.journey.dimension.depths.gen;
 
-import net.journey.JourneyBlocks;
-import net.journey.JourneyItems;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
+import net.journey.init.blocks.JourneyBlocks;
+import net.journey.init.items.JourneyItems;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityMobSpawner;

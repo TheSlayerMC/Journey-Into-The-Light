@@ -1,10 +1,10 @@
 package net.journey.entity.mob.euca.npc;
 
-import net.journey.JourneyBlocks;
-import net.journey.JourneyItems;
-import net.journey.JourneyWeapons;
 import net.journey.client.GuiHandler;
 import net.journey.entity.JourneyMerchantRecipe;
+import net.journey.init.blocks.JourneyBlocks;
+import net.journey.init.items.JourneyItems;
+import net.journey.init.items.JourneyWeapons;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.village.MerchantRecipeList;
