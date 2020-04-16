@@ -15,6 +15,8 @@ public class WorldGenAncientBlock extends WorldGenerator {
     public boolean generate(World world, Random rand, BlockPos pos) {
         pos = WorldGenAPI.getPosWithHeight(pos, rand.nextInt(254 + 1));
 
+        if (pos.getY() >= 110 && rand.nextInt(3) != 0) return false;
+
         if (world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP)
                 && JourneyBlocks.ancientMachineBlock.canPlaceBlockAt(world, pos)) {
             setBlockAndNotifyAdequately(world, pos, JourneyBlocks.ancientMachineBlock.getDefaultState());
