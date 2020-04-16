@@ -341,7 +341,7 @@ public class ChunkProviderCorba implements IChunkGenerator {
             flower5.generate(worldObj, r, chunkStart);
         }
 
-        if (rand.nextInt(6) == 0) {
+        if (rand.nextInt(5) == 0) {
             generateStructure(x1, z1, worldGenTreehouse);
         }
 
