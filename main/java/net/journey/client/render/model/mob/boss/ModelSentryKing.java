@@ -138,7 +138,7 @@ public class ModelSentryKing extends ModelBase {
 		super.render(entity, f, f1, f2, f3, f4, f5);
 		EntitySentryKing king = (EntitySentryKing)entity;
 		int health = (int)king.getHealth();
-		if(health >= 900) {
+		if(health >= 2250) {
 			Head1.render(f5);
 			Head2.render(f5);
 			Head3.render(f5);
@@ -157,7 +157,7 @@ public class ModelSentryKing extends ModelBase {
 			juncture7.render(f5);
 			juncture8.render(f5);
 		}
-		else if(health >= 800) {
+		else if(health >= 2000) {
 			Head2.render(f5);
 			Head3.render(f5);
 			Head4.render(f5);
@@ -173,7 +173,7 @@ public class ModelSentryKing extends ModelBase {
 			juncture7.render(f5);
 			juncture8.render(f5);
 		}
-		else if(health >= 700) {
+		else if(health >= 1750) {
 			Head3.render(f5);
 			Head4.render(f5);
 			Head5.render(f5);
@@ -187,7 +187,7 @@ public class ModelSentryKing extends ModelBase {
 			juncture7.render(f5);
 			juncture8.render(f5);
 		}
-		else if(health >= 600) {
+		else if(health >= 1500) {
 			Head4.render(f5);
 			Head5.render(f5);
 			Head6.render(f5);
@@ -199,7 +199,7 @@ public class ModelSentryKing extends ModelBase {
 			juncture7.render(f5);
 			juncture8.render(f5);
 		}
-		else if(health >= 500) {
+		else if(health >= 1250) {
 			Head5.render(f5);
 			Head6.render(f5);
 			Head7.render(f5);
@@ -209,7 +209,7 @@ public class ModelSentryKing extends ModelBase {
 			juncture7.render(f5);
 			juncture8.render(f5);
 		}
-		else if(health >= 400) {
+		else if(health >= 1000) {
 			Head5.render(f5);
 			Head7.render(f5);
 			CentralHead.render(f5);
@@ -217,20 +217,17 @@ public class ModelSentryKing extends ModelBase {
 			juncture7.render(f5);
 			juncture8.render(f5);
 		}
-		else if(health >= 300) {
+		else if(health >= 750) {
 			Head5.render(f5);
 			CentralHead.render(f5);
 			Head8.render(f5);
 			juncture7.render(f5);
 			juncture8.render(f5);
 		}
-		else if(health >= 200) {
+		else if(health >= 500) {
 			CentralHead.render(f5);
 			Head8.render(f5);
 			juncture8.render(f5);
-		}
-		else if(health >= 100) {
-			CentralHead.render(f5);
 		}
 		else if(health >= 0) {
 			CentralHead.render(f5);
