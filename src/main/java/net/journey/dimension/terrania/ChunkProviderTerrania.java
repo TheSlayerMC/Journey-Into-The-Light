@@ -365,7 +365,7 @@ public class ChunkProviderTerrania implements IChunkGenerator {
             }
         }
 
-        for (times = 0; times < 10; times++) {
+        for (times = 0; times < 1; times++) {
             int randX = cx * 16 + 7 + rand.nextInt(9);
             int randZ = cz * 16 + 7 + rand.nextInt(9);
             int randY = rand.nextInt(bottomYMax) + 1;
