@@ -37,7 +37,7 @@ public class BlockModBush extends BlockMod implements IPlantable, IGrowable {
         super(EnumMaterialTypes.LEAVES, name, finalName, 1.0F);
         this.berry = berry;
         this.isNether = isNether;
-        this.setDefaultState(this.blockState.getBaseState().withProperty(AGE, Integer.valueOf(0)));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(AGE, 0));
         this.setTickRandomly(true);
         this.setLightOpacity(-100000);
         this.setCreativeTab(JourneyTabs.CROPS);
@@ -46,15 +46,15 @@ public class BlockModBush extends BlockMod implements IPlantable, IGrowable {
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess access, BlockPos pos) {
         float f = 0.3F;
-        if (state.getValue(AGE).intValue() == 0) {
+        if (state.getValue(AGE) == 0) {
             return smallbush;
         }
 
-        if (state.getValue(AGE).intValue() == 1) {
+        if (state.getValue(AGE) == 1) {
             return fullbush;
         }
 
-        if (state.getValue(AGE).intValue() == 2) {
+        if (state.getValue(AGE) == 2) {
             return fullbush;
         }
         return fullbush;
@@ -71,20 +71,17 @@ public class BlockModBush extends BlockMod implements IPlantable, IGrowable {
         if (isNether) {
             return block == Blocks.NETHERRACK;
         }
-        if (!isNether) {
-            return block == Blocks.GRASS || block == Blocks.DIRT;
-        }
-        return false;
+        return block == Blocks.GRASS || block == Blocks.DIRT;
     }
 
     @Override
     public IBlockState getStateFromMeta(int meta) {
-        return this.getDefaultState().withProperty(AGE, Integer.valueOf(meta));
+        return this.getDefaultState().withProperty(AGE, meta);
     }
 
     @Override
     public int getMetaFromState(IBlockState state) {
-        return state.getValue(AGE).intValue();
+        return state.getValue(AGE);
     }
 
     @Override
@@ -120,16 +117,16 @@ public class BlockModBush extends BlockMod implements IPlantable, IGrowable {
 
     @Override
     public void grow(World worldIn, Random rand, BlockPos pos, IBlockState state) {
-        worldIn.setBlockState(pos, state.withProperty(AGE, Integer.valueOf(state.getValue(AGE).intValue() + 1)), 2);
+        worldIn.setBlockState(pos, state.withProperty(AGE, state.getValue(AGE) + 1), 2);
     }
 
     @Override
     public void updateTick(World w, BlockPos pos, IBlockState state, Random rand) {
         super.updateTick(w, pos, state, rand);
         if (w.rand.nextInt(5) == 0) {
-            int age = state.getValue(AGE).intValue();
+            int age = state.getValue(AGE);
             if (age < 2) {
-                w.setBlockState(pos, state.withProperty(AGE, Integer.valueOf(age + 1)), 2);
+                w.setBlockState(pos, state.withProperty(AGE, age + 1), 2);
             }
         }
     }
@@ -176,7 +173,6 @@ public class BlockModBush extends BlockMod implements IPlantable, IGrowable {
                 z = player.posZ;
         if (state.getValue(AGE) == 2 && !w.isRemote) {
             EntityItem drop = new EntityItem(w, x, y, z, new ItemStack(berry));
-            System.out.print(berry);
             w.spawnEntity(drop);
             w.setBlockState(pos, state.withProperty(AGE, 0), 1);
             return true;

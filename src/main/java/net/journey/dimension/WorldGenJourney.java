@@ -63,14 +63,18 @@ public class WorldGenJourney implements IWorldGenerator {
     private static final LazyLoadBase<WorldGenMinable> withanLight;
     private static final LazyLoadBase<WorldGenMinable> cloudiaRock;
     private static final LazyLoadBase<WorldGenMinable> luniteOre;
-    private static final LazyLoadBase<WorldGenBush> juiceberryBush;
+
+    private static final LazyLoadBase<WorldGenBush> JUICEBERRY_BUSH_GEN = create(() -> new WorldGenBush(JourneyBlocks.juiceberryBush, Blocks.GRASS));
     private static final LazyLoadBase<WorldGenBush> bradberryBush;
     private static final LazyLoadBase<WorldGenBush> tangleberryBush;
     private static final LazyLoadBase<WorldGenBush> bogberryBush;
     private static final LazyLoadBase<WorldGenBush> sizzleberryBush;
+
     private static final LazyLoadBase<WorldGenTallGlowshrooms> tallGlowshrooms;
     private static final LazyLoadBase<WorldGenCaveVines> caveVine;
     private static final LazyLoadBase<WorldGenSmallGlowshrooms> smallGlowshrooms;
+
+    private static final LazyLoadBase<WorldGenAncientBlock> ANCIENT_BLOCK_GEN = create(WorldGenAncientBlock::new);
     private static Random r = new Random();
 
     static {
@@ -100,7 +104,6 @@ public class WorldGenJourney implements IWorldGenerator {
         depthsFlower = create(() -> new WorldGenModFlower(JourneyBlocks.depthsFlower, JourneyBlocks.depthsGrass, false));
         frozenFlower = create(() -> new WorldGenModFlower(JourneyBlocks.frozenFlower, JourneyBlocks.frozenGrass, false));
 
-        juiceberryBush = create(() -> new WorldGenBush(JourneyBlocks.juiceberryBush, Blocks.GRASS));
         bradberryBush = create(() -> new WorldGenBush(JourneyBlocks.bradberryBush, Blocks.GRASS));
         tangleberryBush = create(() -> new WorldGenBush(JourneyBlocks.tangleberryBush, Blocks.GRASS));
         bogberryBush = create(() -> new WorldGenBush(JourneyBlocks.bogberryBush, Blocks.GRASS));
@@ -255,7 +258,7 @@ public class WorldGenJourney implements IWorldGenerator {
                 generateNether(w, r, chunkX * 16, chunkZ * 16);
                 break;
             case 0:
-                generateOverworld(w, r, chunkX * 16, chunkZ * 16);
+                generateOverworld(w, r, chunkX, chunkZ);
                 break;
             case 1:
                 generateEnd(w, r, chunkX * 16, chunkZ * 16);
@@ -276,9 +279,6 @@ public class WorldGenJourney implements IWorldGenerator {
         BlockPos pos = new BlockPos(chunkX, 0, chunkZ);
         Chunk chunk = w.getChunk(pos);
         BiomeProvider chunkManager = w.getBiomeProvider();
-        Biome biome = chunk.getBiome(pos, chunkManager);
-        BiomeDictionary biomeD = new BiomeDictionary();
-
 
         for (times = 0; times < 10; times++) {
             y = r.nextInt(128) + 1;
@@ -489,33 +489,28 @@ public class WorldGenJourney implements IWorldGenerator {
     public void generateOverworld(World w, Random rand, int chunkX, int chunkZ) {
         int x, y, z;
         int times;
-        BlockPos pos = new BlockPos(chunkX * 16, 0, chunkZ * 16);
-        Chunk chunk = w.getChunk(pos);
-        BiomeProvider chunkManager = w.getBiomeProvider();
-        Biome biome = w.getBiomeForCoordsBody(pos);
-        BiomeDictionary biomeD = new BiomeDictionary();
 
-        for (times = 0; times < 1; times++) {
-            y = r.nextInt(256) + 1;
-            x = chunkX + r.nextInt(16) + 8;
-            z = chunkZ + r.nextInt(16) + 8;
-            (new WorldGenAncientBlock()).generate(w, r, new BlockPos(x, y, z));
-        }
+        BlockPos startPos = new BlockPos(chunkX << 4, 0, chunkZ << 4);
 
-        if (biome == Biomes.FOREST) {
-            for (times = 0; times < 1; times++) {
-                y = r.nextInt(128) + 1;
-                x = chunkX + r.nextInt(16) + 8;
-                z = chunkZ + r.nextInt(16) + 8;
-                juiceberryBush.getValue().generate(w, r, new BlockPos(x, y, z));
-            }
+        int posX = startPos.getX(),
+                posZ = startPos.getZ();
+        Biome biome = w.getBiome(startPos);
+
+        ANCIENT_BLOCK_GEN.getValue().generate(w, rand, WorldGenAPI.optimizeAndRandomize(startPos, rand));
+
+        if (rand.nextInt(5) == 0
+                && biome.getDefaultTemperature() >= 0.6F
+                && biome.getDefaultTemperature() < 0.9F
+                && BiomeDictionary.hasType(biome, BiomeDictionary.Type.FOREST)) {
+            BlockPos genPos = WorldGenAPI.optimizeAndRandomize(startPos, rand);
+            JUICEBERRY_BUSH_GEN.getValue().generate(w, rand, genPos);
         }
 
         if (biome == Biomes.TAIGA || biome == Biomes.TAIGA_HILLS) {
             for (times = 0; times < 1; times++) {
                 y = r.nextInt(128) + 1;
-                x = chunkX + r.nextInt(16) + 8;
-                z = chunkZ + r.nextInt(16) + 8;
+                x = posX + r.nextInt(16) + 8;
+                z = posZ + r.nextInt(16) + 8;
                 bradberryBush.getValue().generate(w, r, new BlockPos(x, y, z));
             }
         }
@@ -523,8 +518,8 @@ public class WorldGenJourney implements IWorldGenerator {
         if (biome == Biomes.JUNGLE || biome == Biomes.JUNGLE_HILLS) {
             for (times = 0; times < 1; times++) {
                 y = r.nextInt(128) + 1;
-                x = chunkX + r.nextInt(16) + 8;
-                z = chunkZ + r.nextInt(16) + 8;
+                x = posX + r.nextInt(16) + 8;
+                z = posZ + r.nextInt(16) + 8;
                 tangleberryBush.getValue().generate(w, r, new BlockPos(x, y, z));
             }
         }
@@ -532,67 +527,67 @@ public class WorldGenJourney implements IWorldGenerator {
         if (biome == Biomes.SWAMPLAND) {
             for (times = 0; times < 1; times++) {
                 y = r.nextInt(128) + 1;
-                x = chunkX + r.nextInt(16) + 8;
-                z = chunkZ + r.nextInt(16) + 8;
+                x = posX + r.nextInt(16) + 8;
+                z = posZ + r.nextInt(16) + 8;
                 bogberryBush.getValue().generate(w, r, new BlockPos(x, y, z));
             }
         }
 
         for (times = 0; times < 70; times++) {
             y = r.nextInt(63);
-            x = chunkX + r.nextInt(16) + 8;
-            z = chunkZ + r.nextInt(16) + 8;
+            x = posX + r.nextInt(16) + 8;
+            z = posZ + r.nextInt(16) + 8;
             tallGlowshrooms.getValue().generate(w, r, new BlockPos(x, y, z));
         }
         for (times = 0; times < 55; times++) {
             y = r.nextInt(63);
-            x = chunkX + r.nextInt(16) + 8;
-            z = chunkZ + r.nextInt(16) + 8;
+            x = posX + r.nextInt(16) + 8;
+            z = posZ + r.nextInt(16) + 8;
             caveVine.getValue().generate(w, r, new BlockPos(x, y, z));
         }
 
         for (times = 0; times < 70; times++) {
             y = r.nextInt(63);
-            x = chunkX + r.nextInt(16) + 8;
-            z = chunkZ + r.nextInt(16) + 8;
+            x = posX + r.nextInt(16) + 8;
+            z = posZ + r.nextInt(16) + 8;
             smallGlowshrooms.getValue().generate(w, r, new BlockPos(x, y, z));
         }
         if (r.nextInt(3) == 0) {
             y = r.nextInt(13);
-            x = chunkX + r.nextInt(16);
-            z = chunkZ + r.nextInt(16);
+            x = posX + r.nextInt(16);
+            z = posZ + r.nextInt(16);
             shadiumOre.getValue().generate(w, r, new BlockPos(x, y, z));
         }
         if (r.nextInt(3) == 0) {
             y = r.nextInt(26);
-            x = chunkX + r.nextInt(16);
-            z = chunkZ + r.nextInt(16);
+            x = posX + r.nextInt(16);
+            z = posZ + r.nextInt(16);
             luniumOre.getValue().generate(w, r, new BlockPos(x, y, z));
         }
         if (r.nextInt(2) == 0) {
             y = r.nextInt(24);
-            x = chunkX + r.nextInt(16);
-            z = chunkZ + r.nextInt(16);
+            x = posX + r.nextInt(16);
+            z = posZ + r.nextInt(16);
             sapphireOre.getValue().generate(w, r, new BlockPos(x, y, z));
         }
         for (times = 0; times < 4; times++) {
             y = r.nextInt(16);
-            x = chunkX + r.nextInt(16);
-            z = chunkZ + r.nextInt(16);
+            x = posX + r.nextInt(16);
+            z = posZ + r.nextInt(16);
             iridiumOre.getValue().generate(w, r, new BlockPos(x, y, z));
         }
 
         if (r.nextInt(Config.towerDungeon) == 0) {
             y = r.nextInt(200);
-            x = chunkX + r.nextInt(16) + 8;
-            z = chunkZ + r.nextInt(16) + 8;
+            x = posX + r.nextInt(16) + 8;
+            z = posZ + r.nextInt(16) + 8;
             if (w.getBlockState(new BlockPos(x, y - 1, z)) == Blocks.GRASS.getDefaultState())
                 new WorldGenTowerDungeon().generate(w, r, new BlockPos(x, y, z));
         }
         if (r.nextInt(Config.mageHouse) == 0) {
             y = r.nextInt(200);
-            x = chunkX + r.nextInt(16) + 8;
-            z = chunkZ + r.nextInt(16) + 8;
+            x = posX + r.nextInt(16) + 8;
+            z = posZ + r.nextInt(16) + 8;
             if (w.getBlockState(new BlockPos(x, y - 1, z)) == Blocks.GRASS.getDefaultState() ||
                     w.getBlockState(new BlockPos(x, y, z)) == Blocks.GRASS.getDefaultState() ||
                     w.getBlockState(new BlockPos(x, y - 1, z)) == Blocks.SAND.getDefaultState() ||
@@ -601,8 +596,8 @@ public class WorldGenJourney implements IWorldGenerator {
         }
         if (r.nextInt(Config.blacksmithHouse) == 0) {
             y = r.nextInt(200);
-            x = chunkX + r.nextInt(16) + 8;
-            z = chunkZ + r.nextInt(16) + 8;
+            x = posX + r.nextInt(16) + 8;
+            z = posZ + r.nextInt(16) + 8;
             if (w.getBlockState(new BlockPos(x, y - 1, z)) == Blocks.GRASS.getDefaultState() ||
                     w.getBlockState(new BlockPos(x, y, z)) == Blocks.GRASS.getDefaultState() ||
                     w.getBlockState(new BlockPos(x, y - 1, z)) == Blocks.SAND.getDefaultState() ||

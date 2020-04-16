@@ -406,4 +406,35 @@ public class WorldGenAPI {
                 r.nextInt(maxY - minY) + minY,
                 z + +r.nextInt(offset) + 8);
     }
+
+    /**
+     * Moves the zero position of chunk so it is in the 8-block radius from the intersection of 4 loaded chunks.
+     * This is needed to prevent cascading gen.
+     *
+     * @param pos the zero position of the chunk.
+     */
+    public static BlockPos optimizeAndRandomize(BlockPos pos, Random r) {
+        return pos.add(r.nextInt(16) + 8, 0, r.nextInt(16) + 8);
+    }
+
+    /**
+     * Moves the zero position of chunk so it is in the intersection of 4 loaded chunks.
+     * The acceptable area to generate stuff is in 16 blocks in any direction from returned pos.
+     *
+     * @param pos the zero position of the chunk.
+     */
+    public static BlockPos optimize(BlockPos pos, Random r) {
+        return pos.add(r.nextInt(16), 0, r.nextInt(16));
+    }
+
+    /**
+     * Returns block pos one block higher than the surface of the world in that position.
+     */
+    public static BlockPos findPosAboveSurface(World world, BlockPos pos) {
+        return world.getHeight(pos);
+    }
+
+    public static BlockPos getPosWithHeight(BlockPos pos, int y) {
+        return new BlockPos(pos.getX(), y, pos.getZ());
+    }
 }
