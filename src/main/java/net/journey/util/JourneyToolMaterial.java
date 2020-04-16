@@ -109,6 +109,7 @@ public enum JourneyToolMaterial {
     WOOD_MULTI_TOOL(JourneyItems.woodMulti, SlayerAPI.toItem(Blocks.PLANKS), 0),
     STONE_MULTI_TOOL(JourneyItems.stoneMulti, SlayerAPI.toItem(Blocks.COBBLESTONE), 1),
     IRON_MULTI_TOOL(JourneyItems.ironMulti, Items.IRON_INGOT, 2),
+    GOLD_MULTI_TOOL(JourneyItems.goldMulti, Items.GOLD_INGOT, 1),
     DIAMOND_MULTI_TOOL(JourneyItems.diamondMulti, Items.DIAMOND, 3),
 
     CRYSTAL_BATTLEAXE(SlayerAPI.addAxeMaterial(3600, 3, 13, 17, 25)),
