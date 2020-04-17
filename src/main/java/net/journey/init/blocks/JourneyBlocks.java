@@ -619,7 +619,7 @@ public class JourneyBlocks {
                 .setLightLevel(1.0F).setCreativeTab(JourneyTabs.DECORATION);
         blazierBricks = new BlockMod("blazierBricks", "Blazier Bricks");
         ashBlock = new BlockMod("ashBlock", "Ash");
-        hotBlock = new BlockModGrass(ashBlock, "hotGround", "Hot Ground", 2.0F);
+        hotBlock = new BlockHotBlock(ashBlock, "hotGround", "Hot Ground", 2.0F);
         rubble = new BlockMod("rubble", "Rubble", 2.0F);
         /*
          * brisonStone = new BlockMod("brisonStone", "Brison Stone", 2.0F);
