@@ -264,6 +264,7 @@ public class JourneyBlocks {
     public static BlockMod senterianMellowLamp;
     public static BlockMod senterianGuardianLamp;
     public static BlockModFence senterianPost;
+    public static BlockSenterianAltar senterianAltar;
 
     public static BlockMod trophy;
     public static BlockMod trophySoul;
@@ -728,7 +729,8 @@ public class JourneyBlocks {
                 .setBlockUnbreakable().setResistance(10000000.0F);
         senterianPost = (BlockModFence) new BlockModFence(senterianBricks, "senterianPost", "Senterian Post")
                 .setBlockUnbreakable().setResistance(10000000.0F);
-
+        senterianAltar = (BlockSenterianAltar) new BlockSenterianAltar("senterianAltar", "Senterian Altar").setBlockUnbreakable().setResistance(1000000.0F);
+        
         trophy = new BlockTrophy("trophy", "Trophy");
         trophySoul = new BlockTrophy("trophySoul", "Soul Watcher Trophy");
         trophyBlaze = new BlockTrophy("trophyBlaze", "Blazier Trophy");
