@@ -15,7 +15,6 @@ import net.journey.util.Config;
 import net.journey.util.LogHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.pattern.BlockStateMatcher;
-import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.LazyLoadBase;
 import net.minecraft.util.math.BlockPos;
@@ -65,9 +64,9 @@ public class WorldGenJourney implements IWorldGenerator {
     private static final LazyLoadBase<WorldGenMinable> luniteOre;
 
     private static final LazyLoadBase<WorldGenBush> JUICEBERRY_BUSH_GEN = create(() -> new WorldGenBush(JourneyBlocks.juiceberryBush, Blocks.GRASS));
-    private static final LazyLoadBase<WorldGenBush> bradberryBush;
-    private static final LazyLoadBase<WorldGenBush> tangleberryBush;
-    private static final LazyLoadBase<WorldGenBush> bogberryBush;
+    private static final LazyLoadBase<WorldGenBush> BRADBERRY_BUSH_GEN = create(() -> new WorldGenBush(JourneyBlocks.bradberryBush, Blocks.GRASS));
+    private static final LazyLoadBase<WorldGenBush> TANGLEBERRY_BUSH_GEN = create(() -> new WorldGenBush(JourneyBlocks.tangleberryBush, Blocks.GRASS));
+    private static final LazyLoadBase<WorldGenBush> BOGBERRY_BUSH_GEN = create(() -> new WorldGenBush(JourneyBlocks.bogberryBush, Blocks.GRASS));
     private static final LazyLoadBase<WorldGenBush> sizzleberryBush;
 
     private static final LazyLoadBase<WorldGenTallGlowshrooms> tallGlowshrooms;
@@ -104,9 +103,6 @@ public class WorldGenJourney implements IWorldGenerator {
         depthsFlower = create(() -> new WorldGenModFlower(JourneyBlocks.depthsFlower, JourneyBlocks.depthsGrass, false));
         frozenFlower = create(() -> new WorldGenModFlower(JourneyBlocks.frozenFlower, JourneyBlocks.frozenGrass, false));
 
-        bradberryBush = create(() -> new WorldGenBush(JourneyBlocks.bradberryBush, Blocks.GRASS));
-        tangleberryBush = create(() -> new WorldGenBush(JourneyBlocks.tangleberryBush, Blocks.GRASS));
-        bogberryBush = create(() -> new WorldGenBush(JourneyBlocks.bogberryBush, Blocks.GRASS));
         sizzleberryBush = create(() -> new WorldGenBush(JourneyBlocks.sizzleberryBush, Blocks.NETHERRACK));
 
         tallGlowshrooms = create(() -> new WorldGenTallGlowshrooms());
@@ -506,31 +502,24 @@ public class WorldGenJourney implements IWorldGenerator {
             JUICEBERRY_BUSH_GEN.getValue().generate(w, rand, genPos);
         }
 
-        if (biome == Biomes.TAIGA || biome == Biomes.TAIGA_HILLS) {
-            for (times = 0; times < 1; times++) {
-                y = r.nextInt(128) + 1;
-                x = posX + r.nextInt(16) + 8;
-                z = posZ + r.nextInt(16) + 8;
-                bradberryBush.getValue().generate(w, r, new BlockPos(x, y, z));
-            }
+        if (rand.nextInt(5) == 0
+                && BiomeDictionary.hasType(biome, BiomeDictionary.Type.FOREST)
+                && BiomeDictionary.hasType(biome, BiomeDictionary.Type.COLD)) {
+            BlockPos genPos = WorldGenAPI.optimizeAndRandomize(startPos, rand);
+            BRADBERRY_BUSH_GEN.getValue().generate(w, rand, genPos);
         }
 
-        if (biome == Biomes.JUNGLE || biome == Biomes.JUNGLE_HILLS) {
-            for (times = 0; times < 1; times++) {
-                y = r.nextInt(128) + 1;
-                x = posX + r.nextInt(16) + 8;
-                z = posZ + r.nextInt(16) + 8;
-                tangleberryBush.getValue().generate(w, r, new BlockPos(x, y, z));
-            }
+        if (rand.nextInt(3) == 0 // in jungle it is harder to find'em so spawn chance was increased
+                && biome.decorator.treesPerChunk > 3 // prevent from generating in jungle biomes without much trees
+                && BiomeDictionary.hasType(biome, BiomeDictionary.Type.JUNGLE)) {
+            BlockPos genPos = WorldGenAPI.optimizeAndRandomize(startPos, rand);
+            TANGLEBERRY_BUSH_GEN.getValue().generate(w, rand, genPos);
         }
 
-        if (biome == Biomes.SWAMPLAND) {
-            for (times = 0; times < 1; times++) {
-                y = r.nextInt(128) + 1;
-                x = posX + r.nextInt(16) + 8;
-                z = posZ + r.nextInt(16) + 8;
-                bogberryBush.getValue().generate(w, r, new BlockPos(x, y, z));
-            }
+        if (rand.nextInt(5) == 0
+                && BiomeDictionary.hasType(biome, BiomeDictionary.Type.SWAMP)) {
+            BlockPos genPos = WorldGenAPI.optimizeAndRandomize(startPos, rand);
+            BOGBERRY_BUSH_GEN.getValue().generate(w, rand, genPos);
         }
 
         for (times = 0; times < 70; times++) {
