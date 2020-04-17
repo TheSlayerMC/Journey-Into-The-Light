@@ -95,6 +95,15 @@ public class BlockMod extends Block {
     public int quantityDropped(Random rand) {
         return 1;
     }
+    
+    @Override
+    public boolean isFireSource(World world, BlockPos pos, EnumFacing side) {
+        if(this == JourneyBlocks.hotBlock)
+        	return true;
+        else {
+        	return false;
+        }
+    }
 
     @Override
     @SideOnly(Side.CLIENT)
