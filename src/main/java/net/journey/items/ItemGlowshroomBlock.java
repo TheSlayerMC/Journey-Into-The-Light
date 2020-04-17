@@ -1,6 +1,6 @@
 package net.journey.items;
 
-import net.journey.blocks.BlockGlowshroom;
+import net.journey.blocks.plant.BlockTallGlowshroom;
 import net.journey.init.JourneyTabs;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -17,10 +17,10 @@ import net.slayer.api.item.ItemMod;
 
 public class ItemGlowshroomBlock extends ItemMod {
 
-    private BlockGlowshroom shroombottom;
-    private BlockGlowshroom shroomtop;
+    private BlockTallGlowshroom shroombottom;
+    private BlockTallGlowshroom shroomtop;
 
-    public ItemGlowshroomBlock(String name, String finalName, BlockGlowshroom shroombottom, BlockGlowshroom shroomtop) {
+    public ItemGlowshroomBlock(String name, String finalName, BlockTallGlowshroom shroombottom, BlockTallGlowshroom shroomtop) {
         super(name, finalName);
         this.shroombottom = shroombottom;
         this.shroomtop = shroomtop;

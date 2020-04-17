@@ -1,11 +1,11 @@
 {
   "result": {
     "item": "journey:glowshroompowder",
-    "count": 4
+    "count": 2
   },
   "ingredients": [
     {
-      "item": "journey:redglowshroombottom"
+      "item": "journey:glowshroom_green"
     }
   ],
   "type": "minecraft:crafting_shapeless"

@@ -6,6 +6,8 @@ import net.journey.blocks.base.BlockModOre;
 import net.journey.blocks.base.BlockNetherFlower;
 import net.journey.blocks.machines.*;
 import net.journey.blocks.meta.BlockMetaBase;
+import net.journey.blocks.plant.BlockGlowshroom;
+import net.journey.blocks.plant.BlockTallGlowshroom;
 import net.journey.blocks.portal.*;
 import net.journey.dimension.boil.trees.WorldGenBoilTree1;
 import net.journey.dimension.corba.gen.trees.WorldGenCorbaSmallTree;
@@ -357,13 +359,13 @@ public class JourneyBlocks {
     public static BlockDarkbloom darkbloomBottom;
     public static BlockMod depthsLights;
 
-    public static BlockGlowshroom redTallGlowhsroom;
-    public static BlockGlowshroom greenTallGlowhsroom;
-    public static BlockGlowshroom blueTallGlowhsroom;
+    public static BlockTallGlowshroom tallGlowshroomRed;
+    public static BlockTallGlowshroom tallGlowshroomGreen;
+    public static BlockTallGlowshroom tallGlowshroomBlue;
 
-    public static BlockMod redGlowshroom;
-    public static BlockMod greenGlowshroom;
-    public static BlockMod blueGlowshroom;
+    public static BlockGlowshroom glowshroomRed;
+    public static BlockGlowshroom glowshroomGreen;
+    public static BlockGlowshroom glowshroomBlue;
 
     public static BlockHellThorn hellThornTop;
     public static BlockHellThorn hellThornBottom;
@@ -878,12 +880,12 @@ public class JourneyBlocks {
         hellThornRoot = new BlockRoot("hellThornRoot", "HellThornRoot");
         nethicGrass = new BlockModGrass(null, "nethicGrass", "Nethic Grass", 2.0F);
 
-        redTallGlowhsroom = new BlockGlowshroom("tall_glowshroom_red", "Red Tall Glowshroom");
-        greenTallGlowhsroom = new BlockGlowshroom("tall_glowshroom_green", "Green Tall Glowshroom");
-        blueTallGlowhsroom = new BlockGlowshroom("tall_glowshroom_blue", "Blue Tall Glowshroom");
-        redGlowshroom = new BlockMod("glowshroom_red", "Red Glowshroom");//TODO make model work, move to BlockPlant or smth like that
-        greenGlowshroom = new BlockMod("glowshroom_green", "Green Glowshroom");//TODO make model work, move to BlockPlant or smth like that
-        blueGlowshroom = new BlockMod("glowshroom_blue", "Blue Glowshroom");//TODO make model work, move to BlockPlant or smth like that
+        tallGlowshroomRed = new BlockTallGlowshroom("tall_glowshroom_red", "Red Tall Glowshroom");
+        tallGlowshroomGreen = new BlockTallGlowshroom("tall_glowshroom_green", "Green Tall Glowshroom");
+        tallGlowshroomBlue = new BlockTallGlowshroom("tall_glowshroom_blue", "Blue Tall Glowshroom");
+        glowshroomRed = new BlockGlowshroom("glowshroom_red", "Red Glowshroom");
+        glowshroomGreen = new BlockGlowshroom("glowshroom_green", "Green Glowshroom");
+        glowshroomBlue = new BlockGlowshroom("glowshroom_blue", "Blue Glowshroom");
 
         goldenStalksTop = (BlockStalks) new BlockStalks("goldenStalksTop", "Golden Stalks", true).setCreativeTab(null);
         goldenStalksBottom = (BlockStalks) new BlockStalks("goldenStalksBottom", "Golden Stalks", false)

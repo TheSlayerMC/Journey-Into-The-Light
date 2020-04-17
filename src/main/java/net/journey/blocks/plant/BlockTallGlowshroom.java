@@ -1,4 +1,4 @@
-package net.journey.blocks;
+package net.journey.blocks.plant;
 
 import net.journey.init.JourneyTabs;
 import net.minecraft.block.state.IBlockState;
@@ -13,10 +13,10 @@ import net.slayer.api.block.JDoubleBlockPlant;
 
 import javax.annotation.Nullable;
 
-public class BlockGlowshroom extends JDoubleBlockPlant {
+public class BlockTallGlowshroom extends JDoubleBlockPlant {
     protected static final AxisAlignedBB BUSH_AABB = new AxisAlignedBB(0.30000001192092896D, 0.0D, 0.30000001192092896D, 0.699999988079071D, 1.0D, 0.699999988079071D);
 
-    public BlockGlowshroom(String name, String enName) {
+    public BlockTallGlowshroom(String name, String enName) {
         super(name, enName, JourneyTabs.DECORATION);
         setLightLevel(0.3F);
     }

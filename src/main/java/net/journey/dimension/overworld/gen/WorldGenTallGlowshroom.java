@@ -1,6 +1,6 @@
 package net.journey.dimension.overworld.gen;
 
-import net.journey.blocks.BlockGlowshroom;
+import net.journey.blocks.plant.BlockTallGlowshroom;
 import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -15,16 +15,16 @@ public class WorldGenTallGlowshroom extends WorldGenerator {
     @Override
     public boolean generate(World w, Random r, BlockPos pos) {
         pos = WorldGenAPI.getPosWithHeight(pos, r.nextInt(WorldGenAPI.findPosAboveSurface(w, pos).getY() - 5) + 1);
-        BlockGlowshroom block;
+        BlockTallGlowshroom block;
         switch (r.nextInt(3)) {
             case 0:
-                block = JourneyBlocks.greenTallGlowhsroom;
+                block = JourneyBlocks.tallGlowshroomGreen;
                 break;
             case 1:
-                block = JourneyBlocks.redTallGlowhsroom;
+                block = JourneyBlocks.tallGlowshroomRed;
                 break;
             default:
-                block = JourneyBlocks.blueTallGlowhsroom;
+                block = JourneyBlocks.tallGlowshroomBlue;
                 break;
         }
 

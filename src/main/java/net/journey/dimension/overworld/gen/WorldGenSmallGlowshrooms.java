@@ -19,13 +19,13 @@ public class WorldGenSmallGlowshrooms extends WorldGenerator {
         Block shroom;
         switch (r.nextInt(3)) {
             case 0:
-                shroom = JourneyBlocks.greenGlowshroom;
+                shroom = JourneyBlocks.glowshroomGreen;
                 break;
             case 1:
-                shroom = JourneyBlocks.redGlowshroom;
+                shroom = JourneyBlocks.glowshroomRed;
                 break;
             default:
-                shroom = JourneyBlocks.blueGlowshroom;
+                shroom = JourneyBlocks.glowshroomBlue;
                 break;
         }
 

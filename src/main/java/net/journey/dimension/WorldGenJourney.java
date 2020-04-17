@@ -71,7 +71,7 @@ public class WorldGenJourney implements IWorldGenerator {
 
     private static final LazyLoadBase<WorldGenTallGlowshroom> tallGlowshrooms = create(WorldGenTallGlowshroom::new);
     private static final LazyLoadBase<WorldGenCaveVines> caveVine;
-    private static final LazyLoadBase<WorldGenSmallGlowshrooms> smallGlowshrooms;
+    private static final LazyLoadBase<WorldGenSmallGlowshrooms> SMALL_GLOWSHROOMS = create(WorldGenSmallGlowshrooms::new);
 
     private static final LazyLoadBase<WorldGenAncientBlock> ANCIENT_BLOCK_GEN = create(WorldGenAncientBlock::new);
     private static Random r = new Random();
@@ -106,7 +106,6 @@ public class WorldGenJourney implements IWorldGenerator {
         sizzleberryBush = create(() -> new WorldGenBush(JourneyBlocks.sizzleberryBush, Blocks.NETHERRACK));
 
         caveVine = create(() -> new WorldGenCaveVines());
-        smallGlowshrooms = create(() -> new WorldGenSmallGlowshrooms());
 
         boilLava = create(() -> new WorldGenBoilingLava(Blocks.LAVA));
     }
@@ -533,11 +532,9 @@ public class WorldGenJourney implements IWorldGenerator {
             caveVine.getValue().generate(w, r, new BlockPos(x, y, z));
         }
 
-        for (times = 0; times < 70; times++) {
-            y = r.nextInt(63);
-            x = posX + r.nextInt(16) + 8;
-            z = posZ + r.nextInt(16) + 8;
-            smallGlowshrooms.getValue().generate(w, r, new BlockPos(x, y, z));
+        for (times = 0; times < 64; times++) {
+            BlockPos genPos = WorldGenAPI.optimizeAndRandomize(startPos, rand);
+            SMALL_GLOWSHROOMS.getValue().generate(w, rand, genPos);
         }
         if (r.nextInt(3) == 0) {
             y = r.nextInt(13);
