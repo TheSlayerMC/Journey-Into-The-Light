@@ -78,11 +78,11 @@ public class ChunkProviderCloudia implements IChunkGenerator {
 			bridges[random.nextInt(bridges.length)].generate(cloudiaChunk, random, 0, secondLayer, 0);
 
 		room = (CloudiaZoneBase) (toprooms.get(random.nextInt(toprooms.size())));
-		if (random.nextInt(emptyRarity) == 0)
+		if (random.nextInt(emptyRarity) != 0)
 			room.generate(cloudiaChunk, random, 0, secondLayer, 0);
 
 		room2 = (CloudiaZoneBase) (bottomrooms.get(random.nextInt(bottomrooms.size())));
-		if (random.nextInt(emptyRarity) == 0)
+		if (random.nextInt(emptyRarity) != 0)
 			room2.generate(cloudiaChunk, random, 0, bottomLayer, 0);
 
 		//checks all tile entitys
