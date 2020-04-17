@@ -357,18 +357,18 @@ public class JourneyBlocks {
     public static BlockDarkbloom darkbloomBottom;
     public static BlockMod depthsLights;
 
-    public static BlockGlowshroom redGlowshroomTop;
-    public static BlockGlowshroom redGlowshroomBottom;
+    public static BlockGlowshroom redTallGlowhsroom;
+    public static BlockGlowshroom greenTallGlowhsroom;
+    public static BlockGlowshroom blueTallGlowhsroom;
+
+    public static BlockMod redGlowshroom;
+    public static BlockMod greenGlowshroom;
+    public static BlockMod blueGlowshroom;
 
     public static BlockHellThorn hellThornTop;
     public static BlockHellThorn hellThornBottom;
     public static BlockMod hellThornRoot;
     public static BlockMod nethicGrass;
-
-    public static BlockGlowshroom greenGlowshroomTop;
-    public static BlockGlowshroom greenGlowshroomBottom;
-    public static BlockGlowshroom blueGlowshroomTop;
-    public static BlockGlowshroom blueGlowshroomBottom;
 
     public static BlockStalks goldenStalksTop;
     public static BlockStalks goldenStalksBottom;
@@ -878,12 +878,12 @@ public class JourneyBlocks {
         hellThornRoot = new BlockRoot("hellThornRoot", "HellThornRoot");
         nethicGrass = new BlockModGrass(null, "nethicGrass", "Nethic Grass", 2.0F);
 
-        redGlowshroomTop = new BlockGlowshroom("redGlowshroomTop", "Red Glowshroom", true);
-        redGlowshroomBottom = new BlockGlowshroom("redGlowshroomBottom", "Red Glowshroom", false);
-        greenGlowshroomTop = new BlockGlowshroom("greenGlowshroomTop", "Green Glowshroom", true);
-        greenGlowshroomBottom = new BlockGlowshroom("greenGlowshroomBottom", "Green Glowshroom", false);
-        blueGlowshroomTop = new BlockGlowshroom("blueGlowshroomTop", "Blue Glowshroom", true);
-        blueGlowshroomBottom = new BlockGlowshroom("blueGlowshroomBottom", "Blue Glowshroom", false);
+        redTallGlowhsroom = new BlockGlowshroom("tall_glowshroom_red", "Red Tall Glowshroom");
+        greenTallGlowhsroom = new BlockGlowshroom("tall_glowshroom_green", "Green Tall Glowshroom");
+        blueTallGlowhsroom = new BlockGlowshroom("tall_glowshroom_blue", "Blue Tall Glowshroom");
+        redGlowshroom = new BlockMod("glowshroom_red", "Red Glowshroom");//TODO make model work, move to BlockPlant or smth like that
+        greenGlowshroom = new BlockMod("glowshroom_green", "Green Glowshroom");//TODO make model work, move to BlockPlant or smth like that
+        blueGlowshroom = new BlockMod("glowshroom_blue", "Blue Glowshroom");//TODO make model work, move to BlockPlant or smth like that
 
         goldenStalksTop = (BlockStalks) new BlockStalks("goldenStalksTop", "Golden Stalks", true).setCreativeTab(null);
         goldenStalksBottom = (BlockStalks) new BlockStalks("goldenStalksBottom", "Golden Stalks", false)

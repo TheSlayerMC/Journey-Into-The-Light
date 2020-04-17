@@ -1,7 +1,7 @@
 package net.journey.dimension.overworld.gen;
 
+import net.journey.blocks.BlockGlowshroom;
 import net.journey.init.blocks.JourneyBlocks;
-import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -10,32 +10,32 @@ import net.slayer.api.worldgen.WorldGenAPI;
 
 import java.util.Random;
 
-public class WorldGenSmallGlowshrooms extends WorldGenerator {
+public class WorldGenTallGlowshroom extends WorldGenerator {
 
     @Override
     public boolean generate(World w, Random r, BlockPos pos) {
         pos = WorldGenAPI.getPosWithHeight(pos, r.nextInt(WorldGenAPI.findPosAboveSurface(w, pos).getY() - 5) + 1);
-
-        Block shroom;
+        BlockGlowshroom block;
         switch (r.nextInt(3)) {
             case 0:
-                shroom = JourneyBlocks.greenGlowshroom;
+                block = JourneyBlocks.greenTallGlowhsroom;
                 break;
             case 1:
-                shroom = JourneyBlocks.redGlowshroom;
+                block = JourneyBlocks.redTallGlowhsroom;
                 break;
             default:
-                shroom = JourneyBlocks.blueGlowshroom;
+                block = JourneyBlocks.blueTallGlowhsroom;
                 break;
         }
 
         if (!w.getBlockState(pos).getMaterial().isLiquid()
                 && w.getBlockState(pos.down()).getBlock() == Blocks.STONE
-                && shroom.canPlaceBlockAt(w, pos)) {
+                && block.canPlaceBlockAt(w, pos)) {
 
-            setBlockAndNotifyAdequately(w, pos, shroom.getDefaultState());
+            block.placeAt(w, pos, 2 | 16);
             return true;
         }
+
         return false;
     }
 }

@@ -142,18 +142,18 @@ public class JourneyRecipes {
                 "iii", 'i', JourneyItems.luniumIngot);
         addShapelessRecipe(new ItemStack(JourneyItems.spawnerClump),
                 JourneyItems.shadiumClump, JourneyItems.luniumClump, JourneyItems.hellstoneClump);
-        addShapelessRecipe(new ItemStack(JourneyCrops.glowshroomPowder, 4),
-                JourneyBlocks.redGlowshroomTop);
-        addShapelessRecipe(new ItemStack(JourneyCrops.glowshroomPowder, 4),
-                JourneyBlocks.redGlowshroomBottom);
-        addShapelessRecipe(new ItemStack(JourneyCrops.glowshroomPowder, 4),
-                JourneyBlocks.blueGlowshroomTop);
-        addShapelessRecipe(new ItemStack(JourneyCrops.glowshroomPowder, 4),
-                JourneyBlocks.blueGlowshroomBottom);
-        addShapelessRecipe(new ItemStack(JourneyCrops.glowshroomPowder, 4),
-                JourneyBlocks.greenGlowshroomTop);
-        addShapelessRecipe(new ItemStack(JourneyCrops.glowshroomPowder, 4),
-                JourneyBlocks.greenGlowshroomBottom);
+//        addShapelessRecipe(new ItemStack(JourneyCrops.glowshroomPowder, 4),//TODO restore
+//                JourneyBlocks.redGlowhsroomTop);
+//        addShapelessRecipe(new ItemStack(JourneyCrops.glowshroomPowder, 4),
+//                JourneyBlocks.redGlowshroomBottom);
+//        addShapelessRecipe(new ItemStack(JourneyCrops.glowshroomPowder, 4),
+//                JourneyBlocks.blueGlowshroomTop);
+//        addShapelessRecipe(new ItemStack(JourneyCrops.glowshroomPowder, 4),
+//                JourneyBlocks.blueGlowshroomBottom);
+//        addShapelessRecipe(new ItemStack(JourneyCrops.glowshroomPowder, 4),
+//                JourneyBlocks.greenGlowshroomTop);
+//        addShapelessRecipe(new ItemStack(JourneyCrops.glowshroomPowder, 4),
+//                JourneyBlocks.greenGlowshroomBottom);
         addShapelessRecipe(new ItemStack(JourneyCrops.glowshroomPowder, 4),
                 JourneyConsumables.glowshroom);
         addShapelessRecipe(new ItemStack(JourneyCrops.floroSeeds, 4), JourneyConsumables.floroPedal);

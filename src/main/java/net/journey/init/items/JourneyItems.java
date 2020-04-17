@@ -1,7 +1,6 @@
 package net.journey.init.items;
 
 import net.journey.init.JourneySounds;
-import net.journey.init.blocks.JourneyBlocks;
 import net.journey.items.*;
 import net.journey.util.Config;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -171,9 +170,9 @@ public class JourneyItems {
     public static Item boilKey;
     public static Item darkKey;
     public static Item depthsKey;
-    public static Item redGlowShroom;
-    public static Item greenGlowShroom;
-    public static Item blueGlowShroom;
+//    public static Item redGlowShroom;
+//    public static Item greenGlowShroom;
+//    public static Item blueGlowShroom;
 
     public static Item hellstoneDust;
     public static Item shadiumDust;
@@ -370,9 +369,10 @@ public class JourneyItems {
         boilKey = new ItemMod("boilKey", "Boil Key").setMaxStackSize(1).setMaxDamage(15);
         darkKey = new ItemMod("darkkey", "Dark Key").setMaxStackSize(1);
         depthsKey = new ItemMod("depthskey", "Depths Key").setMaxStackSize(1);
-        redGlowShroom = new ItemGlowshroomBlock("redGlowShroom", "Red Glowshroom", JourneyBlocks.redGlowshroomBottom, JourneyBlocks.redGlowshroomTop);
-        greenGlowShroom = new ItemGlowshroomBlock("greenGlowShroom", "Green Glowshroom", JourneyBlocks.greenGlowshroomBottom, JourneyBlocks.greenGlowshroomTop);
-        blueGlowShroom = new ItemGlowshroomBlock("blueGlowShroom", "Blue Glowshroom", JourneyBlocks.blueGlowshroomBottom, JourneyBlocks.blueGlowshroomTop);
+        //TODO remove
+//        redGlowShroom = new ItemGlowshroomBlock("redGlowShroom", "Red Glowshroom", JourneyBlocks.redGlowshroomBottom, JourneyBlocks.redGlowhsroomTop);
+//        greenGlowShroom = new ItemGlowshroomBlock("greenGlowShroom", "Green Glowshroom", JourneyBlocks.greenGlowshroomBottom, JourneyBlocks.greenGlowshroomTop);
+//        blueGlowShroom = new ItemGlowshroomBlock("blueGlowShroom", "Blue Glowshroom", JourneyBlocks.blueGlowshroomBottom, JourneyBlocks.blueGlowshroomTop);
 
         slugSlime = new ItemMod("slugSlime", "Slug Slime");
         eucaPortalGem = new ItemMod("eucaPortalGem", "Euca Portal Gem");

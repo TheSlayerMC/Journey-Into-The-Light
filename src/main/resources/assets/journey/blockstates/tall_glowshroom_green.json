@@ -1,0 +1,20 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cross"
+  },
+  "variants": {
+    "half": {
+      "top": {
+        "textures": {
+          "cross": "journey:blocks/glowshroom_green_top"
+        }
+      },
+      "bottom": {
+        "textures": {
+          "cross": "journey:blocks/glowshroom_green_bottom"
+        }
+      }
+    }
+  }
+}

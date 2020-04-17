@@ -12,6 +12,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.slayer.api.SlayerAPI;
 
+/**
+ * Base class for log blocks.
+ * The item model for it should be placed to "models/item/block/log/" by default.
+ */
 public class JBlockLog extends BlockLog implements IWithCustomItemPath {
 
     public JBlockLog(String name, String enName) {
