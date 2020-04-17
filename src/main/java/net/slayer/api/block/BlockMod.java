@@ -104,9 +104,4 @@ public class BlockMod extends Block {
                 JITL.proxy.spawnParticle(EnumParticlesClasses.SMOKE, worldIn, pos.getX(), pos.getY() + rand.nextInt(3), pos.getZ(), 0, 0, 0);
             }
     }
-
-    @Override
-    public boolean isFireSource(World world, BlockPos pos, EnumFacing side) {
-        return true;
-    }
 }

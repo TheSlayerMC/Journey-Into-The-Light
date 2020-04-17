@@ -55,11 +55,6 @@ public class BlockModGrass extends BlockMod implements IGrowable {
     }
 
     @Override
-    public boolean isFireSource(World world, BlockPos pos, EnumFacing side) {
-        return true;
-    }
-
-    @Override
     public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
         return SlayerAPI.toItemStack(this);
     }
