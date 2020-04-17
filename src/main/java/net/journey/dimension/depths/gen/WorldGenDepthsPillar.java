@@ -31,7 +31,7 @@ public class WorldGenDepthsPillar extends WorldGenerator {
         chestGen.add(new ItemStack(JourneyItems.caveCrystal, 16));
         chestGen.add(new ItemStack(JourneyItems.depthsPortalGem, 12));
         chestGen.add(new ItemStack(JourneyItems.blazierOrb, 12));
-        chestGen.add(new ItemStack(JourneyItems.blueGlowShroom, 12));
+        chestGen.add(new ItemStack(JourneyBlocks.blueGlowshroom, 12));
         chestGen.add(new ItemStack(JourneyItems.diamondDust, 12));
         chestGen.add(new ItemStack(JourneyItems.frozenIceball, 12));
 
