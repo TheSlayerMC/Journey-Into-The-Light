@@ -5,20 +5,22 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
 public class ModelSenterianAltar extends ModelBase {
-	public ModelRenderer Shape1;
-	public ModelRenderer Shape2;
-	public ModelRenderer Shape3;
-	public ModelRenderer Shape4;
-	public ModelRenderer Shape5;
-	public ModelRenderer Shape6;
-	public ModelRenderer Shape7;
-	public ModelRenderer Shape8;
-	public ModelRenderer Shape9;
-	public ModelRenderer Shape10;
-	public ModelRenderer Shape11;
-	public ModelRenderer Shape12;
-	public ModelRenderer Shape13;
-	public ModelRenderer Shape14;
+
+	private ModelRenderer Shape1;
+	private ModelRenderer Shape2;
+	private ModelRenderer Shape3;
+	private ModelRenderer Shape4;
+	private ModelRenderer Shape5;
+	private ModelRenderer Shape6;
+	private ModelRenderer Shape7;
+	private ModelRenderer Shape8;
+	private ModelRenderer Shape9;
+	private ModelRenderer Shape10;
+	private ModelRenderer Shape11;
+	private ModelRenderer Shape12;
+	private ModelRenderer Shape13;
+	private ModelRenderer Shape14;
+	private ModelRenderer orb;
 
 	public ModelSenterianAltar() {
 		textureWidth = 64;
@@ -108,9 +110,15 @@ public class ModelSenterianAltar extends ModelBase {
 		Shape14.setTextureSize(64, 64);
 		Shape14.mirror = true;
 		setRotation(Shape14, 0F, 0F, 0F);
+		orb = new ModelRenderer(this, 0, 0);
+		orb.addBox(0F, 0F, 0F, 4, 2, 4);
+		orb.setRotationPoint(-2F, 12.5F, -2F);
+		orb.setTextureSize(64, 64);
+		orb.mirror = true;
+		setRotation(orb, 0F, 0F, 0F);
 	}
 
-	public void render(float f5) {
+	public void render(float f5, boolean orbIn) {
 		Shape1.render(f5);
 		Shape2.render(f5);
 		Shape3.render(f5);
@@ -125,16 +133,12 @@ public class ModelSenterianAltar extends ModelBase {
 		Shape12.render(f5);
 		Shape13.render(f5);
 		Shape14.render(f5);
+		if(orbIn) orb.render(f5);
 	}
 
 	private void setRotation(ModelRenderer model, float x, float y, float z) {
 		model.rotateAngleX = x;
 		model.rotateAngleY = y;
 		model.rotateAngleZ = z;
-	}
-
-	@Override
-	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity) {
-		super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 	}
 }
