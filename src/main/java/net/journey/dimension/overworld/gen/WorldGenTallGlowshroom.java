@@ -14,28 +14,35 @@ public class WorldGenTallGlowshroom extends WorldGenerator {
 
     @Override
     public boolean generate(World w, Random r, BlockPos pos) {
-        pos = WorldGenAPI.getPosWithHeight(pos, r.nextInt(WorldGenAPI.findPosAboveSurface(w, pos).getY() - 5) + 1);
-        BlockTallGlowshroom block;
-        switch (r.nextInt(3)) {
-            case 0:
-                block = JourneyBlocks.tallGlowshroomGreen;
-                break;
-            case 1:
-                block = JourneyBlocks.tallGlowshroomRed;
-                break;
-            default:
-                block = JourneyBlocks.tallGlowshroomBlue;
-                break;
+        pos = WorldGenAPI.optimize(pos);
+        boolean generated = false;
+
+        for (int i = 0; i < 64; i++) {
+            BlockPos genPos = WorldGenAPI.randomize(pos, r);
+            genPos = WorldGenAPI.getPosWithHeight(genPos, r.nextInt(WorldGenAPI.findPosAboveSurface(w, genPos).getY() - 5) + 1);
+
+            BlockTallGlowshroom block;
+            switch (r.nextInt(3)) {
+                case 0:
+                    block = JourneyBlocks.tallGlowshroomGreen;
+                    break;
+                case 1:
+                    block = JourneyBlocks.tallGlowshroomRed;
+                    break;
+                default:
+                    block = JourneyBlocks.tallGlowshroomBlue;
+                    break;
+            }
+
+            if (!w.getBlockState(genPos).getMaterial().isLiquid()
+                    && w.getBlockState(genPos.down()).getBlock() == Blocks.STONE
+                    && block.canPlaceBlockAt(w, genPos)) {
+
+                block.placeAt(w, genPos, 2 | 16);
+                generated = true;
+            }
         }
 
-        if (!w.getBlockState(pos).getMaterial().isLiquid()
-                && w.getBlockState(pos.down()).getBlock() == Blocks.STONE
-                && block.canPlaceBlockAt(w, pos)) {
-
-            block.placeAt(w, pos, 2 | 16);
-            return true;
-        }
-
-        return false;
+        return generated;
     }
 }

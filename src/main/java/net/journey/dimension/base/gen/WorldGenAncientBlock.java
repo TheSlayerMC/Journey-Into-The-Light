@@ -13,6 +13,7 @@ public class WorldGenAncientBlock extends WorldGenerator {
 
     @Override
     public boolean generate(World world, Random rand, BlockPos pos) {
+        pos = WorldGenAPI.optimizeAndRandomize(pos, rand);
         pos = WorldGenAPI.getPosWithHeight(pos, rand.nextInt(254 + 1));
 
         if (pos.getY() >= 110 && rand.nextInt(3) != 0) return false;

@@ -418,13 +418,31 @@ public class WorldGenAPI {
     }
 
     /**
-     * Moves the zero position of chunk so it is in the intersection of 4 loaded chunks.
-     * The acceptable area to generate stuff is in 16 blocks in any direction from returned pos.
+     * Randomize the position, that comes from {@link #optimize(BlockPos)}.
+     * <p>
+     * This method should only be used with {@link #optimize(BlockPos)}.
+     * <p>
+     * The acceptable area to generate stuff is in 8 blocks in any direction from returned pos.
+     *
+     * @param pos the position of the chunk that returned from {@link #optimize(BlockPos)}.
+     * @see #optimize(BlockPos)
+     */
+    public static BlockPos randomize(BlockPos pos, Random r) {
+        return pos.add(r.nextInt(16), 0, r.nextInt(16));
+    }
+
+    /**
+     * Moves the zero position of chunk so it is in the center of the chunk.
+     * <p>
+     * This method should only be used with {@link #randomize(BlockPos, Random)}.
+     * <p>
+     * The acceptable area to generate stuff is in 8 blocks in any direction from returned pos.
      *
      * @param pos the zero position of the chunk.
+     * @see #randomize(BlockPos, Random)
      */
-    public static BlockPos optimize(BlockPos pos, Random r) {
-        return pos.add(r.nextInt(16), 0, r.nextInt(16));
+    public static BlockPos optimize(BlockPos pos) {
+        return pos.add(8, 0, 8);
     }
 
     /**

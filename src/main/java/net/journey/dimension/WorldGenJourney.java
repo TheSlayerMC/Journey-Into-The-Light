@@ -69,7 +69,7 @@ public class WorldGenJourney implements IWorldGenerator {
     private static final LazyLoadBase<WorldGenBush> BOGBERRY_BUSH_GEN = create(() -> new WorldGenBush(JourneyBlocks.bogberryBush, Blocks.GRASS));
     private static final LazyLoadBase<WorldGenBush> sizzleberryBush;
 
-    private static final LazyLoadBase<WorldGenTallGlowshroom> tallGlowshrooms = create(WorldGenTallGlowshroom::new);
+    private static final LazyLoadBase<WorldGenTallGlowshroom> TALL_GLOWSHROOMS_GEN = create(WorldGenTallGlowshroom::new);
     private static final LazyLoadBase<WorldGenCaveVines> caveVine;
     private static final LazyLoadBase<WorldGenSmallGlowshrooms> SMALL_GLOWSHROOMS = create(WorldGenSmallGlowshrooms::new);
 
@@ -490,40 +490,33 @@ public class WorldGenJourney implements IWorldGenerator {
                 posZ = startPos.getZ();
         Biome biome = w.getBiome(startPos);
 
-        ANCIENT_BLOCK_GEN.getValue().generate(w, rand, WorldGenAPI.optimizeAndRandomize(startPos, rand));
+        ANCIENT_BLOCK_GEN.getValue().generate(w, rand, startPos);
 
         if (rand.nextInt(5) == 0
                 && biome.getDefaultTemperature() >= 0.6F
                 && biome.getDefaultTemperature() < 0.9F
                 && BiomeDictionary.hasType(biome, BiomeDictionary.Type.FOREST)) {
-            BlockPos genPos = WorldGenAPI.optimizeAndRandomize(startPos, rand);
-            JUICEBERRY_BUSH_GEN.getValue().generate(w, rand, genPos);
+            JUICEBERRY_BUSH_GEN.getValue().generate(w, rand, startPos);
         }
 
         if (rand.nextInt(5) == 0
                 && BiomeDictionary.hasType(biome, BiomeDictionary.Type.FOREST)
                 && BiomeDictionary.hasType(biome, BiomeDictionary.Type.COLD)) {
-            BlockPos genPos = WorldGenAPI.optimizeAndRandomize(startPos, rand);
-            BRADBERRY_BUSH_GEN.getValue().generate(w, rand, genPos);
+            BRADBERRY_BUSH_GEN.getValue().generate(w, rand, startPos);
         }
 
         if (rand.nextInt(3) == 0 // in jungle it is harder to find'em so spawn chance was increased
                 && biome.decorator.treesPerChunk > 3 // prevent from generating in jungle biomes without much trees
                 && BiomeDictionary.hasType(biome, BiomeDictionary.Type.JUNGLE)) {
-            BlockPos genPos = WorldGenAPI.optimizeAndRandomize(startPos, rand);
-            TANGLEBERRY_BUSH_GEN.getValue().generate(w, rand, genPos);
+            TANGLEBERRY_BUSH_GEN.getValue().generate(w, rand, startPos);
         }
 
         if (rand.nextInt(5) == 0
                 && BiomeDictionary.hasType(biome, BiomeDictionary.Type.SWAMP)) {
-            BlockPos genPos = WorldGenAPI.optimizeAndRandomize(startPos, rand);
-            BOGBERRY_BUSH_GEN.getValue().generate(w, rand, genPos);
+            BOGBERRY_BUSH_GEN.getValue().generate(w, rand, startPos);
         }
 
-        for (times = 0; times < 64; times++) {
-            BlockPos genPos = WorldGenAPI.optimizeAndRandomize(startPos, rand);
-            tallGlowshrooms.getValue().generate(w, r, genPos);
-        }
+        TALL_GLOWSHROOMS_GEN.getValue().generate(w, rand, startPos);
 
         for (times = 0; times < 55; times++) {
             y = r.nextInt(63);
@@ -532,10 +525,8 @@ public class WorldGenJourney implements IWorldGenerator {
             caveVine.getValue().generate(w, r, new BlockPos(x, y, z));
         }
 
-        for (times = 0; times < 64; times++) {
-            BlockPos genPos = WorldGenAPI.optimizeAndRandomize(startPos, rand);
-            SMALL_GLOWSHROOMS.getValue().generate(w, rand, genPos);
-        }
+        SMALL_GLOWSHROOMS.getValue().generate(w, rand, startPos);
+
         if (r.nextInt(3) == 0) {
             y = r.nextInt(13);
             x = posX + r.nextInt(16);

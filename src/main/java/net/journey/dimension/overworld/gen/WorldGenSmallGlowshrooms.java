@@ -14,28 +14,35 @@ public class WorldGenSmallGlowshrooms extends WorldGenerator {
 
     @Override
     public boolean generate(World w, Random r, BlockPos pos) {
-        pos = WorldGenAPI.getPosWithHeight(pos, r.nextInt(WorldGenAPI.findPosAboveSurface(w, pos).getY() - 5) + 1);
+        pos = WorldGenAPI.optimize(pos);
+        boolean generated = false;
 
-        Block shroom;
-        switch (r.nextInt(3)) {
-            case 0:
-                shroom = JourneyBlocks.glowshroomGreen;
-                break;
-            case 1:
-                shroom = JourneyBlocks.glowshroomRed;
-                break;
-            default:
-                shroom = JourneyBlocks.glowshroomBlue;
-                break;
+        for (int i = 0; i < 64; i++) {
+            BlockPos genPos = WorldGenAPI.randomize(pos, r);
+            genPos = WorldGenAPI.getPosWithHeight(genPos, r.nextInt(WorldGenAPI.findPosAboveSurface(w, genPos).getY() - 5) + 1);
+
+            Block shroom;
+            switch (r.nextInt(3)) {
+                case 0:
+                    shroom = JourneyBlocks.glowshroomGreen;
+                    break;
+                case 1:
+                    shroom = JourneyBlocks.glowshroomRed;
+                    break;
+                default:
+                    shroom = JourneyBlocks.glowshroomBlue;
+                    break;
+            }
+
+            if (!w.getBlockState(genPos).getMaterial().isLiquid()
+                    && w.getBlockState(genPos.down()).getBlock() == Blocks.STONE
+                    && shroom.canPlaceBlockAt(w, genPos)) {
+
+                setBlockAndNotifyAdequately(w, genPos, shroom.getDefaultState());
+                generated = true;
+            }
         }
 
-        if (!w.getBlockState(pos).getMaterial().isLiquid()
-                && w.getBlockState(pos.down()).getBlock() == Blocks.STONE
-                && shroom.canPlaceBlockAt(w, pos)) {
-
-            setBlockAndNotifyAdequately(w, pos, shroom.getDefaultState());
-            return true;
-        }
-        return false;
+        return generated;
     }
 }

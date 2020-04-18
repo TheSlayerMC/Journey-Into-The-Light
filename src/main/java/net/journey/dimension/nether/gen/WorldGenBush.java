@@ -24,6 +24,8 @@ public class WorldGenBush extends WorldGenerator {
 
     @Override
     public boolean generate(World worldIn, Random rand, BlockPos pos) {
+        pos = WorldGenAPI.optimizeAndRandomize(pos, rand);
+
         boolean generated = false;
 
         for (int i = 0; i < rand.nextInt(MAX_GROUP + 1); i++) {
