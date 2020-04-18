@@ -70,27 +70,34 @@ public class BlockSenterianAltar extends BlockModContainer {
 
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		if(!worldIn.isRemote) {
-			TileEntitySenterianAltar altar = (TileEntitySenterianAltar)worldIn.getTileEntity(pos);
-			if(playerIn.getHeldItemMainhand() != null && !(altar.getHasOrb())) {
-				if(playerIn.getHeldItemMainhand().getItem() == JourneyItems.sapphire) {//replace with a new item
-					altar.putInOrb(JourneyItems.sapphire);
+		if(worldIn.isRemote) return false;
+		Item heldItem = playerIn.getHeldItemMainhand().getItem();
+		TileEntitySenterianAltar altar = (TileEntitySenterianAltar)worldIn.getTileEntity(pos);
+		if(heldItem != null) {	
+			if(altar.orb == null) {
+				if(heldItem == JourneyItems.sapphire) {//replace with a new item
+					altar.orb = heldItem;
 					playerIn.getHeldItemMainhand().shrink(1);
+					((WorldServer) worldIn).getPlayerChunkMap().markBlockForUpdate(pos);
 					return true;
 				}
+			}
 
-				if(playerIn.getHeldItemMainhand().getItem() == JourneyItems.ash && altar.getHasOrb()) {//replace with an item to spawn boss
+			if(heldItem == JourneyItems.ash) {//replace with an item to spawn boss
+				if(altar.orb != null) {
 					EntityFrozenTroll mob = new EntityFrozenTroll(worldIn);
 					mob.setLocationAndAngles(pos.getX() + 0.5F, pos.getY() + 1.5F, pos.getZ() + 0.5F, 0.0F, 0.0F);
 					worldIn.spawnEntity(mob);
 					altar.putInOrb(null);
 					playerIn.getHeldItemMainhand().shrink(1);
+					((WorldServer) worldIn).getPlayerChunkMap().markBlockForUpdate(pos);
 					return true;
 				}
 			}
 			Helper.print(altar.getHasOrb());
 		}
-		return true;
+		((WorldServer) worldIn).getPlayerChunkMap().markBlockForUpdate(pos);
+		return false;
 	}
 
 	public class SenterianAltarTEISR extends TileEntityItemStackRenderer {
