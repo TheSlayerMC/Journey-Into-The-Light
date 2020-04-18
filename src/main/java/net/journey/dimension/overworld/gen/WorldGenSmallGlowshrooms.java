@@ -19,7 +19,7 @@ public class WorldGenSmallGlowshrooms extends WorldGenerator {
 
         for (int i = 0; i < 64; i++) {
             BlockPos genPos = WorldGenAPI.randomize(pos, r);
-            genPos = WorldGenAPI.getPosWithHeight(genPos, r.nextInt(WorldGenAPI.findPosAboveSurface(w, genPos).getY() - 5) + 1);
+            genPos = WorldGenAPI.getPosWithHeight(genPos, r.nextInt(WorldGenAPI.findPosAboveSurface(w, genPos).getY()) + 1);
 
             Block shroom;
             switch (r.nextInt(3)) {
