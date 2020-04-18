@@ -40,8 +40,8 @@ public enum JourneyToolMaterial {
     THE_WRAITH(SlayerAPI.addMeleeMaterial(3000, 17 - 4, 25)),
     BUBBLE_SWORD(SlayerAPI.addMeleeMaterial(3000, 23 - 4, 25)),
 
-    POISON_SWORD(SlayerAPI.addMeleeMaterial(1500, 10 - 4, 25)),
-    CLOUD_SLICER(SlayerAPI.addMeleeMaterial(1500, 12 - 4, 25)),
+    POISON_SWORD(SlayerAPI.addMeleeMaterial(1500, 3 - 1, 25)),
+    CLOUD_SLICER(SlayerAPI.addMeleeMaterial(1500, 4 - 1, 25)),
     DRAGONS_TOOTH(SlayerAPI.addMeleeMaterial(1500, 13 - 4, 25)),
     BOILING_BLADE(SlayerAPI.addMeleeMaterial(3000, 14 - 4, 25)),
     MOLTEN_KNIFE(SlayerAPI.addMeleeMaterial(3000, 10 - 4, 25)),

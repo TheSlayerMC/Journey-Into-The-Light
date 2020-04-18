@@ -17,14 +17,14 @@ public class LootTableEvent {
 	 * ex:
 	 * ResourceLocation BATTLE_HEART_LOOT = new ResourceLocation("journey", "loot_tables/misc/battle_heart_loot");
 	 */
-	ResourceLocation resource;
+	ResourceLocation TEST = new ResourceLocation("journey", "loot_tables/chests/boilportal");
 	/**
 	 * placeholder for LootTable pool names
 	 * TODO: replace with proper pool name
 	 * ex:
 	 * String DUNGEON_POOL = new String("journey_dungeon_loot");
 	 */
-	String poolName;
+	String TESTPOOL = new String("boilportal");
 	
 	/**
 	 * injects custom journey loot tables into vanilla or 3rd party loot tables
@@ -33,8 +33,8 @@ public class LootTableEvent {
 	 */
 	@SubscribeEvent
 	public void addLootToTable(LootTableLoadEvent event) {
-		if (event.getName().toString().equals("minecraft:chests/simple_dungeon")) {
-			event.getTable().addPool(new LootPool(new LootEntry[] {new LootEntryTable(resource, 1, 0, new LootCondition[0], poolName)}, new LootCondition[0], new RandomValueRange(1), new RandomValueRange(0, 1), poolName));
+		if (event.getName().toString().equals("minecraft:chests/village_blacksmith")) {
+			event.getTable().addPool(new LootPool(new LootEntry[] {new LootEntryTable(TEST, 1, 1, new LootCondition[0], TESTPOOL)}, new LootCondition[0], new RandomValueRange(1), new RandomValueRange(0, 1), TESTPOOL));
 		}
 	}
 }

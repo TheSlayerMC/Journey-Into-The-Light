@@ -54,7 +54,7 @@ public class SlayerAPI {
     }
 
     public static ToolMaterial addAxeMaterial(int uses, int level, float efficiency, float dam, int enchant) {
-        return EnumHelper.addToolMaterial("tool", level, uses, dam, efficiency, enchant);
+        return EnumHelper.addToolMaterial("tool", level, uses, efficiency, dam, enchant);
     }
 
     @SideOnly(Side.CLIENT)
