@@ -17,14 +17,14 @@ public class LootTableEvent {
 	 * ex:
 	 * ResourceLocation BATTLE_HEART_LOOT = new ResourceLocation("journey", "loot_tables/misc/battle_heart_loot");
 	 */
-	ResourceLocation TEST = new ResourceLocation("journey", "loot_tables/chests/boilportal");
+	ResourceLocation TEST;
 	/**
 	 * placeholder for LootTable pool names
 	 * TODO: replace with proper pool name
 	 * ex:
 	 * String DUNGEON_POOL = new String("journey_dungeon_loot");
 	 */
-	String TESTPOOL = new String("boilportal");
+	String TESTPOOL;
 	
 	/**
 	 * injects custom journey loot tables into vanilla or 3rd party loot tables
