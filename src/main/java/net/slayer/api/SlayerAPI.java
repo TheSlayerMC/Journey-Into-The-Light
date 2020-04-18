@@ -49,8 +49,8 @@ public class SlayerAPI {
     public static int mobID = Config.baseMobID, projectileID = Config.baseProjectileID, entityListID = Config.baseEntityListID;
     public static Logger logger = Logger.getLogger(SlayerAPI.MOD_ID);
 
-    public static ToolMaterial addMeleeMaterial(int uses, float efficiency, float dam) {
-        return EnumHelper.addToolMaterial("tool", 3, uses, dam, efficiency, 30);
+    public static ToolMaterial addMeleeMaterial(int uses, float dam, float efficiency) {
+        return EnumHelper.addToolMaterial("tool", 3, uses, efficiency, dam, 30);
     }
 
     public static ToolMaterial addAxeMaterial(int uses, int level, float efficiency, float dam, int enchant) {
