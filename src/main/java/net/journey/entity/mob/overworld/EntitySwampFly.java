@@ -92,7 +92,7 @@ public class EntitySwampFly extends EntityModFlying {
     @Override
     public boolean processInteract(EntityPlayer player, EnumHand hand) {
         ItemStack itemstack = player.getHeldItem(hand);
-        if (itemstack.getItem() == Items.GLASS_BOTTLE && !player.capabilities.isCreativeMode) {
+        if (itemstack.getItem() == Items.GLASS_BOTTLE) {
             itemstack.shrink(1);
             if (itemstack.isEmpty()) {
                 player.setHeldItem(hand, new ItemStack(JourneyBlocks.swampLamp));
