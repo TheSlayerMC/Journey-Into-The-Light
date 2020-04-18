@@ -255,6 +255,8 @@ public class JourneyItems {
     public static Item demonicEye;
 
     public static Item iridium;
+    
+    public static Item CRAFTING_POUCH;
 
     //public static Item obsidianBoat;
 
@@ -442,6 +444,7 @@ public class JourneyItems {
         demonicEye = new ItemDemonicEye("demonicEye", "Demonic Eye");
         darkGem = new ItemDarkGem("darkGem", "Dark Gem");
         obsidianRod = new ItemMod("obsidianRod", "Obsidian Rod");
+        CRAFTING_POUCH = new ItemCrafting("sizzlingCraftingPouch", "Sizzling Crafting Pouch", 0);
         //obsidianBoat = new ItemObsidianBoat("obsidianboat", "Obsidian Boat");
         //infernoshield = new ItemModShield("infernoshield", "Inferno Shield", 2, false);
     }

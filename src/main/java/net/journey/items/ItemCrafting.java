@@ -4,6 +4,7 @@ import net.journey.blocks.machines.BlockCrafting;
 import net.journey.init.JourneyTabs;
 import net.journey.init.items.JourneyItems;
 import net.journey.util.LangRegistry;
+import net.minecraft.block.BlockWorkbench;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -22,6 +23,7 @@ public class ItemCrafting extends Item {
         this(name, finalName, JourneyTabs.ITEMS);
         this.maxStackSize = 1;
         this.type = type;
+        this.setMaxDamage(128);
     }
 
     public ItemCrafting(String name, String finalName, CreativeTabs tab) {
@@ -39,7 +41,8 @@ public class ItemCrafting extends Item {
         if (!world.isRemote) {
             if (!player.isSneaking()) {
                 if (item.type == 0) {
-                    player.displayGui(new BlockCrafting.InterfaceStoneCraftingTable(world, player.getPosition()));
+                	player.getHeldItemMainhand().damageItem(1, player);
+                    player.displayGui(new BlockWorkbench.InterfaceCraftingTable(world, player.getPosition()));
                 }
             }
         }
