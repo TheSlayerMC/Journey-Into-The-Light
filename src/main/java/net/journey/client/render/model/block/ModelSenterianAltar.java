@@ -2,6 +2,7 @@ package net.journey.client.render.model.block;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 
 public class ModelSenterianAltar extends ModelBase {
@@ -119,6 +120,8 @@ public class ModelSenterianAltar extends ModelBase {
 	}
 
 	public void render(float f5, boolean orbIn) {
+        float timeD = (float) (360.0 * (System.currentTimeMillis() & 0x3FFFL) / 0x3FFFL) * 8;
+
 		Shape1.render(f5);
 		Shape2.render(f5);
 		Shape3.render(f5);
@@ -129,10 +132,14 @@ public class ModelSenterianAltar extends ModelBase {
 		Shape8.render(f5);
 		Shape9.render(f5);
 		Shape10.render(f5);
+		GlStateManager.pushMatrix();
+		if(orbIn)
+			GlStateManager.rotate(timeD, 0.0F, 1.0F, 0.0F);
 		Shape11.render(f5);
 		Shape12.render(f5);
 		Shape13.render(f5);
 		Shape14.render(f5);
+		GlStateManager.popMatrix();
 		if(orbIn) orb.render(f5);
 	}
 
