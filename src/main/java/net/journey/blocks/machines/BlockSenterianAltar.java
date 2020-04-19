@@ -94,7 +94,6 @@ public class BlockSenterianAltar extends BlockModContainer {
 					return true;
 				}
 			}
-			Helper.print(altar.getHasOrb());
 		}
 		((WorldServer) worldIn).getPlayerChunkMap().markBlockForUpdate(pos);
 		return false;
