@@ -2,14 +2,13 @@ package net.journey.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -33,13 +32,6 @@ public class BlockCaveVine extends BlockMod implements IPlantable, IGrowable {
     public BlockCaveVine(String name, String f) {
         super(EnumMaterialTypes.PLANT, name, f, 2);
         setLightLevel(0.3F);
-    }
-
-    public static boolean canPlaceBelow(World world, BlockPos pos) {
-        IBlockState state = world.getBlockState(pos);
-        Block blockAbove = state.getBlock();
-
-        return state.getMaterial() == Material.ROCK || state.getMaterial() == Material.GROUND || state.getMaterial() == Material.PLANTS;
     }
 
     @Override
@@ -68,13 +60,9 @@ public class BlockCaveVine extends BlockMod implements IPlantable, IGrowable {
         return new BlockStateContainer(this, AGE);
     }
 
-    private boolean canBlockStay(World world, BlockPos pos) {
-        return canPlaceBelow(world, pos.up());
-    }
-
     @Override
     public boolean canPlaceBlockAt(World world, BlockPos pos) {
-        return super.canPlaceBlockAt(world, pos) && this.canBlockStay(world, pos);
+        return super.canPlaceBlockAt(world, pos) && canStay(world, pos);
     }
 
     @Override
@@ -84,7 +72,7 @@ public class BlockCaveVine extends BlockMod implements IPlantable, IGrowable {
 
         int size;
 
-        for (size = 1; world.getBlockState(pos.up(size)).getBlock() == this; ++size) {
+        for (size = 1; world.getBlockState(pos.up(size)).getBlock() == this; ++size) {//todo WHAT IS THIS???
         }
         boolean canGrow = (rand.nextInt(5) == 0);
 
@@ -108,9 +96,13 @@ public class BlockCaveVine extends BlockMod implements IPlantable, IGrowable {
     }
 
     private void checkAndDropBlock(World world, BlockPos pos) {
-        if (!this.canBlockStay(world, pos)) {
+        if (!this.canStay(world, pos)) {
             world.destroyBlock(pos, true);
         }
+    }
+
+    public boolean canStay(World world, BlockPos pos) {
+        return world.getBlockState(pos.up()).isSideSolid(world, pos.up(), EnumFacing.DOWN);
     }
 
     @Override

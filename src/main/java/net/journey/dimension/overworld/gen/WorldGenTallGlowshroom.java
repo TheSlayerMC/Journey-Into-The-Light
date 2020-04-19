@@ -2,6 +2,7 @@ package net.journey.dimension.overworld.gen;
 
 import net.journey.blocks.plant.BlockTallGlowshroom;
 import net.journey.init.blocks.JourneyBlocks;
+import net.journey.util.MathUtils;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -13,13 +14,16 @@ import java.util.Random;
 public class WorldGenTallGlowshroom extends WorldGenerator {
 
     @Override
-    public boolean generate(World w, Random r, BlockPos pos) {
-        pos = WorldGenAPI.optimize(pos);
+    public boolean generate(World w, Random r, BlockPos zeroPos) {
+        zeroPos = WorldGenAPI.optimize(zeroPos);
         boolean generated = false;
 
         for (int i = 0; i < 64; i++) {
-            BlockPos genPos = WorldGenAPI.randomize(pos, r);
-            genPos = WorldGenAPI.getPosWithHeight(genPos, r.nextInt(WorldGenAPI.findPosAboveSurface(w, genPos).getY()) + 1);
+            BlockPos genPos = WorldGenAPI.randomize(zeroPos, r);
+
+            int coercedY = MathUtils.coerceInRange(WorldGenAPI.findPosAboveSurface(w, genPos).getY(), 1, 60);
+            int genY = r.nextInt(coercedY) + 1;
+            genPos = WorldGenAPI.getPosWithHeight(genPos, genY);
 
             BlockTallGlowshroom block;
             switch (r.nextInt(3)) {

@@ -36,27 +36,27 @@ import java.util.function.Supplier;
 
 public class WorldGenJourney implements IWorldGenerator {
 
-    private final static LazyLoadBase<WorldGenMinable> celestium;
-    private final static LazyLoadBase<WorldGenMinable> flairium;
-    private final static LazyLoadBase<WorldGenMinable> gorbite;
-    private final static LazyLoadBase<WorldGenMinable> orbaditeOre;
-    private final static LazyLoadBase<WorldGenMinable> depthsLights;
-    private final static LazyLoadBase<WorldGenMinable> depthsLightsForStone;
-    private final static LazyLoadBase<WorldGenMinable> storonOre;
-    private final static LazyLoadBase<WorldGenMinable> koriteOre;
-    private final static LazyLoadBase<WorldGenMinable> mekyumOre;
-    private final static LazyLoadBase<WorldGenMinable> shadiumOre;
-    private final static LazyLoadBase<WorldGenMinable> luniumOre;
-    private final static LazyLoadBase<WorldGenMinable> sapphireOre;
-    private final static LazyLoadBase<WorldGenMinable> iridiumOre;
-    private final static WorldGenSmeltery smeltery = new WorldGenSmeltery();
-    private final static WorldGenBoilingFire fire = new WorldGenBoilingFire();
-    private final static LazyLoadBase<WorldGenModFlower> eucaTallGrass;
-    private final static LazyLoadBase<WorldGenModFlower> eucaTallFlowers;
-    private final static LazyLoadBase<WorldGenModFlower> eucaBlueFlower;
-    private final static LazyLoadBase<WorldGenModFlower> frozenFlower;
-    private final static LazyLoadBase<WorldGenModFlower> depthsFlower;
-    private final static LazyLoadBase<WorldGenBoilingLava> boilLava;
+    private static final LazyLoadBase<WorldGenMinable> celestium;
+    private static final LazyLoadBase<WorldGenMinable> flairium;
+    private static final LazyLoadBase<WorldGenMinable> gorbite;
+    private static final LazyLoadBase<WorldGenMinable> orbaditeOre;
+    private static final LazyLoadBase<WorldGenMinable> depthsLights;
+    private static final LazyLoadBase<WorldGenMinable> depthsLightsForStone;
+    private static final LazyLoadBase<WorldGenMinable> storonOre;
+    private static final LazyLoadBase<WorldGenMinable> koriteOre;
+    private static final LazyLoadBase<WorldGenMinable> mekyumOre;
+    private static final LazyLoadBase<WorldGenMinable> shadiumOre;
+    private static final LazyLoadBase<WorldGenMinable> luniumOre;
+    private static final LazyLoadBase<WorldGenMinable> sapphireOre;
+    private static final LazyLoadBase<WorldGenMinable> iridiumOre;
+    private static final WorldGenSmeltery smeltery = new WorldGenSmeltery();
+    private static final WorldGenBoilingFire fire = new WorldGenBoilingFire();
+    private static final LazyLoadBase<WorldGenModFlower> eucaTallGrass;
+    private static final LazyLoadBase<WorldGenModFlower> eucaTallFlowers;
+    private static final LazyLoadBase<WorldGenModFlower> eucaBlueFlower;
+    private static final LazyLoadBase<WorldGenModFlower> frozenFlower;
+    private static final LazyLoadBase<WorldGenModFlower> depthsFlower;
+    private static final LazyLoadBase<WorldGenBoilingLava> boilLava;
     private static final LazyLoadBase<WorldGenMinable> pinkCloudiaCloud;
     private static final LazyLoadBase<WorldGenMinable> lightBlueCloudiaCloud;
     private static final LazyLoadBase<WorldGenMinable> withanLight;
@@ -70,10 +70,11 @@ public class WorldGenJourney implements IWorldGenerator {
     private static final LazyLoadBase<WorldGenBush> sizzleberryBush;
 
     private static final LazyLoadBase<WorldGenTallGlowshroom> TALL_GLOWSHROOMS_GEN = create(WorldGenTallGlowshroom::new);
-    private static final LazyLoadBase<WorldGenCaveVines> caveVine;
+    private static final LazyLoadBase<WorldGenCaveVines> CAVE_VINE_GEN = create(WorldGenCaveVines::new);
     private static final LazyLoadBase<WorldGenSmallGlowshrooms> SMALL_GLOWSHROOMS = create(WorldGenSmallGlowshrooms::new);
 
     private static final LazyLoadBase<WorldGenAncientBlock> ANCIENT_BLOCK_GEN = create(WorldGenAncientBlock::new);
+    @Deprecated // use per-chunk random instance which comes from method params
     private static Random r = new Random();
 
     static {
@@ -105,16 +106,10 @@ public class WorldGenJourney implements IWorldGenerator {
 
         sizzleberryBush = create(() -> new WorldGenBush(JourneyBlocks.sizzleberryBush, Blocks.NETHERRACK));
 
-        caveVine = create(() -> new WorldGenCaveVines());
-
         boilLava = create(() -> new WorldGenBoilingLava(Blocks.LAVA));
     }
 
-    private World worldObj;
     private ArrayList<WorldGenerator> trees;
-    private Biome forest;
-    private Biome jungle;
-    private Biome taiga;
 
     public WorldGenJourney() {
         r = new Random();
@@ -518,12 +513,7 @@ public class WorldGenJourney implements IWorldGenerator {
 
         TALL_GLOWSHROOMS_GEN.getValue().generate(w, rand, startPos);
 
-        for (times = 0; times < 55; times++) {
-            y = r.nextInt(63);
-            x = posX + r.nextInt(16) + 8;
-            z = posZ + r.nextInt(16) + 8;
-            caveVine.getValue().generate(w, r, new BlockPos(x, y, z));
-        }
+        CAVE_VINE_GEN.getValue().generate(w, r, startPos);
 
         SMALL_GLOWSHROOMS.getValue().generate(w, rand, startPos);
 

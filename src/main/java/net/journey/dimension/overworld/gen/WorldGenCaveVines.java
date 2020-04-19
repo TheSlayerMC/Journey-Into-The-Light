@@ -1,26 +1,39 @@
 package net.journey.dimension.overworld.gen;
 
-import net.journey.blocks.BlockCaveVine;
 import net.journey.init.blocks.JourneyBlocks;
-import net.minecraft.init.Blocks;
+import net.journey.util.MathUtils;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.slayer.api.worldgen.WorldGenAPI;
 
 import java.util.Random;
 
 public class WorldGenCaveVines extends WorldGenerator {
 
     @Override
-    public boolean generate(World worldIn, Random rand, BlockPos position) {
-        for (int i = 0; i < 64; ++i) {
-            BlockPos blockpos = position.add(rand.nextInt(4) - rand.nextInt(4), 0, rand.nextInt(4) - rand.nextInt(4));
-            if (worldIn.isAirBlock(blockpos) &&
-                    worldIn.getBlockState(blockpos.up()).getBlock() == Blocks.STONE &&
-                    BlockCaveVine.canPlaceBelow(worldIn, position)) {
-                setBlockAndNotifyAdequately(worldIn, blockpos, JourneyBlocks.caveVine.getDefaultState());
+    public boolean generate(World w, Random r, BlockPos zeroPos) {
+        boolean generated = false;
+        zeroPos = WorldGenAPI.optimize(zeroPos);
+
+        //attempts to gen such count of groups
+        for (int i = 0; i < 55; i++) {
+            BlockPos vineGroupPos = WorldGenAPI.randomize(zeroPos, r);
+
+            int coercedY = MathUtils.coerceInRange(WorldGenAPI.findPosAboveSurface(w, vineGroupPos).getY(), 1, 60);
+            int genY = r.nextInt(coercedY) + 1;
+            vineGroupPos = WorldGenAPI.getPosWithHeight(vineGroupPos, genY);
+
+            //attempts to gen around one group
+            for (int j = 0; j < 16; ++j) {
+                BlockPos vinePos = vineGroupPos.add(r.nextInt(4) - r.nextInt(4), r.nextInt(4) - 2, r.nextInt(4) - r.nextInt(4));
+                if (w.isAirBlock(vinePos) && JourneyBlocks.caveVine.canPlaceBlockAt(w, vinePos)) {
+                    setBlockAndNotifyAdequately(w, vinePos, JourneyBlocks.caveVine.getDefaultState());
+                    generated = true;
+                }
             }
         }
-        return true;
+
+        return generated;
     }
 }
