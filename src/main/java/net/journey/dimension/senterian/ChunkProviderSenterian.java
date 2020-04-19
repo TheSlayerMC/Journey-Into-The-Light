@@ -1,6 +1,7 @@
 package net.journey.dimension.senterian;
 
 import net.journey.dimension.senterian.room.*;
+import net.journey.dimension.senterian.room.altar.SenterianAltarRoom1;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.tileentity.TileEntity;
@@ -31,18 +32,17 @@ public class ChunkProviderSenterian implements IChunkGenerator {
 		worldObj = world;
 		random = new Random(seed);
 
-		bigRooms = new ArrayList(1);
+		bigRooms = new ArrayList(2);
 		bigRooms.add(new SenterianRoomChest());
+		bigRooms.add(new SenterianAltarRoom1());
 
 		rooms = new ArrayList(4);
 		rooms.add(new SenterianRoomHall1());
-		//Rooms.add(new SenterianRoomChest());
 		rooms.add(new SenterianRoomNPC());
 		rooms.add(new SenterianRoomSpawner1());
-		/*Rooms.add(new SenterianRoomSpawner2());
-        Rooms.add(new SenterianRoomSpawner3());
-        Rooms.add(new SenterianRoomSpawner4());*/
-		hallways = new SenterianRoomBase[]{new SenterianRoomHall2(), new SenterianRoomHall3(), new SenterianRoomMaze1(), new SenterianRoomSpawner2(world)};
+		
+		hallways = new SenterianRoomBase[]{new SenterianRoomHall2(), new SenterianRoomHall3(), new SenterianRoomMaze1(), new SenterianRoomMaze2(), new SenterianRoomSpawner2(world)};
+		
 		stairs = new SenterianRoomStairs();
 		ceiling = new SenterianCeiling();
 		this.chunkTileEntityMap = new HashMap();
