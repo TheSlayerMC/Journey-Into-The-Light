@@ -11,7 +11,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @Mod.EventBusSubscriber
-public class LootTableEventHandler {
+public class LootTableEvent {
 
     /**
      * placeholder for future resource locations
@@ -19,14 +19,14 @@ public class LootTableEventHandler {
      * ex:
      * ResourceLocation BATTLE_HEART_LOOT = new ResourceLocation("journey", "loot_tables/misc/battle_heart_loot");
      */
-    public static final ResourceLocation BASE_DUNGEON = new ResourceLocation("journey", "chests/overworld/base_dungeon");
+    public static final ResourceLocation TEST = new ResourceLocation("journey", "chests/test");
     /**
      * placeholder for LootTable pool names
      * TODO: replace with proper pool name
      * ex:
      * String DUNGEON_POOL = new String("journey_dungeon_loot");
      */
-    public static final String BASE_DUNGEON_POOL = "journey_base_dungeon";
+    public static final String TESTPOOL = "journey_dungeon_loot";
 
     /**
      * injects custom journey loot tables into vanilla or 3rd party loot tables
@@ -36,7 +36,7 @@ public class LootTableEventHandler {
     @SubscribeEvent
     public static void addLootToTable(LootTableLoadEvent event) {
         if (event.getName().toString().equals("minecraft:chests/village_blacksmith")) {
-            event.getTable().addPool(new LootPool(new LootEntry[]{new LootEntryTable(BASE_DUNGEON, 1, 1, new LootCondition[0], BASE_DUNGEON_POOL)}, new LootCondition[0], new RandomValueRange(1), new RandomValueRange(0, 1), BASE_DUNGEON_POOL));
+            event.getTable().addPool(new LootPool(new LootEntry[]{new LootEntryTable(TEST, 1, 1, new LootCondition[0], TESTPOOL)}, new LootCondition[0], new RandomValueRange(1), new RandomValueRange(0, 1), TESTPOOL));
         }
     }
 }
