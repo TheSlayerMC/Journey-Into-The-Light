@@ -1,12 +1,12 @@
 package net.journey.blocks;
 
+import net.journey.init.JourneyTabs;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -15,44 +15,36 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.ForgeHooks;
-import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.slayer.api.EnumMaterialTypes;
-import net.slayer.api.block.BlockMod;
+import net.slayer.api.block.JBlockPlant;
 
-import javax.annotation.Nullable;
 import java.util.Random;
 
-public class BlockCaveVine extends BlockMod implements IPlantable, IGrowable {
-
+public class BlockCaveVine extends JBlockPlant implements IGrowable {
+    protected static final AxisAlignedBB SEMI_BB = new AxisAlignedBB(0.30000001192092896D, 0.5D, 0.30000001192092896D, 0.699999988079071D, 1.0D, 0.699999988079071D);
+    protected static final AxisAlignedBB FULL_BB = new AxisAlignedBB(0.30000001192092896D, 0.0D, 0.30000001192092896D, 0.699999988079071D, 1.0D, 0.699999988079071D);
     public static final PropertyInteger AGE = PropertyInteger.create("age", 0, 3);
-    protected static final AxisAlignedBB BUSH_AABB = new AxisAlignedBB(0.30000001192092896D, 0.0D, 0.30000001192092896D, 0.699999988079071D, 1.0D, 0.699999988079071D);
 
-    public BlockCaveVine(String name, String f) {
-        super(EnumMaterialTypes.PLANT, name, f, 2);
+    public BlockCaveVine(String name, String enName) {
+        super(name, enName, JourneyTabs.DECORATION);
         setLightLevel(0.3F);
+        setType(EnumPlantType.Cave);
     }
 
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-        return BUSH_AABB;
-    }
-
-    @Override
-    @Nullable
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
-        return NULL_AABB;
+        return state.getValue(AGE) < 2 ? SEMI_BB : FULL_BB;
     }
 
     @Override
     public IBlockState getStateFromMeta(int meta) {
-        return this.getDefaultState().withProperty(AGE, Integer.valueOf(meta));
+        return this.getDefaultState().withProperty(AGE, Math.min(meta, 3));
     }
 
     @Override
     public int getMetaFromState(IBlockState state) {
-        return state.getValue(AGE).intValue();
+        return state.getValue(AGE);
     }
 
     @Override
@@ -62,57 +54,42 @@ public class BlockCaveVine extends BlockMod implements IPlantable, IGrowable {
 
     @Override
     public boolean canPlaceBlockAt(World world, BlockPos pos) {
-        return super.canPlaceBlockAt(world, pos) && canStay(world, pos);
+        return world.getBlockState(pos).getBlock().isReplaceable(world, pos) && canStay(world, pos);
     }
 
     @Override
     public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
         super.updateTick(world, pos, state, rand);
-        this.checkAndDropBlock(world, pos);
 
-        int size;
-
-        for (size = 1; world.getBlockState(pos.up(size)).getBlock() == this; ++size) {//todo WHAT IS THIS???
-        }
-        boolean canGrow = (rand.nextInt(5) == 0);
-
-        if (ForgeHooks.onCropsGrowPre(world, pos, state, canGrow)) {
-            int age = state.getValue(AGE).intValue();
-            if (age < 3) {
-                world.setBlockState(pos, this.getDefaultState().withProperty(AGE, Integer.valueOf(age + 1)), 2);
+        if (!world.isRemote) {
+            if (ForgeHooks.onCropsGrowPre(world, pos, state, rand.nextInt(5) == 0)) {
+                grow(world, rand, pos, state);
+                ForgeHooks.onCropsGrowPost(world, pos, state, world.getBlockState(pos));
             }
-            if (rand.nextInt(3) == 0 && size < 3 && world.getBlockState(pos.up()).getBlock() == Blocks.AIR
-                    && age >= 2) {
-                world.setBlockState(pos.up(), this.getDefaultState().withProperty(AGE, Integer.valueOf(0)), 2);
-            }
-            ForgeHooks.onCropsGrowPost(world, pos, state, world.getBlockState(pos));
         }
     }
 
     @Override
     @Deprecated
     public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos) {
-        this.checkAndDropBlock(world, pos);
+        this.checkAndDropBlock(world, pos, state);
     }
 
-    private void checkAndDropBlock(World world, BlockPos pos) {
-        if (!this.canStay(world, pos)) {
-            world.destroyBlock(pos, true);
+    @Override
+    protected void checkAndDropBlock(World worldIn, BlockPos pos, IBlockState state) {
+        if (!this.canStay(worldIn, pos)) {
+            worldIn.destroyBlock(pos, true);
         }
     }
 
     public boolean canStay(World world, BlockPos pos) {
-        return world.getBlockState(pos.up()).isSideSolid(world, pos.up(), EnumFacing.DOWN);
+        IBlockState base = world.getBlockState(pos.up());
+        return (base.getBlock() == this && base.getValue(AGE) == 3) || base.isSideSolid(world, pos.up(), EnumFacing.DOWN);
     }
 
     @Override
     public boolean isLadder(IBlockState state, IBlockAccess world, BlockPos pos, EntityLivingBase entity) {
         return true;
-    }
-
-    @Override
-    public boolean isNormalCube(IBlockState state, IBlockAccess world, BlockPos pos) {
-        return false;
     }
 
     @Override
@@ -122,33 +99,23 @@ public class BlockCaveVine extends BlockMod implements IPlantable, IGrowable {
     }
 
     @Override
-    public boolean isOpaqueCube(IBlockState state) {
-        return false;
-    }
-
-    @Override
-    public boolean isFullCube(IBlockState state) {
-        return false;
-    }
-
-    @Override
     public int getPackedLightmapCoords(IBlockState state, IBlockAccess source, BlockPos pos) {
-        return 1000;
+        return 220;
     }
 
     @Override
     public boolean canGrow(World worldIn, BlockPos pos, IBlockState state, boolean isClient) {
-        return true;
+        if (state.getValue(AGE) != 3) {
+            return true;
+        }
+
+        IBlockState bottomState = worldIn.getBlockState(pos.down());
+        return bottomState.getBlock() != this && bottomState.getBlock().isReplaceable(worldIn, pos);
     }
 
     @Override
     public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, IBlockState state) {
-        return true;
-    }
-
-    @Override
-    public EnumPlantType getPlantType(IBlockAccess world, BlockPos pos) {
-        return null;
+        return canGrow(worldIn, pos, state, worldIn.isRemote);
     }
 
     @Override
@@ -163,20 +130,18 @@ public class BlockCaveVine extends BlockMod implements IPlantable, IGrowable {
 
     @Override
     public void grow(World worldIn, Random rand, BlockPos pos, IBlockState state) {
-        int age = state.getValue(AGE).intValue();
-        IBlockState bottom = worldIn.getBlockState(pos.down());
-
-        if (age < 2) {
-            int setMeta = rand.nextInt(2) + 1 + age;
-            worldIn.setBlockState(pos, this.getDefaultState().withProperty(AGE, Integer.valueOf(setMeta)), 4);
-            return;
+        if (!worldIn.isRemote && rand.nextInt(2) == 0) {
+            growInstant(worldIn, pos, state);
         }
+    }
 
-        if (bottom == null || worldIn.isAirBlock(pos.down())) {
-            if (rand.nextInt(1) == 0) {
-                worldIn.setBlockState(pos.down(), this.getDefaultState().withProperty(AGE, Integer.valueOf(0)), 2);
-            }
-            return;
+    private void growInstant(World worldIn, BlockPos pos, IBlockState state) {
+        int age = state.getValue(AGE);
+
+        if (age < 3) {
+            worldIn.setBlockState(pos, this.getDefaultState().withProperty(AGE, age + 1));
+        } else if (canGrow(worldIn, pos, state, false)) {
+            worldIn.setBlockState(pos.down(), this.getDefaultState().withProperty(AGE, 0));
         }
     }
 }

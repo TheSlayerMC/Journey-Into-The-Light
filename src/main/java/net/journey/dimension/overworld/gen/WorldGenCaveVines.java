@@ -1,5 +1,7 @@
 package net.journey.dimension.overworld.gen;
 
+import com.google.common.primitives.Ints;
+import net.journey.blocks.BlockCaveVine;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.MathUtils;
 import net.minecraft.util.math.BlockPos;
@@ -10,6 +12,7 @@ import net.slayer.api.worldgen.WorldGenAPI;
 import java.util.Random;
 
 public class WorldGenCaveVines extends WorldGenerator {
+    private static final int[] AGES = Ints.toArray(BlockCaveVine.AGE.getAllowedValues());
 
     @Override
     public boolean generate(World w, Random r, BlockPos zeroPos) {
@@ -28,7 +31,7 @@ public class WorldGenCaveVines extends WorldGenerator {
             for (int j = 0; j < 16; ++j) {
                 BlockPos vinePos = vineGroupPos.add(r.nextInt(4) - r.nextInt(4), r.nextInt(4) - 2, r.nextInt(4) - r.nextInt(4));
                 if (w.isAirBlock(vinePos) && JourneyBlocks.caveVine.canPlaceBlockAt(w, vinePos)) {
-                    setBlockAndNotifyAdequately(w, vinePos, JourneyBlocks.caveVine.getDefaultState());
+                    setBlockAndNotifyAdequately(w, vinePos, JourneyBlocks.caveVine.getDefaultState().withProperty(BlockCaveVine.AGE, AGES[r.nextInt(AGES.length)]));
                     generated = true;
                 }
             }
