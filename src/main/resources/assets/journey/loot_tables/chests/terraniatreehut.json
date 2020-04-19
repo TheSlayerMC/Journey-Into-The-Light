@@ -5,23 +5,55 @@
     "entries": [
       {
         "type": "item",
-        "name": "journey:slugSlime",
-        "functions": [{ "function": "set_count", "count": { "min": 5, "max": 7 } }]
+        "name": "journey:slugslime",
+        "functions": [
+          {
+            "function": "set_count",
+            "count": {
+              "min": 5,
+              "max": 7
+            }
+          }
+        ]
       },
       {
         "type": "item",
-        "name": "journey:darkTerranianSoil",
-        "functions": [{ "function": "set_count", "count": { "min": 2, "max": 3 } }]
+        "name": "journey:darkterraniansoil",
+        "functions": [
+          {
+            "function": "set_count",
+            "count": {
+              "min": 2,
+              "max": 3
+            }
+          }
+        ]
       },
       {
         "type": "item",
-        "name": "journey:lightTerranianSoil",
-        "functions": [{ "function": "set_count", "count": { "min": 2, "max": 3 } }]
+        "name": "journey:lightterraniansoil",
+        "functions": [
+          {
+            "function": "set_count",
+            "count": {
+              "min": 2,
+              "max": 3
+            }
+          }
+        ]
       },
       {
         "type": "item",
-        "name": "journey:earthenCrystal",
-        "functions": [{ "function": "set_count", "count": { "min": 3, "max": 9 } }]
+        "name": "journey:earthencrystal",
+        "functions": [
+          {
+            "function": "set_count",
+            "count": {
+              "min": 3,
+              "max": 9
+            }
+          }
+        ]
       }
     ]
   }]
