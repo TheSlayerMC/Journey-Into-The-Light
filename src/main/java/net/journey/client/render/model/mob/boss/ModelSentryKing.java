@@ -137,8 +137,8 @@ public class ModelSentryKing extends ModelBase {
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
 		super.render(entity, f, f1, f2, f3, f4, f5);
 		EntitySentryKing king = (EntitySentryKing)entity;
-		int health = (int)king.getHealth();
-		if(health >= 2250) {
+		int healthDecimal = (int)king.getHealth() / king.getMaxHealth;
+		if(healthDecimal >= 0.9) {
 			Head1.render(f5);
 			Head2.render(f5);
 			Head3.render(f5);
@@ -157,7 +157,7 @@ public class ModelSentryKing extends ModelBase {
 			juncture7.render(f5);
 			juncture8.render(f5);
 		}
-		else if(health >= 2000) {
+		else if(healthDecimal >= 0.8) {
 			Head2.render(f5);
 			Head3.render(f5);
 			Head4.render(f5);
@@ -173,7 +173,7 @@ public class ModelSentryKing extends ModelBase {
 			juncture7.render(f5);
 			juncture8.render(f5);
 		}
-		else if(health >= 1750) {
+		else if(healthDecimal >= 0.7) {
 			Head3.render(f5);
 			Head4.render(f5);
 			Head5.render(f5);
@@ -187,7 +187,7 @@ public class ModelSentryKing extends ModelBase {
 			juncture7.render(f5);
 			juncture8.render(f5);
 		}
-		else if(health >= 1500) {
+		else if(healthDecimal >= 0.6) {
 			Head4.render(f5);
 			Head5.render(f5);
 			Head6.render(f5);
@@ -199,7 +199,7 @@ public class ModelSentryKing extends ModelBase {
 			juncture7.render(f5);
 			juncture8.render(f5);
 		}
-		else if(health >= 1250) {
+		else if(healthDecimal >= 0.5) {
 			Head5.render(f5);
 			Head6.render(f5);
 			Head7.render(f5);
@@ -209,7 +209,7 @@ public class ModelSentryKing extends ModelBase {
 			juncture7.render(f5);
 			juncture8.render(f5);
 		}
-		else if(health >= 1000) {
+		else if(healthDecimal >= 0.4) {
 			Head5.render(f5);
 			Head7.render(f5);
 			CentralHead.render(f5);
@@ -217,19 +217,19 @@ public class ModelSentryKing extends ModelBase {
 			juncture7.render(f5);
 			juncture8.render(f5);
 		}
-		else if(health >= 750) {
+		else if(healthDecimal >= 0.3) {
 			Head5.render(f5);
 			CentralHead.render(f5);
 			Head8.render(f5);
 			juncture7.render(f5);
 			juncture8.render(f5);
 		}
-		else if(health >= 500) {
+		else if(healthDecimal >= 0.2) {
 			CentralHead.render(f5);
 			Head8.render(f5);
 			juncture8.render(f5);
 		}
-		else if(health >= 0) {
+		else if(healthDecimal >= 0) {
 			CentralHead.render(f5);
 		}
 	}
