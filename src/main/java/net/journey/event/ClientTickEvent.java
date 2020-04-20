@@ -6,6 +6,7 @@ import net.journey.client.server.EssenceProvider;
 import net.journey.client.server.IEssence;
 import net.journey.init.items.JourneyArmory;
 import net.journey.items.ItemGun;
+import net.journey.items.ItemHammer;
 import net.journey.items.ItemStaff;
 import net.journey.items.ItemTeleport;
 import net.journey.util.Config;
@@ -99,8 +100,11 @@ public class ClientTickEvent {
     private void onTickRender(EntityPlayer player) {
         Minecraft mc = Minecraft.getMinecraft();
         if (player != null) {
-            if (mc.currentScreen == null && player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() instanceof ItemStaff
-                    || player.getHeldItemMainhand().getItem() instanceof ItemTeleport || player.getHeldItemMainhand().getItem() instanceof ItemGun) {
+            if (mc.currentScreen == null && player.getHeldItemMainhand() != null && 
+            		player.getHeldItemMainhand().getItem() instanceof ItemStaff || 
+            		player.getHeldItemMainhand().getItem() instanceof ItemTeleport || 
+            		player.getHeldItemMainhand().getItem() instanceof ItemGun || 
+            		player.getHeldItemMainhand().getItem() instanceof ItemHammer) {
                 IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
                 GL11.glPushMatrix();
                 GlStateManager.enableBlend();
