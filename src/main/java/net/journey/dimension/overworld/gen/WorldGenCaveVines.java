@@ -17,23 +17,18 @@ public class WorldGenCaveVines extends WorldGenerator {
     @Override
     public boolean generate(World w, Random r, BlockPos zeroPos) {
         boolean generated = false;
-        zeroPos = WorldGenAPI.optimize(zeroPos);
+        BlockPos vineGroupPos = WorldGenAPI.optimizeAndRandomize(zeroPos, r);
 
-        //attempts to gen such count of groups
-        for (int i = 0; i < 55; i++) {
-            BlockPos vineGroupPos = WorldGenAPI.randomize(zeroPos, r);
+        int coercedY = MathUtils.coerceInRange(WorldGenAPI.findPosAboveSurface(w, vineGroupPos).getY(), 1, 60);
+        int genY = r.nextInt(coercedY) + 1;
+        vineGroupPos = WorldGenAPI.getPosWithHeight(vineGroupPos, genY);
 
-            int coercedY = MathUtils.coerceInRange(WorldGenAPI.findPosAboveSurface(w, vineGroupPos).getY(), 1, 60);
-            int genY = r.nextInt(coercedY) + 1;
-            vineGroupPos = WorldGenAPI.getPosWithHeight(vineGroupPos, genY);
-
-            //attempts to gen around one group
-            for (int j = 0; j < 16; ++j) {
-                BlockPos vinePos = vineGroupPos.add(r.nextInt(4) - r.nextInt(4), r.nextInt(4) - 2, r.nextInt(4) - r.nextInt(4));
-                if (w.isAirBlock(vinePos) && JourneyBlocks.caveVine.canPlaceBlockAt(w, vinePos)) {
-                    setBlockAndNotifyAdequately(w, vinePos, JourneyBlocks.caveVine.getDefaultState().withProperty(BlockCaveVine.AGE, AGES[r.nextInt(AGES.length)]));
-                    generated = true;
-                }
+        //attempts to gen around one group
+        for (int j = 0; j < 16; ++j) {
+            BlockPos vinePos = vineGroupPos.add(r.nextInt(4) - r.nextInt(4), r.nextInt(4) - 2, r.nextInt(4) - r.nextInt(4));
+            if (w.isAirBlock(vinePos) && JourneyBlocks.caveVine.canPlaceBlockAt(w, vinePos)) {
+                setBlockAndNotifyAdequately(w, vinePos, JourneyBlocks.caveVine.getDefaultState().withProperty(BlockCaveVine.AGE, AGES[r.nextInt(AGES.length)]));
+                generated = true;
             }
         }
 

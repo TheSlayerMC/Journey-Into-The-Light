@@ -507,11 +507,17 @@ public class WorldGenJourney implements IWorldGenerator {
             BOGBERRY_BUSH_GEN.getValue().generate(w, rand, startPos);
         }
 
-        TALL_GLOWSHROOMS_GEN.getValue().generate(w, rand, startPos);
+        for (int i = 0; i < 64; i++) {
+            TALL_GLOWSHROOMS_GEN.getValue().generate(w, rand, startPos);
+        }
 
-        CAVE_VINE_GEN.getValue().generate(w, rand, startPos);
+        for (int i = 0; i < 55; i++) {
+            CAVE_VINE_GEN.getValue().generate(w, rand, startPos);
+        }
 
-        SMALL_GLOWSHROOMS.getValue().generate(w, rand, startPos);
+        for (int i = 0; i < 64; i++) {
+            SMALL_GLOWSHROOMS.getValue().generate(w, rand, startPos);
+        }
 
         if (rand.nextInt(3) == 0) {
             SHADIUM_ORE_GEN.getValue().generate(w, rand, startPos);
