@@ -17,6 +17,6 @@ public class BlockGlowshroom extends JBlockPlant {
 
     @Override
     public int getPackedLightmapCoords(IBlockState state, IBlockAccess source, BlockPos pos) {
-        return 220;
+        return 14500000;
     }
 }

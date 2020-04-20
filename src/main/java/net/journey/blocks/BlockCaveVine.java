@@ -100,7 +100,7 @@ public class BlockCaveVine extends JBlockPlant implements IGrowable {
 
     @Override
     public int getPackedLightmapCoords(IBlockState state, IBlockAccess source, BlockPos pos) {
-        return 220;
+        return 14500000;
     }
 
     @Override
