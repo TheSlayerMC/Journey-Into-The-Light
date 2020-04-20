@@ -306,8 +306,8 @@ public class ChunkProviderFrozenLands implements IChunkGenerator {
 		}
 
 		for (times = 0; times < 100; times++) {
-			int randX = i * 16 + 8 + rand.nextInt(5);
-			int randZ = j * 16 + 8 + rand.nextInt(5);
+            int randX = i * 16 + 8 + rand.nextInt(16);
+            int randZ = j * 16 + 8 + rand.nextInt(16);
 			int randY = rand.nextInt(bottomYMax) + 1;
 			if (isBlockTop(randX, randY - 1, randZ, JourneyBlocks.frozenGrass)) {
 				largeBottomTrees[rand.nextInt(largeBottomTrees.length)].generate(worldObj, rand, new BlockPos(randX, randY, randZ));
@@ -315,17 +315,17 @@ public class ChunkProviderFrozenLands implements IChunkGenerator {
 		}
 
 		for (times = 0; times < 250; times++) {
-			int randX = i * 16 + 8 + rand.nextInt(8);
-			int randZ = j * 16 + 8 + rand.nextInt(8);
+            int randX = i * 16 + 8 + rand.nextInt(16);
+            int randZ = j * 16 + 8 + rand.nextInt(16);
 			int randY = rand.nextInt(topYMax) + 1;
 			if (isBlockTop(randX, randY - 1, randZ, JourneyBlocks.frozenGrass)) {
 				smallBottomTrees[rand.nextInt(largeBottomTrees.length)].generate(worldObj, rand, new BlockPos(randX, randY, randZ));
 			}
 		}
 
-		for (times = 0; times < 50; times++) {
-			int randX = i * 16 + 8 + rand.nextInt(16);
-			int randZ = j * 16 + 8 + rand.nextInt(16);
+		for (times = 0; times < 100; times++) {
+            int randX = i * 16 + 8 + rand.nextInt(16);
+            int randZ = j * 16 + 8 + rand.nextInt(16);
 			int randY = rand.nextInt(topYMax) + 1;
 			if (isBlockTop(randX, randY - 1, randZ, JourneyBlocks.brittleIce)) {
 				topTrees[rand.nextInt(topTrees.length)].generate(worldObj, rand, new BlockPos(randX, randY, randZ));
@@ -336,8 +336,13 @@ public class ChunkProviderFrozenLands implements IChunkGenerator {
 			generateStructure(x1, z1, JourneyBlocks.frozenGrass, house);
 		}
 
-		for (times = 0; times < 80; times++) {
-			generateStructure(x1, z1, JourneyBlocks.frozenGrass, lamp);
+		for (times = 0; times < 20; times++) {
+            int randX = i * 16 + 8 + rand.nextInt(16);
+            int randZ = j * 16 + 8 + rand.nextInt(16);
+			int randY = rand.nextInt(bottomYMax) + 1;
+			if (isBlockTop(randX, randY - 1, randZ, JourneyBlocks.frozenGrass)) {
+				lamp.generate(worldObj, rand, new BlockPos(randX, randY, randZ));
+			}
 		}
 
 		for (times = 0; times < 8; times++) {
