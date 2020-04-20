@@ -51,9 +51,9 @@ public class ChunkProviderDepths implements IChunkGenerator {
     private WorldGenModFlower flower2 = new WorldGenModFlower(JourneyBlocks.depthsBlueFlower, JourneyBlocks.depthsGrass, false);
     private WorldGenDepthsLights lights = new WorldGenDepthsLights();
     private WorldGenDepthsLights.WorldGendepthsLights2 lights2 = new WorldGenDepthsLights.WorldGendepthsLights2();
-    private WorldGenDepthsTree tree = new WorldGenDepthsTree(true);
-    private WorldGenDepthsTree1 tree1 = new WorldGenDepthsTree1(true);
-    private WorldGenDepthsTree2 tree2 = new WorldGenDepthsTree2(true);
+    private WorldGenDepthsTree tree = new WorldGenDepthsTree();
+    private WorldGenDepthsTree1 tree1 = new WorldGenDepthsTree1();
+    private WorldGenDepthsTree2 tree2 = new WorldGenDepthsTree2();
     private WorldGenPlant2 plant2 = new WorldGenPlant2(true);
     private WorldGenPlant3 plant3 = new WorldGenPlant3(true);
     private WorldGenDarkbloom darkbloom = new WorldGenDarkbloom();
@@ -107,6 +107,7 @@ public class ChunkProviderDepths implements IChunkGenerator {
         IBlockState grass = JourneyBlocks.depthsGrass.getDefaultState();
         IBlockState filler = JourneyBlocks.depthsDirt.getDefaultState();
         IBlockState stone = JourneyBlocks.depthsStone.getDefaultState();
+        
         for (int k = 0; k < 4; ++k) {
             int l = k * 5;
             int i1 = (k + 1) * 5;
@@ -321,13 +322,13 @@ public class ChunkProviderDepths implements IChunkGenerator {
         int z1 = cz * 16;
         int i, times;
 
-        WorldGenerator[] trees = new WorldGenerator[]{tree, tree1, tree2};
+       WorldGenerator[] trees = new WorldGenerator[]{tree, tree1, tree2};
 
         int top = 64;
         int bottom = 0;
 
         BlockPos chunkStart = new BlockPos(x1, 0, z1);
-        for (i = 0; i < 20; i++) {
+        for (i = 0; i < 15; i++) {
             floorgems.generate(worldObj, rand, new BlockPos(x1, rand.nextInt(250), z1));
         }
 
@@ -341,7 +342,7 @@ public class ChunkProviderDepths implements IChunkGenerator {
             des.generate(worldObj, rand, new BlockPos(x1, rand.nextInt(250), z1));
         }
 
-        for (times = 0; times < 100; times++) {
+         for (times = 0; times < 100; times++) {
             int randX = cx * 16 + 8 + rand.nextInt(16);
             int randZ = cz * 16 + 8 + rand.nextInt(16);
             int randY = rand.nextInt(80) + 1;
@@ -350,7 +351,7 @@ public class ChunkProviderDepths implements IChunkGenerator {
             }
         }
 
-        for (i = 0; i < 15; i++) {
+         for (i = 0; i < 15; i++) {
             lights.generate(this.worldObj, rand, WorldGenAPI.createRandom(x1, 4, 120, z1, rand, 16));
             lights2.generate(this.worldObj, rand, WorldGenAPI.createRandom(x1, 4, 120, z1, rand, 16));
         }
