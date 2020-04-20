@@ -25,7 +25,7 @@ public class JBlockPlant extends BlockBush implements IWithCustomItemPath {
     public JBlockPlant(EnumMaterialTypes type, String name, String enName, CreativeTabs tab) {
         super(type.getMaterial());
         setSoundType(type.getSound());
-        StuffConstructor.regAndSetupBlock(this, name, enName, 3.0F, tab);
+        StuffConstructor.regAndSetupBlock(this, name, enName, 0.2F, tab);
     }
 
     @Override

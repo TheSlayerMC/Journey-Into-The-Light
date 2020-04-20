@@ -1,16 +1,30 @@
 {
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cross"
+  },
   "variants": {
-    "age=0": {
-      "model": "journey:cavevine_0"
-    },
-    "age=1": {
-      "model": "journey:cavevine_1"
-    },
-    "age=2": {
-      "model": "journey:cavevine_2"
-    },
-    "age=3": {
-      "model": "journey:cavevine_3"
+    "age": {
+      "0": {
+        "textures": {
+          "cross": "journey:blocks/cavevine_0"
+        }
+      },
+      "1": {
+        "textures": {
+          "cross": "journey:blocks/cavevine_1"
+        }
+      },
+      "2": {
+        "textures": {
+          "cross": "journey:blocks/cavevine_2"
+        }
+      },
+      "3": {
+        "textures": {
+          "cross": "journey:blocks/cavevine_3"
+        }
+      }
     }
   }
 }

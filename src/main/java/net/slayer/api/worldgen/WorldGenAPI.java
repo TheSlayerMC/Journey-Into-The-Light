@@ -418,7 +418,7 @@ public class WorldGenAPI {
     }
 
     /**
-     * Randomize the position, that comes from {@link #optimize(BlockPos)}.
+     * Randomizes the position, that comes from {@link #optimize(BlockPos)}.
      * <p>
      * This method should only be used with {@link #optimize(BlockPos)}.
      * <p>

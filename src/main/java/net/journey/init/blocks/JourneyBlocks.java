@@ -307,7 +307,7 @@ public class JourneyBlocks {
     public static BlockMod cloudiaPortalFrame;
 
     public static BlockModFire fire;
-    public static BlockMod caveVine;
+    public static BlockCaveVine caveVine;
     public static BlockMod mossyEssenceStone;
 
     public static BlockMod dungeonBrick;
