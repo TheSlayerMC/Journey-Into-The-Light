@@ -326,7 +326,7 @@ public class ChunkProviderFrozenLands implements IChunkGenerator {
             generateStructure(x1, z1, JourneyBlocks.frozenGrass, house);
         }
 
-        for (times = 0; times < 8; times++) {
+        for (times = 0; times < 25; times++) {
             generateStructure(x1, z1, JourneyBlocks.frozenGrass, lamp);
         }
 
