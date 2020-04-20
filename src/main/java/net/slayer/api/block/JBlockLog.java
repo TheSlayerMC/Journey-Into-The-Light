@@ -2,7 +2,7 @@ package net.slayer.api.block;
 
 import net.journey.api.block.IWithCustomItemPath;
 import net.journey.init.JourneyTabs;
-import net.journey.util.StuffConstructor;
+import net.journey.util.core.StuffConstructor;
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;

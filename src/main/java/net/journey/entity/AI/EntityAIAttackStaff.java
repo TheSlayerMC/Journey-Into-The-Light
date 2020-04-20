@@ -1,6 +1,6 @@
 package net.journey.entity.AI;
 
-import net.journey.items.ItemStaff;
+import net.journey.items.ranged.ItemStaff;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.ai.EntityAIBase;

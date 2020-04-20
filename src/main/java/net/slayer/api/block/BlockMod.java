@@ -4,7 +4,7 @@ import net.journey.JITL;
 import net.journey.enums.EnumParticlesClasses;
 import net.journey.init.JourneyTabs;
 import net.journey.init.blocks.JourneyBlocks;
-import net.journey.util.StuffConstructor;
+import net.journey.util.core.StuffConstructor;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;

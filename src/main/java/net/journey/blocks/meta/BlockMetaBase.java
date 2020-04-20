@@ -1,11 +1,11 @@
 package net.journey.blocks.meta;
 
 import net.journey.JITL;
-import net.journey.client.IHasModel;
+import net.journey.client.api.IHasModel;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.init.items.JourneyItems;
-import net.journey.util.EnumTypeHandler;
-import net.journey.util.IMetaName;
+import net.journey.util.api.IMetaName;
+import net.journey.util.handler.EnumTypeHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;

@@ -1,6 +1,6 @@
 package net.journey.dimension.depths;
 
-import net.journey.dimension.WorldGenStructure;
+import net.journey.dimension.base.gen.WorldGenStructure;
 import net.journey.dimension.depths.gen.*;
 import net.journey.dimension.overworld.gen.WorldGenModFlower;
 import net.journey.init.blocks.JourneyBlocks;

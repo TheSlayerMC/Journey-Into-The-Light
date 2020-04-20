@@ -1,7 +1,7 @@
 package net.journey.util.recipes;
 
 import net.journey.init.blocks.JourneyBlocks;
-import net.journey.init.blocks.JourneyCrops;
+import net.journey.init.common.JourneyCrops;
 import net.journey.init.items.JourneyArmory;
 import net.journey.init.items.JourneyConsumables;
 import net.journey.init.items.JourneyItems;

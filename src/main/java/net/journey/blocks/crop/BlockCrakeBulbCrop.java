@@ -1,6 +1,6 @@
 package net.journey.blocks.crop;
 
-import net.journey.init.blocks.JourneyCrops;
+import net.journey.init.common.JourneyCrops;
 import net.journey.init.items.JourneyConsumables;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.item.Item;

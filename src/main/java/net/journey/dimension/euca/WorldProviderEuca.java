@@ -1,7 +1,7 @@
 package net.journey.dimension.euca;
 
-import net.journey.dimension.DimensionHelper;
 import net.journey.dimension.base.BaseWorldProvider;
+import net.journey.dimension.base.DimensionHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.biome.BiomeProviderSingle;

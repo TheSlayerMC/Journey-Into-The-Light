@@ -3,7 +3,7 @@ package net.journey.dimension.frozen;
 import net.journey.dimension.frozen.gen.*;
 import net.journey.dimension.overworld.gen.WorldGenModFlower;
 import net.journey.init.blocks.JourneyBlocks;
-import net.journey.util.Helper;
+import net.journey.util.handler.Helper;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockStateMatcher;

@@ -1,13 +1,13 @@
 package net.journey;
 
 import net.journey.blocks.tileentity.TileEntityHandler;
-import net.journey.client.IHasModel;
+import net.journey.client.api.IHasModel;
 import net.journey.init.JourneyEnchantments;
 import net.journey.init.JourneySounds;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.init.items.JourneyItems;
 import net.journey.util.EntityRegistry;
-import net.journey.util.LogHelper;
+import net.journey.util.handler.LogHelper;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.Item;

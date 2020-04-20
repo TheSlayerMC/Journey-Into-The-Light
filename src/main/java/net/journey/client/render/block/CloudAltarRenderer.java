@@ -1,7 +1,7 @@
 package net.journey.client.render.block;
 
+import net.journey.client.render.Textures;
 import net.journey.client.render.model.block.ModelCloudAltar;
-import net.journey.util.Textures;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderItem;

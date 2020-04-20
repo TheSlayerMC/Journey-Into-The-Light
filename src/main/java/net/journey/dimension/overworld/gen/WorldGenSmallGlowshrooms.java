@@ -1,7 +1,7 @@
 package net.journey.dimension.overworld.gen;
 
 import net.journey.init.blocks.JourneyBlocks;
-import net.journey.util.MathUtils;
+import net.journey.util.core.MathUtils;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;

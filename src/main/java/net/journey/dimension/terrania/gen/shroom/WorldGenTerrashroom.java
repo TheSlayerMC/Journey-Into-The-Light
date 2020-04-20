@@ -1,6 +1,6 @@
 package net.journey.dimension.terrania.gen.shroom;
 
-import net.journey.blocks.BlockJourneyMushroom;
+import net.journey.blocks.plant.BlockJourneyMushroom;
 import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;

@@ -1,7 +1,7 @@
 package net.journey.dimension.corba.gen;
 
 import net.journey.init.blocks.JourneyBlocks;
-import net.journey.init.blocks.JourneyCrops;
+import net.journey.init.common.JourneyCrops;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;

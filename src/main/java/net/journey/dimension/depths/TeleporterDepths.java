@@ -1,7 +1,7 @@
 package net.journey.dimension.depths;
 
 import net.journey.blocks.portal.BlockDepthsPortalFrame;
-import net.journey.dimension.DimensionHelper;
+import net.journey.dimension.base.DimensionHelper;
 import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;

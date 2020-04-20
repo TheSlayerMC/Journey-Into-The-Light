@@ -1,8 +1,8 @@
 package net.journey.client.render.mob;
 
-import net.journey.client.render.RenderModMob;
+import net.journey.client.render.Textures;
+import net.journey.client.render.base.RenderModMob;
 import net.journey.entity.mob.pet.EntityEucaHopper;
-import net.journey.util.Textures;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;

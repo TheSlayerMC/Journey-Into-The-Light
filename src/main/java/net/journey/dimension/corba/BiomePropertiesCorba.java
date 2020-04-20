@@ -1,6 +1,6 @@
 package net.journey.dimension.corba;
 
-import net.journey.dimension.DimensionHelper;
+import net.journey.dimension.base.DimensionHelper;
 import net.minecraft.world.biome.Biome.BiomeProperties;
 
 public class BiomePropertiesCorba extends BiomeProperties {

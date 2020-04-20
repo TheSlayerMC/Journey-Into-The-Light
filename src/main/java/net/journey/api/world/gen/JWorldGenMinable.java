@@ -1,6 +1,6 @@
 package net.journey.api.world.gen;
 
-import net.journey.util.MathUtils;
+import net.journey.util.core.MathUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockStone;
 import net.minecraft.block.state.IBlockState;

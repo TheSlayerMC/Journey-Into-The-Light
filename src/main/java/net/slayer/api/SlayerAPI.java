@@ -1,7 +1,7 @@
 package net.slayer.api;
 
 import net.journey.JITL;
-import net.journey.client.ChatHandler;
+import net.journey.client.handler.ChatHandler;
 import net.journey.util.Config;
 import net.journey.util.LangHelper;
 import net.journey.util.LangRegistry;

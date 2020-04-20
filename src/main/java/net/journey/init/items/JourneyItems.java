@@ -2,6 +2,13 @@ package net.journey.init.items;
 
 import net.journey.init.JourneySounds;
 import net.journey.items.*;
+import net.journey.items.interactive.ItemCrafting;
+import net.journey.items.interactive.ItemDarkGem;
+import net.journey.items.interactive.ItemDemonicEye;
+import net.journey.items.interactive.ItemNetherBossSpawner;
+import net.journey.items.interactive.ItemPresent;
+import net.journey.items.interactive.ItemSentryEye;
+import net.journey.items.interactive.ItemSpecificDimensionSpawner;
 import net.journey.util.Config;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;

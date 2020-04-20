@@ -1,7 +1,7 @@
 package net.slayer.api.block;
 
 import net.journey.blocks.tileentity.TileEntityNetherFurnace;
-import net.journey.client.GuiHandler;
+import net.journey.client.handler.GuiHandler;
 import net.journey.init.JourneyTabs;
 import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.block.properties.PropertyDirection;

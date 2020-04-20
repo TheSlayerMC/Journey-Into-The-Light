@@ -2,6 +2,9 @@ package net.journey.proxy;
 
 import net.journey.JITL;
 import net.journey.client.*;
+import net.journey.client.handler.BossTickHandler;
+import net.journey.client.handler.GuiHandler;
+import net.journey.client.render.EntityRendering;
 import net.journey.client.render.particles.OreParticleFX;
 import net.journey.dimension.boil.BoilSkyRenderer;
 import net.journey.dimension.cloudia.CloudiaSkyRenderer;

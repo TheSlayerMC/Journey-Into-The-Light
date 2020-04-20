@@ -1,7 +1,7 @@
 package net.journey.dimension.depths;
 
-import net.journey.dimension.DimensionHelper;
 import net.journey.dimension.base.BaseWorldProvider;
+import net.journey.dimension.base.DimensionHelper;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.biome.BiomeProviderSingle;
 import net.minecraft.world.gen.IChunkGenerator;
