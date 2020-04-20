@@ -82,25 +82,25 @@ public class EntitySentryKing extends EntityEssenceBoss implements IRangedAttack
     }
 
     public void onLivingUpdate() {
-        if (this.getHealth() >= 2250) {
+        if (this.getHealth() / this.getMaxHealth() >= 0.9) {
             speedPhase = 0.0001953125f;
-        } else if (this.getHealth() >= 2000) {
+        } else if (this.getHealth() / this.getMaxHealth() >= 0.8) {
             speedPhase = 0.125f;
-        } else if (this.getHealth() >= 1750) {
+        } else if (this.getHealth() / this.getMaxHealth() >= 0.7) {
             speedPhase = 0.1875f;
-        } else if (this.getHealth() >= 1500) {
+        } else if (this.getHealth() / this.getMaxHealth() >= 0.6) {
             speedPhase = 0.25f;
-        } else if (this.getHealth() >= 1250) {
+        } else if (this.getHealth() / this.getMaxHealth() >= 0.5) {
             speedPhase = 0.375f;
-        } else if (this.getHealth() >= 1000) {
+        } else if (this.getHealth() / this.getMaxHealth() >= 0.4) {
             speedPhase = 0.5f;
-        } else if (this.getHealth() >= 750) {
+        } else if (this.getHealth() / this.getMaxHealth() >= 0.3) {
             speedPhase = 0.75f;
-        } else if (this.getHealth() >= 500) {
+        } else if (this.getHealth() / this.getMaxHealth() >= 0.2) {
             speedPhase = 1f;
-        } else if (this.getHealth() >= 250) {
+        } else if (this.getHealth() / this.getMaxHealth() >= 0.1) {
             speedPhase = 1.25f;
-        } else if (this.getHealth() >= 0) {
+        } else if (this.getHealth() / this.getMaxHealth() >= 0) {
             speedPhase = 1.5f;
         }
         if (this.getAttackTarget() != null) {
