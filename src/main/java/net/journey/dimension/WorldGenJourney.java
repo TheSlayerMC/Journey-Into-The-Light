@@ -1,5 +1,6 @@
 package net.journey.dimension;
 
+import net.journey.api.world.gen.JWorldGenMinable;
 import net.journey.dimension.base.gen.WorldGenAncientBlock;
 import net.journey.dimension.boil.gen.WorldGenBoilingFire;
 import net.journey.dimension.boil.gen.WorldGenBoilingLava;
@@ -20,8 +21,6 @@ import net.minecraft.util.LazyLoadBase;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeProvider;
-import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.feature.WorldGenMinable;
@@ -45,7 +44,7 @@ public class WorldGenJourney implements IWorldGenerator {
     private static final LazyLoadBase<WorldGenMinable> storonOre;
     private static final LazyLoadBase<WorldGenMinable> koriteOre;
     private static final LazyLoadBase<WorldGenMinable> mekyumOre;
-    private static final LazyLoadBase<WorldGenMinable> shadiumOre;
+    private static final LazyLoadBase<JWorldGenMinable> SHADIUM_ORE_GEN = create(() -> JWorldGenMinable.create(JourneyBlocks.shadiumOre, 6, 13, Blocks.STONE));
     private static final LazyLoadBase<WorldGenMinable> luniumOre;
     private static final LazyLoadBase<WorldGenMinable> sapphireOre;
     private static final LazyLoadBase<WorldGenMinable> iridiumOre;
@@ -93,7 +92,6 @@ public class WorldGenJourney implements IWorldGenerator {
         cloudiaRock = create(JourneyBlocks.cloudiaRock, 40, Blocks.AIR);
         luniteOre = create(JourneyBlocks.luniteOre, 10, JourneyBlocks.cloudiaRock);
 
-        shadiumOre = create(JourneyBlocks.shadiumOre, 6, Blocks.STONE);
         luniumOre = create(JourneyBlocks.luniumOre, 7, Blocks.STONE);
         sapphireOre = create(JourneyBlocks.sapphireOre, 5, Blocks.STONE);
         iridiumOre = create(JourneyBlocks.iridiumOre, 4, Blocks.STONE);
@@ -244,13 +242,13 @@ public class WorldGenJourney implements IWorldGenerator {
         int dim = w.provider.getDimension();
         switch (dim) {
             case -1:
-                generateNether(w, r, chunkX * 16, chunkZ * 16);
+                generateNether(w, random, chunkX * 16, chunkZ * 16);
                 break;
             case 0:
-                generateOverworld(w, r, chunkX, chunkZ);
+                generateOverworld(w, random, chunkX, chunkZ);
                 break;
             case 1:
-                generateEnd(w, r, chunkX * 16, chunkZ * 16);
+                generateEnd(w, random, chunkX * 16, chunkZ * 16);
                 break;
         }
         if (dim == Config.boil) generateBoilingPoint(w, r, chunkX * 16, chunkZ * 16);
@@ -266,8 +264,6 @@ public class WorldGenJourney implements IWorldGenerator {
         int x, y, z;
         int times;
         BlockPos pos = new BlockPos(chunkX, 0, chunkZ);
-        Chunk chunk = w.getChunk(pos);
-        BiomeProvider chunkManager = w.getBiomeProvider();
 
         for (times = 0; times < 10; times++) {
             y = r.nextInt(128) + 1;
@@ -513,16 +509,14 @@ public class WorldGenJourney implements IWorldGenerator {
 
         TALL_GLOWSHROOMS_GEN.getValue().generate(w, rand, startPos);
 
-        CAVE_VINE_GEN.getValue().generate(w, r, startPos);
+        CAVE_VINE_GEN.getValue().generate(w, rand, startPos);
 
         SMALL_GLOWSHROOMS.getValue().generate(w, rand, startPos);
 
-        if (r.nextInt(3) == 0) {
-            y = r.nextInt(13);
-            x = posX + r.nextInt(16);
-            z = posZ + r.nextInt(16);
-            shadiumOre.getValue().generate(w, r, new BlockPos(x, y, z));
+        if (rand.nextInt(3) == 0) {
+            SHADIUM_ORE_GEN.getValue().generate(w, rand, startPos);
         }
+
         if (r.nextInt(3) == 0) {
             y = r.nextInt(26);
             x = posX + r.nextInt(16);
