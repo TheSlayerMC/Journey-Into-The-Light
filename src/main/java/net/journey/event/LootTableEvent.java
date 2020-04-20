@@ -16,7 +16,7 @@ public class LootTableEvent {
     /**
      * Resource Location for loot table to be injected into vanilla loot table
      */
-    public static final ResourceLocation DUNGEON_LOOT = new ResourceLocation("journey", "chests/dungeon_loot");
+    public static final ResourceLocation DUNGEON_LOOT = new ResourceLocation("journey", "chests/overworld/dungeon_loot");
     
     /**
      * Name of pool to be selected from said loot table
