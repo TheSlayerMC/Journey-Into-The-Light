@@ -21,17 +21,25 @@ public class EntityRockiteGolem extends EntityModVillager {
 
     @Override
     public void abstractInteract(EntityPlayer p) {
-        switch (rand.nextInt(3)) {
+        switch (rand.nextInt(4)) {
             case 0:
-                SlayerAPI.addFormattedChatMessage(p, "Rockite: What could you possibly need those ingots for? Those are my only food source!");
+                SlayerAPI.addFormattedChatMessage(p, "Rockite: My weapons could give you the power of the Gods!");
                 break;
             case 1:
                 SlayerAPI.addFormattedChatMessage(p, "Rockite: What are you made out of? You don't look like rock to me.");
                 break;
             case 2:
-                SlayerAPI.addFormattedChatMessage(p, "Rockite: It gets dark down here sometimes. The glowshrooms help a bit, however.");
+                SlayerAPI.addFormattedChatMessage(p, "Rockite: It's always so dark around here. However, the Glowshrooms do help a bit.");
+                break;
+            case 3:
+                SlayerAPI.addFormattedChatMessage(p, "Rockite: Only the truest of warriors can harness the power of Essence...");
                 break;
         }
+    }
+    
+    @Override
+    public boolean canDespawn() {
+    	return true;
     }
 
     @Override
