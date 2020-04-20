@@ -48,25 +48,28 @@ public class ItemHammer extends ItemSword {
         setRegistryName(SlayerAPI.MOD_ID, name);
     }
 
-    @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand handIn) {
-        ItemStack stack = player.getHeldItem(handIn);
-        IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
-        if (!world.isRemote && mana.useEssence(usage)) {
-            JourneySounds.playSound(JourneySounds.HAMMER, world, player);
-            if (!unbreakable) stack.damageItem(1, player);
-            try {
-                EntityBasicProjectile shoot = projectile.getConstructor(World.class, EntityLivingBase.class, float.class).newInstance(world, player, damage);
-                shoot.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 3.5F, 0.2F);
-                world.spawnEntity(shoot);
-                stack.damageItem(1, player);
-                return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return new ActionResult<ItemStack>(EnumActionResult.FAIL, stack);
-    }
+	@Override
+	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand handIn) {
+		ItemStack stack = player.getHeldItem(handIn);
+		IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
+		if (mana.useEssence(usage)) {
+			JourneySounds.playSound(JourneySounds.HAMMER, world, player);
+			if (!world.isRemote) {
+				if (!unbreakable)
+					stack.damageItem(1, player);
+				try {
+					EntityBasicProjectile shoot = projectile.getConstructor(World.class, EntityLivingBase.class, float.class).newInstance(world, player, damage);
+					shoot.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 3.5F, 0.2F);
+					world.spawnEntity(shoot);
+					stack.damageItem(1, player);
+					return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return new ActionResult<ItemStack>(EnumActionResult.FAIL, stack);
+	}
 
     @Override
     public boolean isEnchantable(ItemStack stack) {
