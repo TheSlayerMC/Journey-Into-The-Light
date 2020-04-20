@@ -2,7 +2,6 @@ package net.journey.items.bows;
 
 import net.journey.entity.projectile.EntityEssenceArrow;
 import net.journey.init.items.JourneyWeapons;
-import net.journey.items.ItemModBow;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.ItemStack;

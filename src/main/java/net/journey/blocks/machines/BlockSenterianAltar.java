@@ -7,7 +7,7 @@ import net.journey.entity.mob.frozen.EntityFrozenTroll;
 import net.journey.init.JourneyTabs;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.init.items.JourneyItems;
-import net.journey.util.Helper;
+import net.journey.util.handler.Helper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
 import net.minecraft.entity.item.EntityItem;

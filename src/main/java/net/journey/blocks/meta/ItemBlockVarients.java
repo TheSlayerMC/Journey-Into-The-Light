@@ -1,6 +1,6 @@
 package net.journey.blocks.meta;
 
-import net.journey.util.IMetaName;
+import net.journey.util.api.IMetaName;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;

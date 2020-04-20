@@ -1,6 +1,6 @@
 package net.journey.dimension.boil;
 
-import net.journey.dimension.DimensionHelper;
+import net.journey.dimension.base.DimensionHelper;
 import net.minecraft.world.biome.Biome.BiomeProperties;
 
 public class BiomePropertiesBoil extends BiomeProperties {

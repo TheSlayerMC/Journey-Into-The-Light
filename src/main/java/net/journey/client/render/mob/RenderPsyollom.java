@@ -1,6 +1,6 @@
 package net.journey.client.render.mob;
 
-import net.journey.client.render.RenderSizeable;
+import net.journey.client.render.base.RenderSizeable;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;

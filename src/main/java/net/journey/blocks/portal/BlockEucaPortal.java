@@ -1,7 +1,7 @@
 package net.journey.blocks.portal;
 
 import net.journey.client.render.particles.EntityEucaPotalFX;
-import net.journey.dimension.ModTeleporter;
+import net.journey.dimension.base.ModTeleporter;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.Config;
 import net.minecraft.block.Block;

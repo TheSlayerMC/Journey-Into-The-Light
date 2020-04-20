@@ -2,7 +2,7 @@ package net.journey.dimension.nether.gen.trees;
 
 import net.journey.blocks.crop.base.BlockFruitCrop;
 import net.journey.init.blocks.JourneyBlocks;
-import net.journey.init.blocks.JourneyCrops;
+import net.journey.init.common.JourneyCrops;
 import net.minecraft.block.Block;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;

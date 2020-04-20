@@ -1,10 +1,10 @@
 package net.journey.client.render.block;
 
 import net.journey.blocks.tileentity.TileEntitySenterianAltar;
+import net.journey.client.render.Textures;
 import net.journey.client.render.model.block.ModelCloudAltar;
 import net.journey.client.render.model.block.ModelSenterianAltar;
-import net.journey.util.Helper;
-import net.journey.util.Textures;
+import net.journey.util.handler.Helper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderItem;

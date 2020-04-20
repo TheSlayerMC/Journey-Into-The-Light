@@ -1,7 +1,7 @@
 package net.journey.init;
 
-import net.journey.misc.EnchantmentHotTouch;
-import net.journey.misc.EnchantmentWaterWalk;
+import net.journey.enchantment.EnchantmentHotTouch;
+import net.journey.enchantment.EnchantmentWaterWalk;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.enchantment.Enchantment;

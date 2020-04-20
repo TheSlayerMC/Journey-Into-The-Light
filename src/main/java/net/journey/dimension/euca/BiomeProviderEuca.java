@@ -1,7 +1,7 @@
 package net.journey.dimension.euca;
 
-import net.journey.dimension.BiomeGenJourney;
-import net.journey.dimension.DimensionHelper;
+import net.journey.dimension.base.BiomeGenJourney;
+import net.journey.dimension.base.DimensionHelper;
 import net.journey.dimension.euca.layer.GenLayerEucaBiome;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;

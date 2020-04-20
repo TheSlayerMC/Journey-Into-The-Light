@@ -1,6 +1,6 @@
 package net.journey.entity;
 
-import net.journey.util.LogHelper;
+import net.journey.util.handler.LogHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
 

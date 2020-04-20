@@ -1,6 +1,6 @@
 package net.journey.entity.mob.depths.npc;
 
-import net.journey.client.GuiHandler;
+import net.journey.client.handler.GuiHandler;
 import net.journey.entity.JourneyMerchantRecipe;
 import net.journey.init.items.JourneyItems;
 import net.journey.init.items.JourneyWeapons;

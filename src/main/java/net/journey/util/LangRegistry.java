@@ -1,5 +1,6 @@
 package net.journey.util;
 
+import net.journey.enums.EnumArmor;
 import net.journey.items.ItemModArmor;
 import net.minecraft.inventory.EntityEquipmentSlot;
 

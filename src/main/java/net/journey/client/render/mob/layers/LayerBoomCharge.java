@@ -1,9 +1,9 @@
 package net.journey.client.render.mob.layers;
 
+import net.journey.client.render.Textures;
 import net.journey.client.render.mob.RenderBoomBoom;
 import net.journey.client.render.model.mob.overworld.ModelBoomBoom;
 import net.journey.entity.mob.overworld.EntityBoom;
-import net.journey.util.Textures;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.entity.EntityLivingBase;

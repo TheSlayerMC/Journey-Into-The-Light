@@ -1,10 +1,10 @@
 package net.journey.client.render.mob;
 
-import net.journey.client.render.RenderBoss;
+import net.journey.client.render.Textures;
+import net.journey.client.render.base.RenderBoss;
 import net.journey.client.render.mob.layers.LayerFourfaHeldItem;
 import net.journey.client.render.model.mob.boss.ModelFourfa;
 import net.journey.entity.mob.boss.EntityFourfa;
-import net.journey.util.Textures;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.slayer.api.SlayerAPI;

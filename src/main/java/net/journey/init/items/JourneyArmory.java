@@ -1,9 +1,9 @@
 package net.journey.init.items;
 
-import net.journey.items.ItemBonemealHoe;
+import net.journey.enums.EnumArmor;
 import net.journey.items.ItemModArmor;
-import net.journey.items.ItemMultiTool;
-import net.journey.util.EnumArmor;
+import net.journey.items.tool.ItemBonemealHoe;
+import net.journey.items.tool.ItemMultiTool;
 import net.journey.util.JourneyToolMaterial;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;

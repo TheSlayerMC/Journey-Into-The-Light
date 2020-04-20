@@ -1,9 +1,9 @@
 package net.journey.items;
 
 import net.journey.client.ArmorDescription;
+import net.journey.enums.EnumArmor;
 import net.journey.init.JourneyTabs;
 import net.journey.init.items.JourneyItems;
-import net.journey.util.EnumArmor;
 import net.journey.util.LangRegistry;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;

@@ -1,10 +1,10 @@
 package net.journey.client.render.mob;
 
-import net.journey.client.render.RenderModMob;
+import net.journey.client.render.Textures;
+import net.journey.client.render.base.RenderModMob;
 import net.journey.client.render.mob.layers.LayerBoomCharge;
 import net.journey.client.render.model.mob.overworld.ModelBoomBoom;
 import net.journey.entity.mob.overworld.EntityBoom;
-import net.journey.util.Textures;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;

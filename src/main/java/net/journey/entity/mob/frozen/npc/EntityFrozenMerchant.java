@@ -1,6 +1,6 @@
 package net.journey.entity.mob.frozen.npc;
 
-import net.journey.client.GuiHandler;
+import net.journey.client.handler.GuiHandler;
 import net.journey.entity.JourneyMerchantRecipe;
 import net.journey.init.items.JourneyArmory;
 import net.journey.init.items.JourneyItems;

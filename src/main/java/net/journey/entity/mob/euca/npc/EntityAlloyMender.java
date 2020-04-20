@@ -1,6 +1,6 @@
 package net.journey.entity.mob.euca.npc;
 
-import net.journey.client.GuiHandler;
+import net.journey.client.handler.GuiHandler;
 import net.journey.entity.JourneyMerchantRecipe;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.init.items.JourneyItems;

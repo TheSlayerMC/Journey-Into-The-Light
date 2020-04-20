@@ -1,7 +1,7 @@
 package net.journey.dimension.boil;
 
-import net.journey.dimension.DimensionHelper;
 import net.journey.dimension.base.BaseWorldProvider;
+import net.journey.dimension.base.DimensionHelper;
 import net.journey.proxy.ClientProxy;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;

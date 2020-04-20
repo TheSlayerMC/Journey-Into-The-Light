@@ -1,6 +1,6 @@
 package net.journey.dimension.frozen;
 
-import net.journey.dimension.DimensionHelper;
+import net.journey.dimension.base.DimensionHelper;
 import net.minecraft.world.biome.BiomeProviderSingle;
 
 public class BiomeProviderFrozenLands extends BiomeProviderSingle {

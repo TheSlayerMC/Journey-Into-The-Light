@@ -1,6 +1,6 @@
 package net.journey.dimension.euca.layer;
 
-import net.journey.dimension.DimensionHelper;
+import net.journey.dimension.base.DimensionHelper;
 import net.journey.util.Config;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;

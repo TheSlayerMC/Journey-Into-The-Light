@@ -1,7 +1,7 @@
 package net.journey.blocks.tileentity;
 
 import net.journey.init.items.JourneyItems;
-import net.journey.util.Helper;
+import net.journey.util.handler.Helper;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
