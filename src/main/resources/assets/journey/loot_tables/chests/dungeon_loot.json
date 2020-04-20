@@ -1,0 +1,62 @@
+ {
+  "pools": [{
+    "name": "main",
+    "rolls": 1,
+    "entries": [
+      {
+        "type": "item",
+        "name": "journey:journeyRecord",
+        "functions": [{ "function": "set_count", "count": { "min": 1, "max": 1 } }],
+        "weight": 2
+      },
+      {
+        "type": "item",
+        "name": "journey:heartSml",
+        "functions": [{ "function": "set_count", "count": { "min": 1, "max": 1 } }],
+        "weight": 3
+      },
+      {
+        "type": "item",
+        "name": "journey:heartMed",
+        "functions": [{ "function": "set_count", "count": { "min": 1, "max": 1 } }],
+        "weight": 3
+      },
+      {
+        "type": "item",
+        "name": "journey:heartLrg",
+        "functions": [{ "function": "set_count", "count": { "min": 1, "max": 1 } }],
+        "weight": 2
+      },
+      {
+        "type": "item",
+        "name": "journey:heartUlt",
+        "functions": [{ "function": "set_count", "count": { "min": 1, "max": 1 } }],
+        "weight": 1
+      },
+      {
+        "type": "item",
+        "name": "journey:sapphire",
+        "functions": [{ "function": "set_count", "count": { "min": 1, "max": 1 } }],
+        "weight": 6
+      },
+      {
+        "type": "item",
+        "name": "journey:bloodRock",
+        "functions": [{ "function": "set_count", "count": { "min": 1, "max": 3 } }],
+        "weight": 10
+      },
+      {
+        "type": "item",
+        "name": "journey:bloodBricks",
+        "functions": [{ "function": "set_count", "count": { "min": 1, "max": 2 } }],
+        "weight": 8
+      },
+      {
+        "type": "item",
+        "name": "journey:tomatoSeeds",
+        "functions": [{ "function": "set_count", "count": { "min": 2, "max": 15 } }],
+        "weight": 15
+      }
+    ]
+  }]
+}
