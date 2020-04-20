@@ -103,6 +103,7 @@ public class ChunkProviderFrozenLands implements IChunkGenerator {
         IBlockState filler = JourneyBlocks.frozenDirt.getDefaultState();
         IBlockState ice = JourneyBlocks.brittleIce.getDefaultState();
         IBlockState stone = JourneyBlocks.frozenStone.getDefaultState();
+        IBlockState water = Blocks.BEDROCK.getDefaultState();
 
         for (int k = 0; k < 4; ++k) {
             int l = k * 5;
@@ -140,6 +141,10 @@ public class ChunkProviderFrozenLands implements IChunkGenerator {
                             for (int j3 = 0; j3 < 4; ++j3) {
                                 if ((d15 += d16) > 0.0D) {
                                     cp.setBlockState(k * 4 + i3, k2 * 8 + l2, j1 * 4 + j3, ice);
+                                }
+                                
+                                else if (k2 * 8 + l2 < 11) {
+                                	cp.setBlockState(k * 4 + i3, k2 * 8 + l2, j1 * 4 + j3, water);
                                 }
                             }
                             d10 += d12;
@@ -294,17 +299,16 @@ public class ChunkProviderFrozenLands implements IChunkGenerator {
             }
         }
 
-        //ALOT of lag is coming from these trees
-        for (times = 0; times < 300; times++) {
+        for (times = 0; times < 100; times++) {
             int randX = i * 16 + 8 + rand.nextInt(5);
             int randZ = j * 16 + 8 + rand.nextInt(5);
             int randY = rand.nextInt(bottomYMax) + 1;
             if (isBlockTop(randX, randY - 1, randZ, JourneyBlocks.frozenGrass)) {
-                //largeBottomTrees[rand.nextInt(largeBottomTrees.length)].generate(worldObj, rand, new BlockPos(randX, randY, randZ));
+                largeBottomTrees[rand.nextInt(largeBottomTrees.length)].generate(worldObj, rand, new BlockPos(randX, randY, randZ));
             }
         }
 
-        for (times = 0; times < 350; times++) {
+        for (times = 0; times < 250; times++) {
             int randX = i * 16 + 8 + rand.nextInt(8);
             int randZ = j * 16 + 8 + rand.nextInt(8);
             int randY = rand.nextInt(topYMax) + 1;
@@ -326,7 +330,7 @@ public class ChunkProviderFrozenLands implements IChunkGenerator {
             generateStructure(x1, z1, JourneyBlocks.frozenGrass, house);
         }
 
-        for (times = 0; times < 25; times++) {
+        for (times = 0; times < 80; times++) {
             generateStructure(x1, z1, JourneyBlocks.frozenGrass, lamp);
         }
 
