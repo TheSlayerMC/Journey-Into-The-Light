@@ -66,6 +66,7 @@
  "page_flip":{"category":"neutral","sounds": ["journey:page_flip"]},
  "plasma":{"category":"neutral","sounds": ["journey:plasma"]},
  "rock": {"category": "master", "sounds": ["journey:rock"]},
+ "knife": {"category": "master", "sounds": ["journey:knife"]},
  "staff":{"category":"neutral","sounds": ["journey:staff"]},
  "unlock":{"category":"master","sounds": ["journey:unlock"]},
  "wrapper":{"category":"neutral","sounds": ["journey:wrapper"]},

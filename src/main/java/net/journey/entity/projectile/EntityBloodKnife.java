@@ -2,6 +2,8 @@ package net.journey.entity.projectile;
 
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
+
+import net.journey.init.JourneySounds;
 import net.journey.init.items.JourneyWeapons;
 import net.journey.util.PotionEffects;
 import net.minecraft.entity.Entity;
@@ -72,6 +74,7 @@ public class EntityBloodKnife extends EntityTippedArrow implements IProjectile {
         if (hitEntity != null && shootingEntity != null && hitEntity instanceof EntityLivingBase) {
             ((EntityLivingBase) hitEntity).addPotionEffect(new PotionEffect(PotionEffects.getPotionFromID(PotionEffects.moveSlow), 200, 5));
         }
+        this.playSound(JourneySounds.KNIFE, 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
     }
 
     @Override

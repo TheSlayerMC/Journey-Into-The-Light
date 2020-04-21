@@ -2,6 +2,8 @@ package net.journey.entity.projectile;
 
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
+
+import net.journey.init.JourneySounds;
 import net.journey.init.items.JourneyWeapons;
 import net.journey.util.PotionEffects;
 import net.minecraft.entity.Entity;
@@ -9,6 +11,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityTippedArrow;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EntitySelectors;
@@ -38,7 +41,6 @@ public class EntityAquaticKnife extends EntityTippedArrow implements IProjectile
         super(worldIn, x, y, z);
     }
 
-    //apparently used for Fourfa's attack
     public EntityAquaticKnife(World worldIn, EntityLivingBase e, EntityLivingBase eb, float f, float f1) {
         super(worldIn);
         Entity.setRenderDistanceWeight(10.0D);
@@ -72,6 +74,7 @@ public class EntityAquaticKnife extends EntityTippedArrow implements IProjectile
         if (hitEntity != null && shootingEntity != null && hitEntity instanceof EntityLivingBase) {
             ((EntityLivingBase) hitEntity).addPotionEffect(new PotionEffect(PotionEffects.getPotionFromID(PotionEffects.moveSlow), 100, 2));
         }
+        this.playSound(JourneySounds.KNIFE, 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
     }
 
     @Override

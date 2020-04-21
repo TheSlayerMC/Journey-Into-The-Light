@@ -19,6 +19,7 @@ public class JourneySounds {
 
     public static SoundEvent CAVE_MOB;
     public static SoundEvent ROCK;
+    public static SoundEvent KNIFE;
     public static SoundEvent BASE_MOB_HURT;
     public static SoundEvent BOSS_DEATH;
     public static SoundEvent TERRA_SLUG;
@@ -109,6 +110,7 @@ public class JourneySounds {
 
         CAVE_MOB = registerSound("cave_mob");
         ROCK = registerSound("rock");
+        KNIFE = registerSound("knife");
         BASE_MOB_HURT = registerSound("base_mob_hurt");
         BOSS_DEATH = registerSound("boss_death");
         TERRA_SLUG = registerSound("terraslug");

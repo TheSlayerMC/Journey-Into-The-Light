@@ -1,5 +1,6 @@
 package net.journey.entity.projectile;
 
+import net.journey.init.JourneySounds;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.util.DamageSource;
@@ -28,6 +29,7 @@ public class EntityEucaPiercer extends EntityThrowable {
     protected void onImpact(RayTraceResult par1) {
         if (par1.entityHit != null && par1.entityHit != this.thrower) {
             par1.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.thrower), this.damage);
+            this.playSound(JourneySounds.KNIFE, 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
             if (!this.world.isRemote) this.setDead();
             return;
         }
