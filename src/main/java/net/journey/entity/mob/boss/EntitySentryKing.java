@@ -3,8 +3,6 @@ TODO:
 
 REMOVE LEFTOVER CODE FROM SLAYER'S OLD AI
 
-ADD IDLE AI (ELSE STATEMENT UNDER ATTACK TARGET CHECK, LOCATED IN ONLIVINGUPDATE)
-
 CUSTOM PROJECTILES: A GRAVITY-AFFECTED GRENADE THAT CAUSES SMALL EXPLOSIONS FOR THE GENERIC RANGED ATTACK AND INVISIBLE FLAME PARTICLE PROJECTILES FOR THE FLAMETHROWER
 */
 package net.journey.entity.mob.boss;
@@ -59,7 +57,7 @@ public class EntitySentryKing extends EntityEssenceBoss implements IRangedAttack
         this.tasks.addTask(5, new EntitySentryKing.AIRandomFly());
         this.tasks.addTask(7, new EntitySentryKing.AILookAround());
         this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
-        this.tasks.addTask(0, new EntityAIAttackRanged(this, 1.0D, 40, 20.0F));
+        this.tasks.addTask(0, new EntityAIAttackRanged(this, 1.0D, 1, 20.0F)); //40
         addAttackingAI();
     }
 
@@ -74,8 +72,32 @@ public class EntitySentryKing extends EntityEssenceBoss implements IRangedAttack
     }
 
     @Override
-    public void attackEntityWithRangedAttack(EntityLivingBase e, float f1) {
-        //this.launchWitherSkullToEntity(0, e);
+    public void attackEntityWithRangedAttack(EntityLivingBase target, float f1) {
+    	if (--flamethrowerTimer > 0) {
+            this.world.playBroadcastSound(1014, new BlockPos(this), 0);
+            double d3 = this.posX;
+            double d4 = this.posY;
+            double d5 = this.posZ;
+            double d6 = target.posX - d3;
+            double d7 = target.posY + target.getEyeHeight() - d4;
+            double d8 = target.posZ - d5;
+            EntityMagmaFireball entitydeathskull = new EntityMagmaFireball(this.world, this, d6, d7, d8);
+            entitydeathskull.posY = d4;
+            entitydeathskull.posX = d3;
+            entitydeathskull.posZ = d5;
+            this.world.spawnEntity(entitydeathskull);
+        } else if (rand.nextInt(500 / phase) == 1) {
+            flamethrowerTimer = 20 * phase;
+        } else if (rand.nextInt(100 / phase) == 1) {
+        	EntityFloroWater b = new EntityFloroWater(this.world, this, 1.0F);
+            double d0 = target.posX - this.posX;
+            double d1 = target.getEntityBoundingBox().minY + (double) (target.height / 3.0F) - b.posY;
+            double d2 = target.posZ - this.posZ;
+            double d3 = MathHelper.sqrt(d0 * d0 + d2 * d2);
+            b.shoot(d0, d1 + d3 * 0.20000000298023224D, d2, 1.6F, (float) (14 - this.world.getDifficulty().getId() * 4));
+            JourneySounds.playSound(JourneySounds.MAGIC_SPARKLE, world, this);
+            this.world.spawnEntity(b);
+        }
     }
 
     public void onLivingUpdate() {
@@ -106,52 +128,11 @@ public class EntitySentryKing extends EntityEssenceBoss implements IRangedAttack
             this.motionX = (target.posX - this.posX) * (speedMod);
             this.motionY = (target.posY - this.posY + 7.5) * (speedMod);
             this.motionZ = (target.posZ - this.posZ) * (speedMod);
-            if (--flamethrowerTimer > 0) {
-                this.world.playBroadcastSound(1014, new BlockPos(this), 0);
-                double d3 = this.posX;
-                double d4 = this.posY;
-                double d5 = this.posZ;
-                double d6 = target.posX - d3;
-                double d7 = target.posY + target.getEyeHeight() - d4;
-                double d8 = target.posZ - d5;
-                EntityMagmaFireball entitydeathskull = new EntityMagmaFireball(this.world, this, d6, d7, d8);
-                entitydeathskull.posY = d4;
-                entitydeathskull.posX = d3;
-                entitydeathskull.posZ = d5;
-                this.world.spawnEntity(entitydeathskull);
-            } else if (rand.nextInt(500 / phase) == 1) {
-                flamethrowerTimer = 20 * phase;
-            } else if (rand.nextInt(100 / phase) == 1) {
-            	EntityFloroWater b = new EntityFloroWater(this.world, this, 1.0F);
-                double d0 = target.posX - this.posX;
-                double d1 = target.getEntityBoundingBox().minY + (double) (target.height / 3.0F) - b.posY;
-                double d2 = target.posZ - this.posZ;
-                double d3 = MathHelper.sqrt(d0 * d0 + d2 * d2);
-                b.shoot(d0, d1 + d3 * 0.20000000298023224D, d2, 1.6F, (float) (14 - this.world.getDifficulty().getId() * 4));
-                JourneySounds.playSound(JourneySounds.MAGIC_SPARKLE, world, this);
-                this.world.spawnEntity(b);
-            }
+        }
+        else if (this.motionY < -0.1) {
+        	this.motionY = -0.1;
         }
         super.onLivingUpdate();
-    }
-
-    private void launchWitherSkullToEntity(int var1, EntityLivingBase e) {
-        this.launchWitherSkullToCoords(var1, e.posX, e.posY + e.getEyeHeight() * 0.5D, e.posZ, var1 == 0 && this.rand.nextFloat() < 0.001F);
-    }
-
-    private void launchWitherSkullToCoords(int var1, double f2, double f4, double f6, boolean f8) {
-        this.world.playBroadcastSound(1014, new BlockPos(this), 0);
-        double d3 = this.coordX(var1);
-        double d4 = this.coordY(var1);
-        double d5 = this.coordZ(var1);
-        double d6 = f2 - d3;
-        double d7 = f4 - d4;
-        double d8 = f6 - d5;
-        EntityMagmaFireball entitydeathskull = new EntityMagmaFireball(this.world, this, d6, d7, d8);
-        entitydeathskull.posY = d4;
-        entitydeathskull.posX = d3;
-        entitydeathskull.posZ = d5;
-        this.world.spawnEntity(entitydeathskull);
     }
 
     private double coordX(int par1) {
@@ -254,47 +235,6 @@ public class EntitySentryKing extends EntityEssenceBoss implements IRangedAttack
     @Override
     public void fall(float distance, float damageMultiplier) {
     }
-
-	/*@Override
-	public void moveEntityWithHeading(float p_70612_1_, float p_70612_2_) {
-		if (this.isInWater()) {
-			this.moveFlying(p_70612_1_, p_70612_2_, 0.02F);
-			this.moveEntity(this.motionX, this.motionY, this.motionZ);
-			this.motionX *= 0.800000011920929D;
-			this.motionY *= 0.800000011920929D;
-			this.motionZ *= 0.800000011920929D;
-		} else if (this.isInLava()) {
-			this.moveFlying(p_70612_1_, p_70612_2_, 0.02F);
-			this.moveEntity(this.motionX, this.motionY, this.motionZ);
-			this.motionX *= 0.5D;
-			this.motionY *= 0.5D;
-			this.motionZ *= 0.5D;
-		} else {
-			float f2 = 0.91F;
-
-			if (this.onGround) {
-				f2 = this.world.getBlockState(new BlockPos(MathHelper.floor_double(this.posX),
-						MathHelper.floor_double(this.getEntityBoundingBox().minY) - 1,
-						MathHelper.floor_double(this.posZ))).getBlock().slipperiness * 0.91F;
-			}
-
-			float f3 = 0.16277136F / (f2 * f2 * f2);
-			this.moveFlying(p_70612_1_, p_70612_2_, this.onGround ? 0.1F * f3 : 0.02F);
-			f2 = 0.91F;
-
-			if (this.onGround) {
-				f2 = this.world.getBlockState(new BlockPos(MathHelper.floor_double(this.posX),
-						MathHelper.floor_double(this.getEntityBoundingBox().minY) - 1,
-						MathHelper.floor_double(this.posZ))).getBlock().slipperiness * 0.91F;
-			}
-
-			this.moveEntity(this.motionX, this.motionY, this.motionZ);
-			this.motionX *= f2;
-			this.motionY *= f2;
-			this.motionZ *= f2;
-		}
-
-	}*/
 
     @Override
     public void setSwingingArms(boolean swingingArms) {
@@ -411,4 +351,3 @@ public class EntitySentryKing extends EntityEssenceBoss implements IRangedAttack
         }
     }
 }
-
