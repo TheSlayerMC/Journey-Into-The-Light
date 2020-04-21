@@ -115,7 +115,7 @@ public class BlockCaveVine extends JBlockPlant implements IGrowable {
 
     @Override
     public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, IBlockState state) {
-        return canGrow(worldIn, pos, state, worldIn.isRemote);
+        return true;
     }
 
     @Override

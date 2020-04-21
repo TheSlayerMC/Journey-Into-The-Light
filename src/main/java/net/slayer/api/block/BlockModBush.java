@@ -92,7 +92,7 @@ public class BlockModBush extends BlockMod implements IPlantable, IGrowable {
 
     @Override
     public boolean canGrow(World worldIn, BlockPos pos, IBlockState state, boolean isClient) {
-        return true;
+        return state.getValue(AGE) < 2;
     }
 
     @Override
@@ -117,7 +117,9 @@ public class BlockModBush extends BlockMod implements IPlantable, IGrowable {
 
     @Override
     public void grow(World worldIn, Random rand, BlockPos pos, IBlockState state) {
-        worldIn.setBlockState(pos, state.withProperty(AGE, state.getValue(AGE) + 1), 2);
+        if (!worldIn.isRemote && state.getValue(AGE) < 2) {
+            worldIn.setBlockState(pos, state.withProperty(AGE, state.getValue(AGE) + 1), 2);
+        }
     }
 
     @Override
