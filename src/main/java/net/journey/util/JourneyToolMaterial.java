@@ -10,15 +10,10 @@ import net.slayer.api.SlayerAPI;
 
 public enum JourneyToolMaterial {
 
-    HELLSTONE_SWORD(JourneyItems.hellstoneSwordMat, JourneyItems.hellstoneIngot),
-    FLAIRIUM_SWORD(JourneyItems.flairiumSwordMat, JourneyItems.flairiumIngot),
-    LUNIUM_SWORD(JourneyItems.luniumSwordMat, JourneyItems.luniumIngot),
-    CELESTIUM_SWORD(JourneyItems.celestiumSwordMat, JourneyItems.celestiumIngot),
-    SHADIUM_SWORD(JourneyItems.shadiumSwordMat, JourneyItems.shadiumIngot),
-    SAPPHIRE_SWORD(JourneyItems.sapphiretoolSwordMat, JourneyItems.sapphire),
-    ORBADITE_SWORD(JourneyItems.orbaditeSwordMat, JourneyItems.orbaditeIngot),
-    GORBITE_SWORD(JourneyItems.gorbiteSwordMat, JourneyItems.gorbiteGem),
-    DES_SWORD(JourneyItems.desSwordMat, JourneyItems.desIngot),
+
+
+
+
 
     HELLSTONE(JourneyItems.hellstone, JourneyItems.hellstoneIngot, 12),
     FLAIRIUM(JourneyItems.flairium, JourneyItems.flairiumIngot, 16),
@@ -33,55 +28,83 @@ public enum JourneyToolMaterial {
     KORITE(JourneyItems.korite, JourneyItems.koriteIngot, 14),
     HOEOFLIFE(JourneyItems.hoeoflife, JourneyConsumables.floroPedal, 14),
 
-    NETHER_BEAST_SWORD(SlayerAPI.addMeleeMaterial(3000, 16 - 4, 25)),
-    WITHERING_BEAST_SWORD(SlayerAPI.addMeleeMaterial(3000, 16 - 4, 25)),
-    CALCIA_SWORD(SlayerAPI.addMeleeMaterial(3000, 13 - 4, 25)),
     CHAMPIONS_SWORD(SlayerAPI.addMeleeMaterial(3000, 14 - 4, 25)),
     THE_WRAITH(SlayerAPI.addMeleeMaterial(3000, 17 - 4, 25)),
-    BUBBLE_SWORD(SlayerAPI.addMeleeMaterial(3000, 23 - 4, 25)),
 
-    POISON_SWORD(SlayerAPI.addMeleeMaterial(1500, 3 - 1, 25)),
-    CLOUD_SLICER(SlayerAPI.addMeleeMaterial(1500, 4 - 1, 25)),
+    //overworld
+    SAPPHIRE_SWORD(JourneyItems.sapphiretoolSwordMat, JourneyItems.sapphire),
+    SHADIUM_SWORD(JourneyItems.shadiumSwordMat, JourneyItems.shadiumIngot),
+    LUNIUM_SWORD(JourneyItems.luniumSwordMat, JourneyItems.luniumIngot),
+    POISON_SWORD(SlayerAPI.addMeleeMaterial(1500, 6 - 4, 25)),
+    CLOUD_SLICER(SlayerAPI.addMeleeMaterial(1500, 7 - 4, 25)),
     DRAGONS_TOOTH(SlayerAPI.addMeleeMaterial(1500, 13 - 4, 25)),
-    BOILING_BLADE(SlayerAPI.addMeleeMaterial(3000, 14 - 4, 25)),
-    MOLTEN_KNIFE(SlayerAPI.addMeleeMaterial(3000, 10 - 4, 25)),
-    LOGGERS_SWORD(SlayerAPI.addMeleeMaterial(3000, 30 - 4, 25)),
-    NATURES_BLADE(SlayerAPI.addMeleeMaterial(3000, 34 - 4, 25)),
-    DEPTHS_DARKSWORD(SlayerAPI.addMeleeMaterial(3000, 28 - 4, 25)),
-    DEPTHS_SLAYER(SlayerAPI.addMeleeMaterial(3000, 22 - 4, 25)),
-    SNOW_SHOVELER(SlayerAPI.addMeleeMaterial(3000, 15 - 4, 25)),
-    FROSTBITTEN_SWORD(SlayerAPI.addMeleeMaterial(3000, 15 - 4, 25)),
-    FROSTY_SWORD(SlayerAPI.addMeleeMaterial(3000, 13 - 4, 25)),
-    TREE_HUGGER(SlayerAPI.addMeleeMaterial(3000, 32 - 4, 25)),
-    HEALERS_BLADE(SlayerAPI.addMeleeMaterial(3000, 15 - 4, 25)),
-    CORE_MENDER(SlayerAPI.addMeleeMaterial(3000, 26 - 4, 25)),
-    ROYAL_BLADE(SlayerAPI.addMeleeMaterial(3000, 18 - 4, 25)),
-    ROYAL_STABBER(SlayerAPI.addMeleeMaterial(3000, 21 - 4, 25)),
-    ROC_SWORD(SlayerAPI.addMeleeMaterial(3000, 29 - 4, 25)),
-    SWORD_THUNDERBIRD(SlayerAPI.addMeleeMaterial(3000, 32 - 4, 25)),
-    BLOODWIELD_SWORD(SlayerAPI.addMeleeMaterial(3000, 14 - 4, 25)),
-    CHARRED_BLADE(SlayerAPI.addMeleeMaterial(3000, 18 - 4, 25)),
-    SIZZLER_SWORD(SlayerAPI.addMeleeMaterial(3000, 22 - 4, 25)),
-    FLUFFY_BLADE(SlayerAPI.addMeleeMaterial(3000, 40 - 4, 25)),
-    GOLEM_SWORD(SlayerAPI.addMeleeMaterial(3000, 38 - 4, 25)),
-    THUNDERBLADE(SlayerAPI.addMeleeMaterial(3000, 35 - 4, 25)),
-    SENTRY_SWORD(SlayerAPI.addMeleeMaterial(3000, 35 - 4, 25)),
-    CRYSTAL_BLADE(SlayerAPI.addMeleeMaterial(1690, 9 - 4, 25)),
-    STARLIGHT_BLADE(SlayerAPI.addMeleeMaterial(3000, 38 - 4, 25)),
-    KORITE_SWORD(SlayerAPI.addMeleeMaterial(3000, 12 - 4, 25)),
+    DEMONIC_SWORD(SlayerAPI.addMeleeMaterial(850, 5.5F - 4, 25)),
     PEDAL_SWORD(SlayerAPI.addMeleeMaterial(100, 5.5F - 4, 25)),
     RE_CRYSTAL_SWORD(SlayerAPI.addMeleeMaterial(512, 9.5F - 4, 25)),
     RE_STONE_SWORD(SlayerAPI.addMeleeMaterial(256, 6.5F - 4, 25)),
+    CRYSTAL_BLADE(SlayerAPI.addMeleeMaterial(1690, 9 - 4, 25)),
+    
+    //frozen
+    SNOW_SHOVELER(SlayerAPI.addMeleeMaterial(3000, 15 - 4, 25)),
+    FROSTBITTEN_SWORD(SlayerAPI.addMeleeMaterial(3000, 15 - 4, 25)),
+    FROSTY_SWORD(SlayerAPI.addMeleeMaterial(3000, 13 - 4, 25)),
+    
+    //nether
+    HELLSTONE_SWORD(JourneyItems.hellstoneSwordMat, JourneyItems.hellstoneIngot),
     WITHIC_BLADE(SlayerAPI.addMeleeMaterial(70, 12 - 4, 25)),
+    CALCIA_SWORD(SlayerAPI.addMeleeMaterial(3000, 13 - 4, 25)),
+    NETHER_BEAST_SWORD(SlayerAPI.addMeleeMaterial(3000, 16 - 4, 25)),
+    WITHERING_BEAST_SWORD(SlayerAPI.addMeleeMaterial(3000, 16 - 4, 25)),
+    
+    //boil
+    BOILING_BLADE(SlayerAPI.addMeleeMaterial(3000, 14 - 4, 25)),
+    SIZZLER_SWORD(SlayerAPI.addMeleeMaterial(3000, 22 - 4, 25)),
+    BLOODWIELD_SWORD(SlayerAPI.addMeleeMaterial(3000, 14 - 4, 25)),
+    CHARRED_BLADE(SlayerAPI.addMeleeMaterial(3000, 18 - 4, 25)),
+    MOLTEN_KNIFE(SlayerAPI.addMeleeMaterial(3000, 10 - 4, 25)),
+
+    //euca
+    CELESTIUM_SWORD(JourneyItems.celestiumSwordMat, JourneyItems.celestiumIngot),
+    KORITE_SWORD(JourneyItems.koriteSwordMat, JourneyItems.koriteIngot),
+    MEKYUM_SWORD(JourneyItems.mekyumSwordMat, JourneyItems.mekyumIngot),
+    STORON_SWORD(JourneyItems.storonSwordMat, JourneyItems.storonIngot),
+    CORE_MENDER(SlayerAPI.addMeleeMaterial(3000, 26 - 4, 25)),
+    ROYAL_BLADE(SlayerAPI.addMeleeMaterial(3000, 18 - 4, 25)),
+    ROYAL_STABBER(SlayerAPI.addMeleeMaterial(3000, 21 - 4, 25)),
+    KINGS_SWORD(SlayerAPI.addMeleeMaterial(1500, 20 - 4, 25)),
+    
+    //depths
+    FLAIRIUM_SWORD(JourneyItems.flairiumSwordMat, JourneyItems.flairiumIngot),
+    DES_SWORD(JourneyItems.desSwordMat, JourneyItems.desIngot),
+    DEPTHS_DARKSWORD(SlayerAPI.addMeleeMaterial(3000, 28 - 4, 25)),
+    DEPTHS_SLAYER(SlayerAPI.addMeleeMaterial(3000, 22 - 4, 25)),
+    ROC_SWORD(SlayerAPI.addMeleeMaterial(3000, 29 - 4, 25)),
+    SWORD_THUNDERBIRD(SlayerAPI.addMeleeMaterial(3000, 32 - 4, 25)),
+    THUNDERBLADE(SlayerAPI.addMeleeMaterial(3000, 35 - 4, 25)),
+    BUBBLE_SWORD(SlayerAPI.addMeleeMaterial(3000, 23 - 4, 25)),
+    
+    //corba
+    ORBADITE_SWORD(JourneyItems.orbaditeSwordMat, JourneyItems.orbaditeIngot),
+    GORBITE_SWORD(JourneyItems.gorbiteSwordMat, JourneyItems.gorbiteGem),
+    VINESTRAND_BLADE(SlayerAPI.addMeleeMaterial(2000, 30 - 4, 25)),
+    DARK_PINE_SWORD(SlayerAPI.addMeleeMaterial(2000, 31 - 4, 25)),
+    NATURES_BLADE(SlayerAPI.addMeleeMaterial(3000, 34 - 4, 25)),
+    TREE_HUGGER(SlayerAPI.addMeleeMaterial(3000, 32 - 4, 25)),
+    HEALERS_BLADE(SlayerAPI.addMeleeMaterial(3000, 15 - 4, 25)),
+    LOGGERS_SWORD(SlayerAPI.addMeleeMaterial(3000, 30 - 4, 25)),
+    SENTRY_SWORD(SlayerAPI.addMeleeMaterial(3000, 35 - 4, 25)),
+
+    //terrania
     TERRALIGHT_BLADE(SlayerAPI.addMeleeMaterial(3500, 35 - 4, 25)),
     TERRANA_SWORD(SlayerAPI.addMeleeMaterial(3400, 34 - 4, 25)),
     TERROLICA_SWORD(SlayerAPI.addMeleeMaterial(3500, 36 - 4, 25)),
     VOLITE_SWORD(SlayerAPI.addMeleeMaterial(3500, 35 - 4, 25)),
     TERRONIC_BLADE(SlayerAPI.addMeleeMaterial(1000, 34 - 4, 25)),
-    KINGS_SWORD(SlayerAPI.addMeleeMaterial(1500, 20 - 4, 25)),
-    VINESTRAND_BLADE(SlayerAPI.addMeleeMaterial(2000, 30 - 4, 25)),
-    DARK_PINE_SWORD(SlayerAPI.addMeleeMaterial(2000, 31 - 4, 25)),
-    DEMONIC_SWORD(SlayerAPI.addMeleeMaterial(850, 5.5F - 4, 25)),
+    
+    //cloudia
+    GOLEM_SWORD(SlayerAPI.addMeleeMaterial(3000, 38 - 4, 25)),
+    STARLIGHT_BLADE(SlayerAPI.addMeleeMaterial(3000, 38 - 4, 25)),
+    FLUFFY_BLADE(SlayerAPI.addMeleeMaterial(3000, 40 - 4, 25)),
 
     CREATIVE(SlayerAPI.addMeleeMaterial(1000, 39 - 4, 25)),
     EARTHEN_HAMMER(SlayerAPI.addMeleeMaterial(1, 7 - 4, 25)),

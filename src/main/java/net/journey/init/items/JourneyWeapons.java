@@ -211,8 +211,8 @@ public class JourneyWeapons {
         crystalBlade = new ItemModSword("crystalBlade", "Crystal Blade", JourneyToolMaterial.CRYSTAL_BLADE);
         starlightBlade = new ItemModSword("starlightBlade", "Starlight Blade", JourneyToolMaterial.STARLIGHT_BLADE);
         koriteSword = new ItemModSword("koriteSword", "Korite Sword", JourneyToolMaterial.KORITE_SWORD);
-        storonSword = new ItemModSword("storonSword", "Storon Sword", JourneyToolMaterial.KORITE_SWORD);
-        mekyumSword = new ItemModSword("mekyumSword", "Mekyum Sword", JourneyToolMaterial.KORITE_SWORD);
+        storonSword = new ItemModSword("storonSword", "Storon Sword", JourneyToolMaterial.STORON_SWORD);
+        mekyumSword = new ItemModSword("mekyumSword", "Mekyum Sword", JourneyToolMaterial.MEKYUM_SWORD);
         hellstoneSword = new ItemFireSword("hellstoneSword", "Bloodcrust Sword", JourneyToolMaterial.HELLSTONE_SWORD);
         shadiumSword = new ItemFreezeSword("shadiumSword", "Shadium Sword", JourneyToolMaterial.SHADIUM_SWORD);
         celestiumSword = new ItemModSword("celestiumSword", "Celestium Sword", JourneyToolMaterial.CELESTIUM_SWORD);
