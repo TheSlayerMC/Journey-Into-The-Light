@@ -1,10 +1,6 @@
 /*
 TODO:
 
-ADJUST SPEEDPHASE VALUES SO THAT SPEED INCREASES ARE CONSTANT (MIN AND MAX VALUES HAVE BEEN SELECTED AND TESTED; THEY'RE BALANCED)
-
-MAKE FLAMETHROWER ATTACK MORE RANDOM
-
 REMOVE LEFTOVER CODE FROM SLAYER'S OLD AI
 
 ADD IDLE AI (ELSE STATEMENT UNDER ATTACK TARGET CHECK, LOCATED IN ONLIVINGUPDATE)
@@ -15,6 +11,7 @@ package net.journey.entity.mob.boss;
 
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.entity.MobStats;
+import net.journey.entity.projectile.EntityFloroWater;
 import net.journey.entity.projectile.EntityMagmaFireball;
 import net.journey.init.JourneySounds;
 import net.journey.init.blocks.JourneyBlocks;
@@ -46,9 +43,9 @@ import java.util.Random;
 public class EntitySentryKing extends EntityEssenceBoss implements IRangedAttackMob {
 
     private static final DataParameter<Byte> ON_FIRE = EntityDataManager.createKey(EntitySentryKing.class, DataSerializers.BYTE);
-    private float speedPhase;
+    public int phase;
+    private float speedMod;
     private int flamethrowerTimer;
-    private int flamethrowerCooldown;
 
     public EntitySentryKing(World par1World) {
         super(par1World);
@@ -78,37 +75,38 @@ public class EntitySentryKing extends EntityEssenceBoss implements IRangedAttack
 
     @Override
     public void attackEntityWithRangedAttack(EntityLivingBase e, float f1) {
-        this.launchWitherSkullToEntity(0, e);
+        //this.launchWitherSkullToEntity(0, e);
     }
 
     public void onLivingUpdate() {
         if (this.getHealth() / this.getMaxHealth() >= 0.9) {
-            speedPhase = 0.0001953125f;
+            phase = 1;
         } else if (this.getHealth() / this.getMaxHealth() >= 0.8) {
-            speedPhase = 0.125f;
+            phase = 2;
         } else if (this.getHealth() / this.getMaxHealth() >= 0.7) {
-            speedPhase = 0.1875f;
+            phase = 3;
         } else if (this.getHealth() / this.getMaxHealth() >= 0.6) {
-            speedPhase = 0.25f;
+            phase = 4;
         } else if (this.getHealth() / this.getMaxHealth() >= 0.5) {
-            speedPhase = 0.375f;
+            phase = 5;
         } else if (this.getHealth() / this.getMaxHealth() >= 0.4) {
-            speedPhase = 0.5f;
+            phase = 6;
         } else if (this.getHealth() / this.getMaxHealth() >= 0.3) {
-            speedPhase = 0.75f;
+            phase = 7;
         } else if (this.getHealth() / this.getMaxHealth() >= 0.2) {
-            speedPhase = 1f;
+            phase = 8;
         } else if (this.getHealth() / this.getMaxHealth() >= 0.1) {
-            speedPhase = 1.25f;
+            phase = 9;
         } else if (this.getHealth() / this.getMaxHealth() >= 0) {
-            speedPhase = 1.5f;
+            phase = 10;
         }
+        speedMod = (float)0.0625 * phase;
         if (this.getAttackTarget() != null) {
             EntityLivingBase target = this.getAttackTarget();
-            this.motionX = (target.posX - this.posX) * speedPhase;
-            this.motionY = (target.posY - this.posY + 7.5) * speedPhase;
-            this.motionZ = (target.posZ - this.posZ) * speedPhase;
-            if (flamethrowerTimer > 0) {
+            this.motionX = (target.posX - this.posX) * (speedMod);
+            this.motionY = (target.posY - this.posY + 7.5) * (speedMod);
+            this.motionZ = (target.posZ - this.posZ) * (speedMod);
+            if (--flamethrowerTimer > 0) {
                 this.world.playBroadcastSound(1014, new BlockPos(this), 0);
                 double d3 = this.posX;
                 double d4 = this.posY;
@@ -121,12 +119,17 @@ public class EntitySentryKing extends EntityEssenceBoss implements IRangedAttack
                 entitydeathskull.posX = d3;
                 entitydeathskull.posZ = d5;
                 this.world.spawnEntity(entitydeathskull);
-                flamethrowerTimer--;
-            } else if (flamethrowerCooldown == 0) {
-                flamethrowerTimer = 200;
-                flamethrowerCooldown = 400;
-            } else {
-                flamethrowerCooldown--;
+            } else if (rand.nextInt(500 / phase) == 1) {
+                flamethrowerTimer = 20 * phase;
+            } else if (rand.nextInt(100 / phase) == 1) {
+            	EntityFloroWater b = new EntityFloroWater(this.world, this, 1.0F);
+                double d0 = target.posX - this.posX;
+                double d1 = target.getEntityBoundingBox().minY + (double) (target.height / 3.0F) - b.posY;
+                double d2 = target.posZ - this.posZ;
+                double d3 = MathHelper.sqrt(d0 * d0 + d2 * d2);
+                b.shoot(d0, d1 + d3 * 0.20000000298023224D, d2, 1.6F, (float) (14 - this.world.getDifficulty().getId() * 4));
+                JourneySounds.playSound(JourneySounds.MAGIC_SPARKLE, world, this);
+                this.world.spawnEntity(b);
             }
         }
         super.onLivingUpdate();
@@ -408,3 +411,4 @@ public class EntitySentryKing extends EntityEssenceBoss implements IRangedAttack
         }
     }
 }
+
