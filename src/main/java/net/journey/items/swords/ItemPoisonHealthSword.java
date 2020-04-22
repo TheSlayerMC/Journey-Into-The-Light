@@ -28,12 +28,15 @@ public class ItemPoisonHealthSword extends ItemModSword {
 
     @Override
     public boolean hitEntity(ItemStack par1ItemStack, EntityLivingBase hit, EntityLivingBase player) {
+        Random r = new Random();
         hit.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.poison, 100, 2)));
         float hearts = player.getHealth();
-        if (hearts >= 1F) {
+        if(hearts >= 1F) {
             player.setHealth(hearts + this.health);
         }
-
+        else if(r.nextInt(2) == 0) {
+            player.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.poison, 100, 2)));
+        }
         addParticles(hit);
         return super.hitEntity(par1ItemStack, hit, player);
     }
@@ -50,6 +53,7 @@ public class ItemPoisonHealthSword extends ItemModSword {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack item, World player, List<String> infoList, ITooltipFlag par4) {
         infoList.add(SlayerAPI.Colour.DARK_GREEN + "On hit: Poisons enemies and heals player " + health / 2 + " heart(s)");
+        infoList.add(SlayerAPI.Colour.RED + "Drawback: Random chance to poison the user on hit");
         if (item.getMaxDamage() != -1) infoList.add(item.getMaxDamage() - item.getItemDamage() + " Uses Remaining");
         else infoList.add(SlayerAPI.Colour.GREEN + "Infinite Uses");
     }
