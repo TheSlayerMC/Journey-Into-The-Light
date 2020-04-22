@@ -2,7 +2,7 @@ package net.journey.dimension.senterian;
 
 import net.journey.blocks.portal.BlockSenterianPortalFrame;
 import net.journey.init.blocks.JourneyBlocks;
-import net.journey.util.core.NbtUtil;
+import net.journey.util.NbtUtil;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagLong;
 import net.minecraft.util.math.BlockPos;

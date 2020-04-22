@@ -1,6 +1,6 @@
 package net.journey.client.render.base;
 
-import net.journey.entity.projectile.EntityEssenceArrow;
+import net.journey.entity.projectile.arrow.EntityEssenceArrow;
 import net.minecraft.client.renderer.entity.RenderArrow;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;

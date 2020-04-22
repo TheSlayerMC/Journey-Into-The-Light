@@ -1,6 +1,6 @@
 package net.journey.items;
 
-import net.journey.entity.projectile.EntityEssenceArrow;
+import net.journey.entity.projectile.arrow.EntityEssenceArrow;
 import net.journey.init.JourneyTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;

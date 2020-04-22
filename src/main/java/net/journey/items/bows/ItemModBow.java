@@ -1,7 +1,7 @@
 package net.journey.items.bows;
 
 import net.journey.client.ItemDescription;
-import net.journey.entity.projectile.EntityEssenceArrow;
+import net.journey.entity.projectile.arrow.EntityEssenceArrow;
 import net.journey.init.JourneyTabs;
 import net.journey.init.items.JourneyItems;
 import net.journey.items.ItemEssenceArrow;

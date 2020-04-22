@@ -1,7 +1,7 @@
 package net.journey;
 
+import net.journey.api.client.IHasModel;
 import net.journey.blocks.tileentity.TileEntityHandler;
-import net.journey.client.api.IHasModel;
 import net.journey.init.JourneyEnchantments;
 import net.journey.init.JourneySounds;
 import net.journey.init.blocks.JourneyBlocks;

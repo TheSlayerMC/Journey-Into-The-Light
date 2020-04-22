@@ -1,6 +1,6 @@
 package net.journey.items.bows;
 
-import net.journey.entity.projectile.EntityEssenceArrow;
+import net.journey.entity.projectile.arrow.EntityEssenceArrow;
 import net.journey.init.items.JourneyWeapons;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.IItemPropertyGetter;

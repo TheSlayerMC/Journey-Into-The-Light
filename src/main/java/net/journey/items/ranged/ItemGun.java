@@ -3,7 +3,7 @@ package net.journey.items.ranged;
 import net.journey.client.server.EssenceProvider;
 import net.journey.client.server.IEssence;
 import net.journey.entity.projectile.EntityBasicProjectile;
-import net.journey.entity.projectile.EntityBouncingProjectile;
+import net.journey.entity.projectile.launcher.EntityBouncingProjectile;
 import net.journey.init.JourneySounds;
 import net.journey.init.JourneyTabs;
 import net.journey.init.items.JourneyWeapons;

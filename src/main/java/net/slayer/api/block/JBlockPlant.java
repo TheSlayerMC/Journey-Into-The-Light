@@ -1,7 +1,7 @@
 package net.slayer.api.block;
 
 import net.journey.api.block.IWithCustomItemPath;
-import net.journey.util.core.StuffConstructor;
+import net.journey.util.StuffConstructor;
 import net.minecraft.block.BlockBush;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.util.ResourceLocation;

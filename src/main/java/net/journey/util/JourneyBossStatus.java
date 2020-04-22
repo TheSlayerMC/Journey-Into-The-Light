@@ -1,6 +1,6 @@
 package net.journey.util;
 
-import net.journey.util.api.IEssenceBoss;
+import net.journey.api.entity.IEssenceBoss;
 
 public final class JourneyBossStatus {
 

@@ -1,7 +1,7 @@
 package net.journey.items;
 
-import net.journey.entity.projectile.EntityEssenceArrow;
-import net.journey.entity.projectile.EntityTippedEssenceArrow;
+import net.journey.entity.projectile.arrow.EntityEssenceArrow;
+import net.journey.entity.projectile.arrow.EntityTippedEssenceArrow;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;

@@ -1,10 +1,10 @@
 package net.journey.entity.mob.boss;
 
 import net.journey.entity.MobStats;
-import net.journey.entity.projectile.EntityDarknessArrow;
-import net.journey.entity.projectile.EntityFlameArrow;
-import net.journey.entity.projectile.EntityFrozenArrow;
-import net.journey.entity.projectile.EntityPoisonArrow;
+import net.journey.entity.projectile.arrow.EntityDarknessArrow;
+import net.journey.entity.projectile.arrow.EntityFlameArrow;
+import net.journey.entity.projectile.arrow.EntityFrozenArrow;
+import net.journey.entity.projectile.arrow.EntityPoisonArrow;
 import net.journey.init.items.JourneyItems;
 import net.journey.init.items.JourneyWeapons;
 import net.minecraft.entity.EntityLivingBase;

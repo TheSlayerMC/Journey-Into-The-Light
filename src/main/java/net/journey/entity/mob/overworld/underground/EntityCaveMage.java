@@ -1,7 +1,7 @@
 package net.journey.entity.mob.overworld.underground;
 
 import net.journey.entity.MobStats;
-import net.journey.entity.projectile.EntityConjuring;
+import net.journey.entity.projectile.staff.EntityConjuring;
 import net.journey.init.JourneySounds;
 import net.journey.init.items.JourneyWeapons;
 import net.minecraft.block.material.Material;
