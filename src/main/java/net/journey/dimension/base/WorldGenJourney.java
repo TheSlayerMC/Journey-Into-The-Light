@@ -44,10 +44,10 @@ public class WorldGenJourney implements IWorldGenerator {
     private static final LazyLoadBase<WorldGenMinable> storonOre;
     private static final LazyLoadBase<WorldGenMinable> koriteOre;
     private static final LazyLoadBase<WorldGenMinable> mekyumOre;
-    private static final LazyLoadBase<JWorldGenMinable> SHADIUM_ORE_GEN = create(() -> JWorldGenMinable.create(JourneyBlocks.shadiumOre, 6, 13, Blocks.STONE));
-    private static final LazyLoadBase<WorldGenMinable> luniumOre;
-    private static final LazyLoadBase<WorldGenMinable> sapphireOre;
-    private static final LazyLoadBase<WorldGenMinable> iridiumOre;
+    private static final LazyLoadBase<JWorldGenMinable> SHADIUM_ORE_GEN = create(() -> JWorldGenMinable.create(JourneyBlocks.shadiumOre, 6, 13));
+    private static final LazyLoadBase<JWorldGenMinable> LUNIUM_ORE_GEN = create(() -> JWorldGenMinable.create(JourneyBlocks.luniumOre, 7, 26));
+    private static final LazyLoadBase<JWorldGenMinable> SAPPHIRE_ORE_GEN = create(() -> JWorldGenMinable.create(JourneyBlocks.sapphireOre, 5, 24));
+    private static final LazyLoadBase<JWorldGenMinable> IRIDIUM_ORE_GEN = create(() -> JWorldGenMinable.create(JourneyBlocks.iridiumOre, 4, 16));
     private static final WorldGenSmeltery smeltery = new WorldGenSmeltery();
     private static final WorldGenBoilingFire fire = new WorldGenBoilingFire();
     private static final LazyLoadBase<WorldGenModFlower> eucaTallGrass;
@@ -91,10 +91,6 @@ public class WorldGenJourney implements IWorldGenerator {
         withanLight = create(JourneyBlocks.withanLight, 25, JourneyBlocks.withanRockReinforced);
         cloudiaRock = create(JourneyBlocks.cloudiaRock, 40, Blocks.AIR);
         luniteOre = create(JourneyBlocks.luniteOre, 10, JourneyBlocks.cloudiaRock);
-
-        luniumOre = create(JourneyBlocks.luniumOre, 7, Blocks.STONE);
-        sapphireOre = create(JourneyBlocks.sapphireOre, 5, Blocks.STONE);
-        iridiumOre = create(JourneyBlocks.iridiumOre, 4, Blocks.STONE);
 
         eucaTallGrass = create(() -> new WorldGenModFlower(JourneyBlocks.eucaTallGrass, JourneyBlocks.eucaGrass));
         eucaTallFlowers = create(() -> new WorldGenModFlower(JourneyBlocks.eucaTallFlowers, JourneyBlocks.eucaGrass));
@@ -476,6 +472,7 @@ public class WorldGenJourney implements IWorldGenerator {
         int times;
 
         BlockPos startPos = new BlockPos(chunkX << 4, 0, chunkZ << 4);
+        BlockPos genPos = WorldGenAPI.optimizeAndRandomize(startPos, rand);
 
         int posX = startPos.getX(),
                 posZ = startPos.getZ();
@@ -523,23 +520,16 @@ public class WorldGenJourney implements IWorldGenerator {
             SHADIUM_ORE_GEN.getValue().generate(w, rand, startPos);
         }
 
-        if (r.nextInt(3) == 0) {
-            y = r.nextInt(26);
-            x = posX + r.nextInt(16);
-            z = posZ + r.nextInt(16);
-            luniumOre.getValue().generate(w, r, new BlockPos(x, y, z));
+        if (rand.nextInt(3) == 0) {
+            LUNIUM_ORE_GEN.getValue().generate(w, rand, startPos);
         }
-        if (r.nextInt(2) == 0) {
-            y = r.nextInt(24);
-            x = posX + r.nextInt(16);
-            z = posZ + r.nextInt(16);
-            sapphireOre.getValue().generate(w, r, new BlockPos(x, y, z));
+
+        if (rand.nextInt(2) == 0) {
+            SAPPHIRE_ORE_GEN.getValue().generate(w, rand, startPos);
         }
-        for (times = 0; times < 4; times++) {
-            y = r.nextInt(16);
-            x = posX + r.nextInt(16);
-            z = posZ + r.nextInt(16);
-            iridiumOre.getValue().generate(w, r, new BlockPos(x, y, z));
+
+        for (int i = 0; i < 4; i++) {
+            IRIDIUM_ORE_GEN.getValue().generate(w, rand, startPos);
         }
 
         if (r.nextInt(Config.towerDungeon) == 0) {

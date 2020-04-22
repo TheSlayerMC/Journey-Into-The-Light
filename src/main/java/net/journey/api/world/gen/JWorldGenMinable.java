@@ -15,7 +15,7 @@ import java.util.Random;
 import java.util.function.Predicate;
 
 /**
- * MinableGen with already randomized position.
+ * MinableGen with already randomized and optimized position.
  */
 public class JWorldGenMinable extends WorldGenMinable {
     /**
@@ -45,30 +45,113 @@ public class JWorldGenMinable extends WorldGenMinable {
         }
     }
 
+    /**
+     * Creates ore generator with provided settings.
+     * <p>
+     * In addition it will be generated:
+     * <ol>
+     *     <li>replacing {@link Blocks#STONE}</li>
+     *     <li>from 1 to {@code maxY}, maxY is excluded</li>
+     * </ol>
+     *
+     * @param ore        ore to be generated
+     * @param blockCount count of ore to be generated
+     * @param maxY       height to which ore can be generated, maxY is excluded!
+     */
     public static JWorldGenMinable create(Block ore, int blockCount, int maxY) {
         return create(ore.getDefaultState(), blockCount, maxY);
     }
 
+    /**
+     * Creates ore generator with provided settings.
+     * <p>
+     * In addition it will be generated:
+     * <ol>
+     *     <li>replacing {@link Blocks#STONE}</li>
+     *     <li>from 1 to {@code maxY}, maxY is excluded</li>
+     * </ol>
+     *
+     * @param oreState   ore to be generated
+     * @param blockCount count of ore to be generated
+     * @param maxY       height to which ore can be generated, maxY is excluded!
+     */
     public static JWorldGenMinable create(IBlockState oreState, int blockCount, int maxY) {
         return create(oreState, blockCount, 1, maxY, new StonePredicate());
     }
 
+    /**
+     * Creates ore generator with provided settings.
+     * <p>
+     * In addition it will be generated:
+     * <ol>
+     *    <li>from 1 to {@code maxY}, maxY is excluded</li>
+     * </ol>
+     *
+     * @param ore          ore to be generated
+     * @param blockCount   count of ore to be generated
+     * @param maxY         height to which ore can be generated, maxY is excluded!
+     * @param replaceBlock block which ore can replace while generating
+     */
     public static JWorldGenMinable create(Block ore, int blockCount, int maxY, Block replaceBlock) {
         return create(ore.getDefaultState(), blockCount, maxY, replaceBlock);
     }
 
+    /**
+     * Creates ore generator with provided settings.
+     * <p>
+     * In addition it will be generated:
+     * <ol>
+     *    <li>from 1 to {@code maxY}, maxY is excluded</li>
+     * </ol>
+     *
+     * @param oreState     ore to be generated
+     * @param blockCount   count of ore to be generated
+     * @param maxY         height to which ore can be generated, maxY is excluded!
+     * @param replaceBlock block which ore can replace while generating
+     */
     public static JWorldGenMinable create(IBlockState oreState, int blockCount, int maxY, Block replaceBlock) {
         return create(oreState, blockCount, 1, maxY, replaceBlock);
     }
 
+    /**
+     * Creates ore generator with provided settings.
+     *
+     * @param oreState     ore to be generated
+     * @param blockCount   count of ore to be generated
+     * @param minY         height from which ore can be generated, is included.
+     * @param maxY         height to which ore can be generated, maxY is excluded!
+     * @param replaceBlock block which ore can replace while generating
+     */
     public static JWorldGenMinable create(IBlockState oreState, int blockCount, int minY, int maxY, Block replaceBlock) {
         return create(oreState, blockCount, minY, maxY, BlockStateMatcher.forBlock(replaceBlock));
     }
 
+    /**
+     * Creates ore generator with provided settings.
+     * <p>
+     * In addition it will be generated:
+     * <ol>
+     *    <li>from 1 to {@code maxY}, maxY is excluded</li>
+     * </ol>
+     *
+     * @param oreState           ore to be generated
+     * @param blockCount         count of ore to be generated
+     * @param maxY               height to which ore can be generated, maxY is excluded!
+     * @param placementPredicate controls, what blocks can be replaced with this ore while generating
+     */
     public static JWorldGenMinable create(IBlockState oreState, int blockCount, int maxY, Predicate<IBlockState> placementPredicate) {
         return create(oreState, blockCount, 1, maxY, placementPredicate);
     }
 
+    /**
+     * Creates ore generator with provided settings.
+     *
+     * @param oreState           ore to be generated
+     * @param blockCount         count of ore to be generated
+     * @param minY               height from which ore can be generated, is included.
+     * @param maxY               height to which ore can be generated, maxY is excluded!
+     * @param placementPredicate controls, what blocks can be replaced with this ore while generating
+     */
     public static JWorldGenMinable create(IBlockState oreState, int blockCount, int minY, int maxY, Predicate<IBlockState> placementPredicate) {
         return new JWorldGenMinable(oreState, blockCount, minY, maxY, placementPredicate);
     }
@@ -77,7 +160,7 @@ public class JWorldGenMinable extends WorldGenMinable {
     public boolean generate(World worldIn, Random rand, BlockPos position) {
         position = WorldGenAPI.getPosWithHeight(position, minY + rand.nextInt(maxY - minY));
 
-        return super.generate(worldIn, rand, WorldGenAPI.randomize(position, rand));
+        return super.generate(worldIn, rand, WorldGenAPI.optimizeAndRandomize(position, rand));
     }
 
     private static class StonePredicate implements Predicate<IBlockState> {
