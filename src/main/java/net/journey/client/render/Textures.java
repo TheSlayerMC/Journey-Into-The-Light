@@ -190,6 +190,7 @@ public class Textures {
     public static final ResourceLocation terraslug = addMob("terraslug");
     public static final ResourceLocation terragrow = addMob("terragrow");
     public static final ResourceLocation terrashroom = addMob("terrashroom");
+    public static final ResourceLocation ARANA_KING = addMob("arana_king");
 
     //Senterian
     public static final ResourceLocation sentryBlock = addMob("sentryblock");

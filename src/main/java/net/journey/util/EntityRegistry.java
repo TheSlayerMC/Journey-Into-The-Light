@@ -273,6 +273,7 @@ public class EntityRegistry {
                 SlayerAPI.buildEntityEntry(EntityTerraslug.class, "terraslug", "Purple Slug", 0x7813ff, 0xff58f5),
                 SlayerAPI.buildEntityEntry(EntityTerragrow.class, "terragrow", "Terragrow", 0x7813ff, 0xff58f5),
                 SlayerAPI.buildEntityEntry(EntityTerrashroom.class, "terrashroom", "Terrashroom", 0x7813ff, 0xff58f5),
+                SlayerAPI.buildEntityEntry(EntityAranaKing.class, "aranaking", "Arana King", 0x7813ff, 0xff58f5),
                 //Senterian
                 SlayerAPI.buildEntityEntry(EntitySentryBlock.class, "sentryblock", "Sentry Block", 0x584040, 0x1C1C1C),
                 SlayerAPI.buildEntityEntry(EntitySentryLord.class, "sentrylord", "Sentry Lord", 0x584040, 0x1C1C1C),
