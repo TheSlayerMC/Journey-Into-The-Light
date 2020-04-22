@@ -1,4 +1,4 @@
-package net.slayer.api.block;
+package net.journey.api.block.base;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.PropertyEnum;
@@ -13,6 +13,7 @@ import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.slayer.api.EnumMaterialTypes;
+import net.slayer.api.block.BlockMod;
 
 import java.util.Random;
 

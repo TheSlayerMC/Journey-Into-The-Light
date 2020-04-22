@@ -1,5 +1,6 @@
 package net.journey.blocks.plant;
 
+import net.journey.api.block.base.JBlockPlant;
 import net.journey.init.JourneyTabs;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
@@ -17,7 +18,6 @@ import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.slayer.api.block.JBlockPlant;
 
 import java.util.Random;
 

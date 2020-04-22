@@ -1,4 +1,4 @@
-package net.slayer.api.block;
+package net.journey.api.block.base;
 
 import net.journey.api.block.IWithCustomItemPath;
 import net.journey.init.JourneyTabs;

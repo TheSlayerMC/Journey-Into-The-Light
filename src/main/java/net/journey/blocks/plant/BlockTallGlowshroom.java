@@ -1,5 +1,6 @@
 package net.journey.blocks.plant;
 
+import net.journey.api.block.base.JDoubleBlockPlant;
 import net.journey.init.JourneyTabs;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.BlockRenderLayer;
@@ -9,7 +10,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.slayer.api.block.JDoubleBlockPlant;
 
 import javax.annotation.Nullable;
 

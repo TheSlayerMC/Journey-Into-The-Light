@@ -1,5 +1,6 @@
 package net.journey.blocks;
 
+import net.journey.api.block.base.JBlockLog;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.BlockRenderLayer;
@@ -8,7 +9,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.slayer.api.block.JBlockLog;
 
 public class BlockIceLog extends JBlockLog {
 

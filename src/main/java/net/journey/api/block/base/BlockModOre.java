@@ -1,4 +1,4 @@
-package net.journey.blocks.base;
+package net.journey.api.block.base;
 
 import net.journey.JITL;
 import net.journey.init.blocks.JourneyBlocks;

@@ -1,4 +1,4 @@
-package net.journey.blocks.base;
+package net.journey.api.block.base;
 
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.properties.PropertyInteger;
