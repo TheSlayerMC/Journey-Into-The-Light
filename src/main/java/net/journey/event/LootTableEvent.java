@@ -34,8 +34,10 @@ public class LootTableEvent {
         event.getName().toString().equals("minecraft:chests/desert_pyramid") || 
         event.getName().toString().equals("minecraft:chests/jungle_temple") || 
         event.getName().toString().equals("minecraft:chests/stronghold_corridor") || 
-        event.getName().toString().equals("minecraft:chests/stronghold_crossing")|| 
-        event.getName().toString().equals("minecraft:chests/stronghold_library")) {
+        event.getName().toString().equals("minecraft:chests/stronghold_crossing") || 
+        event.getName().toString().equals("minecraft:chests/stronghold_library") || 
+        event.getName().toString().equals("cqrepoured:chest/cq_treasure") || 
+        event.getName().toString().equals("cqrepoured:chest/cq_material")) {
             event.getTable().addPool(new LootPool(new LootEntry[]{new LootEntryTable(DUNGEON_LOOT, 1, 1, new LootCondition[0], DUNGEON_POOL)}, new LootCondition[0], new RandomValueRange(1), new RandomValueRange(0, 1), DUNGEON_POOL));
         }
     }
