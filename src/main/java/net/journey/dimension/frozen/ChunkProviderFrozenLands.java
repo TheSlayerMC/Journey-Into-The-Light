@@ -260,7 +260,7 @@ public class ChunkProviderFrozenLands implements IChunkGenerator {
 				double d8 = f3;
 				double d9 = f2;
 				d8 += d7 * 0.2D;
-				d8 = d8 * (double) this.settings.baseSize / 8.0D;
+				d8 = d8 * (double) this.settings.baseSize / 6.0D;
 				double d0 = (double) this.settings.baseSize + d8 * 4.0D;
 
 				for (int j2 = 0; j2 < 33; ++j2) {
@@ -314,7 +314,7 @@ public class ChunkProviderFrozenLands implements IChunkGenerator {
 			}
 		}
 
-		for (times = 0; times < 250; times++) {
+		for (times = 0; times < 200; times++) {
             int randX = i * 16 + 8 + rand.nextInt(16);
             int randZ = j * 16 + 8 + rand.nextInt(16);
 			int randY = rand.nextInt(topYMax) + 1;
@@ -358,8 +358,8 @@ public class ChunkProviderFrozenLands implements IChunkGenerator {
 		}
 
 		//Causes gen lag because of size
-		for (times = 0; times < 1; times++) {
-			//generateStructure(x1, z1, JourneyBlocks.brittleIce, dungeon);
+		if(rand.nextInt(5) == 0) {
+			generateStructure(x1, z1, JourneyBlocks.brittleIce, dungeon);
 		}
 
 		for(times = 0; times < 7; times++) {

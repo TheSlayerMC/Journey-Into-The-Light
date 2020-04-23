@@ -2,6 +2,8 @@ package net.journey.dimension.frozen;
 
 import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.world.biome.Biome;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BiomeGenFrozenLands extends Biome {
 
@@ -30,5 +32,11 @@ public class BiomeGenFrozenLands extends Biome {
     @Override
     public boolean getEnableSnow() {
         return true;
+    }
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+    public int getWaterColorMultiplier() {
+        return 0x00E8FF;
     }
 }
