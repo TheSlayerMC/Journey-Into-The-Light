@@ -1,8 +1,6 @@
 /*
 TODO:
 
-REMOVE LEFTOVER CODE FROM SLAYER'S OLD AI
-
 CUSTOM PROJECTILES: A GRAVITY-AFFECTED GRENADE THAT CAUSES SMALL EXPLOSIONS FOR THE GENERIC RANGED ATTACK AND INVISIBLE FLAME PARTICLE PROJECTILES FOR THE FLAMETHROWER
 */
 package net.journey.entity.mob.boss;
@@ -24,9 +22,6 @@ import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -36,11 +31,8 @@ import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityEssenceBoss;
 
-import java.util.Random;
-
 public class EntitySentryKing extends EntityEssenceBoss implements IRangedAttackMob {
 
-    private static final DataParameter<Byte> ON_FIRE = EntityDataManager.createKey(EntitySentryKing.class, DataSerializers.BYTE);
     public int phase;
     private float speedMod;
     private int flamethrowerTimer;
@@ -54,10 +46,9 @@ public class EntitySentryKing extends EntityEssenceBoss implements IRangedAttack
     @Override
     protected void initEntityAI() {
         super.initEntityAI();
-        this.tasks.addTask(5, new EntitySentryKing.AIRandomFly());
         this.tasks.addTask(7, new EntitySentryKing.AILookAround());
         this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
-        this.tasks.addTask(0, new EntityAIAttackRanged(this, 1.0D, 1, 20.0F)); //40
+        this.tasks.addTask(0, new EntityAIAttackRanged(this, 1.0D, 1, 20.0F));
         addAttackingAI();
     }
 
@@ -135,30 +126,6 @@ public class EntitySentryKing extends EntityEssenceBoss implements IRangedAttack
         super.onLivingUpdate();
     }
 
-    private double coordX(int par1) {
-        if (par1 <= 0) {
-            return this.posX;
-        } else {
-            float f = (this.renderYawOffset + 180 * (par1 - 1)) / 180.0F * (float) Math.PI;
-            float f1 = MathHelper.cos(f);
-            return this.posX + f1 * 1.3D;
-        }
-    }
-
-    private double coordY(int par1) {
-        return par1 <= 0 ? this.posY + 3.0D : this.posY + 2.2D;
-    }
-
-    private double coordZ(int par1) {
-        if (par1 <= 0) {
-            return this.posZ;
-        } else {
-            float f = (this.renderYawOffset + 180 * (par1 - 1)) / 180.0F * (float) Math.PI;
-            float f1 = MathHelper.sin(f);
-            return this.posZ + f1 * 1.3D;
-        }
-    }
-
     @Override
     public double setMaxHealth(MobStats s) {
         return MobStats.sentryKingHealth;
@@ -218,18 +185,6 @@ public class EntitySentryKing extends EntityEssenceBoss implements IRangedAttack
     @Override
     protected void entityInit() {
         super.entityInit();
-        this.dataManager.register(ON_FIRE, Byte.valueOf((byte) 0));
-    }
-
-    public boolean isFlying() {
-        return (this.dataManager.get(ON_FIRE).byteValue() & 1) != 0;
-    }
-
-    public void setFlying(boolean b) {
-        byte b0 = this.dataManager.get(ON_FIRE).byteValue();
-        if (b) b0 = (byte) (b0 | 1);
-        else b0 &= -2;
-        this.dataManager.set(ON_FIRE, Byte.valueOf(b0));
     }
 
     @Override
@@ -238,42 +193,6 @@ public class EntitySentryKing extends EntityEssenceBoss implements IRangedAttack
 
     @Override
     public void setSwingingArms(boolean swingingArms) {
-    }
-
-    private class AIRandomFly extends EntityAIBase {
-        private EntitySentryKing e = EntitySentryKing.this;
-
-        public AIRandomFly() {
-            this.setMutexBits(1);
-        }
-
-        @Override
-        public boolean shouldExecute() {
-            EntityMoveHelper entitymovehelper = this.e.getMoveHelper();
-            if (!entitymovehelper.isUpdating()) {
-                return true;
-            } else {
-                double d0 = entitymovehelper.getX() - this.e.posX;
-                double d1 = entitymovehelper.getY() - this.e.posY;
-                double d2 = entitymovehelper.getZ() - this.e.posZ;
-                double d3 = d0 * d0 + d1 * d1 + d2 * d2;
-                return d3 < 1.0D || d3 > 3600.0D;
-            }
-        }
-
-        @Override
-        public boolean shouldContinueExecuting() {
-            return false;
-        }
-
-        @Override
-        public void startExecuting() {
-            Random random = this.e.getRNG();
-            double d0 = this.e.posX + (random.nextFloat() * 2.0F - 1.0F) * 16.0F;
-            double d1 = this.e.posY + (random.nextFloat() * 2.0F - 1.0F) * 16.0F;
-            double d2 = this.e.posZ + (random.nextFloat() * 2.0F - 1.0F) * 16.0F;
-            this.e.getMoveHelper().setMoveTo(d0, d1, d2, 1.0D);
-        }
     }
 
     private class MoveHelper extends EntityMoveHelper {
