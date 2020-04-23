@@ -37,6 +37,6 @@ public class BiomeGenFrozenLands extends Biome {
     @Override
     @SideOnly(Side.CLIENT)
     public int getWaterColorMultiplier() {
-        return 0x00E8FF;
+        return 0xff9c00;
     }
 }

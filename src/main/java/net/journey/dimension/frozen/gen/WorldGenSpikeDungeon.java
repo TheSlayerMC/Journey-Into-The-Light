@@ -1,8 +1,11 @@
 package net.journey.dimension.frozen.gen;
 
+import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.entity.mob.frozen.EntityIceGolem;
 import net.journey.init.blocks.JourneyBlocks;
+import net.journey.util.JourneyLootTables;
 import net.minecraft.init.Blocks;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -48,8 +51,16 @@ public class WorldGenSpikeDungeon extends WorldGenerator {
         this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 0, k + 10), Blocks.PACKED_ICE.getDefaultState());
         this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 1, k + 3), Blocks.PACKED_ICE.getDefaultState());
         this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 1, k + 4), Blocks.PACKED_ICE.getDefaultState());
-        this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 1, k + 6), Blocks.OBSIDIAN.getDefaultState());
-        this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 1, k + 7), Blocks.OBSIDIAN.getDefaultState());
+        this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 1, k + 6), JourneyBlocks.frozenChest.getStateFromMeta(3));
+        TileEntity chest = worldIn.getTileEntity(new BlockPos(i + 1, j + 1, k + 6));
+        if (chest instanceof TileEntityJourneyChest) {
+            ((TileEntityJourneyChest) chest).setLootTable(JourneyLootTables.EUCA_SMITH_CHEST, r.nextLong());
+        }
+        this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 1, k + 7), JourneyBlocks.frozenChest.getStateFromMeta(3));
+        TileEntity chest1 = worldIn.getTileEntity(new BlockPos(i + 1, j + 1, k + 7));
+        if (chest1 instanceof TileEntityJourneyChest) {
+            ((TileEntityJourneyChest) chest1).setLootTable(JourneyLootTables.EUCA_SMITH_CHEST, r.nextLong());
+        }
         this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 1, k + 9), Blocks.PACKED_ICE.getDefaultState());
         this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 1, k + 10), Blocks.PACKED_ICE.getDefaultState());
         this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 2, k + 3), JourneyBlocks.iceStone.getDefaultState());
@@ -352,7 +363,11 @@ public class WorldGenSpikeDungeon extends WorldGenerator {
         this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 6, j + 0, k + 11), Blocks.PACKED_ICE.getDefaultState());
         this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 6, j + 0, k + 12), Blocks.PACKED_ICE.getDefaultState());
         this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 6, j + 0, k + 13), Blocks.PACKED_ICE.getDefaultState());
-        this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 6, j + 1, k + 12), Blocks.OBSIDIAN.getDefaultState());
+        this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 6, j + 1, k + 12), JourneyBlocks.frozenChest.getDefaultState());
+        TileEntity chest2 = worldIn.getTileEntity(new BlockPos(i + 6, j + 1, k + 12));
+        if (chest2 instanceof TileEntityJourneyChest) {
+            ((TileEntityJourneyChest) chest2).setLootTable(JourneyLootTables.EUCA_SMITH_CHEST, r.nextLong());
+        }
         this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 6, j + 1, k + 13), Blocks.PACKED_ICE.getDefaultState());
         this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 6, j + 2, k + 13), Blocks.PACKED_ICE.getDefaultState());
         this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 6, j + 3, k + 13), Blocks.PACKED_ICE.getDefaultState());
@@ -438,7 +453,11 @@ public class WorldGenSpikeDungeon extends WorldGenerator {
         this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 7, j + 0, k + 11), Blocks.PACKED_ICE.getDefaultState());
         this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 7, j + 0, k + 12), Blocks.PACKED_ICE.getDefaultState());
         this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 7, j + 0, k + 13), Blocks.PACKED_ICE.getDefaultState());
-        this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 7, j + 1, k + 12), Blocks.OBSIDIAN.getDefaultState());
+        this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 7, j + 1, k + 12), JourneyBlocks.frozenChest.getDefaultState());
+        TileEntity chest3 = worldIn.getTileEntity(new BlockPos(i + 7, j + 1, k + 12));
+        if (chest3 instanceof TileEntityJourneyChest) {
+            ((TileEntityJourneyChest) chest3).setLootTable(JourneyLootTables.EUCA_SMITH_CHEST, r.nextLong());
+        }
         this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 7, j + 1, k + 13), Blocks.PACKED_ICE.getDefaultState());
         this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 7, j + 2, k + 13), Blocks.PACKED_ICE.getDefaultState());
         this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 7, j + 3, k + 13), Blocks.PACKED_ICE.getDefaultState());
@@ -773,8 +792,16 @@ public class WorldGenSpikeDungeon extends WorldGenerator {
         this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 12, j + 0, k + 10), Blocks.PACKED_ICE.getDefaultState());
         this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 12, j + 1, k + 3), Blocks.PACKED_ICE.getDefaultState());
         this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 12, j + 1, k + 4), Blocks.PACKED_ICE.getDefaultState());
-        this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 12, j + 1, k + 6), Blocks.OBSIDIAN.getDefaultState());
-        this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 12, j + 1, k + 7), Blocks.OBSIDIAN.getDefaultState());
+        this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 12, j + 1, k + 6), JourneyBlocks.frozenChest.getDefaultState());
+        TileEntity chest4 = worldIn.getTileEntity(new BlockPos(i + 12, j + 1, k + 6));
+        if (chest4 instanceof TileEntityJourneyChest) {
+            ((TileEntityJourneyChest) chest4).setLootTable(JourneyLootTables.EUCA_SMITH_CHEST, r.nextLong());
+        }
+        this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 12, j + 1, k + 7), JourneyBlocks.frozenChest.getDefaultState());
+        TileEntity chest5 = worldIn.getTileEntity(new BlockPos(i + 12, j + 1, k + 7));
+        if (chest5 instanceof TileEntityJourneyChest) {
+            ((TileEntityJourneyChest) chest5).setLootTable(JourneyLootTables.EUCA_SMITH_CHEST, r.nextLong());
+        }
         this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 12, j + 1, k + 9), Blocks.PACKED_ICE.getDefaultState());
         this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 12, j + 1, k + 10), Blocks.PACKED_ICE.getDefaultState());
         this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 12, j + 2, k + 3), Blocks.PACKED_ICE.getDefaultState());

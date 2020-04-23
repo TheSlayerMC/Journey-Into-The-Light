@@ -1,8 +1,11 @@
 package net.journey.event;
 
+import net.journey.entity.mob.overworld.EntityIceMage;
 import net.journey.init.items.JourneyArmory;
 import net.journey.init.items.JourneyConsumables;
+import net.journey.init.items.JourneyItems;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
