@@ -365,7 +365,7 @@ public class ChunkProviderFrozenLands implements IChunkGenerator {
 		for(times = 0; times < 7; times++) {
 			BlockPos randomPosForMinable = chunkStart.add(rand.nextInt(16), rand.nextInt(15), rand.nextInt(16));
 			if(worldObj.getBlockState(randomPosForMinable.up(1)) == Blocks.FLOWING_WATER.getDefaultState()) {
-				new WorldGenMinable(JourneyBlocks.frozenLamp.getDefaultState(), 15, BlockStateMatcher.forBlock(JourneyBlocks.frozenDirt)).generate(worldObj, rand, randomPosForMinable);
+				new WorldGenMinable(JourneyBlocks.iceStone.getDefaultState(), 15, BlockStateMatcher.forBlock(JourneyBlocks.frozenDirt)).generate(worldObj, rand, randomPosForMinable);
 			}
 		}
 	}
