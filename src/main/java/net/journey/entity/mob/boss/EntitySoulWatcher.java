@@ -12,7 +12,7 @@ import net.journey.init.items.JourneyArmory;
 import net.journey.init.items.JourneyItems;
 import net.journey.init.items.JourneyWeapons;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.IRangedAttackMob;
+//import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
 import net.minecraft.entity.ai.EntityMoveHelper;
@@ -28,13 +28,14 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-import net.slayer.api.entity.EntityEssenceBoss;
+import net.slayer.api.entity.EntityFlyingBoss;
 
 import java.util.Random;
 
-public class EntitySoulWatcher extends EntityEssenceBoss implements IRangedAttackMob {
+public class EntitySoulWatcher extends EntityFlyingBoss /*implements IRangedAttackMob */{
     private static final DataParameter<Byte> ON_FIRE = EntityDataManager.createKey(EntitySoulWatcher.class, DataSerializers.BYTE);
     private int spawnTimer;
 
@@ -43,17 +44,18 @@ public class EntitySoulWatcher extends EntityEssenceBoss implements IRangedAttac
         this.moveHelper = new EntitySoulWatcher.MoveHelper();
         this.tasks.addTask(5, new EntitySoulWatcher.AIRandomFly());
         //this.tasks.addTask(1, new EntityAIArrowAttack(this, 1.0D, 40, 20.0F));
+        this.tasks.addTask(7, new EntitySoulWatcher.AIFireballAttack());
         this.tasks.addTask(7, new EntitySoulWatcher.AILookAround());
         this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
-        addAttackingAI();
+        //addAttackingAI();
         setSize(4.0F, 2.0F);
         spawnTimer = 0;
     }
 
-    @Override
+    /*@Override
     public double setAttackDamage(MobStats s) {
         return MobStats.sentryKingDamage;
-    }
+    }*/
 
     @Override
     public double setKnockbackResistance() {
@@ -143,6 +145,12 @@ public class EntitySoulWatcher extends EntityEssenceBoss implements IRangedAttac
     @Override
     public void fall(float distance, float damageMultiplier) {
     }
+    
+    @Override
+    public void onUpdate() {
+        super.onUpdate();
+        if (!this.world.isRemote && this.world.getDifficulty() == EnumDifficulty.PEACEFUL) this.setDead();
+    }
 
     @Override
     public void onLivingUpdate() {
@@ -182,7 +190,7 @@ public class EntitySoulWatcher extends EntityEssenceBoss implements IRangedAttac
         super.onLivingUpdate();
     }
 
-    @Override
+    /*@Override
     public void attackEntityWithRangedAttack(EntityLivingBase e, float f1) {
         this.launchWitherSkullToEntity(0, e);
     }
@@ -232,7 +240,7 @@ public class EntitySoulWatcher extends EntityEssenceBoss implements IRangedAttac
 
     @Override
     public void setSwingingArms(boolean swingingArms) {
-    }
+    }*/
 
     /*@Override
     public void moveEntityWithHeading(float p_70612_1_, float p_70612_2_) {
@@ -383,6 +391,53 @@ public class EntitySoulWatcher extends EntityEssenceBoss implements IRangedAttac
                             / (float) Math.PI;
                 }
             }
+        }
+    }
+    
+    public class AIFireballAttack extends EntityAIBase {
+        public int counter;
+        private EntitySoulWatcher entity = EntitySoulWatcher.this;
+
+        @Override
+        public boolean shouldExecute() {
+            return this.entity.getAttackTarget() != null;
+        }
+
+        @Override
+        public void startExecuting() {
+            this.counter = 0;
+        }
+
+        @Override
+        public void resetTask() {
+            //this.entity.setFire(false);
+        }
+
+        @Override
+        public void updateTask() {
+            EntityLivingBase entitylivingbase = this.entity.getAttackTarget();
+            double d0 = 64.0D;
+
+            if (entitylivingbase.getDistanceSq(this.entity) < d0 * d0 && this.entity.canEntityBeSeen(entitylivingbase)) {
+                World world = this.entity.world;
+                counter++;
+
+                if (this.counter == 20) {
+                    double d1 = 4.0D;
+                    Vec3d vec3 = this.entity.getLook(1.0F);
+                    double d2 = entitylivingbase.posX - (this.entity.posX + vec3.x * d1);
+                    double d3 = entitylivingbase.getEntityBoundingBox().minY + entitylivingbase.height / 2.0F - (0.5D + this.entity.posY + this.entity.height / 2.0F);
+                    double d4 = entitylivingbase.posZ - (this.entity.posZ + vec3.z * d1);
+                    //world.playAuxSFXAtEntity((EntityPlayer)null, 1008, new BlockPos(this.entity), 0);
+                    EntityMagmaFireball projectile = new EntityMagmaFireball(world, this.entity, d2, d3, d4);
+                    projectile.posX = this.entity.posX + vec3.x * d1;
+                    projectile.posY = this.entity.posY + this.entity.height / 2.0F + 0.5D;
+                    projectile.posZ = this.entity.posZ + vec3.z * d1;
+                    world.spawnEntity(projectile);
+                    this.counter = -40;
+                }
+            } else if (this.counter > 0) counter--;
+            //this.entity.setFire(this.counter > 10);
         }
     }
 }
