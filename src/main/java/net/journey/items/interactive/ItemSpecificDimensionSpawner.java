@@ -87,7 +87,7 @@ public class ItemSpecificDimensionSpawner extends ItemMod {
                     w.spawnEntity(logger);
                 }
                 if (item == JourneyItems.scaleOrb) {
-                    SlayerAPI.sendMessageToAll("(W.I.P) The blue blubby fish monster has been summoned!", true);
+                    SlayerAPI.sendMessageToAll("(The blue blubby fish monster has been summoned!", true);
                     JourneySounds.playSound(JourneySounds.SUMMON_BOSS, w, p);
                     scale.setPosition(pos.getX(), pos.getY() + 1, pos.getZ());
                     w.spawnEntity(scale);
@@ -128,7 +128,7 @@ public class ItemSpecificDimensionSpawner extends ItemMod {
         if (item == JourneyItems.mysteriousDisk) list.add(LangHelper.setBossSpawner("Sky Stalker"));
         if (item == JourneyItems.corallatorOrb) list.add(LangHelper.setBossSpawner("Corallator"));
         if (item == JourneyItems.loggerOrb) list.add(LangHelper.setBossSpawner("Logger"));
-        if (item == JourneyItems.scaleOrb) list.add(LangHelper.setBossSpawner("Sclae"));
+        if (item == JourneyItems.scaleOrb) list.add(LangHelper.setBossSpawner("Scale"));
         if (item == JourneyItems.thunderbirdOrb) list.add(LangHelper.setBossSpawner("Thunderbird"));
         if (item == JourneyItems.enchantedTerrastar) list.add(LangHelper.setBossSpawner("Terranian Protector"));
         if (item == JourneyItems.rocSpawnEgg) list.add(LangHelper.setPetSpawner("Roc"));
