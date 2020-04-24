@@ -3,12 +3,12 @@ package net.journey.entity.mob.boss;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityIceBall;
+import net.journey.entity.projectile.EntityMagmaFireball;
 import net.journey.init.JourneySounds;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.init.items.JourneyItems;
 import net.journey.init.items.JourneyWeapons;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
 import net.minecraft.entity.ai.EntityMoveHelper;
@@ -23,13 +23,14 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-import net.slayer.api.entity.EntityEssenceBoss;
+import net.slayer.api.entity.EntityFlyingBoss;
 
 import java.util.Random;
 
-public class EntityTerranianProtector extends EntityEssenceBoss implements IRangedAttackMob {
+public class EntityTerranianProtector extends EntityFlyingBoss {
 
     private static final DataParameter<Byte> ON_FIRE = EntityDataManager.createKey(EntityTerranianProtector.class, DataSerializers.BYTE);
 
@@ -39,14 +40,9 @@ public class EntityTerranianProtector extends EntityEssenceBoss implements IRang
         this.moveHelper = new EntityTerranianProtector.MoveHelper();
         this.tasks.addTask(5, new EntityTerranianProtector.AIRandomFly());
         this.tasks.addTask(7, new EntityTerranianProtector.AILookAround());
+        this.tasks.addTask(7, new EntityTerranianProtector.AIFireballAttack());
         this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
-        addAttackingAI();
         setSize(2.0F, 10F);
-    }
-
-    @Override
-    public double setAttackDamage(MobStats s) {
-        return MobStats.terranianDamage;
     }
 
     @Override
@@ -55,8 +51,9 @@ public class EntityTerranianProtector extends EntityEssenceBoss implements IRang
     }
 
     @Override
-    public void attackEntityWithRangedAttack(EntityLivingBase e, float f1) {
-        this.launchWitherSkullToEntity(0, e);
+    public void onUpdate() {
+        super.onUpdate();
+        if (!this.world.isRemote && this.world.getDifficulty() == EnumDifficulty.PEACEFUL) this.setDead();
     }
 
     private void launchWitherSkullToEntity(int var1, EntityLivingBase e) {
@@ -218,10 +215,6 @@ public class EntityTerranianProtector extends EntityEssenceBoss implements IRang
         }
     }
 
-    @Override
-    public void setSwingingArms(boolean swingingArms) {
-    }
-
     private class AIRandomFly extends EntityAIBase {
         private EntityTerranianProtector e = EntityTerranianProtector.this;
 
@@ -330,6 +323,51 @@ public class EntityTerranianProtector extends EntityEssenceBoss implements IRang
                             / (float) Math.PI;
                 }
             }
+        }
+    }
+    public class AIFireballAttack extends EntityAIBase {
+        public int counter;
+        private EntityTerranianProtector entity = EntityTerranianProtector.this;
+
+        @Override
+        public boolean shouldExecute() {
+            return this.entity.getAttackTarget() != null;
+        }
+
+        @Override
+        public void startExecuting() {
+            this.counter = 0;
+        }
+
+        @Override
+        public void resetTask() {
+            
+        }
+
+        @Override
+        public void updateTask() {
+            EntityLivingBase entitylivingbase = this.entity.getAttackTarget();
+            double d0 = 64.0D;
+
+            if (entitylivingbase.getDistanceSq(this.entity) < d0 * d0 && this.entity.canEntityBeSeen(entitylivingbase)) {
+                World world = this.entity.world;
+                counter++;
+
+                if (this.counter == 20) {
+                    double d1 = 4.0D;
+                    Vec3d vec3 = this.entity.getLook(1.0F);
+                    double d2 = entitylivingbase.posX - (this.entity.posX + vec3.x * d1);
+                    double d3 = entitylivingbase.getEntityBoundingBox().minY + entitylivingbase.height / 2.0F - (0.5D + this.entity.posY + this.entity.height / 2.0F);
+                    double d4 = entitylivingbase.posZ - (this.entity.posZ + vec3.z * d1);
+                    //world.playAuxSFXAtEntity((EntityPlayer)null, 1008, new BlockPos(this.entity), 0);
+                    EntityMagmaFireball projectile = new EntityMagmaFireball(world, this.entity, d2, d3, d4);
+                    projectile.posX = this.entity.posX + vec3.x * d1;
+                    projectile.posY = this.entity.posY + this.entity.height / 2.0F + 0.5D;
+                    projectile.posZ = this.entity.posZ + vec3.z * d1;
+                    world.spawnEntity(projectile);
+                    this.counter = -40;
+                }
+            } else if (this.counter > 0) counter--;
         }
     }
 }

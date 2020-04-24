@@ -4,7 +4,7 @@ import net.journey.util.JourneyBossStatus;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.ResourceLocation;
-import net.slayer.api.entity.EntityEssenceBoss;
+import net.slayer.api.entity.IEssenceBoss;
 
 public class RenderBoss extends RenderSizeable {
 
@@ -17,7 +17,7 @@ public class RenderBoss extends RenderSizeable {
 
     @Override
     public void doRender(EntityLiving par1Entity, double par2, double par4, double par6, float par8, float par9) {
-        JourneyBossStatus.setStatus((EntityEssenceBoss) par1Entity, bar);
+        JourneyBossStatus.setStatus((IEssenceBoss) par1Entity, bar);
         super.doRender(par1Entity, par2, par4, par6, par8, par9);
     }
 }
