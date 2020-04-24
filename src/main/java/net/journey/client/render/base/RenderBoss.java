@@ -1,10 +1,10 @@
 package net.journey.client.render.base;
 
+import net.journey.api.entity.IEssenceBoss;
 import net.journey.util.JourneyBossStatus;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.ResourceLocation;
-import net.slayer.api.entity.IEssenceBoss;
 
 public class RenderBoss extends RenderSizeable {
 
