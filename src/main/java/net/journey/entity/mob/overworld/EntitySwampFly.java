@@ -78,6 +78,7 @@ public class EntitySwampFly extends EntityModFlying {
         double d2 = this.posY;
         double d3 = this.posZ;
         for (int i = 0; i < 1; ++i) {
+        	JITL.proxy.spawnOreParticle(this.world, d1, d2, d3, 0.7F, 1.0F, 0.1F);
         }
     }
 
