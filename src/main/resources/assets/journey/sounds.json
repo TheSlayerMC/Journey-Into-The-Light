@@ -72,6 +72,7 @@
  "wrapper":{"category":"neutral","sounds": ["journey:wrapper"]},
  "summon_boss":{"category":"master","sounds": ["journey:summon_boss"]},
  "summon_table":{"category":"master","sounds": ["journey:summon_table"]},
+ "bottle_plug":{"category":"master","sounds": ["journey:bottle_plug"]},
  "underwater_world":{"category": "music", "sounds": [{"name": "journey:music/records/underwater_world", "stream": true}]},
  "blue_water":{"category": "music", "sounds": [{"name": "journey:music/records/blue_water", "stream": true}]},
  "race_star":{"category": "music", "sounds": [{"name": "journey:music/records/race_star", "stream": true}]},

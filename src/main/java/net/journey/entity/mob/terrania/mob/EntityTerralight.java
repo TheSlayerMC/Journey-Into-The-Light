@@ -1,5 +1,6 @@
 package net.journey.entity.mob.terrania.mob;
 
+import net.journey.JITL;
 import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
 import net.minecraft.entity.ai.EntityAIBase;
@@ -56,6 +57,17 @@ public class EntityTerralight extends EntityModFlying {
     @Override
     public SoundEvent setDeathSound() {
         return JourneySounds.EMPTY;
+    }
+    
+    @Override
+    public void onLivingUpdate() {
+        super.onLivingUpdate();
+        double d1 = this.posX;
+        double d2 = this.posY;
+        double d3 = this.posZ;
+        for (int i = 0; i < 1; ++i) {
+        	JITL.proxy.spawnOreParticle(this.world, d1, d2, d3, 1.5F, 0.1F, 1.6F);
+        }
     }
 
     @Override

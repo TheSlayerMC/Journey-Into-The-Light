@@ -1,5 +1,6 @@
 package net.journey.entity.mob.overworld;
 
+import net.journey.JITL;
 import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
 import net.journey.init.blocks.JourneyBlocks;
@@ -12,6 +13,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -25,7 +27,7 @@ public class EntitySwampFly extends EntityModFlying {
 
     public EntitySwampFly(World par1World) {
         super(par1World);
-        this.moveHelper = new EntitySwampFly.ShattererMoveHelper();
+        this.moveHelper = new EntitySwampFly.SwampFlyMoveHelper();
         initEntityAI();
         setSize(1F, 1F);
     }
@@ -72,10 +74,10 @@ public class EntitySwampFly extends EntityModFlying {
     @Override
     public void onLivingUpdate() {
         super.onLivingUpdate();
-
+        double d1 = this.posX;
+        double d2 = this.posY;
+        double d3 = this.posZ;
         for (int i = 0; i < 1; ++i) {
-            this.world.spawnParticle(EnumParticleTypes.CRIT_MAGIC, this.posX + (this.rand.nextDouble() - 0.5D) * this.width, this.posY + this.rand.nextDouble() * (this.height - 0.75D) + 0.5D, this.posZ + (this.rand.nextDouble() - 0.5D) * this.width,
-                    0, 0.5, 0);
         }
     }
 
@@ -85,14 +87,10 @@ public class EntitySwampFly extends EntityModFlying {
     }
 
     @Override
-    public boolean shouldRenderInPass(int pass) {
-        return pass == 1;
-    }
-
-    @Override
     public boolean processInteract(EntityPlayer player, EnumHand hand) {
         ItemStack itemstack = player.getHeldItem(hand);
         if (itemstack.getItem() == Items.GLASS_BOTTLE) {
+            world.playSound(player.posX, player.posY, player.posZ, JourneySounds.BOTTLE_PLUG, SoundCategory.MASTER, 1.0f, 1.0f, false);
             itemstack.shrink(1);
             if (itemstack.isEmpty()) {
                 player.setHeldItem(hand, new ItemStack(JourneyBlocks.swampLamp));
@@ -142,11 +140,11 @@ public class EntitySwampFly extends EntityModFlying {
         }
     }
 
-    private class ShattererMoveHelper extends EntityMoveHelper {
+    private class SwampFlyMoveHelper extends EntityMoveHelper {
         private EntitySwampFly e = EntitySwampFly.this;
         private int height;
 
-        public ShattererMoveHelper() {
+        public SwampFlyMoveHelper() {
             super(EntitySwampFly.this);
         }
 

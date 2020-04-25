@@ -9,12 +9,7 @@ import net.minecraft.item.Item.ToolMaterial;
 import net.slayer.api.SlayerAPI;
 
 public enum JourneyToolMaterial {
-
-
-
-
-
-
+	
     HELLSTONE(JourneyItems.hellstone, JourneyItems.hellstoneIngot, 12),
     FLAIRIUM(JourneyItems.flairium, JourneyItems.flairiumIngot, 16),
     LUNIUM(JourneyItems.lunium, JourneyItems.luniumIngot, 10),

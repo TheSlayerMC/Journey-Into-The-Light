@@ -2,6 +2,7 @@ package net.journey.blocks;
 
 import net.journey.init.JourneyTabs;
 import net.minecraft.block.Block;
+import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
@@ -39,6 +40,11 @@ public class BlockSwampLamp extends BlockMod {
         return new AxisAlignedBB(pos.getX() + (5 * f), pos.getY(), pos.getZ() + (5 * f), pos.getX() + 1 - (5 * f), pos.getY() + 1.2D - (10 * f), pos.getZ() + 1 - (5 * f));
     }
 
+	@Override
+	public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face) {
+		return BlockFaceShape.UNDEFINED;
+	}
+
     @Override
     public boolean isOpaqueCube(IBlockState state) {
         return false;
@@ -48,17 +54,15 @@ public class BlockSwampLamp extends BlockMod {
     public boolean isNormalCube(IBlockState state) {
         return false;
     }
+    
+	@Override
+	public boolean isFullCube(IBlockState state) {
+		return false;
+	}
 
     @Override
     @SideOnly(Side.CLIENT)
     public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.CUTOUT;
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess iba, BlockPos pos, EnumFacing side) {
-        Block block = iba.getBlockState(pos).getBlock();
-        return block != this && super.shouldSideBeRendered(blockState, iba, pos, side);
     }
 }

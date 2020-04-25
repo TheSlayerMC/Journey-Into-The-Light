@@ -296,7 +296,7 @@ public class ChunkProviderFrozenLands implements IChunkGenerator {
 		int topYMax = 100;
 		int bottomYMax = 50;
 
-		if (rand.nextInt(3) == 0) {
+		if (rand.nextInt(5) == 0) {
 			int randX = i * 16 + 7 + rand.nextInt(9);
 			int randZ = j * 16 + 7 + rand.nextInt(9);
 			int randY = rand.nextInt(bottomYMax) + 1;

@@ -257,8 +257,8 @@ public class EntityRendering {
         RenderingRegistry.registerEntityRenderingHandler(EntityStarlightVillager.class, new RenderModMob(new ModelStarlightVillager(), Textures.starlightVillager));
         RenderingRegistry.registerEntityRenderingHandler(EntityStarlightBlacksmith.class, new RenderModMob(new ModelStarlightVillager(), Textures.starlightBlacksmith));
         RenderingRegistry.registerEntityRenderingHandler(EntitySkyEel.class, new RenderModMob(new ModelSkyEel(), Textures.skyEel));
-        RenderingRegistry.registerEntityRenderingHandler(EntityTerralight.class, new RenderModMob(new ModelTerralight(), Textures.terralight));
-        RenderingRegistry.registerEntityRenderingHandler(EntitySwampFly.class, new RenderModMob(new ModelTerralight(), Textures.swampFly));
+        RenderingRegistry.registerEntityRenderingHandler(EntityTerralight.class, new RenderSizeable(new ModelTerralight(), 0.5F, 0.5F, Textures.terralight));
+        RenderingRegistry.registerEntityRenderingHandler(EntitySwampFly.class, new RenderSizeable(new ModelTerralight(), 0.5F, 0.5F, Textures.swampFly));
         RenderingRegistry.registerEntityRenderingHandler(EntityTerranianTrader.class, new RenderModMob(new ModelTerranianTrader(), Textures.terranianTrader));
         RenderingRegistry.registerEntityRenderingHandler(EntityTerranianEnchanter.class, new RenderModMob(new ModelTerranianTrader(), Textures.terranianEnchanter));
         RenderingRegistry.registerEntityRenderingHandler(EntityTerraScatterer.class, new RenderModMob(new ModelTerraScatterer(), Textures.terraScatterer));

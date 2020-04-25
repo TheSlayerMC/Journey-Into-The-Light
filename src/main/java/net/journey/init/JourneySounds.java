@@ -87,6 +87,7 @@ public class JourneySounds {
     public static SoundEvent BIRD_DEATH;
     public static SoundEvent GATE_CREAK;
     public static SoundEvent UNLOCK;
+    public static SoundEvent BOTTLE_PLUG;
     public static SoundEvent EMPTY;
 
     public static SoundEvent UNTITLED_DISK;
@@ -178,6 +179,7 @@ public class JourneySounds {
         BIRD_DEATH = registerSound("bird_death");
         GATE_CREAK = registerSound("gate_creak");
         UNLOCK = registerSound("unlock");
+        BOTTLE_PLUG = registerSound("bottle_plug");
         EMPTY = registerSound("empty");
         UNTITLED_DISK = registerSound("untitled_disk");
         RACE_TO_SHORE = registerSound("race_shore");
