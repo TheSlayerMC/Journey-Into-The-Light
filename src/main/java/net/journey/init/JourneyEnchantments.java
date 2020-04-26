@@ -26,7 +26,6 @@ public class JourneyEnchantments {
 
     public static final Enchantment hotTouch = new EnchantmentHotTouch();
     public static final Enchantment waterWalk = new EnchantmentWaterWalk();
-    public static ArrayList<Enchantment> enchantments = new ArrayList<Enchantment>();
 
     public static int getItemEnchantment(Enchantment en, EntityLivingBase e) {
         if (en != null && e != null) return EnchantmentHelper.getEnchantmentLevel(en, e.getHeldItemMainhand());
@@ -47,7 +46,7 @@ public class JourneyEnchantments {
     }
 
     @SubscribeEvent
-    public void onBlockHarvested(HarvestDropsEvent event) {
+    public static void onBlockHarvested(HarvestDropsEvent event) {
         EntityPlayer p = event.getHarvester();
         if (hasItemEnchantment(hotTouch, p)) {
             if (event.getHarvester() != null && event.getHarvester() instanceof EntityPlayer && event.getHarvester().getHeldItemMainhand() != null) {
@@ -63,7 +62,7 @@ public class JourneyEnchantments {
     }
 
     @SubscribeEvent
-    public void onTick(TickEvent.PlayerTickEvent event) {
+    public static void onTick(TickEvent.PlayerTickEvent event) {
         EntityPlayer player = event.player;
         int i = MathHelper.floor(player.posX);
         int j = MathHelper.floor(player.posY);

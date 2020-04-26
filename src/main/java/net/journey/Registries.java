@@ -85,10 +85,12 @@ public class Registries {
     }
 
     @SubscribeEvent
-    public void registerEnchantments(RegistryEvent.Register<Enchantment> event) {
-        for (int i = 0; i < JourneyEnchantments.enchantments.size(); i++)
-            event.getRegistry().registerAll(JourneyEnchantments.enchantments.get(i));
-
-        LogHelper.info("Successfully Registered " + JourneyEnchantments.enchantments.size() + " Enchantments");
+    public static void registerEnchantments(RegistryEvent.Register<Enchantment> e) {
+    	IForgeRegistry<Enchantment> enchant = e.getRegistry();
+    	
+        enchant.register(JourneyEnchantments.hotTouch);
+        enchant.register(JourneyEnchantments.waterWalk);
+        
+        LogHelper.info("Successfully Registered 2 Enchantments");
     }
 }

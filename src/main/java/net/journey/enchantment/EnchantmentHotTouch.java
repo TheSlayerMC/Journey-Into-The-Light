@@ -16,7 +16,6 @@ public class EnchantmentHotTouch extends Enchantment {
         super(Rarity.RARE, EnumEnchantmentType.DIGGER, new EntityEquipmentSlot[]{EntityEquipmentSlot.MAINHAND});
         this.setName("Hot Touch");
         setRegistryName(new ResourceLocation(SlayerAPI.MOD_ID, "Hot Touch"));
-        JourneyEnchantments.enchantments.add(this);
     }
 
     @Override

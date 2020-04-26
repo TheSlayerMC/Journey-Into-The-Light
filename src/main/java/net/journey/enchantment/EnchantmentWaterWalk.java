@@ -16,7 +16,6 @@ public class EnchantmentWaterWalk extends Enchantment {
         super(Rarity.RARE, EnumEnchantmentType.ARMOR_FEET, new EntityEquipmentSlot[]{EntityEquipmentSlot.FEET});
         this.setName("Water Walker");
         setRegistryName(new ResourceLocation(SlayerAPI.MOD_ID, "Water Walker"));
-        JourneyEnchantments.enchantments.add(this);
     }
 
     @Override

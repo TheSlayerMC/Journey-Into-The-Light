@@ -13,6 +13,7 @@ import net.journey.event.ArmorAbilityEvent;
 import net.journey.event.NetherEvent;
 import net.journey.event.PlayerEvent;
 import net.journey.event.VanillaFixEvent;
+import net.journey.init.JourneyEnchantments;
 import net.journey.init.JourneySounds;
 import net.journey.init.JourneyTabs;
 import net.journey.init.blocks.JourneyBlocks;
@@ -110,6 +111,7 @@ public class CommonProxy {
         SlayerAPI.registerEventListener(new PlayerEvent());
         SlayerAPI.registerEventListener(new JourneyFuelHandler());
         SlayerAPI.registerEventListener(new VanillaFixEvent());
+        SlayerAPI.registerEventListener(new JourneyEnchantments());
         MinecraftForge.addGrassSeed(new ItemStack(JourneyCrops.tomatoSeeds), 5);
         //FMLCommonHandler.instance().bus().register(new JourneyAdvancementEvent());
         DimensionHelper.init();
