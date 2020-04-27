@@ -838,10 +838,24 @@ public class WorldGenSpikeDungeon extends WorldGenerator {
         this.setBlockAndNotifyAdequately(worldIn, new BlockPos(x + 13, y + 3, z + 6), Blocks.PACKED_ICE.getDefaultState());
         this.setBlockAndNotifyAdequately(worldIn, new BlockPos(x + 13, y + 3, z + 7), Blocks.PACKED_ICE.getDefaultState());
 
+        for(int x1 = 0; x1 < 6; x1++) {
+        	for(int y1 = 0; y1 < 6; y1++) {
+        		for(int z1 = 0; z1 < 6; z1++) {
+        			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(x + 4 + x1, y + 1 + y1, z + 4 + z1), Blocks.AIR.getDefaultState());
+        		}
+        	}
+        }
+        
         if (!worldIn.isRemote) {
             EntityIceGolem golem = new EntityIceGolem(worldIn);
-            golem.setLocationAndAngles(x + 6, y + 2, z + 6, 0.0F, 0.0F);
+            golem.setLocationAndAngles(x + 6.5, y + 2, z + 6.5, 0.0F, 0.0F);
             worldIn.spawnEntity(golem);
+        }
+        
+        if (!worldIn.isRemote) {
+            EntityAlloyMender smith = new EntityAlloyMender(worldIn);
+            smith.setLocationAndAngles(x + 6.5, y + 2, z + 6.5, 0.0F, 0.0F);
+            worldIn.spawnEntity(smith);
         }
         return false;
     }
