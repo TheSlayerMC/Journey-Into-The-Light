@@ -838,7 +838,7 @@ public class WorldGenSpikeDungeon extends WorldGenerator {
 
         if (!worldIn.isRemote) {
             EntityIceGolem golem = new EntityIceGolem(worldIn);
-            golem.setLocationAndAngles(i + 6, j + 3, k + 6, 0.0F, 0.0F);
+            golem.setLocationAndAngles(i + 6, j + 5, k + 6, 0.0F, 0.0F);
             worldIn.spawnEntity(golem);
         }
         return false;

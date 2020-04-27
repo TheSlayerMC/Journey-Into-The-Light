@@ -10,6 +10,13 @@ public class CloudiaBridgeEW extends CloudiaZoneBase {
 
     @Override
     public boolean generate(CloudiaChunkPrimer worldIn, Random rand, int i, int j, int k) {
+    	for(int x1 = 0; x1 < 16; x1++) {
+        	for(int y1 = 0; y1 < 19; y1++) {
+        		for(int z1 = 0; z1 < 16; z1++) {
+        			this.setBlock(worldIn, i + x1, j + y1, k + z1, Blocks.AIR);
+        		}
+        	}
+        }
         this.setBlock(worldIn, i + 0, j + 0, k + 0, Blocks.AIR);
         this.setBlock(worldIn, i + 0, j + 0, k + 1, Blocks.AIR);
         this.setBlock(worldIn, i + 0, j + 0, k + 2, Blocks.AIR);

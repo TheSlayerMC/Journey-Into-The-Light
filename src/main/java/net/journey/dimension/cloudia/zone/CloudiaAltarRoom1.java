@@ -16,6 +16,14 @@ public class CloudiaAltarRoom1 extends CloudiaZoneBase {
         //int i = x - 1;
         //int j = y + 0;
         //int k = z;
+    	
+    	for(int x1 = 0; x1 < 16; x1++) {
+        	for(int y1 = 0; y1 < 19; y1++) {
+        		for(int z1 = 0; z1 < 16; z1++) {
+        			this.setBlock(worldIn, i + x1, j + y1, k + z1, Blocks.AIR);
+        		}
+        	}
+        }
         this.setBlock(worldIn, i + 0, j + 0, k + 0, Blocks.AIR);
         this.setBlock(worldIn, i + 0, j + 0, k + 1, Blocks.AIR);
         this.setBlock(worldIn, i + 0, j + 0, k + 2, Blocks.AIR);
