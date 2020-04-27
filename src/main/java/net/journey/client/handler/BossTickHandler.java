@@ -34,7 +34,7 @@ public class BossTickHandler {
         if (JourneyBossStatus.bar == null) return;
         ResourceLocation r = set(JourneyBossStatus.bar);
 
-        if (JourneyBossStatus.statusBarTime > 0 && mc.currentScreen == null) {
+        if (JourneyBossStatus.statusBarTime > 0 && mc.currentScreen == null && !(mc.gameSettings.hideGUI)) {
             JourneyBossStatus.statusBarTime--;
             GuiIngame gig = mc.ingameGUI;
             FontRenderer fontrenderer = this.mc.fontRenderer;
