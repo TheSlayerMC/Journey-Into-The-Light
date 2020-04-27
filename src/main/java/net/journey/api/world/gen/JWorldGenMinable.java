@@ -160,7 +160,7 @@ public class JWorldGenMinable extends WorldGenMinable {
     public boolean generate(World worldIn, Random rand, BlockPos position) {
         position = WorldGenAPI.getPosWithHeight(position, minY + rand.nextInt(maxY - minY));
 
-        return super.generate(worldIn, rand, WorldGenAPI.optimizeAndRandomize(position, rand));
+        return super.generate(worldIn, rand, WorldGenAPI.randomize(position, rand));
     }
 
     private static class StonePredicate implements Predicate<IBlockState> {
