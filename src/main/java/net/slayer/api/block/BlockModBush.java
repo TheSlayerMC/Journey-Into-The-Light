@@ -1,7 +1,5 @@
 package net.slayer.api.block;
 
-import java.util.Random;
-
 import net.journey.init.JourneyTabs;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
@@ -12,7 +10,6 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumBlockRenderType;
@@ -25,6 +22,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
 import net.slayer.api.EnumMaterialTypes;
+
+import java.util.Random;
 
 public class BlockModBush extends BlockMod implements IPlantable, IGrowable {
 
@@ -174,14 +173,16 @@ public class BlockModBush extends BlockMod implements IPlantable, IGrowable {
 		x = player.posX,
 		y = player.posY,
 		z = player.posZ;
-		if (state.getValue(AGE) == 2 && !w.isRemote) {
-			if(!(player.getHeldItemMainhand().getItem() instanceof ItemBlock)) {
-				EntityItem drop = new EntityItem(w, x, y, z, new ItemStack(berry));
-				w.spawnEntity(drop);
-				w.setBlockState(pos, state.withProperty(AGE, 0), 1);
-				return true;
-			}
+
+		if(w.isRemote){
+			return true;
 		}
-		return false;
+
+		if (state.getValue(AGE) == 2) {
+			EntityItem drop = new EntityItem(w, x, y, z, new ItemStack(berry));
+			w.spawnEntity(drop);
+			w.setBlockState(pos, state.withProperty(AGE, 0));
+			return true;
+		} else return false;
 	}
 }
