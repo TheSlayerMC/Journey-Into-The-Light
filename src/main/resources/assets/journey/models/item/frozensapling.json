@@ -1,7 +1,7 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "journey:blocks/sapling/euca_gold_sapling"
+        "layer0": "journey:blocks/sapling/frozen_sapling"
     },
     "display": {
         "thirdperson": {
