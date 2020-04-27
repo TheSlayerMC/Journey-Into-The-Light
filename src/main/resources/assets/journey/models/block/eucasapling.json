@@ -1,6 +1,6 @@
 {
     "parent": "block/cross",
     "textures": {
-        "cross": "journey:blocks/eucaSapling"
+        "cross": "journey:blocks/sapling/euca_gold_sapling"
     }
 }

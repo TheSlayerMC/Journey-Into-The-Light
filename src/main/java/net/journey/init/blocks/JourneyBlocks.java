@@ -9,8 +9,10 @@ import net.journey.blocks.portal.*;
 import net.journey.dimension.boil.trees.WorldGenBoilTree1;
 import net.journey.dimension.corba.gen.trees.WorldGenCorbaSmallTree;
 import net.journey.dimension.euca.gen.trees.WorldGenEucaTree;
+import net.journey.dimension.frozen.gen.WorldGenFrozenTree;
 import net.journey.dimension.frozen.gen.WorldGenIceTree;
 import net.journey.dimension.nether.gen.trees.WorldGenBleedheartTree0;
+import net.journey.dimension.nether.gen.trees.WorldGenEarthenTree;
 import net.journey.dimension.terrania.gen.trees.WorldGenTerraniaSmallTree;
 import net.journey.init.JourneyTabs;
 import net.journey.init.items.JourneyConsumables;
@@ -122,6 +124,7 @@ public class JourneyBlocks {
     public static BlockMod depthsSapling;
     public static BlockMod corbaSapling;
     public static BlockMod netherSapling;
+    public static BlockMod EARTHEN_SAPLING;
     public static BlockMod frozenSapling;
     public static BlockMod frozenIceSapling;
     public static BlockMod terraniaSapling;
@@ -517,14 +520,14 @@ public class JourneyBlocks {
 
         witherwoodLog = new JBlockLog("witherwoodLog", "Witherwood Log");
         witherwoodLeaves = new BlockModLeaves("witherwoodLeaves", "Witherwood Leaves", 1.0F);
-        sizzlerWoodLeaves = new BlockModLeaves("sizzlerWoodLeaves", "Deadblood Leaves", 2.0F);
+        sizzlerWoodLeaves = new BlockModLeaves("sizzlerWoodLeaves", "Deadblood Leaves", 2.0F, netherSapling);
         sizzlerWoodLog = new JBlockLog("sizzlerWoodLog", "Deadblood Log");
         deathGrass = new BlockNetherFlower("deathGrass", "Death Grass", true);
         netherweed = new BlockNetherFlower("netherWeeds", "Netherweed", true);
         hellBell = new BlockNetherFlower("hellBell", "Hell Bell");
         hellshroom = new BlockNetherFlower("hellshroom", "Hellshroom");
 
-        earthenNetherLeaves = new BlockModLeaves("earthenNetherLeaves", "Earthenwood Leaves", 2.0F);
+        earthenNetherLeaves = new BlockModLeaves("earthenNetherLeaves", "Earthenwood Leaves", 2.0F, EARTHEN_SAPLING);
         earthenNetherLog = new JBlockLog("earthenNetherLog", "Earthenwood Log");
         earthenNetherPlanks = new BlockMod(EnumMaterialTypes.WOOD, "earthenNetherPlank", "Earthenwood Planks", 1.0F);
         earthenNetherTallGrass = new BlockNetherFlower("earthenNetherTallGrass", "Earthen Nethigrass", true);
@@ -551,7 +554,9 @@ public class JourneyBlocks {
         depthsSapling = new BlockModSapling("depthsSapling", "Depths Sapling", new WorldGenTerraniaSmallTree());
         terraniaSapling = new BlockModSapling("terraniaSapling", "Terrania Sapling", new WorldGenEucaTree());
         netherSapling = new BlockModSapling("netherSapling", "Deadblood Sapling", new WorldGenBleedheartTree0());
+        EARTHEN_SAPLING = new BlockModSapling("earthenSapling", "Earthen Sapling", new WorldGenEarthenTree());
         frozenIceSapling = new BlockModSapling("frozenIceSapling", "Ice Sapling", new WorldGenIceTree());
+        frozenSapling = new BlockModSapling("frozenSapling", "Frozen Sapling", new WorldGenFrozenTree());
         //frozenSapling = new BlockModSapling("frozenSapling", "Frozen Sapling", new WorldGenFrozenTree(false, false));
 
         eucaDirt = new BlockMod(EnumMaterialTypes.DIRT, "eucaDirt", "Euca Dirt", 2.0F);
@@ -561,8 +566,8 @@ public class JourneyBlocks {
         eucaGoldLog = new JBlockLog("eucaGoldLog", "Golden Euca Log");
         goldEucaPlank = new BlockMod(EnumMaterialTypes.WOOD, "goldEucaPlank", "Golden Euca Plank", 1.0F);
         eucaGoldStairs = new BlockModStairs(eucaGoldLog, "eucaGoldStairs", "Golden Euca Stairs");
-        eucaGoldLeaves = new BlockModLeaves("eucaGoldLeaves", "Golden Euca Leaves", 1.0F);
-        eucaSilverLeaves = new BlockModLeaves("eucaSilverLeaves", "Silver Euca Leaves", 1.0F);
+        eucaGoldLeaves = new BlockModLeaves("eucaGoldLeaves", "Golden Euca Leaves", 1.0F, eucaSapling);
+        eucaSilverLeaves = new BlockModLeaves("eucaSilverLeaves", "Silver Euca Leaves", 1.0F, eucaSapling);
         eucaLightGreenLeaves = new BlockModLeaves("eucaLightGreenLeaves", "Light Green Euca Leaves", 1.0F);
         eucaDarkGreenLeaves = new BlockModLeaves("eucaDarkGreenLeaves", "Dark Green Euca Leaves", 1.0F);
 
@@ -574,7 +579,7 @@ public class JourneyBlocks {
         depthsLog = new JBlockLog("depthsLog", "Depths Log");
         depthsPlank = new BlockMod(EnumMaterialTypes.WOOD, "depthsPlank", "Depths Plank", 1.0F);
         depthsStairs = new BlockModStairs(depthsPlank, "depthsStairs", "Depths Stairs");
-        depthsLeaves = new BlockDepthsLeaves("depthsLeaves", "Depths Leaves", 1.0F);
+        depthsLeaves = new BlockDepthsLeaves("depthsLeaves", "Depths Leaves", 1.0F, depthsSapling);
         darkBrick = (BlockMod) new BlockMod("darkBrick", "Dark Brick", 2.0F).setBlockUnbreakable()
                 .setResistance(10000000.0F);
         darkFloor = (BlockMod) new BlockMod("darkFloor", "Dark Floor", 2.0F).setBlockUnbreakable()
@@ -595,18 +600,18 @@ public class JourneyBlocks {
         depthsLock = new BlockLock("depthsLock", "Depths Lock", JourneyItems.depthsKey);
         depthsDoor = new BlockModDoor("depthsDoor", "Depths Door", Material.WOOD, 2.0F);
 
-        iceLeaves = new BlockDepthsLeaves("iceLeaves", "Ice Leaves", 1.0F);
+        iceLeaves = new BlockDepthsLeaves("iceLeaves", "Ice Leaves", 1.0F, frozenIceSapling);
         frozenDirt = new BlockMod(EnumMaterialTypes.DIRT, "frozenDirt", "Frozen Dirt", 2.0F);
         frozenStone = new BlockMod(EnumMaterialTypes.STONE, "frozenStone", "Frozen Stone", 5.0F);
         frozenGrass = new BlockModGrass(frozenDirt, "frozenGrass", "Frozen Grass", 2.0F);
-        frozenLeaves = new BlockModLeaves("frozenLeaves", "Frozen Leaves", 0.5F).setFrozenPlant();
+        frozenLeaves = new BlockModLeaves("frozenLeaves", "Frozen Leaves", 0.5F, frozenSapling).setFrozenPlant();
         frozenLog = new JBlockLog("frozenLog", "Frozen Log");
         frozenPlanks = new BlockMod(EnumMaterialTypes.WOOD, "frozenPlanks", "Frozen Planks", 0.5F);
 
         corbaStone = new BlockMod("corbaStone", "Corba Stone");
         corbaGrass = new BlockModGrass(null, "corbaGrass", "Corba Grass", 0.5F);
         corbaLog = new JBlockLog("corbaLog", "Corba Log");
-        corbaLeaves = new BlockModLeaves("corbaLeaves", "Corba Leaves", 0.2F);
+        corbaLeaves = new BlockModLeaves("corbaLeaves", "Corba Leaves", 0.2F, corbaSapling);
         corbaPillar = new BlockMod("corbaPillar", "Corba Pillar");
         corbaPlank = new BlockMod(EnumMaterialTypes.WOOD, "corbaPlank", "Corba Plank", 0.5F);
         corbaLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "corbaLamp", "Corba Lamp", 0.1F)
@@ -630,7 +635,7 @@ public class JourneyBlocks {
 
         brisonblocks = new BlockMetaBase("brison", Material.ROCK, "brison");
         boilingBars = new BlockModBars("boilingBars", "Brison Bars", 5.0F);
-        burningLeaves = new BlockModLeaves("burningLeaves", "Burning Leaves", 0.5F).setBurningPlant();
+        burningLeaves = new BlockModLeaves("burningLeaves", "Burning Leaves", 0.5F, boilSapling).setBurningPlant();
         boilingLog = new JBlockLog("boilingLog", "Boiling Log");
 
         cloudiaDirt = new BlockMod(EnumMaterialTypes.DIRT, "cloudiaDirt", "Cloudia Dirt", 2.0F);
@@ -822,7 +827,7 @@ public class JourneyBlocks {
         terranianPost = new BlockModFence(pinkCloudiaCloud, "terranianPost", "Terranian Post");
         dungeonLampFence = new BlockModFence(dungeonLamp, "dungeonLampFence", "Dungeon Lamp Fence", true);
 
-        terraniaLeaves = new BlockModLeaves("terranianLeaves", "Terrania Leaves", 1.0F);
+        terraniaLeaves = new BlockModLeaves("terranianLeaves", "Terrania Leaves", 1.0F, terraniaSapling);
         terraniaVine = new BlockModVine("terranianVine", "Terrania Vine", 12);
         terranianDirt = new BlockMod(EnumMaterialTypes.DIRT, "terranianDirt", "Terranian Dirt", 2.0F);
         terranianLog = new JBlockLog("terranianLog", "Terranian Log");
