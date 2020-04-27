@@ -160,8 +160,8 @@ public class JourneyRecipes {
         addShapelessRecipe(new ItemStack(JourneyItems.eucaPortalGem, 10), JourneyItems.eucaPortalPiece, JourneyItems.eucaPortalPiece_0, JourneyItems.eucaPortalPiece_1);
         addWood(JourneyBlocks.eucaGoldLog, JourneyBlocks.goldEucaPlank, JourneyBlocks.eucaGoldStairs, 0, true);
         addWood(JourneyBlocks.depthsLog, JourneyBlocks.depthsPlank, JourneyBlocks.depthsPlank, 1, true);
-        addWood(JourneyBlocks.corbaLog, JourneyBlocks.corbaPlank, JourneyBlocks.corbaLog, 1, true);
-        addWood(JourneyBlocks.frozenLog, JourneyBlocks.frozenPlanks, JourneyBlocks.corbaLog, 1, true);
+        addWood(JourneyBlocks.corbaLog, JourneyBlocks.corbaPlank, null, 1, true);
+        addWood(JourneyBlocks.frozenLog, JourneyBlocks.frozenPlanks, null, 1, true);//TODO Add stairs
 
         addShapedRecipe(new ItemStack(JourneyArmory.blazehornHelmet),
                 "idi", "d d", 'd', Items.BLAZE_ROD, 'i', JourneyItems.horn);
@@ -409,12 +409,11 @@ public class JourneyRecipes {
     }
 
     protected void addWood(Block log, Block plank, Block stair, int slabMeta, boolean smelt) {
-        addShapelessRecipe(new ItemStack(plank, 4), log);
-        addShapedRecipe(new ItemStack(stair, 4), "i  ", "ii ", "iii", 'i', plank);
-        addShapedRecipe(new ItemStack(Items.STICK, 4), "i", "i", 'i', plank);
-        addShapedRecipe(new ItemStack(Blocks.CRAFTING_TABLE), "ii", "ii", 'i', plank);
-        if (smelt)
-            GameRegistry.addSmelting(log, new ItemStack(Items.COAL), 0.5F);
+    	if(log != null && plank != null) addShapelessRecipe(new ItemStack(plank, 4), log);
+        if(stair != null && plank != null) addShapedRecipe(new ItemStack(stair, 4), "i  ", "ii ", "iii", 'i', plank);
+        if(plank != null)addShapedRecipe(new ItemStack(Items.STICK, 4), "i", "i", 'i', plank);
+        if(plank != null) addShapedRecipe(new ItemStack(Blocks.CRAFTING_TABLE), "ii", "ii", 'i', plank);
+        if(smelt) GameRegistry.addSmelting(log, new ItemStack(Items.COAL), 0.5F);
     }
 
     protected void addOre(Block ore, Item ingot, Block block, Item axe, Item pick, Item shovel, Item hoe, Item sword,
