@@ -85,7 +85,11 @@ public class EntityIceGolem extends EntityModMob {
             }
         }
     }
-
+    
+    @Override
+    protected boolean canDespawn() {
+    	return false;
+    }
 
     @Override
     public boolean attackEntityAsMob(Entity entityIn) {
