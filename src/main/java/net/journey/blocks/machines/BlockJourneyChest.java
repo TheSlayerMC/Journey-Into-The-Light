@@ -396,13 +396,17 @@ public class BlockJourneyChest extends BlockModContainer {
 
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+    	TileEntityJourneyChest chest = (TileEntityJourneyChest)worldIn.getTileEntity(pos);
         if (worldIn.isRemote) {
             return true;
         } else {
             if (this.isLocked(playerIn, worldIn, pos) || !isLocked) {
                 JourneySounds.playSound(JourneySounds.CHEST_OPEN, worldIn, playerIn);
                 ILockableContainer ilockablecontainer = this.getLockableContainer(worldIn, pos);
-
+                if (chest.isLocked == true) {
+                    chest.setUnlocked();
+                    playerIn.getHeldItemMainhand().damageItem(1, playerIn);
+                }
                 if (ilockablecontainer != null) {
                     playerIn.displayGUIChest(ilockablecontainer);
                 }
@@ -414,10 +418,7 @@ public class BlockJourneyChest extends BlockModContainer {
     public boolean isLocked(EntityPlayer playerIn, World worldIn, BlockPos pos) {
         TileEntityJourneyChest te = (TileEntityJourneyChest) worldIn.getTileEntity(pos);
         if (playerIn.getHeldItemMainhand() != null && playerIn.getHeldItemMainhand().getItem() == key) {
-            if (te.isLocked == true) {
-                te.isLocked = false;
-                playerIn.getHeldItemMainhand().damageItem(1, playerIn);
-            }
+
         } else {
             return false;
         }
