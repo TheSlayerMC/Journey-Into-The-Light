@@ -1,4 +1,4 @@
-package net.journey.dimension.terrania.gen;
+package net.journey.dimension.terrania.gen.dungeon;
 
 import net.journey.entity.mob.terrania.npc.EntityTerranianTrader;
 import net.journey.init.blocks.JourneyBlocks;
