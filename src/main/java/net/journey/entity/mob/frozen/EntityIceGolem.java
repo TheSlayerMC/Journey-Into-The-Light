@@ -132,6 +132,11 @@ public class EntityIceGolem extends EntityModMob {
     public double setMaxHealth(MobStats s) {
         return MobStats.IceGolemHealth;
     }
+    
+    @Override
+    protected boolean canDespawn() {
+        return false;
+    }
 
     @Override
     protected void playHurtSound(DamageSource source) {
