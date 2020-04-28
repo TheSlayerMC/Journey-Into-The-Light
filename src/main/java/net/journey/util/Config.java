@@ -89,7 +89,7 @@ public class Config {
         List<Boolean> items = new ArrayList<Boolean>();
         biomeSizeXZ = cfg.getInt("BiomeSizeXZ", "Nether", 512, 1, 4096, "The horizontal Nether biome size");
         biomeSizeY = cfg.getInt("BiomeSizeY", "Nether", 32, 1, 4096, "The vertical Nether biome size");
-        hasCleaningPass = cfg.getBoolean("SecondPass", "Nether", true, "Enable second pass for smooth Nether terrain?");
+        hasCleaningPass = cfg.getBoolean("SecondPass", "Nether", false, "Enable second pass for smooth Nether terrain?");
         for (Field f : BiomeRegister.class.getDeclaredFields())
             if (f.getType().isAssignableFrom(NetherBiome.class))
                 items.add(cfg.getBoolean(f.getName().toLowerCase(), "Nether", true, "Enable Nether biomes?"));
