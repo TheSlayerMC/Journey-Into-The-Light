@@ -851,12 +851,6 @@ public class WorldGenSpikeDungeon extends WorldGenerator {
             golem.setLocationAndAngles(x + 6.5, y + 2, z + 6.5, 0.0F, 0.0F);
             worldIn.spawnEntity(golem);
         }
-        
-        if (!worldIn.isRemote) {
-            EntityAlloyMender smith = new EntityAlloyMender(worldIn);
-            smith.setLocationAndAngles(x + 6.5, y + 2, z + 6.5, 0.0F, 0.0F);
-            worldIn.spawnEntity(smith);
-        }
         return false;
     }
 }
