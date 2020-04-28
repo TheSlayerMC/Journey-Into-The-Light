@@ -1,6 +1,5 @@
 package net.journey.proxy;
 
-import net.journey.JourneyChestGenerator;
 import net.journey.client.server.*;
 import net.journey.command.DimensionCommand;
 import net.journey.command.JourneyCommands;
@@ -102,7 +101,6 @@ public class CommonProxy {
         Config.postBiomeInit();
         JNWorldGenerator.updateGenSettings();
 
-        JourneyChestGenerator.init();
         //JourneyAchievements.init()
 
         addOreDictionary();

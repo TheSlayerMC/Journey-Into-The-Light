@@ -1,7 +1,7 @@
 package net.journey.event;
 
-import net.journey.JourneyLoadingScreen;
-import net.journey.JourneyMainMenu;
+import net.journey.client.render.gui.JourneyLoadingScreen;
+import net.journey.client.render.gui.JourneyMainMenu;
 import net.journey.client.server.EssenceProvider;
 import net.journey.client.server.IEssence;
 import net.journey.init.items.JourneyArmory;

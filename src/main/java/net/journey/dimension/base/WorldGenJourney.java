@@ -365,7 +365,7 @@ public class WorldGenJourney implements IWorldGenerator {
             sizzleberryBush.getValue().generate(w, r, new BlockPos(x, y, z));
         }
 
-        for (times = 0; times < 100; times++) {
+        for (times = 0; times < 150; times++) {
             y = r.nextInt(250) + 1;
             x = chunkX + r.nextInt(16) + 8;
             z = chunkZ + r.nextInt(16) + 8;
@@ -396,22 +396,6 @@ public class WorldGenJourney implements IWorldGenerator {
             if (y > 20 && y < 110) if (isBlockTop(x, y, z, Blocks.NETHERRACK, w))
                 new WorldGenNetherDungeons().generate(w, r, new BlockPos(x, y, z));
         }
-
-		/*for(times = 0; times < 5; times++) {
-			y = r.nextInt(128) + 1;
-			x = chunkX + r.nextInt(16);
-			z = chunkZ + r.nextInt(16);
-			if(isBlockTop(x, y, z, Blocks.NETHERRACK, w))
-				new WorldGenHellThornTall().generate(w, r, new BlockPos(x, y, z));
-		}
-
-		for(times = 0; times < 5; times++) {
-			y = r.nextInt(128) + 1;
-			x = chunkX + r.nextInt(16);
-			z = chunkZ + r.nextInt(16);
-			if(isBlockTop(x, y, z, Blocks.NETHERRACK, w))
-				new WorldGenHellThornMedium().generate(w, r, new BlockPos(x, y, z));
-		}*/
 
         for (times = 0; times < 15; times++) {
             y = r.nextInt(64);

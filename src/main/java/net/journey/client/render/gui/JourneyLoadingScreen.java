@@ -1,4 +1,4 @@
-package net.journey;
+package net.journey.client.render.gui;
 
 import net.minecraft.client.LoadingScreenRenderer;
 import net.minecraft.client.Minecraft;

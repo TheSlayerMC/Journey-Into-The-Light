@@ -103,9 +103,9 @@ public class Config {
     public static void postBiomeInit() {
         // Plant density
         JNWorldGenerator.setDensity(
-                cfg.getFloat("GlobalDensity", "Generator", 1, 0, 1, "Global plant density, multiplied on other"));
+                cfg.getFloat("GlobalDensity", "Generator", 0.5F, 0, 0.5F, "Global plant density, multiplied on other"));
         for (NetherBiome biome : BiomeRegister.getBiomes()) {
-            biome.setDensity(cfg.getFloat(biome.getName().replace(" ", "") + "Density", "Generator", 1, 0, 1,
+            biome.setDensity(cfg.getFloat(biome.getName().replace(" ", "") + "Density", "Generator", 0.5F, 0, 0.5F,
                     "Density for " + biome.getName() + " biome"));
         }
     }
