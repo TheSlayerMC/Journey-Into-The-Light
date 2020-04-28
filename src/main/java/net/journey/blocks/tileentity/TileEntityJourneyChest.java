@@ -99,6 +99,10 @@ public class TileEntityJourneyChest extends TileEntityLockableLoot implements IT
 
 		return compound;
 	}
+	
+	public void setUnlocked() {
+		this.isLocked = false;
+	}
 
 	@Override
 	public int getInventoryStackLimit() {
