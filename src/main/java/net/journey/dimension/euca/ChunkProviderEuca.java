@@ -259,7 +259,7 @@ public class ChunkProviderEuca implements IChunkGenerator {
         int z1 = j * chunkSize;
         int x, z, times;
 
-        if (rand.nextInt(5) == 0) {
+        if (rand.nextInt(1) == 0) {
             generateStructure(x1, z1, worldGenSmeltery);
         }
 
