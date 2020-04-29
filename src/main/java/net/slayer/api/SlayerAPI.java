@@ -50,7 +50,7 @@ public class SlayerAPI {
     public static Logger logger = Logger.getLogger(SlayerAPI.MOD_ID);
 
     public static ToolMaterial addMeleeMaterial(int uses, float dam, float efficiency) {
-        return EnumHelper.addToolMaterial("tool", 3, uses, efficiency, dam, 30);
+        return EnumHelper.addToolMaterial("tool", 3, uses, efficiency, dam - 4, 30);
     }
 
     public static ToolMaterial addAxeMaterial(int uses, int level, float efficiency, float dam, int enchant) {
