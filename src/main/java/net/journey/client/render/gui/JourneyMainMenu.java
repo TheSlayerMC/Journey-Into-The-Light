@@ -1,9 +1,8 @@
-package net.journey;
+package net.journey.client.render.gui;
 
 import com.google.common.collect.Lists;
 import com.google.common.util.concurrent.Runnables;
-import net.journey.client.render.gui.GuiJourneyButton;
-import net.journey.client.render.gui.GuiJourneyLanguageButton;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.renderer.BufferBuilder;

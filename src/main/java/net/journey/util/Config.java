@@ -17,7 +17,7 @@ public class Config {
     public static boolean keepLoadingEuca, keepLoadingTerrania, keepLoadingDepths, keepLoadingBoil, keepLoadingFrozen, boilBlockSpawnSmoke;
     public static boolean keepLoadingCorba, keepLoadingWastelands, keepLoadingCloudia, keepLoadingSenterian, keepLoadingWither;
     public static boolean showManaBar;
-    public static boolean changeBackground, changeMainMenu;
+    public static boolean changeMainMenu;
     public static boolean spawnSwordParticles, showEntityHealth;
     public static int eucaSilverBiome, eucaBiome;
     public static int euca, depths, boil, frozen, corba, wastelands, cloudia, terrania, senterian, wither;
@@ -78,7 +78,6 @@ public class Config {
         showEntityHealth = cfg.get("Entity", "Show the health bar above the entitys head?", true).getBoolean(true);
 
         showManaBar = cfg.get("Gui", "Show Mana Bar?", true).getBoolean(true);
-        changeBackground = cfg.get("Gui", "Change loading screen background?", true).getBoolean(true);
         changeMainMenu = cfg.get("Gui", "Use custom title screen?", true).getBoolean(true);
 
         towerDungeon = cfg.get("Generation", "Dungeon tower spawn rate (The higher, the rarer)", 16).getInt();
@@ -89,7 +88,7 @@ public class Config {
         List<Boolean> items = new ArrayList<Boolean>();
         biomeSizeXZ = cfg.getInt("BiomeSizeXZ", "Nether", 512, 1, 4096, "The horizontal Nether biome size");
         biomeSizeY = cfg.getInt("BiomeSizeY", "Nether", 32, 1, 4096, "The vertical Nether biome size");
-        hasCleaningPass = cfg.getBoolean("SecondPass", "Nether", true, "Enable second pass for smooth Nether terrain?");
+        hasCleaningPass = cfg.getBoolean("SecondPass", "Nether", false, "Enable second pass for smooth Nether terrain?");
         for (Field f : BiomeRegister.class.getDeclaredFields())
             if (f.getType().isAssignableFrom(NetherBiome.class))
                 items.add(cfg.getBoolean(f.getName().toLowerCase(), "Nether", true, "Enable Nether biomes?"));
@@ -103,9 +102,9 @@ public class Config {
     public static void postBiomeInit() {
         // Plant density
         JNWorldGenerator.setDensity(
-                cfg.getFloat("GlobalDensity", "Generator", 1, 0, 1, "Global plant density, multiplied on other"));
+                cfg.getFloat("GlobalDensity", "Generator", 0.5F, 0, 0.5F, "Global plant density, multiplied on other"));
         for (NetherBiome biome : BiomeRegister.getBiomes()) {
-            biome.setDensity(cfg.getFloat(biome.getName().replace(" ", "") + "Density", "Generator", 1, 0, 1,
+            biome.setDensity(cfg.getFloat(biome.getName().replace(" ", "") + "Density", "Generator", 0.5F, 0, 0.5F,
                     "Density for " + biome.getName() + " biome"));
         }
     }

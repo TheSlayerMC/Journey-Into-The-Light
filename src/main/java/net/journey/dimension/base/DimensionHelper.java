@@ -169,7 +169,7 @@ public class DimensionHelper {
     }
 
     private static void addCloudiaSpawns() {
-        int amount = 500;
+        int amount = 150;
         EntityRegistry.addSpawn(EntityStarlightTransporter.class, amount, 10, 20, EnumCreatureType.MONSTER, cloudia);
         EntityRegistry.addSpawn(EntityStarlightGolem.class, amount, 10, 20, EnumCreatureType.MONSTER, cloudia);
         EntityRegistry.addSpawn(EntityStarlightWalker.class, amount, 10, 20, EnumCreatureType.MONSTER, cloudia);
@@ -186,7 +186,7 @@ public class DimensionHelper {
     }
 
     private static void addColdFrozenSpawns() {
-        int amount = 80;
+        int amount = 45;
         EntityRegistry.addSpawn(EntityIceman.class, amount, 1, amount, EnumCreatureType.CREATURE, frozen);
         EntityRegistry.addSpawn(EntityFrozenTroll.class, amount, 10, amount, EnumCreatureType.MONSTER, frozen);
         EntityRegistry.addSpawn(EntityPermafraust.class, amount, 10, 20, EnumCreatureType.MONSTER, frozen);
@@ -196,7 +196,7 @@ public class DimensionHelper {
     }
 
     private static void addFrostFrozenSpawns() {
-        int amount = 80;
+        int amount = 45;
         EntityRegistry.addSpawn(EntityIceman.class, amount, 1, amount, EnumCreatureType.CREATURE, frozen);
         EntityRegistry.addSpawn(EntityPermafraust.class, amount, 10, amount, EnumCreatureType.MONSTER, frozen);
         EntityRegistry.addSpawn(EntityShatterer.class, amount, 10, amount, EnumCreatureType.MONSTER, frozen);
@@ -240,7 +240,7 @@ public class DimensionHelper {
     }
 
     private static void addCaveSpawns() {
-        int amount = 100;
+        int amount = 75;
         int amount2 = 10;
         for (Biome b : Biome.REGISTRY) {
             Biome biome = b;
@@ -258,7 +258,7 @@ public class DimensionHelper {
     }
 
     private static void addCommonVanillaSpawns() {
-        int amount = 100;
+        int amount = 75;
         EntityRegistry.addSpawn(EntitySwampFly.class, amount, 3, 4, EnumCreatureType.MONSTER, Biomes.SWAMPLAND);
     }
 

@@ -2,6 +2,7 @@ package net.slayer.api.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
@@ -23,12 +24,18 @@ public class BlockModLeaves extends BlockMod implements IShearable {
     protected int[] adjacentTreeBlocks;
     private boolean isFrozenPlant = false;
     private boolean isBurningPlant = false;
+    private Block sapling;
 
     public BlockModLeaves(String name, String finalName, float hardness) {
         super(EnumMaterialTypes.LEAVES, name, finalName, hardness);
         this.setHardness(0.3F);
         this.setLightOpacity(1);
         this.setTickRandomly(true);
+    }
+    
+    public BlockModLeaves(String name, String finalName, float hardness, Block sapling) {
+        super(EnumMaterialTypes.LEAVES, name, finalName, hardness);
+        this.sapling = sapling;
     }
 
     public BlockModLeaves setFrozenPlant() {
@@ -198,9 +205,14 @@ public class BlockModLeaves extends BlockMod implements IShearable {
     }
 
     @Override
-    public Item getItemDropped(IBlockState par1, Random rand, int par3) {
-        return null;
-    }
+	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+		return Item.getItemFromBlock(sapling);
+	}
+    
+    @Override
+	public int quantityDropped(Random random) {
+		return random.nextInt(20) == 0 ? 1 : 0;
+	}
 
     @Override
     public boolean isShearable(ItemStack item, IBlockAccess world, BlockPos pos) {

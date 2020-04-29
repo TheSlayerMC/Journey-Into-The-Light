@@ -86,7 +86,6 @@ public class EntityIceGolem extends EntityModMob {
         }
     }
 
-
     @Override
     public boolean attackEntityAsMob(Entity entityIn) {
         this.attackTimer = 10;
@@ -127,6 +126,11 @@ public class EntityIceGolem extends EntityModMob {
     @Override
     public double setMaxHealth(MobStats s) {
         return MobStats.IceGolemHealth;
+    }
+    
+    @Override
+    protected boolean canDespawn() {
+        return false;
     }
 
     @Override

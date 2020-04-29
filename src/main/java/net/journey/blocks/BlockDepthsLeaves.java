@@ -1,16 +1,18 @@
 package net.journey.blocks;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.EnumMaterialTypes;
 import net.slayer.api.block.BlockMod;
+import net.slayer.api.block.BlockModLeaves;
 
-public class BlockDepthsLeaves extends BlockMod {
+public class BlockDepthsLeaves extends BlockModLeaves {
 
-    public BlockDepthsLeaves(String name, String finalName, float hardness) {
-        super(EnumMaterialTypes.LEAVES, name, finalName, hardness);
+    public BlockDepthsLeaves(String name, String finalName, float hardness, Block sapling) {
+        super(name, finalName, hardness, sapling);
         this.setHardness(0.3F);
         isOpaque = false;
         isNormalCube = false;

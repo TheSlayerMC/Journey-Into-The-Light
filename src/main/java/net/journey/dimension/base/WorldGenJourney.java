@@ -296,29 +296,21 @@ public class WorldGenJourney implements IWorldGenerator {
             (new WorldGenModGlowstone(w, r, pos, JourneyBlocks.smithstone)).generate(w, r, new BlockPos(x, y, z));
         }
 
-        for (times = 0; times < 200; times++) {
+        for (times = 0; times < 100; times++) {
             y = r.nextInt(255) + 1;
             x = chunkX + r.nextInt(16);
             z = chunkZ + r.nextInt(16);
             worldGenNetherFeature(JourneyBlocks.nethicanSludge, JourneyBlocks.heatSoil, 10, w, x, y, z);
         }
 
-        for (times = 0; times < 100; times++) {
+        for (times = 0; times < 25; times++) {
             y = r.nextInt(250) + 1;
             x = chunkX + r.nextInt(16);
             z = chunkZ + r.nextInt(16);
             worldGenNetherFeature(JourneyBlocks.lavaRock, JourneyBlocks.heatSoil, 40, w, x, y, z);
         }
 
-		/* for(times = 0; times < 150; times++) {
-			y = r.nextInt(35);
-			x = chunkX + r.nextInt(16) + 8;
-			z = chunkZ + r.nextInt(16) + 8;
-			if(isBlockTop(x, y, z, JourneyBlocks.heatSoil, w))
-			(new WorldGenSizzlerWoodTree0()).generate(w, r, new BlockPos(x, y - 1, z));
-		} */
-
-        for (times = 0; times < 550; times++) {
+        for (times = 0; times < 300; times++) {
             y = r.nextInt(256);
             x = chunkX + r.nextInt(16) + 8;
             z = chunkZ + r.nextInt(16) + 8;
@@ -326,7 +318,7 @@ public class WorldGenJourney implements IWorldGenerator {
                 (new WorldGenBleedheartTree0()).generate(w, r, new BlockPos(x, y - 1, z));
         }
 
-        for (times = 0; times < 550; times++) {
+        for (times = 0; times < 300; times++) {
             y = r.nextInt(256);
             x = chunkX + r.nextInt(16) + 8;
             z = chunkZ + r.nextInt(16) + 8;
@@ -334,7 +326,7 @@ public class WorldGenJourney implements IWorldGenerator {
                 (new WorldGenBleedheartTree1()).generate(w, r, new BlockPos(x, y - 1, z));
         }
 
-        for (times = 0; times < 1500; times++) {
+        for (times = 0; times < 800; times++) {
             y = r.nextInt(256);
             x = chunkX + r.nextInt(16) + 8;
             z = chunkZ + r.nextInt(16) + 8;
@@ -349,28 +341,7 @@ public class WorldGenJourney implements IWorldGenerator {
             (new WorldGenAncientBlock()).generate(w, r, new BlockPos(x, y, z));
         }
 
-		/* for(times = 0; times < 100; times++) {
-			y = r.nextInt(256);
-			x = chunkX + this.r.nextInt(16) + 8;
-			z = chunkZ + this.r.nextInt(16) + 8;
-			new WorldGenNetherFlower(w, r, pos, JourneyBlocks.deathGrass).generate(worldObj, r, new BlockPos(x, y, z));
-		}
-
-		for(times = 0; times < 16; times++) {
-			y = r.nextInt(256);
-			x = chunkX + this.r.nextInt(16) + 8;
-			z = chunkZ + this.r.nextInt(16) + 8;
-			new WorldGenNetherFlower(w, r, pos, JourneyBlocks.hellBell).generate(worldObj, r, new BlockPos(x, y, z));
-		}
-
-		 for(times = 0; times < 100; times++) {
-			y = r.nextInt(35) + 1;
-			x = chunkX + r.nextInt(16);
-			z = chunkZ + r.nextInt(16);
-			trees.get(r.nextInt(trees.size())).generate(w, r, new BlockPos(x, y, z));
-		} */
-
-        for (times = 0; times < 300; times++) {
+        for (times = 0; times < 100; times++) {
             y = r.nextInt(250);
             x = chunkX + r.nextInt(16) + 8;
             z = chunkZ + r.nextInt(16) + 8;
@@ -378,7 +349,7 @@ public class WorldGenJourney implements IWorldGenerator {
                 (new WorldGenNetherShroom()).generate(w, r, new BlockPos(x, y, z));
         }
 
-        if (r.nextInt(20) == 0) {
+        if (r.nextInt(15) == 0) {
             y = r.nextInt(128) + 1;
             x = chunkX + r.nextInt(8) + 1;
             z = chunkZ + r.nextInt(8) + 1;
@@ -387,14 +358,14 @@ public class WorldGenJourney implements IWorldGenerator {
                     new WorldGenNetherTower().generate(w, r, new BlockPos(x, y, z));
         }
 
-        for (times = 0; times < 1; times++) {
+        for (times = 0; times < 2; times++) {
             y = r.nextInt(128) + 1;
             x = chunkX + r.nextInt(16) + 8;
             z = chunkZ + r.nextInt(16) + 8;
             sizzleberryBush.getValue().generate(w, r, new BlockPos(x, y, z));
         }
 
-        for (times = 0; times < 350; times++) {
+        for (times = 0; times < 150; times++) {
             y = r.nextInt(250) + 1;
             x = chunkX + r.nextInt(16) + 8;
             z = chunkZ + r.nextInt(16) + 8;
@@ -402,7 +373,7 @@ public class WorldGenJourney implements IWorldGenerator {
                 new WorldGenNetherFlower(w, r, new BlockPos(x, y, z), JourneyBlocks.deathGrass);
         }
 
-        for (times = 0; times < 100; times++) {
+        for (times = 0; times < 50; times++) {
             y = r.nextInt(250) + 1;
             x = chunkX + r.nextInt(16) + 8;
             z = chunkZ + r.nextInt(16) + 8;
@@ -410,7 +381,7 @@ public class WorldGenJourney implements IWorldGenerator {
                 new WorldGenNetherFlower(w, r, new BlockPos(x, y, z), JourneyBlocks.hellBell);
         }
 
-        if (r.nextInt(1) == 0) {
+        if (r.nextInt(4) == 0) {
             y = r.nextInt(128) + 1;
             x = chunkX + r.nextInt(16) + 8;
             z = chunkZ + r.nextInt(16) + 8;
@@ -418,7 +389,7 @@ public class WorldGenJourney implements IWorldGenerator {
                 new WorldGenBoilPortal().generate(w, r, new BlockPos(x, y, z));
         }
 
-        if (r.nextInt(1) == 0) {
+        if (r.nextInt(4) == 0) {
             y = r.nextInt(128) + 1;
             x = chunkX + r.nextInt(10) + 8;
             z = chunkZ + r.nextInt(10) + 8;
@@ -426,23 +397,7 @@ public class WorldGenJourney implements IWorldGenerator {
                 new WorldGenNetherDungeons().generate(w, r, new BlockPos(x, y, z));
         }
 
-		/*for(times = 0; times < 5; times++) {
-			y = r.nextInt(128) + 1;
-			x = chunkX + r.nextInt(16);
-			z = chunkZ + r.nextInt(16);
-			if(isBlockTop(x, y, z, Blocks.NETHERRACK, w))
-				new WorldGenHellThornTall().generate(w, r, new BlockPos(x, y, z));
-		}
-
-		for(times = 0; times < 5; times++) {
-			y = r.nextInt(128) + 1;
-			x = chunkX + r.nextInt(16);
-			z = chunkZ + r.nextInt(16);
-			if(isBlockTop(x, y, z, Blocks.NETHERRACK, w))
-				new WorldGenHellThornMedium().generate(w, r, new BlockPos(x, y, z));
-		}*/
-
-        for (times = 0; times < 50; times++) {
+        for (times = 0; times < 15; times++) {
             y = r.nextInt(64);
             x = chunkX + r.nextInt(16) + 8;
             z = chunkZ + r.nextInt(16) + 8;

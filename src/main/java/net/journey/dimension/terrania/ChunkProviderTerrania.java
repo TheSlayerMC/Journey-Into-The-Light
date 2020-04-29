@@ -2,10 +2,10 @@ package net.journey.dimension.terrania;
 
 import net.journey.dimension.overworld.gen.WorldGenModFlower;
 import net.journey.dimension.terrania.gen.WorldGenHollowTree;
-import net.journey.dimension.terrania.gen.WorldGenTallTree;
 import net.journey.dimension.terrania.gen.WorldGenTerranianLamp;
-import net.journey.dimension.terrania.gen.WorldGenTreeHut;
-import net.journey.dimension.terrania.gen.shroom.WorldGenMushroomDungeon;
+import net.journey.dimension.terrania.gen.dungeon.WorldGenMushroomDungeon;
+import net.journey.dimension.terrania.gen.dungeon.WorldGenTallTree;
+import net.journey.dimension.terrania.gen.dungeon.WorldGenTreeHut;
 import net.journey.dimension.terrania.gen.shroom.WorldGenTerrashroom;
 import net.journey.dimension.terrania.gen.trees.WorldGenTerraniaSmallTree;
 import net.journey.dimension.terrania.gen.trees.WorldGenTerraniaTree;

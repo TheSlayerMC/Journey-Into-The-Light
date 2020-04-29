@@ -1,7 +1,7 @@
 package net.journey.event;
 
-import net.journey.JourneyLoadingScreen;
-import net.journey.JourneyMainMenu;
+import net.journey.client.render.gui.JourneyLoadingScreen;
+import net.journey.client.render.gui.JourneyMainMenu;
 import net.journey.client.server.EssenceProvider;
 import net.journey.client.server.IEssence;
 import net.journey.init.items.JourneyArmory;
@@ -36,23 +36,6 @@ public class ClientTickEvent {
 
 	public static final ResourceLocation TEXTURE = new ResourceLocation(SlayerAPI.MOD_ID, "textures/gui/misc.png");
 	private Item boots = null, body = null, legs = null, helmet = null;
-
-	@SubscribeEvent
-	public void onClientTick(TickEvent.ClientTickEvent event) throws Exception {
-		Minecraft mc = Minecraft.getMinecraft();
-		TickEvent.Phase phase = event.phase;
-		TickEvent.Type type = event.type;
-
-		if (phase == TickEvent.Phase.END) {
-			if (type.equals(TickEvent.Type.CLIENT)) {
-				if (Config.changeBackground == true) {
-					if (!(mc.loadingScreen instanceof JourneyLoadingScreen)) {
-						mc.loadingScreen = new JourneyLoadingScreen(mc);
-					}
-				}
-			}
-		}
-	}
 
 	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public void openGui(GuiOpenEvent event) {

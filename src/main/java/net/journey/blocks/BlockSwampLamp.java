@@ -25,6 +25,7 @@ public class BlockSwampLamp extends BlockMod {
         this.isOpaque = false;
         setCreativeTab(JourneyTabs.DECORATION);
         setTickRandomly(true);
+        setLightLevel(0.5F);
     }
 
     @Override

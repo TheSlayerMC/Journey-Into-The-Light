@@ -1,9 +1,11 @@
 package net.journey.dimension.euca;
 
+import net.journey.dimension.euca.gen.WorldGenEucaSphere;
 import net.journey.dimension.euca.gen.WorldGenEucaWater;
 import net.journey.dimension.euca.gen.WorldGenSmeltery;
 import net.journey.dimension.euca.gen.trees.*;
 import net.journey.init.blocks.JourneyBlocks;
+import net.journey.util.handler.Helper;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
@@ -48,6 +50,7 @@ public class ChunkProviderEuca implements IChunkGenerator {
     private WorldGenSmeltery worldGenSmeltery = new WorldGenSmeltery();
     private WorldGenBotSpawner spawner = new WorldGenBotSpawner();
     private WorldGenEucaWater water = new WorldGenEucaWater(Blocks.FLOWING_WATER, false);
+    private WorldGenEucaSphere sphere = new WorldGenEucaSphere();
 
     public ChunkProviderEuca(World world, long seed) {
         this.worldObj = world;
@@ -257,7 +260,7 @@ public class ChunkProviderEuca implements IChunkGenerator {
         int z1 = j * chunkSize;
         int x, z, times;
 
-        if (rand.nextInt(5) == 0) {
+        if (rand.nextInt(1) == 0) {
             generateStructure(x1, z1, worldGenSmeltery);
         }
 
@@ -287,6 +290,11 @@ public class ChunkProviderEuca implements IChunkGenerator {
             water.generate(worldObj, rand, new BlockPos(x1 + this.rand.nextInt(16) + 8, this.rand.nextInt(120) + 4, z1 + this.rand.nextInt(16) + 8));
         }
 
+        if(rand.nextInt(15) == 0) {
+        	Helper.print(x1 + " " + z1);
+            sphere.generate(worldObj, rand, new BlockPos(x1, this.rand.nextInt(120) + 4, z1));
+        }
+        
 		/*for (times = 0; times < 5; times++) {
 			x = x1 + this.rand.nextInt(chunkSize);
 			z = z1 + this.rand.nextInt(chunkSize);

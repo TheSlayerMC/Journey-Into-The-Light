@@ -21,18 +21,28 @@ import java.util.ArrayList;
 public class JourneyItems {
 
     public static final EntityEquipmentSlot HEAD = EntityEquipmentSlot.HEAD, BODY = EntityEquipmentSlot.CHEST, LEGS = EntityEquipmentSlot.LEGS, BOOTS = EntityEquipmentSlot.FEET;
-    public static ToolMaterial hellstoneSwordMat = addToolMaterial(2356, 13F, 10F, true);
-    public static ToolMaterial flairiumSwordMat = addToolMaterial(3120, 13F, 25F, true);
-    public static ToolMaterial celestiumSwordMat = addToolMaterial(3120, 13F, 20F, true);
-    public static ToolMaterial shadiumSwordMat = addToolMaterial(2210, 13F, 8F, true);
-    public static ToolMaterial luniumSwordMat = addToolMaterial(2210, 13F, 8F, true);
-    public static ToolMaterial sapphiretoolSwordMat = addToolMaterial(1561, 13F, 7F, true);
-    public static ToolMaterial gorbiteSwordMat = addToolMaterial(3120, 13F, 25F, true);
-    public static ToolMaterial orbaditeSwordMat = addToolMaterial(3120, 13F, 25F, true);
-    public static ToolMaterial desSwordMat = addToolMaterial(3120, 13F, 25F, true);
-    public static ToolMaterial mekyumSwordMat = addToolMaterial(3120, 13F, 25F, true);
-    public static ToolMaterial storonSwordMat = addToolMaterial(3120, 13F, 25F, true);
-    public static ToolMaterial koriteSwordMat = addToolMaterial(3120, 13F, 25F, true);
+    //overworld
+    public static ToolMaterial shadiumSwordMat = addToolMaterial(2210, 13F, 8.5F, true);
+    public static ToolMaterial luniumSwordMat = addToolMaterial(2210, 13F, 8.5F, true);
+    public static ToolMaterial sapphiretoolSwordMat = addToolMaterial(1561, 13F, 8, true);
+    
+    //nether
+    public static ToolMaterial hellstoneSwordMat = addToolMaterial(2356, 13F, 8.5F, true);
+    
+    //euca
+    public static ToolMaterial mekyumSwordMat = addToolMaterial(3120, 13F, 11.5F, true);
+    public static ToolMaterial storonSwordMat = addToolMaterial(3120, 13F, 11.5F, true);
+    public static ToolMaterial koriteSwordMat = addToolMaterial(3120, 13F, 11.5F, true);
+    public static ToolMaterial celestiumSwordMat = addToolMaterial(3120, 13F, 11.5F, true);
+    
+    //depths
+    public static ToolMaterial flairiumSwordMat = addToolMaterial(3120, 14.5F, 12, true);
+    public static ToolMaterial desSwordMat = addToolMaterial(3120, 15F, 13, true);
+    
+    //corba
+    public static ToolMaterial gorbiteSwordMat = addToolMaterial(3120, 13F, 16.5F, true);
+    public static ToolMaterial orbaditeSwordMat = addToolMaterial(3120, 13F, 16.5F, true);
+
     public static ToolMaterial sapphiretool = addToolMaterial(1461, 10F, 5F, true);
     public static ToolMaterial lunium = addToolMaterial(1490, 12F, 5F, true);
     public static ToolMaterial shadium = addToolMaterial(1521, 12F, 5F, true);
@@ -457,6 +467,6 @@ public class JourneyItems {
     }
 
     public static ToolMaterial addToolMaterial(int uses, float efficiency, float dam, boolean breakable) {
-        return EnumHelper.addToolMaterial("tool", 3, breakable ? uses : -1, efficiency, dam, 30);
+        return EnumHelper.addToolMaterial("tool", 3, breakable ? uses : -1, efficiency, dam - 4, 30);
     }
 }
