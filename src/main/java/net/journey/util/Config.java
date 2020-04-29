@@ -17,7 +17,7 @@ public class Config {
     public static boolean keepLoadingEuca, keepLoadingTerrania, keepLoadingDepths, keepLoadingBoil, keepLoadingFrozen, boilBlockSpawnSmoke;
     public static boolean keepLoadingCorba, keepLoadingWastelands, keepLoadingCloudia, keepLoadingSenterian, keepLoadingWither;
     public static boolean showManaBar;
-    public static boolean changeBackground, changeMainMenu;
+    public static boolean changeMainMenu;
     public static boolean spawnSwordParticles, showEntityHealth;
     public static int eucaSilverBiome, eucaBiome;
     public static int euca, depths, boil, frozen, corba, wastelands, cloudia, terrania, senterian, wither;
@@ -78,7 +78,6 @@ public class Config {
         showEntityHealth = cfg.get("Entity", "Show the health bar above the entitys head?", true).getBoolean(true);
 
         showManaBar = cfg.get("Gui", "Show Mana Bar?", true).getBoolean(true);
-        changeBackground = cfg.get("Gui", "Change loading screen background?", true).getBoolean(true);
         changeMainMenu = cfg.get("Gui", "Use custom title screen?", true).getBoolean(true);
 
         towerDungeon = cfg.get("Generation", "Dungeon tower spawn rate (The higher, the rarer)", 16).getInt();

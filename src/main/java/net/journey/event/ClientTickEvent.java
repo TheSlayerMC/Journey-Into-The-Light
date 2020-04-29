@@ -37,23 +37,6 @@ public class ClientTickEvent {
 	public static final ResourceLocation TEXTURE = new ResourceLocation(SlayerAPI.MOD_ID, "textures/gui/misc.png");
 	private Item boots = null, body = null, legs = null, helmet = null;
 
-	/*@SubscribeEvent
-	public void onClientTick(TickEvent.ClientTickEvent event) throws Exception {
-		Minecraft mc = Minecraft.getMinecraft();
-		TickEvent.Phase phase = event.phase;
-		TickEvent.Type type = event.type;
-
-		if (phase == TickEvent.Phase.END) {
-			if (type.equals(TickEvent.Type.CLIENT)) {
-				if (Config.changeBackground == true) {
-					if (!(mc.loadingScreen instanceof JourneyLoadingScreen)) {
-						mc.loadingScreen = new JourneyLoadingScreen(mc);
-					}
-				}
-			}
-		}
-	} */
-
 	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public void openGui(GuiOpenEvent event) {
 		if (Config.changeMainMenu == true) {
