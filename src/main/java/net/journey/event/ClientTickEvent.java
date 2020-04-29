@@ -37,7 +37,7 @@ public class ClientTickEvent {
 	public static final ResourceLocation TEXTURE = new ResourceLocation(SlayerAPI.MOD_ID, "textures/gui/misc.png");
 	private Item boots = null, body = null, legs = null, helmet = null;
 
-	@SubscribeEvent
+	/*@SubscribeEvent
 	public void onClientTick(TickEvent.ClientTickEvent event) throws Exception {
 		Minecraft mc = Minecraft.getMinecraft();
 		TickEvent.Phase phase = event.phase;
@@ -52,7 +52,7 @@ public class ClientTickEvent {
 				}
 			}
 		}
-	}
+	} */
 
 	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public void openGui(GuiOpenEvent event) {
