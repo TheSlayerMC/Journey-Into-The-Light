@@ -660,7 +660,7 @@ public class JourneyBlocks {
         cloudiaTallGrass = new BlockModFlower("cloudiaTallGrass", "Cloudia Tall Grass");
         cloudiaFlower = new BlockModFlower("cloudiaFlower", "Cloudia Flower");
 
-        swampLamp = (BlockMod) new BlockSwampLamp("swampLamp", "Swamp Fly Bottle", 0).setLightLevel(1);
+        swampLamp = (BlockMod) new BlockSwampLamp("swampLamp", "Swamp Fly Bottle", 0);
 
         /*
          * frozenChest = new BlockJourneyChest("frozenChest", "Frozen Chest",

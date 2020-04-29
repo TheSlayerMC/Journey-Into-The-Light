@@ -28,6 +28,11 @@ public class BlockSwampLamp extends BlockMod {
     }
 
     @Override
+    public int getPackedLightmapCoords(IBlockState state, IBlockAccess source, BlockPos pos) {
+        return 20000000;
+    }
+    
+    @Override
     public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
         float f = 0.0625F;
         return new AxisAlignedBB(pos.getX() + (5 * f), pos.getY(), pos.getZ() + (5 * f), pos.getX() + 1 - (5 * f), pos.getY() + 1.2D - (10 * f), pos.getZ() + 1 - (5 * f));
