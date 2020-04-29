@@ -1,5 +1,6 @@
 package net.journey.dimension.euca;
 
+import net.journey.dimension.euca.gen.WorldGenEucaSphere;
 import net.journey.dimension.euca.gen.WorldGenEucaWater;
 import net.journey.dimension.euca.gen.WorldGenSmeltery;
 import net.journey.dimension.euca.gen.trees.*;
@@ -48,6 +49,7 @@ public class ChunkProviderEuca implements IChunkGenerator {
     private WorldGenSmeltery worldGenSmeltery = new WorldGenSmeltery();
     private WorldGenBotSpawner spawner = new WorldGenBotSpawner();
     private WorldGenEucaWater water = new WorldGenEucaWater(Blocks.FLOWING_WATER, false);
+    private WorldGenEucaSphere sphere = new WorldGenEucaSphere();
 
     public ChunkProviderEuca(World world, long seed) {
         this.worldObj = world;
