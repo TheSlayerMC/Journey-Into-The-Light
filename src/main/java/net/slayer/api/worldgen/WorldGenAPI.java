@@ -317,11 +317,11 @@ public class WorldGenAPI {
                     double dy = j - y;
                     double dz = k - z;
                     if (dx * dx * 0.7 + dy * dy * 0.9 + dz * dz * 0.7 < sizeOfSphere) {
-                        w.setBlockState(new BlockPos(i, j + size + 2, k), stone.getDefaultState());
-                        w.setBlockState(new BlockPos(i, j + size + 3, k), dirt.getDefaultState());
-                        w.setBlockState(new BlockPos(i, j + size + 4, k), grass.getDefaultState());
+                        w.setBlockState(new BlockPos(i, j + size + 1, k), stone.getDefaultState());
+                        w.setBlockState(new BlockPos(i, j + size + 2, k), dirt.getDefaultState());
+                        w.setBlockState(new BlockPos(i, j + size + 3, k), grass.getDefaultState());
                     }
-                    if (w.getBlockState(new BlockPos(i, j, k)) == stone) {
+                    if (w.getBlockState(new BlockPos(i, j, k)).getBlock() == stone) {
                         if (r.nextInt(chance) == 0 && block != null)
                             w.setBlockState(new BlockPos(i, j, k), block.get(r.nextInt(block.size())).getDefaultState());
                     }
