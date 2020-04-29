@@ -97,6 +97,6 @@ public class TileEntitySenterianAltar extends TileEntity implements ITickable {
 		if(!world.isRemote)
 			world.spawnEntity(mob);
 		for(int i = 0; i < 50; i++)
-            JITL.proxy.spawnParticle(EnumParticlesClasses.DOOM, this.world, x - 0.5, y, z - 0.5, r.nextFloat(), r.nextFloat(), r.nextFloat());
+            JITL.proxy.spawnParticle(EnumParticlesClasses.FLORO_WATER, this.world, x + 0.25, y + 0.5, z + 0.25, r.nextFloat(), r.nextFloat(), r.nextFloat());
 	}
 }
