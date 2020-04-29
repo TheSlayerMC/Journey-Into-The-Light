@@ -105,6 +105,7 @@ public class WorldGenTowerDungeon extends WorldGenerator {
         return true;
     }
 
+    //TODO optimize, 200 attempts to place isn't a good way of generating
     public void addDifferentBlocks(World w, int x, int y, int z) {
         Random r = new Random();
         for (int x1 = 0; x1 < 15; x1++) {
@@ -152,6 +153,7 @@ public class WorldGenTowerDungeon extends WorldGenerator {
         }
     }
 
+    //TODO optimize, 200 attempts to place isn't a good way of generating
     public void addLevel(World w, int x, int y, int z, int height, int lor, String mobName, String mobName2) {
         Random r = new Random();
         WorldGenAPI.addRectangle(13, 8, 1, w, x + 1, y + height, z + 1, JourneyBlocks.dungeonBrick);

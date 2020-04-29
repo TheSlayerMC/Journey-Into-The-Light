@@ -469,10 +469,8 @@ public class WorldGenJourney implements IWorldGenerator {
 
     public void generateOverworld(World w, Random rand, int chunkX, int chunkZ) {
         int x, y, z;
-        int times;
 
         BlockPos startPos = new BlockPos(chunkX << 4, 0, chunkZ << 4);
-        BlockPos genPos = WorldGenAPI.optimizeAndRandomize(startPos, rand);
 
         int posX = startPos.getX(),
                 posZ = startPos.getZ();
@@ -532,33 +530,34 @@ public class WorldGenJourney implements IWorldGenerator {
             IRIDIUM_ORE_GEN.getValue().generate(w, rand, startPos);
         }
 
-        if (r.nextInt(Config.towerDungeon) == 0) {
-            y = r.nextInt(200);
-            x = posX + r.nextInt(16) + 8;
-            z = posZ + r.nextInt(16) + 8;
+        if (rand.nextInt(Config.towerDungeon) == 0) {
+            y = rand.nextInt(200);
+            x = posX + rand.nextInt(16) + 8;
+            z = posZ + rand.nextInt(16) + 8;
             if (w.getBlockState(new BlockPos(x, y - 1, z)) == Blocks.GRASS.getDefaultState())
-                new WorldGenTowerDungeon().generate(w, r, new BlockPos(x, y, z));
+                new WorldGenTowerDungeon().generate(w, rand, new BlockPos(x, y, z));
         }
 
-        if (r.nextInt(Config.mageHouse) == 0) {
-            y = r.nextInt(200);
-            x = posX + r.nextInt(16) + 8;
-            z = posZ + r.nextInt(16) + 8;
+        if (rand.nextInt(Config.mageHouse) == 0) {
+            y = rand.nextInt(200);
+            x = posX + rand.nextInt(16) + 8;
+            z = posZ + rand.nextInt(16) + 8;
             if (w.getBlockState(new BlockPos(x, y - 1, z)) == Blocks.GRASS.getDefaultState() ||
                     w.getBlockState(new BlockPos(x, y, z)) == Blocks.GRASS.getDefaultState() ||
                     w.getBlockState(new BlockPos(x, y - 1, z)) == Blocks.SAND.getDefaultState() ||
                     w.getBlockState(new BlockPos(x, y, z)) == Blocks.SAND.getDefaultState())
-                new WorldGenMageHouse().generate(w, r, new BlockPos(x, y, z));
+                new WorldGenMageHouse().generate(w, rand, new BlockPos(x, y, z));
         }
-        if (r.nextInt(Config.blacksmithHouse) == 0) {
-            y = r.nextInt(200);
-            x = posX + r.nextInt(16) + 8;
-            z = posZ + r.nextInt(16) + 8;
+        if (rand.nextInt(Config.blacksmithHouse) == 0) {
+            y = rand.nextInt(200);
+            x = posX + rand.nextInt(16) + 8;
+            z = posZ + rand.nextInt(16) + 8;
             if (w.getBlockState(new BlockPos(x, y - 1, z)) == Blocks.GRASS.getDefaultState() ||
                     w.getBlockState(new BlockPos(x, y, z)) == Blocks.GRASS.getDefaultState() ||
                     w.getBlockState(new BlockPos(x, y - 1, z)) == Blocks.SAND.getDefaultState() ||
                     w.getBlockState(new BlockPos(x, y, z)) == Blocks.SAND.getDefaultState())
-                new WorldGenBlacksmithHouse().generate(w, r, new BlockPos(x, y, z));
+                new WorldGenBlacksmithHouse().generate(w, rand, new BlockPos(x, y, z));
+
         }
     }
 
