@@ -85,10 +85,11 @@ public class BlockSenterianAltar extends BlockModContainer {
 
 			if(heldItem == JourneyItems.ash) {//replace with an item to spawn boss
 				if(altar.orb != null) {
-					EntityFrozenTroll mob = new EntityFrozenTroll(worldIn);
-					mob.setLocationAndAngles(pos.getX() + 0.5F, pos.getY() + 1.5F, pos.getZ() + 0.5F, 0.0F, 0.0F);
-					worldIn.spawnEntity(mob);
-					altar.putInOrb(null);
+					//EntityFrozenTroll mob = new EntityFrozenTroll(worldIn);
+					//mob.setLocationAndAngles(pos.getX() + 0.5F, pos.getY() + 1.5F, pos.getZ() + 0.5F, 0.0F, 0.0F);
+					//worldIn.spawnEntity(mob);
+					//altar.putInOrb(null);
+					altar.spawnTimer = 30;
 					playerIn.getHeldItemMainhand().shrink(1);
 					((WorldServer) worldIn).getPlayerChunkMap().markBlockForUpdate(pos);
 					return true;

@@ -5,6 +5,7 @@ import net.journey.dimension.euca.gen.WorldGenEucaWater;
 import net.journey.dimension.euca.gen.WorldGenSmeltery;
 import net.journey.dimension.euca.gen.trees.*;
 import net.journey.init.blocks.JourneyBlocks;
+import net.journey.util.handler.Helper;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
@@ -290,6 +291,7 @@ public class ChunkProviderEuca implements IChunkGenerator {
         }
 
         if(rand.nextInt(15) == 0) {
+        	Helper.print(x1 + " " + z1);
             sphere.generate(worldObj, rand, new BlockPos(x1, this.rand.nextInt(120) + 4, z1));
         }
         
