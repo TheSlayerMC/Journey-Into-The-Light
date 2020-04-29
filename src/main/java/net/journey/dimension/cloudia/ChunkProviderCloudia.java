@@ -62,7 +62,7 @@ public class ChunkProviderCloudia implements IChunkGenerator {
 		CloudiaChunkPrimer cloudiaChunk = new CloudiaChunkPrimer();
 		this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomes(this.biomesForGeneration, chunkX * 16, chunkZ * 16, 16, 16);
 		int bottomLayer = 32;
-		int secondLayer = 51;
+		int secondLayer = 48;
 
 		//Generates all rooms
 		CloudiaZoneBase room = (CloudiaZoneBase) (toprooms.get(random.nextInt(toprooms.size())));
