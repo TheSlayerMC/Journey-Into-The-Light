@@ -24,7 +24,7 @@ public class JourneyTabs extends CreativeTabs {
     public static final JourneyTabs MACHINE_BLOCKS = new JourneyTabs("journey.machineBlocks");
     public static final JourneyTabs PORTAL_BLOCKS = new JourneyTabs("journey.portalBlocks");
 
-    public Item item;
+    public ItemStack item;
 
     public JourneyTabs(String name) {
         super(name);
@@ -44,20 +44,20 @@ public class JourneyTabs extends CreativeTabs {
         PORTAL_BLOCKS.setIcon(JourneyBlocks.eucaPortal);
     }
 
-    public void setIcon(Item icon) {
-        this.item = icon;
+    public void setIcon(Block icon) {
+        setIcon(Item.getItemFromBlock(icon));
     }
 
-    public void setIcon(Block icon) {
-        this.item = Item.getItemFromBlock(icon);
+    public void setIcon(Item icon) {
+        setIcon(new ItemStack(icon));
     }
 
     public void setIcon(ItemStack icon) {
-        this.item = icon.getItem();
+        this.item = icon;
     }
 
     @Override
     public ItemStack createIcon() {
-        return new ItemStack(item);
+        return item;
     }
 }
