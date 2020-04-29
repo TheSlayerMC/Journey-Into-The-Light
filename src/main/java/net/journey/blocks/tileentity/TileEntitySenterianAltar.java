@@ -8,6 +8,7 @@ import net.journey.entity.mob.senterian.mob.EntitySentryLord;
 import net.journey.entity.mob.senterian.mob.EntitySentryStalker;
 import net.journey.entity.mob.senterian.mob.EntitySentryWalker;
 import net.journey.enums.EnumParticlesClasses;
+import net.journey.init.JourneySounds;
 import net.journey.init.items.JourneyItems;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
@@ -15,6 +16,7 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.SoundCategory;
 import net.slayer.api.entity.EntityModMob;
 
 public class TileEntitySenterianAltar extends TileEntity implements ITickable {
@@ -69,10 +71,16 @@ public class TileEntitySenterianAltar extends TileEntity implements ITickable {
 
 	@Override
 	public void update() {
+		int x = this.pos.getX(), y = this.pos.getY(), z = this.pos.getZ();
 		isFull = getOrbItem() == JourneyItems.sapphire ? true : false;
 
 		if(isFull && spawnTimer == 0) {
 			spawnTimer = 50;
+	        world.playSound(x, y, z, JourneySounds.SENTRY_ALTAR_ACTIVATE, SoundCategory.BLOCKS, 1.0f, 1.0f, false);
+		}
+		
+		if(isFull && spawnTimer == 5) {
+	        world.playSound(x, y, z, JourneySounds.SENTRY_AMBIENT_1, SoundCategory.BLOCKS, 1.0f, 1.0f, false);
 		}
 
 		if(spawnTimer >= 0) 
@@ -88,6 +96,7 @@ public class TileEntitySenterianAltar extends TileEntity implements ITickable {
 
 		if(spawnCount == 5) {
 			putInOrb(null);
+	        world.playSound(x, y, z, JourneySounds.SENTRY_ALTAR_DEACTIVATE, SoundCategory.BLOCKS, 1.0f, 1.0f, false);
 			spawnCount = 0;
 		}
 	}
@@ -119,7 +128,8 @@ public class TileEntitySenterianAltar extends TileEntity implements ITickable {
 		if(!world.isRemote && mob != null)
 			world.spawnEntity(mob);
 		
+        world.playSound(x, y, z, JourneySounds.SENTRY_HURT_2, SoundCategory.BLOCKS, 1.0f, 1.0f, false);
 		for(int i = 0; i < 50; i++)
-			JITL.proxy.spawnParticle(EnumParticlesClasses.FLORO_WATER, this.world, x + 0.25, y + 0.5, z + 0.25, r.nextFloat(), r.nextFloat(), r.nextFloat());
+			JITL.proxy.spawnParticle(EnumParticlesClasses.WITHER , this.world, x + 0.25, y + 0.5, z + 0.25, r.nextFloat(), r.nextFloat(), r.nextFloat());
 	}
 }

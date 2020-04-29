@@ -88,6 +88,17 @@ public class JourneySounds {
     public static SoundEvent GATE_CREAK;
     public static SoundEvent UNLOCK;
     public static SoundEvent BOTTLE_PLUG;
+    
+    public static SoundEvent SENTRY_ALTAR_ACTIVATE;
+    public static SoundEvent SENTRY_ALTAR_DEACTIVATE;
+    public static SoundEvent SENTRY_ALTAR_SMOKE;
+    public static SoundEvent SENTRY_AMBIENT_1;
+    public static SoundEvent SENTRY_AMBIENT_2;
+    public static SoundEvent SENTRY_AMBIENT_3;
+    public static SoundEvent SENTRY_GHOST;
+    public static SoundEvent SENTRY_HURT_1;
+    public static SoundEvent SENTRY_HURT_2;
+    
     public static SoundEvent EMPTY;
 
     public static SoundEvent UNTITLED_DISK;
@@ -180,6 +191,15 @@ public class JourneySounds {
         GATE_CREAK = registerSound("gate_creak");
         UNLOCK = registerSound("unlock");
         BOTTLE_PLUG = registerSound("bottle_plug");
+        SENTRY_ALTAR_ACTIVATE = registerSound("sentry_altar_activate");
+        SENTRY_ALTAR_DEACTIVATE = registerSound("sentry_altar_deactivate");
+        SENTRY_ALTAR_SMOKE = registerSound("sentry_altar_smoke");
+        SENTRY_AMBIENT_1 = registerSound("sentry_ambient_1");
+        SENTRY_AMBIENT_2 = registerSound("sentry_ambient_2");
+        SENTRY_AMBIENT_3 = registerSound("sentry_ambient_3");
+        SENTRY_GHOST = registerSound("sentry_ghost");
+        SENTRY_HURT_1 = registerSound("sentry_hurt_1");
+        SENTRY_HURT_2 = registerSound("sentry_hurt_2");
         EMPTY = registerSound("empty");
         UNTITLED_DISK = registerSound("untitled_disk");
         RACE_TO_SHORE = registerSound("race_shore");
