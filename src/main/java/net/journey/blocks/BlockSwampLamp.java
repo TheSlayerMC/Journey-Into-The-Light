@@ -25,13 +25,9 @@ public class BlockSwampLamp extends BlockMod {
         this.isOpaque = false;
         setCreativeTab(JourneyTabs.DECORATION);
         setTickRandomly(true);
+        setLightLevel(0.5F);
     }
 
-    @Override
-    public int getPackedLightmapCoords(IBlockState state, IBlockAccess source, BlockPos pos) {
-        return 20000000;
-    }
-    
     @Override
     public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
         float f = 0.0625F;
