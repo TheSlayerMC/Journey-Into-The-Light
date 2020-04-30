@@ -33,7 +33,6 @@ public class TileEntityJourneyChest extends TileEntityLockableLoot implements IT
 	public float lidAngle;
 	public float prevLidAngle;
 	public int numPlayersUsing;
-	public boolean isLocked = true;
 	public JourneyDoubleChestHandler doubleChestHandler;
 	private NonNullList<ItemStack> chestContents = NonNullList.withSize(27, ItemStack.EMPTY);
 	private int ticksSinceSync;
@@ -75,7 +74,6 @@ public class TileEntityJourneyChest extends TileEntityLockableLoot implements IT
 	public void readFromNBT(NBTTagCompound compound) {
 		super.readFromNBT(compound);
 		this.chestContents = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
-		isLocked = compound.getBoolean("isLocked");
 		if (!this.checkLootAndRead(compound)) {
 			ItemStackHelper.loadAllItems(compound, this.chestContents);
 		}
@@ -88,7 +86,7 @@ public class TileEntityJourneyChest extends TileEntityLockableLoot implements IT
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
 		super.writeToNBT(compound);
-		compound.setBoolean("isLocked", true);
+		compound.setBoolean("canBeOpened", true);
 		if (!this.checkLootAndWrite(compound)) {
 			ItemStackHelper.saveAllItems(compound, this.chestContents);
 		}
@@ -99,9 +97,22 @@ public class TileEntityJourneyChest extends TileEntityLockableLoot implements IT
 
 		return compound;
 	}
-	
+
 	public void setUnlocked() {
-		this.isLocked = false;
+		setUnlocked(true);
+	}
+
+	private void setUnlocked(boolean unlockAdjacents) {
+		setLockCode(null);
+
+		if (unlockAdjacents) {
+			if (adjacentChestZNeg != null) adjacentChestZNeg.setUnlocked(false);
+			if (adjacentChestXPos != null) adjacentChestXPos.setUnlocked(false);
+			if (adjacentChestXNeg != null) adjacentChestXNeg.setUnlocked(false);
+			if (adjacentChestZPos != null) adjacentChestZPos.setUnlocked(false);
+		}
+
+		markDirty();
 	}
 
 	@Override
@@ -122,32 +133,32 @@ public class TileEntityJourneyChest extends TileEntityLockableLoot implements IT
 			this.adjacentChestChecked = false;
 		} else if (this.adjacentChestChecked) {
 			switch (side) {
-			case NORTH:
+				case NORTH:
 
-				if (this.adjacentChestZNeg != chestTe) {
-					this.adjacentChestChecked = false;
-				}
+					if (this.adjacentChestZNeg != chestTe) {
+						this.adjacentChestChecked = false;
+					}
 
-				break;
-			case SOUTH:
+					break;
+				case SOUTH:
 
-				if (this.adjacentChestZPos != chestTe) {
-					this.adjacentChestChecked = false;
-				}
+					if (this.adjacentChestZPos != chestTe) {
+						this.adjacentChestChecked = false;
+					}
 
-				break;
-			case EAST:
+					break;
+				case EAST:
 
-				if (this.adjacentChestXPos != chestTe) {
-					this.adjacentChestChecked = false;
-				}
+					if (this.adjacentChestXPos != chestTe) {
+						this.adjacentChestChecked = false;
+					}
 
-				break;
-			case WEST:
+					break;
+				case WEST:
 
-				if (this.adjacentChestXNeg != chestTe) {
-					this.adjacentChestChecked = false;
-				}
+					if (this.adjacentChestXNeg != chestTe) {
+						this.adjacentChestChecked = false;
+					}
 			}
 		}
 	}
@@ -212,11 +223,6 @@ public class TileEntityJourneyChest extends TileEntityLockableLoot implements IT
 					if (iinventory == this || iinventory instanceof InventoryLargeChest
 							&& ((InventoryLargeChest) iinventory).isPartOfLargeChest(this)) {
 						++this.numPlayersUsing;
-
-						if (isLocked) {
-							numPlayersUsing = 0;
-						}
-
 					}
 				}
 			}
@@ -315,7 +321,7 @@ public class TileEntityJourneyChest extends TileEntityLockableLoot implements IT
 	@Override
 	@Nullable
 	public <T> T getCapability(net.minecraftforge.common.capabilities.Capability<T> capability,
-			@Nullable net.minecraft.util.EnumFacing facing) {
+	                           @Nullable net.minecraft.util.EnumFacing facing) {
 		if (capability == net.minecraftforge.items.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
 			if (doubleChestHandler == null || doubleChestHandler.needsRefresh())
 				doubleChestHandler = JourneyDoubleChestHandler.get(this);
@@ -368,7 +374,7 @@ public class TileEntityJourneyChest extends TileEntityLockableLoot implements IT
 					return BlockJourneyChest.Type.TERRA;
 				}
 			}
-			if(getBlockType() instanceof BlockJourneyChest)
+			if (getBlockType() instanceof BlockJourneyChest)
 				this.cachedChestType = ((BlockJourneyChest) this.getBlockType()).chestType;
 		}
 		return this.cachedChestType == null ? BlockJourneyChest.Type.JOURNEY : cachedChestType;
