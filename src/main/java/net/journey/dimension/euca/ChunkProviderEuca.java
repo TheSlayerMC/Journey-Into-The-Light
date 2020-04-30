@@ -39,13 +39,10 @@ public class ChunkProviderEuca implements IChunkGenerator {
     private double[] buffer;
     //private ArrayList<WorldGenerator> treesgreen;
     private WorldGenerator[] treesnormal = {
-            new WorldGenEucaTree4(),
-            new WorldGenEucaTree5()
+            new WorldGenEucaTree2()
     };
     private WorldGenerator[] treestall = {
-            new WorldGenEucaTree(),
-            new WorldGenEucaTree2(),
-            new WorldGenEucaTree3()
+            new WorldGenEucaTree()
     };
     private WorldGenSmeltery worldGenSmeltery = new WorldGenSmeltery();
     private WorldGenBotSpawner spawner = new WorldGenBotSpawner();
