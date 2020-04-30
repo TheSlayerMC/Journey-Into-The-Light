@@ -287,7 +287,7 @@ public class ChunkProviderEuca implements IChunkGenerator {
             water.generate(worldObj, rand, new BlockPos(x1 + this.rand.nextInt(16) + 8, this.rand.nextInt(120) + 4, z1 + this.rand.nextInt(16) + 8));
         }
 
-        if(rand.nextInt(15) == 0) {
+        if(rand.nextInt(25) == 0) {
         	Helper.print(x1 + " " + z1);
             sphere.generate(worldObj, rand, new BlockPos(x1, this.rand.nextInt(120) + 4, z1));
         }

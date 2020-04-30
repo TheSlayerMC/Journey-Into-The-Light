@@ -13,7 +13,7 @@ public class WorldGenEucaSphere extends WorldGenerator {
 
     @Override
     public boolean generate(World w, Random r, BlockPos p) {
-        int size = 4 + r.nextInt(11);
+        int size = 6 + r.nextInt(10);
         int s = size / 2;
         
         int x = p.getX() + s;
