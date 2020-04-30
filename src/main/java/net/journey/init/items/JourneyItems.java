@@ -273,7 +273,39 @@ public class JourneyItems {
 
     public static Item iridium;
     
-    public static Item CRAFTING_POUCH;
+    public static Item LOOT_POUCH;
+    public static Item BALMY_TEARDROP;
+    public static Item BEDROCK_SHOVEL;
+    public static Item CHARM_OF_VINE_STRANDING;
+    public static Item CHARM_OF_WATER_BENDING;
+    public static Item CLOUD_BUCKLER;
+    public static Item CURSED_TOMB;
+    public static Item DEATH_CAP;
+    public static Item DEMONIC_SKULL;
+    public static Item ESSENCE_BUCKLER;
+    public static Item ESSENCE_CATALYST;
+    public static Item ESSENCE_SHURIKEN;
+    public static Item FIERY_STABBER;
+    public static Item GLACIAL_BLADE;
+    public static Item GLOSSY_EYE;
+    public static Item HEART_STONE;
+    public static Item HOE_OF_EARTH_LOVING;
+    public static Item LIGHT_BUCKLER;
+    public static Item MAGIC_BOMB;
+    public static Item MAGIC_DUST;
+    public static Item MAGIC_POT_OF_DESTRUCTION;
+    public static Item MASK_OF_HELLMETAL;
+    public static Item MOON_OF_ETERNAL_NIGHT;
+    public static Item NETHIC_OBSTRUCTOR;
+    public static Item PICKAXE_OF_GOOD_FORTUNE;
+    public static Item SLIME_BERRY;
+    public static Item SLIMUN;
+    public static Item SLIMY_PICKAXE;
+    public static Item TERRA_BUCKLER;
+    public static Item WITHIC_OBSTRUCTOR;
+    public static Item XP_CATALYST;
+    public static Item AQUASTONE;
+    public static Item VOLCANIC_STONE;
 
     //public static Item obsidianBoat;
 
@@ -461,7 +493,40 @@ public class JourneyItems {
         demonicEye = new ItemDemonicEye("demonicEye", "Demonic Eye");
         darkGem = new ItemDarkGem("darkGem", "Dark Gem");
         obsidianRod = new ItemMod("obsidianRod", "Obsidian Rod");
-        CRAFTING_POUCH = new ItemCrafting("sizzlingCraftingPouch", "Sizzling Crafting Pouch", 0);
+        
+        LOOT_POUCH = new ItemPresent("loot_pouch", "Loot Pouch");
+        AQUASTONE = new ItemMod("aquastone", "Aquastone");
+        BALMY_TEARDROP = new ItemMod("balmy_teardrop", "Balmy Teardrop");
+        BEDROCK_SHOVEL = new ItemMod("bedrock_shovel", "Bedrock Shovel");
+        CHARM_OF_VINE_STRANDING = new ItemMod("charm_of_vine_stranding", "Charm of Vinestranding");
+        CHARM_OF_WATER_BENDING = new ItemMod("charm_of_water_bending", "Charm of Waterbending");
+        CLOUD_BUCKLER = new ItemMod("cloud_buckler", "Cloud Buckler");
+        CURSED_TOMB = new ItemMod("cursed_tomb", "Cursed Tomb");
+        DEATH_CAP = new ItemMod("death_cap", "Death Cap");
+        DEMONIC_SKULL = new ItemMod("demonic_skull", "Demonic Skull");
+        ESSENCE_BUCKLER = new ItemMod("essence_buckler", "Essence Buckler");
+        ESSENCE_CATALYST = new ItemMod("essence_catalyst", "Essence Catalyst");
+        ESSENCE_SHURIKEN = new ItemMod("essence_shuriken", "Essence Shuriken");
+        FIERY_STABBER = new ItemMod("fiery_stabber", "Fiery Stabber");
+        GLACIAL_BLADE = new ItemMod("glacial_blade", "Glacial Blade");
+        GLOSSY_EYE = new ItemMod("glossy_eye", "Glossy Eye");
+        HEART_STONE = new ItemMod("heart_stone", "Heart Stone");
+        HOE_OF_EARTH_LOVING = new ItemMod("hoe_of_earth_loving", "Hoe of Earth Loving");
+        LIGHT_BUCKLER = new ItemMod("light_buckler", "Light Buckler");
+        MAGIC_BOMB = new ItemMod("magic_bomb", "Magic Bomb");
+        MAGIC_DUST = new ItemMod("magic_dust", "Magic Dust");
+        MAGIC_POT_OF_DESTRUCTION = new ItemMod("magic_pot_of_destruction", "Magic Pot of Destruction");
+        MASK_OF_HELLMETAL = new ItemMod("mask_of_hellmetal", "Mask of Hellmetal");
+        MOON_OF_ETERNAL_NIGHT = new ItemMod("moon_of_eternal_night", "Moon of Eternal Night");
+        NETHIC_OBSTRUCTOR = new ItemMod("nethic_obstructor", "Nethic Obstructor");
+        PICKAXE_OF_GOOD_FORTUNE = new ItemMod("pickaxe_of_good_fortune", "Pickaxe of Good Fortune");
+        SLIME_BERRY = new ItemMod("slime_berry", "Slimeberry");
+        SLIMUN = new ItemMod("slimun", "Slimun");
+        SLIMY_PICKAXE = new ItemMod("slimy_pickaxe", "Slimy Pickaxe");
+        TERRA_BUCKLER = new ItemMod("terra_buckler", "Terra Buckler");
+        VOLCANIC_STONE = new ItemMod("volcanic_stone", "Volcanic Stone");
+        WITHIC_OBSTRUCTOR = new ItemMod("withic_obstructor", "Withic Obstructor");
+        XP_CATALYST = new ItemMod("xp_catalyst", "Experience Catalyst");
         //obsidianBoat = new ItemObsidianBoat("obsidianboat", "Obsidian Boat");
         //infernoshield = new ItemModShield("infernoshield", "Inferno Shield", 2, false);
     }

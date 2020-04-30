@@ -1,0 +1,6 @@
+{
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "journey:items/moon_of_eternal_night"
+	}
+}
