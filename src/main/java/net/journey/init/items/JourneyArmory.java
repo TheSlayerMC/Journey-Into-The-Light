@@ -91,6 +91,7 @@ public class JourneyArmory {
     public static Item mekyumHoe;
 
     public static Item hoeOfEternalLife;
+    public static Item HOE_OF_EARTH_LOVING;
     public static Item multiToolOfEternalSmelting;
     public static Item SLIMY_PICKAXE;
 
@@ -323,6 +324,7 @@ public class JourneyArmory {
         storonHoe = new ItemModHoe("storonHoe", "Storon Hoe", JourneyToolMaterial.KORITE);
         mekyumHoe = new ItemModHoe("mekyumHoe", "Storon Hoe", JourneyToolMaterial.KORITE);
         hoeOfEternalLife = new ItemBonemealHoe("hoeofeternallife", "Hoe Of Eternal Life", JourneyToolMaterial.HOEOFLIFE);
+        HOE_OF_EARTH_LOVING = new ItemBonemealHoe("hoe_of_earth_loving", "Hoe of Earth Loving", JourneyToolMaterial.HOEOFEARTH);
 
         MASK_OF_HELLMETAL = new ItemModArmor(EnumArmor.HELL_METAL, HEAD);
         

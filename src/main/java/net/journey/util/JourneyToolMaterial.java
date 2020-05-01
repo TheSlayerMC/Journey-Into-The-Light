@@ -21,6 +21,7 @@ public enum JourneyToolMaterial {
     NETHIC(JourneyItems.nethic, JourneyItems.bleedstone, 20),
     KORITE(JourneyItems.korite, JourneyItems.koriteIngot, 14),
     HOEOFLIFE(JourneyItems.hoeoflife, JourneyConsumables.floroPedal, 14),
+    HOEOFEARTH(JourneyItems.hoeofearth, JourneyArmory.HOE_OF_EARTH_LOVING, 14),
     SLIIMY_PICK(JourneyItems.SLIMY_PICK_MATERIAL, JourneyArmory.SLIMY_PICKAXE, 3),
 
     CHAMPIONS_SWORD(SlayerAPI.addMeleeMaterial(3000, 14, 25)),
