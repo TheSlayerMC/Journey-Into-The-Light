@@ -5,6 +5,7 @@ import net.journey.client.render.gui.JourneyMainMenu;
 import net.journey.client.server.EssenceProvider;
 import net.journey.client.server.IEssence;
 import net.journey.init.items.JourneyArmory;
+import net.journey.items.ItemEternalNight;
 import net.journey.items.interactive.ItemTeleport;
 import net.journey.items.ranged.ItemGun;
 import net.journey.items.ranged.ItemHammer;
@@ -87,7 +88,8 @@ public class ClientTickEvent {
 					player.getHeldItemMainhand().getItem() instanceof ItemStaff || 
 					player.getHeldItemMainhand().getItem() instanceof ItemTeleport || 
 					player.getHeldItemMainhand().getItem() instanceof ItemGun || 
-					player.getHeldItemMainhand().getItem() instanceof ItemHammer) {
+					player.getHeldItemMainhand().getItem() instanceof ItemHammer ||
+					player.getHeldItemMainhand().getItem() instanceof ItemEternalNight) {
 				IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
 				if(!mc.gameSettings.hideGUI) {
 					GL11.glPushMatrix();
