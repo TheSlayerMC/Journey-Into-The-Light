@@ -1,7 +1,6 @@
 package net.journey.blocks.machines;
 
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
-import net.journey.init.JourneySounds;
 import net.journey.init.JourneyTabs;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
@@ -9,7 +8,6 @@ import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.player.EntityPlayer;
@@ -26,6 +24,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.ILockableContainer;
+import net.minecraft.world.LockCode;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -43,13 +42,13 @@ public class BlockJourneyChest extends BlockModContainer {
     protected static final AxisAlignedBB EAST_CHEST_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 1D, 1D, 1D);
     protected static final AxisAlignedBB NOT_CONNECTED_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 1D, 1D, 1D);
     public final BlockJourneyChest.Type chestType;
-    public boolean isLocked;
+    public boolean isInitiallyLocked;
     private Item key;
 
-    public BlockJourneyChest(String name, String f, BlockJourneyChest.Type chestTypeIn, boolean isLocked, Item key) {
+    public BlockJourneyChest(String name, String f, BlockJourneyChest.Type chestTypeIn, boolean isInitiallyLocked, Item key) {
         super(EnumMaterialTypes.STONE, name, f, 2.0F, JourneyTabs.MACHINE_BLOCKS);
         this.chestType = chestTypeIn;
-        this.isLocked = isLocked;
+        this.isInitiallyLocked = isInitiallyLocked;
         this.key = key;
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
     }
@@ -396,33 +395,27 @@ public class BlockJourneyChest extends BlockModContainer {
 
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-    	TileEntityJourneyChest chest = (TileEntityJourneyChest)worldIn.getTileEntity(pos);
-        if (worldIn.isRemote) {
-            return true;
-        } else {
-            if (this.isLocked(playerIn, worldIn, pos) || !isLocked) {
-                JourneySounds.playSound(JourneySounds.CHEST_OPEN, worldIn, playerIn);
-                ILockableContainer ilockablecontainer = this.getLockableContainer(worldIn, pos);
-                if (chest.isLocked == true) {
+        if (!worldIn.isRemote) {
+            TileEntityJourneyChest chest = (TileEntityJourneyChest) worldIn.getTileEntity(pos);
+            if (chest != null) {
+                if (chest.isLocked() && canBeOpened(playerIn, worldIn, pos)) {
                     chest.setUnlocked();
+
                     playerIn.getHeldItemMainhand().damageItem(1, playerIn);
                 }
-                if (ilockablecontainer != null) {
-                    playerIn.displayGUIChest(ilockablecontainer);
+
+                if (chest.isLocked()) { // if still locked after trying to unlock, just skip attempt
+                    return true;
                 }
+
+                playerIn.displayGUIChest(chest);
             }
-            return true;
-        }
-    }
-
-    public boolean isLocked(EntityPlayer playerIn, World worldIn, BlockPos pos) {
-        TileEntityJourneyChest te = (TileEntityJourneyChest) worldIn.getTileEntity(pos);
-        if (playerIn.getHeldItemMainhand() != null && playerIn.getHeldItemMainhand().getItem() == key) {
-
-        } else {
-            return false;
         }
         return true;
+    }
+
+    public boolean canBeOpened(EntityPlayer playerIn, World worldIn, BlockPos pos) {
+        return playerIn.getHeldItemMainhand().getItem() == key;
     }
 
     public ILockableContainer getLockableContainer(World worldIn, BlockPos pos) {
@@ -436,10 +429,7 @@ public class BlockJourneyChest extends BlockModContainer {
             if (this.isBlocked(worldIn, pos)) {
                 return null;
             } else {
-                Iterator iterator = EnumFacing.Plane.HORIZONTAL.iterator();
-
-                while (iterator.hasNext()) {
-                    EnumFacing enumfacing = (EnumFacing) iterator.next();
+                for (EnumFacing enumfacing : EnumFacing.Plane.HORIZONTAL) {
                     BlockPos blockpos1 = pos.offset(enumfacing);
                     Block block = worldIn.getBlockState(blockpos1).getBlock();
 
@@ -467,7 +457,9 @@ public class BlockJourneyChest extends BlockModContainer {
 
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
-        return new TileEntityJourneyChest();
+        TileEntityJourneyChest t = new TileEntityJourneyChest();
+        if (isInitiallyLocked) t.setLockCode(new LockCode("DUMMY"));
+        return t;
     }
 
     public int isProvidingWeakPower(IBlockAccess worldIn, BlockPos pos, IBlockState state, EnumFacing side) {
@@ -498,10 +490,10 @@ public class BlockJourneyChest extends BlockModContainer {
     }
 
     private boolean isOcelotSittingOnChest(World worldIn, BlockPos pos) {
-        Iterator iterator = worldIn
+        Iterator<EntityOcelot> iterator = worldIn
                 .getEntitiesWithinAABB(EntityOcelot.class,
                         new AxisAlignedBB(pos.getX(), pos.getY() + 1, pos.getZ(),
-								pos.getX() + 1, pos.getY() + 2, pos.getZ() + 1))
+                                pos.getX() + 1, pos.getY() + 2, pos.getZ() + 1))
                 .iterator();
         EntityOcelot entityocelot;
 
@@ -510,8 +502,7 @@ public class BlockJourneyChest extends BlockModContainer {
                 return false;
             }
 
-            Entity entity = (Entity) iterator.next();
-            entityocelot = (EntityOcelot) entity;
+            entityocelot = iterator.next();
         } while (!entityocelot.isSitting());
 
         return true;

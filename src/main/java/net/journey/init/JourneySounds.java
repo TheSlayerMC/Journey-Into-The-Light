@@ -12,8 +12,6 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.slayer.api.SlayerAPI;
 
-import javax.annotation.Nullable;
-
 @EventBusSubscriber(modid = SlayerAPI.MOD_ID)
 public class JourneySounds {
 
@@ -232,19 +230,19 @@ public class JourneySounds {
         return s;
     }
 
-    public static void playSound(SoundEvent sound, World w, @Nullable EntityPlayer e) {
+    public static void playSound(SoundEvent sound, World w, EntityPlayer e) {
         w.playSound(e, new BlockPos(e.posX, e.posY, e.posZ), sound, SoundCategory.NEUTRAL, 1.0F, 1.0F);
     }
 
-    public static void playSound(SoundEvent sound, World w, @Nullable EntityLiving e) {
+    public static void playSound(SoundEvent sound, World w, EntityLiving e) {
         e.playSound(sound, 1.0F, 1.0F);
     }
 
-    public static void playSound(SoundEvent sound, World w, @Nullable EntityLiving e, float volume, float pitch) {
+    public static void playSound(SoundEvent sound, World w, EntityLiving e, float volume, float pitch) {
         e.playSound(sound, volume, pitch);
     }
 
-    public static void playSound(SoundEvent sound, World w, @Nullable EntityPlayer e, float volume, float pitch) {
+    public static void playSound(SoundEvent sound, World w, EntityPlayer e, float volume, float pitch) {
         w.playSound(e, new BlockPos(e.posX, e.posY, e.posZ), sound, SoundCategory.NEUTRAL, volume, pitch);
     }
 }
