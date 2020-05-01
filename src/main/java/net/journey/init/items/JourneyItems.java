@@ -72,6 +72,8 @@ public class JourneyItems {
     public static ToolMaterial gorbiteMulti = addToolMaterial(3000, 20F, 5F, false);
     public static ToolMaterial desMulti = addToolMaterial(3000, 16F, 5F, false);
     public static ToolMaterial smeltingMulti = addToolMaterial(3000, 8F, 5F, false);
+    public static ToolMaterial SLIMY_PICK_MATERIAL = addToolMaterial(3000, 8F, 5F, false);
+    
     //TODO MATERIALS
     public static ToolMaterial woodMulti = addToolMaterial(60, 2F, 5F, false);
     public static ToolMaterial stoneMulti = addToolMaterial(132, 3F, 5F, false);
@@ -302,7 +304,6 @@ public class JourneyItems {
     public static Item PICKAXE_OF_GOOD_FORTUNE;
     public static Item SLIME_BERRY;
     public static Item SLIMUN;
-    public static Item SLIMY_PICKAXE;
     public static Item TERRA_BUCKLER;
     public static Item WITHIC_OBSTRUCTOR;
     public static Item XP_CATALYST;
@@ -525,7 +526,6 @@ public class JourneyItems {
         PICKAXE_OF_GOOD_FORTUNE = new ItemMod("pickaxe_of_good_fortune", "Pickaxe of Good Fortune");
         SLIME_BERRY = new ItemMod("slime_berry", "Slimeberry");
         SLIMUN = new ItemMod("slimun", "Slimun");
-        SLIMY_PICKAXE = new ItemMod("slimy_pickaxe", "Slimy Pickaxe");
         TERRA_BUCKLER = new ItemMod("terra_buckler", "Terra Buckler");
         VOLCANIC_STONE = new ItemMod("volcanic_stone", "Volcanic Stone");
         WITHIC_OBSTRUCTOR = new ItemMod("withic_obstructor", "Withic Obstructor");

@@ -1,7 +1,6 @@
 package net.journey.util;
 
-import net.journey.init.items.JourneyConsumables;
-import net.journey.init.items.JourneyItems;
+import net.journey.init.items.*;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -22,6 +21,7 @@ public enum JourneyToolMaterial {
     NETHIC(JourneyItems.nethic, JourneyItems.bleedstone, 20),
     KORITE(JourneyItems.korite, JourneyItems.koriteIngot, 14),
     HOEOFLIFE(JourneyItems.hoeoflife, JourneyConsumables.floroPedal, 14),
+    SLIIMY_PICK(JourneyItems.SLIMY_PICK_MATERIAL, JourneyArmory.SLIMY_PICKAXE, 3),
 
     CHAMPIONS_SWORD(SlayerAPI.addMeleeMaterial(3000, 14, 25)),
     THE_WRAITH(SlayerAPI.addMeleeMaterial(3000, 17, 25)),

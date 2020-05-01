@@ -7,6 +7,7 @@ import net.journey.items.tool.ItemMultiTool;
 import net.journey.util.JourneyToolMaterial;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
+import net.slayer.api.item.ItemMod;
 import net.slayer.api.item.ItemModAxe;
 import net.slayer.api.item.ItemModHoe;
 import net.slayer.api.item.ItemModPickaxe;
@@ -91,6 +92,7 @@ public class JourneyArmory {
 
     public static Item hoeOfEternalLife;
     public static Item multiToolOfEternalSmelting;
+    public static Item SLIMY_PICKAXE;
 
     public static Item hellstoneHelmet;
     public static Item hellstoneChest;
@@ -277,6 +279,7 @@ public class JourneyArmory {
         desPickaxe = new ItemModPickaxe("desPickaxe", "Des Pickaxe", JourneyToolMaterial.DES);
         gorbitePickaxe = new ItemModPickaxe("gorbitePickaxe", "Gorbite Pickaxe", JourneyToolMaterial.GORBITE);
         orbaditePickaxe = new ItemModPickaxe("orbaditePickaxe", "Orbadite Pickaxe", JourneyToolMaterial.ORBADITE);
+        SLIMY_PICKAXE = new ItemModPickaxe("slimy_pickaxe", "Slimy Pickaxe", JourneyToolMaterial.SLIIMY_PICK);
 
         hellstoneShovel = new ItemModShovel("hellstoneShovel", "Bloodcrust Shovel", JourneyToolMaterial.HELLSTONE);
         shadiumShovel = new ItemModShovel("shadiumShovel", "Shadium Shovel", JourneyToolMaterial.SHADIUM);
