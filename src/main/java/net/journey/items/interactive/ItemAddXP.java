@@ -27,6 +27,7 @@ public class ItemAddXP extends ItemMod {
 		ItemStack stack = player.getHeldItem(handIn);
 		if(!worldIn.isRemote) {
 			player.addExperienceLevel(amount);
+			stack.shrink(1);
 		}
 		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
 	}
