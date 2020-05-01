@@ -54,6 +54,8 @@ public class PlayerEvent {
 						event.getDrops().clear();
 						event.getDrops().add(stack.copy());
 						helmet.damageItem(1, p);
+					} else if (stack == null) {
+						event.getDrops();
 					}
 				}
 			}
