@@ -143,6 +143,8 @@ public class JourneyBlocks {
 
     public static BlockMod eucaBricks;
     public static BlockMod eucaTile;
+    public static BlockMetaBase EUCA_DUNGEON_BLOCKS;
+    
     public static BlockMod depthsDirt;
     public static BlockMod depthsGrass;
     public static BlockMod depthsStone;
@@ -225,14 +227,6 @@ public class JourneyBlocks {
 
     public static BlockMod swampLamp;
 
-    // public static BlockMod frozenChest;
-    // public static BlockMod netherChest;
-    // public static BlockMod boilingChest;
-    // public static BlockMod eucaChest;
-    // public static BlockMod depthsChest;
-    // public static BlockMod corbaChest;
-    // public static BlockMod cloudiaChest;
-    // public static BlockMod terraniaChest;
     public static BlockJourneyChest journeyChest;
     public static BlockJourneyChest netherChest;
     public static BlockJourneyChest boilChest;
@@ -691,7 +685,7 @@ public class JourneyBlocks {
         terraniaChest = new BlockJourneyChest("terraniachest", "Terrania Chest", BlockJourneyChest.Type.TERRA);
         cloudiaChest = new BlockJourneyChest("cloudiachest", "Cloudia Chest", BlockJourneyChest.Type.CLOUDIA);
 
-        lockedChest = new BlockJourneyChest("lockedchest", "Locked Chest", BlockJourneyChest.Type.JOURNEY, true, JourneyItems.CHEST_KEY);
+        lockedChest = (BlockJourneyChest) new BlockJourneyChest("lockedchest", "Locked Chest", BlockJourneyChest.Type.JOURNEY, true, JourneyItems.CHEST_KEY).setResistance(10000F);
 
         nethicDungeonBricks = new BlockMod("nethicDungeonBricks", "Nethic Dungeon Bricks");
         boilChain = (BlockMod) new BlockModBars("boilChain", "Boil Chain", 5.0F).setBlockUnbreakable()

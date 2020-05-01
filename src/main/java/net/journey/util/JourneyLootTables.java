@@ -15,9 +15,9 @@ public class JourneyLootTables {
 
     public static final ResourceLocation DEPTHS_SHRINE_CHEST = register("chests/depthsshrine");
     public static final ResourceLocation TERRANIA_TREE_HUT_CHEST = register("chests/terraniatreehut");
+    public static final ResourceLocation VANILLA_SIMPLE_DUNGEON = LootTableList.CHESTS_SIMPLE_DUNGEON;
 
     private static ResourceLocation register(String path) {
         return LootTableList.register(new ResourceLocation(SlayerAPI.MOD_ID, path));
     }
-
 }

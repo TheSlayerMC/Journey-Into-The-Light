@@ -35,17 +35,11 @@ public class BlockMetaBase extends Block implements IMetaName, IHasModel {
         this.setRegistryName(name);
         this.setSoundType(SoundType.STONE);
         this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
-
         this.name = name;
         this.metaName = metaName;
 
         JourneyBlocks.blocks.add(this);
         JourneyItems.items.add(new ItemBlockVarients(this).setRegistryName(this.getRegistryName()));
-    }
-
-    @Override
-    public int damageDropped(IBlockState state) {
-        return state.getValue(VARIANT).getMeta();
     }
 
     @Override

@@ -7,7 +7,14 @@ public class EnumTypeHandler {
         BRISON_STONE(0, "brisonstone"),
         DARK_BRISON_BRICK(1, "darkbrisonbrick"),
         RED_BRISON_BRICK(2, "redbrisonbrick"),
-        SMALL_BRISON_BRICK(3, "smallbrisonbrick");
+        SMALL_BRISON_BRICK(3, "smallbrisonbrick"),
+        
+        EUCA_DUNGEON_BRICK_0(4, "euca_dungeon_brick_0"),
+        EUCA_DUNGEON_BRICK_1(5, "euca_dungeon_brick_1"),
+        EUCA_DUNGEON_BRICK_2(6, "euca_dungeon_brick_2"),
+        EUCA_DUNGEON_BRICK_3(7, "euca_dungeon_brick_3"),
+        EUCA_DUNGEON_BRICK_4(8, "euca_dungeon_brick_4"),
+        EUCA_DUNGEON_BRICK_5(9, "euca_dungeon_tile");
 
         private static final EnumType[] META_LOOKUP = new EnumType[values().length];
 

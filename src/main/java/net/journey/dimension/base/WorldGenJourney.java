@@ -492,6 +492,15 @@ public class WorldGenJourney implements IWorldGenerator {
             if (w.getBlockState(new BlockPos(x, y - 1, z)) == Blocks.GRASS.getDefaultState())
                 new WorldGenTowerDungeon().generate(w, rand, new BlockPos(x, y, z));
         }
+        
+        if (rand.nextInt(64) == 0) {
+            y = rand.nextInt(48);
+            x = posX + rand.nextInt(16) + 8;
+            z = posZ + rand.nextInt(16) + 8;
+            if (w.getBlockState(new BlockPos(x, y - 1, z)) == Blocks.STONE.getDefaultState() && y > 10)
+                new WorldGenRockiteDungeon().generate(w, rand, new BlockPos(x, y, z));
+        }
+
 
         if (rand.nextInt(Config.mageHouse) == 0) {
             y = rand.nextInt(200);

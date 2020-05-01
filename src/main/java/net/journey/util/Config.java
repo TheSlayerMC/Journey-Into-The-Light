@@ -23,7 +23,7 @@ public class Config {
     public static int euca, depths, boil, frozen, corba, wastelands, cloudia, terrania, senterian, wither;
     public static String depthsBiome, boilBiome, frozenBiome, corbaBiome, wastelandsBiome, cloudiaBiome, terraniaBiome, senterianBiome;
     public static int baseMobID, baseProjectileID, baseEntityListID, entityHealthDistance;
-    public static int towerDungeon, mageHouse, blacksmithHouse;
+    public static int towerDungeon, mageHouse, blacksmithHouse, rockiteDungeon;
     private static boolean[] registerBiomes;
     private static int indexBiome;
     private static int biomeSizeXZ;
@@ -81,6 +81,7 @@ public class Config {
         changeMainMenu = cfg.get("Gui", "Use custom title screen?", true).getBoolean(true);
 
         towerDungeon = cfg.get("Generation", "Dungeon tower spawn rate (The higher, the rarer)", 16).getInt();
+        rockiteDungeon = cfg.get("Generation", "Rockit dungeon spawn rate (The higher, the rarer)", 64).getInt();
         mageHouse = cfg.get("Generation", "Mage House spawn rate (The higher, the rarer)", 40).getInt();
         blacksmithHouse = cfg.get("Generation", "Blacksmith House spawn rate (The higher, the rarer)", 40).getInt();
 
