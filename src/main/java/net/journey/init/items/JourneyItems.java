@@ -3,6 +3,7 @@ package net.journey.init.items;
 import net.journey.init.JourneySounds;
 import net.journey.items.*;
 import net.journey.items.interactive.ItemAddEssence;
+import net.journey.items.interactive.ItemAddXP;
 import net.journey.items.interactive.ItemCrafting;
 import net.journey.items.interactive.ItemDarkGem;
 import net.journey.items.interactive.ItemDemonicEye;
@@ -528,7 +529,7 @@ public class JourneyItems {
         TERRA_BUCKLER = new ItemMod("terra_buckler", "Terra Buckler");
         VOLCANIC_STONE = new ItemMod("volcanic_stone", "Volcanic Stone");
         WITHIC_OBSTRUCTOR = new ItemMod("withic_obstructor", "Withic Obstructor");
-        XP_CATALYST = new ItemMod("xp_catalyst", "Experience Catalyst");
+        XP_CATALYST = new ItemAddXP("xp_catalyst", "Experience Catalyst", 1);
         CHEST_KEY = new ItemMod("chest_key", "Chest Key");
         //obsidianBoat = new ItemObsidianBoat("obsidianboat", "Obsidian Boat");
         //infernoshield = new ItemModShield("infernoshield", "Inferno Shield", 2, false);
