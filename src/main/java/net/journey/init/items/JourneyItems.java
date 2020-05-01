@@ -2,6 +2,7 @@ package net.journey.init.items;
 
 import net.journey.init.JourneySounds;
 import net.journey.items.*;
+import net.journey.items.interactive.ItemAddEssence;
 import net.journey.items.interactive.ItemCrafting;
 import net.journey.items.interactive.ItemDarkGem;
 import net.journey.items.interactive.ItemDemonicEye;
@@ -506,7 +507,7 @@ public class JourneyItems {
         DEATH_CAP = new ItemMod("death_cap", "Death Cap");
         DEMONIC_SKULL = new ItemMod("demonic_skull", "Demonic Skull");
         ESSENCE_BUCKLER = new ItemMod("essence_buckler", "Essence Buckler");
-        ESSENCE_CATALYST = new ItemMod("essence_catalyst", "Essence Catalyst");
+        ESSENCE_CATALYST = new ItemAddEssence("essence_catalyst", "Essence Catalyst", 1, 10);
         ESSENCE_SHURIKEN = new ItemMod("essence_shuriken", "Essence Shuriken");
         FIERY_STABBER = new ItemMod("fiery_stabber", "Fiery Stabber");
         GLACIAL_BLADE = new ItemMod("glacial_blade", "Glacial Blade");

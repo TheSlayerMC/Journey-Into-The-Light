@@ -6,6 +6,7 @@ import net.journey.client.server.EssenceProvider;
 import net.journey.client.server.IEssence;
 import net.journey.init.items.JourneyArmory;
 import net.journey.items.ItemEternalNight;
+import net.journey.items.interactive.ItemAddEssence;
 import net.journey.items.interactive.ItemTeleport;
 import net.journey.items.ranged.ItemGun;
 import net.journey.items.ranged.ItemHammer;
@@ -84,12 +85,7 @@ public class ClientTickEvent {
 	private void onTickRender(EntityPlayer player) {
 		Minecraft mc = Minecraft.getMinecraft();
 		if (player != null) {
-			if (mc.currentScreen == null && player.getHeldItemMainhand() != null  && 
-					player.getHeldItemMainhand().getItem() instanceof ItemStaff || 
-					player.getHeldItemMainhand().getItem() instanceof ItemTeleport || 
-					player.getHeldItemMainhand().getItem() instanceof ItemGun || 
-					player.getHeldItemMainhand().getItem() instanceof ItemHammer ||
-					player.getHeldItemMainhand().getItem() instanceof ItemEternalNight) {
+			if (mc.currentScreen == null && player.getHeldItemMainhand() != null && instanceOfEssenceItem(player.getHeldItemMainhand().getItem())) {
 				IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
 				if(!mc.gameSettings.hideGUI) {
 					GL11.glPushMatrix();
@@ -114,5 +110,10 @@ public class ClientTickEvent {
 				}
 			}
 		}
+	}
+	
+	public boolean instanceOfEssenceItem(Item isEssence) {
+		return isEssence instanceof ItemStaff || isEssence instanceof ItemTeleport || isEssence instanceof ItemGun || 
+				isEssence instanceof ItemHammer || isEssence instanceof ItemEternalNight || isEssence instanceof ItemAddEssence;
 	}
 }

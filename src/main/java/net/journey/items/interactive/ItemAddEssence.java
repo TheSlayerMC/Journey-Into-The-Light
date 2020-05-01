@@ -1,4 +1,4 @@
-package net.journey.items;
+package net.journey.items.interactive;
 
 import java.util.List;
 
@@ -9,17 +9,18 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.slayer.api.item.ItemMod;
 
-public class ItemEternalNight extends ItemMod {
+public class ItemAddEssence extends ItemMod {
 
-	public ItemEternalNight(String name, String finalName) {
-		super(name, finalName, JourneyTabs.UTIL);
-		setMaxDamage(3);
+	private int amount;
+
+	public ItemAddEssence(String name, String finalN, int uses, int amount) {
+		super(name, finalN, JourneyTabs.UTIL);
+		setMaxDamage(uses);
+		this.amount = amount;
 		setMaxStackSize(1);
 	}
 
@@ -28,18 +29,14 @@ public class ItemEternalNight extends ItemMod {
 		ItemStack stack = player.getHeldItem(handIn);
 		IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
 		if(!worldIn.isRemote) {
-			if(mana.useEssence(10)) {
-				worldIn.setWorldTime(18000L);
-				stack.damageItem(1, player);
-				return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
-			}
+			mana.addEssence(amount);
+			stack.damageItem(1, player);
 		}
-		return new ActionResult<ItemStack>(EnumActionResult.FAIL, stack);
+		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
 	}
 
 	@Override
 	public void addInformation(ItemStack i, List l) {
-		l.add("On use: consumes 10 Essence");
-		l.add("Turns time to night");
+		l.add("Adds " + amount + " Essence");
 	}
 }
