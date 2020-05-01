@@ -4,6 +4,8 @@ import java.util.Random;
 
 import net.journey.blocks.machines.BlockJourneyChest;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
+import net.journey.entity.mob.frozen.EntityIceGolem;
+import net.journey.entity.mob.overworld.underground.EntityRockiteSmasher;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.JourneyLootTables;
 import net.journey.util.handler.LogHelper;
@@ -26,7 +28,7 @@ public class WorldGenRockiteDungeon extends WorldGenerator {
     private IBlockState cobble = Blocks.COBBLESTONE.getDefaultState();
     private IBlockState stone = Blocks.STONE.getDefaultState();
     private IBlockState stonebrick = Blocks.STONEBRICK.getDefaultState();
-    private IBlockState pillar = Blocks.LOG.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.OAK);
+    private IBlockState pillar = Blocks.STONEBRICK.getDefaultState().withProperty(BlockStoneBrick.VARIANT, BlockStoneBrick.EnumType.CHISELED);
     
     @Override
     public boolean generate(World worldIn, Random rand, BlockPos p) {
@@ -3411,6 +3413,11 @@ public class WorldGenRockiteDungeon extends WorldGenerator {
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 12, j + 7, k + 13), pillar);
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 12, j + 7, k + 14), cobble);
 		fillWithMossyVarients(worldIn, rand, p);
+        if (!worldIn.isRemote) {
+            EntityRockiteSmasher rockite = new EntityRockiteSmasher(worldIn);
+            rockite.setLocationAndAngles(i + 6.5, j + 2, k + 6.5, 0.0F, 0.0F);
+            worldIn.spawnEntity(rockite);
+        }
     	return true;
     }
     

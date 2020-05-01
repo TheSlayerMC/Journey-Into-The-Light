@@ -71,6 +71,7 @@ public class Textures {
     public static final ResourceLocation jungleGolem = addMob("junglegolem");
     public static final ResourceLocation jungleTurtle = addMob("jungleturtle");
     public static final ResourceLocation jungleSpider = addMob("junglespider");
+    public static final ResourceLocation rockiteSmasher = addMob("rockitesmasher");
 
     // public static final ResourceLocation wraith = addMob("wraith");
     public static final ResourceLocation bigHongo = addMob("bigHongo");

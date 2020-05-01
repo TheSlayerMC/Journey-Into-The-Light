@@ -31,6 +31,7 @@ public class MobStats {
     public static double GreenHonglowHealth = 20.0D, GreenHonglowDamage = 4.0D;
     public static double HonglowHealth = 20.0D, HonglowDamage = 4.0D;
     public static double StoneWalkerHealth = 30.0D, StoneWalkerDamage = 3.0D;
+    public static double RockiteSmasherHealth = 175.0D, RockiteSmasherDamage = 10.0D;
 
     //Nether
     public static double HellbotHealth = 30.0D, HellbotDamage = 8.0D;

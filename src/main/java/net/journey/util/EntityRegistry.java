@@ -176,6 +176,7 @@ public class EntityRegistry {
                 SlayerAPI.buildEntityEntry(EntityBlizzard.class, "blizzard", "Blizzard", 0x7c4c2c, 0x26b530),
                 SlayerAPI.buildEntityEntry(EntityDunewerm.class, "dunewerm", "Dunewerm", 0x7c4c2c, 0x26b530),
                 SlayerAPI.buildEntityEntry(EntityJungleGolem.class, "junglegolem", "Jungle Golem", 0x7c4c2c, 0x26b530),
+                SlayerAPI.buildEntityEntry(EntityRockiteSmasher.class, "rockitesmasher", "Rockite Smasher", 0x7c4c2c, 0x26b530),
 
                 SlayerAPI.buildEntityEntry(EntityJungleTurtle.class, "jungleturtle", "Jungle Turtle", 0x7c4c2c, 0x26b530),
                 SlayerAPI.buildEntityEntry(EntityJungleSpider.class, "jungleSpider", "Jungle Spider", 0x7c4c2c, 0x26b530),
