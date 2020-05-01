@@ -2164,8 +2164,8 @@ public class WorldGenRockiteDungeon extends WorldGenerator {
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 7, j + 0, k + 4), cobble);
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 7, j + 0, k + 5), cobble);
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 7, j + 0, k + 6), cobble);
-		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 7, j + 0, k + 7), Blocks.BEDROCK.getDefaultState());
-		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 7, j + 0, k + 8), Blocks.BEDROCK.getDefaultState());
+		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 7, j + 0, k + 7), cobble);
+		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 7, j + 0, k + 8), cobble);
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 7, j + 0, k + 9), cobble);
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 7, j + 0, k + 10), cobble);
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 7, j + 0, k + 11), cobble);
