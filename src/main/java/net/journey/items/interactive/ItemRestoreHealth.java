@@ -27,6 +27,7 @@ public class ItemRestoreHealth extends ItemMod {
 	public ItemRestoreHealth(String name, String finalN, boolean restoreFullHealth) {
 		super(name, finalN, JourneyTabs.UTIL);
 		this.restoreFullHealth = restoreFullHealth;
+		this.setMaxStackSize(1);
 	}
 	
 	public ItemRestoreHealth(String name, String finalN, int amount) {

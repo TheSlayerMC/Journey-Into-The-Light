@@ -1,5 +1,7 @@
 package net.journey.items.tool;
 
+import net.journey.init.items.JourneyArmory;
+import net.journey.init.items.JourneyItems;
 import net.journey.util.JourneyToolMaterial;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirt;
@@ -137,6 +139,9 @@ public class ItemBonemealHoe extends ItemModHoe {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, World player, List<String> list, ITooltipFlag par4) {
         list.add(SlayerAPI.Colour.GOLD + "Crouch + Right Click to Bonemeal, Right Click to Till");
+        if (this == JourneyArmory.HOE_OF_EARTH_LOVING) {
+            list.add(SlayerAPI.Colour.LIGHT_PURPLE + "Grants a random seed when a block is mined");
+        }
         list.add(SlayerAPI.Colour.BLUE + "Efficiency: " + toolMaterial.getEfficiency());
         if (stack.getMaxDamage() != -1) list.add(stack.getMaxDamage() - stack.getItemDamage() + " Uses");
         else list.add(SlayerAPI.Colour.GREEN + "Infinite Uses");

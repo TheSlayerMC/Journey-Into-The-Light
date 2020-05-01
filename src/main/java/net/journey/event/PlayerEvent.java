@@ -1,5 +1,9 @@
 package net.journey.event;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 import net.journey.entity.mob.overworld.EntityIceMage;
 import net.journey.init.items.JourneyArmory;
 import net.journey.init.items.JourneyConsumables;
@@ -12,9 +16,11 @@ import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
@@ -24,6 +30,7 @@ import net.slayer.api.PlayerHelper;
 public class PlayerEvent {
 
 	public static double rand;
+	public static Random random;
 
 	@SubscribeEvent
 	public void onBlockHarvested(HarvestDropsEvent event) {
@@ -38,7 +45,6 @@ public class PlayerEvent {
 						event.getDrops().add(stack.copy());
 					}
 				}
-
 				if(event.getHarvester().getHeldItemMainhand().getItem() == JourneyArmory.SLIMY_PICKAXE) {
 					for(ItemStack s : event.getDrops()) {
 						EntityItem item = new EntityItem(event.getWorld(), p.getPosition().getX(), p.getPosition().getY(), p.getPosition().getZ());
@@ -57,6 +63,10 @@ public class PlayerEvent {
 					} else if (stack == null) {
 						event.getDrops();
 					}
+				}
+				if (event.getHarvester().getHeldItemMainhand().getItem() == JourneyArmory.HOE_OF_EARTH_LOVING) {
+					ItemStack item = ForgeHooks.getGrassSeed(random, 1);
+					event.getDrops().add(item);
 				}
 			}
 		}

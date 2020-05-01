@@ -60,6 +60,7 @@ public class JourneyItems {
     public static ToolMaterial orbadite = addToolMaterial(3142, 28F, 5F, true);
     public static ToolMaterial gorbite = addToolMaterial(3142, 28F, 5F, true);
     public static ToolMaterial hoeoflife = addToolMaterial(126, 28F, 5F, true);
+    public static ToolMaterial hoeofearth = addToolMaterial(512, 28F, 5F, true);
     public static ToolMaterial hellstoneMulti = addToolMaterial(3000, 10F, 5F, false);
     public static ToolMaterial flairiumMulti = addToolMaterial(3000, 16F, 5F, false);
     public static ToolMaterial luniumMulti = addToolMaterial(3000, 7F, 5F, false);
@@ -294,7 +295,6 @@ public class JourneyItems {
     public static Item GLACIAL_BLADE;
     public static Item GLOSSY_EYE;
     public static Item HEART_STONE;
-    public static Item HOE_OF_EARTH_LOVING;
     public static Item LIGHT_BUCKLER;
     public static Item MAGIC_BOMB;
     public static Item MAGIC_DUST;
@@ -515,7 +515,6 @@ public class JourneyItems {
         GLACIAL_BLADE = new ItemMod("glacial_blade", "Glacial Blade");
         GLOSSY_EYE = new ItemMod("glossy_eye", "Glossy Eye");
         HEART_STONE = new ItemRestoreHealth("heart_stone", "Heart Stone", true);
-        HOE_OF_EARTH_LOVING = new ItemMod("hoe_of_earth_loving", "Hoe of Earth Loving");
         LIGHT_BUCKLER = new ItemMod("light_buckler", "Light Buckler");
         MAGIC_BOMB = new ItemMod("magic_bomb", "Magic Bomb");
         MAGIC_DUST = new ItemMod("magic_dust", "Magic Dust");
