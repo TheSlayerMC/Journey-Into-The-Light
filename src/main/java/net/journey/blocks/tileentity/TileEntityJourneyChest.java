@@ -86,7 +86,6 @@ public class TileEntityJourneyChest extends TileEntityLockableLoot implements IT
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
 		super.writeToNBT(compound);
-		compound.setBoolean("canBeOpened", true);
 		if (!this.checkLootAndWrite(compound)) {
 			ItemStackHelper.saveAllItems(compound, this.chestContents);
 		}
