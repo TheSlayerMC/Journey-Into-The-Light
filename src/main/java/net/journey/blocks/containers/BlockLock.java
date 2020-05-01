@@ -1,6 +1,5 @@
-package net.journey.blocks.machines;
+package net.journey.blocks.containers;
 
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;

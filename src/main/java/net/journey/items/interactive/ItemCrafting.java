@@ -1,6 +1,5 @@
 package net.journey.items.interactive;
 
-import net.journey.blocks.machines.BlockCrafting;
 import net.journey.init.JourneyTabs;
 import net.journey.init.items.JourneyItems;
 import net.journey.util.LangRegistry;

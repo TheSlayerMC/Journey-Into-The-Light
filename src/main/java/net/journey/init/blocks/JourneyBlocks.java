@@ -2,7 +2,7 @@ package net.journey.init.blocks;
 
 import net.journey.api.block.base.*;
 import net.journey.blocks.*;
-import net.journey.blocks.machines.*;
+import net.journey.blocks.containers.*;
 import net.journey.blocks.meta.BlockMetaBase;
 import net.journey.blocks.plant.*;
 import net.journey.blocks.portal.*;
@@ -654,7 +654,7 @@ public class JourneyBlocks {
         cloudiaTallGrass = new BlockModFlower("cloudiaTallGrass", "Cloudia Tall Grass");
         cloudiaFlower = new BlockModFlower("cloudiaFlower", "Cloudia Flower");
 
-        swampLamp = (BlockMod) new BlockSwampLamp("swampLamp", "Swamp Fly Bottle", 0);
+        swampLamp = new BlockSwampLamp("swampLamp", "Swamp Fly Bottle", 0);
 
         /*
          * frozenChest = new BlockJourneyChest("frozenChest", "Frozen Chest",

@@ -1,4 +1,4 @@
-package net.journey.blocks.machines;
+package net.journey.blocks.containers;
 
 import net.journey.blocks.tileentity.TileEntitySummoningTable;
 import net.journey.client.handler.GuiHandler;

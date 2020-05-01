@@ -1,16 +1,12 @@
-package net.journey.blocks.machines;
+package net.journey.blocks.containers;
 
-import net.journey.blocks.tileentity.TileEntityGrindstone;
 import net.journey.blocks.tileentity.TileEntitySenterianAltar;
 import net.journey.client.render.model.block.ModelSenterianAltar;
-import net.journey.entity.mob.frozen.EntityFrozenTroll;
 import net.journey.init.JourneyTabs;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.init.items.JourneyItems;
-import net.journey.util.handler.Helper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

@@ -1,4 +1,4 @@
-package net.journey.blocks.machines;
+package net.journey.blocks.containers;
 
 import net.journey.entity.mob.corba.EntityOverseerElder;
 import net.minecraft.block.state.IBlockState;

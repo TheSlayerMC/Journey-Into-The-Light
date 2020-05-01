@@ -1,6 +1,6 @@
 package net.journey.blocks.tileentity;
 
-import net.journey.blocks.machines.BlockJourneyChest;
+import net.journey.blocks.containers.BlockJourneyChest;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
 import net.minecraft.entity.player.EntityPlayer;

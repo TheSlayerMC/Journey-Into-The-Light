@@ -5,8 +5,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class ModelJoureyLargeChest extends ModelJourneyChest {
-    public ModelJoureyLargeChest() {
+public class ModelJourneyLargeChest extends ModelJourneyChest {
+    public ModelJourneyLargeChest() {
         this.textureWidth = 128;
         this.textureHeight = 64;
         this.chestbase = new ModelRenderer(this, 0, 24);

@@ -1,4 +1,4 @@
-package net.journey.blocks.machines;
+package net.journey.blocks.containers;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumParticleTypes;

@@ -1,4 +1,4 @@
-package net.journey.blocks.machines;
+package net.journey.blocks.containers;
 
 import net.journey.blocks.tileentity.TileEntityCloudAltar;
 import net.journey.client.render.model.block.ModelCloudAltar;
