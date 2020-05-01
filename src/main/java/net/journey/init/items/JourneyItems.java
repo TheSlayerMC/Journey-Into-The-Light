@@ -72,7 +72,7 @@ public class JourneyItems {
     public static ToolMaterial gorbiteMulti = addToolMaterial(3000, 20F, 5F, false);
     public static ToolMaterial desMulti = addToolMaterial(3000, 16F, 5F, false);
     public static ToolMaterial smeltingMulti = addToolMaterial(3000, 8F, 5F, false);
-    public static ToolMaterial SLIMY_PICK_MATERIAL = addToolMaterial(3000, 8F, 5F, false);
+    public static ToolMaterial SLIMY_PICK_MATERIAL = addToolMaterial(3000, 2F, 5F, true);
     
     //TODO MATERIALS
     public static ToolMaterial woodMulti = addToolMaterial(60, 2F, 5F, false);
