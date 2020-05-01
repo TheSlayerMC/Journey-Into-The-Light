@@ -28,9 +28,9 @@ public class ItemAddXP extends ItemMod {
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer player, EnumHand handIn) {
 		ItemStack stack = player.getHeldItem(handIn);
+        worldIn.playEvent(2002, player.getPosition(), PotionUtils.getPotionColor(PotionTypes.LEAPING));
 		if(!worldIn.isRemote) {
 			player.addExperienceLevel(amount);
-            worldIn.playEvent(2002, player.getPosition(), PotionUtils.getPotionColor(PotionTypes.LEAPING));
 			stack.shrink(1);
 		}
 		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
