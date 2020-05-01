@@ -298,7 +298,7 @@ public class JourneyItems {
     public static Item LIGHT_BUCKLER;
     public static Item MAGIC_BOMB;
     public static Item MAGIC_DUST;
-    public static Item MAGIC_POT_OF_DESTRUCTION;
+
     public static Item MOON_OF_ETERNAL_NIGHT;
     public static Item NETHIC_OBSTRUCTOR;
     public static Item PICKAXE_OF_GOOD_FORTUNE;
@@ -518,7 +518,6 @@ public class JourneyItems {
         LIGHT_BUCKLER = new ItemMod("light_buckler", "Light Buckler");
         MAGIC_BOMB = new ItemMod("magic_bomb", "Magic Bomb");
         MAGIC_DUST = new ItemMod("magic_dust", "Magic Dust");
-        MAGIC_POT_OF_DESTRUCTION = new ItemMod("magic_pot_of_destruction", "Magic Pot of Destruction");
         MOON_OF_ETERNAL_NIGHT = new ItemEternalNight("moon_of_eternal_night", "Moon of Eternal Night");
         NETHIC_OBSTRUCTOR = new ItemMod("nethic_obstructor", "Nethic Obstructor");
         PICKAXE_OF_GOOD_FORTUNE = new ItemMod("pickaxe_of_good_fortune", "Pickaxe of Good Fortune");

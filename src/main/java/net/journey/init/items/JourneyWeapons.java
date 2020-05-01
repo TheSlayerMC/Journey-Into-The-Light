@@ -29,6 +29,7 @@ import net.journey.entity.projectile.staff.EntityOvergrown;
 import net.journey.entity.projectile.staff.EntityWizardsStar;
 import net.journey.entity.projectile.throwable.EntityDemonicBomb;
 import net.journey.entity.projectile.throwable.EntityFireBomb;
+import net.journey.entity.projectile.throwable.EntityMagicPot;
 import net.journey.init.JourneyTabs;
 import net.journey.items.*;
 import net.journey.items.bows.*;
@@ -36,6 +37,7 @@ import net.journey.items.interactive.ItemTeleport;
 import net.journey.items.ranged.ItemCreativeHammer;
 import net.journey.items.ranged.ItemGun;
 import net.journey.items.ranged.ItemHammer;
+import net.journey.items.ranged.ItemMagicPot;
 import net.journey.items.ranged.ItemPiercer;
 import net.journey.items.ranged.ItemStaff;
 import net.journey.items.ranged.ItemThrowable;
@@ -44,6 +46,7 @@ import net.journey.items.ranged.ItemWand;
 import net.journey.items.swords.*;
 import net.journey.util.JourneyToolMaterial;
 import net.minecraft.item.Item;
+import net.slayer.api.item.ItemMod;
 import net.slayer.api.item.ItemModSword;
 
 public class JourneyWeapons {
@@ -60,6 +63,7 @@ public class JourneyWeapons {
     public static Item frostyPiercer;
     public static Item sunsetPiercer;
     public static Item skyPiercer;
+    public static Item MAGIC_POT_OF_DESTRUCTION;
 
     public static Item moltenKnife;
     public static Item aquaticKnife;
@@ -355,6 +359,7 @@ public class JourneyWeapons {
         frostyPiercer = new ItemPiercer("frostyPiercer", "Frosty Piercer", 10F, 2, EntityFrostyPiercer.class);
         sunsetPiercer = new ItemPiercer("sunsetPiercer", "Sunset Piercer", 7F, 1, EntitySunsetPiercer.class);
         skyPiercer = new ItemPiercer("skyPiercer", "Sky Piercer", 29F, 6, EntitySkyPiercer.class);
+        MAGIC_POT_OF_DESTRUCTION = new ItemMagicPot("magic_pot_of_destruction", "Magic Pot of Destruction", 5F, 2, EntityMagicPot.class);
 
         moltenKnife = new ItemThrowableArrow("moltenKnife", "Molten Knife", EntityMoltenKnife.class, "Englufs enemies in flames for 5 seconds");
         aquaticKnife = new ItemThrowableArrow("aquaticKnife", "Aquatic Knife", EntityAquaticKnife.class, "Slows enemies for 5 seconds");

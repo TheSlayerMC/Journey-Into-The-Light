@@ -85,6 +85,7 @@ import net.journey.entity.projectile.piercer.*;
 import net.journey.entity.projectile.staff.*;
 import net.journey.entity.projectile.throwable.EntityDemonicBomb;
 import net.journey.entity.projectile.throwable.EntityFireBomb;
+import net.journey.entity.projectile.throwable.EntityMagicPot;
 import net.journey.init.items.JourneyWeapons;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBiped;
@@ -133,6 +134,7 @@ public class EntityRendering {
         RenderingRegistry.registerEntityRenderingHandler(EntityFrostyPiercer.class, new RenderItemProjectile(JourneyWeapons.frostyPiercer));
         RenderingRegistry.registerEntityRenderingHandler(EntitySunsetPiercer.class, new RenderItemProjectile(JourneyWeapons.sunsetPiercer));
         RenderingRegistry.registerEntityRenderingHandler(EntitySkyPiercer.class, new RenderItemProjectile(JourneyWeapons.skyPiercer));
+        RenderingRegistry.registerEntityRenderingHandler(EntityMagicPot.class, new RenderItemProjectile(JourneyWeapons.MAGIC_POT_OF_DESTRUCTION));
         RenderingRegistry.registerEntityRenderingHandler(EntityMoltenKnife.class, new RenderItemProjectile(JourneyWeapons.moltenKnife));
         RenderingRegistry.registerEntityRenderingHandler(EntityAquaticKnife.class, new RenderItemProjectile(JourneyWeapons.aquaticKnife));
         RenderingRegistry.registerEntityRenderingHandler(EntityBloodKnife.class, new RenderItemProjectile(JourneyWeapons.bloodKnife));
