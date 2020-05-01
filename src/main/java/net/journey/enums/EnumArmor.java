@@ -37,7 +37,8 @@ public enum EnumArmor {
     STARLIGHT(SlayerAPI.addArmorMaterial("starlight", 3000, new int[]{3, 4, 3, 2}, 10, 1.5F), "starlight", false, 76, (Item) null, "Starlight"),
     BLEEDROCK(SlayerAPI.addArmorMaterial("bleedrock", 3000, new int[]{3, 4, 3, 2}, 10, 1.5F), "bleedrock", false, 76, (Item) null, "Bleedrock"),
     BLAZEHORN(SlayerAPI.addArmorMaterial("blazehorn", 3000, new int[]{3, 4, 3, 2}, 10, 1.5F), "blazehorn", false, 86, (Item) null, "Blazehorn"),
-
+    
+    HELL_METAL(SlayerAPI.addArmorMaterial("hellmetal", 3000, new int[]{3, 4, 3, 2}, 10, 1.5F), "hellmetal", false, 86, (Item) null, "hellmetal"),
     CRYSTAL_FLAKE(SlayerAPI.addArmorMaterial("crystalflake", 3000, new int[]{3, 4, 3, 2}, 10, 1.5F), "crystalFlake", false, 86, (Item) null, "Crystal Flake");
 
     private ArmorMaterial armorMaterial;

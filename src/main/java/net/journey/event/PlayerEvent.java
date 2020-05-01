@@ -4,12 +4,14 @@ import net.journey.entity.mob.overworld.EntityIceMage;
 import net.journey.init.items.JourneyArmory;
 import net.journey.init.items.JourneyConsumables;
 import net.journey.init.items.JourneyItems;
+import net.journey.util.handler.Helper;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
@@ -26,11 +28,12 @@ public class PlayerEvent {
 	@SubscribeEvent
 	public void onBlockHarvested(HarvestDropsEvent event) {
 		EntityPlayer p = event.getHarvester();
-		if (event.getHarvester() != null && event.getHarvester() instanceof EntityPlayer && event.getHarvester().getHeldItemMainhand() != null) {
-			if (!event.isSilkTouching()) {
+		ItemStack helmet;
+		if(event.getHarvester() != null && event.getHarvester() instanceof EntityPlayer && event.getHarvester().getHeldItemMainhand() != null) {
+			if(!event.isSilkTouching()) {
 				if(event.getHarvester().getHeldItemMainhand().getItem() == JourneyArmory.multiToolOfEternalSmelting) {
 					ItemStack stack = FurnaceRecipes.instance().getSmeltingResult(new ItemStack(event.getState().getBlock()));
-					if (stack != null && event.getState().getBlock() != Blocks.REDSTONE_ORE && event.getState().getBlock() != Blocks.LAPIS_ORE && event.getState().getBlock() != Blocks.LAPIS_ORE) {
+					if(stack != null && event.getState().getBlock() != Blocks.REDSTONE_ORE && event.getState().getBlock() != Blocks.LAPIS_ORE && event.getState().getBlock() != Blocks.LAPIS_ORE) {
 						event.getDrops().clear();
 						event.getDrops().add(stack.copy());
 					}
@@ -42,6 +45,15 @@ public class PlayerEvent {
 						item.setItem(s);
 						event.getWorld().spawnEntity(item);
 						event.getDrops().clear();
+					}
+				}
+				helmet = p.inventory.armorInventory.get(3);
+				if(helmet.getItem() == JourneyArmory.MASK_OF_HELLMETAL) {
+					ItemStack stack = FurnaceRecipes.instance().getSmeltingResult(new ItemStack(event.getState().getBlock()));
+					if(stack != null) {
+						event.getDrops().clear();
+						event.getDrops().add(stack.copy());
+						helmet.damageItem(1, p);
 					}
 				}
 			}

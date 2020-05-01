@@ -94,6 +94,8 @@ public class JourneyArmory {
     public static Item multiToolOfEternalSmelting;
     public static Item SLIMY_PICKAXE;
 
+    public static Item MASK_OF_HELLMETAL;
+
     public static Item hellstoneHelmet;
     public static Item hellstoneChest;
     public static Item hellstoneLegs;
@@ -322,6 +324,8 @@ public class JourneyArmory {
         mekyumHoe = new ItemModHoe("mekyumHoe", "Storon Hoe", JourneyToolMaterial.KORITE);
         hoeOfEternalLife = new ItemBonemealHoe("hoeofeternallife", "Hoe Of Eternal Life", JourneyToolMaterial.HOEOFLIFE);
 
+        MASK_OF_HELLMETAL = new ItemModArmor(EnumArmor.HELL_METAL, HEAD);
+        
         hellstoneHelmet = new ItemModArmor(EnumArmor.HELLSTONE, HEAD);
         hellstoneChest = new ItemModArmor(EnumArmor.HELLSTONE, BODY);
         hellstoneLegs = new ItemModArmor(EnumArmor.HELLSTONE, LEGS);
