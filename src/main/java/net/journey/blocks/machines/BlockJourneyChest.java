@@ -1,6 +1,7 @@
 package net.journey.blocks.machines;
 
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
+import net.journey.init.JourneySounds;
 import net.journey.init.JourneyTabs;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
@@ -11,6 +12,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
@@ -400,8 +402,9 @@ public class BlockJourneyChest extends BlockModContainer {
             if (chest != null) {
                 if (chest.isLocked() && canBeOpened(playerIn, worldIn, pos)) {
                     chest.setUnlocked();
-
-                    playerIn.getHeldItemMainhand().damageItem(1, playerIn);
+                    if(playerIn.getHeldItemMainhand().getItem() == key) {
+                    	playerIn.getHeldItemMainhand().shrink(1);
+                    }
                 }
 
                 if (chest.isLocked()) { // if still locked after trying to unlock, just skip attempt

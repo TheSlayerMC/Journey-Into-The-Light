@@ -306,6 +306,7 @@ public class JourneyItems {
     public static Item XP_CATALYST;
     public static Item AQUASTONE;
     public static Item VOLCANIC_STONE;
+    public static Item CHEST_KEY;
 
     //public static Item obsidianBoat;
 
@@ -527,6 +528,7 @@ public class JourneyItems {
         VOLCANIC_STONE = new ItemMod("volcanic_stone", "Volcanic Stone");
         WITHIC_OBSTRUCTOR = new ItemMod("withic_obstructor", "Withic Obstructor");
         XP_CATALYST = new ItemMod("xp_catalyst", "Experience Catalyst");
+        CHEST_KEY = new ItemMod("chest_key", "Chest Key");
         //obsidianBoat = new ItemObsidianBoat("obsidianboat", "Obsidian Boat");
         //infernoshield = new ItemModShield("infernoshield", "Inferno Shield", 2, false);
     }

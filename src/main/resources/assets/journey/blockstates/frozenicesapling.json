@@ -1,5 +1,5 @@
 {
 	"variants": {
-		"normal": { "model": "journey:frozenicesapling"}
+		"normal": { "model": "journey:block/sapling/frozenicesapling"}
 	}
 }

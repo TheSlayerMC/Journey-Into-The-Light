@@ -1,5 +1,5 @@
 {
 	"variants": {
-		"normal": { "model": "journey:earthensapling"}
+		"normal": { "model": "journey:block/sapling/earthensapling"}
 	}
 }

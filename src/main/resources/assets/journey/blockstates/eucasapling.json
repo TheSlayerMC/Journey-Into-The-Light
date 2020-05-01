@@ -1,5 +1,5 @@
 {
 	"variants": {
-		"normal": { "model": "journey:eucaSapling"}
+		"normal": { "model": "journey:block/sapling/eucaSapling"}
 	}
 }

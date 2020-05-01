@@ -1,5 +1,9 @@
 {
-	"variants": {
-		"normal": { "model": "journey:frozensapling"}
+	"forge_marker": 1,
+	"defaults": {
+		"textures": {
+			        "cross": "journey:blocks/sapling/frozen_sapling"
+		},
+		"model": "block/cross"
 	}
 }
