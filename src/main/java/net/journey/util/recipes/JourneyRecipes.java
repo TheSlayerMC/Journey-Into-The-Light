@@ -96,7 +96,7 @@ public class JourneyRecipes {
         addShapedRecipe(new ItemStack(JourneyBlocks.bloodCatalyst, 1),
                 "ddd", "did", "ddd", 'i', JourneyBlocks.bloodRock, 'd', JourneyItems.blood);
         addShapedRecipe(new ItemStack(JourneyBlocks.bloodRune, 4),
-                "ddd", "did", "ddd", 'd', JourneyBlocks.bloodRock, 'i', JourneyItems.withicSoul);
+                "ddd", "did", "ddd", 'd', JourneyBlocks.bloodRock, 'i', JourneyItems.BALMY_TEARDROP);
         addShapedRecipe(new ItemStack(JourneyBlocks.bloodPillar, 4),
                 "dd", "dd", 'd', JourneyBlocks.carvedBloodRock);
 
