@@ -9,6 +9,7 @@ import net.journey.items.interactive.ItemDarkGem;
 import net.journey.items.interactive.ItemDemonicEye;
 import net.journey.items.interactive.ItemNetherBossSpawner;
 import net.journey.items.interactive.ItemPresent;
+import net.journey.items.interactive.ItemRestoreHealth;
 import net.journey.items.interactive.ItemSentryEye;
 import net.journey.items.interactive.ItemSpecificDimensionSpawner;
 import net.journey.util.Config;
@@ -513,7 +514,7 @@ public class JourneyItems {
         FIERY_STABBER = new ItemMod("fiery_stabber", "Fiery Stabber");
         GLACIAL_BLADE = new ItemMod("glacial_blade", "Glacial Blade");
         GLOSSY_EYE = new ItemMod("glossy_eye", "Glossy Eye");
-        HEART_STONE = new ItemMod("heart_stone", "Heart Stone");
+        HEART_STONE = new ItemRestoreHealth("heart_stone", "Heart Stone", true);
         HOE_OF_EARTH_LOVING = new ItemMod("hoe_of_earth_loving", "Hoe of Earth Loving");
         LIGHT_BUCKLER = new ItemMod("light_buckler", "Light Buckler");
         MAGIC_BOMB = new ItemMod("magic_bomb", "Magic Bomb");

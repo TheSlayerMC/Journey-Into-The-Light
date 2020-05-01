@@ -29,10 +29,10 @@ public class ItemRestoreHealth extends ItemMod {
 		this.restoreFullHealth = restoreFullHealth;
 	}
 	
-	public ItemRestoreHealth(String name, String finalN, int amount, boolean restoreFullHealth) {
+	public ItemRestoreHealth(String name, String finalN, int amount) {
 		super(name, finalN, JourneyTabs.UTIL);
 		this.amount = amount;
-		this.restoreFullHealth = restoreFullHealth;
+		this.restoreFullHealth = false;
 	}
 
 	@Override
@@ -46,7 +46,7 @@ public class ItemRestoreHealth extends ItemMod {
 			if(restoreFullHealth == true) {
 				player.heal(player.getMaxHealth());
 			}
-			if(restoreFullHealth == true) {
+			if(restoreFullHealth == false) {
 				player.heal(amount);
 			}
 		}
