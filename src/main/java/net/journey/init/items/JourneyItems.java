@@ -7,6 +7,7 @@ import net.journey.items.interactive.ItemAddXP;
 import net.journey.items.interactive.ItemCrafting;
 import net.journey.items.interactive.ItemDarkGem;
 import net.journey.items.interactive.ItemDemonicEye;
+import net.journey.items.interactive.ItemLootPouch;
 import net.journey.items.interactive.ItemNetherBossSpawner;
 import net.journey.items.interactive.ItemPresent;
 import net.journey.items.interactive.ItemRestoreHealth;
@@ -498,7 +499,7 @@ public class JourneyItems {
         darkGem = new ItemDarkGem("darkGem", "Dark Gem");
         obsidianRod = new ItemMod("obsidianRod", "Obsidian Rod");
         
-        LOOT_POUCH = new ItemPresent("loot_pouch", "Loot Pouch");
+        LOOT_POUCH = new ItemLootPouch("loot_pouch", "Loot Pouch");
         AQUASTONE = new ItemMod("aquastone", "Aquastone");
         BALMY_TEARDROP = new ItemMod("balmy_teardrop", "Balmy Teardrop");
         CHARM_OF_VINE_STRANDING = new ItemMod("charm_of_vine_stranding", "Charm of Vinestranding");

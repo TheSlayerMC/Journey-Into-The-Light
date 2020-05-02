@@ -2,6 +2,7 @@ package net.journey.items.interactive;
 
 import net.journey.init.JourneySounds;
 import net.journey.init.JourneyTabs;
+import net.journey.init.common.JourneyCrops;
 import net.journey.init.items.JourneyItems;
 import net.journey.util.JourneyLootTables;
 import net.journey.util.LangHelper;
@@ -33,8 +34,22 @@ public class ItemLootPouch extends ItemMod {
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand handIn) {
+        ArrayList<ItemStack> items = new ArrayList<ItemStack>();
+        Random r = new Random();
+        items.add(new ItemStack(JourneyItems.stoneClump, 1));
+        items.add(new ItemStack(JourneyItems.stoneStick, 1));
+        items.add(new ItemStack(JourneyCrops.floroSeeds, 1));
+        items.add(new ItemStack(JourneyItems.caveDust, 1));
+        items.add(new ItemStack(JourneyItems.caveCrystal, 1));
+        items.add(new ItemStack(JourneyItems.HEART_STONE, 1));
+        items.add(new ItemStack(Items.DIAMOND, 1));
         if (!world.isRemote) {
             JourneySounds.playSound(JourneySounds.WRAPPER, world, player);
+            int index = r.nextInt(items.size());
+            String name = LangHelper.getFormattedText(items.get(index).getItem().getTranslationKey() + ".name");
+            SlayerAPI.addChatMessage(player, "You recieved " + name);
+            EntityItem item = new EntityItem(world, player.posX, player.posY, player.posZ, items.get(index));
+            world.spawnEntity(item);
         }
         player.getHeldItem(handIn).shrink(1);
         return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getHeldItem(handIn));
