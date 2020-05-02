@@ -6,6 +6,7 @@ import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.entity.mob.euca.npc.EntityAlloyMender;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.JourneyLootTables;
+import net.journey.util.RandUtils;
 import net.journey.util.handler.EnumTypeHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockOldLog;
@@ -35,20 +36,7 @@ public class EucaSmallSphereDungeon extends WorldGenerator {
 	IBlockState dungeonbricktile = JourneyBlocks.EUCA_DUNGEON_TILE.getDefaultState(); //tile
 
     public Block getDungeonBricks() {
-        int i = rand.nextInt(3);
-        if(i == 0) {
-        	return JourneyBlocks.EUCA_DUNGEON_BRICKS;
-        }
-        if(i == 1) {
-        	return JourneyBlocks.EUCA_RUNIC_BRICKS;
-        }
-        if(i == 2) {
-        	return JourneyBlocks.EUCA_SQUARE_DUNGEON_BRICKS;
-        }
-        if(i == 3) {
-        	return JourneyBlocks.EUCA_SQUARE_RUNIC_BRICKS;
-        }
-		return JourneyBlocks.EUCA_DUNGEON_BRICKS;
+		return RandUtils.chooseEqual(rand, JourneyBlocks.EUCA_DUNGEON_BRICKS, JourneyBlocks.EUCA_RUNIC_BRICKS, JourneyBlocks.EUCA_SQUARE_DUNGEON_BRICKS, JourneyBlocks.EUCA_SQUARE_RUNIC_BRICKS);
     }
     
     public boolean locationIsValidSpawn(World w, int x, int y, int z) {
