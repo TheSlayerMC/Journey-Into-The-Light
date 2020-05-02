@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.journey.client.server.EssenceProvider;
 import net.journey.client.server.IEssence;
+import net.journey.init.JourneySounds;
 import net.journey.init.JourneyTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -11,6 +12,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.slayer.api.item.ItemMod;
@@ -26,11 +28,12 @@ public class ItemEternalNight extends ItemMod {
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer player, EnumHand handIn) {
 		ItemStack stack = player.getHeldItem(handIn);
-		IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
 		if(!worldIn.isRemote) {
+			IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
 			if(mana.useEssence(10)) {
 				worldIn.setWorldTime(18000L);
 				stack.damageItem(1, player);
+				worldIn.playSound(player, player.getPosition(), JourneySounds.ETERNAL_NIGHT, SoundCategory.PLAYERS, 1.0F, 1.0F);
 				return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
 			}
 		}

@@ -78,6 +78,7 @@
  "wrapper":{"category":"neutral","sounds": ["journey:wrapper"]},
  "summon_boss":{"category":"master","sounds": ["journey:summon_boss"]},
  "summon_table":{"category":"master","sounds": ["journey:summon_table"]},
+ "eternal_night":{"category":"master","sounds": ["journey:eternal_night"]},
  "bottle_plug":{"category":"master","sounds": ["journey:bottle_plug"]},
  "sentry_altar_activate":{"category":"master","sounds": ["journey:sentry_altar_activate"]},
  "sentry_altar_deactivate":{"category":"master","sounds": ["journey:sentry_altar_deactivate"]},

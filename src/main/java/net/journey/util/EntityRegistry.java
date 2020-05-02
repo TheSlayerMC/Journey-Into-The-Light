@@ -76,6 +76,7 @@ import net.journey.entity.projectile.staff.EntityOvergrown;
 import net.journey.entity.projectile.staff.EntityWizardsStar;
 import net.journey.entity.projectile.throwable.EntityDemonicBomb;
 import net.journey.entity.projectile.throwable.EntityFireBomb;
+import net.journey.entity.projectile.throwable.EntityMagicPot;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.slayer.api.SlayerAPI;
 
@@ -117,6 +118,7 @@ public class EntityRegistry {
                 SlayerAPI.registerProjectile(EntityFrostyPiercer.class, "frostypiercer"),
                 SlayerAPI.registerProjectile(EntitySunsetPiercer.class, "sunsetpiercer"),
                 SlayerAPI.registerProjectile(EntitySkyPiercer.class, "skypiercer"),
+                SlayerAPI.registerProjectile(EntityMagicPot.class, "magicpot"),
                 SlayerAPI.registerProjectile(EntityMoltenKnife.class, "moltenknife"),
                 SlayerAPI.registerProjectile(EntityAquaticKnife.class, "aquaticknife"),
                 SlayerAPI.registerProjectile(EntityBloodKnife.class, "bloodknife"),

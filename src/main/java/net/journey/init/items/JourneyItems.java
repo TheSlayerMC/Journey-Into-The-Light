@@ -75,6 +75,7 @@ public class JourneyItems {
     public static ToolMaterial desMulti = addToolMaterial(3000, 16F, 5F, false);
     public static ToolMaterial smeltingMulti = addToolMaterial(3000, 8F, 5F, false);
     public static ToolMaterial SLIMY_PICK_MATERIAL = addToolMaterial(3000, 2F, 5F, true);
+    public static ToolMaterial BEDROCK_SHOVEL_MATERIAL = addToolMaterial(1000, 4F, 5F, false);
     
     //TODO MATERIALS
     public static ToolMaterial woodMulti = addToolMaterial(60, 2F, 5F, false);
@@ -281,7 +282,6 @@ public class JourneyItems {
     
     public static Item LOOT_POUCH;
     public static Item BALMY_TEARDROP;
-    public static Item BEDROCK_SHOVEL;
     public static Item CHARM_OF_VINE_STRANDING;
     public static Item CHARM_OF_WATER_BENDING;
     public static Item CLOUD_BUCKLER;
@@ -298,7 +298,7 @@ public class JourneyItems {
     public static Item LIGHT_BUCKLER;
     public static Item MAGIC_BOMB;
     public static Item MAGIC_DUST;
-    public static Item MAGIC_POT_OF_DESTRUCTION;
+
     public static Item MOON_OF_ETERNAL_NIGHT;
     public static Item NETHIC_OBSTRUCTOR;
     public static Item PICKAXE_OF_GOOD_FORTUNE;
@@ -501,7 +501,6 @@ public class JourneyItems {
         LOOT_POUCH = new ItemPresent("loot_pouch", "Loot Pouch");
         AQUASTONE = new ItemMod("aquastone", "Aquastone");
         BALMY_TEARDROP = new ItemMod("balmy_teardrop", "Balmy Teardrop");
-        BEDROCK_SHOVEL = new ItemMod("bedrock_shovel", "Bedrock Shovel");
         CHARM_OF_VINE_STRANDING = new ItemMod("charm_of_vine_stranding", "Charm of Vinestranding");
         CHARM_OF_WATER_BENDING = new ItemMod("charm_of_water_bending", "Charm of Waterbending");
         CLOUD_BUCKLER = new ItemMod("cloud_buckler", "Cloud Buckler");
@@ -518,7 +517,6 @@ public class JourneyItems {
         LIGHT_BUCKLER = new ItemMod("light_buckler", "Light Buckler");
         MAGIC_BOMB = new ItemMod("magic_bomb", "Magic Bomb");
         MAGIC_DUST = new ItemMod("magic_dust", "Magic Dust");
-        MAGIC_POT_OF_DESTRUCTION = new ItemMod("magic_pot_of_destruction", "Magic Pot of Destruction");
         MOON_OF_ETERNAL_NIGHT = new ItemEternalNight("moon_of_eternal_night", "Moon of Eternal Night");
         NETHIC_OBSTRUCTOR = new ItemMod("nethic_obstructor", "Nethic Obstructor");
         PICKAXE_OF_GOOD_FORTUNE = new ItemMod("pickaxe_of_good_fortune", "Pickaxe of Good Fortune");
