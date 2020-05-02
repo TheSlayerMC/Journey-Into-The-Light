@@ -40,8 +40,9 @@ public class EntityMagicPot extends EntityThrowable {
         } else if (par1.sideHit == EnumFacing.EAST || par1.sideHit == EnumFacing.WEST) {
             this.motionX *= -0.5D;
         }
+        world.createExplosion(this, this.posX, this.posY, this.posZ, 0.5F, true);
         this.bounces++;
-        if (this.bounces == maxBounces) world.createExplosion(this, this.posX, this.posY, this.posZ, 1F, true); this.setDead();
+        if (this.bounces == maxBounces) this.setDead();
     }
 
     @Override

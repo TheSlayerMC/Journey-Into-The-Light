@@ -359,7 +359,7 @@ public class JourneyWeapons {
         frostyPiercer = new ItemPiercer("frostyPiercer", "Frosty Piercer", 10F, 2, EntityFrostyPiercer.class);
         sunsetPiercer = new ItemPiercer("sunsetPiercer", "Sunset Piercer", 7F, 1, EntitySunsetPiercer.class);
         skyPiercer = new ItemPiercer("skyPiercer", "Sky Piercer", 29F, 6, EntitySkyPiercer.class);
-        MAGIC_POT_OF_DESTRUCTION = new ItemMagicPot("magic_pot_of_destruction", "Magic Pot of Destruction", 5F, 2, EntityMagicPot.class);
+        MAGIC_POT_OF_DESTRUCTION = new ItemMagicPot("magic_pot_of_destruction", "Magic Pot of Destruction", 0F, 4, EntityMagicPot.class);
 
         moltenKnife = new ItemThrowableArrow("moltenKnife", "Molten Knife", EntityMoltenKnife.class, "Englufs enemies in flames for 5 seconds");
         aquaticKnife = new ItemThrowableArrow("aquaticKnife", "Aquatic Knife", EntityAquaticKnife.class, "Slows enemies for 5 seconds");
