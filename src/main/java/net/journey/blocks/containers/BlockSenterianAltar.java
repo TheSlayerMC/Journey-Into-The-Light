@@ -1,6 +1,11 @@
 package net.journey.blocks.containers;
 
+import org.jetbrains.annotations.NotNull;
+
+import net.journey.api.block.IHasCustomItemPath;
+import net.journey.api.block.IHasTeisr;
 import net.journey.blocks.tileentity.TileEntitySenterianAltar;
+import net.journey.client.render.block.SenterianAltarRenderer;
 import net.journey.client.render.model.block.ModelSenterianAltar;
 import net.journey.init.JourneyTabs;
 import net.journey.init.blocks.JourneyBlocks;
@@ -15,6 +20,7 @@ import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -25,7 +31,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.SlayerAPI;
 import net.slayer.api.entity.tileentity.container.BlockModContainer;
 
-public class BlockSenterianAltar extends BlockModContainer {
+public class BlockSenterianAltar extends BlockModContainer implements IHasTeisr, IHasCustomItemPath {
 
 	private AxisAlignedBB size = new AxisAlignedBB(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 
@@ -106,5 +112,15 @@ public class BlockSenterianAltar extends BlockModContainer {
 				this.model.render(1.0F, true);
 			}
 		}
+	}
+
+	@Override
+	public @NotNull ResourceLocation getItemModelResourceLocation() {
+		return new ResourceLocation(SlayerAPI.MOD_ID, "block/chest/" + getRegistryName().getPath());
+	}
+
+	@Override
+	public @NotNull TileEntityItemStackRenderer createTeisr() {
+		return new BlockSenterianAltar.SenterianAltarTEISR();
 	}
 }
