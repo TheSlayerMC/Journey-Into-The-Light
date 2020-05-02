@@ -86,6 +86,7 @@ public class JourneySounds {
     public static SoundEvent GATE_CREAK;
     public static SoundEvent UNLOCK;
     public static SoundEvent BOTTLE_PLUG;
+    public static SoundEvent ETERNAL_NIGHT;
     
     public static SoundEvent SENTRY_ALTAR_ACTIVATE;
     public static SoundEvent SENTRY_ALTAR_DEACTIVATE;
@@ -189,6 +190,7 @@ public class JourneySounds {
         GATE_CREAK = registerSound("gate_creak");
         UNLOCK = registerSound("unlock");
         BOTTLE_PLUG = registerSound("bottle_plug");
+        ETERNAL_NIGHT = registerSound("eternal_night");
         SENTRY_ALTAR_ACTIVATE = registerSound("sentry_altar_activate");
         SENTRY_ALTAR_DEACTIVATE = registerSound("sentry_altar_deactivate");
         SENTRY_ALTAR_SMOKE = registerSound("sentry_altar_smoke");
