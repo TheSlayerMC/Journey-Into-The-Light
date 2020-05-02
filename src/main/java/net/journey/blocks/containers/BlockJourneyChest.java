@@ -5,6 +5,7 @@ import net.journey.api.block.IHasTeisr;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.client.render.block.JourneyChestTESR;
 import net.journey.init.JourneyTabs;
+import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.properties.PropertyDirection;
@@ -385,10 +386,12 @@ public class BlockJourneyChest extends BlockModContainer implements IHasTeisr, I
 
 	@Override
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
+		TileEntityJourneyChest chest = (TileEntityJourneyChest) worldIn.getTileEntity(pos);
 		TileEntity tileentity = worldIn.getTileEntity(pos);
-
 		if (tileentity instanceof IInventory) {
-			InventoryHelper.dropInventoryItems(worldIn, pos, (IInventory) tileentity);
+			if(this != JourneyBlocks.lockedChest && chest.isLocked() == false) {
+				InventoryHelper.dropInventoryItems(worldIn, pos, (IInventory) tileentity);
+			}
 			worldIn.updateComparatorOutputLevel(pos, this);
 		}
 

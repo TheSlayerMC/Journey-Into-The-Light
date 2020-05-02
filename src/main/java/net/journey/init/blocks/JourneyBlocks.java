@@ -141,9 +141,19 @@ public class JourneyBlocks {
     public static BlockMod eucaLightGreenLeaves;
     public static BlockMod eucaDarkGreenLeaves;
 
+    public static JBlockLog GOLDITE_OAK_LOG;
+    
     public static BlockMod eucaBricks;
     public static BlockMod eucaTile;
-    public static BlockMetaBase EUCA_DUNGEON_BLOCKS;
+    
+    public static BlockMod EUCA_SQUARE_DUNGEON_BRICKS;
+    public static BlockModStairs EUCA_DUNGEON_BRICK_STAIRS;
+    public static BlockMod EUCA_DUNGEON_BRICKS;
+    public static BlockMod EUCA_SQUARE_RUNIC_BRICKS;
+    public static BlockMod EUCA_RUNIC_BRICKS;
+    public static BlockMod EUCA_RUNIC_LAMP;
+    public static BlockMod EUCA_DUNGEON_TILE;
+    public static BlockMod EUCA_GOLD_STONE;
     
     public static BlockMod depthsDirt;
     public static BlockMod depthsGrass;
@@ -565,8 +575,20 @@ public class JourneyBlocks {
         eucaLightGreenLeaves = new BlockModLeaves("eucaLightGreenLeaves", "Light Green Euca Leaves", 1.0F);
         eucaDarkGreenLeaves = new BlockModLeaves("eucaDarkGreenLeaves", "Dark Green Euca Leaves", 1.0F);
 
+        GOLDITE_OAK_LOG = new JBlockLog("goldite_oak_log", "Goldite Oak Log");
+        
         eucaBricks = new BlockMod("eucaBricks", "Euca Bricks", 2.0F);
         eucaTile = new BlockMod("eucaTile", "Euca Tile", 2.0F);
+        
+        EUCA_SQUARE_DUNGEON_BRICKS = (BlockMod) new BlockMod("euca_square_dungeon_bricks", "Euca Dungeon Bricks").setResistance(100000F).setBlockUnbreakable();
+        EUCA_DUNGEON_BRICKS = (BlockMod) new BlockMod("euca_dungeon_bricks", "Euca Dungeon Bricks").setResistance(100000F).setBlockUnbreakable();
+        EUCA_DUNGEON_BRICK_STAIRS = (BlockModStairs) new BlockModStairs(EUCA_DUNGEON_BRICKS, "euca_dungeon_brick_stairs", "Euca Dungeon Brick Stairs").setResistance(100000F).setBlockUnbreakable();
+        EUCA_SQUARE_RUNIC_BRICKS = (BlockMod) new BlockMod("euca_square_runic_bricks", "Euca Dungeon Bricks").setResistance(100000F).setBlockUnbreakable().setLightLevel(0.2F);
+        EUCA_RUNIC_BRICKS = (BlockMod) new BlockMod("euca_runic_bricks", "Euca Dungeon Bricks").setResistance(100000F).setBlockUnbreakable().setLightLevel(0.2F);
+        EUCA_RUNIC_LAMP = (BlockMod) new BlockMod("euca_runic_lamp", "Euca Dungeon Bricks").setResistance(100000F).setBlockUnbreakable().setLightLevel(0.5F);
+        EUCA_DUNGEON_TILE = (BlockMod) new BlockMod("euca_dungeon_tile", "Euca Dungeon Tile").setResistance(100000F).setBlockUnbreakable();
+        EUCA_GOLD_STONE = (BlockMod) new BlockMod("euca_gold_stone", "Euca Gold Stone");
+        
         depthsDirt = new BlockMod(EnumMaterialTypes.DIRT, "depthsDirt", "Depths Dirt", 2.0F);
         depthsGrass = new BlockModGrass(depthsDirt, "depthsGrass", "Depths Grass", 2.0F);
         depthsStone = new BlockMod("depthsStone", "Depths Stone", 2.0F);
@@ -685,7 +707,7 @@ public class JourneyBlocks {
         terraniaChest = new BlockJourneyChest("terraniachest", "Terrania Chest", BlockJourneyChest.Type.TERRA);
         cloudiaChest = new BlockJourneyChest("cloudiachest", "Cloudia Chest", BlockJourneyChest.Type.CLOUDIA);
 
-        lockedChest = (BlockJourneyChest) new BlockJourneyChest("lockedchest", "Locked Chest", BlockJourneyChest.Type.JOURNEY, true, JourneyItems.CHEST_KEY).setResistance(10000F);
+        lockedChest = (BlockJourneyChest) new BlockJourneyChest("lockedchest", "Locked Chest", BlockJourneyChest.Type.JOURNEY, true, JourneyItems.CHEST_KEY).setResistance(10000F).setBlockUnbreakable();
 
         nethicDungeonBricks = new BlockMod("nethicDungeonBricks", "Nethic Dungeon Bricks");
         boilChain = (BlockMod) new BlockModBars("boilChain", "Boil Chain", 5.0F).setBlockUnbreakable()

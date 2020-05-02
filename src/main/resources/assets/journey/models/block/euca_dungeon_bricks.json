@@ -1,6 +1,6 @@
 {
 	"parent": "block/cube_all",
 	"textures": {
-		"all": "journey:blocks/euca_dungeon_brick_2"
+		"all": "journey:blocks/euca_dungeon_bricks"
 	}
 }

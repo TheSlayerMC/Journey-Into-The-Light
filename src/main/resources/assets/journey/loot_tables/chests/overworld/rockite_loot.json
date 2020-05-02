@@ -1,19 +1,55 @@
  {
   "pools": [{
     "name": "main",
-    "rolls": 2,
+    "rolls": 3,
     "entries": [
       {
         "type": "item",
         "name": "journey:heart_stone",
         "functions": [{ "function": "set_count", "count": { "min": 1, "max": 1 } }],
+        "weight": 1
+      },
+      {
+        "type": "item",
+        "name": "journey:xp_catalyst",
+        "functions": [{ "function": "set_count", "count": { "min": 1, "max": 1 } }],
         "weight": 6
       },
       {
         "type": "item",
-        "name": "journey:bedrock_shovel",
+        "name": "journey:essence_catalyst",
         "functions": [{ "function": "set_count", "count": { "min": 1, "max": 1 } }],
-        "weight": 35
+        "weight": 5
+      },
+      {
+        "type": "item",
+        "name": "journey:loot_pouch",
+        "functions": [{ "function": "set_count", "count": { "min": 1, "max": 5 } }],
+        "weight": 7
+      },
+      {
+        "type": "item",
+        "name": "journey:heartsml",
+        "functions": [{ "function": "set_count", "count": { "min": 1, "max": 1 } }],
+        "weight": 3
+      },
+      {
+        "type": "item",
+        "name": "journey:cavecrystal",
+        "functions": [{ "function": "set_count", "count": { "min": 1, "max": 1 } }],
+        "weight": 4
+      },
+      {
+        "type": "item",
+        "name": "minecraft:diamond",
+        "functions": [{ "function": "set_count", "count": { "min": 1, "max": 2 } }],
+        "weight": 5
+      },
+      {
+        "type": "item",
+        "name": "journey:magic_pot_of_destruction",
+        "functions": [{ "function": "set_count", "count": { "min": 3, "max": 16 } }],
+        "weight": 13
       }
     ]
   }]

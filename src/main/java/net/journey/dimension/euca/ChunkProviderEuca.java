@@ -4,6 +4,7 @@ import net.journey.dimension.euca.gen.WorldGenEucaPumpkin;
 import net.journey.dimension.euca.gen.WorldGenEucaSphere;
 import net.journey.dimension.euca.gen.WorldGenEucaWater;
 import net.journey.dimension.euca.gen.WorldGenSmeltery;
+import net.journey.dimension.euca.gen.dungeon.EucaSmallSphereDungeon;
 import net.journey.dimension.euca.gen.trees.*;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.handler.Helper;
@@ -50,6 +51,7 @@ public class ChunkProviderEuca implements IChunkGenerator {
 	private WorldGenEucaWater water = new WorldGenEucaWater(Blocks.FLOWING_WATER, false);
 	private WorldGenEucaSphere sphere = new WorldGenEucaSphere();
 	private WorldGenEucaPumpkin pumpkin = new WorldGenEucaPumpkin();
+	private EucaSmallSphereDungeon smallsphere = new EucaSmallSphereDungeon();
 
 	public ChunkProviderEuca(World world, long seed) {
 		this.worldObj = world;
@@ -296,6 +298,10 @@ public class ChunkProviderEuca implements IChunkGenerator {
 
 		if(rand.nextInt(25) == 0) {
 			sphere.generate(worldObj, rand, new BlockPos(x1, this.rand.nextInt(120) + 4, z1));
+		}
+		
+		if(rand.nextInt(60) == 0) {
+			smallsphere.generate(worldObj, rand, new BlockPos(x1, this.rand.nextInt(120) + 4, z1));
 		}
 
 		/*for (times = 0; times < 5; times++) {

@@ -3,6 +3,7 @@ package net.journey.entity.mob.overworld.underground;
 import com.google.common.base.Predicate;
 import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
+import net.journey.init.items.JourneyArmory;
 import net.journey.init.items.JourneyConsumables;
 import net.journey.init.items.JourneyItems;
 import net.minecraft.block.Block;
@@ -193,5 +194,6 @@ public class EntityRockiteSmasher extends EntityModMob {
     @Override
     protected void dropFewItems(boolean b, int j) {
     	 dropItem(JourneyItems.CHEST_KEY, 1);
+    	 dropItem(JourneyArmory.BEDROCK_SHOVEL, 1);
     }
 }

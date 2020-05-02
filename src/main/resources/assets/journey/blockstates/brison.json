@@ -3,13 +3,6 @@
         "variant=darkbrisonbrick": { "model": "journey:darkbrisonbrick" },
         "variant=redbrisonbrick": { "model": "journey:redbrisonbrick" },
         "variant=smallbrisonbrick": { "model": "journey:smallbrisonbrick" },
-        "variant=brisonstone": { "model": "journey:brisonstone" },
-
-        "variant=euca_dungeon_brick_0": { "model": "journey:euca_dungeon_brick_0" },
-        "variant=euca_dungeon_brick_1": { "model": "journey:euca_dungeon_brick_1" },
-        "variant=euca_dungeon_brick_2": { "model": "journey:euca_dungeon_brick_2" },
-        "variant=euca_dungeon_brick_3": { "model": "journey:euca_dungeon_brick_3" },
-        "variant=euca_dungeon_brick_4": { "model": "journey:euca_dungeon_brick_4" },
-        "variant=euca_dungeon_tile": { "model": "journey:euca_dungeon_tile" }
+        "variant=brisonstone": { "model": "journey:brisonstone" }
     }
 }
