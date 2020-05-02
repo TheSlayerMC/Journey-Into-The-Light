@@ -57,5 +57,6 @@ public class ItemRestoreHealth extends ItemMod {
 	@Override
 	public void addInformation(ItemStack i, List l) {
 		if (restoreFullHealth == true) { l.add("Restores player to full health"); }
+		if (restoreFullHealth == false) { l.add("Restores " + amount + " health"); }
 	}
 }
