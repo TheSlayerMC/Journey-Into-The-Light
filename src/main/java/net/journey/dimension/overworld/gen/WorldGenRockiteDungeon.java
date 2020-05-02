@@ -2236,7 +2236,7 @@ public class WorldGenRockiteDungeon extends WorldGenerator {
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 7, j + 5, k + 1), JourneyBlocks.lockedChest.getDefaultState().withProperty(BlockJourneyChest.FACING, EnumFacing.SOUTH));
         TileEntity chest1 = worldIn.getTileEntity(new BlockPos(i + 7, j + 5, k + 1));
         if (chest1 instanceof TileEntityJourneyChest) {
-            ((TileEntityJourneyChest) chest1).setLootTable(JourneyLootTables.VANILLA_SIMPLE_DUNGEON, rand.nextLong());
+            ((TileEntityJourneyChest) chest1).setLootTable(JourneyLootTables.ROCKITE__CHEST_LOOT, rand.nextLong());
         }
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 7, j + 5, k + 2), Blocks.AIR.getDefaultState());
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 7, j + 5, k + 3), Blocks.AIR.getDefaultState());

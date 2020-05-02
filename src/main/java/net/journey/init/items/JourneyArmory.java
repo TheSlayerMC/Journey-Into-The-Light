@@ -62,6 +62,8 @@ public class JourneyArmory {
     public static Item koriteShovel;
     public static Item storonShovel;
     public static Item mekyumShovel;
+    
+    public static Item BEDROCK_SHOVEL;
 
     public static Item hellstoneAxe;
     public static Item shadiumAxe;
@@ -282,7 +284,7 @@ public class JourneyArmory {
         desPickaxe = new ItemModPickaxe("desPickaxe", "Des Pickaxe", JourneyToolMaterial.DES);
         gorbitePickaxe = new ItemModPickaxe("gorbitePickaxe", "Gorbite Pickaxe", JourneyToolMaterial.GORBITE);
         orbaditePickaxe = new ItemModPickaxe("orbaditePickaxe", "Orbadite Pickaxe", JourneyToolMaterial.ORBADITE);
-        SLIMY_PICKAXE = new ItemModPickaxe("slimy_pickaxe", "Slimy Pickaxe", JourneyToolMaterial.SLIIMY_PICK);
+        SLIMY_PICKAXE = new ItemModPickaxe("slimy_pickaxe", "Slimy Pickaxe", JourneyToolMaterial.SLIMY_PICK);
 
         hellstoneShovel = new ItemModShovel("hellstoneShovel", "Bloodcrust Shovel", JourneyToolMaterial.HELLSTONE);
         shadiumShovel = new ItemModShovel("shadiumShovel", "Shadium Shovel", JourneyToolMaterial.SHADIUM);
@@ -297,6 +299,8 @@ public class JourneyArmory {
         koriteShovel = new ItemModShovel("koriteShovel", "Korite Shovel", JourneyToolMaterial.KORITE);
         storonShovel = new ItemModShovel("storonShovel", "Storon Shovel", JourneyToolMaterial.KORITE);
         mekyumShovel = new ItemModShovel("mekyumShovel", "Mekyum Shovel", JourneyToolMaterial.KORITE);
+        
+        BEDROCK_SHOVEL = new ItemModShovel("bedrock_shovel", "Bedrock Shovel", JourneyToolMaterial.BEDROCK_SHOVEL);
 
         hellstoneAxe = new ItemModAxe("hellstoneAxe", "Bloodcrust Axe", JourneyToolMaterial.HELLSTONE);
         shadiumAxe = new ItemModAxe("shadiumAxe", "Shadium Axe", JourneyToolMaterial.SHADIUM);
