@@ -531,7 +531,7 @@ public class BlockJourneyChest extends BlockModContainer implements IHasTeisr, I
 	@NotNull
 	@Override
 	public ResourceLocation getItemModelResourceLocation() {
-		return new ResourceLocation(SlayerAPI.MOD_ID, "block/chest/" + getRegistryName().getPath());
+		return new ResourceLocation(SlayerAPI.MOD_ID, "block/base_chest");
 	}
 
 	public enum Type {
