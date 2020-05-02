@@ -1,6 +1,6 @@
 package net.journey.api.block.base;
 
-import net.journey.api.block.IWithCustomItemPath;
+import net.journey.api.block.IHasCustomItemPath;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
@@ -16,10 +16,11 @@ import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.event.terraingen.TerrainGen;
 import net.slayer.api.SlayerAPI;
 import net.slayer.api.block.BlockModFlower;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
-public class BlockModSapling extends BlockModFlower implements IGrowable, IWithCustomItemPath {
+public class BlockModSapling extends BlockModFlower implements IGrowable, IHasCustomItemPath {
 
     public static final PropertyInteger STAGE = PropertyInteger.create("stage", 0, 1);
     protected static final AxisAlignedBB SAPLING_AABB = new AxisAlignedBB(0.09999999403953552D, 0.0D, 0.09999999403953552D, 0.8999999761581421D, 0.800000011920929D, 0.8999999761581421D);
@@ -93,8 +94,9 @@ public class BlockModSapling extends BlockModFlower implements IGrowable, IWithC
         }
     }
 
-	@Override
-	public ResourceLocation getItemModelResourceLocation() {
+    @NotNull
+    @Override
+    public ResourceLocation getItemModelResourceLocation() {
         return new ResourceLocation(SlayerAPI.MOD_ID, "block/sapling/" + getRegistryName().getPath());
-	}
+    }
 }

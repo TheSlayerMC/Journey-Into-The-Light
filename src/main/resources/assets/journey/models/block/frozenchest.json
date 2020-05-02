@@ -1,8 +1,0 @@
-{
-    "parent": "block/orientable",
-    "textures": {
-        "top": "journey:blocks/frozenChest_top",
-        "front": "journey:blocks/frozenChest_front",
-        "side": "journey:blocks/frozenChest_side"
-    }
-}

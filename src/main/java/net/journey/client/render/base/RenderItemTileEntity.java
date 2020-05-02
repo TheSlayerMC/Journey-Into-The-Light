@@ -1,8 +1,8 @@
 package net.journey.client.render.base;
 
+import net.journey.blocks.containers.BlockJourneyChest;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockChest;
 import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.item.Item;
@@ -17,10 +17,8 @@ public class RenderItemTileEntity extends TileEntityItemStackRenderer {
     @Override
     public void renderByItem(ItemStack itemStackIn) {
         Item item = itemStackIn.getItem();
-        if (Block.getBlockFromItem(item) instanceof BlockChest) {
-            {
-                TileEntityRendererDispatcher.instance.render(JOURNEY_CHEST, 0, 0);
-            }
+        if (Block.getBlockFromItem(item) instanceof BlockJourneyChest) {
+            TileEntityRendererDispatcher.instance.render(JOURNEY_CHEST, 0, 0);
         } else {
             super.renderByItem(itemStackIn);
         }

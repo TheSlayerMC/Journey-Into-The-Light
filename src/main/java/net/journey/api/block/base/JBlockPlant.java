@@ -1,6 +1,6 @@
 package net.journey.api.block.base;
 
-import net.journey.api.block.IWithCustomItemPath;
+import net.journey.api.block.IHasCustomItemPath;
 import net.journey.util.StuffConstructor;
 import net.minecraft.block.BlockBush;
 import net.minecraft.creativetab.CreativeTabs;
@@ -10,12 +10,13 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.EnumPlantType;
 import net.slayer.api.EnumMaterialTypes;
 import net.slayer.api.SlayerAPI;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Base class for plant blocks.
  * The item model for it should be placed to "models/item/block/plant/" by default.
  */
-public class JBlockPlant extends BlockBush implements IWithCustomItemPath {
+public class JBlockPlant extends BlockBush implements IHasCustomItemPath {
     private EnumPlantType type = null;
 
     public JBlockPlant(String name, String enName, CreativeTabs tab) {
@@ -28,6 +29,7 @@ public class JBlockPlant extends BlockBush implements IWithCustomItemPath {
         StuffConstructor.regAndSetupBlock(this, name, enName, 0.2F, tab);
     }
 
+    @NotNull
     @Override
     public ResourceLocation getItemModelResourceLocation() {
         return new ResourceLocation(SlayerAPI.MOD_ID, "block/plant/" + getRegistryName().getPath());

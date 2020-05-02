@@ -1,6 +1,6 @@
 package net.journey.api.block.base;
 
-import net.journey.api.block.IWithCustomItemPath;
+import net.journey.api.block.IHasCustomItemPath;
 import net.journey.init.JourneyTabs;
 import net.journey.util.StuffConstructor;
 import net.minecraft.block.BlockLog;
@@ -11,12 +11,13 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.slayer.api.SlayerAPI;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Base class for log blocks.
  * The item model for it should be placed to "models/item/block/log/" by default.
  */
-public class JBlockLog extends BlockLog implements IWithCustomItemPath {
+public class JBlockLog extends BlockLog implements IHasCustomItemPath {
 
     public JBlockLog(String name, String enName) {
         super();
@@ -80,6 +81,7 @@ public class JBlockLog extends BlockLog implements IWithCustomItemPath {
         }
     }
 
+    @NotNull
     @Override
     public ResourceLocation getItemModelResourceLocation() {
         return new ResourceLocation(SlayerAPI.MOD_ID, "block/log/" + getRegistryName().getPath());

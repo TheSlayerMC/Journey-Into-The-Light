@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "facing=north": { "model": "journey:cloudiaChest" },
-        "facing=south": { "model": "journey:cloudiaChest", "y": 180 },
-        "facing=west":  { "model": "journey:cloudiaChest", "y": 270 },
-        "facing=east":  { "model": "journey:cloudiaChest", "y": 90 }
-    }
-}

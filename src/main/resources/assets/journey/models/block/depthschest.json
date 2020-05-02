@@ -1,8 +1,0 @@
-{
-    "parent": "block/orientable",
-    "textures": {
-        "top": "journey:blocks/depthsChest_top",
-        "front": "journey:blocks/depthsChest_front",
-        "side": "journey:blocks/depthsChest_side"
-    }
-}

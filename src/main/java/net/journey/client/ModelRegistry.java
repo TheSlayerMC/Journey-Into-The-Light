@@ -1,6 +1,7 @@
 package net.journey.client;
 
-import net.journey.api.block.IWithCustomItemPath;
+import net.journey.api.block.IHasCustomItemPath;
+import net.journey.api.block.IHasTeisr;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.init.items.JourneyItems;
 import net.minecraft.block.Block;
@@ -17,18 +18,22 @@ import net.slayer.api.SlayerAPI;
 @EventBusSubscriber(Side.CLIENT)
 public class ModelRegistry {
 
-    @SubscribeEvent
-    public static void onModelRegEvent(ModelRegistryEvent event) {
-        for (Item i : JourneyItems.items)
-            ModelLoader.setCustomModelResourceLocation(i, 0, new ModelResourceLocation(i.getRegistryName(), "inventory"));
+	@SubscribeEvent
+	public static void onModelRegEvent(ModelRegistryEvent event) {
+		for (Item i : JourneyItems.items)
+			ModelLoader.setCustomModelResourceLocation(i, 0, new ModelResourceLocation(i.getRegistryName(), "inventory"));
 
-        for (Block b : JourneyBlocks.blocks) {
-            if (b instanceof IWithCustomItemPath) {
-                ResourceLocation modelRL = ((IWithCustomItemPath) b).getItemModelResourceLocation();
-                ModelLoader.setCustomModelResourceLocation(SlayerAPI.toItem(b), 0, new ModelResourceLocation(modelRL, "inventory"));
-            } else {
-                ModelLoader.setCustomModelResourceLocation(SlayerAPI.toItem(b), 0, new ModelResourceLocation(b.getRegistryName(), "inventory"));
-            }
-        }
-    }
+		for (Block b : JourneyBlocks.blocks) {
+			if (b instanceof IHasTeisr) {
+				Item.getItemFromBlock(b).setTileEntityItemStackRenderer(((IHasTeisr) b).createTeisr());
+			}
+
+			if (b instanceof IHasCustomItemPath) {
+				ResourceLocation modelRL = ((IHasCustomItemPath) b).getItemModelResourceLocation();
+				ModelLoader.setCustomModelResourceLocation(SlayerAPI.toItem(b), 0, new ModelResourceLocation(modelRL, "inventory"));
+			} else {
+				ModelLoader.setCustomModelResourceLocation(SlayerAPI.toItem(b), 0, new ModelResourceLocation(b.getRegistryName(), "inventory"));
+			}
+		}
+	}
 }

@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "facing=north": { "model": "journey:depthsChest" },
-        "facing=south": { "model": "journey:depthsChest", "y": 180 },
-        "facing=west":  { "model": "journey:depthsChest", "y": 270 },
-        "facing=east":  { "model": "journey:depthsChest", "y": 90 }
-    }
-}

@@ -1,6 +1,6 @@
 package net.journey.api.block.base;
 
-import net.journey.api.block.IWithCustomItemPath;
+import net.journey.api.block.IHasCustomItemPath;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
@@ -13,12 +13,13 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.slayer.api.EnumMaterialTypes;
 import net.slayer.api.SlayerAPI;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Base class for double plant blocks.
  * The item model for it should be placed to "models/item/block/" by default.
  */
-public class JDoubleBlockPlant extends JDoubleBlock implements IWithCustomItemPath {
+public class JDoubleBlockPlant extends JDoubleBlock implements IHasCustomItemPath {
     private Block ground = null;
 
     public JDoubleBlockPlant(String name, String enName, CreativeTabs tab) {
@@ -80,6 +81,7 @@ public class JDoubleBlockPlant extends JDoubleBlock implements IWithCustomItemPa
         return false;
     }
 
+    @NotNull
     @Override
     public ResourceLocation getItemModelResourceLocation() {
         return new ResourceLocation(SlayerAPI.MOD_ID, "block/" + getRegistryName().getPath());

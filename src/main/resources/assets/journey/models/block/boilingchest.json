@@ -1,8 +1,0 @@
-{
-    "parent": "block/orientable",
-    "textures": {
-        "top": "journey:blocks/boilChest_top",
-        "front": "journey:blocks/boilChest_front",
-        "side": "journey:blocks/boilChest_side"
-    }
-}

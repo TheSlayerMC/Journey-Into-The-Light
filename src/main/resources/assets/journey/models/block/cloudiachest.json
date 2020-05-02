@@ -1,8 +1,0 @@
-{
-    "parent": "block/orientable",
-    "textures": {
-        "top": "journey:blocks/cloudiaChest_top",
-        "front": "journey:blocks/cloudiaChest_front",
-        "side": "journey:blocks/cloudiaChest_side"
-    }
-}

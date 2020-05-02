@@ -1,8 +1,0 @@
-{
-    "parent": "block/orientable",
-    "textures": {
-        "top": "journey:blocks/corbaChest_top",
-        "front": "journey:blocks/corbaChest_front",
-        "side": "journey:blocks/corbaChest_side"
-    }
-}

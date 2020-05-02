@@ -38,13 +38,6 @@ public class TileEntityJourneyChest extends TileEntityLockableLoot implements IT
 	private int ticksSinceSync;
 	private BlockJourneyChest.Type cachedChestType;
 
-	public TileEntityJourneyChest() {
-	}
-
-	public TileEntityJourneyChest(BlockJourneyChest.Type typeIn) {
-		this.cachedChestType = typeIn;
-	}
-
 	public static void registerFixesJourneyChest(DataFixer fixer) {
 		fixer.registerWalker(FixTypes.BLOCK_ENTITY,
 				new ItemStackDataLists(TileEntityJourneyChest.class, "Items"));
@@ -377,6 +370,10 @@ public class TileEntityJourneyChest extends TileEntityLockableLoot implements IT
 				this.cachedChestType = ((BlockJourneyChest) this.getBlockType()).chestType;
 		}
 		return this.cachedChestType == null ? BlockJourneyChest.Type.JOURNEY : cachedChestType;
+	}
+
+	public void setChestType(BlockJourneyChest.Type type) {
+		cachedChestType = type;
 	}
 
 	@Override

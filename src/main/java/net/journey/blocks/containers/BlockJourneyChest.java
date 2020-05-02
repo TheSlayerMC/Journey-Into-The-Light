@@ -1,6 +1,9 @@
 package net.journey.blocks.containers;
 
+import net.journey.api.block.IHasCustomItemPath;
+import net.journey.api.block.IHasTeisr;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
+import net.journey.client.render.block.JourneyChestTESR;
 import net.journey.init.JourneyTabs;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
@@ -8,6 +11,7 @@ import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.player.EntityPlayer;
@@ -31,10 +35,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.EnumMaterialTypes;
 import net.slayer.api.SlayerAPI;
 import net.slayer.api.entity.tileentity.container.BlockModContainer;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
 
-public class BlockJourneyChest extends BlockModContainer {
+public class BlockJourneyChest extends BlockModContainer implements IHasTeisr, IHasCustomItemPath {
 
 	public static final PropertyDirection FACING = BlockHorizontal.FACING;
 	protected static final AxisAlignedBB NORTH_CHEST_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0D, 0.9375D, 0.875D, 0.9375D);
@@ -512,6 +517,18 @@ public class BlockJourneyChest extends BlockModContainer {
 
 	public int getComparatorInputOverride(World worldIn, BlockPos pos) {
 		return Container.calcRedstoneFromInventory(this.getLockableContainer(worldIn, pos));
+	}
+
+	@NotNull
+	@Override
+	public TileEntityItemStackRenderer createTeisr() {
+		return new JourneyChestTESR.ChestTEISR();
+	}
+
+	@NotNull
+	@Override
+	public ResourceLocation getItemModelResourceLocation() {
+		return new ResourceLocation(SlayerAPI.MOD_ID, "block/chest/" + getRegistryName().getPath());
 	}
 
 	public enum Type {

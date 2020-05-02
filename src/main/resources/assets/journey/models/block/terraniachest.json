@@ -1,8 +1,0 @@
-{
-    "parent": "block/orientable",
-    "textures": {
-        "top": "journey:blocks/terraniaChest_top",
-        "front": "journey:blocks/terraniaChest_front",
-        "side": "journey:blocks/terraniaChest_side"
-    }
-}

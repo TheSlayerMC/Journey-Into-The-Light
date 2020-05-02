@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "facing=north": { "model": "journey:terraniaChest" },
-        "facing=south": { "model": "journey:terraniaChest", "y": 180 },
-        "facing=west":  { "model": "journey:terraniaChest", "y": 270 },
-        "facing=east":  { "model": "journey:terraniaChest", "y": 90 }
-    }
-}
