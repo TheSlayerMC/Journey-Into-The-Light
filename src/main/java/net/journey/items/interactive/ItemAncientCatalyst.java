@@ -3,6 +3,7 @@ package net.journey.items.interactive;
 import net.journey.blocks.BlockAncientCatalyst;
 import net.journey.blocks.BlockAncientSocket;
 import net.journey.blocks.portal.BlockSenterianPortalFrame;
+import net.journey.init.JourneySounds;
 import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockPattern;
@@ -46,7 +47,7 @@ public class ItemAncientCatalyst extends ItemMod {
                     BlockPos blockpos = blockpattern$patternhelper.getFrontTopLeft().add(-1, 0, -1);
                     worldIn.setBlockState(blockpos.add(0, 0, 0), Blocks.AIR.getDefaultState(), 2);
                     worldIn.createExplosion(player, blockpos.getX(), blockpos.getY(), blockpos.getZ(), 10F, false);
-                    worldIn.playBroadcastSound(1038, blockpos.add(1, 0, 1), 0);
+                    worldIn.playSound(null, pos, JourneySounds.OBELISK_OPEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
                 }
                 return EnumActionResult.SUCCESS;
             }

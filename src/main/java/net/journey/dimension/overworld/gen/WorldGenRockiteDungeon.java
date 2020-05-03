@@ -24,15 +24,20 @@ public class WorldGenRockiteDungeon extends WorldGenerator {
 
 	private Random rand = new Random();
 	
-    //private IBlockState cobble = Blocks.COBBLESTONE.getDefaultState();
     private IBlockState stone = Blocks.STONE.getDefaultState();
-    //private IBlockState stonebrick = Blocks.STONEBRICK.getDefaultState();
     private IBlockState pillar = Blocks.STONEBRICK.getDefaultState().withProperty(BlockStoneBrick.VARIANT, BlockStoneBrick.EnumType.CHISELED);
+    
+    /*
+     * Selects a random cobblestone varient each time the method is called
+     */
     
     public IBlockState getCobblestone() {
 		return RandUtils.chooseEqual(rand, Blocks.COBBLESTONE.getDefaultState(), Blocks.MOSSY_COBBLESTONE.getDefaultState());
     }
     
+    /*
+     * Selects a random stone brick varient each time the method is called
+     */
     public IBlockState getDungeonBricks() {
 		return RandUtils.chooseEqual(rand, 
 				Blocks.STONEBRICK.getDefaultState(), 

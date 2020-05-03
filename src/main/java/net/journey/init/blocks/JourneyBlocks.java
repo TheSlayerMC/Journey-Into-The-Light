@@ -532,15 +532,15 @@ public class JourneyBlocks {
         bloodLamp = (BlockMod) new BlockMod("bloodLamp", "Blood Lamp").setLightLevel(2.0F);
         bloodCatalyst = (BlockMod) new BlockMod("bloodCatalyst", "Blood Catalyst").setLightLevel(0.1F);
 
-        ANCIENT_OBELISK = (BlockObelisk) new BlockObelisk("ancient_obelisk", "Ancient Obelisk").setLightLevel(0.5F);
-        ANCIENT_SOCKET = new BlockAncientSocket("ancient_socket", "Ancient Socket");
+        ANCIENT_OBELISK = (BlockObelisk) new BlockObelisk("ancient_obelisk", "Ancient Obelisk").setLightLevel(0.2F).setResistance(100000F).setBlockUnbreakable();
+        ANCIENT_SOCKET = (BlockAncientSocket) new BlockAncientSocket("ancient_socket", "Ancient Socket").setResistance(100000F).setBlockUnbreakable();
         
-        ANCIENT_CATALYST = new BlockAncientCatalyst("ancient_catalyst", "Ancient Catalyst");
-        ANCIENT_STONE = new BlockMod("ancient_stone", "Ancient Stone");
-        ANCIENT_RUNIC_STONE_0 = new BlockMod("ancient_stone_runic_0", "Ancient Runic Stone");
-        ANCIENT_RUNIC_STONE_1 = new BlockMod("ancient_stone_runic_1", "Ancient Runic Stone");
-        ANCIENT_RUNIC_STONE_2 = new BlockMod("ancient_stone_runic_2", "Ancient Runic Stone");
-        ANCIENT_RUNIC_STONE_3 = new BlockMod("ancient_stone_runic_3", "Ancient Runic Stone");
+        ANCIENT_CATALYST = (BlockAncientCatalyst) new BlockAncientCatalyst("ancient_catalyst", "Ancient Catalyst").setResistance(100000F).setBlockUnbreakable();
+        ANCIENT_STONE = (BlockMod) new BlockMod("ancient_stone", "Ancient Stone").setResistance(100000F).setBlockUnbreakable();
+        ANCIENT_RUNIC_STONE_0 = (BlockMod) new BlockMod("ancient_stone_runic_0", "Ancient Runic Stone").setResistance(100000F).setBlockUnbreakable().setLightLevel(0.2F);
+        ANCIENT_RUNIC_STONE_1 = (BlockMod) new BlockMod("ancient_stone_runic_1", "Ancient Runic Stone").setResistance(100000F).setBlockUnbreakable().setLightLevel(0.2F);
+        ANCIENT_RUNIC_STONE_2 = (BlockMod) new BlockMod("ancient_stone_runic_2", "Ancient Runic Stone").setResistance(100000F).setBlockUnbreakable().setLightLevel(0.2F);
+        ANCIENT_RUNIC_STONE_3 = (BlockMod) new BlockMod("ancient_stone_runic_3", "Ancient Runic Stone").setResistance(100000F).setBlockUnbreakable().setLightLevel(0.2F);
         
         witherwoodLog = new JBlockLog("witherwoodLog", "Witherwood Log");
         witherwoodLeaves = new BlockModLeaves("witherwoodLeaves", "Witherwood Leaves", 1.0F);

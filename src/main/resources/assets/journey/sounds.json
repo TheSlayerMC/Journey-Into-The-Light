@@ -63,6 +63,8 @@
  "sentry_hurt_2":{"category":"hostile","sounds": ["journey:sentry_hurt_2"]},
  "cave_mob": {"category": "neutral","sounds": ["journey:cave_mob"]},
  "chest_open_0":{"category":"master","sounds": ["journey:chest_open_0"]},
+ "obelisk_idle":{"category":"master","sounds": ["journey:obelisk_idle"]},
+ "obelisk_open":{"category":"master","sounds": ["journey:obelisk_open"]},
  "chest_close":{"category":"master","sounds": ["journey:chest_close"]},
  "chest":{"category":"master","sounds": ["journey:chest"]},
  "cannon":{"category":"neutral","sounds": ["journey:cannon"] },
