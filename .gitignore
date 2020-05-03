@@ -20,3 +20,10 @@ build
 # other
 eclipse
 run
+config
+JourneyIntoTheLight
+saves
+logs
+options.txt
+usercache.json
+usernamecache.json
