@@ -3422,32 +3422,11 @@ public class WorldGenRockiteDungeon extends WorldGenerator {
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 12, j + 7, k + 12), pillar);
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 12, j + 7, k + 13), pillar);
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 12, j + 7, k + 14), getCobblestone());
-		fillWithMossyVarients(worldIn, rand, p);
         if (!worldIn.isRemote) {
             EntityRockiteSmasher rockite = new EntityRockiteSmasher(worldIn);
             rockite.setLocationAndAngles(i + 6.5, j + 2, k + 6.5, 0.0F, 0.0F);
             worldIn.spawnEntity(rockite);
         }
     	return true;
-    }
-    
-    //supposed to replace cobblestone and stone brick with mossy variants
-    public boolean fillWithMossyVarients(World worldIn, Random rand, BlockPos p) {
-        int i = p.getX(), j = p.getY(), k = p.getZ();
-        
-    	if (i <= 12 && j <= 13 && j <= 17 && worldIn.getBlockState(p).getBlock() == Blocks.COBBLESTONE) {
-            if (rand.nextInt(2) == 0) {
-                worldIn.setBlockState(p, Blocks.MOSSY_COBBLESTONE.getDefaultState(), 1);
-            }
-    	}
-    	if (i <= 12 && j <= 13 && j <= 17 && worldIn.getBlockState(p).getBlock() == Blocks.STONEBRICK) {
-            if (rand.nextInt(2) == 0) {
-                worldIn.setBlockState(p, Blocks.STONEBRICK.getDefaultState().withProperty(BlockStoneBrick.VARIANT, BlockStoneBrick.EnumType.MOSSY), 1);
-            }
-            else if (rand.nextInt(2) == 1) {
-                worldIn.setBlockState(p, Blocks.STONEBRICK.getDefaultState().withProperty(BlockStoneBrick.VARIANT, BlockStoneBrick.EnumType.CRACKED), 1);
-            }
-    	}
-		return true;
     }
 }
