@@ -76,6 +76,7 @@ import net.journey.entity.projectile.staff.EntityOvergrown;
 import net.journey.entity.projectile.staff.EntityWizardsStar;
 import net.journey.entity.projectile.throwable.EntityDemonicBomb;
 import net.journey.entity.projectile.throwable.EntityFireBomb;
+import net.journey.entity.projectile.throwable.EntityMagicBomb;
 import net.journey.entity.projectile.throwable.EntityMagicPot;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.slayer.api.SlayerAPI;

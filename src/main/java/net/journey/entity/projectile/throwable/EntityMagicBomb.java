@@ -1,4 +1,4 @@
-package net.journey.entity.projectile;
+package net.journey.entity.projectile.throwable;
 
 import java.util.List;
 
@@ -32,19 +32,19 @@ public class EntityMagicBomb extends EntityTippedArrow implements IProjectile {
 
 	public EntityMagicBomb(World worldIn) {
 		super(worldIn);
-		this.pickupStatus = EntityArrow.PickupStatus.DISALLOWED;
+		this.pickupStatus = EntityArrow.PickupStatus.ALLOWED;
 
 	}
 
 	public EntityMagicBomb(World worldIn, EntityLivingBase shooter) {
 		super(worldIn, shooter);
-		this.pickupStatus = EntityArrow.PickupStatus.DISALLOWED;
+		this.pickupStatus = EntityArrow.PickupStatus.ALLOWED;
 
 	}
 
 	public EntityMagicBomb(World worldIn, double x, double y, double z) {
 		super(worldIn, x, y, z);
-		this.pickupStatus = EntityArrow.PickupStatus.DISALLOWED;
+		this.pickupStatus = EntityArrow.PickupStatus.ALLOWED;
 
 	}
 
@@ -68,7 +68,7 @@ public class EntityMagicBomb extends EntityTippedArrow implements IProjectile {
 			float f4 = (float) (d3 * 0.20000000298023224D);
 			this.shoot(d0, d1 + f4, d2, f, f1);
 		}
-		this.pickupStatus = EntityArrow.PickupStatus.DISALLOWED;
+		this.pickupStatus = EntityArrow.PickupStatus.ALLOWED;
 	}
 
 	@Override
@@ -81,7 +81,7 @@ public class EntityMagicBomb extends EntityTippedArrow implements IProjectile {
 				this.setDead();
 			}
 		}
-		this.playSound(JourneySounds.KNIFE, 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
+		this.playSound(JourneySounds.BOTTLE_PLUG, 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
 	}
 
 	@Override
@@ -102,8 +102,8 @@ public class EntityMagicBomb extends EntityTippedArrow implements IProjectile {
 		}
 	}
 
-	@Override
-	protected ItemStack getArrowStack() {
-		return null;
-	}
+    @Override
+    protected ItemStack getArrowStack() {
+        return new ItemStack(JourneyWeapons.MAGIC_BOMB);
+    }
 }

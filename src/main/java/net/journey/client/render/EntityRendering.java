@@ -85,6 +85,7 @@ import net.journey.entity.projectile.piercer.*;
 import net.journey.entity.projectile.staff.*;
 import net.journey.entity.projectile.throwable.EntityDemonicBomb;
 import net.journey.entity.projectile.throwable.EntityFireBomb;
+import net.journey.entity.projectile.throwable.EntityMagicBomb;
 import net.journey.entity.projectile.throwable.EntityMagicPot;
 import net.journey.init.items.JourneyWeapons;
 import net.minecraft.client.Minecraft;
