@@ -173,7 +173,7 @@ public class WorldGenAncientDungeon extends WorldGenerator {
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 2, j + 6, k + 4), Blocks.STONE.getDefaultState());
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 2, j + 6, k + 5), getDungeonBricks());
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 2, j + 6, k + 6), Blocks.AIR.getDefaultState());
-			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 2, j + 6, k + 7), JourneyBlocks.lockedChest.getDefaultState().withProperty(BlockJourneyChest.FACING, EnumFacing.EAST));
+			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 2, j + 6, k + 7), JourneyBlocks.journeyChest.getDefaultState().withProperty(BlockJourneyChest.FACING, EnumFacing.EAST));
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 2, j + 6, k + 8), Blocks.AIR.getDefaultState());
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 2, j + 6, k + 9), getDungeonBricks());
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 2, j + 6, k + 10), Blocks.STONE.getDefaultState());
@@ -712,7 +712,7 @@ public class WorldGenAncientDungeon extends WorldGenerator {
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 6, j + 5, k + 13), Blocks.STONE.getDefaultState());
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 6, j + 6, k + 1), Blocks.STONE.getDefaultState());
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 6, j + 6, k + 2), getDungeonBricks());
-			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 6, j + 6, k + 3), JourneyBlocks.lockedChest.getDefaultState().withProperty(BlockJourneyChest.FACING, EnumFacing.SOUTH));
+			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 6, j + 6, k + 3), JourneyBlocks.journeyChest.getDefaultState().withProperty(BlockJourneyChest.FACING, EnumFacing.SOUTH));
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 6, j + 6, k + 4), Blocks.AIR.getDefaultState());
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 6, j + 6, k + 5), Blocks.AIR.getDefaultState());
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 6, j + 6, k + 6), Blocks.AIR.getDefaultState());
@@ -720,7 +720,7 @@ public class WorldGenAncientDungeon extends WorldGenerator {
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 6, j + 6, k + 8), Blocks.AIR.getDefaultState());
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 6, j + 6, k + 9), Blocks.AIR.getDefaultState());
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 6, j + 6, k + 10), Blocks.AIR.getDefaultState());
-			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 6, j + 6, k + 11), JourneyBlocks.lockedChest.getDefaultState().withProperty(BlockJourneyChest.FACING, EnumFacing.NORTH));
+			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 6, j + 6, k + 11), JourneyBlocks.journeyChest.getDefaultState().withProperty(BlockJourneyChest.FACING, EnumFacing.NORTH));
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 6, j + 6, k + 12), getDungeonBricks());
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 6, j + 6, k + 13), Blocks.STONE.getDefaultState());
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 6, j + 7, k + 1), Blocks.STONE.getDefaultState());
@@ -1269,7 +1269,7 @@ public class WorldGenAncientDungeon extends WorldGenerator {
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 10, j + 6, k + 4), Blocks.STONE.getDefaultState());
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 10, j + 6, k + 5), getDungeonBricks());
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 10, j + 6, k + 6), Blocks.AIR.getDefaultState());
-			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 10, j + 6, k + 7), JourneyBlocks.lockedChest.getDefaultState().withProperty(BlockJourneyChest.FACING, EnumFacing.WEST));
+			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 10, j + 6, k + 7), JourneyBlocks.journeyChest.getDefaultState().withProperty(BlockJourneyChest.FACING, EnumFacing.WEST));
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 10, j + 6, k + 8), Blocks.AIR.getDefaultState());
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 10, j + 6, k + 9), getDungeonBricks());
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 10, j + 6, k + 10), Blocks.STONE.getDefaultState());
