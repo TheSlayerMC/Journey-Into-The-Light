@@ -362,7 +362,7 @@ public class JourneyWeapons {
         skyPiercer = new ItemPiercer("skyPiercer", "Sky Piercer", 29F, 6, EntitySkyPiercer.class);
         MAGIC_POT_OF_DESTRUCTION = new ItemMagicPot("magic_pot_of_destruction", "Magic Pot of Destruction", 4F, 4, EntityMagicPot.class);
 
-        MAGIC_BOMB = new ItemThrowableArrow("magic_bomb", "Magic Bomb", EntityMagicBomb.class, "");        
+        MAGIC_BOMB = new ItemThrowableArrow("magic_bomb", "Magic Bomb", EntityMagicBomb.class, "Sticks to surfaces, explodes upon collision");        
         moltenKnife = new ItemThrowableArrow("moltenKnife", "Molten Knife", EntityMoltenKnife.class, "Englufs enemies in flames for 5 seconds");
         aquaticKnife = new ItemThrowableArrow("aquaticKnife", "Aquatic Knife", EntityAquaticKnife.class, "Slows enemies for 5 seconds");
         bloodKnife = new ItemThrowableArrow("bloodKnife", "Blood Knife", EntityBloodKnife.class, "Stuns enemies for 10 seconds");
