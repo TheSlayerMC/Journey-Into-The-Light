@@ -36,13 +36,13 @@ public class EntityFloroWaterFX extends Particle {
     }
 
     @Override
-    public void renderParticle(BufferBuilder p_180434_1_, Entity p_180434_2_, float par2, float p_180434_4_, float p_180434_5_, float p_180434_6_, float p_180434_7_, float p_180434_8_) {
+    public void renderParticle(BufferBuilder buffer, Entity entity, float par2, float p_180434_4_, float p_180434_5_, float p_180434_6_, float p_180434_7_, float p_180434_8_) {
         float var8 = (this.particleAge + par2) / this.particleMaxAge * 3;
         var8 = 1.0F - var8;
         var8 *= var8;
         var8 = 1.0F - var8;
         this.particleScale = this.portalParticleScale * var8;
-        super.renderParticle(p_180434_1_, p_180434_2_, par2, p_180434_4_, p_180434_5_, p_180434_6_, p_180434_7_, p_180434_8_);
+        super.renderParticle(buffer, entity, par2, p_180434_4_, p_180434_5_, p_180434_6_, p_180434_7_, p_180434_8_);
     }
 
     @Override
