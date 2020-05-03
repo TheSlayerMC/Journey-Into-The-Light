@@ -4,18 +4,15 @@
   },
   "pattern": [
     "idi",
-    "ixi"
+    "iii"
   ],
   "type": "minecraft:crafting_shaped",
   "key": {
     "d": {
       "item": "minecraft:ender_pearl"
     },
-    "x": {
-      "item": "journey:sapphire"
-    },
     "i": {
-      "item": "minecraft:diamond"
+      "item": "journey:magic_dust"
     }
   }
 }
