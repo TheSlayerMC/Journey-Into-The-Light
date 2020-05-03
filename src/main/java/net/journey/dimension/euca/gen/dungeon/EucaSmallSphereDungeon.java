@@ -27,13 +27,13 @@ public class EucaSmallSphereDungeon extends WorldGenerator {
 
 	private Random rand = new Random();
 	
-	IBlockState stone = JourneyBlocks.EUCA_GOLD_STONE.getDefaultState();
-	IBlockState log = JourneyBlocks.GOLDITE_OAK_LOG.getDefaultState();
-	IBlockState leaves = JourneyBlocks.eucaGoldLeaves.getDefaultState();
+	private IBlockState stone = JourneyBlocks.EUCA_GOLD_STONE.getDefaultState();
+	private IBlockState log = JourneyBlocks.GOLDITE_OAK_LOG.getDefaultState();
+	private IBlockState leaves = JourneyBlocks.eucaGoldLeaves.getDefaultState();
 	//IBlockState dungeonbrick0 = getDungeonBricks().getDefaultState(); //dungeon 0
-	IBlockState dungeonbrick1 = JourneyBlocks.EUCA_SQUARE_DUNGEON_BRICKS.getDefaultState(); //dungeon 1
-	IBlockState dungeonbricklamp = JourneyBlocks.EUCA_RUNIC_LAMP.getDefaultState(); //lamp
-	IBlockState dungeonbricktile = JourneyBlocks.EUCA_DUNGEON_TILE.getDefaultState(); //tile
+	private IBlockState dungeonbrick1 = JourneyBlocks.EUCA_SQUARE_DUNGEON_BRICKS.getDefaultState(); //dungeon 1
+	private IBlockState dungeonbricklamp = JourneyBlocks.EUCA_RUNIC_LAMP.getDefaultState(); //lamp
+	private IBlockState dungeonbricktile = JourneyBlocks.EUCA_DUNGEON_TILE.getDefaultState(); //tile
 
     public Block getDungeonBricks() {
 		return RandUtils.chooseEqual(rand, JourneyBlocks.EUCA_DUNGEON_BRICKS, JourneyBlocks.EUCA_RUNIC_BRICKS, JourneyBlocks.EUCA_SQUARE_DUNGEON_BRICKS, JourneyBlocks.EUCA_SQUARE_RUNIC_BRICKS);
