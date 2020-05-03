@@ -30,7 +30,7 @@ public class RenderItemProjectile extends Render {
         GlStateManager.pushMatrix();
         GlStateManager.translate((float) par2, (float) par4, (float) par6);
         GlStateManager.enableRescaleNormal();
-        GlStateManager.scale(0.5F, 0.5F, 0.5F);
+        GlStateManager.scale(0.8F, 0.8F, 0.8F);
         GlStateManager.rotate(-this.renderManager.playerViewY, 0.0F, 1.0F, 0.0F);
         GlStateManager.rotate(this.renderManager.playerViewX, 1.0F, 0.0F, 0.0F);
         this.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);

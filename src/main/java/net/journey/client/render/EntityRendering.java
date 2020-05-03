@@ -140,6 +140,7 @@ public class EntityRendering {
         RenderingRegistry.registerEntityRenderingHandler(EntityBloodKnife.class, new RenderItemProjectile(JourneyWeapons.bloodKnife));
         RenderingRegistry.registerEntityRenderingHandler(EntityCharredKnife.class, new RenderItemProjectile(JourneyWeapons.charredKnife));
         RenderingRegistry.registerEntityRenderingHandler(EntitySizzlingKnife.class, new RenderItemProjectile(JourneyWeapons.sizzlingKnife));
+        RenderingRegistry.registerEntityRenderingHandler(EntityMagicBomb.class, new RenderItemProjectile(JourneyWeapons.MAGIC_BOMB));
         RenderingRegistry.registerEntityRenderingHandler(EntityFrozenSnowball.class, new RenderItemProjectile(Items.SNOWBALL));
 
         RenderingRegistry.registerEntityRenderingHandler(EntityShimmererProjectile.class, new RenderProjectile(Textures.shimmererProjectile));

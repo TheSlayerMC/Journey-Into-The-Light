@@ -298,7 +298,6 @@ public class JourneyItems {
     public static Item GLOSSY_EYE;
     public static Item HEART_STONE;
     public static Item LIGHT_BUCKLER;
-    public static Item MAGIC_BOMB;
     public static Item MAGIC_DUST;
 
     public static Item MOON_OF_ETERNAL_NIGHT;
@@ -517,7 +516,6 @@ public class JourneyItems {
         GLOSSY_EYE = new ItemMod("glossy_eye", "Glossy Eye");
         HEART_STONE = new ItemRestoreHealth("heart_stone", "Heart Stone", true);
         LIGHT_BUCKLER = new ItemMod("light_buckler", "Light Buckler");
-        MAGIC_BOMB = new ItemMod("magic_bomb", "Magic Bomb");
         MAGIC_DUST = new ItemMod("magic_dust", "Magic Dust");
         MOON_OF_ETERNAL_NIGHT = new ItemEternalNight("moon_of_eternal_night", "Moon of Eternal Night");
         NETHIC_OBSTRUCTOR = new ItemMod("nethic_obstructor", "Nethic Obstructor");

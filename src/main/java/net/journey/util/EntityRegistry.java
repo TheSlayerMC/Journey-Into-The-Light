@@ -133,7 +133,7 @@ public class EntityRegistry {
                 SlayerAPI.registerProjectile(EntityFireBomb.class, "firebomb"),
                 SlayerAPI.registerProjectile(EntityFloroWater.class, "florowater"),
                 SlayerAPI.registerProjectile(EntityFrozenSnowball.class, "frozensnowball"),
-
+                SlayerAPI.registerProjectile(EntityMagicBomb.class, "magicbomb"),
         };
 
         return JourneyProjectiles;
