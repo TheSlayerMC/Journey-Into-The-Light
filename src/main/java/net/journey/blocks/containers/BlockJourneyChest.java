@@ -16,7 +16,6 @@ import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.inventory.InventoryLargeChest;
@@ -472,25 +471,6 @@ public class BlockJourneyChest extends BlockModContainer implements IHasTeisr, I
 		return t;
 	}
 
-	public int isProvidingWeakPower(IBlockAccess worldIn, BlockPos pos, IBlockState state, EnumFacing side) {
-		if (!this.canProvidePower(state)) {
-			return 0;
-		} else {
-			int i = 0;
-			TileEntity tileentity = worldIn.getTileEntity(pos);
-
-			if (tileentity instanceof TileEntityJourneyChest) {
-				i = ((TileEntityJourneyChest) tileentity).numPlayersUsing;
-			}
-
-			return MathHelper.clamp(i, 0, 15);
-		}
-	}
-
-	public int isProvidingStrongPower(IBlockAccess worldIn, BlockPos pos, IBlockState state, EnumFacing side) {
-		return side == EnumFacing.UP ? this.isProvidingWeakPower(worldIn, pos, state, side) : 0;
-	}
-
 	private boolean isBlocked(World worldIn, BlockPos pos) {
 		return this.isBelowSolidBlock(worldIn, pos) || this.isOcelotSittingOnChest(worldIn, pos);
 	}
@@ -516,14 +496,6 @@ public class BlockJourneyChest extends BlockModContainer implements IHasTeisr, I
 		} while (!entityocelot.isSitting());
 
 		return true;
-	}
-
-	public boolean hasComparatorInputOverride() {
-		return true;
-	}
-
-	public int getComparatorInputOverride(World worldIn, BlockPos pos) {
-		return Container.calcRedstoneFromInventory(this.getLockableContainer(worldIn, pos));
 	}
 
 	@NotNull
