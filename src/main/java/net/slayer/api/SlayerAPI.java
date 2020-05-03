@@ -225,7 +225,6 @@ public class SlayerAPI {
         return boolAddedToInventory;
     }
 
-    @Deprecated //it's better to use TextFormatting#toString
     public static final class Colour {
         public static final String BLACK = SECTION_SIGN + "0";
         public static final String DARK_BLUE = SECTION_SIGN + "1";
@@ -245,7 +244,6 @@ public class SlayerAPI {
         public static final String WHITE = SECTION_SIGN + "F";
     }
 
-    @Deprecated //it's better to use TextFormatting#toString
     public static final class Format {
         public static final String OBFUSCATED = SECTION_SIGN + "k";
         public static final String BOLD = SECTION_SIGN + "l";
