@@ -11,13 +11,20 @@ import net.journey.client.render.model.block.ModelObelisk;
 import net.journey.client.render.model.block.ModelSenterianAltar;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.RenderItem;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.entity.RenderDragon;
 import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 
 public class ObeliskRenderer extends TileEntitySpecialRenderer {
 
@@ -41,8 +48,11 @@ public class ObeliskRenderer extends TileEntitySpecialRenderer {
         GL11.glTranslated(x + 0.5, y + 1.3, z + 0.5);
         GlStateManager.rotate(-timeD, 0.0F, 1.0F, 0.0F);
         obelisk.render(0.0625F, true);
-        GL11.glPopMatrix();
-	}
+        GL11.glPopMatrix(); 
+        GlStateManager.pushMatrix();
+        GlStateManager.translate((float)x, (float)y, (float)z);
+        GlStateManager.popMatrix();
+    }
 	
 	public static class ObeliskTEISR extends TileEntityItemStackRenderer {
 

@@ -142,6 +142,14 @@ public class JourneyBlocks {
     public static BlockMod eucaDarkGreenLeaves;
 
     public static BlockObelisk ANCIENT_OBELISK;
+    public static BlockMod ANCIENT_SOCKET;
+    
+    public static BlockMod ANCIENT_STONE;
+    public static BlockMod ANCIENT_CATALYST;
+    public static BlockMod ANCIENT_RUNIC_STONE_0;
+    public static BlockMod ANCIENT_RUNIC_STONE_1;
+    public static BlockMod ANCIENT_RUNIC_STONE_2;
+    public static BlockMod ANCIENT_RUNIC_STONE_3;
     
     public static JBlockLog GOLDITE_OAK_LOG;
     
@@ -524,7 +532,15 @@ public class JourneyBlocks {
         bloodLamp = (BlockMod) new BlockMod("bloodLamp", "Blood Lamp").setLightLevel(2.0F);
         bloodCatalyst = (BlockMod) new BlockMod("bloodCatalyst", "Blood Catalyst").setLightLevel(0.1F);
 
-        ANCIENT_OBELISK = (BlockObelisk) new BlockObelisk("ancient_obelisk", "Obelisk").setLightLevel(0.5F);
+        ANCIENT_OBELISK = (BlockObelisk) new BlockObelisk("ancient_obelisk", "Ancient Obelisk").setLightLevel(0.5F);
+        ANCIENT_SOCKET = new BlockAncientSocket("ancient_socket", "Ancient Socket");
+        
+        ANCIENT_CATALYST = new BlockAncientCatalyst("ancient_catalyst", "Ancient Catalyst");
+        ANCIENT_STONE = new BlockMod("ancient_stone", "Ancient Stone");
+        ANCIENT_RUNIC_STONE_0 = new BlockMod("ancient_stone_runic_0", "Ancient Runic Stone");
+        ANCIENT_RUNIC_STONE_1 = new BlockMod("ancient_stone_runic_1", "Ancient Runic Stone");
+        ANCIENT_RUNIC_STONE_2 = new BlockMod("ancient_stone_runic_2", "Ancient Runic Stone");
+        ANCIENT_RUNIC_STONE_3 = new BlockMod("ancient_stone_runic_3", "Ancient Runic Stone");
         
         witherwoodLog = new JBlockLog("witherwoodLog", "Witherwood Log");
         witherwoodLeaves = new BlockModLeaves("witherwoodLeaves", "Witherwood Leaves", 1.0F);

@@ -4,6 +4,8 @@ import net.journey.init.JourneySounds;
 import net.journey.items.*;
 import net.journey.items.interactive.ItemAddEssence;
 import net.journey.items.interactive.ItemAddXP;
+import net.journey.items.interactive.ItemAncientCatalyst;
+import net.journey.items.interactive.ItemAncientPiece;
 import net.journey.items.interactive.ItemCrafting;
 import net.journey.items.interactive.ItemDarkGem;
 import net.journey.items.interactive.ItemDemonicEye;
@@ -103,6 +105,8 @@ public class JourneyItems {
     public static Item gorbiteGem;
     public static Item desIngot;
     public static Item darkGem;
+    
+    public static Item ANCIENT_EYE_OF_OPENING;
 
     public static Item obsidianRod;
 
@@ -337,10 +341,10 @@ public class JourneyItems {
         smithstone = new ItemMod("smithstone", "Smithstone");
         nethicgemstone = new ItemMod("soulstone", "Soulstone");
 
-        ancientPiece_1 = new ItemMod("ancientpiece_1", "Ancient Piece");
-        ancientPiece_2 = new ItemMod("ancientpiece_2", "Ancient Shard");
-        ancientPiece_3 = new ItemMod("ancientpiece_3", "Ancient Chunk");
-        ancientPiece_4 = new ItemMod("ancientpiece_4", "Ancient Fragment");
+        ancientPiece_1 = new ItemAncientPiece("ancientpiece_1", "Ancient Piece");
+        ancientPiece_2 = new ItemAncientPiece("ancientpiece_2", "Ancient Shard");
+        ancientPiece_3 = new ItemAncientPiece("ancientpiece_3", "Ancient Chunk");
+        ancientPiece_4 = new ItemAncientPiece("ancientpiece_4", "Ancient Fragment");
 
         spawnerBar = new ItemMod("spawnerBar", "Spawner Bar");
         spawnerClump = new ItemMod("spawnerClump", "Spawner Clump");
@@ -497,10 +501,10 @@ public class JourneyItems {
 
         demonicEye = new ItemDemonicEye("demonicEye", "Demonic Eye");
         darkGem = new ItemDarkGem("darkGem", "Dark Gem");
+        ANCIENT_EYE_OF_OPENING = new ItemAncientCatalyst("ancient_eye_of_opening", "Ancient Eye of Opening");
         obsidianRod = new ItemMod("obsidianRod", "Obsidian Rod");
         
         LOOT_POUCH = new ItemLootPouch("loot_pouch", "Loot Pouch");
-        AQUASTONE = new ItemMod("aquastone", "Aquastone");
         BALMY_TEARDROP = new ItemMod("balmy_teardrop", "Balmy Teardrop");
         CHARM_OF_VINE_STRANDING = new ItemMod("charm_of_vine_stranding", "Charm of Vinestranding");
         CHARM_OF_WATER_BENDING = new ItemMod("charm_of_water_bending", "Charm of Waterbending");
