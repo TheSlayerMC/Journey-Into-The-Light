@@ -403,18 +403,22 @@ public class BlockJourneyChest extends BlockModContainer implements IHasTeisr, I
 		if (!worldIn.isRemote) {
 			TileEntityJourneyChest chest = (TileEntityJourneyChest) worldIn.getTileEntity(pos);
 			if (chest != null) {
-				if (chest.isLocked() && canBeOpened(playerIn, worldIn, pos)) {
-					chest.setUnlocked();
-					if (playerIn.getHeldItemMainhand().getItem() == key) {
-						playerIn.getHeldItemMainhand().shrink(1);
+				ILockableContainer container = getLockableContainer(worldIn, pos);
+
+				if (container != null) { // if chest is not locked
+					if (chest.isLocked() && canBeOpened(playerIn, worldIn, pos)) {
+						chest.setUnlocked();
+						if (playerIn.getHeldItemMainhand().getItem() == key) {
+							playerIn.getHeldItemMainhand().shrink(1);
+						}
 					}
-				}
 
-				if (chest.isLocked()) { // if still locked after trying to unlock, just skip attempt
-					return true;
-				}
+					if (chest.isLocked()) { // if still locked after trying to unlock, just skip attempt
+						return true;
+					}
 
-				playerIn.displayGUIChest(chest);
+					playerIn.displayGUIChest(chest);
+				}
 			}
 		}
 		return true;
