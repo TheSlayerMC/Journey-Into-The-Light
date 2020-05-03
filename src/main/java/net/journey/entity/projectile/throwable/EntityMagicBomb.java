@@ -35,7 +35,7 @@ public class EntityMagicBomb extends EntityTippedArrow implements IProjectile {
 		this.pickupStatus = EntityArrow.PickupStatus.ALLOWED;
 
 	}
-
+	
 	public EntityMagicBomb(World worldIn, EntityLivingBase shooter) {
 		super(worldIn, shooter);
 		this.pickupStatus = EntityArrow.PickupStatus.ALLOWED;

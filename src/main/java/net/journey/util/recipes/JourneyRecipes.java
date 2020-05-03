@@ -74,10 +74,12 @@ public class JourneyRecipes {
                 "ddd", "did", "ddd", 'd', JourneyItems.stoneClump, 'i', Blocks.STONE);
         addShapedRecipe(new ItemStack(JourneyItems.reinforcedCrystalIngot),
                 "ddd", "did", "ddd", 'd', JourneyItems.stoneClump, 'i', JourneyItems.caveCrystal);
-        addShapedRecipe(new ItemStack(JourneyItems.crystalBall), "idi", "ixi", 'i', Items.DIAMOND,
-                'd', Items.ENDER_PEARL, 'x', JourneyItems.sapphire);
+        addShapedRecipe(new ItemStack(JourneyItems.crystalBall), "idi", "iii", 'i', JourneyItems.MAGIC_DUST,
+                'd', Items.ENDER_PEARL);
         addShapedRecipe(new ItemStack(JourneyWeapons.demonicBomb, 16),
                 "ddd", "did", "ddd", 'd', JourneyItems.demonicDust, 'i', JourneyItems.crystalBall);
+        addShapedRecipe(new ItemStack(JourneyWeapons.MAGIC_BOMB),
+                "ddd", "did", "ddd", 'd', JourneyItems.MAGIC_DUST, 'i', JourneyWeapons.demonicBomb);
         addShapedRecipe(new ItemStack(JourneyItems.stoneClump, 4),
                 "ddd", "ddd", "ddd", 'd', JourneyItems.caveDust);
         addShapedRecipe(new ItemStack(JourneyItems.stoneStick, 16),
