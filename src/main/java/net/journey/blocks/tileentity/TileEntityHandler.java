@@ -14,5 +14,6 @@ public class TileEntityHandler {
         GameRegistry.registerTileEntity(TileEntityNetherFurnace.class, new ResourceLocation(SlayerAPI.PREFIX + "Nether Furnace"));
         GameRegistry.registerTileEntity(TileEntityTrap.class, new ResourceLocation(SlayerAPI.PREFIX + "Trap"));
         GameRegistry.registerTileEntity(TileEntitySenterianAltar.class, new ResourceLocation(SlayerAPI.PREFIX + "Senterian Altar"));
+        GameRegistry.registerTileEntity(TileEntityObelisk.class, new ResourceLocation(SlayerAPI.PREFIX + "Obelisk"));
     }
 }

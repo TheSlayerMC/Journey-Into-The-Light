@@ -19,9 +19,8 @@ public class ItemAddEssence extends ItemMod {
 
 	private int amount;
 
-	public ItemAddEssence(String name, String finalN, int uses, int amount) {
+	public ItemAddEssence(String name, String finalN, int amount) {
 		super(name, finalN, JourneyTabs.UTIL);
-		setMaxDamage(uses);
 		this.amount = amount;
 		setMaxStackSize(1);
 	}
@@ -33,7 +32,7 @@ public class ItemAddEssence extends ItemMod {
 		IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
 		if(!worldIn.isRemote) {
 			mana.addEssence(amount);
-			stack.damageItem(1, player);
+			stack.shrink(1);
 		}
 		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
 	}

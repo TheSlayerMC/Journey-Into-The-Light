@@ -25,6 +25,7 @@ public class Textures {
     public static final ResourceLocation senterianAltar = addModel("blocks/senterianaltar");
     public static final ResourceLocation journeyChest = addModel("blocks/journeychest");
     public static final ResourceLocation eucaChest = addModel("blocks/eucachest");
+    public static final ResourceLocation obelisk = addModel("blocks/obelisk");
     public static final ResourceLocation empty = addProjectile("empty");
     public static final ResourceLocation templeBall = addProjectile("templeBall");
     public static final ResourceLocation essenceArrow = addProjectile("essenceArrow");

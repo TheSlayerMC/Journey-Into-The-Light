@@ -141,6 +141,8 @@ public class JourneyBlocks {
     public static BlockMod eucaLightGreenLeaves;
     public static BlockMod eucaDarkGreenLeaves;
 
+    public static BlockObelisk ANCIENT_OBELISK;
+    
     public static JBlockLog GOLDITE_OAK_LOG;
     
     public static BlockMod eucaBricks;
@@ -518,10 +520,12 @@ public class JourneyBlocks {
         carvedBloodRock = new BlockMod("carvedBloodRock", "Carved Blood Rock");
         bloodRune = new BlockMod("bloodRune", "Blood Rune");
         bloodPillar = new BlockMod("bloodPillar", "Blood Pillar");
-        obelisk = (BlockMod) new BlockObelisk("obelisk", "Obelisk").setLightLevel(0.5F);
+        obelisk = (BlockMod) new BlockMod("obelisk", "Obelisk").setLightLevel(0.5F);
         bloodLamp = (BlockMod) new BlockMod("bloodLamp", "Blood Lamp").setLightLevel(2.0F);
         bloodCatalyst = (BlockMod) new BlockMod("bloodCatalyst", "Blood Catalyst").setLightLevel(0.1F);
 
+        ANCIENT_OBELISK = (BlockObelisk) new BlockObelisk("ancient_obelisk", "Obelisk").setLightLevel(0.5F);
+        
         witherwoodLog = new JBlockLog("witherwoodLog", "Witherwood Log");
         witherwoodLeaves = new BlockModLeaves("witherwoodLeaves", "Witherwood Leaves", 1.0F);
         sizzlerWoodLeaves = new BlockModLeaves("sizzlerWoodLeaves", "Deadblood Leaves", 2.0F, netherSapling);
