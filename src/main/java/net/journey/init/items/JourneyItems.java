@@ -7,6 +7,7 @@ import net.journey.items.interactive.ItemAddXP;
 import net.journey.items.interactive.ItemCrafting;
 import net.journey.items.interactive.ItemDarkGem;
 import net.journey.items.interactive.ItemDemonicEye;
+import net.journey.items.interactive.ItemEternalNight;
 import net.journey.items.interactive.ItemLootPouch;
 import net.journey.items.interactive.ItemNetherBossSpawner;
 import net.journey.items.interactive.ItemPresent;

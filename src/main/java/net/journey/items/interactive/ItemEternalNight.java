@@ -1,4 +1,4 @@
-package net.journey.items;
+package net.journey.items.interactive;
 
 import java.util.List;
 
@@ -28,14 +28,12 @@ public class ItemEternalNight extends ItemMod {
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer player, EnumHand handIn) {
 		ItemStack stack = player.getHeldItem(handIn);
-		if(!worldIn.isRemote) {
-			IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
-			if(mana.useEssence(10)) {
-				worldIn.setWorldTime(18000L);
-				stack.damageItem(1, player);
-				worldIn.playSound(player, player.getPosition(), JourneySounds.ETERNAL_NIGHT, SoundCategory.PLAYERS, 1.0F, 1.0F);
-				return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
-			}
+		IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
+		if(mana.useEssence(10)) {
+			worldIn.setWorldTime(18000L);
+			stack.damageItem(1, player);
+			worldIn.playSound(player, player.getPosition(), JourneySounds.ETERNAL_NIGHT, SoundCategory.PLAYERS, 1.0F, 1.0F);
+			return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
 		}
 		return new ActionResult<ItemStack>(EnumActionResult.FAIL, stack);
 	}
