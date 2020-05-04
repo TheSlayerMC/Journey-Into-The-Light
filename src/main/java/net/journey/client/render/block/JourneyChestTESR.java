@@ -12,6 +12,7 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.lwjgl.opengl.GL11;
 
 @SideOnly(Side.CLIENT)
 public class JourneyChestTESR extends TileEntitySpecialRenderer<TileEntityJourneyChest> {
@@ -23,7 +24,7 @@ public class JourneyChestTESR extends TileEntitySpecialRenderer<TileEntityJourne
 	public void render(TileEntityJourneyChest te, double x, double y, double z, float partialTicks, int destroyStage,
 	                   float alpha) {
 		GlStateManager.enableDepth();
-		GlStateManager.depthFunc(515);
+		GlStateManager.depthFunc(GL11.GL_LEQUAL);
 		GlStateManager.depthMask(true);
 		int i;
 
@@ -50,11 +51,10 @@ public class JourneyChestTESR extends TileEntitySpecialRenderer<TileEntityJourne
 
 				if (destroyStage >= 0) {
 					this.bindTexture(DESTROY_STAGES[destroyStage]);
-					GlStateManager.matrixMode(5890);
+					GlStateManager.matrixMode(GL11.GL_TEXTURE);
 					GlStateManager.pushMatrix();
 					GlStateManager.scale(4.0F, 4.0F, 1.0F);
-					GlStateManager.translate(0.0625F, 0.0625F, 0.0625F);
-					GlStateManager.matrixMode(5888);
+					GlStateManager.matrixMode(GL11.GL_MODELVIEW);
 
 				} else {
 					bindTexture(te.getChestType().getSingleChestTexture());
@@ -64,11 +64,10 @@ public class JourneyChestTESR extends TileEntitySpecialRenderer<TileEntityJourne
 
 				if (destroyStage >= 0) {
 					this.bindTexture(DESTROY_STAGES[destroyStage]);
-					GlStateManager.matrixMode(5890);
+					GlStateManager.matrixMode(GL11.GL_TEXTURE);
 					GlStateManager.pushMatrix();
 					GlStateManager.scale(8.0F, 4.0F, 1.0F);
-					GlStateManager.translate(0.0625F, 0.0625F, 0.0625F);
-					GlStateManager.matrixMode(5888);
+					GlStateManager.matrixMode(GL11.GL_MODELVIEW);
 
 				} else {
 					bindTexture(te.getChestType().getDoubleChestTexture());
@@ -142,9 +141,9 @@ public class JourneyChestTESR extends TileEntitySpecialRenderer<TileEntityJourne
 			GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 
 			if (destroyStage >= 0) {
-				GlStateManager.matrixMode(5890);
+				GlStateManager.matrixMode(GL11.GL_TEXTURE);
 				GlStateManager.popMatrix();
-				GlStateManager.matrixMode(5888);
+				GlStateManager.matrixMode(GL11.GL_MODELVIEW);
 			}
 		}
 	}
