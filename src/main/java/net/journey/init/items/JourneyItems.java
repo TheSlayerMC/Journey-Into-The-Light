@@ -531,6 +531,7 @@ public class JourneyItems {
         WITHIC_OBSTRUCTOR = new ItemMod("withic_obstructor", "Withic Obstructor");
         XP_CATALYST = new ItemAddXP("xp_catalyst", "Experience Catalyst", 1);
         CHEST_KEY = new ItemMod("chest_key", "Chest Key");
+        AQUASTONE = new ItemMod("aquastone", "Aquastone");
         //obsidianBoat = new ItemObsidianBoat("obsidianboat", "Obsidian Boat");
         //infernoshield = new ItemModShield("infernoshield", "Inferno Shield", 2, false);
     }
