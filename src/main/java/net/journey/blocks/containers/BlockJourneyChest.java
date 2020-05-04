@@ -405,7 +405,7 @@ public class BlockJourneyChest extends BlockModContainer implements IHasTeisr, I
 				ILockableContainer container = getLockableContainer(worldIn, pos);
 
 				if (container != null) { // if chest is not locked
-					if (chest.isLocked() && canBeOpened(playerIn, worldIn, pos)) {
+					if (chest.isLocked() && canBeUnlocked(playerIn, worldIn, pos)) {
 						chest.setUnlocked();
 						if (playerIn.getHeldItemMainhand().getItem() == key) {
 							playerIn.getHeldItemMainhand().shrink(1);
@@ -416,14 +416,14 @@ public class BlockJourneyChest extends BlockModContainer implements IHasTeisr, I
 						return true;
 					}
 
-					playerIn.displayGUIChest(chest);
+					playerIn.displayGUIChest(container);
 				}
 			}
 		}
 		return true;
 	}
 
-	public boolean canBeOpened(EntityPlayer playerIn, World worldIn, BlockPos pos) {
+	public boolean canBeUnlocked(EntityPlayer playerIn, World worldIn, BlockPos pos) {
 		return playerIn.getHeldItemMainhand().getItem() == key;
 	}
 

@@ -68,8 +68,8 @@ public class JourneyDoubleChestHandler extends WeakReference<TileEntityJourneyCh
 
     @Nullable
     private TileEntityJourneyChest getOtherChest() {
-        TileEntityJourneyChest TileEntityJourneyChest = get();
-        return TileEntityJourneyChest != null && !TileEntityJourneyChest.isInvalid() ? TileEntityJourneyChest : null;
+        TileEntityJourneyChest journeyChest = get();
+        return journeyChest != null && !journeyChest.isInvalid() ? journeyChest : null;
     }
 
     @Override
@@ -175,7 +175,7 @@ public class JourneyDoubleChestHandler extends WeakReference<TileEntityJourneyCh
     public boolean needsRefresh() {
         if (this == NO_ADJACENT_CHESTS_INSTANCE)
             return false;
-        TileEntityJourneyChest TileEntityJourneyChest = get();
-        return TileEntityJourneyChest == null || TileEntityJourneyChest.isInvalid();
+        TileEntityJourneyChest journeyChest = get();
+        return journeyChest == null || journeyChest.isInvalid();
     }
 }
