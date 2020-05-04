@@ -16,6 +16,7 @@ import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.inventory.InventoryLargeChest;
@@ -496,6 +497,16 @@ public class BlockJourneyChest extends BlockModContainer implements IHasTeisr, I
 		} while (!entityocelot.isSitting());
 
 		return true;
+	}
+
+	@Override
+	public boolean hasComparatorInputOverride(IBlockState state) {
+		return true;
+	}
+
+	@Override
+	public int getComparatorInputOverride(IBlockState blockState, World worldIn, BlockPos pos) {
+		return Container.calcRedstoneFromInventory(this.getLockableContainer(worldIn, pos));
 	}
 
 	@NotNull
