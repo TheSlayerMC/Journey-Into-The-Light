@@ -43,11 +43,6 @@ import java.util.Iterator;
 public class BlockJourneyChest extends BlockModContainer implements IHasTeisr, IHasCustomItemPath {
 
 	public static final PropertyDirection FACING = BlockHorizontal.FACING;
-	protected static final AxisAlignedBB NORTH_CHEST_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0D, 0.9375D, 0.875D, 0.9375D);
-	protected static final AxisAlignedBB SOUTH_CHEST_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.875D, 1.0D);
-	protected static final AxisAlignedBB WEST_CHEST_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0625D, 0.9375D, 0.875D, 0.9375D);
-	protected static final AxisAlignedBB EAST_CHEST_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 1.0D, 0.875D, 0.9375D);
-	protected static final AxisAlignedBB NOT_CONNECTED_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.875D, 0.9375D);
 	public final BlockJourneyChest.Type chestType;
 	public boolean isInitiallyLocked;
 	private Item key;
@@ -83,19 +78,6 @@ public class BlockJourneyChest extends BlockModContainer implements IHasTeisr, I
 	@Override
 	public EnumBlockRenderType getRenderType(IBlockState state) {
 		return EnumBlockRenderType.ENTITYBLOCK_ANIMATED;
-	}
-
-	@Override
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-		if (source.getBlockState(pos.north()).getBlock() == this) {
-			return NORTH_CHEST_AABB;
-		} else if (source.getBlockState(pos.south()).getBlock() == this) {
-			return SOUTH_CHEST_AABB;
-		} else if (source.getBlockState(pos.west()).getBlock() == this) {
-			return WEST_CHEST_AABB;
-		} else {
-			return source.getBlockState(pos.east()).getBlock() == this ? EAST_CHEST_AABB : NOT_CONNECTED_AABB;
-		}
 	}
 
 	@Override
