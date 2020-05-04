@@ -1,0 +1,15 @@
+{
+  "result": {
+    "item": "journey:senterianportalframe"
+  },
+  "pattern": [
+    "iii",
+    "iii"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "i": {
+      "item": "journey:ancient_stone"
+    }
+  }
+}

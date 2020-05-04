@@ -172,11 +172,13 @@ public class EntitySentryKing extends EntityEssenceBoss implements IRangedAttack
                 te.setInventorySlotContents(15, new ItemStack(JourneyItems.terraniaPortalGem, 4));
                 te.setInventorySlotContents(1, new ItemStack(JourneyWeapons.sentrySword, 1));
                 te.setInventorySlotContents(4, new ItemStack(JourneyWeapons.overseerBow, 1));
+                te.setInventorySlotContents(7, new ItemStack(JourneyItems.ANCIENT_EYE_OF_OPENING, 1));
                 break;
             case 1:
                 te.setInventorySlotContents(1, new ItemStack(JourneyItems.terraniaPortalGem, 5));
                 te.setInventorySlotContents(10, new ItemStack(JourneyWeapons.sentrySword, 1));
                 te.setInventorySlotContents(16, new ItemStack(JourneyWeapons.overseerBow, 1));
+                te.setInventorySlotContents(5, new ItemStack(JourneyItems.ANCIENT_EYE_OF_OPENING, 1));
                 break;
         }
     }
