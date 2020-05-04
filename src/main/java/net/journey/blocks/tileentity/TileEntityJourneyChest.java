@@ -2,7 +2,6 @@ package net.journey.blocks.tileentity;
 
 import net.journey.blocks.containers.BlockJourneyChest;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockChest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.SoundEvents;
@@ -181,7 +180,6 @@ public class TileEntityJourneyChest extends TileEntityLockableLoot implements IT
 				return tileentitychest;
 			}
 		}
-
 		return null;
 	}
 
@@ -337,39 +335,13 @@ public class TileEntityJourneyChest extends TileEntityLockableLoot implements IT
 
 	public BlockJourneyChest.Type getChestType() {
 		if (this.cachedChestType == null) {
-			if (this.world == null || !(this.getBlockType() instanceof BlockChest)) {
-				if (this.cachedChestType == BlockJourneyChest.Type.JOURNEY) {
-					return BlockJourneyChest.Type.JOURNEY;
-				}
-				if (this.cachedChestType == BlockJourneyChest.Type.BOIL) {
-					return BlockJourneyChest.Type.BOIL;
-				}
-				if (this.cachedChestType == BlockJourneyChest.Type.CLOUDIA) {
-					return BlockJourneyChest.Type.CLOUDIA;
-				}
-				if (this.cachedChestType == BlockJourneyChest.Type.CORBA) {
-					return BlockJourneyChest.Type.CORBA;
-				}
-				if (this.cachedChestType == BlockJourneyChest.Type.DEPTHS) {
-					return BlockJourneyChest.Type.DEPTHS;
-				}
-				if (this.cachedChestType == BlockJourneyChest.Type.EUCA) {
-					return BlockJourneyChest.Type.EUCA;
-				}
-				if (this.cachedChestType == BlockJourneyChest.Type.FROZEN) {
-					return BlockJourneyChest.Type.FROZEN;
-				}
-				if (this.cachedChestType == BlockJourneyChest.Type.NETHER) {
-					return BlockJourneyChest.Type.NETHER;
-				}
-				if (this.cachedChestType == BlockJourneyChest.Type.TERRA) {
-					return BlockJourneyChest.Type.TERRA;
-				}
+			if (!(this.getBlockType() instanceof BlockJourneyChest)) {
+				throw new IllegalStateException(getClass().getSimpleName() + " has tried to get chest type being owned by wrong non journey chest block: " + getBlockType());
 			}
-			if (getBlockType() instanceof BlockJourneyChest)
-				this.cachedChestType = ((BlockJourneyChest) this.getBlockType()).chestType;
+
+			this.cachedChestType = ((BlockJourneyChest) this.getBlockType()).chestType;
 		}
-		return this.cachedChestType == null ? BlockJourneyChest.Type.JOURNEY : cachedChestType;
+		return cachedChestType;
 	}
 
 	public void setChestType(BlockJourneyChest.Type type) {
