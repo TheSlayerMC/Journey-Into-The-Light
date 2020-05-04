@@ -43,7 +43,6 @@ public class ItemAncientCatalyst extends ItemMod {
                 BlockPattern.PatternHelper blockpattern$patternhelper = BlockAncientCatalyst.getOrCreatepattern().match(worldIn, pos.add(0, -4, 0));
 
                 if (blockpattern$patternhelper != null) {
-                    itemstack.shrink(1);
                     BlockPos blockpos = blockpattern$patternhelper.getFrontTopLeft().add(-1, 0, -1);
                     worldIn.setBlockState(blockpos.add(0, 0, 0), Blocks.AIR.getDefaultState(), 2);
                     worldIn.createExplosion(player, blockpos.getX(), blockpos.getY(), blockpos.getZ(), 10F, false);

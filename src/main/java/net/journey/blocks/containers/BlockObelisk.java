@@ -41,7 +41,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class BlockObelisk extends BlockModContainer implements IHasTeisr, IHasCustomItemPath {
 
-    private AxisAlignedBB size = new AxisAlignedBB(0.0F, 0.0F, 0.0F, 1.0F, 2.8F, 1.0F);
+    private AxisAlignedBB size = new AxisAlignedBB(0.0F, 0.3F, 0.0F, 1.0F, 2.8F, 1.0F);
     
     public BlockObelisk(String name, String finalName) {
         super(name, finalName);
@@ -61,7 +61,6 @@ public class BlockObelisk extends BlockModContainer implements IHasTeisr, IHasCu
             double d4 = (rand.nextFloat() - 0.5D) * 0.5D;
             double d5 = (rand.nextFloat() - 0.5D) * 0.5D;
             w.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0, d1, d2, d3, d4, d5, 5);
-           // FMLClientHandler.instance().getClient().effectRenderer.addEffect(var20);
         }
     }
 
