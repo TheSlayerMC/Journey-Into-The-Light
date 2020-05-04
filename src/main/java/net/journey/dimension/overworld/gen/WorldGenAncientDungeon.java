@@ -3,7 +3,9 @@ package net.journey.dimension.overworld.gen;
 import java.util.Random;
 
 import net.journey.blocks.containers.BlockJourneyChest;
+import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.init.blocks.JourneyBlocks;
+import net.journey.util.JourneyLootTables;
 import net.journey.util.RandUtils;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.block.BlockStoneBrick;
@@ -174,6 +176,10 @@ public class WorldGenAncientDungeon extends WorldGenerator {
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 2, j + 6, k + 5), getDungeonBricks());
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 2, j + 6, k + 6), Blocks.AIR.getDefaultState());
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 2, j + 6, k + 7), JourneyBlocks.journeyChest.getDefaultState().withProperty(BlockJourneyChest.FACING, EnumFacing.EAST));
+	        TileEntity chestEast = worldIn.getTileEntity(new BlockPos(i + 2, j + 6, k + 7));
+	        if (chestEast instanceof TileEntityJourneyChest) {
+	            ((TileEntityJourneyChest) chestEast).setLootTable(JourneyLootTables.ANCIENT_CHEST_LOOT, rand.nextLong());
+	        }
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 2, j + 6, k + 8), Blocks.AIR.getDefaultState());
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 2, j + 6, k + 9), getDungeonBricks());
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 2, j + 6, k + 10), Blocks.STONE.getDefaultState());
@@ -713,6 +719,10 @@ public class WorldGenAncientDungeon extends WorldGenerator {
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 6, j + 6, k + 1), Blocks.STONE.getDefaultState());
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 6, j + 6, k + 2), getDungeonBricks());
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 6, j + 6, k + 3), JourneyBlocks.journeyChest.getDefaultState().withProperty(BlockJourneyChest.FACING, EnumFacing.SOUTH));
+	        TileEntity chestSouth = worldIn.getTileEntity(new BlockPos(i + 6, j + 6, k + 3));
+	        if (chestSouth instanceof TileEntityJourneyChest) {
+	            ((TileEntityJourneyChest) chestSouth).setLootTable(JourneyLootTables.ANCIENT_CHEST_LOOT, rand.nextLong());
+	        }
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 6, j + 6, k + 4), Blocks.AIR.getDefaultState());
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 6, j + 6, k + 5), Blocks.AIR.getDefaultState());
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 6, j + 6, k + 6), Blocks.AIR.getDefaultState());
@@ -721,6 +731,10 @@ public class WorldGenAncientDungeon extends WorldGenerator {
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 6, j + 6, k + 9), Blocks.AIR.getDefaultState());
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 6, j + 6, k + 10), Blocks.AIR.getDefaultState());
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 6, j + 6, k + 11), JourneyBlocks.journeyChest.getDefaultState().withProperty(BlockJourneyChest.FACING, EnumFacing.NORTH));
+	        TileEntity chestNorth = worldIn.getTileEntity(new BlockPos(i + 6, j + 6, k + 11));
+	        if (chestNorth instanceof TileEntityJourneyChest) {
+	            ((TileEntityJourneyChest) chestNorth).setLootTable(JourneyLootTables.ANCIENT_CHEST_LOOT, rand.nextLong());
+	        }
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 6, j + 6, k + 12), getDungeonBricks());
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 6, j + 6, k + 13), Blocks.STONE.getDefaultState());
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 6, j + 7, k + 1), Blocks.STONE.getDefaultState());
@@ -1270,6 +1284,10 @@ public class WorldGenAncientDungeon extends WorldGenerator {
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 10, j + 6, k + 5), getDungeonBricks());
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 10, j + 6, k + 6), Blocks.AIR.getDefaultState());
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 10, j + 6, k + 7), JourneyBlocks.journeyChest.getDefaultState().withProperty(BlockJourneyChest.FACING, EnumFacing.WEST));
+	        TileEntity chestWest = worldIn.getTileEntity(new BlockPos(i + 10, j + 6, k + 7));
+	        if (chestWest instanceof TileEntityJourneyChest) {
+	            ((TileEntityJourneyChest) chestWest).setLootTable(JourneyLootTables.ANCIENT_CHEST_LOOT, rand.nextLong());
+	        }
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 10, j + 6, k + 8), Blocks.AIR.getDefaultState());
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 10, j + 6, k + 9), getDungeonBricks());
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 10, j + 6, k + 10), Blocks.STONE.getDefaultState());

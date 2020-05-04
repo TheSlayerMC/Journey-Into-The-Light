@@ -76,6 +76,7 @@ public class JourneyRecipes {
                 "ddd", "did", "ddd", 'd', JourneyItems.stoneClump, 'i', JourneyItems.caveCrystal);
         addShapedRecipe(new ItemStack(JourneyItems.crystalBall), "idi", "iii", 'i', JourneyItems.MAGIC_DUST,
                 'd', Items.ENDER_PEARL);
+        addShapedRecipe(new ItemStack(JourneyBlocks.senterianPortalFrame, 4), "iii", "iii", 'i', JourneyBlocks.ANCIENT_STONE);
         addShapedRecipe(new ItemStack(JourneyWeapons.demonicBomb, 16),
                 "ddd", "did", "ddd", 'd', JourneyItems.demonicDust, 'i', JourneyItems.crystalBall);
         addShapedRecipe(new ItemStack(JourneyWeapons.MAGIC_BOMB),

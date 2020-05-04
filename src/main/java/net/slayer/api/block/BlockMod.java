@@ -1,15 +1,18 @@
 package net.slayer.api.block;
 
 import net.journey.JITL;
+import net.journey.client.ItemDescription;
 import net.journey.enums.EnumParticlesClasses;
 import net.journey.init.JourneyTabs;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.StuffConstructor;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -19,6 +22,7 @@ import net.slayer.api.EnumMaterialTypes;
 import net.slayer.api.EnumToolType;
 import net.slayer.api.SlayerAPI;
 
+import java.util.List;
 import java.util.Random;
 
 public class BlockMod extends Block {
@@ -83,6 +87,15 @@ public class BlockMod extends Block {
     @Override
     public boolean isNormalCube(IBlockState state) {//TODO is it really needed? May prevent player from passing some block types.
         return true;
+    }
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack i, World worldIn, List<String> l, ITooltipFlag flagIn) {
+        ItemDescription.addInformation(i, l);
+        if(this == JourneyBlocks.ANCIENT_STONE) {
+            l.add("Unbreakable");
+        }
     }
 
     @Override
