@@ -363,4 +363,9 @@ public class TileEntityJourneyChest extends TileEntityLockableLoot implements IT
 	protected NonNullList<ItemStack> getItems() {
 		return this.chestContents;
 	}
+
+	@Override
+	public AxisAlignedBB getRenderBoundingBox() {
+		return new AxisAlignedBB(pos.add(-1, 0, -1), pos.add(2, 2, 2));
+	}
 }
