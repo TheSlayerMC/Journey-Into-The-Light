@@ -771,15 +771,15 @@ public class JourneyBlocks {
         senterianPost = (BlockModFence) new BlockModFence(senterianBricks, "senterianPost", "Senterian Post").setBlockUnbreakable().setResistance(10000000.0F);
         senterianAltar = (BlockSenterianAltar) new BlockSenterianAltar("senterianAltar", "Senterian Altar").setBlockUnbreakable().setResistance(1000000.0F);
         
-        LAMENT_NETHER = (BlockMod) new BlockLament("lament_nether", "Lament of Hell", JourneyItems.LAMENT_DECONSTRUCTOR_NETHER).setBlockUnbreakable().setResistance(10000000.0F);
-        LAMENT_BOIL = (BlockMod) new BlockLament("lament_boil", "Lament of Fire", JourneyItems.LAMENT_DECONSTRUCTOR_BOIL).setBlockUnbreakable().setResistance(10000000.0F);
-        LAMENT_EUCA = (BlockMod) new BlockLament("lament_euca", "Lament of Light", JourneyItems.LAMENT_DECONSTRUCTOR_EUCA).setBlockUnbreakable().setResistance(10000000.0F);
-        LAMENT_DEPTHS = (BlockMod) new BlockLament("lament_depths", "Lament of Darkness", JourneyItems.LAMENT_DECONSTRUCTOR_DEPTHS).setBlockUnbreakable().setResistance(10000000.0F);
+        LAMENT_NETHER = (BlockMod) new BlockLament("lament_nether", "Lament Box of Hell", JourneyItems.LAMENT_DECONSTRUCTOR_NETHER).setBlockUnbreakable().setResistance(10000000.0F);
+        LAMENT_BOIL = (BlockMod) new BlockLament("lament_boil", "Lament Box of Fire", JourneyItems.LAMENT_DECONSTRUCTOR_BOIL).setBlockUnbreakable().setResistance(10000000.0F);
+        LAMENT_EUCA = (BlockMod) new BlockLament("lament_euca", "Lament Box of Light", JourneyItems.LAMENT_DECONSTRUCTOR_EUCA).setBlockUnbreakable().setResistance(10000000.0F);
+        LAMENT_DEPTHS = (BlockMod) new BlockLament("lament_depths", "Lament Box of Darkness", JourneyItems.LAMENT_DECONSTRUCTOR_DEPTHS).setBlockUnbreakable().setResistance(10000000.0F);
         
-        LAMENT_CORBA = (BlockMod) new BlockLament("lament_corba", "Lament of Decay", JourneyItems.LAMENT_DECONSTRUCTOR_CORBA).setBlockUnbreakable().setResistance(10000000.0F);
-        LAMENT_TERRANIA = (BlockMod) new BlockLament("lament_terrania", "Lament of Life", JourneyItems.LAMENT_DECONSTRUCTOR_TERRANIA).setBlockUnbreakable().setResistance(10000000.0F);
-        LAMENT_CLOUDIA = (BlockMod) new BlockLament("lament_cloudia", "Lament of Heaven", JourneyItems.LAMENT_DECONSTRUCTOR_CLOUDIA).setBlockUnbreakable().setResistance(10000000.0F);
-        LAMENT_SENTRY = (BlockMod) new BlockLament("lament_sentry", "Lament of Death", JourneyItems.LAMENT_DECONSTRUCTOR_SENTRY).setBlockUnbreakable().setResistance(10000000.0F);
+        LAMENT_CORBA = (BlockMod) new BlockLament("lament_corba", "Lament Box of Decay", JourneyItems.LAMENT_DECONSTRUCTOR_CORBA).setBlockUnbreakable().setResistance(10000000.0F);
+        LAMENT_TERRANIA = (BlockMod) new BlockLament("lament_terrania", "Lament Box of Life", JourneyItems.LAMENT_DECONSTRUCTOR_TERRANIA).setBlockUnbreakable().setResistance(10000000.0F);
+        LAMENT_CLOUDIA = (BlockMod) new BlockLament("lament_cloudia", "Lament Box of Heaven", JourneyItems.LAMENT_DECONSTRUCTOR_CLOUDIA).setBlockUnbreakable().setResistance(10000000.0F);
+        LAMENT_SENTRY = (BlockMod) new BlockLament("lament_sentry", "Lament Box of Death", JourneyItems.LAMENT_DECONSTRUCTOR_SENTRY).setBlockUnbreakable().setResistance(10000000.0F);
         
         LAMENT = (BlockMod) new BlockMod("lament", "Deconstructed Lament").setBlockUnbreakable().setResistance(10000000.0F);
         
