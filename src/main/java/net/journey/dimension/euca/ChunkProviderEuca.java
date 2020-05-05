@@ -300,7 +300,7 @@ public class ChunkProviderEuca implements IChunkGenerator {
 			sphere.generate(worldObj, rand, new BlockPos(x1, this.rand.nextInt(120) + 4, z1));
 		}
 		
-		if(rand.nextInt(60) == 0) {
+		if(rand.nextInt(128) == 0) {
 			smallsphere.generate(worldObj, rand, new BlockPos(x1, this.rand.nextInt(120) + 4, z1));
 		}
 
