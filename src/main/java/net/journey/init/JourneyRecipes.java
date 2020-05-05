@@ -1,4 +1,4 @@
-package net.journey.util.recipes;
+package net.journey.init;
 
 import com.google.common.base.Preconditions;
 import net.journey.JITL;
