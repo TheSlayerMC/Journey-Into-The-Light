@@ -100,6 +100,9 @@ public class JourneySounds {
     
     public static SoundEvent OBELISK_IDLE;
     public static SoundEvent OBELISK_OPEN;
+    public static SoundEvent SENTRY_HEART_DEATH;
+    public static SoundEvent SENTRY_HEART_BEATING;
+    public static SoundEvent SENTRY_HEART_HIT;
     
     public static SoundEvent EMPTY;
 
@@ -206,6 +209,10 @@ public class JourneySounds {
         
         OBELISK_IDLE = registerSound("obelisk_idle");
         OBELISK_OPEN = registerSound("obelisk_open");
+        
+        SENTRY_HEART_BEATING = registerSound("sentry_heart_beating");
+        SENTRY_HEART_HIT = registerSound("sentry_heart_hit");
+        SENTRY_HEART_DEATH = registerSound("sentry_heart_death");
         
         EMPTY = registerSound("empty");
         UNTITLED_DISK = registerSound("untitled_disk");

@@ -469,6 +469,10 @@ public class JourneyBlocks {
 
     public static BlockNetherFurnace netherFurnace;
     public static BlockNetherFurnace netherFurnaceActive;
+    
+    public static BlockMod SENTERIAN_HEART_BLOCK;
+    public static BlockMod SENTERIAN_HEART_BLOCK_WEAK;
+    public static BlockMod SENTERIAN_HEART_EYE;
 
     public static void init() {
 
@@ -1011,13 +1015,12 @@ public class JourneyBlocks {
         overseerSpawner = new BlockModSpawner("overseerSpawner", "Overseer Spawner", "overseer");
         overseerElderSpawner = new BlockModSpawner("overseerElderSpawner", "Overseer Elder Spawner", "overseerElder");
 
-        elderBlock = new BlockChangeable("elderBlock", "Elder Block", JourneyItems.elderKey,
-                JourneyBlocks.overseerElderSpawner);
+        SENTERIAN_HEART_BLOCK = new BlockMod("senterian_heart_block", "Senterian Heart Block");
+        SENTERIAN_HEART_BLOCK_WEAK = new BlockMod("senterian_heart_block_weak", "Senterian Heart Block");
+        SENTERIAN_HEART_EYE = new BlockHeartEye("senterian_heart_eye", "Eye of the Heart");
+        
+        elderBlock = new BlockChangeable("elderBlock", "Elder Block", JourneyItems.elderKey, JourneyBlocks.overseerElderSpawner);
         ancientMachineBlock = new BlockAncientBlock("ancientMachineBlock", "Ancient Machine Block");
-
-        netherFurnace = new BlockNetherFurnace("netherFurnace", "Nethic Furnace", false);
-        netherFurnaceActive = (BlockNetherFurnace) new BlockNetherFurnace("netherFurnaceActive", "Nethic Furnace", true)
-                .setLightLevel(0.7F).setCreativeTab(null);
 
         sizzleberryBush = new BlockModBush("sizzleberryBush", "Sizzleberry Bush", JourneyConsumables.sizzleberry, true);
         bradberryBush = new BlockModBush("bradberryBush", "Bradberry Bush", JourneyConsumables.bradberry, false);

@@ -257,6 +257,7 @@ public class EntityRendering {
         RenderingRegistry.registerEntityRenderingHandler(EntityHellTurtle.class, new RenderModMob(new ModelJungleTurtle(), Textures.hellTurtle));
         RenderingRegistry.registerEntityRenderingHandler(EntityJungleGolem.class, new RenderModMob(new ModelJungleGolem(), Textures.jungleGolem));
 
+        RenderingRegistry.registerEntityRenderingHandler(EntitySentryHeart.class, new RenderModMob(new ModelSentryBlock(), Textures.SENTRY_HEART));
         RenderingRegistry.registerEntityRenderingHandler(EntitySentryBlock.class, new RenderSentryBlock(new ModelSentryBlock(), Textures.sentryBlock));
         RenderingRegistry.registerEntityRenderingHandler(EntitySentryLord.class, new RenderSizeable(new ModelSentryLord(), 0, 0.8F, Textures.sentryLord));
         RenderingRegistry.registerEntityRenderingHandler(EntitySentryStalker.class, new RenderSizeable(new ModelSentryStalker(), 0, 0.65F, Textures.sentryStalker));

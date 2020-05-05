@@ -200,6 +200,7 @@ public class Textures {
     public static final ResourceLocation sentryLord = addMob("sentrylord");
     public static final ResourceLocation sentryStalker = addMob("sentrystalker");
     public static final ResourceLocation sentryWalker = addMob("sentrywalker");
+    public static final ResourceLocation SENTRY_HEART = addMob("sentry_heart");
 
     //Pets
     public static final ResourceLocation tameRoc = addMob("tameRoc");
