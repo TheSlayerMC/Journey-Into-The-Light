@@ -22,6 +22,8 @@ import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.ai.attributes.IAttribute;
+import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Blocks;
@@ -46,7 +48,8 @@ public class EntitySentryHeart extends EntityEssenceBoss {
     
 	public EntitySentryHeart(World par1World) {
 		super(par1World);
-        this.setSize(8.0F, 17.0F);
+        this.setSize(7.0F, 17.0F);
+        this.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(3);
 	}
 
 	@Override
@@ -99,6 +102,29 @@ public class EntitySentryHeart extends EntityEssenceBoss {
         this.renderYawOffset = 180.0F;
         this.rotationYaw = 180.0F;
     }
+    
+	@Override
+	protected void collideWithEntity(Entity entityIn) {
+		double d0 = this.posX - entityIn.posX;
+		double d1 = this.posZ - entityIn.posZ;
+		double d2 = MathHelper.absMax(d0, d1);
+		if (d2 >= 0.009999999776482582D) {
+			d2 = (double) MathHelper.sqrt(d2);
+			d0 = d0 / d2;
+			d1 = d1 / d2;
+			double d3 = 1.0D / d2;
+			if (d3 > 1.0D) {
+				d3 = 1.0D;
+			}
+			d0 = d0 * d3;
+			d1 = d1 * d3;
+			d0 = d0 * 0.05D;
+			d1 = d1 * 0.05D;
+			d0 = d0 * (double) (1.0F - entityIn.entityCollisionReduction);
+			d1 = d1 * (double) (1.0F - entityIn.entityCollisionReduction);
+			entityIn.addVelocity(-d0, 0.0D, -d1);
+		}
+	}
 
     public float getEyeHeight() {
         return 9.0F;
