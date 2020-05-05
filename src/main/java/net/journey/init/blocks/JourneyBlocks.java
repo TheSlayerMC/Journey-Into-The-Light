@@ -281,6 +281,16 @@ public class JourneyBlocks {
     public static BlockMod senterianGuardianLamp;
     public static BlockModFence senterianPost;
     public static BlockSenterianAltar senterianAltar;
+    
+    public static BlockMod LAMENT_NETHER;
+    public static BlockMod LAMENT_BOIL;
+    public static BlockMod LAMENT_EUCA;
+    public static BlockMod LAMENT_DEPTHS;
+    public static BlockMod LAMENT_CORBA;
+    public static BlockMod LAMENT_TERRANIA;
+    public static BlockMod LAMENT_CLOUDIA;
+    public static BlockMod LAMENT_SENTRY;
+    public static BlockMod LAMENT;
 
     public static BlockMod trophy;
     public static BlockMod trophySoul;
@@ -469,6 +479,10 @@ public class JourneyBlocks {
 
     public static BlockNetherFurnace netherFurnace;
     public static BlockNetherFurnace netherFurnaceActive;
+    
+    public static BlockMod SENTERIAN_HEART_BLOCK;
+    public static BlockMod SENTERIAN_HEART_BLOCK_WEAK;
+    public static BlockMod SENTERIAN_HEART_EYE;
 
     public static void init() {
 
@@ -745,30 +759,29 @@ public class JourneyBlocks {
         corbaPost = new BlockModFence(pinkCloudiaCloud, "corbaPost", "Corba Post");
         sizzlingPost = new BlockModFence(pinkCloudiaCloud, "sizzlingPost", "Sizzling Post");
 
-        senterianBricks = (BlockMod) new BlockMod("senterianBricks", "Senterian Bricks").setBlockUnbreakable()
-                .setResistance(10000000.0F);
-        senterianRock = (BlockMod) new BlockMod("senterianRock", "Senterian Rock").setBlockUnbreakable()
-                .setResistance(10000000.0F);
-        senterianCarvedRock = (BlockMod) new BlockMod("senterianCarvedRock", "Senterian Carved Rock")
-                .setBlockUnbreakable().setResistance(10000000.0F);
-        senterianFloor = (BlockMod) new BlockMod("senterianFloor", "Senterian Floor").setBlockUnbreakable()
-                .setResistance(10000000.0F);
-        senterianGlass = (BlockJoinedGlass) new BlockJoinedGlass("senterianGlass", "Senterian Glass")
-                .setBlockUnbreakable().setResistance(10000000.0F);
-        senterianBars = (BlockMod) new BlockModBars("senterianBars", "Senterian Bars", 5.0F).setBlockUnbreakable()
-                .setResistance(10000000.0F);
-        senterianLightLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "senterianLightLamp",
-                "Senterian Light Lamp", 0.1F).setLightLevel(0.5F).setCreativeTab(JourneyTabs.DECORATION)
-                .setBlockUnbreakable().setResistance(10000000.0F);
-        senterianMellowLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "senterianMellowLamp",
-                "Senterian Mellow Lamp", 0.1F).setLightLevel(0.5F).setCreativeTab(JourneyTabs.DECORATION)
-                .setBlockUnbreakable().setResistance(10000000.0F);
-        senterianGuardianLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "senterianGuardianLamp",
-                "Senterian Guardian Lamp", 0.1F).setLightLevel(0.5F).setCreativeTab(JourneyTabs.DECORATION)
-                .setBlockUnbreakable().setResistance(10000000.0F);
-        senterianPost = (BlockModFence) new BlockModFence(senterianBricks, "senterianPost", "Senterian Post")
-                .setBlockUnbreakable().setResistance(10000000.0F);
+        senterianBricks = (BlockMod) new BlockMod("senterianBricks", "Senterian Bricks").setBlockUnbreakable().setResistance(10000000.0F);
+        senterianRock = (BlockMod) new BlockMod("senterianRock", "Senterian Rock").setBlockUnbreakable().setResistance(10000000.0F);
+        senterianCarvedRock = (BlockMod) new BlockMod("senterianCarvedRock", "Senterian Carved Rock").setBlockUnbreakable().setResistance(10000000.0F);
+        senterianFloor = (BlockMod) new BlockMod("senterianFloor", "Senterian Floor").setBlockUnbreakable().setResistance(10000000.0F);
+        senterianGlass = (BlockJoinedGlass) new BlockJoinedGlass("senterianGlass", "Senterian Glass").setBlockUnbreakable().setResistance(10000000.0F);
+        senterianBars = (BlockMod) new BlockModBars("senterianBars", "Senterian Bars", 5.0F).setBlockUnbreakable().setResistance(10000000.0F);
+        senterianLightLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "senterianLightLamp", "Senterian Light Lamp", 0.1F).setLightLevel(0.5F).setCreativeTab(JourneyTabs.DECORATION).setBlockUnbreakable().setResistance(10000000.0F);
+        senterianMellowLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "senterianMellowLamp", "Senterian Mellow Lamp", 0.1F).setLightLevel(0.5F).setCreativeTab(JourneyTabs.DECORATION).setBlockUnbreakable().setResistance(10000000.0F);
+        senterianGuardianLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "senterianGuardianLamp", "Senterian Guardian Lamp", 0.1F).setLightLevel(0.5F).setCreativeTab(JourneyTabs.DECORATION).setBlockUnbreakable().setResistance(10000000.0F);
+        senterianPost = (BlockModFence) new BlockModFence(senterianBricks, "senterianPost", "Senterian Post").setBlockUnbreakable().setResistance(10000000.0F);
         senterianAltar = (BlockSenterianAltar) new BlockSenterianAltar("senterianAltar", "Senterian Altar").setBlockUnbreakable().setResistance(1000000.0F);
+        
+        LAMENT_NETHER = (BlockMod) new BlockLament("lament_nether", "Lament Box of Hell", JourneyItems.LAMENT_DECONSTRUCTOR_NETHER).setBlockUnbreakable().setResistance(10000000.0F);
+        LAMENT_BOIL = (BlockMod) new BlockLament("lament_boil", "Lament Box of Fire", JourneyItems.LAMENT_DECONSTRUCTOR_BOIL).setBlockUnbreakable().setResistance(10000000.0F);
+        LAMENT_EUCA = (BlockMod) new BlockLament("lament_euca", "Lament Box of Light", JourneyItems.LAMENT_DECONSTRUCTOR_EUCA).setBlockUnbreakable().setResistance(10000000.0F);
+        LAMENT_DEPTHS = (BlockMod) new BlockLament("lament_depths", "Lament Box of Darkness", JourneyItems.LAMENT_DECONSTRUCTOR_DEPTHS).setBlockUnbreakable().setResistance(10000000.0F);
+        
+        LAMENT_CORBA = (BlockMod) new BlockLament("lament_corba", "Lament Box of Decay", JourneyItems.LAMENT_DECONSTRUCTOR_CORBA).setBlockUnbreakable().setResistance(10000000.0F);
+        LAMENT_TERRANIA = (BlockMod) new BlockLament("lament_terrania", "Lament Box of Life", JourneyItems.LAMENT_DECONSTRUCTOR_TERRANIA).setBlockUnbreakable().setResistance(10000000.0F);
+        LAMENT_CLOUDIA = (BlockMod) new BlockLament("lament_cloudia", "Lament Box of Heaven", JourneyItems.LAMENT_DECONSTRUCTOR_CLOUDIA).setBlockUnbreakable().setResistance(10000000.0F);
+        LAMENT_SENTRY = (BlockMod) new BlockLament("lament_sentry", "Lament Box of Death", JourneyItems.LAMENT_DECONSTRUCTOR_SENTRY).setBlockUnbreakable().setResistance(10000000.0F);
+        
+        LAMENT = (BlockMod) new BlockMod("lament", "Deconstructed Lament").setBlockUnbreakable().setResistance(10000000.0F);
         
         trophy = new BlockTrophy("trophy", "Trophy");
         trophySoul = new BlockTrophy("trophySoul", "Soul Watcher Trophy");
@@ -1011,13 +1024,12 @@ public class JourneyBlocks {
         overseerSpawner = new BlockModSpawner("overseerSpawner", "Overseer Spawner", "overseer");
         overseerElderSpawner = new BlockModSpawner("overseerElderSpawner", "Overseer Elder Spawner", "overseerElder");
 
-        elderBlock = new BlockChangeable("elderBlock", "Elder Block", JourneyItems.elderKey,
-                JourneyBlocks.overseerElderSpawner);
+        SENTERIAN_HEART_BLOCK = new BlockMod("senterian_heart_block", "Senterian Heart Block");
+        SENTERIAN_HEART_BLOCK_WEAK = new BlockMod("senterian_heart_block_weak", "Senterian Heart Block");
+        SENTERIAN_HEART_EYE = new BlockHeartEye("senterian_heart_eye", "Eye of the Heart");
+        
+        elderBlock = new BlockChangeable("elderBlock", "Elder Block", JourneyItems.elderKey, JourneyBlocks.overseerElderSpawner);
         ancientMachineBlock = new BlockAncientBlock("ancientMachineBlock", "Ancient Machine Block");
-
-        netherFurnace = new BlockNetherFurnace("netherFurnace", "Nethic Furnace", false);
-        netherFurnaceActive = (BlockNetherFurnace) new BlockNetherFurnace("netherFurnaceActive", "Nethic Furnace", true)
-                .setLightLevel(0.7F).setCreativeTab(null);
 
         sizzleberryBush = new BlockModBush("sizzleberryBush", "Sizzleberry Bush", JourneyConsumables.sizzleberry, true);
         bradberryBush = new BlockModBush("bradberryBush", "Bradberry Bush", JourneyConsumables.bradberry, false);

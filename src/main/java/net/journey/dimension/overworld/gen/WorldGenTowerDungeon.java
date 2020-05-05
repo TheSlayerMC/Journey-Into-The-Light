@@ -46,7 +46,6 @@ public class WorldGenTowerDungeon extends WorldGenerator {
         mobNames.add("journey:spyclops");
         mobNames.add("journey:bighongo");
         mobNames.add("journey:mediumhongo");
-        mobNames.add("journey:reaper");
         mobNames.add("minecraft:zombie");
         mobNames.add("minecraft:skeleton");
         mobNames.add("journey:sandcrawler");

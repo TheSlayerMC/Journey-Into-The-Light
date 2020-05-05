@@ -107,6 +107,19 @@ public class JourneyItems {
     public static Item darkGem;
     
     public static Item ANCIENT_EYE_OF_OPENING;
+    
+    public static Item LAMENT_DECONSTRUCTOR_NETHER;
+    public static Item LAMENT_DECONSTRUCTOR_BOIL;
+    public static Item LAMENT_DECONSTRUCTOR_EUCA;
+    public static Item LAMENT_DECONSTRUCTOR_DEPTHS;
+    public static Item LAMENT_DECONSTRUCTOR_CORBA;
+    public static Item LAMENT_DECONSTRUCTOR_TERRANIA;
+    public static Item LAMENT_DECONSTRUCTOR_CLOUDIA;
+    public static Item LAMENT_DECONSTRUCTOR_SENTRY;
+    
+    public static Item SENTRY_DISK;
+    public static Item SENTERIAN_SOUL;
+    public static Item SENTRY_OBSERVER;
 
     public static Item obsidianRod;
 
@@ -502,6 +515,20 @@ public class JourneyItems {
         demonicEye = new ItemDemonicEye("demonicEye", "Demonic Eye");
         darkGem = new ItemDarkGem("darkGem", "Dark Gem");
         ANCIENT_EYE_OF_OPENING = new ItemAncientCatalyst("ancient_eye_of_opening", "Ancient Eye of Opening");
+        
+        LAMENT_DECONSTRUCTOR_NETHER = new ItemMod("lament_deconstructor_nether", "Lament Deconstructor of Hell");
+        LAMENT_DECONSTRUCTOR_BOIL = new ItemMod("lament_deconstructor_boil", "Lament Deconstructor of Fire");
+        LAMENT_DECONSTRUCTOR_EUCA = new ItemMod("lament_deconstructor_euca", "Lament Deconstructor of Light");
+        LAMENT_DECONSTRUCTOR_DEPTHS = new ItemMod("lament_deconstructor_depths", "Lament Deconstructor of Darkness");
+        LAMENT_DECONSTRUCTOR_CORBA = new ItemMod("lament_deconstructor_corba", "Lament Deconstructor of Decay");
+        LAMENT_DECONSTRUCTOR_TERRANIA = new ItemMod("lament_deconstructor_terrania", "Lament Deconstructor of Life");
+        LAMENT_DECONSTRUCTOR_CLOUDIA = new ItemMod("lament_deconstructor_cloudia", "Lament Deconstructor of Heavan");
+        LAMENT_DECONSTRUCTOR_SENTRY = new ItemMod("lament_deconstructor_sentry", "Lament Deconstructor of Death");
+        
+        SENTRY_DISK = new ItemMod("sentry_disk", "Sentry Disk");
+        SENTERIAN_SOUL = new ItemMod("senterian_soul", "Senterian Soul");
+        SENTRY_OBSERVER = new ItemMod("sentry_observer", "Sentry Observer");
+        
         obsidianRod = new ItemMod("obsidianRod", "Obsidian Rod");
         
         LOOT_POUCH = new ItemLootPouch("loot_pouch", "Loot Pouch");

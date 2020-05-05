@@ -1,10 +1,15 @@
 package net.journey.blocks.containers;
 
+import net.journey.blocks.BlockAncientSocket;
 import net.journey.blocks.tileentity.TileEntitySummoningTable;
 import net.journey.client.handler.GuiHandler;
 import net.journey.init.JourneyTabs;
 import net.journey.init.blocks.JourneyBlocks;
+import net.minecraft.block.state.BlockWorldState;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.block.state.pattern.BlockPattern;
+import net.minecraft.block.state.pattern.BlockStateMatcher;
+import net.minecraft.block.state.pattern.FactoryBlockPattern;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.Item;
@@ -24,12 +29,40 @@ import net.slayer.api.EnumMaterialTypes;
 import net.slayer.api.SlayerAPI;
 import net.slayer.api.entity.tileentity.container.BlockModContainer;
 
+import java.util.ArrayList;
 import java.util.Random;
+
+import com.google.common.base.Predicates;
 
 public class BlockSummoningTable extends BlockModContainer {
 
-    public BlockSummoningTable(String name, String f) {
+
+	private static BlockPattern first_layer;
+	private static BlockPattern second_layer;
+	private static BlockPattern third_layer;
+	private static BlockPattern fourth_layer;
+	private static BlockPattern fifth_layer;
+	private static BlockPattern sixth_layer;
+	
+	private static BlockPattern[] layers = {first_layer, second_layer, third_layer, fourth_layer, fifth_layer, sixth_layer};
+	
+	public BlockSummoningTable(String name, String f) {
         super(EnumMaterialTypes.STONE, name, f, 2.0F, JourneyTabs.MACHINE_BLOCKS);
+    }
+    
+    public static BlockPattern[] getOrCreatepattern() {
+        if (first_layer == null) {
+            first_layer = FactoryBlockPattern.start().aisle(
+            "?vrv?", 
+            "v?v?v", 
+            "rvvvr", 
+            "v?v?v", 
+            "?vrv?").where(
+            '?', BlockWorldState.hasState(BlockStateMatcher.ANY)).where(
+            'v', BlockWorldState.hasState(BlockStateMatcher.forBlock(JourneyBlocks.bloodRock))).where(
+            'r', BlockWorldState.hasState(BlockStateMatcher.forBlock(JourneyBlocks.bloodRune))).build();
+        }
+        return layers;
     }
 
     @Override
