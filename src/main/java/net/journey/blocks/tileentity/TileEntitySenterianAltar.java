@@ -10,6 +10,7 @@ import net.journey.entity.mob.senterian.mob.EntitySentryWalker;
 import net.journey.enums.EnumParticlesClasses;
 import net.journey.init.JourneySounds;
 import net.journey.init.items.JourneyItems;
+import net.journey.util.handler.Helper;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -72,7 +73,8 @@ public class TileEntitySenterianAltar extends TileEntity implements ITickable {
 	@Override
 	public void update() {
 		int x = this.pos.getX(), y = this.pos.getY(), z = this.pos.getZ();
-		isFull = getOrbItem() == JourneyItems.sapphire ? true : false;
+		isFull = getOrbItem() == JourneyItems.SENTRY_OBSERVER ? true : false;
+		if(!isFull) orb = null;
 
 		if(isFull && spawnTimer == 0) {
 			spawnTimer = 50;

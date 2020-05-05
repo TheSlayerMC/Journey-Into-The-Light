@@ -77,7 +77,7 @@ public class BlockSenterianAltar extends BlockModContainer implements IHasTeisr,
 		TileEntitySenterianAltar altar = (TileEntitySenterianAltar)worldIn.getTileEntity(pos);
 		if(heldItem != null) {	
 			if(altar.orb == null) {
-				if(heldItem == JourneyItems.sapphire) {//replace with a new item
+				if(heldItem == JourneyItems.SENTRY_OBSERVER) {//replace with a new item
 					altar.orb = heldItem;
 					playerIn.getHeldItemMainhand().shrink(1);
 					((WorldServer) worldIn).getPlayerChunkMap().markBlockForUpdate(pos);
@@ -85,7 +85,7 @@ public class BlockSenterianAltar extends BlockModContainer implements IHasTeisr,
 				}
 			}
 
-			if(heldItem == JourneyItems.ash) {//replace with an item to spawn boss
+			/*if(heldItem == JourneyItems.ash) {//replace with an item to spawn boss
 				if(altar.orb != null) {
 					//EntityFrozenTroll mob = new EntityFrozenTroll(worldIn);
 					//mob.setLocationAndAngles(pos.getX() + 0.5F, pos.getY() + 1.5F, pos.getZ() + 0.5F, 0.0F, 0.0F);
@@ -96,7 +96,7 @@ public class BlockSenterianAltar extends BlockModContainer implements IHasTeisr,
 					((WorldServer) worldIn).getPlayerChunkMap().markBlockForUpdate(pos);
 					return true;
 				}
-			}
+			}*/
 		}
 		((WorldServer) worldIn).getPlayerChunkMap().markBlockForUpdate(pos);
 		return false;
