@@ -41,6 +41,7 @@ public class ItemDescription {
         if (item == JourneyItems.demonicEye) list.add("Inserted into the Corba Portal Frame");
         if (item == JourneyItems.darkGem) list.add("Inserted into the Depths Portal Frame");
         if (item == JourneyItems.sentryEye) list.add("Inserted into the Senterian Portal Frame");
+        if (item == JourneyItems.SENTRY_OBSERVER) list.add("Inserted into the Senterian Altar");
 
     }
 }
