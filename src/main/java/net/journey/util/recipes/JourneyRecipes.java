@@ -63,7 +63,7 @@ public class JourneyRecipes {
 		addShapedRecipe(JourneyBlocks.trophy, "d d", "ddd", " d ", 'd', Items.GOLD_INGOT);
 		addShapedRecipe(JourneyBlocks.grindstone, " o ", "bib", "bbb", 'b', Blocks.BRICK_BLOCK, 'o', Blocks.OBSIDIAN, 'i', Items.IRON_INGOT);
 		addShapedRecipe(Blocks.WEB, "sss", "sss", "sss", 's', Items.STRING);
-		addShapedRecipe(JourneyBlocks.netherFurnace, "ddd", "d d", "ddd", 'd', Blocks.NETHERRACK);
+//		addShapedRecipe(JourneyBlocks.netherFurnace, "ddd", "d d", "ddd", 'd', Blocks.NETHERRACK);
 		addShapedRecipe(JourneyItems.flameCoin, "iii", "idi", "iii", 'i', Items.GOLD_INGOT, 'd', Items.DIAMOND);
 		addShapedRecipe(JourneyItems.hellcrustIngot, "iii", "idi", "iii", 'i', JourneyItems.ash, 'd', JourneyItems.hellstoneIngot);
 		addShapedRecipe(JourneyItems.reinforcedStoneIngot, "ddd", "did", "ddd", 'd', JourneyItems.stoneClump, 'i', Blocks.STONE);
