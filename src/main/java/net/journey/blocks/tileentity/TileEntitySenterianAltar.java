@@ -3,14 +3,12 @@ package net.journey.blocks.tileentity;
 import java.util.Random;
 
 import net.journey.JITL;
-import net.journey.entity.mob.senterian.mob.EntitySentryBlock;
-import net.journey.entity.mob.senterian.mob.EntitySentryLord;
-import net.journey.entity.mob.senterian.mob.EntitySentryStalker;
-import net.journey.entity.mob.senterian.mob.EntitySentryWalker;
+import net.journey.entity.mob.senterian.mob.EntityMiniSentryLord;
+import net.journey.entity.mob.senterian.mob.EntityMiniSentryStalker;
+import net.journey.entity.mob.senterian.mob.EntityMiniSentryWalker;
 import net.journey.enums.EnumParticlesClasses;
 import net.journey.init.JourneySounds;
 import net.journey.init.items.JourneyItems;
-import net.journey.util.handler.Helper;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -107,21 +105,18 @@ public class TileEntitySenterianAltar extends TileEntity implements ITickable {
 		Random r = new Random();
 		int x = this.pos.getX(), y = this.pos.getY(), z = this.pos.getZ();
 		EntityModMob mob = null;
-		switch(r.nextInt(4)) {
+		switch(r.nextInt(3)) {
 		case 0:
-			mob = new EntitySentryLord(world);
+			mob = new EntityMiniSentryLord(world);
 			break;
 		case 1: 
-			mob = new EntitySentryStalker(world);
+			mob = new EntityMiniSentryStalker(world);
 			break;
 		case 2: 
-			mob = new EntitySentryWalker(world);
-			break;
-		case 3:
-			mob = new EntitySentryBlock(world);
+			mob = new EntityMiniSentryWalker(world);
 			break;
 		default: 
-			mob = new EntitySentryLord(world);
+			mob = new EntityMiniSentryLord(world);
 			break;
 		}
 

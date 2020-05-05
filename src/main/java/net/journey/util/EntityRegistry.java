@@ -2,16 +2,12 @@ package net.journey.util;
 
 import net.journey.entity.item.EntityObsidianBoat;
 import net.journey.entity.mob.boiling.*;
-import net.journey.entity.mob.boiling.npc.EntityBoilTrader;
-import net.journey.entity.mob.boiling.npc.EntityEscapedConvict;
+import net.journey.entity.mob.boiling.npc.*;
 import net.journey.entity.mob.boss.*;
 import net.journey.entity.mob.cloudia.*;
-import net.journey.entity.mob.cloudia.npc.EntityStarlightBlacksmith;
-import net.journey.entity.mob.cloudia.npc.EntityStarlightVillager;
+import net.journey.entity.mob.cloudia.npc.*;
 import net.journey.entity.mob.corba.*;
-import net.journey.entity.mob.corba.npc.EntityOvergrownMerchant;
-import net.journey.entity.mob.corba.npc.EntityRedTordo;
-import net.journey.entity.mob.corba.npc.EntityTordo;
+import net.journey.entity.mob.corba.npc.*;
 import net.journey.entity.mob.depths.*;
 import net.journey.entity.mob.depths.npc.EntityStaringGuardian;
 import net.journey.entity.mob.end.EntityEnderCrawler;
@@ -33,51 +29,17 @@ import net.journey.entity.mob.overworld.underground.*;
 import net.journey.entity.mob.overworld.underground.npc.EntityRockiteGolem;
 import net.journey.entity.mob.pet.EntityShiverwolf;
 import net.journey.entity.mob.pet.EntityTameRoc;
-import net.journey.entity.mob.senterian.mob.EntitySentryBlock;
-import net.journey.entity.mob.senterian.mob.EntitySentryLord;
-import net.journey.entity.mob.senterian.mob.EntitySentryStalker;
-import net.journey.entity.mob.senterian.mob.EntitySentryWalker;
+import net.journey.entity.mob.senterian.mob.*;
 import net.journey.entity.mob.terrania.mob.*;
 import net.journey.entity.mob.terrania.npc.EntityTerranianEnchanter;
 import net.journey.entity.mob.terrania.npc.EntityTerranianTrader;
 import net.journey.entity.projectile.*;
-import net.journey.entity.projectile.arrow.EntityDarknessArrow;
-import net.journey.entity.projectile.arrow.EntityEssenceArrow;
-import net.journey.entity.projectile.arrow.EntityFlameArrow;
-import net.journey.entity.projectile.arrow.EntityFrozenArrow;
-import net.journey.entity.projectile.arrow.EntityPoisonArrow;
-import net.journey.entity.projectile.knife.EntityAquaticKnife;
-import net.journey.entity.projectile.knife.EntityBloodKnife;
-import net.journey.entity.projectile.knife.EntityCharredKnife;
-import net.journey.entity.projectile.knife.EntityMoltenKnife;
-import net.journey.entity.projectile.knife.EntitySizzlingKnife;
-import net.journey.entity.projectile.launcher.EntityBouncingProjectile;
-import net.journey.entity.projectile.launcher.EntityChaosProjectile;
-import net.journey.entity.projectile.launcher.EntityForestPlasma;
-import net.journey.entity.projectile.launcher.EntityNetherPlasma;
-import net.journey.entity.projectile.launcher.EntityOceanPlasma;
-import net.journey.entity.projectile.launcher.EntityRock;
-import net.journey.entity.projectile.launcher.EntityRockProjectile;
-import net.journey.entity.projectile.piercer.EntityBoilingPiercer;
-import net.journey.entity.projectile.piercer.EntityCorbaPiercer;
-import net.journey.entity.projectile.piercer.EntityDepthsPiercer;
-import net.journey.entity.projectile.piercer.EntityEucaPiercer;
-import net.journey.entity.projectile.piercer.EntityFrostbittenPiercer;
-import net.journey.entity.projectile.piercer.EntityFrostyPiercer;
-import net.journey.entity.projectile.piercer.EntityFrozenPiercer;
-import net.journey.entity.projectile.piercer.EntityNethicPiercer;
-import net.journey.entity.projectile.piercer.EntitySkyPiercer;
-import net.journey.entity.projectile.piercer.EntitySunsetPiercer;
-import net.journey.entity.projectile.staff.EntityConjuring;
-import net.journey.entity.projectile.staff.EntityDoomsBringer;
-import net.journey.entity.projectile.staff.EntityEnlightenment;
-import net.journey.entity.projectile.staff.EntityGreenpace;
-import net.journey.entity.projectile.staff.EntityOvergrown;
-import net.journey.entity.projectile.staff.EntityWizardsStar;
-import net.journey.entity.projectile.throwable.EntityDemonicBomb;
-import net.journey.entity.projectile.throwable.EntityFireBomb;
-import net.journey.entity.projectile.throwable.EntityMagicBomb;
-import net.journey.entity.projectile.throwable.EntityMagicPot;
+import net.journey.entity.projectile.arrow.*;
+import net.journey.entity.projectile.knife.*;
+import net.journey.entity.projectile.launcher.*;
+import net.journey.entity.projectile.piercer.*;
+import net.journey.entity.projectile.staff.*;
+import net.journey.entity.projectile.throwable.*;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.slayer.api.SlayerAPI;
 
@@ -284,7 +246,9 @@ public class EntityRegistry {
                 SlayerAPI.buildEntityEntry(EntitySentryLord.class, "sentrylord", "Sentry Lord", 0x584040, 0x1C1C1C),
                 SlayerAPI.buildEntityEntry(EntitySentryStalker.class, "sentrystalker", "Sentry Stalker", 0x584040, 0x1C1C1C),
                 SlayerAPI.buildEntityEntry(EntitySentryWalker.class, "sentrywalker", "Sentry Walker", 0x584040, 0x1C1C1C),
-
+                SlayerAPI.buildEntityEntry(EntityMiniSentryLord.class, "miniSentrylord", "Mini Sentry Lord", 0x584040, 0x1C1C1C),
+                SlayerAPI.buildEntityEntry(EntityMiniSentryStalker.class, "miniSentrystalker", "Mini Sentry Stalker", 0x584040, 0x1C1C1C),
+                SlayerAPI.buildEntityEntry(EntityMiniSentryWalker.class, "miniSentrywalker", "Mini Sentry Walker", 0x584040, 0x1C1C1C),
                 //OBSIDIANBOAT
                 SlayerAPI.buildEntityEntryNoEgg(EntityObsidianBoat.class, "obsidianboat", 16)
         };
