@@ -44,10 +44,29 @@ import java.util.Random;
 public class BlockLament extends BlockMod {
 
 	Item insert;
+	private static BlockPattern pattern;
 
     public BlockLament(String name, String f, Item lament) {
         super(name, f, false);
         this.insert = lament;
+    }
+
+    public static BlockPattern getOrCreatepattern() {
+        if (pattern == null) {
+            pattern = FactoryBlockPattern.start().aisle(
+            "?l????l?", 
+            "l??????l", 
+            "????????", 
+            "????????", 
+            "????????", 
+            "????????", 
+            "l??????l", 
+            "?l????l?")
+            		.where(
+            '?', BlockWorldState.hasState(BlockStateMatcher.ANY)).where(
+            'l', BlockWorldState.hasState(BlockStateMatcher.forBlock(JourneyBlocks.LAMENT_CORBA))).build();
+        }
+        return pattern;
     }
 
     @Override

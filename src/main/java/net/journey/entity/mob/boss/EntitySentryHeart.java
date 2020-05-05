@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 
 import com.google.common.base.Optional;
 
+import net.journey.blocks.BlockAncientCatalyst;
 import net.journey.entity.MobStats;
 import net.journey.entity.mob.senterian.mob.EntitySentryBlock;
 import net.journey.init.JourneySounds;
@@ -14,6 +15,7 @@ import net.minecraft.block.BlockPistonBase;
 import net.minecraft.block.BlockPistonExtension;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.block.state.pattern.BlockPattern;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -35,6 +37,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -48,7 +51,7 @@ public class EntitySentryHeart extends EntityEssenceBoss {
     
 	public EntitySentryHeart(World par1World) {
 		super(par1World);
-        this.setSize(7.0F, 17.0F);
+        this.setSize(8.0F, 17.0F);
         this.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(1.0D);
 	}
 
@@ -101,6 +104,13 @@ public class EntitySentryHeart extends EntityEssenceBoss {
         this.prevRenderYawOffset = 180.0F;
         this.renderYawOffset = 180.0F;
         this.rotationYaw = 180.0F;
+        BlockPattern.PatternHelper blockpattern$patternhelper = BlockAncientCatalyst.getOrCreatepattern().match(world, this.getPosition().add(0, 0, 0));
+
+        if (blockpattern$patternhelper != null) {
+            BlockPos blockpos = blockpattern$patternhelper.getFrontTopLeft().add(-1, 0, -1);
+            world.setBlockState(blockpos.add(0, 1, 0), Blocks.OBSIDIAN.getDefaultState(), 2);
+            world.playSound(null, this.getPosition(), JourneySounds.OBELISK_OPEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
+        }
     }
     
 	@Override
