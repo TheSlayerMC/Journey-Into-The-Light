@@ -49,7 +49,7 @@ public class EntitySentryHeart extends EntityEssenceBoss {
 	public EntitySentryHeart(World par1World) {
 		super(par1World);
         this.setSize(7.0F, 17.0F);
-        this.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(3);
+        this.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(1.0D);
 	}
 
 	@Override
@@ -123,6 +123,13 @@ public class EntitySentryHeart extends EntityEssenceBoss {
 			d0 = d0 * (double) (1.0F - entityIn.entityCollisionReduction);
 			d1 = d1 * (double) (1.0F - entityIn.entityCollisionReduction);
 			entityIn.addVelocity(-d0, 0.0D, -d1);
+		}
+	}
+	
+	@Override
+	public void knockBack(Entity entity, float strength, double xRatio, double zRatio) {
+		if (this.getHealth() < 0.0F) {
+			super.knockBack(entity, strength, xRatio, zRatio);
 		}
 	}
 
