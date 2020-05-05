@@ -29,19 +29,28 @@ import net.slayer.api.EnumMaterialTypes;
 import net.slayer.api.SlayerAPI;
 import net.slayer.api.entity.tileentity.container.BlockModContainer;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import com.google.common.base.Predicates;
 
 public class BlockSummoningTable extends BlockModContainer {
 
-    public BlockSummoningTable(String name, String f) {
+
+	private static BlockPattern first_layer;
+	private static BlockPattern second_layer;
+	private static BlockPattern third_layer;
+	private static BlockPattern fourth_layer;
+	private static BlockPattern fifth_layer;
+	private static BlockPattern sixth_layer;
+	
+	private static BlockPattern[] layers = {first_layer, second_layer, third_layer, fourth_layer, fifth_layer, sixth_layer};
+	
+	public BlockSummoningTable(String name, String f) {
         super(EnumMaterialTypes.STONE, name, f, 2.0F, JourneyTabs.MACHINE_BLOCKS);
     }
     
-	private static BlockPattern first_layer;
-    
-    public static BlockPattern getOrCreatepattern() {
+    public static BlockPattern[] getOrCreatepattern() {
         if (first_layer == null) {
             first_layer = FactoryBlockPattern.start().aisle(
             "?vrv?", 
@@ -53,7 +62,7 @@ public class BlockSummoningTable extends BlockModContainer {
             'v', BlockWorldState.hasState(BlockStateMatcher.forBlock(JourneyBlocks.bloodRock))).where(
             'r', BlockWorldState.hasState(BlockStateMatcher.forBlock(JourneyBlocks.bloodRune))).build();
         }
-        return first_layer;
+        return layers;
     }
 
     @Override
