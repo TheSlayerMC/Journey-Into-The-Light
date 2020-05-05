@@ -1,13 +1,10 @@
 {
-  "result": {
-    "item": "journey:hellstonesword"
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "b",
     "b",
     "s"
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
     "b": {
       "item": "journey:hellstoneblock"
@@ -15,5 +12,8 @@
     "s": {
       "item": "journey:obsidianrod"
     }
+  },
+  "result": {
+    "item": "journey:hellstonesword"
   }
 }

@@ -1,16 +1,16 @@
 {
-  "result": {
-    "item": "journey:senterianportalframe",
-    "count": 4
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "iii",
     "iii"
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
     "i": {
       "item": "journey:ancient_stone"
     }
+  },
+  "result": {
+    "item": "journey:senterianportalframe",
+    "count": 4
   }
 }

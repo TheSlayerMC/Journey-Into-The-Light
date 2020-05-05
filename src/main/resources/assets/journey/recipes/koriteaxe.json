@@ -1,19 +1,19 @@
 {
-  "result": {
-    "item": "journey:koriteaxe"
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     " ii",
     " si",
     " s "
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
-    "s": {
-      "item": "journey:obsidianrod"
-    },
     "i": {
       "item": "journey:koriteingot"
+    },
+    "s": {
+      "item": "journey:obsidianrod"
     }
+  },
+  "result": {
+    "item": "journey:koriteaxe"
   }
 }

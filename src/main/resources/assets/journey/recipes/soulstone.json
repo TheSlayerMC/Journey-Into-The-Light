@@ -1,7 +1,5 @@
 {
-  "result": {
-    "item": "journey:soulstone"
-  },
+  "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
       "item": "journey:bleedstonedust"
@@ -10,5 +8,7 @@
       "item": "journey:smithstonedust"
     }
   ],
-  "type": "minecraft:crafting_shapeless"
+  "result": {
+    "item": "journey:soulstone"
+  }
 }

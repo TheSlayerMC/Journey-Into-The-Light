@@ -1,12 +1,12 @@
 {
-  "result": {
-    "item": "journey:enderilliumshard",
-    "count": 9
-  },
+  "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
       "item": "journey:enderilliumblock"
     }
   ],
-  "type": "minecraft:crafting_shapeless"
+  "result": {
+    "item": "journey:enderilliumshard",
+    "count": 9
+  }
 }

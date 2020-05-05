@@ -1,19 +1,19 @@
 {
-  "result": {
-    "item": "journey:hellcrustingot"
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "iii",
     "idi",
     "iii"
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
-    "d": {
-      "item": "journey:hellstoneingot"
-    },
     "i": {
       "item": "journey:ash"
+    },
+    "d": {
+      "item": "journey:hellstoneingot"
     }
+  },
+  "result": {
+    "item": "journey:hellcrustingot"
   }
 }

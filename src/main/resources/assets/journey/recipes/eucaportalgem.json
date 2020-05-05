@@ -1,8 +1,5 @@
 {
-  "result": {
-    "item": "journey:eucaportalgem",
-    "count": 10
-  },
+  "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
       "item": "journey:eucaportalpiece"
@@ -14,5 +11,8 @@
       "item": "journey:eucaportalpiece_1"
     }
   ],
-  "type": "minecraft:crafting_shapeless"
+  "result": {
+    "item": "journey:eucaportalgem",
+    "count": 10
+  }
 }

@@ -1,12 +1,12 @@
 {
-  "result": {
-    "item": "journey:mekyumingot",
-    "count": 9
-  },
+  "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
       "item": "journey:mekyumblock"
     }
   ],
-  "type": "minecraft:crafting_shapeless"
+  "result": {
+    "item": "journey:mekyumingot",
+    "count": 9
+  }
 }

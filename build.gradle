@@ -31,8 +31,10 @@ minecraft {
     runDir = "run"
 
     replaceIn "src/main/java/net/slayer/api/SlayerAPI.java"
+    replaceIn "src/main/java/net/journey/JITL.java"
 
     replace "GRADLETOKEN_VERSION", config.jitl.version
+    replace "IN_JOURNEY_DEV = true", "IN_JOURNEY_DEV = false"
     
     // the mappings can be changed at any time, and must be in the following format.
     // snapshot_YYYYMMDD   snapshot are built nightly.

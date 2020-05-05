@@ -1,13 +1,10 @@
 {
-  "result": {
-    "item": "journey:fireboundlegs"
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "idi",
     "d d",
     "i i"
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
     "d": {
       "item": "minecraft:blaze_rod"
@@ -15,5 +12,8 @@
     "i": {
       "item": "journey:hellstoneblock"
     }
+  },
+  "result": {
+    "item": "journey:fireboundlegs"
   }
 }

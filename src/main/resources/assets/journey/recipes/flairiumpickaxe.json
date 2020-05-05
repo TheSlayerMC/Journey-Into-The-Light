@@ -1,19 +1,19 @@
 {
-  "result": {
-    "item": "journey:flairiumpickaxe"
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "iii",
     " s ",
     " s "
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
-    "s": {
-      "item": "journey:obsidianrod"
-    },
     "i": {
       "item": "journey:flairiumingot"
+    },
+    "s": {
+      "item": "journey:obsidianrod"
     }
+  },
+  "result": {
+    "item": "journey:flairiumpickaxe"
   }
 }

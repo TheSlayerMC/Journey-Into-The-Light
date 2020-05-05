@@ -1,12 +1,12 @@
 {
-  "result": {
-    "item": "journey:smithstonedust",
-    "count": 4
-  },
+  "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
       "item": "journey:smithstone"
     }
   ],
-  "type": "minecraft:crafting_shapeless"
+  "result": {
+    "item": "journey:smithstonedust",
+    "count": 4
+  }
 }

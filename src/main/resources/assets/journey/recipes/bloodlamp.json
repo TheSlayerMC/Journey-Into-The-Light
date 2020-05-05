@@ -1,20 +1,20 @@
 {
-  "result": {
-    "item": "journey:bloodlamp",
-    "count": 4
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "ddd",
     "did",
     "ddd"
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
-    "d": {
-      "item": "journey:bloodrock"
-    },
     "i": {
       "item": "minecraft:glowstone"
+    },
+    "d": {
+      "item": "journey:bloodrock"
     }
+  },
+  "result": {
+    "item": "journey:bloodlamp",
+    "count": 4
   }
 }

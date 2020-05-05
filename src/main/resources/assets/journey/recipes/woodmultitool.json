@@ -1,7 +1,5 @@
 {
-  "result": {
-    "item": "journey:woodmultitool"
-  },
+  "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
       "item": "minecraft:wooden_pickaxe"
@@ -16,5 +14,7 @@
       "item": "minecraft:wooden_axe"
     }
   ],
-  "type": "minecraft:crafting_shapeless"
+  "result": {
+    "item": "journey:woodmultitool"
+  }
 }

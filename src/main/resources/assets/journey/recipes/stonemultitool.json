@@ -1,7 +1,5 @@
 {
-  "result": {
-    "item": "journey:stonemultitool"
-  },
+  "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
       "item": "minecraft:stone_pickaxe"
@@ -16,5 +14,7 @@
       "item": "minecraft:stone_axe"
     }
   ],
-  "type": "minecraft:crafting_shapeless"
+  "result": {
+    "item": "journey:stonemultitool"
+  }
 }

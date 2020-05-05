@@ -1,16 +1,16 @@
 {
-  "result": {
-    "item": "journey:desblock"
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "iii",
     "iii",
     "iii"
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
     "i": {
       "item": "journey:desingot"
     }
+  },
+  "result": {
+    "item": "journey:desblock"
   }
 }

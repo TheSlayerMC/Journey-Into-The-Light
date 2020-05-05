@@ -1,13 +1,10 @@
 {
-  "result": {
-    "item": "journey:storonsword"
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "b",
     "b",
     "s"
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
     "b": {
       "item": "journey:storonblock"
@@ -15,5 +12,8 @@
     "s": {
       "item": "journey:obsidianrod"
     }
+  },
+  "result": {
+    "item": "journey:storonsword"
   }
 }

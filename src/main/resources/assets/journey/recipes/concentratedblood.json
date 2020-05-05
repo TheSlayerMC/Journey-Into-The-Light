@@ -1,19 +1,19 @@
 {
-  "result": {
-    "item": "journey:concentratedblood"
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "ddd",
     "did",
     "ddd"
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
-    "d": {
-      "item": "journey:blood"
-    },
     "i": {
       "item": "journey:lostsoul"
+    },
+    "d": {
+      "item": "journey:blood"
     }
+  },
+  "result": {
+    "item": "journey:concentratedblood"
   }
 }

@@ -1,19 +1,19 @@
 {
-  "result": {
-    "item": "journey:withicsoul"
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "ddd",
     "did",
     "ddd"
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
-    "d": {
-      "item": "journey:withicdust"
-    },
     "i": {
       "item": "journey:lostsoul"
+    },
+    "d": {
+      "item": "journey:withicdust"
     }
+  },
+  "result": {
+    "item": "journey:withicsoul"
   }
 }

@@ -1,13 +1,10 @@
 {
-  "result": {
-    "item": "journey:reinforcedstoneingot"
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "ddd",
     "did",
     "ddd"
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
     "d": {
       "item": "journey:stoneclump"
@@ -16,5 +13,8 @@
       "item": "minecraft:stone",
       "data": 0
     }
+  },
+  "result": {
+    "item": "journey:reinforcedstoneingot"
   }
 }

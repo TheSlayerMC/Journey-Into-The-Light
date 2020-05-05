@@ -1,7 +1,5 @@
 {
-  "result": {
-    "item": "journey:shadiummultitool"
-  },
+  "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
       "item": "journey:shadiumpickaxe"
@@ -16,5 +14,7 @@
       "item": "journey:shadiumaxe"
     }
   ],
-  "type": "minecraft:crafting_shapeless"
+  "result": {
+    "item": "journey:shadiummultitool"
+  }
 }

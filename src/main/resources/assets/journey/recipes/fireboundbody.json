@@ -1,13 +1,10 @@
 {
-  "result": {
-    "item": "journey:fireboundbody"
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "i i",
     "did",
     "idi"
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
     "d": {
       "item": "minecraft:blaze_rod"
@@ -15,5 +12,8 @@
     "i": {
       "item": "journey:hellstoneblock"
     }
+  },
+  "result": {
+    "item": "journey:fireboundbody"
   }
 }

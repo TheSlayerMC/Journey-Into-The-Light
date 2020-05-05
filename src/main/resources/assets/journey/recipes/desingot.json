@@ -1,12 +1,12 @@
 {
-  "result": {
-    "item": "journey:desingot",
-    "count": 9
-  },
+  "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
       "item": "journey:desblock"
     }
   ],
-  "type": "minecraft:crafting_shapeless"
+  "result": {
+    "item": "journey:desingot",
+    "count": 9
+  }
 }

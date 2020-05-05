@@ -1,12 +1,9 @@
 {
-  "result": {
-    "item": "journey:blazehornboots"
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "d d",
     "i i"
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
     "d": {
       "item": "minecraft:blaze_rod"
@@ -14,5 +11,8 @@
     "i": {
       "item": "journey:horn"
     }
+  },
+  "result": {
+    "item": "journey:blazehornboots"
   }
 }

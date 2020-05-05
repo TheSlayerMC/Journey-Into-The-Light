@@ -1,16 +1,16 @@
 {
-  "result": {
-    "item": "journey:hellstonebody"
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "i i",
     "iii",
     "iii"
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
     "i": {
       "item": "journey:hellstoneingot"
     }
+  },
+  "result": {
+    "item": "journey:hellstonebody"
   }
 }

@@ -1,7 +1,5 @@
 {
-  "result": {
-    "item": "journey:flairiummultitool"
-  },
+  "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
       "item": "journey:flairiumpickaxe"
@@ -16,5 +14,7 @@
       "item": "journey:flairiumaxe"
     }
   ],
-  "type": "minecraft:crafting_shapeless"
+  "result": {
+    "item": "journey:flairiummultitool"
+  }
 }

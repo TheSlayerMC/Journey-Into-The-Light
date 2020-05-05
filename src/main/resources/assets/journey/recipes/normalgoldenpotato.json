@@ -1,19 +1,19 @@
 {
-  "result": {
-    "item": "journey:normalgoldenpotato"
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "iii",
     "ibi",
     "iii"
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
-    "b": {
-      "item": "minecraft:potato"
-    },
     "i": {
       "item": "minecraft:gold_ingot"
+    },
+    "b": {
+      "item": "minecraft:potato"
     }
+  },
+  "result": {
+    "item": "journey:normalgoldenpotato"
   }
 }

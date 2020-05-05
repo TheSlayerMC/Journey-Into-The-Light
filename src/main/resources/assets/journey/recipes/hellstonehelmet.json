@@ -1,15 +1,15 @@
 {
-  "result": {
-    "item": "journey:hellstonehelmet"
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "iii",
     "i i"
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
     "i": {
       "item": "journey:hellstoneingot"
     }
+  },
+  "result": {
+    "item": "journey:hellstonehelmet"
   }
 }

@@ -1,7 +1,5 @@
 {
-  "result": {
-    "item": "journey:sapphiremultitool"
-  },
+  "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
       "item": "journey:sapphirepickaxe"
@@ -16,5 +14,7 @@
       "item": "journey:sapphireaxe"
     }
   ],
-  "type": "minecraft:crafting_shapeless"
+  "result": {
+    "item": "journey:sapphiremultitool"
+  }
 }

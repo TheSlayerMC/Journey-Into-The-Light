@@ -1,12 +1,12 @@
 {
-  "result": {
-    "item": "journey:bleedstonedust",
-    "count": 4
-  },
+  "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
       "item": "journey:bleedstone"
     }
   ],
-  "type": "minecraft:crafting_shapeless"
+  "result": {
+    "item": "journey:bleedstonedust",
+    "count": 4
+  }
 }

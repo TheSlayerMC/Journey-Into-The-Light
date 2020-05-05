@@ -1,15 +1,15 @@
 {
-  "result": {
-    "item": "journey:luniumboots"
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "i i",
     "i i"
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
     "i": {
       "item": "journey:luniumingot"
     }
+  },
+  "result": {
+    "item": "journey:luniumboots"
   }
 }

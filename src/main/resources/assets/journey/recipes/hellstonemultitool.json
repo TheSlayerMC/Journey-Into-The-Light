@@ -1,7 +1,5 @@
 {
-  "result": {
-    "item": "journey:hellstonemultitool"
-  },
+  "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
       "item": "journey:hellstonepickaxe"
@@ -16,5 +14,7 @@
       "item": "journey:hellstoneaxe"
     }
   ],
-  "type": "minecraft:crafting_shapeless"
+  "result": {
+    "item": "journey:hellstonemultitool"
+  }
 }

@@ -1,19 +1,19 @@
 {
-  "result": {
-    "item": "journey:pedalsword"
-  },
-  "pattern": [
-    "d",
-    "d",
-    "i"
-  ],
   "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " i ",
+    " i ",
+    " s "
+  ],
   "key": {
-    "d": {
+    "i": {
       "item": "journey:floropedal"
     },
-    "i": {
+    "s": {
       "item": "journey:stoneclump"
     }
+  },
+  "result": {
+    "item": "journey:pedalsword"
   }
 }

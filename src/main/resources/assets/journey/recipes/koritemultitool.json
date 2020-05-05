@@ -1,7 +1,5 @@
 {
-  "result": {
-    "item": "journey:koritemultitool"
-  },
+  "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
       "item": "journey:koritepickaxe"
@@ -16,5 +14,7 @@
       "item": "journey:koriteaxe"
     }
   ],
-  "type": "minecraft:crafting_shapeless"
+  "result": {
+    "item": "journey:koritemultitool"
+  }
 }

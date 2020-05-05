@@ -1,19 +1,19 @@
 {
-  "result": {
-    "item": "journey:flamecoin"
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "iii",
     "idi",
     "iii"
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
-    "d": {
-      "item": "minecraft:diamond"
-    },
     "i": {
       "item": "minecraft:gold_ingot"
+    },
+    "d": {
+      "item": "minecraft:diamond"
     }
+  },
+  "result": {
+    "item": "journey:flamecoin"
   }
 }

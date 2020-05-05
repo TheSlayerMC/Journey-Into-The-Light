@@ -1,20 +1,11 @@
 {
-  "result": {
-    "item": "journey:igniter"
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "iii",
     "jkj",
     "cfc"
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
-    "c": {
-      "item": "minecraft:cobblestone"
-    },
-    "f": {
-      "item": "minecraft:flint_and_steel"
-    },
     "i": {
       "item": "minecraft:netherrack"
     },
@@ -23,6 +14,15 @@
     },
     "k": {
       "item": "journey:lavarock"
+    },
+    "c": {
+      "item": "minecraft:cobblestone"
+    },
+    "f": {
+      "item": "minecraft:flint_and_steel"
     }
+  },
+  "result": {
+    "item": "journey:igniter"
   }
 }

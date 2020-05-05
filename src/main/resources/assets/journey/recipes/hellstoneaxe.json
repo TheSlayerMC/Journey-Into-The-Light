@@ -1,19 +1,19 @@
 {
-  "result": {
-    "item": "journey:hellstoneaxe"
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     " ii",
     " si",
     " s "
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
-    "s": {
-      "item": "journey:obsidianrod"
-    },
     "i": {
       "item": "journey:hellstoneingot"
+    },
+    "s": {
+      "item": "journey:obsidianrod"
     }
+  },
+  "result": {
+    "item": "journey:hellstoneaxe"
   }
 }

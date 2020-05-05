@@ -1,20 +1,20 @@
 {
-  "result": {
-    "item": "journey:opgoldenfish"
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "iii",
     "ibi",
     "iii"
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
+    "i": {
+      "item": "minecraft:gold_block"
+    },
     "b": {
       "item": "minecraft:fish",
       "data": 0
-    },
-    "i": {
-      "item": "minecraft:gold_block"
     }
+  },
+  "result": {
+    "item": "journey:opgoldenfish"
   }
 }

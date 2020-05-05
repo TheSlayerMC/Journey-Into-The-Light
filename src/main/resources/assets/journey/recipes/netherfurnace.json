@@ -1,16 +1,16 @@
 {
-  "result": {
-    "item": "journey:netherfurnace"
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "ddd",
     "d d",
     "ddd"
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
     "d": {
       "item": "minecraft:netherrack"
     }
+  },
+  "result": {
+    "item": "journey:netherfurnace"
   }
 }

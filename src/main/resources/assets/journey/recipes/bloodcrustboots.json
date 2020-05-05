@@ -1,12 +1,9 @@
 {
-  "result": {
-    "item": "journey:bloodcrustboots"
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "d d",
     "i i"
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
     "d": {
       "item": "journey:hellstoneingot"
@@ -14,5 +11,8 @@
     "i": {
       "item": "journey:hellcrustingot"
     }
+  },
+  "result": {
+    "item": "journey:bloodcrustboots"
   }
 }

@@ -1,16 +1,16 @@
 {
-  "result": {
-    "item": "journey:sapphirebody"
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "i i",
     "iii",
     "iii"
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
     "i": {
       "item": "journey:sapphire"
     }
+  },
+  "result": {
+    "item": "journey:sapphirebody"
   }
 }

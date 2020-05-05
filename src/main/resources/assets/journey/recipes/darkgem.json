@@ -1,7 +1,5 @@
 {
-  "result": {
-    "item": "journey:darkgem"
-  },
+  "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
       "item": "journey:shadiumingot"
@@ -10,5 +8,7 @@
       "item": "minecraft:diamond"
     }
   ],
-  "type": "minecraft:crafting_shapeless"
+  "result": {
+    "item": "journey:darkgem"
+  }
 }

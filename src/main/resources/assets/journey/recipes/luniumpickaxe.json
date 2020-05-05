@@ -1,19 +1,19 @@
 {
-  "result": {
-    "item": "journey:luniumpickaxe"
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "iii",
     " s ",
     " s "
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
-    "s": {
-      "item": "journey:obsidianrod"
-    },
     "i": {
       "item": "journey:luniumingot"
+    },
+    "s": {
+      "item": "journey:obsidianrod"
     }
+  },
+  "result": {
+    "item": "journey:luniumpickaxe"
   }
 }

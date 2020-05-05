@@ -1,19 +1,19 @@
 {
-  "result": {
-    "item": "journey:gorbitepickaxe"
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "iii",
     " s ",
     " s "
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
-    "s": {
-      "item": "journey:obsidianrod"
-    },
     "i": {
       "item": "journey:gorbitegem"
+    },
+    "s": {
+      "item": "journey:obsidianrod"
     }
+  },
+  "result": {
+    "item": "journey:gorbitepickaxe"
   }
 }

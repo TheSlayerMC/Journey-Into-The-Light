@@ -24,6 +24,7 @@ import net.journey.init.items.JourneyWeapons;
 import net.journey.util.Config;
 import net.journey.util.JourneyFuelHandler;
 import net.journey.util.LangRegistry;
+import net.journey.util.recipes.JourneyRecipes;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -123,6 +124,7 @@ public class CommonProxy {
 
     public void init(FMLInitializationEvent event) {
         JourneyTabs.init();
+        JourneyRecipes.init();
         GameRegistry.registerWorldGenerator(new WorldGenJourney(), 2);
         SlayerAPI.registerEventListener(new PlayerEvent());
     }

@@ -1,7 +1,5 @@
 {
-  "result": {
-    "item": "journey:desmultitool"
-  },
+  "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
       "item": "journey:despickaxe"
@@ -16,5 +14,7 @@
       "item": "journey:desaxe"
     }
   ],
-  "type": "minecraft:crafting_shapeless"
+  "result": {
+    "item": "journey:desmultitool"
+  }
 }

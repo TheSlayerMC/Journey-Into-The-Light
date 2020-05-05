@@ -1,16 +1,16 @@
 {
-  "result": {
-    "item": "journey:bloodbricks",
-    "count": 4
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "dd",
     "dd"
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
     "d": {
       "item": "journey:bloodrock"
     }
+  },
+  "result": {
+    "item": "journey:bloodbricks",
+    "count": 4
   }
 }

@@ -1,14 +1,14 @@
 {
-  "result": {
-    "item": "journey:shadiumclump"
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "iii"
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
     "i": {
       "item": "journey:shadiumingot"
     }
+  },
+  "result": {
+    "item": "journey:shadiumclump"
   }
 }

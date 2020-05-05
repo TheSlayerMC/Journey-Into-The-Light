@@ -1,15 +1,15 @@
 {
-  "result": {
-    "item": "journey:bleedstoneore"
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "ii",
     "ii"
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
     "i": {
       "item": "journey:bleedstone"
     }
+  },
+  "result": {
+    "item": "journey:bleedstoneore"
   }
 }

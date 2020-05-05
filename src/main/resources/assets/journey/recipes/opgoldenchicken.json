@@ -1,19 +1,19 @@
 {
-  "result": {
-    "item": "journey:opgoldenchicken"
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "iii",
     "ibi",
     "iii"
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
-    "b": {
-      "item": "minecraft:chicken"
-    },
     "i": {
       "item": "minecraft:gold_block"
+    },
+    "b": {
+      "item": "minecraft:chicken"
     }
+  },
+  "result": {
+    "item": "journey:opgoldenchicken"
   }
 }

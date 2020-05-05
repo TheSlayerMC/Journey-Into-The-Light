@@ -1,19 +1,19 @@
 {
-  "result": {
-    "item": "journey:normalgoldenrabbit"
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "iii",
     "ibi",
     "iii"
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
-    "b": {
-      "item": "minecraft:rabbit"
-    },
     "i": {
       "item": "minecraft:gold_ingot"
+    },
+    "b": {
+      "item": "minecraft:rabbit"
     }
+  },
+  "result": {
+    "item": "journey:normalgoldenrabbit"
   }
 }

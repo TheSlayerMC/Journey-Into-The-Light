@@ -1,16 +1,16 @@
 {
-  "result": {
-    "item": "journey:corbaportalframe",
-    "count": 12
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "iii",
     "iii"
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
     "i": {
       "item": "journey:corbaportalgem"
     }
+  },
+  "result": {
+    "item": "journey:corbaportalframe",
+    "count": 12
   }
 }

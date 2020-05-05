@@ -1,16 +1,16 @@
 {
-  "result": {
-    "item": "journey:flairiumlegs"
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "iii",
     "i i",
     "i i"
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
     "i": {
       "item": "journey:flairiumingot"
     }
+  },
+  "result": {
+    "item": "journey:flairiumlegs"
   }
 }

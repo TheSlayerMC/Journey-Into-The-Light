@@ -1,16 +1,16 @@
 {
-  "result": {
-    "item": "journey:yellowgemblock"
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "iii",
     "iii",
     "iii"
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
     "i": {
       "item": "journey:yellowgem"
     }
+  },
+  "result": {
+    "item": "journey:yellowgemblock"
   }
 }

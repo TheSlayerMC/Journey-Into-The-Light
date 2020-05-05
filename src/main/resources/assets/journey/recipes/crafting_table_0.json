@@ -1,15 +1,15 @@
 {
-  "result": {
-    "item": "minecraft:crafting_table"
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "ii",
     "ii"
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
     "i": {
       "item": "journey:depthsplank"
     }
+  },
+  "result": {
+    "item": "minecraft:crafting_table"
   }
 }

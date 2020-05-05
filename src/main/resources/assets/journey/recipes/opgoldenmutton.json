@@ -1,19 +1,19 @@
 {
-  "result": {
-    "item": "journey:opgoldenmutton"
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "iii",
     "ibi",
     "iii"
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
-    "b": {
-      "item": "minecraft:mutton"
-    },
     "i": {
       "item": "minecraft:gold_block"
+    },
+    "b": {
+      "item": "minecraft:mutton"
     }
+  },
+  "result": {
+    "item": "journey:opgoldenmutton"
   }
 }

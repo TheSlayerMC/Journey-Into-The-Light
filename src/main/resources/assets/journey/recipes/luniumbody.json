@@ -1,16 +1,16 @@
 {
-  "result": {
-    "item": "journey:luniumbody"
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "i i",
     "iii",
     "iii"
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
     "i": {
       "item": "journey:luniumingot"
     }
+  },
+  "result": {
+    "item": "journey:luniumbody"
   }
 }

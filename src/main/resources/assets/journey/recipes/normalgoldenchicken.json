@@ -1,19 +1,19 @@
 {
-  "result": {
-    "item": "journey:normalgoldenchicken"
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "iii",
     "ibi",
     "iii"
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
-    "b": {
-      "item": "minecraft:chicken"
-    },
     "i": {
       "item": "minecraft:gold_ingot"
+    },
+    "b": {
+      "item": "minecraft:chicken"
     }
+  },
+  "result": {
+    "item": "journey:normalgoldenchicken"
   }
 }

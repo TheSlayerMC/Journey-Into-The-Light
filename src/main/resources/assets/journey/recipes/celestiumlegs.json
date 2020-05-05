@@ -1,16 +1,16 @@
 {
-  "result": {
-    "item": "journey:celestiumlegs"
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "iii",
     "i i",
     "i i"
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
     "i": {
       "item": "journey:celestiumingot"
     }
+  },
+  "result": {
+    "item": "journey:celestiumlegs"
   }
 }

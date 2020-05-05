@@ -1,17 +1,17 @@
 {
-  "result": {
-    "item": "journey:depthsplank",
-    "count": 4
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "i  ",
     "ii ",
     "iii"
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
     "i": {
       "item": "journey:depthsplank"
     }
+  },
+  "result": {
+    "item": "journey:depthsplank",
+    "count": 4
   }
 }

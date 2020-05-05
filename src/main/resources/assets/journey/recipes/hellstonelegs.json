@@ -1,16 +1,16 @@
 {
-  "result": {
-    "item": "journey:hellstonelegs"
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "iii",
     "i i",
     "i i"
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
     "i": {
       "item": "journey:hellstoneingot"
     }
+  },
+  "result": {
+    "item": "journey:hellstonelegs"
   }
 }

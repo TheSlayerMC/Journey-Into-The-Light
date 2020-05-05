@@ -1,16 +1,16 @@
 {
-  "result": {
-    "item": "journey:nethicgemstoneblock"
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "iii",
     "iii",
     "iii"
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
     "i": {
       "item": "journey:soulstone"
     }
+  },
+  "result": {
+    "item": "journey:nethicgemstoneblock"
   }
 }

@@ -1,13 +1,10 @@
 {
-  "result": {
-    "item": "journey:bleedrockbody"
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "i i",
     "did",
     "idi"
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
     "d": {
       "item": "journey:lavarock"
@@ -15,5 +12,8 @@
     "i": {
       "item": "journey:concentratedblood"
     }
+  },
+  "result": {
+    "item": "journey:bleedrockbody"
   }
 }

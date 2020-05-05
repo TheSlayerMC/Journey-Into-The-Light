@@ -1,7 +1,5 @@
 {
-  "result": {
-    "item": "journey:orbaditemultitool"
-  },
+  "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
       "item": "journey:orbaditepickaxe"
@@ -16,5 +14,7 @@
       "item": "journey:orbaditeaxe"
     }
   ],
-  "type": "minecraft:crafting_shapeless"
+  "result": {
+    "item": "journey:orbaditemultitool"
+  }
 }

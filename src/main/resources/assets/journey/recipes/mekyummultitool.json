@@ -1,7 +1,5 @@
 {
-  "result": {
-    "item": "journey:mekyummultitool"
-  },
+  "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
       "item": "journey:mekyumpickaxe"
@@ -16,5 +14,7 @@
       "item": "journey:mekyumaxe"
     }
   ],
-  "type": "minecraft:crafting_shapeless"
+  "result": {
+    "item": "journey:mekyummultitool"
+  }
 }

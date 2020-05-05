@@ -1,15 +1,15 @@
 {
-  "result": {
-    "item": "journey:shadiumboots"
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "i i",
     "i i"
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
     "i": {
       "item": "journey:shadiumingot"
     }
+  },
+  "result": {
+    "item": "journey:shadiumboots"
   }
 }

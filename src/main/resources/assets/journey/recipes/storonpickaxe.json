@@ -1,19 +1,19 @@
 {
-  "result": {
-    "item": "journey:storonpickaxe"
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "iii",
     " s ",
     " s "
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
-    "s": {
-      "item": "journey:obsidianrod"
-    },
     "i": {
       "item": "journey:storoningot"
+    },
+    "s": {
+      "item": "journey:obsidianrod"
     }
+  },
+  "result": {
+    "item": "journey:storonpickaxe"
   }
 }

@@ -1,15 +1,15 @@
 {
-  "result": {
-    "item": "journey:bluegem",
-    "count": 9
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "i"
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
     "i": {
       "item": "journey:bluegemblock"
     }
+  },
+  "result": {
+    "item": "journey:bluegem",
+    "count": 9
   }
 }

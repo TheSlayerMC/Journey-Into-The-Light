@@ -1,16 +1,16 @@
 {
-  "result": {
-    "item": "journey:celestiumbody"
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "i i",
     "iii",
     "iii"
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
     "i": {
       "item": "journey:celestiumingot"
     }
+  },
+  "result": {
+    "item": "journey:celestiumbody"
   }
 }

@@ -1,19 +1,19 @@
 {
-  "result": {
-    "item": "journey:desshovel"
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     " i ",
     " s ",
     " s "
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
-    "s": {
-      "item": "journey:obsidianrod"
-    },
     "i": {
       "item": "journey:desingot"
+    },
+    "s": {
+      "item": "journey:obsidianrod"
     }
+  },
+  "result": {
+    "item": "journey:desshovel"
   }
 }

@@ -1,7 +1,5 @@
 {
-  "result": {
-    "item": "journey:celestiummultitool"
-  },
+  "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
       "item": "journey:celestiumpickaxe"
@@ -16,5 +14,7 @@
       "item": "journey:celestiumaxe"
     }
   ],
-  "type": "minecraft:crafting_shapeless"
+  "result": {
+    "item": "journey:celestiummultitool"
+  }
 }

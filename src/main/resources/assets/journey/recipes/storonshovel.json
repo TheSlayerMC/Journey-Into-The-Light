@@ -1,19 +1,19 @@
 {
-  "result": {
-    "item": "journey:storonshovel"
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     " i ",
     " s ",
     " s "
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
-    "s": {
-      "item": "journey:obsidianrod"
-    },
     "i": {
       "item": "journey:storoningot"
+    },
+    "s": {
+      "item": "journey:obsidianrod"
     }
+  },
+  "result": {
+    "item": "journey:storonshovel"
   }
 }

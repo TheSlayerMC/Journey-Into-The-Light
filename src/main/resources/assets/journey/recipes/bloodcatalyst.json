@@ -1,19 +1,19 @@
 {
-  "result": {
-    "item": "journey:bloodcatalyst"
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "ddd",
     "did",
     "ddd"
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
-    "d": {
-      "item": "journey:blood"
-    },
     "i": {
       "item": "journey:bloodrock"
+    },
+    "d": {
+      "item": "journey:blood"
     }
+  },
+  "result": {
+    "item": "journey:bloodcatalyst"
   }
 }

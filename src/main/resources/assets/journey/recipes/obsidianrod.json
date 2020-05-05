@@ -1,16 +1,16 @@
 {
-  "result": {
-    "item": "journey:obsidianrod",
-    "count": 2
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "d",
     "d"
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
     "d": {
       "item": "minecraft:obsidian"
     }
+  },
+  "result": {
+    "item": "journey:obsidianrod",
+    "count": 2
   }
 }

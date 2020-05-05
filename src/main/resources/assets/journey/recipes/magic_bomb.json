@@ -1,13 +1,10 @@
 {
-  "result": {
-    "item": "journey:magic_bomb"
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "ddd",
     "did",
     "ddd"
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
     "d": {
       "item": "journey:magic_dust"
@@ -15,5 +12,8 @@
     "i": {
       "item": "journey:demonicbomb"
     }
+  },
+  "result": {
+    "item": "journey:magic_bomb"
   }
 }

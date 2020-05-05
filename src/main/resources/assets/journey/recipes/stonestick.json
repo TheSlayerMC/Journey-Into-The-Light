@@ -1,18 +1,18 @@
 {
-  "result": {
-    "item": "journey:stonestick",
-    "count": 16
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "d",
     "d",
     "d"
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
     "d": {
       "item": "minecraft:stone",
       "data": 0
     }
+  },
+  "result": {
+    "item": "journey:stonestick",
+    "count": 16
   }
 }

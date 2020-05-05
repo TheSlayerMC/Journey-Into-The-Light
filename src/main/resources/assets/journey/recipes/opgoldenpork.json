@@ -1,19 +1,19 @@
 {
-  "result": {
-    "item": "journey:opgoldenpork"
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "iii",
     "ibi",
     "iii"
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
-    "b": {
-      "item": "minecraft:porkchop"
-    },
     "i": {
       "item": "minecraft:gold_block"
+    },
+    "b": {
+      "item": "minecraft:porkchop"
     }
+  },
+  "result": {
+    "item": "journey:opgoldenpork"
   }
 }

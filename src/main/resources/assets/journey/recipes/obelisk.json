@@ -1,19 +1,19 @@
 {
-  "result": {
-    "item": "journey:obelisk"
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "ddd",
     "did",
     "ddd"
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
-    "d": {
-      "item": "journey:boilpowder"
-    },
     "i": {
       "item": "journey:bloodrock"
+    },
+    "d": {
+      "item": "journey:boilpowder"
     }
+  },
+  "result": {
+    "item": "journey:obelisk"
   }
 }

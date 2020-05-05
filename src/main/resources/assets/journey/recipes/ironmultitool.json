@@ -1,7 +1,5 @@
 {
-  "result": {
-    "item": "journey:ironmultitool"
-  },
+  "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
       "item": "minecraft:iron_pickaxe"
@@ -16,5 +14,7 @@
       "item": "minecraft:iron_axe"
     }
   ],
-  "type": "minecraft:crafting_shapeless"
+  "result": {
+    "item": "journey:ironmultitool"
+  }
 }

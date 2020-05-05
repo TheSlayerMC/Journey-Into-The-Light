@@ -1,16 +1,16 @@
 {
-  "result": {
-    "item": "journey:shadiumblock"
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "iii",
     "iii",
     "iii"
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
     "i": {
       "item": "journey:shadiumingot"
     }
+  },
+  "result": {
+    "item": "journey:shadiumblock"
   }
 }

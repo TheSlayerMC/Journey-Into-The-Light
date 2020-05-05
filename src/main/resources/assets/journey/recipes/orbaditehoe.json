@@ -1,19 +1,19 @@
 {
-  "result": {
-    "item": "journey:orbaditehoe"
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     " ii",
     " s ",
     " s "
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
-    "s": {
-      "item": "journey:obsidianrod"
-    },
     "i": {
       "item": "journey:orbaditeingot"
+    },
+    "s": {
+      "item": "journey:obsidianrod"
     }
+  },
+  "result": {
+    "item": "journey:orbaditehoe"
   }
 }
