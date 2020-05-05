@@ -43,7 +43,7 @@ public class SlayerAPI {
             PREFIX = MOD_ID + ":",
             MOD_VERSION = "GRADLETOKEN_VERSION"; //will be automatically changed during build task
     public static final boolean
-            DEVMODE = false,
+            DEVMODE = true,
             BETA = false;
     private static final String SECTION_SIGN = "\u00a7";
     public static int mobID = Config.baseMobID, projectileID = Config.baseProjectileID, entityListID = Config.baseEntityListID;
