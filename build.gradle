@@ -30,7 +30,6 @@ minecraft {
     version = "1.12.2-14.23.5.2847"
     runDir = "run"
 
-    replaceIn "src/main/java/net/slayer/api/SlayerAPI.java"
     replaceIn "src/main/java/net/journey/JITL.java"
 
     replace "GRADLETOKEN_VERSION", config.jitl.version
