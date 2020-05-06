@@ -90,6 +90,10 @@ public class EntityGuardianOfDestruction extends EntityEssenceBoss {
         if (health >= maxHealth) stage = sleep;
         else if (health <= maxHealth - 1 && health > maxHealth / 3) stage = alert;
         else if (health <= maxHealth / 3) stage = lowhealth;
+		/*
+		 * if the boss is at full health, set position to 0 and attack target to null
+		 * sets ismoving to false
+		 */
         if (stage == sleep) {
             this.motionX = 0.0D;
             this.motionY = 0.0D;
@@ -100,9 +104,17 @@ public class EntityGuardianOfDestruction extends EntityEssenceBoss {
         	this.setAttackTarget(null);
         	this.ismoving = false;
         } else {
+    		/*
+    		 * if the boss isn't asleep, set attack target to player
+    		 * sets ismoving to true
+    		 */
         	if (stage == alert || stage == lowhealth) {
         		this.setAttackTarget(attackingPlayer);
         		this.ismoving = true;
+        		/*
+        		 * sets move speed to 0 for specfic amount of ticks 
+        		 * sets ismoving to false
+        		 */
 				if (rolltimer > 0) {
 					this.motionX = 0.0D;
 					this.motionY = 0.0D;
@@ -113,13 +125,15 @@ public class EntityGuardianOfDestruction extends EntityEssenceBoss {
 				--rolltimer;
 			}
         }
+		/*
+		 * if the player is absent, reset stage to sleeping (need to iron this one out)
+		 */
 		if (!this.world.isRemote) {
 			if (this.getAttackTarget() == null) {
 	            stage = sleep;
 				return;
 			}
 		}
-
     }
 
     @Override
@@ -150,10 +164,16 @@ public class EntityGuardianOfDestruction extends EntityEssenceBoss {
         return JourneySounds.EMPTY;
     }
     
+	/*
+	 * checks if the boss is moving
+	 */
     @SideOnly(Side.CLIENT)
     public void isMoving() {
     	int soundtimer = 0;
     	if(ismoving == true) {
+    		/*
+    		 * plays sound while boss is moving
+    		 */
     		if (soundtimer == 0) {
     			JourneySounds.playSound(JourneySounds.BUSH, world, this);
     			soundtimer = 5;
