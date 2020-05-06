@@ -16,7 +16,7 @@ public class LangSection<T> {
 	public static final LangSection<Block> BLOCKS = new LangSection<>("Blocks", block -> block.getTranslationKey() + ".name");
 	public static final LangSection<Item> ITEMS = new LangSection<>("Items", item -> item.getTranslationKey() + ".name");
 	public static final LangSection<Item> ARMOR = new LangSection<>("Armor", item -> item.getTranslationKey() + ".name");
-	public static final LangSection<EntityEntry> ENTITIES = new LangSection<>("Entities", s -> "entity" + s.getName() + ".name");
+	public static final LangSection<EntityEntry> ENTITIES = new LangSection<>("Entities", s -> "entity." + s.getName() + ".name");
 	public static final LangSection<String> MISC = new LangSection<>("Miscellaneous", s -> s);
 
 	private String name;

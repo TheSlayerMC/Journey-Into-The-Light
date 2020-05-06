@@ -4,7 +4,7 @@ import net.journey.JITL;
 import net.journey.client.handler.ChatHandler;
 import net.journey.util.Config;
 import net.journey.util.LangHelper;
-import net.journey.util.LangRegistry;
+import net.journey.util.gen.lang.LangGeneratorFacade;
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.resources.I18n;
@@ -82,11 +82,12 @@ public class SlayerAPI {
     }
 
     public static EntityEntry buildEntityEntry(Class entityClass, String entityID, String finalName, int base, int fore) {
-        LangRegistry.addMob(entityID, finalName);
-        return EntityEntryBuilder.create().entity(entityClass)
+        EntityEntry entry = EntityEntryBuilder.create().entity(entityClass)
                 .id(new ResourceLocation(JITL.MOD_ID, entityID), mobID++).name(JITL.MOD_ID + "." + entityID).tracker(128, 3, true)
                 .egg(base, fore).build();
+        LangGeneratorFacade.addEntityEntry(entry, finalName);
 
+        return entry;
     }
 
     public static EntityEntry buildEntityEntryNoEgg(Class entityClass, String entityID, int id) {
