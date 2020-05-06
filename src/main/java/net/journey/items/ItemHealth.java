@@ -46,11 +46,9 @@ public class ItemHealth extends ItemFood {
             PlayerHelper.getPersistedpTag(p).setDouble("health", p.getMaxHealth());
             JourneySounds.playSound(JourneySounds.SUMMON_TABLE, w, p);
 		} else if (isSentry && p.getMaxHealth() >= max) {
-			if (p.getHealth() < sentryMax) {
-				p.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(p.getMaxHealth() + hearts);
-				PlayerHelper.getPersistedpTag(p).setDouble("health", p.getMaxHealth());
-				JourneySounds.playSound(JourneySounds.SUMMON_TABLE, w, p);
-			}
+			p.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(p.getMaxHealth() + hearts);
+			PlayerHelper.getPersistedpTag(p).setDouble("health", p.getMaxHealth());
+			JourneySounds.playSound(JourneySounds.SUMMON_TABLE, w, p);
 		}
 	}
 
