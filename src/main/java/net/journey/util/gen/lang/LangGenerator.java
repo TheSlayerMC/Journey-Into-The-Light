@@ -15,7 +15,11 @@ public class LangGenerator {
 	private static final String END_MARK = "#MARK AUTO GEN END";
 	private final File outputFile = new File("../src/main/resources/assets/journey/lang/en_us.lang");
 
-	private HashMap<LangSection<?>, List<String>> genMap = new HashMap<>();
+	private LinkedHashMap<LangSection<?>, List<String>> genMap = new LinkedHashMap<>();
+
+	public LangGenerator() {
+		LangSection.SECTIONS.forEach(langSection -> genMap.put(langSection, new ArrayList<>()));
+	}
 
 	<T> void addLangEntry(LangSection<T> section, T entry, String enName) {
 		addLangEntry(section, section.createLangEntry(entry, enName));
@@ -73,9 +77,11 @@ public class LangGenerator {
 				newList.add(START_MARK);
 
 				genMap.forEach((category, list) -> {
-					newList.add("");
-					newList.add(category.getComment());
-					newList.addAll(list);
+					if (!list.isEmpty()) {
+						newList.add("");
+						newList.add(category.getComment());
+						newList.addAll(list);
+					}
 				});
 
 				newList.add(END_MARK);
