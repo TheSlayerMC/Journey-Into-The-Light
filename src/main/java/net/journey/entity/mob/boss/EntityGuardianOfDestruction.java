@@ -91,7 +91,7 @@ public class EntityGuardianOfDestruction extends EntityEssenceBoss {
         else if (health <= maxHealth - 1 && health > maxHealth / 3) stage = alert;
         else if (health <= maxHealth / 3) stage = lowhealth;
 		/*
-		 * if the boss is at full health, set position to 0 and attack target to null
+		 * if the boss is at full health, set move speed to 0 and set attack target to null
 		 * sets ismoving to false
 		 */
         if (stage == sleep) {
@@ -105,7 +105,7 @@ public class EntityGuardianOfDestruction extends EntityEssenceBoss {
         	this.ismoving = false;
         } else {
     		/*
-    		 * if the boss isn't asleep, set attack target to player
+    		 * if the boss isn't asleep, set attack target to the player that attacks it
     		 * sets ismoving to true
     		 */
         	if (stage == alert || stage == lowhealth) {
