@@ -77,6 +77,7 @@
  "knife": {"category": "master", "sounds": ["journey:knife"]},
  "staff":{"category":"neutral","sounds": ["journey:staff"]},
  "unlock":{"category":"master","sounds": ["journey:unlock"]},
+ "sentry_destruction_moving":{"category":"master","sounds": ["journey:sentry_destruction_moving"]},
  "wrapper":{"category":"neutral","sounds": ["journey:wrapper"]},
  "summon_boss":{"category":"master","sounds": ["journey:summon_boss"]},
  "summon_table":{"category":"master","sounds": ["journey:summon_table"]},
