@@ -27,6 +27,8 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.entity.EntityEssenceBoss;
 
 import javax.annotation.Nullable;
@@ -36,6 +38,7 @@ public class EntityGuardianOfDestruction extends EntityEssenceBoss {
 	public int maxHealth = (int) MobStats.guardianofdestructionHealth;
 	
     public int rolltimer;
+    public boolean ismoving;
     
     public final int sleep = 0, alert = 1, lowhealth = 2;
     public int stage;
@@ -95,15 +98,19 @@ public class EntityGuardianOfDestruction extends EntityEssenceBoss {
             this.renderYawOffset = 180.0F;
             this.rotationYaw = 180.0F;
         	this.setAttackTarget(null);
+        	this.ismoving = false;
         } else {
         	if (stage == alert || stage == lowhealth) {
         		this.setAttackTarget(attackingPlayer);
+        		this.ismoving = true;
 				if (rolltimer > 0) {
 					this.motionX = 0.0D;
 					this.motionY = 0.0D;
 					this.motionZ = 0.0D;
+					this.ismoving = false;
 					this.rolltimer = 10;
 				}
+				--rolltimer;
 			}
         }
 		if (!this.world.isRemote) {
@@ -141,6 +148,18 @@ public class EntityGuardianOfDestruction extends EntityEssenceBoss {
     @Override
     public SoundEvent setLivingSound() {
         return JourneySounds.EMPTY;
+    }
+    
+    @SideOnly(Side.CLIENT)
+    public void isMoving() {
+    	int soundtimer = 0;
+    	if(ismoving == true) {
+    		if (soundtimer == 0) {
+    			JourneySounds.playSound(JourneySounds.BUSH, world, this);
+    			soundtimer = 5;
+    		}
+    		if(soundtimer > 0) soundtimer--;
+    	}
     }
 
     @Override
