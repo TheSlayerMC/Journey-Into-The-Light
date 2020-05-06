@@ -13,7 +13,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -26,7 +25,6 @@ import java.util.List;
 import java.util.Random;
 
 public class BlockMod extends Block {
-    protected Item drop = null;
     protected Random rand;
     protected boolean isOpaque = true, isNormalCube = true; //TODO seems unused, test and remove
 
@@ -62,26 +60,14 @@ public class BlockMod extends Block {
         StuffConstructor.regAndSetupBlock(this, name, enName, hardness, tab);
     }
 
-    public Block addName(String name) {
-        JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
-        return this;
-    }
-
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-        if (drop == null) return SlayerAPI.toItem(this);
-        return drop;
+        return SlayerAPI.toItem(this);
     }
 
     public BlockMod setHarvestLevel(EnumToolType type) {
         setHarvestLevel(type.getType(), type.getLevel());
         return this;
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getRenderLayer() {
-        return BlockRenderLayer.SOLID;
     }
 
     @Override
