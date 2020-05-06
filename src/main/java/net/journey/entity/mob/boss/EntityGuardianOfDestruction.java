@@ -1,54 +1,31 @@
 package net.journey.entity.mob.boss;
 
 import net.journey.entity.MobStats;
-import net.journey.entity.projectile.arrow.EntityDarknessArrow;
-import net.journey.entity.projectile.arrow.EntityFlameArrow;
-import net.journey.entity.projectile.arrow.EntityFrozenArrow;
-import net.journey.entity.projectile.arrow.EntityPoisonArrow;
 import net.journey.init.JourneySounds;
-import net.journey.init.items.JourneyItems;
-import net.journey.init.items.JourneyWeapons;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.IEntityLivingData;
-import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.MoverType;
-import net.minecraft.entity.ai.EntityAIAttackRanged;
 import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
-import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.init.SoundEvents;
-import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.entity.EntityEssenceBoss;
-
-import javax.annotation.Nullable;
 
 public class EntityGuardianOfDestruction extends EntityEssenceBoss {
 
 	public int maxHealth = (int) MobStats.guardianofdestructionHealth;
-	
-    public int rolltimer;
-    public boolean ismoving;
-    
-    public final int sleep = 0, alert = 1, lowhealth = 2;
-    public int stage;
 
-    public EntityGuardianOfDestruction(World par1World) {
-        super(par1World);
-        setSize(2.0F, 4.0F);
-        this.stage = sleep;
-        this.rolltimer = 0;
-        this.rotationYaw = this.rotationPitch = 0.0F;
+	public int rolltimer;
+	public boolean isMoving;
+	private int sountTimer;
+
+	public final int sleep = 0, alert = 1, lowhealth = 2;
+	public int stage;
+
+	public EntityGuardianOfDestruction(World par1World) {
+		super(par1World);
+		setSize(2.0F, 4.0F);
+		this.stage = sleep;
+		this.rolltimer = 0;
+		this.rotationYaw = this.rotationPitch = 0.0F;
     }
 
     @Override
@@ -57,7 +34,7 @@ public class EntityGuardianOfDestruction extends EntityEssenceBoss {
         this.targetTasks.addTask(2, new EntityAIFindEntityNearestPlayer(this));
         addAttackingAI();
     }
-    
+
 	@Override
 	protected void entityInit() {
 		super.entityInit();
@@ -68,7 +45,7 @@ public class EntityGuardianOfDestruction extends EntityEssenceBoss {
 		this.posY = Math.floor(this.posY + 0.5D);
 		this.posZ = Math.floor(this.posZ + 0.5D);
 	}
-	
+
 	@Override
 	public void move(MoverType type, double x, double y, double z) {
 		if (this.stage == alert || this.stage == lowhealth) {
@@ -95,33 +72,33 @@ public class EntityGuardianOfDestruction extends EntityEssenceBoss {
 		 * sets ismoving to false
 		 */
         if (stage == sleep) {
-            this.motionX = 0.0D;
-            this.motionY = 0.0D;
-            this.motionZ = 0.0D;
-            this.prevRenderYawOffset = 180.0F;
-            this.renderYawOffset = 180.0F;
-            this.rotationYaw = 180.0F;
-        	this.setAttackTarget(null);
-        	this.ismoving = false;
+	        this.motionX = 0.0D;
+	        this.motionY = 0.0D;
+	        this.motionZ = 0.0D;
+	        this.prevRenderYawOffset = 180.0F;
+	        this.renderYawOffset = 180.0F;
+	        this.rotationYaw = 180.0F;
+	        this.setAttackTarget(null);
+	        this.isMoving = false;
         } else {
     		/*
     		 * if the boss isn't asleep, set attack target to the player that attacks it
     		 * sets ismoving to true
     		 */
         	if (stage == alert || stage == lowhealth) {
-        		this.setAttackTarget(attackingPlayer);
-        		this.ismoving = true;
-        		/*
-        		 * sets move speed to 0 for specfic amount of ticks 
-        		 * sets ismoving to false
-        		 */
-				if (rolltimer > 0) {
-					this.motionX = 0.0D;
-					this.motionY = 0.0D;
-					this.motionZ = 0.0D;
-					this.ismoving = false;
-					this.rolltimer = 10;
-				}
+		        this.setAttackTarget(attackingPlayer);
+		        this.isMoving = true;
+		        /*
+		         * sets move speed to 0 for specfic amount of ticks
+		         * sets ismoving to false
+		         */
+		        if (rolltimer > 0) {
+			        this.motionX = 0.0D;
+			        this.motionY = 0.0D;
+			        this.motionZ = 0.0D;
+			        this.isMoving = false;
+			        this.rolltimer = 10;
+		        }
 				--rolltimer;
 			}
         }
@@ -130,8 +107,19 @@ public class EntityGuardianOfDestruction extends EntityEssenceBoss {
 		 */
 		if (!this.world.isRemote) {
 			if (this.getAttackTarget() == null) {
-	            stage = sleep;
+				stage = sleep;
 				return;
+			}
+
+			if (isMoving) {
+				/*
+				 * plays sound while boss is moving
+				 */
+				if (sountTimer == 0) {
+					JourneySounds.playSound(JourneySounds.BUSH, world, this);
+					sountTimer = 10;
+				}
+				if (sountTimer > 0) sountTimer--;
 			}
 		}
     }
@@ -140,13 +128,13 @@ public class EntityGuardianOfDestruction extends EntityEssenceBoss {
     public double setKnockbackResistance() {
         return 3.0D;
     }
-    
-    @Override
+
+	@Override
     public double setMovementSpeed() {
-    	if (stage == lowhealth) {
-    		return 1.0D;
-    	} else 
-    		return MobStats.normalSpeed;
+		if (stage == lowhealth) {
+			return 1.0D;
+		} else
+			return MobStats.normalSpeed;
     }
 
     @Override
@@ -158,28 +146,10 @@ public class EntityGuardianOfDestruction extends EntityEssenceBoss {
     public double setAttackDamage(MobStats s) {
         return MobStats.guardianofdestructionDamage;
     }
-    
-    @Override
+
+	@Override
     public SoundEvent setLivingSound() {
         return JourneySounds.EMPTY;
-    }
-    
-	/*
-	 * checks if the boss is moving
-	 */
-    @SideOnly(Side.CLIENT)
-    public void isMoving() {
-    	int soundtimer = 0;
-    	if(ismoving == true) {
-    		/*
-    		 * plays sound while boss is moving
-    		 */
-    		if (soundtimer == 0) {
-    			JourneySounds.playSound(JourneySounds.BUSH, world, this);
-    			soundtimer = 5;
-    		}
-    		if(soundtimer > 0) soundtimer--;
-    	}
     }
 
     @Override
