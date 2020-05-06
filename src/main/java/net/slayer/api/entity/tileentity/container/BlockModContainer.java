@@ -3,7 +3,7 @@ package net.slayer.api.entity.tileentity.container;
 import net.journey.init.JourneyTabs;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.init.items.JourneyItems;
-import net.journey.util.LangRegistry;
+import net.journey.util.gen.lang.LangGeneratorFacade;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.state.IBlockState;
@@ -55,7 +55,6 @@ public abstract class BlockModContainer extends BlockContainer {
 
     public BlockModContainer(EnumMaterialTypes blockType, String name, String finalName, CreativeTabs tab) {
         super(blockType.getMaterial());
-        LangRegistry.addBlock(name, finalName);
         this.blockType = blockType;
         setHardness(2.0F);
         rand = new Random();
@@ -66,12 +65,12 @@ public abstract class BlockModContainer extends BlockContainer {
         JourneyBlocks.blocks.add(this);
         JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
         setRegistryName(SlayerAPI.MOD_ID, name);
+        LangGeneratorFacade.addBlockEntry(this, finalName);
         JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
     }
 
     public BlockModContainer(EnumMaterialTypes blockType, String name, String finalName, float hardness, CreativeTabs tab) {
         super(blockType.getMaterial());
-        LangRegistry.addBlock(name, finalName);
         this.blockType = blockType;
         rand = new Random();
         setSoundType(blockType.getSound());
@@ -82,6 +81,7 @@ public abstract class BlockModContainer extends BlockContainer {
         JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
         JourneyBlocks.blocks.add(this);
         setRegistryName(SlayerAPI.MOD_ID, name);
+        LangGeneratorFacade.addBlockEntry(this, finalName);
         JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
     }
 

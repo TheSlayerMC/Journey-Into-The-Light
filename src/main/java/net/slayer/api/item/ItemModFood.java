@@ -4,8 +4,8 @@ import net.journey.client.ItemDescription;
 import net.journey.init.JourneyTabs;
 import net.journey.init.items.JourneyConsumables;
 import net.journey.init.items.JourneyItems;
-import net.journey.util.LangRegistry;
 import net.journey.util.PotionEffects;
+import net.journey.util.gen.lang.LangGeneratorFacade;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemFood;
@@ -25,12 +25,12 @@ public class ItemModFood extends ItemFood {
 
     public ItemModFood(String name, String f, int food, float sat, boolean wolfFood) {
         super(food, sat, wolfFood);
-        LangRegistry.addItem(name, f);
         setTranslationKey(name);
         setCreativeTab(JourneyTabs.CROPS);
         JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
         JourneyItems.items.add(this);
         setRegistryName(SlayerAPI.MOD_ID, name);
+        LangGeneratorFacade.addItemEntry(this, f);
     }
 
     public ItemModFood(String name, String f, int food, float sat, int timeToEat, boolean wolfFood) {
@@ -45,12 +45,12 @@ public class ItemModFood extends ItemFood {
 
     public ItemModFood(String name, String actual, int heal, float f, boolean sat, boolean b) {
         super(heal, sat);
-        LangRegistry.addItem(name, actual);
         setTranslationKey(name);
         JourneyItems.items.add(this);
         JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
         setCreativeTab(JourneyTabs.CROPS);
         setRegistryName(SlayerAPI.MOD_ID, name);
+        LangGeneratorFacade.addItemEntry(this, actual);
         this.op = b;
     }
 

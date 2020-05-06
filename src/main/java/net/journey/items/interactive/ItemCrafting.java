@@ -2,7 +2,7 @@ package net.journey.items.interactive;
 
 import net.journey.init.JourneyTabs;
 import net.journey.init.items.JourneyItems;
-import net.journey.util.LangRegistry;
+import net.journey.util.gen.lang.LangGeneratorFacade;
 import net.minecraft.block.BlockWorkbench;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -26,12 +26,12 @@ public class ItemCrafting extends Item {
     }
 
     public ItemCrafting(String name, String finalName, CreativeTabs tab) {
-        LangRegistry.addItem(name, finalName);
         setTranslationKey(name);
         JourneyItems.items.add(this);
         JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
         setCreativeTab(JourneyTabs.UTIL);
-        setRegistryName(SlayerAPI.MOD_ID, name);
+	    setRegistryName(SlayerAPI.MOD_ID, name);
+	    LangGeneratorFacade.addItemEntry(this, finalName);
     }
 
     @Override

@@ -6,7 +6,7 @@ import net.journey.init.JourneyTabs;
 import net.journey.init.items.JourneyItems;
 import net.journey.util.JourneyToolMaterial;
 import net.journey.util.LangHelper;
-import net.journey.util.LangRegistry;
+import net.journey.util.gen.lang.LangGeneratorFacade;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -31,13 +31,13 @@ public class ItemModAxe extends ItemTool {
         super(tool.getToolMaterial(), EFFECTIVE_ON);
         this.efficiency = tool.getToolMaterial().getEfficiency();
         this.attackDamage = tool.getToolMaterial().getAttackDamage();
-        LangRegistry.addItem(name, f);
         mat = tool;
         setTranslationKey(name);
         setCreativeTab(JourneyTabs.TOOLS);
         JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
         JourneyItems.items.add(this);
         setRegistryName(SlayerAPI.MOD_ID, name);
+        LangGeneratorFacade.addItemEntry(this, f);
     }
 
     @Override

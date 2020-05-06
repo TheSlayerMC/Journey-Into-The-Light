@@ -5,7 +5,7 @@ import net.journey.init.JourneyTabs;
 import net.journey.init.items.JourneyItems;
 import net.journey.util.JourneyToolMaterial;
 import net.journey.util.LangHelper;
-import net.journey.util.LangRegistry;
+import net.journey.util.gen.lang.LangGeneratorFacade;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
@@ -22,13 +22,14 @@ public class ItemModSword extends ItemSword {
 
     public ItemModSword(String name, String f, JourneyToolMaterial toolMaterial) {
         super(toolMaterial.getToolMaterial());
-        LangRegistry.addItem(name, f);
         setTranslationKey(name);
         mat = toolMaterial;
         setCreativeTab(JourneyTabs.WEAPONS);
         JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
         JourneyItems.items.add(this);
         setRegistryName(SlayerAPI.MOD_ID, name);
+
+        LangGeneratorFacade.addItemEntry(this, f);
     }
 
     @Override

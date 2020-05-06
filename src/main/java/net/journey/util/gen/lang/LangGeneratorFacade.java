@@ -35,7 +35,7 @@ import net.minecraftforge.fml.common.registry.EntityEntry;
  * All lang changes will be applied the next launch after being generated.
  */
 public class LangGeneratorFacade {
-	private static LangGenerator generator = JITL.IN_JOURNEY_DEV ? new LangGenerator() : null;
+	private static final LangGenerator generator = JITL.IN_JOURNEY_DEV ? new LangGenerator() : null;
 
 	public static void addBlockEntry(Block block, String enName) {
 		addLangEntry(LangSection.BLOCKS, block, enName);

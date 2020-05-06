@@ -22,7 +22,7 @@ public class JITL {
 	 * Will be set to false in any other mod dev workspace.
 	 */
 	public static final boolean IN_JOURNEY_DEV = true; // will be automatically replaced to false during build
-	public static final Logger LOGGER = LogManager.getLogger(JITL.class);
+	public static final Logger LOGGER = LogManager.getLogger(SlayerAPI.MOD_NAME);
 
 	@Instance(SlayerAPI.MOD_ID)
 	public static JITL instance;

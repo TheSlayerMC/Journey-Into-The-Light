@@ -4,7 +4,7 @@ import net.journey.init.JourneyTabs;
 import net.journey.init.items.JourneyItems;
 import net.journey.util.JourneyToolMaterial;
 import net.journey.util.LangHelper;
-import net.journey.util.LangRegistry;
+import net.journey.util.gen.lang.LangGeneratorFacade;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemStack;
@@ -21,13 +21,13 @@ public class ItemModHoe extends ItemHoe {
 
     public ItemModHoe(String name, String f, JourneyToolMaterial tool) {
         super(tool.getToolMaterial());
-        LangRegistry.addItem(name, f);
         mat = tool;
         setTranslationKey(name);
         setCreativeTab(JourneyTabs.TOOLS);
         JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
         JourneyItems.items.add(this);
         setRegistryName(SlayerAPI.MOD_ID, name);
+        LangGeneratorFacade.addItemEntry(this, f);
     }
 
     @Override

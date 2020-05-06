@@ -3,7 +3,7 @@ package net.journey.blocks.portal;
 import net.journey.init.JourneyTabs;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.init.items.JourneyItems;
-import net.journey.util.LangRegistry;
+import net.journey.util.gen.lang.LangGeneratorFacade;
 import net.minecraft.block.BlockBreakable;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
@@ -39,14 +39,14 @@ public abstract class BlockModPortal extends BlockBreakable {
         super(Material.PORTAL, false);
         this.name = name;
         this.setDefaultState(this.blockState.getBaseState().withProperty(AXIS, EnumFacing.Axis.X));
-        LangRegistry.addBlock(name, finalName);
         this.setTickRandomly(true);
         setCreativeTab(JourneyTabs.PORTAL_BLOCKS);
         setTranslationKey(name);
         JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
         JourneyBlocks.blocks.add(this);
-        setRegistryName(SlayerAPI.MOD_ID, name);
-        JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
+	    setRegistryName(SlayerAPI.MOD_ID, name);
+	    LangGeneratorFacade.addBlockEntry(this, finalName);
+	    JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
     }
 
     public static int getMetaForAxis(EnumFacing.Axis axis) {

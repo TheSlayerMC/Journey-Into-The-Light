@@ -27,6 +27,7 @@ public class LangGenerator {
 	}
 
 	public void save() {
+
 		sortValues();
 
 		try {
@@ -87,11 +88,13 @@ public class LangGenerator {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
+		genMap.clear();
 	}
 
 	private void sortValues() {
 		for (LangSection<?> section : genMap.keySet()) {
-			genMap.get(section).sort(Comparator.naturalOrder());
+			genMap.get(section).sort(Comparator.comparing(String::toLowerCase));
 		}
 	}
 }

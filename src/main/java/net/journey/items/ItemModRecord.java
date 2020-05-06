@@ -4,7 +4,7 @@ import com.google.common.collect.Maps;
 import net.journey.init.JourneyTabs;
 import net.journey.init.items.JourneyItems;
 import net.journey.util.LangHelper;
-import net.journey.util.LangRegistry;
+import net.journey.util.gen.lang.LangGeneratorFacade;
 import net.minecraft.block.BlockJukebox;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
@@ -42,7 +42,7 @@ public class ItemModRecord extends ItemRecord {
         soundName = name;
         //description = desc;
         setRegistryName(SlayerAPI.MOD_ID, name + "Record");
-        LangRegistry.addItem(name + "Record", finalName);
+        LangGeneratorFacade.addItemEntry(this, finalName);
         setCreativeTab(JourneyTabs.UTIL);
         JourneyItems.itemNames.add(SlayerAPI.PREFIX + name + "Record");
         this.sound = sound;

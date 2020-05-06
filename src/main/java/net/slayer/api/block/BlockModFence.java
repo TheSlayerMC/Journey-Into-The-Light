@@ -3,7 +3,7 @@ package net.slayer.api.block;
 import net.journey.init.JourneyTabs;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.init.items.JourneyItems;
-import net.journey.util.LangRegistry;
+import net.journey.util.gen.lang.LangGeneratorFacade;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFence;
 import net.minecraft.block.material.Material;
@@ -17,16 +17,15 @@ public class BlockModFence extends BlockFence {
     public BlockModFence(Block block, String name, String finalName, boolean light) {
         super(Material.ROCK, null);
         this.name = name;
-        LangRegistry.addBlock(name, finalName);
         setTranslationKey(name);
         setCreativeTab(JourneyTabs.BLOCKS);
         if (light) setLightLevel(0.5F);
         setHardness(block.getBlockHardness(null, null, null));
         JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
         JourneyBlocks.blocks.add(this);
-        setRegistryName(SlayerAPI.MOD_ID, name);
-
-        JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
+	    setRegistryName(SlayerAPI.MOD_ID, name);
+	    LangGeneratorFacade.addBlockEntry(this, finalName);
+	    JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
     }
 
     public BlockModFence(Block b, String n, String finalName) {

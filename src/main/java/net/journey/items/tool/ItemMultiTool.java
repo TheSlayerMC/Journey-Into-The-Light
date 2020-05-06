@@ -6,7 +6,7 @@ import net.journey.init.JourneyTabs;
 import net.journey.init.items.JourneyItems;
 import net.journey.util.JourneyToolMaterial;
 import net.journey.util.LangHelper;
-import net.journey.util.LangRegistry;
+import net.journey.util.gen.lang.LangGeneratorFacade;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirt;
 import net.minecraft.block.state.IBlockState;
@@ -36,7 +36,6 @@ public class ItemMultiTool extends ItemTool {
 
     public ItemMultiTool(String name, String f, JourneyToolMaterial tool, int damage) {
         super(tool.getToolMaterial(), blocksEffectiveAgainst);
-        LangRegistry.addItem(name, f);
         mat = tool;
         this.setMaxDamage(damage);
         setTranslationKey(name);
@@ -45,6 +44,8 @@ public class ItemMultiTool extends ItemTool {
         JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
         JourneyItems.items.add(this);
         setRegistryName(SlayerAPI.MOD_ID, name);
+
+        LangGeneratorFacade.addItemEntry(this, f);
     }
 
     @Override

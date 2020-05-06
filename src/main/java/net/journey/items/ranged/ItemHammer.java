@@ -8,7 +8,7 @@ import net.journey.init.JourneyTabs;
 import net.journey.init.items.JourneyItems;
 import net.journey.util.JourneyToolMaterial;
 import net.journey.util.LangHelper;
-import net.journey.util.LangRegistry;
+import net.journey.util.gen.lang.LangGeneratorFacade;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -35,17 +35,17 @@ public class ItemHammer extends ItemSword {
     public ItemHammer(String name, String f, JourneyToolMaterial toolMaterial, boolean durability, Class<? extends EntityBasicProjectile> projectile, int dam, int magic, int uses) {
         super(toolMaterial.getToolMaterial());
         this.projectile = projectile;
-        damage = dam;
-        usage = magic;
-        setMaxDamage(uses);
-        setMaxStackSize(1);
-        LangRegistry.addItem(name, f);
-        setTranslationKey(name);
-        mat = toolMaterial;
-        setCreativeTab(JourneyTabs.WEAPONS);
-        JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
-        JourneyItems.items.add(this);
-        setRegistryName(SlayerAPI.MOD_ID, name);
+	    damage = dam;
+	    usage = magic;
+	    setMaxDamage(uses);
+	    setMaxStackSize(1);
+	    setTranslationKey(name);
+	    mat = toolMaterial;
+	    setCreativeTab(JourneyTabs.WEAPONS);
+	    JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
+	    JourneyItems.items.add(this);
+	    setRegistryName(SlayerAPI.MOD_ID, name);
+	    LangGeneratorFacade.addItemEntry(this, f);
     }
 
 	@Override

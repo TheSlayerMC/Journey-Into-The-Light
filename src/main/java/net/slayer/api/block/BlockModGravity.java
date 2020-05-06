@@ -3,7 +3,7 @@ package net.slayer.api.block;
 import net.journey.init.JourneyTabs;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.init.items.JourneyItems;
-import net.journey.util.LangRegistry;
+import net.journey.util.gen.lang.LangGeneratorFacade;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.state.IBlockState;
@@ -55,7 +55,6 @@ public class BlockModGravity extends BlockFalling {
 
     public BlockModGravity(EnumMaterialTypes blockType, String name, String finalName, CreativeTabs tab) {
         super(blockType.getMaterial());
-        LangRegistry.addBlock(name, finalName);
         this.blockType = blockType;
         setHardness(2.0F);
         rand = new Random();
@@ -65,13 +64,13 @@ public class BlockModGravity extends BlockFalling {
         this.name = name;
         JourneyBlocks.blocks.add(this);
         JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
-        setRegistryName(SlayerAPI.MOD_ID, name);
-        JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
+	    setRegistryName(SlayerAPI.MOD_ID, name);
+	    LangGeneratorFacade.addBlockEntry(this, finalName);
+	    JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
     }
 
     public BlockModGravity(EnumMaterialTypes blockType, String name, String finalName, float hardness, CreativeTabs tab) {
         super(blockType.getMaterial());
-        LangRegistry.addBlock(name, finalName);
         this.blockType = blockType;
         rand = new Random();
         setSoundType(blockType.getSound());
@@ -81,8 +80,9 @@ public class BlockModGravity extends BlockFalling {
         this.name = name;
         JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
         JourneyBlocks.blocks.add(this);
-        setRegistryName(SlayerAPI.MOD_ID, name);
-        JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
+	    setRegistryName(SlayerAPI.MOD_ID, name);
+	    LangGeneratorFacade.addBlockEntry(this, finalName);
+	    JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
     }
 
     public Block addName(String name) {

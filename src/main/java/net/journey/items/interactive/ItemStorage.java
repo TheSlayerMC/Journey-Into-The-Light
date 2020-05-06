@@ -3,7 +3,7 @@ package net.journey.items.interactive;
 import net.journey.init.JourneySounds;
 import net.journey.init.JourneyTabs;
 import net.journey.init.items.JourneyItems;
-import net.journey.util.LangRegistry;
+import net.journey.util.gen.lang.LangGeneratorFacade;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -31,12 +31,12 @@ public class ItemStorage extends Item {
     }
 
     public ItemStorage(String name, String finalName, CreativeTabs tab) {
-        LangRegistry.addItem(name, finalName);
         setTranslationKey(name);
         setCreativeTab(tab);
         JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
         JourneyItems.items.add(this);
-        setRegistryName(SlayerAPI.MOD_ID, name);
+	    setRegistryName(SlayerAPI.MOD_ID, name);
+	    LangGeneratorFacade.addItemEntry(this, finalName);
     }
 
     public ItemStorage setHealAmount(int healAmount) {

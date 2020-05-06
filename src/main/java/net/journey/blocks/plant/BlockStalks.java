@@ -3,7 +3,7 @@ package net.journey.blocks.plant;
 import net.journey.init.JourneyTabs;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.init.items.JourneyItems;
-import net.journey.util.LangRegistry;
+import net.journey.util.gen.lang.LangGeneratorFacade;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -24,15 +24,15 @@ public class BlockStalks extends Block {
 
     public BlockStalks(String name, String f, boolean top) {
         super(EnumMaterialTypes.PLANT.getMaterial());
-        LangRegistry.addBlock(name, f);
         setSoundType(EnumMaterialTypes.PLANT.getSound());
         setCreativeTab(JourneyTabs.DECORATION);
         setHardness(0.0F);
         setLightLevel(0.6F);
         setTickRandomly(true);
         setTranslationKey(name);
-        setRegistryName(SlayerAPI.MOD_ID, name);
-        JourneyBlocks.blocks.add(this);
+	    setRegistryName(SlayerAPI.MOD_ID, name);
+	    LangGeneratorFacade.addBlockEntry(this, f);
+	    JourneyBlocks.blocks.add(this);
         JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
 
         JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));

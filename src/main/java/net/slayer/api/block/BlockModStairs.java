@@ -3,7 +3,7 @@ package net.slayer.api.block;
 import net.journey.init.JourneyTabs;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.init.items.JourneyItems;
-import net.journey.util.LangRegistry;
+import net.journey.util.gen.lang.LangGeneratorFacade;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.item.ItemBlock;
@@ -16,7 +16,6 @@ public class BlockModStairs extends BlockStairs {
     public BlockModStairs(Block stair, String name, String finalName, boolean light) {
         super(stair.getDefaultState());
         this.name = name;
-        LangRegistry.addBlock(name, finalName);
         setCreativeTab(JourneyTabs.BLOCKS);
         setTranslationKey(name);
         if (light) setLightLevel(0.5F);
@@ -25,7 +24,8 @@ public class BlockModStairs extends BlockStairs {
         JourneyBlocks.blocks.add(this);
         setRegistryName(SlayerAPI.MOD_ID, name);
 
-        JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
+	    LangGeneratorFacade.addBlockEntry(this, finalName);
+	    JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
     }
 
     public BlockModStairs(Block b, String n, String n2) {

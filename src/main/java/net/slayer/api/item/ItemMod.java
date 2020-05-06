@@ -4,7 +4,7 @@ import net.journey.client.ItemDescription;
 import net.journey.init.JourneySounds;
 import net.journey.init.JourneyTabs;
 import net.journey.init.items.JourneyItems;
-import net.journey.util.LangRegistry;
+import net.journey.util.gen.lang.LangGeneratorFacade;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -33,13 +33,15 @@ public class ItemMod extends Item {
     }
 
     public ItemMod(String name, String finalName, CreativeTabs tab) {
-        this.name = name;
-        LangRegistry.addItem(name.toLowerCase(), finalName);
-        setTranslationKey(name.toLowerCase());
-        setCreativeTab(tab);
-        JourneyItems.itemNames.add(SlayerAPI.PREFIX + name.toLowerCase());
-        JourneyItems.items.add(this);
-        setRegistryName(SlayerAPI.MOD_ID, name.toLowerCase());
+	    this.name = name;
+
+	    setTranslationKey(name.toLowerCase());
+	    setCreativeTab(tab);
+	    JourneyItems.itemNames.add(SlayerAPI.PREFIX + name.toLowerCase());
+	    JourneyItems.items.add(this);
+	    setRegistryName(SlayerAPI.MOD_ID, name.toLowerCase());
+
+	    LangGeneratorFacade.addItemEntry(this, finalName);
     }
 
     public ItemMod setHealAmount(int healAmount) {
