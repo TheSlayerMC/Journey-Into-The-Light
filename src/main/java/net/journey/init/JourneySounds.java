@@ -103,6 +103,7 @@ public class JourneySounds {
     public static SoundEvent SENTRY_HEART_DEATH;
     public static SoundEvent SENTRY_HEART_BEATING;
     public static SoundEvent SENTRY_HEART_HIT;
+    public static SoundEvent SENTRY_DESTRUCTION_MOVING;
     
     public static SoundEvent EMPTY;
 
@@ -213,6 +214,7 @@ public class JourneySounds {
         SENTRY_HEART_BEATING = registerSound("sentry_heart_beating");
         SENTRY_HEART_HIT = registerSound("sentry_heart_hit");
         SENTRY_HEART_DEATH = registerSound("sentry_heart_death");
+        SENTRY_DESTRUCTION_MOVING = registerSound("sentry_destruction_moving");
         
         EMPTY = registerSound("empty");
         UNTITLED_DISK = registerSound("untitled_disk");

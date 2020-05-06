@@ -13,9 +13,10 @@ public class EntityGuardianOfDestruction extends EntityEssenceBoss {
 
 	public int maxHealth = (int) MobStats.guardianofdestructionHealth;
 
-	public int rolltimer;
-	public boolean isMoving;
+	private int rolltimer;
 	private int sountTimer;
+	
+	private boolean isMoving;
 
 	public final int sleep = 0, alert = 1, lowhealth = 2;
 	public int stage;
@@ -24,7 +25,6 @@ public class EntityGuardianOfDestruction extends EntityEssenceBoss {
 		super(par1World);
 		setSize(2.0F, 4.0F);
 		this.stage = sleep;
-		this.rolltimer = 0;
 		this.rotationYaw = this.rotationPitch = 0.0F;
     }
 
@@ -92,14 +92,14 @@ public class EntityGuardianOfDestruction extends EntityEssenceBoss {
 		         * sets move speed to 0 for specfic amount of ticks
 		         * sets ismoving to false
 		         */
-		        if (rolltimer > 0) {
+		        if (rolltimer == 0) {
 			        this.motionX = 0.0D;
 			        this.motionY = 0.0D;
 			        this.motionZ = 0.0D;
 			        this.isMoving = false;
-			        this.rolltimer = 10;
+			        rolltimer = 60;
 		        }
-				--rolltimer;
+				if (rolltimer > 0) rolltimer--;
 			}
         }
 		/*
@@ -116,8 +116,8 @@ public class EntityGuardianOfDestruction extends EntityEssenceBoss {
 				 * plays sound while boss is moving
 				 */
 				if (sountTimer == 0) {
-					JourneySounds.playSound(JourneySounds.BUSH, world, this);
-					sountTimer = 10;
+					JourneySounds.playSound(JourneySounds.SENTRY_DESTRUCTION_MOVING, world, this);
+					sountTimer = 13;
 				}
 				if (sountTimer > 0) sountTimer--;
 			}
