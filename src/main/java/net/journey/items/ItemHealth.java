@@ -21,6 +21,7 @@ import java.util.List;
 public class ItemHealth extends ItemFood {
 
     public int max = Config.maxHealthNormal;
+    public int maxSentry = Config.maxHealthSentry;
     public double hearts;
     public boolean isSentry;
 
@@ -40,7 +41,12 @@ public class ItemHealth extends ItemFood {
 
     @Override
     protected void onFoodEaten(ItemStack i, World w, EntityPlayer p) {
-        if (p.getMaxHealth() < max) {
+        if (!isSentry && p.getMaxHealth() < max) {
+            p.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(p.getMaxHealth() + hearts);
+            PlayerHelper.getPersistedpTag(p).setDouble("health", p.getMaxHealth());
+            JourneySounds.playSound(JourneySounds.SUMMON_TABLE, w, p);
+		}
+        if (isSentry && p.getMaxHealth() < maxSentry) {
             p.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(p.getMaxHealth() + hearts);
             PlayerHelper.getPersistedpTag(p).setDouble("health", p.getMaxHealth());
             JourneySounds.playSound(JourneySounds.SUMMON_TABLE, w, p);

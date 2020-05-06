@@ -28,7 +28,7 @@ public class Config {
     private static int indexBiome;
     private static int biomeSizeXZ;
     private static int biomeSizeY;
-    public static int maxHealthNormal;
+    public static int maxHealthNormal, maxHealthSentry;
     private static boolean hasCleaningPass;
 
     public static void init(FMLPreInitializationEvent event) {
@@ -41,6 +41,7 @@ public class Config {
 
     public static void dimensionInit() {
         maxHealthNormal = cfg.get("Maximum Health", "Max health achievable with normal battle hearts:", 60).getInt();
+        maxHealthSentry = cfg.get("Maximum Health", "Max health achievable with Sentry hearts:", 70).getInt();
         
         eucaBiome = cfg.get("Dimension", "Euca biome ID", 60).getInt();
         eucaSilverBiome = cfg.get("Dimension", "Euca Silver biome ID", 70).getInt();
