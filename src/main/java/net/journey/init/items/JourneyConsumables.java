@@ -130,11 +130,11 @@ public class JourneyConsumables {
         juiceberry = new ItemModFood("juiceberry", "Juiceberry", 1, 6, 1, false).setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.confusion, 50, 1), 1.0F);
         bogberry = new ItemModFood("bogberry", "Bogberry", 2, 6, 3, false).setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.confusion, 50, 1), 1.0F);
 
-        heartSml = new ItemHealth("heartSml", "Heart: Tier 1", 1, 2, 0.2F, false, false);
-        heartMed = new ItemHealth("heartMed", "Heart: Tier 2", 2, 2, 0.2F, false, false);
-        heartLrg = new ItemHealth("heartLrg", "Heart: Tier 3", 4, 2, 0.2F, false, false);
-        heartUlt = new ItemHealth("heartUlt", "Heart: Ultimate", 8, 2, 0.2F, false, false);
-        heartSentry = new ItemHealth("heartSen", "Sentry's Heart", 10, 2, 0.2F, false, true);
+        heartSml = new ItemHealth("heartSml", "Heart: Tier 1", 1, 0, false, false);
+        heartMed = new ItemHealth("heartMed", "Heart: Tier 2", 2, 0, false, false);
+        heartLrg = new ItemHealth("heartLrg", "Heart: Tier 3", 3, 0, false, false);
+        heartUlt = new ItemHealth("heartUlt", "Heart: Ultimate", 4, 0, false, false);
+        heartSentry = new ItemHealth("heartSen", "Sentry's Heart", 10, 0, false, true);
 
     }
 }

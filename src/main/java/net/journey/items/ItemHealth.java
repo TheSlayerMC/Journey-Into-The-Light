@@ -25,8 +25,8 @@ public class ItemHealth extends ItemFood {
     public double hearts;
     public boolean isSentry;
 
-    public ItemHealth(String name, String actual, int hearts, int heal, float f, boolean sat, boolean isSentry) {
-        super(heal, sat);
+    public ItemHealth(String name, String actual, int hearts, int food, boolean sat, boolean isSentry) {
+        super(food, sat);
         this.hearts = hearts;
         this.isSentry = isSentry;
         setMaxStackSize(8);
