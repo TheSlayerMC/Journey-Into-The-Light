@@ -1,9 +1,9 @@
 package net.journey.util;
 
+import net.journey.JITL;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
-import net.slayer.api.SlayerAPI;
 
 import javax.annotation.Nullable;
 
@@ -57,6 +57,6 @@ public class NbtUtil {
      * @return
      */
     private static String correctName(String name) {
-        return SlayerAPI.MOD_ID + "_" + name;
+        return JITL.MOD_ID + "_" + name;
     }
 }

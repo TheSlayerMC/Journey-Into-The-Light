@@ -15,16 +15,20 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 
-@Mod(name = SlayerAPI.MOD_NAME, modid = SlayerAPI.MOD_ID, version = SlayerAPI.MOD_VERSION)
+@Mod(name = JITL.MOD_NAME, modid = JITL.MOD_ID, version = JITL.MOD_VERSION)
 public class JITL {
+	public static final String MOD_NAME = "Journey Into the Light";
+	public static final String MOD_ID = "journey";
+	public static final String MOD_VERSION = "GRADLETOKEN_VERSION"; //will be automatically changed during build task
+
 	/**
 	 * Equals true only if journey is launched in its development workspace.
 	 * Will be set to false in any other mod dev workspace.
 	 */
 	public static final boolean IN_JOURNEY_DEV = true; // will be automatically replaced to false during build
-	public static final Logger LOGGER = LogManager.getLogger(SlayerAPI.MOD_NAME);
+	public static final Logger LOGGER = LogManager.getLogger(MOD_NAME);
 
-	@Instance(SlayerAPI.MOD_ID)
+	@Instance(JITL.MOD_ID)
 	public static JITL instance;
 	@SidedProxy(clientSide = "net.journey.proxy.ClientProxy", serverSide = "net.journey.proxy.CommonProxy")
 	public static CommonProxy proxy;
@@ -44,10 +48,10 @@ public class JITL {
 						SlayerAPI.Colour.LIGHT_PURPLE + "TimeConqueror - Code Helper, Co-Developer, " +
 						SlayerAPI.Colour.DARK_AQUA + "NicosaurusRex99 - Code ";
 		event.getModMetadata().description = "A full progressional experience that adds Weapons, Mobs, Dimensions, Bosses, and much more to your game.";
-		event.getModMetadata().modId = SlayerAPI.MOD_ID;
+		event.getModMetadata().modId = JITL.MOD_ID;
 		event.getModMetadata().url = "https://slayermods.net";
-		event.getModMetadata().name = SlayerAPI.MOD_NAME;
-		event.getModMetadata().version = SlayerAPI.MOD_VERSION;
+		event.getModMetadata().name = JITL.MOD_NAME;
+		event.getModMetadata().version = JITL.MOD_VERSION;
 		event.getModMetadata().logoFile = "assets/journey/textures/logo.png";
 		event.getModMetadata().authorList = author;
 	}

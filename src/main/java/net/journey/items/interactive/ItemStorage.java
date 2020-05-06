@@ -1,5 +1,6 @@
 package net.journey.items.interactive;
 
+import net.journey.JITL;
 import net.journey.init.JourneySounds;
 import net.journey.init.JourneyTabs;
 import net.journey.init.items.JourneyItems;
@@ -35,8 +36,8 @@ public class ItemStorage extends Item {
         setCreativeTab(tab);
         JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
         JourneyItems.items.add(this);
-	    setRegistryName(SlayerAPI.MOD_ID, name);
-	    LangGeneratorFacade.addItemEntry(this, finalName);
+        setRegistryName(JITL.MOD_ID, name);
+        LangGeneratorFacade.addItemEntry(this, finalName);
     }
 
     public ItemStorage setHealAmount(int healAmount) {

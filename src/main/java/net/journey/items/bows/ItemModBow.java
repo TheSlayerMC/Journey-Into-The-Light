@@ -1,5 +1,6 @@
 package net.journey.items.bows;
 
+import net.journey.JITL;
 import net.journey.client.ItemDescription;
 import net.journey.entity.projectile.arrow.EntityEssenceArrow;
 import net.journey.init.JourneyTabs;
@@ -56,9 +57,9 @@ public class ItemModBow extends ItemBow {
         setCreativeTab(JourneyTabs.WEAPONS);
         JourneyItems.itemNames.add(SlayerAPI.PREFIX + name.toLowerCase());
         JourneyItems.items.add(this);
-	    setRegistryName(SlayerAPI.MOD_ID, name.toLowerCase());
-	    LangGeneratorFacade.addItemEntry(this, properName);
-	    addPropertyOverrides();
+        setRegistryName(JITL.MOD_ID, name.toLowerCase());
+        LangGeneratorFacade.addItemEntry(this, properName);
+        addPropertyOverrides();
     }
 
     public ItemModBow(String name, String f, int uses, int damage, Item arrow, int duration, String ability, Class<? extends EntityArrow> arrowEnt) {
@@ -77,9 +78,9 @@ public class ItemModBow extends ItemBow {
         setCreativeTab(JourneyTabs.WEAPONS);
         JourneyItems.itemNames.add(SlayerAPI.PREFIX + name.toLowerCase());
         JourneyItems.items.add(this);
-	    setRegistryName(SlayerAPI.MOD_ID, name.toLowerCase());
-	    LangGeneratorFacade.addItemEntry(this, f);
-	    addPropertyOverrides();
+        setRegistryName(JITL.MOD_ID, name.toLowerCase());
+        LangGeneratorFacade.addItemEntry(this, f);
+        addPropertyOverrides();
     }
 
     public ItemModBow(String name, String f, int uses, int damage, Item arrow, String ability, Class<? extends EntityArrow> arrowEnt) {
@@ -97,9 +98,9 @@ public class ItemModBow extends ItemBow {
         setCreativeTab(JourneyTabs.WEAPONS);
         JourneyItems.itemNames.add(SlayerAPI.PREFIX + name.toLowerCase());
         JourneyItems.items.add(this);
-	    setRegistryName(SlayerAPI.MOD_ID, name.toLowerCase());
-	    LangGeneratorFacade.addItemEntry(this, f);
-	    addPropertyOverrides();
+        setRegistryName(JITL.MOD_ID, name.toLowerCase());
+        LangGeneratorFacade.addItemEntry(this, f);
+        addPropertyOverrides();
     }
 
     public ItemModBow(String name, String finalName) {
@@ -113,8 +114,8 @@ public class ItemModBow extends ItemBow {
         setCreativeTab(tab);
         JourneyItems.itemNames.add(SlayerAPI.PREFIX + name.toLowerCase());
         JourneyItems.items.add(this);
-	    setRegistryName(SlayerAPI.MOD_ID, name.toLowerCase());
-	    LangGeneratorFacade.addItemEntry(this, finalName);
+        setRegistryName(JITL.MOD_ID, name.toLowerCase());
+        LangGeneratorFacade.addItemEntry(this, finalName);
     }
 
     public static float getArrowVelocity(int charge) {

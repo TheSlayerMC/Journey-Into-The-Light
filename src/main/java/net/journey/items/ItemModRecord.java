@@ -1,6 +1,7 @@
 package net.journey.items;
 
 import com.google.common.collect.Maps;
+import net.journey.JITL;
 import net.journey.init.JourneyTabs;
 import net.journey.init.items.JourneyItems;
 import net.journey.util.LangHelper;
@@ -41,7 +42,7 @@ public class ItemModRecord extends ItemRecord {
         setTranslationKey(name + "Record");
         soundName = name;
         //description = desc;
-        setRegistryName(SlayerAPI.MOD_ID, name + "Record");
+        setRegistryName(JITL.MOD_ID, name + "Record");
         LangGeneratorFacade.addItemEntry(this, finalName);
         setCreativeTab(JourneyTabs.UTIL);
         JourneyItems.itemNames.add(SlayerAPI.PREFIX + name + "Record");

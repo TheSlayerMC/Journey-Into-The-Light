@@ -1,15 +1,11 @@
 package net.journey.blocks.containers;
 
-import net.journey.blocks.BlockAncientSocket;
+import net.journey.JITL;
 import net.journey.blocks.tileentity.TileEntitySummoningTable;
 import net.journey.client.handler.GuiHandler;
 import net.journey.init.JourneyTabs;
 import net.journey.init.blocks.JourneyBlocks;
-import net.minecraft.block.state.BlockWorldState;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.block.state.pattern.BlockPattern;
-import net.minecraft.block.state.pattern.BlockStateMatcher;
-import net.minecraft.block.state.pattern.FactoryBlockPattern;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.Item;
@@ -29,10 +25,7 @@ import net.slayer.api.EnumMaterialTypes;
 import net.slayer.api.SlayerAPI;
 import net.slayer.api.entity.tileentity.container.BlockModContainer;
 
-import java.util.ArrayList;
 import java.util.Random;
-
-import com.google.common.base.Predicates;
 
 public class BlockSummoningTable extends BlockModContainer {
 
@@ -135,7 +128,7 @@ public class BlockSummoningTable extends BlockModContainer {
 
                 pos.add(hitX, hitY + 2, hitZ)).getBlock() == JourneyBlocks.obelisk) {
 
-            playerIn.openGui(SlayerAPI.MOD_ID, GuiHandler.summoning, worldIn, pos.getX(), pos.getY(), pos.getZ());
+	        playerIn.openGui(JITL.MOD_ID, GuiHandler.summoning, worldIn, pos.getX(), pos.getY(), pos.getZ());
         }
         return true;
     }

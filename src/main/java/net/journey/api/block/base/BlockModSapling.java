@@ -1,5 +1,6 @@
 package net.journey.api.block.base;
 
+import net.journey.JITL;
 import net.journey.api.block.IHasCustomItemPath;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.properties.PropertyInteger;
@@ -14,7 +15,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.event.terraingen.TerrainGen;
-import net.slayer.api.SlayerAPI;
 import net.slayer.api.block.BlockModFlower;
 import org.jetbrains.annotations.NotNull;
 
@@ -97,6 +97,6 @@ public class BlockModSapling extends BlockModFlower implements IGrowable, IHasCu
     @NotNull
     @Override
     public ResourceLocation getItemModelResourceLocation() {
-        return new ResourceLocation(SlayerAPI.MOD_ID, "block/sapling/" + getRegistryName().getPath());
+	    return new ResourceLocation(JITL.MOD_ID, "block/sapling/" + getRegistryName().getPath());
     }
 }

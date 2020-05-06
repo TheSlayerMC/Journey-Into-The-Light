@@ -29,27 +29,27 @@ public class PlayerStats {
 		if(event.type == ElementType.EXPERIENCE || event.type == ElementType.HEALTH || event.type == ElementType.FOOD || event.type == ElementType.AIR || event.type == ElementType.ARMOR)
 			event.setCanceled(true);
 		if(!Minecraft.getMinecraft().playerController.shouldDrawHUD() || !event.isCanceled()) return;
-		mc.mcProfiler.endSection();
-	}
+mc.mcProfiler.endSection();
+}
 
-	@SubscribeEvent
-	public void tickEvent(RenderTickEvent event) {
-		GuiIngame gig = mc.ingameGUI;
-		FontRenderer font = mc.fontRendererObj;
-		EntityPlayer player = mc.thePlayer;
-		if(mc.currentScreen == null || mc.currentScreen instanceof GuiChat) {
-			if(!mc.gameSettings.showDebugInfo) {
-				if(SlayerAPI.BETA) mc.fontRendererObj.drawString(EnumChatFormatting.DARK_GREEN + "journey of the Gods: " + EnumChatFormatting.DARK_RED + SlayerAPI.MOD_VERSION, 5, 5, 0);
-				if(!player.capabilities.isCreativeMode) {
-					mc.getTextureManager().bindTexture(new ResourceLocation(SlayerAPI.PREFIX + "textures/gui/playerStats.png"));
-					float health = player.getHealth() * 5F;
-					float hunger = player.getFoodStats().getFoodLevel() * 5F;
-					float experience = (int)(mc.thePlayer.experience * 150F);
-					float armor = player.getTotalArmorValue() * 5;
-					float air = (float)player.getAir() / 1.5F / 2F;
-					ScaledResolution res = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
-					//int w = res.getScaledWidth() - 160, h = 10;
-					int w = 50, h = 10;
+@SubscribeEvent
+public void tickEvent(RenderTickEvent event) {
+GuiIngame gig = mc.ingameGUI;
+FontRenderer font = mc.fontRendererObj;
+EntityPlayer player = mc.thePlayer;
+if(mc.currentScreen == null || mc.currentScreen instanceof GuiChat) {
+if(!mc.gameSettings.showDebugInfo) {
+if(SlayerAPI.BETA) mc.fontRendererObj.drawString(EnumChatFormatting.DARK_GREEN + "journey of the Gods: " + EnumChatFormatting.DARK_RED + JITL.MOD_VERSION, 5, 5, 0);
+if(!player.capabilities.isCreativeMode) {
+mc.getTextureManager().bindTexture(new ResourceLocation(SlayerAPI.PREFIX + "textures/gui/playerStats.png"));
+float health = player.getHealth() * 5F;
+float hunger = player.getFoodStats().getFoodLevel() * 5F;
+float experience = (int)(mc.thePlayer.experience * 150F);
+float armor = player.getTotalArmorValue() * 5;
+float air = (float)player.getAir() / 1.5F / 2F;
+ScaledResolution res = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
+//int w = res.getScaledWidth() - 160, h = 10;
+int w = 50, h = 10;
 					GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 					GL11.glEnable(GL11.GL_BLEND);
 					int lengthOfBar = 151;

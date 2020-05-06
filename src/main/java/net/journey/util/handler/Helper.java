@@ -1,7 +1,7 @@
 package net.journey.util.handler;
 
+import net.journey.JITL;
 import net.minecraft.util.math.BlockPos;
-import net.slayer.api.SlayerAPI;
 
 public class Helper {
 
@@ -18,6 +18,6 @@ public class Helper {
     }
 
     public static void print(Object o) {
-        System.out.println("(" + SlayerAPI.MOD_NAME + ") " + o);
+        System.out.println("(" + JITL.MOD_NAME + ") " + o);
     }
 }

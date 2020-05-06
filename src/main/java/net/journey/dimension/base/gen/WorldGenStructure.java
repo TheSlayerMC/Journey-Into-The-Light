@@ -1,5 +1,6 @@
 package net.journey.dimension.base.gen;
 
+import net.journey.JITL;
 import net.journey.api.world.gen.IGeneratedStructure;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.server.MinecraftServer;
@@ -16,7 +17,6 @@ import net.minecraft.world.gen.structure.template.PlacementSettings;
 import net.minecraft.world.gen.structure.template.Template;
 import net.minecraft.world.gen.structure.template.TemplateManager;
 import net.minecraftforge.fml.common.FMLCommonHandler;
-import net.slayer.api.SlayerAPI;
 
 import java.lang.reflect.Field;
 import java.util.List;
@@ -50,7 +50,7 @@ public class WorldGenStructure extends WorldGenerator implements IGeneratedStruc
     public void generateStructure(World w, BlockPos pos) {
         MinecraftServer server = w.getMinecraftServer();
         TemplateManager manager = getWorldServer(w).getStructureTemplateManager();
-        ResourceLocation location = new ResourceLocation(SlayerAPI.MOD_ID, name);
+        ResourceLocation location = new ResourceLocation(JITL.MOD_ID, name);
         Template template = manager.get(server, location);
 
 

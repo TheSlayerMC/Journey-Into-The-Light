@@ -1,11 +1,9 @@
 package net.journey.blocks.containers;
 
-import org.jetbrains.annotations.NotNull;
-
+import net.journey.JITL;
 import net.journey.api.block.IHasCustomItemPath;
 import net.journey.api.block.IHasTeisr;
 import net.journey.blocks.tileentity.TileEntitySenterianAltar;
-import net.journey.client.render.block.SenterianAltarRenderer;
 import net.journey.client.render.model.block.ModelSenterianAltar;
 import net.journey.init.JourneyTabs;
 import net.journey.init.blocks.JourneyBlocks;
@@ -16,11 +14,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.EnumBlockRenderType;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -30,6 +24,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.SlayerAPI;
 import net.slayer.api.entity.tileentity.container.BlockModContainer;
+import org.jetbrains.annotations.NotNull;
 
 public class BlockSenterianAltar extends BlockModContainer implements IHasTeisr, IHasCustomItemPath {
 
@@ -116,7 +111,7 @@ public class BlockSenterianAltar extends BlockModContainer implements IHasTeisr,
 
 	@Override
 	public @NotNull ResourceLocation getItemModelResourceLocation() {
-		return new ResourceLocation(SlayerAPI.MOD_ID, "block/chest/" + getRegistryName().getPath());
+		return new ResourceLocation(JITL.MOD_ID, "block/chest/" + getRegistryName().getPath());
 	}
 
 	@Override

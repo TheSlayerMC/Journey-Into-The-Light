@@ -1,5 +1,6 @@
 package net.journey.util.handler;
 
+import net.journey.JITL;
 import net.minecraftforge.fml.common.FMLLog;
 import net.slayer.api.SlayerAPI;
 import org.apache.logging.log4j.Level;
@@ -25,7 +26,7 @@ public class LogHelper {
     }
 
     private static void log(Level level, Object msg) {
-        FMLLog.log(SlayerAPI.MOD_NAME, level, msg.toString());
+        FMLLog.log(JITL.MOD_NAME, level, msg.toString());
         if (SlayerAPI.DEVMODE) writeFile(msg);
     }
 

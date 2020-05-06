@@ -1,5 +1,6 @@
 package net.journey.items.ranged;
 
+import net.journey.JITL;
 import net.journey.entity.projectile.EntityBasicProjectile;
 import net.journey.entity.projectile.EntityLightningBall;
 import net.journey.init.JourneySounds;
@@ -41,8 +42,8 @@ public class ItemCreativeHammer extends ItemSword {
         setCreativeTab(JourneyTabs.WEAPONS);
         JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
         JourneyItems.items.add(this);
-	    setRegistryName(SlayerAPI.MOD_ID, name);
-	    LangGeneratorFacade.addItemEntry(this, f);
+        setRegistryName(JITL.MOD_ID, name);
+        LangGeneratorFacade.addItemEntry(this, f);
     }
 
     @Override

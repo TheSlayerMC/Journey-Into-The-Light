@@ -1,5 +1,6 @@
 package net.journey.api.block.base;
 
+import net.journey.JITL;
 import net.journey.init.JourneyTabs;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.init.items.JourneyItems;
@@ -21,8 +22,8 @@ public class BlockModRail extends BlockRail {
         JourneyBlocks.blocks.add(this);
         JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
         power = isPowered;
-        this.speed = speed;
-        setRegistryName(SlayerAPI.MOD_ID, name);
+	    this.speed = speed;
+	    setRegistryName(JITL.MOD_ID, name);
 
         JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
     }

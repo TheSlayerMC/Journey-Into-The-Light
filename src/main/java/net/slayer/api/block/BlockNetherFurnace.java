@@ -1,5 +1,6 @@
 package net.slayer.api.block;
 
+import net.journey.JITL;
 import net.journey.blocks.tileentity.TileEntityNetherFurnace;
 import net.journey.client.handler.GuiHandler;
 import net.journey.init.JourneyTabs;
@@ -23,7 +24,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.EnumMaterialTypes;
-import net.slayer.api.SlayerAPI;
 import net.slayer.api.entity.tileentity.container.BlockModContainer;
 
 import java.util.Random;
@@ -127,7 +127,7 @@ public class BlockNetherFurnace extends BlockModContainer {
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing heldItem, float side, float hitX, float hitY) {
         if (!worldIn.isRemote) {
-            playerIn.openGui(SlayerAPI.MOD_ID, GuiHandler.netherfurnace, worldIn, pos.getX(), pos.getY(), pos.getZ());
+            playerIn.openGui(JITL.MOD_ID, GuiHandler.netherfurnace, worldIn, pos.getX(), pos.getY(), pos.getZ());
         }
         return true;
     }

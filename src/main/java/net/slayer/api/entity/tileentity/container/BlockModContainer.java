@@ -1,5 +1,6 @@
 package net.slayer.api.entity.tileentity.container;
 
+import net.journey.JITL;
 import net.journey.init.JourneyTabs;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.init.items.JourneyItems;
@@ -63,9 +64,9 @@ public abstract class BlockModContainer extends BlockContainer {
         setTranslationKey(name);
         this.name = name;
         JourneyBlocks.blocks.add(this);
-        JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
-        setRegistryName(SlayerAPI.MOD_ID, name);
-        LangGeneratorFacade.addBlockEntry(this, finalName);
+	    JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
+	    setRegistryName(JITL.MOD_ID, name);
+	    LangGeneratorFacade.addBlockEntry(this, finalName);
         JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
     }
 
@@ -79,9 +80,9 @@ public abstract class BlockModContainer extends BlockContainer {
         setHardness(hardness);
         this.name = name;
         JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
-        JourneyBlocks.blocks.add(this);
-        setRegistryName(SlayerAPI.MOD_ID, name);
-        LangGeneratorFacade.addBlockEntry(this, finalName);
+	    JourneyBlocks.blocks.add(this);
+	    setRegistryName(JITL.MOD_ID, name);
+	    LangGeneratorFacade.addBlockEntry(this, finalName);
         JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
     }
 

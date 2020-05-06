@@ -1,5 +1,6 @@
 package net.slayer.api.block;
 
+import net.journey.JITL;
 import net.journey.init.JourneyTabs;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.init.items.JourneyItems;
@@ -22,7 +23,7 @@ public class BlockModStairs extends BlockStairs {
         this.setLightOpacity(1);
         JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
         JourneyBlocks.blocks.add(this);
-        setRegistryName(SlayerAPI.MOD_ID, name);
+        setRegistryName(JITL.MOD_ID, name);
 
 	    LangGeneratorFacade.addBlockEntry(this, finalName);
 	    JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));

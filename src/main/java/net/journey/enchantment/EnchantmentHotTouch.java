@@ -1,6 +1,6 @@
 package net.journey.enchantment;
 
-import net.journey.init.JourneyEnchantments;
+import net.journey.JITL;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.init.Enchantments;
@@ -8,14 +8,13 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
 import net.minecraft.util.ResourceLocation;
-import net.slayer.api.SlayerAPI;
 
 public class EnchantmentHotTouch extends Enchantment {
 
     public EnchantmentHotTouch() {
         super(Rarity.RARE, EnumEnchantmentType.DIGGER, new EntityEquipmentSlot[]{EntityEquipmentSlot.MAINHAND});
         this.setName("Hot Touch");
-        setRegistryName(new ResourceLocation(SlayerAPI.MOD_ID, "Hot Touch"));
+        setRegistryName(new ResourceLocation(JITL.MOD_ID, "Hot Touch"));
     }
 
     @Override

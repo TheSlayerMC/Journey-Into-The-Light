@@ -1,5 +1,6 @@
 package net.journey.api.block.base;
 
+import net.journey.JITL;
 import net.journey.api.block.IHasCustomItemPath;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.BlockFaceShape;
@@ -12,7 +13,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.slayer.api.EnumMaterialTypes;
-import net.slayer.api.SlayerAPI;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -84,6 +84,6 @@ public class JDoubleBlockPlant extends JDoubleBlock implements IHasCustomItemPat
     @NotNull
     @Override
     public ResourceLocation getItemModelResourceLocation() {
-        return new ResourceLocation(SlayerAPI.MOD_ID, "block/" + getRegistryName().getPath());
+	    return new ResourceLocation(JITL.MOD_ID, "block/" + getRegistryName().getPath());
     }
 }

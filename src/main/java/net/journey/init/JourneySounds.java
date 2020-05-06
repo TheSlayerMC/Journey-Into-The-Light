@@ -1,5 +1,6 @@
 package net.journey.init;
 
+import net.journey.JITL;
 import net.journey.Registries;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,9 +11,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import net.slayer.api.SlayerAPI;
 
-@EventBusSubscriber(modid = SlayerAPI.MOD_ID)
+@EventBusSubscriber(modid = JITL.MOD_ID)
 public class JourneySounds {
 
     public static SoundEvent CAVE_MOB;
@@ -239,7 +239,7 @@ public class JourneySounds {
     }
 
     public static SoundEvent registerSound(String sound) {
-        ResourceLocation LOC = new ResourceLocation(SlayerAPI.MOD_ID, sound);
+        ResourceLocation LOC = new ResourceLocation(JITL.MOD_ID, sound);
         SoundEvent s = new SoundEvent(LOC);
         s.setRegistryName(LOC);
 

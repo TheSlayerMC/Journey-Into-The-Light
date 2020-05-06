@@ -1,5 +1,6 @@
 package net.journey.init;
 
+import net.journey.JITL;
 import net.journey.enchantment.EnchantmentHotTouch;
 import net.journey.enchantment.EnchantmentWaterWalk;
 import net.minecraft.block.material.Material;
@@ -17,11 +18,8 @@ import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
-import net.slayer.api.SlayerAPI;
 
-import java.util.ArrayList;
-
-@Mod.EventBusSubscriber(modid = SlayerAPI.MOD_ID)
+@Mod.EventBusSubscriber(modid = JITL.MOD_ID)
 public class JourneyEnchantments {
 
     public static final Enchantment hotTouch = new EnchantmentHotTouch();

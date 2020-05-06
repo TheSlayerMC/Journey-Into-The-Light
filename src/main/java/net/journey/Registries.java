@@ -19,12 +19,11 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.registries.IForgeRegistry;
-import net.slayer.api.SlayerAPI;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@EventBusSubscriber(modid = SlayerAPI.MOD_ID)
+@EventBusSubscriber(modid = JITL.MOD_ID)
 public class Registries {
 
     public static final List<SoundEvent> SOUNDS = new ArrayList<>();

@@ -1,5 +1,6 @@
 package net.journey.api.block.base;
 
+import net.journey.JITL;
 import net.journey.api.block.IHasCustomItemPath;
 import net.journey.init.JourneyTabs;
 import net.journey.util.StuffConstructor;
@@ -10,7 +11,6 @@ import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
-import net.slayer.api.SlayerAPI;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -84,6 +84,6 @@ public class JBlockLog extends BlockLog implements IHasCustomItemPath {
     @NotNull
     @Override
     public ResourceLocation getItemModelResourceLocation() {
-        return new ResourceLocation(SlayerAPI.MOD_ID, "block/log/" + getRegistryName().getPath());
+	    return new ResourceLocation(JITL.MOD_ID, "block/log/" + getRegistryName().getPath());
     }
 }

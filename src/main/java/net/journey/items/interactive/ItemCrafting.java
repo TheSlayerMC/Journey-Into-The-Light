@@ -1,5 +1,6 @@
 package net.journey.items.interactive;
 
+import net.journey.JITL;
 import net.journey.init.JourneyTabs;
 import net.journey.init.items.JourneyItems;
 import net.journey.util.gen.lang.LangGeneratorFacade;
@@ -30,8 +31,8 @@ public class ItemCrafting extends Item {
         JourneyItems.items.add(this);
         JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
         setCreativeTab(JourneyTabs.UTIL);
-	    setRegistryName(SlayerAPI.MOD_ID, name);
-	    LangGeneratorFacade.addItemEntry(this, finalName);
+        setRegistryName(JITL.MOD_ID, name);
+        LangGeneratorFacade.addItemEntry(this, finalName);
     }
 
     @Override

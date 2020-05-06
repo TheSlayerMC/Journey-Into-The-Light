@@ -1,5 +1,6 @@
 package net.journey.blocks.plant;
 
+import net.journey.JITL;
 import net.journey.init.JourneyTabs;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.init.items.JourneyItems;
@@ -23,19 +24,19 @@ import java.util.Random;
 public class BlockStalks extends Block {
 
     public BlockStalks(String name, String f, boolean top) {
-        super(EnumMaterialTypes.PLANT.getMaterial());
-        setSoundType(EnumMaterialTypes.PLANT.getSound());
-        setCreativeTab(JourneyTabs.DECORATION);
-        setHardness(0.0F);
-        setLightLevel(0.6F);
-        setTickRandomly(true);
-        setTranslationKey(name);
-	    setRegistryName(SlayerAPI.MOD_ID, name);
+	    super(EnumMaterialTypes.PLANT.getMaterial());
+	    setSoundType(EnumMaterialTypes.PLANT.getSound());
+	    setCreativeTab(JourneyTabs.DECORATION);
+	    setHardness(0.0F);
+	    setLightLevel(0.6F);
+	    setTickRandomly(true);
+	    setTranslationKey(name);
+	    setRegistryName(JITL.MOD_ID, name);
 	    LangGeneratorFacade.addBlockEntry(this, f);
 	    JourneyBlocks.blocks.add(this);
-        JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
+	    JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
 
-        JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
+	    JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
     }
 
     @Override

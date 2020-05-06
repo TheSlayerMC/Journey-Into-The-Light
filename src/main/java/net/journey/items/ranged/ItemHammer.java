@@ -1,5 +1,6 @@
 package net.journey.items.ranged;
 
+import net.journey.JITL;
 import net.journey.client.server.EssenceProvider;
 import net.journey.client.server.IEssence;
 import net.journey.entity.projectile.EntityBasicProjectile;
@@ -34,7 +35,7 @@ public class ItemHammer extends ItemSword {
 
     public ItemHammer(String name, String f, JourneyToolMaterial toolMaterial, boolean durability, Class<? extends EntityBasicProjectile> projectile, int dam, int magic, int uses) {
         super(toolMaterial.getToolMaterial());
-        this.projectile = projectile;
+	    this.projectile = projectile;
 	    damage = dam;
 	    usage = magic;
 	    setMaxDamage(uses);
@@ -44,7 +45,7 @@ public class ItemHammer extends ItemSword {
 	    setCreativeTab(JourneyTabs.WEAPONS);
 	    JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
 	    JourneyItems.items.add(this);
-	    setRegistryName(SlayerAPI.MOD_ID, name);
+	    setRegistryName(JITL.MOD_ID, name);
 	    LangGeneratorFacade.addItemEntry(this, f);
     }
 

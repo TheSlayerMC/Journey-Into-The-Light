@@ -1,6 +1,6 @@
 package net.journey.event;
 
-import net.slayer.api.SlayerAPI;
+import net.journey.JITL;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -19,7 +19,7 @@ public class UpdateChecker {
         //String changelog = changelogFile.readLine();
         versionFile.close();
         //changelogFile.close();
-        return !curVersion.contentEquals(SlayerAPI.MOD_VERSION);
+        return !curVersion.contentEquals(JITL.MOD_VERSION);
     }
 
     public static boolean isOnline() throws SocketException {

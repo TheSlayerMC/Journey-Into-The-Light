@@ -1,5 +1,6 @@
 package net.journey.api.block.base;
 
+import net.journey.JITL;
 import net.journey.api.block.IHasCustomItemPath;
 import net.journey.util.StuffConstructor;
 import net.minecraft.block.BlockBush;
@@ -9,7 +10,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.EnumPlantType;
 import net.slayer.api.EnumMaterialTypes;
-import net.slayer.api.SlayerAPI;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -32,7 +32,7 @@ public class JBlockPlant extends BlockBush implements IHasCustomItemPath {
     @NotNull
     @Override
     public ResourceLocation getItemModelResourceLocation() {
-        return new ResourceLocation(SlayerAPI.MOD_ID, "block/plant/" + getRegistryName().getPath());
+	    return new ResourceLocation(JITL.MOD_ID, "block/plant/" + getRegistryName().getPath());
     }
 
     public JBlockPlant setType(EnumPlantType type) {

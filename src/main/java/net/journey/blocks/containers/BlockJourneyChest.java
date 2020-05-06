@@ -1,5 +1,6 @@
 package net.journey.blocks.containers;
 
+import net.journey.JITL;
 import net.journey.api.block.IHasCustomItemPath;
 import net.journey.api.block.IHasTeisr;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
@@ -34,7 +35,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.EnumMaterialTypes;
-import net.slayer.api.SlayerAPI;
 import net.slayer.api.entity.tileentity.container.BlockModContainer;
 import org.jetbrains.annotations.NotNull;
 
@@ -500,28 +500,28 @@ public class BlockJourneyChest extends BlockModContainer implements IHasTeisr, I
 	@NotNull
 	@Override
 	public ResourceLocation getItemModelResourceLocation() {
-		return new ResourceLocation(SlayerAPI.MOD_ID, "block/base_chest");
+		return new ResourceLocation(JITL.MOD_ID, "block/base_chest");
 	}
 
 	public enum Type {
-		JOURNEY(new ResourceLocation(SlayerAPI.MOD_ID, "textures/models/blocks/chestjourney.png"),
-				new ResourceLocation(SlayerAPI.MOD_ID, "textures/models/blocks/chestjourney_double.png")),
-		NETHER(new ResourceLocation(SlayerAPI.MOD_ID, "textures/models/blocks/chestnether.png"),
-				new ResourceLocation(SlayerAPI.MOD_ID, "textures/models/blocks/chestnether_double.png")),
-		EUCA(new ResourceLocation(SlayerAPI.MOD_ID, "textures/models/blocks/chesteuca.png"),
-				new ResourceLocation(SlayerAPI.MOD_ID, "textures/models/blocks/chesteuca_double.png")),
-		BOIL(new ResourceLocation(SlayerAPI.MOD_ID, "textures/models/blocks/chestboil.png"),
-				new ResourceLocation(SlayerAPI.MOD_ID, "textures/models/blocks/chestboil_double.png")),
-		DEPTHS(new ResourceLocation(SlayerAPI.MOD_ID, "textures/models/blocks/chestdepths.png"),
-				new ResourceLocation(SlayerAPI.MOD_ID, "textures/models/blocks/chestdepths_double.png")),
-		CORBA(new ResourceLocation(SlayerAPI.MOD_ID, "textures/models/blocks/chestcorba.png"),
-				new ResourceLocation(SlayerAPI.MOD_ID, "textures/models/blocks/chestcorba_double.png")),
-		TERRA(new ResourceLocation(SlayerAPI.MOD_ID, "textures/models/blocks/chestterra.png"),
-				new ResourceLocation(SlayerAPI.MOD_ID, "textures/models/blocks/chestterra_double.png")),
-		CLOUDIA(new ResourceLocation(SlayerAPI.MOD_ID, "textures/models/blocks/chestcloudia.png"),
-				new ResourceLocation(SlayerAPI.MOD_ID, "textures/models/blocks/chestcloudia_double.png")),
-		FROZEN(new ResourceLocation(SlayerAPI.MOD_ID, "textures/models/blocks/chestfrozen.png"),
-				new ResourceLocation(SlayerAPI.MOD_ID, "textures/models/blocks/chestfrozen_double.png"));
+		JOURNEY(new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/chestjourney.png"),
+				new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/chestjourney_double.png")),
+		NETHER(new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/chestnether.png"),
+				new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/chestnether_double.png")),
+		EUCA(new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/chesteuca.png"),
+				new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/chesteuca_double.png")),
+		BOIL(new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/chestboil.png"),
+				new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/chestboil_double.png")),
+		DEPTHS(new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/chestdepths.png"),
+				new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/chestdepths_double.png")),
+		CORBA(new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/chestcorba.png"),
+				new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/chestcorba_double.png")),
+		TERRA(new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/chestterra.png"),
+				new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/chestterra_double.png")),
+		CLOUDIA(new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/chestcloudia.png"),
+				new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/chestcloudia_double.png")),
+		FROZEN(new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/chestfrozen.png"),
+				new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/chestfrozen_double.png"));
 
 		private final ResourceLocation singleChestTexture;
 		private final ResourceLocation doubleChestTexture;

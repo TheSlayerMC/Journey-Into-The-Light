@@ -1,6 +1,6 @@
 package net.journey.event;
 
-import net.journey.client.render.gui.JourneyLoadingScreen;
+import net.journey.JITL;
 import net.journey.client.render.gui.JourneyMainMenu;
 import net.journey.client.server.EssenceProvider;
 import net.journey.client.server.IEssence;
@@ -25,18 +25,16 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.RenderTickEvent;
-import net.slayer.api.SlayerAPI;
 import org.lwjgl.opengl.GL11;
 
 import java.util.Random;
 
 public class ClientTickEvent {
 
-	public static final ResourceLocation TEXTURE = new ResourceLocation(SlayerAPI.MOD_ID, "textures/gui/misc.png");
+	public static final ResourceLocation TEXTURE = new ResourceLocation(JITL.MOD_ID, "textures/gui/misc.png");
 	private Item boots = null, body = null, legs = null, helmet = null;
 
 	@SubscribeEvent(priority = EventPriority.LOWEST)

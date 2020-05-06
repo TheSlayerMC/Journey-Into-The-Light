@@ -1,5 +1,6 @@
 package net.journey.event;
 
+import net.journey.JITL;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -28,7 +29,7 @@ public class UpdateCheckerEvent {
                     try {
                         if (!UpdateChecker.isOnline()) {
                             SlayerAPI.addChatMessage(p, Colour.GOLD + "[|--------------------------------------------------|]");
-                            SlayerAPI.addChatMessageWithColour(p, Colour.GRAY, "[Version: " + SlayerAPI.MOD_VERSION + "]");
+                            SlayerAPI.addChatMessageWithColour(p, Colour.GRAY, "[Version: " + JITL.MOD_VERSION + "]");
                             SlayerAPI.addChatMessage(p, Colour.RED + "Unable to check for latest version. You may want to check your internet connection.");
                             SlayerAPI.addChatMessage(p, Colour.GOLD + "[|--------------------------------------------------|]");
                         }
@@ -37,7 +38,7 @@ public class UpdateCheckerEvent {
                             String curVersion = versionFile.readLine();
 
                             SlayerAPI.addChatMessage(p, Colour.GOLD + "[|--------------------------------------------------|]");
-                            SlayerAPI.addChatMessage(p, Colour.GOLD + "[Version: " + SlayerAPI.MOD_VERSION + "]");
+                            SlayerAPI.addChatMessage(p, Colour.GOLD + "[Version: " + JITL.MOD_VERSION + "]");
                             SlayerAPI.addChatMessage(p, Colour.RED + "A Journey into the Light update is avaliable.");
                             SlayerAPI.addChatMessage(p, Colour.AQUA + "[New Version: " + curVersion + "]");
                             SlayerAPI.addChatMessage(p, Colour.AQUA + "You can get the new version at https://slayermods.net/index.php?title=Journey_Download");
@@ -46,7 +47,7 @@ public class UpdateCheckerEvent {
                         }
                         if ((!UpdateChecker.isUpdateAvailable()) && UpdateChecker.isOnline()) {
                             SlayerAPI.addChatMessage(p, Colour.GOLD + "[|--------------------------------------------------|]");
-                            SlayerAPI.addChatMessage(p, Colour.GRAY + "[Journey into the Light] [Version: " + SlayerAPI.MOD_VERSION + "]");
+                            SlayerAPI.addChatMessage(p, Colour.GRAY + "[Journey into the Light] [Version: " + JITL.MOD_VERSION + "]");
                             SlayerAPI.addChatMessageWithColour(p, Colour.GOLD, "Journey into the Light is up to date.");
                             SlayerAPI.addChatMessageWithColour(p, Colour.YELLOW, "Follow @JourneyMod on twitter for update teasers.");
                             SlayerAPI.addChatMessage(p, Colour.GOLD + "[|--------------------------------------------------|]");

@@ -1,52 +1,35 @@
 package net.journey.blocks.containers;
 
+import net.journey.JITL;
 import net.journey.api.block.IHasCustomItemPath;
 import net.journey.api.block.IHasTeisr;
 import net.journey.blocks.tileentity.TileEntityObelisk;
-import net.journey.client.render.block.JourneyChestTESR;
 import net.journey.client.render.block.ObeliskRenderer;
-import net.journey.client.render.model.block.ModelCloudAltar;
-import net.journey.client.render.model.block.ModelObelisk;
-import net.journey.client.render.particles.EntityBoilPotalFX;
-import net.journey.client.render.particles.EntityHellstoneFX;
-import net.journey.client.render.particles.EntityKnowledgeTableFX;
 import net.journey.init.JourneySounds;
 import net.journey.init.JourneyTabs;
-import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.particle.ParticleSmokeNormal;
 import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
-import net.minecraft.init.SoundEvents;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.EnumBlockRenderType;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.slayer.api.SlayerAPI;
-import net.slayer.api.block.BlockMod;
 import net.slayer.api.entity.tileentity.container.BlockModContainer;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
-import org.jetbrains.annotations.NotNull;
-
 public class BlockObelisk extends BlockModContainer implements IHasTeisr, IHasCustomItemPath {
 
-    private AxisAlignedBB size = new AxisAlignedBB(0.0F, 0.3F, 0.0F, 1.0F, 2.8F, 1.0F);
-    
-    public BlockObelisk(String name, String finalName) {
-        super(name, finalName);
-        setCreativeTab(JourneyTabs.MACHINE_BLOCKS);
-    }
+	private AxisAlignedBB size = new AxisAlignedBB(0.0F, 0.3F, 0.0F, 1.0F, 2.8F, 1.0F);
+
+	public BlockObelisk(String name, String finalName) {
+		super(name, finalName);
+		setCreativeTab(JourneyTabs.MACHINE_BLOCKS);
+	}
 
     @Override
     @SideOnly(Side.CLIENT)
@@ -104,6 +87,6 @@ public class BlockObelisk extends BlockModContainer implements IHasTeisr, IHasCu
 	@NotNull
 	@Override
 	public ResourceLocation getItemModelResourceLocation() {
-		return new ResourceLocation(SlayerAPI.MOD_ID, "block/obselisk");
+		return new ResourceLocation(JITL.MOD_ID, "block/obselisk");
 	}
 }

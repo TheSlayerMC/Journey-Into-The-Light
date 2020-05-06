@@ -1,5 +1,6 @@
 package net.slayer.api.item;
 
+import net.journey.JITL;
 import net.journey.init.JourneyTabs;
 import net.journey.init.items.JourneyItems;
 import net.journey.util.JourneyToolMaterial;
@@ -27,7 +28,7 @@ public class ItemModPickaxe extends ItemPickaxe {
         setHarvestLevel("pickaxe", tool.getHarvestLevel());
         JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
         JourneyItems.items.add(this);
-        setRegistryName(SlayerAPI.MOD_ID, name);
+        setRegistryName(JITL.MOD_ID, name);
 
         LangGeneratorFacade.addItemEntry(this, f);
     }

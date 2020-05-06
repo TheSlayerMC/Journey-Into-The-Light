@@ -1,5 +1,6 @@
 package net.journey.util;
 
+import net.journey.JITL;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.init.items.JourneyItems;
 import net.journey.util.gen.lang.LangGeneratorFacade;
@@ -15,7 +16,7 @@ public class StuffConstructor {
 
     public static void regAndSetupBlock(Block block, String name, String enName, float hardness, CreativeTabs tab) {
         block.setCreativeTab(tab)
-                .setRegistryName(SlayerAPI.MOD_ID, name)
+                .setRegistryName(JITL.MOD_ID, name)
                 .setTranslationKey(name)
                 .setHardness(hardness);
 

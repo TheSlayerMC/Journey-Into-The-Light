@@ -1,5 +1,6 @@
 package net.slayer.api.block;
 
+import net.journey.JITL;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.init.items.JourneyItems;
 import net.minecraft.block.BlockDoor;
@@ -26,7 +27,7 @@ public class BlockModDoor extends BlockDoor {
         setHardness(hardness);
         JourneyBlocks.blocks.add(this);
         JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
-        setRegistryName(SlayerAPI.MOD_ID, name);
+        setRegistryName(JITL.MOD_ID, name);
         JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
     }
 

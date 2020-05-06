@@ -1,5 +1,6 @@
 package net.slayer.api.block;
 
+import net.journey.JITL;
 import net.journey.init.JourneyTabs;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.init.items.JourneyItems;
@@ -64,9 +65,9 @@ public class BlockModGravity extends BlockFalling {
         this.name = name;
         JourneyBlocks.blocks.add(this);
         JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
-	    setRegistryName(SlayerAPI.MOD_ID, name);
-	    LangGeneratorFacade.addBlockEntry(this, finalName);
-	    JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
+        setRegistryName(JITL.MOD_ID, name);
+        LangGeneratorFacade.addBlockEntry(this, finalName);
+        JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
     }
 
     public BlockModGravity(EnumMaterialTypes blockType, String name, String finalName, float hardness, CreativeTabs tab) {
@@ -80,9 +81,9 @@ public class BlockModGravity extends BlockFalling {
         this.name = name;
         JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
         JourneyBlocks.blocks.add(this);
-	    setRegistryName(SlayerAPI.MOD_ID, name);
-	    LangGeneratorFacade.addBlockEntry(this, finalName);
-	    JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
+        setRegistryName(JITL.MOD_ID, name);
+        LangGeneratorFacade.addBlockEntry(this, finalName);
+        JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
     }
 
     public Block addName(String name) {

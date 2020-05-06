@@ -1,22 +1,16 @@
 package net.journey.util;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-
-import javax.annotation.Nonnull;
-
 import com.google.common.collect.Lists;
-
-import net.journey.event.LootTableEvent;
-import net.minecraft.entity.player.EntityPlayer;
+import net.journey.JITL;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.LootContext;
 import net.minecraft.world.storage.loot.LootTable;
 import net.minecraft.world.storage.loot.LootTableList;
-import net.slayer.api.SlayerAPI;
+
+import javax.annotation.Nonnull;
+import java.util.List;
 
 public class JourneyLootTables {
 
@@ -34,7 +28,7 @@ public class JourneyLootTables {
     public static final ResourceLocation VANILLA_SIMPLE_DUNGEON = LootTableList.CHESTS_SIMPLE_DUNGEON;
 
     private static ResourceLocation register(String path) {
-        return LootTableList.register(new ResourceLocation(SlayerAPI.MOD_ID, path));
+	    return LootTableList.register(new ResourceLocation(JITL.MOD_ID, path));
     }
     
     public static void generateLootTableForPlayer(EntityPlayerMP player, ItemStack... items) {
@@ -46,7 +40,7 @@ public class JourneyLootTables {
 	@Nonnull
 	public static List<ItemStack> generateLootWithLuck(ResourceLocation lootTable, EntityPlayerMP pl) {
 		if (pl.world.isRemote)
-			return Lists.<ItemStack>newArrayList();
+			return Lists.newArrayList();
 
 		return pl.world.getLootTableManager().getLootTableFromLocation(lootTable).generateLootForPools(pl.world.rand, new LootContext.Builder(pl.getServerWorld()).withPlayer(pl).withLuck(pl.getLuck()).build());
 	}

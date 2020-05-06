@@ -1,5 +1,6 @@
 package net.slayer.api.item;
 
+import net.journey.JITL;
 import net.journey.init.JourneyTabs;
 import net.journey.init.items.JourneyItems;
 import net.journey.util.gen.lang.LangGeneratorFacade;
@@ -16,7 +17,7 @@ public class ItemModSeeds extends ItemSeeds {
         setCreativeTab(JourneyTabs.CROPS);
         JourneyItems.items.add(this);
         JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
-        setRegistryName(SlayerAPI.MOD_ID, name);
+        setRegistryName(JITL.MOD_ID, name);
 
         LangGeneratorFacade.addItemEntry(this, f);
     }

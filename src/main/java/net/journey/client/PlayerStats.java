@@ -1,5 +1,6 @@
 package net.journey.client;
 
+import net.journey.JITL;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiIngame;
@@ -34,7 +35,7 @@ public class PlayerStats {
         if (mc.currentScreen == null) {
             if (!mc.gameSettings.showDebugInfo)
                 if (SlayerAPI.BETA)
-                    mc.fontRenderer.drawString(Colour.DARK_GREEN + "Journey Into The Light: " + Colour.DARK_RED + SlayerAPI.MOD_VERSION + " PRE RELEASE", 5, 5, 0);
+                    mc.fontRenderer.drawString(Colour.DARK_GREEN + "Journey Into The Light: " + Colour.DARK_RED + JITL.MOD_VERSION + " PRE RELEASE", 5, 5, 0);
 
             if (mc.gameSettings.showDebugInfo) {
                 String st = I18n.format("journey.time") + " " + formatTime(getWorldTime(mc));

@@ -1,5 +1,6 @@
 package net.journey.items;
 
+import net.journey.JITL;
 import net.journey.init.JourneySounds;
 import net.journey.init.JourneyTabs;
 import net.journey.init.items.JourneyItems;
@@ -35,7 +36,7 @@ public class ItemHealth extends ItemFood {
         setCreativeTab(JourneyTabs.CROPS);
         JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
         JourneyItems.items.add(this);
-        setRegistryName(SlayerAPI.MOD_ID, name);
+        setRegistryName(JITL.MOD_ID, name);
         LangGeneratorFacade.addItemEntry(this, actual);
     }
 

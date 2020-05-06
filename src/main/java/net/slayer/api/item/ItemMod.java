@@ -1,5 +1,6 @@
 package net.slayer.api.item;
 
+import net.journey.JITL;
 import net.journey.client.ItemDescription;
 import net.journey.init.JourneySounds;
 import net.journey.init.JourneyTabs;
@@ -33,15 +34,15 @@ public class ItemMod extends Item {
     }
 
     public ItemMod(String name, String finalName, CreativeTabs tab) {
-	    this.name = name;
+        this.name = name;
 
-	    setTranslationKey(name.toLowerCase());
-	    setCreativeTab(tab);
-	    JourneyItems.itemNames.add(SlayerAPI.PREFIX + name.toLowerCase());
-	    JourneyItems.items.add(this);
-	    setRegistryName(SlayerAPI.MOD_ID, name.toLowerCase());
+        setTranslationKey(name.toLowerCase());
+        setCreativeTab(tab);
+        JourneyItems.itemNames.add(SlayerAPI.PREFIX + name.toLowerCase());
+        JourneyItems.items.add(this);
+        setRegistryName(JITL.MOD_ID, name.toLowerCase());
 
-	    LangGeneratorFacade.addItemEntry(this, finalName);
+        LangGeneratorFacade.addItemEntry(this, finalName);
     }
 
     public ItemMod setHealAmount(int healAmount) {

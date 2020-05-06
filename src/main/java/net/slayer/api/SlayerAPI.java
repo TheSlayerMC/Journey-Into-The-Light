@@ -37,17 +37,13 @@ import java.util.logging.Logger;
 
 public class SlayerAPI {
 
-    public static final String
-            MOD_NAME = "Journey Into the Light",
-            MOD_ID = "journey",
-            PREFIX = MOD_ID + ":",
-            MOD_VERSION = "GRADLETOKEN_VERSION"; //will be automatically changed during build task
+    public static final String PREFIX = JITL.MOD_ID + ":";
     public static final boolean
             DEVMODE = true,
             BETA = false;
     private static final String SECTION_SIGN = "\u00a7";
     public static int mobID = Config.baseMobID, projectileID = Config.baseProjectileID, entityListID = Config.baseEntityListID;
-    public static Logger logger = Logger.getLogger(SlayerAPI.MOD_ID);
+    public static Logger logger = Logger.getLogger(JITL.MOD_ID);
 
     public static ToolMaterial addMeleeMaterial(int uses, float dam, float efficiency) {
         return EnumHelper.addToolMaterial("tool", 3, uses, efficiency, dam - 4, 30);
@@ -73,7 +69,7 @@ public class SlayerAPI {
             MapGenStructureIO.registerStructureComponent(c, s);
             MapGenStructureIO.registerStructure(c, s);
         } catch (Exception e) {
-            logger.log(Level.WARNING, "[" + MOD_NAME + "] Failed To Spawn The Map Piece With The ID: " + s);
+            logger.log(Level.WARNING, "[" + JITL.MOD_NAME + "] Failed To Spawn The Map Piece With The ID: " + s);
         }
     }
 
@@ -88,7 +84,7 @@ public class SlayerAPI {
     public static EntityEntry buildEntityEntry(Class entityClass, String entityID, String finalName, int base, int fore) {
         LangRegistry.addMob(entityID, finalName);
         return EntityEntryBuilder.create().entity(entityClass)
-                .id(new ResourceLocation(MOD_ID, entityID), mobID++).name(MOD_ID + "." + entityID).tracker(128, 3, true)
+                .id(new ResourceLocation(JITL.MOD_ID, entityID), mobID++).name(JITL.MOD_ID + "." + entityID).tracker(128, 3, true)
                 .egg(base, fore).build();
 
     }
@@ -96,7 +92,7 @@ public class SlayerAPI {
     public static EntityEntry buildEntityEntryNoEgg(Class entityClass, String entityID, int id) {
 
         return EntityEntryBuilder.create().entity(entityClass)
-                .id(new ResourceLocation(MOD_ID, entityID), id).name(MOD_ID + "." + entityID).tracker(128, 3, true).build();
+                .id(new ResourceLocation(JITL.MOD_ID, entityID), id).name(JITL.MOD_ID + "." + entityID).tracker(128, 3, true).build();
 
     }
 
@@ -110,7 +106,7 @@ public class SlayerAPI {
 
     public static EntityEntry registerProjectile(Class entityClass, String entityID) {
         return EntityEntryBuilder.create().entity(entityClass)
-                .id(new ResourceLocation(MOD_ID, entityID), projectileID++).name(MOD_ID + "." + entityID)
+                .id(new ResourceLocation(JITL.MOD_ID, entityID), projectileID++).name(JITL.MOD_ID + "." + entityID)
                 .tracker(250, 5, true).build();
     }
 
@@ -121,7 +117,7 @@ public class SlayerAPI {
 
     @SideOnly(Side.CLIENT)
     public static void addChatMessageWithColour(EntityPlayer p, String colour, String str) {
-        p.sendMessage(new TextComponentString(SlayerAPI.Colour.YELLOW + "[" + SlayerAPI.Colour.GOLD + MOD_NAME + SlayerAPI.Colour.YELLOW + "] " + colour + str));
+        p.sendMessage(new TextComponentString(SlayerAPI.Colour.YELLOW + "[" + SlayerAPI.Colour.GOLD + JITL.MOD_NAME + SlayerAPI.Colour.YELLOW + "] " + colour + str));
     }
 
     @SideOnly(Side.CLIENT)
@@ -139,7 +135,7 @@ public class SlayerAPI {
     @SideOnly(Side.CLIENT)
     public static void sendMessageToAll(String message, boolean showMod) {
         if (showMod)
-            FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(new TextComponentString(SlayerAPI.Colour.DARK_AQUA + "[" + SlayerAPI.Colour.DARK_GREEN + MOD_NAME + SlayerAPI.Colour.DARK_AQUA + "] " + SlayerAPI.Colour.GREEN + message));
+            FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(new TextComponentString(SlayerAPI.Colour.DARK_AQUA + "[" + SlayerAPI.Colour.DARK_GREEN + JITL.MOD_NAME + SlayerAPI.Colour.DARK_AQUA + "] " + SlayerAPI.Colour.GREEN + message));
         else
             FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(new TextComponentString(SlayerAPI.Colour.GREEN + message));
     }

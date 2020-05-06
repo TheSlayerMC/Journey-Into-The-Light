@@ -1,5 +1,6 @@
 package net.journey.blocks.portal;
 
+import net.journey.JITL;
 import net.journey.init.JourneyTabs;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.init.items.JourneyItems;
@@ -36,15 +37,15 @@ public abstract class BlockModPortal extends BlockBreakable {
     public String name;
 
     public BlockModPortal(String name, String finalName) {
-        super(Material.PORTAL, false);
-        this.name = name;
-        this.setDefaultState(this.blockState.getBaseState().withProperty(AXIS, EnumFacing.Axis.X));
-        this.setTickRandomly(true);
-        setCreativeTab(JourneyTabs.PORTAL_BLOCKS);
-        setTranslationKey(name);
-        JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
-        JourneyBlocks.blocks.add(this);
-	    setRegistryName(SlayerAPI.MOD_ID, name);
+	    super(Material.PORTAL, false);
+	    this.name = name;
+	    this.setDefaultState(this.blockState.getBaseState().withProperty(AXIS, EnumFacing.Axis.X));
+	    this.setTickRandomly(true);
+	    setCreativeTab(JourneyTabs.PORTAL_BLOCKS);
+	    setTranslationKey(name);
+	    JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
+	    JourneyBlocks.blocks.add(this);
+	    setRegistryName(JITL.MOD_ID, name);
 	    LangGeneratorFacade.addBlockEntry(this, finalName);
 	    JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
     }

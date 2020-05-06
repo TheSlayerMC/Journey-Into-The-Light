@@ -1,5 +1,6 @@
 package net.journey.items;
 
+import net.journey.JITL;
 import net.journey.client.ArmorDescription;
 import net.journey.enums.EnumArmor;
 import net.journey.init.JourneyTabs;
@@ -47,8 +48,8 @@ public class ItemModArmor extends ItemArmor implements ISpecialArmor {
         setTranslationKey(this.name);
         JourneyItems.itemNames.add(SlayerAPI.PREFIX + name.toLowerCase());
         JourneyItems.items.add(this);
-        LangRegistry.addArmour(this, armorMaterial, type);
-        setRegistryName(SlayerAPI.MOD_ID, this.name);
+	    LangRegistry.addArmour(this, armorMaterial, type);
+	    setRegistryName(JITL.MOD_ID, this.name);
     }
 
     @Override

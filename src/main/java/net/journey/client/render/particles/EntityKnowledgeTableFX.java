@@ -1,17 +1,17 @@
 package net.journey.client.render.particles;
 
+import net.journey.JITL;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import net.slayer.api.SlayerAPI;
 
 import static org.lwjgl.opengl.GL11.*;
 
 public class EntityKnowledgeTableFX extends Particle {
 
-    private static final ResourceLocation texture = new ResourceLocation(SlayerAPI.MOD_ID, "textures/particle/knowledge.png");
+    private static final ResourceLocation texture = new ResourceLocation(JITL.MOD_ID, "textures/particle/knowledge.png");
 
     public EntityKnowledgeTableFX(World par1World, double x, double y, double z) {
         super(par1World, x, y, z);

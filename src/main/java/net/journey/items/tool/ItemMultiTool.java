@@ -1,6 +1,7 @@
 package net.journey.items.tool;
 
 import com.google.common.collect.Sets;
+import net.journey.JITL;
 import net.journey.client.ItemDescription;
 import net.journey.init.JourneyTabs;
 import net.journey.init.items.JourneyItems;
@@ -43,7 +44,7 @@ public class ItemMultiTool extends ItemTool {
         setHarvestLevel("pickaxe", tool.getHarvestLevel());
         JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
         JourneyItems.items.add(this);
-        setRegistryName(SlayerAPI.MOD_ID, name);
+        setRegistryName(JITL.MOD_ID, name);
 
         LangGeneratorFacade.addItemEntry(this, f);
     }
