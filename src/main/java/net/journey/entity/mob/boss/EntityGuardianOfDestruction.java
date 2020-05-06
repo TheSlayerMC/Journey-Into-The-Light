@@ -44,6 +44,7 @@ public class EntityGuardianOfDestruction extends EntityEssenceBoss {
         super(par1World);
         setSize(2.0F, 4.0F);
         this.stage = sleep;
+        this.rolltimer = 0;
         this.rotationYaw = this.rotationPitch = 0.0F;
     }
 
@@ -95,13 +96,23 @@ public class EntityGuardianOfDestruction extends EntityEssenceBoss {
             this.rotationYaw = 180.0F;
         	this.setAttackTarget(null);
         } else {
-        	if (stage == alert) {
+        	if (stage == alert || stage == lowhealth) {
         		this.setAttackTarget(attackingPlayer);
-        	}
-			if (stage == lowhealth) {
-				this.setAttackTarget(attackingPlayer);
+				if (rolltimer > 0) {
+					this.motionX = 0.0D;
+					this.motionY = 0.0D;
+					this.motionZ = 0.0D;
+					this.rolltimer = 10;
+				}
 			}
         }
+		if (!this.world.isRemote) {
+			if (this.getAttackTarget() == null) {
+	            stage = sleep;
+				return;
+			}
+		}
+
     }
 
     @Override
