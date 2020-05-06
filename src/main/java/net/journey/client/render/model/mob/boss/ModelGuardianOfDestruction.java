@@ -1,5 +1,6 @@
 package net.journey.client.render.model.mob.boss;
 
+import net.journey.entity.mob.boss.EntityGuardianOfDestruction;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -66,5 +67,14 @@ public class ModelGuardianOfDestruction extends ModelBase {
     }
 
     @Override
-    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn) {}
+    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn) {
+    	EntityGuardianOfDestruction mob = (EntityGuardianOfDestruction)entityIn;
+    	this.bottom.rotateAngleX = limbSwing / 0.5F *(MathHelper.cos((float) Math.toRadians(mob.rotationPitch))) / 2.63345F;
+    	this.side2.rotateAngleX = limbSwing / 0.5F *(MathHelper.cos((float) Math.toRadians(mob.rotationPitch))) / 2.63345F;
+    	this.side3.rotateAngleX = limbSwing / 0.5F *(MathHelper.cos((float) Math.toRadians(mob.rotationPitch))) / 2.63345F;
+    	this.side1.rotateAngleX = limbSwing / 0.5F *(MathHelper.cos((float) Math.toRadians(mob.rotationPitch))) / 2.63345F;
+    	this.face.rotateAngleX = limbSwing / 0.5F *(MathHelper.cos((float) Math.toRadians(mob.rotationPitch))) / 2.63345F;
+    	this.top.rotateAngleX = limbSwing / 0.5F *(MathHelper.cos((float) Math.toRadians(mob.rotationPitch))) / 2.63345F;
+    	this.main.rotateAngleX = limbSwing / 0.5F *(MathHelper.cos((float) Math.toRadians(mob.rotationPitch))) / 2.63345F;
+    }
 }
