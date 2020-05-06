@@ -167,6 +167,7 @@ public class RecipeGenerator {
 		try (FileWriter w = new FileWriter(f)) {
 			GSON.toJson(json, w);
 		} catch (IOException e) {
+			JITL.LOGGER.error("Can't write content to file " + f.getAbsolutePath());
 			e.printStackTrace();
 		}
 	}
@@ -244,5 +245,7 @@ public class RecipeGenerator {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
+		USED_OD_NAMES.clear();
 	}
 }

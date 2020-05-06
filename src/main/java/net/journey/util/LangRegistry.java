@@ -10,6 +10,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+@Deprecated //use LangGeneratorFacade instead
 public class LangRegistry {
 
     public static LangRegistry instance = new LangRegistry();

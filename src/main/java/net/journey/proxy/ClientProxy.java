@@ -1,7 +1,8 @@
 package net.journey.proxy;
 
 import net.journey.JITL;
-import net.journey.client.*;
+import net.journey.client.ClientDimensionMusic;
+import net.journey.client.PlayerStats;
 import net.journey.client.handler.BossTickHandler;
 import net.journey.client.handler.GuiHandler;
 import net.journey.client.render.EntityRendering;
@@ -11,6 +12,7 @@ import net.journey.dimension.cloudia.CloudiaSkyRenderer;
 import net.journey.enums.EnumParticlesClasses;
 import net.journey.event.ClientTickEvent;
 import net.journey.event.UpdateCheckerEvent;
+import net.journey.util.gen.lang.LangGeneratorFacade;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.entity.player.EntityPlayer;
@@ -54,6 +56,8 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void clientPostInit() {
         SlayerAPI.registerEventListener(new ClientDimensionMusic());
+
+        LangGeneratorFacade.save();
     }
 
     @Override
