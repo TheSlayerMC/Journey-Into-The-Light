@@ -45,7 +45,7 @@ public abstract class EntityModWaterMob extends EntityWaterMob {
     }
 
     public double setFollowRange() {
-        return MobStats.follow;
+        return MobStats.normal_follow;
     }
 
     public double setMovementSpeed() {

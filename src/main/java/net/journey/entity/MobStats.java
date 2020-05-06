@@ -2,7 +2,7 @@ package net.journey.entity;
 
 public class MobStats {
 
-    public static double normalSpeed = 0.26D, follow = 100D, knockBackResistance = 0.0D;
+    public static double normalSpeed = 0.26D, normal_follow = 10D, boss_follow = 100D, knockBackResistance = 0.0D;
 
     //Overworld
     public static double BigHongoHealth = 40.0D, BigHongoDamage = 8.25D;
@@ -126,21 +126,22 @@ public class MobStats {
     public static double TameRocHealth = 60.0D, TameRocDamage = 7.0D;
 
     //Boss
-    public static double soulWatcherHealth = 700.0D, soulWatcherDamage = 10.0D, soulWatcherSpeed = normalSpeed, soulWatcherFollowRange = follow;
-    public static double witheringBeastHealth = 750.0D, witheringBeastDamage = 10.0D, witheringBeastSpeed = normalSpeed, witheringBeastFollowRange = follow;
-    public static double netherBeastHealth = 600.0D, netherBeastDamage = 10.0D, netherBeastSpeed = normalSpeed, netherBeastFollowRange = follow;
-    public static double calciaHealth = 650.0D, calciaDamage = 10.0D, calciaSpeed = normalSpeed, calciaFollowRange = follow;
-    public static double eudorHealth = 900.0D, eudorDamage = 10.0D, eudorSpeed = normalSpeed, eudorFollowRange = follow;
-    public static double fourfaHealth = 900.0D, fourfaDamage = 10.0D, fourfaSpeed = normalSpeed, fourfaFollowRange = follow;
+    public static double soulWatcherHealth = 700.0D, soulWatcherDamage = 10.0D, soulWatcherSpeed = normalSpeed, soulWatcherFollowRange = boss_follow;
+    public static double witheringBeastHealth = 750.0D, witheringBeastDamage = 10.0D, witheringBeastSpeed = normalSpeed, witheringBeastFollowRange = boss_follow;
+    public static double netherBeastHealth = 600.0D, netherBeastDamage = 10.0D, netherBeastSpeed = normalSpeed, netherBeastFollowRange = boss_follow;
+    public static double calciaHealth = 650.0D, calciaDamage = 10.0D, calciaSpeed = normalSpeed, calciaFollowRange = boss_follow;
+    public static double eudorHealth = 900.0D, eudorDamage = 10.0D, eudorSpeed = normalSpeed, eudorFollowRange = boss_follow;
+    public static double fourfaHealth = 900.0D, fourfaDamage = 10.0D, fourfaSpeed = normalSpeed, fourfaFollowRange = boss_follow;
+    public static double guardianofdestructionHealth = 1500.0D, guardianofdestructionDamage = 15.0D, guardianofdestructionSpeed = normalSpeed, guardianofdestructionFollowRange = boss_follow;
     public static double BlazierHealth = 850.0D, BlazierDamage = 20.0D;
     public static double scaleHealth = 1560.0D, scaleDamage = 20.0D;
     public static double sentryKingHealth = 2500.0D, sentryKingDamage = 20.0D;
-    public static double templeGuardianHealth = 275.0D, templeGuardianDamage = 0.0D, templeGuardianSpeed = normalSpeed, templeGuardianFollowRange = follow;
-    public static double wraithHealth = 50.0D, wraithDamage = 10.0D, wraithSpeed = normalSpeed, wraithFollowRange = follow;
-    public static double thunderbirdHealth = 2000.0D, thunderbirdDamage = 10.0D, thunderbirdSpeed = normalSpeed, thunderbirdFollowRange = follow;
-    public static double loggerHealth = 2350.0D, loggerDamage = 10.0D, loggerSpeed = normalSpeed, loggerFollowRange = follow;
-    public static double corallatorHealth = 950.0D, corallatorDamage = 10.0D, corallatorSpeed = normalSpeed, corallatorFollowRange = follow;
-    public static double skyStalkerHealth = 3500.0D, skyStalkerDamage = 10.0D, skyStalkerSpeed = normalSpeed, skyStalkerFollowRange = follow;
-    public static double terranianHealth = 2500.0D, terranianDamage = 10.0D, terranianSpeed = normalSpeed, terranianFollowRange = follow;
+    public static double templeGuardianHealth = 275.0D, templeGuardianDamage = 0.0D, templeGuardianSpeed = normalSpeed, templeGuardianFollowRange = boss_follow;
+    public static double wraithHealth = 50.0D, wraithDamage = 10.0D, wraithSpeed = normalSpeed, wraithFollowRange = boss_follow;
+    public static double thunderbirdHealth = 2000.0D, thunderbirdDamage = 10.0D, thunderbirdSpeed = normalSpeed, thunderbirdFollowRange = boss_follow;
+    public static double loggerHealth = 2350.0D, loggerDamage = 10.0D, loggerSpeed = normalSpeed, loggerFollowRange = boss_follow;
+    public static double corallatorHealth = 950.0D, corallatorDamage = 10.0D, corallatorSpeed = normalSpeed, corallatorFollowRange = boss_follow;
+    public static double skyStalkerHealth = 3500.0D, skyStalkerDamage = 10.0D, skyStalkerSpeed = normalSpeed, skyStalkerFollowRange = boss_follow;
+    public static double terranianHealth = 2500.0D, terranianDamage = 10.0D, terranianSpeed = normalSpeed, terranianFollowRange = boss_follow;
 
 }
