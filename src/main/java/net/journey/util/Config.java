@@ -43,8 +43,8 @@ public class Config {
         maxHealthNormal = cfg.get("Maximum Health", "Max health achievable with normal battle hearts:", 60).getInt();
         maxHealthSentry = cfg.get("Maximum Health", "Max health achievable with Sentry hearts:", 70).getInt();
         
-        eucaBiome = cfg.get("Dimension", "Euca biome ID", 60).getInt();
-        eucaSilverBiome = cfg.get("Dimension", "Euca Silver biome ID", 70).getInt();
+        eucaBiome = cfg.get("Dimension", "Euca biome ID", 40).getInt();
+        eucaSilverBiome = cfg.get("Dimension", "Euca Silver biome ID", 60).getInt();
         euca = cfg.get("Dimension", "Euca ID", 20).getInt();
         keepLoadingEuca = cfg.get("Dimension", "Keep loading Euca", false).getBoolean(false);
         depthsBiome = cfg.get("Dimension", "Depths biome ID", 61).getString();
