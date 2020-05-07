@@ -79,10 +79,15 @@ public class EntityGuardianOfDestruction extends EntityEssenceBoss {
     @Override
     public void onLivingUpdate() {
         super.onLivingUpdate();
+        
         int health = (int) getHealth();
-        if (health >= maxHealth) stage = sleep;
-        else if (health <= maxHealth - 1 && health > maxHealth / 3) stage = alert;
-        else if (health <= maxHealth / 3) stage = lowhealth;
+        
+        if (health >= maxHealth) 
+        	stage = sleep;
+        else if (health <= maxHealth - 1 && health > maxHealth / 3) 
+        	stage = alert;
+        else if (health <= maxHealth / 3) 
+        	stage = lowhealth;
 		/*
 		 * if the boss is at full health, set move speed to 0 and set attack target to null
 		 * sets ismoving to false
@@ -196,12 +201,14 @@ public class EntityGuardianOfDestruction extends EntityEssenceBoss {
 
     @Override
     public int getVerticalFaceSpeed() {
-        return 0;
+    	if(stage == sleep) return 0;
+    	else return 20;
     }
 
     @Override
     public int getHorizontalFaceSpeed() {
-        return 0;
+    	if(stage == sleep) return 0;
+    	else return 20;
     }
 
     @Override
