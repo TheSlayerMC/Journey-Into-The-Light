@@ -4,15 +4,13 @@ import net.journey.JITL;
 import net.journey.api.block.IHasCustomItemPath;
 import net.journey.api.block.IHasTeisr;
 import net.journey.blocks.tileentity.TileEntitySenterianAltar;
-import net.journey.client.render.model.block.ModelSenterianAltar;
+import net.journey.client.render.block.SenterianAltarRenderer;
 import net.journey.init.JourneyTabs;
-import net.journey.init.blocks.JourneyBlocks;
 import net.journey.init.items.JourneyItems;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -22,9 +20,10 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.slayer.api.SlayerAPI;
 import net.slayer.api.entity.tileentity.container.BlockModContainer;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.function.Supplier;
 
 public class BlockSenterianAltar extends BlockModContainer implements IHasTeisr, IHasCustomItemPath {
 
@@ -97,25 +96,13 @@ public class BlockSenterianAltar extends BlockModContainer implements IHasTeisr,
 		return false;
 	}
 
-	public class SenterianAltarTEISR extends TileEntityItemStackRenderer {
-
-		private final ModelSenterianAltar model = new ModelSenterianAltar();
-
-		@Override
-		public void renderByItem(ItemStack itemStackIn) {
-			if (itemStackIn.getItem() == SlayerAPI.toItem(JourneyBlocks.senterianAltar)) {
-				this.model.render(1.0F, true);
-			}
-		}
-	}
-
 	@Override
 	public @NotNull ResourceLocation getItemModelResourceLocation() {
 		return new ResourceLocation(JITL.MOD_ID, "block/chest/" + getRegistryName().getPath());
 	}
 
 	@Override
-	public @NotNull TileEntityItemStackRenderer createTeisr() {
-		return new BlockSenterianAltar.SenterianAltarTEISR();
+	public @NotNull Supplier<TileEntityItemStackRenderer> createTeisr() {
+		return SenterianAltarRenderer.SenterianAltarTEISR::new;
 	}
 }

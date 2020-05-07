@@ -25,7 +25,7 @@ public class ModelRegistry {
 
 		for (Block b : JourneyBlocks.blocks) {
 			if (b instanceof IHasTeisr) {
-				Item.getItemFromBlock(b).setTileEntityItemStackRenderer(((IHasTeisr) b).createTeisr());
+				Item.getItemFromBlock(b).setTileEntityItemStackRenderer(((IHasTeisr) b).createTeisr().get());
 			}
 
 			if (b instanceof IHasCustomItemPath) {

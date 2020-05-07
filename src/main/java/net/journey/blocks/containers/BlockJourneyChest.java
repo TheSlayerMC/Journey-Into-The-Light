@@ -39,6 +39,7 @@ import net.slayer.api.entity.tileentity.container.BlockModContainer;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
+import java.util.function.Supplier;
 
 public class BlockJourneyChest extends BlockModContainer implements IHasTeisr, IHasCustomItemPath {
 
@@ -493,8 +494,8 @@ public class BlockJourneyChest extends BlockModContainer implements IHasTeisr, I
 
 	@NotNull
 	@Override
-	public TileEntityItemStackRenderer createTeisr() {
-		return new JourneyChestTESR.ChestTEISR();
+	public Supplier<TileEntityItemStackRenderer> createTeisr() {
+		return JourneyChestTESR.ChestTEISR::new;
 	}
 
 	@NotNull

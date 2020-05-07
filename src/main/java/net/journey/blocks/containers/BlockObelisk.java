@@ -21,6 +21,7 @@ import net.slayer.api.entity.tileentity.container.BlockModContainer;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
+import java.util.function.Supplier;
 
 public class BlockObelisk extends BlockModContainer implements IHasTeisr, IHasCustomItemPath {
 
@@ -77,11 +78,11 @@ public class BlockObelisk extends BlockModContainer implements IHasTeisr, IHasCu
     public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
         return size;
     }
-    
+
 	@NotNull
 	@Override
-	public TileEntityItemStackRenderer createTeisr() {
-		return new ObeliskRenderer.ObeliskTEISR();
+	public Supplier<TileEntityItemStackRenderer> createTeisr() {
+		return ObeliskRenderer.ObeliskTEISR::new;
 	}
 
 	@NotNull
