@@ -1,6 +1,7 @@
 package net.journey.init.items;
 
 import net.journey.entity.projectile.*;
+import net.journey.entity.projectile.arrow.EntityEssenceArrow;
 import net.journey.entity.projectile.knife.EntityAquaticKnife;
 import net.journey.entity.projectile.knife.EntityBloodKnife;
 import net.journey.entity.projectile.knife.EntityCharredKnife;
@@ -298,8 +299,8 @@ public class JourneyWeapons {
         iceWand = new ItemWand("iceWand", "Ice Wand", true, 5, 600, 5, false, EntityIceBall.class);
         lightningWand = new ItemWand("lightningWand", "Lightning Wand", true, 10, 600, 5, false, EntityLightningBall.class);
 
-        flameBow = new FlameBow("flameBow", 3, 384);
-        poisonBow = new PoisonBow("poisonBow", 3, 384);
+        flameBow = new ItemModBow("flameBow", "Flame Bow", 3, 384, EntityEssenceArrow.BowEffects.FLAME_BOW, 24000);
+        poisonBow = new ItemModBow("poisonBow", "Poison Bow", 3, 384, EntityEssenceArrow.BowEffects.POISON_BOW, 35000);
         darknessBow = new DarknessBow("darknessBow", 3, 384);
         frozenBow = new FrozenBow("frozenBow", 3, 384);
         staringBow = new StaringBow("staringBow", 4, 456);
