@@ -87,7 +87,6 @@ public class EntityGuardianOfDestruction extends EntityEssenceBoss {
     		 */
         	if (stage == alert || stage == lowhealth) {
 		        this.setAttackTarget(attackingPlayer);
-		        this.isMoving = true;
 		        /*
 		         * sets move speed to 0 for specfic amount of ticks
 		         * sets ismoving to false
@@ -97,16 +96,19 @@ public class EntityGuardianOfDestruction extends EntityEssenceBoss {
 			        this.motionY = 0.0D;
 			        this.motionZ = 0.0D;
 			        this.isMoving = false;
-			        rolltimer = 60;
+			        rolltimer = 40;
 		        }
 				if (rolltimer > 0) rolltimer--;
+				else {
+			        this.isMoving = true;
+				}
 			}
         }
 		/*
 		 * if the player is absent, reset stage to sleeping (need to iron this one out)
 		 */
 		if (!this.world.isRemote) {
-			if (this.getAttackTarget() == null) {
+			if (this.getAttackTarget() == null || this.getAttackTarget().isDead) {
 				stage = sleep;
 				return;
 			}
