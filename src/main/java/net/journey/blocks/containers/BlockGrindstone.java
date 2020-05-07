@@ -105,7 +105,7 @@ public class BlockGrindstone extends BlockModContainer {
             if (item == SlayerAPI.toItem(JourneyBlocks.celestiumOre) || item == SlayerAPI.toItem(JourneyBlocks.hellstoneOre) || item == SlayerAPI.toItem(JourneyBlocks.shadiumOre)
                     || item == SlayerAPI.toItem(JourneyBlocks.luniumOre) || item == SlayerAPI.toItem(JourneyBlocks.flairiumOre) || item == SlayerAPI.toItem(JourneyBlocks.ashualOre) ||
                     item == SlayerAPI.toItem(JourneyBlocks.sapphireOre) || item == SlayerAPI.toItem(JourneyBlocks.enderilliumOre) || item == SlayerAPI.toItem(Blocks.GOLD_ORE) || item == SlayerAPI.toItem(Blocks.DIAMOND_ORE)
-                    || item == SlayerAPI.toItem(Blocks.IRON_ORE) || item == SlayerAPI.toItem(JourneyBlocks.gorbiteOre) || item == SlayerAPI.toItem(JourneyBlocks.orbaditeOre)) {
+                    || item == SlayerAPI.toItem(Blocks.IRON_ORE) || item == SlayerAPI.toItem(JourneyBlocks.gorbiteOre) || item == SlayerAPI.toItem(JourneyBlocks.orbaditeOre) || item == SlayerAPI.toItem(Blocks.GRAVEL)) {
                 if (stone.getItem() == null) {
                     ((TileEntityGrindstone) world.getTileEntity(pos)).itemOnGrind = player.getHeldItemMainhand().getItem();
                     player.getHeldItemMainhand().shrink(1);

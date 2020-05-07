@@ -3,6 +3,7 @@ package net.journey.blocks.tileentity;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.init.items.JourneyItems;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -96,6 +97,8 @@ public class TileEntityGrindstone extends TileEntity implements ITickable {
                 setItem(JourneyItems.gorbiteDust, f, returnVal);
             else if (itemOnGrind == SlayerAPI.toItem(JourneyBlocks.orbaditeOre))
                 setItem(JourneyItems.orbaditeDust, f, returnVal);
+            else if (itemOnGrind == SlayerAPI.toItem(Blocks.GRAVEL))
+                setItem(Items.FLINT, f, returnVal);
 
             else {
                 state = 0;
@@ -104,7 +107,7 @@ public class TileEntityGrindstone extends TileEntity implements ITickable {
             if (itemOnGrind != null) {
                 Item item = itemOnGrind;
                 if (item == JourneyItems.celestiumDust || item == JourneyItems.hellstoneDust || item == JourneyItems.shadiumDust || item == JourneyItems.luniumDust || item == JourneyItems.flairiumDust
-                        || item == JourneyItems.ashDust || item == JourneyItems.sapphireDust || item == JourneyItems.enderilliumDust) {
+                        || item == JourneyItems.ashDust || item == JourneyItems.sapphireDust || item == JourneyItems.enderilliumDust || item == Items.FLINT) {
                     count += f;
                     if (count >= 50) {
                         count = 0;
@@ -137,6 +140,8 @@ public class TileEntityGrindstone extends TileEntity implements ITickable {
                                 itemOnGrind = JourneyItems.gorbiteDust;
                             else if (item == SlayerAPI.toItem(JourneyBlocks.orbaditeOre))
                                 itemOnGrind = JourneyItems.orbaditeDust;
+                            else if (item == SlayerAPI.toItem(Blocks.GRAVEL))
+                                itemOnGrind = Items.FLINT;
                             else itemOnGrind = null;
                         }
                     }
