@@ -1,10 +1,17 @@
 package net.journey.util.gen.lang;
 
 import net.journey.JITL;
+import net.journey.util.SideExecutor;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemArmor;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.registry.EntityEntry;
+import net.minecraftforge.fml.relauncher.Side;
+
+import java.util.function.Supplier;
 
 /**
  * Generates lang entries and places them in en_us.lang.
@@ -35,36 +42,63 @@ import net.minecraftforge.fml.common.registry.EntityEntry;
  * All lang changes will be applied the next launch after being generated.
  */
 public class LangGeneratorFacade {
-	private static final LangGenerator generator = JITL.IN_JOURNEY_DEV ? new LangGenerator() : null;
+	private static final LangGenerator generator = JITL.IN_JOURNEY_DEV && FMLCommonHandler.instance().getSide() == Side.CLIENT ? new LangGenerator() : null;
 
 	public static void addBlockEntry(Block block, String enName) {
-		addLangEntry(LangSection.BLOCKS, block, enName);
+		SideExecutor.runWhenOn(Side.CLIENT, () -> () -> addLangEntry(LangSection.BLOCKS, block, enName));
 	}
 
 	public static void addItemEntry(Item item, String enName) {
-		addLangEntry(LangSection.ITEMS, item, enName);
+		SideExecutor.runWhenOn(Side.CLIENT, () -> () -> addLangEntry(LangSection.ITEMS, item, enName));
 	}
 
 	public static void addEntityEntry(EntityEntry entityEntry, String enName) {
-		addLangEntry(LangSection.ENTITIES, entityEntry, enName);
+		SideExecutor.runWhenOn(Side.CLIENT, () -> () -> addLangEntry(LangSection.ENTITIES, entityEntry, enName));
 	}
 
 	public static void addCreativeTabEntry(CreativeTabs creativeTab, String enName) {
-		addLangEntry(LangSection.CREATIVE_TABS, creativeTab, enName);
+		SideExecutor.runWhenOn(Side.CLIENT, () -> () -> addLangEntry(LangSection.CREATIVE_TABS, creativeTab, enName));
 	}
 
-	public static void addArmorEntry(Item item, String enName) {
-		addLangEntry(LangSection.ARMOR, item, enName);
+	public static void addArmorEntry(ItemArmor item, String enName) {
+		SideExecutor.runWhenOn(Side.CLIENT, () -> () -> {
+			EntityEquipmentSlot equipmentSlot = item.armorType;
+
+			String suffix;
+			switch (equipmentSlot) {
+				case HEAD:
+					suffix = "Helmet";
+					break;
+				case CHEST:
+					suffix = "Chestplate";
+					break;
+				case LEGS:
+					suffix = "Leggings";
+					break;
+				case FEET:
+					suffix = "Boots";
+					break;
+				default:
+					throw new IllegalStateException("Unsupported equipment slot: " + equipmentSlot);
+			}
+
+			addLangEntry(LangSection.ARMOR, item, enName + " " + suffix);
+		});
 	}
 
 	public static void addMiscEntry(String key, String name) {
-		addLangEntry(LangSection.MISC, key, name);
+		SideExecutor.runWhenOn(Side.CLIENT, () -> () -> addLangEntry(LangSection.MISC, key, name));
 	}
 
 	public static void save() {
 		if (exists()) generator.save();
 	}
 
+	/**
+	 * Adds lang entry to provided section.
+	 * <p>
+	 * <b>SHOULD BE USED ONLY INSIDE {@link SideExecutor#runWhenOn(Side, Supplier)} with {@link Side#CLIENT}, OTHERWISE IT'LL CRASH GAME!</b>
+	 */
 	private static <T> void addLangEntry(LangSection<T> section, T entry, String enName) {
 		if (exists()) generator.addLangEntry(section, entry, enName);
 	}
