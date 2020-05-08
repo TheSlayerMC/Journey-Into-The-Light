@@ -1,19 +1,5 @@
 tile.netherFurnace.name=Nethic Furnace
 tile.netherFurnaceActive.name=Nethic Furnace
-item.mask_of_hellmetal.name=Mask of Hellmetal
-itemGroup.journey.blocks=JITL: Blocks
-itemGroup.journey.decoration=JITL: Decoration Blocks
-itemGroup.journey.items=JITL: Items
-itemGroup.journey.tools=JITL: Tools
-itemGroup.journey.weapons=JITL: Weapons
-itemGroup.journey.util=JITL: Utilities
-itemGroup.journey.misc=JITL: Miscellaneous
-itemGroup.journey.armor=JITL: Armor
-itemGroup.journey.spawners=JITL: Spawners
-itemGroup.journey.crops=JITL: Crops
-itemGroup.journey.machineBlocks=JITL: Machine Blocks
-itemGroup.journey.portalBlocks=JITL: Portal Blocks
-itemGroup.journey.hammers=JITL: Hammers
 item.record.underwaterWorld.desc=Chris Geddes - Underwater World
 item.record.blueWater.desc=Chris Geddes - Blue Water
 item.record.raceStar.desc=Chris Geddes - Race Star
@@ -119,6 +105,19 @@ entity.journey.woodpecker.name=Woodpecker
 entity.journey.cloudflyer.name=Cloud Flyer
 
 #MARK AUTO GEN START
+
+#CreativeTabs
+itemGroup.journey.armor=JITL: Armor
+itemGroup.journey.blocks=JITL: Blocks
+itemGroup.journey.crops=JITL: Crops
+itemGroup.journey.decoration=JITL: Decoration
+itemGroup.journey.items=JITL: Items
+itemGroup.journey.machine_blocks=JITL: Machine Blocks
+itemGroup.journey.portal_blocks=JITL: Portal Blocks
+itemGroup.journey.spawners=JITL: Spawners
+itemGroup.journey.tools=JITL: Tools
+itemGroup.journey.utilities=JITL: Utilities
+itemGroup.journey.weapons=JITL: Weapons
 
 #Blocks
 tile.airRootMelon.name=Air Root

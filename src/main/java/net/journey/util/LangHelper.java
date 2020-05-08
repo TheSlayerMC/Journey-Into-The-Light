@@ -1,5 +1,6 @@
 package net.journey.util;
 
+import net.journey.JITL;
 import net.minecraft.client.resources.I18n;
 
 public class LangHelper {
@@ -51,5 +52,9 @@ public class LangHelper {
 	 */
 	public static String nameToKey(String name) {
 		return name.trim().replace(" ", "_").toLowerCase();
+	}
+
+	public static String withModPrefix(String str) {
+		return JITL.MOD_ID + "." + str;
 	}
 }
