@@ -7,7 +7,6 @@ import net.journey.items.tool.ItemMultiTool;
 import net.journey.util.JourneyToolMaterial;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
-import net.slayer.api.item.ItemMod;
 import net.slayer.api.item.ItemModAxe;
 import net.slayer.api.item.ItemModHoe;
 import net.slayer.api.item.ItemModPickaxe;
@@ -330,7 +329,7 @@ public class JourneyArmory {
         hoeOfEternalLife = new ItemBonemealHoe("hoeofeternallife", "Hoe Of Eternal Life", JourneyToolMaterial.HOEOFLIFE);
         HOE_OF_EARTH_LOVING = new ItemBonemealHoe("hoe_of_earth_loving", "Hoe of Earth Loving", JourneyToolMaterial.HOEOFEARTH);
 
-        MASK_OF_HELLMETAL = new ItemModArmor(EnumArmor.HELL_METAL, HEAD);
+        MASK_OF_HELLMETAL = new ItemModArmor(EnumArmor.HELL_METAL, HEAD, "Mask of %material%");
         
         hellstoneHelmet = new ItemModArmor(EnumArmor.HELLSTONE, HEAD);
         hellstoneChest = new ItemModArmor(EnumArmor.HELLSTONE, BODY);

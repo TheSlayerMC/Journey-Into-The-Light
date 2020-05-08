@@ -4,7 +4,6 @@ import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemArmor;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -19,33 +18,10 @@ public class LangSection<T> {
 	public static final LangSection<CreativeTabs> CREATIVE_TABS = new LangSection<>("CreativeTabs", CreativeTabs::getTranslationKey);
 	public static final LangSection<Block> BLOCKS = new LangSection<>("Blocks", block -> block.getTranslationKey() + ".name");
 	public static final LangSection<Item> ITEMS = new LangSection<>("Items", item -> item.getTranslationKey() + ".name");
-	public static final LangSection<ItemArmor> ARMOR = new LangSection<>("Armor", (ItemArmor item) -> item.getTranslationKey() + ".name")
-			.setValueCreator((itemArmor, s) -> {
-				EntityEquipmentSlot equipmentSlot = itemArmor.armorType;
-
-				String suffix;
-				switch (equipmentSlot) {
-					case HEAD:
-						suffix = "Helmet";
-						break;
-					case CHEST:
-						suffix = "Chestplate";
-						break;
-					case LEGS:
-						suffix = "Leggings";
-						break;
-					case FEET:
-						suffix = "Boots";
-						break;
-					default:
-						throw new IllegalStateException("Unsupported equipment slot: " + equipmentSlot);
-				}
-
-				return s + " " + suffix;
-			})
-			.setSortingComparator(Comparator.<Map.Entry<ItemArmor, String>, String>comparing(mapEntry -> mapEntry.getValue().toLowerCase())
+	public static final LangSection<ArmorData> ARMOR = new LangSection<>("Armor", (ArmorData data) -> data.getItem().getTranslationKey() + ".name")
+			.setSortingComparator(Comparator.<Map.Entry<ArmorData, String>, String>comparing(mapEntry -> mapEntry.getKey().getType().getArmorMaterial().getName().toLowerCase())
 					.thenComparingInt((mapEntry) -> {
-						EntityEquipmentSlot armorType = mapEntry.getKey().armorType;
+						EntityEquipmentSlot armorType = mapEntry.getKey().getItem().armorType;
 						if (armorType == EntityEquipmentSlot.HEAD) return 1;
 						if (armorType == EntityEquipmentSlot.CHEST) return 2;
 						if (armorType == EntityEquipmentSlot.LEGS) return 3;

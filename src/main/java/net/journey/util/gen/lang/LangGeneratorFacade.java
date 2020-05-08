@@ -5,6 +5,7 @@ import net.journey.enums.EnumArmor;
 import net.journey.util.SideExecutor;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -61,7 +62,36 @@ public class LangGeneratorFacade {
 	}
 
 	public static void addArmorEntry(ItemArmor item, EnumArmor type) {
-		SideExecutor.runWhenOn(Side.CLIENT, () -> () -> addLangEntry(LangSection.ARMOR, item, type.getFinalName()));
+		EntityEquipmentSlot equipmentSlot = item.armorType;
+
+		String suffix;
+		switch (equipmentSlot) {
+			case HEAD:
+				suffix = "%material% Helmet";
+				break;
+			case CHEST:
+				suffix = "%material% Chestplate";
+				break;
+			case LEGS:
+				suffix = "%material% Leggings";
+				break;
+			case FEET:
+				suffix = "%material% Boots";
+				break;
+			default:
+				throw new IllegalStateException("Unsupported equipment slot: " + equipmentSlot);
+		}
+
+		addArmorEntry(item, type, suffix);
+	}
+
+	/**
+	 * @param nameSuffix represents a string that may contain %material% mark which will be replaced with provided material name.
+	 */
+	public static void addArmorEntry(ItemArmor item, EnumArmor type, String nameSuffix) {
+		ArmorData armorData = new ArmorData(item, type);
+		String name = nameSuffix.replace("%material%", type.getFinalName());
+		SideExecutor.runWhenOn(Side.CLIENT, () -> () -> addLangEntry(LangSection.ARMOR, armorData, name));
 	}
 
 	public static void addMiscEntry(String key, String name) {
