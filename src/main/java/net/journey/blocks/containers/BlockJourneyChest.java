@@ -6,7 +6,6 @@ import net.journey.api.block.IHasTeisr;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.client.render.block.JourneyChestTESR;
 import net.journey.init.JourneyTabs;
-import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.properties.PropertyDirection;
@@ -18,7 +17,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.inventory.InventoryLargeChest;
 import net.minecraft.item.Item;
@@ -370,10 +368,9 @@ public class BlockJourneyChest extends BlockModContainer implements IHasTeisr, I
 	@Override
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
 		TileEntityJourneyChest chest = (TileEntityJourneyChest) worldIn.getTileEntity(pos);
-		TileEntity tileentity = worldIn.getTileEntity(pos);
-		if (tileentity instanceof IInventory) {
-			if(this != JourneyBlocks.lockedChest && chest.isLocked() == false) {
-				InventoryHelper.dropInventoryItems(worldIn, pos, (IInventory) tileentity);
+		if (chest != null) {
+			if (!chest.isLocked()) {
+				InventoryHelper.dropInventoryItems(worldIn, pos, chest);
 			}
 			worldIn.updateComparatorOutputLevel(pos, this);
 		}

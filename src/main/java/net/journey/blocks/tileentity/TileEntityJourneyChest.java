@@ -336,7 +336,7 @@ public class TileEntityJourneyChest extends TileEntityLockableLoot implements IT
 	public BlockJourneyChest.Type getChestType() {
 		if (this.cachedChestType == null) {
 			if (!(this.getBlockType() instanceof BlockJourneyChest)) {
-				throw new IllegalStateException(getClass().getSimpleName() + " has tried to get chest type being owned by wrong non journey chest block: " + getBlockType());
+				return BlockJourneyChest.Type.JOURNEY;
 			}
 
 			this.cachedChestType = ((BlockJourneyChest) this.getBlockType()).chestType;
