@@ -16,6 +16,9 @@ import java.util.stream.Collectors;
 
 public class LangSection<T> {
 	static final ArrayList<LangSection<?>> SECTIONS = new ArrayList<>(); // should be the first statement in class
+	public static final LangSection<CreativeTabs> CREATIVE_TABS = new LangSection<>("CreativeTabs", CreativeTabs::getTranslationKey);
+	public static final LangSection<Block> BLOCKS = new LangSection<>("Blocks", block -> block.getTranslationKey() + ".name");
+	public static final LangSection<Item> ITEMS = new LangSection<>("Items", item -> item.getTranslationKey() + ".name");
 	public static final LangSection<ItemArmor> ARMOR = new LangSection<>("Armor", (ItemArmor item) -> item.getTranslationKey() + ".name")
 			.setValueCreator((itemArmor, s) -> {
 				EntityEquipmentSlot equipmentSlot = itemArmor.armorType;
@@ -51,10 +54,6 @@ public class LangSection<T> {
 						return 5;
 					})
 			);
-
-	public static final LangSection<CreativeTabs> CREATIVE_TABS = new LangSection<>("CreativeTabs", CreativeTabs::getTranslationKey);
-	public static final LangSection<Block> BLOCKS = new LangSection<>("Blocks", block -> block.getTranslationKey() + ".name");
-	public static final LangSection<Item> ITEMS = new LangSection<>("Items", item -> item.getTranslationKey() + ".name");
 	public static final LangSection<EntityEntry> ENTITIES = new LangSection<>("Entities", s -> "entity." + s.getName() + ".name");
 	public static final LangSection<String> MISC = new LangSection<>("Miscellaneous", s -> s);
 	private HashMap<T, String> entries = new HashMap<>();

@@ -1,6 +1,8 @@
 package net.journey.util;
 
-import net.journey.init.items.*;
+import net.journey.init.items.JourneyArmory;
+import net.journey.init.items.JourneyConsumables;
+import net.journey.init.items.JourneyItems;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -145,7 +147,7 @@ public enum JourneyToolMaterial {
 
     private ToolMaterial toolMaterial;
     private Item repairItem;
-    private int harvestLevel = 0;
+    private int harvestLevel;
 
     JourneyToolMaterial(ToolMaterial toolMaterial, Item repair) {
         this.toolMaterial = toolMaterial;
