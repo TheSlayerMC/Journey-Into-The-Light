@@ -86,7 +86,7 @@ public class LangGeneratorFacade {
 	}
 
 	/**
-	 * @param nameSuffix represents a string that may contain %material% mark which will be replaced with provided material name.
+	 * @param nameSuffix represents full or base localized name that may contain %material% mark which will be replaced with provided material name.
 	 */
 	public static void addArmorEntry(ItemArmor item, EnumArmor type, String nameSuffix) {
 		ArmorData armorData = new ArmorData(item, type);

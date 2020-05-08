@@ -9,7 +9,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
-import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -35,7 +34,6 @@ public class LangSection<T> {
 	private HashMap<T, String> entries = new HashMap<>();
 	private String name;
 	private Function<T, String> keyCreator;
-	private BiFunction<T, String, String> valueCreator;
 	private Comparator<Map.Entry<T, String>> sorter = null;
 
 	public LangSection(String name, @NotNull Function<T, String> keyCreator) {
@@ -51,12 +49,6 @@ public class LangSection<T> {
 		return this;
 	}
 
-	public LangSection<T> setValueCreator(BiFunction<T, String, String> valueCreator) {
-		this.valueCreator = valueCreator;
-
-		return this;
-	}
-
 	public String getComment() {
 		return "#" + name;
 	}
@@ -65,12 +57,8 @@ public class LangSection<T> {
 		return keyCreator.apply(entry);
 	}
 
-	public String createValue(T entry, String enName) {
-		return valueCreator != null ? valueCreator.apply(entry, enName) : enName;
-	}
-
 	public String createLangEntry(T entry, String enName) {
-		return createKey(entry) + "=" + createValue(entry, enName);
+		return createKey(entry) + "=" + enName;
 	}
 
 	void addEntry(T entry, String enName) {
