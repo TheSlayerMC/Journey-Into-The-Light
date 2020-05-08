@@ -1,11 +1,16 @@
 package net.journey.dimension.euca;
 
+import javax.annotation.Nullable;
+
 import net.journey.dimension.base.BaseWorldProvider;
 import net.journey.dimension.base.DimensionHelper;
+import net.journey.init.JourneySounds;
+import net.minecraft.client.audio.MusicTicker;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.biome.BiomeProviderSingle;
 import net.minecraft.world.gen.IChunkGenerator;
+import net.minecraftforge.client.EnumHelperClient;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -27,6 +32,13 @@ public class WorldProviderEuca extends BaseWorldProvider {
         return "Euca";
     }
 
+    @Nullable
+    @SideOnly(Side.CLIENT)
+    @Override
+    public MusicTicker.MusicType getMusicType() {
+        return EnumHelperClient.addMusicType("null", JourneySounds.EMPTY, 0, 1);
+    }
+    
     @Override
     public float getCloudHeight() {
         return 128.0F;
