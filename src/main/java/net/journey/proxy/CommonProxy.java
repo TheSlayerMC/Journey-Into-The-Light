@@ -23,7 +23,6 @@ import net.journey.init.items.JourneyItems;
 import net.journey.init.items.JourneyWeapons;
 import net.journey.util.Config;
 import net.journey.util.JourneyFuelHandler;
-import net.journey.util.LangRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -117,8 +116,6 @@ public class CommonProxy {
         SlayerAPI.registerEventListener(new BarTickHandler());
         SlayerAPI.registerEventListener(new RenderBar());
         CapabilityManager.INSTANCE.register(IEssence.class, new EssenceStorage(), EssenceBar.class);
-
-        if (SlayerAPI.DEVMODE) LangRegistry.instance.register();
     }
 
     public void init(FMLInitializationEvent event) {
