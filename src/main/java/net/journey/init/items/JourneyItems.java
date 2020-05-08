@@ -116,6 +116,7 @@ public class JourneyItems {
     public static Item LAMENT_DECONSTRUCTOR_TERRANIA;
     public static Item LAMENT_DECONSTRUCTOR_CLOUDIA;
     public static Item LAMENT_DECONSTRUCTOR_SENTRY;
+    public static Item SENTRY_KEY;
     
     public static Item SENTRY_DISK;
     public static Item SENTERIAN_SOUL;
@@ -524,6 +525,7 @@ public class JourneyItems {
         LAMENT_DECONSTRUCTOR_TERRANIA = new ItemMod("lament_deconstructor_terrania", "Lament Deconstructor of Life");
         LAMENT_DECONSTRUCTOR_CLOUDIA = new ItemMod("lament_deconstructor_cloudia", "Lament Deconstructor of Heavan");
         LAMENT_DECONSTRUCTOR_SENTRY = new ItemMod("lament_deconstructor_sentry", "Lament Deconstructor of Death");
+        SENTRY_KEY = new ItemMod("sentry_key", "Sentry Key");
         
         SENTRY_DISK = new ItemMod("sentry_disk", "Sentry Disk");
         SENTERIAN_SOUL = new ItemMod("senterian_soul", "Senterian Soul");

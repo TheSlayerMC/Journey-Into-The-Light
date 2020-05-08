@@ -1,0 +1,8 @@
+{
+    "parent": "block/orientable",
+    "textures": {
+        "top": "journey:blocks/sentry_lock_side",
+        "front": "journey:blocks/sentry_lock_front",
+        "side": "journey:blocks/sentry_lock_side"
+    }
+}

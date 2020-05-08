@@ -1,10 +1,17 @@
 package net.journey.dimension.depths;
 
+import javax.annotation.Nullable;
+
 import net.journey.dimension.base.BaseWorldProvider;
 import net.journey.dimension.base.DimensionHelper;
+import net.journey.init.JourneySounds;
+import net.minecraft.client.audio.MusicTicker;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.biome.BiomeProviderSingle;
 import net.minecraft.world.gen.IChunkGenerator;
+import net.minecraftforge.client.EnumHelperClient;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WorldProviderDepths extends BaseWorldProvider {
 
@@ -16,6 +23,13 @@ public class WorldProviderDepths extends BaseWorldProvider {
     public void init() {
         nether = false;
         this.hasSkyLight = true;
+    }
+    
+    @Nullable
+    @SideOnly(Side.CLIENT)
+    @Override
+    public MusicTicker.MusicType getMusicType() {
+        return EnumHelperClient.addMusicType("null", JourneySounds.EMPTY, 0, 1);
     }
 
     @Override

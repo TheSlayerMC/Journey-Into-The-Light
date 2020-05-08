@@ -35,6 +35,7 @@ public class ChunkProviderSenterian implements IChunkGenerator {
 		bigRooms = new ArrayList(2);
 		bigRooms.add(new SenterianRoomChest());
 		bigRooms.add(new SenterianAltarRoom1());
+		bigRooms.add(new SenterianRoomLockedChests());
 
 		rooms = new ArrayList(4);
 		rooms.add(new SenterianRoomHall1());
