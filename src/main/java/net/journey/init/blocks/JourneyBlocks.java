@@ -281,6 +281,7 @@ public class JourneyBlocks {
     public static BlockMod senterianGuardianLamp;
     public static BlockModFence senterianPost;
     public static BlockSenterianAltar senterianAltar;
+    public static BlockMod SENTRY_LOCK;
     
     public static BlockMod LAMENT_NETHER;
     public static BlockMod LAMENT_BOIL;
@@ -770,6 +771,7 @@ public class JourneyBlocks {
         senterianGuardianLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "senterianGuardianLamp", "Senterian Guardian Lamp", 0.1F).setLightLevel(0.5F).setCreativeTab(JourneyTabs.DECORATION).setBlockUnbreakable().setResistance(10000000.0F);
         senterianPost = (BlockModFence) new BlockModFence(senterianBricks, "senterianPost", "Senterian Post").setBlockUnbreakable().setResistance(10000000.0F);
         senterianAltar = (BlockSenterianAltar) new BlockSenterianAltar("senterianAltar", "Senterian Altar").setBlockUnbreakable().setResistance(1000000.0F);
+        SENTRY_LOCK = (BlockLock) new BlockLock("sentry_lock", "Sentry Lock", JourneyItems.SENTRY_KEY);
         
         LAMENT_NETHER = (BlockMod) new BlockLament("lament_nether", "Lament Box of Hell", JourneyItems.LAMENT_DECONSTRUCTOR_NETHER).setBlockUnbreakable().setResistance(10000000.0F);
         LAMENT_BOIL = (BlockMod) new BlockLament("lament_boil", "Lament Box of Fire", JourneyItems.LAMENT_DECONSTRUCTOR_BOIL).setBlockUnbreakable().setResistance(10000000.0F);
