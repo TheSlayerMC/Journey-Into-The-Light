@@ -109,8 +109,10 @@ public class BlockCaveVine extends JBlockPlant implements IGrowable {
             return true;
         }
 
-        IBlockState bottomState = worldIn.getBlockState(pos.down());
-        return bottomState.getBlock() != this && bottomState.getBlock().isReplaceable(worldIn, pos);
+        BlockPos bottomPos = pos.down();
+
+        IBlockState bottomState = worldIn.getBlockState(bottomPos);
+        return bottomState.getBlock() != this && bottomState.getBlock().isReplaceable(worldIn, bottomPos);
     }
 
     @Override
