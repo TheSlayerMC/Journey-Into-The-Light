@@ -1,5 +1,6 @@
 package net.journey.util.gen.lang;
 
+import net.journey.JITL;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
@@ -8,32 +9,26 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
+/**
+ * Generator of lang entries.
+ * <p>
+ * Use {@link LangGeneratorFacade} to add entries.
+ */
 public class LangGenerator {
 	private static final String START_MARK = "#MARK AUTO GEN START";
 	private static final String END_MARK = "#MARK AUTO GEN END";
 	private final File outputFile = new File("../src/main/resources/assets/journey/lang/en_us.lang");
 
-	private LinkedHashMap<LangSection<?>, List<String>> genMap = new LinkedHashMap<>();
-
-	public LangGenerator() {
-		LangSection.SECTIONS.forEach(langSection -> genMap.put(langSection, new ArrayList<>()));
-	}
-
 	<T> void addLangEntry(LangSection<T> section, T entry, String enName) {
-		addLangEntry(section, section.createLangEntry(entry, enName));
-	}
-
-	void addLangEntry(LangSection<?> section, String entry) {
-		List<String> list = genMap.computeIfAbsent(section, category -> new ArrayList<>());
-		list.add(entry);
+		section.addEntry(entry, enName);
 	}
 
 	public void save() {
-
-		sortValues();
-
+		JITL.LOGGER.info("LangGenerator started generating of lang entries.");
 		try {
 			FileUtils.touch(outputFile);
 
@@ -76,13 +71,7 @@ public class LangGenerator {
 				newList.addAll(startList);
 				newList.add(START_MARK);
 
-				genMap.forEach((category, list) -> {
-					if (!list.isEmpty()) {
-						newList.add("");
-						newList.add(category.getComment());
-						newList.addAll(list);
-					}
-				});
+				putAllEntries(newList);
 
 				newList.add(END_MARK);
 				newList.addAll(endList);
@@ -95,12 +84,17 @@ public class LangGenerator {
 			e.printStackTrace();
 		}
 
-		genMap.clear();
+		JITL.LOGGER.info("LangGenerator finished generating of lang entries.");
 	}
 
-	private void sortValues() {
-		for (LangSection<?> section : genMap.keySet()) {
-			genMap.get(section).sort(Comparator.comparing(String::toLowerCase));
+	private void putAllEntries(List<String> in) {
+		for (LangSection<?> section : LangSection.SECTIONS) {
+			List<String> entries = section.convertEntries();
+			if (!entries.isEmpty()) {
+				in.add("");
+				in.add(section.getComment());
+				in.addAll(entries);
+			}
 		}
 	}
 }

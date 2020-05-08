@@ -1,10 +1,10 @@
 package net.journey.util.gen.lang;
 
 import net.journey.JITL;
+import net.journey.enums.EnumArmor;
 import net.journey.util.SideExecutor;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -60,30 +60,8 @@ public class LangGeneratorFacade {
 		SideExecutor.runWhenOn(Side.CLIENT, () -> () -> addLangEntry(LangSection.CREATIVE_TABS, creativeTab, enName));
 	}
 
-	public static void addArmorEntry(ItemArmor item, String enName) {
-		SideExecutor.runWhenOn(Side.CLIENT, () -> () -> {
-			EntityEquipmentSlot equipmentSlot = item.armorType;
-
-			String suffix;
-			switch (equipmentSlot) {
-				case HEAD:
-					suffix = "Helmet";
-					break;
-				case CHEST:
-					suffix = "Chestplate";
-					break;
-				case LEGS:
-					suffix = "Leggings";
-					break;
-				case FEET:
-					suffix = "Boots";
-					break;
-				default:
-					throw new IllegalStateException("Unsupported equipment slot: " + equipmentSlot);
-			}
-
-			addLangEntry(LangSection.ARMOR, item, enName + " " + suffix);
-		});
+	public static void addArmorEntry(ItemArmor item, EnumArmor type) {
+		SideExecutor.runWhenOn(Side.CLIENT, () -> () -> addLangEntry(LangSection.ARMOR, item, type.getFinalName()));
 	}
 
 	public static void addMiscEntry(String key, String name) {

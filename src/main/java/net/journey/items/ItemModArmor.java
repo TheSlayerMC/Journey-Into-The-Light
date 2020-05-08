@@ -5,7 +5,7 @@ import net.journey.client.ArmorDescription;
 import net.journey.enums.EnumArmor;
 import net.journey.init.JourneyTabs;
 import net.journey.init.items.JourneyItems;
-import net.journey.util.LangRegistry;
+import net.journey.util.gen.lang.LangGeneratorFacade;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -48,8 +48,8 @@ public class ItemModArmor extends ItemArmor implements ISpecialArmor {
         setTranslationKey(this.name);
         JourneyItems.itemNames.add(SlayerAPI.PREFIX + name.toLowerCase());
         JourneyItems.items.add(this);
-	    LangRegistry.addArmour(this, armorMaterial, type);
-	    setRegistryName(JITL.MOD_ID, this.name);
+        setRegistryName(JITL.MOD_ID, this.name);
+        LangGeneratorFacade.addArmorEntry(this, armorMaterial);
     }
 
     @Override
