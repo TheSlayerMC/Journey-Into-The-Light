@@ -46,22 +46,27 @@ public class LangGeneratorFacade {
 	private static final LangGenerator generator = JITL.IN_JOURNEY_DEV && FMLCommonHandler.instance().getSide() == Side.CLIENT ? new LangGenerator() : null;
 
 	public static void addBlockEntry(Block block, String enName) {
+		if (!exists()) return;
 		SideExecutor.runWhenOn(Side.CLIENT, () -> () -> addLangEntry(LangSection.BLOCKS, block, enName));
 	}
 
 	public static void addItemEntry(Item item, String enName) {
+		if (!exists()) return;
 		SideExecutor.runWhenOn(Side.CLIENT, () -> () -> addLangEntry(LangSection.ITEMS, item, enName));
 	}
 
 	public static void addEntityEntry(EntityEntry entityEntry, String enName) {
+		if (!exists()) return;
 		SideExecutor.runWhenOn(Side.CLIENT, () -> () -> addLangEntry(LangSection.ENTITIES, entityEntry, enName));
 	}
 
 	public static void addCreativeTabEntry(CreativeTabs creativeTab, String enName) {
+		if (!exists()) return;
 		SideExecutor.runWhenOn(Side.CLIENT, () -> () -> addLangEntry(LangSection.CREATIVE_TABS, creativeTab, enName));
 	}
 
 	public static void addArmorEntry(ItemArmor item, EnumArmor type) {
+		if (!exists()) return;
 		EntityEquipmentSlot equipmentSlot = item.armorType;
 
 		String suffix;
@@ -89,12 +94,14 @@ public class LangGeneratorFacade {
 	 * @param nameSuffix represents full or base localized name that may contain %material% mark which will be replaced with provided material name.
 	 */
 	public static void addArmorEntry(ItemArmor item, EnumArmor type, String nameSuffix) {
+		if (!exists()) return;
 		ArmorData armorData = new ArmorData(item, type);
 		String name = nameSuffix.replace("%material%", type.getFinalName());
 		SideExecutor.runWhenOn(Side.CLIENT, () -> () -> addLangEntry(LangSection.ARMOR, armorData, name));
 	}
 
 	public static void addMiscEntry(String key, String name) {
+		if (!exists()) return;
 		SideExecutor.runWhenOn(Side.CLIENT, () -> () -> addLangEntry(LangSection.MISC, key, name));
 	}
 
