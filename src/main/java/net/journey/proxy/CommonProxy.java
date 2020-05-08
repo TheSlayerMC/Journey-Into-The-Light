@@ -15,7 +15,6 @@ import net.journey.event.VanillaFixEvent;
 import net.journey.init.JourneyEnchantments;
 import net.journey.init.JourneyRecipes;
 import net.journey.init.JourneySounds;
-import net.journey.init.JourneyTabs;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.init.common.JourneyCrops;
 import net.journey.init.items.JourneyArmory;
@@ -123,7 +122,6 @@ public class CommonProxy {
     }
 
     public void init(FMLInitializationEvent event) {
-        JourneyTabs.init();
         JourneyRecipes.init();
         GameRegistry.registerWorldGenerator(new WorldGenJourney(), 2);
         SlayerAPI.registerEventListener(new PlayerEvent());
