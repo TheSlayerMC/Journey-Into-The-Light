@@ -5,6 +5,7 @@ import net.journey.api.world.gen.TECompatibleChunkPrimer;
 import net.journey.blocks.containers.BlockJourneyChest;
 import net.journey.blocks.containers.BlockLock;
 import net.journey.init.blocks.JourneyBlocks;
+import net.journey.util.JourneyLootTables;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
@@ -13,7 +14,7 @@ import net.minecraft.world.storage.loot.LootTableList;
 import java.util.Random;
 
 public class SenterianRoomLockedChests extends SenterianRoomBase {
-	private static final TECompatibleChunkPrimer.TileEntityInitializer<?> CHEST_INITIALIZER = new BasicInitializers.JourneyChest(LootTableList.CHESTS_SIMPLE_DUNGEON);
+	private static final TECompatibleChunkPrimer.TileEntityInitializer<?> CHEST_INITIALIZER = new BasicInitializers.JourneyChest(JourneyLootTables.SENTRY_BASE_CHEST_LOOT);
 
 	@Override
 	public boolean generate(TECompatibleChunkPrimer worldIn, Random rand, int i, int j, int k) {

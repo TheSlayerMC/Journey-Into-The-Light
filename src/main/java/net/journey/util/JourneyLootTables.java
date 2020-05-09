@@ -25,6 +25,8 @@ public class JourneyLootTables {
     public static final ResourceLocation TERRANIA_TREE_HUT_CHEST = register("chests/terraniatreehut");
     public static final ResourceLocation ROCKITE_CHEST_LOOT = register("chests/overworld/rockite_loot");
     public static final ResourceLocation ANCIENT_CHEST_LOOT = register("chests/overworld/ancient_loot");
+    public static final ResourceLocation SENTRY_BASE_CHEST_LOOT = register("chests/senterian/sentry_dungeon");
+    
     public static final ResourceLocation VANILLA_SIMPLE_DUNGEON = LootTableList.CHESTS_SIMPLE_DUNGEON;
 
     private static ResourceLocation register(String path) {
