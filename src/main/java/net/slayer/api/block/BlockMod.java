@@ -25,7 +25,6 @@ import java.util.List;
 import java.util.Random;
 
 public class BlockMod extends Block {
-    protected Random rand;
     protected boolean isOpaque = true, isNormalCube = true; //TODO seems unused, test and remove
 
     public BlockMod(String name, String enName, float hardness) {
@@ -55,7 +54,6 @@ public class BlockMod extends Block {
     public BlockMod(EnumMaterialTypes blockType, String name, String enName, float hardness, CreativeTabs tab) {
         super(blockType.getMaterial());
         setSoundType(blockType.getSound());
-        rand = new Random();
 
         StuffConstructor.regAndSetupBlock(this, name, enName, hardness, tab);
     }

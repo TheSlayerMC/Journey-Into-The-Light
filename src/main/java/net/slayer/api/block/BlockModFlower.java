@@ -94,9 +94,9 @@ public class BlockModFlower extends BlockMod implements IPlantable {
         if (isFrozenPlant) {
             if (random.nextInt(15) == 0) {
                 for (int i = 0; i < 6; ++i) {
-                    double d0 = (double) pos.getX() + rand.nextDouble();
-                    double d1 = (double) pos.getY() + rand.nextDouble() * 0.5D + 0.7D;
-                    double d2 = (double) pos.getZ() + rand.nextDouble();
+                    double d0 = (double) pos.getX() + random.nextDouble();
+                    double d1 = (double) pos.getY() + random.nextDouble() * 0.5D + 0.7D;
+                    double d2 = (double) pos.getZ() + random.nextDouble();
                     w.spawnParticle(EnumParticleTypes.SNOW_SHOVEL, d0, d1, d2, 0.0D, 0.0D, 0.0D);
                 }
             }

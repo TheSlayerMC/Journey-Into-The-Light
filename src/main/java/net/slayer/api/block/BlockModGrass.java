@@ -40,7 +40,7 @@ public class BlockModGrass extends BlockMod implements IGrowable {
                         int i1 = x + random.nextInt(3) - 1;
                         int j1 = y + random.nextInt(5) - 3;
                         int k1 = z + random.nextInt(3) - 1;
-                        BlockPos blockpos1 = pos.add(rand.nextInt(3) - 1, rand.nextInt(5) - 3, rand.nextInt(3) - 1);
+                        BlockPos blockpos1 = pos.add(random.nextInt(3) - 1, random.nextInt(5) - 3, random.nextInt(3) - 1);
                         if (world.getBlockState(new BlockPos(i1, j1, k1)) == dirt.getDefaultState() && world.getBlockState(new BlockPos(i1, j1 + 1, k1)) == Blocks.AIR.getDefaultState() && world.getLightFromNeighbors(blockpos1.up()) >= 4 && world.getLightFromNeighbors(new BlockPos(i1, j1 + 1, k1)) <= 2)
                             world.setBlockState(new BlockPos(i1, j1, k1), getDefaultState());
                     }

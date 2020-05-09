@@ -2,7 +2,6 @@ package net.slayer.api.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
@@ -54,22 +53,22 @@ public class BlockModLeaves extends BlockMod implements IShearable {
         if (isFrozenPlant) {
             if (random.nextInt(15) == 0) {
                 for (int i = 0; i < 20; ++i) {
-                    double d0 = (double) pos.getX() + rand.nextDouble() * 2;
-                    double d1 = (double) pos.getY() + rand.nextDouble() * 0.5D + 0.7D;
-                    double d2 = (double) pos.getZ() + rand.nextDouble() * 2;
-                    w.spawnParticle(EnumParticleTypes.SNOW_SHOVEL, d0 * rand.nextFloat(), d1, d2 * rand.nextFloat(), 0.1, 0.0D, 0.1);
+                    double d0 = (double) pos.getX() + random.nextDouble() * 2;
+                    double d1 = (double) pos.getY() + random.nextDouble() * 0.5D + 0.7D;
+                    double d2 = (double) pos.getZ() + random.nextDouble() * 2;
+                    w.spawnParticle(EnumParticleTypes.SNOW_SHOVEL, d0 * random.nextFloat(), d1, d2 * random.nextFloat(), 0.1, 0.0D, 0.1);
                 }
             }
         }
         if (isBurningPlant) {
             if (random.nextInt(2) == 0) {
                 for (int i = 0; i < 100; ++i) {
-                    double d0 = (double) pos.getX() + rand.nextDouble() * 0;
-                    double d1 = (double) pos.getY() + rand.nextDouble() * 0D - 6D;
-                    double d2 = (double) pos.getZ() + rand.nextDouble() * 0;
+                    double d0 = (double) pos.getX() + random.nextDouble() * 0;
+                    double d1 = (double) pos.getY() + random.nextDouble() * 0D - 6D;
+                    double d2 = (double) pos.getZ() + random.nextDouble() * 0;
                     //w.spawnParticle(EnumParticleTypes.LAVA, d0 * rand.nextFloat(), d1, d2 * rand.nextFloat(), 0, 0D, 0, new int[0]);
-                    w.spawnParticle(EnumParticleTypes.FLAME, d0 * rand.nextFloat(), d1 + rand.nextInt(10), d2 * rand.nextFloat(), 0, 0D, 0);
-                    w.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 * rand.nextFloat(), d1, d2 * rand.nextFloat(), 0, 0D, 0);
+                    w.spawnParticle(EnumParticleTypes.FLAME, d0 * random.nextFloat(), d1 + random.nextInt(10), d2 * random.nextFloat(), 0, 0D, 0);
+                    w.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 * random.nextFloat(), d1, d2 * random.nextFloat(), 0, 0D, 0);
                 }
             }
         }
