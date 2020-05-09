@@ -45,7 +45,7 @@ public abstract class EntityModFlying extends EntityFlying {
     }
 
     public double setFollowRange() {
-        return MobStats.boss_follow;
+        return MobStats.flying_follow;
     }
 
     public double setMovementSpeed() {
