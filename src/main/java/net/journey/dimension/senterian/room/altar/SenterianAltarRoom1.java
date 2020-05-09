@@ -1,20 +1,16 @@
 package net.journey.dimension.senterian.room.altar;
 
-import java.util.Random;
-
-import net.journey.dimension.senterian.SenterianChunkPrimer;
+import net.journey.api.world.gen.TECompatibleChunkPrimer;
 import net.journey.dimension.senterian.room.SenterianRoomBase;
 import net.journey.init.blocks.JourneyBlocks;
-import net.minecraft.block.BlockColored;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.EnumDyeColor;
-import net.minecraft.world.World;
+
+import java.util.Random;
 
 public class SenterianAltarRoom1 extends SenterianRoomBase {
 
 	@Override
-	public boolean generate(SenterianChunkPrimer worldIn, Random r, int i, int j, int k) {
+	public boolean generate(TECompatibleChunkPrimer worldIn, Random r, int i, int j, int k) {
 		this.setBlock(worldIn, i, j, k, JourneyBlocks.senterianFloor);
 		this.setBlock(worldIn, i, j, k + 1, JourneyBlocks.senterianFloor);
 		this.setBlock(worldIn, i, j, k + 2, JourneyBlocks.senterianFloor);
@@ -1568,7 +1564,7 @@ public class SenterianAltarRoom1 extends SenterianRoomBase {
 		return true;
 	}
 
-	public void generate(SenterianChunkPrimer worldIn, int i, int j, int k) {
+	public void generate(TECompatibleChunkPrimer worldIn, int i, int j, int k) {
 		this.setBlock(worldIn, i + 9, j + 6, k + 13, Blocks.AIR);
 		this.setBlock(worldIn, i + 9, j + 6, k + 14, Blocks.AIR);
 		this.setBlock(worldIn, i + 9, j + 6, k + 15, JourneyBlocks.senterianFloor);

@@ -1,25 +1,23 @@
 package net.journey.dimension.senterian.room;
 
-import java.util.Random;
-
+import net.journey.api.world.gen.BasicInitializers;
+import net.journey.api.world.gen.TECompatibleChunkPrimer;
 import net.journey.blocks.containers.BlockJourneyChest;
 import net.journey.blocks.containers.BlockLock;
-import net.journey.blocks.tileentity.TileEntityJourneyChest;
-import net.journey.dimension.senterian.SenterianChunkPrimer;
 import net.journey.init.blocks.JourneyBlocks;
-import net.journey.util.JourneyLootTables;
 import net.minecraft.block.BlockStairs;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.storage.loot.LootTableList;
+
+import java.util.Random;
 
 public class SenterianRoomLockedChests extends SenterianRoomBase {
+	private static final TECompatibleChunkPrimer.TileEntityInitializer<?> CHEST_INITIALIZER = new BasicInitializers.JourneyChest(LootTableList.CHESTS_SIMPLE_DUNGEON);
 
-    @Override
-    public boolean generate(SenterianChunkPrimer worldIn, Random rand, int i, int j, int k) {
-    	this.setBlock(worldIn, i + 0, j + 0, k + 0, JourneyBlocks.senterianFloor);
+	@Override
+	public boolean generate(TECompatibleChunkPrimer worldIn, Random rand, int i, int j, int k) {
+		this.setBlock(worldIn, i + 0, j + 0, k + 0, JourneyBlocks.senterianFloor);
 		this.setBlock(worldIn, i + 0, j + 0, k + 1, JourneyBlocks.senterianFloor);
 		this.setBlock(worldIn, i + 0, j + 0, k + 2, JourneyBlocks.senterianFloor);
 		this.setBlock(worldIn, i + 0, j + 0, k + 3, JourneyBlocks.senterianFloor);
@@ -209,7 +207,10 @@ public class SenterianRoomLockedChests extends SenterianRoomBase {
 		this.setBlock(worldIn, i + 1, j + 1, k + 11, Blocks.AIR);
 		this.setBlock(worldIn, i + 1, j + 1, k + 12, Blocks.AIR);
 		this.setBlock(worldIn, i + 1, j + 1, k + 13, Blocks.AIR);
+
 		this.setBlock(worldIn, i + 1, j + 1, k + 14, JourneyBlocks.journeyChest.getDefaultState().withProperty(BlockJourneyChest.FACING, EnumFacing.NORTH));
+		initTileEntity(worldIn, i + 1, j + 1, k + 14, CHEST_INITIALIZER);
+
 		this.setBlock(worldIn, i + 1, j + 1, k + 15, JourneyBlocks.senterianCarvedRock);
 		this.setBlock(worldIn, i + 1, j + 2, k + 0, JourneyBlocks.senterianCarvedRock);
 		this.setBlock(worldIn, i + 1, j + 2, k + 1, Blocks.AIR);
@@ -370,6 +371,7 @@ public class SenterianRoomLockedChests extends SenterianRoomBase {
 		this.setBlock(worldIn, i + 2, j + 1, k + 12, Blocks.AIR);
 		this.setBlock(worldIn, i + 2, j + 1, k + 13, Blocks.AIR);
 		this.setBlock(worldIn, i + 2, j + 1, k + 14, JourneyBlocks.journeyChest.getDefaultState().withProperty(BlockJourneyChest.FACING, EnumFacing.NORTH));
+		initTileEntity(worldIn, i + 2, j + 1, k + 14, CHEST_INITIALIZER);
 		this.setBlock(worldIn, i + 2, j + 1, k + 15, JourneyBlocks.senterianCarvedRock);
 		this.setBlock(worldIn, i + 2, j + 2, k + 0, JourneyBlocks.senterianCarvedRock);
 		this.setBlock(worldIn, i + 2, j + 2, k + 1, Blocks.AIR);
@@ -445,6 +447,7 @@ public class SenterianRoomLockedChests extends SenterianRoomBase {
 		this.setBlock(worldIn, i + 2, j + 6, k + 7, JourneyBlocks.senterianBars);
 		this.setBlock(worldIn, i + 2, j + 6, k + 8, Blocks.AIR);
 		this.setBlock(worldIn, i + 2, j + 6, k + 9, JourneyBlocks.journeyChest.getDefaultState().withProperty(BlockJourneyChest.FACING, EnumFacing.EAST));
+		initTileEntity(worldIn, i + 2, j + 6, k + 9, CHEST_INITIALIZER);
 		this.setBlock(worldIn, i + 2, j + 6, k + 10, Blocks.AIR);
 		this.setBlock(worldIn, i + 2, j + 6, k + 11, JourneyBlocks.senterianBars);
 		this.setBlock(worldIn, i + 2, j + 6, k + 12, Blocks.AIR);
@@ -1078,6 +1081,7 @@ public class SenterianRoomLockedChests extends SenterianRoomBase {
 		this.setBlock(worldIn, i + 6, j + 6, k + 0, JourneyBlocks.senterianCarvedRock);
 		this.setBlock(worldIn, i + 6, j + 6, k + 1, Blocks.AIR);
 		this.setBlock(worldIn, i + 6, j + 6, k + 2, JourneyBlocks.journeyChest.getDefaultState().withProperty(BlockJourneyChest.FACING, EnumFacing.SOUTH));
+		initTileEntity(worldIn, i + 6, j + 6, k + 2, CHEST_INITIALIZER);
 		this.setBlock(worldIn, i + 6, j + 6, k + 3, Blocks.AIR);
 		this.setBlock(worldIn, i + 6, j + 6, k + 4, JourneyBlocks.senterianBars);
 		this.setBlock(worldIn, i + 6, j + 6, k + 5, Blocks.AIR);
@@ -1569,6 +1573,7 @@ public class SenterianRoomLockedChests extends SenterianRoomBase {
 		this.setBlock(worldIn, i + 9, j + 6, k + 11, JourneyBlocks.senterianBars);
 		this.setBlock(worldIn, i + 9, j + 6, k + 12, Blocks.AIR);
 		this.setBlock(worldIn, i + 9, j + 6, k + 13, JourneyBlocks.journeyChest.getDefaultState().withProperty(BlockJourneyChest.FACING, EnumFacing.NORTH));
+		initTileEntity(worldIn, i + 9, j + 6, k + 13, CHEST_INITIALIZER);
 		this.setBlock(worldIn, i + 9, j + 6, k + 14, Blocks.AIR);
 		this.setBlock(worldIn, i + 9, j + 6, k + 15, JourneyBlocks.senterianCarvedRock);
 		this.setBlock(worldIn, i + 9, j + 7, k + 0, JourneyBlocks.senterianCarvedRock);
@@ -2118,6 +2123,7 @@ public class SenterianRoomLockedChests extends SenterianRoomBase {
 		this.setBlock(worldIn, i + 13, j + 1, k + 0, JourneyBlocks.senterianCarvedRock);
 		this.setBlock(worldIn, i + 13, j + 1, k + 1, JourneyBlocks.senterianCarvedRock);
 		this.setBlock(worldIn, i + 13, j + 1, k + 2, JourneyBlocks.journeyChest.getDefaultState().withProperty(BlockJourneyChest.FACING, EnumFacing.SOUTH));
+		initTileEntity(worldIn, i + 13, j + 1, k + 2, CHEST_INITIALIZER);
 		this.setBlock(worldIn, i + 13, j + 1, k + 3, Blocks.AIR);
 		this.setBlock(worldIn, i + 13, j + 1, k + 4, Blocks.AIR);
 		this.setBlock(worldIn, i + 13, j + 1, k + 5, Blocks.AIR);
@@ -2202,6 +2208,7 @@ public class SenterianRoomLockedChests extends SenterianRoomBase {
 		this.setBlock(worldIn, i + 13, j + 6, k + 4, JourneyBlocks.senterianBars);
 		this.setBlock(worldIn, i + 13, j + 6, k + 5, Blocks.AIR);
 		this.setBlock(worldIn, i + 13, j + 6, k + 6, JourneyBlocks.journeyChest.getDefaultState().withProperty(BlockJourneyChest.FACING, EnumFacing.WEST));
+		initTileEntity(worldIn, i + 13, j + 6, k + 6, CHEST_INITIALIZER);
 		this.setBlock(worldIn, i + 13, j + 6, k + 7, Blocks.AIR);
 		this.setBlock(worldIn, i + 13, j + 6, k + 8, JourneyBlocks.senterianBars);
 		this.setBlock(worldIn, i + 13, j + 6, k + 9, Blocks.AIR);
@@ -2278,6 +2285,7 @@ public class SenterianRoomLockedChests extends SenterianRoomBase {
 		this.setBlock(worldIn, i + 14, j + 1, k + 0, JourneyBlocks.senterianCarvedRock);
 		this.setBlock(worldIn, i + 14, j + 1, k + 1, JourneyBlocks.senterianCarvedRock);
 		this.setBlock(worldIn, i + 14, j + 1, k + 2, JourneyBlocks.journeyChest.getDefaultState().withProperty(BlockJourneyChest.FACING, EnumFacing.SOUTH));
+		initTileEntity(worldIn, i + 14, j + 1, k + 2, CHEST_INITIALIZER);
 		this.setBlock(worldIn, i + 14, j + 1, k + 3, Blocks.AIR);
 		this.setBlock(worldIn, i + 14, j + 1, k + 4, Blocks.AIR);
 		this.setBlock(worldIn, i + 14, j + 1, k + 5, Blocks.AIR);

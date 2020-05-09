@@ -1,5 +1,6 @@
 package net.journey.dimension.senterian;
 
+import net.journey.api.world.gen.TECompatibleChunkPrimer;
 import net.journey.dimension.senterian.room.*;
 import net.journey.dimension.senterian.room.altar.SenterianAltarRoom1;
 import net.minecraft.block.state.IBlockState;
@@ -25,7 +26,7 @@ public class ChunkProviderSenterian implements IChunkGenerator {
 	private SenterianRoomBase[] hallways;
 	private World worldObj;
 	private Random random;
-	private Map<ChunkPos, List<BlockPos>> chunkTileEntityMap;
+	private Map<ChunkPos, Map<BlockPos, TECompatibleChunkPrimer.PrimerData>> chunkTileEntityMap;
 	private Biome[] biomesForGeneration;
 
 	public ChunkProviderSenterian(World world, long seed) {
@@ -33,7 +34,7 @@ public class ChunkProviderSenterian implements IChunkGenerator {
 		worldObj = world;
 		random = new Random(seed);
 
-		bigRooms = new ArrayList<SenterianRoomBase>(2);
+		bigRooms = new ArrayList<>(2);
 		bigRooms.add(new SenterianRoomChest());
 		bigRooms.add(new SenterianAltarRoom1());
 		bigRooms.add(new SenterianRoomLockedChests());
@@ -52,7 +53,7 @@ public class ChunkProviderSenterian implements IChunkGenerator {
 
 	@Override
 	public Chunk generateChunk(int chunkX, int chunkZ) {
-		SenterianChunkPrimer senterianChunk = new SenterianChunkPrimer();
+		TECompatibleChunkPrimer senterianChunk = new TECompatibleChunkPrimer();
 		this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomes(this.biomesForGeneration, chunkX * 16, chunkZ * 16, 16, 16);
 
 		int bottomLayer = 0;
@@ -123,7 +124,7 @@ public class ChunkProviderSenterian implements IChunkGenerator {
 		}
 
 		//Forces a roof over the whole room, gets generated at final set
-		chunkTileEntityMap.put(new ChunkPos(chunkX, chunkZ), senterianChunk.chunkTileEntityPositions);
+		chunkTileEntityMap.put(new ChunkPos(chunkX, chunkZ), senterianChunk.getTileEntityMap());
 
 		Chunk chunk = new Chunk(this.worldObj, senterianChunk, chunkX, chunkZ);
 		byte[] abyte = chunk.getBiomeArray();
@@ -149,20 +150,35 @@ public class ChunkProviderSenterian implements IChunkGenerator {
 		this.random.setSeed((long) chunkX * k + (long) chunkZ * l ^ this.worldObj.getSeed());
 
 		//checks all tile entitys in the world and updates (renders) them
-		List<BlockPos> chunkTileEntityPositions = chunkTileEntityMap.get(chunkpos);
+		Map<BlockPos, TECompatibleChunkPrimer.PrimerData> chunkTileEntityPositions = chunkTileEntityMap.get(chunkpos);
 		if (chunkTileEntityPositions != null) {
 			Chunk chunk = this.worldObj.getChunk(chunkX, chunkZ);
-			for (int i = 0; i < chunkTileEntityPositions.size(); i++) {
-				BlockPos chunkPosition = chunkTileEntityPositions.get(i);
-				IBlockState state = chunk.getBlockState(chunkPosition.getX(), chunkPosition.getY(),
-						chunkPosition.getZ());
+
+			Iterator<Map.Entry<BlockPos, TECompatibleChunkPrimer.PrimerData>> iterator = chunkTileEntityPositions.entrySet().iterator();
+			while (iterator.hasNext()) {
+				Map.Entry<BlockPos, TECompatibleChunkPrimer.PrimerData> entry = iterator.next();
+
+				BlockPos tePos = entry.getKey().add(x, 0, z);
+				TECompatibleChunkPrimer.PrimerData data = entry.getValue();
+
+				IBlockState state = chunk.getBlockState(tePos.getX(), tePos.getY(), tePos.getZ());
 				TileEntity te = state.getBlock().createTileEntity(this.worldObj, state);
-				this.worldObj.setTileEntity(chunkPosition.add(x, 0, z), te);
+
+				this.worldObj.setTileEntity(tePos, te);
+
+				TECompatibleChunkPrimer.TileEntityInitializer<?> tileEntityInitializer = data.getTileEntityInitializer();
+				if (tileEntityInitializer != null) {
+					tileEntityInitializer.process(worldObj, te, random);
+					System.out.println("Set tile: " + tePos);
+				}
+
+				iterator.remove();
 			}
+
 			chunkTileEntityMap.remove(chunkpos);
 		}
 
-        WorldEntitySpawner.performWorldGenSpawning(this.worldObj, biome, x + 8, z + 8, 16, 16, this.random);
+		WorldEntitySpawner.performWorldGenSpawning(this.worldObj, biome, x + 8, z + 8, 16, 16, this.random);
 	}
 
 	@Override

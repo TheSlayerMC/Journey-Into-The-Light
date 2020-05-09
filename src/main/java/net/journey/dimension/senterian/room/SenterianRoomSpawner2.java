@@ -1,6 +1,6 @@
 package net.journey.dimension.senterian.room;
 
-import net.journey.dimension.senterian.SenterianChunkPrimer;
+import net.journey.api.world.gen.TECompatibleChunkPrimer;
 import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntityMobSpawner;
@@ -19,18 +19,18 @@ public class SenterianRoomSpawner2 extends SenterianRoomBase {
         this.w = w;
     }
 
-    @Override
-    public boolean generate(SenterianChunkPrimer world, Random rand, int i, int j, int k) {
-        ArrayList<String> mobs = new ArrayList<String>();
-        mobs.add("journey:sentrylord");
-        mobs.add("journey:sentrystalker");
-        mobs.add("journey:sentrywalker");
+	@Override
+	public boolean generate(TECompatibleChunkPrimer world, Random rand, int i, int j, int k) {
+		ArrayList<String> mobs = new ArrayList<String>();
+		mobs.add("journey:sentrylord");
+		mobs.add("journey:sentrystalker");
+		mobs.add("journey:sentrywalker");
 
-        //TODO
-        this.setBlock(world, i + 0, j + 0, k + 0, JourneyBlocks.senterianFloor);
-        this.setBlock(world, i + 0, j + 0, k + 1, JourneyBlocks.senterianFloor);
-        this.setBlock(world, i + 0, j + 0, k + 2, JourneyBlocks.senterianFloor);
-        this.setBlock(world, i + 0, j + 0, k + 3, JourneyBlocks.senterianFloor);
+		//TODO
+		this.setBlock(world, i + 0, j + 0, k + 0, JourneyBlocks.senterianFloor);
+		this.setBlock(world, i + 0, j + 0, k + 1, JourneyBlocks.senterianFloor);
+		this.setBlock(world, i + 0, j + 0, k + 2, JourneyBlocks.senterianFloor);
+		this.setBlock(world, i + 0, j + 0, k + 3, JourneyBlocks.senterianFloor);
         this.setBlock(world, i + 0, j + 0, k + 4, JourneyBlocks.senterianFloor);
         this.setBlock(world, i + 0, j + 0, k + 5, JourneyBlocks.senterianFloor);
         this.setBlock(world, i + 0, j + 0, k + 6, JourneyBlocks.senterianFloor);

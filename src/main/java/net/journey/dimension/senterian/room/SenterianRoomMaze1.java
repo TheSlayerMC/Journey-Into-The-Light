@@ -1,6 +1,6 @@
 package net.journey.dimension.senterian.room;
 
-import net.journey.dimension.senterian.SenterianChunkPrimer;
+import net.journey.api.world.gen.TECompatibleChunkPrimer;
 import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.init.Blocks;
 
@@ -8,18 +8,18 @@ import java.util.Random;
 
 public class SenterianRoomMaze1 extends SenterianRoomBase {
 
-    @Override
-    public boolean generate(SenterianChunkPrimer world, Random rand, int i, int j, int k) {
-        this.setBlock(world, i + 0, j + 0, k + 0, JourneyBlocks.senterianFloor);
-        this.setBlock(world, i + 0, j + 0, k + 1, JourneyBlocks.senterianFloor);
-        this.setBlock(world, i + 0, j + 0, k + 2, JourneyBlocks.senterianFloor);
-        this.setBlock(world, i + 0, j + 0, k + 3, JourneyBlocks.senterianFloor);
-        this.setBlock(world, i + 0, j + 0, k + 4, JourneyBlocks.senterianFloor);
-        this.setBlock(world, i + 0, j + 0, k + 5, JourneyBlocks.senterianFloor);
-        this.setBlock(world, i + 0, j + 0, k + 6, JourneyBlocks.senterianFloor);
-        this.setBlock(world, i + 0, j + 0, k + 7, JourneyBlocks.senterianFloor);
-        this.setBlock(world, i + 0, j + 0, k + 8, JourneyBlocks.senterianFloor);
-        this.setBlock(world, i + 0, j + 0, k + 9, JourneyBlocks.senterianFloor);
+	@Override
+	public boolean generate(TECompatibleChunkPrimer world, Random rand, int i, int j, int k) {
+		this.setBlock(world, i + 0, j + 0, k + 0, JourneyBlocks.senterianFloor);
+		this.setBlock(world, i + 0, j + 0, k + 1, JourneyBlocks.senterianFloor);
+		this.setBlock(world, i + 0, j + 0, k + 2, JourneyBlocks.senterianFloor);
+		this.setBlock(world, i + 0, j + 0, k + 3, JourneyBlocks.senterianFloor);
+		this.setBlock(world, i + 0, j + 0, k + 4, JourneyBlocks.senterianFloor);
+		this.setBlock(world, i + 0, j + 0, k + 5, JourneyBlocks.senterianFloor);
+		this.setBlock(world, i + 0, j + 0, k + 6, JourneyBlocks.senterianFloor);
+		this.setBlock(world, i + 0, j + 0, k + 7, JourneyBlocks.senterianFloor);
+		this.setBlock(world, i + 0, j + 0, k + 8, JourneyBlocks.senterianFloor);
+		this.setBlock(world, i + 0, j + 0, k + 9, JourneyBlocks.senterianFloor);
         this.setBlock(world, i + 0, j + 0, k + 10, JourneyBlocks.senterianFloor);
         this.setBlock(world, i + 0, j + 0, k + 11, JourneyBlocks.senterianFloor);
         this.setBlock(world, i + 0, j + 0, k + 12, JourneyBlocks.senterianFloor);
