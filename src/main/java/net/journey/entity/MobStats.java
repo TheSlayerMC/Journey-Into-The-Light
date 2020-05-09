@@ -133,6 +133,7 @@ public class MobStats {
     public static double eudorHealth = 900.0D, eudorDamage = 10.0D, eudorSpeed = normalSpeed, eudorFollowRange = boss_follow;
     public static double fourfaHealth = 900.0D, fourfaDamage = 10.0D, fourfaSpeed = normalSpeed, fourfaFollowRange = boss_follow;
     public static double guardianofdestructionHealth = 1500.0D, guardianofdestructionDamage = 15.0D, guardianofdestructionSpeed = normalSpeed, guardianofdestructionFollowRange = boss_follow;
+    public static double sentryHeartHealth = 1500.0D, sentryHeartDamage = 15.0D, sentryHeartSpeed = normalSpeed, sentryHeartFollowRange = boss_follow;
     public static double BlazierHealth = 850.0D, BlazierDamage = 20.0D;
     public static double scaleHealth = 1560.0D, scaleDamage = 20.0D;
     public static double sentryKingHealth = 2500.0D, sentryKingDamage = 20.0D;
