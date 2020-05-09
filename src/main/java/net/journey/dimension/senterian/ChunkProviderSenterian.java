@@ -18,35 +18,36 @@ import java.util.*;
 
 public class ChunkProviderSenterian implements IChunkGenerator {
 
-	private ArrayList rooms;
-	private ArrayList bigRooms;
+	private ArrayList<SenterianRoomBase> rooms;
+	private ArrayList<SenterianRoomBase> bigRooms;
 	private SenterianCeiling ceiling;
 	private SenterianRoomStairs stairs;
 	private SenterianRoomBase[] hallways;
 	private World worldObj;
 	private Random random;
-	private Map chunkTileEntityMap;
+	private Map<ChunkPos, List<BlockPos>> chunkTileEntityMap;
 	private Biome[] biomesForGeneration;
+
 	public ChunkProviderSenterian(World world, long seed) {
 
 		worldObj = world;
 		random = new Random(seed);
 
-		bigRooms = new ArrayList(2);
+		bigRooms = new ArrayList<SenterianRoomBase>(2);
 		bigRooms.add(new SenterianRoomChest());
 		bigRooms.add(new SenterianAltarRoom1());
 		bigRooms.add(new SenterianRoomLockedChests());
 
-		rooms = new ArrayList(4);
+		rooms = new ArrayList<>(4);
 		rooms.add(new SenterianRoomHall1());
 		rooms.add(new SenterianRoomNPC());
 		rooms.add(new SenterianRoomSpawner1());
-		
+
 		hallways = new SenterianRoomBase[]{new SenterianRoomHall2(), new SenterianRoomHall3(), new SenterianRoomMaze1(), new SenterianRoomMaze2(), new SenterianRoomSpawner2(world)};
-		
+
 		stairs = new SenterianRoomStairs();
 		ceiling = new SenterianCeiling();
-		this.chunkTileEntityMap = new HashMap();
+		this.chunkTileEntityMap = new HashMap<>();
 	}
 
 	@Override
@@ -60,16 +61,16 @@ public class ChunkProviderSenterian implements IChunkGenerator {
 		int topLayer = 15;
 
 		//Generates all rooms
-		SenterianRoomBase room = (SenterianRoomBase) (rooms.get(random.nextInt(rooms.size())));
+		SenterianRoomBase room = (rooms.get(random.nextInt(rooms.size())));
 		room.generate(senterianChunk, random, 0, topLayer, 0);
 
-		room = (SenterianRoomBase) (rooms.get(random.nextInt(rooms.size())));
+		room = (rooms.get(random.nextInt(rooms.size())));
 		room.generate(senterianChunk, random, 0, thirdLayer, 0);
 
-		room = (SenterianRoomBase) (rooms.get(random.nextInt(rooms.size())));
+		room = (rooms.get(random.nextInt(rooms.size())));
 		room.generate(senterianChunk, random, 0, secondLayer, 0);
 
-		room = (SenterianRoomBase) (rooms.get(random.nextInt(rooms.size())));
+		room = (rooms.get(random.nextInt(rooms.size())));
 		room.generate(senterianChunk, random, 0, bottomLayer, 0);
 
 		//Chance to generate stair room on all but top layer
@@ -101,23 +102,23 @@ public class ChunkProviderSenterian implements IChunkGenerator {
 
 		//These rooms need to be generated last
 		int bigRoomChance = 30;
-		SenterianRoomBase br = (SenterianRoomBase) (bigRooms.get(random.nextInt(bigRooms.size())));
+		SenterianRoomBase br = (bigRooms.get(random.nextInt(bigRooms.size())));
 		if (random.nextInt(bigRoomChance) == 0) {
 			br.generate(senterianChunk, random, 0, bottomLayer, 0);
 		}
 
 		if (random.nextInt(bigRoomChance) == 0) {
-			br = (SenterianRoomBase) (bigRooms.get(random.nextInt(bigRooms.size())));
+			br = (bigRooms.get(random.nextInt(bigRooms.size())));
 			br.generate(senterianChunk, random, 0, secondLayer, 0);
 		}
 
 		if (random.nextInt(bigRoomChance) == 0) {
-			br = (SenterianRoomBase) (bigRooms.get(random.nextInt(bigRooms.size())));
+			br = (bigRooms.get(random.nextInt(bigRooms.size())));
 			br.generate(senterianChunk, random, 0, thirdLayer, 0);
 		}
 
 		if (random.nextInt(bigRoomChance) == 0) {
-			br = (SenterianRoomBase) (bigRooms.get(random.nextInt(bigRooms.size())));
+			br = (bigRooms.get(random.nextInt(bigRooms.size())));
 			br.generate(senterianChunk, random, 0, topLayer, 0);
 		}
 
@@ -139,16 +140,16 @@ public class ChunkProviderSenterian implements IChunkGenerator {
 	public void populate(int chunkX, int chunkZ) {
 		int x = chunkX * 16;
 		int z = chunkZ * 16;
-        BlockPos pos = new BlockPos(x, 0, z);
-        Biome biome = this.worldObj.getBiome(pos.add(16, 0, 16));
-        this.random.setSeed(this.worldObj.getSeed());
+		BlockPos pos = new BlockPos(x, 0, z);
+		Biome biome = this.worldObj.getBiome(pos.add(16, 0, 16));
+		this.random.setSeed(this.worldObj.getSeed());
 		long k = this.random.nextLong() / 2L * 2L + 1L;
 		long l = this.random.nextLong() / 2L * 2L + 1L;
 		ChunkPos chunkpos = new ChunkPos(chunkX, chunkZ);
 		this.random.setSeed((long) chunkX * k + (long) chunkZ * l ^ this.worldObj.getSeed());
 
 		//checks all tile entitys in the world and updates (renders) them
-		List<BlockPos> chunkTileEntityPositions = (List<BlockPos>) chunkTileEntityMap.get(chunkpos);
+		List<BlockPos> chunkTileEntityPositions = chunkTileEntityMap.get(chunkpos);
 		if (chunkTileEntityPositions != null) {
 			Chunk chunk = this.worldObj.getChunk(chunkX, chunkZ);
 			for (int i = 0; i < chunkTileEntityPositions.size(); i++) {

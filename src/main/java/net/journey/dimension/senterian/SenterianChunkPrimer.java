@@ -9,7 +9,7 @@ import java.util.List;
 
 public class SenterianChunkPrimer extends ChunkPrimer {
 
-    public List<BlockPos> chunkTileEntityPositions = new ArrayList<BlockPos>();
+    public List<BlockPos> chunkTileEntityPositions = new ArrayList<>();
 
     @Override
     public void setBlockState(int x, int y, int z, IBlockState state) {
