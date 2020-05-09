@@ -308,7 +308,7 @@ public class JourneyWeapons {
         fusionBow = new ItemModBow("fusionBow", "Fusion Bow", 3, 384, EntityEssenceArrow.BowEffects.DARKNESS_BOW, 72000);
         springBow = new ItemModBow("springBow", "Spring Bow", 5, 384, EntityEssenceArrow.BowEffects.FLAME_BOW, 72000);
         starlightBow = new ItemModBow("starlightBow", "Starlight Bow", 3, 384, EntityEssenceArrow.BowEffects.POISON_BOW, 72000);
-        wastefulBow = new ItemModBow("wastefulBow", "Wasteful Bow", 3, 384, EntityEssenceArrow.BowEffects.POISON_BOW, 72000);
+        wastefulBow = new ItemModBow("wastefulBow", "Wasteful Bow", 3, 384, EntityEssenceArrow.BowEffects.NULL, 72000);
         flamingBow = new ItemModBow("flamingBow", "Flaming Bow", 4, 384, EntityEssenceArrow.BowEffects.FLAME_BOW, 72000);
         blazingBow = new ItemModBow("blazingBow", "Blazing Bow", 4, 384, EntityEssenceArrow.BowEffects.FLAME_BOW, 72000);
         darkEnforcer = new ItemModBow("darkEnforcer", "Dark Enforcer", 3, 384, EntityEssenceArrow.BowEffects.DARKNESS_BOW, 72000);
