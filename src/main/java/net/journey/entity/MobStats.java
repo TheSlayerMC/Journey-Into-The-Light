@@ -2,7 +2,7 @@ package net.journey.entity;
 
 public class MobStats {
 
-    public static double normalSpeed = 0.26D, normal_follow = 10D, boss_follow = 100D, knockBackResistance = 0.0D;
+    public static double normalSpeed = 0.26D, normal_follow = 10D, flying_follow = 100D, boss_follow = 150D, knockBackResistance = 0.0D;
 
     //Overworld
     public static double BigHongoHealth = 40.0D, BigHongoDamage = 8.25D;
