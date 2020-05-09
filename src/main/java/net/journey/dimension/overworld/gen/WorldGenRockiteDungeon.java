@@ -5,8 +5,7 @@ import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.entity.mob.overworld.underground.EntityRockiteSmasher;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.JourneyLootTables;
-import net.journey.util.RandUtils;
-import net.minecraft.block.Block;
+import net.journey.util.RandHelper;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.block.BlockStoneBrick;
 import net.minecraft.block.state.IBlockState;
@@ -32,17 +31,17 @@ public class WorldGenRockiteDungeon extends WorldGenerator {
      */
     
     public IBlockState getCobblestone() {
-		return RandUtils.chooseEqual(rand, Blocks.COBBLESTONE.getDefaultState(), Blocks.MOSSY_COBBLESTONE.getDefaultState());
+	    return RandHelper.chooseEqual(rand, Blocks.COBBLESTONE.getDefaultState(), Blocks.MOSSY_COBBLESTONE.getDefaultState());
     }
     
     /*
      * Selects a random stone brick varient each time the method is called
      */
     public IBlockState getDungeonBricks() {
-		return RandUtils.chooseEqual(rand, 
-				Blocks.STONEBRICK.getDefaultState(), 
-				Blocks.STONEBRICK.getDefaultState().withProperty(BlockStoneBrick.VARIANT, BlockStoneBrick.EnumType.MOSSY), 
-				Blocks.STONEBRICK.getDefaultState().withProperty(BlockStoneBrick.VARIANT, BlockStoneBrick.EnumType.CRACKED));
+	    return RandHelper.chooseEqual(rand,
+			    Blocks.STONEBRICK.getDefaultState(),
+			    Blocks.STONEBRICK.getDefaultState().withProperty(BlockStoneBrick.VARIANT, BlockStoneBrick.EnumType.MOSSY),
+			    Blocks.STONEBRICK.getDefaultState().withProperty(BlockStoneBrick.VARIANT, BlockStoneBrick.EnumType.CRACKED));
     }
     
     @Override

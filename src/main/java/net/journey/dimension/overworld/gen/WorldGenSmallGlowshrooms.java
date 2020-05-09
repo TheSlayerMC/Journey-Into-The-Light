@@ -2,7 +2,7 @@ package net.journey.dimension.overworld.gen;
 
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.MathUtils;
-import net.journey.util.RandUtils;
+import net.journey.util.RandHelper;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -23,7 +23,7 @@ public class WorldGenSmallGlowshrooms extends WorldGenerator {
         int genY = r.nextInt(coercedY) + 1;
         genPos = WorldGenAPI.getPosWithHeight(genPos, genY);
 
-        Block shroom = RandUtils.chooseEqual(r,
+        Block shroom = RandHelper.chooseEqual(r,
                 JourneyBlocks.glowshroomRed,
                 JourneyBlocks.glowshroomGreen,
                 JourneyBlocks.glowshroomBlue);

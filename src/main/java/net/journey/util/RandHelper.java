@@ -2,7 +2,9 @@ package net.journey.util;
 
 import java.util.Random;
 
-public class RandUtils {
+public class RandHelper {
+    public static final Random RANDOM = new Random();
+
     /**
      * Chooses with equal probability.
      */

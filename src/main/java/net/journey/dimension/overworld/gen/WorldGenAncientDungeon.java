@@ -1,14 +1,10 @@
 package net.journey.dimension.overworld.gen;
 
-import java.util.Random;
-
 import net.journey.blocks.containers.BlockJourneyChest;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.JourneyLootTables;
-import net.journey.util.RandUtils;
-import net.minecraft.block.BlockStairs;
-import net.minecraft.block.BlockStoneBrick;
+import net.journey.util.RandHelper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
@@ -16,7 +12,8 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.slayer.api.worldgen.WorldGenAPI;
+
+import java.util.Random;
 
 public class WorldGenAncientDungeon extends WorldGenerator {
 
@@ -26,12 +23,12 @@ public class WorldGenAncientDungeon extends WorldGenerator {
 	public IBlockState pillars = Blocks.MOSSY_COBBLESTONE.getDefaultState();
     
     public IBlockState getDungeonBricks() {
-		return RandUtils.chooseEqual(rand, 
-				JourneyBlocks.ANCIENT_STONE.getDefaultState(), 
-				JourneyBlocks.ANCIENT_RUNIC_STONE_0.getDefaultState(), 
-				JourneyBlocks.ANCIENT_RUNIC_STONE_1.getDefaultState(), 
-				JourneyBlocks.ANCIENT_RUNIC_STONE_2.getDefaultState(), 
-				JourneyBlocks.ANCIENT_RUNIC_STONE_3.getDefaultState());
+	    return RandHelper.chooseEqual(rand,
+			    JourneyBlocks.ANCIENT_STONE.getDefaultState(),
+			    JourneyBlocks.ANCIENT_RUNIC_STONE_0.getDefaultState(),
+			    JourneyBlocks.ANCIENT_RUNIC_STONE_1.getDefaultState(),
+			    JourneyBlocks.ANCIENT_RUNIC_STONE_2.getDefaultState(),
+			    JourneyBlocks.ANCIENT_RUNIC_STONE_3.getDefaultState());
     }
 
     @Override

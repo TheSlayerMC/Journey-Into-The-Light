@@ -49,10 +49,10 @@ public class BlockModSapling extends BlockModFlower implements IGrowable, IHasCu
     }
 
     private void generate(World w, BlockPos pos, Random r) {
-        if (!TerrainGen.saplingGrowTree(w, rand, pos))
+        if (!TerrainGen.saplingGrowTree(w, r, pos))
             return;
         w.setBlockState(pos, Blocks.AIR.getDefaultState(), 4);
-        if (!treeStructure.generate(w, rand, pos.add(0, 0, 0))) {
+        if (!treeStructure.generate(w, r, pos.add(0, 0, 0))) {
             w.setBlockState(pos, this.getDefaultState(), 4);
         }
     }

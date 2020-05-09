@@ -3,7 +3,7 @@ package net.journey.dimension.overworld.gen;
 import net.journey.blocks.plant.BlockTallGlowshroom;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.MathUtils;
-import net.journey.util.RandUtils;
+import net.journey.util.RandHelper;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -23,10 +23,10 @@ public class WorldGenTallGlowshroom extends WorldGenerator {
         int genY = r.nextInt(coercedY) + 1;
         genPos = WorldGenAPI.getPosWithHeight(genPos, genY);
 
-        BlockTallGlowshroom block = RandUtils.chooseEqual(r,
-                JourneyBlocks.tallGlowshroomRed,
-                JourneyBlocks.tallGlowshroomGreen,
-                JourneyBlocks.tallGlowshroomBlue);
+	    BlockTallGlowshroom block = RandHelper.chooseEqual(r,
+			    JourneyBlocks.tallGlowshroomRed,
+			    JourneyBlocks.tallGlowshroomGreen,
+			    JourneyBlocks.tallGlowshroomBlue);
 
         if (!w.getBlockState(genPos).getMaterial().isLiquid()
                 && w.getBlockState(genPos.down()).getBlock() == Blocks.STONE
