@@ -126,7 +126,9 @@ public class EntityEssenceArrow extends EntityArrow implements IProjectile {
                 case POISON_BOW:
                     ((EntityLivingBase) hitEntity).addPotionEffect(new PotionEffect(PotionEffects.getPotionFromID(PotionEffects.poison), 100, 2));
                     break;
-                case NULL:
+                case DEFAULT:
+                    break;
+                case DOUBLE_ARROW:
                     break;
                 default:
                     break;
@@ -143,6 +145,6 @@ public class EntityEssenceArrow extends EntityArrow implements IProjectile {
     }
 
     public enum BowEffects {
-        DARKNESS_BOW, FROZEN_BOW, FLAME_BOW, POISON_BOW, NULL
+        DARKNESS_BOW, FROZEN_BOW, FLAME_BOW, POISON_BOW, DEFAULT, DOUBLE_ARROW
     }
 }

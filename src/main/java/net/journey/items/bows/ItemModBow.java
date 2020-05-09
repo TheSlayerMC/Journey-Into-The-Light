@@ -240,7 +240,7 @@ public class ItemModBow extends ItemBow {
 						/*
 						 * shoot 2 arrows if bow is Wasteful Bow
 						 */
-						if (this == JourneyWeapons.wastefulBow) {
+						if (effect == EntityEssenceArrow.BowEffects.DOUBLE_ARROW) {
 							entityarrow.shoot(entityplayer, entityplayer.rotationPitch, entityplayer.rotationYaw + 3.25F, 0.0F, f * 3.0F, 1.0F);
 							entityarrow2.shoot(entityplayer, entityplayer.rotationPitch, entityplayer.rotationYaw - 3.25F, 0.0F, f * 3.0F, 1.0F);
 							
@@ -320,7 +320,7 @@ public class ItemModBow extends ItemBow {
 
 					if (!flag && !entityplayer.capabilities.isCreativeMode) {
 
-						if (this == JourneyWeapons.wastefulBow) {
+						if (effect == EntityEssenceArrow.BowEffects.DOUBLE_ARROW) {
 							itemstack.shrink(2);
 						}
 						else {
@@ -368,6 +368,9 @@ public class ItemModBow extends ItemBow {
         }
         else if(effect == EntityEssenceArrow.BowEffects.FROZEN_BOW) {
         	list.add(SlayerAPI.Colour.BLUE + "Ability: Stuns foe");
+        }
+        else if(effect == EntityEssenceArrow.BowEffects.DOUBLE_ARROW) {
+        	list.add(SlayerAPI.Colour.BLUE + "Ability: Shoots 2 arrows");
         }
         list.add("Uses remaining: " + SlayerAPI.Colour.GRAY + uses);
     }
