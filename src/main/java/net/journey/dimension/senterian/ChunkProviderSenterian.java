@@ -150,11 +150,11 @@ public class ChunkProviderSenterian implements IChunkGenerator {
 		this.random.setSeed((long) chunkX * k + (long) chunkZ * l ^ this.worldObj.getSeed());
 
 		//checks all tile entitys in the world and updates (renders) them
-		Map<BlockPos, TECompatibleChunkPrimer.PrimerData> chunkTileEntityPositions = chunkTileEntityMap.get(chunkpos);
-		if (chunkTileEntityPositions != null) {
+		Map<BlockPos, TECompatibleChunkPrimer.PrimerData> tileEntityData = chunkTileEntityMap.get(chunkpos);
+		if (tileEntityData != null) {
 			Chunk chunk = this.worldObj.getChunk(chunkX, chunkZ);
 
-			Iterator<Map.Entry<BlockPos, TECompatibleChunkPrimer.PrimerData>> iterator = chunkTileEntityPositions.entrySet().iterator();
+			Iterator<Map.Entry<BlockPos, TECompatibleChunkPrimer.PrimerData>> iterator = tileEntityData.entrySet().iterator();
 			while (iterator.hasNext()) {
 				Map.Entry<BlockPos, TECompatibleChunkPrimer.PrimerData> entry = iterator.next();
 
@@ -169,7 +169,6 @@ public class ChunkProviderSenterian implements IChunkGenerator {
 				TECompatibleChunkPrimer.TileEntityInitializer<?> tileEntityInitializer = data.getTileEntityInitializer();
 				if (tileEntityInitializer != null) {
 					tileEntityInitializer.process(worldObj, te, random);
-					System.out.println("Set tile: " + tePos);
 				}
 
 				iterator.remove();
