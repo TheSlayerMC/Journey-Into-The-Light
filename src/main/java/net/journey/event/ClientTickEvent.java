@@ -5,6 +5,8 @@ import net.journey.client.render.gui.JourneyMainMenu;
 import net.journey.client.server.EssenceProvider;
 import net.journey.client.server.IEssence;
 import net.journey.init.items.JourneyArmory;
+import net.journey.init.items.JourneyWeapons;
+import net.journey.items.bows.ItemModBow;
 import net.journey.items.interactive.ItemAddEssence;
 import net.journey.items.interactive.ItemEternalNight;
 import net.journey.items.interactive.ItemTeleport;
@@ -111,7 +113,12 @@ public class ClientTickEvent {
 	}
 	
 	public boolean instanceOfEssenceItem(Item isEssence) {
-		return isEssence instanceof ItemStaff || isEssence instanceof ItemTeleport || isEssence instanceof ItemGun || 
-				isEssence instanceof ItemHammer || isEssence instanceof ItemEternalNight || isEssence instanceof ItemAddEssence;
+		return  isEssence instanceof ItemStaff || 
+				isEssence instanceof ItemTeleport || 
+				isEssence instanceof ItemGun || 
+				isEssence instanceof ItemHammer || 
+				isEssence instanceof ItemEternalNight || 
+				isEssence instanceof ItemAddEssence ||
+				isEssence == JourneyWeapons.darkEnforcer;
 	}
 }

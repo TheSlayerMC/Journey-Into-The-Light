@@ -2,7 +2,10 @@ package net.journey.items.bows;
 
 import net.journey.JITL;
 import net.journey.client.ItemDescription;
+import net.journey.client.server.EssenceProvider;
+import net.journey.client.server.IEssence;
 import net.journey.entity.projectile.arrow.EntityEssenceArrow;
+import net.journey.init.JourneySounds;
 import net.journey.init.JourneyTabs;
 import net.journey.init.items.JourneyItems;
 import net.journey.init.items.JourneyWeapons;
@@ -45,6 +48,7 @@ public class ItemModBow extends ItemBow {
     public String ability;
     protected int damage;
     protected int uses;
+    protected int manaUse = 3;
     protected String name;
     protected EntityEssenceArrow.BowEffects effect;
     private Class<? extends EntityArrow> arrowClass;
@@ -188,8 +192,13 @@ public class ItemModBow extends ItemBow {
     public ItemStack findAmmo(EntityPlayer player) {
         if (this.isArrow(player.getHeldItem(EnumHand.OFF_HAND))) {
             return player.getHeldItem(EnumHand.OFF_HAND);
+            
         } else if (this.isArrow(player.getHeldItem(EnumHand.MAIN_HAND))) {
             return player.getHeldItem(EnumHand.MAIN_HAND);
+            
+        } else if (effect == effect.ESSENCE_BOW) {
+            return ItemStack.EMPTY;
+            
         } else {
             for (int i = 0; i < player.inventory.getSizeInventory(); ++i) {
                 ItemStack itemstack = player.inventory.getStackInSlot(i);
@@ -206,15 +215,22 @@ public class ItemModBow extends ItemBow {
     protected boolean isArrow(ItemStack stack) {
         return stack.getItem() instanceof ItemEssenceArrow;
     }
+    
+    public int setEssenceValue(int essence) {
+    	return essence;
+    }
 
     @Override
     public void onPlayerStoppedUsing(ItemStack stack, World worldIn, EntityLivingBase entityLiving, int timeLeft) {
 
         if (entityLiving instanceof EntityPlayer) {
             EntityPlayer entityplayer = (EntityPlayer) entityLiving;
-            boolean flag = entityplayer.capabilities.isCreativeMode || EnchantmentHelper.getEnchantmentLevel(Enchantments.INFINITY, stack) > 0;
+            boolean flag = entityplayer.capabilities.isCreativeMode || 
+            				EnchantmentHelper.getEnchantmentLevel(Enchantments.INFINITY, stack) > 0 || 
+            				effect == EntityEssenceArrow.BowEffects.ESSENCE_BOW;
+            
             ItemStack itemstack = this.findAmmo(entityplayer);
-
+	        IEssence mana = entityplayer.getCapability(EssenceProvider.ESSENCE_CAP, null);
             int i = this.maxUseDuration - timeLeft;
             i = net.minecraftforge.event.ForgeEventFactory.onArrowLoose(stack, worldIn, entityplayer, i, !itemstack.isEmpty() || flag);
             if (i < 0) return;
@@ -309,8 +325,16 @@ public class ItemModBow extends ItemBow {
 											|| itemstack.getItem() == Items.TIPPED_ARROW)) {
 								entityarrow.pickupStatus = EntityArrow.PickupStatus.CREATIVE_ONLY;
 							}
+							
+							if (effect == effect.ESSENCE_BOW) {
+								if (mana.useEssence(this.manaUse)) {
+									worldIn.spawnEntity(entityarrow);
+								}
+							}
 
-							worldIn.spawnEntity(entityarrow);
+							else if (effect != effect.ESSENCE_BOW) {
+								worldIn.spawnEntity(entityarrow);
+							}
 						}
 					}
 
@@ -378,13 +402,12 @@ public class ItemModBow extends ItemBow {
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
         ItemStack itemstack = playerIn.getHeldItem(handIn);
-        boolean flag = !this.findAmmo(playerIn).isEmpty();
+        boolean flag = !this.findAmmo(playerIn).isEmpty() || effect == effect.ESSENCE_BOW;
 
         ActionResult<ItemStack> ret = net.minecraftforge.event.ForgeEventFactory.onArrowNock(itemstack, worldIn,
                 playerIn, handIn, flag);
         if (ret != null)
             return ret;
-
         if (!playerIn.capabilities.isCreativeMode && !flag) {
             return flag ? new ActionResult(EnumActionResult.PASS, itemstack)
                     : new ActionResult(EnumActionResult.FAIL, itemstack);

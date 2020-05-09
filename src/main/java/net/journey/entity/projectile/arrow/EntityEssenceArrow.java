@@ -130,6 +130,8 @@ public class EntityEssenceArrow extends EntityArrow implements IProjectile {
                     break;
                 case DOUBLE_ARROW:
                     break;
+                case ESSENCE_BOW:
+                    break;
                 default:
                     break;
 
@@ -145,6 +147,6 @@ public class EntityEssenceArrow extends EntityArrow implements IProjectile {
     }
 
     public enum BowEffects {
-        DARKNESS_BOW, FROZEN_BOW, FLAME_BOW, POISON_BOW, DEFAULT, DOUBLE_ARROW
+        DARKNESS_BOW, FROZEN_BOW, FLAME_BOW, POISON_BOW, DEFAULT, DOUBLE_ARROW, ESSENCE_BOW
     }
 }
