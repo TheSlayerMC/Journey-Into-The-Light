@@ -107,7 +107,7 @@ public class EntityGuardianOfDestruction extends EntityEssenceBoss {
     		 * sets ismoving to true
     		 */
         	if (stage == alert || stage == lowhealth) {
-		        this.setAttackTarget(attackingPlayer);
+		        this.setAttackTarget(getAttackingEntity());
 		        /*
 		         * sets move speed to 0 for specfic amount of ticks
 		         * sets ismoving to false

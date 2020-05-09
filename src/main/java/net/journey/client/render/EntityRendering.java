@@ -31,6 +31,7 @@ import net.journey.client.render.mob.RenderIceGolem;
 import net.journey.client.render.mob.RenderModBiped;
 import net.journey.client.render.mob.RenderRockiteSmasher;
 import net.journey.client.render.mob.RenderSentryBlock;
+import net.journey.client.render.mob.RenderSentryHeart;
 import net.journey.client.render.mob.RenderShatterer;
 import net.journey.client.render.mob.RenderWraith;
 import net.journey.client.render.model.item.ModelObsidianBoat;
@@ -471,7 +472,7 @@ public class EntityRendering {
         RenderingRegistry.registerEntityRenderingHandler(EntityHellTurtle.class, new RenderModMob(new ModelJungleTurtle(), Textures.hellTurtle));
         RenderingRegistry.registerEntityRenderingHandler(EntityJungleGolem.class, new RenderModMob(new ModelJungleGolem(), Textures.jungleGolem));
 
-        RenderingRegistry.registerEntityRenderingHandler(EntitySentryHeart.class, new RenderBoss(new ModelSentryHeart(), 0.5F, 2.0F, Textures.SENTRY_HEART, "terranianProtector"));
+        RenderingRegistry.registerEntityRenderingHandler(EntitySentryHeart.class, new RenderSentryHeart());
         RenderingRegistry.registerEntityRenderingHandler(EntitySentryBlock.class, new RenderSentryBlock(new ModelSentryBlock(), Textures.sentryBlock));
         RenderingRegistry.registerEntityRenderingHandler(EntitySentryLord.class, new RenderSizeable(new ModelSentryLord(), 0, 0.8F, Textures.sentryLord));
         RenderingRegistry.registerEntityRenderingHandler(EntitySentryStalker.class, new RenderSizeable(new ModelSentryStalker(), 0, 0.65F, Textures.sentryStalker));

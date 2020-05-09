@@ -8,6 +8,7 @@ import javax.annotation.Nullable;
 import com.google.common.base.Optional;
 
 import net.journey.blocks.BlockAncientCatalyst;
+import net.journey.blocks.BlockLament;
 import net.journey.entity.MobStats;
 import net.journey.entity.mob.senterian.mob.EntitySentryBlock;
 import net.journey.init.JourneySounds;
@@ -49,12 +50,24 @@ import net.slayer.api.entity.EntityEssenceBoss;
 
 public class EntitySentryHeart extends EntityEssenceBoss {
     
+	public int maxHealth = (int) MobStats.sentryHeartHealth;
+	
+	private boolean isActivated;
+	
+	public final int sleep = 0, alert = 1;
+	public int stage;
+	
 	public EntitySentryHeart(World par1World) {
 		super(par1World);
-        this.setSize(8.0F, 17.0F);
+        this.setSize(4.0F, 17.0F);
         this.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(1.0D);
+		this.stage = sleep;
 	}
 
+    public int getStage() {
+        return stage;
+    }
+    
 	@Override
 	public double setAttackDamage(MobStats s) {
 		return 0;
@@ -104,12 +117,19 @@ public class EntitySentryHeart extends EntityEssenceBoss {
         this.prevRenderYawOffset = 180.0F;
         this.renderYawOffset = 180.0F;
         this.rotationYaw = 180.0F;
-        BlockPattern.PatternHelper blockpattern$patternhelper = BlockAncientCatalyst.getOrCreatepattern().match(world, this.getPosition().add(0, 0, 0));
+        int health = (int) getHealth();
+        
+        BlockPattern.PatternHelper blockpattern$patternhelper = BlockLament.getOrCreatepattern().match(world, this.getPosition().add(0, 0, 0));
 
-        if (blockpattern$patternhelper != null) {
-            BlockPos blockpos = blockpattern$patternhelper.getFrontTopLeft().add(-1, 0, -1);
-            world.setBlockState(blockpos.add(0, 1, 0), Blocks.OBSIDIAN.getDefaultState(), 2);
-            world.playSound(null, this.getPosition(), JourneySounds.OBELISK_OPEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
+        if (blockpattern$patternhelper == null) 
+        	stage = sleep;
+        else if (blockpattern$patternhelper != null) {
+        	stage = alert;
+        	this.isActivated = true;
+        	if (this.isActivated = true) {
+                BlockPos blockpos = blockpattern$patternhelper.getFrontTopLeft().add(-1, 0, -1);
+                world.setBlockState(blockpos.add(0, 1, 0), Blocks.OBSIDIAN.getDefaultState(), 2);
+        	}
         }
     }
     

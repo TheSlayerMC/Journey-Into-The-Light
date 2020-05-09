@@ -37,7 +37,7 @@ public class BlockLament extends BlockMod {
             "?l????l?")
             		.where(
             '?', BlockWorldState.hasState(BlockStateMatcher.ANY)).where(
-            'l', BlockWorldState.hasState(BlockStateMatcher.forBlock(JourneyBlocks.LAMENT_CORBA))).build();
+            'l', BlockWorldState.hasState(BlockStateMatcher.forBlock(JourneyBlocks.LAMENT))).build();
         }
         return pattern;
     }
@@ -51,7 +51,7 @@ public class BlockLament extends BlockMod {
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		float x = hitX, y = hitY, z = hitZ;
 		if (playerIn.getHeldItem(EnumHand.MAIN_HAND) != null && playerIn.getHeldItem(EnumHand.MAIN_HAND).getItem() == insert) {
-            worldIn.createExplosion(playerIn, pos.getX(), pos.getY(), pos.getZ(), 10F, false);
+            worldIn.createExplosion(playerIn, pos.getX(), pos.getY(), pos.getZ(), 1F, false);
 			worldIn.setBlockState(pos, JourneyBlocks.LAMENT.getDefaultState());
 		}
 		return true;

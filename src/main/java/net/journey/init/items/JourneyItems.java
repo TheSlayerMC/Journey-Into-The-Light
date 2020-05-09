@@ -121,6 +121,20 @@ public class JourneyItems {
     public static Item SENTRY_DISK;
     public static Item SENTERIAN_SOUL;
     public static Item SENTRY_OBSERVER;
+    
+    public static Item HATEFUL_HEART;
+    public static Item SENTIENT_PINION_BLOOD;
+    public static Item SENTIENT_PINION_DESTRUCTION;
+    public static Item SENTIENT_PINION_LIGHT;
+    public static Item DARK_MATTER_GEMSTONE;
+    
+    public static Item SENTRIUM_CRYSTAL;
+    public static Item MELLIUM_CRYSTAL;
+    
+    public static Item SENTRY_NODE_BLOOD;
+    public static Item SENTRY_NODE_DESTRUCTION;
+    public static Item SENTRY_NODE_LIGHT;
+    public static Item SENTRY_ROCK;
 
     public static Item obsidianRod;
 
@@ -530,6 +544,20 @@ public class JourneyItems {
         SENTRY_DISK = new ItemMod("sentry_disk", "Sentry Disk");
         SENTERIAN_SOUL = new ItemMod("senterian_soul", "Senterian Soul");
         SENTRY_OBSERVER = new ItemMod("sentry_observer", "Sentry Observer");
+        
+        HATEFUL_HEART = new ItemMod("hateful_heart", "Hateful Heart");
+        DARK_MATTER_GEMSTONE = new ItemMod("dark_matter_gemstone", "Dark Matter Gemstone");
+        SENTIENT_PINION_BLOOD = new ItemMod("sentient_pinion_blood", "Sentient Pinion of Blood");
+        SENTIENT_PINION_DESTRUCTION = new ItemMod("sentient_pinion_destruction", "Sentient Pinion of Destruction");
+        SENTIENT_PINION_LIGHT = new ItemMod("sentient_pinion_light", "Sentient Pinion of Light");
+        
+        SENTRIUM_CRYSTAL = new ItemMod("sentrium_crystal", "Sentrium Crystal");
+        MELLIUM_CRYSTAL = new ItemMod("mellium_crystal", "Mellium Crystal");
+        SENTRY_ROCK = new ItemMod("sentry_rock", "Sentry Rock");
+        
+        SENTRY_NODE_BLOOD = new ItemMod("sentry_node_blood", "Sentry Node of Blood");
+        SENTRY_NODE_DESTRUCTION = new ItemMod("sentry_node_destruction", "Sentry Node of Destruction");
+        SENTRY_NODE_LIGHT = new ItemMod("sentry_node_light", "Sentient Node of Light");
         
         obsidianRod = new ItemMod("obsidianRod", "Obsidian Rod");
         
