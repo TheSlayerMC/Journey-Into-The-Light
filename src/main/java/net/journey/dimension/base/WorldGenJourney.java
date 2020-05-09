@@ -469,15 +469,15 @@ public class WorldGenJourney implements IWorldGenerator {
             SMALL_GLOWSHROOMS.getValue().generate(w, rand, startPos);
         }
 
-        if (rand.nextInt(3) == 0) {
+        for (int i = 0; i < 3; i++) {
             SHADIUM_ORE_GEN.getValue().generate(w, rand, startPos);
         }
 
-        if (rand.nextInt(3) == 0) {
+        for (int i = 0; i < 3; i++) {
             LUNIUM_ORE_GEN.getValue().generate(w, rand, startPos);
         }
 
-        if (rand.nextInt(2) == 0) {
+        for (int i = 0; i < 3; i++) {
             SAPPHIRE_ORE_GEN.getValue().generate(w, rand, startPos);
         }
 
