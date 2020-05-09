@@ -25,8 +25,6 @@ import java.util.List;
 import java.util.Random;
 
 public class BlockMod extends Block {
-    protected boolean isOpaque = true, isNormalCube = true; //TODO seems unused, test and remove
-
     public BlockMod(String name, String enName, float hardness) {
         this(EnumMaterialTypes.STONE, name, enName, hardness, JourneyTabs.BLOCKS);
     }

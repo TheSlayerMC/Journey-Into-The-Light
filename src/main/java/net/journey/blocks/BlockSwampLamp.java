@@ -1,7 +1,6 @@
 package net.journey.blocks;
 
 import net.journey.init.JourneyTabs;
-import net.minecraft.block.Block;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.BlockRenderLayer;
@@ -21,8 +20,6 @@ public class BlockSwampLamp extends BlockMod {
 
     public BlockSwampLamp(String name, String finalName, float hardness) {
         super(EnumMaterialTypes.GLASS, name, finalName, hardness);
-        this.isNormalCube = false;
-        this.isOpaque = false;
         setCreativeTab(JourneyTabs.DECORATION);
         setTickRandomly(true);
         setLightLevel(0.5F);

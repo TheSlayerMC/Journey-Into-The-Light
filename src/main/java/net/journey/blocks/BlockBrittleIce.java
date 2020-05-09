@@ -20,8 +20,6 @@ public class BlockBrittleIce extends BlockModGrass {
     public BlockBrittleIce(BlockMod dirt, String name, String finalName, float hardness) {
         super(dirt, name, finalName, hardness);
         this.dirt = dirt;
-        this.isNormalCube = false;
-        this.isOpaque = false;
         setCreativeTab(JourneyTabs.BLOCKS);
         setTickRandomly(true);
         this.slipperiness = 0.98F;
