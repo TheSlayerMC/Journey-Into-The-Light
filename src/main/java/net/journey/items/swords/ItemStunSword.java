@@ -25,8 +25,8 @@ public class ItemStunSword extends ItemModSword {
 
     @Override
     public boolean hitEntity(ItemStack par1ItemStack, EntityLivingBase hit, EntityLivingBase player) {
-        hit.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.wither, 1000, 200)));
-        hit.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.harm, 100, 20)));
+        hit.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.wither, 70, 1)));
+        hit.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.harm, 50, 1)));
         addParticles(hit);
         return super.hitEntity(par1ItemStack, hit, player);
     }
