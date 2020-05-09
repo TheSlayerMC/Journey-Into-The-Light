@@ -5,6 +5,7 @@ import net.journey.client.ItemDescription;
 import net.journey.entity.projectile.arrow.EntityEssenceArrow;
 import net.journey.init.JourneyTabs;
 import net.journey.init.items.JourneyItems;
+import net.journey.init.items.JourneyWeapons;
 import net.journey.items.ItemEssenceArrow;
 import net.journey.util.gen.lang.LangGeneratorFacade;
 import net.minecraft.client.util.ITooltipFlag;
@@ -223,66 +224,118 @@ public class ItemModBow extends ItemBow {
                     itemstack = new ItemStack(arrowItem);
                 }
 
-                float f = getArrowVelocity(i);
-                if ((double) f >= 0.1D) {
+				float f = getArrowVelocity(i);
+				if ((double) f >= 0.1D) {
 
-                    if (!worldIn.isRemote) {
-                        EntityArrow entityarrow = null;
-                        try {
-                            entityarrow = new EntityEssenceArrow(worldIn, entityplayer, effect);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
+					if (!worldIn.isRemote) {
+						EntityArrow entityarrow = null;
+						EntityArrow entityarrow2 = null;
+						try {
+							entityarrow = new EntityEssenceArrow(worldIn, entityplayer, effect);
+							entityarrow2 = new EntityEssenceArrow(worldIn, entityplayer, effect);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
 
-                        entityarrow.shoot(entityplayer, entityplayer.rotationPitch, entityplayer.rotationYaw, 0.0F,
-                                f * 3.0F, 1.0F);
+						/*
+						 * shoot 2 arrows if bow is Wasteful Bow
+						 */
+						if (this == JourneyWeapons.wastefulBow) {
+							entityarrow.shoot(entityplayer, entityplayer.rotationPitch, entityplayer.rotationYaw + 3.25F, 0.0F, f * 3.0F, 1.0F);
+							entityarrow2.shoot(entityplayer, entityplayer.rotationPitch, entityplayer.rotationYaw - 3.25F, 0.0F, f * 3.0F, 1.0F);
+							
+							if (f == 1.0F) {
+								entityarrow.setIsCritical(true);
+								entityarrow2.setIsCritical(true);
+							}
 
-                        if (f == 1.0F) {
-                            entityarrow.setIsCritical(true);
-                        }
+							int j = EnchantmentHelper.getEnchantmentLevel(Enchantments.POWER, stack);
 
-                        int j = EnchantmentHelper.getEnchantmentLevel(Enchantments.POWER, stack);
+							int k = EnchantmentHelper.getEnchantmentLevel(Enchantments.PUNCH, stack);
 
-                        int k = EnchantmentHelper.getEnchantmentLevel(Enchantments.PUNCH, stack);
+							if (k > 0) {
+								entityarrow.setKnockbackStrength(k);
+								entityarrow2.setKnockbackStrength(k);
+							}
 
-                        if (k > 0) {
-                            entityarrow.setKnockbackStrength(k);
-                        }
+							if (EnchantmentHelper.getEnchantmentLevel(Enchantments.FLAME, stack) > 0) {
+								entityarrow.setFire(100);
+								entityarrow2.setFire(100);
+							}
 
-                        if (EnchantmentHelper.getEnchantmentLevel(Enchantments.FLAME, stack) > 0) {
-                            entityarrow.setFire(100);
-                        }
+							entityarrow.setDamage(this.damage);
+							entityarrow2.setDamage(this.damage);
 
-                        entityarrow.setDamage(this.damage);
+							stack.damageItem(1, entityplayer);
 
-                        stack.damageItem(1, entityplayer);
+							if (flag || entityplayer.capabilities.isCreativeMode
+									&& (itemstack.getItem() == Items.SPECTRAL_ARROW
+											|| itemstack.getItem() == Items.TIPPED_ARROW)) {
+								entityarrow.pickupStatus = EntityArrow.PickupStatus.CREATIVE_ONLY;
+								entityarrow2.pickupStatus = EntityArrow.PickupStatus.CREATIVE_ONLY;
+							}
+							worldIn.spawnEntity(entityarrow);
+							worldIn.spawnEntity(entityarrow2);
+						}
+						/*
+						 * shoot 1 arrow if bow isn't Wasteful Bow
+						 */
+						else {
+							entityarrow.shoot(entityplayer, entityplayer.rotationPitch, entityplayer.rotationYaw, 0.0F,
+									f * 3.0F, 1.0F);
 
-                        if (flag
-                                || entityplayer.capabilities.isCreativeMode && (itemstack.getItem() == Items.SPECTRAL_ARROW
-                                || itemstack.getItem() == Items.TIPPED_ARROW)) {
-                            entityarrow.pickupStatus = EntityArrow.PickupStatus.CREATIVE_ONLY;
-                        }
+							if (f == 1.0F) {
+								entityarrow.setIsCritical(true);
+							}
 
-                        worldIn.spawnEntity(entityarrow);
-                    }
-                }
+							int j = EnchantmentHelper.getEnchantmentLevel(Enchantments.POWER, stack);
 
-                worldIn.playSound(null, entityplayer.posX, entityplayer.posY, entityplayer.posZ,
-                        SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 1.0F,
-                        1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
+							int k = EnchantmentHelper.getEnchantmentLevel(Enchantments.PUNCH, stack);
 
-                if (!flag && !entityplayer.capabilities.isCreativeMode) {
-                    itemstack.shrink(1);
+							if (k > 0) {
+								entityarrow.setKnockbackStrength(k);
+							}
 
-                    if (itemstack.isEmpty()) {
-                        entityplayer.inventory.deleteStack(itemstack);
-                    }
-                }
+							if (EnchantmentHelper.getEnchantmentLevel(Enchantments.FLAME, stack) > 0) {
+								entityarrow.setFire(100);
+							}
 
-                entityplayer.addStat(StatList.getObjectUseStats(this));
-            }
-        }
-    }
+							entityarrow.setDamage(this.damage);
+
+							stack.damageItem(1, entityplayer);
+
+							if (flag || entityplayer.capabilities.isCreativeMode
+									&& (itemstack.getItem() == Items.SPECTRAL_ARROW
+											|| itemstack.getItem() == Items.TIPPED_ARROW)) {
+								entityarrow.pickupStatus = EntityArrow.PickupStatus.CREATIVE_ONLY;
+							}
+
+							worldIn.spawnEntity(entityarrow);
+						}
+					}
+
+					worldIn.playSound(null, entityplayer.posX, entityplayer.posY, entityplayer.posZ,
+							SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 1.0F,
+							1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
+
+					if (!flag && !entityplayer.capabilities.isCreativeMode) {
+
+						if (this == JourneyWeapons.wastefulBow) {
+							itemstack.shrink(2);
+						}
+						else {
+							itemstack.shrink(1);
+						}
+						if (itemstack.isEmpty()) {
+							entityplayer.inventory.deleteStack(itemstack);
+						}
+					}
+
+					entityplayer.addStat(StatList.getObjectUseStats(this));
+				}
+			}
+		}
+	}
 
 	/* @Override
 	public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityPlayer playerIn) {
