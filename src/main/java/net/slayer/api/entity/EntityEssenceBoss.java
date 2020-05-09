@@ -40,6 +40,10 @@ public abstract class EntityEssenceBoss extends EntityModMob implements IEssence
     public float getModMaxHealth() {
         return getMaxHealth();
     }
+    
+    public double setFollowRange() {
+        return MobStats.boss_follow;
+    }
 
     @Override
     protected void onDeathUpdate() {
