@@ -41,6 +41,10 @@ public abstract class EntityFlyingBoss extends EntityModFlying implements IEssen
     public float getModMaxHealth() {
         return getMaxHealth();
     }
+    
+    public double setFollowRange() {
+        return MobStats.boss_follow;
+    }
 
     @Override
     protected void onDeathUpdate() {
