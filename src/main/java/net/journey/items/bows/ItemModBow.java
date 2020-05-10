@@ -240,7 +240,7 @@ public class ItemModBow extends ItemBow {
                     itemstack = new ItemStack(arrowItem);
                 }
 
-				float f = getArrowVelocity(i);
+				float f = getScaledArrowVelocity(i);
 				if ((double) f >= 0.1D) {
 
 					if (!worldIn.isRemote) {

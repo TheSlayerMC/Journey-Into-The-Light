@@ -304,7 +304,7 @@ public class JourneyWeapons {
         poisonBow = new ItemModBow("poisonBow", "Poison Bow", 3, 384, EntityEssenceArrow.BowEffects.POISON_BOW, 72000);
         darknessBow = new ItemModBow("darknessBow", "Darkness Bow", 3, 384, EntityEssenceArrow.BowEffects.DARKNESS_BOW, 72000);
         frozenBow = new ItemModBow("frozenBow", "Frozen Bow", 3, 384, EntityEssenceArrow.BowEffects.FROZEN_BOW, 72000);
-        staringBow = new ItemModBow("staringBow", "Staring Bow", 3, 384, EntityEssenceArrow.BowEffects.FLAME_BOW, 72000);
+        staringBow = new ItemModBow("staringBow", "Staring Bow", 3, 384, EntityEssenceArrow.BowEffects.FLAME_BOW, 36000);
         deathPiercerBow = new ItemModBow("deathPiercerBow", "Death Piercer", 3, 384, EntityEssenceArrow.BowEffects.DARKNESS_BOW, 72000);
         fusionBow = new ItemModBow("fusionBow", "Fusion Bow", 3, 384, EntityEssenceArrow.BowEffects.DARKNESS_BOW, 72000);
         springBow = new ItemModBow("springBow", "Spring Bow", 5, 384, EntityEssenceArrow.BowEffects.FLAME_BOW, 72000);
@@ -317,7 +317,7 @@ public class JourneyWeapons {
         frostbittenBow = new ItemModBow("frostbittenBow", "Frostbitten Bow", 3, 384, EntityEssenceArrow.BowEffects.FROZEN_BOW, 72000);
         frostyBow = new ItemModBow("frostyBow", "Frosty Bow", 3, 384, EntityEssenceArrow.BowEffects.FROZEN_BOW, 72000);
         charredBow = new ItemModBow("charredBow", "Charred Bow", 3, 384, EntityEssenceArrow.BowEffects.DARKNESS_BOW, 72000);
-        fluffyBow = new ItemModBow("fluffyBow", "Fluffy Bow", 3, 384, EntityEssenceArrow.BowEffects.FROZEN_BOW, 72000);
+        fluffyBow = new ItemModBow("fluffyBow", "Fluffy Bow", 3, 384, EntityEssenceArrow.BowEffects.FROZEN_BOW, 27000);
         golemBow = new ItemModBow("golemBow", "Golem Bow", 3, 384, EntityEssenceArrow.BowEffects.DARKNESS_BOW, 72000);
         loggersBow = new ItemModBow("loggersBow", "Logger's Bow", 3, 384, EntityEssenceArrow.BowEffects.POISON_BOW, 72000);
         overgrownBow = new ItemModBow("overgrownBow", "Overgrown Bow", 3, 384, EntityEssenceArrow.BowEffects.POISON_BOW, 72000);
@@ -328,7 +328,7 @@ public class JourneyWeapons {
         mantleBow = new ItemModBow("mantleBow", "Mantle Bow", 3, 384, EntityEssenceArrow.BowEffects.FLAME_BOW, 72000);
         coreExpender = new ItemModBow("coreExpender", "Core Expender", 3, 384, EntityEssenceArrow.BowEffects.FLAME_BOW, 72000);
         royalBow = new ItemModBow("royalBow", "Royal Bow", 3, 384, EntityEssenceArrow.BowEffects.DARKNESS_BOW, 72000);
-        darkTerraBow = new ItemModBow("darkTerraBow", "Dark Terra Bow", 3, 384, EntityEssenceArrow.BowEffects.DARKNESS_BOW, 72000);
+        darkTerraBow = new ItemModBow("darkTerraBow", "Dark Terra Bow", 3, 384, EntityEssenceArrow.BowEffects.DARKNESS_BOW, 30000);
         lavenderBow = new ItemModBow("lavenderBow", "Lavender Bow", 3, 384, EntityEssenceArrow.BowEffects.FROZEN_BOW, 72000);
         terralightBow = new ItemModBow("terralightBow", "Terralight Bow", 3, 384, EntityEssenceArrow.BowEffects.POISON_BOW, 72000);
         terrianBow = new ItemModBow("terrianBow", "Terrian Bow", 3, 384, EntityEssenceArrow.BowEffects.POISON_BOW, 72000);
