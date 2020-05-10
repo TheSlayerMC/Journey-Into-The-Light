@@ -1,5 +1,10 @@
 {
 	"variants": {
-		"normal": { "model": "journey:block/sapling/corbasapling"}
+		"stage=0": {
+			"model": "journey:sapling/corbasapling"
+		},
+		"stage=1": {
+			"model": "journey:sapling/corbasapling"
+		}
 	}
 }

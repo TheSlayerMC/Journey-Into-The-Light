@@ -1,9 +1,10 @@
 {
-	"forge_marker": 1,
-	"defaults": {
-		"textures": {
-			        "cross": "journey:blocks/sapling/frozen_sapling"
-		},
-		"model": "block/cross"
-	}
+  "variants": {
+    "stage=0": {
+      "model": "journey:sapling/frozensapling"
+    },
+    "stage=1": {
+      "model": "journey:sapling/frozensapling"
+    }
+  }
 }
