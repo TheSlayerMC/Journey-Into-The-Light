@@ -2,7 +2,6 @@ package net.journey.api.block.base;
 
 import net.journey.JITL;
 import net.journey.api.block.IHasCustomItemPath;
-import net.minecraft.block.Block;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -10,6 +9,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -17,21 +17,23 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.EnumMaterialTypes;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.function.Predicate;
 
 /**
  * Base class for double plant blocks.
  * The item model for it should be placed to "models/item/block/" by default.
  */
-public class JDoubleBlockPlant extends JDoubleBlock implements IHasCustomItemPath {
-    private Block ground = null;
+public class JBlockDoublePlant extends JDoubleBlock implements IHasCustomItemPath {
+    private Predicate<IBlockState> groundPredicate = null;
 
-    public JDoubleBlockPlant(String name, String enName, CreativeTabs tab) {
+    public JBlockDoublePlant(String name, String enName, @Nullable CreativeTabs tab) {
         super(EnumMaterialTypes.PLANT, name, enName, 0, tab);
     }
 
-    public JDoubleBlockPlant setAcceptableGround(Block ground) {
-        this.ground = ground;
-
+    public JBlockDoublePlant setAcceptableGround(Predicate<IBlockState> groundPredicate) {
+        this.groundPredicate = groundPredicate;
         return this;
     }
 
@@ -43,7 +45,7 @@ public class JDoubleBlockPlant extends JDoubleBlock implements IHasCustomItemPat
      *              You shouldn't get and check the blockstate of bottom plant block, because it may be not placed yet.
      */
     public boolean hasAcceptableGround(World world, BlockPos pos) {
-        return (ground == null || world.getBlockState(pos.down()).getBlock() == ground) && world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP);
+        return (groundPredicate == null || groundPredicate.test(world.getBlockState(pos.down()))) && world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP);
     }
 
     @Override
@@ -93,6 +95,12 @@ public class JDoubleBlockPlant extends JDoubleBlock implements IHasCustomItemPat
     @NotNull
     @Override
     public ResourceLocation getItemModelResourceLocation() {
-	    return new ResourceLocation(JITL.MOD_ID, "block/" + getRegistryName().getPath());
+        return new ResourceLocation(JITL.MOD_ID, "block/" + getRegistryName().getPath());
+    }
+
+    @Override
+    @javax.annotation.Nullable
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
+        return NULL_AABB;
     }
 }

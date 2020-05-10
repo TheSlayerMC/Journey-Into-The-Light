@@ -1,10 +1,8 @@
 package net.journey.dimension.euca.gen;
 
-import net.journey.api.block.base.JDoubleBlockPlant;
+import net.journey.api.block.base.JBlockDoublePlant;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.MathUtils;
-import net.journey.util.RandHelper;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -23,7 +21,7 @@ public class WorldGenTallGoldenStalks extends WorldGenerator {
         int genY = r.nextInt(coercedY) + 1;
         genPos = WorldGenAPI.getPosWithHeight(genPos, genY);
 
-	    JDoubleBlockPlant block = JourneyBlocks.TALL_GOLDEN_STALKS;
+        JBlockDoublePlant block = JourneyBlocks.tallGoldenStalks;
 
         if (!w.getBlockState(genPos).getMaterial().isLiquid()
                 && w.getBlockState(genPos.down()).getBlock() == JourneyBlocks.eucaGrass

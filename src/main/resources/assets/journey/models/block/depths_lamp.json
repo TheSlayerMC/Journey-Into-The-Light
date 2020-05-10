@@ -1,6 +1,6 @@
 {
 	"parent": "block/cube_all",
 	"textures": {
-		"all": "journey:blocks/depthslamp"
+		"all": "journey:blocks/depths_lamp"
 	}
 }

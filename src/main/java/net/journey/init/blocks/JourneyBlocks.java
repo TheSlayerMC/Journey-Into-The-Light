@@ -183,7 +183,7 @@ public class JourneyBlocks {
     public static BlockMod depthsGlass;
     public static BlockMod depthsCobblestone;
     public static BlockMod depthsPillar;
-    public static BlockMod depthsLantern;
+    public static BlockMod depthsLamp;
     public static JBlockPane depthsGate;
     public static BlockMod depthsLock;
     public static BlockMod depthsTile;
@@ -398,7 +398,7 @@ public class JourneyBlocks {
     public static BlockMod hellThornRoot;
     public static BlockMod nethicGrass;
 
-    public static JDoubleBlockPlant TALL_GOLDEN_STALKS;
+    public static JBlockDoublePlant tallGoldenStalks;
     public static BlockModFlower goldenBulb;
     public static BlockModFlower goldenBloom;
     public static BlockModFlower goldenStalks;
@@ -646,7 +646,7 @@ public class JourneyBlocks {
         depthsCobblestone = new BlockMod("depthsCobblestone", "Depths Cobblestone", 1.0F);
         depthsTile = new BlockMod("depthsTile", "Depths Tile", 1.0F);
         depthsPillar = new BlockMod("depthsPillar", "Depths Pillar", 1.0F);
-        depthsLantern = (BlockMod) new BlockMod("depthsLantern", "Depths Lantern", 1.0F).setLightLevel(1);
+        depthsLamp = (BlockMod) new BlockMod("depths_lamp", "Depths Lamp", 1.0F).setLightLevel(1);
         depthsGate = new Initializer<>(new JBlockPane(EnumMaterialTypes.STONE, "depthsGate", "Depths Gate", true)).apply(pane -> pane.setHardness(1.0F));
         depthsLock = new BlockLock("depthsLock", "Depths Lock", JourneyItems.depthsKey);
         depthsDoor = new BlockModDoor("depthsDoor", "Depths Door", Material.WOOD, 2.0F);
@@ -936,10 +936,10 @@ public class JourneyBlocks {
         glowshroomGreen = new BlockGlowshroom("glowshroom_green", "Green Glowshroom");
         glowshroomBlue = new BlockGlowshroom("glowshroom_blue", "Blue Glowshroom");
 
-        TALL_GOLDEN_STALKS = new JDoubleBlockPlant("tall_golden_stalks", "Golden Stalks", JourneyTabs.DECORATION).setAcceptableGround(eucaGrass);
-        goldenBulb = (BlockModFlower) new BlockModFlower("goldenBulb", "Golden Bulb");
-        goldenBloom = (BlockModFlower) new BlockModFlower("goldenBloom", "Golden Bloom");
-        goldenStalks = (BlockModFlower) new BlockModFlower("goldenStalks", "Golden Stalks");
+        tallGoldenStalks = new JBlockDoublePlant("tall_golden_stalks", "Tall Golden Stalks", null).setAcceptableGround(state -> state.getMaterial() == Material.GRASS);
+        goldenBulb = new BlockModFlower("goldenBulb", "Golden Bulb");
+        goldenBloom = new BlockModFlower("goldenBloom", "Golden Bloom");
+        goldenStalks = new BlockModFlower("goldenStalks", "Golden Stalks");
 
         workshopCarpet = new BlockMod(EnumMaterialTypes.WOOL, "workshopCarpet", "Workshop Carpet", 0.5F);
         frozenGlass = new BlockJoinedGlass("frozenGlass", "Frozen Glass");
