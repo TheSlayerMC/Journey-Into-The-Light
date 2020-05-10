@@ -398,8 +398,7 @@ public class JourneyBlocks {
     public static BlockMod hellThornRoot;
     public static BlockMod nethicGrass;
 
-    public static BlockStalks goldenStalksTop;
-    public static BlockStalks goldenStalksBottom;
+    public static JDoubleBlockPlant TALL_GOLDEN_STALKS;
     public static BlockModFlower goldenBulb;
     public static BlockModFlower goldenBloom;
     public static BlockModFlower goldenStalks;
@@ -937,12 +936,10 @@ public class JourneyBlocks {
         glowshroomGreen = new BlockGlowshroom("glowshroom_green", "Green Glowshroom");
         glowshroomBlue = new BlockGlowshroom("glowshroom_blue", "Blue Glowshroom");
 
-        goldenStalksTop = (BlockStalks) new BlockStalks("goldenStalksTop", "Golden Stalks", true).setCreativeTab(null);
-        goldenStalksBottom = (BlockStalks) new BlockStalks("goldenStalksBottom", "Golden Stalks", false)
-                .setCreativeTab(null);
-        goldenBulb = (BlockModFlower) new BlockModFlower("goldenBulb", "Golden Bulb").setCreativeTab(null);
-        goldenBloom = (BlockModFlower) new BlockModFlower("goldenBloom", "Golden Bloom").setCreativeTab(null);
-        goldenStalks = (BlockModFlower) new BlockModFlower("goldenStalks", "Golden Stalks").setCreativeTab(null);
+        TALL_GOLDEN_STALKS = new JDoubleBlockPlant("tall_golden_stalks", "Golden Stalks", JourneyTabs.DECORATION).setAcceptableGround(eucaGrass);
+        goldenBulb = (BlockModFlower) new BlockModFlower("goldenBulb", "Golden Bulb");
+        goldenBloom = (BlockModFlower) new BlockModFlower("goldenBloom", "Golden Bloom");
+        goldenStalks = (BlockModFlower) new BlockModFlower("goldenStalks", "Golden Stalks");
 
         workshopCarpet = new BlockMod(EnumMaterialTypes.WOOL, "workshopCarpet", "Workshop Carpet", 0.5F);
         frozenGlass = new BlockJoinedGlass("frozenGlass", "Frozen Glass");

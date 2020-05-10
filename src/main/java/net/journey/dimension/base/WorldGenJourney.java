@@ -6,6 +6,7 @@ import net.journey.dimension.boil.gen.WorldGenBoilingFire;
 import net.journey.dimension.boil.gen.WorldGenBoilingLava;
 import net.journey.dimension.depths.gen.WorldGenDepthsTree;
 import net.journey.dimension.euca.gen.WorldGenSmeltery;
+import net.journey.dimension.euca.gen.WorldGenTallGoldenStalks;
 import net.journey.dimension.nether.gen.*;
 import net.journey.dimension.nether.gen.trees.WorldGenBleedheartTree0;
 import net.journey.dimension.nether.gen.trees.WorldGenBleedheartTree1;
@@ -53,6 +54,10 @@ public class WorldGenJourney implements IWorldGenerator {
     private static final LazyLoadBase<WorldGenModFlower> eucaTallGrass;
     private static final LazyLoadBase<WorldGenModFlower> eucaTallFlowers;
     private static final LazyLoadBase<WorldGenModFlower> eucaBlueFlower;
+    private static final LazyLoadBase<WorldGenTallGoldenStalks> TALL_GOLDEN_STALKS = create(WorldGenTallGoldenStalks::new);
+    private static final LazyLoadBase<WorldGenModFlower> GOLDEN_STALKS = create(() -> new WorldGenModFlower(JourneyBlocks.goldenStalks, JourneyBlocks.eucaGrass));
+    private static final LazyLoadBase<WorldGenModFlower> GOLDEN_BULB = create(() -> new WorldGenModFlower(JourneyBlocks.goldenBulb, JourneyBlocks.eucaGrass));
+    private static final LazyLoadBase<WorldGenModFlower> GOLDEN_BLOOM = create(() -> new WorldGenModFlower(JourneyBlocks.goldenBloom, JourneyBlocks.eucaGrass));
     private static final LazyLoadBase<WorldGenModFlower> frozenFlower;
     private static final LazyLoadBase<WorldGenModFlower> depthsFlower;
     private static final LazyLoadBase<WorldGenBoilingLava> boilLava;
@@ -95,6 +100,7 @@ public class WorldGenJourney implements IWorldGenerator {
         eucaTallGrass = create(() -> new WorldGenModFlower(JourneyBlocks.eucaTallGrass, JourneyBlocks.eucaGrass));
         eucaTallFlowers = create(() -> new WorldGenModFlower(JourneyBlocks.eucaTallFlowers, JourneyBlocks.eucaGrass));
         eucaBlueFlower = create(() -> new WorldGenModFlower(JourneyBlocks.eucaBlueFlower, JourneyBlocks.eucaGrass));
+        
         depthsFlower = create(() -> new WorldGenModFlower(JourneyBlocks.depthsFlower, JourneyBlocks.depthsGrass, false));
         frozenFlower = create(() -> new WorldGenModFlower(JourneyBlocks.frozenFlower, JourneyBlocks.frozenGrass, false));
 
@@ -165,45 +171,57 @@ public class WorldGenJourney implements IWorldGenerator {
                 eucaBlueFlower.getValue().generate(w, r, chunkStart);
                 break;
             case 9:
-                frozenFlower.getValue().generate(w, r, chunkStart);
+                TALL_GOLDEN_STALKS.getValue().generate(w, r, chunkStart);
                 break;
             case 10:
-                depthsLights.getValue().generate(w, r, randomPosForMinable);
+                GOLDEN_STALKS.getValue().generate(w, r, chunkStart);
                 break;
             case 11:
-                depthsLightsForStone.getValue().generate(w, r, randomPosForMinable);
+                GOLDEN_BULB.getValue().generate(w, r, chunkStart);
                 break;
             case 12:
-                depthsFlower.getValue().generate(w, r, chunkStart);
+                GOLDEN_BLOOM.getValue().generate(w, r, chunkStart);
                 break;
             case 13:
-                gorbite.getValue().generate(w, r, randomPosForMinable);
+                frozenFlower.getValue().generate(w, r, chunkStart);
                 break;
             case 14:
-                orbaditeOre.getValue().generate(w, r, randomPosForMinable);
+                depthsLights.getValue().generate(w, r, randomPosForMinable);
                 break;
             case 15:
-                storonOre.getValue().generate(w, r, randomPosForMinable);
+                depthsLightsForStone.getValue().generate(w, r, randomPosForMinable);
                 break;
             case 16:
-                koriteOre.getValue().generate(w, r, randomPosForMinable);
+                depthsFlower.getValue().generate(w, r, chunkStart);
                 break;
             case 17:
-                mekyumOre.getValue().generate(w, r, randomPosForMinable);
+                gorbite.getValue().generate(w, r, randomPosForMinable);
                 break;
             case 18:
+                orbaditeOre.getValue().generate(w, r, randomPosForMinable);
+                break;
+            case 19:
+                storonOre.getValue().generate(w, r, randomPosForMinable);
+                break;
+            case 20:
+                koriteOre.getValue().generate(w, r, randomPosForMinable);
+                break;
+            case 21:
+                mekyumOre.getValue().generate(w, r, randomPosForMinable);
+                break;
+            case 22:
                 if (w.getBlockState(randWithOffset) == JourneyBlocks.eucaGrass.getDefaultState())
                     smeltery.generate(w, r, randWithOffset);
                 break;
-            case 19:
+            case 23:
                 if (120 > randomPosForMinable.getY() && randomPosForMinable.getY() > 10)
                     pinkCloudiaCloud.getValue().generate(w, r, randomPosForMinable);
                 break;
-            case 20:
+            case 24:
                 if (10 < randomPosForMinable.getY() && randomPosForMinable.getY() < 120)
                     lightBlueCloudiaCloud.getValue().generate(w, r, randomPosForMinable);
                 break;
-            case 21:
+            case 25:
                 withanLight.getValue().generate(w, r, randomPosForMinable);
                 break;
         }
