@@ -1,0 +1,7 @@
+{
+  "parent": "block/pane_side",
+  "textures": {
+    "edge": "journey:blocks/darklygate",
+    "pane": "journey:blocks/darklygate"
+  }
+}

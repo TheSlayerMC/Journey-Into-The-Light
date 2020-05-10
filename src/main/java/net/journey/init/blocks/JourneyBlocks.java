@@ -17,6 +17,7 @@ import net.journey.dimension.terrania.gen.trees.WorldGenTerraniaSmallTree;
 import net.journey.init.JourneyTabs;
 import net.journey.init.items.JourneyConsumables;
 import net.journey.init.items.JourneyItems;
+import net.journey.util.Initializer;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.slayer.api.EnumMaterialTypes;
@@ -183,7 +184,7 @@ public class JourneyBlocks {
     public static BlockMod depthsCobblestone;
     public static BlockMod depthsPillar;
     public static BlockMod depthsLantern;
-    public static BlockModBars depthsGate;
+    public static JBlockPane depthsGate;
     public static BlockMod depthsLock;
     public static BlockMod depthsTile;
     public static BlockModDoor depthsDoor;
@@ -220,7 +221,7 @@ public class JourneyBlocks {
     public static BlockMod hotBlock;
     public static BlockMod rubble;
     public static BlockMetaBase brisonblocks;
-    public static BlockMod boilingBars;
+    public static JBlockPane boilingBars;
     public static BlockMod burningLeaves;
     public static JBlockLog boilingLog;
 
@@ -260,11 +261,11 @@ public class JourneyBlocks {
 
 
     public static BlockMod nethicDungeonBricks;
-    public static BlockMod boilChain;
-    public static BlockMod boilGate;
+    public static JBlockPane boilChain;
+    public static JBlockPane boilGate;
     public static Block boilLock;
 
-    public static BlockMod darklyGate;
+    public static JBlockPane darklyGate;
     public static BlockMod darklyLock;
 
     public static BlockModFence corbaPost;
@@ -275,7 +276,7 @@ public class JourneyBlocks {
     public static BlockMod senterianCarvedRock;
     public static BlockMod senterianFloor;
     public static BlockMod senterianGlass;
-    public static BlockMod senterianBars;
+    public static JBlockPane senterianBars;
     public static BlockMod senterianLightLamp;
     public static BlockMod senterianMellowLamp;
     public static BlockMod senterianGuardianLamp;
@@ -361,7 +362,7 @@ public class JourneyBlocks {
     public static JBlockLog terranianLog;
     public static BlockMod terranianGrass;
     public static BlockMod terranianStone;
-    public static BlockMod terranianBars;
+    public static JBlockPane terranianBars;
     public static BlockMod terranianDarkPanels;
     public static BlockMod terranianPanels;
     public static BlockModFlower terranianTallgrass;
@@ -622,7 +623,7 @@ public class JourneyBlocks {
         EUCA_RUNIC_BRICKS = (BlockMod) new BlockMod("euca_runic_bricks", "Euca Dungeon Bricks").setResistance(100000F).setBlockUnbreakable().setLightLevel(0.2F);
         EUCA_RUNIC_LAMP = (BlockMod) new BlockMod("euca_runic_lamp", "Euca Dungeon Bricks").setResistance(100000F).setBlockUnbreakable().setLightLevel(0.5F);
         EUCA_DUNGEON_TILE = (BlockMod) new BlockMod("euca_dungeon_tile", "Euca Dungeon Tile").setResistance(100000F).setBlockUnbreakable();
-        EUCA_GOLD_STONE = (BlockMod) new BlockMod("euca_gold_stone", "Euca Gold Stone");
+        EUCA_GOLD_STONE = new BlockMod("euca_gold_stone", "Euca Gold Stone");
         
         depthsDirt = new BlockMod(EnumMaterialTypes.DIRT, "depthsDirt", "Depths Dirt", 2.0F);
         depthsGrass = new BlockModGrass(depthsDirt, "depthsGrass", "Depths Grass", 2.0F);
@@ -647,7 +648,7 @@ public class JourneyBlocks {
         depthsTile = new BlockMod("depthsTile", "Depths Tile", 1.0F);
         depthsPillar = new BlockMod("depthsPillar", "Depths Pillar", 1.0F);
         depthsLantern = (BlockMod) new BlockMod("depthsLantern", "Depths Lantern", 1.0F).setLightLevel(1);
-        depthsGate = new BlockModBars("depthsGate", "Depths Gate", 1.0F);
+        depthsGate = new Initializer<>(new JBlockPane(EnumMaterialTypes.STONE, "depthsGate", "Depths Gate", true)).apply(pane -> pane.setHardness(1.0F));
         depthsLock = new BlockLock("depthsLock", "Depths Lock", JourneyItems.depthsKey);
         depthsDoor = new BlockModDoor("depthsDoor", "Depths Door", Material.WOOD, 2.0F);
 
@@ -685,7 +686,7 @@ public class JourneyBlocks {
          */
 
         brisonblocks = new BlockMetaBase("brison", Material.ROCK, "brison");
-        boilingBars = new BlockModBars("boilingBars", "Brison Bars", 5.0F);
+        boilingBars = new Initializer<>(new JBlockPane(EnumMaterialTypes.STONE, "boilingBars", "Brison Bars", true)).apply(pane -> pane.setHardness(5.0F));
         burningLeaves = new BlockModLeaves("burningLeaves", "Burning Leaves", 0.5F, boilSapling).setBurningPlant();
         boilingLog = new JBlockLog("boilingLog", "Boiling Log");
 
@@ -745,15 +746,12 @@ public class JourneyBlocks {
         lockedChest = (BlockJourneyChest) new BlockJourneyChest("lockedchest", "Locked Chest", BlockJourneyChest.Type.JOURNEY, true, JourneyItems.CHEST_KEY).setResistance(10000F).setBlockUnbreakable();
 
         nethicDungeonBricks = new BlockMod("nethicDungeonBricks", "Nethic Dungeon Bricks");
-        boilChain = (BlockMod) new BlockModBars("boilChain", "Boil Chain", 5.0F).setBlockUnbreakable()
-                .setResistance(10000000.0F);
-        boilGate = (BlockMod) new BlockModBars("boilGate", "Boil Gate", 5.0F).setBlockUnbreakable()
-                .setResistance(10000000.0F);
+        boilChain = new Initializer<>(new JBlockPane(EnumMaterialTypes.STONE, "boilChain", "Boil Chain", false)).apply(pane -> pane.setBlockUnbreakable().setResistance(6000000.0F));
+        boilGate = new Initializer<>(new JBlockPane(EnumMaterialTypes.STONE, "boilGate", "Boil Gate", false)).apply(pane -> pane.setBlockUnbreakable().setResistance(6000000.0F));
         boilLock = new BlockLock("boilLock", "Boil Lock", JourneyItems.boilKey).setBlockUnbreakable()
                 .setResistance(10000000.0F);
 
-        darklyGate = (BlockMod) new BlockModBars("darklyGate", "Darkly Gate", 5.0F).setBlockUnbreakable()
-                .setResistance(10000000.0F);
+        darklyGate = new Initializer<>(new JBlockPane(EnumMaterialTypes.STONE, "darklyGate", "Darkly Gate", false)).apply(pane -> pane.setBlockUnbreakable().setResistance(6000000.0F));
         darklyLock = (BlockMod) new BlockLock("darklyLock", "Darkly Lock", JourneyItems.darkKey).setBlockUnbreakable()
                 .setResistance(10000000.0F);
 
@@ -765,13 +763,13 @@ public class JourneyBlocks {
         senterianCarvedRock = (BlockMod) new BlockMod("senterianCarvedRock", "Senterian Carved Rock").setBlockUnbreakable().setResistance(10000000.0F);
         senterianFloor = (BlockMod) new BlockMod("senterianFloor", "Senterian Floor").setBlockUnbreakable().setResistance(10000000.0F);
         senterianGlass = (BlockJoinedGlass) new BlockJoinedGlass("senterianGlass", "Senterian Glass").setBlockUnbreakable().setResistance(10000000.0F);
-        senterianBars = (BlockMod) new BlockModBars("senterianBars", "Senterian Bars", 5.0F).setBlockUnbreakable().setResistance(10000000.0F);
+        senterianBars = new Initializer<>(new JBlockPane(EnumMaterialTypes.STONE, "senterianBars", "Senterian Bars", false)).apply(pane -> pane.setBlockUnbreakable().setResistance(6000000.0F));
         senterianLightLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "senterianLightLamp", "Senterian Light Lamp", 0.1F).setLightLevel(0.5F).setCreativeTab(JourneyTabs.DECORATION).setBlockUnbreakable().setResistance(10000000.0F);
         senterianMellowLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "senterianMellowLamp", "Senterian Mellow Lamp", 0.1F).setLightLevel(0.5F).setCreativeTab(JourneyTabs.DECORATION).setBlockUnbreakable().setResistance(10000000.0F);
         senterianGuardianLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "senterianGuardianLamp", "Senterian Guardian Lamp", 0.1F).setLightLevel(0.5F).setCreativeTab(JourneyTabs.DECORATION).setBlockUnbreakable().setResistance(10000000.0F);
         senterianPost = (BlockModFence) new BlockModFence(senterianBricks, "senterianPost", "Senterian Post").setBlockUnbreakable().setResistance(10000000.0F);
         senterianAltar = (BlockSenterianAltar) new BlockSenterianAltar("senterianAltar", "Senterian Altar").setBlockUnbreakable().setResistance(1000000.0F);
-        SENTRY_LOCK = (BlockLock) new BlockLock("sentry_lock", "Sentry Lock", JourneyItems.SENTRY_KEY);
+        SENTRY_LOCK = new BlockLock("sentry_lock", "Sentry Lock", JourneyItems.SENTRY_KEY);
         
         LAMENT_NETHER = (BlockMod) new BlockLament("lament_nether", "Lament Box of Hell", JourneyItems.LAMENT_DECONSTRUCTOR_NETHER).setBlockUnbreakable().setResistance(10000000.0F);
         LAMENT_BOIL = (BlockMod) new BlockLament("lament_boil", "Lament Box of Fire", JourneyItems.LAMENT_DECONSTRUCTOR_BOIL).setBlockUnbreakable().setResistance(10000000.0F);
@@ -884,7 +882,7 @@ public class JourneyBlocks {
         terranianLog = new JBlockLog("terranianLog", "Terranian Log");
         terranianGrass = new BlockModGrass(terranianDirt, "terranianGrass", "Terranian Grass", 2.0F);
         terranianStone = new BlockMod("terranianStone", "Terranian Stone", 2.0F);
-        terranianBars = new BlockModBars("terranianBars", "Terranian Bars", 5.0F);
+        terranianBars = new Initializer<>(new JBlockPane(EnumMaterialTypes.STONE, "terranianBars", "Terranian Bars", true)).apply(pane -> pane.setHardness(5.0F));
         terranianDarkPanels = new BlockMod("terranianDarkPanels", "Terranian Dark Panels", 2.0F);
         terranianPanels = new BlockMod("terranianPanels", "Terranian Panels", 2.0F);
         terranianTallgrass = new BlockModFlower("terranianTallgrass", "Terranian Tallgrass", true);

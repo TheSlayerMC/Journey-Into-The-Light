@@ -1,29 +1,77 @@
 {
     "multipart": [
-        {   "apply": { "model": "journey:terranianbars_post" }},
-        {   "when": { "north": true },
-            "apply": { "model": "journey:terranianbars_side" }
-        },
-        {   "when": { "east": true },
-            "apply": { "model": "journey:terranianbars_side", "y": 90 }
-        },
-        {   "when": { "south": true },
-            "apply": { "model": "journey:terranianbars_side_alt" }
-        },
-        {   "when": { "west": true },
-            "apply": { "model": "journey:terranianbars_side_alt", "y": 90 }
-        },
-        {   "when": { "north": false },
-            "apply": { "model": "journey:terranianbars_noside" }
-        },
-        {   "when": { "east": false },
-            "apply": { "model": "journey:terranianbars_noside_alt" }
-        },
-        {   "when": { "south": false },
-            "apply": { "model": "journey:terranianbars_noside_alt", "y": 90 }
-        },
-        {   "when": { "west": false },
-            "apply": { "model": "journey:terranianbars_noside", "y": 270 }
+      {
+        "apply": {
+          "model": "journey:pane/terranianbars/post"
         }
+      },
+      {
+        "when": {
+          "north": true
+        },
+        "apply": {
+          "model": "journey:pane/terranianbars/side"
+        }
+      },
+      {
+        "when": {
+          "east": true
+        },
+        "apply": {
+          "model": "journey:pane/terranianbars/side",
+          "y": 90
+        }
+      },
+      {
+        "when": {
+          "south": true
+        },
+        "apply": {
+          "model": "journey:pane/terranianbars/side_alt"
+        }
+      },
+      {
+        "when": {
+          "west": true
+        },
+        "apply": {
+          "model": "journey:pane/terranianbars/side_alt",
+          "y": 90
+        }
+      },
+      {
+        "when": {
+          "north": false
+        },
+        "apply": {
+          "model": "journey:pane/terranianbars/noside"
+        }
+      },
+      {
+        "when": {
+          "east": false
+        },
+        "apply": {
+          "model": "journey:pane/terranianbars/noside_alt"
+        }
+      },
+      {
+        "when": {
+          "south": false
+        },
+        "apply": {
+          "model": "journey:pane/terranianbars/noside_alt",
+          "y": 90
+        }
+      },
+      {
+        "when": {
+          "west": false
+        },
+        "apply": {
+          "model": "journey:pane/terranianbars/noside",
+          "y": 270
+        }
+      }
     ]
 }

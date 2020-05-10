@@ -11,14 +11,9 @@ import net.slayer.api.SlayerAPI;
 
 public class StuffConstructor {
     public static void regAndSetupBlock(Block block, String name, String enName, CreativeTabs tab) {
-        regAndSetupBlock(block, name, enName, 2.0F, tab);
-    }
-
-    public static void regAndSetupBlock(Block block, String name, String enName, float hardness, CreativeTabs tab) {
         block.setCreativeTab(tab)
                 .setRegistryName(JITL.MOD_ID, name)
-                .setTranslationKey(name)
-                .setHardness(hardness);
+                .setTranslationKey(name);
 
         JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
         JourneyBlocks.blocks.add(block);
@@ -26,5 +21,10 @@ public class StuffConstructor {
         JourneyItems.items.add(new ItemBlock(block).setRegistryName(block.getRegistryName()));
 
         LangGeneratorFacade.addBlockEntry(block, enName);
+    }
+
+    public static void regAndSetupBlock(Block block, String name, String enName, float hardness, CreativeTabs tab) {
+        block.setHardness(hardness);
+        regAndSetupBlock(block, name, enName, tab);
     }
 }
