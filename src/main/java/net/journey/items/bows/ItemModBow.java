@@ -189,6 +189,7 @@ public class ItemModBow extends ItemBow {
         });
     }
 
+    @Override
     public ItemStack findAmmo(EntityPlayer player) {
         if (this.isArrow(player.getHeldItem(EnumHand.OFF_HAND))) {
             return player.getHeldItem(EnumHand.OFF_HAND);
@@ -212,6 +213,7 @@ public class ItemModBow extends ItemBow {
         }
     }
 
+    @Override
     protected boolean isArrow(ItemStack stack) {
         return stack.getItem() instanceof ItemEssenceArrow;
     }
