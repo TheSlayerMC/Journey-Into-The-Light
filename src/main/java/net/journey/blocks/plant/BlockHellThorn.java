@@ -3,7 +3,6 @@ package net.journey.blocks.plant;
 import net.journey.JITL;
 import net.journey.init.JourneyTabs;
 import net.journey.init.blocks.JourneyBlocks;
-import net.journey.init.items.JourneyItems;
 import net.journey.util.gen.lang.LangGeneratorFacade;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -37,7 +36,7 @@ public class BlockHellThorn extends Block {
 	    LangGeneratorFacade.addBlockEntry(this, f);
 	    JourneyBlocks.blocks.add(this);
 
-	    JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
+        JourneyBlocks.itemBlocks.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
     }
 
     @Override

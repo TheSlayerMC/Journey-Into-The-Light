@@ -13,7 +13,6 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
-import net.slayer.api.SlayerAPI;
 
 @EventBusSubscriber(Side.CLIENT)
 public class ModelRegistry {
@@ -28,12 +27,15 @@ public class ModelRegistry {
 			if (b instanceof IHasTeisr) {
 				Item.getItemFromBlock(b).setTileEntityItemStackRenderer(((IHasTeisr) b).createTeisr().get());
 			}
+		}
 
+		for (Item itemBlock : JourneyBlocks.itemBlocks) {
+			final Block b = Block.getBlockFromItem(itemBlock);
 			if (b instanceof IHasCustomItemPath) {
 				ResourceLocation modelRL = ((IHasCustomItemPath) b).getItemModelResourceLocation();
-				ModelLoader.setCustomModelResourceLocation(SlayerAPI.toItem(b), 0, new ModelResourceLocation(modelRL, "inventory"));
+				ModelLoader.setCustomModelResourceLocation(itemBlock, 0, new ModelResourceLocation(modelRL, "inventory"));
 			} else {
-				ModelLoader.setCustomModelResourceLocation(SlayerAPI.toItem(b), 0, new ModelResourceLocation(b.getRegistryName(), "inventory"));
+				ModelLoader.setCustomModelResourceLocation(itemBlock, 0, new ModelResourceLocation(b.getRegistryName(), "inventory"));
 			}
 		}
 	}

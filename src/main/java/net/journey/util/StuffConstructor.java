@@ -2,7 +2,6 @@ package net.journey.util;
 
 import net.journey.JITL;
 import net.journey.init.blocks.JourneyBlocks;
-import net.journey.init.items.JourneyItems;
 import net.journey.util.gen.lang.LangGeneratorFacade;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
@@ -16,7 +15,8 @@ public class StuffConstructor {
 
         JourneyBlocks.blocks.add(block);
 
-        JourneyItems.items.add(new ItemBlock(block).setRegistryName(block.getRegistryName()));
+        JourneyBlocks.itemBlocks.add(new ItemBlock(block)
+                .setRegistryName(block.getRegistryName()));
 
         LangGeneratorFacade.addBlockEntry(block, enName);
     }

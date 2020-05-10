@@ -3,7 +3,6 @@ package net.journey.blocks.portal;
 import net.journey.JITL;
 import net.journey.init.JourneyTabs;
 import net.journey.init.blocks.JourneyBlocks;
-import net.journey.init.items.JourneyItems;
 import net.journey.util.gen.lang.LangGeneratorFacade;
 import net.minecraft.block.BlockBreakable;
 import net.minecraft.block.material.Material;
@@ -45,7 +44,7 @@ public abstract class BlockModPortal extends BlockBreakable {
 	    JourneyBlocks.blocks.add(this);
 	    setRegistryName(JITL.MOD_ID, name);
 	    LangGeneratorFacade.addBlockEntry(this, finalName);
-	    JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
+        JourneyBlocks.itemBlocks.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
     }
 
     public static int getMetaForAxis(EnumFacing.Axis axis) {

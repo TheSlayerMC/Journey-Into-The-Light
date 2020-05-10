@@ -3,7 +3,6 @@ package net.slayer.api.entity.tileentity.container;
 import net.journey.JITL;
 import net.journey.init.JourneyTabs;
 import net.journey.init.blocks.JourneyBlocks;
-import net.journey.init.items.JourneyItems;
 import net.journey.util.gen.lang.LangGeneratorFacade;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.state.IBlockState;
@@ -65,7 +64,7 @@ public abstract class BlockModContainer extends BlockContainer {
         JourneyBlocks.blocks.add(this);
 	    setRegistryName(JITL.MOD_ID, name);
 	    LangGeneratorFacade.addBlockEntry(this, finalName);
-        JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
+        JourneyBlocks.itemBlocks.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
     }
 
     public BlockModContainer(EnumMaterialTypes blockType, String name, String finalName, float hardness, CreativeTabs tab) {
@@ -79,8 +78,8 @@ public abstract class BlockModContainer extends BlockContainer {
         this.name = name;
 	    JourneyBlocks.blocks.add(this);
 	    setRegistryName(JITL.MOD_ID, name);
-	    LangGeneratorFacade.addBlockEntry(this, finalName);
-        JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
+        LangGeneratorFacade.addBlockEntry(this, finalName);
+        JourneyBlocks.itemBlocks.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
     }
 
     public String getName() {

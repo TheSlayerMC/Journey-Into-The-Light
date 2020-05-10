@@ -2,7 +2,6 @@ package net.slayer.api.block;
 
 import net.journey.JITL;
 import net.journey.init.blocks.JourneyBlocks;
-import net.journey.init.items.JourneyItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.IGrowable;
@@ -42,7 +41,7 @@ public abstract class BlockModCrop extends BlockBush implements IGrowable {
         setRegistryName(JITL.MOD_ID, name);
         this.disableStats();
 
-        JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
+        JourneyBlocks.itemBlocks.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
     }
 
     protected static float getGrowthChance(Block blockIn, World worldIn, BlockPos pos) {

@@ -26,70 +26,73 @@ import java.util.List;
 @EventBusSubscriber(modid = JITL.MOD_ID)
 public class Registries {
 
-    public static final List<SoundEvent> SOUNDS = new ArrayList<>();
+	public static final List<SoundEvent> SOUNDS = new ArrayList<>();
 
-    @SubscribeEvent
-    public static void registerItems(RegistryEvent.Register<Item> event) {
-        for (int i = 0; i < JourneyItems.items.size(); i++)
-            event.getRegistry().registerAll(JourneyItems.items.get(i));
+	@SubscribeEvent
+	public static void registerItems(RegistryEvent.Register<Item> event) {
+		for (Item item : JourneyItems.items) {
+			event.getRegistry().register(item);
+		}
+		for (Item item : JourneyBlocks.itemBlocks) {
+			event.getRegistry().register(item);
+		}
+		JITL.LOGGER.info("Successfully registered " + JourneyItems.items.size() + " items");
+	}
 
-        LogHelper.info("Successfully Registered " + JourneyItems.items.size() + " Items");
-    }
+	@SubscribeEvent
+	public static void registerBlocks(RegistryEvent.Register<Block> event) {
+		for (Block block : JourneyBlocks.blocks) {
+			event.getRegistry().register(block);
+		}
+		JITL.LOGGER.info("Successfully registered " + JourneyBlocks.blocks.size() + " blocks");
 
-    @SubscribeEvent
-    public static void registerBlocks(RegistryEvent.Register<Block> event) {
-        for (int i = 0; i < JourneyBlocks.blocks.size(); i++)
-            event.getRegistry().registerAll(JourneyBlocks.blocks.get(i));
+		TileEntityHandler.register();
+	}
 
-        LogHelper.info("Successfully Registered " + JourneyBlocks.blocks.size() + " Blocks");
+	@SubscribeEvent
+	public static void onModelRegister(ModelRegistryEvent event) {
+		for (Block block : JourneyBlocks.blocks)
+			if (block instanceof IHasModel)
+				((IHasModel) block).registerModels(event);
+		for (Item item : JourneyItems.items)
+			if (item instanceof IHasModel)
+				((IHasModel) item).registerModels(event);
+	}
 
-        TileEntityHandler.register();
-    }
+	@SubscribeEvent
+	public static void registerEntities(RegistryEvent.Register<EntityEntry> event) {
+		IForgeRegistry<EntityEntry> registry = event.getRegistry();
 
-    @SubscribeEvent
-    public static void onModelRegister(ModelRegistryEvent event) {
-        for (Block block : JourneyBlocks.blocks)
-            if (block instanceof IHasModel)
-                ((IHasModel) block).registerModels(event);
-        for (Item item : JourneyItems.items)
-            if (item instanceof IHasModel)
-                ((IHasModel) item).registerModels(event);
-    }
+		EntityEntry[] mobs = EntityRegistry.initMobs();
+		EntityEntry[] projectiles = EntityRegistry.initProjectiles();
 
-    @SubscribeEvent
-    public static void registerEnities(RegistryEvent.Register<EntityEntry> event) {
-        IForgeRegistry<EntityEntry> registry = event.getRegistry();
+		registry.registerAll(mobs);
+		registry.registerAll(projectiles);
 
-        EntityEntry[] mobs = EntityRegistry.initMobs();
-        EntityEntry[] projectiles = EntityRegistry.initProjectiles();
+		LogHelper.info("Successfully Registered " + mobs.length + " Mobs");
+		LogHelper.info("Successfully Registered " + EntityRegistry.initProjectiles().length + " Projectiles");
 
-        registry.registerAll(mobs);
-        registry.registerAll(projectiles);
+	}
 
-        LogHelper.info("Successfully Registered " + mobs.length + " Mobs");
-        LogHelper.info("Successfully Registered " + EntityRegistry.initProjectiles().length + " Projectiles");
+	@SubscribeEvent
+	public static void registerEnchantments(RegistryEvent.Register<Enchantment> e) {
+		IForgeRegistry<Enchantment> enchant = e.getRegistry();
 
-    }
+		enchant.register(JourneyEnchantments.hotTouch);
+		enchant.register(JourneyEnchantments.waterWalk);
 
-    @SubscribeEvent
-    public void onSoundRegistry(Register<SoundEvent> event) {
-        JourneySounds.init();
+		LogHelper.info("Successfully Registered 2 Enchantments");
+	}
 
-        for (SoundEvent sound : SOUNDS) {
-            event.getRegistry().register(sound);
-        }
-        SOUNDS.clear();
+	@SubscribeEvent
+	public void onSoundRegistry(Register<SoundEvent> event) {
+		JourneySounds.init();
 
-        LogHelper.info("Successfully Registered " + SOUNDS.size() + " Sounds");
-    }
+		for (SoundEvent sound : SOUNDS) {
+			event.getRegistry().register(sound);
+		}
+		SOUNDS.clear();
 
-    @SubscribeEvent
-    public static void registerEnchantments(RegistryEvent.Register<Enchantment> e) {
-    	IForgeRegistry<Enchantment> enchant = e.getRegistry();
-    	
-        enchant.register(JourneyEnchantments.hotTouch);
-        enchant.register(JourneyEnchantments.waterWalk);
-        
-        LogHelper.info("Successfully Registered 2 Enchantments");
-    }
+		LogHelper.info("Successfully Registered " + SOUNDS.size() + " Sounds");
+	}
 }

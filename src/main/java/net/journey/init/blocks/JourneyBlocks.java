@@ -20,6 +20,7 @@ import net.journey.init.items.JourneyItems;
 import net.journey.util.Initializer;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.item.Item;
 import net.slayer.api.EnumMaterialTypes;
 import net.slayer.api.EnumToolType;
 import net.slayer.api.block.*;
@@ -28,6 +29,7 @@ import java.util.ArrayList;
 
 public class JourneyBlocks {
     public static ArrayList<Block> blocks = new ArrayList<>();
+    public static ArrayList<Item> itemBlocks = new ArrayList<>();
 
     public static BlockMod sapphireOre;
     public static BlockMod lavaRock;

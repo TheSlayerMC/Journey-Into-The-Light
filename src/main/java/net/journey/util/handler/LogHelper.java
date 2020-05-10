@@ -3,6 +3,7 @@ package net.journey.util.handler;
 import net.journey.JITL;
 import net.minecraftforge.fml.common.FMLLog;
 import net.slayer.api.SlayerAPI;
+import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.Level;
 
 import java.io.BufferedWriter;
@@ -12,27 +13,28 @@ import java.io.IOException;
 
 public class LogHelper {
 
-    private static BufferedWriter writer;
+	private static BufferedWriter writer;
 
-    static {
-        File dir = new File("./JourneyIntoTheLight");
-        dir.mkdir();
-        dir = new File("./JourneyIntoTheLight/debug.log");
-        try {
-            writer = new BufferedWriter(new FileWriter(dir));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+	static {
+		if (SlayerAPI.DEVMODE) {
+			File file = new File("./logs/jitl-debug.log");
+			try {
+				FileUtils.touch(file);
+				writer = new BufferedWriter(new FileWriter(file));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 
-    private static void log(Level level, Object msg) {
-        FMLLog.log(JITL.MOD_NAME, level, msg.toString());
-        if (SlayerAPI.DEVMODE) writeFile(msg);
-    }
+	private static void log(Level level, Object msg) {
+		FMLLog.log(JITL.MOD_NAME, level, msg.toString());
+		if (SlayerAPI.DEVMODE) writeFile(msg);
+	}
 
-    public static void debug(Object msg) {
-        if (SlayerAPI.DEVMODE) log(Level.DEBUG, "[DEBUG] " + msg);
-    }
+	public static void debug(Object msg) {
+		if (SlayerAPI.DEVMODE) log(Level.DEBUG, "[DEBUG] " + msg);
+	}
 
     public static void error(Object msg) {
         log(Level.ERROR, msg);

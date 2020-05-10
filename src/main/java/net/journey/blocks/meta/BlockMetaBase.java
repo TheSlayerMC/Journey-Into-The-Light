@@ -4,7 +4,6 @@ import net.journey.JITL;
 import net.journey.api.client.IHasModel;
 import net.journey.api.util.IMetaName;
 import net.journey.init.blocks.JourneyBlocks;
-import net.journey.init.items.JourneyItems;
 import net.journey.util.handler.EnumTypeHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -39,7 +38,7 @@ public class BlockMetaBase extends Block implements IMetaName, IHasModel {
         this.metaName = metaName;
 
         JourneyBlocks.blocks.add(this);
-        JourneyItems.items.add(new ItemBlockVarients(this).setRegistryName(this.getRegistryName()));
+        JourneyBlocks.itemBlocks.add(new ItemBlockVarients(this).setRegistryName(this.getRegistryName()));
     }
 
     @Override

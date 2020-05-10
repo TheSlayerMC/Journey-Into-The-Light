@@ -3,7 +3,6 @@ package net.slayer.api.block;
 import net.journey.JITL;
 import net.journey.init.JourneyTabs;
 import net.journey.init.blocks.JourneyBlocks;
-import net.journey.init.items.JourneyItems;
 import net.journey.util.gen.lang.LangGeneratorFacade;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.state.IBlockState;
@@ -65,7 +64,7 @@ public class BlockModGravity extends BlockFalling {
         JourneyBlocks.blocks.add(this);
         setRegistryName(JITL.MOD_ID, name);
         LangGeneratorFacade.addBlockEntry(this, finalName);
-        JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
+        JourneyBlocks.itemBlocks.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
     }
 
     public BlockModGravity(EnumMaterialTypes blockType, String name, String finalName, float hardness, CreativeTabs tab) {
@@ -80,7 +79,7 @@ public class BlockModGravity extends BlockFalling {
         JourneyBlocks.blocks.add(this);
         setRegistryName(JITL.MOD_ID, name);
         LangGeneratorFacade.addBlockEntry(this, finalName);
-        JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
+        JourneyBlocks.itemBlocks.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
     }
 
     public String getName() {

@@ -3,7 +3,6 @@ package net.journey.api.block.base;
 import net.journey.JITL;
 import net.journey.init.JourneyTabs;
 import net.journey.init.blocks.JourneyBlocks;
-import net.journey.init.items.JourneyItems;
 import net.minecraft.block.BlockRail;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.item.ItemBlock;
@@ -24,7 +23,7 @@ public class BlockModRail extends BlockRail {
 	    this.speed = speed;
 	    setRegistryName(JITL.MOD_ID, name);
 
-        JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
+        JourneyBlocks.itemBlocks.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
     }
 
     @Override
