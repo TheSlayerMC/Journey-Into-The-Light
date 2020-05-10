@@ -3,7 +3,17 @@ package net.journey.enums;
 public enum EnumSwordType {
 
 	HEALTH(),
-	WITHER();
+	WITHER(),
+	FIRE(),
+	POISON(),
+	REGEN(),
+	STUN_WITHER(),
+	STUN(),
+	FIRE_WITHER(),
+	NIGHTVISION_HEALTH(),
+	POISON_HEALTH(),
+	FIRE_HEALTH(),
+	FREEZE();
 	
 	EnumSwordType() {
 		

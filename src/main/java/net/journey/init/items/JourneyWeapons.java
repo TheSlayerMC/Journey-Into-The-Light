@@ -32,6 +32,7 @@ import net.journey.entity.projectile.throwable.EntityDemonicBomb;
 import net.journey.entity.projectile.throwable.EntityFireBomb;
 import net.journey.entity.projectile.throwable.EntityMagicBomb;
 import net.journey.entity.projectile.throwable.EntityMagicPot;
+import net.journey.enums.EnumSwordType;
 import net.journey.init.JourneyTabs;
 import net.journey.items.*;
 import net.journey.items.bows.*;
@@ -213,7 +214,7 @@ public class JourneyWeapons {
     public static void init() {
 
 
-        poisonSword = new ItemPoisionSword("poisonSword", "Poison Sword", JourneyToolMaterial.POISON_SWORD);
+        poisonSword = new ItemModSword("poisonSword", "Poison Sword", EnumSwordType.POISON, JourneyToolMaterial.POISON_SWORD);
         cloudSlicer = new ItemModSword("cloudSlicer", "Cloud Slicer", JourneyToolMaterial.CLOUD_SLICER);
         dragonsTooth = new ItemModSword("dragonsTooth", "Dragons Tooth", JourneyToolMaterial.DRAGONS_TOOTH);
         netherBeastSword = new ItemRegenSword("netherBeastSword", "Netherbeast Sword", JourneyToolMaterial.NETHER_BEAST_SWORD);
@@ -230,10 +231,10 @@ public class JourneyWeapons {
         snowShoveler = new ItemStunWitherSword("snowShoveler", "Snow Shoveler", JourneyToolMaterial.SNOW_SHOVELER);
         frostySword = new ItemStunSword("frostySword", "Frosty Sword", JourneyToolMaterial.FROSTY_SWORD);
         frostbittenSword = new ItemStunSword("frostbittenSword", "Frostbitten Sword", JourneyToolMaterial.FROSTBITTEN_SWORD);
-        treeHugger = new ItemPoisionSword("treeHugger", "Tree Hugger", JourneyToolMaterial.TREE_HUGGER);
+        treeHugger = new ItemModSword("treeHugger", "Tree Hugger", EnumSwordType.POISON, JourneyToolMaterial.TREE_HUGGER);
         coreMender = new ItemFireSword("coreMender", "Core Mender", JourneyToolMaterial.CORE_MENDER);
-        royalBlade = new ItemPoisionSword("royalBlade", "Royal Blade", JourneyToolMaterial.ROYAL_BLADE);
-        royalStabber = new ItemPoisionSword("royalStabber", "Royal Stabber", JourneyToolMaterial.ROYAL_STABBER);
+        royalBlade = new ItemModSword("royalBlade", "Royal Blade", EnumSwordType.POISON, JourneyToolMaterial.ROYAL_BLADE);
+        royalStabber = new ItemModSword("royalStabber", "Royal Stabber", EnumSwordType.POISON, JourneyToolMaterial.ROYAL_STABBER);
         rocSword = new ItemModSword("rocSword", "Roc Sword", JourneyToolMaterial.ROC_SWORD);
         swordOfTheThunderbird = new ItemModSword("swordOfTheThunderbird", "Sword of the Thunderbird", JourneyToolMaterial.SWORD_THUNDERBIRD);
         bloodwieldSword = new ItemHealthSword("bloodWieldSword", "Blood Wielder", JourneyToolMaterial.BLOODWIELD_SWORD, 1);
@@ -249,7 +250,7 @@ public class JourneyWeapons {
         storonSword = new ItemModSword("storonSword", "Storon Sword", JourneyToolMaterial.STORON_SWORD);
         mekyumSword = new ItemModSword("mekyumSword", "Mekyum Sword", JourneyToolMaterial.MEKYUM_SWORD);
         hellstoneSword = new ItemFireSword("hellstoneSword", "Bloodcrust Sword", JourneyToolMaterial.HELLSTONE_SWORD);
-        shadiumSword = new ItemFreezeSword("shadiumSword", "Shadium Sword", JourneyToolMaterial.SHADIUM_SWORD);
+        shadiumSword = new ItemModSword("shadiumSword", "Shadium Sword", EnumSwordType.FREEZE, JourneyToolMaterial.SHADIUM_SWORD);
         celestiumSword = new ItemModSword("celestiumSword", "Celestium Sword", JourneyToolMaterial.CELESTIUM_SWORD);
         luniumSword = new ItemModSword("luniumSword", "Lunium Sword", JourneyToolMaterial.LUNIUM_SWORD);
         flairiumSword = new ItemFireSword("flairiumSword", "Flairium Sword", JourneyToolMaterial.FLAIRIUM_SWORD);
@@ -268,7 +269,7 @@ public class JourneyWeapons {
         voliteSword = new ItemModSword("voliteSword", "Volite Sword", JourneyToolMaterial.VOLITE_SWORD);
         kingsSword = new ItemFireHealthSword("kingsSword", "Kings Sword", JourneyToolMaterial.KINGS_SWORD, 1);
         demonicSword = new ItemWitherSword("demonicSword", "Wither Sword", JourneyToolMaterial.DEMONIC_SWORD);
-        vinestrandBlade = new ItemPoisionSword("vinestrandBlade", "Vinestrand Blade", JourneyToolMaterial.VINESTRAND_BLADE);
+        vinestrandBlade = new ItemModSword("vinestrandBlade", "Vinestrand Blade", EnumSwordType.POISON, JourneyToolMaterial.VINESTRAND_BLADE);
         darkPineSword = new ItemWitherSword("darkPineSword", "Dark Pine Sword", JourneyToolMaterial.DARK_PINE_SWORD);
         healersBlade = new ItemHealthSword("healersBlade", "Healers Blade", JourneyToolMaterial.HEALERS_BLADE, 1);
         terronicBlade = new ItemHealthSword("terronicBlade", "Terronic Blade", JourneyToolMaterial.TERRONIC_BLADE, 2);
