@@ -36,7 +36,7 @@ public class ItemModBow extends ItemBow {
     public Item arrowItem;
     public int dur = 18;
     public String ability;
-    protected int damage;
+    protected float damage;
     protected int uses;
     protected int manaUse = 3;
     protected String name;
@@ -44,7 +44,7 @@ public class ItemModBow extends ItemBow {
     private Class<? extends EntityArrow> arrowClass;
 
     
-    public ItemModBow(String name, String properName, int damage, int uses, EntityEssenceArrow.BowEffects effect, int pullbackSpeed) {
+    public ItemModBow(String name, String properName, float damage, int uses, EntityEssenceArrow.BowEffects effect, int pullbackSpeed) {
     	super();
     	this.effect = effect;
     	this.maxStackSize = 1;
