@@ -189,6 +189,7 @@ public class ItemModBow extends ItemBow {
         });
     }
 
+    @Override
     public ItemStack findAmmo(EntityPlayer player) {
         if (this.isArrow(player.getHeldItem(EnumHand.OFF_HAND))) {
             return player.getHeldItem(EnumHand.OFF_HAND);
@@ -212,6 +213,7 @@ public class ItemModBow extends ItemBow {
         }
     }
 
+    @Override
     protected boolean isArrow(ItemStack stack) {
         return stack.getItem() instanceof ItemEssenceArrow;
     }
@@ -240,7 +242,7 @@ public class ItemModBow extends ItemBow {
                     itemstack = new ItemStack(arrowItem);
                 }
 
-				float f = getArrowVelocity(i);
+				float f = getScaledArrowVelocity(i);
 				if ((double) f >= 0.1D) {
 
 					if (!worldIn.isRemote) {
@@ -327,7 +329,7 @@ public class ItemModBow extends ItemBow {
 							}
 							
 							if (effect == effect.ESSENCE_BOW) {
-								if (mana.useEssence(this.manaUse)) {
+								if (mana.getEssenceValue() >= manaUse) {
 									worldIn.spawnEntity(entityarrow);
 								}
 							}
@@ -336,6 +338,10 @@ public class ItemModBow extends ItemBow {
 								worldIn.spawnEntity(entityarrow);
 							}
 						}
+					}
+					
+					if (effect == effect.ESSENCE_BOW) {
+						mana.useEssence(this.manaUse);
 					}
 
 					worldIn.playSound(null, entityplayer.posX, entityplayer.posY, entityplayer.posZ,
