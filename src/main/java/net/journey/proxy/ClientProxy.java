@@ -11,7 +11,6 @@ import net.journey.dimension.boil.BoilSkyRenderer;
 import net.journey.dimension.cloudia.CloudiaSkyRenderer;
 import net.journey.enums.EnumParticlesClasses;
 import net.journey.event.ClientTickEvent;
-import net.journey.event.UpdateCheckerEvent;
 import net.journey.util.gen.lang.LangGeneratorFacade;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
@@ -37,7 +36,6 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void registerClient() {
         NetworkRegistry.INSTANCE.registerGuiHandler(JITL.instance, new GuiHandler());
-        SlayerAPI.registerEventListener(new UpdateCheckerEvent());
     }
 
     @Override
