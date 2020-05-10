@@ -5,8 +5,11 @@ import java.util.Random;
 
 import net.journey.JITL;
 import net.journey.client.ItemDescription;
+import net.journey.client.render.particles.EntityFloroWaterFX;
+import net.journey.client.render.particles.EntityHellstoneFX;
 import net.journey.client.render.particles.EntityModSnowFX;
 import net.journey.client.render.particles.EntityPoisionFX;
+import net.journey.enums.EnumParticlesClasses;
 import net.journey.enums.EnumSwordType;
 import net.journey.init.JourneyTabs;
 import net.journey.init.items.JourneyItems;
@@ -30,6 +33,20 @@ public class ItemModSword extends ItemSword {
 
 	protected JourneyToolMaterial mat;
 	private EnumSwordType type;
+	private float health;
+
+	public ItemModSword(String name, String f, EnumSwordType type, JourneyToolMaterial toolMaterial, float heart) {
+		super(toolMaterial.getToolMaterial());
+		this.type = type;
+		this.health = heart;
+		setTranslationKey(name);
+		mat = toolMaterial;
+		setCreativeTab(JourneyTabs.WEAPONS);
+		JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
+		JourneyItems.items.add(this);
+		setRegistryName(JITL.MOD_ID, name);
+		LangGeneratorFacade.addItemEntry(this, f);
+	}
 
 	public ItemModSword(String name, String f, EnumSwordType type, JourneyToolMaterial toolMaterial) {
 		super(toolMaterial.getToolMaterial());
@@ -44,11 +61,13 @@ public class ItemModSword extends ItemSword {
 	}
 
 	public ItemModSword(String name, String f, JourneyToolMaterial toolMaterial) {
-		this(name, f, null, toolMaterial);
+		this(name, f, null, toolMaterial, 0);
 	}
 
 	@Override
-	public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker) {
+	public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase player) {
+		Random r = new Random();
+		float hearts = player.getHealth();
 		if(type != null) {
 			switch(type) {
 			case FREEZE:
@@ -59,39 +78,69 @@ public class ItemModSword extends ItemSword {
 				target.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.poison, 100, 2)));
 				break;
 			case FIRE:
+				target.setFire(10);
 				break;
 			case FIRE_HEALTH:
-
+				target.setFire(10);
+				if ((hearts >= 1F) & (hearts < 20F)) {
+					player.setHealth(hearts + this.health);
+				}
+				else if(r.nextInt(4) == 0) {
+					player.setHealth(hearts - 10);
+				}
+				player.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.moveSlow, 100, 2)));
 				break;
 			case FIRE_WITHER: 
-
+				target.setFire(10);
+				target.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.wither, 100, 20)));
 				break;
 			case HEALTH:
-
+				if (hearts >= 1F) {
+					player.setHealth(hearts + health);
+				}
+				else if(r.nextInt(2) == 0) {
+					player.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.moveSlow, 100, 2)));
+					player.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.blindness, 100, 2)));
+				}
+				else if(r.nextInt(4) == 0) {
+					player.setHealth(hearts - 4);
+				}
 				break;
 			case NIGHTVISION_HEALTH:
-
+				player.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.nightVision, 1000, 20)));
+				player.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.regeneration, 10, 200)));
 				break;
 			case POISON_HEALTH:
-
+				target.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.poison, 100, 2)));
+				if(hearts >= 1F) {
+					player.setHealth(hearts + this.health);
+				}
+				else if(r.nextInt(2) == 0) {
+					player.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.poison, 100, 2)));
+				}
 				break;
 			case REGEN:
-
+				player.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.regeneration, 100, 1)));
 				break;
 			case STUN:
-
+				target.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.wither, 70, 1)));
+				target.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.harm, 50, 1)));
 				break;
 			case STUN_WITHER:
-
+				target.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.moveSlow, 1000, 200)));
+				target.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.wither, 100, 2)));
 				break;
 			case WITHER:
-
+				target.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.wither, 100, 5)));
+				break;
+			case NIGHTVISION:
+				player.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.nightVision, 10, 2)));
 				break;
 			default: break;
 			}
 			addParticles(target);
 		}
-		return super.hitEntity(stack, target, attacker);
+		return super.hitEntity(stack, target, player);
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -106,33 +155,37 @@ public class ItemModSword extends ItemSword {
 			p = new EntityPoisionFX(hit.world, hit.posX + r.nextFloat() - 0.5F, hit.posY + 0.5D + r.nextFloat(), hit.posZ + r.nextFloat() - 0.5F, 0.0D, 0.0D, 0.0D);
 			break;
 		case FIRE:
+			JITL.proxy.spawnParticle(EnumParticlesClasses.MOD_LAVA, hit.world, hit.posX + r.nextFloat() - 0.5F, hit.posY + 0.5D + r.nextFloat(), hit.posZ + r.nextFloat() - 0.5F, false);
 			break;
 		case FIRE_HEALTH:
-
+			p = new EntityFloroWaterFX(hit.world, hit.posX + r.nextFloat() - 0.5F, hit.posY + 0.5D + r.nextFloat(), hit.posZ + r.nextFloat() - 0.5F, 0.0D, 0.0D, 0.0D);
 			break;
 		case FIRE_WITHER: 
-
+			p = new EntityFloroWaterFX(hit.world, hit.posX + r.nextFloat() - 0.5F, hit.posY + 0.5D + r.nextFloat(), hit.posZ + r.nextFloat() - 0.5F, 0.0D, 0.0D, 0.0D);
 			break;
 		case HEALTH:
-
+			p = new EntityHellstoneFX(hit.world, hit.posX + r.nextFloat() - 0.5F, hit.posY + 0.5D + r.nextFloat(), hit.posZ + r.nextFloat() - 0.5F, 0.0D, 0.0D, 0.0D);
 			break;
 		case NIGHTVISION_HEALTH:
-
+			p = new EntityFloroWaterFX(hit.world, hit.posX + r.nextFloat() - 0.5F, hit.posY + 0.5D + r.nextFloat(), hit.posZ + r.nextFloat() - 0.5F, 0.0D, 0.0D, 0.0D);
 			break;
 		case POISON_HEALTH:
-
+			p = new EntityFloroWaterFX(hit.world, hit.posX + r.nextFloat() - 0.5F, hit.posY + 0.5D + r.nextFloat(), hit.posZ + r.nextFloat() - 0.5F, 0.0D, 0.0D, 0.0D);
 			break;
 		case REGEN:
-
+			p = new EntityHellstoneFX(hit.world, hit.posX + r.nextFloat() - 0.5F, hit.posY + 0.5D + r.nextFloat(), hit.posZ + r.nextFloat() - 0.5F, 0.0D, 0.0D, 0.0D);
 			break;
 		case STUN:
-
+			p = new EntityFloroWaterFX(hit.world, hit.posX + r.nextFloat() - 0.5F, hit.posY + 0.5D + r.nextFloat(), hit.posZ + r.nextFloat() - 0.5F, 0.0D, 0.0D, 0.0D);
 			break;
 		case STUN_WITHER:
-
+			p = new EntityFloroWaterFX(hit.world, hit.posX + r.nextFloat() - 0.5F, hit.posY + 0.5D + r.nextFloat(), hit.posZ + r.nextFloat() - 0.5F, 0.0D, 0.0D, 0.0D);
 			break;
 		case WITHER:
-
+			p = new EntityFloroWaterFX(hit.world, hit.posX + r.nextFloat() - 0.5F, hit.posY + 0.5D + r.nextFloat(), hit.posZ + r.nextFloat() - 0.5F, 0.0D, 0.0D, 0.0D);
+			break;
+		case NIGHTVISION:
+			p = new EntityFloroWaterFX(hit.world, hit.posX + r.nextFloat() - 0.5F, hit.posY + 0.5D + r.nextFloat(), hit.posZ + r.nextFloat() - 0.5F, 0.0D, 0.0D, 0.0D);
 			break;
 		default:
 			break;
@@ -152,7 +205,7 @@ public class ItemModSword extends ItemSword {
 	@Override
 	public boolean getIsRepairable(ItemStack i, ItemStack i1) {
 		boolean canRepair = mat.getRepairItem() != null;
-		if (canRepair) return mat.getRepairItem() == i1.getItem() || super.getIsRepairable(i, i1);
+		if(canRepair) return mat.getRepairItem() == i1.getItem() || super.getIsRepairable(i, i1);
 		return super.getIsRepairable(i, i1);
 	}
 
@@ -169,33 +222,42 @@ public class ItemModSword extends ItemSword {
 				infoList.add(SlayerAPI.Colour.DARK_GREEN + "On hit: Poisions for 6 seconds");
 				break;
 			case FIRE:
+				infoList.add(SlayerAPI.Colour.DARK_RED + "On hit: Burns for 10 seconds");
 				break;
 			case FIRE_HEALTH:
-
+				infoList.add(SlayerAPI.Colour.DARK_GREEN + "On hit: Sets enemies ablaze and heals player " + health / 2 + " heart(s)");
+				infoList.add(SlayerAPI.Colour.RED + "Drawback: slows the user on hit");
+				infoList.add(SlayerAPI.Colour.RED + "Random chance to steal 5 full hearts from the user on hit");
 				break;
 			case FIRE_WITHER: 
-
+				infoList.add(SlayerAPI.Colour.DARK_GREEN + "On hit: Withers and sets enemies ablaze");
 				break;
 			case HEALTH:
-
+				infoList.add(SlayerAPI.Colour.RED + "On hit: Heals player " + health / 2 + " heart(s)");
+				infoList.add(SlayerAPI.Colour.RED + "Drawback: Random chance to slow and blind the user on hit");
+				infoList.add(SlayerAPI.Colour.RED + "Random chance to steal 2 full hearts from the user on hit");
 				break;
 			case NIGHTVISION_HEALTH:
-
+				infoList.add(SlayerAPI.Colour.DARK_GREEN + "On hit: Poisons and Withers enemies");
 				break;
 			case POISON_HEALTH:
-
+				infoList.add(SlayerAPI.Colour.DARK_GREEN + "On hit: Poisons enemies and heals player " + health / 2 + " heart(s)");
+				infoList.add(SlayerAPI.Colour.RED + "Drawback: Random chance to poison the user on hit");
 				break;
 			case REGEN:
-
+				infoList.add(SlayerAPI.Colour.RED + "On hit: Grants player regeneration");
 				break;
 			case STUN:
-
+				infoList.add(SlayerAPI.Colour.DARK_GREEN + "On hit: Harms and stuns ememies");
 				break;
 			case STUN_WITHER:
-
+				infoList.add(SlayerAPI.Colour.DARK_GREEN + "On hit: Withers and stuns ememies");
 				break;
 			case WITHER:
-
+				infoList.add(SlayerAPI.Colour.DARK_GRAY + LangHelper.setWitherSword(6));
+				break;
+			case NIGHTVISION:
+				infoList.add(SlayerAPI.Colour.DARK_GREEN + "On hit: Grants the player Nightvision");
 				break;
 			default: break;
 			}
