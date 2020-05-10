@@ -23,12 +23,14 @@ import java.util.List;
 public class ItemThrowableArrow extends ItemMod {
 
     String string;
+    private double damage;
     private Class<? extends EntityTippedArrow> entity;
 
-    public ItemThrowableArrow(String name, String f, Class<? extends EntityTippedArrow> entity, String description) {
+    public ItemThrowableArrow(String name, String f, double damage, Class<? extends EntityTippedArrow> entity, String description) {
         super(name, f);
         this.entity = entity;
         this.string = description;
+        this.damage = damage;
         setCreativeTab(JourneyTabs.WEAPONS);
     }
 
@@ -39,6 +41,7 @@ public class ItemThrowableArrow extends ItemMod {
             if (!world.isRemote) {
                 EntityTippedArrow t = entity.getConstructor(World.class, EntityLivingBase.class).newInstance(world, player);
                 t.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F, 1.0F);
+                t.setDamage(damage);
                 world.spawnEntity(t);
                 if (!player.capabilities.isCreativeMode) stack.shrink(1);
                 world.playSound(null, player.getPosition(), SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.MASTER, 1, 1);
@@ -53,7 +56,7 @@ public class ItemThrowableArrow extends ItemMod {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack i, World worldIn, List<String> l, ITooltipFlag flagIn) {
         ItemDescription.addInformation(i, l);
-        l.add(SlayerAPI.Colour.GOLD + "5 Ranged Damage");
+        l.add(SlayerAPI.Colour.GOLD + damage * 2 + " Ranged Damage");
         l.add(SlayerAPI.Colour.RED + "On hit: " + string);
     }
 }
