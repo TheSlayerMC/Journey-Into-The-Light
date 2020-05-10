@@ -104,6 +104,14 @@ entity.journey.roc.name=Roc
 entity.journey.woodpecker.name=Woodpecker
 entity.journey.cloudflyer.name=Cloud Flyer
 
+msg.journey.current_version=Current version: %s
+msg.journey.cant_get_version=Unable to get latest version. Check your internet connection.
+msg.journey.up_to_date=Your version is up to date!
+msg.journey.update_available=Update is available! Latest version: %s
+msg.journey.update_link.base=You can get it %s!
+msg.journey.update_link.link_word=here
+msg.journey.twitter_link=Follow %s on twitter for update teasers.
+
 #MARK AUTO GEN START
 
 #CreativeTabs

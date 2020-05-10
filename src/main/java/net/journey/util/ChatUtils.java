@@ -12,7 +12,11 @@ import java.net.URISyntaxException;
 
 public class ChatUtils {
 	public static void send(EntityPlayer player, String msg) {
-		player.sendMessage(new TextComponentString(msg));
+		send(player, new TextComponentString(msg));
+	}
+
+	public static void send(EntityPlayer player, ITextComponent msg) {
+		player.sendMessage(msg);
 	}
 
 	public static void sendColored(EntityPlayer player, TextFormatting color, String msg) {
