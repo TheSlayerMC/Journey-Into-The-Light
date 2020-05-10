@@ -36,8 +36,16 @@ public class JourneyRecipes {
 		GENERATOR = gen;
 	}
 
-	// shaped recipes will be applied next launch after being generated
 	public static void init() {
+		if (GENERATOR != null) {
+			generateRecipes();
+		}
+
+		initFurnaceRecipes();
+	}
+
+	// will be applied next launch after being generated
+	public static void generateRecipes() {
 		addShapedRecipe(JourneyBlocks.greenGemBlock, "iii", "iii", "iii", 'i', JourneyItems.greenGem);
 		addShapedRecipe(JourneyBlocks.purpleGemBlock, "iii", "iii", "iii", 'i', JourneyItems.purpleGem);
 		addShapedRecipe(JourneyBlocks.blueGemBlock, "iii", "iii", "iii", 'i', JourneyItems.blueGem);
@@ -231,9 +239,7 @@ public class JourneyRecipes {
 		add2x2CompactingRecipes(JourneyBlocks.smithstone, JourneyItems.smithstone, true);
 		add2x2CompactingRecipes(JourneyBlocks.bleedstone, JourneyItems.bleedstone, true);
 
-		if (GENERATOR != null) {
-			GENERATOR.generateConstants();
-		}
+		GENERATOR.generateConstants();
 	}
 
 	public static void initFurnaceRecipes() {
