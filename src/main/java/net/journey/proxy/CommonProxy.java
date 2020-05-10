@@ -9,6 +9,7 @@ import net.journey.dimension.nether.JNWorldGenerator;
 import net.journey.dimension.nether.biomes.BiomeRegister;
 import net.journey.enums.EnumParticlesClasses;
 import net.journey.event.ArmorAbilityEvent;
+import net.journey.event.BowZoomEvent;
 import net.journey.event.NetherEvent;
 import net.journey.event.PlayerEvent;
 import net.journey.event.VanillaFixEvent;
@@ -46,39 +47,28 @@ import net.slayer.api.SlayerAPI;
 public class CommonProxy {
 
     @SubscribeEvent
-    public static void registerBlocks(RegistryEvent.Register<Block> event) {
-    }
+    public static void registerBlocks(RegistryEvent.Register<Block> event) { }
 
     @SubscribeEvent
-    public static void registerItems(RegistryEvent.Register<Item> event) {
-    }
+    public static void registerItems(RegistryEvent.Register<Item> event) { }
 
-    public void registerClient() {
-    }
+    public void registerClient() { }
 
-    public void clientInit(FMLInitializationEvent event) {
-    }
+    public void clientInit(FMLInitializationEvent event) { }
 
-    public void clientPreInit() {
-    }
+    public void clientPreInit() { }
 
-    public void clientPostInit() {
-    }
+    public void clientPostInit() { }
 
-    public void registerSounds() {
-    }
+    public void registerSounds() { }
 
-    public void registerTEISR() {
-    }
+    public void registerTEISR() { }
 
-    public void spawnParticle(EnumParticlesClasses particle, World worldObj, double x, double y, double z, boolean b) {
-    }
+    public void spawnParticle(EnumParticlesClasses particle, World worldObj, double x, double y, double z, boolean b) { }
 
-    public void spawnOreParticle(World worldObj, double x, double y, double z, float r, float g, float b) {
-    }
+    public void spawnOreParticle(World worldObj, double x, double y, double z, float r, float g, float b) { }
 
-    public void spawnParticle(EnumParticlesClasses particle, World worldObj, double x, double y, double z, double x1, double y2, double z2) {
-    }
+    public void spawnParticle(EnumParticlesClasses particle, World worldObj, double x, double y, double z, double x1, double y2, double z2) { }
 
     public EntityPlayer getPlayer() {
         return null;
@@ -109,6 +99,7 @@ public class CommonProxy {
         SlayerAPI.registerEventListener(new JourneyFuelHandler());
         SlayerAPI.registerEventListener(new VanillaFixEvent());
         SlayerAPI.registerEventListener(new JourneyEnchantments());
+        SlayerAPI.registerEventListener(new BowZoomEvent());
         MinecraftForge.addGrassSeed(new ItemStack(JourneyCrops.tomatoSeeds), 5);
         //FMLCommonHandler.instance().bus().register(new JourneyAdvancementEvent());
         DimensionHelper.init();
