@@ -18,7 +18,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.EnumMaterialTypes;
-import net.slayer.api.SlayerAPI;
 
 import java.util.Random;
 
@@ -38,7 +37,6 @@ public class BlockDarkbloom extends Block {
 	    setRegistryName(JITL.MOD_ID, name);
 	    LangGeneratorFacade.addBlockEntry(this, f);
 	    JourneyBlocks.blocks.add(this);
-	    JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
 
 	    JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
     }

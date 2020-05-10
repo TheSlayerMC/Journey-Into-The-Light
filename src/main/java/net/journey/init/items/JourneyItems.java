@@ -1,21 +1,11 @@
 package net.journey.init.items;
 
 import net.journey.init.JourneySounds;
-import net.journey.items.*;
-import net.journey.items.interactive.ItemAddEssence;
-import net.journey.items.interactive.ItemAddXP;
-import net.journey.items.interactive.ItemAncientCatalyst;
-import net.journey.items.interactive.ItemAncientPiece;
-import net.journey.items.interactive.ItemCrafting;
-import net.journey.items.interactive.ItemDarkGem;
-import net.journey.items.interactive.ItemDemonicEye;
-import net.journey.items.interactive.ItemEternalNight;
-import net.journey.items.interactive.ItemLootPouch;
-import net.journey.items.interactive.ItemNetherBossSpawner;
-import net.journey.items.interactive.ItemPresent;
-import net.journey.items.interactive.ItemRestoreHealth;
-import net.journey.items.interactive.ItemSentryEye;
-import net.journey.items.interactive.ItemSpecificDimensionSpawner;
+import net.journey.items.ItemEssenceArrow;
+import net.journey.items.ItemEssencePotion;
+import net.journey.items.ItemFlameCoin;
+import net.journey.items.ItemModRecord;
+import net.journey.items.interactive.*;
 import net.journey.util.Config;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
@@ -87,8 +77,7 @@ public class JourneyItems {
     public static ToolMaterial ironMulti = addToolMaterial(251, 4F, 5F, false);
     public static ToolMaterial goldMulti = addToolMaterial(33, 5F, 5F, false);
     public static ToolMaterial diamondMulti = addToolMaterial(1562, 6F, 5F, false);
-    public static ArrayList<String> itemNames = new ArrayList<String>();//TODO is it really needed?
-    public static ArrayList<Item> items = new ArrayList<Item>();
+    public static ArrayList<Item> items = new ArrayList<>();
     public static Item hellstoneIngot;
     public static Item shadiumIngot;
     public static Item celestiumIngot;

@@ -1,7 +1,6 @@
 package net.journey.items;
 
 import net.journey.init.JourneyTabs;
-import net.journey.init.items.JourneyItems;
 import net.journey.util.PotionEffects;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
@@ -10,7 +9,6 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.slayer.api.SlayerAPI;
 import net.slayer.api.item.ItemModFood;
 
 public class ItemGoldenFood extends ItemModFood {
@@ -21,7 +19,6 @@ public class ItemGoldenFood extends ItemModFood {
         super(name, actual, heal, sat, wolf);
         op = isOP;
         setTranslationKey(name);
-        JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
         setCreativeTab(JourneyTabs.CROPS);
         this.setAlwaysEdible();
     }

@@ -15,7 +15,6 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.slayer.api.SlayerAPI;
 
 import java.util.List;
 
@@ -28,7 +27,6 @@ public class ItemModFood extends ItemFood {
         super(food, sat, wolfFood);
         setTranslationKey(name);
         setCreativeTab(JourneyTabs.CROPS);
-        JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
         JourneyItems.items.add(this);
         setRegistryName(JITL.MOD_ID, name);
         LangGeneratorFacade.addItemEntry(this, f);
@@ -48,7 +46,6 @@ public class ItemModFood extends ItemFood {
         super(heal, sat);
         setTranslationKey(name);
         JourneyItems.items.add(this);
-        JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
         setCreativeTab(JourneyTabs.CROPS);
         setRegistryName(JITL.MOD_ID, name);
         LangGeneratorFacade.addItemEntry(this, actual);

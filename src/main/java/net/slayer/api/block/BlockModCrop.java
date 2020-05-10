@@ -21,7 +21,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.slayer.api.SlayerAPI;
 
 import java.util.Random;
 
@@ -40,7 +39,6 @@ public abstract class BlockModCrop extends BlockBush implements IGrowable {
         this.setSoundType(SoundType.PLANT);
         setTranslationKey(name);
         JourneyBlocks.blocks.add(this);
-        JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
         setRegistryName(JITL.MOD_ID, name);
         this.disableStats();
 

@@ -7,7 +7,6 @@ import net.journey.util.gen.lang.LangGeneratorFacade;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemSeeds;
-import net.slayer.api.SlayerAPI;
 
 public class ItemModSeeds extends ItemSeeds {
 
@@ -16,7 +15,6 @@ public class ItemModSeeds extends ItemSeeds {
         setTranslationKey(name);
         setCreativeTab(JourneyTabs.CROPS);
         JourneyItems.items.add(this);
-        JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
         setRegistryName(JITL.MOD_ID, name);
 
         LangGeneratorFacade.addItemEntry(this, f);

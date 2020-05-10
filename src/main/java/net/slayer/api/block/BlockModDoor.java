@@ -14,7 +14,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.slayer.api.SlayerAPI;
 
 import java.util.Random;
 
@@ -26,7 +25,6 @@ public class BlockModDoor extends BlockDoor {
         setTranslationKey(name);
         setHardness(hardness);
         JourneyBlocks.blocks.add(this);
-        JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
         setRegistryName(JITL.MOD_ID, name);
         JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
     }

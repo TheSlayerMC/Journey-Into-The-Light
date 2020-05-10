@@ -1,8 +1,5 @@
 package net.slayer.api.item;
 
-import java.util.List;
-import java.util.Random;
-
 import net.journey.JITL;
 import net.journey.client.ItemDescription;
 import net.journey.client.render.particles.EntityFloroWaterFX;
@@ -29,6 +26,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.SlayerAPI;
 
+import java.util.List;
+import java.util.Random;
+
 public class ItemModSword extends ItemSword {
 
 	protected JourneyToolMaterial mat;
@@ -42,7 +42,6 @@ public class ItemModSword extends ItemSword {
 		setTranslationKey(name);
 		mat = toolMaterial;
 		setCreativeTab(JourneyTabs.WEAPONS);
-		JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
 		JourneyItems.items.add(this);
 		setRegistryName(JITL.MOD_ID, name);
 		LangGeneratorFacade.addItemEntry(this, f);
@@ -54,7 +53,6 @@ public class ItemModSword extends ItemSword {
 		setTranslationKey(name);
 		mat = toolMaterial;
 		setCreativeTab(JourneyTabs.WEAPONS);
-		JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
 		JourneyItems.items.add(this);
 		setRegistryName(JITL.MOD_ID, name);
 		LangGeneratorFacade.addItemEntry(this, f);

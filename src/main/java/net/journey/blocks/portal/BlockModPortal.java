@@ -24,7 +24,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.slayer.api.SlayerAPI;
 
 import java.util.Random;
 
@@ -43,7 +42,6 @@ public abstract class BlockModPortal extends BlockBreakable {
 	    this.setTickRandomly(true);
 	    setCreativeTab(JourneyTabs.PORTAL_BLOCKS);
 	    setTranslationKey(name);
-	    JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
 	    JourneyBlocks.blocks.add(this);
 	    setRegistryName(JITL.MOD_ID, name);
 	    LangGeneratorFacade.addBlockEntry(this, finalName);

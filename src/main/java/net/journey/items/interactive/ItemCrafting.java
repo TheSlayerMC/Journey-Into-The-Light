@@ -13,7 +13,6 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
-import net.slayer.api.SlayerAPI;
 
 public class ItemCrafting extends Item {
 
@@ -29,7 +28,6 @@ public class ItemCrafting extends Item {
     public ItemCrafting(String name, String finalName, CreativeTabs tab) {
         setTranslationKey(name);
         JourneyItems.items.add(this);
-        JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
         setCreativeTab(JourneyTabs.UTIL);
         setRegistryName(JITL.MOD_ID, name);
         LangGeneratorFacade.addItemEntry(this, finalName);

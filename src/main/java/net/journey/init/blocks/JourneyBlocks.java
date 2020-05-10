@@ -27,8 +27,6 @@ import net.slayer.api.block.*;
 import java.util.ArrayList;
 
 public class JourneyBlocks {
-
-    public static ArrayList<String> blockName = new ArrayList<>();//TODO is it really needed?
     public static ArrayList<Block> blocks = new ArrayList<>();
 
     public static BlockMod sapphireOre;

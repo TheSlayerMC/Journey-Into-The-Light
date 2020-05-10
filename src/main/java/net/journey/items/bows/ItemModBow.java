@@ -5,10 +5,8 @@ import net.journey.client.ItemDescription;
 import net.journey.client.server.EssenceProvider;
 import net.journey.client.server.IEssence;
 import net.journey.entity.projectile.arrow.EntityEssenceArrow;
-import net.journey.init.JourneySounds;
 import net.journey.init.JourneyTabs;
 import net.journey.init.items.JourneyItems;
-import net.journey.init.items.JourneyWeapons;
 import net.journey.items.ItemEssenceArrow;
 import net.journey.util.gen.lang.LangGeneratorFacade;
 import net.minecraft.client.util.ITooltipFlag;
@@ -20,17 +18,9 @@ import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Enchantments;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.EnumAction;
-import net.minecraft.item.IItemPropertyGetter;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBow;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.stats.StatList;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -68,7 +58,6 @@ public class ItemModBow extends ItemBow {
         this.name = name;
         setTranslationKey(name.toLowerCase());
         setCreativeTab(JourneyTabs.WEAPONS);
-        JourneyItems.itemNames.add(SlayerAPI.PREFIX + name.toLowerCase());
         JourneyItems.items.add(this);
         setRegistryName(JITL.MOD_ID, name.toLowerCase());
         LangGeneratorFacade.addItemEntry(this, properName);
@@ -88,7 +77,6 @@ public class ItemModBow extends ItemBow {
         this.name = name;
         setTranslationKey(name.toLowerCase());
         setCreativeTab(JourneyTabs.WEAPONS);
-        JourneyItems.itemNames.add(SlayerAPI.PREFIX + name.toLowerCase());
         JourneyItems.items.add(this);
         setRegistryName(JITL.MOD_ID, name.toLowerCase());
         LangGeneratorFacade.addItemEntry(this, properName);
@@ -109,7 +97,6 @@ public class ItemModBow extends ItemBow {
         this.name = name;
         setTranslationKey(name.toLowerCase());
         setCreativeTab(JourneyTabs.WEAPONS);
-        JourneyItems.itemNames.add(SlayerAPI.PREFIX + name.toLowerCase());
         JourneyItems.items.add(this);
         setRegistryName(JITL.MOD_ID, name.toLowerCase());
         LangGeneratorFacade.addItemEntry(this, f);
@@ -129,7 +116,6 @@ public class ItemModBow extends ItemBow {
         this.name = name;
         setTranslationKey(name.toLowerCase());
         setCreativeTab(JourneyTabs.WEAPONS);
-        JourneyItems.itemNames.add(SlayerAPI.PREFIX + name.toLowerCase());
         JourneyItems.items.add(this);
         setRegistryName(JITL.MOD_ID, name.toLowerCase());
         LangGeneratorFacade.addItemEntry(this, f);
@@ -145,7 +131,6 @@ public class ItemModBow extends ItemBow {
         this.name = name;
         setTranslationKey(name.toLowerCase());
         setCreativeTab(tab);
-        JourneyItems.itemNames.add(SlayerAPI.PREFIX + name.toLowerCase());
         JourneyItems.items.add(this);
         setRegistryName(JITL.MOD_ID, name.toLowerCase());
         LangGeneratorFacade.addItemEntry(this, finalName);
@@ -195,19 +180,19 @@ public class ItemModBow extends ItemBow {
             return player.getHeldItem(EnumHand.OFF_HAND);
             
         } else if (this.isArrow(player.getHeldItem(EnumHand.MAIN_HAND))) {
-            return player.getHeldItem(EnumHand.MAIN_HAND);
-            
-        } else if (effect == effect.ESSENCE_BOW) {
-            return ItemStack.EMPTY;
-            
-        } else {
-            for (int i = 0; i < player.inventory.getSizeInventory(); ++i) {
-                ItemStack itemstack = player.inventory.getStackInSlot(i);
+	        return player.getHeldItem(EnumHand.MAIN_HAND);
 
-                if (this.isArrow(itemstack)) {
-                    return itemstack;
-                }
-            }
+        } else if (effect == EntityEssenceArrow.BowEffects.ESSENCE_BOW) {
+	        return ItemStack.EMPTY;
+
+        } else {
+	        for (int i = 0; i < player.inventory.getSizeInventory(); ++i) {
+		        ItemStack itemstack = player.inventory.getStackInSlot(i);
+
+		        if (this.isArrow(itemstack)) {
+			        return itemstack;
+		        }
+	        }
 
             return ItemStack.EMPTY;
         }
@@ -324,23 +309,21 @@ public class ItemModBow extends ItemBow {
 
 							if (flag || entityplayer.capabilities.isCreativeMode
 									&& (itemstack.getItem() == Items.SPECTRAL_ARROW
-											|| itemstack.getItem() == Items.TIPPED_ARROW)) {
+									|| itemstack.getItem() == Items.TIPPED_ARROW)) {
 								entityarrow.pickupStatus = EntityArrow.PickupStatus.CREATIVE_ONLY;
 							}
-							
-							if (effect == effect.ESSENCE_BOW) {
+
+							if (effect == EntityEssenceArrow.BowEffects.ESSENCE_BOW) {
 								if (mana.getEssenceValue() >= manaUse) {
 									worldIn.spawnEntity(entityarrow);
 								}
-							}
-
-							else if (effect != effect.ESSENCE_BOW) {
+							} else if (effect != EntityEssenceArrow.BowEffects.ESSENCE_BOW) {
 								worldIn.spawnEntity(entityarrow);
 							}
 						}
 					}
-					
-					if (effect == effect.ESSENCE_BOW) {
+
+					if (effect == EntityEssenceArrow.BowEffects.ESSENCE_BOW) {
 						mana.useEssence(this.manaUse);
 					}
 
@@ -407,8 +390,8 @@ public class ItemModBow extends ItemBow {
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-        ItemStack itemstack = playerIn.getHeldItem(handIn);
-        boolean flag = !this.findAmmo(playerIn).isEmpty() || effect == effect.ESSENCE_BOW;
+	    ItemStack itemstack = playerIn.getHeldItem(handIn);
+	    boolean flag = !this.findAmmo(playerIn).isEmpty() || effect == EntityEssenceArrow.BowEffects.ESSENCE_BOW;
 
         ActionResult<ItemStack> ret = net.minecraftforge.event.ForgeEventFactory.onArrowNock(itemstack, worldIn,
                 playerIn, handIn, flag);

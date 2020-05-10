@@ -7,7 +7,6 @@ import net.journey.init.items.JourneyItems;
 import net.minecraft.block.BlockBookshelf;
 import net.minecraft.block.SoundType;
 import net.minecraft.item.ItemBlock;
-import net.slayer.api.SlayerAPI;
 
 public class BlockModBookshelf extends BlockBookshelf {
 
@@ -15,7 +14,6 @@ public class BlockModBookshelf extends BlockBookshelf {
         setTranslationKey(name);
         setCreativeTab(JourneyTabs.BLOCKS);
         setSoundType(SoundType.WOOD);
-        JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
         JourneyBlocks.blocks.add(this);
         setRegistryName(JITL.MOD_ID, name);
         JourneyItems.items.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));

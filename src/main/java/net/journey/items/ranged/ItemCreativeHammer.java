@@ -40,7 +40,6 @@ public class ItemCreativeHammer extends ItemSword {
         setTranslationKey(name);
         mat = toolMaterial;
         setCreativeTab(JourneyTabs.WEAPONS);
-        JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
         JourneyItems.items.add(this);
         setRegistryName(JITL.MOD_ID, name);
         LangGeneratorFacade.addItemEntry(this, f);

@@ -34,7 +34,6 @@ public class ItemHealth extends ItemFood {
         setAlwaysEdible();
         setTranslationKey(name);
         setCreativeTab(JourneyTabs.CROPS);
-        JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
         JourneyItems.items.add(this);
         setRegistryName(JITL.MOD_ID, name);
         LangGeneratorFacade.addItemEntry(this, actual);

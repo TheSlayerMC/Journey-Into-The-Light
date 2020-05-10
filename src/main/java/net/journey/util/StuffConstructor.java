@@ -7,7 +7,6 @@ import net.journey.util.gen.lang.LangGeneratorFacade;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemBlock;
-import net.slayer.api.SlayerAPI;
 
 public class StuffConstructor {
     public static void regAndSetupBlock(Block block, String name, String enName, CreativeTabs tab) {
@@ -15,7 +14,6 @@ public class StuffConstructor {
                 .setRegistryName(JITL.MOD_ID, name)
                 .setTranslationKey(name);
 
-        JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
         JourneyBlocks.blocks.add(block);
 
         JourneyItems.items.add(new ItemBlock(block).setRegistryName(block.getRegistryName()));

@@ -24,7 +24,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.slayer.api.SlayerAPI;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -45,7 +44,6 @@ public class ItemModRecord extends ItemRecord {
         setRegistryName(JITL.MOD_ID, name + "Record");
         LangGeneratorFacade.addItemEntry(this, finalName);
         setCreativeTab(JourneyTabs.UTIL);
-        JourneyItems.itemNames.add(SlayerAPI.PREFIX + name + "Record");
         this.sound = sound;
         this.maxStackSize = 1;
         RECORDS.put(name, this);

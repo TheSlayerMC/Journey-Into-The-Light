@@ -19,7 +19,6 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.slayer.api.SlayerAPI;
 
 import java.util.List;
 
@@ -38,7 +37,6 @@ public class ItemMod extends Item {
 
         setTranslationKey(name.toLowerCase());
         setCreativeTab(tab);
-        JourneyItems.itemNames.add(SlayerAPI.PREFIX + name.toLowerCase());
         JourneyItems.items.add(this);
         setRegistryName(JITL.MOD_ID, name.toLowerCase());
 

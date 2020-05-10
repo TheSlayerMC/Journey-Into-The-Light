@@ -9,7 +9,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockFence;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemBlock;
-import net.slayer.api.SlayerAPI;
 
 public class BlockModFence extends BlockFence {
 
@@ -22,7 +21,6 @@ public class BlockModFence extends BlockFence {
         setCreativeTab(JourneyTabs.BLOCKS);
         if (light) setLightLevel(0.5F);
         setHardness(block.getBlockHardness(null, null, null));
-        JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
         JourneyBlocks.blocks.add(this);
         setRegistryName(JITL.MOD_ID, name);
         LangGeneratorFacade.addBlockEntry(this, finalName);

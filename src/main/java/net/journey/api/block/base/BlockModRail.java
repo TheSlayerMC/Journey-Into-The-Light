@@ -20,7 +20,6 @@ public class BlockModRail extends BlockRail {
         setCreativeTab(JourneyTabs.BLOCKS);
         setTranslationKey(SlayerAPI.PREFIX + name);
         JourneyBlocks.blocks.add(this);
-        JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
         power = isPowered;
 	    this.speed = speed;
 	    setRegistryName(JITL.MOD_ID, name);

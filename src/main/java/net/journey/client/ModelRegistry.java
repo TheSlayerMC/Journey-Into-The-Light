@@ -20,8 +20,9 @@ public class ModelRegistry {
 
 	@SubscribeEvent
 	public static void onModelRegEvent(ModelRegistryEvent event) {
-		for (Item i : JourneyItems.items)
+		for (Item i : JourneyItems.items) {
 			ModelLoader.setCustomModelResourceLocation(i, 0, new ModelResourceLocation(i.getRegistryName(), "inventory"));
+		}
 
 		for (Block b : JourneyBlocks.blocks) {
 			if (b instanceof IHasTeisr) {

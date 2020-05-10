@@ -51,7 +51,6 @@ public class ItemModArmor extends ItemArmor implements ISpecialArmor {
 		setArmorType(armorMaterial.getType(), armorType);
 		setCreativeTab(JourneyTabs.ARMOR);
 		setTranslationKey(this.name);
-		JourneyItems.itemNames.add(SlayerAPI.PREFIX + armorMaterial.getType().toLowerCase());
 		JourneyItems.items.add(this);
 		setRegistryName(JITL.MOD_ID, this.name);
 

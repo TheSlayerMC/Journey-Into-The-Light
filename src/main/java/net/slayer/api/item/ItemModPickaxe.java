@@ -26,7 +26,6 @@ public class ItemModPickaxe extends ItemPickaxe {
         setTranslationKey(name);
         setCreativeTab(JourneyTabs.TOOLS);
         setHarvestLevel("pickaxe", tool.getHarvestLevel());
-        JourneyItems.itemNames.add(SlayerAPI.PREFIX + name);
         JourneyItems.items.add(this);
         setRegistryName(JITL.MOD_ID, name);
 

@@ -8,7 +8,6 @@ import net.journey.util.gen.lang.LangGeneratorFacade;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.item.ItemBlock;
-import net.slayer.api.SlayerAPI;
 
 public class BlockModStairs extends BlockStairs {
 
@@ -21,7 +20,6 @@ public class BlockModStairs extends BlockStairs {
         setTranslationKey(name);
         if (light) setLightLevel(0.5F);
         this.setLightOpacity(1);
-        JourneyBlocks.blockName.add(SlayerAPI.PREFIX + name);
         JourneyBlocks.blocks.add(this);
         setRegistryName(JITL.MOD_ID, name);
 
