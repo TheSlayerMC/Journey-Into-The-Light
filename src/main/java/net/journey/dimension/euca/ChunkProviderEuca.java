@@ -4,9 +4,12 @@ import net.journey.dimension.euca.gen.WorldGenEucaPumpkin;
 import net.journey.dimension.euca.gen.WorldGenEucaSphere;
 import net.journey.dimension.euca.gen.WorldGenEucaWater;
 import net.journey.dimension.euca.gen.WorldGenSmeltery;
+import net.journey.dimension.euca.gen.WorldGenTallGoldenStalks;
 import net.journey.dimension.euca.gen.dungeon.EucaSmallSphereDungeon;
 import net.journey.dimension.euca.gen.trees.*;
+import net.journey.dimension.overworld.gen.WorldGenModFlower;
 import net.journey.init.blocks.JourneyBlocks;
+import net.journey.util.RandHelper;
 import net.journey.util.handler.Helper;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -23,6 +26,7 @@ import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.NoiseGeneratorPerlin;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.event.ForgeEventFactory;
+import net.slayer.api.block.BlockModFlower;
 import net.slayer.api.worldgen.WorldGenAPI;
 
 import java.util.List;
@@ -287,6 +291,12 @@ public class ChunkProviderEuca implements IChunkGenerator {
 				treestall[rand.nextInt(treestall.length)].generate(worldObj, rand, new BlockPos(randX, randY, randZ));
 			}
 		}
+		
+        for (i = 0; i < 15; i++) {
+			BlockModFlower flowers = RandHelper.chooseEqual(rand, JourneyBlocks.goldenBloom, JourneyBlocks.goldenBulb, JourneyBlocks.goldenStalks);
+            new WorldGenModFlower(flowers, JourneyBlocks.eucaGrass).generate(worldObj, rand, chunkStart);
+            new WorldGenTallGoldenStalks().generate(worldObj, rand, chunkStart);
+        }
 
 		for (times = 0; times < 1; times++) {
 			pumpkin.generate(worldObj, rand, chunkStart);
@@ -300,7 +310,7 @@ public class ChunkProviderEuca implements IChunkGenerator {
 			sphere.generate(worldObj, rand, new BlockPos(x1, this.rand.nextInt(120) + 4, z1));
 		}
 		
-		if(rand.nextInt(128) == 0) {
+		if(rand.nextInt(256) == 0) {
 			smallsphere.generate(worldObj, rand, new BlockPos(x1, this.rand.nextInt(120) + 4, z1));
 		}
 

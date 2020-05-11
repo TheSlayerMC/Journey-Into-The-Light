@@ -36,7 +36,7 @@ public class ItemModBow extends ItemBow {
     public Item arrowItem;
     public int dur = 18;
     public String ability;
-    protected int damage;
+    protected float damage;
     protected int uses;
     protected int manaUse = 3;
     protected String name;
@@ -44,7 +44,7 @@ public class ItemModBow extends ItemBow {
     private Class<? extends EntityArrow> arrowClass;
 
     
-    public ItemModBow(String name, String properName, int damage, int uses, EntityEssenceArrow.BowEffects effect, int pullbackSpeed) {
+    public ItemModBow(String name, String properName, float damage, int uses, EntityEssenceArrow.BowEffects effect, int pullbackSpeed) {
     	super();
     	this.effect = effect;
     	this.maxStackSize = 1;
@@ -370,6 +370,7 @@ public class ItemModBow extends ItemBow {
         ItemDescription.addInformation(stack, list);
         //list.add("Ammo: " + StatCollector.translateToLocal(arrowItem.getTranslationKey() + ".name"));
         list.add("Damage: " + SlayerAPI.Colour.GOLD + damage + " - " + SlayerAPI.Colour.GOLD + damage * 4);
+        list.add("Pull Back Speed: " + SlayerAPI.Colour.GOLD + (float)DEFAULT_MAX_USE_DURATION / (float)this.maxUseDuration);
         if(effect == EntityEssenceArrow.BowEffects.DARKNESS_BOW) {
         	list.add(SlayerAPI.Colour.DARK_GRAY + "Ability: Withers foe");
         }
