@@ -1,11 +1,17 @@
 package net.journey.blocks.containers;
 
 import net.journey.JITL;
+import net.journey.blocks.BlockAncientCatalyst;
+import net.journey.blocks.BlockAncientSocket;
 import net.journey.blocks.tileentity.TileEntitySummoningTable;
 import net.journey.client.handler.GuiHandler;
 import net.journey.init.JourneyTabs;
 import net.journey.init.blocks.JourneyBlocks;
+import net.minecraft.block.state.BlockWorldState;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.block.state.pattern.BlockPattern;
+import net.minecraft.block.state.pattern.BlockStateMatcher;
+import net.minecraft.block.state.pattern.FactoryBlockPattern;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.Item;
@@ -27,12 +33,89 @@ import net.slayer.api.entity.tileentity.container.BlockModContainer;
 
 import java.util.Random;
 
+import com.google.common.base.Predicates;
+
 public class BlockSummoningTable extends BlockModContainer {
 
+	private static BlockPattern firstLayer;
+	private static BlockPattern secondLayer;
+	private static BlockPattern thirdLayer;
+	private static BlockPattern fourthLayer;
+	private static BlockPattern fifthLayer;
+	
 	public BlockSummoningTable(String name, String f) {
         super(EnumMaterialTypes.STONE, name, f, 2.0F, JourneyTabs.MACHINE_BLOCKS);
     }
 
+    public static BlockPattern getFirstLayer() {
+        if (firstLayer == null) {
+        	firstLayer = FactoryBlockPattern.start().aisle(
+            "?vrv?", 
+            "v?v?v", 
+            "rvvvr", 
+            "v?v?v", 
+            "?vrv?").where(
+            '?', BlockWorldState.hasState(BlockStateMatcher.ANY)).where(
+            'v', BlockWorldState.hasState(BlockStateMatcher.forBlock(JourneyBlocks.bloodRock))).where(
+            'r', BlockWorldState.hasState(BlockStateMatcher.forBlock(JourneyBlocks.bloodRune))).build();
+        }
+        return firstLayer;
+    }
+    public static BlockPattern getSecondLayer() {
+        if (secondLayer == null) {
+        	secondLayer = FactoryBlockPattern.start().aisle(
+            "v???v", 
+            "?????", 
+            "?????", 
+            "?????", 
+            "v???v").where(
+            '?', BlockWorldState.hasState(BlockStateMatcher.ANY)).where(
+            'v', BlockWorldState.hasState(BlockStateMatcher.forBlock(JourneyBlocks.bloodPillar))).build();
+        }
+        return secondLayer;
+    }
+    public static BlockPattern getThirdLayer() {
+        if (thirdLayer == null) {
+        	thirdLayer = FactoryBlockPattern.start().aisle(
+            "v???v", 
+            "?????", 
+            "?????", 
+            "?????", 
+            "v???v").where(
+            '?', BlockWorldState.hasState(BlockStateMatcher.ANY)).where(
+            'v', BlockWorldState.hasState(BlockStateMatcher.forBlock(JourneyBlocks.bloodPillar))).build();
+        }
+        return thirdLayer;
+    }
+    public static BlockPattern getFourthLayer() {
+        if (fourthLayer == null) {
+        	fourthLayer = FactoryBlockPattern.start().aisle(
+            "vb?bv", 
+            "bb?bb", 
+            "??o??", 
+            "bb?bb", 
+            "vb?bv").where(
+            '?', BlockWorldState.hasState(BlockStateMatcher.ANY)).where(
+            'v', BlockWorldState.hasState(BlockStateMatcher.forBlock(JourneyBlocks.carvedBloodRock))).where(
+            'b', BlockWorldState.hasState(BlockStateMatcher.forBlock(JourneyBlocks.bloodBricks))).where(
+            'o', BlockWorldState.hasState(BlockStateMatcher.forBlock(JourneyBlocks.obelisk))).build();
+        }
+        return fourthLayer;
+    }
+    public static BlockPattern getFifthLayer() {
+        if (fifthLayer == null) {
+        	fifthLayer = FactoryBlockPattern.start().aisle(
+            "?????", 
+            "?bbb?", 
+            "?bbb?", 
+            "?bbb?", 
+            "?????").where(
+            '?', BlockWorldState.hasState(BlockStateMatcher.ANY)).where(
+            'b', BlockWorldState.hasState(BlockStateMatcher.forBlock(JourneyBlocks.bloodBricks))).build();
+        }
+        return fifthLayer;
+    }
+    
     @Override
     public EnumBlockRenderType getRenderType(IBlockState state) {
         return EnumBlockRenderType.MODEL;
@@ -60,75 +143,14 @@ public class BlockSummoningTable extends BlockModContainer {
 
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        if (worldIn.getBlockState(
-                //base
-                pos.add(hitX, hitY - 1, hitZ)).getBlock() == JourneyBlocks.bloodRock && worldIn.getBlockState(
-                pos.add(hitX, hitY - 1, hitZ - 1)).getBlock() == JourneyBlocks.bloodRock && worldIn.getBlockState(
-                pos.add(hitX, hitY - 1, hitZ + 1)).getBlock() == JourneyBlocks.bloodRock && worldIn.getBlockState(
-                pos.add(hitX - 1, hitY - 1, hitZ)).getBlock() == JourneyBlocks.bloodRock && worldIn.getBlockState(
-                pos.add(hitX + 1, hitY - 1, hitZ)).getBlock() == JourneyBlocks.bloodRock && worldIn.getBlockState(
+        BlockPattern.PatternHelper firstLayer = this.getFirstLayer().match(worldIn, pos.add(0, -1, 0));
+        BlockPattern.PatternHelper secondLayer = this.getSecondLayer().match(worldIn, pos.add(0, 0, 0));
+        BlockPattern.PatternHelper thirdLayer = this.getThirdLayer().match(worldIn, pos.add(0, 1, 0));
+        BlockPattern.PatternHelper fourthLayer = this.getFourthLayer().match(worldIn, pos.add(0, 2, 0));
+        BlockPattern.PatternHelper fifthLayer = this.getFifthLayer().match(worldIn, pos.add(0, 3, 0));
 
-                pos.add(hitX - 2, hitY - 1, hitZ)).getBlock() == JourneyBlocks.bloodRune && worldIn.getBlockState(
-                pos.add(hitX + 2, hitY - 1, hitZ)).getBlock() == JourneyBlocks.bloodRune && worldIn.getBlockState(
-                pos.add(hitX, hitY - 1, hitZ - 2)).getBlock() == JourneyBlocks.bloodRune && worldIn.getBlockState(
-                pos.add(hitX, hitY - 1, hitZ + 2)).getBlock() == JourneyBlocks.bloodRune && worldIn.getBlockState(
-
-                pos.add(hitX - 1, hitY - 1, hitZ + 2)).getBlock() == JourneyBlocks.bloodRock && worldIn.getBlockState(
-                pos.add(hitX - 1, hitY - 1, hitZ - 2)).getBlock() == JourneyBlocks.bloodRock && worldIn.getBlockState(
-                pos.add(hitX + 1, hitY - 1, hitZ + 2)).getBlock() == JourneyBlocks.bloodRock && worldIn.getBlockState(
-                pos.add(hitX + 1, hitY - 1, hitZ - 2)).getBlock() == JourneyBlocks.bloodRock && worldIn.getBlockState(
-
-                pos.add(hitX - 2, hitY - 1, hitZ - 1)).getBlock() == JourneyBlocks.bloodRock && worldIn.getBlockState(
-                pos.add(hitX + 2, hitY - 1, hitZ - 1)).getBlock() == JourneyBlocks.bloodRock && worldIn.getBlockState(
-                pos.add(hitX + 2, hitY - 1, hitZ + 1)).getBlock() == JourneyBlocks.bloodRock && worldIn.getBlockState(
-                pos.add(hitX - 2, hitY - 1, hitZ + 1)).getBlock() == JourneyBlocks.bloodRock && worldIn.getBlockState(
-
-                //pillars
-                pos.add(hitX - 2, hitY, hitZ - 2)).getBlock() == JourneyBlocks.bloodPillar && worldIn.getBlockState(
-                pos.add(hitX + 2, hitY, hitZ + 2)).getBlock() == JourneyBlocks.bloodPillar && worldIn.getBlockState(
-                pos.add(hitX + 2, hitY, hitZ - 2)).getBlock() == JourneyBlocks.bloodPillar && worldIn.getBlockState(
-                pos.add(hitX - 2, hitY, hitZ + 2)).getBlock() == JourneyBlocks.bloodPillar && worldIn.getBlockState(
-
-                pos.add(hitX - 2, hitY + 1, hitZ - 2)).getBlock() == JourneyBlocks.bloodPillar && worldIn.getBlockState(
-                pos.add(hitX + 2, hitY + 1, hitZ + 2)).getBlock() == JourneyBlocks.bloodPillar && worldIn.getBlockState(
-                pos.add(hitX + 2, hitY + 1, hitZ - 2)).getBlock() == JourneyBlocks.bloodPillar && worldIn.getBlockState(
-                pos.add(hitX - 2, hitY + 1, hitZ + 2)).getBlock() == JourneyBlocks.bloodPillar && worldIn.getBlockState(
-
-                pos.add(hitX - 2, hitY + 2, hitZ - 2)).getBlock() == JourneyBlocks.carvedBloodRock && worldIn.getBlockState(
-                pos.add(hitX + 2, hitY + 2, hitZ + 2)).getBlock() == JourneyBlocks.carvedBloodRock && worldIn.getBlockState(
-                pos.add(hitX + 2, hitY + 2, hitZ - 2)).getBlock() == JourneyBlocks.carvedBloodRock && worldIn.getBlockState(
-                pos.add(hitX - 2, hitY + 2, hitZ + 2)).getBlock() == JourneyBlocks.carvedBloodRock && worldIn.getBlockState(
-
-                //top layer
-                pos.add(hitX - 1, hitY + 2, hitZ - 1)).getBlock() == JourneyBlocks.bloodBricks && worldIn.getBlockState(
-                pos.add(hitX + 1, hitY + 2, hitZ + 1)).getBlock() == JourneyBlocks.bloodBricks && worldIn.getBlockState(
-                pos.add(hitX + 1, hitY + 2, hitZ - 1)).getBlock() == JourneyBlocks.bloodBricks && worldIn.getBlockState(
-                pos.add(hitX - 1, hitY + 2, hitZ + 1)).getBlock() == JourneyBlocks.bloodBricks && worldIn.getBlockState(
-
-                pos.add(hitX - 2, hitY + 2, hitZ - 1)).getBlock() == JourneyBlocks.bloodBricks && worldIn.getBlockState(
-                pos.add(hitX - 2, hitY + 2, hitZ + 1)).getBlock() == JourneyBlocks.bloodBricks && worldIn.getBlockState(
-                pos.add(hitX + 2, hitY + 2, hitZ - 1)).getBlock() == JourneyBlocks.bloodBricks && worldIn.getBlockState(
-                pos.add(hitX + 2, hitY + 2, hitZ + 1)).getBlock() == JourneyBlocks.bloodBricks && worldIn.getBlockState(
-
-                pos.add(hitX - 1, hitY + 2, hitZ - 2)).getBlock() == JourneyBlocks.bloodBricks && worldIn.getBlockState(
-                pos.add(hitX - 1, hitY + 2, hitZ + 2)).getBlock() == JourneyBlocks.bloodBricks && worldIn.getBlockState(
-                pos.add(hitX + 1, hitY + 2, hitZ - 2)).getBlock() == JourneyBlocks.bloodBricks && worldIn.getBlockState(
-                pos.add(hitX + 1, hitY + 2, hitZ + 2)).getBlock() == JourneyBlocks.bloodBricks && worldIn.getBlockState(
-
-                //roof
-                pos.add(hitX - 1, hitY + 3, hitZ - 1)).getBlock() == JourneyBlocks.bloodBricks && worldIn.getBlockState(
-                pos.add(hitX + 1, hitY + 3, hitZ + 1)).getBlock() == JourneyBlocks.bloodBricks && worldIn.getBlockState(
-                pos.add(hitX + 1, hitY + 3, hitZ - 1)).getBlock() == JourneyBlocks.bloodBricks && worldIn.getBlockState(
-                pos.add(hitX - 1, hitY + 3, hitZ + 1)).getBlock() == JourneyBlocks.bloodBricks && worldIn.getBlockState(
-
-                pos.add(hitX - 1, hitY + 3, hitZ)).getBlock() == JourneyBlocks.bloodBricks && worldIn.getBlockState(
-                pos.add(hitX + 1, hitY + 3, hitZ)).getBlock() == JourneyBlocks.bloodBricks && worldIn.getBlockState(
-                pos.add(hitX, hitY + 3, hitZ - 1)).getBlock() == JourneyBlocks.bloodBricks && worldIn.getBlockState(
-                pos.add(hitX, hitY + 3, hitZ + 1)).getBlock() == JourneyBlocks.bloodBricks && worldIn.getBlockState(
-
-                pos.add(hitX, hitY + 2, hitZ)).getBlock() == JourneyBlocks.obelisk) {
-
-	        playerIn.openGui(JITL.MOD_ID, GuiHandler.summoning, worldIn, pos.getX(), pos.getY(), pos.getZ());
+        if (firstLayer != null && secondLayer != null && thirdLayer != null && fourthLayer != null && fifthLayer != null) {
+        	playerIn.openGui(JITL.MOD_ID, GuiHandler.summoning, worldIn, pos.getX(), pos.getY(), pos.getZ());
         }
         return true;
     }
