@@ -936,7 +936,7 @@ public class JourneyBlocks {
         glowshroomGreen = new BlockGlowshroom("glowshroom_green", "Green Glowshroom");
         glowshroomBlue = new BlockGlowshroom("glowshroom_blue", "Blue Glowshroom");
 
-        tallGoldenStalks = new JBlockDoublePlant("tall_golden_stalks", "Tall Golden Stalks", null).setAcceptableGround(state -> state.getMaterial() == Material.GRASS);
+        tallGoldenStalks = new JBlockDoublePlant("tall_golden_stalks", "Tall Golden Stalks", JourneyTabs.DECORATION).setAcceptableGround(state -> state.getMaterial() == Material.GRASS);
         goldenBulb = new BlockModFlower("goldenBulb", "Golden Bulb");
         goldenBloom = new BlockModFlower("goldenBloom", "Golden Bloom");
         goldenStalks = new BlockModFlower("goldenStalks", "Golden Stalks");
