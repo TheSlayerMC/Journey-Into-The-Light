@@ -24,6 +24,11 @@
       },
       {
         "type": "item",
+        "name": "journey:balmy_teardrop",
+        "functions": [{ "function": "set_count", "count": { "min": 1, "max": 1 } }]
+      },
+      {
+        "type": "item",
         "name": "journey:flamingSpring",
         "functions": [{ "function": "set_count", "count": { "min": 1, "max": 3 } }]
       },
