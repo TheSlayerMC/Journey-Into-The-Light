@@ -8,6 +8,9 @@ import net.journey.dimension.depths.gen.WorldGenDepthsTree;
 import net.journey.dimension.euca.gen.WorldGenSmeltery;
 import net.journey.dimension.euca.gen.WorldGenTallGoldenStalks;
 import net.journey.dimension.nether.gen.*;
+import net.journey.dimension.nether.gen.dungeon.WorldGenBoilPortal;
+import net.journey.dimension.nether.gen.dungeon.WorldGenGhastTower;
+import net.journey.dimension.nether.gen.dungeon.WorldGenNetherDungeons;
 import net.journey.dimension.nether.gen.trees.WorldGenBleedheartTree0;
 import net.journey.dimension.nether.gen.trees.WorldGenBleedheartTree1;
 import net.journey.dimension.nether.gen.trees.WorldGenEarthenTree;
@@ -406,8 +409,16 @@ public class WorldGenJourney implements IWorldGenerator {
             if (y > 20 && y < 110) if (isBlockTop(x, y, z, Blocks.NETHERRACK, w))
                 new WorldGenBoilPortal().generate(w, r, new BlockPos(x, y, z));
         }
-
+        
         if (r.nextInt(4) == 0) {
+            y = r.nextInt(128) + 1;
+            x = chunkX + r.nextInt(16) + 8;
+            z = chunkZ + r.nextInt(16) + 8;
+            if (y > 20 && y < 110) if (isBlockTop(x, y, z, Blocks.NETHERRACK, w) || isBlockTop(x, y, z, JourneyBlocks.heatSand, w))
+                new WorldGenGhastTower().generate(w, r, new BlockPos(x, y, z));
+        }
+
+        if (r.nextInt(5) == 0) {
             y = r.nextInt(128) + 1;
             x = chunkX + r.nextInt(10) + 8;
             z = chunkZ + r.nextInt(10) + 8;

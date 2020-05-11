@@ -1,8 +1,13 @@
 package net.journey.blocks.containers;
 
 import net.journey.blocks.tileentity.container.ContainerCrafting;
+import net.journey.init.JourneyTabs;
 import net.journey.init.blocks.JourneyBlocks;
+import net.journey.util.StuffConstructor;
+import net.minecraft.block.BlockWorkbench;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -14,58 +19,13 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.IInteractionObject;
 import net.minecraft.world.World;
+import net.slayer.api.EnumMaterialTypes;
 import net.slayer.api.block.BlockMod;
 
-public class BlockCrafting extends BlockMod {
+public class BlockCrafting extends BlockWorkbench {
 
-    public BlockCrafting(String name, String finalName) {
-        super(name, finalName);
-    }
-
-    @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        if (worldIn.isRemote) {
-            return true;
-        } else {
-            playerIn.displayGui(new BlockCrafting.InterfaceStoneCraftingTable(worldIn, pos));
-            playerIn.addStat(StatList.CRAFTING_TABLE_INTERACTION);
-            return true;
-        }
-    }
-
-    public static class InterfaceStoneCraftingTable implements IInteractionObject {
-        private final World world;
-        private final BlockPos position;
-
-        public InterfaceStoneCraftingTable(World w, BlockPos p) {
-            this.world = w;
-            this.position = p;
-        }
-
-        @Override
-        public String getName() {
-            return null;
-        }
-
-        @Override
-        public boolean hasCustomName() {
-            return false;
-        }
-
-        @Override
-        public ITextComponent getDisplayName() {
-            return new TextComponentTranslation(JourneyBlocks.stoneCraftingTable.getTranslationKey() + ".name"
-            );
-        }
-
-        @Override
-        public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) {
-            return new ContainerCrafting(playerInventory, this.world, this.position);
-        }
-
-        @Override
-        public String getGuiID() {
-            return "minecraft:crafting_table";
-        }
+    public BlockCrafting(String name, String enName) {
+        setSoundType(SoundType.STONE);
+        StuffConstructor.regAndSetupBlock(this, name, enName, 2.0F, JourneyTabs.MACHINE_BLOCKS);
     }
 }

@@ -2,6 +2,7 @@ package net.journey.entity.mob.nether;
 
 import net.journey.entity.MobStats;
 import net.journey.init.items.JourneyConsumables;
+import net.journey.init.items.JourneyItems;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
@@ -71,8 +72,8 @@ public class EntityMiniGhast extends EntityModFlying {
 
     @Override
     protected void dropFewItems(boolean b, int j) {
-        if (rand.nextInt(1) == 0)
-            dropItem(JourneyConsumables.flamingGhastTentacle, 2);
+        if (rand.nextInt(1) == 0) dropItem(JourneyConsumables.flamingGhastTentacle, 2);
+        if (rand.nextInt(8) == 0) dropItem(JourneyItems.BALMY_TEARDROP, 1);
         super.dropFewItems(b, j);
     }
 

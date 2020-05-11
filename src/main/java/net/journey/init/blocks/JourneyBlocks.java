@@ -457,7 +457,7 @@ public class JourneyBlocks {
     public static BlockMod nethicLamp;
 
     public static BlockMod knowledgeTable;
-    public static BlockMod stoneCraftingTable;
+    public static BlockCrafting stoneCraftingTable;
     public static BlockSummoningTable summoningTable;
     public static BlockMod bossAltar;
 
@@ -474,6 +474,7 @@ public class JourneyBlocks {
     public static BlockModSpawner frostbiterSpawner;
     public static BlockModSpawner overseerSpawner;
     public static BlockModSpawner overseerElderSpawner;
+    public static BlockModSpawner miniGhastSpawner;
 
     public static BlockMod elderBlock;
     public static BlockMod ancientMachineBlock;
@@ -675,15 +676,7 @@ public class JourneyBlocks {
         ashBlock = new BlockMod("ashBlock", "Ash");
         hotBlock = new BlockHotBlock(ashBlock, "hotGround", "Hot Ground", 2.0F);
         rubble = new BlockMod("rubble", "Rubble", 2.0F);
-        /*
-         * brisonStone = new BlockMod("brisonStone", "Brison Stone", 2.0F);
-         * darkBrisonBrick = new BlockMod("darkBrisonBrick",
-         * "Dark Brison Brick", 2.0F); redBrisonBrick = new
-         * BlockMod("redBrisonBrick", "Red Brison Brick", 2.0F);
-         * smallBrisonBrick = new BlockMod("smallBrisonBrick",
-         * "Small Brison Brick", 2.0F);
-         */
-
+        
         brisonblocks = new BlockMetaBase("brison", Material.ROCK, "brison");
         boilingBars = new Initializer<>(new JBlockPane(EnumMaterialTypes.STONE, "boilingBars", "Brison Bars", true)).apply(pane -> pane.setHardness(5.0F));
         burningLeaves = new BlockModLeaves("burningLeaves", "Burning Leaves", 0.5F, boilSapling).setBurningPlant();
@@ -712,25 +705,6 @@ public class JourneyBlocks {
         cloudiaFlower = new BlockModFlower("cloudiaFlower", "Cloudia Flower");
 
         swampLamp = new BlockSwampLamp("swampLamp", "Swamp Fly Bottle", 0);
-
-        /*
-         * frozenChest = new BlockJourneyChest("frozenChest", "Frozen Chest",
-         * BlockJourneyChest.Type.FROZEN); netherChest = new
-         * BlockJourneyChest("netherChest", "Nether Chest",
-         * BlockJourneyChest.Type.NETHER); boilingChest = new
-         * BlockJourneyChest("boilingChest", "Boiling Chest",
-         * BlockJourneyChest.Type.BOIL); eucaChest = new
-         * BlockJourneyChest("eucaChest", "Euca Chest",
-         * BlockJourneyChest.Type.EUCA); depthsChest = new
-         * BlockJourneyChest("depthsChest", "Depths Chest",
-         * BlockJourneyChest.Type.DEPTHS); corbaChest = new
-         * BlockJourneyChest("corbaChest", "Corba Chest",
-         * BlockJourneyChest.Type.CORBA); cloudiaChest = new
-         * BlockJourneyChest("cloudiaChest", "Cloudia Chest",
-         * BlockJourneyChest.Type.CLOUDIA); terraniaChest = new
-         * BlockJourneyChest("terraniaChest", "Terrania Chest",
-         * BlockJourneyChest.Type.TERRA);
-         */
 
         journeyChest = new BlockJourneyChest("journeychest", "Journey Chest", BlockJourneyChest.Type.JOURNEY);
         netherChest = new BlockJourneyChest("netherchest", "Nether Chest", BlockJourneyChest.Type.NETHER);
@@ -796,15 +770,6 @@ public class JourneyBlocks {
         trophyNetherBeast = new BlockTrophy("trophyNetherBeast", "Nether Beast Trophy");
         trophyWitherBeast = new BlockTrophy("trophyWitherBeast", "Withering Beast Trophy");
 
-        /*
-         * Mod wastelandsStone = new BlockWastelandsStone("wastelandsStone");
-         * wastelandsGrass = new BlockModGrass((BlockMod)null,
-         * "wastelandsGrass", 2.0F); wastelandsLog = new
-         * BlockModLog("wastelandsLog"); wastelandsBranches = new
-         * BlockModLeaves("wastelandsBranches",
-         * 2.0F).setStepSound(EnumMaterialTypes.WOOD.getSound());
-         */
-
         eucaPortal = new BlockEucaPortal("eucaPortal");
         eucaPortalFrame = new BlockMod("eucaPortalFrame", "Euca Portal Frame", 3.0F);
 
@@ -826,9 +791,6 @@ public class JourneyBlocks {
         senterianPortal = new BlockSenterianPortal("senterianPortal", "senterianPortal");
         senterianPortalFrame = new BlockSenterianPortalFrame("senterianPortalFrame",
                 "Senterian Portal Frame");
-        // WastelandsPortal wastelandsPortal = (BlockWastelandsPortal)new
-        // BlockWastelandsPortal("wastelandsPortal");
-        // wastelandsPortalFrame = new BlockMod("wastelandsPortalFrame");
         cloudiaPortal = new BlockCloudiaPortal("cloudiaPortal");
         cloudiaPortalFrame = new BlockMod("cloudiaPortalFrame", "Cloudia Portal Frame", 3.0F);
 
@@ -997,9 +959,7 @@ public class JourneyBlocks {
         nethicLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "nethicLamp", "Nethic Lamp", 0.1F)
                 .setLightLevel(1).setCreativeTab(JourneyTabs.DECORATION);
 
-        // stoneCraftingTable = (BlockMod) new
-        // BlockCrafting("stoneCraftingTable", "Stone Crafting
-        // Table").setCreativeTab(JourneyTabs.machineBlocks);
+        stoneCraftingTable = new BlockCrafting("stoneCraftingTable", "Stone Crafting Table");
         summoningTable = new BlockSummoningTable("summoningTable", "Summoning Table");
 
         observerSpawner = new BlockModSpawner("observerSpawner", "Observer Spawner", "observer");
@@ -1009,6 +969,7 @@ public class JourneyBlocks {
         silverbotSpawner = new BlockModSpawner("silverbotSpawner", "Silverbot Spawner", "silverbot");
 
         hellbotSpawner = new BlockModSpawner("hellbotSpawner", "Hellbot Spawner", "hellbot");
+        miniGhastSpawner = new BlockModSpawner("miniGhastSpawner", "Mini Ghast Spawner", "miniGhast");
 
         purplianSpawner = new BlockModSpawner("purplianSpawner", "Purplian Spawner", "purplian");
         starlightGolemSpawner = new BlockModSpawner("starlightGolemSpawner", "Starlight Golem Spawner",
