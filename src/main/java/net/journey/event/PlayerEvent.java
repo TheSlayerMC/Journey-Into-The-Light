@@ -29,9 +29,14 @@ import net.slayer.api.PlayerHelper;
 
 public class PlayerEvent {
 
-	public static double rand;
-	public static Random random;
+	public double rand;
+	public Random random;
 
+	public PlayerEvent() {
+		this.rand = 0;
+		this.random = new Random();
+	}
+	
 	@SubscribeEvent
 	public void onBlockHarvested(HarvestDropsEvent event) {
 		EntityPlayer p = event.getHarvester();
@@ -68,6 +73,22 @@ public class PlayerEvent {
 					ItemStack item = ForgeHooks.getGrassSeed(random, 1);
 					event.getDrops().add(item);
 				}
+				
+				if(event.getHarvester().getHeldItemMainhand().getItem() == JourneyArmory.PICKAXE_OF_GOOD_FORTUNE) {
+					ArrayList<Item> items = new ArrayList<Item>(); //Make a new list of items
+					items.add(JourneyItems.ancientPiece_1);
+					items.add(JourneyItems.AQUASTONE);
+					items.add(JourneyItems.spyclopseEye);
+					items.add(JourneyItems.coldClump);
+					items.add(JourneyItems.goldDust);
+					items.add(JourneyItems.nethicgemstone);
+		            int index = random.nextInt(items.size()); 
+		            
+					if(event.getState().getBlock().getRegistryName().toString().contains("ore")) {
+			            if(random.nextInt(3) == 0) 
+			            	event.getDrops().add(new ItemStack(items.get(index)));// make it spawn only 1 item not 2 and add it so its only a chance
+					}
+				}
 			}
 		}
 	}
@@ -89,9 +110,9 @@ public class PlayerEvent {
 	@SubscribeEvent
 	public void onEntityDrop(LivingDropsEvent event) {
 		if (event.getSource().getDamageType().equals("player")) {
-			PlayerEvent.rand = Math.random();
+			this.rand = Math.random();
 			if (event.getEntityLiving() instanceof EntityGhast) {
-				if (PlayerEvent.rand < 3) {
+				if (this.rand < 3) {
 					event.getEntityLiving().dropItem(JourneyConsumables.ghastTentacle, 1);
 				}
 			}
