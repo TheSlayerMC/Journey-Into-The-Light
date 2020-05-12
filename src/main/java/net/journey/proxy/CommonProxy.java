@@ -1,5 +1,6 @@
 package net.journey.proxy;
 
+import net.journey.client.render.RenderEssenceBar;
 import net.journey.client.server.*;
 import net.journey.command.DimensionCommand;
 import net.journey.command.JourneyCommands;
@@ -105,6 +106,7 @@ public class CommonProxy {
         DimensionHelper.init();
         DimensionHelper.addSpawns();
         SlayerAPI.registerEventListener(new BarTickHandler());
+        SlayerAPI.registerEventListener(new RenderEssenceBar());
         SlayerAPI.registerEventListener(new RenderBar());
         CapabilityManager.INSTANCE.register(IEssence.class, new EssenceStorage(), EssenceBar.class);
     }
