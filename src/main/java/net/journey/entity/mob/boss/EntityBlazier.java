@@ -103,7 +103,7 @@ public class EntityBlazier extends EntityEssenceBoss implements IRangedAttackMob
                 this.world.spawnEntity(z1);
                 this.world.spawnEntity(z2);
                 this.world.spawnEntity(z3);
-                spawnTimer = 50;
+                spawnTimer = 300;
             }
             spawnTimer--;
         }
