@@ -103,7 +103,7 @@ public class JourneyBlocks {
     public static BlockMod heatSoil;
     public static BlockMod earthenNetherrack;
     public static BlockModGravity heatSand;
-    public static BlockModGravity sizzleSand;
+    public static BlockModGravity volcanicSand;
 
     public static BlockMod igniterOn;
     public static BlockMod igniter;
@@ -224,6 +224,11 @@ public class JourneyBlocks {
     public static JBlockPane boilingBars;
     public static BlockMod burningLeaves;
     public static JBlockLog boilingLog;
+    public static BlockMod boilCobble;
+    public static BlockMod boilPillar;
+    public static BlockMod boilShingle;
+    public static BlockMod boilSquareBrick;
+    public static BlockMod boilBricks;
 
     public static BlockMod cloudiaDirt;
     public static BlockMod cloudiaGrass;
@@ -577,7 +582,7 @@ public class JourneyBlocks {
         heatSoil = new BlockMod(EnumMaterialTypes.DIRT, "heatSoil", "Nethic Soil", 0.5F);
         earthenNetherrack = new BlockMod(EnumMaterialTypes.STONE, "earthenNetherrack", "Earthen Netherrack", 2.0F);
         heatSand = new BlockModGravity(EnumMaterialTypes.SAND, "heatSand", "Heat Sand", 0.5F);
-        //sizzleSand = new BlockModGravity(EnumMaterialTypes.SAND, "sizzleSand", "Sizzle Sand", 0.5F);
+        volcanicSand = new BlockModGravity(EnumMaterialTypes.SAND, "volcanic_sand", "Volcanic Sand", 0.5F);
 
         igniterOn = (BlockMod) new BlockIgniter("igniterOn", "Redstone Igniter").setCreativeTab(null);
         igniter = new BlockIgniter("igniter", "Redstone Igniter");
@@ -676,6 +681,12 @@ public class JourneyBlocks {
         ashBlock = new BlockMod("ashBlock", "Ash");
         hotBlock = new BlockHotBlock(ashBlock, "hotGround", "Hot Ground", 2.0F);
         rubble = new BlockMod("rubble", "Rubble", 2.0F);
+        
+        boilCobble = new BlockMod("boil_cobble", "Boil Cobble");
+        boilPillar = new BlockMod("boil_pillar", "Boil Pillar");
+        boilShingle = new BlockMod("boil_shingle", "Boil Shingle");
+        boilSquareBrick = new BlockMod("boil_square_brick", "Boil Square Brick");
+        boilBricks = new BlockMod("boil_bricks", "Boil Bricks");
         
         brisonblocks = new BlockMetaBase("brison", Material.ROCK, "brison");
         boilingBars = new Initializer<>(new JBlockPane(EnumMaterialTypes.STONE, "boilingBars", "Brison Bars", true)).apply(pane -> pane.setHardness(5.0F));

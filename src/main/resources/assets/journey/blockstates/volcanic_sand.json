@@ -1,0 +1,11 @@
+{
+    "variants": {
+        "normal": [
+            { "model": "journey:volcanic_sand" },
+            { "model": "journey:volcanic_sand_mirrored" },
+            { "model": "journey:volcanic_sand", "y": 180 },
+            { "model": "journey:volcanic_sand_mirrored", "y": 180 }
+        ]
+    }
+}
+

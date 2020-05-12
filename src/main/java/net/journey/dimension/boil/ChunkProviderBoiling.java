@@ -1,8 +1,10 @@
 package net.journey.dimension.boil;
 
 import net.journey.dimension.boil.gen.WorldGenBoilingLamp;
-import net.journey.dimension.boil.gen.WorldGenBrisonNetwork;
 import net.journey.dimension.boil.gen.WorldGenTraderHutBoiling;
+import net.journey.dimension.boil.gen.dungeon.WorldGenBrisonNetwork;
+import net.journey.dimension.boil.gen.dungeon.WorldGenHornDungeon;
+import net.journey.dimension.boil.gen.dungeon.WorldGenSmallBoilDungeon;
 import net.journey.dimension.boil.trees.WorldGenBoilTree1;
 import net.journey.dimension.boil.trees.WorldGenBoilTree2;
 import net.journey.dimension.boil.trees.WorldGenBoilTree3;
@@ -40,6 +42,8 @@ public class ChunkProviderBoiling implements IChunkGenerator {
     private final WorldGenBoilingLamp boilLamp;
     private final WorldGenBrisonNetwork brison;
     private final WorldGenTraderHutBoiling hut;
+    private final WorldGenSmallBoilDungeon smallDungeon;
+    private final WorldGenHornDungeon bigDungeon;
     public NoiseGeneratorOctaves noiseGen5;
     public NoiseGeneratorOctaves noiseGen6;
     public NoiseGeneratorOctaves mobSpawnerNoise;
@@ -105,6 +109,8 @@ public class ChunkProviderBoiling implements IChunkGenerator {
         boilLamp = new WorldGenBoilingLamp();
         brison = new WorldGenBrisonNetwork();
         hut = new WorldGenTraderHutBoiling();
+        smallDungeon = new WorldGenSmallBoilDungeon();
+        bigDungeon = new WorldGenHornDungeon();
     }
 
     public void setBlocksInChunk(int p_180518_1_, int p_180518_2_, ChunkPrimer p_180518_3_) {
@@ -174,7 +180,7 @@ public class ChunkProviderBoiling implements IChunkGenerator {
     public final void generateBiomeTerrain(Random r, ChunkPrimer c, int x, int z, double s) {
         boolean flag = true;
         IBlockState iblockstate = JourneyBlocks.hotBlock.getDefaultState();
-        IBlockState iblockstate1 = JourneyBlocks.rubble.getDefaultState();
+        IBlockState iblockstate1 = JourneyBlocks.volcanicSand.getDefaultState();
         int k = -1;
         int l = (int) (s / 3.0D + 3.0D + r.nextDouble() * 0.25D);
         int i1 = x & 15;
@@ -190,10 +196,10 @@ public class ChunkProviderBoiling implements IChunkGenerator {
                     if (k == -1) {
                         if (l <= 0) {
                             iblockstate = null;
-                            iblockstate1 = JourneyBlocks.rubble.getDefaultState();
+                            iblockstate1 = JourneyBlocks.volcanicSand.getDefaultState();
                         } else if (k1 >= 14 && k1 <= 16) {
                             iblockstate = JourneyBlocks.hotBlock.getDefaultState();
-                            iblockstate1 = JourneyBlocks.rubble.getDefaultState();
+                            iblockstate1 = JourneyBlocks.volcanicSand.getDefaultState();
                         }
 
                         if (k1 < 16 && (iblockstate == null || iblockstate.getMaterial() == Material.AIR))
@@ -202,7 +208,7 @@ public class ChunkProviderBoiling implements IChunkGenerator {
                         if (k1 >= 16) c.setBlockState(j1, k1, i1, iblockstate);
                         else if (k1 < 14 - l) {
                             iblockstate = null;
-                            iblockstate1 = JourneyBlocks.rubble.getDefaultState();
+                            iblockstate1 = JourneyBlocks.volcanicSand.getDefaultState();
                         } else c.setBlockState(j1, k1, i1, iblockstate1);
                     } else if (k > 0) {
                         --k;
@@ -353,15 +359,23 @@ public class ChunkProviderBoiling implements IChunkGenerator {
             generateStructure(x1, z1, r, boilLamp);
         }
 
-        if (rand.nextInt(16) == 0) {
+        if (rand.nextInt(8) == 0) {
             generateStructure(x1, z1, r, brison);
         }
 
-        if (rand.nextInt(10) == 0) {
+        if (rand.nextInt(4) == 0) {
             generateStructure(x1, z1, r, hut);
         }
+        
+        if (rand.nextInt(6) == 0) {
+			generateStructure(x1, z1, r, smallDungeon);
+		}
+		
+        if (rand.nextInt(10) == 0) {
+			generateStructure(x1, z1, r, bigDungeon);
+		}
 
-        for (times = 0; times < 450; times++) {
+        for (times = 0; times < 400; times++) {
             BlockPos pos = WorldGenAPI.createRandom(x1, 128, z1, r).up();
             if (isBlockTop(pos.getX(), pos.getY() - 1, pos.getZ(), JourneyBlocks.hotBlock)) {
                 trees.get(rand.nextInt(trees.size())).generate(worldObj, rand, pos);

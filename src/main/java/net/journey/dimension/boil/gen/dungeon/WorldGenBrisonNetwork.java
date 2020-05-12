@@ -1,4 +1,4 @@
-package net.journey.dimension.boil.gen;
+package net.journey.dimension.boil.gen.dungeon;
 
 import net.journey.entity.mob.boiling.npc.EntityEscapedConvict;
 import net.journey.init.blocks.JourneyBlocks;

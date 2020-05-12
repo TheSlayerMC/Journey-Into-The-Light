@@ -1,0 +1,9 @@
+{
+	"parent": "block/cube_bottom_top",
+	"textures": {
+		"particle": "journey:blocks/boil_pillar_top",
+		"bottom": "journey:blocks/boil_pillar_top",
+		"top": "journey:blocks/boil_pillar_top",
+		"side": "journey:blocks/boil_pillar_side"
+	}
+}
