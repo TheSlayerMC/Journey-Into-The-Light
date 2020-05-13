@@ -59,7 +59,17 @@ public class JourneyLootTables {
     public static final ResourceLocation ROCKITE = register("mobs/overworld/rockite");
     public static final ResourceLocation STONEWALKER = register("mobs/overworld/stonewalker");
 
-    
+    //Boil
+    public static final ResourceLocation BURNING_LIGHT = register("mobs/boil/burning_light");
+    public static final ResourceLocation EXPOSED_FLAME = register("mobs/boil/exposed_flame");
+    public static final ResourceLocation FLAME_LOTUS = register("mobs/boil/flame_lotus");
+    public static final ResourceLocation FRIGHTENER = register("mobs/boil/frightener");
+    public static final ResourceLocation HELLWING = register("mobs/boil/hellwing");
+    public static final ResourceLocation MAGMA_BLAZE = register("mobs/boil/magma_blaze");
+    public static final ResourceLocation MAGMA_GIANT = register("mobs/boil/magma_giant");
+    public static final ResourceLocation OBSERVER = register("mobs/boil/observer");
+    public static final ResourceLocation SCREAMER = register("mobs/boil/screamer");
+
     
     public static final ResourceLocation VANILLA_SIMPLE_DUNGEON = LootTableList.CHESTS_SIMPLE_DUNGEON;
 

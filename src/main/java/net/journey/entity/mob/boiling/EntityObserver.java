@@ -3,6 +3,7 @@ package net.journey.entity.mob.boiling;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityMagmaFireball;
 import net.journey.init.items.JourneyItems;
+import net.journey.util.JourneyLootTables;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.*;
@@ -15,6 +16,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
@@ -52,14 +54,8 @@ public class EntityObserver extends EntityModMob {
     }
 
     @Override
-    protected void dropFewItems(boolean b, int j) {
-        if (rand.nextInt(10) == 0)
-            dropItem(JourneyItems.hellcrustIngot, 2);
-        if (rand.nextInt(3) == 0)
-            dropItem(JourneyItems.boilPowder, 3);
-        if (rand.nextInt(35) == 0)
-            dropItem(JourneyItems.sizzlingEye, 1);
-        super.dropFewItems(b, j);
+    protected ResourceLocation getLootTable() {
+    	return JourneyLootTables.OBSERVER;
     }
 
     @Override
@@ -158,11 +154,6 @@ public class EntityObserver extends EntityModMob {
     @Override
     public SoundEvent setDeathSound() {
         return SoundEvents.ENTITY_BLAZE_DEATH;
-    }
-
-    @Override
-    public Item getItemDropped() {
-        return Items.BLAZE_ROD;
     }
 
     class AIFireballAttack extends EntityAIBase {

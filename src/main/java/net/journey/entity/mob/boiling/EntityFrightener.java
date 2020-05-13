@@ -3,10 +3,12 @@ package net.journey.entity.mob.boiling;
 import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
 import net.journey.init.items.JourneyItems;
+import net.journey.util.JourneyLootTables;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityModMob;
@@ -62,17 +64,8 @@ public class EntityFrightener extends EntityModMob {
     }
 
     @Override
-    public Item getItemDropped() {
-        return JourneyItems.boilPowder;
-
-    }
-
-    @Override
-    protected void dropFewItems(boolean b, int j) {
-        Item it = getItemDropped();
-        this.dropItem(it, 1);
-        if (rand.nextInt(20) == 0) dropItem(JourneyItems.sizzlingEye, 1);
-        super.dropFewItems(b, j);
+    protected ResourceLocation getLootTable() {
+    	return JourneyLootTables.FRIGHTENER;
     }
 
     @Override

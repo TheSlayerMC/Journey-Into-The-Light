@@ -2,10 +2,12 @@ package net.journey.entity.mob.boiling;
 
 import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
+import net.journey.util.JourneyLootTables;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -64,8 +66,8 @@ public class EntityMagmaGiant extends EntityModMob {
     }
 
     @Override
-    public Item getItemDropped() {
-        return null;
+    protected ResourceLocation getLootTable() {
+    	return JourneyLootTables.MAGMA_GIANT;
     }
 
     @Override

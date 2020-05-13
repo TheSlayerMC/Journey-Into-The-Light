@@ -3,11 +3,13 @@ package net.journey.entity.mob.boiling;
 import net.journey.entity.MobStats;
 import net.journey.init.items.JourneyItems;
 import net.journey.init.items.JourneyWeapons;
+import net.journey.util.JourneyLootTables;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityModMob;
@@ -63,20 +65,12 @@ public class EntityExposedFlame extends EntityModMob {
     }
 
     @Override
-    public Item getItemDropped() {
-        return JourneyItems.boilPowder;
+    protected ResourceLocation getLootTable() {
+    	return JourneyLootTables.EXPOSED_FLAME;
     }
-
+    
     @Override
     public ItemStack getHeldItemMainhand() {
         return new ItemStack(JourneyWeapons.boilingBlade);
-    }
-
-    @Override
-    protected void dropFewItems(boolean b, int j) {
-        Item it = getItemDropped();
-        this.dropItem(it, 1);
-        if (rand.nextInt(20) == 0) dropItem(JourneyItems.blazingFireball, 1);
-        super.dropFewItems(b, j);
     }
 }

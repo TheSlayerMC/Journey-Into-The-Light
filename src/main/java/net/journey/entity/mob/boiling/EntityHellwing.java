@@ -6,6 +6,7 @@ import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityMagmaFireball;
 import net.journey.init.JourneySounds;
 import net.journey.init.items.JourneyItems;
+import net.journey.util.JourneyLootTables;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -59,7 +60,7 @@ public class EntityHellwing extends EntityModMob {
 		this.setSize(1.0F, 1.3F);
 		this.experienceValue = 3;
 	}
-	
+
 	@Override
 	public void move(MoverType type, double x, double y, double z) {
 		super.move(type, x, y, z);
@@ -83,7 +84,7 @@ public class EntityHellwing extends EntityModMob {
 	protected void initEntityAI() {
 		super.initEntityAI();
 		this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(3, new EntityHellwing.AIFireballAttack());
+		this.tasks.addTask(3, new EntityHellwing.AIFireballAttack());
 		this.tasks.addTask(2, new EntityHellwing.AIChargeAttack());
 		this.tasks.addTask(8, new EntityHellwing.AIMoveRandom());
 		this.tasks.addTask(9, new EntityAIWatchClosest(this, EntityPlayer.class, 3.0F, 1.0F));
@@ -177,7 +178,7 @@ public class EntityHellwing extends EntityModMob {
 	public void setCharging(boolean charging) {
 		this.setHellwingFlag(1, charging);
 	}
-	
+
 	public void setOwner(EntityLiving ownerIn) {
 		this.owner = ownerIn;
 	}
@@ -205,7 +206,7 @@ public class EntityHellwing extends EntityModMob {
 		this.setEnchantmentBasedOnDifficulty(difficulty);
 		return super.onInitialSpawn(difficulty, livingdata);
 	}
-	
+
 	@Override
 	protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty) {
 		this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.IRON_SWORD));
@@ -365,79 +366,79 @@ public class EntityHellwing extends EntityModMob {
 			}
 		}
 	}
-	
+
 	class AIFireballAttack extends EntityAIBase {
-        private static final String __OBFID = "CL_00002225";
-        private EntityHellwing field_179469_a = EntityHellwing.this;
-        private int field_179467_b;
-        private int field_179468_c;
+		private static final String __OBFID = "CL_00002225";
+		private EntityHellwing field_179469_a = EntityHellwing.this;
+		private int field_179467_b;
+		private int field_179468_c;
 
-        public AIFireballAttack() {
-            this.setMutexBits(3);
-        }
+		public AIFireballAttack() {
+			this.setMutexBits(3);
+		}
 
-        @Override
-        public boolean shouldExecute() {
-            EntityLivingBase entitylivingbase = this.field_179469_a.getAttackTarget();
-            return entitylivingbase != null && entitylivingbase.isEntityAlive();
-        }
+		@Override
+		public boolean shouldExecute() {
+			EntityLivingBase entitylivingbase = this.field_179469_a.getAttackTarget();
+			return entitylivingbase != null && entitylivingbase.isEntityAlive();
+		}
 
-        @Override
-        public void startExecuting() {
-            this.field_179467_b = 0;
-        }
+		@Override
+		public void startExecuting() {
+			this.field_179467_b = 0;
+		}
 
-        @Override
-        public void updateTask() {
-            --this.field_179468_c;
-            EntityLivingBase entitylivingbase = this.field_179469_a.getAttackTarget();
-            double d0 = this.field_179469_a.getDistanceSq(entitylivingbase);
+		@Override
+		public void updateTask() {
+			--this.field_179468_c;
+			EntityLivingBase entitylivingbase = this.field_179469_a.getAttackTarget();
+			double d0 = this.field_179469_a.getDistanceSq(entitylivingbase);
 
-            if (d0 < 4.0D) {
-                if (this.field_179468_c <= 0) {
-                    this.field_179468_c = 20;
-                    this.field_179469_a.attackEntityAsMob(entitylivingbase);
-                }
+			if (d0 < 4.0D) {
+				if (this.field_179468_c <= 0) {
+					this.field_179468_c = 20;
+					this.field_179469_a.attackEntityAsMob(entitylivingbase);
+				}
 
-                this.field_179469_a.getMoveHelper().setMoveTo(entitylivingbase.posX, entitylivingbase.posY, entitylivingbase.posZ, 1.0D);
-            } else if (d0 < 256.0D) {
-                double d1 = entitylivingbase.posX - this.field_179469_a.posX;
-                double d2 = entitylivingbase.getEntityBoundingBox().minY + entitylivingbase.height / 2.0F - (this.field_179469_a.posY + this.field_179469_a.height / 2.0F);
-                double d3 = entitylivingbase.posZ - this.field_179469_a.posZ;
+				this.field_179469_a.getMoveHelper().setMoveTo(entitylivingbase.posX, entitylivingbase.posY, entitylivingbase.posZ, 1.0D);
+			} else if (d0 < 256.0D) {
+				double d1 = entitylivingbase.posX - this.field_179469_a.posX;
+				double d2 = entitylivingbase.getEntityBoundingBox().minY + entitylivingbase.height / 2.0F - (this.field_179469_a.posY + this.field_179469_a.height / 2.0F);
+				double d3 = entitylivingbase.posZ - this.field_179469_a.posZ;
 
-                if (this.field_179468_c <= 0) {
-                    ++this.field_179467_b;
+				if (this.field_179468_c <= 0) {
+					++this.field_179467_b;
 
-                    if (this.field_179467_b == 1) {
-                        this.field_179468_c = 60;
-                    } else if (this.field_179467_b <= 4) {
-                        this.field_179468_c = 6;
-                    } else {
-                        this.field_179468_c = 100;
-                        this.field_179467_b = 0;
-                    }
+					if (this.field_179467_b == 1) {
+						this.field_179468_c = 60;
+					} else if (this.field_179467_b <= 4) {
+						this.field_179468_c = 6;
+					} else {
+						this.field_179468_c = 100;
+						this.field_179467_b = 0;
+					}
 
-                    if (this.field_179467_b > 1) {
-                        float f = MathHelper.sqrt(MathHelper.sqrt(d0)) * 0.5F;
-                        this.field_179469_a.world.playEvent(null, 1018, new BlockPos((int) this.field_179469_a.posX, (int) this.field_179469_a.posY, (int) this.field_179469_a.posZ), 0);
+					if (this.field_179467_b > 1) {
+						float f = MathHelper.sqrt(MathHelper.sqrt(d0)) * 0.5F;
+						this.field_179469_a.world.playEvent(null, 1018, new BlockPos((int) this.field_179469_a.posX, (int) this.field_179469_a.posY, (int) this.field_179469_a.posZ), 0);
 
-                        for (int i = 0; i < 1; ++i) {
-                            EntityMagmaFireball entitysmallfireball = new EntityMagmaFireball(this.field_179469_a.world, this.field_179469_a, d1 + this.field_179469_a.getRNG().nextGaussian() * f, d2, d3 + this.field_179469_a.getRNG().nextGaussian() * f);
-                            entitysmallfireball.posY = this.field_179469_a.posY + this.field_179469_a.height / 2.0F + 0.5D;
-                            this.field_179469_a.world.spawnEntity(entitysmallfireball);
-                        }
-                    }
-                }
+						for (int i = 0; i < 1; ++i) {
+							EntityMagmaFireball entitysmallfireball = new EntityMagmaFireball(this.field_179469_a.world, this.field_179469_a, d1 + this.field_179469_a.getRNG().nextGaussian() * f, d2, d3 + this.field_179469_a.getRNG().nextGaussian() * f);
+							entitysmallfireball.posY = this.field_179469_a.posY + this.field_179469_a.height / 2.0F + 0.5D;
+							this.field_179469_a.world.spawnEntity(entitysmallfireball);
+						}
+					}
+				}
 
-                this.field_179469_a.getLookHelper().setLookPositionWithEntity(entitylivingbase, 10.0F, 10.0F);
-            } else {
-                this.field_179469_a.getNavigator().clearPath();
-                this.field_179469_a.getMoveHelper().setMoveTo(entitylivingbase.posX, entitylivingbase.posY, entitylivingbase.posZ, 1.0D);
-            }
+				this.field_179469_a.getLookHelper().setLookPositionWithEntity(entitylivingbase, 10.0F, 10.0F);
+			} else {
+				this.field_179469_a.getNavigator().clearPath();
+				this.field_179469_a.getMoveHelper().setMoveTo(entitylivingbase.posX, entitylivingbase.posY, entitylivingbase.posZ, 1.0D);
+			}
 
-            super.updateTask();
-        }
-    }
+			super.updateTask();
+		}
+	}
 
 	@Override
 	public double setAttackDamage(MobStats s) {
@@ -465,7 +466,7 @@ public class EntityHellwing extends EntityModMob {
 	}
 
 	@Override
-	public Item getItemDropped() {
-		return JourneyItems.boilingSkull;
+	protected ResourceLocation getLootTable() {
+		return JourneyLootTables.HELLWING;
 	}
 }

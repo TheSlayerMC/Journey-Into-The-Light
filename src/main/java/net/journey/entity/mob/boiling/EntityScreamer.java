@@ -3,6 +3,7 @@ package net.journey.entity.mob.boiling;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityMagmaFireball;
 import net.journey.init.items.JourneyItems;
+import net.journey.util.JourneyLootTables;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.*;
@@ -15,6 +16,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
@@ -161,8 +163,8 @@ public class EntityScreamer extends EntityModMob {
     }
 
     @Override
-    public Item getItemDropped() {
-        return Items.BLAZE_ROD;
+    protected ResourceLocation getLootTable() {
+    	return JourneyLootTables.SCREAMER;
     }
 
     class AIFireballAttack extends EntityAIBase {
