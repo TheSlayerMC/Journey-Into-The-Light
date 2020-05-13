@@ -3,7 +3,9 @@ package net.journey.entity.mob.terrania.mob;
 import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
 import net.journey.init.items.JourneyItems;
+import net.journey.util.JourneyLootTables;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityModMob;
@@ -42,13 +44,7 @@ public class EntityTerraslug extends EntityModMob {
     }
 
     @Override
-    public Item getItemDropped() {
-        return JourneyItems.slugSlime;
-    }
-
-    @Override
-    protected void dropFewItems(boolean b, int j) {
-        if (rand.nextInt(1) == 0) dropItem(JourneyItems.slugSlime, rand.nextInt(3));
-
+    protected ResourceLocation getLootTable() {
+    	return JourneyLootTables.TERRA_SLUG;
     }
 }

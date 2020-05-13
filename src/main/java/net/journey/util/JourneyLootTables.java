@@ -127,6 +127,16 @@ public class JourneyLootTables {
     public static final ResourceLocation TREE_GOLEM = register("mobs/corba/tree_golem");
     public static final ResourceLocation WOOD_CREATURE = register("mobs/corba/wood_creature");
 
+    //Terrania
+    public static final ResourceLocation ARANA_KING = register("mobs/terrania/arana_king");
+    public static final ResourceLocation PURPLIAN = register("mobs/terrania/purplian");
+    public static final ResourceLocation TERRAGROW = register("mobs/terrania/terragrow");
+    public static final ResourceLocation TERRALIGHT = register("mobs/terrania/terralight");
+    public static final ResourceLocation TERRA_SCATTERER = register("mobs/terrania/terra_scatterer");
+    public static final ResourceLocation TERRASHROOM = register("mobs/terrania/terrashroom");
+    public static final ResourceLocation TERRA_SLUG = register("mobs/terrania/terra_slug");
+
+    
     public static final ResourceLocation VANILLA_SIMPLE_DUNGEON = LootTableList.CHESTS_SIMPLE_DUNGEON;
 
     private static ResourceLocation register(String path) {

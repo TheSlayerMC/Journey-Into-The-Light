@@ -3,7 +3,9 @@ package net.journey.entity.mob.terrania.mob;
 import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
 import net.journey.init.items.JourneyConsumables;
+import net.journey.util.JourneyLootTables;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityModMob;
@@ -42,13 +44,7 @@ public class EntityTerrashroom extends EntityModMob {
     }
 
     @Override
-    protected void dropFewItems(boolean b, int j) {
-        if (rand.nextInt(1) == 0) dropItem(JourneyConsumables.terrashroom, rand.nextInt(2));
-        super.dropFewItems(b, j);
-    }
-
-    @Override
-    public Item getItemDropped() {
-        return null;
+    protected ResourceLocation getLootTable() {
+    	return JourneyLootTables.TERRASHROOM;
     }
 }

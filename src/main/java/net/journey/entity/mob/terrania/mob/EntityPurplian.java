@@ -3,6 +3,7 @@ package net.journey.entity.mob.terrania.mob;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityMagmaFireball;
 import net.journey.init.items.JourneyItems;
+import net.journey.util.JourneyLootTables;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.*;
@@ -15,6 +16,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
@@ -51,15 +53,8 @@ public class EntityPurplian extends EntityModMob {
     }
 
     @Override
-    protected void dropFewItems(boolean b, int i) {
-        if (rand.nextInt(40) == 0) dropItem(JourneyItems.terrastar, 1);
-        if (rand.nextInt(5) == 0) dropItem(JourneyItems.purplePowder, 2);
-        if (b) {
-            int j = this.rand.nextInt(2 + i);
-            for (int k = 0; k < j; ++k) {
-                this.dropItem(JourneyItems.purplePowder, 1);
-            }
-        }
+    protected ResourceLocation getLootTable() {
+    	return JourneyLootTables.PURPLIAN;
     }
 
     @Override
@@ -158,11 +153,6 @@ public class EntityPurplian extends EntityModMob {
     @Override
     public SoundEvent setDeathSound() {
         return SoundEvents.ENTITY_BLAZE_DEATH;
-    }
-
-    @Override
-    public Item getItemDropped() {
-        return Items.BLAZE_ROD;
     }
 
     class AIFireballAttack extends EntityAIBase {

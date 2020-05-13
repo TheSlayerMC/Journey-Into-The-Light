@@ -3,10 +3,12 @@ package net.journey.entity.mob.terrania.mob;
 import net.journey.JITL;
 import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
+import net.journey.util.JourneyLootTables;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
 import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.MathHelper;
@@ -71,8 +73,8 @@ public class EntityTerralight extends EntityModFlying {
     }
 
     @Override
-    public Item getItemDropped() {
-        return null;
+    protected ResourceLocation getLootTable() {
+    	return JourneyLootTables.TERRALIGHT;
     }
 
     @Override

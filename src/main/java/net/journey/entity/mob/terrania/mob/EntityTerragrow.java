@@ -3,8 +3,10 @@ package net.journey.entity.mob.terrania.mob;
 import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
 import net.journey.init.items.JourneyItems;
+import net.journey.util.JourneyLootTables;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityModMob;
@@ -42,15 +44,7 @@ public class EntityTerragrow extends EntityModMob {
     }
 
     @Override
-    protected void dropFewItems(boolean b, int j) {
-        if (rand.nextInt(15) == 0) dropItem(JourneyItems.earthenCrystal, 1);
-        if (rand.nextInt(4) == 0) dropItem(JourneyItems.darkTerrarianSoil, rand.nextInt(4));
-        super.dropFewItems(b, j);
+    protected ResourceLocation getLootTable() {
+    	return JourneyLootTables.TERRAGROW;
     }
-
-    @Override
-    public Item getItemDropped() {
-        return null;
-    }
-
 }
