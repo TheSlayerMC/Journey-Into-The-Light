@@ -1,0 +1,56 @@
+ {
+  "pools": [{
+    "name": "main",
+    "rolls": 3,
+    "entries": [
+      {
+        "type": "item",
+        "name": "journey:stoneclump",
+        "functions": [{ "function": "set_count", "count": { "min": 1, "max": 1 } }],
+        "weight": 1
+      },
+      {
+        "type": "item",
+        "name": "journey:cavedust",
+        "functions": [{ "function": "set_count", "count": { "min": 1, "max": 1 } }],
+        "weight": 6
+      },
+      {
+        "type": "item",
+        "name": "journey:stonestick",
+        "functions": [{ "function": "set_count", "count": { "min": 1, "max": 1 } }],
+        "weight": 5
+      },
+      {
+        "type": "item",
+        "name": "journey:demonicdust",
+        "functions": [{ "function": "set_count", "count": { "min": 1, "max": 5 } }],
+        "weight": 7
+      },
+      {
+        "type": "item",
+        "name": "journey:demonicbone",
+        "functions": [{ "function": "set_count", "count": { "min": 1, "max": 1 } }],
+        "weight": 3
+      },
+      {
+        "type": "item",
+        "name": "journey:ancientpiece_1",
+        "functions": [{ "function": "set_count", "count": { "min": 1, "max": 1 } }],
+        "weight": 4
+      },
+      {
+        "type": "item",
+        "name": "minecraft:diamond",
+        "functions": [{ "function": "set_count", "count": { "min": 1, "max": 1 } }],
+        "weight": 5
+      },
+      {
+        "type": "item",
+        "name": "journey:ancientpiece_2",
+        "functions": [{ "function": "set_count", "count": { "min": 1, "max": 1 } }],
+        "weight": 13
+      }
+    ]
+  }]
+}

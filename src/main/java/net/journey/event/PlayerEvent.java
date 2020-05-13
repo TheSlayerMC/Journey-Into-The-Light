@@ -73,7 +73,7 @@ public class PlayerEvent {
 
 				if(event.getHarvester().getHeldItemMainhand().getItem() == JourneyArmory.PICKAXE_OF_GOOD_FORTUNE) {
 
-					List<ItemStack> i = LootHelper.readFromLootTable(JourneyLootTables.EUCA_SMITH_CHEST, (EntityPlayerMP)event.getHarvester()); // make new loot table
+					List<ItemStack> i = LootHelper.readFromLootTable(JourneyLootTables.LOOT_POUCH, (EntityPlayerMP)event.getHarvester()); // make new loot table
 					int index = random.nextInt(i.size()); 
 					Item it = i.get(index).getItem();
 
