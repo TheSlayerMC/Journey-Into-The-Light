@@ -2,6 +2,7 @@ package net.journey.dimension.boil;
 
 import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biome.TempCategory;
 
 import java.awt.*;
 
@@ -24,6 +25,16 @@ public class BiomeGenBoiling extends Biome {
 
     @Override
     public boolean canRain() {
+        return false;
+    }
+   
+    @Override
+    public TempCategory getTempCategory() {
+        return TempCategory.WARM;
+    }
+
+    @Override
+    public boolean getEnableSnow() {
         return false;
     }
 
