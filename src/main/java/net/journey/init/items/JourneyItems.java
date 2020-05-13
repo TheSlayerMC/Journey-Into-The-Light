@@ -7,6 +7,7 @@ import net.journey.items.ItemFlameCoin;
 import net.journey.items.ItemModRecord;
 import net.journey.items.interactive.*;
 import net.journey.util.Config;
+import net.journey.util.JourneyLootTables;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
@@ -475,7 +476,9 @@ public class JourneyItems {
         bleedstonedust = new ItemMod("bleedstonedust", "Bleedstone Dust");
         smithstonedust = new ItemMod("smithstonedust", "Smithstone Dust");
 
-        frostyGift = new ItemPresent("frostyGift", "Frosty Gift");
+        frostyGift = new ItemLoot("frostyGift", "Frosty Gift", JourneyLootTables.LOOT_PRESENT);
+        LOOT_POUCH = new ItemLoot("loot_pouch", "Loot Pouch", JourneyLootTables.LOOT_POUCH);
+        
         flameCoin = new ItemFlameCoin("flameCoin", "Flame Coin");
 
         calciaOrb = new ItemNetherBossSpawner("calciaOrb", "Calcia Orb");
@@ -549,7 +552,6 @@ public class JourneyItems {
         
         obsidianRod = new ItemMod("obsidianRod", "Obsidian Rod");
         
-        LOOT_POUCH = new ItemLootPouch("loot_pouch", "Loot Pouch");
         BALMY_TEARDROP = new ItemMod("balmy_teardrop", "Balmy Teardrop");
         CHARM_OF_VINE_STRANDING = new ItemMod("charm_of_vine_stranding", "Charm of Vinestranding");
         CHARM_OF_WATER_BENDING = new ItemMod("charm_of_water_bending", "Charm of Waterbending");
