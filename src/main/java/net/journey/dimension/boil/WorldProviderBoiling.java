@@ -51,7 +51,7 @@ public class WorldProviderBoiling extends BaseWorldProvider {
 
     @Override
     public float getCloudHeight() {
-        return 64.0F;
+        return 64F;
     }
 
     @Override

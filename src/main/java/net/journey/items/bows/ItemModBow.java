@@ -314,17 +314,13 @@ public class ItemModBow extends ItemBow {
 							}
 
 							if (effect == EntityEssenceArrow.BowEffects.ESSENCE_BOW) {
-								if (mana.getEssenceValue() >= manaUse) {
+								if (mana.useEssence(this.manaUse)) {
 									worldIn.spawnEntity(entityarrow);
 								}
 							} else if (effect != EntityEssenceArrow.BowEffects.ESSENCE_BOW) {
 								worldIn.spawnEntity(entityarrow);
 							}
 						}
-					}
-
-					if (effect == EntityEssenceArrow.BowEffects.ESSENCE_BOW) {
-						mana.useEssence(this.manaUse);
 					}
 
 					worldIn.playSound(null, entityplayer.posX, entityplayer.posY, entityplayer.posZ,
