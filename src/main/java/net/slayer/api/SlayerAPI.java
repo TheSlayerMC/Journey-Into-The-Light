@@ -123,8 +123,7 @@ public class SlayerAPI {
 
     @SideOnly(Side.CLIENT)
     public static void addChatMessage(EntityPlayer p, String str) {
-        TextComponentString ret = new TextComponentString(str);
-        p.sendMessage(ret);
+        p.sendMessage(LangHelper.getClientSideTranslation(p, str));
     }
 
     @SideOnly(Side.CLIENT)

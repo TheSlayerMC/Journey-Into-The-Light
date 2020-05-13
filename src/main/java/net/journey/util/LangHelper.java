@@ -1,14 +1,28 @@
 package net.journey.util;
 
 import net.journey.JITL;
-import net.minecraft.client.resources.I18n;
+import net.minecraft.command.ICommandSender;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.server.command.TextComponentHelper;
 
 public class LangHelper {
 
 	public String[] updateAvaliable = new String[]{};
 
 	public static String getFormattedText(String format) {
-		return I18n.format(format);
+		return i18n(format);
+	}
+
+	public static ITextComponent getClientSideTranslation(ICommandSender sender, String str, final Object... args) {
+		return TextComponentHelper.createComponentTranslation(sender, str, args);
+	}
+
+	public static String i18n(String text, Object... args) {
+		TextComponentTranslation result = new TextComponentTranslation(text, args);
+		result.getStyle().setColor(TextFormatting.GRAY);
+		return result.getFormattedText();
 	}
 
 	public static String getEfficiency() {
