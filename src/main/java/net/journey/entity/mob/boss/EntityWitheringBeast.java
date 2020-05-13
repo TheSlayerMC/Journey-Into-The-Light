@@ -83,11 +83,6 @@ public class EntityWitheringBeast extends EntityEssenceBoss implements IRangedAt
     }
 
     @Override
-    public Item getItemDropped() {
-        return null;
-    }
-
-    @Override
     public void attackEntityWithRangedAttack(EntityLivingBase e, float f1) {
         this.launchWitherSkullToEntity(0, e);
     }

@@ -124,12 +124,7 @@ public class EntityTerranianProtector extends EntityFlyingBoss {
         return this.rand.nextInt(15) == 0 && super.getCanSpawnHere()
                 && this.world.getDifficulty() != EnumDifficulty.PEACEFUL;
     }
-
-    @Override
-    public Item getItemDropped() {
-        return null;
-    }
-
+    
     @Override
     protected void entityInit() {
         super.entityInit();

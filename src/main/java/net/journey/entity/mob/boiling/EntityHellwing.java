@@ -463,9 +463,4 @@ public class EntityHellwing extends EntityModMob {
 	public SoundEvent setDeathSound() {
 		return JourneySounds.CAVE_MOB;
 	}
-
-	@Override
-	public Item getItemDropped() {
-		return JourneyItems.boilingSkull;
-	}
 }

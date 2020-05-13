@@ -130,52 +130,6 @@ public class EntityScale extends EntityFlyingBoss {
     @Override
     public void fall(float distance, float damageMultiplier) {
     }
-	
-	/*@Override
-	public void moveEntityWithHeading(float p_70612_1_, float p_70612_2_) {
-		if (this.isInWater()) {
-			this.moveFlying(p_70612_1_, p_70612_2_, 0.02F);
-			this.moveEntity(this.motionX, this.motionY, this.motionZ);
-			this.motionX *= 0.800000011920929D;
-			this.motionY *= 0.800000011920929D;
-			this.motionZ *= 0.800000011920929D;
-		} else if (this.isInLava()) {
-			this.moveFlying(p_70612_1_, p_70612_2_, 0.02F);
-			this.moveEntity(this.motionX, this.motionY, this.motionZ);
-			this.motionX *= 0.5D;
-			this.motionY *= 0.5D;
-			this.motionZ *= 0.5D;
-		} else {
-			float f2 = 0.91F;
-
-			if (this.onGround) {
-				f2 = this.world.getBlockState(new BlockPos(MathHelper.floor_double(this.posX),
-						MathHelper.floor_double(this.getEntityBoundingBox().minY) - 1,
-						MathHelper.floor_double(this.posZ))).getBlock().slipperiness * 0.91F;
-			}
-
-			float f3 = 0.16277136F / (f2 * f2 * f2);
-			this.moveFlying(p_70612_1_, p_70612_2_, this.onGround ? 0.1F * f3 : 0.02F);
-			f2 = 0.91F;
-
-			if (this.onGround) {
-				f2 = this.world.getBlockState(new BlockPos(MathHelper.floor_double(this.posX),
-						MathHelper.floor_double(this.getEntityBoundingBox().minY) - 1,
-						MathHelper.floor_double(this.posZ))).getBlock().slipperiness * 0.91F;
-			}
-
-			this.moveEntity(this.motionX, this.motionY, this.motionZ);
-			this.motionX *= f2;
-			this.motionY *= f2;
-			this.motionZ *= f2;
-		}
-
-	}*/
-
-    @Override
-    public Item getItemDropped() {
-        return null;
-    }
 
     private void launchWitherSkullToEntity(int var1, EntityLivingBase e) {
         this.launchWitherSkullToCoords(var1, e.posX, e.posY + e.getEyeHeight() * 0.5D, e.posZ, var1 == 0 && this.rand.nextFloat() < 0.001F);

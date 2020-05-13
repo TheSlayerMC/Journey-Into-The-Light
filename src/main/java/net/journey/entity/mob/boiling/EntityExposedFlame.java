@@ -63,20 +63,7 @@ public class EntityExposedFlame extends EntityModMob {
     }
 
     @Override
-    public Item getItemDropped() {
-        return JourneyItems.boilPowder;
-    }
-
-    @Override
     public ItemStack getHeldItemMainhand() {
         return new ItemStack(JourneyWeapons.boilingBlade);
-    }
-
-    @Override
-    protected void dropFewItems(boolean b, int j) {
-        Item it = getItemDropped();
-        this.dropItem(it, 1);
-        if (rand.nextInt(20) == 0) dropItem(JourneyItems.blazingFireball, 1);
-        super.dropFewItems(b, j);
     }
 }

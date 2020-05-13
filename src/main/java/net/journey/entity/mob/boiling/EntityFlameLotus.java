@@ -42,9 +42,4 @@ public class EntityFlameLotus extends EntityModMob {
     public SoundEvent setDeathSound() {
         return null;
     }
-
-    @Override
-    public Item getItemDropped() {
-        return null;
-    }
 }

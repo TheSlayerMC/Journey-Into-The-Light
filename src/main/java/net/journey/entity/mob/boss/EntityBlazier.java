@@ -215,11 +215,6 @@ public class EntityBlazier extends EntityEssenceBoss implements IRangedAttackMob
     }
 
     @Override
-    public Item getItemDropped() {
-        return Items.BLAZE_ROD;
-    }
-
-    @Override
     public void attackEntityWithRangedAttack(EntityLivingBase e, float f1) {
         this.launchWitherSkullToEntity(0, e);
     }

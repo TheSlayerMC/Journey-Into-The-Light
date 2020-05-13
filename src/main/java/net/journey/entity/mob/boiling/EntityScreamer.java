@@ -160,11 +160,6 @@ public class EntityScreamer extends EntityModMob {
         return SoundEvents.ENTITY_BLAZE_DEATH;
     }
 
-    @Override
-    public Item getItemDropped() {
-        return Items.BLAZE_ROD;
-    }
-
     class AIFireballAttack extends EntityAIBase {
         private EntityScreamer field_179469_a = EntityScreamer.this;
         private int field_179467_b;

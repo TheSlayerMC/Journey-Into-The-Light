@@ -160,11 +160,6 @@ public class EntityObserver extends EntityModMob {
         return SoundEvents.ENTITY_BLAZE_DEATH;
     }
 
-    @Override
-    public Item getItemDropped() {
-        return Items.BLAZE_ROD;
-    }
-
     class AIFireballAttack extends EntityAIBase {
         private EntityObserver entity = EntityObserver.this;
         private int x;

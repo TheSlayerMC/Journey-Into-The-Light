@@ -64,11 +64,6 @@ public class EntityMagmaGiant extends EntityModMob {
     }
 
     @Override
-    public Item getItemDropped() {
-        return null;
-    }
-
-    @Override
     public void onLivingUpdate() {
         super.onLivingUpdate();
         int i = MathHelper.floor(this.posX);

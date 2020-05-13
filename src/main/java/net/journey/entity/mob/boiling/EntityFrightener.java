@@ -62,20 +62,6 @@ public class EntityFrightener extends EntityModMob {
     }
 
     @Override
-    public Item getItemDropped() {
-        return JourneyItems.boilPowder;
-
-    }
-
-    @Override
-    protected void dropFewItems(boolean b, int j) {
-        Item it = getItemDropped();
-        this.dropItem(it, 1);
-        if (rand.nextInt(20) == 0) dropItem(JourneyItems.sizzlingEye, 1);
-        super.dropFewItems(b, j);
-    }
-
-    @Override
     public SoundEvent setLivingSound() {
         // TODO Auto-generated method stub
         return null;

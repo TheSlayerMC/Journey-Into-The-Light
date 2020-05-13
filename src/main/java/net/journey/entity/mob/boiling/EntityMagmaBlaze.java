@@ -174,11 +174,6 @@ public class EntityMagmaBlaze extends EntityModMob {
         return SoundEvents.ENTITY_BLAZE_DEATH;
     }
 
-    @Override
-    public Item getItemDropped() {
-        return Items.BLAZE_ROD;
-    }
-
     class AIFireballAttack extends EntityAIBase {
         private static final String __OBFID = "CL_00002225";
         private EntityMagmaBlaze field_179469_a = EntityMagmaBlaze.this;
