@@ -1,10 +1,13 @@
 package net.journey.entity.projectile;
 
+import net.journey.client.render.particles.EntityBlazierSmokeFX;
 import net.journey.client.render.particles.EntityHellstoneFX;
+import net.journey.util.PotionEffects;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntitySmallFireball;
 import net.minecraft.init.Blocks;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -13,13 +16,13 @@ import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class EntityMagmaFireball extends EntitySmallFireball {
+public class EntityBlazierSmoke extends EntitySmallFireball {
 
-    public EntityMagmaFireball(World w) {
+    public EntityBlazierSmoke(World w) {
         super(w);
     }
 
-    public EntityMagmaFireball(World w, EntityLivingBase e, double x, double y, double z) {
+    public EntityBlazierSmoke(World w, EntityLivingBase e, double x, double y, double z) {
         super(w, e, x, y, z);
         this.setSize(0.3125F, 0.3125F);
     }
@@ -29,8 +32,8 @@ public class EntityMagmaFireball extends EntitySmallFireball {
     public void onUpdate() {
         super.onUpdate();
         for (int i = 0; i < 6; ++i) {
-        	//EntityHellstoneFX effect = new EntityHellstoneFX(this.world, this.posX, this.posY - 1.0F, this.posZ, 0.0D, 0.0D, 0.0D);
-            //FMLClientHandler.instance().getClient().effectRenderer.addEffect(effect);
+        	EntityBlazierSmokeFX effect = new EntityBlazierSmokeFX(this.world, this.posX, this.posY - 1.0F, this.posZ, 0.0D, 0.0D, 0.0D);
+            FMLClientHandler.instance().getClient().effectRenderer.addEffect(effect);
         }
     }
 
@@ -44,24 +47,13 @@ public class EntityMagmaFireball extends EntitySmallFireball {
                 m.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(shootingEntity, m.entityHit), 5.0F);
                 if (flag) {
                     this.applyEnchantments(this.shootingEntity, m.entityHit);
-
-                    if (!m.entityHit.isImmuneToFire()) {
-                        m.entityHit.setFire(5);
-                    }
+                    ((EntityLivingBase) m.entityHit).addPotionEffect(new PotionEffect(PotionEffects.getPotionFromID(PotionEffects.poison), 100, 1));
                 }
             } else {
                 flag = true;
 
                 if (this.shootingEntity != null && this.shootingEntity instanceof EntityLiving) {
                     flag = this.world.getGameRules().getBoolean("mobGriefing");
-                }
-
-                if (flag) {
-                    BlockPos blockpos = m.getBlockPos().offset(m.sideHit);
-
-                    if (this.world.isAirBlock(blockpos)) {
-                        this.world.setBlockState(blockpos, Blocks.FIRE.getDefaultState());
-                    }
                 }
             }
 

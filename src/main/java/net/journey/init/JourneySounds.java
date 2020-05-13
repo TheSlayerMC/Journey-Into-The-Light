@@ -105,6 +105,10 @@ public class JourneySounds {
     public static SoundEvent SENTRY_HEART_HIT;
     public static SoundEvent SENTRY_DESTRUCTION_MOVING;
     
+    public static SoundEvent BLAZIER_IDLE;
+    public static SoundEvent BLAZIER_HURT;
+    public static SoundEvent BLAZIER_DEATH;
+    
     public static SoundEvent EMPTY;
 
     public static SoundEvent UNTITLED_DISK;
@@ -215,6 +219,10 @@ public class JourneySounds {
         SENTRY_HEART_HIT = registerSound("sentry_heart_hit");
         SENTRY_HEART_DEATH = registerSound("sentry_heart_death");
         SENTRY_DESTRUCTION_MOVING = registerSound("sentry_destruction_moving");
+        
+        BLAZIER_IDLE = registerSound("blazier_idle");
+        BLAZIER_HURT = registerSound("blazier_hurt");
+        BLAZIER_DEATH = registerSound("blazier_death");
         
         EMPTY = registerSound("empty");
         UNTITLED_DISK = registerSound("untitled_disk");

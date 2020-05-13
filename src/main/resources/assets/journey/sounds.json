@@ -55,6 +55,11 @@
  "wraith_death":{"category":"hostile","sounds": ["journey:wraith_death"]},
  "base_mob_hurt":{"category":"hostile","sounds": ["journey:base_mob_hurt"]},
  "boss_death":{"category":"hostile","sounds": ["journey:boss_death"]},
+
+ "blazier_idle":{"category":"hostile","sounds": ["journey:blazier_idle_0", "journey:blazier_idle_1", "journey:blazier_idle_2"]},
+ "blazier_hurt":{"category":"hostile","sounds": ["journey:blazier_hit_0", "journey:blazier_hit_1", "journey:blazier_hit_2", "journey:blazier_hit_3"]},
+ "blazier_death":{"category":"hostile","sounds": ["journey:blazier_death"]},
+
  "sentry_ambient_1":{"category":"hostile","sounds": ["journey:sentry_ambient_1"]},
  "sentry_ambient_2":{"category":"hostile","sounds": ["journey:sentry_ambient_2"]},
  "sentry_ambient_3":{"category":"hostile","sounds": ["journey:sentry_ambient_3"]},
