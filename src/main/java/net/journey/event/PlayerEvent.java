@@ -1,23 +1,19 @@
 package net.journey.event;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import net.journey.entity.mob.overworld.EntityIceMage;
 import net.journey.init.items.JourneyArmory;
 import net.journey.init.items.JourneyConsumables;
-import net.journey.init.items.JourneyItems;
-import net.journey.util.handler.Helper;
+import net.journey.util.JourneyLootTables;
+import net.journey.util.LootHelper;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
@@ -27,7 +23,6 @@ import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.slayer.api.PlayerHelper;
-import net.slayer.api.SlayerAPI;
 
 public class PlayerEvent {
 
@@ -38,7 +33,7 @@ public class PlayerEvent {
 		this.rand = 0;
 		this.random = new Random();
 	}
-	
+
 	@SubscribeEvent
 	public void onBlockHarvested(HarvestDropsEvent event) {
 		EntityPlayer p = event.getHarvester();
@@ -75,51 +70,16 @@ public class PlayerEvent {
 					ItemStack item = ForgeHooks.getGrassSeed(random, 1);
 					event.getDrops().add(item);
 				}
-				
+
 				if(event.getHarvester().getHeldItemMainhand().getItem() == JourneyArmory.PICKAXE_OF_GOOD_FORTUNE) {
-					ArrayList<Item> items = new ArrayList<Item>(); //Make a new list of items
-					items.add(JourneyItems.stoneClump);
-					items.add(JourneyItems.caveDust);
-					items.add(SlayerAPI.toItem(Blocks.STONE));
-					items.add(JourneyItems.stoneStick);
-					items.add(Items.STICK);
-					items.add(Items.WHEAT_SEEDS);
-					items.add(Items.MELON_SEEDS);
-					items.add(Items.PUMPKIN_SEEDS);
-					items.add(Items.BEETROOT_SEEDS);
-					items.add(Items.WHEAT);
-					items.add(Items.BONE);
-					items.add(Items.ENDER_PEARL);
-					items.add(JourneyItems.demonicDust);
-					items.add(JourneyItems.demonicBone);
-					items.add(JourneyItems.ancientPiece_1);
-					items.add(JourneyItems.ancientPiece_2);
-					items.add(JourneyItems.ancientPiece_3);
-					items.add(JourneyItems.ancientPiece_4);
-					items.add(Items.COAL);
-					items.add(Items.IRON_INGOT);
-					items.add(Items.DIAMOND);
-					items.add(Items.REDSTONE);
-					items.add(Items.GOLD_INGOT);
-					items.add(JourneyItems.hellstoneDust);
-					items.add(JourneyItems.sapphireDust);
-					items.add(JourneyItems.diamondDust);
-					items.add(JourneyItems.shadiumDust);
-					items.add(JourneyItems.luniumDust);
-					items.add(JourneyItems.iridium);
-					items.add(SlayerAPI.toItem(Blocks.COBBLESTONE));
-					items.add(SlayerAPI.toItem(Blocks.LOG));
-					items.add(SlayerAPI.toItem(Blocks.PLANKS));
-					items.add(SlayerAPI.toItem(Blocks.CLAY));
-					items.add(SlayerAPI.toItem(Blocks.DIRT));
-					items.add(SlayerAPI.toItem(Blocks.SAND));
-					items.add(SlayerAPI.toItem(Blocks.CHEST));
-					items.add(JourneyItems.obsidianRod);
-		            int index = random.nextInt(items.size()); 
-		            
+
+					List<ItemStack> i = LootHelper.generateLootTable(JourneyLootTables.EUCA_SMITH_CHEST, (EntityPlayerMP)event.getHarvester()); // make new loot table
+					int index = random.nextInt(i.size()); 
+					Item it = i.get(index).getItem();
+
 					if(event.getState().getBlock().getRegistryName().toString().contains("ore")) {
-			            if(random.nextInt(3) == 0) 
-			            	event.getDrops().add(new ItemStack(items.get(index)));// make it spawn only 1 item not 2 and add it so its only a chance
+						if(random.nextInt(3) == 0) 
+							event.getDrops().add(new ItemStack(it));// make it spawn only 1 item not 2 and add it so its only a chance
 					}
 				}
 			}
