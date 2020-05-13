@@ -3,7 +3,9 @@ package net.journey.entity.mob.euca;
 import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
 import net.journey.init.items.JourneyItems;
+import net.journey.util.JourneyLootTables;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityModMob;
@@ -42,15 +44,7 @@ public class EntityGoldbot extends EntityModMob {
     }
 
     @Override
-    protected void dropFewItems(boolean b, int j) {
-        if (rand.nextInt(15) == 0) dropItem(JourneyItems.goldClump, rand.nextInt(4));
-        if (rand.nextInt(15) == 0) dropItem(JourneyItems.gateKeys, rand.nextInt(4));
-        if (rand.nextInt(25) == 0) dropItem(JourneyItems.metalDisk, 1);
-        super.dropFewItems(b, j);
-    }
-
-    @Override
-    public Item getItemDropped() {
-        return null;
+    protected ResourceLocation getLootTable() {
+    	return JourneyLootTables.GOLDBOT;
     }
 }

@@ -4,6 +4,7 @@ import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityFireBall;
 import net.journey.init.JourneySounds;
 import net.journey.init.items.JourneyWeapons;
+import net.journey.util.JourneyLootTables;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.IRangedAttackMob;
@@ -15,6 +16,7 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
@@ -93,8 +95,8 @@ public class EntityGolditeMage extends EntityModMob implements IRangedAttackMob 
     }
 
     @Override
-    public Item getItemDropped() {
-        return null;
+    protected ResourceLocation getLootTable() {
+    	return JourneyLootTables.GOLDITE_MAGE;
     }
 
     @Override

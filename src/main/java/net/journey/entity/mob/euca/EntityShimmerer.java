@@ -4,6 +4,7 @@ import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityShimmererProjectile;
 import net.journey.init.JourneySounds;
 import net.journey.init.items.JourneyItems;
+import net.journey.util.JourneyLootTables;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
@@ -12,6 +13,7 @@ import net.minecraft.item.Item;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.MathHelper;
@@ -82,21 +84,14 @@ public class EntityShimmerer extends EntityModFlying {
     }
 
     @Override
-    protected void dropFewItems(boolean b, int j) {
-        if (rand.nextInt(1) == 0) dropItem(JourneyItems.shimmerdust, rand.nextInt(4));
-        if (rand.nextInt(5) == 0) dropItem(JourneyItems.gateKeys, rand.nextInt(3));
-        super.dropFewItems(b, j);
+    protected ResourceLocation getLootTable() {
+    	return JourneyLootTables.SHIMMERER;
     }
 
     @Override
     protected void entityInit() {
         super.entityInit();
         this.dataManager.register(FIRE, Boolean.valueOf(false));
-    }
-
-    @Override
-    public Item getItemDropped() {
-        return null;
     }
 
     public void setFire(boolean b) {

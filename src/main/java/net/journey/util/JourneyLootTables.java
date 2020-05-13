@@ -70,7 +70,18 @@ public class JourneyLootTables {
     public static final ResourceLocation OBSERVER = register("mobs/boil/observer");
     public static final ResourceLocation SCREAMER = register("mobs/boil/screamer");
 
-    
+    //Buca
+    public static final ResourceLocation DYNASTER = register("mobs/euca/dynaster");
+    public static final ResourceLocation EUCA_CHARGER = register("mobs/euca/euca_charger");
+    public static final ResourceLocation EUCA_FIGHTER = register("mobs/euca/euca_fighter");
+    public static final ResourceLocation GOLDBOT = register("mobs/euca/goldbot");
+    public static final ResourceLocation GOLDER = register("mobs/euca/golder");
+    public static final ResourceLocation GOLDITE_MAGE = register("mobs/euca/goldite_mage");
+    public static final ResourceLocation INSECTO = register("mobs/euca/insecto");
+    public static final ResourceLocation PSYOLLUM = register("mobs/euca/psyollum");
+    public static final ResourceLocation SHIMMERER = register("mobs/euca/shimmerer");
+    public static final ResourceLocation SILVERBOT = register("mobs/euca/silverbot");
+
     public static final ResourceLocation VANILLA_SIMPLE_DUNGEON = LootTableList.CHESTS_SIMPLE_DUNGEON;
 
     private static ResourceLocation register(String path) {
