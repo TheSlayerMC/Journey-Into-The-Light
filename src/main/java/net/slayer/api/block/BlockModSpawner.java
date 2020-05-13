@@ -1,7 +1,11 @@
 package net.slayer.api.block;
 
 import net.journey.init.JourneyTabs;
+import net.journey.util.StuffConstructor;
+import net.minecraft.block.BlockMobSpawner;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.util.BlockRenderLayer;
@@ -17,13 +21,15 @@ import net.slayer.api.entity.tileentity.container.BlockModContainer;
 
 import java.util.Random;
 
-public class BlockModSpawner extends BlockModContainer {
+public class BlockModSpawner extends BlockMobSpawner {
 
     protected String mobName;
 
-    public BlockModSpawner(String name, String finalName, String mobName) {
-        super(EnumMaterialTypes.STONE, name, finalName, -1, JourneyTabs.SPAWNERS);
+    public BlockModSpawner(String name, String enName, String mobName) {
+        super();
+        setSoundType(SoundType.METAL);
         this.mobName = mobName;
+        StuffConstructor.regAndSetupBlock(this, name, enName, 1.0F, JourneyTabs.MACHINE_BLOCKS);
     }
 
     @Override
@@ -36,28 +42,5 @@ public class BlockModSpawner extends BlockModContainer {
     @Override
     public int quantityDropped(Random par1Random) {
         return 0;
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getRenderLayer() {
-        return BlockRenderLayer.CUTOUT;
-    }
-
-    @Override
-    public EnumBlockRenderType getRenderType(IBlockState state) {
-        return EnumBlockRenderType.MODEL;
-    }
-
-    @Override
-    public void dropBlockAsItemWithChance(World world, BlockPos pos, IBlockState par5, float par6, int par7) {
-        super.dropBlockAsItemWithChance(world, pos, par5, par6, par7);
-        int var8 = 15 + world.rand.nextInt(15) + world.rand.nextInt(15);
-        this.dropXpOnBlockBreak(world, pos, var8);
-    }
-
-    @Override
-    public boolean isOpaqueCube(IBlockState state) {
-        return false;
     }
 }
