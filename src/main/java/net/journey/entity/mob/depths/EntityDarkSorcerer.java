@@ -5,6 +5,7 @@ import net.journey.entity.projectile.EntityFireBall;
 import net.journey.init.JourneySounds;
 import net.journey.init.items.JourneyItems;
 import net.journey.init.items.JourneyWeapons;
+import net.journey.util.JourneyLootTables;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.IRangedAttackMob;
@@ -16,6 +17,7 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -102,14 +104,8 @@ public class EntityDarkSorcerer extends EntityModMob implements IRangedAttackMob
     }
 
     @Override
-    public Item getItemDropped() {
-        return JourneyItems.darkCrystal;
-    }
-
-    @Override
-    protected void dropFewItems(boolean b, int j) {
-        if (rand.nextInt(30) == 0) dropItem(JourneyItems.darkOrb, 1);
-        super.dropFewItems(b, j);
+    protected ResourceLocation getLootTable() {
+    	return JourneyLootTables.DARK_SORCERER;
     }
 
     @Override

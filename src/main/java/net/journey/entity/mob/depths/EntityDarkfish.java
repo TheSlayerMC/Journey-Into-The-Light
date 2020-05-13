@@ -3,6 +3,7 @@ package net.journey.entity.mob.depths;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityMagmaFireball;
 import net.journey.init.items.JourneyItems;
+import net.journey.util.JourneyLootTables;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
@@ -17,6 +18,7 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.datafix.DataFixer;
@@ -50,13 +52,6 @@ public class EntityDarkfish extends EntityModFlying {
     }
 
     @Override
-    protected void dropFewItems(boolean b, int j) {
-        if (rand.nextInt(5) == 0) dropItem(JourneyItems.scale, rand.nextInt(3));
-        if (rand.nextInt(10) == 0) dropItem(JourneyItems.darkOrb, 1);
-        if (rand.nextInt(5) == 0) dropItem(JourneyItems.darkCrystal, 1);
-    }
-
-    @Override
     public void onUpdate() {
         super.onUpdate();
         if (!this.world.isRemote && this.world.getDifficulty() == EnumDifficulty.PEACEFUL) this.setDead();
@@ -68,8 +63,8 @@ public class EntityDarkfish extends EntityModFlying {
     }
 
     @Override
-    public Item getItemDropped() {
-        return null;
+    protected ResourceLocation getLootTable() {
+    	return JourneyLootTables.DARK_FISH;
     }
 
     protected void initEntityAI() {

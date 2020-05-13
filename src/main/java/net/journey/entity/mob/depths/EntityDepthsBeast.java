@@ -3,10 +3,12 @@ package net.journey.entity.mob.depths;
 import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
 import net.journey.init.items.JourneyItems;
+import net.journey.util.JourneyLootTables;
 import net.journey.util.PotionEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityModMob;
@@ -61,15 +63,7 @@ public class EntityDepthsBeast extends EntityModMob {
     }
 
     @Override
-    public Item getItemDropped() {
-        return null;
-
-    }
-
-    @Override
-    protected void dropFewItems(boolean b, int j) {
-        if (rand.nextInt(6) == 0) dropItem(JourneyItems.beastlyStomach, rand.nextInt(2));
-        if (rand.nextInt(6) == 0) dropItem(JourneyItems.darkCrystal, 1);
-        super.dropFewItems(b, j);
+    protected ResourceLocation getLootTable() {
+    	return JourneyLootTables.DEPTHS_BEAST;
     }
 }

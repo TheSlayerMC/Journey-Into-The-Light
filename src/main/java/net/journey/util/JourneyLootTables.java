@@ -69,6 +69,11 @@ public class JourneyLootTables {
     public static final ResourceLocation REAPER = register("mobs/nether/reaper");
     public static final ResourceLocation WITHERSPINE = register("mobs/nether/witherspine");
 
+    //End
+    public static final ResourceLocation ENDER_CRAWLER = register("mobs/end/ender_crawler");
+    public static final ResourceLocation ENDER_LEAPER = register("mobs/end/ender_leaper");
+
+    
     //Boil
     public static final ResourceLocation BURNING_LIGHT = register("mobs/boil/burning_light");
     public static final ResourceLocation EXPOSED_FLAME = register("mobs/boil/exposed_flame");
@@ -102,6 +107,16 @@ public class JourneyLootTables {
     public static final ResourceLocation SHATTERER = register("mobs/frozen/shatterer");
     public static final ResourceLocation SHIVERING_BUSHWALKER = register("mobs/frozen/shivering_bushwalker");
     public static final ResourceLocation SHIVERING_SHRIEKER = register("mobs/frozen/shivering_shrieker");
+
+    //Depths
+    public static final ResourceLocation DARKENER = register("mobs/depths/darkener");
+    public static final ResourceLocation DARK_FISH = register("mobs/depths/dark_fish");
+    public static final ResourceLocation DARKNESS_CRAWLER = register("mobs/depths/darkness_crawler");
+    public static final ResourceLocation DARK_SORCERER = register("mobs/depths/dark_sorcerer");
+    public static final ResourceLocation DEPTHS_BEAST = register("mobs/depths/depths_beast");
+    public static final ResourceLocation DEPTHS_HUNTER = register("mobs/depths/depths_hunter");
+    public static final ResourceLocation LIGHTENER = register("mobs/depths/lightener");
+    public static final ResourceLocation SPIKED_BEAST = register("mobs/depths/spiked_beast");
 
     
     public static final ResourceLocation VANILLA_SIMPLE_DUNGEON = LootTableList.CHESTS_SIMPLE_DUNGEON;

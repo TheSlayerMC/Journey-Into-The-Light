@@ -2,7 +2,8 @@ package net.journey.entity.mob.end;
 
 import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
-import net.minecraft.item.Item;
+import net.journey.util.JourneyLootTables;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityModMob;
@@ -41,12 +42,7 @@ public class EntityEnderLeaper extends EntityModMob {
     }
 
     @Override
-    protected void dropFewItems(boolean b, int j) {
-
-    }
-
-    @Override
-    public Item getItemDropped() {
-        return null;
+    protected ResourceLocation getLootTable() {
+    	return JourneyLootTables.ENDER_LEAPER;
     }
 }
