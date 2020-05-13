@@ -237,7 +237,9 @@ public class JourneyRecipes {
 		add2x2CompactingRecipes(JourneyBlocks.smithstone, JourneyItems.smithstone, true);
 		add2x2CompactingRecipes(JourneyBlocks.bleedstone, JourneyItems.bleedstone, true);
 
-		GENERATOR.generateConstants();
+		if (GENERATOR != null) {
+			GENERATOR.generateConstants();
+		}
 	}
 
 	public static void initFurnaceRecipes() {
