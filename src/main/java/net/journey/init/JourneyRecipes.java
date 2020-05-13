@@ -37,9 +37,7 @@ public class JourneyRecipes {
 	}
 
 	public static void init() {
-		if (GENERATOR != null) {
-			generateRecipes();
-		}
+		generateRecipes();
 
 		initFurnaceRecipes();
 	}
