@@ -15,5 +15,6 @@ public class TileEntityHandler {
         GameRegistry.registerTileEntity(TileEntityTrap.class, new ResourceLocation(SlayerAPI.PREFIX + "Trap"));
         GameRegistry.registerTileEntity(TileEntitySenterianAltar.class, new ResourceLocation(SlayerAPI.PREFIX + "Senterian Altar"));
         GameRegistry.registerTileEntity(TileEntityObelisk.class, new ResourceLocation(SlayerAPI.PREFIX + "Obelisk"));
+        GameRegistry.registerTileEntity(TileEntityJourneyMobSpawner.class, new ResourceLocation(SlayerAPI.PREFIX + "Mob Spawner"));
     }
 }

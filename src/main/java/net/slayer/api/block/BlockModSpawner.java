@@ -1,5 +1,6 @@
 package net.slayer.api.block;
 
+import net.journey.blocks.tileentity.TileEntityJourneyMobSpawner;
 import net.journey.init.JourneyTabs;
 import net.journey.util.StuffConstructor;
 import net.minecraft.block.BlockMobSpawner;
@@ -34,7 +35,7 @@ public class BlockModSpawner extends BlockMobSpawner {
 
     @Override
     public TileEntity createNewTileEntity(World world, int par1) {
-        TileEntityMobSpawner spawner = new TileEntityMobSpawner();
+        TileEntityJourneyMobSpawner spawner = new TileEntityJourneyMobSpawner();
         spawner.getSpawnerBaseLogic().setEntityId(new ResourceLocation(SlayerAPI.PREFIX + mobName));
         return spawner;
     }
