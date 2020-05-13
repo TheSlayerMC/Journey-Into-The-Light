@@ -92,12 +92,7 @@ public class EntitySentryHeart extends EntityEssenceBoss {
     public SoundEvent setDeathSound() {
         return JourneySounds.SENTRY_HEART_DEATH;
     }
-
-	@Override
-	public Item getItemDropped() {
-		return null;
-	}
-
+    
     @Override
     protected void initEntityAI() {
         this.tasks.addTask(1, new EntityAILookIdle(this));

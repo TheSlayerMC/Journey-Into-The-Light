@@ -218,9 +218,4 @@ public class EntityGuardianOfDestruction extends EntityEssenceBoss {
     public float getCollisionBorderSize() {
         return 2.0F;
     }
-
-    @Override
-    public Item getItemDropped() {
-        return null;
-    }
 }

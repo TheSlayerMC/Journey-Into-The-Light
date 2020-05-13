@@ -96,11 +96,6 @@ public class EntityEudor extends EntityEssenceBoss {
     }
 
     @Override
-    public Item getItemDropped() {
-        return null;
-    }
-
-    @Override
     public void onDeath(DamageSource damage) {
 		/* if(damage.getEntity() instanceof EntityPlayer) {
 			EntityPlayer p = (EntityPlayer)damage.getEntity();

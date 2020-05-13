@@ -86,11 +86,6 @@ public class EntityThunderbird extends EntityEssenceBoss {
     }
 
     @Override
-    public Item getItemDropped() {
-        return JourneyItems.corbaPortalGem;
-    }
-
-    @Override
     public void onDeath(DamageSource damage) {
         if (damage.getImmediateSource() instanceof EntityPlayer) {
             EntityPlayer p = (EntityPlayer) damage.getImmediateSource();

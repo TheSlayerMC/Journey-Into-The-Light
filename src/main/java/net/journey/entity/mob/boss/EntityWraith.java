@@ -37,9 +37,4 @@ public class EntityWraith extends EntityEssenceBoss {
     public SoundEvent setDeathSound() {
         return null;
     }
-
-    @Override
-    public Item getItemDropped() {
-        return null;
-    }
 }

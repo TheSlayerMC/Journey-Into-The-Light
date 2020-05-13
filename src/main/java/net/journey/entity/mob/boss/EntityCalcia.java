@@ -90,11 +90,6 @@ public class EntityCalcia extends EntityEssenceBoss {
     }
 
     @Override
-    public Item getItemDropped() {
-        return JourneyItems.eucaPortalGem;
-    }
-
-    @Override
     protected void dropFewItems(boolean par1, int par2) {
         this.dropItem(JourneyItems.eucaPortalGem, 6 + rand.nextInt(4));
         this.dropItem(JourneyWeapons.calciaSword, 1);

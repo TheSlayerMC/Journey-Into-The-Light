@@ -144,11 +144,6 @@ public class EntityTempleGuardian extends EntityEssenceBoss implements IRangedAt
     }
 
     @Override
-    public Item getItemDropped() {
-        return null;
-    }
-
-    @Override
     public double setAttackDamage(MobStats s) {
         return 0;
     }

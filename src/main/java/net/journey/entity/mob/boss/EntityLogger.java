@@ -124,9 +124,4 @@ public class EntityLogger extends EntityEssenceBoss {
         switch (rand.nextInt(3)) {
         }
     }
-
-    @Override
-    public Item getItemDropped() {
-        return null;
-    }
 }

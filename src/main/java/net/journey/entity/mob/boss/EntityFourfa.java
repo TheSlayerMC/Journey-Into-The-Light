@@ -132,17 +132,6 @@ public class EntityFourfa extends EntityEssenceBoss implements IRangedAttackMob 
     }
 
     @Override
-    public Item getItemDropped() {
-        return JourneyItems.depthsPortalGem;
-    }
-
-    @Override
-    protected void dropFewItems(boolean par1, int par2) {
-        this.dropItem(getItemDropped(), 6 + rand.nextInt(4));
-        //	if(rand.nextInt(1) == 0) this.dropItem(Item.getItemFromBlock(EssenceBlocks.eudorStatue), 1);
-    }
-
-    @Override
     public void setSwingingArms(boolean swingingArms) {
     }
 }
