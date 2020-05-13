@@ -3,6 +3,7 @@ package net.journey.entity.mob.corba;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityMagmaFireball;
 import net.journey.init.items.JourneyItems;
+import net.journey.util.JourneyLootTables;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
@@ -17,6 +18,7 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.datafix.DataFixer;
@@ -55,14 +57,7 @@ public class EntityOverseer extends EntityModFlying {
         this.tasks.addTask(7, new EntityOverseer.AIFireballAttack(this));
         this.tasks.addTask(7, new EntityOverseer.AILookAround(this));
     }
-
-    @Override
-    protected void dropFewItems(boolean b, int j) {
-        if (rand.nextInt(1) == 0) dropItem(JourneyItems.overseeingEye, 1);
-        if (rand.nextInt(1) == 0) dropItem(JourneyItems.collectorRock, rand.nextInt(4));
-        super.dropFewItems(b, j);
-    }
-
+    
     @Override
     public void onUpdate() {
         super.onUpdate();
@@ -75,8 +70,8 @@ public class EntityOverseer extends EntityModFlying {
     }
 
     @Override
-    public Item getItemDropped() {
-        return null;
+    protected ResourceLocation getLootTable() {
+    	return JourneyLootTables.OVERSEER;
     }
 
     @SideOnly(Side.CLIENT)

@@ -3,10 +3,12 @@ package net.journey.entity.mob.corba;
 import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
 import net.journey.init.items.JourneyItems;
+import net.journey.util.JourneyLootTables;
 import net.journey.util.PotionEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityModMob;
@@ -45,11 +47,10 @@ public class EntityLeafBlower extends EntityModMob {
     public SoundEvent setDeathSound() {
         return JourneySounds.BUSH_DEATH;
     }
-
+    
     @Override
-    public Item getItemDropped() {
-        return null;
-
+    protected ResourceLocation getLootTable() {
+    	return JourneyLootTables.LEAF_BLOWER;
     }
 
     @Override
@@ -64,15 +65,5 @@ public class EntityLeafBlower extends EntityModMob {
             if (entity instanceof EntityPlayer && canEntityBeSeen(entity))
                 ((EntityPlayer) entity).addPotionEffect(PotionEffects.setPotionEffect(PotionEffects.poison, 60, 1));
         }
-    }
-
-    @Override
-    protected void dropFewItems(boolean b, int j) {
-        Item it = getItemDropped();
-        this.dropItem(it, 1);
-        if (rand.nextInt(6) == 0) dropItem(JourneyItems.corbaStick, rand.nextInt(4));
-        if (rand.nextInt(6) == 0) dropItem(JourneyItems.enchantedLeaf, rand.nextInt(4));
-        if (rand.nextInt(24) == 0) dropItem(JourneyItems.natureTablet, rand.nextInt(4));
-        super.dropFewItems(b, j);
     }
 }

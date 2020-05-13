@@ -4,6 +4,7 @@ import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityFireBall;
 import net.journey.init.JourneySounds;
 import net.journey.init.items.JourneyWeapons;
+import net.journey.util.JourneyLootTables;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.IRangedAttackMob;
@@ -16,6 +17,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -134,8 +136,8 @@ public class EntityNatureMage extends EntityModMob implements IRangedAttackMob {
     }
 
     @Override
-    public Item getItemDropped() {
-        return null;
+    protected ResourceLocation getLootTable() {
+    	return JourneyLootTables.NATURE_MAGE;
     }
 
     @Override

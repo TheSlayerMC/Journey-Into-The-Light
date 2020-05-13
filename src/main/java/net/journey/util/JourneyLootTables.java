@@ -118,7 +118,15 @@ public class JourneyLootTables {
     public static final ResourceLocation LIGHTENER = register("mobs/depths/lightener");
     public static final ResourceLocation SPIKED_BEAST = register("mobs/depths/spiked_beast");
 
-    
+    //Corba
+    public static final ResourceLocation LEAF_BLOWER = register("mobs/corba/leaf_blower");
+    public static final ResourceLocation NATURE_MAGE = register("mobs/corba/nature_mage");
+    public static final ResourceLocation OVERSEER = register("mobs/corba/overseer");
+    public static final ResourceLocation OVERSEER_ELDER = register("mobs/corba/overseer_elder");
+    public static final ResourceLocation SURFACE_SEER = register("mobs/corba/surface_seer");
+    public static final ResourceLocation TREE_GOLEM = register("mobs/corba/tree_golem");
+    public static final ResourceLocation WOOD_CREATURE = register("mobs/corba/wood_creature");
+
     public static final ResourceLocation VANILLA_SIMPLE_DUNGEON = LootTableList.CHESTS_SIMPLE_DUNGEON;
 
     private static ResourceLocation register(String path) {

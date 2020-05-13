@@ -3,6 +3,7 @@ package net.journey.entity.mob.corba;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityMagmaFireball;
 import net.journey.init.items.JourneyItems;
+import net.journey.util.JourneyLootTables;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
@@ -17,6 +18,7 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.datafix.DataFixer;
@@ -60,14 +62,6 @@ public class EntityOverseerElder extends EntityModFlying {
     }
 
     @Override
-    protected void dropFewItems(boolean b, int j) {
-        if (rand.nextInt(1) == 0) dropItem(JourneyItems.overseeingEye, 1);
-        if (rand.nextInt(5) == 0) dropItem(JourneyItems.collectorRock, rand.nextInt(4));
-        if (rand.nextInt(25) == 0) dropItem(JourneyItems.overseeingTablet, 1);
-        super.dropFewItems(b, j);
-    }
-
-    @Override
     public void onUpdate() {
         super.onUpdate();
         if (!this.world.isRemote && this.world.getDifficulty() == EnumDifficulty.PEACEFUL) this.setDead();
@@ -79,8 +73,8 @@ public class EntityOverseerElder extends EntityModFlying {
     }
 
     @Override
-    public Item getItemDropped() {
-        return null;
+    protected ResourceLocation getLootTable() {
+    	return JourneyLootTables.OVERSEER_ELDER;
     }
 
     @SideOnly(Side.CLIENT)
