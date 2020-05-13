@@ -20,7 +20,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WorldProviderBoiling extends BaseWorldProvider {
 
-
     public WorldProviderBoiling() {
         super(new BiomeProviderSingle(DimensionHelper.boiling), new Vec3d(0.2, 0.1, 0));
     }
@@ -52,7 +51,7 @@ public class WorldProviderBoiling extends BaseWorldProvider {
 
     @Override
     public float getCloudHeight() {
-        return 128.0F;
+        return 64.0F;
     }
 
     @Override
