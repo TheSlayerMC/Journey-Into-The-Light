@@ -2,6 +2,7 @@ package net.journey.entity.mob.senterian.mob;
 
 import com.google.common.base.Optional;
 import net.journey.entity.MobStats;
+import net.journey.util.JourneyLootTables;
 import net.minecraft.block.BlockPistonBase;
 import net.minecraft.block.BlockPistonExtension;
 import net.minecraft.block.material.Material;
@@ -26,6 +27,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -506,8 +508,8 @@ public class EntitySentryBlock extends EntityModMob {
     }
 
     @Override
-    public Item getItemDropped() {
-        return null;
+    protected ResourceLocation getLootTable() {
+    	return JourneyLootTables.SENTRY_BLOCK;
     }
 
     class AIPeek extends EntityAIBase {

@@ -143,6 +143,15 @@ public class JourneyLootTables {
     public static final ResourceLocation STARLIGHT_GOLEM = register("mobs/cloudia/starlight_golem");
     public static final ResourceLocation STARLIGHT_TRANSPORTER = register("mobs/cloudia/starlight_transporter");
     public static final ResourceLocation STARLIGHT_WALKER = register("mobs/cloudia/starlight_walker");
+    
+    //Senterian
+    public static final ResourceLocation MINI_SENTRY_LORD = register("mobs/senterian/mini_sentry_lord");
+    public static final ResourceLocation MINI_SENTRY_STALKER = register("mobs/senterian/mini_sentry_stalker");
+    public static final ResourceLocation MINI_SENTRY_WALKER = register("mobs/senterian/mini_sentry_walker");
+    public static final ResourceLocation SENTRY_LORD = register("mobs/senterian/sentry_lord");
+    public static final ResourceLocation SENTRY_STALKER = register("mobs/senterian/sentry_stalker");
+    public static final ResourceLocation SENTRY_WALKER = register("mobs/senterian/sentry_walker");
+    public static final ResourceLocation SENTRY_BLOCK = register("mobs/senterian/sentry_block");
 
     public static final ResourceLocation VANILLA_SIMPLE_DUNGEON = LootTableList.CHESTS_SIMPLE_DUNGEON;
 

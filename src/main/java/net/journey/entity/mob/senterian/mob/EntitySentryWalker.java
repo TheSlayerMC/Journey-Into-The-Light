@@ -1,7 +1,9 @@
 package net.journey.entity.mob.senterian.mob;
 
 import net.journey.entity.MobStats;
+import net.journey.util.JourneyLootTables;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityModMob;
@@ -42,9 +44,9 @@ public class EntitySentryWalker extends EntityModMob {
     public SoundEvent setDeathSound() {
         return null;
     }
-
+    
     @Override
-    public Item getItemDropped() {
-        return null;
+    protected ResourceLocation getLootTable() {
+    	return JourneyLootTables.SENTRY_WALKER;
     }
 }
