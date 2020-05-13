@@ -46,17 +46,12 @@ public class EntityBigHongo extends EntityModMob {
     
     @Override
     protected ResourceLocation getLootTable() {
-    	return JourneyLootTables.EUCA_SMITH_CHEST;
+    	return JourneyLootTables.BIG_HONGO;
     }
 
     @Override
     public boolean getCanSpawnHere() {
         return this.isValidLightLevel() &&
                 this.world.getBlockState(new BlockPos(this.posX, this.posY - 1, this.posZ)).isFullBlock() && this.dimension == 0;
-    }
-
-    @Override
-    public Item getItemDropped() {
-        return JourneyConsumables.hongoShroom;
     }
 }

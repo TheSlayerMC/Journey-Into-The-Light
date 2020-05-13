@@ -2,9 +2,11 @@ package net.journey.entity.mob.overworld;
 
 import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
+import net.journey.util.JourneyLootTables;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -53,13 +55,7 @@ public class EntityRobot extends EntityModMob {
     }
 
     @Override
-    protected void dropFewItems(boolean b, int j) {
-        if (rand.nextInt(2) == 0) this.dropItem(Items.IRON_INGOT, 1 + rand.nextInt(1));
-        if (rand.nextInt(2) == 0) this.dropItem(Items.STICK, 1 + rand.nextInt(4));
-    }
-
-    @Override
-    public Item getItemDropped() {
-        return null;
+    protected ResourceLocation getLootTable() {
+    	return JourneyLootTables.ROBOT;
     }
 }

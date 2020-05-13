@@ -2,8 +2,10 @@ package net.journey.entity.mob.overworld;
 
 import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
+import net.journey.util.JourneyLootTables;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -44,8 +46,8 @@ public class EntitySandCrawler extends EntityModMob {
     }
 
     @Override
-    public Item getItemDropped() {
-        return null;
+    protected ResourceLocation getLootTable() {
+    	return JourneyLootTables.SAND_CRAWLER;
     }
 
     @Override
@@ -55,11 +57,5 @@ public class EntitySandCrawler extends EntityModMob {
                         this.world.getBlockState(new BlockPos(this.posX, this.posY - 1, this.posZ)).getBlock() == Blocks.LEAVES ||
                         this.world.getBlockState(new BlockPos(this.posX, this.posY - 1, this.posZ)).getBlock() == Blocks.SAND ||
                         this.world.getBlockState(new BlockPos(this.posX, this.posY - 1, this.posZ)).getBlock() == Blocks.DIRT && this.dimension == 0;
-    }
-
-    @Override
-    protected void dropFewItems(boolean b, int j) {
-        for (int i = 0; i < 32 + rand.nextInt(16); i++)
-            this.dropItem(SlayerAPI.toItem(Blocks.SAND), 2);
     }
 }

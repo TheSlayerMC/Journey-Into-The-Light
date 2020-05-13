@@ -3,6 +3,7 @@ package net.journey.entity.mob.overworld.cold;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityBlizzardFireball;
 import net.journey.init.JourneySounds;
+import net.journey.util.JourneyLootTables;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,6 +16,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -172,8 +174,8 @@ public class EntityBlizzard extends EntityModMob {
     }
 
     @Override
-    public Item getItemDropped() {
-        return Items.SNOWBALL;
+    protected ResourceLocation getLootTable() {
+    	return JourneyLootTables.BLIZZARD;
     }
 
     static class AIFireballAttack extends EntityAIBase {

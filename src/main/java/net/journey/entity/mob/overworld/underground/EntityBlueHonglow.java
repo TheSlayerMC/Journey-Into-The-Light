@@ -3,10 +3,12 @@ package net.journey.entity.mob.overworld.underground;
 import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
 import net.journey.init.items.JourneyConsumables;
+import net.journey.util.JourneyLootTables;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EnumSkyBlock;
@@ -57,9 +59,8 @@ public class EntityBlueHonglow extends EntityModMob {
     }
 
     @Override
-    public Item getItemDropped() {
-        return null;
-
+    protected ResourceLocation getLootTable() {
+    	return JourneyLootTables.BLUE_HONGLOW;
     }
 
     @Override
@@ -140,11 +141,5 @@ public class EntityBlueHonglow extends EntityModMob {
     public boolean getCanSpawnHere() {
         return this.posY < 40.0D && super.getCanSpawnHere() &&
                 this.world.getBlockState(new BlockPos(this.posX, this.posY - 1, this.posZ)).getMaterial() == Material.ROCK && this.dimension == 0;
-    }
-
-    @Override
-    protected void dropFewItems(boolean b, int j) {
-        if (rand.nextInt(1) == 0) dropItem(JourneyConsumables.blueHonglowShroom, rand.nextInt(2));
-        super.dropFewItems(b, j);
     }
 }

@@ -31,21 +31,33 @@ public class JourneyLootTables {
     public static final ResourceLocation SENTRY_BASE_CHEST_LOOT = register("chests/senterian/sentry_dungeon");
     
     //Overworld
-    public static final ResourceLocation BIG_HONGO = register("mobs/big_hongo");
-    public static final ResourceLocation BOOM_BOOM = register("mobs/boom_boom");
-    public static final ResourceLocation DUNEWORM = register("mobs/duneworm");
-    public static final ResourceLocation FIRE_MAGE = register("mobs/fire_mage");
-    public static final ResourceLocation FLORO = register("mobs/floro");
-    public static final ResourceLocation ICE_MAGE = register("mobs/ice_mage");
-    public static final ResourceLocation MEDIUM_HONGO = register("mobs/medium_hongo");
-    public static final ResourceLocation ROBOT = register("mobs/robot");
-    public static final ResourceLocation SAND_CRAWLER = register("mobs/sand_crawler");
-    public static final ResourceLocation SMALL_HONGO = register("mobs/small_hongo");
-    public static final ResourceLocation SPECTRE = register("mobs/spectre");
-    public static final ResourceLocation SPYCLOPSE = register("mobs/spyclopse");
-    public static final ResourceLocation SWAMP_FLY = register("mobs/swamp_fly");
-    public static final ResourceLocation TURDUCKEN = register("mobs/turducken");
-    public static final ResourceLocation WRAITH = register("mobs/wraith");
+    public static final ResourceLocation BIG_HONGO = register("mobs/overworld/big_hongo");
+    public static final ResourceLocation BOOM_BOOM = register("mobs/overworld/boom_boom");
+    public static final ResourceLocation DUNEWORM = register("mobs/overworld/duneworm");
+    public static final ResourceLocation FIRE_MAGE = register("mobs/overworld/fire_mage");
+    public static final ResourceLocation FLORO = register("mobs/overworld/floro");
+    public static final ResourceLocation ICE_MAGE = register("mobs/overworld/ice_mage");
+    public static final ResourceLocation MEDIUM_HONGO = register("mobs/overworld/medium_hongo");
+    public static final ResourceLocation ROBOT = register("mobs/overworld/robot");
+    public static final ResourceLocation SAND_CRAWLER = register("mobs/overworld/sand_crawler");
+    public static final ResourceLocation SMALL_HONGO = register("mobs/overworld/small_hongo");
+    public static final ResourceLocation SPECTRE = register("mobs/overworld/spectre");
+    public static final ResourceLocation SPYCLOPSE = register("mobs/overworld/spyclopse");
+    public static final ResourceLocation SWAMP_FLY = register("mobs/overworld/swamp_fly");
+    public static final ResourceLocation TURDUCKEN = register("mobs/overworld/turducken");
+    public static final ResourceLocation WRAITH = register("mobs/overworld/wraith");
+    public static final ResourceLocation BLIZZARD = register("mobs/overworld/blizzard");
+    public static final ResourceLocation JUNGLE_GOLEM = register("mobs/overworld/jungle_golem");
+    public static final ResourceLocation JUNGLE_SPIDER = register("mobs/overworld/jungle_spider");
+    public static final ResourceLocation JUNGLE_TURTLE = register("mobs/overworld/jungle_turtle");
+    public static final ResourceLocation BLUE_HONGLOW = register("mobs/overworld/blue_honglow");
+    public static final ResourceLocation CAVELING = register("mobs/overworld/caveling");
+    public static final ResourceLocation CAVE_MAGE = register("mobs/overworld/cave_mage");
+    public static final ResourceLocation CAVURN = register("mobs/overworld/cavurn");
+    public static final ResourceLocation GREEN_HONGLOW = register("mobs/overworld/green_honglow");
+    public static final ResourceLocation RED_HONGLOW = register("mobs/overworld/red_honglow");
+    public static final ResourceLocation ROCKITE = register("mobs/overworld/rockite");
+    public static final ResourceLocation STONEWALKER = register("mobs/overworld/stonewalker");
 
     
     

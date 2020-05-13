@@ -4,8 +4,10 @@ import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
 import net.journey.init.items.JourneyConsumables;
 import net.journey.init.items.JourneyItems;
+import net.journey.util.JourneyLootTables;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -44,8 +46,8 @@ public class EntityTurducken extends EntityPeacefullUntillAttacked {
     }
 
     @Override
-    public Item getItemDropped() {
-        return JourneyConsumables.rocMeat;
+    protected ResourceLocation getLootTable() {
+    	return JourneyLootTables.TURDUCKEN;
     }
 
     @Override

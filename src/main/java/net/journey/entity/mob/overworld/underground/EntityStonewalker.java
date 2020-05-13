@@ -3,11 +3,13 @@ package net.journey.entity.mob.overworld.underground;
 import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
 import net.journey.init.items.JourneyItems;
+import net.journey.util.JourneyLootTables;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -48,23 +50,8 @@ public class EntityStonewalker extends EntityModMob {
     }
 
     @Override
-    public Item getItemDropped() {
-        return SlayerAPI.toItem(Blocks.STONE);
-
-    }
-
-    @Override
-    protected void dropFewItems(boolean b, int j) {
-        if (rand.nextInt(10) == 0) dropItem(JourneyItems.caveCrystal, 1);
-        super.dropFewItems(b, j);
-        if (rand.nextInt(1) == 0) dropItem(JourneyItems.caveDust, rand.nextInt(3));
-        super.dropFewItems(b, j);
-        if (rand.nextInt(10) == 0) dropItem(JourneyItems.sapphire, rand.nextInt(4));
-        super.dropFewItems(b, j);
-        if (rand.nextInt(15) == 0) dropItem(JourneyItems.shadiumIngot, rand.nextInt(4));
-        super.dropFewItems(b, j);
-        if (rand.nextInt(15) == 0) dropItem(JourneyItems.luniumIngot, rand.nextInt(4));
-        super.dropFewItems(b, j);
+    protected ResourceLocation getLootTable() {
+    	return JourneyLootTables.STONEWALKER;
     }
 
     @Override

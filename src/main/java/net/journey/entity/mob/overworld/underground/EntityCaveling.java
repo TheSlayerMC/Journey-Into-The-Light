@@ -3,11 +3,13 @@ package net.journey.entity.mob.overworld.underground;
 import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
 import net.journey.init.items.JourneyItems;
+import net.journey.util.JourneyLootTables;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -48,12 +50,6 @@ public class EntityCaveling extends EntityModMob {
     }
 
     @Override
-    public Item getItemDropped() {
-        return SlayerAPI.toItem(Blocks.STONE);
-
-    }
-
-    @Override
     public void onDeath(DamageSource d) {
         super.onDeath(d);
         if (d.getImmediateSource() instanceof EntityPlayer) {
@@ -69,10 +65,8 @@ public class EntityCaveling extends EntityModMob {
     }
 
     @Override
-    protected void dropFewItems(boolean b, int j) {
-        if (rand.nextInt(15) == 0) dropItem(JourneyItems.caveCrystal, 1);
-        if (rand.nextInt(3) == 0) dropItem(JourneyItems.stoneClump, rand.nextInt(2));
-        if (rand.nextInt(6) == 0) dropItem(JourneyItems.caveDust, 1);
-        super.dropFewItems(b, j);
+    protected ResourceLocation getLootTable() {
+    	return JourneyLootTables.CAVELING;
     }
+
 }

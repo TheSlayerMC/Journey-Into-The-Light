@@ -4,12 +4,14 @@ import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
 import net.journey.init.items.JourneyItems;
 import net.journey.init.items.JourneyWeapons;
+import net.journey.util.JourneyLootTables;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -97,16 +99,7 @@ public class EntityWraith extends EntityModMob {
     }
 
     @Override
-    public Item getItemDropped() {
-        return JourneyItems.demonicBone;
-
-    }
-
-
-    @Override
-    protected void dropFewItems(boolean b, int j) {
-        if (rand.nextInt(5) == 0) dropItem(JourneyItems.demonicDust, rand.nextInt(5));
-        super.dropFewItems(b, j);
-
+    protected ResourceLocation getLootTable() {
+    	return JourneyLootTables.WRAITH;
     }
 }

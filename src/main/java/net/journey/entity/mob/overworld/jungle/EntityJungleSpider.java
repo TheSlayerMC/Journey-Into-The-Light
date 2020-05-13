@@ -1,6 +1,7 @@
 package net.journey.entity.mob.overworld.jungle;
 
 import net.journey.entity.MobStats;
+import net.journey.util.JourneyLootTables;
 import net.journey.util.PotionEffects;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -105,12 +106,6 @@ public class EntityJungleSpider extends EntityModMob {
     @Override
     protected void playStepSound(BlockPos pos, Block blockIn) {
         this.playSound(SoundEvents.ENTITY_SPIDER_STEP, 0.15F, 1.0F);
-    }
-
-    @Nullable
-    @Override
-    protected ResourceLocation getLootTable() {
-        return LootTableList.ENTITIES_SPIDER;
     }
 
     @Override
@@ -228,9 +223,10 @@ public class EntityJungleSpider extends EntityModMob {
     }
 
     @Override
-    public Item getItemDropped() {
-        return null;
+    protected ResourceLocation getLootTable() {
+    	return JourneyLootTables.JUNGLE_SPIDER;
     }
+
 
     static class AISpiderAttack extends EntityAIAttackMelee {
         public AISpiderAttack(EntityJungleSpider spider) {

@@ -4,6 +4,7 @@ import net.journey.entity.MobStats;
 import net.journey.entity.projectile.staff.EntityConjuring;
 import net.journey.init.JourneySounds;
 import net.journey.init.items.JourneyItems;
+import net.journey.util.JourneyLootTables;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
@@ -13,6 +14,7 @@ import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -87,17 +89,10 @@ public class EntityCavurn extends EntityModMob implements IRangedAttackMob {
     }
 
     @Override
-    public Item getItemDropped() {
-        return null;
+    protected ResourceLocation getLootTable() {
+    	return JourneyLootTables.CAVURN;
     }
 
-    @Override
-    protected void dropFewItems(boolean b, int j) {
-        if (rand.nextInt(10) == 0) dropItem(JourneyItems.caveCrystal, 1);
-        super.dropFewItems(b, j);
-        if (rand.nextInt(2) == 0) dropItem(JourneyItems.caveDust, rand.nextInt(3));
-        super.dropFewItems(b, j);
-    }
 
     @Override
     public void setSwingingArms(boolean swingingArms) {

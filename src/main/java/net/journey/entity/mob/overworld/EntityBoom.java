@@ -1,6 +1,7 @@
 package net.journey.entity.mob.overworld;
 
 import net.journey.entity.AI.EntityAIBoomSwell;
+import net.journey.util.JourneyLootTables;
 import net.journey.entity.MobStats;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -19,6 +20,7 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -116,14 +118,8 @@ public class EntityBoom extends EntityModMob {
     }
 
     @Override
-    public Item getItemDropped() {
-        return null;
-    }
-
-    @Override
-    protected void dropFewItems(boolean b, int j) {
-        for (int i = 0; i < 1 + rand.nextInt(1); i++) this.dropItem(Items.GUNPOWDER, 1);
-        if (rand.nextInt(3) == 0) this.dropItem(SlayerAPI.toItem(Blocks.TNT), 1);
+    protected ResourceLocation getLootTable() {
+    	return JourneyLootTables.BOOM_BOOM;
     }
 
     @Override

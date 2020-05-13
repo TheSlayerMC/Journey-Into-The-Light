@@ -6,6 +6,7 @@ import net.journey.init.JourneySounds;
 import net.journey.init.items.JourneyArmory;
 import net.journey.init.items.JourneyConsumables;
 import net.journey.init.items.JourneyItems;
+import net.journey.util.JourneyLootTables;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -22,6 +23,7 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -187,13 +189,7 @@ public class EntityRockiteSmasher extends EntityModMob {
     }
 
     @Override
-    public Item getItemDropped() {
-        return null;
-    }
-
-    @Override
-    protected void dropFewItems(boolean b, int j) {
-    	 dropItem(JourneyItems.CHEST_KEY, 1);
-    	 dropItem(JourneyArmory.BEDROCK_SHOVEL, 1);
+    protected ResourceLocation getLootTable() {
+    	return JourneyLootTables.ROCKITE;
     }
 }

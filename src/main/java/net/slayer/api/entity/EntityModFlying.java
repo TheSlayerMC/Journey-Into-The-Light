@@ -64,19 +64,6 @@ public abstract class EntityModFlying extends EntityFlying {
 
     public abstract SoundEvent setDeathSound();
 
-    public abstract Item getItemDropped();
-
-    @Override
-    protected Item getDropItem() {
-        return getItemDropped();
-    }
-
-    @Override
-    protected void dropFewItems(boolean b, int j) {
-        for (int i = 0; i < 1 + rand.nextInt(1); i++)
-            this.dropItem(getItemDropped(), 1);
-    }
-
     @Override
     protected SoundEvent getAmbientSound() {
         super.getAmbientSound();

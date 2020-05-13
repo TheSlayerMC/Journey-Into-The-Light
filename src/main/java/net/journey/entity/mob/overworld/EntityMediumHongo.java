@@ -3,7 +3,9 @@ package net.journey.entity.mob.overworld;
 import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
 import net.journey.init.items.JourneyConsumables;
+import net.journey.util.JourneyLootTables;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -49,7 +51,7 @@ public class EntityMediumHongo extends EntityModMob {
     }
 
     @Override
-    public Item getItemDropped() {
-        return JourneyConsumables.hongoShroom;
+    protected ResourceLocation getLootTable() {
+    	return JourneyLootTables.MEDIUM_HONGO;
     }
 }

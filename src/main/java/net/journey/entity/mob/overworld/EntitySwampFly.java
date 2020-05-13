@@ -4,6 +4,7 @@ import net.journey.JITL;
 import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
 import net.journey.init.blocks.JourneyBlocks;
+import net.journey.util.JourneyLootTables;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
 import net.minecraft.entity.ai.EntityMoveHelper;
@@ -13,6 +14,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -70,6 +72,11 @@ public class EntitySwampFly extends EntityModFlying {
     public SoundEvent setDeathSound() {
         return JourneySounds.EMPTY;
     }
+    
+    @Override
+    protected ResourceLocation getLootTable() {
+    	return JourneyLootTables.SWAMP_FLY;
+    }
 
     @Override
     public void onLivingUpdate() {
@@ -80,11 +87,6 @@ public class EntitySwampFly extends EntityModFlying {
         for (int i = 0; i < 1; ++i) {
         	JITL.proxy.spawnOreParticle(this.world, d1, d2, d3, 0.7F, 1.0F, 0.1F);
         }
-    }
-
-    @Override
-    public Item getItemDropped() {
-        return null;
     }
 
     @Override
