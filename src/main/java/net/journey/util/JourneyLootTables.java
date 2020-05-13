@@ -21,6 +21,9 @@ public class JourneyLootTables {
     public static final ResourceLocation EUCA_SMITH_CHEST = register("chests/eucasmith");
     public static final ResourceLocation FROZEN_MERCH_CHEST = register("chests/frozenmerchant");
 
+    public static final ResourceLocation LOOT_POUCH = register("loot/loot_pouch");
+    public static final ResourceLocation LOOT_PRESENT = register("loot/loot_pouch");
+
     public static final ResourceLocation DEPTHS_SHRINE_CHEST = register("chests/depthsshrine");
     public static final ResourceLocation TERRANIA_TREE_HUT_CHEST = register("chests/terraniatreehut");
     public static final ResourceLocation ROCKITE_CHEST_LOOT = register("chests/overworld/rockite_loot");

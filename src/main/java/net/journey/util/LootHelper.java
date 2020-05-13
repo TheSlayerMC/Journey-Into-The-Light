@@ -15,6 +15,4 @@ public class LootHelper {
 		return player.world.getLootTableManager().getLootTableFromLocation(lootTable)
 				.generateLootForPools(player.world.rand, new LootContext.Builder(player.getServerWorld()).withPlayer(player).build());
 	}
-	
-	
 }
