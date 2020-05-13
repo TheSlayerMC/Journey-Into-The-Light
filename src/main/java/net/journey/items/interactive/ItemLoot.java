@@ -19,8 +19,10 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.slayer.api.SlayerAPI;
 import net.slayer.api.item.ItemMod;
@@ -35,21 +37,23 @@ public class ItemLoot extends ItemMod {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand handIn) {
-        Random r = new Random();        
-		List<ItemStack> lootTable = LootHelper.readFromLootTable(loot, (EntityPlayerMP)player);
-        int index = r.nextInt(lootTable.size());
-        ItemStack itemToSpawn = lootTable.get(index);
-        
-        if (!world.isRemote) {
-            JourneySounds.playSound(JourneySounds.WRAPPER, world, player);
-            String name = LangHelper.getFormattedText(itemToSpawn.getItem().getTranslationKey() + ".name");
-            SlayerAPI.addChatMessage(player, "You recieved " + name);
-            EntityItem item = new EntityItem(world, player.posX, player.posY, player.posZ, itemToSpawn);
-            world.spawnEntity(item);
-        }
-        player.getHeldItem(handIn).shrink(1);
-        return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getHeldItem(handIn));
+    public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		if (!world.isRemote) {
+			Random r = new Random();
+			List<ItemStack> lootTable = LootHelper.readFromLootTable(loot, (EntityPlayerMP) player);
+			int index = r.nextInt(lootTable.size());
+			ItemStack itemToSpawn = lootTable.get(index);
+
+			String name = LangHelper.getFormattedText(itemToSpawn.getItem().getTranslationKey() + ".name");
+			SlayerAPI.addChatMessage(player, "You recieved " + name);
+			
+			JourneySounds.playSound(JourneySounds.WRAPPER, world, player);
+
+			EntityItem item = new EntityItem(world, player.posX, player.posY, player.posZ, itemToSpawn);
+			world.spawnEntity(item);
+	        player.getHeldItem(hand).shrink(1);
+		}
+        return EnumActionResult.PASS;
     }
 
     @Override
