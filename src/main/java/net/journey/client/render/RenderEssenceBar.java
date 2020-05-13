@@ -21,6 +21,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.RenderTickEvent;
 
@@ -32,7 +33,7 @@ public class RenderEssenceBar {
     public void onRender(RenderGameOverlayEvent.Post event) {
         if (event.getType() == RenderGameOverlayEvent.ElementType.ALL) {
         	if (Config.showManaBar == true) {
-                onTickRender(Minecraft.getMinecraft().player);
+                onTickRender(FMLClientHandler.instance().getClientPlayerEntity());
         	}
         }
     }

@@ -6,6 +6,7 @@ import net.journey.client.PlayerStats;
 import net.journey.client.handler.BossTickHandler;
 import net.journey.client.handler.GuiHandler;
 import net.journey.client.render.EntityRendering;
+import net.journey.client.render.RenderEssenceBar;
 import net.journey.client.render.particles.OreParticleFX;
 import net.journey.dimension.boil.BoilSkyRenderer;
 import net.journey.dimension.cloudia.CloudiaSkyRenderer;
@@ -40,7 +41,7 @@ public class ClientProxy extends CommonProxy {
 
     @Override
     public void clientPreInit() {
-
+        SlayerAPI.registerEventListener(new RenderEssenceBar());
     }
 
     @Override

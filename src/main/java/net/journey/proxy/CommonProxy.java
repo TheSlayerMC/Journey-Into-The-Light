@@ -106,7 +106,6 @@ public class CommonProxy {
         DimensionHelper.init();
         DimensionHelper.addSpawns();
         SlayerAPI.registerEventListener(new BarTickHandler());
-        SlayerAPI.registerEventListener(new RenderEssenceBar());
         SlayerAPI.registerEventListener(new RenderBar());
         CapabilityManager.INSTANCE.register(IEssence.class, new EssenceStorage(), EssenceBar.class);
     }
