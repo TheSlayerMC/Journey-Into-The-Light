@@ -93,7 +93,7 @@ public abstract class EntityModMob extends EntityMob {
 
     public abstract Item getItemDropped();
 
-    @Override
+   /* @Override
     protected Item getDropItem() {
         return getItemDropped();
     }
@@ -102,7 +102,7 @@ public abstract class EntityModMob extends EntityMob {
     protected void dropFewItems(boolean b, int j) {
         for (int i = 0; i < 1 + rand.nextInt(1); i++)
             this.dropItem(getItemDropped(), 1);
-    }
+    }*/
 
     @Override
     protected void playStepSound(BlockPos pos, Block blockIn) {
