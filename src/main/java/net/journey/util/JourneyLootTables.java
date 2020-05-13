@@ -30,6 +30,25 @@ public class JourneyLootTables {
     public static final ResourceLocation ANCIENT_CHEST_LOOT = register("chests/overworld/ancient_loot");
     public static final ResourceLocation SENTRY_BASE_CHEST_LOOT = register("chests/senterian/sentry_dungeon");
     
+    //Overworld
+    public static final ResourceLocation BIG_HONGO = register("mobs/big_hongo");
+    public static final ResourceLocation BOOM_BOOM = register("mobs/boom_boom");
+    public static final ResourceLocation DUNEWORM = register("mobs/duneworm");
+    public static final ResourceLocation FIRE_MAGE = register("mobs/fire_mage");
+    public static final ResourceLocation FLORO = register("mobs/floro");
+    public static final ResourceLocation ICE_MAGE = register("mobs/ice_mage");
+    public static final ResourceLocation MEDIUM_HONGO = register("mobs/medium_hongo");
+    public static final ResourceLocation ROBOT = register("mobs/robot");
+    public static final ResourceLocation SAND_CRAWLER = register("mobs/sand_crawler");
+    public static final ResourceLocation SMALL_HONGO = register("mobs/small_hongo");
+    public static final ResourceLocation SPECTRE = register("mobs/spectre");
+    public static final ResourceLocation SPYCLOPSE = register("mobs/spyclopse");
+    public static final ResourceLocation SWAMP_FLY = register("mobs/swamp_fly");
+    public static final ResourceLocation TURDUCKEN = register("mobs/turducken");
+    public static final ResourceLocation WRAITH = register("mobs/wraith");
+
+    
+    
     public static final ResourceLocation VANILLA_SIMPLE_DUNGEON = LootTableList.CHESTS_SIMPLE_DUNGEON;
 
     private static ResourceLocation register(String path) {
