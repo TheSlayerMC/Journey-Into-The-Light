@@ -4,6 +4,7 @@ import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
 import net.journey.init.items.JourneyConsumables;
 import net.journey.init.items.JourneyItems;
+import net.journey.util.JourneyLootTables;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
@@ -16,6 +17,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -76,8 +78,8 @@ public class EntityHellCow extends EntityPeacefullUntillAttacked {
     }
 
     @Override
-    public Item getItemDropped() {
-        return JourneyItems.flamingHide;
+    protected ResourceLocation getLootTable() {
+    	return JourneyLootTables.HELL_COW;
     }
 
     @Override
@@ -114,20 +116,6 @@ public class EntityHellCow extends EntityPeacefullUntillAttacked {
 
     public EntityHellCow createChild(EntityAgeable ageable) {
         return new EntityHellCow(this.world);
-    }
-
-    @Override
-    protected void dropFewItems(boolean b, int j) {
-        if (rand.nextInt(2) == 0) dropItem(JourneyItems.blood, 1);
-        if (rand.nextInt(2) == 0) dropItem(JourneyItems.flamingHide, 2);
-        if (rand.nextInt(13) == 0) dropItem(JourneyItems.horn, 1);
-
-        if (this.isBurning()) {
-            if (rand.nextInt(2) == 0) dropItem(JourneyConsumables.flamingBeefCooked, 2);
-        } else {
-            if (rand.nextInt(2) == 0) dropItem(JourneyConsumables.flamingBeef, 2);
-        }
-        super.dropFewItems(b, j);
     }
 
     @Override

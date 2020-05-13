@@ -59,6 +59,16 @@ public class JourneyLootTables {
     public static final ResourceLocation ROCKITE = register("mobs/overworld/rockite");
     public static final ResourceLocation STONEWALKER = register("mobs/overworld/stonewalker");
 
+    //nether
+    public static final ResourceLocation HELLBOT = register("mobs/nether/hellbot");
+    public static final ResourceLocation HELL_COW = register("mobs/nether/hell_cow");
+    public static final ResourceLocation HELL_TURTLE = register("mobs/nether/hell_turtle");
+    public static final ResourceLocation INFERNO_BLAZE = register("mobs/nether/inferno_blaze");
+    public static final ResourceLocation LAVA_SNAKE = register("mobs/nether/lava_snake");
+    public static final ResourceLocation MINI_GHAST = register("mobs/nether/mini_ghast");
+    public static final ResourceLocation REAPER = register("mobs/nether/reaper");
+    public static final ResourceLocation WITHERSPINE = register("mobs/nether/witherspine");
+
     //Boil
     public static final ResourceLocation BURNING_LIGHT = register("mobs/boil/burning_light");
     public static final ResourceLocation EXPOSED_FLAME = register("mobs/boil/exposed_flame");

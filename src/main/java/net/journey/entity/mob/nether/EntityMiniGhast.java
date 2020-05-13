@@ -3,6 +3,7 @@ package net.journey.entity.mob.nether;
 import net.journey.entity.MobStats;
 import net.journey.init.items.JourneyConsumables;
 import net.journey.init.items.JourneyItems;
+import net.journey.util.JourneyLootTables;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
@@ -17,6 +18,7 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.datafix.DataFixer;
@@ -71,15 +73,8 @@ public class EntityMiniGhast extends EntityModFlying {
     }
 
     @Override
-    protected void dropFewItems(boolean b, int j) {
-        if (rand.nextInt(1) == 0) dropItem(JourneyConsumables.flamingGhastTentacle, 2);
-        if (rand.nextInt(8) == 0) dropItem(JourneyItems.BALMY_TEARDROP, 1);
-        super.dropFewItems(b, j);
-    }
-
-    @Override
-    public Item getItemDropped() {
-        return null;
+    protected ResourceLocation getLootTable() {
+    	return JourneyLootTables.MINI_GHAST;
     }
 
     protected void initEntityAI() {

@@ -3,12 +3,14 @@ package net.journey.entity.mob.nether;
 import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
 import net.journey.init.blocks.JourneyBlocks;
+import net.journey.util.JourneyLootTables;
 import net.journey.util.PotionEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.item.Item;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -78,7 +80,7 @@ public class EntityHellTurtle extends EntityModMob {
     }
 
     @Override
-    public Item getItemDropped() {
-        return null;
+    protected ResourceLocation getLootTable() {
+    	return JourneyLootTables.HELL_TURTLE;
     }
 }

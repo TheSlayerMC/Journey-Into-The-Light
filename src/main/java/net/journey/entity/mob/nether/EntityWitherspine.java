@@ -3,6 +3,7 @@ package net.journey.entity.mob.nether;
 import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
 import net.journey.init.items.JourneyItems;
+import net.journey.util.JourneyLootTables;
 import net.journey.util.PotionEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -10,6 +11,7 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityModMob;
@@ -84,17 +86,7 @@ public class EntityWitherspine extends EntityModMob {
     }
 
     @Override
-    protected void dropFewItems(boolean b, int j) {
-        if (rand.nextInt(5) == 0) dropItem(JourneyItems.withicDust, 1);
-        if (rand.nextInt(4) == 0) dropItem(JourneyItems.blood, 1);
-        if (rand.nextInt(6) == 0) dropItem(JourneyItems.withicDust, 2);
-        if (rand.nextInt(15) == 0) dropItem(JourneyItems.withicSpine, 1);
-        if (rand.nextInt(30) == 0) dropItem(JourneyItems.withicSpine, 2);
-        super.dropFewItems(b, j);
-    }
-
-    @Override
-    public Item getItemDropped() {
-        return null;
+    protected ResourceLocation getLootTable() {
+    	return JourneyLootTables.WITHERSPINE;
     }
 }
