@@ -3,6 +3,7 @@ package net.journey.entity.mob.frozen;
 import com.google.common.base.Predicate;
 import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
+import net.journey.util.JourneyLootTables;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -17,6 +18,7 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -169,8 +171,8 @@ public class EntityIceGolem extends EntityModMob {
     }
 
     @Override
-    public Item getItemDropped() {
-        return null;
+    protected ResourceLocation getLootTable() {
+    	return JourneyLootTables.ICE_GOLEM;
     }
 
     @Override

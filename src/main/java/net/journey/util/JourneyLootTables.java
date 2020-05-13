@@ -82,6 +82,18 @@ public class JourneyLootTables {
     public static final ResourceLocation SHIMMERER = register("mobs/euca/shimmerer");
     public static final ResourceLocation SILVERBOT = register("mobs/euca/silverbot");
 
+    //Frozen
+    public static final ResourceLocation CRYSTAL_CLUSTER = register("mobs/frozen/crystal_cluster");
+    public static final ResourceLocation FROZEN_FROSTBITER = register("mobs/frozen/frozen_frostbiter");
+    public static final ResourceLocation FROZEN_TROLL = register("mobs/frozen/frozen_troll");
+    public static final ResourceLocation ICE_GOLEM = register("mobs/frozen/ice_golem");
+    public static final ResourceLocation ICEMAN = register("mobs/frozen/iceman");
+    public static final ResourceLocation PERMAFRAUST = register("mobs/frozen/permafraust");
+    public static final ResourceLocation SHATTERER = register("mobs/frozen/shatterer");
+    public static final ResourceLocation SHIVERING_BUSHWALKER = register("mobs/frozen/shivering_bushwalker");
+    public static final ResourceLocation SHIVERING_SHRIEKER = register("mobs/frozen/shivering_shrieker");
+
+    
     public static final ResourceLocation VANILLA_SIMPLE_DUNGEON = LootTableList.CHESTS_SIMPLE_DUNGEON;
 
     private static ResourceLocation register(String path) {

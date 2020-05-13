@@ -6,6 +6,7 @@ import net.journey.init.JourneySounds;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.init.items.JourneyWeapons;
 import net.journey.util.Config;
+import net.journey.util.JourneyLootTables;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
@@ -20,6 +21,7 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -123,7 +125,7 @@ public class EntityIceman extends EntityModMob implements IRangedAttackMob {
 
     @Override
     public double setMaxHealth(MobStats s) {
-        return MobStats.IceMageHealth;
+        return MobStats.IceManHealth;
     }
 
     @Override
@@ -142,8 +144,8 @@ public class EntityIceman extends EntityModMob implements IRangedAttackMob {
     }
 
     @Override
-    public Item getItemDropped() {
-        return null;
+    protected ResourceLocation getLootTable() {
+    	return JourneyLootTables.ICEMAN;
     }
 
     @Override
