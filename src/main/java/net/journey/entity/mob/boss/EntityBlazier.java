@@ -201,17 +201,17 @@ public class EntityBlazier extends EntityEssenceBoss implements IRangedAttackMob
 
     @Override
     public SoundEvent setLivingSound() {
-        return SoundEvents.ENTITY_WITHER_AMBIENT;
+        return JourneySounds.BLAZIER_IDLE;
     }
 
     @Override
     public SoundEvent setHurtSound() {
-        return SoundEvents.ENTITY_WITHER_HURT;
+        return JourneySounds.BLAZIER_HURT;
     }
 
     @Override
     public SoundEvent setDeathSound() {
-        return JourneySounds.BOSS_DEATH;
+        return JourneySounds.BLAZIER_DEATH;
     }
 
     @Override

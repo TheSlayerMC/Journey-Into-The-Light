@@ -163,6 +163,12 @@ public class ArmorAbilityEvent {
             event.player.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.fireResistance, 10, 5)));
             event.player.removePotionEffect(PotionEffects.getPotionFromID(20));
         } else if (helmet ==
+                JourneyArmory.flameHelmet && body ==
+                JourneyArmory.flameChest && legs ==
+                JourneyArmory.flameLegs && boots ==
+                JourneyArmory.flameBoots) {
+            event.player.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.fireResistance, 10, 5)));
+        } else if (helmet ==
                 JourneyArmory.bleedrockHelmet && body ==
                 JourneyArmory.bleedrockChest && legs ==
                 JourneyArmory.bleedrockLegs && boots ==

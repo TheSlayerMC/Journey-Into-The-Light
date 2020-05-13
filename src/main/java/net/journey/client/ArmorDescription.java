@@ -39,6 +39,7 @@ public class ArmorDescription {
 
         if (i == JourneyArmory.flameHelmet || i == JourneyArmory.flameChest || i == JourneyArmory.flameLegs || i == JourneyArmory.flameBoots) {
             list.add(SlayerAPI.Colour.AQUA + "Full set: " + SlayerAPI.Colour.GOLD + "Sets foe on fire when hit");
+            list.add(SlayerAPI.Colour.AQUA + "Full set: " + SlayerAPI.Colour.GOLD + "Grants fire resistance");
         }
 
         if (i == JourneyArmory.twilightHelmet || i == JourneyArmory.twilightChest || i == JourneyArmory.twilightLegs || i == JourneyArmory.twilightBoots) {

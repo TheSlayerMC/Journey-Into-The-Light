@@ -15,6 +15,7 @@ import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemStack;
@@ -26,6 +27,7 @@ import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.slayer.api.PlayerHelper;
+import net.slayer.api.SlayerAPI;
 
 public class PlayerEvent {
 
@@ -76,12 +78,43 @@ public class PlayerEvent {
 				
 				if(event.getHarvester().getHeldItemMainhand().getItem() == JourneyArmory.PICKAXE_OF_GOOD_FORTUNE) {
 					ArrayList<Item> items = new ArrayList<Item>(); //Make a new list of items
+					items.add(JourneyItems.stoneClump);
+					items.add(JourneyItems.caveDust);
+					items.add(SlayerAPI.toItem(Blocks.STONE));
+					items.add(JourneyItems.stoneStick);
+					items.add(Items.STICK);
+					items.add(Items.WHEAT_SEEDS);
+					items.add(Items.MELON_SEEDS);
+					items.add(Items.PUMPKIN_SEEDS);
+					items.add(Items.BEETROOT_SEEDS);
+					items.add(Items.WHEAT);
+					items.add(Items.BONE);
+					items.add(Items.ENDER_PEARL);
+					items.add(JourneyItems.demonicDust);
+					items.add(JourneyItems.demonicBone);
 					items.add(JourneyItems.ancientPiece_1);
-					items.add(JourneyItems.AQUASTONE);
-					items.add(JourneyItems.spyclopseEye);
-					items.add(JourneyItems.coldClump);
-					items.add(JourneyItems.goldDust);
-					items.add(JourneyItems.nethicgemstone);
+					items.add(JourneyItems.ancientPiece_2);
+					items.add(JourneyItems.ancientPiece_3);
+					items.add(JourneyItems.ancientPiece_4);
+					items.add(Items.COAL);
+					items.add(Items.IRON_INGOT);
+					items.add(Items.DIAMOND);
+					items.add(Items.REDSTONE);
+					items.add(Items.GOLD_INGOT);
+					items.add(JourneyItems.hellstoneDust);
+					items.add(JourneyItems.sapphireDust);
+					items.add(JourneyItems.diamondDust);
+					items.add(JourneyItems.shadiumDust);
+					items.add(JourneyItems.luniumDust);
+					items.add(JourneyItems.iridium);
+					items.add(SlayerAPI.toItem(Blocks.COBBLESTONE));
+					items.add(SlayerAPI.toItem(Blocks.LOG));
+					items.add(SlayerAPI.toItem(Blocks.PLANKS));
+					items.add(SlayerAPI.toItem(Blocks.CLAY));
+					items.add(SlayerAPI.toItem(Blocks.DIRT));
+					items.add(SlayerAPI.toItem(Blocks.SAND));
+					items.add(SlayerAPI.toItem(Blocks.CHEST));
+					items.add(JourneyItems.obsidianRod);
 		            int index = random.nextInt(items.size()); 
 		            
 					if(event.getState().getBlock().getRegistryName().toString().contains("ore")) {
