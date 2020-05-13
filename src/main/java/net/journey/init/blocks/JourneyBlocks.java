@@ -468,6 +468,7 @@ public class JourneyBlocks {
 
     public static BlockModSpawner observerSpawner;
     public static BlockModSpawner screamerSpawner;
+    public static BlockModSpawner hellwingSpawner;
     public static BlockModSpawner goldbotSpawner;
     public static BlockModSpawner silverbotSpawner;
     public static BlockModSpawner hellbotSpawner;
@@ -975,6 +976,7 @@ public class JourneyBlocks {
 
         observerSpawner = new BlockModSpawner("observerSpawner", "Observer Spawner", "observer");
         screamerSpawner = new BlockModSpawner("screamerSpawner", "Screamer Spawner", "screamer");
+        hellwingSpawner = new BlockModSpawner("hellwingSpawner", "Hellwing Spawner", "hellwing");
 
         goldbotSpawner = new BlockModSpawner("goldbotSpawner", "Goldbot Spawner", "goldbot");
         silverbotSpawner = new BlockModSpawner("silverbotSpawner", "Silverbot Spawner", "silverbot");

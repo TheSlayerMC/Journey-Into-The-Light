@@ -923,8 +923,8 @@ public class WorldGenHornDungeon extends WorldGenerator {
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 5, j + 14, k + 2), JourneyBlocks.boilBricks.getDefaultState());
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 5, j + 14, k + 3), Blocks.AIR.getDefaultState());
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 5, j + 14, k + 4), Blocks.AIR.getDefaultState());
-		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 5, j + 14, k + 5), Blocks.OBSIDIAN.getDefaultState());
-		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 5, j + 14, k + 6), Blocks.OBSIDIAN.getDefaultState());
+		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 5, j + 14, k + 5), JourneyBlocks.hellwingSpawner.getDefaultState());
+		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 5, j + 14, k + 6), JourneyBlocks.hellwingSpawner.getDefaultState());
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 5, j + 14, k + 7), Blocks.AIR.getDefaultState());
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 5, j + 14, k + 8), Blocks.AIR.getDefaultState());
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 5, j + 14, k + 9), JourneyBlocks.boilBricks.getDefaultState());
