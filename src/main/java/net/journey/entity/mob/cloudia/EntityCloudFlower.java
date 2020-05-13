@@ -1,12 +1,14 @@
 package net.journey.entity.mob.cloudia;
 
 import net.journey.entity.MobStats;
+import net.journey.util.JourneyLootTables;
 import net.journey.util.PotionEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityModMob;
@@ -70,9 +72,9 @@ public class EntityCloudFlower extends EntityModMob {
     public SoundEvent setDeathSound() {
         return null;
     }
-
+    
     @Override
-    public Item getItemDropped() {
-        return null;
+    protected ResourceLocation getLootTable() {
+    	return JourneyLootTables.CLOUD_FLOWER;
     }
 }

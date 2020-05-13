@@ -3,9 +3,11 @@ package net.journey.entity.mob.cloudia;
 import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
 import net.journey.init.items.JourneyItems;
+import net.journey.util.JourneyLootTables;
 import net.minecraft.block.Block;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -50,16 +52,7 @@ public class EntityStarlightGolem extends EntityModMob {
     }
 
     @Override
-    protected void dropFewItems(boolean b, int j) {
-        if (rand.nextInt(1) == 0) dropItem(JourneyItems.golemChunk, 2);
-        if (rand.nextInt(25) == 0) dropItem(JourneyItems.cloudiaOrb, 1);
-        super.dropFewItems(b, j);
-
+    protected ResourceLocation getLootTable() {
+    	return JourneyLootTables.STARLIGHT_GOLEM;
     }
-
-    @Override
-    public Item getItemDropped() {
-        return null;
-    }
-
 }

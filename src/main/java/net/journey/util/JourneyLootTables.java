@@ -136,7 +136,14 @@ public class JourneyLootTables {
     public static final ResourceLocation TERRASHROOM = register("mobs/terrania/terrashroom");
     public static final ResourceLocation TERRA_SLUG = register("mobs/terrania/terra_slug");
 
-    
+    //Cloudia
+    public static final ResourceLocation CLOUD_FLOWER = register("mobs/cloudia/cloud_flower");
+    public static final ResourceLocation CLOUD_GHOST = register("mobs/cloudia/cloud_ghost");
+    public static final ResourceLocation SKY_EEL = register("mobs/cloudia/sky_eel");
+    public static final ResourceLocation STARLIGHT_GOLEM = register("mobs/cloudia/starlight_golem");
+    public static final ResourceLocation STARLIGHT_TRANSPORTER = register("mobs/cloudia/starlight_transporter");
+    public static final ResourceLocation STARLIGHT_WALKER = register("mobs/cloudia/starlight_walker");
+
     public static final ResourceLocation VANILLA_SIMPLE_DUNGEON = LootTableList.CHESTS_SIMPLE_DUNGEON;
 
     private static ResourceLocation register(String path) {
