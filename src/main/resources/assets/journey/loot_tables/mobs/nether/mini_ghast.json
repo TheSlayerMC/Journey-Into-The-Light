@@ -1,0 +1,20 @@
+ {
+  "pools": [{
+    "name": "main",
+    "rolls": 1,
+    "entries": [
+      {
+        "type": "item",
+        "name": "journey:flamingghasttentacle",
+        "functions": [{ "function": "set_count", "count": { "min": 1, "max": 2 } }],
+        "weight": 10
+      },
+      {
+        "type": "item",
+        "name": "journey:balmy_teardrop",
+        "functions": [{ "function": "set_count", "count": { "min": 1, "max": 2 } }],
+        "weight": 1
+      }
+    ]
+  }]
+}
