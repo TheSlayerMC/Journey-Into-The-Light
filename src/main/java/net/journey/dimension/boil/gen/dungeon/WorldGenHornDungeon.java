@@ -1417,6 +1417,10 @@ public class WorldGenHornDungeon extends WorldGenerator {
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 8, j + 13, k + 4), Blocks.AIR.getDefaultState());
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 8, j + 13, k + 5), JourneyBlocks.boilChest.getDefaultState().withProperty(BlockJourneyChest.FACING, EnumFacing.SOUTH));
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 8, j + 13, k + 6), JourneyBlocks.boilChest.getDefaultState().withProperty(BlockJourneyChest.FACING, EnumFacing.SOUTH));
+        TileEntity chest2 = worldIn.getTileEntity(new BlockPos(i + 8, j + 13, k + 6));
+        if (chest2 instanceof TileEntityJourneyChest) {
+            ((TileEntityJourneyChest) chest2).setLootTable(JourneyLootTables.BOIL_DUNGEON_CHEST, r.nextLong());
+        }
 		
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 8, j + 13, k + 7), Blocks.AIR.getDefaultState());
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 8, j + 13, k + 8), Blocks.AIR.getDefaultState());
