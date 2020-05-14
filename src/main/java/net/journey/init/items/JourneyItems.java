@@ -477,7 +477,7 @@ public class JourneyItems {
         smithstonedust = new ItemMod("smithstonedust", "Smithstone Dust");
 
         frostyGift = new ItemLoot("frostyGift", "Frosty Gift", JourneyLootTables.LOOT_PRESENT);
-        LOOT_POUCH = new ItemLoot("loot_pouch", "Loot Pouch", JourneyLootTables.LOOT_POUCH);
+        LOOT_POUCH = new ItemLoot("loot_pouch", "Loot Pouch", JourneyLootTables.VANILLA_SIMPLE_DUNGEON);
         
         flameCoin = new ItemFlameCoin("flameCoin", "Flame Coin");
 
