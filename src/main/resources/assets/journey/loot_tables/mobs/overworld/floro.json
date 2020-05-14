@@ -7,7 +7,12 @@
         "type": "item",
         "name": "journey:floropedal",
         "functions": [{ "function": "set_count", "count": { "min": 1, "max": 2 } }],
-        "weight": 50
+      },
+      {
+        "type": "item",
+        "name": "journey:floroseeds",
+        "functions": [{ "function": "set_count", "count": { "min": 1, "max": 2 } }],
+        "weight": 25
       },
       {
         "type": "item",
