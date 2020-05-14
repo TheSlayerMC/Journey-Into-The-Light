@@ -86,7 +86,7 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
                     JourneyItems.scale,
                     JourneyItems.beastlyStomach,
                     JourneyItems.scale)) {
-                summonItem(new ItemStack(JourneyItems.scale));
+                summonItem(new ItemStack(JourneyItems.scaleOrb));
             } else if (areItemsInSlots(
                     JourneyItems.rocFeather,
                     JourneyItems.darkCrystal,
