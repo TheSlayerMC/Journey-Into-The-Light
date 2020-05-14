@@ -7,13 +7,13 @@
         "type": "item",
         "name": "journey:blood",
         "functions": [{ "function": "set_count", "count": { "min": 1, "max": 2 } }],
-        "weight": 15
+        "weight": 10
       },
       {
         "type": "item",
         "name": "journey:snakeflesh",
         "functions": [{ "function": "set_count", "count": { "min": 1, "max": 2 } }],
-        "weight": 10
+        "weight": 8
       },
       {
         "type": "item",
