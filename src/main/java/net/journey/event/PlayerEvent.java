@@ -67,8 +67,13 @@ public class PlayerEvent {
 					}
 				}
 				if (event.getHarvester().getHeldItemMainhand().getItem() == JourneyArmory.HOE_OF_EARTH_LOVING) {
-					ItemStack item = ForgeHooks.getGrassSeed(random, 1);
-					event.getDrops().add(item);
+					List<ItemStack> i = LootHelper.readFromLootTable(JourneyLootTables.LOOT_SEEDS, (EntityPlayerMP)event.getHarvester());
+					int index = random.nextInt(i.size()); 
+					Item it = i.get(index).getItem();
+					if(event.getState().getBlock().getRegistryName().toString().contains("grass")) {
+						if(random.nextInt(3) == 0) 
+							event.getDrops().add(new ItemStack(it));
+					}
 				}
 
 				if(event.getHarvester().getHeldItemMainhand().getItem() == JourneyArmory.PICKAXE_OF_GOOD_FORTUNE) {

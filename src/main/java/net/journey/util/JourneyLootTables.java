@@ -22,6 +22,7 @@ public class JourneyLootTables {
     public static final ResourceLocation FROZEN_MERCH_CHEST = register("chests/frozenmerchant");
 
     public static final ResourceLocation LOOT_POUCH = register("loot/loot_pouch");
+    public static final ResourceLocation LOOT_SEEDS = register("loot/seeds");
     public static final ResourceLocation LOOT_PRESENT = register("loot/loot_present");
 
     public static final ResourceLocation DEPTHS_SHRINE_CHEST = register("chests/depthsshrine");
@@ -158,19 +159,5 @@ public class JourneyLootTables {
 
     private static ResourceLocation register(String path) {
 	    return LootTableList.register(new ResourceLocation(JITL.MOD_ID, path));
-    }
-    
-    public static void generateLootTableForPlayer(EntityPlayerMP player, ItemStack... items) {
-    	LootTable table = player.world.getLootTableManager().getLootTableFromLocation(JourneyLootTables.BOIL_CHEST);
-    	LootContext lootcontext = new LootContext.Builder(player.getServerWorld()).withPlayer(player).withLuck(player.getLuck()).build();
-    	List<ItemStack> stacks = table.generateLootForPools(player.world.rand, lootcontext);
-    }
-    
-	@Nonnull
-	public static List<ItemStack> generateLootWithLuck(ResourceLocation lootTable, EntityPlayerMP pl) {
-		if (pl.world.isRemote)
-			return Lists.newArrayList();
-
-		return pl.world.getLootTableManager().getLootTableFromLocation(lootTable).generateLootForPools(pl.world.rand, new LootContext.Builder(pl.getServerWorld()).withPlayer(pl).withLuck(pl.getLuck()).build());
 	}
 }
