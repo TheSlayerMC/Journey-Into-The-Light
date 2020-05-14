@@ -1,5 +1,7 @@
 package net.journey.dimension.boil;
 
+import net.journey.blocks.plant.BlockSandPlant;
+import net.journey.dimension.base.WorldGenTallPlant;
 import net.journey.dimension.boil.gen.WorldGenBoilingLamp;
 import net.journey.dimension.boil.gen.WorldGenTraderHutBoiling;
 import net.journey.dimension.boil.gen.dungeon.WorldGenBrisonNetwork;
@@ -8,8 +10,10 @@ import net.journey.dimension.boil.gen.dungeon.WorldGenSmallBoilDungeon;
 import net.journey.dimension.boil.trees.WorldGenBoilTree1;
 import net.journey.dimension.boil.trees.WorldGenBoilTree2;
 import net.journey.dimension.boil.trees.WorldGenBoilTree3;
+import net.journey.dimension.overworld.gen.WorldGenDesertFlower;
 import net.journey.dimension.overworld.gen.WorldGenModFlower;
 import net.journey.init.blocks.JourneyBlocks;
+import net.journey.util.RandHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -26,6 +30,7 @@ import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.*;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.slayer.api.block.BlockModFlower;
 import net.slayer.api.worldgen.WorldGenAPI;
 
 import java.util.ArrayList;
@@ -348,6 +353,17 @@ public class ChunkProviderBoiling implements IChunkGenerator {
             flameFlower.generate(worldObj, r, chunkStart);
             flameFlower2.generate(worldObj, r, chunkStart);
             infernoPlant.generate(worldObj, r, chunkStart);
+        }
+        
+		
+        for (i = 0; i < 50; i++) {
+			BlockSandPlant flowers = RandHelper.chooseEqual(rand, JourneyBlocks.crumblingPlant, JourneyBlocks.lavaBloom, JourneyBlocks.crispGrass);
+            new WorldGenDesertFlower(flowers, JourneyBlocks.volcanicSand).generate(worldObj, rand, chunkStart);
+        }
+        
+        for (i = 0; i < 150; i++) {
+            new WorldGenTallPlant(worldObj, r, chunkStart, JourneyBlocks.tallCrumblingPlant, JourneyBlocks.volcanicSand).generate(worldObj, rand, chunkStart);
+            new WorldGenTallPlant(worldObj, r, chunkStart, JourneyBlocks.tallMoltenPlant, JourneyBlocks.volcanicSand).generate(worldObj, rand, chunkStart);
         }
 
         for (i = 0; i < 30; i++) {

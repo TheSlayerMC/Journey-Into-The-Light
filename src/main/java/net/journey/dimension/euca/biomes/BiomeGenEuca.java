@@ -22,7 +22,7 @@ public class BiomeGenEuca extends BiomeGenJourney {
     @Override
     @SideOnly(Side.CLIENT)
     public int getSkyColorByTemp(float par1) {
-        return Color.getHSBColor(0.255F, 0.216F, 0.0F).getRGB();
+        return Color.getHSBColor(0.855F, 0.216F, 5.0F).getRGB();
     }
 
     @Override

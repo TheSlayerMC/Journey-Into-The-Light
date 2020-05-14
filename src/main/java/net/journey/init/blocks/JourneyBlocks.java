@@ -229,6 +229,11 @@ public class JourneyBlocks {
     public static BlockMod boilShingle;
     public static BlockMod boilSquareBrick;
     public static BlockMod boilBricks;
+    public static JBlockDoublePlant tallCrumblingPlant;
+    public static JBlockDoublePlant tallMoltenPlant;
+    public static BlockSandPlant crumblingPlant;
+    public static BlockSandPlant lavaBloom;
+    public static BlockSandPlant crispGrass;
 
     public static BlockMod cloudiaDirt;
     public static BlockMod cloudiaGrass;
@@ -688,6 +693,11 @@ public class JourneyBlocks {
         boilShingle = new BlockMod("boil_shingle", "Boil Shingle");
         boilSquareBrick = new BlockMod("boil_square_brick", "Boil Square Brick");
         boilBricks = new BlockMod("boil_bricks", "Boil Bricks");
+        tallCrumblingPlant = new JBlockDoublePlant("tall_crumbling_plant", "Tall Crumbling Plant", JourneyTabs.DECORATION).setAcceptableGround(state -> state.getMaterial() == Material.SAND);
+        tallMoltenPlant = new JBlockDoublePlant("tall_molten_plant", "Tall Molten Plant", JourneyTabs.DECORATION).setAcceptableGround(state -> state.getMaterial() == Material.SAND);
+        crumblingPlant = new BlockSandPlant("crumbling_plant", "Crumbling Plant");
+        lavaBloom = new BlockSandPlant("lava_bloom", "Lava Bloom");
+        crispGrass = new BlockSandPlant("crisp_grass", "Crisp Grass");
         
         brisonblocks = new BlockMetaBase("brison", Material.ROCK, "brison");
         boilingBars = new Initializer<>(new JBlockPane(EnumMaterialTypes.STONE, "boilingBars", "Brison Bars", true)).apply(pane -> pane.setHardness(5.0F));
@@ -911,6 +921,7 @@ public class JourneyBlocks {
         glowshroomBlue = new BlockGlowshroom("glowshroom_blue", "Blue Glowshroom");
 
         tallGoldenStalks = new JBlockDoublePlant("tall_golden_stalks", "Tall Golden Stalks", JourneyTabs.DECORATION).setAcceptableGround(state -> state.getMaterial() == Material.GRASS);
+
         goldenBulb = new BlockModFlower("goldenBulb", "Golden Bulb");
         goldenBloom = new BlockModFlower("goldenBloom", "Golden Bloom");
         goldenStalks = new BlockModFlower("goldenStalks", "Golden Stalks");

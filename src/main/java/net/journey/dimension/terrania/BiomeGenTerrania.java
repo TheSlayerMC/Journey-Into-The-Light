@@ -3,6 +3,8 @@ package net.journey.dimension.terrania;
 import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.awt.*;
 
@@ -39,7 +41,8 @@ public class BiomeGenTerrania extends Biome {
     }
 
     @Override
-    public int getSkyColorByTemp(float f) {
-        return Color.getHSBColor(0.0F, 0.0F, 0.0F).getRGB();
+    @SideOnly(Side.CLIENT)
+    public int getSkyColorByTemp(float par1) {
+        return Color.getHSBColor(0.955F, 0.316F, 0.5F).getRGB();
     }
 }

@@ -1,4 +1,4 @@
-package net.journey.dimension.euca.gen;
+package net.journey.dimension.base;
 
 import net.journey.api.block.base.JBlockDoublePlant;
 import net.journey.api.block.base.JBlockPlant;
@@ -7,6 +7,7 @@ import net.journey.blocks.plant.BlockTallGlowshroom;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.MathUtils;
 import net.journey.util.RandHelper;
+import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -16,8 +17,16 @@ import net.slayer.api.worldgen.WorldGenAPI;
 
 import java.util.Random;
 
-public class WorldGenTallGoldenStalks extends WorldGenerator {
+public class WorldGenTallPlant extends WorldGenerator {
 
+	JBlockDoublePlant plant;
+	Block ground;
+	
+	public WorldGenTallPlant(World worldIn, Random r, BlockPos b, JBlockDoublePlant plant, Block ground) {
+		this.ground = ground;
+		this.plant = plant;
+	}
+	
     @Override
     public boolean generate(World worldIn, Random r, BlockPos b) {
         boolean generated = false;
@@ -27,10 +36,10 @@ public class WorldGenTallGoldenStalks extends WorldGenerator {
         int genY = r.nextInt(coercedY) + 1;
         BlockPos copy = offset.add(r.nextInt(8) - r.nextInt(8), r.nextInt(4) - r.nextInt(4), r.nextInt(8) - r.nextInt(8));
 
-	    JBlockDoublePlant block = JourneyBlocks.tallGoldenStalks;
+	    JBlockDoublePlant block = plant;
 
         if (!worldIn.getBlockState(offset).getMaterial().isLiquid()
-                && worldIn.getBlockState(offset.down()).getBlock() == JourneyBlocks.eucaGrass
+                && worldIn.getBlockState(offset.down()).getBlock() == ground
                 && block.canPlaceBlockAt(worldIn, offset)) {
 
             block.placeAt(worldIn, offset, 2 | 16);

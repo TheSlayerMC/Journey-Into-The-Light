@@ -6,7 +6,6 @@ import net.journey.dimension.boil.gen.WorldGenBoilingFire;
 import net.journey.dimension.boil.gen.WorldGenBoilingLava;
 import net.journey.dimension.depths.gen.WorldGenDepthsTree;
 import net.journey.dimension.euca.gen.WorldGenSmeltery;
-import net.journey.dimension.euca.gen.WorldGenTallGoldenStalks;
 import net.journey.dimension.nether.gen.*;
 import net.journey.dimension.nether.gen.dungeon.WorldGenBoilPortal;
 import net.journey.dimension.nether.gen.dungeon.WorldGenGhastTower;
@@ -57,7 +56,6 @@ public class WorldGenJourney implements IWorldGenerator {
     private static final LazyLoadBase<WorldGenModFlower> eucaTallGrass;
     private static final LazyLoadBase<WorldGenModFlower> eucaTallFlowers;
     private static final LazyLoadBase<WorldGenModFlower> eucaBlueFlower;
-    private static final LazyLoadBase<WorldGenTallGoldenStalks> TALL_GOLDEN_STALKS = create(WorldGenTallGoldenStalks::new);
     private static final LazyLoadBase<WorldGenModFlower> GOLDEN_STALKS = create(() -> new WorldGenModFlower(JourneyBlocks.goldenStalks, JourneyBlocks.eucaGrass));
     private static final LazyLoadBase<WorldGenModFlower> GOLDEN_BULB = create(() -> new WorldGenModFlower(JourneyBlocks.goldenBulb, JourneyBlocks.eucaGrass));
     private static final LazyLoadBase<WorldGenModFlower> GOLDEN_BLOOM = create(() -> new WorldGenModFlower(JourneyBlocks.goldenBloom, JourneyBlocks.eucaGrass));
@@ -174,7 +172,7 @@ public class WorldGenJourney implements IWorldGenerator {
                 eucaBlueFlower.getValue().generate(w, r, chunkStart);
                 break;
             case 9:
-                TALL_GOLDEN_STALKS.getValue().generate(w, r, chunkStart);
+                GOLDEN_STALKS.getValue().generate(w, r, chunkStart);
                 break;
             case 10:
                 GOLDEN_STALKS.getValue().generate(w, r, chunkStart);

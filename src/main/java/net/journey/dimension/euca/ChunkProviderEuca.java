@@ -1,10 +1,10 @@
 package net.journey.dimension.euca;
 
+import net.journey.dimension.base.WorldGenTallPlant;
 import net.journey.dimension.euca.gen.WorldGenEucaPumpkin;
 import net.journey.dimension.euca.gen.WorldGenEucaSphere;
 import net.journey.dimension.euca.gen.WorldGenEucaWater;
 import net.journey.dimension.euca.gen.WorldGenSmeltery;
-import net.journey.dimension.euca.gen.WorldGenTallGoldenStalks;
 import net.journey.dimension.euca.gen.dungeon.EucaSmallSphereDungeon;
 import net.journey.dimension.euca.gen.trees.*;
 import net.journey.dimension.overworld.gen.WorldGenModFlower;
@@ -295,7 +295,7 @@ public class ChunkProviderEuca implements IChunkGenerator {
         for (i = 0; i < 15; i++) {
 			BlockModFlower flowers = RandHelper.chooseEqual(rand, JourneyBlocks.goldenBloom, JourneyBlocks.goldenBulb, JourneyBlocks.goldenStalks);
             new WorldGenModFlower(flowers, JourneyBlocks.eucaGrass).generate(worldObj, rand, chunkStart);
-            new WorldGenTallGoldenStalks().generate(worldObj, rand, chunkStart);
+            new WorldGenTallPlant(worldObj, rand, chunkStart, JourneyBlocks.tallGoldenStalks, JourneyBlocks.eucaGrass).generate(worldObj, rand, chunkStart);
         }
 
 		for (times = 0; times < 1; times++) {

@@ -17,7 +17,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class WorldProviderEuca extends BaseWorldProvider {
 
     public WorldProviderEuca() {
-        super(new BiomeProviderSingle(DimensionHelper.euca), new Vec3d(1.2, 1.1, 0.7));
+        super(new BiomeProviderSingle(DimensionHelper.euca), new Vec3d(1.28, 1.1, 0.7));
     }
 
     @Override
