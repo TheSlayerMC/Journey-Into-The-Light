@@ -13,7 +13,7 @@
         "type": "item",
         "name": "journey:cavedust",
         "functions": [{ "function": "set_count", "count": { "min": 1, "max": 2 } }],
-        "weight": 48
+        "weight": 35
       },
       {
         "type": "item",

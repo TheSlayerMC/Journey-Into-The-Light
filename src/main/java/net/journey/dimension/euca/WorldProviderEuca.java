@@ -56,12 +56,6 @@ public class WorldProviderEuca extends BaseWorldProvider {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public boolean doesXZShowFog(int x, int z) {
-        return false;
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
     public float calculateCelestialAngle(long var1, float var3) {
         return 0.18F;
     }
