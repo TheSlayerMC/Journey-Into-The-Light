@@ -325,7 +325,7 @@ public class EntityBlazier extends EntityEssenceBoss implements IRangedAttackMob
 
                     if (this.attackStep > 1) {
                         float f = MathHelper.sqrt(MathHelper.sqrt(d0)) * 0.5F;
-                        this.blaze.world.playBroadcastSound(1009, new BlockPos((int) this.blaze.posX, (int) this.blaze.posY, (int) this.blaze.posZ), 0);
+                        this.blaze.world.playEvent(null, 1018, new BlockPos((int) this.blaze.posX, (int) this.blaze.posY, (int) this.blaze.posZ), 0);
 
                         for (int i = 0; i < 5; ++i) {
                             EntityMagmaFireball entitysmallfireball = new EntityMagmaFireball(this.blaze.world, this.blaze, d1 + this.blaze.getRNG().nextGaussian() * f, d2, d3 + this.blaze.getRNG().nextGaussian() * f);
