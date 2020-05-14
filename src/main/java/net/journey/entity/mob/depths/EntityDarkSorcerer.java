@@ -54,12 +54,7 @@ public class EntityDarkSorcerer extends EntityModMob implements IRangedAttackMob
         this.setEquipmentBasedOnDifficulty(difficulty);
         return livingdata;
     }
-
-    @Override
-    public ItemStack getHeldItem(EnumHand hand) {
-        return new ItemStack(JourneyWeapons.fireWand);
-    }
-
+    
     @Override
     public void attackEntityWithRangedAttack(EntityLivingBase target, float distanceFactor) {
         EntityFireBall b = new EntityFireBall(this.world, this, 10F);
@@ -90,17 +85,17 @@ public class EntityDarkSorcerer extends EntityModMob implements IRangedAttackMob
 
     @Override
     public SoundEvent setLivingSound() {
-        return JourneySounds.INSECTO;
+        return JourneySounds.SORCERER;
     }
 
     @Override
     public SoundEvent setHurtSound() {
-        return JourneySounds.INSECTO_HURT;
+        return JourneySounds.SORCERER_HURT;
     }
 
     @Override
     public SoundEvent setDeathSound() {
-        return JourneySounds.INSECTO_HURT;
+        return JourneySounds.SORCERER_DEATH;
     }
 
     @Override

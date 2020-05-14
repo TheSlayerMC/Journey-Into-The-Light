@@ -3,6 +3,7 @@ package net.journey.client.render.model.mob.euca;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.math.MathHelper;
 
 public class ModelGolder extends ModelBase {
 
@@ -132,7 +133,16 @@ public class ModelGolder extends ModelBase {
     }
 
     @Override
-    public void setRotationAngles(float par1, float par2, float par3, float par4, float par5, float par6, Entity par7Entity) {
-
+    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity e) {
+        super.setRotationAngles(f, f1, f2, f3, f4, f5, e);
+        this.foot.rotateAngleX = MathHelper.cos(f * 0.6662F + (float) Math.PI) * f1;
+        this.foot1.rotateAngleX = MathHelper.cos(f * 0.6662F) * f1;
+        this.foot2.rotateAngleX = MathHelper.cos(f * 0.6662F + (float) Math.PI) * f1;
+        this.foot3.rotateAngleX = MathHelper.cos(f * 0.6662F) * f1;
+        
+        this.leg1.rotateAngleX = MathHelper.cos(f * 0.6662F + (float) Math.PI) * f1;
+        this.leg2.rotateAngleX = MathHelper.cos(f * 0.6662F) * f1;
+        this.leg3.rotateAngleX = MathHelper.cos(f * 0.6662F + (float) Math.PI) * f1;
+        this.leg4.rotateAngleX = MathHelper.cos(f * 0.6662F) * f1;
     }
 }

@@ -172,7 +172,7 @@ public class EntityRegistry {
                 //SlayerAPI.buildEntityEntry(EntityEucaHopper.class, "eucaHopper");
                 SlayerAPI.buildEntityEntry(EntityEucaCharger.class, "eucacharger", "Euca Charger", 0xffba00, 0xe0e0e0),
                 SlayerAPI.buildEntityEntry(EntityDynaster.class, "dynaster", "Dynaster", 0xffba00, 0xe0e0e0),
-                //SlayerAPI.buildEntityEntry(EntityGolder.class, "golder", 0xffba00, 0xe0e0e0),
+                SlayerAPI.buildEntityEntry(EntityGolder.class, "golder", "Golder", 0xffba00, 0xe0e0e0),
                 SlayerAPI.buildEntityEntry(EntityGolditeMage.class, "golditemage", "Goldite Mage", 0xffba00, 0xe0e0e0),
                 SlayerAPI.buildEntityEntry(EntitySilverbot.class, "silverbot", "Silver Bot", 0xffba00, 0xe0e0e0),
                 SlayerAPI.buildEntityEntry(EntityGoldbot.class, "goldbot", "Gold Bot", 0xffba00, 0xe0e0e0),
