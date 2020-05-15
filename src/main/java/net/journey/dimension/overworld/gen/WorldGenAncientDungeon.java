@@ -21,6 +21,7 @@ public class WorldGenAncientDungeon extends WorldGenerator {
     
 	public IBlockState floor = JourneyBlocks.ANCIENT_STONE.getDefaultState();
 	public IBlockState pillars = Blocks.MOSSY_COBBLESTONE.getDefaultState();
+	public IBlockState catalyst = JourneyBlocks.ANCIENT_STONE.getDefaultState();
     
     public IBlockState getDungeonBricks() {
 	    return RandHelper.chooseEqual(rand,
@@ -693,7 +694,7 @@ public class WorldGenAncientDungeon extends WorldGenerator {
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 6, j + 4, k + 4), floor);
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 6, j + 4, k + 5), floor);
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 6, j + 4, k + 6), floor);
-			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 6, j + 4, k + 7), JourneyBlocks.ANCIENT_CATALYST.getDefaultState());
+			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 6, j + 4, k + 7), catalyst);
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 6, j + 4, k + 8), floor);
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 6, j + 4, k + 9), floor);
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 6, j + 4, k + 10), floor);
