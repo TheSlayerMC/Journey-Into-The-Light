@@ -1,7 +1,8 @@
 package net.journey.blocks.portal;
 
 import net.journey.client.render.particles.EntityCloudiaPortalFX;
-import net.journey.dimension.base.ModTeleporter;
+import net.journey.dimension.cloudia.TeleporterCloudia;
+import net.journey.dimension.cloudia.TeleporterCloudiaToOverworld;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.Config;
 import net.minecraft.block.Block;
@@ -39,10 +40,10 @@ public class BlockCloudiaPortal extends BlockModPortal {
                 thePlayer.timeUntilPortal = 10;
             else if (thePlayer.dimension != dimensionID) {
                 thePlayer.timeUntilPortal = 10;
-                thePlayer.server.getPlayerList().transferPlayerToDimension(thePlayer, dimensionID, new ModTeleporter(thePlayer.server.getWorld(dimensionID), this, blockFrame.getDefaultState()));
+                thePlayer.server.getPlayerList().transferPlayerToDimension(thePlayer, dimensionID, new TeleporterCloudia(thePlayer.server.getWorld(dimensionID), thePlayer));
             } else {
                 thePlayer.timeUntilPortal = 10;
-                thePlayer.server.getPlayerList().transferPlayerToDimension(thePlayer, 0, new ModTeleporter(thePlayer.server.getWorld(0), this, blockFrame.getDefaultState()));
+                thePlayer.server.getPlayerList().transferPlayerToDimension(thePlayer, 0, new TeleporterCloudiaToOverworld(thePlayer.server.getWorld(0)));
             }
         }
     }
