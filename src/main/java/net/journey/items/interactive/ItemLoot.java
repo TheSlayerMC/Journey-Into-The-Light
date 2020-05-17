@@ -52,6 +52,7 @@ public class ItemLoot extends ItemMod {
 			EntityItem item = new EntityItem(world, player.posX, player.posY, player.posZ, itemToSpawn);
 			world.spawnEntity(item);
 	        player.getHeldItem(hand).shrink(1);
+	        return EnumActionResult.SUCCESS;
 		}
         return EnumActionResult.PASS;
     }
