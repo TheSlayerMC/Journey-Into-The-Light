@@ -106,6 +106,12 @@ processResources {
     }
 }
 
+jar {
+    manifest.attributes(
+            "FMLAT": "journey_at.cfg"
+    )
+}
+
 // Create source attachment for dev jar
 task sourcesJar(type: Jar) {
     from sourceSets.main.allJava
