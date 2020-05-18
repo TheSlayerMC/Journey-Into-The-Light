@@ -1,1 +1,1 @@
-./gradlew setupdecompworkspace eclipse
+./gradlew setupdecompworkspace
