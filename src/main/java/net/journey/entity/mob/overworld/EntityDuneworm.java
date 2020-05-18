@@ -16,7 +16,7 @@ public class EntityDuneworm extends JEntityMob {
 
     public EntityDuneworm(World par1World) {
         super(par1World);
-        addAttackingAI();
+        addMeleeAttackingAI();
         this.setSize(1.8F, 1.0F);
     }
 

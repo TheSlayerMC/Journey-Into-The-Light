@@ -21,7 +21,7 @@ public class EntityHellTurtle extends JEntityMob {
 
     public EntityHellTurtle(World par1World) {
         super(par1World);
-        addAttackingAI();
+        addMeleeAttackingAI();
         this.setSize(2.0F, 1.3F);
         this.isImmuneToFire = true;
 

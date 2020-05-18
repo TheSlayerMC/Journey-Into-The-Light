@@ -19,7 +19,7 @@ public class EntityDarknessCrawler extends JEntityMob {
 
     public EntityDarknessCrawler(World par1World) {
         super(par1World);
-        addAttackingAI();
+        addMeleeAttackingAI();
         setSize(0.7F, 1.0F);
     }
 

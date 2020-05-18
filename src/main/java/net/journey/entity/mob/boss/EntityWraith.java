@@ -11,7 +11,7 @@ public class EntityWraith extends EntityEssenceBoss {
 
 	public EntityWraith(World par1World) {
 		super(par1World);
-		addAttackingAI();
+		addMeleeAttackingAI();
 	}
 
 	@Override

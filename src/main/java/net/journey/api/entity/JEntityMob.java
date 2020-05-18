@@ -22,40 +22,18 @@ public abstract class JEntityMob extends EntityMob implements ISettingsConsumer 
 
 	@Override
 	protected void initEntityAI() {
-		addBasicAI();
-	}
-
-	public double getHP() {
-		return getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getAttributeValue();
-	}
-
-	public double getMoveSpeed() {
-		return getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue();
-	}
-
-	public double getAttackDamage() {
-		return getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue();
-	}
-
-	public double getFollowRange() {
-		return getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).getAttributeValue();
-	}
-
-	public double getKnockbackResistance() {
-		return getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).getAttributeValue();
-	}
-
-	protected void addAttackingAI() {
-		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
-		this.tasks.addTask(2, new EntityAIAttackMelee(this, 1.4D, false));
-		this.targetTasks.addTask(1, new EntityAINearestAttackableTarget<>(this, EntityPlayer.class, true));
-	}
-
-	protected void addBasicAI() {
+		//Basic tasks
 		this.tasks.addTask(0, new EntityAISwimming(this));
-		this.tasks.addTask(1, new EntityAIWander(this, 1.0F));
-		this.tasks.addTask(2, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-		this.tasks.addTask(3, new EntityAILookIdle(this));
+		this.tasks.addTask(7, new EntityAIWander(this, 1.0F));
+		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
+		this.tasks.addTask(8, new EntityAILookIdle(this));
+	}
+
+	protected void addMeleeAttackingAI() {
+		this.tasks.addTask(2, new EntityAIAttackMelee(this, 1.4D, false));
+
+		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
+		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<>(this, EntityPlayer.class, true));
 	}
 
 	@Override
@@ -91,6 +69,26 @@ public abstract class JEntityMob extends EntityMob implements ISettingsConsumer 
 
 	@Override
 	protected abstract SoundEvent getDeathSound();
+
+	public double getHP() {
+		return getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getAttributeValue();
+	}
+
+	public double getMoveSpeed() {
+		return getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue();
+	}
+
+	public double getAttackDamage() {
+		return getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue();
+	}
+
+	public double getFollowRange() {
+		return getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).getAttributeValue();
+	}
+
+	public double getKnockbackResistance() {
+		return getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).getAttributeValue();
+	}
 
 	@Override
 	public boolean getCanSpawnHere() {

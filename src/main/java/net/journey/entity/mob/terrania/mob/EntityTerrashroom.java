@@ -14,7 +14,7 @@ public class EntityTerrashroom extends JEntityMob {
 
     public EntityTerrashroom(World par1World) {
         super(par1World);
-        addAttackingAI();
+        addMeleeAttackingAI();
         this.setSize(1.0F, 2.0F);
     }
 

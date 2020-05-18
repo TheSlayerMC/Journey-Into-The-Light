@@ -14,7 +14,7 @@ public class EntityGoldbot extends JEntityMob {
 
     public EntityGoldbot(World par1World) {
         super(par1World);
-        addAttackingAI();
+        addMeleeAttackingAI();
         setSize(0.7F, 1.2F);
     }
 

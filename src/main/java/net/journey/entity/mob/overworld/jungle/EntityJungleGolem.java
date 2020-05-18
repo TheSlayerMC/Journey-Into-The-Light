@@ -26,7 +26,7 @@ public class EntityJungleGolem extends JEntityMob {
 
     public EntityJungleGolem(World par1World) {
         super(par1World);
-        addAttackingAI();
+        addMeleeAttackingAI();
         setSize(1.0F, 2.5F);
     }
 

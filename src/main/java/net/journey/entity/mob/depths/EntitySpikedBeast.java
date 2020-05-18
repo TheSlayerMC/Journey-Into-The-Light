@@ -19,7 +19,7 @@ public class EntitySpikedBeast extends JEntityMob {
 
     public EntitySpikedBeast(World par1World) {
         super(par1World);
-        addAttackingAI();
+        addMeleeAttackingAI();
         setSize(0.7F, 1.5F);
     }
 

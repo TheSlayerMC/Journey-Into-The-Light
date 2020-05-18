@@ -16,8 +16,8 @@ public class EntityRobot extends JEntityMob {
 
     public EntityRobot(World par1World) {
         super(par1World);
-        addAttackingAI();
-        setSize(0.7F, 2.3F);
+	    addMeleeAttackingAI();
+	    setSize(0.7F, 2.3F);
     }
 
     @Override

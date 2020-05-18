@@ -16,8 +16,8 @@ public class EntitySandCrawler extends JEntityMob {
 
     public EntitySandCrawler(World par1World) {
         super(par1World);
-        addAttackingAI();
-        this.setSize(1.8F, 1.0F);
+	    addMeleeAttackingAI();
+	    this.setSize(1.8F, 1.0F);
     }
 
     @Override

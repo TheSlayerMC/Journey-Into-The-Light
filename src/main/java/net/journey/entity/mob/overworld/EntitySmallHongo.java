@@ -16,8 +16,8 @@ public class EntitySmallHongo extends JEntityMob {
 
     public EntitySmallHongo(World par1World) {
         super(par1World);
-        addAttackingAI();
-        this.setSize(0.5F, 0.7F);
+	    addMeleeAttackingAI();
+	    this.setSize(0.5F, 0.7F);
     }
 
     @Override

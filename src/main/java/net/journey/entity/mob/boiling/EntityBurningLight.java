@@ -20,7 +20,7 @@ public class EntityBurningLight extends JEntityMob {
 
     public EntityBurningLight(World par1World) {
         super(par1World);
-        addAttackingAI();
+        addMeleeAttackingAI();
         setSize(0.7F, 2.0F);
         isImmuneToFire = true;
     }

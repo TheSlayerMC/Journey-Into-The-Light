@@ -41,7 +41,7 @@ public abstract class EntityPeacefullUntillAttacked extends JEntityMob {
     public boolean attackEntityFrom(DamageSource par1DamageSource, float par2) {
         if (par1DamageSource.getImmediateSource() instanceof EntityPlayer) {
             angerLevel = 400;
-            addAttackingAI();
+            addMeleeAttackingAI();
         }
         return super.attackEntityFrom(par1DamageSource, par2);
     }

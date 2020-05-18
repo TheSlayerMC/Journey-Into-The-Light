@@ -14,7 +14,7 @@ public class EntityShiveringShrieker extends JEntityMob {
 
     public EntityShiveringShrieker(World par1World) {
         super(par1World);
-        addAttackingAI();
+        addMeleeAttackingAI();
         this.setSize(0.65F, 1F);
     }
 

@@ -31,7 +31,7 @@ public class EntityWitheringBeast extends EntityEssenceBoss implements IRangedAt
     protected void initEntityAI() {
         super.initEntityAI();
         this.tasks.addTask(0, new EntityAIAttackRanged(this, 0.27F, 30, 10.0F));
-        addAttackingAI();
+        addMeleeAttackingAI();
     }
 
     @Override

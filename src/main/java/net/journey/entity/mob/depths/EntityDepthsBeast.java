@@ -19,7 +19,7 @@ public class EntityDepthsBeast extends JEntityMob {
 
     public EntityDepthsBeast(World par1World) {
         super(par1World);
-        addAttackingAI();
+        addMeleeAttackingAI();
         setSize(1.2F, 2.5F);
     }
 

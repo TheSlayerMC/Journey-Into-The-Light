@@ -23,7 +23,7 @@ public class EntityTreeGolem extends JEntityMob {
 
     public EntityTreeGolem(World par1World) {
         super(par1World);
-        addAttackingAI();
+        addMeleeAttackingAI();
         setSize(1.2F, 1.5F);
     }
 

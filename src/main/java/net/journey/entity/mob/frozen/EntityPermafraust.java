@@ -14,7 +14,7 @@ public class EntityPermafraust extends JEntityMob {
 
     public EntityPermafraust(World par1World) {
         super(par1World);
-        addAttackingAI();
+        addMeleeAttackingAI();
         this.setSize(0.5F, 2F);
     }
 

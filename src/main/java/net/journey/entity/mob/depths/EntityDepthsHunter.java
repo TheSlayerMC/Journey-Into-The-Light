@@ -19,7 +19,7 @@ public class EntityDepthsHunter extends JEntityMob {
 
     public EntityDepthsHunter(World par1World) {
         super(par1World);
-        addAttackingAI();
+        addMeleeAttackingAI();
         setSize(1.0F, 2.3F);
     }
 

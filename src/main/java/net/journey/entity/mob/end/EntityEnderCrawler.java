@@ -17,7 +17,7 @@ public class EntityEnderCrawler extends JEntityMob {
 
     public EntityEnderCrawler(World par1World) {
         super(par1World);
-        addAttackingAI();
+        addMeleeAttackingAI();
         setSize(1.0F, 1.0F);
     }
 

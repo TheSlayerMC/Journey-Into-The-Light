@@ -14,7 +14,7 @@ public class EntityShiveringBushwalker extends JEntityMob {
 
     public EntityShiveringBushwalker(World par1World) {
         super(par1World);
-        addAttackingAI();
+        addMeleeAttackingAI();
         this.setSize(0.65F, 1F);
     }
 

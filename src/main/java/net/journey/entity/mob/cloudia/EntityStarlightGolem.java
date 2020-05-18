@@ -17,7 +17,7 @@ public class EntityStarlightGolem extends JEntityMob {
 
     public EntityStarlightGolem(World par1World) {
         super(par1World);
-        addAttackingAI();
+        addMeleeAttackingAI();
         setSize(1.7F, 3.0F);
     }
 

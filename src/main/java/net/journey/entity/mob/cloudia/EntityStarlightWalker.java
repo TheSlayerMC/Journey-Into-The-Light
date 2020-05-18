@@ -15,7 +15,7 @@ public class EntityStarlightWalker extends JEntityMob {
 
     public EntityStarlightWalker(World w) {
         super(w);
-        addAttackingAI();
+        addMeleeAttackingAI();
         setSize(1.0F, 1.0F);
     }
 

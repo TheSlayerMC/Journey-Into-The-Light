@@ -39,7 +39,7 @@ public class EntityBoom extends JEntityMob {
         super(par1World);
         this.tasks.addTask(1, new EntityAIBoomSwell(this));
         this.tasks.addTask(2, new EntityAIRestrictSun(this));
-        addAttackingAI();
+        addMeleeAttackingAI();
         this.setSize(1.0F, 2.0F);
     }
 

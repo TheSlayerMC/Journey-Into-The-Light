@@ -17,7 +17,7 @@ public class EntityCaveling extends JEntityMob {
 
     public EntityCaveling(World par1World) {
         super(par1World);
-        addAttackingAI();
+        addMeleeAttackingAI();
         this.setSize(1.0F, 1.0F);
     }
 

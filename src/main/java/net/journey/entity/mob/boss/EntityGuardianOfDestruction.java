@@ -38,7 +38,7 @@ public class EntityGuardianOfDestruction extends EntityEssenceBoss {
 		super.initEntityAI();
 		this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
 		this.tasks.addTask(2, new EntityAILookIdle(this));
-		addAttackingAI();
+		addMeleeAttackingAI();
 	}
 
 	@Override

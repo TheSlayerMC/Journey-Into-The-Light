@@ -15,7 +15,7 @@ public class EntityBigHongo extends JEntityMob {
 
     public EntityBigHongo(World par1World) {
         super(par1World);
-        addAttackingAI();
+        addMeleeAttackingAI();
         this.setSize(1.0F, 2.0F);
     }
 

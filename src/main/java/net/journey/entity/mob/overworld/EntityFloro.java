@@ -9,12 +9,9 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.ai.*;
-import net.minecraft.entity.monster.EntityIronGolem;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
@@ -29,29 +26,20 @@ import javax.annotation.Nullable;
 
 public class EntityFloro extends JEntityMob implements IRangedAttackMob {
 
-	private final EntityAIAttackRangedBow<EntityFloro> aiArrowAttack = new EntityAIAttackRangedBow<EntityFloro>(this, 1.0D, 20, 15.0F);
-	private int ticks;
-
 	public EntityFloro(World par1World) {
 		super(par1World);
-		this.tasks.addTask(1, new EntityAISwimming(this));
-		this.tasks.addTask(2, new EntityAIAttackRanged(this, 0.27F, 50, 8.0F));
-		this.tasks.addTask(2, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-		this.tasks.addTask(3, new EntityAIAvoidEntity(this, EntityWolf.class, 6.0F, 1.0D, 1.2D));
-		this.tasks.addTask(5, new EntityAIWanderAvoidWater(this, 1.0D));
+		this.tasks.addTask(3, new EntityAIAvoidEntity<>(this, EntityWolf.class, 6.0F, 1.0D, 1.2D));
+		this.tasks.addTask(6, new EntityAIWanderAvoidWater(this, 1.0D));
 		this.tasks.addTask(6, new EntityAILookIdle(this));
-		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
-		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
-		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityIronGolem.class, true));
-		if (par1World != null && !par1World.isRemote) {
-			this.setCombatTask();
-		}
 	}
 
-	public void setCombatTask() {
-		this.tasks.removeTask(this.aiArrowAttack); {
-			this.tasks.addTask(4, this.aiArrowAttack);
-		}
+	@Override
+	protected void initEntityAI() {
+		super.initEntityAI();
+
+		this.tasks.addTask(4, new EntityAIAttackRanged(this, 0.27F, 50, 8.0F));
+		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
+		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<>(this, EntityPlayer.class, true));
 	}
 
 	@Override
@@ -59,7 +47,7 @@ public class EntityFloro extends JEntityMob implements IRangedAttackMob {
 	public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata) {
 		livingdata = super.onInitialSpawn(difficulty, livingdata);
 		this.setEquipmentBasedOnDifficulty(difficulty);
-		this.setEnchantmentBasedOnDifficulty(difficulty); 
+		this.setEnchantmentBasedOnDifficulty(difficulty);
 		this.setCanPickUpLoot(this.rand.nextFloat() < 0.55F * difficulty.getClampedAdditionalDifficulty());
 		return livingdata;
 	}
@@ -67,15 +55,6 @@ public class EntityFloro extends JEntityMob implements IRangedAttackMob {
 	@Override
 	public void readEntityFromNBT(NBTTagCompound compound) {
 		super.readEntityFromNBT(compound);
-		this.setCombatTask();
-	}
-
-	@Override
-	public void setItemStackToSlot(EntityEquipmentSlot slotIn, ItemStack stack) {
-		super.setItemStackToSlot(slotIn, stack);
-		if (!this.world.isRemote && slotIn == EntityEquipmentSlot.MAINHAND) {
-			this.setCombatTask();
-		}
 	}
 
 	@Override

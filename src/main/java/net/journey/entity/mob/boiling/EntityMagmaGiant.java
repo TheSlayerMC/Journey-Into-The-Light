@@ -18,7 +18,7 @@ public class EntityMagmaGiant extends JEntityMob {
 
     public EntityMagmaGiant(World par1World) {
         super(par1World);
-        addAttackingAI();
+        addMeleeAttackingAI();
         setSize(1.0F, 2.7F);
         isImmuneToFire = true;
     }

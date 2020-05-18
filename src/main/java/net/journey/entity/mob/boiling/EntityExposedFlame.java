@@ -20,7 +20,7 @@ public class EntityExposedFlame extends JEntityMob {
 
     public EntityExposedFlame(World par1World) {
         super(par1World);
-        addAttackingAI();
+        addMeleeAttackingAI();
         setSize(0.7F, 2.0F);
         isImmuneToFire = true;
     }

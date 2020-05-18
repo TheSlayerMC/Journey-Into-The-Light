@@ -42,7 +42,7 @@ public class EntityCorallator extends EntityEssenceBoss implements IRangedAttack
         this.tasks.addTask(7, new EntityCorallator.AILookAround());
         this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
         //this.tasks.addTask(1, new EntityAIArrowAttack(this, 1.0D, 40, 20.0F));
-        addAttackingAI();
+        addMeleeAttackingAI();
         setSize(3.0F, 4.0F);
         spawnTimer = 0;
     }

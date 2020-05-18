@@ -41,7 +41,7 @@ public class EntityTempleGuardian extends EntityEssenceBoss implements IRangedAt
     @Override
     protected void initEntityAI() {
         super.initEntityAI();
-        addAttackingAI();
+        addMeleeAttackingAI();
         this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, false));
         this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
         this.tasks.addTask(4, new EntityAIAvoidEntity(this, EntityWolf.class, 6.0F, 1.0D, 1.2D));

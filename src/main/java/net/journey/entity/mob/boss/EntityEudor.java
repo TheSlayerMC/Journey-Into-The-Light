@@ -27,7 +27,7 @@ public class EntityEudor extends EntityEssenceBoss {
 
     public EntityEudor(World par1World) {
         super(par1World);
-        addAttackingAI();
+        addMeleeAttackingAI();
         this.setSize(3.5F, 5.2F);
     }
 

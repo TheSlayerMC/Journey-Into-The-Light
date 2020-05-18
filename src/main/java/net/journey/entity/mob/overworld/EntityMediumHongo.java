@@ -15,8 +15,8 @@ public class EntityMediumHongo extends JEntityMob {
 
     public EntityMediumHongo(World par1World) {
         super(par1World);
-        addAttackingAI();
-        setSize(1.0F, 1.0F);
+	    addMeleeAttackingAI();
+	    setSize(1.0F, 1.0F);
     }
 
     @Override

@@ -42,7 +42,7 @@ public class EntityFourfa extends EntityEssenceBoss implements IRangedAttackMob 
         super.initEntityAI();
         this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
         this.tasks.addTask(0, new EntityAIAttackRanged(this, 1.0D, 15, 60.0F));
-        addAttackingAI();
+        addMeleeAttackingAI();
     }
 
     @Override

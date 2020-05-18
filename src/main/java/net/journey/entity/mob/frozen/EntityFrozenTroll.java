@@ -19,7 +19,7 @@ import org.jetbrains.annotations.NotNull;
 public class EntityFrozenTroll extends JEntityMob {
     public EntityFrozenTroll(World par1World) {
         super(par1World);
-        addAttackingAI();
+        addMeleeAttackingAI();
         this.setSize(0.5F, 1.2F);
     }
 

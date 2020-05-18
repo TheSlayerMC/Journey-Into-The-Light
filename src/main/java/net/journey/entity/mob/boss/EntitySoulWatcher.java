@@ -12,12 +12,10 @@ import net.journey.init.items.JourneyArmory;
 import net.journey.init.items.JourneyItems;
 import net.journey.init.items.JourneyWeapons;
 import net.minecraft.entity.EntityLivingBase;
-//import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
 import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -34,7 +32,9 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class EntitySoulWatcher extends EntityFlyingBoss /*implements IRangedAttackMob */{
+//import net.minecraft.entity.IRangedAttackMob;
+
+public class EntitySoulWatcher extends EntityFlyingBoss /*implements IRangedAttackMob */ {
     private static final DataParameter<Byte> ON_FIRE = EntityDataManager.createKey(EntitySoulWatcher.class, DataSerializers.BYTE);
     private int spawnTimer;
 
@@ -46,7 +46,7 @@ public class EntitySoulWatcher extends EntityFlyingBoss /*implements IRangedAtta
         this.tasks.addTask(7, new EntitySoulWatcher.AIFireballAttack());
         this.tasks.addTask(7, new EntitySoulWatcher.AILookAround());
         this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
-        //addAttackingAI();
+        //addMeleeAttackingAI();
         setSize(4.0F, 2.0F);
         spawnTimer = 0;
     }

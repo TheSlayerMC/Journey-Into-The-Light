@@ -19,8 +19,8 @@ public class EntitySpectre extends JEntityMob {
 
     public EntitySpectre(World par1World) {
         super(par1World);
-        addAttackingAI();
-        setSize(1.0F, 2.0F);
+	    addMeleeAttackingAI();
+	    setSize(1.0F, 2.0F);
     }
 
     @Override

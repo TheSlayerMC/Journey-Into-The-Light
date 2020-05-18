@@ -14,7 +14,7 @@ public class EntityTerraslug extends JEntityMob {
 
 	public EntityTerraslug(World par1World) {
 		super(par1World);
-		addAttackingAI();
+		addMeleeAttackingAI();
 		setSize(0.4F, 0.4F);
 	}
 

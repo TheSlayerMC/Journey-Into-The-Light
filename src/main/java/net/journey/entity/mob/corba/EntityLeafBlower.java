@@ -19,7 +19,7 @@ public class EntityLeafBlower extends JEntityMob {
 
     public EntityLeafBlower(World par1World) {
         super(par1World);
-        addAttackingAI();
+        addMeleeAttackingAI();
         setSize(1.0F, 2.0F);
     }
 

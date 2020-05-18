@@ -15,7 +15,7 @@ public class EntityPsyollom extends JEntityMob {
 
     public EntityPsyollom(World par1World) {
         super(par1World);
-        addAttackingAI();
+        addMeleeAttackingAI();
         setSize(1.7F, 2.7F);
     }
 

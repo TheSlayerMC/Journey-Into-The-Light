@@ -28,7 +28,7 @@ public class EntityLogger extends EntityEssenceBoss {
 
     public EntityLogger(World par1World) {
         super(par1World);
-        addAttackingAI();
+        addMeleeAttackingAI();
         setSize(3.0F, 3.5F);
     }
 

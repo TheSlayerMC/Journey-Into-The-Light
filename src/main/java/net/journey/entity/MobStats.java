@@ -10,7 +10,7 @@ public class MobStats {
     public static final EntitySettings BOOM = new EntitySettings(20, 0).setMovementSpeed(0.200000011920929);
     public static final EntitySettings DUNEWORM = new EntitySettings(25, 6);
     public static final EntitySettings FIRE_MAGE = new EntitySettings(25, 0);
-    public static final EntitySettings FLORO = new EntitySettings(25, 5);
+    public static final EntitySettings FLORO = new EntitySettings(25, 0);
     public static final EntitySettings ICE_MAGE = new EntitySettings(25, 0);
     public static final EntitySettings MEDIUM_HONGO = new EntitySettings(30, 5);
     public static final EntitySettings ROBOT = new EntitySettings(20, 4);

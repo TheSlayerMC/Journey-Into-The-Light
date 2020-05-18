@@ -21,7 +21,7 @@ public class EntityReaper extends JEntityMob {
 
     public EntityReaper(World par1World) {
         super(par1World);
-        addAttackingAI();
+        addMeleeAttackingAI();
         this.isImmuneToFire = true;
         setSize(0.7F, 2.0F);
     }

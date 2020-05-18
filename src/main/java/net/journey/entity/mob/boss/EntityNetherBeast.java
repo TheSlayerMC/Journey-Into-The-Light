@@ -26,7 +26,7 @@ public class EntityNetherBeast extends EntityEssenceBoss {
 
     public EntityNetherBeast(World par1World) {
         super(par1World);
-        addAttackingAI();
+        addMeleeAttackingAI();
         setSize(2.0F, 2.5F);
     }
 

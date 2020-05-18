@@ -18,7 +18,7 @@ public class EntityWitherspine extends JEntityMob {
 
     public EntityWitherspine(World par1World) {
         super(par1World);
-        addAttackingAI();
+        addMeleeAttackingAI();
         this.isImmuneToFire = true;
         setSize(0.7F, 4.2F);
     }

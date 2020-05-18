@@ -17,7 +17,7 @@ public class EntityStonewalker extends JEntityMob {
 
     public EntityStonewalker(World par1World) {
         super(par1World);
-        addAttackingAI();
+        addMeleeAttackingAI();
         setSize(0.8F, 1.5F);
     }
 

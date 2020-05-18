@@ -22,7 +22,7 @@ public class EntityCalcia extends EntityEssenceBoss {
 
     public EntityCalcia(World par1World) {
         super(par1World);
-        addAttackingAI();
+        addMeleeAttackingAI();
         this.setSize(1.6F, 3.2F);
     }
 
