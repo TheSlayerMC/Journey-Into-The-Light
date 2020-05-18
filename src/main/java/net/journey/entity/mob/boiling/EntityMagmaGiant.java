@@ -1,20 +1,20 @@
 package net.journey.entity.mob.boiling;
 
+import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
 import net.journey.util.JourneyLootTables;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import net.slayer.api.entity.EntityModMob;
+import org.jetbrains.annotations.NotNull;
 
-public class EntityMagmaGiant extends EntityModMob {
+public class EntityMagmaGiant extends JEntityMob {
 
     public EntityMagmaGiant(World par1World) {
         super(par1World);
@@ -24,27 +24,17 @@ public class EntityMagmaGiant extends EntityModMob {
     }
 
     @Override
-    public double setAttackDamage(MobStats s) {
-        return MobStats.MagmaGiantDamage;
-    }
-
-    @Override
-    public double setMaxHealth(MobStats s) {
-        return MobStats.MagmaGiantHealth;
-    }
-
-    @Override
-    public SoundEvent setLivingSound() {
+    protected SoundEvent getAmbientSound() {
         return JourneySounds.MAGMA_GIANT;
     }
 
     @Override
-    public SoundEvent setHurtSound() {
+    protected SoundEvent getHurtSound(DamageSource d) {
         return JourneySounds.MAGMA_GIANT_HURT;
     }
 
     @Override
-    public SoundEvent setDeathSound() {
+    protected SoundEvent getDeathSound() {
         return JourneySounds.MAGMA_GIANT_HURT;
     }
 
@@ -86,5 +76,10 @@ public class EntityMagmaGiant extends EntityModMob {
             if (this.world.isAirBlock(new BlockPos(i, j, k)) && Blocks.FIRE.canPlaceBlockAt(this.world, new BlockPos(i, j, k)))
                 this.world.setBlockState(new BlockPos(i, j, k), Blocks.FIRE.getDefaultState());
         }
+    }
+
+    @Override
+    public @NotNull EntitySettings getEntitySettings() {
+        return MobStats.MAGMA_GIANT;
     }
 }

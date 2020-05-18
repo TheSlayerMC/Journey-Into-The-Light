@@ -1,56 +1,45 @@
 package net.journey.entity.mob.euca;
 
+import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
-import net.journey.init.items.JourneyItems;
 import net.journey.util.JourneyLootTables;
-import net.minecraft.item.Item;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
-import net.slayer.api.entity.EntityModMob;
+import org.jetbrains.annotations.NotNull;
 
-public class EntityEucaCharger extends EntityModMob {
+public class EntityEucaCharger extends JEntityMob {
 
     public EntityEucaCharger(World par1World) {
         super(par1World);
         addAttackingAI();
-        this.setMovementSpeed();
         setSize(0.7F, 1.0F);
     }
 
     @Override
-    public double setAttackDamage(MobStats s) {
-        return MobStats.EucaChargerDamage;
-    }
-
-    @Override
-    public double setMaxHealth(MobStats s) {
-        return MobStats.EucaChargerHealth;
-    }
-
-    @Override
-    public double setMovementSpeed() {
-        return 0.5D;
-    }
-
-    @Override
-    public SoundEvent setLivingSound() {
+    protected SoundEvent getAmbientSound() {
         return JourneySounds.HONGO;
     }
 
     @Override
-    public SoundEvent setHurtSound() {
+    protected SoundEvent getHurtSound(DamageSource d) {
         return JourneySounds.SAND_CRAWLER;
     }
 
     @Override
-    public SoundEvent setDeathSound() {
+    protected SoundEvent getDeathSound() {
         return JourneySounds.SAND_CRAWLER;
     }
 
     @Override
     protected ResourceLocation getLootTable() {
-    	return JourneyLootTables.EUCA_CHARGER;
+        return JourneyLootTables.EUCA_CHARGER;
+    }
+
+    @Override
+    public @NotNull EntitySettings getEntitySettings() {
+        return MobStats.EUCA_CHARGER;
     }
 }

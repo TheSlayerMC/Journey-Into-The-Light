@@ -1,14 +1,15 @@
 package net.journey.entity.mob.senterian.mob;
 
+import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
 import net.journey.util.JourneyLootTables;
-import net.minecraft.item.Item;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
-import net.slayer.api.entity.EntityModMob;
+import org.jetbrains.annotations.NotNull;
 
-public class EntityMiniSentryWalker extends EntityModMob {
+public class EntityMiniSentryWalker extends JEntityMob {
 
 	public EntityMiniSentryWalker(World par1World) {
 		super(par1World);
@@ -16,32 +17,27 @@ public class EntityMiniSentryWalker extends EntityModMob {
 	}
 
 	@Override
-	public double setAttackDamage(MobStats s) {
-		return 0;
-	}
-
-	@Override
-	public double setMaxHealth(MobStats s) {
-		return 0;
-	}
-
-	@Override
-	public SoundEvent setLivingSound() {
+	protected SoundEvent getAmbientSound() {
 		return null;
 	}
 
 	@Override
-	public SoundEvent setHurtSound() {
+	protected SoundEvent getHurtSound(DamageSource d) {
 		return null;
 	}
 
 	@Override
-	public SoundEvent setDeathSound() {
+	protected SoundEvent getDeathSound() {
 		return null;
 	}
 
 	@Override
-    protected ResourceLocation getLootTable() {
-    	return JourneyLootTables.MINI_SENTRY_WALKER;
-    }
+	protected ResourceLocation getLootTable() {
+		return JourneyLootTables.MINI_SENTRY_WALKER;
+	}
+
+	@Override
+	public @NotNull EntitySettings getEntitySettings() {
+		return MobStats.MINI_SENTRY_WALKER;
+	}
 }

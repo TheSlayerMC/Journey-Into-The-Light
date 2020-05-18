@@ -7,11 +7,12 @@ import net.journey.init.items.JourneyWeapons;
 import net.journey.util.PotionEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityEssenceBoss;
+import org.jetbrains.annotations.NotNull;
 
 public class EntityCalcia extends EntityEssenceBoss {
 
@@ -26,32 +27,17 @@ public class EntityCalcia extends EntityEssenceBoss {
     }
 
     @Override
-    public double setAttackDamage(MobStats s) {
-        return MobStats.calciaDamage;
-    }
-
-    @Override
-    public double setKnockbackResistance() {
-        return 1.0D;
-    }
-
-    @Override
-    public double setMaxHealth(MobStats s) {
-        return MobStats.calciaHealth;
-    }
-
-    @Override
-    public SoundEvent setLivingSound() {
+    protected SoundEvent getAmbientSound() {
         return JourneySounds.CALCIA;
     }
 
     @Override
-    public SoundEvent setHurtSound() {
+    protected SoundEvent getHurtSound(DamageSource d) {
         return JourneySounds.CALCIA_HURT;
     }
 
     @Override
-    public SoundEvent setDeathSound() {
+    protected SoundEvent getDeathSound() {
         return JourneySounds.CALCIA_HURT;
     }
 
@@ -96,5 +82,10 @@ public class EntityCalcia extends EntityEssenceBoss {
 
         //if(rand.nextInt(1) == 0)
         //	this.dropItem(Item.getItemFromBlock(EssenceBlocks.calciaStatue), 1);
+    }
+
+    @Override
+    public @NotNull EntitySettings getEntitySettings() {
+        return MobStats.CALCIA;
     }
 }

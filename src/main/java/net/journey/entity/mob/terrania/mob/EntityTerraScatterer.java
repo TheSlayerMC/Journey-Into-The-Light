@@ -1,17 +1,16 @@
 package net.journey.entity.mob.terrania.mob;
 
+import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
-import net.journey.init.items.JourneyItems;
 import net.journey.util.JourneyLootTables;
-import net.minecraft.init.SoundEvents;
-import net.minecraft.item.Item;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
-import net.slayer.api.entity.EntityModMob;
+import org.jetbrains.annotations.NotNull;
 
-public class EntityTerraScatterer extends EntityModMob {
+public class EntityTerraScatterer extends JEntityMob {
 
     public EntityTerraScatterer(World w) {
         super(w);
@@ -19,32 +18,27 @@ public class EntityTerraScatterer extends EntityModMob {
     }
 
     @Override
-    public double setAttackDamage(MobStats s) {
-        return MobStats.TerraScattererDamage;
-    }
-
-    @Override
-    public double setMaxHealth(MobStats s) {
-        return MobStats.TerraScattererHealth;
-    }
-
-    @Override
-    public SoundEvent setLivingSound() {
+    protected SoundEvent getAmbientSound() {
         return JourneySounds.WRAITH;
     }
 
     @Override
-    public SoundEvent setHurtSound() {
-        return SoundEvents.ENTITY_CREEPER_HURT;
+    protected SoundEvent getHurtSound(DamageSource d) {
+        return JourneySounds.WRAITH_HURT;
     }
 
     @Override
-    public SoundEvent setDeathSound() {
+    protected SoundEvent getDeathSound() {
         return JourneySounds.WRAITH_DEATH;
     }
 
     @Override
     protected ResourceLocation getLootTable() {
-    	return JourneyLootTables.TERRA_SCATTERER;
+        return JourneyLootTables.TERRA_SCATTERER;
+    }
+
+    @Override
+    public @NotNull EntitySettings getEntitySettings() {
+        return MobStats.TERRA_SCATTERER;
     }
 }

@@ -4,7 +4,6 @@ import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.entity.MobStats;
 import net.journey.entity.mob.euca.EntityShimmerer;
 import net.journey.entity.projectile.EntityMagmaFireball;
-import net.journey.init.JourneySounds;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.init.items.JourneyItems;
 import net.journey.init.items.JourneyWeapons;
@@ -14,7 +13,6 @@ import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
 import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -29,6 +27,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityEssenceBoss;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
@@ -49,33 +48,13 @@ public class EntityCorallator extends EntityEssenceBoss implements IRangedAttack
     }
 
     @Override
-    public double setAttackDamage(MobStats s) {
-        return MobStats.sentryKingDamage;
-    }
-
-    @Override
-    public double setKnockbackResistance() {
-        return 1.0D;
-    }
-
-    @Override
-    public double setMaxHealth(MobStats s) {
-        return MobStats.corallatorHealth;
-    }
-
-    @Override
-    public SoundEvent setLivingSound() {
+    protected SoundEvent getAmbientSound() {
         return SoundEvents.ENTITY_WITHER_AMBIENT;
     }
 
     @Override
-    public SoundEvent setHurtSound() {
+    protected SoundEvent getHurtSound(DamageSource d) {
         return SoundEvents.ENTITY_WITHER_HURT;
-    }
-
-    @Override
-    public SoundEvent setDeathSound() {
-        return JourneySounds.BOSS_DEATH;
     }
 
     @Override
@@ -259,6 +238,11 @@ public class EntityCorallator extends EntityEssenceBoss implements IRangedAttack
 
     @Override
     public void setSwingingArms(boolean swingingArms) {
+    }
+
+    @Override
+    public @NotNull EntitySettings getEntitySettings() {
+        return MobStats.CORALLATOR;
     }
 
     private class AIRandomFly extends EntityAIBase {

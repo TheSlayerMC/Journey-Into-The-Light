@@ -2,12 +2,16 @@ package net.journey.util;
 
 import net.journey.entity.item.EntityObsidianBoat;
 import net.journey.entity.mob.boiling.*;
-import net.journey.entity.mob.boiling.npc.*;
+import net.journey.entity.mob.boiling.npc.EntityBoilTrader;
+import net.journey.entity.mob.boiling.npc.EntityEscapedConvict;
 import net.journey.entity.mob.boss.*;
 import net.journey.entity.mob.cloudia.*;
-import net.journey.entity.mob.cloudia.npc.*;
+import net.journey.entity.mob.cloudia.npc.EntityStarlightBlacksmith;
+import net.journey.entity.mob.cloudia.npc.EntityStarlightVillager;
 import net.journey.entity.mob.corba.*;
-import net.journey.entity.mob.corba.npc.*;
+import net.journey.entity.mob.corba.npc.EntityOvergrownMerchant;
+import net.journey.entity.mob.corba.npc.EntityRedTordo;
+import net.journey.entity.mob.corba.npc.EntityTordo;
 import net.journey.entity.mob.depths.*;
 import net.journey.entity.mob.depths.npc.EntityStaringGuardian;
 import net.journey.entity.mob.end.EntityEnderCrawler;
@@ -39,7 +43,10 @@ import net.journey.entity.projectile.knife.*;
 import net.journey.entity.projectile.launcher.*;
 import net.journey.entity.projectile.piercer.*;
 import net.journey.entity.projectile.staff.*;
-import net.journey.entity.projectile.throwable.*;
+import net.journey.entity.projectile.throwable.EntityDemonicBomb;
+import net.journey.entity.projectile.throwable.EntityFireBomb;
+import net.journey.entity.projectile.throwable.EntityMagicBomb;
+import net.journey.entity.projectile.throwable.EntityMagicPot;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.slayer.api.SlayerAPI;
 
@@ -139,7 +146,7 @@ public class EntityRegistry {
                 SlayerAPI.buildEntityEntry(EntitySwampFly.class, "swampfly", "Swamp Fly", 0x7c4c2c, 0x26b530),
                 SlayerAPI.buildEntityEntry(EntityBoom.class, "boomboom", "Boom Boom", 0x7c4c2c, 0x26b530),
                 SlayerAPI.buildEntityEntry(EntityBlizzard.class, "blizzard", "Blizzard", 0x7c4c2c, 0x26b530),
-                SlayerAPI.buildEntityEntry(EntityDunewerm.class, "dunewerm", "Dunewerm", 0x7c4c2c, 0x26b530),
+                SlayerAPI.buildEntityEntry(EntityDuneworm.class, "dunewerm", "Dunewerm", 0x7c4c2c, 0x26b530),
                 SlayerAPI.buildEntityEntry(EntityJungleGolem.class, "junglegolem", "Jungle Golem", 0x7c4c2c, 0x26b530),
                 SlayerAPI.buildEntityEntry(EntityRockiteSmasher.class, "rockitesmasher", "Rockite Smasher", 0x7c4c2c, 0x26b530),
 

@@ -1,9 +1,6 @@
 package net.journey.entity.mob.nether;
 
 import net.journey.entity.MobStats;
-import net.journey.init.JourneySounds;
-import net.journey.init.items.JourneyConsumables;
-import net.journey.init.items.JourneyItems;
 import net.journey.util.JourneyLootTables;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -12,7 +9,6 @@ import net.minecraft.entity.ai.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.util.DamageSource;
@@ -23,6 +19,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityPeacefullUntillAttacked;
+import org.jetbrains.annotations.NotNull;
 
 public class EntityHellCow extends EntityPeacefullUntillAttacked {
 
@@ -39,27 +36,12 @@ public class EntityHellCow extends EntityPeacefullUntillAttacked {
     }
 
     @Override
-    public double setMovementSpeed() {
-        return 0.3F;
-    }
-
-    @Override
     public boolean attackEntityAsMob(Entity e) {
         boolean attacked = super.attackEntityAsMob(e);
         if (attacked) {
             e.addVelocity((double) (-MathHelper.sin(this.rotationYaw * (float) Math.PI / 180.0F)) * 4, 0.1D, (double) (MathHelper.cos(this.rotationYaw * (float) Math.PI / 180.0F)) * 4);
         }
         return attacked;
-    }
-
-    @Override
-    public double setAttackDamage(MobStats s) {
-        return MobStats.HellCowDamage;
-    }
-
-    @Override
-    public double setMaxHealth(MobStats s) {
-        return MobStats.HellCowHealth;
     }
 
     @Override
@@ -119,17 +101,7 @@ public class EntityHellCow extends EntityPeacefullUntillAttacked {
     }
 
     @Override
-    public SoundEvent setLivingSound() {
-        return JourneySounds.EMPTY;
-    }
-
-    @Override
-    public SoundEvent setHurtSound() {
-        return JourneySounds.EMPTY;
-    }
-
-    @Override
-    public SoundEvent setDeathSound() {
-        return JourneySounds.EMPTY;
+    public @NotNull EntitySettings getEntitySettings() {
+        return MobStats.HELL_COW;
     }
 }

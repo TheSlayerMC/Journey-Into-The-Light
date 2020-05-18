@@ -1,22 +1,20 @@
 package net.journey.entity.mob.nether;
 
+import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
-import net.journey.init.JourneySounds;
-import net.journey.init.items.JourneyItems;
 import net.journey.util.JourneyLootTables;
 import net.journey.util.PotionEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.Item;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
-import net.slayer.api.entity.EntityModMob;
+import org.jetbrains.annotations.NotNull;
 
-public class EntityReaper extends EntityModMob {
+public class EntityReaper extends JEntityMob {
 
     protected int animID = 1;
     protected int animTick = 1;
@@ -36,21 +34,6 @@ public class EntityReaper extends EntityModMob {
                 ((EntityLivingBase) e).addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.blindness, 100, 2)));
         }
         return attacked;
-    }
-
-    @Override
-    public double setMovementSpeed() {
-        return 0.3F;
-    }
-
-    @Override
-    public double setAttackDamage(MobStats s) {
-        return MobStats.ReaperDamage;
-    }
-
-    @Override
-    public double setMaxHealth(MobStats s) {
-        return MobStats.ReaperHealth;
     }
 
     @Override
@@ -74,17 +57,7 @@ public class EntityReaper extends EntityModMob {
     }
 
     @Override
-    public SoundEvent setLivingSound() {
-        return JourneySounds.EMPTY;
-    }
-
-    @Override
-    public SoundEvent setHurtSound() {
-        return JourneySounds.EMPTY;
-    }
-
-    @Override
-    public SoundEvent setDeathSound() {
-        return JourneySounds.EMPTY;
+    public @NotNull EntitySettings getEntitySettings() {
+        return MobStats.REAPER;
     }
 }

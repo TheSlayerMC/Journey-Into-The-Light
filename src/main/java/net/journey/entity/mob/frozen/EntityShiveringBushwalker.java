@@ -1,15 +1,16 @@
 package net.journey.entity.mob.frozen;
 
+import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
 import net.journey.util.JourneyLootTables;
-import net.minecraft.item.Item;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
-import net.slayer.api.entity.EntityModMob;
+import org.jetbrains.annotations.NotNull;
 
-public class EntityShiveringBushwalker extends EntityModMob {
+public class EntityShiveringBushwalker extends JEntityMob {
 
     public EntityShiveringBushwalker(World par1World) {
         super(par1World);
@@ -18,27 +19,17 @@ public class EntityShiveringBushwalker extends EntityModMob {
     }
 
     @Override
-    public double setAttackDamage(MobStats s) {
-        return MobStats.ShiveringBushwalkerDamage;
-    }
-
-    @Override
-    public double setMaxHealth(MobStats s) {
-        return MobStats.ShiveringBushwalkerHealth;
-    }
-
-    @Override
-    public SoundEvent setLivingSound() {
+    protected SoundEvent getAmbientSound() {
         return JourneySounds.SMALL_HONGO;
     }
 
     @Override
-    public SoundEvent setHurtSound() {
+    protected SoundEvent getHurtSound(DamageSource d) {
         return JourneySounds.SMALL_HONGO_HURT;
     }
 
     @Override
-    public SoundEvent setDeathSound() {
+    protected SoundEvent getDeathSound() {
         return JourneySounds.SMALL_HONGO_HURT;
     }
 
@@ -49,6 +40,11 @@ public class EntityShiveringBushwalker extends EntityModMob {
 
     @Override
     protected ResourceLocation getLootTable() {
-    	return JourneyLootTables.SHIVERING_BUSHWALKER;
+        return JourneyLootTables.SHIVERING_BUSHWALKER;
+    }
+
+    @Override
+    public @NotNull EntitySettings getEntitySettings() {
+        return MobStats.SHIVERING_BUSHWALKER;
     }
 }

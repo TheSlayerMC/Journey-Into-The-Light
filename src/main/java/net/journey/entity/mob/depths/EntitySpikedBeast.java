@@ -1,26 +1,41 @@
 package net.journey.entity.mob.depths;
 
+import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
-import net.journey.init.items.JourneyItems;
 import net.journey.util.JourneyLootTables;
 import net.journey.util.PotionEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
-import net.slayer.api.entity.EntityModMob;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class EntitySpikedBeast extends EntityModMob {
+public class EntitySpikedBeast extends JEntityMob {
 
     public EntitySpikedBeast(World par1World) {
         super(par1World);
         addAttackingAI();
         setSize(0.7F, 1.5F);
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return JourneySounds.SPIKED_BEAST;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource d) {
+        return JourneySounds.SPIKED_BEAST_HURT;
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return JourneySounds.SPIKED_BEAST_HURT;
     }
 
     @Override
@@ -38,32 +53,12 @@ public class EntitySpikedBeast extends EntityModMob {
     }
 
     @Override
-    public double setAttackDamage(MobStats s) {
-        return MobStats.SpikedBeastDamage;
-    }
-
-    @Override
-    public double setMaxHealth(MobStats s) {
-        return MobStats.SpikedBeastHealth;
-    }
-
-    @Override
-    public SoundEvent setLivingSound() {
-        return JourneySounds.SPIKED_BEAST;
-    }
-
-    @Override
-    public SoundEvent setHurtSound() {
-        return JourneySounds.SPIKED_BEAST_HURT;
-    }
-
-    @Override
-    public SoundEvent setDeathSound() {
-        return JourneySounds.SPIKED_BEAST_HURT;
-    }
-
-    @Override
     protected ResourceLocation getLootTable() {
-    	return JourneyLootTables.SPIKED_BEAST;
+        return JourneyLootTables.SPIKED_BEAST;
+    }
+
+    @Override
+    public @NotNull EntitySettings getEntitySettings() {
+        return MobStats.SPIKED_BEAST;
     }
 }

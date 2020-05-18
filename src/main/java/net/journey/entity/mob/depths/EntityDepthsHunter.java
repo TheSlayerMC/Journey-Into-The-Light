@@ -1,26 +1,41 @@
 package net.journey.entity.mob.depths;
 
+import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
-import net.journey.init.items.JourneyItems;
 import net.journey.util.JourneyLootTables;
 import net.journey.util.PotionEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
-import net.slayer.api.entity.EntityModMob;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class EntityDepthsHunter extends EntityModMob {
+public class EntityDepthsHunter extends JEntityMob {
 
     public EntityDepthsHunter(World par1World) {
         super(par1World);
         addAttackingAI();
         setSize(1.0F, 2.3F);
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return JourneySounds.DEPTHS_HUNTER;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource d) {
+        return JourneySounds.DEPTHS_HUNTER_HURT;
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return JourneySounds.DEPTHS_HUNTER_HURT;
     }
 
     @Override
@@ -38,32 +53,12 @@ public class EntityDepthsHunter extends EntityModMob {
     }
 
     @Override
-    public double setAttackDamage(MobStats s) {
-        return MobStats.DepthsHunterDamage;
-    }
-
-    @Override
-    public double setMaxHealth(MobStats s) {
-        return MobStats.DepthsHunterHealth;
-    }
-
-    @Override
-    public SoundEvent setLivingSound() {
-        return JourneySounds.DEPTHS_HUNTER;
-    }
-
-    @Override
-    public SoundEvent setHurtSound() {
-        return JourneySounds.DEPTHS_HUNTER_HURT;
-    }
-
-    @Override
-    public SoundEvent setDeathSound() {
-        return JourneySounds.DEPTHS_HUNTER_HURT;
-    }
-
-    @Override
     protected ResourceLocation getLootTable() {
-    	return JourneyLootTables.DEPTHS_HUNTER;
+        return JourneyLootTables.DEPTHS_HUNTER;
+    }
+
+    @Override
+    public @NotNull EntitySettings getEntitySettings() {
+        return MobStats.DEPTHS_HUNTER;
     }
 }

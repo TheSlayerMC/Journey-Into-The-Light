@@ -1,37 +1,26 @@
 package net.journey.entity.mob.boiling;
 
+import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
-import net.journey.init.items.JourneyItems;
 import net.journey.util.JourneyLootTables;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
-import net.slayer.api.entity.EntityModMob;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class EntityFrightener extends EntityModMob {
+public class EntityFrightener extends JEntityMob {
 
     public EntityFrightener(World par1World) {
         super(par1World);
         addAttackingAI();
         setSize(0.7F, 2.0F);
         isImmuneToFire = true;
-    }
-
-    @Override
-    public double setAttackDamage(MobStats s) {
-        return MobStats.FrightenerDamage;
-    }
-
-    @Override
-    public double setMaxHealth(MobStats s) {
-        return MobStats.FrightenerHealth;
     }
 
     @Override
@@ -69,20 +58,7 @@ public class EntityFrightener extends EntityModMob {
     }
 
     @Override
-    public SoundEvent setLivingSound() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public SoundEvent setHurtSound() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public SoundEvent setDeathSound() {
-        // TODO Auto-generated method stub
-        return null;
+    public @NotNull EntitySettings getEntitySettings() {
+        return MobStats.FRIGHTENER;
     }
 }

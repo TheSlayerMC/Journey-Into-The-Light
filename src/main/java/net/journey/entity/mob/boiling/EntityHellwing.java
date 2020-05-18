@@ -1,30 +1,16 @@
 package net.journey.entity.mob.boiling;
 
-import javax.annotation.Nullable;
-
+import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityMagmaFireball;
 import net.journey.init.JourneySounds;
-import net.journey.init.items.JourneyItems;
 import net.journey.util.JourneyLootTables;
-import net.minecraft.entity.EntityCreature;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.IEntityLivingData;
-import net.minecraft.entity.MoverType;
-import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIBase;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAITarget;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.ai.EntityMoveHelper;
+import net.minecraft.entity.*;
+import net.minecraft.entity.ai.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
@@ -39,13 +25,14 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
-import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.slayer.api.entity.EntityModMob;
+import org.jetbrains.annotations.NotNull;
 
-public class EntityHellwing extends EntityModMob {
-	protected static final DataParameter<Byte>  HELLWING_FLAGS = EntityDataManager.<Byte>createKey(EntityHellwing.class,
+import javax.annotation.Nullable;
+
+public class EntityHellwing extends JEntityMob {
+	protected static final DataParameter<Byte> HELLWING_FLAGS = EntityDataManager.createKey(EntityHellwing.class,
 			DataSerializers.BYTE);
 	private EntityLiving owner;
 	@Nullable
@@ -89,7 +76,7 @@ public class EntityHellwing extends EntityModMob {
 		this.tasks.addTask(8, new EntityHellwing.AIMoveRandom());
 		this.tasks.addTask(9, new EntityAIWatchClosest(this, EntityPlayer.class, 3.0F, 1.0F));
 		this.tasks.addTask(10, new EntityAIWatchClosest(this, EntityLiving.class, 8.0F));
-		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, new Class[] { EntityHellwing.class }));
+		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, EntityHellwing.class));
 		this.targetTasks.addTask(2, new EntityHellwing.AICopyOwnerTarget(this));
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
 	}
@@ -99,6 +86,21 @@ public class EntityHellwing extends EntityModMob {
 		super.applyEntityAttributes();
 		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(14.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(4.0D);
+	}
+
+	@Override
+	protected SoundEvent getAmbientSound() {
+		return JourneySounds.CAVE_MOB;
+	}
+
+	@Override
+	protected SoundEvent getHurtSound(DamageSource d) {
+		return JourneySounds.CAVE_MOB;
+	}
+
+	@Override
+	protected SoundEvent getDeathSound() {
+		return JourneySounds.CAVE_MOB;
 	}
 
 	@Override
@@ -155,12 +157,12 @@ public class EntityHellwing extends EntityModMob {
 	}
 
 	private boolean getHellwingFlag(int mask) {
-		int i = ((Byte) this.dataManager.get(HELLWING_FLAGS)).byteValue();
+		int i = this.dataManager.get(HELLWING_FLAGS).byteValue();
 		return (i & mask) != 0;
 	}
 
 	private void setHellwingFlag(int mask, boolean value) {
-		int i = ((Byte) this.dataManager.get(HELLWING_FLAGS)).byteValue();
+		int i = this.dataManager.get(HELLWING_FLAGS).byteValue();
 
 		if (value) {
 			i = i | mask;
@@ -211,6 +213,11 @@ public class EntityHellwing extends EntityModMob {
 	protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty) {
 		this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.IRON_SWORD));
 		this.setDropChance(EntityEquipmentSlot.MAINHAND, 0.0F);
+	}
+
+	@Override
+	public @NotNull EntitySettings getEntitySettings() {
+		return MobStats.HELLWING;
 	}
 
 	class AIChargeAttack extends EntityAIBase {
@@ -297,7 +304,7 @@ public class EntityHellwing extends EntityModMob {
 				double d1 = this.posY - EntityHellwing.this.posY;
 				double d2 = this.posZ - EntityHellwing.this.posZ;
 				double d3 = d0 * d0 + d1 * d1 + d2 * d2;
-				d3 = (double) MathHelper.sqrt(d3);
+				d3 = MathHelper.sqrt(d3);
 
 				if (d3 < EntityHellwing.this.getEntityBoundingBox().getAverageEdgeLength()) {
 					this.action = EntityMoveHelper.Action.WAIT;
@@ -438,31 +445,6 @@ public class EntityHellwing extends EntityModMob {
 
 			super.updateTask();
 		}
-	}
-
-	@Override
-	public double setAttackDamage(MobStats s) {
-		return s.HellwingDamage;
-	}
-
-	@Override
-	public double setMaxHealth(MobStats s) {
-		return s.HellwingHealth;
-	}
-
-	@Override
-	public SoundEvent setLivingSound() {
-		return JourneySounds.CAVE_MOB;
-	}
-
-	@Override
-	public SoundEvent setHurtSound() {
-		return JourneySounds.CAVE_MOB;
-	}
-
-	@Override
-	public SoundEvent setDeathSound() {
-		return JourneySounds.CAVE_MOB;
 	}
 
 	@Override

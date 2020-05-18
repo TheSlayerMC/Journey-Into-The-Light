@@ -1,6 +1,7 @@
 package net.journey.entity.mob.frozen;
 
 import com.google.common.base.Predicate;
+import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
 import net.journey.util.JourneyLootTables;
@@ -15,7 +16,6 @@ import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.Item;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
@@ -25,11 +25,11 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.slayer.api.entity.EntityModMob;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
-public class EntityIceGolem extends EntityModMob {
+public class EntityIceGolem extends JEntityMob {
 
     private int attackTimer;
 
@@ -119,16 +119,6 @@ public class EntityIceGolem extends EntityModMob {
     public int getAttackTimer() {
         return this.attackTimer;
     }
-
-    @Override
-    public double setAttackDamage(MobStats s) {
-        return MobStats.IceGolemDamage;
-    }
-
-    @Override
-    public double setMaxHealth(MobStats s) {
-        return MobStats.IceGolemHealth;
-    }
     
     @Override
     protected boolean canDespawn() {
@@ -156,26 +146,26 @@ public class EntityIceGolem extends EntityModMob {
     }
 
     @Override
-    public SoundEvent setLivingSound() {
+    protected SoundEvent getAmbientSound() {
         return JourneySounds.EMPTY;
     }
 
     @Override
-    public SoundEvent setHurtSound() {
-        return JourneySounds.EMPTY;
-    }
-
-    @Override
-    public SoundEvent setDeathSound() {
-        return JourneySounds.EMPTY;
+    protected SoundEvent getHurtSound(DamageSource d) {
+        return SoundEvents.ENTITY_IRONGOLEM_HURT;
     }
 
     @Override
     protected ResourceLocation getLootTable() {
-    	return JourneyLootTables.ICE_GOLEM;
+        return JourneyLootTables.ICE_GOLEM;
     }
 
     @Override
     protected void dropFewItems(boolean b, int j) {
+    }
+
+    @Override
+    public @NotNull EntitySettings getEntitySettings() {
+        return MobStats.ICE_GOLEM;
     }
 }

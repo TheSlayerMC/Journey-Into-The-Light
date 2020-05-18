@@ -1,13 +1,12 @@
-/**
- * An altered version of the Guardian Entity
- * Author ~ Ryan Bakody (Dizzlepop12), and Mojang
+/*
+  An altered version of the Guardian Entity
+  Author ~ Ryan Bakody (Dizzlepop12), and Mojang
  */
 
 package net.journey.entity.mob.depths;
 
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityMagmaFireball;
-import net.journey.init.items.JourneyItems;
 import net.journey.util.JourneyLootTables;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -17,7 +16,6 @@ import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityLargeFireball;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;

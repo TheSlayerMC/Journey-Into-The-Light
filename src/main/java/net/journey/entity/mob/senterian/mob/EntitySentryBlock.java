@@ -1,6 +1,7 @@
 package net.journey.entity.mob.senterian.mob;
 
 import com.google.common.base.Optional;
+import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
 import net.journey.util.JourneyLootTables;
 import net.minecraft.block.BlockPistonBase;
@@ -8,7 +9,6 @@ import net.minecraft.block.BlockPistonExtension;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIBase;
@@ -20,7 +20,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -35,13 +34,13 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.slayer.api.entity.EntityModMob;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.UUID;
 
-public class EntitySentryBlock extends EntityModMob {
+public class EntitySentryBlock extends JEntityMob {
 
     protected static final DataParameter<EnumFacing> ATTACHED_FACE = EntityDataManager.createKey(EntitySentryBlock.class, DataSerializers.FACING);
     protected static final DataParameter<Optional<BlockPos>> ATTACHED_BLOCK_POS = EntityDataManager.createKey(EntitySentryBlock.class, DataSerializers.OPTIONAL_BLOCK_POS);
@@ -70,6 +69,21 @@ public class EntitySentryBlock extends EntityModMob {
         this.tasks.addTask(7, new EntitySentryBlock.AIPeek());
         this.tasks.addTask(8, new EntityAILookIdle(this));
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return null;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource d) {
+        return null;
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return null;
     }
 
     @Override
@@ -478,38 +492,13 @@ public class EntitySentryBlock extends EntityModMob {
     }
 
     @Override
-    public double setMovementSpeed() {
-        return 0;
-    }
-
-    @Override
-    public double setAttackDamage(MobStats s) {
-        return 0;
-    }
-
-    @Override
-    public double setMaxHealth(MobStats s) {
-        return 0;
-    }
-
-    @Override
-    public SoundEvent setLivingSound() {
-        return null;
-    }
-
-    @Override
-    public SoundEvent setHurtSound() {
-        return null;
-    }
-
-    @Override
-    public SoundEvent setDeathSound() {
-        return null;
-    }
-
-    @Override
     protected ResourceLocation getLootTable() {
-    	return JourneyLootTables.SENTRY_BLOCK;
+        return JourneyLootTables.SENTRY_BLOCK;
+    }
+
+    @Override
+    public @NotNull EntitySettings getEntitySettings() {
+        return MobStats.SENTRY_BLOCK;
     }
 
     class AIPeek extends EntityAIBase {

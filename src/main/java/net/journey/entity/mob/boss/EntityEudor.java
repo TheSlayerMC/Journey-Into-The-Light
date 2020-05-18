@@ -9,7 +9,6 @@ import net.journey.init.items.JourneyWeapons;
 import net.journey.util.PotionEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
@@ -18,6 +17,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityEssenceBoss;
+import org.jetbrains.annotations.NotNull;
 
 public class EntityEudor extends EntityEssenceBoss {
 
@@ -32,33 +32,13 @@ public class EntityEudor extends EntityEssenceBoss {
     }
 
     @Override
-    public double setAttackDamage(MobStats s) {
-        return MobStats.calciaDamage;
-    }
-
-    @Override
-    public double setKnockbackResistance() {
-        return 1.0D;
-    }
-
-    @Override
-    public double setMaxHealth(MobStats s) {
-        return MobStats.eudorHealth;
-    }
-
-    @Override
-    public SoundEvent setLivingSound() {
+    protected SoundEvent getAmbientSound() {
         return JourneySounds.CALCIA;
     }
 
     @Override
-    public SoundEvent setHurtSound() {
+    protected SoundEvent getHurtSound(DamageSource d) {
         return JourneySounds.CALCIA_HURT;
-    }
-
-    @Override
-    public SoundEvent setDeathSound() {
-        return JourneySounds.BOSS_DEATH;
     }
 
     public boolean isInv() {
@@ -115,5 +95,10 @@ public class EntityEudor extends EntityEssenceBoss {
                 te.setInventorySlotContents(10, new ItemStack(JourneyWeapons.kingsSword, 1));
                 break;
         }
+    }
+
+    @Override
+    public @NotNull EntitySettings getEntitySettings() {
+        return MobStats.EUDOR;
     }
 }

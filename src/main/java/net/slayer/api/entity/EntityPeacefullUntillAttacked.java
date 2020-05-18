@@ -1,5 +1,6 @@
 package net.slayer.api.entity;
 
+import net.journey.api.entity.JEntityMob;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
@@ -10,7 +11,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
-public abstract class EntityPeacefullUntillAttacked extends EntityModMob {
+public abstract class EntityPeacefullUntillAttacked extends JEntityMob {
 
     private int angerLevel = 0;
 

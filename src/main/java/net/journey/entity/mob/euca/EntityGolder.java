@@ -1,16 +1,16 @@
 package net.journey.entity.mob.euca;
 
+import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
-import net.journey.init.items.JourneyItems;
 import net.journey.util.JourneyLootTables;
-import net.minecraft.item.Item;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
-import net.slayer.api.entity.EntityModMob;
+import org.jetbrains.annotations.NotNull;
 
-public class EntityGolder extends EntityModMob {
+public class EntityGolder extends JEntityMob {
 
 
     public EntityGolder(World par1World) {
@@ -20,37 +20,32 @@ public class EntityGolder extends EntityModMob {
     }
 
     @Override
+    protected SoundEvent getAmbientSound() {
+        return JourneySounds.REAPER;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource d) {
+        return JourneySounds.REAPER_HURT;
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return JourneySounds.REAPER_HURT;
+    }
+
+    @Override
     protected void entityInit() {
         super.entityInit();
     }
 
     @Override
-    public double setAttackDamage(MobStats s) {
-        return MobStats.GolderDamage;
-    }
-
-    @Override
-    public double setMaxHealth(MobStats s) {
-        return MobStats.GolderHealth;
-    }
-
-    @Override
-    public SoundEvent setLivingSound() {
-        return JourneySounds.REAPER;
-    }
-
-    @Override
-    public SoundEvent setHurtSound() {
-        return JourneySounds.REAPER_HURT;
-    }
-
-    @Override
-    public SoundEvent setDeathSound() {
-        return JourneySounds.REAPER_HURT;
-    }
-
-    @Override
     protected ResourceLocation getLootTable() {
-    	return JourneyLootTables.GOLDER;
+        return JourneyLootTables.GOLDER;
+    }
+
+    @Override
+    public @NotNull EntitySettings getEntitySettings() {
+        return MobStats.GOLDER;
     }
 }

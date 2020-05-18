@@ -1,50 +1,45 @@
 package net.journey.entity.mob.terrania.mob;
 
+import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
-import net.journey.init.items.JourneyItems;
 import net.journey.util.JourneyLootTables;
-import net.minecraft.item.Item;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
-import net.slayer.api.entity.EntityModMob;
+import org.jetbrains.annotations.NotNull;
 
-public class EntityTerraslug extends EntityModMob {
+public class EntityTerraslug extends JEntityMob {
 
-    public EntityTerraslug(World par1World) {
-        super(par1World);
-        addAttackingAI();
-        setSize(0.4F, 0.4F);
-    }
+	public EntityTerraslug(World par1World) {
+		super(par1World);
+		addAttackingAI();
+		setSize(0.4F, 0.4F);
+	}
 
-    @Override
-    public double setAttackDamage(MobStats s) {
-        return MobStats.TerraslugDamage;
-    }
+	@Override
+	protected SoundEvent getAmbientSound() {
+		return JourneySounds.TERRA_SLUG;
+	}
 
-    @Override
-    public double setMaxHealth(MobStats s) {
-        return MobStats.TerraslugHealth;
-    }
+	@Override
+	protected SoundEvent getHurtSound(DamageSource d) {
+		return JourneySounds.TERRA_SLUG_HURT;
+	}
 
-    @Override
-    public SoundEvent setLivingSound() {
-        return JourneySounds.TERRA_SLUG;
-    }
+	@Override
+	protected SoundEvent getDeathSound() {
+		return JourneySounds.TERRA_SLUG_DEATH;
+	}
 
-    @Override
-    public SoundEvent setHurtSound() {
-        return JourneySounds.TERRA_SLUG_HURT;
-    }
+	@Override
+	protected ResourceLocation getLootTable() {
+		return JourneyLootTables.TERRA_SLUG;
+	}
 
-    @Override
-    public SoundEvent setDeathSound() {
-        return JourneySounds.TERRA_SLUG_DEATH;
-    }
-
-    @Override
-    protected ResourceLocation getLootTable() {
-    	return JourneyLootTables.TERRA_SLUG;
-    }
+	@Override
+	public @NotNull EntitySettings getEntitySettings() {
+		return MobStats.TERRASLUG;
+	}
 }

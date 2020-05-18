@@ -5,7 +5,6 @@ import net.journey.entity.projectile.arrow.EntityDarknessArrow;
 import net.journey.entity.projectile.arrow.EntityFlameArrow;
 import net.journey.entity.projectile.arrow.EntityFrozenArrow;
 import net.journey.entity.projectile.arrow.EntityPoisonArrow;
-import net.journey.init.items.JourneyItems;
 import net.journey.init.items.JourneyWeapons;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
@@ -15,12 +14,13 @@ import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityEssenceBoss;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
@@ -43,6 +43,21 @@ public class EntityFourfa extends EntityEssenceBoss implements IRangedAttackMob 
         this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
         this.tasks.addTask(0, new EntityAIAttackRanged(this, 1.0D, 15, 60.0F));
         addAttackingAI();
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return SoundEvents.ENTITY_WITHER_AMBIENT;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource d) {
+        return SoundEvents.ENTITY_WITHER_HURT;
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return SoundEvents.ENTITY_WITHER_DEATH;
     }
 
     public int getStage() {
@@ -102,36 +117,11 @@ public class EntityFourfa extends EntityEssenceBoss implements IRangedAttackMob 
     }
 
     @Override
-    public double setAttackDamage(MobStats s) {
-        return MobStats.fourfaDamage;
-    }
-
-    @Override
-    public double setKnockbackResistance() {
-        return 1.0D;
-    }
-
-    @Override
-    public double setMaxHealth(MobStats s) {
-        return MobStats.fourfaHealth;
-    }
-
-    @Override
-    public SoundEvent setLivingSound() {
-        return SoundEvents.ENTITY_WITHER_AMBIENT;
-    }
-
-    @Override
-    public SoundEvent setHurtSound() {
-        return SoundEvents.ENTITY_WITHER_HURT;
-    }
-
-    @Override
-    public SoundEvent setDeathSound() {
-        return SoundEvents.ENTITY_WITHER_DEATH;
-    }
-
-    @Override
     public void setSwingingArms(boolean swingingArms) {
+    }
+
+    @Override
+    public @NotNull EntitySettings getEntitySettings() {
+        return MobStats.FOURFA;
     }
 }

@@ -1,52 +1,20 @@
 package net.journey.entity.mob.boss;
 
-import java.util.List;
-import java.util.UUID;
-
-import javax.annotation.Nullable;
-
-import com.google.common.base.Optional;
-
-import net.journey.blocks.BlockAncientCatalyst;
 import net.journey.blocks.BlockLament;
 import net.journey.entity.MobStats;
-import net.journey.entity.mob.senterian.mob.EntitySentryBlock;
 import net.journey.init.JourneySounds;
-import net.minecraft.block.BlockPistonBase;
-import net.minecraft.block.BlockPistonExtension;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockPattern;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.MoverType;
-import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIBase;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.ai.attributes.IAttribute;
-import net.minecraft.entity.ai.attributes.IAttributeInstance;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.Item;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.entity.EntityEssenceBoss;
+import org.jetbrains.annotations.NotNull;
 
 public class EntitySentryHeart extends EntityEssenceBoss {
     
@@ -56,59 +24,48 @@ public class EntitySentryHeart extends EntityEssenceBoss {
 	
 	public final int sleep = 0, alert = 1;
 	public int stage;
-	
+
 	public EntitySentryHeart(World par1World) {
 		super(par1World);
-        this.setSize(4.0F, 17.0F);
-        this.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(1.0D);
+		this.setSize(4.0F, 17.0F);
 		this.stage = sleep;
 	}
 
-    public int getStage() {
-        return stage;
-    }
-    
-	@Override
-	public double setAttackDamage(MobStats s) {
-		return 0;
+	public int getStage() {
+		return stage;
 	}
 
 	@Override
-	public double setMaxHealth(MobStats s) {
-		return 5000;
+	protected void initEntityAI() {
+		this.tasks.addTask(1, new EntityAILookIdle(this));
 	}
 
 	@Override
-	public SoundEvent setLivingSound() {
+	protected SoundEvent getAmbientSound() {
 		return JourneySounds.SENTRY_HEART_BEATING;
 	}
 
 	@Override
-	public SoundEvent setHurtSound() {
+	protected SoundEvent getHurtSound(DamageSource d) {
 		return SoundEvents.ENTITY_SLIME_HURT;
 	}
-	
-    @Override
-    public SoundEvent setDeathSound() {
-        return JourneySounds.SENTRY_HEART_DEATH;
-    }
-    
-    @Override
-    protected void initEntityAI() {
-        this.tasks.addTask(1, new EntityAILookIdle(this));
-    }
 
-    @Override
-    public void setPosition(double x, double y, double z) {
-        super.setPosition(x, y, z);
-    }
+	@Override
+	protected SoundEvent getDeathSound() {
+		return JourneySounds.SENTRY_HEART_DEATH;
+	}
 
-    @Override
-    public void onLivingUpdate() {
-        super.onLivingUpdate();
-        this.motionX = 0.0D;
-        this.motionY = 0.0D;
-        this.motionZ = 0.0D;
+	@Override
+	public void setPosition(double x, double y, double z) {
+		super.setPosition(x, y, z);
+	}
+
+	@Override
+	public void onLivingUpdate() {
+		super.onLivingUpdate();
+		this.motionX = 0.0D;
+		this.motionY = 0.0D;
+		this.motionZ = 0.0D;
         this.prevRenderYawOffset = 180.0F;
         this.renderYawOffset = 180.0F;
         this.rotationYaw = 180.0F;
@@ -134,7 +91,7 @@ public class EntitySentryHeart extends EntityEssenceBoss {
 		double d1 = this.posZ - entityIn.posZ;
 		double d2 = MathHelper.absMax(d0, d1);
 		if (d2 >= 0.009999999776482582D) {
-			d2 = (double) MathHelper.sqrt(d2);
+			d2 = MathHelper.sqrt(d2);
 			d0 = d0 / d2;
 			d1 = d1 / d2;
 			double d3 = 1.0D / d2;
@@ -176,18 +133,18 @@ public class EntitySentryHeart extends EntityEssenceBoss {
     public void applyEntityCollision(Entity entityIn) {
     }
 
-    @Override
-    public float getCollisionBorderSize() {
-        return 1.0F;
-    }
+	@Override
+	public float getCollisionBorderSize() {
+		return 1.0F;
+	}
 
-    @Override
-    protected boolean canTriggerWalking() {
-        return false;
-    }
+	@Override
+	protected boolean canTriggerWalking() {
+		return false;
+	}
 
-    @Override
-    public double setMovementSpeed() {
-        return 0;
-    }
+	@Override
+	public @NotNull EntitySettings getEntitySettings() {
+		return MobStats.SENTRY_HEART;
+	}
 }

@@ -1,5 +1,6 @@
 package net.journey.entity.mob.frozen;
 
+import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
 import net.journey.util.JourneyLootTables;
@@ -7,16 +8,15 @@ import net.journey.util.PotionEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.item.Item;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import net.slayer.api.entity.EntityModMob;
+import org.jetbrains.annotations.NotNull;
 
-public class EntityFrozenTroll extends EntityModMob {
-
+public class EntityFrozenTroll extends JEntityMob {
     public EntityFrozenTroll(World par1World) {
         super(par1World);
         addAttackingAI();
@@ -41,27 +41,17 @@ public class EntityFrozenTroll extends EntityModMob {
     }
 
     @Override
-    public double setAttackDamage(MobStats s) {
-        return MobStats.FrozenTrollDamage;
-    }
-
-    @Override
-    public double setMaxHealth(MobStats s) {
-        return MobStats.FrozenTrollHealth;
-    }
-
-    @Override
-    public SoundEvent setLivingSound() {
+    protected SoundEvent getAmbientSound() {
         return JourneySounds.SMALL_HONGO;
     }
 
     @Override
-    public SoundEvent setHurtSound() {
+    protected SoundEvent getHurtSound(DamageSource d) {
         return JourneySounds.SMALL_HONGO_HURT;
     }
 
     @Override
-    public SoundEvent setDeathSound() {
+    protected SoundEvent getDeathSound() {
         return JourneySounds.SMALL_HONGO_HURT;
     }
 
@@ -72,6 +62,12 @@ public class EntityFrozenTroll extends EntityModMob {
 
     @Override
     protected ResourceLocation getLootTable() {
-    	return JourneyLootTables.FROZEN_TROLL;
+        return JourneyLootTables.FROZEN_TROLL;
+    }
+
+    @NotNull
+    @Override
+    public EntitySettings getEntitySettings() {
+        return MobStats.FROZEN_TROLL;
     }
 }

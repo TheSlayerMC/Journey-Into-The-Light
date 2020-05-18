@@ -1,24 +1,24 @@
 package net.journey.entity.mob.overworld;
 
+import net.journey.api.entity.JEntityMob;
 import net.journey.entity.AI.EntityAIBoomSwell;
-import net.journey.util.JourneyLootTables;
 import net.journey.entity.MobStats;
+import net.journey.util.JourneyLootTables;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAIRestrictSun;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
@@ -26,10 +26,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.slayer.api.SlayerAPI;
-import net.slayer.api.entity.EntityModMob;
+import org.jetbrains.annotations.NotNull;
 
-public class EntityBoom extends EntityModMob {
+public class EntityBoom extends JEntityMob {
 
     private static final DataParameter<Integer> STATE = EntityDataManager.createKey(EntityBoom.class, DataSerializers.VARINT);
     private static final DataParameter<Boolean> POWERED = EntityDataManager.createKey(EntityBoom.class, DataSerializers.BOOLEAN);
@@ -42,6 +41,21 @@ public class EntityBoom extends EntityModMob {
         this.tasks.addTask(2, new EntityAIRestrictSun(this));
         addAttackingAI();
         this.setSize(1.0F, 2.0F);
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return SoundEvents.ENTITY_CREEPER_PRIMED;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource d) {
+        return SoundEvents.ENTITY_CREEPER_HURT;
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return SoundEvents.ENTITY_CREEPER_DEATH;
     }
 
     @Override
@@ -79,37 +93,6 @@ public class EntityBoom extends EntityModMob {
 
         super.onLivingUpdate();
     }
-
-    @Override
-    public double setMovementSpeed() {
-        return 0.200000011920929D;
-    }
-
-    @Override
-    public double setAttackDamage(MobStats s) {
-        return 0;
-    }
-
-    @Override
-    public double setMaxHealth(MobStats s) {
-        return MobStats.BoomHealth;
-    }
-
-    @Override
-    public SoundEvent setLivingSound() {
-        return SoundEvents.ENTITY_CREEPER_PRIMED;
-    }
-
-    @Override
-    public SoundEvent setHurtSound() {
-        return SoundEvents.ENTITY_CREEPER_HURT;
-    }
-
-    @Override
-    public SoundEvent setDeathSound() {
-        return SoundEvents.ENTITY_CREEPER_DEATH;
-    }
-
 
     @Override
     public boolean getCanSpawnHere() {
@@ -272,5 +255,10 @@ public class EntityBoom extends EntityModMob {
 
     public void ignite() {
         this.dataManager.set(IGNITED, Boolean.valueOf(true));
+    }
+
+    @Override
+    public @NotNull EntitySettings getEntitySettings() {
+        return MobStats.BOOM;
     }
 }

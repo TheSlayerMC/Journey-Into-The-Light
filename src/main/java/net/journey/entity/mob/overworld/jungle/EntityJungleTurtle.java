@@ -1,21 +1,21 @@
 package net.journey.entity.mob.overworld.jungle;
 
+import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
 import net.journey.util.JourneyLootTables;
 import net.journey.util.PotionEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.item.Item;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import net.slayer.api.entity.EntityModMob;
+import org.jetbrains.annotations.NotNull;
 
-public class EntityJungleTurtle extends EntityModMob {
+public class EntityJungleTurtle extends JEntityMob {
 
     public EntityJungleTurtle(World par1World) {
         super(par1World);
@@ -24,9 +24,18 @@ public class EntityJungleTurtle extends EntityModMob {
     }
 
     @Override
-    protected void applyEntityAttributes() {
-        super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(1);
+    protected SoundEvent getAmbientSound() {
+        return JourneySounds.SMALL_HONGO;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource d) {
+        return JourneySounds.SMALL_HONGO_HURT;
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return JourneySounds.SMALL_HONGO_HURT;
     }
 
     @Override
@@ -42,33 +51,12 @@ public class EntityJungleTurtle extends EntityModMob {
     }
 
     @Override
-    public double setAttackDamage(MobStats s) {
-        return MobStats.JungleTurtleDamage;
-    }
-
-    @Override
-    public double setMaxHealth(MobStats s) {
-        return MobStats.JungleTurtleHealth;
-    }
-
-    @Override
-    public SoundEvent setLivingSound() {
-        return JourneySounds.SMALL_HONGO;
-    }
-
-    @Override
-    public SoundEvent setHurtSound() {
-        return JourneySounds.SMALL_HONGO_HURT;
-    }
-
-    @Override
-    public SoundEvent setDeathSound() {
-        return JourneySounds.SMALL_HONGO_HURT;
-    }
-
-    @Override
     protected ResourceLocation getLootTable() {
-    	return JourneyLootTables.JUNGLE_TURTLE;
+        return JourneyLootTables.JUNGLE_TURTLE;
     }
 
+    @Override
+    public @NotNull EntitySettings getEntitySettings() {
+        return MobStats.JUNGLE_TURTLE;
+    }
 }

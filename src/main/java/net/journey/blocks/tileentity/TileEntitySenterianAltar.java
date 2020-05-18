@@ -1,8 +1,7 @@
 package net.journey.blocks.tileentity;
 
-import java.util.Random;
-
 import net.journey.JITL;
+import net.journey.api.entity.JEntityMob;
 import net.journey.entity.mob.senterian.mob.EntityMiniSentryLord;
 import net.journey.entity.mob.senterian.mob.EntityMiniSentryStalker;
 import net.journey.entity.mob.senterian.mob.EntityMiniSentryWalker;
@@ -16,7 +15,8 @@ import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.SoundCategory;
-import net.slayer.api.entity.EntityModMob;
+
+import java.util.Random;
 
 public class TileEntitySenterianAltar extends TileEntity implements ITickable {
 
@@ -71,16 +71,16 @@ public class TileEntitySenterianAltar extends TileEntity implements ITickable {
 	@Override
 	public void update() {
 		int x = this.pos.getX(), y = this.pos.getY(), z = this.pos.getZ();
-		isFull = getOrbItem() == JourneyItems.SENTRY_OBSERVER ? true : false;
-		if(!isFull) orb = null;
+		isFull = getOrbItem() == JourneyItems.SENTRY_OBSERVER;
+		if (!isFull) orb = null;
 
-		if(isFull && spawnTimer == 0) {
+		if (isFull && spawnTimer == 0) {
 			spawnTimer = 50;
-	        world.playSound(x, y, z, JourneySounds.SENTRY_ALTAR_ACTIVATE, SoundCategory.BLOCKS, 1.0f, 1.0f, false);
+			world.playSound(x, y, z, JourneySounds.SENTRY_ALTAR_ACTIVATE, SoundCategory.BLOCKS, 1.0f, 1.0f, false);
 		}
-		
-		if(isFull && spawnTimer == 5) {
-	        world.playSound(x, y, z, JourneySounds.SENTRY_AMBIENT_1, SoundCategory.BLOCKS, 1.0f, 1.0f, false);
+
+		if (isFull && spawnTimer == 5) {
+			world.playSound(x, y, z, JourneySounds.SENTRY_AMBIENT_1, SoundCategory.BLOCKS, 1.0f, 1.0f, false);
 		}
 
 		if(spawnTimer >= 0) 
@@ -104,17 +104,17 @@ public class TileEntitySenterianAltar extends TileEntity implements ITickable {
 	public void spawnMob() {
 		Random r = new Random();
 		int x = this.pos.getX(), y = this.pos.getY(), z = this.pos.getZ();
-		EntityModMob mob = null;
-		switch(r.nextInt(3)) {
-		case 0:
-			mob = new EntityMiniSentryLord(world);
-			break;
-		case 1: 
-			mob = new EntityMiniSentryStalker(world);
-			break;
-		case 2: 
-			mob = new EntityMiniSentryWalker(world);
-			break;
+		JEntityMob mob = null;
+		switch (r.nextInt(3)) {
+			case 0:
+				mob = new EntityMiniSentryLord(world);
+				break;
+			case 1:
+				mob = new EntityMiniSentryStalker(world);
+				break;
+			case 2:
+				mob = new EntityMiniSentryWalker(world);
+				break;
 		default: 
 			mob = new EntityMiniSentryLord(world);
 			break;

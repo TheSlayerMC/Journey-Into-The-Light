@@ -70,7 +70,7 @@ public abstract class EntityPeacefullMob extends EntityCreature implements IMob 
     }
 
     public double setFollowRange() {
-        return MobStats.normal_follow;
+        return MobStats.standardFollowRange;
     }
 
     public double setMovementSpeed() {
@@ -78,7 +78,7 @@ public abstract class EntityPeacefullMob extends EntityCreature implements IMob 
     }
 
     public double setKnockbackResistance() {
-        return MobStats.knockBackResistance;
+        return MobStats.standardKnockBackResistance;
     }
 
     public abstract double setMaxHealth(MobStats s);

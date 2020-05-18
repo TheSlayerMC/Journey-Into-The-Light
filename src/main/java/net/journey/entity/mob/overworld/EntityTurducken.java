@@ -6,12 +6,13 @@ import net.journey.init.items.JourneyConsumables;
 import net.journey.init.items.JourneyItems;
 import net.journey.util.JourneyLootTables;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityPeacefullUntillAttacked;
+import org.jetbrains.annotations.NotNull;
 
 public class EntityTurducken extends EntityPeacefullUntillAttacked {
 
@@ -21,27 +22,17 @@ public class EntityTurducken extends EntityPeacefullUntillAttacked {
     }
 
     @Override
-    public double setAttackDamage(MobStats s) {
-        return MobStats.TurduckenDamage;
-    }
-
-    @Override
-    public double setMaxHealth(MobStats s) {
-        return MobStats.TurduckenHealth;
-    }
-
-    @Override
-    public SoundEvent setLivingSound() {
+    protected SoundEvent getAmbientSound() {
         return JourneySounds.BIRD;
     }
 
     @Override
-    public SoundEvent setHurtSound() {
+    protected SoundEvent getHurtSound(DamageSource d) {
         return JourneySounds.BIRD_HURT;
     }
 
     @Override
-    public SoundEvent setDeathSound() {
+    protected SoundEvent getDeathSound() {
         return JourneySounds.BIRD_DEATH;
     }
 
@@ -70,4 +61,8 @@ public class EntityTurducken extends EntityPeacefullUntillAttacked {
         super.dropFewItems(b, j);
     }
 
+    @Override
+    public @NotNull EntitySettings getEntitySettings() {
+        return MobStats.TURDUCKEN;
+    }
 }

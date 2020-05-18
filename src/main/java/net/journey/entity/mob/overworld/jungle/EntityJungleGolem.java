@@ -1,5 +1,6 @@
 package net.journey.entity.mob.overworld.jungle;
 
+import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
 import net.journey.util.JourneyLootTables;
@@ -10,18 +11,18 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.Item;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import net.slayer.api.entity.EntityModMob;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class EntityJungleGolem extends EntityModMob {
+public class EntityJungleGolem extends JEntityMob {
 
     public EntityJungleGolem(World par1World) {
         super(par1World);
@@ -61,41 +62,36 @@ public class EntityJungleGolem extends EntityModMob {
     }
 
     @Override
-    public double setAttackDamage(MobStats s) {
-        return MobStats.JungleGolemDamage;
-    }
-
-    @Override
-    public double setMaxHealth(MobStats s) {
-        return MobStats.JungleGolemHealth;
-    }
-
-    @Override
     protected void playStepSound(BlockPos pos, Block blockIn) {
         this.playSound(SoundEvents.ENTITY_IRONGOLEM_STEP, 1.0F, 1.0F);
     }
 
     @Override
-    public SoundEvent setLivingSound() {
+    protected SoundEvent getAmbientSound() {
         return JourneySounds.BUSH;
     }
 
     @Override
-    public SoundEvent setHurtSound() {
+    protected SoundEvent getHurtSound(DamageSource d) {
         return JourneySounds.BUSH_HURT;
     }
 
     @Override
-    public SoundEvent setDeathSound() {
+    protected SoundEvent getDeathSound() {
         return JourneySounds.BUSH_DEATH;
     }
 
     @Override
     protected ResourceLocation getLootTable() {
-    	return JourneyLootTables.JUNGLE_GOLEM;
+        return JourneyLootTables.JUNGLE_GOLEM;
     }
 
     @Override
     protected void dropFewItems(boolean b, int j) {
+    }
+
+    @Override
+    public @NotNull EntitySettings getEntitySettings() {
+        return MobStats.JUNGLE_GOLEM;
     }
 }

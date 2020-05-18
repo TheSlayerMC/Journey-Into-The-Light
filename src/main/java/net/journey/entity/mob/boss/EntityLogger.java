@@ -12,7 +12,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
@@ -21,6 +20,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityEssenceBoss;
+import org.jetbrains.annotations.NotNull;
 
 public class EntityLogger extends EntityEssenceBoss {
 
@@ -30,6 +30,21 @@ public class EntityLogger extends EntityEssenceBoss {
         super(par1World);
         addAttackingAI();
         setSize(3.0F, 3.5F);
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return JourneySounds.BEAST_OF_THE_NETHER;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource d) {
+        return JourneySounds.BEAST_OF_THE_NETHER_HURT;
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return super.getDeathSound();
     }
 
     @Override
@@ -59,31 +74,6 @@ public class EntityLogger extends EntityEssenceBoss {
         }
         this.playSound(SoundEvents.ENTITY_IRONGOLEM_ATTACK, 1.0F, 1.0F);
         return flag;
-    }
-
-    @Override
-    public double setAttackDamage(MobStats s) {
-        return MobStats.loggerDamage;
-    }
-
-    @Override
-    public double setMaxHealth(MobStats s) {
-        return MobStats.loggerHealth;
-    }
-
-    @Override
-    public SoundEvent setLivingSound() {
-        return JourneySounds.BEAST_OF_THE_NETHER;
-    }
-
-    @Override
-    public SoundEvent setHurtSound() {
-        return JourneySounds.BEAST_OF_THE_NETHER_HURT;
-    }
-
-    @Override
-    public SoundEvent setDeathSound() {
-        return JourneySounds.BOSS_DEATH;
     }
 
     @Override
@@ -123,5 +113,10 @@ public class EntityLogger extends EntityEssenceBoss {
     protected void dropFewItems(boolean b, int j) {
         switch (rand.nextInt(3)) {
         }
+    }
+
+    @Override
+    public @NotNull EntitySettings getEntitySettings() {
+        return MobStats.LOGGER;
     }
 }

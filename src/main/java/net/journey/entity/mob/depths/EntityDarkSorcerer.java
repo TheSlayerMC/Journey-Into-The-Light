@@ -1,9 +1,9 @@
 package net.journey.entity.mob.depths;
 
+import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityFireBall;
 import net.journey.init.JourneySounds;
-import net.journey.init.items.JourneyItems;
 import net.journey.init.items.JourneyWeapons;
 import net.journey.util.JourneyLootTables;
 import net.minecraft.entity.EntityLivingBase;
@@ -14,20 +14,19 @@ import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumHand;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
-import net.slayer.api.entity.EntityModMob;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
-public class EntityDarkSorcerer extends EntityModMob implements IRangedAttackMob {
+public class EntityDarkSorcerer extends JEntityMob implements IRangedAttackMob {
 
     public EntityDarkSorcerer(World par1World) {
         super(par1World);
@@ -39,6 +38,21 @@ public class EntityDarkSorcerer extends EntityModMob implements IRangedAttackMob
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
         this.tasks.addTask(0, new EntityAIAttackRanged(this, 0.27F, 30, 10.0F));
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return JourneySounds.SORCERER;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource d) {
+        return JourneySounds.SORCERER_HURT;
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return JourneySounds.SORCERER_DEATH;
     }
 
     @Override
@@ -74,37 +88,17 @@ public class EntityDarkSorcerer extends EntityModMob implements IRangedAttackMob
     }
 
     @Override
-    public double setAttackDamage(MobStats s) {
-        return 0;
-    }
-
-    @Override
-    public double setMaxHealth(MobStats s) {
-        return MobStats.DarkSorcererHealth;
-    }
-
-    @Override
-    public SoundEvent setLivingSound() {
-        return JourneySounds.SORCERER;
-    }
-
-    @Override
-    public SoundEvent setHurtSound() {
-        return JourneySounds.SORCERER_HURT;
-    }
-
-    @Override
-    public SoundEvent setDeathSound() {
-        return JourneySounds.SORCERER_DEATH;
-    }
-
-    @Override
     protected ResourceLocation getLootTable() {
-    	return JourneyLootTables.DARK_SORCERER;
+        return JourneyLootTables.DARK_SORCERER;
     }
 
     @Override
     public void setSwingingArms(boolean swingingArms) {
 
+    }
+
+    @Override
+    public @NotNull EntitySettings getEntitySettings() {
+        return MobStats.DARK_SORCERER;
     }
 }

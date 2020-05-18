@@ -1,17 +1,17 @@
 package net.journey.entity.mob.overworld;
 
+import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
-import net.journey.init.items.JourneyConsumables;
 import net.journey.util.JourneyLootTables;
-import net.minecraft.item.Item;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.slayer.api.entity.EntityModMob;
+import org.jetbrains.annotations.NotNull;
 
-public class EntityBigHongo extends EntityModMob {
+public class EntityBigHongo extends JEntityMob {
 
     public EntityBigHongo(World par1World) {
         super(par1World);
@@ -20,38 +20,33 @@ public class EntityBigHongo extends EntityModMob {
     }
 
     @Override
-    public double setAttackDamage(MobStats s) {
-        return MobStats.BigHongoDamage;
-    }
-
-    @Override
-    public double setMaxHealth(MobStats s) {
-        return MobStats.BigHongoHealth;
-    }
-
-    @Override
-    public SoundEvent setLivingSound() {
+    protected SoundEvent getAmbientSound() {
         return JourneySounds.HONGO;
     }
 
     @Override
-    public SoundEvent setHurtSound() {
+    protected SoundEvent getHurtSound(DamageSource d) {
         return JourneySounds.HONGO_HURT;
     }
 
     @Override
-    public SoundEvent setDeathSound() {
+    protected SoundEvent getDeathSound() {
         return JourneySounds.HONGO_HURT;
     }
-    
+
     @Override
     protected ResourceLocation getLootTable() {
-    	return JourneyLootTables.BIG_HONGO;
+        return JourneyLootTables.BIG_HONGO;
     }
 
     @Override
     public boolean getCanSpawnHere() {
         return this.isValidLightLevel() &&
                 this.world.getBlockState(new BlockPos(this.posX, this.posY - 1, this.posZ)).isFullBlock() && this.dimension == 0;
+    }
+
+    @Override
+    public @NotNull EntitySettings getEntitySettings() {
+        return MobStats.BIG_HONGO;
     }
 }

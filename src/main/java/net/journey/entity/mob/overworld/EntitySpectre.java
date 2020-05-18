@@ -1,22 +1,21 @@
 package net.journey.entity.mob.overworld;
 
+import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
-import net.journey.init.items.JourneyItems;
 import net.journey.util.JourneyLootTables;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.slayer.api.entity.EntityModMob;
+import org.jetbrains.annotations.NotNull;
 
-public class EntitySpectre extends EntityModMob {
-
+public class EntitySpectre extends JEntityMob {
 
     public EntitySpectre(World par1World) {
         super(par1World);
@@ -25,8 +24,18 @@ public class EntitySpectre extends EntityModMob {
     }
 
     @Override
-    public double setAttackDamage(MobStats s) {
-        return MobStats.SpectreDamage;
+    protected SoundEvent getAmbientSound() {
+        return JourneySounds.WRAITH;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource d) {
+        return JourneySounds.WRAITH_HURT;
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return JourneySounds.WRAITH_DEATH;
     }
 
     @Override
@@ -73,27 +82,12 @@ public class EntitySpectre extends EntityModMob {
     }
 
     @Override
-    public double setMaxHealth(MobStats s) {
-        return MobStats.SpectreHealth;
-    }
-
-    @Override
-    public SoundEvent setLivingSound() {
-        return JourneySounds.WRAITH;
-    }
-
-    @Override
-    public SoundEvent setHurtSound() {
-        return JourneySounds.WRAITH_HURT;
-    }
-
-    @Override
-    public SoundEvent setDeathSound() {
-        return JourneySounds.WRAITH_DEATH;
-    }
-
-    @Override
     protected ResourceLocation getLootTable() {
-    	return JourneyLootTables.SPECTRE;
+        return JourneyLootTables.SPECTRE;
+    }
+
+    @Override
+    public @NotNull EntitySettings getEntitySettings() {
+        return MobStats.SPECTRE;
     }
 }

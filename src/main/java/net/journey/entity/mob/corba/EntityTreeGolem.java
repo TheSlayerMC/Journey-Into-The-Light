@@ -1,25 +1,25 @@
 package net.journey.entity.mob.corba;
 
+import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
-import net.journey.init.items.JourneyItems;
 import net.journey.util.JourneyLootTables;
 import net.journey.util.PotionEffects;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.Item;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import net.slayer.api.entity.EntityModMob;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class EntityTreeGolem extends EntityModMob {
+public class EntityTreeGolem extends JEntityMob {
 
     public EntityTreeGolem(World par1World) {
         super(par1World);
@@ -51,37 +51,32 @@ public class EntityTreeGolem extends EntityModMob {
     }
 
     @Override
-    public double setAttackDamage(MobStats s) {
-        return MobStats.TreeGolemDamage;
-    }
-
-    @Override
-    public double setMaxHealth(MobStats s) {
-        return MobStats.TreeGolemHealth;
-    }
-
-    @Override
-    public SoundEvent setLivingSound() {
-        return JourneySounds.BUSH;
-    }
-
-    @Override
     protected void playStepSound(BlockPos pos, Block blockIn) {
         this.playSound(SoundEvents.ENTITY_IRONGOLEM_STEP, 1.0F, 1.0F);
     }
 
     @Override
-    public SoundEvent setHurtSound() {
+    protected SoundEvent getAmbientSound() {
+        return JourneySounds.BUSH;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource d) {
         return JourneySounds.BUSH_HURT;
     }
 
     @Override
-    public SoundEvent setDeathSound() {
+    protected SoundEvent getDeathSound() {
         return JourneySounds.BUSH_DEATH;
     }
 
     @Override
     protected ResourceLocation getLootTable() {
-    	return JourneyLootTables.TREE_GOLEM;
+        return JourneyLootTables.TREE_GOLEM;
+    }
+
+    @Override
+    public @NotNull EntitySettings getEntitySettings() {
+        return MobStats.TREE_GOLEM;
     }
 }

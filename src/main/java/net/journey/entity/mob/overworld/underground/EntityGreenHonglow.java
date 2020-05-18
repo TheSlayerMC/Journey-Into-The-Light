@@ -1,26 +1,41 @@
 package net.journey.entity.mob.overworld.underground;
 
+import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
 import net.journey.init.items.JourneyConsumables;
 import net.journey.util.JourneyLootTables;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
-import net.slayer.api.entity.EntityModMob;
+import org.jetbrains.annotations.NotNull;
 
-public class EntityGreenHonglow extends EntityModMob {
+public class EntityGreenHonglow extends JEntityMob {
 
     public EntityGreenHonglow(World par1World) {
         super(par1World);
         addAttackingAI();
         this.setSize(1.0F, 2.0F);
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return JourneySounds.HONGO;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource d) {
+        return JourneySounds.HONGO_HURT;
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return JourneySounds.HONGO_HURT;
     }
 
     @Override
@@ -71,35 +86,9 @@ public class EntityGreenHonglow extends EntityModMob {
     }
 
     @Override
-    public double setAttackDamage(MobStats s) {
-        return MobStats.GreenHonglowDamage;
-    }
-
-    @Override
-    public double setMaxHealth(MobStats s) {
-        return MobStats.GreenHonglowHealth;
-    }
-
-    @Override
-    public SoundEvent setLivingSound() {
-        return JourneySounds.HONGO;
-    }
-
-    @Override
-    public SoundEvent setHurtSound() {
-        return JourneySounds.HONGO_HURT;
-    }
-
-    @Override
-    public SoundEvent setDeathSound() {
-        return JourneySounds.HONGO_HURT;
-    }
-
-    @Override
     protected ResourceLocation getLootTable() {
     	return JourneyLootTables.GREEN_HONGLOW;
     }
-
 
     @Override
     public void onDeath(DamageSource d) {
@@ -148,5 +137,10 @@ public class EntityGreenHonglow extends EntityModMob {
     protected void dropFewItems(boolean b, int j) {
         if (rand.nextInt(1) == 0) dropItem(JourneyConsumables.greenHonglowShroom, rand.nextInt(2));
         super.dropFewItems(b, j);
+    }
+
+    @Override
+    public @NotNull EntitySettings getEntitySettings() {
+        return MobStats.GREEN_HONGLOW;
     }
 }

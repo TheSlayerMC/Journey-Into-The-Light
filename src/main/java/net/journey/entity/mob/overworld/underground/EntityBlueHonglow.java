@@ -1,26 +1,40 @@
 package net.journey.entity.mob.overworld.underground;
 
+import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
-import net.journey.init.items.JourneyConsumables;
 import net.journey.util.JourneyLootTables;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
-import net.slayer.api.entity.EntityModMob;
+import org.jetbrains.annotations.NotNull;
 
-public class EntityBlueHonglow extends EntityModMob {
+public class EntityBlueHonglow extends JEntityMob {
 
     public EntityBlueHonglow(World par1World) {
         super(par1World);
         addAttackingAI();
         this.setSize(1.0F, 2.0F);
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return JourneySounds.HONGO;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource d) {
+        return JourneySounds.HONGO_HURT;
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return JourneySounds.HONGO_HURT;
     }
 
     @Override
@@ -31,31 +45,6 @@ public class EntityBlueHonglow extends EntityModMob {
     @Override
     public int getBrightnessForRender() {
         return 100000;
-    }
-
-    @Override
-    public double setAttackDamage(MobStats s) {
-        return MobStats.BlueHonglowDamage;
-    }
-
-    @Override
-    public double setMaxHealth(MobStats s) {
-        return MobStats.BlueHonglowHealth;
-    }
-
-    @Override
-    public SoundEvent setLivingSound() {
-        return JourneySounds.HONGO;
-    }
-
-    @Override
-    public SoundEvent setHurtSound() {
-        return JourneySounds.HONGO_HURT;
-    }
-
-    @Override
-    public SoundEvent setDeathSound() {
-        return JourneySounds.HONGO_HURT;
     }
 
     @Override
@@ -141,5 +130,10 @@ public class EntityBlueHonglow extends EntityModMob {
     public boolean getCanSpawnHere() {
         return this.posY < 40.0D && super.getCanSpawnHere() &&
                 this.world.getBlockState(new BlockPos(this.posX, this.posY - 1, this.posZ)).getMaterial() == Material.ROCK && this.dimension == 0;
+    }
+
+    @Override
+    public @NotNull EntitySettings getEntitySettings() {
+        return MobStats.BLUE_HONGLOW;
     }
 }

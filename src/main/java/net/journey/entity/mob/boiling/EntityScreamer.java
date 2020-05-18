@@ -1,5 +1,6 @@
 package net.journey.entity.mob.boiling;
 
+import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityMagmaFireball;
 import net.journey.init.items.JourneyItems;
@@ -8,25 +9,19 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.Item;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvent;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import net.slayer.api.entity.EntityModMob;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class EntityScreamer extends EntityModMob {
+public class EntityScreamer extends JEntityMob {
 
     private static final DataParameter<Byte> ON_FIRE = EntityDataManager.createKey(EntityScreamer.class, DataSerializers.BYTE);
     private float heightOffset = 0.5F;
@@ -45,6 +40,21 @@ public class EntityScreamer extends EntityModMob {
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
         this.isImmuneToFire = true;
         setSize(0.7F, 1.5F);
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return SoundEvents.ENTITY_BLAZE_AMBIENT;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource d) {
+        return SoundEvents.ENTITY_BLAZE_HURT;
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return SoundEvents.ENTITY_BLAZE_DEATH;
     }
 
     @Override
@@ -138,33 +148,13 @@ public class EntityScreamer extends EntityModMob {
     }
 
     @Override
-    public double setAttackDamage(MobStats s) {
-        return MobStats.ScreamerDamage;
-    }
-
-    @Override
-    public double setMaxHealth(MobStats s) {
-        return MobStats.ScreamerHealth;
-    }
-
-    @Override
-    public SoundEvent setLivingSound() {
-        return SoundEvents.ENTITY_BLAZE_AMBIENT;
-    }
-
-    @Override
-    public SoundEvent setHurtSound() {
-        return SoundEvents.ENTITY_BLAZE_HURT;
-    }
-
-    @Override
-    public SoundEvent setDeathSound() {
-        return SoundEvents.ENTITY_BLAZE_DEATH;
-    }
-
-    @Override
     protected ResourceLocation getLootTable() {
-    	return JourneyLootTables.SCREAMER;
+        return JourneyLootTables.SCREAMER;
+    }
+
+    @Override
+    public @NotNull EntitySettings getEntitySettings() {
+        return MobStats.SCREAMER;
     }
 
     class AIFireballAttack extends EntityAIBase {

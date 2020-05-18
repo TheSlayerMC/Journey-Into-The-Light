@@ -1,40 +1,31 @@
 package net.journey.entity.mob.boss;
 
 import net.journey.entity.MobStats;
-import net.minecraft.item.Item;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityEssenceBoss;
+import org.jetbrains.annotations.NotNull;
 
 public class EntityWraith extends EntityEssenceBoss {
 
-    public EntityWraith(World par1World) {
-        super(par1World);
-        addAttackingAI();
-    }
+	public EntityWraith(World par1World) {
+		super(par1World);
+		addAttackingAI();
+	}
 
-    @Override
-    public double setAttackDamage(MobStats s) {
-        return MobStats.wraithDamage;
-    }
+	@Override
+	protected SoundEvent getAmbientSound() {
+		return null;
+	}
 
-    @Override
-    public double setMaxHealth(MobStats s) {
-        return MobStats.wraithHealth;
-    }
+	@Override
+	protected SoundEvent getHurtSound(DamageSource d) {
+		return null;
+	}
 
-    @Override
-    public SoundEvent setLivingSound() {
-        return null;
-    }
-
-    @Override
-    public SoundEvent setHurtSound() {
-        return null;
-    }
-
-    @Override
-    public SoundEvent setDeathSound() {
-        return null;
-    }
+	@Override
+	public @NotNull EntitySettings getEntitySettings() {
+		return MobStats.WRAITH_BOSS;
+	}
 }

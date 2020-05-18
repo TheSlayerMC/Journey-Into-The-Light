@@ -1,6 +1,6 @@
 package net.journey.client.render.model.mob.overworld.desert;
 
-import net.journey.entity.mob.overworld.EntityDunewerm;
+import net.journey.entity.mob.overworld.EntityDuneworm;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
@@ -49,7 +49,7 @@ public class ModelDunewerm extends ModelBase {
 
     @Override
     public void setRotationAngles(float par1, float par2, float par3, float par4, float par5, float par6, Entity par7Entity) {
-        EntityDunewerm entitylavasnake = (EntityDunewerm) par7Entity;
+        EntityDuneworm entitylavasnake = (EntityDuneworm) par7Entity;
         float f6 = par3 - entitylavasnake.ticksExisted;
         this.head.rotateAngleY = par4 / (180F / (float) Math.PI);
         this.head.rotateAngleX = par5 / (180F / (float) Math.PI);

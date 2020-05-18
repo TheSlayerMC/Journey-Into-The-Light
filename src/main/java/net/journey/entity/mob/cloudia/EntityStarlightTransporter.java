@@ -4,11 +4,12 @@ import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
 import net.journey.init.items.JourneyItems;
 import net.journey.util.JourneyLootTables;
-import net.minecraft.item.Item;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityPeacefullUntillAttacked;
+import org.jetbrains.annotations.NotNull;
 
 public class EntityStarlightTransporter extends EntityPeacefullUntillAttacked {
 
@@ -18,27 +19,17 @@ public class EntityStarlightTransporter extends EntityPeacefullUntillAttacked {
     }
 
     @Override
-    public double setAttackDamage(MobStats s) {
-        return MobStats.StarlightTransporterDamage;
-    }
-
-    @Override
-    public double setMaxHealth(MobStats s) {
-        return MobStats.StarlightTransporterHealth;
-    }
-
-    @Override
-    public SoundEvent setLivingSound() {
+    protected SoundEvent getAmbientSound() {
         return JourneySounds.BUSH;
     }
 
     @Override
-    public SoundEvent setHurtSound() {
+    protected SoundEvent getHurtSound(DamageSource d) {
         return JourneySounds.BUSH_HURT;
     }
 
     @Override
-    public SoundEvent setDeathSound() {
+    protected SoundEvent getDeathSound() {
         return JourneySounds.BUSH_DEATH;
     }
 
@@ -51,6 +42,11 @@ public class EntityStarlightTransporter extends EntityPeacefullUntillAttacked {
 
     @Override
     protected ResourceLocation getLootTable() {
-    	return JourneyLootTables.STARLIGHT_TRANSPORTER;
+        return JourneyLootTables.STARLIGHT_TRANSPORTER;
+    }
+
+    @Override
+    public @NotNull EntitySettings getEntitySettings() {
+        return MobStats.STARLIGHT_TRANSPORTER;
     }
 }

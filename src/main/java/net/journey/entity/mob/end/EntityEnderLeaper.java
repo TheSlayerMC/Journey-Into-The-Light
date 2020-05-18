@@ -1,14 +1,16 @@
 package net.journey.entity.mob.end;
 
+import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
 import net.journey.util.JourneyLootTables;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
-import net.slayer.api.entity.EntityModMob;
+import org.jetbrains.annotations.NotNull;
 
-public class EntityEnderLeaper extends EntityModMob {
+public class EntityEnderLeaper extends JEntityMob {
 
     public EntityEnderLeaper(World par1World) {
         super(par1World);
@@ -17,32 +19,27 @@ public class EntityEnderLeaper extends EntityModMob {
     }
 
     @Override
-    public double setAttackDamage(MobStats s) {
-        return MobStats.EnderLeaperDamage;
-    }
-
-    @Override
-    public double setMaxHealth(MobStats s) {
-        return MobStats.EnderLeaperHealth;
-    }
-
-    @Override
-    public SoundEvent setLivingSound() {
+    protected SoundEvent getAmbientSound() {
         return JourneySounds.SHIMMERER;
     }
 
     @Override
-    public SoundEvent setHurtSound() {
+    protected SoundEvent getHurtSound(DamageSource d) {
         return JourneySounds.SHIMMERER_HURT;
     }
 
     @Override
-    public SoundEvent setDeathSound() {
+    protected SoundEvent getDeathSound() {
         return JourneySounds.SHIMMERER_DEATH;
     }
 
     @Override
     protected ResourceLocation getLootTable() {
-    	return JourneyLootTables.ENDER_LEAPER;
+        return JourneyLootTables.ENDER_LEAPER;
+    }
+
+    @Override
+    public @NotNull EntitySettings getEntitySettings() {
+        return MobStats.ENDER_LEAPER;
     }
 }

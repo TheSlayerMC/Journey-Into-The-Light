@@ -1,14 +1,15 @@
 package net.slayer.api.entity;
 
-import net.journey.entity.MobStats;
 import net.journey.api.entity.IEssenceBoss;
+import net.journey.api.entity.JEntityMob;
+import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
-public abstract class EntityEssenceBoss extends EntityModMob implements IEssenceBoss {
+public abstract class EntityEssenceBoss extends JEntityMob implements IEssenceBoss {
 
     private int deathTicks;
 
@@ -28,7 +29,7 @@ public abstract class EntityEssenceBoss extends EntityModMob implements IEssence
     }
 
     @Override
-    public SoundEvent setDeathSound() {
+    protected SoundEvent getDeathSound() {
         return JourneySounds.BOSS_DEATH;
     }
 
@@ -41,8 +42,8 @@ public abstract class EntityEssenceBoss extends EntityModMob implements IEssence
     public float getModMaxHealth() {
         return getMaxHealth();
     }
-    
-    public double setFollowRange() {
+
+    public double applyFollowRange() {
         return MobStats.boss_follow;
     }
 

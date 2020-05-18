@@ -45,15 +45,15 @@ public abstract class EntityModWaterMob extends EntityWaterMob {
     }
 
     public double setFollowRange() {
-        return MobStats.normal_follow;
+        return MobStats.standardFollowRange;
     }
 
     public double setMovementSpeed() {
-        return MobStats.normalSpeed;
+        return MobStats.standardMovementSpeed;
     }
 
     public double setKnockbackResistance() {
-        return MobStats.knockBackResistance;
+        return MobStats.standardKnockBackResistance;
     }
 
     public abstract double setMaxHealth(MobStats s);

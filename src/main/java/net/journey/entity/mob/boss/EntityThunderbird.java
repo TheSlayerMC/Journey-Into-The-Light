@@ -11,7 +11,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
@@ -20,6 +19,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityEssenceBoss;
+import org.jetbrains.annotations.NotNull;
 
 public class EntityThunderbird extends EntityEssenceBoss {
 
@@ -29,6 +29,16 @@ public class EntityThunderbird extends EntityEssenceBoss {
         super(par1World);
         addAttackingAI();
         setSize(2.0F, 2.5F);
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return JourneySounds.BEAST_OF_THE_NETHER;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource d) {
+        return JourneySounds.BEAST_OF_THE_NETHER_HURT;
     }
 
     @Override
@@ -61,31 +71,6 @@ public class EntityThunderbird extends EntityEssenceBoss {
     }
 
     @Override
-    public double setAttackDamage(MobStats s) {
-        return MobStats.thunderbirdDamage;
-    }
-
-    @Override
-    public double setMaxHealth(MobStats s) {
-        return MobStats.thunderbirdHealth;
-    }
-
-    @Override
-    public SoundEvent setLivingSound() {
-        return JourneySounds.BEAST_OF_THE_NETHER;
-    }
-
-    @Override
-    public SoundEvent setHurtSound() {
-        return JourneySounds.BEAST_OF_THE_NETHER_HURT;
-    }
-
-    @Override
-    public SoundEvent setDeathSound() {
-        return JourneySounds.BOSS_DEATH;
-    }
-
-    @Override
     public void onDeath(DamageSource damage) {
         if (damage.getImmediateSource() instanceof EntityPlayer) {
             EntityPlayer p = (EntityPlayer) damage.getImmediateSource();
@@ -110,5 +95,10 @@ public class EntityThunderbird extends EntityEssenceBoss {
                 te.setInventorySlotContents(13, new ItemStack(JourneyItems.corbaPortalGem, 5));
                 break;
         }
+    }
+
+    @Override
+    public @NotNull EntitySettings getEntitySettings() {
+        return MobStats.THUNDERBIRD;
     }
 }

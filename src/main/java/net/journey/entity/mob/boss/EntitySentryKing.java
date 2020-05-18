@@ -20,7 +20,6 @@ import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
 import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
@@ -30,6 +29,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityEssenceBoss;
+import org.jetbrains.annotations.NotNull;
 
 public class EntitySentryKing extends EntityEssenceBoss implements IRangedAttackMob {
 
@@ -53,13 +53,13 @@ public class EntitySentryKing extends EntityEssenceBoss implements IRangedAttack
     }
 
     @Override
-    public double setAttackDamage(MobStats s) {
-        return MobStats.sentryKingDamage;
+    protected SoundEvent getAmbientSound() {
+        return SoundEvents.ENTITY_WITHER_AMBIENT;
     }
 
     @Override
-    public double setKnockbackResistance() {
-        return 1.0D;
+    protected SoundEvent getHurtSound(DamageSource d) {
+        return SoundEvents.ENTITY_WITHER_HURT;
     }
 
     @Override
@@ -127,26 +127,6 @@ public class EntitySentryKing extends EntityEssenceBoss implements IRangedAttack
     }
 
     @Override
-    public double setMaxHealth(MobStats s) {
-        return MobStats.sentryKingHealth;
-    }
-
-    @Override
-    public SoundEvent setLivingSound() {
-        return SoundEvents.ENTITY_WITHER_AMBIENT;
-    }
-
-    @Override
-    public SoundEvent setHurtSound() {
-        return SoundEvents.ENTITY_WITHER_HURT;
-    }
-
-    @Override
-    public SoundEvent setDeathSound() {
-        return JourneySounds.BOSS_DEATH;
-    }
-
-    @Override
     public boolean getCanSpawnHere() {
         return this.rand.nextInt(15) == 0 && super.getCanSpawnHere()
                 && this.world.getDifficulty() != EnumDifficulty.PEACEFUL;
@@ -190,6 +170,11 @@ public class EntitySentryKing extends EntityEssenceBoss implements IRangedAttack
 
     @Override
     public void setSwingingArms(boolean swingingArms) {
+    }
+
+    @Override
+    public @NotNull EntitySettings getEntitySettings() {
+        return MobStats.SENTRY_KING;
     }
 
     private class MoveHelper extends EntityMoveHelper {

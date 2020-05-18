@@ -2,26 +2,25 @@ package net.journey.entity.mob.boss;
 
 import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
-import net.journey.util.PotionEffects;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.MoverType;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
 import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.item.Item;
-import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityEssenceBoss;
+import org.jetbrains.annotations.NotNull;
 
 public class EntityGuardianOfDestruction extends EntityEssenceBoss {
 
-	public int maxHealth = (int) MobStats.guardianofdestructionHealth;
+	public int maxHealth = MobStats.GUARDIAN_OF_DESTRUCTION.getAttributes().get(SharedMonsterAttributes.MAX_HEALTH).intValue();//TODO move to getHP or smth like that, but this attribute doesn't exists at constructor, so be aware!!!
 
 	private int rolltimer;
 	private int sountTimer;
-	
+
 	private boolean isMoving;
 
 	public final int sleep = 0, alert = 1, lowhealth = 2;
@@ -32,22 +31,37 @@ public class EntityGuardianOfDestruction extends EntityEssenceBoss {
 		setSize(2.0F, 2.0F);
 		this.stage = sleep;
 		this.rotationYaw = this.rotationPitch = 0.0F;
-    }
+	}
 
-    @Override
-    protected void initEntityAI() {
-        super.initEntityAI();
-        this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
-        this.tasks.addTask(2, new EntityAILookIdle(this));
-        addAttackingAI();
-    }
+	@Override
+	protected void initEntityAI() {
+		super.initEntityAI();
+		this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
+		this.tasks.addTask(2, new EntityAILookIdle(this));
+		addAttackingAI();
+	}
+
+	@Override
+	protected SoundEvent getAmbientSound() {
+		return JourneySounds.EMPTY;
+	}
+
+	@Override
+	protected SoundEvent getHurtSound(DamageSource d) {
+		return JourneySounds.SENTRY_AMBIENT_1;
+	}
+
+	@Override
+	protected SoundEvent getDeathSound() {
+		return JourneySounds.SENTRY_AMBIENT_1;
+	}
 
 	@Override
 	protected void entityInit() {
 		super.entityInit();
-        this.prevRenderYawOffset = 180.0F;
-        this.renderYawOffset = 180.0F;
-        this.rotationYaw = 180.0F;
+		this.prevRenderYawOffset = 180.0F;
+		this.renderYawOffset = 180.0F;
+		this.rotationYaw = 180.0F;
 		this.posX = Math.floor(this.posX + 0.5D);
 		this.posY = Math.floor(this.posY + 0.5D);
 		this.posZ = Math.floor(this.posZ + 0.5D);
@@ -146,16 +160,6 @@ public class EntityGuardianOfDestruction extends EntityEssenceBoss {
 			}
 		}
     }
-
-	@Override
-	public double setMovementSpeed() {
-		return MobStats.normalSpeed;
-	}
-
-	@Override
-	public double setKnockbackResistance() {
-		return 3.0D;
-	}
 	
 	@Override
 	public boolean canBePushed() {
@@ -166,31 +170,6 @@ public class EntityGuardianOfDestruction extends EntityEssenceBoss {
 	public boolean canDespawn() {
 		return false;
 	}
-	
-    @Override
-    public double setMaxHealth(MobStats s) {
-        return MobStats.guardianofdestructionHealth;
-    }
-
-    @Override
-    public double setAttackDamage(MobStats s) {
-        return MobStats.guardianofdestructionDamage;
-    }
-
-	@Override
-    public SoundEvent setLivingSound() {
-        return JourneySounds.EMPTY;
-    }
-
-    @Override
-    public SoundEvent setHurtSound() {
-        return JourneySounds.SENTRY_AMBIENT_1;
-    }
-
-    @Override
-    public SoundEvent setDeathSound() {
-        return JourneySounds.SENTRY_AMBIENT_1;
-    }
     
     @Override
 	public void knockBack(Entity entity, float strength, double xRatio, double zRatio) {
@@ -208,14 +187,20 @@ public class EntityGuardianOfDestruction extends EntityEssenceBoss {
     @Override
     public int getHorizontalFaceSpeed() {
     	if(stage == sleep) return 0;
-    	else return 20;
+	    else return 20;
     }
 
-    @Override
-    public void applyEntityCollision(Entity entityIn) {}
+	@Override
+	public void applyEntityCollision(Entity entityIn) {
+	}
 
-    @Override
-    public float getCollisionBorderSize() {
-        return 2.0F;
-    }
+	@Override
+	public float getCollisionBorderSize() {
+		return 2.0F;
+	}
+
+	@Override
+	public @NotNull EntitySettings getEntitySettings() {
+		return MobStats.GUARDIAN_OF_DESTRUCTION;
+	}
 }

@@ -10,7 +10,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
@@ -19,6 +18,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityEssenceBoss;
+import org.jetbrains.annotations.NotNull;
 
 public class EntityNetherBeast extends EntityEssenceBoss {
 
@@ -28,6 +28,16 @@ public class EntityNetherBeast extends EntityEssenceBoss {
         super(par1World);
         addAttackingAI();
         setSize(2.0F, 2.5F);
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return JourneySounds.BEAST_OF_THE_NETHER;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource d) {
+        return JourneySounds.BEAST_OF_THE_NETHER_HURT;
     }
 
     @Override
@@ -60,31 +70,6 @@ public class EntityNetherBeast extends EntityEssenceBoss {
     }
 
     @Override
-    public double setAttackDamage(MobStats s) {
-        return MobStats.netherBeastDamage;
-    }
-
-    @Override
-    public double setMaxHealth(MobStats s) {
-        return MobStats.netherBeastHealth;
-    }
-
-    @Override
-    public SoundEvent setLivingSound() {
-        return JourneySounds.BEAST_OF_THE_NETHER;
-    }
-
-    @Override
-    public SoundEvent setHurtSound() {
-        return JourneySounds.BEAST_OF_THE_NETHER_HURT;
-    }
-
-    @Override
-    public SoundEvent setDeathSound() {
-        return JourneySounds.BOSS_DEATH;
-    }
-
-    @Override
     public void onDeath(DamageSource damage) {
 		/*if(damage.getEntity() instanceof EntityPlayer) {
 			EntityPlayer p = (EntityPlayer)damage.getEntity();
@@ -104,5 +89,10 @@ public class EntityNetherBeast extends EntityEssenceBoss {
                 te.setInventorySlotContents(10, new ItemStack(JourneyWeapons.netherBeastSword, 1));
                 break;
         }
+    }
+
+    @Override
+    public @NotNull EntitySettings getEntitySettings() {
+        return MobStats.NETHER_BEAST;
     }
 }

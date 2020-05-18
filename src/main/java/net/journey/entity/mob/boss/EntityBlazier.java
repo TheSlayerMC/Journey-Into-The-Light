@@ -13,9 +13,7 @@ import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityBlaze;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -30,6 +28,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.entity.EntityEssenceBoss;
+import org.jetbrains.annotations.NotNull;
 
 public class EntityBlazier extends EntityEssenceBoss implements IRangedAttackMob {
 
@@ -53,6 +52,21 @@ public class EntityBlazier extends EntityEssenceBoss implements IRangedAttackMob
         this.setSize(2.0F, 6.0F);
         spawnTimer = 0;
 
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return JourneySounds.BLAZIER_IDLE;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource d) {
+        return JourneySounds.BLAZIER_HURT;
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return JourneySounds.BLAZIER_DEATH;
     }
 
     @Override
@@ -190,31 +204,6 @@ public class EntityBlazier extends EntityEssenceBoss implements IRangedAttackMob
     }
 
     @Override
-    public double setAttackDamage(MobStats s) {
-        return MobStats.BlazierDamage;
-    }
-
-    @Override
-    public double setMaxHealth(MobStats s) {
-        return MobStats.BlazierHealth;
-    }
-
-    @Override
-    public SoundEvent setLivingSound() {
-        return JourneySounds.BLAZIER_IDLE;
-    }
-
-    @Override
-    public SoundEvent setHurtSound() {
-        return JourneySounds.BLAZIER_HURT;
-    }
-
-    @Override
-    public SoundEvent setDeathSound() {
-        return JourneySounds.BLAZIER_DEATH;
-    }
-
-    @Override
     public void attackEntityWithRangedAttack(EntityLivingBase e, float f1) {
         this.launchWitherSkullToEntity(0, e);
     }
@@ -264,6 +253,11 @@ public class EntityBlazier extends EntityEssenceBoss implements IRangedAttackMob
 
     @Override
     public void setSwingingArms(boolean swingingArms) {
+    }
+
+    @Override
+    public @NotNull EntitySettings getEntitySettings() {
+        return MobStats.BLAZIER;
     }
 
     class AIFireballAttack extends EntityAIBase {

@@ -1,14 +1,15 @@
 package net.journey.entity.mob.boiling;
 
+import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
 import net.journey.util.JourneyLootTables;
-import net.minecraft.item.Item;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
-import net.slayer.api.entity.EntityModMob;
+import org.jetbrains.annotations.NotNull;
 
-public class EntityFlameLotus extends EntityModMob {
+public class EntityFlameLotus extends JEntityMob {
 
     public EntityFlameLotus(World par1World) {
         super(par1World);
@@ -16,37 +17,27 @@ public class EntityFlameLotus extends EntityModMob {
     }
 
     @Override
-    public double setMovementSpeed() {
-        return 0;
-    }
-
-    @Override
-    public double setAttackDamage(MobStats s) {
-        return 0;
-    }
-
-    @Override
-    public double setMaxHealth(MobStats s) {
-        return 0;
-    }
-
-    @Override
-    public SoundEvent setLivingSound() {
+    protected SoundEvent getAmbientSound() {
         return null;
     }
 
     @Override
-    public SoundEvent setHurtSound() {
+    protected SoundEvent getHurtSound(DamageSource d) {
         return null;
     }
 
     @Override
-    public SoundEvent setDeathSound() {
+    protected SoundEvent getDeathSound() {
         return null;
     }
 
     @Override
     protected ResourceLocation getLootTable() {
-    	return JourneyLootTables.FLAME_LOTUS;
+        return JourneyLootTables.FLAME_LOTUS;
+    }
+
+    @Override
+    public @NotNull EntitySettings getEntitySettings() {
+        return MobStats.FLAME_LOTUS;
     }
 }

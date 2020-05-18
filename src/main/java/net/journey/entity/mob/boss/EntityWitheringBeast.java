@@ -3,7 +3,6 @@ package net.journey.entity.mob.boss;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityDeathSkull;
-import net.journey.init.JourneySounds;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.init.items.JourneyItems;
 import net.journey.init.items.JourneyWeapons;
@@ -11,7 +10,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.ai.EntityAIAttackRanged;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
@@ -19,6 +17,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityEssenceBoss;
+import org.jetbrains.annotations.NotNull;
 
 public class EntityWitheringBeast extends EntityEssenceBoss implements IRangedAttackMob {
 
@@ -33,6 +32,16 @@ public class EntityWitheringBeast extends EntityEssenceBoss implements IRangedAt
         super.initEntityAI();
         this.tasks.addTask(0, new EntityAIAttackRanged(this, 0.27F, 30, 10.0F));
         addAttackingAI();
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return SoundEvents.ENTITY_WITHER_AMBIENT;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource d) {
+        return SoundEvents.ENTITY_WITHER_HURT;
     }
 
     @Override
@@ -55,31 +64,6 @@ public class EntityWitheringBeast extends EntityEssenceBoss implements IRangedAt
                 te.setInventorySlotContents(15, new ItemStack(JourneyItems.eucaPortalPiece_0, 2));
                 break;
         }
-    }
-
-    @Override
-    public double setAttackDamage(MobStats s) {
-        return MobStats.witheringBeastDamage;
-    }
-
-    @Override
-    public double setMaxHealth(MobStats s) {
-        return MobStats.witheringBeastHealth;
-    }
-
-    @Override
-    public SoundEvent setLivingSound() {
-        return SoundEvents.ENTITY_WITHER_AMBIENT;
-    }
-
-    @Override
-    public SoundEvent setHurtSound() {
-        return SoundEvents.ENTITY_WITHER_HURT;
-    }
-
-    @Override
-    public SoundEvent setDeathSound() {
-        return JourneySounds.BOSS_DEATH;
     }
 
     @Override
@@ -138,5 +122,10 @@ public class EntityWitheringBeast extends EntityEssenceBoss implements IRangedAt
 
     @Override
     public void setSwingingArms(boolean swingingArms) {
+    }
+
+    @Override
+    public @NotNull EntitySettings getEntitySettings() {
+        return MobStats.WITHERING_BEAST;
     }
 }

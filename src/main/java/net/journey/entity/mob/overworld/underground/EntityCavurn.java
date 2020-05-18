@@ -1,9 +1,9 @@
 package net.journey.entity.mob.overworld.underground;
 
+import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.staff.EntityConjuring;
 import net.journey.init.JourneySounds;
-import net.journey.init.items.JourneyItems;
 import net.journey.util.JourneyLootTables;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
@@ -12,16 +12,15 @@ import net.minecraft.entity.ai.EntityAIAttackRanged;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import net.slayer.api.entity.EntityModMob;
+import org.jetbrains.annotations.NotNull;
 
-public class EntityCavurn extends EntityModMob implements IRangedAttackMob {
+public class EntityCavurn extends JEntityMob implements IRangedAttackMob {
 
 
     public EntityCavurn(World par1World) {
@@ -37,6 +36,21 @@ public class EntityCavurn extends EntityModMob implements IRangedAttackMob {
     }
 
     @Override
+    protected SoundEvent getAmbientSound() {
+        return JourneySounds.BASE_MOB_HURT;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource d) {
+        return JourneySounds.ROCK;
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return JourneySounds.CAVE_MOB;
+    }
+
+    @Override
     public void attackEntityWithRangedAttack(EntityLivingBase target, float f) {
         EntityConjuring b = new EntityConjuring(this.world, this, 1.0F);
         double d0 = target.posX - this.posX;
@@ -46,31 +60,6 @@ public class EntityCavurn extends EntityModMob implements IRangedAttackMob {
         b.shoot(d0, d1 + d3 * 0.20000000298023224D, d2, 1.6F, (float) (14 - this.world.getDifficulty().getId() * 4));
         JourneySounds.playSound(JourneySounds.MAGIC_SPARKLE, world, this);
         this.world.spawnEntity(b);
-    }
-
-    @Override
-    public double setAttackDamage(MobStats s) {
-        return 0;
-    }
-
-    @Override
-    public double setMaxHealth(MobStats s) {
-        return MobStats.CavurnHealth;
-    }
-
-    @Override
-    public SoundEvent setLivingSound() {
-        return JourneySounds.BASE_MOB_HURT;
-    }
-
-    @Override
-    public SoundEvent setHurtSound() {
-        return JourneySounds.ROCK;
-    }
-
-    @Override
-    public SoundEvent setDeathSound() {
-        return JourneySounds.CAVE_MOB;
     }
 
     @Override
@@ -90,11 +79,16 @@ public class EntityCavurn extends EntityModMob implements IRangedAttackMob {
 
     @Override
     protected ResourceLocation getLootTable() {
-    	return JourneyLootTables.CAVURN;
+        return JourneyLootTables.CAVURN;
     }
 
 
     @Override
     public void setSwingingArms(boolean swingingArms) {
+    }
+
+    @Override
+    public @NotNull EntitySettings getEntitySettings() {
+        return MobStats.CAVURN;
     }
 }

@@ -1,26 +1,19 @@
 package net.journey.entity.mob.overworld.underground;
 
-import com.google.common.base.Predicate;
+import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
-import net.journey.init.items.JourneyArmory;
-import net.journey.init.items.JourneyConsumables;
-import net.journey.init.items.JourneyItems;
 import net.journey.util.JourneyLootTables;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
-import net.minecraft.entity.monster.EntityCreeper;
-import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.Item;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
@@ -30,11 +23,9 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.slayer.api.entity.EntityModMob;
+import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nullable;
-
-public class EntityRockiteSmasher extends EntityModMob {
+public class EntityRockiteSmasher extends JEntityMob {
 
     private int attackTimer;
 
@@ -137,16 +128,6 @@ public class EntityRockiteSmasher extends EntityModMob {
     public int getAttackTimer() {
         return this.attackTimer;
     }
-
-    @Override
-    public double setAttackDamage(MobStats s) {
-        return MobStats.RockiteSmasherDamage;
-    }
-
-    @Override
-    public double setMaxHealth(MobStats s) {
-        return MobStats.RockiteSmasherHealth;
-    }
     
     @Override
     protected boolean canDespawn() {
@@ -174,22 +155,22 @@ public class EntityRockiteSmasher extends EntityModMob {
     }
 
     @Override
-    public SoundEvent setLivingSound() {
+    protected SoundEvent getAmbientSound() {
         return JourneySounds.EMPTY;
     }
 
     @Override
-    public SoundEvent setHurtSound() {
-        return JourneySounds.EMPTY;
-    }
-
-    @Override
-    public SoundEvent setDeathSound() {
-        return JourneySounds.EMPTY;
+    protected SoundEvent getHurtSound(DamageSource d) {
+        return SoundEvents.ENTITY_IRONGOLEM_HURT;
     }
 
     @Override
     protected ResourceLocation getLootTable() {
-    	return JourneyLootTables.ROCKITE;
+        return JourneyLootTables.ROCKITE;
+    }
+
+    @Override
+    public @NotNull EntitySettings getEntitySettings() {
+        return MobStats.ROCKITE_SMASHER;
     }
 }

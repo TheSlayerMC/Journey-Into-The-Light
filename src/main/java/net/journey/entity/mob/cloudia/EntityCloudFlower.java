@@ -1,25 +1,40 @@
 package net.journey.entity.mob.cloudia;
 
+import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
 import net.journey.util.JourneyLootTables;
 import net.journey.util.PotionEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
-import net.slayer.api.entity.EntityModMob;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class EntityCloudFlower extends EntityModMob {
+public class EntityCloudFlower extends JEntityMob {
 
     public EntityCloudFlower(World par1World) {
         super(par1World);
         this.setSize(2.0F, 0.2145F);
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return null;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource d) {
+        return null;
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return null;
     }
 
     @Override
@@ -44,37 +59,12 @@ public class EntityCloudFlower extends EntityModMob {
     }
 
     @Override
-    public double setMovementSpeed() {
-        return 0;
-    }
-
-    @Override
-    public double setAttackDamage(MobStats s) {
-        return 0;
-    }
-
-    @Override
-    public double setMaxHealth(MobStats s) {
-        return MobStats.CloudFlyerHealth;
-    }
-
-    @Override
-    public SoundEvent setLivingSound() {
-        return null;
-    }
-
-    @Override
-    public SoundEvent setHurtSound() {
-        return null;
-    }
-
-    @Override
-    public SoundEvent setDeathSound() {
-        return null;
-    }
-    
-    @Override
     protected ResourceLocation getLootTable() {
-    	return JourneyLootTables.CLOUD_FLOWER;
+        return JourneyLootTables.CLOUD_FLOWER;
+    }
+
+    @Override
+    public @NotNull EntitySettings getEntitySettings() {
+        return MobStats.CLOUD_FLOWER;
     }
 }

@@ -1,29 +1,44 @@
 package net.journey.entity.mob.overworld;
 
+import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
-import net.journey.init.items.JourneyItems;
 import net.journey.init.items.JourneyWeapons;
 import net.journey.util.JourneyLootTables;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.slayer.api.entity.EntityModMob;
+import org.jetbrains.annotations.NotNull;
 
-public class EntityWraith extends EntityModMob {
+public class EntityWraith extends JEntityMob {
 
     public EntityWraith(World par1World) {
         super(par1World);
         addAttackingAI();
         setSize(0.7F, 2.0F);
 
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return JourneySounds.WRAITH;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource d) {
+        return JourneySounds.WRAITH_HURT;
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return JourneySounds.WRAITH_DEATH;
     }
 
     @Override
@@ -35,16 +50,6 @@ public class EntityWraith extends EntityModMob {
     @Override
     public ItemStack getHeldItem(EnumHand hand) {
         return new ItemStack(JourneyWeapons.demonicSword);
-    }
-
-    @Override
-    public double setAttackDamage(MobStats s) {
-        return MobStats.WraithDamage;
-    }
-
-    @Override
-    public double setMaxHealth(MobStats s) {
-        return MobStats.WraithDamage;
     }
 
     @Override
@@ -84,22 +89,12 @@ public class EntityWraith extends EntityModMob {
     }
 
     @Override
-    public SoundEvent setLivingSound() {
-        return JourneySounds.WRAITH;
-    }
-
-    @Override
-    public SoundEvent setHurtSound() {
-        return JourneySounds.WRAITH_HURT;
-    }
-
-    @Override
-    public SoundEvent setDeathSound() {
-        return JourneySounds.WRAITH_DEATH;
-    }
-
-    @Override
     protected ResourceLocation getLootTable() {
-    	return JourneyLootTables.WRAITH;
+        return JourneyLootTables.WRAITH;
+    }
+
+    @Override
+    public @NotNull EntitySettings getEntitySettings() {
+        return MobStats.WRAITH;
     }
 }

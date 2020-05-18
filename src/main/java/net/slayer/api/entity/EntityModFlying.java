@@ -3,7 +3,6 @@ package net.slayer.api.entity;
 import net.journey.entity.MobStats;
 import net.minecraft.entity.EntityFlying;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.item.Item;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
@@ -49,11 +48,11 @@ public abstract class EntityModFlying extends EntityFlying {
     }
 
     public double setMovementSpeed() {
-        return MobStats.normalSpeed;
+        return MobStats.standardMovementSpeed;
     }
 
     public double setKnockbackResistance() {
-        return MobStats.knockBackResistance;
+        return MobStats.standardKnockBackResistance;
     }
 
     public abstract double setMaxHealth(MobStats s);

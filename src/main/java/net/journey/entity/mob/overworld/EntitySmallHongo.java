@@ -1,18 +1,18 @@
 package net.journey.entity.mob.overworld;
 
+import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
 import net.journey.util.JourneyLootTables;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.slayer.api.SlayerAPI;
-import net.slayer.api.entity.EntityModMob;
+import org.jetbrains.annotations.NotNull;
 
-public class EntitySmallHongo extends EntityModMob {
+public class EntitySmallHongo extends JEntityMob {
 
     public EntitySmallHongo(World par1World) {
         super(par1World);
@@ -21,27 +21,17 @@ public class EntitySmallHongo extends EntityModMob {
     }
 
     @Override
-    public double setAttackDamage(MobStats s) {
-        return MobStats.SmallHongoDamage;
-    }
-
-    @Override
-    public double setMaxHealth(MobStats s) {
-        return MobStats.SmallHongoHealth;
-    }
-
-    @Override
-    public SoundEvent setLivingSound() {
+    protected SoundEvent getAmbientSound() {
         return JourneySounds.SMALL_HONGO;
     }
 
     @Override
-    public SoundEvent setHurtSound() {
+    protected SoundEvent getHurtSound(DamageSource d) {
         return JourneySounds.SMALL_HONGO_HURT;
     }
 
     @Override
-    public SoundEvent setDeathSound() {
+    protected SoundEvent getDeathSound() {
         return JourneySounds.SMALL_HONGO_HURT;
     }
 
@@ -56,6 +46,11 @@ public class EntitySmallHongo extends EntityModMob {
 
     @Override
     protected ResourceLocation getLootTable() {
-    	return JourneyLootTables.SMALL_HONGO;
+        return JourneyLootTables.SMALL_HONGO;
+    }
+
+    @Override
+    public @NotNull EntitySettings getEntitySettings() {
+        return MobStats.SMALL_HONGO;
     }
 }

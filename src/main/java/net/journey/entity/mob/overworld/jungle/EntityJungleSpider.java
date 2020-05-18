@@ -1,5 +1,6 @@
 package net.journey.entity.mob.overworld.jungle;
 
+import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
 import net.journey.util.JourneyLootTables;
 import net.journey.util.PotionEffects;
@@ -14,7 +15,6 @@ import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.Item;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -31,13 +31,12 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-import net.minecraft.world.storage.loot.LootTableList;
-import net.slayer.api.entity.EntityModMob;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class EntityJungleSpider extends EntityModMob {
+public class EntityJungleSpider extends JEntityMob {
     private static final DataParameter<Byte> CLIMBING = EntityDataManager.createKey(EntityJungleSpider.class,
             DataSerializers.BYTE);
 
@@ -182,16 +181,6 @@ public class EntityJungleSpider extends EntityModMob {
     }
 
     @Override
-    public double setAttackDamage(MobStats s) {
-        return MobStats.JungleSpiderDamage;
-    }
-
-    @Override
-    public double setMaxHealth(MobStats s) {
-        return MobStats.JungleSpiderHealth;
-    }
-
-    @Override
     public boolean attackEntityAsMob(Entity e) {
         boolean attacked = super.attackEntityAsMob(e);
         if (attacked) {
@@ -208,25 +197,14 @@ public class EntityJungleSpider extends EntityModMob {
     }
 
     @Override
-    public SoundEvent setLivingSound() {
-        return null;
-    }
-
-    @Override
-    public SoundEvent setHurtSound() {
-        return null;
-    }
-
-    @Override
-    public SoundEvent setDeathSound() {
-        return null;
-    }
-
-    @Override
     protected ResourceLocation getLootTable() {
-    	return JourneyLootTables.JUNGLE_SPIDER;
+        return JourneyLootTables.JUNGLE_SPIDER;
     }
 
+    @Override
+    public @NotNull EntitySettings getEntitySettings() {
+        return MobStats.JUNGLE_SPIDER;
+    }
 
     static class AISpiderAttack extends EntityAIAttackMelee {
         public AISpiderAttack(EntityJungleSpider spider) {

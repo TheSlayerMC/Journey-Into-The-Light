@@ -1,18 +1,34 @@
 package net.journey.entity.mob.senterian.mob;
 
+import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
 import net.journey.util.JourneyLootTables;
-import net.minecraft.item.Item;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
-import net.slayer.api.entity.EntityModMob;
+import org.jetbrains.annotations.NotNull;
 
-public class EntitySentryStalker extends EntityModMob {
+public class EntitySentryStalker extends JEntityMob {
 
     public EntitySentryStalker(World par1World) {
         super(par1World);
         this.setSize(1.0F, 2.5F);
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return null;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource d) {
+        return null;
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return null;
     }
 
     @Override
@@ -21,32 +37,12 @@ public class EntitySentryStalker extends EntityModMob {
     }
 
     @Override
-    public double setAttackDamage(MobStats s) {
-        return 0;
-    }
-
-    @Override
-    public double setMaxHealth(MobStats s) {
-        return 0;
-    }
-
-    @Override
-    public SoundEvent setLivingSound() {
-        return null;
-    }
-
-    @Override
-    public SoundEvent setHurtSound() {
-        return null;
-    }
-
-    @Override
-    public SoundEvent setDeathSound() {
-        return null;
-    }
-
-    @Override
     protected ResourceLocation getLootTable() {
-    	return JourneyLootTables.SENTRY_STALKER;
+        return JourneyLootTables.SENTRY_STALKER;
+    }
+
+    @Override
+    public @NotNull EntitySettings getEntitySettings() {
+        return MobStats.SENTRY_STALKER;
     }
 }

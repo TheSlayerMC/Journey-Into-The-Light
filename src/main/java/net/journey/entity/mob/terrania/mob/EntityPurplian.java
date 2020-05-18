@@ -1,32 +1,26 @@
 package net.journey.entity.mob.terrania.mob;
 
+import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityMagmaFireball;
-import net.journey.init.items.JourneyItems;
 import net.journey.util.JourneyLootTables;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.Item;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvent;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import net.slayer.api.entity.EntityModMob;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class EntityPurplian extends EntityModMob {
+public class EntityPurplian extends JEntityMob {
 
     private static final DataParameter<Byte> ON_FIRE = EntityDataManager.createKey(EntityPurplian.class, DataSerializers.BYTE);
     private float heightOffset = 0.5F;
@@ -47,6 +41,21 @@ public class EntityPurplian extends EntityModMob {
     }
 
     @Override
+    protected SoundEvent getAmbientSound() {
+        return SoundEvents.ENTITY_BLAZE_AMBIENT;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource d) {
+        return SoundEvents.ENTITY_BLAZE_HURT;
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return SoundEvents.ENTITY_BLAZE_DEATH;
+    }
+
+    @Override
     protected void entityInit() {
         super.entityInit();
         this.dataManager.register(ON_FIRE, Byte.valueOf((byte) 0));
@@ -54,7 +63,7 @@ public class EntityPurplian extends EntityModMob {
 
     @Override
     protected ResourceLocation getLootTable() {
-    	return JourneyLootTables.PURPLIAN;
+        return JourneyLootTables.PURPLIAN;
     }
 
     @Override
@@ -131,28 +140,8 @@ public class EntityPurplian extends EntityModMob {
     }
 
     @Override
-    public double setAttackDamage(MobStats s) {
-        return MobStats.PurplianDamage;
-    }
-
-    @Override
-    public double setMaxHealth(MobStats s) {
-        return MobStats.PurplianHealth;
-    }
-
-    @Override
-    public SoundEvent setLivingSound() {
-        return SoundEvents.ENTITY_BLAZE_AMBIENT;
-    }
-
-    @Override
-    public SoundEvent setHurtSound() {
-        return SoundEvents.ENTITY_BLAZE_HURT;
-    }
-
-    @Override
-    public SoundEvent setDeathSound() {
-        return SoundEvents.ENTITY_BLAZE_DEATH;
+    public @NotNull EntitySettings getEntitySettings() {
+        return MobStats.PURPLIAN;
     }
 
     class AIFireballAttack extends EntityAIBase {

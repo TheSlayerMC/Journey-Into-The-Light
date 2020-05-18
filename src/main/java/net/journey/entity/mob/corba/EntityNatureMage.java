@@ -1,5 +1,6 @@
 package net.journey.entity.mob.corba;
 
+import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityFireBall;
 import net.journey.init.JourneySounds;
@@ -13,9 +14,9 @@ import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
@@ -24,11 +25,11 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-import net.slayer.api.entity.EntityModMob;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
-public class EntityNatureMage extends EntityModMob implements IRangedAttackMob {
+public class EntityNatureMage extends JEntityMob implements IRangedAttackMob {
 
     private final EntityAIAttackRangedBow<EntityNatureMage> aiArrowAttack = new EntityAIAttackRangedBow<EntityNatureMage>(this, 1.0D, 20, 15.0F);
 
@@ -39,6 +40,21 @@ public class EntityNatureMage extends EntityModMob implements IRangedAttackMob {
         if (par1World != null && !par1World.isRemote) {
             this.setCombatTask();
         }
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return JourneySounds.INSECTO;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource d) {
+        return JourneySounds.INSECTO_HURT;
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return JourneySounds.INSECTO_HURT;
     }
 
     public void setCombatTask() {
@@ -111,37 +127,17 @@ public class EntityNatureMage extends EntityModMob implements IRangedAttackMob {
     }
 
     @Override
-    public double setAttackDamage(MobStats s) {
-        return 0;
-    }
-
-    @Override
-    public double setMaxHealth(MobStats s) {
-        return MobStats.NatureMageHealth;
-    }
-
-    @Override
-    public SoundEvent setLivingSound() {
-        return JourneySounds.INSECTO;
-    }
-
-    @Override
-    public SoundEvent setHurtSound() {
-        return JourneySounds.INSECTO_HURT;
-    }
-
-    @Override
-    public SoundEvent setDeathSound() {
-        return JourneySounds.INSECTO_HURT;
-    }
-
-    @Override
     protected ResourceLocation getLootTable() {
-    	return JourneyLootTables.NATURE_MAGE;
+        return JourneyLootTables.NATURE_MAGE;
     }
 
     @Override
     public void setSwingingArms(boolean swingingArms) {
 
+    }
+
+    @Override
+    public @NotNull EntitySettings getEntitySettings() {
+        return MobStats.NATURE_MAGE;
     }
 }

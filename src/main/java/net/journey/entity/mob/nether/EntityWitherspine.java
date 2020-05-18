@@ -1,22 +1,20 @@
 package net.journey.entity.mob.nether;
 
+import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
-import net.journey.init.JourneySounds;
-import net.journey.init.items.JourneyItems;
 import net.journey.util.JourneyLootTables;
 import net.journey.util.PotionEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.Item;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
-import net.slayer.api.entity.EntityModMob;
+import org.jetbrains.annotations.NotNull;
 
-public class EntityWitherspine extends EntityModMob {
+public class EntityWitherspine extends JEntityMob {
 
     public EntityWitherspine(World par1World) {
         super(par1World);
@@ -41,23 +39,8 @@ public class EntityWitherspine extends EntityModMob {
     }
 
     @Override
-    public double setAttackDamage(MobStats s) {
-        return MobStats.WitherSpineDamage;
-    }
-
-    @Override
-    public double setMaxHealth(MobStats s) {
-        return MobStats.WitherSpineHealth;
-    }
-
-    @Override
     public double getMoveSpeed() {
         return 20.0D;
-    }
-
-    @Override
-    public SoundEvent setLivingSound() {
-        return JourneySounds.EMPTY;
     }
 
     @Override
@@ -76,17 +59,12 @@ public class EntityWitherspine extends EntityModMob {
     }
 
     @Override
-    public SoundEvent setHurtSound() {
-        return JourneySounds.EMPTY;
-    }
-
-    @Override
-    public SoundEvent setDeathSound() {
-        return JourneySounds.EMPTY;
-    }
-
-    @Override
     protected ResourceLocation getLootTable() {
-    	return JourneyLootTables.WITHERSPINE;
+        return JourneyLootTables.WITHERSPINE;
+    }
+
+    @Override
+    public @NotNull EntitySettings getEntitySettings() {
+        return MobStats.WITHERSPINE;
     }
 }

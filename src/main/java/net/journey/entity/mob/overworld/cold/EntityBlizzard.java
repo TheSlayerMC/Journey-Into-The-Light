@@ -1,8 +1,8 @@
 package net.journey.entity.mob.overworld.cold;
 
+import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityBlizzardFireball;
-import net.journey.init.JourneySounds;
 import net.journey.util.JourneyLootTables;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.*;
@@ -24,9 +24,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.SlayerAPI;
-import net.slayer.api.entity.EntityModMob;
+import org.jetbrains.annotations.NotNull;
 
-public class EntityBlizzard extends EntityModMob {
+public class EntityBlizzard extends JEntityMob {
 
     private static final DataParameter<Byte> ON_FIRE = EntityDataManager.createKey(EntityBlizzard.class, DataSerializers.BYTE);
     private float heightOffset = 0.5F;
@@ -149,33 +149,13 @@ public class EntityBlizzard extends EntityModMob {
     }
 
     @Override
-    public double setAttackDamage(MobStats s) {
-        return 0;
-    }
-
-    @Override
-    public double setMaxHealth(MobStats s) {
-        return MobStats.BlizzardHealth;
-    }
-
-    @Override
-    public SoundEvent setLivingSound() {
-        return JourneySounds.EMPTY;
-    }
-
-    @Override
-    public SoundEvent setHurtSound() {
-        return JourneySounds.EMPTY;
-    }
-
-    @Override
-    public SoundEvent setDeathSound() {
-        return JourneySounds.EMPTY;
-    }
-
-    @Override
     protected ResourceLocation getLootTable() {
-    	return JourneyLootTables.BLIZZARD;
+        return JourneyLootTables.BLIZZARD;
+    }
+
+    @Override
+    public @NotNull EntitySettings getEntitySettings() {
+        return MobStats.BLIZZARD;
     }
 
     static class AIFireballAttack extends EntityAIBase {
