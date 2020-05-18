@@ -1,0 +1,22 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.model.head.up": {
+			"animation_length": 0.64,
+			"bones": {
+				"head": {
+					"position": {
+						"0.0": [0, -13, 0],
+						"0.6333": [0, 0, 0]
+					}
+				},
+				"stem": {
+					"position": {
+						"0.0": [0, -8, 0],
+						"0.6333": [0, 0, 0]
+					}
+				}
+			}
+		}
+	}
+}
