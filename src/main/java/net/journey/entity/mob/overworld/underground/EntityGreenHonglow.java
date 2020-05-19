@@ -49,43 +49,6 @@ public class EntityGreenHonglow extends JEntityMob {
     }
 
     @Override
-    public void onUpdate() {
-        super.onUpdate();
-        if (rand.nextInt(10) == 0) {
-            if (getHealth() >= 0) {
-                this.world.setLightFor(EnumSkyBlock.BLOCK, new BlockPos((int) this.posX, (int) this.posY, (int) this.posZ), 6);
-                this.world.markBlockRangeForRenderUpdate((int) this.posX, (int) this.posY, (int) this.posX, 12, 12, 12);
-                this.world.checkLightFor(EnumSkyBlock.BLOCK, new BlockPos((int) this.posX, (int) this.posY + 1, (int) this.posZ));
-                this.world.checkLightFor(EnumSkyBlock.BLOCK, new BlockPos((int) this.posX + 1, (int) this.posY + 1, (int) this.posZ));
-                this.world.checkLightFor(EnumSkyBlock.BLOCK, new BlockPos((int) this.posX + 1, (int) this.posY + 1, (int) this.posZ + 1));
-                this.world.checkLightFor(EnumSkyBlock.BLOCK, new BlockPos((int) this.posX + 1, (int) this.posY + 1, (int) this.posZ - 1));
-                this.world.checkLightFor(EnumSkyBlock.BLOCK, new BlockPos((int) this.posX - 1, (int) this.posY + 1, (int) this.posZ + 1));
-                this.world.checkLightFor(EnumSkyBlock.BLOCK, new BlockPos((int) this.posX - 1, (int) this.posY + 1, (int) this.posZ - 1));
-                this.world.checkLightFor(EnumSkyBlock.BLOCK, new BlockPos((int) this.posX - 1, (int) this.posY + 1, (int) this.posZ));
-                this.world.checkLightFor(EnumSkyBlock.BLOCK, new BlockPos((int) this.posX, (int) this.posY + 1, (int) this.posZ + 1));
-                this.world.checkLightFor(EnumSkyBlock.BLOCK, new BlockPos((int) this.posX, (int) this.posY + 1, (int) this.posZ - 1));
-                this.world.checkLightFor(EnumSkyBlock.BLOCK, new BlockPos((int) this.posX, (int) this.posY - 1, (int) this.posZ));
-                this.world.checkLightFor(EnumSkyBlock.BLOCK, new BlockPos((int) this.posX + 1, (int) this.posY - 1, (int) this.posZ));
-                this.world.checkLightFor(EnumSkyBlock.BLOCK, new BlockPos((int) this.posX + 1, (int) this.posY - 1, (int) this.posZ + 1));
-                this.world.checkLightFor(EnumSkyBlock.BLOCK, new BlockPos((int) this.posX + 1, (int) this.posY - 1, (int) this.posZ - 1));
-                this.world.checkLightFor(EnumSkyBlock.BLOCK, new BlockPos((int) this.posX - 1, (int) this.posY - 1, (int) this.posZ + 1));
-                this.world.checkLightFor(EnumSkyBlock.BLOCK, new BlockPos((int) this.posX - 1, (int) this.posY - 1, (int) this.posZ - 1));
-                this.world.checkLightFor(EnumSkyBlock.BLOCK, new BlockPos((int) this.posX - 1, (int) this.posY - 1, (int) this.posZ));
-                this.world.checkLightFor(EnumSkyBlock.BLOCK, new BlockPos((int) this.posX, (int) this.posY - 1, (int) this.posZ + 1));
-                this.world.checkLightFor(EnumSkyBlock.BLOCK, new BlockPos((int) this.posX, (int) this.posY - 1, (int) this.posZ - 1));
-                this.world.checkLightFor(EnumSkyBlock.BLOCK, new BlockPos((int) this.posX + 1, (int) this.posY, (int) this.posZ));
-                this.world.checkLightFor(EnumSkyBlock.BLOCK, new BlockPos((int) this.posX + 1, (int) this.posY, (int) this.posZ + 1));
-                this.world.checkLightFor(EnumSkyBlock.BLOCK, new BlockPos((int) this.posX + 1, (int) this.posY, (int) this.posZ - 1));
-                this.world.checkLightFor(EnumSkyBlock.BLOCK, new BlockPos((int) this.posX - 1, (int) this.posY, (int) this.posZ + 1));
-                this.world.checkLightFor(EnumSkyBlock.BLOCK, new BlockPos((int) this.posX - 1, (int) this.posY, (int) this.posZ - 1));
-                this.world.checkLightFor(EnumSkyBlock.BLOCK, new BlockPos((int) this.posX - 1, (int) this.posY, (int) this.posZ));
-                this.world.checkLightFor(EnumSkyBlock.BLOCK, new BlockPos((int) this.posX, (int) this.posY, (int) this.posZ + 1));
-                this.world.checkLightFor(EnumSkyBlock.BLOCK, new BlockPos((int) this.posX, (int) this.posY, (int) this.posZ - 1));
-            }
-        }
-    }
-
-    @Override
     protected ResourceLocation getLootTable() {
     	return JourneyLootTables.GREEN_HONGLOW;
     }
@@ -97,34 +60,6 @@ public class EntityGreenHonglow extends JEntityMob {
             EntityPlayer p = (EntityPlayer) d.getImmediateSource();
             //p.triggerAchievement(JourneyAchievements.achievementCave);
         }
-        this.world.setLightFor(EnumSkyBlock.BLOCK, new BlockPos((int) this.posX, (int) this.posY, (int) this.posZ), 0);
-        this.world.markBlockRangeForRenderUpdate((int) this.posX, (int) this.posY, (int) this.posX, 12, 12, 12);
-        this.world.checkLightFor(EnumSkyBlock.BLOCK, new BlockPos((int) this.posX, (int) this.posY + 1, (int) this.posZ));
-        this.world.checkLightFor(EnumSkyBlock.BLOCK, new BlockPos((int) this.posX + 1, (int) this.posY + 1, (int) this.posZ));
-        this.world.checkLightFor(EnumSkyBlock.BLOCK, new BlockPos((int) this.posX + 1, (int) this.posY + 1, (int) this.posZ + 1));
-        this.world.checkLightFor(EnumSkyBlock.BLOCK, new BlockPos((int) this.posX + 1, (int) this.posY + 1, (int) this.posZ - 1));
-        this.world.checkLightFor(EnumSkyBlock.BLOCK, new BlockPos((int) this.posX - 1, (int) this.posY + 1, (int) this.posZ + 1));
-        this.world.checkLightFor(EnumSkyBlock.BLOCK, new BlockPos((int) this.posX - 1, (int) this.posY + 1, (int) this.posZ - 1));
-        this.world.checkLightFor(EnumSkyBlock.BLOCK, new BlockPos((int) this.posX - 1, (int) this.posY + 1, (int) this.posZ));
-        this.world.checkLightFor(EnumSkyBlock.BLOCK, new BlockPos((int) this.posX, (int) this.posY + 1, (int) this.posZ + 1));
-        this.world.checkLightFor(EnumSkyBlock.BLOCK, new BlockPos((int) this.posX, (int) this.posY + 1, (int) this.posZ - 1));
-        this.world.checkLightFor(EnumSkyBlock.BLOCK, new BlockPos((int) this.posX, (int) this.posY - 1, (int) this.posZ));
-        this.world.checkLightFor(EnumSkyBlock.BLOCK, new BlockPos((int) this.posX + 1, (int) this.posY - 1, (int) this.posZ));
-        this.world.checkLightFor(EnumSkyBlock.BLOCK, new BlockPos((int) this.posX + 1, (int) this.posY - 1, (int) this.posZ + 1));
-        this.world.checkLightFor(EnumSkyBlock.BLOCK, new BlockPos((int) this.posX + 1, (int) this.posY - 1, (int) this.posZ - 1));
-        this.world.checkLightFor(EnumSkyBlock.BLOCK, new BlockPos((int) this.posX - 1, (int) this.posY - 1, (int) this.posZ + 1));
-        this.world.checkLightFor(EnumSkyBlock.BLOCK, new BlockPos((int) this.posX - 1, (int) this.posY - 1, (int) this.posZ - 1));
-        this.world.checkLightFor(EnumSkyBlock.BLOCK, new BlockPos((int) this.posX - 1, (int) this.posY - 1, (int) this.posZ));
-        this.world.checkLightFor(EnumSkyBlock.BLOCK, new BlockPos((int) this.posX, (int) this.posY - 1, (int) this.posZ + 1));
-        this.world.checkLightFor(EnumSkyBlock.BLOCK, new BlockPos((int) this.posX, (int) this.posY - 1, (int) this.posZ - 1));
-        this.world.checkLightFor(EnumSkyBlock.BLOCK, new BlockPos((int) this.posX + 1, (int) this.posY, (int) this.posZ));
-        this.world.checkLightFor(EnumSkyBlock.BLOCK, new BlockPos((int) this.posX + 1, (int) this.posY, (int) this.posZ + 1));
-        this.world.checkLightFor(EnumSkyBlock.BLOCK, new BlockPos((int) this.posX + 1, (int) this.posY, (int) this.posZ - 1));
-        this.world.checkLightFor(EnumSkyBlock.BLOCK, new BlockPos((int) this.posX - 1, (int) this.posY, (int) this.posZ + 1));
-        this.world.checkLightFor(EnumSkyBlock.BLOCK, new BlockPos((int) this.posX - 1, (int) this.posY, (int) this.posZ - 1));
-        this.world.checkLightFor(EnumSkyBlock.BLOCK, new BlockPos((int) this.posX - 1, (int) this.posY, (int) this.posZ));
-        this.world.checkLightFor(EnumSkyBlock.BLOCK, new BlockPos((int) this.posX, (int) this.posY, (int) this.posZ + 1));
-        this.world.checkLightFor(EnumSkyBlock.BLOCK, new BlockPos((int) this.posX, (int) this.posY, (int) this.posZ - 1));
     }
 
     @Override
