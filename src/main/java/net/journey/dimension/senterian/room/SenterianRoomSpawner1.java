@@ -8,7 +8,6 @@ import java.util.Random;
 
 public class SenterianRoomSpawner1 extends SenterianRoomBase {
 
-	@SuppressWarnings("altar")
 	@Override
 	public boolean generate(TECompatibleChunkPrimer world, Random rand, int i, int j, int k) {
 		this.setBlock(world, i, j, k, JourneyBlocks.senterianFloor);

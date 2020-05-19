@@ -283,18 +283,17 @@ public class ChunkProviderDepths implements IChunkGenerator {
         return this.provideChunk(x, z);
     }
 
-    @SuppressWarnings("SPIKE")
     public Chunk provideChunk(int x, int z) {
         this.rand.setSeed(x * 341873128712L + z * 132897987541L);
         ChunkPrimer chunkprimer = new ChunkPrimer();
         this.setBlocksInChunk(x, z, chunkprimer);
         this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomes(this.biomesForGeneration, x * 16, z * 16, 16, 16);
-		/*if (rand.nextInt(50) == 0) {
+		if (rand.nextInt(50) == 0) {
             int ycoord = 2;
             if(chunkprimer.getBlockState(8, ycoord, 8).getBlock() == Blocks.AIR && chunkprimer.getBlockState(8, ycoord + 1, 8).getBlock() == Blocks.AIR) {
                 spike.generate(chunkprimer, rand, new BlockPos(8, ycoord, 8));
             }
-        }*/
+        }
         Chunk chunk = new Chunk(this.worldObj, chunkprimer, x, z);
         byte[] abyte = chunk.getBiomeArray();
         for (int k = 0; k < abyte.length; ++k) abyte[k] = (byte) Biome.getIdForBiome(this.biomesForGeneration[k]);
