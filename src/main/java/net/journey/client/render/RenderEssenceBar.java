@@ -5,6 +5,7 @@ import org.lwjgl.opengl.GL11;
 import net.journey.JITL;
 import net.journey.client.server.EssenceProvider;
 import net.journey.client.server.IEssence;
+import net.journey.init.items.JourneyItems;
 import net.journey.init.items.JourneyWeapons;
 import net.journey.items.interactive.ItemAddEssence;
 import net.journey.items.interactive.ItemEternalNight;
@@ -76,6 +77,7 @@ public class RenderEssenceBar {
 				isEssence instanceof ItemEternalNight || 
 				isEssence instanceof ItemAddEssence ||
 				isEssence == JourneyWeapons.darkEnforcer ||
+				isEssence == JourneyItems.CURSED_TOMB ||
 				isEssence == JourneyWeapons.ESSENCE_SHURIKEN;
 	}
 }

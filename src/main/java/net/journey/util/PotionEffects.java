@@ -24,6 +24,7 @@ public class PotionEffects {
     public static int poison = Potion.getIdFromPotion(MobEffects.POISON);
     public static int wither = Potion.getIdFromPotion(MobEffects.WITHER);
     public static int harm = Potion.getIdFromPotion(MobEffects.INSTANT_DAMAGE);
+    public static int levitate = Potion.getIdFromPotion(MobEffects.LEVITATION);
 
 
     public static PotionEffect setPotionEffect(int id, int durationIn, int amplifierIn) {
