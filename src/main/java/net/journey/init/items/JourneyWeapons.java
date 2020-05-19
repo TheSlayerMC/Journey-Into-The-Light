@@ -38,6 +38,7 @@ import net.journey.items.*;
 import net.journey.items.bows.*;
 import net.journey.items.interactive.ItemTeleport;
 import net.journey.items.ranged.ItemCreativeHammer;
+import net.journey.items.ranged.ItemEssenceShuriken;
 import net.journey.items.ranged.ItemGun;
 import net.journey.items.ranged.ItemHammer;
 import net.journey.items.ranged.ItemMagicPot;
@@ -68,6 +69,7 @@ public class JourneyWeapons {
     public static Item skyPiercer;
     public static Item MAGIC_POT_OF_DESTRUCTION;
     public static Item MAGIC_BOMB;
+    public static Item ESSENCE_SHURIKEN;
 
     public static Item moltenKnife;
     public static Item aquaticKnife;
@@ -382,6 +384,7 @@ public class JourneyWeapons {
         frostyPiercer = new ItemPiercer("frostyPiercer", "Frosty Piercer", 10F, 2, EntityFrostyPiercer.class);
         sunsetPiercer = new ItemPiercer("sunsetPiercer", "Sunset Piercer", 7F, 1, EntitySunsetPiercer.class);
         skyPiercer = new ItemPiercer("skyPiercer", "Sky Piercer", 29F, 6, EntitySkyPiercer.class);
+        ESSENCE_SHURIKEN = new ItemEssenceShuriken("essence_shuriken", "Essence Shuriken");
         MAGIC_POT_OF_DESTRUCTION = new ItemMagicPot("magic_pot_of_destruction", "Magic Pot of Destruction", 4F, 4, EntityMagicPot.class);
 
         MAGIC_BOMB = new ItemThrowableArrow("magic_bomb", "Magic Bomb", 1D, EntityMagicBomb.class, "Sticks to surfaces, explodes upon collision");        

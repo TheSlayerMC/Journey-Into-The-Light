@@ -75,6 +75,7 @@ public class RenderEssenceBar {
 				isEssence instanceof ItemHammer || 
 				isEssence instanceof ItemEternalNight || 
 				isEssence instanceof ItemAddEssence ||
-				isEssence == JourneyWeapons.darkEnforcer;
+				isEssence == JourneyWeapons.darkEnforcer ||
+				isEssence == JourneyWeapons.ESSENCE_SHURIKEN;
 	}
 }
