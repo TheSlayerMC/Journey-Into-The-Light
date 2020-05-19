@@ -124,13 +124,13 @@ public class MobStats {
     public static final EntitySettings CLOUD_FLOWER = new EntitySettings(75, 0).setMovementSpeed(0);
 
     //Senterian
-    public static final EntitySettings MINI_SENTRY_LORD = new EntitySettings(0, 0);//TODO change
-    public static final EntitySettings SENTRY_LORD = new EntitySettings(0, 0);//TODO change
-    public static final EntitySettings SENTRY_WALKER = new EntitySettings(0, 0);//TODO change
-    public static final EntitySettings MINI_SENTRY_WALKER = new EntitySettings(0, 0);//TODO change
-    public static final EntitySettings SENTRY_STALKER = new EntitySettings(0, 0);//TODO change
-    public static final EntitySettings MINI_SENTRY_STALKER = new EntitySettings(0, 0);//TODO change
-    public static final EntitySettings SENTRY_BLOCK = new EntitySettings(0, 0).setMovementSpeed(0);//TODO change
+    public static final EntitySettings MINI_SENTRY_LORD = new EntitySettings(20, 5);
+    public static final EntitySettings SENTRY_LORD = new EntitySettings(75, 16);
+    public static final EntitySettings SENTRY_WALKER = new EntitySettings(75, 17);
+    public static final EntitySettings MINI_SENTRY_WALKER = new EntitySettings(20, 5);
+    public static final EntitySettings SENTRY_STALKER = new EntitySettings(75, 18);
+    public static final EntitySettings MINI_SENTRY_STALKER = new EntitySettings(20, 5);
+    public static final EntitySettings SENTRY_BLOCK = new EntitySettings(75, 0).setMovementSpeed(0);
 
     //Misc
     public static double EucaHopperHealth = 40.0D, EucaHopperDamage = 7.5D;

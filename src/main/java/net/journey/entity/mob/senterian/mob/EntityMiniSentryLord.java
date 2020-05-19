@@ -14,6 +14,7 @@ public class EntityMiniSentryLord extends JEntityMob {
 	public EntityMiniSentryLord(World par1World) {
 		super(par1World);
 		this.setSize(0.5F, 1.2F);
+		addMeleeAttackingAI();
 	}
 
 	@Override

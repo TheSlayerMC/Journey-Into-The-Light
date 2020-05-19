@@ -14,6 +14,7 @@ public class EntityMiniSentryWalker extends JEntityMob {
 	public EntityMiniSentryWalker(World par1World) {
 		super(par1World);
 		this.setSize(0.5F, 1.5F);
+		addMeleeAttackingAI();
 	}
 
 	@Override
