@@ -35,8 +35,8 @@ public class ItemEssenceShuriken extends ItemMod {
 		ItemStack stack = player.getHeldItem(handIn);
 		IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);		
 		try {
-			if (!world.isRemote) {
-				if(mana.useEssence(3)) {
+			if(mana.useEssence(3)) {
+				if (!world.isRemote) {
 					EntityEssenceShuriken t = new EntityEssenceShuriken(world, player, 5, 3);
 					t.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F, 1.0F);
 					world.spawnEntity(t);
@@ -56,6 +56,6 @@ public class ItemEssenceShuriken extends ItemMod {
 		l.add("5 Ranged Damage");
 		l.add("Uses 3 Essence");
 		l.add("3 Max Bounces");
-        l.add(i.getMaxDamage() - i.getItemDamage() + SlayerAPI.Colour.DARK_GREEN + " Uses remaining");
+		l.add(i.getMaxDamage() - i.getItemDamage() + SlayerAPI.Colour.DARK_GREEN + " Uses remaining");
 	}
 }
