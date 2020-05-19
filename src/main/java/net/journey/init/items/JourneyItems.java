@@ -553,7 +553,7 @@ public class JourneyItems {
         
         BALMY_TEARDROP = new ItemMod("balmy_teardrop", "Balmy Teardrop");
         CHARM_OF_VINE_STRANDING = new ItemMod("charm_of_vine_stranding", "Charm of Vinestranding");
-        CHARM_OF_WATER_BENDING = new ItemMod("charm_of_water_bending", "Charm of Waterbending");
+        CHARM_OF_WATER_BENDING = new ItemWaterbending("charm_of_water_bending", "Charm of Waterbending");
         CLOUD_BUCKLER = new ItemMod("cloud_buckler", "Cloud Buckler");
         CURSED_TOMB = new ItemCursedTomb("cursed_tomb", "Cursed Tomb");
         DEATH_CAP = new ItemMod("death_cap", "Death Cap");

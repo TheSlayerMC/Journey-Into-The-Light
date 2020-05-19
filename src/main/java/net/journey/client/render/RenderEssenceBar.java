@@ -78,6 +78,7 @@ public class RenderEssenceBar {
 				isEssence instanceof ItemAddEssence ||
 				isEssence == JourneyWeapons.darkEnforcer ||
 				isEssence == JourneyItems.CURSED_TOMB ||
+				isEssence == JourneyItems.CHARM_OF_WATER_BENDING ||
 				isEssence == JourneyWeapons.ESSENCE_SHURIKEN;
 	}
 }
