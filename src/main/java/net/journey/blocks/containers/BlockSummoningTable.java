@@ -44,7 +44,7 @@ public class BlockSummoningTable extends BlockModContainer {
 	private static BlockPattern fifthLayer;
 	
 	public BlockSummoningTable(String name, String f) {
-        super(EnumMaterialTypes.STONE, name, f, 2.0F, JourneyTabs.MACHINE_BLOCKS);
+        super(EnumMaterialTypes.STONE, name, f, 2.0F, JourneyTabs.INTERACTIVE_BLOCKS);
     }
 
     public static BlockPattern getFirstLayer() {

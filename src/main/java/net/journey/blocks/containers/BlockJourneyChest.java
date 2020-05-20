@@ -51,7 +51,7 @@ public class BlockJourneyChest extends BlockModContainer implements IHasTeisr, I
 	}
 
 	public BlockJourneyChest(String name, String f, BlockJourneyChest.Type chestTypeIn, boolean isInitiallyLocked, Item key) {
-		super(EnumMaterialTypes.STONE, name, f, 2.0F, JourneyTabs.MACHINE_BLOCKS);
+		super(EnumMaterialTypes.STONE, name, f, 2.0F, JourneyTabs.INTERACTIVE_BLOCKS);
 		this.chestType = chestTypeIn;
 		this.isInitiallyLocked = isInitiallyLocked;
 		this.key = key;

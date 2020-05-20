@@ -26,6 +26,6 @@ public class BlockCrafting extends BlockWorkbench {
 
     public BlockCrafting(String name, String enName) {
         setSoundType(SoundType.STONE);
-        StuffConstructor.regAndSetupBlock(this, name, enName, 2.0F, JourneyTabs.MACHINE_BLOCKS);
+        StuffConstructor.regAndSetupBlock(this, name, enName, 2.0F, JourneyTabs.INTERACTIVE_BLOCKS);
     }
 }

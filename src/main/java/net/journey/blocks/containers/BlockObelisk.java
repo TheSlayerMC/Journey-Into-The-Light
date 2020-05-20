@@ -29,7 +29,7 @@ public class BlockObelisk extends BlockModContainer implements IHasTeisr, IHasCu
 
 	public BlockObelisk(String name, String finalName) {
 		super(name, finalName);
-		setCreativeTab(JourneyTabs.MACHINE_BLOCKS);
+		setCreativeTab(JourneyTabs.INTERACTIVE_BLOCKS);
 	}
 
     @Override

@@ -30,7 +30,7 @@ public class BlockModSpawner extends BlockMobSpawner {
         super();
         setSoundType(SoundType.METAL);
         this.mobName = mobName;
-        StuffConstructor.regAndSetupBlock(this, name, enName, 1.0F, JourneyTabs.MACHINE_BLOCKS);
+        StuffConstructor.regAndSetupBlock(this, name, enName, 1.0F, JourneyTabs.INTERACTIVE_BLOCKS);
     }
 
     @Override

@@ -23,7 +23,7 @@ public class JourneyTabs extends CreativeTabs {
     public static final JourneyTabs ARMOR = new JourneyTabs("Armor", () -> new ItemStack(JourneyArmory.blazehornHelmet));
     public static final JourneyTabs SPAWNERS = new JourneyTabs("Spawners", () -> new ItemStack(JourneyItems.sentryKingOrb));
     public static final JourneyTabs CROPS = new JourneyTabs("Crops", () -> new ItemStack(JourneyConsumables.hongoShroom));
-    public static final JourneyTabs MACHINE_BLOCKS = new JourneyTabs("Machine Blocks", () -> new ItemStack(JourneyBlocks.summoningTable));
+    public static final JourneyTabs INTERACTIVE_BLOCKS = new JourneyTabs("Interactive Blocks", () -> new ItemStack(JourneyBlocks.summoningTable));
     public static final JourneyTabs PORTAL_BLOCKS = new JourneyTabs("Portal Blocks", () -> new ItemStack(JourneyBlocks.eucaPortal));
 
     public Supplier<ItemStack> iconSupplier;

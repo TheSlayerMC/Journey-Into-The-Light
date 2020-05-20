@@ -18,6 +18,7 @@ import net.journey.init.JourneyTabs;
 import net.journey.init.items.JourneyConsumables;
 import net.journey.init.items.JourneyItems;
 import net.journey.util.Initializer;
+import net.journey.util.JourneyLootTables;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
@@ -111,6 +112,8 @@ public class JourneyBlocks {
     public static BlockMod purpleGemBlock;
     public static BlockMod blueGemBlock;
     public static BlockMod yellowGemBlock;
+    
+    public static BlockMod goldLootBox;
 
     public static BlockModBush sizzleberryBush;
     public static BlockModBush bradberryBush;
@@ -596,6 +599,7 @@ public class JourneyBlocks {
         purpleGemBlock = new BlockMod("purpleGemBlock", "Purple Gem Block");
         blueGemBlock = new BlockMod("blueGemBlock", "Blue Gem Block");
         yellowGemBlock = new BlockMod("yellowGemBlock", "Yellow Gem Block");
+        goldLootBox = new JBlockRandomLoot("goldLootBox", "Gold Loot Box", JourneyLootTables.VANILLA_SIMPLE_DUNGEON);
 
         nethicanSludge = new BlockMod(EnumMaterialTypes.SLIME, "nethicanSludge", "Nethican Sludge", 1.0F);
 
