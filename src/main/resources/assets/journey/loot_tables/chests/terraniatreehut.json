@@ -18,7 +18,7 @@
       },
       {
         "type": "item",
-        "name": "journey:darkterraniansoil",
+        "name": "journey:darkterrariansoil",
         "functions": [
           {
             "function": "set_count",
@@ -31,7 +31,7 @@
       },
       {
         "type": "item",
-        "name": "journey:lightterraniansoil",
+        "name": "journey:lightterrariansoil",
         "functions": [
           {
             "function": "set_count",
