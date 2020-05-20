@@ -25,11 +25,12 @@ import net.slayer.api.EnumMaterialTypes;
 
 import java.util.Random;
 
+import javax.annotation.Nullable;
+
 public class BlockModBush extends BlockMod implements IPlantable, IGrowable {
 
 	public static final PropertyInteger AGE = PropertyInteger.create("age", 0, 2);
-	public static final AxisAlignedBB smallbush = new AxisAlignedBB(0.5F - 0.3F, 0.0F, 0.5F - 0.3F, 0.5F + 0.3F, 0.3F * 1.0F, 0.5F + 0.3F);
-	public static final AxisAlignedBB fullbush = new AxisAlignedBB(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
+    protected static final AxisAlignedBB BUSH_AABB = new AxisAlignedBB(0.30000001192092896D, 0.0D, 0.30000001192092896D, 0.699999988079071D, 0.6000000238418579D, 0.699999988079071D);
 	private boolean isNether;
 	private Item berry;
 
@@ -43,27 +44,16 @@ public class BlockModBush extends BlockMod implements IPlantable, IGrowable {
 		this.setCreativeTab(JourneyTabs.CROPS);
 	}
 
-	@Override
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess access, BlockPos pos) {
-		float f = 0.3F;
-		if (state.getValue(AGE) == 0) {
-			return smallbush;
-		}
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+        return BUSH_AABB;
+    }
 
-		if (state.getValue(AGE) == 1) {
-			return fullbush;
-		}
-
-		if (state.getValue(AGE) == 2) {
-			return fullbush;
-		}
-		return fullbush;
-	}
-
-	@Override
-	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
-		return null;
-	}
+    @Override
+    @Nullable
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
+        return NULL_AABB;
+    }
 
 	@Override
 	public boolean canPlaceBlockAt(World w, BlockPos pos) {
@@ -125,7 +115,7 @@ public class BlockModBush extends BlockMod implements IPlantable, IGrowable {
 	@Override
 	public void updateTick(World w, BlockPos pos, IBlockState state, Random rand) {
 		super.updateTick(w, pos, state, rand);
-		if (w.rand.nextInt(5) == 0) {
+		if (w.rand.nextInt(15) == 0) {
 			int age = state.getValue(AGE);
 			if (age < 2) {
 				w.setBlockState(pos, state.withProperty(AGE, age + 1), 2);
@@ -141,17 +131,22 @@ public class BlockModBush extends BlockMod implements IPlantable, IGrowable {
 
 		return super.canSustainPlant(state, world, pos, direction, plantable);
 	}
+	
+    @Override
+    public boolean isFullCube(IBlockState state) {
+        return false;
+    }
 
-	@Override
-	public boolean isFullCube(IBlockState state) {
-		return false;
-	}
+    @Override
+    public boolean isNormalCube(IBlockState state) {
+        return false;
+    }
 
-	@Override
-	public boolean isOpaqueCube(IBlockState state) {
-		return false;
-	}
-
+    @Override
+    public boolean isOpaqueCube(IBlockState state) {
+        return false;
+    }
+    
 	@Override
 	public int damageDropped(IBlockState state) {
 		return 0;
@@ -164,7 +159,7 @@ public class BlockModBush extends BlockMod implements IPlantable, IGrowable {
 
 	@Override
 	public BlockRenderLayer getRenderLayer() {
-		return BlockRenderLayer.TRANSLUCENT;
+		return BlockRenderLayer.CUTOUT;
 	}
 
 	@Override

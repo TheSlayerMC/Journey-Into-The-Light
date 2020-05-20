@@ -1,22 +1,6 @@
 {
-    "__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
-    "textures": {
-        "particle": "journey:blocks/bogberryBush_empty",
-        "0": "journey:blocks/bogberryBush_empty"
-    },
-    "elements": [
-        {
-            "name": "Cube",
-            "from": [ 4.0, 0.0, 4.0 ], 
-            "to": [ 12.0, 8.0, 12.0 ], 
-            "faces": {
-                "north": { "texture": "#0", "uv": [ 0.0, 0.0, 8.0, 8.0 ] },
-                "east": { "texture": "#0", "uv": [ 0.0, 0.0, 8.0, 8.0 ] },
-                "south": { "texture": "#0", "uv": [ 0.0, 0.0, 8.0, 8.0 ] },
-                "west": { "texture": "#0", "uv": [ 0.0, 0.0, 8.0, 8.0 ] },
-                "up": { "texture": "#0", "uv": [ 0.0, 0.0, 8.0, 8.0 ] },
-                "down": { "texture": "#0", "uv": [ 0.0, 0.0, 8.0, 8.0 ] }
-            }
-        }
-    ]
+	"parent": "block/cross",
+	"textures": {
+		"cross": "journey:blocks/bogberrybush_0"
+	}
 }
