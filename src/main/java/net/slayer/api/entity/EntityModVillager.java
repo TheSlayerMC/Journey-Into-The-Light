@@ -132,7 +132,6 @@ public abstract class EntityModVillager extends EntityVillager implements INpc, 
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public boolean processInteract(EntityPlayer var1, EnumHand hand) {
         if (!this.world.isRemote) {
             abstractInteract(var1);

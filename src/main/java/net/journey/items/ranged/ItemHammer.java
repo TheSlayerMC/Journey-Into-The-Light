@@ -27,7 +27,7 @@ import java.util.List;
 
 public class ItemHammer extends ItemSword {
 
-    protected int usage;
+    protected final int usage;
     protected int damage;
     protected boolean essence, unbreakable;
     protected Class<? extends EntityBasicProjectile> projectile;
