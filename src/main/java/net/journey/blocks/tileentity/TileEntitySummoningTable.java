@@ -167,18 +167,20 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
         //Set boss orb in middle
         this.inventory.set(3, orb);
 
-        //Add effects
-        addSound();
-        addParticles();
+		// Add effects
+		addSound();
+		addParticles();
     }
 
-    @SideOnly(Side.CLIENT)
-    public void addSound() {
-        double x = pos.getX();
-        double y = pos.getY();
-        double z = pos.getZ();
-        world.playSound(x, y, z, JourneySounds.SUMMON_TABLE, SoundCategory.BLOCKS, 1.0f, 1.0f, false);
-    }
+	@SideOnly(Side.CLIENT)
+	public void addSound() {
+		double x = pos.getX();
+		double y = pos.getY();
+		double z = pos.getZ();
+		if (!this.world.isRemote) {
+			world.playSound(x, y, z, JourneySounds.SUMMON_TABLE, SoundCategory.BLOCKS, 1.0f, 1.0f, false);
+		}
+	}
 
     @SideOnly(Side.CLIENT)
     public void addParticles() {
