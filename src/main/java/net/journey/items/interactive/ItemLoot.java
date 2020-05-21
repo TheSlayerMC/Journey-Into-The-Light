@@ -44,8 +44,7 @@ public class ItemLoot extends ItemMod {
 			int index = r.nextInt(lootTable.size());
 			ItemStack itemToSpawn = lootTable.get(index);
 
-			String name = LangHelper.getFormattedText(itemToSpawn.getItem().getTranslationKey() + ".name");
-			SlayerAPI.addChatMessage(player, "You recieved " + name);
+			SlayerAPI.addFormattedChatMessage(player, "You recieved " + itemToSpawn.getItem().getTranslationKey() + ".name");
 			
 			JourneySounds.playSound(JourneySounds.WRAPPER, world, player);
 

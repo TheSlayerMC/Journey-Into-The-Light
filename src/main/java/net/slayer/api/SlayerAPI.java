@@ -116,12 +116,10 @@ public class SlayerAPI {
         return EnumHelper.addArmorMaterial(name, SlayerAPI.PREFIX + name, duraNew, oldArmor, enchantability, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, toughness);
     }
 
-    @SideOnly(Side.CLIENT)
     public static void addChatMessageWithColour(EntityPlayer p, String colour, String str) {
         p.sendMessage(new TextComponentString(SlayerAPI.Colour.YELLOW + "[" + SlayerAPI.Colour.GOLD + JITL.MOD_NAME + SlayerAPI.Colour.YELLOW + "] " + colour + str));
     }
 
-    @SideOnly(Side.CLIENT)
     public static void addChatMessage(EntityPlayer p, String str) {
         p.sendMessage(LangHelper.getClientSideTranslation(p, str));
     }
