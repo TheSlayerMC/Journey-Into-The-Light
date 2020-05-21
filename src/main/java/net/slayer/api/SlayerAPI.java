@@ -7,7 +7,6 @@ import net.journey.util.LangHelper;
 import net.journey.util.gen.lang.LangGeneratorFacade;
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
@@ -18,6 +17,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraftforge.common.MinecraftForge;
@@ -126,10 +126,8 @@ public class SlayerAPI {
         p.sendMessage(LangHelper.getClientSideTranslation(p, str));
     }
 
-    @SideOnly(Side.CLIENT)
     public static void addFormattedChatMessage(EntityPlayer p, String str) {
-        TextComponentString ret = new TextComponentString(I18n.format(str));
-        p.sendMessage(ret);
+        p.sendMessage(new TextComponentTranslation(str));
     }
 
     @SideOnly(Side.CLIENT)
