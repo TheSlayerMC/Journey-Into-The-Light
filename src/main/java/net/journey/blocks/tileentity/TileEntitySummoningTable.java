@@ -15,9 +15,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntityLockableLoot;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.SoundCategory;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Random;
 
@@ -167,9 +164,11 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
         //Set boss orb in middle
         this.inventory.set(3, orb);
 
-		// Add effects
-		addSound();
-		addParticles();
+        // Add effects
+        addSound();
+        if (world.isRemote) {
+            addParticles();
+        }
     }
 
 	public void addSound() {
