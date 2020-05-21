@@ -172,17 +172,13 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
 		addParticles();
     }
 
-	@SideOnly(Side.CLIENT)
 	public void addSound() {
 		double x = pos.getX();
 		double y = pos.getY();
 		double z = pos.getZ();
-		if (!this.world.isRemote) {
-			world.playSound(x, y, z, JourneySounds.SUMMON_TABLE, SoundCategory.BLOCKS, 1.0f, 1.0f, false);
-		}
+        JourneySounds.playSound(x, y, z, JourneySounds.SUMMON_BOSS, world, 1.0F, 0.7F);
 	}
 
-    @SideOnly(Side.CLIENT)
     public void addParticles() {
         Random r = new Random();
         if (!world.isRemote) {

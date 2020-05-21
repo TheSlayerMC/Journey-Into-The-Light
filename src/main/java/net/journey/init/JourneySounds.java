@@ -1,5 +1,7 @@
 package net.journey.init;
 
+import javax.annotation.Nullable;
+
 import net.journey.JITL;
 import net.journey.Registries;
 import net.minecraft.entity.EntityLiving;
@@ -254,6 +256,10 @@ public class JourneySounds {
         ForgeRegistries.SOUND_EVENTS.register(s);
         Registries.SOUNDS.add(s);
         return s;
+    }
+
+    public static void playSound(double x, double y, double z, SoundEvent sound, World w, float volume, float pitch) {
+		w.playSound(x, y, z, sound, SoundCategory.NEUTRAL, volume, pitch, false);
     }
 
     public static void playSound(SoundEvent sound, World w, EntityPlayer e) {
