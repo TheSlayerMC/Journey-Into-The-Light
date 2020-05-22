@@ -124,8 +124,8 @@ public class SlayerAPI {
         p.sendMessage(LangHelper.getClientSideTranslation(p, str));
     }
 
-    public static void addFormattedChatMessage(EntityPlayer p, String str) {
-        p.sendMessage(new TextComponentTranslation(str));
+    public static void addFormattedChatMessage(EntityPlayer p, String str, Object...args) {
+        p.sendMessage(new TextComponentTranslation(str, args));
     }
 
     @SideOnly(Side.CLIENT)

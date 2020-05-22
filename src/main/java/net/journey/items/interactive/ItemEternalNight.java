@@ -15,6 +15,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.slayer.api.SlayerAPI;
 import net.slayer.api.item.ItemMod;
 
 public class ItemEternalNight extends ItemMod {
@@ -33,6 +34,7 @@ public class ItemEternalNight extends ItemMod {
 			worldIn.setWorldTime(18000L);
 			stack.damageItem(1, player);
 			worldIn.playSound(player, player.getPosition(), JourneySounds.ETERNAL_NIGHT, SoundCategory.PLAYERS, 1.0F, 1.0F);
+			SlayerAPI.addChatMessage(player, player.getDisplayNameString() + " isn't scared of the dark...");
 			return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
 		}
 		return new ActionResult<ItemStack>(EnumActionResult.FAIL, stack);

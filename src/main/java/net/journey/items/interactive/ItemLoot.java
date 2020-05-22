@@ -30,34 +30,34 @@ import net.slayer.api.item.ItemMod;
 public class ItemLoot extends ItemMod {
 
 	private ResourceLocation loot;
-	
-    public ItemLoot(String name, String f, ResourceLocation lootTable) {
-        super(name, f, JourneyTabs.UTIL);
-        this.loot = lootTable;
-    }
 
-    @Override
-    public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+	public ItemLoot(String name, String f, ResourceLocation lootTable) {
+		super(name, f, JourneyTabs.UTIL);
+		this.loot = lootTable;
+	}
+
+	@Override
+	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
 		if (!world.isRemote) {
 			Random r = new Random();
 			List<ItemStack> lootTable = LootHelper.readFromLootTable(loot, (EntityPlayerMP) player);
 			int index = r.nextInt(lootTable.size());
 			ItemStack itemToSpawn = lootTable.get(index);
 
-			SlayerAPI.addFormattedChatMessage(player, "journey.recieve.item " + itemToSpawn.getItem().getTranslationKey() + ".name");
-			
+			SlayerAPI.addFormattedChatMessage(player, "journey.recieve.item", itemToSpawn.getItem().getTranslationKey() + ".name");
+
 			JourneySounds.playSound(JourneySounds.WRAPPER, world, player);
 
 			EntityItem item = new EntityItem(world, player.posX, player.posY, player.posZ, itemToSpawn);
 			world.spawnEntity(item);
-	        player.getHeldItem(hand).shrink(1);
-	        return EnumActionResult.SUCCESS;
+			player.getHeldItem(hand).shrink(1);
+			return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getHeldItemMainhand());
 		}
-        return EnumActionResult.PASS;
-    }
+		return new ActionResult<ItemStack>(EnumActionResult.FAIL, player.getHeldItemMainhand());
+	}
 
-    @Override
-    public void addInformation(ItemStack i, World worldIn, List<String> l, ITooltipFlag flagIn) {
-        l.add("Right click to open");
-    }
+	@Override
+	public void addInformation(ItemStack i, World worldIn, List<String> l, ITooltipFlag flagIn) {
+		l.add("Right click to open");
+	}
 }
