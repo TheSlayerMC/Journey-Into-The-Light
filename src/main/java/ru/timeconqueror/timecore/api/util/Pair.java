@@ -1,4 +1,4 @@
-package ru.timeconqueror.timecore.api.auxiliary;
+package ru.timeconqueror.timecore.api.util;
 
 public class Pair<A, B> {
 	private A a;
@@ -7,6 +7,10 @@ public class Pair<A, B> {
 	public Pair(A a, B b) {
 		this.a = a;
 		this.b = b;
+	}
+
+	public static <A, B> Pair<A, B> of(A a, B b) {
+		return new Pair<>(a, b);
 	}
 
 	public A getA() {

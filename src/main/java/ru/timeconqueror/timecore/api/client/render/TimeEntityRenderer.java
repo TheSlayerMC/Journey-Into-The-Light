@@ -3,6 +3,7 @@ package ru.timeconqueror.timecore.api.client.render;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.EntityLiving;
+import ru.timeconqueror.timecore.api.client.render.animation.IAnimationProvider;
 
 public abstract class TimeEntityRenderer<T extends EntityLiving & IAnimationProvider> extends RenderLiving<T> {
     public TimeEntityRenderer(RenderManager rendererManager, TimeEntityModel entityModelIn, float shadowSizeIn) {
