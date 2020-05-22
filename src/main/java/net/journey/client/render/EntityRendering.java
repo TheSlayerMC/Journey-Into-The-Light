@@ -1,5 +1,6 @@
 package net.journey.client.render;
 
+import net.journey.JITL;
 import net.journey.blocks.tileentity.*;
 import net.journey.client.render.base.*;
 import net.journey.client.render.block.*;
@@ -91,8 +92,10 @@ import net.minecraft.client.model.ModelBlaze;
 import net.minecraft.client.model.ModelSnowMan;
 import net.minecraft.client.renderer.entity.RenderTippedArrow;
 import net.minecraft.init.Items;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import ru.timeconqueror.timecore.api.client.render.animation.TimeClientLoader;
 
 public class EntityRendering {
 
@@ -100,6 +103,9 @@ public class EntityRendering {
     private static MobStats stat;
 
     public static void init() {
+        RenderingRegistry.registerEntityRenderingHandler(EntityFloro.class, manager -> new AnimatedMobRenderer<>(manager, TimeClientLoader.loadJsonEntityModel(entityModelLocation("overworld/floro")), entityTextureLocation("overworld/floro")));
+//        RenderingRegistry.registerEntityRenderingHandler(EntityFloro.class, new RenderModMob(new ModelFloro(), Textures.floro));
+
         /**Projectiles*/
         RenderingRegistry.registerEntityRenderingHandler(EntityBasicProjectile.class, new RenderStaffProjectile(Textures.basic, 1.0F, 0.2F, 0.2F));
         RenderingRegistry.registerEntityRenderingHandler(EntityDoomsBringer.class, new RenderStaffProjectile(Textures.basic, 1.2F, 0.2F, 0.2F));
@@ -217,7 +223,6 @@ public class EntityRendering {
         RenderingRegistry.registerEntityRenderingHandler(EntityIceman.class, new RenderEntityTransparent(new ModelSnowMan(), Textures.iceman));
         RenderingRegistry.registerEntityRenderingHandler(EntityWraith.class, new RenderWraith(new ModelWraith(), Textures.wraith));
         RenderingRegistry.registerEntityRenderingHandler(EntityTurducken.class, new RenderModMob(new ModelRoc(), Textures.turducken));
-        RenderingRegistry.registerEntityRenderingHandler(EntityFloro.class, new RenderModMob(new ModelFloro(), Textures.floro));
         RenderingRegistry.registerEntityRenderingHandler(EntityDarkener.class, new RenderModMob(new ModelDarkener(), Textures.darkener));
         RenderingRegistry.registerEntityRenderingHandler(EntityStarlightGolem.class, new RenderModMob(new ModelStarlightGolem(), Textures.starlightGolem));
         RenderingRegistry.registerEntityRenderingHandler(EntityIceGolem.class, new RenderIceGolem(new ModelIceGolem(), Textures.iceGolem));
@@ -335,5 +340,13 @@ public class EntityRendering {
 
     public static void setTex(Textures tex) {
         EntityRendering.tex = tex;
+    }
+
+    public static ResourceLocation entityModelLocation(String path) {
+        return new ResourceLocation(JITL.MOD_ID, "models/entities/" + path + ".json");
+    }
+
+    public static ResourceLocation entityTextureLocation(String path) {
+        return new ResourceLocation(JITL.MOD_ID, "textures/entities/" + path + ".png");
     }
 }

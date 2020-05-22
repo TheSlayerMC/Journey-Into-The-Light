@@ -10,13 +10,12 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
 public abstract class JEntityMob extends EntityMob implements ISettingsConsumer {
 
-	public JEntityMob(World par1World) {
-		super(par1World);
+	public JEntityMob(World world) {
+		super(world);
 		setSize(1.0F, 2.0F);
 	}
 
@@ -91,7 +90,7 @@ public abstract class JEntityMob extends EntityMob implements ISettingsConsumer 
 	}
 
 	@Override
-	public boolean getCanSpawnHere() {
-		return world.getDifficulty() != EnumDifficulty.PEACEFUL && this.world.checkNoEntityCollision(this.getEntityBoundingBox()) && this.world.getCollisionBoxes(this, this.getEntityBoundingBox()).isEmpty() && !this.world.containsAnyLiquid(this.getEntityBoundingBox());
+	protected boolean isValidLightLevel() {
+		return true;
 	}
 }

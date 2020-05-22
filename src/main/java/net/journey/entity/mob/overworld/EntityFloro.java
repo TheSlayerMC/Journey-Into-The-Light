@@ -21,13 +21,16 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
+import ru.timeconqueror.timecore.api.client.render.animation.AnimationManager;
+import ru.timeconqueror.timecore.api.client.render.animation.IAnimationProvider;
 
 import javax.annotation.Nullable;
 
-public class EntityFloro extends JEntityMob implements IRangedAttackMob {
+public class EntityFloro extends JEntityMob implements IRangedAttackMob, IAnimationProvider {
+	private AnimationManager animationManager = new AnimationManager();
 
-	public EntityFloro(World par1World) {
-		super(par1World);
+	public EntityFloro(World world) {
+		super(world);
 		this.tasks.addTask(3, new EntityAIAvoidEntity<>(this, EntityWolf.class, 6.0F, 1.0D, 1.2D));
 		this.tasks.addTask(6, new EntityAIWanderAvoidWater(this, 1.0D));
 		this.tasks.addTask(6, new EntityAILookIdle(this));
@@ -72,10 +75,11 @@ public class EntityFloro extends JEntityMob implements IRangedAttackMob {
 	@Override
 	public boolean getCanSpawnHere() {
 		return
-				this.world.getBlockState(new BlockPos(this.posX, this.posY - 1, this.posZ)).getBlock() == Blocks.GRASS ||
-				this.world.getBlockState(new BlockPos(this.posX, this.posY - 1, this.posZ)).getBlock() == Blocks.LEAVES ||
-				this.world.getBlockState(new BlockPos(this.posX, this.posY - 1, this.posZ)).getBlock() == Blocks.SAND ||
-				this.world.getBlockState(new BlockPos(this.posX, this.posY - 1, this.posZ)).getBlock() == Blocks.DIRT && this.dimension == 0;
+				dimension == 0
+						&& (this.world.getBlockState(new BlockPos(this.posX, this.posY - 1, this.posZ)).getBlock() == Blocks.GRASS ||
+						this.world.getBlockState(new BlockPos(this.posX, this.posY - 1, this.posZ)).getBlock() == Blocks.LEAVES ||
+						this.world.getBlockState(new BlockPos(this.posX, this.posY - 1, this.posZ)).getBlock() == Blocks.SAND ||
+						this.world.getBlockState(new BlockPos(this.posX, this.posY - 1, this.posZ)).getBlock() == Blocks.DIRT);
 	}
 
 	@Override
@@ -105,5 +109,10 @@ public class EntityFloro extends JEntityMob implements IRangedAttackMob {
 	@Override
 	public @NotNull EntitySettings getEntitySettings() {
 		return MobStats.FLORO;
+	}
+
+	@Override
+	public AnimationManager getAnimationManager() {
+		return animationManager;
 	}
 }
