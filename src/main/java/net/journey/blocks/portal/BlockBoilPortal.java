@@ -36,12 +36,12 @@ public class BlockBoilPortal extends BlockModPortal {
             int dimensionID = Config.boil;
             Block blockFrame = JourneyBlocks.boilPortalFrame;
             if (thePlayer.timeUntilPortal > 0)
-                thePlayer.timeUntilPortal = 10;
+                thePlayer.timeUntilPortal = 300;
             else if (thePlayer.dimension != dimensionID) {
-                thePlayer.timeUntilPortal = 10;
+                thePlayer.timeUntilPortal = 300;
                 thePlayer.server.getPlayerList().transferPlayerToDimension(thePlayer, dimensionID, new ModTeleporter(thePlayer.server.getWorld(dimensionID), this, blockFrame.getDefaultState()));
             } else {
-                thePlayer.timeUntilPortal = 10;
+                thePlayer.timeUntilPortal = 300;
                 thePlayer.server.getPlayerList().transferPlayerToDimension(thePlayer, 0, new ModTeleporter(thePlayer.server.getWorld(0), this, blockFrame.getDefaultState()));
             }
         }

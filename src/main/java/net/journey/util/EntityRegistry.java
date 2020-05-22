@@ -105,6 +105,9 @@ public class EntityRegistry {
                 SlayerAPI.registerProjectile(EntityFrozenSnowball.class, "frozensnowball"),
                 SlayerAPI.registerProjectile(EntityMagicBomb.class, "magicbomb"),
                 SlayerAPI.registerProjectile(EntityEssenceShuriken.class, "essence_shuriken"),
+                SlayerAPI.registerProjectile(EntityWithic.class, "withic"),
+                SlayerAPI.registerProjectile(EntityEarthen.class, "earthen"),
+                SlayerAPI.registerProjectile(EntityOvergrown.class, "overworld"),
         };
 
         return JourneyProjectiles;
