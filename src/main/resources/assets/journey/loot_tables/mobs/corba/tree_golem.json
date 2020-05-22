@@ -17,9 +17,15 @@
       },
       {
         "type": "item",
+        "name": "journey:overgrownnatureball",
+        "functions": [{ "function": "set_count", "count": { "min": 1, "max": 2 } }],
+        "weight": 3
+      },
+      {
+        "type": "item",
         "name": "journey:naturetablet",
         "functions": [{ "function": "set_count", "count": { "min": 1, "max": 2 } }],
-        "weight": 1
+        "weight": 5
       }
     ]
   }]
