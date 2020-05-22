@@ -34,6 +34,7 @@ journey.seconds=seconds
 journey.bossSpawn=Spawns boss
 journey.petSpawn=Spawns pet
 journey.time=Time: 
+journey.recieve.item=You've recieved %s
 mage.deals=I have some great deals!
 mage.valuables=I've got some nice valuables!
 mage.greetings=Greetings, weary traveller!
