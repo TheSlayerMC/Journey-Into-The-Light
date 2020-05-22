@@ -6,55 +6,44 @@ import net.journey.entity.projectile.EntityFloroWater;
 import net.journey.init.JourneySounds;
 import net.journey.util.JourneyLootTables;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
+import ru.timeconqueror.timecore.api.client.render.animation.AnimationManager;
+import ru.timeconqueror.timecore.api.client.render.animation.IAnimationProvider;
 
-import javax.annotation.Nullable;
+public class EntityFloro extends JEntityMob implements IRangedAttackMob, IAnimationProvider {
+	private AnimationManager animationManager = new AnimationManager();
+	private static final DataParameter<Byte> STATE = EntityDataManager.createKey(EntityFloro.class, DataSerializers.BYTE);
 
-public class EntityFloro extends JEntityMob implements IRangedAttackMob {
-
-	public EntityFloro(World par1World) {
-		super(par1World);
-		this.tasks.addTask(3, new EntityAIAvoidEntity<>(this, EntityWolf.class, 6.0F, 1.0D, 1.2D));
-		this.tasks.addTask(6, new EntityAIWanderAvoidWater(this, 1.0D));
-		this.tasks.addTask(6, new EntityAILookIdle(this));
+	public EntityFloro(World world) {
+		super(world);
+//		dataManager.register();
 	}
 
 	@Override
 	protected void initEntityAI() {
 		super.initEntityAI();
 
+		this.tasks.addTask(3, new EntityAIAvoidEntity<>(this, EntityWolf.class, 6.0F, 1.0D, 1.2D));
+		this.tasks.addTask(6, new EntityAIWanderAvoidWater(this, 1.0D));
+		this.tasks.addTask(6, new EntityAILookIdle(this));
+
 		this.tasks.addTask(4, new EntityAIAttackRanged(this, 0.27F, 50, 8.0F));
 		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
 		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<>(this, EntityPlayer.class, true));
-	}
-
-	@Override
-	@Nullable
-	public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata) {
-		livingdata = super.onInitialSpawn(difficulty, livingdata);
-		this.setEquipmentBasedOnDifficulty(difficulty);
-		this.setEnchantmentBasedOnDifficulty(difficulty);
-		this.setCanPickUpLoot(this.rand.nextFloat() < 0.55F * difficulty.getClampedAdditionalDifficulty());
-		return livingdata;
-	}
-
-	@Override
-	public void readEntityFromNBT(NBTTagCompound compound) {
-		super.readEntityFromNBT(compound);
 	}
 
 	@Override
@@ -72,10 +61,11 @@ public class EntityFloro extends JEntityMob implements IRangedAttackMob {
 	@Override
 	public boolean getCanSpawnHere() {
 		return
-				this.world.getBlockState(new BlockPos(this.posX, this.posY - 1, this.posZ)).getBlock() == Blocks.GRASS ||
-				this.world.getBlockState(new BlockPos(this.posX, this.posY - 1, this.posZ)).getBlock() == Blocks.LEAVES ||
-				this.world.getBlockState(new BlockPos(this.posX, this.posY - 1, this.posZ)).getBlock() == Blocks.SAND ||
-				this.world.getBlockState(new BlockPos(this.posX, this.posY - 1, this.posZ)).getBlock() == Blocks.DIRT && this.dimension == 0;
+				dimension == 0
+						&& (this.world.getBlockState(new BlockPos(this.posX, this.posY - 1, this.posZ)).getBlock() == Blocks.GRASS ||
+						this.world.getBlockState(new BlockPos(this.posX, this.posY - 1, this.posZ)).getBlock() == Blocks.LEAVES ||
+						this.world.getBlockState(new BlockPos(this.posX, this.posY - 1, this.posZ)).getBlock() == Blocks.SAND ||
+						this.world.getBlockState(new BlockPos(this.posX, this.posY - 1, this.posZ)).getBlock() == Blocks.DIRT);
 	}
 
 	@Override
@@ -105,5 +95,16 @@ public class EntityFloro extends JEntityMob implements IRangedAttackMob {
 	@Override
 	public @NotNull EntitySettings getEntitySettings() {
 		return MobStats.FLORO;
+	}
+
+	@Override
+	public AnimationManager getAnimationManager() {
+		return animationManager;
+	}
+
+	public enum State {
+//		HIDING(0),
+//		WALKING(1),
+
 	}
 }

@@ -41,6 +41,7 @@ public class ClientProxy extends CommonProxy {
 
     @Override
     public void clientPreInit() {
+        EntityRendering.preInit();
         SlayerAPI.registerEventListener(new RenderEssenceBar());
     }
 
