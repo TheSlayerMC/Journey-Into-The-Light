@@ -88,9 +88,4 @@ public abstract class JEntityMob extends EntityMob implements ISettingsConsumer 
 	public double getKnockbackResistance() {
 		return getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).getAttributeValue();
 	}
-
-	@Override
-	protected boolean isValidLightLevel() {
-		return true;
-	}
 }

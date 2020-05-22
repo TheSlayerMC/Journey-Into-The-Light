@@ -102,8 +102,11 @@ public class EntityRendering {
     private static Textures tex;
     private static MobStats stat;
 
-    public static void init() {
+    public static void preInit() {
         RenderingRegistry.registerEntityRenderingHandler(EntityFloro.class, manager -> new AnimatedMobRenderer<>(manager, TimeClientLoader.loadJsonEntityModel(entityModelLocation("overworld/floro")), entityTextureLocation("overworld/floro")));
+    }
+
+    public static void init() {
 //        RenderingRegistry.registerEntityRenderingHandler(EntityFloro.class, new RenderModMob(new ModelFloro(), Textures.floro));
 
         /**Projectiles*/
