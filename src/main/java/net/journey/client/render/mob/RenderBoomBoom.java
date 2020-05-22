@@ -7,11 +7,12 @@ import net.journey.client.render.model.mob.overworld.ModelBoomBoom;
 import net.journey.entity.mob.overworld.EntityBoom;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.jetbrains.annotations.NotNull;
 
 @SideOnly(Side.CLIENT)
 public class RenderBoomBoom extends RenderModMob<EntityBoom> {
@@ -35,14 +36,13 @@ public class RenderBoomBoom extends RenderModMob<EntityBoom> {
         GlStateManager.scale(f3, f4, f3);
     }
 
-    @Override
-    protected ResourceLocation getEntityTexture(@NotNull EntityBoom entityBoom) {
+    protected ResourceLocation getEntityTexture(EntityBoom e) {
         return boomTextures;
     }
 
     @Override
-    protected void preRenderCallback(EntityBoom e, float f) {
-        render(e, f);
+    protected void preRenderCallback(EntityLivingBase e, float f) {
+        render((EntityBoom) e, f);
     }
 
     protected int flash(EntityBoom e, float x, float y) {
@@ -57,7 +57,12 @@ public class RenderBoomBoom extends RenderModMob<EntityBoom> {
     }
 
     @Override
-    protected int getColorMultiplier(EntityBoom e, float x, float y) {
-        return this.flash(e, x, y);
+    protected int getColorMultiplier(EntityLivingBase e, float x, float y) {
+        return this.flash((EntityBoom) e, x, y);
+    }
+
+    @Override
+    protected ResourceLocation getEntityTexture(Entity e) {
+        return this.getEntityTexture((EntityBoom) e);
     }
 }

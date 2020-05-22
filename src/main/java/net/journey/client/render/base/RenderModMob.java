@@ -10,13 +10,14 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.layers.LayerHeldItem;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
 import net.slayer.api.SlayerAPI.Colour;
 import org.lwjgl.opengl.GL11;
 
-public class RenderModMob<T extends EntityLiving> extends RenderLiving<T> {
+public class RenderModMob<T> extends RenderLiving {
 
     private ResourceLocation texture;
 
@@ -36,10 +37,11 @@ public class RenderModMob<T extends EntityLiving> extends RenderLiving<T> {
     }
 
     @Override
-    public void doRender(T entity, double x, double y, double z, float f, float partialTicks) {
+    public void doRender(EntityLiving entity, double x, double y, double z, float f, float partialTicks) {
         if (Minecraft.getMinecraft().gameSettings.showDebugInfo) {
             if (Config.showEntityHealth) {
-                renderHealth(entity, Colour.GREEN + "Health: " + Colour.AQUA + (int) entity.getHealth() + "/" + (int) entity.getMaxHealth(), x, y, z, Config.entityHealthDistance);
+                EntityLivingBase e = entity;
+                renderHealth(e, Colour.GREEN + "Health: " + Colour.AQUA + (int) e.getHealth() + "/" + (int) e.getMaxHealth(), x, y, z, Config.entityHealthDistance);
             }
         }
         super.doRender(entity, x, y, z, f, partialTicks);
@@ -87,7 +89,7 @@ public class RenderModMob<T extends EntityLiving> extends RenderLiving<T> {
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(T var1) {
+    protected ResourceLocation getEntityTexture(Entity var1) {
         return texture;
     }
 }
