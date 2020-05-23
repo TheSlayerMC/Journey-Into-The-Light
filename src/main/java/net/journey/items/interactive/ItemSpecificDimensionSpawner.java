@@ -60,7 +60,7 @@ public class ItemSpecificDimensionSpawner extends ItemMod {
                         return EnumActionResult.PASS;
                     }
                     JourneySounds.playSound(JourneySounds.SUMMON_BOSS, w, p);
-                    SlayerAPI.sendMessageToAll("You're playing with hot fire. It's not too late to turn back...", true);
+                    SlayerAPI.addFormattedChatMessage(p, "You're playing with hot fire. It's not too late to turn back...");
                     w.spawnEntity(blaze);
                 }
                 if (item == JourneyItems.rocSpawnEgg) {
@@ -79,7 +79,7 @@ public class ItemSpecificDimensionSpawner extends ItemMod {
                         ChatUtils.sendColored(p, TextFormatting.DARK_PURPLE, "Not enough space for boss to spawn");
                         return EnumActionResult.PASS;
                     }
-                    SlayerAPI.sendMessageToAll("It sucked all the energy out of this world, don't let it suck the energy out of you...", true);
+                    SlayerAPI.addFormattedChatMessage(p, "It sucked all the energy out of this world, don't let it suck the energy out of you...");
                     JourneySounds.playSound(JourneySounds.SUMMON_BOSS, w, p);
                     w.spawnEntity(sentry);
                 }
@@ -89,7 +89,7 @@ public class ItemSpecificDimensionSpawner extends ItemMod {
                         ChatUtils.sendColored(p, TextFormatting.DARK_PURPLE, "Not enough space for boss to spawn");
                         return EnumActionResult.PASS;
                     }
-                    SlayerAPI.sendMessageToAll("The purple flying fish monster is not happy...", true);
+                    SlayerAPI.addFormattedChatMessage(p, "The purple flying fish monster is not happy...");
                     JourneySounds.playSound(JourneySounds.SUMMON_BOSS, w, p);
                     w.spawnEntity(sky);
                 }
@@ -99,7 +99,7 @@ public class ItemSpecificDimensionSpawner extends ItemMod {
                         ChatUtils.sendColored(p, TextFormatting.DARK_PURPLE, "Not enough space for boss to spawn");
                         return EnumActionResult.PASS;
                     }
-                    SlayerAPI.sendMessageToAll("You will regret this mistake for the rest of your life - if you'll still have one, that is...", true);
+                    SlayerAPI.addFormattedChatMessage(p, "You will regret this mistake for the rest of your life - if you'll still have one, that is...");
                     JourneySounds.playSound(JourneySounds.SUMMON_BOSS, w, p);
                     w.spawnEntity(corallator);
                 }
@@ -109,7 +109,7 @@ public class ItemSpecificDimensionSpawner extends ItemMod {
                         ChatUtils.sendColored(p, TextFormatting.DARK_PURPLE, "Not enough space for boss to spawn");
                         return EnumActionResult.PASS;
                     }
-                    SlayerAPI.sendMessageToAll("You'll get chopped to pieces with this one...", true);
+                    SlayerAPI.addFormattedChatMessage(p, "You'll get chopped to pieces with this one...");
                     JourneySounds.playSound(JourneySounds.SUMMON_BOSS, w, p);
                     w.spawnEntity(logger);
                 }
@@ -119,7 +119,7 @@ public class ItemSpecificDimensionSpawner extends ItemMod {
                         ChatUtils.sendColored(p, TextFormatting.DARK_PURPLE, "Not enough space for boss to spawn");
                         return EnumActionResult.PASS;
                     }
-                    SlayerAPI.sendMessageToAll("(The blue blubby fish monster has been summoned!", true);
+                    SlayerAPI.addFormattedChatMessage(p, "(The blue blubby fish monster has been summoned!");
                     JourneySounds.playSound(JourneySounds.SUMMON_BOSS, w, p);
                     w.spawnEntity(scale);
                 }
@@ -131,7 +131,7 @@ public class ItemSpecificDimensionSpawner extends ItemMod {
                         return EnumActionResult.PASS;
                     }
                     JourneySounds.playSound(JourneySounds.SUMMON_BOSS, w, p);
-                    SlayerAPI.sendMessageToAll("The King has been summoned", true);
+                    SlayerAPI.addFormattedChatMessage(p, "The King has been summoned");
                     w.spawnEntity(eudor);
                 }
                 if (item == JourneyItems.thunderbirdOrb) {
@@ -140,7 +140,7 @@ public class ItemSpecificDimensionSpawner extends ItemMod {
                         ChatUtils.sendColored(p, TextFormatting.DARK_PURPLE, "Not enough space for boss to spawn");
                         return EnumActionResult.PASS;
                     }
-                    SlayerAPI.sendMessageToAll("The thunderbird is not pleased with its awakening...", true);
+                    SlayerAPI.addFormattedChatMessage(p, "The thunderbird is not pleased with its awakening...");
                     JourneySounds.playSound(JourneySounds.SUMMON_BOSS, w, p);
                     w.spawnEntity(thunder);
                 }
@@ -150,7 +150,7 @@ public class ItemSpecificDimensionSpawner extends ItemMod {
                         ChatUtils.sendColored(p, TextFormatting.DARK_PURPLE, "Not enough space for boss to spawn");
                         return EnumActionResult.PASS;
                     }
-                    SlayerAPI.sendMessageToAll("It's sole purpose was to protect this land. Why would you try to destroy it?", true);
+                    SlayerAPI.addFormattedChatMessage(p, "It's sole purpose was to protect this land. Why would you try to destroy it?");
                     JourneySounds.playSound(JourneySounds.SUMMON_BOSS, w, p);
                     w.spawnEntity(terrastar);
 
