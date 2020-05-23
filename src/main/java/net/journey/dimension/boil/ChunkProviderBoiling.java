@@ -1,8 +1,11 @@
 package net.journey.dimension.boil;
 
 import net.journey.blocks.plant.BlockSandPlant;
+import net.journey.dimension.base.WorldGenJourney;
 import net.journey.dimension.base.WorldGenTallPlant;
+import net.journey.dimension.boil.gen.WorldGenBoilingFire;
 import net.journey.dimension.boil.gen.WorldGenBoilingLamp;
+import net.journey.dimension.boil.gen.WorldGenBoilingLava;
 import net.journey.dimension.boil.gen.WorldGenTraderHutBoiling;
 import net.journey.dimension.boil.gen.dungeon.WorldGenBrisonNetwork;
 import net.journey.dimension.boil.gen.dungeon.WorldGenHornDungeon;
@@ -13,6 +16,7 @@ import net.journey.dimension.boil.trees.WorldGenBoilTree3;
 import net.journey.dimension.overworld.gen.WorldGenDesertFlower;
 import net.journey.dimension.overworld.gen.WorldGenModFlower;
 import net.journey.init.blocks.JourneyBlocks;
+import net.journey.util.Config;
 import net.journey.util.RandHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -20,6 +24,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockStateMatcher;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.LazyLoadBase;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -67,8 +72,11 @@ public class ChunkProviderBoiling implements IChunkGenerator {
     private MapGenBase caveGenerator;
     private MapGenBase ravineGenerator;
     private Biome[] biomesForGeneration;
-    private WorldGenMinable ashual = new WorldGenMinable(JourneyBlocks.ashualOre.getDefaultState(), 7, BlockStateMatcher.forBlock(JourneyBlocks.ashBlock));
-    private WorldGenMinable blazium = new WorldGenMinable(JourneyBlocks.blaziumOre.getDefaultState(), 7, BlockStateMatcher.forBlock(JourneyBlocks.ashBlock));
+    private WorldGenMinable ashual = new WorldGenMinable(JourneyBlocks.ashualOre.getDefaultState(), Config.ashualOreGenAmount, BlockStateMatcher.forBlock(JourneyBlocks.ashBlock));
+    private WorldGenMinable blazium = new WorldGenMinable(JourneyBlocks.blaziumOre.getDefaultState(), Config.blaziumOreGenAmount, BlockStateMatcher.forBlock(JourneyBlocks.ashBlock));
+    
+    private final WorldGenBoilingFire fire;
+    private final WorldGenBoilingLava boilLava;
 
 
     public ChunkProviderBoiling(World worldIn, long p_i45636_2_) {
@@ -108,14 +116,17 @@ public class ChunkProviderBoiling implements IChunkGenerator {
         this.mobSpawnerNoise = ctx.getScale();
         this.mobSpawnerNoise = ctx.getDepth();
 
-        flameFlower = new WorldGenModFlower(JourneyBlocks.burntGrass, JourneyBlocks.hotBlock);
-        flameFlower2 = new WorldGenModFlower(JourneyBlocks.flameFlower, JourneyBlocks.hotBlock);
-        infernoPlant = new WorldGenModFlower(JourneyBlocks.infernoPlant, JourneyBlocks.hotBlock);
-        boilLamp = new WorldGenBoilingLamp();
-        brison = new WorldGenBrisonNetwork();
-        hut = new WorldGenTraderHutBoiling();
-        smallDungeon = new WorldGenSmallBoilDungeon();
-        bigDungeon = new WorldGenHornDungeon();
+        this.boilLava = new WorldGenBoilingLava(Blocks.LAVA);
+        this.fire = new WorldGenBoilingFire();
+        
+        this.flameFlower = new WorldGenModFlower(JourneyBlocks.burntGrass, JourneyBlocks.hotBlock);
+        this.flameFlower2 = new WorldGenModFlower(JourneyBlocks.flameFlower, JourneyBlocks.hotBlock);
+        this.infernoPlant = new WorldGenModFlower(JourneyBlocks.infernoPlant, JourneyBlocks.hotBlock);
+        this.boilLamp = new WorldGenBoilingLamp();
+        this.brison = new WorldGenBrisonNetwork();
+        this.hut = new WorldGenTraderHutBoiling();
+        this.smallDungeon = new WorldGenSmallBoilDungeon();
+        this.bigDungeon = new WorldGenHornDungeon();
     }
 
     public void setBlocksInChunk(int p_180518_1_, int p_180518_2_, ChunkPrimer p_180518_3_) {
@@ -366,10 +377,14 @@ public class ChunkProviderBoiling implements IChunkGenerator {
             new WorldGenTallPlant(worldObj, r, chunkStart, JourneyBlocks.tallMoltenPlant, JourneyBlocks.volcanicSand).generate(worldObj, rand, chunkStart);
         }
 
-        for (i = 0; i < 30; i++) {
+        for (i = 0; i < Config.blaziumOreTrys; i++) {
             blazium.generate(worldObj, rand, new BlockPos(x1, rand.nextInt(250), z1));
+        }
+        
+        for (i = 0; i < Config.ashualOreTrys; i++) {
             ashual.generate(worldObj, rand, new BlockPos(x1, rand.nextInt(250), z1));
         }
+
 
         for (times = 0; times < 30; times++) {
             generateStructure(x1, z1, r, boilLamp);
@@ -396,6 +411,14 @@ public class ChunkProviderBoiling implements IChunkGenerator {
             if (isBlockTop(pos.getX(), pos.getY() - 1, pos.getZ(), JourneyBlocks.hotBlock)) {
                 trees.get(rand.nextInt(trees.size())).generate(worldObj, rand, pos);
             }
+        }
+        
+        if (r.nextInt(4) == 0) {
+        	boilLava.generate(worldObj, rand, chunkStart.add(r.nextInt(16), r.nextInt(worldObj.getHeight()), r.nextInt(16)));
+        }
+        
+        for (i = 0; i < 50; i++) {
+        	fire.generate(worldObj, rand, WorldGenAPI.createRandom(x1, 1, worldObj.getHeight(), z1, r, 8));
         }
     }
 

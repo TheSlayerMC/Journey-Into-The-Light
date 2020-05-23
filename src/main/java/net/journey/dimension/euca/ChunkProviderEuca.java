@@ -1,5 +1,6 @@
 package net.journey.dimension.euca;
 
+import net.journey.dimension.base.WorldGenJourney;
 import net.journey.dimension.base.WorldGenTallPlant;
 import net.journey.dimension.euca.gen.WorldGenEucaPumpkin;
 import net.journey.dimension.euca.gen.WorldGenEucaSphere;
@@ -9,12 +10,15 @@ import net.journey.dimension.euca.gen.dungeon.EucaSmallSphereDungeon;
 import net.journey.dimension.euca.gen.trees.*;
 import net.journey.dimension.overworld.gen.WorldGenModFlower;
 import net.journey.init.blocks.JourneyBlocks;
+import net.journey.util.Config;
 import net.journey.util.RandHelper;
 import net.journey.util.handler.Helper;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.block.state.pattern.BlockStateMatcher;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.LazyLoadBase;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -24,6 +28,7 @@ import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.NoiseGeneratorPerlin;
+import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.slayer.api.block.BlockModFlower;
@@ -50,6 +55,21 @@ public class ChunkProviderEuca implements IChunkGenerator {
 	private WorldGenerator[] treestall = {
 			new WorldGenEucaTree()
 	};
+	
+	private final WorldGenerator[] flowers;
+	
+    private final WorldGenModFlower eucaTallGrass;
+    private final WorldGenModFlower eucaTallFlowers;
+    private final WorldGenModFlower eucaBlueFlower;
+    private final WorldGenModFlower GOLDEN_STALKS;
+    private final WorldGenModFlower GOLDEN_BULB ;
+    private final WorldGenModFlower GOLDEN_BLOOM;
+    
+    private final WorldGenMinable celestium;
+    private final WorldGenMinable storonOre;
+    private final WorldGenMinable koriteOre;
+    private final WorldGenMinable mekyumOre;
+    
 	private WorldGenSmeltery worldGenSmeltery = new WorldGenSmeltery();
 	private WorldGenBotSpawner spawner = new WorldGenBotSpawner();
 	private WorldGenEucaWater water = new WorldGenEucaWater(Blocks.FLOWING_WATER, false);
@@ -63,7 +83,21 @@ public class ChunkProviderEuca implements IChunkGenerator {
 		this.noiseGen1 = new NoiseGeneratorOctaves(this.rand, 16);
 		this.perlinNoise1 = new NoiseGeneratorOctaves(this.rand, 8);
 		this.surfaceNoise = new NoiseGeneratorPerlin(this.rand, 4);
-
+		
+		celestium = new WorldGenMinable(JourneyBlocks.celestiumOre.getDefaultState(), Config.celestiumOreGenAmount, BlockStateMatcher.forBlock(JourneyBlocks.eucaStone));
+		storonOre = new WorldGenMinable(JourneyBlocks.storonOre.getDefaultState(), Config.storonOreGenAmount, BlockStateMatcher.forBlock(JourneyBlocks.eucaStone));
+        koriteOre = new WorldGenMinable(JourneyBlocks.koriteOre.getDefaultState(), Config.koriteOreGenAmount, BlockStateMatcher.forBlock(JourneyBlocks.eucaStone));
+        mekyumOre =  new WorldGenMinable(JourneyBlocks.mekyumOre.getDefaultState(), Config.mekyumOreGenAmount, BlockStateMatcher.forBlock(JourneyBlocks.eucaStone));
+		
+	    eucaTallGrass = new WorldGenModFlower(JourneyBlocks.eucaTallGrass, JourneyBlocks.eucaGrass);
+	    eucaTallFlowers = new WorldGenModFlower(JourneyBlocks.eucaTallFlowers, JourneyBlocks.eucaGrass);
+	    eucaBlueFlower = new WorldGenModFlower(JourneyBlocks.eucaBlueFlower, JourneyBlocks.eucaGrass);
+	    GOLDEN_STALKS = new WorldGenModFlower(JourneyBlocks.goldenStalks, JourneyBlocks.eucaGrass);
+	    GOLDEN_BULB = new WorldGenModFlower(JourneyBlocks.goldenBulb, JourneyBlocks.eucaGrass);
+	    GOLDEN_BLOOM = new WorldGenModFlower(JourneyBlocks.goldenBloom, JourneyBlocks.eucaGrass);
+		
+		flowers = new WorldGenerator[] {eucaTallGrass, eucaTallFlowers, eucaBlueFlower, GOLDEN_BLOOM, GOLDEN_BULB, GOLDEN_STALKS};
+		
 		//	treesgreen = new ArrayList<WorldGenerator>(3);
 		//	treesgreen.add(new WorldGenEucaTree6());
 		//treesgreen.add(new WorldGenEucaTree7());
@@ -265,7 +299,8 @@ public class ChunkProviderEuca implements IChunkGenerator {
 		int z1 = j * chunkSize;
 		int x, z, times;
 		BlockPos chunkStart = new BlockPos(i * chunkSize, 0, j * chunkSize);
-
+        BlockPos randomPosForMinable = chunkStart.add(rand.nextInt(16), rand.nextInt(worldObj.getHeight()), rand.nextInt(16));
+        
 		if (rand.nextInt(6) == 0) {
 			generateStructure(x1, z1, worldGenSmeltery);
 		}
@@ -291,15 +326,13 @@ public class ChunkProviderEuca implements IChunkGenerator {
 				treestall[rand.nextInt(treestall.length)].generate(worldObj, rand, new BlockPos(randX, randY, randZ));
 			}
 		}
-		
-        for (i = 0; i < 15; i++) {
-			BlockModFlower flowers = RandHelper.chooseEqual(rand, JourneyBlocks.goldenBloom, JourneyBlocks.goldenBulb, JourneyBlocks.goldenStalks);
-            new WorldGenModFlower(flowers, JourneyBlocks.eucaGrass).generate(worldObj, rand, chunkStart);
-            new WorldGenTallPlant(worldObj, rand, chunkStart, JourneyBlocks.tallGoldenStalks, JourneyBlocks.eucaGrass).generate(worldObj, rand, chunkStart);
-        }
 
 		for (times = 0; times < 1; times++) {
 			pumpkin.generate(worldObj, rand, chunkStart);
+		}
+		
+		for (times = 0; times < 80; times++) {
+			flowers[rand.nextInt(flowers.length)].generate(worldObj, rand, chunkStart);
 		}
 
 		for (times = 0; times < 20; times++) {
@@ -314,6 +347,23 @@ public class ChunkProviderEuca implements IChunkGenerator {
 			smallsphere.generate(worldObj, rand, new BlockPos(x1, this.rand.nextInt(120) + 4, z1));
 		}
 
+        for (i = 0; i < Config.celestiumOreTrys; i++) {
+        	celestium.generate(worldObj, rand, chunkStart.add(rand.nextInt(16), rand.nextInt(worldObj.getHeight()), rand.nextInt(16)));
+        }
+        
+        for (i = 0; i < Config.koriteOreTrys; i++) {
+        	koriteOre.generate(worldObj, rand, chunkStart.add(rand.nextInt(16), rand.nextInt(worldObj.getHeight()), rand.nextInt(16)));
+        }
+        
+        for (i = 0; i < Config.mekyumOreTrys; i++) {
+        	mekyumOre.generate(worldObj, rand, chunkStart.add(rand.nextInt(16), rand.nextInt(worldObj.getHeight()), rand.nextInt(16)));
+        }
+        
+        for (i = 0; i < Config.storonOreTrys; i++) {
+        	storonOre.generate(worldObj, rand, chunkStart.add(rand.nextInt(16), rand.nextInt(worldObj.getHeight()), rand.nextInt(16)));
+        }
+
+		
 		/*for (times = 0; times < 5; times++) {
 			x = x1 + this.rand.nextInt(chunkSize);
 			z = z1 + this.rand.nextInt(chunkSize);

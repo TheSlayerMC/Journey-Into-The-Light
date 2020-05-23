@@ -15,9 +15,14 @@ import net.journey.dimension.cloudia.zone.CloudiaEmptyChunk;
 import net.journey.dimension.cloudia.zone.CloudiaGarden;
 import net.journey.dimension.cloudia.zone.CloudiaHouse1;
 import net.journey.dimension.cloudia.zone.CloudiaZoneBase;
+import net.journey.init.blocks.JourneyBlocks;
+import net.journey.util.Config;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.block.state.pattern.BlockStateMatcher;
 import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.LazyLoadBase;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
@@ -26,6 +31,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.IChunkGenerator;
+import net.minecraft.world.gen.feature.WorldGenMinable;
 
 public class ChunkProviderCloudia implements IChunkGenerator {
 
@@ -36,8 +42,13 @@ public class ChunkProviderCloudia implements IChunkGenerator {
 	private World worldObj;
 	private Random random;
 	private Map chunkTileEntityMap;
-    private Biome[] biomesForGeneration;
-
+	private Biome[] biomesForGeneration;
+	
+    private final WorldGenMinable pinkCloudiaCloud;
+    private final WorldGenMinable lightBlueCloudiaCloud;
+    private final WorldGenMinable cloudiaRock;
+    private final WorldGenMinable luniteOre;
+    
 	public ChunkProviderCloudia(World worldIn, long seed) {
 		worldObj = worldIn;
 		random = new Random(seed);
@@ -55,6 +66,12 @@ public class ChunkProviderCloudia implements IChunkGenerator {
 
 		bridges = new CloudiaZoneBase[]{new CloudiaBridgeAll()/*, new CloudiaBridgeNS(), new CloudiaBridgeEW()*/};
 		this.chunkTileEntityMap = new HashMap();
+		
+        pinkCloudiaCloud = new WorldGenMinable(JourneyBlocks.pinkCloudiaCloud.getDefaultState(), 40, BlockStateMatcher.forBlock(Blocks.AIR));
+        lightBlueCloudiaCloud = new WorldGenMinable(JourneyBlocks.lightBlueCloudiaCloud.getDefaultState(), 40, BlockStateMatcher.forBlock(Blocks.AIR));
+        
+        cloudiaRock = new WorldGenMinable(JourneyBlocks.cloudiaRock.getDefaultState(), 40, BlockStateMatcher.forBlock(Blocks.AIR));
+        luniteOre = new WorldGenMinable(JourneyBlocks.luniteOre.getDefaultState(), Config.luniteOreGenAmount, BlockStateMatcher.forBlock(JourneyBlocks.cloudiaRock));
 	}
 
 	@Override
@@ -86,30 +103,31 @@ public class ChunkProviderCloudia implements IChunkGenerator {
 			room2.generate(cloudiaChunk, random, 0, bottomLayer, 0);
 
 		//checks all tile entitys
-        chunkTileEntityMap.put(new ChunkPos(chunkX, chunkZ), cloudiaChunk.chunkTileEntityPositions);
+		chunkTileEntityMap.put(new ChunkPos(chunkX, chunkZ), cloudiaChunk.chunkTileEntityPositions);
 
 		Chunk chunk = new Chunk(this.worldObj, cloudiaChunk, chunkX, chunkZ);
-        byte[] abyte = chunk.getBiomeArray();
+		byte[] abyte = chunk.getBiomeArray();
 
-        for (int i = 0; i < abyte.length; ++i) {
-            abyte[i] = (byte) Biome.getIdForBiome(this.biomesForGeneration[i]);
-        }
+		for (int i = 0; i < abyte.length; ++i) {
+			abyte[i] = (byte) Biome.getIdForBiome(this.biomesForGeneration[i]);
+		}
 
-        chunk.generateSkylightMap();
-        return chunk;
+		chunk.generateSkylightMap();
+		return chunk;
 	}
 
 	@Override
 	public void populate(int chunkX, int chunkZ) {
 		int x = chunkX * 16;
 		int z = chunkZ * 16;
-        BlockPos pos = new BlockPos(x, 0, z);
-        Biome biome = this.worldObj.getBiome(pos.add(16, 0, 16));
-        this.random.setSeed(this.worldObj.getSeed());
+		BlockPos pos = new BlockPos(x, 0, z);
+		Biome biome = this.worldObj.getBiome(pos.add(16, 0, 16));
+		this.random.setSeed(this.worldObj.getSeed());
 		long k = this.random.nextLong() / 2L * 2L + 1L;
 		long l = this.random.nextLong() / 2L * 2L + 1L;
 		ChunkPos chunkpos = new ChunkPos(chunkX, chunkZ);
 		this.random.setSeed((long) chunkX * k + (long) chunkZ * l ^ this.worldObj.getSeed());
+		BlockPos chunkStart = new BlockPos(chunkX * 16, 0, chunkZ * 16);
 
 		//checks all tile entitys in the world and updates (renders) them
 		List<BlockPos> chunkTileEntityPositions = (List<BlockPos>) chunkTileEntityMap.get(chunkpos);
@@ -125,7 +143,30 @@ public class ChunkProviderCloudia implements IChunkGenerator {
 			chunkTileEntityMap.remove(chunkpos);
 		}
 
-        WorldEntitySpawner.performWorldGenSpawning(this.worldObj, biome, x + 8, z + 8, 16, 16, this.random);
+		WorldEntitySpawner.performWorldGenSpawning(this.worldObj, biome, x + 8, z + 8, 16, 16, this.random);
+
+
+
+		if (random.nextInt(3) == 0) {
+			cloudiaRock.generate(worldObj, random, chunkStart.add(random.nextInt(16), random.nextInt(worldObj.getHeight()), random.nextInt(16)));
+		}
+
+		if (random.nextInt(3) == 0) {
+			luniteOre.generate(worldObj, random, chunkStart.add(random.nextInt(16), random.nextInt(worldObj.getHeight()), random.nextInt(16)));
+		}
+
+		for(int i = 0; i < 2; i++) {
+			BlockPos p = chunkStart.add(random.nextInt(16), random.nextInt(worldObj.getHeight()), random.nextInt(16));
+			if (10 < p.getY() && p.getY() < 120)
+				pinkCloudiaCloud.generate(worldObj, random, p);
+		}
+
+		for(int i = 0; i < 2; i++) {
+			BlockPos p = chunkStart.add(random.nextInt(16), random.nextInt(worldObj.getHeight()), random.nextInt(16));
+			if (10 < p.getY() && p.getY() < 120)
+				lightBlueCloudiaCloud.generate(worldObj, random, p);
+		}
+
 	}
 
 	@Override

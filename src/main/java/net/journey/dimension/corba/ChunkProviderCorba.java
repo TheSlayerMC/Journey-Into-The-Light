@@ -9,11 +9,14 @@ import net.journey.dimension.corba.gen.trees.WorldGenCorbaMediumTree;
 import net.journey.dimension.corba.gen.trees.WorldGenCorbaSmallTree;
 import net.journey.dimension.overworld.gen.WorldGenModFlower;
 import net.journey.init.blocks.JourneyBlocks;
+import net.journey.util.Config;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.block.state.pattern.BlockStateMatcher;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.LazyLoadBase;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -22,6 +25,7 @@ import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.*;
+import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.slayer.api.worldgen.WorldGenAPI;
 
@@ -62,6 +66,9 @@ public class ChunkProviderCorba implements IChunkGenerator {
     private WorldGenCorbaVillage village = new WorldGenCorbaVillage();
     private WorldGenHugeCorbaTree tree = new WorldGenHugeCorbaTree();
     private WorldGenCorbaLamp lamp = new WorldGenCorbaLamp();
+    private final WorldGenMinable gorbite;
+    private final WorldGenMinable orbaditeOre;
+    
     public ChunkProviderCorba(World worldIn, long p_i45636_2_) {
         this.stoneNoise = new double[256];
         this.caveGenerator = new MapGenCaves();
@@ -98,6 +105,10 @@ public class ChunkProviderCorba implements IChunkGenerator {
         this.noiseGen6 = ctx.getPerlin3();
         this.mobSpawnerNoise = ctx.getScale();
         this.mobSpawnerNoise = ctx.getDepth();
+        
+        this.gorbite = new WorldGenMinable(JourneyBlocks.gorbiteOre.getDefaultState(), Config.gorbiteOreGenAmount, BlockStateMatcher.forBlock(JourneyBlocks.corbaStone));
+        this.orbaditeOre = new WorldGenMinable(JourneyBlocks.orbaditeOre.getDefaultState(), Config.orbaditeOreGenAmount, BlockStateMatcher.forBlock(JourneyBlocks.corbaStone));
+
     }
 
     public void setBlocksInChunk(int p_180518_1_, int p_180518_2_, ChunkPrimer p_180518_3_) {
@@ -360,6 +371,14 @@ public class ChunkProviderCorba implements IChunkGenerator {
 
         for (times = 0; times < 30; times++) {
             generateStructure(x1, z1, lamp);
+        }
+        
+        for (i = 0; i < Config.gorbiteOreTrys; i++) {
+        	gorbite.generate(worldObj, rand, chunkStart.add(rand.nextInt(16), rand.nextInt(worldObj.getHeight()), rand.nextInt(16)));
+        }
+
+        for (i = 0; i < Config.orbaditeOreTrys; i++) {
+        	orbaditeOre.generate(worldObj, rand, chunkStart.add(rand.nextInt(16), rand.nextInt(worldObj.getHeight()), rand.nextInt(16)));
         }
 
         for (times = 0; times < 450; times++) {

@@ -38,36 +38,11 @@ import java.util.function.Supplier;
 
 public class WorldGenJourney implements IWorldGenerator {
 
-    private static final LazyLoadBase<WorldGenMinable> celestium;
-    private static final LazyLoadBase<WorldGenMinable> flairium;
-    private static final LazyLoadBase<WorldGenMinable> gorbite;
-    private static final LazyLoadBase<WorldGenMinable> orbaditeOre;
-    private static final LazyLoadBase<WorldGenMinable> depthsLights;
-    private static final LazyLoadBase<WorldGenMinable> depthsLightsForStone;
-    private static final LazyLoadBase<WorldGenMinable> storonOre;
-    private static final LazyLoadBase<WorldGenMinable> koriteOre;
-    private static final LazyLoadBase<WorldGenMinable> mekyumOre;
-    private static final LazyLoadBase<JWorldGenMinable> SHADIUM_ORE_GEN = create(() -> JWorldGenMinable.create(JourneyBlocks.shadiumOre, 6, 13));
-    private static final LazyLoadBase<JWorldGenMinable> LUNIUM_ORE_GEN = create(() -> JWorldGenMinable.create(JourneyBlocks.luniumOre, 7, 26));
-    private static final LazyLoadBase<JWorldGenMinable> SAPPHIRE_ORE_GEN = create(() -> JWorldGenMinable.create(JourneyBlocks.sapphireOre, 5, 24));
-    private static final LazyLoadBase<JWorldGenMinable> IRIDIUM_ORE_GEN = create(() -> JWorldGenMinable.create(JourneyBlocks.iridiumOre, 4, 16));
-    private static final WorldGenSmeltery smeltery = new WorldGenSmeltery();
-    private static final WorldGenBoilingFire fire = new WorldGenBoilingFire();
-    private static final LazyLoadBase<WorldGenModFlower> eucaTallGrass;
-    private static final LazyLoadBase<WorldGenModFlower> eucaTallFlowers;
-    private static final LazyLoadBase<WorldGenModFlower> eucaBlueFlower;
-    private static final LazyLoadBase<WorldGenModFlower> GOLDEN_STALKS = create(() -> new WorldGenModFlower(JourneyBlocks.goldenStalks, JourneyBlocks.eucaGrass));
-    private static final LazyLoadBase<WorldGenModFlower> GOLDEN_BULB = create(() -> new WorldGenModFlower(JourneyBlocks.goldenBulb, JourneyBlocks.eucaGrass));
-    private static final LazyLoadBase<WorldGenModFlower> GOLDEN_BLOOM = create(() -> new WorldGenModFlower(JourneyBlocks.goldenBloom, JourneyBlocks.eucaGrass));
-    private static final LazyLoadBase<WorldGenModFlower> frozenFlower;
-    private static final LazyLoadBase<WorldGenModFlower> depthsFlower;
-    private static final LazyLoadBase<WorldGenBoilingLava> boilLava;
-    private static final LazyLoadBase<WorldGenMinable> pinkCloudiaCloud;
-    private static final LazyLoadBase<WorldGenMinable> lightBlueCloudiaCloud;
-    private static final LazyLoadBase<WorldGenMinable> withanLight;
-    private static final LazyLoadBase<WorldGenMinable> cloudiaRock;
-    private static final LazyLoadBase<WorldGenMinable> luniteOre;
-
+    private static final LazyLoadBase<JWorldGenMinable> SHADIUM_ORE_GEN;
+    private static final LazyLoadBase<JWorldGenMinable> LUNIUM_ORE_GEN;
+    private static final LazyLoadBase<JWorldGenMinable> SAPPHIRE_ORE_GEN;
+    private static final LazyLoadBase<JWorldGenMinable> IRIDIUM_ORE_GEN;
+   
     private static final LazyLoadBase<WorldGenBush> JUICEBERRY_BUSH_GEN = create(() -> new WorldGenBush(JourneyBlocks.juiceberryBush, Blocks.GRASS));
     private static final LazyLoadBase<WorldGenBush> BRADBERRY_BUSH_GEN = create(() -> new WorldGenBush(JourneyBlocks.bradberryBush, Blocks.GRASS));
     private static final LazyLoadBase<WorldGenBush> TANGLEBERRY_BUSH_GEN = create(() -> new WorldGenBush(JourneyBlocks.tangleberryBush, Blocks.GRASS));
@@ -81,45 +56,35 @@ public class WorldGenJourney implements IWorldGenerator {
     private static final LazyLoadBase<WorldGenAncientBlock> ANCIENT_BLOCK_GEN = create(WorldGenAncientBlock::new);
     @Deprecated // use per-chunk random instance which comes from method params
     private static Random r = new Random();
-
+    
     static {
-        flairium = create(JourneyBlocks.flairiumOre, 8, JourneyBlocks.depthsStone);
-        depthsLights = create(JourneyBlocks.depthsLights, 25, JourneyBlocks.depthsGrass);
-        depthsLightsForStone = create(JourneyBlocks.depthsLights, 25, JourneyBlocks.depthsStone);
-        gorbite = create(JourneyBlocks.gorbiteOre, 6, JourneyBlocks.corbaStone);
-        orbaditeOre = create(JourneyBlocks.orbaditeOre, 6, JourneyBlocks.corbaStone);
-        celestium = create(JourneyBlocks.celestiumOre, 10, JourneyBlocks.eucaStone);
-        storonOre = create(JourneyBlocks.storonOre, 6, JourneyBlocks.eucaStone);
-        koriteOre = create(JourneyBlocks.koriteOre, 10, JourneyBlocks.eucaStone);
-        mekyumOre = create(JourneyBlocks.mekyumOre, 10, JourneyBlocks.eucaStone);
-        pinkCloudiaCloud = create(JourneyBlocks.pinkCloudiaCloud, 40, Blocks.AIR);
-        lightBlueCloudiaCloud = create(JourneyBlocks.lightBlueCloudiaCloud, 40, Blocks.AIR);
-        withanLight = create(JourneyBlocks.withanLight, 25, JourneyBlocks.withanRockReinforced);
-        cloudiaRock = create(JourneyBlocks.cloudiaRock, 40, Blocks.AIR);
-        luniteOre = create(JourneyBlocks.luniteOre, 10, JourneyBlocks.cloudiaRock);
-
-        eucaTallGrass = create(() -> new WorldGenModFlower(JourneyBlocks.eucaTallGrass, JourneyBlocks.eucaGrass));
-        eucaTallFlowers = create(() -> new WorldGenModFlower(JourneyBlocks.eucaTallFlowers, JourneyBlocks.eucaGrass));
-        eucaBlueFlower = create(() -> new WorldGenModFlower(JourneyBlocks.eucaBlueFlower, JourneyBlocks.eucaGrass));
-        
-        depthsFlower = create(() -> new WorldGenModFlower(JourneyBlocks.depthsFlower, JourneyBlocks.depthsGrass, false));
-        frozenFlower = create(() -> new WorldGenModFlower(JourneyBlocks.frozenFlower, JourneyBlocks.frozenGrass, false));
+        SHADIUM_ORE_GEN = create(() -> JWorldGenMinable.create(JourneyBlocks.shadiumOre, 6, 13));
+        LUNIUM_ORE_GEN = create(() -> JWorldGenMinable.create(JourneyBlocks.luniumOre, 7, 26));
+        SAPPHIRE_ORE_GEN = create(() -> JWorldGenMinable.create(JourneyBlocks.sapphireOre, 5, 24));
+        IRIDIUM_ORE_GEN = create(() -> JWorldGenMinable.create(JourneyBlocks.iridiumOre, 4, 16));
 
         sizzleberryBush = create(() -> new WorldGenBush(JourneyBlocks.sizzleberryBush, Blocks.NETHERRACK));
-
-        boilLava = create(() -> new WorldGenBoilingLava(Blocks.LAVA));
     }
-
-    private ArrayList<WorldGenerator> trees;
 
     public WorldGenJourney() {
         r = new Random();
         LogHelper.info("Loading world generator");
-        trees = new ArrayList<WorldGenerator>(1);
-        trees.add(new WorldGenBleedheartTree0());
-        trees.add(new WorldGenBleedheartTree1());
-        //trees.add(new WorldGenBleedheartTree2());
-        //trees.add(new WorldGenSizzlerWoodTree0());
+    }
+    
+    @Override
+    public void generate(Random random, int chunkX, int chunkZ, World w, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
+        int dim = w.provider.getDimension();
+        switch (dim) {
+            case -1:
+                generateNether(w, random, chunkX * 16, chunkZ * 16);
+                break;
+            case 0:
+                generateOverworld(w, random, chunkX, chunkZ);
+                break;
+            case 1:
+                generateEnd(w, random, chunkX * 16, chunkZ * 16);
+                break;
+        }
     }
 
     private static LazyLoadBase<WorldGenMinable> create(Block ore, int count, Block stone) {
@@ -135,144 +100,16 @@ public class WorldGenJourney implements IWorldGenerator {
         };
     }
 
-    public static void generateJourneyDimensions(int gen, World w, int chunkX, int chunkZ) {
-        BlockPos chunkStart = new BlockPos(chunkX, 0, chunkZ);
-        BlockPos randomPosForMinable = chunkStart.add(r.nextInt(16), r.nextInt(w.getHeight()), r.nextInt(16));
-        BlockPos randWithOffset = WorldGenAPI.createRandom(chunkX, 1, w.getHeight(), chunkZ, r, 8);
-
-        switch (gen) {
-            case 0:
-                celestium.getValue().generate(w, r, randomPosForMinable);
-                break;
-            case 1:
-                flairium.getValue().generate(w, r, randomPosForMinable);
-                break;
-            case 2:
-                if (w.getBlockState(randWithOffset).getBlock() != JourneyBlocks.depthsGrass
-                        || w.getBlockState(randWithOffset.down()).getBlock() != JourneyBlocks.depthsGrass) {
-                    new WorldGenDepthsTree().generate(w, r, randWithOffset);
-                }
-                break;
-            case 3:
-                flairium.getValue().generate(w, r, randomPosForMinable);
-                break;
-            case 4:
-                boilLava.getValue().generate(w, r, randWithOffset);
-                break;
-            case 5:
-                fire.generate(w, r, randWithOffset);
-                break;
-            case 6:
-                eucaTallGrass.getValue().generate(w, r, chunkStart);
-                break;
-            case 7:
-                eucaTallFlowers.getValue().generate(w, r, chunkStart);
-                break;
-            case 8:
-                eucaBlueFlower.getValue().generate(w, r, chunkStart);
-                break;
-            case 9:
-                GOLDEN_STALKS.getValue().generate(w, r, chunkStart);
-                break;
-            case 10:
-                GOLDEN_STALKS.getValue().generate(w, r, chunkStart);
-                break;
-            case 11:
-                GOLDEN_BULB.getValue().generate(w, r, chunkStart);
-                break;
-            case 12:
-                GOLDEN_BLOOM.getValue().generate(w, r, chunkStart);
-                break;
-            case 13:
-                frozenFlower.getValue().generate(w, r, chunkStart);
-                break;
-            case 14:
-                depthsLights.getValue().generate(w, r, randomPosForMinable);
-                break;
-            case 15:
-                depthsLightsForStone.getValue().generate(w, r, randomPosForMinable);
-                break;
-            case 16:
-                depthsFlower.getValue().generate(w, r, chunkStart);
-                break;
-            case 17:
-                gorbite.getValue().generate(w, r, randomPosForMinable);
-                break;
-            case 18:
-                orbaditeOre.getValue().generate(w, r, randomPosForMinable);
-                break;
-            case 19:
-                storonOre.getValue().generate(w, r, randomPosForMinable);
-                break;
-            case 20:
-                koriteOre.getValue().generate(w, r, randomPosForMinable);
-                break;
-            case 21:
-                mekyumOre.getValue().generate(w, r, randomPosForMinable);
-                break;
-            case 22:
-                if (w.getBlockState(randWithOffset) == JourneyBlocks.eucaGrass.getDefaultState())
-                    smeltery.generate(w, r, randWithOffset);
-                break;
-            case 23:
-                if (120 > randomPosForMinable.getY() && randomPosForMinable.getY() > 10)
-                    pinkCloudiaCloud.getValue().generate(w, r, randomPosForMinable);
-                break;
-            case 24:
-                if (10 < randomPosForMinable.getY() && randomPosForMinable.getY() < 120)
-                    lightBlueCloudiaCloud.getValue().generate(w, r, randomPosForMinable);
-                break;
-            case 25:
-                withanLight.getValue().generate(w, r, randomPosForMinable);
-                break;
-        }
-    }
-
-    private static void worldMinableGenVanilla(Block spawn, int vein, World w, int x, int y, int z) {
-        (new WorldGenMinable(spawn.getDefaultState(), vein)).generate(w, r, new BlockPos(x, y, z));
-    }
-
     private static void worldMinableGenNether(Block spawn, int vein, World w, int x, int y, int z) {
         (new WorldGenMinable(spawn.getDefaultState(), vein, BlockStateMatcher.forBlock(Blocks.NETHERRACK))).generate(w, r, new BlockPos(x, y, z));
-    }
-
-    private static void worldMinableGlowstone(Block spawn, int vein, World w, int x, int y, int z) {
-        (new WorldGenMinable(spawn.getDefaultState(), vein, BlockStateMatcher.forBlock(Blocks.GLOWSTONE))).generate(w, r, new BlockPos(x, y, z));
     }
 
     private static void worldGenNetherFeature(Block spawn, Block toGenerateIn, int vein, World w, int x, int y, int z) {
         (new WorldGenMinable(spawn.getDefaultState(), vein, BlockStateMatcher.forBlock(toGenerateIn))).generate(w, r, new BlockPos(x, y, z));
     }
 
-    private static void worldGenSoulsandFeature(Block spawn, int vein, World w, int x, int y, int z) {
-        (new WorldGenMinable(spawn.getDefaultState(), vein, BlockStateMatcher.forBlock(Blocks.SOUL_SAND))).generate(w, r, new BlockPos(x, y, z));
-    }
-
     private static void worldMinableGenEnd(Block spawn, int vein, World w, int x, int y, int z) {
         (new WorldGenMinable(spawn.getDefaultState(), vein, BlockStateMatcher.forBlock(Blocks.END_STONE))).generate(w, r, new BlockPos(x, y, z));
-    }
-
-    @Override
-    public void generate(Random random, int chunkX, int chunkZ, World w, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
-        int dim = w.provider.getDimension();
-        switch (dim) {
-            case -1:
-                generateNether(w, random, chunkX * 16, chunkZ * 16);
-                break;
-            case 0:
-                generateOverworld(w, random, chunkX, chunkZ);
-                break;
-            case 1:
-                generateEnd(w, random, chunkX * 16, chunkZ * 16);
-                break;
-        }
-        if (dim == Config.boil) generateBoilingPoint(w, r, chunkX * 16, chunkZ * 16);
-        //if (dim == Config.depths) generateDepths(w, r, chunkX * 16, chunkZ * 16);
-        if (dim == Config.euca) generateEuca(w, r, chunkX * 16, chunkZ * 16);
-        if (dim == Config.frozen) generateFrozen(w, r, chunkX * 16, chunkZ * 16);
-        if (dim == Config.corba) generateCorba(w, r, chunkX * 16, chunkZ * 16);
-        if (dim == Config.cloudia) generateCloudia(w, r, chunkX * 16, chunkZ * 16);
-        //if(dim == Config.terrania) generateTerrania(w, r, chunkX * 16, chunkZ * 16);
     }
 
     public void generateNether(World w, Random r, int chunkX, int chunkZ) {
@@ -496,19 +333,19 @@ public class WorldGenJourney implements IWorldGenerator {
             SMALL_GLOWSHROOMS.getValue().generate(w, rand, startPos);
         }
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < Config.shadiumOreGenAmount; i++) {
             SHADIUM_ORE_GEN.getValue().generate(w, rand, startPos);
         }
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < Config.shadiumOreGenAmount; i++) {
             LUNIUM_ORE_GEN.getValue().generate(w, rand, startPos);
         }
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < Config.shadiumOreGenAmount; i++) {
             SAPPHIRE_ORE_GEN.getValue().generate(w, rand, startPos);
         }
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < Config.shadiumOreGenAmount; i++) {
             IRIDIUM_ORE_GEN.getValue().generate(w, rand, startPos);
         }
 
@@ -567,69 +404,6 @@ public class WorldGenJourney implements IWorldGenerator {
             x = chunkX + r.nextInt(16);
             z = chunkZ + r.nextInt(16);
             worldMinableGenEnd(JourneyBlocks.enderilliumOre, 5, w, x, y, z);
-        }
-    }
-
-    private void generateCorba(World w, Random r, int chunkX, int chunkZ) {
-        int i = 0;
-        for (i = 0; i < 10; i++) WorldGenJourney.generateJourneyDimensions(13, w, chunkX, chunkZ);
-        for (i = 0; i < 10; i++) WorldGenJourney.generateJourneyDimensions(14, w, chunkX, chunkZ);
-    }
-
-    private void generateFrozen(World w, Random r, int chunkX, int chunkZ) {
-        int i = 0;
-        for (i = 0; i < 25; i++) WorldGenJourney.generateJourneyDimensions(9, w, chunkX, chunkZ);
-    }
-
-    private void generateBoilingPoint(World w, Random r, int chunkX, int chunkZ) {
-        int i = 0;
-        BlockPos chunkStart = new BlockPos(chunkX, 0, chunkZ);
-        BlockPos randomPosForMinable = chunkStart.add(r.nextInt(16), r.nextInt(w.getHeight()), r.nextInt(16));
-
-        if (r.nextInt(4) == 0) WorldGenJourney.generateJourneyDimensions(4, w, chunkX, chunkZ);
-        for (i = 0; i < 50; i++) WorldGenJourney.generateJourneyDimensions(5, w, chunkX, chunkZ);
-    }
-
-    private void generateDepths(World w, Random r, int chunkX, int chunkZ) {
-        int i = 0;
-        //for(i = 0; i < 25; i++) GenerationHelper.generateJourneyDimensions(12, w, chunkX, chunkZ);
-        //for(i = 0; i < 25; i++) GenerationHelper.generateJourneyDimensions(2, w, chunkX, chunkZ);
-        //for(i = 0; i < 5; i++) GenerationHelper.generateJourneyDimensions(10, w, chunkX, chunkZ);
-    }
-
-    private void generateWither(World w, Random r, int chunkX, int chunkZ) {
-        int i = 0;
-        for (i = 0; i < 25; i++) WorldGenJourney.generateJourneyDimensions(21, w, chunkX, chunkZ);
-    }
-
-    private void generateEuca(World w, Random r, int chunkX, int chunkZ) {
-        int i = 0;
-
-        for (i = 0; i < 8; i++) {
-            WorldGenJourney.generateJourneyDimensions(7, w, chunkX, chunkZ);
-            WorldGenJourney.generateJourneyDimensions(8, w, chunkX, chunkZ);
-            WorldGenJourney.generateJourneyDimensions(6, w, chunkX, chunkZ);
-        }
-
-        for (i = 0; i < 30; i++) WorldGenJourney.generateJourneyDimensions(0, w, chunkX, chunkZ);
-        for (i = 0; i < 30; i++) WorldGenJourney.generateJourneyDimensions(15, w, chunkX, chunkZ);
-        for (i = 0; i < 30; i++) WorldGenJourney.generateJourneyDimensions(16, w, chunkX, chunkZ);
-        for (i = 0; i < 30; i++) WorldGenJourney.generateJourneyDimensions(17, w, chunkX, chunkZ);
-    }
-
-    private void generateCloudia(World w, Random r, int chunkX, int chunkZ) {
-        int i = 0;
-        for (i = 0; i < 2; i++) WorldGenJourney.generateJourneyDimensions(19, w, chunkX, chunkZ);
-        for (i = 0; i < 2; i++) WorldGenJourney.generateJourneyDimensions(20, w, chunkX, chunkZ);
-
-        BlockPos randomPosForMinable = new BlockPos(chunkX + r.nextInt(16), r.nextInt(64), chunkZ + r.nextInt(16));
-
-        if (r.nextInt(3) == 0) {
-            cloudiaRock.getValue().generate(w, r, randomPosForMinable);
-        }
-
-        if (r.nextInt(3) == 0) {
-            luniteOre.getValue().generate(w, r, randomPosForMinable);
         }
     }
 }

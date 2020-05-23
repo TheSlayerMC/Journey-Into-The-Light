@@ -4,6 +4,7 @@ import net.journey.dimension.base.gen.WorldGenStructure;
 import net.journey.dimension.depths.gen.*;
 import net.journey.dimension.overworld.gen.WorldGenModFlower;
 import net.journey.init.blocks.JourneyBlocks;
+import net.journey.util.Config;
 import net.journey.util.JourneyLootTables;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -336,9 +337,13 @@ public class ChunkProviderDepths implements IChunkGenerator {
             flower2.generate(worldObj, rand, chunkStart);
         }
 
-        for (i = 0; i < 25; i++) {
+        for (i = 0; i < Config.flairiumOreTrys; i++) {
             flairum.generate(worldObj, rand, new BlockPos(x1, rand.nextInt(250), z1));
-            des.generate(worldObj, rand, new BlockPos(x1, rand.nextInt(250), z1));
+            
+        }
+        
+        for(i = 0; i < Config.desOreTrys; i++) {
+        	des.generate(worldObj, rand, new BlockPos(x1, rand.nextInt(250), z1));
         }
 
          for (times = 0; times < 100; times++) {
