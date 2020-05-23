@@ -23,6 +23,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import net.slayer.api.SlayerAPI;
 import net.slayer.api.item.ItemMod;
@@ -44,7 +45,7 @@ public class ItemLoot extends ItemMod {
 			int index = r.nextInt(lootTable.size());
 			ItemStack itemToSpawn = lootTable.get(index);
 
-			SlayerAPI.addFormattedChatMessage(player, "journey.recieve.item", itemToSpawn.getItem().getTranslationKey() + ".name");
+			SlayerAPI.addFormattedChatMessage(player, "journey.recieve.item", itemToSpawn.getCount() + "x " + new TextComponentTranslation(itemToSpawn.getItem().getTranslationKey() + ".name").getFormattedText());
 
 			JourneySounds.playSound(JourneySounds.WRAPPER, world, player);
 
