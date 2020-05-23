@@ -99,6 +99,8 @@ public class EntityRendering {
     private static Textures tex;
     private static MobStats stat;
 
+    public static void preInit() { }
+    
     public static void init() {
         /**Projectiles*/
         RenderingRegistry.registerEntityRenderingHandler(EntityBasicProjectile.class, new RenderStaffProjectile(Textures.basic, 1.0F, 0.2F, 0.2F));
