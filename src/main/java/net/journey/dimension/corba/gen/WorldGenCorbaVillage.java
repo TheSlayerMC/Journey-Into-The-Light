@@ -18,7 +18,7 @@ public class WorldGenCorbaVillage extends WorldGenerator {
 
     @Override
     public boolean generate(World w, Random r, BlockPos pos) {
-        int i = pos.getX(), j = pos.getY() - 1, k = pos.getZ();
+        int i = pos.getX(), j = pos.getY(), k = pos.getZ();
         if (locationIsValidSpawn(w, i + 6, j, k + 6)) return true;
 
         this.setBlockAndNotifyAdequately(w, new BlockPos(i + 0, j + 1, k + 4), JourneyBlocks.corbaLog.getDefaultState());
