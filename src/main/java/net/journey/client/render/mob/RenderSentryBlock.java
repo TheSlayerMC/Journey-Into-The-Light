@@ -13,9 +13,9 @@ public class RenderSentryBlock extends RenderModMob<EntitySentryBlock> {
         super(model, tex);
     }
 
-    @Override
-    protected ResourceLocation getEntityTexture(Entity var1) {
-        EntitySentryBlock en = (EntitySentryBlock) var1;
-        return en.getPeekTick() < 0 ? Textures.sentryBlockAwake : Textures.sentryBlock;
-    }
+	@Override
+	protected ResourceLocation getEntityTexture(Entity var1) {
+		EntitySentryBlock en = (EntitySentryBlock) var1;
+		return en.getPeekTick() < 0 ? Textures.sentryBlockAwake : Textures.sentryBlock;
+	}
 }

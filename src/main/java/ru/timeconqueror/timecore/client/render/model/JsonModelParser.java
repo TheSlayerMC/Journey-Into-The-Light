@@ -1,13 +1,14 @@
 package ru.timeconqueror.timecore.client.render.model;
 
+import com.google.common.collect.Lists;
 import com.google.gson.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.IResource;
 import net.minecraft.util.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 import org.lwjgl.util.vector.Vector3f;
-import ru.timeconqueror.timecore.api.auxiliary.CollectionUtils;
 import ru.timeconqueror.timecore.api.client.render.TimeModel;
+import ru.timeconqueror.timecore.api.util.CollectionUtils;
 import ru.timeconqueror.timecore.client.render.JsonParsingException;
 import ru.timeconqueror.timecore.util.JsonUtils;
 
@@ -98,6 +99,8 @@ public class JsonModelParser {
         String name = JsonUtils.getString("name", bone);
         String parentName = JsonUtils.getString("parent", bone, null);
 
+        List<RawModelBone> extraBones = new ArrayList<>();
+
         List<RawModelCube> cubes = new ArrayList<>();
         if (bone.getAsJsonObject().has("cubes")) {
             for (JsonElement cube : bone.getAsJsonObject().get("cubes").getAsJsonArray()) {
@@ -105,11 +108,19 @@ public class JsonModelParser {
                 Vector3f size = JsonUtils.getVec3f("size", cube);
                 Vector2f uv = JsonUtils.getVec2f("uv", cube);
 
-                cubes.add(new RawModelCube(origin, size, uv));
+                if (cube.getAsJsonObject().has("rotation")) {
+                    Vector3f rotation = JsonUtils.getVec3f("rotation", cube);
+                    Vector3f innerPivot = JsonUtils.getVec3f("pivot", cube);
+                    extraBones.add(new RawModelBone(Lists.newArrayList(new RawModelCube(origin, size, uv)), innerPivot, rotation, false, false, 0F, "cube_wrapper_" + extraBones.size(), name));
+                } else {
+                    cubes.add(new RawModelCube(origin, size, uv));
+                }
             }
         }
 
-        return new RawModelBone(cubes, pivot, rotationAngles, mirror, neverRender, inflate, name, parentName);
+        RawModelBone rawModelBone = new RawModelBone(cubes, pivot, rotationAngles, mirror, neverRender, inflate, name, parentName);
+        rawModelBone.children = extraBones;
+        return rawModelBone;
     }
 
     private void checkFormatVersion(String version) throws JsonParsingException {
@@ -146,10 +157,6 @@ public class JsonModelParser {
             for (RawModelCube cube : cubes) {
                 boxesOut.add(cube.bake(model, this));
             }
-//
-//            if (parent != null) {
-//                pivot.sub(parent.pivot);
-//            }
 
             TimeModelRenderer renderer = new TimeModelRenderer(model, rotationAngles, name, boxesOut, neverRender);
             if (parent != null) {

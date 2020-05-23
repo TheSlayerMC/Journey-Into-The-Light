@@ -217,8 +217,8 @@ public class EntityRendering {
         RenderingRegistry.registerEntityRenderingHandler(EntityIceman.class, new RenderEntityTransparent(new ModelSnowMan(), Textures.iceman));
         RenderingRegistry.registerEntityRenderingHandler(EntityWraith.class, new RenderWraith(new ModelWraith(), Textures.wraith));
         RenderingRegistry.registerEntityRenderingHandler(EntityTurducken.class, new RenderModMob(new ModelRoc(), Textures.turducken));
-        RenderingRegistry.registerEntityRenderingHandler(EntityFloro.class, new RenderModMob(new ModelFloro(), Textures.floro));
-        RenderingRegistry.registerEntityRenderingHandler(EntityDarkener.class, new RenderModMob(new ModelDarkener(), Textures.darkener));
+	    RenderingRegistry.registerEntityRenderingHandler(EntityFloro.class, new RenderModMob(new ModelFloro(), Textures.floro));
+	    RenderingRegistry.registerEntityRenderingHandler(EntityDarkener.class, new RenderModMob(new ModelDarkener(), Textures.darkener));
         RenderingRegistry.registerEntityRenderingHandler(EntityStarlightGolem.class, new RenderModMob(new ModelStarlightGolem(), Textures.starlightGolem));
         RenderingRegistry.registerEntityRenderingHandler(EntityIceGolem.class, new RenderIceGolem(new ModelIceGolem(), Textures.iceGolem));
         RenderingRegistry.registerEntityRenderingHandler(EntityRockiteSmasher.class, new RenderRockiteSmasher(new ModelRockiteSmasher(), Textures.rockiteSmasher));
