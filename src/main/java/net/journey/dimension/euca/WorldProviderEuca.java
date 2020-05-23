@@ -17,7 +17,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class WorldProviderEuca extends BaseWorldProvider {
 
     public WorldProviderEuca() {
-        super(new BiomeProviderSingle(DimensionHelper.euca), new Vec3d(1.28, 1.1, 0.7));
+        super(new BiomeProviderSingle(DimensionHelper.euca), new Vec3d(1.28, 1.15, 0.7));
     }
 
     @Override
@@ -57,7 +57,7 @@ public class WorldProviderEuca extends BaseWorldProvider {
     @Override
     @SideOnly(Side.CLIENT)
     public float calculateCelestialAngle(long var1, float var3) {
-        return 0.2F;
+        return 0.10F;
     }
 
     @Override
