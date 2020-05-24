@@ -9,6 +9,7 @@ import net.journey.command.JourneyCommands;
 import net.journey.dimension.base.DimensionHelper;
 import net.journey.dimension.base.WorldGenJourney;
 import net.journey.dimension.corba.village.MapGenCorbaVillage;
+import net.journey.dimension.corba.village.StructureCorbaVillagePieces;
 import net.journey.dimension.nether.JNWorldGenerator;
 import net.journey.dimension.nether.biomes.BiomeRegister;
 import net.journey.enums.EnumParticlesClasses;
@@ -115,9 +116,8 @@ public class CommonProxy {
     }
 
     public void init(FMLInitializationEvent event) {
-    	SlayerAPI.addMapGen(MapGenCorbaVillage.class, "CorbaVillage");
-    	SlayerAPI.addMapGen(MapGenCorbaVillage.Start.class, "CorbaVillageStart");
-
+    	StructureCorbaVillagePieces.registerVillagePieces();
+		
         JourneyRecipes.init();
         NetworkRegistry.INSTANCE.registerGuiHandler(JITL.instance, new GuiHandler());
         GameRegistry.registerWorldGenerator(new WorldGenJourney(), 2);
