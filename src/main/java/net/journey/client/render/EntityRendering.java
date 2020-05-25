@@ -47,6 +47,7 @@ import net.journey.entity.mob.cloudia.npc.EntityStarlightVillager;
 import net.journey.entity.mob.corba.*;
 import net.journey.entity.mob.corba.npc.EntityOvergrownMerchant;
 import net.journey.entity.mob.corba.npc.EntityRedTordo;
+import net.journey.entity.mob.corba.npc.EntityTheHooded;
 import net.journey.entity.mob.corba.npc.EntityTordo;
 import net.journey.entity.mob.depths.*;
 import net.journey.entity.mob.depths.npc.EntityStaringGuardian;
@@ -185,6 +186,7 @@ public class EntityRendering {
         RenderingRegistry.registerEntityRenderingHandler(EntityBoilTrader.class, new RenderModMob(new ModelBoilTrader(), Textures.boilTrader));
         RenderingRegistry.registerEntityRenderingHandler(EntityAlloyMender.class, new RenderModMob(new ModelAlloyMender(), Textures.alloyMender));
         RenderingRegistry.registerEntityRenderingHandler(EntityTordo.class, new RenderModMob(new ModelTordo(), Textures.greenTordo));
+        RenderingRegistry.registerEntityRenderingHandler(EntityTheHooded.class, new RenderModMob(new ModelTheHooded(), Textures.theHooded));
         RenderingRegistry.registerEntityRenderingHandler(EntityRedTordo.class, new RenderModMob(new ModelTordo(), Textures.redTordo));
         RenderingRegistry.registerEntityRenderingHandler(EntityDuneworm.class, new RenderModMob(new ModelDunewerm(), Textures.dunewerm));
         //RenderingRegistry.registerEntityRenderingHandler(EntityDragon.class, new RenderDragon());

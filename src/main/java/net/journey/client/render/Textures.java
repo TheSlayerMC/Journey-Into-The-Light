@@ -48,6 +48,7 @@ public class Textures {
     public static final ResourceLocation terranianTrader = addMob("terraniantrader");
     public static final ResourceLocation overgrownMerchant = addMob("overgrownmerchant");
     public static final ResourceLocation rockiteGolem = addMob("rockitegolem");
+    public static final ResourceLocation theHooded = addMob("thehooded");
 
     //Nether
     public static final ResourceLocation infernoBlaze = addMob("infernoblaze");

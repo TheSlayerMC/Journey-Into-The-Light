@@ -11,6 +11,7 @@ import net.journey.entity.mob.cloudia.npc.EntityStarlightVillager;
 import net.journey.entity.mob.corba.*;
 import net.journey.entity.mob.corba.npc.EntityOvergrownMerchant;
 import net.journey.entity.mob.corba.npc.EntityRedTordo;
+import net.journey.entity.mob.corba.npc.EntityTheHooded;
 import net.journey.entity.mob.corba.npc.EntityTordo;
 import net.journey.entity.mob.depths.*;
 import net.journey.entity.mob.depths.npc.EntityStaringGuardian;
@@ -226,6 +227,7 @@ public class EntityRegistry {
                 SlayerAPI.buildEntityEntry(EntityOvergrownMerchant.class, "overgrownmerchant", "Overgrown Merchant", 0x00FF8C, 0x00F6FF),
                 SlayerAPI.buildEntityEntry(EntityTerranianEnchanter.class, "terranianenchanter", "Terranian Enchanter", 0x00FF8C, 0x00F6FF),
                 SlayerAPI.buildEntityEntry(EntityRockiteGolem.class, "rockitegolem", "Rockite Golem", 0x00FF8C, 0x00F6FF),
+                SlayerAPI.buildEntityEntry(EntityTheHooded.class, "thehooded", "The Hooded", 0x00FF8C, 0x00F6FF),
                 //BOSS
                 SlayerAPI.buildEntityEntry(EntitySoulWatcher.class, "soulwatcher", "Soul Watcher", 0x000000, 0x9B0000),
                 SlayerAPI.buildEntityEntry(EntityNetherBeast.class, "beastofthenether", "Nether Beast", 0x000000, 0x9B0000),
