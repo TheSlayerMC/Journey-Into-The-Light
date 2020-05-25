@@ -1,5 +1,7 @@
 package net.journey.dimension.corba;
 
+import java.awt.Color;
+
 import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
@@ -33,7 +35,18 @@ public class BiomeGenCorba extends Biome {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public int getSkyColorByTemp(float f) {
-        return 0x5b592d;
+    public int getSkyColorByTemp(float par1) {
+        return Color.getHSBColor(0.455F, 0.216F, 5.0F).getRGB();
+    }
+
+    @Override
+    public boolean canRain() {
+        return false;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public int getWaterColorMultiplier() {
+        return 0x6cff00;
     }
 }

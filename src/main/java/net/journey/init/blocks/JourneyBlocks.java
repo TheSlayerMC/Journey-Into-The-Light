@@ -217,6 +217,7 @@ public class JourneyBlocks {
     public static BlockMod corbaPlank;
     public static BlockMod corbaLamp;
     public static BlockMod corbaSentryBrick;
+    public static BlockMod corbaGrassPath;
 
     public static BlockMod boilingLamp;
     public static BlockMod blazierBricks;
@@ -675,6 +676,7 @@ public class JourneyBlocks {
         frozenLog = new JBlockLog("frozenLog", "Frozen Log");
         frozenPlanks = new BlockMod(EnumMaterialTypes.WOOD, "frozenPlanks", "Frozen Planks", 0.5F);
 
+        corbaGrassPath = new JBlockGrassPath("corbaGrassPath", "Corba Grass Path", corbaStone);
         corbaStone = new BlockMod("corbaStone", "Corba Stone");
         corbaGrass = new BlockModGrass(null, "corbaGrass", "Corba Grass", 0.5F);
         corbaLog = new JBlockLog("corbaLog", "Corba Log");

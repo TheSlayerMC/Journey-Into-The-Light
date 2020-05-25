@@ -41,7 +41,7 @@ public class WorldProviderEuca extends BaseWorldProvider {
     
     @Override
     public float getCloudHeight() {
-        return 128.0F;
+        return 94.0F;
     }
 
     @Override

@@ -444,7 +444,7 @@ public class ChunkProviderCorba implements IChunkGenerator {
 			generateStructure(x1, z1, tree);
 		}
 		
-		for(times = 0; times < 300; times++) {
+		for(times = 0; times < 400; times++) {
 			int randX = x1 + 8 + rand.nextInt(16);
 			int randZ = z1 + 8 + rand.nextInt(16);
 			int randY = rand.nextInt(128);

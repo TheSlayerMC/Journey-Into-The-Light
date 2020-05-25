@@ -50,24 +50,18 @@ public class WorldProviderCorba extends BaseWorldProvider {
 
     @Override
     public boolean isSurfaceWorld() {
-        return false;
+        return true;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public float getCloudHeight() {
-        return 8.0F;
+        return 128.0F;
     }
 
     @Override
     public int getAverageGroundLevel() {
         return 63;
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public boolean doesXZShowFog(int x, int z) {
-        return false;
     }
 
     @Override
