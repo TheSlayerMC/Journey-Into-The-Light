@@ -35,7 +35,7 @@ public class WorldProviderCorba extends BaseWorldProvider {
     
     @Override
     public IChunkGenerator createChunkGenerator() {
-        return new ChunkProviderCorba(this.world, this.world.getSeed());
+        return new ChunkProviderCorba(this.world, this.world.getSeed(), world.getWorldInfo().getGeneratorOptions());
     }
 
     @Override

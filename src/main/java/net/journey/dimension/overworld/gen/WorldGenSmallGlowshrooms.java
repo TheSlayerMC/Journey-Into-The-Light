@@ -29,7 +29,7 @@ public class WorldGenSmallGlowshrooms extends WorldGenerator {
                 JourneyBlocks.glowshroomBlue);
 
         if (!w.getBlockState(genPos).getMaterial().isLiquid()
-                && w.getBlockState(genPos.down()).getBlock() == Blocks.STONE
+                && w.getBlockState(genPos.down()).getBlock() == Blocks.STONE || w.getBlockState(genPos.down()).getBlock() == JourneyBlocks.corbaStone  
                 && shroom.canPlaceBlockAt(w, genPos)) {
 
             setBlockAndNotifyAdequately(w, genPos, shroom.getDefaultState());

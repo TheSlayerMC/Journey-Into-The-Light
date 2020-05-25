@@ -8,7 +8,11 @@ import javax.annotation.Nullable;
 
 import com.google.common.collect.Lists;
 
+import net.journey.entity.mob.corba.npc.EntityOvergrownMerchant;
+import net.journey.entity.mob.corba.npc.EntityRedTordo;
+import net.journey.entity.mob.corba.npc.EntityTordo;
 import net.journey.init.blocks.JourneyBlocks;
+import net.journey.util.RandHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCrops;
 import net.minecraft.block.BlockDoor;
@@ -44,6 +48,7 @@ import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.template.TemplateManager;
 import net.minecraft.world.storage.loot.LootTableList;
 import net.slayer.api.SlayerAPI;
+import net.slayer.api.entity.EntityModVillager;
 
 public class StructureCorbaVillagePieces {
 	
@@ -1870,21 +1875,14 @@ public class StructureCorbaVillagePieces {
 
 					if (this.isZombieInfested)
 					{
-						EntityZombieVillager entityzombievillager = new EntityZombieVillager(worldIn);
-						entityzombievillager.setLocationAndAngles((double)j + 0.5D, (double)k, (double)l + 0.5D, 0.0F, 0.0F);
-						entityzombievillager.onInitialSpawn(worldIn.getDifficultyForLocation(new BlockPos(entityzombievillager)), (IEntityLivingData)null);
-						entityzombievillager.setForgeProfession(this.chooseForgeProfession(i, net.minecraftforge.fml.common.registry.VillagerRegistry.FARMER));
-						entityzombievillager.enablePersistence();
-						worldIn.spawnEntity(entityzombievillager);
+						
 					}
 					else
 					{
-						EntityVillager entityvillager = new EntityVillager(worldIn);
-						entityvillager.setLocationAndAngles((double)j + 0.5D, (double)k, (double)l + 0.5D, 0.0F, 0.0F);
-						net.minecraftforge.fml.common.registry.VillagerRegistry.setRandomProfession(entityvillager, worldIn.rand);
-						entityvillager.setProfession(this.chooseForgeProfession(i, entityvillager.getProfessionForge()));
-						entityvillager.finalizeMobSpawn(worldIn.getDifficultyForLocation(new BlockPos(entityvillager)), (IEntityLivingData)null, false);
-						worldIn.spawnEntity(entityvillager);
+						EntityModVillager villager = RandHelper.chooseEqual(new Random(), new EntityOvergrownMerchant(worldIn), new EntityRedTordo(worldIn), new EntityTordo(worldIn));
+						villager.setLocationAndAngles((double)j + 0.5D, (double)k, (double)l + 0.5D, 0.0F, 0.0F);
+						villager.finalizeMobSpawn(worldIn.getDifficultyForLocation(new BlockPos(villager)), (IEntityLivingData)null, false);
+						worldIn.spawnEntity(villager);
 					}
 				}
 			}

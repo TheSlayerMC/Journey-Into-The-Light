@@ -12,7 +12,10 @@ import net.journey.dimension.corba.gen.trees.WorldGenCorbaLargeTree;
 import net.journey.dimension.corba.gen.trees.WorldGenCorbaMediumTree;
 import net.journey.dimension.corba.gen.trees.WorldGenCorbaSmallTree;
 import net.journey.dimension.corba.village.MapGenCorbaVillage;
+import net.journey.dimension.overworld.gen.WorldGenCaveVines;
 import net.journey.dimension.overworld.gen.WorldGenModFlower;
+import net.journey.dimension.overworld.gen.WorldGenSmallGlowshrooms;
+import net.journey.dimension.overworld.gen.WorldGenTallGlowshroom;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.Config;
 import net.minecraft.block.Block;
@@ -21,14 +24,17 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockStateMatcher;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.LazyLoadBase;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
+import net.minecraft.world.gen.ChunkGeneratorSettings;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.MapGenBase;
 import net.minecraft.world.gen.MapGenCaves;
@@ -38,32 +44,35 @@ import net.minecraft.world.gen.NoiseGeneratorPerlin;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.event.terraingen.InitMapGenEvent;
-import net.minecraftforge.event.terraingen.InitNoiseGensEvent.ContextHell;
 import net.minecraftforge.event.terraingen.TerrainGen;
 import net.slayer.api.worldgen.WorldGenAPI;
 
 public class ChunkProviderCorba implements IChunkGenerator {
 
-	private final double[] da;
-	private final float[] parabolicField;
-	public NoiseGeneratorOctaves noiseGen5;
-	public NoiseGeneratorOctaves noiseGen6;
-	public NoiseGeneratorOctaves mobSpawnerNoise;
-	double[] gen1;
-	double[] gen2;
-	double[] gen3;
-	double[] gen4;
+	double[] mainNoiseRegion;
+	double[] minLimitRegion;
+	double[] maxLimitRegion;
+	double[] depthRegion;
+	private ChunkGeneratorSettings settings;
+	private NoiseGeneratorOctaves minLimitPerlinNoise;
+	private NoiseGeneratorOctaves maxLimitPerlinNoise;
+	private NoiseGeneratorOctaves mainPerlinNoise;
+	private NoiseGeneratorPerlin surfaceNoise;
+	public NoiseGeneratorOctaves scaleNoise;
+	public NoiseGeneratorOctaves depthNoise;
+	public NoiseGeneratorOctaves forestNoise;
+	private final WorldType terrainType;
+	private final double[] heightMap;
+	private final float[] biomeWeights;
+    private double[] depthBuffer = new double[256];
+
 	private Random rand;
 	private ArrayList<WorldGenerator> trees;
-	private NoiseGeneratorOctaves noiseGen1;
-	private NoiseGeneratorOctaves noiseGen2;
-	private NoiseGeneratorOctaves noiseGen3;
-	private NoiseGeneratorPerlin noiseGen4;
 	private World worldObj;
-	private double[] stoneNoise;
 	private MapGenBase caveGenerator;
 	private MapGenBase ravineGenerator;
 	private Biome[] biomesForGeneration;
+
 	private WorldGenModFlower flower1 = new WorldGenModFlower(JourneyBlocks.corbaSpeckledFlower, JourneyBlocks.corbaGrass);
 	private WorldGenModFlower flower2 = new WorldGenModFlower(JourneyBlocks.corbaDarkPurpleFlower, JourneyBlocks.corbaGrass);
 	private WorldGenModFlower flower3 = new WorldGenModFlower(JourneyBlocks.corbaRedFlower, JourneyBlocks.corbaGrass);
@@ -77,44 +86,47 @@ public class ChunkProviderCorba implements IChunkGenerator {
 	private WorldGenCorbaLamp lamp = new WorldGenCorbaLamp();
 	private final WorldGenMinable gorbite;
 	private final WorldGenMinable orbaditeOre;
-
+    private static final WorldGenTallGlowshroom TALL_GLOWSHROOMS_GEN = new WorldGenTallGlowshroom();
+    private static final WorldGenCaveVines CAVE_VINE_GEN = new WorldGenCaveVines();
+    private static final WorldGenSmallGlowshrooms SMALL_GLOWSHROOMS = new WorldGenSmallGlowshrooms();
+    
 	private MapGenCorbaVillage villageGenerator = new MapGenCorbaVillage();
 
-	public ChunkProviderCorba(World worldIn, long seed) {
-		this.stoneNoise = new double[256];
+	public ChunkProviderCorba(World worldIn, long seed, String generatorOptions) {
 		this.caveGenerator = new MapGenCaves();
 		this.ravineGenerator = new MapGenRavine();
 		this.worldObj = worldIn;
 		this.rand = new Random(seed);
-		this.noiseGen1 = new NoiseGeneratorOctaves(this.rand, 16);
-		this.noiseGen2 = new NoiseGeneratorOctaves(this.rand, 16);
-		this.noiseGen3 = new NoiseGeneratorOctaves(this.rand, 8);
-		this.noiseGen4 = new NoiseGeneratorPerlin(this.rand, 4);
-		this.noiseGen5 = new NoiseGeneratorOctaves(this.rand, 10);
-		this.noiseGen6 = new NoiseGeneratorOctaves(this.rand, 16);
-		this.mobSpawnerNoise = new NoiseGeneratorOctaves(this.rand, 8);
-		this.da = new double[825];
-		this.parabolicField = new float[25];
+		this.terrainType = worldIn.getWorldInfo().getTerrainType();
+		this.rand = new Random(seed);
+		this.minLimitPerlinNoise = new NoiseGeneratorOctaves(this.rand, 16);
+		this.maxLimitPerlinNoise = new NoiseGeneratorOctaves(this.rand, 16);
+		this.mainPerlinNoise = new NoiseGeneratorOctaves(this.rand, 8);
+		this.surfaceNoise = new NoiseGeneratorPerlin(this.rand, 4);
+		this.scaleNoise = new NoiseGeneratorOctaves(this.rand, 10);
+		this.depthNoise = new NoiseGeneratorOctaves(this.rand, 16);
+		this.forestNoise = new NoiseGeneratorOctaves(this.rand, 8);
+		this.heightMap = new double[825];
+		this.biomeWeights = new float[25];
+
+		for(int i = -2; i <= 2; ++i) {
+			for(int j = -2; j <= 2; ++j) {
+				float f = 10.0F / MathHelper.sqrt((float)(i * i + j * j) + 0.2F);
+				this.biomeWeights[i + 2 + (j + 2) * 5] = f;
+			}
+		}
+
+		if(generatorOptions != null) {
+			this.settings = ChunkGeneratorSettings.Factory.jsonToFactory(generatorOptions).build();
+			worldIn.setSeaLevel(this.settings.seaLevel);
+		}
+
 		trees = new ArrayList<WorldGenerator>(3);
 		trees.add(new WorldGenCorbaSmallTree());
 		trees.add(new WorldGenCorbaMediumTree());
 		trees.add(new WorldGenCorbaLargeTree());
-		for (int j = -2; j <= 2; ++j) {
-			for (int k = -2; k <= 2; ++k) {
-				float f = 10.0F / MathHelper.sqrt(j * j + k * k + 0.2F);
-				this.parabolicField[j + 2 + (k + 2) * 5] = f;
-			}
-		}
 
-		ContextHell ctx = new ContextHell(noiseGen1, noiseGen2, noiseGen3, noiseGen5, noiseGen6, mobSpawnerNoise, mobSpawnerNoise);
-		ctx = TerrainGen.getModdedNoiseGenerators(worldIn, this.rand, ctx);
-		this.noiseGen1 = ctx.getLPerlin1();
-		this.noiseGen2 = ctx.getLPerlin2();
-		this.noiseGen3 = ctx.getPerlin();
-		this.noiseGen5 = ctx.getPerlin2();
-		this.noiseGen6 = ctx.getPerlin3();
-		this.mobSpawnerNoise = ctx.getScale();
-		this.mobSpawnerNoise = ctx.getDepth();
+
 
 		this.gorbite = new WorldGenMinable(JourneyBlocks.gorbiteOre.getDefaultState(), Config.gorbiteOreGenAmount, BlockStateMatcher.forBlock(JourneyBlocks.corbaStone));
 		this.orbaditeOre = new WorldGenMinable(JourneyBlocks.orbaditeOre.getDefaultState(), Config.orbaditeOreGenAmount, BlockStateMatcher.forBlock(JourneyBlocks.corbaStone));
@@ -123,43 +135,53 @@ public class ChunkProviderCorba implements IChunkGenerator {
 
 	}
 
-	public void setBlocksInChunk(int x, int z, ChunkPrimer c) {
+	public void setBlocksInChunk(int x, int z, ChunkPrimer primer) {
 		this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomesForGeneration(this.biomesForGeneration, x * 4 - 2, z * 4 - 2, 10, 10);
-		this.generate(x * 4, 0, z * 4);
-		for (int k = 0; k < 4; ++k) {
-			int l = k * 5;
-			int i1 = (k + 1) * 5;
-			for (int j1 = 0; j1 < 4; ++j1) {
-				int k1 = (l + j1) * 33;
-				int l1 = (l + j1 + 1) * 33;
-				int i2 = (i1 + j1) * 33;
-				int j2 = (i1 + j1 + 1) * 33;
-				for (int k2 = 0; k2 < 4; ++k2) {
-					double d0 = 0.125D;
-					double d1 = this.da[k1 + k2];
-					double d2 = this.da[l1 + k2];
-					double d3 = this.da[i2 + k2];
-					double d4 = this.da[j2 + k2];
-					double d5 = (this.da[k1 + k2 + 1] - d1) * d0;
-					double d6 = (this.da[l1 + k2 + 1] - d2) * d0;
-					double d7 = (this.da[i2 + k2 + 1] - d3) * d0;
-					double d8 = (this.da[j2 + k2 + 1] - d4) * d0;
+		this.generateHeightmap(x * 4, 0, z * 4);
 
-					for (int l2 = 0; l2 < 8; ++l2) {
+		for (int i = 0; i < 4; ++i)
+		{
+			int j = i * 5;
+			int k = (i + 1) * 5;
+
+			for (int l = 0; l < 4; ++l)
+			{
+				int i1 = (j + l) * 33;
+				int j1 = (j + l + 1) * 33;
+				int k1 = (k + l) * 33;
+				int l1 = (k + l + 1) * 33;
+
+				for (int i2 = 0; i2 < 32; ++i2)
+				{
+					double d0 = 0.125D;
+					double d1 = this.heightMap[i1 + i2];
+					double d2 = this.heightMap[j1 + i2];
+					double d3 = this.heightMap[k1 + i2];
+					double d4 = this.heightMap[l1 + i2];
+					double d5 = (this.heightMap[i1 + i2 + 1] - d1) * 0.125D;
+					double d6 = (this.heightMap[j1 + i2 + 1] - d2) * 0.125D;
+					double d7 = (this.heightMap[k1 + i2 + 1] - d3) * 0.125D;
+					double d8 = (this.heightMap[l1 + i2 + 1] - d4) * 0.125D;
+
+					for (int j2 = 0; j2 < 8; ++j2)
+					{
 						double d9 = 0.25D;
 						double d10 = d1;
 						double d11 = d2;
-						double d12 = (d3 - d1) * d9;
-						double d13 = (d4 - d2) * d9;
+						double d12 = (d3 - d1) * 0.25D;
+						double d13 = (d4 - d2) * 0.25D;
 
-						for (int i3 = 0; i3 < 4; ++i3) {
+						for (int k2 = 0; k2 < 4; ++k2)
+						{
 							double d14 = 0.25D;
-							double d16 = (d11 - d10) * d14;
-							double d15 = d10 - d16;
+							double d16 = (d11 - d10) * 0.25D;
+							double lvt_45_1_ = d10 - d16;
 
-							for (int j3 = 0; j3 < 4; ++j3) {
-								if ((d15 += d16) > 0.0D) {
-									c.setBlockState(k * 4 + i3, k2 * 2 + l2, j1 * 4 + j3, JourneyBlocks.corbaStone.getDefaultState());
+							for (int l2 = 0; l2 < 4; ++l2)
+							{
+								if ((lvt_45_1_ += d16) > 0.0D)
+								{
+									primer.setBlockState(i * 4 + k2, i2 * 8 + j2, l * 4 + l2, JourneyBlocks.corbaStone.getDefaultState());
 								}
 							}
 
@@ -177,13 +199,17 @@ public class ChunkProviderCorba implements IChunkGenerator {
 		}
 	}
 
-	public void biomeBlocks(int x, int z, ChunkPrimer c, Biome[] b) {
-		if (!net.minecraftforge.event.ForgeEventFactory.onReplaceBiomeBlocks(this, x, z, c, this.worldObj)) return;
+	public void replaceBiomeBlocks(int x, int z, ChunkPrimer primer, Biome[] biomesIn)
+	{
+		if (!net.minecraftforge.event.ForgeEventFactory.onReplaceBiomeBlocks(this, x, z, primer, this.worldObj)) return;
 		double d0 = 0.03125D;
-		this.stoneNoise = this.noiseGen4.getRegion(this.stoneNoise, x * 16, z * 16, 16, 16, d0 * 2.0D, d0 * 2.0D, 1.0D);
-		for (int k = 0; k < 16; ++k) {
-			for (int l = 0; l < 16; ++l) {
-				generateBiomeTerrain(this.rand, c, x * 16 + k, z * 16 + l, this.stoneNoise[l + k * 16]);
+		this.depthBuffer = this.surfaceNoise.getRegion(this.depthBuffer, (double)(x * 16), (double)(z * 16), 16, 16, 0.0625D, 0.0625D, 1.0D);
+
+		for (int i = 0; i < 16; ++i)
+		{
+			for (int j = 0; j < 16; ++j)
+			{
+				generateBiomeTerrain(this.rand, primer, x * 16 + i, z * 16 + j, this.depthBuffer[j + i * 16]);
 			}
 		}
 	}
@@ -240,7 +266,7 @@ public class ChunkProviderCorba implements IChunkGenerator {
 		ChunkPrimer chunkprimer = new ChunkPrimer();
 		this.setBlocksInChunk(x, z, chunkprimer);
 		this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomes(this.biomesForGeneration, x * 16, z * 16, 16, 16);
-		this.biomeBlocks(x, z, chunkprimer, this.biomesForGeneration);
+		this.replaceBiomeBlocks(x, z, chunkprimer, this.biomesForGeneration);
 		this.caveGenerator.generate(this.worldObj, x, z, chunkprimer);
 		this.ravineGenerator.generate(this.worldObj, x, z, chunkprimer);
 
@@ -253,96 +279,117 @@ public class ChunkProviderCorba implements IChunkGenerator {
 		return chunk;
 	}
 
-	private void generate(int x, int y, int z) {
-		double d0 = 684.412D;
-		double d1 = 684.412D;
-		double d2 = 512.0D;
-		double d3 = 512.0D;
-		this.gen4 = this.noiseGen6.generateNoiseOctaves(this.gen4, x, z, 5, 5, 200.0D, 200.0D, 0.5D);
-		this.gen1 = this.noiseGen3.generateNoiseOctaves(this.gen1, x, y, z, 5, 33, 5, 8.555150000000001D, 4.277575000000001D, 8.555150000000001D);
-		this.gen2 = this.noiseGen1.generateNoiseOctaves(this.gen2, x, y, z, 5, 33, 5, 684.412D, 684.412D, 684.412D);
-		this.gen3 = this.noiseGen2.generateNoiseOctaves(this.gen3, x, y, z, 5, 33, 5, 684.412D, 684.412D, 684.412D);
-		boolean flag1 = false;
-		boolean flag = false;
-		int l = 0;
-		int i1 = 0;
-		double d4 = 8.5D;
+	private void generateHeightmap(int x, int y, int z) {
+		this.depthRegion = this.depthNoise.generateNoiseOctaves(this.depthRegion, x, z, 5, 5, (double)this.settings.depthNoiseScaleX, (double)this.settings.depthNoiseScaleZ, (double)this.settings.depthNoiseScaleExponent);
+		float f = this.settings.coordinateScale;
+		float f1 = this.settings.heightScale;
+		this.mainNoiseRegion = this.mainPerlinNoise.generateNoiseOctaves(this.mainNoiseRegion, x, y, z, 5, 33, 5, (double)(f / this.settings.mainNoiseScaleX), (double)(f1 / this.settings.mainNoiseScaleY), (double)(f / this.settings.mainNoiseScaleZ));
+		this.minLimitRegion = this.minLimitPerlinNoise.generateNoiseOctaves(this.minLimitRegion, x, y, z, 5, 33, 5, (double)f, (double)f1, (double)f);
+		this.maxLimitRegion = this.maxLimitPerlinNoise.generateNoiseOctaves(this.maxLimitRegion, x, y, z, 5, 33, 5, (double)f, (double)f1, (double)f);
+		int i = 0;
+		int j = 0;
 
-		for (int j1 = 0; j1 < 5; ++j1) {
-			for (int k1 = 0; k1 < 5; ++k1) {
-				float f = 0.0F;
-				float f1 = 0.0F;
+		for (int k = 0; k < 5; ++k)
+		{
+			for (int l = 0; l < 5; ++l)
+			{
 				float f2 = 0.0F;
-				byte b0 = 2;
-				Biome Biome = this.biomesForGeneration[j1 + 2 + (k1 + 2) * 10];
+				float f3 = 0.0F;
+				float f4 = 0.0F;
+				int i1 = 2;
+				Biome biome = this.biomesForGeneration[k + 2 + (l + 2) * 10];
 
-				for (int l1 = -b0; l1 <= b0; ++l1) {
-					for (int i2 = -b0; i2 <= b0; ++i2) {
-						Biome Biome1 = this.biomesForGeneration[j1 + l1 + 2 + (k1 + i2 + 2) * 10];
-						float f3 = 0.1F;
-						float f4 = 0.125F;
+				for (int j1 = -2; j1 <= 2; ++j1)
+				{
+					for (int k1 = -2; k1 <= 2; ++k1)
+					{
+						Biome biome1 = this.biomesForGeneration[k + j1 + 2 + (l + k1 + 2) * 10];
+						float f5 = this.settings.biomeDepthOffSet + biome1.getBaseHeight() * this.settings.biomeDepthWeight;
+						float f6 = this.settings.biomeScaleOffset + biome1.getHeightVariation() * this.settings.biomeScaleWeight;
 
-						float f5 = this.parabolicField[l1 + 2 + (i2 + 2) * 5] / (f3 + 2.0F);
+						if (this.terrainType == WorldType.AMPLIFIED && f5 > 0.0F)
+						{
+							f5 = 1.0F + f5 * 2.0F;
+							f6 = 1.0F + f6 * 4.0F;
+						}
 
-						f += f4 * f5 / 2;
-						f1 += f3 * f5 / 2;
-						f2 += f5 / 2;
+						float f7 = this.biomeWeights[j1 + 2 + (k1 + 2) * 5] / (f5 + 2.0F);
+
+						if (biome1.getBaseHeight() > biome.getBaseHeight())
+						{
+							f7 /= 2.0F;
+						}
+
+						f2 += f6 * f7;
+						f3 += f5 * f7;
+						f4 += f7;
 					}
 				}
 
-				f /= f2;
-				f1 /= f2;
-				f = f * 0.9F + 0.1F;
-				f1 = (f1 * 4.0F - 1.0F) / 8.0F;
-				double d12 = this.gen4[i1] / 8000.0D;
+				f2 = f2 / f4;
+				f3 = f3 / f4;
+				f2 = f2 * 0.9F + 0.1F;
+				f3 = (f3 * 4.0F - 1.0F) / 8.0F;
+				double d7 = this.depthRegion[j] / 8000.0D;
 
-				if (d12 < 0.0D) {
-					d12 = -d12 * 0.3D;
+				if (d7 < 0.0D)
+				{
+					d7 = -d7 * 0.3D;
 				}
 
-				d12 = d12 * 3.0D - 2.0D;
+				d7 = d7 * 3.0D - 2.0D;
 
-				if (d12 < 0.0D) {
-					d12 /= 2.0D;
+				if (d7 < 0.0D)
+				{
+					d7 = d7 / 2.0D;
 
-					if (d12 < -1.0D)
-						d12 = -1.0D;
-
-					d12 /= 1.4D;
-					d12 /= 2.0D;
-				} else {
-					if (d12 > 1.0D)
-						d12 = 1.0D;
-
-					d12 /= 8.0D;
-				}
-
-				++i1;
-				double d13 = f1;
-				double d14 = f;
-				d13 += d12 * 0.2D;
-				d13 = d13 * 8.5D / 8.0D;
-				double d5 = 8.5D + d13 * 4.0D;
-
-				for (int j2 = 0; j2 < 33; ++j2) {
-					double d6 = (j2 - d5) * 12.0D * 128.0D / 256.0D / d14;
-
-					if (d6 < 0.0D)
-						d6 *= 4.0D;
-
-
-					double d7 = this.gen2[l] / 512.0D;
-					double d8 = this.gen3[l] / 512.0D;
-					double d9 = (this.gen1[l] / 10.0D + 1.0D) / 2.0D;
-					double d10 = MathHelper.clampedLerp(d7, d8, d9) - d6;
-
-					if (j2 > 29) {
-						double d11 = (j2 - 29) / 3.0F;
-						d10 = d10 * (1.0D - d11) + -10.0D * d11;
+					if (d7 < -1.0D)
+					{
+						d7 = -1.0D;
 					}
 
-					this.da[l] = d10;
-					++l;
+					d7 = d7 / 1.4D;
+					d7 = d7 / 2.0D;
+				}
+				else
+				{
+					if (d7 > 1.0D)
+					{
+						d7 = 1.0D;
+					}
+
+					d7 = d7 / 8.0D;
+				}
+
+				++j;
+				double d8 = (double)f3;
+				double d9 = (double)f2;
+				d8 = d8 + d7 * 0.2D;
+				d8 = d8 * (double)this.settings.baseSize / 8.0D;
+				double d0 = (double)this.settings.baseSize + d8 * 4.0D;
+
+				for (int l1 = 0; l1 < 33; ++l1)
+				{
+					double d1 = ((double)l1 - d0) * (double)this.settings.stretchY * 128.0D / 256.0D / d9;
+
+					if (d1 < 0.0D)
+					{
+						d1 *= 4.0D;
+					}
+
+					double d2 = this.minLimitRegion[i] / (double)this.settings.lowerLimitScale;
+					double d3 = this.maxLimitRegion[i] / (double)this.settings.upperLimitScale;
+					double d4 = (this.mainNoiseRegion[i] / 10.0D + 1.0D) / 2.0D;
+					double d5 = MathHelper.clampedLerp(d2, d3, d4) - d1;
+
+					if (l1 > 29)
+					{
+						double d6 = (double)((float)(l1 - 29) / 3.0F);
+						d5 = d5 * (1.0D - d6) + -10.0D * d6;
+					}
+
+					this.heightMap[i] = d5;
+					++i;
 				}
 			}
 		}
@@ -356,7 +403,9 @@ public class ChunkProviderCorba implements IChunkGenerator {
 		int times;
 		Random r = rand;
 		BlockPos chunkStart = new BlockPos(x1, 0, z1);
-        ChunkPos chunkpos = new ChunkPos(cx, cz);
+		ChunkPos chunkpos = new ChunkPos(cx, cz);
+        BlockPos startPos = new BlockPos(x1, 0, z1);
+		this.villageGenerator.generateStructure(this.worldObj, this.rand, chunkpos);
 
 		for (i = 0; i < 5; i++) {
 			tall.generate(worldObj, r, chunkStart);
@@ -368,9 +417,19 @@ public class ChunkProviderCorba implements IChunkGenerator {
 			flower5.generate(worldObj, r, chunkStart);
 		}
 
+
 		if (rand.nextInt(5) == 0) {
 			generateStructure(x1, z1, worldGenTreehouse);
 		}
+		
+		for (i = 0; i < 64; i++) {
+            TALL_GLOWSHROOMS_GEN.generate(worldObj, rand, startPos);
+            SMALL_GLOWSHROOMS.generate(worldObj, rand, startPos);
+        }
+		
+		for (i = 0; i < 55; i++) {
+            CAVE_VINE_GEN.generate(worldObj, rand, startPos);
+        }
 
 		if (rand.nextInt(6) == 0) {
 			BlockPos pos = new BlockPos(x1 + 1, r.nextInt(128) + 1,
@@ -384,6 +443,16 @@ public class ChunkProviderCorba implements IChunkGenerator {
 		if (rand.nextInt(6) == 0) {
 			generateStructure(x1, z1, tree);
 		}
+		
+		for(times = 0; times < 300; times++) {
+			int randX = x1 + 8 + rand.nextInt(16);
+			int randZ = z1 + 8 + rand.nextInt(16);
+			int randY = rand.nextInt(128);
+			if (isBlockTop(randX, randY - 1, randZ, JourneyBlocks.corbaGrass)) {
+				trees.get(rand.nextInt(trees.size())).generate(worldObj, rand, new BlockPos(randX, randY, randZ));
+			}
+		}
+
 
 		for (times = 0; times < 30; times++) {
 			generateStructure(x1, z1, lamp);
@@ -397,14 +466,6 @@ public class ChunkProviderCorba implements IChunkGenerator {
 			orbaditeOre.generate(worldObj, rand, chunkStart.add(rand.nextInt(16), rand.nextInt(worldObj.getHeight()), rand.nextInt(16)));
 		}
 
-		for (times = 0; times < 450; times++) {
-			BlockPos pos = WorldGenAPI.createRandom(x1, 1, 128 + 1, z1, rand, 8);
-			if (isBlockTop(pos.getX(), pos.getY(), pos.getZ(), JourneyBlocks.corbaGrass)) {
-				trees.get(rand.nextInt(trees.size())).generate(worldObj, rand, pos);
-			}
-		}
-		
-		this.villageGenerator.generateStructure(this.worldObj, this.rand, chunkpos);
 	}
 
 	private void generateStructure(int x, int z, WorldGenerator generator) {
