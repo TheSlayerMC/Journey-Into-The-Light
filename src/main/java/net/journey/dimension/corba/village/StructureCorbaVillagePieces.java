@@ -14,6 +14,7 @@ import net.journey.dimension.corba.village.pieces.CorbaVillageGarden;
 import net.journey.dimension.corba.village.pieces.CorbaVillageHouse1;
 import net.journey.dimension.corba.village.pieces.CorbaVillageHouse2;
 import net.journey.dimension.corba.village.pieces.CorbaVillageLamp;
+import net.journey.dimension.corba.village.pieces.CorbaVillageLibrary;
 import net.journey.dimension.corba.village.pieces.CorbaVillageOuthouse;
 import net.journey.entity.mob.corba.npc.EntityOvergrownMerchant;
 import net.journey.entity.mob.corba.npc.EntityRedTordo;
@@ -56,6 +57,7 @@ import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.template.TemplateManager;
 import net.minecraft.world.storage.loot.LootTableList;
+import net.minecraftforge.fml.common.registry.VillagerRegistry;
 import net.slayer.api.SlayerAPI;
 import net.slayer.api.entity.EntityModVillager;
 import net.slayer.api.worldgen.WorldGenAPI;
@@ -76,6 +78,7 @@ public class StructureCorbaVillagePieces {
 		SlayerAPI.addMapGen(CorbaVillageOuthouse.class, "CorbaVillageOuthouse"); //fix bounding box, make less common
 		SlayerAPI.addMapGen(CorbaVillageChurch.class, "CorbaVillageChurch"); //replace with new structure
 		SlayerAPI.addMapGen(CorbaVillageHouse2.class, "CorbaVillageHouse2");
+		SlayerAPI.addMapGen(CorbaVillageLibrary.class, "CorbaVillageLibrary");
 		//SlayerAPI.addMapGen(StructureCorbaVillagePieces.House3.class, "CorbaVillageHouse3");
 
 	}
@@ -83,17 +86,19 @@ public class StructureCorbaVillagePieces {
 	public static List<StructureCorbaVillagePieces.PieceWeight> getStructureVillageWeightedPieceList(Random random, int size) {
 		List<StructureCorbaVillagePieces.PieceWeight> list = Lists.<StructureCorbaVillagePieces.PieceWeight>newArrayList();
 		
-		list.add(new StructureCorbaVillagePieces.PieceWeight(CorbaVillageGarden.class, 4, MathHelper.getInt(random, 2 + size, 4 + size * 2)));
+		list.add(new StructureCorbaVillagePieces.PieceWeight(CorbaVillageGarden.class, 10, MathHelper.getInt(random, 2 + size, 4 + size * 2)));
 		
-		list.add(new StructureCorbaVillagePieces.PieceWeight(CorbaVillageChurch.class, 20, MathHelper.getInt(random, 0 + size, 1 + size)));
+		list.add(new StructureCorbaVillagePieces.PieceWeight(CorbaVillageChurch.class, 15, MathHelper.getInt(random, 0 + size, 1 + size)));
 		
-		list.add(new StructureCorbaVillagePieces.PieceWeight(CorbaVillageHouse1.class, 20, MathHelper.getInt(random, 0 + size, 2 + size)));
+		list.add(new StructureCorbaVillagePieces.PieceWeight(CorbaVillageHouse1.class, 5, MathHelper.getInt(random, 0 + size, 2 + size)));
 		
-		list.add(new StructureCorbaVillagePieces.PieceWeight(CorbaVillageOuthouse.class, 3, MathHelper.getInt(random, 2 + size, 5 + size * 3)));
+		list.add(new StructureCorbaVillagePieces.PieceWeight(CorbaVillageOuthouse.class, 8, MathHelper.getInt(random, 2 + size, 5 + size * 3)));
 		
-		list.add(new StructureCorbaVillagePieces.PieceWeight(CorbaVillageBlacksmith.class, 15, MathHelper.getInt(random, 0 + size, 2 + size)));
+		list.add(new StructureCorbaVillagePieces.PieceWeight(CorbaVillageBlacksmith.class, 20, MathHelper.getInt(random, 0 + size, 2 + size)));
 		
-		list.add(new StructureCorbaVillagePieces.PieceWeight(CorbaVillageHouse2.class, 15, MathHelper.getInt(random, 0, 1 + size)));
+		list.add(new StructureCorbaVillagePieces.PieceWeight(CorbaVillageHouse2.class, 3, MathHelper.getInt(random, 0, 1 + size)));
+		
+		list.add(new StructureCorbaVillagePieces.PieceWeight(CorbaVillageLibrary.class, 20, MathHelper.getInt(random, 0, 1 + size)));
 		
 		//list.add(new StructureCorbaVillagePieces.PieceWeight(StructureCorbaVillagePieces.House3.class, 8, MathHelper.getInt(random, 0 + size, 3 + size * 2)));
 		
@@ -144,6 +149,9 @@ public class StructureCorbaVillagePieces {
 			
 		} else if (oclass == CorbaVillageHouse2.class) {
 			structurevillagepieces$village = CorbaVillageHouse2.createPiece(start, structureComponents, rand, structureMinX, structureMinY, structureMinZ, facing, componentType);
+			
+		} else if (oclass == CorbaVillageLibrary.class) {
+			structurevillagepieces$village = CorbaVillageLibrary.createPiece(start, structureComponents, rand, structureMinX, structureMinY, structureMinZ, facing, componentType);
 			
 		//} else if (oclass == StructureCorbaVillagePieces.House3.class) {
 			//structurevillagepieces$village = StructureCorbaVillagePieces.House3.createPiece(start, structureComponents, rand, structureMinX, structureMinY, structureMinZ, facing, componentType);
@@ -820,11 +828,6 @@ public class StructureCorbaVillagePieces {
 			return structurebb != null && structurebb.minY > 10;
 		}
 
-		/**
-		 * Spawns a number of villagers in this component. Parameters: world,
-		 * component bounding box, x offset, y offset, z offset, number of
-		 * villagers
-		 */
 		protected void spawnVillagers(World worldIn, StructureBoundingBox structurebb, int x, int y, int z, int count) {
 			if (this.villagersSpawned < count) {
 				for (int i = this.villagersSpawned; i < count; ++i) {
@@ -851,15 +854,13 @@ public class StructureCorbaVillagePieces {
 			}
 		}
 
-		@Deprecated // Use Forge version below.
+		@Deprecated
 		protected int chooseProfession(int villagersSpawnedIn, int currentVillagerProfession) {
 			return currentVillagerProfession;
 		}
 
-		protected net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerProfession chooseForgeProfession(
-				int count, net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerProfession prof) {
-			return net.minecraftforge.fml.common.registry.VillagerRegistry.getById(
-					chooseProfession(count, net.minecraftforge.fml.common.registry.VillagerRegistry.getId(prof)));
+		protected VillagerRegistry.VillagerProfession chooseForgeProfession(int count, VillagerRegistry.VillagerProfession prof) {
+			return VillagerRegistry.getById(chooseProfession(count, VillagerRegistry.getId(prof)));
 		}
 
 		protected IBlockState getBiomeSpecificBlockState(IBlockState blockstateIn) {
@@ -992,8 +993,8 @@ public class StructureCorbaVillagePieces {
 	}
 
 	public static class Well extends StructureCorbaVillagePieces.Village {
-		public Well() {
-		}
+		
+		public Well() {}
 
 		public Well(StructureCorbaVillagePieces.Start start, int type, Random rand, int x, int z) {
 			super(start, type);
@@ -1005,11 +1006,8 @@ public class StructureCorbaVillagePieces {
 				this.boundingBox = new StructureBoundingBox(x, 64, z, x + 8 - 1, 78, z + 8 - 1);
 			}
 		}
-
-		/**
-		 * Initiates construction of the Structure Component picked, at the
-		 * current Location of StructGen
-		 */
+		
+		@Override
 		public void buildComponent(StructureComponent componentIn, List<StructureComponent> listIn, Random rand) {
 			StructureCorbaVillagePieces.generateAndAddRoadPiece((StructureCorbaVillagePieces.Start) componentIn, listIn,
 					rand, this.boundingBox.minX - 1, this.boundingBox.maxY - 4, this.boundingBox.minZ + 1,
@@ -1025,11 +1023,7 @@ public class StructureCorbaVillagePieces {
 					EnumFacing.SOUTH, this.getComponentType());
 		}
 
-		/**
-		 * second Part of Structure generating, this for example places
-		 * Spiderwebs, Mob Spawners, it closes Mineshafts at the end, it adds
-		 * Fences...
-		 */
+		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn) {
 			int i = 0;
 			int j = +8;
