@@ -1,0 +1,6 @@
+{
+	"parent": "block/cube_all",
+	"textures": {
+		"all": "journey:blocks/corba_light_bricks"
+	}
+}

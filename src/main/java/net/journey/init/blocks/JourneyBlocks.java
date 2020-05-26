@@ -209,7 +209,14 @@ public class JourneyBlocks {
     public static BlockMod withanLamp;
     public static BlockMod withanLight;
 
+    public static BlockMod corbaCrackedBricks;
+    public static BlockMod corbaDarkBricks;
+    public static BlockMod corbaBricks;
+    public static BlockMod corbaLightBricks;
+    
     public static BlockMod corbaStone;
+    public static BlockMod corbaCobblestone;
+    public static JBlockWall corbaWall;
     public static BlockMod corbaGrass;
     public static JBlockLog corbaLog;
     public static BlockMod corbaLeaves;
@@ -219,6 +226,9 @@ public class JourneyBlocks {
     public static BlockMod corbaSentryBrick;
     public static BlockMod corbaGrassPath;
 
+    public static BlockModStairs corbaBrickStairs;
+    public static BlockModStairs corbaPlankStairs;
+    
     public static BlockMod boilingLamp;
     public static BlockMod blazierBricks;
     public static BlockMod ashBlock;
@@ -676,8 +686,18 @@ public class JourneyBlocks {
         frozenLog = new JBlockLog("frozenLog", "Frozen Log");
         frozenPlanks = new BlockMod(EnumMaterialTypes.WOOD, "frozenPlanks", "Frozen Planks", 0.5F);
 
+        corbaCrackedBricks = new BlockMod("corba_cracked_bricks", "Corba Stone");
+        corbaDarkBricks = new BlockMod("corba_dark_bricks", "Corba Stone");
+        corbaBricks = new BlockMod("corba_bricks", "Corba Stone");
+        corbaLightBricks = new BlockMod("corba_light_bricks", "Corba Stone");
+        
+        corbaBrickStairs = new BlockModStairs(corbaBricks, "corba_brick_stairs", "Cloudia Brick Stairs");
+
+        
         corbaGrassPath = new JBlockGrassPath("corbaGrassPath", "Corba Grass Path", corbaStone);
         corbaStone = new BlockMod("corbaStone", "Corba Stone");
+        corbaCobblestone = new BlockMod("corba_cobblestone", "Corba Cobblestone");
+        corbaWall = new JBlockWall(corbaCobblestone, "corba_wall", "Corba Wall");
         corbaGrass = new BlockModGrass(null, "corbaGrass", "Corba Grass", 0.5F);
         corbaLog = new JBlockLog("corbaLog", "Corba Log");
         corbaLeaves = new BlockModLeaves("corbaLeaves", "Corba Leaves", 0.2F, corbaSapling);
@@ -687,6 +707,8 @@ public class JourneyBlocks {
                 .setLightLevel(1.0F).setCreativeTab(JourneyTabs.DECORATION);
         corbaSentryBrick = new BlockMod("corbaSentryBrick", "Corba Sentry Brick");
 
+        corbaPlankStairs = new BlockModStairs(corbaPlank, "corba_plank_stairs", "Corba Plank Stairs");
+        
         boilingLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "boilingLamp", "Boiling Lamp", 0.1F)
                 .setLightLevel(1.0F).setCreativeTab(JourneyTabs.DECORATION);
         blazierBricks = new BlockMod("blazierBricks", "Blazier Bricks");

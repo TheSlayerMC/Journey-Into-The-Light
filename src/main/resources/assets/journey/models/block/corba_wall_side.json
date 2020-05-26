@@ -1,0 +1,6 @@
+{
+  "parent": "block/wall_side",
+  "textures": {
+    "wall": "journey:blocks/corba_cobblestone"
+  }
+}
