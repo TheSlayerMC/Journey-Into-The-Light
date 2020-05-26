@@ -17,6 +17,7 @@ import net.journey.dimension.corba.village.pieces.CorbaVillageLamp;
 import net.journey.dimension.corba.village.pieces.CorbaVillageOuthouse;
 import net.journey.entity.mob.corba.npc.EntityOvergrownMerchant;
 import net.journey.entity.mob.corba.npc.EntityRedTordo;
+import net.journey.entity.mob.corba.npc.EntityTheHooded;
 import net.journey.entity.mob.corba.npc.EntityTordo;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.RandHelper;
@@ -840,9 +841,7 @@ public class StructureCorbaVillagePieces {
 					if (this.isZombieInfested) {
 
 					} else {
-						EntityModVillager villager = RandHelper.chooseEqual(new Random(),
-								new EntityOvergrownMerchant(worldIn), new EntityRedTordo(worldIn),
-								new EntityTordo(worldIn));
+						EntityModVillager villager = new EntityTheHooded(worldIn);
 						villager.setLocationAndAngles((double) j + 0.5D, (double) k, (double) l + 0.5D, 0.0F, 0.0F);
 						villager.finalizeMobSpawn(worldIn.getDifficultyForLocation(new BlockPos(villager)),
 								(IEntityLivingData) null, false);
