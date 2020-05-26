@@ -1,0 +1,8 @@
+{
+  "parent": "block/half_slab",
+  "textures": {
+    "bottom": "journey:blocks/corbaplank",
+    "top": "journey:blocks/corbaplank",
+    "side": "journey:blocks/corbaplank"
+  }
+}

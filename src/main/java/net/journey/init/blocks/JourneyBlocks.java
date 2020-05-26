@@ -225,6 +225,9 @@ public class JourneyBlocks {
     public static BlockMod corbaLamp;
     public static BlockMod corbaSentryBrick;
     public static BlockMod corbaGrassPath;
+    
+    public static JBlockSlab corbaPlankSlab;
+    public static JBlockSlab corbaPlankDoubleSlab;
 
     public static BlockModStairs corbaBrickStairs;
     public static BlockModStairs corbaPlankStairs;
@@ -706,6 +709,9 @@ public class JourneyBlocks {
         corbaLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "corbaLamp", "Corba Lamp", 0.1F)
                 .setLightLevel(1.0F).setCreativeTab(JourneyTabs.DECORATION);
         corbaSentryBrick = new BlockMod("corbaSentryBrick", "Corba Sentry Brick");
+
+        corbaPlankSlab = new JBlockSlab(Material.WOOD, "corba_plank_slab", "Corba Plank Slab", false);
+        corbaPlankDoubleSlab = new JBlockSlab(Material.WOOD, "corba_plank_double_slab", "Corba Plank Double Slab", true);
 
         corbaPlankStairs = new BlockModStairs(corbaPlank, "corba_plank_stairs", "Corba Plank Stairs");
         

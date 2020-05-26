@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=bottom": {
+      "model": "journey:corba_plank_slab_half"
+    },
+    "half=top": {
+      "model": "journey:corba_plank_slab_upper"
+    }
+  }
+}
