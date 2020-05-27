@@ -21,6 +21,7 @@ import net.journey.event.VanillaFixEvent;
 import net.journey.init.JourneyEnchantments;
 import net.journey.init.JourneyRecipes;
 import net.journey.init.JourneySounds;
+import net.journey.init.ScrollRegistry;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.init.common.JourneyCrops;
 import net.journey.init.items.JourneyArmory;
@@ -123,15 +124,15 @@ public class CommonProxy {
         GameRegistry.registerWorldGenerator(new WorldGenJourney(), 2);
         SlayerAPI.registerEventListener(new PlayerEvent());
     }
-
+    
+    public void postInit(FMLPostInitializationEvent event) {
+        ScrollRegistry.register();
+    }
+    
     public void registerEntityRenderer(Entity entity, int i, String name) {
     }
 
     public void registerVariantRenderer(Item item, int meta, String name, String id) {
-    }
-
-    public void postInit(FMLPostInitializationEvent event) {
-
     }
 
     public void serverStarting(FMLServerStartingEvent event) {
