@@ -28,54 +28,43 @@ public class BlockBoilPortal extends BlockModPortal {
     }
 
     @Override
-    public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entity) {
-        if ((entity.getRidingEntity() == null) && ((entity instanceof EntityPlayerMP))) {
-            EntityPlayerMP thePlayer = (EntityPlayerMP) entity;
-            WorldServer worldserver = thePlayer.server.getWorld(thePlayer.dimension);
-            //thePlayer.triggerAchievement(JourneyAchievements.achievementBoil);
-            int dimensionID = Config.boil;
-            Block blockFrame = JourneyBlocks.boilPortalFrame;
-            if (thePlayer.timeUntilPortal > 0)
-                thePlayer.timeUntilPortal = 300;
-            else if (thePlayer.dimension != dimensionID) {
-                thePlayer.timeUntilPortal = 300;
-                thePlayer.server.getPlayerList().transferPlayerToDimension(thePlayer, dimensionID, new ModTeleporter(thePlayer.server.getWorld(dimensionID), this, blockFrame.getDefaultState()));
-            } else {
-                thePlayer.timeUntilPortal = 300;
-                thePlayer.server.getPlayerList().transferPlayerToDimension(thePlayer, 0, new ModTeleporter(thePlayer.server.getWorld(0), this, blockFrame.getDefaultState()));
-            }
-        }
-        /*
-         *  if ((entity.getRidingEntity() == null) && ((entity instanceof EntityPlayerMP))) {
-            EntityPlayerMP thePlayer = (EntityPlayerMP) entity;
-            WorldServer worldserver = thePlayer.server.getWorld(thePlayer.dimension);
-            int dimensionID = Config.boil;
-            Block blockFrame = JourneyBlocks.boilPortalFrame;
-			int i = thePlayer.getMaxInPortalTime();
-			if (portalCounter++ >= i) {
-				portalCounter = i;
-				thePlayer.timeUntilPortal = 300;
-				int j;
-				if (thePlayer.dimension == dimensionID) {
-					j = 0;
-				} else {
-					j = dimensionID;
-				}
-				thePlayer.server.getPlayerList().transferPlayerToDimension(thePlayer, j, new ModTeleporter(thePlayer.server.getWorld(j), this, blockFrame.getDefaultState()));
+	public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entity) {
+		if ((entity.getRidingEntity() == null) && ((entity instanceof EntityPlayerMP))) {
+			
+			EntityPlayerMP playerMP = (EntityPlayerMP) entity;
+			Block blockFrame = JourneyBlocks.boilPortalFrame;
+
+			/*
+			 * sets timer for dimension travel
+			 */
+			if (entity.timeUntilPortal > 0) {
+				return;
 			}
-			else {
-				if (this.portalCounter > 0) {
-					this.portalCounter -= 4;
-				}
-				if (this.portalCounter < 0) {
-					this.portalCounter = 0;
-				}
+			entity.timeUntilPortal = 75;
+
+			/*
+			 * sets destination
+			 * 
+			 * if player is in 'dimensionID' dimension, send player to overworld
+			 * otherwise, send player to 'dimensionID' dimension
+			 */
+			int dimensionID = Config.boil;
+			int destination;
+			if (entity.dimension == dimensionID) {
+				destination = 0;
+			} else {
+				destination = dimensionID;
 			}
-			if (thePlayer.timeUntilPortal > 0) {
-				--thePlayer.timeUntilPortal;
+			
+			/*
+			 * change player dimension to destination dimension based on current dim ID
+			 */
+			entity.changeDimension(destination, new ModTeleporter(entity.getServer().getWorld(destination), this, blockFrame.getDefaultState()));
+			
+			if (destination == dimensionID) {
+				playerMP.setSpawnChunk(new BlockPos(playerMP), true, dimensionID);
 			}
-        }
-         */
+		}
     }
 
     @Override
