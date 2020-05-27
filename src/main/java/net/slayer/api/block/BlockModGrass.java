@@ -60,11 +60,6 @@ public class BlockModGrass extends BlockMod implements IGrowable {
     }
 
     @Override
-    public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, IPlantable plantable) {
-        return true;
-    }
-
-    @Override
     public boolean canUseBonemeal(World worldIn, Random r, BlockPos b, IBlockState i) {
         return true;
     }

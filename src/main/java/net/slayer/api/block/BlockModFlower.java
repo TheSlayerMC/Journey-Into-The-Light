@@ -2,6 +2,7 @@ package net.slayer.api.block;
 
 import net.journey.init.JourneyTabs;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -109,7 +110,7 @@ public class BlockModFlower extends BlockMod implements IPlantable {
     }
 
     protected boolean canSustainBush(IBlockState state) {
-        return state.getBlock() == Blocks.GRASS || state.getBlock() == Blocks.DIRT || state.getBlock() == Blocks.FARMLAND;
+        return state.getMaterial() == Material.GRASS || state.getMaterial() == Material.GROUND;
     }
 
     @Override
@@ -131,15 +132,12 @@ public class BlockModFlower extends BlockMod implements IPlantable {
     }
 
     public boolean canBlockStay(World worldIn, BlockPos pos, IBlockState state) {
-        if (state.getBlock() == this) {
-            IBlockState soil = worldIn.getBlockState(pos.down());
-            return soil.getBlock().canSustainPlant(soil, worldIn, pos.down(), net.minecraft.util.EnumFacing.UP, this);
-        }
         return this.canSustainBush(worldIn.getBlockState(pos.down()));
     }
-
-    public boolean canBlockStay(World w, BlockPos pos) {
-        return canPlaceBlockAt(w, pos);
+    
+    @Override
+    public boolean canPlaceBlockAt(World worldIn, BlockPos pos) {
+    	return worldIn.getBlockState(pos.down()).getMaterial() == Material.GRASS || worldIn.getBlockState(pos.down()).getMaterial() == Material.GROUND;
     }
 
     @Override
