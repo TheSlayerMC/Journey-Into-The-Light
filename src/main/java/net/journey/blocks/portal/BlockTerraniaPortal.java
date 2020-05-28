@@ -28,23 +28,43 @@ public class BlockTerraniaPortal extends BlockModPortal {
     }
 
     @Override
-    public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entity) {
-        if ((entity.getRidingEntity() == null) && ((entity instanceof EntityPlayerMP))) {
-            EntityPlayerMP thePlayer = (EntityPlayerMP) entity;
-            WorldServer worldserver = thePlayer.server.getWorld(thePlayer.dimension);
-            //thePlayer.triggerAchievement(JourneyAchievements.achievementTerrania);
-            int dimensionID = Config.terrania;
-            Block blockFrame = JourneyBlocks.terraniaPortalFrame;
-            if (thePlayer.timeUntilPortal > 0)
-                thePlayer.timeUntilPortal = 10;
-            else if (thePlayer.dimension != dimensionID) {
-                thePlayer.timeUntilPortal = 10;
-                thePlayer.server.getPlayerList().transferPlayerToDimension(thePlayer, dimensionID, new ModTeleporter(thePlayer.server.getWorld(dimensionID), this, blockFrame.getDefaultState()));
-            } else {
-                thePlayer.timeUntilPortal = 10;
-                thePlayer.server.getPlayerList().transferPlayerToDimension(thePlayer, 0, new ModTeleporter(thePlayer.server.getWorld(0), this, blockFrame.getDefaultState()));
-            }
-        }
+	public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entity) {
+		if ((entity.getRidingEntity() == null) && ((entity instanceof EntityPlayerMP))) {
+			
+			EntityPlayerMP playerMP = (EntityPlayerMP) entity;
+			Block blockFrame = JourneyBlocks.terraniaPortalFrame;
+
+			/*
+			 * sets timer for dimension travel
+			 */
+			if (entity.timeUntilPortal > 0) {
+				return;
+			}
+			entity.timeUntilPortal = 75;
+
+			/*
+			 * sets destination
+			 * 
+			 * if player is in 'dimensionID' dimension, send player to overworld
+			 * otherwise, send player to 'dimensionID' dimension
+			 */
+			int dimensionID = Config.terrania;
+			int destination;
+			if (entity.dimension == dimensionID) {
+				destination = 0;
+			} else {
+				destination = dimensionID;
+			}
+			
+			/*
+			 * change player dimension to destination dimension based on current dim ID
+			 */
+			entity.changeDimension(destination, new ModTeleporter(entity.getServer().getWorld(destination), this, blockFrame.getDefaultState()));
+			
+			if (destination == dimensionID) {
+				playerMP.setSpawnChunk(new BlockPos(playerMP), true, dimensionID);
+			}
+		}
     }
 
     @Override

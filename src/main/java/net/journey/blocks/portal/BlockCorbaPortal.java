@@ -1,8 +1,11 @@
 package net.journey.blocks.portal;
 
+import net.journey.dimension.base.ModTeleporter;
 import net.journey.dimension.corba.TeleporterCorba;
 import net.journey.init.JourneyTabs;
+import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.Config;
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -62,21 +65,43 @@ public class BlockCorbaPortal extends BlockMod {
     }
 
     @Override
-    public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entity) {
-        if ((entity.getRidingEntity() == null) && ((entity instanceof EntityPlayerMP))) {
-            EntityPlayerMP thePlayer = (EntityPlayerMP) entity;
-            WorldServer worldserver = thePlayer.server.getWorld(thePlayer.dimension);
-            int dimensionID = Config.corba;
-            if (thePlayer.timeUntilPortal > 0)
-                thePlayer.timeUntilPortal = 10;
-            else if (thePlayer.dimension != dimensionID) {
-                thePlayer.timeUntilPortal = 10;
-                thePlayer.server.getPlayerList().transferPlayerToDimension(thePlayer, dimensionID, new TeleporterCorba(thePlayer.server.getWorld(dimensionID)));
-            } else {
-                thePlayer.timeUntilPortal = 10;
-                thePlayer.server.getPlayerList().transferPlayerToDimension(thePlayer, 0, new TeleporterCorba(thePlayer.server.getWorld(0)));
-            }
-        }
+	public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entity) {
+		if ((entity.getRidingEntity() == null) && ((entity instanceof EntityPlayerMP))) {
+			
+			EntityPlayerMP playerMP = (EntityPlayerMP) entity;
+			Block blockFrame = JourneyBlocks.corbaPortalFrame;
+
+			/*
+			 * sets timer for dimension travel
+			 */
+			if (entity.timeUntilPortal > 0) {
+				return;
+			}
+			entity.timeUntilPortal = 75;
+
+			/*
+			 * sets destination
+			 * 
+			 * if player is in 'dimensionID' dimension, send player to overworld
+			 * otherwise, send player to 'dimensionID' dimension
+			 */
+			int dimensionID = Config.boil;
+			int destination;
+			if (entity.dimension == dimensionID) {
+				destination = 0;
+			} else {
+				destination = dimensionID;
+			}
+			
+			/*
+			 * change player dimension to destination dimension based on current dim ID
+			 */
+			entity.changeDimension(destination, new TeleporterCorba(entity.getServer().getWorld(destination)));
+			
+			if (destination == dimensionID) {
+				playerMP.setSpawnChunk(new BlockPos(playerMP), true, dimensionID);
+			}
+		}
     }
 
     @Override

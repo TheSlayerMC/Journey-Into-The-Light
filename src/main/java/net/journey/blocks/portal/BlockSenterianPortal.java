@@ -1,9 +1,13 @@
 package net.journey.blocks.portal;
 
+import net.journey.dimension.cloudia.TeleporterCloudia;
+import net.journey.dimension.cloudia.TeleporterCloudiaToOverworld;
 import net.journey.dimension.senterian.TeleporterSenterian;
 import net.journey.dimension.senterian.TeleporterSenterianToOverworld;
 import net.journey.init.JourneyTabs;
+import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.Config;
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -63,21 +67,46 @@ public class BlockSenterianPortal extends BlockMod {
     }
 
     @Override
-    public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entity) {
-        if ((entity.getRidingEntity() == null) && ((entity instanceof EntityPlayerMP))) {
-            EntityPlayerMP thePlayer = (EntityPlayerMP) entity;
-            WorldServer worldserver = thePlayer.server.getWorld(thePlayer.dimension);
-            int dimensionID = Config.senterian;
-            if (thePlayer.timeUntilPortal > 0)
-                thePlayer.timeUntilPortal = 10;
-            else if (thePlayer.dimension != dimensionID) {
-                thePlayer.timeUntilPortal = 10;
-                thePlayer.server.getPlayerList().transferPlayerToDimension(thePlayer, dimensionID, new TeleporterSenterian(thePlayer.server.getWorld(dimensionID), thePlayer));
-            } else {
-                thePlayer.timeUntilPortal = 10;
-                thePlayer.server.getPlayerList().transferPlayerToDimension(thePlayer, 0, new TeleporterSenterianToOverworld(thePlayer.server.getWorld(0)));
-            }
-        }
+	public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entity) {
+		if ((entity.getRidingEntity() == null) && ((entity instanceof EntityPlayerMP))) {
+			
+			EntityPlayerMP playerMP = (EntityPlayerMP) entity;
+			Block blockFrame = JourneyBlocks.senterianPortalFrame;
+
+			/*
+			 * sets timer for dimension travel
+			 */
+			if (entity.timeUntilPortal > 0) {
+				return;
+			}
+			entity.timeUntilPortal = 75;
+
+			/*
+			 * sets destination
+			 * 
+			 * if player is in 'dimensionID' dimension, send player to overworld
+			 * otherwise, send player to 'dimensionID' dimension
+			 */
+			int dimensionID = Config.senterian;
+			int destination;
+			if (entity.dimension == dimensionID) {
+				destination = 0;
+			} else {
+				destination = dimensionID;
+			}
+			
+			/*
+			 * change player dimension to destination dimension based on current dim ID
+			 */
+			if (destination == 0) {
+				entity.changeDimension(destination, new TeleporterSenterianToOverworld(entity.getServer().getWorld(destination)));
+			}
+			
+			if (destination == dimensionID) {
+				entity.changeDimension(destination, new TeleporterSenterian(entity.getServer().getWorld(destination), playerMP));
+				playerMP.setSpawnChunk(new BlockPos(playerMP), true, dimensionID);
+			}
+		}
     }
 
     @Override
