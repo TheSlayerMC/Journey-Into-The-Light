@@ -1,7 +1,7 @@
 package net.journey.items.interactive;
 
 import net.journey.JITL;
-import net.journey.client.render.gui.tablet.GuiLoreScroll;
+import net.journey.client.render.gui.scroll.GuiLoreScroll;
 import net.journey.init.JourneyTabs;
 import net.journey.init.items.JourneyItems;
 import net.journey.util.gen.lang.LangGeneratorFacade;

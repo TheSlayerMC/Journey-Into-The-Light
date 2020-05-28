@@ -18,7 +18,7 @@ import net.minecraft.item.ItemStack;
  */
 public class ScrollRegistry {
 
-    private static final ResourceLocation BASICS = new ResourceLocation(JITL.MOD_ID, "textures/gui/bg1.png");
+    private static final ResourceLocation BASICS = new ResourceLocation(JITL.MOD_ID, "textures/gui/scroll_background.png");
 
     public static void register() {
 

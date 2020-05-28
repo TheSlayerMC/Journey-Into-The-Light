@@ -1,4 +1,4 @@
-package net.journey.client.render.gui.tablet;
+package net.journey.client.render.gui.scroll;
 
 import java.io.IOException;
 
