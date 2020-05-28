@@ -1,6 +1,6 @@
 {
 	"parent": "item/generated",
 	"textures": {
-		"layer0": "journey:items/lore_book"
+		"layer0": "journey:items/lore_scroll"
 	}
 }

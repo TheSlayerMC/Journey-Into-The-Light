@@ -332,7 +332,7 @@ public class JourneyItems {
     public static Item VOLCANIC_STONE;
     public static Item CHEST_KEY;
 
-    public static ItemLoreBook loreBook;
+    public static ItemLoreBook loreScroll;
     
     //public static Item obsidianBoat;
 
@@ -579,7 +579,7 @@ public class JourneyItems {
         CHEST_KEY = new ItemMod("chest_key", "Chest Key");
         AQUASTONE = new ItemMod("aquastone", "Aquastone");
         
-        loreBook = new ItemLoreBook("lore_book", "Lore Book");
+        loreScroll = new ItemLoreBook("lore_scroll", "Lore Scroll");
         //obsidianBoat = new ItemObsidianBoat("obsidianboat", "Obsidian Boat");
         //infernoshield = new ItemModShield("infernoshield", "Inferno Shield", 2, false);
     }
