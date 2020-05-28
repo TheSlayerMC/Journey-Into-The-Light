@@ -27,7 +27,7 @@ public class RenderPortalOverlay {
 	public static void portalOverlayEvent(RenderGameOverlayEvent.Post event) {
 		Minecraft minecraft = Minecraft.getMinecraft();
 	    EntityPlayer player = minecraft.player;
-		if (event.getType() == RenderGameOverlayEvent.ElementType.ALL) {
+		if (event.getType() == RenderGameOverlayEvent.ElementType.PORTAL) {
 			if (player.timeUntilPortal > 0) {
 				renderPortalOverlay(player.timeUntilPortal, event.getResolution());
 			}
