@@ -1,5 +1,6 @@
 package net.journey.client.render;
 
+import net.journey.JITL;
 import net.journey.blocks.tileentity.*;
 import net.journey.client.render.base.*;
 import net.journey.client.render.block.*;
@@ -35,7 +36,6 @@ import net.journey.client.render.model.mob.senterian.ModelSentryStalker;
 import net.journey.client.render.model.mob.senterian.ModelSentryWalker;
 import net.journey.client.render.model.mob.terrania.mob.*;
 import net.journey.client.render.model.mob.terrania.npc.ModelTerranianTrader;
-import net.journey.entity.MobStats;
 import net.journey.entity.item.EntityObsidianBoat;
 import net.journey.entity.mob.boiling.*;
 import net.journey.entity.mob.boiling.npc.EntityBoilTrader;
@@ -92,16 +92,24 @@ import net.minecraft.client.model.ModelBlaze;
 import net.minecraft.client.model.ModelSnowMan;
 import net.minecraft.client.renderer.entity.RenderTippedArrow;
 import net.minecraft.init.Items;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
 public class EntityRendering {
+    public static void preInit() {
+        // Projectiles
+        RenderingRegistry.registerEntityRenderingHandler(EntityMagmaFireball.class, manager -> new RenderProjectile<>(manager, projectileTextureLocation("magma_ball")));
+        RenderingRegistry.registerEntityRenderingHandler(EntityBouncingProjectile.class, manager -> new RenderProjectile<>(manager, projectileTextureLocation("bouncing")));
+        RenderingRegistry.registerEntityRenderingHandler(EntityRockProjectile.class, manager -> new RenderProjectile<>(manager, projectileTextureLocation("rock_chunk")));
+        RenderingRegistry.registerEntityRenderingHandler(EntityNetherPlasma.class, manager -> new RenderProjectile<>(manager, projectileTextureLocation("plasma_ball")));
+        RenderingRegistry.registerEntityRenderingHandler(EntityOceanPlasma.class, manager -> new RenderProjectile<>(manager, projectileTextureLocation("plasma_ball")));
+        RenderingRegistry.registerEntityRenderingHandler(EntityForestPlasma.class, manager -> new RenderProjectile<>(manager, projectileTextureLocation("plasma_ball")));
+        RenderingRegistry.registerEntityRenderingHandler(EntityShimmererProjectile.class, manager -> new RenderProjectile<>(manager, projectileTextureLocation("shimmerer_projectile")));
+        RenderingRegistry.registerEntityRenderingHandler(EntityBubbleProjectile.class, manager -> new RenderProjectile<>(manager, projectileTextureLocation("bubble")));
+        RenderingRegistry.registerEntityRenderingHandler(EntityDetractor.class, manager -> new RenderProjectile<>(manager, projectileTextureLocation("detractor")));
+    }
 
-    private static Textures tex;
-    private static MobStats stat;
-
-    public static void preInit() { }
-    
     public static void init() {
         /**Projectiles*/
         RenderingRegistry.registerEntityRenderingHandler(EntityBasicProjectile.class, new RenderStaffProjectile(Textures.basic, 1.0F, 0.2F, 0.2F));
@@ -110,8 +118,6 @@ public class EntityRendering {
         RenderingRegistry.registerEntityRenderingHandler(EntityEnlightenment.class, new RenderStaffProjectile(Textures.basic, 0.7F, 0.0F, 0.7F));
         RenderingRegistry.registerEntityRenderingHandler(EntityGreenpace.class, new RenderStaffProjectile(Textures.basic, 0.6F, 1.0F, 0.0F));
         RenderingRegistry.registerEntityRenderingHandler(EntityWizardsStar.class, new RenderStaffProjectile(Textures.basic, 1.0F, 1.0F, 0.2F));
-        RenderingRegistry.registerEntityRenderingHandler(EntityBouncingProjectile.class, new RenderProjectile(Textures.bouncingProjectile));
-        RenderingRegistry.registerEntityRenderingHandler(EntityMagmaFireball.class, new RenderProjectile(Textures.magmaBall));
         //RenderingRegistry.registerEntityRenderingHandler(EntityFlameArrow.class, new RenderModArrow());
         //RenderingRegistry.registerEntityRenderingHandler(EntityPoisonArrow.class, new RenderModArrow());
         RenderingRegistry.registerEntityRenderingHandler(EntityDarknessArrow.class, new RenderTippedArrow(Minecraft.getMinecraft().getRenderManager())); //temporary because RenderModArrow appears to be broken
@@ -121,10 +127,6 @@ public class EntityRendering {
         RenderingRegistry.registerEntityRenderingHandler(EntityIceBall.class, new RenderStaffProjectile(Textures.empty, 1F, 1F, 1F));
         RenderingRegistry.registerEntityRenderingHandler(EntityTempleBall.class, new RenderStaffProjectile(Textures.templeBall, 0F, 0F, 0F));
         RenderingRegistry.registerEntityRenderingHandler(EntityLightningBall.class, new RenderStaffProjectile(Textures.empty, 1F, 1F, 1F));
-        RenderingRegistry.registerEntityRenderingHandler(EntityRockProjectile.class, new RenderProjectile(Textures.rockChunk));
-        RenderingRegistry.registerEntityRenderingHandler(EntityNetherPlasma.class, new RenderProjectile(Textures.plasma));
-        RenderingRegistry.registerEntityRenderingHandler(EntityOceanPlasma.class, new RenderProjectile(Textures.plasma));
-        RenderingRegistry.registerEntityRenderingHandler(EntityForestPlasma.class, new RenderProjectile(Textures.plasma));
         RenderingRegistry.registerEntityRenderingHandler(EntityBoilingPiercer.class, new RenderItemProjectile(JourneyWeapons.boilingPiercer));
         RenderingRegistry.registerEntityRenderingHandler(EntityNethicPiercer.class, new RenderItemProjectile(JourneyWeapons.nethicPiercer));
         RenderingRegistry.registerEntityRenderingHandler(EntityFrozenPiercer.class, new RenderItemProjectile(JourneyWeapons.frozenPiercer));
@@ -145,11 +147,8 @@ public class EntityRendering {
         RenderingRegistry.registerEntityRenderingHandler(EntityFrozenSnowball.class, new RenderItemProjectile(Items.SNOWBALL));
         RenderingRegistry.registerEntityRenderingHandler(EntityEssenceShuriken.class, new RenderItemProjectile(JourneyWeapons.ESSENCE_SHURIKEN));
 
-        RenderingRegistry.registerEntityRenderingHandler(EntityShimmererProjectile.class, new RenderProjectile(Textures.shimmererProjectile));
         RenderingRegistry.registerEntityRenderingHandler(EntityDemonicBomb.class, new RenderItemProjectile(JourneyWeapons.demonicBomb));
         RenderingRegistry.registerEntityRenderingHandler(EntityFireBomb.class, new RenderItemProjectile(JourneyWeapons.fireBomb));
-        RenderingRegistry.registerEntityRenderingHandler(EntityBubbleProjectile.class, new RenderProjectile(Textures.bubble));
-        RenderingRegistry.registerEntityRenderingHandler(EntityDetractor.class, new RenderProjectile(Textures.detractor));
         //RenderingRegistry.registerEntityRenderingHandler(EntityRoyalKnife.class, new RenderItemProjectile(JourneyItems.royalKnife));
         /**Overworld Mobs*/
         RenderingRegistry.registerEntityRenderingHandler(EntityRobot.class, new RenderModMob(new ModelRobot(), Textures.robot));
@@ -325,19 +324,7 @@ public class EntityRendering {
         //RenderingRegistry.registerBlockHandler(EssenceBlocks.mossyEssenceStone.getRenderType(), new OtherBlockRenderer());
     }
 
-    public static MobStats getStat() {
-        return stat;
-    }
-
-    public static void setStat(MobStats stat) {
-        EntityRendering.stat = stat;
-    }
-
-    public static Textures getTex() {
-        return tex;
-    }
-
-    public static void setTex(Textures tex) {
-        EntityRendering.tex = tex;
+    public static ResourceLocation projectileTextureLocation(String path) {
+        return new ResourceLocation(JITL.MOD_ID, "textures/entity/projectile/" + path + ".png");
     }
 }

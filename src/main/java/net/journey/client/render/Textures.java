@@ -6,7 +6,7 @@ import net.slayer.api.SlayerAPI;
 public class Textures {
 
     public static final String prefix = SlayerAPI.PREFIX + "textures/models/mobs/";
-    public static final String projectilePrefix = SlayerAPI.PREFIX + "textures/projectile/";
+    public static final String projectilePrefix = SlayerAPI.PREFIX + "textures/entity/projectile/";
     public static final String modelPrefix = SlayerAPI.PREFIX + "textures/models/";
     public static final String slotPrefix = SlayerAPI.PREFIX + "textures/gui/slot";
     public static final String dragonBase = "textures/entities/dragon/";
@@ -17,9 +17,6 @@ public class Textures {
 
     //Misc.
     public static final ResourceLocation basic = addProjectile("gray");
-    public static final ResourceLocation bouncingProjectile = addProjectile("bouncing");
-    public static final ResourceLocation magmaBall = addProjectile("magmaBall");
-    public static final ResourceLocation bubble = addProjectile("bubble");
     public static final ResourceLocation grindstone = addModel("blocks/grindstone");
     public static final ResourceLocation cloudaltar = addModel("blocks/cloudaltar");
     public static final ResourceLocation senterianAltar = addModel("blocks/senterianaltar");
@@ -30,8 +27,6 @@ public class Textures {
     public static final ResourceLocation templeBall = addProjectile("templeBall");
     public static final ResourceLocation essenceArrow = addProjectile("essenceArrow");
     public static final ResourceLocation moltenKnife = new ResourceLocation(SlayerAPI.PREFIX + "textures/items/moltenknife.png");
-    public static final ResourceLocation rockChunk = new ResourceLocation(SlayerAPI.PREFIX + "textures/items/rockchunk.png");
-    public static final ResourceLocation plasma = new ResourceLocation(SlayerAPI.PREFIX + "textures/items/plasmaBall.png");
 
     //NPC
     public static final ResourceLocation mage = addMob("mage");
@@ -108,7 +103,6 @@ public class Textures {
     public static final ResourceLocation tinbot = addMob("tinbot");
     public static final ResourceLocation goldbot = addMob("goldbot");
     public static final ResourceLocation shimmerer = addMob("shimmerer");
-    public static final ResourceLocation shimmererProjectile = addProjectile("shimmerer");
     public static final ResourceLocation goldwing = addMob("goldwing");
 
     //Depths
@@ -207,8 +201,6 @@ public class Textures {
     public static final ResourceLocation tameRoc = addMob("tameRoc");
     public static final ResourceLocation dunewerm = addMob("dunewerm");
     public static final ResourceLocation ferret = addMob("ferret");
-    public static final ResourceLocation detractor = addProjectile("detractor");
-
 
     private static ResourceLocation addMob(String tex) {
         return new ResourceLocation(prefix + tex.toLowerCase() + ".png");
