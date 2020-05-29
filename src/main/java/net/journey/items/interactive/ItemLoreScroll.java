@@ -55,7 +55,7 @@ public class ItemLoreScroll extends ItemMod {
 	/**
 	 * Returns scroll entry of provided itemstack.
 	 * If provided itemstack is not an ItemLoreScroll item, it will print an error and return null.
-	 * If provided itemstack doesn't have tag compount, or there is no 'entry' record in it, it will return null.
+	 * If provided itemstack doesn't have tag compound, or there is no 'entry' record in it, it will return null.
 	 *
 	 * @return scroll entry of provided itemstack
 	 */
