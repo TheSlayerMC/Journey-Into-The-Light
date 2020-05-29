@@ -1,7 +1,7 @@
 package net.journey.dimension.base;
 
 import net.journey.api.world.gen.JWorldGenMinable;
-import net.journey.dimension.base.gen.WorldGenAncientBlock;
+import net.journey.dimension.base.gen.WorldGenSingleBlock;
 import net.journey.dimension.boil.gen.WorldGenBoilingFire;
 import net.journey.dimension.boil.gen.WorldGenBoilingLava;
 import net.journey.dimension.depths.gen.WorldGenDepthsTree;
@@ -47,23 +47,22 @@ public class WorldGenJourney implements IWorldGenerator {
     private static final LazyLoadBase<WorldGenBush> BRADBERRY_BUSH_GEN = create(() -> new WorldGenBush(JourneyBlocks.bradberryBush, Blocks.GRASS));
     private static final LazyLoadBase<WorldGenBush> TANGLEBERRY_BUSH_GEN = create(() -> new WorldGenBush(JourneyBlocks.tangleberryBush, Blocks.GRASS));
     private static final LazyLoadBase<WorldGenBush> BOGBERRY_BUSH_GEN = create(() -> new WorldGenBush(JourneyBlocks.bogberryBush, Blocks.GRASS));
-    private static final LazyLoadBase<WorldGenBush> sizzleberryBush;
+    private static final LazyLoadBase<WorldGenBush> SIZZLEBERRY_BUSH_GEN = create(() -> new WorldGenBush(JourneyBlocks.sizzleberryBush, Blocks.NETHERRACK));
 
     private static final LazyLoadBase<WorldGenTallGlowshroom> TALL_GLOWSHROOMS_GEN = create(WorldGenTallGlowshroom::new);
     private static final LazyLoadBase<WorldGenCaveVines> CAVE_VINE_GEN = create(WorldGenCaveVines::new);
     private static final LazyLoadBase<WorldGenSmallGlowshrooms> SMALL_GLOWSHROOMS = create(WorldGenSmallGlowshrooms::new);
 
-    private static final LazyLoadBase<WorldGenAncientBlock> ANCIENT_BLOCK_GEN = create(WorldGenAncientBlock::new);
+    private static final LazyLoadBase<WorldGenSingleBlock> ANCIENT_BLOCK_GEN = create(() -> new WorldGenSingleBlock(JourneyBlocks.ancientMachineBlock));
+    private static final LazyLoadBase<WorldGenSingleBlock> GOLD_LOOT_BOX_GEN = create(() -> new WorldGenSingleBlock(JourneyBlocks.goldLootBox));
     @Deprecated // use per-chunk random instance which comes from method params
     private static Random r = new Random();
     
     static {
-        SHADIUM_ORE_GEN = create(() -> JWorldGenMinable.create(JourneyBlocks.shadiumOre, 6, 13));
-        LUNIUM_ORE_GEN = create(() -> JWorldGenMinable.create(JourneyBlocks.luniumOre, 7, 26));
-        SAPPHIRE_ORE_GEN = create(() -> JWorldGenMinable.create(JourneyBlocks.sapphireOre, 5, 24));
-        IRIDIUM_ORE_GEN = create(() -> JWorldGenMinable.create(JourneyBlocks.iridiumOre, 4, 16));
-
-        sizzleberryBush = create(() -> new WorldGenBush(JourneyBlocks.sizzleberryBush, Blocks.NETHERRACK));
+        SHADIUM_ORE_GEN = create(() -> JWorldGenMinable.create(JourneyBlocks.shadiumOre, Config.shadiumOreGenAmount, Config.shadiumOreGenMaxY));
+        LUNIUM_ORE_GEN = create(() -> JWorldGenMinable.create(JourneyBlocks.luniumOre, Config.luniumOreGenAmount, Config.luniumOreGenMaxY));
+        SAPPHIRE_ORE_GEN = create(() -> JWorldGenMinable.create(JourneyBlocks.sapphireOre, Config.sapphireOreGenAmount, Config.sapphireOreGenMaxY));
+        IRIDIUM_ORE_GEN = create(() -> JWorldGenMinable.create(JourneyBlocks.iridiumOre, Config.iridiumOreGenAmount, Config.iridiumOreGenMaxY));
     }
 
     public WorldGenJourney() {
@@ -194,9 +193,9 @@ public class WorldGenJourney implements IWorldGenerator {
             y = r.nextInt(256) + 1;
             x = chunkX + r.nextInt(16) + 8;
             z = chunkZ + r.nextInt(16) + 8;
-            (new WorldGenAncientBlock()).generate(w, r, new BlockPos(x, y, z));
+            ANCIENT_BLOCK_GEN.getValue().generate(w, r, new BlockPos(x, y, z));
         }
-
+        
         for (times = 0; times < 100; times++) {
             y = r.nextInt(250);
             x = chunkX + r.nextInt(16) + 8;
@@ -214,11 +213,11 @@ public class WorldGenJourney implements IWorldGenerator {
                     new WorldGenNetherTower().generate(w, r, new BlockPos(x, y, z));
         }
 
-        for (times = 0; times < 2; times++) {
+        for (times = 0; times < 5; times++) {
             y = r.nextInt(128) + 1;
             x = chunkX + r.nextInt(16) + 8;
             z = chunkZ + r.nextInt(16) + 8;
-            sizzleberryBush.getValue().generate(w, r, new BlockPos(x, y, z));
+            SIZZLEBERRY_BUSH_GEN.getValue().generate(w, r, new BlockPos(x, y, z));
         }
 
         for (times = 0; times < 150; times++) {
@@ -296,6 +295,8 @@ public class WorldGenJourney implements IWorldGenerator {
         Biome biome = w.getBiome(startPos);
 
         ANCIENT_BLOCK_GEN.getValue().generate(w, rand, startPos);
+        
+        GOLD_LOOT_BOX_GEN.getValue().generate(w, rand, startPos);
 
         if (rand.nextInt(5) == 0
                 && biome.getDefaultTemperature() >= 0.6F
@@ -333,19 +334,19 @@ public class WorldGenJourney implements IWorldGenerator {
             SMALL_GLOWSHROOMS.getValue().generate(w, rand, startPos);
         }
 
-        for (int i = 0; i < Config.shadiumOreGenAmount; i++) {
+        if (rand.nextInt(Config.shadiumOreTrys) == 0) {
             SHADIUM_ORE_GEN.getValue().generate(w, rand, startPos);
         }
 
-        for (int i = 0; i < Config.shadiumOreGenAmount; i++) {
+        if (rand.nextInt(Config.luniumOreTrys) == 0) {
             LUNIUM_ORE_GEN.getValue().generate(w, rand, startPos);
         }
 
-        for (int i = 0; i < Config.shadiumOreGenAmount; i++) {
+        if (rand.nextInt(Config.sapphireOreTrys) == 0) {
             SAPPHIRE_ORE_GEN.getValue().generate(w, rand, startPos);
         }
 
-        for (int i = 0; i < Config.shadiumOreGenAmount; i++) {
+        if (rand.nextInt(Config.iridiumOreTrys) == 0) {
             IRIDIUM_ORE_GEN.getValue().generate(w, rand, startPos);
         }
 
@@ -358,7 +359,7 @@ public class WorldGenJourney implements IWorldGenerator {
         }
         
         if (rand.nextInt(64) == 0) {
-            y = rand.nextInt(48);
+            y = rand.nextInt(30);
             x = posX + rand.nextInt(16) + 8;
             z = posZ + rand.nextInt(16) + 8;
             if (w.getBlockState(new BlockPos(x, y - 1, z)) == Blocks.STONE.getDefaultState() && y > 10)

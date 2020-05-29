@@ -104,7 +104,7 @@ public class PlayerEvent {
 							event.getDrops().add(new ItemStack(it));// make it spawn only 1 item not 2 and add it so its only a chance
 					}
 				}
-				List<ItemStack> i = LootHelper.readFromLootTable(JourneyLootTables.LOOT_BOX, (EntityPlayerMP) event.getHarvester());
+				List<ItemStack> i = LootHelper.readFromLootTable(JourneyLootTables.GOLD_LOOT_BOX, (EntityPlayerMP) event.getHarvester());
 				int index = random.nextInt(i.size());
 				Item it = i.get(index).getItem();
 
