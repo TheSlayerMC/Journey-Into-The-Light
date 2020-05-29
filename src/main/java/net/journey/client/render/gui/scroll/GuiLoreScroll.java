@@ -94,7 +94,6 @@ public class GuiLoreScroll extends GuiScreen {
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-
         drawDefaultBackground();
 
         categorySize = currentCategory.getCategorySize() * 256;
