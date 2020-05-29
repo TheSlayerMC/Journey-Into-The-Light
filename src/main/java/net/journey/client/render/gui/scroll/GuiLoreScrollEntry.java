@@ -3,7 +3,7 @@ package net.journey.client.render.gui.scroll;
 import net.journey.JITL;
 import net.journey.api.scroll.IDescComponent;
 import net.journey.api.scroll.ScrollEntry;
-import net.journey.util.GuiUtils;
+import net.journey.util.RenderUtils;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -22,6 +22,9 @@ import java.io.IOException;
 public class GuiLoreScrollEntry extends GuiScreen {
 
     private static ResourceLocation BG = new ResourceLocation(JITL.MOD_ID, "textures/gui/gui_scroll_base.png");
+    private static final int SLIDER_LIGHT_COLOR = 0xFF6CCAD5;
+    private static final int SLIDER_PATH_COLOR = 0x33000000;
+    private static final int SLIDER_DARK_COLOR = 0xFF51AFBA;
     private final int headerHeight = 30;
     private ScrollEntry ScrollEntry;
     private String parentCategoryName;
@@ -93,10 +96,10 @@ public class GuiLoreScrollEntry extends GuiScreen {
      */
     private void drawHeader(int maxX, int y0, Tessellator tess) {
         if (ScrollEntry.hasComment()) {
-            GuiUtils.drawCenteredStringWithCustomScale(fontRenderer, ScrollEntry.getTitle(), left + (maxX - left) / 2 + 1, y0, (int) zLevel, 0xFFFFFF, 1.5F, headerHeight - 5);
-            GuiUtils.drawCenteredStringWithCustomScale(fontRenderer, ScrollEntry.getComment(), left + (maxX - left) / 2 + 1, y0 + (int) ((float) fontRenderer.FONT_HEIGHT * 0.7), (int) zLevel, 0xFFFFFF, 1F, headerHeight + 5);
+            RenderUtils.drawCenteredStringWithCustomScale(fontRenderer, ScrollEntry.getTitle(), left + (maxX - left) / 2 + 1, y0, (int) zLevel, 0xFFFFFF, 1.5F, headerHeight - 5);
+            RenderUtils.drawCenteredStringWithCustomScale(fontRenderer, ScrollEntry.getComment(), left + (maxX - left) / 2 + 1, y0 + (int) ((float) fontRenderer.FONT_HEIGHT * 0.7), (int) zLevel, 0xFFFFFF, 1F, headerHeight + 5);
         } else {
-            GuiUtils.drawCenteredStringWithCustomScale(fontRenderer, ScrollEntry.getTitle(), left + (maxX - left) / 2 + 1, y0, (int) zLevel, 0xFFFFFF, 1.2F, headerHeight);
+            RenderUtils.drawCenteredStringWithCustomScale(fontRenderer, ScrollEntry.getTitle(), left + (maxX - left) / 2 + 1, y0, (int) zLevel, 0xFFFFFF, 1.2F, headerHeight);
         }
     }
 
@@ -275,27 +278,47 @@ public class GuiLoreScrollEntry extends GuiScreen {
                 barTop = this.top;
             }
 
+            int alpha, red, green, blue;
+
+
             GlStateManager.disableTexture2D();
-            worldr.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX_COLOR);
+            GlStateManager.enableBlend();
             GlStateManager.enableAlpha();
-            worldr.pos(scrollButtonLeftTop, this.bottom, 0.0D).tex(0.0D, 1.0D).color(0x00, 0x00, 0x00, 0x10).endVertex();
-            worldr.pos(scrollButtonRightTop, this.bottom, 0.0D).tex(1.0D, 1.0D).color(0x00, 0x00, 0x00, 0x10).endVertex();
-            worldr.pos(scrollButtonRightTop, this.top, 0.0D).tex(1.0D, 0.0D).color(0x00, 0x00, 0x00, 0x10).endVertex();
-            worldr.pos(scrollButtonLeftTop, this.top, 0.0D).tex(0.0D, 0.0D).color(0x00, 0x00, 0x00, 0x10).endVertex();
+
+            // Slider path background
+            alpha = RenderUtils.getAlpha(SLIDER_PATH_COLOR);
+            red = RenderUtils.getRed(SLIDER_PATH_COLOR);
+            green = RenderUtils.getGreen(SLIDER_PATH_COLOR);
+            blue = RenderUtils.getBlue(SLIDER_PATH_COLOR);
+            worldr.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX_COLOR);
+            worldr.pos(scrollButtonLeftTop, this.bottom, 0.0D).tex(0.0D, 1.0D).color(red, green, blue, alpha).endVertex();
+            worldr.pos(scrollButtonRightTop, this.bottom, 0.0D).tex(1.0D, 1.0D).color(red, green, blue, alpha).endVertex();
+            worldr.pos(scrollButtonRightTop, this.top, 0.0D).tex(1.0D, 0.0D).color(red, green, blue, alpha).endVertex();
+            worldr.pos(scrollButtonLeftTop, this.top, 0.0D).tex(0.0D, 0.0D).color(red, green, blue, alpha).endVertex();
+
+            // Dark slider part
+            alpha = RenderUtils.getAlpha(SLIDER_DARK_COLOR);
+            red = RenderUtils.getRed(SLIDER_DARK_COLOR);
+            green = RenderUtils.getGreen(SLIDER_DARK_COLOR);
+            blue = RenderUtils.getBlue(SLIDER_DARK_COLOR);
+            worldr.pos(scrollButtonLeftTop, barTop + height, 0.0D).tex(0.0D, 1.0D).color(red, green, blue, alpha).endVertex();
+            worldr.pos(scrollButtonRightTop, barTop + height, 0.0D).tex(1.0D, 1.0D).color(red, green, blue, alpha).endVertex();
+            worldr.pos(scrollButtonRightTop, barTop, 0.0D).tex(1.0D, 0.0D).color(red, green, blue, alpha).endVertex();
+            worldr.pos(scrollButtonLeftTop, barTop, 0.0D).tex(0.0D, 0.0D).color(red, green, blue, alpha).endVertex();
+
+            // Light slider part
+            alpha = RenderUtils.getAlpha(SLIDER_LIGHT_COLOR);
+            red = RenderUtils.getRed(SLIDER_LIGHT_COLOR);
+            green = RenderUtils.getGreen(SLIDER_LIGHT_COLOR);
+            blue = RenderUtils.getBlue(SLIDER_LIGHT_COLOR);
+            worldr.pos(scrollButtonLeftTop, barTop + height - 1, 0.0D).tex(0.0D, 1.0D).color(red, green, blue, alpha).endVertex();
+            worldr.pos(scrollButtonRightTop - 1, barTop + height - 1, 0.0D).tex(1.0D, 1.0D).color(red, green, blue, alpha).endVertex();
+            worldr.pos(scrollButtonRightTop - 1, barTop, 0.0D).tex(1.0D, 0.0D).color(red, green, blue, alpha).endVertex();
+            worldr.pos(scrollButtonLeftTop, barTop, 0.0D).tex(0.0D, 0.0D).color(red, green, blue, alpha).endVertex();
             tess.draw();
+
             GlStateManager.disableAlpha();
-            worldr.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX_COLOR);
-            worldr.pos(scrollButtonLeftTop, barTop + height, 0.0D).tex(0.0D, 1.0D).color(0x51, 0xAF, 0xBA, 0xFF).endVertex();
-            worldr.pos(scrollButtonRightTop, barTop + height, 0.0D).tex(1.0D, 1.0D).color(0x51, 0xAF, 0xBA, 0xFF).endVertex();
-            worldr.pos(scrollButtonRightTop, barTop, 0.0D).tex(1.0D, 0.0D).color(0x51, 0xAF, 0xBA, 0xFF).endVertex();
-            worldr.pos(scrollButtonLeftTop, barTop, 0.0D).tex(0.0D, 0.0D).color(0x51, 0xAF, 0xBA, 0xFF).endVertex();
-            tess.draw();
-            worldr.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX_COLOR);
-            worldr.pos(scrollButtonLeftTop, barTop + height - 1, 0.0D).tex(0.0D, 1.0D).color(0x6C, 0xCA, 0xD5, 0xFF).endVertex();
-            worldr.pos(scrollButtonRightTop - 1, barTop + height - 1, 0.0D).tex(1.0D, 1.0D).color(0x6C, 0xCA, 0xD5, 0xFF).endVertex();
-            worldr.pos(scrollButtonRightTop - 1, barTop, 0.0D).tex(1.0D, 0.0D).color(0x6C, 0xCA, 0xD5, 0xFF).endVertex();
-            worldr.pos(scrollButtonLeftTop, barTop, 0.0D).tex(0.0D, 0.0D).color(0x6C, 0xCA, 0xD5, 0xFF).endVertex();
-            tess.draw();
+            GlStateManager.disableBlend();
         }
 
         this.drawScreen(mouseX, mouseY);

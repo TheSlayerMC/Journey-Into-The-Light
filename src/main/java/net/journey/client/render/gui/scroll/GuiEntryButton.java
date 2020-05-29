@@ -2,7 +2,7 @@ package net.journey.client.render.gui.scroll;
 
 import net.journey.JITL;
 import net.journey.api.scroll.ScrollEntry;
-import net.journey.util.GuiUtils;
+import net.journey.util.RenderUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.audio.SoundHandler;
@@ -94,7 +94,7 @@ public class GuiEntryButton extends Gui {
             GlStateManager.enableBlend();
             GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
             GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
-            GuiUtils.drawTexturedQuad(x, y, width, height, 106, i * 32, 32, 32, 32);
+            RenderUtils.drawTexturedQuad(x, y, width, height, 106, i * 32, 32, 32, 32);
 
             GlStateManager.pushMatrix();
             RenderHelper.enableGUIStandardItemLighting();
