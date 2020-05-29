@@ -1,6 +1,7 @@
 package net.journey.client.render.gui.scroll;
 
 import net.journey.JITL;
+import net.journey.api.scroll.ScrollCategory;
 import net.journey.api.scroll.ScrollEntry;
 import net.journey.util.RenderUtils;
 import net.minecraft.client.Minecraft;
@@ -49,11 +50,11 @@ public class GuiEntryButton extends Gui {
     public ScrollEntry entry;
     public int initialX;
     public int initialY;
-    public String tabletCategoryName;
+    public ScrollCategory category;
     protected boolean hovered;
 
 
-    public GuiEntryButton(int buttonId, int x, int y, int widthIn, int heightIn, ScrollEntry entry, String tabletCategoryName) {
+    public GuiEntryButton(int buttonId, int x, int y, int widthIn, int heightIn, ScrollEntry entry, ScrollCategory category) {
         this.enabled = true;
         this.visible = true;
         this.id = buttonId;
@@ -64,7 +65,7 @@ public class GuiEntryButton extends Gui {
         this.width = widthIn;
         this.height = heightIn;
         this.entry = entry;
-        this.tabletCategoryName = tabletCategoryName;
+        this.category = category;
     }
 
     /**
@@ -119,7 +120,7 @@ public class GuiEntryButton extends Gui {
 
     public void mouseReleased(int mouseX, int mouseY) {
         Minecraft mc = Minecraft.getMinecraft();
-        mc.displayGuiScreen(new GuiLoreScrollEntry(tabletCategoryName, entry));
+        mc.displayGuiScreen(new GuiLoreScrollEntry(category, entry));
     }
 
     /**

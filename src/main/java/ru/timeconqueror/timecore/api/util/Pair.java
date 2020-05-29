@@ -20,4 +20,9 @@ public class Pair<A, B> {
 	public B getB() {
 		return this.b;
 	}
+
+	@Override
+	public String toString() {
+		return "{" + a + " -> " + b + "}";
+	}
 }

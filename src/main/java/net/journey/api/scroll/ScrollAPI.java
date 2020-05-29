@@ -1,7 +1,10 @@
 package net.journey.api.scroll;
 
 import net.minecraft.util.ResourceLocation;
+import org.jetbrains.annotations.Nullable;
 
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -9,7 +12,8 @@ import java.util.Map;
  * Code by TimeConqueror
  */
 public class ScrollAPI {
-    public static Map<String, ScrollCategory> categoryList = new LinkedHashMap<>();
+    private static final Map<String, ScrollCategory> CATEGORY_MAP = new LinkedHashMap<>();
+    private static final Map<String, ScrollEntry> ENTRY_MAP = new HashMap<>();
 
     public static void registerCategory(String categoryName, ResourceLocation background) {
         registerCategory(categoryName, background, 2);
@@ -20,38 +24,55 @@ public class ScrollAPI {
         registerCategory(ScrollCategory);
     }
 
-    public static void registerCategory(ScrollCategory ScrollCategory) {
-        categoryList.put(ScrollCategory.getCategoryName(), ScrollCategory);
+    public static void registerCategory(ScrollCategory scrollCategory) {
+        CATEGORY_MAP.put(scrollCategory.getCategoryName(), scrollCategory);
     }
 
-    public static void registerEntry(String existentCategoryName, ScrollEntry ScrollEntry) {
-        if (existentCategoryName == null || !categoryList.containsKey(existentCategoryName)) {
-            throw new IndexOutOfBoundsException("Attempt to register Tablet Entry \"" + ScrollEntry.getId() + "\" to nonexistent Category \"" + existentCategoryName + "\".\n\tAvailable Category Names: " + categoryList.toString());
+    public static void registerEntry(String existentCategoryName, ScrollEntry scrollEntry) {
+        if (existentCategoryName == null || !CATEGORY_MAP.containsKey(existentCategoryName)) {
+            throw new IndexOutOfBoundsException("Attempt to register Scroll Entry \"" + scrollEntry.getId() + "\" to nonexistent Category \"" + existentCategoryName + "\".\n\tAvailable Category Names: " + CATEGORY_MAP.toString());
         }
 
-        categoryList.get(existentCategoryName).addEntryToCategory(ScrollEntry);
+        CATEGORY_MAP.get(existentCategoryName).addEntryToCategory(scrollEntry);
+
+        if (ENTRY_MAP.put(scrollEntry.getId(), scrollEntry) != null) {
+            throw new IllegalStateException("Scroll Entry with id " + scrollEntry.getId() + " already exists!");
+        }
+    }
+
+    public static Map<String, ScrollCategory> getCategoryMap() {
+        return Collections.unmodifiableMap(CATEGORY_MAP);
+    }
+
+    public static Map<String, ScrollEntry> getEntryMap() {
+        return Collections.unmodifiableMap(ENTRY_MAP);
+    }
+
+    @Nullable
+    public static ScrollEntry getEntry(String id) {
+        return ENTRY_MAP.get(id);
     }
 
     public static ScrollCategory getCategoryByName(String categoryName) {
         categoryName = categoryName.toUpperCase();
-        if (!categoryList.containsKey(categoryName)) {
-            throw new IndexOutOfBoundsException("Attempt to get the nonexistent Category \"" + categoryName + "\".\n\tAvailable Category Names: " + categoryList.toString());
+        if (!CATEGORY_MAP.containsKey(categoryName)) {
+            throw new IndexOutOfBoundsException("Attempt to get the nonexistent Category \"" + categoryName + "\".\n\tAvailable Category Names: " + CATEGORY_MAP.toString());
         }
-        return categoryList.get(categoryName);
+        return CATEGORY_MAP.get(categoryName);
     }
 
     public static ScrollCategory getFirstCategory() {
-        Map.Entry<String, ScrollCategory> entry = categoryList.entrySet().iterator().next();
+        Map.Entry<String, ScrollCategory> entry = CATEGORY_MAP.entrySet().iterator().next();
         return entry.getValue();
     }
 
     public static ScrollCategory getCategoryByIndex(int index) {
-        Map.Entry<String, ScrollCategory> category = categoryList.entrySet().stream().skip(index).findFirst().get();
+        Map.Entry<String, ScrollCategory> category = CATEGORY_MAP.entrySet().stream().skip(index).findFirst().get();
         return category.getValue();
     }
 
     public static String getCategoryIdByIndex(int index) {
-        Map.Entry<String, ScrollCategory> category = categoryList.entrySet().stream().skip(index).findFirst().get();
+        Map.Entry<String, ScrollCategory> category = CATEGORY_MAP.entrySet().stream().skip(index).findFirst().get();
         return category.getKey();
     }
 
@@ -61,8 +82,8 @@ public class ScrollAPI {
     }
 
     public static int getIndexOfCategory(ScrollCategory category) {
-        for (int i = 0; i < categoryList.size(); i++) {
-            if (category.equals(categoryList.entrySet().stream().skip(i).findFirst().get().getValue())) {
+        for (int i = 0; i < CATEGORY_MAP.size(); i++) {
+            if (category.equals(CATEGORY_MAP.entrySet().stream().skip(i).findFirst().get().getValue())) {
                 return i;
             }
         }

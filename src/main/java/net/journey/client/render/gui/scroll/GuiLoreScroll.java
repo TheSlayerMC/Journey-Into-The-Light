@@ -60,8 +60,8 @@ public class GuiLoreScroll extends GuiScreen {
     private float blscrollDistance;
     private int catButtonsHeight;
 
-    public GuiLoreScroll(String categoryName) {
-        this.currentCategory = ScrollAPI.getCategoryByName(categoryName);
+    public GuiLoreScroll(ScrollCategory scrollCategory) {
+        this.currentCategory = scrollCategory;
         categorySize = currentCategory.getCategorySize() * 256;
     }
 
@@ -81,13 +81,13 @@ public class GuiLoreScroll extends GuiScreen {
         int x0 = width / 2 - w / 2;
         int y0 = height / 2 - h / 2;
 
-        for (int i = 0; i < ScrollAPI.categoryList.size() * 1000; i += 1000) {
+        for (int i = 0; i < ScrollAPI.getCategoryMap().size() * 1000; i += 1000) {
             ScrollCategory category = ScrollAPI.getCategoryByIndex(i / 1000);
             addButton(new GuiCategoryButton(i, x0 + 25, y0 + 20 + i * buttonHeight + i * border, buttonWidth, buttonHeight, category.getCategoryName()));
 
             for (int j = 0; j < category.getEntryList().size(); j++) {
                 ScrollEntry entry = ScrollAPI.getEntryByIndex(category, j);
-                addEntryButton(new GuiEntryButton(i + j, entry.getxCoord(), entry.getyCoord(), entryButtonSize, entryButtonSize, entry, category.getCategoryName()));
+                addEntryButton(new GuiEntryButton(i + j, entry.getX(), entry.getY(), entryButtonSize, entryButtonSize, entry, category));
             }
         }
     }
@@ -299,7 +299,7 @@ public class GuiLoreScroll extends GuiScreen {
 
         GlStateManager.disableDepth();
 
-        int extraHeight = catButtonsHeight + ScrollAPI.categoryList.size() * border - listViewHeight;
+        int extraHeight = catButtonsHeight + ScrollAPI.getCategoryMap().size() * border - listViewHeight;
         if (extraHeight > 0) {
             int height = (listViewHeight * listViewHeight) / catButtonsHeight;
             if (height < 32) {
@@ -381,7 +381,7 @@ public class GuiLoreScroll extends GuiScreen {
     }
 
     private void applyScrollLimitsForCatButtons() {
-        int blHiddenHeight = catButtonsHeight + (ScrollAPI.categoryList.size() - 1) * border - (buttonListBottom - buttonListTop - 4);
+        int blHiddenHeight = catButtonsHeight + (ScrollAPI.getCategoryMap().size() - 1) * border - (buttonListBottom - buttonListTop - 4);
         if (blHiddenHeight < 0) {
             blHiddenHeight /= 2;
         }

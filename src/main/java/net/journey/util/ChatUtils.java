@@ -1,14 +1,17 @@
 package net.journey.util;
 
+import net.journey.JITL;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.event.ClickEvent;
+import ru.timeconqueror.timecore.api.util.Pair;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Arrays;
 
 public class ChatUtils {
 	public static void send(EntityPlayer player, String msg) {
@@ -38,6 +41,18 @@ public class ChatUtils {
 	public static <T extends ITextComponent> T color(TextFormatting color, T component) {
 		component.getStyle().setColor(color);
 		return component;
+	}
+
+	/**
+	 * Sends an error message to the player and prints extra info to the log file.
+	 */
+	@SafeVarargs
+	public static void sendInformativeError(EntityPlayer player, String msg, Pair<String, Object>... extraInfo) {
+		sendColored(player, TextFormatting.RED, "Error: " + msg);
+		sendColored(player, TextFormatting.RED, new TextComponentTranslation("msg.journey.error_msg", JITL.MOD_NAME));
+		JITL.LOGGER.error(msg);
+		JITL.LOGGER.error("Extra information: " + Arrays.toString(extraInfo));
+		JITL.LOGGER.error("", new Exception(""));
 	}
 
 	public static ITextComponent bindLink(ITextComponent component, String url) {

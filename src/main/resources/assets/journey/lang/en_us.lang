@@ -112,6 +112,7 @@ msg.journey.update_available=Update is available! Latest version: %s
 msg.journey.update_link.base=You can get it %s!
 msg.journey.update_link.link_word=here
 msg.journey.twitter_link=Follow %s on twitter for update teasers.
+msg.journey.error_msg=Please, contact with the authors of %s to fix this issue
 
 #MARK AUTO GEN START
 

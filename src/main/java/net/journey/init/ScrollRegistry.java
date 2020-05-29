@@ -34,8 +34,8 @@ public class ScrollRegistry {
                 "Praesent gravida sapien egestas sapien suscipit aliquam. Proin eleifend risus erat, in iaculis metus consectetur sit amet. Vivamus sed ultricies libero. Duis venenatis, justo sit amet aliquet cursus, enim arcu dapibus elit, sed ornare justo neque eget nunc. Nam porttitor ornare diam, vitae eleifend nulla. Ut imperdiet turpis vitae consectetur vestibulum. Suspendisse in gravida sapien. Vestibulum vitae tempus sapien. Quisque et vulputate nisl, non accumsan massa."));
 
         for (int i = 0; i < 3; i++)
-            ScrollAPI.registerEntry("BASICS", new ScrollEntry("Test Entry" + i, "Jocky joke", new ItemStack(Blocks.BARRIER), desc, 10 + i * 10, 10 + i * 10));
-        ScrollAPI.registerEntry("TEST", new ScrollEntry("Test Entry_", "Jocky joke", new ItemStack(Blocks.BRICK_BLOCK), desc, 10 + 10, 10 + 10));
+            ScrollAPI.registerEntry("BASICS", new ScrollEntry("test_entry_" + i, "Test Entry" + i, "This is a comment", new ItemStack(Blocks.BARRIER), desc, 10 + i * 10, 10 + i * 10));
+        ScrollAPI.registerEntry("TEST", new ScrollEntry("testtt", "Test Entry_", "This is a comment", new ItemStack(Blocks.BRICK_BLOCK), desc, 10 + 10, 10 + 10));
         desc.clear();
     }
 }

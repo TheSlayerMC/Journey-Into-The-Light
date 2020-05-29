@@ -2,6 +2,7 @@ package net.journey.client.render.gui.scroll;
 
 import net.journey.JITL;
 import net.journey.api.scroll.IDescComponent;
+import net.journey.api.scroll.ScrollCategory;
 import net.journey.api.scroll.ScrollEntry;
 import net.journey.util.RenderUtils;
 import net.minecraft.client.gui.GuiScreen;
@@ -11,6 +12,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
+import org.jetbrains.annotations.Nullable;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
@@ -27,7 +29,12 @@ public class GuiLoreScrollEntry extends GuiScreen {
     private static final int SLIDER_DARK_COLOR = 0xFF51AFBA;
     private final int headerHeight = 30;
     private ScrollEntry ScrollEntry;
-    private String parentCategoryName;
+    /**
+     * Needed for returning back to category menu.
+     * If equals null, then gui will be closed after pressing ESC instead of going back to category menu.
+     */
+    @Nullable
+    private ScrollCategory parentCategory;
     private int guiWidth;
     private int guiHeight;
     private int guix0;
@@ -45,9 +52,9 @@ public class GuiLoreScrollEntry extends GuiScreen {
     private float scrollFactor;
     private boolean highlightSelected = true;
 
-    public GuiLoreScrollEntry(String parentCategoryName, ScrollEntry ScrollEntry) {
+    public GuiLoreScrollEntry(@Nullable ScrollCategory parentCategory, ScrollEntry ScrollEntry) {
         this.ScrollEntry = ScrollEntry;
-        this.parentCategoryName = parentCategoryName;
+        this.parentCategory = parentCategory;
     }
 
     /**
@@ -345,8 +352,11 @@ public class GuiLoreScrollEntry extends GuiScreen {
     @Override
     protected void keyTyped(char typedChar, int keyCode) throws IOException {
         if (keyCode == 1) {
-            this.mc.displayGuiScreen(null);
-            this.mc.displayGuiScreen(new GuiLoreScroll(parentCategoryName));
+            if (parentCategory != null) {
+                this.mc.displayGuiScreen(new GuiLoreScroll(parentCategory));
+            } else {
+                mc.displayGuiScreen(null);
+            }
         }
     }
 }
