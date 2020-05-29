@@ -1,6 +1,6 @@
 package net.journey.client.render.base;
 
-import net.journey.JITL;
+import net.journey.client.render.EntityRendering;
 import net.journey.entity.projectile.arrow.EntityEssenceArrow;
 import net.minecraft.client.renderer.entity.RenderArrow;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -10,7 +10,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class RenderEssenceArrow extends RenderArrow<EntityEssenceArrow> {
-    public static final ResourceLocation RES_ARROW = new ResourceLocation(JITL.MOD_ID, "textures/projectile/essence_arrow.png");
+    public static final ResourceLocation RES_ARROW = EntityRendering.projectileTextureLocation("essence_arrow");
 
     public RenderEssenceArrow(RenderManager manager) {
         super(manager);
