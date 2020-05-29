@@ -45,6 +45,10 @@ public class ChatUtils {
 
 	/**
 	 * Sends an error message to the player and prints extra info to the log file.
+	 *
+	 * @param player    player to send the message
+	 * @param msg       message to send
+	 * @param extraInfo extra info that is present as the "name->value" pair array
 	 */
 	@SafeVarargs
 	public static void sendInformativeError(EntityPlayer player, String msg, Pair<String, Object>... extraInfo) {
