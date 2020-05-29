@@ -613,7 +613,7 @@ public class JourneyBlocks {
         purpleGemBlock = new BlockMod("purpleGemBlock", "Purple Gem Block");
         blueGemBlock = new BlockMod("blueGemBlock", "Blue Gem Block");
         yellowGemBlock = new BlockMod("yellowGemBlock", "Yellow Gem Block");
-        goldLootBox = new JBlockRandomLoot("goldLootBox", "Gold Loot Box", JourneyLootTables.VANILLA_SIMPLE_DUNGEON);
+        goldLootBox = new JBlockRandomLoot("gold_loot_box", "Gold Loot Box");
 
         nethicanSludge = new BlockMod(EnumMaterialTypes.SLIME, "nethicanSludge", "Nethican Sludge", 1.0F);
 

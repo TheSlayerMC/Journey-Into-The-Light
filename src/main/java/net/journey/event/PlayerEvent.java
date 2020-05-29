@@ -16,6 +16,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemTool;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
@@ -92,7 +93,6 @@ public class PlayerEvent {
 							event.getDrops().add(new ItemStack(it));
 					}
 				}
-
 				if(event.getHarvester().getHeldItemMainhand().getItem() == JourneyArmory.PICKAXE_OF_GOOD_FORTUNE) {
 
 					List<ItemStack> i = LootHelper.readFromLootTable(JourneyLootTables.LOOT_POUCH, (EntityPlayerMP)event.getHarvester()); // make new loot table
@@ -103,6 +103,13 @@ public class PlayerEvent {
 						if(random.nextInt(3) == 0) 
 							event.getDrops().add(new ItemStack(it));// make it spawn only 1 item not 2 and add it so its only a chance
 					}
+				}
+				List<ItemStack> i = LootHelper.readFromLootTable(JourneyLootTables.LOOT_BOX, (EntityPlayerMP) event.getHarvester());
+				int index = random.nextInt(i.size());
+				Item it = i.get(index).getItem();
+
+				if (event.getState().getBlock().getRegistryName().toString().contains("gold_loot_box")) {
+					event.getDrops().add(new ItemStack(it));
 				}
 			}
 		}
