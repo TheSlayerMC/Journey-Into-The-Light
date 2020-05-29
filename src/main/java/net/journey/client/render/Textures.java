@@ -1,12 +1,12 @@
 package net.journey.client.render;
 
+import net.journey.JITL;
 import net.minecraft.util.ResourceLocation;
 import net.slayer.api.SlayerAPI;
 
 public class Textures {
 
     public static final String prefix = SlayerAPI.PREFIX + "textures/models/mobs/";
-    public static final String projectilePrefix = SlayerAPI.PREFIX + "textures/entity/projectile/";
     public static final String modelPrefix = SlayerAPI.PREFIX + "textures/models/";
     public static final String slotPrefix = SlayerAPI.PREFIX + "textures/gui/slot";
     public static final String dragonBase = "textures/entities/dragon/";
@@ -16,16 +16,16 @@ public class Textures {
     public static final ResourceLocation enderCrawler = addMob("enderCrawler");
 
     //Misc.
-    public static final ResourceLocation basic = addProjectile("gray");
+    public static final ResourceLocation basic = getProjectileTextureLocation("gray");
     public static final ResourceLocation grindstone = addModel("blocks/grindstone");
     public static final ResourceLocation cloudaltar = addModel("blocks/cloudaltar");
     public static final ResourceLocation senterianAltar = addModel("blocks/senterianaltar");
     public static final ResourceLocation journeyChest = addModel("blocks/journeychest");
     public static final ResourceLocation eucaChest = addModel("blocks/eucachest");
     public static final ResourceLocation obelisk = addModel("blocks/obelisk");
-    public static final ResourceLocation empty = addProjectile("empty");
-    public static final ResourceLocation templeBall = addProjectile("templeBall");
-    public static final ResourceLocation essenceArrow = addProjectile("essenceArrow");
+    public static final ResourceLocation empty = getProjectileTextureLocation("empty");
+    public static final ResourceLocation templeBall = getProjectileTextureLocation("templeball");
+    public static final ResourceLocation essenceArrow = getProjectileTextureLocation("essence_arrow");
     public static final ResourceLocation moltenKnife = new ResourceLocation(SlayerAPI.PREFIX + "textures/items/moltenknife.png");
 
     //NPC
@@ -206,10 +206,6 @@ public class Textures {
         return new ResourceLocation(prefix + tex.toLowerCase() + ".png");
     }
 
-    private static ResourceLocation addProjectile(String tex) {
-        return new ResourceLocation(projectilePrefix + tex.toLowerCase() + ".png");
-    }
-
     private static ResourceLocation addModel(String tex) {
         return new ResourceLocation(modelPrefix + tex.toLowerCase() + ".png");
     }
@@ -218,4 +214,7 @@ public class Textures {
         return new ResourceLocation(slotPrefix + tex.toLowerCase() + ".png");
     }
 
+    public static ResourceLocation getProjectileTextureLocation(String path) {
+        return new ResourceLocation(JITL.MOD_ID, "textures/entity/projectile/" + path + ".png");
+    }
 }

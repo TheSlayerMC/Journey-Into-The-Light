@@ -1,6 +1,5 @@
 package net.journey.client.render;
 
-import net.journey.JITL;
 import net.journey.blocks.tileentity.*;
 import net.journey.client.render.base.*;
 import net.journey.client.render.block.*;
@@ -92,22 +91,21 @@ import net.minecraft.client.model.ModelBlaze;
 import net.minecraft.client.model.ModelSnowMan;
 import net.minecraft.client.renderer.entity.RenderTippedArrow;
 import net.minecraft.init.Items;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
 public class EntityRendering {
     public static void preInit() {
         // Projectiles
-        RenderingRegistry.registerEntityRenderingHandler(EntityMagmaFireball.class, manager -> new RenderProjectile<>(manager, projectileTextureLocation("magma_ball")));
-        RenderingRegistry.registerEntityRenderingHandler(EntityBouncingProjectile.class, manager -> new RenderProjectile<>(manager, projectileTextureLocation("bouncing")));
-        RenderingRegistry.registerEntityRenderingHandler(EntityRockProjectile.class, manager -> new RenderProjectile<>(manager, projectileTextureLocation("rock_chunk")));
-        RenderingRegistry.registerEntityRenderingHandler(EntityNetherPlasma.class, manager -> new RenderProjectile<>(manager, projectileTextureLocation("plasma_ball")));
-        RenderingRegistry.registerEntityRenderingHandler(EntityOceanPlasma.class, manager -> new RenderProjectile<>(manager, projectileTextureLocation("plasma_ball")));
-        RenderingRegistry.registerEntityRenderingHandler(EntityForestPlasma.class, manager -> new RenderProjectile<>(manager, projectileTextureLocation("plasma_ball")));
-        RenderingRegistry.registerEntityRenderingHandler(EntityShimmererProjectile.class, manager -> new RenderProjectile<>(manager, projectileTextureLocation("shimmerer_projectile")));
-        RenderingRegistry.registerEntityRenderingHandler(EntityBubbleProjectile.class, manager -> new RenderProjectile<>(manager, projectileTextureLocation("bubble")));
-        RenderingRegistry.registerEntityRenderingHandler(EntityDetractor.class, manager -> new RenderProjectile<>(manager, projectileTextureLocation("detractor")));
+        RenderingRegistry.registerEntityRenderingHandler(EntityMagmaFireball.class, manager -> new RenderProjectile<>(manager, Textures.getProjectileTextureLocation("magma_ball")));
+        RenderingRegistry.registerEntityRenderingHandler(EntityBouncingProjectile.class, manager -> new RenderProjectile<>(manager, Textures.getProjectileTextureLocation("bouncing")));
+        RenderingRegistry.registerEntityRenderingHandler(EntityRockProjectile.class, manager -> new RenderProjectile<>(manager, Textures.getProjectileTextureLocation("rock_chunk")));
+        RenderingRegistry.registerEntityRenderingHandler(EntityNetherPlasma.class, manager -> new RenderProjectile<>(manager, Textures.getProjectileTextureLocation("plasma_ball")));
+        RenderingRegistry.registerEntityRenderingHandler(EntityOceanPlasma.class, manager -> new RenderProjectile<>(manager, Textures.getProjectileTextureLocation("plasma_ball")));
+        RenderingRegistry.registerEntityRenderingHandler(EntityForestPlasma.class, manager -> new RenderProjectile<>(manager, Textures.getProjectileTextureLocation("plasma_ball")));
+        RenderingRegistry.registerEntityRenderingHandler(EntityShimmererProjectile.class, manager -> new RenderProjectile<>(manager, Textures.getProjectileTextureLocation("shimmerer_projectile")));
+        RenderingRegistry.registerEntityRenderingHandler(EntityBubbleProjectile.class, manager -> new RenderProjectile<>(manager, Textures.getProjectileTextureLocation("bubble")));
+        RenderingRegistry.registerEntityRenderingHandler(EntityDetractor.class, manager -> new RenderProjectile<>(manager, Textures.getProjectileTextureLocation("detractor")));
     }
 
     public static void init() {
@@ -322,9 +320,5 @@ public class EntityRendering {
 
         //RenderingRegistry.registerBlockHandler(EssenceBlocks.celestiumOre.getRenderType(), new OreRenderer());
         //RenderingRegistry.registerBlockHandler(EssenceBlocks.mossyEssenceStone.getRenderType(), new OtherBlockRenderer());
-    }
-
-    public static ResourceLocation projectileTextureLocation(String path) {
-        return new ResourceLocation(JITL.MOD_ID, "textures/entity/projectile/" + path + ".png");
     }
 }

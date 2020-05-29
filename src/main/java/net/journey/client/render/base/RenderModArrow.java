@@ -1,6 +1,6 @@
 package net.journey.client.render.base;
 
-import net.journey.client.render.EntityRendering;
+import net.journey.client.render.Textures;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
@@ -18,7 +18,7 @@ import org.lwjgl.opengl.GL11;
 @SideOnly(Side.CLIENT)
 public class RenderModArrow extends Render {
 
-    private static final ResourceLocation arrowTextures = EntityRendering.projectileTextureLocation("essence_arrow");
+    private static final ResourceLocation arrowTextures = Textures.getProjectileTextureLocation("essence_arrow");
 
     public RenderModArrow() {
         super(Minecraft.getMinecraft().getRenderManager());
