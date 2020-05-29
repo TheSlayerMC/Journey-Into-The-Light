@@ -1,9 +1,9 @@
-package net.journey.api.item.scroll;
-
-import java.util.List;
+package net.journey.api.scroll;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
+
+import java.util.List;
 
 /*
  * Code by TimeConqueror

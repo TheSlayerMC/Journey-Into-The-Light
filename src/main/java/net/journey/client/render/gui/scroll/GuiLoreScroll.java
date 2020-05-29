@@ -1,9 +1,9 @@
 package net.journey.client.render.gui.scroll;
 
 import net.journey.JITL;
-import net.journey.api.item.scroll.ScrollAPI;
-import net.journey.api.item.scroll.ScrollCategory;
-import net.journey.api.item.scroll.ScrollEntry;
+import net.journey.api.scroll.ScrollAPI;
+import net.journey.api.scroll.ScrollCategory;
+import net.journey.api.scroll.ScrollEntry;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;

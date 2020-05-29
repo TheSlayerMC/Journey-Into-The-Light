@@ -1,11 +1,9 @@
 package net.journey.client.render.gui.scroll;
 
-import java.io.IOException;
-
-import org.lwjgl.input.Mouse;
-import org.lwjgl.opengl.GL11;
-
 import net.journey.JITL;
+import net.journey.api.scroll.IDescComponent;
+import net.journey.api.scroll.ScrollEntry;
+import net.journey.util.GuiUtils;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -13,9 +11,10 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
-import net.journey.api.item.scroll.IDescComponent;
-import net.journey.api.item.scroll.ScrollEntry;
-import net.journey.util.GuiUtils;;
+import org.lwjgl.input.Mouse;
+import org.lwjgl.opengl.GL11;
+
+import java.io.IOException;
 
 /*
  * Code by TimeConqueror

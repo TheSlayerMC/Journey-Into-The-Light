@@ -1,12 +1,11 @@
-package net.journey.api.item.scroll;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.annotation.Nullable;
+package net.journey.api.scroll;
 
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
+
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
 
 /*
  * Code by TimeConqueror
@@ -109,11 +108,7 @@ public class ScrollEntry {
     }
 
     public boolean hasComment() {
-        if (comment == null) {
-            return false;
-        }
-
-        return true;
+        return comment != null;
     }
 
 }

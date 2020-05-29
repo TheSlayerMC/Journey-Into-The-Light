@@ -1,4 +1,4 @@
-package net.journey.api.item.scroll;
+package net.journey.api.scroll;
 
 import net.minecraft.util.ResourceLocation;
 

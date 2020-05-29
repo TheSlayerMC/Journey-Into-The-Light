@@ -1,9 +1,9 @@
-package net.journey.api.item.scroll;
-
-import java.util.LinkedHashMap;
+package net.journey.api.scroll;
 
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
+
+import java.util.LinkedHashMap;
 
 /*
  * Code by TimeConqueror
