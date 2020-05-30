@@ -579,7 +579,7 @@ public class JourneyItems {
         CHEST_KEY = new ItemMod("chest_key", "Chest Key");
         AQUASTONE = new ItemMod("aquastone", "Aquastone");
 
-        loreScroll = new ItemLoreScroll("lore_scroll", "Lore Scroll");
+        //loreScroll = new ItemLoreScroll("lore_scroll", "Lore Scroll");
         //obsidianBoat = new ItemObsidianBoat("obsidianboat", "Obsidian Boat");
         //infernoshield = new ItemModShield("infernoshield", "Inferno Shield", 2, false);
     }
