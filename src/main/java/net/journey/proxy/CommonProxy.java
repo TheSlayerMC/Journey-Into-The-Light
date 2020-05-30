@@ -126,7 +126,7 @@ public class CommonProxy {
     }
     
     public void postInit(FMLPostInitializationEvent event) {
-        ScrollRegistry.register();
+        //ScrollRegistry.register();
     }
     
     public void registerEntityRenderer(Entity entity, int i, String name) {

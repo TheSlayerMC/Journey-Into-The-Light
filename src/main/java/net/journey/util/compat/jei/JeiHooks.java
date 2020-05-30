@@ -3,11 +3,13 @@ package net.journey.util.compat.jei;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.IModRegistry;
 import mezz.jei.api.JEIPlugin;
+import mezz.jei.api.recipe.IIngredientType;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.init.items.JourneyItems;
 import net.journey.util.compat.jei.summoning.SummoningRecipeCategory;
 import net.journey.util.compat.jei.summoning.SummoningRecipeWrapper;
+import net.journey.util.gen.lang.LangGeneratorFacade;
 import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
@@ -24,6 +26,7 @@ public class JeiHooks implements IModPlugin {
         registerHiddenItems(registry);
         registry.addRecipeCatalyst(new ItemStack(JourneyBlocks.summoningTable), "journey.summoningtable");
         registry.addRecipes(compileSummoningRecipes(), "journey.summoningtable");
+        registry.addIngredientInfo(new ItemStack(JourneyItems.ANCIENT_EYE_OF_OPENING), ItemStack.class, "jei.jitl.ancient_eye.desc");
     }
 
     @Override
