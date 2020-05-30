@@ -112,12 +112,13 @@ jar {
     )
 }
 
-// Create source attachment for dev jar
-task sourcesJar(type: Jar) {
-    from sourceSets.main.allJava
-    classifier = 'sources'
-}
-
-artifacts {
-    archives sourcesJar
-}
+// ###### UNCOMMENT FOR CREATING SOURCES ####
+//// Create source attachment for dev jar
+//task sourcesJar(type: Jar) {
+//    from sourceSets.main.allJava
+//    classifier = 'sources'
+//}
+//
+//artifacts {
+//    archives sourcesJar
+//}
