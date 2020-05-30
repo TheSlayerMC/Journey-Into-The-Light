@@ -25,7 +25,7 @@ public class ScrollAPI {
     }
 
     public static void registerCategory(ScrollCategory scrollCategory) {
-        CATEGORY_MAP.put(scrollCategory.getCategoryName(), scrollCategory);
+        CATEGORY_MAP.put(scrollCategory.getCategoryKey(), scrollCategory);
     }
 
     public static void registerEntry(String existentCategoryName, ScrollEntry scrollEntry) {

@@ -1,10 +1,12 @@
 package net.journey.client.render.gui.scroll;
 
 import net.journey.JITL;
+import net.journey.api.scroll.ScrollCategory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 
 /*
@@ -14,12 +16,13 @@ public class GuiCategoryButton extends GuiButton {
 
     protected static final ResourceLocation BUTTON_TEXTURE = new ResourceLocation(JITL.MOD_ID, "textures/gui/gui_scroll_base.png");
 
-    public GuiCategoryButton(int buttonId, int x, int y, int widthIn, int heightIn, String buttonText) {
-        super(buttonId, x, y, widthIn, heightIn, buttonText);
+    public GuiCategoryButton(int buttonId, int x, int y, int widthIn, int heightIn, ScrollCategory category) {
+        super(buttonId, x, y, widthIn, heightIn, I18n.format(category.getCategoryKey()));
     }
 
     @Override
-    public void drawButton(Minecraft mc, int mouseX, int mouseY, float partialTicks) {}
+    public void drawButton(Minecraft mc, int mouseX, int mouseY, float partialTicks) {
+    }
 
     public void drawButton(int mouseX, int mouseY, float partialTicks) {
         if (visible) {

@@ -83,7 +83,7 @@ public class GuiLoreScroll extends GuiScreen {
 
         for (int i = 0; i < ScrollAPI.getCategoryMap().size() * 1000; i += 1000) {
             ScrollCategory category = ScrollAPI.getCategoryByIndex(i / 1000);
-            addButton(new GuiCategoryButton(i, x0 + 25, y0 + 20 + i * buttonHeight + i * border, buttonWidth, buttonHeight, category.getCategoryName()));
+            addButton(new GuiCategoryButton(i, x0 + 25, y0 + 20 + i * buttonHeight + i * border, buttonWidth, buttonHeight, category));
 
             for (int j = 0; j < category.getEntryList().size(); j++) {
                 ScrollEntry entry = ScrollAPI.getEntryByIndex(category, j);

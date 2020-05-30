@@ -1,6 +1,5 @@
 package net.journey.api.scroll;
 
-import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 
 import java.util.LinkedHashMap;
@@ -14,7 +13,7 @@ public class ScrollCategory {
      * Size of Category. The real size will be multiplied by 256.
      */
     private int categorySize;
-    private String categoryName;
+    private String categoryKey;
     private ResourceLocation backgroundTexture;
     private String id;
     /**
@@ -22,24 +21,24 @@ public class ScrollCategory {
      */
     private LinkedHashMap<String, ScrollEntry> entryList = new LinkedHashMap<>();
 
-    public ScrollCategory(String categoryName, /*@NotNull*/ ResourceLocation backgroundTexture) {
-        this(categoryName, backgroundTexture, 2);
+    public ScrollCategory(String categoryKey, /*@NotNull*/ ResourceLocation backgroundTexture) {
+        this(categoryKey, backgroundTexture, 2);
     }
 
 
-    public ScrollCategory(String categoryName, /*@NotNull*/ ResourceLocation backgroundTexture, int categorySize) {
+    public ScrollCategory(String categoryKey, /*@NotNull*/ ResourceLocation backgroundTexture, int categorySize) {
         this.categorySize = categorySize;
-        this.categoryName = I18n.format(categoryName);
+        this.categoryKey = categoryKey;
         this.backgroundTexture = backgroundTexture;
-        this.id = this.categoryName.toUpperCase().replace(' ', '_');
+        this.id = this.categoryKey.toUpperCase().replace(' ', '_');
     }
 
     public int getCategorySize() {
         return categorySize;
     }
 
-    public String getCategoryName() {
-        return categoryName;
+    public String getCategoryKey() {
+        return categoryKey;
     }
 
     public LinkedHashMap<String, ScrollEntry> getEntryList() {
@@ -52,7 +51,7 @@ public class ScrollCategory {
 
     public ScrollEntry getEntry(String entryID) {
         if (!entryList.containsKey(entryID)) {
-            throw new IndexOutOfBoundsException("Attempt to get nonexistent Entry \"" + entryID + "\" in \"" + categoryName + "\" Category.\n\tAvailable Entry Names: " + entryList.toString());
+            throw new IndexOutOfBoundsException("Attempt to get nonexistent Entry \"" + entryID + "\" in \"" + categoryKey + "\" Category.\n\tAvailable Entry Names: " + entryList.toString());
         }
         return entryList.get(entryID);
     }
