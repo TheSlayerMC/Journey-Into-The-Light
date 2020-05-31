@@ -1,14 +1,17 @@
 package net.slayer.api.entity;
 
+import net.journey.api.entity.IJERCompatible;
 import net.journey.entity.MobStats;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.passive.EntityWaterMob;
 import net.minecraft.item.Item;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
-public abstract class EntityModWaterMob extends EntityWaterMob {
+public abstract class EntityModWaterMob extends EntityWaterMob implements IJERCompatible {
 
     public EntityModWaterMob(World w) {
         super(w);
@@ -93,5 +96,10 @@ public abstract class EntityModWaterMob extends EntityWaterMob {
     protected SoundEvent getDeathSound() {
         super.getDeathSound();
         return setDeathSound();
+    }
+
+    @Override
+    public @Nullable ResourceLocation getLootTable() {
+        return super.getLootTable();
     }
 }

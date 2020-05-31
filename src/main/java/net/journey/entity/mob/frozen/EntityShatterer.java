@@ -1,13 +1,12 @@
 package net.journey.entity.mob.frozen;
 
 import net.journey.entity.MobStats;
+import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.journey.init.blocks.JourneyBlocks;
-import net.journey.util.JourneyLootTables;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
 import net.minecraft.entity.ai.EntityMoveHelper;
-import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -60,8 +59,8 @@ public class EntityShatterer extends EntityModFlying {
     }
 
     @Override
-    protected ResourceLocation getLootTable() {
-    	return JourneyLootTables.SHATTERER;
+    public ResourceLocation getLootTable() {
+        return JourneyLootTables.SHATTERER;
     }
 
     @Override

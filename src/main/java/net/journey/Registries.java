@@ -6,7 +6,6 @@ import net.journey.init.JourneyEnchantments;
 import net.journey.init.JourneySounds;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.init.items.JourneyItems;
-import net.journey.util.EntityRegistry;
 import net.journey.util.handler.LogHelper;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
@@ -17,7 +16,6 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.RegistryEvent.Register;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.registries.IForgeRegistry;
 
 import java.util.ArrayList;
@@ -57,21 +55,6 @@ public class Registries {
 		for (Item item : JourneyItems.items)
 			if (item instanceof IHasModel)
 				((IHasModel) item).registerModels(event);
-	}
-
-	@SubscribeEvent
-	public static void registerEntities(RegistryEvent.Register<EntityEntry> event) {
-		IForgeRegistry<EntityEntry> registry = event.getRegistry();
-
-		EntityEntry[] mobs = EntityRegistry.initMobs();
-		EntityEntry[] projectiles = EntityRegistry.initProjectiles();
-
-		registry.registerAll(mobs);
-		registry.registerAll(projectiles);
-
-		LogHelper.info("Successfully Registered " + mobs.length + " Mobs");
-		LogHelper.info("Successfully Registered " + EntityRegistry.initProjectiles().length + " Projectiles");
-
 	}
 
 	@SubscribeEvent

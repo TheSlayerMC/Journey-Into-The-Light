@@ -2,8 +2,8 @@ package net.journey.entity.mob.cloudia;
 
 import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
+import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
-import net.journey.util.JourneyLootTables;
 import net.minecraft.block.Block;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.DamageSource;
@@ -41,10 +41,10 @@ public class EntityStarlightGolem extends JEntityMob {
         return SoundEvents.ENTITY_IRONGOLEM_DEATH;
     }
 
-    @Override
-    protected ResourceLocation getLootTable() {
-        return JourneyLootTables.STARLIGHT_GOLEM;
-    }
+	@Override
+	public ResourceLocation getLootTable() {
+		return JourneyLootTables.STARLIGHT_GOLEM;
+	}
 
     @Override
     public @NotNull EntitySettings getEntitySettings() {

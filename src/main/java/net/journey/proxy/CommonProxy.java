@@ -12,9 +12,7 @@ import net.journey.dimension.nether.JNWorldGenerator;
 import net.journey.dimension.nether.biomes.BiomeRegister;
 import net.journey.enums.EnumParticlesClasses;
 import net.journey.event.*;
-import net.journey.init.JourneyEnchantments;
-import net.journey.init.JourneyRecipes;
-import net.journey.init.JourneySounds;
+import net.journey.init.*;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.init.common.JourneyCrops;
 import net.journey.init.items.JourneyArmory;
@@ -36,10 +34,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -76,9 +71,15 @@ public class CommonProxy {
     }
 
     public void preInit(FMLPreInitializationEvent event) {
-    	ObfuscationReflectionHelper.setPrivateValue((Class)RangedAttribute.class, SharedMonsterAttributes.MAX_HEALTH, Double.MAX_VALUE, 1);
+        ObfuscationReflectionHelper.setPrivateValue((Class) RangedAttribute.class, SharedMonsterAttributes.MAX_HEALTH, Double.MAX_VALUE, 1);
         Config.init(event);
         NetherEvent.init();
+
+        try {
+            Class.forName(JourneyLootTables.class.getName()); // Needed to initialize static values
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
         JourneySounds.init();
         JourneyItems.init();
@@ -120,11 +121,15 @@ public class CommonProxy {
 
         Integrations.onInit(event);
     }
-    
+
     public void postInit(FMLPostInitializationEvent event) {
         //ScrollRegistry.register();
     }
-    
+
+    public void onLoadComplete(FMLLoadCompleteEvent event) {
+        EntityRegistry.onLoadComplete(event);
+    }
+
     public void registerEntityRenderer(Entity entity, int i, String name) {
     }
 

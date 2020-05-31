@@ -2,7 +2,7 @@ package net.journey.entity.mob.senterian.mob;
 
 import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
-import net.journey.util.JourneyLootTables;
+import net.journey.init.JourneyLootTables;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
@@ -33,7 +33,7 @@ public class EntityMiniSentryLord extends JEntityMob {
 	}
 
 	@Override
-	protected ResourceLocation getLootTable() {
+	public ResourceLocation getLootTable() {
 		return JourneyLootTables.MINI_SENTRY_LORD;
 	}
 

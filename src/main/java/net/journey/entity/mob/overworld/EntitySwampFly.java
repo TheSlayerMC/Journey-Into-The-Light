@@ -2,18 +2,16 @@ package net.journey.entity.mob.overworld;
 
 import net.journey.JITL;
 import net.journey.entity.MobStats;
+import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.journey.init.blocks.JourneyBlocks;
-import net.journey.util.JourneyLootTables;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
 import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
@@ -72,10 +70,10 @@ public class EntitySwampFly extends EntityModFlying {
     public SoundEvent setDeathSound() {
         return JourneySounds.EMPTY;
     }
-    
+
     @Override
-    protected ResourceLocation getLootTable() {
-    	return JourneyLootTables.SWAMP_FLY;
+    public ResourceLocation getLootTable() {
+        return JourneyLootTables.SWAMP_FLY;
     }
 
     @Override

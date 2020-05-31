@@ -7,9 +7,7 @@ package net.journey.entity.mob.nether;
 
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityMagmaFireball;
-import net.journey.init.items.JourneyConsumables;
-import net.journey.init.items.JourneyItems;
-import net.journey.util.JourneyLootTables;
+import net.journey.init.JourneyLootTables;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
@@ -18,7 +16,6 @@ import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityLargeFireball;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -71,10 +68,10 @@ public class EntityLavasnake extends EntityModFlying {
                 && this.world.getDifficulty() != EnumDifficulty.PEACEFUL;
     }
 
-    @Override
-    protected ResourceLocation getLootTable() {
-    	return JourneyLootTables.LAVA_SNAKE;
-    }
+	@Override
+	public ResourceLocation getLootTable() {
+		return JourneyLootTables.LAVA_SNAKE;
+	}
 
     protected void initEntityAI() {
         this.tasks.addTask(5, new EntityLavasnake.AIRandomFly(this));

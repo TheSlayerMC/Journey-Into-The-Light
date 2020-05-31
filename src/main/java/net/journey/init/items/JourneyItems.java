@@ -1,5 +1,6 @@
 package net.journey.init.items;
 
+import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.journey.items.ItemEssenceArrow;
 import net.journey.items.ItemEssencePotion;
@@ -7,7 +8,6 @@ import net.journey.items.ItemFlameCoin;
 import net.journey.items.ItemModRecord;
 import net.journey.items.interactive.*;
 import net.journey.util.Config;
-import net.journey.util.JourneyLootTables;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;

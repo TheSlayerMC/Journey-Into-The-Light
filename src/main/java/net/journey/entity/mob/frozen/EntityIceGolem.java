@@ -3,8 +3,8 @@ package net.journey.entity.mob.frozen;
 import com.google.common.base.Predicate;
 import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
+import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
-import net.journey.util.JourneyLootTables;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -156,7 +156,7 @@ public class EntityIceGolem extends JEntityMob {
     }
 
     @Override
-    protected ResourceLocation getLootTable() {
+    public ResourceLocation getLootTable() {
         return JourneyLootTables.ICE_GOLEM;
     }
 

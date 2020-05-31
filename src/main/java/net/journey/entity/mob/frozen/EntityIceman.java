@@ -3,11 +3,11 @@ package net.journey.entity.mob.frozen;
 import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityFrozenSnowball;
+import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.init.items.JourneyWeapons;
 import net.journey.util.Config;
-import net.journey.util.JourneyLootTables;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
@@ -134,7 +134,7 @@ public class EntityIceman extends JEntityMob implements IRangedAttackMob {
     }
 
     @Override
-    protected ResourceLocation getLootTable() {
+    public ResourceLocation getLootTable() {
         return JourneyLootTables.ICEMAN;
     }
 

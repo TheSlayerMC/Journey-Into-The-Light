@@ -1,16 +1,8 @@
-package net.journey.util;
+package net.journey.init;
 
-import com.google.common.collect.Lists;
 import net.journey.JITL;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.storage.loot.LootContext;
-import net.minecraft.world.storage.loot.LootTable;
 import net.minecraft.world.storage.loot.LootTableList;
-
-import javax.annotation.Nonnull;
-import java.util.List;
 
 public class JourneyLootTables {
 

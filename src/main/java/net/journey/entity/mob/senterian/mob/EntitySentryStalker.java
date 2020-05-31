@@ -2,7 +2,7 @@ package net.journey.entity.mob.senterian.mob;
 
 import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
-import net.journey.util.JourneyLootTables;
+import net.journey.init.JourneyLootTables;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
@@ -37,10 +37,10 @@ public class EntitySentryStalker extends JEntityMob {
         return this.posY < 20.0D && /**this.posY <  && */super.getCanSpawnHere();
     }
 
-    @Override
-    protected ResourceLocation getLootTable() {
-        return JourneyLootTables.SENTRY_STALKER;
-    }
+	@Override
+	public ResourceLocation getLootTable() {
+		return JourneyLootTables.SENTRY_STALKER;
+	}
 
     @Override
     public @NotNull EntitySettings getEntitySettings() {

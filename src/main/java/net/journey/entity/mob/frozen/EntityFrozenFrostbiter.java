@@ -3,8 +3,8 @@ package net.journey.entity.mob.frozen;
 import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityIceBall;
+import net.journey.init.JourneyLootTables;
 import net.journey.init.items.JourneyItems;
-import net.journey.util.JourneyLootTables;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.*;
@@ -141,7 +141,7 @@ public class EntityFrozenFrostbiter extends JEntityMob {
     }
 
     @Override
-    protected ResourceLocation getLootTable() {
+    public ResourceLocation getLootTable() {
         return JourneyLootTables.FROZEN_FROSTBITER;
     }
 

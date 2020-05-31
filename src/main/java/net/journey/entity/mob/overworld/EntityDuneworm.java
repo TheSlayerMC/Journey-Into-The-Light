@@ -2,8 +2,8 @@ package net.journey.entity.mob.overworld;
 
 import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
+import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
-import net.journey.util.JourneyLootTables;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
@@ -36,8 +36,8 @@ public class EntityDuneworm extends JEntityMob {
     }
 
     @Override
-    protected ResourceLocation getLootTable() {
-    	return JourneyLootTables.DUNEWORM;
+    public ResourceLocation getLootTable() {
+        return JourneyLootTables.DUNEWORM;
     }
 
     @Override

@@ -3,7 +3,7 @@ package net.journey.entity.mob.terrania.mob;
 import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityMagmaFireball;
-import net.journey.util.JourneyLootTables;
+import net.journey.init.JourneyLootTables;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.*;
@@ -62,7 +62,7 @@ public class EntityPurplian extends JEntityMob {
     }
 
     @Override
-    protected ResourceLocation getLootTable() {
+    public ResourceLocation getLootTable() {
         return JourneyLootTables.PURPLIAN;
     }
 

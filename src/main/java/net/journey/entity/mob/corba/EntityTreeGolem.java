@@ -2,8 +2,8 @@ package net.journey.entity.mob.corba;
 
 import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
+import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
-import net.journey.util.JourneyLootTables;
 import net.journey.util.PotionEffects;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -70,10 +70,10 @@ public class EntityTreeGolem extends JEntityMob {
         return JourneySounds.BUSH_DEATH;
     }
 
-    @Override
-    protected ResourceLocation getLootTable() {
-        return JourneyLootTables.TREE_GOLEM;
-    }
+	@Override
+	public ResourceLocation getLootTable() {
+		return JourneyLootTables.TREE_GOLEM;
+	}
 
     @Override
     public @NotNull EntitySettings getEntitySettings() {

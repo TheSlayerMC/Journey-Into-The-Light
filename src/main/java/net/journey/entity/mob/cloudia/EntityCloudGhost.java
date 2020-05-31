@@ -2,8 +2,8 @@ package net.journey.entity.mob.cloudia;
 
 import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
+import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
-import net.journey.util.JourneyLootTables;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
@@ -33,10 +33,10 @@ public class EntityCloudGhost extends JEntityMob {
         return JourneySounds.SPIKED_BEAST_HURT;
     }
 
-    @Override
-    protected ResourceLocation getLootTable() {
-        return JourneyLootTables.CLOUD_GHOST;
-    }
+	@Override
+	public ResourceLocation getLootTable() {
+		return JourneyLootTables.CLOUD_GHOST;
+	}
 
     @Override
     public @NotNull EntitySettings getEntitySettings() {

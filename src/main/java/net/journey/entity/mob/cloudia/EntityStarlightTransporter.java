@@ -1,9 +1,9 @@
 package net.journey.entity.mob.cloudia;
 
 import net.journey.entity.MobStats;
+import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.journey.init.items.JourneyItems;
-import net.journey.util.JourneyLootTables;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
@@ -40,10 +40,10 @@ public class EntityStarlightTransporter extends EntityPeacefullUntillAttacked {
 
     }
 
-    @Override
-    protected ResourceLocation getLootTable() {
-        return JourneyLootTables.STARLIGHT_TRANSPORTER;
-    }
+	@Override
+	public ResourceLocation getLootTable() {
+		return JourneyLootTables.STARLIGHT_TRANSPORTER;
+	}
 
     @Override
     public @NotNull EntitySettings getEntitySettings() {

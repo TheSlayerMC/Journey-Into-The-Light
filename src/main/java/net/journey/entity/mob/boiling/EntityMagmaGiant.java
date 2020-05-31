@@ -2,8 +2,8 @@ package net.journey.entity.mob.boiling;
 
 import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
+import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
-import net.journey.util.JourneyLootTables;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.DamageSource;
@@ -55,10 +55,10 @@ public class EntityMagmaGiant extends JEntityMob {
         return 1.0F;
     }
 
-    @Override
-    protected ResourceLocation getLootTable() {
-    	return JourneyLootTables.MAGMA_GIANT;
-    }
+	@Override
+	public ResourceLocation getLootTable() {
+		return JourneyLootTables.MAGMA_GIANT;
+	}
 
     @Override
     public void onLivingUpdate() {

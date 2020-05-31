@@ -18,7 +18,6 @@ import net.journey.init.JourneyTabs;
 import net.journey.init.items.JourneyConsumables;
 import net.journey.init.items.JourneyItems;
 import net.journey.util.Initializer;
-import net.journey.util.JourneyLootTables;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;

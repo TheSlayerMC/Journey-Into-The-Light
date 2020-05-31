@@ -7,6 +7,7 @@ import net.journey.util.LangHelper;
 import net.journey.util.gen.lang.LangGeneratorFacade;
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
@@ -81,15 +82,6 @@ public class SlayerAPI {
         MinecraftForge.EVENT_BUS.register(o);
     }
 
-    public static EntityEntry buildEntityEntry(Class entityClass, String entityID, String finalName, int base, int fore) {
-        EntityEntry entry = EntityEntryBuilder.create().entity(entityClass)
-                .id(new ResourceLocation(JITL.MOD_ID, entityID), mobID++).name(JITL.MOD_ID + "." + entityID).tracker(128, 3, true)
-                .egg(base, fore).build();
-        LangGeneratorFacade.addEntityEntry(entry, finalName);
-
-        return entry;
-    }
-
     public static EntityEntry buildEntityEntryNoEgg(Class entityClass, String entityID, int id) {
 
         return EntityEntryBuilder.create().entity(entityClass)
@@ -98,14 +90,25 @@ public class SlayerAPI {
     }
 
     public static void registerPets(Class entityClass, String entityName, String finalName, String finalN) {
-        buildEntityEntry(entityClass, entityName, finalName, 0x64ffe4, 0x009cff);
+        buildMobEntry(entityClass, entityName, finalName, 0x64ffe4, 0x009cff);
     }
 
     public static void registerEntity(Class entityClass, String entityName, int ID) {
         EntityRegistry.registerModEntity(new ResourceLocation(entityName), entityClass, entityName, ID, JITL.instance, 120, 5, true);
     }
 
-    public static EntityEntry registerProjectile(Class entityClass, String entityID) {
+    public static EntityEntry buildMobEntry(Class<? extends Entity> entityClass, String entityID, String finalName, int primaryEggColor, int secondaryEggColor) {
+        EntityEntry entry = EntityEntryBuilder.create().entity(entityClass)
+                .id(new ResourceLocation(JITL.MOD_ID, entityID), mobID++).name(JITL.MOD_ID + "." + entityID).tracker(128, 3, true)
+                .egg(primaryEggColor, secondaryEggColor).build();
+
+        LangGeneratorFacade.addEntityEntry(entry, finalName);
+
+        return entry;
+    }
+
+
+    public static EntityEntry buildProjectileEntry(Class<? extends Entity> entityClass, String entityID) {
         return EntityEntryBuilder.create().entity(entityClass)
                 .id(new ResourceLocation(JITL.MOD_ID, entityID), projectileID++).name(JITL.MOD_ID + "." + entityID)
                 .tracker(250, 5, true).build();

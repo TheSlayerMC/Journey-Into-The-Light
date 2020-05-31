@@ -2,16 +2,15 @@ package net.journey.entity.mob.overworld.underground;
 
 import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
+import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.journey.init.items.JourneyConsumables;
-import net.journey.util.JourneyLootTables;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
@@ -49,8 +48,8 @@ public class EntityGreenHonglow extends JEntityMob {
     }
 
     @Override
-    protected ResourceLocation getLootTable() {
-    	return JourneyLootTables.GREEN_HONGLOW;
+    public ResourceLocation getLootTable() {
+        return JourneyLootTables.GREEN_HONGLOW;
     }
 
     @Override

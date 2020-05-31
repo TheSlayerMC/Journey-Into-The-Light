@@ -3,9 +3,9 @@ package net.journey.entity.mob.overworld.underground;
 import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.staff.EntityConjuring;
+import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.journey.init.items.JourneyWeapons;
-import net.journey.util.JourneyLootTables;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
@@ -103,7 +103,7 @@ public class EntityCaveMage extends JEntityMob implements IRangedAttackMob {
     }
 
     @Override
-    protected ResourceLocation getLootTable() {
+    public ResourceLocation getLootTable() {
         return JourneyLootTables.CAVE_MAGE;
     }
 

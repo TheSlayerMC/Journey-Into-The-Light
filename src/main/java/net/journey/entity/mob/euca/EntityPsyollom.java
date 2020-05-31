@@ -2,8 +2,8 @@ package net.journey.entity.mob.euca;
 
 import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
+import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
-import net.journey.util.JourneyLootTables;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
@@ -34,10 +34,10 @@ public class EntityPsyollom extends JEntityMob {
         return JourneySounds.PSYOLLOM_HURT;
     }
 
-    @Override
-    protected ResourceLocation getLootTable() {
-        return JourneyLootTables.PSYOLLUM;
-    }
+	@Override
+	public ResourceLocation getLootTable() {
+		return JourneyLootTables.PSYOLLUM;
+	}
 
     @Override
     public @NotNull EntitySettings getEntitySettings() {

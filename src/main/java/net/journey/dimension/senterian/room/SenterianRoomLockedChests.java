@@ -4,12 +4,11 @@ import net.journey.api.world.gen.BasicInitializers;
 import net.journey.api.world.gen.TECompatibleChunkPrimer;
 import net.journey.blocks.containers.BlockJourneyChest;
 import net.journey.blocks.containers.BlockLock;
+import net.journey.init.JourneyLootTables;
 import net.journey.init.blocks.JourneyBlocks;
-import net.journey.util.JourneyLootTables;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.world.storage.loot.LootTableList;
 
 import java.util.Random;
 

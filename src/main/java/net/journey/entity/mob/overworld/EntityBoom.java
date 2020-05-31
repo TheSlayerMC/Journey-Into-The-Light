@@ -3,7 +3,7 @@ package net.journey.entity.mob.overworld;
 import net.journey.api.entity.JEntityMob;
 import net.journey.entity.AI.EntityAIBoomSwell;
 import net.journey.entity.MobStats;
-import net.journey.util.JourneyLootTables;
+import net.journey.init.JourneyLootTables;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAIRestrictSun;
@@ -101,8 +101,8 @@ public class EntityBoom extends JEntityMob {
     }
 
     @Override
-    protected ResourceLocation getLootTable() {
-    	return JourneyLootTables.BOOM_BOOM;
+    public ResourceLocation getLootTable() {
+        return JourneyLootTables.BOOM_BOOM;
     }
 
     @Override

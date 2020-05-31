@@ -1,10 +1,10 @@
 package net.journey.entity.mob.overworld;
 
 import net.journey.entity.MobStats;
+import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.journey.init.items.JourneyConsumables;
 import net.journey.init.items.JourneyItems;
-import net.journey.util.JourneyLootTables;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
@@ -37,8 +37,8 @@ public class EntityTurducken extends EntityPeacefullUntillAttacked {
     }
 
     @Override
-    protected ResourceLocation getLootTable() {
-    	return JourneyLootTables.TURDUCKEN;
+    public ResourceLocation getLootTable() {
+        return JourneyLootTables.TURDUCKEN;
     }
 
     @Override

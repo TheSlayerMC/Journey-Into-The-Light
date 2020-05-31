@@ -3,8 +3,8 @@ package net.journey.entity.mob.overworld;
 import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityFloroWater;
+import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
-import net.journey.util.JourneyLootTables;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.ai.*;
@@ -79,7 +79,7 @@ public class EntityFloro extends JEntityMob implements IRangedAttackMob {
 	}
 
 	@Override
-	protected ResourceLocation getLootTable() {
+	public ResourceLocation getLootTable() {
 		return JourneyLootTables.FLORO;
 	}
 

@@ -2,8 +2,8 @@ package net.journey.entity.mob.overworld.underground;
 
 import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
+import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
-import net.journey.util.JourneyLootTables;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
@@ -37,8 +37,8 @@ public class EntityStonewalker extends JEntityMob {
     }
 
     @Override
-    protected ResourceLocation getLootTable() {
-    	return JourneyLootTables.STONEWALKER;
+    public ResourceLocation getLootTable() {
+        return JourneyLootTables.STONEWALKER;
     }
 
     @Override

@@ -2,14 +2,12 @@ package net.journey.entity.mob.frozen;
 
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityShimmererProjectile;
+import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
-import net.journey.init.items.JourneyItems;
-import net.journey.util.JourneyLootTables;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
 import net.minecraft.entity.ai.EntityMoveHelper;
-import net.minecraft.item.Item;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -85,8 +83,8 @@ public class EntityCrystalCluster extends EntityModFlying {
     }
 
     @Override
-    protected ResourceLocation getLootTable() {
-    	return JourneyLootTables.CRYSTAL_CLUSTER;
+    public ResourceLocation getLootTable() {
+        return JourneyLootTables.CRYSTAL_CLUSTER;
     }
 
     @Override

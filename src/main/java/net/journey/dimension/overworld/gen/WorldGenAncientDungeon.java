@@ -2,8 +2,8 @@ package net.journey.dimension.overworld.gen;
 
 import net.journey.blocks.containers.BlockJourneyChest;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
+import net.journey.init.JourneyLootTables;
 import net.journey.init.blocks.JourneyBlocks;
-import net.journey.util.JourneyLootTables;
 import net.journey.util.RandHelper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;

@@ -2,7 +2,7 @@ package net.journey.entity.mob.terrania.mob;
 
 import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
-import net.journey.util.JourneyLootTables;
+import net.journey.init.JourneyLootTables;
 import net.journey.util.PotionEffects;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -197,7 +197,7 @@ public class EntityAranaKing extends JEntityMob {
     }
 
     @Override
-    protected ResourceLocation getLootTable() {
+    public ResourceLocation getLootTable() {
         return JourneyLootTables.ARANA_KING;
     }
 

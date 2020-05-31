@@ -7,7 +7,7 @@ package net.journey.entity.mob.depths;
 
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityMagmaFireball;
-import net.journey.util.JourneyLootTables;
+import net.journey.init.JourneyLootTables;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
@@ -72,10 +72,10 @@ public class EntityDarkener extends EntityModFlying {
         return super.rand.nextInt(15) == 0 && super.getCanSpawnHere() && this.world.getDifficulty() != EnumDifficulty.PEACEFUL;
     }
 
-    @Override
-    protected ResourceLocation getLootTable() {
-    	return JourneyLootTables.DARKENER;
-    }
+	@Override
+	public ResourceLocation getLootTable() {
+		return JourneyLootTables.DARKENER;
+	}
 
     @SideOnly(Side.CLIENT)
     public boolean isAttacking() {

@@ -3,7 +3,7 @@ package net.journey.entity.mob.senterian.mob;
 import com.google.common.base.Optional;
 import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
-import net.journey.util.JourneyLootTables;
+import net.journey.init.JourneyLootTables;
 import net.minecraft.block.BlockPistonBase;
 import net.minecraft.block.BlockPistonExtension;
 import net.minecraft.block.material.Material;
@@ -492,7 +492,7 @@ public class EntitySentryBlock extends JEntityMob {
     }
 
     @Override
-    protected ResourceLocation getLootTable() {
+    public ResourceLocation getLootTable() {
         return JourneyLootTables.SENTRY_BLOCK;
     }
 

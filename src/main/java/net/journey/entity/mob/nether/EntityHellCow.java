@@ -1,7 +1,7 @@
 package net.journey.entity.mob.nether;
 
 import net.journey.entity.MobStats;
-import net.journey.util.JourneyLootTables;
+import net.journey.init.JourneyLootTables;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
@@ -59,10 +59,10 @@ public class EntityHellCow extends EntityPeacefullUntillAttacked {
         return SoundEvents.ENTITY_COW_DEATH;
     }
 
-    @Override
-    protected ResourceLocation getLootTable() {
-    	return JourneyLootTables.HELL_COW;
-    }
+	@Override
+	public ResourceLocation getLootTable() {
+		return JourneyLootTables.HELL_COW;
+	}
 
     @Override
     public void onDeath(DamageSource d) {

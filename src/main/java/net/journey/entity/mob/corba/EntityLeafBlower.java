@@ -2,8 +2,8 @@ package net.journey.entity.mob.corba;
 
 import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
+import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
-import net.journey.util.JourneyLootTables;
 import net.journey.util.PotionEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -37,11 +37,11 @@ public class EntityLeafBlower extends JEntityMob {
     protected SoundEvent getDeathSound() {
         return JourneySounds.BUSH_DEATH;
     }
-    
-    @Override
-    protected ResourceLocation getLootTable() {
-    	return JourneyLootTables.LEAF_BLOWER;
-    }
+
+	@Override
+	public ResourceLocation getLootTable() {
+		return JourneyLootTables.LEAF_BLOWER;
+	}
 
     @Override
     public void onLivingUpdate() {

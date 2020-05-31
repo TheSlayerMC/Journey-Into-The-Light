@@ -1,13 +1,15 @@
 package net.slayer.api.entity;
 
+import net.journey.api.entity.IJERCompatible;
 import net.journey.entity.MobStats;
 import net.minecraft.entity.EntityFlying;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
-public abstract class EntityModFlying extends EntityFlying {
+public abstract class EntityModFlying extends EntityFlying implements IJERCompatible {
 
     public EntityModFlying(World w) {
         super(w);
@@ -79,5 +81,10 @@ public abstract class EntityModFlying extends EntityFlying {
     protected SoundEvent getDeathSound() {
         super.getDeathSound();
         return setDeathSound();
+    }
+
+    @Override
+    public ResourceLocation getLootTable() {
+        return super.getLootTable();
     }
 }

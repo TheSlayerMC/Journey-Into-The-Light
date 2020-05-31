@@ -2,9 +2,9 @@ package net.journey.entity.mob.overworld;
 
 import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
+import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.journey.init.items.JourneyWeapons;
-import net.journey.util.JourneyLootTables;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -89,7 +89,7 @@ public class EntityWraith extends JEntityMob {
     }
 
     @Override
-    protected ResourceLocation getLootTable() {
+    public ResourceLocation getLootTable() {
         return JourneyLootTables.WRAITH;
     }
 

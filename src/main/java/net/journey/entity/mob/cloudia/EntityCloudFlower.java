@@ -2,7 +2,7 @@ package net.journey.entity.mob.cloudia;
 
 import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
-import net.journey.util.JourneyLootTables;
+import net.journey.init.JourneyLootTables;
 import net.journey.util.PotionEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -58,10 +58,10 @@ public class EntityCloudFlower extends JEntityMob {
         }
     }
 
-    @Override
-    protected ResourceLocation getLootTable() {
-        return JourneyLootTables.CLOUD_FLOWER;
-    }
+	@Override
+	public ResourceLocation getLootTable() {
+		return JourneyLootTables.CLOUD_FLOWER;
+	}
 
     @Override
     public @NotNull EntitySettings getEntitySettings() {
