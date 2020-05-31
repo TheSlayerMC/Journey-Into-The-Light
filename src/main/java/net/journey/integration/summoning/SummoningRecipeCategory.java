@@ -1,4 +1,4 @@
-package net.journey.util.compat.jei.summoning;
+package net.journey.integration.summoning;
 
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
