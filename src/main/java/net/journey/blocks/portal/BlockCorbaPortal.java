@@ -85,7 +85,7 @@ public class BlockCorbaPortal extends BlockMod {
 			 * if player is in 'dimensionID' dimension, send player to overworld
 			 * otherwise, send player to 'dimensionID' dimension
 			 */
-			int dimensionID = Config.boil;
+			int dimensionID = Config.corba;
 			int destination;
 			if (entity.dimension == dimensionID) {
 				destination = 0;
