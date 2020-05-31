@@ -8,6 +8,10 @@ buildscript {
     }
 }
 
+plugins {
+    id "com.wynprice.cursemaven" version "2.1.4"
+}
+
 apply plugin: 'net.minecraftforge.gradle.forge'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
@@ -58,6 +62,9 @@ repositories {
             name = "ModMaven"
             url = "https://modmaven.k-4u.nl"
         }
+        maven {
+            url uri('localmaven')
+        }
     }
 }
 
@@ -85,6 +92,8 @@ dependencies {
 
     implementation 'org.jetbrains:annotations:18.0.0'
     deobfCompile "mezz.jei:jei_${config.minecraft.version}:${config.jei.version}:"
+
+    deobfCompile "curse.maven:just-enough-resources-jer:2728585"
 }
 
 processResources {
