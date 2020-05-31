@@ -1,5 +1,6 @@
 package net.journey.client.render;
 
+import net.journey.JITL;
 import net.journey.blocks.tileentity.*;
 import net.journey.client.render.base.*;
 import net.journey.client.render.block.*;
@@ -35,6 +36,7 @@ import net.journey.client.render.model.mob.senterian.ModelSentryStalker;
 import net.journey.client.render.model.mob.senterian.ModelSentryWalker;
 import net.journey.client.render.model.mob.terrania.mob.*;
 import net.journey.client.render.model.mob.terrania.npc.ModelTerranianTrader;
+import net.journey.entity.MobStats;
 import net.journey.entity.item.EntityObsidianBoat;
 import net.journey.entity.mob.boiling.*;
 import net.journey.entity.mob.boiling.npc.EntityBoilTrader;
@@ -91,12 +93,13 @@ import net.minecraft.client.model.ModelBlaze;
 import net.minecraft.client.model.ModelSnowMan;
 import net.minecraft.client.renderer.entity.RenderTippedArrow;
 import net.minecraft.init.Items;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import ru.timeconqueror.timecore.api.client.render.animation.TimeClientLoader;
 
 public class EntityRendering {
     public static void preInit() {
-        // Projectiles
         RenderingRegistry.registerEntityRenderingHandler(EntityMagmaFireball.class, manager -> new RenderProjectile<>(manager, Textures.getProjectileTextureLocation("magma_ball")));
         RenderingRegistry.registerEntityRenderingHandler(EntityBouncingProjectile.class, manager -> new RenderProjectile<>(manager, Textures.getProjectileTextureLocation("bouncing")));
         RenderingRegistry.registerEntityRenderingHandler(EntityRockProjectile.class, manager -> new RenderProjectile<>(manager, Textures.getProjectileTextureLocation("rock_chunk")));
@@ -106,9 +109,12 @@ public class EntityRendering {
         RenderingRegistry.registerEntityRenderingHandler(EntityShimmererProjectile.class, manager -> new RenderProjectile<>(manager, Textures.getProjectileTextureLocation("shimmerer_projectile")));
         RenderingRegistry.registerEntityRenderingHandler(EntityBubbleProjectile.class, manager -> new RenderProjectile<>(manager, Textures.getProjectileTextureLocation("bubble")));
         RenderingRegistry.registerEntityRenderingHandler(EntityDetractor.class, manager -> new RenderProjectile<>(manager, Textures.getProjectileTextureLocation("detractor")));
+//        RenderingRegistry.registerEntityRenderingHandler(EntityFloro.class, manager -> new AnimatedMobRenderer<>(manager, TimeClientLoader.loadJsonEntityModel(entityModelLocation("overworld/floro")), entityTextureLocation("overworld/floro")));
     }
 
     public static void init() {
+        RenderingRegistry.registerEntityRenderingHandler(EntityFloro.class, new RenderModMob(new ModelFloro(), Textures.floro));
+
         /**Projectiles*/
         RenderingRegistry.registerEntityRenderingHandler(EntityBasicProjectile.class, new RenderStaffProjectile(Textures.basic, 1.0F, 0.2F, 0.2F));
         RenderingRegistry.registerEntityRenderingHandler(EntityDoomsBringer.class, new RenderStaffProjectile(Textures.basic, 1.2F, 0.2F, 0.2F));
@@ -218,8 +224,7 @@ public class EntityRendering {
         RenderingRegistry.registerEntityRenderingHandler(EntityIceman.class, new RenderEntityTransparent(new ModelSnowMan(), Textures.iceman));
         RenderingRegistry.registerEntityRenderingHandler(EntityWraith.class, new RenderWraith(new ModelWraith(), Textures.wraith));
         RenderingRegistry.registerEntityRenderingHandler(EntityTurducken.class, new RenderModMob(new ModelRoc(), Textures.turducken));
-	    RenderingRegistry.registerEntityRenderingHandler(EntityFloro.class, new RenderModMob(new ModelFloro(), Textures.floro));
-	    RenderingRegistry.registerEntityRenderingHandler(EntityDarkener.class, new RenderModMob(new ModelDarkener(), Textures.darkener));
+        RenderingRegistry.registerEntityRenderingHandler(EntityDarkener.class, new RenderModMob(new ModelDarkener(), Textures.darkener));
         RenderingRegistry.registerEntityRenderingHandler(EntityStarlightGolem.class, new RenderModMob(new ModelStarlightGolem(), Textures.starlightGolem));
         RenderingRegistry.registerEntityRenderingHandler(EntityIceGolem.class, new RenderIceGolem(new ModelIceGolem(), Textures.iceGolem));
         RenderingRegistry.registerEntityRenderingHandler(EntityRockiteSmasher.class, new RenderRockiteSmasher(new ModelRockiteSmasher(), Textures.rockiteSmasher));
