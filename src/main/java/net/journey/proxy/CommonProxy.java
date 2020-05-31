@@ -2,32 +2,26 @@ package net.journey.proxy;
 
 import net.journey.JITL;
 import net.journey.client.handler.GuiHandler;
-import net.journey.client.render.RenderEssenceBar;
 import net.journey.client.server.*;
 import net.journey.command.DimensionCommand;
 import net.journey.command.JourneyCommands;
 import net.journey.dimension.base.DimensionHelper;
 import net.journey.dimension.base.WorldGenJourney;
-import net.journey.dimension.corba.village.MapGenCorbaVillage;
 import net.journey.dimension.corba.village.StructureCorbaVillagePieces;
 import net.journey.dimension.nether.JNWorldGenerator;
 import net.journey.dimension.nether.biomes.BiomeRegister;
 import net.journey.enums.EnumParticlesClasses;
-import net.journey.event.ArmorAbilityEvent;
-import net.journey.event.BowZoomEvent;
-import net.journey.event.NetherEvent;
-import net.journey.event.PlayerEvent;
-import net.journey.event.VanillaFixEvent;
+import net.journey.event.*;
 import net.journey.init.JourneyEnchantments;
 import net.journey.init.JourneyRecipes;
 import net.journey.init.JourneySounds;
-import net.journey.init.ScrollRegistry;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.init.common.JourneyCrops;
 import net.journey.init.items.JourneyArmory;
 import net.journey.init.items.JourneyConsumables;
 import net.journey.init.items.JourneyItems;
 import net.journey.init.items.JourneyWeapons;
+import net.journey.integration.Integrations;
 import net.journey.util.Config;
 import net.journey.util.JourneyFuelHandler;
 import net.minecraft.block.Block;
@@ -117,12 +111,14 @@ public class CommonProxy {
     }
 
     public void init(FMLInitializationEvent event) {
-    	StructureCorbaVillagePieces.registerVillagePieces();
-		
+        StructureCorbaVillagePieces.registerVillagePieces();
+
         JourneyRecipes.init();
         NetworkRegistry.INSTANCE.registerGuiHandler(JITL.instance, new GuiHandler());
         GameRegistry.registerWorldGenerator(new WorldGenJourney(), 2);
         SlayerAPI.registerEventListener(new PlayerEvent());
+
+        Integrations.onInit(event);
     }
     
     public void postInit(FMLPostInitializationEvent event) {
