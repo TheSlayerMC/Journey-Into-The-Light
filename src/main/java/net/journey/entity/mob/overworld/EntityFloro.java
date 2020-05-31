@@ -11,9 +11,6 @@ import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
@@ -21,12 +18,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
-import ru.timeconqueror.timecore.api.client.render.animation.AnimationManager;
-import ru.timeconqueror.timecore.api.client.render.animation.IAnimationProvider;
 
-public class EntityFloro extends JEntityMob implements IRangedAttackMob, IAnimationProvider {
-	private AnimationManager animationManager = new AnimationManager();
-	private static final DataParameter<Byte> STATE = EntityDataManager.createKey(EntityFloro.class, DataSerializers.BYTE);
+public class EntityFloro extends JEntityMob implements IRangedAttackMob {
+//	private AnimationManager animationManager = new AnimationManager();
+//	private static final DataParameter<Byte> STATE = EntityDataManager.createKey(EntityFloro.class, DataSerializers.BYTE);
 
 	public EntityFloro(World world) {
 		super(world);
@@ -97,14 +92,8 @@ public class EntityFloro extends JEntityMob implements IRangedAttackMob, IAnimat
 		return MobStats.FLORO;
 	}
 
-	@Override
-	public AnimationManager getAnimationManager() {
-		return animationManager;
-	}
-
-	public enum State {
-//		HIDING(0),
-//		WALKING(1),
-
-	}
+//	@Override
+//	public AnimationManager getAnimationManager() {
+//		return animationManager;
+//	}
 }
