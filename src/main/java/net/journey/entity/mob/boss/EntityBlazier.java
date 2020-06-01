@@ -51,7 +51,6 @@ public class EntityBlazier extends EntityEssenceBoss implements IRangedAttackMob
         this.isImmuneToFire = true;
         this.setSize(2.0F, 6.0F);
         spawnTimer = 0;
-
     }
 
     @Override

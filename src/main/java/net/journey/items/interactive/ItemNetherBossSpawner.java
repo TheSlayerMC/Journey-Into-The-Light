@@ -8,6 +8,7 @@ import net.journey.entity.projectile.EntityLightningBall;
 import net.journey.init.JourneySounds;
 import net.journey.init.JourneyTabs;
 import net.journey.init.items.JourneyItems;
+import net.journey.util.ChatUtils;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -16,6 +17,7 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.slayer.api.SlayerAPI;
 import net.slayer.api.SlayerAPI.Colour;
@@ -44,42 +46,50 @@ public class ItemNetherBossSpawner extends ItemMod {
                 EntityNetherBeast nether = new EntityNetherBeast(w);
 
                 if (item == JourneyItems.calciaOrb) {
-                    JourneySounds.playSound(JourneySounds.SUMMON_BOSS, w, p);
-                    light.setPosition(pos.getX(), pos.getY(), pos.getZ());
-                    w.spawnEntity(light);
-                    SlayerAPI.sendMessageToAll("Calcia has been summoned", true);
                     calcia.setPosition(pos.getX(), pos.getY() + 1, pos.getZ());
+                    if (!w.getCollisionBoxes(null, calcia.getEntityBoundingBox()).isEmpty()) {
+                        ChatUtils.sendColored(p, TextFormatting.DARK_PURPLE, "Not enough space for boss to spawn");
+                        return EnumActionResult.PASS;
+                    }
+                    JourneySounds.playSound(JourneySounds.SUMMON_BOSS, w, p);
+                    ChatUtils.sendColored(p, TextFormatting.RED, "Calcia has been summoned");
                     w.spawnEntity(calcia);
                     if (!p.capabilities.isCreativeMode) i.shrink(1);
                 }
                 if (item == JourneyItems.netherBeastOrb) {
-                    JourneySounds.playSound(JourneySounds.SUMMON_BOSS, w, p);
-                    light.setPosition(pos.getX(), pos.getY(), pos.getZ());
-                    w.spawnEntity(light);
-                    SlayerAPI.sendMessageToAll("The Nether Beast has been summoned", true);
                     nether.setPosition(pos.getX(), pos.getY() + 1, pos.getZ());
+                    if (!w.getCollisionBoxes(null, nether.getEntityBoundingBox()).isEmpty()) {
+                        ChatUtils.sendColored(p, TextFormatting.DARK_PURPLE, "Not enough space for boss to spawn");
+                        return EnumActionResult.PASS;
+                    }
+                    JourneySounds.playSound(JourneySounds.SUMMON_BOSS, w, p);
+                    ChatUtils.sendColored(p, TextFormatting.RED, "The Nether Beast has been summoned");
                     w.spawnEntity(nether);
                     if (!p.capabilities.isCreativeMode) i.shrink(1);
                 }
                 if (item == JourneyItems.witheringBeastOrb) {
-                    JourneySounds.playSound(JourneySounds.SUMMON_BOSS, w, p);
-                    light.setPosition(pos.getX(), pos.getY(), pos.getZ());
-                    w.spawnEntity(light);
-                    SlayerAPI.sendMessageToAll("The Withering Beast has been summoned", true);
                     wither.setPosition(pos.getX(), pos.getY() + 1, pos.getZ());
+                    if (!w.getCollisionBoxes(null, wither.getEntityBoundingBox()).isEmpty()) {
+                        ChatUtils.sendColored(p, TextFormatting.DARK_PURPLE, "Not enough space for boss to spawn");
+                        return EnumActionResult.PASS;
+                    }
+                    JourneySounds.playSound(JourneySounds.SUMMON_BOSS, w, p);
+                    ChatUtils.sendColored(p, TextFormatting.RED, "The Withering Beast has been summoned");
                     w.spawnEntity(wither);
                     if (!p.capabilities.isCreativeMode) i.shrink(1);
                 }
                 if (item == JourneyItems.soulWatcherOrb) {
-                    JourneySounds.playSound(JourneySounds.SUMMON_BOSS, w, p);
-                    light.setPosition(pos.getX(), pos.getY(), pos.getZ());
-                    w.spawnEntity(light);
-                    SlayerAPI.sendMessageToAll("The Soul Watcher has been summoned", true);
                     soul.setPosition(pos.getX(), pos.getY() + 1, pos.getZ());
+                    if (!w.getCollisionBoxes(null, soul.getEntityBoundingBox()).isEmpty()) {
+                        ChatUtils.sendColored(p, TextFormatting.DARK_PURPLE, "Not enough space for boss to spawn");
+                        return EnumActionResult.PASS;
+                    }
+                    JourneySounds.playSound(JourneySounds.SUMMON_BOSS, w, p);
+                    ChatUtils.sendColored(p, TextFormatting.RED, "The Soul Watcher has been summoned");
                     w.spawnEntity(soul);
                     if (!p.capabilities.isCreativeMode) i.shrink(1);
                 } else {
-                    SlayerAPI.addChatMessage(p, Colour.GREEN + "Cannot be spawned unless in the Nether.");
+                    ChatUtils.sendColored(p, TextFormatting.RED, "Cannot be spawned unless in the Nether.");
                 }
             }
         return EnumActionResult.PASS;
