@@ -1,5 +1,6 @@
 package net.journey.init;
 
+import net.journey.entity.item.EntityMagicExplosive;
 import net.journey.entity.item.EntityObsidianBoat;
 import net.journey.entity.mob.boiling.*;
 import net.journey.entity.mob.boiling.npc.EntityBoilTrader;
@@ -287,7 +288,9 @@ public class EntityRegistry {
 				SlayerAPI.buildMobEntry(EntityMiniSentryStalker.class, "miniSentrystalker", "Mini Sentry Stalker", 0x584040, 0x1C1C1C),
 				SlayerAPI.buildMobEntry(EntityMiniSentryWalker.class, "miniSentrywalker", "Mini Sentry Walker", 0x584040, 0x1C1C1C),
 				//OBSIDIANBOAT
-				SlayerAPI.buildEntityEntryNoEgg(EntityObsidianBoat.class, "obsidianboat", 16)
+				SlayerAPI.buildEntityEntryNoEgg(EntityObsidianBoat.class, "obsidianboat", 16),
+				//TNT
+				SlayerAPI.buildEntityEntryNoEgg(EntityMagicExplosive.class, "magic_explosive", 17)
 		};
 
 		event.getRegistry().registerAll(entries);

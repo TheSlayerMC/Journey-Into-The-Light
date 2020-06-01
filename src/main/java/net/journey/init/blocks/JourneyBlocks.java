@@ -111,7 +111,9 @@ public class JourneyBlocks {
     public static BlockMod purpleGemBlock;
     public static BlockMod blueGemBlock;
     public static BlockMod yellowGemBlock;
-    
+
+    public static JBlockTNT magicExplosive;
+
     public static BlockMod goldLootBox;
 
     public static BlockModBush sizzleberryBush;
@@ -613,6 +615,8 @@ public class JourneyBlocks {
         blueGemBlock = new BlockMod("blueGemBlock", "Blue Gem Block");
         yellowGemBlock = new BlockMod("yellowGemBlock", "Yellow Gem Block");
         goldLootBox = new JBlockRandomLoot("gold_loot_box", "Gold Loot Box");
+
+        magicExplosive = new JBlockTNT("magic_explosive", "Magic Explosive", 10.0F);
 
         nethicanSludge = new BlockMod(EnumMaterialTypes.SLIME, "nethicanSludge", "Nethican Sludge", 1.0F);
 

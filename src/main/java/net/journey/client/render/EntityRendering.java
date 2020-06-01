@@ -37,6 +37,7 @@ import net.journey.client.render.model.mob.senterian.ModelSentryWalker;
 import net.journey.client.render.model.mob.terrania.mob.*;
 import net.journey.client.render.model.mob.terrania.npc.ModelTerranianTrader;
 import net.journey.entity.MobStats;
+import net.journey.entity.item.EntityMagicExplosive;
 import net.journey.entity.item.EntityObsidianBoat;
 import net.journey.entity.mob.boiling.*;
 import net.journey.entity.mob.boiling.npc.EntityBoilTrader;
@@ -91,6 +92,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelBlaze;
 import net.minecraft.client.model.ModelSnowMan;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderTippedArrow;
 import net.minecraft.init.Items;
 import net.minecraft.util.ResourceLocation;
@@ -275,6 +277,7 @@ public class EntityRendering {
         RenderingRegistry.registerEntityRenderingHandler(EntityCloudFlower.class, new RenderModMob(new ModelFlameLotus(), Textures.cloudFlower));
 
         RenderingRegistry.registerEntityRenderingHandler(EntityObsidianBoat.class, new RenderModBoat(new ModelObsidianBoat(), 0.5F));
+        RenderingRegistry.registerEntityRenderingHandler(EntityMagicExplosive.class, new MagicExplosiveRenderer(Minecraft.getMinecraft().getRenderManager()));
 
         RenderingRegistry.registerEntityRenderingHandler(EntityShatterer.class, new RenderShatterer());
         RenderingRegistry.registerEntityRenderingHandler(EntityFrozenTroll.class, new RenderModMob(new ModelFrozenTroll(), Textures.frozenTroll));
