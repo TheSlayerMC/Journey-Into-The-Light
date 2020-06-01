@@ -2,7 +2,6 @@ package net.journey.util.handler;
 
 import net.journey.JITL;
 import net.minecraftforge.fml.common.FMLLog;
-import net.slayer.api.SlayerAPI;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.Level;
 
@@ -16,7 +15,7 @@ public class LogHelper {
 	private static BufferedWriter writer;
 
 	static {
-		if (SlayerAPI.DEVMODE) {
+		if (JITL.IN_JOURNEY_DEV) {
 			File file = new File("./logs/jitl-debug.log");
 			try {
 				FileUtils.touch(file);
@@ -29,11 +28,11 @@ public class LogHelper {
 
 	private static void log(Level level, Object msg) {
 		FMLLog.log(JITL.MOD_NAME, level, msg.toString());
-		if (SlayerAPI.DEVMODE) writeFile(msg);
+		if (JITL.IN_JOURNEY_DEV) writeFile(msg);
 	}
 
 	public static void debug(Object msg) {
-		if (SlayerAPI.DEVMODE) log(Level.DEBUG, "[DEBUG] " + msg);
+		if (JITL.IN_JOURNEY_DEV) log(Level.DEBUG, "[DEBUG] " + msg);
 	}
 
     public static void error(Object msg) {

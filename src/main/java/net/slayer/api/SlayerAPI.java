@@ -39,9 +39,7 @@ import java.util.logging.Logger;
 public class SlayerAPI {
 
     public static final String PREFIX = JITL.MOD_ID + ":";
-    public static final boolean
-            DEVMODE = true,
-            BETA = false;
+    public static final boolean BETA = false;
     private static final String SECTION_SIGN = "\u00a7";
     public static int mobID = Config.baseMobID, projectileID = Config.baseProjectileID, entityListID = Config.baseEntityListID;
     public static Logger logger = Logger.getLogger(JITL.MOD_ID);
