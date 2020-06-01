@@ -3,6 +3,7 @@ package net.journey.integration;
 import jeresources.api.IJERAPI;
 import jeresources.api.IMobRegistry;
 import jeresources.api.JERPlugin;
+import jeresources.api.drop.LootDrop;
 import jeresources.util.LogHelper;
 import net.journey.api.entity.IJERCompatible;
 import net.journey.init.EntityRegistry;
@@ -12,6 +13,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 
 import javax.annotation.Nullable;
 import java.lang.reflect.Constructor;
+import java.util.List;
 
 public class JERIntegration {
 	@JERPlugin
@@ -27,8 +29,16 @@ public class JERIntegration {
 
 				EntityLivingBase mob = construct(fakeWorld, ((Class<? extends EntityLivingBase>) entityEntry.getEntityClass()));
 
-				if (mob != null && ((IJERCompatible) mob).getLootTable() != null) {
-					mobRegistry.register(mob, ((IJERCompatible) mob).getLootTable());
+
+				if (mob != null) {
+					IJERCompatible compatibleMob = (IJERCompatible) mob;
+
+					List<LootDrop> drops = compatibleMob.getJERDrops();
+					if (!drops.isEmpty()) {
+						mobRegistry.register(mob, compatibleMob.getJERDrops().toArray(new LootDrop[0]));
+					} else if (compatibleMob.getJERLootLocation() != null) {
+						mobRegistry.register(mob, compatibleMob.getJERLootLocation());
+					}
 				}
 			}
 		});

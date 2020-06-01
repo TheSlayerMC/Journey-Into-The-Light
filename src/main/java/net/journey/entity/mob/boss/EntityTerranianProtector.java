@@ -1,5 +1,7 @@
 package net.journey.entity.mob.boss;
 
+import com.google.common.collect.Lists;
+import jeresources.api.drop.LootDrop;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityIceBall;
@@ -13,7 +15,6 @@ import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
 import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -26,7 +27,9 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
 import java.util.Random;
 
 public class EntityTerranianProtector extends EntityFlyingBoss {
@@ -207,6 +210,15 @@ public class EntityTerranianProtector extends EntityFlyingBoss {
                 te.setInventorySlotContents(14, new ItemStack(JourneyItems.cloudiaPortalGem, 12));
                 break;
         }
+    }
+
+    @Override
+    public @NotNull List<LootDrop> getJERDrops() {
+        return Lists.newArrayList(
+                new LootDrop(JourneyWeapons.terronicBlade, 0.5F),
+                new LootDrop(JourneyWeapons.terralightBlade, 0.5F),
+                new LootDrop(JourneyItems.cloudiaPortalGem, 9, 12)
+        );
     }
 
     private class AIRandomFly extends EntityAIBase {

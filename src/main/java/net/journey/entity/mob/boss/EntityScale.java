@@ -1,5 +1,7 @@
 package net.journey.entity.mob.boss;
 
+import com.google.common.collect.Lists;
+import jeresources.api.drop.LootDrop;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityBubbleProjectile;
@@ -12,7 +14,6 @@ import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
 import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -25,7 +26,9 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
 import java.util.Random;
 
 public class EntityScale extends EntityFlyingBoss {
@@ -108,6 +111,15 @@ public class EntityScale extends EntityFlyingBoss {
                 te.setInventorySlotContents(10, new ItemStack(JourneyItems.corbaPortalGem, 6));
                 break;
         }
+    }
+
+    @Override
+    public @NotNull List<LootDrop> getJERDrops() {
+        return Lists.newArrayList(
+                new LootDrop(JourneyWeapons.bubbleSword, 1, 1),
+                new LootDrop(JourneyWeapons.scaleBow, 1, 1),
+                new LootDrop(JourneyItems.corbaPortalGem, 5, 6)
+        );
     }
 
     @Override

@@ -1,5 +1,7 @@
 package net.journey.entity.mob.boss;
 
+import com.google.common.collect.Lists;
+import jeresources.api.drop.LootDrop;
 import net.journey.JITL;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.entity.MobStats;
@@ -29,7 +31,9 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
 import java.util.Random;
 
 //import net.minecraft.entity.IRangedAttackMob;
@@ -117,6 +121,19 @@ public class EntitySoulWatcher extends EntityFlyingBoss /*implements IRangedAtta
                 te.setInventorySlotContents(11, new ItemStack(JourneyArmory.twilightLegs, 1));
                 break;
         }
+    }
+
+    @Override
+    public @NotNull List<LootDrop> getJERDrops() {
+        return Lists.newArrayList(
+                new LootDrop(JourneyWeapons.staringBow, 1, 1),
+                new LootDrop(JourneyItems.eucaPortalPiece_1, 1, 2),
+                new LootDrop(JourneyItems.demonicEye, 12, 12),
+                new LootDrop(JourneyArmory.twilightBoots, 1),
+                new LootDrop(JourneyArmory.twilightChest, 1),
+                new LootDrop(JourneyArmory.twilightHelmet, 1),
+                new LootDrop(JourneyArmory.twilightLegs, 1)
+        );
     }
 
     @Override

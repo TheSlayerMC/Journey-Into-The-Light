@@ -1,5 +1,7 @@
 package net.journey.entity.mob.boss;
 
+import com.google.common.collect.Lists;
+import jeresources.api.drop.LootDrop;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityDeathSkull;
@@ -18,6 +20,8 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityEssenceBoss;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 public class EntityWitheringBeast extends EntityEssenceBoss implements IRangedAttackMob {
 
@@ -64,6 +68,14 @@ public class EntityWitheringBeast extends EntityEssenceBoss implements IRangedAt
                 te.setInventorySlotContents(15, new ItemStack(JourneyItems.eucaPortalPiece_0, 2));
                 break;
         }
+    }
+
+    @Override
+    public @NotNull List<LootDrop> getJERDrops() {
+        return Lists.newArrayList(
+                new LootDrop(JourneyWeapons.witheringBeastSword, 1, 1),
+                new LootDrop(JourneyItems.eucaPortalPiece_0, 1, 2)
+        );
     }
 
     @Override

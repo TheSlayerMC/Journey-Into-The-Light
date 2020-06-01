@@ -1,5 +1,7 @@
 package net.journey.entity.mob.boss;
 
+import com.google.common.collect.Lists;
+import jeresources.api.drop.LootDrop;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.entity.MobStats;
 import net.journey.entity.mob.euca.EntityShimmerer;
@@ -29,6 +31,7 @@ import net.minecraft.world.World;
 import net.slayer.api.entity.EntityEssenceBoss;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
 import java.util.Random;
 
 public class EntityCorallator extends EntityEssenceBoss implements IRangedAttackMob {
@@ -85,6 +88,15 @@ public class EntityCorallator extends EntityEssenceBoss implements IRangedAttack
                 te.setInventorySlotContents(10, new ItemStack(JourneyWeapons.coreExpender, 1));
                 break;
         }
+    }
+
+    @Override
+    public @NotNull List<LootDrop> getJERDrops() {
+        return Lists.newArrayList(
+                new LootDrop(JourneyItems.depthsPortalGem, 6, 8),
+                new LootDrop(JourneyWeapons.coreMender, 1, 1),
+                new LootDrop(JourneyWeapons.coreExpender, 1, 1)
+        );
     }
 
     @Override

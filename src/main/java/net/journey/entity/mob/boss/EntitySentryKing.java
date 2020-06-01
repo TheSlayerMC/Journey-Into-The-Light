@@ -5,6 +5,8 @@ CUSTOM PROJECTILES: A GRAVITY-AFFECTED GRENADE THAT CAUSES SMALL EXPLOSIONS FOR 
 */
 package net.journey.entity.mob.boss;
 
+import com.google.common.collect.Lists;
+import jeresources.api.drop.LootDrop;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityFloroWater;
@@ -30,6 +32,8 @@ import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityEssenceBoss;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 public class EntitySentryKing extends EntityEssenceBoss implements IRangedAttackMob {
 
@@ -156,6 +160,17 @@ public class EntitySentryKing extends EntityEssenceBoss implements IRangedAttack
                 te.setInventorySlotContents(5, new ItemStack(JourneyItems.ANCIENT_EYE_OF_OPENING, 1));
                 break;
         }
+    }
+
+    @Override
+    public @NotNull List<LootDrop> getJERDrops() {
+        return Lists.newArrayList(
+                new LootDrop(JourneyItems.terraniaPortalGem, 4, 5),
+                new LootDrop(JourneyWeapons.sentrySword, 1, 1),
+                new LootDrop(JourneyWeapons.overseerBow, 1, 1),
+                new LootDrop(JourneyWeapons.overseerBow, 1, 1),
+                new LootDrop(JourneyItems.ANCIENT_EYE_OF_OPENING, 1, 1)
+        );
     }
 
 

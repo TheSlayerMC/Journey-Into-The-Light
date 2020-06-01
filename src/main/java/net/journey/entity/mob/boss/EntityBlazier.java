@@ -1,5 +1,7 @@
 package net.journey.entity.mob.boss;
 
+import com.google.common.collect.Lists;
+import jeresources.api.drop.LootDrop;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityMagmaFireball;
@@ -29,6 +31,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.entity.EntityEssenceBoss;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 public class EntityBlazier extends EntityEssenceBoss implements IRangedAttackMob {
 
@@ -189,6 +193,19 @@ public class EntityBlazier extends EntityEssenceBoss implements IRangedAttackMob
                 te.setInventorySlotContents(17, new ItemStack(JourneyArmory.flameBoots, 1));
                 break;
         }
+    }
+
+    @Override
+    public @NotNull List<LootDrop> getJERDrops() {
+        return Lists.newArrayList(new LootDrop(JourneyWeapons.blazingBow, 1, 1),
+                new LootDrop(JourneyWeapons.sizzlerSword, 1, 1),
+                new LootDrop(JourneyWeapons.sizzlingKnife, 128, 128),
+                new LootDrop(JourneyItems.hellShards, 6, 6),
+                new LootDrop(JourneyArmory.flameHelmet, 1, 1),
+                new LootDrop(JourneyArmory.flameLegs, 1, 1),
+                new LootDrop(JourneyArmory.flameChest, 1, 1),
+                new LootDrop(JourneyArmory.flameBoots, 1, 1)
+        );
     }
 
     public boolean isFlying() {

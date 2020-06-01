@@ -1,5 +1,7 @@
 package net.journey.entity.mob.boss;
 
+import com.google.common.collect.Lists;
+import jeresources.api.drop.LootDrop;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
@@ -21,6 +23,8 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityEssenceBoss;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 public class EntityLogger extends EntityEssenceBoss {
 
@@ -110,9 +114,19 @@ public class EntityLogger extends EntityEssenceBoss {
     }
 
     @Override
-    protected void dropFewItems(boolean b, int j) {
-        switch (rand.nextInt(3)) {
-        }
+    public @NotNull List<LootDrop> getJERDrops() {
+        return Lists.newArrayList(
+                new LootDrop(JourneyItems.terraniaPortalGem, 8, 10),
+                new LootDrop(JourneyWeapons.kingsSword, 1, 1),
+                new LootDrop(JourneyWeapons.naturesBlade, 0.5F),
+                new LootDrop(JourneyWeapons.loggersSword, 0.5F),
+                new LootDrop(JourneyWeapons.loggersBow, 1, 1),
+
+                new LootDrop(JourneyArmory.hollowChest, 1, 1),
+                new LootDrop(JourneyArmory.hollowHelmet, 1, 1),
+                new LootDrop(JourneyArmory.hollowLegs, 1, 1),
+                new LootDrop(JourneyArmory.hollowBoots, 1, 1)
+        );
     }
 
     @Override

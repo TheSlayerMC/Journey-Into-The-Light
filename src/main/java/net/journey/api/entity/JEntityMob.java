@@ -13,6 +13,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
 public abstract class JEntityMob extends EntityMob implements ISettingsConsumer, IJERCompatible {
 
@@ -97,7 +98,7 @@ public abstract class JEntityMob extends EntityMob implements ISettingsConsumer,
 	}
 
 	@Override
-	public ResourceLocation getLootTable() {
-		return super.getLootTable();
+	public @Nullable ResourceLocation getJERLootLocation() {
+		return getLootTable();
 	}
 }

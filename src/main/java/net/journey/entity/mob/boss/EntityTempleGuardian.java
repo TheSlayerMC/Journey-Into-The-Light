@@ -1,5 +1,7 @@
 package net.journey.entity.mob.boss;
 
+import com.google.common.collect.Lists;
+import jeresources.api.drop.LootDrop;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityFloroWater;
 import net.journey.entity.projectile.EntityMagmaFireball;
@@ -28,6 +30,7 @@ import net.slayer.api.entity.EntityEssenceBoss;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
+import java.util.List;
 
 public class EntityTempleGuardian extends EntityEssenceBoss implements IRangedAttackMob {
 
@@ -127,6 +130,16 @@ public class EntityTempleGuardian extends EntityEssenceBoss implements IRangedAt
                 te.setInventorySlotContents(1, new ItemStack(JourneyItems.purpleGem, 2));
                 break;
         }
+    }
+
+    @Override
+    public @NotNull List<LootDrop> getJERDrops() {
+        return Lists.newArrayList(
+                new LootDrop(JourneyItems.yellowGem, 2, 5),
+                new LootDrop(JourneyItems.blueGem, 1, 5),
+                new LootDrop(JourneyItems.greenGem, 2, 6),
+                new LootDrop(JourneyItems.purpleGem, 2, 6)
+        );
     }
 
     @Override

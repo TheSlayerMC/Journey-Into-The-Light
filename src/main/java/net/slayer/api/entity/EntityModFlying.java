@@ -8,6 +8,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
 public abstract class EntityModFlying extends EntityFlying implements IJERCompatible {
 
@@ -84,7 +85,7 @@ public abstract class EntityModFlying extends EntityFlying implements IJERCompat
     }
 
     @Override
-    public ResourceLocation getLootTable() {
-        return super.getLootTable();
+    public @Nullable ResourceLocation getJERLootLocation() {
+        return getLootTable();
     }
 }

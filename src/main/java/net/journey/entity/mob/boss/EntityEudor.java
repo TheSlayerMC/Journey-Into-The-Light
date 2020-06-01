@@ -1,5 +1,7 @@
 package net.journey.entity.mob.boss;
 
+import com.google.common.collect.Lists;
+import jeresources.api.drop.LootDrop;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
@@ -18,6 +20,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityEssenceBoss;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 public class EntityEudor extends EntityEssenceBoss {
 
@@ -95,6 +99,14 @@ public class EntityEudor extends EntityEssenceBoss {
                 te.setInventorySlotContents(10, new ItemStack(JourneyWeapons.kingsSword, 1));
                 break;
         }
+    }
+
+    @Override
+    public @NotNull List<LootDrop> getJERDrops() {
+        return Lists.newArrayList(
+                new LootDrop(JourneyItems.depthsPortalGem, 7, 8),
+                new LootDrop(JourneyWeapons.kingsSword, 1, 1)
+        );
     }
 
     @Override

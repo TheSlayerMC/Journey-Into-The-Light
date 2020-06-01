@@ -1,5 +1,7 @@
 package net.journey.entity.mob.boss;
 
+import com.google.common.collect.Lists;
+import jeresources.api.drop.LootDrop;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
@@ -20,6 +22,8 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityEssenceBoss;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 public class EntityThunderbird extends EntityEssenceBoss {
 
@@ -95,6 +99,17 @@ public class EntityThunderbird extends EntityEssenceBoss {
                 te.setInventorySlotContents(13, new ItemStack(JourneyItems.corbaPortalGem, 5));
                 break;
         }
+    }
+
+    @Override
+    public @NotNull List<LootDrop> getJERDrops() {
+        return Lists.newArrayList(
+                new LootDrop(JourneyWeapons.rocsWing, 1, 1),
+                new LootDrop(JourneyWeapons.rocSword, 1, 1),
+                new LootDrop(JourneyWeapons.swordOfTheThunderbird, 1, 1),
+                new LootDrop(JourneyWeapons.thunderbirdBattleaxe, 1, 1),
+                new LootDrop(JourneyItems.corbaPortalGem, 5, 5)
+        );
     }
 
     @Override

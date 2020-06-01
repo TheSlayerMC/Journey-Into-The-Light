@@ -1,5 +1,7 @@
 package net.journey.entity.mob.boss;
 
+import com.google.common.collect.Lists;
+import jeresources.api.drop.LootDrop;
 import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
 import net.journey.init.items.JourneyItems;
@@ -13,6 +15,8 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityEssenceBoss;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 public class EntityCalcia extends EntityEssenceBoss {
 
@@ -82,6 +86,14 @@ public class EntityCalcia extends EntityEssenceBoss {
 
         //if(rand.nextInt(1) == 0)
         //	this.dropItem(Item.getItemFromBlock(EssenceBlocks.calciaStatue), 1);
+    }
+
+    @Override
+    public @NotNull List<LootDrop> getJERDrops() {
+        return Lists.newArrayList(
+                new LootDrop(JourneyItems.eucaPortalGem, 6, 9),
+                new LootDrop(JourneyWeapons.calciaSword, 1, 1)
+        );
     }
 
     @Override
