@@ -29,8 +29,8 @@ public class WorldGenTallGlowshroom extends WorldGenerator {
 			    JourneyBlocks.tallGlowshroomBlue);
 
         if (!w.getBlockState(genPos).getMaterial().isLiquid()
-                && w.getBlockState(genPos.down()).getBlock() == Blocks.STONE || w.getBlockState(genPos.down()).getBlock() == JourneyBlocks.corbaStone
-                && block.canPlaceBlockAt(w, genPos)) {
+		        && (w.getBlockState(genPos.down()).getBlock() == Blocks.STONE || w.getBlockState(genPos.down()).getBlock() == JourneyBlocks.corbaStone)
+		        && block.canPlaceBlockAt(w, genPos)) {
 
             block.placeAt(w, genPos, 2 | 16);
             generated = true;
