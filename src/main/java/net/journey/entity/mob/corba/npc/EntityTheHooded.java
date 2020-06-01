@@ -20,7 +20,7 @@ public class EntityTheHooded extends EntityModVillager {
 
     @Override
     public void abstractInteract(EntityPlayer p) {
-        switch (rand.nextInt(0)) {
+        switch (rand.nextInt(1)) {
             case 0:
                 SlayerAPI.addFormattedChatMessage(p, "The Hooded: ...");
                 break;
