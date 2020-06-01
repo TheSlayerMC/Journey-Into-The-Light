@@ -518,7 +518,7 @@ public class WorldGenCorbaVillage extends WorldGenerator {
 
         if (!w.isRemote) {
             EntityTordo smith = new EntityTordo(w);
-            smith.setLocationAndAngles(i + 15, j + 3, k + 5, 0.0F, 0.0F);
+            smith.setLocationAndAngles(i + 14, j + 3, k + 6, 0.0F, 0.0F);
             w.spawnEntity(smith);
             EntityRedTordo smith1 = new EntityRedTordo(w);
             smith1.setLocationAndAngles(i + 14, j + 3, k + 6, 0.0F, 0.0F);
