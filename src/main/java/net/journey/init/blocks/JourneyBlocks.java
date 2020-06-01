@@ -514,6 +514,9 @@ public class JourneyBlocks {
     public static BlockMod SENTERIAN_HEART_BLOCK;
     public static BlockMod SENTERIAN_HEART_BLOCK_WEAK;
     public static BlockMod SENTERIAN_HEART_EYE;
+    
+    public static BlockIncubator INCUBATOR;
+    public static BlockIncubator INCUBATOR_LIT;
 
     public static void init() {
 
@@ -1046,6 +1049,9 @@ public class JourneyBlocks {
         SENTERIAN_HEART_BLOCK = new BlockMod("senterian_heart_block", "Senterian Heart Block");
         SENTERIAN_HEART_BLOCK_WEAK = new BlockMod("senterian_heart_block_weak", "Senterian Heart Block");
         SENTERIAN_HEART_EYE = new BlockHeartEye("senterian_heart_eye", "Eye of the Heart");
+        
+        INCUBATOR = new BlockIncubator("incubator", "Incubator", false);
+        INCUBATOR_LIT = new BlockIncubator("incubator_lit", "Incubator", true);
         
         elderBlock = new BlockChangeable("elderBlock", "Elder Block", JourneyItems.elderKey, JourneyBlocks.overseerElderSpawner);
         ancientMachineBlock = new BlockAncientBlock("ancientMachineBlock", "Ancient Machine Block");

@@ -1,6 +1,8 @@
 package net.journey.client.handler;
 
+import net.journey.blocks.tileentity.TileEntityIncubator;
 import net.journey.blocks.tileentity.TileEntitySummoningTable;
+import net.journey.blocks.tileentity.container.ContainerIncubator;
 import net.journey.blocks.tileentity.container.ContainerSummoningTable;
 import net.journey.client.render.gui.*;
 import net.minecraft.entity.Entity;
@@ -34,10 +36,11 @@ public class GuiHandler implements IGuiHandler {
             escaped = id++,
 
     //Blocks
-    knowledge = id++,
+            knowledge = id++,
             netherfurnace = id++,
             summoning = id++,
-            trophy = id++;
+            trophy = id++,
+            incubator = id++;
 
     @Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
@@ -50,8 +53,8 @@ public class GuiHandler implements IGuiHandler {
             return new ContainerModVillager(player.inventory, (IMerchant) getEntityByID(x, world), world);
         if (ID == summoning)
             return new ContainerSummoningTable(player.inventory, (TileEntitySummoningTable) entity);
-		/*if(ID == netherfurnace) 
-			return new ContainerModFurnace(player.inventory, (TileEntityModFurnace)entity, world); */
+		if(ID == incubator) 
+			return new ContainerIncubator(player.inventory, (TileEntityIncubator)entity); 
         if (ID == staringGuardian)
             return new ContainerModVillager(player.inventory, (IMerchant) getEntityByID(x, world), world);
         if (ID == tordo)
@@ -86,7 +89,10 @@ public class GuiHandler implements IGuiHandler {
             return new GuiBlacksmith(new ContainerModVillager(player.inventory, (IMerchant) getEntityByID(x, world), world), (IMerchant) getEntityByID(x, world));
         if (ID == frozenMerchant)
             return new GuiFrozenMerchant(new ContainerModVillager(player.inventory, (IMerchant) getEntityByID(x, world), world), (IMerchant) getEntityByID(x, world));
-        if (ID == summoning) return new GuiSummoningTable(player.inventory, (TileEntitySummoningTable) entity, world);
+        if (ID == summoning) 
+        	return new GuiSummoningTable(player.inventory, (TileEntitySummoningTable) entity, world);
+        if (ID == incubator) 
+        	return new GuiIncubator(player.inventory, (TileEntityIncubator) entity);
         if (ID == staringGuardian)
             return new GuiStaringGuardian(new ContainerModVillager(player.inventory, (IMerchant) getEntityByID(x, world), world), (IMerchant) getEntityByID(x, world));
         if (ID == tordo)
