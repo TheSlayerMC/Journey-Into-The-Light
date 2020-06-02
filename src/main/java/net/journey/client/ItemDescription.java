@@ -42,6 +42,10 @@ public class ItemDescription {
         if (item == JourneyItems.darkGem) list.add("Inserted into the Depths Portal Frame");
         if (item == JourneyItems.sentryEye) list.add("Inserted into the Senterian Portal Frame");
         if (item == JourneyItems.SENTRY_OBSERVER) list.add("Inserted into the Senterian Altar");
+        if (item == JourneyItems.PET_FOOD) list.add("Heals pet by 3 (1.5 hearts) health");
+        if (item == JourneyItems.TAMED_ROBOT_SPAWN_EGG) list.add("Spawns: Pet Robot");
+        if (item == JourneyItems.ROBOT_EGG) list.add("Needs to be Incubated");
+
 
     }
 }

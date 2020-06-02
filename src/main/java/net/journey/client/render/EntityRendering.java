@@ -70,6 +70,7 @@ import net.journey.entity.mob.overworld.npc.EntityBlacksmith;
 import net.journey.entity.mob.overworld.npc.EntityMage;
 import net.journey.entity.mob.overworld.underground.*;
 import net.journey.entity.mob.overworld.underground.npc.EntityRockiteGolem;
+import net.journey.entity.mob.pet.*;
 import net.journey.entity.mob.pet.EntityShiverwolf;
 import net.journey.entity.mob.pet.EntityTameRoc;
 import net.journey.entity.mob.senterian.mob.*;
@@ -152,10 +153,13 @@ public class EntityRendering {
         RenderingRegistry.registerEntityRenderingHandler(EntityMagicBomb.class, new RenderItemProjectile(JourneyWeapons.MAGIC_BOMB));
         RenderingRegistry.registerEntityRenderingHandler(EntityFrozenSnowball.class, new RenderItemProjectile(Items.SNOWBALL));
         RenderingRegistry.registerEntityRenderingHandler(EntityEssenceShuriken.class, new RenderItemProjectile(JourneyWeapons.ESSENCE_SHURIKEN));
-
         RenderingRegistry.registerEntityRenderingHandler(EntityDemonicBomb.class, new RenderItemProjectile(JourneyWeapons.demonicBomb));
         RenderingRegistry.registerEntityRenderingHandler(EntityFireBomb.class, new RenderItemProjectile(JourneyWeapons.fireBomb));
         //RenderingRegistry.registerEntityRenderingHandler(EntityRoyalKnife.class, new RenderItemProjectile(JourneyItems.royalKnife));
+        
+        RenderingRegistry.registerEntityRenderingHandler(EntityPetRobot.class, new RenderSizeable(new ModelRobot(), 0.5F, 0.5F, Textures.robot));
+
+        
         /**Overworld Mobs*/
         RenderingRegistry.registerEntityRenderingHandler(EntityRobot.class, new RenderModMob(new ModelRobot(), Textures.robot));
         RenderingRegistry.registerEntityRenderingHandler(EntitySpikedBeast.class, new RenderModMob(new ModelSpikedBeast(), Textures.spikedBeast));
