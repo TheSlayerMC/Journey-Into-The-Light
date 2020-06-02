@@ -498,20 +498,6 @@ public class JourneyItems {
 
 	    flameCoin = new ItemFlameCoin("flameCoin", "Flame Coin");
 
-	    calciaOrb = new ItemBossSpawner("calciaOrb", "Calcia Orb");
-	    netherBeastOrb = new ItemBossSpawner("netherBeastOrb", "Nether Beast Orb");
-	    witheringBeastOrb = new ItemBossSpawner("witheringBeastOrb", "Withering Soul");
-	    eudorOrb = new ItemBossSpawner(Config.euca, "eudorOrb", "Valuable Crown", "Euca");
-	    blazierOrb = new ItemBossSpawner(Config.boil, "blazierOrb", "Burning Fireball", "Boiling Point");
-	    soulWatcherOrb = new ItemBossSpawner("soulWatcherOrb", "Soulless Eye");
-	    sentryKingOrb = new ItemBossSpawner(Config.corba, "sentryKingOrb", "Eye of the Sentry", "Corba");
-	    loggerOrb = new ItemBossSpawner(Config.corba, "loggerOrb", "Enchanted Log", "Corba");
-	    thunderbirdOrb = new ItemBossSpawner(Config.depths, "thunderbirdOrb", "Leader's Pearl", "Depths");
-	    mysteriousDisk = new ItemBossSpawner(Config.cloudia, "mysteriousDisk", "Mysterious Disk", "Cloudia");
-	    corallatorOrb = new ItemBossSpawner(Config.euca, "corallatorOrb", "Gem of Peculiar Smelting", "Euca");
-	    scaleOrb = new ItemBossSpawner(Config.depths, "scaleOrb", "Aquatic Egg", "Depths");
-	    enchantedTerrastar = new ItemBossSpawner(Config.terrania, "enchantedTerrastar", "Enchanted Terrastar", "Terrania");
-
 	    calciaOrb = new ItemBossSpawner("calciaOrb", "Calcia Orb", () -> DimensionType.NETHER, EntityCalcia.class).setBossSummonMessage("msg.journey.summon.calcia");
 	    netherBeastOrb = new ItemBossSpawner("netherBeastOrb", "Nether Beast Orb", () -> DimensionType.NETHER, EntityNetherBeast.class).setBossSummonMessage("msg.journey.summon.nether_beast");
 	    witheringBeastOrb = new ItemBossSpawner("witheringBeastOrb", "Withering Soul", () -> DimensionType.NETHER, EntityWitheringBeast.class).setBossSummonMessage("msg.journey.summon.withering_beast");
