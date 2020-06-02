@@ -1,12 +1,8 @@
 package net.journey.init.items;
 
-import net.journey.entity.mob.pet.EntityPetRobot;
-import net.journey.init.JourneyLootTables;
-import net.journey.init.JourneySounds;
-import net.journey.items.ItemEssenceArrow;
-import net.journey.items.ItemEssencePotion;
-import net.journey.items.ItemFlameCoin;
-import net.journey.items.ItemModRecord;
+import net.journey.entity.mob.pet.*;
+import net.journey.init.*;
+import net.journey.items.*;
 import net.journey.items.base.JItem;
 import net.journey.items.interactive.*;
 import net.journey.util.Config;
@@ -260,7 +256,6 @@ public class JourneyItems {
     public static Item witheringBeastOrb;
     public static Item eudorOrb;
     public static Item blazierOrb;
-    public static Item rocSpawnEgg;
     public static Item soulWatcherOrb;
     public static Item sentryKingOrb;
     public static Item loggerOrb;
@@ -336,7 +331,13 @@ public class JourneyItems {
     public static Item PET_FOOD;
     public static Item TAMED_ROBOT_SPAWN_EGG;
     public static Item ROBOT_EGG;
-
+    public static Item TAMED_EUCA_HOPPER_SPAWN_EGG;
+    public static Item EUCA_HOPPER_EGG;
+    public static Item TAMED_SHIVERWOLF_SPAWN_EGG;
+    public static Item SHIVERWOLF_EGG;
+    public static Item TAMED_ROC_SPAWN_EGG;
+    public static Item ROC_EGG;
+    
     public static ItemLoreScroll loreScroll;
     
     //public static Item obsidianBoat;
@@ -492,7 +493,6 @@ public class JourneyItems {
 	    witheringBeastOrb = new ItemNetherBossSpawner("witheringBeastOrb", "Withering Soul");
 	    eudorOrb = new ItemBossSpawner(Config.euca, "eudorOrb", "Valuable Crown", "Euca");
 	    blazierOrb = new ItemBossSpawner(Config.boil, "blazierOrb", "Burning Fireball", "Boiling Point");
-	    rocSpawnEgg = new ItemBossSpawner(0, "rocPetSpawnEgg", "Pet Roc Egg", "Overworld");
 	    soulWatcherOrb = new ItemNetherBossSpawner("soulWatcherOrb", "Soulless Eye");
 	    sentryKingOrb = new ItemBossSpawner(Config.corba, "sentryKingOrb", "Eye of the Sentry", "Corba");
 	    loggerOrb = new ItemBossSpawner(Config.corba, "loggerOrb", "Enchanted Log", "Corba");
@@ -587,7 +587,16 @@ public class JourneyItems {
         PET_FOOD = new JItem("pet_food", "Pet Food");
         ROBOT_EGG = new JItem("robot_egg", "Robot Egg");
         TAMED_ROBOT_SPAWN_EGG = new ItemSpawnerEgg("robot_spawner_egg", "Incubated Robot Egg", EntityPetRobot.class);
+        
+        EUCA_HOPPER_EGG = new JItem("euca_hopper_egg", "Euca Hopper Egg");
+        TAMED_EUCA_HOPPER_SPAWN_EGG = new ItemSpawnerEgg("euca_hopper_spawner_egg", "Incubated Euca Hopper Egg", EntityEucaHopper.class);
 
+        SHIVERWOLF_EGG = new JItem("shiverwolf_egg", "Shiverwolf Egg");
+        TAMED_SHIVERWOLF_SPAWN_EGG = new ItemSpawnerEgg("shiverwolf_spawner_egg", "Incubated Shiverwolf Egg", EntityShiverwolf.class);
+        
+	    ROC_EGG = new JItem("roc_egg", "Roc Egg");
+	    TAMED_ROC_SPAWN_EGG = new ItemSpawnerEgg("roc_spawner_egg", "Incubated Roc Egg", EntityTameRoc.class);
+	    
         //loreScroll = new ItemLoreScroll("lore_scroll", "Lore Scroll");
         //obsidianBoat = new ItemObsidianBoat("obsidianboat", "Obsidian Boat");
         //infernoshield = new ItemModShield("infernoshield", "Inferno Shield", 2, false);
