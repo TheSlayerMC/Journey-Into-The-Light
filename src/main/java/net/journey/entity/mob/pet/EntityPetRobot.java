@@ -13,6 +13,7 @@ public class EntityPetRobot extends EntityJourneyPet {
 
 	public EntityPetRobot(World w) {
 		super(w);
+		setSize(0.25F, 0.25F);
 	}
 	
 	public EntityPetRobot(World worldIn, EntityPlayer owner) {
