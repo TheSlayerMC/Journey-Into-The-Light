@@ -6,6 +6,6 @@ import net.minecraft.world.biome.BiomeProviderSingle;
 public class BiomeProviderDepths extends BiomeProviderSingle {
 
     public BiomeProviderDepths() {
-        super(DimensionHelper.depths);
+        super(DimensionHelper.DEPTHS_BIOME);
     }
 }

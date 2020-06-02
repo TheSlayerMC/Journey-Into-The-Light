@@ -1,8 +1,5 @@
 package net.journey.entity.mob.pet;
 
-import org.jetbrains.annotations.NotNull;
-
-import net.journey.entity.MobStats;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.SoundEvent;
@@ -41,8 +38,8 @@ public class EntityPetRobot extends EntityJourneyPet {
 		return null;
 	}
 
-	@Override
-	public @NotNull EntitySettings getEntitySettings() {
-		return MobStats.PET_ROBOT;
-	}
+//	@Override
+//	public @NotNull EntitySettings getEntitySettings() {
+//		return MobStats.PET_ROBOT;
+//	}
 }

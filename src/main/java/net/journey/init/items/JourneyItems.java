@@ -1,5 +1,7 @@
 package net.journey.init.items;
 
+import net.journey.dimension.base.DimensionHelper;
+import net.journey.entity.mob.boss.*;
 import net.journey.entity.mob.pet.EntityPetRobot;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
@@ -9,10 +11,10 @@ import net.journey.items.ItemFlameCoin;
 import net.journey.items.ItemModRecord;
 import net.journey.items.base.JItem;
 import net.journey.items.interactive.*;
-import net.journey.util.Config;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
+import net.minecraft.world.DimensionType;
 import net.minecraftforge.common.util.EnumHelper;
 
 import java.util.ArrayList;
@@ -487,20 +489,20 @@ public class JourneyItems {
 
 	    flameCoin = new ItemFlameCoin("flameCoin", "Flame Coin");
 
-	    calciaOrb = new ItemNetherBossSpawner("calciaOrb", "Calcia Orb");
-	    netherBeastOrb = new ItemNetherBossSpawner("netherBeastOrb", "Nether Beast Orb");
-	    witheringBeastOrb = new ItemNetherBossSpawner("witheringBeastOrb", "Withering Soul");
-	    eudorOrb = new ItemBossSpawner(Config.euca, "eudorOrb", "Valuable Crown", "Euca");
-	    blazierOrb = new ItemBossSpawner(Config.boil, "blazierOrb", "Burning Fireball", "Boiling Point");
-	    rocSpawnEgg = new ItemBossSpawner(0, "rocPetSpawnEgg", "Pet Roc Egg", "Overworld");
-	    soulWatcherOrb = new ItemNetherBossSpawner("soulWatcherOrb", "Soulless Eye");
-	    sentryKingOrb = new ItemBossSpawner(Config.corba, "sentryKingOrb", "Eye of the Sentry", "Corba");
-	    loggerOrb = new ItemBossSpawner(Config.corba, "loggerOrb", "Enchanted Log", "Corba");
-	    thunderbirdOrb = new ItemBossSpawner(Config.depths, "thunderbirdOrb", "Leader's Pearl", "Depths");
-	    mysteriousDisk = new ItemBossSpawner(Config.cloudia, "mysteriousDisk", "Mysterious Disk", "Cloudia");
-	    corallatorOrb = new ItemBossSpawner(Config.euca, "corallatorOrb", "Gem of Peculiar Smelting", "Euca");
-	    scaleOrb = new ItemBossSpawner(Config.depths, "scaleOrb", "Aquatic Egg", "Depths");
-	    enchantedTerrastar = new ItemBossSpawner(Config.terrania, "enchantedTerrastar", "Enchanted Terrastar", "Terrania");
+	    calciaOrb = new ItemBossSpawner("calciaOrb", "Calcia Orb", () -> DimensionType.NETHER, EntityCalcia.class).setBossSummonMessage("msg.journey.summon.calcia");
+	    netherBeastOrb = new ItemBossSpawner("netherBeastOrb", "Nether Beast Orb", () -> DimensionType.NETHER, EntityNetherBeast.class).setBossSummonMessage("msg.journey.summon.nether_beast");
+	    witheringBeastOrb = new ItemBossSpawner("witheringBeastOrb", "Withering Soul", () -> DimensionType.NETHER, EntityWitheringBeast.class).setBossSummonMessage("msg.journey.summon.withering_beast");
+	    eudorOrb = new ItemBossSpawner("eudorOrb", "Valuable Crown", () -> DimensionHelper.EUCA_DIM, EntityEudor.class).setBossSummonMessage("msg.journey.summon.eudor");
+	    blazierOrb = new ItemBossSpawner("blazierOrb", "Burning Fireball", () -> DimensionHelper.BOILING_DIM, EntityBlazier.class).setBossSummonMessage("msg.journey.summon.blazier");
+//	    rocSpawnEgg = new ItemBossSpawner("rocPetSpawnEgg", "Pet Roc Egg", () -> DimensionType.OVERWORLD);//TODO
+	    soulWatcherOrb = new ItemBossSpawner("soulWatcherOrb", "Soulless Eye", () -> DimensionType.NETHER, EntitySoulWatcher.class).setBossSummonMessage("msg.journey.summon.soul_watcher");
+	    sentryKingOrb = new ItemBossSpawner("sentryKingOrb", "Eye of the Sentry", () -> DimensionHelper.CORBA_DIM, EntitySentryKing.class).setBossSummonMessage("msg.journey.summon.sentry_king");
+	    loggerOrb = new ItemBossSpawner("loggerOrb", "Enchanted Log", () -> DimensionHelper.CORBA_DIM, EntityLogger.class).setBossSummonMessage("msg.journey.summon.logger");
+	    thunderbirdOrb = new ItemBossSpawner("thunderbirdOrb", "Leader's Pearl", () -> DimensionHelper.DEPTHS_DIM, EntityThunderbird.class).setBossSummonMessage("msg.journey.summon.thunderbird");
+	    mysteriousDisk = new ItemBossSpawner("mysteriousDisk", "Mysterious Disk", () -> DimensionHelper.CLOUDIA_DIM, EntitySkyStalker.class).setBossSummonMessage("msg.journey.summon.sky_stalker");
+	    corallatorOrb = new ItemBossSpawner("corallatorOrb", "Gem of Peculiar Smelting", () -> DimensionHelper.EUCA_DIM, EntityCorallator.class).setBossSummonMessage("msg.journey.summon.corallator");
+	    scaleOrb = new ItemBossSpawner("scaleOrb", "Aquatic Egg", () -> DimensionHelper.DEPTHS_DIM, EntityScale.class).setBossSummonMessage("msg.journey.summon.scale");
+	    enchantedTerrastar = new ItemBossSpawner("enchantedTerrastar", "Enchanted Terrastar", () -> DimensionHelper.TERRANIA_DIM, EntityTerranianProtector.class).setBossSummonMessage("msg.journey.summon.terranian_protector");
 
 	    weakEssencePotion = new ItemEssencePotion("weakEssencePotion", "Weak Essence Potion", false);
 	    strongEssencePotion = new ItemEssencePotion("strongEssencePotion", "Strong Essence Potion", true);

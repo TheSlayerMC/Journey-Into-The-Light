@@ -1,7 +1,5 @@
 package net.journey.dimension.cloudia;
 
-import javax.annotation.Nullable;
-
 import net.journey.dimension.base.BaseWorldProvider;
 import net.journey.dimension.base.DimensionHelper;
 import net.journey.init.JourneySounds;
@@ -16,15 +14,17 @@ import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
+
 public class WorldProviderCloudia extends BaseWorldProvider {
 
-    public WorldProviderCloudia() {
-        super(new BiomeProviderSingle(DimensionHelper.cloudia), new Vec3d(1.5, 1.12, 1.7));
-    }
+	public WorldProviderCloudia() {
+		super(new BiomeProviderSingle(DimensionHelper.CLOUDIA_BIOME), new Vec3d(1.5, 1.12, 1.7));
+	}
 
-    @Override
-    public void init() {
-        this.nether = false;
+	@Override
+	public void init() {
+		this.nether = false;
         this.hasSkyLight = true;
     }
     
@@ -81,6 +81,6 @@ public class WorldProviderCloudia extends BaseWorldProvider {
 
     @Override
     public DimensionType getDimensionType() {
-        return DimensionHelper.cloudiaType;
+	    return DimensionHelper.CLOUDIA_DIM;
     }
 }

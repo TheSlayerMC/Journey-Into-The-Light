@@ -1,7 +1,5 @@
 package net.journey.dimension.corba;
 
-import javax.annotation.Nullable;
-
 import net.journey.dimension.base.BaseWorldProvider;
 import net.journey.dimension.base.DimensionHelper;
 import net.journey.init.JourneySounds;
@@ -14,15 +12,17 @@ import net.minecraftforge.client.EnumHelperClient;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
+
 public class WorldProviderCorba extends BaseWorldProvider {
 
-    public WorldProviderCorba() {
-        super(new BiomeProviderSingle(DimensionHelper.corba), new Vec3d(0.5, 0.55, 0));
-    }
+	public WorldProviderCorba() {
+		super(new BiomeProviderSingle(DimensionHelper.CORBA_BIOME), new Vec3d(0.5, 0.55, 0));
+	}
 
-    @Override
-    public void init() {
-        this.nether = false;
+	@Override
+	public void init() {
+		this.nether = false;
         hasSkyLight = true;
     }
 
@@ -71,7 +71,7 @@ public class WorldProviderCorba extends BaseWorldProvider {
 
     @Override
     public DimensionType getDimensionType() {
-        return DimensionHelper.corbaType;
+	    return DimensionHelper.CORBA_DIM;
     }
 
 }

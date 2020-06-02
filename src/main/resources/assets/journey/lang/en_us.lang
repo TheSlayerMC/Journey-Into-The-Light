@@ -115,6 +115,34 @@ msg.journey.update_link.link_word=here
 msg.journey.twitter_link=Follow %s on twitter for update teasers.
 msg.journey.error_msg=Please, contact with the authors of %s to fix this issue
 
+msg.journey.summon.no_space=Not enough space for boss to spawn
+msg.journey.summon.wrong_dimension=Cannot be called upon unless in the %s dimension.
+msg.journey.summon.blazier=You're playing with hot fire. It's not too late to turn back...
+msg.journey.summon.sentry_king=It sucked all the energy out of this world, don't let it suck the energy out of you...
+msg.journey.summon.sky_stalker=The purple flying fish monster is not happy...
+msg.journey.summon.corallator=You will regret this mistake for the rest of your life - if you'll still have one, that is...
+msg.journey.summon.logger=You'll get chopped to pieces with this one...
+msg.journey.summon.scale=The blue blubby fish monster has been summoned!
+msg.journey.summon.eudor=The King has been summoned!
+msg.journey.summon.thunderbird=The thunderbird is not pleased with its awakening...
+msg.journey.summon.terranian_protector=It's sole purpose was to protect this land. Why would you try to destroy it?
+msg.journey.summon.calcia=Calcia has been summoned!
+msg.journey.summon.nether_beast=The Nether Beast has been summoned!
+msg.journey.summon.withering_beast=The Withering Beast has been summoned!
+msg.journey.summon.soul_watcher=The Soul Watcher has been summoned!
+
+world.journey.overworld=Overworld
+world.journey.the_nether=Nether
+world.journey.the_end=End
+world.journey.euca=Euca
+world.journey.boiling_point=Boiling Point
+world.journey.cloudia=Cloudia
+world.journey.corba=Corba
+world.journey.depths=Depths
+world.journey.frozen_lands=Frozen Lands
+world.journey.terrania=Terrania
+world.journey.senterian=Senterian
+
 #MARK AUTO GEN START
 
 #CreativeTabs
@@ -914,7 +942,6 @@ item.rocklauncher.name=Rock Launcher
 item.rockyBattleaxe.name=Rocky Battleaxe
 item.rockyHammer.name=Rocky Hammer
 item.rocMeat.name=Bird Wing
-item.rocpetspawnegg.name=Pet Roc Egg
 item.rocswing.name=Roc's Wing
 item.rocSword.name=Roc Sword
 item.royalBlade.name=Royal Blade

@@ -1,7 +1,5 @@
 package net.journey.dimension.terrania;
 
-import javax.annotation.Nullable;
-
 import net.journey.dimension.base.BaseWorldProvider;
 import net.journey.dimension.base.DimensionHelper;
 import net.journey.init.JourneySounds;
@@ -17,15 +15,17 @@ import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
+
 public class WorldProviderTerrania extends BaseWorldProvider {
 
-    public WorldProviderTerrania() {
-        super(new BiomeProviderSingle(DimensionHelper.terrania));
-    }
+	public WorldProviderTerrania() {
+		super(new BiomeProviderSingle(DimensionHelper.TERRANIA_BIOME));
+	}
 
-    @Override
-    public void init() {
-        hasSkyLight = true;
+	@Override
+	public void init() {
+		hasSkyLight = true;
     }
     
     @Nullable
@@ -95,6 +95,6 @@ public class WorldProviderTerrania extends BaseWorldProvider {
 
     @Override
     public DimensionType getDimensionType() {
-        return DimensionHelper.terraniaType;
+	    return DimensionHelper.TERRANIA_DIM;
     }
 }

@@ -1,7 +1,5 @@
 package net.journey.dimension.senterian;
 
-import javax.annotation.Nullable;
-
 import net.journey.dimension.base.BaseWorldProvider;
 import net.journey.dimension.base.DimensionHelper;
 import net.journey.init.JourneySounds;
@@ -16,15 +14,17 @@ import net.minecraftforge.client.EnumHelperClient;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
+
 public class WorldProviderSenterian extends BaseWorldProvider {
 
-    public WorldProviderSenterian() {
-        super(new BiomeProviderSingle(DimensionHelper.senterian), new Vec3d(0.2, 0.1, 0));
-    }
+	public WorldProviderSenterian() {
+		super(new BiomeProviderSingle(DimensionHelper.SENTERIAN_BIOME), new Vec3d(0.2, 0.1, 0));
+	}
 
-    @Override
-    public void init() {
-        nether = true;
+	@Override
+	public void init() {
+		nether = true;
         hasSkyLight = true;
     }
 
@@ -82,7 +82,7 @@ public class WorldProviderSenterian extends BaseWorldProvider {
 
     @Override
     public DimensionType getDimensionType() {
-        return DimensionHelper.senterianType;
+	    return DimensionHelper.SENTERIAN_DIM;
     }
 
 }

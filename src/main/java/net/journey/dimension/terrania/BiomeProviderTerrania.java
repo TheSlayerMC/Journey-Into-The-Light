@@ -6,6 +6,6 @@ import net.minecraft.world.biome.BiomeProviderSingle;
 public class BiomeProviderTerrania extends BiomeProviderSingle {
 
     public BiomeProviderTerrania() {
-        super(DimensionHelper.terrania);
+        super(DimensionHelper.TERRANIA_BIOME);
     }
 }

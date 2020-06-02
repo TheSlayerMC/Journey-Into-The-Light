@@ -1,7 +1,5 @@
 package net.journey.dimension.depths;
 
-import javax.annotation.Nullable;
-
 import net.journey.dimension.base.BaseWorldProvider;
 import net.journey.dimension.base.DimensionHelper;
 import net.journey.init.JourneySounds;
@@ -13,15 +11,17 @@ import net.minecraftforge.client.EnumHelperClient;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
+
 public class WorldProviderDepths extends BaseWorldProvider {
 
-    public WorldProviderDepths() {
-        super(new BiomeProviderSingle(DimensionHelper.depths));
-    }
+	public WorldProviderDepths() {
+		super(new BiomeProviderSingle(DimensionHelper.DEPTHS_BIOME));
+	}
 
-    @Override
-    public void init() {
-        nether = false;
+	@Override
+	public void init() {
+		nether = false;
         this.hasSkyLight = true;
     }
     
@@ -74,7 +74,7 @@ public class WorldProviderDepths extends BaseWorldProvider {
 
     @Override
     public DimensionType getDimensionType() {
-        return DimensionHelper.depthsType;
+	    return DimensionHelper.DEPTHS_DIM;
 
     }
 }

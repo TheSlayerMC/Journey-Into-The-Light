@@ -1,9 +1,6 @@
 package net.slayer.api.entity;
 
 import com.google.common.base.Optional;
-
-import net.journey.api.entity.IJERCompatible;
-import net.journey.api.entity.ISettingsConsumer;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -19,7 +16,6 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.scoreboard.Team;
 import net.minecraft.server.management.PreYggdrasilConverter;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -28,7 +24,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nullable;
 import java.util.UUID;
 
-public abstract class EntityModTameable extends EntityTameable implements ISettingsConsumer, IJERCompatible {
+public abstract class EntityModTameable extends EntityTameable/* implements ISettingsConsumer, IJERCompatible //TODO*/ {
 
     protected static final DataParameter<Byte> TAMED = EntityDataManager.createKey(EntityModTameable.class, DataSerializers.BYTE);
     protected static final DataParameter<Optional<UUID>> OWNER_UNIQUE_ID = EntityDataManager.createKey(EntityModTameable.class, DataSerializers.OPTIONAL_UNIQUE_ID);
@@ -39,11 +35,11 @@ public abstract class EntityModTameable extends EntityTameable implements ISetti
         this.aiSit = new EntityAISit(this);
         addBasicAI();
     }
-    
-    @Override
-	public @Nullable ResourceLocation getJERLootLocation() {
-		return getLootTable();
-	}
+
+//    @Override//TODO
+//	public @Nullable ResourceLocation getJERLootLocation() {
+//		return getLootTable();
+//	}
 
     public double getHP() {
         return getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getAttributeValue();
