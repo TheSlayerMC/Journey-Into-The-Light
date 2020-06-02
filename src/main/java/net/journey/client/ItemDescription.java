@@ -46,6 +46,13 @@ public class ItemDescription {
         if (item == JourneyItems.TAMED_ROBOT_SPAWN_EGG) list.add("Spawns: Pet Robot");
         if (item == JourneyItems.ROBOT_EGG) list.add("Needs to be Incubated");
 
-
+        if (item == JourneyItems.TAMED_EUCA_HOPPER_SPAWN_EGG) list.add("Spawns: Pet Euca Hopper");
+        if (item == JourneyItems.EUCA_HOPPER_EGG) list.add("Needs to be Incubated");
+        
+        if (item == JourneyItems.TAMED_ROC_SPAWN_EGG) list.add("Spawns: Pet Roc");
+        if (item == JourneyItems.ROC_EGG) list.add("Needs to be Incubated");
+        
+        if (item == JourneyItems.TAMED_SHIVERWOLF_SPAWN_EGG) list.add("Spawns: Pet Shiverwolf");
+        if (item == JourneyItems.SHIVERWOLF_EGG) list.add("Needs to be Incubated");
     }
 }
