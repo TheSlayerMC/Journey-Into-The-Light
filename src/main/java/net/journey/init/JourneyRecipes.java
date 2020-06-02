@@ -49,6 +49,8 @@ public class JourneyRecipes {
 		addShapedRecipe(JourneyBlocks.blueGemBlock, "iii", "iii", "iii", 'i', JourneyItems.blueGem);
 		addShapedRecipe(JourneyBlocks.yellowGemBlock, "iii", "iii", "iii", 'i', JourneyItems.yellowGem);
 
+		addShapedRecipe(JourneyBlocks.INCUBATOR, "iii", "jkj", "ckc", 'i', Blocks.OBSIDIAN, 'j', Items.IRON_INGOT, 'k', JourneyItems.luniumIngot, 'c', Blocks.COBBLESTONE);
+
 		addShapedRecipe(new ItemStack(JourneyItems.greenGem, 9), "i", 'i', JourneyBlocks.greenGemBlock);
 		addShapedRecipe(new ItemStack(JourneyItems.purpleGem, 9), "i", 'i', JourneyBlocks.purpleGemBlock);
 		addShapedRecipe(new ItemStack(JourneyItems.blueGem, 9), "i", 'i', JourneyBlocks.blueGemBlock);

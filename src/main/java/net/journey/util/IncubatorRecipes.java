@@ -24,7 +24,7 @@ public class IncubatorRecipes {
     private IncubatorRecipes() {
         //this.addSmeltingRecipeForBlock(Blocks.SAND, new ItemStack(Blocks.GLASS), 0.1F);
         //this.addSmeltingRecipe(new ItemStack(Blocks.SPONGE, 1, 1), new ItemStack(Blocks.SPONGE, 1, 0), 0.15F);
-        this.addSmelting(JourneyItems.ANCIENT_EYE_OF_OPENING, new ItemStack(JourneyItems.blazierOrb), 0.1F);
+        this.addSmelting(JourneyItems.ROBOT_EGG, new ItemStack(JourneyItems.TAMED_ROBOT_SPAWN_EGG), 0.1F);
     }
 
     public void addSmeltingRecipeForBlock(Block input, ItemStack stack, float experience) {

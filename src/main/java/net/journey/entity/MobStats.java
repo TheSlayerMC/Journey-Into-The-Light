@@ -136,6 +136,7 @@ public class MobStats {
     public static double EucaHopperHealth = 40.0D, EucaHopperDamage = 7.5D;
     public static double EucaHopperTameHealth = 40.0D, EucaHopperTameDamage = 7.5D;
     public static double TameRocHealth = 60.0D, TameRocDamage = 7.0D;
+    public static final EntitySettings PET_ROBOT = new EntitySettings(20, 5);
 
     //Boss
     public static double soulWatcherHealth = 700.0D, soulWatcherDamage = 10.0D, soulWatcherSpeed = standardMovementSpeed, soulWatcherFollowRange = boss_follow;

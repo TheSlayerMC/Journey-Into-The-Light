@@ -6,6 +6,7 @@ import net.journey.blocks.containers.BlockIncubator;
 import net.journey.blocks.tileentity.container.ContainerIncubator;
 import net.journey.blocks.tileentity.container.slot.SlotIncubatorFuel;
 import net.journey.util.IncubatorRecipes;
+import net.journey.util.handler.Helper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Blocks;

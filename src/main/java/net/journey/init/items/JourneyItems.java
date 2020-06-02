@@ -1,5 +1,6 @@
 package net.journey.init.items;
 
+import net.journey.entity.mob.pet.EntityPetRobot;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.journey.items.ItemEssenceArrow;
@@ -332,6 +333,10 @@ public class JourneyItems {
     public static Item VOLCANIC_STONE;
     public static Item CHEST_KEY;
 
+    public static Item PET_FOOD;
+    public static Item TAMED_ROBOT_SPAWN_EGG;
+    public static Item ROBOT_EGG;
+
     public static ItemLoreScroll loreScroll;
     
     //public static Item obsidianBoat;
@@ -579,9 +584,13 @@ public class JourneyItems {
 	    CHEST_KEY = new JItem("chest_key", "Chest Key");
 	    AQUASTONE = new JItem("aquastone", "Aquastone");
 
-	    //loreScroll = new ItemLoreScroll("lore_scroll", "Lore Scroll");
-	    //obsidianBoat = new ItemObsidianBoat("obsidianboat", "Obsidian Boat");
-	    //infernoshield = new ItemModShield("infernoshield", "Inferno Shield", 2, false);
+        PET_FOOD = new JItem("pet_food", "Pet Food");
+        ROBOT_EGG = new JItem("robot_egg", "Robot Egg");
+        TAMED_ROBOT_SPAWN_EGG = new ItemSpawnerEgg("robot_spawner_egg", "Incubated Robot Egg", EntityPetRobot.class);
+
+        //loreScroll = new ItemLoreScroll("lore_scroll", "Lore Scroll");
+        //obsidianBoat = new ItemObsidianBoat("obsidianboat", "Obsidian Boat");
+        //infernoshield = new ItemModShield("infernoshield", "Inferno Shield", 2, false);
     }
 
     public static ToolMaterial addToolMaterial(int uses, float efficiency, float dam, boolean breakable) {
