@@ -29,7 +29,7 @@ public class JourneyTabs extends CreativeTabs {
     public Supplier<ItemStack> iconSupplier;
 
     /**
-     * @param enName - localized name for tab
+     * @param enName localized name for tab
      *               "JITL: " prefix will be added to it.
      */
     public JourneyTabs(String enName, Supplier<ItemStack> iconSupplier) {

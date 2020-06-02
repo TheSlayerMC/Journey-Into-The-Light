@@ -19,7 +19,6 @@ import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
-import net.slayer.api.SlayerAPI;
 import org.jetbrains.annotations.NotNull;
 import ru.timeconqueror.timecore.api.util.Pair;
 
@@ -114,7 +113,5 @@ public class ItemBossSpawner extends JItem {
 		if (item == JourneyItems.scaleOrb) list.add(LangHelper.setBossSpawner("Scale"));
 		if (item == JourneyItems.thunderbirdOrb) list.add(LangHelper.setBossSpawner("Thunderbird"));
 		if (item == JourneyItems.enchantedTerrastar) list.add(LangHelper.setBossSpawner("Terranian Protector"));
-			list.add(SlayerAPI.Colour.DARK_GREEN + "More powerful than a dog, less cuddly.");
-
 	}
 }
