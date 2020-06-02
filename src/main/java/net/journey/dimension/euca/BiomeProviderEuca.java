@@ -29,22 +29,22 @@ public class BiomeProviderEuca extends BiomeProvider {
     private List<Biome> biomes;
 
     public BiomeProviderEuca(World world) {
-        super(new WorldInfoEuca());
+	    super(new WorldInfoEuca());
 
-        getBiomesToSpawnIn().clear();
-        getBiomesToSpawnIn().add(DimensionHelper.euca);
-        getBiomesToSpawnIn().add(DimensionHelper.eucaSilver);
+	    getBiomesToSpawnIn().clear();
+	    getBiomesToSpawnIn().add(DimensionHelper.EUCA_BIOME);
+	    getBiomesToSpawnIn().add(DimensionHelper.EUCA_SILVER_BiOME);
 
-        allowedBiomes.add(DimensionHelper.euca);
-        allowedBiomes.add(DimensionHelper.eucaSilver);
+	    allowedBiomes.add(DimensionHelper.EUCA_BIOME);
+	    allowedBiomes.add(DimensionHelper.EUCA_SILVER_BiOME);
 
-        this.biomeCache = new BiomeCache(this);
-        this.biomes = new ArrayList<Biome>();
-        this.addBiomes(this.biomes);
-        getLayers(world.getSeed());
-        GenLayer[] genLayers = getLayers(world.getSeed());
-        this.genLayerBiomes = genLayers[0];
-        this.genLayerBiomeIndex = genLayers[1];
+	    this.biomeCache = new BiomeCache(this);
+	    this.biomes = new ArrayList<Biome>();
+	    this.addBiomes(this.biomes);
+	    getLayers(world.getSeed());
+	    GenLayer[] genLayers = getLayers(world.getSeed());
+	    this.genLayerBiomes = genLayers[0];
+	    this.genLayerBiomeIndex = genLayers[1];
     }
 
     public static GenLayer[] getLayers(long seed) {
@@ -59,8 +59,8 @@ public class BiomeProviderEuca extends BiomeProvider {
     }
 
     public void addBiomes(List<Biome> list) {
-        list.add(DimensionHelper.euca);
-        list.add(DimensionHelper.eucaSilver);
+	    list.add(DimensionHelper.EUCA_BIOME);
+	    list.add(DimensionHelper.EUCA_SILVER_BiOME);
     }
 
     @Override

@@ -6,6 +6,6 @@ import net.minecraft.world.biome.BiomeProviderSingle;
 public class BiomeProviderFrozenLands extends BiomeProviderSingle {
 
     public BiomeProviderFrozenLands() {
-        super(DimensionHelper.frozen);
+        super(DimensionHelper.FROZEN_BIOME);
     }
 }

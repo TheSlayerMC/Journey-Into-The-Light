@@ -12,33 +12,33 @@ import java.util.ArrayList;
 public class GenLayerEucaBiome extends GenLayer {
 
     public GenLayerEucaBiome(long l) {
-        super(l);
-        ArrayList<BiomeEntry> eucaBiomes = new ArrayList<BiomeEntry>();
-        eucaBiomes.add(new BiomeEntry(DimensionHelper.euca, Config.eucaBiome));
-        eucaBiomes.add(new BiomeEntry(DimensionHelper.eucaSilver, Config.eucaSilverBiome));
+	    super(l);
+	    ArrayList<BiomeEntry> eucaBiomes = new ArrayList<BiomeEntry>();
+	    eucaBiomes.add(new BiomeEntry(DimensionHelper.EUCA_BIOME, Config.eucaBiome));
+	    eucaBiomes.add(new BiomeEntry(DimensionHelper.EUCA_SILVER_BiOME, Config.eucaSilverBiome));
     }
 
     @Override
     public int[] getInts(int x, int z, int width, int depth) {
-        int nx = x - 1;
-        int nz = z - 1;
-        int nwidth = width + 2;
-        int ndepth = depth + 2;
-        int[] input = IntCache.getIntCache(width * depth);
-        int[] output = IntCache.getIntCache(width * depth);
+	    int nx = x - 1;
+	    int nz = z - 1;
+	    int nwidth = width + 2;
+	    int ndepth = depth + 2;
+	    int[] input = IntCache.getIntCache(width * depth);
+	    int[] output = IntCache.getIntCache(width * depth);
 
-        int gold = Biome.getIdForBiome(DimensionHelper.euca);
-        int silver = Biome.getIdForBiome(DimensionHelper.eucaSilver);
+	    int gold = Biome.getIdForBiome(DimensionHelper.EUCA_BIOME);
+	    int silver = Biome.getIdForBiome(DimensionHelper.EUCA_SILVER_BiOME);
 
-        for (int dz = 0; dz < depth; dz++) {
-            for (int dx = 0; dx < width; dx++) {
+	    for (int dz = 0; dz < depth; dz++) {
+		    for (int dx = 0; dx < width; dx++) {
 
-                int right = input[dx + 0 + (dz + 1) * nwidth];
-                int left = input[dx + 2 + (dz + 1) * nwidth];
-                int up = input[dx + 1 + (dz + 0) * nwidth];
-                int down = input[dx + 1 + (dz + 2) * nwidth];
-                int center = input[dx + 1 + (dz + 1) * nwidth];
-                this.initChunkSeed(dx + x, dz + z);
+			    int right = input[dx + 0 + (dz + 1) * nwidth];
+			    int left = input[dx + 2 + (dz + 1) * nwidth];
+			    int up = input[dx + 1 + (dz + 0) * nwidth];
+			    int down = input[dx + 1 + (dz + 2) * nwidth];
+			    int center = input[dx + 1 + (dz + 1) * nwidth];
+			    this.initChunkSeed(dx + x, dz + z);
                 //if(input[dx + dz * width] != Biome.getIdForBiome(DimensionHelper.euca) || input[dx + dz * width] != Biome.getIdForBiome(DimensionHelper.eucaSilver))
                 //	input[dx + dz * width] = gold;
 

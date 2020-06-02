@@ -1,7 +1,5 @@
 package net.journey.dimension.frozen;
 
-import javax.annotation.Nullable;
-
 import net.journey.dimension.base.BaseWorldProvider;
 import net.journey.dimension.base.DimensionHelper;
 import net.journey.init.JourneySounds;
@@ -14,15 +12,17 @@ import net.minecraftforge.client.EnumHelperClient;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
+
 public class WorldProviderFrozenLands extends BaseWorldProvider {
 
-    public WorldProviderFrozenLands() {
-        super(new BiomeProviderSingle(DimensionHelper.frozen));
-    }
+	public WorldProviderFrozenLands() {
+		super(new BiomeProviderSingle(DimensionHelper.FROZEN_BIOME));
+	}
 
-    @Override
-    public void init() {
-        this.nether = false;
+	@Override
+	public void init() {
+		this.nether = false;
         this.hasSkyLight = true;
     }
     
@@ -62,6 +62,6 @@ public class WorldProviderFrozenLands extends BaseWorldProvider {
 
     @Override
     public DimensionType getDimensionType() {
-        return DimensionHelper.frozenType;
+	    return DimensionHelper.FROZEN_DIM;
     }
 }

@@ -5,6 +5,7 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.DimensionType;
 import net.minecraftforge.server.command.TextComponentHelper;
 
 public class LangHelper {
@@ -70,5 +71,12 @@ public class LangHelper {
 
 	public static String withModPrefix(String str) {
 		return JITL.MOD_ID + "." + str;
+	}
+
+	/**
+	 * Creates localization key from provided dimension type.
+	 */
+	public static String createI18nKey(DimensionType type) {
+		return "world.journey." + type.getName();
 	}
 }

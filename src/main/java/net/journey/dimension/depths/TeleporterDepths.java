@@ -56,17 +56,17 @@ public class TeleporterDepths extends Teleporter {
 
     @Override
     public boolean placeInExistingPortal(Entity entity, float rotationYaw) {
-        if (entity.dimension == DimensionHelper.depthsType.getId()) {
-            int chunkX = (MathHelper.floor(entity.posX) & ~0xf);
-            int chunkZ = (MathHelper.floor(entity.posZ) & ~0xf);
-            int y;
-            boolean foundPortal = findPortalBlockNearEntity(entity, 256);
-            if (foundPortal) return true;
-            for (y = 8; y < 256; y += 8) {
-                if (this.myWorld.getBlockState(new BlockPos(chunkX + 7, y, chunkZ + 7)) == Blocks.AIR.getDefaultState() && this.myWorld.getBlockState(new BlockPos(chunkX + 7, y + 8, chunkZ + 7)) == Blocks.AIR.getDefaultState()) {
-                    makePortalAt(this.myWorld, new BlockPos(chunkX, getTopBlock(myWorld, chunkX, chunkZ) + 1, chunkZ));
-                    foundPortal = findPortalBlockNearEntity(entity, 256);
-                    if (foundPortal) {
+        if (entity.dimension == DimensionHelper.DEPTHS_DIM.getId()) {
+	        int chunkX = (MathHelper.floor(entity.posX) & ~0xf);
+	        int chunkZ = (MathHelper.floor(entity.posZ) & ~0xf);
+	        int y;
+	        boolean foundPortal = findPortalBlockNearEntity(entity, 256);
+	        if (foundPortal) return true;
+	        for (y = 8; y < 256; y += 8) {
+		        if (this.myWorld.getBlockState(new BlockPos(chunkX + 7, y, chunkZ + 7)) == Blocks.AIR.getDefaultState() && this.myWorld.getBlockState(new BlockPos(chunkX + 7, y + 8, chunkZ + 7)) == Blocks.AIR.getDefaultState()) {
+			        makePortalAt(this.myWorld, new BlockPos(chunkX, getTopBlock(myWorld, chunkX, chunkZ) + 1, chunkZ));
+			        foundPortal = findPortalBlockNearEntity(entity, 256);
+			        if (foundPortal) {
                         return true;
                     }
                 }

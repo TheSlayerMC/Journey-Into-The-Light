@@ -1,7 +1,5 @@
 package net.journey.dimension.boil;
 
-import javax.annotation.Nullable;
-
 import net.journey.dimension.base.BaseWorldProvider;
 import net.journey.dimension.base.DimensionHelper;
 import net.journey.init.JourneySounds;
@@ -18,15 +16,17 @@ import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
+
 public class WorldProviderBoiling extends BaseWorldProvider {
 
-    public WorldProviderBoiling() {
-        super(new BiomeProviderSingle(DimensionHelper.boiling), new Vec3d(0.2, 0.1, 0));
-    }
+	public WorldProviderBoiling() {
+		super(new BiomeProviderSingle(DimensionHelper.BOILING_BIOME), new Vec3d(0.2, 0.1, 0));
+	}
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public IRenderHandler getSkyRenderer() {
+	@Override
+	@SideOnly(Side.CLIENT)
+	public IRenderHandler getSkyRenderer() {
         return ClientProxy.boilSkyRenderer;
     }
 
@@ -91,6 +91,6 @@ public class WorldProviderBoiling extends BaseWorldProvider {
 
     @Override
     public DimensionType getDimensionType() {
-        return DimensionHelper.boilingType;
+	    return DimensionHelper.BOILING_DIM;
     }
 }

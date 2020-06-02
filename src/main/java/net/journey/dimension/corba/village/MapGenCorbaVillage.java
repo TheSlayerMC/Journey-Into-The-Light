@@ -1,11 +1,5 @@
 package net.journey.dimension.corba.village;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Random;
-
 import net.journey.dimension.base.DimensionHelper;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
@@ -16,9 +10,15 @@ import net.minecraft.world.gen.structure.MapGenStructure;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.StructureStart;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Random;
+
 public class MapGenCorbaVillage extends MapGenStructure {
 
-	public static List<Biome> VILLAGE_SPAWN_BIOMES = Arrays.<Biome>asList(DimensionHelper.corba);
+	public static List<Biome> VILLAGE_SPAWN_BIOMES = Arrays.asList(DimensionHelper.CORBA_BIOME);
 	private int size;
 	private int distance;
 	private final int minTownSeparation;
@@ -32,10 +32,9 @@ public class MapGenCorbaVillage extends MapGenStructure {
 		this();
 
 		for (Entry<String, String> entry : map.entrySet()) {
-			if (((String)entry.getKey()).equals("size")) {
+			if (entry.getKey().equals("size")) {
 				this.size = MathHelper.getInt(entry.getValue(), this.size, 0);
-			}
-			else if (((String)entry.getKey()).equals("distance")) {
+			} else if (entry.getKey().equals("distance")) {
 				this.distance = MathHelper.getInt(entry.getValue(), this.distance, 9);
 			}
 		}
@@ -70,9 +69,7 @@ public class MapGenCorbaVillage extends MapGenStructure {
 		if (i == k && j == l) {
 			boolean flag = this.world.getBiomeProvider().areBiomesViable(i * 16 + 8, j * 16 + 8, 0, VILLAGE_SPAWN_BIOMES);
 
-			if (flag) {
-				return true;
-			}
+			return flag;
 		}
 		return false;
 	}
