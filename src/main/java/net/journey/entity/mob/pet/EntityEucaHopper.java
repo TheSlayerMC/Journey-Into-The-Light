@@ -26,6 +26,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityModTameable;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.UUID;
 
@@ -226,5 +227,10 @@ public class EntityEucaHopper extends EntityModTameable {
     @Override
     public SoundEvent setDeathSound() {
         return JourneySounds.TURTLE_HURT;
+    }
+
+    @Override
+    public @NotNull EntitySettings getEntitySettings() {
+        return new EntitySettings(100, 10);
     }
 }

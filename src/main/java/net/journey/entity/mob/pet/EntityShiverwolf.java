@@ -37,6 +37,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.entity.EntityModTameable;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.UUID;
 
@@ -501,5 +502,10 @@ public class EntityShiverwolf extends EntityModTameable {
     @Override
     public SoundEvent setDeathSound() {
         return JourneySounds.EMPTY;
+    }
+
+    @Override
+    public @NotNull EntitySettings getEntitySettings() {
+        return new EntitySettings(100, 10);
     }
 }
