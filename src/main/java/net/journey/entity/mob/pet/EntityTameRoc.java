@@ -35,10 +35,6 @@ public class EntityTameRoc extends EntityJourneyPet {
         return JourneySounds.BIRD_DEATH;
     }
 
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return new EntitySettings(100, 10);
-    }
 
 	@Override
 	public EntityAgeable createChild(EntityAgeable ageable) {

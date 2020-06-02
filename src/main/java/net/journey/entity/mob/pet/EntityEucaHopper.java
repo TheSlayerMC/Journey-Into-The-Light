@@ -59,10 +59,6 @@ public class EntityEucaHopper extends EntityJourneyPet {
         return JourneySounds.TURTLE_HURT;
     }
 
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return new EntitySettings(100, 10);
-    }
 
 	@Override
 	public EntityAgeable createChild(EntityAgeable ageable) {

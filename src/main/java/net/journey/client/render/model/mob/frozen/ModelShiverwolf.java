@@ -91,11 +91,6 @@ public class ModelShiverwolf extends ModelBase {
     public void setLivingAnimations(EntityLivingBase entitylivingbaseIn, float p_78086_2_, float p_78086_3_, float partialTickTime) {
         EntityShiverwolf entitywolf = (EntityShiverwolf) entitylivingbaseIn;
 
-        if (entitywolf.isAngry()) {
-            //this.wolfTail.rotateAngleY = 0.0F;
-        } else {
-            //this.wolfTail.rotateAngleY = MathHelper.cos(p_78086_2_ * 0.6662F) * 1.4F * p_78086_3_;
-        }
 
         if (entitywolf.isSitting()) {
             this.wolfMane.setRotationPoint(-1.0F, 16.0F, -3.0F);
@@ -128,9 +123,6 @@ public class ModelShiverwolf extends ModelBase {
             this.wolfLeg4.rotateAngleX = MathHelper.cos(p_78086_2_ * 0.6662F) * 1.4F * p_78086_3_;
         }
 
-        this.wolfHeadMain.rotateAngleZ = entitywolf.getInterestedAngle(partialTickTime) + entitywolf.getShakeAngle(partialTickTime, 0.0F);
-        this.wolfMane.rotateAngleZ = entitywolf.getShakeAngle(partialTickTime, -0.08F);
-        this.wolfBody.rotateAngleZ = entitywolf.getShakeAngle(partialTickTime, -0.16F);
         // this.wolfTail.rotateAngleZ = entitywolf.getShakeAngle(partialTickTime, -0.2F);
     }
 

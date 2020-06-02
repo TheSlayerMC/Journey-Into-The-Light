@@ -71,11 +71,6 @@ public class EntityShiverwolf extends EntityJourneyPet {
         return JourneySounds.EMPTY;
     }
 
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return new EntitySettings(100, 10);
-    }
-
 
 	@Override
 	public EntityAgeable createChild(EntityAgeable ageable) {
