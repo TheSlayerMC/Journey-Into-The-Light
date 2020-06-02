@@ -2,6 +2,7 @@ package net.journey.items.ranged;
 
 import net.journey.client.ItemDescription;
 import net.journey.init.JourneyTabs;
+import net.journey.items.base.JItem;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,21 +17,20 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.SlayerAPI;
-import net.slayer.api.item.ItemMod;
 
 import java.util.List;
 
-public class ItemThrowableArrow extends ItemMod {
+public class ItemThrowableArrow extends JItem {
 
-    String string;
-    private double damage;
-    private Class<? extends EntityTippedArrow> entity;
+	String string;
+	private double damage;
+	private Class<? extends EntityTippedArrow> entity;
 
-    public ItemThrowableArrow(String name, String f, double damage, Class<? extends EntityTippedArrow> entity, String description) {
-        super(name, f);
-        this.entity = entity;
-        this.string = description;
-        this.damage = damage;
+	public ItemThrowableArrow(String name, String f, double damage, Class<? extends EntityTippedArrow> entity, String description) {
+		super(name, f);
+		this.entity = entity;
+		this.string = description;
+		this.damage = damage;
         setCreativeTab(JourneyTabs.WEAPONS);
     }
 

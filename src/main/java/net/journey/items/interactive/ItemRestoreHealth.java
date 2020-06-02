@@ -1,9 +1,8 @@
 package net.journey.items.interactive;
 
-import java.util.List;
-
 import net.journey.init.JourneySounds;
 import net.journey.init.JourneyTabs;
+import net.journey.items.base.JItem;
 import net.journey.util.PotionEffects;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.PotionTypes;
@@ -15,11 +14,11 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.slayer.api.item.ItemMod;
 
-public class ItemRestoreHealth extends ItemMod {
+import java.util.List;
+
+public class ItemRestoreHealth extends JItem {
 
 	private int amount;
 	private boolean restoreFullHealth;

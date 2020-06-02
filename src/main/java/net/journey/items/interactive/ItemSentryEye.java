@@ -2,6 +2,7 @@ package net.journey.items.interactive;
 
 import net.journey.blocks.portal.BlockSenterianPortalFrame;
 import net.journey.init.blocks.JourneyBlocks;
+import net.journey.items.base.JItem;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockPattern;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,19 +11,18 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.slayer.api.item.ItemMod;
 
-public class ItemSentryEye extends ItemMod {
+public class ItemSentryEye extends JItem {
 
-    public ItemSentryEye(String name, String f) {
-        super(name, f);
-    }
+	public ItemSentryEye(String name, String f) {
+		super(name, f);
+	}
 
-    @Override
-    public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        IBlockState iblockstate = worldIn.getBlockState(pos);
-        ItemStack itemstack = player.getHeldItem(hand);
-        if (player.canPlayerEdit(pos.offset(facing), facing, itemstack) && iblockstate.getBlock() == JourneyBlocks.senterianPortalFrame && !iblockstate.getValue(BlockSenterianPortalFrame.EYE).booleanValue()) {
+	@Override
+	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		IBlockState iblockstate = worldIn.getBlockState(pos);
+		ItemStack itemstack = player.getHeldItem(hand);
+		if (player.canPlayerEdit(pos.offset(facing), facing, itemstack) && iblockstate.getBlock() == JourneyBlocks.senterianPortalFrame && !iblockstate.getValue(BlockSenterianPortalFrame.EYE).booleanValue()) {
             if (worldIn.isRemote) {
                 return EnumActionResult.SUCCESS;
             } else {

@@ -3,6 +3,7 @@ package net.slayer.api.item;
 import net.journey.client.server.EssenceProvider;
 import net.journey.client.server.IEssence;
 import net.journey.init.JourneySounds;
+import net.journey.items.base.JItem;
 import net.journey.util.LangHelper;
 import net.journey.util.PotionEffects;
 import net.minecraft.block.BlockDispenser;
@@ -26,17 +27,17 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class ItemModShield extends ItemMod {
+public class ItemModShield extends JItem {
 
-    protected int usage;
-    protected boolean unBreakable;
+	protected int usage;
+	protected boolean unBreakable;
 
-    public ItemModShield(String name, String finalName, int manaUsed, boolean unbreakable) {
-        super(name, finalName);
-        this.maxStackSize = 1;
-        this.setCreativeTab(CreativeTabs.COMBAT);
-        this.setMaxDamage(336);
-        this.addPropertyOverride(new ResourceLocation("blocking"), new IItemPropertyGetter() {
+	public ItemModShield(String name, String finalName, int manaUsed, boolean unbreakable) {
+		super(name, finalName);
+		this.maxStackSize = 1;
+		this.setCreativeTab(CreativeTabs.COMBAT);
+		this.setMaxDamage(336);
+		this.addPropertyOverride(new ResourceLocation("blocking"), new IItemPropertyGetter() {
             @SideOnly(Side.CLIENT)
             public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {
                 return entityIn != null && entityIn.isHandActive() && entityIn.getActiveItemStack() == stack ? 1.0F

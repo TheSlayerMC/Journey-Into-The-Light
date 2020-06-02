@@ -1,6 +1,7 @@
 package net.journey.items;
 
 import net.journey.entity.item.EntityObsidianBoat;
+import net.journey.items.base.JItem;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,11 +16,10 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.slayer.api.item.ItemMod;
 
 import java.util.List;
 
-public class ItemObsidianBoat extends ItemMod {
+public class ItemObsidianBoat extends JItem {
 
     public ItemObsidianBoat(String name, String finalName) {
         super(name, finalName);

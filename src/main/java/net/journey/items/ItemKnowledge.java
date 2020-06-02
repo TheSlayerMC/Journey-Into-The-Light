@@ -1,19 +1,19 @@
 package net.journey.items;
 
 import net.journey.enums.EnumKnowledge;
-import net.slayer.api.item.ItemMod;
+import net.journey.items.base.JItem;
 
-public class ItemKnowledge extends ItemMod {
+public class ItemKnowledge extends JItem {
 
-    private EnumKnowledge[] knowledge;
+	private EnumKnowledge[] knowledge;
 
-    public ItemKnowledge(String name, String f, EnumKnowledge... knowledge) {
-        super(name, f);
-        setCreativeTab(null);
-        this.knowledge = knowledge;
-    }
+	public ItemKnowledge(String name, String f, EnumKnowledge... knowledge) {
+		super(name, f);
+		setCreativeTab(null);
+		this.knowledge = knowledge;
+	}
 
-    private EnumKnowledge getPrefferedKnowledge() {
+	private EnumKnowledge getPrefferedKnowledge() {
         return knowledge[0];
     }
 

@@ -7,6 +7,7 @@ import net.journey.entity.projectile.launcher.EntityBouncingProjectile;
 import net.journey.init.JourneySounds;
 import net.journey.init.JourneyTabs;
 import net.journey.init.items.JourneyWeapons;
+import net.journey.items.base.JItem;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,21 +19,20 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.SlayerAPI;
-import net.slayer.api.item.ItemMod;
 
 import java.util.List;
 
-public class ItemGun extends ItemMod {
+public class ItemGun extends JItem {
 
-    public int damage;
-    public String ability;
-    protected Class<? extends EntityBasicProjectile> projectile;
+	public int damage;
+	public String ability;
+	protected Class<? extends EntityBasicProjectile> projectile;
 
-    public ItemGun(String name, String f, int damage, String ability,
-                   Class<? extends EntityBasicProjectile> projectile) {
-        super(name, f, JourneyTabs.WEAPONS);
-        this.ability = ability;
-        this.projectile = projectile;
+	public ItemGun(String name, String f, int damage, String ability,
+	               Class<? extends EntityBasicProjectile> projectile) {
+		super(name, f, JourneyTabs.WEAPONS);
+		this.ability = ability;
+		this.projectile = projectile;
         this.damage = damage;
         setMaxStackSize(1);
         setMaxDamage(500);

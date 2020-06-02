@@ -2,6 +2,7 @@ package net.journey.items.interactive;
 
 import net.journey.blocks.plant.BlockTallGlowshroom;
 import net.journey.init.JourneyTabs;
+import net.journey.items.base.JItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
@@ -13,19 +14,18 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.slayer.api.item.ItemMod;
 
-public class ItemGlowshroomBlock extends ItemMod {
+public class ItemGlowshroomBlock extends JItem {
 
-    private BlockTallGlowshroom shroombottom;
-    private BlockTallGlowshroom shroomtop;
+	private BlockTallGlowshroom shroombottom;
+	private BlockTallGlowshroom shroomtop;
 
-    public ItemGlowshroomBlock(String name, String finalName, BlockTallGlowshroom shroombottom, BlockTallGlowshroom shroomtop) {
-        super(name, finalName);
-        this.shroombottom = shroombottom;
-        this.shroomtop = shroomtop;
-        this.setCreativeTab(JourneyTabs.DECORATION);
-    }
+	public ItemGlowshroomBlock(String name, String finalName, BlockTallGlowshroom shroombottom, BlockTallGlowshroom shroomtop) {
+		super(name, finalName);
+		this.shroombottom = shroombottom;
+		this.shroomtop = shroomtop;
+		this.setCreativeTab(JourneyTabs.DECORATION);
+	}
 
     @Override
     public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {

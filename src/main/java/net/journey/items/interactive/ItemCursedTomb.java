@@ -1,28 +1,24 @@
 package net.journey.items.interactive;
 
-import java.util.List;
-
-import net.journey.client.ItemDescription;
 import net.journey.client.server.EssenceProvider;
 import net.journey.client.server.IEssence;
-import net.journey.entity.projectile.piercer.EntityEssenceShuriken;
 import net.journey.init.JourneyTabs;
+import net.journey.items.base.JItem;
 import net.journey.util.PotionEffects;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.SlayerAPI;
-import net.slayer.api.item.ItemMod;
 
-public class ItemCursedTomb extends ItemMod {
+import java.util.List;
+
+public class ItemCursedTomb extends JItem {
 
 	public ItemCursedTomb(String name, String f) {
 		super(name, f);

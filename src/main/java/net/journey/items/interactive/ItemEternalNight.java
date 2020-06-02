@@ -1,24 +1,22 @@
 package net.journey.items.interactive;
 
-import java.util.List;
-
 import net.journey.client.server.EssenceProvider;
 import net.journey.client.server.IEssence;
 import net.journey.init.JourneySounds;
 import net.journey.init.JourneyTabs;
+import net.journey.items.base.JItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.slayer.api.SlayerAPI;
-import net.slayer.api.item.ItemMod;
 
-public class ItemEternalNight extends ItemMod {
+import java.util.List;
+
+public class ItemEternalNight extends JItem {
 
 	public ItemEternalNight(String name, String finalName) {
 		super(name, finalName, JourneyTabs.UTIL);

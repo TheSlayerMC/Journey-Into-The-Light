@@ -7,7 +7,6 @@ import net.journey.items.tool.ItemMultiTool;
 import net.journey.util.JourneyToolMaterial;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
-import net.slayer.api.item.ItemMod;
 import net.slayer.api.item.ItemModAxe;
 import net.slayer.api.item.ItemModHoe;
 import net.slayer.api.item.ItemModPickaxe;

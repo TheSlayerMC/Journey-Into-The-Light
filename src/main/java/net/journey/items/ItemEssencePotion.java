@@ -3,6 +3,7 @@ package net.journey.items;
 import net.journey.client.server.EssenceProvider;
 import net.journey.client.server.IEssence;
 import net.journey.init.JourneyTabs;
+import net.journey.items.base.JItem;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
@@ -20,11 +21,10 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.slayer.api.item.ItemMod;
 
 import java.util.List;
 
-public class ItemEssencePotion extends ItemMod {
+public class ItemEssencePotion extends JItem {
 
     private boolean isStrong;
 

@@ -2,6 +2,7 @@ package net.journey.items.interactive;
 
 import net.journey.init.JourneySounds;
 import net.journey.init.JourneyTabs;
+import net.journey.items.base.JItem;
 import net.journey.util.LootHelper;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.item.EntityItem;
@@ -15,12 +16,11 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import net.slayer.api.SlayerAPI;
-import net.slayer.api.item.ItemMod;
 
 import java.util.List;
 import java.util.Random;
 
-public class ItemLoot extends ItemMod {
+public class ItemLoot extends JItem {
 
 	private ResourceLocation loot;
 

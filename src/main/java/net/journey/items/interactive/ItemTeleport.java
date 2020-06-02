@@ -3,6 +3,7 @@ package net.journey.items.interactive;
 import net.journey.client.server.EssenceProvider;
 import net.journey.client.server.IEssence;
 import net.journey.init.JourneyTabs;
+import net.journey.items.base.JItem;
 import net.journey.util.LangHelper;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
@@ -21,21 +22,20 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.SlayerAPI;
-import net.slayer.api.item.ItemMod;
 
 import java.util.List;
 
-public class ItemTeleport extends ItemMod {
+public class ItemTeleport extends JItem {
 
-    public ItemTeleport(String name, String f) {
-        super(name, f, JourneyTabs.UTIL);
-        setMaxStackSize(1);
-        setMaxDamage(100);
-    }
+	public ItemTeleport(String name, String f) {
+		super(name, f, JourneyTabs.UTIL);
+		setMaxStackSize(1);
+		setMaxDamage(100);
+	}
 
-    @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer player, EnumHand handIn) {
-        IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
+	@Override
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer player, EnumHand handIn) {
+		IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
         float var4 = player.rotationPitch;
         float var5 = player.rotationYaw;
         double var6 = player.posX;

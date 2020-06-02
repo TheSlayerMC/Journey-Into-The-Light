@@ -8,6 +8,7 @@ import net.journey.entity.projectile.EntityLightningBall;
 import net.journey.init.JourneySounds;
 import net.journey.init.JourneyTabs;
 import net.journey.init.items.JourneyItems;
+import net.journey.items.base.JItem;
 import net.journey.util.ChatUtils;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,23 +20,20 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-import net.slayer.api.SlayerAPI;
-import net.slayer.api.SlayerAPI.Colour;
-import net.slayer.api.item.ItemMod;
 
 import java.util.List;
 
-public class ItemNetherBossSpawner extends ItemMod {
+public class ItemNetherBossSpawner extends JItem {
 
-    public ItemNetherBossSpawner(String name, String f) {
-        super(name, f, JourneyTabs.SPAWNERS);
-        setMaxStackSize(1);
-    }
+	public ItemNetherBossSpawner(String name, String f) {
+		super(name, f, JourneyTabs.SPAWNERS);
+		setMaxStackSize(1);
+	}
 
 
-    @Override
-    public EnumActionResult onItemUse(EntityPlayer p, World w, BlockPos pos, EnumHand hand, EnumFacing fa, float par8, float par9, float par10) {
-        ItemStack i = p.getHeldItem(hand);
+	@Override
+	public EnumActionResult onItemUse(EntityPlayer p, World w, BlockPos pos, EnumHand hand, EnumFacing fa, float par8, float par9, float par10) {
+		ItemStack i = p.getHeldItem(hand);
         Item item = i.getItem();
         if (!w.isRemote)
             if (w.provider.getDimension() == -1) {

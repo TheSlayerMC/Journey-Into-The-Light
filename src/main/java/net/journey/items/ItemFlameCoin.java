@@ -2,6 +2,7 @@ package net.journey.items;
 
 import net.journey.init.JourneyTabs;
 import net.journey.init.blocks.JourneyBlocks;
+import net.journey.items.base.JItem;
 import net.minecraft.block.Block;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,22 +16,21 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.SlayerAPI;
-import net.slayer.api.item.ItemMod;
 
 import java.util.List;
 import java.util.Random;
 
-public class ItemFlameCoin extends ItemMod {
+public class ItemFlameCoin extends JItem {
 
-    public ItemFlameCoin(String name, String f) {
-        super(name, f);
-        setCreativeTab(JourneyTabs.UTIL);
-        setMaxStackSize(1);
-    }
+	public ItemFlameCoin(String name, String f) {
+		super(name, f);
+		setCreativeTab(JourneyTabs.UTIL);
+		setMaxStackSize(1);
+	}
 
-    @Override
-    public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing fa, float hitX, float hitY, float hitZ) {
-        Random r = new Random();
+	@Override
+	public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing fa, float hitX, float hitY, float hitZ) {
+		Random r = new Random();
         int x = pos.getX(), y = pos.getY(), z = pos.getZ();
         if (fa != EnumFacing.UP && world.getBlockState(pos.up()).getBlock() != Blocks.AIR) {
             return EnumActionResult.FAIL;

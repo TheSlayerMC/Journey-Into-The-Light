@@ -5,6 +5,7 @@ import net.journey.entity.mob.pet.EntityTameRoc;
 import net.journey.init.JourneySounds;
 import net.journey.init.JourneyTabs;
 import net.journey.init.items.JourneyItems;
+import net.journey.items.base.JItem;
 import net.journey.util.ChatUtils;
 import net.journey.util.LangHelper;
 import net.minecraft.client.util.ITooltipFlag;
@@ -19,17 +20,15 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.slayer.api.SlayerAPI;
 import net.slayer.api.SlayerAPI.Colour;
-import net.slayer.api.item.ItemMod;
 
 import java.util.List;
 
-public class ItemSpecificDimensionSpawner extends ItemMod {
+public class ItemBossSpawner extends JItem {
 
     public String dimName;
     public int dimID;
-    private int ticks;
 
-    public ItemSpecificDimensionSpawner(int dimID, String name, String f, String dimName) {
+    public ItemBossSpawner(int dimID, String name, String f, String dimName) {
         super(name, f, JourneyTabs.SPAWNERS);
         setMaxStackSize(1);
         this.dimID = dimID;

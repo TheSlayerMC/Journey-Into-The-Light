@@ -4,6 +4,7 @@ import net.journey.JITL;
 import net.journey.api.scroll.ScrollAPI;
 import net.journey.api.scroll.ScrollEntry;
 import net.journey.client.render.gui.scroll.GuiLoreScrollEntry;
+import net.journey.items.base.JItem;
 import net.journey.util.ChatUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,11 +14,10 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
-import net.slayer.api.item.ItemMod;
 import org.jetbrains.annotations.Nullable;
 import ru.timeconqueror.timecore.api.util.Pair;
 
-public class ItemLoreScroll extends ItemMod {
+public class ItemLoreScroll extends JItem {
 
 	public ItemLoreScroll(String name, String finalName) {
 		super(name, finalName);

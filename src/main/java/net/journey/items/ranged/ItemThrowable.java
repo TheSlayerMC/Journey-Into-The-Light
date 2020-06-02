@@ -2,6 +2,7 @@ package net.journey.items.ranged;
 
 import net.journey.client.ItemDescription;
 import net.journey.init.JourneyTabs;
+import net.journey.items.base.JItem;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,21 +16,20 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.slayer.api.item.ItemMod;
 
 import java.util.List;
 
-public class ItemThrowable extends ItemMod {
+public class ItemThrowable extends JItem {
 
-    private Class<? extends EntityThrowable> entity;
-    private float damage;
+	private Class<? extends EntityThrowable> entity;
+	private float damage;
 
-    public ItemThrowable(String name, String f, float damage, Class<? extends EntityThrowable> entity) {
-        super(name, f);
-        this.damage = damage;
-        this.entity = entity;
-        setCreativeTab(JourneyTabs.WEAPONS);
-    }
+	public ItemThrowable(String name, String f, float damage, Class<? extends EntityThrowable> entity) {
+		super(name, f);
+		this.damage = damage;
+		this.entity = entity;
+		setCreativeTab(JourneyTabs.WEAPONS);
+	}
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand handIn) {

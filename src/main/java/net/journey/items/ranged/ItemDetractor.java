@@ -6,6 +6,7 @@ import net.journey.entity.projectile.EntityAttractor;
 import net.journey.entity.projectile.EntityDetractor;
 import net.journey.init.JourneySounds;
 import net.journey.init.JourneyTabs;
+import net.journey.items.base.JItem;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
@@ -17,22 +18,21 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.SlayerAPI;
-import net.slayer.api.item.ItemMod;
 
 import java.util.List;
 import java.util.Random;
 
-public class ItemDetractor extends ItemMod {
+public class ItemDetractor extends JItem {
 
-    public boolean attracts;
-    public boolean detracts;
-    private int magic;
+	public boolean attracts;
+	public boolean detracts;
+	private int magic;
 
-    public ItemDetractor(String name, String finalName, int magic, boolean attracts, boolean detracts) {
-        super(name, finalName, JourneyTabs.WEAPONS);
-        setMaxStackSize(1);
-        this.magic = magic;
-        this.attracts = attracts;
+	public ItemDetractor(String name, String finalName, int magic, boolean attracts, boolean detracts) {
+		super(name, finalName, JourneyTabs.WEAPONS);
+		setMaxStackSize(1);
+		this.magic = magic;
+		this.attracts = attracts;
         this.detracts = detracts;
         this.setFull3D();
     }

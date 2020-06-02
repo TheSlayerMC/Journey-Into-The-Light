@@ -2,6 +2,7 @@ package net.journey.items.ranged;
 
 import net.journey.client.ItemDescription;
 import net.journey.init.JourneyTabs;
+import net.journey.items.base.JItem;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,21 +16,20 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.slayer.api.item.ItemMod;
 
 import java.util.List;
 
-public class ItemMagicPot extends ItemMod {
+public class ItemMagicPot extends JItem {
 
-    private Class<? extends EntityThrowable> entity;
-    private float damage;
-    private int maxBounces = 0;
+	private Class<? extends EntityThrowable> entity;
+	private float damage;
+	private int maxBounces = 0;
 
-    public ItemMagicPot(String name, String f, float damage, int bounces, Class<? extends EntityThrowable> entity) {
-        super(name, f);
-        this.maxBounces = bounces;
-        this.damage = damage;
-        this.entity = entity;
+	public ItemMagicPot(String name, String f, float damage, int bounces, Class<? extends EntityThrowable> entity) {
+		super(name, f);
+		this.maxBounces = bounces;
+		this.damage = damage;
+		this.entity = entity;
         setCreativeTab(JourneyTabs.WEAPONS);
     }
 

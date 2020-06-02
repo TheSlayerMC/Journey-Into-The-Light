@@ -5,6 +5,7 @@ import net.journey.client.server.IEssence;
 import net.journey.entity.projectile.EntityBasicProjectile;
 import net.journey.init.JourneySounds;
 import net.journey.init.JourneyTabs;
+import net.journey.items.base.JItem;
 import net.journey.util.LangHelper;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
@@ -17,21 +18,20 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.SlayerAPI;
-import net.slayer.api.item.ItemMod;
 
 import java.util.List;
 
-public class ItemStaff extends ItemMod {
+public class ItemStaff extends JItem {
 
-    protected final int usage;
-    protected int damage;
-    protected boolean unBreakable;
-    protected Class<? extends EntityBasicProjectile> projectile;
+	protected final int usage;
+	protected int damage;
+	protected boolean unBreakable;
+	protected Class<? extends EntityBasicProjectile> projectile;
 
-    public ItemStaff(String name, String f, int magic, int uses, int dam, boolean unbreakable, Class<? extends EntityBasicProjectile> projectile) {
-        super(name, f);
-        this.projectile = projectile;
-        damage = dam;
+	public ItemStaff(String name, String f, int magic, int uses, int dam, boolean unbreakable, Class<? extends EntityBasicProjectile> projectile) {
+		super(name, f);
+		this.projectile = projectile;
+		damage = dam;
         usage = magic;
         this.unBreakable = unbreakable;
         setMaxDamage(uses);
