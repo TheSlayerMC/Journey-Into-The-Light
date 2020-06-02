@@ -33,6 +33,7 @@ import net.journey.entity.mob.overworld.npc.EntityBlacksmith;
 import net.journey.entity.mob.overworld.npc.EntityMage;
 import net.journey.entity.mob.overworld.underground.*;
 import net.journey.entity.mob.overworld.underground.npc.EntityRockiteGolem;
+import net.journey.entity.mob.pet.EntityEucaHopper;
 import net.journey.entity.mob.pet.EntityPetRobot;
 import net.journey.entity.mob.pet.EntityShiverwolf;
 import net.journey.entity.mob.pet.EntityTameRoc;
@@ -209,7 +210,7 @@ public class EntityRegistry {
 				//SlayerAPI.buildMobEntry(EntityInsecto.class, "insecto");
 				//SlayerAPI.buildMobEntry(EntityPsyollom.class, "psyollom");
 				//SlayerAPI.buildMobEntry(EntityEucaFighter.class, "eucaFighter");
-				//SlayerAPI.buildMobEntry(EntityEucaHopper.class, "eucaHopper");
+				SlayerAPI.buildMobEntry(EntityEucaHopper.class, "eucaHopper", "Euca Hopper", 0xffba00, 0xe0e0e0),
 				SlayerAPI.buildMobEntry(EntityEucaCharger.class, "eucacharger", "Euca Charger", 0xffba00, 0xe0e0e0),
 				SlayerAPI.buildMobEntry(EntityDynaster.class, "dynaster", "Dynaster", 0xffba00, 0xe0e0e0),
 				SlayerAPI.buildMobEntry(EntityGolder.class, "golder", "Golder", 0xffba00, 0xe0e0e0),

@@ -25,6 +25,9 @@ public class IncubatorRecipes {
         //this.addSmeltingRecipeForBlock(Blocks.SAND, new ItemStack(Blocks.GLASS), 0.1F);
         //this.addSmeltingRecipe(new ItemStack(Blocks.SPONGE, 1, 1), new ItemStack(Blocks.SPONGE, 1, 0), 0.15F);
         this.addSmelting(JourneyItems.ROBOT_EGG, new ItemStack(JourneyItems.TAMED_ROBOT_SPAWN_EGG), 0.1F);
+        this.addSmelting(JourneyItems.EUCA_HOPPER_EGG, new ItemStack(JourneyItems.TAMED_EUCA_HOPPER_SPAWN_EGG), 0.1F);
+        this.addSmelting(JourneyItems.ROC_EGG, new ItemStack(JourneyItems.TAMED_ROC_SPAWN_EGG), 0.1F); 
+        this.addSmelting(JourneyItems.SHIVERWOLF_EGG, new ItemStack(JourneyItems.TAMED_SHIVERWOLF_SPAWN_EGG), 0.1F);
     }
 
     public void addSmeltingRecipeForBlock(Block input, ItemStack stack, float experience) {

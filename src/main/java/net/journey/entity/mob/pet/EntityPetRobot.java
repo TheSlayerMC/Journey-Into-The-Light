@@ -38,8 +38,4 @@ public class EntityPetRobot extends EntityJourneyPet {
 		return null;
 	}
 
-//	@Override
-//	public @NotNull EntitySettings getEntitySettings() {
-//		return MobStats.PET_ROBOT;
-//	}
 }

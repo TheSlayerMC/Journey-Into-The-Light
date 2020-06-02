@@ -61,10 +61,12 @@ public abstract class EntityJourneyPet extends EntityModTameable {
 
 	public EntityJourneyPet(World w) {
 		super(w);
+		setSize(1.0F, 1.0F);
 	}
 	
 	public EntityJourneyPet(World worldIn, EntityPlayer owner) {
 		super(worldIn);
+		setSize(1.0F, 1.0F);
 		this.setTamed(true);
 		this.setOwnerId(owner.getUniqueID());
 	}
