@@ -1,6 +1,5 @@
 package net.journey.entity.mob.overworld;
 
-import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityFloroWater;
 import net.journey.init.JourneyLootTables;
@@ -17,6 +16,8 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import net.slayer.api.entity.JEntityMob;
+
 import org.jetbrains.annotations.NotNull;
 
 public class EntityFloro extends JEntityMob implements IRangedAttackMob {

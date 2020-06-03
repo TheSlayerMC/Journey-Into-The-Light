@@ -1,6 +1,5 @@
 package net.journey.entity.mob.euca;
 
-import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityFireBall;
 import net.journey.init.JourneyLootTables;
@@ -22,6 +21,8 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
+import net.slayer.api.entity.JEntityMob;
+
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;

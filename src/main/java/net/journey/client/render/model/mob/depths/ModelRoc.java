@@ -107,7 +107,6 @@ public class ModelRoc extends ModelBase {
         Feather.render(f5);
         Feather1.render(f5);
         Feather2.render(f5);
-
     }
 
     @Override

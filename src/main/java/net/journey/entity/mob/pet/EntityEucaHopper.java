@@ -1,5 +1,6 @@
 package net.journey.entity.mob.pet;
 
+import net.journey.api.entity.ISettingsConsumer.EntitySettings;
 import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
 import net.minecraft.block.Block;
@@ -64,4 +65,9 @@ public class EntityEucaHopper extends EntityJourneyPet {
 	public EntityAgeable createChild(EntityAgeable ageable) {
 		return null;
 	}
+	
+    @Override
+    public @NotNull EntitySettings getEntitySettings() {
+        return MobStats.EUCA_HOPPER;
+    }
 }

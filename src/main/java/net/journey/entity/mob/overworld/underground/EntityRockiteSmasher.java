@@ -1,6 +1,5 @@
 package net.journey.entity.mob.overworld.underground;
 
-import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
@@ -23,6 +22,8 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.slayer.api.entity.JEntityMob;
+
 import org.jetbrains.annotations.NotNull;
 
 public class EntityRockiteSmasher extends JEntityMob {

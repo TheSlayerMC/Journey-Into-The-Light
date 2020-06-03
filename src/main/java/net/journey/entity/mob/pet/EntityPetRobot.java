@@ -1,5 +1,9 @@
 package net.journey.entity.mob.pet;
 
+import org.jetbrains.annotations.NotNull;
+
+import net.journey.api.entity.ISettingsConsumer.EntitySettings;
+import net.journey.entity.MobStats;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.SoundEvent;
@@ -10,12 +14,12 @@ public class EntityPetRobot extends EntityJourneyPet {
 
 	public EntityPetRobot(World w) {
 		super(w);
-		setSize(0.25F, 0.25F);
+		setSize(0.5F, 1.0F);
 	}
-	
+
 	public EntityPetRobot(World worldIn, EntityPlayer owner) {
 		super(worldIn, owner);
-		setSize(0.25F, 0.25F);
+		setSize(0.5F, 1.0F);
 	}
 
 	@Override
@@ -38,4 +42,8 @@ public class EntityPetRobot extends EntityJourneyPet {
 		return null;
 	}
 
+	@Override
+	public @NotNull EntitySettings getEntitySettings() {
+		return MobStats.PET_ROBOT;
+	}
 }

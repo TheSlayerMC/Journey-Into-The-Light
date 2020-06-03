@@ -1,6 +1,5 @@
 package net.journey.entity.mob.boiling;
 
-import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityMagmaFireball;
 import net.journey.init.JourneyLootTables;
@@ -16,6 +15,8 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import net.slayer.api.entity.JEntityMob;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;

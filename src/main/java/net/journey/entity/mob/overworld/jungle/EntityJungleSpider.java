@@ -1,6 +1,5 @@
 package net.journey.entity.mob.overworld.jungle;
 
-import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
 import net.journey.init.JourneyLootTables;
 import net.journey.util.PotionEffects;
@@ -31,6 +30,8 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
+import net.slayer.api.entity.JEntityMob;
+
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;

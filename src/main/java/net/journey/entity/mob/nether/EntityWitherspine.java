@@ -1,6 +1,5 @@
 package net.journey.entity.mob.nether;
 
-import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
 import net.journey.init.JourneyLootTables;
 import net.journey.util.PotionEffects;
@@ -12,6 +11,8 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
+import net.slayer.api.entity.JEntityMob;
+
 import org.jetbrains.annotations.NotNull;
 
 public class EntityWitherspine extends JEntityMob {

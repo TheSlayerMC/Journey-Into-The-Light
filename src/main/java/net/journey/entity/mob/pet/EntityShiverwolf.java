@@ -47,33 +47,38 @@ import java.util.UUID;
 
 public class EntityShiverwolf extends EntityJourneyPet {
 
-    public EntityShiverwolf(World worldIn) {
-        super(worldIn);
-    }
+	public EntityShiverwolf(World worldIn) {
+		super(worldIn);
+	}
 
-    public EntityShiverwolf(World worldIn, EntityPlayer owner) {
+	public EntityShiverwolf(World worldIn, EntityPlayer owner) {
 		super(worldIn, owner);
 		setSize(0.25F, 0.25F);
 	}
 
-    @Override
-    public SoundEvent setLivingSound() {
-        return JourneySounds.EMPTY;
-    }
+	@Override
+	public SoundEvent setLivingSound() {
+		return JourneySounds.EMPTY;
+	}
 
-    @Override
-    public SoundEvent setHurtSound() {
-        return JourneySounds.EMPTY;
-    }
+	@Override
+	public SoundEvent setHurtSound() {
+		return JourneySounds.EMPTY;
+	}
 
-    @Override
-    public SoundEvent setDeathSound() {
-        return JourneySounds.EMPTY;
-    }
+	@Override
+	public SoundEvent setDeathSound() {
+		return JourneySounds.EMPTY;
+	}
 
 
 	@Override
 	public EntityAgeable createChild(EntityAgeable ageable) {
 		return null;
+	}
+
+	@Override
+	public @NotNull EntitySettings getEntitySettings() {
+		return MobStats.SHIVERWOLF;
 	}
 }

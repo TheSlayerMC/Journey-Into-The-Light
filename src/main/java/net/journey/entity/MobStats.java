@@ -133,10 +133,10 @@ public class MobStats {
     public static final EntitySettings SENTRY_BLOCK = new EntitySettings(75, 0).setMovementSpeed(0);
 
     //Misc
-    public static double EucaHopperHealth = 40.0D, EucaHopperDamage = 7.5D;
-    public static double EucaHopperTameHealth = 40.0D, EucaHopperTameDamage = 7.5D;
-    public static double TameRocHealth = 60.0D, TameRocDamage = 7.0D;
     public static final EntitySettings PET_ROBOT = new EntitySettings(20, 5);
+    public static final EntitySettings EUCA_HOPPER = new EntitySettings(40, 7.5);
+    public static final EntitySettings SHIVERWOLF = new EntitySettings(30, 5);
+    public static final EntitySettings PET_ROC = new EntitySettings(60, 7);
 
     //Boss
     public static double soulWatcherHealth = 700.0D, soulWatcherDamage = 10.0D, soulWatcherSpeed = standardMovementSpeed, soulWatcherFollowRange = boss_follow;

@@ -1,7 +1,6 @@
 package net.slayer.api.entity;
 
 import net.journey.api.entity.IEssenceBoss;
-import net.journey.api.entity.JEntityMob;
 import net.journey.entity.MobStats;
 import net.journey.init.JourneySounds;
 import net.minecraft.entity.item.EntityXPOrb;

@@ -1,5 +1,8 @@
-package net.journey.api.entity;
+package net.slayer.api.entity;
 
+import net.journey.api.entity.IJERCompatible;
+import net.journey.api.entity.ISettingsConsumer;
+import net.journey.api.entity.ISettingsConsumer.EntitySettings;
 import net.minecraft.block.Block;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
