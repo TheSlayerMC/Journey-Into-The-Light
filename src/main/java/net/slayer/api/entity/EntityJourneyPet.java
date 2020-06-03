@@ -76,13 +76,11 @@ public abstract class EntityJourneyPet extends EntityModTameable {
 		ItemStack itemstack = player.getHeldItem(hand);
 		if(!itemstack.isEmpty()) {
 			if(itemstack.getItem() == JourneyItems.PET_FOOD) {
-				//if (itemfood.isWolfsFavoriteMeat() && ((Float)this.dataManager.get(DATA_HEALTH_ID)).floatValue() < 20.0F) { //fix this to cap health
 				if (!player.capabilities.isCreativeMode) {
 					itemstack.shrink(1);
 				}
 				this.heal(3);
 				return true;
-				// }
 			}
 		}
 		if (this.isOwner(player) && !this.world.isRemote && !this.isBreedingItem(itemstack)) {
