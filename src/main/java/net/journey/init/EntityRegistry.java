@@ -58,8 +58,8 @@ import net.minecraftforge.fml.common.event.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.slayer.api.SlayerAPI;
-import scala.actors.threadpool.Arrays;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -301,7 +301,6 @@ public class EntityRegistry {
 		event.getRegistry().registerAll(entries);
 		LogHelper.info("Successfully registered " + entries.length + " mobs");
 
-		//noinspection unchecked
 		MOB_ENTRIES = Arrays.asList(entries);
 	}
 
