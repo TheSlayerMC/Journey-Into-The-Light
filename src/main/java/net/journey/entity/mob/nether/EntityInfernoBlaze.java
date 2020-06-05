@@ -1,12 +1,21 @@
 package net.journey.entity.mob.nether;
 
+import java.util.List;
+
+import org.jetbrains.annotations.NotNull;
+
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityMagmaFireball;
 import net.journey.init.JourneyLootTables;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.ai.*;
-import net.minecraft.entity.monster.EntityBlaze;
+import net.minecraft.entity.ai.EntityAIBase;
+import net.minecraft.entity.ai.EntityAIHurtByTarget;
+import net.minecraft.entity.ai.EntityAILookIdle;
+import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
+import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
+import net.minecraft.entity.ai.EntityAIWander;
+import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
@@ -24,13 +33,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.entity.JEntityMob;
 
-import org.jetbrains.annotations.NotNull;
-
-import java.util.List;
-
 public class EntityInfernoBlaze extends JEntityMob {
 
-    private static final DataParameter<Byte> ON_FIRE = EntityDataManager.createKey(EntityBlaze.class, DataSerializers.BYTE);
+    private static final DataParameter<Byte> ON_FIRE = EntityDataManager.createKey(EntityInfernoBlaze.class, DataSerializers.BYTE);
     private float heightOffset = 0.5F;
     private int heightOffsetUpdateTime;
     private int attackTimer;
