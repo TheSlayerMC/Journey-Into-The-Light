@@ -1,4 +1,4 @@
-package net.journey.event;
+package net.journey.eventhandler;
 
 import net.journey.init.items.JourneyArmory;
 import net.journey.util.PotionEffects;
@@ -15,7 +15,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 public class ArmorAbilityEvent {
 
 
-    private JourneyArmory item = new JourneyArmory();
+    private final JourneyArmory item = new JourneyArmory();
     private Item boots = null, body = null, legs = null, helmet = null;
 
     @SubscribeEvent

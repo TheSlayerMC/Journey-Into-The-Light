@@ -1,4 +1,4 @@
-package net.journey.event;
+package net.journey.eventhandler;
 
 import net.journey.dimension.nether.JNWorldGenerator;
 import net.minecraft.world.DimensionType;

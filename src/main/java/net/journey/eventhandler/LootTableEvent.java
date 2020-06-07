@@ -1,4 +1,4 @@
-package net.journey.event;
+package net.journey.eventhandler;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.LootEntry;

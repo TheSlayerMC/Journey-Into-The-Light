@@ -11,7 +11,10 @@ import net.journey.dimension.corba.village.StructureCorbaVillagePieces;
 import net.journey.dimension.nether.JNWorldGenerator;
 import net.journey.dimension.nether.biomes.BiomeRegister;
 import net.journey.enums.EnumParticlesClasses;
-import net.journey.event.*;
+import net.journey.eventhandler.ArmorAbilityEvent;
+import net.journey.eventhandler.BowZoomEvent;
+import net.journey.eventhandler.NetherEvent;
+import net.journey.eventhandler.VanillaFixEvent;
 import net.journey.init.*;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.init.common.JourneyCrops;
@@ -97,7 +100,6 @@ public class CommonProxy {
         addOreDictionary();
         SlayerAPI.registerEventListener(new NetherEvent());
         SlayerAPI.registerEventListener(new ArmorAbilityEvent());
-        SlayerAPI.registerEventListener(new PlayerEvent());
         SlayerAPI.registerEventListener(new JourneyFuelHandler());
         SlayerAPI.registerEventListener(new VanillaFixEvent());
         SlayerAPI.registerEventListener(new JourneyEnchantments());
@@ -117,7 +119,6 @@ public class CommonProxy {
         JourneyRecipes.init();
         NetworkRegistry.INSTANCE.registerGuiHandler(JITL.instance, new GuiHandler());
         GameRegistry.registerWorldGenerator(new WorldGenJourney(), 2);
-        SlayerAPI.registerEventListener(new PlayerEvent());
 
         Integrations.onInit(event);
     }

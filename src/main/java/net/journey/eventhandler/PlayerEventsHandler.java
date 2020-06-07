@@ -1,10 +1,11 @@
-package net.journey.event;
+package net.journey.eventhandler;
 
 import net.journey.init.JourneyLootTables;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.init.items.JourneyArmory;
 import net.journey.init.items.JourneyConsumables;
 import net.journey.util.LootHelper;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityGhast;
@@ -21,24 +22,20 @@ import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.slayer.api.PlayerHelper;
 
 import java.util.List;
 import java.util.Random;
 
-public class PlayerEvent {
+@Mod.EventBusSubscriber
+public class PlayerEventsHandler {
+	public static double rand;
+	public static Random random = new Random();//TODO get rid of it
 
-	public double rand;
-	public Random random;
-
-	public PlayerEvent() {
-		this.rand = 0;
-		this.random = new Random();
-	}
-	
 	@SubscribeEvent
-	public void onBlockClicked(PlayerInteractEvent event) {
+	public static void onBlockClicked(PlayerInteractEvent event) {
 		EntityPlayer p = event.getEntityPlayer();
 		World world = event.getWorld();
 		BlockPos pos = event.getPos();
@@ -50,70 +47,72 @@ public class PlayerEvent {
 	}
 
 	@SubscribeEvent
-	public void onBlockHarvested(HarvestDropsEvent event) {
+	public static void onBlockHarvested(HarvestDropsEvent event) {
 		EntityPlayer p = event.getHarvester();
+		IBlockState harvestedState = event.getState();
+		List<ItemStack> drops = event.getDrops();
+
 		ItemStack helmet;
-		if(event.getHarvester() != null && event.getHarvester() instanceof EntityPlayer && event.getHarvester().getHeldItemMainhand() != null) {
-			if(!event.isSilkTouching()) {
-				if(event.getHarvester().getHeldItemMainhand().getItem() == JourneyArmory.multiToolOfEternalSmelting) {
-					ItemStack stack = FurnaceRecipes.instance().getSmeltingResult(new ItemStack(event.getState().getBlock()));
-					if(stack != null && event.getState().getBlock() != Blocks.REDSTONE_ORE && event.getState().getBlock() != Blocks.LAPIS_ORE && event.getState().getBlock() != Blocks.LAPIS_ORE) {
-						event.getDrops().clear();
-						event.getDrops().add(stack.copy());
+		if (p != null && !p.world.isRemote) {
+			EntityPlayerMP playerMP = (EntityPlayerMP) p;
+			Item heldItem = playerMP.getHeldItemMainhand().getItem();
+
+			if (!event.isSilkTouching()) {
+				if (heldItem == JourneyArmory.multiToolOfEternalSmelting) {
+					ItemStack stack = FurnaceRecipes.instance().getSmeltingResult(new ItemStack(harvestedState.getBlock()));
+					if (harvestedState.getBlock() != Blocks.REDSTONE_ORE && harvestedState.getBlock() != Blocks.LAPIS_ORE && harvestedState.getBlock() != Blocks.LAPIS_ORE) {
+						drops.clear();
+						drops.add(stack.copy());
 					}
 				}
-				if(event.getHarvester().getHeldItemMainhand().getItem() == JourneyArmory.SLIMY_PICKAXE) {
-					for(ItemStack s : event.getDrops()) {
+				if (heldItem == JourneyArmory.SLIMY_PICKAXE) {
+					for (ItemStack s : drops) {
 						EntityItem item = new EntityItem(event.getWorld(), p.getPosition().getX(), p.getPosition().getY(), p.getPosition().getZ());
 						item.setItem(s);
 						event.getWorld().spawnEntity(item);
-						event.getDrops().clear();
+						drops.clear();
 					}
 				}
 				helmet = p.inventory.armorInventory.get(3);
-				if(helmet.getItem() == JourneyArmory.MASK_OF_HELLMETAL) {
-					ItemStack stack = FurnaceRecipes.instance().getSmeltingResult(new ItemStack(event.getState().getBlock()));
-					if(stack != null) {
-						event.getDrops().clear();
-						event.getDrops().add(stack.copy());
-						helmet.damageItem(1, p);
-					} else if (stack == null) {
-						event.getDrops();
-					}
+				if (helmet.getItem() == JourneyArmory.MASK_OF_HELLMETAL) {
+					ItemStack stack = FurnaceRecipes.instance().getSmeltingResult(new ItemStack(harvestedState.getBlock()));
+					drops.clear();
+					drops.add(stack.copy());
+					helmet.damageItem(1, p);
 				}
-				if (event.getHarvester().getHeldItemMainhand().getItem() == JourneyArmory.HOE_OF_EARTH_LOVING) {
-					List<ItemStack> i = LootHelper.readFromLootTable(JourneyLootTables.LOOT_SEEDS, (EntityPlayerMP)event.getHarvester());
-					int index = random.nextInt(i.size()); 
+				if (heldItem == JourneyArmory.HOE_OF_EARTH_LOVING) {
+					List<ItemStack> i = LootHelper.readFromLootTable(JourneyLootTables.LOOT_SEEDS, playerMP);
+					int index = random.nextInt(i.size());
 					Item it = i.get(index).getItem();
-					if(event.getState().getBlock().getRegistryName().toString().contains("grass")) {
-						if(random.nextInt(3) == 0) 
-							event.getDrops().add(new ItemStack(it));
+					if (harvestedState.getBlock().getRegistryName().toString().contains("grass")) {
+						if (random.nextInt(3) == 0)
+							drops.add(new ItemStack(it));
 					}
 				}
-				if(event.getHarvester().getHeldItemMainhand().getItem() == JourneyArmory.PICKAXE_OF_GOOD_FORTUNE) {
+				if (heldItem == JourneyArmory.PICKAXE_OF_GOOD_FORTUNE) {
 
-					List<ItemStack> i = LootHelper.readFromLootTable(JourneyLootTables.LOOT_POUCH, (EntityPlayerMP)event.getHarvester()); // make new loot table
-					int index = random.nextInt(i.size()); 
+					List<ItemStack> i = LootHelper.readFromLootTable(JourneyLootTables.LOOT_POUCH, playerMP); // make new loot table
+					int index = random.nextInt(i.size());
 					Item it = i.get(index).getItem();
 
-					if(event.getState().getBlock().getRegistryName().toString().contains("ore")) {
-						if(random.nextInt(3) == 0) 
-							event.getDrops().add(new ItemStack(it));// make it spawn only 1 item not 2 and add it so its only a chance
+					if (harvestedState.getBlock().getRegistryName().toString().contains("ore")) {
+						if (random.nextInt(3) == 0)
+							drops.add(new ItemStack(it));// make it spawn only 1 item not 2 and add it so its only a chance
 					}
 				}
-				List<ItemStack> i = LootHelper.readFromLootTable(JourneyLootTables.GOLD_LOOT_BOX, (EntityPlayerMP) event.getHarvester());
+				List<ItemStack> i = LootHelper.readFromLootTable(JourneyLootTables.GOLD_LOOT_BOX, playerMP);
 				int index = random.nextInt(i.size());
 				Item it = i.get(index).getItem();
 
-				if (event.getState().getBlock().getRegistryName().toString().contains("gold_loot_box")) {
-					event.getDrops().add(new ItemStack(it));
+				if (harvestedState.getBlock().getRegistryName().toString().contains("gold_loot_box")) {
+					drops.add(new ItemStack(it));
 				}
 			}
 		}
 	}
 
 	@SubscribeEvent
-	public void onPlayerLogged(EntityJoinWorldEvent event) {
+	public static void onPlayerLogged(EntityJoinWorldEvent event) {
 		if (event.getEntity() instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer) event.getEntity();
 			NBTTagCompound nbt = PlayerHelper.getPersistedpTag(player);
@@ -127,11 +126,11 @@ public class PlayerEvent {
 	}
 
 	@SubscribeEvent
-	public void onEntityDrop(LivingDropsEvent event) {
+	public static void onEntityDrop(LivingDropsEvent event) {
 		if (event.getSource().getDamageType().equals("player")) {
-			this.rand = Math.random();
+			rand = Math.random();
 			if (event.getEntityLiving() instanceof EntityGhast) {
-				if (this.rand < 3) {
+				if (rand < 3) {
 					event.getEntityLiving().dropItem(JourneyConsumables.ghastTentacle, 1);
 				}
 			}
@@ -139,7 +138,7 @@ public class PlayerEvent {
 	}
 
 	/* @SubscribeEvent
-	public void bonemealUsed(BonemealEvent event, BlockPos pos) {
+	public static void bonemealUsed(BonemealEvent event, BlockPos pos) {
 		if(event.world.getBlockState(new BlockPos(event.pos.getX(), event.pos.getY(), event.pos.getZ())) == JourneyBlocks.sizzleberryBush) {
 			((BlockModBush)JourneyBlocks.sizzleberryBush)
 		}

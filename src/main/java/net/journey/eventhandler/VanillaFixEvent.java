@@ -1,4 +1,4 @@
-package net.journey.event;
+package net.journey.eventhandler;
 
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;

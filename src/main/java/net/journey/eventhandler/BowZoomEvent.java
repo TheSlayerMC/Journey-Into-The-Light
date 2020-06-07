@@ -1,4 +1,4 @@
-package net.journey.event;
+package net.journey.eventhandler;
 
 import net.journey.JITL;
 import net.journey.items.bows.ItemModBow;

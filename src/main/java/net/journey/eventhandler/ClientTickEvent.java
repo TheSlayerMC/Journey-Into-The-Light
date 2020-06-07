@@ -1,36 +1,17 @@
-package net.journey.event;
+package net.journey.eventhandler;
 
-import net.journey.JITL;
 import net.journey.client.render.gui.JourneyMainMenu;
-import net.journey.client.server.EssenceProvider;
-import net.journey.client.server.IEssence;
 import net.journey.init.items.JourneyArmory;
-import net.journey.init.items.JourneyWeapons;
-import net.journey.items.bows.ItemModBow;
-import net.journey.items.interactive.ItemAddEssence;
-import net.journey.items.interactive.ItemEternalNight;
-import net.journey.items.interactive.ItemTeleport;
-import net.journey.items.ranged.ItemGun;
-import net.journey.items.ranged.ItemHammer;
-import net.journey.items.ranged.ItemStaff;
 import net.journey.util.Config;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiIngame;
 import net.minecraft.client.gui.GuiMainMenu;
-import net.minecraft.client.gui.ScaledResolution;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent.RenderTickEvent;
-import org.lwjgl.opengl.GL11;
 
 import java.util.Random;
 
