@@ -380,6 +380,7 @@ public class ChunkProviderTerrania implements IChunkGenerator {
 			int randZ = cz * 16 + 8 + rand.nextInt(16);
 			int randY = rand.nextInt(28) + 1;
 			if (isBlockTop(randX, randY - 1, randZ, JourneyBlocks.terranianGrass)) {
+                new WorldGenTerraniaTree(false, 5, 10, JourneyBlocks.terranianLog.getDefaultState(), JourneyBlocks.terraniaLeaves.getDefaultState());
 			}
 		}
 
