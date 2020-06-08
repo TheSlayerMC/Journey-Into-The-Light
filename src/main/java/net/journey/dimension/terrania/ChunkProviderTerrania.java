@@ -38,17 +38,6 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import net.slayer.api.worldgen.WorldGenAPI;
 
 public class ChunkProviderTerrania implements IChunkGenerator {
-
-    private final WorldGenerator[] smalltrees = {
-            new WorldGenTerraniaSmallTree()
-    };
-    
-    private final WorldGenerator[] LARGE_TREES = {
-            new WorldGenTerraniaBigTree1(),
-            new WorldGenTerraniaBigTree2(),
-            new WorldGenTerraniaBigTree3(),
-            new WorldGenTerraniaTree(true, 10, 20, JourneyBlocks.terranianLog.getDefaultState(), JourneyBlocks.terraniaLeaves.getDefaultState())
-    };
     
     private final double[] da;
     private final float[] parabolicField;
@@ -350,10 +339,6 @@ public class ChunkProviderTerrania implements IChunkGenerator {
             generateStructure(x1, z1, new WorldGenTerrashroom(JourneyBlocks.terrashroomBlockPurple));
         }
 
-        for (times = 0; times < 850; times++) {
-            generateStructure(x1, z1, new WorldGenTerraniaTree(true, 5, 10, JourneyBlocks.terranianLog.getDefaultState(), JourneyBlocks.terraniaLeaves.getDefaultState()));
-        }
-
         for (times = 0; times < 100; times++) {
             generateStructure(x1, z1, new WorldGenTerraniaTree(true, 0, 1, JourneyBlocks.terranianLog.getDefaultState(), JourneyBlocks.terraniaLeaves.getDefaultState()));
         }
@@ -390,21 +375,11 @@ public class ChunkProviderTerrania implements IChunkGenerator {
             }
         }
         
-        for (times = 0; times < 100; times++) {
+        for (times = 0; times < 850; times++) {
 			int randX = cx * 16 + 8 + rand.nextInt(16);
 			int randZ = cz * 16 + 8 + rand.nextInt(16);
 			int randY = rand.nextInt(28) + 1;
 			if (isBlockTop(randX, randY - 1, randZ, JourneyBlocks.terranianGrass)) {
-				smalltrees[rand.nextInt(smalltrees.length)].generate(worldObj, rand, new BlockPos(randX, randY, randZ));
-			}
-		}
-        
-        for (times = 0; times < 75; times++) {
-			int randX = cx * 16 + 8 + rand.nextInt(16);
-			int randZ = cz * 16 + 8 + rand.nextInt(16);
-			int randY = rand.nextInt(28) + 1;
-			if (isBlockTop(randX, randY - 1, randZ, JourneyBlocks.terranianGrass)) {
-				LARGE_TREES[rand.nextInt(LARGE_TREES.length)].generate(worldObj, rand, new BlockPos(randX, randY, randZ));
 			}
 		}
 
