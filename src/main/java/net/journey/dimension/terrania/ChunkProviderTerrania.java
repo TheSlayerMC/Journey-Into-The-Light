@@ -374,15 +374,10 @@ public class ChunkProviderTerrania implements IChunkGenerator {
                 mushroomDungeon.generate(worldObj, rand, new BlockPos(randX, randY, randZ));
             }
         }
-        
+
         for (times = 0; times < 850; times++) {
-			int randX = cx * 16 + 8 + rand.nextInt(16);
-			int randZ = cz * 16 + 8 + rand.nextInt(16);
-			int randY = rand.nextInt(28) + 1;
-			if (isBlockTop(randX, randY - 1, randZ, JourneyBlocks.terranianGrass)) {
-                new WorldGenTerraniaTree(false, 5, 10, JourneyBlocks.terranianLog.getDefaultState(), JourneyBlocks.terraniaLeaves.getDefaultState());
-			}
-		}
+            generateStructure(x1, z1, new WorldGenTerraniaTree(true, 5, 10, JourneyBlocks.terranianLog.getDefaultState(), JourneyBlocks.terraniaLeaves.getDefaultState()));
+        }
 
         if (rand.nextInt(8) == 0) {
             BlockPos pos = WorldGenAPI.createRandom(x1, 1, 128, z1, rand, 2);
