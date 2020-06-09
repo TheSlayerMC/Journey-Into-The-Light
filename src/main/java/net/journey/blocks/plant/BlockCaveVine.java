@@ -1,7 +1,7 @@
 package net.journey.blocks.plant;
 
+import net.journey.api.block.GroundPredicate;
 import net.journey.api.block.base.JBlockPlant;
-import net.journey.init.JourneyTabs;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.properties.PropertyInteger;
@@ -14,7 +14,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -27,9 +26,11 @@ public class BlockCaveVine extends JBlockPlant implements IGrowable {
     public static final PropertyInteger AGE = PropertyInteger.create("age", 0, 3);
 
     public BlockCaveVine(String name, String enName) {
-        super(name, enName, JourneyTabs.DECORATION);
+        super(name, enName);
         setLightLevel(0.3F);
-        setType(EnumPlantType.Cave);
+        setPlantDirection(EnumFacing.DOWN);
+        setGroundPredicate(GroundPredicate.SOLID_SIDE
+                .or((world, groundPos, groundState, plantDirection) -> (groundState.getBlock() == this && groundState.getValue(AGE) == 3)));
     }
 
     @Override
@@ -53,11 +54,6 @@ public class BlockCaveVine extends JBlockPlant implements IGrowable {
     }
 
     @Override
-    public boolean canPlaceBlockAt(World world, BlockPos pos) {
-        return world.getBlockState(pos).getBlock().isReplaceable(world, pos) && canStay(world, pos);
-    }
-
-    @Override
     public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
         super.updateTick(world, pos, state, rand);
 
@@ -77,14 +73,9 @@ public class BlockCaveVine extends JBlockPlant implements IGrowable {
 
     @Override
     protected void checkAndDropBlock(World worldIn, BlockPos pos, IBlockState state) {
-        if (!this.canStay(worldIn, pos)) {
+        if (!this.canBlockStay(worldIn, pos, state)) {
             worldIn.destroyBlock(pos, true);
         }
-    }
-
-    public boolean canStay(World world, BlockPos pos) {
-        IBlockState base = world.getBlockState(pos.up());
-        return (base.getBlock() == this && base.getValue(AGE) == 3) || base.isSideSolid(world, pos.up(), EnumFacing.DOWN);
     }
 
     @Override

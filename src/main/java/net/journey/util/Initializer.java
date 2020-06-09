@@ -3,7 +3,7 @@ package net.journey.util;
 import java.util.function.Consumer;
 
 public class Initializer<T> {
-	private T obj;
+	private final T obj;
 
 	public Initializer(T obj) {
 		this.obj = obj;
@@ -15,7 +15,11 @@ public class Initializer<T> {
 		return obj;
 	}
 
-	public T retrieve() {
+	public T get() {
 		return obj;
+	}
+
+	public static <T> Initializer<T> of(T obj) {
+		return new Initializer<>(obj);
 	}
 }

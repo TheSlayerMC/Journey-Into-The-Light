@@ -1,8 +1,5 @@
 package net.journey.dimension.terrania;
 
-import java.util.List;
-import java.util.Random;
-
 import net.journey.dimension.overworld.gen.WorldGenModFlower;
 import net.journey.dimension.terrania.gen.WorldGenHollowTree;
 import net.journey.dimension.terrania.gen.WorldGenTerranianLamp;
@@ -10,10 +7,6 @@ import net.journey.dimension.terrania.gen.dungeon.WorldGenMushroomDungeon;
 import net.journey.dimension.terrania.gen.dungeon.WorldGenTallTree;
 import net.journey.dimension.terrania.gen.dungeon.WorldGenTreeHut;
 import net.journey.dimension.terrania.gen.shroom.WorldGenTerrashroom;
-import net.journey.dimension.terrania.gen.trees.WorldGenTerraniaBigTree1;
-import net.journey.dimension.terrania.gen.trees.WorldGenTerraniaBigTree2;
-import net.journey.dimension.terrania.gen.trees.WorldGenTerraniaBigTree3;
-import net.journey.dimension.terrania.gen.trees.WorldGenTerraniaSmallTree;
 import net.journey.dimension.terrania.gen.trees.WorldGenTerraniaTree;
 import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.block.Block;
@@ -22,23 +15,22 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
-import net.minecraft.world.gen.IChunkGenerator;
-import net.minecraft.world.gen.MapGenBase;
-import net.minecraft.world.gen.MapGenCaves;
-import net.minecraft.world.gen.MapGenRavine;
-import net.minecraft.world.gen.NoiseGeneratorOctaves;
-import net.minecraft.world.gen.NoiseGeneratorPerlin;
+import net.minecraft.world.gen.*;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.slayer.api.worldgen.WorldGenAPI;
 
+import java.util.List;
+import java.util.Random;
+
 public class ChunkProviderTerrania implements IChunkGenerator {
-    
+
     private final double[] da;
     private final float[] parabolicField;
     public NoiseGeneratorOctaves noiseGen5;
@@ -56,23 +48,23 @@ public class ChunkProviderTerrania implements IChunkGenerator {
     WorldGenMushroomDungeon mushroomDungeon = new WorldGenMushroomDungeon();
     WorldGenTallTree tallTree = new WorldGenTallTree();
     WorldGenTerranianLamp lamp = new WorldGenTerranianLamp();
-    private Random rand;
+    private final Random rand;
     private NoiseGeneratorOctaves noiseGen1;
     private NoiseGeneratorOctaves noiseGen2;
     private NoiseGeneratorOctaves noiseGen3;
-    private NoiseGeneratorPerlin noiseGen4;
-    private World worldObj;
+    private final NoiseGeneratorPerlin noiseGen4;
+    private final World world;
     private double[] stoneNoise;
-    private MapGenBase caveGenerator;
-    private MapGenBase ravineGenerator;
+    private final MapGenBase caveGenerator;
+    private final MapGenBase ravineGenerator;
     private Biome[] biomesForGeneration;
 
-    public ChunkProviderTerrania(World worldIn, long p_i45636_2_) {
+    public ChunkProviderTerrania(World worldIn, long seed) {
         this.stoneNoise = new double[256];
         this.caveGenerator = new MapGenCaves();
         this.ravineGenerator = new MapGenRavine();
-        this.worldObj = worldIn;
-        this.rand = new Random(p_i45636_2_);
+        this.world = worldIn;
+        this.rand = new Random(seed);
         this.noiseGen1 = new NoiseGeneratorOctaves(this.rand, 16);
         this.noiseGen2 = new NoiseGeneratorOctaves(this.rand, 16);
         this.noiseGen3 = new NoiseGeneratorOctaves(this.rand, 8);
@@ -102,7 +94,7 @@ public class ChunkProviderTerrania implements IChunkGenerator {
     }
 
     public void setBlocksInChunk(int x, int z, ChunkPrimer p_180518_3_) {
-        this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomesForGeneration(this.biomesForGeneration, x * 4 - 2, z * 4 - 2, 10, 10);
+        this.biomesForGeneration = this.world.getBiomeProvider().getBiomesForGeneration(this.biomesForGeneration, x * 4 - 2, z * 4 - 2, 10, 10);
         this.generate(x * 4, 0, z * 4);
         for (int k = 0; k < 4; ++k) {
             int l = k * 5;
@@ -212,11 +204,11 @@ public class ChunkProviderTerrania implements IChunkGenerator {
         this.rand.setSeed(x * 341873128712L + z * 132897987541L);
         ChunkPrimer chunkprimer = new ChunkPrimer();
         this.setBlocksInChunk(x, z, chunkprimer);
-        this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomes(this.biomesForGeneration, x * 16, z * 16, 16, 16);
+        this.biomesForGeneration = this.world.getBiomeProvider().getBiomes(this.biomesForGeneration, x * 16, z * 16, 16, 16);
         this.biomeBlocks(x, z, chunkprimer, this.biomesForGeneration);
         //this.caveGenerator.func_175792_a(this, this.worldObj, x, z, chunkprimer);
         //this.ravineGenerator.func_175792_a(this, this.worldObj, x, z, chunkprimer);
-        Chunk chunk = new Chunk(this.worldObj, chunkprimer, x, z);
+        Chunk chunk = new Chunk(this.world, chunkprimer, x, z);
         byte[] abyte = chunk.getBiomeArray();
         for (int k = 0; k < abyte.length; ++k) abyte[k] = (byte) Biome.getIdForBiome(this.biomesForGeneration[k]);
         chunk.generateSkylightMap();
@@ -319,9 +311,10 @@ public class ChunkProviderTerrania implements IChunkGenerator {
     }
 
     @Override
-    public void populate(int cx, int cz) {
-        int x1 = cx * 16;
-        int z1 = cz * 16;
+    public void populate(int chunkX, int chunkZ) {
+        ChunkPos chunkPos = new ChunkPos(chunkX, chunkZ);
+        int x1 = chunkX * 16;
+        int z1 = chunkZ * 16;
         int times;
         int chunkSize = 16;
         int topYMax = 100;
@@ -344,15 +337,15 @@ public class ChunkProviderTerrania implements IChunkGenerator {
         }
 
         for (int i = 0; i < 100; i++) {
-            flower.generate(worldObj, r, chunkStart);
+            flower.generate(world, r, chunkStart);
         }
 
         for (int i = 0; i < 20; i++) {
-            flower1.generate(worldObj, r, chunkStart);
+            flower1.generate(world, r, chunkStart);
         }
 
         for (int i = 0; i < 1; i++) {
-            flower2.generate(worldObj, r, chunkStart);
+            flower2.generate(world, r, chunkStart);
         }
 
         if (rand.nextInt(1) == 0) {
@@ -362,27 +355,27 @@ public class ChunkProviderTerrania implements IChunkGenerator {
         if (rand.nextInt(1) == 0) {
             BlockPos pos = WorldGenAPI.createRandom(x1, 1, 128, z1, rand, 2);
             if (isBlockTop(pos.getX(), pos.getY() - 1, pos.getZ(), JourneyBlocks.terranianGrass)) {
-                hollowTree.generate(worldObj, rand, pos);
+                hollowTree.generate(world, rand, pos);
             }
         }
 
         for (times = 0; times < 1; times++) {
-            int randX = cx * 16 + 7 + rand.nextInt(9);
-            int randZ = cz * 16 + 7 + rand.nextInt(9);
+            int randX = chunkX * 16 + 7 + rand.nextInt(9);
+            int randZ = chunkZ * 16 + 7 + rand.nextInt(9);
             int randY = rand.nextInt(bottomYMax) + 1;
             if (isBlockTop(randX, randY - 1, randZ, JourneyBlocks.terranianGrass)) {
-                mushroomDungeon.generate(worldObj, rand, new BlockPos(randX, randY, randZ));
+                mushroomDungeon.generate(world, rand, new BlockPos(randX, randY, randZ));
             }
         }
 
-        for (times = 0; times < 850; times++) {
-            generateStructure(x1, z1, new WorldGenTerraniaTree(true, 5, 10, JourneyBlocks.terranianLog.getDefaultState(), JourneyBlocks.terraniaLeaves.getDefaultState()));
+        for (times = 0; times < 3; times++) {
+            WorldGenAPI.genStructureOnGround(world, chunkPos, rand, new WorldGenTerraniaTree(true, 5, 10, JourneyBlocks.terranianLog.getDefaultState(), JourneyBlocks.terraniaLeaves.getDefaultState()));
         }
 
         if (rand.nextInt(8) == 0) {
             BlockPos pos = WorldGenAPI.createRandom(x1, 1, 128, z1, rand, 2);
             if (isBlockTop(pos.getX(), pos.getY() - 1, pos.getZ(), JourneyBlocks.terranianGrass)) {
-                tallTree.generate(worldObj, rand, pos);
+                tallTree.generate(world, rand, pos);
             }
         }
 
@@ -394,17 +387,17 @@ public class ChunkProviderTerrania implements IChunkGenerator {
     private void generateStructure(int x, int z, WorldGenerator... generators) {
         BlockPos pos = WorldGenAPI.createRandom(x, 1, 128, z, rand, 8);
         if (isBlockTop(pos.getX(), pos.getY() - 1, pos.getZ(), JourneyBlocks.terranianGrass)) {
-            generators[rand.nextInt(generators.length)].generate(worldObj, rand, pos);
+            generators[rand.nextInt(generators.length)].generate(world, rand, pos);
         }
     }
 
     public boolean isBlockTop(int x, int y, int z, Block grass) {
-        return WorldGenAPI.isBlockTop(x, y, z, grass, worldObj);
+        return WorldGenAPI.isBlockTop(x, y, z, grass, world);
     }
 
     @Override
     public List<SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos) {
-        Biome biome = this.worldObj.getBiome(pos);
+        Biome biome = this.world.getBiome(pos);
         return biome.getSpawnableList(creatureType);
     }
 

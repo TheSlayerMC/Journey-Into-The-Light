@@ -1,5 +1,6 @@
 package net.journey.init.blocks;
 
+import net.journey.api.block.GroundPredicate;
 import net.journey.api.block.base.*;
 import net.journey.blocks.*;
 import net.journey.blocks.containers.*;
@@ -393,7 +394,7 @@ public class JourneyBlocks {
     public static JBlockPane terranianBars;
     public static BlockMod terranianDarkPanels;
     public static BlockMod terranianPanels;
-    public static BlockModFlower terranianTallgrass;
+    public static JBlockGrassPlant terranianTallgrass;
     public static BlockModFlower terramushroom;
     public static BlockModFlower tallterramushroom;
     public static BlockMod terragrow;
@@ -905,10 +906,10 @@ public class JourneyBlocks {
         terranianLog = new JBlockLog("terranianLog", "Terranian Log");
         terranianGrass = new BlockModGrass(terranianDirt, "terranianGrass", "Terranian Grass", 2.0F);
         terranianStone = new BlockMod("terranianStone", "Terranian Stone", 2.0F);
-        terranianBars = new Initializer<>(new JBlockPane(EnumMaterialTypes.STONE, "terranianBars", "Terranian Bars", true)).apply(pane -> pane.setHardness(5.0F));
+        terranianBars = Initializer.of(new JBlockPane(EnumMaterialTypes.STONE, "terranianBars", "Terranian Bars", true)).apply(pane -> pane.setHardness(5.0F));
         terranianDarkPanels = new BlockMod("terranianDarkPanels", "Terranian Dark Panels", 2.0F);
         terranianPanels = new BlockMod("terranianPanels", "Terranian Panels", 2.0F);
-        terranianTallgrass = new BlockModFlower("terranianTallgrass", "Terranian Tallgrass", true);
+        terranianTallgrass = Initializer.of(new JBlockGrassPlant("terranianTallgrass", "Terranian Tallgrass")).apply(it -> it.setGroundPredicate(GroundPredicate.COMMON_AND_TERRANIA_GRASS));
         terramushroom = new BlockModMushroom("terramushroom", "Terranian Shroom").setLightLevel(5.0F);
         tallterramushroom = new BlockModFlower("tallterramushroom", "Tall Terranian Shroom").setLightLevel(5.0F);
         terragrow = new BlockTerraFlower("terragrow", "Terranian Flower");

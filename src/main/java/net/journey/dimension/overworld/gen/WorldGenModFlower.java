@@ -4,7 +4,6 @@ import net.minecraft.block.Block;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.slayer.api.block.BlockModFlower;
 import net.slayer.api.worldgen.WorldGenAPI;
 
 import java.util.Random;
@@ -17,20 +16,20 @@ import java.util.Random;
 public class WorldGenModFlower extends WorldGenerator {
 
     private final boolean onSurface;
-    private BlockModFlower flower;
-    private Block grass;
+    private final Block flower;
+    private final Block grass;
 
-    public WorldGenModFlower(BlockModFlower b, Block grass) {
-        this(b, grass, true);
+    public WorldGenModFlower(Block flower, Block grass) {
+        this(flower, grass, true);
     }
 
     /**
-     * @param b         - flower
+     * @param flower    - flower
      * @param grass     - grass
      * @param onSurface - using top solid block
      */
-    public WorldGenModFlower(BlockModFlower b, Block grass, boolean onSurface) {
-        this.flower = b;
+    public WorldGenModFlower(Block flower, Block grass, boolean onSurface) {
+        this.flower = flower;
         this.grass = grass;
         this.onSurface = onSurface;
     }

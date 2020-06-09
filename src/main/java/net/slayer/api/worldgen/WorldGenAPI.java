@@ -9,7 +9,9 @@ import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.WorldGenerator;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -17,7 +19,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class WorldGenAPI {
 
-    private static Random r = new Random();
+    private static final Random r = new Random();
 
     public static boolean isValidLocationToSpawn(int x, int y, int z, World w, Block b) {
         for (int i = 0; i < x; i++) {
@@ -454,5 +456,12 @@ public class WorldGenAPI {
 
     public static BlockPos getPosWithHeight(BlockPos pos, int y) {
         return new BlockPos(pos.getX(), y, pos.getZ());
+    }
+
+    public static void genStructureOnGround(World world, ChunkPos chunkPos, Random r, WorldGenerator generator) {
+        BlockPos pos = findPosAboveSurface(world, new BlockPos(chunkPos.getXStart(), -1, chunkPos.getZStart()));
+        pos = optimizeAndRandomize(pos, r);
+
+        generator.generate(world, r, pos);
     }
 }
