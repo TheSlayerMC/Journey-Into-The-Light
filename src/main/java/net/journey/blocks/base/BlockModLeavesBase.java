@@ -1,4 +1,4 @@
-package net.journey.api.block.base;
+package net.journey.blocks.base;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumFacing;

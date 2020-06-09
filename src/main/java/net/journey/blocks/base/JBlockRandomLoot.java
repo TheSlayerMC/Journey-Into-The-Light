@@ -1,4 +1,4 @@
-package net.journey.api.block.base;
+package net.journey.blocks.base;
 
 import net.journey.init.JourneyTabs;
 import net.minecraft.block.properties.PropertyDirection;

@@ -1,11 +1,7 @@
-package net.journey.api.block.base;
-
-import java.util.Random;
+package net.journey.blocks.base;
 
 import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockFarmland;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -22,10 +18,12 @@ import net.slayer.api.EnumMaterialTypes;
 import net.slayer.api.SlayerAPI;
 import net.slayer.api.block.BlockMod;
 
+import java.util.Random;
+
 public class JBlockGrassPath extends BlockMod {
-	
+
 	public Block block;
-	
+
 	public JBlockGrassPath(String name, String enName, Block baseBlock) {
 		super(name, enName);
 		this.block = baseBlock;

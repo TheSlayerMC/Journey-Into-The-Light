@@ -1,8 +1,8 @@
 package net.journey.init.blocks;
 
 import net.journey.api.block.GroundPredicate;
-import net.journey.api.block.base.*;
 import net.journey.blocks.*;
+import net.journey.blocks.base.*;
 import net.journey.blocks.containers.*;
 import net.journey.blocks.meta.BlockMetaBase;
 import net.journey.blocks.plant.*;

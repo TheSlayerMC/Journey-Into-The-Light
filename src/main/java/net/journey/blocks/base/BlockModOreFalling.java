@@ -1,4 +1,4 @@
-package net.journey.api.block.base;
+package net.journey.blocks.base;
 
 import net.journey.client.render.particles.OreParticleFX;
 import net.minecraft.block.state.IBlockState;

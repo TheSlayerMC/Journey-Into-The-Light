@@ -1,4 +1,4 @@
-package net.journey.api.block.base;
+package net.journey.blocks.base;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.util.math.BlockPos;

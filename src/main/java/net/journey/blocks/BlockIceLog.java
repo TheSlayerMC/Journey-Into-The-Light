@@ -1,6 +1,6 @@
 package net.journey.blocks;
 
-import net.journey.api.block.base.JBlockLog;
+import net.journey.blocks.base.JBlockLog;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.BlockRenderLayer;

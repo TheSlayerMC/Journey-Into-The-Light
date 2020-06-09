@@ -1,4 +1,4 @@
-package net.journey.api.block.base;
+package net.journey.blocks.base;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.PropertyEnum;
@@ -132,7 +132,7 @@ public abstract class JDoubleBlock extends BlockMod {
         TOP("top"),
         BOTTOM("bottom");
 
-        private String name;
+        private final String name;
 
         EnumHalf(String name) {
             this.name = name;

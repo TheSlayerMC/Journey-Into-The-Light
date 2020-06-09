@@ -1,15 +1,12 @@
-package net.journey.api.block.base;
+package net.journey.blocks.base;
 
 import net.journey.JITL;
 import net.journey.init.JourneyTabs;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.gen.lang.LangGeneratorFacade;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
-import net.minecraft.block.BlockWall;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemBlock;
@@ -77,7 +74,7 @@ public class JBlockSlab extends BlockSlab {
 
 	@Override
 	protected BlockStateContainer createBlockState() {
-		return this.isDouble() ? new BlockStateContainer(this, new IProperty[0]) : new BlockStateContainer(this, new IProperty[] { HALF });
+		return this.isDouble() ? new BlockStateContainer(this) : new BlockStateContainer(this, HALF);
 	}
 	
 	@Override

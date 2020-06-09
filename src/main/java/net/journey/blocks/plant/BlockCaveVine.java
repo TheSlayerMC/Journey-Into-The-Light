@@ -1,7 +1,7 @@
 package net.journey.blocks.plant;
 
 import net.journey.api.block.GroundPredicate;
-import net.journey.api.block.base.JBlockPlant;
+import net.journey.blocks.base.JBlockPlant;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.properties.PropertyInteger;

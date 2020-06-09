@@ -1,6 +1,6 @@
 package net.journey.blocks.plant;
 
-import net.journey.api.block.base.JBlockDoublePlant;
+import net.journey.blocks.base.JBlockDoublePlant;
 import net.journey.init.JourneyTabs;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.AxisAlignedBB;
