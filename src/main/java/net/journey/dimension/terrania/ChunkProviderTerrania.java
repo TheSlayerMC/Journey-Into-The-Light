@@ -333,7 +333,7 @@ public class ChunkProviderTerrania implements IChunkGenerator {
         }
 
         for (times = 0; times < 2; times++) {
-            WorldGenAPI.genStructureOnGround(world, chunkPos, rand, new WorldGenTerraniaTree(true, 0, 1, JourneyBlocks.terranianLog.getDefaultState(), JourneyBlocks.terraniaLeaves.getDefaultState()));
+            WorldGenAPI.genOnGround(world, chunkPos, rand, new WorldGenTerraniaTree(true, 0, 1, JourneyBlocks.terranianLog.getDefaultState(), JourneyBlocks.terraniaLeaves.getDefaultState()));
         }
 
         for (int i = 0; i < 100; i++) {
@@ -369,7 +369,7 @@ public class ChunkProviderTerrania implements IChunkGenerator {
         }
 
         for (times = 0; times < 3; times++) {
-            WorldGenAPI.genStructureOnGround(world, chunkPos, rand, new WorldGenTerraniaTree(true, 5, 10, JourneyBlocks.terranianLog.getDefaultState(), JourneyBlocks.terraniaLeaves.getDefaultState()));
+            WorldGenAPI.genOnGround(world, chunkPos, rand, new WorldGenTerraniaTree(true, 5, 10, JourneyBlocks.terranianLog.getDefaultState(), JourneyBlocks.terraniaLeaves.getDefaultState()));
         }
 
         if (rand.nextInt(8) == 0) {

@@ -458,7 +458,11 @@ public class WorldGenAPI {
         return new BlockPos(pos.getX(), y, pos.getZ());
     }
 
-    public static void genStructureOnGround(World world, ChunkPos chunkPos, Random r, WorldGenerator generator) {
+    /**
+     * Generates provided world generator on the ground of the specified chunk.
+     * Also optimizes and randomizes coordinates.
+     */
+    public static void genOnGround(World world, ChunkPos chunkPos, Random r, WorldGenerator generator) {
         BlockPos pos = optimizeAndRandomize(new BlockPos(chunkPos.getXStart(), -1, chunkPos.getZStart()), r);
         pos = findPosAboveSurface(world, pos);
 
