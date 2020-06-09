@@ -1,5 +1,7 @@
 package net.journey.dimension.terrania.gen.trees;
 
+import net.journey.api.block.GroundPredicate;
+import net.journey.dimension.base.gen.JWorldGenHugeTrees;
 import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.block.BlockVine;
 import net.minecraft.block.properties.PropertyBool;
@@ -7,18 +9,19 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenHugeTrees;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
-public class WorldGenTerraniaTree extends WorldGenHugeTrees {
+public class WorldGenTerraniaTree extends JWorldGenHugeTrees {
 
     public WorldGenTerraniaTree(boolean notify, int baseHeightIn, int extraRandomHeightIn, IBlockState wood, IBlockState leaves) {
         super(notify, baseHeightIn, extraRandomHeightIn, wood, leaves);
+        setGroundPredicate(GroundPredicate.COMMON_AND_TERRANIA_GRASS);
     }
 
     @Override
-    public boolean generate(World worldIn, Random rand, BlockPos position) {
+    public boolean generate(@NotNull World worldIn, @NotNull Random rand, @NotNull BlockPos position) {
         int i = this.getHeight(rand);
 
         if (!this.ensureGrowable(worldIn, rand, position, i)) {
@@ -50,7 +53,7 @@ public class WorldGenTerraniaTree extends WorldGenHugeTrees {
             for (int i2 = 0; i2 < i; ++i2) {
                 BlockPos blockpos = position.up(i2);
 
-                if (this.isAirLeaves(worldIn, blockpos)) {
+                if (this.isReplaceable(worldIn, blockpos)) {
                     this.setBlockAndNotifyAdequately(worldIn, blockpos, JourneyBlocks.terranianLog.getDefaultState());
 
                     if (i2 > 0) {
@@ -62,7 +65,7 @@ public class WorldGenTerraniaTree extends WorldGenHugeTrees {
                 if (i2 < i - 1) {
                     BlockPos blockpos1 = blockpos.east();
 
-                    if (this.isAirLeaves(worldIn, blockpos1)) {
+                    if (this.isReplaceable(worldIn, blockpos1)) {
                         this.setBlockAndNotifyAdequately(worldIn, blockpos1, JourneyBlocks.terranianLog.getDefaultState());
 
                         if (i2 > 0) {
@@ -73,7 +76,7 @@ public class WorldGenTerraniaTree extends WorldGenHugeTrees {
 
                     BlockPos blockpos2 = blockpos.south().east();
 
-                    if (this.isAirLeaves(worldIn, blockpos2)) {
+                    if (this.isReplaceable(worldIn, blockpos2)) {
                         this.setBlockAndNotifyAdequately(worldIn, blockpos2, JourneyBlocks.terranianLog.getDefaultState());
 
                         if (i2 > 0) {
@@ -84,7 +87,7 @@ public class WorldGenTerraniaTree extends WorldGenHugeTrees {
 
                     BlockPos blockpos3 = blockpos.south();
 
-                    if (this.isAirLeaves(worldIn, blockpos3)) {
+                    if (this.isReplaceable(worldIn, blockpos3)) {
                         this.setBlockAndNotifyAdequately(worldIn, blockpos3, JourneyBlocks.terranianLog.getDefaultState());
 
                         if (i2 > 0) {
@@ -111,11 +114,5 @@ public class WorldGenTerraniaTree extends WorldGenHugeTrees {
         for (int j = -2; j <= 0; ++j) {
             this.growLeavesLayerStrict(worldIn, pos.up(j), p_175930_3_ + 1 - j);
         }
-    }
-
-    // Helper macro
-    private boolean isAirLeaves(World world, BlockPos pos) {
-        IBlockState state = world.getBlockState(pos);
-        return state.getBlock().isAir(state, world, pos) || state.getBlock().isLeaves(state, world, pos);
     }
 }

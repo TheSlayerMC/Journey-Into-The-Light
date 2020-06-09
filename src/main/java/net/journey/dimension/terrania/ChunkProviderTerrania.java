@@ -332,8 +332,8 @@ public class ChunkProviderTerrania implements IChunkGenerator {
             generateStructure(x1, z1, new WorldGenTerrashroom(JourneyBlocks.terrashroomBlockPurple));
         }
 
-        for (times = 0; times < 100; times++) {
-            generateStructure(x1, z1, new WorldGenTerraniaTree(true, 0, 1, JourneyBlocks.terranianLog.getDefaultState(), JourneyBlocks.terraniaLeaves.getDefaultState()));
+        for (times = 0; times < 2; times++) {
+            WorldGenAPI.genStructureOnGround(world, chunkPos, rand, new WorldGenTerraniaTree(true, 0, 1, JourneyBlocks.terranianLog.getDefaultState(), JourneyBlocks.terraniaLeaves.getDefaultState()));
         }
 
         for (int i = 0; i < 100; i++) {
