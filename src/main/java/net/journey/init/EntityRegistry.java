@@ -5,7 +5,7 @@ import net.journey.entity.item.EntityObsidianBoat;
 import net.journey.entity.mob.boiling.*;
 import net.journey.entity.mob.boiling.npc.EntityBoilTrader;
 import net.journey.entity.mob.boiling.npc.EntityEscapedConvict;
-import net.journey.entity.mob.boss.EntityWraith;
+import net.journey.entity.mob.overworld.EntityWraith;
 import net.journey.entity.mob.boss.*;
 import net.journey.entity.mob.cloudia.*;
 import net.journey.entity.mob.cloudia.npc.EntityStarlightBlacksmith;
