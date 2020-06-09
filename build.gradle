@@ -91,7 +91,7 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 
     implementation 'org.jetbrains:annotations:18.0.0'
-    deobfCompile "mezz.jei:jei_${config.minecraft.version}:${config.jei.version}:"
+    deobfCompile "mezz.jei:jei_1.12.2:4.15.0.293"
 
     deobfCompile "curse.maven:just-enough-resources-jer:2728585"
 }

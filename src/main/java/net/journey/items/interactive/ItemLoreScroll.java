@@ -45,8 +45,13 @@ public class ItemLoreScroll extends JItem {
 	 */
 	public static void bindScrollEntry(ItemStack stack, ScrollEntry entry) {
 		if (stack.getItem() instanceof ItemLoreScroll) {
-			NBTTagCompound tagCompound = new NBTTagCompound();
+			NBTTagCompound tagCompound = stack.getTagCompound();
+
+			if (tagCompound == null) tagCompound = new NBTTagCompound();
+
 			tagCompound.setString("entry", entry.getId());
+
+			stack.setTagCompound(tagCompound);
 		} else {
 			JITL.LOGGER.error("Provided stack param is not an {}", ItemLoreScroll.class, new IllegalArgumentException());
 		}

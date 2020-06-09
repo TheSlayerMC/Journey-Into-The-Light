@@ -124,7 +124,7 @@ public class CommonProxy {
     }
 
     public void postInit(FMLPostInitializationEvent event) {
-        //ScrollRegistry.register();
+        ScrollRegistry.register();
     }
 
     public void onLoadComplete(FMLLoadCompleteEvent event) {

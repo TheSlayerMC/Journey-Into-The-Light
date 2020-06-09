@@ -28,7 +28,7 @@ public class ScrollAPI {
         CATEGORY_MAP.put(scrollCategory.getCategoryKey(), scrollCategory);
     }
 
-    public static void registerEntry(String existentCategoryName, ScrollEntry scrollEntry) {
+    public static ScrollEntry registerEntry(String existentCategoryName, ScrollEntry scrollEntry) {
         if (existentCategoryName == null || !CATEGORY_MAP.containsKey(existentCategoryName)) {
             throw new IndexOutOfBoundsException("Attempt to register Scroll Entry \"" + scrollEntry.getId() + "\" to nonexistent Category \"" + existentCategoryName + "\".\n\tAvailable Category Names: " + CATEGORY_MAP.toString());
         }
@@ -38,6 +38,8 @@ public class ScrollAPI {
         if (ENTRY_MAP.put(scrollEntry.getId(), scrollEntry) != null) {
             throw new IllegalStateException("Scroll Entry with id " + scrollEntry.getId() + " already exists!");
         }
+
+        return scrollEntry;
     }
 
     public static Map<String, ScrollCategory> getCategoryMap() {

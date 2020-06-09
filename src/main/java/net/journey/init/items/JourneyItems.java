@@ -1,20 +1,16 @@
 package net.journey.init.items;
 
-import net.journey.entity.mob.pet.*;
-import net.journey.init.*;
-import net.journey.items.*;
 import net.journey.dimension.base.DimensionHelper;
 import net.journey.entity.mob.boss.*;
+import net.journey.entity.mob.pet.EntityEucaHopper;
 import net.journey.entity.mob.pet.EntityPetRobot;
+import net.journey.entity.mob.pet.EntityShiverwolf;
+import net.journey.entity.mob.pet.EntityTameRoc;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
-import net.journey.items.ItemEssenceArrow;
-import net.journey.items.ItemEssencePotion;
-import net.journey.items.ItemFlameCoin;
-import net.journey.items.ItemModRecord;
+import net.journey.items.*;
 import net.journey.items.base.JItem;
 import net.journey.items.interactive.*;
-import net.journey.util.Config;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
@@ -347,8 +343,9 @@ public class JourneyItems {
     public static Item SHIVERWOLF_EGG;
     public static Item TAMED_ROC_SPAWN_EGG;
     public static Item ROC_EGG;
-    
-    public static ItemLoreScroll loreScroll;
+
+	public static ItemLoreScroll loreScroll;
+	public static ItemTestBug debugItem;
     
     //public static Item obsidianBoat;
 
@@ -597,19 +594,21 @@ public class JourneyItems {
         PET_FOOD = new JItem("pet_food", "Pet Food");
         ROBOT_EGG = new JItem("robot_egg", "Robot Egg");
         TAMED_ROBOT_SPAWN_EGG = new ItemSpawnerEgg("robot_spawner_egg", "Incubated Robot Egg", EntityPetRobot.class);
-        
-        EUCA_HOPPER_EGG = new JItem("euca_hopper_egg", "Euca Hopper Egg");
-        TAMED_EUCA_HOPPER_SPAWN_EGG = new ItemSpawnerEgg("euca_hopper_spawner_egg", "Incubated Euca Hopper Egg", EntityEucaHopper.class);
 
-        SHIVERWOLF_EGG = new JItem("shiverwolf_egg", "Shiverwolf Egg");
-        TAMED_SHIVERWOLF_SPAWN_EGG = new ItemSpawnerEgg("shiverwolf_spawner_egg", "Incubated Shiverwolf Egg", EntityShiverwolf.class);
-        
+	    EUCA_HOPPER_EGG = new JItem("euca_hopper_egg", "Euca Hopper Egg");
+	    TAMED_EUCA_HOPPER_SPAWN_EGG = new ItemSpawnerEgg("euca_hopper_spawner_egg", "Incubated Euca Hopper Egg", EntityEucaHopper.class);
+
+	    SHIVERWOLF_EGG = new JItem("shiverwolf_egg", "Shiverwolf Egg");
+	    TAMED_SHIVERWOLF_SPAWN_EGG = new ItemSpawnerEgg("shiverwolf_spawner_egg", "Incubated Shiverwolf Egg", EntityShiverwolf.class);
+
 	    ROC_EGG = new JItem("roc_egg", "Roc Egg");
 	    TAMED_ROC_SPAWN_EGG = new ItemSpawnerEgg("roc_spawner_egg", "Incubated Roc Egg", EntityTameRoc.class);
-	    
-        //loreScroll = new ItemLoreScroll("lore_scroll", "Lore Scroll");
-        //obsidianBoat = new ItemObsidianBoat("obsidianboat", "Obsidian Boat");
-        //infernoshield = new ItemModShield("infernoshield", "Inferno Shield", 2, false);
+
+	    loreScroll = new ItemLoreScroll("lore_scroll", "Lore Scroll");
+	    debugItem = new ItemTestBug("test_bug", "Test Bug");
+
+	    //obsidianBoat = new ItemObsidianBoat("obsidianboat", "Obsidian Boat");
+	    //infernoshield = new ItemModShield("infernoshield", "Inferno Shield", 2, false);
     }
 
     public static ToolMaterial addToolMaterial(int uses, float efficiency, float dam, boolean breakable) {
