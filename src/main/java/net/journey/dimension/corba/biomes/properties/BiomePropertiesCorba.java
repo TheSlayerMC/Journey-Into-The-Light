@@ -1,4 +1,4 @@
-package net.journey.dimension.corba;
+package net.journey.dimension.corba.biomes.properties;
 
 import net.journey.dimension.base.DimensionHelper;
 import net.minecraft.world.biome.Biome.BiomeProperties;

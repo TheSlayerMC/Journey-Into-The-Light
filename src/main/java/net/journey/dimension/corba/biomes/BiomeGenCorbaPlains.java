@@ -2,7 +2,8 @@ package net.journey.dimension.corba.biomes;
 
 import java.awt.Color;
 
-import net.journey.dimension.corba.BiomePropertiesCorba;
+import net.journey.dimension.corba.biomes.properties.BiomePropertiesCorba;
+import net.journey.dimension.corba.biomes.properties.BiomePropertiesCorbaPlains;
 import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
@@ -12,8 +13,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class BiomeGenCorbaPlains extends Biome {
 
     public BiomeGenCorbaPlains() {
-        super(new BiomePropertiesCorba());
-        this.topBlock = JourneyBlocks.corbaGrass.getDefaultState();
+        super(new BiomePropertiesCorbaPlains());
+        this.topBlock = JourneyBlocks.cloudiaPlanks.getDefaultState();
         this.fillerBlock = JourneyBlocks.corbaStone.getDefaultState();
         this.spawnableCreatureList.clear();
         this.spawnableMonsterList.clear();

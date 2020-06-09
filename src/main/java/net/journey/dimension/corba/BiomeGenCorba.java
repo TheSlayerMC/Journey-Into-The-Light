@@ -2,6 +2,7 @@ package net.journey.dimension.corba;
 
 import java.awt.Color;
 
+import net.journey.dimension.corba.biomes.properties.BiomePropertiesCorba;
 import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;

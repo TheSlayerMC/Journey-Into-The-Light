@@ -4,8 +4,5 @@ import net.minecraft.world.storage.WorldInfo;
 
 public class WorldInfoEuca extends WorldInfo {
 
-    public WorldInfoEuca() {
-
-    }
-
+    public WorldInfoEuca() { }
 }
