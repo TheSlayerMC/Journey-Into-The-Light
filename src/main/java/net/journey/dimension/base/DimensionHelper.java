@@ -64,7 +64,7 @@ public class DimensionHelper {
 
     public static final float[] boilHeight = new float[]{0.125F, 0.1F};
     public static final float[] corbaHeight = new float[]{0.2F, 0.2F};
-    public static final float[] CORBA_PLAINS_HEIGHT = new float[]{4.2F, 4.2F};
+    public static final float[] CORBA_PLAINS_HEIGHT = new float[]{0.0F, 0.0F};
 
     public static final Biome EUCA_BIOME = new BiomeGenEuca();
     public static final Biome EUCA_SILVER_BiOME = new BiomeGenEucaSilver();

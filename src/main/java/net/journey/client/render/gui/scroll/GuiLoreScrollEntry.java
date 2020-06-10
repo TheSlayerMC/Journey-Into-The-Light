@@ -24,9 +24,9 @@ import java.io.IOException;
 public class GuiLoreScrollEntry extends GuiScreen {
 
     private static ResourceLocation BG = new ResourceLocation(JITL.MOD_ID, "textures/gui/gui_scroll_base.png");
-    private static final int SLIDER_LIGHT_COLOR = 0xFF6CCAD5;
-    private static final int SLIDER_PATH_COLOR = 0x33000000;
-    private static final int SLIDER_DARK_COLOR = 0xFF51AFBA;
+    private static final int SLIDER_LIGHT_COLOR = 0xFFe5bd85;
+    private static final int SLIDER_PATH_COLOR = 0x333c2c14;
+    private static final int SLIDER_DARK_COLOR = 0xFFc18a3c;
     private final int headerHeight = 30;
     private ScrollEntry ScrollEntry;
     /**

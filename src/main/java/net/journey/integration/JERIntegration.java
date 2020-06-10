@@ -1,13 +1,18 @@
 package net.journey.integration;
 
-import jeresources.api.IJERAPI;
-import jeresources.api.IMobRegistry;
-import jeresources.api.JERPlugin;
+import jeresources.api.*;
+import jeresources.api.distributions.DistributionBase;
+import jeresources.api.distributions.DistributionSquare;
 import jeresources.api.drop.LootDrop;
 import jeresources.util.LogHelper;
 import net.journey.api.entity.IJERCompatible;
 import net.journey.init.EntityRegistry;
+import net.journey.init.JourneyLootTables;
+import net.journey.init.blocks.JourneyBlocks;
+import net.journey.init.items.JourneyItems;
+import net.journey.util.Config;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 
@@ -23,12 +28,14 @@ public class JERIntegration {
 	public static void onInit(FMLInitializationEvent event) {
 		World fakeWorld = jerAPI.getWorld();
 
+		initDungeonLoot();
+		initOreGen();
+
 		IMobRegistry mobRegistry = jerAPI.getMobRegistry();
 		EntityRegistry.getMobEntries().forEach((entityEntry) -> {
 			if (EntityLivingBase.class.isAssignableFrom(entityEntry.getEntityClass()) && IJERCompatible.class.isAssignableFrom(entityEntry.getEntityClass())) {
 
 				EntityLivingBase mob = construct(fakeWorld, ((Class<? extends EntityLivingBase>) entityEntry.getEntityClass()));
-
 
 				if (mob != null) {
 					IJERCompatible compatibleMob = (IJERCompatible) mob;
@@ -42,6 +49,16 @@ public class JERIntegration {
 				}
 			}
 		});
+	}
+
+	private static void initDungeonLoot() {
+		IDungeonRegistry dungeonRegistry = jerAPI.getDungeonRegistry();
+		dungeonRegistry.registerChest("Rockite Dungeon", JourneyLootTables.ROCKITE_CHEST_LOOT);
+	}
+
+	private static void initOreGen() {
+		IWorldGenRegistry worldGenRegistry = jerAPI.getWorldGenRegistry();
+		worldGenRegistry.register(new ItemStack(JourneyBlocks.sapphireOre), new DistributionSquare(0, Config.sapphireOreGenMaxY, Config.sapphireOreTrys), new LootDrop(new ItemStack(JourneyItems.sapphire)));
 	}
 
 	@Nullable

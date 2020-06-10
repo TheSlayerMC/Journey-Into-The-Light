@@ -2,9 +2,11 @@ package net.journey.entity.mob.corba.npc;
 
 import net.journey.client.handler.GuiHandler;
 import net.journey.entity.JourneyMerchantRecipe;
+import net.journey.init.ScrollRegistry;
 import net.journey.init.items.JourneyArmory;
 import net.journey.init.items.JourneyItems;
 import net.journey.init.items.JourneyWeapons;
+import net.journey.items.interactive.ItemLoreScroll;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.village.MerchantRecipeList;
@@ -48,6 +50,8 @@ public class EntityOvergrownMerchant extends EntityModVillager {
 
     @Override
     public void addRecipies(MerchantRecipeList list) {
+        ItemStack scrollStack = new ItemStack(JourneyItems.loreScroll);
+        ItemLoreScroll.bindScrollEntry(scrollStack, ScrollRegistry.senterianGospel);
         list.add(new JourneyMerchantRecipe(new ItemStack(JourneyItems.enchantedLeaf, 64), new ItemStack(JourneyItems.gorbiteGem, 16), new ItemStack(JourneyWeapons.overgrownHammer, 1)));
         list.add(new JourneyMerchantRecipe(new ItemStack(JourneyItems.enchantedLeaf, 64), new ItemStack(JourneyItems.orbaditeIngot, 16), new ItemStack(JourneyWeapons.overgrownStaff, 1)));
         list.add(new JourneyMerchantRecipe(new ItemStack(JourneyItems.enchantedLeaf, 64), new ItemStack(JourneyItems.gorbiteGem, 20), new ItemStack(JourneyWeapons.darkPineSword, 1)));
@@ -58,5 +62,7 @@ public class EntityOvergrownMerchant extends EntityModVillager {
         list.add(new JourneyMerchantRecipe(new ItemStack(JourneyItems.enchantedLeaf, 16), new ItemStack(JourneyItems.orbaditeIngot, 16), new ItemStack(JourneyArmory.livegreenChest, 1)));
         list.add(new JourneyMerchantRecipe(new ItemStack(JourneyItems.enchantedLeaf, 16), new ItemStack(JourneyItems.orbaditeIngot, 16), new ItemStack(JourneyArmory.livegreenLegs, 1)));
         list.add(new JourneyMerchantRecipe(new ItemStack(JourneyItems.enchantedLeaf, 16), new ItemStack(JourneyItems.orbaditeIngot, 16), new ItemStack(JourneyArmory.livegreenBoots, 1)));
+
+        list.add(new JourneyMerchantRecipe(new ItemStack(JourneyItems.enchantedLeaf, 16), new ItemStack(JourneyItems.orbaditeIngot, 16), scrollStack));
     }
 }

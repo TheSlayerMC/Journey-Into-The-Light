@@ -22,7 +22,7 @@ public class ItemTestBug extends JItem {
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 		if (!worldIn.isRemote) {
 			ItemStack scrollStack = new ItemStack(JourneyItems.loreScroll);
-			ItemLoreScroll.bindScrollEntry(scrollStack, ScrollRegistry.testEntry0);
+			ItemLoreScroll.bindScrollEntry(scrollStack, ScrollRegistry.senterianGospel);
 
 			worldIn.spawnEntity(new EntityItem(worldIn, playerIn.posX, playerIn.posY + 0.5F, playerIn.posZ, scrollStack));
 		}
