@@ -25,6 +25,7 @@ public class Config {
     public static int baseMobID, baseProjectileID, baseEntityListID, entityHealthDistance;
     public static int towerDungeon, mageHouse, blacksmithHouse, rockiteDungeon;
     private static boolean[] registerBiomes;
+    public static int specialBiomeRarity;
     private static int indexBiome;
     private static int biomeSizeXZ;
     private static int biomeSizeY;
@@ -38,7 +39,6 @@ public class Config {
     
     public static int blaziumOreTrys, blaziumOreGenAmount;
     public static int ashualOreTrys, ashualOreGenAmount;
-
     
     public static int flairiumOreTrys, flairiumOreGenAmount;
     public static int desOreTrys, desOreGenAmount;
@@ -93,6 +93,9 @@ public class Config {
         keepLoadingSenterian = cfg.get("Dimension", "Keep loading Senterian Labirynth", false).getBoolean();
         keepLoadingSenterian = cfg.get("Dimension", "Keep loading the Withanian Lands", false).getBoolean();
         boilBlockSpawnSmoke = cfg.get("Dimension", "Boiling Point blocks spawn smoke (More lag)", true).getBoolean();
+
+        specialBiomeRarity = cfg.get("Dimension", "Rarity for 'special' dimension biomes (The higher, the rarer)", 16).getInt();
+
         spawnSwordParticles = cfg.get("Items", "Swords spawn particles", true).getBoolean();
         baseMobID = cfg.get("Entity", "The starting ID for the mobs (only gets greater the more mobs this mod has registered)", 350).getInt();
         baseProjectileID = cfg.get("Entity", "The starting ID for the projectiles (only gets greater the more projectiles this mod has registered)", 230).getInt();
