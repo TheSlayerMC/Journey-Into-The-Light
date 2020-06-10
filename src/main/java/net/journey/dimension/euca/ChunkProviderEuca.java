@@ -9,6 +9,7 @@ import net.journey.dimension.euca.gen.WorldGenSmeltery;
 import net.journey.dimension.euca.gen.dungeon.EucaSmallSphereDungeon;
 import net.journey.dimension.euca.gen.trees.*;
 import net.journey.dimension.overworld.gen.WorldGenModFlower;
+import net.journey.dimension.terrania.gen.trees.WorldGenTerraniaTree;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.Config;
 import net.journey.util.RandHelper;
@@ -20,6 +21,7 @@ import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.LazyLoadBase;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.SpawnListEntry;
@@ -294,6 +296,7 @@ public class ChunkProviderEuca implements IChunkGenerator {
 
 	@Override
 	public void populate(int i, int j) {
+		ChunkPos chunkPos = new ChunkPos(i, j);
 		int chunkSize = 16;
 		int x1 = i * chunkSize;
 		int z1 = j * chunkSize;

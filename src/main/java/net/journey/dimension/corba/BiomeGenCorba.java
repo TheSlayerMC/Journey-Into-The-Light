@@ -2,6 +2,7 @@ package net.journey.dimension.corba;
 
 import java.awt.Color;
 
+import net.journey.dimension.base.BiomeGenJourney;
 import net.journey.dimension.corba.biomes.properties.BiomePropertiesCorba;
 import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.util.math.BlockPos;
@@ -9,7 +10,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BiomeGenCorba extends Biome {
+public class BiomeGenCorba extends BiomeGenJourney {
 
     public BiomeGenCorba() {
         super(new BiomePropertiesCorba());

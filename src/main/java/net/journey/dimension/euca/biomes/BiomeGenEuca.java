@@ -1,6 +1,7 @@
 package net.journey.dimension.euca.biomes;
 
 import net.journey.dimension.base.BiomeGenJourney;
+import net.journey.dimension.euca.biomes.properties.BiomePropertiesEuca;
 import net.journey.init.blocks.JourneyBlocks;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -9,8 +10,8 @@ import java.awt.*;
 
 public class BiomeGenEuca extends BiomeGenJourney {
 
-    public BiomeGenEuca(String name) {
-        super(name);
+    public BiomeGenEuca() {
+        super(new BiomePropertiesEuca());
         this.topBlock = JourneyBlocks.eucaGrass.getDefaultState();
         this.fillerBlock = JourneyBlocks.eucaStone.getDefaultState();
         this.spawnableCreatureList.clear();
