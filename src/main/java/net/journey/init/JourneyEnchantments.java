@@ -2,7 +2,6 @@ package net.journey.init;
 
 import net.journey.JITL;
 import net.journey.enchantment.EnchantmentHotTouch;
-import net.journey.enchantment.EnchantmentWaterWalk;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.enchantment.Enchantment;
@@ -23,7 +22,6 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 public class JourneyEnchantments {
 
     public static final Enchantment hotTouch = new EnchantmentHotTouch();
-    public static final Enchantment waterWalk = new EnchantmentWaterWalk();
 
     public static int getItemEnchantment(Enchantment en, EntityLivingBase e) {
         if (en != null && e != null) return EnchantmentHelper.getEnchantmentLevel(en, e.getHeldItemMainhand());
@@ -66,8 +64,8 @@ public class JourneyEnchantments {
         int j = MathHelper.floor(player.posY);
         int k = MathHelper.floor(player.posZ);
 
-        if (hasArmorEnchantment(waterWalk, player) && player.world.getBlockState(new BlockPos(i, j, k)).getMaterial() == Material.WATER && player.motionY < 0) {
-            player.motionY = Minecraft.getMinecraft().gameSettings.keyBindJump.isKeyDown() ? 0.5D : 0;
-        }
+        //if (hasArmorEnchantment(waterWalk, player) && player.world.getBlockState(new BlockPos(i, j, k)).getMaterial() == Material.WATER && player.motionY < 0) {
+       //     player.motionY = Minecraft.getMinecraft().gameSettings.keyBindJump.isKeyDown() ? 0.5D : 0;
+       // }
     }
 }

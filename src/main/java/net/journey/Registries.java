@@ -62,9 +62,8 @@ public class Registries {
 		IForgeRegistry<Enchantment> enchant = e.getRegistry();
 
 		enchant.register(JourneyEnchantments.hotTouch);
-		enchant.register(JourneyEnchantments.waterWalk);
 
-		LogHelper.info("Successfully Registered 2 Enchantments");
+		LogHelper.info("Successfully Registered 1 Enchantments");
 	}
 
 	@SubscribeEvent
