@@ -6,21 +6,25 @@ import net.minecraftforge.fml.relauncher.Side;
 import java.util.concurrent.Callable;
 import java.util.function.Supplier;
 
-//from forge 1.14.4 DistExecutor
+/**
+ * Utility class to run things only in provided side.
+ * <br>
+ * <font color=yellow>It does NOT save code from causing class casting exceptions.</font>
+ */
 public final class SideExecutor {
 
 	/**
-	 * Run the callable in the supplier only on the specified {@link Side}
+	 * Run the callable only on the specified {@link Side}
 	 *
-	 * @param side  The physical side to run on
-	 * @param toRun A supplier of the callable to run (Supplier wrapper to ensure classloading only on the appropriate side)
-	 * @param <T>   The return type from the callable
+	 * @param side     The physical side to run on
+	 * @param callable callable to run
+	 * @param <T>      The return type from the callable
 	 * @return The callable's result
 	 */
-	public static <T> T callWhenOn(Side side, Supplier<Callable<T>> toRun) {
+	public static <T> T callWhenOn(Side side, Callable<T> callable) {
 		if (side == FMLCommonHandler.instance().getSide()) {
 			try {
-				return toRun.get().call();
+				return callable.call();
 			} catch (Exception e) {
 				throw new RuntimeException(e);
 			}
@@ -28,18 +32,24 @@ public final class SideExecutor {
 		return null;
 	}
 
-	public static void runWhenOn(Side side, Supplier<Runnable> toRun) {
+	/**
+	 * Run the runnable only on the specified {@link Side}
+	 *
+	 * @param side     The physical side to run on
+	 * @param runnable runnable to run
+	 */
+	public static void runWhenOn(Side side, Runnable runnable) {
 		if (FMLCommonHandler.instance().getSide() == side) {
-			toRun.get().run();
+			runnable.run();
 		}
 	}
 
-	public static <T> T runForDist(Supplier<Supplier<T>> clientTarget, Supplier<Supplier<T>> serverTarget) {
+	public static <T> T runForDist(Supplier<T> clientTarget, Supplier<T> serverTarget) {
 		switch (FMLCommonHandler.instance().getSide()) {
 			case CLIENT:
-				return clientTarget.get().get();
+				return clientTarget.get();
 			case SERVER:
-				return serverTarget.get().get();
+				return serverTarget.get();
 			default:
 				throw new IllegalArgumentException("UNSIDED?");
 		}

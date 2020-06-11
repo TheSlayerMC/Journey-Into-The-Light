@@ -12,8 +12,6 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.relauncher.Side;
 
-import java.util.function.Supplier;
-
 /**
  * Generates lang entries and places them in en_us.lang.
  * It doesn't delete en_us.lang!
@@ -47,22 +45,22 @@ public class LangGeneratorFacade {
 
 	public static void addBlockEntry(Block block, String enName) {
 		if (!exists()) return;
-		SideExecutor.runWhenOn(Side.CLIENT, () -> () -> addLangEntry(LangSection.BLOCKS, block, enName));
+		SideExecutor.runWhenOn(Side.CLIENT, () -> addLangEntry(LangSection.BLOCKS, block, enName));
 	}
 
 	public static void addItemEntry(Item item, String enName) {
 		if (!exists()) return;
-		SideExecutor.runWhenOn(Side.CLIENT, () -> () -> addLangEntry(LangSection.ITEMS, item, enName));
+		SideExecutor.runWhenOn(Side.CLIENT, () -> addLangEntry(LangSection.ITEMS, item, enName));
 	}
 
 	public static void addEntityEntry(EntityEntry entityEntry, String enName) {
 		if (!exists()) return;
-		SideExecutor.runWhenOn(Side.CLIENT, () -> () -> addLangEntry(LangSection.ENTITIES, entityEntry, enName));
+		SideExecutor.runWhenOn(Side.CLIENT, () -> addLangEntry(LangSection.ENTITIES, entityEntry, enName));
 	}
 
 	public static void addCreativeTabEntry(CreativeTabs creativeTab, String enName) {
 		if (!exists()) return;
-		SideExecutor.runWhenOn(Side.CLIENT, () -> () -> addLangEntry(LangSection.CREATIVE_TABS, creativeTab, enName));
+		SideExecutor.runWhenOn(Side.CLIENT, () -> addLangEntry(LangSection.CREATIVE_TABS, creativeTab, enName));
 	}
 
 	public static void addArmorEntry(ItemArmor item, EnumArmor type) {
@@ -97,12 +95,12 @@ public class LangGeneratorFacade {
 		if (!exists()) return;
 		ArmorData armorData = new ArmorData(item, type);
 		String name = nameSuffix.replace("%material%", type.getFinalName());
-		SideExecutor.runWhenOn(Side.CLIENT, () -> () -> addLangEntry(LangSection.ARMOR, armorData, name));
+		SideExecutor.runWhenOn(Side.CLIENT, () -> addLangEntry(LangSection.ARMOR, armorData, name));
 	}
 
 	public static void addMiscEntry(String key, String name) {
 		if (!exists()) return;
-		SideExecutor.runWhenOn(Side.CLIENT, () -> () -> addLangEntry(LangSection.MISC, key, name));
+		SideExecutor.runWhenOn(Side.CLIENT, () -> addLangEntry(LangSection.MISC, key, name));
 	}
 
 	public static void save() {
@@ -112,7 +110,7 @@ public class LangGeneratorFacade {
 	/**
 	 * Adds lang entry to provided section.
 	 * <p>
-	 * <b>SHOULD BE USED ONLY INSIDE {@link SideExecutor#runWhenOn(Side, Supplier)} with {@link Side#CLIENT}, OTHERWISE IT'LL CRASH GAME!</b>
+	 * <b>SHOULD BE USED ONLY INSIDE {@link SideExecutor#runWhenOn(Side, Runnable)} with {@link Side#CLIENT}, OTHERWISE IT'LL CRASH GAME!</b>
 	 */
 	private static <T> void addLangEntry(LangSection<T> section, T entry, String enName) {
 		if (exists()) generator.addLangEntry(section, entry, enName);

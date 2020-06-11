@@ -2,10 +2,12 @@ package net.journey.items.interactive;
 
 import net.journey.JITL;
 import net.journey.api.scroll.ScrollAPI;
+import net.journey.api.scroll.ScrollCategory;
 import net.journey.api.scroll.ScrollEntry;
+import net.journey.client.render.gui.scroll.GuiLoreScrollEntry;
 import net.journey.items.base.JItem;
 import net.journey.util.ChatUtils;
-import net.journey.util.SideExecutor;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -14,6 +16,8 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import ru.timeconqueror.timecore.api.util.Pair;
 
@@ -24,21 +28,28 @@ public class ItemLoreScroll extends JItem {
 	}
 
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
+	public @NotNull ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, @NotNull EnumHand handIn) {
 		ItemStack heldItem = playerIn.getHeldItem(handIn);
 
 		if (worldIn.isRemote) {
 			ScrollEntry entry = getScrollEntry(heldItem);
 			if (entry != null) {
-				SideExecutor.runWhenOn(Side.CLIENT, () -> () -> {
-//					Minecraft.getMinecraft().displayGuiScreen(new GuiLoreScrollEntry(null, entry));
-				});
+				displayScrollGui(null, entry);
 			} else {
 				ChatUtils.sendInformativeError(playerIn, "Can't retrieve entry from provided itemstack.", Pair.of("Itemstack", heldItem), Pair.of("Tag Compound", heldItem.getTagCompound()));
 			}
 		}
 
 		return new ActionResult<>(EnumActionResult.SUCCESS, heldItem);
+	}
+
+	/**
+	 * Utility method to display method.
+	 * Created because implicit casting of GuiLoreScrollEntry to GuiScreen will cause crash on server
+	 */
+	@SideOnly(Side.CLIENT)
+	private static void displayScrollGui(ScrollCategory category, ScrollEntry entry) {
+		Minecraft.getMinecraft().displayGuiScreen(new GuiLoreScrollEntry(category, entry));
 	}
 
 	/**
