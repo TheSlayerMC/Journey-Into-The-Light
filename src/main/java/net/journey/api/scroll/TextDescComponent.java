@@ -8,12 +8,12 @@ import java.util.List;
 /*
  * Code by TimeConqueror
  */
-public class StringDescComponent implements IDescComponent {
+public class TextDescComponent implements IDescComponent {
     private final String langKey;
     private int contentHeight;
     private List<String> wrappedText;
 
-    public StringDescComponent(String langKey) {
+    public TextDescComponent(String langKey) {
         this.langKey = langKey;
     }
 

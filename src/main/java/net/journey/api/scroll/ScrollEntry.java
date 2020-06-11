@@ -1,5 +1,6 @@
 package net.journey.api.scroll;
 
+import net.journey.util.Lazy;
 import net.minecraft.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
@@ -13,7 +14,7 @@ public class ScrollEntry {
 	/**
 	 * Item that will be displayed on Entry Button in Tablet
 	 */
-	private final ItemStack displayedItem;
+	private final Lazy<ItemStack> displayedItem;
 	/**
 	 * Id of Entry
 	 */
@@ -34,7 +35,7 @@ public class ScrollEntry {
 	private final int x;
 	private final int y;
 
-	public ScrollEntry(String id, String titleKey, @Nullable String commentKey, ItemStack displayedItem, List<IDescComponent> desc, int x, int y) {
+	public ScrollEntry(String id, String titleKey, @Nullable String commentKey, Lazy<ItemStack> displayedItem, List<IDescComponent> desc, int x, int y) {
 		this.titleKey = titleKey;
 		this.displayedItem = displayedItem;
 		this.x = x;
@@ -53,7 +54,7 @@ public class ScrollEntry {
 	}
 
 	public ItemStack getDisplayedItem() {
-		return displayedItem;
+		return displayedItem.get();
 	}
 
 	public String getId() {

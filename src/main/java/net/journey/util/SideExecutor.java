@@ -7,7 +7,7 @@ import java.util.concurrent.Callable;
 import java.util.function.Supplier;
 
 /**
- * Utility class to run things only in provided side.
+ * Utility class to run things only in provided physical side.
  * <br>
  * <font color=yellow>It does NOT save code from causing class casting exceptions.</font>
  */
