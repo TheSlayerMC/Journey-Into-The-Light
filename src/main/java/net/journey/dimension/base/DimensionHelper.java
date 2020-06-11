@@ -83,6 +83,9 @@ public class DimensionHelper {
     public static final Biome TERRANIA_BIOME = new BiomeGenTerrania();
     public static final Biome SENTERIAN_BIOME = new BiomeGenSenterian();
 
+    public static final Biome[] EUCA_BIOMES = {EUCA_SILVER_BIOME, EUCA_BIOME};
+    public static final Biome[] CORBA_BIOMES = {CORBA_BIOME, CORBA_PLAINS_BIOME};
+
     public static final DimensionType EUCA_DIM = DimensionType.register("euca", "_euca", Config.euca, WorldProviderEuca.class, Config.keepLoadingEuca);
     public static final DimensionType BOILING_DIM = DimensionType.register("boiling_point", "_boilingPoint", Config.boil, WorldProviderBoiling.class, Config.keepLoadingBoil);
     public static final DimensionType CLOUDIA_DIM = DimensionType.register("cloudia", "_cloudia", Config.cloudia, WorldProviderCloudia.class, Config.keepLoadingCloudia);
@@ -182,10 +185,10 @@ public class DimensionHelper {
 
     private static void addCorbaSpawns() {
         int amount = 20;
-        EntityRegistry.addSpawn(EntityTreeGolem.class, amount, 1, 1, EnumCreatureType.MONSTER, CORBA_BIOME);
-        EntityRegistry.addSpawn(EntityLeafBlower.class, amount, 1, 1, EnumCreatureType.MONSTER, CORBA_BIOME);
-        EntityRegistry.addSpawn(EntitySurfaceSeer.class, amount, 1, 1, EnumCreatureType.MONSTER, CORBA_BIOME);
-        EntityRegistry.addSpawn(EntityWoodCreature.class, amount, 1, 1, EnumCreatureType.MONSTER, CORBA_BIOME);
+        EntityRegistry.addSpawn(EntityTreeGolem.class, amount, 1, 1, EnumCreatureType.MONSTER, CORBA_BIOMES);
+        EntityRegistry.addSpawn(EntityLeafBlower.class, amount, 1, 1, EnumCreatureType.MONSTER, CORBA_BIOMES);
+        EntityRegistry.addSpawn(EntitySurfaceSeer.class, amount, 1, 1, EnumCreatureType.MONSTER, CORBA_BIOMES);
+        EntityRegistry.addSpawn(EntityWoodCreature.class, amount, 1, 1, EnumCreatureType.MONSTER, CORBA_BIOMES);
     }
 
     private static void addColdFrozenSpawns() {
@@ -218,10 +221,10 @@ public class DimensionHelper {
 
     private static void addEucaSpawns() {
         int amount = 10;
-        EntityRegistry.addSpawn(EntityEucaCharger.class, amount, 1, 1, EnumCreatureType.MONSTER, EUCA_BIOME);
-        EntityRegistry.addSpawn(EntityDynaster.class, amount, 1, 1, EnumCreatureType.MONSTER, EUCA_BIOME);
-        EntityRegistry.addSpawn(EntityShimmerer.class, amount, 1, 1, EnumCreatureType.MONSTER, EUCA_BIOME);
-        EntityRegistry.addSpawn(EntityGolditeMage.class, amount, 1, 1, EnumCreatureType.MONSTER, EUCA_BIOME);
+        EntityRegistry.addSpawn(EntityEucaCharger.class, amount, 1, 1, EnumCreatureType.MONSTER, EUCA_BIOMES);
+        EntityRegistry.addSpawn(EntityDynaster.class, amount, 1, 1, EnumCreatureType.MONSTER, EUCA_BIOMES);
+        EntityRegistry.addSpawn(EntityShimmerer.class, amount, 1, 1, EnumCreatureType.MONSTER, EUCA_BIOMES);
+        EntityRegistry.addSpawn(EntityGolditeMage.class, amount, 1, 1, EnumCreatureType.MONSTER, EUCA_BIOMES);
     }
 
     private static void addBoilSpawns() {
