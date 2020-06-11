@@ -1,5 +1,7 @@
 {
 	"variants": {
-		"normal": { "model": "journey:netherweeds"}
-	}
+      "normal": {
+        "model": "journey:plant/netherweeds"
+      }
+    }
 }

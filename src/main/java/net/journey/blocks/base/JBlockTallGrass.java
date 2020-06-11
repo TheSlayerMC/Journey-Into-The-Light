@@ -1,6 +1,7 @@
 package net.journey.blocks.base;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -23,6 +24,15 @@ import java.util.Random;
 /**
  * Base class for tall plant blocks.
  * <p>
+ * By default:
+ * <ul>
+ *     <li>Checks for ground to be placed and stay</li>
+ *     <li>Drops itself ONLY when harvested with shears</li>
+ *     <li>Is replaceable</li>
+ *     <li>Has small model offset as tall grass has</li>
+ *     <li>Has {@link Material#VINE} (right mapping: TALL_PLANTS) material unless it is provided in a constructor</li>
+ * </ul>
+ * <p>
  * The item model for it should be placed to "models/item/block/plant/" by default.
  */
 public class JBlockTallGrass extends JBlockPlant implements IShearable {
@@ -42,7 +52,7 @@ public class JBlockTallGrass extends JBlockPlant implements IShearable {
 
 	@Override
 	public @NotNull AxisAlignedBB getBoundingBox(@NotNull IBlockState state, @NotNull IBlockAccess source, @NotNull BlockPos pos) {
-		return TALL_GRASS_AABB;
+		return TALL_GRASS_AABB.offset(state.getOffset(source, pos));
 	}
 
 	@Override

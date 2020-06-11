@@ -1,5 +1,7 @@
 {
     "variants": {
-        "normal": { "model": "journey:hellBell" }
+        "normal": {
+            "model": "journey:plant/hellbell"
+        }
     }
 }

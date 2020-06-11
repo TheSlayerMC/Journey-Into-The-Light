@@ -6,6 +6,7 @@ import net.journey.api.block.IHasCustomItemPath;
 import net.journey.init.JourneyTabs;
 import net.journey.util.StuffConstructor;
 import net.minecraft.block.BlockBush;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.util.EnumFacing;
@@ -19,9 +20,17 @@ import org.jetbrains.annotations.Nullable;
 /**
  * Base class for plant blocks.
  * <p>
+ * By default:
+ * <ul>
+ *     <li>Checks for ground to be placed and stay</li>
+ *     <li>Drops itself</li>
+ *     <li>Is NOT replaceable</li>
+ *     <li>Has {@link Material#PLANTS} material unless it is  provided in a constructor</li>
+ * </ul>
+ * <p>
  * The item model for it should be placed to "models/item/block/plant/" by default.
  */
-public class JBlockPlant extends BlockBush implements IHasCustomItemPath {
+public abstract class JBlockPlant extends BlockBush implements IHasCustomItemPath {
 	/**
 	 * Predicate that checks if plant can be placed and sustain on provided block.
 	 */
@@ -42,7 +51,7 @@ public class JBlockPlant extends BlockBush implements IHasCustomItemPath {
 	public JBlockPlant(EnumMaterialTypes type, String name, String enName, CreativeTabs tab) {
 		super(type.getMaterial());
 		setSoundType(type.getSound());
-		StuffConstructor.regAndSetupBlock(this, name, enName, 0.2F, tab);
+		StuffConstructor.regAndSetupBlock(this, name, enName, 0F, tab);
 	}
 
 	@NotNull

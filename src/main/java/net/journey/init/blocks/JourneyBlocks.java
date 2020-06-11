@@ -89,8 +89,8 @@ public class JourneyBlocks {
     public static BlockMod sizzlerWoodLeaves;
     public static JBlockLog sizzlerWoodLog;
     public static JBlockTallGrass deathGrass;
-    public static BlockNetherFlower netherweed;
-    public static BlockNetherFlower hellBell;
+    public static JBlockFlower netherweed;
+    public static JBlockFlower hellBell;
     public static BlockMod hellshroom;
 
     public static BlockMod earthenNetherLeaves;
@@ -596,14 +596,14 @@ public class JourneyBlocks {
         ANCIENT_RUNIC_STONE_1 = (BlockMod) new BlockMod("ancient_stone_runic_1", "Ancient Runic Stone").setResistance(100000F).setBlockUnbreakable().setLightLevel(0.2F);
         ANCIENT_RUNIC_STONE_2 = (BlockMod) new BlockMod("ancient_stone_runic_2", "Ancient Runic Stone").setResistance(100000F).setBlockUnbreakable().setLightLevel(0.2F);
         ANCIENT_RUNIC_STONE_3 = (BlockMod) new BlockMod("ancient_stone_runic_3", "Ancient Runic Stone").setResistance(100000F).setBlockUnbreakable().setLightLevel(0.2F);
-        
+
         witherwoodLog = new JBlockLog("witherwoodLog", "Witherwood Log");
         witherwoodLeaves = new BlockModLeaves("witherwoodLeaves", "Witherwood Leaves", 1.0F);
         sizzlerWoodLeaves = new BlockModLeaves("sizzlerWoodLeaves", "Deadblood Leaves", 2.0F, netherSapling);
         sizzlerWoodLog = new JBlockLog("sizzlerWoodLog", "Deadblood Log");
         deathGrass = (JBlockTallGrass) new JBlockTallGrass("deathGrass", "Death Grass").setGroundPredicate(GroundPredicate.NETHER);
-        netherweed = new BlockNetherFlower("netherWeeds", "Netherweed", true);
-        hellBell = new BlockNetherFlower("hellBell", "Hell Bell");
+        netherweed = (JBlockFlower) new JBlockFlower("netherWeeds", "Netherweed").setGroundPredicate(GroundPredicate.NETHER);
+        hellBell = (JBlockFlower) new JBlockFlower("hellBell", "Hell Bell").setGroundPredicate(GroundPredicate.NETHER);
         hellshroom = new BlockNetherFlower("hellshroom", "Hellshroom");
 
         earthenNetherLeaves = new BlockModLeaves("earthenNetherLeaves", "Earthenwood Leaves", 2.0F, EARTHEN_SAPLING);
