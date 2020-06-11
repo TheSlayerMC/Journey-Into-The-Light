@@ -10,7 +10,9 @@ import net.slayer.api.EnumMaterialTypes;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Base class for flower blocks.
+ * Base class for small flower blocks.<br>
+ * <i>Big flowers can't support offset, so they extend {@link JBlockPlant} directly.</i><br>
+ * Actually it's the same as {@link JBlockPlant} but it supports model and bounding box offsetting
  * <p>
  * By default:
  * <ul>
@@ -24,16 +26,16 @@ import org.jetbrains.annotations.NotNull;
  * <p>
  * The item model for it should be placed to "models/item/block/plant/" by default.
  */
-public class JBlockFlower extends JBlockPlant {
-	public JBlockFlower(String name, String enName) {
+public class JBlockSmallFlower extends JBlockPlant {
+	public JBlockSmallFlower(String name, String enName) {
 		super(name, enName);
 	}
 
-	public JBlockFlower(String name, String enName, CreativeTabs tab) {
+	public JBlockSmallFlower(String name, String enName, CreativeTabs tab) {
 		super(name, enName, tab);
 	}
 
-	public JBlockFlower(EnumMaterialTypes type, String name, String enName, CreativeTabs tab) {
+	public JBlockSmallFlower(EnumMaterialTypes type, String name, String enName, CreativeTabs tab) {
 		super(type, name, enName, tab);
 	}
 

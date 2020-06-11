@@ -21,8 +21,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.Random;
 
 public class BlockCaveVine extends JBlockPlant implements IGrowable {
-    protected static final AxisAlignedBB SEMI_BB = new AxisAlignedBB(0.30000001192092896D, 0.5D, 0.30000001192092896D, 0.699999988079071D, 1.0D, 0.699999988079071D);
-    protected static final AxisAlignedBB FULL_BB = new AxisAlignedBB(0.30000001192092896D, 0.0D, 0.30000001192092896D, 0.699999988079071D, 1.0D, 0.699999988079071D);
+    protected static final AxisAlignedBB SEMI_BB = new AxisAlignedBB(0.15D, 0.5D, 0.15D, 0.85D, 1.0D, 0.85D);
+    protected static final AxisAlignedBB FULL_BB = new AxisAlignedBB(0.15D, 0.0D, 0.15D, 0.85D, 1.0D, 0.85D);
     public static final PropertyInteger AGE = PropertyInteger.create("age", 0, 3);
 
     public BlockCaveVine(String name, String enName) {
