@@ -6,7 +6,7 @@ import net.minecraft.world.IBlockAccess;
 import net.slayer.api.EnumMaterialTypes;
 
 /**
- * Base class for all plants that behave like tall grass (replaceable)
+ * Base class for all plants that behave like tall grass (is replaceable)
  * <p>
  * The item model for it should be placed to "models/item/block/plant/" by default.
  */

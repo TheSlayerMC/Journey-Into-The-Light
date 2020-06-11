@@ -88,7 +88,7 @@ public class JourneyBlocks {
     public static BlockMod witherwoodLeaves;
     public static BlockMod sizzlerWoodLeaves;
     public static JBlockLog sizzlerWoodLog;
-    public static BlockNetherFlower deathGrass;
+    public static JBlockTallGrass deathGrass;
     public static BlockNetherFlower netherweed;
     public static BlockNetherFlower hellBell;
     public static BlockMod hellshroom;
@@ -601,7 +601,7 @@ public class JourneyBlocks {
         witherwoodLeaves = new BlockModLeaves("witherwoodLeaves", "Witherwood Leaves", 1.0F);
         sizzlerWoodLeaves = new BlockModLeaves("sizzlerWoodLeaves", "Deadblood Leaves", 2.0F, netherSapling);
         sizzlerWoodLog = new JBlockLog("sizzlerWoodLog", "Deadblood Log");
-        deathGrass = new BlockNetherFlower("deathGrass", "Death Grass", true);
+        deathGrass = (JBlockTallGrass) new JBlockTallGrass("deathGrass", "Death Grass").setGroundPredicate(GroundPredicate.NETHER);
         netherweed = new BlockNetherFlower("netherWeeds", "Netherweed", true);
         hellBell = new BlockNetherFlower("hellBell", "Hell Bell");
         hellshroom = new BlockNetherFlower("hellshroom", "Hellshroom");

@@ -16,7 +16,8 @@ public interface GroundPredicate {
 	 * Any ground is accepted, but it should have solid side at the plant direction.
 	 */
 	GroundPredicate SOLID_SIDE = (world, groundPos, groundState, plantDirection) -> groundState.isSideSolid(world, groundPos, plantDirection);
-	GroundPredicate GRASS_BLOCK = (world, groundPos, groundState, plantDirection) -> groundState.getBlock() == Blocks.GRASS || groundState.getBlock() == Blocks.DIRT || groundState.getBlock() == Blocks.FARMLAND;
+	GroundPredicate GRASS_BLOCK = SOLID_SIDE.and(blockPredicate(block -> block == Blocks.GRASS || block == Blocks.DIRT || block == Blocks.FARMLAND));
+	GroundPredicate NETHER = SOLID_SIDE.and(blockPredicate(block -> block == Blocks.NETHERRACK || block == Blocks.SOUL_SAND || block == JourneyBlocks.heatSoil || block == JourneyBlocks.heatSand || block == JourneyBlocks.earthenNetherrack));
 
 	GroundPredicate COMMON_AND_TERRANIA_GRASS = GRASS_BLOCK.or(blockPredicate(block -> block == JourneyBlocks.terranianGrass || block == JourneyBlocks.terranianDirt)); //TODO make grass and dirt be normal for all flowers
 

@@ -25,7 +25,7 @@ public class JBlockPlant extends BlockBush implements IHasCustomItemPath {
 	/**
 	 * Predicate that checks if plant can be placed and sustain on provided block.
 	 */
-	private GroundPredicate groundPredicate = GroundPredicate.SOLID_SIDE.and(GroundPredicate.GRASS_BLOCK);
+	private GroundPredicate groundPredicate = GroundPredicate.GRASS_BLOCK;
 	/**
 	 * The direction of where plant is or should be placed, regarding to the ground.
 	 */
