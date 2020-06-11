@@ -21,7 +21,7 @@ public class UnderHeaderDescComponent implements IDescComponent {
     private static final int logoHeight = 64;
     private static final int requestedHeight = 24;
 
-    private ResourceLocation content;
+    private final ResourceLocation content;
     private int contentHeight;
 
     public UnderHeaderDescComponent() {
@@ -45,14 +45,13 @@ public class UnderHeaderDescComponent implements IDescComponent {
 
     @Override
     public void drawContentPart(int x0, int y0, int width) {
+        GlStateManager.pushMatrix();
+        GlStateManager.enableBlend();
+        GlStateManager.enableAlpha();
 
         int indentFromLogo = 4;
         drawImage(x0 + 1 + (int) ((double) width / 2 - ((double) logoWidth * requestedHeight / logoHeight) / 2), y0, 192, 0, logoWidth * requestedHeight / logoHeight, requestedHeight, logoWidth, logoHeight);
         int lastWidth = width - logoWidth * requestedHeight / logoHeight;
-
-        GlStateManager.pushMatrix();
-        GlStateManager.enableBlend();
-        GlStateManager.enableAlpha();
 
         drawImage(x0, y0, 1, 136, (int) ((double) lastWidth / 1.85 - indentFromLogo) + 2, requestedHeight, arrowWidth, arrowHeight);
         drawImage(x0 + width - (int) ((double) lastWidth / 1.85 - indentFromLogo), y0, 127, 136, (int) ((double) lastWidth / 1.85 - indentFromLogo) + 2, requestedHeight, arrowWidth, arrowHeight);
