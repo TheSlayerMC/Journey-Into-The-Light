@@ -26,6 +26,7 @@ import org.jetbrains.annotations.Nullable;
  *     <li>Drops itself</li>
  *     <li>Is NOT replaceable</li>
  *     <li>Has {@link Material#PLANTS} material unless it is  provided in a constructor</li>
+ *     <li>Has no hardness (will be instantly broken)</li>
  * </ul>
  * <p>
  * The item model for it should be placed to "models/item/block/plant/" by default.

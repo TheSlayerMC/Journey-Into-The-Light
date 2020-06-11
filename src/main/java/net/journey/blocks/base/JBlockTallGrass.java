@@ -31,6 +31,7 @@ import java.util.Random;
  *     <li>Is replaceable</li>
  *     <li>Has small model offset as tall grass has</li>
  *     <li>Has {@link Material#VINE} (right mapping: TALL_PLANTS) material unless it is provided in a constructor</li>
+ *     <li>Has no hardness (will be instantly broken)</li>
  * </ul>
  * <p>
  * The item model for it should be placed to "models/item/block/plant/" by default.

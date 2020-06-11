@@ -19,6 +19,7 @@ import org.jetbrains.annotations.NotNull;
  *     <li>Is NOT replaceable</li>
  *     <li>Has small model offset as vanilla flower have</li>
  *     <li>Has {@link Material#PLANTS} material unless it is  provided in a constructor</li>
+ *     <li>Has no hardness (will be instantly broken)</li>
  * </ul>
  * <p>
  * The item model for it should be placed to "models/item/block/plant/" by default.
