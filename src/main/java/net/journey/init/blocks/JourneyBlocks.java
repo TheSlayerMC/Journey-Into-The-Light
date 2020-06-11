@@ -455,6 +455,12 @@ public class JourneyBlocks {
     public static BlockModFlower eucaTallGrass;
     public static BlockModFlower eucaTallFlowers;
     public static BlockModFlower eucaBlueFlower;
+
+    public static BlockModFlower eucaSilverTallGrass;
+    public static BlockModFlower eucaSilverGoldFlower;
+    public static BlockModFlower eucaSilverShortGrass;
+    public static BlockModFlower eucaSilverSprouts;
+
     public static BlockModFlower frozenFlower;
     public static BlockModFlower depthsFlower;
     public static BlockModFlower depthsBlueFlower;
@@ -991,6 +997,12 @@ public class JourneyBlocks {
         eucaTallGrass = new BlockModFlower("eucaTallGrass", "Euca Tall Grass", true);
         eucaTallFlowers = new BlockModFlower("eucaTallFlowers", "Euca Tall Flowers");
         eucaBlueFlower = new BlockModFlower("eucaBlueFlower", "Euca Blue Flower");
+
+        eucaSilverTallGrass = new BlockModFlower("euca_silver_tall_grass", "Silver Tall Grass", true);
+        eucaSilverShortGrass = new BlockModFlower("euca_silver_short_grass", "Silver Short Grass", true);
+        eucaSilverGoldFlower = new BlockModFlower("euca_silver_gold_flower", "Gold Flower");
+        eucaSilverSprouts = new BlockModFlower("euca_silver_sprouts", "Silver Sprouts", true);
+
         frozenFlower = new BlockModFlower("frozenFlower", "Frozen Flower");
         depthsFlower = new BlockModFlower("depthsFlower", "Depths Flower");
         depthsBlueFlower = new BlockModFlower("depthsBlueFlower", "Depths Blue Flower").setLightLevel(0.625F);

@@ -33,10 +33,10 @@ public class BiomeProviderEuca extends BiomeProvider {
 
 	    getBiomesToSpawnIn().clear();
 	    getBiomesToSpawnIn().add(DimensionHelper.EUCA_BIOME);
-	    getBiomesToSpawnIn().add(DimensionHelper.EUCA_SILVER_BiOME);
+	    getBiomesToSpawnIn().add(DimensionHelper.EUCA_SILVER_BIOME);
 
 	    allowedBiomes.add(DimensionHelper.EUCA_BIOME);
-	    allowedBiomes.add(DimensionHelper.EUCA_SILVER_BiOME);
+	    allowedBiomes.add(DimensionHelper.EUCA_SILVER_BIOME);
 
 	    this.biomeCache = new BiomeCache(this);
 	    this.biomes = new ArrayList<Biome>();
@@ -60,7 +60,7 @@ public class BiomeProviderEuca extends BiomeProvider {
 
     public void addBiomes(List<Biome> list) {
 	    list.add(DimensionHelper.EUCA_BIOME);
-	    list.add(DimensionHelper.EUCA_SILVER_BiOME);
+	    list.add(DimensionHelper.EUCA_SILVER_BIOME);
     }
 
     @Override

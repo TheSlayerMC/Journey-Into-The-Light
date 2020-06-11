@@ -21,7 +21,7 @@ public class WorldGenEucaSilverTree extends WorldGenAbstractTree {
     public boolean generate(World world, Random rand, BlockPos pos) {
         int i = pos.getX(), j = pos.getY(), k = pos.getZ();
         IBlockState leaves = JourneyBlocks.eucaSilverLeaves.getDefaultState(), log = WorldGenAPI.getEucaLog().getDefaultState();
-        int height = 10 + rand.nextInt(5);
+        int height = 6 + rand.nextInt(5);
         for (int y = 0; y < height; y++) {
             this.setBlockAndNotifyAdequately(world, new BlockPos(i, y + j, k), log);
         }

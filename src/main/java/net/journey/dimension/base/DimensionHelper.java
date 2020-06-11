@@ -60,6 +60,9 @@ import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DimensionHelper {
 
     public static final float[] boilHeight = new float[]{0.125F, 0.1F};
@@ -67,7 +70,8 @@ public class DimensionHelper {
     public static final float[] CORBA_PLAINS_HEIGHT = new float[]{0.0F, 0.0F};
 
     public static final Biome EUCA_BIOME = new BiomeGenEuca();
-    public static final Biome EUCA_SILVER_BiOME = new BiomeGenEucaSilver();
+    public static final Biome EUCA_SILVER_BIOME = new BiomeGenEucaSilver();
+
     public static final Biome BOILING_BIOME = new BiomeGenBoiling();
     public static final Biome CLOUDIA_BIOME = new BiomeGenCloudia();
 
@@ -100,7 +104,7 @@ public class DimensionHelper {
 			DimensionManager.registerDimension(1, DimensionType.register("End", "END", 1, WorldProviderEndJourney.class, true));
 		} */
         addDimBiome(EUCA_BIOME, "Euca", Type.MAGICAL, Type.MOUNTAIN);
-        addDimBiome(EUCA_SILVER_BiOME, "Euca Silver", Type.MAGICAL, Type.MOUNTAIN);
+        addDimBiome(EUCA_SILVER_BIOME, "Euca Silver", Type.MAGICAL, Type.MOUNTAIN);
         addDimBiome(BOILING_BIOME, "Boiling Point", Type.HOT);
         addDimBiome(CLOUDIA_BIOME, "Cloudia", Type.MAGICAL);
         addDimBiome(CORBA_BIOME, "Corba", Type.DRY, Type.PLAINS, Type.DEAD);
@@ -213,7 +217,7 @@ public class DimensionHelper {
     }
 
     private static void addEucaSpawns() {
-        int amount = 15;
+        int amount = 10;
         EntityRegistry.addSpawn(EntityEucaCharger.class, amount, 1, 1, EnumCreatureType.MONSTER, EUCA_BIOME);
         EntityRegistry.addSpawn(EntityDynaster.class, amount, 1, 1, EnumCreatureType.MONSTER, EUCA_BIOME);
         EntityRegistry.addSpawn(EntityShimmerer.class, amount, 1, 1, EnumCreatureType.MONSTER, EUCA_BIOME);

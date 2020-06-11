@@ -58,7 +58,8 @@ public class ChunkProviderEuca implements IChunkGenerator {
 			new WorldGenEucaTree()
 	};
 	
-	private final WorldGenerator[] flowers;
+	private final WorldGenerator[] NORMAL_FLOWERS;
+	private final WorldGenerator[] SILVER_FLOWERS;
 	
     private final WorldGenModFlower eucaTallGrass;
     private final WorldGenModFlower eucaTallFlowers;
@@ -66,6 +67,11 @@ public class ChunkProviderEuca implements IChunkGenerator {
     private final WorldGenModFlower GOLDEN_STALKS;
     private final WorldGenModFlower GOLDEN_BULB ;
     private final WorldGenModFlower GOLDEN_BLOOM;
+
+	private final WorldGenModFlower SILVER_TALL_GRASS;
+	private final WorldGenModFlower SILVER_SPROUT;
+	private final WorldGenModFlower SILVER_GOLD_FLOWER;
+	private final WorldGenModFlower SILVER_SHORT_GRASS;
     
     private final WorldGenMinable celestium;
     private final WorldGenMinable storonOre;
@@ -97,8 +103,15 @@ public class ChunkProviderEuca implements IChunkGenerator {
 	    GOLDEN_STALKS = new WorldGenModFlower(JourneyBlocks.goldenStalks, JourneyBlocks.eucaGrass);
 	    GOLDEN_BULB = new WorldGenModFlower(JourneyBlocks.goldenBulb, JourneyBlocks.eucaGrass);
 	    GOLDEN_BLOOM = new WorldGenModFlower(JourneyBlocks.goldenBloom, JourneyBlocks.eucaGrass);
+
+		SILVER_GOLD_FLOWER = new WorldGenModFlower(JourneyBlocks.eucaSilverGoldFlower, JourneyBlocks.eucaSilverGrass);
+		SILVER_SHORT_GRASS = new WorldGenModFlower(JourneyBlocks.eucaSilverShortGrass, JourneyBlocks.eucaSilverGrass);
+		SILVER_SPROUT = new WorldGenModFlower(JourneyBlocks.eucaSilverSprouts, JourneyBlocks.eucaSilverGrass);
+		SILVER_TALL_GRASS = new WorldGenModFlower(JourneyBlocks.eucaSilverTallGrass, JourneyBlocks.eucaSilverGrass);
 		
-		flowers = new WorldGenerator[] {eucaTallGrass, eucaTallFlowers, eucaBlueFlower, GOLDEN_BLOOM, GOLDEN_BULB, GOLDEN_STALKS};
+		NORMAL_FLOWERS = new WorldGenerator[] {eucaTallGrass, eucaTallFlowers, eucaBlueFlower, GOLDEN_BLOOM, GOLDEN_BULB, GOLDEN_STALKS};
+
+		SILVER_FLOWERS = new WorldGenerator[] {SILVER_TALL_GRASS, SILVER_SHORT_GRASS, SILVER_SPROUT, SILVER_GOLD_FLOWER};
 		
 		//	treesgreen = new ArrayList<WorldGenerator>(3);
 		//	treesgreen.add(new WorldGenEucaTree6());
@@ -330,12 +343,25 @@ public class ChunkProviderEuca implements IChunkGenerator {
 			}
 		}
 
+		for (times = 0; times < 570; times++) {
+			int randX = i * 16 + 8 + rand.nextInt(16);
+			int randZ = j * 16 + 8 + rand.nextInt(16);
+			int randY = rand.nextInt(150) + 1;
+			if (isBlockTop(randX, randY - 1, randZ, JourneyBlocks.eucaSilverGrass)) {
+				new WorldGenEucaSilverTree(true).generate(worldObj, rand, new BlockPos(randX, randY, randZ));
+			}
+		}
+
+		for (times = 0; times < 80; times++) {
+			SILVER_FLOWERS[rand.nextInt(SILVER_FLOWERS.length)].generate(worldObj, rand, chunkStart);
+		}
+
 		for (times = 0; times < 1; times++) {
 			pumpkin.generate(worldObj, rand, chunkStart);
 		}
 		
 		for (times = 0; times < 80; times++) {
-			flowers[rand.nextInt(flowers.length)].generate(worldObj, rand, chunkStart);
+			NORMAL_FLOWERS[rand.nextInt(NORMAL_FLOWERS.length)].generate(worldObj, rand, chunkStart);
 		}
 
 		for (times = 0; times < 20; times++) {

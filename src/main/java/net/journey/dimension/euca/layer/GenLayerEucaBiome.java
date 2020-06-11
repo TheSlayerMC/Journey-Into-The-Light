@@ -15,7 +15,7 @@ public class GenLayerEucaBiome extends GenLayer {
 	    super(l);
 	    ArrayList<BiomeEntry> eucaBiomes = new ArrayList<BiomeEntry>();
 	    eucaBiomes.add(new BiomeEntry(DimensionHelper.EUCA_BIOME, Config.eucaBiome));
-	    eucaBiomes.add(new BiomeEntry(DimensionHelper.EUCA_SILVER_BiOME, Config.eucaSilverBiome));
+	    eucaBiomes.add(new BiomeEntry(DimensionHelper.EUCA_SILVER_BIOME, Config.eucaSilverBiome));
     }
 
     @Override
@@ -28,7 +28,7 @@ public class GenLayerEucaBiome extends GenLayer {
 	    int[] output = IntCache.getIntCache(width * depth);
 
 	    int gold = Biome.getIdForBiome(DimensionHelper.EUCA_BIOME);
-	    int silver = Biome.getIdForBiome(DimensionHelper.EUCA_SILVER_BiOME);
+	    int silver = Biome.getIdForBiome(DimensionHelper.EUCA_SILVER_BIOME);
 
 	    for (int dz = 0; dz < depth; dz++) {
 		    for (int dx = 0; dx < width; dx++) {

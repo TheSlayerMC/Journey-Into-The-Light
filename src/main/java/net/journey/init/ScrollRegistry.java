@@ -25,7 +25,7 @@ public class ScrollRegistry {
 		List<IDescComponent> desc = new ArrayList<>();
 
 		desc.add(new StringDescComponent("The Senterian Gospel"));
-		desc.add(new StringDescComponent("We never saw it, but we know it - the Devine land Corba was birthed by the o' powerful Rock and Eye." + "\n" +
+		desc.add(new StringDescComponent("We never saw it, but we know it - the Divine land Corba was birthed by the o' powerful Rock and Eye." + "\n" +
 														"Never forget the day, the hour, the second he - The True One - the all powerful Rock and Eye -" + "\n" +
 														" cometh unto the great world he created, to seek his revenge on the wrong-doers who dare disrespect his land"));
 

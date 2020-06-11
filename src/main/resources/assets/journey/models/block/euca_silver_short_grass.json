@@ -1,0 +1,6 @@
+{
+	"parent": "block/cross",
+	"textures": {
+		"cross": "journey:blocks/euca_silver_short_grass"
+	}
+}
