@@ -11,26 +11,15 @@ import net.minecraft.util.ResourceLocation;
  * Code by TimeConqueror
  */
 public class ImageDescComponent implements IDescComponent {
-    private static final String type = "image";
-    private ResourceLocation content;
+    private final ResourceLocation content;
     private int contentHeight;
-    private int imageWidth;
-    private int imageHeight;
+    private final int imageWidth;
+    private final int imageHeight;
 
     public ImageDescComponent(ResourceLocation content, int imageWidth, int imageHeight) {
         this.content = content;
         this.imageWidth = imageWidth;
         this.imageHeight = imageHeight;
-    }
-
-    @Override
-    public Object getContentPart() {
-        return content;
-    }
-
-    @Override
-    public String getType() {
-        return type;
     }
 
     @Override

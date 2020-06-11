@@ -9,23 +9,12 @@ import java.util.List;
  * Code by TimeConqueror
  */
 public class StringDescComponent implements IDescComponent {
-    private static final String type = "string";
-    private String content;
+    private final String content;
     private int contentHeight;
     private List<String> wrappedText;
 
     public StringDescComponent(String descLocalizationKey) {
         this.content = I18n.format(descLocalizationKey);
-    }
-
-    @Override
-    public Object getContentPart() {
-        return content;
-    }
-
-    @Override
-    public String getType() {
-        return type;
     }
 
     @Override

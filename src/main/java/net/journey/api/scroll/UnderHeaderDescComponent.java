@@ -12,9 +12,6 @@ import net.minecraft.util.ResourceLocation;
  * Code by TimeConqueror
  */
 public class UnderHeaderDescComponent implements IDescComponent {
-
-    private static final String type = "under_header";
-
     private static final int arrowWidth = 86;
     private static final int arrowHeight = 59;
     private static final int logoWidth = 64;
@@ -29,18 +26,8 @@ public class UnderHeaderDescComponent implements IDescComponent {
     }
 
     @Override
-    public String getType() {
-        return type;
-    }
-
-    @Override
     public int getContentPartHeight() {
         return contentHeight;
-    }
-
-    @Override
-    public Object getContentPart() {
-        return content;
     }
 
     @Override
