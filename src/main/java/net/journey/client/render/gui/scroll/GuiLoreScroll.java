@@ -13,6 +13,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.client.config.GuiUtils;
@@ -47,10 +48,10 @@ public class GuiLoreScroll extends GuiScreen {
     private float scrollFactorX;
     private int categorySize;
     //For CategoryButtonList
-    private int entryButtonSize = 20;
-    private int buttonHeight = 20;
-    private int buttonWidth = 60;
-    private int border = 5;
+    private final int entryButtonSize = 20;
+    private final int buttonHeight = 20;
+    private final int buttonWidth = 60;
+    private final int border = 5;
     private int buttonListLeft;
     private int buttonListRight;
     private int buttonListTop;
@@ -418,8 +419,8 @@ public class GuiLoreScroll extends GuiScreen {
     private void renderEntryInfo(FontRenderer font, GuiEntryButton button) {
 
         List<String> textLines = new ArrayList<>();
-        textLines.add(TextFormatting.AQUA + button.entry.getTitle());
-        textLines.add(button.entry.getComment());
+        textLines.add(TextFormatting.AQUA + I18n.format(button.entry.getTitleKey()));
+        textLines.add(I18n.format(button.entry.getCommentKey()));
 
         GlStateManager.disableRescaleNormal();
         RenderHelper.disableStandardItemLighting();

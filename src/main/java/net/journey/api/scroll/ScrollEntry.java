@@ -1,6 +1,5 @@
 package net.journey.api.scroll;
 
-import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
@@ -14,40 +13,40 @@ public class ScrollEntry {
 	/**
 	 * Item that will be displayed on Entry Button in Tablet
 	 */
-	private ItemStack displayedItem;
+	private final ItemStack displayedItem;
 	/**
 	 * Id of Entry
 	 */
-	private String id;
+	private final String id;
 	/**
 	 * Name of Entry
 	 */
-	private String title;
+	private String titleKey;
 	/**
-	 * Commentary that will be displayed under the title
+	 * Commentary that will be displayed under the title.
 	 */
 	@Nullable
-	private String comment;
+	private final String commentKey;
 	/**
 	 * Information that will be displayed when you open selected entry
 	 */
-	private List<IDescComponent> desc = new ArrayList<>();
-	private int x;
-	private int y;
+	private final List<IDescComponent> desc = new ArrayList<>();
+	private final int x;
+	private final int y;
 
-	public ScrollEntry(String id, String title, @Nullable String comment, ItemStack displayedItem, List<IDescComponent> desc, int x, int y) {
-		this.title = title;
+	public ScrollEntry(String id, String titleKey, @Nullable String commentKey, ItemStack displayedItem, List<IDescComponent> desc, int x, int y) {
+		this.titleKey = titleKey;
 		this.displayedItem = displayedItem;
 		this.x = x;
 		this.y = y;
-		this.title = I18n.format(title);
-		this.comment = comment;
+		this.titleKey = titleKey;
+		this.commentKey = commentKey;
 
 		this.desc.add(new UnderHeaderDescComponent());
 		this.desc.addAll(desc);
 
 		if (id == null) {
-			this.id = this.title.toLowerCase().replace(' ', '_');
+			this.id = this.titleKey.toLowerCase().replace(' ', '_');
 		} else {
 			this.id = id;
 		}
@@ -61,8 +60,8 @@ public class ScrollEntry {
 		return id;
 	}
 
-	public String getTitle() {
-		return title;
+	public String getTitleKey() {
+		return titleKey;
 	}
 
 	public List<IDescComponent> getDesc() {
@@ -84,12 +83,12 @@ public class ScrollEntry {
 		return y;
 	}
 
-	public String getComment() {
-		return comment;
+	public @Nullable String getCommentKey() {
+		return commentKey;
 	}
 
 	public boolean hasComment() {
-		return comment != null;
+		return commentKey != null;
 	}
 
 }

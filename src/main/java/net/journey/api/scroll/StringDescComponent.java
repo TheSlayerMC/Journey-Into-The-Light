@@ -9,12 +9,12 @@ import java.util.List;
  * Code by TimeConqueror
  */
 public class StringDescComponent implements IDescComponent {
-    private final String content;
+    private final String langKey;
     private int contentHeight;
     private List<String> wrappedText;
 
-    public StringDescComponent(String descLocalizationKey) {
-        this.content = I18n.format(descLocalizationKey);
+    public StringDescComponent(String langKey) {
+        this.langKey = langKey;
     }
 
     @Override
@@ -35,7 +35,7 @@ public class StringDescComponent implements IDescComponent {
 
     @Override
     public void determineContentPartHeight(int width) {
-        wrappedText = Minecraft.getMinecraft().fontRenderer.listFormattedStringToWidth(content, width);
+        wrappedText = Minecraft.getMinecraft().fontRenderer.listFormattedStringToWidth(I18n.format(langKey), width);
         contentHeight = Minecraft.getMinecraft().fontRenderer.FONT_HEIGHT * wrappedText.size();
     }
 }

@@ -11,6 +11,7 @@ import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 import org.jetbrains.annotations.Nullable;
 import org.lwjgl.input.Mouse;
@@ -23,18 +24,18 @@ import java.io.IOException;
  */
 public class GuiLoreScrollEntry extends GuiScreen {
 
-    private static ResourceLocation BG = new ResourceLocation(JITL.MOD_ID, "textures/gui/gui_scroll_base.png");
+    private static final ResourceLocation BG = new ResourceLocation(JITL.MOD_ID, "textures/gui/gui_scroll_base.png");
     private static final int SLIDER_LIGHT_COLOR = 0xFFe5bd85;
     private static final int SLIDER_PATH_COLOR = 0x333c2c14;
     private static final int SLIDER_DARK_COLOR = 0xFFc18a3c;
     private final int headerHeight = 30;
-    private ScrollEntry ScrollEntry;
+    private final ScrollEntry scrollEntry;
     /**
      * Needed for returning back to category menu.
      * If equals null, then gui will be closed after pressing ESC instead of going back to category menu.
      */
     @Nullable
-    private ScrollCategory parentCategory;
+    private final ScrollCategory parentCategory;
     private int guiWidth;
     private int guiHeight;
     private int guix0;
@@ -47,13 +48,13 @@ public class GuiLoreScrollEntry extends GuiScreen {
     private int left;
     private float initialMouseClickY = -2.0F;
     private float scrollDistance;
-    private int selectedIndex = -1;
-    private long lastClickTime = 0L;
+    private final int selectedIndex = -1;
+    private final long lastClickTime = 0L;
     private float scrollFactor;
-    private boolean highlightSelected = true;
+    private final boolean highlightSelected = true;
 
     public GuiLoreScrollEntry(@Nullable ScrollCategory parentCategory, ScrollEntry ScrollEntry) {
-        this.ScrollEntry = ScrollEntry;
+        this.scrollEntry = ScrollEntry;
         this.parentCategory = parentCategory;
     }
 
@@ -68,7 +69,7 @@ public class GuiLoreScrollEntry extends GuiScreen {
      * Returns count of parts in Entry's description.
      */
     private int getContentPartCount() {
-        return ScrollEntry.getDesc().size();
+        return scrollEntry.getDesc().size();
     }
 
     /**
@@ -76,7 +77,7 @@ public class GuiLoreScrollEntry extends GuiScreen {
      */
     private int getContentHeight() {
         int conHeight = this.headerHeight;
-        for (IDescComponent part : ScrollEntry.getDesc()) {
+        for (IDescComponent part : scrollEntry.getDesc()) {
             conHeight += part.getContentPartHeight();
         }
         return conHeight;
@@ -86,14 +87,14 @@ public class GuiLoreScrollEntry extends GuiScreen {
      * Returns height of one existing part.
      */
     private int getContentPartHeight(int index) {
-        return ScrollEntry.getDesc().get(index).getContentPartHeight();
+        return scrollEntry.getDesc().get(index).getContentPartHeight();
     }
 
     /**
      * Initializes all parts' height. Must be called before calling drawing content!
      */
     private void determineAllContentPartHeight(int width) {
-        for (IDescComponent part : ScrollEntry.getDesc()) {
+        for (IDescComponent part : scrollEntry.getDesc()) {
             part.determineContentPartHeight(width);
         }
     }
@@ -102,11 +103,11 @@ public class GuiLoreScrollEntry extends GuiScreen {
      * Draws header and comment, if entry has it.
      */
     private void drawHeader(int maxX, int y0, Tessellator tess) {
-        if (ScrollEntry.hasComment()) {
-            RenderUtils.drawCenteredStringWithCustomScale(fontRenderer, ScrollEntry.getTitle(), left + (maxX - left) / 2 + 1, y0, (int) zLevel, 0xFFFFFF, 1.5F, headerHeight - 5);
-            RenderUtils.drawCenteredStringWithCustomScale(fontRenderer, ScrollEntry.getComment(), left + (maxX - left) / 2 + 1, y0 + (int) ((float) fontRenderer.FONT_HEIGHT * 0.7), (int) zLevel, 0xFFFFFF, 1F, headerHeight + 5);
+        if (scrollEntry.hasComment()) {
+            RenderUtils.drawCenteredStringWithCustomScale(fontRenderer, I18n.format(scrollEntry.getTitleKey()), left + (maxX - left) / 2 + 1, y0, (int) zLevel, 0xFFFFFF, 1.5F, headerHeight - 5);
+            RenderUtils.drawCenteredStringWithCustomScale(fontRenderer, I18n.format(scrollEntry.getCommentKey()), left + (maxX - left) / 2 + 1, y0 + (int) ((float) fontRenderer.FONT_HEIGHT * 0.7), (int) zLevel, 0xFFFFFF, 1F, headerHeight + 5);
         } else {
-            RenderUtils.drawCenteredStringWithCustomScale(fontRenderer, ScrollEntry.getTitle(), left + (maxX - left) / 2 + 1, y0, (int) zLevel, 0xFFFFFF, 1.2F, headerHeight);
+            RenderUtils.drawCenteredStringWithCustomScale(fontRenderer, I18n.format(scrollEntry.getTitleKey()), left + (maxX - left) / 2 + 1, y0, (int) zLevel, 0xFFFFFF, 1.2F, headerHeight);
         }
     }
 
@@ -114,7 +115,7 @@ public class GuiLoreScrollEntry extends GuiScreen {
      * Draws Content Part.
      */
     private void drawContentPart(int partIdx, int contentRight, int partTop, int partBuffer, Tessellator tess) {
-        ScrollEntry.getDesc().get(partIdx).drawContentPart(this.left + 2, partTop, contentRight);
+        scrollEntry.getDesc().get(partIdx).drawContentPart(this.left + 2, partTop, contentRight);
     }
 
     private void applyScrollLimits() {
@@ -266,7 +267,7 @@ public class GuiLoreScrollEntry extends GuiScreen {
 
                 this.drawContentPart(partIdx, max - min - 4, partTop, partBuffer, tess);
             }
-            indentY += ScrollEntry.getDesc().get(partIdx).getContentPartHeight();
+            indentY += scrollEntry.getDesc().get(partIdx).getContentPartHeight();
         }
 
         GlStateManager.disableDepth();
