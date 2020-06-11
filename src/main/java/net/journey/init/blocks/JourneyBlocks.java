@@ -89,8 +89,8 @@ public class JourneyBlocks {
     public static BlockMod sizzlerWoodLeaves;
     public static JBlockLog sizzlerWoodLog;
     public static JBlockTallGrass deathGrass;
-    public static JBlockSmallFlower netherweed;
-    public static JBlockSmallFlower hellBell;
+    public static JBlockFlower netherweed;
+    public static JBlockFlower hellBell;
     public static BlockMod hellshroom;
 
     public static BlockMod earthenNetherLeaves;
@@ -602,8 +602,8 @@ public class JourneyBlocks {
         sizzlerWoodLeaves = new BlockModLeaves("sizzlerWoodLeaves", "Deadblood Leaves", 2.0F, netherSapling);
         sizzlerWoodLog = new JBlockLog("sizzlerWoodLog", "Deadblood Log");
         deathGrass = (JBlockTallGrass) new JBlockTallGrass("deathGrass", "Death Grass").setGroundPredicate(GroundPredicate.NETHER);
-        netherweed = (JBlockSmallFlower) new JBlockSmallFlower("netherWeeds", "Netherweed").setGroundPredicate(GroundPredicate.NETHER);
-        hellBell = (JBlockSmallFlower) new JBlockSmallFlower("hellBell", "Hell Bell").setGroundPredicate(GroundPredicate.NETHER);
+        netherweed = (JBlockFlower) new JBlockFlower("netherWeeds", "Netherweed").setGroundPredicate(GroundPredicate.NETHER);
+        hellBell = (JBlockFlower) new JBlockFlower("hellBell", "Hell Bell").setGroundPredicate(GroundPredicate.NETHER).setBoundingBox(JBlockFlower.BIG_PLANT);
         hellshroom = new BlockNetherFlower("hellshroom", "Hellshroom");
 
         earthenNetherLeaves = new BlockModLeaves("earthenNetherLeaves", "Earthenwood Leaves", 2.0F, EARTHEN_SAPLING);

@@ -33,6 +33,12 @@ import java.util.Random;
  *     <li>Has {@link Material#VINE} (right mapping: TALL_PLANTS) material unless it is provided in a constructor</li>
  *     <li>Has no hardness (will be instantly broken)</li>
  * </ul>
+ * You can also set:
+ * <ul>
+ *     <li>{@link JBlockPlant#groundPredicate} - predicate that checks if plant can be placed and sustain on provided block</li>
+ *     <li>{@link JBlockPlant#plantDirection} - the side of ground block where plant can be placed and stay.</li>
+ *     <li>{@link JBlockPlant#boundingBox} - bounding box of the plant. Equals standard bush box by default.</li>
+ * </ul>
  * <p>
  * The item model for it should be placed to "models/item/block/plant/" by default.
  */

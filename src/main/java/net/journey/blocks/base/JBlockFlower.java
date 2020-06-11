@@ -10,9 +10,9 @@ import net.slayer.api.EnumMaterialTypes;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Base class for small flower blocks.<br>
- * <i>Big flowers can't support offset, so they extend {@link JBlockPlant} directly.</i><br>
+ * Base class for flower blocks.<br>
  * Actually it's the same as {@link JBlockPlant} but it supports model and bounding box offsetting
+ * <i>Big flowers can't support offset, so they extend {@link JBlockPlant} directly.</i><br>
  * <p>
  * By default:
  * <ul>
@@ -23,19 +23,25 @@ import org.jetbrains.annotations.NotNull;
  *     <li>Has {@link Material#PLANTS} material unless it is  provided in a constructor</li>
  *     <li>Has no hardness (will be instantly broken)</li>
  * </ul>
+ * You can also set:
+ * <ul>
+ *     <li>{@link JBlockPlant#groundPredicate} - predicate that checks if plant can be placed and sustain on provided block</li>
+ *     <li>{@link JBlockPlant#plantDirection} - the side of ground block where plant can be placed and stay.</li>
+ *     <li>{@link JBlockPlant#boundingBox} - bounding box of the plant. Equals standard bush box by default.</li>
+ * </ul>
  * <p>
  * The item model for it should be placed to "models/item/block/plant/" by default.
  */
-public class JBlockSmallFlower extends JBlockPlant {
-	public JBlockSmallFlower(String name, String enName) {
+public class JBlockFlower extends JBlockPlant {
+	public JBlockFlower(String name, String enName) {
 		super(name, enName);
 	}
 
-	public JBlockSmallFlower(String name, String enName, CreativeTabs tab) {
+	public JBlockFlower(String name, String enName, CreativeTabs tab) {
 		super(name, enName, tab);
 	}
 
-	public JBlockSmallFlower(EnumMaterialTypes type, String name, String enName, CreativeTabs tab) {
+	public JBlockFlower(EnumMaterialTypes type, String name, String enName, CreativeTabs tab) {
 		super(type, name, enName, tab);
 	}
 

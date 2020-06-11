@@ -11,7 +11,9 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.slayer.api.EnumMaterialTypes;
 import org.jetbrains.annotations.NotNull;
@@ -29,15 +31,25 @@ import org.jetbrains.annotations.Nullable;
  *     <li>Has no hardness (will be instantly broken)</li>
  * </ul>
  * <p>
+ * You can also set:
+ * <ul>
+ *     <li>{@link #groundPredicate} - predicate that checks if plant can be placed and sustain on provided block</li>
+ *     <li>{@link #plantDirection} - the side of ground block where plant can be placed and stay.</li>
+ *     <li>{@link #boundingBox} - bounding box of the plant. Equals standard bush box by default.</li>
+ * </ul>
+ *
  * The item model for it should be placed to "models/item/block/plant/" by default.
  */
 public abstract class JBlockPlant extends BlockBush implements IHasCustomItemPath {
+	public static final AxisAlignedBB SMALL_PLANT = BUSH_AABB;
+	public static final AxisAlignedBB BIG_PLANT = new AxisAlignedBB(0.15, 0, 0.15, 0.85, 1, 0.85);
+	private AxisAlignedBB boundingBox = SMALL_PLANT;
 	/**
 	 * Predicate that checks if plant can be placed and sustain on provided block.
 	 */
 	private GroundPredicate groundPredicate = GroundPredicate.GRASS_BLOCK;
 	/**
-	 * The direction of where plant is or should be placed, regarding to the ground.
+	 * The side of ground block where plant can be placed and stay.
 	 */
 	private EnumFacing plantDirection = EnumFacing.UP;
 
@@ -77,6 +89,16 @@ public abstract class JBlockPlant extends BlockBush implements IHasCustomItemPat
 
 	public EnumFacing getPlantDirection() {
 		return plantDirection;
+	}
+
+	public JBlockPlant setBoundingBox(AxisAlignedBB bb) {
+		boundingBox = bb;
+		return this;
+	}
+
+	@Override
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+		return boundingBox;
 	}
 
 	/**
