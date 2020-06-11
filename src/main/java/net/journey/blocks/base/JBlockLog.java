@@ -26,27 +26,27 @@ public class JBlockLog extends BlockLog implements IHasCustomItemPath {
     }
 
     @Override
-    public boolean isWood(IBlockAccess world, BlockPos pos) {
+    public boolean isWood(@NotNull IBlockAccess world, @NotNull BlockPos pos) {
         return true;
     }
 
     @Override
-    public boolean canSustainLeaves(IBlockState state, IBlockAccess world, BlockPos pos) {
+    public boolean canSustainLeaves(@NotNull IBlockState state, @NotNull IBlockAccess world, @NotNull BlockPos pos) {
         return true;
     }
 
     @Override
-    public BlockRenderLayer getRenderLayer() {
+    public @NotNull BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.SOLID;
     }
 
     @Override
-    protected BlockStateContainer createBlockState() {
+    protected @NotNull BlockStateContainer createBlockState() {
         return new BlockStateContainer(this, LOG_AXIS);
     }
 
     @Override
-    public IBlockState getStateFromMeta(int meta) {
+    public @NotNull IBlockState getStateFromMeta(int meta) {
         IBlockState state = getDefaultState();
 
         EnumAxis axis;

@@ -18,7 +18,7 @@ public class JBlockPane extends BlockPane implements IHasCustomItemPath {
 	}
 
 	@Override
-	protected BlockStateContainer createBlockState() {
+	protected @NotNull BlockStateContainer createBlockState() {
 		return new BlockStateContainer(this, BlockPane.NORTH, BlockPane.EAST, BlockPane.SOUTH, BlockPane.WEST);
 	}
 

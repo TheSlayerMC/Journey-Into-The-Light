@@ -16,8 +16,8 @@ import net.slayer.api.EnumMaterialTypes;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Base class for double plant blocks.
- * The item model for it should be placed to "models/item/block/" by default.
+ * Base class for all double plant blocks.
+ * The item model for it should be placed to "models/item/block/plant" by default.
  */
 public class JBlockDoublePlant extends JBlockPlant implements IHasCustomItemPath {
 	public static final PropertyEnum<EnumHalf> HALF = PropertyEnum.create("half", EnumHalf.class);
