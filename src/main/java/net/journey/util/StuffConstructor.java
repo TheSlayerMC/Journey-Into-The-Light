@@ -12,11 +12,19 @@ import org.jetbrains.annotations.Nullable;
 
 public class StuffConstructor {
 
+	/**
+	 * Registers block.
+	 * Also sets registry name, translation key, creative tab and adds it to lang generator and sets hardness
+	 */
 	public static void regAndSetupBlock(Block block, String name, String enName, float hardness, @Nullable CreativeTabs tab) {
 		block.setHardness(hardness);
 		regAndSetupBlock(block, name, enName, tab);
 	}
 
+	/**
+	 * Registers block.
+	 * Also sets registry name, translation key, creative tab and adds it to lang generator.
+	 */
 	public static void regAndSetupBlock(Block block, String name, String enName, @Nullable CreativeTabs tab) {
 		name = name.toLowerCase();
 

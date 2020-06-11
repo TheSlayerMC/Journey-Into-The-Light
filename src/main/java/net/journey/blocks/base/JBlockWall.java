@@ -1,26 +1,37 @@
 package net.journey.blocks.base;
 
 import net.journey.JITL;
+import net.journey.api.block.IHasCustomItemPath;
 import net.journey.init.JourneyTabs;
-import net.journey.init.blocks.JourneyBlocks;
-import net.journey.util.gen.lang.LangGeneratorFacade;
+import net.journey.util.StuffConstructor;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockWall;
-import net.minecraft.item.ItemBlock;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
+import org.jetbrains.annotations.NotNull;
 
-public class JBlockWall extends BlockWall {
-
-	public String name;
-	
-	public JBlockWall(Block modelBlock, String name, String enName) {
+/**
+ * Base class for wall blocks.
+ * The item model for it should be placed to "models/item/block/wall/" by default.
+ */
+public class JBlockWall extends BlockWall implements IHasCustomItemPath {
+	public JBlockWall(String name, String enName, Block modelBlock) {
 		super(modelBlock);
-        this.name = name;
-        setTranslationKey(name);
-        setCreativeTab(JourneyTabs.BLOCKS);
-        setHardness(2.0F);
-        JourneyBlocks.blocks.add(this);
-        setRegistryName(JITL.MOD_ID, name);
-        LangGeneratorFacade.addBlockEntry(this, enName);
-        JourneyBlocks.itemBlocks.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
+		StuffConstructor.regAndSetupBlock(this, name, enName, JourneyTabs.BLOCKS);
+	}
+
+	@Override
+	public @NotNull ResourceLocation getItemModelResourceLocation() {
+		return new ResourceLocation(JITL.MOD_ID, "block/wall/" + getRegistryName().getPath());
+	}
+
+	/**
+	 * Needs to disable adding mossy blocks in {@link BlockWall#getSubBlocks(CreativeTabs, NonNullList)}
+	 */
+	@Override
+	public void getSubBlocks(@NotNull CreativeTabs itemIn, @NotNull NonNullList<ItemStack> items) {
+
 	}
 }
