@@ -9,11 +9,11 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.slayer.api.EnumMaterialTypes;
 import net.slayer.api.block.BlockMod;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
@@ -98,7 +98,7 @@ public abstract class JDoubleBlock extends BlockMod {
     }
 
     @Override
-    public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player) {
+    public void onBlockHarvested(World worldIn, @NotNull BlockPos pos, @NotNull IBlockState state, @NotNull EntityPlayer player) {
         if (!worldIn.isRemote) {
             if (state.getValue(HALF) == EnumHalf.TOP) {
                 if (worldIn.getBlockState(pos.down()).getBlock() == this) {
@@ -117,7 +117,7 @@ public abstract class JDoubleBlock extends BlockMod {
     }
 
     @Override
-    public IBlockState getStateFromMeta(int meta) {
+    public @NotNull IBlockState getStateFromMeta(int meta) {
         return meta == 0 ? getDefaultState().withProperty(HALF, EnumHalf.BOTTOM) : getDefaultState().withProperty(HALF, EnumHalf.TOP);
     }
 
@@ -126,20 +126,5 @@ public abstract class JDoubleBlock extends BlockMod {
         return state.getValue(HALF) == EnumHalf.BOTTOM ? 0 : 1;
     }
 
-    protected abstract BlockStateContainer createBlockState();
-
-    public enum EnumHalf implements IStringSerializable {
-        TOP("top"),
-        BOTTOM("bottom");
-
-        private final String name;
-
-        EnumHalf(String name) {
-            this.name = name;
-        }
-
-        public String getName() {
-            return this.name;
-        }
-    }
+    protected abstract @NotNull BlockStateContainer createBlockState();
 }

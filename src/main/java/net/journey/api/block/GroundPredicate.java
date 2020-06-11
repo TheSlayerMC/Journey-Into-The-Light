@@ -12,17 +12,19 @@ import java.util.Objects;
 import java.util.function.Predicate;
 
 public interface GroundPredicate {
-	GroundPredicate ANY_GROUND = (world, groundPos, groundState, plantDirection) -> true;
+	/**
+	 * Any ground is accepted, but it should have solid side at the plant direction.
+	 */
 	GroundPredicate SOLID_SIDE = (world, groundPos, groundState, plantDirection) -> groundState.isSideSolid(world, groundPos, plantDirection);
 	GroundPredicate GRASS_BLOCK = (world, groundPos, groundState, plantDirection) -> groundState.getBlock() == Blocks.GRASS || groundState.getBlock() == Blocks.DIRT || groundState.getBlock() == Blocks.FARMLAND;
 
-	GroundPredicate COMMON_AND_TERRANIA_GRASS = GRASS_BLOCK.or(groundBlockPredicate(block -> block == JourneyBlocks.terranianGrass || block == JourneyBlocks.terranianDirt)); //TODO make grass and dirt be normal for all flowers
+	GroundPredicate COMMON_AND_TERRANIA_GRASS = GRASS_BLOCK.or(blockPredicate(block -> block == JourneyBlocks.terranianGrass || block == JourneyBlocks.terranianDirt)); //TODO make grass and dirt be normal for all flowers
 
-	static GroundPredicate groundBlockPredicate(Predicate<Block> blockPredicate) {
+	static GroundPredicate blockPredicate(Predicate<Block> blockPredicate) {
 		return (world, groundPos, groundState, plantDirection) -> blockPredicate.test(groundState.getBlock());
 	}
 
-	static GroundPredicate groundBlockStatePredicate(Predicate<IBlockState> blockStatePredicate) {
+	static GroundPredicate blockStatePredicate(Predicate<IBlockState> blockStatePredicate) {
 		return (world, groundPos, groundState, plantDirection) -> blockStatePredicate.test(groundState);
 	}
 

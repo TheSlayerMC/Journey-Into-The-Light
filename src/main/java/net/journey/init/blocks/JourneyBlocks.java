@@ -734,18 +734,18 @@ public class JourneyBlocks {
         ashBlock = new BlockMod("ashBlock", "Ash");
         hotBlock = new BlockHotBlock(ashBlock, "hotGround", "Hot Ground", 2.0F);
         rubble = new BlockMod("rubble", "Rubble", 2.0F);
-        
+
         boilCobble = new BlockMod("boil_cobble", "Boil Cobble");
         boilPillar = new BlockMod("boil_pillar", "Boil Pillar");
         boilShingle = new BlockMod("boil_shingle", "Boil Shingle");
         boilSquareBrick = new BlockMod("boil_square_brick", "Boil Square Brick");
         boilBricks = new BlockMod("boil_bricks", "Boil Bricks");
-        tallCrumblingPlant = new JBlockDoublePlant("tall_crumbling_plant", "Tall Crumbling Plant", JourneyTabs.DECORATION).setAcceptableGround(state -> state.getMaterial() == Material.SAND);
-        tallMoltenPlant = new JBlockDoublePlant("tall_molten_plant", "Tall Molten Plant", JourneyTabs.DECORATION).setAcceptableGround(state -> state.getMaterial() == Material.SAND);
+        tallCrumblingPlant = (JBlockDoublePlant) new JBlockDoublePlant("tall_crumbling_plant", "Tall Crumbling Plant").setGroundPredicate(GroundPredicate.SOLID_SIDE.and(GroundPredicate.blockStatePredicate(groundState -> groundState.getMaterial() == Material.SAND)));
+        tallMoltenPlant = (JBlockDoublePlant) new JBlockDoublePlant("tall_molten_plant", "Tall Molten Plant").setGroundPredicate(GroundPredicate.SOLID_SIDE.and(GroundPredicate.blockStatePredicate(groundState -> groundState.getMaterial() == Material.SAND)));
         crumblingPlant = new BlockSandPlant("crumbling_plant", "Crumbling Plant");
         lavaBloom = new BlockSandPlant("lava_bloom", "Lava Bloom");
         crispGrass = new BlockSandPlant("crisp_grass", "Crisp Grass");
-        
+
         brisonblocks = new BlockMetaBase("brison", Material.ROCK, "brison");
         boilingBars = new Initializer<>(new JBlockPane(EnumMaterialTypes.STONE, "boilingBars", "Brison Bars", true)).apply(pane -> pane.setHardness(5.0F));
         burningLeaves = new BlockModLeaves("burningLeaves", "Burning Leaves", 0.5F, boilSapling).setBurningPlant();
@@ -967,7 +967,7 @@ public class JourneyBlocks {
         glowshroomGreen = new BlockGlowshroom("glowshroom_green", "Green Glowshroom");
         glowshroomBlue = new BlockGlowshroom("glowshroom_blue", "Blue Glowshroom");
 
-        tallGoldenStalks = new JBlockDoublePlant("tall_golden_stalks", "Tall Golden Stalks", JourneyTabs.DECORATION).setAcceptableGround(state -> state.getMaterial() == Material.GRASS);
+        tallGoldenStalks = (JBlockDoublePlant) new JBlockDoublePlant("tall_golden_stalks", "Tall Golden Stalks", JourneyTabs.DECORATION).setGroundPredicate(GroundPredicate.SOLID_SIDE.and(GroundPredicate.blockStatePredicate(state -> state.getMaterial() == Material.GRASS)));
 
         goldenBulb = new BlockModFlower("goldenBulb", "Golden Bulb");
         goldenBloom = new BlockModFlower("goldenBloom", "Golden Bloom");

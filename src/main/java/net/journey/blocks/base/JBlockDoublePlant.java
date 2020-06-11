@@ -1,106 +1,132 @@
 package net.journey.blocks.base;
 
-import net.journey.JITL;
 import net.journey.api.block.IHasCustomItemPath;
-import net.minecraft.block.state.BlockFaceShape;
+import net.minecraft.block.Block;
+import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.EnumMaterialTypes;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.function.Predicate;
 
 /**
  * Base class for double plant blocks.
  * The item model for it should be placed to "models/item/block/" by default.
  */
-public class JBlockDoublePlant extends JDoubleBlock implements IHasCustomItemPath {
-    private Predicate<IBlockState> groundPredicate = null;
+public class JBlockDoublePlant extends JBlockPlant implements IHasCustomItemPath {
+	public static final PropertyEnum<EnumHalf> HALF = PropertyEnum.create("half", EnumHalf.class);
 
-    public JBlockDoublePlant(String name, String enName, @Nullable CreativeTabs tab) {
-        super(EnumMaterialTypes.PLANT, name, enName, 0, tab);
-    }
+	public JBlockDoublePlant(String name, String enName) {
+		super(name, enName);
+	}
 
-    public JBlockDoublePlant setAcceptableGround(Predicate<IBlockState> groundPredicate) {
-        this.groundPredicate = groundPredicate;
-        return this;
-    }
+	public JBlockDoublePlant(String name, String enName, CreativeTabs tab) {
+		super(name, enName, tab);
+	}
 
-    /**
-     * Checks if block at given position has acceptable ground to stay.
-     *
-     * @param world world where block is placed
-     * @param pos   pos of  bottom plant block.
-     *              You shouldn't get and check the blockstate of bottom plant block, because it may be not placed yet.
-     */
-    public boolean hasAcceptableGround(World world, BlockPos pos) {
-        return (groundPredicate == null || groundPredicate.test(world.getBlockState(pos.down()))) && world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP);
-    }
+	public JBlockDoublePlant(EnumMaterialTypes type, String name, String enName, CreativeTabs tab) {
+		super(type, name, enName, tab);
+	}
 
-    @Override
-    protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, HALF);
-    }
+	/**
+	 * Places both bottom and top blocks.
+	 *
+	 * @param world     world where to set
+	 * @param bottomPos position where bottom block will be placed.
+	 * @param flags     the same as in {@link World#setBlockState(BlockPos, IBlockState, int)}
+	 */
+	public void placeAt(World world, BlockPos bottomPos, int flags) {
+		world.setBlockState(bottomPos, this.getDefaultState().withProperty(HALF, EnumHalf.BOTTOM), flags);
+		world.setBlockState(bottomPos.up(), this.getDefaultState().withProperty(HALF, EnumHalf.TOP), flags);
+	}
 
-    @Override
-    protected boolean canStay(World world, BlockPos pos, IBlockState state) {
-        if (getHalf(state) == EnumHalf.BOTTOM && !hasAcceptableGround(world, pos)) {
-            return false;
-        }
+	@Override
+	public boolean canPlaceBlockAt(World worldIn, @NotNull BlockPos pos) {
+		return worldIn.isAirBlock(pos.up()) && super.canPlaceBlockAt(worldIn, pos);
+	}
 
-        return super.canStay(world, pos, state);
-    }
+	@Override
+	public boolean canBlockStay(@NotNull World worldIn, @NotNull BlockPos pos, @NotNull IBlockState state) {
+		boolean canStay = true;
 
-    @Override
-    public boolean canPlaceBlockAt(World worldIn, BlockPos pos) {
-        return hasAcceptableGround(worldIn, pos) && super.canPlaceBlockAt(worldIn, pos);
-    }
-    
-    @Override
-    @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getRenderLayer() {
-        return BlockRenderLayer.CUTOUT;
-    }
+		boolean checkAsBottomState = state.getBlock() != this || state.getValue(HALF) != EnumHalf.TOP;
 
-    public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face) {
-        return BlockFaceShape.UNDEFINED;
-    }
+		if (state.getBlock() == this) {
+			if (state.getValue(HALF) == EnumHalf.TOP) {
+				IBlockState bottomState = worldIn.getBlockState(pos.down());
+				canStay = bottomState.getBlock() == this && bottomState.getValue(HALF) == EnumHalf.BOTTOM;
+			} else {
+				IBlockState topState = worldIn.getBlockState(pos.up());
+				canStay = topState.getBlock() == this && topState.getValue(HALF) == EnumHalf.TOP;
+			}
+		}
 
-    @Override
-    public boolean isOpaqueCube(IBlockState state) {
-        return false;
-    }
+		return canStay && (checkAsBottomState ? super.canBlockStay(worldIn, pos, state) : super.canBlockStay(worldIn, pos.down(), state));
+	}
 
-    @Override
-    public boolean isFullCube(IBlockState state) {
-        return false;
-    }
+	@Override
+	protected void checkAndDropBlock(@NotNull World world, @NotNull BlockPos pos, @NotNull IBlockState state) {
+		if (!canBlockStay(world, pos, state)) {
+			boolean isTop = state.getValue(HALF) == EnumHalf.TOP;
 
-    @Override
-    public boolean isNormalCube(IBlockState state) {
-        return false;
-    }
+			BlockPos top = isTop ? pos : pos.up();
+			BlockPos bottom = isTop ? pos.down() : pos;
 
-    @NotNull
-    @Override
-    public ResourceLocation getItemModelResourceLocation() {
-        return new ResourceLocation(JITL.MOD_ID, "block/" + getRegistryName().getPath());
-    }
+			Block topBlock = isTop ? this : world.getBlockState(bottom).getBlock();
+			Block bottomBlock = isTop ? world.getBlockState(bottom).getBlock() : this;
 
-    @Override
-    @javax.annotation.Nullable
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
-        return NULL_AABB;
-    }
+			if (!isTop) dropBlockAsItem(world, pos, state, 0);
+
+			if (topBlock == this) world.setBlockState(top, Blocks.AIR.getDefaultState(), 2);
+
+			if (bottomBlock == this) world.setBlockState(bottom, Blocks.AIR.getDefaultState(), 3);
+		}
+	}
+
+	@Override
+	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, @NotNull EntityLivingBase placer, @NotNull ItemStack stack) {
+		super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
+
+		worldIn.setBlockState(pos.up(), state.withProperty(HALF, EnumHalf.TOP));// we set block also on client to prevent top block placing being slow for eyes
+	}
+
+	@Override
+	public void onBlockHarvested(World worldIn, @NotNull BlockPos pos, @NotNull IBlockState state, @NotNull EntityPlayer player) {
+		if (!worldIn.isRemote) {
+			if (state.getValue(HALF) == EnumHalf.TOP) {
+				if (worldIn.getBlockState(pos.down()).getBlock() == this) {
+					if (player.capabilities.isCreativeMode) {
+						worldIn.setBlockToAir(pos.down());
+					} else {
+						worldIn.destroyBlock(pos.down(), true);
+					}
+				}
+			} else if (worldIn.getBlockState(pos.up()).getBlock() == this) {
+				worldIn.setBlockState(pos.up(), Blocks.AIR.getDefaultState(), 2);
+			}
+		}
+
+		super.onBlockHarvested(worldIn, pos, state, player);
+	}
+
+	@Override
+	public @NotNull IBlockState getStateFromMeta(int meta) {
+		return meta == 0 ? getDefaultState().withProperty(HALF, EnumHalf.BOTTOM) : getDefaultState().withProperty(HALF, EnumHalf.TOP);
+	}
+
+	@Override
+	public int getMetaFromState(IBlockState state) {
+		return state.getValue(HALF) == EnumHalf.BOTTOM ? 0 : 1;
+	}
+
+	@Override
+	protected @NotNull BlockStateContainer createBlockState() {
+		return new BlockStateContainer(this, HALF);
+	}
 }
