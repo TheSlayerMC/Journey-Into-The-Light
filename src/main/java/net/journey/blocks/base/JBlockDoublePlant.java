@@ -2,6 +2,7 @@ package net.journey.blocks.base;
 
 import net.journey.api.block.IHasCustomItemPath;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -10,17 +11,36 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.slayer.api.EnumMaterialTypes;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Base class for all double plant blocks.
+ * Base class for all double plant blocks.<br>
+ * By default:
+ * <ul>
+ *     <li>Checks for ground to be placed and stay</li>
+ *     <li>Drops itself</li>
+ *     <li>Is NOT replaceable</li>
+ *     <li>Has {@link Material#PLANTS} material unless it is  provided in a constructor</li>
+ *     <li>Has no hardness (will be instantly broken)</li>
+ * </ul>
+ * <p>
+ * You can also set:
+ * <ul>
+ *     <li>{@link #groundPredicate} - predicate that checks if plant can be placed and sustain on provided block</li>
+ *     <li>{@link #plantDirection} - the side of ground block where plant can be placed and stay.</li>
+ *     <li>{@link #boundingBox} - bounding box of the plant. Equals standard bush box by default.</li>
+ * </ul>
  * The item model for it should be placed to "models/item/block/plant" by default.
  */
+@SuppressWarnings("JavadocReference")
 public class JBlockDoublePlant extends JBlockPlant implements IHasCustomItemPath {
 	public static final PropertyEnum<EnumHalf> HALF = PropertyEnum.create("half", EnumHalf.class);
+	private AxisAlignedBB bottomBox = TALL_PLANT_BB;
+	private AxisAlignedBB topBox = BUSH_AABB;
 
 	public JBlockDoublePlant(String name, String enName) {
 		super(name, enName);
@@ -44,6 +64,18 @@ public class JBlockDoublePlant extends JBlockPlant implements IHasCustomItemPath
 	public void placeAt(World world, BlockPos bottomPos, int flags) {
 		world.setBlockState(bottomPos, this.getDefaultState().withProperty(HALF, EnumHalf.BOTTOM), flags);
 		world.setBlockState(bottomPos.up(), this.getDefaultState().withProperty(HALF, EnumHalf.TOP), flags);
+	}
+
+	@Override
+	public JBlockDoublePlant setBoundingBox(AxisAlignedBB bb) {
+		return setBoundingBox(bb, bb);
+	}
+
+	public JBlockDoublePlant setBoundingBox(AxisAlignedBB bottom, AxisAlignedBB top) {
+		this.bottomBox = bottom;
+		this.topBox = top;
+
+		return this;
 	}
 
 	@Override

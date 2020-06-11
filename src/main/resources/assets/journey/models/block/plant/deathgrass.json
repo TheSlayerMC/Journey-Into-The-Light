@@ -1,6 +1,6 @@
 {
 	"parent": "block/cross",
 	"textures": {
-		"cross": "journey:blocks/deathgrass"
+		"cross": "journey:blocks/plant/deathgrass"
 	}
 }

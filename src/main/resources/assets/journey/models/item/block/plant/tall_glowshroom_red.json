@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "journey:items/tall_glowshroom_red"
+    "layer0": "journey:items/plant/tall_glowshroom_red"
   }
 }
