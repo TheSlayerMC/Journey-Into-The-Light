@@ -1,6 +1,6 @@
 {
 	"parent": "block/cross",
 	"textures": {
-		"cross": "journey:blocks/hellbell"
+		"cross": "journey:blocks/plant/hellbell"
 	}
 }

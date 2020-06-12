@@ -41,9 +41,10 @@ import org.jetbrains.annotations.Nullable;
  * The item model for it should be placed to "models/item/block/plant/" by default.
  */
 public abstract class JBlockPlant extends BlockBush implements IHasCustomItemPath {
-	public static final AxisAlignedBB SMALL_PLANT = BUSH_AABB;
-	public static final AxisAlignedBB BIG_PLANT = new AxisAlignedBB(0.15, 0, 0.15, 0.85, 1, 0.85);
-	private AxisAlignedBB boundingBox = SMALL_PLANT;
+	public static final AxisAlignedBB SMALL_PLANT_BB = BUSH_AABB;
+	public static final AxisAlignedBB TALL_PLANT_BB = new AxisAlignedBB(BUSH_AABB.minX, 0, BUSH_AABB.minZ, BUSH_AABB.maxX, 1, BUSH_AABB.maxZ);
+	public static final AxisAlignedBB BIG_PLANT_BB = new AxisAlignedBB(0.15, 0, 0.15, 0.85, 1, 0.85);
+	private AxisAlignedBB boundingBox = BUSH_AABB;
 	/**
 	 * Predicate that checks if plant can be placed and sustain on provided block.
 	 */

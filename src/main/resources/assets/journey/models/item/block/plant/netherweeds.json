@@ -1,6 +1,6 @@
 {
 	"parent": "item/generated",
 	"textures": {
-		"layer0": "journey:blocks/netherweeds"
+		"layer0": "journey:blocks/plant/netherweeds"
 	}
 }
