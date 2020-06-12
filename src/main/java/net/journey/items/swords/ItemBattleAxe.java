@@ -23,6 +23,7 @@ public class ItemBattleAxe extends ItemModAxe {
         super(name, f, m);
         setTranslationKey(name);
         setCreativeTab(JourneyTabs.WEAPONS);
+        attackSpeed = -3.3F;
     }
 
     @Override

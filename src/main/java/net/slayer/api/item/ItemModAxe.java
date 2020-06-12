@@ -32,6 +32,7 @@ public class ItemModAxe extends ItemTool {
         super(tool.getToolMaterial(), EFFECTIVE_ON);
         this.efficiency = tool.getToolMaterial().getEfficiency();
         this.attackDamage = tool.getToolMaterial().getAttackDamage();
+        this.attackSpeed = -2.5F;
         mat = tool;
         setTranslationKey(name);
         setCreativeTab(JourneyTabs.TOOLS);
