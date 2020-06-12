@@ -33,11 +33,12 @@ import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.slayer.api.worldgen.WorldGenAPI;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Random;
 
-public class ChunkProviderEuca implements IChunkGenerator {
+public class ChunkGeneratorEuca implements IChunkGenerator {
 	private static final GroundPredicate EUCA_GRASS_GROUND = GroundPredicate.SOLID_SIDE.and(GroundPredicate.blockPredicate(block -> block == JourneyBlocks.eucaGrass));
 	public static final GroundPredicate EUCA_SILVER_GRASS_GROUND = GroundPredicate.SOLID_SIDE.and(GroundPredicate.blockPredicate(block -> block == JourneyBlocks.eucaSilverGrass));
 
@@ -47,7 +48,7 @@ public class ChunkProviderEuca implements IChunkGenerator {
 	double[] ar;
 	double[] br;
 	private final Random rand;
-	private final World worldObj;
+	private final World world;
 	private final NoiseGeneratorOctaves noiseGen1;
 	private final NoiseGeneratorOctaves perlinNoise1;
 	private double[] buffer;
@@ -86,8 +87,8 @@ public class ChunkProviderEuca implements IChunkGenerator {
 	private final WorldGenEucaPumpkin pumpkin = new WorldGenEucaPumpkin();
 	private final EucaSmallSphereDungeon smallsphere = new EucaSmallSphereDungeon();
 
-	public ChunkProviderEuca(World world, long seed) {
-		this.worldObj = world;
+	public ChunkGeneratorEuca(World world, long seed) {
+		this.world = world;
 		this.rand = new Random(seed);
 		this.noiseGen1 = new NoiseGeneratorOctaves(this.rand, 16);
 		this.perlinNoise1 = new NoiseGeneratorOctaves(this.rand, 8);
@@ -127,7 +128,7 @@ public class ChunkProviderEuca implements IChunkGenerator {
 
 	public void setBlocksInChunk(int x, int z, ChunkPrimer chunkPrimer) {
 		this.buffer = this.setupNoiseGenerators(this.buffer, x * 2, z * 2);
-		this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomesForGeneration(this.biomesForGeneration, x * 4 - 2, z * 4 - 2, 100, 100);
+		this.biomesForGeneration = this.world.getBiomeProvider().getBiomesForGeneration(this.biomesForGeneration, x * 4 - 2, z * 4 - 2, 100, 100);
 
 		for (int i1 = 0; i1 < 2; i1++) {
 			for (int j1 = 0; j1 < 2; j1++) {
@@ -190,54 +191,14 @@ public class ChunkProviderEuca implements IChunkGenerator {
 		}
 	}
 
-	public void replaceBiomeBlocks(int x, int z, ChunkPrimer primer, Biome[] biomesIn) {
+	public void replaceBiomeBlocks(int chunkX, int chunkZ, ChunkPrimer primer, Biome[] biomesIn) {
+		if (!ForgeEventFactory.onReplaceBiomeBlocks(this, chunkX, chunkZ, primer, this.world)) return;
+		this.buffer = this.surfaceNoise.getRegion(this.buffer, chunkX * 16, chunkZ * 16, 16, 16, 0.0625D, 0.0625D, 1.0D);
 
-		if (!ForgeEventFactory.onReplaceBiomeBlocks(this, x, z, primer, this.worldObj)) return;
-		double d0 = 0.03125D;
-		this.buffer = this.surfaceNoise.getRegion(this.buffer, x * 16, z * 16, 16, 16, 0.0625D, 0.0625D, 1.0D);
-
-		for (int i = 0; i < 16; ++i) {
-			for (int j = 0; j < 16; ++j) {
-				Biome biome = biomesIn[j + i * 16];
-				biome.genTerrainBlocks(this.worldObj, this.rand, primer, x * 16 + i, z * 16 + j, this.buffer[j + i * 16]);
-			}
-		}
-	}
-
-	public void buildSurfaces(int chunkX, int chunkZ, ChunkPrimer chunkPrimer) {
-		for (int relX = 0; relX < 16; relX++) {
-			for (int relZ = 0; relZ < 16; relZ++) {
-				int j1 = -1;
-				int i1 = (int) (3.0D + this.rand.nextDouble() * 0.25D);
-				Biome biome = worldObj.getBiome(new BlockPos(chunkX * 16 + relX, 0, chunkZ * 16 + relZ));
-				IBlockState top = biome.topBlock;
-				IBlockState filler = JourneyBlocks.eucaDirt.getDefaultState();
-
-				for (int y = 127; y >= 0; y--) {
-					Block block = chunkPrimer.getBlockState(relX, y, relZ).getBlock();
-
-					if (block == Blocks.AIR) {
-						j1 = -1;
-					} else if (block == JourneyBlocks.eucaStone) {
-						if (j1 == -1) {
-							if (i1 <= 0) {
-								top = Blocks.AIR.getDefaultState();
-								filler = JourneyBlocks.eucaStone.getDefaultState();
-							}
-
-							j1 = i1;
-
-							if (y >= 0) {
-								chunkPrimer.setBlockState(relX, y, relZ, top);
-							} else {
-								chunkPrimer.setBlockState(relX, y, relZ, filler);
-							}
-						} else if (j1 > 0) {
-							--j1;
-							chunkPrimer.setBlockState(relX, y, relZ, filler);
-						}
-					}
-				}
+		for (int relX = 0; relX < 16; ++relX) {
+			for (int relZ = 0; relZ < 16; ++relZ) {
+				Biome biome = biomesIn[relX + relZ * 16];
+				biome.genTerrainBlocks(this.world, this.rand, primer, chunkX * 16 + relX, chunkZ * 16 + relZ, this.buffer[relX + relZ * 16]);
 			}
 		}
 	}
@@ -291,14 +252,13 @@ public class ChunkProviderEuca implements IChunkGenerator {
 	}
 
 	@Override
-	public Chunk generateChunk(int x, int z) {
+	public @NotNull Chunk generateChunk(int x, int z) {
 		this.rand.setSeed((long) x * 341873128712L + (long) z * 132897987541L);
 		ChunkPrimer chunkPrimer = new ChunkPrimer();
 		this.setBlocksInChunk(x, z, chunkPrimer);
-		this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomes(this.biomesForGeneration, x * 16, z * 16, 16, 16);
-//		this.replaceBiomeBlocks(x, z, chunkPrimer, biomesForGeneration);
-		this.buildSurfaces(x, z, chunkPrimer);
-		Chunk chunk = new Chunk(this.worldObj, chunkPrimer, x, z);
+		this.biomesForGeneration = this.world.getBiomeProvider().getBiomes(this.biomesForGeneration, x * 16, z * 16, 16, 16);
+		this.replaceBiomeBlocks(x, z, chunkPrimer, biomesForGeneration);
+		Chunk chunk = new Chunk(this.world, chunkPrimer, x, z);
 
 		byte[] chunkBiomes = chunk.getBiomeArray();
 		for (int i = 0; i < chunkBiomes.length; ++i) {
@@ -310,20 +270,20 @@ public class ChunkProviderEuca implements IChunkGenerator {
 	}
 
 	@Override
-	public void populate(int i, int j) {
-		ChunkPos chunkPos = new ChunkPos(i, j);
+	public void populate(int chunkX, int chunkZ) {
+		ChunkPos chunkPos = new ChunkPos(chunkX, chunkZ);
 		int chunkSize = 16;
-		int x1 = i * chunkSize;
-		int z1 = j * chunkSize;
+		int x1 = chunkX * chunkSize;
+		int z1 = chunkZ * chunkSize;
 		int times;
-		BlockPos chunkStart = new BlockPos(i * chunkSize, 0, j * chunkSize);
+		BlockPos chunkStart = new BlockPos(chunkX * chunkSize, 0, chunkZ * chunkSize);
 
 		boolean hasVillagesGenerated = false;
 
-		Biome biome = worldObj.getBiome(chunkStart.add(16, 0, 16)); //why do we need to get a biome of the another chunk?
-		biome.decorate(this.worldObj, this.rand, new BlockPos(i, 0, j));
-		if (net.minecraftforge.event.terraingen.TerrainGen.populate(this, worldObj, rand, i, j, hasVillagesGenerated, net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.ANIMALS))
-			WorldEntitySpawner.performWorldGenSpawning(this.worldObj, biome, i + 8, j + 8, 16, 16, this.rand);
+		Biome biome = world.getBiome(chunkStart.add(16, 0, 16)); //why do we need to get a biome of the another chunk?
+		biome.decorate(this.world, this.rand, chunkStart);
+		if (net.minecraftforge.event.terraingen.TerrainGen.populate(this, world, rand, chunkX, chunkZ, hasVillagesGenerated, net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.ANIMALS))
+			WorldEntitySpawner.performWorldGenSpawning(this.world, biome, chunkX + 8, chunkZ + 8, 16, 16, this.rand);
 
 		if (rand.nextInt(6) == 0) {
 			generateStructure(x1, z1, worldGenSmeltery);
@@ -334,29 +294,29 @@ public class ChunkProviderEuca implements IChunkGenerator {
 		}
 
 		for (times = 0; times < 500; times++) {
-			int randX = i * 16 + 8 + rand.nextInt(16);
-			int randZ = j * 16 + 8 + rand.nextInt(16);
+			int randX = chunkX * 16 + 8 + rand.nextInt(16);
+			int randZ = chunkZ * 16 + 8 + rand.nextInt(16);
 			int randY = rand.nextInt(150) + 1;
 			if (isBlockTop(randX, randY - 1, randZ, JourneyBlocks.eucaGrass)) {
-				treesnormal[rand.nextInt(treesnormal.length)].generate(worldObj, rand, new BlockPos(randX, randY, randZ));
+				treesnormal[rand.nextInt(treesnormal.length)].generate(world, rand, new BlockPos(randX, randY, randZ));
 			}
 		}
 
 		for (times = 0; times < 70; times++) {
-			int randX = i * 16 + 8 + rand.nextInt(16);
-			int randZ = j * 16 + 8 + rand.nextInt(16);
+			int randX = chunkX * 16 + 8 + rand.nextInt(16);
+			int randZ = chunkZ * 16 + 8 + rand.nextInt(16);
 			int randY = rand.nextInt(150) + 1;
 			if (isBlockTop(randX, randY - 1, randZ, JourneyBlocks.eucaGrass)) {
-				treestall[rand.nextInt(treestall.length)].generate(worldObj, rand, new BlockPos(randX, randY, randZ));
+				treestall[rand.nextInt(treestall.length)].generate(world, rand, new BlockPos(randX, randY, randZ));
 			}
 		}
 
 		for (times = 0; times < 570; times++) {
-			int randX = i * 16 + 8 + rand.nextInt(16);
-			int randZ = j * 16 + 8 + rand.nextInt(16);
+			int randX = chunkX * 16 + 8 + rand.nextInt(16);
+			int randZ = chunkZ * 16 + 8 + rand.nextInt(16);
 			int randY = rand.nextInt(150) + 1;
 			if (isBlockTop(randX, randY - 1, randZ, JourneyBlocks.eucaSilverGrass)) {
-				new WorldGenEucaSilverTree(true).generate(worldObj, rand, new BlockPos(randX, randY, randZ));
+				new WorldGenEucaSilverTree(true).generate(world, rand, new BlockPos(randX, randY, randZ));
 			}
 		}
 
@@ -365,42 +325,41 @@ public class ChunkProviderEuca implements IChunkGenerator {
 		}
 
 		for (times = 0; times < 1; times++) {
-			pumpkin.generate(worldObj, rand, chunkStart);
+			pumpkin.generate(world, rand, chunkStart);
 		}
 
-		for (WorldGenerator flowerGen : NORMAL_FLOWERS) {
-			flowerGen.generate(worldObj, rand, chunkStart);
-		}
+//		for (WorldGenerator flowerGen : NORMAL_FLOWERS) {
+//			flowerGen.generate(world, rand, chunkStart);
+//		}
 
 		for (times = 0; times < 20; times++) {
-			water.generate(worldObj, rand, new BlockPos(x1 + this.rand.nextInt(16) + 8, this.rand.nextInt(120) + 4, z1 + this.rand.nextInt(16) + 8));
+			water.generate(world, rand, new BlockPos(x1 + this.rand.nextInt(16) + 8, this.rand.nextInt(120) + 4, z1 + this.rand.nextInt(16) + 8));
 		}
 
 		if (rand.nextInt(25) == 0) {
-			sphere.generate(worldObj, rand, new BlockPos(x1, this.rand.nextInt(120) + 4, z1));
+			sphere.generate(world, rand, new BlockPos(x1, this.rand.nextInt(120) + 4, z1));
 		}
 
 		if (rand.nextInt(256) == 0) {
-			smallsphere.generate(worldObj, rand, new BlockPos(x1, this.rand.nextInt(120) + 4, z1));
+			smallsphere.generate(world, rand, new BlockPos(x1, this.rand.nextInt(120) + 4, z1));
 		}
 
-		for (i = 0; i < Config.celestiumOreTrys; i++) {
-			celestium.generate(worldObj, rand, chunkStart.add(rand.nextInt(16), rand.nextInt(worldObj.getHeight()), rand.nextInt(16)));
+		for (chunkX = 0; chunkX < Config.celestiumOreTrys; chunkX++) {
+			celestium.generate(world, rand, chunkStart.add(rand.nextInt(16), rand.nextInt(world.getHeight()), rand.nextInt(16)));
 		}
 
-		for (i = 0; i < Config.koriteOreTrys; i++) {
-			koriteOre.generate(worldObj, rand, chunkStart.add(rand.nextInt(16), rand.nextInt(worldObj.getHeight()), rand.nextInt(16)));
+		for (chunkX = 0; chunkX < Config.koriteOreTrys; chunkX++) {
+			koriteOre.generate(world, rand, chunkStart.add(rand.nextInt(16), rand.nextInt(world.getHeight()), rand.nextInt(16)));
 		}
 
-		for (i = 0; i < Config.mekyumOreTrys; i++) {
-			mekyumOre.generate(worldObj, rand, chunkStart.add(rand.nextInt(16), rand.nextInt(worldObj.getHeight()), rand.nextInt(16)));
+		for (chunkX = 0; chunkX < Config.mekyumOreTrys; chunkX++) {
+			mekyumOre.generate(world, rand, chunkStart.add(rand.nextInt(16), rand.nextInt(world.getHeight()), rand.nextInt(16)));
 		}
 
-		for (i = 0; i < Config.storonOreTrys; i++) {
-			storonOre.generate(worldObj, rand, chunkStart.add(rand.nextInt(16), rand.nextInt(worldObj.getHeight()), rand.nextInt(16)));
+		for (chunkX = 0; chunkX < Config.storonOreTrys; chunkX++) {
+			storonOre.generate(world, rand, chunkStart.add(rand.nextInt(16), rand.nextInt(world.getHeight()), rand.nextInt(16)));
 		}
 
-		
 		/*for (times = 0; times < 5; times++) {
 			x = x1 + this.rand.nextInt(chunkSize);
 			z = z1 + this.rand.nextInt(chunkSize);
@@ -414,17 +373,17 @@ public class ChunkProviderEuca implements IChunkGenerator {
 	private void generateStructure(int x, int z, WorldGenerator... generators) {
 		BlockPos pos = WorldGenAPI.createRandom(x, 40, 128, z, rand, 8);
 		if (isBlockTop(pos.getX(), pos.getY() - 1, pos.getZ(), JourneyBlocks.eucaGrass)) {
-			generators[rand.nextInt(generators.length)].generate(worldObj, rand, pos);
+			generators[rand.nextInt(generators.length)].generate(world, rand, pos);
 		}
 	}
 
 	public boolean isBlockTop(int x, int y, int z, Block grass) {
-		return WorldGenAPI.isBlockTop(x, y, z, grass, worldObj);
+		return WorldGenAPI.isBlockTop(x, y, z, grass, world);
 	}
 
 	@Override
 	public List<SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos) {
-		Biome biome = this.worldObj.getBiome(pos);
+		Biome biome = this.world.getBiome(pos);
 		return biome.getSpawnableList(creatureType);
 	}
 

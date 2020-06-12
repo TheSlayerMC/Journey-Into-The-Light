@@ -39,38 +39,27 @@ public class EucaBiome extends JDimensionBiome {
 	}
 
 	@Override
-	public void genTerrainBlocks(@NotNull World world, @NotNull Random rand, @NotNull ChunkPrimer chunkPrimer, int x, int z, double noiseVal) {
-		for (int relX = 0; relX < 16; relX++) {
-			for (int relZ = 0; relZ < 16; relZ++) {
-				int j1 = -1;
-				int i1 = (int) (3.0 + rand.nextDouble() * 0.25);
-				IBlockState top = topBlock;
-				IBlockState filler = fillerBlock;
+	public void genTerrainBlocks(@NotNull World world, @NotNull Random rand, @NotNull ChunkPrimer chunkPrimer, int chunkX, int chunkZ, double noiseVal) {
+		int fillersLeft = -1;
+		int fillerCount = 3;
+		IBlockState top = topBlock;
+		IBlockState filler = fillerBlock;
 
-				for (int y = 127; y >= 0; y--) {
-					Block block = chunkPrimer.getBlockState(relX, y, relZ).getBlock();
+		int relX = chunkX & 15;
+		int relZ = chunkZ & 15;
 
-					if (block == Blocks.AIR) {
-						j1 = -1;
-					} else if (block == JourneyBlocks.eucaStone) {
-						if (j1 == -1) {
-							if (i1 <= 0) {
-								top = Blocks.AIR.getDefaultState();
-								filler = JourneyBlocks.eucaStone.getDefaultState();
-							}
+		for (int y = 127; y >= 0; y--) {
+			Block block = chunkPrimer.getBlockState(relX, y, relZ).getBlock();
 
-							j1 = i1;
-
-							if (y >= 0) {
-								chunkPrimer.setBlockState(relX, y, relZ, top);
-							} else {
-								chunkPrimer.setBlockState(relX, y, relZ, filler);
-							}
-						} else if (j1 > 0) {
-							--j1;
-							chunkPrimer.setBlockState(relX, y, relZ, filler);
-						}
-					}
+			if (block == Blocks.AIR) {
+				fillersLeft = -1;
+			} else if (block == JourneyBlocks.eucaStone) {
+				if (fillersLeft == -1) {
+					fillersLeft = fillerCount;
+					chunkPrimer.setBlockState(relX, y, relZ, top);
+				} else if (fillersLeft > 0) {
+					--fillersLeft;
+					chunkPrimer.setBlockState(relX, y, relZ, filler);
 				}
 			}
 		}
