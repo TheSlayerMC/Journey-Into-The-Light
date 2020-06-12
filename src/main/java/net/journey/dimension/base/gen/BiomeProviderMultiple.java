@@ -17,14 +17,14 @@ public class BiomeProviderMultiple extends BiomeProvider {
     @Override
     public GenLayer[] getModdedBiomeGenerators(WorldType worldType, long seed, GenLayer[] original) {
         GenLayer biomes = new GenLayerBiomes(1, this.getBiomesToSpawnIn());
-        biomes = new GenLayerZoom(1000, biomes);
-        biomes = new GenLayerZoom(1001, biomes);
-        biomes = new GenLayerZoom(1002, biomes);
-        biomes = new GenLayerZoom(1003, biomes);
-        biomes = new GenLayerZoom(1004, biomes);
-        GenLayer layer = new GenLayerVoronoiZoom(10L, biomes);
+        biomes = new GenLayerZoom(1000 /*baseSeed*/, biomes /*parent*/);
+        biomes = new GenLayerZoom(1001 /*baseSeed*/, biomes /*parent*/);
+        biomes = new GenLayerZoom(1002 /*baseSeed*/, biomes /*parent*/);
+        biomes = new GenLayerZoom(1003 /*baseSeed*/, biomes /*parent*/);
+        biomes = new GenLayerZoom(1004 /*baseSeed*/, biomes /*parent*/);
+        GenLayer layer = new GenLayerVoronoiZoom(10L /*baseSeed*/, biomes /*parent*/);
         layer.initWorldGenSeed(seed);
 
-        return new GenLayer[] { biomes, layer };
+        return new GenLayer[]{biomes, layer};
     }
 }
