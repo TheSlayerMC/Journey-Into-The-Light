@@ -32,7 +32,6 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.slayer.api.worldgen.WorldGenAPI;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -206,7 +205,7 @@ public class ChunkProviderEuca implements IChunkGenerator {
 			for (int l = 0; l < 16; l++) {
 				int j1 = -1;
 				int i1 = (int) (3.0D + this.rand.nextDouble() * 0.25D);
-				Biome biome = worldObj.getBiome(new BlockPos(i * 16, 0, j * 16));
+				Biome biome = worldObj.getBiome(new BlockPos(i * 16 + k, 0, j * 16 + l));
 				IBlockState top = biome.topBlock;
 				IBlockState filler = JourneyBlocks.eucaDirt.getDefaultState();
 
