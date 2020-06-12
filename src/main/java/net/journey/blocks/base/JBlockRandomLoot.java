@@ -23,7 +23,10 @@ public class JBlockRandomLoot extends BlockMod {
 		this.setCreativeTab(JourneyTabs.INTERACTIVE_BLOCKS);
 		this.setHardness(2.0F);
 	}
-	
+
+	/*
+	TODO: add functionality so the dropped item can be pulled from a loot table
+	 */
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {
 		return null;
