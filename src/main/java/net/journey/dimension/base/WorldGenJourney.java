@@ -1,11 +1,7 @@
 package net.journey.dimension.base;
 
-import net.journey.api.world.gen.JWorldGenMinable;
+import net.journey.dimension.base.gen.JWorldGenMinable;
 import net.journey.dimension.base.gen.WorldGenSingleBlock;
-import net.journey.dimension.boil.gen.WorldGenBoilingFire;
-import net.journey.dimension.boil.gen.WorldGenBoilingLava;
-import net.journey.dimension.depths.gen.WorldGenDepthsTree;
-import net.journey.dimension.euca.gen.WorldGenSmeltery;
 import net.journey.dimension.nether.gen.*;
 import net.journey.dimension.nether.gen.dungeon.WorldGenBoilPortal;
 import net.journey.dimension.nether.gen.dungeon.WorldGenGhastTower;
@@ -27,12 +23,9 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.feature.WorldGenMinable;
-import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.fml.common.IWorldGenerator;
-import net.slayer.api.worldgen.WorldGenAPI;
 
-import java.util.ArrayList;
 import java.util.Random;
 import java.util.function.Supplier;
 
@@ -42,7 +35,7 @@ public class WorldGenJourney implements IWorldGenerator {
     private static final LazyLoadBase<JWorldGenMinable> LUNIUM_ORE_GEN;
     private static final LazyLoadBase<JWorldGenMinable> SAPPHIRE_ORE_GEN;
     private static final LazyLoadBase<JWorldGenMinable> IRIDIUM_ORE_GEN;
-   
+
     private static final LazyLoadBase<WorldGenBush> JUICEBERRY_BUSH_GEN = create(() -> new WorldGenBush(JourneyBlocks.juiceberryBush, Blocks.GRASS));
     private static final LazyLoadBase<WorldGenBush> BRADBERRY_BUSH_GEN = create(() -> new WorldGenBush(JourneyBlocks.bradberryBush, Blocks.GRASS));
     private static final LazyLoadBase<WorldGenBush> TANGLEBERRY_BUSH_GEN = create(() -> new WorldGenBush(JourneyBlocks.tangleberryBush, Blocks.GRASS));
@@ -57,7 +50,7 @@ public class WorldGenJourney implements IWorldGenerator {
     private static final LazyLoadBase<WorldGenSingleBlock> GOLD_LOOT_BOX_GEN = create(() -> new WorldGenSingleBlock(JourneyBlocks.goldLootBox));
     @Deprecated // use per-chunk random instance which comes from method params
     private static Random r = new Random();
-    
+
     static {
         SHADIUM_ORE_GEN = create(() -> JWorldGenMinable.create(JourneyBlocks.shadiumOre, Config.shadiumOreGenAmount, Config.shadiumOreGenMaxY));
         LUNIUM_ORE_GEN = create(() -> JWorldGenMinable.create(JourneyBlocks.luniumOre, Config.luniumOreGenAmount, Config.luniumOreGenMaxY));
@@ -69,7 +62,7 @@ public class WorldGenJourney implements IWorldGenerator {
         r = new Random();
         LogHelper.info("Loading world generator");
     }
-    
+
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World w, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
         int dim = w.provider.getDimension();
@@ -195,7 +188,7 @@ public class WorldGenJourney implements IWorldGenerator {
             z = chunkZ + r.nextInt(16) + 8;
             ANCIENT_BLOCK_GEN.getValue().generate(w, r, new BlockPos(x, y, z));
         }
-        
+
         for (times = 0; times < 100; times++) {
             y = r.nextInt(250);
             x = chunkX + r.nextInt(16) + 8;
@@ -243,7 +236,7 @@ public class WorldGenJourney implements IWorldGenerator {
             if (y > 20 && y < 110) if (isBlockTop(x, y, z, Blocks.NETHERRACK, w))
                 new WorldGenBoilPortal().generate(w, r, new BlockPos(x, y, z));
         }
-        
+
         if (r.nextInt(4) == 0) {
             y = r.nextInt(128) + 1;
             x = chunkX + r.nextInt(16) + 8;
@@ -295,7 +288,7 @@ public class WorldGenJourney implements IWorldGenerator {
         Biome biome = w.getBiome(startPos);
 
         ANCIENT_BLOCK_GEN.getValue().generate(w, rand, startPos);
-        
+
         GOLD_LOOT_BOX_GEN.getValue().generate(w, rand, startPos);
 
         if (rand.nextInt(5) == 0
@@ -357,7 +350,7 @@ public class WorldGenJourney implements IWorldGenerator {
             if (w.getBlockState(new BlockPos(x, y - 1, z)) == Blocks.GRASS.getDefaultState())
                 new WorldGenTowerDungeon().generate(w, rand, new BlockPos(x, y, z));
         }
-        
+
         if (rand.nextInt(64) == 0) {
             y = rand.nextInt(30);
             x = posX + rand.nextInt(16) + 8;

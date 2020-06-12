@@ -30,7 +30,7 @@ public class WorldProviderEuca extends BaseWorldProvider {
         this.biomeProvider = new BiomeProviderMultiple(this.world.getWorldInfo()) {
             @Override
             public List<Biome> getBiomesToSpawnIn() {
-                return Arrays.asList(new Biome[] { DimensionHelper.EUCA_BIOME, DimensionHelper.EUCA_SILVER_BIOME });
+                return Arrays.asList(DimensionHelper.EUCA_GOLD_BIOME, DimensionHelper.EUCA_SILVER_BIOME);
             }
         };
     }

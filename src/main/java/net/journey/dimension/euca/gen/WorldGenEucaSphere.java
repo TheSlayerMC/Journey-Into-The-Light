@@ -1,6 +1,5 @@
 package net.journey.dimension.euca.gen;
 
-import net.journey.dimension.overworld.gen.WorldGenModFlower;
 import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;

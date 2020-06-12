@@ -1,5 +1,7 @@
 package net.journey.dimension.euca;
 
+import net.journey.api.block.GroundPredicate;
+import net.journey.dimension.base.gen.JWorldGenFlowers;
 import net.journey.dimension.euca.gen.WorldGenEucaPumpkin;
 import net.journey.dimension.euca.gen.WorldGenEucaSphere;
 import net.journey.dimension.euca.gen.WorldGenEucaWater;
@@ -9,7 +11,6 @@ import net.journey.dimension.euca.gen.trees.WorldGenBotSpawner;
 import net.journey.dimension.euca.gen.trees.WorldGenEucaSilverTree;
 import net.journey.dimension.euca.gen.trees.WorldGenEucaTree;
 import net.journey.dimension.euca.gen.trees.WorldGenEucaTree2;
-import net.journey.dimension.overworld.gen.WorldGenModFlower;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.Config;
 import net.minecraft.block.Block;
@@ -20,6 +21,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldEntitySpawner;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.chunk.Chunk;
@@ -36,6 +38,8 @@ import java.util.List;
 import java.util.Random;
 
 public class ChunkProviderEuca implements IChunkGenerator {
+	private static final GroundPredicate EUCA_GRASS_GROUND = GroundPredicate.SOLID_SIDE.and(GroundPredicate.blockPredicate(block -> block == JourneyBlocks.eucaGrass));
+	public static final GroundPredicate EUCA_SILVER_GRASS_GROUND = GroundPredicate.SOLID_SIDE.and(GroundPredicate.blockPredicate(block -> block == JourneyBlocks.eucaSilverGrass));
 
 	private final NoiseGeneratorPerlin surfaceNoise;
 	protected Biome[] biomesForGeneration;
@@ -58,17 +62,17 @@ public class ChunkProviderEuca implements IChunkGenerator {
 	private final WorldGenerator[] NORMAL_FLOWERS;
 	private final WorldGenerator[] SILVER_FLOWERS;
 
-	private final WorldGenModFlower eucaTallGrass;
-	private final WorldGenModFlower eucaTallFlowers;
-	private final WorldGenModFlower eucaBlueFlower;
-	private final WorldGenModFlower GOLDEN_STALKS;
-	private final WorldGenModFlower GOLDEN_BULB;
-	private final WorldGenModFlower GOLDEN_BLOOM;
+	private final JWorldGenFlowers eucaTallGrass;
+	private final JWorldGenFlowers eucaTallFlowers;
+	private final JWorldGenFlowers eucaBlueFlower;
+	private final JWorldGenFlowers GOLDEN_STALKS;
+	private final JWorldGenFlowers GOLDEN_BULB;
+	private final JWorldGenFlowers GOLDEN_BLOOM;
 
-	private final WorldGenModFlower SILVER_TALL_GRASS;
-	private final WorldGenModFlower SILVER_SPROUT;
-	private final WorldGenModFlower SILVER_GOLD_FLOWER;
-	private final WorldGenModFlower SILVER_SHORT_GRASS;
+	private final JWorldGenFlowers SILVER_TALL_GRASS;
+	private final JWorldGenFlowers SILVER_SPROUT;
+	private final JWorldGenFlowers SILVER_GOLD_FLOWER;
+	private final JWorldGenFlowers SILVER_SHORT_GRASS;
 
 	private final WorldGenMinable celestium;
 	private final WorldGenMinable storonOre;
@@ -94,17 +98,17 @@ public class ChunkProviderEuca implements IChunkGenerator {
 		koriteOre = new WorldGenMinable(JourneyBlocks.koriteOre.getDefaultState(), Config.koriteOreGenAmount, BlockStateMatcher.forBlock(JourneyBlocks.eucaStone));
 		mekyumOre = new WorldGenMinable(JourneyBlocks.mekyumOre.getDefaultState(), Config.mekyumOreGenAmount, BlockStateMatcher.forBlock(JourneyBlocks.eucaStone));
 
-		eucaTallGrass = new WorldGenModFlower(JourneyBlocks.eucaTallGrass, JourneyBlocks.eucaGrass);
-		eucaTallFlowers = new WorldGenModFlower(JourneyBlocks.eucaTallFlowers, JourneyBlocks.eucaGrass);
-		eucaBlueFlower = new WorldGenModFlower(JourneyBlocks.eucaBlueFlower, JourneyBlocks.eucaGrass);
-		GOLDEN_STALKS = new WorldGenModFlower(JourneyBlocks.goldenStalks, JourneyBlocks.eucaGrass);
-		GOLDEN_BULB = new WorldGenModFlower(JourneyBlocks.goldenBulb, JourneyBlocks.eucaGrass);
-		GOLDEN_BLOOM = new WorldGenModFlower(JourneyBlocks.goldenBloom, JourneyBlocks.eucaGrass);
+		eucaTallGrass = new JWorldGenFlowers(JourneyBlocks.eucaTallGrass, EUCA_GRASS_GROUND, 12);
+		eucaTallFlowers = new JWorldGenFlowers(JourneyBlocks.eucaTallFlowers, EUCA_GRASS_GROUND);
+		eucaBlueFlower = new JWorldGenFlowers(JourneyBlocks.eucaBlueFlower, EUCA_GRASS_GROUND);
+		GOLDEN_STALKS = new JWorldGenFlowers(JourneyBlocks.goldenStalks, EUCA_GRASS_GROUND);
+		GOLDEN_BULB = new JWorldGenFlowers(JourneyBlocks.goldenBulb, EUCA_GRASS_GROUND);
+		GOLDEN_BLOOM = new JWorldGenFlowers(JourneyBlocks.goldenBloom, EUCA_GRASS_GROUND);
 
-		SILVER_GOLD_FLOWER = new WorldGenModFlower(JourneyBlocks.eucaSilverGoldFlower, JourneyBlocks.eucaSilverGrass);
-		SILVER_SHORT_GRASS = new WorldGenModFlower(JourneyBlocks.eucaSilverShortGrass, JourneyBlocks.eucaSilverGrass);
-		SILVER_SPROUT = new WorldGenModFlower(JourneyBlocks.eucaSilverSprouts, JourneyBlocks.eucaSilverGrass);
-		SILVER_TALL_GRASS = new WorldGenModFlower(JourneyBlocks.eucaSilverTallGrass, JourneyBlocks.eucaSilverGrass);
+		SILVER_GOLD_FLOWER = new JWorldGenFlowers(JourneyBlocks.eucaSilverGoldFlower, EUCA_SILVER_GRASS_GROUND);
+		SILVER_SHORT_GRASS = new JWorldGenFlowers(JourneyBlocks.eucaSilverShortGrass, EUCA_SILVER_GRASS_GROUND);
+		SILVER_SPROUT = new JWorldGenFlowers(JourneyBlocks.eucaSilverSprouts, EUCA_SILVER_GRASS_GROUND);
+		SILVER_TALL_GRASS = new JWorldGenFlowers(JourneyBlocks.eucaSilverTallGrass, EUCA_SILVER_GRASS_GROUND);
 
 		NORMAL_FLOWERS = new WorldGenerator[]{eucaTallGrass, eucaTallFlowers, eucaBlueFlower, GOLDEN_BLOOM, GOLDEN_BULB, GOLDEN_STALKS};
 
@@ -200,17 +204,17 @@ public class ChunkProviderEuca implements IChunkGenerator {
 		}
 	}
 
-	public void buildSurfaces(int i, int j, ChunkPrimer chunkPrimer) {
-		for (int k = 0; k < 16; k++) {
-			for (int l = 0; l < 16; l++) {
+	public void buildSurfaces(int chunkX, int chunkZ, ChunkPrimer chunkPrimer) {
+		for (int relX = 0; relX < 16; relX++) {
+			for (int relZ = 0; relZ < 16; relZ++) {
 				int j1 = -1;
 				int i1 = (int) (3.0D + this.rand.nextDouble() * 0.25D);
-				Biome biome = worldObj.getBiome(new BlockPos(i * 16 + k, 0, j * 16 + l));
+				Biome biome = worldObj.getBiome(new BlockPos(chunkX * 16 + relX, 0, chunkZ * 16 + relZ));
 				IBlockState top = biome.topBlock;
 				IBlockState filler = JourneyBlocks.eucaDirt.getDefaultState();
 
-				for (int k1 = 127; k1 >= 0; k1--) {
-					Block block = chunkPrimer.getBlockState(k, k1, l).getBlock();
+				for (int y = 127; y >= 0; y--) {
+					Block block = chunkPrimer.getBlockState(relX, y, relZ).getBlock();
 
 					if (block == Blocks.AIR) {
 						j1 = -1;
@@ -223,14 +227,14 @@ public class ChunkProviderEuca implements IChunkGenerator {
 
 							j1 = i1;
 
-							if (k1 >= 0) {
-								chunkPrimer.setBlockState(k, k1, l, top);
+							if (y >= 0) {
+								chunkPrimer.setBlockState(relX, y, relZ, top);
 							} else {
-								chunkPrimer.setBlockState(k, k1, l, filler);
+								chunkPrimer.setBlockState(relX, y, relZ, filler);
 							}
 						} else if (j1 > 0) {
 							--j1;
-							chunkPrimer.setBlockState(k, k1, l, filler);
+							chunkPrimer.setBlockState(relX, y, relZ, filler);
 						}
 					}
 				}
@@ -292,6 +296,7 @@ public class ChunkProviderEuca implements IChunkGenerator {
 		ChunkPrimer chunkPrimer = new ChunkPrimer();
 		this.setBlocksInChunk(x, z, chunkPrimer);
 		this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomes(this.biomesForGeneration, x * 16, z * 16, 16, 16);
+//		this.replaceBiomeBlocks(x, z, chunkPrimer, biomesForGeneration);
 		this.buildSurfaces(x, z, chunkPrimer);
 		Chunk chunk = new Chunk(this.worldObj, chunkPrimer, x, z);
 
@@ -310,9 +315,15 @@ public class ChunkProviderEuca implements IChunkGenerator {
 		int chunkSize = 16;
 		int x1 = i * chunkSize;
 		int z1 = j * chunkSize;
-		int x, z, times;
+		int times;
 		BlockPos chunkStart = new BlockPos(i * chunkSize, 0, j * chunkSize);
-		BlockPos randomPosForMinable = chunkStart.add(rand.nextInt(16), rand.nextInt(worldObj.getHeight()), rand.nextInt(16));
+
+		boolean hasVillagesGenerated = false;
+
+		Biome biome = worldObj.getBiome(chunkStart.add(16, 0, 16)); //why do we need to get a biome of the another chunk?
+		biome.decorate(this.worldObj, this.rand, new BlockPos(i, 0, j));
+		if (net.minecraftforge.event.terraingen.TerrainGen.populate(this, worldObj, rand, i, j, hasVillagesGenerated, net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.ANIMALS))
+			WorldEntitySpawner.performWorldGenSpawning(this.worldObj, biome, i + 8, j + 8, 16, 16, this.rand);
 
 		if (rand.nextInt(6) == 0) {
 			generateStructure(x1, z1, worldGenSmeltery);
@@ -350,15 +361,15 @@ public class ChunkProviderEuca implements IChunkGenerator {
 		}
 
 		for (times = 0; times < 80; times++) {
-			SILVER_FLOWERS[rand.nextInt(SILVER_FLOWERS.length)].generate(worldObj, rand, chunkStart);
+//			SILVER_FLOWERS[rand.nextInt(SILVER_FLOWERS.length)].generate(worldObj, rand, chunkStart);
 		}
 
 		for (times = 0; times < 1; times++) {
 			pumpkin.generate(worldObj, rand, chunkStart);
 		}
 
-		for (times = 0; times < 80; times++) {
-			NORMAL_FLOWERS[rand.nextInt(NORMAL_FLOWERS.length)].generate(worldObj, rand, chunkStart);
+		for (WorldGenerator flowerGen : NORMAL_FLOWERS) {
+			flowerGen.generate(worldObj, rand, chunkStart);
 		}
 
 		for (times = 0; times < 20; times++) {

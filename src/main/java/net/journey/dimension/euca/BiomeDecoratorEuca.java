@@ -23,7 +23,6 @@ public class BiomeDecoratorEuca extends BiomeDecorator {
 
     @Override
     public void decorate(World worldIn, Random random, Biome biome, BlockPos pos) {
-
         celestiumOre = generateOre(worldIn, random, pos, JourneyBlocks.celestiumOre, 10);
         storonOre = generateOre(worldIn, random, pos, JourneyBlocks.storonOre, 10);
         mekyumOre = generateOre(worldIn, random, pos, JourneyBlocks.mekyumOre, 10);

@@ -1,6 +1,5 @@
 package net.journey.dimension.euca;
 
-import net.journey.dimension.base.BiomeGenJourney;
 import net.journey.dimension.base.DimensionHelper;
 import net.journey.dimension.euca.layer.GenLayerEucaBiome;
 import net.minecraft.crash.CrashReport;
@@ -23,28 +22,28 @@ import java.util.Random;
 
 public class BiomeProviderEuca extends BiomeProvider {
 
-    private GenLayer genLayerBiomes;
-    private GenLayer genLayerBiomeIndex;
-    private BiomeCache biomeCache;
-    private List<Biome> biomes;
+    private final GenLayer genLayerBiomes;
+    private final GenLayer genLayerBiomeIndex;
+    private final BiomeCache biomeCache;
+    private final List<Biome> biomes;
 
     public BiomeProviderEuca(World world) {
-	    super(new WorldInfoEuca());
+        super(new WorldInfoEuca());
 
-	    getBiomesToSpawnIn().clear();
-	    getBiomesToSpawnIn().add(DimensionHelper.EUCA_BIOME);
-	    getBiomesToSpawnIn().add(DimensionHelper.EUCA_SILVER_BIOME);
+        getBiomesToSpawnIn().clear();
+        getBiomesToSpawnIn().add(DimensionHelper.EUCA_GOLD_BIOME);
+        getBiomesToSpawnIn().add(DimensionHelper.EUCA_SILVER_BIOME);
 
-	    allowedBiomes.add(DimensionHelper.EUCA_BIOME);
-	    allowedBiomes.add(DimensionHelper.EUCA_SILVER_BIOME);
+        allowedBiomes.add(DimensionHelper.EUCA_GOLD_BIOME);
+        allowedBiomes.add(DimensionHelper.EUCA_SILVER_BIOME);
 
-	    this.biomeCache = new BiomeCache(this);
-	    this.biomes = new ArrayList<Biome>();
-	    this.addBiomes(this.biomes);
-	    getLayers(world.getSeed());
-	    GenLayer[] genLayers = getLayers(world.getSeed());
-	    this.genLayerBiomes = genLayers[0];
-	    this.genLayerBiomeIndex = genLayers[1];
+        this.biomeCache = new BiomeCache(this);
+        this.biomes = new ArrayList<Biome>();
+        this.addBiomes(this.biomes);
+        getLayers(world.getSeed());
+        GenLayer[] genLayers = getLayers(world.getSeed());
+        this.genLayerBiomes = genLayers[0];
+        this.genLayerBiomeIndex = genLayers[1];
     }
 
     public static GenLayer[] getLayers(long seed) {
@@ -59,8 +58,8 @@ public class BiomeProviderEuca extends BiomeProvider {
     }
 
     public void addBiomes(List<Biome> list) {
-	    list.add(DimensionHelper.EUCA_BIOME);
-	    list.add(DimensionHelper.EUCA_SILVER_BIOME);
+        list.add(DimensionHelper.EUCA_GOLD_BIOME);
+        list.add(DimensionHelper.EUCA_SILVER_BIOME);
     }
 
     @Override
@@ -137,7 +136,7 @@ public class BiomeProviderEuca extends BiomeProvider {
         try {
             for (int i = 0; i < len; ++i) {
                 Biome biome = Biome.getBiome(ints[i]);
-                if (!biomes.contains(biome) || !(biome instanceof BiomeGenJourney))
+                if (!biomes.contains(biome) || biome == null)
                     return false;
             }
 
