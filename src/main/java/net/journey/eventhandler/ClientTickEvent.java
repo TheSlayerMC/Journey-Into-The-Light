@@ -1,8 +1,11 @@
 package net.journey.eventhandler;
 
 import net.journey.client.render.gui.JourneyMainMenu;
+import net.journey.client.render.gui.loading.GuiEucaLoading;
 import net.journey.init.items.JourneyArmory;
 import net.journey.util.Config;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiDownloadTerrain;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -26,6 +29,15 @@ public class ClientTickEvent {
 				JourneyMainMenu customMainMenu = new JourneyMainMenu();
 				if (customMainMenu != null) {
 					event.setGui(customMainMenu);
+				}
+			}
+		}
+		if (event.getGui() instanceof GuiDownloadTerrain) {
+			Minecraft mc = Minecraft.getMinecraft();
+			GuiEucaLoading eucaLoading = new GuiEucaLoading();
+			if (mc.player.dimension == Config.euca) {
+				if(eucaLoading !=null) {
+					event.setGui(eucaLoading);
 				}
 			}
 		}
