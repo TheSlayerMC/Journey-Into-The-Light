@@ -420,6 +420,18 @@ public class WorldGenAPI {
     }
 
     /**
+     * Optimized version of {@link #optimizeAndRandomize(BlockPos, Random)}.
+     * <p>
+     * Moves the zero position of chunk so it is in the 8-block radius from the intersection of 4 loaded chunks.
+     * This is needed to prevent cascading gen.
+     *
+     * @param pos the zero position of the chunk.
+     */
+    public static BlockPos.MutableBlockPos optimizeAndRandomize(BlockPos.MutableBlockPos pos, Random r) {
+        return pos.setPos(pos.getX() + r.nextInt(16) + 8, 0, pos.getZ() + r.nextInt(16) + 8);
+    }
+
+    /**
      * Randomizes the position, that comes from {@link #optimize(BlockPos)}.
      * <p>
      * This method should only be used with {@link #optimize(BlockPos)}.
@@ -431,6 +443,22 @@ public class WorldGenAPI {
      */
     public static BlockPos randomize(BlockPos pos, Random r) {
         return pos.add(r.nextInt(16), 0, r.nextInt(16));
+    }
+
+    /**
+     * Optimized version of {@link #randomize(BlockPos, Random)}.
+     * <p>
+     * Randomizes the position, that comes from {@link #optimize(BlockPos)}.
+     * <p>
+     * This method should only be used with {@link #optimize(BlockPos)}.
+     * <p>
+     * The acceptable area to generate stuff is in 8 blocks in any direction from returned pos.
+     *
+     * @param pos the position of the chunk that returned from {@link #optimize(BlockPos)}.
+     * @see #optimize(BlockPos)
+     */
+    public static BlockPos.MutableBlockPos randomize(BlockPos.MutableBlockPos pos, Random r) {
+        return pos.setPos(r.nextInt(16), 0, r.nextInt(16));
     }
 
     /**
@@ -448,10 +476,35 @@ public class WorldGenAPI {
     }
 
     /**
+     * Optimized version of {@link #optimize(BlockPos)}.
+     * <p>
+     * Moves the zero position of chunk so it is in the center of the chunk.
+     * <p>
+     * This method should only be used with {@link #randomize(BlockPos, Random)}.
+     * <p>
+     * The acceptable area to generate stuff is in 8 blocks in any direction from returned pos.
+     *
+     * @param pos the zero position of the chunk.
+     * @see #randomize(BlockPos, Random)
+     */
+    public static BlockPos.MutableBlockPos optimize(BlockPos.MutableBlockPos pos) {
+        return pos.setPos(8, 0, 8);
+    }
+
+    /**
      * Returns block pos one block higher than the surface of the world in that position.
      */
     public static BlockPos findPosAboveSurface(World world, BlockPos pos) {
         return world.getHeight(pos);
+    }
+
+    /**
+     * Optimized version of {@link #findPosAboveSurface(World, BlockPos)}.
+     * <p>
+     * Returns block pos one block higher than the surface of the world in that position.
+     */
+    public static BlockPos.MutableBlockPos findPosAboveSurface(World world, BlockPos.MutableBlockPos pos) {
+        return pos.setPos(pos.getX(), world.getHeight(pos.getX(), pos.getZ()), pos.getZ());
     }
 
     public static BlockPos getPosWithHeight(BlockPos pos, int y) {

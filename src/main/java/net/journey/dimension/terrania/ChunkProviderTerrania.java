@@ -1,6 +1,7 @@
 package net.journey.dimension.terrania;
 
-import net.journey.dimension.overworld.gen.WorldGenModFlower;
+import net.journey.api.block.GroundPredicate;
+import net.journey.dimension.base.gen.JWorldGenFlowers;
 import net.journey.dimension.terrania.gen.WorldGenHollowTree;
 import net.journey.dimension.terrania.gen.WorldGenTerranianLamp;
 import net.journey.dimension.terrania.gen.dungeon.WorldGenMushroomDungeon;
@@ -30,6 +31,7 @@ import java.util.List;
 import java.util.Random;
 
 public class ChunkProviderTerrania implements IChunkGenerator {
+    private static final GroundPredicate TERRANIAN_GRASS_GROUND = GroundPredicate.SOLID_SIDE.and(GroundPredicate.blockPredicate(block -> block == JourneyBlocks.terranianGrass));
 
     private final double[] da;
     private final float[] parabolicField;
@@ -40,9 +42,9 @@ public class ChunkProviderTerrania implements IChunkGenerator {
     double[] gen2;
     double[] gen3;
     double[] gen4;
-    WorldGenModFlower flower = new WorldGenModFlower(JourneyBlocks.terranianTallgrass, JourneyBlocks.terranianGrass);
-    WorldGenModFlower flower1 = new WorldGenModFlower(JourneyBlocks.terramushroom, JourneyBlocks.terranianGrass);
-    WorldGenModFlower flower2 = new WorldGenModFlower(JourneyBlocks.tallterramushroom, JourneyBlocks.terranianGrass);
+    JWorldGenFlowers flower = new JWorldGenFlowers(JourneyBlocks.terranianTallgrass, TERRANIAN_GRASS_GROUND);
+    JWorldGenFlowers flower1 = new JWorldGenFlowers(JourneyBlocks.terramushroom, TERRANIAN_GRASS_GROUND);
+    JWorldGenFlowers flower2 = new JWorldGenFlowers(JourneyBlocks.tallterramushroom, TERRANIAN_GRASS_GROUND);
     WorldGenTreeHut hut = new WorldGenTreeHut();
     WorldGenHollowTree hollowTree = new WorldGenHollowTree();
     WorldGenMushroomDungeon mushroomDungeon = new WorldGenMushroomDungeon();

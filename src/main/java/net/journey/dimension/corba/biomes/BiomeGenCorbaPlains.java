@@ -1,26 +1,20 @@
 package net.journey.dimension.corba.biomes;
 
-import java.awt.Color;
-
-import net.journey.dimension.base.BiomeGenJourney;
-import net.journey.dimension.corba.biomes.properties.BiomePropertiesCorba;
+import net.journey.dimension.base.biome.JDimensionBiome;
 import net.journey.dimension.corba.biomes.properties.BiomePropertiesCorbaPlains;
 import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BiomeGenCorbaPlains extends BiomeGenJourney {
+import java.awt.*;
+
+public class BiomeGenCorbaPlains extends JDimensionBiome {
 
     public BiomeGenCorbaPlains() {
         super(new BiomePropertiesCorbaPlains());
         this.topBlock = JourneyBlocks.cloudiaPlanks.getDefaultState();
         this.fillerBlock = JourneyBlocks.corbaStone.getDefaultState();
-        this.spawnableCreatureList.clear();
-        this.spawnableMonsterList.clear();
-        this.spawnableCaveCreatureList.clear();
-        this.spawnableWaterCreatureList.clear();
     }
 
     @Override

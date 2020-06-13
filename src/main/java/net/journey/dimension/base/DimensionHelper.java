@@ -10,8 +10,8 @@ import net.journey.dimension.corba.biomes.BiomeGenCorbaPlains;
 import net.journey.dimension.depths.BiomeGenDepths;
 import net.journey.dimension.depths.WorldProviderDepths;
 import net.journey.dimension.euca.WorldProviderEuca;
-import net.journey.dimension.euca.biomes.BiomeGenEuca;
-import net.journey.dimension.euca.biomes.BiomeGenEucaSilver;
+import net.journey.dimension.euca.biomes.EucaGoldBiome;
+import net.journey.dimension.euca.biomes.EucaSilverBiome;
 import net.journey.dimension.frozen.BiomeGenFrozenLands;
 import net.journey.dimension.frozen.WorldProviderFrozenLands;
 import net.journey.dimension.senterian.BiomeGenSenterian;
@@ -45,6 +45,7 @@ import net.journey.entity.mob.senterian.mob.EntitySentryLord;
 import net.journey.entity.mob.senterian.mob.EntitySentryStalker;
 import net.journey.entity.mob.senterian.mob.EntitySentryWalker;
 import net.journey.entity.mob.terrania.mob.*;
+import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.Config;
 import net.journey.util.handler.LogHelper;
 import net.minecraft.entity.EnumCreatureType;
@@ -60,17 +61,15 @@ import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class DimensionHelper {
 
     public static final float[] boilHeight = new float[]{0.125F, 0.1F};
     public static final float[] corbaHeight = new float[]{0.2F, 0.2F};
+    @Deprecated //it's better to keep them inside biomes
     public static final float[] CORBA_PLAINS_HEIGHT = new float[]{0.0F, 0.0F};
 
-    public static final Biome EUCA_BIOME = new BiomeGenEuca();
-    public static final Biome EUCA_SILVER_BIOME = new BiomeGenEucaSilver();
+    public static final Biome EUCA_GOLD_BIOME = new EucaGoldBiome(new Biome.BiomeProperties("Euca Gold Forest").setRainDisabled().setRainfall(0.0F), JourneyBlocks.eucaGrass.getDefaultState(), JourneyBlocks.eucaDirt.getDefaultState());
+    public static final Biome EUCA_SILVER_BIOME = new EucaSilverBiome(new Biome.BiomeProperties("Euca Silver Forest").setRainDisabled().setRainfall(0.0F).setBaseHeight(0.125F).setHeightVariation(0.05F), JourneyBlocks.eucaSilverGrass.getDefaultState(), JourneyBlocks.eucaDirt.getDefaultState());
 
     public static final Biome BOILING_BIOME = new BiomeGenBoiling();
     public static final Biome CLOUDIA_BIOME = new BiomeGenCloudia();
@@ -83,7 +82,7 @@ public class DimensionHelper {
     public static final Biome TERRANIA_BIOME = new BiomeGenTerrania();
     public static final Biome SENTERIAN_BIOME = new BiomeGenSenterian();
 
-    public static final Biome[] EUCA_BIOMES = {EUCA_SILVER_BIOME, EUCA_BIOME};
+    public static final Biome[] EUCA_BIOMES = {EUCA_SILVER_BIOME, EUCA_GOLD_BIOME};
     public static final Biome[] CORBA_BIOMES = {CORBA_BIOME, CORBA_PLAINS_BIOME};
 
     public static final DimensionType EUCA_DIM = DimensionType.register("euca", "_euca", Config.euca, WorldProviderEuca.class, Config.keepLoadingEuca);
@@ -106,7 +105,7 @@ public class DimensionHelper {
 			DimensionManager.unregisterDimension(1);
 			DimensionManager.registerDimension(1, DimensionType.register("End", "END", 1, WorldProviderEndJourney.class, true));
 		} */
-        addDimBiome(EUCA_BIOME, "Euca", Type.MAGICAL, Type.MOUNTAIN);
+        addDimBiome(EUCA_GOLD_BIOME, "Euca", Type.MAGICAL, Type.MOUNTAIN);
         addDimBiome(EUCA_SILVER_BIOME, "Euca Silver", Type.MAGICAL, Type.MOUNTAIN);
         addDimBiome(BOILING_BIOME, "Boiling Point", Type.HOT);
         addDimBiome(CLOUDIA_BIOME, "Cloudia", Type.MAGICAL);
@@ -276,7 +275,7 @@ public class DimensionHelper {
         int amount = 4;
         for (Biome b : Biome.REGISTRY) {
             Biome biome = b;
-            if (b != Biomes.HELL && b != Biomes.SKY && b != EUCA_BIOME && b != BOILING_BIOME && b != CLOUDIA_BIOME && b != CORBA_BIOME && b != DEPTHS_BIOME && b != CORBA_PLAINS_BIOME && b != FROZEN_BIOME && b != TERRANIA_BIOME && b != SENTERIAN_BIOME) {
+            if (b != Biomes.HELL && b != Biomes.SKY && b != EUCA_GOLD_BIOME && b != BOILING_BIOME && b != CLOUDIA_BIOME && b != CORBA_BIOME && b != DEPTHS_BIOME && b != CORBA_PLAINS_BIOME && b != FROZEN_BIOME && b != TERRANIA_BIOME && b != SENTERIAN_BIOME) {
                 if (BiomeDictionary.hasType(b, BiomeDictionary.Type.SNOWY) || BiomeDictionary.hasType(b, BiomeDictionary.Type.COLD)) {
                     EntityRegistry.addSpawn(EntityBlizzard.class, amount, 1, 1, EnumCreatureType.MONSTER, biome);
                     EntityRegistry.addSpawn(EntityIceMage.class, amount, 1, 1, EnumCreatureType.MONSTER, biome);
