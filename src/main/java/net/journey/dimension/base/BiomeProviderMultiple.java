@@ -1,17 +1,22 @@
-package net.journey.dimension.base.gen;
+package net.journey.dimension.base;
 
 import net.journey.dimension.base.gen.layer.GenLayerBiomes;
 import net.minecraft.world.WorldType;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.GenLayerVoronoiZoom;
 import net.minecraft.world.gen.layer.GenLayerZoom;
 import net.minecraft.world.storage.WorldInfo;
 
+import java.util.List;
+
 public class BiomeProviderMultiple extends BiomeProvider {
 
-    public BiomeProviderMultiple(WorldInfo info) {
+    public BiomeProviderMultiple(WorldInfo info, List<Biome> allowedBiomes) {
         super(info);
+        getBiomesToSpawnIn().clear();
+        getBiomesToSpawnIn().addAll(allowedBiomes);
     }
 
     @Override
