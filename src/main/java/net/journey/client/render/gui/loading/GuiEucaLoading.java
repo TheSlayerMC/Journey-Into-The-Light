@@ -16,7 +16,7 @@ public class GuiEucaLoading extends GuiScreen {
 
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         this.drawBackground(0);
-        this.drawCenteredString(this.fontRenderer, I18n.format("LOADING EUCA SO HARD RN", new Object[0]), this.width / 2, this.height / 2 - 50, 16777215);
+        this.drawCenteredString(this.fontRenderer, I18n.format("loading.journey.euca", new Object[0]), this.width / 2, this.height / 2 - 50, 16777215);
         super.drawScreen(mouseX, mouseY, partialTicks);
     }
 

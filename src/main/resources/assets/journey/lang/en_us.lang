@@ -141,13 +141,20 @@ world.journey.corba=Corba
 world.journey.depths=Depths
 world.journey.frozen_lands=Frozen Lands
 world.journey.terrania=Terrania
-world.journey.senterian=Senterian
+world.journey.senterian=Senterian Labyrinth
 
 scroll.journey.sentry_gospel=We never saw it, but we know it - the Divine land Corba was birthed by the o' powerful Rock and Eye. Never forget the day, the hour, the second he - The True One - the all powerful Rock and Eye - cometh unto the great world he created, to seek his revenge on the wrong-doers who dare disrespect his land.
 
 scroll.journey.chap1.my_last_words=I have to make this quick Clancy... I'm not sure how much time I have left... I'm not sure how much time our reality has left. These horrid machines... they're evil. They've pioneered an art form of killing. These Sentries... I'm certain they will destroy reality as we know it if they become too powerful. They - I think they've found me... I hope this reaches you. Please take all of the other contents of my Ender Chest I've left you. They're yours now. Goodbye, my friend.
 
-
+loading.journey.frozen=Traveling To The Frozen Lands
+loading.journey.boil=Voyaging To The Boiling Point
+loading.journey.euca=Ascending To Euca
+loading.journey.depths=Falling To The Depths
+loading.journey.corba=Untangling Corba
+loading.journey.terrania=Enchanting Terrania
+loading.journey.cloudia=Fluffing Cloudia
+loading.journey.senterian=Turn Back
 
 #MARK AUTO GEN START
 
