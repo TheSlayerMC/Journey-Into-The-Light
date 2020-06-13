@@ -8,6 +8,8 @@ import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.GenLayerVoronoiZoom;
 import net.minecraft.world.gen.layer.GenLayerZoom;
 import net.minecraft.world.storage.WorldInfo;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.terraingen.WorldTypeEvent;
 
 import java.util.List;
 
@@ -30,6 +32,8 @@ public class BiomeProviderMultiple extends BiomeProvider {
         GenLayer layer = new GenLayerVoronoiZoom(10L /*baseSeed*/, biomes /*parent*/);
         layer.initWorldGenSeed(seed);
 
-        return new GenLayer[]{biomes, layer};
+        WorldTypeEvent.InitBiomeGens event = new WorldTypeEvent.InitBiomeGens(worldType, seed, new GenLayer[]{biomes, layer});
+        MinecraftForge.TERRAIN_GEN_BUS.post(event);
+        return event.getNewBiomeGens();
     }
 }

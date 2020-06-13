@@ -1,7 +1,5 @@
 package net.journey.dimension.euca;
 
-import net.journey.api.block.GroundPredicate;
-import net.journey.dimension.base.gen.JWorldGenFlowers;
 import net.journey.dimension.euca.gen.WorldGenEucaPumpkin;
 import net.journey.dimension.euca.gen.WorldGenEucaSphere;
 import net.journey.dimension.euca.gen.WorldGenEucaWater;
@@ -39,9 +37,6 @@ import java.util.List;
 import java.util.Random;
 
 public class ChunkGeneratorEuca implements IChunkGenerator {
-	private static final GroundPredicate EUCA_GRASS_GROUND = GroundPredicate.SOLID_SIDE.and(GroundPredicate.blockPredicate(block -> block == JourneyBlocks.eucaGrass));
-	public static final GroundPredicate EUCA_SILVER_GRASS_GROUND = GroundPredicate.SOLID_SIDE.and(GroundPredicate.blockPredicate(block -> block == JourneyBlocks.eucaSilverGrass));
-
 	private final NoiseGeneratorPerlin surfaceNoise;
 	protected Biome[] biomesForGeneration;
 	double[] pnr;
@@ -59,21 +54,6 @@ public class ChunkGeneratorEuca implements IChunkGenerator {
 	private final WorldGenerator[] treestall = {
 			new WorldGenEucaTree()
 	};
-
-	private final WorldGenerator[] NORMAL_FLOWERS;
-	private final WorldGenerator[] SILVER_FLOWERS;
-
-	private final JWorldGenFlowers eucaTallGrass;
-	private final JWorldGenFlowers eucaTallFlowers;
-	private final JWorldGenFlowers eucaBlueFlower;
-	private final JWorldGenFlowers GOLDEN_STALKS;
-	private final JWorldGenFlowers GOLDEN_BULB;
-	private final JWorldGenFlowers GOLDEN_BLOOM;
-
-	private final JWorldGenFlowers SILVER_TALL_GRASS;
-	private final JWorldGenFlowers SILVER_SPROUT;
-	private final JWorldGenFlowers SILVER_GOLD_FLOWER;
-	private final JWorldGenFlowers SILVER_SHORT_GRASS;
 
 	private final WorldGenMinable celestium;
 	private final WorldGenMinable storonOre;
@@ -98,22 +78,6 @@ public class ChunkGeneratorEuca implements IChunkGenerator {
 		storonOre = new WorldGenMinable(JourneyBlocks.storonOre.getDefaultState(), Config.storonOreGenAmount, BlockStateMatcher.forBlock(JourneyBlocks.eucaStone));
 		koriteOre = new WorldGenMinable(JourneyBlocks.koriteOre.getDefaultState(), Config.koriteOreGenAmount, BlockStateMatcher.forBlock(JourneyBlocks.eucaStone));
 		mekyumOre = new WorldGenMinable(JourneyBlocks.mekyumOre.getDefaultState(), Config.mekyumOreGenAmount, BlockStateMatcher.forBlock(JourneyBlocks.eucaStone));
-
-		eucaTallGrass = new JWorldGenFlowers(JourneyBlocks.eucaTallGrass, EUCA_GRASS_GROUND, 12);
-		eucaTallFlowers = new JWorldGenFlowers(JourneyBlocks.eucaTallFlowers, EUCA_GRASS_GROUND);
-		eucaBlueFlower = new JWorldGenFlowers(JourneyBlocks.eucaBlueFlower, EUCA_GRASS_GROUND);
-		GOLDEN_STALKS = new JWorldGenFlowers(JourneyBlocks.goldenStalks, EUCA_GRASS_GROUND);
-		GOLDEN_BULB = new JWorldGenFlowers(JourneyBlocks.goldenBulb, EUCA_GRASS_GROUND);
-		GOLDEN_BLOOM = new JWorldGenFlowers(JourneyBlocks.goldenBloom, EUCA_GRASS_GROUND);
-
-		SILVER_GOLD_FLOWER = new JWorldGenFlowers(JourneyBlocks.eucaSilverGoldFlower, EUCA_SILVER_GRASS_GROUND);
-		SILVER_SHORT_GRASS = new JWorldGenFlowers(JourneyBlocks.eucaSilverShortGrass, EUCA_SILVER_GRASS_GROUND);
-		SILVER_SPROUT = new JWorldGenFlowers(JourneyBlocks.eucaSilverSprouts, EUCA_SILVER_GRASS_GROUND);
-		SILVER_TALL_GRASS = new JWorldGenFlowers(JourneyBlocks.eucaSilverTallGrass, EUCA_SILVER_GRASS_GROUND);
-
-		NORMAL_FLOWERS = new WorldGenerator[]{eucaTallGrass, eucaTallFlowers, eucaBlueFlower, GOLDEN_BLOOM, GOLDEN_BULB, GOLDEN_STALKS};
-
-		SILVER_FLOWERS = new WorldGenerator[]{SILVER_TALL_GRASS, SILVER_SHORT_GRASS, SILVER_SPROUT, SILVER_GOLD_FLOWER};
 
 		//	treesgreen = new ArrayList<WorldGenerator>(3);
 		//	treesgreen.add(new WorldGenEucaTree6());
@@ -320,17 +284,9 @@ public class ChunkGeneratorEuca implements IChunkGenerator {
 			}
 		}
 
-		for (times = 0; times < 80; times++) {
-//			SILVER_FLOWERS[rand.nextInt(SILVER_FLOWERS.length)].generate(worldObj, rand, chunkStart);
-		}
-
 		for (times = 0; times < 1; times++) {
 			pumpkin.generate(world, rand, chunkStart);
 		}
-
-//		for (WorldGenerator flowerGen : NORMAL_FLOWERS) {
-//			flowerGen.generate(world, rand, chunkStart);
-//		}
 
 		for (times = 0; times < 20; times++) {
 			water.generate(world, rand, new BlockPos(x1 + this.rand.nextInt(16) + 8, this.rand.nextInt(120) + 4, z1 + this.rand.nextInt(16) + 8));
