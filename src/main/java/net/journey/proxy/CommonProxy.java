@@ -94,10 +94,6 @@ public class CommonProxy {
         BiomeRegister.registerBiomes();
         Config.postBiomeInit();
         JNWorldGenerator.updateGenSettings();
-
-        //JourneyAchievements.init()
-
-        addOreDictionary();
         SlayerAPI.registerEventListener(new NetherEvent());
         SlayerAPI.registerEventListener(new ArmorAbilityEvent());
         SlayerAPI.registerEventListener(new JourneyFuelHandler());
@@ -115,11 +111,10 @@ public class CommonProxy {
 
     public void init(FMLInitializationEvent event) {
         StructureCorbaVillagePieces.registerVillagePieces();
-
+        JourneyOreDictionary.init();
         JourneyRecipes.init();
         NetworkRegistry.INSTANCE.registerGuiHandler(JITL.instance, new GuiHandler());
         GameRegistry.registerWorldGenerator(new WorldGenJourney(), 2);
-
         Integrations.onInit(event);
     }
 
@@ -131,18 +126,12 @@ public class CommonProxy {
         EntityRegistry.onLoadComplete(event);
     }
 
-    public void registerEntityRenderer(Entity entity, int i, String name) {
-    }
+    public void registerEntityRenderer(Entity entity, int i, String name) { }
 
-    public void registerVariantRenderer(Item item, int meta, String name, String id) {
-    }
+    public void registerVariantRenderer(Item item, int meta, String name, String id) { }
 
     public void serverStarting(FMLServerStartingEvent event) {
         event.registerServerCommand(new JourneyCommands());
         event.registerServerCommand(new DimensionCommand());
     }
-
-    private void addOreDictionary() {
-    }
-
 }
