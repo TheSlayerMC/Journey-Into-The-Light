@@ -13,6 +13,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.slayer.api.EnumMaterialTypes;
 import org.jetbrains.annotations.NotNull;
@@ -32,7 +33,7 @@ import org.jetbrains.annotations.NotNull;
  * <ul>
  *     <li>{@link #groundPredicate} - predicate that checks if plant can be placed and sustain on provided block</li>
  *     <li>{@link #plantDirection} - the side of ground block where plant can be placed and stay.</li>
- *     <li>{@link #boundingBox} - bounding box of the plant. Equals standard bush box by default.</li>
+ *     <li>{@link #topBox}, {@link #bottomBox} - bounding boxes of the plant for top and bottom state.</li>
  * </ul>
  * The item model for it should be placed to "models/item/block/plant" by default.
  */
@@ -64,6 +65,15 @@ public class JBlockDoublePlant extends JBlockPlant implements IHasCustomItemPath
 	public void placeAt(World world, BlockPos bottomPos, int flags) {
 		world.setBlockState(bottomPos, this.getDefaultState().withProperty(HALF, EnumHalf.BOTTOM), flags);
 		world.setBlockState(bottomPos.up(), this.getDefaultState().withProperty(HALF, EnumHalf.TOP), flags);
+	}
+
+	@Override
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+		return state.getValue(HALF) == EnumHalf.TOP ? topBox : bottomBox;
+	}
+
+	public JBlockDoublePlant setFullBlockBoundingBox() {
+		return setBoundingBox(FULL_BLOCK_AABB);
 	}
 
 	@Override

@@ -740,8 +740,8 @@ public class JourneyBlocks {
         boilShingle = new BlockMod("boil_shingle", "Boil Shingle");
         boilSquareBrick = new BlockMod("boil_square_brick", "Boil Square Brick");
         boilBricks = new BlockMod("boil_bricks", "Boil Bricks");
-        tallCrumblingPlant = (JBlockDoublePlant) new JBlockDoublePlant("tall_crumbling_plant", "Tall Crumbling Plant").setGroundPredicate(GroundPredicate.SOLID_SIDE.and(GroundPredicate.blockStatePredicate(groundState -> groundState.getMaterial() == Material.SAND)));
-        tallMoltenPlant = (JBlockDoublePlant) new JBlockDoublePlant("tall_molten_plant", "Tall Molten Plant").setGroundPredicate(GroundPredicate.SOLID_SIDE.and(GroundPredicate.blockStatePredicate(groundState -> groundState.getMaterial() == Material.SAND)));
+        tallCrumblingPlant = (JBlockDoublePlant) new JBlockDoublePlant("tall_crumbling_plant", "Tall Crumbling Plant").setGroundPredicate(GroundPredicate.SOLID_SIDE.and(GroundPredicate.blockStatePredicate(groundState -> groundState.getMaterial() == Material.SAND)));//TODO fix, as it vanishes on random tick, if stays on volcanic sand (it has worldgen on it)
+        tallMoltenPlant = (JBlockDoublePlant) new JBlockDoublePlant("tall_molten_plant", "Tall Molten Plant").setGroundPredicate(GroundPredicate.SOLID_SIDE.and(GroundPredicate.blockStatePredicate(groundState -> groundState.getMaterial() == Material.SAND)));//TODO fix, as it vanishes on random tick, if stays on volcanic sand (it has worldgen on it)
         crumblingPlant = new BlockSandPlant("crumbling_plant", "Crumbling Plant");
         lavaBloom = new BlockSandPlant("lava_bloom", "Lava Bloom");
         crispGrass = new BlockSandPlant("crisp_grass", "Crisp Grass");

@@ -1,7 +1,7 @@
 package net.journey.dimension.terrania;
 
 import net.journey.api.block.GroundPredicate;
-import net.journey.dimension.base.gen.JWorldGenFlowers;
+import net.journey.dimension.base.gen.JWorldGenPlants;
 import net.journey.dimension.terrania.gen.WorldGenHollowTree;
 import net.journey.dimension.terrania.gen.WorldGenTerranianLamp;
 import net.journey.dimension.terrania.gen.dungeon.WorldGenMushroomDungeon;
@@ -42,9 +42,9 @@ public class ChunkProviderTerrania implements IChunkGenerator {
     double[] gen2;
     double[] gen3;
     double[] gen4;
-    JWorldGenFlowers flower = new JWorldGenFlowers(JourneyBlocks.terranianTallgrass, TERRANIAN_GRASS_GROUND);
-    JWorldGenFlowers flower1 = new JWorldGenFlowers(JourneyBlocks.terramushroom, TERRANIAN_GRASS_GROUND);
-    JWorldGenFlowers flower2 = new JWorldGenFlowers(JourneyBlocks.tallterramushroom, TERRANIAN_GRASS_GROUND);
+    JWorldGenPlants flower = new JWorldGenPlants(JourneyBlocks.terranianTallgrass, TERRANIAN_GRASS_GROUND);
+    JWorldGenPlants flower1 = new JWorldGenPlants(JourneyBlocks.terramushroom, TERRANIAN_GRASS_GROUND);
+    JWorldGenPlants flower2 = new JWorldGenPlants(JourneyBlocks.tallterramushroom, TERRANIAN_GRASS_GROUND);
     WorldGenTreeHut hut = new WorldGenTreeHut();
     WorldGenHollowTree hollowTree = new WorldGenHollowTree();
     WorldGenMushroomDungeon mushroomDungeon = new WorldGenMushroomDungeon();

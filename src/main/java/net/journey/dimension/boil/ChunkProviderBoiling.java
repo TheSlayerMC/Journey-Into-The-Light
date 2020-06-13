@@ -1,8 +1,8 @@
 package net.journey.dimension.boil;
 
+import net.journey.api.block.GroundPredicate;
 import net.journey.blocks.plant.BlockSandPlant;
-import net.journey.dimension.base.WorldGenJourney;
-import net.journey.dimension.base.WorldGenTallPlant;
+import net.journey.dimension.base.gen.JWorldGenPlants;
 import net.journey.dimension.boil.gen.WorldGenBoilingFire;
 import net.journey.dimension.boil.gen.WorldGenBoilingLamp;
 import net.journey.dimension.boil.gen.WorldGenBoilingLava;
@@ -24,7 +24,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockStateMatcher;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.LazyLoadBase;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -35,7 +34,6 @@ import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.*;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.slayer.api.block.BlockModFlower;
 import net.slayer.api.worldgen.WorldGenAPI;
 
 import java.util.ArrayList;
@@ -54,6 +52,8 @@ public class ChunkProviderBoiling implements IChunkGenerator {
     private final WorldGenTraderHutBoiling hut;
     private final WorldGenSmallBoilDungeon smallDungeon;
     private final WorldGenHornDungeon bigDungeon;
+    private final WorldGenerator TALL_CRUMBLING_PLANTS = new JWorldGenPlants(JourneyBlocks.tallCrumblingPlant, GroundPredicate.blockPredicate(block -> block == JourneyBlocks.volcanicSand));
+    private final WorldGenerator TALL_MOLTEN_PLANTS = new JWorldGenPlants(JourneyBlocks.tallMoltenPlant, GroundPredicate.blockPredicate(block -> block == JourneyBlocks.volcanicSand));
     public NoiseGeneratorOctaves noiseGen5;
     public NoiseGeneratorOctaves noiseGen6;
     public NoiseGeneratorOctaves mobSpawnerNoise;
@@ -61,20 +61,20 @@ public class ChunkProviderBoiling implements IChunkGenerator {
     double[] gen2;
     double[] gen3;
     double[] gen4;
-    private Random rand;
-    private ArrayList<WorldGenerator> trees;
+    private final Random rand;
+    private final ArrayList<WorldGenerator> trees;
     private NoiseGeneratorOctaves noiseGen1;
     private NoiseGeneratorOctaves noiseGen2;
     private NoiseGeneratorOctaves noiseGen3;
-    private NoiseGeneratorPerlin noiseGen4;
-    private World worldObj;
+    private final NoiseGeneratorPerlin noiseGen4;
+    private final World worldObj;
     private double[] stoneNoise;
-    private MapGenBase caveGenerator;
-    private MapGenBase ravineGenerator;
+    private final MapGenBase caveGenerator;
+    private final MapGenBase ravineGenerator;
     private Biome[] biomesForGeneration;
-    private WorldGenMinable ashual = new WorldGenMinable(JourneyBlocks.ashualOre.getDefaultState(), Config.ashualOreGenAmount, BlockStateMatcher.forBlock(JourneyBlocks.ashBlock));
-    private WorldGenMinable blazium = new WorldGenMinable(JourneyBlocks.blaziumOre.getDefaultState(), Config.blaziumOreGenAmount, BlockStateMatcher.forBlock(JourneyBlocks.ashBlock));
-    
+    private final WorldGenMinable ashual = new WorldGenMinable(JourneyBlocks.ashualOre.getDefaultState(), Config.ashualOreGenAmount, BlockStateMatcher.forBlock(JourneyBlocks.ashBlock));
+    private final WorldGenMinable blazium = new WorldGenMinable(JourneyBlocks.blaziumOre.getDefaultState(), Config.blaziumOreGenAmount, BlockStateMatcher.forBlock(JourneyBlocks.ashBlock));
+
     private final WorldGenBoilingFire fire;
     private final WorldGenBoilingLava boilLava;
 
@@ -365,22 +365,20 @@ public class ChunkProviderBoiling implements IChunkGenerator {
             flameFlower2.generate(worldObj, r, chunkStart);
             infernoPlant.generate(worldObj, r, chunkStart);
         }
-        
-		
+
+
         for (i = 0; i < 50; i++) {
-			BlockSandPlant flowers = RandHelper.chooseEqual(rand, JourneyBlocks.crumblingPlant, JourneyBlocks.lavaBloom, JourneyBlocks.crispGrass);
+            BlockSandPlant flowers = RandHelper.chooseEqual(rand, JourneyBlocks.crumblingPlant, JourneyBlocks.lavaBloom, JourneyBlocks.crispGrass);
             new WorldGenDesertFlower(flowers, JourneyBlocks.volcanicSand).generate(worldObj, rand, chunkStart);
         }
-        
-        for (i = 0; i < 150; i++) {
-            new WorldGenTallPlant(worldObj, r, chunkStart, JourneyBlocks.tallCrumblingPlant, JourneyBlocks.volcanicSand).generate(worldObj, rand, chunkStart);
-            new WorldGenTallPlant(worldObj, r, chunkStart, JourneyBlocks.tallMoltenPlant, JourneyBlocks.volcanicSand).generate(worldObj, rand, chunkStart);
-        }
+
+        TALL_CRUMBLING_PLANTS.generate(worldObj, r, chunkStart);
+        TALL_MOLTEN_PLANTS.generate(worldObj, r, chunkStart);
 
         for (i = 0; i < Config.blaziumOreTrys; i++) {
             blazium.generate(worldObj, rand, new BlockPos(x1, rand.nextInt(250), z1));
         }
-        
+
         for (i = 0; i < Config.ashualOreTrys; i++) {
             ashual.generate(worldObj, rand, new BlockPos(x1, rand.nextInt(250), z1));
         }

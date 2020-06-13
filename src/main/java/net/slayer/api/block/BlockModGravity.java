@@ -11,7 +11,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -22,15 +21,8 @@ import net.slayer.api.SlayerAPI;
 import java.util.Random;
 
 public class BlockModGravity extends BlockFalling {
-
-    public int boostBrightnessLow;
-    public int boostBrightnessHigh;
-    public boolean enhanceBrightness;
-    public String name;
     protected EnumMaterialTypes blockType;
     protected Item drop = null;
-    protected Random rand;
-    protected boolean isOpaque = true, isNormalCube = true;
 
     public BlockModGravity(String name, String finalName, float hardness) {
         this(EnumMaterialTypes.STONE, name, finalName, hardness, JourneyTabs.BLOCKS);
@@ -56,11 +48,9 @@ public class BlockModGravity extends BlockFalling {
         super(blockType.getMaterial());
         this.blockType = blockType;
         setHardness(2.0F);
-        rand = new Random();
         setSoundType(blockType.getSound());
         setCreativeTab(tab);
         setTranslationKey(name);
-        this.name = name;
         JourneyBlocks.blocks.add(this);
         setRegistryName(JITL.MOD_ID, name);
         LangGeneratorFacade.addBlockEntry(this, finalName);
@@ -70,20 +60,14 @@ public class BlockModGravity extends BlockFalling {
     public BlockModGravity(EnumMaterialTypes blockType, String name, String finalName, float hardness, CreativeTabs tab) {
         super(blockType.getMaterial());
         this.blockType = blockType;
-        rand = new Random();
         setSoundType(blockType.getSound());
         setCreativeTab(tab);
         setTranslationKey(name);
         setHardness(hardness);
-        this.name = name;
         JourneyBlocks.blocks.add(this);
         setRegistryName(JITL.MOD_ID, name);
         LangGeneratorFacade.addBlockEntry(this, finalName);
         JourneyBlocks.itemBlocks.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
-    }
-
-    public String getName() {
-        return name;
     }
 
     @Override
@@ -106,16 +90,6 @@ public class BlockModGravity extends BlockFalling {
     @Override
     public int quantityDropped(Random rand) {
         return 1;
-    }
-
-    @Override
-    public boolean isOpaqueCube(IBlockState state) {
-        return isOpaque;
-    }
-
-    @Override
-    public boolean isNormalCube(IBlockState state, IBlockAccess world, BlockPos pos) {
-        return false;
     }
 
     @Override
