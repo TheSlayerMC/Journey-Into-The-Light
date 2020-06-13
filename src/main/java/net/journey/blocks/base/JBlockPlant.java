@@ -44,6 +44,8 @@ public abstract class JBlockPlant extends BlockBush implements IHasCustomItemPat
 	public static final AxisAlignedBB SMALL_PLANT_BB = BUSH_AABB;
 	public static final AxisAlignedBB TALL_PLANT_BB = new AxisAlignedBB(BUSH_AABB.minX, 0, BUSH_AABB.minZ, BUSH_AABB.maxX, 1, BUSH_AABB.maxZ);
 	public static final AxisAlignedBB BIG_PLANT_BB = new AxisAlignedBB(0.15, 0, 0.15, 0.85, 1, 0.85);
+
+	public static final AxisAlignedBB SHORT_GRASS_BB = new AxisAlignedBB(0.15, 0, 0.15, 0.85, 0.35, 0.85);
 	private AxisAlignedBB boundingBox = BUSH_AABB;
 	/**
 	 * Predicate that checks if plant can be placed and sustain on provided block.

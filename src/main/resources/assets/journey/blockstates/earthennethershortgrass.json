@@ -1,5 +1,7 @@
 {
     "variants": {
-        "normal": { "model": "journey:earthennethershortgrass" }
+        "normal": {
+            "model": "journey:plant/earthennethershortgrass"
+        }
     }
 }
