@@ -1,6 +1,7 @@
 package net.journey.dimension.base;
 
 import net.journey.dimension.base.gen.layer.GenLayerBiomes;
+import net.journey.util.Config;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeProvider;
@@ -15,20 +16,22 @@ import java.util.List;
 
 public class BiomeProviderMultiple extends BiomeProvider {
 
-    private List<Biome> commonBiomes, rareBiomes;
-
-    public BiomeProviderMultiple(WorldInfo info, List<Biome> commonBiomes, List<Biome> rareBiomes) {
+	private List<Biome> common, rare;
+	
+    public BiomeProviderMultiple(WorldInfo info, List<Biome> common, List<Biome> rare) {
         super(info);
-        this.commonBiomes = commonBiomes;
-        this.rareBiomes = rareBiomes;
-        getBiomesToSpawnIn().clear();
-        getBiomesToSpawnIn().addAll(commonBiomes);
-        getBiomesToSpawnIn().addAll(rareBiomes);
+        this.common = common;
+        this.rare = rare;
+    }
+    
+    @Override
+    public List<Biome> getBiomesToSpawnIn() {
+    	return Config.specialBiomeRarity == 0 ? this.rare : this.common;
     }
 
     @Override
     public GenLayer[] getModdedBiomeGenerators(WorldType worldType, long seed, GenLayer[] original) {
-        GenLayer biomes = new GenLayerBiomes(1, commonBiomes, rareBiomes);
+        GenLayer biomes = new GenLayerBiomes(1, this.getBiomesToSpawnIn());
         biomes = new GenLayerZoom(1000 /*baseSeed*/, biomes /*parent*/);
         biomes = new GenLayerZoom(1001 /*baseSeed*/, biomes /*parent*/);
         biomes = new GenLayerZoom(1002 /*baseSeed*/, biomes /*parent*/);

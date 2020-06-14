@@ -8,24 +8,32 @@ import net.journey.init.JourneySounds;
 import net.minecraft.client.audio.MusicTicker;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DimensionType;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.client.EnumHelperClient;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Arrays;
+import java.util.List;
+
 import javax.annotation.Nullable;
 
 public class WorldProviderCorba extends BaseWorldProvider {
 
+	private static List<Biome> common = Lists.newArrayList(DimensionHelper.CORBA_BIOME);
+	private static List<Biome> rare = Lists.newArrayList(DimensionHelper.CORBA_PLAINS_BIOME);
+	
 	public WorldProviderCorba() {
-        super(new BiomeProviderMultiple(new WorldInfoCorba(), Lists.newArrayList(DimensionHelper.CORBA_BIOME), Lists.newArrayList(DimensionHelper.CORBA_PLAINS_BIOME)), new Vec3d(0.5, 0.55, 0));
+        super(new BiomeProviderMultiple(new WorldInfoCorba(), common, rare), new Vec3d(0.5, 0.55, 0));
     }
 
 	@Override
 	public void init() {
 		this.nether = false;
         this.hasSkyLight = true;
+        this.biomeProvider = new BiomeProviderMultiple(this.world.getWorldInfo(), common, rare) { };
     }
 
     @Nullable
