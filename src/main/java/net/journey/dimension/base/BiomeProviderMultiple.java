@@ -15,12 +15,12 @@ import java.util.List;
 
 public class BiomeProviderMultiple extends BiomeProvider {
 
-    List<Biome> commonBiomes, rareBiomes;
+    private List<Biome> commonBiomes, rareBiomes;
 
     public BiomeProviderMultiple(WorldInfo info, List<Biome> commonBiomes, List<Biome> rareBiomes) {
         super(info);
-        commonBiomes = commonBiomes;
-        rareBiomes = rareBiomes;
+        this.commonBiomes = commonBiomes;
+        this.rareBiomes = rareBiomes;
         getBiomesToSpawnIn().clear();
         getBiomesToSpawnIn().addAll(commonBiomes);
         getBiomesToSpawnIn().addAll(rareBiomes);

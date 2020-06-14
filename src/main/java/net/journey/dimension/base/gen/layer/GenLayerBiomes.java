@@ -9,8 +9,9 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public class GenLayerBiomes extends GenLayer {
-    List<Biome> commonBiomes;
-    List<Biome> rareBiomes;
+	
+    private List<Biome> commonBiomes;
+    private List<Biome> rareBiomes;
 
     public GenLayerBiomes(long l, List<Biome> commonBiomes, List<Biome> rareBiomes) {
         super(l);
