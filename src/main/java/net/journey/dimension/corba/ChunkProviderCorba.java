@@ -210,15 +210,16 @@ public class ChunkProviderCorba implements IChunkGenerator {
 		{
 			for (int j = 0; j < 16; ++j)
 			{
-				generateBiomeTerrain(this.rand, primer, x * 16 + i, z * 16 + j, this.depthBuffer[j + i * 16]);
+                Biome biome = biomesIn[j + i * 16];
+				generateBiomeTerrain(biome, this.rand, primer, x * 16 + i, z * 16 + j, this.depthBuffer[j + i * 16]);
 			}
 		}
 	}
 
-	public final void generateBiomeTerrain(Random r, ChunkPrimer c, int x, int z, double s) {
+	public final void generateBiomeTerrain(Biome b, Random r, ChunkPrimer c, int x, int z, double s) {
 		boolean flag = true;
-		IBlockState iblockstate = JourneyBlocks.corbaGrass.getDefaultState();
-		IBlockState iblockstate1 = JourneyBlocks.corbaStone.getDefaultState();
+		IBlockState iblockstate = b.topBlock;
+		IBlockState iblockstate1 = b.fillerBlock;
 		int k = -1;
 		int l = (int) (s / 3.0D + 3.0D + r.nextDouble() * 0.25D);
 		int i1 = x & 15;
@@ -236,8 +237,8 @@ public class ChunkProviderCorba implements IChunkGenerator {
 							iblockstate = null;
 							iblockstate1 = JourneyBlocks.corbaStone.getDefaultState();
 						} else if (k1 >= 7 && k1 <= 8) {
-							iblockstate = JourneyBlocks.corbaGrass.getDefaultState();
-							iblockstate1 = JourneyBlocks.corbaStone.getDefaultState();
+							iblockstate =  b.topBlock;
+							iblockstate1 =  b.fillerBlock;
 						}
 
 						if (k1 < 8 && (iblockstate == null || iblockstate.getMaterial() == Material.AIR))
