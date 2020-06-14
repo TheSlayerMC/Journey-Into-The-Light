@@ -112,11 +112,11 @@ public class Config {
         blacksmithHouse = cfg.get("Generation", "Blacksmith House spawn rate (The higher, the rarer)", 40).getInt();
 
         shadiumOreTrys = cfg.get("Ore Generation", "Shadium Ore Trys Per Chunk", 2).getInt();
-        shadiumOreGenAmount = cfg.get("Ore Generation", "Shadium Ore Vein Max Amount", 5).getInt();
+        shadiumOreGenAmount = cfg.get("Ore Generation", "Shadium Ore Vein Max Amount", 3).getInt();
         shadiumOreGenMaxY = cfg.get("Ore Generation", "Shadium Spawn Height", 13).getInt();
         
         luniumOreTrys = cfg.get("Ore Generation", "Lunium Ore Trys Per Chunk", 2).getInt();
-        luniumOreGenAmount = cfg.get("Ore Generation", "Lunium Ore Vein Max Amount", 5).getInt();
+        luniumOreGenAmount = cfg.get("Ore Generation", "Lunium Ore Vein Max Amount", 2).getInt();
         luniumOreGenMaxY = cfg.get("Ore Generation", "Lunium Spawn Height", 22).getInt();
         
         sapphireOreTrys = cfg.get("Ore Generation", "Sapphire Ore Trys Per Chunk", 2).getInt();
