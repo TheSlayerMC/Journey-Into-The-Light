@@ -1,11 +1,12 @@
 package net.journey.dimension.frozen;
 
+import net.journey.dimension.base.biome.JDimensionBiome;
 import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BiomeGenFrozenLands extends Biome {
+public class BiomeGenFrozenLands extends JDimensionBiome {
 
     private static BiomeProperties properties = new BiomeProperties("Frozen Lands").setTemperature(0.0f).setRainfall(0.5f).setSnowEnabled().setHeightVariation(0.5F);
 

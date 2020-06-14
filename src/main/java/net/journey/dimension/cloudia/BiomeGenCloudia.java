@@ -1,5 +1,6 @@
 package net.journey.dimension.cloudia;
 
+import net.journey.dimension.base.biome.JDimensionBiome;
 import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.relauncher.Side;
@@ -7,16 +8,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.awt.*;
 
-public class BiomeGenCloudia extends Biome {
+public class BiomeGenCloudia extends JDimensionBiome {
 
     public BiomeGenCloudia() {
         super(new BiomeProperties("Cloudia"));
         this.topBlock = JourneyBlocks.cloudiaGrass.getDefaultState();
         this.fillerBlock = JourneyBlocks.cloudiaDirt.getDefaultState();
-        this.spawnableCreatureList.clear();
-        this.spawnableMonsterList.clear();
-        this.spawnableCaveCreatureList.clear();
-        this.spawnableWaterCreatureList.clear();
     }
 
     @Override

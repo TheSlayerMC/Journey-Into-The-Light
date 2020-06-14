@@ -6,7 +6,7 @@ import net.journey.dimension.cloudia.BiomeGenCloudia;
 import net.journey.dimension.cloudia.WorldProviderCloudia;
 import net.journey.dimension.corba.BiomeGenCorba;
 import net.journey.dimension.corba.WorldProviderCorba;
-import net.journey.dimension.corba.biomes.BiomeGenCorbaPlains;
+import net.journey.dimension.corba.biomes.*;
 import net.journey.dimension.depths.BiomeGenDepths;
 import net.journey.dimension.depths.WorldProviderDepths;
 import net.journey.dimension.euca.WorldProviderEuca;
@@ -65,6 +65,7 @@ public class DimensionHelper {
 
     public static final float[] boilHeight = new float[]{0.125F, 0.1F};
     public static final float[] corbaHeight = new float[]{0.2F, 0.2F};
+    
     @Deprecated //it's better to keep them inside biomes
     public static final float[] CORBA_PLAINS_HEIGHT = new float[]{0.0F, 0.0F};
 
@@ -76,6 +77,7 @@ public class DimensionHelper {
 
     public static final Biome CORBA_BIOME = new BiomeGenCorba();
     public static final Biome CORBA_PLAINS_BIOME = new BiomeGenCorbaPlains();
+    public static final Biome CORBA_HILLS_BIOME = new BiomeGenCorbaHills();
 
     public static final Biome DEPTHS_BIOME = new BiomeGenDepths();
     public static final Biome FROZEN_BIOME = new BiomeGenFrozenLands();
@@ -111,6 +113,7 @@ public class DimensionHelper {
         addDimBiome(CLOUDIA_BIOME, "Cloudia", Type.MAGICAL);
         addDimBiome(CORBA_BIOME, "Corba", Type.DRY, Type.PLAINS, Type.DEAD);
         addDimBiome(CORBA_PLAINS_BIOME, "Corba Plains", Type.DRY, Type.PLAINS, Type.DEAD);
+        addDimBiome(CORBA_HILLS_BIOME, "Corba Hills", Type.DRY, Type.PLAINS, Type.DEAD);
         addDimBiome(DEPTHS_BIOME, "Depths", Type.MAGICAL, Type.SPOOKY);
         addDimBiome(FROZEN_BIOME, "Frozen Lands", Type.COLD);
         addDimBiome(TERRANIA_BIOME, "Terrania", Type.MAGICAL, Type.SPOOKY);

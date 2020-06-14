@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import net.journey.dimension.base.DimensionHelper;
 import net.journey.dimension.corba.gen.WorldGenCorbaLamp;
 import net.journey.dimension.corba.gen.WorldGenCorbaVillage;
 import net.journey.dimension.corba.gen.WorldGenHugeCorbaTree;
@@ -64,7 +65,7 @@ public class ChunkProviderCorba implements IChunkGenerator {
 	private final WorldType terrainType;
 	private final double[] heightMap;
 	private final float[] biomeWeights;
-    private double[] depthBuffer = new double[256];
+	private double[] depthBuffer = new double[256];
 
 	private Random rand;
 	private ArrayList<WorldGenerator> trees;
@@ -86,10 +87,10 @@ public class ChunkProviderCorba implements IChunkGenerator {
 	private WorldGenCorbaLamp lamp = new WorldGenCorbaLamp();
 	private final WorldGenMinable gorbite;
 	private final WorldGenMinable orbaditeOre;
-    private static final WorldGenTallGlowshroom TALL_GLOWSHROOMS_GEN = new WorldGenTallGlowshroom();
-    private static final WorldGenCaveVines CAVE_VINE_GEN = new WorldGenCaveVines();
-    private static final WorldGenSmallGlowshrooms SMALL_GLOWSHROOMS = new WorldGenSmallGlowshrooms();
-    
+	private static final WorldGenTallGlowshroom TALL_GLOWSHROOMS_GEN = new WorldGenTallGlowshroom();
+	private static final WorldGenCaveVines CAVE_VINE_GEN = new WorldGenCaveVines();
+	private static final WorldGenSmallGlowshrooms SMALL_GLOWSHROOMS = new WorldGenSmallGlowshrooms();
+
 	private MapGenCorbaVillage villageGenerator = new MapGenCorbaVillage();
 
 	public ChunkProviderCorba(World worldIn, long seed, String generatorOptions) {
@@ -404,10 +405,10 @@ public class ChunkProviderCorba implements IChunkGenerator {
 		Random r = rand;
 		BlockPos chunkStart = new BlockPos(x1, 0, z1);
 		ChunkPos chunkpos = new ChunkPos(cx, cz);
-        BlockPos startPos = new BlockPos(x1, 0, z1);
+		BlockPos startPos = new BlockPos(x1, 0, z1);
 		this.villageGenerator.generateStructure(this.worldObj, this.rand, chunkpos);
 
-		for (i = 0; i < 5; i++) {
+		for(i = 0; i < 5; i++) {
 			tall.generate(worldObj, r, chunkStart);
 			flower.generate(worldObj, r, chunkStart);
 			flower1.generate(worldObj, r, chunkStart);
@@ -421,15 +422,15 @@ public class ChunkProviderCorba implements IChunkGenerator {
 		if (rand.nextInt(5) == 0) {
 			generateStructure(x1, z1, worldGenTreehouse);
 		}
-		
+
 		for (i = 0; i < 64; i++) {
-            TALL_GLOWSHROOMS_GEN.generate(worldObj, rand, startPos);
-            SMALL_GLOWSHROOMS.generate(worldObj, rand, startPos);
-        }
-		
+			TALL_GLOWSHROOMS_GEN.generate(worldObj, rand, startPos);
+			SMALL_GLOWSHROOMS.generate(worldObj, rand, startPos);
+		}
+
 		for (i = 0; i < 55; i++) {
-            CAVE_VINE_GEN.generate(worldObj, rand, startPos);
-        }
+			CAVE_VINE_GEN.generate(worldObj, rand, startPos);
+		}
 
 		if (rand.nextInt(6) == 0) {
 			BlockPos pos = new BlockPos(x1 + 1, r.nextInt(128) + 1,
@@ -443,13 +444,14 @@ public class ChunkProviderCorba implements IChunkGenerator {
 		if (rand.nextInt(6) == 0) {
 			generateStructure(x1, z1, tree);
 		}
-		
+
 		for(times = 0; times < 400; times++) {
 			int randX = x1 + 8 + rand.nextInt(16);
 			int randZ = z1 + 8 + rand.nextInt(16);
 			int randY = rand.nextInt(128);
 			if (isBlockTop(randX, randY - 1, randZ, JourneyBlocks.corbaGrass)) {
-				trees.get(rand.nextInt(trees.size())).generate(worldObj, rand, new BlockPos(randX, randY, randZ));
+				if(worldObj.getBiome(new BlockPos(randX, randY, randZ)) != DimensionHelper.CORBA_HILLS_BIOME)
+					trees.get(rand.nextInt(trees.size())).generate(worldObj, rand, new BlockPos(randX, randY, randZ));
 			}
 		}
 

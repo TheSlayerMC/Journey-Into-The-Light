@@ -1,12 +1,13 @@
 package net.journey.dimension.senterian;
 
+import net.journey.dimension.base.biome.JDimensionBiome;
 import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biome.BiomeProperties;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BiomeGenSenterian extends Biome {
+public class BiomeGenSenterian extends JDimensionBiome {
 
     public BiomeGenSenterian() {
         super(new BiomeProperties("Senterian Labyrinth"));

@@ -1,21 +1,17 @@
 package net.journey.dimension.boil;
 
+import java.awt.Color;
+
+import net.journey.dimension.base.biome.JDimensionBiome;
 import net.journey.init.blocks.JourneyBlocks;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.TempCategory;
 
-import java.awt.*;
-
-public class BiomeGenBoiling extends Biome {
+public class BiomeGenBoiling extends JDimensionBiome {
 
     public BiomeGenBoiling() {
         super(new BiomePropertiesBoil());
         this.topBlock = JourneyBlocks.hotBlock.getDefaultState();
         this.fillerBlock = JourneyBlocks.hotBlock.getDefaultState();
-        this.spawnableCreatureList.clear();
-        this.spawnableMonsterList.clear();
-        this.spawnableCaveCreatureList.clear();
-        this.spawnableWaterCreatureList.clear();
     }
 
     @Override

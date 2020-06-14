@@ -1,14 +1,15 @@
 package net.journey.dimension.terrania;
 
+import java.awt.Color;
+
+import net.journey.dimension.base.biome.JDimensionBiome;
 import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biome.BiomeProperties;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.awt.*;
-
-public class BiomeGenTerrania extends Biome {
+public class BiomeGenTerrania extends JDimensionBiome {
 
     public BiomeGenTerrania() {
         super(new BiomeProperties("Terrania"));
