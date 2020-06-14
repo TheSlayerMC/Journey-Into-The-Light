@@ -13,7 +13,7 @@ public class BiomeGenCorbaPlains extends JDimensionBiome {
 
     public BiomeGenCorbaPlains() {
         super(new BiomePropertiesCorbaPlains());
-        this.topBlock = JourneyBlocks.cloudiaPlanks.getDefaultState();
+        this.topBlock = JourneyBlocks.corbaGrass.getDefaultState();
         this.fillerBlock = JourneyBlocks.corbaStone.getDefaultState();
     }
 
