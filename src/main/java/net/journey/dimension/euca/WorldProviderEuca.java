@@ -19,7 +19,7 @@ import javax.annotation.Nullable;
 public class WorldProviderEuca extends BaseWorldProvider {
 
     public WorldProviderEuca() {
-        super(new BiomeProviderMultiple(new WorldInfoEuca(), Lists.newArrayList(DimensionHelper.EUCA_GOLD_BIOME, DimensionHelper.EUCA_SILVER_BIOME)), new Vec3d(1.28, 1.15, 0.7));
+        super(new BiomeProviderMultiple(new WorldInfoEuca(), Lists.newArrayList(DimensionHelper.EUCA_GOLD_BIOME), Lists.newArrayList(DimensionHelper.EUCA_SILVER_BIOME)), new Vec3d(1.28, 1.15, 0.7));
     }
 
     @Override

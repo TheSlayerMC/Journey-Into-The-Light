@@ -19,7 +19,7 @@ import javax.annotation.Nullable;
 public class WorldProviderCorba extends BaseWorldProvider {
 
 	public WorldProviderCorba() {
-        super(new BiomeProviderMultiple(new WorldInfoCorba(), Lists.newArrayList(DimensionHelper.CORBA_BIOME, DimensionHelper.CORBA_PLAINS_BIOME)), new Vec3d(0.5, 0.55, 0));
+        super(new BiomeProviderMultiple(new WorldInfoCorba(), Lists.newArrayList(DimensionHelper.CORBA_BIOME), Lists.newArrayList(DimensionHelper.CORBA_PLAINS_BIOME)), new Vec3d(0.5, 0.55, 0));
     }
 
 	@Override

@@ -15,15 +15,20 @@ import java.util.List;
 
 public class BiomeProviderMultiple extends BiomeProvider {
 
-    public BiomeProviderMultiple(WorldInfo info, List<Biome> allowedBiomes) {
+    List<Biome> commonBiomes, rareBiomes;
+
+    public BiomeProviderMultiple(WorldInfo info, List<Biome> commonBiomes, List<Biome> rareBiomes) {
         super(info);
+        commonBiomes = commonBiomes;
+        rareBiomes = rareBiomes;
         getBiomesToSpawnIn().clear();
-        getBiomesToSpawnIn().addAll(allowedBiomes);
+        getBiomesToSpawnIn().addAll(commonBiomes);
+        getBiomesToSpawnIn().addAll(rareBiomes);
     }
 
     @Override
     public GenLayer[] getModdedBiomeGenerators(WorldType worldType, long seed, GenLayer[] original) {
-        GenLayer biomes = new GenLayerBiomes(1, this.getBiomesToSpawnIn());
+        GenLayer biomes = new GenLayerBiomes(1, commonBiomes, rareBiomes);
         biomes = new GenLayerZoom(1000 /*baseSeed*/, biomes /*parent*/);
         biomes = new GenLayerZoom(1001 /*baseSeed*/, biomes /*parent*/);
         biomes = new GenLayerZoom(1002 /*baseSeed*/, biomes /*parent*/);
