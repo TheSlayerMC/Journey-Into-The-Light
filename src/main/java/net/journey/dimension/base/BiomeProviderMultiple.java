@@ -22,12 +22,15 @@ public class BiomeProviderMultiple extends BiomeProvider {
         super(info);
         this.common = common;
         this.rare = rare;
+        getBiomesToSpawnIn().clear();
+        getBiomesToSpawnIn().addAll(common);
+        getBiomesToSpawnIn().addAll(rare);
     }
     
-    @Override
+   /* @Override
     public List<Biome> getBiomesToSpawnIn() {
     	return Config.specialBiomeRarity == 0 ? this.rare : this.common;
-    }
+    }*/
 
     @Override
     public GenLayer[] getModdedBiomeGenerators(WorldType worldType, long seed, GenLayer[] original) {
