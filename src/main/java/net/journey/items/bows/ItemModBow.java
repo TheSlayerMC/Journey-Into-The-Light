@@ -27,6 +27,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.SlayerAPI;
 
 import javax.annotation.Nullable;
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class ItemModBow extends ItemBow {
@@ -62,78 +63,6 @@ public class ItemModBow extends ItemBow {
         setRegistryName(JITL.MOD_ID, name.toLowerCase());
         LangGeneratorFacade.addItemEntry(this, properName);
         addPropertyOverrides();
-    }
-    
-    public ItemModBow(String name, String properName, int damage, int uses, String ability) {
-        super();
-        this.maxStackSize = 1;
-        this.arrowItem = JourneyItems.essenceArrow;
-        this.arrowClass = EntityEssenceArrow.class;
-        this.damage = damage;
-        this.uses = uses;
-        this.setMaxDamage(uses);
-        this.setFull3D();
-        this.ability = ability;
-        this.name = name;
-        setTranslationKey(name.toLowerCase());
-        setCreativeTab(JourneyTabs.WEAPONS);
-        JourneyItems.items.add(this);
-        setRegistryName(JITL.MOD_ID, name.toLowerCase());
-        LangGeneratorFacade.addItemEntry(this, properName);
-        addPropertyOverrides();
-    }
-
-    public ItemModBow(String name, String f, int damage, int uses, Item arrow, int duration, String ability, Class<? extends EntityArrow> arrowEnt) {
-        super();
-        this.maxStackSize = 1;
-        this.dur = duration;
-        this.arrowClass = arrowEnt;
-        this.arrowItem = arrow;
-        this.damage = damage;
-        this.uses = uses;
-        this.setMaxDamage(uses);
-        this.setFull3D();
-        this.ability = ability;
-        this.name = name;
-        setTranslationKey(name.toLowerCase());
-        setCreativeTab(JourneyTabs.WEAPONS);
-        JourneyItems.items.add(this);
-        setRegistryName(JITL.MOD_ID, name.toLowerCase());
-        LangGeneratorFacade.addItemEntry(this, f);
-        addPropertyOverrides();
-    }
-
-    public ItemModBow(String name, String f, int damage, int uses, Item arrow, String ability, Class<? extends EntityArrow> arrowEnt) {
-        super();
-        this.maxStackSize = 1;
-        this.ability = ability;
-        this.arrowClass = arrowEnt;
-        this.arrowItem = arrow;
-        this.damage = damage;
-        this.uses = uses;
-        this.setMaxDamage(uses);
-        this.setFull3D();
-        this.name = name;
-        setTranslationKey(name.toLowerCase());
-        setCreativeTab(JourneyTabs.WEAPONS);
-        JourneyItems.items.add(this);
-        setRegistryName(JITL.MOD_ID, name.toLowerCase());
-        LangGeneratorFacade.addItemEntry(this, f);
-        addPropertyOverrides();
-    }
-
-    public ItemModBow(String name, String finalName) {
-        this(name, finalName, JourneyTabs.WEAPONS);
-        this.name = name;
-    }
-
-    public ItemModBow(String name, String finalName, CreativeTabs tab) {
-        this.name = name;
-        setTranslationKey(name.toLowerCase());
-        setCreativeTab(tab);
-        JourneyItems.items.add(this);
-        setRegistryName(JITL.MOD_ID, name.toLowerCase());
-        LangGeneratorFacade.addItemEntry(this, finalName);
     }
 
     public float getScaledArrowVelocity(int charge) {
@@ -366,7 +295,11 @@ public class ItemModBow extends ItemBow {
         ItemDescription.addInformation(stack, list);
         //list.add("Ammo: " + StatCollector.translateToLocal(arrowItem.getTranslationKey() + ".name"));
         list.add("Damage: " + SlayerAPI.Colour.GOLD + damage + " - " + SlayerAPI.Colour.GOLD + damage * 4);
-        list.add("Pull Back Speed: " + SlayerAPI.Colour.GOLD + (float)DEFAULT_MAX_USE_DURATION / (float)this.maxUseDuration);
+
+        float maxUse = (float)DEFAULT_MAX_USE_DURATION / (float)this.maxUseDuration;
+        DecimalFormat df = new DecimalFormat("#.##");
+        list.add("Pull Back Speed: " + SlayerAPI.Colour.GOLD + df.format(maxUse));
+
         if(effect == EntityEssenceArrow.BowEffects.DARKNESS_BOW) {
         	list.add(SlayerAPI.Colour.DARK_GRAY + "Ability: Withers foe");
         }
