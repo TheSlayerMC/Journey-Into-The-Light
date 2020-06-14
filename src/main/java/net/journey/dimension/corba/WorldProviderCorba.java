@@ -22,7 +22,7 @@ import javax.annotation.Nullable;
 
 public class WorldProviderCorba extends BaseWorldProvider {
 
-	private static List<Biome> common = Lists.newArrayList(DimensionHelper.CORBA_BIOME, DimensionHelper.CORBA_PLAINS_BIOME);
+	private static List<Biome> common = Lists.newArrayList(DimensionHelper.CORBA_BIOME, DimensionHelper.CORBA_PLAINS_BIOME, DimensionHelper.CORBA_SWAMP_BIOME);
 	private static List<Biome> rare = Lists.newArrayList(DimensionHelper.CORBA_HILLS_BIOME);
 	
 	public WorldProviderCorba() {

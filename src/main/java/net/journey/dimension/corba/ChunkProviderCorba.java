@@ -42,6 +42,7 @@ import net.minecraft.world.gen.MapGenCaves;
 import net.minecraft.world.gen.MapGenRavine;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.NoiseGeneratorPerlin;
+import net.minecraft.world.gen.feature.WorldGenLakes;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.event.terraingen.InitMapGenEvent;
@@ -184,6 +185,10 @@ public class ChunkProviderCorba implements IChunkGenerator {
 								{
 									primer.setBlockState(i * 4 + k2, i2 * 8 + j2, l * 4 + l2, JourneyBlocks.corbaStone.getDefaultState());
 								}
+								
+								else if (i2 * 8 + j2 < this.settings.seaLevel) {
+                                    primer.setBlockState(i * 4 + k2, i2 * 8 + j2, l * 4 + l2, Blocks.WATER.getDefaultState());
+                                }
 							}
 
 							d10 += d12;
@@ -419,6 +424,12 @@ public class ChunkProviderCorba implements IChunkGenerator {
 			flower5.generate(worldObj, r, chunkStart);
 		}
 
+		//{
+        //    int i1 = this.rand.nextInt(16) + 8;
+        //    int j1 = this.rand.nextInt(256);
+        //    int k1 = this.rand.nextInt(16) + 8;
+        //    (new WorldGenLakes(Blocks.WATER)).generate(this.worldObj, this.rand, chunkStart.add(i1, j1, k1));
+        //}
 
 		if (rand.nextInt(5) == 0) {
 			generateStructure(x1, z1, worldGenTreehouse);
@@ -451,7 +462,7 @@ public class ChunkProviderCorba implements IChunkGenerator {
 			int randZ = z1 + 8 + rand.nextInt(16);
 			int randY = rand.nextInt(80);
 			if (isBlockTop(randX, randY - 1, randZ, JourneyBlocks.corbaGrass)) {
-				if(worldObj.getBiome(new BlockPos(randX, randY, randZ)) != DimensionHelper.CORBA_HILLS_BIOME && worldObj.getBiome(new BlockPos(randX, randY, randZ)) != DimensionHelper.CORBA_PLAINS_BIOME)
+				if(worldObj.getBiome(new BlockPos(randX, randY, randZ)) == DimensionHelper.CORBA_BIOME)
 					trees.get(rand.nextInt(trees.size())).generate(worldObj, rand, new BlockPos(randX, randY, randZ));
 			}
 		}

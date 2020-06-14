@@ -77,6 +77,7 @@ public class DimensionHelper {
     public static final Biome CORBA_BIOME = new BiomeGenCorba();
     public static final Biome CORBA_PLAINS_BIOME = new BiomeGenCorbaPlains();
     public static final Biome CORBA_HILLS_BIOME = new BiomeGenCorbaHills();
+    public static final Biome CORBA_SWAMP_BIOME = new BiomeGenCorbaSwamp();
 
     public static final Biome DEPTHS_BIOME = new BiomeGenDepths();
     public static final Biome FROZEN_BIOME = new BiomeGenFrozenLands();
@@ -113,6 +114,7 @@ public class DimensionHelper {
         addDimBiome(CORBA_BIOME, "Corba", Type.DRY, Type.PLAINS, Type.DEAD);
         addDimBiome(CORBA_PLAINS_BIOME, "Corba Plains", Type.DRY, Type.PLAINS, Type.DEAD);
         addDimBiome(CORBA_HILLS_BIOME, "Corba Hills", Type.DRY, Type.PLAINS, Type.DEAD);
+        addDimBiome(CORBA_SWAMP_BIOME, "Corba Swamp", Type.DRY, Type.PLAINS, Type.DEAD);
         addDimBiome(DEPTHS_BIOME, "Depths", Type.MAGICAL, Type.SPOOKY);
         addDimBiome(FROZEN_BIOME, "Frozen Lands", Type.COLD);
         addDimBiome(TERRANIA_BIOME, "Terrania", Type.MAGICAL, Type.SPOOKY);
