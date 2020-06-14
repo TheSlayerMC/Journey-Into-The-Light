@@ -450,7 +450,7 @@ public class ChunkProviderCorba implements IChunkGenerator {
 			int randZ = z1 + 8 + rand.nextInt(16);
 			int randY = rand.nextInt(80);
 			if (isBlockTop(randX, randY - 1, randZ, JourneyBlocks.corbaGrass)) {
-				if(worldObj.getBiome(new BlockPos(randX, randY, randZ)) != DimensionHelper.CORBA_HILLS_BIOME)
+				if(worldObj.getBiome(new BlockPos(randX, randY, randZ)) != DimensionHelper.CORBA_HILLS_BIOME && worldObj.getBiome(new BlockPos(randX, randY, randZ)) != DimensionHelper.CORBA_PLAINS_BIOME)
 					trees.get(rand.nextInt(trees.size())).generate(worldObj, rand, new BlockPos(randX, randY, randZ));
 			}
 		}

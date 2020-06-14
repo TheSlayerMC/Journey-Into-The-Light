@@ -64,7 +64,6 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 public class DimensionHelper {
 
     public static final float[] boilHeight = new float[]{0.125F, 0.1F};
-    public static final float[] corbaHeight = new float[]{0.2F, 0.2F};
     
     @Deprecated //it's better to keep them inside biomes
     public static final float[] CORBA_PLAINS_HEIGHT = new float[]{0.0F, 0.0F};
@@ -85,7 +84,7 @@ public class DimensionHelper {
     public static final Biome SENTERIAN_BIOME = new BiomeGenSenterian();
 
     public static final Biome[] EUCA_BIOMES = {EUCA_SILVER_BIOME, EUCA_GOLD_BIOME};
-    public static final Biome[] CORBA_BIOMES = {CORBA_BIOME, CORBA_PLAINS_BIOME};
+    public static final Biome[] CORBA_BIOMES = {CORBA_BIOME, CORBA_PLAINS_BIOME, CORBA_HILLS_BIOME};
 
     public static final DimensionType EUCA_DIM = DimensionType.register("euca", "_euca", Config.euca, WorldProviderEuca.class, Config.keepLoadingEuca);
     public static final DimensionType BOILING_DIM = DimensionType.register("boiling_point", "_boilingPoint", Config.boil, WorldProviderBoiling.class, Config.keepLoadingBoil);
