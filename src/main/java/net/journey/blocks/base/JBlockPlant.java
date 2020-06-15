@@ -143,10 +143,10 @@ public abstract class JBlockPlant extends BlockBush implements IHasCustomItemPat
 
 				if (boundingBox != null) {
 					boundingBox = boundingBox.offset(pos);
-				}
 
-				if (boundingBox != null && entityIn.getEntityBoundingBox().intersects(boundingBox)) {
-					entityIn.attackEntityFrom(DamageSource.CACTUS, 1.0F);
+					if (entityIn.getEntityBoundingBox().intersects(boundingBox)) {
+						entityIn.attackEntityFrom(DamageSource.CACTUS, 1.0F);
+					}
 				}
 			}
 		}

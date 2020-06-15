@@ -16,12 +16,15 @@ public interface GroundPredicate {
 	 * Any ground is accepted, but it should have solid side at the plant direction.
 	 */
 	GroundPredicate SOLID_SIDE = (world, groundPos, groundState, plantDirection) -> groundState.isSideSolid(world, groundPos, plantDirection);
-
+	/**
+	 * Default version for plants. Simulates BlockBush#canSustainBush
+	 */
 	GroundPredicate GRASS_BLOCK = SOLID_SIDE.and(blockPredicate(block -> block == Blocks.GRASS || block == Blocks.DIRT || block == Blocks.FARMLAND));
 	GroundPredicate SAND = SOLID_SIDE.and(blockPredicate(block -> block == Blocks.SAND));
 	GroundPredicate NETHER = SOLID_SIDE.and(blockPredicate(block -> block == Blocks.NETHERRACK || block == Blocks.SOUL_SAND || block == JourneyBlocks.heatSoil || block == JourneyBlocks.heatSand || block == JourneyBlocks.earthenNetherrack || block == JourneyBlocks.volcanicSand));
 
 	GroundPredicate COMMON_AND_BOILING_SANDS = SAND.or(blockPredicate(block -> block == JourneyBlocks.volcanicSand));
+	GroundPredicate COMMON_AND_CLOUDIA_GRASS = GRASS_BLOCK.or(blockPredicate(block -> block == JourneyBlocks.cloudiaGrass || block == JourneyBlocks.cloudiaDirt));
 	GroundPredicate COMMON_AND_TERRANIA_GRASS = GRASS_BLOCK.or(blockPredicate(block -> block == JourneyBlocks.terranianGrass || block == JourneyBlocks.terranianDirt));
 
 	static GroundPredicate blockPredicate(Predicate<Block> blockPredicate) {

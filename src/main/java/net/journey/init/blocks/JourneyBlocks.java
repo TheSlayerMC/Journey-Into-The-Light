@@ -272,8 +272,8 @@ public class JourneyBlocks {
     public static BlockMod pinkCloudiaCloud;
     public static BlockMod blueCloudiaCloud;
     public static BlockMod lightBlueCloudiaCloud;
-    public static BlockModFlower cloudiaTallGrass;
-    public static BlockModFlower cloudiaFlower;
+    public static JBlockTallGrass cloudiaTallGrass;
+    public static JBlockFlower cloudiaFlower;
 
     public static BlockMod swampLamp;
 
@@ -744,7 +744,7 @@ public class JourneyBlocks {
         tallMoltenPlant = (JBlockDoublePlant) new JBlockDoublePlant("tall_molten_plant", "Tall Molten Plant").setGroundPredicate(GroundPredicate.COMMON_AND_BOILING_SANDS);
         crumblingPlant = (JBlockFlower) new JBlockFlower("crumbling_plant", "Crumbling Plant").setGroundPredicate(GroundPredicate.COMMON_AND_BOILING_SANDS).enableDamageOnContact();
         lavaBloom = (JBlockFlower) new JBlockFlower("lava_bloom", "Lava Bloom").setGroundPredicate(GroundPredicate.COMMON_AND_BOILING_SANDS).enableDamageOnContact();
-        crispGrass = (JBlockTallGrass) new JBlockTallGrass("crisp_grass", "Crisp Grass").setGroundPredicate(GroundPredicate.COMMON_AND_BOILING_SANDS).enableDamageOnContact();
+        crispGrass = (JBlockTallGrass) new JBlockTallGrass("crisp_grass", "Crisp Grass").setGroundPredicate(GroundPredicate.COMMON_AND_BOILING_SANDS).enableDamageOnContact().setBoundingBox(JBlockPlant.SHORT_GRASS_BB);
 
         brisonblocks = new BlockMetaBase("brison", Material.ROCK, "brison");
         boilingBars = new Initializer<>(new JBlockPane(EnumMaterialTypes.STONE, "boilingBars", "Brison Bars", true)).apply(pane -> pane.setHardness(5.0F));
@@ -770,8 +770,8 @@ public class JourneyBlocks {
         pinkCloudiaCloud = new BlockCloud("pinkCloudiaCloud", "Pink Cloudia Cloud");
         blueCloudiaCloud = new BlockCloud("blueCloudiaCloud", "Blue Cloudia Cloud");
         lightBlueCloudiaCloud = new BlockCloud("lightBlueCloudiaCloud", "Light Blue Cloudia Cloud");
-        cloudiaTallGrass = new BlockModFlower("cloudiaTallGrass", "Cloudia Tall Grass");
-        cloudiaFlower = new BlockModFlower("cloudiaFlower", "Cloudia Flower");
+        cloudiaTallGrass = (JBlockTallGrass) new JBlockTallGrass("cloudia_tall_grass", "Cloudia Tall Grass").setGroundPredicate(GroundPredicate.COMMON_AND_CLOUDIA_GRASS);
+        cloudiaFlower = (JBlockFlower) new JBlockFlower("cloudia_flower", "Cloudia Flower").setGroundPredicate(GroundPredicate.COMMON_AND_CLOUDIA_GRASS);
 
         swampLamp = new BlockSwampLamp("swampLamp", "Swamp Fly Bottle", 0);
 
