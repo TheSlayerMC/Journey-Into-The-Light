@@ -1,5 +1,7 @@
 {
 	"variants": {
-		"normal": { "model": "journey:terranianTallgrass"}
-	}
+      "normal": {
+        "model": "journey:plant/terraniantallgrass"
+      }
+    }
 }

@@ -14,6 +14,7 @@ import net.journey.dimension.frozen.gen.WorldGenFrozenTree;
 import net.journey.dimension.frozen.gen.WorldGenIceTree;
 import net.journey.dimension.nether.gen.trees.WorldGenBleedheartTree0;
 import net.journey.dimension.nether.gen.trees.WorldGenEarthenTree;
+import net.journey.dimension.terrania.gen.shroom.WorldGenTerrashroom;
 import net.journey.dimension.terrania.gen.trees.WorldGenTerraniaSmallTree;
 import net.journey.init.JourneyTabs;
 import net.journey.init.items.JourneyConsumables;
@@ -394,8 +395,8 @@ public class JourneyBlocks {
     public static JBlockPane terranianBars;
     public static BlockMod terranianDarkPanels;
     public static BlockMod terranianPanels;
-    public static JBlockGrassPlant terranianTallgrass;
-    public static BlockModFlower terramushroom;
+    public static JBlockTallGrass terranianTallgrass;
+    public static JBlockMushroom terramushroom;
     public static BlockModFlower tallterramushroom;
     public static BlockMod terragrow;
     public static BlockMod terraniaLamp;
@@ -915,8 +916,10 @@ public class JourneyBlocks {
         terranianBars = Initializer.of(new JBlockPane(EnumMaterialTypes.STONE, "terranianBars", "Terranian Bars", true)).apply(pane -> pane.setHardness(5.0F));
         terranianDarkPanels = new BlockMod("terranianDarkPanels", "Terranian Dark Panels", 2.0F);
         terranianPanels = new BlockMod("terranianPanels", "Terranian Panels", 2.0F);
-        terranianTallgrass = Initializer.of(new JBlockGrassPlant("terranianTallgrass", "Terranian Tallgrass")).apply(it -> it.setGroundPredicate(GroundPredicate.COMMON_AND_TERRANIA_GRASS));
-        terramushroom = new BlockModMushroom("terramushroom", "Terranian Shroom").setLightLevel(5.0F);
+        terranianTallgrass = (JBlockTallGrass) new JBlockTallGrass("terranianTallgrass", "Terranian Tallgrass").setGroundPredicate(GroundPredicate.COMMON_AND_TERRANIA_GRASS);
+        terramushroom = (JBlockMushroom) new JBlockMushroom("terramushroom", "Terranian Shroom")
+                .setBigMushroomGenerator(JBlockMushroom.BigMushroomGenerator.randomGenerator(new WorldGenTerrashroom(JourneyBlocks.terrashroomBlockPurple), new WorldGenTerrashroom(JourneyBlocks.terrashroomBlockPink)))
+                .setLightLevel(5.0F);
         tallterramushroom = new BlockModFlower("tallterramushroom", "Tall Terranian Shroom").setLightLevel(5.0F);
         terragrow = new BlockTerraFlower("terragrow", "Terranian Flower");
         terraniaLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "terraniaLamp", "Terrania Lamp", 0.1F)

@@ -27,7 +27,7 @@ public class BlockJourneyMushroom extends BlockMod {
 
     private final Block smallBlock;
 
-    public BlockJourneyMushroom(EnumMaterialTypes type, String name, String finalName, float hardness, BlockMod block) {
+    public BlockJourneyMushroom(EnumMaterialTypes type, String name, String finalName, float hardness, Block block) {
         super(type, name, finalName, hardness, JourneyTabs.BLOCKS);
         this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, BlockJourneyMushroom.EnumType.ALL_OUTSIDE));
         this.smallBlock = block;

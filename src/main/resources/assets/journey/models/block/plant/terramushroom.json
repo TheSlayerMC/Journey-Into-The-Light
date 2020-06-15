@@ -1,6 +1,6 @@
 {
 	"parent": "block/cross",
 	"textures": {
-		"cross": "journey:blocks/terranianTallgrass"
+		"cross": "journey:blocks/plant/terramushroom"
 	}
 }

@@ -1,9 +1,9 @@
 {
     "__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
     "textures": {
-        "particle": "journey:blocks/terramushroom",
+        "particle": "journey:blocks/plant/terramushroom",
         "0": "journey:blocks/terramushroom_bottom",
-        "1": "journey:blocks/terramushroom"
+        "1": "journey:blocks/plant/terramushroom"
     },
     "elements": [
         {
