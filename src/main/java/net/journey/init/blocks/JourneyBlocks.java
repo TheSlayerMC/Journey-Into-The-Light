@@ -99,7 +99,7 @@ public class JourneyBlocks {
 
     public static JBlockTallGrass earthenNetherTallGrass;
     public static JBlockTallGrass earthenNetherShortGrass;
-    public static BlockMod earthenNetherFlower;
+    public static JBlockFlower earthenNetherFlower;
 
     public static BlockMod heatSoil;
     public static BlockMod earthenNetherrack;
@@ -611,7 +611,7 @@ public class JourneyBlocks {
         earthenNetherPlanks = new BlockMod(EnumMaterialTypes.WOOD, "earthenNetherPlank", "Earthenwood Planks", 1.0F);
         earthenNetherTallGrass = (JBlockTallGrass) new JBlockTallGrass("earthenNetherTallGrass", "Earthen Nethigrass").setGroundPredicate(GroundPredicate.NETHER).setBoundingBox(JBlockPlant.SHORT_GRASS_BB);
         earthenNetherShortGrass = (JBlockTallGrass) new JBlockTallGrass("earthenNetherShortGrass", "Earthen Short Nethigrass").setGroundPredicate(GroundPredicate.NETHER).setBoundingBox(Block.FULL_BLOCK_AABB);
-        earthenNetherFlower = new BlockNetherFlower("earthenNetherFlower", "Earthen Heatflower");
+        earthenNetherFlower = (JBlockFlower) new JBlockFlower("earthenNetherFlower", "Earthen Heatflower").setGroundPredicate(GroundPredicate.NETHER);
 
         heatSoil = new BlockMod(EnumMaterialTypes.DIRT, "heatSoil", "Nethic Soil", 0.5F);
         earthenNetherrack = new BlockMod(EnumMaterialTypes.STONE, "earthenNetherrack", "Earthen Netherrack", 2.0F);
@@ -740,8 +740,8 @@ public class JourneyBlocks {
         boilShingle = new BlockMod("boil_shingle", "Boil Shingle");
         boilSquareBrick = new BlockMod("boil_square_brick", "Boil Square Brick");
         boilBricks = new BlockMod("boil_bricks", "Boil Bricks");
-        tallCrumblingPlant = (JBlockDoublePlant) new JBlockDoublePlant("tall_crumbling_plant", "Tall Crumbling Plant").setGroundPredicate(GroundPredicate.SOLID_SIDE.and(GroundPredicate.blockStatePredicate(groundState -> groundState.getMaterial() == Material.SAND)));//TODO fix, as it vanishes on random tick, if stays on volcanic sand (it has worldgen on it)
-        tallMoltenPlant = (JBlockDoublePlant) new JBlockDoublePlant("tall_molten_plant", "Tall Molten Plant").setGroundPredicate(GroundPredicate.SOLID_SIDE.and(GroundPredicate.blockStatePredicate(groundState -> groundState.getMaterial() == Material.SAND)));//TODO fix, as it vanishes on random tick, if stays on volcanic sand (it has worldgen on it)
+        tallCrumblingPlant = (JBlockDoublePlant) new JBlockDoublePlant("tall_crumbling_plant", "Tall Crumbling Plant").setGroundPredicate(GroundPredicate.COMMON_AND_BOILING_SANDS);
+        tallMoltenPlant = (JBlockDoublePlant) new JBlockDoublePlant("tall_molten_plant", "Tall Molten Plant").setGroundPredicate(GroundPredicate.COMMON_AND_BOILING_SANDS);
         crumblingPlant = new BlockSandPlant("crumbling_plant", "Crumbling Plant");
         lavaBloom = new BlockSandPlant("lava_bloom", "Lava Bloom");
         crispGrass = new BlockSandPlant("crisp_grass", "Crisp Grass");
