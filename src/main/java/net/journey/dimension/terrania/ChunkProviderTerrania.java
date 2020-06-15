@@ -44,8 +44,8 @@ public class ChunkProviderTerrania implements IChunkGenerator {
     double[] gen4;
     JWorldGenPlants flower = new JWorldGenPlants(JourneyBlocks.terranianTallgrass, TERRANIAN_GRASS_GROUND);
     JWorldGenPlants flower1 = new JWorldGenPlants(JourneyBlocks.terramushroom, TERRANIAN_GRASS_GROUND);
-    JWorldGenPlants flower2 = new JWorldGenPlants(JourneyBlocks.tallterramushroom, TERRANIAN_GRASS_GROUND);
-    WorldGenTreeHut hut = new WorldGenTreeHut();
+	JWorldGenPlants flower2 = new JWorldGenPlants(JourneyBlocks.tallTerramushroom, TERRANIAN_GRASS_GROUND);
+	WorldGenTreeHut hut = new WorldGenTreeHut();
     WorldGenHollowTree hollowTree = new WorldGenHollowTree();
     WorldGenMushroomDungeon mushroomDungeon = new WorldGenMushroomDungeon();
     WorldGenTallTree tallTree = new WorldGenTallTree();

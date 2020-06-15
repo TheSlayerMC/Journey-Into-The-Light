@@ -397,8 +397,8 @@ public class JourneyBlocks {
     public static BlockMod terranianPanels;
     public static JBlockTallGrass terranianTallgrass;
     public static JBlockMushroom terramushroom;
-    public static BlockModFlower tallterramushroom;
-    public static BlockMod terragrow;
+    public static JBlockDoublePlant tallTerramushroom;
+    public static BlockTerranianFlower terranianFlower;
     public static BlockMod terraniaLamp;
     public static BlockMod terrashroomBlockPink;
     public static BlockMod terrashroomBlockPurple;
@@ -920,8 +920,8 @@ public class JourneyBlocks {
         terramushroom = (JBlockMushroom) new JBlockMushroom("terramushroom", "Terranian Shroom")
                 .setBigMushroomGenerator(JBlockMushroom.BigMushroomGenerator.randomGenerator(new WorldGenTerrashroom(JourneyBlocks.terrashroomBlockPurple), new WorldGenTerrashroom(JourneyBlocks.terrashroomBlockPink)))
                 .setLightLevel(5.0F);
-        tallterramushroom = new BlockModFlower("tallterramushroom", "Tall Terranian Shroom").setLightLevel(5.0F);
-        terragrow = new BlockTerraFlower("terragrow", "Terranian Flower");
+        tallTerramushroom = (JBlockDoublePlant) new JBlockDoublePlant("tallterramushroom", "Tall Terranian Shroom").setGroundPredicate(GroundPredicate.COMMON_AND_TERRANIA_GRASS).setLightLevel(5.0F);
+        terranianFlower = (BlockTerranianFlower) new BlockTerranianFlower("terranian_flower", "Terranian Flower").setGroundPredicate(GroundPredicate.COMMON_AND_TERRANIA_GRASS);
         terraniaLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "terraniaLamp", "Terrania Lamp", 0.1F)
                 .setLightLevel(1.0F).setCreativeTab(JourneyTabs.DECORATION);
 
