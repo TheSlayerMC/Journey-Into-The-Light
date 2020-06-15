@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "journey:items/tall_crumbling_plant"
+    "layer0": "journey:items/plant/tall_crumbling_plant"
   }
 }
