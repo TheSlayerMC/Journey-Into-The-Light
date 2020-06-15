@@ -1,5 +1,7 @@
 {
     "variants": {
-        "normal": { "model": "journey:crisp_grass" }
+        "normal": {
+          "model": "journey:plant/crisp_grass"
+        }
     }
 }

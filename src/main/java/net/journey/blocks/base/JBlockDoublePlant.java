@@ -68,7 +68,7 @@ public class JBlockDoublePlant extends JBlockPlant implements IHasCustomItemPath
 	}
 
 	@Override
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+	public @NotNull AxisAlignedBB getBoundingBox(@NotNull IBlockState state, @NotNull IBlockAccess source, @NotNull BlockPos pos) {
 		return state.getValue(HALF) == EnumHalf.TOP ? topBox : bottomBox;
 	}
 

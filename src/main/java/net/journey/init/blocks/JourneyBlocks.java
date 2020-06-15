@@ -250,9 +250,9 @@ public class JourneyBlocks {
     public static BlockMod boilBricks;
     public static JBlockDoublePlant tallCrumblingPlant;
     public static JBlockDoublePlant tallMoltenPlant;
-    public static BlockSandPlant crumblingPlant;
-    public static BlockSandPlant lavaBloom;
-    public static BlockSandPlant crispGrass;
+    public static JBlockFlower crumblingPlant;
+    public static JBlockFlower lavaBloom;
+    public static JBlockTallGrass crispGrass;
 
     public static BlockMod cloudiaDirt;
     public static BlockMod cloudiaGrass;
@@ -742,9 +742,9 @@ public class JourneyBlocks {
         boilBricks = new BlockMod("boil_bricks", "Boil Bricks");
         tallCrumblingPlant = (JBlockDoublePlant) new JBlockDoublePlant("tall_crumbling_plant", "Tall Crumbling Plant").setGroundPredicate(GroundPredicate.COMMON_AND_BOILING_SANDS);
         tallMoltenPlant = (JBlockDoublePlant) new JBlockDoublePlant("tall_molten_plant", "Tall Molten Plant").setGroundPredicate(GroundPredicate.COMMON_AND_BOILING_SANDS);
-        crumblingPlant = new BlockSandPlant("crumbling_plant", "Crumbling Plant");
-        lavaBloom = new BlockSandPlant("lava_bloom", "Lava Bloom");
-        crispGrass = new BlockSandPlant("crisp_grass", "Crisp Grass");
+        crumblingPlant = (JBlockFlower) new JBlockFlower("crumbling_plant", "Crumbling Plant").setGroundPredicate(GroundPredicate.COMMON_AND_BOILING_SANDS).enableDamageOnContact();
+        lavaBloom = (JBlockFlower) new JBlockFlower("lava_bloom", "Lava Bloom").setGroundPredicate(GroundPredicate.COMMON_AND_BOILING_SANDS).enableDamageOnContact();
+        crispGrass = (JBlockTallGrass) new JBlockTallGrass("crisp_grass", "Crisp Grass").setGroundPredicate(GroundPredicate.COMMON_AND_BOILING_SANDS).enableDamageOnContact();
 
         brisonblocks = new BlockMetaBase("brison", Material.ROCK, "brison");
         boilingBars = new Initializer<>(new JBlockPane(EnumMaterialTypes.STONE, "boilingBars", "Brison Bars", true)).apply(pane -> pane.setHardness(5.0F));

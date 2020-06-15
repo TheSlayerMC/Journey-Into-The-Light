@@ -1,5 +1,7 @@
 {
     "variants": {
-        "normal": { "model": "journey:crumbling_plant" }
+        "normal": {
+          "model": "journey:plant/crumbling_plant"
+        }
     }
 }

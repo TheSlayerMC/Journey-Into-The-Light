@@ -1,5 +1,7 @@
 {
     "variants": {
-        "normal": { "model": "journey:lava_bloom" }
+        "normal": {
+          "model": "journey:plant/lava_bloom"
+        }
     }
 }

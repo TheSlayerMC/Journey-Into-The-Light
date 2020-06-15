@@ -1,11 +1,9 @@
 package net.journey.dimension.overworld.gen;
 
-import net.journey.blocks.plant.BlockSandPlant;
 import net.minecraft.block.Block;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.slayer.api.block.BlockModFlower;
 import net.slayer.api.worldgen.WorldGenAPI;
 
 import java.util.Random;
@@ -18,10 +16,10 @@ import java.util.Random;
 public class WorldGenDesertFlower extends WorldGenerator {
 
     private final boolean onSurface;
-    private BlockSandPlant flower;
-    private Block grass;
+    private final Block flower;
+    private final Block grass;
 
-    public WorldGenDesertFlower(BlockSandPlant b, Block grass) {
+    public WorldGenDesertFlower(Block b, Block grass) {
         this(b, grass, true);
     }
 
@@ -30,7 +28,7 @@ public class WorldGenDesertFlower extends WorldGenerator {
      * @param grass     - grass
      * @param onSurface - using top solid block
      */
-    public WorldGenDesertFlower(BlockSandPlant b, Block grass, boolean onSurface) {
+    public WorldGenDesertFlower(Block b, Block grass, boolean onSurface) {
         this.flower = b;
         this.grass = grass;
         this.onSurface = onSurface;

@@ -1,7 +1,6 @@
 package net.journey.dimension.boil;
 
 import net.journey.api.block.GroundPredicate;
-import net.journey.blocks.plant.BlockSandPlant;
 import net.journey.dimension.base.gen.JWorldGenPlants;
 import net.journey.dimension.boil.gen.WorldGenBoilingFire;
 import net.journey.dimension.boil.gen.WorldGenBoilingLamp;
@@ -368,7 +367,7 @@ public class ChunkProviderBoiling implements IChunkGenerator {
 
 
         for (i = 0; i < 50; i++) {
-            BlockSandPlant flowers = RandHelper.chooseEqual(rand, JourneyBlocks.crumblingPlant, JourneyBlocks.lavaBloom, JourneyBlocks.crispGrass);
+            Block flowers = RandHelper.chooseEqual(rand, JourneyBlocks.crumblingPlant, JourneyBlocks.lavaBloom, JourneyBlocks.crispGrass);
             new WorldGenDesertFlower(flowers, JourneyBlocks.volcanicSand).generate(worldObj, rand, chunkStart);
         }
 

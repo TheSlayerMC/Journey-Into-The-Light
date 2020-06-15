@@ -9,6 +9,8 @@ import net.minecraft.block.BlockBush;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -36,6 +38,7 @@ import org.jetbrains.annotations.Nullable;
  *     <li>{@link #groundPredicate} - predicate that checks if plant can be placed and sustain on provided block</li>
  *     <li>{@link #plantDirection} - the side of ground block where plant can be placed and stay.</li>
  *     <li>{@link #boundingBox} - bounding box of the plant. Equals standard bush box by default.</li>
+ *     <li>{@link #damageOnContact} - Determines if plant will cause damage on entity contact. Default: false</li>
  * </ul>
  *
  * The item model for it should be placed to "models/item/block/plant/" by default.
@@ -55,6 +58,10 @@ public abstract class JBlockPlant extends BlockBush implements IHasCustomItemPat
 	 * The side of ground block where plant can be placed and stay.
 	 */
 	private EnumFacing plantDirection = EnumFacing.UP;
+	/**
+	 * If equals true, then it will cause damage on contact.
+	 */
+	private boolean damageOnContact = false;
 
 	public JBlockPlant(String name, String enName) {
 		this(EnumMaterialTypes.PLANT, name, enName, JourneyTabs.DECORATION);
@@ -99,8 +106,13 @@ public abstract class JBlockPlant extends BlockBush implements IHasCustomItemPat
 		return this;
 	}
 
+	public JBlockPlant enableDamageOnContact() {
+		damageOnContact = true;
+		return this;
+	}
+
 	@Override
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+	public @NotNull AxisAlignedBB getBoundingBox(@NotNull IBlockState state, @NotNull IBlockAccess source, @NotNull BlockPos pos) {
 		return boundingBox;
 	}
 
@@ -117,5 +129,26 @@ public abstract class JBlockPlant extends BlockBush implements IHasCustomItemPat
 		BlockPos groundPos = pos.offset(plantDirection.getOpposite());
 		IBlockState groundState = worldIn.getBlockState(groundPos);
 		return groundPredicate.testGround(worldIn, groundPos, groundState, plantDirection);
+	}
+
+	@Override
+	public void onEntityCollision(World worldIn, @NotNull BlockPos pos, @NotNull IBlockState state, @NotNull Entity entityIn) {
+		if (!worldIn.isRemote) {
+			if (damageOnContact) {
+				AxisAlignedBB boundingBox = state.getCollisionBoundingBox(worldIn, pos);
+
+				if (boundingBox == NULL_AABB) {
+					boundingBox = state.getBoundingBox(worldIn, pos);
+				}
+
+				if (boundingBox != null) {
+					boundingBox = boundingBox.offset(pos);
+				}
+
+				if (boundingBox != null && entityIn.getEntityBoundingBox().intersects(boundingBox)) {
+					entityIn.attackEntityFrom(DamageSource.CACTUS, 1.0F);
+				}
+			}
+		}
 	}
 }

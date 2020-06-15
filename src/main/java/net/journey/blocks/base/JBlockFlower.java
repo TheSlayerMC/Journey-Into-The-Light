@@ -27,6 +27,7 @@ import org.jetbrains.annotations.NotNull;
  *     <li>{@link JBlockPlant#groundPredicate} - predicate that checks if plant can be placed and sustain on provided block</li>
  *     <li>{@link JBlockPlant#plantDirection} - the side of ground block where plant can be placed and stay.</li>
  *     <li>{@link JBlockPlant#boundingBox} - bounding box of the plant. Equals standard bush box by default.</li>
+ *     <li>{@link JBlockPlant#damageOnContact} - determines if plant will cause damage on entity contact. Default: false</li>
  *     <li>{@link #hasOffset} - if true, flower will have small model and bounding box offset as vanilla flowers have.</li>
  * </ul>
  * <p>
