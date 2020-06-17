@@ -228,6 +228,11 @@ public class JourneyBlocks {
     public static BlockMod corbaLamp;
     public static BlockMod corbaSentryBrick;
     public static BlockMod corbaGrassPath;
+
+    public static BlockMod taintedMud;
+    public static JBlockDoublePlant bogweed;
+
+    public static JBlockWaterLily swamp_lily;
     
     public static JBlockSlab corbaPlankSlab;
     public static JBlockSlab corbaPlankDoubleSlab;
@@ -723,6 +728,12 @@ public class JourneyBlocks {
         corbaLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "corbaLamp", "Corba Lamp", 0.1F)
                 .setLightLevel(1.0F).setCreativeTab(JourneyTabs.DECORATION);
         corbaSentryBrick = new BlockMod("corbaSentryBrick", "Corba Sentry Brick");
+
+        taintedMud = new BlockMod(EnumMaterialTypes.SLIME, "tainted_mud", "Tainted Mud", 1.0F);
+
+        bogweed = (JBlockDoublePlant) new JBlockDoublePlant("bogweed", "Bogweed").setGroundPredicate(GroundPredicate.SOLID_SIDE);
+
+        swamp_lily = new JBlockWaterLily("swamp_lily", "Swamp lily");
 
         corbaPlankSlab = new JBlockSlab(Material.WOOD, "corba_plank_slab", "Corba Plank Slab", false);
         corbaPlankDoubleSlab = new JBlockSlab(Material.WOOD, "corba_plank_double_slab", "Corba Plank Double Slab", true);

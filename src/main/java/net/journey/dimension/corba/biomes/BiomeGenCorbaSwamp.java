@@ -24,11 +24,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BiomeGenCorbaSwamp extends JDimensionBiome {
 
-	protected static final IBlockState WATER_LILY = Blocks.WATERLILY.getDefaultState();
+	protected static final IBlockState WATER_LILY = JourneyBlocks.swamp_lily.getDefaultState();
 
 	public BiomeGenCorbaSwamp() {
 		super(new BiomePropertiesCorba("Corba Swamp").setBaseHeight(-0.2F).setHeightVariation(0.1F));
-		this.topBlock = JourneyBlocks.corbaGrass.getDefaultState();
+		this.topBlock = JourneyBlocks.taintedMud.getDefaultState();
 		this.fillerBlock = JourneyBlocks.corbaStone.getDefaultState();
 	}
 
