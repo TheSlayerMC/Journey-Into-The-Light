@@ -6,6 +6,7 @@ import java.util.Random;
 import net.journey.dimension.base.biome.JDimensionBiome;
 import net.journey.dimension.corba.biomes.properties.BiomePropertiesCorba;
 import net.journey.init.blocks.JourneyBlocks;
+import net.journey.util.handler.Helper;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.block.BlockSand;
 import net.minecraft.block.material.Material;
@@ -44,63 +45,69 @@ public class BiomeGenCorbaSwamp extends JDimensionBiome {
 	@Override
 	public void genTerrainBlocks(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z, double noiseVal) {
 
-		int i = x & 15;
-		int j = z & 15;
-
-		for (int k = 255; k >= 0; --k)
-		{
-			if (chunkPrimerIn.getBlockState(j, k, i).getMaterial() != Material.AIR)
-			{
-				if (k == 63 && chunkPrimerIn.getBlockState(j, k, i).getBlock() != Blocks.WATER)
-				{
-					chunkPrimerIn.setBlockState(j, k, i, WATER);
-					chunkPrimerIn.setBlockState(j, k + 1, i, WATER_LILY);
-
-				}
-
-				break;
-			}
-		}
-
-		this.generateModdedBiomeTerrain(worldIn, rand, chunkPrimerIn, x, z, noiseVal);
 	}
 
-	public final void generateModdedBiomeTerrain(World c, Random r, ChunkPrimer chunkPrimerIn, int x, int z, double s) {
-		boolean flag = true;
+	public final void generateModdedBiomeTerrain(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z, double noiseVal) {
+		IBlockState STONE = JourneyBlocks.corbaGrass.getDefaultState();
+		int i = worldIn.getSeaLevel();
 		IBlockState iblockstate = this.topBlock;
 		IBlockState iblockstate1 = this.fillerBlock;
-		int k = -1;
-		int l = (int) (s / 3.0D + 3.0D + r.nextDouble() * 0.25D);
-		int i1 = x & 15;
-		int j1 = z & 15;
-		for (int k1 = 255; k1 >= 0; --k1) {
-			if (k1 <= 1) {
-				c.setBlockState(new BlockPos(j1, k1, i1), Blocks.BEDROCK.getDefaultState());
-			} else {
-				IBlockState iblockstate2 = c.getBlockState(new BlockPos(j1, k1, i1));
+		int j = -1;
+		int k = (int)(noiseVal / 3.0D + 3.0D + rand.nextDouble() * 0.25D);
+		int l = x & 15;
+		int i1 = z & 15;
+		BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
-				if (iblockstate2.getMaterial() == Material.AIR) k = -1;
+		for(int j1 = 255; j1 >= 0; --j1) {
+
+			if (j1 == 62 && chunkPrimerIn.getBlockState(i1, j1, l).getBlock() == Blocks.WATER && rand.nextInt(5) == 1) {
+				chunkPrimerIn.setBlockState(i1, j1 + 1, l, WATER_LILY); //Make new lillypad
+				break;
+			}
+			
+			if (j1 <= rand.nextInt(5)) {
+				chunkPrimerIn.setBlockState(i1, j1, l, BEDROCK);
+			} else {
+				IBlockState iblockstate2 = chunkPrimerIn.getBlockState(i1, j1, l);
+
+				if (iblockstate2.getMaterial() == Material.AIR) {
+					j = -1;
+				}
 				else if (iblockstate2.getBlock() == JourneyBlocks.corbaStone) {
-					if (k == -1) {
-						if (l <= 0) {
-							iblockstate = null;
-							iblockstate1 = JourneyBlocks.corbaStone.getDefaultState();
-						} else if (k1 >= 7 && k1 <= 8) {
-							iblockstate =  this.topBlock;
-							iblockstate1 =  this.fillerBlock;
+					if (j == -1) {
+						if (k <= 0) {
+							iblockstate = AIR;
+							iblockstate1 = STONE;
+						}
+						else if (j1 >= i - 4 && j1 <= i + 1) {
+							iblockstate = this.topBlock;
+							iblockstate1 = this.fillerBlock;
 						}
 
-						if (k1 < 8 && (iblockstate == null || iblockstate.getMaterial() == Material.AIR))
-							iblockstate = JourneyBlocks.corbaStone.getDefaultState();
-						k = l;
-						if (k1 >= 8) c.setBlockState(new BlockPos(j1, k1, i1), iblockstate);
-						else if (k1 < 7 - l) {
-							iblockstate = null;
-							iblockstate1 = JourneyBlocks.corbaStone.getDefaultState();
-						} else c.setBlockState(new BlockPos(j1, k1, i1), iblockstate1);
-					} else if (k > 0) {
-						--k;
-						c.setBlockState(new BlockPos(j1, k1, i1), iblockstate1);
+						if (j1 < i && (iblockstate == null || iblockstate.getMaterial() == Material.AIR)) {
+							iblockstate = WATER;
+						}
+
+						j = k;
+						if (j1 >= i - 1) {
+							chunkPrimerIn.setBlockState(i1, j1, l, iblockstate);
+						}
+						else if (j1 < i - 7 - k) {
+							iblockstate = AIR;
+							iblockstate1 = STONE;
+							chunkPrimerIn.setBlockState(i1, j1, l, GRAVEL);
+						} else {
+							chunkPrimerIn.setBlockState(i1, j1, l, iblockstate1);
+						}
+					}
+					else if (j > 0) {
+						--j;
+						chunkPrimerIn.setBlockState(i1, j1, l, iblockstate1);
+
+						if (j == 0 && iblockstate1.getBlock() == Blocks.SAND && k > 1) {
+							j = rand.nextInt(4) + Math.max(0, j1 - 63);
+							iblockstate1 = iblockstate1.getValue(BlockSand.VARIANT) == BlockSand.EnumType.RED_SAND ? RED_SANDSTONE : SANDSTONE;
+						}
 					}
 				}
 			}

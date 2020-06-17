@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 import net.journey.dimension.base.DimensionHelper;
+import net.journey.dimension.corba.biomes.BiomeGenCorbaSwamp;
 import net.journey.dimension.corba.gen.WorldGenCorbaLamp;
 import net.journey.dimension.corba.gen.WorldGenCorbaVillage;
 import net.journey.dimension.corba.gen.WorldGenHugeCorbaTree;
@@ -19,6 +20,7 @@ import net.journey.dimension.overworld.gen.WorldGenSmallGlowshrooms;
 import net.journey.dimension.overworld.gen.WorldGenTallGlowshroom;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.Config;
+import net.journey.util.handler.Helper;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -44,6 +46,7 @@ import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.NoiseGeneratorPerlin;
 import net.minecraft.world.gen.feature.WorldGenLakes;
 import net.minecraft.world.gen.feature.WorldGenMinable;
+import net.minecraft.world.gen.feature.WorldGenSwamp;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.event.terraingen.InitMapGenEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
@@ -82,6 +85,9 @@ public class ChunkProviderCorba implements IChunkGenerator {
 	private WorldGenModFlower flower5 = new WorldGenModFlower(JourneyBlocks.corbaLightPurpleFlower, JourneyBlocks.corbaGrass);
 	private WorldGenModFlower tall = new WorldGenModFlower(JourneyBlocks.corbaTallGrass, JourneyBlocks.corbaGrass);
 	private WorldGenModFlower flower = new WorldGenModFlower(JourneyBlocks.corbaFlower, JourneyBlocks.corbaGrass);
+	private WorldGenModFlower mushroom = new WorldGenModFlower(Blocks.BROWN_MUSHROOM, JourneyBlocks.corbaGrass);//make custom mushrooms
+	private WorldGenModFlower red_mushroom = new WorldGenModFlower(Blocks.RED_MUSHROOM, JourneyBlocks.corbaGrass);
+
 	private WorldGenTreehouse worldGenTreehouse = new WorldGenTreehouse();
 	private WorldGenCorbaVillage village = new WorldGenCorbaVillage();
 	private WorldGenHugeCorbaTree tree = new WorldGenHugeCorbaTree();
@@ -185,10 +191,10 @@ public class ChunkProviderCorba implements IChunkGenerator {
 								{
 									primer.setBlockState(i * 4 + k2, i2 * 8 + j2, l * 4 + l2, JourneyBlocks.corbaStone.getDefaultState());
 								}
-								
+
 								else if (i2 * 8 + j2 < this.settings.seaLevel) {
-                                    primer.setBlockState(i * 4 + k2, i2 * 8 + j2, l * 4 + l2, Blocks.WATER.getDefaultState());
-                                }
+									primer.setBlockState(i * 4 + k2, i2 * 8 + j2, l * 4 + l2, Blocks.WATER.getDefaultState());
+								}
 							}
 
 							d10 += d12;
@@ -215,8 +221,13 @@ public class ChunkProviderCorba implements IChunkGenerator {
 		{
 			for (int j = 0; j < 16; ++j)
 			{
-                Biome biome = biomesIn[j + i * 16];
-				generateBiomeTerrain(biome, this.rand, primer, x * 16 + i, z * 16 + j, this.depthBuffer[j + i * 16]);
+				Biome biome = biomesIn[j + i * 16];
+				if(biome == DimensionHelper.CORBA_SWAMP_BIOME) {
+					BiomeGenCorbaSwamp swamp = (BiomeGenCorbaSwamp)biome;
+					swamp.generateModdedBiomeTerrain(worldObj, this.rand, primer, x * 16 + i, z * 16 + j, this.depthBuffer[j + i * 16]);
+				} else {
+					generateBiomeTerrain(biome, this.rand, primer, x * 16 + i, z * 16 + j, this.depthBuffer[j + i * 16]);
+				}
 			}
 		}
 	}
@@ -414,22 +425,35 @@ public class ChunkProviderCorba implements IChunkGenerator {
 		BlockPos startPos = new BlockPos(x1, 0, z1);
 		this.villageGenerator.generateStructure(this.worldObj, this.rand, chunkpos);
 
-		for(i = 0; i < 5; i++) {
-			tall.generate(worldObj, r, chunkStart);
-			flower.generate(worldObj, r, chunkStart);
-			flower1.generate(worldObj, r, chunkStart);
-			flower2.generate(worldObj, r, chunkStart);
-			flower3.generate(worldObj, r, chunkStart);
-			flower4.generate(worldObj, r, chunkStart);
-			flower5.generate(worldObj, r, chunkStart);
+		if(worldObj.getBiome(chunkStart) != DimensionHelper.CORBA_SWAMP_BIOME) {
+			for(i = 0; i < 5; i++) {
+				tall.generate(worldObj, r, chunkStart);
+				flower.generate(worldObj, r, chunkStart);
+				flower1.generate(worldObj, r, chunkStart);
+				flower2.generate(worldObj, r, chunkStart);
+				flower3.generate(worldObj, r, chunkStart);
+				flower4.generate(worldObj, r, chunkStart);
+				flower5.generate(worldObj, r, chunkStart);
+			}
+		} 
+
+		if(worldObj.getBiome(chunkStart) == DimensionHelper.CORBA_SWAMP_BIOME) {
+			for(i = 0; i < 2; i++) {
+				mushroom.generate(worldObj, r, chunkStart);
+				red_mushroom.generate(worldObj, r, chunkStart);
+			}
 		}
 
-		//{
-        //    int i1 = this.rand.nextInt(16) + 8;
-        //    int j1 = this.rand.nextInt(256);
-        //    int k1 = this.rand.nextInt(16) + 8;
-        //    (new WorldGenLakes(Blocks.WATER)).generate(this.worldObj, this.rand, chunkStart.add(i1, j1, k1));
-        //}
+		if(worldObj.getBiome(chunkStart) == DimensionHelper.CORBA_SWAMP_BIOME) {
+			for(i = 0; i < 100; i++) {
+				int randX = x1 + 8 + rand.nextInt(8);
+				int randZ = z1 + 8 + rand.nextInt(8);
+				int randY = rand.nextInt(80);
+				if (isBlockTop(randX, randY, randZ, JourneyBlocks.corbaGrass) || isBlockTop(randX, randY, randZ, Blocks.WATER)) {
+					new WorldGenSwamp().generate(worldObj, rand, new BlockPos(randX, randY, randZ));
+				}
+			}
+		}
 
 		if (rand.nextInt(5) == 0) {
 			generateStructure(x1, z1, worldGenTreehouse);
