@@ -233,6 +233,8 @@ public class JourneyBlocks {
     public static JBlockDoublePlant bogweed;
 
     public static JBlockWaterLily swamp_lily;
+
+    public static JBlockFungalShelf swamp_shelf;
     
     public static JBlockSlab corbaPlankSlab;
     public static JBlockSlab corbaPlankDoubleSlab;
@@ -734,6 +736,8 @@ public class JourneyBlocks {
         bogweed = (JBlockDoublePlant) new JBlockDoublePlant("bogweed", "Bogweed").setGroundPredicate(GroundPredicate.SOLID_SIDE);
 
         swamp_lily = new JBlockWaterLily("swamp_lily", "Swamp lily");
+
+        swamp_shelf = new JBlockFungalShelf("swamp_shelf", "Swamp Shelf");
 
         corbaPlankSlab = new JBlockSlab(Material.WOOD, "corba_plank_slab", "Corba Plank Slab", false);
         corbaPlankDoubleSlab = new JBlockSlab(Material.WOOD, "corba_plank_double_slab", "Corba Plank Double Slab", true);
