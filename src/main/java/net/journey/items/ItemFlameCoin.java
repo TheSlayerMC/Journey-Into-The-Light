@@ -1,5 +1,6 @@
 package net.journey.items;
 
+import net.journey.entity.mob.boss.EntityBossStatue;
 import net.journey.init.JourneyTabs;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.items.base.JItem;
@@ -52,6 +53,10 @@ public class ItemFlameCoin extends JItem {
 
         //int i = pos.getX(), j = pos.getY(), k = pos.getZ();
 
+        //EntityBossStatue statue = new EntityBossStatue(world);
+        //statue.setLocationAndAngles(x + 0.5F, y + 1, z + 0.5F, 0.0F, 0.0F);
+       // if(!world.isRemote) world.spawnEntity(statue);
+        
         //return EnumActionResult.SUCCESS;
 
         //BARN

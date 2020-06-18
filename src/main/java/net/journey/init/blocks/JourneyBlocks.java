@@ -733,7 +733,7 @@ public class JourneyBlocks {
                 .setLightLevel(1.0F).setCreativeTab(JourneyTabs.DECORATION);
         corbaSentryBrick = new BlockMod("corbaSentryBrick", "Corba Sentry Brick");
 
-        taintedMud = new BlockMod(EnumMaterialTypes.SLIME, "tainted_mud", "Tainted Mud", 1.0F);
+        taintedMud = new BlockMod(EnumMaterialTypes.DIRT, "tainted_mud", "Tainted Mud", 1.0F);
 
         bogweed = (JBlockDoublePlant) new JBlockDoublePlant("bogweed", "Bogweed").setGroundPredicate(GroundPredicate.SOLID_SIDE);
         swamp_lily = new JBlockWaterLily("swamp_lily", "Swamp lily");

@@ -295,7 +295,10 @@ public class EntityRegistry {
 				//OBSIDIANBOAT
 				SlayerAPI.buildEntityEntryNoEgg(EntityObsidianBoat.class, "obsidianboat", 16),
 				//TNT
-				SlayerAPI.buildEntityEntryNoEgg(EntityMagicExplosive.class, "magic_explosive", 17)
+				SlayerAPI.buildEntityEntryNoEgg(EntityMagicExplosive.class, "magic_explosive", 17),
+				
+				SlayerAPI.buildEntityEntryNoEgg(EntityBossStatue.class, "boss_state", 18)
+
 		};
 
 		event.getRegistry().registerAll(entries);
