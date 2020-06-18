@@ -1,35 +1,20 @@
 package net.journey.client.render.block;
 
-import net.journey.blocks.containers.BlockJourneyChest;
-import net.journey.blocks.containers.JBlockBossCrystal;
 import net.journey.blocks.tileentity.TileEntityBossCrystal;
-import net.journey.blocks.tileentity.TileEntityJourneyChest;
-import net.journey.client.render.Textures;
 import net.journey.client.render.model.block.ModelBossCrystal;
-import net.journey.client.render.model.block.ModelCloudAltar;
-import net.journey.client.render.model.block.ModelJourneyChest;
-import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.*;
-import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
-import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.MathHelper;
-import net.minecraftforge.common.model.IModelState;
-import net.minecraftforge.common.model.TRSRTransformation;
-
 import org.lwjgl.opengl.GL11;
 
 import java.util.Random;
 
 public class BossCrystalTESR extends TileEntitySpecialRenderer<TileEntityBossCrystal> {
 
-    private Minecraft mc = Minecraft.getMinecraft();
-    private RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
-    private ModelBossCrystal crystal = new ModelBossCrystal();
+    private final Minecraft mc = Minecraft.getMinecraft();
+    private final RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
+    private final ModelBossCrystal crystal = new ModelBossCrystal();
     private static final Random RANDOM = new Random(432L);
 
     @Override
@@ -46,9 +31,6 @@ public class BossCrystalTESR extends TileEntitySpecialRenderer<TileEntityBossCry
 
         //add transparency, color offset(brightness)
         GL11.glColor4f(brightness, brightness, brightness, transparency);
-        GL11.glEnable(GL11.GL_BLEND);
-        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-        GL11.glAlphaFunc(GL11.GL_LESS, 1.0f);
 
         //offset model
         GL11.glTranslated(x + 0.5, y - 0.5, z + 0.5);
@@ -61,7 +43,13 @@ public class BossCrystalTESR extends TileEntitySpecialRenderer<TileEntityBossCry
 
         //YScale is higher than XZ scale, as to create a stretched/distorted effect with the model
         GL11.glScalef(XZScale, YScale, XZScale);
+
+        GlStateManager.enableBlend();
+        GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+        GlStateManager.enableAlpha();
         crystal.render(0.0625F, false);
+        GlStateManager.disableAlpha();
+        GlStateManager.disableBlend();
 
         //rotate model (again?)
         GL11.glRotatef(180F, 0.0F, 0F, 1.0F);

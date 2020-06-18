@@ -436,7 +436,7 @@ public class JourneyItems {
 	    crystalBall = new JItem("crystalBall", "Crystal Ball");
 	    stoneStick = new JItem("stoneStick", "Stone Stick");
 	    darkTerrarianSoil = new JItem("darkTerrarianSoil", "Dark Terrarian Soil");
-	    earthenCrystal = new JItem("earthenCrystal", "EarthenCrystal");
+	    earthenCrystal = new JItem("earthenCrystal", "Earthen Crystal");
 	    lightTerrarianSoil = new JItem("lightTerrarianSoil", "Light Terrarian Soil");
 	    terrastar = new JItem("terrastar", "Terrastar");
 	    purplePowder = new JItem("purplePowder", "Purple Powder");
