@@ -235,6 +235,8 @@ public class JourneyBlocks {
     public static JBlockWaterLily swamp_lily;
 
     public static JBlockFungalShelf swamp_shelf;
+    public static JBlockMushroom bog_shrooms_small;
+    public static JBlockMushroom bog_shroom_tall;
     
     public static JBlockSlab corbaPlankSlab;
     public static JBlockSlab corbaPlankDoubleSlab;
@@ -734,10 +736,10 @@ public class JourneyBlocks {
         taintedMud = new BlockMod(EnumMaterialTypes.SLIME, "tainted_mud", "Tainted Mud", 1.0F);
 
         bogweed = (JBlockDoublePlant) new JBlockDoublePlant("bogweed", "Bogweed").setGroundPredicate(GroundPredicate.SOLID_SIDE);
-
         swamp_lily = new JBlockWaterLily("swamp_lily", "Swamp lily");
-
         swamp_shelf = new JBlockFungalShelf("swamp_shelf", "Swamp Shelf");
+        bog_shrooms_small = (JBlockMushroom) new JBlockMushroom("bog_shrooms_small", "Small Bogshroom Cluster").setLightLevel(0.3F);
+        bog_shroom_tall = (JBlockMushroom) new JBlockMushroom("bog_shroom_tall", "Tall Bogshroom").setLightLevel(0.6F);
 
         corbaPlankSlab = new JBlockSlab(Material.WOOD, "corba_plank_slab", "Corba Plank Slab", false);
         corbaPlankDoubleSlab = new JBlockSlab(Material.WOOD, "corba_plank_double_slab", "Corba Plank Double Slab", true);

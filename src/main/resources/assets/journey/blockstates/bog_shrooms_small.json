@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "normal": [
+            { "model": "journey:bog_shrooms_small" },
+            { "model": "journey:bog_shrooms_small", "y": 180 },
+            { "model": "journey:bog_shrooms_small", "y": 270 },
+            { "model": "journey:bog_shrooms_small", "y": 90 }
+        ]
+    }
+}
