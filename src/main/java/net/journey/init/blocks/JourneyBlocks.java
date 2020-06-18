@@ -298,6 +298,7 @@ public class JourneyBlocks {
     public static BlockJourneyChest cloudiaChest;
     public static BlockJourneyChest lockedChest;
 
+    public static BlockBossBlock BOSS_BLOCK;
 
     public static BlockMod nethicDungeonBricks;
     public static JBlockPane boilChain;
@@ -1038,9 +1039,11 @@ public class JourneyBlocks {
         burntGrass = new BlockModFlower("burntGrass", "Burnt Grass", true);
 
         grindstone = new BlockGrindstone("grindstone", "Grindstone");
+        BOSS_BLOCK = new BlockBossBlock("bossBlock", "Boss Spawner");
         cloudAltar = new BlockCloudAltar("cloudaltar", "Cloud Altar");
         blueGems = new BlockGemBlock("blueGems", "Blue Gems", false);
         redGems = new BlockGemBlock("redGems", "Red Gems", true);
+        
 
         blackBlock = new BlockMod(EnumMaterialTypes.STONE, "blackBlock", "Black Block", 0.5F);
         whiteBlock = new BlockMod(EnumMaterialTypes.STONE, "whiteBlock", "White Block", 0.5F);

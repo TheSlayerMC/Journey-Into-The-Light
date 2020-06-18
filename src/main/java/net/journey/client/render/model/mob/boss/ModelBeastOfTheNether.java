@@ -72,6 +72,19 @@ public class ModelBeastOfTheNether extends ModelBase {
         this.leg2_1.render(f5);
         this.horn1.render(f5);
     }
+    
+    public void render(float f5) {
+        this.head.render(f5);
+        this.body1.render(f5);
+        //this.snout.render(f5);
+        this.leg2.render(f5);
+        this.horn2.render(f5);
+        this.body2.render(f5);
+        this.leg1.render(f5);
+        this.leg1a.render(f5);
+        this.leg2_1.render(f5);
+        this.horn1.render(f5);
+    }
 
     private void setRotation(ModelRenderer model, float x, float y, float z) {
         model.rotateAngleX = x;
