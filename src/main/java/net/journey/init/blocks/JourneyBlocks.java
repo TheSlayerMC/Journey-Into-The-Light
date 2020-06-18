@@ -26,6 +26,7 @@ import net.minecraft.item.Item;
 import net.slayer.api.EnumMaterialTypes;
 import net.slayer.api.EnumToolType;
 import net.slayer.api.block.*;
+import net.slayer.api.entity.tileentity.container.BlockModContainer;
 
 import java.util.ArrayList;
 
@@ -506,6 +507,7 @@ public class JourneyBlocks {
     public static BlockCrafting stoneCraftingTable;
     public static BlockSummoningTable summoningTable;
     public static BlockMod bossAltar;
+    public static BlockModContainer bossCrystal;
 
     public static BlockModSpawner observerSpawner;
     public static BlockModSpawner screamerSpawner;
@@ -1060,6 +1062,8 @@ public class JourneyBlocks {
 
         stoneCraftingTable = new BlockCrafting("stoneCraftingTable", "Stone Crafting Table");
         summoningTable = new BlockSummoningTable("summoningTable", "Summoning Table");
+
+        bossCrystal = new JBlockBossCrystal("bossCrystal", "Base Crystal");
 
         observerSpawner = new BlockModSpawner("observerSpawner", "Observer Spawner", "observer");
         screamerSpawner = new BlockModSpawner("screamerSpawner", "Screamer Spawner", "screamer");
