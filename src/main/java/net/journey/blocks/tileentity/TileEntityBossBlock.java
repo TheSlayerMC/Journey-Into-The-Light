@@ -29,9 +29,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TileEntityBossBlock extends TileEntity implements ITickable {
 
-	private static final float SPEED_CHANGE_RATE = 0.1f;
+	private static final float SPEED_CHANGE_RATE = 0.1F;
 	private static final Random RANDOM = new Random();
-	private static final int STAGE_CHANGE_TICK = 100;
+	private static final int STAGE_CHANGE_TICK = 80;
 	private static final int RISING_TIME = 300;
 	private static final int FALLING_TIME = 10;
 	public static final int MAX_HEIGHT = 5;
@@ -52,7 +52,7 @@ public class TileEntityBossBlock extends TileEntity implements ITickable {
 		INERT(0, 0, false) {
 			@Override
 			public State getNextState(TileEntityBossBlock target) {
-				return target.tryRandomlyChangeState(STAGE_CHANGE_TICK, ROTATING_SLOW);
+				return target.tryRandomlyChangeState(STAGE_CHANGE_TICK - 70, ROTATING_SLOW);
 			}
 
 			@Override
