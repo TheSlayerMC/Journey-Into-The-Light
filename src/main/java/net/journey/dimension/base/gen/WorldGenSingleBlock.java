@@ -13,15 +13,17 @@ import java.util.Random;
 public class WorldGenSingleBlock extends WorldGenerator {
 
 	protected Block block;
+	protected int maxLevel;
 	
-	public WorldGenSingleBlock(Block block) {
+	public WorldGenSingleBlock(Block block, int maxLevel) {
 		this.block = block;
+		this.maxLevel = maxLevel;
 	}
 	
     @Override
     public boolean generate(World world, Random rand, BlockPos pos) {
         pos = WorldGenAPI.optimizeAndRandomize(pos, rand);
-        pos = WorldGenAPI.getPosWithHeight(pos, rand.nextInt(254 + 1));
+        pos = WorldGenAPI.getPosWithHeight(pos, rand.nextInt(maxLevel + 1));
 
         if (pos.getY() >= 110 && rand.nextInt(3) != 0) return false;
 

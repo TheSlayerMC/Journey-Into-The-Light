@@ -46,8 +46,8 @@ public class WorldGenJourney implements IWorldGenerator {
     private static final LazyLoadBase<WorldGenCaveVines> CAVE_VINE_GEN = create(WorldGenCaveVines::new);
     private static final LazyLoadBase<WorldGenSmallGlowshrooms> SMALL_GLOWSHROOMS = create(WorldGenSmallGlowshrooms::new);
 
-    private static final LazyLoadBase<WorldGenSingleBlock> ANCIENT_BLOCK_GEN = create(() -> new WorldGenSingleBlock(JourneyBlocks.ancientMachineBlock));
-    private static final LazyLoadBase<WorldGenSingleBlock> GOLD_LOOT_BOX_GEN = create(() -> new WorldGenSingleBlock(JourneyBlocks.goldLootBox));
+    private static final LazyLoadBase<WorldGenSingleBlock> ANCIENT_BLOCK_GEN = create(() -> new WorldGenSingleBlock(JourneyBlocks.ancientMachineBlock, 254));
+    private static final LazyLoadBase<WorldGenSingleBlock> GOLD_LOOT_BOX_GEN = create(() -> new WorldGenSingleBlock(JourneyBlocks.goldLootBox, 50));
     @Deprecated // use per-chunk random instance which comes from method params
     private static Random r = new Random();
 

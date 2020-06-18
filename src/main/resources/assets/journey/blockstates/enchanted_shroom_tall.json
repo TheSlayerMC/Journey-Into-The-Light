@@ -1,0 +1,14 @@
+{
+    "variants": {
+        "normal": [
+            { "model": "journey:enchanted_shroom_tall_0" },
+            { "model": "journey:enchanted_shroom_tall_1" },
+            { "model": "journey:enchanted_shroom_tall_0", "y": 180 },
+            { "model": "journey:enchanted_shroom_tall_1", "y": 180 },
+            { "model": "journey:enchanted_shroom_tall_0", "y": 270 },
+            { "model": "journey:enchanted_shroom_tall_1", "y": 270 },
+            { "model": "journey:enchanted_shroom_tall_0", "y": 90 },
+            { "model": "journey:enchanted_shroom_tall_1", "y": 90 }
+        ]
+    }
+}

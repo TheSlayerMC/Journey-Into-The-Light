@@ -42,6 +42,8 @@ public class ChunkProviderTerrania implements IChunkGenerator {
     double[] gen2;
     double[] gen3;
     double[] gen4;
+    JWorldGenPlants shrooms = new JWorldGenPlants(JourneyBlocks.enchantedShroomsSmall, TERRANIAN_GRASS_GROUND);
+    JWorldGenPlants shroomTall = new JWorldGenPlants(JourneyBlocks.enchantedShroomTall, TERRANIAN_GRASS_GROUND);
     JWorldGenPlants flower = new JWorldGenPlants(JourneyBlocks.terranianTallgrass, TERRANIAN_GRASS_GROUND);
     JWorldGenPlants flower1 = new JWorldGenPlants(JourneyBlocks.terramushroom, TERRANIAN_GRASS_GROUND);
 	JWorldGenPlants flower2 = new JWorldGenPlants(JourneyBlocks.tallTerramushroom, TERRANIAN_GRASS_GROUND);
@@ -336,6 +338,14 @@ public class ChunkProviderTerrania implements IChunkGenerator {
 
         for (times = 0; times < 2; times++) {
             WorldGenAPI.genOnGround(world, chunkPos, rand, new WorldGenTerraniaTree(true, 0, 1, JourneyBlocks.terranianLog.getDefaultState(), JourneyBlocks.terraniaLeaves.getDefaultState()));
+        }
+
+        for (int i = 0; i < 10; i++) {
+            shrooms.generate(world, r, chunkStart);
+        }
+
+        for (int i = 0; i < 2; i++) {
+            shroomTall.generate(world, r, chunkStart);
         }
 
         for (int i = 0; i < 100; i++) {

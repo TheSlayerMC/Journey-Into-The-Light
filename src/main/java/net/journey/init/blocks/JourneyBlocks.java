@@ -238,6 +238,9 @@ public class JourneyBlocks {
     public static JBlockFungalShelf swamp_shelf;
     public static JBlockMushroom bog_shrooms_small;
     public static JBlockMushroom bog_shroom_tall;
+
+    public static JBlockMushroom enchantedShroomsSmall;
+    public static JBlockMushroom enchantedShroomTall;
     
     public static JBlockSlab corbaPlankSlab;
     public static JBlockSlab corbaPlankDoubleSlab;
@@ -945,6 +948,9 @@ public class JourneyBlocks {
         terranianFlower = (BlockTerranianFlower) new BlockTerranianFlower("terranian_flower", "Terranian Flower").setGroundPredicate(GroundPredicate.COMMON_AND_TERRANIA_GRASS);
         terraniaLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "terraniaLamp", "Terrania Lamp", 0.1F)
                 .setLightLevel(1.0F).setCreativeTab(JourneyTabs.DECORATION);
+
+        enchantedShroomsSmall = (JBlockMushroom) new JBlockMushroom("enchanted_shrooms_small", "Enchanted Shrooms").setLightLevel(0.3F);
+        enchantedShroomTall = (JBlockMushroom) new JBlockMushroom("enchanted_shroom_tall", "Tall Enchanted Shroom").setLightLevel(0.6F);
 
         terrashroomBlockPink = new BlockJourneyMushroom(EnumMaterialTypes.WOOD, "terrashroomBlockPink",
                 "Terrashroom Block", 0.5F, terramushroom);
