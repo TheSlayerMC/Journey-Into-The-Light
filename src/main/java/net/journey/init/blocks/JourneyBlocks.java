@@ -753,8 +753,8 @@ public class JourneyBlocks {
         bogweed = (JBlockDoublePlant) new JBlockDoublePlant("bogweed", "Bogweed").setGroundPredicate(GroundPredicate.SOLID_SIDE);
         swamp_lily = new JBlockWaterLily("swamp_lily", "Swamp lily");
         swamp_shelf = new JBlockFungalShelf("swamp_shelf", "Swamp Shelf");
-        bog_shrooms_small = (JBlockMushroom) new JBlockMushroom("bog_shrooms_small", "Small Bogshroom Cluster").setLightLevel(0.3F);
-        bog_shroom_tall = (JBlockMushroom) new JBlockMushroom("bog_shroom_tall", "Tall Bogshroom").setLightLevel(0.6F);
+        bog_shrooms_small = (JBlockMushroom) new JBlockMushroom("bog_shrooms_small", "Small Bogshroom Cluster").setGroundPredicate(GroundPredicate.COMMON_AND_CORBA_GRASS).setLightLevel(0.3F);
+        bog_shroom_tall = (JBlockMushroom) new JBlockMushroom("bog_shroom_tall", "Tall Bogshroom").setGroundPredicate(GroundPredicate.COMMON_AND_CORBA_GRASS).setLightLevel(0.6F);
 
         corbaPlankSlab = new JBlockSlab(Material.WOOD, "corba_plank_slab", "Corba Plank Slab", false);
         corbaPlankDoubleSlab = new JBlockSlab(Material.WOOD, "corba_plank_double_slab", "Corba Plank Double Slab", true);
