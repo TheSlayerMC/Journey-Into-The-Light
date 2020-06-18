@@ -53,14 +53,20 @@ public class ObeliskRenderer extends TileEntitySpecialRenderer {
         GlStateManager.translate((float)x, (float)y, (float)z);
         GlStateManager.popMatrix();
     }
-	
-	public static class ObeliskTEISR extends TileEntityItemStackRenderer {
 
-		private final TileEntityObelisk obelisk = new TileEntityObelisk();
+    public static class ObeliskTEISR extends TileEntityItemStackRenderer {
 
-		@Override
-		public void renderByItem(ItemStack itemStackIn, float partialTicks) {
-			TileEntityRendererDispatcher.instance.render(obelisk, 0.0D, 0.0D, 0.0D, 0.0F, partialTicks);
-		}
-	}
+        private final TileEntityObelisk obelisk = new TileEntityObelisk();
+
+        @Override
+        public void renderByItem(ItemStack itemStackIn, float partialTicks) {
+            GL11.glPushMatrix();
+            GL11.glScalef(0.72F, 0.72F, 0.72F);
+            GL11.glTranslated(0.2F,  - 1.0F, 0.2F);
+            TileEntityRendererDispatcher.instance.render(obelisk, 0.0D, 0.0D, 0.0D, 0.0F, partialTicks);
+            GlStateManager.disableAlpha();
+            GlStateManager.disableBlend();
+            GL11.glPopMatrix();
+        }
+    }
 }

@@ -88,6 +88,6 @@ public class BlockObelisk extends BlockModContainer implements IHasTeisr, IHasCu
 	@NotNull
 	@Override
 	public ResourceLocation getItemModelResourceLocation() {
-		return new ResourceLocation(JITL.MOD_ID, "block/obselisk");
+		return new ResourceLocation(JITL.MOD_ID, "block/boss_crystal");
 	}
 }

@@ -98,7 +98,7 @@ public class BlockSenterianAltar extends BlockModContainer implements IHasTeisr,
 
 	@Override
 	public @NotNull ResourceLocation getItemModelResourceLocation() {
-		return new ResourceLocation(JITL.MOD_ID, "block/chest/" + getRegistryName().getPath());
+		return new ResourceLocation(JITL.MOD_ID, "block/boss_crystal" + getRegistryName().getPath());
 	}
 
 	@Override
