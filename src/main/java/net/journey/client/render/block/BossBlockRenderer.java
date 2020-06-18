@@ -34,28 +34,6 @@ public class BossBlockRenderer extends TileEntitySpecialRenderer {
 
 	private static final Random RANDOM = new Random(432L);
 
-	private static void renderBoss(IBakedModel model, IBlockState state) {
-		Tessellator tessellator = Tessellator.getInstance();
-		BufferBuilder vertexBuffer = tessellator.getBuffer();
-
-		vertexBuffer.begin(GL11.GL_QUADS, DefaultVertexFormats.ITEM);
-		for (EnumFacing enumfacing : EnumFacing.values())
-			renderQuads(vertexBuffer, model.getQuads(state, enumfacing, 0L));
-
-		renderQuads(vertexBuffer, model.getQuads(state, (EnumFacing)null, 0L));
-		GL11.glPushMatrix();
-		GL11.glTranslated(-0.5, 0, -0.5);
-		tessellator.draw();
-		GL11.glPopMatrix();
-	}
-
-	private static void renderQuads(BufferBuilder vertexBuffer, List<BakedQuad> quads) {
-		for (BakedQuad quad : quads)
-			vertexBuffer.addVertexData(quad.getVertexData());
-	}
-
-	protected static BlockRendererDispatcher blockRenderer;
-
 	@Override
 	public void render(TileEntity entity, double x, double y, double z, float partialTickTime, int destroyProgress, float alpha) {
 		TileEntityBossBlock boss = (TileEntityBossBlock)entity;
@@ -74,38 +52,11 @@ public class BossBlockRenderer extends TileEntitySpecialRenderer {
 		GL11.glRotatef(rotation, 0, 1, 0);
 		new ModelBeastOfTheNether().render(0.0625F);
 
-
-		if (blockRenderer == null) blockRenderer = Minecraft.getMinecraft().getBlockRendererDispatcher();
-		BlockPos pos = boss.getPos();
-		IBlockAccess world = MinecraftForgeClient.getRegionRenderCache(boss.getWorld(), pos);
-		IBlockState blockState = world.getBlockState(pos);
-
-		//IBakedModel model = blockRenderer.getBlockModelShapes().getModelForState(blockState);
-		//renderBoss(model, blockState);
-		
 		final State state = boss.getState();
-		if (state.specialEffects) {
-			//renderPhantom(model, blockState, rotation, progress, partialTickTime);
+		if(state.specialEffects) 
 			renderStar(rotation, progress, Tessellator.getInstance(), partialTickTime);
-		}
 
 		GL11.glPopMatrix();
-	}
-
-	private static void renderPhantom(IBakedModel model, IBlockState state, float rotation, float progress, float partialTicks) {
-		RenderHelper.disableStandardItemLighting();
-		GlStateManager.enableBlend();
-		GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
-
-		GlStateManager.color(1f, 1f, 1f, 0.2f + 0.8f * progress);
-		float scale = PHANTOM_SCALE * (0.2f + progress * 0.8f);
-
-		GL11.glTranslatef(0, -0.1f * progress, 0);
-		GL11.glScalef(scale, scale, scale);
-		renderBoss(model, state);
-
-		GlStateManager.disableBlend();
-		RenderHelper.enableStandardItemLighting();
 	}
 
 	private static void renderStar(float rotation, float progress, Tessellator tes, float partialTicks) {
