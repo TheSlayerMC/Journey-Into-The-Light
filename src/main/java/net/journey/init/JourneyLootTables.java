@@ -24,7 +24,10 @@ public class JourneyLootTables {
     public static final ResourceLocation ANCIENT_CHEST_LOOT = register("chests/overworld/ancient_loot");
     public static final ResourceLocation BOIL_DUNGEON_CHEST = register("chests/boil/boil_dungeon");
     public static final ResourceLocation SENTRY_BASE_CHEST_LOOT = register("chests/senterian/sentry_dungeon");
-    
+
+    //Boss
+    public static final ResourceLocation NETHER_BEAST = register("mobs/boss/nether_beast");
+
     //Overworld
     public static final ResourceLocation BIG_HONGO = register("mobs/overworld/big_hongo");
     public static final ResourceLocation BOOM_BOOM = register("mobs/overworld/boom_boom");
