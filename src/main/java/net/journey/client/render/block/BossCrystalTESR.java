@@ -1,7 +1,9 @@
 package net.journey.client.render.block;
 
 import net.journey.blocks.containers.BlockJourneyChest;
+import net.journey.blocks.containers.JBlockBossCrystal;
 import net.journey.blocks.tileentity.TileEntityBossCrystal;
+import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.client.render.Textures;
 import net.journey.client.render.model.block.ModelBossCrystal;
 import net.journey.client.render.model.block.ModelCloudAltar;
@@ -9,8 +11,11 @@ import net.journey.client.render.model.block.ModelJourneyChest;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
+import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.common.model.IModelState;
