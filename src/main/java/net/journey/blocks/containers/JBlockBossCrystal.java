@@ -98,7 +98,8 @@ public class JBlockBossCrystal extends BlockModContainer {
         CORBA(new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/crystal_corba.png")),
         TERRANIA(new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/crystal_terrania.png")),
         CLOUDIA(new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/crystal_cloudia.png")),
-        SENTERIAN(new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/crystal_senterian.png"));
+        SENTERIAN(new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/crystal_senterian.png")),
+        FROZEN(new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/crystal_frozen.png"));
 
         private final ResourceLocation crystalTexture;
 
