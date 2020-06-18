@@ -1,12 +1,16 @@
 package net.journey.client.render.block;
 
+import net.journey.blocks.containers.BlockJourneyChest;
+import net.journey.blocks.tileentity.TileEntityBossCrystal;
 import net.journey.client.render.Textures;
 import net.journey.client.render.model.block.ModelBossCrystal;
 import net.journey.client.render.model.block.ModelCloudAltar;
+import net.journey.client.render.model.block.ModelJourneyChest;
+import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.RenderItem;
+import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.common.model.IModelState;
@@ -14,14 +18,18 @@ import net.minecraftforge.common.model.TRSRTransformation;
 
 import org.lwjgl.opengl.GL11;
 
-public class BossCrystalTESR extends TileEntitySpecialRenderer {
+import java.util.Random;
+
+public class BossCrystalTESR extends TileEntitySpecialRenderer<TileEntityBossCrystal> {
 
     private Minecraft mc = Minecraft.getMinecraft();
     private RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
     private ModelBossCrystal crystal = new ModelBossCrystal();
+    private static final Random RANDOM = new Random(432L);
 
     @Override
-    public void render(TileEntity e, double x, double y, double z, float f, int i1, float i) {
+    public void render(TileEntityBossCrystal te, double x, double y, double z, float f, int i1, float i) {
+
         float timeD = (float) (360.0 * (System.currentTimeMillis() & 0x3FFFL) / 0x3FFFL) * 3;
         float XZScale = 1.0F;
         float YScale = 4.5F;
@@ -41,7 +49,7 @@ public class BossCrystalTESR extends TileEntitySpecialRenderer {
         GL11.glTranslated(x + 0.5, y - 0.5, z + 0.5);
 
         //bind texture
-        bindTexture(Textures.bossCrystal);
+        bindTexture(te.getChestType().getCrystalTexture());
 
         //rotate model
         GlStateManager.rotate(timeD, 0.0F, 1.0F, 0.0F);

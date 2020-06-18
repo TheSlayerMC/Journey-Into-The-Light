@@ -508,6 +508,7 @@ public class JourneyBlocks {
     public static BlockSummoningTable summoningTable;
     public static BlockMod bossAltar;
     public static BlockModContainer bossCrystal;
+    public static BlockModContainer bossCrystalNether;
 
     public static BlockModSpawner observerSpawner;
     public static BlockModSpawner screamerSpawner;
@@ -1063,7 +1064,8 @@ public class JourneyBlocks {
         stoneCraftingTable = new BlockCrafting("stoneCraftingTable", "Stone Crafting Table");
         summoningTable = new BlockSummoningTable("summoningTable", "Summoning Table");
 
-        bossCrystal = new JBlockBossCrystal("bossCrystal", "Base Crystal");
+        bossCrystal = new JBlockBossCrystal("bossCrystal", "Soul Crystal", JBlockBossCrystal.Type.BASE);
+        bossCrystalNether = new JBlockBossCrystal("bossCrystalNether", "Soul Crystal", JBlockBossCrystal.Type.NETHER);
 
         observerSpawner = new BlockModSpawner("observerSpawner", "Observer Spawner", "observer");
         screamerSpawner = new BlockModSpawner("screamerSpawner", "Screamer Spawner", "screamer");
