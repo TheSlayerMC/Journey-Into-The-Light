@@ -50,7 +50,7 @@ public class BlockModVine extends BlockMod implements net.minecraftforge.common.
         super(EnumMaterialTypes.TALL_PLANTS, name, finalName, hardness, JourneyTabs.DECORATION);
 	    this.setDefaultState(this.blockState.getBaseState().withProperty(UP, Boolean.valueOf(false)).withProperty(NORTH, Boolean.valueOf(false)).withProperty(EAST, Boolean.valueOf(false)).withProperty(SOUTH, Boolean.valueOf(false)).withProperty(WEST, Boolean.valueOf(false)));
         this.setTickRandomly(true);
-        this.setCreativeTab(CreativeTabs.DECORATIONS);
+        this.setCreativeTab(JourneyTabs.DECORATION);
     }
 
     protected static boolean isExceptBlockForAttaching(Block p_193397_0_) {

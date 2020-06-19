@@ -60,6 +60,9 @@ public class BlockModLadder extends BlockMod {
     }
 
     @Override
+    public boolean isNormalCube(IBlockState state) { return false; }
+
+    @Override
     public boolean canPlaceBlockOnSide(World worldIn, BlockPos pos, EnumFacing side) {
         if (this.canAttachTo(worldIn, pos.west(), side)) {
             return true;

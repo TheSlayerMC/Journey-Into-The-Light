@@ -14,7 +14,7 @@ public class JBlockPane extends BlockPane implements IHasCustomItemPath {
 	public JBlockPane(EnumMaterialTypes type, String name, String enName, boolean canDrop) {
 		super(type.getMaterial(), canDrop);
 		setSoundType(type.getSound());
-		StuffConstructor.regAndSetupBlock(this, name, enName, JourneyTabs.DECORATIONS);
+		StuffConstructor.regAndSetupBlock(this, name, enName, JourneyTabs.DECORATION);
 	}
 
 	@Override
