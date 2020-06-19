@@ -3,7 +3,7 @@
 // (powered by Fernflower decompiler)
 //
 
-package net.journey.blocks;
+package net.journey.blocks.base;
 
 import net.journey.entity.item.EntityMagicExplosive;
 import net.journey.init.JourneyTabs;
