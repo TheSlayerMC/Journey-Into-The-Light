@@ -52,46 +52,6 @@ public class ItemFlameCoin extends JItem {
         //structure.generate(w, r, pos);
 
         //int i = pos.getX(), j = pos.getY(), k = pos.getZ();
-
-        //EntityBossStatue statue = new EntityBossStatue(world);
-        //statue.setLocationAndAngles(x + 0.5F, y + 1, z + 0.5F, 0.0F, 0.0F);
-       // if(!world.isRemote) world.spawnEntity(statue);
-        
-        //return EnumActionResult.SUCCESS;
-
-        //BARN
-		/*WorldGenAPI.addRectangle(7, 5, 1, w, x, y, z, EssenceBlocks.greenCorbaPlank);
-		WorldGenAPI.addRectangle(1, 5, 4, w, x, y + 1, z, EssenceBlocks.brownCorbaLog);
-		WorldGenAPI.addRectangle(1, 3, 4, w, x, y + 1, z + 1, EssenceBlocks.greenCorbaLog);
-		WorldGenAPI.addRectangle(1, 1, 3, w, x, y + 1, z + 2, Blocks.air);
-		WorldGenAPI.addRectangle(5, 1, 1, w, x + 1, y + 1, z, EssenceBlocks.brownCorbaLog);
-		WorldGenAPI.addRectangle(5, 1, 1, w, x + 1, y + 1, z + 4, EssenceBlocks.brownCorbaLog);
-		WorldGenAPI.addRectangle(1, 5, 4, w, x + 6, y + 1, z, EssenceBlocks.brownCorbaLog);
-		WorldGenAPI.addRectangle(1, 3, 3, w, x + 6, y + 2, z + 1, EssenceBlocks.greenCorbaLog);
-		WorldGenAPI.addRectangle(5, 1, 3, w, x + 1, y + 2, z, EssenceBlocks.greenCorbaLog);
-		WorldGenAPI.addRectangle(5, 1, 3, w, x + 1, y + 2, z + 4, EssenceBlocks.greenCorbaLog);
-		WorldGenAPI.addRectangle(3, 1, 3, w, x + 2, y + 2, z, EssenceBlocks.brownCorbaPlank);
-		WorldGenAPI.addRectangle(3, 1, 3, w, x + 2, y + 2, z + 4, EssenceBlocks.brownCorbaPlank);
-		WorldGenAPI.addRectangle(3, 5, 1, w, x + 2, y + 3, z, Blocks.air);
-		WorldGenAPI.addBlock(w, x + 1, y, z + 3, Blocks.hay_block);
-		WorldGenAPI.addBlock(w, x + 5, y, z + 1, Blocks.hay_block);
-		WorldGenAPI.addBlock(w, x + 5, y + 1, z + 1, Blocks.hay_block);
-		WorldGenAPI.addBlock(w, x + 4, y, z + 1, Blocks.hay_block);
-		WorldGenAPI.addBlock(w, x + 5, y - 1, z + 2, Blocks.hay_block);
-		WorldGenAPI.addBlock(w, x + 5, y + 2, z + 1, Blocks.chest);
-		WorldGenAPI.addRectangle(5, 3, 1, w, x + 1, y + 5, z + 1, EssenceBlocks.brownCorbaLog);
-		
-		//OTHER THING
-		WorldGenAPI.addRectangle(10, 4, 1, w, x, y, z, EssenceBlocks.brownCorbaPlank);
-		WorldGenAPI.addRectangle(6, 4, 1, w, x + 4, y, z + 4, EssenceBlocks.corbaStone);
-		WorldGenAPI.addRectangle(9, 4, 1, w, x, y + 5, z, EssenceBlocks.brownCorbaLog);
-		WorldGenAPI.addRectangle(5, 4, 1, w, x + 4, y + 5, z + 4, EssenceBlocks.brownCorbaLog);
-		WorldGenAPI.addRectangle(10, 1, 4, w, x, y + 1, z, EssenceBlocks.brownCorbaPlank);
-		WorldGenAPI.addRectangle(4, 1, 4, w, x, y + 1, z + 3, EssenceBlocks.brownCorbaPlank);
-		WorldGenAPI.addRectangle(4, 1, 4, w, x, y + 1, z + 3, EssenceBlocks.brownCorbaPlank);
-		WorldGenAPI.addRectangle(1, 8, 4, w, x + 9, y + 1, z, EssenceBlocks.brownCorbaPlank);*/
-
-        //return true;
     }
 
     @Override

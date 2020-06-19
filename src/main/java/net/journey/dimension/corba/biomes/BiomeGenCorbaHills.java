@@ -13,7 +13,7 @@ import java.awt.*;
 public class BiomeGenCorbaHills extends JDimensionBiome {
 
     public BiomeGenCorbaHills() {
-        super(new BiomePropertiesCorba("Corba Hills").setBaseHeight(0.2F).setHeightVariation(1.0F));
+        super(new BiomePropertiesCorba("Corba Hills").setBaseHeight(0.2F).setHeightVariation(0.3F));
         this.topBlock = JourneyBlocks.corbaGrass.getDefaultState();
         this.fillerBlock = JourneyBlocks.corbaStone.getDefaultState();
         this.decorator.mushroomsPerChunk = 64;

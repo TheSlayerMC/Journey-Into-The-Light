@@ -231,6 +231,8 @@ public class JourneyBlocks {
     public static BlockMod corbaGrassPath;
 
     public static BlockMod taintedMud;
+    public static JBlockLog bogwoodLog;
+    public static BlockModLeaves bogwoodLeaves;
     public static JBlockDoublePlant bogweed;
 
     public static JBlockWaterLily swamp_lily;
@@ -749,6 +751,9 @@ public class JourneyBlocks {
         corbaSentryBrick = new BlockMod("corbaSentryBrick", "Corba Sentry Brick");
 
         taintedMud = new JBlockMud("tainted_mud", "Tainted Mud");
+
+        bogwoodLog = new JBlockLog("bogwood_log", "Bogwood Log");
+        bogwoodLeaves = new BlockModLeaves("bogwood_leaves", "Bogwood Leaves", 1.0F);
 
         bogweed = (JBlockDoublePlant) new JBlockDoublePlant("bogweed", "Bogweed").setGroundPredicate(GroundPredicate.TAINTED_MUD);
         swamp_lily = new JBlockWaterLily("swamp_lily", "Swamp lily");
