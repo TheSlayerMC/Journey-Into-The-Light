@@ -1,11 +1,14 @@
-package net.journey.items.interactive;
+package net.journey.items.bauble;
 
+import baubles.api.BaubleType;
+import baubles.api.IBauble;
 import net.journey.client.server.EssenceProvider;
 import net.journey.client.server.IEssence;
 import net.journey.init.JourneyTabs;
 import net.journey.items.base.JItem;
 import net.journey.util.PotionEffects;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
@@ -17,7 +20,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public class ItemWaterbending extends JItem {
+public class ItemWaterbending extends JItem implements IBauble {
 
 	public ItemWaterbending(String name, String f) {
 		super(name, f);
@@ -34,7 +37,6 @@ public class ItemWaterbending extends JItem {
 			if(mana.useEssence(10)) {
 				if(!world.isRemote) {
 					player.addPotionEffect(PotionEffects.setPotionEffect(PotionEffects.waterBreathing, 2400, 1));
-					stack.shrink(1);
 				}
 			}
 		} catch (Exception e) {
@@ -44,9 +46,18 @@ public class ItemWaterbending extends JItem {
 	}
 
 	@Override
+	public BaubleType getBaubleType(ItemStack itemStack) {
+		return BaubleType.CHARM;
+	}
+
+	@Override
+	public void onWornTick(ItemStack itemstack, EntityLivingBase player) {
+		player.addPotionEffect(PotionEffects.setPotionEffect(PotionEffects.waterBreathing, 2400, 1));
+	}
+
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack i, World worldIn, List<String> l, ITooltipFlag flagIn) {
-		l.add("Waterbreathing for 2 minutes");
-		l.add("Uses 10 Essence");
+		l.add("Grants Waterbreathing");
 	}
 }
