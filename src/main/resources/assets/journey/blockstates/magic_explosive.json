@@ -1,5 +1,6 @@
 {
-	"variants": {
-		"normal": { "model": "journey:magic_explosive"}
-	}
+    "variants": {
+        "explode=true": { "model": "journey:magic_explosive" },
+        "explode=false": { "model": "journey:magic_explosive" }
+    }
 }
