@@ -2,6 +2,7 @@ package net.journey.init.items;
 
 import net.journey.enums.EnumArmor;
 import net.journey.items.ItemModArmor;
+import net.journey.items.bauble.ItemTestBauble;
 import net.journey.items.tool.ItemBonemealHoe;
 import net.journey.items.tool.ItemMultiTool;
 import net.journey.util.JourneyToolMaterial;
@@ -482,6 +483,5 @@ public class JourneyArmory {
         bleedrockChest = new ItemModArmor(EnumArmor.BLEEDROCK, BODY);
         bleedrockLegs = new ItemModArmor(EnumArmor.BLEEDROCK, LEGS);
         bleedrockBoots = new ItemModArmor(EnumArmor.BLEEDROCK, BOOTS);
-
     }
 }

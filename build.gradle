@@ -94,6 +94,7 @@ dependencies {
     deobfCompile "mezz.jei:jei_1.12.2:4.15.0.293"
 
     deobfCompile "curse.maven:just-enough-resources-jer:2728585"
+    deobfCompile "curse.maven:baubles:2518667"
 }
 
 processResources {

@@ -100,16 +100,16 @@ public class ItemLoreScroll extends JItem {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack i, World worldIn, List<String> l, ITooltipFlag flagIn) {
-		String overworld = new String(SlayerAPI.Colour.AQUA + "scroll.journey.chapter.one");
-		String nether = new String(SlayerAPI.Colour.RED + "scroll.journey.chapter.two");
-		String end = new String(SlayerAPI.Colour.PURPLE + "scroll.journey.chapter.three");
-		String boil = new String(SlayerAPI.Colour.GOLD + "scroll.journey.chapter.four");
-		String euca = new String(SlayerAPI.Colour.YELLOW + "scroll.journey.chapter.five");
-		String depths = new String(SlayerAPI.Colour.DARK_AQUA + "scroll.journey.chapter.six");
-		String corba = new String(SlayerAPI.Colour.DARK_GREEN + "scroll.journey.chapter.seven");
-		String terrania = new String(SlayerAPI.Colour.LIGHT_PURPLE + "scroll.journey.chapter.eight");
-		String cloudia = new String(SlayerAPI.Colour.LIGHT_PURPLE + "scroll.journey.chapter.nine");
-		String senterian = new String(SlayerAPI.Colour.GRAY + "scroll.journey.chapter.ten");
+		String overworld = new String(SlayerAPI.Colour.AQUA + "scroll.journey.chapter.one" + ": ");
+		String nether = new String(SlayerAPI.Colour.RED + "scroll.journey.chapter.two" + ": ");
+		String end = new String(SlayerAPI.Colour.PURPLE + "scroll.journey.chapter.three" + ": ");
+		String boil = new String(SlayerAPI.Colour.GOLD + "scroll.journey.chapter.four" + ": ");
+		String euca = new String(SlayerAPI.Colour.YELLOW + "scroll.journey.chapter.five" + ": ");
+		String depths = new String(SlayerAPI.Colour.DARK_AQUA + "scroll.journey.chapter.six" + ": ");
+		String corba = new String(SlayerAPI.Colour.DARK_GREEN + "scroll.journey.chapter.seven" + ": ");
+		String terrania = new String(SlayerAPI.Colour.LIGHT_PURPLE + "scroll.journey.chapter.eight" + ": ");
+		String cloudia = new String(SlayerAPI.Colour.LIGHT_PURPLE + "scroll.journey.chapter.nine" + ": ");
+		String senterian = new String(SlayerAPI.Colour.GRAY + "scroll.journey.chapter.ten" + ": ");
 
 		if(i.hasTagCompound() && i.getTagCompound().toString().contains("senterian_gospel")) {
 			l.add(corba + SlayerAPI.Colour.GOLD + "The Senterian Gospel");
