@@ -10,10 +10,7 @@ import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.journey.items.*;
 import net.journey.items.base.JItem;
-import net.journey.items.bauble.ItemAquaticAmulet;
-import net.journey.items.bauble.ItemDynasterAmulet;
-import net.journey.items.bauble.ItemVinestranding;
-import net.journey.items.bauble.ItemWaterbending;
+import net.journey.items.bauble.*;
 import net.journey.items.interactive.*;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
@@ -357,6 +354,7 @@ public class JourneyItems {
 
     public static Item dynasterAmulet;
     public static Item aquaticAmulet;
+    public static Item magmaAmulet;
     public static Item emptyAmulet;
 
     public static void init() {
@@ -619,6 +617,7 @@ public class JourneyItems {
 	    //infernoshield = new ItemModShield("infernoshield", "Inferno Shield", 2, false);
         dynasterAmulet = new ItemDynasterAmulet("amulet_dynaster", "Amulet of the Dynaster");
         aquaticAmulet = new ItemAquaticAmulet("amulet_aquatic", "Amulet of the Depths");
+        magmaAmulet = new ItemMagmaAmulet("amulet_magma", "Amulet of Eternal Magma");
         emptyAmulet = new JItem("amulet_empty", "Empty Amulet");
     }
 

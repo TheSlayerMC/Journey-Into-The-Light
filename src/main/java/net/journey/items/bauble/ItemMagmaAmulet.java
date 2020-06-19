@@ -18,9 +18,9 @@ import net.slayer.api.SlayerAPI;
 
 import java.util.List;
 
-public class ItemAquaticAmulet extends JItem implements IBauble {
+public class ItemMagmaAmulet extends JItem implements IBauble {
 
-    public ItemAquaticAmulet(String name, String enName) {
+    public ItemMagmaAmulet(String name, String enName) {
         super(name, enName);
         setCreativeTab(JourneyTabs.UTIL);
         setMaxStackSize(1);
@@ -33,17 +33,20 @@ public class ItemAquaticAmulet extends JItem implements IBauble {
 
     @Override
     public void onWornTick(ItemStack itemstack, EntityLivingBase player) {
-        Potion potion = Potion.getPotionById(PotionEffects.waterBreathing);
+        if(player.isInLava()) {
+            player.addPotionEffect(PotionEffects.setPotionEffect(PotionEffects.fireResistance, 10, 4));
+            player.motionX *= 2.0F;
+            player.motionZ *= 2.0F;
+        }
         if(player.isInWater()) {
-            player.addPotionEffect(new PotionEffect(potion));
-            player.motionX *= 1.2F;
-            player.motionZ *= 1.2F;
+            player.addPotionEffect(PotionEffects.setPotionEffect(PotionEffects.poison, 10, 4));
         }
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack i, World worldIn, List<String> l, ITooltipFlag flagIn) {
-        l.add(SlayerAPI.Colour.GOLD + "Grants Agility and Water Breathing when Underwater");
+        l.add(SlayerAPI.Colour.GOLD + "Grants Agility and Fire Resistance in Lava");
+        l.add(SlayerAPI.Colour.RED + "Poisons when in Water");
     }
 }

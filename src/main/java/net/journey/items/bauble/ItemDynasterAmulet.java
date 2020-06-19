@@ -2,6 +2,7 @@ package net.journey.items.bauble;
 
 import baubles.api.BaubleType;
 import baubles.api.IBauble;
+import net.journey.init.JourneyTabs;
 import net.journey.items.base.JItem;
 import net.journey.util.PotionEffects;
 import net.minecraft.client.util.ITooltipFlag;
@@ -20,6 +21,8 @@ public class ItemDynasterAmulet extends JItem implements IBauble {
 
     public ItemDynasterAmulet(String name, String enName) {
         super(name, enName);
+        setCreativeTab(JourneyTabs.UTIL);
+        setMaxStackSize(1);
     }
 
     @Override

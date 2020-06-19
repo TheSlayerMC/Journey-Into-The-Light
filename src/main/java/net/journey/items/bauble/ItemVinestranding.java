@@ -2,6 +2,7 @@ package net.journey.items.bauble;
 
 import baubles.api.BaubleType;
 import baubles.api.IBauble;
+import net.journey.init.JourneyTabs;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.init.items.JourneyArmory;
 import net.journey.items.base.JItem;
@@ -23,6 +24,8 @@ public class ItemVinestranding extends JItem implements IBauble {
 
     public ItemVinestranding(String name, String enName) {
         super(name, enName);
+        setCreativeTab(JourneyTabs.UTIL);
+        setMaxStackSize(1);
     }
 
     @Override

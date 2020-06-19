@@ -24,7 +24,7 @@ public class ItemWaterbending extends JItem implements IBauble {
 
 	public ItemWaterbending(String name, String f) {
 		super(name, f);
-		setCreativeTab(JourneyTabs.WEAPONS);
+		setCreativeTab(JourneyTabs.UTIL);
 		setMaxDamage(1);
 		setMaxStackSize(1);
 	}
