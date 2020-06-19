@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import net.journey.api.block.GroundPredicate;
 import net.journey.dimension.base.DimensionHelper;
+import net.journey.dimension.base.gen.JWorldGenPlants;
 import net.journey.dimension.corba.biomes.BiomeGenCorbaSwamp;
 import net.journey.dimension.corba.gen.WorldGenCorbaLamp;
 import net.journey.dimension.corba.gen.WorldGenCorbaVillage;
@@ -15,7 +17,6 @@ import net.journey.dimension.corba.gen.trees.WorldGenCorbaMediumTree;
 import net.journey.dimension.corba.gen.trees.WorldGenCorbaSmallTree;
 import net.journey.dimension.corba.village.MapGenCorbaVillage;
 import net.journey.dimension.overworld.gen.WorldGenCaveVines;
-import net.journey.dimension.overworld.gen.WorldGenJDoublePlant;
 import net.journey.dimension.overworld.gen.WorldGenModFlower;
 import net.journey.dimension.overworld.gen.WorldGenSmallGlowshrooms;
 import net.journey.dimension.overworld.gen.WorldGenTallGlowshroom;
@@ -83,7 +84,7 @@ public class ChunkProviderCorba implements IChunkGenerator {
 	private WorldGenModFlower flower = new WorldGenModFlower(JourneyBlocks.corbaFlower, JourneyBlocks.corbaGrass);
 	private WorldGenModFlower small_bogshroom = new WorldGenModFlower(JourneyBlocks.bog_shrooms_small, JourneyBlocks.taintedMud);
 	private WorldGenModFlower tall_bogshroom = new WorldGenModFlower(JourneyBlocks.bog_shroom_tall, JourneyBlocks.taintedMud);
-	private WorldGenJDoublePlant bogweed = new WorldGenJDoublePlant(JourneyBlocks.bogweed);
+	private JWorldGenPlants bogweed = new JWorldGenPlants(JourneyBlocks.bogweed, GroundPredicate.TAINTED_MUD, 1);
 
 	private WorldGenTreehouse worldGenTreehouse = new WorldGenTreehouse();
 	private WorldGenCorbaVillage village = new WorldGenCorbaVillage();
