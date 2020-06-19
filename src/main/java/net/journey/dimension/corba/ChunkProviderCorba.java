@@ -87,6 +87,7 @@ public class ChunkProviderCorba implements IChunkGenerator {
 	private WorldGenModFlower flower = new WorldGenModFlower(JourneyBlocks.corbaFlower, JourneyBlocks.corbaGrass);
 	private WorldGenModFlower small_bogshroom = new WorldGenModFlower(JourneyBlocks.bog_shrooms_small, JourneyBlocks.taintedMud);//make custom mushrooms
 	private WorldGenModFlower tall_bogshroom = new WorldGenModFlower(JourneyBlocks.bog_shroom_tall, JourneyBlocks.taintedMud);
+	private WorldGenModFlower bogweed = new WorldGenModFlower(JourneyBlocks.bogweed, JourneyBlocks.taintedMud);
 
 	private WorldGenTreehouse worldGenTreehouse = new WorldGenTreehouse();
 	private WorldGenCorbaVillage village = new WorldGenCorbaVillage();
@@ -438,9 +439,10 @@ public class ChunkProviderCorba implements IChunkGenerator {
 		} 
 
 		if(worldObj.getBiome(chunkStart) == DimensionHelper.CORBA_SWAMP_BIOME) {
-			for(i = 0; i < 2; i++) {
+			for(i = 0; i < 5; i++) {
 				small_bogshroom.generate(worldObj, r, chunkStart);
 				tall_bogshroom.generate(worldObj, r, chunkStart);
+				bogweed.generate(worldObj, r, chunkStart);
 			}
 		}
 
