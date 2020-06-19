@@ -15,19 +15,18 @@ import net.journey.dimension.corba.gen.trees.WorldGenCorbaMediumTree;
 import net.journey.dimension.corba.gen.trees.WorldGenCorbaSmallTree;
 import net.journey.dimension.corba.village.MapGenCorbaVillage;
 import net.journey.dimension.overworld.gen.WorldGenCaveVines;
+import net.journey.dimension.overworld.gen.WorldGenJDoublePlant;
 import net.journey.dimension.overworld.gen.WorldGenModFlower;
 import net.journey.dimension.overworld.gen.WorldGenSmallGlowshrooms;
 import net.journey.dimension.overworld.gen.WorldGenTallGlowshroom;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.Config;
-import net.journey.util.handler.Helper;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockStateMatcher;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.LazyLoadBase;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
@@ -44,12 +43,9 @@ import net.minecraft.world.gen.MapGenCaves;
 import net.minecraft.world.gen.MapGenRavine;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.NoiseGeneratorPerlin;
-import net.minecraft.world.gen.feature.WorldGenLakes;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenSwamp;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.minecraftforge.event.terraingen.InitMapGenEvent;
-import net.minecraftforge.event.terraingen.TerrainGen;
 import net.slayer.api.worldgen.WorldGenAPI;
 
 public class ChunkProviderCorba implements IChunkGenerator {
@@ -85,9 +81,9 @@ public class ChunkProviderCorba implements IChunkGenerator {
 	private WorldGenModFlower flower5 = new WorldGenModFlower(JourneyBlocks.corbaLightPurpleFlower, JourneyBlocks.corbaGrass);
 	private WorldGenModFlower tall = new WorldGenModFlower(JourneyBlocks.corbaTallGrass, JourneyBlocks.corbaGrass);
 	private WorldGenModFlower flower = new WorldGenModFlower(JourneyBlocks.corbaFlower, JourneyBlocks.corbaGrass);
-	private WorldGenModFlower small_bogshroom = new WorldGenModFlower(JourneyBlocks.bog_shrooms_small, JourneyBlocks.taintedMud);//make custom mushrooms
+	private WorldGenModFlower small_bogshroom = new WorldGenModFlower(JourneyBlocks.bog_shrooms_small, JourneyBlocks.taintedMud);
 	private WorldGenModFlower tall_bogshroom = new WorldGenModFlower(JourneyBlocks.bog_shroom_tall, JourneyBlocks.taintedMud);
-	private WorldGenModFlower bogweed = new WorldGenModFlower(JourneyBlocks.bogweed, JourneyBlocks.taintedMud);
+	private WorldGenJDoublePlant bogweed = new WorldGenJDoublePlant(JourneyBlocks.bogweed);
 
 	private WorldGenTreehouse worldGenTreehouse = new WorldGenTreehouse();
 	private WorldGenCorbaVillage village = new WorldGenCorbaVillage();

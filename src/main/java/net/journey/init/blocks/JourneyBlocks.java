@@ -750,7 +750,7 @@ public class JourneyBlocks {
 
         taintedMud = new JBlockMud("tainted_mud", "Tainted Mud");
 
-        bogweed = (JBlockDoublePlant) new JBlockDoublePlant("bogweed", "Bogweed").setGroundPredicate(GroundPredicate.SOLID_SIDE);
+        bogweed = (JBlockDoublePlant) new JBlockDoublePlant("bogweed", "Bogweed").setGroundPredicate(GroundPredicate.COMMON_AND_CORBA_GRASS);
         swamp_lily = new JBlockWaterLily("swamp_lily", "Swamp lily");
         swamp_shelf = new JBlockFungalShelf("swamp_shelf", "Swamp Shelf");
         bog_shrooms_small = (JBlockMushroom) new JBlockMushroom("bog_shrooms_small", "Small Bogshroom Cluster").setGroundPredicate(GroundPredicate.COMMON_AND_CORBA_GRASS).setLightLevel(0.3F);
