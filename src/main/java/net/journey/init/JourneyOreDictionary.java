@@ -10,6 +10,7 @@ public class JourneyOreDictionary {
         initOreBlocks();
         initOreItems();
         initLogBlocks();
+        initPlankBlocks();
     }
 
     public static void initOreBlocks() {
@@ -62,5 +63,14 @@ public class JourneyOreDictionary {
         OreDictionary.registerOre("logWood", JourneyBlocks.sizzlerWoodLog);
         OreDictionary.registerOre("logWood", JourneyBlocks.terranianLog);
         OreDictionary.registerOre("logWood", JourneyBlocks.witherwoodLog);
+    }
+
+    public static void initPlankBlocks() {
+        OreDictionary.registerOre("plankWood", JourneyBlocks.goldEucaPlank);
+        OreDictionary.registerOre("plankWood", JourneyBlocks.corbaPlank);
+        OreDictionary.registerOre("plankWood", JourneyBlocks.depthsPlank);
+        OreDictionary.registerOre("plankWood", JourneyBlocks.cloudiaPlanks);
+        OreDictionary.registerOre("plankWood", JourneyBlocks.earthenNetherPlanks);
+        OreDictionary.registerOre("plankWood", JourneyBlocks.frozenPlanks);
     }
 }
