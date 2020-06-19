@@ -11,6 +11,7 @@ import net.journey.init.JourneySounds;
 import net.journey.items.*;
 import net.journey.items.base.JItem;
 import net.journey.items.bauble.ItemDynasterAmulet;
+import net.journey.items.bauble.ItemVinestranding;
 import net.journey.items.bauble.ItemWaterbending;
 import net.journey.items.interactive.*;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -570,7 +571,7 @@ public class JourneyItems {
 	    obsidianRod = new JItem("obsidianRod", "Obsidian Rod");
 
 	    BALMY_TEARDROP = new JItem("balmy_teardrop", "Balmy Teardrop");
-	    CHARM_OF_VINE_STRANDING = new JItem("charm_of_vine_stranding", "Charm of Vinestranding");
+	    CHARM_OF_VINE_STRANDING = new ItemVinestranding("charm_of_vine_stranding", "Charm of Vinestranding");
 	    CHARM_OF_WATER_BENDING = new ItemWaterbending("charm_of_water_bending", "Charm of Waterbending");
 	    CLOUD_BUCKLER = new JItem("cloud_buckler", "Cloud Buckler");
 	    CURSED_TOMB = new ItemCursedTomb("cursed_tomb", "Cursed Tomb");
