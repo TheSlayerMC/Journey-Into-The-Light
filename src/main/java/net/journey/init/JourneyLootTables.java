@@ -27,6 +27,7 @@ public class JourneyLootTables {
 
     //Boss
     public static final ResourceLocation NETHER_BEAST = register("mobs/boss/nether_beast");
+    public static final ResourceLocation BLAZIER = register("mobs/boss/blazier");
 
     //Overworld
     public static final ResourceLocation BIG_HONGO = register("mobs/overworld/big_hongo");

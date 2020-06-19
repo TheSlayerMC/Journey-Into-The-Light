@@ -37,6 +37,7 @@ public class JBlockBossCrystal extends BlockModContainer implements IHasTeisr, I
     public JBlockBossCrystal(String name, String finalName, JBlockBossCrystal.Type type) {
         super(name, finalName);
         this.type = type;
+        setHardness(0.6F);
         setLightLevel(1.0F);
         setSoundType(EnumMaterialTypes.GLASS.getSound());
         setCreativeTab(JourneyTabs.INTERACTIVE_BLOCKS);
