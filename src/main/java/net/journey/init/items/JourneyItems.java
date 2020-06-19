@@ -10,6 +10,7 @@ import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.journey.items.*;
 import net.journey.items.base.JItem;
+import net.journey.items.bauble.ItemAquaticAmulet;
 import net.journey.items.bauble.ItemDynasterAmulet;
 import net.journey.items.bauble.ItemVinestranding;
 import net.journey.items.bauble.ItemWaterbending;
@@ -355,6 +356,8 @@ public class JourneyItems {
     //public static Item infernoshield;
 
     public static Item dynasterAmulet;
+    public static Item aquaticAmulet;
+    public static Item emptyAmulet;
 
     public static void init() {
 
@@ -615,6 +618,8 @@ public class JourneyItems {
 	    //obsidianBoat = new ItemObsidianBoat("obsidianboat", "Obsidian Boat");
 	    //infernoshield = new ItemModShield("infernoshield", "Inferno Shield", 2, false);
         dynasterAmulet = new ItemDynasterAmulet("amulet_dynaster", "Amulet of the Dynaster");
+        aquaticAmulet = new ItemAquaticAmulet("amulet_aquatic", "Amulet of the Depths");
+        emptyAmulet = new JItem("amulet_empty", "Empty Amulet");
     }
 
     public static ToolMaterial addToolMaterial(int uses, float efficiency, float dam, boolean breakable) {

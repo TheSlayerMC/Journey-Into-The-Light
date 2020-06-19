@@ -67,6 +67,12 @@
       },
       {
         "type": "item",
+        "name": "journey:amulet_empty",
+        "functions": [{ "function": "set_count", "count": { "min": 1, "max": 2 } }],
+        "weight": 14
+      },
+      {
+        "type": "item",
         "name": "journey:tomatoSeeds",
         "functions": [{ "function": "set_count", "count": { "min": 2, "max": 15 } }],
         "weight": 35

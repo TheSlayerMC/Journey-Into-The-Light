@@ -49,6 +49,8 @@ public class JourneyRecipes {
 		addShapedRecipe(JourneyBlocks.blueGemBlock, "iii", "iii", "iii", 'i', JourneyItems.blueGem);
 		addShapedRecipe(JourneyBlocks.yellowGemBlock, "iii", "iii", "iii", 'i', JourneyItems.yellowGem);
 
+		addShapedRecipe(JourneyItems.aquaticAmulet, " i ", "ixi", 'i', JourneyItems.AQUASTONE, 'x', JourneyItems.emptyAmulet);
+
 		addShapedRecipe(JourneyBlocks.magicExplosive, "ixi", "xix", "ixi", 'i', JourneyItems.MAGIC_DUST, 'x', Blocks.SAND);
 
 		addShapedRecipe(JourneyBlocks.INCUBATOR, "iii", "jkj", "ckc", 'i', Blocks.OBSIDIAN, 'j', Items.IRON_INGOT, 'k', JourneyItems.luniumIngot, 'c', Blocks.COBBLESTONE);

@@ -616,7 +616,9 @@ tile.yellowgemblock.name=Yellow Gem Block
 #Items
 item.airMelon.name=Air Melon
 item.airRootSeed.name=Air Root Seed
+item.amulet_aquatic.name=Amulet of the Depths
 item.amulet_dynaster.name=Amulet of the Dynaster
+item.amulet_empty.name=Empty Amulet
 item.ancient_eye_of_opening.name=Ancient Eye of Opening
 item.ancientpiece_1.name=Ancient Piece
 item.ancientpiece_2.name=Ancient Shard
