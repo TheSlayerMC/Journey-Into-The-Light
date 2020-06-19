@@ -1,12 +1,18 @@
 package net.journey.client.render.block;
 
+import net.journey.blocks.containers.BlockSenterianAltar;
+import net.journey.blocks.containers.JBlockBossCrystal;
+import net.journey.blocks.tileentity.TileEntityBossCrystal;
 import net.journey.blocks.tileentity.TileEntitySenterianAltar;
 import net.journey.client.render.Textures;
 import net.journey.client.render.model.block.ModelSenterianAltar;
 import net.journey.init.blocks.JourneyBlocks;
+import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
+import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -33,25 +39,19 @@ public class SenterianAltarRenderer extends TileEntitySpecialRenderer {
 	    GL11.glPopMatrix();
     }
 
-//	public static class AltarTEISR extends TileEntityItemStackRenderer {
-//
-//		private final TileEntitySenterianAltar altar = new TileEntitySenterianAltar();
-//
-//		@Override
-//		public void renderByItem(ItemStack itemStackIn, float partialTicks) {
-//			TileEntityRendererDispatcher.instance.render(altar, 0.0D, 0.0D, 0.0D, 0.0F, partialTicks);
-//		}
-//	}
-
 	public static class SenterianAltarTEISR extends TileEntityItemStackRenderer {
 
-		private final ModelSenterianAltar model = new ModelSenterianAltar();
+		private final TileEntitySenterianAltar altar = new TileEntitySenterianAltar();
 
 		@Override
-		public void renderByItem(ItemStack itemStackIn) {
-			if (itemStackIn.getItem() == SlayerAPI.toItem(JourneyBlocks.senterianAltar)) {
-				this.model.render(1.0F, true);
-			}
+		public void renderByItem(ItemStack itemStackIn, float partialTicks) {
+			GL11.glPushMatrix();
+			GL11.glScalef(0.52F, 0.52F, 0.52F);
+			GL11.glTranslated(0.5F,  - 1.5F, 0.5F);
+			TileEntityRendererDispatcher.instance.render(altar, 0.0D, 0.0D, 0.0D, 0.0F, partialTicks);
+			GlStateManager.disableAlpha();
+			GlStateManager.disableBlend();
+			GL11.glPopMatrix();
 		}
 	}
 }

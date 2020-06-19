@@ -7,6 +7,7 @@ import net.journey.blocks.tileentity.TileEntityBossCrystal;
 import net.journey.init.JourneyTabs;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.inventory.InventoryHelper;
@@ -24,6 +25,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.EnumMaterialTypes;
 import net.slayer.api.entity.tileentity.container.BlockModContainer;
 import org.jetbrains.annotations.NotNull;
+import org.lwjgl.opengl.GL11;
 
 import java.util.function.Supplier;
 
@@ -105,10 +107,16 @@ public class JBlockBossCrystal extends BlockModContainer implements IHasTeisr, I
 
         @Override
         public void renderByItem(ItemStack itemStackIn, float partialTicks) {
-            System.out.println("hello");
             JBlockBossCrystal.Type type = ((JBlockBossCrystal) Block.getBlockFromItem(itemStackIn.getItem())).type;
             crystal.setChestType(type);
+
+            GL11.glPushMatrix();
+            GL11.glScalef(0.52F, 0.52F, 0.52F);
+            GL11.glTranslated(0.5F,  - 1.5F, 0.5F);
             TileEntityRendererDispatcher.instance.render(crystal, 0.0D, 0.0D, 0.0D, 0.0F, partialTicks);
+            GlStateManager.disableAlpha();
+            GlStateManager.disableBlend();
+            GL11.glPopMatrix();
         }
     }
 
