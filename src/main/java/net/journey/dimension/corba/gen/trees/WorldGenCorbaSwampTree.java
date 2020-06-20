@@ -16,6 +16,10 @@ public class WorldGenCorbaSwampTree extends WorldGenAbstractTree {
     private static final IBlockState TRUNK;
     private static final IBlockState LEAF;
 
+    public WorldGenCorbaSwampTree() {
+        super(false);
+    }
+
     public WorldGenCorbaSwampTree(boolean doBlockNotify) {
         super(doBlockNotify);
     }

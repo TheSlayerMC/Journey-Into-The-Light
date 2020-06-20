@@ -153,7 +153,7 @@ public class EntityOverseerElder extends EntityModFlying {
 
     @Override
     public float getEyeHeight() {
-        return 2.6F;
+        return 1.6F;
     }
 
     @Override

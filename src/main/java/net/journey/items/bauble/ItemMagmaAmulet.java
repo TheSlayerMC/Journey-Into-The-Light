@@ -35,8 +35,8 @@ public class ItemMagmaAmulet extends JItem implements IBauble {
     public void onWornTick(ItemStack itemstack, EntityLivingBase player) {
         if(player.isInLava()) {
             player.addPotionEffect(PotionEffects.setPotionEffect(PotionEffects.fireResistance, 10, 4));
-            player.motionX *= 2.0F;
-            player.motionZ *= 2.0F;
+            player.motionX *= 1.5F;
+            player.motionZ *= 1.5F;
         }
         if(player.isInWater()) {
             player.addPotionEffect(PotionEffects.setPotionEffect(PotionEffects.poison, 10, 4));

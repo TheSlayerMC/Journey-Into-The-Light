@@ -31,7 +31,6 @@ public class ItemWaterbending extends JItem implements IBauble {
 
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand handIn) {
-		ItemStack stack = player.getHeldItem(handIn);
 		IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);		
 		try {
 			if(mana.useEssence(10)) {
@@ -52,7 +51,7 @@ public class ItemWaterbending extends JItem implements IBauble {
 
 	@Override
 	public void onWornTick(ItemStack itemstack, EntityLivingBase player) {
-		player.addPotionEffect(PotionEffects.setPotionEffect(PotionEffects.waterBreathing, 2400, 1));
+		player.addPotionEffect(PotionEffects.setPotionEffect(PotionEffects.waterBreathing, 10, 1));
 	}
 
 	@Override

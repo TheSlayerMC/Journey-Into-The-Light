@@ -150,7 +150,7 @@ public class EntitySurfaceSeer extends EntityModFlying {
 
     @Override
     public float getEyeHeight() {
-        return 2.6F;
+        return 0.5F;
     }
 
     @Override

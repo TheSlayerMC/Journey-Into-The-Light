@@ -33,7 +33,7 @@ public class ItemHeartContainer extends JItem implements IBauble {
 
     @Override
     public BaubleType getBaubleType(ItemStack itemStack) {
-        return BaubleType.CHARM;
+        return BaubleType.BODY;
     }
 
     @Override

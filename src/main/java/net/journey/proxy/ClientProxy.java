@@ -11,6 +11,7 @@ import net.journey.client.render.particles.OreParticleFX;
 import net.journey.dimension.boil.BoilSkyRenderer;
 import net.journey.dimension.cloudia.CloudiaSkyRenderer;
 import net.journey.enums.EnumParticlesClasses;
+import net.journey.eventhandler.BaubleEvent;
 import net.journey.eventhandler.ClientTickEvent;
 import net.journey.util.gen.lang.LangGeneratorFacade;
 import net.minecraft.client.Minecraft;

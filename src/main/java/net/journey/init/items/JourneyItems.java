@@ -11,6 +11,7 @@ import net.journey.init.JourneySounds;
 import net.journey.items.*;
 import net.journey.items.base.JItem;
 import net.journey.items.bauble.*;
+import net.journey.items.bauble.ring.*;
 import net.journey.items.interactive.*;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
@@ -356,12 +357,20 @@ public class JourneyItems {
     public static Item aquaticAmulet;
     public static Item magmaAmulet;
     public static Item emptyAmulet;
+    public static Item skullOfDecay;
     public static Item heartContainerSmall;
     public static Item heartContainerMedium;
     public static Item heartContainerLarge;
     public static Item heartContainerUltimate;
     public static Item heartContainerSentry;
 
+    public static Item blindnessRing;
+    public static Item harmRing;
+    public static Item miningFatigueRing;
+    public static Item nauseaRing;
+    public static Item poisonRing;
+    public static Item slownessRing;
+    public static Item witherRing;
 
     public static void init() {
 
@@ -578,8 +587,7 @@ public class JourneyItems {
 	    obsidianRod = new JItem("obsidianRod", "Obsidian Rod");
 
 	    BALMY_TEARDROP = new JItem("balmy_teardrop", "Balmy Teardrop");
-	    CHARM_OF_VINE_STRANDING = new ItemVinestranding("charm_of_vine_stranding", "Charm of Vinestranding");
-	    CHARM_OF_WATER_BENDING = new ItemWaterbending("charm_of_water_bending", "Charm of Waterbending");
+
 	    CLOUD_BUCKLER = new JItem("cloud_buckler", "Cloud Buckler");
 	    CURSED_TOMB = new ItemCursedTomb("cursed_tomb", "Cursed Tomb");
 	    DEATH_CAP = new JItem("death_cap", "Death Cap");
@@ -626,11 +634,23 @@ public class JourneyItems {
         magmaAmulet = new ItemMagmaAmulet("amulet_magma", "Amulet of Eternal Magma");
         emptyAmulet = new JItem("amulet_empty", "Empty Amulet");
 
+        skullOfDecay = new ItemSkullOfDecay("skull_of_decay", "Skull Of Decay");
+        CHARM_OF_VINE_STRANDING = new ItemVinestranding("charm_of_vine_stranding", "Charm of Vinestranding");
+        CHARM_OF_WATER_BENDING = new ItemWaterbending("charm_of_water_bending", "Charm of Waterbending");
+
         heartContainerSmall = new ItemHeartContainer("heartSml", "Heart Container", 2);
-        heartContainerMedium = new ItemHeartContainer("heartMed", "Heart Container", 5);
+        heartContainerMedium = new ItemHeartContainer("heartMed", "Heart Container", 6);
         heartContainerLarge = new ItemHeartContainer("heartLrg", "Heart Container", 10);
-        heartContainerUltimate = new ItemHeartContainer("heartUlt", "Heart Container", 15);
+        heartContainerUltimate = new ItemHeartContainer("heartUlt", "Heart Container", 16);
         heartContainerSentry = new ItemHeartContainer("heartSen", "Heart of the Sentry", 20);
+
+        blindnessRing = new ItemRingBlindness("ring_blindness", "Ring of Clear Vision");
+        harmRing = new ItemRingHarm("ring_harm", "Ring of Strong Immunity");
+        miningFatigueRing = new ItemRingMiningFatigue("ring_mining_fatigue", "Ring of Great Spelunking");
+        nauseaRing = new ItemRingNausea("ring_nausea", "Ring of Good Health");
+        poisonRing = new ItemRingPoison("ring_poison", "Ring of Safe Living");
+        slownessRing = new ItemRingSlowness("ring_slowness", "Ring of Protected Movement");
+        witherRing = new ItemRingWither("ring_wither", "Ring of Inverse Decay");
     }
 
     public static ToolMaterial addToolMaterial(int uses, float efficiency, float dam, boolean breakable) {

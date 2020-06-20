@@ -1,0 +1,10 @@
+{
+	"variants": {
+		"stage=0": {
+			"model": "journey:sapling/bogwood_sapling"
+		},
+		"stage=1": {
+			"model": "journey:sapling/bogwood_sapling"
+		}
+	}
+}

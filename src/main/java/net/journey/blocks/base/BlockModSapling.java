@@ -2,6 +2,7 @@ package net.journey.blocks.base;
 
 import net.journey.JITL;
 import net.journey.api.block.IHasCustomItemPath;
+import net.journey.dimension.corba.gen.trees.WorldGenCorbaSwampTree;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
@@ -12,6 +13,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.event.terraingen.TerrainGen;

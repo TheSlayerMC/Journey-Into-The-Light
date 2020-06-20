@@ -35,10 +35,6 @@ public class ItemDynasterAmulet extends JItem implements IBauble {
 
     @Override
     public void onWornTick(ItemStack itemstack, EntityLivingBase player) {
-        Potion potion = Potion.getPotionById(PotionEffects.blindness);
-        if(player.isPotionActive(potion)) {
-            player.removeActivePotionEffect(potion);
-        }
         if(player.motionY < 0.0D && !player.onGround && !player.isInWater() && !player.isInLava() && player.isSneaking()) {
             player.motionY *= 0.75F;
             player.fallDistance = -1.0F;
@@ -48,7 +44,6 @@ public class ItemDynasterAmulet extends JItem implements IBauble {
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack i, World worldIn, List<String> l, ITooltipFlag flagIn) {
-        l.add(SlayerAPI.Colour.GOLD + "Negates Blindness When Worn");
         l.add(SlayerAPI.Colour.YELLOW + "Crouch to Glide and Negate Fall Damage");
     }
 }

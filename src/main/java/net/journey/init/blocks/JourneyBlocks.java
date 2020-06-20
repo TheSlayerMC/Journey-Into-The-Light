@@ -9,6 +9,8 @@ import net.journey.blocks.plant.*;
 import net.journey.blocks.portal.*;
 import net.journey.dimension.boil.trees.WorldGenBoilTree1;
 import net.journey.dimension.corba.gen.trees.WorldGenCorbaSmallTree;
+import net.journey.dimension.corba.gen.trees.WorldGenCorbaSwampTree;
+import net.journey.dimension.depths.gen.WorldGenDepthsTree;
 import net.journey.dimension.euca.gen.trees.WorldGenEucaTree;
 import net.journey.dimension.frozen.gen.WorldGenFrozenTree;
 import net.journey.dimension.frozen.gen.WorldGenIceTree;
@@ -16,6 +18,7 @@ import net.journey.dimension.nether.gen.trees.WorldGenBleedheartTree0;
 import net.journey.dimension.nether.gen.trees.WorldGenEarthenTree;
 import net.journey.dimension.terrania.gen.shroom.WorldGenTerrashroom;
 import net.journey.dimension.terrania.gen.trees.WorldGenTerraniaSmallTree;
+import net.journey.dimension.terrania.gen.trees.WorldGenTerraniaTree;
 import net.journey.init.JourneyTabs;
 import net.journey.init.items.JourneyConsumables;
 import net.journey.init.items.JourneyItems;
@@ -131,11 +134,11 @@ public class JourneyBlocks {
     public static BlockMod boilSapling;
     public static BlockMod depthsSapling;
     public static BlockMod corbaSapling;
+    public static BlockMod bogwoodSapling;
     public static BlockMod netherSapling;
     public static BlockMod EARTHEN_SAPLING;
     public static BlockMod frozenSapling;
     public static BlockMod frozenIceSapling;
-    public static BlockMod terraniaSapling;
 
     public static BlockMod eucaGrass;
     public static BlockMod eucaSilverGrass;
@@ -559,6 +562,8 @@ public class JourneyBlocks {
     public static BlockIncubator INCUBATOR;
     public static BlockIncubator INCUBATOR_LIT;
 
+    public static BlockMod terraniaSapling;
+
     public static void init() {
 
         iridiumOre = new BlockModOre("iridiumOre", "Iridium Ore", true).setHarvestLevel(EnumToolType.DIAMOND_PICK);
@@ -667,13 +672,12 @@ public class JourneyBlocks {
         eucaSapling = new BlockModSapling("eucaSapling", "Euca Sapling", new WorldGenEucaTree());
         boilSapling = new BlockModSapling("boilSapling", "Boiling Sapling", new WorldGenBoilTree1());
         corbaSapling = new BlockModSapling("corbaSapling", "Corba Sapling", new WorldGenCorbaSmallTree());
-        depthsSapling = new BlockModSapling("depthsSapling", "Depths Sapling", new WorldGenTerraniaSmallTree());
-        terraniaSapling = new BlockModSapling("terraniaSapling", "Terrania Sapling", new WorldGenEucaTree());
+        //bogwoodSapling = new BlockModSapling("bogwood_sapling", "Bogwood Sapling", new WorldGenCorbaSwampTree());
+        depthsSapling = new BlockModSapling("depthsSapling", "Depths Sapling", new WorldGenDepthsTree());
         netherSapling = new BlockModSapling("netherSapling", "Deadblood Sapling", new WorldGenBleedheartTree0());
         EARTHEN_SAPLING = new BlockModSapling("earthenSapling", "Earthen Sapling", new WorldGenEarthenTree());
         frozenIceSapling = new BlockModSapling("frozenIceSapling", "Ice Sapling", new WorldGenIceTree());
         frozenSapling = new BlockModSapling("frozenSapling", "Frozen Sapling", new WorldGenFrozenTree());
-        //frozenSapling = new BlockModSapling("frozenSapling", "Frozen Sapling", new WorldGenFrozenTree(false, false));
 
         eucaDirt = new BlockMod(EnumMaterialTypes.DIRT, "eucaDirt", "Euca Dirt", 2.0F);
         eucaGrass = new BlockModGrass(eucaDirt, "eucaGrass", "Euca Grass", 2.0F);
@@ -762,7 +766,7 @@ public class JourneyBlocks {
         taintedMud = new JBlockMud("tainted_mud", "Tainted Mud");
 
         bogwoodLog = new JBlockLog("bogwood_log", "Bogwood Log");
-        bogwoodLeaves = new BlockModLeaves("bogwood_leaves", "Bogwood Leaves", 1.0F);
+        bogwoodLeaves = new BlockModLeaves("bogwood_leaves", "Bogwood Leaves", 1.0F, bogwoodSapling);
 
         bogweed = (JBlockDoublePlant) new JBlockDoublePlant("bogweed", "Bogweed").setGroundPredicate(GroundPredicate.TAINTED_MUD);
         swamp_lily = new JBlockWaterLily("swamp_lily", "Swamp lily");
@@ -974,13 +978,10 @@ public class JourneyBlocks {
         enchantedShroomsSmall = (JBlockMushroom) new JBlockMushroom("enchanted_shrooms_small", "Enchanted Shrooms").setLightLevel(0.3F);
         enchantedShroomTall = (JBlockMushroom) new JBlockMushroom("enchanted_shroom_tall", "Tall Enchanted Shroom").setLightLevel(0.6F);
 
-        terrashroomBlockPink = new BlockJourneyMushroom(EnumMaterialTypes.WOOD, "terrashroomBlockPink",
-                "Terrashroom Block", 0.5F, terramushroom);
-        terrashroomBlockPurple = new BlockJourneyMushroom(EnumMaterialTypes.WOOD, "terrashroomBlockPurple",
-                "Terrashroom Block", 0.5F, terramushroom);
-        // terrashroomStem = new
-        // BlockMod(EnumMaterialTypes.WOOD,"terrashroomStem", "Terrashroom
-        // Stem", 0.5F);
+        terrashroomBlockPink = new BlockJourneyMushroom(EnumMaterialTypes.WOOD, "terrashroomBlockPink", "Terrashroom Block", 0.5F, terramushroom);
+        terrashroomBlockPurple = new BlockJourneyMushroom(EnumMaterialTypes.WOOD, "terrashroomBlockPurple", "Terrashroom Block", 0.5F, terramushroom);
+
+        terraniaSapling = new BlockModSapling("terraniaSapling", "Terrania Sapling", new WorldGenTerraniaTree(true, 5, 10, terranianLog.getDefaultState(), terraniaLeaves.getDefaultState()));
 
         hotBrick = new BlockMod("hotBrick", "Hot Brick", 2.0F);
         hotBrick_fence = new BlockModFence(hotBrick, "hotBrickFence", "Hot Brick Fence");
