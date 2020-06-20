@@ -22,12 +22,11 @@ public class BaubleEvent {
 
     @SubscribeEvent
     public static void onPlayerAttacked(LivingHurtEvent event) {
-        EntityLiving entity = (EntityLiving) event.getSource().getTrueSource();
-
         if(!event.getEntity().world.isRemote) {
             if(event.getEntity() instanceof EntityPlayer) {
                 if(BaublesApi.isBaubleEquipped((EntityPlayer)event.getEntity(), JourneyItems.skullOfDecay) != -1) {
                     if(event.getSource().getTrueSource() instanceof EntityLiving) {
+                        EntityLiving entity = (EntityLiving) event.getSource().getTrueSource();
                         entity.addPotionEffect(PotionEffects.setPotionEffect(PotionEffects.wither, 400, 1));
                     }
                 }
