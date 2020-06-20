@@ -46,7 +46,7 @@ public class ItemMagmaAmulet extends JItem implements IBauble {
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack i, World worldIn, List<String> l, ITooltipFlag flagIn) {
-        l.add(SlayerAPI.Colour.GOLD + "Grants Agility and Fire Resistance in Lava");
-        l.add(SlayerAPI.Colour.RED + "Poisons when in Water");
+        l.add(SlayerAPI.Colour.GOLD + "Grants agility and fire resistance while in lava");
+        l.add(SlayerAPI.Colour.RED + "Poisons while in water");
     }
 }

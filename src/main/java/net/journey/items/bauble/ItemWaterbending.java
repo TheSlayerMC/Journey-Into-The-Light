@@ -25,23 +25,7 @@ public class ItemWaterbending extends JItem implements IBauble {
 	public ItemWaterbending(String name, String f) {
 		super(name, f);
 		setCreativeTab(JourneyTabs.UTIL);
-		setMaxDamage(1);
 		setMaxStackSize(1);
-	}
-
-	@Override
-	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand handIn) {
-		IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);		
-		try {
-			if(mana.useEssence(10)) {
-				if(!world.isRemote) {
-					player.addPotionEffect(PotionEffects.setPotionEffect(PotionEffects.waterBreathing, 2400, 1));
-				}
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getHeldItem(handIn));
 	}
 
 	@Override

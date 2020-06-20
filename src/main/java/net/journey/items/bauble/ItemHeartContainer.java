@@ -49,6 +49,6 @@ public class ItemHeartContainer extends JItem implements IBauble {
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack i, World worldIn, List<String> l, ITooltipFlag flagIn) {
-        l.add(SlayerAPI.Colour.GOLD + "Grants " + hearts + " Extra Health Points");
+        l.add(SlayerAPI.Colour.GOLD + "Grants " + hearts + " extra health points");
     }
 }

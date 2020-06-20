@@ -372,6 +372,8 @@ public class JourneyItems {
     public static Item slownessRing;
     public static Item witherRing;
 
+    public static Item luckyCharm;
+
     public static void init() {
 
 	    hellstoneIngot = new JItem("hellstoneIngot", "Hellstone Ingot");
@@ -651,6 +653,7 @@ public class JourneyItems {
         poisonRing = new ItemRingPoison("ring_poison", "Ring of Safe Living");
         slownessRing = new ItemRingSlowness("ring_slowness", "Ring of Protected Movement");
         witherRing = new ItemRingWither("ring_wither", "Ring of Inverse Decay");
+        luckyCharm = new ItemLuckyCharm("charm_of_luck", "Lucky Charm");
     }
 
     public static ToolMaterial addToolMaterial(int uses, float efficiency, float dam, boolean breakable) {
