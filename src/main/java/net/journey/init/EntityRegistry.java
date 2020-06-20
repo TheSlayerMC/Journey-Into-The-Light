@@ -1,11 +1,11 @@
 package net.journey.init;
 
+import net.journey.entity.functional.EntityBossSpawner;
 import net.journey.entity.item.EntityMagicExplosive;
 import net.journey.entity.item.EntityObsidianBoat;
 import net.journey.entity.mob.boiling.*;
 import net.journey.entity.mob.boiling.npc.EntityBoilTrader;
 import net.journey.entity.mob.boiling.npc.EntityEscapedConvict;
-import net.journey.entity.mob.overworld.EntityWraith;
 import net.journey.entity.mob.boss.*;
 import net.journey.entity.mob.cloudia.*;
 import net.journey.entity.mob.cloudia.npc.EntityStarlightBlacksmith;
@@ -24,6 +24,7 @@ import net.journey.entity.mob.euca.npc.EntityAlloyMender;
 import net.journey.entity.mob.frozen.*;
 import net.journey.entity.mob.frozen.npc.EntityFrozenMerchant;
 import net.journey.entity.mob.nether.*;
+import net.journey.entity.mob.overworld.EntityWraith;
 import net.journey.entity.mob.overworld.*;
 import net.journey.entity.mob.overworld.cold.EntityBlizzard;
 import net.journey.entity.mob.overworld.jungle.EntityJungleGolem;
@@ -74,6 +75,8 @@ public class EntityRegistry {
 	public static void registerEntities(RegistryEvent.Register<EntityEntry> event) {
 		EntityRegistry.registerProjectiles(event);
 		EntityRegistry.registerMobs(event);
+
+		event.getRegistry().register(SlayerAPI.buildMobEntryNoEgg(EntityBossSpawner.class, "boss_spawner"));
 	}
 
 	public static void onLoadComplete(FMLLoadCompleteEvent event) {
@@ -293,11 +296,11 @@ public class EntityRegistry {
 				SlayerAPI.buildMobEntry(EntityMiniSentryStalker.class, "miniSentrystalker", "Mini Sentry Stalker", 0x584040, 0x1C1C1C),
 				SlayerAPI.buildMobEntry(EntityMiniSentryWalker.class, "miniSentrywalker", "Mini Sentry Walker", 0x584040, 0x1C1C1C),
 				//OBSIDIANBOAT
-				SlayerAPI.buildEntityEntryNoEgg(EntityObsidianBoat.class, "obsidianboat", 16),
+				SlayerAPI.buildMobEntryNoEgg(EntityObsidianBoat.class, "obsidianboat"),
 				//TNT
-				SlayerAPI.buildEntityEntryNoEgg(EntityMagicExplosive.class, "magic_explosive", 17),
-				
-				SlayerAPI.buildEntityEntryNoEgg(EntityBossStatue.class, "boss_state", 18)
+				SlayerAPI.buildMobEntryNoEgg(EntityMagicExplosive.class, "magic_explosive"),
+
+				SlayerAPI.buildMobEntryNoEgg(EntityBossStatue.class, "boss_state")
 
 		};
 

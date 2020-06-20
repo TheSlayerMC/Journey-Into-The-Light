@@ -22,7 +22,7 @@ public class Config {
     public static int eucaSilverBiome, eucaBiome;
     public static int euca, depths, boil, frozen, corba, wastelands, cloudia, terrania, senterian, wither;
     public static String depthsBiome, boilBiome, frozenBiome, corbaBiome, wastelandsBiome, cloudiaBiome, terraniaBiome, senterianBiome;
-    public static int baseMobID, baseProjectileID, baseEntityListID, entityHealthDistance;
+    public static int entityHealthDistance;
     public static int towerDungeon, mageHouse, blacksmithHouse, rockiteDungeon;
     private static boolean[] registerBiomes;
     public static int specialBiomeRarity;
@@ -97,9 +97,6 @@ public class Config {
         specialBiomeRarity = cfg.get("Dimension", "Rarity for 'special' dimension biomes (The higher, the rarer)", 16).getInt();
 
         spawnSwordParticles = cfg.get("Items", "Swords spawn particles", true).getBoolean();
-        baseMobID = cfg.get("Entity", "The starting ID for the mobs (only gets greater the more mobs this mod has registered)", 350).getInt();
-        baseProjectileID = cfg.get("Entity", "The starting ID for the projectiles (only gets greater the more projectiles this mod has registered)", 230).getInt();
-        baseEntityListID = cfg.get("Entity", "The starting 'Entity List ID'", 2650).getInt();
         entityHealthDistance = cfg.get("Entity", "The distance the player can see the mobs health", 10).getInt();
         showEntityHealth = cfg.get("Entity", "Show the health bar above the entitys head?", true).getBoolean();
 

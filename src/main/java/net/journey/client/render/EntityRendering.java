@@ -1,9 +1,9 @@
 package net.journey.client.render;
 
-import net.journey.JITL;
 import net.journey.blocks.tileentity.*;
 import net.journey.client.render.base.*;
 import net.journey.client.render.block.*;
+import net.journey.client.render.entity.RendererBossSpawner;
 import net.journey.client.render.mob.*;
 import net.journey.client.render.model.item.ModelObsidianBoat;
 import net.journey.client.render.model.mob.boil.*;
@@ -36,7 +36,7 @@ import net.journey.client.render.model.mob.senterian.ModelSentryStalker;
 import net.journey.client.render.model.mob.senterian.ModelSentryWalker;
 import net.journey.client.render.model.mob.terrania.mob.*;
 import net.journey.client.render.model.mob.terrania.npc.ModelTerranianTrader;
-import net.journey.entity.MobStats;
+import net.journey.entity.functional.EntityBossSpawner;
 import net.journey.entity.item.EntityMagicExplosive;
 import net.journey.entity.item.EntityObsidianBoat;
 import net.journey.entity.mob.boiling.*;
@@ -70,7 +70,8 @@ import net.journey.entity.mob.overworld.npc.EntityBlacksmith;
 import net.journey.entity.mob.overworld.npc.EntityMage;
 import net.journey.entity.mob.overworld.underground.*;
 import net.journey.entity.mob.overworld.underground.npc.EntityRockiteGolem;
-import net.journey.entity.mob.pet.*;
+import net.journey.entity.mob.pet.EntityEucaHopper;
+import net.journey.entity.mob.pet.EntityPetRobot;
 import net.journey.entity.mob.pet.EntityShiverwolf;
 import net.journey.entity.mob.pet.EntityTameRoc;
 import net.journey.entity.mob.senterian.mob.*;
@@ -93,14 +94,10 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelBlaze;
 import net.minecraft.client.model.ModelSnowMan;
-import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderTippedArrow;
 import net.minecraft.init.Items;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import ru.timeconqueror.timecore.api.client.render.animation.TimeClientLoader;
 
 public class EntityRendering {
     public static void preInit() {
@@ -114,6 +111,8 @@ public class EntityRendering {
         RenderingRegistry.registerEntityRenderingHandler(EntityBubbleProjectile.class, manager -> new RenderProjectile<>(manager, Textures.getProjectileTextureLocation("bubble")));
         RenderingRegistry.registerEntityRenderingHandler(EntityDetractor.class, manager -> new RenderProjectile<>(manager, Textures.getProjectileTextureLocation("detractor")));
 //        RenderingRegistry.registerEntityRenderingHandler(EntityFloro.class, manager -> new AnimatedMobRenderer<>(manager, TimeClientLoader.loadJsonEntityModel(entityModelLocation("overworld/floro")), entityTextureLocation("overworld/floro")));
+
+        RenderingRegistry.registerEntityRenderingHandler(EntityBossSpawner.class, RendererBossSpawner::new);
     }
 
     public static void init() {

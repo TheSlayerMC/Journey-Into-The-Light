@@ -12,22 +12,22 @@ import ru.timeconqueror.timecore.client.render.model.TimeModelRenderer;
 import java.util.List;
 
 public class BoneOption {
-	private String boneName;
+	private final String boneName;
 	/**
 	 * Immutable rotation keyframe list
 	 */
 	@Nullable
-	private List<KeyFrame> rotations;
+	private final List<KeyFrame> rotations;
 	/**
 	 * Immutable position keyframe list
 	 */
 	@Nullable
-	private List<KeyFrame> positions;
+	private final List<KeyFrame> positions;
 	/**
 	 * Immutable scale keyframe list
 	 */
 	@Nullable
-	private List<KeyFrame> scales;
+	private final List<KeyFrame> scales;
 
 	public BoneOption(String boneName, @Nullable List<KeyFrame> rotations, @Nullable List<KeyFrame> positions, @Nullable List<KeyFrame> scales) {
 		this.boneName = boneName;
@@ -107,9 +107,9 @@ public class BoneOption {
 	static Vector3f interpolate(Vector3f start, Vector3f end, int startTime, int endTime, int existingTime) {
 		float factor = endTime - startTime == 0 ? 1 : (existingTime - startTime) / (float) (endTime - startTime);
 
-		float outX = MathUtils.lerp(factor, start.getX(), end.getX());
-		float outY = MathUtils.lerp(factor, start.getY(), end.getY());
-		float outZ = MathUtils.lerp(factor, start.getZ(), end.getZ());
+		float outX = MathUtils.interpolate(factor, start.getX(), end.getX());
+		float outY = MathUtils.interpolate(factor, start.getY(), end.getY());
+		float outZ = MathUtils.interpolate(factor, start.getZ(), end.getZ());
 
 		return new Vector3f(outX, outY, outZ);
 	}

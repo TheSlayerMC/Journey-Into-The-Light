@@ -2,7 +2,6 @@ package net.slayer.api;
 
 import net.journey.JITL;
 import net.journey.client.handler.ChatHandler;
-import net.journey.util.Config;
 import net.journey.util.LangHelper;
 import net.journey.util.gen.lang.LangGeneratorFacade;
 import net.minecraft.block.Block;
@@ -26,7 +25,6 @@ import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
-import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.VillagerRegistry;
 import net.minecraftforge.fml.common.registry.VillagerRegistry.IVillageCreationHandler;
 import net.minecraftforge.fml.relauncher.Side;
@@ -37,11 +35,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class SlayerAPI {
+    private static int entityId;
 
     public static final String PREFIX = JITL.MOD_ID + ":";
     public static final boolean BETA = false;
     private static final String SECTION_SIGN = "\u00a7";
-    public static int mobID = Config.baseMobID, projectileID = Config.baseProjectileID, entityListID = Config.baseEntityListID;
     public static Logger logger = Logger.getLogger(JITL.MOD_ID);
 
     public static ToolMaterial addMeleeMaterial(int uses, float dam, float efficiency) {
@@ -80,36 +78,33 @@ public class SlayerAPI {
         MinecraftForge.EVENT_BUS.register(o);
     }
 
-    public static EntityEntry buildEntityEntryNoEgg(Class entityClass, String entityID, int id) {
-
-        return EntityEntryBuilder.create().entity(entityClass)
-                .id(new ResourceLocation(JITL.MOD_ID, entityID), id).name(JITL.MOD_ID + "." + entityID).tracker(128, 3, true).build();
-
+    public static EntityEntry buildMobEntryNoEgg(Class<? extends Entity> entityClass, String entityName) {
+        return createInitialSetup(entityClass, entityName).tracker(128, 3, true).build();
     }
 
-    public static void registerPets(Class entityClass, String entityName, String finalName, String finalN) {
-        buildMobEntry(entityClass, entityName, finalName, 0x64ffe4, 0x009cff);
-    }
-
-    public static void registerEntity(Class entityClass, String entityName, int ID) {
-        EntityRegistry.registerModEntity(new ResourceLocation(entityName), entityClass, entityName, ID, JITL.instance, 120, 5, true);
-    }
-
-    public static EntityEntry buildMobEntry(Class<? extends Entity> entityClass, String entityID, String finalName, int primaryEggColor, int secondaryEggColor) {
-        EntityEntry entry = EntityEntryBuilder.create().entity(entityClass)
-                .id(new ResourceLocation(JITL.MOD_ID, entityID), mobID++).name(JITL.MOD_ID + "." + entityID).tracker(128, 3, true)
+    public static EntityEntry buildMobEntry(Class<? extends Entity> entityClass, String entityName, String enName, int primaryEggColor, int secondaryEggColor) {
+        EntityEntry entry = createInitialSetup(entityClass, entityName)
+                .tracker(128, 3, true)
                 .egg(primaryEggColor, secondaryEggColor).build();
 
-        LangGeneratorFacade.addEntityEntry(entry, finalName);
+        LangGeneratorFacade.addEntityEntry(entry, enName);
 
         return entry;
     }
 
-
-    public static EntityEntry buildProjectileEntry(Class<? extends Entity> entityClass, String entityID) {
-        return EntityEntryBuilder.create().entity(entityClass)
-                .id(new ResourceLocation(JITL.MOD_ID, entityID), projectileID++).name(JITL.MOD_ID + "." + entityID)
+    public static EntityEntry buildProjectileEntry(Class<? extends Entity> entityClass, String entityName) {
+        return createInitialSetup(entityClass, entityName)
                 .tracker(250, 5, true).build();
+    }
+
+    /**
+     * Setups builder id and name.
+     */
+    @SuppressWarnings("unchecked")
+    private static <E extends Entity> EntityEntryBuilder<E> createInitialSetup(Class<? extends Entity> entityClass, String entityName) {
+        return ((EntityEntryBuilder<E>) EntityEntryBuilder.create().entity(entityClass)
+                .id(new ResourceLocation(JITL.MOD_ID, entityName), entityId++)
+                .name(JITL.MOD_ID + "." + entityName));
     }
 
     public static ArmorMaterial addArmorMaterial(String name, int durability, int[] oldArmor, int enchantability, float toughness) {
