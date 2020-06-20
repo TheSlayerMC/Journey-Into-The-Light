@@ -4,6 +4,7 @@ import net.journey.api.block.GroundPredicate;
 import net.journey.blocks.base.JBlockDoublePlant;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -58,7 +59,8 @@ public class JWorldGenPlants extends WorldGenerator {
 					pos.move(EnumFacing.UP);
 
 					if (plantState.getBlock() instanceof JBlockDoublePlant) {
-						((JBlockDoublePlant) plantState.getBlock()).placeAt(w, pos, 2 | 16);
+						if(w.getBlockState(pos) == Blocks.AIR)
+							((JBlockDoublePlant) plantState.getBlock()).placeAt(w, pos, 2 | 16);
 					} else {
 						setBlockAndNotifyAdequately(w, pos, plantState);
 					}
