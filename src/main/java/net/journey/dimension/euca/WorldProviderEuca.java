@@ -22,7 +22,7 @@ import javax.annotation.Nullable;
 
 public class WorldProviderEuca extends BaseWorldProvider {
 
-	private static List<Biome> common = Lists.newArrayList(DimensionHelper.EUCA_GOLD_BIOME);
+	private static List<Biome> common = Lists.newArrayList(DimensionHelper.EUCA_GOLD_BIOME, DimensionHelper.EUCA_GOLDITE_GRAINS_BIOME);
 	private static List<Biome> rare = Lists.newArrayList(DimensionHelper.EUCA_SILVER_BIOME);
 	
     public WorldProviderEuca() {

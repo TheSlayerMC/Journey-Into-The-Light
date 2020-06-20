@@ -11,7 +11,6 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import java.util.Random;
 
 public class EucaSilverBiome extends EucaBiome {
-	private static final GroundPredicate EUCA_SILVER_GRASS_GROUND = GroundPredicate.SOLID_SIDE.and(GroundPredicate.blockPredicate(block -> block == JourneyBlocks.eucaSilverGrass));
 
 	private final JWorldGenPlants SILVER_TALL_GRASS = new JWorldGenPlants(JourneyBlocks.eucaSilverTallGrass, EUCA_SILVER_GRASS_GROUND, 25);
 	private final JWorldGenPlants SILVER_SPROUT = new JWorldGenPlants(JourneyBlocks.eucaSilverSprouts, EUCA_SILVER_GRASS_GROUND);

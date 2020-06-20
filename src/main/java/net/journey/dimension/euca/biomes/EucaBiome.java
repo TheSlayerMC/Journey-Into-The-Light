@@ -1,5 +1,6 @@
 package net.journey.dimension.euca.biomes;
 
+import net.journey.api.block.GroundPredicate;
 import net.journey.dimension.base.biome.JDimensionBiome;
 import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.block.Block;
@@ -15,6 +16,10 @@ import java.awt.*;
 import java.util.Random;
 
 public class EucaBiome extends JDimensionBiome {
+	
+	protected final GroundPredicate EUCA_GRASS_GROUND = GroundPredicate.SOLID_SIDE.and(GroundPredicate.blockPredicate(block -> block == JourneyBlocks.eucaGrass));
+	protected final GroundPredicate EUCA_SILVER_GRASS_GROUND = GroundPredicate.SOLID_SIDE.and(GroundPredicate.blockPredicate(block -> block == JourneyBlocks.eucaSilverGrass));
+	
 	public EucaBiome(BiomeProperties properties, IBlockState topBlock, IBlockState fillerBlock) {
 		super(properties, topBlock, fillerBlock);
 		this.topBlock = topBlock;

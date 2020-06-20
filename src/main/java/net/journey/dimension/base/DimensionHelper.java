@@ -11,6 +11,7 @@ import net.journey.dimension.depths.BiomeGenDepths;
 import net.journey.dimension.depths.WorldProviderDepths;
 import net.journey.dimension.euca.WorldProviderEuca;
 import net.journey.dimension.euca.biomes.EucaGoldBiome;
+import net.journey.dimension.euca.biomes.EucaGolditeGrainsBiome;
 import net.journey.dimension.euca.biomes.EucaSilverBiome;
 import net.journey.dimension.frozen.BiomeGenFrozenLands;
 import net.journey.dimension.frozen.WorldProviderFrozenLands;
@@ -70,6 +71,7 @@ public class DimensionHelper {
 
     public static final Biome EUCA_GOLD_BIOME = new EucaGoldBiome(new Biome.BiomeProperties("Euca Gold Forest").setRainDisabled().setRainfall(0.0F), JourneyBlocks.eucaGrass.getDefaultState(), JourneyBlocks.eucaDirt.getDefaultState());
     public static final Biome EUCA_SILVER_BIOME = new EucaSilverBiome(new Biome.BiomeProperties("Euca Silver Forest").setRainDisabled().setRainfall(0.0F).setBaseHeight(0.125F).setHeightVariation(0.05F), JourneyBlocks.eucaSilverGrass.getDefaultState(), JourneyBlocks.eucaDirt.getDefaultState());
+    public static final Biome EUCA_GOLDITE_GRAINS_BIOME = new EucaGolditeGrainsBiome(new Biome.BiomeProperties("Euca Goldite Grains").setRainDisabled().setRainfall(0.0F).setBaseHeight(0.125F).setHeightVariation(0.05F), JourneyBlocks.eucaGrass.getDefaultState(), JourneyBlocks.eucaDirt.getDefaultState());
 
     public static final Biome BOILING_BIOME = new BiomeGenBoiling();
     public static final Biome CLOUDIA_BIOME = new BiomeGenCloudia();
@@ -109,6 +111,7 @@ public class DimensionHelper {
 		} */
         addDimBiome(EUCA_GOLD_BIOME, "Euca", Type.MAGICAL, Type.MOUNTAIN);
         addDimBiome(EUCA_SILVER_BIOME, "Euca Silver", Type.MAGICAL, Type.MOUNTAIN);
+        addDimBiome(EUCA_GOLDITE_GRAINS_BIOME, "Euca Goldite", Type.MAGICAL, Type.MOUNTAIN);
         addDimBiome(BOILING_BIOME, "Boiling Point", Type.HOT);
         addDimBiome(CLOUDIA_BIOME, "Cloudia", Type.MAGICAL);
         addDimBiome(CORBA_BIOME, "Corba", Type.DRY, Type.PLAINS, Type.DEAD);

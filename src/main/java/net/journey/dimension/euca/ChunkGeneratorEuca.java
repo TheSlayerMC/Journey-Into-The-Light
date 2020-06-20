@@ -1,5 +1,8 @@
 package net.journey.dimension.euca;
 
+import net.journey.api.block.GroundPredicate;
+import net.journey.dimension.base.DimensionHelper;
+import net.journey.dimension.base.gen.JWorldGenPlants;
 import net.journey.dimension.euca.gen.WorldGenEucaPumpkin;
 import net.journey.dimension.euca.gen.WorldGenEucaSphere;
 import net.journey.dimension.euca.gen.WorldGenEucaWater;
@@ -66,6 +69,7 @@ public class ChunkGeneratorEuca implements IChunkGenerator {
 	private final WorldGenEucaSphere sphere = new WorldGenEucaSphere();
 	private final WorldGenEucaPumpkin pumpkin = new WorldGenEucaPumpkin();
 	private final EucaSmallSphereDungeon smallsphere = new EucaSmallSphereDungeon();
+
 
 	public ChunkGeneratorEuca(World world, long seed) {
 		this.world = world;
@@ -261,7 +265,7 @@ public class ChunkGeneratorEuca implements IChunkGenerator {
 			int randX = chunkX * 16 + 8 + rand.nextInt(16);
 			int randZ = chunkZ * 16 + 8 + rand.nextInt(16);
 			int randY = rand.nextInt(150) + 1;
-			if (isBlockTop(randX, randY - 1, randZ, JourneyBlocks.eucaGrass)) {
+			if (world.getBiome(new BlockPos(randX, randY, randZ)) == DimensionHelper.EUCA_GOLD_BIOME && isBlockTop(randX, randY - 1, randZ, JourneyBlocks.eucaGrass)) {
 				treesnormal[rand.nextInt(treesnormal.length)].generate(world, rand, new BlockPos(randX, randY, randZ));
 			}
 		}
@@ -270,7 +274,7 @@ public class ChunkGeneratorEuca implements IChunkGenerator {
 			int randX = chunkX * 16 + 8 + rand.nextInt(16);
 			int randZ = chunkZ * 16 + 8 + rand.nextInt(16);
 			int randY = rand.nextInt(150) + 1;
-			if (isBlockTop(randX, randY - 1, randZ, JourneyBlocks.eucaGrass)) {
+			if (world.getBiome(new BlockPos(randX, randY, randZ)) == DimensionHelper.EUCA_GOLD_BIOME && isBlockTop(randX, randY - 1, randZ, JourneyBlocks.eucaGrass)) {
 				treestall[rand.nextInt(treestall.length)].generate(world, rand, new BlockPos(randX, randY, randZ));
 			}
 		}
@@ -279,7 +283,7 @@ public class ChunkGeneratorEuca implements IChunkGenerator {
 			int randX = chunkX * 16 + 8 + rand.nextInt(16);
 			int randZ = chunkZ * 16 + 8 + rand.nextInt(16);
 			int randY = rand.nextInt(150) + 1;
-			if (isBlockTop(randX, randY - 1, randZ, JourneyBlocks.eucaSilverGrass)) {
+			if (world.getBiome(new BlockPos(randX, randY, randZ)) == DimensionHelper.EUCA_SILVER_BIOME && isBlockTop(randX, randY - 1, randZ, JourneyBlocks.eucaSilverGrass)) {
 				new WorldGenEucaSilverTree(true).generate(world, rand, new BlockPos(randX, randY, randZ));
 			}
 		}

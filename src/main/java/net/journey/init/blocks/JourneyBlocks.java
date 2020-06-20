@@ -445,9 +445,9 @@ public class JourneyBlocks {
     public static BlockMod nethicGrass;
 
     public static JBlockDoublePlant tallGoldenStalks;
-    public static BlockModFlower goldenBulb;
-    public static BlockModFlower goldenBloom;
-    public static BlockModFlower goldenStalks;
+    public static JBlockFlower goldenBulb;
+    public static JBlockFlower goldenBloom;
+    public static JBlockFlower goldenStalks;
 
     public static BlockMod workshopCarpet;
     public static BlockMod frozenGlass;
@@ -1010,11 +1010,10 @@ public class JourneyBlocks {
         glowshroomGreen = new BlockGlowshroom("glowshroom_green", "Green Glowshroom");
         glowshroomBlue = new BlockGlowshroom("glowshroom_blue", "Blue Glowshroom");
 
-        tallGoldenStalks = (JBlockDoublePlant) new JBlockDoublePlant("tall_golden_stalks", "Tall Golden Stalks", JourneyTabs.DECORATION).setGroundPredicate(GroundPredicate.SOLID_SIDE.and(GroundPredicate.blockStatePredicate(state -> state.getMaterial() == Material.GRASS)));//TODO make it check for BlockGrass inheriting
-
-        goldenBulb = new BlockModFlower("goldenBulb", "Golden Bulb");
-        goldenBloom = new BlockModFlower("goldenBloom", "Golden Bloom");
-        goldenStalks = new BlockModFlower("goldenStalks", "Golden Stalks");
+        tallGoldenStalks = (JBlockDoublePlant) new JBlockDoublePlant("tall_golden_stalks", "Tall Golden Stalks", JourneyTabs.DECORATION).setGroundPredicate(GroundPredicate.COMMON_AND_EUCA_GOLD_GRASS);
+        goldenBulb = (JBlockFlower) new JBlockFlower("goldenBulb", "Golden Bulb").setGroundPredicate(GroundPredicate.COMMON_AND_EUCA_GOLD_GRASS);
+        goldenBloom = (JBlockFlower) new JBlockFlower("goldenBloom", "Golden Bloom").setGroundPredicate(GroundPredicate.COMMON_AND_EUCA_GOLD_GRASS);
+        goldenStalks = (JBlockFlower) new JBlockFlower("goldenStalks", "Golden Stalks").setGroundPredicate(GroundPredicate.COMMON_AND_EUCA_GOLD_GRASS);
 
         workshopCarpet = new BlockMod(EnumMaterialTypes.WOOL, "workshopCarpet", "Workshop Carpet", 0.5F);
         frozenGlass = new BlockJoinedGlass("frozenGlass", "Frozen Glass");
