@@ -12,10 +12,12 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 
 public class EucaGolditeGrainsBiome extends EucaBiome {
 
-	private final JWorldGenPlants EUCA_TALL_GRASS = new JWorldGenPlants(JourneyBlocks.tallGoldenStalks, EUCA_GRASS_GROUND, 75);
-	private final JWorldGenPlants EUCA_TALL_FLOWERS = new JWorldGenPlants(JourneyBlocks.eucaTallGrass, EUCA_GRASS_GROUND, 50);
+	private final JWorldGenPlants EUCA_TALL_STALKS = new JWorldGenPlants(JourneyBlocks.tallGolditeStalks, EUCA_GOLDITE_GRASS_GROUND, 30);
+	private final JWorldGenPlants EUCA_STALKS = new JWorldGenPlants(JourneyBlocks.golditeStalks, EUCA_GOLDITE_GRASS_GROUND, 25);
+	private final JWorldGenPlants EUCA_FLOWER = new JWorldGenPlants(JourneyBlocks.golditeBulb, EUCA_GOLDITE_GRASS_GROUND, 5);
+	private final JWorldGenPlants EUCA_BULB = new JWorldGenPlants(JourneyBlocks.golditeFlower, EUCA_GOLDITE_GRASS_GROUND, 5);
 	
-	private final WorldGenerator[] FLOWERS = new WorldGenerator[]{EUCA_TALL_GRASS, EUCA_TALL_FLOWERS};
+	private final WorldGenerator[] FLOWERS = new WorldGenerator[]{EUCA_TALL_STALKS, EUCA_STALKS};
 
 	public EucaGolditeGrainsBiome(BiomeProperties properties, IBlockState topBlock, IBlockState fillerBlock) {
 		super(properties, topBlock, fillerBlock);

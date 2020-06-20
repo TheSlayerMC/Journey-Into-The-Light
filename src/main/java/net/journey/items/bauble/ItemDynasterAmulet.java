@@ -7,12 +7,15 @@ import net.journey.items.base.JItem;
 import net.journey.util.PotionEffects;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.slayer.api.PlayerHelper;
 import net.slayer.api.SlayerAPI;
 
 import java.util.List;
@@ -36,11 +39,16 @@ public class ItemDynasterAmulet extends JItem implements IBauble {
         if(player.isPotionActive(potion)) {
             player.removeActivePotionEffect(potion);
         }
+        if(player.motionY < 0.0D && !player.onGround && !player.isInWater() && !player.isInLava() && player.isSneaking()) {
+            player.motionY *= 0.75F;
+            player.fallDistance = -1.0F;
+        }
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack i, World worldIn, List<String> l, ITooltipFlag flagIn) {
         l.add(SlayerAPI.Colour.GOLD + "Negates Blindness When Worn");
+        l.add(SlayerAPI.Colour.YELLOW + "Crouch to Glide and Negate Fall Damage");
     }
 }

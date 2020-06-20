@@ -1,0 +1,11 @@
+{
+	"variants": {
+        "normal": [
+            { "model": "journey:goldite_grass" },
+            { "model": "journey:goldite_grass", "y": 90 },
+            { "model": "journey:goldite_grass", "y": 180 },
+            { "model": "journey:goldite_grass", "y": 270 }
+        ]
+
+	}
+}

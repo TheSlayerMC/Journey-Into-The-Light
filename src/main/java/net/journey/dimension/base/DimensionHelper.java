@@ -71,7 +71,7 @@ public class DimensionHelper {
 
     public static final Biome EUCA_GOLD_BIOME = new EucaGoldBiome(new Biome.BiomeProperties("Euca Gold Forest").setRainDisabled().setRainfall(0.0F), JourneyBlocks.eucaGrass.getDefaultState(), JourneyBlocks.eucaDirt.getDefaultState());
     public static final Biome EUCA_SILVER_BIOME = new EucaSilverBiome(new Biome.BiomeProperties("Euca Silver Forest").setRainDisabled().setRainfall(0.0F).setBaseHeight(0.125F).setHeightVariation(0.05F), JourneyBlocks.eucaSilverGrass.getDefaultState(), JourneyBlocks.eucaDirt.getDefaultState());
-    public static final Biome EUCA_GOLDITE_GRAINS_BIOME = new EucaGolditeGrainsBiome(new Biome.BiomeProperties("Euca Goldite Grains").setRainDisabled().setRainfall(0.0F).setBaseHeight(0.125F).setHeightVariation(0.05F), JourneyBlocks.eucaGrass.getDefaultState(), JourneyBlocks.eucaDirt.getDefaultState());
+    public static final Biome EUCA_GOLDITE_GRAINS_BIOME = new EucaGolditeGrainsBiome(new Biome.BiomeProperties("Euca Goldite Grains").setRainDisabled().setRainfall(0.0F).setBaseHeight(0.125F).setHeightVariation(0.05F), JourneyBlocks.eucaGolditeGrass.getDefaultState(), JourneyBlocks.eucaGolditeDirt.getDefaultState());
 
     public static final Biome BOILING_BIOME = new BiomeGenBoiling();
     public static final Biome CLOUDIA_BIOME = new BiomeGenCloudia();

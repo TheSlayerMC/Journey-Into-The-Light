@@ -29,6 +29,7 @@ public interface GroundPredicate {
 	GroundPredicate COMMON_AND_CORBA_GRASS = GRASS_BLOCK.or(blockPredicate(block -> block == JourneyBlocks.corbaGrass || block == JourneyBlocks.taintedMud));
 	GroundPredicate TAINTED_MUD = GRASS_BLOCK.or(blockPredicate(block -> block == JourneyBlocks.taintedMud));
 	GroundPredicate COMMON_AND_EUCA_GOLD_GRASS = GRASS_BLOCK.or(blockPredicate(block -> block == JourneyBlocks.eucaGrass));
+	GroundPredicate COMMON_AND_EUCA_GOLDITE_GRASS = GRASS_BLOCK.or(blockPredicate(block -> block == JourneyBlocks.eucaGolditeGrass));
 
 	static GroundPredicate blockPredicate(Predicate<Block> blockPredicate) {
 		return (world, groundPos, groundState, plantDirection) -> blockPredicate.test(groundState.getBlock());

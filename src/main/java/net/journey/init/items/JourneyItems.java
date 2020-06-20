@@ -356,6 +356,12 @@ public class JourneyItems {
     public static Item aquaticAmulet;
     public static Item magmaAmulet;
     public static Item emptyAmulet;
+    public static Item heartContainerSmall;
+    public static Item heartContainerMedium;
+    public static Item heartContainerLarge;
+    public static Item heartContainerUltimate;
+    public static Item heartContainerSentry;
+
 
     public static void init() {
 
@@ -619,6 +625,12 @@ public class JourneyItems {
         aquaticAmulet = new ItemAquaticAmulet("amulet_aquatic", "Amulet of the Depths");
         magmaAmulet = new ItemMagmaAmulet("amulet_magma", "Amulet of Eternal Magma");
         emptyAmulet = new JItem("amulet_empty", "Empty Amulet");
+
+        heartContainerSmall = new ItemHeartContainer("heartSml", "Heart Container", 2);
+        heartContainerMedium = new ItemHeartContainer("heartMed", "Heart Container", 5);
+        heartContainerLarge = new ItemHeartContainer("heartLrg", "Heart Container", 10);
+        heartContainerUltimate = new ItemHeartContainer("heartUlt", "Heart Container", 15);
+        heartContainerSentry = new ItemHeartContainer("heartSen", "Heart of the Sentry", 20);
     }
 
     public static ToolMaterial addToolMaterial(int uses, float efficiency, float dam, boolean breakable) {

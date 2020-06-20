@@ -30,7 +30,7 @@ public class ItemVinestranding extends JItem implements IBauble {
 
     @Override
     public BaubleType getBaubleType(ItemStack itemStack) {
-        return BaubleType.CHARM;
+        return BaubleType.TRINKET;
     }
 
     @Override

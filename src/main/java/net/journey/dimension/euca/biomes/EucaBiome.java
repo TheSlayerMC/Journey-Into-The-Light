@@ -18,6 +18,7 @@ import java.util.Random;
 public class EucaBiome extends JDimensionBiome {
 	
 	protected final GroundPredicate EUCA_GRASS_GROUND = GroundPredicate.SOLID_SIDE.and(GroundPredicate.blockPredicate(block -> block == JourneyBlocks.eucaGrass));
+	protected final GroundPredicate EUCA_GOLDITE_GRASS_GROUND = GroundPredicate.SOLID_SIDE.and(GroundPredicate.blockPredicate(block -> block == JourneyBlocks.eucaGolditeGrass));
 	protected final GroundPredicate EUCA_SILVER_GRASS_GROUND = GroundPredicate.SOLID_SIDE.and(GroundPredicate.blockPredicate(block -> block == JourneyBlocks.eucaSilverGrass));
 	
 	public EucaBiome(BiomeProperties properties, IBlockState topBlock, IBlockState fillerBlock) {

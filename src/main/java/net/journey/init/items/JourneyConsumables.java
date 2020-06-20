@@ -8,11 +8,6 @@ import net.slayer.api.item.ItemModFood;
 
 public class JourneyConsumables {
 
-    public static Item heartSml;
-    public static Item heartMed;
-    public static Item heartLrg;
-    public static Item heartUlt;
-    public static Item heartSentry;
     public static Item sizzleberry;
     public static Item bradberry;
     public static Item tangleberry;
@@ -129,12 +124,6 @@ public class JourneyConsumables {
         tangleberry = new ItemModFood("tangleberry", "Tangleberry", 2, 4, 1, false).setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.poison, 50, 1), 1.0F).setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.confusion, 50, 1), 1.0F);
         juiceberry = new ItemModFood("juiceberry", "Juiceberry", 1, 6, 1, false).setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.confusion, 50, 1), 1.0F);
         bogberry = new ItemModFood("bogberry", "Bogberry", 2, 6, 3, false).setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.confusion, 50, 1), 1.0F);
-
-        heartSml = new ItemHealth("heartSml", "Heart: Tier 1", 1, 0, false, false);
-        heartMed = new ItemHealth("heartMed", "Heart: Tier 2", 2, 0, false, false);
-        heartLrg = new ItemHealth("heartLrg", "Heart: Tier 3", 3, 0, false, false);
-        heartUlt = new ItemHealth("heartUlt", "Heart: Ultimate", 4, 0, false, false);
-        heartSentry = new ItemHealth("heartSen", "Sentry's Heart", 10, 0, false, true);
 
     }
 }

@@ -33,9 +33,7 @@ public class ItemAquaticAmulet extends JItem implements IBauble {
 
     @Override
     public void onWornTick(ItemStack itemstack, EntityLivingBase player) {
-        Potion potion = Potion.getPotionById(PotionEffects.waterBreathing);
         if(player.isInWater()) {
-            player.addPotionEffect(new PotionEffect(potion));
             player.motionX *= 1.2F;
             player.motionZ *= 1.2F;
         }
@@ -44,6 +42,6 @@ public class ItemAquaticAmulet extends JItem implements IBauble {
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack i, World worldIn, List<String> l, ITooltipFlag flagIn) {
-        l.add(SlayerAPI.Colour.GOLD + "Grants Agility and Water Breathing when Underwater");
+        l.add(SlayerAPI.Colour.AQUA + "Glide through the Tides");
     }
 }

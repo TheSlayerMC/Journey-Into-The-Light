@@ -139,7 +139,9 @@ public class JourneyBlocks {
 
     public static BlockMod eucaGrass;
     public static BlockMod eucaSilverGrass;
+    public static BlockMod eucaGolditeGrass;
     public static BlockMod eucaDirt;
+    public static BlockMod eucaGolditeDirt;
     public static BlockMod eucaStone;
     public static JBlockLog eucaGoldLog;
     public static BlockMod goldEucaPlank;
@@ -444,6 +446,11 @@ public class JourneyBlocks {
     public static BlockMod hellThornRoot;
     public static BlockMod nethicGrass;
 
+    public static JBlockDoublePlant tallGolditeStalks;
+    public static JBlockFlower golditeBulb;
+    public static JBlockFlower golditeFlower;
+    public static JBlockFlower golditeStalks;
+
     public static JBlockDoublePlant tallGoldenStalks;
     public static JBlockFlower goldenBulb;
     public static JBlockFlower goldenBloom;
@@ -670,6 +677,8 @@ public class JourneyBlocks {
 
         eucaDirt = new BlockMod(EnumMaterialTypes.DIRT, "eucaDirt", "Euca Dirt", 2.0F);
         eucaGrass = new BlockModGrass(eucaDirt, "eucaGrass", "Euca Grass", 2.0F);
+        eucaGolditeGrass = new BlockModGrass(eucaGolditeDirt, "goldite_grass", "Goldite Grass", 2.0F);
+        eucaGolditeDirt = new BlockMod(EnumMaterialTypes.DIRT, "goldite_dirt", "Goldite Dirt", 2.0F);
         eucaSilverGrass = new BlockModGrass(eucaDirt, "eucaSilverGrass", "Euca Grass", 2.0F);
         eucaStone = new BlockMod("eucaStone", "Euca Stone", 2.0F);
         eucaGoldLog = new JBlockLog("eucaGoldLog", "Golden Euca Log");
@@ -1014,6 +1023,11 @@ public class JourneyBlocks {
         goldenBulb = (JBlockFlower) new JBlockFlower("goldenBulb", "Golden Bulb").setGroundPredicate(GroundPredicate.COMMON_AND_EUCA_GOLD_GRASS);
         goldenBloom = (JBlockFlower) new JBlockFlower("goldenBloom", "Golden Bloom").setGroundPredicate(GroundPredicate.COMMON_AND_EUCA_GOLD_GRASS);
         goldenStalks = (JBlockFlower) new JBlockFlower("goldenStalks", "Golden Stalks").setGroundPredicate(GroundPredicate.COMMON_AND_EUCA_GOLD_GRASS);
+
+        tallGolditeStalks = (JBlockDoublePlant) new JBlockDoublePlant("tall_goldite_stalks", "Tall Goldite Stalks", JourneyTabs.DECORATION).setGroundPredicate(GroundPredicate.COMMON_AND_EUCA_GOLDITE_GRASS);
+        golditeBulb = (JBlockFlower) new JBlockFlower("goldite_bulb", "Goldite Bulb").setGroundPredicate(GroundPredicate.COMMON_AND_EUCA_GOLDITE_GRASS);
+        golditeFlower = (JBlockFlower) new JBlockFlower("goldite_flower", "Goldite Sunflower").setGroundPredicate(GroundPredicate.COMMON_AND_EUCA_GOLDITE_GRASS);
+        golditeStalks = (JBlockFlower) new JBlockFlower("goldite_stalks", "Goldite Stalks").setGroundPredicate(GroundPredicate.COMMON_AND_EUCA_GOLDITE_GRASS);
 
         workshopCarpet = new BlockMod(EnumMaterialTypes.WOOL, "workshopCarpet", "Workshop Carpet", 0.5F);
         frozenGlass = new BlockJoinedGlass("frozenGlass", "Frozen Glass");
