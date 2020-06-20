@@ -124,7 +124,7 @@ public class EntityBossSpawner extends Entity implements IEntityAdditionalSpawnD
 
 	@Override
 	protected void readEntityFromNBT(@NotNull NBTTagCompound compound) {
-		ticksFromActivating = compound.getInteger("activate_ticks");
+		ticksFromActivating = compound.getInteger("ticks_from_activating");
 		if (compound.hasKey("ticks_before_spawn")) {
 			totalTicksBeforeSpawn = compound.getInteger("ticks_before_spawn");
 		} else {
@@ -138,7 +138,7 @@ public class EntityBossSpawner extends Entity implements IEntityAdditionalSpawnD
 
 	@Override
 	protected void writeEntityToNBT(@NotNull NBTTagCompound compound) {
-		compound.setInteger("spawn_ticks", ticksFromActivating);
+		compound.setInteger("ticks_from_activating", ticksFromActivating);
 		compound.setInteger("ticks_before_spawn", totalTicksBeforeSpawn);
 
 		if (getEntityToSpawn() != null) {
@@ -186,6 +186,7 @@ public class EntityBossSpawner extends Entity implements IEntityAdditionalSpawnD
 	@Override
 	public void writeSpawnData(ByteBuf buffer) {
 		PacketBuffer packetBuffer = new PacketBuffer(buffer);
+		buffer.writeInt(ticksFromActivating);
 		buffer.writeInt(totalTicksBeforeSpawn);
 
 		packetBuffer.writeBoolean(getEntityToSpawn() != null); // meaning: is spawn-entity not null
@@ -198,6 +199,7 @@ public class EntityBossSpawner extends Entity implements IEntityAdditionalSpawnD
 	@Override
 	public void readSpawnData(ByteBuf additionalData) {
 		PacketBuffer packetBuffer = new PacketBuffer(additionalData);
+		ticksFromActivating = additionalData.readInt();
 		totalTicksBeforeSpawn = additionalData.readInt();
 
 		boolean isSpawnEntityNotNull = packetBuffer.readBoolean();// meaning: is spawn-entity not null
