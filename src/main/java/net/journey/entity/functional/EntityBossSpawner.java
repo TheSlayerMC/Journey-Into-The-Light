@@ -20,7 +20,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Objects;
 
 public class EntityBossSpawner extends Entity implements IEntityAdditionalSpawnData {
-	private static final int MAX_ROTATION_SPEED = 6;
 	private int ticksFromActivating;
 	private int totalTicksBeforeSpawn;
 
@@ -116,6 +115,10 @@ public class EntityBossSpawner extends Entity implements IEntityAdditionalSpawnD
 		if (getEntityToSpawn() == null && !world.isRemote) {
 			JITL.LOGGER.warn("Created " + getClass() + " without passing a boss entity. Boss Spawner entity will be killed");
 			setDead();
+		}
+
+		if (world.isRemote) {
+			clientHandler.init();
 		}
 	}
 
