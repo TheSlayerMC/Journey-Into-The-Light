@@ -1,65 +1,55 @@
-package net.journey.client.render.entity;
+package net.journey.client.render.block;
 
-import net.journey.entity.functional.EntityBossSpawner;
-import net.journey.entity.functional.EntityBossSpawner.State;
+import net.journey.blocks.tileentity.TileEntityBossSpawner;
+import net.journey.blocks.tileentity.TileEntityBossSpawner.State;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
-import net.minecraft.util.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 import org.lwjgl.opengl.GL11;
 
-import javax.annotation.Nullable;
 import java.util.Random;
 
-public class RendererBossSpawner extends Render<EntityBossSpawner> {
-	public RendererBossSpawner(RenderManager renderManager) {
-		super(renderManager);
-	}
-
-	@Nullable
-	@Override
-	protected ResourceLocation getEntityTexture(@NotNull EntityBossSpawner entity) {
-		return null;
-	}
+public class BossSpawnerTESR extends TileEntitySpecialRenderer<TileEntityBossSpawner> {
 
 	@Override
-	public void doRender(@NotNull EntityBossSpawner entity, double x, double y, double z, float entityYaw, float partialTicks) {
-		Entity entityToSpawn = entity.getEntityToSpawn();
-		BossSpawnerClientHandler clientHandler = entity.getClientHandler();
+	public void render(@NotNull TileEntityBossSpawner te, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
+		Entity entityToSpawn = te.getEntityToSpawn();
+		TileEntityBossSpawner.ClientHandler clientHandler = te.getClientHandler();
 
 		if (entityToSpawn != null) {
 			GlStateManager.pushMatrix();
 
 			double scale = clientHandler.getScale();
 
-			GlStateManager.translate(x, y, z);
+			GlStateManager.translate(x + 0.5F, y, z + 0.5F);
 
 			GlStateManager.translate(0, clientHandler.getTranslationY(partialTicks), 0);
 			GlStateManager.rotate(clientHandler.getRotationAngle(partialTicks), 0, 1, 0);
 
 			GlStateManager.scale(scale, scale, scale);
-			Minecraft.getMinecraft().getRenderManager().renderEntity(entityToSpawn, 0, 0, 0, entityYaw, partialTicks, false /*dontRenderDebugBoundingBox*/);
+			Minecraft.getMinecraft().getRenderManager().renderEntity(entityToSpawn, 0, 0, 0, 0, te.isActivated() ? partialTicks : 0, false /*dontRenderDebugBoundingBox*/);
 			GlStateManager.scale(1 / scale, 1 / scale, 1 / scale);
 
 			State currentState = clientHandler.getCurrentState();
 			if (currentState == State.RISING || currentState == State.FALLING) {
 				GlStateManager.translate(0, clientHandler.getRayOffsetY(), 0);
-				renderStar(clientHandler.getRotationAngle(partialTicks), clientHandler.getTranslationY(partialTicks) / 9, partialTicks);
+				renderRays(clientHandler.getRotationAngle(partialTicks), clientHandler.getTranslationY(partialTicks) / 9, partialTicks);
 			}
 
 			GlStateManager.translate(-x, -y, -z);
 			GlStateManager.popMatrix();
 		}
+
+		super.render(te, x, y, z, partialTicks, destroyStage, alpha);
 	}
 
-	private static void renderStar(float rotation, float rayFactor, float partialTicks) {
+	private static void renderRays(float rotation, float rayFactor, float partialTicks) {
 		Tessellator tessellator = Tessellator.getInstance();
 
 		Random rand = new Random(432L);

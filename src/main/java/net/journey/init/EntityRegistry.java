@@ -1,6 +1,5 @@
 package net.journey.init;
 
-import net.journey.entity.functional.EntityBossSpawner;
 import net.journey.entity.item.EntityMagicExplosive;
 import net.journey.entity.item.EntityObsidianBoat;
 import net.journey.entity.mob.boiling.*;
@@ -75,8 +74,6 @@ public class EntityRegistry {
 	public static void registerEntities(RegistryEvent.Register<EntityEntry> event) {
 		EntityRegistry.registerProjectiles(event);
 		EntityRegistry.registerMobs(event);
-
-		event.getRegistry().register(SlayerAPI.buildMobEntryNoEgg(EntityBossSpawner.class, "boss_spawner"));
 	}
 
 	public static void onLoadComplete(FMLLoadCompleteEvent event) {

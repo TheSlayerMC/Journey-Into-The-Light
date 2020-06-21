@@ -3,7 +3,6 @@ package net.journey.client.render;
 import net.journey.blocks.tileentity.*;
 import net.journey.client.render.base.*;
 import net.journey.client.render.block.*;
-import net.journey.client.render.entity.RendererBossSpawner;
 import net.journey.client.render.mob.*;
 import net.journey.client.render.model.item.ModelObsidianBoat;
 import net.journey.client.render.model.mob.boil.*;
@@ -36,7 +35,6 @@ import net.journey.client.render.model.mob.senterian.ModelSentryStalker;
 import net.journey.client.render.model.mob.senterian.ModelSentryWalker;
 import net.journey.client.render.model.mob.terrania.mob.*;
 import net.journey.client.render.model.mob.terrania.npc.ModelTerranianTrader;
-import net.journey.entity.functional.EntityBossSpawner;
 import net.journey.entity.item.EntityMagicExplosive;
 import net.journey.entity.item.EntityObsidianBoat;
 import net.journey.entity.mob.boiling.*;
@@ -111,8 +109,6 @@ public class EntityRendering {
         RenderingRegistry.registerEntityRenderingHandler(EntityBubbleProjectile.class, manager -> new RenderProjectile<>(manager, Textures.getProjectileTextureLocation("bubble")));
         RenderingRegistry.registerEntityRenderingHandler(EntityDetractor.class, manager -> new RenderProjectile<>(manager, Textures.getProjectileTextureLocation("detractor")));
 //        RenderingRegistry.registerEntityRenderingHandler(EntityFloro.class, manager -> new AnimatedMobRenderer<>(manager, TimeClientLoader.loadJsonEntityModel(entityModelLocation("overworld/floro")), entityTextureLocation("overworld/floro")));
-
-        RenderingRegistry.registerEntityRenderingHandler(EntityBossSpawner.class, RendererBossSpawner::new);
     }
 
     public static void init() {
@@ -321,7 +317,7 @@ public class EntityRendering {
         //Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getModelManager().getBlockModelShapes().registerBuiltInBlocks(EssenceBlocks.calciaStatue);
         //TileEntityItemStackRenderer.instance = new ModeledBlockInventoryRenderer(TileEntityItemStackRenderer.instance);
 
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBossBlock.class, new BossBlockRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBossSpawner.class, new BossSpawnerTESR());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGrindstone.class, new GrindstoneRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityJourneyChest.class, new JourneyChestTESR());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySummoningTable.class, new SummoningTableRenderer());

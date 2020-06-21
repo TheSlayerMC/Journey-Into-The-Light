@@ -9,7 +9,6 @@ import net.journey.blocks.plant.*;
 import net.journey.blocks.portal.*;
 import net.journey.dimension.boil.trees.WorldGenBoilTree1;
 import net.journey.dimension.corba.gen.trees.WorldGenCorbaSmallTree;
-import net.journey.dimension.corba.gen.trees.WorldGenCorbaSwampTree;
 import net.journey.dimension.depths.gen.WorldGenDepthsTree;
 import net.journey.dimension.euca.gen.trees.WorldGenEucaTree;
 import net.journey.dimension.frozen.gen.WorldGenFrozenTree;
@@ -17,7 +16,6 @@ import net.journey.dimension.frozen.gen.WorldGenIceTree;
 import net.journey.dimension.nether.gen.trees.WorldGenBleedheartTree0;
 import net.journey.dimension.nether.gen.trees.WorldGenEarthenTree;
 import net.journey.dimension.terrania.gen.shroom.WorldGenTerrashroom;
-import net.journey.dimension.terrania.gen.trees.WorldGenTerraniaSmallTree;
 import net.journey.dimension.terrania.gen.trees.WorldGenTerraniaTree;
 import net.journey.init.JourneyTabs;
 import net.journey.init.items.JourneyConsumables;
@@ -309,7 +307,7 @@ public class JourneyBlocks {
     public static BlockJourneyChest cloudiaChest;
     public static BlockJourneyChest lockedChest;
 
-    public static BlockBossBlock BOSS_BLOCK;
+    public static BlockBossSpawner bossSpawner;
 
     public static BlockMod nethicDungeonBricks;
     public static JBlockPane boilChain;
@@ -1075,7 +1073,7 @@ public class JourneyBlocks {
         burntGrass = new BlockModFlower("burntGrass", "Burnt Grass", true);
 
         grindstone = new BlockGrindstone("grindstone", "Grindstone");
-        BOSS_BLOCK = new BlockBossBlock("bossBlock", "Boss Spawner");
+        bossSpawner = new BlockBossSpawner("bossBlock", "Boss Spawner");
         cloudAltar = new BlockCloudAltar("cloudaltar", "Cloud Altar");
         blueGems = new BlockGemBlock("blueGems", "Blue Gems", false);
         redGems = new BlockGemBlock("redGems", "Red Gems", true);
