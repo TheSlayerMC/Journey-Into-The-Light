@@ -1,20 +1,6 @@
 package net.journey.dimension.cloudia;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-
-import net.journey.dimension.cloudia.zone.CloudiaAltar;
-import net.journey.dimension.cloudia.zone.CloudiaAltarRoom1;
-import net.journey.dimension.cloudia.zone.CloudiaBridgeAll;
-import net.journey.dimension.cloudia.zone.CloudiaDungeon1;
-import net.journey.dimension.cloudia.zone.CloudiaDungeon2;
-import net.journey.dimension.cloudia.zone.CloudiaEmptyChunk;
-import net.journey.dimension.cloudia.zone.CloudiaGarden;
-import net.journey.dimension.cloudia.zone.CloudiaHouse1;
-import net.journey.dimension.cloudia.zone.CloudiaZoneBase;
+import net.journey.dimension.cloudia.zone.*;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.Config;
 import net.minecraft.block.state.IBlockState;
@@ -22,7 +8,6 @@ import net.minecraft.block.state.pattern.BlockStateMatcher;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.LazyLoadBase;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
@@ -33,23 +18,25 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 
-public class ChunkProviderCloudia implements IChunkGenerator {
+import java.util.*;
 
-	private ArrayList bottomrooms;
-	private ArrayList toprooms;
-	private CloudiaEmptyChunk emptyChunk;
-	private CloudiaZoneBase[] bridges;
-	private World worldObj;
-	private Random random;
-	private Map chunkTileEntityMap;
+public class ChunkGeneratorCloudia implements IChunkGenerator {
+
+	private final ArrayList bottomrooms;
+	private final ArrayList toprooms;
+	private final CloudiaEmptyChunk emptyChunk;
+	private final CloudiaZoneBase[] bridges;
+	private final World worldObj;
+	private final Random random;
+	private final Map chunkTileEntityMap;
 	private Biome[] biomesForGeneration;
-	
-    private final WorldGenMinable pinkCloudiaCloud;
-    private final WorldGenMinable lightBlueCloudiaCloud;
-    private final WorldGenMinable cloudiaRock;
-    private final WorldGenMinable luniteOre;
-    
-	public ChunkProviderCloudia(World worldIn, long seed) {
+
+	private final WorldGenMinable pinkCloudiaCloud;
+	private final WorldGenMinable lightBlueCloudiaCloud;
+	private final WorldGenMinable cloudiaRock;
+	private final WorldGenMinable luniteOre;
+
+	public ChunkGeneratorCloudia(World worldIn, long seed) {
 		worldObj = worldIn;
 		random = new Random(seed);
 		bottomrooms = new ArrayList(4);

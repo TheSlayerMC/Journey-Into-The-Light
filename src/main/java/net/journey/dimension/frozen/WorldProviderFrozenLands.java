@@ -35,7 +35,7 @@ public class WorldProviderFrozenLands extends BaseWorldProvider {
 
     @Override
     public IChunkGenerator createChunkGenerator() {
-        return new ChunkProviderFrozenLands(world, world.getSeed(), world.getWorldInfo().getGeneratorOptions());
+        return new ChunkGeneratorFrozenLands(world, world.getSeed(), world.getWorldInfo().getGeneratorOptions());
     }
 
     @Override

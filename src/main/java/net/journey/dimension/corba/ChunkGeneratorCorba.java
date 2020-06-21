@@ -1,5 +1,6 @@
 package net.journey.dimension.corba;
 
+import com.google.common.collect.Lists;
 import net.journey.api.block.GroundPredicate;
 import net.journey.dimension.base.DimensionHelper;
 import net.journey.dimension.base.gen.JWorldGenPlants;
@@ -44,7 +45,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class ChunkProviderCorba implements IChunkGenerator {
+public class ChunkGeneratorCorba implements IChunkGenerator {
 
 	double[] mainNoiseRegion;
 	double[] minLimitRegion;
@@ -75,11 +76,11 @@ public class ChunkProviderCorba implements IChunkGenerator {
 	private final WorldGenModFlower flower3 = new WorldGenModFlower(JourneyBlocks.corbaRedFlower, JourneyBlocks.corbaGrass);
 	private final WorldGenModFlower flower4 = new WorldGenModFlower(JourneyBlocks.corbaBlueFlower, JourneyBlocks.corbaGrass);
 	private final WorldGenModFlower flower5 = new WorldGenModFlower(JourneyBlocks.corbaLightPurpleFlower, JourneyBlocks.corbaGrass);
-	private final JWorldGenPlants tall = new JWorldGenPlants(JourneyBlocks.corbaTallGrass, GroundPredicate.COMMON_AND_CORBA_GRASS, 10);
-	private final JWorldGenPlants flower = new JWorldGenPlants(JourneyBlocks.corbaFlower, GroundPredicate.COMMON_AND_CORBA_GRASS, 3);
-	private final JWorldGenPlants smallBogshroom = new JWorldGenPlants(JourneyBlocks.bogshroomsSmall, GroundPredicate.COMMON_AND_CORBA_GRASS, 3);
-	private final JWorldGenPlants tallBogshroom = new JWorldGenPlants(JourneyBlocks.bogshroomTall, GroundPredicate.COMMON_AND_CORBA_GRASS, 1);
-	private final JWorldGenPlants bogweed = new JWorldGenPlants(JourneyBlocks.bogweed, GroundPredicate.TAINTED_MUD, 10);
+	private final JWorldGenPlants genCorbaTallGrass = new JWorldGenPlants(JourneyBlocks.corbaTallGrass, GroundPredicate.COMMON_AND_CORBA_GRASS, 10);
+	private final JWorldGenPlants genCorbaFlower = new JWorldGenPlants(JourneyBlocks.corbaFlower, GroundPredicate.COMMON_AND_CORBA_GRASS, 3);
+	private final JWorldGenPlants genBogshroomsSmall = new JWorldGenPlants(JourneyBlocks.bogshroomsSmall, 3);
+	private final JWorldGenPlants genBogshroomTall = new JWorldGenPlants(JourneyBlocks.bogshroomTall, 1);
+	private final JWorldGenPlants genBogweed = new JWorldGenPlants(JourneyBlocks.bogweed, GroundPredicate.TAINTED_MUD, 10);
 
 	private final WorldGenTreehouse worldGenTreehouse = new WorldGenTreehouse();
 	private final WorldGenCorbaVillage village = new WorldGenCorbaVillage();
@@ -93,7 +94,7 @@ public class ChunkProviderCorba implements IChunkGenerator {
 
 	private final MapGenCorbaVillage villageGenerator = new MapGenCorbaVillage();
 
-	public ChunkProviderCorba(World worldIn, long seed, String generatorOptions) {
+	public ChunkGeneratorCorba(World worldIn, long seed, String generatorOptions) {
 		this.caveGenerator = new MapGenCaves();
 		this.ravineGenerator = new MapGenRavine();
 		this.worldObj = worldIn;
@@ -112,22 +113,17 @@ public class ChunkProviderCorba implements IChunkGenerator {
 
 		for(int i = -2; i <= 2; ++i) {
 			for(int j = -2; j <= 2; ++j) {
-				float f = 10.0F / MathHelper.sqrt((float)(i * i + j * j) + 0.2F);
+				float f = 10.0F / MathHelper.sqrt((float) (i * i + j * j) + 0.2F);
 				this.biomeWeights[i + 2 + (j + 2) * 5] = f;
 			}
 		}
 
-		if(generatorOptions != null) {
+		if (generatorOptions != null) {
 			this.settings = ChunkGeneratorSettings.Factory.jsonToFactory(generatorOptions).build();
 			worldIn.setSeaLevel(this.settings.seaLevel);
 		}
 
-		trees = new ArrayList<WorldGenerator>(3);
-		trees.add(new WorldGenCorbaSmallTree());
-		trees.add(new WorldGenCorbaMediumTree());
-		trees.add(new WorldGenCorbaLargeTree());
-
-
+		trees = Lists.newArrayList(new WorldGenCorbaSmallTree(), new WorldGenCorbaMediumTree(), new WorldGenCorbaLargeTree());
 
 		this.gorbite = new WorldGenMinable(JourneyBlocks.gorbiteOre.getDefaultState(), Config.gorbiteOreGenAmount, BlockStateMatcher.forBlock(JourneyBlocks.corbaStone));
 		this.orbaditeOre = new WorldGenMinable(JourneyBlocks.orbaditeOre.getDefaultState(), Config.orbaditeOreGenAmount, BlockStateMatcher.forBlock(JourneyBlocks.corbaStone));
@@ -410,8 +406,8 @@ public class ChunkProviderCorba implements IChunkGenerator {
 
 		if(worldObj.getBiome(chunkStart) != DimensionHelper.CORBA_SWAMP_BIOME) {
 			for(i = 0; i < 5; i++) {
-				tall.generate(worldObj, r, chunkStart);
-				flower.generate(worldObj, r, chunkStart);
+				genCorbaTallGrass.generate(worldObj, r, chunkStart);
+				genCorbaFlower.generate(worldObj, r, chunkStart);
 				flower1.generate(worldObj, r, chunkStart);
 				flower2.generate(worldObj, r, chunkStart);
 				flower3.generate(worldObj, r, chunkStart);
@@ -422,10 +418,10 @@ public class ChunkProviderCorba implements IChunkGenerator {
 
 		if(worldObj.getBiome(chunkStart) == DimensionHelper.CORBA_SWAMP_BIOME) {
 			for(i = 0; i < 5; i++) {
-				tall.generate(worldObj, r, chunkStart);
-				smallBogshroom.generate(worldObj, r, chunkStart);
-				tallBogshroom.generate(worldObj, r, chunkStart);
-				bogweed.generate(worldObj, r, chunkStart);
+				genCorbaTallGrass.generate(worldObj, r, chunkStart);
+				genBogshroomsSmall.generate(worldObj, r, chunkStart);
+				genBogshroomTall.generate(worldObj, r, chunkStart);
+				genBogweed.generate(worldObj, r, chunkStart);
 			}
 		}
 

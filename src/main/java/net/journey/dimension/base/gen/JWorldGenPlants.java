@@ -24,12 +24,23 @@ import java.util.Random;
  */
 public class JWorldGenPlants extends WorldGenerator {
 	private final IBlockState plantState;
+	/**
+	 * Attempts to spawn a block per chunk
+	 */
 	private final int attempts;
 	/**
 	 * This is an additional ground predicate, that will check plant after plant's internal ground predicate.
 	 * You can use it in situations, when plant can be planted on every grass block, but, for example, we need to spawn it only on silver grass blocks.
 	 */
 	private final GroundPredicate additionalGroundPredicate;
+
+	public JWorldGenPlants(Block flower) {
+		this(flower, GroundPredicate.ANY, 5);
+	}
+
+	public JWorldGenPlants(Block flower, int attempts) {
+		this(flower, GroundPredicate.ANY, attempts);
+	}
 
 	public JWorldGenPlants(Block flower, GroundPredicate additionalGroundPredicate) {
 		this(flower, additionalGroundPredicate, 5);
