@@ -159,7 +159,6 @@ public class EntityRendering {
         
         RenderingRegistry.registerEntityRenderingHandler(EntityPetRobot.class, new RenderSizeable(new ModelRobot(), 0.5F, 0.5F, Textures.robot));
         RenderingRegistry.registerEntityRenderingHandler(EntityEucaHopper.class, new RenderSizeable(new ModelEucaHopper(), 0.5F, 0.5F, Textures.eucaHopper));
-        RenderingRegistry.registerEntityRenderingHandler(EntityBossStatue.class, new RenderBossStatue(new ModelBeastOfTheNether(), 0.5F, Textures.netherBeast));
 
         /**Overworld Mobs*/
         RenderingRegistry.registerEntityRenderingHandler(EntityRobot.class, new RenderModMob(new ModelRobot(), Textures.robot));

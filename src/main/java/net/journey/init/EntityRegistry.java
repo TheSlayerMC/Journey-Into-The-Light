@@ -300,7 +300,6 @@ public class EntityRegistry {
 				//TNT
 				SlayerAPI.buildMobEntryNoEgg(EntityMagicExplosive.class, "magic_explosive"),
 
-				SlayerAPI.buildMobEntryNoEgg(EntityBossStatue.class, "boss_state")
 
 		};
 
