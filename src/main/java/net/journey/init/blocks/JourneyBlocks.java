@@ -241,12 +241,12 @@ public class JourneyBlocks {
     public static JBlockWaterLily swamp_lily;
 
     public static JBlockFungalShelf swamp_shelf;
-    public static JBlockMushroom bog_shrooms_small;
-    public static JBlockMushroom bog_shroom_tall;
+    public static JBlockMushroom bogshroomsSmall;
+    public static JBlockMushroom bogshroomTall;
 
     public static JBlockMushroom enchantedShroomsSmall;
     public static JBlockMushroom enchantedShroomTall;
-    
+
     public static JBlockSlab corbaPlankSlab;
     public static JBlockSlab corbaPlankDoubleSlab;
 
@@ -769,14 +769,14 @@ public class JourneyBlocks {
         bogweed = (JBlockDoublePlant) new JBlockDoublePlant("bogweed", "Bogweed").setGroundPredicate(GroundPredicate.TAINTED_MUD);
         swamp_lily = new JBlockWaterLily("swamp_lily", "Swamp lily");
         swamp_shelf = new JBlockFungalShelf("swamp_shelf", "Swamp Shelf");
-        bog_shrooms_small = (JBlockMushroom) new JBlockMushroom("bog_shrooms_small", "Small Bogshroom Cluster").setGroundPredicate(GroundPredicate.COMMON_AND_CORBA_GRASS).setLightLevel(0.3F);
-        bog_shroom_tall = (JBlockMushroom) new JBlockMushroom("bog_shroom_tall", "Tall Bogshroom").setGroundPredicate(GroundPredicate.COMMON_AND_CORBA_GRASS).setLightLevel(0.6F);
+        bogshroomsSmall = (JBlockMushroom) new JBlockMushroom("bog_shrooms_small", "Small Bogshrooms").setGroundPredicate(GroundPredicate.COMMON_AND_CORBA_GRASS).setLightLevel(0.3F);
+        bogshroomTall = (JBlockMushroom) new JBlockMushroom("bog_shroom_tall", "Tall Bogshroom").setGroundPredicate(GroundPredicate.COMMON_AND_CORBA_GRASS).setLightLevel(0.6F);
 
         corbaPlankSlab = new JBlockSlab(Material.WOOD, "corba_plank_slab", "Corba Plank Slab", false);
         corbaPlankDoubleSlab = new JBlockSlab(Material.WOOD, "corba_plank_double_slab", "Corba Plank Double Slab", true);
 
         corbaPlankStairs = new BlockModStairs(corbaPlank, "corba_plank_stairs", "Corba Plank Stairs");
-        
+
         boilingLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "boilingLamp", "Boiling Lamp", 0.1F)
                 .setLightLevel(1.0F).setCreativeTab(JourneyTabs.DECORATION);
         blazierBricks = new BlockMod("blazierBricks", "Blazier Bricks");
@@ -973,8 +973,8 @@ public class JourneyBlocks {
         terraniaLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "terraniaLamp", "Terrania Lamp", 0.1F)
                 .setLightLevel(1.0F).setCreativeTab(JourneyTabs.DECORATION);
 
-        enchantedShroomsSmall = (JBlockMushroom) new JBlockMushroom("enchanted_shrooms_small", "Enchanted Shrooms").setLightLevel(0.3F);
-        enchantedShroomTall = (JBlockMushroom) new JBlockMushroom("enchanted_shroom_tall", "Tall Enchanted Shroom").setLightLevel(0.6F);
+        enchantedShroomsSmall = (JBlockMushroom) new JBlockMushroom("enchanted_shrooms_small", "Enchanted Shrooms").setGroundPredicate(GroundPredicate.COMMON_AND_TERRANIA_GRASS).setLightLevel(0.3F);
+        enchantedShroomTall = (JBlockMushroom) new JBlockMushroom("enchanted_shroom_tall", "Tall Enchanted Shroom").setGroundPredicate(GroundPredicate.COMMON_AND_TERRANIA_GRASS).setLightLevel(0.6F);
 
         terrashroomBlockPink = new BlockJourneyMushroom(EnumMaterialTypes.WOOD, "terrashroomBlockPink", "Terrashroom Block", 0.5F, terramushroom);
         terrashroomBlockPurple = new BlockJourneyMushroom(EnumMaterialTypes.WOOD, "terrashroomBlockPurple", "Terrashroom Block", 0.5F, terramushroom);

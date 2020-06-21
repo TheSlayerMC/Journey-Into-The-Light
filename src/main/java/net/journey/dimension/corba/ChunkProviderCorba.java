@@ -1,9 +1,5 @@
 package net.journey.dimension.corba;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 import net.journey.api.block.GroundPredicate;
 import net.journey.dimension.base.DimensionHelper;
 import net.journey.dimension.base.gen.JWorldGenPlants;
@@ -21,7 +17,6 @@ import net.journey.dimension.overworld.gen.WorldGenCaveVines;
 import net.journey.dimension.overworld.gen.WorldGenModFlower;
 import net.journey.dimension.overworld.gen.WorldGenSmallGlowshrooms;
 import net.journey.dimension.overworld.gen.WorldGenTallGlowshroom;
-import net.journey.dimension.terrania.gen.trees.WorldGenTerraniaTree;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.Config;
 import net.minecraft.block.Block;
@@ -39,17 +34,15 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
-import net.minecraft.world.gen.ChunkGeneratorSettings;
-import net.minecraft.world.gen.IChunkGenerator;
-import net.minecraft.world.gen.MapGenBase;
-import net.minecraft.world.gen.MapGenCaves;
-import net.minecraft.world.gen.MapGenRavine;
-import net.minecraft.world.gen.NoiseGeneratorOctaves;
-import net.minecraft.world.gen.NoiseGeneratorPerlin;
+import net.minecraft.world.gen.*;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenSwamp;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.slayer.api.worldgen.WorldGenAPI;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class ChunkProviderCorba implements IChunkGenerator {
 
@@ -58,10 +51,10 @@ public class ChunkProviderCorba implements IChunkGenerator {
 	double[] maxLimitRegion;
 	double[] depthRegion;
 	private ChunkGeneratorSettings settings;
-	private NoiseGeneratorOctaves minLimitPerlinNoise;
-	private NoiseGeneratorOctaves maxLimitPerlinNoise;
-	private NoiseGeneratorOctaves mainPerlinNoise;
-	private NoiseGeneratorPerlin surfaceNoise;
+	private final NoiseGeneratorOctaves minLimitPerlinNoise;
+	private final NoiseGeneratorOctaves maxLimitPerlinNoise;
+	private final NoiseGeneratorOctaves mainPerlinNoise;
+	private final NoiseGeneratorPerlin surfaceNoise;
 	public NoiseGeneratorOctaves scaleNoise;
 	public NoiseGeneratorOctaves depthNoise;
 	public NoiseGeneratorOctaves forestNoise;
@@ -71,34 +64,34 @@ public class ChunkProviderCorba implements IChunkGenerator {
 	private double[] depthBuffer = new double[256];
 
 	private Random rand;
-	private ArrayList<WorldGenerator> trees;
-	private World worldObj;
-	private MapGenBase caveGenerator;
-	private MapGenBase ravineGenerator;
+	private final ArrayList<WorldGenerator> trees;
+	private final World worldObj;
+	private final MapGenBase caveGenerator;
+	private final MapGenBase ravineGenerator;
 	private Biome[] biomesForGeneration;
 
-	private WorldGenModFlower flower1 = new WorldGenModFlower(JourneyBlocks.corbaSpeckledFlower, JourneyBlocks.corbaGrass);
-	private WorldGenModFlower flower2 = new WorldGenModFlower(JourneyBlocks.corbaDarkPurpleFlower, JourneyBlocks.corbaGrass);
-	private WorldGenModFlower flower3 = new WorldGenModFlower(JourneyBlocks.corbaRedFlower, JourneyBlocks.corbaGrass);
-	private WorldGenModFlower flower4 = new WorldGenModFlower(JourneyBlocks.corbaBlueFlower, JourneyBlocks.corbaGrass);
-	private WorldGenModFlower flower5 = new WorldGenModFlower(JourneyBlocks.corbaLightPurpleFlower, JourneyBlocks.corbaGrass);
-	private JWorldGenPlants tall = new JWorldGenPlants(JourneyBlocks.corbaTallGrass, GroundPredicate.COMMON_AND_CORBA_GRASS, 10);
-	private JWorldGenPlants flower = new JWorldGenPlants(JourneyBlocks.corbaFlower, GroundPredicate.COMMON_AND_CORBA_GRASS, 3);
-	private JWorldGenPlants small_bogshroom = new JWorldGenPlants(JourneyBlocks.bog_shrooms_small, GroundPredicate.COMMON_AND_CORBA_GRASS, 3);
-	private JWorldGenPlants tall_bogshroom = new JWorldGenPlants(JourneyBlocks.bog_shroom_tall, GroundPredicate.COMMON_AND_CORBA_GRASS, 1);
-	private JWorldGenPlants bogweed = new JWorldGenPlants(JourneyBlocks.bogweed, GroundPredicate.TAINTED_MUD, 10);
+	private final WorldGenModFlower flower1 = new WorldGenModFlower(JourneyBlocks.corbaSpeckledFlower, JourneyBlocks.corbaGrass);
+	private final WorldGenModFlower flower2 = new WorldGenModFlower(JourneyBlocks.corbaDarkPurpleFlower, JourneyBlocks.corbaGrass);
+	private final WorldGenModFlower flower3 = new WorldGenModFlower(JourneyBlocks.corbaRedFlower, JourneyBlocks.corbaGrass);
+	private final WorldGenModFlower flower4 = new WorldGenModFlower(JourneyBlocks.corbaBlueFlower, JourneyBlocks.corbaGrass);
+	private final WorldGenModFlower flower5 = new WorldGenModFlower(JourneyBlocks.corbaLightPurpleFlower, JourneyBlocks.corbaGrass);
+	private final JWorldGenPlants tall = new JWorldGenPlants(JourneyBlocks.corbaTallGrass, GroundPredicate.COMMON_AND_CORBA_GRASS, 10);
+	private final JWorldGenPlants flower = new JWorldGenPlants(JourneyBlocks.corbaFlower, GroundPredicate.COMMON_AND_CORBA_GRASS, 3);
+	private final JWorldGenPlants smallBogshroom = new JWorldGenPlants(JourneyBlocks.bogshroomsSmall, GroundPredicate.COMMON_AND_CORBA_GRASS, 3);
+	private final JWorldGenPlants tallBogshroom = new JWorldGenPlants(JourneyBlocks.bogshroomTall, GroundPredicate.COMMON_AND_CORBA_GRASS, 1);
+	private final JWorldGenPlants bogweed = new JWorldGenPlants(JourneyBlocks.bogweed, GroundPredicate.TAINTED_MUD, 10);
 
-	private WorldGenTreehouse worldGenTreehouse = new WorldGenTreehouse();
-	private WorldGenCorbaVillage village = new WorldGenCorbaVillage();
-	private WorldGenHugeCorbaTree tree = new WorldGenHugeCorbaTree();
-	private WorldGenCorbaLamp lamp = new WorldGenCorbaLamp();
+	private final WorldGenTreehouse worldGenTreehouse = new WorldGenTreehouse();
+	private final WorldGenCorbaVillage village = new WorldGenCorbaVillage();
+	private final WorldGenHugeCorbaTree tree = new WorldGenHugeCorbaTree();
+	private final WorldGenCorbaLamp lamp = new WorldGenCorbaLamp();
 	private final WorldGenMinable gorbite;
 	private final WorldGenMinable orbaditeOre;
 	private static final WorldGenTallGlowshroom TALL_GLOWSHROOMS_GEN = new WorldGenTallGlowshroom();
 	private static final WorldGenCaveVines CAVE_VINE_GEN = new WorldGenCaveVines();
 	private static final WorldGenSmallGlowshrooms SMALL_GLOWSHROOMS = new WorldGenSmallGlowshrooms();
 
-	private MapGenCorbaVillage villageGenerator = new MapGenCorbaVillage();
+	private final MapGenCorbaVillage villageGenerator = new MapGenCorbaVillage();
 
 	public ChunkProviderCorba(World worldIn, long seed, String generatorOptions) {
 		this.caveGenerator = new MapGenCaves();
@@ -211,19 +204,16 @@ public class ChunkProviderCorba implements IChunkGenerator {
 		}
 	}
 
-	public void replaceBiomeBlocks(int x, int z, ChunkPrimer primer, Biome[] biomesIn)
-	{
+	public void replaceBiomeBlocks(int x, int z, ChunkPrimer primer, Biome[] biomesIn) {
 		if (!net.minecraftforge.event.ForgeEventFactory.onReplaceBiomeBlocks(this, x, z, primer, this.worldObj)) return;
 		double d0 = 0.03125D;
-		this.depthBuffer = this.surfaceNoise.getRegion(this.depthBuffer, (double)(x * 16), (double)(z * 16), 16, 16, 0.0625D, 0.0625D, 1.0D);
+		this.depthBuffer = this.surfaceNoise.getRegion(this.depthBuffer, x * 16, z * 16, 16, 16, 0.0625D, 0.0625D, 1.0D);
 
-		for (int i = 0; i < 16; ++i)
-		{
-			for (int j = 0; j < 16; ++j)
-			{
+		for (int i = 0; i < 16; ++i) {
+			for (int j = 0; j < 16; ++j) {
 				Biome biome = biomesIn[j + i * 16];
-				if(biome == DimensionHelper.CORBA_SWAMP_BIOME) {
-					BiomeGenCorbaSwamp swamp = (BiomeGenCorbaSwamp)biome;
+				if (biome == DimensionHelper.CORBA_SWAMP_BIOME) {
+					BiomeGenCorbaSwamp swamp = (BiomeGenCorbaSwamp) biome;
 					swamp.generateModdedBiomeTerrain(worldObj, this.rand, primer, x * 16 + i, z * 16 + j, this.depthBuffer[j + i * 16]);
 				} else {
 					generateBiomeTerrain(biome, this.rand, primer, x * 16 + i, z * 16 + j, this.depthBuffer[j + i * 16]);
@@ -298,19 +288,17 @@ public class ChunkProviderCorba implements IChunkGenerator {
 	}
 
 	private void generateHeightmap(int x, int y, int z) {
-		this.depthRegion = this.depthNoise.generateNoiseOctaves(this.depthRegion, x, z, 5, 5, (double)this.settings.depthNoiseScaleX, (double)this.settings.depthNoiseScaleZ, (double)this.settings.depthNoiseScaleExponent);
+		this.depthRegion = this.depthNoise.generateNoiseOctaves(this.depthRegion, x, z, 5, 5, this.settings.depthNoiseScaleX, this.settings.depthNoiseScaleZ, this.settings.depthNoiseScaleExponent);
 		float f = this.settings.coordinateScale;
 		float f1 = this.settings.heightScale;
-		this.mainNoiseRegion = this.mainPerlinNoise.generateNoiseOctaves(this.mainNoiseRegion, x, y, z, 5, 33, 5, (double)(f / this.settings.mainNoiseScaleX), (double)(f1 / this.settings.mainNoiseScaleY), (double)(f / this.settings.mainNoiseScaleZ));
-		this.minLimitRegion = this.minLimitPerlinNoise.generateNoiseOctaves(this.minLimitRegion, x, y, z, 5, 33, 5, (double)f, (double)f1, (double)f);
-		this.maxLimitRegion = this.maxLimitPerlinNoise.generateNoiseOctaves(this.maxLimitRegion, x, y, z, 5, 33, 5, (double)f, (double)f1, (double)f);
+		this.mainNoiseRegion = this.mainPerlinNoise.generateNoiseOctaves(this.mainNoiseRegion, x, y, z, 5, 33, 5, f / this.settings.mainNoiseScaleX, f1 / this.settings.mainNoiseScaleY, f / this.settings.mainNoiseScaleZ);
+		this.minLimitRegion = this.minLimitPerlinNoise.generateNoiseOctaves(this.minLimitRegion, x, y, z, 5, 33, 5, f, f1, f);
+		this.maxLimitRegion = this.maxLimitPerlinNoise.generateNoiseOctaves(this.maxLimitRegion, x, y, z, 5, 33, 5, f, f1, f);
 		int i = 0;
 		int j = 0;
 
-		for (int k = 0; k < 5; ++k)
-		{
-			for (int l = 0; l < 5; ++l)
-			{
+		for (int k = 0; k < 5; ++k) {
+			for (int l = 0; l < 5; ++l) {
 				float f2 = 0.0F;
 				float f3 = 0.0F;
 				float f4 = 0.0F;
@@ -369,10 +357,8 @@ public class ChunkProviderCorba implements IChunkGenerator {
 					d7 = d7 / 1.4D;
 					d7 = d7 / 2.0D;
 				}
-				else
-				{
-					if (d7 > 1.0D)
-					{
+				else {
+					if (d7 > 1.0D) {
 						d7 = 1.0D;
 					}
 
@@ -380,18 +366,16 @@ public class ChunkProviderCorba implements IChunkGenerator {
 				}
 
 				++j;
-				double d8 = (double)f3;
-				double d9 = (double)f2;
+				double d8 = f3;
+				double d9 = f2;
 				d8 = d8 + d7 * 0.2D;
-				d8 = d8 * (double)this.settings.baseSize / 8.0D;
-				double d0 = (double)this.settings.baseSize + d8 * 4.0D;
+				d8 = d8 * (double) this.settings.baseSize / 8.0D;
+				double d0 = (double) this.settings.baseSize + d8 * 4.0D;
 
-				for (int l1 = 0; l1 < 33; ++l1)
-				{
-					double d1 = ((double)l1 - d0) * (double)this.settings.stretchY * 128.0D / 256.0D / d9;
+				for (int l1 = 0; l1 < 33; ++l1) {
+					double d1 = ((double) l1 - d0) * (double) this.settings.stretchY * 128.0D / 256.0D / d9;
 
-					if (d1 < 0.0D)
-					{
+					if (d1 < 0.0D) {
 						d1 *= 4.0D;
 					}
 
@@ -400,9 +384,8 @@ public class ChunkProviderCorba implements IChunkGenerator {
 					double d4 = (this.mainNoiseRegion[i] / 10.0D + 1.0D) / 2.0D;
 					double d5 = MathHelper.clampedLerp(d2, d3, d4) - d1;
 
-					if (l1 > 29)
-					{
-						double d6 = (double)((float)(l1 - 29) / 3.0F);
+					if (l1 > 29) {
+						double d6 = (float) (l1 - 29) / 3.0F;
 						d5 = d5 * (1.0D - d6) + -10.0D * d6;
 					}
 
@@ -440,8 +423,8 @@ public class ChunkProviderCorba implements IChunkGenerator {
 		if(worldObj.getBiome(chunkStart) == DimensionHelper.CORBA_SWAMP_BIOME) {
 			for(i = 0; i < 5; i++) {
 				tall.generate(worldObj, r, chunkStart);
-				small_bogshroom.generate(worldObj, r, chunkStart);
-				tall_bogshroom.generate(worldObj, r, chunkStart);
+				smallBogshroom.generate(worldObj, r, chunkStart);
+				tallBogshroom.generate(worldObj, r, chunkStart);
 				bogweed.generate(worldObj, r, chunkStart);
 			}
 		}
@@ -533,8 +516,8 @@ public class ChunkProviderCorba implements IChunkGenerator {
 	}
 
 	@Override
-	public void recreateStructures(Chunk c, int x, int z) {	
-		this.villageGenerator.generate(this.worldObj, x, z, (ChunkPrimer)null);
+	public void recreateStructures(Chunk c, int x, int z) {
+		this.villageGenerator.generate(this.worldObj, x, z, null);
 	}
 
 	@Override
