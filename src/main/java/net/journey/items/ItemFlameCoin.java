@@ -1,6 +1,5 @@
 package net.journey.items;
 
-import net.journey.entity.mob.boss.EntityBossStatue;
 import net.journey.init.JourneyTabs;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.items.base.JItem;
