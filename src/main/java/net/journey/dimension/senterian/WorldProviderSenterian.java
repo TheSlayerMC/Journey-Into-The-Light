@@ -19,13 +19,13 @@ import javax.annotation.Nullable;
 public class WorldProviderSenterian extends BaseWorldProvider {
 
 	public WorldProviderSenterian() {
-		super(new BiomeProviderSingle(DimensionHelper.SENTERIAN_BIOME), new Vec3d(0.2, 0.1, 0));
-	}
+        super(world1 -> new BiomeProviderSingle(DimensionHelper.SENTERIAN_BIOME), new Vec3d(0.2, 0.1, 0));
+    }
 
 	@Override
 	public void init() {
-		nether = true;
-        hasSkyLight = true;
+        super.init();
+        nether = true;
     }
 
     @Nullable

@@ -15,25 +15,16 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Arrays;
-import java.util.List;
-
 import javax.annotation.Nullable;
+import java.util.List;
 
 public class WorldProviderCorba extends BaseWorldProvider {
 
-	private static List<Biome> common = Lists.newArrayList(DimensionHelper.CORBA_BIOME, DimensionHelper.CORBA_PLAINS_BIOME, DimensionHelper.CORBA_SWAMP_BIOME);
-	private static List<Biome> rare = Lists.newArrayList(DimensionHelper.CORBA_HILLS_BIOME);
-	
-	public WorldProviderCorba() {
-        super(new BiomeProviderMultiple(new WorldInfoCorba(), common, rare), new Vec3d(0.5, 0.55, 0));
-    }
+    private static final List<Biome> COMMON_BIOMES = Lists.newArrayList(DimensionHelper.CORBA_BIOME, DimensionHelper.CORBA_PLAINS_BIOME, DimensionHelper.CORBA_SWAMP_BIOME);
+    private static final List<Biome> RARE_BIOMES = Lists.newArrayList(DimensionHelper.CORBA_HILLS_BIOME);
 
-	@Override
-	public void init() {
-		this.nether = false;
-        this.hasSkyLight = true;
-        this.biomeProvider = new BiomeProviderMultiple(this.world.getWorldInfo(), common, rare) { };
+    public WorldProviderCorba() {
+        super(world1 -> new BiomeProviderMultiple(new WorldInfoCorba(), COMMON_BIOMES, RARE_BIOMES), new Vec3d(0.5, 0.55, 0));
     }
 
     @Nullable

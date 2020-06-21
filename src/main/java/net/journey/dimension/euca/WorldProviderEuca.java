@@ -15,25 +15,16 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Arrays;
-import java.util.List;
-
 import javax.annotation.Nullable;
+import java.util.List;
 
 public class WorldProviderEuca extends BaseWorldProvider {
 
-	private static List<Biome> common = Lists.newArrayList(DimensionHelper.EUCA_GOLD_BIOME, DimensionHelper.EUCA_GOLDITE_GRAINS_BIOME);
-	private static List<Biome> rare = Lists.newArrayList(DimensionHelper.EUCA_SILVER_BIOME);
-	
+    private static final List<Biome> COMMON_BIOMES = Lists.newArrayList(DimensionHelper.EUCA_GOLD_BIOME, DimensionHelper.EUCA_GOLDITE_GRAINS_BIOME);
+    private static final List<Biome> RARE_BIOMES = Lists.newArrayList(DimensionHelper.EUCA_SILVER_BIOME);
+
     public WorldProviderEuca() {
-        super(new BiomeProviderMultiple(new WorldInfoEuca(), common, rare), new Vec3d(1.28, 1.15, 0.7));
-    }
-    
-    @Override
-    public void init() {
-        this.nether = false;
-        this.hasSkyLight = true;
-        this.biomeProvider = new BiomeProviderMultiple(this.world.getWorldInfo(), common, rare) { };
+        super(world -> new BiomeProviderMultiple(world.getWorldInfo(), COMMON_BIOMES, RARE_BIOMES), new Vec3d(1.28, 1.15, 0.7));
     }
 
     @Override

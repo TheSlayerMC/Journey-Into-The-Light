@@ -21,8 +21,8 @@ import javax.annotation.Nullable;
 public class WorldProviderBoiling extends BaseWorldProvider {
 
 	public WorldProviderBoiling() {
-		super(new BiomeProviderSingle(DimensionHelper.BOILING_BIOME), new Vec3d(0.2, 0.1, 0));
-	}
+        super(world1 -> new BiomeProviderSingle(DimensionHelper.BOILING_BIOME), new Vec3d(0.2, 0.1, 0));
+    }
 
 	@Override
 	@SideOnly(Side.CLIENT)
@@ -32,8 +32,9 @@ public class WorldProviderBoiling extends BaseWorldProvider {
 
     @Override
     public void init() {
+        super.init();
+
         nether = true;
-        hasSkyLight = true;
         doesWaterVaporize = true;
     }
     

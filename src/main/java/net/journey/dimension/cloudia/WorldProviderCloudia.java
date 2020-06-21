@@ -19,13 +19,7 @@ import javax.annotation.Nullable;
 public class WorldProviderCloudia extends BaseWorldProvider {
 
 	public WorldProviderCloudia() {
-		super(new BiomeProviderSingle(DimensionHelper.CLOUDIA_BIOME), new Vec3d(1.5, 1.12, 1.7));
-	}
-
-	@Override
-	public void init() {
-		this.nether = false;
-        this.hasSkyLight = true;
+        super(world1 -> new BiomeProviderSingle(DimensionHelper.CLOUDIA_BIOME), new Vec3d(1.5, 1.12, 1.7));
     }
     
     @Nullable

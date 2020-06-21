@@ -20,12 +20,7 @@ import javax.annotation.Nullable;
 public class WorldProviderTerrania extends BaseWorldProvider {
 
 	public WorldProviderTerrania() {
-		super(new BiomeProviderSingle(DimensionHelper.TERRANIA_BIOME));
-	}
-
-	@Override
-	public void init() {
-		hasSkyLight = true;
+        super(world1 -> new BiomeProviderSingle(DimensionHelper.TERRANIA_BIOME));
     }
     
     @Nullable

@@ -17,13 +17,7 @@ import javax.annotation.Nullable;
 public class WorldProviderFrozenLands extends BaseWorldProvider {
 
 	public WorldProviderFrozenLands() {
-		super(new BiomeProviderSingle(DimensionHelper.FROZEN_BIOME));
-	}
-
-	@Override
-	public void init() {
-		this.nether = false;
-        this.hasSkyLight = true;
+        super(world1 -> new BiomeProviderSingle(DimensionHelper.FROZEN_BIOME));
     }
     
     @Nullable

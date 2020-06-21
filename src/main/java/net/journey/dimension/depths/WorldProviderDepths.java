@@ -16,13 +16,7 @@ import javax.annotation.Nullable;
 public class WorldProviderDepths extends BaseWorldProvider {
 
 	public WorldProviderDepths() {
-		super(new BiomeProviderSingle(DimensionHelper.DEPTHS_BIOME));
-	}
-
-	@Override
-	public void init() {
-		nether = false;
-        this.hasSkyLight = true;
+        super(world1 -> new BiomeProviderSingle(DimensionHelper.DEPTHS_BIOME));
     }
     
     @Nullable
