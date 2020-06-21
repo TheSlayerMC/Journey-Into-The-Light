@@ -356,8 +356,11 @@ public class JourneyItems {
     public static Item dynasterAmulet;
     public static Item aquaticAmulet;
     public static Item magmaAmulet;
+    public static Item iceAmulet;
     public static Item emptyAmulet;
     public static Item skullOfDecay;
+    public static Item iceflake;
+    public static Item strength_totem;
     public static Item heartContainerSmall;
     public static Item heartContainerMedium;
     public static Item heartContainerLarge;
@@ -634,9 +637,12 @@ public class JourneyItems {
         dynasterAmulet = new ItemDynasterAmulet("amulet_dynaster", "Amulet of the Dynaster");
         aquaticAmulet = new ItemAquaticAmulet("amulet_aquatic", "Amulet of the Depths");
         magmaAmulet = new ItemMagmaAmulet("amulet_magma", "Amulet of Eternal Magma");
+        iceAmulet = new ItemIceAmulet("amulet_ice", "Amulet of Ice");
         emptyAmulet = new JItem("amulet_empty", "Empty Amulet");
 
         skullOfDecay = new ItemSkullOfDecay("skull_of_decay", "Skull Of Decay");
+        iceflake = new ItemIceflake("iceflake", "Glacial Snowflake of Bloodlust");
+        strength_totem = new ItemStrengthTotem("totem_strength", "Totem of Impeccable Strength");
         CHARM_OF_VINE_STRANDING = new ItemVinestranding("charm_of_vine_stranding", "Charm of Vinestranding");
         CHARM_OF_WATER_BENDING = new ItemWaterbending("charm_of_water_bending", "Charm of Waterbending");
 

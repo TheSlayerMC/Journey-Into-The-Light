@@ -36,14 +36,16 @@ public class ItemDynasterAmulet extends JItem implements IBauble {
     @Override
     public void onWornTick(ItemStack itemstack, EntityLivingBase player) {
         if(player.motionY < 0.0D && !player.onGround && !player.isInWater() && !player.isInLava() && player.isSneaking()) {
-            player.motionY *= 0.75F;
-            player.fallDistance = -1.0F;
+            if(player.world.getBlockState(player.getPosition().down(5)).isBlockNormalCube()) {
+                player.motionY *= 0.75F;
+                player.fallDistance = -1.0F;
+            }
         }
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack i, World worldIn, List<String> l, ITooltipFlag flagIn) {
-        l.add(SlayerAPI.Colour.YELLOW + "Crouch to Glide and Negate Fall Damage");
+        l.add(SlayerAPI.Colour.YELLOW + "Crouch within 5 block of a surface to negate fall damage");
     }
 }
