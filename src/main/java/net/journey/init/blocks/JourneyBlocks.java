@@ -430,8 +430,7 @@ public class JourneyBlocks {
     public static BlockMod hotGlass;
     public static BlockMod smoothGlass;
 
-    public static BlockDarkbloom darkbloomTop;
-    public static BlockDarkbloom darkbloomBottom;
+    public static JBlockDoublePlant darkbloom;
     public static BlockMod depthsLights;
 
     public static BlockTallGlowshroom tallGlowshroomRed;
@@ -442,8 +441,7 @@ public class JourneyBlocks {
     public static BlockGlowshroom glowshroomGreen;
     public static BlockGlowshroom glowshroomBlue;
 
-    public static BlockHellThorn hellThornTop;
-    public static BlockHellThorn hellThornBottom;
+    public static JBlockDoublePlant hellThorn;
     public static BlockMod hellThornRoot;
     public static BlockMod nethicGrass;
 
@@ -1003,11 +1001,9 @@ public class JourneyBlocks {
         // wraithStatue = new BlockStatue("wraithStatue", new
         // ModelWraithStatue());
 
-        darkbloomTop = new BlockDarkbloom("darkbloomTop", "Darkbloom", true);
-        darkbloomBottom = new BlockDarkbloom("darkbloomBottom", "Darkbloom", false);
 
-        hellThornTop = new BlockHellThorn("hellThornTop", "Hell Thorn", true);
-        hellThornBottom = new BlockHellThorn("hellThornBottom", "Hell Thorn", false);
+        darkbloom = (JBlockDoublePlant) new JBlockDoublePlant("darkbloom", "Darkbloom").setGroundPredicate(GroundPredicate.COMMON_AND_DEPTHS_GRASS);
+        hellThorn = (JBlockDoublePlant) new JBlockDoublePlant("hell_thorn", "Hell Thorn").setGroundPredicate(GroundPredicate.NETHER).setBoundingBox(JBlockDoublePlant.DOUBLE_BIG_PLANT_BB);
         hellThornRoot = new BlockRoot("hellThornRoot", "HellThornRoot");
         nethicGrass = new BlockModGrass(null, "nethicGrass", "Nethic Grass", 2.0F);
 

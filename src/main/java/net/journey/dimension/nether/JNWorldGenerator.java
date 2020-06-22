@@ -253,7 +253,7 @@ public class JNWorldGenerator {
         biomeSizeY = 1.0 / (double) Config.getBiomeSizeY();
         subBiomeSize = biomeSizeXZ * 3;
         hasCleaningPass = Config.hasCleaningPass();
-        hasThornGen = JourneyBlocks.hellThornBottom != Blocks.AIR && JourneyBlocks.hellThornRoot != Blocks.AIR;
+        hasThornGen = JourneyBlocks.hellThorn != Blocks.AIR && JourneyBlocks.hellThornRoot != Blocks.AIR;
 
         globalStructuresLand = new IStructureWorld[]{};
 

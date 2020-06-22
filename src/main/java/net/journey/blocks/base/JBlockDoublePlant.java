@@ -31,6 +31,7 @@ import org.jetbrains.annotations.NotNull;
  */
 public class JBlockDoublePlant extends JBlockPlant implements IHasCustomItemPath {
 	public static final AxisAlignedBB DOUBLE_TALL_PLANT_BB = TALL_PLANT_BB.setMaxY(TALL_PLANT_BB.maxY + BUSH_AABB.maxY);
+	public static final AxisAlignedBB DOUBLE_BIG_PLANT_BB = BIG_PLANT_BB.setMaxY(2);
 
 	public static final PropertyEnum<EnumHalf> HALF = PropertyEnum.create("half", EnumHalf.class);
 
