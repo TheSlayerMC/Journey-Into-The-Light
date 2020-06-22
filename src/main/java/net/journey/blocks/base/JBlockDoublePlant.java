@@ -2,7 +2,6 @@ package net.journey.blocks.base;
 
 import net.journey.api.block.IHasCustomItemPath;
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -20,39 +19,36 @@ import org.jetbrains.annotations.NotNull;
 
 /**
  * Base class for all double plant blocks.<br>
- * By default:
+ * <p>
+ * For available properties check: {@link JBlockPlant}.<br>
+ * <p>
+ * Overridden properties:
  * <ul>
- *     <li>Checks for ground to be placed and stay</li>
- *     <li>Drops itself</li>
- *     <li>Is NOT replaceable</li>
- *     <li>Has {@link Material#PLANTS} material unless it is  provided in a constructor</li>
- *     <li>Has no hardness (will be instantly broken)</li>
+ *     <li>{@link #boundingBox} - box of the plant, should contain both two blocks. Will be also added to the top box with offset.</li>
  * </ul>
  * <p>
- * You can also set:
- * <ul>
- *     <li>{@link #groundPredicate} - predicate that checks if plant can be placed and sustain on provided block</li>
- *     <li>{@link #plantDirection} - the side of ground block where plant can be placed and stay.</li>
- *     <li>{@link #topBox}, {@link #bottomBox} - bounding boxes of the plant for top and bottom state.</li>
- * </ul>
  * The item model for it should be placed to "models/item/block/plant" by default.
  */
-@SuppressWarnings("JavadocReference")
 public class JBlockDoublePlant extends JBlockPlant implements IHasCustomItemPath {
+	public static final AxisAlignedBB DOUBLE_TALL_PLANT_BB = TALL_PLANT_BB.setMaxY(TALL_PLANT_BB.maxY + BUSH_AABB.maxY);
+
 	public static final PropertyEnum<EnumHalf> HALF = PropertyEnum.create("half", EnumHalf.class);
-	private AxisAlignedBB bottomBox = TALL_PLANT_BB;
-	private AxisAlignedBB topBox = BUSH_AABB;
+
+	private AxisAlignedBB topBox;
 
 	public JBlockDoublePlant(String name, String enName) {
 		super(name, enName);
+		setBoundingBox(DOUBLE_TALL_PLANT_BB);
 	}
 
 	public JBlockDoublePlant(String name, String enName, CreativeTabs tab) {
 		super(name, enName, tab);
+		setBoundingBox(DOUBLE_TALL_PLANT_BB);
 	}
 
 	public JBlockDoublePlant(EnumMaterialTypes type, String name, String enName, CreativeTabs tab) {
 		super(type, name, enName, tab);
+		setBoundingBox(DOUBLE_TALL_PLANT_BB);
 	}
 
 	/**
@@ -68,24 +64,16 @@ public class JBlockDoublePlant extends JBlockPlant implements IHasCustomItemPath
 	}
 
 	@Override
-	public @NotNull AxisAlignedBB getBoundingBox(@NotNull IBlockState state, @NotNull IBlockAccess source, @NotNull BlockPos pos) {
-		return state.getValue(HALF) == EnumHalf.TOP ? topBox : bottomBox;
-	}
+	public JBlockPlant setBoundingBox(AxisAlignedBB bb) {
+		super.setBoundingBox(bb);
+		topBox = boundingBox.offset(0, -1, 0);
 
-	public JBlockDoublePlant setFullBlockBoundingBox() {
-		return setBoundingBox(FULL_BLOCK_AABB);
+		return this;
 	}
 
 	@Override
-	public JBlockDoublePlant setBoundingBox(AxisAlignedBB bb) {
-		return setBoundingBox(bb, bb);
-	}
-
-	public JBlockDoublePlant setBoundingBox(AxisAlignedBB bottom, AxisAlignedBB top) {
-		this.bottomBox = bottom;
-		this.topBox = top;
-
-		return this;
+	public @NotNull AxisAlignedBB getBoundingBox(@NotNull IBlockState state, @NotNull IBlockAccess source, @NotNull BlockPos pos) {
+		return state.getValue(HALF) == EnumHalf.BOTTOM ? super.getBoundingBox(state, source, pos) : topBox;
 	}
 
 	@Override

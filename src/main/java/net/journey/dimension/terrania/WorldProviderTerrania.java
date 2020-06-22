@@ -64,7 +64,7 @@ public class WorldProviderTerrania extends BaseWorldProvider {
 
     @Override
     public IChunkGenerator createChunkGenerator() {
-        return new ChunkProviderTerrania(this.world, this.world.getSeed());
+        return new ChunkGeneratorTerrania(this.world, this.world.getSeed());
     }
 
     @Override

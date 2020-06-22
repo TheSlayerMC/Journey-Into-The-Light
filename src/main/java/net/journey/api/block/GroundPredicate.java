@@ -12,6 +12,7 @@ import java.util.Objects;
 import java.util.function.Predicate;
 
 public interface GroundPredicate {
+	GroundPredicate ANY = (world, groundPos, groundState, plantDirection) -> true;
 	/**
 	 * Any ground is accepted, but it should have solid side at the plant direction.
 	 */

@@ -25,7 +25,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
 
-public class ChunkProviderNether implements IChunkGenerator {
+public class ChunkGeneratorNether implements IChunkGenerator {
 
     protected static final IBlockState AIR = Blocks.AIR.getDefaultState();
     protected static final IBlockState NETHERRACK = Blocks.NETHERRACK.getDefaultState();
@@ -72,7 +72,7 @@ public class ChunkProviderNether implements IChunkGenerator {
     private MapGenNetherBridge genNetherBridge = new MapGenNetherBridge();
     private MapGenBase genNetherCaves = new MapGenCavesHell();
 
-    public ChunkProviderNether(World worldIn, boolean p_i45637_2_, long seed) {
+    public ChunkGeneratorNether(World worldIn, boolean p_i45637_2_, long seed) {
         this.world = worldIn;
         this.generateStructures = p_i45637_2_;
         this.rand = new Random(seed);

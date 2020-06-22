@@ -57,7 +57,7 @@ public class WorldProviderBoiling extends BaseWorldProvider {
 
     @Override
     public IChunkGenerator createChunkGenerator() {
-        return new ChunkProviderBoiling(this.world, this.world.getSeed());
+        return new ChunkGeneratorBoiling(this.world, this.world.getSeed());
     }
 
     @Override

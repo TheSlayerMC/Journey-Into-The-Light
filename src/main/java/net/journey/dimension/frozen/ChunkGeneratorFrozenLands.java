@@ -3,7 +3,6 @@ package net.journey.dimension.frozen;
 import net.journey.dimension.frozen.gen.*;
 import net.journey.dimension.overworld.gen.WorldGenModFlower;
 import net.journey.init.blocks.JourneyBlocks;
-import net.journey.util.handler.Helper;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockStateMatcher;
@@ -27,45 +26,45 @@ import net.slayer.api.worldgen.WorldGenAPI;
 import java.util.List;
 import java.util.Random;
 
-public class ChunkProviderFrozenLands implements IChunkGenerator {
+public class ChunkGeneratorFrozenLands implements IChunkGenerator {
 
-	private static WorldGenNewLamp lamp = new WorldGenNewLamp();
-	private static WorldGenSpikeDungeon spike = new WorldGenSpikeDungeon();
-	private static WorldGenIceDungeon dungeon = new WorldGenIceDungeon();
+	private static final WorldGenNewLamp lamp = new WorldGenNewLamp();
+	private static final WorldGenSpikeDungeon spike = new WorldGenSpikeDungeon();
+	private static final WorldGenIceDungeon dungeon = new WorldGenIceDungeon();
 	private final double[] doubleA;
 	private final float[] parabolicField;
 	public NoiseGeneratorOctaves noiseGen5;
 	public NoiseGeneratorOctaves noiseGen6;
 	public NoiseGeneratorOctaves mobSpawnerNoise;
-	private Random rand;
+	private final Random rand;
 	private NoiseGeneratorOctaves noiseGen1;
 	private NoiseGeneratorOctaves noiseGen2;
 	private NoiseGeneratorOctaves noiseGen3;
-	private NoiseGeneratorPerlin perlinNoise;
-	private World worldObj;
+	private final NoiseGeneratorPerlin perlinNoise;
+	private final World worldObj;
 	private ChunkGeneratorSettings settings;
 	private Biome[] biomesForGeneration;
 	private double[] n3, n4, n5, n6;
-	private WorldGenerator[] largeBottomTrees = new WorldGenerator[]{
+	private final WorldGenerator[] largeBottomTrees = new WorldGenerator[]{
 			new WorldGenFrozenTree4(false, true)};
-	private WorldGenerator[] smallBottomTrees = new WorldGenerator[]{
+	private final WorldGenerator[] smallBottomTrees = new WorldGenerator[]{
 			new WorldGenFrozenTree(),
 			new WorldGenFrozenTree2(),
 			new WorldGenFrozenTree3(),
 			new WorldGenFrozenTree5()};
-	private WorldGenerator[] crystals = new WorldGenerator[]{new WorldGenIceCrystal1(), new WorldGenIceCrystal2()};
-	private WorldGenerator[] topTrees = new WorldGenerator[]{new WorldGenIceTree(), new WorldGenIceTree2()};
-	private WorldGenerator[] bottomFlowers = new WorldGenerator[]{
+	private final WorldGenerator[] crystals = new WorldGenerator[]{new WorldGenIceCrystal1(), new WorldGenIceCrystal2()};
+	private final WorldGenerator[] topTrees = new WorldGenerator[]{new WorldGenIceTree(), new WorldGenIceTree2()};
+	private final WorldGenerator[] bottomFlowers = new WorldGenerator[]{
 			new WorldGenModFlower(JourneyBlocks.iceBud, JourneyBlocks.frozenGrass, false),
 			new WorldGenModFlower(JourneyBlocks.frostberryThorn, JourneyBlocks.frozenGrass, false),
 			new WorldGenModFlower(JourneyBlocks.frozenBlooms, JourneyBlocks.frozenGrass, false)};
-	private WorldGenerator[] topFlowers = new WorldGenerator[]{
+	private final WorldGenerator[] topFlowers = new WorldGenerator[]{
 			new WorldGenModFlower(JourneyBlocks.permaFlower, JourneyBlocks.brittleIce),
 			new WorldGenModFlower(JourneyBlocks.shiverFlower, JourneyBlocks.brittleIce),
 			new WorldGenModFlower(JourneyBlocks.iceBush, JourneyBlocks.brittleIce)};
-	private WorldGenMerchantHouse house = new WorldGenMerchantHouse();
+	private final WorldGenMerchantHouse house = new WorldGenMerchantHouse();
 
-	public ChunkProviderFrozenLands(World worldIn, long seed, String st) {
+	public ChunkGeneratorFrozenLands(World worldIn, long seed, String st) {
 		this.worldObj = worldIn;
 		this.rand = new Random(seed);
 		this.noiseGen1 = new NoiseGeneratorOctaves(this.rand, 16);

@@ -29,46 +29,46 @@ import net.slayer.api.worldgen.WorldGenAPI;
 import java.util.List;
 import java.util.Random;
 
-public class ChunkProviderDepths implements IChunkGenerator {
+public class ChunkGeneratorDepths implements IChunkGenerator {
 
     private final double[] da;
     private final float[] parabolicField;
     public NoiseGeneratorOctaves noiseGen5;
     public NoiseGeneratorOctaves noiseGen6;
     public NoiseGeneratorOctaves mobSpawnerNoise;
-    private Random rand;
+    private final Random rand;
     private NoiseGeneratorOctaves noiseGen1;
     private NoiseGeneratorOctaves noiseGen2;
     private NoiseGeneratorOctaves noiseGen3;
-    private NoiseGeneratorPerlin noiseGen4;
-    private World worldObj;
-    private double[] stoneNoise;
+    private final NoiseGeneratorPerlin noiseGen4;
+    private final World worldObj;
+    private final double[] stoneNoise;
     private Biome[] biomesForGeneration;
     private double[] gen1, gen2, gen3, gen4;
     private ChunkGeneratorSettings settings;
 
-    private WorldGenSpike spike = new WorldGenSpike();
-    private WorldGenModFlower flower = new WorldGenModFlower(JourneyBlocks.depthsFlower, JourneyBlocks.depthsGrass, false);
-    private WorldGenModFlower flower2 = new WorldGenModFlower(JourneyBlocks.depthsBlueFlower, JourneyBlocks.depthsGrass, false);
-    private WorldGenDepthsLights lights = new WorldGenDepthsLights();
-    private WorldGenDepthsLights.WorldGendepthsLights2 lights2 = new WorldGenDepthsLights.WorldGendepthsLights2();
-    private WorldGenDepthsTree tree = new WorldGenDepthsTree();
-    private WorldGenDepthsTree1 tree1 = new WorldGenDepthsTree1();
-    private WorldGenDepthsTree2 tree2 = new WorldGenDepthsTree2();
-    private WorldGenPlant2 plant2 = new WorldGenPlant2(true);
-    private WorldGenPlant3 plant3 = new WorldGenPlant3(true);
-    private WorldGenDarkbloom darkbloom = new WorldGenDarkbloom();
-    private WorldGenSorcererShrine shrine = new WorldGenSorcererShrine();
-    private WorldGenGuardianTower tower = new WorldGenGuardianTower();
-    private WorldGenPlant1 plant1 = new WorldGenPlant1(true);
-    private WorldGenMinable flairum = new WorldGenMinable(JourneyBlocks.flairiumOre.getDefaultState(), 8, BlockStateMatcher.forBlock(JourneyBlocks.depthsStone));
-    private WorldGenMinable des = new WorldGenMinable(JourneyBlocks.desOre.getDefaultState(), 8, BlockStateMatcher.forBlock(JourneyBlocks.depthsStone));
-    private WorldGenMinable floorgems = new WorldGenMinable(JourneyBlocks.depthsLights.getDefaultState(), 40, BlockStateMatcher.forBlock(JourneyBlocks.depthsGrass));
-    private WorldGenStructure depthsHouse = new WorldGenStructure("depths_house1");
-    private WorldGenStructure dungeon = new WorldGenStructure("big", JourneyLootTables.TEST_CHEST);
+    private final WorldGenSpike spike = new WorldGenSpike();
+    private final WorldGenModFlower flower = new WorldGenModFlower(JourneyBlocks.depthsFlower, JourneyBlocks.depthsGrass, false);
+    private final WorldGenModFlower flower2 = new WorldGenModFlower(JourneyBlocks.depthsBlueFlower, JourneyBlocks.depthsGrass, false);
+    private final WorldGenDepthsLights lights = new WorldGenDepthsLights();
+    private final WorldGenDepthsLights.WorldGendepthsLights2 lights2 = new WorldGenDepthsLights.WorldGendepthsLights2();
+    private final WorldGenDepthsTree tree = new WorldGenDepthsTree();
+    private final WorldGenDepthsTree1 tree1 = new WorldGenDepthsTree1();
+    private final WorldGenDepthsTree2 tree2 = new WorldGenDepthsTree2();
+    private final WorldGenPlant2 plant2 = new WorldGenPlant2(true);
+    private final WorldGenPlant3 plant3 = new WorldGenPlant3(true);
+    private final WorldGenDarkbloom darkbloom = new WorldGenDarkbloom();
+    private final WorldGenSorcererShrine shrine = new WorldGenSorcererShrine();
+    private final WorldGenGuardianTower tower = new WorldGenGuardianTower();
+    private final WorldGenPlant1 plant1 = new WorldGenPlant1(true);
+    private final WorldGenMinable flairum = new WorldGenMinable(JourneyBlocks.flairiumOre.getDefaultState(), 8, BlockStateMatcher.forBlock(JourneyBlocks.depthsStone));
+    private final WorldGenMinable des = new WorldGenMinable(JourneyBlocks.desOre.getDefaultState(), 8, BlockStateMatcher.forBlock(JourneyBlocks.depthsStone));
+    private final WorldGenMinable floorgems = new WorldGenMinable(JourneyBlocks.depthsLights.getDefaultState(), 40, BlockStateMatcher.forBlock(JourneyBlocks.depthsGrass));
+    private final WorldGenStructure depthsHouse = new WorldGenStructure("depths_house1");
+    private final WorldGenStructure dungeon = new WorldGenStructure("big", JourneyLootTables.TEST_CHEST);
 
 
-    public ChunkProviderDepths(World worldIn, long s, String st) {
+    public ChunkGeneratorDepths(World worldIn, long s, String st) {
         this.stoneNoise = new double[256];
         this.worldObj = worldIn;
         this.rand = new Random(s);

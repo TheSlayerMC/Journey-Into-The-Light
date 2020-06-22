@@ -24,19 +24,31 @@ import java.util.Random;
  */
 public class JWorldGenPlants extends WorldGenerator {
 	private final IBlockState plantState;
+	/**
+	 * Attempts to spawn a block per chunk
+	 */
 	private final int attempts;
 	/**
 	 * This is an additional ground predicate, that will check plant after plant's internal ground predicate.
+	 * You can use it in situations, when plant can be planted on every grass block, but, for example, we need to spawn it only on silver grass blocks.
 	 */
-	private final GroundPredicate groundPredicate;
+	private final GroundPredicate additionalGroundPredicate;
 
-	public JWorldGenPlants(Block flower, GroundPredicate groundPredicate) {
-		this(flower, groundPredicate, 5);
+	public JWorldGenPlants(Block flower) {
+		this(flower, GroundPredicate.ANY, 5);
 	}
 
-	public JWorldGenPlants(Block flower, GroundPredicate groundPredicate, int genAttempts) {
+	public JWorldGenPlants(Block flower, int attempts) {
+		this(flower, GroundPredicate.ANY, attempts);
+	}
+
+	public JWorldGenPlants(Block flower, GroundPredicate additionalGroundPredicate) {
+		this(flower, additionalGroundPredicate, 5);
+	}
+
+	public JWorldGenPlants(Block flower, GroundPredicate additionalGroundPredicate, int genAttempts) {
 		this.plantState = flower.getDefaultState();
-		this.groundPredicate = groundPredicate;
+		this.additionalGroundPredicate = additionalGroundPredicate;
 		this.attempts = Math.max(genAttempts, 0);
 	}
 
@@ -54,7 +66,7 @@ public class JWorldGenPlants extends WorldGenerator {
 			if (plantState.getBlock().canPlaceBlockAt(w, pos)) {
 				pos.move(EnumFacing.DOWN);
 
-				if (groundPredicate.testGround(w, pos, w.getBlockState(pos), EnumFacing.UP)) {
+				if (additionalGroundPredicate.testGround(w, pos, w.getBlockState(pos), EnumFacing.UP)) {
 					pos.move(EnumFacing.UP);
 
 					if (plantState.getBlock() instanceof JBlockDoublePlant) {

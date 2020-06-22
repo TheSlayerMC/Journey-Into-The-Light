@@ -62,7 +62,7 @@ public class WorldProviderSenterian extends BaseWorldProvider {
 
     @Override
     public IChunkGenerator createChunkGenerator() {
-        return new ChunkProviderSenterian(this.world, this.world.getSeed());
+        return new ChunkGeneratorSenterian(this.world, this.world.getSeed());
     }
 
     @Override
