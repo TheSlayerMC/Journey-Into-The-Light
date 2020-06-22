@@ -8,12 +8,8 @@ import net.journey.util.RandHelper;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -48,7 +44,7 @@ public class BaublesEventHandler {
             if(BaublesApi.isBaubleEquipped(player, JourneyItems.luckyCharm) != -1) {
                 if (RandHelper.RANDOM.nextInt(2) == 0) {
                     if (state.getBlock() instanceof IGrowable) {
-                        drops.add(new ItemStack(state.getBlock().getItemDropped(state, RandHelper.RANDOM, 0), 1));
+                        drops.add(new ItemStack(state.getBlock().getItemDropped(state, RandHelper.RANDOM, 2), 1));
                     }
                 }
             }

@@ -1,6 +1,10 @@
 package net.journey.dimension.frozen;
 
 import net.journey.dimension.frozen.gen.*;
+import net.journey.dimension.frozen.gen.dungeon.WorldGenIceDungeon;
+import net.journey.dimension.frozen.gen.dungeon.WorldGenSpikeDungeon;
+import net.journey.dimension.frozen.gen.trees.WorldGenIceTree;
+import net.journey.dimension.frozen.gen.trees.WorldGenIceTree2;
 import net.journey.dimension.overworld.gen.WorldGenModFlower;
 import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.block.Block;
@@ -9,6 +13,7 @@ import net.minecraft.block.state.pattern.BlockStateMatcher;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -287,6 +292,7 @@ public class ChunkGeneratorFrozenLands implements IChunkGenerator {
 	public void populate(int i, int j) {
 		int chunkSize = 16;
 		BlockPos chunkStart = new BlockPos(i * chunkSize, 0, j * chunkSize);
+		ChunkPos chunkPos = new ChunkPos(i, j);
 		int x1 = i * chunkSize;
 		int z1 = j * chunkSize;
 
@@ -304,27 +310,13 @@ public class ChunkGeneratorFrozenLands implements IChunkGenerator {
 			}
 		}
 
-		for (times = 0; times < 100; times++) {
-            int randX = i * 16 + 8 + rand.nextInt(16);
-            int randZ = j * 16 + 8 + rand.nextInt(16);
-			int randY = rand.nextInt(bottomYMax) + 1;
-			if (isBlockTop(randX, randY - 1, randZ, JourneyBlocks.frozenGrass)) {
-				largeBottomTrees[rand.nextInt(largeBottomTrees.length)].generate(worldObj, rand, new BlockPos(randX, randY, randZ));
-			}
-		}
-
-		for (times = 0; times < 200; times++) {
-            int randX = i * 16 + 8 + rand.nextInt(16);
-            int randZ = j * 16 + 8 + rand.nextInt(16);
-			int randY = rand.nextInt(topYMax) + 1;
-			if (isBlockTop(randX, randY - 1, randZ, JourneyBlocks.frozenGrass)) {
-				smallBottomTrees[rand.nextInt(largeBottomTrees.length)].generate(worldObj, rand, new BlockPos(randX, randY, randZ));
-			}
+		for (times = 0; times < 7; times++) {
+			WorldGenAPI.genOnGround(worldObj, chunkPos, rand, new net.journey.dimension.frozen.gen.trees.WorldGenFrozenTree(true));
 		}
 
 		for (times = 0; times < 100; times++) {
-            int randX = i * 16 + 8 + rand.nextInt(16);
-            int randZ = j * 16 + 8 + rand.nextInt(16);
+			int randX = i * 16 + 8 + rand.nextInt(16);
+			int randZ = j * 16 + 8 + rand.nextInt(16);
 			int randY = rand.nextInt(topYMax) + 1;
 			if (isBlockTop(randX, randY - 1, randZ, JourneyBlocks.brittleIce)) {
 				topTrees[rand.nextInt(topTrees.length)].generate(worldObj, rand, new BlockPos(randX, randY, randZ));

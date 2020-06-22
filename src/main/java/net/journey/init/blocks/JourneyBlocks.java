@@ -12,7 +12,7 @@ import net.journey.dimension.corba.gen.trees.WorldGenCorbaSmallTree;
 import net.journey.dimension.depths.gen.WorldGenDepthsTree;
 import net.journey.dimension.euca.gen.trees.WorldGenEucaTree;
 import net.journey.dimension.frozen.gen.WorldGenFrozenTree;
-import net.journey.dimension.frozen.gen.WorldGenIceTree;
+import net.journey.dimension.frozen.gen.trees.WorldGenIceTree;
 import net.journey.dimension.nether.gen.trees.WorldGenBleedheartTree0;
 import net.journey.dimension.nether.gen.trees.WorldGenEarthenTree;
 import net.journey.dimension.terrania.gen.shroom.WorldGenTerrashroom;

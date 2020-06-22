@@ -1,4 +1,4 @@
-package net.journey.dimension.frozen.gen;
+package net.journey.dimension.frozen.gen.dungeon;
 
 import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.init.Blocks;
