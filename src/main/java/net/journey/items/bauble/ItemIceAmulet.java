@@ -1,8 +1,10 @@
 package net.journey.items.bauble;
 
 import baubles.api.BaubleType;
+import baubles.api.BaublesApi;
 import baubles.api.IBauble;
 import net.journey.init.JourneyTabs;
+import net.journey.init.items.JourneyItems;
 import net.journey.items.base.JItem;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
@@ -36,6 +38,28 @@ public class ItemIceAmulet extends JItem implements IBauble {
     @Override
     public BaubleType getBaubleType(ItemStack itemStack) {
         return BaubleType.AMULET;
+    }
+
+    @Override
+    public void onWornTick(ItemStack itemstack, EntityLivingBase player) {
+        if (!player.world.isRemote) {
+            if (player.world.getBiome(player.getPosition()).getDefaultTemperature() <= 0.15F
+                    && !player.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).hasModifier(speedMod)
+                    && !player.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).hasModifier(damageMod)
+                    && !player.getEntityAttribute(SharedMonsterAttributes.ATTACK_SPEED).hasModifier(attackMod)) {
+                player.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).applyModifier(speedMod);
+                player.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).applyModifier(damageMod);
+                player.getEntityAttribute(SharedMonsterAttributes.ATTACK_SPEED).applyModifier(attackMod);
+            }
+            if (player.world.getBiome(player.getPosition()).getDefaultTemperature() > 0.15F
+                    && player.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).hasModifier(speedMod)
+                    && player.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).hasModifier(damageMod)
+                    && player.getEntityAttribute(SharedMonsterAttributes.ATTACK_SPEED).hasModifier(attackMod)) {
+                player.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).removeModifier(speedMod);
+                player.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).removeModifier(damageMod);
+                player.getEntityAttribute(SharedMonsterAttributes.ATTACK_SPEED).removeModifier(attackMod);
+            }
+        }
     }
 
     @Override
