@@ -1,6 +1,7 @@
 package net.journey.dimension.base;
 
 import net.journey.dimension.base.gen.JWorldGenMinable;
+import net.journey.dimension.base.gen.JWorldGenPlants;
 import net.journey.dimension.base.gen.WorldGenSingleBlock;
 import net.journey.dimension.nether.gen.*;
 import net.journey.dimension.nether.gen.dungeon.WorldGenBoilPortal;
@@ -107,7 +108,7 @@ public class WorldGenJourney implements IWorldGenerator {
     public void generateNether(World w, Random r, int chunkX, int chunkZ) {
         int x, y, z;
         int times;
-        BlockPos pos = new BlockPos(chunkX, 0, chunkZ);
+        BlockPos chunkStart = new BlockPos(chunkX, 0, chunkZ);
 
         for (times = 0; times < 10; times++) {
             y = r.nextInt(128) + 1;
@@ -134,14 +135,14 @@ public class WorldGenJourney implements IWorldGenerator {
             y = r.nextInt(256) + 1;
             x = chunkX + r.nextInt(16) + 8;
             z = chunkZ + r.nextInt(16) + 8;
-            (new WorldGenModGlowstone(w, r, pos, JourneyBlocks.bleedstone)).generate(w, r, new BlockPos(x, y, z));
+            (new WorldGenModGlowstone(w, r, chunkStart, JourneyBlocks.bleedstone)).generate(w, r, new BlockPos(x, y, z));
         }
 
         if (r.nextInt(3) == 0) {
             y = r.nextInt(256) + 1;
             x = chunkX + r.nextInt(16) + 8;
             z = chunkZ + r.nextInt(16) + 8;
-            (new WorldGenModGlowstone(w, r, pos, JourneyBlocks.smithstone)).generate(w, r, new BlockPos(x, y, z));
+            (new WorldGenModGlowstone(w, r, chunkStart, JourneyBlocks.smithstone)).generate(w, r, new BlockPos(x, y, z));
         }
 
         for (times = 0; times < 100; times++) {
@@ -253,13 +254,7 @@ public class WorldGenJourney implements IWorldGenerator {
                 new WorldGenNetherDungeons().generate(w, r, new BlockPos(x, y, z));
         }
 
-        for (times = 0; times < 15; times++) {
-            y = r.nextInt(64);
-            x = chunkX + r.nextInt(16) + 8;
-            z = chunkZ + r.nextInt(16) + 8;
-            if (isBlockTop(x, y, z, Blocks.NETHERRACK, w))
-                new WorldGenHellThorn().generate(w, r, new BlockPos(x, y, z));
-        }
+        new JWorldGenPlants(JourneyBlocks.hellThorn, 15).generate(w, r, chunkStart); //TODO change generator to the cave flower behaviour (random height)
     }
 
     public boolean isBlockTop(int x, int y, int z, Block GRASS, World w) {

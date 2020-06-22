@@ -31,7 +31,7 @@ public class StructureThornRoot implements IStructure {
                 return;
             h = 5 + random.nextInt(h2 / 3);
         }
-        IBlockState thorn = JourneyBlocks.hellThornBottom.getDefaultState();
+        IBlockState thorn = JourneyBlocks.hellThorn.getDefaultState();
         IBlockState root = null;
         if (random.nextInt(2) == 0)
             root = JourneyBlocks.hellThornRoot.getDefaultState();

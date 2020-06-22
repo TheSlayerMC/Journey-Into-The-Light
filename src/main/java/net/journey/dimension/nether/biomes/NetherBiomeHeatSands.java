@@ -16,10 +16,10 @@ public class NetherBiomeHeatSands extends NetherBiome {
     @Override
     public void genFloorObjects(Chunk chunk, BlockPos pos, Random random) {
         Block ground = chunk.getBlockState(pos).getBlock();
-        if (random.nextFloat() <= plantDensity && ground == JourneyBlocks.heatSand) {
-            if (JourneyBlocks.hellThornTop != Blocks.AIR && random.nextInt(16) == 0)
-                chunk.setBlockState(pos.up(), JourneyBlocks.hellThornTop.getDefaultState());
-        }
+//        if (random.nextFloat() <= plantDensity && ground == JourneyBlocks.heatSand) {
+//            if (JourneyBlocks.hellThornTop != Blocks.AIR && random.nextInt(16) == 0)
+//                chunk.setBlockState(pos.up(), JourneyBlocks.hellThornTop.getDefaultState());
+//        }
     }
 
     @Override

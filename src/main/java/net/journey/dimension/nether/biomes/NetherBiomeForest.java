@@ -18,9 +18,10 @@ public class NetherBiomeForest extends NetherBiome {
     public void genFloorObjects(Chunk chunk, BlockPos pos, Random random) {
         Block ground = chunk.getBlockState(pos).getBlock();
         if (random.nextFloat() <= plantDensity && ground instanceof BlockNetherrack) {
-            if (JourneyBlocks.hellThornTop != Blocks.AIR && random.nextInt(16) == 0)
-                chunk.setBlockState(pos.up(), JourneyBlocks.hellThornTop.getDefaultState());
-            else if (JourneyBlocks.deathGrass != Blocks.AIR && random.nextInt(4) == 0)
+//            if (JourneyBlocks.hellThornTop != Blocks.AIR && random.nextInt(16) == 0)
+//                chunk.setBlockState(pos.up(), JourneyBlocks.hellThornTop.getDefaultState());
+//            else
+            if (JourneyBlocks.deathGrass != Blocks.AIR && random.nextInt(4) == 0)
                 chunk.setBlockState(pos.up(), JourneyBlocks.deathGrass.getDefaultState());
 
         }
