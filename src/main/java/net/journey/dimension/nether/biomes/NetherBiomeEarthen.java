@@ -18,8 +18,8 @@ public class NetherBiomeEarthen extends NetherBiome {
     public void genFloorObjects(Chunk chunk, BlockPos pos, Random random) {
         Block ground = chunk.getBlockState(pos).getBlock();
         if (random.nextFloat() <= plantDensity && ground instanceof BlockNetherrack) {
-            if (JourneyBlocks.earthenNetherTallGrass != Blocks.AIR && random.nextInt(16) == 0)
-                chunk.setBlockState(pos.up(), JourneyBlocks.earthenNetherTallGrass.getDefaultState());
+            if (JourneyBlocks.earthenTallNethigrass != Blocks.AIR && random.nextInt(16) == 0)
+                chunk.setBlockState(pos.up(), JourneyBlocks.earthenTallNethigrass.getDefaultState());
 
         }
         if (random.nextFloat() <= plantDensity && ground == JourneyBlocks.nethicGrass) {
@@ -28,12 +28,12 @@ public class NetherBiomeEarthen extends NetherBiome {
 
         }
         if (random.nextFloat() <= plantDensity && ground == JourneyBlocks.earthenNetherrack) {
-            if (JourneyBlocks.earthenNetherShortGrass != Blocks.AIR && random.nextInt(6) != 0)
-                chunk.setBlockState(pos.up(), JourneyBlocks.earthenNetherShortGrass.getDefaultState());
-            else if (JourneyBlocks.earthenNetherTallGrass != Blocks.AIR && random.nextInt(6) != 0)
-                chunk.setBlockState(pos.up(), JourneyBlocks.earthenNetherTallGrass.getDefaultState());
-            else if (JourneyBlocks.earthenNetherFlower != Blocks.AIR && random.nextInt(16) != 0)
-                chunk.setBlockState(pos.up(), JourneyBlocks.earthenNetherFlower.getDefaultState());
+            if (JourneyBlocks.earthenShortNethigrass != Blocks.AIR && random.nextInt(6) != 0)
+                chunk.setBlockState(pos.up(), JourneyBlocks.earthenShortNethigrass.getDefaultState());
+            else if (JourneyBlocks.earthenTallNethigrass != Blocks.AIR && random.nextInt(6) != 0)
+                chunk.setBlockState(pos.up(), JourneyBlocks.earthenTallNethigrass.getDefaultState());
+            else if (JourneyBlocks.earthenHeatflower != Blocks.AIR && random.nextInt(16) != 0)
+                chunk.setBlockState(pos.up(), JourneyBlocks.earthenHeatflower.getDefaultState());
         }
     }
 

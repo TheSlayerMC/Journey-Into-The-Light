@@ -100,9 +100,9 @@ public class JourneyBlocks {
     public static JBlockLog earthenNetherLog;
     public static BlockMod earthenNetherPlanks;
 
-    public static JBlockTallGrass earthenNetherTallGrass;
-    public static JBlockTallGrass earthenNetherShortGrass;
-    public static JBlockFlower earthenNetherFlower;
+    public static JBlockTallGrass earthenTallNethigrass;
+    public static JBlockTallGrass earthenShortNethigrass;
+    public static JBlockFlower earthenHeatflower;
 
     public static BlockMod heatSoil;
     public static BlockMod earthenNetherrack;
@@ -636,17 +636,17 @@ public class JourneyBlocks {
         witherwoodLeaves = new BlockModLeaves("witherwoodLeaves", "Witherwood Leaves", 1.0F);
         sizzlerWoodLeaves = new BlockModLeaves("sizzlerWoodLeaves", "Deadblood Leaves", 2.0F, netherSapling);
         sizzlerWoodLog = new JBlockLog("sizzlerWoodLog", "Deadblood Log");
-        deathGrass = (JBlockTallGrass) new JBlockTallGrass("deathGrass", "Death Grass").setGroundPredicate(GroundPredicate.NETHER);
-        netherweed = (JBlockFlower) new JBlockFlower("netherWeeds", "Netherweed").setGroundPredicate(GroundPredicate.NETHER);
-        hellBell = (JBlockFlower) new JBlockFlower("hellBell", "Hell Bell").disableOffset().setGroundPredicate(GroundPredicate.NETHER).setBoundingBox(JBlockFlower.BIG_PLANT_BB);
+        deathGrass = (JBlockTallGrass) new JBlockTallGrass("death_grass", "Death Grass").setGroundPredicate(GroundPredicate.NETHER);
+        netherweed = (JBlockFlower) new JBlockFlower("netherweed", "Netherweed").setGroundPredicate(GroundPredicate.NETHER);
+        hellBell = (JBlockFlower) new JBlockFlower("hell_bell", "Hell Bell").disableOffset().setGroundPredicate(GroundPredicate.NETHER).setBoundingBox(JBlockFlower.BIG_PLANT_BB);
         hellshroom = (JBlockDoublePlant) new JBlockDoublePlant("hellshroom", "Hellshroom").setGroundPredicate(GroundPredicate.NETHER);
 
         earthenNetherLeaves = new BlockModLeaves("earthenNetherLeaves", "Earthenwood Leaves", 2.0F, EARTHEN_SAPLING);
         earthenNetherLog = new JBlockLog("earthenNetherLog", "Earthenwood Log");
         earthenNetherPlanks = new BlockMod(EnumMaterialTypes.WOOD, "earthenNetherPlank", "Earthenwood Planks", 1.0F);
-        earthenNetherTallGrass = (JBlockTallGrass) new JBlockTallGrass("earthenNetherTallGrass", "Earthen Nethigrass").setGroundPredicate(GroundPredicate.NETHER).setBoundingBox(JBlockPlant.SHORT_GRASS_BB);
-        earthenNetherShortGrass = (JBlockTallGrass) new JBlockTallGrass("earthenNetherShortGrass", "Earthen Short Nethigrass").setGroundPredicate(GroundPredicate.NETHER).setBoundingBox(Block.FULL_BLOCK_AABB);
-        earthenNetherFlower = (JBlockFlower) new JBlockFlower("earthenNetherFlower", "Earthen Heatflower").setGroundPredicate(GroundPredicate.NETHER);
+        earthenTallNethigrass = (JBlockTallGrass) new JBlockTallGrass("earthen_tall_nethigrass", "Earthen Tall Nethigrass").setGroundPredicate(GroundPredicate.NETHER).setBoundingBox(JBlockPlant.SHORT_GRASS_BB);
+        earthenShortNethigrass = (JBlockTallGrass) new JBlockTallGrass("earthen_short_nethigrass", "Earthen Short Nethigrass").setGroundPredicate(GroundPredicate.NETHER).setBoundingBox(Block.FULL_BLOCK_AABB);
+        earthenHeatflower = (JBlockFlower) new JBlockFlower("earthen_heatflower", "Earthen Heatflower").setGroundPredicate(GroundPredicate.NETHER);
 
         heatSoil = new BlockMod(EnumMaterialTypes.DIRT, "heatSoil", "Nethic Soil", 0.5F);
         earthenNetherrack = new BlockMod(EnumMaterialTypes.STONE, "earthenNetherrack", "Earthen Netherrack", 2.0F);

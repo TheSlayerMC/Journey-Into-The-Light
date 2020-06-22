@@ -1,7 +1,7 @@
 {
     "variants": {
         "normal": {
-            "model": "journey:plant/earthennetherflower"
+            "model": "journey:plant/earthen_heatflower"
         }
     }
 }

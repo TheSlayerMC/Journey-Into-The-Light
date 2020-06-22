@@ -1,7 +1,7 @@
 {
     "variants": {
         "normal": {
-            "model": "journey:plant/deathgrass"
+            "model": "journey:plant/death_grass"
         }
     }
 }
