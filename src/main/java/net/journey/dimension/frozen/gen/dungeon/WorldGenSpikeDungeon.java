@@ -1,11 +1,13 @@
-package net.journey.dimension.frozen.gen;
+package net.journey.dimension.frozen.gen.dungeon;
 
+import net.journey.blocks.containers.BlockJourneyChest;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.entity.mob.frozen.EntityIceGolem;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -54,12 +56,12 @@ public class WorldGenSpikeDungeon extends WorldGenerator {
         this.setBlockAndNotifyAdequately(worldIn, new BlockPos(x + 1, y + 1, z + 6), JourneyBlocks.lockedChest.getStateFromMeta(3));
         TileEntity chest = worldIn.getTileEntity(new BlockPos(x + 1, y + 1, z + 6));
         if (chest instanceof TileEntityJourneyChest) {
-            ((TileEntityJourneyChest) chest).setLootTable(JourneyLootTables.FROZEN_MERCH_CHEST, r.nextLong());
+            ((TileEntityJourneyChest) chest).setLootTable(JourneyLootTables.ICE_GOLEM_LOOT, r.nextLong());
         }
         this.setBlockAndNotifyAdequately(worldIn, new BlockPos(x + 1, y + 1, z + 7), JourneyBlocks.lockedChest.getStateFromMeta(3));
         TileEntity chest1 = worldIn.getTileEntity(new BlockPos(x + 1, y + 1, z + 7));
         if (chest1 instanceof TileEntityJourneyChest) {
-            ((TileEntityJourneyChest) chest1).setLootTable(JourneyLootTables.FROZEN_MERCH_CHEST, r.nextLong());
+            ((TileEntityJourneyChest) chest1).setLootTable(JourneyLootTables.ICE_GOLEM_LOOT, r.nextLong());
         }
         this.setBlockAndNotifyAdequately(worldIn, new BlockPos(x + 1, y + 1, z + 9), Blocks.PACKED_ICE.getDefaultState());
         this.setBlockAndNotifyAdequately(worldIn, new BlockPos(x + 1, y + 1, z + 10), Blocks.PACKED_ICE.getDefaultState());
@@ -366,7 +368,7 @@ public class WorldGenSpikeDungeon extends WorldGenerator {
         this.setBlockAndNotifyAdequately(worldIn, new BlockPos(x + 6, y + 1, z + 12), JourneyBlocks.lockedChest.getDefaultState());
         TileEntity chest2 = worldIn.getTileEntity(new BlockPos(x + 6, y + 1, z + 12));
         if (chest2 instanceof TileEntityJourneyChest) {
-            ((TileEntityJourneyChest) chest2).setLootTable(JourneyLootTables.FROZEN_MERCH_CHEST, r.nextLong());
+            ((TileEntityJourneyChest) chest2).setLootTable(JourneyLootTables.ICE_GOLEM_LOOT, r.nextLong());
         }
         this.setBlockAndNotifyAdequately(worldIn, new BlockPos(x + 6, y + 1, z + 13), Blocks.PACKED_ICE.getDefaultState());
         this.setBlockAndNotifyAdequately(worldIn, new BlockPos(x + 6, y + 2, z + 13), Blocks.PACKED_ICE.getDefaultState());
@@ -456,7 +458,7 @@ public class WorldGenSpikeDungeon extends WorldGenerator {
         this.setBlockAndNotifyAdequately(worldIn, new BlockPos(x + 7, y + 1, z + 12), JourneyBlocks.lockedChest.getDefaultState());
         TileEntity chest3 = worldIn.getTileEntity(new BlockPos(x + 7, y + 1, z + 12));
         if (chest3 instanceof TileEntityJourneyChest) {
-            ((TileEntityJourneyChest) chest3).setLootTable(JourneyLootTables.FROZEN_MERCH_CHEST, r.nextLong());
+            ((TileEntityJourneyChest) chest3).setLootTable(JourneyLootTables.ICE_GOLEM_LOOT, r.nextLong());
         }
         this.setBlockAndNotifyAdequately(worldIn, new BlockPos(x + 7, y + 1, z + 13), Blocks.PACKED_ICE.getDefaultState());
         this.setBlockAndNotifyAdequately(worldIn, new BlockPos(x + 7, y + 2, z + 13), Blocks.PACKED_ICE.getDefaultState());
@@ -792,15 +794,15 @@ public class WorldGenSpikeDungeon extends WorldGenerator {
         this.setBlockAndNotifyAdequately(worldIn, new BlockPos(x + 12, y + 0, z + 10), Blocks.PACKED_ICE.getDefaultState());
         this.setBlockAndNotifyAdequately(worldIn, new BlockPos(x + 12, y + 1, z + 3), Blocks.PACKED_ICE.getDefaultState());
         this.setBlockAndNotifyAdequately(worldIn, new BlockPos(x + 12, y + 1, z + 4), Blocks.PACKED_ICE.getDefaultState());
-        this.setBlockAndNotifyAdequately(worldIn, new BlockPos(x + 12, y + 1, z + 6), JourneyBlocks.lockedChest.getDefaultState());
+        this.setBlockAndNotifyAdequately(worldIn, new BlockPos(x + 12, y + 1, z + 6), JourneyBlocks.lockedChest.getDefaultState().withProperty(BlockJourneyChest.FACING, EnumFacing.EAST));
         TileEntity chest4 = worldIn.getTileEntity(new BlockPos(x + 12, y + 1, z + 6));
         if (chest4 instanceof TileEntityJourneyChest) {
-            ((TileEntityJourneyChest) chest4).setLootTable(JourneyLootTables.FROZEN_MERCH_CHEST, r.nextLong());
+            ((TileEntityJourneyChest) chest4).setLootTable(JourneyLootTables.ICE_GOLEM_LOOT, r.nextLong());
         }
-        this.setBlockAndNotifyAdequately(worldIn, new BlockPos(x + 12, y + 1, z + 7), JourneyBlocks.lockedChest.getDefaultState());
+        this.setBlockAndNotifyAdequately(worldIn, new BlockPos(x + 12, y + 1, z + 7), JourneyBlocks.lockedChest.getDefaultState().withProperty(BlockJourneyChest.FACING, EnumFacing.EAST));
         TileEntity chest5 = worldIn.getTileEntity(new BlockPos(x + 12, y + 1, z + 7));
         if (chest5 instanceof TileEntityJourneyChest) {
-            ((TileEntityJourneyChest) chest5).setLootTable(JourneyLootTables.FROZEN_MERCH_CHEST, r.nextLong());
+            ((TileEntityJourneyChest) chest5).setLootTable(JourneyLootTables.ICE_GOLEM_LOOT, r.nextLong());
         }
         this.setBlockAndNotifyAdequately(worldIn, new BlockPos(x + 12, y + 1, z + 9), Blocks.PACKED_ICE.getDefaultState());
         this.setBlockAndNotifyAdequately(worldIn, new BlockPos(x + 12, y + 1, z + 10), Blocks.PACKED_ICE.getDefaultState());

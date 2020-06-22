@@ -1,6 +1,5 @@
 package net.journey.dimension.euca.gen;
 
-import net.journey.dimension.base.DimensionHelper;
 import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -21,8 +20,8 @@ public class WorldGenEucaSphere extends WorldGenerator {
         int z = p.getZ() + s;
         Biome b = w.getBiome(p);
         
-        WorldGenAPI.addOreWorldSphere(w, size, x, p.getY(), z, JourneyBlocks.eucaStone, JourneyBlocks.eucaStone, b == DimensionHelper.EUCA_GOLD_BIOME ? JourneyBlocks.eucaGrass : JourneyBlocks.eucaSilverGrass, 40,
-        		JourneyBlocks.celestiumOre, JourneyBlocks.mekyumOre, JourneyBlocks.koriteOre, JourneyBlocks.storonOre);
+        WorldGenAPI.addOreWorldSphere(w, size, x, p.getY(), z, JourneyBlocks.eucaStone, b.fillerBlock.getBlock(), b.topBlock.getBlock(), 40,
+                JourneyBlocks.celestiumOre, JourneyBlocks.mekyumOre, JourneyBlocks.koriteOre, JourneyBlocks.storonOre);
         
         return true;
     }
