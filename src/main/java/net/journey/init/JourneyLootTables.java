@@ -6,25 +6,27 @@ import net.minecraft.world.storage.loot.LootTableList;
 
 public class JourneyLootTables {
 
-    public static final ResourceLocation TEST_CHEST = register("chests/test");
+	public static final ResourceLocation TEST_CHEST = register("chests/test");
 
-    public static final ResourceLocation BOIL_CHEST = register("chests/boilportal");
-    public static final ResourceLocation NETHER_DUNGEON_CHEST = register("chests/netherdungeon");
-    public static final ResourceLocation EUCA_SMITH_CHEST = register("chests/eucasmith");
-    public static final ResourceLocation FROZEN_MERCH_CHEST = register("chests/frozenmerchant");
+	public static final ResourceLocation BOIL_CHEST = register("chests/boilportal");
+	public static final ResourceLocation NETHER_DUNGEON_CHEST = register("chests/netherdungeon");
+	public static final ResourceLocation EUCA_SMITH_CHEST = register("chests/eucasmith");
+	public static final ResourceLocation FROZEN_MERCH_CHEST = register("chests/frozenmerchant");
 
-    public static final ResourceLocation GOLD_LOOT_BOX = register("loot/loot_box_gold");
-    public static final ResourceLocation LOOT_POUCH = register("loot/loot_pouch");
-    public static final ResourceLocation LOOT_SEEDS = register("loot/seeds");
-    public static final ResourceLocation LOOT_PRESENT = register("loot/loot_present");
+	public static final ResourceLocation GOLD_LOOT_BOX = register("loot/loot_box_gold");
+	public static final ResourceLocation LOOT_POUCH = register("loot/loot_pouch");
+	public static final ResourceLocation LOOT_POUCH_GOLD = register("loot/loot_pouch_gold");
+	public static final ResourceLocation LOOT_POUCH_DIAMOND = register("loot/loot_pouch_diamond");
+	public static final ResourceLocation LOOT_SEEDS = register("loot/seeds");
+	public static final ResourceLocation LOOT_PRESENT = register("loot/loot_present");
 
-    public static final ResourceLocation DEPTHS_SHRINE_CHEST = register("chests/depthsshrine");
-    public static final ResourceLocation TERRANIA_TREE_HUT_CHEST = register("chests/terraniatreehut");
-    public static final ResourceLocation ROCKITE_CHEST_LOOT = register("chests/overworld/rockite_loot");
-    public static final ResourceLocation ANCIENT_CHEST_LOOT = register("chests/overworld/ancient_loot");
-    public static final ResourceLocation BOIL_DUNGEON_CHEST = register("chests/boil/boil_dungeon");
-    public static final ResourceLocation SENTRY_BASE_CHEST_LOOT = register("chests/senterian/sentry_dungeon");
-    public static final ResourceLocation ICE_GOLEM_LOOT = register("chests/frozen/ice_golem_loot");
+	public static final ResourceLocation DEPTHS_SHRINE_CHEST = register("chests/depthsshrine");
+	public static final ResourceLocation TERRANIA_TREE_HUT_CHEST = register("chests/terraniatreehut");
+	public static final ResourceLocation ROCKITE_CHEST_LOOT = register("chests/overworld/rockite_loot");
+	public static final ResourceLocation ANCIENT_CHEST_LOOT = register("chests/overworld/ancient_loot");
+	public static final ResourceLocation BOIL_DUNGEON_CHEST = register("chests/boil/boil_dungeon");
+	public static final ResourceLocation SENTRY_BASE_CHEST_LOOT = register("chests/senterian/sentry_dungeon");
+	public static final ResourceLocation ICE_GOLEM_LOOT = register("chests/frozen/ice_golem_loot");
 
     //Boss
     public static final ResourceLocation NETHER_BEAST = register("mobs/boss/nether_beast");

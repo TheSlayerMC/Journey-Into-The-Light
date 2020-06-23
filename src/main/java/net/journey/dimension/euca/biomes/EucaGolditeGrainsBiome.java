@@ -11,8 +11,8 @@ import java.util.Random;
 
 public class EucaGolditeGrainsBiome extends EucaBiome {
 
-	private final JWorldGenPlants EUCA_TALL_STALKS = new JWorldGenPlants(JourneyBlocks.tallGolditeStalks, EUCA_GOLDITE_GRASS_GROUND, 55);
-	private final JWorldGenPlants EUCA_STALKS = new JWorldGenPlants(JourneyBlocks.golditeStalks, EUCA_GOLDITE_GRASS_GROUND, 35);
+	private final JWorldGenPlants EUCA_TALL_STALKS = new JWorldGenPlants(JourneyBlocks.tallGolditeStalks, EUCA_GOLDITE_GRASS_GROUND, 25);
+	private final JWorldGenPlants EUCA_STALKS = new JWorldGenPlants(JourneyBlocks.golditeStalks, EUCA_GOLDITE_GRASS_GROUND, 50);
 	private final JWorldGenPlants EUCA_FLOWER = new JWorldGenPlants(JourneyBlocks.golditeBulb, EUCA_GOLDITE_GRASS_GROUND, 5);
 	private final JWorldGenPlants EUCA_BULB = new JWorldGenPlants(JourneyBlocks.golditeFlower, EUCA_GOLDITE_GRASS_GROUND, 5);
 

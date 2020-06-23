@@ -41,7 +41,7 @@ public class BaublesEventHandler {
         List<ItemStack> drops = event.getDrops();
 
         if (player != null && !player.world.isRemote) {
-            if(BaublesApi.isBaubleEquipped(player, JourneyItems.luckyCharm) != -1) {
+            if (BaublesApi.isBaubleEquipped(player, JourneyItems.luckyCharm) != -1) {
                 if (RandHelper.RANDOM.nextInt(2) == 0) {
                     if (state.getBlock() instanceof IGrowable) {
                         drops.add(new ItemStack(state.getBlock().getItemDropped(state, RandHelper.RANDOM, 2), 1));
@@ -50,4 +50,18 @@ public class BaublesEventHandler {
             }
         }
     }
+
+    /* @SubscribeEvent
+    public static void onPotionEffect(TickEvent.PlayerTickEvent event) {
+        EntityPlayer player = event.player;
+
+        if (player != null && !player.world.isRemote) {
+            if (BaublesApi.isBaubleEquipped(player, JourneyItems.slownessRing) != -1) {
+                Potion potion = MobEffects.SLOWNESS;
+                if (player.isPotionActive(potion)) {
+                    player.removePotionEffect(potion);
+                }
+            }
+        }
+    } */
 }

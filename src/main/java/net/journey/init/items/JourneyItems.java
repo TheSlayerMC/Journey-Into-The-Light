@@ -299,26 +299,28 @@ public class JourneyItems {
     public static Item cavernRecord;
     public static Item goldRecord;
     public static Item gateRecord;
-    public static Item journeyRecord;
-    public static Item sizzleRecord;
-    public static Item fireflyRecord;
-    public static Item snowbellsRecord;
+	public static Item journeyRecord;
+	public static Item sizzleRecord;
+	public static Item fireflyRecord;
+	public static Item snowbellsRecord;
 
-    public static Item demonicEye;
+	public static Item demonicEye;
 
-    public static Item iridium;
-    
-    public static Item LOOT_POUCH;
-    public static Item BALMY_TEARDROP;
-    public static Item CHARM_OF_VINE_STRANDING;
-    public static Item CHARM_OF_WATER_BENDING;
-    public static Item CLOUD_BUCKLER;
-    public static Item CURSED_TOMB;
-    public static Item DEATH_CAP;
-    public static Item DEMONIC_SKULL;
-    public static Item ESSENCE_BUCKLER;
-    public static Item ESSENCE_CATALYST;
-    public static Item FIERY_STABBER;
+	public static Item iridium;
+
+	public static Item LOOT_POUCH;
+	public static Item LOOT_POUCH_GOLD;
+	public static Item LOOT_POUCH_DIAMOND;
+	public static Item BALMY_TEARDROP;
+	public static Item CHARM_OF_VINE_STRANDING;
+	public static Item CHARM_OF_WATER_BENDING;
+	public static Item CLOUD_BUCKLER;
+	public static Item CURSED_TOMB;
+	public static Item DEATH_CAP;
+	public static Item DEMONIC_SKULL;
+	public static Item ESSENCE_BUCKLER;
+	public static Item ESSENCE_CATALYST;
+	public static Item FIERY_STABBER;
     public static Item GLACIAL_BLADE;
     public static Item GLOSSY_EYE;
     public static Item HEART_STONE;
@@ -507,27 +509,29 @@ public class JourneyItems {
 	    flairiumDust = new JItem("flairiumDust", "Flairium Dust");
 	    ashDust = new JItem("ashDust", "Ash Dust");
 	    sapphireDust = new JItem("sapphireDust", "Sapphire Dust");
-	    enderilliumDust = new JItem("enderilliumDust", "Enderillium Dust");
-	    gorbiteDust = new JItem("gorbiteDust", "Gorbite Dust");
-	    orbaditeDust = new JItem("orbaditeDust", "Orbadite Dust");
-	    diamondDust = new JItem("diamondDust", "Diamond Dust");
-	    goldDust = new JItem("goldDust", "Gold Dust");
-	    ironDust = new JItem("ironDust", "Iron Dust");
-	    bleedstonedust = new JItem("bleedstonedust", "Bleedstone Dust");
-	    smithstonedust = new JItem("smithstonedust", "Smithstone Dust");
+		enderilliumDust = new JItem("enderilliumDust", "Enderillium Dust");
+		gorbiteDust = new JItem("gorbiteDust", "Gorbite Dust");
+		orbaditeDust = new JItem("orbaditeDust", "Orbadite Dust");
+		diamondDust = new JItem("diamondDust", "Diamond Dust");
+		goldDust = new JItem("goldDust", "Gold Dust");
+		ironDust = new JItem("ironDust", "Iron Dust");
+		bleedstonedust = new JItem("bleedstonedust", "Bleedstone Dust");
+		smithstonedust = new JItem("smithstonedust", "Smithstone Dust");
 
-	    frostyGift = new ItemLoot("frostyGift", "Frosty Gift", JourneyLootTables.LOOT_PRESENT);
-	    LOOT_POUCH = new ItemLoot("loot_pouch", "Loot Pouch", JourneyLootTables.VANILLA_SIMPLE_DUNGEON);
+		frostyGift = new ItemLoot("frostyGift", "Frosty Gift", JourneyLootTables.LOOT_PRESENT);
+		LOOT_POUCH = new ItemLoot("loot_pouch", "Loot Pouch", JourneyLootTables.LOOT_POUCH).setTier(0);
+		LOOT_POUCH_GOLD = new ItemLoot("loot_pouch_gold", "Loot Pouch", JourneyLootTables.LOOT_POUCH_GOLD).setTier(1);
+		LOOT_POUCH_DIAMOND = new ItemLoot("loot_pouch_diamond", "Loot Pouch", JourneyLootTables.LOOT_POUCH_DIAMOND).setTier(2);
 
-	    flameCoin = new ItemFlameCoin("flameCoin", "Flame Coin");
+		flameCoin = new ItemFlameCoin("flameCoin", "Flame Coin");
 
-	    calciaOrb = new ItemBossSpawner("calciaOrb", "Calcia Orb", () -> DimensionType.NETHER, EntityCalcia.class).setBossSummonMessage("msg.journey.summon.calcia");
-	    netherBeastOrb = new ItemBossSpawner("netherBeastOrb", "Nether Beast Orb", () -> DimensionType.NETHER, EntityNetherBeast.class).setBossSummonMessage("msg.journey.summon.nether_beast");
-	    witheringBeastOrb = new ItemBossSpawner("witheringBeastOrb", "Withering Soul", () -> DimensionType.NETHER, EntityWitheringBeast.class).setBossSummonMessage("msg.journey.summon.withering_beast");
-	    eudorOrb = new ItemBossSpawner("eudorOrb", "Valuable Crown", () -> DimensionHelper.EUCA_DIM, EntityEudor.class).setBossSummonMessage("msg.journey.summon.eudor");
-	    blazierOrb = new ItemBossSpawner("blazierOrb", "Burning Fireball", () -> DimensionHelper.BOILING_DIM, EntityBlazier.class).setBossSummonMessage("msg.journey.summon.blazier");
-	    soulWatcherOrb = new ItemBossSpawner("soulWatcherOrb", "Soulless Eye", () -> DimensionType.NETHER, EntitySoulWatcher.class).setBossSummonMessage("msg.journey.summon.soul_watcher");
-	    sentryKingOrb = new ItemBossSpawner("sentryKingOrb", "Eye of the Sentry", () -> DimensionHelper.CORBA_DIM, EntitySentryKing.class).setBossSummonMessage("msg.journey.summon.sentry_king");
+		calciaOrb = new ItemBossSpawner("calciaOrb", "Calcia Orb", () -> DimensionType.NETHER, EntityCalcia.class).setBossSummonMessage("msg.journey.summon.calcia");
+		netherBeastOrb = new ItemBossSpawner("netherBeastOrb", "Nether Beast Orb", () -> DimensionType.NETHER, EntityNetherBeast.class).setBossSummonMessage("msg.journey.summon.nether_beast");
+		witheringBeastOrb = new ItemBossSpawner("witheringBeastOrb", "Withering Soul", () -> DimensionType.NETHER, EntityWitheringBeast.class).setBossSummonMessage("msg.journey.summon.withering_beast");
+		eudorOrb = new ItemBossSpawner("eudorOrb", "Valuable Crown", () -> DimensionHelper.EUCA_DIM, EntityEudor.class).setBossSummonMessage("msg.journey.summon.eudor");
+		blazierOrb = new ItemBossSpawner("blazierOrb", "Burning Fireball", () -> DimensionHelper.BOILING_DIM, EntityBlazier.class).setBossSummonMessage("msg.journey.summon.blazier");
+		soulWatcherOrb = new ItemBossSpawner("soulWatcherOrb", "Soulless Eye", () -> DimensionType.NETHER, EntitySoulWatcher.class).setBossSummonMessage("msg.journey.summon.soul_watcher");
+		sentryKingOrb = new ItemBossSpawner("sentryKingOrb", "Eye of the Sentry", () -> DimensionHelper.CORBA_DIM, EntitySentryKing.class).setBossSummonMessage("msg.journey.summon.sentry_king");
 	    loggerOrb = new ItemBossSpawner("loggerOrb", "Enchanted Log", () -> DimensionHelper.CORBA_DIM, EntityLogger.class).setBossSummonMessage("msg.journey.summon.logger");
 	    thunderbirdOrb = new ItemBossSpawner("thunderbirdOrb", "Leader's Pearl", () -> DimensionHelper.DEPTHS_DIM, EntityThunderbird.class).setBossSummonMessage("msg.journey.summon.thunderbird");
 	    mysteriousDisk = new ItemBossSpawner("mysteriousDisk", "Mysterious Disk", () -> DimensionHelper.CLOUDIA_DIM, EntitySkyStalker.class).setBossSummonMessage("msg.journey.summon.sky_stalker");

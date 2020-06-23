@@ -1,8 +1,6 @@
 package net.journey.dimension.euca;
 
-import net.journey.api.block.GroundPredicate;
 import net.journey.dimension.base.DimensionHelper;
-import net.journey.dimension.base.gen.JWorldGenPlants;
 import net.journey.dimension.euca.gen.WorldGenEucaPumpkin;
 import net.journey.dimension.euca.gen.WorldGenEucaSphere;
 import net.journey.dimension.euca.gen.WorldGenEucaWater;
