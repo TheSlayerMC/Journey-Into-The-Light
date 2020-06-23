@@ -1,10 +1,9 @@
 package net.journey.items.bauble.ring;
 
-import net.journey.util.PotionEffects;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -20,9 +19,8 @@ public class ItemRingSlowness extends ItemRingBase {
 
     @Override
     public void onWornTick(ItemStack itemstack, EntityLivingBase player) {
-        Potion potion = Potion.getPotionById(PotionEffects.moveSlow);
-        if (player.isPotionActive(potion)) {
-            player.removeActivePotionEffect(potion);
+        if (!player.world.isRemote && player.isPotionActive(MobEffects.SLOWNESS)) {
+            player.removePotionEffect(MobEffects.SLOWNESS);
         }
     }
 
