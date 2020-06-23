@@ -4,6 +4,7 @@ import net.minecraft.init.MobEffects;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 
+@Deprecated // use MobEffects instead
 public class PotionEffects {
 
     public static int fireResistance = Potion.getIdFromPotion(MobEffects.FIRE_RESISTANCE);
