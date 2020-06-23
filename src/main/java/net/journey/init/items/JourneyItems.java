@@ -519,9 +519,9 @@ public class JourneyItems {
 		smithstonedust = new JItem("smithstonedust", "Smithstone Dust");
 
 		frostyGift = new ItemLoot("frostyGift", "Frosty Gift", JourneyLootTables.LOOT_PRESENT);
-		LOOT_POUCH = new ItemLoot("loot_pouch", "Loot Pouch", JourneyLootTables.LOOT_POUCH).setTier(0);
-		LOOT_POUCH_GOLD = new ItemLoot("loot_pouch_gold", "Loot Pouch", JourneyLootTables.LOOT_POUCH_GOLD).setTier(1);
-		LOOT_POUCH_DIAMOND = new ItemLoot("loot_pouch_diamond", "Loot Pouch", JourneyLootTables.LOOT_POUCH_DIAMOND).setTier(2);
+		LOOT_POUCH = new ItemLoot("loot_pouch", "Loot Pouch", JourneyLootTables.LOOT_BASIC).setTier(0);
+		LOOT_POUCH_GOLD = new ItemLoot("loot_pouch_gold", "Loot Pouch", JourneyLootTables.LOOT_GOLD).setTier(1);
+		LOOT_POUCH_DIAMOND = new ItemLoot("loot_pouch_diamond", "Loot Pouch", JourneyLootTables.LOOT_DIAMOND).setTier(2);
 
 		flameCoin = new ItemFlameCoin("flameCoin", "Flame Coin");
 

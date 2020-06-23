@@ -91,7 +91,7 @@ public class PlayerEventsHandler {
 				}
 				if (heldItem == JourneyArmory.PICKAXE_OF_GOOD_FORTUNE) {
 
-					List<ItemStack> i = LootHelper.readFromLootTable(JourneyLootTables.LOOT_POUCH, playerMP); // make new loot table
+					List<ItemStack> i = LootHelper.readFromLootTable(JourneyLootTables.LOOT_BASIC, playerMP); // make new loot table
 					int index = random.nextInt(i.size());
 					Item it = i.get(index).getItem();
 
@@ -100,12 +100,13 @@ public class PlayerEventsHandler {
 							drops.add(new ItemStack(it));// make it spawn only 1 item not 2 and add it so its only a chance
 					}
 				}
-				List<ItemStack> i = LootHelper.readFromLootTable(JourneyLootTables.GOLD_LOOT_BOX, playerMP);
+				List<ItemStack> i = LootHelper.readFromLootTable(JourneyLootTables.LOOT_GOLD, playerMP);
 				int index = random.nextInt(i.size());
+				int quantity = i.get(index).getCount();
 				Item it = i.get(index).getItem();
 
 				if (harvestedState.getBlock().getRegistryName().toString().contains("gold_loot_box")) {
-					drops.add(new ItemStack(it));
+					drops.add(new ItemStack(it, quantity));
 				}
 			}
 		}
