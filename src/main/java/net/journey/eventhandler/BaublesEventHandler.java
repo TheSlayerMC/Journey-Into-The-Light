@@ -50,18 +50,4 @@ public class BaublesEventHandler {
             }
         }
     }
-
-    /* @SubscribeEvent
-    public static void onPotionEffect(TickEvent.PlayerTickEvent event) {
-        EntityPlayer player = event.player;
-
-        if (player != null && !player.world.isRemote) {
-            if (BaublesApi.isBaubleEquipped(player, JourneyItems.slownessRing) != -1) {
-                Potion potion = MobEffects.SLOWNESS;
-                if (player.isPotionActive(potion)) {
-                    player.removePotionEffect(potion);
-                }
-            }
-        }
-    } */
 }
