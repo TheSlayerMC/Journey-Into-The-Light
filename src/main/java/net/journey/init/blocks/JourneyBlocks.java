@@ -17,6 +17,7 @@ import net.journey.dimension.nether.gen.trees.WorldGenBleedheartTree0;
 import net.journey.dimension.nether.gen.trees.WorldGenEarthenTree;
 import net.journey.dimension.terrania.gen.shroom.WorldGenTerrashroom;
 import net.journey.dimension.terrania.gen.trees.WorldGenTerraniaTree;
+import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneyTabs;
 import net.journey.init.items.JourneyConsumables;
 import net.journey.init.items.JourneyItems;
@@ -118,7 +119,9 @@ public class JourneyBlocks {
 
     public static JBlockTNT magicExplosive;
 
+    public static BlockMod ironLootBox;
     public static BlockMod goldLootBox;
+    public static BlockMod diamondLootBox;
 
     public static BlockModBush sizzleberryBush;
     public static BlockModBush bradberryBush;
@@ -659,7 +662,9 @@ public class JourneyBlocks {
         purpleGemBlock = new BlockMod("purpleGemBlock", "Purple Gem Block");
         blueGemBlock = new BlockMod("blueGemBlock", "Blue Gem Block");
         yellowGemBlock = new BlockMod("yellowGemBlock", "Yellow Gem Block");
-        goldLootBox = new JBlockRandomLoot("gold_loot_box", "Gold Loot Box");
+        ironLootBox = new JBlockRandomLoot("iron_loot_box", "Iron Loot Box", JourneyLootTables.LOOT_BASIC);
+        goldLootBox = new JBlockRandomLoot("gold_loot_box", "Gold Loot Box", JourneyLootTables.LOOT_GOLD);
+        diamondLootBox = new JBlockRandomLoot("diamond_loot_box", "Diamond Loot Box", JourneyLootTables.LOOT_DIAMOND);
 
         magicExplosive = new JBlockTNT("magic_explosive", "Magic Explosive", 10.0F);
 

@@ -1,0 +1,8 @@
+{
+  "parent": "block/orientable",
+  "textures": {
+    "top": "journey:blocks/iron_loot_box_top",
+    "front": "journey:blocks/iron_loot_box_front",
+    "side": "journey:blocks/iron_loot_box_side"
+  }
+}
