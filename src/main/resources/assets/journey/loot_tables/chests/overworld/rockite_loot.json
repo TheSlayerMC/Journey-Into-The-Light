@@ -73,20 +73,6 @@
       },
       {
         "type": "item",
-        "name": "journey:loot_pouch",
-        "functions": [
-          {
-            "function": "set_count",
-            "count": {
-              "min": 1,
-              "max": 5
-            }
-          }
-        ],
-        "weight": 2
-      },
-      {
-        "type": "item",
         "name": "journey:heartsml",
         "functions": [
           {

@@ -108,28 +108,28 @@ public class Config {
         mageHouse = cfg.get("Generation", "Mage House spawn rate (The higher, the rarer)", 40).getInt();
         blacksmithHouse = cfg.get("Generation", "Blacksmith House spawn rate (The higher, the rarer)", 40).getInt();
 
-        shadiumOreTrys = cfg.get("Ore Generation", "Shadium Ore Trys Per Chunk", 2).getInt();
-        shadiumOreGenAmount = cfg.get("Ore Generation", "Shadium Ore Vein Max Amount", 3).getInt();
+        shadiumOreTrys = cfg.get("Ore Generation", "Shadium Ore Trys Per Chunk", 1).getInt();
+        shadiumOreGenAmount = cfg.get("Ore Generation", "Shadium Ore Vein Max Amount", 2).getInt();
         shadiumOreGenMaxY = cfg.get("Ore Generation", "Shadium Spawn Height", 13).getInt();
-        
-        luniumOreTrys = cfg.get("Ore Generation", "Lunium Ore Trys Per Chunk", 2).getInt();
+
+        luniumOreTrys = cfg.get("Ore Generation", "Lunium Ore Trys Per Chunk", 1).getInt();
         luniumOreGenAmount = cfg.get("Ore Generation", "Lunium Ore Vein Max Amount", 2).getInt();
         luniumOreGenMaxY = cfg.get("Ore Generation", "Lunium Spawn Height", 22).getInt();
-        
-        sapphireOreTrys = cfg.get("Ore Generation", "Sapphire Ore Trys Per Chunk", 2).getInt();
-        sapphireOreGenAmount = cfg.get("Ore Generation", "Sapphire Ore Vein Max Amount", 5).getInt();
+
+        sapphireOreTrys = cfg.get("Ore Generation", "Sapphire Ore Trys Per Chunk", 1).getInt();
+        sapphireOreGenAmount = cfg.get("Ore Generation", "Sapphire Ore Vein Max Amount", 3).getInt();
         sapphireOreGenMaxY = cfg.get("Ore Generation", "Sapphire Spawn Height", 26).getInt();
-        
-        iridiumOreTrys = cfg.get("Ore Generation", "Iridium Ore Trys Per Chunk", 2).getInt();
-        iridiumOreGenAmount = cfg.get("Ore Generation", "Iridium Ore Vein Max Amount", 6).getInt();
+
+        iridiumOreTrys = cfg.get("Ore Generation", "Iridium Ore Trys Per Chunk", 1).getInt();
+        iridiumOreGenAmount = cfg.get("Ore Generation", "Iridium Ore Vein Max Amount", 4).getInt();
         iridiumOreGenMaxY = cfg.get("Ore Generation", "Iridium Spawn Height", 16).getInt();
-        
+
         ashualOreTrys = cfg.get("Ore Generation", "Ashual Ore Trys Per Chunk", 10).getInt();
         ashualOreGenAmount = cfg.get("Ore Generation", "Ashual Ore Vein Max Amount", 7).getInt();
-        
+
         blaziumOreTrys = cfg.get("Ore Generation", "Blazium Ore Trys Per Chunk", 10).getInt();
         blaziumOreGenAmount = cfg.get("Ore Generation", "Blazium Ore Vein Max Amount", 7).getInt();
-        
+
         flairiumOreTrys = cfg.get("Ore Generation", "Flairium Ore Trys Per Chunk", 25).getInt();
         flairiumOreGenAmount = cfg.get("Ore Generation", "Flairium Ore Vein Max Amount", 8).getInt();
         

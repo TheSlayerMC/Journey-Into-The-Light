@@ -328,19 +328,19 @@ public class WorldGenJourney implements IWorldGenerator {
             SMALL_GLOWSHROOMS.getValue().generate(w, rand, startPos);
         }
 
-        if (rand.nextInt(Config.shadiumOreTrys) == 0) {
+        for (int i = 0; i < Config.shadiumOreTrys; i++) {
             SHADIUM_ORE_GEN.getValue().generate(w, rand, startPos);
         }
 
-        if (rand.nextInt(Config.luniumOreTrys) == 0) {
+        for (int i = 0; i < Config.luniumOreTrys; i++) {
             LUNIUM_ORE_GEN.getValue().generate(w, rand, startPos);
         }
 
-        if (rand.nextInt(Config.sapphireOreTrys) == 0) {
+        for (int i = 0; i < Config.sapphireOreTrys; i++) {
             SAPPHIRE_ORE_GEN.getValue().generate(w, rand, startPos);
         }
 
-        if (rand.nextInt(Config.iridiumOreTrys) == 0) {
+        for (int i = 0; i < Config.iridiumOreTrys; i++) {
             IRIDIUM_ORE_GEN.getValue().generate(w, rand, startPos);
         }
 
