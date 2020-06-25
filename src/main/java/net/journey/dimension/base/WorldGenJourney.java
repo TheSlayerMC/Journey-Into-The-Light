@@ -51,7 +51,7 @@ public class WorldGenJourney implements IWorldGenerator {
     private static final LazyLoadBase<WorldGenBush> SIZZLEBERRY_BUSH_GEN = create(() -> new WorldGenBush(JourneyBlocks.sizzleberryBush, Blocks.NETHERRACK));
 
     private static final LazyLoadBase<JWorldGenRuins> RUINS_GEN = create(() -> new JWorldGenRuins(
-            GroundPredicate.blockPredicate(block -> block == Blocks.GRASS),
+            GroundPredicate.blockPredicate(block -> block == Blocks.GRASS || block == Blocks.SAND),
             JWorldGenRuins.LootType.LOOT_BOX,
             Blocks.COBBLESTONE.getDefaultState(),
             Blocks.MOSSY_COBBLESTONE.getDefaultState(),
