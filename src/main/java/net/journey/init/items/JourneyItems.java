@@ -350,27 +350,28 @@ public class JourneyItems {
 
 	public static ItemLoreScroll loreScroll;
 	public static ItemTestBug debugItem;
-    
-    //public static Item obsidianBoat;
 
-    //public static Item infernoshield;
+	//public static Item obsidianBoat;
 
-    public static Item dynasterAmulet;
-    public static Item aquaticAmulet;
-    public static Item magmaAmulet;
-    public static Item iceAmulet;
-    public static Item emptyAmulet;
-    public static Item skullOfDecay;
-    public static Item iceflake;
-    public static Item strength_totem;
-    public static Item heartContainerSmall;
-    public static Item heartContainerMedium;
-    public static Item heartContainerLarge;
-    public static Item heartContainerUltimate;
-    public static Item heartContainerSentry;
+	//public static Item infernoshield;
 
-    public static Item blindnessRing;
-    public static Item harmRing;
+	public static Item dynasterAmulet;
+	public static Item aquaticAmulet;
+	public static Item magmaAmulet;
+	public static Item iceAmulet;
+	public static Item emptyAmulet;
+	public static Item skullOfDecay;
+	public static Item magic_thread_of_tethering;
+	public static Item iceflake;
+	public static Item strength_totem;
+	public static Item heartContainerSmall;
+	public static Item heartContainerMedium;
+	public static Item heartContainerLarge;
+	public static Item heartContainerUltimate;
+	public static Item heartContainerSentry;
+
+	public static Item blindnessRing;
+	public static Item harmRing;
     public static Item miningFatigueRing;
     public static Item nauseaRing;
     public static Item poisonRing;
@@ -636,25 +637,26 @@ public class JourneyItems {
 	    loreScroll = new ItemLoreScroll("lore_scroll", "Lore Scroll");
 	    debugItem = new ItemTestBug("test_bug", "Test Bug");
 
-	    //obsidianBoat = new ItemObsidianBoat("obsidianboat", "Obsidian Boat");
-	    //infernoshield = new ItemModShield("infernoshield", "Inferno Shield", 2, false);
-        dynasterAmulet = new ItemDynasterAmulet("amulet_dynaster", "Amulet of the Dynaster");
-        aquaticAmulet = new ItemAquaticAmulet("amulet_aquatic", "Amulet of the Depths");
-        magmaAmulet = new ItemMagmaAmulet("amulet_magma", "Amulet of Eternal Magma");
+		//obsidianBoat = new ItemObsidianBoat("obsidianboat", "Obsidian Boat");
+		//infernoshield = new ItemModShield("infernoshield", "Inferno Shield", 2, false);
+		dynasterAmulet = new ItemDynasterAmulet("amulet_dynaster", "Amulet of the Dynaster");
+		aquaticAmulet = new ItemAquaticAmulet("amulet_aquatic", "Amulet of the Depths");
+		magmaAmulet = new ItemMagmaAmulet("amulet_magma", "Amulet of Eternal Magma");
 		iceAmulet = new ItemIceAmulet("amulet_ice", "Amulet of Glacial Bloodlust");
 		emptyAmulet = new JItem("amulet_empty", "Empty Amulet");
 
 		skullOfDecay = new ItemSkullOfDecay("skull_of_decay", "Skull Of Decay");
+		magic_thread_of_tethering = new ItemStringOfTethering("magic_thread_of_tethering", "Magic Thread of Tethering");
 		iceflake = new ItemIceflake("iceflake", "Iceflake");
 		strength_totem = new ItemStrengthTotem("totem_strength", "Totem of Impeccable Strength");
-        CHARM_OF_VINE_STRANDING = new ItemVinestranding("charm_of_vine_stranding", "Charm of Vinestranding");
-        CHARM_OF_WATER_BENDING = new ItemWaterbending("charm_of_water_bending", "Charm of Waterbending");
+		CHARM_OF_VINE_STRANDING = new ItemVinestranding("charm_of_vine_stranding", "Charm of Vinestranding");
+		CHARM_OF_WATER_BENDING = new ItemWaterbending("charm_of_water_bending", "Charm of Waterbending");
 
-        heartContainerSmall = new ItemHeartContainer("heartSml", "Heart Container", 2);
-        heartContainerMedium = new ItemHeartContainer("heartMed", "Heart Container", 6);
-        heartContainerLarge = new ItemHeartContainer("heartLrg", "Heart Container", 10);
-        heartContainerUltimate = new ItemHeartContainer("heartUlt", "Heart Container", 16);
-        heartContainerSentry = new ItemHeartContainer("heartSen", "Heart of the Sentry", 20);
+		heartContainerSmall = new ItemHeartContainer("heartSml", "Heart Container", 2);
+		heartContainerMedium = new ItemHeartContainer("heartMed", "Heart Container", 6);
+		heartContainerLarge = new ItemHeartContainer("heartLrg", "Heart Container", 10);
+		heartContainerUltimate = new ItemHeartContainer("heartUlt", "Heart Container", 16);
+		heartContainerSentry = new ItemHeartContainer("heartSen", "Heart of the Sentry", 20);
 
         blindnessRing = new ItemRingBlindness("ring_blindness", "Ring of Clear Vision");
         harmRing = new ItemRingHarm("ring_harm", "Ring of Strong Immunity");

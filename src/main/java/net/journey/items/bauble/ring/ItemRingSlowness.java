@@ -30,3 +30,4 @@ public class ItemRingSlowness extends ItemRingBase {
         l.add(SlayerAPI.Colour.LIGHT_PURPLE + "Negates Slowness");
     }
 }
+ 

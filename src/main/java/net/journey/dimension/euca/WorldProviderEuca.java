@@ -57,7 +57,7 @@ public class WorldProviderEuca extends BaseWorldProvider {
     @Override
     @SideOnly(Side.CLIENT)
     public float calculateCelestialAngle(long var1, float var3) {
-        return 0.10F;
+        return 0.15F;
     }
 
     @Override

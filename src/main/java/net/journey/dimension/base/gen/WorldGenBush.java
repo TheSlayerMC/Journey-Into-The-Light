@@ -1,4 +1,4 @@
-package net.journey.dimension.nether.gen;
+package net.journey.dimension.base.gen;
 
 import com.google.common.primitives.Ints;
 import net.minecraft.block.Block;

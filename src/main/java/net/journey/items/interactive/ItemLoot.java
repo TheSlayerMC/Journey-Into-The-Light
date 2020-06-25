@@ -56,6 +56,9 @@ public class ItemLoot extends JItem {
 		return EnumRarity.UNCOMMON;
 	}
 
+	/*
+	TODO: add support for loot table rolls / multiple different item drops
+ 	*/
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
 		if (!world.isRemote) {

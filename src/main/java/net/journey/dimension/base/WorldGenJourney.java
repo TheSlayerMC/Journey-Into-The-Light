@@ -2,8 +2,13 @@ package net.journey.dimension.base;
 
 import net.journey.dimension.base.gen.JWorldGenMinable;
 import net.journey.dimension.base.gen.JWorldGenPlants;
+import net.journey.dimension.base.gen.WorldGenBush;
 import net.journey.dimension.base.gen.WorldGenSingleBlock;
-import net.journey.dimension.nether.gen.*;
+import net.journey.dimension.corba.gen.JWorldGenRuins;
+import net.journey.dimension.nether.gen.WorldGenModGlowstone;
+import net.journey.dimension.nether.gen.WorldGenNetherFlower;
+import net.journey.dimension.nether.gen.WorldGenNetherShroom;
+import net.journey.dimension.nether.gen.WorldGenNetherTower;
 import net.journey.dimension.nether.gen.dungeon.WorldGenBoilPortal;
 import net.journey.dimension.nether.gen.dungeon.WorldGenGhastTower;
 import net.journey.dimension.nether.gen.dungeon.WorldGenNetherDungeons;
@@ -43,14 +48,20 @@ public class WorldGenJourney implements IWorldGenerator {
     private static final LazyLoadBase<WorldGenBush> BOGBERRY_BUSH_GEN = create(() -> new WorldGenBush(JourneyBlocks.bogberryBush, Blocks.GRASS));
     private static final LazyLoadBase<WorldGenBush> SIZZLEBERRY_BUSH_GEN = create(() -> new WorldGenBush(JourneyBlocks.sizzleberryBush, Blocks.NETHERRACK));
 
+    private static final LazyLoadBase<JWorldGenRuins> RUINS_GEN = create(() -> new JWorldGenRuins(Blocks.GRASS, JWorldGenRuins.LootType.LOOT_BOX, Blocks.COBBLESTONE, Blocks.MOSSY_COBBLESTONE, Blocks.STONEBRICK));
+
+    /*private static final LazyLoadBase<JWorldGenRuins> RUINS_GEN_SPECIAL = create(() -> new JWorldGenRuins
+            (Blocks.GRASS,
+                    JWorldGenRuins.LootType.CONTAINER,
+                    Blocks.COBBLESTONE,
+                    Blocks.MOSSY_COBBLESTONE,
+                    Blocks.STONEBRICK).setSpecialBlock(JourneyBlocks.eucaChest).setLootTable(JourneyLootTables.LOOT_DIAMOND));*/
+
     private static final LazyLoadBase<WorldGenTallGlowshroom> TALL_GLOWSHROOMS_GEN = create(WorldGenTallGlowshroom::new);
     private static final LazyLoadBase<WorldGenCaveVines> CAVE_VINE_GEN = create(WorldGenCaveVines::new);
     private static final LazyLoadBase<WorldGenSmallGlowshrooms> SMALL_GLOWSHROOMS = create(WorldGenSmallGlowshrooms::new);
 
     private static final LazyLoadBase<WorldGenSingleBlock> ANCIENT_BLOCK_GEN = create(() -> new WorldGenSingleBlock(JourneyBlocks.ancientMachineBlock, 254, 1));
-    private static final LazyLoadBase<WorldGenSingleBlock> DIAMOND_LOOT_BOX_GEN = create(() -> new WorldGenSingleBlock(JourneyBlocks.diamondLootBox, 50, 7));
-    private static final LazyLoadBase<WorldGenSingleBlock> GOLD_LOOT_BOX_GEN = create(() -> new WorldGenSingleBlock(JourneyBlocks.goldLootBox, 50, 5));
-    private static final LazyLoadBase<WorldGenSingleBlock> IRON_LOOT_BOX_GEN = create(() -> new WorldGenSingleBlock(JourneyBlocks.ironLootBox, 50, 3));
     @Deprecated // use per-chunk random instance which comes from method params
     private static Random r = new Random();
 
@@ -286,12 +297,6 @@ public class WorldGenJourney implements IWorldGenerator {
 
         ANCIENT_BLOCK_GEN.getValue().generate(w, rand, startPos);
 
-        IRON_LOOT_BOX_GEN.getValue().generate(w, rand, startPos);
-
-        GOLD_LOOT_BOX_GEN.getValue().generate(w, rand, startPos);
-
-        DIAMOND_LOOT_BOX_GEN.getValue().generate(w, rand, startPos);
-
         if (rand.nextInt(5) == 0
                 && biome.getDefaultTemperature() >= 0.6F
                 && biome.getDefaultTemperature() < 0.9F
@@ -314,6 +319,10 @@ public class WorldGenJourney implements IWorldGenerator {
         if (rand.nextInt(5) == 0
                 && BiomeDictionary.hasType(biome, BiomeDictionary.Type.SWAMP)) {
             BOGBERRY_BUSH_GEN.getValue().generate(w, rand, startPos);
+        }
+
+        if (rand.nextInt(50) == 0) {
+            RUINS_GEN.getValue().generate(w, rand, startPos);
         }
 
         for (int i = 0; i < 64; i++) {
