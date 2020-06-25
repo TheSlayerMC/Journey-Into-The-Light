@@ -1,5 +1,6 @@
 package net.journey.dimension.base;
 
+import net.journey.api.block.GroundPredicate;
 import net.journey.dimension.base.gen.JWorldGenMinable;
 import net.journey.dimension.base.gen.JWorldGenPlants;
 import net.journey.dimension.base.gen.WorldGenBush;
@@ -20,7 +21,6 @@ import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.Config;
 import net.journey.util.handler.LogHelper;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockStoneBrick;
 import net.minecraft.block.state.pattern.BlockStateMatcher;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.LazyLoadBase;
@@ -49,14 +49,7 @@ public class WorldGenJourney implements IWorldGenerator {
     private static final LazyLoadBase<WorldGenBush> BOGBERRY_BUSH_GEN = create(() -> new WorldGenBush(JourneyBlocks.bogberryBush, Blocks.GRASS));
     private static final LazyLoadBase<WorldGenBush> SIZZLEBERRY_BUSH_GEN = create(() -> new WorldGenBush(JourneyBlocks.sizzleberryBush, Blocks.NETHERRACK));
 
-    private static final LazyLoadBase<JWorldGenRuins> RUINS_GEN = create(() -> new JWorldGenRuins(
-            Blocks.GRASS,
-            JWorldGenRuins.LootType.LOOT_BOX,
-            Blocks.COBBLESTONE.getDefaultState(),
-            Blocks.MOSSY_COBBLESTONE.getDefaultState(),
-            Blocks.STONEBRICK.getDefaultState().withProperty(BlockStoneBrick.VARIANT, BlockStoneBrick.EnumType.CRACKED),
-            Blocks.STONEBRICK.getDefaultState().withProperty(BlockStoneBrick.VARIANT, BlockStoneBrick.EnumType.MOSSY),
-            Blocks.STONEBRICK.getDefaultState().withProperty(BlockStoneBrick.VARIANT, BlockStoneBrick.EnumType.DEFAULT)));
+    private static final LazyLoadBase<JWorldGenRuins> RUINS_GEN = create(() -> new JWorldGenRuins(GroundPredicate.blockPredicate(block -> block == Blocks.GRASS), JWorldGenRuins.LootType.LOOT_BOX, Blocks.COBBLESTONE, Blocks.MOSSY_COBBLESTONE, Blocks.STONEBRICK));
 
     /*private static final LazyLoadBase<JWorldGenRuins> RUINS_GEN_SPECIAL = create(() -> new JWorldGenRuins
             (Blocks.GRASS,

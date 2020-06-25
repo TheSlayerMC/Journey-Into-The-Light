@@ -1,5 +1,6 @@
 package net.journey.dimension.corba.gen;
 
+import net.journey.api.block.GroundPredicate;
 import net.journey.blocks.base.JBlockRandomLoot;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.RandHelper;
@@ -20,51 +21,55 @@ import java.util.Random;
 public class JWorldGenRuins extends WorldGenerator {
 
 	/**
-	 * maximum amount of space between blocks
+	 * Maximum amount of space between blocks
 	 */
 	private static final int SPREADING = 5; // must be less or equal 9 otherwise may cause cascading lags
 	public LootType type;
-	public Block acceptableSurface;
-	public IBlockState[] ruinBlocks;
+	public GroundPredicate acceptableSurface;
+	public Block[] ruinBlocks;
 	public Block specialBlock;
 	public ResourceLocation lootTable;
 
-	public JWorldGenRuins(Block acceptableSurface, LootType type, IBlockState... ruinBlocks) {
-		this.acceptableSurface = acceptableSurface;
+	public JWorldGenRuins(GroundPredicate extraSurfacePredicate, LootType type, Block... ruinBlocks) {
+		this.acceptableSurface = extraSurfacePredicate;
 		this.type = type;
 		this.ruinBlocks = ruinBlocks;
 	}
 
 	/**
-	 * returns a list of random blocks for the structure foundation, specified by the list in the constructor
+	 * Returns a list of random blocks for the structure foundation, specified by the list in the constructor
 	 */
-	public IBlockState getRandomBlocks(Random rand) {
+	public Block getRandomBlocks(Random rand) {
 		return RandHelper.chooseEqual(rand, ruinBlocks);
 	}
 
 	/**
-	 * called if "LOOT_BOX" type is used.
-	 * returns different loot box types with varying rarities
+	 * Called if "LOOT_BOX" type is used.
+	 * Returns different loot box types with varying rarities
 	 * AIR is most common
 	 */
 	public IBlockState getRandomLootBox(Random rand) {
+		Block blockToPlace = null;
+
 		if (rand.nextInt(5) == 0) {
-			return JourneyBlocks.ironLootBox.getDefaultState().withProperty(JBlockRandomLoot.FACING, getRandomFacing(rand));
+			blockToPlace = JourneyBlocks.ironLootBox;
+		} else if (rand.nextInt(10) == 0) {
+			blockToPlace = JourneyBlocks.goldLootBox;
+		} else if (rand.nextInt(15) == 0) {
+			blockToPlace = JourneyBlocks.diamondLootBox;
 		}
-		if (rand.nextInt(10) == 0) {
-			return JourneyBlocks.goldLootBox.getDefaultState().withProperty(JBlockRandomLoot.FACING, getRandomFacing(rand));
+
+		if (blockToPlace != null) {
+			return blockToPlace.getDefaultState().withProperty(JBlockRandomLoot.FACING, getRandomFacing(rand));
+		} else {
+			return Blocks.AIR.getDefaultState();
 		}
-		if (rand.nextInt(15) == 0) {
-			return JourneyBlocks.diamondLootBox.getDefaultState().withProperty(JBlockRandomLoot.FACING, getRandomFacing(rand));
-		}
-		return Blocks.AIR.getDefaultState();
 	}
 
 	/**
-	 * when called, a special block can be set inside of the structure if type isn't LOOT_BOX
+	 * When called, a special block can be set inside of the structure if type isn't LOOT_BOX
 	 *
 	 * @param block ~ the block to be set in the structure
-	 * @return
 	 */
 	public JWorldGenRuins setSpecialBlock(Block block) {
 		this.specialBlock = block;
@@ -72,10 +77,9 @@ public class JWorldGenRuins extends WorldGenerator {
 	}
 
 	/**
-	 * when called, a loot table can be applied to the block inside of the structure if type is CONTAINER
+	 * When called, a loot table can be applied to the block inside of the structure if type is CONTAINER
 	 *
 	 * @param lootTable ~ the loot table being applied to the structure's 'special block'
-	 * @return
 	 */
 	public JWorldGenRuins setLootTable(ResourceLocation lootTable) {
 		this.lootTable = lootTable;
@@ -110,20 +114,22 @@ public class JWorldGenRuins extends WorldGenerator {
 		pos = WorldGenAPI.optimizeAndRandomize(pos, rand);
 		boolean generated = false;
 
-		for (int j1 = 0; j1 < rand.nextInt(3) + 5; j1++) {
+		for (int j1 = 0; j1 < rand.nextInt(3) + 5 /* amount of columns */; j1++) {
 			BlockPos placePos = pos.add(rand.nextInt(SPREADING), 0, rand.nextInt(SPREADING));
 			placePos = WorldGenAPI.findPosAboveSurface(worldIn, placePos);
-			if (worldIn.getBlockState(placePos.down()).getBlock() == acceptableSurface) {
+
+			if (acceptableSurface.testGround(worldIn, placePos.down(), worldIn.getBlockState(placePos.down()), EnumFacing.UP)) {
 				int height = 1 + rand.nextInt(5);
 				for (int j = 0; j < height; j++) {
-					setBlockAndNotifyAdequately(worldIn, placePos, getRandomBlocks(rand));
+					setBlockAndNotifyAdequately(worldIn, placePos, getRandomBlocks(rand).getDefaultState());
 					placePos = placePos.up();
 				}
 				generated = true;
 			}
 		}
+
 		BlockPos specialBlockPos = WorldGenAPI.findPosAboveSurface(worldIn, pos);
-		if (worldIn.getBlockState(specialBlockPos.down()).getBlock() == acceptableSurface) {
+		if (acceptableSurface.testGround(worldIn, specialBlockPos.down(), worldIn.getBlockState(specialBlockPos.down()), EnumFacing.UP)) {
 			setBlockAndNotifyAdequately(worldIn, specialBlockPos, getSpecialBlock(rand));
 			if (type == LootType.CONTAINER) {
 				TileEntity container = worldIn.getTileEntity(specialBlockPos);
@@ -137,26 +143,23 @@ public class JWorldGenRuins extends WorldGenerator {
 	}
 
 	/**
-	 * enum to help with various blocks the structure can generate
+	 * Enum to help with various blocks the structure can generate
 	 */
 	public enum LootType {
 		/**
-		 * generates a random loot box with probability
+		 * Generates a random loot box with probability
 		 */
 		LOOT_BOX,
 		/**
-		 * generates any other block
-		 * use setSpecialBlock() method
+		 * Generates any other block with setSpecialBlock() method
 		 */
 		SPECIAL_BLOCK,
 		/**
-		 * generates any other block with a container
-		 * use setSpecialBlock() method
-		 * use setLootTable() method
+		 * Generates any other block with setSpecialBlock() method, and can set a Loot Table to said block
 		 */
 		CONTAINER,
 		/**
-		 * generates no special block, just structure blocks
+		 * Generates no special block, just structure blocks
 		 */
 		RUINS
 	}
