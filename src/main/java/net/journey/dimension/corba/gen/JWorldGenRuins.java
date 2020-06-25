@@ -25,11 +25,11 @@ public class JWorldGenRuins extends WorldGenerator {
 	private static final int SPREADING = 5; // must be less or equal 9 otherwise may cause cascading lags
 	public LootType type;
 	public Block acceptableSurface;
-	public Block[] ruinBlocks;
+	public IBlockState[] ruinBlocks;
 	public Block specialBlock;
 	public ResourceLocation lootTable;
 
-	public JWorldGenRuins(Block acceptableSurface, LootType type, Block... ruinBlocks) {
+	public JWorldGenRuins(Block acceptableSurface, LootType type, IBlockState... ruinBlocks) {
 		this.acceptableSurface = acceptableSurface;
 		this.type = type;
 		this.ruinBlocks = ruinBlocks;
@@ -38,7 +38,7 @@ public class JWorldGenRuins extends WorldGenerator {
 	/**
 	 * returns a list of random blocks for the structure foundation, specified by the list in the constructor
 	 */
-	public Block getRandomBlocks(Random rand) {
+	public IBlockState getRandomBlocks(Random rand) {
 		return RandHelper.chooseEqual(rand, ruinBlocks);
 	}
 
@@ -116,7 +116,7 @@ public class JWorldGenRuins extends WorldGenerator {
 			if (worldIn.getBlockState(placePos.down()).getBlock() == acceptableSurface) {
 				int height = 1 + rand.nextInt(5);
 				for (int j = 0; j < height; j++) {
-					setBlockAndNotifyAdequately(worldIn, placePos, getRandomBlocks(rand).getDefaultState());
+					setBlockAndNotifyAdequately(worldIn, placePos, getRandomBlocks(rand));
 					placePos = placePos.up();
 				}
 				generated = true;
