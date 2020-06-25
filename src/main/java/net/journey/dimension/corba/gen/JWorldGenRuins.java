@@ -1,15 +1,13 @@
 package net.journey.dimension.corba.gen;
 
 import net.journey.blocks.base.JBlockRandomLoot;
-import net.journey.blocks.tileentity.TileEntityBossCrystal;
-import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.RandHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityChest;
+import net.minecraft.tileentity.TileEntityLockableLoot;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -115,7 +113,7 @@ public class JWorldGenRuins extends WorldGenerator {
 		for (int j1 = 0; j1 < rand.nextInt(3) + 5; j1++) {
 			BlockPos placePos = pos.add(rand.nextInt(SPREADING), 0, rand.nextInt(SPREADING));
 			placePos = WorldGenAPI.findPosAboveSurface(worldIn, placePos);
-			if (worldIn.getBlockState(placePos.down()).getBlock() == acceptableSurface && getRandomBlocks(rand).canPlaceBlockAt(worldIn, placePos)) {
+			if (worldIn.getBlockState(placePos.down()).getBlock() == acceptableSurface) {
 				int height = 1 + rand.nextInt(5);
 				for (int j = 0; j < height; j++) {
 					setBlockAndNotifyAdequately(worldIn, placePos, getRandomBlocks(rand).getDefaultState());
@@ -129,14 +127,8 @@ public class JWorldGenRuins extends WorldGenerator {
 			setBlockAndNotifyAdequately(worldIn, specialBlockPos, getSpecialBlock(rand));
 			if (type == LootType.CONTAINER) {
 				TileEntity container = worldIn.getTileEntity(specialBlockPos);
-				if (container instanceof TileEntityJourneyChest) {
-					((TileEntityJourneyChest) container).setLootTable(this.lootTable, rand.nextLong());
-				}
-				if (container instanceof TileEntityChest) {
-					((TileEntityChest) container).setLootTable(this.lootTable, rand.nextLong());
-				}
-				if (container instanceof TileEntityBossCrystal) {
-					((TileEntityBossCrystal) container).setLootTable(this.lootTable, rand.nextLong());
+				if (container instanceof TileEntityLockableLoot) {
+					((TileEntityLockableLoot) container).setLootTable(this.lootTable, rand.nextLong());
 				}
 			}
 			generated = true;
@@ -146,16 +138,26 @@ public class JWorldGenRuins extends WorldGenerator {
 
 	/**
 	 * enum to help with various blocks the structure can generate
-	 *
-	 * @LOOT_BOX ~ generates a random loot box with probability
-	 * @SPECIAL_BLOCK ~ generates any other block with setSpecialBlock() method
-	 * @CONTAINER ~ generates any other block with setSpecialBlock() method, and can set a Loot Table to said block
-	 * @RUINS ~ generates no special block, just structure blocks
 	 */
 	public enum LootType {
+		/**
+		 * generates a random loot box with probability
+		 */
 		LOOT_BOX,
+		/**
+		 * generates any other block
+		 * use setSpecialBlock() method
+		 */
 		SPECIAL_BLOCK,
+		/**
+		 * generates any other block with a container
+		 * use setSpecialBlock() method
+		 * use setLootTable() method
+		 */
 		CONTAINER,
+		/**
+		 * generates no special block, just structure blocks
+		 */
 		RUINS
 	}
 }
