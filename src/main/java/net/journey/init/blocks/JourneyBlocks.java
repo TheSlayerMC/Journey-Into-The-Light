@@ -562,6 +562,8 @@ public class JourneyBlocks {
     public static BlockIncubator INCUBATOR_LIT;
 
     public static BlockMod terraniaSapling;
+    
+    public static JBlockFlower DEPTHS_CRYSTAL;
 
     public static void init() {
 
@@ -916,7 +918,7 @@ public class JourneyBlocks {
         cloudiaPortalFrame = new BlockMod("cloudiaPortalFrame", "Cloudia Portal Frame", 3.0F);
 
         depthsLights = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "depthsLight", "Depths Light", 0.5F)
-                .setLightLevel(1.0F);
+                .setLightLevel(0.6F);
 
         fire = new BlockModFire("fire", "Essential Fire");
 
@@ -1127,5 +1129,7 @@ public class JourneyBlocks {
                 false);
         juiceberryBush = new BlockModBush("juiceberryBush", "Juiceberry Bush", JourneyConsumables.juiceberry, false);
         bogberryBush = new BlockModBush("bogberryBush", "Bogberry Bush", JourneyConsumables.bogberry, false);
+        
+        DEPTHS_CRYSTAL = (JBlockFlower) new JBlockFlower("depthsCrystal", "Depths Crystal").setGroundPredicate(GroundPredicate.COMMON_AND_DEPTHS_GRASS);
     }
 }
