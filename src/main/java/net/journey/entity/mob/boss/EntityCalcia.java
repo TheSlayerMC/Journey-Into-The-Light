@@ -2,8 +2,11 @@ package net.journey.entity.mob.boss;
 
 import com.google.common.collect.Lists;
 import jeresources.api.drop.LootDrop;
+import net.journey.blocks.tileentity.TileEntityBossCrystal;
 import net.journey.entity.MobStats;
+import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
+import net.journey.init.blocks.JourneyBlocks;
 import net.journey.init.items.JourneyItems;
 import net.journey.init.items.JourneyWeapons;
 import net.journey.util.PotionEffects;
@@ -12,6 +15,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityEssenceBoss;
 import org.jetbrains.annotations.NotNull;
@@ -21,7 +25,8 @@ import java.util.List;
 public class EntityCalcia extends EntityEssenceBoss {
 
     private int firetick;
-    private int firemax = 400, firemax2 = 300;
+    private final int firemax = 400;
+    private final int firemax2 = 300;
     private boolean isInvi;
 
     public EntityCalcia(World par1World) {
@@ -80,12 +85,10 @@ public class EntityCalcia extends EntityEssenceBoss {
     }
 
     @Override
-    protected void dropFewItems(boolean par1, int par2) {
-        this.dropItem(JourneyItems.eucaPortalGem, 6 + rand.nextInt(4));
-        this.dropItem(JourneyWeapons.calciaSword, 1);
-
-        //if(rand.nextInt(1) == 0)
-        //	this.dropItem(Item.getItemFromBlock(EssenceBlocks.calciaStatue), 1);
+    public void onDeath(DamageSource damage) {
+        this.world.setBlockState(new BlockPos((int) Math.floor(this.posX + 0), ((int) Math.floor(this.posY + 0)), ((int) Math.floor(this.posZ + 0))), JourneyBlocks.bossCrystalNether.getDefaultState());
+        TileEntityBossCrystal te = (TileEntityBossCrystal) world.getTileEntity(new BlockPos((int) Math.floor(this.posX + 0), ((int) Math.floor(this.posY + 0)), ((int) Math.floor(this.posZ + 0))));
+        te.setLootTable(JourneyLootTables.CALCIA, rand.nextLong());
     }
 
     @Override

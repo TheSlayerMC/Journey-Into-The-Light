@@ -2,10 +2,11 @@ package net.journey.entity.mob.boss;
 
 import com.google.common.collect.Lists;
 import jeresources.api.drop.LootDrop;
-import net.journey.blocks.tileentity.TileEntityJourneyChest;
+import net.journey.blocks.tileentity.TileEntityBossCrystal;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityIceBall;
 import net.journey.entity.projectile.EntityMagmaFireball;
+import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.init.items.JourneyItems;
@@ -15,7 +16,6 @@ import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
 import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.ItemStack;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -192,24 +192,9 @@ public class EntityTerranianProtector extends EntityFlyingBoss {
 
     @Override
     public void onDeath(DamageSource damage) {
-		/*if(damage.getEntity() instanceof EntityPlayer) {
-			EntityPlayer p = (EntityPlayer)damage.getEntity();
-			p.triggerAchievement(JourneyAchievements.achievementTerra); {
-			}
-		}*/
-        this.world.setBlockState(new BlockPos((int) Math.floor(this.posX + 0), ((int) Math.floor(this.posY + 1)), ((int) Math.floor(this.posZ + 0))), JourneyBlocks.trophyTerra.getStateFromMeta(5));
-        this.world.setBlockState(new BlockPos((int) Math.floor(this.posX + 0), ((int) Math.floor(this.posY + 0)), ((int) Math.floor(this.posZ + 0))), JourneyBlocks.journeyChest.getStateFromMeta(5));
-        TileEntityJourneyChest te = (TileEntityJourneyChest) world.getTileEntity(new BlockPos((int) Math.floor(this.posX + 0), ((int) Math.floor(this.posY + 0)), ((int) Math.floor(this.posZ + 0))));
-        switch (rand.nextInt(2)) {
-            case 0:
-                te.setInventorySlotContents(2, new ItemStack(JourneyWeapons.terronicBlade, 1));
-                te.setInventorySlotContents(11, new ItemStack(JourneyItems.cloudiaPortalGem, 9));
-                break;
-            case 1:
-                te.setInventorySlotContents(1, new ItemStack(JourneyWeapons.terralightBlade, 1));
-                te.setInventorySlotContents(14, new ItemStack(JourneyItems.cloudiaPortalGem, 12));
-                break;
-        }
+        this.world.setBlockState(new BlockPos((int) Math.floor(this.posX + 0), ((int) Math.floor(this.posY + 0)), ((int) Math.floor(this.posZ + 0))), JourneyBlocks.bossCrystalTerrania.getDefaultState());
+        TileEntityBossCrystal te = (TileEntityBossCrystal) world.getTileEntity(new BlockPos((int) Math.floor(this.posX + 0), ((int) Math.floor(this.posY + 0)), ((int) Math.floor(this.posZ + 0))));
+        te.setLootTable(JourneyLootTables.TERRANIAN_PROTECTOR, rand.nextLong());
     }
 
     @Override
@@ -222,7 +207,7 @@ public class EntityTerranianProtector extends EntityFlyingBoss {
     }
 
     private class AIRandomFly extends EntityAIBase {
-        private EntityTerranianProtector e = EntityTerranianProtector.this;
+        private final EntityTerranianProtector e = EntityTerranianProtector.this;
 
         public AIRandomFly() {
             this.setMutexBits(1);
@@ -258,7 +243,7 @@ public class EntityTerranianProtector extends EntityFlyingBoss {
     }
 
     private class MoveHelper extends EntityMoveHelper {
-        private EntityTerranianProtector e = EntityTerranianProtector.this;
+        private final EntityTerranianProtector e = EntityTerranianProtector.this;
         private int height;
 
         public MoveHelper() {
@@ -302,7 +287,7 @@ public class EntityTerranianProtector extends EntityFlyingBoss {
     }
 
     public class AILookAround extends EntityAIBase {
-        private EntityTerranianProtector e = EntityTerranianProtector.this;
+        private final EntityTerranianProtector e = EntityTerranianProtector.this;
 
         public AILookAround() {
             this.setMutexBits(2);
@@ -333,7 +318,7 @@ public class EntityTerranianProtector extends EntityFlyingBoss {
     }
     public class AIFireballAttack extends EntityAIBase {
         public int counter;
-        private EntityTerranianProtector entity = EntityTerranianProtector.this;
+        private final EntityTerranianProtector entity = EntityTerranianProtector.this;
 
         @Override
         public boolean shouldExecute() {

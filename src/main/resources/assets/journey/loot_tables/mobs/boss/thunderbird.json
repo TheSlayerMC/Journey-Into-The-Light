@@ -1,0 +1,106 @@
+{
+  "pools": [
+    {
+      "name": "journey:thunderbird_corba_gems",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "journey:corbaportalgem",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 5,
+                "max": 5
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "journey:thunderbird_trophy",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "journey:trophyroc",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "journey:thunderbird_weapons",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "journey:rocswing",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "journey:thunderbirdbattleaxe",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "journey:swordofthethunderbird",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "journey:rocsword",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

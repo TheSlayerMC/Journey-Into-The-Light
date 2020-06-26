@@ -1,0 +1,60 @@
+{
+  "pools": [
+    {
+      "name": "journey:scale_corba_gem",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "journey:corbaportalgem",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 5,
+                "max": 7
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "journey:scale_trophy",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "journey:trophyscale",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "journey:scale_weapons",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "journey:bubblesword",
+          "weight": 1
+        },
+        {
+          "type": "item",
+          "name": "journey:scalebow",
+          "weight": 1
+        }
+      ]
+    }
+  ]
+}

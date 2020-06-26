@@ -3,11 +3,12 @@ package net.journey.entity.mob.boss;
 import com.google.common.collect.Lists;
 import jeresources.api.drop.LootDrop;
 import net.journey.JITL;
-import net.journey.blocks.tileentity.TileEntityJourneyChest;
+import net.journey.blocks.tileentity.TileEntityBossCrystal;
 import net.journey.entity.MobStats;
 import net.journey.entity.mob.nether.EntityLavasnake;
 import net.journey.entity.projectile.EntityMagmaFireball;
 import net.journey.enums.EnumParticlesClasses;
+import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.init.items.JourneyArmory;
@@ -18,7 +19,6 @@ import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
 import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.ItemStack;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -93,34 +93,9 @@ public class EntitySoulWatcher extends EntityFlyingBoss /*implements IRangedAtta
 
     @Override
     public void onDeath(DamageSource damage) {
-		/*if(damage.getEntity() instanceof EntityPlayer) {
-			EntityPlayer p = (EntityPlayer)damage.getEntity();
-			p.triggerAchievement(JourneyAchievements.achievementSoul); {
-			}
-		}*/
-        this.world.setBlockState(new BlockPos((int) Math.floor(this.posX + 0), ((int) Math.floor(this.posY + 1)), ((int) Math.floor(this.posZ + 0))), JourneyBlocks.trophySoul.getStateFromMeta(5));
-        this.world.setBlockState(new BlockPos((int) Math.floor(this.posX + 0), ((int) Math.floor(this.posY + 0)), ((int) Math.floor(this.posZ + 0))), JourneyBlocks.journeyChest.getStateFromMeta(5));
-        TileEntityJourneyChest te = (TileEntityJourneyChest) world.getTileEntity(new BlockPos((int) Math.floor(this.posX + 0), ((int) Math.floor(this.posY + 0)), ((int) Math.floor(this.posZ + 0))));
-        switch (rand.nextInt(2)) {
-            case 0:
-                te.setInventorySlotContents(2, new ItemStack(JourneyWeapons.staringBow, 1));
-                te.setInventorySlotContents(11, new ItemStack(JourneyItems.eucaPortalPiece_1, 1));
-                te.setInventorySlotContents(12, new ItemStack(JourneyItems.demonicEye, 12));
-                te.setInventorySlotContents(16, new ItemStack(JourneyArmory.twilightBoots, 1));
-                te.setInventorySlotContents(5, new ItemStack(JourneyArmory.twilightChest, 1));
-                te.setInventorySlotContents(10, new ItemStack(JourneyArmory.twilightHelmet, 1));
-                te.setInventorySlotContents(20, new ItemStack(JourneyArmory.twilightLegs, 1));
-                break;
-            case 1:
-                te.setInventorySlotContents(12, new ItemStack(JourneyItems.demonicEye, 12));
-                te.setInventorySlotContents(5, new ItemStack(JourneyWeapons.staringBow, 1));
-                te.setInventorySlotContents(15, new ItemStack(JourneyItems.eucaPortalPiece_1, 2));
-                te.setInventorySlotContents(17, new ItemStack(JourneyArmory.twilightBoots, 1));
-                te.setInventorySlotContents(2, new ItemStack(JourneyArmory.twilightChest, 1));
-                te.setInventorySlotContents(20, new ItemStack(JourneyArmory.twilightHelmet, 1));
-                te.setInventorySlotContents(11, new ItemStack(JourneyArmory.twilightLegs, 1));
-                break;
-        }
+        this.world.setBlockState(new BlockPos((int) Math.floor(this.posX + 0), ((int) Math.floor(this.posY + 0)), ((int) Math.floor(this.posZ + 0))), JourneyBlocks.bossCrystalNether.getDefaultState());
+        TileEntityBossCrystal te = (TileEntityBossCrystal) world.getTileEntity(new BlockPos((int) Math.floor(this.posX + 0), ((int) Math.floor(this.posY + 0)), ((int) Math.floor(this.posZ + 0))));
+        te.setLootTable(JourneyLootTables.SOUL_WATCHER, rand.nextLong());
     }
 
     @Override
@@ -295,7 +270,7 @@ public class EntitySoulWatcher extends EntityFlyingBoss /*implements IRangedAtta
     }
 */
     private class AIRandomFly extends EntityAIBase {
-        private EntitySoulWatcher e = EntitySoulWatcher.this;
+        private final EntitySoulWatcher e = EntitySoulWatcher.this;
 
         public AIRandomFly() {
             this.setMutexBits(1);
@@ -331,7 +306,7 @@ public class EntitySoulWatcher extends EntityFlyingBoss /*implements IRangedAtta
     }
 
     private class MoveHelper extends EntityMoveHelper {
-        private EntitySoulWatcher e = EntitySoulWatcher.this;
+        private final EntitySoulWatcher e = EntitySoulWatcher.this;
         private int height;
 
         public MoveHelper() {
@@ -375,7 +350,7 @@ public class EntitySoulWatcher extends EntityFlyingBoss /*implements IRangedAtta
     }
 
     public class AILookAround extends EntityAIBase {
-        private EntitySoulWatcher e = EntitySoulWatcher.this;
+        private final EntitySoulWatcher e = EntitySoulWatcher.this;
 
         public AILookAround() {
             this.setMutexBits(2);
@@ -407,7 +382,7 @@ public class EntitySoulWatcher extends EntityFlyingBoss /*implements IRangedAtta
     
     public class AIFireballAttack extends EntityAIBase {
         public int counter;
-        private EntitySoulWatcher entity = EntitySoulWatcher.this;
+        private final EntitySoulWatcher entity = EntitySoulWatcher.this;
 
         @Override
         public boolean shouldExecute() {

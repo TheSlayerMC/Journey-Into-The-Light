@@ -2,9 +2,10 @@ package net.journey.entity.mob.boss;
 
 import com.google.common.collect.Lists;
 import jeresources.api.drop.LootDrop;
-import net.journey.blocks.tileentity.TileEntityJourneyChest;
+import net.journey.blocks.tileentity.TileEntityBossCrystal;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityMagmaFireball;
+import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.init.items.JourneyItems;
@@ -14,7 +15,6 @@ import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
 import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.ItemStack;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -133,26 +133,9 @@ public class EntitySkyStalker extends EntityFlyingBoss {
 
     @Override
     public void onDeath(DamageSource damage) {
-		/*if(damage.getEntity() instanceof EntityPlayer) {
-			EntityPlayer p = (EntityPlayer)damage.getEntity();
-			p.triggerAchievement(JourneyAchievements.achievementSkyStalker); {
-			}
-		}*/
-        this.world.setBlockState(new BlockPos((int) Math.floor(this.posX + 0), ((int) Math.floor(this.posY + 1)), ((int) Math.floor(this.posZ + 0))), JourneyBlocks.trophyStalk.getStateFromMeta(5));
-        this.world.setBlockState(new BlockPos((int) Math.floor(this.posX + 0), ((int) Math.floor(this.posY + 0)), ((int) Math.floor(this.posZ + 0))), JourneyBlocks.journeyChest.getStateFromMeta(5));
-        TileEntityJourneyChest te = (TileEntityJourneyChest) world.getTileEntity(new BlockPos((int) Math.floor(this.posX + 0), ((int) Math.floor(this.posY + 0)), ((int) Math.floor(this.posZ + 0))));
-        switch (rand.nextInt(2)) {
-            case 0:
-                te.setInventorySlotContents(12, new ItemStack(JourneyWeapons.skyPiercer, 128));
-                te.setInventorySlotContents(1, new ItemStack(JourneyWeapons.fluffyBlade, 1));
-                te.setInventorySlotContents(4, new ItemStack(JourneyWeapons.fluffyBow, 1));
-                break;
-            case 1:
-                te.setInventorySlotContents(1, new ItemStack(JourneyItems.terraniaPortalGem, 5));
-                te.setInventorySlotContents(5, new ItemStack(JourneyWeapons.fluffyBlade, 1));
-                te.setInventorySlotContents(12, new ItemStack(JourneyWeapons.fluffyBow, 1));
-                break;
-        }
+        this.world.setBlockState(new BlockPos((int) Math.floor(this.posX + 0), ((int) Math.floor(this.posY + 0)), ((int) Math.floor(this.posZ + 0))), JourneyBlocks.bossCrystalCloudia.getDefaultState());
+        TileEntityBossCrystal te = (TileEntityBossCrystal) world.getTileEntity(new BlockPos((int) Math.floor(this.posX + 0), ((int) Math.floor(this.posY + 0)), ((int) Math.floor(this.posZ + 0))));
+        te.setLootTable(JourneyLootTables.SKY_STALKER, rand.nextLong());
     }
 
     @Override
@@ -228,7 +211,7 @@ public class EntitySkyStalker extends EntityFlyingBoss {
 	}*/
 
     private class AIRandomFly extends EntityAIBase {
-        private EntitySkyStalker e = EntitySkyStalker.this;
+        private final EntitySkyStalker e = EntitySkyStalker.this;
 
         public AIRandomFly() {
             this.setMutexBits(1);
@@ -264,7 +247,7 @@ public class EntitySkyStalker extends EntityFlyingBoss {
     }
 
     private class MoveHelper extends EntityMoveHelper {
-        private EntitySkyStalker e = EntitySkyStalker.this;
+        private final EntitySkyStalker e = EntitySkyStalker.this;
         private int height;
 
         public MoveHelper() {
@@ -308,7 +291,7 @@ public class EntitySkyStalker extends EntityFlyingBoss {
     }
 
     public class AILookAround extends EntityAIBase {
-        private EntitySkyStalker e = EntitySkyStalker.this;
+        private final EntitySkyStalker e = EntitySkyStalker.this;
 
         public AILookAround() {
             this.setMutexBits(2);
@@ -339,7 +322,7 @@ public class EntitySkyStalker extends EntityFlyingBoss {
     }
     public class AIFireballAttack extends EntityAIBase {
         public int counter;
-        private EntitySkyStalker entity = EntitySkyStalker.this;
+        private final EntitySkyStalker entity = EntitySkyStalker.this;
 
         @Override
         public boolean shouldExecute() {

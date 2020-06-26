@@ -3,7 +3,6 @@ package net.journey.entity.mob.boss;
 import com.google.common.collect.Lists;
 import jeresources.api.drop.LootDrop;
 import net.journey.blocks.tileentity.TileEntityBossCrystal;
-import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityMagmaFireball;
 import net.journey.init.JourneyLootTables;
@@ -18,7 +17,6 @@ import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityBlaze;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.ItemStack;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -163,11 +161,6 @@ public class EntityBlazier extends EntityEssenceBoss implements IRangedAttackMob
 
     @Override
     public void onDeath(DamageSource damage) {
-		/*if(damage.getEntity() instanceof EntityPlayer) {
-			EntityPlayer p = (EntityPlayer)damage.getEntity();
-			p.triggerAchievement(JourneyAchievements.achievementBlazier); {
-			}
-		}*/
         this.world.setBlockState(new BlockPos((int) Math.floor(this.posX + 0), ((int) Math.floor(this.posY + 0)), ((int) Math.floor(this.posZ + 0))), JourneyBlocks.bossCrystalBoil.getDefaultState());
         TileEntityBossCrystal te = (TileEntityBossCrystal) world.getTileEntity(new BlockPos((int) Math.floor(this.posX + 0), ((int) Math.floor(this.posY + 0)), ((int) Math.floor(this.posZ + 0))));
         te.setLootTable(JourneyLootTables.BLAZIER, rand.nextLong());
@@ -255,7 +248,7 @@ public class EntityBlazier extends EntityEssenceBoss implements IRangedAttackMob
     }
 
     class AIFireballAttack extends EntityAIBase {
-        private EntityBlazier blaze = EntityBlazier.this;
+        private final EntityBlazier blaze = EntityBlazier.this;
         private int attackStep;
         private int attackTime;
 

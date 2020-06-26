@@ -2,8 +2,9 @@ package net.journey.entity.mob.boss;
 
 import com.google.common.collect.Lists;
 import jeresources.api.drop.LootDrop;
-import net.journey.blocks.tileentity.TileEntityJourneyChest;
+import net.journey.blocks.tileentity.TileEntityBossCrystal;
 import net.journey.entity.MobStats;
+import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.init.items.JourneyItems;
@@ -11,7 +12,6 @@ import net.journey.init.items.JourneyWeapons;
 import net.journey.util.PotionEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
@@ -26,7 +26,8 @@ import java.util.List;
 public class EntityEudor extends EntityEssenceBoss {
 
     private int firetick;
-    private int firemax = 400, firemax2 = 300;
+    private final int firemax = 400;
+    private final int firemax2 = 300;
     private boolean isInvi;
 
     public EntityEudor(World par1World) {
@@ -81,24 +82,9 @@ public class EntityEudor extends EntityEssenceBoss {
 
     @Override
     public void onDeath(DamageSource damage) {
-		/* if(damage.getEntity() instanceof EntityPlayer) {
-			EntityPlayer p = (EntityPlayer)damage.getEntity();
-			p.triggerAchievement(JourneyAchievements.achievementEudor); {
-			}
-		} */
-        this.world.setBlockState(new BlockPos((int) Math.floor(this.posX + 0), ((int) Math.floor(this.posY + 1)), ((int) Math.floor(this.posZ + 0))), JourneyBlocks.trophyEudor.getStateFromMeta(5));
-        this.world.setBlockState(new BlockPos((int) Math.floor(this.posX + 0), ((int) Math.floor(this.posY + 0)), ((int) Math.floor(this.posZ + 0))), JourneyBlocks.journeyChest.getStateFromMeta(5));
-        TileEntityJourneyChest te = (TileEntityJourneyChest) world.getTileEntity(new BlockPos((int) Math.floor(this.posX + 0), ((int) Math.floor(this.posY + 0)), ((int) Math.floor(this.posZ + 0))));
-        switch (rand.nextInt(2)) {
-            case 0:
-                te.setInventorySlotContents(15, new ItemStack(JourneyItems.depthsPortalGem, 8));
-                te.setInventorySlotContents(1, new ItemStack(JourneyWeapons.kingsSword, 1));
-                break;
-            case 1:
-                te.setInventorySlotContents(1, new ItemStack(JourneyItems.depthsPortalGem, 7));
-                te.setInventorySlotContents(10, new ItemStack(JourneyWeapons.kingsSword, 1));
-                break;
-        }
+        this.world.setBlockState(new BlockPos((int) Math.floor(this.posX + 0), ((int) Math.floor(this.posY + 0)), ((int) Math.floor(this.posZ + 0))), JourneyBlocks.bossCrystalEuca.getDefaultState());
+        TileEntityBossCrystal te = (TileEntityBossCrystal) world.getTileEntity(new BlockPos((int) Math.floor(this.posX + 0), ((int) Math.floor(this.posY + 0)), ((int) Math.floor(this.posZ + 0))));
+        te.setLootTable(JourneyLootTables.EUDOR, rand.nextLong());
     }
 
     @Override

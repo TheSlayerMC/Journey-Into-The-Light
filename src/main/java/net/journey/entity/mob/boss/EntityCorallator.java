@@ -2,10 +2,11 @@ package net.journey.entity.mob.boss;
 
 import com.google.common.collect.Lists;
 import jeresources.api.drop.LootDrop;
-import net.journey.blocks.tileentity.TileEntityJourneyChest;
+import net.journey.blocks.tileentity.TileEntityBossCrystal;
 import net.journey.entity.MobStats;
 import net.journey.entity.mob.euca.EntityShimmerer;
 import net.journey.entity.projectile.EntityMagmaFireball;
+import net.journey.init.JourneyLootTables;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.init.items.JourneyItems;
 import net.journey.init.items.JourneyWeapons;
@@ -15,7 +16,6 @@ import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
 import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.ItemStack;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -68,26 +68,9 @@ public class EntityCorallator extends EntityEssenceBoss implements IRangedAttack
 
     @Override
     public void onDeath(DamageSource damage) {
-		/*if(damage.getEntity() instanceof EntityPlayer) {
-			EntityPlayer p = (EntityPlayer)damage.getEntity();
-			p.triggerAchievement(JourneyAchievements.achievementCorallator); 
-			
-		}*/
-        this.world.setBlockState(new BlockPos((int) Math.floor(this.posX + 0), ((int) Math.floor(this.posY + 1)), ((int) Math.floor(this.posZ + 0))), JourneyBlocks.trophyCor.getStateFromMeta(5));
-        this.world.setBlockState(new BlockPos((int) Math.floor(this.posX + 0), ((int) Math.floor(this.posY + 0)), ((int) Math.floor(this.posZ + 0))), JourneyBlocks.journeyChest.getStateFromMeta(5));
-        TileEntityJourneyChest te = (TileEntityJourneyChest) world.getTileEntity(new BlockPos((int) Math.floor(this.posX + 0), ((int) Math.floor(this.posY + 0)), ((int) Math.floor(this.posZ + 0))));
-        switch (rand.nextInt(2)) {
-            case 0:
-                te.setInventorySlotContents(15, new ItemStack(JourneyItems.depthsPortalGem, 8));
-                te.setInventorySlotContents(1, new ItemStack(JourneyWeapons.coreMender, 1));
-                te.setInventorySlotContents(5, new ItemStack(JourneyWeapons.coreExpender, 1));
-                break;
-            case 1:
-                te.setInventorySlotContents(1, new ItemStack(JourneyItems.depthsPortalGem, 6));
-                te.setInventorySlotContents(2, new ItemStack(JourneyWeapons.coreMender, 1));
-                te.setInventorySlotContents(10, new ItemStack(JourneyWeapons.coreExpender, 1));
-                break;
-        }
+        this.world.setBlockState(new BlockPos((int) Math.floor(this.posX + 0), ((int) Math.floor(this.posY + 0)), ((int) Math.floor(this.posZ + 0))), JourneyBlocks.bossCrystalEuca.getDefaultState());
+        TileEntityBossCrystal te = (TileEntityBossCrystal) world.getTileEntity(new BlockPos((int) Math.floor(this.posX + 0), ((int) Math.floor(this.posY + 0)), ((int) Math.floor(this.posZ + 0))));
+        te.setLootTable(JourneyLootTables.CORALLATOR, rand.nextLong());
     }
 
     @Override
@@ -258,7 +241,7 @@ public class EntityCorallator extends EntityEssenceBoss implements IRangedAttack
     }
 
     private class AIRandomFly extends EntityAIBase {
-        private EntityCorallator e = EntityCorallator.this;
+        private final EntityCorallator e = EntityCorallator.this;
 
         public AIRandomFly() {
             this.setMutexBits(1);
@@ -294,7 +277,7 @@ public class EntityCorallator extends EntityEssenceBoss implements IRangedAttack
     }
 
     private class MoveHelper extends EntityMoveHelper {
-        private EntityCorallator e = EntityCorallator.this;
+        private final EntityCorallator e = EntityCorallator.this;
         private int height;
 
         public MoveHelper() {
@@ -338,7 +321,7 @@ public class EntityCorallator extends EntityEssenceBoss implements IRangedAttack
     }
 
     public class AILookAround extends EntityAIBase {
-        private EntityCorallator e = EntityCorallator.this;
+        private final EntityCorallator e = EntityCorallator.this;
 
         public AILookAround() {
             this.setMutexBits(2);

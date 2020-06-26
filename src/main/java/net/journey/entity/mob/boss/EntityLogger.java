@@ -2,8 +2,9 @@ package net.journey.entity.mob.boss;
 
 import com.google.common.collect.Lists;
 import jeresources.api.drop.LootDrop;
-import net.journey.blocks.tileentity.TileEntityJourneyChest;
+import net.journey.blocks.tileentity.TileEntityBossCrystal;
 import net.journey.entity.MobStats;
+import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.init.items.JourneyArmory;
@@ -12,9 +13,7 @@ import net.journey.init.items.JourneyWeapons;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundEvent;
@@ -82,35 +81,9 @@ public class EntityLogger extends EntityEssenceBoss {
 
     @Override
     public void onDeath(DamageSource damage) {
-        if (damage.getImmediateSource() instanceof EntityPlayer) {
-            EntityPlayer p = (EntityPlayer) damage.getImmediateSource();
-            //p.triggerAchievement(JourneyAchievements.achievementlogger);
-        }
-        this.world.setBlockState(new BlockPos((int) Math.floor(this.posX + 0), ((int) Math.floor(this.posY + 1)), ((int) Math.floor(this.posZ + 0))), JourneyBlocks.trophyLogger.getStateFromMeta(5));
-        this.world.setBlockState(new BlockPos((int) Math.floor(this.posX + 0), ((int) Math.floor(this.posY + 0)), ((int) Math.floor(this.posZ + 0))), JourneyBlocks.journeyChest.getStateFromMeta(5));
-        TileEntityJourneyChest te = (TileEntityJourneyChest) world.getTileEntity(new BlockPos((int) Math.floor(this.posX + 0), ((int) Math.floor(this.posY + 0)), ((int) Math.floor(this.posZ + 0))));
-        switch (rand.nextInt(2)) {
-            case 0:
-                te.setInventorySlotContents(15, new ItemStack(JourneyItems.terraniaPortalGem, 8));
-                te.setInventorySlotContents(1, new ItemStack(JourneyWeapons.naturesBlade, 1));
-                te.setInventorySlotContents(5, new ItemStack(JourneyWeapons.loggersBow, 1));
-
-                te.setInventorySlotContents(3, new ItemStack(JourneyArmory.hollowChest, 1));
-                te.setInventorySlotContents(11, new ItemStack(JourneyArmory.hollowHelmet, 1));
-                te.setInventorySlotContents(7, new ItemStack(JourneyArmory.hollowLegs, 1));
-                te.setInventorySlotContents(8, new ItemStack(JourneyArmory.hollowBoots, 1));
-                break;
-            case 1:
-                te.setInventorySlotContents(1, new ItemStack(JourneyItems.terraniaPortalGem, 10));
-                te.setInventorySlotContents(2, new ItemStack(JourneyWeapons.loggersSword, 1));
-                te.setInventorySlotContents(10, new ItemStack(JourneyWeapons.loggersBow, 1));
-
-                te.setInventorySlotContents(3, new ItemStack(JourneyArmory.hollowChest, 1));
-                te.setInventorySlotContents(11, new ItemStack(JourneyArmory.hollowHelmet, 1));
-                te.setInventorySlotContents(5, new ItemStack(JourneyArmory.hollowLegs, 1));
-                te.setInventorySlotContents(6, new ItemStack(JourneyArmory.hollowBoots, 1));
-                break;
-        }
+        this.world.setBlockState(new BlockPos((int) Math.floor(this.posX + 0), ((int) Math.floor(this.posY + 0)), ((int) Math.floor(this.posZ + 0))), JourneyBlocks.bossCrystalCorba.getDefaultState());
+        TileEntityBossCrystal te = (TileEntityBossCrystal) world.getTileEntity(new BlockPos((int) Math.floor(this.posX + 0), ((int) Math.floor(this.posY + 0)), ((int) Math.floor(this.posZ + 0))));
+        te.setLootTable(JourneyLootTables.LOGGER, rand.nextLong());
     }
 
     @Override

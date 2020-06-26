@@ -2,10 +2,13 @@ package net.journey.entity.mob.boss;
 
 import com.google.common.collect.Lists;
 import jeresources.api.drop.LootDrop;
+import net.journey.blocks.tileentity.TileEntityBossCrystal;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityFloroWater;
 import net.journey.entity.projectile.EntityMagmaFireball;
+import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
+import net.journey.init.blocks.JourneyBlocks;
 import net.journey.init.items.JourneyItems;
 import net.journey.init.items.JourneyWeapons;
 import net.minecraft.entity.EntityLivingBase;
@@ -14,11 +17,9 @@ import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundEvent;
@@ -102,34 +103,9 @@ public class EntityTempleGuardian extends EntityEssenceBoss implements IRangedAt
 
     @Override
     public void onDeath(DamageSource damage) {
-        this.world.setBlockState(new BlockPos((int) Math.floor(this.posX + 0), ((int) Math.floor(this.posY + 0)), ((int) Math.floor(this.posZ + 0))), Blocks.CHEST.getStateFromMeta(5));
-        TileEntityChest te = (TileEntityChest) world.getTileEntity(new BlockPos((int) Math.floor(this.posX + 0), ((int) Math.floor(this.posY + 0)), ((int) Math.floor(this.posZ + 0))));
-        switch (rand.nextInt(4)) {
-            case 0:
-                te.setInventorySlotContents(2, new ItemStack(JourneyItems.yellowGem, 3));
-                te.setInventorySlotContents(11, new ItemStack(JourneyItems.blueGem, 2));
-                te.setInventorySlotContents(16, new ItemStack(JourneyItems.greenGem, 5));
-                te.setInventorySlotContents(5, new ItemStack(JourneyItems.purpleGem, 2));
-                break;
-            case 1:
-                te.setInventorySlotContents(1, new ItemStack(JourneyItems.yellowGem, 4));
-                te.setInventorySlotContents(14, new ItemStack(JourneyItems.blueGem, 5));
-                te.setInventorySlotContents(12, new ItemStack(JourneyItems.greenGem, 2));
-                te.setInventorySlotContents(4, new ItemStack(JourneyItems.purpleGem, 6));
-                break;
-            case 2:
-                te.setInventorySlotContents(14, new ItemStack(JourneyItems.yellowGem, 2));
-                te.setInventorySlotContents(1, new ItemStack(JourneyItems.blueGem, 4));
-                te.setInventorySlotContents(4, new ItemStack(JourneyItems.greenGem, 6));
-                te.setInventorySlotContents(12, new ItemStack(JourneyItems.purpleGem, 2));
-                break;
-            case 3:
-                te.setInventorySlotContents(4, new ItemStack(JourneyItems.yellowGem, 5));
-                te.setInventorySlotContents(12, new ItemStack(JourneyItems.blueGem, 1));
-                te.setInventorySlotContents(14, new ItemStack(JourneyItems.greenGem, 4));
-                te.setInventorySlotContents(1, new ItemStack(JourneyItems.purpleGem, 2));
-                break;
-        }
+        this.world.setBlockState(new BlockPos((int) Math.floor(this.posX + 0), ((int) Math.floor(this.posY + 0)), ((int) Math.floor(this.posZ + 0))), JourneyBlocks.bossCrystal.getDefaultState());
+        TileEntityBossCrystal te = (TileEntityBossCrystal) world.getTileEntity(new BlockPos((int) Math.floor(this.posX + 0), ((int) Math.floor(this.posY + 0)), ((int) Math.floor(this.posZ + 0))));
+        te.setLootTable(JourneyLootTables.TEMPLE_GUARDIAN, rand.nextLong());
     }
 
     @Override
