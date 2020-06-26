@@ -43,32 +43,32 @@ public class ChunkGeneratorDepths implements IChunkGenerator {
 	private NoiseGeneratorOctaves noiseGen2;
 	private NoiseGeneratorOctaves noiseGen3;
 	private final NoiseGeneratorPerlin perlinNoise;
-	private final World worldObj;
+	private final World world;
 	private ChunkGeneratorSettings settings;
 	private Biome[] biomesForGeneration;
 	private double[] n3, n4, n5, n6;
 
-    private final WorldGenSpike spike = new WorldGenSpike();
-    private final WorldGenModFlower flower = new WorldGenModFlower(JourneyBlocks.depthsFlower, JourneyBlocks.depthsGrass, false);
-    private final WorldGenModFlower flower2 = new WorldGenModFlower(JourneyBlocks.depthsBlueFlower, JourneyBlocks.depthsGrass, false);
-    private final WorldGenDepthsLights lights = new WorldGenDepthsLights();
-    private final WorldGenDepthsLights.WorldGendepthsLights2 lights2 = new WorldGenDepthsLights.WorldGendepthsLights2();
-    private final WorldGenDepthsTree tree = new WorldGenDepthsTree();
+	private final WorldGenSpike spike = new WorldGenSpike();
+	private final WorldGenModFlower flower = new WorldGenModFlower(JourneyBlocks.depthsFlower, JourneyBlocks.depthsGrass, false);
+	private final WorldGenModFlower flower2 = new WorldGenModFlower(JourneyBlocks.depthsBlueFlower, JourneyBlocks.depthsGrass, false);
+	private final WorldGenDepthsLights lights = new WorldGenDepthsLights();
+	private final WorldGenDepthsLights.WorldGendepthsLights2 lights2 = new WorldGenDepthsLights.WorldGendepthsLights2();
+	private final WorldGenDepthsTree tree = new WorldGenDepthsTree();
     private final WorldGenDepthsTree1 tree1 = new WorldGenDepthsTree1();
-    private final WorldGenDepthsTree2 tree2 = new WorldGenDepthsTree2();
-    private final JWorldGenPlants genDarkblooms = new JWorldGenPlants(JourneyBlocks.darkbloom);
-    private final WorldGenSorcererShrine shrine = new WorldGenSorcererShrine();
-    private final WorldGenGuardianTower tower = new WorldGenGuardianTower();
-    private final WorldGenMinable flairum = new WorldGenMinable(JourneyBlocks.flairiumOre.getDefaultState(), 8, BlockStateMatcher.forBlock(JourneyBlocks.depthsStone));
-    private final WorldGenMinable des = new WorldGenMinable(JourneyBlocks.desOre.getDefaultState(), 8, BlockStateMatcher.forBlock(JourneyBlocks.depthsStone));
-    private final WorldGenMinable floorgems = new WorldGenMinable(JourneyBlocks.depthsLights.getDefaultState(), 40, BlockStateMatcher.forBlock(JourneyBlocks.depthsGrass));
-    private final WorldGenStructure depthsHouse = new WorldGenStructure("depths_house1");
-    private final WorldGenStructure dungeon = new WorldGenStructure("big", JourneyLootTables.TEST_CHEST);
+	private final WorldGenDepthsTree2 tree2 = new WorldGenDepthsTree2();
+	private final JWorldGenPlants genDarkblooms = new JWorldGenPlants(JourneyBlocks.darkbloom);
+	private final WorldGenSorcererShrine shrine = new WorldGenSorcererShrine();
+	private final WorldGenGuardianTower tower = new WorldGenGuardianTower();
+	private final WorldGenMinable flairum = new WorldGenMinable(JourneyBlocks.flairiumOre.getDefaultState(), 8, BlockStateMatcher.forBlock(JourneyBlocks.depthsStone));
+	private final WorldGenMinable des = new WorldGenMinable(JourneyBlocks.desOre.getDefaultState(), 8, BlockStateMatcher.forBlock(JourneyBlocks.depthsStone));
+	private final WorldGenMinable floorgems = new WorldGenMinable(JourneyBlocks.depthsLights.getDefaultState(), 40, BlockStateMatcher.forBlock(JourneyBlocks.depthsGrass));
+	private final WorldGenStructure depthsHouse = new WorldGenStructure("depths_house1");
+	private final WorldGenStructure dungeon = new WorldGenStructure("big", JourneyLootTables.TEST_CHEST);
 
-	private final JWorldGenPlants depths_crystal = new JWorldGenPlants(JourneyBlocks.DEPTHS_CRYSTAL, GroundPredicate.COMMON_AND_DEPTHS_GRASS, 5);
+	private final JWorldGenPlants depths_crystal = new JWorldGenPlants(JourneyBlocks.DEPTHS_CRYSTAL, GroundPredicate.ANY, 5);
 
-    public ChunkGeneratorDepths(World worldIn, long s, String st) {
-    	this.worldObj = worldIn;
+	public ChunkGeneratorDepths(World worldIn, long s, String st) {
+		this.world = worldIn;
 		this.rand = new Random(s);
 		this.noiseGen1 = new NoiseGeneratorOctaves(this.rand, 16);
 		this.noiseGen2 = new NoiseGeneratorOctaves(this.rand, 16);
@@ -102,17 +102,17 @@ public class ChunkGeneratorDepths implements IChunkGenerator {
     }
 
     public void setBlocksInChunk(int x, int z, ChunkPrimer cp) {
-    	this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomesForGeneration(this.biomesForGeneration, x * 4 - 2, z * 4 - 2, 10, 10);
-		this.generateNoise(x * 4, 0, z * 4);
-		
-		IBlockState grass = JourneyBlocks.depthsGrass.getDefaultState();
-		IBlockState filler = JourneyBlocks.depthsDirt.getDefaultState();
-		
-		IBlockState top_grass = JourneyBlocks.depthsGrass.getDefaultState();
-		IBlockState stone = JourneyBlocks.depthsStone.getDefaultState();
+	    this.biomesForGeneration = this.world.getBiomeProvider().getBiomesForGeneration(this.biomesForGeneration, x * 4 - 2, z * 4 - 2, 10, 10);
+	    this.generateNoise(x * 4, 0, z * 4);
 
-		for (int k = 0; k < 4; ++k) {
-			int l = k * 5;
+	    IBlockState grass = JourneyBlocks.depthsGrass.getDefaultState();
+	    IBlockState filler = JourneyBlocks.depthsDirt.getDefaultState();
+
+	    IBlockState top_grass = JourneyBlocks.depthsGrass.getDefaultState();
+	    IBlockState stone = JourneyBlocks.depthsStone.getDefaultState();
+
+	    for (int k = 0; k < 4; ++k) {
+		    int l = k * 5;
 			int i1 = (k + 1) * 5;
 
 			for (int j1 = 0; j1 < 4; ++j1) {
@@ -284,28 +284,28 @@ public class ChunkGeneratorDepths implements IChunkGenerator {
     }
 
     public Chunk provideChunk(int x, int z) {
-		this.rand.setSeed(x * 341873128712L + z * 132897987541L);
-		ChunkPrimer chunkprimer = new ChunkPrimer();
-		this.setBlocksInChunk(x, z, chunkprimer);
-		if (rand.nextInt(50) == 0) {
-            int ycoord = 2;
-            if(chunkprimer.getBlockState(8, ycoord, 8).getBlock() == Blocks.AIR && chunkprimer.getBlockState(8, ycoord + 1, 8).getBlock() == Blocks.AIR) {
-                spike.generate(chunkprimer, rand, new BlockPos(8, ycoord, 8));
-            }
-        }
-		this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomes(this.biomesForGeneration, x * 16, z * 16, 16, 16);
-		Chunk chunk = new Chunk(this.worldObj, chunkprimer, x, z);
-		chunk.generateSkylightMap();
-		return chunk;
+	    this.rand.setSeed(x * 341873128712L + z * 132897987541L);
+	    ChunkPrimer chunkprimer = new ChunkPrimer();
+	    this.setBlocksInChunk(x, z, chunkprimer);
+	    if (rand.nextInt(50) == 0) {
+		    int ycoord = 2;
+		    if (chunkprimer.getBlockState(8, ycoord, 8).getBlock() == Blocks.AIR && chunkprimer.getBlockState(8, ycoord + 1, 8).getBlock() == Blocks.AIR) {
+			    spike.generate(chunkprimer, rand, new BlockPos(8, ycoord, 8));
+		    }
+	    }
+	    this.biomesForGeneration = this.world.getBiomeProvider().getBiomes(this.biomesForGeneration, x * 16, z * 16, 16, 16);
+	    Chunk chunk = new Chunk(this.world, chunkprimer, x, z);
+	    chunk.generateSkylightMap();
+	    return chunk;
     }
 
     public boolean isBlockTop(int x, int y, int z, Block grass) {
-        return WorldGenAPI.isBlockTop(x, y, z, grass, worldObj);
+	    return WorldGenAPI.isBlockTop(x, y, z, grass, world);
     }
 
     @Override
     public List<SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos) {
-        Biome biome = this.worldObj.getBiome(pos);
+	    Biome biome = this.world.getBiome(pos);
         return biome.getSpawnableList(creatureType);
     }
 
@@ -326,21 +326,21 @@ public class ChunkGeneratorDepths implements IChunkGenerator {
 
         BlockPos chunkStart = new BlockPos(x1, 0, z1);
         for (i = 0; i < 15; i++) {
-            floorgems.generate(worldObj, rand, new BlockPos(chunkStart.add(rand.nextInt(16), rand.nextInt(worldObj.getHeight()), rand.nextInt(16))));
+	        floorgems.generate(world, rand, new BlockPos(chunkStart.add(rand.nextInt(16), rand.nextInt(world.getHeight()), rand.nextInt(16))));
         }
 
         for (i = 0; i < 40; i++) {
-            flower.generate(worldObj, rand, chunkStart);
-            flower2.generate(worldObj, rand, chunkStart);
+	        flower.generate(world, rand, chunkStart);
+	        flower2.generate(world, rand, chunkStart);
         }
 
         for (i = 0; i < Config.flairiumOreTrys; i++) {
-            flairum.generate(worldObj, rand, new BlockPos(chunkStart.add(rand.nextInt(16), rand.nextInt(worldObj.getHeight()), rand.nextInt(16))));
+	        flairum.generate(world, rand, new BlockPos(chunkStart.add(rand.nextInt(16), rand.nextInt(world.getHeight()), rand.nextInt(16))));
             
         }
         
         for(i = 0; i < Config.desOreTrys; i++) {
-            des.generate(worldObj, rand, new BlockPos(chunkStart.add(rand.nextInt(16), rand.nextInt(worldObj.getHeight()), rand.nextInt(16))));
+	        des.generate(world, rand, new BlockPos(chunkStart.add(rand.nextInt(16), rand.nextInt(world.getHeight()), rand.nextInt(16))));
         }
 
          for (times = 0; times < 100; times++) {
@@ -348,13 +348,13 @@ public class ChunkGeneratorDepths implements IChunkGenerator {
             int randZ = cz * 16 + 8 + rand.nextInt(16);
             int randY = rand.nextInt(80) + 1;
             if (isBlockTop(randX, randY - 1, randZ, JourneyBlocks.depthsGrass)) {
-                trees[rand.nextInt(trees.length)].generate(worldObj, rand, new BlockPos(randX, randY, randZ));
+	            trees[rand.nextInt(trees.length)].generate(world, rand, new BlockPos(randX, randY, randZ));
             }
         }
 
          for (i = 0; i < 15; i++) {
-             lights.generate(this.worldObj, rand, WorldGenAPI.createRandom(x1, 4, 120, z1, rand, 16));
-             lights2.generate(this.worldObj, rand, WorldGenAPI.createRandom(x1, 4, 120, z1, rand, 16));
+	         lights.generate(this.world, rand, WorldGenAPI.createRandom(x1, 4, 120, z1, rand, 16));
+	         lights2.generate(this.world, rand, WorldGenAPI.createRandom(x1, 4, 120, z1, rand, 16));
          }
 
         if (rand.nextInt(1000) == 0) {
@@ -374,31 +374,31 @@ public class ChunkGeneratorDepths implements IChunkGenerator {
         if (rand.nextInt(2) == 0) {
             generateBottomStructure(tower, x1, z1);
         }
-        
-        for(i = 0; i < 5; i++) {
-        	//if(chunkStart.getY() > 64)
-        		depths_crystal.generate(worldObj, rand, chunkStart);
-        }
+
+	    for (i = 0; i < 15; i++) {
+		    //if(chunkStart.getY() > 64)
+		    depths_crystal.generate(world, rand, chunkStart);
+	    }
     }
 
     private void generateStructure(WorldGenerator gen, int x, int z) {
         BlockPos pos = WorldGenAPI.createRandom(x, 1, 90 + 1, z, rand, 8);
         if (isBlockTop(pos.getX(), pos.getY() - 1, pos.getZ(), JourneyBlocks.depthsGrass)) {
-            gen.generate(worldObj, rand, pos);
+	        gen.generate(world, rand, pos);
         }
     }
 
     private void generateTopStructure(WorldGenerator gen, int x, int z) {
         BlockPos pos = WorldGenAPI.createRandom(x, 64, 90 + 1, z, rand, 8);
         if (isBlockTop(pos.getX(), pos.getY() - 1, pos.getZ(), JourneyBlocks.depthsGrass)) {
-            gen.generate(worldObj, rand, pos);
+	        gen.generate(world, rand, pos);
         }
     }
 
     private void generateBottomStructure(WorldGenerator gen, int x, int z) {
         BlockPos pos = WorldGenAPI.createRandom(x, 1, 64 + 1, z, rand, 8);
         if (isBlockTop(pos.getX(), pos.getY() - 1, pos.getZ(), JourneyBlocks.depthsGrass)) {
-            gen.generate(worldObj, rand, pos);
+	        gen.generate(world, rand, pos);
         }
     }
 
