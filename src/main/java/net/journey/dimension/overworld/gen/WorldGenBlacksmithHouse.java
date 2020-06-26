@@ -1,6 +1,7 @@
 package net.journey.dimension.overworld.gen;
 
 import net.journey.entity.mob.overworld.npc.EntityBlacksmith;
+import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemDoor;
 import net.minecraft.util.EnumFacing;
@@ -13,11 +14,18 @@ import java.util.Random;
 
 public class WorldGenBlacksmithHouse extends WorldGenerator {
 
+	public final Block base, under;
+	
+	public WorldGenBlacksmithHouse(Block genOn, Block genUnder) {
+		this.base = genOn;
+		this.under = genUnder;
+	}
+	
     @Override
     public boolean generate(World w, Random r, BlockPos pos) {
         int x = pos.getX(), y = pos.getY() - 1, z = pos.getZ();
-        WorldGenAPI.addRectangle(11, 11, 1, w, x - 1, y + 1, z - 1, Blocks.GRASS);
-        WorldGenAPI.addRectangle(11, 11, 4, w, x - 1, y - 3, z - 1, Blocks.DIRT);
+        WorldGenAPI.addRectangle(11, 11, 1, w, x - 1, y + 1, z - 1, base);
+        WorldGenAPI.addRectangle(11, 11, 4, w, x - 1, y - 3, z - 1, under);
         WorldGenAPI.addHollowCube(9, w, x, y, z, Blocks.COBBLESTONE);
         WorldGenAPI.addRectangle(9, 9, 4, w, x, y + 6, z, Blocks.AIR);
         WorldGenAPI.addRectangle(9, 9, 1, w, x, y + 5, z, Blocks.COBBLESTONE);

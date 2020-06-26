@@ -14,9 +14,9 @@ import java.util.function.Predicate;
 public interface GroundPredicate {
 	GroundPredicate ANY = (world, groundPos, groundState, plantDirection) -> true;
 	/**
-	 * Any ground is accepted, but it should have solid side at the plant direction.
+	 * Any ground is accepted, but it should have solid side at the place direction.
 	 */
-	GroundPredicate SOLID_SIDE = (world, groundPos, groundState, plantDirection) -> groundState.isSideSolid(world, groundPos, plantDirection);
+	GroundPredicate SOLID_SIDE = (world, groundPos, groundState, placeDirection) -> groundState.isSideSolid(world, groundPos, placeDirection);
 	/**
 	 * Default version for plants. Simulates BlockBush#canSustainBush
 	 */
@@ -42,7 +42,7 @@ public interface GroundPredicate {
 	}
 
 	/**
-	 * Test ground state for sustaining plant.
+	 * Tests ground state for sustaining plant or smth else.
 	 * <p>
 	 * !!! Don't check here for plant block, it can be not placed yet.
 	 *

@@ -16,31 +16,35 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.slayer.api.worldgen.WorldGenAPI;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class JWorldGenRuins extends WorldGenerator {
-
 	/**
 	 * Maximum amount of space between blocks
 	 */
 	private static final int SPREADING = 5; // must be less or equal 9 otherwise may cause cascading lags
 	public LootType type;
 	public GroundPredicate acceptableSurface;
-	public IBlockState[] ruinBlocks;
+	public IBlockState[] ruinBlockStates;
 	public Block specialBlock;
 	public ResourceLocation lootTable;
+
+	public JWorldGenRuins(GroundPredicate extraSurfacePredicate, LootType type, Block... ruinBlocks) {
+		this(extraSurfacePredicate, type, Arrays.stream(ruinBlocks).map(Block::getDefaultState).toArray(IBlockState[]::new));
+	}
 
 	public JWorldGenRuins(GroundPredicate extraSurfacePredicate, LootType type, IBlockState... ruinBlocks) {
 		this.acceptableSurface = extraSurfacePredicate;
 		this.type = type;
-		this.ruinBlocks = ruinBlocks;
+		this.ruinBlockStates = ruinBlocks;
 	}
 
 	/**
-	 * Returns a list of random blocks for the structure foundation, specified by the list in the constructor
+	 * Returns a list of random states for the structure foundation, specified by the list in the constructor
 	 */
-	public IBlockState getRandomBlocks(Random rand) {
-		return RandHelper.chooseEqual(rand, ruinBlocks);
+	public IBlockState getRandomStates(Random rand) {
+		return RandHelper.chooseEqual(rand, ruinBlockStates);
 	}
 
 	/**
@@ -121,7 +125,7 @@ public class JWorldGenRuins extends WorldGenerator {
 			if (acceptableSurface.testGround(worldIn, placePos.down(), worldIn.getBlockState(placePos.down()), EnumFacing.UP)) {
 				int height = 1 + rand.nextInt(5);
 				for (int j = 0; j < height; j++) {
-					setBlockAndNotifyAdequately(worldIn, placePos, getRandomBlocks(rand));
+					setBlockAndNotifyAdequately(worldIn, placePos, getRandomStates(rand));
 					placePos = placePos.up();
 				}
 				generated = true;
