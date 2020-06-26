@@ -969,15 +969,13 @@ public class JourneyBlocks {
         terranianPanels = new BlockMod("terranianPanels", "Terranian Panels", 2.0F);
         terranianTallgrass = (JBlockTallGrass) new JBlockTallGrass("terranianTallgrass", "Terranian Tallgrass").setGroundPredicate(GroundPredicate.COMMON_AND_TERRANIA_GRASS);
         terramushroom = (JBlockMushroom) new JBlockMushroom("terramushroom", "Terranian Shroom")
-                .setBigMushroomGenerator(JBlockMushroom.BigMushroomGenerator.randomGenerator(new WorldGenTerrashroom(JourneyBlocks.terrashroomBlockPurple), new WorldGenTerrashroom(JourneyBlocks.terrashroomBlockPink)))
-                .setLightLevel(5.0F);
-        tallTerramushroom = (JBlockDoublePlant) new JBlockDoublePlant("tallterramushroom", "Tall Terranian Shroom").setGroundPredicate(GroundPredicate.COMMON_AND_TERRANIA_GRASS).setLightLevel(5.0F);
+                .setBigMushroomGenerator(JBlockMushroom.BigMushroomGenerator.randomGenerator(new WorldGenTerrashroom(JourneyBlocks.terrashroomBlockPurple), new WorldGenTerrashroom(JourneyBlocks.terrashroomBlockPink)));
+        tallTerramushroom = (JBlockDoublePlant) new JBlockDoublePlant("tallterramushroom", "Tall Terranian Shroom").setGroundPredicate(GroundPredicate.COMMON_AND_TERRANIA_GRASS).setLightLevel(0.6F);
         terranianFlower = (BlockTerranianFlower) new BlockTerranianFlower("terranian_flower", "Terranian Flower").setGroundPredicate(GroundPredicate.COMMON_AND_TERRANIA_GRASS);
-        terraniaLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "terraniaLamp", "Terrania Lamp", 0.1F)
-                .setLightLevel(1.0F).setCreativeTab(JourneyTabs.DECORATION);
+        terraniaLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "terraniaLamp", "Terrania Lamp", 0.1F).setLightLevel(0.7F).setCreativeTab(JourneyTabs.DECORATION);
 
         enchantedShroomsSmall = (JBlockMushroom) new JBlockMushroom("enchanted_shrooms_small", "Enchanted Shrooms").setGroundPredicate(GroundPredicate.COMMON_AND_TERRANIA_GRASS).setLightLevel(0.3F);
-        enchantedShroomTall = (JBlockMushroom) new JBlockMushroom("enchanted_shroom_tall", "Tall Enchanted Shroom").setGroundPredicate(GroundPredicate.COMMON_AND_TERRANIA_GRASS).setLightLevel(0.6F);
+        enchantedShroomTall = (JBlockMushroom) new JBlockMushroom("enchanted_shroom_tall", "Tall Enchanted Shroom").setGroundPredicate(GroundPredicate.COMMON_AND_TERRANIA_GRASS).setLightLevel(0.3F);
 
         terrashroomBlockPink = new BlockJourneyMushroom(EnumMaterialTypes.WOOD, "terrashroomBlockPink", "Terrashroom Block", 0.5F, terramushroom);
         terrashroomBlockPurple = new BlockJourneyMushroom(EnumMaterialTypes.WOOD, "terrashroomBlockPurple", "Terrashroom Block", 0.5F, terramushroom);
@@ -990,22 +988,6 @@ public class JourneyBlocks {
 
         hotGlass = new BlockJoinedGlass("hotGlass", "Hot Glass");
         smoothGlass = new BlockJoinedGlass("smoothGlass", "Smooth Glass");
-        // hotGlassPane = new BlockJoinedPane("hotGlass");
-        // smoothGlassPane = new BlockJoinedPane("smoothGlass");
-
-        // witheringBeastStatue = new BlockStatue("witheringBeastStatue", new
-        // ModelWitheringBeastStatue(), EnumSounds.WITHER);
-        // netherBeastStatue = new BlockStatue("netherBeastStatue", new
-        // ModelNetherBeastStatue(), EnumSounds.NETHER_BEAST);
-        // calciaStatue = new BlockStatue("calciaStatue", new
-        // ModelCalciaStatue(), EnumSounds.CALCIA);
-        // eudorStatue = new BlockStatue("eudorStatue", new ModelEudorStatue(),
-        // EnumSounds.CALCIA);
-        // enderChampionStatue = new BlockStatue("enderChampionStatue", new
-        // ModelEnderChampionStatue());
-        // wraithStatue = new BlockStatue("wraithStatue", new
-        // ModelWraithStatue());
-
 
         darkbloom = (JBlockDoublePlant) new JBlockDoublePlant("darkbloom", "Darkbloom").setGroundPredicate(GroundPredicate.COMMON_AND_DEPTHS_GRASS);
         hellThorn = (JBlockDoublePlant) new JBlockDoublePlant("hell_thorn", "Hell Thorn").setGroundPredicate(GroundPredicate.NETHER).setBoundingBox(JBlockDoublePlant.DOUBLE_BIG_PLANT_BB);

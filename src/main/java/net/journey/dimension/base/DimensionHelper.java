@@ -17,8 +17,9 @@ import net.journey.dimension.frozen.BiomeGenFrozenLands;
 import net.journey.dimension.frozen.WorldProviderFrozenLands;
 import net.journey.dimension.senterian.BiomeGenSenterian;
 import net.journey.dimension.senterian.WorldProviderSenterian;
-import net.journey.dimension.terrania.BiomeGenTerrania;
 import net.journey.dimension.terrania.WorldProviderTerrania;
+import net.journey.dimension.terrania.biome.BiomeGenEnchantedShroomForest;
+import net.journey.dimension.terrania.biome.BiomeGenTerrania;
 import net.journey.entity.mob.boiling.EntityBurningLight;
 import net.journey.entity.mob.boiling.EntityFrightener;
 import net.journey.entity.mob.boiling.EntityMagmaBlaze;
@@ -83,11 +84,14 @@ public class DimensionHelper {
 
     public static final Biome DEPTHS_BIOME = new BiomeGenDepths();
     public static final Biome FROZEN_BIOME = new BiomeGenFrozenLands();
-    public static final Biome TERRANIA_BIOME = new BiomeGenTerrania();
     public static final Biome SENTERIAN_BIOME = new BiomeGenSenterian();
+    
+    public static final Biome TERRANIA_BIOME = new BiomeGenTerrania();
+    public static final Biome ENCHANTED_SHROOM_FOREST_BIOME = new BiomeGenEnchantedShroomForest();
 
     public static final Biome[] EUCA_BIOMES = {EUCA_SILVER_BIOME, EUCA_GOLD_BIOME};
-    public static final Biome[] CORBA_BIOMES = {CORBA_BIOME, CORBA_PLAINS_BIOME, CORBA_HILLS_BIOME};
+    public static final Biome[] CORBA_BIOMES = {CORBA_BIOME, CORBA_PLAINS_BIOME, CORBA_HILLS_BIOME, CORBA_SWAMP_BIOME};
+    public static final Biome[] TERRANIA_BIOMES = {TERRANIA_BIOME, ENCHANTED_SHROOM_FOREST_BIOME};
 
     public static final DimensionType EUCA_DIM = DimensionType.register("euca", "_euca", Config.euca, WorldProviderEuca.class, Config.keepLoadingEuca);
     public static final DimensionType BOILING_DIM = DimensionType.register("boiling_point", "_boilingPoint", Config.boil, WorldProviderBoiling.class, Config.keepLoadingBoil);
@@ -121,6 +125,7 @@ public class DimensionHelper {
         addDimBiome(DEPTHS_BIOME, "Depths", Type.MAGICAL, Type.SPOOKY);
         addDimBiome(FROZEN_BIOME, "Frozen Lands", Type.COLD);
         addDimBiome(TERRANIA_BIOME, "Terrania", Type.MAGICAL, Type.SPOOKY);
+        addDimBiome(ENCHANTED_SHROOM_FOREST_BIOME, "EnchantedShroomForest", Type.MAGICAL, Type.SPOOKY);
         addDimBiome(SENTERIAN_BIOME, "Senterian Labyrinth", Type.MAGICAL, Type.SPOOKY);
         addDimension(Config.euca, EUCA_DIM);
         addDimension(Config.boil, BOILING_DIM);
@@ -218,11 +223,11 @@ public class DimensionHelper {
 
     private static void addTerraniaSpawns() {
         int amount = 15;
-        EntityRegistry.addSpawn(EntityTerraScatterer.class, 5, 1, 1, EnumCreatureType.MONSTER, TERRANIA_BIOME);
-        EntityRegistry.addSpawn(EntityTerralight.class, 5, 1, 1, EnumCreatureType.MONSTER, TERRANIA_BIOME);
-        EntityRegistry.addSpawn(EntityTerragrow.class, 5, 1, 1, EnumCreatureType.MONSTER, TERRANIA_BIOME);
-        EntityRegistry.addSpawn(EntityTerrashroom.class, 5, 1, 1, EnumCreatureType.MONSTER, TERRANIA_BIOME);
-        EntityRegistry.addSpawn(EntityTerraslug.class, 5, 1, 1, EnumCreatureType.MONSTER, TERRANIA_BIOME);
+        EntityRegistry.addSpawn(EntityTerraScatterer.class, 5, 1, 1, EnumCreatureType.MONSTER, TERRANIA_BIOMES);
+        EntityRegistry.addSpawn(EntityTerralight.class, 5, 1, 1, EnumCreatureType.MONSTER, TERRANIA_BIOMES);
+        EntityRegistry.addSpawn(EntityTerragrow.class, 5, 1, 1, EnumCreatureType.MONSTER, TERRANIA_BIOMES);
+        EntityRegistry.addSpawn(EntityTerrashroom.class, 5, 1, 1, EnumCreatureType.MONSTER, TERRANIA_BIOMES);
+        EntityRegistry.addSpawn(EntityTerraslug.class, 5, 1, 1, EnumCreatureType.MONSTER, TERRANIA_BIOMES);
     }
 
     private static void addEucaSpawns() {

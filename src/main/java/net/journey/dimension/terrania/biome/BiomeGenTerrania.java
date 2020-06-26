@@ -1,4 +1,4 @@
-package net.journey.dimension.terrania;
+package net.journey.dimension.terrania.biome;
 
 import java.awt.Color;
 
