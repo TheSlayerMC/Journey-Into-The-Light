@@ -1,5 +1,6 @@
 package net.journey.dimension.terrania;
 
+import com.google.common.collect.Lists;
 import net.journey.dimension.base.BaseWorldProvider;
 import net.journey.dimension.base.BiomeProviderMultiple;
 import net.journey.dimension.base.DimensionHelper;
@@ -7,10 +8,8 @@ import net.journey.init.JourneySounds;
 import net.journey.proxy.ClientProxy;
 import net.minecraft.client.audio.MusicTicker;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeProviderSingle;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.client.EnumHelperClient;
@@ -18,11 +17,8 @@ import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.List;
-
 import javax.annotation.Nullable;
-
-import com.google.common.collect.Lists;
+import java.util.List;
 
 public class WorldProviderTerrania extends BaseWorldProvider {
 
@@ -30,7 +26,7 @@ public class WorldProviderTerrania extends BaseWorldProvider {
     private static final List<Biome> RARE_BIOMES = Lists.newArrayList(DimensionHelper.ENCHANTED_SHROOM_FOREST_BIOME);
 	
 	public WorldProviderTerrania() {
-        super(world -> new BiomeProviderMultiple(world.getWorldInfo(), COMMON_BIOMES, RARE_BIOMES), new Vec3d(1.28, 1.15, 0.7));
+		super(world -> new BiomeProviderMultiple(world.getWorldInfo(), COMMON_BIOMES, RARE_BIOMES)/*, new Vec3d(0.7, 0.1, 0.65)*/);
     }
     
     @Nullable

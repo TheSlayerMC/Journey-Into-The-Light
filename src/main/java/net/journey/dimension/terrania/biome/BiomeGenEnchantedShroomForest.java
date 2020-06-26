@@ -1,20 +1,15 @@
 package net.journey.dimension.terrania.biome;
 
-import java.awt.Color;
-import java.util.Random;
-
 import net.journey.dimension.base.biome.JDimensionBiome;
-import net.journey.dimension.terrania.gen.shroom.WorldGenTerrashroom;
 import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome.BiomeProperties;
-import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.awt.*;
+
 public class BiomeGenEnchantedShroomForest extends JDimensionBiome {
-	
+
 	public BiomeGenEnchantedShroomForest() {
 		super(new BiomeProperties("Enchanted Shroom Forest"));
 		this.topBlock = JourneyBlocks.terranianGrass.getDefaultState();
@@ -48,6 +43,6 @@ public class BiomeGenEnchantedShroomForest extends JDimensionBiome {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int getSkyColorByTemp(float par1) {
-		return Color.getHSBColor(0.955F, 0.316F, 0.5F).getRGB();
+		return Color.getHSBColor(0.280F, 0.316F, 0.5F).getRGB();
 	}
 }

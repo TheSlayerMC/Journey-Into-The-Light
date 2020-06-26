@@ -1,6 +1,7 @@
 package net.slayer.api.worldgen;
 
 import net.journey.init.blocks.JourneyBlocks;
+import net.journey.util.RandHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -53,8 +54,16 @@ public class WorldGenAPI {
         return i == 0 ? JourneyBlocks.eucaSilverLeaves : JourneyBlocks.eucaGoldLeaves;
     }
 
+    public static Block getEucaGolditeLeaves(Random rand) {
+        return RandHelper.chooseEqual(rand, JourneyBlocks.eucaGoldLeaves, JourneyBlocks.eucaDarkGreenLeaves, JourneyBlocks.eucaLightGreenLeaves);
+    }
+
     public static Block getEucaLog() {
         return JourneyBlocks.eucaGoldLog;
+    }
+
+    public static Block getEucaGolditeLog() {
+        return JourneyBlocks.GOLDITE_OAK_LOG;
     }
 
     public static Block getCorbaLog() {

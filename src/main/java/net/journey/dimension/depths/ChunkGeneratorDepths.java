@@ -65,7 +65,7 @@ public class ChunkGeneratorDepths implements IChunkGenerator {
 	private final WorldGenStructure depthsHouse = new WorldGenStructure("depths_house1");
 	private final WorldGenStructure dungeon = new WorldGenStructure("big", JourneyLootTables.TEST_CHEST);
 
-	private final JWorldGenPlants depths_crystal = new JWorldGenPlants(JourneyBlocks.DEPTHS_CRYSTAL, GroundPredicate.ANY, 5);
+	private final JWorldGenPlants depths_crystal = new JWorldGenPlants(JourneyBlocks.depthsCrystal, GroundPredicate.ANY, 5);
 
 	public ChunkGeneratorDepths(World worldIn, long s, String st) {
 		this.world = worldIn;

@@ -563,7 +563,7 @@ public class JourneyBlocks {
 
     public static BlockMod terraniaSapling;
     
-    public static JBlockFlower DEPTHS_CRYSTAL;
+    public static JBlockFlower depthsCrystal;
 
     public static void init() {
 
@@ -970,7 +970,7 @@ public class JourneyBlocks {
         terranianDarkPanels = new BlockMod("terranianDarkPanels", "Terranian Dark Panels", 2.0F);
         terranianPanels = new BlockMod("terranianPanels", "Terranian Panels", 2.0F);
         terranianTallgrass = (JBlockTallGrass) new JBlockTallGrass("terranianTallgrass", "Terranian Tallgrass").setGroundPredicate(GroundPredicate.COMMON_AND_TERRANIA_GRASS);
-        terramushroom = (JBlockMushroom) new JBlockMushroom("terramushroom", "Terranian Shroom")
+        terramushroom = new JBlockMushroom("terramushroom", "Terranian Shroom")
                 .setBigMushroomGenerator(JBlockMushroom.BigMushroomGenerator.randomGenerator(new WorldGenTerrashroom(JourneyBlocks.terrashroomBlockPurple), new WorldGenTerrashroom(JourneyBlocks.terrashroomBlockPink)));
         tallTerramushroom = (JBlockDoublePlant) new JBlockDoublePlant("tallterramushroom", "Tall Terranian Shroom").setGroundPredicate(GroundPredicate.COMMON_AND_TERRANIA_GRASS).setLightLevel(0.6F);
         terranianFlower = (BlockTerranianFlower) new BlockTerranianFlower("terranian_flower", "Terranian Flower").setGroundPredicate(GroundPredicate.COMMON_AND_TERRANIA_GRASS);
@@ -1129,7 +1129,7 @@ public class JourneyBlocks {
                 false);
         juiceberryBush = new BlockModBush("juiceberryBush", "Juiceberry Bush", JourneyConsumables.juiceberry, false);
         bogberryBush = new BlockModBush("bogberryBush", "Bogberry Bush", JourneyConsumables.bogberry, false);
-        
-        DEPTHS_CRYSTAL = (JBlockFlower) new JBlockFlower("depthsCrystal", "Depths Crystal").setGroundPredicate(GroundPredicate.COMMON_AND_DEPTHS_GRASS);
+
+        depthsCrystal = (JBlockFlower) new JBlockFlower("depthsCrystal", "Depths Crystal").setGroundPredicate(GroundPredicate.COMMON_AND_DEPTHS_GRASS);
     }
 }

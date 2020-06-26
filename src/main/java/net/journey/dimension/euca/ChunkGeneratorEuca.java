@@ -6,10 +6,7 @@ import net.journey.dimension.euca.gen.WorldGenEucaSphere;
 import net.journey.dimension.euca.gen.WorldGenEucaWater;
 import net.journey.dimension.euca.gen.WorldGenSmeltery;
 import net.journey.dimension.euca.gen.dungeon.EucaSmallSphereDungeon;
-import net.journey.dimension.euca.gen.trees.WorldGenBotSpawner;
-import net.journey.dimension.euca.gen.trees.WorldGenEucaSilverTree;
-import net.journey.dimension.euca.gen.trees.WorldGenEucaTree;
-import net.journey.dimension.euca.gen.trees.WorldGenEucaTree2;
+import net.journey.dimension.euca.gen.trees.*;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.Config;
 import net.minecraft.block.Block;
@@ -284,6 +281,22 @@ public class ChunkGeneratorEuca implements IChunkGenerator {
 			if (world.getBiome(new BlockPos(randX, randY, randZ)) == DimensionHelper.EUCA_SILVER_BIOME && isBlockTop(randX, randY - 1, randZ, JourneyBlocks.eucaSilverGrass)) {
 				new WorldGenEucaSilverTree(true).generate(world, rand, new BlockPos(randX, randY, randZ));
 			}
+		}
+
+		for (times = 0; times < 50; times++) {
+			int randX = chunkX * 16 + 8 + rand.nextInt(16);
+			int randZ = chunkZ * 16 + 8 + rand.nextInt(16);
+			int randY = rand.nextInt(150) + 1;
+			if (world.getBiome(chunkStart) == DimensionHelper.EUCA_GOLDITE_GRAINS_BIOME && isBlockTop(randX, randY - 1, randZ, JourneyBlocks.eucaGolditeGrass))
+				new WorldGenEucaGolditeTree().generate(world, rand, new BlockPos(randX, randY, randZ));
+		}
+
+		for (times = 0; times < 50; times++) {
+			int randX = chunkX * 16 + 8 + rand.nextInt(16);
+			int randZ = chunkZ * 16 + 8 + rand.nextInt(16);
+			int randY = rand.nextInt(150) + 1;
+			if (world.getBiome(chunkStart) == DimensionHelper.EUCA_GOLDITE_GRAINS_BIOME && isBlockTop(randX, randY - 1, randZ, JourneyBlocks.eucaGolditeGrass))
+				new WorldGenEucaGolditeTree2().generate(world, rand, new BlockPos(randX, randY, randZ));
 		}
 
 		for (times = 0; times < 1; times++) {

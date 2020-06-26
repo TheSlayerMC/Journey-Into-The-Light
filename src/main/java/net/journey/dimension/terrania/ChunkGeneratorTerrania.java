@@ -328,24 +328,23 @@ public class ChunkGeneratorTerrania implements IChunkGenerator {
 
 		BlockPos chunkStart = new BlockPos(x1, 0, z1);
 
-
-		for (times = 0; times < 40; times++) {
-			if (world.getBiome(chunkStart) == DimensionHelper.ENCHANTED_SHROOM_FOREST_BIOME) 
-				generateStructure(x1, z1, new WorldGenTerrashroom(JourneyBlocks.terrashroomBlockPink));
+		for (times = 0; times < 5; times++) {
+			if (world.getBiome(chunkStart) == DimensionHelper.ENCHANTED_SHROOM_FOREST_BIOME)
+				WorldGenAPI.genOnGround(world, chunkPos, rand, new WorldGenTerrashroom(JourneyBlocks.terrashroomBlockPink));
 		}
 
-		for (times = 0; times < 40; times++) {
-			if (world.getBiome(chunkStart) == DimensionHelper.ENCHANTED_SHROOM_FOREST_BIOME) 
-				generateStructure(x1, z1, new WorldGenTerrashroom(JourneyBlocks.terrashroomBlockPurple));
+		for (times = 0; times < 5; times++) {
+			if (world.getBiome(chunkStart) == DimensionHelper.ENCHANTED_SHROOM_FOREST_BIOME)
+				WorldGenAPI.genOnGround(world, chunkPos, rand, new WorldGenTerrashroom(JourneyBlocks.terrashroomBlockPurple));
 		}
 
 		for (int i = 0; i < 3; i++) {
-			if (world.getBiome(chunkStart) == DimensionHelper.ENCHANTED_SHROOM_FOREST_BIOME) 
+			if (world.getBiome(chunkStart) == DimensionHelper.ENCHANTED_SHROOM_FOREST_BIOME)
 				genEnchantedShroomsSmall.generate(world, r, chunkStart);
 		}
 
 		for (int i = 0; i < 3; i++) {
-			if (world.getBiome(chunkStart) == DimensionHelper.ENCHANTED_SHROOM_FOREST_BIOME) 
+			if (world.getBiome(chunkStart) == DimensionHelper.ENCHANTED_SHROOM_FOREST_BIOME)
 				genEnchantedShroomTall.generate(world, r, chunkStart);
 		}
 
