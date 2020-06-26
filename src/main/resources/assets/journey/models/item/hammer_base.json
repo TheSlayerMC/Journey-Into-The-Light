@@ -6,8 +6,8 @@
     32
   ],
   "textures": {
-    "0": "journey:models/hammer/hammer_creative",
-    "particle": "journey:models/hammer/hammer_creative"
+    "0": "journey:models/hammer/hammer_base",
+    "particle": "journey:models/hammer/hammer_base"
   },
   "elements": [
     {
