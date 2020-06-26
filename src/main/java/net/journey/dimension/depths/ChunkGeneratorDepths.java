@@ -326,7 +326,7 @@ public class ChunkGeneratorDepths implements IChunkGenerator {
 
         BlockPos chunkStart = new BlockPos(x1, 0, z1);
         for (i = 0; i < 15; i++) {
-            floorgems.generate(worldObj, rand, new BlockPos(x1, rand.nextInt(250), z1));
+            floorgems.generate(worldObj, rand, new BlockPos(chunkStart.add(rand.nextInt(16), rand.nextInt(worldObj.getHeight()), rand.nextInt(16))));
         }
 
         for (i = 0; i < 40; i++) {
@@ -335,12 +335,12 @@ public class ChunkGeneratorDepths implements IChunkGenerator {
         }
 
         for (i = 0; i < Config.flairiumOreTrys; i++) {
-            flairum.generate(worldObj, rand, new BlockPos(x1, rand.nextInt(250), z1));
+            flairum.generate(worldObj, rand, new BlockPos(chunkStart.add(rand.nextInt(16), rand.nextInt(worldObj.getHeight()), rand.nextInt(16))));
             
         }
         
         for(i = 0; i < Config.desOreTrys; i++) {
-            des.generate(worldObj, rand, new BlockPos(x1, rand.nextInt(250), z1));
+            des.generate(worldObj, rand, new BlockPos(chunkStart.add(rand.nextInt(16), rand.nextInt(worldObj.getHeight()), rand.nextInt(16))));
         }
 
          for (times = 0; times < 100; times++) {
