@@ -189,6 +189,9 @@ public class ChunkGeneratorDepths implements IChunkGenerator {
 		for (int i = 0; i < 16; i++) {
 			for (int k = 0; k < 16; k++) {
 				cp.setBlockState(i, 0, k, Blocks.BEDROCK.getDefaultState());
+				cp.setBlockState(i, 120, k, Blocks.BEDROCK.getDefaultState());
+				cp.setBlockState(i, 119, k, stone);
+
 				for (int j = 48; j > 0; j--) {
 					if (cp.getBlockState(i, j, k) == top_grass) {
 						cp.setBlockState(i, j, k, filler);       
