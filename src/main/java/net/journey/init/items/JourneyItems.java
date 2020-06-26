@@ -315,17 +315,17 @@ public class JourneyItems {
 	public static Item CHARM_OF_VINE_STRANDING;
 	public static Item CHARM_OF_WATER_BENDING;
 	public static Item CLOUD_BUCKLER;
-	public static Item CURSED_TOMB;
+	public static Item cursedTome;
 	public static Item DEATH_CAP;
 	public static Item DEMONIC_SKULL;
 	public static Item ESSENCE_BUCKLER;
 	public static Item ESSENCE_CATALYST;
 	public static Item FIERY_STABBER;
-    public static Item GLACIAL_BLADE;
-    public static Item GLOSSY_EYE;
-    public static Item HEART_STONE;
-    public static Item LIGHT_BUCKLER;
-    public static Item MAGIC_DUST;
+	public static Item GLACIAL_BLADE;
+	public static Item GLOSSY_EYE;
+	public static Item HEART_STONE;
+	public static Item LIGHT_BUCKLER;
+	public static Item MAGIC_DUST;
 
     public static Item MOON_OF_ETERNAL_NIGHT;
     public static Item NETHIC_OBSTRUCTOR;
@@ -590,26 +590,26 @@ public class JourneyItems {
 	    MELLIUM_CRYSTAL = new JItem("mellium_crystal", "Mellium Crystal");
 	    SENTRY_ROCK = new JItem("sentry_rock", "Sentry Rock");
 
-	    SENTRY_NODE_BLOOD = new JItem("sentry_node_blood", "Sentry Node of Blood");
-	    SENTRY_NODE_DESTRUCTION = new JItem("sentry_node_destruction", "Sentry Node of Destruction");
-	    SENTRY_NODE_LIGHT = new JItem("sentry_node_light", "Sentient Node of Light");
+		SENTRY_NODE_BLOOD = new JItem("sentry_node_blood", "Sentry Node of Blood");
+		SENTRY_NODE_DESTRUCTION = new JItem("sentry_node_destruction", "Sentry Node of Destruction");
+		SENTRY_NODE_LIGHT = new JItem("sentry_node_light", "Sentient Node of Light");
 
-	    obsidianRod = new JItem("obsidianRod", "Obsidian Rod");
+		obsidianRod = new JItem("obsidianRod", "Obsidian Rod");
 
-	    BALMY_TEARDROP = new JItem("balmy_teardrop", "Balmy Teardrop");
+		BALMY_TEARDROP = new JItem("balmy_teardrop", "Balmy Teardrop");
 
-	    CLOUD_BUCKLER = new JItem("cloud_buckler", "Cloud Buckler");
-	    CURSED_TOMB = new ItemCursedTomb("cursed_tomb", "Cursed Tomb");
-	    DEATH_CAP = new JItem("death_cap", "Death Cap");
-	    DEMONIC_SKULL = new JItem("demonic_skull", "Demonic Skull");
-	    ESSENCE_BUCKLER = new JItem("essence_buckler", "Essence Buckler");
-	    ESSENCE_CATALYST = new ItemAddEssence("essence_catalyst", "Essence Catalyst", 10);
-	    FIERY_STABBER = new JItem("fiery_stabber", "Fiery Stabber");
-	    GLACIAL_BLADE = new JItem("glacial_blade", "Glacial Blade");
-	    GLOSSY_EYE = new JItem("glossy_eye", "Glossy Eye");
-	    HEART_STONE = new ItemRestoreHealth("heart_stone", "Heart Stone", true);
-	    LIGHT_BUCKLER = new JItem("light_buckler", "Light Buckler");
-	    MAGIC_DUST = new JItem("magic_dust", "Magic Dust");
+		CLOUD_BUCKLER = new JItem("cloud_buckler", "Cloud Buckler");
+		cursedTome = new ItemCursedTomb("cursed_tome", "Cursed Tome");
+		DEATH_CAP = new JItem("death_cap", "Death Cap");
+		DEMONIC_SKULL = new JItem("demonic_skull", "Demonic Skull");
+		ESSENCE_BUCKLER = new JItem("essence_buckler", "Essence Buckler");
+		ESSENCE_CATALYST = new ItemAddEssence("essence_catalyst", "Essence Catalyst", 10);
+		FIERY_STABBER = new JItem("fiery_stabber", "Fiery Stabber");
+		GLACIAL_BLADE = new JItem("glacial_blade", "Glacial Blade");
+		GLOSSY_EYE = new JItem("glossy_eye", "Glossy Eye");
+		HEART_STONE = new ItemRestoreHealth("heart_stone", "Heart Stone", true);
+		LIGHT_BUCKLER = new JItem("light_buckler", "Light Buckler");
+		MAGIC_DUST = new JItem("magic_dust", "Magic Dust");
 	    MOON_OF_ETERNAL_NIGHT = new ItemEternalNight("moon_of_eternal_night", "Moon of Eternal Night");
 	    NETHIC_OBSTRUCTOR = new JItem("nethic_obstructor", "Nethic Obstructor");
 	    SLIME_BERRY = new JItem("slime_berry", "Slimeberry");

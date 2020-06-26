@@ -1,6 +1,7 @@
 package net.journey.items.ranged;
 
 import net.journey.JITL;
+import net.journey.api.item.IUsesEssence;
 import net.journey.client.server.EssenceProvider;
 import net.journey.client.server.IEssence;
 import net.journey.entity.projectile.EntityBasicProjectile;
@@ -25,17 +26,17 @@ import net.slayer.api.SlayerAPI;
 
 import java.util.List;
 
-public class ItemHammer extends ItemSword {
+public class ItemHammer extends ItemSword implements IUsesEssence {
 
-    protected final int usage;
-    protected int damage;
-    protected boolean essence, unbreakable;
-    protected Class<? extends EntityBasicProjectile> projectile;
-    protected JourneyToolMaterial mat;
+	protected final int usage;
+	protected int damage;
+	protected boolean essence, unbreakable;
+	protected Class<? extends EntityBasicProjectile> projectile;
+	protected JourneyToolMaterial mat;
 
-    public ItemHammer(String name, String f, JourneyToolMaterial toolMaterial, boolean durability, Class<? extends EntityBasicProjectile> projectile, int dam, int magic, int uses) {
-        super(toolMaterial.getToolMaterial());
-	    this.projectile = projectile;
+	public ItemHammer(String name, String f, JourneyToolMaterial toolMaterial, boolean durability, Class<? extends EntityBasicProjectile> projectile, int dam, int magic, int uses) {
+		super(toolMaterial.getToolMaterial());
+		this.projectile = projectile;
 	    damage = dam;
 	    usage = magic;
 	    setMaxDamage(uses);

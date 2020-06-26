@@ -1,18 +1,10 @@
 package net.journey.client.render;
 
-import org.lwjgl.opengl.GL11;
-
 import net.journey.JITL;
+import net.journey.api.item.IUsesEssence;
 import net.journey.client.server.EssenceProvider;
 import net.journey.client.server.IEssence;
-import net.journey.init.items.JourneyItems;
 import net.journey.init.items.JourneyWeapons;
-import net.journey.items.interactive.ItemAddEssence;
-import net.journey.items.interactive.ItemEternalNight;
-import net.journey.items.interactive.ItemTeleport;
-import net.journey.items.ranged.ItemGun;
-import net.journey.items.ranged.ItemHammer;
-import net.journey.items.ranged.ItemStaff;
 import net.journey.util.Config;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiIngame;
@@ -24,7 +16,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent.RenderTickEvent;
+import org.lwjgl.opengl.GL11;
 
 public class RenderEssenceBar {
 
@@ -70,15 +62,8 @@ public class RenderEssenceBar {
 	}
 	
 	public boolean instanceOfEssenceItem(Item isEssence) {
-		return  isEssence instanceof ItemStaff || 
-				isEssence instanceof ItemTeleport || 
-				isEssence instanceof ItemGun || 
-				isEssence instanceof ItemHammer || 
-				isEssence instanceof ItemEternalNight || 
-				isEssence instanceof ItemAddEssence ||
+		return isEssence instanceof IUsesEssence ||
 				isEssence == JourneyWeapons.darkEnforcer ||
-				isEssence == JourneyItems.CURSED_TOMB ||
-				isEssence == JourneyItems.CHARM_OF_WATER_BENDING ||
 				isEssence == JourneyWeapons.ESSENCE_SHURIKEN;
 	}
 }

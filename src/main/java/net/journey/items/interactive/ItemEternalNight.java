@@ -1,5 +1,6 @@
 package net.journey.items.interactive;
 
+import net.journey.api.item.IUsesEssence;
 import net.journey.client.server.EssenceProvider;
 import net.journey.client.server.IEssence;
 import net.journey.init.JourneySounds;
@@ -16,7 +17,7 @@ import net.slayer.api.SlayerAPI;
 
 import java.util.List;
 
-public class ItemEternalNight extends JItem {
+public class ItemEternalNight extends JItem implements IUsesEssence {
 
 	public ItemEternalNight(String name, String finalName) {
 		super(name, finalName, JourneyTabs.UTIL);

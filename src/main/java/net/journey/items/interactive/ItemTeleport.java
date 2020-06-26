@@ -1,5 +1,6 @@
 package net.journey.items.interactive;
 
+import net.journey.api.item.IUsesEssence;
 import net.journey.client.server.EssenceProvider;
 import net.journey.client.server.IEssence;
 import net.journey.init.JourneyTabs;
@@ -25,17 +26,17 @@ import net.slayer.api.SlayerAPI;
 
 import java.util.List;
 
-public class ItemTeleport extends JItem {
+public class ItemTeleport extends JItem implements IUsesEssence {
 
-	public ItemTeleport(String name, String f) {
-		super(name, f, JourneyTabs.UTIL);
-		setMaxStackSize(1);
-		setMaxDamage(100);
-	}
+    public ItemTeleport(String name, String f) {
+        super(name, f, JourneyTabs.UTIL);
+        setMaxStackSize(1);
+        setMaxDamage(100);
+    }
 
-	@Override
-	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer player, EnumHand handIn) {
-		IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
+    @Override
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer player, EnumHand handIn) {
+        IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
         float var4 = player.rotationPitch;
         float var5 = player.rotationYaw;
         double var6 = player.posX;

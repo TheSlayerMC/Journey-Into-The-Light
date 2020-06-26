@@ -1,5 +1,6 @@
 package net.journey.items.interactive;
 
+import net.journey.api.item.IUsesEssence;
 import net.journey.client.server.EssenceProvider;
 import net.journey.client.server.IEssence;
 import net.journey.init.JourneyTabs;
@@ -15,9 +16,9 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class ItemAddEssence extends JItem {
+public class ItemAddEssence extends JItem implements IUsesEssence {
 
-	private int amount;
+	private final int amount;
 
 	public ItemAddEssence(String name, String finalN, int amount) {
 		super(name, finalN, JourneyTabs.UTIL);

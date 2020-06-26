@@ -1,5 +1,6 @@
 package net.journey.items.ranged;
 
+import net.journey.api.item.IUsesEssence;
 import net.journey.client.server.EssenceProvider;
 import net.journey.client.server.IEssence;
 import net.journey.entity.projectile.EntityBasicProjectile;
@@ -22,17 +23,17 @@ import net.slayer.api.SlayerAPI;
 
 import java.util.List;
 
-public class ItemGun extends JItem {
+public class ItemGun extends JItem implements IUsesEssence {
 
-	public int damage;
-	public String ability;
-	protected Class<? extends EntityBasicProjectile> projectile;
+    public int damage;
+    public String ability;
+    protected Class<? extends EntityBasicProjectile> projectile;
 
-	public ItemGun(String name, String f, int damage, String ability,
-	               Class<? extends EntityBasicProjectile> projectile) {
-		super(name, f, JourneyTabs.WEAPONS);
-		this.ability = ability;
-		this.projectile = projectile;
+    public ItemGun(String name, String f, int damage, String ability,
+                   Class<? extends EntityBasicProjectile> projectile) {
+        super(name, f, JourneyTabs.WEAPONS);
+        this.ability = ability;
+        this.projectile = projectile;
         this.damage = damage;
         setMaxStackSize(1);
         setMaxDamage(500);

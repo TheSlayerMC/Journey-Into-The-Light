@@ -1,5 +1,6 @@
 package net.journey.items.ranged;
 
+import net.journey.api.item.IUsesEssence;
 import net.journey.client.server.EssenceProvider;
 import net.journey.client.server.IEssence;
 import net.journey.entity.projectile.EntityBasicProjectile;
@@ -21,17 +22,17 @@ import net.slayer.api.SlayerAPI;
 
 import java.util.List;
 
-public class ItemStaff extends JItem {
+public class ItemStaff extends JItem implements IUsesEssence {
 
-	protected final int usage;
-	protected int damage;
-	protected boolean unBreakable;
-	protected Class<? extends EntityBasicProjectile> projectile;
+    protected final int usage;
+    protected int damage;
+    protected boolean unBreakable;
+    protected Class<? extends EntityBasicProjectile> projectile;
 
-	public ItemStaff(String name, String f, int magic, int uses, int dam, boolean unbreakable, Class<? extends EntityBasicProjectile> projectile) {
-		super(name, f);
-		this.projectile = projectile;
-		damage = dam;
+    public ItemStaff(String name, String f, int magic, int uses, int dam, boolean unbreakable, Class<? extends EntityBasicProjectile> projectile) {
+        super(name, f);
+        this.projectile = projectile;
+        damage = dam;
         usage = magic;
         this.unBreakable = unbreakable;
         setMaxDamage(uses);

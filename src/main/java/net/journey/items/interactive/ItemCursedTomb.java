@@ -1,5 +1,6 @@
 package net.journey.items.interactive;
 
+import net.journey.api.item.IUsesEssence;
 import net.journey.client.server.EssenceProvider;
 import net.journey.client.server.IEssence;
 import net.journey.init.JourneyTabs;
@@ -18,7 +19,7 @@ import net.slayer.api.SlayerAPI;
 
 import java.util.List;
 
-public class ItemCursedTomb extends JItem {
+public class ItemCursedTomb extends JItem implements IUsesEssence {
 
 	public ItemCursedTomb(String name, String f) {
 		super(name, f);
