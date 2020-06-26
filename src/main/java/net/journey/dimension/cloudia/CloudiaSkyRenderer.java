@@ -26,13 +26,9 @@ public class CloudiaSkyRenderer extends IRenderHandler {
     private static final ResourceLocation CLOUDS_TEXTURES = new ResourceLocation(SlayerAPI.PREFIX + "textures/environment/cloudia_clouds.png");
     IRenderChunkFactory renderChunkFactory;
     private int starGLCallList;
-    private int glSkyList = -1;
-    private int glSkyList2 = -1;
+    private final int glSkyList = -1;
+    private final int glSkyList2 = -1;
     private VertexBuffer starVBO;
-
-    public CloudiaSkyRenderer() {
-        RenderGlobal renderGlobal = Minecraft.getMinecraft().renderGlobal;
-    }
 
     @Override
     public void render(float partialTicks, WorldClient world, Minecraft mc) {

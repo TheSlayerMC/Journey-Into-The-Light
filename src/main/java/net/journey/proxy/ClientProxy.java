@@ -26,7 +26,6 @@ import net.slayer.api.SlayerAPI;
 public class ClientProxy extends CommonProxy {
 
     public static final IRenderHandler boilSkyRenderer = new BoilSkyRenderer();
-    public static final IRenderHandler terraniaSkyRenderer = new CloudiaSkyRenderer();
     public static final IRenderHandler cloudiaSkyRenderer = new CloudiaSkyRenderer();
 
     @Override
