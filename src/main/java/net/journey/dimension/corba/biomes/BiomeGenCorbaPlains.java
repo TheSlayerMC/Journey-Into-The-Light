@@ -43,6 +43,6 @@ public class BiomeGenCorbaPlains extends JDimensionBiome {
     @Override
     @SideOnly(Side.CLIENT)
     public int getWaterColorMultiplier() {
-        return 0x6cff00;
+        return 0xc6ff00;
     }
 }

@@ -1,26 +1,22 @@
 package net.journey.dimension.corba.biomes;
 
-import java.awt.Color;
-import java.util.Random;
-
 import net.journey.dimension.base.biome.JDimensionBiome;
 import net.journey.dimension.corba.biomes.properties.BiomePropertiesCorba;
 import net.journey.init.blocks.JourneyBlocks;
-import net.journey.util.handler.Helper;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.block.BlockSand;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import net.minecraft.world.gen.feature.WorldGenFossils;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.awt.*;
+import java.util.Random;
 
 public class BiomeGenCorbaSwamp extends JDimensionBiome {
 
@@ -140,6 +136,8 @@ public class BiomeGenCorbaSwamp extends JDimensionBiome {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int getWaterColorMultiplier() {
-		return 0x6cff00;
+		return 0x7da200;
 	}
+
+	//c6ff00
 }

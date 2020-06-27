@@ -1,10 +1,9 @@
-package net.journey.dimension.corba;
+package net.journey.dimension.corba.biomes;
 
 import net.journey.dimension.base.biome.JDimensionBiome;
 import net.journey.dimension.corba.biomes.properties.BiomePropertiesCorba;
 import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -45,6 +44,6 @@ public class BiomeGenCorba extends JDimensionBiome {
     @Override
     @SideOnly(Side.CLIENT)
     public int getWaterColorMultiplier() {
-        return 0x6cff00;
+        return 0xc6ff00;
     }
 }
