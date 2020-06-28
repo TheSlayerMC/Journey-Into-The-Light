@@ -43,6 +43,7 @@ public class ChunkGeneratorBoiling implements IChunkGenerator {
 
     private final double[] da;
     private final float[] parabolicField;
+    private ChunkGeneratorSettings settings;
     private final WorldGenModFlower flameFlower;
     private final WorldGenModFlower flameFlower2;
     private final WorldGenModFlower infernoPlant;
@@ -117,7 +118,7 @@ public class ChunkGeneratorBoiling implements IChunkGenerator {
 
         this.boilLava = new WorldGenBoilingLava(Blocks.LAVA);
         this.fire = new WorldGenBoilingFire();
-        
+
         this.flameFlower = new WorldGenModFlower(JourneyBlocks.burntGrass, JourneyBlocks.hotBlock);
         this.flameFlower2 = new WorldGenModFlower(JourneyBlocks.flameFlower, JourneyBlocks.hotBlock);
         this.infernoPlant = new WorldGenModFlower(JourneyBlocks.infernoPlant, JourneyBlocks.hotBlock);
@@ -128,9 +129,9 @@ public class ChunkGeneratorBoiling implements IChunkGenerator {
         this.bigDungeon = new WorldGenHornDungeon();
     }
 
-    public void setBlocksInChunk(int p_180518_1_, int p_180518_2_, ChunkPrimer p_180518_3_) {
-        this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomesForGeneration(this.biomesForGeneration, p_180518_1_ * 4 - 2, p_180518_2_ * 4 - 2, 10, 10);
-        this.generate(p_180518_1_ * 4, 0, p_180518_2_ * 4);
+    public void setBlocksInChunk(int x, int z, ChunkPrimer primer) {
+        this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomesForGeneration(this.biomesForGeneration, x * 4 - 2, z * 4 - 2, 10, 10);
+        this.generate(x * 4, 0, z * 4);
         for (int k = 0; k < 4; ++k) {
             int l = k * 5;
             int i1 = (k + 1) * 5;
@@ -164,7 +165,9 @@ public class ChunkGeneratorBoiling implements IChunkGenerator {
 
                             for (int j3 = 0; j3 < 4; ++j3) {
                                 if ((d15 += d16) > 0.0D) {
-                                    p_180518_3_.setBlockState(k * 4 + i3, k2 * 2 + l2, j1 * 4 + j3, JourneyBlocks.ashBlock.getDefaultState());
+                                    primer.setBlockState(k * 4 + i3, k2 * 2 + l2, j1 * 4 + j3, JourneyBlocks.ashBlock.getDefaultState());
+                                } else if (k2 * 2 + l2 < 16) {
+                                    primer.setBlockState(k * 4 + i3, k2 * 2 + l2, j1 * 4 + j3, Blocks.LAVA.getDefaultState());
                                 }
                             }
                             d10 += d12;
