@@ -1,6 +1,8 @@
 package net.journey.dimension.boil;
 
+import com.google.common.collect.Lists;
 import net.journey.dimension.base.BaseWorldProvider;
+import net.journey.dimension.base.BiomeProviderMultiple;
 import net.journey.dimension.base.DimensionHelper;
 import net.journey.init.JourneySounds;
 import net.journey.proxy.ClientProxy;
@@ -8,7 +10,7 @@ import net.minecraft.client.audio.MusicTicker;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DimensionType;
-import net.minecraft.world.biome.BiomeProviderSingle;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.client.EnumHelperClient;
@@ -17,16 +19,20 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
+import java.util.List;
 
 public class WorldProviderBoiling extends BaseWorldProvider {
 
-	public WorldProviderBoiling() {
-        super(world1 -> new BiomeProviderSingle(DimensionHelper.BOILING_BIOME), new Vec3d(0.2, 0.1, 0));
+    private static final List<Biome> COMMON_BIOMES = Lists.newArrayList(DimensionHelper.BOILING_BIOME);
+    private static final List<Biome> RARE_BIOMES = Lists.newArrayList(DimensionHelper.CHARRED_FIELDS_BIOME, DimensionHelper.SCORCHED_WASTELAND_BIOME);
+
+    public WorldProviderBoiling() {
+        super(world1 -> new BiomeProviderMultiple(world1.getWorldInfo(), COMMON_BIOMES, RARE_BIOMES), new Vec3d(0.2, 0.1, 0));
     }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public IRenderHandler getSkyRenderer() {
+    @Override
+    @SideOnly(Side.CLIENT)
+    public IRenderHandler getSkyRenderer() {
         return ClientProxy.boilSkyRenderer;
     }
 

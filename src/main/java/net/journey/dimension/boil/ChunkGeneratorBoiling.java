@@ -1,11 +1,11 @@
 package net.journey.dimension.boil;
 
 import net.journey.api.block.GroundPredicate;
+import net.journey.dimension.base.DimensionHelper;
 import net.journey.dimension.base.gen.JWorldGenPlants;
-import net.journey.dimension.boil.gen.WorldGenBoilingFire;
-import net.journey.dimension.boil.gen.WorldGenBoilingLamp;
-import net.journey.dimension.boil.gen.WorldGenBoilingLava;
-import net.journey.dimension.boil.gen.WorldGenTraderHutBoiling;
+import net.journey.dimension.boil.biome.BiomeGenCharredFields;
+import net.journey.dimension.boil.biome.BiomeGenScorchedWasteland;
+import net.journey.dimension.boil.gen.*;
 import net.journey.dimension.boil.gen.dungeon.WorldGenBrisonNetwork;
 import net.journey.dimension.boil.gen.dungeon.WorldGenHornDungeon;
 import net.journey.dimension.boil.gen.dungeon.WorldGenSmallBoilDungeon;
@@ -24,6 +24,7 @@ import net.minecraft.block.state.pattern.BlockStateMatcher;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -190,15 +191,24 @@ public class ChunkGeneratorBoiling implements IChunkGenerator {
         this.stoneNoise = this.noiseGen4.getRegion(this.stoneNoise, x * 16, z * 16, 16, 16, d0 * 2.0D, d0 * 2.0D, 1.0D);
         for (int k = 0; k < 16; ++k) {
             for (int l = 0; l < 16; ++l) {
-                generateBiomeTerrain(this.rand, c, x * 16 + k, z * 16 + l, this.stoneNoise[l + k * 16]);
+                Biome biome = b[l + k * 16];
+                if (biome == DimensionHelper.CHARRED_FIELDS_BIOME) {
+                    BiomeGenCharredFields charredFields = (BiomeGenCharredFields) biome;
+                    charredFields.generateModdedBiomeTerrain(worldObj, this.rand, c, x * 16 + k, z * 16 + l, this.stoneNoise[l + k * 16]);
+                } else if (biome == DimensionHelper.SCORCHED_WASTELAND_BIOME) {
+                    BiomeGenScorchedWasteland wasteland = (BiomeGenScorchedWasteland) biome;
+                    wasteland.generateModdedBiomeTerrain(worldObj, this.rand, c, x * 16 + k, z * 16 + l, this.stoneNoise[l + k * 16]);
+                } else {
+                    generateBiomeTerrain(biome, this.rand, c, x * 16 + k, z * 16 + l, this.stoneNoise[l + k * 16]);
+                }
             }
         }
     }
 
-    public final void generateBiomeTerrain(Random r, ChunkPrimer c, int x, int z, double s) {
+    public final void generateBiomeTerrain(Biome b, Random r, ChunkPrimer c, int x, int z, double s) {
         boolean flag = true;
-        IBlockState iblockstate = JourneyBlocks.hotBlock.getDefaultState();
-        IBlockState iblockstate1 = JourneyBlocks.rubble.getDefaultState();
+        IBlockState iblockstate = b.topBlock;
+        IBlockState iblockstate1 = b.fillerBlock;
         int k = -1;
         int l = (int) (s / 3.0D + 3.0D + r.nextDouble() * 0.25D);
         int i1 = x & 15;
@@ -214,10 +224,10 @@ public class ChunkGeneratorBoiling implements IChunkGenerator {
                     if (k == -1) {
                         if (l <= 0) {
                             iblockstate = null;
-                            iblockstate1 = JourneyBlocks.rubble.getDefaultState();
+                            iblockstate1 = b.fillerBlock;
                         } else if (k1 >= 14 && k1 <= 16) {
-                            iblockstate = JourneyBlocks.hotBlock.getDefaultState();
-                            iblockstate1 = JourneyBlocks.rubble.getDefaultState();
+                            iblockstate = b.topBlock;
+                            iblockstate1 = b.fillerBlock;
                         }
 
                         if (k1 < 16 && (iblockstate == null || iblockstate.getMaterial() == Material.AIR))
@@ -226,7 +236,7 @@ public class ChunkGeneratorBoiling implements IChunkGenerator {
                         if (k1 >= 16) c.setBlockState(j1, k1, i1, iblockstate);
                         else if (k1 < 14 - l) {
                             iblockstate = null;
-                            iblockstate1 = JourneyBlocks.rubble.getDefaultState();
+                            iblockstate1 = b.fillerBlock;
                         } else c.setBlockState(j1, k1, i1, iblockstate1);
                     } else if (k > 0) {
                         --k;
@@ -359,7 +369,7 @@ public class ChunkGeneratorBoiling implements IChunkGenerator {
         int i;
         int times;
         Random r = rand;
-
+        ChunkPos chunkPos = new ChunkPos(cx, cz);
         BlockPos chunkStart = new BlockPos(x1, 0, z1);
 
         for (i = 0; i < 15; i++) {
@@ -385,6 +395,10 @@ public class ChunkGeneratorBoiling implements IChunkGenerator {
             ashual.generate(worldObj, rand, new BlockPos(x1, rand.nextInt(250), z1));
         }
 
+        for (times = 0; times < 10; times++) {
+            if (worldObj.getBiome(chunkStart) == DimensionHelper.SCORCHED_WASTELAND_BIOME)
+                WorldGenAPI.genOnGround(worldObj, chunkPos, rand, new WorldGenBoilStalagmite());
+        }
 
         for (times = 0; times < 30; times++) {
             generateStructure(x1, z1, r, boilLamp);
@@ -397,28 +411,30 @@ public class ChunkGeneratorBoiling implements IChunkGenerator {
         if (rand.nextInt(4) == 0) {
             generateStructure(x1, z1, r, hut);
         }
-        
-        if (rand.nextInt(6) == 0) {
-			generateStructure(x1, z1, r, smallDungeon);
-		}
-		
-        if (rand.nextInt(10) == 0) {
-			generateStructure(x1, z1, r, bigDungeon);
-		}
 
-        for (times = 0; times < 400; times++) {
-            BlockPos pos = WorldGenAPI.createRandom(x1, 128, z1, r).up();
-            if (isBlockTop(pos.getX(), pos.getY() - 1, pos.getZ(), JourneyBlocks.hotBlock)) {
-                trees.get(rand.nextInt(trees.size())).generate(worldObj, rand, pos);
+        if (rand.nextInt(6) == 0) {
+            generateStructure(x1, z1, r, smallDungeon);
+        }
+
+        if (rand.nextInt(10) == 0) {
+            generateStructure(x1, z1, r, bigDungeon);
+        }
+
+        if (worldObj.getBiome(chunkStart) == DimensionHelper.CHARRED_FIELDS_BIOME) {
+            for (times = 0; times < 400; times++) {
+                BlockPos pos = WorldGenAPI.createRandom(x1, 128, z1, r).up();
+                if (isBlockTop(pos.getX(), pos.getY() - 1, pos.getZ(), JourneyBlocks.charredGrass)) {
+                    trees.get(rand.nextInt(trees.size())).generate(worldObj, rand, pos);
+                }
             }
         }
-        
+
         if (r.nextInt(4) == 0) {
-        	boilLava.generate(worldObj, rand, chunkStart.add(r.nextInt(16), r.nextInt(worldObj.getHeight()), r.nextInt(16)));
+            boilLava.generate(worldObj, rand, chunkStart.add(r.nextInt(16), r.nextInt(worldObj.getHeight()), r.nextInt(16)));
         }
-        
+
         for (i = 0; i < 50; i++) {
-        	fire.generate(worldObj, rand, WorldGenAPI.createRandom(x1, 1, worldObj.getHeight(), z1, r, 8));
+            fire.generate(worldObj, rand, WorldGenAPI.createRandom(x1, 1, worldObj.getHeight(), z1, r, 8));
         }
     }
 

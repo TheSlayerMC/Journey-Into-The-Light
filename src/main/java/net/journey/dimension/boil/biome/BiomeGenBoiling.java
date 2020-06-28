@@ -1,17 +1,17 @@
-package net.journey.dimension.boil;
-
-import java.awt.Color;
+package net.journey.dimension.boil.biome;
 
 import net.journey.dimension.base.biome.JDimensionBiome;
+import net.journey.dimension.boil.BiomePropertiesBoil;
 import net.journey.init.blocks.JourneyBlocks;
-import net.minecraft.world.biome.Biome.TempCategory;
+
+import java.awt.*;
 
 public class BiomeGenBoiling extends JDimensionBiome {
 
     public BiomeGenBoiling() {
         super(new BiomePropertiesBoil());
         this.topBlock = JourneyBlocks.hotBlock.getDefaultState();
-        this.fillerBlock = JourneyBlocks.hotBlock.getDefaultState();
+        this.fillerBlock = JourneyBlocks.rubble.getDefaultState();
     }
 
     @Override

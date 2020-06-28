@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "normal": [
+      {
+        "model": "journey:scorched_rubble"
+      },
+      {
+        "model": "journey:scorched_rubble",
+        "y": 90
+      },
+      {
+        "model": "journey:scorched_rubble",
+        "y": 180
+      },
+      {
+        "model": "journey:scorched_rubble",
+        "y": 270
+      }
+    ]
+  }
+}

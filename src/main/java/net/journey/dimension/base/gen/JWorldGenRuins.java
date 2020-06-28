@@ -1,4 +1,4 @@
-package net.journey.dimension.corba.gen;
+package net.journey.dimension.base.gen;
 
 import net.journey.api.block.GroundPredicate;
 import net.journey.blocks.base.JBlockRandomLoot;

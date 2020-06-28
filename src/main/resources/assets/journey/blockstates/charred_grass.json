@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "normal": [
+      {
+        "model": "journey:charred_grass"
+      },
+      {
+        "model": "journey:charred_grass",
+        "y": 90
+      },
+      {
+        "model": "journey:charred_grass",
+        "y": 180
+      },
+      {
+        "model": "journey:charred_grass",
+        "y": 270
+      }
+    ]
+  }
+}

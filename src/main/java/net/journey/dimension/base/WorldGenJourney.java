@@ -1,11 +1,7 @@
 package net.journey.dimension.base;
 
 import net.journey.api.block.GroundPredicate;
-import net.journey.dimension.base.gen.JWorldGenMinable;
-import net.journey.dimension.base.gen.JWorldGenPlants;
-import net.journey.dimension.base.gen.WorldGenBush;
-import net.journey.dimension.base.gen.WorldGenSingleBlock;
-import net.journey.dimension.corba.gen.JWorldGenRuins;
+import net.journey.dimension.base.gen.*;
 import net.journey.dimension.nether.gen.WorldGenModGlowstone;
 import net.journey.dimension.nether.gen.WorldGenNetherFlower;
 import net.journey.dimension.nether.gen.WorldGenNetherShroom;

@@ -7,6 +7,7 @@ import net.journey.blocks.containers.*;
 import net.journey.blocks.meta.BlockMetaBase;
 import net.journey.blocks.plant.*;
 import net.journey.blocks.portal.*;
+import net.journey.dimension.boil.gen.WorldGenBoilStalagmite;
 import net.journey.dimension.boil.trees.WorldGenBoilTree1;
 import net.journey.dimension.corba.gen.trees.WorldGenCorbaSmallTree;
 import net.journey.dimension.depths.gen.WorldGenDepthsTree;
@@ -255,12 +256,20 @@ public class JourneyBlocks {
 
     public static BlockModStairs corbaBrickStairs;
     public static BlockModStairs corbaPlankStairs;
-    
+
     public static BlockMod boilingLamp;
     public static BlockMod blazierBricks;
     public static BlockMod ashBlock;
     public static BlockMod hotBlock;
+    public static BlockMod charredGrass;
     public static BlockMod rubble;
+    public static BlockMod scorchedRubble;
+
+    public static BlockMod scorchedStalagmiteLarge;
+    public static BlockMod scorchedStalagmiteMedium;
+    public static BlockMod scorchedStalagmiteSmall;
+    public static BlockMod scorchedStalagmiteTiny;
+
     public static BlockMetaBase brisonblocks;
     public static JBlockPane boilingBars;
     public static BlockMod burningLeaves;
@@ -675,7 +684,7 @@ public class JourneyBlocks {
         eucaSapling = new BlockModSapling("eucaSapling", "Euca Sapling", new WorldGenEucaTree());
         boilSapling = new BlockModSapling("boilSapling", "Boiling Sapling", new WorldGenBoilTree1());
         corbaSapling = new BlockModSapling("corbaSapling", "Corba Sapling", new WorldGenCorbaSmallTree());
-        //bogwoodSapling = new BlockModSapling("bogwood_sapling", "Bogwood Sapling", new WorldGenCorbaSwampTree());
+        bogwoodSapling = new BlockModSapling("bogwood_sapling", "Bogwood Sapling", new WorldGenBoilStalagmite());
         depthsSapling = new BlockModSapling("depthsSapling", "Depths Sapling", new WorldGenDepthsTree());
         netherSapling = new BlockModSapling("netherSapling", "Deadblood Sapling", new WorldGenBleedheartTree0());
         EARTHEN_SAPLING = new BlockModSapling("earthenSapling", "Earthen Sapling", new WorldGenEarthenTree());
@@ -787,7 +796,15 @@ public class JourneyBlocks {
         blazierBricks = new BlockMod("blazierBricks", "Blazier Bricks");
         ashBlock = new BlockMod("ashBlock", "Ash");
         hotBlock = new BlockHotBlock(ashBlock, "hotGround", "Hot Ground", 2.0F);
-        rubble = new BlockMod("rubble", "Rubble", 2.0F);
+        rubble = new BlockMod("rubble", "Rubble", 1.0F);
+        scorchedRubble = new BlockMod("scorched_rubble", "Scorched Rubble", 3.0F).setFireSource(true);
+
+        scorchedStalagmiteLarge = new JBlockStalagmite("scorched_stalagmite_large", "Scorched Stalagmite");
+        scorchedStalagmiteMedium = new JBlockStalagmite("scorched_stalagmite_med", "Scorched Stalagmite");
+        scorchedStalagmiteSmall = new JBlockStalagmite("scorched_stalagmite_small", "Scorched Stalagmite");
+        scorchedStalagmiteTiny = new JBlockStalagmite("scorched_stalagmite_tiny", "Scorched Stalagmite");
+
+        charredGrass = new BlockHotBlock(rubble, "charred_grass", "Charred Grass", 2.0F);
 
         boilCobble = new BlockMod("boil_cobble", "Boil Cobble");
         boilPillar = new BlockMod("boil_pillar", "Boil Pillar");

@@ -13,6 +13,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -25,6 +26,9 @@ import java.util.List;
 import java.util.Random;
 
 public class BlockMod extends Block {
+
+    protected boolean isFireSource;
+
     public BlockMod(String name, String enName, float hardness) {
         this(EnumMaterialTypes.STONE, name, enName, hardness, JourneyTabs.BLOCKS);
     }
@@ -54,6 +58,16 @@ public class BlockMod extends Block {
         setSoundType(blockType.getSound());
 
         StuffConstructor.regAndSetupBlock(this, name, enName, hardness, tab);
+    }
+
+    public BlockMod setFireSource(boolean isFireSource) {
+        this.isFireSource = isFireSource;
+        return this;
+    }
+
+    @Override
+    public boolean isFireSource(World world, BlockPos pos, EnumFacing side) {
+        return isFireSource;
     }
 
     @Override
