@@ -1,6 +1,7 @@
 package net.journey.dimension.boil.gen;
 
 import net.journey.init.blocks.JourneyBlocks;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -36,6 +37,6 @@ public class WorldGenBoilStalagmite extends WorldGenerator {
 		for (int i = 0; i < tinyHeight; i++) {
 			setBlockAndNotifyAdequately(world, placePos.move(EnumFacing.UP), JourneyBlocks.scorchedStalagmiteTiny.getDefaultState());
 		}
-		return true;
+		return world.getBlockState(placePos) == Blocks.AIR;
 	}
 }
