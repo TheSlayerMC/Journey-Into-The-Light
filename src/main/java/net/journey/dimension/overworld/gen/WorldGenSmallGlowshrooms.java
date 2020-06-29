@@ -21,7 +21,7 @@ public class WorldGenSmallGlowshrooms extends WorldGenerator {
 
         int coercedY = MathUtils.coerceInRange(WorldGenAPI.findPosAboveSurface(w, genPos).getY(), 1, 60);
         int genY = r.nextInt(coercedY) + 1;
-        genPos = WorldGenAPI.getPosWithHeight(genPos, genY);
+        genPos = WorldGenAPI.changeHeight(genPos, genY);
 
         Block shroom = RandHelper.chooseEqual(r,
                 JourneyBlocks.glowshroomRed,

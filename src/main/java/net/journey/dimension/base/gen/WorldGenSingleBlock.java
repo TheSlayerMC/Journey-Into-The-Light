@@ -24,7 +24,7 @@ public class WorldGenSingleBlock extends WorldGenerator {
 	@Override
 	public boolean generate(World world, Random rand, BlockPos pos) {
 		pos = WorldGenAPI.optimizeAndRandomize(pos, rand);
-		pos = WorldGenAPI.getPosWithHeight(pos, rand.nextInt(maxLevel + 1));
+		pos = WorldGenAPI.changeHeight(pos, rand.nextInt(maxLevel + 1));
 
 		if (pos.getY() >= 110 && rand.nextInt(genRate) != 0) return false;
 

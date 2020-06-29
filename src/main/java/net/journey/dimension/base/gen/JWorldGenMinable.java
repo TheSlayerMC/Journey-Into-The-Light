@@ -159,7 +159,7 @@ public class JWorldGenMinable extends WorldGenMinable {
 
 	@Override
 	public boolean generate(@NotNull World worldIn, Random rand, @NotNull BlockPos position) {
-		position = WorldGenAPI.getPosWithHeight(position, minY + rand.nextInt(maxY - minY));
+		position = WorldGenAPI.changeHeight(position, minY + rand.nextInt(maxY - minY));
 
 		return super.generate(worldIn, rand, WorldGenAPI.randomize(position, rand));
 	}

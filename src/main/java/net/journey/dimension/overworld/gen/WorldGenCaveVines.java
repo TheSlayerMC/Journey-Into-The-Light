@@ -23,7 +23,7 @@ public class WorldGenCaveVines extends WorldGenerator {
 
         int coercedY = MathUtils.coerceInRange(WorldGenAPI.findPosAboveSurface(w, vineGroupPos).getY(), 1, 60);
         int genY = r.nextInt(coercedY) + 1;
-        vineGroupPos = WorldGenAPI.getPosWithHeight(vineGroupPos, genY);
+        vineGroupPos = WorldGenAPI.changeHeight(vineGroupPos, genY);
 
         //attempts to gen around one group
         for (int j = 0; j < 16; ++j) {

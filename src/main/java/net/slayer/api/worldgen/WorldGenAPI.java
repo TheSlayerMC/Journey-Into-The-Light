@@ -523,7 +523,7 @@ public class WorldGenAPI {
         return pos.setPos(pos.getX(), y, pos.getZ());
     }
 
-    public static BlockPos getPosWithHeight(BlockPos pos, int y) {
+    public static BlockPos changeHeight(BlockPos pos, int y) {
         return new BlockPos(pos.getX(), y, pos.getZ());
     }
 
