@@ -62,7 +62,7 @@ public class ChunkGeneratorDepths implements IChunkGenerator {
 	private final WorldGenGuardianTower tower = new WorldGenGuardianTower();
 	private final WorldGenMinable flairum = new WorldGenMinable(JourneyBlocks.flairiumOre.getDefaultState(), 8, BlockStateMatcher.forBlock(JourneyBlocks.depthsStone));
 	private final WorldGenMinable des = new WorldGenMinable(JourneyBlocks.desOre.getDefaultState(), 8, BlockStateMatcher.forBlock(JourneyBlocks.depthsStone));
-	private final WorldGenMinable floorgems = new WorldGenMinable(JourneyBlocks.depthsLights.getDefaultState(), 40, BlockStateMatcher.forBlock(JourneyBlocks.depthsGrass));
+	private final WorldGenMinable floorgems = new WorldGenMinable(JourneyBlocks.depthsLights.getDefaultState(), 30, BlockStateMatcher.forBlock(JourneyBlocks.depthsGrass));
 	private final WorldGenStructure depthsHouse = new WorldGenStructure("depths_house1");
 	private final WorldGenStructure dungeon = new WorldGenStructure("big", JourneyLootTables.TEST_CHEST);
 
@@ -329,7 +329,7 @@ public class ChunkGeneratorDepths implements IChunkGenerator {
         int bottom = 0;
 
         BlockPos chunkStart = new BlockPos(x1, 0, z1);
-        for (i = 0; i < 15; i++) {
+        for (i = 0; i < 8; i++) {
 	        floorgems.generate(world, rand, new BlockPos(chunkStart.add(rand.nextInt(16), rand.nextInt(world.getHeight()), rand.nextInt(16))));
         }
 
