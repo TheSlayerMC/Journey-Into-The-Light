@@ -1,7 +1,7 @@
 {
   "variants": {
     "normal": {
-      "model": "journey:depthscrystal"
+      "model": "journey:depths_crystal"
     }
   }
 }
