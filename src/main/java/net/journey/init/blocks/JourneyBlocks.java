@@ -26,6 +26,7 @@ import net.journey.util.Initializer;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
+import net.minecraft.util.BlockRenderLayer;
 import net.slayer.api.EnumMaterialTypes;
 import net.slayer.api.EnumToolType;
 import net.slayer.api.block.*;
@@ -758,8 +759,8 @@ public class JourneyBlocks {
         corbaDarkBricks = new BlockMod("corba_dark_bricks", "Corba Stone");
         corbaBricks = new BlockMod("corba_bricks", "Corba Stone");
         corbaLightBricks = new BlockMod("corba_light_bricks", "Corba Stone");
-        
-        corbaBrickStairs = new BlockModStairs(corbaBricks, "corba_brick_stairs", "Cloudia Brick Stairs");
+
+        corbaBrickStairs = new BlockModStairs(corbaBricks, "corba_brick_stairs", "Corba Brick Stairs");
 
         
         corbaGrassPath = new JBlockGrassPath("corbaGrassPath", "Corba Grass Path", corbaStone);
@@ -1147,6 +1148,6 @@ public class JourneyBlocks {
         juiceberryBush = new BlockModBush("juiceberryBush", "Juiceberry Bush", JourneyConsumables.juiceberry, false);
         bogberryBush = new BlockModBush("bogberryBush", "Bogberry Bush", JourneyConsumables.bogberry, false);
 
-        depthsCrystal = (JBlockFlower) new JBlockFlower("depthsCrystal", "Depths Crystal").setGroundPredicate(GroundPredicate.COMMON_AND_DEPTHS_GRASS);
+        depthsCrystal = (JBlockFlower) new JBlockFlower(EnumMaterialTypes.GLASS, "depths_crystal", "Depths Crystal", JourneyTabs.DECORATION).setGroundPredicate(GroundPredicate.COMMON_AND_DEPTHS_GRASS).setRenderLayer(BlockRenderLayer.TRANSLUCENT);
     }
 }

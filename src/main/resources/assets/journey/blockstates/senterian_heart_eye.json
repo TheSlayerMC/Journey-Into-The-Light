@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "journey:senterian_heart_eye"
+    },
+    "facing=south": {
+      "model": "journey:senterian_heart_eye",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "journey:senterian_heart_eye",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "journey:senterian_heart_eye",
+      "y": 90
+    }
+  }
+}

@@ -5,11 +5,9 @@ import net.journey.api.block.IHasCustomItemPath;
 import net.journey.init.JourneyTabs;
 import net.journey.util.StuffConstructor;
 import net.minecraft.block.BlockBush;
-import net.minecraft.block.BlockLilyPad;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityBoat;
 import net.minecraft.init.Blocks;
@@ -48,7 +46,6 @@ public class JBlockWaterLily extends BlockBush implements IHasCustomItemPath {
         if (entityIn instanceof EntityBoat) {
             worldIn.destroyBlock(new BlockPos(pos), true);
         }
-
     }
 
     @Override
@@ -66,7 +63,7 @@ public class JBlockWaterLily extends BlockBush implements IHasCustomItemPath {
         if (pos.getY() >= 0 && pos.getY() < 256) {
             IBlockState iblockstate = worldIn.getBlockState(pos.down());
             Material material = iblockstate.getMaterial();
-            return material == Material.WATER && (Integer)iblockstate.getValue(BlockLiquid.LEVEL) == 0 || material == Material.ICE;
+            return material == Material.WATER && iblockstate.getValue(BlockLiquid.LEVEL) == 0 || material == Material.ICE;
         } else {
             return false;
         }
@@ -79,6 +76,6 @@ public class JBlockWaterLily extends BlockBush implements IHasCustomItemPath {
 
     @Override
     public @NotNull ResourceLocation getItemModelResourceLocation() {
-        return new ResourceLocation(JITL.MOD_ID, "block/plant" + getRegistryName().getPath());
+		return new ResourceLocation(JITL.MOD_ID, "block/plant/" + getRegistryName().getPath());
     }
 }

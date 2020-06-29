@@ -395,9 +395,10 @@ public class ChunkGeneratorBoiling implements IChunkGenerator {
             ashual.generate(worldObj, rand, new BlockPos(x1, rand.nextInt(250), z1));
         }
 
-        for (times = 0; times < 10; times++) {
-            if (worldObj.getBiome(chunkStart) == DimensionHelper.SCORCHED_WASTELAND_BIOME)
+        if (worldObj.getBiome(chunkStart) == DimensionHelper.SCORCHED_WASTELAND_BIOME) {
+            for (times = 0; times < 10; times++) {
                 WorldGenAPI.genOnGround(worldObj, chunkPos, rand, new WorldGenBoilStalagmite());
+            }
         }
 
         for (times = 0; times < 30; times++) {

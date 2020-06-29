@@ -10,6 +10,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
@@ -17,6 +18,8 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.EnumMaterialTypes;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -62,6 +65,11 @@ public abstract class JBlockPlant extends BlockBush implements IHasCustomItemPat
 	 * If equals true, then it will cause damage on contact.
 	 */
 	private boolean damageOnContact = false;
+
+	/**
+	 * Allows direct render layer implementation without needing to create a new block class, sets CUTOUT_MIPPED as default
+	 */
+	public BlockRenderLayer layer = BlockRenderLayer.CUTOUT_MIPPED;
 
 	public JBlockPlant(String name, String enName) {
 		this(EnumMaterialTypes.PLANT, name, enName, JourneyTabs.DECORATION);
@@ -150,5 +158,18 @@ public abstract class JBlockPlant extends BlockBush implements IHasCustomItemPat
 				}
 			}
 		}
+	}
+
+	/**
+	 * Sets render layer for block. CUTOUT_MIPPED is default.
+	 */
+	public JBlockPlant setRenderLayer(BlockRenderLayer renderLayer) {
+		this.layer = renderLayer;
+		return this;
+	}
+
+	@SideOnly(Side.CLIENT)
+	public BlockRenderLayer getRenderLayer() {
+		return this.layer;
 	}
 }

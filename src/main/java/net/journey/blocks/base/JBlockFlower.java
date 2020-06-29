@@ -1,14 +1,14 @@
 package net.journey.blocks.base;
 
+import net.journey.JITL;
+import net.journey.api.block.IHasCustomItemPath;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.EnumMaterialTypes;
 import org.jetbrains.annotations.NotNull;
 
@@ -37,10 +37,11 @@ import org.jetbrains.annotations.NotNull;
  * The item model for it should be placed to "models/item/block/plant/" by default.
  */
 @SuppressWarnings("JavadocReference")
-public class JBlockFlower extends JBlockPlant {
+public class JBlockFlower extends JBlockPlant implements IHasCustomItemPath {
 	/**
 	 * If true, flower will have small model and bounding box offset as vanilla flowers have.
 	 */
+
 	private boolean hasOffset = true;
 
 	public JBlockFlower(String name, String enName) {
@@ -69,9 +70,9 @@ public class JBlockFlower extends JBlockPlant {
 	public @NotNull AxisAlignedBB getBoundingBox(@NotNull IBlockState state, @NotNull IBlockAccess source, @NotNull BlockPos pos) {
 		return hasOffset ? super.getBoundingBox(state, source, pos).offset(state.getOffset(source, pos)) : super.getBoundingBox(state, source, pos);
 	}
-	
-	@SideOnly(Side.CLIENT)
-    public BlockRenderLayer getRenderLayer() {
-        return BlockRenderLayer.TRANSLUCENT;
-    }
+
+	@Override
+	public @NotNull ResourceLocation getItemModelResourceLocation() {
+		return new ResourceLocation(JITL.MOD_ID, "block/plant/" + getRegistryName().getPath());
+	}
 }
