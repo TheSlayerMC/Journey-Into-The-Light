@@ -2,7 +2,6 @@ package net.journey.blocks.base;
 
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -13,6 +12,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.block.BlockMod;
 
 public class JBlockStalagmite extends BlockMod {
+	private static final AxisAlignedBB BOX = new AxisAlignedBB(0, 0, 0, 0.5F, 1.0F, 0.5F);
 
 	public JBlockStalagmite(String name, String enName) {
 		super(name, enName);
@@ -20,13 +20,13 @@ public class JBlockStalagmite extends BlockMod {
 
 	@Override
 	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
-		return new AxisAlignedBB(0, 0, 0, 0.5F, 1.0F, 0.5F);
+		return BOX;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public AxisAlignedBB getSelectedBoundingBox(IBlockState state, World worldIn, BlockPos pos) {
-		return new AxisAlignedBB(0, 0, 0, 0.5F, 1.0F, 0.5F);
+		return BOX;
 	}
 
 	@Override
@@ -48,11 +48,4 @@ public class JBlockStalagmite extends BlockMod {
 	public boolean isFullCube(IBlockState state) {
 		return false;
 	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getRenderLayer() {
-		return BlockRenderLayer.CUTOUT;
-	}
-
 }

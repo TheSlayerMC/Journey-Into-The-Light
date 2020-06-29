@@ -26,8 +26,7 @@ import java.util.List;
 import java.util.Random;
 
 public class BlockMod extends Block {
-
-    protected boolean isFireSource;
+    protected Boolean isFireSource;
 
     public BlockMod(String name, String enName, float hardness) {
         this(EnumMaterialTypes.STONE, name, enName, hardness, JourneyTabs.BLOCKS);
@@ -67,7 +66,7 @@ public class BlockMod extends Block {
 
     @Override
     public boolean isFireSource(World world, BlockPos pos, EnumFacing side) {
-        return isFireSource;
+        return isFireSource != null ? isFireSource : super.isFireSource(world, pos, side);
     }
 
     @Override
