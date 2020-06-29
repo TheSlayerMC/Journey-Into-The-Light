@@ -57,7 +57,7 @@ public class ChunkGeneratorDepths implements IChunkGenerator {
 	private final WorldGenDepthsTree tree = new WorldGenDepthsTree();
     private final WorldGenDepthsTree1 tree1 = new WorldGenDepthsTree1();
 	private final WorldGenDepthsTree2 tree2 = new WorldGenDepthsTree2();
-	private final JWorldGenPlants genDarkblooms = new JWorldGenPlants(JourneyBlocks.darkbloom);
+	private final JWorldGenPlantsAnywhere genDarkblooms = new JWorldGenPlantsAnywhere(JourneyBlocks.darkbloom, GroundPredicate.COMMON_AND_DEPTHS_GRASS, 30, 100);
 	private final WorldGenSorcererShrine shrine = new WorldGenSorcererShrine();
 	private final WorldGenGuardianTower tower = new WorldGenGuardianTower();
 	private final WorldGenMinable flairum = new WorldGenMinable(JourneyBlocks.flairiumOre.getDefaultState(), 8, BlockStateMatcher.forBlock(JourneyBlocks.depthsStone));
@@ -364,9 +364,9 @@ public class ChunkGeneratorDepths implements IChunkGenerator {
         if (rand.nextInt(1000) == 0) {
             //generateBottomStructure(dungeon, x1, z1);
         }
-
-//        genDarkblooms.generate(world, rand, chunkStart); //TODO they don't spawn because of height is the world border, made of stone. Fix
-
+        for (i = 0; i < 30; i++) {
+        	genDarkblooms.generate(world, rand, chunkStart);
+        }
         for (i = 0; i < 10; i++) {
             //generateTopStructure(depthsHouse, x1, z1);
         }
