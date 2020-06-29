@@ -21,22 +21,24 @@ public class WorldGenBoilStalagmite extends WorldGenerator {
 		int medHeight = 1 + random.nextInt(6);
 		int smallHeight = 1 + random.nextInt(7);
 		int tinyHeight = 1 + random.nextInt(8);
-
-		for (int i = 0; i < bottomHeight; i++) {
-			setBlockAndNotifyAdequately(world, placePos.move(EnumFacing.UP), JourneyBlocks.scorchedRubble.getDefaultState());
+ 
+		if(world.getBlockState(placePos.up()) == Blocks.AIR.getDefaultState()) {
+			for (int i = 0; i < bottomHeight; i++) {
+				setBlockAndNotifyAdequately(world, placePos.move(EnumFacing.UP), JourneyBlocks.scorchedRubble.getDefaultState());
+			}
+			for (int i = 0; i < largeHeight; i++) {
+				setBlockAndNotifyAdequately(world, placePos.move(EnumFacing.UP), JourneyBlocks.scorchedStalagmiteLarge.getDefaultState());
+			}
+			for (int i = 0; i < medHeight; i++) {
+				setBlockAndNotifyAdequately(world, placePos.move(EnumFacing.UP), JourneyBlocks.scorchedStalagmiteMedium.getDefaultState());
+			}
+			for (int i = 0; i < smallHeight; i++) {
+				setBlockAndNotifyAdequately(world, placePos.move(EnumFacing.UP), JourneyBlocks.scorchedStalagmiteSmall.getDefaultState());
+			}
+			for (int i = 0; i < tinyHeight; i++) {
+				setBlockAndNotifyAdequately(world, placePos.move(EnumFacing.UP), JourneyBlocks.scorchedStalagmiteTiny.getDefaultState());
+			}
 		}
-		for (int i = 0; i < largeHeight; i++) {
-			setBlockAndNotifyAdequately(world, placePos.move(EnumFacing.UP), JourneyBlocks.scorchedStalagmiteLarge.getDefaultState());
-		}
-		for (int i = 0; i < medHeight; i++) {
-			setBlockAndNotifyAdequately(world, placePos.move(EnumFacing.UP), JourneyBlocks.scorchedStalagmiteMedium.getDefaultState());
-		}
-		for (int i = 0; i < smallHeight; i++) {
-			setBlockAndNotifyAdequately(world, placePos.move(EnumFacing.UP), JourneyBlocks.scorchedStalagmiteSmall.getDefaultState());
-		}
-		for (int i = 0; i < tinyHeight; i++) {
-			setBlockAndNotifyAdequately(world, placePos.move(EnumFacing.UP), JourneyBlocks.scorchedStalagmiteTiny.getDefaultState());
-		}
-		return world.getBlockState(placePos) == Blocks.AIR;
+		return true;
 	}
 }
