@@ -13,8 +13,8 @@ import java.util.Random;
 
 public class WorldGenCorbaSwampTree extends WorldGenAbstractTree {
 
-    private static final IBlockState TRUNK;
-    private static final IBlockState LEAF;
+    private static IBlockState TRUNK;
+    private static IBlockState LEAF;
 
     public WorldGenCorbaSwampTree() {
         super(false);
@@ -22,6 +22,8 @@ public class WorldGenCorbaSwampTree extends WorldGenAbstractTree {
 
     public WorldGenCorbaSwampTree(boolean doBlockNotify) {
         super(doBlockNotify);
+        TRUNK = JourneyBlocks.bogwoodLog.getDefaultState();
+        LEAF = JourneyBlocks.bogwoodLeaves.getDefaultState();
     }
 
     public boolean generate(World worldIn, Random rand, BlockPos position) {
@@ -179,7 +181,6 @@ public class WorldGenCorbaSwampTree extends WorldGenAbstractTree {
     }
 
     static {
-        TRUNK = JourneyBlocks.bogwoodLog.getDefaultState();
-        LEAF = JourneyBlocks.bogwoodLeaves.getDefaultState();
+        
     }
 }
