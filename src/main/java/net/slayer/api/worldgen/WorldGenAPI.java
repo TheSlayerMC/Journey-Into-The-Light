@@ -515,6 +515,13 @@ public class WorldGenAPI {
     public static BlockPos.MutableBlockPos findPosAboveSurface(World world, BlockPos.MutableBlockPos pos) {
         return pos.setPos(pos.getX(), world.getHeight(pos.getX(), pos.getZ()), pos.getZ());
     }
+    
+    /**
+     * Returns block pos of given input
+     */
+    public static BlockPos.MutableBlockPos changeHeight(BlockPos.MutableBlockPos pos, int y) {
+        return pos.setPos(pos.getX(), y, pos.getZ());
+    }
 
     public static BlockPos getPosWithHeight(BlockPos pos, int y) {
         return new BlockPos(pos.getX(), y, pos.getZ());

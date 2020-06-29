@@ -2,6 +2,7 @@ package net.journey.dimension.depths;
 
 import net.journey.api.block.GroundPredicate;
 import net.journey.dimension.base.gen.JWorldGenPlants;
+import net.journey.dimension.base.gen.JWorldGenPlantsAnywhere;
 import net.journey.dimension.base.gen.WorldGenStructure;
 import net.journey.dimension.depths.gen.*;
 import net.journey.dimension.overworld.gen.WorldGenModFlower;
@@ -65,7 +66,7 @@ public class ChunkGeneratorDepths implements IChunkGenerator {
 	private final WorldGenStructure depthsHouse = new WorldGenStructure("depths_house1");
 	private final WorldGenStructure dungeon = new WorldGenStructure("big", JourneyLootTables.TEST_CHEST);
 
-	private final JWorldGenPlants depths_crystal = new JWorldGenPlants(JourneyBlocks.depthsCrystal, GroundPredicate.ANY, 5);
+	private final JWorldGenPlantsAnywhere depths_crystal = new JWorldGenPlantsAnywhere(JourneyBlocks.depthsCrystal, GroundPredicate.COMMON_AND_DEPTHS_GRASS, 50, 100);
 
 	public ChunkGeneratorDepths(World worldIn, long s, String st) {
 		this.world = worldIn;
@@ -379,7 +380,6 @@ public class ChunkGeneratorDepths implements IChunkGenerator {
         }
 
 	    for (i = 0; i < 15; i++) {
-		    //if(chunkStart.getY() > 64)
 		    depths_crystal.generate(world, rand, chunkStart);
 	    }
     }
