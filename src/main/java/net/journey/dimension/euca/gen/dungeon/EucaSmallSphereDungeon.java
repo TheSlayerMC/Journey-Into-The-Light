@@ -1,13 +1,17 @@
 package net.journey.dimension.euca.gen.dungeon;
 
 import net.journey.blocks.containers.BlockJourneyChest;
+import net.journey.blocks.tileentity.TileEntityJourneyChest;
+import net.journey.init.JourneyLootTables;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.RandHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -17,23 +21,24 @@ import java.util.Random;
 
 public class EucaSmallSphereDungeon extends WorldGenerator {
 
-	private Random rand = new Random();
-	
-	private IBlockState stone = JourneyBlocks.EUCA_GOLD_STONE.getDefaultState();
-	private IBlockState log = JourneyBlocks.GOLDITE_OAK_LOG.getDefaultState();
-	private IBlockState leaves = JourneyBlocks.eucaGoldLeaves.getDefaultState();
-	//IBlockState dungeonbrick0 = getDungeonBricks().getDefaultState(); //dungeon 0
-	private IBlockState dungeonbrick1 = JourneyBlocks.EUCA_SQUARE_DUNGEON_BRICKS.getDefaultState(); //dungeon 1
-	private IBlockState dungeonbricklamp = JourneyBlocks.EUCA_RUNIC_LAMP.getDefaultState(); //lamp
-	private IBlockState dungeonbricktile = JourneyBlocks.EUCA_DUNGEON_TILE.getDefaultState(); //tile
+	private final ResourceLocation lootTable = JourneyLootTables.GOLDITE_DUNGEON_LOOT;
+	private final Random rand = new Random();
 
-    public Block getDungeonBricks() {
-	    return RandHelper.chooseEqual(rand, JourneyBlocks.EUCA_DUNGEON_BRICKS, JourneyBlocks.EUCA_RUNIC_BRICKS, JourneyBlocks.EUCA_SQUARE_DUNGEON_BRICKS, JourneyBlocks.EUCA_SQUARE_RUNIC_BRICKS);
-    }
-    
-    public boolean locationIsValidSpawn(World w, int x, int y, int z) {
-        return WorldGenAPI.checkRadius(w, new BlockPos(x, y, z), 16, Blocks.AIR);
-    }
+	private final IBlockState stone = JourneyBlocks.EUCA_GOLD_STONE.getDefaultState();
+	private final IBlockState log = JourneyBlocks.GOLDITE_OAK_LOG.getDefaultState();
+	private final IBlockState leaves = JourneyBlocks.eucaGoldLeaves.getDefaultState();
+	//IBlockState dungeonbrick0 = getDungeonBricks().getDefaultState(); //dungeon 0
+	private final IBlockState dungeonbrick1 = JourneyBlocks.EUCA_SQUARE_DUNGEON_BRICKS.getDefaultState(); //dungeon 1
+	private final IBlockState dungeonbricklamp = JourneyBlocks.EUCA_RUNIC_LAMP.getDefaultState(); //lamp
+	private final IBlockState dungeonbricktile = JourneyBlocks.EUCA_DUNGEON_TILE.getDefaultState(); //tile
+
+	public Block getDungeonBricks() {
+		return RandHelper.chooseEqual(rand, JourneyBlocks.EUCA_DUNGEON_BRICKS, JourneyBlocks.EUCA_RUNIC_BRICKS, JourneyBlocks.EUCA_SQUARE_DUNGEON_BRICKS, JourneyBlocks.EUCA_SQUARE_RUNIC_BRICKS);
+	}
+
+	public boolean locationIsValidSpawn(World w, int x, int y, int z) {
+		return WorldGenAPI.checkRadius(w, new BlockPos(x, y, z), 16, Blocks.AIR);
+	}
 
 	@Override
 	public boolean generate(World worldIn, Random r, BlockPos bp) {
@@ -187,6 +192,10 @@ public class EucaSmallSphereDungeon extends WorldGenerator {
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 2, j + 7, k + 5), dungeonbrick1);
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 2, j + 7, k + 6), dungeonbrick1);
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 2, j + 7, k + 8), JourneyBlocks.eucaChest.getDefaultState().withProperty(BlockJourneyChest.FACING, EnumFacing.EAST));
+			TileEntity chest = worldIn.getTileEntity(new BlockPos(i + 2, j + 7, k + 8));
+			if (chest instanceof TileEntityJourneyChest) {
+				((TileEntityJourneyChest) chest).setLootTable(lootTable, r.nextLong());
+			}
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 2, j + 7, k + 10), dungeonbrick1);
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 2, j + 7, k + 11), dungeonbrick1);
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 2, j + 7, k + 12), dungeonbrick1);
@@ -1456,9 +1465,17 @@ public class EucaSmallSphereDungeon extends WorldGenerator {
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 8, j + 7, k + 0), dungeonbricklamp);
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 8, j + 7, k + 1), dungeonbrick1);
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 8, j + 7, k + 2), JourneyBlocks.eucaChest.getDefaultState().withProperty(BlockJourneyChest.FACING, EnumFacing.SOUTH));
+		TileEntity chest0 = worldIn.getTileEntity(new BlockPos(i + 8, j + 7, k + 2));
+		if (chest0 instanceof TileEntityJourneyChest) {
+			((TileEntityJourneyChest) chest0).setLootTable(lootTable, r.nextLong());
+		}
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 8, j + 7, k + 7), JourneyBlocks.EUCA_DUNGEON_BRICK_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.WEST));
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 8, j + 7, k + 8), JourneyBlocks.eucaTile.getDefaultState());
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 8, j + 7, k + 14), JourneyBlocks.eucaChest.getDefaultState().withProperty(BlockJourneyChest.FACING, EnumFacing.NORTH));
+		TileEntity chest1 = worldIn.getTileEntity(new BlockPos(i + 8, j + 7, k + 14));
+		if (chest1 instanceof TileEntityJourneyChest) {
+			((TileEntityJourneyChest) chest1).setLootTable(lootTable, r.nextLong());
+		}
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 8, j + 7, k + 15), dungeonbrick1);
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 8, j + 7, k + 16), dungeonbricklamp);
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 8, j + 8, k + 0), stone);
@@ -2799,6 +2816,10 @@ public class EucaSmallSphereDungeon extends WorldGenerator {
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 14, j + 7, k + 5), getDungeonBricks().getDefaultState());
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 14, j + 7, k + 6), dungeonbrick1);
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 14, j + 7, k + 8), JourneyBlocks.eucaChest.getDefaultState().withProperty(BlockJourneyChest.FACING, EnumFacing.WEST));
+		TileEntity chest2 = worldIn.getTileEntity(new BlockPos(i + 14, j + 7, k + 8));
+		if (chest2 instanceof TileEntityJourneyChest) {
+			((TileEntityJourneyChest) chest2).setLootTable(lootTable, r.nextLong());
+		}
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 14, j + 7, k + 10), dungeonbrick1);
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 14, j + 7, k + 11), dungeonbrick1);
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 14, j + 7, k + 12), getDungeonBricks().getDefaultState());

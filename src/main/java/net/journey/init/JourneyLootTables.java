@@ -16,16 +16,17 @@ public class JourneyLootTables {
     public static final ResourceLocation LOOT_BASIC = register("loot/loot_basic");
     public static final ResourceLocation LOOT_GOLD = register("loot/loot_gold");
     public static final ResourceLocation LOOT_DIAMOND = register("loot/loot_diamond");
-    public static final ResourceLocation LOOT_SEEDS = register("loot/seeds");
-    public static final ResourceLocation LOOT_PRESENT = register("loot/loot_present");
+	public static final ResourceLocation LOOT_SEEDS = register("loot/seeds");
+	public static final ResourceLocation LOOT_PRESENT = register("loot/loot_present");
 
-    public static final ResourceLocation DEPTHS_SHRINE_CHEST = register("chests/depthsshrine");
+	public static final ResourceLocation DEPTHS_SHRINE_CHEST = register("chests/depthsshrine");
 	public static final ResourceLocation TERRANIA_TREE_HUT_CHEST = register("chests/terraniatreehut");
 	public static final ResourceLocation ROCKITE_CHEST_LOOT = register("chests/overworld/rockite_loot");
 	public static final ResourceLocation ANCIENT_CHEST_LOOT = register("chests/overworld/ancient_loot");
 	public static final ResourceLocation BOIL_DUNGEON_CHEST = register("chests/boil/boil_dungeon");
 	public static final ResourceLocation SENTRY_BASE_CHEST_LOOT = register("chests/senterian/sentry_dungeon");
 	public static final ResourceLocation ICE_GOLEM_LOOT = register("chests/frozen/ice_golem_loot");
+	public static final ResourceLocation GOLDITE_DUNGEON_LOOT = register("chests/euca/goldite_dungeon_loot");
 
 	//Boss
 	public static final ResourceLocation NETHER_BEAST = register("mobs/boss/nether_beast");
