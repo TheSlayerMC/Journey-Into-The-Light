@@ -35,7 +35,7 @@ public class EntityFloro extends JEntityMob implements IRangedAttackMob, Animati
 		actionManager = ActionManagerBuilder.<EntityFloro>create(
 				AnimationManagerBuilder.create()
 						.addLayer(LayerReference.WALKING)
-						.addWalkingAnimationHandling(new AnimationStarter(JAnimations.FLORO_WALK), LayerReference.WALKING)
+						.addWalkingAnimationHandling(new AnimationStarter(JAnimations.FLORO_WALK).setSpeed(3F), LayerReference.WALKING)
 		).build(this, world);
 	}
 

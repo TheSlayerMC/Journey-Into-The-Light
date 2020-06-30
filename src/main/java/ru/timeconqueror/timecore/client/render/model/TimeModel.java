@@ -13,6 +13,8 @@ public class TimeModel extends ModelBase {
 	private List<TimeModelRenderer> pieces;
 	private Map<String, TimeModelRenderer> pieceMap;
 
+	private float scaleMultiplier = 1F;
+
 	public TimeModel(String name, int textureWidth, int textureHeight) {
 		this.name = name;
 		this.textureWidth = textureWidth;
@@ -23,10 +25,30 @@ public class TimeModel extends ModelBase {
 		return name;
 	}
 
-	public void render(float scale) {
+	/**
+	 * Sets custom scale for the model.
+	 * <p>
+	 * Should only be called once and before first render frame,
+	 * otherwise you'll see unexpected render behaviour.
+	 */
+	public TimeModel setScaleMultiplier(float scaleMultiplier) {
+		this.scaleMultiplier = scaleMultiplier;
+
+		return this;
+	}
+
+	/**
+	 * Renders model with provided scale.
+	 *
+	 * @param initialScale controls initial scale settings of the model.
+	 *                     Once you provided some number as initial scale,
+	 *                     you should always provide this particular number,
+	 *                     otherwise you'll see unexpected render behaviour.
+	 */
+	public void render(float initialScale) {
 		if (pieces != null) {
 			for (TimeModelRenderer piece : pieces) {
-				piece.render(scale);
+				piece.render(scaleMultiplier * initialScale);
 			}
 		}
 	}
