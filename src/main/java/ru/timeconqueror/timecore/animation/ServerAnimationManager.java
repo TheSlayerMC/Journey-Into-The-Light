@@ -42,7 +42,7 @@ public class ServerAnimationManager<T extends EntityMob> extends BaseAnimationMa
     }
 
     private void proceedActions(AnimationWatcher watcher) {
-        for (ActionManagerImpl.ActionWatcher<T> actionWatcher : stateMachine.getActionWatchers()) {
+        for (ActionManagerImpl.ActionWatcher<T, ?> actionWatcher : stateMachine.getActionWatchers()) {
             if (actionWatcher.isBound(watcher.getAnimation())) {
                 if (actionWatcher.shouldBeExecuted(watcher)) {
                     actionWatcher.runAction(stateMachine.getEntity());

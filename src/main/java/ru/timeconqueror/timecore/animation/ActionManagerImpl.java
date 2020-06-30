@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ActionManagerImpl<T extends EntityMob> implements ActionManager<T> {
-	private final List<ActionWatcher<T>> actionWatchers = new ArrayList<>();
+	private final List<ActionWatcher<T, ?>> actionWatchers = new ArrayList<>();
 	private final BaseAnimationManager animationManager;
 	private final T entity;
 
@@ -23,13 +23,14 @@ public class ActionManagerImpl<T extends EntityMob> implements ActionManager<T> 
 	}
 
 	@Override
-	public void enableAction(DelayedAction<T> action) {
-		actionWatchers.add(new ActionWatcher<>(action));
+	public <EXTRA_DATA> void enableAction(DelayedAction<T, EXTRA_DATA> action, EXTRA_DATA actionData) {
+		actionWatchers.add(new ActionWatcher<>(action, actionData));
 		action.getAnimationStarter().startAt(animationManager, action.getAnimationLayer());
 	}
 
-	public boolean isActionEnabled(DelayedAction<T> action) {
-		for (ActionWatcher<T> actionWatcher : actionWatchers) {
+	@Override
+	public boolean isActionEnabled(DelayedAction<T, ?> action) {
+		for (ActionWatcher<T, ?> actionWatcher : actionWatchers) {
 			if (actionWatcher.stores(action)) {
 				return true;
 			}
@@ -39,7 +40,7 @@ public class ActionManagerImpl<T extends EntityMob> implements ActionManager<T> 
 	}
 
 	@Override
-	public void disableAction(DelayedAction<T> action) {
+	public <EXTRA_DATA> void disableAction(DelayedAction<T, EXTRA_DATA> action) {
 		actionWatchers.removeIf(watcher -> watcher.action.equals(action));
 
 		animationManager.removeAnimation(action.getAnimationLayer());
@@ -71,7 +72,7 @@ public class ActionManagerImpl<T extends EntityMob> implements ActionManager<T> 
 		return animationManager;
 	}
 
-	public List<ActionWatcher<T>> getActionWatchers() {
+	public List<ActionWatcher<T, ?>> getActionWatchers() {
 		return actionWatchers;
 	}
 
@@ -79,19 +80,21 @@ public class ActionManagerImpl<T extends EntityMob> implements ActionManager<T> 
 		return entity;
 	}
 
-	public static class ActionWatcher<T extends Entity> {
-		private final DelayedAction<T> action;
+	public static class ActionWatcher<T extends Entity, EXTRA_DATA> {
+		private final DelayedAction<T, EXTRA_DATA> action;
+		private final EXTRA_DATA actionData;
 		private boolean done;
 
-		public ActionWatcher(DelayedAction<T> action) {
+		public ActionWatcher(DelayedAction<T, EXTRA_DATA> action, EXTRA_DATA actionData) {
 			this.action = action;
+			this.actionData = actionData;
 		}
 
 		public boolean isBound(Animation animation) {
 			return action.isBound(animation);
 		}
 
-		public boolean stores(DelayedAction<T> action) {
+		public boolean stores(DelayedAction<T, ?> action) {
 			return this.action.equals(action);
 		}
 
@@ -100,7 +103,7 @@ public class ActionManagerImpl<T extends EntityMob> implements ActionManager<T> 
 		}
 
 		public void runAction(T entity) {
-			action.getAction().accept(entity);
+			action.getAction().accept(entity, actionData);
 			done = true;
 		}
 	}

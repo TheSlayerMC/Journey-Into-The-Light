@@ -1,5 +1,6 @@
 package net.journey.entity.mob.overworld;
 
+import net.journey.JITL;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityFloroWater;
 import net.journey.init.JAnimations;
@@ -22,11 +23,23 @@ import org.jetbrains.annotations.NotNull;
 import ru.timeconqueror.timecore.animation.ActionManagerBuilder;
 import ru.timeconqueror.timecore.animation.AnimationManagerBuilder;
 import ru.timeconqueror.timecore.animation.AnimationStarter;
+import ru.timeconqueror.timecore.animation.component.DelayedAction;
+import ru.timeconqueror.timecore.animation.entityai.AnimatedRangedAttackAI;
 import ru.timeconqueror.timecore.animation.util.LayerReference;
+import ru.timeconqueror.timecore.animation.util.StandardDelayPredicates;
 import ru.timeconqueror.timecore.api.animation.ActionManager;
 import ru.timeconqueror.timecore.api.animation.AnimationProvider;
+import ru.timeconqueror.timecore.api.animation.BlendType;
 
 public class EntityFloro extends JEntityMob implements IRangedAttackMob, AnimationProvider<EntityFloro> {
+	private static final DelayedAction<EntityFloro, AnimatedRangedAttackAI.ActionData> RANGED_ATTACK_ACTION;
+
+	static {
+		RANGED_ATTACK_ACTION = new DelayedAction<EntityFloro, AnimatedRangedAttackAI.ActionData>(JITL.rl("floro/shoot"), new AnimationStarter(JAnimations.FLORO_SHOOT),"attack")
+				.setDelayPredicate(StandardDelayPredicates.whenPassed(0.5F))
+				.setOnCall(AnimatedRangedAttackAI.STANDARD_RUNNER);
+	}
+
 	private final ActionManager<EntityFloro> actionManager;
 
 	public EntityFloro(World world) {
@@ -35,6 +48,7 @@ public class EntityFloro extends JEntityMob implements IRangedAttackMob, Animati
 		actionManager = ActionManagerBuilder.<EntityFloro>create(
 				AnimationManagerBuilder.create()
 						.addLayer(LayerReference.WALKING)
+						.addLayer("attack", 1, BlendType.ADDING, 0.9F)
 						.addWalkingAnimationHandling(new AnimationStarter(JAnimations.FLORO_WALK).setSpeed(3F), LayerReference.WALKING)
 		).build(this, world);
 	}
@@ -43,11 +57,12 @@ public class EntityFloro extends JEntityMob implements IRangedAttackMob, Animati
 	protected void initEntityAI() {
 		super.initEntityAI();
 
+		this.tasks.addTask(-1, new AnimatedRangedAttackAI<>(this, RANGED_ATTACK_ACTION, 0.27F, 50, 8.0F));
+
 		this.tasks.addTask(3, new EntityAIAvoidEntity<>(this, EntityWolf.class, 6.0F, 1.0D, 1.2D));
 		this.tasks.addTask(6, new EntityAIWanderAvoidWater(this, 1.0D));
 		this.tasks.addTask(6, new EntityAILookIdle(this));
 
-		this.tasks.addTask(4, new EntityAIAttackRanged(this, 0.27F, 50, 8.0F));
 		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
 		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<>(this, EntityPlayer.class, true));
 	}
