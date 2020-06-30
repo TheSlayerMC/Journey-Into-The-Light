@@ -12,6 +12,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.block.BlockMod;
 
 public class JBlockStalagmite extends BlockMod {
+	//TODO make box for every stalagmite version
 	private static final AxisAlignedBB BOX = new AxisAlignedBB(0, 0, 0, 0.5F, 1.0F, 0.5F);
 
 	public JBlockStalagmite(String name, String enName) {

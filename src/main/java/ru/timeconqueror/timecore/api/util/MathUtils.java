@@ -2,6 +2,39 @@ package ru.timeconqueror.timecore.api.util;
 
 public class MathUtils {
 	/**
+	 * Coerces number in provided range.
+	 *
+	 * @param number number to coerce
+	 * @param min    minimum value, inclusive.
+	 * @param max    maximum value, inclusive.
+	 */
+	public static int coerceInRange(int number, int min, int max) {
+		return Math.min(Math.max(number, min), max);
+	}
+
+	/**
+	 * Coerces number in provided range.
+	 *
+	 * @param number number to coerce
+	 * @param min    minimum value, inclusive.
+	 * @param max    maximum value, inclusive.
+	 */
+	public static float coerceInRange(float number, float min, float max) {
+		return Math.min(Math.max(number, min), max);
+	}
+
+	/**
+	 * Coerces number in provided range.
+	 *
+	 * @param number number to coerce
+	 * @param min    minimum value, inclusive.
+	 * @param max    maximum value, inclusive.
+	 */
+	public static double coerceInRange(double number, double min, double max) {
+		return Math.min(Math.max(number, min), max);
+	}
+
+	/**
 	 * Calculates the value, that represents the part ({@code percentage}) of the {@code [start-to-end]} range, counting from the {@code start}.
 	 * Also works if {@code end} is less then {@code start}
 	 *
@@ -45,5 +78,13 @@ public class MathUtils {
 	 */
 	public static double calcPercentage(double current, double start, double end) {
 		return end - start != 0 ? (current - start) / (end - start) : 1;
+	}
+
+	public static float lerp(float pct, float start, float end) {
+		return start + pct * (end - start);
+	}
+
+	public static double lerp(double pct, double start, double end) {
+		return start + pct * (end - start);
 	}
 }

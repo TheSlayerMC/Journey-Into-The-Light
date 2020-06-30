@@ -11,7 +11,10 @@ import net.journey.dimension.corba.village.StructureCorbaVillagePieces;
 import net.journey.dimension.nether.JNWorldGenerator;
 import net.journey.dimension.nether.biomes.BiomeRegister;
 import net.journey.enums.EnumParticlesClasses;
-import net.journey.eventhandler.*;
+import net.journey.eventhandler.ArmorAbilityEvent;
+import net.journey.eventhandler.BowZoomEvent;
+import net.journey.eventhandler.NetherEvent;
+import net.journey.eventhandler.VanillaFixEvent;
 import net.journey.init.*;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.init.common.JourneyCrops;
@@ -20,6 +23,7 @@ import net.journey.init.items.JourneyConsumables;
 import net.journey.init.items.JourneyItems;
 import net.journey.init.items.JourneyWeapons;
 import net.journey.integration.Integrations;
+import net.journey.network.NetworkHandler;
 import net.journey.util.Config;
 import net.journey.util.JourneyFuelHandler;
 import net.minecraft.block.Block;
@@ -104,6 +108,8 @@ public class CommonProxy {
         SlayerAPI.registerEventListener(new BarTickHandler());
         SlayerAPI.registerEventListener(new RenderBar());
         CapabilityManager.INSTANCE.register(IEssence.class, new EssenceStorage(), EssenceBar.class);
+
+        NetworkHandler.registerPackets();
     }
 
     public void init(FMLInitializationEvent event) {
