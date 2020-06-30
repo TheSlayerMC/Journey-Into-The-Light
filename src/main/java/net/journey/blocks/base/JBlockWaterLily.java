@@ -1,16 +1,16 @@
 package net.journey.blocks.base;
 
 import net.journey.JITL;
+import net.journey.api.block.GroundPredicate;
 import net.journey.api.block.IHasCustomItemPath;
-import net.journey.init.JourneyTabs;
-import net.journey.util.StuffConstructor;
-import net.minecraft.block.BlockBush;
+import net.journey.init.items.JourneyItems;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityBoat;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -21,15 +21,17 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.Random;
 
-public class JBlockWaterLily extends BlockBush implements IHasCustomItemPath {
+public class JBlockWaterLily extends JBlockPlant implements IHasCustomItemPath {
 
     protected static final AxisAlignedBB LILY_PAD_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.09375D, 0.9375D);
 
     public JBlockWaterLily(String name, String enName) {
-        super();
+        super(name, enName);
+        setGroundPredicate(GroundPredicate.WATER);
+        setCreativeTab(null);
         setSoundType(EnumMaterialTypes.GRASS.getSound());
-        StuffConstructor.regAndSetupBlock(this, name, enName, 1.0F, JourneyTabs.DECORATION);
     }
 
     @Override
@@ -37,7 +39,6 @@ public class JBlockWaterLily extends BlockBush implements IHasCustomItemPath {
         if (!(entityIn instanceof EntityBoat)) {
             addCollisionBoxToList(pos, entityBox, collidingBoxes, LILY_PAD_AABB);
         }
-
     }
 
     @Override
@@ -46,6 +47,11 @@ public class JBlockWaterLily extends BlockBush implements IHasCustomItemPath {
         if (entityIn instanceof EntityBoat) {
             worldIn.destroyBlock(new BlockPos(pos), true);
         }
+    }
+
+    @Override
+    public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+        return JourneyItems.swampLily;
     }
 
     @Override
