@@ -669,7 +669,7 @@ public class JourneyItems {
 		witherRing = new ItemRingWither("ring_wither", "Ring of Inverse Decay");
 		luckyCharm = new ItemLuckyCharm("charm_of_luck", "Lucky Charm");
 
-		swampLily = new ItemWaterLily("swamp_lily_item", "Swamp Lily");
+		swampLily = new JItemWaterLily("swamp_lily_item", "Swamp Lily");
 	}
 
     public static ToolMaterial addToolMaterial(int uses, float efficiency, float dam, boolean breakable) {

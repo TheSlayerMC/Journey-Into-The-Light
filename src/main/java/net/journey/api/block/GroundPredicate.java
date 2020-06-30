@@ -24,7 +24,7 @@ public interface GroundPredicate {
 	GroundPredicate GRASS_BLOCK = SOLID_SIDE.and(blockPredicate(block -> block == Blocks.GRASS || block == Blocks.DIRT || block == Blocks.FARMLAND));
 	GroundPredicate SAND = SOLID_SIDE.and(blockPredicate(block -> block == Blocks.SAND));
 	GroundPredicate NETHER = SOLID_SIDE.and(blockPredicate(block -> block == Blocks.NETHERRACK || block == Blocks.SOUL_SAND || block == JourneyBlocks.heatSoil || block == JourneyBlocks.heatSand || block == JourneyBlocks.earthenNetherrack || block == JourneyBlocks.volcanicSand));
-	GroundPredicate WATER = blockPredicate(block -> block == Blocks.WATER);
+	GroundPredicate WATER = blockPredicate(block -> block == Blocks.WATER || block == Blocks.FLOWING_WATER);
 	GroundPredicate PLANT = blockPredicate(block -> block instanceof JBlockPlant);
 
 	GroundPredicate COMMON_AND_BOILING_SANDS = SAND.or(blockPredicate(block -> block == JourneyBlocks.volcanicSand));
@@ -35,6 +35,7 @@ public interface GroundPredicate {
 	GroundPredicate TAINTED_MUD = GRASS_BLOCK.or(blockPredicate(block -> block == JourneyBlocks.taintedMud));
 	GroundPredicate COMMON_AND_EUCA_GOLD_GRASS = GRASS_BLOCK.or(blockPredicate(block -> block == JourneyBlocks.eucaGrass));
 	GroundPredicate COMMON_AND_EUCA_GOLDITE_GRASS = GRASS_BLOCK.or(blockPredicate(block -> block == JourneyBlocks.eucaGolditeGrass));
+
 	GroundPredicate PLANT_AND_BOIL_GRASS = PLANT.or(blockPredicate(block -> block == JourneyBlocks.hotBlock));
 
 	static GroundPredicate blockPredicate(Predicate<Block> blockPredicate) {

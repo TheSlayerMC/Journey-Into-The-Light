@@ -243,7 +243,7 @@ public class JourneyBlocks {
     public static BlockModLeaves bogwoodLeaves;
     public static JBlockDoublePlant bogweed;
 
-    public static JBlockWaterLily swamp_lily;
+    public static JBlockWaterLily swampLily;
 
     public static JBlockFungalShelf swamp_shelf;
     public static JBlockMushroom bogshroomsSmall;
@@ -785,7 +785,7 @@ public class JourneyBlocks {
         bogwoodLeaves = new BlockModLeaves("bogwood_leaves", "Bogwood Leaves", 1.0F, bogwoodSapling);
 
         bogweed = (JBlockDoublePlant) new JBlockDoublePlant("bogweed", "Bogweed").setGroundPredicate(GroundPredicate.TAINTED_MUD);
-        swamp_lily = new JBlockWaterLily("swamp_lily", "Swamp lily");
+        swampLily = new JBlockWaterLily("swamp_lily", "Swamp lily");
         swamp_shelf = new JBlockFungalShelf("swamp_shelf", "Swamp Shelf");
         bogshroomsSmall = (JBlockMushroom) new JBlockMushroom("bog_shrooms_small", "Small Bogshrooms").setGroundPredicate(GroundPredicate.COMMON_AND_CORBA_GRASS).setLightLevel(0.3F);
         bogshroomTall = (JBlockMushroom) new JBlockMushroom("bog_shroom_tall", "Tall Bogshroom").setGroundPredicate(GroundPredicate.COMMON_AND_CORBA_GRASS).setLightLevel(0.6F);
