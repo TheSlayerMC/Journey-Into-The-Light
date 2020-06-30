@@ -17,17 +17,17 @@ import net.slayer.api.worldgen.WorldGenAPI;
 import java.util.Random;
 
 public class WorldGenHornDungeon extends WorldGenerator {
-	
-    public boolean locationIsValidSpawn(World w, int x, int y, int z) {
-        return WorldGenAPI.checkRadius(w, new BlockPos(x, y, z), 11, JourneyBlocks.volcanicSand);
-    }
-    
-	private Block stairs = RandHelper.chooseEqual(new Random(), JourneyBlocks.boilBricks, JourneyBlocks.boilSquareBrick);
-	
-    @Override
-    public boolean generate(World worldIn, Random r, BlockPos pos) {
-        int i = pos.getX(), j = pos.getY(), k = pos.getZ();
-        if (locationIsValidSpawn(worldIn, i, j, k)) return true;
+
+	public boolean locationIsValidSpawn(World w, int x, int y, int z) {
+		return WorldGenAPI.checkRadius(w, new BlockPos(x, y, z), 11, JourneyBlocks.volcanicSand);
+	}
+
+	private final Block stairs = RandHelper.chooseEqual(new Random(), JourneyBlocks.boilBricks, JourneyBlocks.boilSquareBrick);
+
+	@Override
+	public boolean generate(World worldIn, Random r, BlockPos pos) {
+		int i = pos.getX(), j = pos.getY(), k = pos.getZ();
+		if (locationIsValidSpawn(worldIn, i, j, k)) return true;
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 0, j + 17, k + 1), JourneyBlocks.boilShingle.getDefaultState());
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 0, j + 17, k + 2), Blocks.AIR.getDefaultState());
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 0, j + 17, k + 3), Blocks.AIR.getDefaultState());
@@ -1413,17 +1413,17 @@ public class WorldGenHornDungeon extends WorldGenerator {
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 8, j + 13, k + 2), JourneyBlocks.boilBricks.getDefaultState());
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 8, j + 13, k + 3), Blocks.AIR.getDefaultState());
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 8, j + 13, k + 4), Blocks.AIR.getDefaultState());
-		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 8, j + 13, k + 5), JourneyBlocks.boilChest.getDefaultState().withProperty(BlockJourneyChest.FACING, EnumFacing.NORTH));
-        TileEntity chest1 = worldIn.getTileEntity(new BlockPos(i + 8, j + 13, k + 5));
-        if (chest1 instanceof TileEntityJourneyChest) {
-            ((TileEntityJourneyChest) chest1).setLootTable(JourneyLootTables.BOIL_DUNGEON_CHEST, r.nextLong());
-        }
-		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 8, j + 13, k + 6), JourneyBlocks.boilChest.getDefaultState().withProperty(BlockJourneyChest.FACING, EnumFacing.NORTH));
-        TileEntity chest2 = worldIn.getTileEntity(new BlockPos(i + 8, j + 13, k + 6));
-        if (chest2 instanceof TileEntityJourneyChest) {
-            ((TileEntityJourneyChest) chest2).setLootTable(JourneyLootTables.BOIL_DUNGEON_CHEST, r.nextLong());
-        }
-		
+		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 8, j + 13, k + 5), JourneyBlocks.boilChest.getDefaultState().withProperty(BlockJourneyChest.FACING, EnumFacing.WEST));
+		TileEntity chest1 = worldIn.getTileEntity(new BlockPos(i + 8, j + 13, k + 5));
+		if (chest1 instanceof TileEntityJourneyChest) {
+			((TileEntityJourneyChest) chest1).setLootTable(JourneyLootTables.BOIL_DUNGEON_CHEST, r.nextLong());
+		}
+		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 8, j + 13, k + 6), JourneyBlocks.boilChest.getDefaultState().withProperty(BlockJourneyChest.FACING, EnumFacing.WEST));
+		TileEntity chest2 = worldIn.getTileEntity(new BlockPos(i + 8, j + 13, k + 6));
+		if (chest2 instanceof TileEntityJourneyChest) {
+			((TileEntityJourneyChest) chest2).setLootTable(JourneyLootTables.BOIL_DUNGEON_CHEST, r.nextLong());
+		}
+
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 8, j + 13, k + 7), Blocks.AIR.getDefaultState());
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 8, j + 13, k + 8), Blocks.AIR.getDefaultState());
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 8, j + 13, k + 9), JourneyBlocks.boilBricks.getDefaultState());
