@@ -36,5 +36,5 @@ public interface AnimationProvider<T extends Entity> {
 	 * The entry point for accessing animation stuff.
 	 */
 	@NotNull
-	ActionController<T> getActionController();
+	ActionManager<T> getActionManager();
 }

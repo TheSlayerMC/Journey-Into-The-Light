@@ -5,19 +5,19 @@ import net.minecraft.entity.monster.EntityMob;
 import ru.timeconqueror.timecore.TimeCore;
 import ru.timeconqueror.timecore.animation.component.DelayedAction;
 import ru.timeconqueror.timecore.animation.watcher.AnimationWatcher;
-import ru.timeconqueror.timecore.api.animation.ActionController;
+import ru.timeconqueror.timecore.api.animation.ActionManager;
 import ru.timeconqueror.timecore.api.animation.Animation;
 import ru.timeconqueror.timecore.api.animation.AnimationManager;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActionControllerImpl<T extends EntityMob> implements ActionController<T> {
+public class ActionManagerImpl<T extends EntityMob> implements ActionManager<T> {
 	private final List<ActionWatcher<T>> actionWatchers = new ArrayList<>();
 	private final BaseAnimationManager animationManager;
 	private final T entity;
 
-	public ActionControllerImpl(BaseAnimationManager animationManager, T entity) {
+	public ActionManagerImpl(BaseAnimationManager animationManager, T entity) {
 		this.animationManager = animationManager;
 		this.entity = entity;
 	}

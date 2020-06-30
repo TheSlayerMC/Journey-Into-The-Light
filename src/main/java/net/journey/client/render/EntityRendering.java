@@ -98,6 +98,7 @@ import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
 public class EntityRendering {
+
     public static void preInit() {
         RenderingRegistry.registerEntityRenderingHandler(EntityMagmaFireball.class, manager -> new RenderProjectile<>(manager, Textures.getProjectileTextureLocation("magma_ball")));
         RenderingRegistry.registerEntityRenderingHandler(EntityBouncingProjectile.class, manager -> new RenderProjectile<>(manager, Textures.getProjectileTextureLocation("bouncing")));
@@ -108,6 +109,8 @@ public class EntityRendering {
         RenderingRegistry.registerEntityRenderingHandler(EntityShimmererProjectile.class, manager -> new RenderProjectile<>(manager, Textures.getProjectileTextureLocation("shimmerer_projectile")));
         RenderingRegistry.registerEntityRenderingHandler(EntityBubbleProjectile.class, manager -> new RenderProjectile<>(manager, Textures.getProjectileTextureLocation("bubble")));
         RenderingRegistry.registerEntityRenderingHandler(EntityDetractor.class, manager -> new RenderProjectile<>(manager, Textures.getProjectileTextureLocation("detractor")));
+
+        RenderingRegistry.registerEntityRenderingHandler(EntityFloro.class, manager -> new AnimatedMobRenderer<>(manager, Textures.getEntityModelLocation("floro"), Textures.getMobTextureLocation("floro")));
 //        RenderingRegistry.registerEntityRenderingHandler(EntityFloro.class, manager -> new AnimatedMobRenderer<>(manager, TimeClientLoader.loadJsonEntityModel(entityModelLocation("overworld/floro")), entityTextureLocation("overworld/floro")));
     }
 

@@ -1,6 +1,5 @@
 package ru.timeconqueror.timecore.animation;
 
-import net.journey.network.NetworkHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -10,15 +9,16 @@ import ru.timeconqueror.timecore.animation.watcher.AnimationWatcher;
 import ru.timeconqueror.timecore.client.render.model.TimeEntityModel;
 import ru.timeconqueror.timecore.common.network.S2CEndAnimationMsg;
 import ru.timeconqueror.timecore.common.network.S2CStartAnimationMsg;
+import ru.timeconqueror.timecore.common.network.TCNetworkHandler;
 
 public class ServerAnimationManager<T extends EntityMob> extends BaseAnimationManager {
-    private ActionControllerImpl<T> stateMachine;
+    private ActionManagerImpl<T> stateMachine;
 
     public ServerAnimationManager(@Nullable AnimationSetting walkingAnimationStarter) {
         super(walkingAnimationStarter);
     }
 
-    void setStateMachine(ActionControllerImpl<T> stateMachine) {
+    void setStateMachine(ActionManagerImpl<T> stateMachine) {
         this.stateMachine = stateMachine;
     }
 
@@ -31,7 +31,7 @@ public class ServerAnimationManager<T extends EntityMob> extends BaseAnimationMa
     protected void onAnimationSet(AnimationStarter.AnimationData data, Layer layer) {
         super.onAnimationSet(data, layer);
 
-        NetworkHandler.INSTANCE.sendToAllTracking(new S2CStartAnimationMsg(stateMachine.getEntity(), layer.getName(), data), stateMachine.getEntity());
+        TCNetworkHandler.INSTANCE.sendToAllTracking(new S2CStartAnimationMsg(stateMachine.getEntity(), layer.getName(), data), stateMachine.getEntity());
     }
 
     @Override
@@ -42,7 +42,7 @@ public class ServerAnimationManager<T extends EntityMob> extends BaseAnimationMa
     }
 
     private void proceedActions(AnimationWatcher watcher) {
-        for (ActionControllerImpl.ActionWatcher<T> actionWatcher : stateMachine.getActionWatchers()) {
+        for (ActionManagerImpl.ActionWatcher<T> actionWatcher : stateMachine.getActionWatchers()) {
             if (actionWatcher.isBound(watcher.getAnimation())) {
                 if (actionWatcher.shouldBeExecuted(watcher)) {
                     actionWatcher.runAction(stateMachine.getEntity());
@@ -55,7 +55,7 @@ public class ServerAnimationManager<T extends EntityMob> extends BaseAnimationMa
     public void removeAnimation(String layerName, int transitionTime) {
         super.removeAnimation(layerName, transitionTime);
 
-        NetworkHandler.INSTANCE.sendToAllTracking(new S2CEndAnimationMsg(stateMachine.getEntity(), layerName, transitionTime), stateMachine.getEntity());
+        TCNetworkHandler.INSTANCE.sendToAllTracking(new S2CEndAnimationMsg(stateMachine.getEntity(), layerName, transitionTime), stateMachine.getEntity());
     }
 
     @Override

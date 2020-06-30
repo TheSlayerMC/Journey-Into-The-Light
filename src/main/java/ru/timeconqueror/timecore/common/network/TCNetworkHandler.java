@@ -1,14 +1,12 @@
-package net.journey.network;
+package ru.timeconqueror.timecore.common.network;
 
-import net.journey.JITL;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
-import ru.timeconqueror.timecore.common.network.S2CEndAnimationMsg;
-import ru.timeconqueror.timecore.common.network.S2CStartAnimationMsg;
+import ru.timeconqueror.timecore.TimeCore;
 
-public class NetworkHandler {
-	public static final SimpleNetworkWrapper INSTANCE = NetworkRegistry.INSTANCE.newSimpleChannel(JITL.MOD_ID);
+public class TCNetworkHandler {
+	public static final SimpleNetworkWrapper INSTANCE = NetworkRegistry.INSTANCE.newSimpleChannel(TimeCore.MODID);
 
 	public static void registerPackets() {
 		int idx = 0;

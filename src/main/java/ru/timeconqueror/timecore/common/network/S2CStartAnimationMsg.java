@@ -58,7 +58,7 @@ public class S2CStartAnimationMsg extends S2CAnimationMsg {
 			}
 
 			if (errorMessage == null) {
-				animationStarter.startAt(provider.getActionController().getAnimationManager(), packet.layerName);
+				animationStarter.startAt(provider.getActionManager().getAnimationManager(), packet.layerName);
 			} else {
 				TimeCore.LOGGER.error(errorMessage);
 			}

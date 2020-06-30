@@ -1,6 +1,7 @@
 package net.journey;
 
 import net.journey.proxy.CommonProxy;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -74,5 +75,14 @@ public class JITL {
 	public static void serverStarting(FMLServerStartingEvent event) {
 		SlayerAPI.logger.info("Starting server...");
 		proxy.serverStarting(event);
+	}
+
+	/**
+	 * Creates resource location with {@link #MOD_ID} as a namespace and provided path.
+	 *
+	 * @param path path under {@link #MOD_ID} namespace.
+	 */
+	public static ResourceLocation rl(String path) {
+		return new ResourceLocation(JITL.MOD_ID, path);
 	}
 }

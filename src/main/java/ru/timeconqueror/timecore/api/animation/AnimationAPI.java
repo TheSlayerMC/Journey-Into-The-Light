@@ -13,7 +13,10 @@ public class AnimationAPI {
 	 * <p>
 	 * Creates and registers animation, which is a single one in the file with provided path.
 	 *
-	 * @param animationFileLocation path to the file
+	 * @param animationFileLocation path to the file, should contain path to the file location under the data/ folder.
+	 *                              Example:
+	 *                              {@code loadAndRegisterAnimation(new ResourceLocation(TimeCore.MODID, "new ResourceLocation(TimeCore.MODID, "animations/zombie_hit.json")))}
+	 *                              results in {@code data/timecore/animations/zombie_hit.json}.
 	 */
 	public static Animation loadAndRegisterAnimation(ResourceLocation animationFileLocation) {
 		return AnimationRegistry.registerAnimation(AnimationLoader.loadAnimation(animationFileLocation));
@@ -23,7 +26,10 @@ public class AnimationAPI {
 	 * Creates a map of all animations in the file with provided path and registers all retrieved animations.
 	 * Key in this map is the name of the animation, that is indicated in the file.
 	 *
-	 * @param animationFileLocation path to the file
+	 * @param animationFileLocation path to the file, should contain path to the file location under the data/ folder.
+	 *                              Example:
+	 *                              {@code loadAndRegisterAnimation(new ResourceLocation(TimeCore.MODID, "new ResourceLocation(TimeCore.MODID, "animations/zombie_hit.json")))}
+	 *                              results in {@code data/timecore/animations/zombie_hit.json}.
 	 */
 	public static Map<String, Animation> loadAndRegisterAnimations(ResourceLocation animationFileLocation) {
 		Map<String, Animation> animations = AnimationLoader.loadAnimations(animationFileLocation);

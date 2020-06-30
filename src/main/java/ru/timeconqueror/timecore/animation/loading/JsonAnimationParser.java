@@ -30,7 +30,9 @@ public class JsonAnimationParser {
 	private static final Gson GSON = (new GsonBuilder()).create();
 
 	public Map<String, Animation> parseAnimations(@NotNull ResourceLocation fileLocation) throws JsonParsingException {
-		try (final InputStream inputStream = ResourceUtils.getStream(ResourceUtils.asDataSubpath(fileLocation.getNamespace() + "/" + fileLocation.getPath()))) {
+		String path = ResourceUtils.asDataSubpath(fileLocation.getNamespace() + "/" + fileLocation.getPath());
+
+		try (final InputStream inputStream = ResourceUtils.getStream(path)) {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 
 			JsonObject json = net.minecraft.util.JsonUtils.gsonDeserialize(GSON, reader, JsonObject.class, true);

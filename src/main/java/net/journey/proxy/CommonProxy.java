@@ -23,7 +23,6 @@ import net.journey.init.items.JourneyConsumables;
 import net.journey.init.items.JourneyItems;
 import net.journey.init.items.JourneyWeapons;
 import net.journey.integration.Integrations;
-import net.journey.network.NetworkHandler;
 import net.journey.util.Config;
 import net.journey.util.JourneyFuelHandler;
 import net.minecraft.block.Block;
@@ -43,6 +42,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.slayer.api.SlayerAPI;
+import ru.timeconqueror.timecore.common.network.TCNetworkHandler;
 
 public class CommonProxy {
 
@@ -109,7 +109,7 @@ public class CommonProxy {
         SlayerAPI.registerEventListener(new RenderBar());
         CapabilityManager.INSTANCE.register(IEssence.class, new EssenceStorage(), EssenceBar.class);
 
-        NetworkHandler.registerPackets();
+        TCNetworkHandler.registerPackets();
     }
 
     public void init(FMLInitializationEvent event) {
@@ -118,6 +118,13 @@ public class CommonProxy {
         JourneyRecipes.init();
         NetworkRegistry.INSTANCE.registerGuiHandler(JITL.instance, new GuiHandler());
         GameRegistry.registerWorldGenerator(new WorldGenJourney(), 2);
+
+        try {
+            Class.forName(JAnimations.class.getName());
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
         Integrations.onInit(event);
     }
 

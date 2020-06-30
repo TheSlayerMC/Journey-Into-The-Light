@@ -2,7 +2,7 @@ package ru.timeconqueror.timecore.animation;
 
 import net.minecraft.entity.monster.EntityMob;
 import ru.timeconqueror.timecore.animation.util.LayerReference;
-import ru.timeconqueror.timecore.api.animation.ActionController;
+import ru.timeconqueror.timecore.api.animation.ActionManager;
 import ru.timeconqueror.timecore.api.animation.AnimationConstants;
 import ru.timeconqueror.timecore.api.animation.BlendType;
 import ru.timeconqueror.timecore.util.SingleUseBuilder;
@@ -13,10 +13,12 @@ public class AnimationManagerBuilder extends SingleUseBuilder {
 	private final HashMap<String, Layer> animationLayers = new HashMap<>();
 	private AnimationSetting walkingAnimationSetting;
 
-	public AnimationManagerBuilder(boolean setupDefaultLayer) {
-		if (setupDefaultLayer) {
-			addLayer(LayerReference.WALKING.createLayerFromDefault());
-		}
+	public static AnimationManagerBuilder create() {
+		return new AnimationManagerBuilder();
+	}
+
+	public AnimationManagerBuilder addWalkingAnimationHandling(AnimationStarter walkingAnimationStarter, LayerReference layerReference) {
+		return addWalkingAnimationHandling(walkingAnimationStarter, layerReference.getName());
 	}
 
 	public AnimationManagerBuilder addWalkingAnimationHandling(AnimationStarter walkingAnimationStarter, String layerName) {
@@ -26,6 +28,11 @@ public class AnimationManagerBuilder extends SingleUseBuilder {
 		} else {
 			throw new IllegalStateException(String.format("You need to define layer %s before adding animation handlers to it.", layerName));
 		}
+	}
+
+	public AnimationManagerBuilder addLayer(LayerReference layerReference) {
+		addLayer(layerReference.createLayerFromDefault());
+		return this;
 	}
 
 	public AnimationManagerBuilder addLayer(String name, int priority, BlendType blendType, float weight) {
@@ -71,9 +78,9 @@ public class AnimationManagerBuilder extends SingleUseBuilder {
 	}
 
 	@SuppressWarnings("unchecked")
-	<T extends EntityMob> void init(BaseAnimationManager manager, ActionController<T> actionController) {
+	<T extends EntityMob> void init(BaseAnimationManager manager, ActionManager<T> actionManager) {
 		if (manager instanceof ServerAnimationManager) {
-			((ServerAnimationManager<T>) manager).setStateMachine((ActionControllerImpl<T>) actionController);
+			((ServerAnimationManager<T>) manager).setStateMachine((ActionManagerImpl<T>) actionManager);
 		}
 	}
 }

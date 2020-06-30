@@ -3,7 +3,7 @@ package net.journey.client.render;
 import net.journey.JITL;
 import net.minecraft.util.ResourceLocation;
 import net.slayer.api.SlayerAPI;
-
+//TODO rename to PathResolver or smth like that
 public class Textures {
 
     public static final String prefix = SlayerAPI.PREFIX + "textures/models/mobs/";
@@ -208,14 +208,22 @@ public class Textures {
     }
 
     private static ResourceLocation addModel(String tex) {
-        return new ResourceLocation(modelPrefix + tex.toLowerCase() + ".png");
+	    return new ResourceLocation(modelPrefix + tex.toLowerCase() + ".png");
     }
 
-    private static ResourceLocation addSlot(String tex) {
-        return new ResourceLocation(slotPrefix + tex.toLowerCase() + ".png");
-    }
+	private static ResourceLocation addSlot(String tex) {
+		return new ResourceLocation(slotPrefix + tex.toLowerCase() + ".png");
+	}
 
-    public static ResourceLocation getProjectileTextureLocation(String path) {
-        return new ResourceLocation(JITL.MOD_ID, "textures/entity/projectile/" + path + ".png");
-    }
+	public static ResourceLocation getProjectileTextureLocation(String path) {
+		return new ResourceLocation(JITL.MOD_ID, "textures/entity/projectile/" + path + ".png");
+	}
+
+	public static ResourceLocation getMobTextureLocation(String path) {
+		return new ResourceLocation(JITL.MOD_ID, "textures/entity/mob/" + path + ".png");
+	}
+
+	public static ResourceLocation getEntityModelLocation(String path) {
+		return new ResourceLocation(JITL.MOD_ID, "models/entity/" + path + ".json");
+	}
 }

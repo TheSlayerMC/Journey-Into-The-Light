@@ -2,6 +2,7 @@ package net.journey.entity.mob.overworld;
 
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityFloroWater;
+import net.journey.init.JAnimations;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.minecraft.entity.EntityLivingBase;
@@ -17,16 +18,25 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.slayer.api.entity.JEntityMob;
-
 import org.jetbrains.annotations.NotNull;
+import ru.timeconqueror.timecore.animation.ActionManagerBuilder;
+import ru.timeconqueror.timecore.animation.AnimationManagerBuilder;
+import ru.timeconqueror.timecore.animation.AnimationStarter;
+import ru.timeconqueror.timecore.animation.util.LayerReference;
+import ru.timeconqueror.timecore.api.animation.ActionManager;
+import ru.timeconqueror.timecore.api.animation.AnimationProvider;
 
-public class EntityFloro extends JEntityMob implements IRangedAttackMob {
-//	private AnimationManager animationManager = new AnimationManager();
-//	private static final DataParameter<Byte> STATE = EntityDataManager.createKey(EntityFloro.class, DataSerializers.BYTE);
+public class EntityFloro extends JEntityMob implements IRangedAttackMob, AnimationProvider<EntityFloro> {
+	private final ActionManager<EntityFloro> actionManager;
 
 	public EntityFloro(World world) {
 		super(world);
-//		dataManager.register();
+
+		actionManager = ActionManagerBuilder.<EntityFloro>create(
+				AnimationManagerBuilder.create()
+						.addLayer(LayerReference.WALKING)
+						.addWalkingAnimationHandling(new AnimationStarter(JAnimations.FLORO_WALK), LayerReference.WALKING)
+		).build(this, world);
 	}
 
 	@Override
@@ -93,8 +103,8 @@ public class EntityFloro extends JEntityMob implements IRangedAttackMob {
 		return MobStats.FLORO;
 	}
 
-//	@Override
-//	public AnimationManager getAnimationManager() {
-//		return animationManager;
-//	}
+	@Override
+	public @NotNull ActionManager<EntityFloro> getActionManager() {
+		return actionManager;
+	}
 }
