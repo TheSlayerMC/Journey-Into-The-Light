@@ -243,7 +243,7 @@ public class ChunkGeneratorEuca implements IChunkGenerator {
 
 		boolean hasVillagesGenerated = false;
 
-		Biome biome = world.getBiome(chunkStart.add(16, 0, 16)); //why do we need to get a biome of the another chunk?
+		Biome biome = world.getBiome(chunkStart);
 		biome.decorate(this.world, this.rand, chunkStart);
 		if (net.minecraftforge.event.terraingen.TerrainGen.populate(this, world, rand, chunkX, chunkZ, hasVillagesGenerated, net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.ANIMALS))
 			WorldEntitySpawner.performWorldGenSpawning(this.world, biome, chunkX + 8, chunkZ + 8, 16, 16, this.rand);

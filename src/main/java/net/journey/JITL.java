@@ -12,11 +12,12 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 
-@Mod(name = JITL.MOD_NAME, modid = JITL.MOD_ID, version = JITL.MOD_VERSION)
+@Mod(name = JITL.MOD_NAME, modid = JITL.MOD_ID, version = JITL.MOD_VERSION, dependencies = JITL.DEPENDENCIES)
 public class JITL {
 	public static final String MOD_NAME = "Journey Into the Light";
 	public static final String MOD_ID = "journey";
 	public static final String MOD_VERSION = "GRADLETOKEN_VERSION"; //will be automatically changed during build task
+	public static final String DEPENDENCIES = "required-after:baubles@[1.5.2,);";
 
 	/**
 	 * Equals true only if journey is launched in its development workspace.
