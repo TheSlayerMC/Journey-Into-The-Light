@@ -1,5 +1,6 @@
 package net.journey.blocks.portal;
 
+import net.journey.blocks.base.JBlockPortal;
 import net.journey.dimension.base.ModTeleporter;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.Config;
@@ -14,20 +15,19 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Random;
 
-public class BlockTerraniaPortal extends BlockModPortal {
+public class BlockTerraniaPortal extends JBlockPortal {
 
 
-    public BlockTerraniaPortal(String name) {
-        super(name, "Terrania Portal");
-    }
+	public BlockTerraniaPortal(String name) {
+		super(name, "Terrania Portal", () -> JourneyBlocks.terraniaPortalFrame);
+	}
 
-    @Override
+	@Override
 	public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entity) {
 		if ((entity.getRidingEntity() == null) && ((entity instanceof EntityPlayerMP))) {
 			
@@ -126,21 +126,21 @@ public class BlockTerraniaPortal extends BlockModPortal {
     public boolean makePortal(World worldIn, BlockPos p) {
         EntityLightningBolt bolt = new EntityLightningBolt(worldIn, p.getX(), p.getY(), p.getZ(), false);
         PortalSize size = new PortalSize(JourneyBlocks.terraniaPortalFrame, JourneyBlocks.terraniaPortal, worldIn, p, EnumFacing.Axis.X);
-        if (size.isValid() && size.portalBlockCount == 0) {
-            size.placePortalBlocks();
-            worldIn.addWeatherEffect(bolt);
-            worldIn.createExplosion(bolt, p.getX(), p.getY(), p.getZ(), 0.0F, true);
-            return true;
-        } else {
-            size = size.spin(EnumFacing.Axis.Z);
-            if (size.isValid() && size.portalBlockCount == 0) {
-                size.placePortalBlocks();
-                worldIn.addWeatherEffect(bolt);
-                worldIn.createExplosion(bolt, p.getX(), p.getY(), p.getZ(), 0.0F, true);
-                return true;
-            } else {
-                return false;
-            }
+	    if (size.isValid() && size.getPortalBlockCount() == 0) {
+		    size.placePortalBlocks();
+		    worldIn.addWeatherEffect(bolt);
+		    worldIn.createExplosion(bolt, p.getX(), p.getY(), p.getZ(), 0.0F, true);
+		    return true;
+	    } else {
+		    size = size.spin(EnumFacing.Axis.Z);
+		    if (size.isValid() && size.getPortalBlockCount() == 0) {
+			    size.placePortalBlocks();
+			    worldIn.addWeatherEffect(bolt);
+			    worldIn.createExplosion(bolt, p.getX(), p.getY(), p.getZ(), 0.0F, true);
+			    return true;
+		    } else {
+			    return false;
+		    }
         }
     }
 }

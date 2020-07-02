@@ -1,5 +1,6 @@
 package net.journey.blocks.portal;
 
+import net.journey.blocks.base.JBlockPortal;
 import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.util.EnumFacing;
@@ -7,7 +8,7 @@ import net.minecraft.util.EnumFacing.Axis;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-class PortalSize {
+public class PortalSize {
     private final Block portalFrame;
     private final Block portal;
     private final World world;
@@ -15,7 +16,7 @@ class PortalSize {
     private final EnumFacing.Axis axis;
     private final EnumFacing rightDir;
     private final EnumFacing leftDir;
-    int portalBlockCount;
+    private int portalBlockCount;
     private BlockPos bottomLeft;
     private int height;
     private int width;
@@ -35,7 +36,9 @@ class PortalSize {
             this.rightDir = EnumFacing.SOUTH;
         }
 
-        for (BlockPos start = pos; pos.getY() > start.getY() - 21 && pos.getY() > 0 && this.isEmptyBlock(pos.down()); pos = pos.down()) {
+        BlockPos start = pos;
+        while (pos.getY() > start.getY() - 21 && pos.getY() > 0 && this.isEmptyBlock(pos.down())) {
+            pos = pos.down();
         }
 
         int i = this.getDistanceUntilEdge(pos, this.leftDir) - 1;
@@ -145,8 +148,12 @@ class PortalSize {
             BlockPos blockpos = this.bottomLeft.offset(this.rightDir, i);
 
             for (int j = 0; j < this.height; ++j) {
-                this.world.setBlockState(blockpos.up(j), portal.getDefaultState().withProperty(BlockModPortal.AXIS, this.axis), 2);
+                this.world.setBlockState(blockpos.up(j), portal.getDefaultState().withProperty(JBlockPortal.AXIS, this.axis), 2);
             }
         }
+    }
+
+    public int getPortalBlockCount() {
+        return portalBlockCount;
     }
 }

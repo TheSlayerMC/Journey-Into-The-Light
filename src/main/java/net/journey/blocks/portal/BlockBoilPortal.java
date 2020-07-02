@@ -1,5 +1,6 @@
 package net.journey.blocks.portal;
 
+import net.journey.blocks.base.JBlockPortal;
 import net.journey.client.render.particles.EntityBoilPotalFX;
 import net.journey.dimension.base.ModTeleporter;
 import net.journey.init.blocks.JourneyBlocks;
@@ -14,23 +15,22 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Random;
 
-public class BlockBoilPortal extends BlockModPortal {
+public class BlockBoilPortal extends JBlockPortal {
 
-    public BlockBoilPortal(String name) {
-        super(name, "Boiling Portal");
-    }
+	public BlockBoilPortal(String name) {
+		super(name, "Boiling Portal", () -> JourneyBlocks.boilPortalFrame);
+	}
 
-    @Override
+	@Override
 	public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entity) {
 		if ((entity.getRidingEntity() == null) && ((entity instanceof EntityPlayerMP))) {
-			
+
 			EntityPlayerMP playerMP = (EntityPlayerMP) entity;
 			Block blockFrame = JourneyBlocks.boilPortalFrame;
 
@@ -60,24 +60,24 @@ public class BlockBoilPortal extends BlockModPortal {
 			 * change player dimension to destination dimension based on current dim ID
 			 */
 			entity.changeDimension(destination, new ModTeleporter(entity.getServer().getWorld(destination), this, blockFrame.getDefaultState()));
-			
+
 			if (destination == dimensionID) {
 				playerMP.setSpawnChunk(new BlockPos(playerMP), true, dimensionID);
 			}
 		}
-    }
+	}
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void randomDisplayTick(IBlockState state, World worldIn, BlockPos pos, Random rand) {
-        if (rand.nextInt(100) == 0)
-            worldIn.playSound((double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, SoundEvents.BLOCK_PORTAL_AMBIENT, SoundCategory.BLOCKS, 0.5F, rand.nextFloat() * 0.4F + 0.8F, false);
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void randomDisplayTick(IBlockState state, World worldIn, BlockPos pos, Random rand) {
+		if (rand.nextInt(100) == 0)
+			worldIn.playSound((double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, SoundEvents.BLOCK_PORTAL_AMBIENT, SoundCategory.BLOCKS, 0.5F, rand.nextFloat() * 0.4F + 0.8F, false);
 
-        for (int i = 0; i < 4; ++i) {
-            double d0 = (float) pos.getX() + rand.nextFloat();
-            double d1 = (float) pos.getY() + rand.nextFloat();
-            double d2 = (float) pos.getZ() + rand.nextFloat();
-            double d3 = (rand.nextFloat() - 0.5D) * 0.5D;
+		for (int i = 0; i < 4; ++i) {
+			double d0 = (float) pos.getX() + rand.nextFloat();
+			double d1 = (float) pos.getY() + rand.nextFloat();
+			double d2 = (float) pos.getZ() + rand.nextFloat();
+			double d3 = (rand.nextFloat() - 0.5D) * 0.5D;
             double d4 = (rand.nextFloat() - 0.5D) * 0.5D;
             double d5 = (rand.nextFloat() - 0.5D) * 0.5D;
             int j = rand.nextInt(2) * 2 - 1;
@@ -97,22 +97,22 @@ public class BlockBoilPortal extends BlockModPortal {
     public boolean makePortal(World worldIn, BlockPos p) {
         EntityLightningBolt bolt = new EntityLightningBolt(worldIn, p.getX(), p.getY(), p.getZ(), false);
         PortalSize size = new PortalSize(JourneyBlocks.boilPortalFrame, JourneyBlocks.boilPortal, worldIn, p, EnumFacing.Axis.X);
-        if (size.isValid() && size.portalBlockCount == 0) {
-            size.placePortalBlocks();
-            worldIn.addWeatherEffect(bolt);
-            worldIn.createExplosion(bolt, p.getX(), p.getY(), p.getZ(), 0.0F, true);
-            return true;
-        } else {
-            EntityLightningBolt bolt1 = new EntityLightningBolt(worldIn, p.getX(), p.getY(), p.getZ(), false);
-            size = size.spin(EnumFacing.Axis.Z);
-            if (size.isValid() && size.portalBlockCount == 0) {
-                size.placePortalBlocks();
-                worldIn.addWeatherEffect(bolt1);
-                worldIn.createExplosion(bolt1, p.getX(), p.getY(), p.getZ(), 0.0F, true);
-                return true;
-            } else {
-                return false;
-            }
+	    if (size.isValid() && size.getPortalBlockCount() == 0) {
+		    size.placePortalBlocks();
+		    worldIn.addWeatherEffect(bolt);
+		    worldIn.createExplosion(bolt, p.getX(), p.getY(), p.getZ(), 0.0F, true);
+		    return true;
+	    } else {
+		    EntityLightningBolt bolt1 = new EntityLightningBolt(worldIn, p.getX(), p.getY(), p.getZ(), false);
+		    size = size.spin(EnumFacing.Axis.Z);
+		    if (size.isValid() && size.getPortalBlockCount() == 0) {
+			    size.placePortalBlocks();
+			    worldIn.addWeatherEffect(bolt1);
+			    worldIn.createExplosion(bolt1, p.getX(), p.getY(), p.getZ(), 0.0F, true);
+			    return true;
+		    } else {
+			    return false;
+		    }
         }
     }
 }

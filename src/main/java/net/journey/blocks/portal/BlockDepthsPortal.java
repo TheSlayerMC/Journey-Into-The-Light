@@ -1,7 +1,6 @@
 package net.journey.blocks.portal;
 
 import net.journey.JITL;
-import net.journey.dimension.base.ModTeleporter;
 import net.journey.dimension.depths.TeleporterDepths;
 import net.journey.enums.EnumParticlesClasses;
 import net.journey.init.JourneyTabs;
@@ -20,7 +19,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.EnumMaterialTypes;
@@ -34,7 +32,8 @@ public class BlockDepthsPortal extends BlockMod {
     public BlockDepthsPortal(String name, String f) {
         super(EnumMaterialTypes.PORTAL, name, f, 1.0F);
         this.setTickRandomly(true);
-        setCreativeTab(JourneyTabs.PORTAL_BLOCKS);
+	    setHardness(-1F);
+	    setCreativeTab(JourneyTabs.PORTAL_BLOCKS);
     }
 
     @Override

@@ -1,6 +1,5 @@
 package net.journey.blocks.portal;
 
-import net.journey.dimension.base.ModTeleporter;
 import net.journey.dimension.corba.TeleporterCorba;
 import net.journey.init.JourneyTabs;
 import net.journey.init.blocks.JourneyBlocks;
@@ -16,7 +15,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.EnumMaterialTypes;
@@ -30,7 +28,8 @@ public class BlockCorbaPortal extends BlockMod {
     public BlockCorbaPortal(String name, String f) {
         super(EnumMaterialTypes.PORTAL, name, f, 1.0F);
         this.setTickRandomly(true);
-        setCreativeTab(JourneyTabs.PORTAL_BLOCKS);
+	    setHardness(-1F);
+	    setCreativeTab(JourneyTabs.PORTAL_BLOCKS);
     }
 
     @Override
