@@ -1020,9 +1020,9 @@ public class JourneyBlocks {
         tallGlowshroomRed = new BlockTallGlowshroom("tall_glowshroom_red", "Red Tall Glowshroom");
         tallGlowshroomGreen = new BlockTallGlowshroom("tall_glowshroom_green", "Green Tall Glowshroom");
         tallGlowshroomBlue = new BlockTallGlowshroom("tall_glowshroom_blue", "Blue Tall Glowshroom");
-        glowshroomRed = new BlockGlowshroom("glowshroom_red", "Red Glowshroom");
-        glowshroomGreen = new BlockGlowshroom("glowshroom_green", "Green Glowshroom");
-        glowshroomBlue = new BlockGlowshroom("glowshroom_blue", "Blue Glowshroom");
+        glowshroomRed = (BlockGlowshroom) new BlockGlowshroom("glowshroom_red", "Red Glowshroom").setGroundPredicate(GroundPredicate.STONE);
+        glowshroomGreen = (BlockGlowshroom) new BlockGlowshroom("glowshroom_green", "Green Glowshroom").setGroundPredicate(GroundPredicate.STONE);
+        glowshroomBlue = (BlockGlowshroom) new BlockGlowshroom("glowshroom_blue", "Blue Glowshroom").setGroundPredicate(GroundPredicate.STONE);
 
         tallGoldenStalks = (JBlockDoublePlant) new JBlockDoublePlant("tall_golden_stalks", "Tall Golden Stalks", JourneyTabs.DECORATION).setGroundPredicate(GroundPredicate.COMMON_AND_EUCA_GOLD_GRASS);
         goldenBulb = (JBlockFlower) new JBlockFlower("goldenBulb", "Golden Bulb").setGroundPredicate(GroundPredicate.COMMON_AND_EUCA_GOLD_GRASS);
