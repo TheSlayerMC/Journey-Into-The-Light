@@ -123,19 +123,19 @@ public class Config {
         caveVinesTrys = cfg.get("Generation", "Cave vine spawn rate (The lower, the rarer)", 55).getInt();
         ruinsRarity = cfg.get("Generation", "Ruins spawn rate (The higher, the rarer)", 75).getInt();
 
-        shadiumOreTrys = cfg.get("Ore Generation", "Shadium Ore Trys Per Chunk", 1).getInt();
-        shadiumOreGenAmount = cfg.get("Ore Generation", "Shadium Ore Vein Max Amount", 2).getInt();
+        shadiumOreTrys = cfg.get("Ore Generation", "Shadium Ore Trys Per Chunk", 2).getInt();
+        shadiumOreGenAmount = cfg.get("Ore Generation", "Shadium Ore Vein Max Amount", 3).getInt();
         shadiumOreGenMaxY = cfg.get("Ore Generation", "Shadium Spawn Height", 13).getInt();
 
-        luniumOreTrys = cfg.get("Ore Generation", "Lunium Ore Trys Per Chunk", 1).getInt();
-        luniumOreGenAmount = cfg.get("Ore Generation", "Lunium Ore Vein Max Amount", 2).getInt();
+        luniumOreTrys = cfg.get("Ore Generation", "Lunium Ore Trys Per Chunk", 2).getInt();
+        luniumOreGenAmount = cfg.get("Ore Generation", "Lunium Ore Vein Max Amount", 3).getInt();
         luniumOreGenMaxY = cfg.get("Ore Generation", "Lunium Spawn Height", 22).getInt();
 
-        sapphireOreTrys = cfg.get("Ore Generation", "Sapphire Ore Trys Per Chunk", 1).getInt();
-        sapphireOreGenAmount = cfg.get("Ore Generation", "Sapphire Ore Vein Max Amount", 3).getInt();
+        sapphireOreTrys = cfg.get("Ore Generation", "Sapphire Ore Trys Per Chunk", 2).getInt();
+        sapphireOreGenAmount = cfg.get("Ore Generation", "Sapphire Ore Vein Max Amount", 4).getInt();
         sapphireOreGenMaxY = cfg.get("Ore Generation", "Sapphire Spawn Height", 26).getInt();
 
-        iridiumOreTrys = cfg.get("Ore Generation", "Iridium Ore Trys Per Chunk", 1).getInt();
+        iridiumOreTrys = cfg.get("Ore Generation", "Iridium Ore Trys Per Chunk", 2).getInt();
         iridiumOreGenAmount = cfg.get("Ore Generation", "Iridium Ore Vein Max Amount", 4).getInt();
         iridiumOreGenMaxY = cfg.get("Ore Generation", "Iridium Spawn Height", 16).getInt();
 
