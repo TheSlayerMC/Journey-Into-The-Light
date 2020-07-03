@@ -1,12 +1,9 @@
 package net.journey.blocks.tileentity;
 
-import javax.annotation.Nullable;
-
 import net.journey.blocks.containers.BlockIncubator;
 import net.journey.blocks.tileentity.container.ContainerIncubator;
 import net.journey.blocks.tileentity.container.slot.SlotIncubatorFuel;
 import net.journey.util.IncubatorRecipes;
-import net.journey.util.handler.Helper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Blocks;
@@ -35,16 +32,18 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.SidedInvWrapper;
 import net.slayer.api.SlayerAPI;
 
+import javax.annotation.Nullable;
+
 public class TileEntityIncubator extends TileEntityLockable implements ITickable, ISidedInventory {
 
-	private static final int[] SLOTS_TOP = new int[] {0};
-	private static final int[] SLOTS_BOTTOM = new int[] {2, 1};
-	private static final int[] SLOTS_SIDES = new int[] {1};
-	private IItemHandler handlerTop = new SidedInvWrapper(this, EnumFacing.UP);
-	private IItemHandler handlerBottom = new SidedInvWrapper(this, EnumFacing.DOWN);
-	private IItemHandler handlerSide = new SidedInvWrapper(this, EnumFacing.WEST);
-	
-	private NonNullList<ItemStack> incubatorItemStacks = NonNullList.<ItemStack>withSize(3, ItemStack.EMPTY);
+	private static final int[] SLOTS_TOP = new int[]{0};
+	private static final int[] SLOTS_BOTTOM = new int[]{2, 1};
+	private static final int[] SLOTS_SIDES = new int[]{1};
+	private final IItemHandler handlerTop = new SidedInvWrapper(this, EnumFacing.UP);
+	private final IItemHandler handlerBottom = new SidedInvWrapper(this, EnumFacing.DOWN);
+	private final IItemHandler handlerSide = new SidedInvWrapper(this, EnumFacing.WEST);
+
+	private NonNullList<ItemStack> incubatorItemStacks = NonNullList.withSize(3, ItemStack.EMPTY);
 
 	private int incubatorBurnTime;
 	private int currentItemBurnTime;
@@ -114,13 +113,13 @@ public class TileEntityIncubator extends TileEntityLockable implements ITickable
 	}
 
 	public static void registerFixesincubator(DataFixer fixer) {
-		fixer.registerWalker(FixTypes.BLOCK_ENTITY, new ItemStackDataLists(TileEntityIncubator.class, new String[] {"Items"}));
+		fixer.registerWalker(FixTypes.BLOCK_ENTITY, new ItemStackDataLists(TileEntityIncubator.class, "Items"));
 	}
 
 	@Override
 	public void readFromNBT(NBTTagCompound compound) {
 		super.readFromNBT(compound);
-		this.incubatorItemStacks = NonNullList.<ItemStack>withSize(this.getSizeInventory(), ItemStack.EMPTY);
+		this.incubatorItemStacks = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
 		ItemStackHelper.loadAllItems(compound, this.incubatorItemStacks);
 		this.incubatorBurnTime = compound.getInteger("BurnTime");
 		this.cookTime = compound.getInteger("CookTime");
@@ -173,7 +172,7 @@ public class TileEntityIncubator extends TileEntityLockable implements ITickable
 		if (!this.world.isRemote) {
 			ItemStack itemstack = this.incubatorItemStacks.get(1);
 
-			if (this.isBurning() || !itemstack.isEmpty() && !((ItemStack)this.incubatorItemStacks.get(0)).isEmpty()) {
+			if (this.isBurning() || !itemstack.isEmpty() && !this.incubatorItemStacks.get(0).isEmpty()) {
 				if (!this.isBurning() && this.canSmelt()) {
 					this.incubatorBurnTime = getItemBurnTime(itemstack);
 					this.currentItemBurnTime = this.incubatorBurnTime;
@@ -225,7 +224,7 @@ public class TileEntityIncubator extends TileEntityLockable implements ITickable
 	}
 
 	private boolean canSmelt() {
-		if (((ItemStack)this.incubatorItemStacks.get(0)).isEmpty()) {
+		if (this.incubatorItemStacks.get(0).isEmpty()) {
 			return false;
 		} else {
 			ItemStack itemstack = IncubatorRecipes.instance().getSmeltingResult(this.incubatorItemStacks.get(0));
@@ -258,12 +257,11 @@ public class TileEntityIncubator extends TileEntityLockable implements ITickable
 
 			if (itemstack2.isEmpty()) {
 				this.incubatorItemStacks.set(2, itemstack1.copy());
-			}
-			else if (itemstack2.getItem() == itemstack1.getItem()) {
+			} else if (itemstack2.getItem() == itemstack1.getItem()) {
 				itemstack2.grow(itemstack1.getCount());
 			}
 
-			if (itemstack.getItem() == Item.getItemFromBlock(Blocks.SPONGE) && itemstack.getMetadata() == 1 && !((ItemStack)this.incubatorItemStacks.get(1)).isEmpty() && ((ItemStack)this.incubatorItemStacks.get(1)).getItem() == Items.BUCKET) {
+			if (itemstack.getItem() == Item.getItemFromBlock(Blocks.SPONGE) && itemstack.getMetadata() == 1 && !this.incubatorItemStacks.get(1).isEmpty() && this.incubatorItemStacks.get(1).getItem() == Items.BUCKET) {
 				this.incubatorItemStacks.set(1, new ItemStack(Items.WATER_BUCKET));
 			}
 			itemstack.shrink(1);
@@ -337,9 +335,7 @@ public class TileEntityIncubator extends TileEntityLockable implements ITickable
 		if (direction == EnumFacing.DOWN && index == 1) {
 			Item item = stack.getItem();
 
-			if (item != Items.WATER_BUCKET && item != Items.BUCKET) {
-				return false;
-			}
+			return item == Items.WATER_BUCKET || item == Items.BUCKET;
 		}
 
 		return true;

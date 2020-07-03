@@ -8,21 +8,21 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
-public class EntityFireBall extends EntityBasicProjectile {
+public class EntityFireBall extends EntityDamagingProjectile {
+	public EntityFireBall(World var1) {
+		super(var1);
+	}
 
-    public EntityFireBall(World var1) {
-        super(var1);
-    }
+	public EntityFireBall(World var1, EntityLivingBase var3, float dam) {
+		super(var1, var3, dam);
+	}
 
-    public EntityFireBall(World var1, EntityLivingBase var3, float dam) {
-        super(var1, var3, dam);
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
+	@Override
+	@SideOnly(Side.CLIENT)
     public void onUpdate() {
         Random rand = new Random();
         super.onUpdate();
@@ -31,14 +31,14 @@ public class EntityFireBall extends EntityBasicProjectile {
         }
     }
 
-    @Override
-    protected void onImpact(RayTraceResult var1) {
-        if (var1.entityHit != null) {
-            var1.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), getDamage());
-            var1.entityHit.setFire(5);
-        }
-        if (!world.isRemote) this.setDead();
-    }
+	@Override
+	protected void onImpact(@NotNull RayTraceResult rayTraceResult) {
+		if (rayTraceResult.entityHit != null) {
+			rayTraceResult.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), getDamage());
+			rayTraceResult.entityHit.setFire(5);
+		}
+		if (!world.isRemote) this.setDead();
+	}
 
     @Override
     protected float getGravityVelocity() {

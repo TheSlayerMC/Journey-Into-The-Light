@@ -1,7 +1,7 @@
 package net.journey.items.ranged;
 
 import net.journey.JITL;
-import net.journey.entity.projectile.EntityBasicProjectile;
+import net.journey.entity.projectile.EntityDamagingProjectile;
 import net.journey.entity.projectile.EntityLightningBall;
 import net.journey.init.JourneySounds;
 import net.journey.init.JourneyTabs;
@@ -28,9 +28,9 @@ public class ItemCreativeHammer extends ItemSword {
 
     protected int use;
     protected int dam;
-    protected boolean unbreakable;
-    protected Class<? extends EntityBasicProjectile> projectile;
-    protected JourneyToolMaterial mat;
+	protected boolean unbreakable;
+	protected Class<? extends EntityDamagingProjectile> projectile;
+	protected JourneyToolMaterial mat;
 
     public ItemCreativeHammer(String name, String f, JourneyToolMaterial toolMaterial, boolean unbreakable, Class<? extends EntityLightningBall> projectile) {
         super(toolMaterial.getToolMaterial());

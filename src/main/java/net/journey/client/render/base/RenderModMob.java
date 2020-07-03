@@ -1,9 +1,6 @@
 package net.journey.client.render.base;
 
-import org.lwjgl.opengl.GL11;
-
 import net.journey.util.Config;
-import net.journey.util.handler.Helper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.model.ModelBase;
@@ -19,10 +16,11 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
 import net.slayer.api.SlayerAPI.Colour;
 import net.slayer.api.entity.EntityJourneyPet;
+import org.lwjgl.opengl.GL11;
 
 public class RenderModMob<T> extends RenderLiving {
 
-    private ResourceLocation texture;
+    private final ResourceLocation texture;
 
     public RenderModMob(ModelBase model, float shadow, ResourceLocation tex) {
         super(Minecraft.getMinecraft().getRenderManager(), model, shadow);
@@ -48,7 +46,7 @@ public class RenderModMob<T> extends RenderLiving {
                 
                 if(e instanceof EntityJourneyPet) {
                 	EntityJourneyPet pet = (EntityJourneyPet)e;
-                    renderHealth(pet, Colour.DARK_GREEN + "Owner: " + Colour.DARK_BLUE + pet.getOwner().getName().toString(), x, y + 0.25, z, Config.entityHealthDistance);
+                    renderHealth(pet, Colour.DARK_GREEN + "Owner: " + Colour.DARK_BLUE + pet.getOwner().getName(), x, y + 0.25, z, Config.entityHealthDistance);
                 }
             }
         }

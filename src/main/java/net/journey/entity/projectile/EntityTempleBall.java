@@ -8,20 +8,21 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
-public class EntityTempleBall extends EntityBasicProjectile {
+public class EntityTempleBall extends EntityDamagingProjectile {
 
-    public EntityTempleBall(World var1) {
-        super(var1);
-    }
+	public EntityTempleBall(World var1) {
+		super(var1);
+	}
 
-    public EntityTempleBall(World var1, EntityLivingBase var3, float dam) {
-        super(var1, var3, dam);
-    }
+	public EntityTempleBall(World var1, EntityLivingBase var3, float dam) {
+		super(var1, var3, dam);
+	}
 
-    @Override
+	@Override
     public void onUpdate() {
         Random rand = new Random();
         super.onUpdate();
@@ -30,16 +31,16 @@ public class EntityTempleBall extends EntityBasicProjectile {
         }
     }
 
-    @Override
-    protected void onImpact(RayTraceResult var1) {
-        if (var1.entityHit != null) {
-            var1.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), getDamage());
-            ((EntityLivingBase) var1.entityHit).addPotionEffect(new PotionEffect(PotionEffects.getPotionFromID(PotionEffects.moveSlow), 100, 2));
-            ((EntityLivingBase) var1.entityHit).addPotionEffect(new PotionEffect(PotionEffects.getPotionFromID(PotionEffects.confusion), 100, 5));
-            ((EntityLivingBase) var1.entityHit).addPotionEffect(new PotionEffect(PotionEffects.getPotionFromID(PotionEffects.digSlow), 100, 2));
-        }
-        if (!world.isRemote) this.setDead();
-    }
+	@Override
+	protected void onImpact(@NotNull RayTraceResult rayTraceResult) {
+		if (rayTraceResult.entityHit != null) {
+			rayTraceResult.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), getDamage());
+			((EntityLivingBase) rayTraceResult.entityHit).addPotionEffect(new PotionEffect(PotionEffects.getPotionFromID(PotionEffects.moveSlow), 100, 2));
+			((EntityLivingBase) rayTraceResult.entityHit).addPotionEffect(new PotionEffect(PotionEffects.getPotionFromID(PotionEffects.confusion), 100, 5));
+			((EntityLivingBase) rayTraceResult.entityHit).addPotionEffect(new PotionEffect(PotionEffects.getPotionFromID(PotionEffects.digSlow), 100, 2));
+		}
+		if (!world.isRemote) this.setDead();
+	}
 
     @Override
     protected float getGravityVelocity() {

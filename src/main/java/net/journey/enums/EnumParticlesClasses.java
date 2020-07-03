@@ -1,6 +1,7 @@
 package net.journey.enums;
 
 import net.journey.client.render.particles.*;
+import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleFlame;
 import net.minecraft.client.particle.ParticleLava;
 import net.minecraft.client.particle.ParticleSnowShovel;
@@ -29,13 +30,13 @@ public enum EnumParticlesClasses {
     DEPTHS(EntityDepthsPortalFX.class),
     SUMMONING(EntitySummoningFX.class);
 
-    private Class particle;
+	private final Class<? extends Particle> particle;
 
-    EnumParticlesClasses(Class name) {
-        particle = name;
-    }
+	EnumParticlesClasses(Class<? extends Particle> name) {
+		particle = name;
+	}
 
-    public Class getParticle() {
-        return particle;
-    }
+	public Class<? extends Particle> getParticle() {
+		return particle;
+	}
 }

@@ -2,7 +2,7 @@ package net.journey.entity.mob.overworld;
 
 import net.journey.JITL;
 import net.journey.entity.MobStats;
-import net.journey.entity.projectile.EntityFloroWater;
+import net.journey.entity.projectile.EntityFloroDirtProjectile;
 import net.journey.init.JAnimations;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
@@ -57,7 +57,7 @@ public class EntityFloro extends JEntityMob implements IRangedAttackMob, Animati
 	protected void initEntityAI() {
 		super.initEntityAI();
 
-		this.tasks.addTask(-1, new AnimatedRangedAttackAI<>(this, RANGED_ATTACK_ACTION, 0.27F, 50, 8.0F));
+		this.tasks.addTask(-1, new AnimatedRangedAttackAI<>(this, RANGED_ATTACK_ACTION, 0.27F, 50, 64.0F));
 
 		this.tasks.addTask(3, new EntityAIAvoidEntity<>(this, EntityWolf.class, 6.0F, 1.0D, 1.2D));
 		this.tasks.addTask(6, new EntityAIWanderAvoidWater(this, 1.0D));
@@ -69,14 +69,14 @@ public class EntityFloro extends JEntityMob implements IRangedAttackMob, Animati
 
 	@Override
 	public void attackEntityWithRangedAttack(EntityLivingBase target, float f) {
-		EntityFloroWater b = new EntityFloroWater(this.world, this, 1.0F);
-		double d0 = target.posX - this.posX;
-		double d1 = target.getEntityBoundingBox().minY + (double) (target.height / 3.0F) - b.posY;
-		double d2 = target.posZ - this.posZ;
-		double d3 = MathHelper.sqrt(d0 * d0 + d2 * d2);
-		b.shoot(d0, d1 + d3 * 0.20000000298023224D, d2, 1.6F, (float) (14 - this.world.getDifficulty().getId() * 4));
-		JourneySounds.playSound(JourneySounds.MAGIC_SPARKLE, world, this);
-		this.world.spawnEntity(b);
+		EntityFloroDirtProjectile projectile = new EntityFloroDirtProjectile(this.world, this, 0.0F);
+		double dX = target.posX - this.posX;
+		double dY = target.getEntityBoundingBox().minY + (double) (target.height / 3.0F) - projectile.posY;
+		double dZ = target.posZ - this.posZ;
+		double distortion = MathHelper.sqrt(dX * dX + dZ * dZ);
+		projectile.shoot(dX, dY + distortion * 0.20000000298023224D, dZ, 1.6F, (float) (14 - this.world.getDifficulty().getId() * 4));
+//		JourneySounds.playSound(JourneySounds., world, this);
+		this.world.spawnEntity(projectile);
 	}
 
 	@Override
@@ -121,5 +121,10 @@ public class EntityFloro extends JEntityMob implements IRangedAttackMob, Animati
 	@Override
 	public @NotNull ActionManager<EntityFloro> getActionManager() {
 		return actionManager;
+	}
+
+	@Override
+	public float getEyeHeight() {
+		return this.height * 0.78F;
 	}
 }

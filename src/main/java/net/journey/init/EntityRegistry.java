@@ -82,7 +82,7 @@ public class EntityRegistry {
 
 	private static void registerProjectiles(RegistryEvent.Register<EntityEntry> event) {
 		EntityEntry[] projectilesArray = {
-				SlayerAPI.buildProjectileEntry(EntityBasicProjectile.class, "basic"),
+				SlayerAPI.buildProjectileEntry(EntityDamagingProjectile.class, "basic"),
 				SlayerAPI.buildProjectileEntry(EntityBouncingProjectile.class, "bouncing"),
 				SlayerAPI.buildProjectileEntry(EntityChaosProjectile.class, "chaos"),
 				SlayerAPI.buildProjectileEntry(EntityDoomsBringer.class, "doom"),
@@ -127,7 +127,7 @@ public class EntityRegistry {
 				SlayerAPI.buildProjectileEntry(EntityShimmererProjectile.class, "shimmererprojectile"),
 				SlayerAPI.buildProjectileEntry(EntityDemonicBomb.class, "demonicbomb"),
 				SlayerAPI.buildProjectileEntry(EntityFireBomb.class, "firebomb"),
-				SlayerAPI.buildProjectileEntry(EntityFloroWater.class, "florowater"),
+				SlayerAPI.buildProjectileEntry(EntityFloroDirtProjectile.class, "florowater"),
 				SlayerAPI.buildProjectileEntry(EntityFrozenSnowball.class, "frozensnowball"),
 				SlayerAPI.buildProjectileEntry(EntityMagicBomb.class, "magicbomb"),
 				SlayerAPI.buildProjectileEntry(EntityEssenceShuriken.class, "essence_shuriken"),

@@ -3,7 +3,7 @@ package net.journey.items.ranged;
 import net.journey.api.item.IUsesEssence;
 import net.journey.client.server.EssenceProvider;
 import net.journey.client.server.IEssence;
-import net.journey.entity.projectile.EntityBasicProjectile;
+import net.journey.entity.projectile.EntityDamagingProjectile;
 import net.journey.init.JourneySounds;
 import net.journey.init.JourneyTabs;
 import net.journey.items.base.JItem;
@@ -26,20 +26,20 @@ public class ItemStaff extends JItem implements IUsesEssence {
 
     protected final int usage;
     protected int damage;
-    protected boolean unBreakable;
-    protected Class<? extends EntityBasicProjectile> projectile;
+	protected boolean unBreakable;
+	protected Class<? extends EntityDamagingProjectile> projectile;
 
-    public ItemStaff(String name, String f, int magic, int uses, int dam, boolean unbreakable, Class<? extends EntityBasicProjectile> projectile) {
-        super(name, f);
-        this.projectile = projectile;
-        damage = dam;
-        usage = magic;
-        this.unBreakable = unbreakable;
-        setMaxDamage(uses);
-        setMaxStackSize(1);
-        setFull3D();
-        setCreativeTab(JourneyTabs.WEAPONS);
-    }
+	public ItemStaff(String name, String f, int magic, int uses, int dam, boolean unbreakable, Class<? extends EntityDamagingProjectile> projectile) {
+		super(name, f);
+		this.projectile = projectile;
+		damage = dam;
+		usage = magic;
+		this.unBreakable = unbreakable;
+		setMaxDamage(uses);
+		setMaxStackSize(1);
+		setFull3D();
+		setCreativeTab(JourneyTabs.WEAPONS);
+	}
 
     public static float getMagicVelocity(int charge) {
         float f = (float) charge / 20.0F;
@@ -62,7 +62,7 @@ public class ItemStaff extends JItem implements IUsesEssence {
                 if (!unBreakable)
                     stack.damageItem(1, player);
                 try {
-                    EntityBasicProjectile shoot = projectile.getConstructor(World.class, EntityLivingBase.class, float.class).newInstance(world, player, damage);
+	                EntityDamagingProjectile shoot = projectile.getConstructor(World.class, EntityLivingBase.class, float.class).newInstance(world, player, damage);
                     shoot.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 2.5F, 0.2F);
                     world.spawnEntity(shoot);
                     stack.damageItem(1, player);

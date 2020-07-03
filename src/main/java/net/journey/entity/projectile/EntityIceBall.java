@@ -10,20 +10,21 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
-public class EntityIceBall extends EntityBasicProjectile {
+public class EntityIceBall extends EntityDamagingProjectile {
 
-    public EntityIceBall(World var1) {
-        super(var1);
-    }
+	public EntityIceBall(World var1) {
+		super(var1);
+	}
 
-    public EntityIceBall(World var1, EntityLivingBase var3, float dam) {
-        super(var1, var3, dam);
-    }
+	public EntityIceBall(World var1, EntityLivingBase var3, float dam) {
+		super(var1, var3, dam);
+	}
 
-    @Override
+	@Override
     @SideOnly(Side.CLIENT)
     public void onUpdate() {
         Random rand = new Random();
@@ -33,15 +34,15 @@ public class EntityIceBall extends EntityBasicProjectile {
         }
     }
 
-    @Override
-    protected void onImpact(RayTraceResult var1) {
-        if (var1.entityHit != null) {
-            var1.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), getDamage());
-            ((EntityLivingBase) var1.entityHit).addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.moveSlow, 100, 5)));
-            var1.entityHit.extinguish();
-        }
-        if (!world.isRemote) this.setDead();
-    }
+	@Override
+	protected void onImpact(@NotNull RayTraceResult rayTraceResult) {
+		if (rayTraceResult.entityHit != null) {
+			rayTraceResult.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), getDamage());
+			((EntityLivingBase) rayTraceResult.entityHit).addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.moveSlow, 100, 5)));
+			rayTraceResult.entityHit.extinguish();
+		}
+		if (!world.isRemote) this.setDead();
+	}
 
     @Override
     protected float getGravityVelocity() {

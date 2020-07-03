@@ -3,7 +3,7 @@ package net.journey.items.ranged;
 import net.journey.api.item.IUsesEssence;
 import net.journey.client.server.EssenceProvider;
 import net.journey.client.server.IEssence;
-import net.journey.entity.projectile.EntityBasicProjectile;
+import net.journey.entity.projectile.EntityDamagingProjectile;
 import net.journey.entity.projectile.launcher.EntityBouncingProjectile;
 import net.journey.init.JourneySounds;
 import net.journey.init.JourneyTabs;
@@ -26,19 +26,19 @@ import java.util.List;
 public class ItemGun extends JItem implements IUsesEssence {
 
     public int damage;
-    public String ability;
-    protected Class<? extends EntityBasicProjectile> projectile;
+	public String ability;
+	protected Class<? extends EntityDamagingProjectile> projectile;
 
-    public ItemGun(String name, String f, int damage, String ability,
-                   Class<? extends EntityBasicProjectile> projectile) {
-        super(name, f, JourneyTabs.WEAPONS);
-        this.ability = ability;
-        this.projectile = projectile;
-        this.damage = damage;
-        setMaxStackSize(1);
-        setMaxDamage(500);
-        setFull3D();
-    }
+	public ItemGun(String name, String f, int damage, String ability,
+	               Class<? extends EntityDamagingProjectile> projectile) {
+		super(name, f, JourneyTabs.WEAPONS);
+		this.ability = ability;
+		this.projectile = projectile;
+		this.damage = damage;
+		setMaxStackSize(1);
+		setMaxDamage(500);
+		setFull3D();
+	}
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand handIn) {
@@ -55,9 +55,9 @@ public class ItemGun extends JItem implements IUsesEssence {
             } else if (projectile != null && !world.isRemote) {
                 // JourneySounds.playSound(JourneySounds.PLASMA, world, player);
                 try {
-                    EntityBasicProjectile shoot = projectile
-                            .getConstructor(World.class, EntityLivingBase.class, float.class)
-                            .newInstance(world, player, damage);
+	                EntityDamagingProjectile shoot = projectile
+			                .getConstructor(World.class, EntityLivingBase.class, float.class)
+			                .newInstance(world, player, damage);
                     shoot.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F, 1.0F);
                     world.spawnEntity(shoot);
                     stack.damageItem(1, player);

@@ -64,10 +64,13 @@ public class CommonProxy {
 
     public void registerTEISR() { }
 
+    @Deprecated //use WorldUtils#spawnParticles, but don't use it on server side, because it will crash
     public void spawnParticle(EnumParticlesClasses particle, World worldObj, double x, double y, double z, boolean b) { }
 
+    @Deprecated //use WorldUtils#spawnParticles, but don't use it on server side, because it will crash
     public void spawnOreParticle(World worldObj, double x, double y, double z, float r, float g, float b) { }
 
+    @Deprecated //use WorldUtils#spawnParticles, but don't use it on server side, because it will crash
     public void spawnParticle(EnumParticlesClasses particle, World worldObj, double x, double y, double z, double x1, double y2, double z2) { }
 
     public EntityPlayer getPlayer() {

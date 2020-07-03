@@ -110,13 +110,14 @@ public class EntityRendering {
         RenderingRegistry.registerEntityRenderingHandler(EntityShimmererProjectile.class, manager -> new RenderProjectile<>(manager, Textures.getProjectileTextureLocation("shimmerer_projectile")));
         RenderingRegistry.registerEntityRenderingHandler(EntityBubbleProjectile.class, manager -> new RenderProjectile<>(manager, Textures.getProjectileTextureLocation("bubble")));
         RenderingRegistry.registerEntityRenderingHandler(EntityDetractor.class, manager -> new RenderProjectile<>(manager, Textures.getProjectileTextureLocation("detractor")));
+        RenderingRegistry.registerEntityRenderingHandler(EntityFloroDirtProjectile.class, manager -> new RenderProjectile<>(manager, Textures.getProjectileTextureLocation("floro_dirt_ball")));
 
         RenderingRegistry.registerEntityRenderingHandler(EntityFloro.class, manager -> new AnimatedMobRenderer<>(manager, TimeModelLoader.loadJsonEntityModel(Textures.getEntityModelLocation("floro")).setScaleMultiplier(1.6F), Textures.getMobTextureLocation("floro")));
     }
 
     public static void init() {
         /**Projectiles*/
-        RenderingRegistry.registerEntityRenderingHandler(EntityBasicProjectile.class, new RenderStaffProjectile(Textures.basic, 1.0F, 0.2F, 0.2F));
+        RenderingRegistry.registerEntityRenderingHandler(EntityDamagingProjectile.class, new RenderStaffProjectile(Textures.basic, 1.0F, 0.2F, 0.2F));
         RenderingRegistry.registerEntityRenderingHandler(EntityDoomsBringer.class, new RenderStaffProjectile(Textures.basic, 1.2F, 0.2F, 0.2F));
         RenderingRegistry.registerEntityRenderingHandler(EntityConjuring.class, new RenderStaffProjectile(Textures.basic, 0.1F, 1.0F, 0.7F));
         RenderingRegistry.registerEntityRenderingHandler(EntityEnlightenment.class, new RenderStaffProjectile(Textures.basic, 0.7F, 0.0F, 0.7F));

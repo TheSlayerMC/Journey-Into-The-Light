@@ -65,24 +65,28 @@ public class ClientProxy extends CommonProxy {
     }
 
     @Override
-    public void spawnParticle(EnumParticlesClasses particle, World worldObj, double posX, double posY, double posZ, boolean b) {
-        try {
-            Particle fx = null;
-            if (b) {
-                fx = (Particle) particle.getParticle().getConstructor(World.class, double.class, double.class, double.class).newInstance(worldObj, posX, posY, posZ);
-            } else {
-                fx = (Particle) particle.getParticle().getConstructor(World.class, double.class, double.class, double.class, double.class, double.class, double.class).newInstance(worldObj, posX, posY, posZ, 0D, 0D, 0D);
+    @Deprecated //use WorldUtils#spawnParticles, but don't use it on server side, because it will crash
+    public void spawnParticle(EnumParticlesClasses particle, World world, double posX, double posY, double posZ, boolean b) {
+        if (world.isRemote) {
+            try {
+                Particle fx = null;
+                if (b) {
+                    fx = particle.getParticle().getConstructor(World.class, double.class, double.class, double.class).newInstance(world, posX, posY, posZ);
+                } else {
+                    fx = particle.getParticle().getConstructor(World.class, double.class, double.class, double.class, double.class, double.class, double.class).newInstance(world, posX, posY, posZ, 0D, 0D, 0D);
+                }
+                FMLClientHandler.instance().getClient().effectRenderer.addEffect(fx);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            FMLClientHandler.instance().getClient().effectRenderer.addEffect(fx);
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
     @Override
+    @Deprecated //use WorldUtils#spawnParticles, but don't use it on server side, because it will crash
     public void spawnParticle(EnumParticlesClasses particle, World worldObj, double posX, double posY, double posZ, double posX1, double posY1, double posZ1) {
         try {
-            Particle fx = (Particle) particle.getParticle().getConstructor(World.class, double.class, double.class, double.class, double.class, double.class, double.class).newInstance(worldObj, posX, posY, posZ, posX1, posY1, posZ1);
+            Particle fx = particle.getParticle().getConstructor(World.class, double.class, double.class, double.class, double.class, double.class, double.class).newInstance(worldObj, posX, posY, posZ, posX1, posY1, posZ1);
             Minecraft.getMinecraft().effectRenderer.addEffect(fx);
         } catch (Exception e) {
             e.printStackTrace();
@@ -90,6 +94,7 @@ public class ClientProxy extends CommonProxy {
     }
 
     @Override
+    @Deprecated //use WorldUtils#spawnParticles, but don't use it on server side, because it will crash
     public void spawnOreParticle(World w, double x, double y, double z, float r, float g, float b) {
         OreParticleFX fx = new OreParticleFX(w, x, y, z, r, g, b);
         if (fx != null)

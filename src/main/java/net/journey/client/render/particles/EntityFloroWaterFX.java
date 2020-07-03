@@ -10,17 +10,19 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class EntityFloroWaterFX extends Particle {
 
-    private float portalParticleScale;
-    private double portalPosX, portalPosY, portalPosZ;
+    private final float portalParticleScale;
+    private final double portalPosX;
+    private final double portalPosY;
+    private final double portalPosZ;
 
-    public EntityFloroWaterFX(World var1, double var2, double var4, double var6, double var8, double var10, double var12) {
-        super(var1, var2, var4, var6, var8, var10, var12);
-        this.motionX = var8;
-        this.motionY = var10;
-        this.motionZ = var12;
-        this.portalPosX = this.posX = var2;
-        this.portalPosY = this.posY = var4;
-        this.portalPosZ = this.posZ = var6;
+    public EntityFloroWaterFX(World world, double x, double y, double z, double motionX, double motionY, double motionZ) {
+        super(world, x, y, z, motionX, motionY, motionZ);
+        this.motionX = motionX;
+        this.motionY = motionY;
+        this.motionZ = motionZ;
+        this.portalPosX = this.posX = x;
+        this.portalPosY = this.posY = y;
+        this.portalPosZ = this.posZ = z;
         float var14 = this.rand.nextFloat() * 0.6F + 0.4F;
         this.portalParticleScale = this.particleScale = this.rand.nextFloat() * 0.2F + 0.5F;
         this.particleBlue = 0.359595F;

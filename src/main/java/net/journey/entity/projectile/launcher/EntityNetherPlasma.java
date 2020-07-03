@@ -1,7 +1,7 @@
 package net.journey.entity.projectile.launcher;
 
 import net.journey.JITL;
-import net.journey.entity.projectile.EntityBasicProjectile;
+import net.journey.entity.projectile.EntityDamagingProjectile;
 import net.journey.enums.EnumParticlesClasses;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.DamageSource;
@@ -9,20 +9,21 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
-public class EntityNetherPlasma extends EntityBasicProjectile {
+public class EntityNetherPlasma extends EntityDamagingProjectile {
 
-    public EntityNetherPlasma(World var1) {
-        super(var1);
-    }
+	public EntityNetherPlasma(World var1) {
+		super(var1);
+	}
 
-    public EntityNetherPlasma(World var1, EntityLivingBase var3, float dam) {
-        super(var1, var3, dam);
-    }
+	public EntityNetherPlasma(World var1, EntityLivingBase var3, float dam) {
+		super(var1, var3, dam);
+	}
 
-    @Override
+	@Override
     @SideOnly(Side.CLIENT)
     public void onUpdate() {
         Random rand = new Random();
@@ -32,12 +33,12 @@ public class EntityNetherPlasma extends EntityBasicProjectile {
         }
     }
 
-    @Override
-    protected void onImpact(RayTraceResult var1) {
-        if (var1.entityHit != null) {
-            var1.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), getDamage());
-            var1.entityHit.setFire(10);
-        }
-        if (!world.isRemote) this.setDead();
-    }
+	@Override
+	protected void onImpact(@NotNull RayTraceResult rayTraceResult) {
+		if (rayTraceResult.entityHit != null) {
+			rayTraceResult.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), getDamage());
+			rayTraceResult.entityHit.setFire(10);
+		}
+		if (!world.isRemote) this.setDead();
+	}
 }

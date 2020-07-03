@@ -338,7 +338,7 @@ public class JourneyWeapons {
         chaosCannon = new ItemGun("chaosCannon", "Chaos Cannon", 6, "Shoots a bouncing projectile", null);
         rockLauncher = new ItemGun("rockLauncher", "Rock Launcher", 4, "Stuns mobs for 10 seconds", EntityRock.class);
         netherPlasma = new ItemGun("netherPlasma", "Nether Plasma", 10, "Burns mobs for 10 seconds", EntityNetherPlasma.class);
-        oceanPlasma = new ItemGun("oceanPlasma", "Ocean Plasma", 4, "Harms mobs", EntityFloroWater.class);
+        oceanPlasma = new ItemGun("oceanPlasma", "Ocean Plasma", 4, "Harms mobs", EntityFloroDirtProjectile.class);
         forestPlasma = new ItemGun("forestPlasma", "Forest Plasma", 4, "Poisons Mobs for 10 seconds", EntityOvergrown.class);
         eyeBlaster = new ItemGun("eyeBlaster", "Eye Blaster", 12, "Harms and burns mobs for 10 seconds", EntityEyeBlaster.class);
 

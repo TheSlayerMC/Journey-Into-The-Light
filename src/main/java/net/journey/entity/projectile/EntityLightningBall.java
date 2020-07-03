@@ -9,20 +9,21 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
-public class EntityLightningBall extends EntityBasicProjectile {
+public class EntityLightningBall extends EntityDamagingProjectile {
 
-    public EntityLightningBall(World var1) {
-        super(var1);
-    }
+	public EntityLightningBall(World var1) {
+		super(var1);
+	}
 
-    public EntityLightningBall(World var1, EntityLivingBase var3, float dam) {
-        super(var1, var3, dam);
-    }
+	public EntityLightningBall(World var1, EntityLivingBase var3, float dam) {
+		super(var1, var3, dam);
+	}
 
-    @Override
+	@Override
     @SideOnly(Side.CLIENT)
     public void onUpdate() {
         Random rand = new Random();
@@ -32,18 +33,18 @@ public class EntityLightningBall extends EntityBasicProjectile {
         }
     }
 
-    @Override
-    protected void onImpact(RayTraceResult var1) {
-        if (var1.entityHit != null) {
-            var1.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), getDamage());
-        }
-        EntityLightningBolt bolt = new EntityLightningBolt(world, posX, posY, posZ, false);
-        if (!world.isRemote) {
-            world.addWeatherEffect(bolt);
-            world.createExplosion(this, posX, posY, posZ, 2.0F, true);
-            this.setDead();
-        }
-    }
+	@Override
+	protected void onImpact(@NotNull RayTraceResult rayTraceResult) {
+		if (rayTraceResult.entityHit != null) {
+			rayTraceResult.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), getDamage());
+		}
+		EntityLightningBolt bolt = new EntityLightningBolt(world, posX, posY, posZ, false);
+		if (!world.isRemote) {
+			world.addWeatherEffect(bolt);
+			world.createExplosion(this, posX, posY, posZ, 2.0F, true);
+			this.setDead();
+		}
+	}
 
     @Override
     protected float getGravityVelocity() {
