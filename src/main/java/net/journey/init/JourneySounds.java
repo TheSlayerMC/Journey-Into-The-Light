@@ -1,7 +1,5 @@
 package net.journey.init;
 
-import javax.annotation.Nullable;
-
 import net.journey.JITL;
 import net.journey.Registries;
 import net.minecraft.entity.EntityLiving;
@@ -89,6 +87,7 @@ public class JourneySounds {
     public static SoundEvent UNLOCK;
     public static SoundEvent BOTTLE_PLUG;
     public static SoundEvent ETERNAL_NIGHT;
+    public static SoundEvent FLORO_SHOOT;
     
     public static SoundEvent SENTRY_ALTAR_ACTIVATE;
     public static SoundEvent SENTRY_ALTAR_DEACTIVATE;
@@ -204,6 +203,7 @@ public class JourneySounds {
         UNLOCK = registerSound("unlock");
         BOTTLE_PLUG = registerSound("bottle_plug");
         ETERNAL_NIGHT = registerSound("eternal_night");
+        FLORO_SHOOT = registerSound("floro_shoot");
         SENTRY_ALTAR_ACTIVATE = registerSound("sentry_altar_activate");
         SENTRY_ALTAR_DEACTIVATE = registerSound("sentry_altar_deactivate");
         SENTRY_ALTAR_SMOKE = registerSound("sentry_altar_smoke");

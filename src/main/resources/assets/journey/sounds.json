@@ -77,26 +77,141 @@
  "hammer":{"category":"master","sounds": ["journey:hammer"]},
  "magic_sparkle":{"category":"neutral","sounds": ["journey:magic_sparkle"]},
  "page_flip":{"category":"neutral","sounds": ["journey:page_flip"]},
- "plasma":{"category":"neutral","sounds": ["journey:plasma"]},
- "rock": {"category": "master", "sounds": ["journey:rock"]},
- "knife": {"category": "master", "sounds": ["journey:knife"]},
- "staff":{"category":"neutral","sounds": ["journey:staff"]},
- "unlock":{"category":"master","sounds": ["journey:unlock"]},
- "sentry_destruction_moving":{"category":"master","sounds": ["journey:sentry_destruction_moving"]},
- "wrapper":{"category":"neutral","sounds": ["journey:wrapper"]},
- "summon_boss":{"category":"master","sounds": ["journey:summon_boss"]},
- "summon_table":{"category":"master","sounds": ["journey:summon_table"]},
- "eternal_night":{"category":"master","sounds": ["journey:eternal_night"]},
- "sentry_heart_hit":{"category":"master","sounds": ["journey:sentry_heart_hit"]},
- "sentry_heart_beating":{"category":"master","sounds": ["journey:sentry_heart_beating"]},
- "sentry_heart_death":{"category":"master","sounds": ["journey:sentry_heart_death"]},
- "bottle_plug":{"category":"master","sounds": ["journey:bottle_plug"]},
- "sentry_altar_activate":{"category":"master","sounds": ["journey:sentry_altar_activate"]},
- "sentry_altar_deactivate":{"category":"master","sounds": ["journey:sentry_altar_deactivate"]},
- "sentry_altar_smoke":{"category":"master","sounds": ["journey:sentry_altar_smoke"]},
- "underwater_world":{"category": "music", "sounds": [{"name": "journey:music/records/underwater_world", "stream": true}]},
- "blue_water":{"category": "music", "sounds": [{"name": "journey:music/records/blue_water", "stream": true}]},
- "race_star":{"category": "music", "sounds": [{"name": "journey:music/records/race_star", "stream": true}]},
+  "plasma": {
+    "category": "neutral",
+    "sounds": [
+      "journey:plasma"
+    ]
+  },
+  "rock": {
+    "category": "master",
+    "sounds": [
+      "journey:rock"
+    ]
+  },
+  "knife": {
+    "category": "master",
+    "sounds": [
+      "journey:knife"
+    ]
+  },
+  "staff": {
+    "category": "neutral",
+    "sounds": [
+      "journey:staff"
+    ]
+  },
+  "unlock": {
+    "category": "master",
+    "sounds": [
+      "journey:unlock"
+    ]
+  },
+  "sentry_destruction_moving": {
+    "category": "master",
+    "sounds": [
+      "journey:sentry_destruction_moving"
+    ]
+  },
+  "wrapper": {
+    "category": "neutral",
+    "sounds": [
+      "journey:wrapper"
+    ]
+  },
+  "summon_boss": {
+    "category": "master",
+    "sounds": [
+      "journey:summon_boss"
+    ]
+  },
+  "summon_table": {
+    "category": "master",
+    "sounds": [
+      "journey:summon_table"
+    ]
+  },
+  "eternal_night": {
+    "category": "master",
+    "sounds": [
+      "journey:eternal_night"
+    ]
+  },
+  "floro_shoot": {
+    "category": "hostile",
+    "sounds": [
+      "journey:floro_shoot"
+    ]
+  },
+  "sentry_heart_hit": {
+    "category": "master",
+    "sounds": [
+      "journey:sentry_heart_hit"
+    ]
+  },
+  "sentry_heart_beating": {
+    "category": "master",
+    "sounds": [
+      "journey:sentry_heart_beating"
+    ]
+  },
+  "sentry_heart_death": {
+    "category": "master",
+    "sounds": [
+      "journey:sentry_heart_death"
+    ]
+  },
+  "bottle_plug": {
+    "category": "master",
+    "sounds": [
+      "journey:bottle_plug"
+    ]
+  },
+  "sentry_altar_activate": {
+    "category": "master",
+    "sounds": [
+      "journey:sentry_altar_activate"
+    ]
+  },
+  "sentry_altar_deactivate": {
+    "category": "master",
+    "sounds": [
+      "journey:sentry_altar_deactivate"
+    ]
+  },
+  "sentry_altar_smoke": {
+    "category": "master",
+    "sounds": [
+      "journey:sentry_altar_smoke"
+    ]
+  },
+  "underwater_world": {
+    "category": "music",
+    "sounds": [
+      {
+        "name": "journey:music/records/underwater_world",
+        "stream": true
+      }
+    ]
+  },
+  "blue_water": {
+    "category": "music",
+    "sounds": [
+      {
+        "name": "journey:music/records/blue_water",
+        "stream": true
+      }
+    ]
+  },
+  "race_star": {
+    "category": "music",
+    "sounds": [
+      {
+        "name": "journey:music/records/race_star",
+        "stream": true
+      }
+    ]
+  },
  "comp_begins":{"category": "music", "sounds": [{"name": "journey:music/records/comp_begins", "stream": true}]},
  "deep_blue":{"category": "music", "sounds": [{"name": "journey:music/records/deep_blue", "stream": true}]},
  "race_shore":{"category": "music", "sounds": [{"name": "journey:music/records/race_shore", "stream": true}]},
