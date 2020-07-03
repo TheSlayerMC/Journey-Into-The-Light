@@ -201,7 +201,7 @@ public class ArmorAbilityEvent {
                 JourneyArmory.celestiumChest && legs ==
                 JourneyArmory.celestiumLegs && boots ==
                 JourneyArmory.celestiumBoots) {
-            event.player.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.moveSpeed, 10, 2)));
+            event.player.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.moveSpeed, 10, 1)));
             event.player.fallDistance = 0.0F;
         }
     }
@@ -228,7 +228,7 @@ public class ArmorAbilityEvent {
                     JourneyArmory.celestiumChest && legs ==
                     JourneyArmory.celestiumLegs && boots ==
                     JourneyArmory.celestiumBoots) {
-                player.addVelocity(0, 0.3, 0);
+                player.addVelocity(0, 0.1, 0);
             } else if (helmet ==
                     JourneyArmory.starlightHelmet && body ==
                     JourneyArmory.starlightChest && legs ==

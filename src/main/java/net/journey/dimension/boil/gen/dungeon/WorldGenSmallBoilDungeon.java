@@ -185,12 +185,12 @@ public class WorldGenSmallBoilDungeon extends WorldGenerator {
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 3, j + 1, k + 0), Blocks.AIR.getDefaultState());
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 3, j + 1, k + 1), Blocks.AIR.getDefaultState());
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 3, j + 1, k + 2), Blocks.AIR.getDefaultState());
-		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 3, j + 1, k + 3), Blocks.OBSIDIAN.getDefaultState());
+		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 3, j + 1, k + 3), JourneyBlocks.observerSpawner.getDefaultState());
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 3, j + 1, k + 4), JourneyBlocks.boilChest.getDefaultState().withProperty(BlockJourneyChest.FACING, EnumFacing.NORTH));
-        TileEntity chest1 = worldIn.getTileEntity(new BlockPos(i + 3, j + 1, k + 4));
-        if (chest1 instanceof TileEntityJourneyChest) {
-            ((TileEntityJourneyChest) chest1).setLootTable(JourneyLootTables.BOIL_DUNGEON_CHEST, r.nextLong());
-        }
+		TileEntity chest1 = worldIn.getTileEntity(new BlockPos(i + 3, j + 1, k + 4));
+		if (chest1 instanceof TileEntityJourneyChest) {
+			((TileEntityJourneyChest) chest1).setLootTable(JourneyLootTables.BOIL_DUNGEON_CHEST, r.nextLong());
+		}
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 3, j + 1, k + 5), Blocks.AIR.getDefaultState());
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 3, j + 1, k + 6), Blocks.AIR.getDefaultState());
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 3, j + 1, k + 7), Blocks.AIR.getDefaultState());
@@ -254,11 +254,11 @@ public class WorldGenSmallBoilDungeon extends WorldGenerator {
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 4, j + 1, k + 1), Blocks.AIR.getDefaultState());
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 4, j + 1, k + 2), Blocks.AIR.getDefaultState());
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 4, j + 1, k + 3), JourneyBlocks.boilChest.getDefaultState().withProperty(BlockJourneyChest.FACING, EnumFacing.SOUTH));
-        TileEntity chest2 = worldIn.getTileEntity(new BlockPos(i + 4, j + 1, k + 3));
-        if (chest2 instanceof TileEntityJourneyChest) {
-            ((TileEntityJourneyChest) chest2).setLootTable(JourneyLootTables.BOIL_DUNGEON_CHEST, r.nextLong());
-        }
-		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 4, j + 1, k + 4), Blocks.OBSIDIAN.getDefaultState());
+		TileEntity chest2 = worldIn.getTileEntity(new BlockPos(i + 4, j + 1, k + 3));
+		if (chest2 instanceof TileEntityJourneyChest) {
+			((TileEntityJourneyChest) chest2).setLootTable(JourneyLootTables.BOIL_DUNGEON_CHEST, r.nextLong());
+		}
+		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 4, j + 1, k + 4), JourneyBlocks.observerSpawner.getDefaultState());
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 4, j + 1, k + 5), Blocks.AIR.getDefaultState());
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 4, j + 1, k + 6), Blocks.AIR.getDefaultState());
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 4, j + 1, k + 7), Blocks.AIR.getDefaultState());
