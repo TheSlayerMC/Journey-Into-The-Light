@@ -28,6 +28,6 @@ public class ItemDeathCap extends JItem implements IBauble {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack i, World worldIn, List<String> l, ITooltipFlag flagIn) {
-		l.add(SlayerAPI.Colour.GOLD + "Grants increased jump height and poisons attacking foe");
+		l.add(SlayerAPI.Colour.GOLD + "Inflicts a strong poison effect on attacking foe");
 	}
 }

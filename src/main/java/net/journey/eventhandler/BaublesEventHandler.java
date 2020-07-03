@@ -10,7 +10,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -37,16 +36,6 @@ public class BaublesEventHandler {
                         entity.addPotionEffect(PotionEffects.setPotionEffect(PotionEffects.poison, 400, 1));
                     }
                 }
-            }
-        }
-    }
-
-    @SubscribeEvent
-    public void onJump(LivingEvent.LivingJumpEvent event) {
-        if (event.getEntityLiving() instanceof EntityPlayer) {
-            EntityPlayer player = (EntityPlayer) event.getEntityLiving();
-            if (BaublesApi.isBaubleEquipped((EntityPlayer) event.getEntity(), JourneyItems.DEATH_CAP) != -1) {
-                player.addVelocity(0, 0.3, 0);
             }
         }
     }
