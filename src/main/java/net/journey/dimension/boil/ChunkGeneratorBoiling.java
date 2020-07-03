@@ -378,7 +378,6 @@ public class ChunkGeneratorBoiling implements IChunkGenerator {
             infernoPlant.generate(worldObj, r, chunkStart);
         }
 
-
         for (i = 0; i < 50; i++) {
             Block flowers = RandHelper.chooseEqual(rand, JourneyBlocks.crumblingPlant, JourneyBlocks.lavaBloom, JourneyBlocks.crispGrass);
             new WorldGenDesertFlower(flowers, JourneyBlocks.volcanicSand).generate(worldObj, rand, chunkStart);
@@ -397,7 +396,7 @@ public class ChunkGeneratorBoiling implements IChunkGenerator {
 
         if (worldObj.getBiome(chunkStart) == DimensionHelper.SCORCHED_WASTELAND_BIOME) {
             for (times = 0; times < 10; times++) {
-                WorldGenAPI.genOnGround(worldObj, chunkPos, rand, new WorldGenBoilStalagmite());
+                new WorldGenBoilStalagmite().generate(worldObj, rand, chunkStart);
             }
         }
 

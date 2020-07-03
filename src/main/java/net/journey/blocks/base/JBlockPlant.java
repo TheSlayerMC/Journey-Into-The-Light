@@ -43,7 +43,7 @@ import org.jetbrains.annotations.Nullable;
  *     <li>{@link #boundingBox} - bounding box of the plant. Equals standard bush box by default.</li>
  *     <li>{@link #damageOnContact} - Determines if plant will cause damage on entity contact. Default: false</li>
  * </ul>
- *
+ * <p>
  * The item model for it should be placed to "models/item/block/plant/" by default.
  */
 public abstract class JBlockPlant extends BlockBush implements IHasCustomItemPath {
@@ -69,7 +69,7 @@ public abstract class JBlockPlant extends BlockBush implements IHasCustomItemPat
 	/**
 	 * Allows direct render layer implementation without needing to create a new block class, sets CUTOUT_MIPPED as default
 	 */
-	public BlockRenderLayer layer = BlockRenderLayer.CUTOUT_MIPPED;
+	private BlockRenderLayer layer = BlockRenderLayer.CUTOUT_MIPPED;
 
 	public JBlockPlant(String name, String enName) {
 		this(EnumMaterialTypes.PLANT, name, enName, JourneyTabs.DECORATION);
@@ -82,7 +82,9 @@ public abstract class JBlockPlant extends BlockBush implements IHasCustomItemPat
 	public JBlockPlant(EnumMaterialTypes type, String name, String enName, CreativeTabs tab) {
 		super(type.getMaterial());
 		setSoundType(type.getSound());
-		StuffConstructor.regAndSetupBlock(this, name, enName, 0F, tab);
+		setHardness(1.0F);
+
+		StuffConstructor.regAndSetupBlock(this, name, enName, tab);
 	}
 
 	@NotNull
@@ -119,6 +121,19 @@ public abstract class JBlockPlant extends BlockBush implements IHasCustomItemPat
 		return this;
 	}
 
+	/**
+	 * Sets render layer for block. CUTOUT_MIPPED is default.
+	 */
+	public JBlockPlant setRenderLayer(BlockRenderLayer renderLayer) {
+		this.layer = renderLayer;
+		return this;
+	}
+
+	@SideOnly(Side.CLIENT)
+	public BlockRenderLayer getRenderLayer() {
+		return this.layer;
+	}
+
 	@Override
 	public @NotNull AxisAlignedBB getBoundingBox(@NotNull IBlockState state, @NotNull IBlockAccess source, @NotNull BlockPos pos) {
 		return boundingBox;
@@ -136,6 +151,7 @@ public abstract class JBlockPlant extends BlockBush implements IHasCustomItemPat
 	public boolean canBlockStay(@NotNull World worldIn, @NotNull BlockPos pos, @NotNull IBlockState state) {
 		BlockPos groundPos = pos.offset(plantDirection.getOpposite());
 		IBlockState groundState = worldIn.getBlockState(groundPos);
+//		System.out.println("Can't stay : " + groundPredicate.testGround(worldIn, groundPos, groundState, plantDirection));
 		return groundPredicate.testGround(worldIn, groundPos, groundState, plantDirection);
 	}
 
@@ -158,18 +174,5 @@ public abstract class JBlockPlant extends BlockBush implements IHasCustomItemPat
 				}
 			}
 		}
-	}
-
-	/**
-	 * Sets render layer for block. CUTOUT_MIPPED is default.
-	 */
-	public JBlockPlant setRenderLayer(BlockRenderLayer renderLayer) {
-		this.layer = renderLayer;
-		return this;
-	}
-
-	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getRenderLayer() {
-		return this.layer;
 	}
 }

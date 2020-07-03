@@ -21,7 +21,8 @@ public class JBlockLog extends BlockLog implements IHasCustomItemPath {
 
     public JBlockLog(String name, String enName) {
         super();
-        StuffConstructor.regAndSetupBlock(this, name, enName, 3.0F, JourneyTabs.BLOCKS);
+        setHardness(3.0F);
+        StuffConstructor.regAndSetupBlock(this, name, enName, JourneyTabs.BLOCKS);
         this.setDefaultState(this.blockState.getBaseState().withProperty(LOG_AXIS, EnumAxis.Y));
     }
 

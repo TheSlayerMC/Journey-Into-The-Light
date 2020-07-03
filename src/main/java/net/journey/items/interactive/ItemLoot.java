@@ -56,24 +56,20 @@ public class ItemLoot extends JItem {
 		return EnumRarity.UNCOMMON;
 	}
 
-	/*
-	TODO: add support for loot table rolls / multiple different item drops
- 	*/
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
 		if (!world.isRemote) {
 			Random r = new Random();
-			List<ItemStack> lootTable = LootHelper.readFromLootTable(loot, (EntityPlayerMP) player);
+			List<ItemStack> lootTable = LootHelper.readFromLootTable(loot, (EntityPlayerMP) player, player.getLuck());
 			int index = r.nextInt(lootTable.size());
 			ItemStack itemToSpawn = lootTable.get(index);
 
 			SlayerAPI.addFormattedChatMessage(player, "journey.recieve.item", itemToSpawn.getCount() + "x " + new TextComponentTranslation(itemToSpawn.getItem().getTranslationKey() + ".name").getFormattedText());
 
-			JourneySounds.playSound(JourneySounds.WRAPPER, world, player);
-
 			EntityItem item = new EntityItem(world, player.posX, player.posY, player.posZ, itemToSpawn);
 			world.spawnEntity(item);
 			player.getHeldItem(hand).shrink(1);
+			JourneySounds.playSound(JourneySounds.WRAPPER, world, player);
 			return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getHeldItemMainhand());
 		}
 		return new ActionResult<ItemStack>(EnumActionResult.FAIL, player.getHeldItemMainhand());

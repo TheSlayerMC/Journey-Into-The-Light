@@ -11,21 +11,21 @@ import net.minecraft.item.ItemBlock;
 import org.jetbrains.annotations.Nullable;
 
 public class StuffConstructor {
-
 	/**
 	 * Registers block.
-	 * Also sets registry name, translation key, creative tab and adds it to lang generator and sets hardness
+	 * Also sets registry name, translation key, creative tab and adds it to lang generator.
+	 * Registers default itemblock for it.
 	 */
-	public static void regAndSetupBlock(Block block, String name, String enName, float hardness, @Nullable CreativeTabs tab) {
-		block.setHardness(hardness);
-		regAndSetupBlock(block, name, enName, tab);
+	public static void regAndSetupBlock(Block block, String name, String enName, @Nullable CreativeTabs tab) {
+		regAndSetupBlock(block, name, enName, tab, new ItemBlock(block));
 	}
 
 	/**
 	 * Registers block.
 	 * Also sets registry name, translation key, creative tab and adds it to lang generator.
+	 * Registers its itemblock, if provided.
 	 */
-	public static void regAndSetupBlock(Block block, String name, String enName, @Nullable CreativeTabs tab) {
+	public static void regAndSetupBlock(Block block, String name, String enName, @Nullable CreativeTabs tab, @Nullable Item itemBlock) {
 		name = name.toLowerCase();
 
 		block.setRegistryName(JITL.MOD_ID, name)
@@ -34,8 +34,10 @@ public class StuffConstructor {
 
 		JourneyBlocks.blocks.add(block);
 
-		JourneyBlocks.itemBlocks.add(new ItemBlock(block)
-				.setRegistryName(block.getRegistryName()));
+		if (itemBlock != null) {
+			JourneyBlocks.itemBlocks.add(itemBlock
+					.setRegistryName(block.getRegistryName()));
+		}
 
 		LangGeneratorFacade.addBlockEntry(block, enName);
 	}

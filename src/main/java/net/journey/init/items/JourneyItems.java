@@ -372,23 +372,25 @@ public class JourneyItems {
 
 	public static Item blindnessRing;
 	public static Item harmRing;
-    public static Item miningFatigueRing;
-    public static Item nauseaRing;
-    public static Item poisonRing;
-    public static Item slownessRing;
-    public static Item witherRing;
+	public static Item miningFatigueRing;
+	public static Item nauseaRing;
+	public static Item poisonRing;
+	public static Item slownessRing;
+	public static Item witherRing;
 
-    public static Item luckyCharm;
+	public static Item luckyCharm;
 
-    public static void init() {
+	public static Item swampLily;
 
-	    hellstoneIngot = new JItem("hellstoneIngot", "Hellstone Ingot");
-	    shadiumIngot = new JItem("shadiumIngot", "Shadium Ingot");
-	    celestiumIngot = new JItem("celestiumIngot", "Celestium Ingot");
-	    mekyumIngot = new JItem("mekyumIngot", "Mekyum Ingot");
-	    koriteIngot = new JItem("koriteIngot", "Korite Ingot");
-	    storonIngot = new JItem("storonIngot", "Storon Ingot");
-	    luniumIngot = new JItem("luniumIngot", "Lunium Ingot");
+	public static void init() {
+
+		hellstoneIngot = new JItem("hellstoneIngot", "Hellstone Ingot");
+		shadiumIngot = new JItem("shadiumIngot", "Shadium Ingot");
+		celestiumIngot = new JItem("celestiumIngot", "Celestium Ingot");
+		mekyumIngot = new JItem("mekyumIngot", "Mekyum Ingot");
+		koriteIngot = new JItem("koriteIngot", "Korite Ingot");
+		storonIngot = new JItem("storonIngot", "Storon Ingot");
+		luniumIngot = new JItem("luniumIngot", "Lunium Ingot");
 	    flairiumIngot = new JItem("flairiumIngot", "Flairium Ingot");
 	    ash = new JItem("ash", "Ash");
 	    sapphire = new JItem("sapphire", "Sapphire Gem");
@@ -655,18 +657,20 @@ public class JourneyItems {
 		heartContainerSmall = new ItemHeartContainer("heartSml", "Heart Container", 2);
 		heartContainerMedium = new ItemHeartContainer("heartMed", "Heart Container", 6);
 		heartContainerLarge = new ItemHeartContainer("heartLrg", "Heart Container", 10);
-		heartContainerUltimate = new ItemHeartContainer("heartUlt", "Heart Container", 16);
+		heartContainerUltimate = new ItemHeartContainer("heartUlt", "Heart Container", 14);
 		heartContainerSentry = new ItemHeartContainer("heartSen", "Heart of the Sentry", 20);
 
-        blindnessRing = new ItemRingBlindness("ring_blindness", "Ring of Clear Vision");
-        harmRing = new ItemRingHarm("ring_harm", "Ring of Strong Immunity");
-        miningFatigueRing = new ItemRingMiningFatigue("ring_mining_fatigue", "Ring of Great Spelunking");
-        nauseaRing = new ItemRingNausea("ring_nausea", "Ring of Good Health");
-        poisonRing = new ItemRingPoison("ring_poison", "Ring of Safe Living");
-        slownessRing = new ItemRingSlowness("ring_slowness", "Ring of Protected Movement");
-        witherRing = new ItemRingWither("ring_wither", "Ring of Inverse Decay");
-        luckyCharm = new ItemLuckyCharm("charm_of_luck", "Lucky Charm");
-    }
+		blindnessRing = new ItemRingBlindness("ring_blindness", "Ring of Clear Vision");
+		harmRing = new ItemRingHarm("ring_harm", "Ring of Strong Immunity");
+		miningFatigueRing = new ItemRingMiningFatigue("ring_mining_fatigue", "Ring of Great Spelunking");
+		nauseaRing = new ItemRingNausea("ring_nausea", "Ring of Good Health");
+		poisonRing = new ItemRingPoison("ring_poison", "Ring of Safe Living");
+		slownessRing = new ItemRingSlowness("ring_slowness", "Ring of Protected Movement");
+		witherRing = new ItemRingWither("ring_wither", "Ring of Inverse Decay");
+		luckyCharm = new ItemLuckyCharm("charm_of_luck", "Lucky Charm");
+
+		swampLily = new JItemWaterLily("swamp_lily_item", "Swamp Lily");
+	}
 
     public static ToolMaterial addToolMaterial(int uses, float efficiency, float dam, boolean breakable) {
         return EnumHelper.addToolMaterial("tool", 3, breakable ? uses : -1, efficiency, dam - 4, 30);

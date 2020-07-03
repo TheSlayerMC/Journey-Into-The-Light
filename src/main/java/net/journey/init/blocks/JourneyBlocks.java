@@ -124,6 +124,7 @@ public class JourneyBlocks {
     public static BlockMod ironLootBox;
     public static BlockMod goldLootBox;
     public static BlockMod diamondLootBox;
+    public static BlockMod overgrownLootBox;
 
     public static BlockModBush sizzleberryBush;
     public static BlockModBush bradberryBush;
@@ -243,7 +244,7 @@ public class JourneyBlocks {
     public static BlockModLeaves bogwoodLeaves;
     public static JBlockDoublePlant bogweed;
 
-    public static JBlockWaterLily swamp_lily;
+    public static JBlockWaterLily swampLily;
 
     public static JBlockFungalShelf swamp_shelf;
     public static JBlockMushroom bogshroomsSmall;
@@ -285,6 +286,9 @@ public class JourneyBlocks {
     public static JBlockFlower crumblingPlant;
     public static JBlockFlower lavaBloom;
     public static JBlockTallGrass crispGrass;
+
+    public static JBlockPlant boilingBloom;
+    public static JBlockPlant boilingStem;
 
     public static BlockMod cloudiaDirt;
     public static BlockMod cloudiaGrass;
@@ -677,6 +681,7 @@ public class JourneyBlocks {
         ironLootBox = new JBlockRandomLoot("iron_loot_box", "Iron Loot Box", JourneyLootTables.LOOT_BASIC);
         goldLootBox = new JBlockRandomLoot("gold_loot_box", "Gold Loot Box", JourneyLootTables.LOOT_GOLD);
         diamondLootBox = new JBlockRandomLoot("diamond_loot_box", "Diamond Loot Box", JourneyLootTables.LOOT_DIAMOND);
+        overgrownLootBox = new JBlockRandomLoot("overgrown_loot_box", "Overgrown Loot Box", JourneyLootTables.LOOT_OVERGROWN);
 
         magicExplosive = new JBlockTNT("magic_explosive", "Magic Explosive", 10.0F);
 
@@ -707,19 +712,19 @@ public class JourneyBlocks {
         eucaDarkGreenLeaves = new BlockModLeaves("eucaDarkGreenLeaves", "Dark Green Euca Leaves", 1.0F);
 
         GOLDITE_OAK_LOG = new JBlockLog("goldite_oak_log", "Goldite Oak Log");
-        
+
         eucaBricks = new BlockMod("eucaBricks", "Euca Bricks", 2.0F);
         eucaTile = new BlockMod("eucaTile", "Euca Tile", 2.0F);
-        
-        EUCA_SQUARE_DUNGEON_BRICKS = (BlockMod) new BlockMod("euca_square_dungeon_bricks", "Euca Dungeon Bricks").setResistance(100000F).setBlockUnbreakable();
-        EUCA_DUNGEON_BRICKS = (BlockMod) new BlockMod("euca_dungeon_bricks", "Euca Dungeon Bricks").setResistance(100000F).setBlockUnbreakable();
-        EUCA_DUNGEON_BRICK_STAIRS = (BlockModStairs) new BlockModStairs(EUCA_DUNGEON_BRICKS, "euca_dungeon_brick_stairs", "Euca Dungeon Brick Stairs").setResistance(100000F).setBlockUnbreakable();
-        EUCA_SQUARE_RUNIC_BRICKS = (BlockMod) new BlockMod("euca_square_runic_bricks", "Euca Dungeon Bricks").setResistance(100000F).setBlockUnbreakable().setLightLevel(0.2F);
-        EUCA_RUNIC_BRICKS = (BlockMod) new BlockMod("euca_runic_bricks", "Euca Dungeon Bricks").setResistance(100000F).setBlockUnbreakable().setLightLevel(0.2F);
-        EUCA_RUNIC_LAMP = (BlockMod) new BlockMod("euca_runic_lamp", "Euca Dungeon Bricks").setResistance(100000F).setBlockUnbreakable().setLightLevel(0.5F);
-        EUCA_DUNGEON_TILE = (BlockMod) new BlockMod("euca_dungeon_tile", "Euca Dungeon Tile").setResistance(100000F).setBlockUnbreakable();
+
+        EUCA_SQUARE_DUNGEON_BRICKS = new BlockMod("euca_square_dungeon_bricks", "Euca Dungeon Bricks");
+        EUCA_DUNGEON_BRICKS = new BlockMod("euca_dungeon_bricks", "Euca Dungeon Bricks");
+        EUCA_DUNGEON_BRICK_STAIRS = new BlockModStairs(EUCA_DUNGEON_BRICKS, "euca_dungeon_brick_stairs", "Euca Dungeon Brick Stairs");
+        EUCA_SQUARE_RUNIC_BRICKS = (BlockMod) new BlockMod("euca_square_runic_bricks", "Euca Dungeon Bricks").setLightLevel(0.2F);
+        EUCA_RUNIC_BRICKS = (BlockMod) new BlockMod("euca_runic_bricks", "Euca Dungeon Bricks").setLightLevel(0.2F);
+        EUCA_RUNIC_LAMP = (BlockMod) new BlockMod("euca_runic_lamp", "Euca Dungeon Bricks").setLightLevel(0.5F);
+        EUCA_DUNGEON_TILE = new BlockMod("euca_dungeon_tile", "Euca Dungeon Tile");
         EUCA_GOLD_STONE = new BlockMod("euca_gold_stone", "Euca Gold Stone");
-        
+
         depthsDirt = new BlockMod(EnumMaterialTypes.DIRT, "depthsDirt", "Depths Dirt", 2.0F);
         depthsGrass = new BlockModGrass(depthsDirt, "depthsGrass", "Depths Grass", 2.0F);
         depthsStone = new BlockMod("depthsStone", "Depths Stone", 2.0F);
@@ -782,7 +787,7 @@ public class JourneyBlocks {
         bogwoodLeaves = new BlockModLeaves("bogwood_leaves", "Bogwood Leaves", 1.0F, bogwoodSapling);
 
         bogweed = (JBlockDoublePlant) new JBlockDoublePlant("bogweed", "Bogweed").setGroundPredicate(GroundPredicate.TAINTED_MUD);
-        swamp_lily = new JBlockWaterLily("swamp_lily", "Swamp lily");
+        swampLily = new JBlockWaterLily("swamp_lily", "Swamp lily");
         swamp_shelf = new JBlockFungalShelf("swamp_shelf", "Swamp Shelf");
         bogshroomsSmall = (JBlockMushroom) new JBlockMushroom("bog_shrooms_small", "Small Bogshrooms").setGroundPredicate(GroundPredicate.COMMON_AND_CORBA_GRASS).setLightLevel(0.3F);
         bogshroomTall = (JBlockMushroom) new JBlockMushroom("bog_shroom_tall", "Tall Bogshroom").setGroundPredicate(GroundPredicate.COMMON_AND_CORBA_GRASS).setLightLevel(0.6F);
@@ -1017,9 +1022,9 @@ public class JourneyBlocks {
         tallGlowshroomRed = new BlockTallGlowshroom("tall_glowshroom_red", "Red Tall Glowshroom");
         tallGlowshroomGreen = new BlockTallGlowshroom("tall_glowshroom_green", "Green Tall Glowshroom");
         tallGlowshroomBlue = new BlockTallGlowshroom("tall_glowshroom_blue", "Blue Tall Glowshroom");
-        glowshroomRed = new BlockGlowshroom("glowshroom_red", "Red Glowshroom");
-        glowshroomGreen = new BlockGlowshroom("glowshroom_green", "Green Glowshroom");
-        glowshroomBlue = new BlockGlowshroom("glowshroom_blue", "Blue Glowshroom");
+        glowshroomRed = (BlockGlowshroom) new BlockGlowshroom("glowshroom_red", "Red Glowshroom").setGroundPredicate(GroundPredicate.STONE);
+        glowshroomGreen = (BlockGlowshroom) new BlockGlowshroom("glowshroom_green", "Green Glowshroom").setGroundPredicate(GroundPredicate.STONE);
+        glowshroomBlue = (BlockGlowshroom) new BlockGlowshroom("glowshroom_blue", "Blue Glowshroom").setGroundPredicate(GroundPredicate.STONE);
 
         tallGoldenStalks = (JBlockDoublePlant) new JBlockDoublePlant("tall_golden_stalks", "Tall Golden Stalks", JourneyTabs.DECORATION).setGroundPredicate(GroundPredicate.COMMON_AND_EUCA_GOLD_GRASS);
         goldenBulb = (JBlockFlower) new JBlockFlower("goldenBulb", "Golden Bulb").setGroundPredicate(GroundPredicate.COMMON_AND_EUCA_GOLD_GRASS);

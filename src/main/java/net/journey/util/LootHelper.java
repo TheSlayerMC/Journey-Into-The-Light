@@ -11,11 +11,11 @@ import java.util.List;
 
 public class LootHelper {
 
-	public static List<ItemStack> readFromLootTable(ResourceLocation lootTable, EntityPlayerMP player) {
-		return player.world.getLootTableManager().getLootTableFromLocation(lootTable).generateLootForPools(player.world.rand, new LootContext.Builder(player.getServerWorld()).withPlayer(player).build());
+	public static List<ItemStack> readFromLootTable(ResourceLocation lootTable, EntityPlayerMP player, float luck) {
+		return player.world.getLootTableManager().getLootTableFromLocation(lootTable).generateLootForPools(player.world.rand, new LootContext.Builder(player.getServerWorld()).withPlayer(player).withLuck(luck).build());
 	}
 
-	public static List<ItemStack> readFromLootTable(ResourceLocation lootTable, World world) {
-		return world.getLootTableManager().getLootTableFromLocation(lootTable).generateLootForPools(world.rand, new LootContext.Builder((WorldServer) world).build());
+	public static List<ItemStack> readFromLootTable(ResourceLocation lootTable, World world, float luck) {
+		return world.getLootTableManager().getLootTableFromLocation(lootTable).generateLootForPools(world.rand, new LootContext.Builder((WorldServer) world).withLuck(luck).build());
 	}
 }

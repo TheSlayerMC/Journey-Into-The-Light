@@ -73,7 +73,7 @@ public class JWorldGenRuins extends WorldGenerator {
 	/**
 	 * When called, a special block can be set inside of the structure if type isn't LOOT_BOX
 	 *
-	 * @param block ~ the block to be set in the structure
+	 * @param block the block to be set in the structure
 	 */
 	public JWorldGenRuins setSpecialBlock(Block block) {
 		this.specialBlock = block;
@@ -83,7 +83,7 @@ public class JWorldGenRuins extends WorldGenerator {
 	/**
 	 * When called, a loot table can be applied to the block inside of the structure if type is CONTAINER
 	 *
-	 * @param lootTable ~ the loot table being applied to the structure's 'special block'
+	 * @param lootTable the loot table being applied to the structure's 'special block'
 	 */
 	public JWorldGenRuins setLootTable(ResourceLocation lootTable) {
 		this.lootTable = lootTable;

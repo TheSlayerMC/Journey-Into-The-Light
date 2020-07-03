@@ -56,7 +56,8 @@ public class BlockMod extends Block {
         super(blockType.getMaterial());
         setSoundType(blockType.getSound());
 
-        StuffConstructor.regAndSetupBlock(this, name, enName, hardness, tab);
+        setHardness(hardness);
+        StuffConstructor.regAndSetupBlock(this, name, enName, tab);
     }
 
     public BlockMod setFireSource(boolean isFireSource) {

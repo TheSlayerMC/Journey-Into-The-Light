@@ -1,5 +1,6 @@
 package net.journey.blocks.portal;
 
+import net.journey.blocks.base.JBlockPortal;
 import net.journey.client.render.particles.EntityEucaPotalFX;
 import net.journey.dimension.base.ModTeleporter;
 import net.journey.init.blocks.JourneyBlocks;
@@ -14,23 +15,22 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Random;
 
-public class BlockEucaPortal extends BlockModPortal {
+public class BlockEucaPortal extends JBlockPortal {
 
-    public BlockEucaPortal(String name) {
-        super(name, "Euca Portal");
-    }
+	public BlockEucaPortal(String name) {
+		super(name, "Euca Portal", () -> JourneyBlocks.eucaPortalFrame);
+	}
 
-    @Override
+	@Override
 	public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entity) {
 		if ((entity.getRidingEntity() == null) && ((entity instanceof EntityPlayerMP))) {
-			
+
 			EntityPlayerMP playerMP = (EntityPlayerMP) entity;
 			Block blockFrame = JourneyBlocks.eucaPortalFrame;
 
@@ -97,22 +97,22 @@ public class BlockEucaPortal extends BlockModPortal {
     public boolean makePortal(World worldIn, BlockPos p) {
         EntityLightningBolt bolt = new EntityLightningBolt(worldIn, p.getX(), p.getY(), p.getZ(), false);
         PortalSize size = new PortalSize(JourneyBlocks.eucaPortalFrame, JourneyBlocks.eucaPortal, worldIn, p, EnumFacing.Axis.X);
-        if (size.isValid() && size.portalBlockCount == 0) {
-            size.placePortalBlocks();
-            worldIn.addWeatherEffect(bolt);
-            worldIn.createExplosion(bolt, p.getX(), p.getY(), p.getZ(), 0.0F, true);
-            return true;
-        } else {
-            EntityLightningBolt bolt1 = new EntityLightningBolt(worldIn, p.getX(), p.getY(), p.getZ(), false);
-            size = size.spin(EnumFacing.Axis.Z);
-            if (size.isValid() && size.portalBlockCount == 0) {
-                size.placePortalBlocks();
-                worldIn.addWeatherEffect(bolt1);
-                worldIn.createExplosion(bolt1, p.getX(), p.getY(), p.getZ(), 0.0F, true);
-                return true;
-            } else {
-                return false;
-            }
+	    if (size.isValid() && size.getPortalBlockCount() == 0) {
+		    size.placePortalBlocks();
+		    worldIn.addWeatherEffect(bolt);
+		    worldIn.createExplosion(bolt, p.getX(), p.getY(), p.getZ(), 0.0F, true);
+		    return true;
+	    } else {
+		    EntityLightningBolt bolt1 = new EntityLightningBolt(worldIn, p.getX(), p.getY(), p.getZ(), false);
+		    size = size.spin(EnumFacing.Axis.Z);
+		    if (size.isValid() && size.getPortalBlockCount() == 0) {
+			    size.placePortalBlocks();
+			    worldIn.addWeatherEffect(bolt1);
+			    worldIn.createExplosion(bolt1, p.getX(), p.getY(), p.getZ(), 0.0F, true);
+			    return true;
+		    } else {
+			    return false;
+		    }
         }
     }
 }

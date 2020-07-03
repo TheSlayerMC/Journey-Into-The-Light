@@ -1,7 +1,5 @@
 package net.journey.blocks.portal;
 
-import net.journey.dimension.cloudia.TeleporterCloudia;
-import net.journey.dimension.cloudia.TeleporterCloudiaToOverworld;
 import net.journey.dimension.senterian.TeleporterSenterian;
 import net.journey.dimension.senterian.TeleporterSenterianToOverworld;
 import net.journey.init.JourneyTabs;
@@ -18,7 +16,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.EnumMaterialTypes;
@@ -32,7 +29,8 @@ public class BlockSenterianPortal extends BlockMod {
     public BlockSenterianPortal(String name, String f) {
         super(EnumMaterialTypes.PORTAL, name, f, 2.0F);
         this.setTickRandomly(true);
-        setCreativeTab(JourneyTabs.PORTAL_BLOCKS);
+	    setHardness(-1F);
+	    setCreativeTab(JourneyTabs.PORTAL_BLOCKS);
     }
 
     @Override

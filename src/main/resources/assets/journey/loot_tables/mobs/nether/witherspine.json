@@ -6,13 +6,43 @@
       {
         "type": "item",
         "name": "journey:withicdust",
-        "functions": [{ "function": "set_count", "count": { "min": 1, "max": 2 } }],
-        "weight": 15
+        "functions": [
+          {
+            "function": "set_count",
+            "count": {
+              "min": 1,
+              "max": 2
+            }
+          }
+        ],
+        "weight": 40
       },
       {
         "type": "item",
         "name": "journey:withicspine",
-        "functions": [{ "function": "set_count", "count": { "min": 1, "max": 2 } }],
+        "functions": [
+          {
+            "function": "set_count",
+            "count": {
+              "min": 1,
+              "max": 2
+            }
+          }
+        ],
+        "weight": 5
+      },
+      {
+        "type": "item",
+        "name": "journey:skull_of_decay",
+        "functions": [
+          {
+            "function": "set_count",
+            "count": {
+              "min": 1,
+              "max": 2
+            }
+          }
+        ],
         "weight": 1
       }
     ]

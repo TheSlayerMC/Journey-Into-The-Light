@@ -326,20 +326,28 @@ public class WorldGenJourney implements IWorldGenerator {
             BOGBERRY_BUSH_GEN.getValue().generate(w, rand, startPos);
         }
 
-        if (rand.nextInt(50) == 0) {
-            RUINS_GEN.getValue().generate(w, rand, startPos);
+        if (Config.enableRuins) {
+            if (rand.nextInt(Config.ruinsRarity) == 0) {
+                RUINS_GEN.getValue().generate(w, rand, startPos);
+            }
         }
 
-        for (int i = 0; i < 64; i++) {
-            TALL_GLOWSHROOMS_GEN.getValue().generate(w, rand, startPos);
+        if (Config.enableGlowshrooms) {
+            for (int i = 0; i < Config.glowshroomTrys; i++) {
+                TALL_GLOWSHROOMS_GEN.getValue().generate(w, rand, startPos);
+            }
         }
 
-        for (int i = 0; i < 55; i++) {
-            CAVE_VINE_GEN.getValue().generate(w, rand, startPos);
+        if (Config.enableCaveVines) {
+            for (int i = 0; i < Config.caveVinesTrys; i++) {
+                CAVE_VINE_GEN.getValue().generate(w, rand, startPos);
+            }
         }
 
-        for (int i = 0; i < 64; i++) {
-            SMALL_GLOWSHROOMS.getValue().generate(w, rand, startPos);
+        if (Config.enableGlowshrooms) {
+            for (int i = 0; i < Config.glowshroomTrys; i++) {
+                SMALL_GLOWSHROOMS.getValue().generate(w, rand, startPos);
+            }
         }
 
         for (int i = 0; i < Config.shadiumOreTrys; i++) {

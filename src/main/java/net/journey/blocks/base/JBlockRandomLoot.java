@@ -6,7 +6,6 @@ import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
@@ -16,9 +15,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.slayer.api.block.BlockMod;
-
-import java.util.List;
-import java.util.Random;
 
 public class JBlockRandomLoot extends BlockMod {
 
@@ -38,14 +34,7 @@ public class JBlockRandomLoot extends BlockMod {
 	 */
 	@Override
 	public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
-		Random rand = world instanceof World ? ((World) world).rand : RANDOM;
-
-		List<ItemStack> i = LootHelper.readFromLootTable(lootTable, (WorldServer) world);
-		int index = rand.nextInt(i.size());
-		int quantity = i.get(index).getCount();
-		Item it = i.get(index).getItem();
-
-		drops.add(new ItemStack(it, quantity, this.damageDropped(state)));
+		drops.addAll(LootHelper.readFromLootTable(lootTable, (WorldServer) world, fortune));
 	}
 
 	public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state) {

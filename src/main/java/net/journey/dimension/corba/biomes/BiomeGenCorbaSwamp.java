@@ -20,7 +20,7 @@ import java.util.Random;
 
 public class BiomeGenCorbaSwamp extends JDimensionBiome {
 
-	protected static final IBlockState WATER_LILY = JourneyBlocks.swamp_lily.getDefaultState();
+	protected static final IBlockState WATER_LILY = JourneyBlocks.swampLily.getDefaultState();
 
 	public BiomeGenCorbaSwamp() {
 		super(new BiomePropertiesCorba("Corba Swamp").setBaseHeight(-0.2F).setHeightVariation(0.1F));
