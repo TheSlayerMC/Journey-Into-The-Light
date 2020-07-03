@@ -124,6 +124,7 @@ public class JourneyBlocks {
     public static BlockMod ironLootBox;
     public static BlockMod goldLootBox;
     public static BlockMod diamondLootBox;
+    public static BlockMod overgrownLootBox;
 
     public static BlockModBush sizzleberryBush;
     public static BlockModBush bradberryBush;
@@ -680,6 +681,7 @@ public class JourneyBlocks {
         ironLootBox = new JBlockRandomLoot("iron_loot_box", "Iron Loot Box", JourneyLootTables.LOOT_BASIC);
         goldLootBox = new JBlockRandomLoot("gold_loot_box", "Gold Loot Box", JourneyLootTables.LOOT_GOLD);
         diamondLootBox = new JBlockRandomLoot("diamond_loot_box", "Diamond Loot Box", JourneyLootTables.LOOT_DIAMOND);
+        overgrownLootBox = new JBlockRandomLoot("overgrown_loot_box", "Overgrown Loot Box", JourneyLootTables.LOOT_OVERGROWN);
 
         magicExplosive = new JBlockTNT("magic_explosive", "Magic Explosive", 10.0F);
 

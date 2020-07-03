@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import net.journey.api.block.GroundPredicate;
 import net.journey.dimension.base.DimensionHelper;
 import net.journey.dimension.base.gen.JWorldGenPlants;
+import net.journey.dimension.base.gen.JWorldGenRuins;
 import net.journey.dimension.corba.biomes.BiomeGenCorbaSwamp;
 import net.journey.dimension.corba.gen.WorldGenCorbaLamp;
 import net.journey.dimension.corba.gen.WorldGenCorbaVillage;
@@ -444,6 +445,16 @@ public class ChunkGeneratorCorba implements IChunkGenerator {
 
 		if (rand.nextInt(5) == 0) {
 			generateStructure(x1, z1, worldGenTreehouse);
+		}
+
+		if (rand.nextInt(50) == 0) {
+			new JWorldGenRuins(GroundPredicate.TAINTED_MUD, JWorldGenRuins.LootType.SPECIAL_BLOCK,
+					JourneyBlocks.corbaDarkBricks.getDefaultState(),
+					JourneyBlocks.corbaLightBricks.getDefaultState(),
+					JourneyBlocks.corbaCrackedBricks.getDefaultState(),
+					JourneyBlocks.corbaCobblestone.getDefaultState(),
+					JourneyBlocks.corbaBricks.getDefaultState())
+					.setSpecialBlock(JourneyBlocks.overgrownLootBox).generate(worldObj, rand, startPos);
 		}
 
 		for (i = 0; i < 64; i++) {

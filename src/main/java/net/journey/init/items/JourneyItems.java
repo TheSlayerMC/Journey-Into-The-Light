@@ -657,7 +657,7 @@ public class JourneyItems {
 		heartContainerSmall = new ItemHeartContainer("heartSml", "Heart Container", 2);
 		heartContainerMedium = new ItemHeartContainer("heartMed", "Heart Container", 6);
 		heartContainerLarge = new ItemHeartContainer("heartLrg", "Heart Container", 10);
-		heartContainerUltimate = new ItemHeartContainer("heartUlt", "Heart Container", 16);
+		heartContainerUltimate = new ItemHeartContainer("heartUlt", "Heart Container", 14);
 		heartContainerSentry = new ItemHeartContainer("heartSen", "Heart of the Sentry", 20);
 
 		blindnessRing = new ItemRingBlindness("ring_blindness", "Ring of Clear Vision");

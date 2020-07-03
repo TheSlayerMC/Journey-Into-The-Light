@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "journey:overgrown_loot_box"
+    },
+    "facing=south": {
+      "model": "journey:overgrown_loot_box",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "journey:overgrown_loot_box",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "journey:overgrown_loot_box",
+      "y": 90
+    }
+  }
+}
