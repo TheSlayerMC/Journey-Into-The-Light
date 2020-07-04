@@ -3,7 +3,7 @@ package net.journey.api.entity;
 import net.journey.entity.MobStats;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.IAttribute;
-import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 
@@ -15,20 +15,22 @@ public interface ISettingsConsumer {
 	 * Entity settings should be a single instance per entity type!
 	 * So you should store it, for example, as a static field in Entity class.
 	 */
-	@NotNull
+	@Nullable //null for new system
 	EntitySettings getEntitySettings();
 
 	/**
 	 * Entity settings should be a single instance per entity type!
 	 * So you should store it, for example, as a static field in Entity class.
 	 */
+	@Deprecated
+			//not a good system
 	class EntitySettings {
-		private HashMap<IAttribute, Double> attributes;
+		private final HashMap<IAttribute, Double> attributes;
 
 		public EntitySettings(double maxHealth, double attackDamage) {
 			this.attributes = new HashMap<>();
 
-			setAttribute(SharedMonsterAttributes.FOLLOW_RANGE, MobStats.standardFollowRange);
+			setAttribute(SharedMonsterAttributes.FOLLOW_RANGE, MobStats.STANDARD_FOLLOW_RANGE);
 			setAttribute(SharedMonsterAttributes.MOVEMENT_SPEED, MobStats.standardMovementSpeed);
 			setAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE, MobStats.standardKnockBackResistance);
 			setAttribute(SharedMonsterAttributes.MAX_HEALTH, maxHealth);

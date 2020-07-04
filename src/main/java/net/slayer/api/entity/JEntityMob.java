@@ -2,7 +2,8 @@ package net.slayer.api.entity;
 
 import net.journey.api.entity.IJERCompatible;
 import net.journey.api.entity.ISettingsConsumer;
-import net.journey.api.entity.ISettingsConsumer.EntitySettings;
+import net.journey.entity.MobStats;
+import net.journey.entity.base.EntitySettingsHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
@@ -45,17 +46,21 @@ public abstract class JEntityMob extends EntityMob implements ISettingsConsumer,
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
 
+		EntitySettingsHelper.setMovementSpeed(this, MobStats.standardMovementSpeed);
+
 		EntitySettings entitySettings = getEntitySettings();
-		entitySettings.getAttributes().forEach((attribute, value) -> {
-			IAttributeInstance instance = getEntityAttribute(attribute);
+		if (entitySettings != null) {//maybe null in entities, where we moved away from this system
+			entitySettings.getAttributes().forEach((attribute, value) -> {
+				IAttributeInstance instance = getEntityAttribute(attribute);
 
-			//noinspection ConstantConditions
-			if (instance == null) {
-				instance = getAttributeMap().registerAttribute(attribute);
-			}
+				//noinspection ConstantConditions
+				if (instance == null) {
+					instance = getAttributeMap().registerAttribute(attribute);
+				}
 
-			instance.setBaseValue(value);
-		});
+				instance.setBaseValue(value);
+			});
+		}
 	}
 
 	@Override

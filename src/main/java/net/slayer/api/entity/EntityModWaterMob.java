@@ -48,7 +48,7 @@ public abstract class EntityModWaterMob extends EntityWaterMob implements IJERCo
     }
 
     public double setFollowRange() {
-        return MobStats.standardFollowRange;
+        return MobStats.STANDARD_FOLLOW_RANGE;
     }
 
     public double setMovementSpeed() {
