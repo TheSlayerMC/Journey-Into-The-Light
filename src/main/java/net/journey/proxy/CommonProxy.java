@@ -88,7 +88,6 @@ public class CommonProxy {
             e.printStackTrace();
         }
 
-        JourneySounds.init();
         JourneyItems.init();
         JourneyConsumables.init();
         JourneyBlocks.init();

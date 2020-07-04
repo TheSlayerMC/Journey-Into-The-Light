@@ -3,28 +3,21 @@ package net.journey;
 import net.journey.api.client.IHasModel;
 import net.journey.blocks.tileentity.TileEntityHandler;
 import net.journey.init.JourneyEnchantments;
-import net.journey.init.JourneySounds;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.init.items.JourneyItems;
 import net.journey.util.handler.LogHelper;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.Item;
-import net.minecraft.util.SoundEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.event.RegistryEvent.Register;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @EventBusSubscriber(modid = JITL.MOD_ID)
 public class Registries {
 
-	public static final List<SoundEvent> SOUNDS = new ArrayList<>();
 
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event) {
@@ -64,17 +57,5 @@ public class Registries {
 		enchant.register(JourneyEnchantments.hotTouch);
 
 		LogHelper.info("Successfully Registered 1 Enchantments");
-	}
-
-	@SubscribeEvent
-	public void onSoundRegistry(Register<SoundEvent> event) {
-		JourneySounds.init();
-
-		for (SoundEvent sound : SOUNDS) {
-			event.getRegistry().register(sound);
-		}
-		SOUNDS.clear();
-
-		LogHelper.info("Successfully Registered " + SOUNDS.size() + " Sounds");
 	}
 }
