@@ -151,7 +151,7 @@ public class JourneySounds {
         w.playSound(e, new BlockPos(e.posX, e.posY, e.posZ), sound, SoundCategory.NEUTRAL, 1.0F, 1.0F);
     }
 
-    public static void playSound(SoundEvent sound, World w, EntityLiving e) {
+    public static void playSound(SoundEvent sound, EntityLiving e) {
         e.playSound(sound, 1.0F, 1.0F);
     }
 

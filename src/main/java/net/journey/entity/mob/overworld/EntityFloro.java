@@ -75,7 +75,9 @@ public class EntityFloro extends JEntityMob implements IRangedAttackMob, Animati
 		double dZ = target.posZ - this.posZ;
 		double distortion = MathHelper.sqrt(dX * dX + dZ * dZ);
 		projectile.shoot(dX, dY + distortion * 0.20000000298023224D, dZ, 1.6F, (float) (14 - this.world.getDifficulty().getId() * 4));
-//		JourneySounds.playSound(JourneySounds., world, this);
+
+		playSound(JourneySounds.FLORO_SHOOT, 1.0F, 0.7F);
+
 		this.world.spawnEntity(projectile);
 	}
 

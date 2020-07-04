@@ -110,7 +110,7 @@ public class EntityRendering {
         RenderingRegistry.registerEntityRenderingHandler(EntityShimmererProjectile.class, manager -> new RenderProjectile<>(manager, Textures.getProjectileTextureLocation("shimmerer_projectile")));
         RenderingRegistry.registerEntityRenderingHandler(EntityBubbleProjectile.class, manager -> new RenderProjectile<>(manager, Textures.getProjectileTextureLocation("bubble")));
         RenderingRegistry.registerEntityRenderingHandler(EntityDetractor.class, manager -> new RenderProjectile<>(manager, Textures.getProjectileTextureLocation("detractor")));
-        RenderingRegistry.registerEntityRenderingHandler(EntityFloroDirtProjectile.class, manager -> new RenderProjectile<>(manager, Textures.getProjectileTextureLocation("floro_dirt_ball")));
+        RenderingRegistry.registerEntityRenderingHandler(EntityFloroDirtProjectile.class, manager -> new RenderProjectile<>(manager, Textures.getProjectileTextureLocation("floro_mud")));
 
         RenderingRegistry.registerEntityRenderingHandler(EntityFloro.class, manager -> new AnimatedMobRenderer<>(manager, TimeModelLoader.loadJsonEntityModel(Textures.getEntityModelLocation("floro")).setScaleMultiplier(1.6F), Textures.getMobTextureLocation("floro")));
     }

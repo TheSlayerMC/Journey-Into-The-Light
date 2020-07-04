@@ -153,7 +153,7 @@ public class EntityGuardianOfDestruction extends EntityEssenceBoss {
 				 * plays sound while boss is moving
 				 */
 				if (sountTimer == 0) {
-					JourneySounds.playSound(JourneySounds.SENTRY_DESTRUCTION_MOVING, world, this);
+					JourneySounds.playSound(JourneySounds.SENTRY_DESTRUCTION_MOVING, this);
 					sountTimer = 13;
 				}
 				if (sountTimer > 0) sountTimer--;

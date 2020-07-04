@@ -97,7 +97,7 @@ public class EntityTempleGuardian extends EntityEssenceBoss implements IRangedAt
         double d2 = target.posZ - this.posZ;
         double d3 = MathHelper.sqrt(d0 * d0 + d2 * d2);
         b.shoot(d0, d1 + d3 * 0.20000000298023224D, d2, 1.6F, (float) (14 - this.world.getDifficulty().getId() * 4));
-        JourneySounds.playSound(JourneySounds.HAMMER, world, this);
+        JourneySounds.playSound(JourneySounds.HAMMER, this);
         this.world.spawnEntity(b);
     }
 
