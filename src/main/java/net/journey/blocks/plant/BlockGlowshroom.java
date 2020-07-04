@@ -2,7 +2,6 @@ package net.journey.blocks.plant;
 
 import net.journey.blocks.base.JBlockPlant;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 
@@ -16,10 +15,5 @@ public class BlockGlowshroom extends JBlockPlant {
     @Override
     public int getPackedLightmapCoords(IBlockState state, IBlockAccess source, BlockPos pos) {
         return 14500000;
-    }
-    
-    @Override
-    public EnumBlockRenderType getRenderType(IBlockState state) {
-        return EnumBlockRenderType.MODEL;
     }
 }
