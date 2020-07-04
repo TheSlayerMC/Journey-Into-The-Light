@@ -15,7 +15,7 @@ import net.minecraftforge.fml.relauncher.Side;
 @Mod.EventBusSubscriber(Side.CLIENT)
 public class ParticleFloroMud extends Particle {
 
-	private final ResourceLocation texture = new ResourceLocation(JITL.MOD_ID, "textures/particles/floro_mud.png");
+	private static final ResourceLocation TEXTURE = new ResourceLocation(JITL.MOD_ID, "textures/particles/floro_mud.png");
 	private final float jParticleScale = 2.0F;
 	private final double jPosX;
 	private final double jPosY;
@@ -34,7 +34,7 @@ public class ParticleFloroMud extends Particle {
 		this.particleGreen = 1.0F;
 		this.particleRed = 1.0F;
 		this.particleMaxAge = 4;
-		this.setParticleTexture(Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(texture.toString()));
+		this.setParticleTexture(Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(TEXTURE.toString()));
 	}
 
 	@Override
@@ -55,7 +55,7 @@ public class ParticleFloroMud extends Particle {
 	}
 
 	@SubscribeEvent
-	public void onPreTextureStich(TextureStitchEvent.Pre event) {
-		event.getMap().registerSprite(texture);
+	public static void onPreTextureStich(TextureStitchEvent.Pre event) {
+		event.getMap().registerSprite(TEXTURE);
 	}
 }
