@@ -3,14 +3,14 @@ package net.journey.entity;
 import net.journey.api.entity.ISettingsConsumer.EntitySettings;
 
 public class MobStats {
-    public static final double standardMovementSpeed = 0.26D, standardFollowRange = 10D, flying_follow = 100D, boss_follow = 150D, standardKnockBackResistance = 0.0D;
+    public static final double standardMovementSpeed = 0.26D, STANDARD_FOLLOW_RANGE = 16D, flying_follow = 100D, boss_follow = 150D, standardKnockBackResistance = 0.0D;
 
     //Overworld
     public static final EntitySettings BIG_HONGO = new EntitySettings(40, 8.25);
     public static final EntitySettings BOOM = new EntitySettings(20, 0).setMovementSpeed(0.200000011920929);
     public static final EntitySettings DUNEWORM = new EntitySettings(25, 6);
     public static final EntitySettings FIRE_MAGE = new EntitySettings(25, 0);
-    public static final EntitySettings FLORO = new EntitySettings(25, 0);
+    //    public static final EntitySettings FLORO = new EntitySettings(25, 0);
     public static final EntitySettings ICE_MAGE = new EntitySettings(25, 0);
     public static final EntitySettings MEDIUM_HONGO = new EntitySettings(30, 5);
     public static final EntitySettings ROBOT = new EntitySettings(20, 4);

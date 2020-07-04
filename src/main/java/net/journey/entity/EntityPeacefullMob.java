@@ -70,7 +70,7 @@ public abstract class EntityPeacefullMob extends EntityCreature implements IMob 
     }
 
     public double setFollowRange() {
-        return MobStats.standardFollowRange;
+        return MobStats.STANDARD_FOLLOW_RANGE;
     }
 
     public double setMovementSpeed() {
