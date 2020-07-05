@@ -31,10 +31,6 @@ public class EntityDamagingProjectile extends EntityThrowable {
 		return damage;
 	}
 
-	public void setDamage(float damage) {
-		this.damage = damage;
-	}
-
 	@Override
 	public void onUpdate() {
 		super.onUpdate();

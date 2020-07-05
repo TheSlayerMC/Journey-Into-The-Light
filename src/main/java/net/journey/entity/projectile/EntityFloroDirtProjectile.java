@@ -11,7 +11,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jetbrains.annotations.ApiStatus;
 
 public class EntityFloroDirtProjectile extends EntityDamagingProjectile {
-
 	@ApiStatus.Internal
 	public EntityFloroDirtProjectile(World world) {
 		super(world);
@@ -23,8 +22,8 @@ public class EntityFloroDirtProjectile extends EntityDamagingProjectile {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void onUpdate() {
-		super.onUpdate();
+	public void onClientUpdate() {
+		super.onClientUpdate();
 		for (int i = 0; i < 6; ++i) {
 			ParticleFloroMud effect = new ParticleFloroMud(this.world, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
 			FMLClientHandler.instance().getClient().effectRenderer.addEffect(effect);
