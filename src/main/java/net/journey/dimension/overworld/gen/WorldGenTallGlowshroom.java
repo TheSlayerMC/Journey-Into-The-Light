@@ -2,13 +2,13 @@ package net.journey.dimension.overworld.gen;
 
 import net.journey.blocks.plant.BlockTallGlowshroom;
 import net.journey.init.blocks.JourneyBlocks;
-import net.journey.util.MathUtils;
 import net.journey.util.RandHelper;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.slayer.api.worldgen.WorldGenAPI;
+import ru.timeconqueror.timecore.api.util.MathUtils;
 
 import java.util.Random;
 

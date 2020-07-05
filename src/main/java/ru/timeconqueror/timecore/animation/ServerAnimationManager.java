@@ -12,14 +12,14 @@ import ru.timeconqueror.timecore.common.network.S2CStartAnimationMsg;
 import ru.timeconqueror.timecore.common.network.TCNetworkHandler;
 
 public class ServerAnimationManager<T extends EntityMob> extends BaseAnimationManager {
-    private ActionManagerImpl<T> stateMachine;
+    private ActionManagerImpl<T> actionManager;
 
     public ServerAnimationManager(@Nullable AnimationSetting walkingAnimationStarter) {
         super(walkingAnimationStarter);
     }
 
-    void setStateMachine(ActionManagerImpl<T> stateMachine) {
-        this.stateMachine = stateMachine;
+    void setActionManager(ActionManagerImpl<T> actionManager) {
+        this.actionManager = actionManager;
     }
 
     @Override
@@ -31,21 +31,21 @@ public class ServerAnimationManager<T extends EntityMob> extends BaseAnimationMa
     protected void onAnimationSet(AnimationStarter.AnimationData data, Layer layer) {
         super.onAnimationSet(data, layer);
 
-        TCNetworkHandler.INSTANCE.sendToAllTracking(new S2CStartAnimationMsg(stateMachine.getEntity(), layer.getName(), data), stateMachine.getEntity());
+        TCNetworkHandler.INSTANCE.sendToAllTracking(new S2CStartAnimationMsg(actionManager.getEntity(), layer.getName(), data), actionManager.getEntity());
     }
 
     @Override
     protected void onAnimationEnd(@Nullable TimeEntityModel model, Layer layer, AnimationWatcher watcher, long currentTime) {
         proceedActions(watcher);
 
-        stateMachine.getActionWatchers().removeIf(actionWatcher -> actionWatcher.isBound(watcher.getAnimation()));
+        actionManager.getActionWatchers().removeIf(actionWatcher -> actionWatcher.isBound(watcher.getAnimation()));
     }
 
     private void proceedActions(AnimationWatcher watcher) {
-        for (ActionManagerImpl.ActionWatcher<T, ?> actionWatcher : stateMachine.getActionWatchers()) {
+        for (ActionManagerImpl.ActionWatcher<T, ?> actionWatcher : actionManager.getActionWatchers()) {
             if (actionWatcher.isBound(watcher.getAnimation())) {
                 if (actionWatcher.shouldBeExecuted(watcher)) {
-                    actionWatcher.runAction(stateMachine.getEntity());
+                    actionWatcher.runAction(actionManager.getEntity());
                 }
             }
         }
@@ -55,7 +55,7 @@ public class ServerAnimationManager<T extends EntityMob> extends BaseAnimationMa
     public void removeAnimation(String layerName, int transitionTime) {
         super.removeAnimation(layerName, transitionTime);
 
-        TCNetworkHandler.INSTANCE.sendToAllTracking(new S2CEndAnimationMsg(stateMachine.getEntity(), layerName, transitionTime), stateMachine.getEntity());
+        TCNetworkHandler.INSTANCE.sendToAllTracking(new S2CEndAnimationMsg(actionManager.getEntity(), layerName, transitionTime), actionManager.getEntity());
     }
 
     @Override

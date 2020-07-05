@@ -80,7 +80,7 @@ public class AnimationManagerBuilder extends SingleUseBuilder {
 	@SuppressWarnings("unchecked")
 	<T extends EntityMob> void init(BaseAnimationManager manager, ActionManager<T> actionManager) {
 		if (manager instanceof ServerAnimationManager) {
-			((ServerAnimationManager<T>) manager).setStateMachine((ActionManagerImpl<T>) actionManager);
+			((ServerAnimationManager<T>) manager).setActionManager((ActionManagerImpl<T>) actionManager);
 		}
 	}
 }

@@ -8,6 +8,7 @@ import ru.timeconqueror.timecore.animation.watcher.AnimationWatcher;
 import ru.timeconqueror.timecore.api.animation.ActionManager;
 import ru.timeconqueror.timecore.api.animation.Animation;
 import ru.timeconqueror.timecore.api.animation.AnimationManager;
+import ru.timeconqueror.timecore.api.util.MathUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +54,12 @@ public class ActionManagerImpl<T extends EntityMob> implements ActionManager<T> 
 
 			if (walkingAnimationSetting != null) {
 				if (animationManager.containsLayer(walkingAnimationSetting.getLayerName())) {
-					boolean posChanged = entity.posX != entity.prevPosX || entity.posY != entity.prevPosY || entity.posZ != entity.prevPosZ;
+					// floats of movement can be almost the same (like 0 and 0.000000001), so entity moves a very short distance, which is invisible for eyes.
+					// this can be because of converting coords to bytes to send them to client.
+					// so checking if it's more than 1/256 of the block will fix the issue
+					boolean posChanged = MathUtils.calcDifference(entity.posX, entity.prevPosX) >= 1 / 256F
+							|| MathUtils.calcDifference(entity.posY, entity.prevPosY) >= 1 / 256F
+							|| MathUtils.calcDifference(entity.posZ, entity.prevPosZ) >= 1 / 256F;
 
 					if (posChanged) {
 						walkingAnimationSetting.getAnimationStarter().startAt(animationManager, walkingAnimationSetting.getLayerName());

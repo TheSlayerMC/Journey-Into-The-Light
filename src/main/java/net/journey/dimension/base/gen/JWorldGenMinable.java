@@ -1,6 +1,5 @@
 package net.journey.dimension.base.gen;
 
-import net.journey.util.MathUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockStone;
 import net.minecraft.block.state.IBlockState;
@@ -11,6 +10,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.slayer.api.worldgen.WorldGenAPI;
 import org.jetbrains.annotations.NotNull;
+import ru.timeconqueror.timecore.api.util.MathUtils;
 
 import java.util.Random;
 import java.util.function.Predicate;

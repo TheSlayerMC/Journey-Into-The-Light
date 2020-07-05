@@ -80,11 +80,10 @@ public class MathUtils {
 		return end - start != 0 ? (current - start) / (end - start) : 1;
 	}
 
-	public static float lerp(float pct, float start, float end) {
-		return start + pct * (end - start);
-	}
-
-	public static double lerp(double pct, double start, double end) {
-		return start + pct * (end - start);
+	/**
+	 * Returns the difference between two numbers.
+	 */
+	public static double calcDifference(double number1, double number2) {
+		return Math.abs(number1 - number2);
 	}
 }
