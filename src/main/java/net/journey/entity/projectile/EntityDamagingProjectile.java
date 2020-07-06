@@ -34,7 +34,12 @@ public class EntityDamagingProjectile extends EntityThrowable {
 	@Override
 	public void onUpdate() {
 		super.onUpdate();
-		if (world.isRemote) {
+
+		if (!world.isRemote) {
+			if (ticksExisted >= 20 * 10) {
+				setDead();
+			}
+		} else {
 			onClientUpdate();
 		}
 	}
