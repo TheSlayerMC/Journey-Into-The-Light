@@ -46,6 +46,13 @@ public interface Animation {
 	 */
 	void forEachBone(Consumer<String> action);
 
+	/**
+	 * Returns the reversed version of this animation.
+	 * It is slow, so you need to call this once.
+	 * Don't forget about registering returned animation.
+	 */
+	Animation reverse();
+
 	enum OptionType {
 		ROTATION,
 		POSITION,

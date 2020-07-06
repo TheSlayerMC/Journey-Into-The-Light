@@ -13,9 +13,11 @@ import ru.timeconqueror.timecore.client.render.model.TimeModel;
 import ru.timeconqueror.timecore.client.render.model.TimeModelRenderer;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 public class BasicAnimation implements Animation {
 	private final boolean loop;
@@ -89,6 +91,50 @@ public class BasicAnimation implements Animation {
 		if (getOptions() != null) {
 			getOptions().forEach((s, option) -> action.accept(s));
 		}
+	}
+
+	@Override
+	public Animation reverse() {
+		Map<String, BoneOption> reversedOptions;
+
+		if (options == null) {
+			reversedOptions = null;
+		} else {
+			reversedOptions = new HashMap<>();
+
+			options.forEach((s, boneOption) -> {
+				List<KeyFrame> positions;
+				if (boneOption.getPositions() != null) {
+					positions = boneOption.getPositions().stream()
+							.map(keyFrame -> new KeyFrame(length - keyFrame.getStartTime(), keyFrame.getVec()))
+							.collect(Collectors.toList());
+				} else {
+					positions = null;
+				}
+
+				List<KeyFrame> rotations;
+				if (boneOption.getRotations() != null) {
+					rotations = boneOption.getRotations().stream()
+							.map(keyFrame -> new KeyFrame(length - keyFrame.getStartTime(), keyFrame.getVec()))
+							.collect(Collectors.toList());
+				} else {
+					rotations = null;
+				}
+
+				List<KeyFrame> scales;
+				if (boneOption.getScales() != null) {
+					scales = boneOption.getScales().stream()
+							.map(keyFrame -> new KeyFrame(length - keyFrame.getStartTime(), keyFrame.getVec()))
+							.collect(Collectors.toList());
+				} else {
+					scales = null;
+				}
+
+				reversedOptions.put(boneOption.getName(), new BoneOption(boneOption.getName(), rotations, positions, scales));
+			});
+		}
+
+		return new BasicAnimation(loop, new ResourceLocation(id.getNamespace(), id.getPath() + "/reversed"), name + "/reversed", length, reversedOptions);
 	}
 
 	public static class TransitionFactory extends Animation.TransitionFactory {

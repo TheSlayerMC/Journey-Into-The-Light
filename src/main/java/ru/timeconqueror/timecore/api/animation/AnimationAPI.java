@@ -41,6 +41,22 @@ public class AnimationAPI {
 		return animations;
 	}
 
+	/**
+	 * Registers the provided animation.
+	 */
+	public static Animation register(Animation animation) {
+		return AnimationRegistry.registerAnimation(animation);
+	}
+
+	/**
+	 * Returns the reversed version of this animation.
+	 * It is slow, so you need to call this once.
+	 * Don't forget about registering returned animation.
+	 */
+	public static Animation reverse(Animation animation) {
+		return animation.reverse();
+	}
+
 	public static AnimationStarter createStarter(Animation animation) {
 		return new AnimationStarter(animation);
 	}

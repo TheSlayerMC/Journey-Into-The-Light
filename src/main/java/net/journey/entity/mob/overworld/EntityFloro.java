@@ -35,7 +35,7 @@ public class EntityFloro extends JEntityMob implements IRangedAttackMob, Animati
 	private static final DelayedAction<EntityFloro, AnimatedRangedAttackAI.ActionData> RANGED_ATTACK_ACTION;
 
 	static {
-		RANGED_ATTACK_ACTION = new DelayedAction<EntityFloro, AnimatedRangedAttackAI.ActionData>(JITL.rl("floro/shoot"), new AnimationStarter(JAnimations.FLORO_SHOOT),"attack")
+		RANGED_ATTACK_ACTION = new DelayedAction<EntityFloro, AnimatedRangedAttackAI.ActionData>(JITL.rl("floro/shoot"), new AnimationStarter(JAnimations.FLORO_SHOOT).setSpeed(1.5F), "attack")
 				.setDelayPredicate(StandardDelayPredicates.whenPassed(0.5F))
 				.setOnCall(AnimatedRangedAttackAI.STANDARD_RUNNER);
 	}

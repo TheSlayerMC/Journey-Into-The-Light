@@ -55,6 +55,11 @@ public class Transition implements Animation {
 		public void forEachBone(Consumer<String> action) {
 
 		}
+
+		@Override
+		public Animation reverse() {
+			throw new UnsupportedOperationException();
+		}
 	};
 	private static final Animation.TransitionFactory IDLE_END_TRANSITION_FACTORY = new Animation.TransitionFactory(DUMMY_ANIMATION) {
 		@Override
@@ -183,6 +188,11 @@ public class Transition implements Animation {
 	@Override
 	public void forEachBone(Consumer<String> action) {
 		options.forEach(transitionBoneOption -> action.accept(transitionBoneOption.name));
+	}
+
+	@Override
+	public Animation reverse() {
+		throw new UnsupportedOperationException();
 	}
 
 	@Override

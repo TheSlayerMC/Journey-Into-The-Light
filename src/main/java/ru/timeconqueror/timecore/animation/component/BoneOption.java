@@ -136,15 +136,15 @@ public class BoneOption {
         }
     }
 
-    public List<KeyFrame> getPositions() {
+    public @Nullable List<KeyFrame> getPositions() {
         return positions;
     }
 
-    public List<KeyFrame> getRotations() {
+    public @Nullable List<KeyFrame> getRotations() {
         return rotations;
     }
 
-    public List<KeyFrame> getScales() {
+    public @Nullable List<KeyFrame> getScales() {
         return scales;
     }
 
