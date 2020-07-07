@@ -1,3 +1,6 @@
+import groovy.json.JsonSlurper
+import groovy.json.JsonBuilder
+
 buildscript {
     repositories {
         jcenter()
@@ -13,6 +16,7 @@ plugins {
 }
 
 apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'java'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
 file "build.properties" withReader {
@@ -67,6 +71,18 @@ repositories {
         }
     }
 }
+
+task updateVersionJson {
+    doLast {
+        def jsonFile = file('update.json')
+        def parsedJson = new JsonSlurper().parseText(jsonFile.text)
+        parsedJson.promos.'1.12.2-latest' = config.jitl.version
+        parsedJson.promos.'1.12.2-recommended' = config.jitl.version
+
+        jsonFile.write(new JsonBuilder(parsedJson).toPrettyString())
+    }
+}
+build.finalizedBy(updateVersionJson)
 
 dependencies {
     // you may put jars on which you depend on in ./libs
