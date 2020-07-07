@@ -1,7 +1,6 @@
 package net.journey.proxy;
 
 import net.journey.JITL;
-import net.journey.client.ClientDimensionMusic;
 import net.journey.client.PlayerStats;
 import net.journey.client.handler.BossTickHandler;
 import net.journey.client.handler.GuiHandler;
@@ -54,8 +53,6 @@ public class ClientProxy extends CommonProxy {
 
     @Override
     public void clientPostInit() {
-        SlayerAPI.registerEventListener(new ClientDimensionMusic());
-
         LangGeneratorFacade.save();
     }
 
