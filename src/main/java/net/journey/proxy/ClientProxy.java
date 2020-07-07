@@ -19,6 +19,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.slayer.api.SlayerAPI;
 
@@ -33,18 +35,19 @@ public class ClientProxy extends CommonProxy {
     }
 
     @Override
-    public void registerClient() {
+    public void preInit(FMLPreInitializationEvent event) {
         NetworkRegistry.INSTANCE.registerGuiHandler(JITL.instance, new GuiHandler());
-    }
 
-    @Override
-    public void clientPreInit() {
+        super.preInit(event);
+
         EntityRendering.preInit();
         SlayerAPI.registerEventListener(new RenderEssenceBar());
     }
 
     @Override
-    public void clientInit(FMLInitializationEvent event) {
+    public void init(FMLInitializationEvent event) {
+        super.init(event);
+
         EntityRendering.init();
         SlayerAPI.registerEventListener(new BossTickHandler());
         SlayerAPI.registerEventListener(new ClientTickEvent());
@@ -52,13 +55,10 @@ public class ClientProxy extends CommonProxy {
     }
 
     @Override
-    public void clientPostInit() {
+    public void postInit(FMLPostInitializationEvent event) {
+        super.postInit(event);
+
         LangGeneratorFacade.save();
-    }
-
-    @Override
-    public void registerTEISR() {
-
     }
 
     @Override

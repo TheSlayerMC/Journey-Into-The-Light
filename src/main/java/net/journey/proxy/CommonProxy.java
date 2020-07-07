@@ -26,44 +26,20 @@ import net.journey.integration.Integrations;
 import net.journey.network.NetworkHandler;
 import net.journey.util.Config;
 import net.journey.util.JourneyFuelHandler;
-import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.RangedAttribute;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.common.event.*;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.slayer.api.SlayerAPI;
 
 public class CommonProxy {
-
-    @SubscribeEvent
-    public static void registerBlocks(RegistryEvent.Register<Block> event) { }
-
-    @SubscribeEvent
-    public static void registerItems(RegistryEvent.Register<Item> event) { }
-
-    public void registerClient() { }
-
-    public void clientInit(FMLInitializationEvent event) { }
-
-    public void clientPreInit() { }
-
-    public void clientPostInit() { }
-
-    public void registerSounds() { }
-
-    public void registerTEISR() { }
-
     public void spawnParticle(EnumParticlesClasses particle, World worldObj, double x, double y, double z, boolean b) { }
 
     public void spawnOreParticle(World worldObj, double x, double y, double z, float r, float g, float b) { }
@@ -128,10 +104,6 @@ public class CommonProxy {
     public void onLoadComplete(FMLLoadCompleteEvent event) {
         EntityRegistry.onLoadComplete(event);
     }
-
-    public void registerEntityRenderer(Entity entity, int i, String name) { }
-
-    public void registerVariantRenderer(Item item, int meta, String name, String id) { }
 
     public void serverStarting(FMLServerStartingEvent event) {
         event.registerServerCommand(new JourneyCommands());
