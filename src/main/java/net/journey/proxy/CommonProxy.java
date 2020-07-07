@@ -25,7 +25,6 @@ import net.journey.init.items.JourneyWeapons;
 import net.journey.integration.Integrations;
 import net.journey.network.NetworkHandler;
 import net.journey.util.Config;
-import net.journey.util.JourneyFuelHandler;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.RangedAttribute;
 import net.minecraft.entity.player.EntityPlayer;
@@ -73,7 +72,6 @@ public class CommonProxy {
         JNWorldGenerator.updateGenSettings();
         SlayerAPI.registerEventListener(new NetherEvent());
         SlayerAPI.registerEventListener(new ArmorAbilityEvent());
-        SlayerAPI.registerEventListener(new JourneyFuelHandler());
         SlayerAPI.registerEventListener(new VanillaFixEvent());
         SlayerAPI.registerEventListener(new JourneyEnchantments());
         SlayerAPI.registerEventListener(new BowZoomEvent());

@@ -1,4 +1,4 @@
-package net.journey.eventhandler;
+package net.journey.client.handler;
 
 import net.journey.JITL;
 import net.journey.util.ChatUtils;
