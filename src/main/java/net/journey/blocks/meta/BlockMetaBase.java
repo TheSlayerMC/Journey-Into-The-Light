@@ -1,7 +1,5 @@
 package net.journey.blocks.meta;
 
-import net.journey.JITL;
-import net.journey.api.client.IHasModel;
 import net.journey.api.util.IMetaName;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.handler.EnumTypeHandler;
@@ -19,14 +17,13 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-import net.minecraftforge.client.event.ModelRegistryEvent;
 
-public class BlockMetaBase extends Block implements IMetaName, IHasModel {
+public class BlockMetaBase extends Block implements IMetaName {
 
     public static final PropertyEnum<EnumTypeHandler.EnumType> VARIANT = PropertyEnum.create("variant", EnumTypeHandler.EnumType.class);
 
-    private String name;
-    private String metaName;
+    private final String name;
+    private final String metaName;
 
     public BlockMetaBase(String name, Material m, String metaName) {
         super(m);
@@ -73,11 +70,11 @@ public class BlockMetaBase extends Block implements IMetaName, IHasModel {
         return EnumTypeHandler.EnumType.values()[stack.getItemDamage()].getName();
     }
 
-    @Override
-    public void registerModels(ModelRegistryEvent e) {
-        for (int i = 0; i < EnumTypeHandler.EnumType.values().length; i++) {
-            JITL.proxy.registerVariantRenderer(Item.getItemFromBlock(this), i,
-                    metaName + "_" + EnumTypeHandler.EnumType.values()[i].getName(), "inventory");
-        }
-    }
+//    @Override
+//    public void registerModels(ModelRegistryEvent e) {
+//        for (int i = 0; i < EnumTypeHandler.EnumType.values().length; i++) {
+//            JITL.proxy.registerVariantRenderer(Item.getItemFromBlock(this), i,
+//                    metaName + "_" + EnumTypeHandler.EnumType.values()[i].getName(), "inventory");
+//        }
+//    }
 }

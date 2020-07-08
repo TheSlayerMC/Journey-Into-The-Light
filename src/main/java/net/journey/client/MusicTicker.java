@@ -1,12 +1,14 @@
 package net.journey.client;
 
+import net.journey.dimension.base.DimensionHelper;
 import net.journey.init.JourneySounds;
-import net.journey.util.Config;
+import net.journey.util.RandHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.ISound;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.DimensionType;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -50,58 +52,44 @@ public class MusicTicker {
         return id;
     }
 
+    public DimensionType getDimension() {
+        return DimensionType.getById(id);
+    }
+
     public void setDimensionID(int id) {
         this.id = id;
     }
 
-    public boolean playingMusic() {
+    public boolean isPlayingMusic() {
         return this.currentMusic != null;
     }
 
     public MusicTicker.TrackType getRandomTrack() {
         TrackType type = TrackType.EMPTY;
-        int dimID = getDimensionID();
-        if (dimID == Config.depths) {
-            int tracks = rand.nextInt(2);
-            return tracks == 0 ? TrackType.DEPTHS_1 : tracks == 1 ? TrackType.DEPTHS_2 : TrackType.DEPTHS_1;
+
+        DimensionType dimension = getDimension();
+
+        if (dimension == DimensionHelper.DEPTHS_DIM) {
+            return RandHelper.chooseEqual(RandHelper.RANDOM, TrackType.DEPTHS_1, TrackType.DEPTHS_2);
+        } else if (dimension == DimensionHelper.EUCA_DIM) {
+            return RandHelper.chooseEqual(RandHelper.RANDOM, TrackType.EUCA_1, TrackType.EUCA_2, TrackType.EUCA_3);
+        } else if (dimension == DimensionHelper.CORBA_DIM) {
+            return TrackType.CORBA_1;
+        } else if (dimension == DimensionHelper.TERRANIA_DIM) {
+            return TrackType.TERRANIA_1;
+        } else if (dimension == DimensionHelper.BOILING_DIM) {
+            return TrackType.BOIL_1;
+        } else if (dimension == DimensionHelper.CLOUDIA_DIM) {
+            return RandHelper.chooseEqual(RandHelper.RANDOM, TrackType.CLOUDIA_1, TrackType.CLOUDIA_2);
+        } else if (dimension == DimensionHelper.FROZEN_DIM) {
+            return TrackType.FROZEN_1;
         }
 
-        if (dimID == Config.euca) {
-            int tracks = rand.nextInt(3);
-            return tracks == 0 ? TrackType.EUCA_1 : tracks == 1 ? TrackType.EUCA_2 : tracks == 2 ? TrackType.EUCA_3 : TrackType.EUCA_1;
-        }
-
-        if (dimID == Config.corba) {
-            int tracks = rand.nextInt(1);
-            return tracks == 0 ? TrackType.CORBA_1 : TrackType.CORBA_1;
-        }
-
-        if (dimID == Config.terrania) {
-            int tracks = rand.nextInt(1);
-            return tracks == 0 ? TrackType.TERRANIA_1 : TrackType.TERRANIA_1;
-        }
-
-        if (dimID == Config.boil) {
-            int tracks = rand.nextInt(1);
-            return tracks == 0 ? TrackType.BOIL_1 : TrackType.BOIL_1;
-        }
-
-        if (dimID == Config.cloudia) {
-            int tracks = rand.nextInt(2);
-            return tracks == 0 ? TrackType.CLOUDIA_1 : tracks == 1 ? TrackType.CLOUDIA_2 : TrackType.CLOUDIA_1;
-        }
-
-        if (dimID == Config.frozen) {
-            int tracks = rand.nextInt(1);
-            return tracks == 0 ? TrackType.FROZEN_1 : TrackType.FROZEN_1;
-        }
-
-        //return num == 0 ? TrackType.TRACK_ONE : num == 1 ? TrackType.TRACK_TWO : num == 2 ? TrackType.TRACK_THREE : TrackType.TRACK_FOUR;
         return type;
     }
 
     public void playMusic(TrackType requestedMusicType) {
-        this.currentMusic = PositionedSoundRecord.getMusicRecord(requestedMusicType.getMusicLocation());
+        this.currentMusic = PositionedSoundRecord.getMusicRecord(requestedMusicType.getSound());
         this.mc.getSoundHandler().playSound(this.currentMusic);
         this.timeUntilNextMusic = Integer.MAX_VALUE;
     }
@@ -129,18 +117,18 @@ public class MusicTicker {
         BOIL_1(JourneySounds.BOIL_1, 3140, 3440),
         FROZEN_1(JourneySounds.FROZEN_1, 3500, 3800);
 
-        private final SoundEvent musicLocation;
+        private final SoundEvent sound;
         private final int minDelay;
         private final int maxDelay;
 
-        TrackType(SoundEvent musicLocationIn, int minDelayIn, int maxDelayIn) {
-            this.musicLocation = musicLocationIn;
+        TrackType(SoundEvent sound, int minDelayIn, int maxDelayIn) {
+            this.sound = sound;
             this.minDelay = minDelayIn;
             this.maxDelay = maxDelayIn;
         }
 
-        public SoundEvent getMusicLocation() {
-            return this.musicLocation;
+        public SoundEvent getSound() {
+            return this.sound;
         }
 
         public int getMinDelay() {

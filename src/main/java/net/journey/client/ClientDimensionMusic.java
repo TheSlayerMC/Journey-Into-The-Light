@@ -1,63 +1,63 @@
 package net.journey.client;
 
+import net.journey.JITL;
 import net.journey.util.Config;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.ISound;
 import net.minecraft.util.SoundCategory;
 import net.minecraftforge.client.event.sound.PlaySoundEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+@Mod.EventBusSubscriber
 public class ClientDimensionMusic {
-
-	private final Minecraft mc = Minecraft.getMinecraft();
-	private final MusicTicker musicTicker = new MusicTicker(mc);
+	private static final Minecraft MC = Minecraft.getMinecraft();
+	private static final MusicTicker MUSIC_TICKER = new MusicTicker(MC);
 
 	@SubscribeEvent
-	public void onClientTick(TickEvent.ClientTickEvent event) throws Exception {
+	public static void onClientTick(TickEvent.ClientTickEvent event) {
 		TickEvent.Phase phase = event.phase;
 		TickEvent.Type type = event.type;
 
 		if (phase == TickEvent.Phase.END) {
 			if (type.equals(TickEvent.Type.CLIENT)) {
-				if (!mc.isGamePaused()) {
-					musicTicker.update();
-                }
-            }
-        }
-    }
+				if (!MC.isGamePaused()) {
+					MUSIC_TICKER.update();
+				}
+			}
+		}
+	}
 
-    @SubscribeEvent
-    @SideOnly(Side.CLIENT)
-    public void onMusicControl(PlaySoundEvent event) {
-        ISound sound = event.getSound();
-        SoundCategory category = sound.getCategory();
-        if (category == SoundCategory.MUSIC) {
-            if (mc.currentScreen != null) {
-                if (this.mc.player != null) {
-					musicTicker.setDimensionID(mc.player.dimension);
-					if (this.mc.player.dimension == Config.euca ||
-							this.mc.player.dimension == Config.depths ||
-							this.mc.player.dimension == Config.boil ||
-							this.mc.player.dimension == Config.frozen ||
-							this.mc.player.dimension == Config.corba ||
-							this.mc.player.dimension == Config.cloudia) {
-						if (!sound.getSoundLocation().toString().contains("journey") && (this.musicTicker.playingMusic() || !this.musicTicker.playingMusic())) {
+	@SubscribeEvent
+	@SideOnly(Side.CLIENT)
+	public static void onMusicControl(PlaySoundEvent event) {
+		ISound sound = event.getSound();
+		SoundCategory category = sound.getCategory();
+		if (category == SoundCategory.MUSIC) {
+			if (MC.currentScreen != null) {
+				if (MC.player != null) {
+					MUSIC_TICKER.setDimensionID(MC.player.dimension);
+					if (MC.player.dimension == Config.euca ||
+							MC.player.dimension == Config.depths ||
+							MC.player.dimension == Config.boil ||
+							MC.player.dimension == Config.frozen ||
+							MC.player.dimension == Config.corba ||
+							MC.player.dimension == Config.cloudia) {
+						if (!sound.getSoundLocation().getNamespace().equals(JITL.MOD_ID) && (MUSIC_TICKER.isPlayingMusic() || !MUSIC_TICKER.isPlayingMusic())) {
 							event.setResultSound(null);
-							return;
 						}
 					}
 				}
-            }
-        } else if (category == SoundCategory.RECORDS) {
-            this.musicTicker.stopMusic();
-            this.mc.getSoundHandler().stopSounds();
+			}
+		} else if (category == SoundCategory.RECORDS) {
+			MUSIC_TICKER.stopMusic();
+			MC.getSoundHandler().stopSounds();
 
-            return;
-        }
-    }
+		}
+	}
 
 
 }
