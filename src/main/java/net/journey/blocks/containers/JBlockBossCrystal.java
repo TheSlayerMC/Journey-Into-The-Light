@@ -32,7 +32,7 @@ import java.util.function.Supplier;
 public class JBlockBossCrystal extends BlockModContainer implements IHasTeisr, IHasCustomItemPath {
 
     public final JBlockBossCrystal.Type type;
-    private final AxisAlignedBB size = new AxisAlignedBB(0.0F, 0.0F, 0.0F, 1.0F, 3.5F, 1.0F);
+    private final AxisAlignedBB size = new AxisAlignedBB(0.0F, 0.0F, 0.0F, 1.0F, 3.5F, 1.0F).setMaxY(3.75);
 
     public JBlockBossCrystal(String name, String finalName, JBlockBossCrystal.Type type) {
         super(name, finalName);
