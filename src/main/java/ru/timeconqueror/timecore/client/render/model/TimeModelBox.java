@@ -26,39 +26,43 @@ public class TimeModelBox {
 		int dz = (int) size.getZ();
 
 		size.set(size.getX() == 0 ? 0.008F : size.getX(), size.getY() == 0 ? 0.008F : size.getY(), size.getZ() == 0 ? 0.008F : size.getZ());
-		float x = origin.getX();
-		float y = origin.getY();
-		float z = origin.getZ();
+		float x1 = origin.getX();
+		float y1 = origin.getY();
+		float z1 = origin.getZ();
 
 		int texU = (int) uv.getX();
 		int texV = (int) uv.getY();
 
 		List<TexturedQuad> quads = new ArrayList<>(6);
 
-		this.pos1 = new Vector3f(x, y, z);
-		this.pos2 = new Vector3f(x + size.getX(), y + size.getY(), z + size.getZ());
+		float x2 = x1 + size.getX();
+		float y2 = y1 + size.getY();
+		float z2 = z1 + size.getZ();
 
-		float f = pos2.getX() + inflate;
-		float f1 = pos2.getY() + inflate;
-		float f2 = pos2.getZ() + inflate;
-		x -= inflate;
-		y -= inflate;
-		z -= inflate;
+		this.pos1 = new Vector3f(x1, y1, z1);
+		this.pos2 = new Vector3f(x2, y2, z2);
+
+		x2 += inflate;
+		y2 += inflate;
+		z2 += inflate;
+		x1 -= inflate;
+		y1 -= inflate;
+		z1 -= inflate;
 
 		if (mirror) {
-			float temp = f;
-			f = x;
-			x = temp;
+			float temp = x2;
+			x2 = x1;
+			x1 = temp;
 		}
 
-		PositionTextureVertex vertex7 = new PositionTextureVertex(x, y, z, 0.0F, 0.0F);
-		PositionTextureVertex vertex = new PositionTextureVertex(f, y, z, 0.0F, 8.0F);
-		PositionTextureVertex vertex1 = new PositionTextureVertex(f, f1, z, 8.0F, 8.0F);
-		PositionTextureVertex vertex2 = new PositionTextureVertex(x, f1, z, 8.0F, 0.0F);
-		PositionTextureVertex vertex3 = new PositionTextureVertex(x, y, f2, 0.0F, 0.0F);
-		PositionTextureVertex vertex4 = new PositionTextureVertex(f, y, f2, 0.0F, 8.0F);
-		PositionTextureVertex vertex5 = new PositionTextureVertex(f, f1, f2, 8.0F, 8.0F);
-		PositionTextureVertex vertex6 = new PositionTextureVertex(x, f1, f2, 8.0F, 0.0F);
+		PositionTextureVertex vertex7 = new PositionTextureVertex(x1, y1, z1, 0.0F, 0.0F);
+		PositionTextureVertex vertex = new PositionTextureVertex(x2, y1, z1, 0.0F, 8.0F);
+		PositionTextureVertex vertex1 = new PositionTextureVertex(x2, y2, z1, 8.0F, 8.0F);
+		PositionTextureVertex vertex2 = new PositionTextureVertex(x1, y2, z1, 8.0F, 0.0F);
+		PositionTextureVertex vertex3 = new PositionTextureVertex(x1, y1, z2, 0.0F, 0.0F);
+		PositionTextureVertex vertex4 = new PositionTextureVertex(x2, y1, z2, 0.0F, 8.0F);
+		PositionTextureVertex vertex5 = new PositionTextureVertex(x2, y2, z2, 8.0F, 8.0F);
+		PositionTextureVertex vertex6 = new PositionTextureVertex(x1, y2, z2, 8.0F, 0.0F);
 
 		if (dz != 0 && dy != 0) {
 			quads.add(new TexturedQuad(new PositionTextureVertex[]{vertex4, vertex, vertex1, vertex5}, texU + dz + dx, texV + dz, texU + dz + dx + dz, texV + dz + dy, textureWidth, textureHeight));
