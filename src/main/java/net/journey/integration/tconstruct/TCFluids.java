@@ -11,10 +11,11 @@ public class TCFluids {
 	private static FluidMolten addMoltenFluid(EnumJTCMaterials material, int temperature) {
 		FluidMolten fluidMolten = new FluidMolten(material.getName(), material.getColor());
 		fluidMolten.setTemperature(temperature);
-		fluidMolten.setUnlocalizedName(JITL.MOD_NAME + "." + material.getName());
+		fluidMolten.setUnlocalizedName(JITL.MOD_ID + "." + material.getName());
 
 		FluidRegistry.registerFluid(fluidMolten);
 		FluidRegistry.addBucketForFluid(fluidMolten);
+
 		return fluidMolten;
 	}
 }

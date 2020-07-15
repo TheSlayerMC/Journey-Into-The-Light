@@ -32,6 +32,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
@@ -39,11 +40,18 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.slayer.api.SlayerAPI;
 
 public class CommonProxy {
-    public void spawnParticle(EnumParticlesClasses particle, World worldObj, double x, double y, double z, boolean b) { }
 
-    public void spawnOreParticle(World worldObj, double x, double y, double z, float r, float g, float b) { }
+    public void registerFluidModels(Fluid... fluids) {
+    }
 
-    public void spawnParticle(EnumParticlesClasses particle, World worldObj, double x, double y, double z, double x1, double y2, double z2) { }
+    public void spawnParticle(EnumParticlesClasses particle, World worldObj, double x, double y, double z, boolean b) {
+    }
+
+    public void spawnOreParticle(World worldObj, double x, double y, double z, float r, float g, float b) {
+    }
+
+    public void spawnParticle(EnumParticlesClasses particle, World worldObj, double x, double y, double z, double x1, double y2, double z2) {
+    }
 
     public EntityPlayer getPlayer() {
         return null;
@@ -83,6 +91,7 @@ public class CommonProxy {
         SlayerAPI.registerEventListener(new RenderBar());
         CapabilityManager.INSTANCE.register(IEssence.class, new EssenceStorage(), EssenceBar.class);
 
+        Integrations.onPreInit(event);
         NetworkHandler.registerPackets();
     }
 
