@@ -1,7 +1,6 @@
-package net.journey.integration;
+package net.journey.integration.jer;
 
 import jeresources.api.*;
-import jeresources.api.distributions.DistributionBase;
 import jeresources.api.distributions.DistributionSquare;
 import jeresources.api.drop.LootDrop;
 import jeresources.util.LogHelper;
