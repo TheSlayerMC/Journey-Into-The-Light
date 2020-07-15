@@ -10,7 +10,7 @@ import net.minecraftforge.fml.relauncher.Side;
 public class TCClientHandler {
 
 	@SubscribeEvent
-	public void registerFluidModels(ModelRegistryEvent event) {
+	public static void registerFluidModels(ModelRegistryEvent event) {
 		JITL.proxy.registerFluidModels(TCFluids.CELESTIUM);
 	}
 }
