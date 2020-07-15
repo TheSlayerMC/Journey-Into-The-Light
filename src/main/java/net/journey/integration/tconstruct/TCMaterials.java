@@ -1,6 +1,5 @@
 package net.journey.integration.tconstruct;
 
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import slimeknights.tconstruct.library.TinkerRegistry;
@@ -12,7 +11,6 @@ public class TCMaterials {
 
 	public static void preInit(FMLPreInitializationEvent event) {
 		TinkerRegistry.integrate(CELESTIUM, TCFluids.CELESTIUM, "Celestium");
-		MinecraftForge.EVENT_BUS.register(new TCClientHandler());
 	}
 
 	private static Material addMaterial(EnumJTCMaterials material, Fluid fluid, String ingot) {
