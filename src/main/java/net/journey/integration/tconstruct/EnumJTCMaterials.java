@@ -2,6 +2,9 @@ package net.journey.integration.tconstruct;
 
 public enum EnumJTCMaterials {
 
+	LUNIUM("lunium", 0xfffa6f),
+	SHADIUM("shadium", 0x3b49ff),
+
 	CELESTIUM("celestium", 0x00ffb4),
 	MEKYUM("mekyum", 0xe56cff),
 	STORON("storon", 0xe1ea7e),

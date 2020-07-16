@@ -25,7 +25,13 @@ public class TCClientHandler {
 
 	@SubscribeEvent(priority = EventPriority.LOW)
 	public static void initFluidModels(final ModelRegistryEvent event) {
-		registerFluidModels(TCFluids.CELESTIUM, TCFluids.MEKYUM, TCFluids.STORON, TCFluids.KORITE);
+		registerFluidModels(
+				TCFluids.LUNIUM,
+				TCFluids.SHADIUM,
+				TCFluids.CELESTIUM,
+				TCFluids.MEKYUM,
+				TCFluids.STORON,
+				TCFluids.KORITE);
 	}
 
 	public static void registerFluidModels(Fluid... fluids) {

@@ -7,6 +7,9 @@ import slimeknights.tconstruct.library.materials.*;
 
 public class TCMaterials {
 
+	private static final Material LUNIUM = addMaterial(EnumJTCMaterials.LUNIUM, TCFluids.LUNIUM, "ingotLunium");
+	private static final Material SHADIUM = addMaterial(EnumJTCMaterials.SHADIUM, TCFluids.SHADIUM, "ingotShadium");
+
 	private static final Material CELESTIUM = addMaterial(EnumJTCMaterials.CELESTIUM, TCFluids.CELESTIUM, "ingotCelestium");
 	private static final Material MEKYUM = addMaterial(EnumJTCMaterials.MEKYUM, TCFluids.MEKYUM, "ingotMekyum");
 	private static final Material STORON = addMaterial(EnumJTCMaterials.STORON, TCFluids.STORON, "ingotStoron");
@@ -26,6 +29,9 @@ public class TCMaterials {
 	}
 
 	private static void initMaterials() {
+		TinkerRegistry.integrate(LUNIUM, TCFluids.LUNIUM, "Lunium");
+		TinkerRegistry.integrate(SHADIUM, TCFluids.SHADIUM, "Shadium");
+
 		TinkerRegistry.integrate(CELESTIUM, TCFluids.CELESTIUM, "Celestium");
 		TinkerRegistry.integrate(MEKYUM, TCFluids.MEKYUM, "Mekyum");
 		TinkerRegistry.integrate(STORON, TCFluids.STORON, "Storon");
@@ -34,26 +40,38 @@ public class TCMaterials {
 
 	private static void initMaterialStats() {
 		TinkerRegistry.addMaterialStats(
+				LUNIUM,
+				new HeadMaterialStats(1436, 18.0F, 6.5F, 4),
+				new HandleMaterialStats(1.2F, 200),
+				new ExtraMaterialStats(250),
+				new BowMaterialStats(1.2F, 1.0F, 2.0F));
+		TinkerRegistry.addMaterialStats(
+				SHADIUM,
+				new HeadMaterialStats(1436, 18.0F, 6.5F, 4),
+				new HandleMaterialStats(1.2F, 200),
+				new ExtraMaterialStats(250),
+				new BowMaterialStats(1.2F, 1.0F, 2.0F));
+		TinkerRegistry.addMaterialStats(
 				CELESTIUM,
-				new HeadMaterialStats(3000, 18.0F, 9.5F, 4),
+				new HeadMaterialStats(2017, 18.0F, 9.5F, 4),
 				new HandleMaterialStats(1.2F, 200),
 				new ExtraMaterialStats(250),
 				new BowMaterialStats(1.2F, 1.0F, 2.0F));
 		TinkerRegistry.addMaterialStats(
 				MEKYUM,
-				new HeadMaterialStats(3000, 18.0F, 9.5F, 4),
+				new HeadMaterialStats(2017, 18.0F, 9.5F, 4),
 				new HandleMaterialStats(1.2F, 200),
 				new ExtraMaterialStats(250),
 				new BowMaterialStats(1.2F, 1.0F, 2.0F));
 		TinkerRegistry.addMaterialStats(
 				STORON,
-				new HeadMaterialStats(3000, 18.0F, 9.5F, 4),
+				new HeadMaterialStats(2017, 18.0F, 9.5F, 4),
 				new HandleMaterialStats(1.2F, 200),
 				new ExtraMaterialStats(250),
 				new BowMaterialStats(1.2F, 1.0F, 2.0F));
 		TinkerRegistry.addMaterialStats(
 				KORITE,
-				new HeadMaterialStats(3000, 18.0F, 9.5F, 4),
+				new HeadMaterialStats(2017, 18.0F, 9.5F, 4),
 				new HandleMaterialStats(1.2F, 200),
 				new ExtraMaterialStats(250),
 				new BowMaterialStats(1.2F, 1.0F, 2.0F));
