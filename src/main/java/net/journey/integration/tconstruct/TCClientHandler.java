@@ -14,6 +14,7 @@ import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 
@@ -22,9 +23,9 @@ import javax.annotation.Nonnull;
 @Mod.EventBusSubscriber(value = Side.CLIENT, modid = JITL.MOD_ID)
 public class TCClientHandler {
 
-	@SubscribeEvent
+	@SubscribeEvent(priority = EventPriority.LOW)
 	public static void initFluidModels(final ModelRegistryEvent event) {
-		registerFluidModels(TCFluids.CELESTIUM);
+		registerFluidModels(TCFluids.CELESTIUM, TCFluids.MEKYUM, TCFluids.STORON, TCFluids.KORITE);
 	}
 
 	public static void registerFluidModels(Fluid... fluids) {
@@ -43,6 +44,7 @@ public class TCClientHandler {
 					ModelLoader.setCustomMeshDefinition(item, mapper);
 				}
 				// block-model
+				System.out.println("STATE MAPPER ");
 				ModelLoader.setCustomStateMapper(block, mapper);
 			}
 		}

@@ -10,6 +10,27 @@
           "fluid": "celestium"
         }
       }
+    ],
+    "mekyum": [
+      {
+        "custom": {
+          "fluid": "mekyum"
+        }
+      }
+    ],
+    "storon": [
+      {
+        "custom": {
+          "fluid": "storon"
+        }
+      }
+    ],
+    "korite": [
+      {
+        "custom": {
+          "fluid": "korite"
+        }
+      }
     ]
   }
 }

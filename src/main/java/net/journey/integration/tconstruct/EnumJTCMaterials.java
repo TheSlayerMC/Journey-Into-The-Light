@@ -2,7 +2,10 @@ package net.journey.integration.tconstruct;
 
 public enum EnumJTCMaterials {
 
-	CELESTIUM("celestium", 0x00ffb4);
+	CELESTIUM("celestium", 0x00ffb4),
+	MEKYUM("mekyum", 0xe56cff),
+	STORON("storon", 0xe1ea7e),
+	KORITE("korite", 0x2bc6ff);
 
 	private final String name;
 	private final int color;

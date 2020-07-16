@@ -32,6 +32,24 @@ public class JourneyOreDictionary {
         OreDictionary.registerOre("oreMekyum", JourneyBlocks.mekyumOre);
         OreDictionary.registerOre("oreShadium", JourneyBlocks.shadiumOre);
         OreDictionary.registerOre("oreStoron", JourneyBlocks.storonOre);
+
+        OreDictionary.registerOre("blockSapphire", JourneyBlocks.sapphireBlock);
+        OreDictionary.registerOre("blockAshual", JourneyBlocks.ashualBlock);
+        OreDictionary.registerOre("blockBlazium", JourneyBlocks.blaziumBlock);
+        OreDictionary.registerOre("blockCelestium", JourneyBlocks.celestiumBlock);
+        OreDictionary.registerOre("blockDes", JourneyBlocks.desBlock);
+        OreDictionary.registerOre("blockEnderillium", JourneyBlocks.enderilliumBlock);
+        OreDictionary.registerOre("blockOrbadite", JourneyBlocks.orbaditeBlock);
+        OreDictionary.registerOre("blockFlairium", JourneyBlocks.flairiumBlock);
+        OreDictionary.registerOre("blockGorbite", JourneyBlocks.gorbiteBlock);
+        OreDictionary.registerOre("blockHellstone", JourneyBlocks.hellstoneBlock);
+        OreDictionary.registerOre("blockIridium", JourneyBlocks.iridiumBlock);
+        OreDictionary.registerOre("blockKorite", JourneyBlocks.koriteBlock);
+        OreDictionary.registerOre("blockLunite", JourneyBlocks.luniteBlock);
+        OreDictionary.registerOre("blockLunium", JourneyBlocks.luniumBlock);
+        OreDictionary.registerOre("blockMekyum", JourneyBlocks.mekyumBlock);
+        OreDictionary.registerOre("blockShadium", JourneyBlocks.shadiumBlock);
+        OreDictionary.registerOre("blockStoron", JourneyBlocks.storonBlock);
     }
 
     public static void initOreItems() {
