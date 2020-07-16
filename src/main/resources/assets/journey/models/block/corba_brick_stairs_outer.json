@@ -1,8 +1,0 @@
-{
-	"parent": "block/outer_stairs",
-	"textures": {
-		"bottom": "journey:blocks/corba_bricks",
-		"top": "journey:blocks/corba_bricks",
-		"side": "journey:blocks/corba_bricks"
-	}
-}

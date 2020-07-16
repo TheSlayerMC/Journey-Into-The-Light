@@ -1,8 +1,0 @@
-{
-	"parent": "block/outer_stairs",
-	"textures": {
-		"bottom": "journey:blocks/depthsPlank",
-		"top": "journey:blocks/depthsPlank",
-		"side": "journey:blocks/depthsPlank"
-	}
-}

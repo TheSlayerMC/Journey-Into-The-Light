@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "facing=north": { "model": "journey:trophyEudor" },
-        "facing=south": { "model": "journey:trophyEudor", "y": 180 },
-        "facing=west":  { "model": "journey:trophyEudor", "y": 270 },
-        "facing=east":  { "model": "journey:trophyEudor", "y": 90 }
-    }
-}

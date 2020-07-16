@@ -1,9 +1,0 @@
-{
-	"parent": "journey:block/grass",
-	"textures": {
-		"particle": "journey:blocks/trophyTable_bottom",
-		"bottom": "journey:blocks/trophyTable_bottom",
-		"top": "journey:blocks/trophyTable_top",
-		"side": "journey:blocks/trophyTable_side"
-	}
-}

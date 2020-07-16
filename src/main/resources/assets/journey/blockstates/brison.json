@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "variant=darkbrisonbrick": { "model": "journey:darkbrisonbrick" },
-        "variant=redbrisonbrick": { "model": "journey:redbrisonbrick" },
-        "variant=smallbrisonbrick": { "model": "journey:smallbrisonbrick" },
-        "variant=brisonstone": { "model": "journey:brisonstone" }
-    }
-}

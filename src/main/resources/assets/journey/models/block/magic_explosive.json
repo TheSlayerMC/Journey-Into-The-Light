@@ -1,8 +1,0 @@
-{
-	"parent": "block/cube_column",
-	"textures": {
-		"particle": "journey:blocks/magic_explosive_side",
-		"end": "journey:blocks/magic_explosive_top",
-		"side": "journey:blocks/magic_explosive_side"
-	}
-}

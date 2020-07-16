@@ -1,6 +1,0 @@
-{
-	"parent": "block/cross",
-	"textures": {
-		"cross": "journey:blocks/euca_silver_sprouts"
-	}
-}

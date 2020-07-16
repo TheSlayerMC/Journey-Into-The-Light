@@ -1,7 +1,0 @@
-{
-    "parent": "block/cube_column",
-    "textures": {
-        "side": "journey:blocks/terrashroom_stem",
-        "end": "journey:blocks/terrashroom_inside_purple"
-    }
-}

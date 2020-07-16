@@ -1,8 +1,0 @@
-{
-	"parent": "block/stairs",
-	"textures": {
-		"bottom": "journey:blocks/workshopStone",
-		"top": "journey:blocks/workshopStone",
-		"side": "journey:blocks/workshopStone"
-	}
-}

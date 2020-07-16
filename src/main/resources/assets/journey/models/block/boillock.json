@@ -1,8 +1,0 @@
-{
-    "parent": "block/orientable",
-    "textures": {
-        "top": "journey:blocks/boilLock_top",
-        "front": "journey:blocks/boilLock_front",
-        "side": "journey:blocks/boilLock_side"
-    }
-}

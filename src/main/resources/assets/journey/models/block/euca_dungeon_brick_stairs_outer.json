@@ -1,8 +1,0 @@
-{
-	"parent": "block/outer_stairs",
-	"textures": {
-		"bottom": "journey:blocks/euca_dungeon_bricks",
-		"top": "journey:blocks/euca_dungeon_bricks",
-		"side": "journey:blocks/euca_dungeon_bricks"
-	}
-}

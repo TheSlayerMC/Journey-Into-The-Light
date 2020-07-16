@@ -1,9 +1,0 @@
-{
-	"parent": "block/cube_bottom_top",
-	"textures": {
-		"particle": "journey:blocks/wastelandsStone",
-		"bottom": "journey:blocks/wastelandsStone",
-		"top": "journey:blocks/wastelandsGrass_top",
-		"side": "journey:blocks/wastelandsGrass_side"
-	}
-}

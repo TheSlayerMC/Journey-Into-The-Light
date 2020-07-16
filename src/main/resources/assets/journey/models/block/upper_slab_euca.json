@@ -1,8 +1,0 @@
-{
-    "parent": "block/upper_slab",
-    "textures": {
-        "bottom": "journey:blocks/eucaPlank",
-        "top": "journey:blocks/eucaPlank",
-        "side": "journey:blocks/eucaPlank"
-    }
-}

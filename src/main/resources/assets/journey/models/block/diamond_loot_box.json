@@ -1,8 +1,0 @@
-{
-  "parent": "block/orientable",
-  "textures": {
-    "top": "journey:blocks/diamond_loot_box_top",
-    "front": "journey:blocks/diamond_loot_box_front",
-    "side": "journey:blocks/diamond_loot_box_side"
-  }
-}

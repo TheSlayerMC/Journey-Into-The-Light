@@ -1,8 +1,0 @@
-{
-	"parent": "block/outer_stairs",
-	"textures": {
-		"bottom": "journey:blocks/cloudiabrick",
-		"top": "journey:blocks/cloudiabrick",
-		"side": "journey:blocks/cloudiabrick"
-	}
-}

@@ -1,6 +1,0 @@
-{
-    "variants": {
-        "insert=false": { "model": "journey:ancient_socket_empty" },
-        "insert=true": { "model": "journey:ancient_socket_filled" }
-    }
-}

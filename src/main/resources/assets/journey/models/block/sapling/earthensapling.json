@@ -1,6 +1,0 @@
-{
-    "parent": "block/cross",
-    "textures": {
-        "cross": "journey:blocks/sapling/earthen_nether_sapling"
-    }
-}

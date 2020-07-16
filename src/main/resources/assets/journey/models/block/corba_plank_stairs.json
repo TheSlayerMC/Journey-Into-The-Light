@@ -1,8 +1,0 @@
-{
-	"parent": "block/stairs",
-	"textures": {
-		"bottom": "journey:blocks/corbaPlank",
-		"top": "journey:blocks/corbaPlank",
-		"side": "journey:blocks/corbaPlank"
-	}
-}

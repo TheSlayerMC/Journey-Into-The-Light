@@ -1,6 +1,0 @@
-{
-	"parent": "item/handheld",
-	"textures": {
-		"layer0": "journey:items/pickaxe_of_good_fortune"
-	}
-}

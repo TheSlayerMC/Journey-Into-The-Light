@@ -1,8 +1,0 @@
-{
-	"parent": "block/outer_stairs",
-	"textures": {
-		"bottom": "journey:blocks/eucaGoldPlank",
-		"top": "journey:blocks/eucaGoldPlank",
-		"side": "journey:blocks/eucaGoldPlank"
-	}
-}

@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "facing=north": { "model": "journey:trophyWitherBeast" },
-        "facing=south": { "model": "journey:trophyWitherBeast", "y": 180 },
-        "facing=west":  { "model": "journey:trophyWitherBeast", "y": 270 },
-        "facing=east":  { "model": "journey:trophyWitherBeast", "y": 90 }
-    }
-}

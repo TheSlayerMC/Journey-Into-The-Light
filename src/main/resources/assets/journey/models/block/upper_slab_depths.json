@@ -1,8 +1,0 @@
-{
-    "parent": "block/upper_slab",
-    "textures": {
-        "bottom": "journey:blocks/depthsPlank",
-        "top": "journey:blocks/depthsPlank",
-        "side": "journey:blocks/depthsPlank"
-    }
-}

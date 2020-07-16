@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "facing=north": { "model": "journey:corbaLadder" },
-        "facing=east":  { "model": "journey:corbaLadder", "y": 90 },
-        "facing=south": { "model": "journey:corbaLadder", "y": 180 },
-        "facing=west":  { "model": "journey:corbaLadder", "y": 270 }
-    }
-}

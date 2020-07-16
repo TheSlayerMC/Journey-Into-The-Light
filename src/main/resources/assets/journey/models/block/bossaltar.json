@@ -1,9 +1,0 @@
-{
-    "parent": "journey:block/grass",
-    "textures": {
-        "particle": "journey:blocks/bossAltar_top",
-        "bottom": "journey:blocks/bossAltar_top",
-        "top": "journey:blocks/bossAltar_top",
-        "side": "journey:blocks/bossAltar_side"
-    }
-}

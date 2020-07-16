@@ -1,8 +1,0 @@
-{
-	"parent": "block/outer_stairs",
-	"textures": {
-		"bottom": "journey:blocks/dungeonCrackedBrick",
-		"top": "journey:blocks/dungeonCrackedBrick",
-		"side": "journey:blocks/dungeonCrackedBrick"
-	}
-}

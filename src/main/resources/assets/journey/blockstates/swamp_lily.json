@@ -1,9 +1,0 @@
-{
-    "variants": {
-        "normal": [
-            { "model": "journey:swamp_lily" },
-            { "model": "journey:swamp_lily", "y": 180 },
-            { "model": "journey:swamp_lily", "y": 90 }
-        ]
-    }
-}

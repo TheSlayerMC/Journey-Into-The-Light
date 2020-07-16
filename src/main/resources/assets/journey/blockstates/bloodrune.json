@@ -1,5 +1,0 @@
-{
-	"variants": {
-		"normal": [ { "model": "journey:bloodrune_0"}, { "model": "journey:bloodrune_1"}, { "model": "journey:bloodrune_2"}, { "model": "journey:bloodrune_3"}, { "model": "journey:bloodrune_4"} ]
-	}
-}

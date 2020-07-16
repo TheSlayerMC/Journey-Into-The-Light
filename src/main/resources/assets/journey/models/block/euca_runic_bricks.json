@@ -1,6 +1,0 @@
-{
-	"parent": "block/cube_all",
-	"textures": {
-		"all": "journey:blocks/euca_runic_bricks"
-	}
-}

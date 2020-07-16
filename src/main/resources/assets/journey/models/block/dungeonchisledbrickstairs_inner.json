@@ -1,8 +1,0 @@
-{
-	"parent": "block/inner_stairs",
-	"textures": {
-		"bottom": "journey:blocks/dungeonChisledBrick",
-		"top": "journey:blocks/dungeonChisledBrick",
-		"side": "journey:blocks/dungeonChisledBrick"
-	}
-}

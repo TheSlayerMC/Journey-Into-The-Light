@@ -1,8 +1,0 @@
-{
-    "parent": "block/orientable",
-    "textures": {
-        "top": "journey:blocks/depthsgate",
-        "front": "journey:blocks/depthslock_front",
-        "side": "journey:blocks/depthsgate"
-    }
-}

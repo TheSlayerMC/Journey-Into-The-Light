@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "facing=north": { "model": "journey:sentry_lock" },
-        "facing=south": { "model": "journey:sentry_lock", "y": 180 },
-        "facing=west":  { "model": "journey:sentry_lock", "y": 270 },
-        "facing=east":  { "model": "journey:sentry_lock", "y": 90 }
-    }
-}

@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "facing=north": { "model": "journey:trophyLogger" },
-        "facing=south": { "model": "journey:trophyLogger", "y": 180 },
-        "facing=west":  { "model": "journey:trophyLogger", "y": 270 },
-        "facing=east":  { "model": "journey:trophyLogger", "y": 90 }
-    }
-}

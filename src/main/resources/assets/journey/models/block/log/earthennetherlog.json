@@ -1,8 +1,0 @@
-{
-	"parent": "block/cube_column",
-	"textures": {
-		"particle": "journey:blocks/log/earthennetherlog_top",
-		"end": "journey:blocks/log/earthennetherlog_top",
-		"side": "journey:blocks/log/earthennetherlog_side"
-	}
-}

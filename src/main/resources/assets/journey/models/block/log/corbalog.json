@@ -1,8 +1,0 @@
-{
-	"parent": "block/cube_column",
-	"textures": {
-		"particle": "journey:blocks/log/corbalog_top",
-		"end": "journey:blocks/log/corbalog_top",
-		"side": "journey:blocks/log/corbalog_side"
-	}
-}

@@ -1,6 +1,0 @@
-{
-  "variants": {
-      "half=top": { "model": "journey:glowshroom_red" },
-      "half=bottom": { "model": "journey:tall_red_glowshroom_bottom" }
-  }
-}

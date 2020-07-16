@@ -1,8 +1,0 @@
-{
-	"parent": "block/cube_column",
-	"textures": {
-		"particle": "journey:blocks/log/witherwoodlog_top",
-		"end": "journey:blocks/log/witherwoodlog_top",
-		"side": "journey:blocks/log/witherwoodlog_side"
-	}
-}

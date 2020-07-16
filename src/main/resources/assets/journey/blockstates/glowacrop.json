@@ -1,8 +1,0 @@
-{
-	"variants": {
-		"age=0": { "model": "journey:glowaCropStage_0" },
-		"age=1": { "model": "journey:glowaCropStage_1" },
-		"age=2": { "model": "journey:glowaCropStage_2" },
-		"age=3": { "model": "journey:glowaCropStage_3" }
-	}
-}

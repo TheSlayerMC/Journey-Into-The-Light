@@ -1,9 +1,0 @@
-{
-    "parent": "block/orientable",
-    "textures": {
-        "top": "journey:blocks/incubator_top",
-        "front": "journey:blocks/incubator_front_on",
-        "side": "journey:blocks/incubator_side",
-		"bottom": "journey:blocks/incubator_bottom"
-    }
-}

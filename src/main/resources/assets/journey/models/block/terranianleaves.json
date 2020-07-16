@@ -1,9 +1,0 @@
-{
-	"parent": "block/cube_bottom_top",
-	"textures": {
-		"particle": "journey:blocks/terranianLeaves_top",
-		"bottom": "journey:blocks/terranianLeaves_bottom",
-		"top": "journey:blocks/terranianLeaves_top",
-		"side": "journey:blocks/terranianLeaves_side"
-	}
-}

@@ -1,8 +1,0 @@
-{
-    "parent": "block/orientable",
-    "textures": {
-        "top": "journey:blocks/darklyLock_top",
-        "front": "journey:blocks/darklyLock_front",
-        "side": "journey:blocks/darklyLock_side"
-    }
-}

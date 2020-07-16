@@ -1,8 +1,0 @@
-{
-	"parent": "block/outer_stairs",
-	"textures": {
-		"bottom": "journey:blocks/dungeonBrickCarved",
-		"top": "journey:blocks/dungeonBrickCarved",
-		"side": "journey:blocks/dungeonBrickCarved"
-	}
-}

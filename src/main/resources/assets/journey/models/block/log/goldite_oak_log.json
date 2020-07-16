@@ -1,8 +1,0 @@
-{
-	"parent": "block/cube_column",
-	"textures": {
-		"particle": "journey:blocks/log/goldite_oak_log_top",
-		"end": "journey:blocks/log/goldite_oak_log_top",
-		"side": "journey:blocks/log/goldite_oak_log_side"
-	}
-}

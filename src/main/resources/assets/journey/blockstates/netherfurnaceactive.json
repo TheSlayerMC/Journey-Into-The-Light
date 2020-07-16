@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "facing=north": { "model": "journey:netherFurnaceActive" },
-        "facing=south": { "model": "journey:netherFurnaceActive", "y": 180 },
-        "facing=west":  { "model": "journey:netherFurnaceActive", "y": 270 },
-        "facing=east":  { "model": "journey:netherFurnaceActive", "y": 90 }
-    }
-}

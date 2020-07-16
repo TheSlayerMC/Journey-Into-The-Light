@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "facing=north": { "model": "journey:darklyLock" },
-        "facing=south": { "model": "journey:darklyLock", "y": 180 },
-        "facing=west":  { "model": "journey:darklyLock", "y": 270 },
-        "facing=east":  { "model": "journey:darklyLock", "y": 90 }
-    }
-}

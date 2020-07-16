@@ -1,6 +1,0 @@
-{
-    "parent": "block/cross",
-    "textures": {
-        "cross": "journey:blocks/sapling/frozen_ice_sapling"
-    }
-}

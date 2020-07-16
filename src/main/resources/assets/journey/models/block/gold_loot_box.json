@@ -1,8 +1,0 @@
-{
-    "parent": "block/orientable",
-    "textures": {
-        "top": "journey:blocks/gold_loot_box_top",
-        "front": "journey:blocks/gold_loot_box_front",
-        "side": "journey:blocks/gold_loot_box_side"
-    }
-}

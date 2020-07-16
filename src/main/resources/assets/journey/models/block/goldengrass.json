@@ -1,9 +1,0 @@
-{
-	"parent": "block/cube_bottom_top",
-	"textures": {
-		"particle": "journey:blocks/goldenGrass_top",
-		"bottom": "journey:blocks/goldenGrass_bottom",
-		"top": "journey:blocks/goldenGrass_top",
-		"side": "journey:blocks/goldenGrass_side"
-	}
-}

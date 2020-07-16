@@ -1,8 +1,0 @@
-{
-	"parent": "block/cube_column",
-	"textures": {
-		"particle": "journey:blocks/log/boilinglog_top",
-		"end": "journey:blocks/log/boilinglog_top",
-		"side": "journey:blocks/log/boilinglog_side"
-	}
-}

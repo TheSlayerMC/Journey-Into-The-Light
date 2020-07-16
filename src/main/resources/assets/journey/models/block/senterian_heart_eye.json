@@ -1,8 +1,0 @@
-{
-  "parent": "block/orientable",
-  "textures": {
-    "top": "journey:blocks/senterian_heart_block",
-    "front": "journey:blocks/senterian_heart_eye",
-    "side": "journey:blocks/senterian_heart_block"
-  }
-}

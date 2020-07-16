@@ -1,9 +1,0 @@
-{
-	"parent": "block/grass_path",
-	"textures": {
-		"particle": "journey:blocks/corbadirt",
-		"bottom": "journey:blocks/corbadirt",
-		"top": "journey:blocks/corbagrasspath_top",
-		"side": "journey:blocks/corbadirt"
-	}
-}

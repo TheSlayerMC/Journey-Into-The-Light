@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "facing=north": { "model": "journey:incubator_lit" },
-        "facing=south": { "model": "journey:incubator_lit", "y": 180 },
-        "facing=west":  { "model": "journey:incubator_lit", "y": 270 },
-        "facing=east":  { "model": "journey:incubator_lit", "y": 90 }
-    }
-}

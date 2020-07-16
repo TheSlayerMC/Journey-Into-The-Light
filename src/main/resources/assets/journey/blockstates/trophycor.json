@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "facing=north": { "model": "journey:trophyCor" },
-        "facing=south": { "model": "journey:trophyCor", "y": 180 },
-        "facing=west":  { "model": "journey:trophyCor", "y": 270 },
-        "facing=east":  { "model": "journey:trophyCor", "y": 90 }
-    }
-}
