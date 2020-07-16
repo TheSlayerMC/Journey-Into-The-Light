@@ -23,7 +23,7 @@ import javax.annotation.Nonnull;
 public class TCClientHandler {
 
 	@SubscribeEvent
-	public static void registerFluidModels(final ModelRegistryEvent event) {
+	public static void initFluidModels(final ModelRegistryEvent event) {
 		registerFluidModels(TCFluids.CELESTIUM);
 	}
 
