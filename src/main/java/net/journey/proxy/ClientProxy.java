@@ -12,23 +12,17 @@ import net.journey.dimension.cloudia.CloudiaSkyRenderer;
 import net.journey.enums.EnumParticlesClasses;
 import net.journey.eventhandler.ClientTickEvent;
 import net.journey.util.gen.lang.LangGeneratorFacade;
-import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
-import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.world.World;
 import net.minecraftforge.client.IRenderHandler;
-import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.slayer.api.SlayerAPI;
-import slimeknights.tconstruct.shared.FluidsClientProxy;
 
 public class ClientProxy extends CommonProxy {
 
@@ -65,22 +59,6 @@ public class ClientProxy extends CommonProxy {
         super.postInit(event);
 
         LangGeneratorFacade.save();
-    }
-
-    @Override
-    public void registerFluidModels(Fluid... fluids) {
-        for (Fluid fluid : fluids) {
-            Block fluidBlock = fluid.getBlock();
-            if (fluid != null || fluids != null || fluidBlock != null) {
-                Item fluidItem = SlayerAPI.toItem(fluidBlock);
-                FluidsClientProxy.FluidStateMapper mapper = new FluidsClientProxy.FluidStateMapper(fluid);
-                if (fluidItem != null) {
-                    ModelBakery.registerItemVariants(fluidItem);
-                    ModelLoader.setCustomMeshDefinition(fluidItem, mapper);
-                }
-                ModelLoader.setCustomStateMapper(fluidBlock, mapper);
-            }
-        }
     }
 
     @Override
