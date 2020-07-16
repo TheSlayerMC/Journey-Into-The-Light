@@ -10,6 +10,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -21,6 +22,8 @@ import net.slayer.api.SlayerAPI;
 import java.util.Random;
 
 public class BlockModGravity extends BlockFalling {
+
+    public boolean isFireSource = false;
     protected EnumMaterialTypes blockType;
     protected Item drop = null;
 
@@ -79,6 +82,16 @@ public class BlockModGravity extends BlockFalling {
     public BlockModGravity setHarvestLevel(EnumToolType type) {
         setHarvestLevel(type.getType(), type.getLevel());
         return this;
+    }
+
+    public BlockModGravity setFireSource(boolean isFireSource) {
+        this.isFireSource = isFireSource;
+        return this;
+    }
+
+    @Override
+    public boolean isFireSource(World world, BlockPos pos, EnumFacing side) {
+        return isFireSource;
     }
 
     @Override

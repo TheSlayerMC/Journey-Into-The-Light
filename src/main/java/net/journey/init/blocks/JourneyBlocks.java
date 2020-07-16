@@ -266,6 +266,7 @@ public class JourneyBlocks {
     public static BlockMod charredGrass;
     public static BlockMod rubble;
     public static BlockMod scorchedRubble;
+    public static Block scorchedCactus;
 
     public static BlockMod scorchedStalagmiteLarge;
     public static BlockMod scorchedStalagmiteMedium;
@@ -669,8 +670,8 @@ public class JourneyBlocks {
 
         heatSoil = new BlockMod(EnumMaterialTypes.DIRT, "heatSoil", "Nethic Soil", 0.5F);
         earthenNetherrack = new BlockMod(EnumMaterialTypes.STONE, "earthenNetherrack", "Earthen Netherrack", 2.0F);
-        heatSand = new BlockModGravity(EnumMaterialTypes.SAND, "heatSand", "Heat Sand", 0.5F);
-        volcanicSand = new BlockModGravity(EnumMaterialTypes.SAND, "volcanic_sand", "Volcanic Sand", 0.5F);
+        heatSand = new BlockModGravity(EnumMaterialTypes.SAND, "heatSand", "Heat Sand", 0.5F).setFireSource(true);
+        volcanicSand = new BlockModGravity(EnumMaterialTypes.SAND, "volcanic_sand", "Volcanic Sand", 0.5F).setFireSource(true);
 
         igniterOn = (BlockMod) new BlockIgniter("igniterOn", "Redstone Igniter").setCreativeTab(null);
         igniter = new BlockIgniter("igniter", "Redstone Igniter");
@@ -804,6 +805,8 @@ public class JourneyBlocks {
         hotBlock = new BlockHotBlock(ashBlock, "hotGround", "Hot Ground", 2.0F);
         rubble = new BlockMod("rubble", "Rubble", 1.0F);
         scorchedRubble = new BlockMod("scorched_rubble", "Scorched Rubble", 3.0F).setFireSource(true);
+
+        scorchedCactus = new JBlockCactus("scorched_cactus", "Scorched Cactus").setGroundPredicate(GroundPredicate.CACTUS_AND_BOILING_SANDS);
 
         scorchedStalagmiteLarge = new JBlockStalagmite("scorched_stalagmite_large", "Scorched Stalagmite");
         scorchedStalagmiteMedium = new JBlockStalagmite("scorched_stalagmite_med", "Scorched Stalagmite");

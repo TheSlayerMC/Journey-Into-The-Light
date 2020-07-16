@@ -27,6 +27,7 @@ public interface GroundPredicate {
 	GroundPredicate WATER = blockPredicate(block -> block == Blocks.WATER || block == Blocks.FLOWING_WATER);
 	GroundPredicate PLANT = blockPredicate(block -> block instanceof JBlockPlant);
 
+	GroundPredicate CACTUS_AND_BOILING_SANDS = SAND.or(blockPredicate(block -> block == JourneyBlocks.volcanicSand || block == JourneyBlocks.scorchedCactus));
 	GroundPredicate COMMON_AND_BOILING_SANDS = SAND.or(blockPredicate(block -> block == JourneyBlocks.volcanicSand));
 	GroundPredicate COMMON_AND_CLOUDIA_GRASS = GRASS_BLOCK.or(blockPredicate(block -> block == JourneyBlocks.cloudiaGrass || block == JourneyBlocks.cloudiaDirt));
 	GroundPredicate COMMON_AND_TERRANIA_GRASS = GRASS_BLOCK.or(blockPredicate(block -> block == JourneyBlocks.terranianGrass || block == JourneyBlocks.terranianDirt));

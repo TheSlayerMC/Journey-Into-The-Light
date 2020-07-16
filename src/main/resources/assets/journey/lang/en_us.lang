@@ -532,6 +532,7 @@ tile.redgems.name=Red Gems
 tile.rubble.name=Rubble
 tile.sapphireblock.name=Sapphire Block
 tile.sapphireore.name=Sapphire Ore
+tile.scorched_cactus.name=Scorched Cactus
 tile.scorched_rubble.name=Scorched Rubble
 tile.scorched_stalagmite_large.name=Scorched Stalagmite
 tile.scorched_stalagmite_med.name=Scorched Stalagmite
