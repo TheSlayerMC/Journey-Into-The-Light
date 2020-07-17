@@ -6,10 +6,10 @@ item.record.raceStar.desc=Chris Geddes - Race Star
 item.record.compBegins.desc=Chris Geddes - Comp Begins
 item.record.deepBlue.desc=Chris Geddes - Deep Blue
 item.record.raceShore.desc=Chris Geddes - Race Shore
-item.record.untitled_disk.desc=Dizzlepop12 - untitled_disc
+item.record.untitled_disc.desc=Dizzlepop12 - untitled_disc
 item.record.bog.desc=Dizzlepop12 - Bog
 item.record.clouds.desc=Dizzlepop12 - Clouds
-item.record.stalactite.desc=Dizzlepop12 - Stalactite
+item.record.stalagmite.desc=Dizzlepop12 - Stalagmite
 item.record.gold.desc=The_SlayerMC - Gold
 item.record.gate.desc=The_SlayerMC - Gate
 item.record.journey.desc=Dizzlepop12 - Journey Into the Light
@@ -169,6 +169,28 @@ loading.journey.senterian=Turn Back
 
 advancement.journey.title=Journey Into the Light
 advancement.journey.desc=Successfully Installed Journey Into the Light
+
+material.lunium.name=Lunium
+material.shadium.name=Shadium
+material.bloodcrust.name=Bloodcrust
+material.celestium.name=Celestium
+material.korite.name=Korite
+material.mekyum.name=Mekyum
+material.storon.name=Storon
+material.flairium.name=Flairium
+material.des.name=Des
+material.orbadite.name=Orbadite
+
+fluid.journey.lunium.name=Molten Lunium
+fluid.journey.shadium.name=Molten Shadium
+fluid.journey.bloodcrust.name=Molten Bloodcrust
+fluid.journey.celestium.name=Molten Celestium
+fluid.journey.korite.name=Molten Korite
+fluid.journey.mekyum.name=Molten Mekyum
+fluid.journey.storon.name=Molten Storon
+fluid.journey.flairium.name=Molten Flairium
+fluid.journey.des.name=Molten Des
+fluid.journey.orbadite.name=Molten Orbadite
 
 #MARK AUTO GEN START
 
