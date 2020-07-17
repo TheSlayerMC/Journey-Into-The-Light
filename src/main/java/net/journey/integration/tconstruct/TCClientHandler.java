@@ -28,10 +28,14 @@ public class TCClientHandler {
 		registerFluidModels(
 				TCFluids.LUNIUM,
 				TCFluids.SHADIUM,
+				TCFluids.BLOODCRUST,
 				TCFluids.CELESTIUM,
 				TCFluids.MEKYUM,
 				TCFluids.STORON,
-				TCFluids.KORITE);
+				TCFluids.KORITE,
+				TCFluids.FLAIRIUM,
+				TCFluids.DES,
+				TCFluids.ORBADITE);
 	}
 
 	public static void registerFluidModels(Fluid... fluids) {
