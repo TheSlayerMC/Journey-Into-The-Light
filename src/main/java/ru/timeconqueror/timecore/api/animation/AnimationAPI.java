@@ -51,17 +51,21 @@ public class AnimationAPI {
 	/**
 	 * Returns the reversed version of this animation.
 	 * It is slow, so you need to call this once.
-	 * Don't forget about registering returned animation.
-	 */
-	public static Animation reverse(Animation animation) {
-		return animation.reverse();
-	}
+     * Don't forget about registering returned animation.
+     */
+    public static Animation reverse(Animation animation) {
+        return animation.reverse();
+    }
 
-	public static AnimationStarter createStarter(Animation animation) {
-		return new AnimationStarter(animation);
-	}
+    public static AnimationStarter createStarter(Animation animation) {
+        return new AnimationStarter(animation);
+    }
 
-	public static void removeAnimation(AnimationManager animationManager, String layerName) {
-		animationManager.removeAnimation(layerName);
-	}
+    public static void startAnimation(AnimationStarter animationStarter, AnimationManager animationManager, String layerName) {
+        animationStarter.startAt(animationManager, layerName);
+    }
+
+    public static void removeAnimation(AnimationManager animationManager, String layerName) {
+        animationManager.removeAnimation(layerName);
+    }
 }

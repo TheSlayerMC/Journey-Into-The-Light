@@ -1,5 +1,6 @@
 package ru.timeconqueror.timecore.common.network;
 
+import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.entity.Entity;
@@ -28,29 +29,32 @@ public abstract class S2CAnimationMsg implements IMessage {
 		this.layerName = layerName;
 	}
 
-	public void encodeBaseData(S2CAnimationMsg msg, PacketBuffer buffer) {
-		Data data = new Data(msg);
-
-		buffer.writeInt(data.entityId);
-		buffer.writeString(data.layerName);
+	@Override
+	public void toBytes(ByteBuf buf) {
+		PacketBuffer buffer = new PacketBuffer(buf);
+		encodeBaseData(buffer);
+		encode(buffer);
 	}
 
-	public Data decodeBaseData(PacketBuffer buffer) {
-		return new Data(buffer.readInt(), buffer.readString(Short.MAX_VALUE));
+	@Override
+	public void fromBytes(ByteBuf buf) {
+		PacketBuffer buffer = new PacketBuffer(buf);
+		decodeBaseData(buffer);
+		decode(buffer);
 	}
 
-	protected static class Data {
-		protected int entityId;
-		protected String layerName;
+	protected abstract void encode(PacketBuffer buffer);
 
-		public Data(S2CAnimationMsg msg) {
-			this(msg.entityId, msg.layerName);
-		}
+	protected abstract void decode(PacketBuffer buffer);
 
-		public Data(int entityId, String layerName) {
-			this.entityId = entityId;
-			this.layerName = layerName;
-		}
+	public void encodeBaseData(PacketBuffer buffer) {
+		buffer.writeInt(entityId);
+		buffer.writeString(layerName);
+	}
+
+	public void decodeBaseData(PacketBuffer buffer) {
+		entityId = buffer.readInt();
+		layerName = buffer.readString(Short.MAX_VALUE);
 	}
 
 	public abstract static class Handler<T extends S2CAnimationMsg> implements IMessageHandler<T, IMessage> {

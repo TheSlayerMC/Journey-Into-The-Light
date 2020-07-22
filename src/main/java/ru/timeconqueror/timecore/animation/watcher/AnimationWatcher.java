@@ -62,25 +62,35 @@ public class AnimationWatcher {
 
 	public int getExistingTime() {
 		return getExistingTime(System.currentTimeMillis());
-	}
+    }
 
-	public void freeze() {
-		startTime.freeze();
-	}
+    public void freeze() {
+        startTime.freeze();
+    }
 
-	public void unfreeze() {
-		startTime.unfreeze();
-	}
+    public void unfreeze() {
+        startTime.unfreeze();
+    }
 
-	private static class FreezableTime {
-		private long time;
-		private long freezingTime = -1;
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + "{" +
+                "startTime=" + startTime +
+                ", animation=" + animation +
+                ", speed=" + speed +
+                ", inited=" + inited +
+                '}';
+    }
 
-		public FreezableTime(long time) {
-			this.time = time;
-		}
+    private static class FreezableTime {
+        private long time;
+        private long freezingTime = -1;
 
-		public void freeze() {
+        public FreezableTime(long time) {
+            this.time = time;
+        }
+
+        public void freeze() {
 			if (freezingTime == -1) {
 				freezingTime = System.currentTimeMillis();
 			}
@@ -94,15 +104,23 @@ public class AnimationWatcher {
 		}
 
 		public long get() {
-			if (freezingTime != -1) {
-				return time + (System.currentTimeMillis() - freezingTime);
-			} else {
-				return time;
-			}
-		}
+            if (freezingTime != -1) {
+                return time + (System.currentTimeMillis() - freezingTime);
+            } else {
+                return time;
+            }
+        }
 
-		public void set(long time) {
-			this.time = time;
-		}
-	}
+        public void set(long time) {
+            this.time = time;
+        }
+
+        @Override
+        public String toString() {
+            return "FreezableTime{" +
+                    "startTime=" + time + "ms" +
+                    ", beingFrozen=" + (System.currentTimeMillis() - freezingTime) + "ms" +
+                    '}';
+        }
+    }
 }

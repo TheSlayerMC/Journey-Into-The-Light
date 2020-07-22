@@ -25,27 +25,30 @@ public class AnimatedRangedAttackAI<T extends EntityLiving & AnimationProvider<T
 	private int rangedAttackTime;
 	private final double entityMoveSpeed;
 	private int seeTime;
+	/**
+	 * The minimum time the AI has to wait before performing another ranged attack.
+	 */
 	private final int attackIntervalMin;
 	/**
-	 * The maximum time the AI has to wait before peforming another ranged attack.
+	 * The maximum time the AI has to wait before performing another ranged attack.
 	 */
-	private final int maxRangedAttackTime;
+	private final int attackIntervalMax;
 	private final float attackRadius;
 	private final float maxAttackDistance;
 
 	private final DelayedAction<T, ActionData> attackAction;
 
-	public AnimatedRangedAttackAI(T attacker, DelayedAction<T, ActionData> attackAction, double moveSpeed, int maxAttackTime, float maxAttackDistanceIn) {
-		this(attacker, attackAction, moveSpeed, maxAttackTime, maxAttackTime, maxAttackDistanceIn);
+	public AnimatedRangedAttackAI(T attacker, DelayedAction<T, ActionData> attackAction, double moveSpeed, int attackInterval, float maxAttackDistanceIn) {
+		this(attacker, attackAction, moveSpeed, attackInterval, attackInterval, maxAttackDistanceIn);
 	}
 
-	public AnimatedRangedAttackAI(T attacker, DelayedAction<T, ActionData> attackAction, double moveSpeed, int attackIntervalMin, int maxAttackTime, float maxAttackDistanceIn) {
+	public AnimatedRangedAttackAI(T attacker, DelayedAction<T, ActionData> attackAction, double moveSpeed, int attackIntervalMin, int attackIntervalMax, float maxAttackDistanceIn) {
 		this.rangedAttackTime = -1;
 
 		this.entity = attacker;
 		this.entityMoveSpeed = moveSpeed;
 		this.attackIntervalMin = attackIntervalMin;
-		this.maxRangedAttackTime = maxAttackTime;
+		this.attackIntervalMax = attackIntervalMax;
 		this.attackRadius = maxAttackDistanceIn;
 		this.maxAttackDistance = maxAttackDistanceIn * maxAttackDistanceIn;
 		this.setMutexBits(3);
@@ -114,10 +117,10 @@ public class AnimatedRangedAttackAI<T extends EntityLiving & AnimationProvider<T
 
 			entity.getActionManager().enableAction(attackAction, new ActionData(distanceFactor, attackTarget));
 
-			this.rangedAttackTime = MathHelper.floor(f * (this.maxRangedAttackTime - this.attackIntervalMin) + this.attackIntervalMin);
+			this.rangedAttackTime = MathHelper.floor(f * (this.attackIntervalMax - this.attackIntervalMin) + this.attackIntervalMin);
 		} else if (this.rangedAttackTime < 0) {
 			float f2 = MathHelper.sqrt(distanceSqToTarget) / this.attackRadius;
-			this.rangedAttackTime = MathHelper.floor(f2 * (this.maxRangedAttackTime - this.attackIntervalMin) + this.attackIntervalMin);
+			this.rangedAttackTime = MathHelper.floor(f2 * (this.attackIntervalMax - this.attackIntervalMin) + this.attackIntervalMin);
 		}
 	}
 

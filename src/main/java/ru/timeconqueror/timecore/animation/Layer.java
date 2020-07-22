@@ -59,10 +59,14 @@ public class Layer implements AnimationLayer {
 	}
 
 	void setAnimation(AnimationStarter.AnimationData data) {
-		if (animationWatcher == null) {
-			animationWatcher = new TransitionWatcher(data.getTransitionTime(), data.getAnimation(), data.getSpeedFactor());
+		if (data.getTransitionTime() == 0) {
+			animationWatcher = new AnimationWatcher(data.getAnimation(), data.getSpeedFactor());
 		} else {
-			animationWatcher = new TransitionWatcher(animationWatcher.getAnimation(), animationWatcher.getExistingTime(), data.getTransitionTime(), data.getAnimation(), data.getSpeedFactor());
+			if (animationWatcher == null) {
+				animationWatcher = new TransitionWatcher(data.getTransitionTime(), data.getAnimation(), data.getSpeedFactor());
+			} else {
+				animationWatcher = new TransitionWatcher(animationWatcher.getAnimation(), animationWatcher.getExistingTime(), data.getTransitionTime(), data.getAnimation(), data.getSpeedFactor());
+			}
 		}
 	}
 
@@ -78,11 +82,11 @@ public class Layer implements AnimationLayer {
 		}
 	}
 
-	public AnimationWatcher getAnimationWatcher() {
+	public @Nullable AnimationWatcher getAnimationWatcher() {
 		return animationWatcher;
 	}
 
-	void setAnimationWatcher(AnimationWatcher animationWatcher) {
+	void setAnimationWatcher(@Nullable AnimationWatcher animationWatcher) {
 		this.animationWatcher = animationWatcher;
 	}
 

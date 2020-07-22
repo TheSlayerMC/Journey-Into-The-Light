@@ -10,7 +10,7 @@ import ru.timeconqueror.timecore.api.animation.Animation;
 import java.util.Objects;
 import java.util.function.BiConsumer;
 import java.util.function.Predicate;
-
+//TODO add multiple runnables with single or continuing action and merge delay predicates with runnable
 public class DelayedAction<T extends Entity, EXTRA_DATA> {
     private final AnimationStarter animationStarter;
     private final String animationLayer;

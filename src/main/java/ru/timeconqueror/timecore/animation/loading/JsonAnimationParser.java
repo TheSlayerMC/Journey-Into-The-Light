@@ -83,6 +83,9 @@ public class JsonAnimationParser {
 	private BoneOption parseAnimationBone(String boneName, JsonObject boneJson) throws JsonParsingException {
 		List<KeyFrame> rotationFrames = parseKeyFrameArr("rotation", boneJson);
 		List<KeyFrame> positionFrames = parseKeyFrameArr("position", boneJson);
+		if (positionFrames != null) {
+			positionFrames.forEach(keyFrame -> keyFrame.getVec().y = -keyFrame.getVec().y);
+		}
 		List<KeyFrame> scaleFrames = parseKeyFrameArr("scale", boneJson);
 
 		return new BoneOption(boneName, rotationFrames, positionFrames, scaleFrames);

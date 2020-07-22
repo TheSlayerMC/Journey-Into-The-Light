@@ -44,13 +44,27 @@ public class TransitionWatcher extends AnimationWatcher {
 		}
 	}
 
-	@Override
-	@Nullable
-	public AnimationWatcher next() {
-		return destination != null ? new AnimationWatcher(destination, destAnimSpeedFactor) : null;
-	}
+    @Override
+    @Nullable
+    public AnimationWatcher next() {
+        return destination != null ? new AnimationWatcher(destination, destAnimSpeedFactor) : null;
+    }
 
-	public @Nullable Animation getDestination() {
-		return destination;
-	}
+    public @Nullable Animation getDestination() {
+        return destination;
+    }
+
+    @Override
+    public String toString() {
+        return "TransitionWatcher{" +
+                "startTime=" + startTime +
+                ", animation=" + animation +
+                ", speed=" + speed +
+                ", transitionTime=" + transitionTime +
+                ", source=" + source +
+                ", sourceExistingTime=" + sourceExistingTime +
+                ", destAnimSpeedFactor=" + destAnimSpeedFactor +
+                ", destination=" + destination +
+                '}';
+    }
 }

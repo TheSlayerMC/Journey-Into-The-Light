@@ -1,6 +1,5 @@
 package ru.timeconqueror.timecore.common.network;
 
-import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
@@ -20,38 +19,30 @@ public class S2CStartAnimationMsg extends S2CAnimationMsg {
 	public S2CStartAnimationMsg(Entity entity, String layerName, AnimationStarter.AnimationData animationData) {
 		super(entity, layerName);
 		this.animationData = animationData;
-	}
+    }
 
-	public S2CStartAnimationMsg(int entityId, String layerName, AnimationStarter.AnimationData animationData) {
-		super(entityId, layerName);
-		this.animationData = animationData;
-	}
+    public S2CStartAnimationMsg(int entityId, String layerName, AnimationStarter.AnimationData animationData) {
+        super(entityId, layerName);
+        this.animationData = animationData;
+    }
 
-	@Override
-	public void fromBytes(ByteBuf buf) {
-		PacketBuffer buffer = new PacketBuffer(buf);
+    @Override
+    protected void encode(PacketBuffer buffer) {
+        AnimationStarter.AnimationData.encode(animationData, buffer);
+    }
 
-		animationData = AnimationStarter.AnimationData.decode(buffer);
-		Data data = decodeBaseData(buffer);
+    @Override
+    protected void decode(PacketBuffer buffer) {
+        animationData = AnimationStarter.AnimationData.decode(buffer);
+    }
 
-		this.entityId = data.entityId;
-		this.layerName = data.layerName;
-	}
+    public static class Handler extends S2CAnimationMsg.Handler<S2CStartAnimationMsg> {
+        @Override
+        public void onPacket(S2CStartAnimationMsg packet, AnimationProvider<?> provider, String layerName, MessageContext contextSupplier) {
+            AnimationStarter animationStarter = AnimationStarter.fromAnimationData(packet.animationData);
+            Animation animation = animationStarter.getData().getAnimation();
 
-	@Override
-	public void toBytes(ByteBuf buf) {
-		PacketBuffer buffer = new PacketBuffer(buf);
-		AnimationStarter.AnimationData.encode(animationData, buffer);
-		encodeBaseData(this, buffer);
-	}
-
-	public static class Handler extends S2CAnimationMsg.Handler<S2CStartAnimationMsg> {
-		@Override
-		public void onPacket(S2CStartAnimationMsg packet, AnimationProvider<?> provider, String layerName, MessageContext contextSupplier) {
-			AnimationStarter animationStarter = AnimationStarter.fromAnimationData(packet.animationData);
-			Animation animation = animationStarter.getData().getAnimation();
-
-			String errorMessage = null;
+            String errorMessage = null;
 
 			if (animation == null) {
 				errorMessage = "Client received an animation, which is not registered on client.";

@@ -215,25 +215,35 @@ public class Transition implements Animation {
 		return name;
 	}
 
-	@Override
-	public ResourceLocation getId() {
-		return id;
-	}
+    @Override
+    public ResourceLocation getId() {
+        return id;
+    }
 
-	@Nullable
-	public Animation getDestAnimation() {
-		return destAnimation;
-	}
+    @Nullable
+    public Animation getDestAnimation() {
+        return destAnimation;
+    }
 
-	private static class TransitionFactory extends Animation.TransitionFactory {
+    @Override
+    public String toString() {
+        return "Transition{" +
+                "name='" + name + '\'' +
+                ", id=" + id +
+                ", transitionLength=" + transitionLength +
+                ", destAnimation=" + destAnimation +
+                '}';
+    }
 
-		public TransitionFactory(Transition source) {
-			super(source);
-		}
+    private static class TransitionFactory extends Animation.TransitionFactory {
 
-		private static KeyFrame calcStartKeyFrame(Animation sourceAnimation, @Nullable Pair<KeyFrame, KeyFrame> sourceKeyFrames, float modelIdleX, float modelIdleY, float modelIdleZ, int existingTime) {
-			if (sourceKeyFrames != null) {
-				Vector3f vec = BoneOption.calcCurrentVectorFor(sourceAnimation, sourceKeyFrames, modelIdleX, modelIdleY, modelIdleZ, existingTime);
+        public TransitionFactory(Transition source) {
+            super(source);
+        }
+
+        private static KeyFrame calcStartKeyFrame(Animation sourceAnimation, @Nullable Pair<KeyFrame, KeyFrame> sourceKeyFrames, float modelIdleX, float modelIdleY, float modelIdleZ, int existingTime) {
+            if (sourceKeyFrames != null) {
+                Vector3f vec = BoneOption.calcCurrentVectorFor(sourceAnimation, sourceKeyFrames, modelIdleX, modelIdleY, modelIdleZ, existingTime);
 				return new KeyFrame(0, vec);
 			}
 

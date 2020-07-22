@@ -219,14 +219,24 @@ public class BasicAnimation implements Animation {
 					return KeyFrame.createIdleKeyFrame(transitionTime, piece.offsetX, piece.offsetY, piece.offsetZ);
 				}
 			} else if (optionType == OptionType.SCALE) {
-				if (destBone != null) {
-					return calcEndKeyFrame(destBone.getScales(), piece.getScaleFactor().getX(), piece.getScaleFactor().getY(), piece.getScaleFactor().getZ(), transitionTime);
-				} else {
-					return KeyFrame.createIdleKeyFrame(transitionTime, piece.getScaleFactor().getX(), piece.getScaleFactor().getY(), piece.getScaleFactor().getZ());
-				}
-			}
+                if (destBone != null) {
+                    return calcEndKeyFrame(destBone.getScales(), piece.getScaleFactor().getX(), piece.getScaleFactor().getY(), piece.getScaleFactor().getZ(), transitionTime);
+                } else {
+                    return KeyFrame.createIdleKeyFrame(transitionTime, piece.getScaleFactor().getX(), piece.getScaleFactor().getY(), piece.getScaleFactor().getZ());
+                }
+            }
 
-			throw new UnsupportedOperationException("Can't handle " + optionType + " option type");
-		}
-	}
+            throw new UnsupportedOperationException("Can't handle " + optionType + " option type");
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "BasicAnimation{" +
+                "name=" + name +
+                ", id=" + id +
+                ", looped=" + loop +
+                ", length=" + length +
+                '}';
+    }
 }
