@@ -12,5 +12,6 @@ public class TCNetworkHandler {
 		int idx = 0;
 		INSTANCE.registerMessage(S2CStartAnimationMsg.Handler.class, S2CStartAnimationMsg.class, idx++, Side.CLIENT);
 		INSTANCE.registerMessage(S2CEndAnimationMsg.Handler.class, S2CEndAnimationMsg.class, idx++, Side.CLIENT);
+		INSTANCE.registerMessage(S2CSyncEntityAnimationsMsg.Handler.class, S2CSyncEntityAnimationsMsg.class, idx++, Side.CLIENT);
 	}
 }

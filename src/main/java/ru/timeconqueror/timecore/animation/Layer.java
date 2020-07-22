@@ -82,11 +82,12 @@ public class Layer implements AnimationLayer {
 		}
 	}
 
-	public @Nullable AnimationWatcher getAnimationWatcher() {
+	@Nullable
+	public AnimationWatcher getAnimationWatcher() {
 		return animationWatcher;
 	}
 
-	void setAnimationWatcher(@Nullable AnimationWatcher animationWatcher) {
+	public void setAnimationWatcher(@Nullable AnimationWatcher animationWatcher) {
 		this.animationWatcher = animationWatcher;
 	}
 

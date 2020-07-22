@@ -13,6 +13,7 @@ import ru.timeconqueror.timecore.client.render.model.TimeEntityModel;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public abstract class BaseAnimationManager implements AnimationManager {
@@ -36,6 +37,11 @@ public abstract class BaseAnimationManager implements AnimationManager {
 		Layer layer = layerMap.get(name);
 		if (layer == null) throw new RuntimeException("There is no layer with name " + name);
 		return layer;
+	}
+
+	@Override
+	public Set<String> getLayerNames() {
+		return layerMap.keySet();
 	}
 
 	@Override

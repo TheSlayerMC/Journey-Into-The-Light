@@ -4,6 +4,8 @@ import org.jetbrains.annotations.NotNull;
 import ru.timeconqueror.timecore.animation.AnimationStarter;
 import ru.timeconqueror.timecore.client.render.model.TimeEntityModel;
 
+import java.util.Set;
+
 public interface AnimationManager {
 
 	/**
@@ -20,6 +22,12 @@ public interface AnimationManager {
 	 */
 	@NotNull
 	AnimationLayer getLayer(String name);
+
+	/**
+	 * Returns all layer names.
+	 * Can be used for iterating throw the layers by their name in {@link #getLayer(String)}
+	 */
+	Set<String> getLayerNames();
 
 	/**
 	 * On client: called on every frame for model from the renderer of entity, which contains this manager.

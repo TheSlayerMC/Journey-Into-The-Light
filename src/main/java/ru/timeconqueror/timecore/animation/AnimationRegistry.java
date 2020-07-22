@@ -6,7 +6,7 @@ import ru.timeconqueror.timecore.api.animation.Animation;
 
 import java.util.HashMap;
 import java.util.Map;
-
+//TODO move to Forge Registries
 public class AnimationRegistry {
 	private static final Map<ResourceLocation, Animation> animationMap = new HashMap<>();
 

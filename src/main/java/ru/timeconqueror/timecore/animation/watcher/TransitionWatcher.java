@@ -1,7 +1,11 @@
 package ru.timeconqueror.timecore.animation.watcher;
 
+import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.ResourceLocation;
 import org.jetbrains.annotations.Nullable;
+import ru.timeconqueror.timecore.animation.AnimationRegistry;
 import ru.timeconqueror.timecore.animation.component.Transition;
+import ru.timeconqueror.timecore.animation.util.WatcherSerializer;
 import ru.timeconqueror.timecore.api.animation.Animation;
 import ru.timeconqueror.timecore.api.util.Requirements;
 import ru.timeconqueror.timecore.client.render.model.TimeEntityModel;
@@ -11,7 +15,7 @@ public class TransitionWatcher extends AnimationWatcher {
 	private final float destAnimSpeedFactor;
 	@Nullable
 	private final Animation destination;
-
+	@Nullable
 	private final Animation source;
 	private final int sourceExistingTime;
 
@@ -57,14 +61,62 @@ public class TransitionWatcher extends AnimationWatcher {
     @Override
     public String toString() {
         return "TransitionWatcher{" +
-                "startTime=" + startTime +
-                ", animation=" + animation +
-                ", speed=" + speed +
-                ", transitionTime=" + transitionTime +
-                ", source=" + source +
-                ", sourceExistingTime=" + sourceExistingTime +
-                ", destAnimSpeedFactor=" + destAnimSpeedFactor +
-                ", destination=" + destination +
-                '}';
+		        "startTime=" + startTime +
+		        ", animation=" + animation +
+		        ", speed=" + speed +
+		        ", transitionTime=" + transitionTime +
+		        ", source=" + source +
+		        ", sourceExistingTime=" + sourceExistingTime +
+		        ", destAnimSpeedFactor=" + destAnimSpeedFactor +
+		        ", destination=" + destination +
+		        '}';
     }
+
+	public static class Serializer implements WatcherSerializer<TransitionWatcher> {
+		@Override
+		public void serialize(TransitionWatcher watcher, PacketBuffer buffer) {
+			boolean hasSource = watcher.source != null;
+			buffer.writeBoolean(hasSource);
+			if (hasSource) {
+				buffer.writeResourceLocation(watcher.source.getId());
+				buffer.writeInt(watcher.sourceExistingTime);
+			}
+
+			boolean hasDestination = watcher.destination != null;
+			buffer.writeBoolean(hasDestination);
+			if (hasDestination) {
+				buffer.writeResourceLocation(watcher.destination.getId());
+				buffer.writeFloat(watcher.destAnimSpeedFactor);
+			}
+
+			int transitionTime = Math.max(watcher.getAnimation().getLength() - watcher.getExistingTime(), 0);
+			buffer.writeInt(transitionTime);
+		}
+
+		@Override
+		public TransitionWatcher deserialize(PacketBuffer buffer) {
+			boolean hasSource = buffer.readBoolean();
+
+			Animation source = null;
+			int sourceExistingTime = -1;
+			if (hasSource) {
+				ResourceLocation id = buffer.readResourceLocation();
+				source = AnimationRegistry.getAnimation(id);
+				sourceExistingTime = buffer.readInt();
+			}
+
+			boolean hasDestination = buffer.readBoolean();
+			Animation destination = null;
+			float destAnimSpeedFactor = -1;
+			if (hasDestination) {
+				ResourceLocation id = buffer.readResourceLocation();
+				destination = AnimationRegistry.getAnimation(id);
+				destAnimSpeedFactor = buffer.readFloat();
+			}
+
+			int transitionTime = buffer.readInt();
+
+			return new TransitionWatcher(source, sourceExistingTime, transitionTime, destination, destAnimSpeedFactor);
+		}
+	}
 }
