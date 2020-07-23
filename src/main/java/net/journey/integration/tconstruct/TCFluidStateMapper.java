@@ -1,5 +1,4 @@
-package net.journey.api.fluid;
-
+package net.journey.integration.tconstruct;
 
 import net.journey.JITL;
 import net.minecraft.block.state.IBlockState;
@@ -12,14 +11,14 @@ import net.minecraftforge.fluids.Fluid;
 
 import javax.annotation.Nonnull;
 
-public class JFluidStateMapper extends StateMapperBase implements ItemMeshDefinition {
+public class TCFluidStateMapper extends StateMapperBase implements ItemMeshDefinition {
 
 	public final Fluid fluid;
 	public final ModelResourceLocation location;
 
-	public JFluidStateMapper(Fluid fluid) {
+	public TCFluidStateMapper(Fluid fluid) {
 		this.fluid = fluid;
-		this.location = new ModelResourceLocation(new ResourceLocation(JITL.MOD_ID, "journey_fluid_block"), fluid.getName());
+		this.location = new ModelResourceLocation(new ResourceLocation(JITL.MOD_ID, "tc_fluid_block"), fluid.getName());
 	}
 
 	@Nonnull

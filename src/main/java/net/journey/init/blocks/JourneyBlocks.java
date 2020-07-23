@@ -1159,6 +1159,6 @@ public class JourneyBlocks {
         bogberryBush = new BlockModBush("bogberryBush", "Bogberry Bush", JourneyConsumables.bogberry, false);
 
         depthsCrystal = (JBlockFlower) new JBlockFlower(EnumMaterialTypes.GLASS, "depths_crystal", "Depths Crystal", JourneyTabs.DECORATION).setGroundPredicate(GroundPredicate.COMMON_AND_DEPTHS_GRASS).setRenderLayer(BlockRenderLayer.TRANSLUCENT);
-        senterianAcid = new JBlockFluid("senterian_acid", JourneyFluids.fluid_acid, Material.LAVA);
+        senterianAcid = new JBlockFluid("senterian_acid", JourneyFluids.FLUID_ACID, Material.LAVA);
     }
 }

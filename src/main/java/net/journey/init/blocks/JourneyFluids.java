@@ -8,14 +8,14 @@ import net.minecraftforge.fluids.FluidRegistry;
 
 public class JourneyFluids {
 
-	public static Fluid fluid_acid = new JFluid(
+	public static final Fluid FLUID_ACID = new JFluid(
 			"senterian_acid",
 			new ResourceLocation(JITL.MOD_ID, "blocks/senterian_acid"),
 			new ResourceLocation(JITL.MOD_ID, "blocks/senterian_acid")
 	).setTemperature(1000).setLuminosity(1).setViscosity(100);
 
 	public static void init() {
-		addFluid(fluid_acid);
+		addFluid(FLUID_ACID);
 	}
 
 	private static void addFluid(Fluid fluid) {
