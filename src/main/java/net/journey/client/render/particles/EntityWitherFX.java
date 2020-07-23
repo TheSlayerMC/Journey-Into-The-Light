@@ -18,8 +18,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class EntityWitherFX extends Particle {
 
 	private static final ResourceLocation TEXTURE = new ResourceLocation(JITL.MOD_ID, "particles/wither");
-	private final float jParticleScale = 2.0F;
-	private final int textureIndex = 128;
+	private final float jParticleScale;
 	private final double jPosX;
 	private final double jPosY;
 	private final double jPosZ;
@@ -32,11 +31,11 @@ public class EntityWitherFX extends Particle {
 		this.jPosX = this.posX = x;
 		this.jPosY = this.posY = y;
 		this.jPosZ = this.posZ = z;
-		this.particleScale = jParticleScale;
+		this.jParticleScale = this.particleScale = this.rand.nextFloat() * 0.2F + 0.5F;
 		this.particleBlue = 1.0F;
 		this.particleGreen = 1.0F;
 		this.particleRed = 1.0F;
-		this.particleMaxAge = rand.nextInt(3) + 1;
+		this.particleMaxAge = (int) (Math.random() * 10.0D) + 40;
 		this.setParticleTexture(Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(TEXTURE.toString()));
 	}
 
@@ -46,13 +45,18 @@ public class EntityWitherFX extends Particle {
 	}
 
 	@Override
-	public void renderParticle(BufferBuilder buffer, Entity entity, float par2, float p_180434_4_, float p_180434_5_, float p_180434_6_, float p_180434_7_, float p_180434_8_) {
-		this.particleScale = jParticleScale;
-		super.renderParticle(buffer, entity, par2, p_180434_4_, p_180434_5_, p_180434_6_, p_180434_7_, p_180434_8_);
+	public void renderParticle(BufferBuilder builder, Entity entity, float par2, float p_180434_4_, float p_180434_5_, float p_180434_6_, float p_180434_7_, float p_180434_8_) {
+		float var8 = (this.particleAge + par2) / this.particleMaxAge * 3;
+		var8 = 1.0F - var8;
+		var8 *= var8;
+		var8 = 1.0F - var8;
+		this.particleScale = (this.jParticleScale * var8 * 4);
+		super.renderParticle(builder, entity, par2, p_180434_4_, p_180434_5_, p_180434_6_, p_180434_7_,
+				p_180434_8_);
 	}
 
-    @Override
-    public void onUpdate() {
+	@Override
+	public void onUpdate() {
 		this.prevPosX = this.posX;
 		this.prevPosY = this.posY;
 		this.prevPosZ = this.posZ;

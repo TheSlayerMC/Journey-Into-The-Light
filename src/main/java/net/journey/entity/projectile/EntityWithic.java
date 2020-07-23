@@ -30,9 +30,9 @@ public class EntityWithic extends EntityBasicProjectile {
         super.onUpdate();
         for (int i = 0; i < 20; ++i) {
 			JITL.proxy.spawnParticle(EnumParticlesClasses.WITHER, this.world,
-					this.posX + (this.rand.nextDouble()) * this.width,
-					this.posY + this.rand.nextDouble() * this.height,
-					this.posZ + (this.rand.nextDouble()) * this.width, false);
+                    this.posX + (this.rand.nextDouble()) * this.width,
+                    this.posY + this.rand.nextDouble() * this.height - 1.0F,
+                    this.posZ + (this.rand.nextDouble()) * this.width, false);
 		}
     }
 
