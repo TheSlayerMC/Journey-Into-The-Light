@@ -6,7 +6,7 @@ import ru.timeconqueror.timecore.TimeCore;
 import java.util.List;
 
 public class TimeModelLoader {
-    public static final List<TimeModel> BROKEN_MODEL = loadJsonModels(new ResourceLocation(TimeCore.MODID, "models/entity/broken.json"));
+    public static final List<TimeModel> BROKEN_MODEL = loadJsonModels(new ResourceLocation(TimeCore.MODID, "models/broken.json"));
 
     public static List<TimeModel> loadJsonModels(ResourceLocation location) {
         try {
