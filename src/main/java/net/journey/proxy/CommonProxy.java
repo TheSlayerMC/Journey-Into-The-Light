@@ -17,6 +17,7 @@ import net.journey.eventhandler.NetherEvent;
 import net.journey.eventhandler.VanillaFixEvent;
 import net.journey.init.*;
 import net.journey.init.blocks.JourneyBlocks;
+import net.journey.init.blocks.JourneyFluids;
 import net.journey.init.common.JourneyCrops;
 import net.journey.init.items.JourneyArmory;
 import net.journey.init.items.JourneyConsumables;
@@ -54,6 +55,8 @@ public class CommonProxy {
     }
 
     public void preInit(FMLPreInitializationEvent event) {
+        JourneyFluids.init(); //needs to be first
+
         ObfuscationReflectionHelper.setPrivateValue((Class) RangedAttribute.class, SharedMonsterAttributes.MAX_HEALTH, Double.MAX_VALUE, 1);
         Config.init(event);
         NetherEvent.init();

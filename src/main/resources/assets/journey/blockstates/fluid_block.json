@@ -4,6 +4,13 @@
     "model": "forge:fluid"
   },
   "variants": {
+    "senterian_acid": [
+      {
+        "custom": {
+          "fluid": "senterian_acid"
+        }
+      }
+    ],
     "lunium": [
       {
         "custom": {

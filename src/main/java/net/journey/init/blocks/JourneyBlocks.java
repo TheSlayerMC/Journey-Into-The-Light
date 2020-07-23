@@ -568,17 +568,19 @@ public class JourneyBlocks {
 
     public static BlockNetherFurnace netherFurnace;
     public static BlockNetherFurnace netherFurnaceActive;
-    
+
     public static BlockMod SENTERIAN_HEART_BLOCK;
     public static BlockMod SENTERIAN_HEART_BLOCK_WEAK;
     public static BlockMod SENTERIAN_HEART_EYE;
-    
+
     public static BlockIncubator INCUBATOR;
     public static BlockIncubator INCUBATOR_LIT;
 
     public static BlockMod terraniaSapling;
-    
+
     public static JBlockFlower depthsCrystal;
+
+    public static JBlockFluid senterianAcid;
 
     public static void init() {
 
@@ -1157,5 +1159,6 @@ public class JourneyBlocks {
         bogberryBush = new BlockModBush("bogberryBush", "Bogberry Bush", JourneyConsumables.bogberry, false);
 
         depthsCrystal = (JBlockFlower) new JBlockFlower(EnumMaterialTypes.GLASS, "depths_crystal", "Depths Crystal", JourneyTabs.DECORATION).setGroundPredicate(GroundPredicate.COMMON_AND_DEPTHS_GRASS).setRenderLayer(BlockRenderLayer.TRANSLUCENT);
+        senterianAcid = new JBlockFluid("senterian_acid", JourneyFluids.fluid_acid, Material.LAVA);
     }
 }
