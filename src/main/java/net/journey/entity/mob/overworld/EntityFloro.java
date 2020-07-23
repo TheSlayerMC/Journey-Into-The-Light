@@ -35,6 +35,22 @@ import ru.timeconqueror.timecore.api.animation.AnimationAPI;
 import ru.timeconqueror.timecore.api.animation.AnimationProvider;
 import ru.timeconqueror.timecore.api.animation.BlendType;
 
+/**
+ * How tasks work:
+ * If flags, from which mutex consists of, are disabled, then tasks with this mutex won't be run.
+ * <p>
+ * If task has higher priority (lower number), than system will check if current task with lower priority is interruptible.
+ * If it is so, then it will be finished, and new task will task its place
+ * <p>
+ * If task has a lower priority (higher number), it's checked by system if it can work in parallel (if mutex is the same).
+ * <p>
+ * How mutex works:
+ * If combination of numbers, that are power of two, completely coincides with the other tasks' ones
+ * they can't work in parallel
+ * Example:
+ * task with mutex 1 | 2 | 4 (7) cannot be run in parallel with task with mutex 1 | 2 | 4 (7)
+ * task with mutex 1 | 2 | 4 (7) can be run in parallel with task with mutex 1 | 2 (3)
+ */
 public class EntityFloro extends JEntityMob implements IRangedAttackMob, AnimationProvider<EntityFloro> {
 	private static final DelayedAction<EntityFloro, AnimatedRangedAttackAI.ActionData> RANGED_ATTACK_ACTION;
 	private static final DelayedAction<EntityFloro, Object> REVEALING_ACTION;
@@ -69,8 +85,8 @@ public class EntityFloro extends JEntityMob implements IRangedAttackMob, Animati
 
 	@Override
 	protected void initEntityAI() {
-		tasks.addTask(0, new FloroRevealingTask());
-		tasks.addTask(1, new FloroHiddenTask());
+		tasks.addTask(0, new FloroRevealingTask()); //mutex 8
+		tasks.addTask(1, new FloroHiddenTask()); //mutex 8
 		tasks.addTask(2, new EntityAISwimming(this));//mutex 4
 		tasks.addTask(3, new EntityAIAvoidEntity<>(this, EntityWolf.class, 6.0F, 1.0D, 1.2D));//mutex 1
 
@@ -92,12 +108,18 @@ public class EntityFloro extends JEntityMob implements IRangedAttackMob, Animati
 	}
 
 	@Override
-	public void addVelocity(double x, double y, double z) {
-		if (hidden) {
-			super.addVelocity(0, 0, 0);
-		} else {
-			super.addVelocity(x, y, z);
+	public void onLivingUpdate() {
+		int vanillaActions = 1 | 2 | 4;
+
+		if (isServerWorld()) {
+			if (hidden) {
+				tasks.disableControlFlag(vanillaActions); //actually doesn't help in some situations as these tasks still can be activated, if executingTasks list in EntityAITasks is empty.
+			} else {
+				tasks.enableControlFlag(vanillaActions);
+			}
 		}
+
+		super.onLivingUpdate(); //this method should be the last, because here we update AI task. If it is before our own code, then disabling control flags won't work
 	}
 
 	@Override
@@ -112,11 +134,6 @@ public class EntityFloro extends JEntityMob implements IRangedAttackMob, Animati
 		super.writeEntityToNBT(compound);
 
 		compound.setBoolean("hidden", hidden);
-	}
-
-	@Override
-	protected void entityInit() {
-		super.entityInit();
 	}
 
 	@Override
@@ -200,7 +217,7 @@ public class EntityFloro extends JEntityMob implements IRangedAttackMob, Animati
 
 	private class FloroRevealingTask extends EntityAIBase {
 		public FloroRevealingTask() {
-			setMutexBits(1 | 2 | 4);
+			setMutexBits(8);
 		}
 
 		@Override
@@ -221,7 +238,7 @@ public class EntityFloro extends JEntityMob implements IRangedAttackMob, Animati
 
 	private class FloroHiddenTask extends EntityAIBase {
 		public FloroHiddenTask() {
-			setMutexBits(1 | 2 | 4);
+			setMutexBits(8);
 		}
 
 		@Override
