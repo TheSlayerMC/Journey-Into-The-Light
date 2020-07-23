@@ -115,11 +115,19 @@ public class EntityFloro extends JEntityMob implements IRangedAttackMob, Animati
 	}
 
 	@Override
+	protected void entityInit() {
+		super.entityInit();
+	}
+
+	@Override
 	public void readEntityFromNBT(NBTTagCompound compound) {
 		super.readEntityFromNBT(compound);
 
 		hidden = compound.getBoolean("hidden");
+	}
 
+	@Override
+	public void onAddedToWorld() {
 		if (hidden) {
 			AnimationAPI.createStarter(JAnimations.FLORO_HIDDEN)
 					.setTransitionTime(0)
