@@ -81,9 +81,13 @@ public abstract class BaseAnimationManager implements AnimationManager {
 	public void removeAnimation(String layerName, int transitionTime) {
 		if (containsLayer(layerName)) {
 			Layer layer = getLayer(layerName);
+			AnimationWatcher oldWatcher = layer.getAnimationWatcher();
+
 			layer.removeAnimation(transitionTime);
 
-			onAnimationEnd(null, layer, layer.getAnimationWatcher(), System.currentTimeMillis());
+			if (oldWatcher != null) {
+				onAnimationEnd(null, layer, oldWatcher);
+			}
 		} else {
 			TimeCore.LOGGER.error("Can't find layer with name " + layerName);
 		}
@@ -91,9 +95,9 @@ public abstract class BaseAnimationManager implements AnimationManager {
 
 	@Override
 	public void applyAnimations(TimeEntityModel model) {
+		long currentTime = System.currentTimeMillis();
 		for (Layer layer : layers) {
-			layer.update(this, model);
-			long currentTime = System.currentTimeMillis();
+			layer.update(this, model, currentTime);
 
 			AnimationWatcher watcher = layer.getAnimationWatcher();
 
@@ -107,7 +111,7 @@ public abstract class BaseAnimationManager implements AnimationManager {
 
 	protected abstract boolean isGamePaused();
 
-	protected void onAnimationEnd(@Nullable TimeEntityModel model, Layer layer, AnimationWatcher watcher, long currentTime) {
+	protected void onAnimationEnd(@Nullable TimeEntityModel model, Layer layer, AnimationWatcher watcher) {
 
 	}
 

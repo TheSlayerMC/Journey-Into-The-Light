@@ -3,6 +3,7 @@ package ru.timeconqueror.timecore.animation.watcher;
 import net.minecraft.network.PacketBuffer;
 import org.jetbrains.annotations.Nullable;
 import ru.timeconqueror.timecore.animation.AnimationRegistry;
+import ru.timeconqueror.timecore.animation.AnimationStarter;
 import ru.timeconqueror.timecore.animation.util.WatcherSerializer;
 import ru.timeconqueror.timecore.api.animation.Animation;
 import ru.timeconqueror.timecore.api.animation.AnimationConstants;
@@ -20,12 +21,19 @@ public class AnimationWatcher {
     protected final float speed;
     private boolean inited = false;
     protected Animation animation;
+    @Nullable
+    private final AnimationStarter.AnimationData nextAnimation;
 
-    public AnimationWatcher(Animation animation, float speed) {
+    public AnimationWatcher(AnimationStarter.AnimationData currentAnimation) {
+        this(currentAnimation.getAnimation(), currentAnimation.getSpeedFactor(), currentAnimation.getNextAnimationData());
+    }
+
+    public AnimationWatcher(Animation animation, float speed, @Nullable AnimationStarter.AnimationData nextAnimation) {
         Requirements.greaterThan(speed, 0);
         this.startTime = new FreezableTime(System.currentTimeMillis());
         this.animation = animation;
         this.speed = speed;
+        this.nextAnimation = nextAnimation;
     }
 
     public boolean requiresInit() {
@@ -43,8 +51,10 @@ public class AnimationWatcher {
             resetTimer();
 
             return this;
+        } else if (nextAnimation != null) {
+            return new AnimationWatcher(nextAnimation);
         } else {
-            return new TransitionWatcher(getAnimation(), getExistingTime(), AnimationConstants.BASIC_TRANSITION_TIME, null, -1);
+            return new TransitionWatcher(getAnimation(), getExistingTime(), AnimationConstants.BASIC_TRANSITION_TIME, null);
         }
     }
 
@@ -80,7 +90,7 @@ public class AnimationWatcher {
     public String toString() {
         return "AnimationWatcher {" +
                 "animation=" + animation +
-                ", startTime=" + startTime +
+                ", existingTime=" + getExistingTime() +
                 ", speed=" + speed +
                 ", inited=" + inited +
                 '}';
@@ -147,6 +157,12 @@ public class AnimationWatcher {
             buffer.writeResourceLocation(watcher.getAnimation().getId());
             buffer.writeInt(watcher.getExistingTime());
             buffer.writeFloat(watcher.speed);
+
+            boolean hasNextAnimation = watcher.nextAnimation != null;
+            buffer.writeBoolean(watcher.nextAnimation != null);
+            if (hasNextAnimation) {
+                AnimationStarter.AnimationData.encode(watcher.nextAnimation, buffer);
+            }
         }
 
         public AnimationWatcher deserialize(PacketBuffer buffer) {
@@ -154,7 +170,13 @@ public class AnimationWatcher {
             int existingTime = buffer.readInt();
             float speed = buffer.readFloat();
 
-            AnimationWatcher watcher = new AnimationWatcher(animation, speed);
+            AnimationStarter.AnimationData nextAnimationData = null;
+            boolean hasNextAnimation = buffer.readBoolean();
+            if (hasNextAnimation) {
+                nextAnimationData = AnimationStarter.AnimationData.decode(buffer);
+            }
+
+            AnimationWatcher watcher = new AnimationWatcher(animation, speed, nextAnimationData);
             watcher.startTime.set(System.currentTimeMillis() - existingTime);
 
             return watcher;

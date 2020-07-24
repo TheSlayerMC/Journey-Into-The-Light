@@ -1,6 +1,7 @@
 package ru.timeconqueror.timecore.animation;
 
 import net.minecraft.network.PacketBuffer;
+import org.jetbrains.annotations.Nullable;
 import ru.timeconqueror.timecore.api.animation.Animation;
 import ru.timeconqueror.timecore.api.animation.AnimationConstants;
 import ru.timeconqueror.timecore.api.animation.AnimationManager;
@@ -35,6 +36,11 @@ public class AnimationStarter {
 		return this;
 	}
 
+	public AnimationStarter setNextAnimation(AnimationStarter nextAnimationStarter) {
+		data.nextAnimationData = nextAnimationStarter.getData();
+		return this;
+	}
+
 	public void startAt(AnimationManager manager, String layerName) {
 		manager.setAnimation(this, layerName);
 	}
@@ -45,6 +51,8 @@ public class AnimationStarter {
 
 	public static class AnimationData {
 		private final Animation animation;
+		@Nullable
+		private AnimationData nextAnimationData;
 		private boolean ignorable = true;
 		private int transitionTime = AnimationConstants.BASIC_TRANSITION_TIME;
 		private float speedFactor = 1F;
@@ -58,6 +66,12 @@ public class AnimationStarter {
 			buffer.writeFloat(animationData.getSpeedFactor());
 			buffer.writeInt(animationData.getTransitionTime());
 			buffer.writeBoolean(animationData.isIgnorable());
+
+			boolean hasNextAnim = animationData.nextAnimationData != null;
+			buffer.writeBoolean(hasNextAnim);
+			if (hasNextAnim) {
+				encode(animationData.nextAnimationData, buffer);
+			}
 		}
 
 		public static AnimationData decode(PacketBuffer buffer) {
@@ -68,6 +82,11 @@ public class AnimationStarter {
 			animationData.speedFactor = buffer.readFloat();
 			animationData.transitionTime = buffer.readInt();
 			animationData.ignorable = buffer.readBoolean();
+
+			boolean hasNextAnim = buffer.readBoolean();
+			if (hasNextAnim) {
+				animationData.nextAnimationData = decode(buffer);
+			}
 
 			return animationData;
 		}
@@ -93,8 +112,14 @@ public class AnimationStarter {
 			animationData.speedFactor = this.speedFactor;
 			animationData.ignorable = this.ignorable;
 			animationData.transitionTime = this.transitionTime;
+			animationData.nextAnimationData = this.nextAnimationData != null ? this.nextAnimationData.copy() : null;
 
 			return animationData;
+		}
+
+		@Nullable
+		public AnimationData getNextAnimationData() {
+			return nextAnimationData;
 		}
 	}
 }

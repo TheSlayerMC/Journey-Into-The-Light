@@ -62,6 +62,7 @@ public class EntityFloro extends JEntityMob implements IRangedAttackMob, Animati
 	private static final DelayedAction<EntityFloro, Void> HIDING_ACTION;
 
 	private static final String LAYER_SHOWING = "showing";
+	private static final String LAYER_WALKING = "walking";
 	private static final String LAYER_ATTACK = "attack";
 
 	static {
@@ -72,11 +73,10 @@ public class EntityFloro extends JEntityMob implements IRangedAttackMob, Animati
 		REVEALING_ACTION = new DelayedAction<EntityFloro, Object>(JITL.rl("floro/reveal"), new AnimationStarter(JAnimations.FLORO_REVEAL).setTransitionTime(0), LAYER_SHOWING)
 				.setDelayPredicate(StandardDelayPredicates.onEnd())
 				.setOnCall((entityFloro, o) -> entityFloro.setHidden(false));
-		HIDING_ACTION = new DelayedAction<EntityFloro, Void>(JITL.rl("floro/hiding"), new AnimationStarter(JAnimations.FLORO_HIDE), LAYER_SHOWING)
+		HIDING_ACTION = new DelayedAction<EntityFloro, Void>(JITL.rl("floro/hiding"), new AnimationStarter(JAnimations.FLORO_HIDE).setNextAnimation(AnimationAPI.createStarter(JAnimations.FLORO_HIDDEN).setTransitionTime(0)), LAYER_SHOWING)
 				.setDelayPredicate(StandardDelayPredicates.onEnd())
 				.setOnCall((entityFloro, nothing) -> {
 					entityFloro.setHidden(true);
-					entityFloro.startHiddenAnimation();
 				});
 	}
 
@@ -87,9 +87,9 @@ public class EntityFloro extends JEntityMob implements IRangedAttackMob, Animati
 
 		actionManager = ActionManagerBuilder.<EntityFloro>create(
 				AnimationManagerBuilder.create()
-						.addLayer(LAYER_SHOWING, -1, BlendType.OVERRIDE, 1F)
-						.addLayer(LayerReference.WALKING)
-						.addLayer(LAYER_ATTACK, 1, BlendType.ADDING, 0.9F)
+						.addLayer(LAYER_SHOWING, 0, BlendType.OVERRIDE, 1F)
+						.addLayer(LAYER_WALKING, 1, BlendType.ADDING, 1F)
+						.addLayer(LAYER_ATTACK, 2, BlendType.ADDING, 0.9F)
 						.addWalkingAnimationHandling(new AnimationStarter(JAnimations.FLORO_WALK).setSpeed(3F), LayerReference.WALKING)
 		).build(this, world);
 	}
@@ -305,6 +305,11 @@ public class EntityFloro extends JEntityMob implements IRangedAttackMob, Animati
 		@Override
 		public void startExecuting() {
 			getActionManager().enableAction(HIDING_ACTION, null);
+		}
+
+		@Override
+		public boolean isInterruptible() {
+			return false;
 		}
 	}
 }

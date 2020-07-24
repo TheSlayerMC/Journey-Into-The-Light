@@ -61,12 +61,12 @@ public class Layer implements AnimationLayer {
 
 	void setAnimation(AnimationStarter.AnimationData data) {
 		if (data.getTransitionTime() == 0) {
-			animationWatcher = new AnimationWatcher(data.getAnimation(), data.getSpeedFactor());
+			animationWatcher = new AnimationWatcher(data.getAnimation(), data.getSpeedFactor(), data.getNextAnimationData());
 		} else {
 			if (animationWatcher == null) {
-				animationWatcher = new TransitionWatcher(data.getTransitionTime(), data.getAnimation(), data.getSpeedFactor());
+				animationWatcher = new TransitionWatcher(data.getTransitionTime(), data);
 			} else {
-				animationWatcher = new TransitionWatcher(animationWatcher.getAnimation(), animationWatcher.getExistingTime(), data.getTransitionTime(), data.getAnimation(), data.getSpeedFactor());
+				animationWatcher = new TransitionWatcher(animationWatcher.getAnimation(), animationWatcher.getExistingTime(), data.getTransitionTime(), data);
 			}
 		}
 	}
@@ -77,15 +77,14 @@ public class Layer implements AnimationLayer {
 				animationWatcher = null;
 			} else {
 				if (!(animationWatcher instanceof TransitionWatcher && ((TransitionWatcher) animationWatcher).getDestination() == null)) {
-					animationWatcher = new TransitionWatcher(animationWatcher.getAnimation(), animationWatcher.getExistingTime(), transitionTime, null, -1);
+					animationWatcher = new TransitionWatcher(animationWatcher.getAnimation(), animationWatcher.getExistingTime(), transitionTime, null);
 				}
 			}
 		}
 	}
 
-	void update(BaseAnimationManager manager, TimeEntityModel model) {
+	void update(BaseAnimationManager manager, TimeEntityModel model, long currentTime) {
 		boolean paused = manager.isGamePaused();
-		long currentTime = System.currentTimeMillis();
 
 		AnimationWatcher watcher = getAnimationWatcher();
 
@@ -100,7 +99,7 @@ public class Layer implements AnimationLayer {
 				}
 
 				if (watcher.isAnimationEnded(currentTime)) {
-					manager.onAnimationEnd(model, this, watcher, currentTime);
+					manager.onAnimationEnd(model, this, watcher);
 
 					watcher = watcher.next();
 

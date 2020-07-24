@@ -12,10 +12,7 @@ import ru.timeconqueror.timecore.client.render.model.TimeEntityModel;
 import ru.timeconqueror.timecore.client.render.model.TimeModel;
 import ru.timeconqueror.timecore.client.render.model.TimeModelRenderer;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
@@ -103,31 +100,19 @@ public class BasicAnimation extends Animation {
 			reversedOptions = new HashMap<>();
 
 			options.forEach((s, boneOption) -> {
-				List<KeyFrame> positions;
+				List<KeyFrame> positions = null;
 				if (boneOption.getPositions() != null) {
-					positions = boneOption.getPositions().stream()
-							.map(keyFrame -> new KeyFrame(length - keyFrame.getStartTime(), keyFrame.getVec()))
-							.collect(Collectors.toList());
-				} else {
-					positions = null;
+					positions = reverseKeyFrames(boneOption.getPositions());
 				}
 
-				List<KeyFrame> rotations;
+				List<KeyFrame> rotations = null;
 				if (boneOption.getRotations() != null) {
-					rotations = boneOption.getRotations().stream()
-							.map(keyFrame -> new KeyFrame(length - keyFrame.getStartTime(), keyFrame.getVec()))
-							.collect(Collectors.toList());
-				} else {
-					rotations = null;
+					rotations = reverseKeyFrames(boneOption.getRotations());
 				}
 
-				List<KeyFrame> scales;
+				List<KeyFrame> scales = null;
 				if (boneOption.getScales() != null) {
-					scales = boneOption.getScales().stream()
-							.map(keyFrame -> new KeyFrame(length - keyFrame.getStartTime(), keyFrame.getVec()))
-							.collect(Collectors.toList());
-				} else {
-					scales = null;
+					scales = reverseKeyFrames(boneOption.getScales());
 				}
 
 				reversedOptions.put(boneOption.getName(), new BoneOption(boneOption.getName(), rotations, positions, scales));
@@ -135,6 +120,13 @@ public class BasicAnimation extends Animation {
 		}
 
 		return new BasicAnimation(loop, new ResourceLocation(id.getNamespace(), id.getPath() + "-reversed"), name + "-reversed", length, reversedOptions);
+	}
+
+	private List<KeyFrame> reverseKeyFrames(List<KeyFrame> keyFrames) {
+		return keyFrames.stream()
+				.sorted(Collections.reverseOrder(Comparator.comparingInt(KeyFrame::getStartTime)))
+				.map(keyFrame -> new KeyFrame(length - keyFrame.getStartTime(), keyFrame.getVec()))
+				.collect(Collectors.toList());
 	}
 
 	public static class TransitionFactory extends Animation.TransitionFactory {
@@ -219,24 +211,24 @@ public class BasicAnimation extends Animation {
 					return KeyFrame.createIdleKeyFrame(transitionTime, piece.offsetX, piece.offsetY, piece.offsetZ);
 				}
 			} else if (optionType == OptionType.SCALE) {
-                if (destBone != null) {
-                    return calcEndKeyFrame(destBone.getScales(), piece.getScaleFactor().getX(), piece.getScaleFactor().getY(), piece.getScaleFactor().getZ(), transitionTime);
-                } else {
-                    return KeyFrame.createIdleKeyFrame(transitionTime, piece.getScaleFactor().getX(), piece.getScaleFactor().getY(), piece.getScaleFactor().getZ());
-                }
-            }
+				if (destBone != null) {
+					return calcEndKeyFrame(destBone.getScales(), piece.getScaleFactor().getX(), piece.getScaleFactor().getY(), piece.getScaleFactor().getZ(), transitionTime);
+				} else {
+					return KeyFrame.createIdleKeyFrame(transitionTime, piece.getScaleFactor().getX(), piece.getScaleFactor().getY(), piece.getScaleFactor().getZ());
+				}
+			}
 
-            throw new UnsupportedOperationException("Can't handle " + optionType + " option type");
-        }
-    }
+			throw new UnsupportedOperationException("Can't handle " + optionType + " option type");
+		}
+	}
 
-    @Override
-    public String toString() {
-        return "BasicAnimation{" +
-                "name=" + name +
-                ", id=" + id +
-                ", looped=" + loop +
-                ", length=" + length +
-                '}';
-    }
+	@Override
+	public String toString() {
+		return "BasicAnimation{" +
+				"name=" + name +
+				", id=" + id +
+				", looped=" + loop +
+				", length=" + length +
+				'}';
+	}
 }

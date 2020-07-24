@@ -35,6 +35,7 @@ public class AnimationManagerBuilder extends SingleUseBuilder {
 		return this;
 	}
 
+	//TODO remove priority
 	public AnimationManagerBuilder addLayer(String name, int priority, BlendType blendType, float weight) {
 		verifyNotUsed();
 		Layer prev = animationLayers.put(name, new Layer(name, priority, blendType, weight));
