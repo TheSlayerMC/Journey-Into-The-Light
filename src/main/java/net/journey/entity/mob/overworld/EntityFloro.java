@@ -44,7 +44,7 @@ import ru.timeconqueror.timecore.api.animation.BlendType;
  * If task has higher priority (lower number), than system will check if current task with lower priority is interruptible.
  * If it is so, then it will be finished, and new task will task its place
  * <p>
- * If task has a lower priority (higher number), it's checked by system if it can work in parallel (if mutex is the same).
+ * If task has a lower priority (higher number), it's checked by system if it can work in parallel (if mutex isn't the same).
  * <p>
  * How mutex works:
  * If combination of numbers, that are power of two, completely coincides with the other tasks' ones
