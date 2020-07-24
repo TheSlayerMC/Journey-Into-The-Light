@@ -299,7 +299,7 @@ public class EntityFloro extends JEntityMob implements IRangedAttackMob, Animati
 
 		@Override
 		public boolean shouldExecute() {
-			return !isHidden() && getAttackTarget() == null;
+			return !isHidden() && (getAttackTarget() == null || getActionManager().isActionEnabled(HIDING_ACTION));
 		}
 
 		@Override
