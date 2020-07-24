@@ -12,54 +12,67 @@ import ru.timeconqueror.timecore.client.render.model.TimeModelRenderer;
 import java.util.List;
 import java.util.function.Consumer;
 
-public interface Animation {
-	void apply(TimeEntityModel model, AnimationLayer layer, int existingTime);
+public abstract class Animation {
+	public abstract void apply(TimeEntityModel model, AnimationLayer layer, int existingTime);
 
 	/**
 	 * Name of the animation, that is indicated in animation file.
 	 */
-	String getName();
+	public abstract String getName();
 
 	/**
 	 * By default contains the path to the file, from which this animation was parsed,
 	 * merged with the animation name from the file.
 	 */
-	ResourceLocation getId();
+	public abstract ResourceLocation getId();
 
 	/**
 	 * Length in ms
 	 */
-	int getLength();
+	public abstract int getLength();
 
-	boolean isLooped();
+	public abstract boolean isLooped();
 
 	/**
 	 * Should return the factory, that can handle your IAnimation implementation class
 	 */
 	@NotNull
-	Animation.TransitionFactory getTransitionFactory();
+	public abstract Animation.TransitionFactory getTransitionFactory();
 
 	/**
 	 * Proceeds some action for each bone.
 	 *
 	 * @param action action to call for every bone. Consumes bone name.
 	 */
-	void forEachBone(Consumer<String> action);
+	public abstract void forEachBone(Consumer<String> action);
 
 	/**
 	 * Returns the reversed version of this animation.
 	 * It is slow, so you need to call this once.
 	 * Don't forget about registering returned animation.
 	 */
-	Animation reverse();
+	public abstract Animation reverse();
 
-	enum OptionType {
+	public enum OptionType {
 		ROTATION,
 		POSITION,
 		SCALE
 	}
 
-	abstract class TransitionFactory {
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) return true;
+		if (!(obj instanceof Animation)) return false;
+		Animation animation = (Animation) obj;
+		return getId().equals(animation.getId());
+	}
+
+	@Override
+	public int hashCode() {
+		return getId().hashCode();
+	}
+
+	public abstract static class TransitionFactory {
 		/**
 		 * Animation, from which transition will start.
 		 */

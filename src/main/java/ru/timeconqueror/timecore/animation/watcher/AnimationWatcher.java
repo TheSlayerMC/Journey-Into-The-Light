@@ -10,6 +10,7 @@ import ru.timeconqueror.timecore.api.util.Requirements;
 import ru.timeconqueror.timecore.client.render.model.TimeEntityModel;
 
 import javax.annotation.OverridingMethodsMustInvokeSuper;
+import java.util.Objects;
 
 public class AnimationWatcher {
     protected final FreezableTime startTime;
@@ -77,12 +78,26 @@ public class AnimationWatcher {
 
     @Override
     public String toString() {
-        return getClass().getSimpleName() + "{" +
-                "startTime=" + startTime +
-                ", animation=" + animation +
+        return "AnimationWatcher {" +
+                "animation=" + animation +
+                ", startTime=" + startTime +
                 ", speed=" + speed +
                 ", inited=" + inited +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof AnimationWatcher)) return false;
+        AnimationWatcher watcher = (AnimationWatcher) o;
+        return Float.compare(watcher.speed, speed) == 0 &&
+                animation.equals(watcher.animation);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(speed, animation);
     }
 
     protected static class FreezableTime {

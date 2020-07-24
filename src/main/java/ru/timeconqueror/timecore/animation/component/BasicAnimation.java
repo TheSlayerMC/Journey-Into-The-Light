@@ -19,7 +19,7 @@ import java.util.Map;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
-public class BasicAnimation implements Animation {
+public class BasicAnimation extends Animation {
 	private final boolean loop;
 	private final String name;
 	private final ResourceLocation id;
@@ -134,7 +134,7 @@ public class BasicAnimation implements Animation {
 			});
 		}
 
-		return new BasicAnimation(loop, new ResourceLocation(id.getNamespace(), id.getPath() + "/reversed"), name + "/reversed", length, reversedOptions);
+		return new BasicAnimation(loop, new ResourceLocation(id.getNamespace(), id.getPath() + "-reversed"), name + "-reversed", length, reversedOptions);
 	}
 
 	public static class TransitionFactory extends Animation.TransitionFactory {

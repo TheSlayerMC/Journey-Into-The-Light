@@ -92,34 +92,10 @@ public abstract class BaseAnimationManager implements AnimationManager {
 	@Override
 	public void applyAnimations(TimeEntityModel model) {
 		for (Layer layer : layers) {
-			AnimationWatcher watcher = layer.getAnimationWatcher();
-
-			boolean paused = isGamePaused();
+			layer.update(this, model);
 			long currentTime = System.currentTimeMillis();
 
-			if (watcher != null) {
-				if (paused) {
-					watcher.freeze();
-				} else {
-					watcher.unfreeze();
-
-					if (watcher.requiresInit()) {
-						watcher.init(model);
-					}
-
-					if (watcher.isAnimationEnded(currentTime)) {
-						onAnimationEnd(model, layer, watcher, currentTime);
-
-						watcher = watcher.next();
-
-						if (watcher != null && watcher.requiresInit()) {
-							watcher.init(model);
-						}
-					}
-				}
-			}
-
-			layer.setAnimationWatcher(watcher); //here we update current watcher
+			AnimationWatcher watcher = layer.getAnimationWatcher();
 
 			if (watcher != null && watcher.getAnimation() != null) {
 				applyAnimation(model, layer, watcher, currentTime);

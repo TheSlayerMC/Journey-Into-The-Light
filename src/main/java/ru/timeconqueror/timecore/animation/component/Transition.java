@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class Transition implements Animation {
+public class Transition extends Animation {
 	private static final Animation DUMMY_ANIMATION = new Animation() {
 		private final ResourceLocation id = new ResourceLocation(TimeCore.MODID, "internal/" + getName());
 

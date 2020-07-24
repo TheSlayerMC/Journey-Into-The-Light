@@ -7,6 +7,7 @@ import ru.timeconqueror.timecore.api.animation.Animation;
 import ru.timeconqueror.timecore.api.animation.AnimationLayer;
 import ru.timeconqueror.timecore.api.animation.BlendType;
 import ru.timeconqueror.timecore.api.util.MathUtils;
+import ru.timeconqueror.timecore.client.render.model.TimeEntityModel;
 
 public class Layer implements AnimationLayer {
 	private int priority;
@@ -77,6 +78,37 @@ public class Layer implements AnimationLayer {
 			} else {
 				if (!(animationWatcher instanceof TransitionWatcher && ((TransitionWatcher) animationWatcher).getDestination() == null)) {
 					animationWatcher = new TransitionWatcher(animationWatcher.getAnimation(), animationWatcher.getExistingTime(), transitionTime, null, -1);
+				}
+			}
+		}
+	}
+
+	void update(BaseAnimationManager manager, TimeEntityModel model) {
+		boolean paused = manager.isGamePaused();
+		long currentTime = System.currentTimeMillis();
+
+		AnimationWatcher watcher = getAnimationWatcher();
+
+		if (watcher != null) {
+			if (paused) {
+				watcher.freeze();
+			} else {
+				watcher.unfreeze();
+
+				if (watcher.requiresInit()) {
+					watcher.init(model);
+				}
+
+				if (watcher.isAnimationEnded(currentTime)) {
+					manager.onAnimationEnd(model, this, watcher, currentTime);
+
+					watcher = watcher.next();
+
+					if (watcher != null && watcher.requiresInit()) {
+						watcher.init(model);
+					}
+
+					setAnimationWatcher(watcher);//here we update current watcher
 				}
 			}
 		}

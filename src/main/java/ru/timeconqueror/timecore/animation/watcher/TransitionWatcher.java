@@ -10,6 +10,8 @@ import ru.timeconqueror.timecore.api.animation.Animation;
 import ru.timeconqueror.timecore.api.util.Requirements;
 import ru.timeconqueror.timecore.client.render.model.TimeEntityModel;
 
+import java.util.Objects;
+
 public class TransitionWatcher extends AnimationWatcher {
 	private final int transitionTime;
 	private final float destAnimSpeedFactor;
@@ -61,8 +63,8 @@ public class TransitionWatcher extends AnimationWatcher {
     @Override
     public String toString() {
         return "TransitionWatcher{" +
-		        "startTime=" + startTime +
-		        ", animation=" + animation +
+		        "animation=" + animation +
+		        ", startTime=" + startTime +
 		        ", speed=" + speed +
 		        ", transitionTime=" + transitionTime +
 		        ", source=" + source +
@@ -71,6 +73,22 @@ public class TransitionWatcher extends AnimationWatcher {
 		        ", destination=" + destination +
 		        '}';
     }
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof TransitionWatcher)) return false;
+		TransitionWatcher that = (TransitionWatcher) o;
+		return transitionTime == that.transitionTime &&
+				Float.compare(that.destAnimSpeedFactor, destAnimSpeedFactor) == 0 &&
+				Objects.equals(destination, that.destination) &&
+				Objects.equals(source, that.source);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(super.hashCode(), transitionTime, destAnimSpeedFactor, destination, source);
+	}
 
 	public static class Serializer implements WatcherSerializer<TransitionWatcher> {
 		@Override
