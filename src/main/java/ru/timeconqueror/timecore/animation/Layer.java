@@ -10,7 +10,6 @@ import ru.timeconqueror.timecore.api.util.MathUtils;
 import ru.timeconqueror.timecore.client.render.model.TimeEntityModel;
 
 public class Layer implements AnimationLayer {
-	private int priority;
 	private String name;
 
 	@Nullable
@@ -18,15 +17,10 @@ public class Layer implements AnimationLayer {
 	private BlendType blendType;
 	private float weight;
 
-	public Layer(String name, int priority, BlendType blendType, float weight) {
+	public Layer(String name, BlendType blendType, float weight) {
 		this.name = name;
 		this.weight = MathUtils.coerceInRange(weight, 0, 1);
 		this.blendType = blendType;
-		this.priority = priority;
-	}
-
-	public int getPriority() {
-		return priority;
 	}
 
 	@Override
@@ -135,7 +129,6 @@ public class Layer implements AnimationLayer {
 
 		Layer clone = (Layer) super.clone();
 		clone.name = name;
-		clone.priority = priority;
 		clone.blendType = blendType;
 		clone.weight = weight;
 

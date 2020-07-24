@@ -10,16 +10,12 @@ import ru.timeconqueror.timecore.api.animation.AnimationConstants;
 import ru.timeconqueror.timecore.api.animation.AnimationManager;
 import ru.timeconqueror.timecore.client.render.model.TimeEntityModel;
 
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
+import java.util.*;
 
 public abstract class BaseAnimationManager implements AnimationManager {
 	@Nullable
 	private final AnimationSetting walkingAnimationSetting;
-	private HashMap<String, Layer> layerMap;
+	private Map<String, Layer> layerMap;
 	private List<Layer> layers;
 
 	public BaseAnimationManager(@Nullable AnimationSetting walkingAnimationSetting) {
@@ -115,12 +111,10 @@ public abstract class BaseAnimationManager implements AnimationManager {
 
 	}
 
-	void setLayers(HashMap<String, Layer> layers) {
+	void setLayers(LinkedHashMap<String, Layer> layers) {
 		layerMap = layers;
 
-		this.layers = layers.values().stream()
-				.sorted(Comparator.comparingInt(Layer::getPriority))
-				.collect(Collectors.toList());
+		this.layers = new ArrayList<>(layers.values());
 	}
 
 	@Nullable

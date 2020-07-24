@@ -1,24 +1,19 @@
 package ru.timeconqueror.timecore.animation;
 
 import net.minecraft.entity.monster.EntityMob;
-import ru.timeconqueror.timecore.animation.util.LayerReference;
 import ru.timeconqueror.timecore.api.animation.ActionManager;
 import ru.timeconqueror.timecore.api.animation.AnimationConstants;
 import ru.timeconqueror.timecore.api.animation.BlendType;
 import ru.timeconqueror.timecore.util.SingleUseBuilder;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class AnimationManagerBuilder extends SingleUseBuilder {
-	private final HashMap<String, Layer> animationLayers = new HashMap<>();
+	private final LinkedHashMap<String, Layer> animationLayers = new LinkedHashMap<>();
 	private AnimationSetting walkingAnimationSetting;
 
 	public static AnimationManagerBuilder create() {
 		return new AnimationManagerBuilder();
-	}
-
-	public AnimationManagerBuilder addWalkingAnimationHandling(AnimationStarter walkingAnimationStarter, LayerReference layerReference) {
-		return addWalkingAnimationHandling(walkingAnimationStarter, layerReference.getName());
 	}
 
 	public AnimationManagerBuilder addWalkingAnimationHandling(AnimationStarter walkingAnimationStarter, String layerName) {
@@ -30,15 +25,9 @@ public class AnimationManagerBuilder extends SingleUseBuilder {
 		}
 	}
 
-	public AnimationManagerBuilder addLayer(LayerReference layerReference) {
-		addLayer(layerReference.createLayerFromDefault());
-		return this;
-	}
-
-	//TODO remove priority
-	public AnimationManagerBuilder addLayer(String name, int priority, BlendType blendType, float weight) {
+	public AnimationManagerBuilder addLayer(String name, BlendType blendType, float weight) {
 		verifyNotUsed();
-		Layer prev = animationLayers.put(name, new Layer(name, priority, blendType, weight));
+		Layer prev = animationLayers.put(name, new Layer(name, blendType, weight));
 		if (prev != null)
 			throw new IllegalArgumentException("Layer with name " + name + " already exist in provided animation manager.");
 		return this;
@@ -46,7 +35,7 @@ public class AnimationManagerBuilder extends SingleUseBuilder {
 
 	public AnimationManagerBuilder addMainLayer() {
 		verifyNotUsed();
-		addLayer(AnimationConstants.MAIN_LAYER_NAME, 0, BlendType.OVERRIDE, 1);
+		addLayer(AnimationConstants.MAIN_LAYER_NAME, BlendType.OVERRIDE, 1);
 
 		return this;
 	}

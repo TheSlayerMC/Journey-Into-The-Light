@@ -31,7 +31,6 @@ import ru.timeconqueror.timecore.animation.AnimationManagerBuilder;
 import ru.timeconqueror.timecore.animation.AnimationStarter;
 import ru.timeconqueror.timecore.animation.component.DelayedAction;
 import ru.timeconqueror.timecore.animation.entityai.AnimatedRangedAttackAI;
-import ru.timeconqueror.timecore.animation.util.LayerReference;
 import ru.timeconqueror.timecore.animation.util.StandardDelayPredicates;
 import ru.timeconqueror.timecore.api.animation.ActionManager;
 import ru.timeconqueror.timecore.api.animation.AnimationAPI;
@@ -87,10 +86,10 @@ public class EntityFloro extends JEntityMob implements IRangedAttackMob, Animati
 
 		actionManager = ActionManagerBuilder.<EntityFloro>create(
 				AnimationManagerBuilder.create()
-						.addLayer(LAYER_SHOWING, 0, BlendType.OVERRIDE, 1F)
-						.addLayer(LAYER_WALKING, 1, BlendType.ADDING, 1F)
-						.addLayer(LAYER_ATTACK, 2, BlendType.ADDING, 0.9F)
-						.addWalkingAnimationHandling(new AnimationStarter(JAnimations.FLORO_WALK).setSpeed(3F), LayerReference.WALKING)
+						.addLayer(LAYER_SHOWING, BlendType.OVERRIDE, 1F)
+						.addLayer(LAYER_WALKING, BlendType.ADDING, 1F)
+						.addLayer(LAYER_ATTACK, BlendType.ADDING, 0.9F)
+						.addWalkingAnimationHandling(new AnimationStarter(JAnimations.FLORO_WALK).setSpeed(3F), LAYER_WALKING)
 		).build(this, world);
 	}
 
