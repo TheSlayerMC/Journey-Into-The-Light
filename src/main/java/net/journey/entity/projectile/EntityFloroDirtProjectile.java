@@ -26,8 +26,13 @@ public class EntityFloroDirtProjectile extends EntityDamagingProjectile {
 	@SideOnly(Side.CLIENT)
 	public void onClientUpdate() {
 		super.onClientUpdate();
-		for (int i = 0; i < 6; ++i) {
-			ParticleFloroMud effect = new ParticleFloroMud(this.world, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
+		int count = 6;
+		for (int i = 0; i < count; ++i) {
+			double posX = this.lastTickPosX - this.motionX * (double) i / count;
+			double posY = this.lastTickPosY - this.motionY * (double) i / count;
+			double posZ = this.lastTickPosZ - this.motionZ * (double) i / count;
+
+			ParticleFloroMud effect = new ParticleFloroMud(this.world, posX, posY, posZ, -this.motionX, -(this.motionY + 0.2D), -this.motionZ);
 			FMLClientHandler.instance().getClient().effectRenderer.addEffect(effect);
 		}
 	}
