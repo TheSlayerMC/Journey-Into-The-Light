@@ -1,0 +1,406 @@
+{
+  "credit": "Made with Blockbench",
+  "parent": "block/cube_all",
+  "textures": {
+    "1": "journey:blocks/scorched_cactus",
+    "2": "journey:blocks/scorched_cactus_bottom",
+    "3": "journey:blocks/scorched_cactus_top",
+    "particle": "journey:blocks/scorched_cactus_bottom"
+  },
+  "elements": [
+    {
+      "name": "center",
+      "from": [
+        3,
+        0,
+        3
+      ],
+      "to": [
+        13,
+        16,
+        13
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          11,
+          8,
+          11
+        ]
+      },
+      "faces": {
+        "north": {
+          "uv": [
+            3,
+            0,
+            13,
+            16
+          ],
+          "texture": "#1"
+        },
+        "east": {
+          "uv": [
+            3,
+            0,
+            13,
+            16
+          ],
+          "texture": "#1"
+        },
+        "south": {
+          "uv": [
+            3,
+            0,
+            13,
+            16
+          ],
+          "texture": "#1"
+        },
+        "west": {
+          "uv": [
+            3,
+            0,
+            13,
+            16
+          ],
+          "texture": "#1"
+        },
+        "up": {
+          "uv": [
+            3,
+            3,
+            13,
+            13
+          ],
+          "texture": "#3"
+        },
+        "down": {
+          "uv": [
+            3,
+            3,
+            13,
+            13
+          ],
+          "texture": "#2"
+        }
+      }
+    },
+    {
+      "name": "pokers1",
+      "from": [
+        3.1,
+        0,
+        2
+      ],
+      "to": [
+        3.1,
+        16,
+        14
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          11.1,
+          8,
+          10
+        ]
+      },
+      "faces": {
+        "north": {
+          "uv": [
+            2,
+            16,
+            14,
+            16
+          ],
+          "texture": "#1"
+        },
+        "east": {
+          "uv": [
+            2,
+            16,
+            14,
+            16
+          ],
+          "texture": "#1"
+        },
+        "south": {
+          "uv": [
+            2,
+            16,
+            14,
+            16
+          ],
+          "texture": "#1"
+        },
+        "west": {
+          "uv": [
+            2,
+            0,
+            14,
+            16
+          ],
+          "texture": "#1"
+        },
+        "up": {
+          "uv": [
+            3,
+            13,
+            13,
+            13
+          ],
+          "texture": "#3"
+        },
+        "down": {
+          "uv": [
+            3,
+            13,
+            13,
+            13
+          ],
+          "texture": "#2"
+        }
+      }
+    },
+    {
+      "name": "pokers2",
+      "from": [
+        12.9,
+        0,
+        2
+      ],
+      "to": [
+        12.9,
+        16,
+        14
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          20.9,
+          8,
+          10
+        ]
+      },
+      "faces": {
+        "north": {
+          "uv": [
+            2,
+            0,
+            14,
+            16
+          ],
+          "texture": "#1"
+        },
+        "east": {
+          "uv": [
+            2,
+            0,
+            14,
+            16
+          ],
+          "texture": "#1"
+        },
+        "south": {
+          "uv": [
+            2,
+            0,
+            14,
+            16
+          ],
+          "texture": "#1"
+        },
+        "west": {
+          "uv": [
+            2,
+            0,
+            14,
+            16
+          ],
+          "texture": "#1"
+        },
+        "up": {
+          "uv": [
+            3,
+            3,
+            13,
+            13
+          ],
+          "texture": "#3"
+        },
+        "down": {
+          "uv": [
+            3,
+            3,
+            13,
+            13
+          ],
+          "texture": "#2"
+        }
+      }
+    },
+    {
+      "name": "pokers3",
+      "from": [
+        1.9,
+        0,
+        12.9
+      ],
+      "to": [
+        13.9,
+        16,
+        12.9
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          9.9,
+          8,
+          4.9
+        ]
+      },
+      "faces": {
+        "north": {
+          "uv": [
+            2,
+            0,
+            14,
+            16
+          ],
+          "texture": "#1"
+        },
+        "east": {
+          "uv": [
+            2,
+            0,
+            14,
+            16
+          ],
+          "texture": "#1"
+        },
+        "south": {
+          "uv": [
+            2,
+            0,
+            14,
+            16
+          ],
+          "texture": "#1"
+        },
+        "west": {
+          "uv": [
+            2,
+            0,
+            14,
+            16
+          ],
+          "texture": "#1"
+        },
+        "up": {
+          "uv": [
+            3,
+            3,
+            13,
+            13
+          ],
+          "rotation": 270,
+          "texture": "#3"
+        },
+        "down": {
+          "uv": [
+            3,
+            3,
+            13,
+            13
+          ],
+          "rotation": 90,
+          "texture": "#2"
+        }
+      }
+    },
+    {
+      "name": "pokers4",
+      "from": [
+        1.9,
+        0,
+        3.1
+      ],
+      "to": [
+        13.9,
+        16,
+        3.1
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          9.9,
+          8,
+          -4.9
+        ]
+      },
+      "faces": {
+        "north": {
+          "uv": [
+            2,
+            0,
+            14,
+            16
+          ],
+          "texture": "#1"
+        },
+        "east": {
+          "uv": [
+            2,
+            0,
+            14,
+            16
+          ],
+          "texture": "#1"
+        },
+        "south": {
+          "uv": [
+            2,
+            0,
+            14,
+            16
+          ],
+          "texture": "#1"
+        },
+        "west": {
+          "uv": [
+            2,
+            0,
+            14,
+            16
+          ],
+          "texture": "#1"
+        },
+        "up": {
+          "uv": [
+            3,
+            3,
+            13,
+            13
+          ],
+          "rotation": 270,
+          "texture": "#3"
+        },
+        "down": {
+          "uv": [
+            3,
+            3,
+            13,
+            13
+          ],
+          "rotation": 90,
+          "texture": "#2"
+        }
+      }
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-package net.journey.integration;
+package net.journey.integration.jei;
 
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.IModRegistry;
@@ -6,8 +6,8 @@ import mezz.jei.api.JEIPlugin;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.init.items.JourneyItems;
-import net.journey.integration.summoning.SummoningRecipeCategory;
-import net.journey.integration.summoning.SummoningRecipeWrapper;
+import net.journey.integration.jei.summoning.SummoningRecipeCategory;
+import net.journey.integration.jei.summoning.SummoningRecipeWrapper;
 import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;

@@ -1,3 +1,6 @@
+import groovy.json.JsonSlurper
+import groovy.json.JsonBuilder
+
 buildscript {
     repositories {
         jcenter()
@@ -13,6 +16,7 @@ plugins {
 }
 
 apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'java'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
 file "build.properties" withReader {
@@ -53,6 +57,11 @@ repositories {
     mavenCentral()
     repositories {
         maven {
+            // location of maven that hosts TCon and Mantle
+            name 'progwm\'s Maven'
+            url 'https://dvs1.progwml6.com/files/maven'
+        }
+        maven {
             // location of the maven that hosts JEI files
             name = "Progwml6 maven"
             url = "https://dvs1.progwml6.com/files/maven/"
@@ -67,6 +76,18 @@ repositories {
         }
     }
 }
+
+task updateVersionJson {
+    doLast {
+        def jsonFile = file('update.json')
+        def parsedJson = new JsonSlurper().parseText(jsonFile.text)
+        parsedJson.promos.'1.12.2-latest' = config.jitl.version
+        parsedJson.promos.'1.12.2-recommended' = config.jitl.version
+
+        jsonFile.write(new JsonBuilder(parsedJson).toPrettyString())
+    }
+}
+build.finalizedBy(updateVersionJson)
 
 dependencies {
     // you may put jars on which you depend on in ./libs
@@ -92,6 +113,9 @@ dependencies {
 
     implementation 'org.jetbrains:annotations:18.0.0'
     deobfCompile "mezz.jei:jei_1.12.2:4.15.0.293"
+
+    deobfCompile "slimeknights.mantle:Mantle:1.12-+"
+    deobfCompile "slimeknights:TConstruct:1.12.2-2.12.0.+"
 
     deobfCompile "curse.maven:just-enough-resources-jer:2728585"
     deobfCompile "curse.maven:baubles:2518667"

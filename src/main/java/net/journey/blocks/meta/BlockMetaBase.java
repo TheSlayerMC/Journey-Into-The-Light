@@ -1,7 +1,5 @@
 package net.journey.blocks.meta;
 
-import net.journey.JITL;
-import net.journey.api.client.IHasModel;
 import net.journey.api.util.IMetaName;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.handler.EnumTypeHandler;
@@ -19,33 +17,32 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-import net.minecraftforge.client.event.ModelRegistryEvent;
 
-public class BlockMetaBase extends Block implements IMetaName, IHasModel {
+public class BlockMetaBase extends Block implements IMetaName {
 
-    public static final PropertyEnum<EnumTypeHandler.EnumType> VARIANT = PropertyEnum.create("variant", EnumTypeHandler.EnumType.class);
+	public static final PropertyEnum<EnumTypeHandler.EnumType> VARIANT = PropertyEnum.create("variant", EnumTypeHandler.EnumType.class);
 
-    private String name;
-    private String metaName;
+	private final String name;
+	private final String metaName;
 
-    public BlockMetaBase(String name, Material m, String metaName) {
-        super(m);
-        this.setTranslationKey(name);
-        this.setRegistryName(name);
-        this.setSoundType(SoundType.STONE);
-        this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
-        this.name = name;
-        this.metaName = metaName;
+	public BlockMetaBase(String name, Material m, String metaName) {
+		super(m);
+		this.setTranslationKey(name);
+		this.setRegistryName(name);
+		this.setSoundType(SoundType.STONE);
+		this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+		this.name = name;
+		this.metaName = metaName;
 
-        JourneyBlocks.blocks.add(this);
-        JourneyBlocks.itemBlocks.add(new ItemBlockVarients(this).setRegistryName(this.getRegistryName()));
-    }
+		JourneyBlocks.blocks.add(this);
+		JourneyBlocks.itemBlocks.add(new ItemBlockVarients(this).setRegistryName(this.getRegistryName()));
+	}
 
-    @Override
-    public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items) {
-        for (EnumTypeHandler.EnumType customblockplanks$enumtype : EnumTypeHandler.EnumType.values()) {
-            items.add(new ItemStack(this, 1, customblockplanks$enumtype.getMeta()));
-        }
+	@Override
+	public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items) {
+		for (EnumTypeHandler.EnumType customblockplanks$enumtype : EnumTypeHandler.EnumType.values()) {
+			items.add(new ItemStack(this, 1, customblockplanks$enumtype.getMeta()));
+		}
     }
 
     @Override
@@ -53,31 +50,31 @@ public class BlockMetaBase extends Block implements IMetaName, IHasModel {
         return this.getDefaultState().withProperty(VARIANT, EnumTypeHandler.EnumType.byMetadata(meta));
     }
 
-    @Override
-    public int getMetaFromState(IBlockState state) {
-        return state.getValue(VARIANT).getMeta();
-    }
+	@Override
+	public int getMetaFromState(IBlockState state) {
+		return state.getValue(VARIANT).getMeta();
+	}
 
-    @Override
-    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
-        return new ItemStack(Item.getItemFromBlock(this), 1, getMetaFromState(world.getBlockState(pos)));
-    }
+	@Override
+	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
+		return new ItemStack(Item.getItemFromBlock(this), 1, getMetaFromState(world.getBlockState(pos)));
+	}
 
-    @Override
-    protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, VARIANT);
-    }
+	@Override
+	protected BlockStateContainer createBlockState() {
+		return new BlockStateContainer(this, VARIANT);
+	}
 
-    @Override
-    public String getSpecialName(ItemStack stack) {
-        return EnumTypeHandler.EnumType.values()[stack.getItemDamage()].getName();
-    }
+	@Override
+	public String getSpecialName(ItemStack stack) {
+		return EnumTypeHandler.EnumType.values()[stack.getItemDamage()].getName();
+	}
 
-    @Override
-    public void registerModels(ModelRegistryEvent e) {
-        for (int i = 0; i < EnumTypeHandler.EnumType.values().length; i++) {
-            JITL.proxy.registerVariantRenderer(Item.getItemFromBlock(this), i,
-                    metaName + "_" + EnumTypeHandler.EnumType.values()[i].getName(), "inventory");
-        }
-    }
+//    @Override
+//    public void registerModels(ModelRegistryEvent e) {
+//        for (int i = 0; i < EnumTypeHandler.EnumType.values().length; i++) {
+//            JITL.proxy.registerVariantRenderer(Item.getItemFromBlock(this), i,
+//                    metaName + "_" + EnumTypeHandler.EnumType.values()[i].getName(), "inventory");
+//        }
+//    }
 }

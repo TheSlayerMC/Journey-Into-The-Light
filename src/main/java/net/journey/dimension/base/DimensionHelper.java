@@ -2,6 +2,7 @@ package net.journey.dimension.base;
 
 import net.journey.dimension.boil.WorldProviderBoiling;
 import net.journey.dimension.boil.biome.BiomeGenBoiling;
+import net.journey.dimension.boil.biome.BiomeGenBoilingSands;
 import net.journey.dimension.boil.biome.BiomeGenCharredFields;
 import net.journey.dimension.boil.biome.BiomeGenScorchedWasteland;
 import net.journey.dimension.cloudia.BiomeGenCloudia;
@@ -81,6 +82,8 @@ public class DimensionHelper {
     public static final Biome BOILING_BIOME = new BiomeGenBoiling();
     public static final Biome SCORCHED_WASTELAND_BIOME = new BiomeGenScorchedWasteland();
     public static final Biome CHARRED_FIELDS_BIOME = new BiomeGenCharredFields();
+    public static final Biome BOILING_SANDS_BIOME = new BiomeGenBoilingSands();
+
     public static final Biome CLOUDIA_BIOME = new BiomeGenCloudia();
 
     public static final Biome CORBA_BIOME = new BiomeGenCorba();
@@ -91,12 +94,12 @@ public class DimensionHelper {
     public static final Biome DEPTHS_BIOME = new BiomeGenDepths();
     public static final Biome FROZEN_BIOME = new BiomeGenFrozenLands();
     public static final Biome SENTERIAN_BIOME = new BiomeGenSenterian();
-    
+
     public static final Biome TERRANIA_BIOME = new BiomeGenTerrania();
     public static final Biome ENCHANTED_SHROOM_FOREST_BIOME = new BiomeGenEnchantedShroomForest();
 
-    public static final Biome[] BOILING_BIOMES = {BOILING_BIOME, CHARRED_FIELDS_BIOME, SCORCHED_WASTELAND_BIOME};
-    public static final Biome[] EUCA_BIOMES = {EUCA_SILVER_BIOME, EUCA_GOLD_BIOME};
+    public static final Biome[] BOILING_BIOMES = {BOILING_BIOME, CHARRED_FIELDS_BIOME, SCORCHED_WASTELAND_BIOME, BOILING_SANDS_BIOME};
+    public static final Biome[] EUCA_BIOMES = {EUCA_SILVER_BIOME, EUCA_GOLD_BIOME, EUCA_GOLDITE_GRAINS_BIOME};
     public static final Biome[] CORBA_BIOMES = {CORBA_BIOME, CORBA_PLAINS_BIOME, CORBA_HILLS_BIOME, CORBA_SWAMP_BIOME};
     public static final Biome[] TERRANIA_BIOMES = {TERRANIA_BIOME, ENCHANTED_SHROOM_FOREST_BIOME};
 
@@ -125,6 +128,7 @@ public class DimensionHelper {
         addDimBiome(EUCA_GOLDITE_GRAINS_BIOME, "Euca Goldite", Type.MAGICAL, Type.MOUNTAIN);
         addDimBiome(CHARRED_FIELDS_BIOME, "Charred Fields", Type.HOT);
         addDimBiome(SCORCHED_WASTELAND_BIOME, "Scorched Wasteland", Type.HOT);
+        addDimBiome(BOILING_SANDS_BIOME, "Boiling Sands", Type.HOT);
         addDimBiome(BOILING_BIOME, "Boiling Point", Type.HOT);
         addDimBiome(CLOUDIA_BIOME, "Cloudia", Type.MAGICAL);
         addDimBiome(CORBA_BIOME, "Corba", Type.DRY, Type.PLAINS, Type.DEAD);

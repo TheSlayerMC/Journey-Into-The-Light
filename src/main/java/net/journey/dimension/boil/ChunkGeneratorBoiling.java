@@ -3,6 +3,7 @@ package net.journey.dimension.boil;
 import net.journey.api.block.GroundPredicate;
 import net.journey.dimension.base.DimensionHelper;
 import net.journey.dimension.base.gen.JWorldGenPlants;
+import net.journey.dimension.boil.biome.BiomeGenBoilingSands;
 import net.journey.dimension.boil.biome.BiomeGenCharredFields;
 import net.journey.dimension.boil.biome.BiomeGenScorchedWasteland;
 import net.journey.dimension.boil.gen.*;
@@ -192,12 +193,19 @@ public class ChunkGeneratorBoiling implements IChunkGenerator {
         for (int k = 0; k < 16; ++k) {
             for (int l = 0; l < 16; ++l) {
                 Biome biome = b[l + k * 16];
+
                 if (biome == DimensionHelper.CHARRED_FIELDS_BIOME) {
                     BiomeGenCharredFields charredFields = (BiomeGenCharredFields) biome;
                     charredFields.generateModdedBiomeTerrain(worldObj, this.rand, c, x * 16 + k, z * 16 + l, this.stoneNoise[l + k * 16]);
+
                 } else if (biome == DimensionHelper.SCORCHED_WASTELAND_BIOME) {
                     BiomeGenScorchedWasteland wasteland = (BiomeGenScorchedWasteland) biome;
                     wasteland.generateModdedBiomeTerrain(worldObj, this.rand, c, x * 16 + k, z * 16 + l, this.stoneNoise[l + k * 16]);
+
+                } else if (biome == DimensionHelper.BOILING_SANDS_BIOME) {
+                    BiomeGenBoilingSands sands = (BiomeGenBoilingSands) biome;
+                    sands.generateModdedBiomeTerrain(worldObj, this.rand, c, x * 16 + k, z * 16 + l, this.stoneNoise[l + k * 16]);
+
                 } else {
                     generateBiomeTerrain(biome, this.rand, c, x * 16 + k, z * 16 + l, this.stoneNoise[l + k * 16]);
                 }
@@ -210,7 +218,7 @@ public class ChunkGeneratorBoiling implements IChunkGenerator {
         IBlockState iblockstate = b.topBlock;
         IBlockState iblockstate1 = b.fillerBlock;
         int k = -1;
-        int l = (int) (s / 3.0D + 3.0D + r.nextDouble() * 0.25D);
+        int l = (int) (s / 1.0D + 1.0D + r.nextDouble() * 0.5D);
         int i1 = x & 15;
         int j1 = z & 15;
         for (int k1 = 255; k1 >= 0; --k1) {
@@ -225,7 +233,7 @@ public class ChunkGeneratorBoiling implements IChunkGenerator {
                         if (l <= 0) {
                             iblockstate = null;
                             iblockstate1 = b.fillerBlock;
-                        } else if (k1 >= 14 && k1 <= 16) {
+                        } else if (k1 >= 6 && k1 <= 16) {
                             iblockstate = b.topBlock;
                             iblockstate1 = b.fillerBlock;
                         }
@@ -234,7 +242,7 @@ public class ChunkGeneratorBoiling implements IChunkGenerator {
                             iblockstate = JourneyBlocks.ashBlock.getDefaultState();
                         k = l;
                         if (k1 >= 16) c.setBlockState(j1, k1, i1, iblockstate);
-                        else if (k1 < 14 - l) {
+                        else if (k1 < 4 - l) {
                             iblockstate = null;
                             iblockstate1 = b.fillerBlock;
                         } else c.setBlockState(j1, k1, i1, iblockstate1);
@@ -397,6 +405,12 @@ public class ChunkGeneratorBoiling implements IChunkGenerator {
         if (worldObj.getBiome(chunkStart) == DimensionHelper.SCORCHED_WASTELAND_BIOME) {
             for (times = 0; times < 10; times++) {
                 new WorldGenBoilStalagmite().generate(worldObj, rand, chunkStart);
+            }
+        }
+
+        if (worldObj.getBiome(chunkStart) == DimensionHelper.BOILING_SANDS_BIOME) {
+            for (times = 0; times < 5; times++) {
+                new WorldGenScorchedCactus().generate(worldObj, rand, chunkStart);
             }
         }
 

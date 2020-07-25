@@ -1,4 +1,4 @@
-package net.journey.integration;
+package net.journey.integration.jei;
 
 import net.minecraftforge.fml.common.Loader;
 

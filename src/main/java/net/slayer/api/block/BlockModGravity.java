@@ -10,6 +10,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -21,26 +22,28 @@ import net.slayer.api.SlayerAPI;
 import java.util.Random;
 
 public class BlockModGravity extends BlockFalling {
-    protected EnumMaterialTypes blockType;
-    protected Item drop = null;
 
-    public BlockModGravity(String name, String finalName, float hardness) {
-        this(EnumMaterialTypes.STONE, name, finalName, hardness, JourneyTabs.BLOCKS);
-    }
+	public boolean isFireSource = false;
+	protected EnumMaterialTypes blockType;
+	protected Item drop = null;
 
-    public BlockModGravity(String name, String finalName) {
-        this(EnumMaterialTypes.STONE, name, finalName, 2.0F, JourneyTabs.BLOCKS);
-    }
+	public BlockModGravity(String name, String finalName, float hardness) {
+		this(EnumMaterialTypes.STONE, name, finalName, hardness, JourneyTabs.BLOCKS);
+	}
 
-    public BlockModGravity(EnumMaterialTypes type, String name, String finalName, float hardness) {
-        this(type, name, finalName, hardness, JourneyTabs.BLOCKS);
-    }
+	public BlockModGravity(String name, String finalName) {
+		this(EnumMaterialTypes.STONE, name, finalName, 2.0F, JourneyTabs.BLOCKS);
+	}
 
-    public BlockModGravity(String name, String finalName, boolean breakable, CreativeTabs tab) {
-        this(EnumMaterialTypes.STONE, name, finalName, tab);
-    }
+	public BlockModGravity(EnumMaterialTypes type, String name, String finalName, float hardness) {
+		this(type, name, finalName, hardness, JourneyTabs.BLOCKS);
+	}
 
-    public BlockModGravity(String name, String finalName, boolean breakable) {
+	public BlockModGravity(String name, String finalName, boolean breakable, CreativeTabs tab) {
+		this(EnumMaterialTypes.STONE, name, finalName, tab);
+	}
+
+	public BlockModGravity(String name, String finalName, boolean breakable) {
         this(name, finalName, breakable, JourneyTabs.BLOCKS);
     }
 
@@ -66,34 +69,44 @@ public class BlockModGravity extends BlockFalling {
         setHardness(hardness);
         JourneyBlocks.blocks.add(this);
         setRegistryName(JITL.MOD_ID, name);
-        LangGeneratorFacade.addBlockEntry(this, finalName);
-        JourneyBlocks.itemBlocks.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
+	    LangGeneratorFacade.addBlockEntry(this, finalName);
+	    JourneyBlocks.itemBlocks.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
     }
 
-    @Override
-    public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-        if (drop == null) return SlayerAPI.toItem(this);
-        return drop;
-    }
+	@Override
+	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+		if (drop == null) return SlayerAPI.toItem(this);
+		return drop;
+	}
 
-    public BlockModGravity setHarvestLevel(EnumToolType type) {
-        setHarvestLevel(type.getType(), type.getLevel());
-        return this;
-    }
+	public BlockModGravity setHarvestLevel(EnumToolType type) {
+		setHarvestLevel(type.getType(), type.getLevel());
+		return this;
+	}
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getRenderLayer() {
-        return BlockRenderLayer.CUTOUT;
-    }
+	public BlockModGravity setFireSource(boolean isFireSource) {
+		this.isFireSource = isFireSource;
+		return this;
+	}
 
-    @Override
-    public int quantityDropped(Random rand) {
-        return 1;
-    }
+	@Override
+	public boolean isFireSource(World world, BlockPos pos, EnumFacing side) {
+		return isFireSource;
+	}
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
-    }
+	@Override
+	@SideOnly(Side.CLIENT)
+	public BlockRenderLayer getRenderLayer() {
+		return BlockRenderLayer.CUTOUT;
+	}
+
+	@Override
+	public int quantityDropped(Random rand) {
+		return 1;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
+	}
 }

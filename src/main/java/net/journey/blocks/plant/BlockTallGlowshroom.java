@@ -5,7 +5,6 @@ import net.journey.blocks.base.JBlockDoublePlant;
 import net.journey.init.JourneyTabs;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -34,10 +33,5 @@ public class BlockTallGlowshroom extends JBlockDoublePlant {
     @Override
     public int getPackedLightmapCoords(@NotNull IBlockState state, @NotNull IBlockAccess source, @NotNull BlockPos pos) {
         return 14500000;
-    }
-    
-    @Override
-    public EnumBlockRenderType getRenderType(IBlockState state) {
-        return EnumBlockRenderType.MODEL;
     }
 }

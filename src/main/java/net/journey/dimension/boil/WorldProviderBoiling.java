@@ -23,7 +23,7 @@ import java.util.List;
 
 public class WorldProviderBoiling extends BaseWorldProvider {
 
-    private static final List<Biome> COMMON_BIOMES = Lists.newArrayList(DimensionHelper.BOILING_BIOME);
+    private static final List<Biome> COMMON_BIOMES = Lists.newArrayList(DimensionHelper.BOILING_BIOME, DimensionHelper.BOILING_SANDS_BIOME);
     private static final List<Biome> RARE_BIOMES = Lists.newArrayList(DimensionHelper.CHARRED_FIELDS_BIOME, DimensionHelper.SCORCHED_WASTELAND_BIOME);
 
     public WorldProviderBoiling() {

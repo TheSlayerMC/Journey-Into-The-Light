@@ -602,7 +602,7 @@ public class JourneyItems {
 
 		CLOUD_BUCKLER = new JItem("cloud_buckler", "Cloud Buckler");
 		cursedTome = new ItemCursedTomb("cursed_tome", "Cursed Tome");
-		DEATH_CAP = new JItem("death_cap", "Death Cap");
+		DEATH_CAP = new ItemDeathCap("death_cap", "Death Cap");
 		DEMONIC_SKULL = new JItem("demonic_skull", "Demonic Skull");
 		ESSENCE_BUCKLER = new JItem("essence_buckler", "Essence Buckler");
 		ESSENCE_CATALYST = new ItemAddEssence("essence_catalyst", "Essence Catalyst", 10);
@@ -612,32 +612,32 @@ public class JourneyItems {
 		HEART_STONE = new ItemRestoreHealth("heart_stone", "Heart Stone", true);
 		LIGHT_BUCKLER = new JItem("light_buckler", "Light Buckler");
 		MAGIC_DUST = new JItem("magic_dust", "Magic Dust");
-	    MOON_OF_ETERNAL_NIGHT = new ItemEternalNight("moon_of_eternal_night", "Moon of Eternal Night");
-	    NETHIC_OBSTRUCTOR = new JItem("nethic_obstructor", "Nethic Obstructor");
-	    SLIME_BERRY = new JItem("slime_berry", "Slimeberry");
-	    SLIMUN = new JItem("slimun", "Slimun");
-	    TERRA_BUCKLER = new JItem("terra_buckler", "Terra Buckler");
-	    VOLCANIC_STONE = new JItem("volcanic_stone", "Volcanic Stone");
-	    WITHIC_OBSTRUCTOR = new JItem("withic_obstructor", "Withic Obstructor");
-	    XP_CATALYST = new ItemAddXP("xp_catalyst", "Experience Catalyst", 1);
-	    CHEST_KEY = new JItem("chest_key", "Chest Key");
-	    AQUASTONE = new JItem("aquastone", "Aquastone");
+		MOON_OF_ETERNAL_NIGHT = new ItemEternalNight("moon_of_eternal_night", "Moon of Eternal Night");
+		NETHIC_OBSTRUCTOR = new JItem("nethic_obstructor", "Nethic Obstructor");
+		SLIME_BERRY = new JItem("slime_berry", "Slimeberry");
+		SLIMUN = new JItem("slimun", "Slimun");
+		TERRA_BUCKLER = new JItem("terra_buckler", "Terra Buckler");
+		VOLCANIC_STONE = new JItem("volcanic_stone", "Volcanic Stone");
+		WITHIC_OBSTRUCTOR = new JItem("withic_obstructor", "Withic Obstructor");
+		XP_CATALYST = new ItemAddXP("xp_catalyst", "Experience Catalyst", 1);
+		CHEST_KEY = new JItem("chest_key", "Chest Key");
+		AQUASTONE = new JItem("aquastone", "Aquastone");
 
-        PET_FOOD = new JItem("pet_food", "Pet Food");
-        ROBOT_EGG = new JItem("robot_egg", "Robot Egg");
-        TAMED_ROBOT_SPAWN_EGG = new ItemSpawnerEgg("robot_spawner_egg", "Incubated Robot Egg", EntityPetRobot.class);
+		PET_FOOD = new JItem("pet_food", "Pet Food");
+		ROBOT_EGG = new JItem("robot_egg", "Robot Egg");
+		TAMED_ROBOT_SPAWN_EGG = new ItemSpawnerEgg("robot_spawner_egg", "Incubated Robot Egg", EntityPetRobot.class);
 
-	    EUCA_HOPPER_EGG = new JItem("euca_hopper_egg", "Euca Hopper Egg");
-	    TAMED_EUCA_HOPPER_SPAWN_EGG = new ItemSpawnerEgg("euca_hopper_spawner_egg", "Incubated Euca Hopper Egg", EntityEucaHopper.class);
+		EUCA_HOPPER_EGG = new JItem("euca_hopper_egg", "Euca Hopper Egg");
+		TAMED_EUCA_HOPPER_SPAWN_EGG = new ItemSpawnerEgg("euca_hopper_spawner_egg", "Incubated Euca Hopper Egg", EntityEucaHopper.class);
 
-	    SHIVERWOLF_EGG = new JItem("shiverwolf_egg", "Shiverwolf Egg");
-	    TAMED_SHIVERWOLF_SPAWN_EGG = new ItemSpawnerEgg("shiverwolf_spawner_egg", "Incubated Shiverwolf Egg", EntityShiverwolf.class);
+		SHIVERWOLF_EGG = new JItem("shiverwolf_egg", "Shiverwolf Egg");
+		TAMED_SHIVERWOLF_SPAWN_EGG = new ItemSpawnerEgg("shiverwolf_spawner_egg", "Incubated Shiverwolf Egg", EntityShiverwolf.class);
 
-	    ROC_EGG = new JItem("roc_egg", "Roc Egg");
-	    TAMED_ROC_SPAWN_EGG = new ItemSpawnerEgg("roc_spawner_egg", "Incubated Roc Egg", EntityTameRoc.class);
+		ROC_EGG = new JItem("roc_egg", "Roc Egg");
+		TAMED_ROC_SPAWN_EGG = new ItemSpawnerEgg("roc_spawner_egg", "Incubated Roc Egg", EntityTameRoc.class);
 
-	    loreScroll = new ItemLoreScroll("lore_scroll", "Lore Scroll");
-	    debugItem = new ItemTestBug("test_bug", "Test Bug");
+		loreScroll = new ItemLoreScroll("lore_scroll", "Lore Scroll");
+		debugItem = new ItemTestBug("test_bug", "Test Bug");
 
 		//obsidianBoat = new ItemObsidianBoat("obsidianboat", "Obsidian Boat");
 		//infernoshield = new ItemModShield("infernoshield", "Inferno Shield", 2, false);

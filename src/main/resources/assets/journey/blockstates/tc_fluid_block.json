@@ -1,0 +1,50 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "forge:fluid"
+  },
+  "variants": {
+    "lunium": [
+      {
+        "custom": {
+          "fluid": "lunium"
+        }
+      }
+    ],
+    "shadium": [
+      {
+        "custom": {
+          "fluid": "shadium"
+        }
+      }
+    ],
+    "celestium": [
+      {
+        "custom": {
+          "fluid": "celestium"
+        }
+      }
+    ],
+    "mekyum": [
+      {
+        "custom": {
+          "fluid": "mekyum"
+        }
+      }
+    ],
+    "storon": [
+      {
+        "custom": {
+          "fluid": "storon"
+        }
+      }
+    ],
+    "korite": [
+      {
+        "custom": {
+          "fluid": "korite"
+        }
+      }
+    ]
+  }
+}

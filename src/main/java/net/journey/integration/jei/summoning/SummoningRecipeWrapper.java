@@ -1,4 +1,4 @@
-package net.journey.integration.summoning;
+package net.journey.integration.jei.summoning;
 
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.ingredients.VanillaTypes;

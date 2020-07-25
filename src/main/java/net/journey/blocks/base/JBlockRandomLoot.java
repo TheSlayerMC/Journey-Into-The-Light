@@ -29,9 +29,6 @@ public class JBlockRandomLoot extends BlockMod {
 		this.lootTable = lootTable;
 	}
 
-	/*
-	TODO: add support for loot table rolls / multiple different item drops
-	 */
 	@Override
 	public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
 		drops.addAll(LootHelper.readFromLootTable(lootTable, (WorldServer) world, fortune));

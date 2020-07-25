@@ -30,6 +30,12 @@ public class BaublesEventHandler {
                         entity.addPotionEffect(PotionEffects.setPotionEffect(PotionEffects.wither, 400, 1));
                     }
                 }
+                if (BaublesApi.isBaubleEquipped((EntityPlayer) event.getEntity(), JourneyItems.DEATH_CAP) != -1) {
+                    if (event.getSource().getTrueSource() instanceof EntityLiving) {
+                        EntityLiving entity = (EntityLiving) event.getSource().getTrueSource();
+                        entity.addPotionEffect(PotionEffects.setPotionEffect(PotionEffects.poison, 400, 1));
+                    }
+                }
             }
         }
     }

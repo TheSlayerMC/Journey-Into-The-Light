@@ -266,6 +266,7 @@ public class JourneyBlocks {
     public static BlockMod charredGrass;
     public static BlockMod rubble;
     public static BlockMod scorchedRubble;
+    public static Block scorchedCactus;
 
     public static BlockMod scorchedStalagmiteLarge;
     public static BlockMod scorchedStalagmiteMedium;
@@ -567,17 +568,19 @@ public class JourneyBlocks {
 
     public static BlockNetherFurnace netherFurnace;
     public static BlockNetherFurnace netherFurnaceActive;
-    
+
     public static BlockMod SENTERIAN_HEART_BLOCK;
     public static BlockMod SENTERIAN_HEART_BLOCK_WEAK;
     public static BlockMod SENTERIAN_HEART_EYE;
-    
+
     public static BlockIncubator INCUBATOR;
     public static BlockIncubator INCUBATOR_LIT;
 
     public static BlockMod terraniaSapling;
-    
+
     public static JBlockFlower depthsCrystal;
+
+    public static JBlockFluid senterianAcid;
 
     public static void init() {
 
@@ -669,8 +672,8 @@ public class JourneyBlocks {
 
         heatSoil = new BlockMod(EnumMaterialTypes.DIRT, "heatSoil", "Nethic Soil", 0.5F);
         earthenNetherrack = new BlockMod(EnumMaterialTypes.STONE, "earthenNetherrack", "Earthen Netherrack", 2.0F);
-        heatSand = new BlockModGravity(EnumMaterialTypes.SAND, "heatSand", "Heat Sand", 0.5F);
-        volcanicSand = new BlockModGravity(EnumMaterialTypes.SAND, "volcanic_sand", "Volcanic Sand", 0.5F);
+        heatSand = new BlockModGravity(EnumMaterialTypes.SAND, "heatSand", "Heat Sand", 0.5F).setFireSource(true);
+        volcanicSand = new BlockModGravity(EnumMaterialTypes.SAND, "volcanic_sand", "Volcanic Sand", 0.5F).setFireSource(true);
 
         igniterOn = (BlockMod) new BlockIgniter("igniterOn", "Redstone Igniter").setCreativeTab(null);
         igniter = new BlockIgniter("igniter", "Redstone Igniter");
@@ -804,6 +807,8 @@ public class JourneyBlocks {
         hotBlock = new BlockHotBlock(ashBlock, "hotGround", "Hot Ground", 2.0F);
         rubble = new BlockMod("rubble", "Rubble", 1.0F);
         scorchedRubble = new BlockMod("scorched_rubble", "Scorched Rubble", 3.0F).setFireSource(true);
+
+        scorchedCactus = new JBlockCactus("scorched_cactus", "Scorched Cactus").setGroundPredicate(GroundPredicate.CACTUS_AND_BOILING_SANDS);
 
         scorchedStalagmiteLarge = new JBlockStalagmite("scorched_stalagmite_large", "Scorched Stalagmite");
         scorchedStalagmiteMedium = new JBlockStalagmite("scorched_stalagmite_med", "Scorched Stalagmite");
@@ -1022,9 +1027,9 @@ public class JourneyBlocks {
         tallGlowshroomRed = new BlockTallGlowshroom("tall_glowshroom_red", "Red Tall Glowshroom");
         tallGlowshroomGreen = new BlockTallGlowshroom("tall_glowshroom_green", "Green Tall Glowshroom");
         tallGlowshroomBlue = new BlockTallGlowshroom("tall_glowshroom_blue", "Blue Tall Glowshroom");
-        glowshroomRed = (BlockGlowshroom) new BlockGlowshroom("glowshroom_red", "Red Glowshroom").setGroundPredicate(GroundPredicate.STONE);
-        glowshroomGreen = (BlockGlowshroom) new BlockGlowshroom("glowshroom_green", "Green Glowshroom").setGroundPredicate(GroundPredicate.STONE);
-        glowshroomBlue = (BlockGlowshroom) new BlockGlowshroom("glowshroom_blue", "Blue Glowshroom").setGroundPredicate(GroundPredicate.STONE);
+        glowshroomRed = new BlockGlowshroom("glowshroom_red", "Red Glowshroom");
+        glowshroomGreen = new BlockGlowshroom("glowshroom_green", "Green Glowshroom");
+        glowshroomBlue = new BlockGlowshroom("glowshroom_blue", "Blue Glowshroom");
 
         tallGoldenStalks = (JBlockDoublePlant) new JBlockDoublePlant("tall_golden_stalks", "Tall Golden Stalks", JourneyTabs.DECORATION).setGroundPredicate(GroundPredicate.COMMON_AND_EUCA_GOLD_GRASS);
         goldenBulb = (JBlockFlower) new JBlockFlower("goldenBulb", "Golden Bulb").setGroundPredicate(GroundPredicate.COMMON_AND_EUCA_GOLD_GRASS);
@@ -1142,7 +1147,7 @@ public class JourneyBlocks {
         
         INCUBATOR = new BlockIncubator("incubator", "Incubator", false);
         INCUBATOR_LIT = new BlockIncubator("incubator_lit", "Incubator", true);
-        
+
         elderBlock = new BlockChangeable("elderBlock", "Elder Block", JourneyItems.elderKey, JourneyBlocks.overseerElderSpawner);
         ancientMachineBlock = new BlockAncientBlock("ancientMachineBlock", "Ancient Machine Block");
 
@@ -1154,5 +1159,6 @@ public class JourneyBlocks {
         bogberryBush = new BlockModBush("bogberryBush", "Bogberry Bush", JourneyConsumables.bogberry, false);
 
         depthsCrystal = (JBlockFlower) new JBlockFlower(EnumMaterialTypes.GLASS, "depths_crystal", "Depths Crystal", JourneyTabs.DECORATION).setGroundPredicate(GroundPredicate.COMMON_AND_DEPTHS_GRASS).setRenderLayer(BlockRenderLayer.TRANSLUCENT);
+        senterianAcid = new JBlockFluid("senterian_acid", JourneyFluids.FLUID_ACID, Material.LAVA);
     }
 }

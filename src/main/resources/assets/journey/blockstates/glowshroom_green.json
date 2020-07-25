@@ -1,7 +1,10 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "journey:glowshroom_green"
+    "textures": {
+      "cross": "journey:blocks/glowshroom_green_top"
+    },
+    "model": "cross"
   },
   "variants": {
     "normal": [

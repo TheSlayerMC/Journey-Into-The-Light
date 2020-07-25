@@ -26,8 +26,8 @@ public interface GroundPredicate {
 	GroundPredicate NETHER = SOLID_SIDE.and(blockPredicate(block -> block == Blocks.NETHERRACK || block == Blocks.SOUL_SAND || block == JourneyBlocks.heatSoil || block == JourneyBlocks.heatSand || block == JourneyBlocks.earthenNetherrack || block == JourneyBlocks.volcanicSand));
 	GroundPredicate WATER = blockPredicate(block -> block == Blocks.WATER || block == Blocks.FLOWING_WATER);
 	GroundPredicate PLANT = blockPredicate(block -> block instanceof JBlockPlant);
-	GroundPredicate STONE = SOLID_SIDE.and(blockPredicate(block -> block == Blocks.STONE));
 
+	GroundPredicate CACTUS_AND_BOILING_SANDS = SAND.or(blockPredicate(block -> block == JourneyBlocks.volcanicSand || block == JourneyBlocks.scorchedCactus));
 	GroundPredicate COMMON_AND_BOILING_SANDS = SAND.or(blockPredicate(block -> block == JourneyBlocks.volcanicSand));
 	GroundPredicate COMMON_AND_CLOUDIA_GRASS = GRASS_BLOCK.or(blockPredicate(block -> block == JourneyBlocks.cloudiaGrass || block == JourneyBlocks.cloudiaDirt));
 	GroundPredicate COMMON_AND_TERRANIA_GRASS = GRASS_BLOCK.or(blockPredicate(block -> block == JourneyBlocks.terranianGrass || block == JourneyBlocks.terranianDirt));
