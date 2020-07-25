@@ -3,6 +3,8 @@ package net.journey.entity.projectile;
 import net.journey.client.render.particles.ParticleFloroMud;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.init.MobEffects;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.client.FMLClientHandler;
@@ -34,7 +36,7 @@ public class EntityFloroDirtProjectile extends EntityDamagingProjectile {
 	protected void onEntityImpact(RayTraceResult rayTraceResult, Entity target) {
 		super.onEntityImpact(rayTraceResult, target);
 		if (target instanceof EntityLivingBase) {
-//			((EntityLivingBase) target).addPotionEffect(new PotionEffect(MobEffects.POISON, 100, 1));
+			((EntityLivingBase) target).addPotionEffect(new PotionEffect(MobEffects.POISON, 5 * 20, 1));
 		}
 	}
 

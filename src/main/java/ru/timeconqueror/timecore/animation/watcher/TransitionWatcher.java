@@ -59,6 +59,11 @@ public class TransitionWatcher extends AnimationWatcher {
 	}
 
 	@Override
+	public int getAnimationLength() {
+		return transitionTime;
+	}
+
+	@Override
 	public String toString() {
 		return "TransitionWatcher{" +
 				"animation=" + animation +
@@ -116,7 +121,7 @@ public class TransitionWatcher extends AnimationWatcher {
 				AnimationStarter.AnimationData.encode(watcher.destination, buffer);
 			}
 
-			int transitionTime = Math.max(watcher.getAnimation().getLength() - watcher.getExistingTime(), 0);
+			int transitionTime = Math.max(watcher.getAnimationLength() - watcher.getExistingTime(), 0);
 			buffer.writeInt(transitionTime);
 		}
 

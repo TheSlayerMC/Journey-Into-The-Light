@@ -10,11 +10,12 @@ import ru.timeconqueror.timecore.api.animation.Animation;
 import ru.timeconqueror.timecore.api.animation.AnimationManager;
 import ru.timeconqueror.timecore.api.util.MathUtils;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 public class ActionManagerImpl<T extends EntityMob> implements ActionManager<T> {
-	private final List<ActionWatcher<T, ?>> actionWatchers = new ArrayList<>();
+	private final Set<ActionWatcher<T, ?>> actionWatchers = new HashSet<>();
 	private final BaseAnimationManager animationManager;
 	private final T entity;
 
@@ -25,8 +26,9 @@ public class ActionManagerImpl<T extends EntityMob> implements ActionManager<T> 
 
 	@Override
 	public <EXTRA_DATA> void enableAction(DelayedAction<T, EXTRA_DATA> action, EXTRA_DATA actionData) {
-		actionWatchers.add(new ActionWatcher<>(action, actionData));
-		action.getAnimationStarter().startAt(animationManager, action.getAnimationLayer());
+		if (actionWatchers.add(new ActionWatcher<>(action, actionData))) {
+			action.getAnimationStarter().startAt(animationManager, action.getAnimationLayer());
+		}
 	}
 
 	@Override
@@ -42,9 +44,9 @@ public class ActionManagerImpl<T extends EntityMob> implements ActionManager<T> 
 
 	@Override
 	public <EXTRA_DATA> void disableAction(DelayedAction<T, EXTRA_DATA> action) {
-		actionWatchers.removeIf(watcher -> watcher.action.equals(action));
-
-		animationManager.removeAnimation(action.getAnimationLayer());
+		if (actionWatchers.removeIf(watcher -> watcher.action.equals(action))) {
+			animationManager.removeAnimation(action.getAnimationLayer());
+		}
 	}
 
 	@Override
@@ -78,7 +80,7 @@ public class ActionManagerImpl<T extends EntityMob> implements ActionManager<T> 
 		return animationManager;
 	}
 
-	public List<ActionWatcher<T, ?>> getActionWatchers() {
+	public Set<ActionWatcher<T, ?>> getActionWatchers() {
 		return actionWatchers;
 	}
 
@@ -111,6 +113,19 @@ public class ActionManagerImpl<T extends EntityMob> implements ActionManager<T> 
 		public void runAction(T entity) {
 			action.getAction().accept(entity, actionData);
 			done = true;
+		}
+
+		@Override
+		public boolean equals(Object o) {
+			if (this == o) return true;
+			if (!(o instanceof ActionWatcher)) return false;
+			ActionWatcher<?, ?> that = (ActionWatcher<?, ?>) o;
+			return action.equals(that.action);
+		}
+
+		@Override
+		public int hashCode() {
+			return Objects.hash(action);
 		}
 	}
 }

@@ -74,12 +74,12 @@ public class EntityFloro extends JEntityMob implements IRangedAttackMob, Animati
 				.setOnCall((entityFloro, o) -> entityFloro.setHidden(false));
 		HIDING_ACTION = new DelayedAction<EntityFloro, Void>(JITL.rl("floro/hiding"), new AnimationStarter(JAnimations.FLORO_HIDE).setNextAnimation(AnimationAPI.createStarter(JAnimations.FLORO_HIDDEN).setTransitionTime(0)), LAYER_SHOWING)
 				.setDelayPredicate(StandardDelayPredicates.onEnd())
-				.setOnCall((entityFloro, nothing) -> {
-					entityFloro.setHidden(true);
-				});
+				.setOnCall((entityFloro, nothing) -> entityFloro.setHidden(true));
 	}
 
 	private final ActionManager<EntityFloro> actionManager;
+	//server side only
+	private boolean isHiding = false;
 
 	public EntityFloro(World world) {
 		super(world);
@@ -101,16 +101,32 @@ public class EntityFloro extends JEntityMob implements IRangedAttackMob, Animati
 	}
 
 	@Override
+	public void writeEntityToNBT(NBTTagCompound compound) {
+		super.writeEntityToNBT(compound);
+
+		compound.setBoolean("hidden", isHidden());
+	}
+
+	@Override
+	public void readEntityFromNBT(NBTTagCompound compound) {
+		super.readEntityFromNBT(compound);
+
+		if (compound.hasKey("hidden")) {
+			setHidden(compound.getBoolean("hidden"));
+		}
+	}
+
+	@Override
 	public void onAddedToWorld() {
-		if (isHidden()) {
+		if (isServerWorld() && isHidden()) {
 			startHiddenAnimation();
 		}
 	}
 
 	@Override
 	protected void initEntityAI() {
-		tasks.addTask(0, new FloroHidingTask()); //mutex 1
-		tasks.addTask(1, new FloroRevealingTask()); //mutex 1
+		tasks.addTask(0, new FloroRevealingTask()); //mutex 1
+		tasks.addTask(1, new FloroHidingTask()); //mutex 1
 		tasks.addTask(2, new FloroHiddenTask()); //mutex 1
 		tasks.addTask(3, new EntityAISwimming(this));//mutex 4
 		tasks.addTask(4, new EntityAIAvoidEntity<>(this, EntityWolf.class, 6.0F, 1.0D, 1.2D));//mutex 1
@@ -122,7 +138,7 @@ public class EntityFloro extends JEntityMob implements IRangedAttackMob, Animati
 		tasks.addTask(7, new EntityAILookIdle(this));//mutex 3
 
 		targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
-		targetTasks.addTask(2, new EntityAINearestAttackableTarget<>(this, EntityPlayer.class, true));
+		targetTasks.addTask(2, new EntityAINearestAttackableTarget<>(this, EntityPlayer.class, 5/*will target if rand.next(chance) == 0*/, true, false, null));
 	}
 
 	@Override
@@ -130,6 +146,7 @@ public class EntityFloro extends JEntityMob implements IRangedAttackMob, Animati
 		super.applyEntityAttributes();
 
 		EntitySettingsHelper.setMaxHealth(this, 25);
+		EntitySettingsHelper.setFollowRange(this, 25);
 	}
 
 	@Override
@@ -137,6 +154,10 @@ public class EntityFloro extends JEntityMob implements IRangedAttackMob, Animati
 		int vanillaActions = 2 | 4;
 
 		if (isServerWorld()) {
+			if (isHidden()) {
+				isHiding = false;
+			}
+
 			if (canMove()) {
 				tasks.enableControlFlag(vanillaActions);
 			} else {
@@ -164,7 +185,7 @@ public class EntityFloro extends JEntityMob implements IRangedAttackMob, Animati
 	}
 
 	private boolean canMove() {
-		return !isHidden() && !getActionManager().isActionEnabled(REVEALING_ACTION) && !getActionManager().isActionEnabled(HIDING_ACTION);
+		return !isHidden() && !getActionManager().isActionEnabled(REVEALING_ACTION) && !isHiding;
 	}
 
 	private void startHiddenAnimation() {
@@ -173,29 +194,13 @@ public class EntityFloro extends JEntityMob implements IRangedAttackMob, Animati
 	}
 
 	@Override
-	public void writeEntityToNBT(NBTTagCompound compound) {
-		super.writeEntityToNBT(compound);
-
-		compound.setBoolean("hidden", isHidden());
-	}
-
-	@Override
-	public void readEntityFromNBT(NBTTagCompound compound) {
-		super.readEntityFromNBT(compound);
-
-		if (compound.hasKey("hidden")) {
-			setHidden(compound.getBoolean("hidden"));
-		}
-	}
-
-	@Override
 	public void attackEntityWithRangedAttack(EntityLivingBase target, float f) {
-		EntityFloroDirtProjectile projectile = new EntityFloroDirtProjectile(this.world, this, 0.0F);
+		EntityFloroDirtProjectile projectile = new EntityFloroDirtProjectile(this.world, this, 1.0F);
 		double dX = target.posX - this.posX;
 		double dY = target.getEntityBoundingBox().minY + (double) (target.height / 3.0F) - projectile.posY;
 		double dZ = target.posZ - this.posZ;
 		double distortion = MathHelper.sqrt(dX * dX + dZ * dZ);
-		projectile.shoot(dX, dY + distortion * 0.20000000298023224D, dZ, 1.6F, (float) (14 - this.world.getDifficulty().getId() * 4));
+		projectile.shoot(dX, dY + distortion * 0.20000000298023224D, dZ, 1.6F, (float) (7 - this.world.getDifficulty().getId()));
 
 		playSound(JourneySounds.FLORO_SHOOT, 1.0F, 0.7F);
 
@@ -266,12 +271,16 @@ public class EntityFloro extends JEntityMob implements IRangedAttackMob, Animati
 
 		@Override
 		public boolean shouldExecute() {
-			return isHidden() && getAttackTarget() != null;
+			return !canMove() && getAttackTarget() != null;
 		}
 
 		@Override
 		public void startExecuting() {
-			getActionManager().enableAction(REVEALING_ACTION, null);
+			if (isHidden()) {
+				getActionManager().enableAction(REVEALING_ACTION, null);
+			} else {
+				getActionManager().disableAction(HIDING_ACTION);
+			}
 		}
 
 		@Override
@@ -298,17 +307,30 @@ public class EntityFloro extends JEntityMob implements IRangedAttackMob, Animati
 
 		@Override
 		public boolean shouldExecute() {
-			return !isHidden() && (getAttackTarget() == null || getActionManager().isActionEnabled(HIDING_ACTION));
+			return !isHidden() && getAttackTarget() == null;
+		}
+
+		@Override
+		public boolean shouldContinueExecuting() {
+			return !isHidden();
 		}
 
 		@Override
 		public void startExecuting() {
-			getActionManager().enableAction(HIDING_ACTION, null);
+			isHiding = true;
 		}
 
 		@Override
-		public boolean isInterruptible() {
-			return false;
+		public void updateTask() {
+			if (!getActionManager().isActionEnabled(HIDING_ACTION) && ticksExisted % (12 * 20) == 0) {
+				getActionManager().enableAction(HIDING_ACTION, null);
+			}
+		}
+
+		@Override
+		public void resetTask() {
+			isHiding = false;
+			System.out.println("Disabled action");
 		}
 	}
 }
