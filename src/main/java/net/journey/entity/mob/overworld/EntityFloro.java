@@ -330,7 +330,6 @@ public class EntityFloro extends JEntityMob implements IRangedAttackMob, Animati
 		@Override
 		public void resetTask() {
 			isHiding = false;
-			System.out.println("Disabled action");
 		}
 	}
 }
