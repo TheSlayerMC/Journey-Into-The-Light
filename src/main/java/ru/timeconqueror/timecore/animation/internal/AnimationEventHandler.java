@@ -25,10 +25,10 @@ public class AnimationEventHandler {
 			if (entityLiving.isServerWorld()) {
 				//needed for animation ticking on server side.
 				((AnimationProvider<?>) entityLiving).getActionManager().getAnimationManager().applyAnimations(null);
-			} else {
-				ActionManager<?> actionManager = ((AnimationProvider<?>) entityLiving).getActionManager();
-				actionManager.onTick();
 			}
+
+			ActionManager<?> actionManager = ((AnimationProvider<?>) entityLiving).getActionManager();
+			actionManager.onTick();
 		}
 	}
 
