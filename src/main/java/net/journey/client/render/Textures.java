@@ -19,7 +19,6 @@ public class Textures {
     public static final ResourceLocation basic = getProjectileTextureLocation("gray");
     public static final ResourceLocation grindstone = addModel("blocks/grindstone");
     public static final ResourceLocation cloudaltar = addModel("blocks/cloudaltar");
-    public static final ResourceLocation bossCrystal = addModel("blocks/crystal");
     public static final ResourceLocation senterianAltar = addModel("blocks/senterianaltar");
     public static final ResourceLocation journeyChest = addModel("blocks/journeychest");
     public static final ResourceLocation eucaChest = addModel("blocks/eucachest");
@@ -27,7 +26,6 @@ public class Textures {
     public static final ResourceLocation empty = getProjectileTextureLocation("empty");
     public static final ResourceLocation templeBall = getProjectileTextureLocation("templeball");
     public static final ResourceLocation essenceArrow = getProjectileTextureLocation("essence_arrow");
-    public static final ResourceLocation moltenKnife = new ResourceLocation(SlayerAPI.PREFIX + "textures/items/moltenknife.png");
 
     //NPC
     public static final ResourceLocation mage = addMob("mage");
@@ -36,7 +34,6 @@ public class Textures {
     public static final ResourceLocation alloyMender = addMob("alloymender");
     public static final ResourceLocation frozenMerchant = addMob("frozenmerchant");
     public static final ResourceLocation escapedConvict = addMob("escapedconvict");
-    public static final ResourceLocation blueTordo = addMob("bluetordo");
     public static final ResourceLocation redTordo = addMob("redtordo");
     public static final ResourceLocation greenTordo = addMob("greentordo");
     public static final ResourceLocation staringGuardian = addMob("staringguardian");
@@ -75,9 +72,7 @@ public class Textures {
     public static final ResourceLocation bigHongo = addMob("bigHongo");
     public static final ResourceLocation mediumHongo = addMob("mediumhongo");
     public static final ResourceLocation smallHongo = addMob("smallhongo");
-    public static final ResourceLocation bunny = addMob("bunny");
     public static final ResourceLocation sandCrawler = addMob("sandcrawler");
-    public static final ResourceLocation turtle = addMob("turtle");
     public static final ResourceLocation waterFisherman = addMob("waterfisherman");
     public static final ResourceLocation fireMage = addMob("firemage");
     public static final ResourceLocation iceMage = addMob("icemage");
@@ -94,7 +89,6 @@ public class Textures {
     //Euca
     public static final ResourceLocation insecto = addMob("insecto");
     public static final ResourceLocation psyollom = addMob("psyollom");
-    public static final ResourceLocation eucaFighter = addMob("eucafighter");
     public static final ResourceLocation eucaHopper = addMob("eucahopper");
     public static final ResourceLocation eucaHopperTamed = addMob("eucahoppertamed");
     public static final ResourceLocation eucaCharger = addMob("eucacharger");
@@ -104,14 +98,12 @@ public class Textures {
     public static final ResourceLocation tinbot = addMob("tinbot");
     public static final ResourceLocation goldbot = addMob("goldbot");
     public static final ResourceLocation shimmerer = addMob("shimmerer");
-    public static final ResourceLocation goldwing = addMob("goldwing");
 
     //Depths
     public static final ResourceLocation depthsBeast = addMob("depthsbeast");
     public static final ResourceLocation darknessCrawler = addMob("darknesscrawler");
     public static final ResourceLocation spikedBeast = addMob("spikedbeast");
     public static final ResourceLocation depthsHunter = addMob("depthshunter");
-    public static final ResourceLocation roc = addMob("roc");
     public static final ResourceLocation darkener = addMob("darkener");
     public static final ResourceLocation lightener = addMob("lightener");
     public static final ResourceLocation darkSorcerer = addMob("darksorcerer");
@@ -125,7 +117,6 @@ public class Textures {
     public static final ResourceLocation overseer = addMob("overseer");
     public static final ResourceLocation overseerElder = addMob("overseerelder");
     public static final ResourceLocation natureMage = addMob("naturemage");
-    public static final ResourceLocation woodpecker = addMob("woodpecker");
 
     //Frozen
     public static final ResourceLocation frozenTroll = addMob("frozentroll");
@@ -135,18 +126,15 @@ public class Textures {
     public static final ResourceLocation shiverwolf = addMob("shiverwolf");
     public static final ResourceLocation shiveringShrieker = addMob("shiveringshrieker");
     public static final ResourceLocation frozenFrostbiter = addMob("frozenfrostbiter");
-    public static final ResourceLocation shiverwing = addMob("shiverwing");
     public static final ResourceLocation iceman = addMob("iceman");
     public static final ResourceLocation iceGolem = addMob("icegolem");
 
     //Boil
     public static final ResourceLocation magmaBlaze = addMob("magmablaze");
     public static final ResourceLocation crisp = addMob("crisp");
-    public static final ResourceLocation burntMiner = addMob("burntminer");
     public static final ResourceLocation exposedFlame = addMob("exposedflame");
     public static final ResourceLocation burningLight = addMob("burninglight");
     public static final ResourceLocation ashHoarder = addMob("ashhoarder");
-    public static final ResourceLocation burntAsh = addMob("burntash");
     public static final ResourceLocation magmaGiant = addMob("magmagiant");
     public static final ResourceLocation frightener = addMob("frightener");
     public static final ResourceLocation hellwing = addMob("hellwing");
@@ -158,7 +146,6 @@ public class Textures {
     public static final ResourceLocation cloudGhost = addMob("cloudghost");
     public static final ResourceLocation starlightVillager = addMob("starlightvillager");
     public static final ResourceLocation starlightBlacksmith = addMob("starlightblacksmith");
-    public static final ResourceLocation cloudFlyer = addMob("cloudflyer");
     public static final ResourceLocation starlightGolem = addMob("starlightgolem");
     public static final ResourceLocation starlightTransporter = addMob("starlighttransporter");
     public static final ResourceLocation starlightWalker = addMob("starlightwalker");
@@ -196,12 +183,10 @@ public class Textures {
     public static final ResourceLocation sentryLord = addMob("sentrylord");
     public static final ResourceLocation sentryStalker = addMob("sentrystalker");
     public static final ResourceLocation sentryWalker = addMob("sentrywalker");
-    public static final ResourceLocation SENTRY_HEART = addMob("sentry_heart");
 
     //Pets
     public static final ResourceLocation tameRoc = addMob("tameRoc");
     public static final ResourceLocation dunewerm = addMob("dunewerm");
-    public static final ResourceLocation ferret = addMob("ferret");
 
     private static ResourceLocation addMob(String tex) {
         return new ResourceLocation(prefix + tex.toLowerCase() + ".png");

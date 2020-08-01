@@ -1,6 +1,6 @@
 package ru.timeconqueror.timecore.animation;
 
-import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.Entity;
 import ru.timeconqueror.timecore.api.animation.ActionManager;
 import ru.timeconqueror.timecore.api.animation.AnimationConstants;
 import ru.timeconqueror.timecore.api.animation.BlendType;
@@ -68,7 +68,7 @@ public class AnimationManagerBuilder extends SingleUseBuilder {
 	}
 
 	@SuppressWarnings("unchecked")
-	<T extends EntityMob> void init(BaseAnimationManager manager, ActionManager<T> actionManager) {
+	<T extends Entity> void init(BaseAnimationManager manager, ActionManager<T> actionManager) {
 		if (manager instanceof ServerAnimationManager) {
 			((ServerAnimationManager<T>) manager).setActionManager((ActionManagerImpl<T>) actionManager);
 		}

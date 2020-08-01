@@ -1,0 +1,48 @@
+{
+  "format_version": "1.8.0",
+  "animations": {
+    "animation.lavasnake.shoot": {
+      "animation_length": 1.04,
+      "bones": {
+        "mouthtop": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.4833": [
+              -48,
+              0,
+              0
+            ],
+            "1.0333": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "mouthbottom": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.4833": [
+              48,
+              0,
+              0
+            ],
+            "1.0333": [
+              0,
+              0,
+              0
+            ]
+          }
+        }
+      }
+    }
+  }
+}

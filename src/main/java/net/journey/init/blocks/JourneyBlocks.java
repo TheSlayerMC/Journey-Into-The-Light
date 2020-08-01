@@ -76,6 +76,7 @@ public class JourneyBlocks {
     public static BlockMod luniteBlock;
     public static BlockMod iridiumBlock;
     public static BlockMod nethicGemstoneBlock;
+    public static BlockMod frostGemBlock;
 
     public static BlockMod bleedstone;
     public static BlockMod smithstone;
@@ -609,25 +610,25 @@ public class JourneyBlocks {
         luniteOre = new BlockModOre("luniteOre", "Lunite Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
         firestoneOre = new BlockModOre("firestoneOre", "Firestone Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
 
-        sapphireBlock = new BlockModOre("sapphireBlock", "Sapphire Block").setHarvestLevel(EnumToolType.STONE_PICK);
-        shadiumBlock = new BlockModOre("shadiumBlock", "Shadium Block").setHarvestLevel(EnumToolType.STONE_PICK);
-        luniumBlock = new BlockModOre("luniumBlock", "Lunium Block").setHarvestLevel(EnumToolType.STONE_PICK);
-        hellstoneBlock = new BlockModOre("hellstoneBlock", "Hellstone Block").setHarvestLevel(EnumToolType.STONE_PICK);
+        sapphireBlock = new BlockModOre("sapphireBlock", "Sapphire Block").setHarvestLevel(EnumToolType.DIAMOND_PICK);
+        shadiumBlock = new BlockModOre("shadiumBlock", "Shadium Block").setHarvestLevel(EnumToolType.DIAMOND_PICK);
+        luniumBlock = new BlockModOre("luniumBlock", "Lunium Block").setHarvestLevel(EnumToolType.DIAMOND_PICK);
+        hellstoneBlock = new BlockModOre("hellstoneBlock", "Hellstone Block").setHarvestLevel(EnumToolType.DIAMOND_PICK);
         ashualBlock = new BlockModOre("ashualBlock", "Ashual Block");
-        blaziumBlock = new BlockModOre("blaziumBlock", "Blazium Block").setHarvestLevel(EnumToolType.STONE_PICK);
-        celestiumBlock = new BlockModOre("celestiumBlock", "Celestium Block").setHarvestLevel(EnumToolType.STONE_PICK);
-        mekyumBlock = new BlockModOre("mekyumBlock", "Mekyum Block").setHarvestLevel(EnumToolType.STONE_PICK);
-        koriteBlock = new BlockModOre("koriteBlock", "Korite Block").setHarvestLevel(EnumToolType.STONE_PICK);
-        storonBlock = new BlockModOre("storonBlock", "Storon Block").setHarvestLevel(EnumToolType.STONE_PICK);
-        flairiumBlock = new BlockModOre("flairiumBlock", "Flairium Block").setHarvestLevel(EnumToolType.STONE_PICK);
-        desBlock = new BlockModOre("desBlock", "Des Block").setHarvestLevel(EnumToolType.STONE_PICK);
-        enderilliumBlock = new BlockModOre("enderilliumBlock", "Enderillium Block")
-                .setHarvestLevel(EnumToolType.STONE_PICK);
-        gorbiteBlock = new BlockModOre("gorbiteBlock", "Gorbite Block").setHarvestLevel(EnumToolType.STONE_PICK);
-        orbaditeBlock = new BlockModOre("orbaditeBlock", "Orbadite Block").setHarvestLevel(EnumToolType.STONE_PICK);
-        luniteBlock = new BlockModOre("luniteBlock", "Lunite Block").setHarvestLevel(EnumToolType.STONE_PICK);
-        iridiumBlock = new BlockModOre("iridiumBlock", "Iridium Block").setHarvestLevel(EnumToolType.IRON_PICK);
-        nethicGemstoneBlock = new BlockModOre("nethicGemstoneBlock", "Nethic Gemstone Block").setHarvestLevel(EnumToolType.STONE_PICK);
+        blaziumBlock = new BlockModOre("blaziumBlock", "Blazium Block").setHarvestLevel(EnumToolType.DIAMOND_PICK);
+        celestiumBlock = new BlockModOre("celestiumBlock", "Celestium Block").setHarvestLevel(EnumToolType.DIAMOND_PICK);
+        mekyumBlock = new BlockModOre("mekyumBlock", "Mekyum Block").setHarvestLevel(EnumToolType.DIAMOND_PICK);
+        koriteBlock = new BlockModOre("koriteBlock", "Korite Block").setHarvestLevel(EnumToolType.DIAMOND_PICK);
+        storonBlock = new BlockModOre("storonBlock", "Storon Block").setHarvestLevel(EnumToolType.DIAMOND_PICK);
+        flairiumBlock = new BlockModOre("flairiumBlock", "Flairium Block").setHarvestLevel(EnumToolType.DIAMOND_PICK);
+        desBlock = new BlockModOre("desBlock", "Des Block").setHarvestLevel(EnumToolType.DIAMOND_PICK);
+        enderilliumBlock = new BlockModOre("enderilliumBlock", "Enderillium Block").setHarvestLevel(EnumToolType.DIAMOND_PICK);
+        gorbiteBlock = new BlockModOre("gorbiteBlock", "Gorbite Block").setHarvestLevel(EnumToolType.DIAMOND_PICK);
+        orbaditeBlock = new BlockModOre("orbaditeBlock", "Orbadite Block").setHarvestLevel(EnumToolType.DIAMOND_PICK);
+        luniteBlock = new BlockModOre("luniteBlock", "Lunite Block").setHarvestLevel(EnumToolType.DIAMOND_PICK);
+        iridiumBlock = new BlockModOre("iridiumBlock", "Iridium Block").setHarvestLevel(EnumToolType.DIAMOND_PICK);
+        nethicGemstoneBlock = new BlockModOre("nethicGemstoneBlock", "Nethic Gemstone Block").setHarvestLevel(EnumToolType.DIAMOND_PICK);
+        frostGemBlock = new BlockMod("frost_gem_block", "Frost Gem Block").setHarvestLevel(EnumToolType.IRON_PICK);
 
         mageWall = new BlockMod("magewall", "Mage Wall");
         bleedstone = (BlockMod) new BlockModOre("bleedstoneOre", "Bleedstone", false)

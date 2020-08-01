@@ -5,17 +5,20 @@
 
 package net.journey.entity.mob.nether;
 
+import net.journey.JITL;
 import net.journey.entity.MobStats;
-import net.journey.entity.projectile.EntityMagmaFireball;
+import net.journey.entity.projectile.EntityFireBall;
+import net.journey.init.JAnimations;
 import net.journey.init.JourneyLootTables;
+import net.journey.init.JourneySounds;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
 import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityLargeFireball;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -28,20 +31,42 @@ import net.minecraft.util.datafix.DataFixer;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.entity.EntityModFlying;
+import org.jetbrains.annotations.NotNull;
+import ru.timeconqueror.timecore.animation.ActionManagerBuilder;
+import ru.timeconqueror.timecore.animation.AnimationManagerBuilder;
+import ru.timeconqueror.timecore.animation.AnimationStarter;
+import ru.timeconqueror.timecore.animation.component.DelayedAction;
+import ru.timeconqueror.timecore.animation.entityai.AnimatedRangedAttackAI;
+import ru.timeconqueror.timecore.animation.util.StandardDelayPredicates;
+import ru.timeconqueror.timecore.api.animation.ActionManager;
+import ru.timeconqueror.timecore.api.animation.AnimationProvider;
+import ru.timeconqueror.timecore.api.animation.BlendType;
 
 import java.util.Random;
 
-public class EntityLavasnake extends EntityModFlying {
+public class EntityLavasnake extends EntityModFlying implements IRangedAttackMob, AnimationProvider<EntityLavasnake> {
 
-    private static final DataParameter<Boolean> ATTACKING = EntityDataManager.createKey(EntityLavasnake.class,
-            DataSerializers.BOOLEAN);
+    private static final DataParameter<Boolean> ATTACKING = EntityDataManager.createKey(EntityLavasnake.class, DataSerializers.BOOLEAN);
+
+    private static final DelayedAction<EntityLavasnake, AnimatedRangedAttackAI.ActionData> RANGED_ATTACK_ACTION;
+
+    private static final String LAYER_LIVING = "living";
+    private static final String LAYER_ATTACK = "attack";
+
     private int explosionStrength = 1;
+
+    static {
+        RANGED_ATTACK_ACTION = new DelayedAction<EntityLavasnake, AnimatedRangedAttackAI.ActionData>(JITL.rl("lavasnake/shoot"), new AnimationStarter(JAnimations.LAVASNAKE_SHOOT).setSpeed(1.5F), "attack")
+                .setDelayPredicate(StandardDelayPredicates.whenPassed(0.5F))
+                .setOnCall(AnimatedRangedAttackAI.STANDARD_RUNNER);
+    }
+
+    private final ActionManager<EntityLavasnake> actionManager;
 
     public EntityLavasnake(World par1World) {
         super(par1World);
@@ -49,10 +74,21 @@ public class EntityLavasnake extends EntityModFlying {
         initEntityAI();
         this.isImmuneToFire = true;
         setSize(1.0F, 1.2F);
+        actionManager = ActionManagerBuilder.<EntityLavasnake>create(
+                AnimationManagerBuilder.create()
+                        .addLayer(LAYER_LIVING, BlendType.ADDING, 1F)
+                        .addLayer(LAYER_ATTACK, BlendType.ADDING, 0.9F)
+                        .addWalkingAnimationHandling(new AnimationStarter(JAnimations.LAVASNAKE_TAIL).setSpeed(3F), LAYER_LIVING)
+        ).build(this, world);
     }
 
     public static void registerFixesLavasnake(DataFixer fixer) {
         EntityLiving.registerFixesMob(fixer, EntityLavasnake.class);
+    }
+
+    @Override
+    public @NotNull ActionManager<EntityLavasnake> getActionManager() {
+        return actionManager;
     }
 
     @Override
@@ -75,8 +111,8 @@ public class EntityLavasnake extends EntityModFlying {
 
     protected void initEntityAI() {
         this.tasks.addTask(5, new EntityLavasnake.AIRandomFly(this));
-        this.tasks.addTask(7, new EntityLavasnake.AIFireballAttack(this));
         this.tasks.addTask(7, new EntityLavasnake.AILookAround(this));
+        this.tasks.addTask(5, new AnimatedRangedAttackAI<>(this, RANGED_ATTACK_ACTION, 1.0F, 40, 16.0F));//mutex 3
         this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
     }
 
@@ -118,21 +154,6 @@ public class EntityLavasnake extends EntityModFlying {
     }
 
     @Override
-    protected SoundEvent getAmbientSound() {
-        return SoundEvents.ENTITY_GUARDIAN_AMBIENT;
-    }
-
-    @Override
-    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-        return SoundEvents.ENTITY_GUARDIAN_HURT;
-    }
-
-    @Override
-    protected SoundEvent getDeathSound() {
-        return SoundEvents.ENTITY_GUARDIAN_DEATH;
-    }
-
-    @Override
     protected float getSoundVolume() {
         return 10.0F;
     }
@@ -164,17 +185,17 @@ public class EntityLavasnake extends EntityModFlying {
 
     @Override
     public SoundEvent setLivingSound() {
-        return null;
+        return JourneySounds.LAVASNAKE_IDLE;
     }
 
     @Override
     public SoundEvent setHurtSound() {
-        return null;
+        return JourneySounds.LAVASNAKE_HURT;
     }
 
     @Override
     public SoundEvent setDeathSound() {
-        return null;
+        return JourneySounds.LAVASNAKE_HURT;
     }
 
     @Override
@@ -182,62 +203,23 @@ public class EntityLavasnake extends EntityModFlying {
         return MobStats.LavaSnakeHealth;
     }
 
-    static class AIFireballAttack extends EntityAIBase {
-        private final EntityLavasnake parentEntity;
-        public int attackTimer;
+    @Override
+    public void attackEntityWithRangedAttack(EntityLivingBase target, float f) {
+        EntityFireBall projectile = new EntityFireBall(this.world, this, 1.0F);
+        double dX = target.posX - this.posX;
+        double dY = target.getEntityBoundingBox().minY + (double) (target.height / 3.0F) - projectile.posY;
+        double dZ = target.posZ - this.posZ;
+        double distortion = MathHelper.sqrt(dX * dX + dZ * dZ);
+        projectile.shoot(dX, dY + distortion * 0.20000000298023224D, dZ, 1.6F, (float) (7 - this.world.getDifficulty().getId()));
 
-        public AIFireballAttack(EntityLavasnake ghast) {
-            this.parentEntity = ghast;
-        }
+        world.playEvent(null, 1018, new BlockPos((int) this.posX, (int) this.posY, (int) this.posZ), 0);
 
-        public boolean shouldExecute() {
-            return this.parentEntity.getAttackTarget() != null;
-        }
+        this.world.spawnEntity(projectile);
+    }
 
-        public void startExecuting() {
-            this.attackTimer = 0;
-        }
+    @Override
+    public void setSwingingArms(boolean b) {
 
-        public void resetTask() {
-            this.parentEntity.setAttacking(false);
-        }
-
-        public void updateTask() {
-            EntityLivingBase entitylivingbase = this.parentEntity.getAttackTarget();
-            double d0 = 64.0D;
-
-            if (entitylivingbase.getDistanceSq(this.parentEntity) < 4096.0D
-                    && this.parentEntity.canEntityBeSeen(entitylivingbase)) {
-                World world = this.parentEntity.world;
-                ++this.attackTimer;
-
-                if (this.attackTimer == 2) {
-                    world.playEvent(null, 1015, new BlockPos(this.parentEntity), 0);
-                }
-
-                if (this.attackTimer == 1) {
-                    double d1 = 4.0D;
-                    Vec3d vec3d = this.parentEntity.getLook(1.0F);
-                    double d2 = entitylivingbase.posX - (this.parentEntity.posX + vec3d.x * 4.0D);
-                    double d3 = entitylivingbase.getEntityBoundingBox().minY + (double) (entitylivingbase.height / 2.0F)
-                            - (0.5D + this.parentEntity.posY + (double) (this.parentEntity.height / 2.0F));
-                    double d4 = entitylivingbase.posZ - (this.parentEntity.posZ + vec3d.z * 4.0D);
-                    world.playEvent(null, 1016, new BlockPos(this.parentEntity), 0);
-                    EntityMagmaFireball entitylargefireball = new EntityMagmaFireball(world, this.parentEntity, d2, d3,
-                            d4);
-                    entitylargefireball.posX = this.parentEntity.posX + vec3d.x * 4.0D;
-                    entitylargefireball.posY = this.parentEntity.posY + (double) (this.parentEntity.height / 2.0F)
-                            + 0.5D;
-                    entitylargefireball.posZ = this.parentEntity.posZ + vec3d.z * 4.0D;
-                    world.spawnEntity(entitylargefireball);
-                    this.attackTimer = -40;
-                }
-            } else if (this.attackTimer > 0) {
-                --this.attackTimer;
-            }
-
-            this.parentEntity.setAttacking(this.attackTimer > 1);
-        }
     }
 
     static class AILookAround extends EntityAIBase {

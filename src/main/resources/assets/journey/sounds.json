@@ -143,6 +143,18 @@
       "journey:floro_shoot"
     ]
   },
+  "lavasnake_hurt": {
+    "category": "hostile",
+    "sounds": [
+      "journey:lavasnake_hurt"
+    ]
+  },
+  "lavasnake_idle": {
+    "category": "hostile",
+    "sounds": [
+      "journey:lavasnake_idle"
+    ]
+  },
   "sentry_heart_hit": {
     "category": "master",
     "sounds": [

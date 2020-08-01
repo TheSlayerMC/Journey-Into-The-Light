@@ -1,6 +1,6 @@
 package ru.timeconqueror.timecore.animation;
 
-import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import ru.timeconqueror.timecore.api.animation.ActionManager;
@@ -9,14 +9,14 @@ import ru.timeconqueror.timecore.util.SingleUseBuilder;
 
 import java.util.Objects;
 
-public class ActionManagerBuilder<T extends EntityMob & AnimationProvider<T>> extends SingleUseBuilder {
+public class ActionManagerBuilder<T extends Entity & AnimationProvider<T>> extends SingleUseBuilder {
 	private final AnimationManagerBuilder animationManagerBuilder;
 
 	public ActionManagerBuilder(AnimationManagerBuilder animationManagerBuilder) {
 		this.animationManagerBuilder = animationManagerBuilder;
 	}
 
-	public static <T extends EntityMob & AnimationProvider<T>> ActionManagerBuilder<T> create(AnimationManagerBuilder animationManagerBuilder) {
+	public static <T extends Entity & AnimationProvider<T>> ActionManagerBuilder<T> create(AnimationManagerBuilder animationManagerBuilder) {
 		return new ActionManagerBuilder<>(animationManagerBuilder);
 	}
 
