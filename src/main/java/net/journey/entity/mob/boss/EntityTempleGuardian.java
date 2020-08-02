@@ -91,7 +91,7 @@ public class EntityTempleGuardian extends EntityEssenceBoss implements IRangedAt
 
     @Override
     public void attackEntityWithRangedAttack(EntityLivingBase target, float distanceFactor) {
-        EntityFloroDirtProjectile b = new EntityFloroDirtProjectile(this.world, this, 5F);
+        EntityFloroDirtProjectile b = new EntityFloroDirtProjectile(this.world, this, 5F);//FIXME WHY FLORO???
         double d0 = target.posX - this.posX;
         double d1 = target.getEntityBoundingBox().minY + (double) (target.height / 3.0F) - b.posY;
         double d2 = target.posZ - this.posZ;
