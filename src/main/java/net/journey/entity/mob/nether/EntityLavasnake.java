@@ -78,7 +78,7 @@ public class EntityLavasnake extends EntityModFlying implements IRangedAttackMob
                 AnimationManagerBuilder.create()
                         .addLayer(LAYER_LIVING, BlendType.ADDING, 1F)
                         .addLayer(LAYER_ATTACK, BlendType.ADDING, 0.9F)
-                        .addWalkingAnimationHandling(new AnimationStarter(JAnimations.LAVASNAKE_TAIL).setSpeed(3F), LAYER_LIVING)
+                        .addWalkingAnimationHandling(new AnimationStarter(JAnimations.LAVASNAKE_TAIL).setSpeed(2F), LAYER_LIVING)
         ).build(this, world);
     }
 
