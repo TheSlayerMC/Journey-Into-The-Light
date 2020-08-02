@@ -1,7 +1,7 @@
 package ru.timeconqueror.timecore.animation;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import org.jetbrains.annotations.Nullable;
@@ -11,7 +11,7 @@ import ru.timeconqueror.timecore.common.network.S2CEndAnimationMsg;
 import ru.timeconqueror.timecore.common.network.S2CStartAnimationMsg;
 import ru.timeconqueror.timecore.common.network.TCNetworkHandler;
 
-public class ServerAnimationManager<T extends Entity> extends BaseAnimationManager {
+public class ServerAnimationManager<T extends EntityLivingBase> extends BaseAnimationManager {
     private ActionManagerImpl<T> actionManager;
 
     public ServerAnimationManager(@Nullable AnimationSetting walkingAnimationStarter) {
