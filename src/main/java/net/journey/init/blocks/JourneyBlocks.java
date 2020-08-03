@@ -1074,7 +1074,7 @@ public class JourneyBlocks {
 
         frozenFlower = new BlockModFlower("frozenFlower", "Frozen Flower");
         depthsFlower = new BlockModFlower("depthsFlower", "Depths Flower");
-        depthsBlueFlower = new BlockModFlower("depthsBlueFlower", "Depths Blue Flower").setLightLevel(0.625F);
+        depthsBlueFlower = new BlockModFlower("depthsBlueFlower", "Depths Blue Flower");
         corbaFlower = new BlockModFlower("corbaFlower", "Corba Flower");
         corbaTallGrass = new BlockModFlower("corbaTallGrass", "Corba Tall Grass", true);
         corbaSpeckledFlower = new BlockModFlower("corbaSpeckledFlower", "Speckled Flower");
