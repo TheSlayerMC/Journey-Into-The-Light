@@ -53,7 +53,7 @@ public class JBlockFlower extends JBlockPlant implements IHasCustomItemPath {
 	 */
 
 	private boolean hasOffset = true;
-	private boolean isFrozenPlant = false, damageWhenContact = false;
+	private boolean isFrozenPlant = false;
 
 	public JBlockFlower(String name, String enName) {
 		super(name, enName);
@@ -77,19 +77,9 @@ public class JBlockFlower extends JBlockPlant implements IHasCustomItemPath {
 		return this;
 	}
 
-	public JBlockFlower setContactDamage() {
-		damageWhenContact = true;
-		return this;
-	}
-
 	@Override
 	public @NotNull EnumOffsetType getOffsetType() {
 		return hasOffset ? EnumOffsetType.XZ : EnumOffsetType.NONE;
-	}
-
-	@Override
-	public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
-		if (damageWhenContact) entityIn.attackEntityFrom(DamageSource.CACTUS, 1.0F);
 	}
 
 	@Override
