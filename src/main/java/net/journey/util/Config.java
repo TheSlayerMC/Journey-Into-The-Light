@@ -58,6 +58,9 @@ public class Config {
     public static int mekyumOreTrys, mekyumOreGenAmount;
     public static int luniteOreTrys, luniteOreGenAmount;
 
+    public static boolean enableLootPouchDrops;
+    public static int commonLootBagRarity, goldLootBagRarity, diamondLootBagRarity;
+
     public static void init(FMLPreInitializationEvent event) {
         cfg = new Configuration(new File(event.getModConfigurationDirectory() + "/Journey.cfg"));
         cfg.load();
@@ -162,16 +165,21 @@ public class Config {
         
         storonOreTrys = cfg.get("Ore Generation", "Storon Ore Trys Per Chunk", 30).getInt();
         storonOreGenAmount = cfg.get("Ore Generation", "Storon Ore Vein Max Amount", 6).getInt();
-        
+
         koriteOreTrys = cfg.get("Ore Generation", "Korite Ore Trys Per Chunk", 30).getInt();
         koriteOreGenAmount = cfg.get("Ore Generation", "Korite Ore Vein Max Amount", 10).getInt();
-        
+
         mekyumOreTrys = cfg.get("Ore Generation", "Mekyum Ore Trys Per Chunk", 30).getInt();
         mekyumOreGenAmount = cfg.get("Ore Generation", "Mekyum Ore Vein Max Amount", 10).getInt();
-        
+
         luniteOreTrys = cfg.get("Ore Generation", "Lunite Ore Trys Per Chunk", 30).getInt();
         luniteOreGenAmount = cfg.get("Ore Generation", "Lunite Ore Vein Max Amount", 40).getInt();
-        
+
+        enableLootPouchDrops = cfg.get("Loot Pouches", "All living mobs can rarely drop loot pouches", true).getBoolean();
+        commonLootBagRarity = cfg.get("Loot Pouches", "Chance for living mobs to drop common loot pouches", 100).getInt();
+        goldLootBagRarity = cfg.get("Loot Pouches", "Chance for living mobs to drop gold loot pouches", 200).getInt();
+        diamondLootBagRarity = cfg.get("Loot Pouches", "Chance for living mobs to drop diamond loot pouches", 300).getInt();
+
         List<Boolean> items = new ArrayList<Boolean>();
         biomeSizeXZ = cfg.getInt("BiomeSizeXZ", "Nether", 512, 1, 4096, "The horizontal Nether biome size");
         biomeSizeY = cfg.getInt("BiomeSizeY", "Nether", 32, 1, 4096, "The vertical Nether biome size");

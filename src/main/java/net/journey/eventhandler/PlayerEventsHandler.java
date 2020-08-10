@@ -4,8 +4,12 @@ import net.journey.init.JourneyLootTables;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.init.items.JourneyArmory;
 import net.journey.init.items.JourneyConsumables;
+import net.journey.init.items.JourneyItems;
+import net.journey.util.Config;
 import net.journey.util.LootHelper;
+import net.journey.util.RandHelper;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityGhast;
@@ -31,8 +35,7 @@ import java.util.Random;
 
 @Mod.EventBusSubscriber
 public class PlayerEventsHandler {
-	public static double rand;
-	public static Random random = new Random();//TODO get rid of it
+	public static Random random = RandHelper.RANDOM;
 
 	@SubscribeEvent
 	public static void onBlockClicked(PlayerInteractEvent event) {
@@ -121,10 +124,21 @@ public class PlayerEventsHandler {
 	@SubscribeEvent
 	public static void onEntityDrop(LivingDropsEvent event) {
 		if (event.getSource().getDamageType().equals("player")) {
-			rand = Math.random();
+			random = RandHelper.RANDOM;
 			if (event.getEntityLiving() instanceof EntityGhast) {
-				if (rand < 3) {
+				if (random.nextInt(3) == 0) {
 					event.getEntityLiving().dropItem(JourneyConsumables.ghastTentacle, 1);
+				}
+			}
+			if (event.getEntityLiving() instanceof EntityLiving && Config.enableLootPouchDrops) {
+				if (random.nextInt(Config.commonLootBagRarity) == 0) {
+					event.getEntityLiving().dropItem(JourneyItems.LOOT_POUCH, 1);
+				}
+				if (random.nextInt(Config.goldLootBagRarity) == 0) {
+					event.getEntityLiving().dropItem(JourneyItems.LOOT_POUCH_GOLD, 1);
+				}
+				if (random.nextInt(Config.diamondLootBagRarity) == 0) {
+					event.getEntityLiving().dropItem(JourneyItems.LOOT_POUCH_DIAMOND, 1);
 				}
 			}
 		}
