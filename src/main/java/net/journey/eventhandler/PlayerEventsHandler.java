@@ -9,7 +9,7 @@ import net.journey.util.Config;
 import net.journey.util.LootHelper;
 import net.journey.util.RandHelper;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityGhast;
@@ -123,22 +123,23 @@ public class PlayerEventsHandler {
 	@SubscribeEvent
 	public static void onEntityDrop(LivingDropsEvent event) {
 		Random random = RandHelper.RANDOM;
-		EntityLiving living = (EntityLiving) event.getEntityLiving();
+		EntityLivingBase entity = event.getEntityLiving();
 
-		if (event.getEntityLiving() instanceof EntityGhast) {
+		if (entity instanceof EntityGhast) {
 			if (random.nextInt(3) == 0) {
-				living.dropItem(JourneyConsumables.ghastTentacle, 1);
+				entity.dropItem(JourneyConsumables.ghastTentacle, 1);
 			}
 		}
-		if (Config.enableLootPouchDrops && event.getSource().getDamageType().equals("player")) {
+
+		if (Config.enableLootPouchDrops && event.getSource().getTrueSource() instanceof EntityPlayer) {
 			if (random.nextInt(Config.commonLootBagRarity) == 0) {
-				living.dropItem(JourneyItems.LOOT_POUCH, 1);
+				entity.dropItem(JourneyItems.LOOT_POUCH, 1);
 			}
 			if (random.nextInt(Config.goldLootBagRarity) == 0) {
-				living.dropItem(JourneyItems.LOOT_POUCH_GOLD, 1);
+				entity.dropItem(JourneyItems.LOOT_POUCH_GOLD, 1);
 			}
 			if (random.nextInt(Config.diamondLootBagRarity) == 0) {
-				living.dropItem(JourneyItems.LOOT_POUCH_DIAMOND, 1);
+				entity.dropItem(JourneyItems.LOOT_POUCH_DIAMOND, 1);
 			}
 		}
 	}
