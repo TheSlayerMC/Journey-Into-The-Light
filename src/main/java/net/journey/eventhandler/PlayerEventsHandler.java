@@ -35,7 +35,6 @@ import java.util.Random;
 
 @Mod.EventBusSubscriber
 public class PlayerEventsHandler {
-	public static Random random = RandHelper.RANDOM;
 
 	@SubscribeEvent
 	public static void onBlockClicked(PlayerInteractEvent event) {
@@ -54,7 +53,7 @@ public class PlayerEventsHandler {
 		EntityPlayer p = event.getHarvester();
 		IBlockState harvestedState = event.getState();
 		List<ItemStack> drops = event.getDrops();
-
+		Random random = RandHelper.RANDOM;
 		ItemStack helmet;
 		if (p != null && !p.world.isRemote) {
 			EntityPlayerMP playerMP = (EntityPlayerMP) p;
@@ -123,7 +122,7 @@ public class PlayerEventsHandler {
 
 	@SubscribeEvent
 	public static void onEntityDrop(LivingDropsEvent event) {
-		random = RandHelper.RANDOM;
+		Random random = RandHelper.RANDOM;
 		EntityLiving living = (EntityLiving) event.getEntityLiving();
 
 		if (event.getEntityLiving() instanceof EntityGhast) {
