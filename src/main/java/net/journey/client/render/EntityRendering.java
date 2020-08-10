@@ -101,7 +101,8 @@ import ru.timeconqueror.timecore.client.render.model.TimeModelLoader;
 public class EntityRendering {
 
     public static void preInit() {
-        RenderingRegistry.registerEntityRenderingHandler(EntityMagmaFireball.class, manager -> new RenderProjectile<>(manager, Textures.getProjectileTextureLocation("magma_ball")));
+        RenderingRegistry.registerEntityRenderingHandler(EntitySentryKingGrenade.class, manager -> new RenderProjectile<>(manager, Textures.getProjectileTextureLocation("sentry_king_grenade")));
+		RenderingRegistry.registerEntityRenderingHandler(EntityMagmaFireball.class, manager -> new RenderProjectile<>(manager, Textures.getProjectileTextureLocation("magma_ball")));
         RenderingRegistry.registerEntityRenderingHandler(EntityBouncingProjectile.class, manager -> new RenderProjectile<>(manager, Textures.getProjectileTextureLocation("bouncing")));
         RenderingRegistry.registerEntityRenderingHandler(EntityRockProjectile.class, manager -> new RenderProjectile<>(manager, Textures.getProjectileTextureLocation("rock_chunk")));
         RenderingRegistry.registerEntityRenderingHandler(EntityNetherPlasma.class, manager -> new RenderProjectile<>(manager, Textures.getProjectileTextureLocation("plasma_ball")));

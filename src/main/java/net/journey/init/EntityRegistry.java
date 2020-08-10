@@ -90,6 +90,7 @@ public class EntityRegistry {
 				SlayerAPI.buildProjectileEntry(EntityEnlightenment.class, "enlightment"),
 				SlayerAPI.buildProjectileEntry(EntityGreenpace.class, "greenpace"),
 				SlayerAPI.buildProjectileEntry(EntityWizardsStar.class, "wizardsstar"),
+				SlayerAPI.buildProjectileEntry(EntitySentryKingGrenade.class, "sentry_king_grenade"),
 				SlayerAPI.buildProjectileEntry(EntityMagmaFireball.class, "magmaball"),
 				SlayerAPI.buildProjectileEntry(EntityFlameArrow.class, "flamearrow"),
 				SlayerAPI.buildProjectileEntry(EntityFireBall.class, "fireball"),

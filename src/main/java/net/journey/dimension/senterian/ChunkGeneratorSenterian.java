@@ -86,7 +86,7 @@ public class ChunkGeneratorSenterian implements IChunkGenerator {
 			stairs.generate(senterianChunk, rand, 0, thirdLayer, 0);
 
 		//These double as a hallway and a blocker on the exit of the room next to it
-		int hallwayRarity = 8;
+		int hallwayRarity = 15;
 		if (rand.nextInt(hallwayRarity) == 0)
 			hallways[rand.nextInt(hallways.length)].generate(senterianChunk, rand, 0, bottomLayer, 0);
 
