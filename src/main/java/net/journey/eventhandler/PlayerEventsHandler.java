@@ -123,31 +123,24 @@ public class PlayerEventsHandler {
 
 	@SubscribeEvent
 	public static void onEntityDrop(LivingDropsEvent event) {
-		if (event.getSource().getDamageType().equals("player")) {
-			random = RandHelper.RANDOM;
-			if (event.getEntityLiving() instanceof EntityGhast) {
-				if (random.nextInt(3) == 0) {
-					event.getEntityLiving().dropItem(JourneyConsumables.ghastTentacle, 1);
-				}
+		random = RandHelper.RANDOM;
+		EntityLiving living = (EntityLiving) event.getEntityLiving();
+
+		if (event.getEntityLiving() instanceof EntityGhast) {
+			if (random.nextInt(3) == 0) {
+				living.dropItem(JourneyConsumables.ghastTentacle, 1);
 			}
-			if (event.getEntityLiving() instanceof EntityLiving && Config.enableLootPouchDrops) {
-				if (random.nextInt(Config.commonLootBagRarity) == 0) {
-					event.getEntityLiving().dropItem(JourneyItems.LOOT_POUCH, 1);
-				}
-				if (random.nextInt(Config.goldLootBagRarity) == 0) {
-					event.getEntityLiving().dropItem(JourneyItems.LOOT_POUCH_GOLD, 1);
-				}
-				if (random.nextInt(Config.diamondLootBagRarity) == 0) {
-					event.getEntityLiving().dropItem(JourneyItems.LOOT_POUCH_DIAMOND, 1);
-				}
+		}
+		if (Config.enableLootPouchDrops && event.getSource().getDamageType().equals("player")) {
+			if (random.nextInt(Config.commonLootBagRarity) == 0) {
+				living.dropItem(JourneyItems.LOOT_POUCH, 1);
+			}
+			if (random.nextInt(Config.goldLootBagRarity) == 0) {
+				living.dropItem(JourneyItems.LOOT_POUCH_GOLD, 1);
+			}
+			if (random.nextInt(Config.diamondLootBagRarity) == 0) {
+				living.dropItem(JourneyItems.LOOT_POUCH_DIAMOND, 1);
 			}
 		}
 	}
-
-	/* @SubscribeEvent
-	public static void bonemealUsed(BonemealEvent event, BlockPos pos) {
-		if(event.world.getBlockState(new BlockPos(event.pos.getX(), event.pos.getY(), event.pos.getZ())) == JourneyBlocks.sizzleberryBush) {
-			((BlockModBush)JourneyBlocks.sizzleberryBush)
-		}
-	} */
 }

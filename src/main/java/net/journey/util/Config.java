@@ -177,8 +177,8 @@ public class Config {
 
         enableLootPouchDrops = cfg.get("Loot Pouches", "All living mobs can rarely drop loot pouches", true).getBoolean();
         commonLootBagRarity = cfg.get("Loot Pouches", "Chance for living mobs to drop common loot pouches", 100).getInt();
-        goldLootBagRarity = cfg.get("Loot Pouches", "Chance for living mobs to drop gold loot pouches", 200).getInt();
-        diamondLootBagRarity = cfg.get("Loot Pouches", "Chance for living mobs to drop diamond loot pouches", 300).getInt();
+        goldLootBagRarity = cfg.get("Loot Pouches", "Chance for living mobs to drop gold loot pouches", 150).getInt();
+        diamondLootBagRarity = cfg.get("Loot Pouches", "Chance for living mobs to drop diamond loot pouches", 200).getInt();
 
         List<Boolean> items = new ArrayList<Boolean>();
         biomeSizeXZ = cfg.getInt("BiomeSizeXZ", "Nether", 512, 1, 4096, "The horizontal Nether biome size");
