@@ -1,15 +1,10 @@
 package net.journey.entity.mob.boss;
 
-import com.google.common.collect.Lists;
-import jeresources.api.drop.LootDrop;
-import net.journey.blocks.tileentity.TileEntityBossCrystal;
 import net.journey.entity.MobStats;
 import net.journey.entity.mob.euca.EntityShimmerer;
 import net.journey.entity.projectile.EntityMagmaFireball;
+import net.journey.entity.util.EntityBossCrystal;
 import net.journey.init.JourneyLootTables;
-import net.journey.init.blocks.JourneyBlocks;
-import net.journey.init.items.JourneyItems;
-import net.journey.init.items.JourneyWeapons;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.ai.EntityAIBase;
@@ -19,10 +14,7 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvent;
+import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -30,8 +22,8 @@ import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityEssenceBoss;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
 import java.util.Random;
 
 public class EntityCorallator extends EntityEssenceBoss implements IRangedAttackMob {
@@ -67,19 +59,13 @@ public class EntityCorallator extends EntityEssenceBoss implements IRangedAttack
     }
 
     @Override
-    public void onDeath(DamageSource damage) {
-        this.world.setBlockState(new BlockPos((int) Math.floor(this.posX + 0), ((int) Math.floor(this.posY + 0)), ((int) Math.floor(this.posZ + 0))), JourneyBlocks.bossCrystalEuca.getDefaultState());
-        TileEntityBossCrystal te = (TileEntityBossCrystal) world.getTileEntity(new BlockPos((int) Math.floor(this.posX + 0), ((int) Math.floor(this.posY + 0)), ((int) Math.floor(this.posZ + 0))));
-        te.setLootTable(JourneyLootTables.CORALLATOR, rand.nextLong());
+    protected @Nullable ResourceLocation getLootTable() {
+        return JourneyLootTables.CORALLATOR;
     }
 
     @Override
-    public @NotNull List<LootDrop> getJERDrops() {
-        return Lists.newArrayList(
-                new LootDrop(JourneyItems.depthsPortalGem, 6, 8),
-                new LootDrop(JourneyWeapons.coreMender, 1, 1),
-                new LootDrop(JourneyWeapons.coreExpender, 1, 1)
-        );
+    protected @Nullable EntityBossCrystal.Type getDeathCrystalType() {
+        return EntityBossCrystal.Type.EUCA;
     }
 
     @Override

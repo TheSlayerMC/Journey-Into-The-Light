@@ -30,7 +30,6 @@ import net.minecraft.util.BlockRenderLayer;
 import net.slayer.api.EnumMaterialTypes;
 import net.slayer.api.EnumToolType;
 import net.slayer.api.block.*;
-import net.slayer.api.entity.tileentity.container.BlockModContainer;
 
 import java.util.ArrayList;
 
@@ -537,16 +536,6 @@ public class JourneyBlocks {
     public static BlockCrafting stoneCraftingTable;
     public static BlockSummoningTable summoningTable;
     public static BlockMod bossAltar;
-    public static BlockModContainer bossCrystal;
-    public static BlockModContainer bossCrystalNether;
-    public static BlockModContainer bossCrystalBoil;
-    public static BlockModContainer bossCrystalEuca;
-    public static BlockModContainer bossCrystalFrozen;
-    public static BlockModContainer bossCrystalDepths;
-    public static BlockModContainer bossCrystalCorba;
-    public static BlockModContainer bossCrystalTerrania;
-    public static BlockModContainer bossCrystalCloudia;
-    public static BlockModContainer bossCrystalSenterian;
 
     public static BlockModSpawner observerSpawner;
     public static BlockModSpawner screamerSpawner;
@@ -1108,18 +1097,6 @@ public class JourneyBlocks {
 
         stoneCraftingTable = new BlockCrafting("stoneCraftingTable", "Stone Crafting Table");
         summoningTable = new BlockSummoningTable("summoningTable", "Summoning Table");
-
-        bossCrystal = new JBlockBossCrystal("boss_crystal", "Soul Crystal", JBlockBossCrystal.Type.BASE);
-        bossCrystalNether = new JBlockBossCrystal("boss_crystal_nether", "Soul Crystal", JBlockBossCrystal.Type.NETHER);
-        bossCrystalBoil = new JBlockBossCrystal("boss_crystal_boil", "Soul Crystal", JBlockBossCrystal.Type.BOIL);
-        bossCrystalEuca = new JBlockBossCrystal("boss_crystal_euca", "Soul Crystal", JBlockBossCrystal.Type.EUCA);
-        bossCrystalFrozen = new JBlockBossCrystal("boss_crystal_frozen", "Soul Crystal", JBlockBossCrystal.Type.FROZEN);
-        bossCrystalDepths = new JBlockBossCrystal("boss_crystal_depths", "Soul Crystal", JBlockBossCrystal.Type.DEPTHS);
-        bossCrystalCorba = new JBlockBossCrystal("boss_crystal_corba", "Soul Crystal", JBlockBossCrystal.Type.CORBA);
-        bossCrystalTerrania = new JBlockBossCrystal("boss_crystal_terrania", "Soul Crystal", JBlockBossCrystal.Type.TERRANIA);
-        bossCrystalCloudia = new JBlockBossCrystal("boss_crystal_cloudia", "Soul Crystal", JBlockBossCrystal.Type.CLOUDIA);
-        bossCrystalSenterian = new JBlockBossCrystal("boss_crystal_senterian", "Soul Crystal", JBlockBossCrystal.Type.SENTERIAN);
-
 
         observerSpawner = new BlockModSpawner("observerSpawner", "Observer Spawner", "observer");
         screamerSpawner = new BlockModSpawner("screamerSpawner", "Screamer Spawner", "screamer");

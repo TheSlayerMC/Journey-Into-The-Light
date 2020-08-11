@@ -330,7 +330,6 @@ public class EntityRendering {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCloudAltar.class, new CloudAltarRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySenterianAltar.class, new SenterianAltarRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityObelisk.class, new ObeliskRenderer());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBossCrystal.class, new BossCrystalTESR());
 
         //RenderingRegistry.registerBlockHandler(EssenceBlocks.celestiumOre.getRenderType(), new OreRenderer());
         //RenderingRegistry.registerBlockHandler(EssenceBlocks.mossyEssenceStone.getRenderType(), new OtherBlockRenderer());

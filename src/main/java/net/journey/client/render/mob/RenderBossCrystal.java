@@ -2,9 +2,9 @@ package net.journey.client.render.mob;
 
 import net.journey.JITL;
 import net.journey.entity.util.EntityBossCrystal;
-import net.journey.util.RenderUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
@@ -15,7 +15,6 @@ import ru.timeconqueror.timecore.client.render.model.TimeModelLoader;
 
 public class RenderBossCrystal extends Render<EntityBossCrystal> {
     private static final TimeModel MODEL_BOSS_CRYSTAL = TimeModelLoader.loadJsonModel(JITL.rl("models/entity/boss_crystal.json"));
-    private static final ResourceLocation CRYSTAL_TEXTURE = JITL.rl("textures/models/entity/boss_crystal.png");
 
     public RenderBossCrystal(RenderManager renderManager) {
         super(renderManager);
@@ -28,17 +27,14 @@ public class RenderBossCrystal extends Render<EntityBossCrystal> {
         float angle = worldTime % 360;
         float yScale = 4.5F;
 
-        int color = entity.getColor();
-        float red = RenderUtils.getRed(color) / 255F;
-        float blue = RenderUtils.getBlue(color) / 255F;
-        float green = RenderUtils.getGreen(color) / 255F;
-        float alpha = RenderUtils.getAlpha(color) / 255F;
+        float brightness = 4.5F; //why this work as expected? :/ it should be in 0 to 1 range, how...
+        float alpha = 0.7F;
 
         //starts
         GlStateManager.pushMatrix();
 
         //colors texture
-        GL11.glColor4f(red, green, blue, alpha);
+        GL11.glColor4f(brightness, brightness, brightness, alpha);
 
         //offsets model by camera's position
         GL11.glTranslated(x, y, z);
@@ -57,7 +53,9 @@ public class RenderBossCrystal extends Render<EntityBossCrystal> {
         GlStateManager.enableBlend();
         GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
         GlStateManager.enableAlpha();
+//        setLightmapDisabled(true);
         MODEL_BOSS_CRYSTAL.render(0.0625F);
+//        setLightmapDisabled(false);
         GlStateManager.disableAlpha();
         GlStateManager.disableBlend();
 
@@ -67,9 +65,25 @@ public class RenderBossCrystal extends Render<EntityBossCrystal> {
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
     }
 
+    /**
+     * Sets whether to use the light map when rendering. Disabling this allows rendering ignoring lighting, which can be
+     * useful for floating text, e.g.
+     */
+    protected void setLightmapDisabled(boolean disabled) {
+        GlStateManager.setActiveTexture(OpenGlHelper.lightmapTexUnit);
+
+        if (disabled) {
+            GlStateManager.disableTexture2D();
+        } else {
+            GlStateManager.enableTexture2D();
+        }
+
+        GlStateManager.setActiveTexture(OpenGlHelper.defaultTexUnit);
+    }
+
     @Nullable
     @Override
     protected ResourceLocation getEntityTexture(EntityBossCrystal entity) {
-        return CRYSTAL_TEXTURE;
+        return entity.getTexture();
     }
 }

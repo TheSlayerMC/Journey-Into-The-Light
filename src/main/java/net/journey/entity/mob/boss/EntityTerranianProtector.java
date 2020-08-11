@@ -1,16 +1,11 @@
 package net.journey.entity.mob.boss;
 
-import com.google.common.collect.Lists;
-import jeresources.api.drop.LootDrop;
-import net.journey.blocks.tileentity.TileEntityBossCrystal;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityIceBall;
 import net.journey.entity.projectile.EntityMagmaFireball;
+import net.journey.entity.util.EntityBossCrystal;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
-import net.journey.init.blocks.JourneyBlocks;
-import net.journey.init.items.JourneyItems;
-import net.journey.init.items.JourneyWeapons;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
@@ -19,7 +14,7 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -27,9 +22,8 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
 import java.util.Random;
 
 public class EntityTerranianProtector extends EntityFlyingBoss {
@@ -191,19 +185,13 @@ public class EntityTerranianProtector extends EntityFlyingBoss {
 	}*/
 
     @Override
-    public void onDeath(DamageSource damage) {
-        this.world.setBlockState(new BlockPos((int) Math.floor(this.posX + 0), ((int) Math.floor(this.posY + 0)), ((int) Math.floor(this.posZ + 0))), JourneyBlocks.bossCrystalTerrania.getDefaultState());
-        TileEntityBossCrystal te = (TileEntityBossCrystal) world.getTileEntity(new BlockPos((int) Math.floor(this.posX + 0), ((int) Math.floor(this.posY + 0)), ((int) Math.floor(this.posZ + 0))));
-        te.setLootTable(JourneyLootTables.TERRANIAN_PROTECTOR, rand.nextLong());
+    protected @Nullable ResourceLocation getLootTable() {
+        return JourneyLootTables.TERRANIAN_PROTECTOR;
     }
 
     @Override
-    public @NotNull List<LootDrop> getJERDrops() {
-        return Lists.newArrayList(
-                new LootDrop(JourneyWeapons.terronicBlade, 0.5F),
-                new LootDrop(JourneyWeapons.terralightBlade, 0.5F),
-                new LootDrop(JourneyItems.cloudiaPortalGem, 9, 12)
-        );
+    protected @Nullable EntityBossCrystal.Type getDeathCrystalType() {
+        return EntityBossCrystal.Type.TERRANIA;
     }
 
     private class AIRandomFly extends EntityAIBase {

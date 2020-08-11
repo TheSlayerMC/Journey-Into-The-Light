@@ -2,11 +2,18 @@ package net.slayer.api.entity;
 
 import net.journey.api.entity.IEssenceBoss;
 import net.journey.entity.MobStats;
+import net.journey.entity.util.EntityBossCrystal;
 import net.journey.init.JourneySounds;
 import net.minecraft.entity.item.EntityXPOrb;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.Collections;
 
 public abstract class EntityEssenceBoss extends JEntityMob implements IEssenceBoss {
 
@@ -44,6 +51,38 @@ public abstract class EntityEssenceBoss extends JEntityMob implements IEssenceBo
 
     public double applyFollowRange() {
         return MobStats.boss_follow;
+    }
+
+    @Override
+    protected boolean canDropLoot() {
+        return false;
+    }
+
+    @Nullable
+    @Override
+    protected abstract ResourceLocation getLootTable();
+
+    @Nullable
+    protected abstract EntityBossCrystal.Type getDeathCrystalType();
+
+    @Override //TODO somehow merge with EntityFlyingBoss
+    public void onDeath(DamageSource cause) {
+        super.onDeath(cause);
+
+        if (isServerWorld()) {
+            EntityBossCrystal.Type crystalType = getDeathCrystalType();
+            if (crystalType != null) {
+                ResourceLocation lootTable = getLootTable();
+                EntityBossCrystal crystal;
+                if (lootTable == null) {
+                    crystal = EntityBossCrystal.create(world, getPositionVector(), getDeathCrystalType(), Collections.emptyList());
+                } else {
+                    crystal = EntityBossCrystal.create((WorldServer) world, getPositionVector(), getDeathCrystalType(), null, lootTable, 0L);
+                }
+
+                world.spawnEntity(crystal);
+            }
+        }
     }
 
     @Override

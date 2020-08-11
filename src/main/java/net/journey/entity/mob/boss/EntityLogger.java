@@ -1,29 +1,23 @@
 package net.journey.entity.mob.boss;
 
-import com.google.common.collect.Lists;
-import jeresources.api.drop.LootDrop;
-import net.journey.blocks.tileentity.TileEntityBossCrystal;
 import net.journey.entity.MobStats;
+import net.journey.entity.util.EntityBossCrystal;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
-import net.journey.init.blocks.JourneyBlocks;
-import net.journey.init.items.JourneyArmory;
-import net.journey.init.items.JourneyItems;
-import net.journey.init.items.JourneyWeapons;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityEssenceBoss;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.List;
+import org.jetbrains.annotations.Nullable;
 
 public class EntityLogger extends EntityEssenceBoss {
 
@@ -80,26 +74,13 @@ public class EntityLogger extends EntityEssenceBoss {
     }
 
     @Override
-    public void onDeath(DamageSource damage) {
-        this.world.setBlockState(new BlockPos((int) Math.floor(this.posX + 0), ((int) Math.floor(this.posY + 0)), ((int) Math.floor(this.posZ + 0))), JourneyBlocks.bossCrystalCorba.getDefaultState());
-        TileEntityBossCrystal te = (TileEntityBossCrystal) world.getTileEntity(new BlockPos((int) Math.floor(this.posX + 0), ((int) Math.floor(this.posY + 0)), ((int) Math.floor(this.posZ + 0))));
-        te.setLootTable(JourneyLootTables.LOGGER, rand.nextLong());
+    protected @Nullable EntityBossCrystal.Type getDeathCrystalType() {
+        return EntityBossCrystal.Type.CORBA;
     }
 
     @Override
-    public @NotNull List<LootDrop> getJERDrops() {
-        return Lists.newArrayList(
-                new LootDrop(JourneyItems.terraniaPortalGem, 8, 10),
-                new LootDrop(JourneyWeapons.kingsSword, 1, 1),
-                new LootDrop(JourneyWeapons.naturesBlade, 0.5F),
-                new LootDrop(JourneyWeapons.loggersSword, 0.5F),
-                new LootDrop(JourneyWeapons.loggersBow, 1, 1),
-
-                new LootDrop(JourneyArmory.hollowChest, 1, 1),
-                new LootDrop(JourneyArmory.hollowHelmet, 1, 1),
-                new LootDrop(JourneyArmory.hollowLegs, 1, 1),
-                new LootDrop(JourneyArmory.hollowBoots, 1, 1)
-        );
+    protected @Nullable ResourceLocation getLootTable() {
+        return JourneyLootTables.LOGGER;
     }
 
     @Override

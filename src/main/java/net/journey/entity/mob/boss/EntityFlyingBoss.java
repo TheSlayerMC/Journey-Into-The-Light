@@ -1,14 +1,22 @@
 package net.journey.entity.mob.boss;
 
-import net.journey.entity.MobStats;
 import net.journey.api.entity.IEssenceBoss;
+import net.journey.entity.MobStats;
+import net.journey.entity.util.EntityBossCrystal;
 import net.journey.init.JourneySounds;
 import net.minecraft.entity.item.EntityXPOrb;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import net.slayer.api.entity.EntityModFlying;
+import org.jetbrains.annotations.Nullable;
 
+import java.util.Collections;
+
+//TODO somehow merge with EntityEssenceBoss
 public abstract class EntityFlyingBoss extends EntityModFlying implements IEssenceBoss {
 
     private int deathTicks;
@@ -42,7 +50,7 @@ public abstract class EntityFlyingBoss extends EntityModFlying implements IEssen
     public float getModMaxHealth() {
         return getMaxHealth();
     }
-    
+
     public double setFollowRange() {
         return MobStats.boss_follow;
     }
@@ -92,6 +100,38 @@ public abstract class EntityFlyingBoss extends EntityModFlying implements IEssen
                 this.world.spawnEntity(new EntityXPOrb(this.world, this.posX, this.posY, this.posZ, j));
             }
             this.setDead();
+        }
+    }
+
+    @Override
+    protected boolean canDropLoot() {
+        return false;
+    }
+
+    @Nullable
+    @Override
+    protected abstract ResourceLocation getLootTable();
+
+    @Nullable
+    protected abstract EntityBossCrystal.Type getDeathCrystalType();
+
+    @Override
+    public void onDeath(DamageSource cause) {
+        super.onDeath(cause);
+
+        if (isServerWorld()) {
+            EntityBossCrystal.Type crystalType = getDeathCrystalType();
+            if (crystalType != null) {
+                ResourceLocation lootTable = getLootTable();
+                EntityBossCrystal crystal;
+                if (lootTable == null) {
+                    crystal = EntityBossCrystal.create(world, getPositionVector(), getDeathCrystalType(), Collections.emptyList());
+                } else {
+                    crystal = EntityBossCrystal.create((WorldServer) world, getPositionVector(), getDeathCrystalType(), null, lootTable, 0L);
+                }
+
+                world.spawnEntity(crystal);
+            }
         }
     }
 }

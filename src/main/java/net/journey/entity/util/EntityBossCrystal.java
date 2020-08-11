@@ -1,6 +1,7 @@
 package net.journey.entity.util;
 
 import io.netty.buffer.ByteBuf;
+import net.journey.JITL;
 import net.journey.util.ChatUtils;
 import net.journey.util.LootHelper;
 import net.minecraft.entity.Entity;
@@ -26,7 +27,7 @@ import java.util.Random;
 
 public class EntityBossCrystal extends Entity implements IEntityAdditionalSpawnData {
     private final NonNullList<ItemStack> storedItems = NonNullList.create();
-    private int color;
+    private Type type;
 
     public EntityBossCrystal(World worldIn) {
         super(worldIn);
@@ -34,18 +35,18 @@ public class EntityBossCrystal extends Entity implements IEntityAdditionalSpawnD
         setSize(width, 3);
     }
 
-    public static EntityBossCrystal createFilledWith(World world, Vec3d pos, int argb, List<ItemStack> items) {
+    public static EntityBossCrystal create(World world, Vec3d pos, Type type, List<ItemStack> items) {
         EntityBossCrystal crystal = new EntityBossCrystal(world);
         crystal.storedItems.addAll(items);
         crystal.setPosition(pos.x, pos.y, pos.z);
 
-        crystal.color = argb;
+        crystal.type = type;
 
         return crystal;
     }
 
-    public static EntityBossCrystal createFilledWith(WorldServer world, Vec3d pos, int argb, @Nullable EntityPlayerMP player, ResourceLocation lootTable, long lootTableSeed) {
-        return createFilledWith(world, pos, argb, genItemList(world, player, lootTable, lootTableSeed));
+    public static EntityBossCrystal create(WorldServer world, Vec3d pos, Type type, @Nullable EntityPlayerMP player, ResourceLocation lootTable, long lootTableSeed) {
+        return create(world, pos, type, genItemList(world, player, lootTable, lootTableSeed));
     }
 
     @Override
@@ -61,11 +62,13 @@ public class EntityBossCrystal extends Entity implements IEntityAdditionalSpawnD
     @Override
     protected void readEntityFromNBT(NBTTagCompound compound) {
         ItemStackHelper.loadAllItems(compound, storedItems);
+        type = getTypeFromIndex(compound.getInteger("type"));
     }
 
     @Override
     protected void writeEntityToNBT(NBTTagCompound compound) {
         ItemStackHelper.saveAllItems(compound, storedItems);
+        compound.setInteger("type", type.ordinal());
     }
 
     @Override //fixes issue with other entities' rendering while this is transparent
@@ -111,15 +114,43 @@ public class EntityBossCrystal extends Entity implements IEntityAdditionalSpawnD
 
     @Override
     public void writeSpawnData(ByteBuf buffer) {
-        buffer.writeInt(color);
+        buffer.writeInt(type.ordinal());
     }
 
     @Override
     public void readSpawnData(ByteBuf buffer) {
-        color = buffer.readInt();
+        type = getTypeFromIndex(buffer.readInt());
     }
 
-    public int getColor() {
-        return color;
+    public ResourceLocation getTexture() {
+        return type.getTexture();
+    }
+
+    private Type getTypeFromIndex(int index) {
+        Type[] types = Type.values();
+        return types[index % types.length];
+    }
+
+    public enum Type {
+        COMMON(JITL.rl("textures/entity/util/crystal/common.png")),
+        NETHER(JITL.rl("textures/entity/util/crystal/nether.png")),
+        BOIL(JITL.rl("textures/entity/util/crystal/boil.png")),
+        EUCA(JITL.rl("textures/entity/util/crystal/euca.png")),
+        DEPTHS(JITL.rl("textures/entity/util/crystal/depths.png")),
+        CORBA(JITL.rl("textures/entity/util/crystal/corba.png")),
+        TERRANIA(JITL.rl("textures/entity/util/crystal/terrania.png")),
+        CLOUDIA(JITL.rl("textures/entity/util/crystal/cloudia.png")),
+        SENTERIAN(JITL.rl("textures/entity/util/crystal/senterian.png")),
+        FROZEN(JITL.rl("textures/entity/util/crystal/frozen.png"));
+
+        private final ResourceLocation crystalTexture;
+
+        Type(ResourceLocation crystalTexture) {
+            this.crystalTexture = crystalTexture;
+        }
+
+        public ResourceLocation getTexture() {
+            return crystalTexture;
+        }
     }
 }

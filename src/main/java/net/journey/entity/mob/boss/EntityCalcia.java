@@ -1,26 +1,20 @@
 package net.journey.entity.mob.boss;
 
-import com.google.common.collect.Lists;
-import jeresources.api.drop.LootDrop;
-import net.journey.blocks.tileentity.TileEntityBossCrystal;
 import net.journey.entity.MobStats;
+import net.journey.entity.util.EntityBossCrystal;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
-import net.journey.init.blocks.JourneyBlocks;
-import net.journey.init.items.JourneyItems;
-import net.journey.init.items.JourneyWeapons;
 import net.journey.util.PotionEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityEssenceBoss;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.List;
+import org.jetbrains.annotations.Nullable;
 
 public class EntityCalcia extends EntityEssenceBoss {
 
@@ -85,18 +79,13 @@ public class EntityCalcia extends EntityEssenceBoss {
     }
 
     @Override
-    public void onDeath(DamageSource damage) {
-        this.world.setBlockState(new BlockPos((int) Math.floor(this.posX + 0), ((int) Math.floor(this.posY + 0)), ((int) Math.floor(this.posZ + 0))), JourneyBlocks.bossCrystalNether.getDefaultState());
-        TileEntityBossCrystal te = (TileEntityBossCrystal) world.getTileEntity(new BlockPos((int) Math.floor(this.posX + 0), ((int) Math.floor(this.posY + 0)), ((int) Math.floor(this.posZ + 0))));
-        te.setLootTable(JourneyLootTables.CALCIA, rand.nextLong());
+    protected @Nullable ResourceLocation getLootTable() {
+        return JourneyLootTables.CALCIA;
     }
 
     @Override
-    public @NotNull List<LootDrop> getJERDrops() {
-        return Lists.newArrayList(
-                new LootDrop(JourneyItems.eucaPortalGem, 6, 9),
-                new LootDrop(JourneyWeapons.calciaSword, 1, 1)
-        );
+    protected @NotNull EntityBossCrystal.Type getDeathCrystalType() {
+        return EntityBossCrystal.Type.NETHER;
     }
 
     @Override

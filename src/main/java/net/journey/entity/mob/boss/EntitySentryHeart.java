@@ -2,6 +2,7 @@ package net.journey.entity.mob.boss;
 
 import net.journey.blocks.BlockLament;
 import net.journey.entity.MobStats;
+import net.journey.entity.util.EntityBossCrystal;
 import net.journey.init.JourneySounds;
 import net.minecraft.block.state.pattern.BlockPattern;
 import net.minecraft.entity.Entity;
@@ -9,12 +10,14 @@ import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityEssenceBoss;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class EntitySentryHeart extends EntityEssenceBoss {
     
@@ -146,5 +149,16 @@ public class EntitySentryHeart extends EntityEssenceBoss {
 	@Override
 	public @NotNull EntitySettings getEntitySettings() {
 		return MobStats.SENTRY_HEART;
+	}
+
+	@Nullable
+	@Override
+	protected EntityBossCrystal.Type getDeathCrystalType() {//todo
+		return null;
+	}
+
+	@Override
+	protected @Nullable ResourceLocation getLootTable() {//todo
+		return null;
 	}
 }

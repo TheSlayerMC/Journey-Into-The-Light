@@ -1,16 +1,10 @@
 package net.journey.entity.mob.boss;
 
-import com.google.common.collect.Lists;
-import jeresources.api.drop.LootDrop;
-import net.journey.blocks.tileentity.TileEntityBossCrystal;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityMagmaFireball;
+import net.journey.entity.util.EntityBossCrystal;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
-import net.journey.init.blocks.JourneyBlocks;
-import net.journey.init.items.JourneyArmory;
-import net.journey.init.items.JourneyItems;
-import net.journey.init.items.JourneyWeapons;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.ai.*;
@@ -20,10 +14,7 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvent;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -31,8 +22,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.entity.EntityEssenceBoss;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.List;
+import org.jetbrains.annotations.Nullable;
 
 public class EntityBlazier extends EntityEssenceBoss implements IRangedAttackMob {
 
@@ -160,23 +150,13 @@ public class EntityBlazier extends EntityEssenceBoss implements IRangedAttackMob
     }
 
     @Override
-    public void onDeath(DamageSource damage) {
-        this.world.setBlockState(new BlockPos((int) Math.floor(this.posX + 0), ((int) Math.floor(this.posY + 0)), ((int) Math.floor(this.posZ + 0))), JourneyBlocks.bossCrystalBoil.getDefaultState());
-        TileEntityBossCrystal te = (TileEntityBossCrystal) world.getTileEntity(new BlockPos((int) Math.floor(this.posX + 0), ((int) Math.floor(this.posY + 0)), ((int) Math.floor(this.posZ + 0))));
-        te.setLootTable(JourneyLootTables.BLAZIER, rand.nextLong());
+    protected @Nullable ResourceLocation getLootTable() {
+        return JourneyLootTables.BLAZIER;
     }
 
     @Override
-    public @NotNull List<LootDrop> getJERDrops() {
-        return Lists.newArrayList(new LootDrop(JourneyWeapons.blazingBow, 1, 1),
-                new LootDrop(JourneyWeapons.sizzlerSword, 1, 1),
-                new LootDrop(JourneyWeapons.sizzlingKnife, 128, 128),
-                new LootDrop(JourneyItems.hellShards, 6, 6),
-                new LootDrop(JourneyArmory.flameHelmet, 1, 1),
-                new LootDrop(JourneyArmory.flameLegs, 1, 1),
-                new LootDrop(JourneyArmory.flameChest, 1, 1),
-                new LootDrop(JourneyArmory.flameBoots, 1, 1)
-        );
+    protected @Nullable EntityBossCrystal.Type getDeathCrystalType() {
+        return EntityBossCrystal.Type.BOIL;
     }
 
     public boolean isFlying() {

@@ -5,6 +5,7 @@ import net.journey.entity.projectile.arrow.EntityDarknessArrow;
 import net.journey.entity.projectile.arrow.EntityFlameArrow;
 import net.journey.entity.projectile.arrow.EntityFrozenArrow;
 import net.journey.entity.projectile.arrow.EntityPoisonArrow;
+import net.journey.entity.util.EntityBossCrystal;
 import net.journey.init.items.JourneyWeapons;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
@@ -16,14 +17,15 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityEssenceBoss;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nullable;
-
+//FIXME it doesn't drop anything
 public class EntityFourfa extends EntityEssenceBoss implements IRangedAttackMob {
 
 
@@ -123,5 +125,17 @@ public class EntityFourfa extends EntityEssenceBoss implements IRangedAttackMob 
     @Override
     public @NotNull EntitySettings getEntitySettings() {
         return MobStats.FOURFA;
+    }
+
+    @Nullable
+    @Override
+    protected EntityBossCrystal.Type getDeathCrystalType() {
+        return null;
+    }
+
+    @Nullable
+    @Override
+    protected ResourceLocation getLootTable() {
+        return null;
     }
 }

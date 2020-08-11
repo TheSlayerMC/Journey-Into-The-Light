@@ -5,17 +5,12 @@ CUSTOM PROJECTILES: A GRAVITY-AFFECTED GRENADE THAT CAUSES SMALL EXPLOSIONS FOR 
 */
 package net.journey.entity.mob.boss;
 
-import com.google.common.collect.Lists;
-import jeresources.api.drop.LootDrop;
-import net.journey.blocks.tileentity.TileEntityBossCrystal;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityMagmaFireball;
 import net.journey.entity.projectile.EntitySentryKingGrenade;
+import net.journey.entity.util.EntityBossCrystal;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
-import net.journey.init.blocks.JourneyBlocks;
-import net.journey.init.items.JourneyItems;
-import net.journey.init.items.JourneyWeapons;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.ai.EntityAIAttackRanged;
@@ -24,6 +19,7 @@ import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
 import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -32,8 +28,7 @@ import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityEssenceBoss;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.List;
+import org.jetbrains.annotations.Nullable;
 
 public class EntitySentryKing extends EntityEssenceBoss implements IRangedAttackMob {
 
@@ -137,23 +132,14 @@ public class EntitySentryKing extends EntityEssenceBoss implements IRangedAttack
     }
 
     @Override
-    public void onDeath(DamageSource damage) {
-        this.world.setBlockState(new BlockPos((int) Math.floor(this.posX + 0), ((int) Math.floor(this.posY + 0)), ((int) Math.floor(this.posZ + 0))), JourneyBlocks.bossCrystalCorba.getDefaultState());
-        TileEntityBossCrystal te = (TileEntityBossCrystal) world.getTileEntity(new BlockPos((int) Math.floor(this.posX + 0), ((int) Math.floor(this.posY + 0)), ((int) Math.floor(this.posZ + 0))));
-        te.setLootTable(JourneyLootTables.SENTRY_KING, rand.nextLong());
+    protected @Nullable EntityBossCrystal.Type getDeathCrystalType() {
+        return EntityBossCrystal.Type.CORBA;
     }
 
     @Override
-    public @NotNull List<LootDrop> getJERDrops() {
-        return Lists.newArrayList(
-                new LootDrop(JourneyItems.terraniaPortalGem, 4, 5),
-                new LootDrop(JourneyWeapons.sentrySword, 1, 1),
-                new LootDrop(JourneyWeapons.overseerBow, 1, 1),
-                new LootDrop(JourneyWeapons.overseerBow, 1, 1),
-                new LootDrop(JourneyItems.ANCIENT_EYE_OF_OPENING, 1, 1)
-        );
+    protected @Nullable ResourceLocation getLootTable() {
+        return JourneyLootTables.SENTRY_KING;
     }
-
 
     @Override
     protected void entityInit() {

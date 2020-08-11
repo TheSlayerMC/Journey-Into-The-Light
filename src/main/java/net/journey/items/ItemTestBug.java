@@ -19,12 +19,12 @@ public class ItemTestBug extends JItem {
 	}
 
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-		if (!worldIn.isRemote) {
-			EntityBossCrystal bossCrystal = EntityBossCrystal.createFilledWith(((WorldServer) worldIn), playerIn.getPositionVector(), 0xFF00FF33, ((EntityPlayerMP) playerIn), JourneyLootTables.LOOT_DIAMOND, 0L);
-			worldIn.spawnEntity(bossCrystal);
+	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand handIn) {
+		if (!world.isRemote) {
+			EntityBossCrystal bossCrystal = EntityBossCrystal.create(((WorldServer) world), player.getPositionVector(), EntityBossCrystal.Type.EUCA, ((EntityPlayerMP) player), JourneyLootTables.LOOT_DIAMOND, 0L);
+			world.spawnEntity(bossCrystal);
 		}
 
-		return new ActionResult<>(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
+		return new ActionResult<>(EnumActionResult.SUCCESS, player.getHeldItem(handIn));
 	}
 }

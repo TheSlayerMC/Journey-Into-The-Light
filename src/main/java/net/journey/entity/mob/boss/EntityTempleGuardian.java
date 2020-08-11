@@ -1,15 +1,11 @@
 package net.journey.entity.mob.boss;
 
-import com.google.common.collect.Lists;
-import jeresources.api.drop.LootDrop;
-import net.journey.blocks.tileentity.TileEntityBossCrystal;
 import net.journey.entity.MobStats;
 import net.journey.entity.projectile.EntityFloroDirtProjectile;
 import net.journey.entity.projectile.EntityMagmaFireball;
+import net.journey.entity.util.EntityBossCrystal;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
-import net.journey.init.blocks.JourneyBlocks;
-import net.journey.init.items.JourneyItems;
 import net.journey.init.items.JourneyWeapons;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
@@ -22,16 +18,14 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityEssenceBoss;
 import org.jetbrains.annotations.NotNull;
-
-import javax.annotation.Nullable;
-import java.util.List;
+import org.jetbrains.annotations.Nullable;
 
 public class EntityTempleGuardian extends EntityEssenceBoss implements IRangedAttackMob {
 
@@ -102,20 +96,13 @@ public class EntityTempleGuardian extends EntityEssenceBoss implements IRangedAt
     }
 
     @Override
-    public void onDeath(DamageSource damage) {
-        this.world.setBlockState(new BlockPos((int) Math.floor(this.posX + 0), ((int) Math.floor(this.posY + 0)), ((int) Math.floor(this.posZ + 0))), JourneyBlocks.bossCrystal.getDefaultState());
-        TileEntityBossCrystal te = (TileEntityBossCrystal) world.getTileEntity(new BlockPos((int) Math.floor(this.posX + 0), ((int) Math.floor(this.posY + 0)), ((int) Math.floor(this.posZ + 0))));
-        te.setLootTable(JourneyLootTables.TEMPLE_GUARDIAN, rand.nextLong());
+    protected @Nullable ResourceLocation getLootTable() {
+        return JourneyLootTables.TEMPLE_GUARDIAN;
     }
 
     @Override
-    public @NotNull List<LootDrop> getJERDrops() {
-        return Lists.newArrayList(
-                new LootDrop(JourneyItems.yellowGem, 2, 5),
-                new LootDrop(JourneyItems.blueGem, 1, 5),
-                new LootDrop(JourneyItems.greenGem, 2, 6),
-                new LootDrop(JourneyItems.purpleGem, 2, 6)
-        );
+    protected @NotNull EntityBossCrystal.Type getDeathCrystalType() {
+        return EntityBossCrystal.Type.COMMON;
     }
 
     @Override
