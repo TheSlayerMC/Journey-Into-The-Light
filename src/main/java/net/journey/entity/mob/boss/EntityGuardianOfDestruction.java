@@ -1,11 +1,10 @@
 package net.journey.entity.mob.boss;
 
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.util.EntityBossCrystal;
 import net.journey.init.JourneySounds;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.MoverType;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.util.DamageSource;
@@ -14,14 +13,10 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityEssenceBoss;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 //FIXME it doesn't drop anything
 public class EntityGuardianOfDestruction extends EntityEssenceBoss {
-
-	public int maxHealth = MobStats.GUARDIAN_OF_DESTRUCTION.getAttributes().get(SharedMonsterAttributes.MAX_HEALTH).intValue();//TODO move to getHP or smth like that, but this attribute doesn't exists at constructor, so be aware!!!
-
 	private int rolltimer;
 	private int sountTimer;
 
@@ -43,6 +38,15 @@ public class EntityGuardianOfDestruction extends EntityEssenceBoss {
 		this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
 		this.tasks.addTask(2, new EntityAILookIdle(this));
 		addMeleeAttackingAI();
+	}
+
+	@Override
+	protected void applyEntityAttributes() {
+		super.applyEntityAttributes();
+
+		EntityAttributesHelper.setMaxHealth(this, 1500);
+		EntityAttributesHelper.setAttackDamage(this, 15);
+		EntityAttributesHelper.setKnockbackResistance(this, 1);
 	}
 
 	@Override
@@ -98,6 +102,8 @@ public class EntityGuardianOfDestruction extends EntityEssenceBoss {
 		super.onLivingUpdate();
 
 		int health = (int) getHealth();
+
+		double maxHealth = getMaxHealth();
 
 		if (health >= maxHealth)
 			stage = sleep;
@@ -200,11 +206,6 @@ public class EntityGuardianOfDestruction extends EntityEssenceBoss {
 	@Override
 	public float getCollisionBorderSize() {
 		return 2.0F;
-	}
-
-	@Override
-	public @NotNull EntitySettings getEntitySettings() {
-		return MobStats.GUARDIAN_OF_DESTRUCTION;
 	}
 
 	@Override

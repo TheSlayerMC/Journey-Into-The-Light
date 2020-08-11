@@ -1,6 +1,6 @@
 package net.journey.entity.mob.overworld.underground;
 
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.journey.init.items.JourneyConsumables;
@@ -13,14 +13,20 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.slayer.api.entity.JEntityMob;
 
-import org.jetbrains.annotations.NotNull;
-
 public class EntityGreenHonglow extends JEntityMob {
 
     public EntityGreenHonglow(World par1World) {
         super(par1World);
         addMeleeAttackingAI();
         this.setSize(1.0F, 2.0F);
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+
+        EntityAttributesHelper.setMaxHealth(this, 20);
+        EntityAttributesHelper.setAttackDamage(this, 4);
     }
 
     @Override
@@ -72,10 +78,5 @@ public class EntityGreenHonglow extends JEntityMob {
     protected void dropFewItems(boolean b, int j) {
         if (rand.nextInt(1) == 0) dropItem(JourneyConsumables.greenHonglowShroom, rand.nextInt(2));
         super.dropFewItems(b, j);
-    }
-
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return MobStats.GREEN_HONGLOW;
     }
 }

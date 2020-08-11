@@ -1,6 +1,6 @@
 package net.journey.entity.mob.boiling;
 
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.items.JourneyWeapons;
 import net.minecraft.entity.Entity;
@@ -13,8 +13,6 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.slayer.api.entity.JEntityMob;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.List;
 
 public class EntityBurningLight extends JEntityMob {
@@ -24,6 +22,14 @@ public class EntityBurningLight extends JEntityMob {
         addMeleeAttackingAI();
         setSize(0.7F, 2.0F);
         isImmuneToFire = true;
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+
+        EntityAttributesHelper.setMaxHealth(this, 45);
+        EntityAttributesHelper.setAttackDamage(this, 8);
     }
 
     @Override
@@ -63,10 +69,5 @@ public class EntityBurningLight extends JEntityMob {
     @Override
     public ItemStack getHeldItemMainhand() {
         return new ItemStack(JourneyWeapons.boilingBlade);
-    }
-
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return MobStats.BURNING_LIGHT;
     }
 }

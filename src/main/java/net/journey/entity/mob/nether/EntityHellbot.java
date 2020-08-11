@@ -1,6 +1,6 @@
 package net.journey.entity.mob.nether;
 
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.minecraft.util.DamageSource;
@@ -9,8 +9,6 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.slayer.api.entity.JEntityMob;
 
-import org.jetbrains.annotations.NotNull;
-
 public class EntityHellbot extends JEntityMob {
 
     public EntityHellbot(World par1World) {
@@ -18,6 +16,14 @@ public class EntityHellbot extends JEntityMob {
         addMeleeAttackingAI();
         this.isImmuneToFire = true;
         setSize(0.7F, 1.5F);
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+
+        EntityAttributesHelper.setMaxHealth(this, 30);
+        EntityAttributesHelper.setAttackDamage(this, 8);
     }
 
     @Override
@@ -38,10 +44,5 @@ public class EntityHellbot extends JEntityMob {
     @Override
     public ResourceLocation getLootTable() {
         return JourneyLootTables.HELLBOT;
-    }
-
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return MobStats.HELLBOT;
     }
 }

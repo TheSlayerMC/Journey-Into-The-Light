@@ -1,6 +1,6 @@
 package net.journey.entity.mob.boiling;
 
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,8 +13,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.slayer.api.entity.JEntityMob;
 
-import org.jetbrains.annotations.NotNull;
-
 public class EntityMagmaGiant extends JEntityMob {
 
     public EntityMagmaGiant(World par1World) {
@@ -22,6 +20,14 @@ public class EntityMagmaGiant extends JEntityMob {
         addMeleeAttackingAI();
         setSize(1.0F, 2.7F);
         isImmuneToFire = true;
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+
+        EntityAttributesHelper.setMaxHealth(this, 50);
+        EntityAttributesHelper.setAttackDamage(this, 10);
     }
 
     @Override
@@ -77,10 +83,5 @@ public class EntityMagmaGiant extends JEntityMob {
             if (this.world.isAirBlock(new BlockPos(i, j, k)) && Blocks.FIRE.canPlaceBlockAt(this.world, new BlockPos(i, j, k)))
                 this.world.setBlockState(new BlockPos(i, j, k), Blocks.FIRE.getDefaultState());
         }
-    }
-
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return MobStats.MAGMA_GIANT;
     }
 }

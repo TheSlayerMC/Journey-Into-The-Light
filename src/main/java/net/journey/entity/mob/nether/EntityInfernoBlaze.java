@@ -1,21 +1,11 @@
 package net.journey.entity.mob.nether;
 
-import java.util.List;
-
-import org.jetbrains.annotations.NotNull;
-
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.projectile.EntityMagmaFireball;
 import net.journey.init.JourneyLootTables;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.ai.EntityAIBase;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAIWander;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.ai.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
@@ -32,6 +22,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.entity.JEntityMob;
+
+import java.util.List;
 
 public class EntityInfernoBlaze extends JEntityMob {
 
@@ -57,6 +49,14 @@ public class EntityInfernoBlaze extends JEntityMob {
     protected void entityInit() {
         super.entityInit();
         this.dataManager.register(ON_FIRE, Byte.valueOf((byte) 0));
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+
+        EntityAttributesHelper.setMaxHealth(this, 30);
+        EntityAttributesHelper.setAttackDamage(this, 8);
     }
 
     @SideOnly(Side.CLIENT)
@@ -199,15 +199,9 @@ public class EntityInfernoBlaze extends JEntityMob {
         return JourneyLootTables.INFERNO_BLAZE;
     }
 
-    @NotNull
-    @Override
-    public EntitySettings getEntitySettings() {
-        return MobStats.INFERNO_BLAZE;
-    }
-
     class AIFireballAttack extends EntityAIBase {
         private static final String __OBFID = "CL_00002225";
-        private EntityInfernoBlaze field_179469_a = EntityInfernoBlaze.this;
+        private final EntityInfernoBlaze field_179469_a = EntityInfernoBlaze.this;
         private int field_179467_b;
         private int field_179468_c;
 

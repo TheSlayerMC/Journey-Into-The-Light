@@ -1,6 +1,6 @@
 package net.journey.entity.mob.nether;
 
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.init.JourneyLootTables;
 import net.journey.util.PotionEffects;
 import net.minecraft.entity.Entity;
@@ -12,8 +12,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.slayer.api.entity.JEntityMob;
-
-import org.jetbrains.annotations.NotNull;
 
 public class EntityWitherspine extends JEntityMob {
 
@@ -28,6 +26,14 @@ public class EntityWitherspine extends JEntityMob {
     //public boolean getCanSpawnHere() {
     //	return super.worldObj.getBlockState(new BlockPos(this.posX, this.posY-1, this.posZ)).getBlock() == Blocks.nether_brick;
     //}
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+
+        EntityAttributesHelper.setMaxHealth(this, 40);
+        EntityAttributesHelper.setAttackDamage(this, 8);
+    }
 
     @Override
     public boolean attackEntityAsMob(Entity e) {
@@ -62,10 +68,5 @@ public class EntityWitherspine extends JEntityMob {
     @Override
     public ResourceLocation getLootTable() {
         return JourneyLootTables.WITHERSPINE;
-    }
-
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return MobStats.WITHERSPINE;
     }
 }

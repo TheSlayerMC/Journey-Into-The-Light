@@ -1,6 +1,6 @@
 package net.journey.entity.mob.boss;
 
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.projectile.arrow.EntityDarknessArrow;
 import net.journey.entity.projectile.arrow.EntityFlameArrow;
 import net.journey.entity.projectile.arrow.EntityFrozenArrow;
@@ -22,7 +22,6 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityEssenceBoss;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 //FIXME it doesn't drop anything
@@ -45,6 +44,15 @@ public class EntityFourfa extends EntityEssenceBoss implements IRangedAttackMob 
         this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
         this.tasks.addTask(0, new EntityAIAttackRanged(this, 1.0D, 15, 60.0F));
         addMeleeAttackingAI();
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+
+        EntityAttributesHelper.setMaxHealth(this, 900);
+        EntityAttributesHelper.setAttackDamage(this, 10);
+        EntityAttributesHelper.setKnockbackResistance(this, 1);
     }
 
     @Override
@@ -120,11 +128,6 @@ public class EntityFourfa extends EntityEssenceBoss implements IRangedAttackMob 
 
     @Override
     public void setSwingingArms(boolean swingingArms) {
-    }
-
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return MobStats.FOURFA;
     }
 
     @Nullable

@@ -1,6 +1,6 @@
 package net.journey.entity.mob.terrania.mob;
 
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.projectile.EntityMagmaFireball;
 import net.journey.init.JourneyLootTables;
 import net.minecraft.entity.Entity;
@@ -16,8 +16,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.slayer.api.entity.JEntityMob;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -39,6 +37,14 @@ public class EntityPurplian extends JEntityMob {
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
         this.isImmuneToFire = true;
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+
+        EntityAttributesHelper.setMaxHealth(this, 75);
+        EntityAttributesHelper.setAttackDamage(this, 16);
     }
 
     @Override
@@ -140,13 +146,8 @@ public class EntityPurplian extends JEntityMob {
         this.dataManager.set(ON_FIRE, Byte.valueOf(b0));
     }
 
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return MobStats.PURPLIAN;
-    }
-
     class AIFireballAttack extends EntityAIBase {
-        private EntityPurplian field_179469_a = EntityPurplian.this;
+        private final EntityPurplian field_179469_a = EntityPurplian.this;
         private int field_179467_b;
         private int field_179468_c;
 

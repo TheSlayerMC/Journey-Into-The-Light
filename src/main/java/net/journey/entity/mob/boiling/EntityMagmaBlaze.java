@@ -1,6 +1,6 @@
 package net.journey.entity.mob.boiling;
 
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.projectile.EntityMagmaFireball;
 import net.journey.init.JourneyLootTables;
 import net.minecraft.entity.Entity;
@@ -23,8 +23,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.entity.JEntityMob;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.List;
 
 public class EntityMagmaBlaze extends JEntityMob {
@@ -45,6 +43,14 @@ public class EntityMagmaBlaze extends JEntityMob {
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
         this.isImmuneToFire = true;
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+
+        EntityAttributesHelper.setMaxHealth(this, 40);
+        EntityAttributesHelper.setAttackDamage(this, 8);
     }
 
     @Override
@@ -172,14 +178,9 @@ public class EntityMagmaBlaze extends JEntityMob {
         return JourneyLootTables.MAGMA_BLAZE;
     }
 
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return MobStats.MAGMA_BLAZE;
-    }
-
     class AIFireballAttack extends EntityAIBase {
         private static final String __OBFID = "CL_00002225";
-        private EntityMagmaBlaze field_179469_a = EntityMagmaBlaze.this;
+        private final EntityMagmaBlaze field_179469_a = EntityMagmaBlaze.this;
         private int field_179467_b;
         private int field_179468_c;
 

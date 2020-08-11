@@ -1,6 +1,6 @@
 package net.journey.entity.mob.overworld.jungle;
 
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.init.JourneyLootTables;
 import net.journey.util.PotionEffects;
 import net.minecraft.block.Block;
@@ -32,8 +32,6 @@ import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.slayer.api.entity.JEntityMob;
 
-import org.jetbrains.annotations.NotNull;
-
 import javax.annotation.Nullable;
 import java.util.Random;
 
@@ -61,6 +59,14 @@ public class EntityJungleSpider extends JEntityMob {
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
         this.targetTasks.addTask(2, new EntityJungleSpider.AISpiderTarget(this, EntityPlayer.class));
         this.targetTasks.addTask(3, new EntityJungleSpider.AISpiderTarget(this, EntityIronGolem.class));
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+
+        EntityAttributesHelper.setMaxHealth(this, 18);
+        EntityAttributesHelper.setAttackDamage(this, 4);
     }
 
     @Override
@@ -200,11 +206,6 @@ public class EntityJungleSpider extends JEntityMob {
     @Override
     public ResourceLocation getLootTable() {
         return JourneyLootTables.JUNGLE_SPIDER;
-    }
-
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return MobStats.JUNGLE_SPIDER;
     }
 
     static class AISpiderAttack extends EntityAIAttackMelee {

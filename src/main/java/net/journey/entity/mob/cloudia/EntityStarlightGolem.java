@@ -1,6 +1,6 @@
 package net.journey.entity.mob.cloudia;
 
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.minecraft.block.Block;
@@ -12,14 +12,20 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.slayer.api.entity.JEntityMob;
 
-import org.jetbrains.annotations.NotNull;
-
 public class EntityStarlightGolem extends JEntityMob {
 
     public EntityStarlightGolem(World par1World) {
         super(par1World);
         addMeleeAttackingAI();
         setSize(1.7F, 3.0F);
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+
+        EntityAttributesHelper.setMaxHealth(this, 75);
+        EntityAttributesHelper.setAttackDamage(this, 17);
     }
 
     @Override
@@ -46,9 +52,4 @@ public class EntityStarlightGolem extends JEntityMob {
 	public ResourceLocation getLootTable() {
 		return JourneyLootTables.STARLIGHT_GOLEM;
 	}
-
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return MobStats.STARLIGHT_GOLEM;
-    }
 }

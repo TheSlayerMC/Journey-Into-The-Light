@@ -1,6 +1,6 @@
 package net.journey.entity.mob.overworld;
 
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.minecraft.init.Blocks;
@@ -11,14 +11,20 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.slayer.api.entity.JEntityMob;
 
-import org.jetbrains.annotations.NotNull;
-
 public class EntityRobot extends JEntityMob {
 
     public EntityRobot(World par1World) {
         super(par1World);
-	    addMeleeAttackingAI();
-	    setSize(0.7F, 2.3F);
+        addMeleeAttackingAI();
+        setSize(0.7F, 2.3F);
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+
+        EntityAttributesHelper.setMaxHealth(this, 20);
+        EntityAttributesHelper.setAttackDamage(this, 4);
     }
 
     @Override
@@ -48,10 +54,5 @@ public class EntityRobot extends JEntityMob {
     @Override
     public ResourceLocation getLootTable() {
         return JourneyLootTables.ROBOT;
-    }
-
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return MobStats.ROBOT;
     }
 }

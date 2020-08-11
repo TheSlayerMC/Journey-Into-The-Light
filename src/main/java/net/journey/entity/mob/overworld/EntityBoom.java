@@ -1,7 +1,7 @@
 package net.journey.entity.mob.overworld;
 
 import net.journey.entity.AI.EntityAIBoomSwell;
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.init.JourneyLootTables;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -26,8 +26,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.entity.JEntityMob;
-
-import org.jetbrains.annotations.NotNull;
 
 public class EntityBoom extends JEntityMob {
 
@@ -128,6 +126,15 @@ public class EntityBoom extends JEntityMob {
         this.dataManager.register(POWERED, Boolean.valueOf(false));
         this.dataManager.register(IGNITED, Boolean.valueOf(false));
     }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+
+        EntityAttributesHelper.setMaxHealth(this, 20);
+        EntityAttributesHelper.setMovementSpeed(this, 0.200000011920929);
+    }
+
 
     @Override
     public void writeEntityToNBT(NBTTagCompound nbt) {
@@ -256,10 +263,5 @@ public class EntityBoom extends JEntityMob {
 
     public void ignite() {
         this.dataManager.set(IGNITED, Boolean.valueOf(true));
-    }
-
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return MobStats.BOOM;
     }
 }

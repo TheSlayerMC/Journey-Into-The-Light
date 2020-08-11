@@ -1,6 +1,6 @@
 package net.journey.entity.mob.boiling;
 
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.init.JourneyLootTables;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
@@ -8,13 +8,19 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.slayer.api.entity.JEntityMob;
 
-import org.jetbrains.annotations.NotNull;
-
 public class EntityFlameLotus extends JEntityMob {
 
     public EntityFlameLotus(World par1World) {
         super(par1World);
         this.setSize(2.0F, 0.4F);
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+
+        EntityAttributesHelper.setMaxHealth(this, 100);
+        EntityAttributesHelper.setMovementSpeed(this, 0);
     }
 
     @Override
@@ -36,9 +42,4 @@ public class EntityFlameLotus extends JEntityMob {
 	public ResourceLocation getLootTable() {
 		return JourneyLootTables.FLAME_LOTUS;
 	}
-
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return MobStats.FLAME_LOTUS;
-    }
 }

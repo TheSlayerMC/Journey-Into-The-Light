@@ -1,6 +1,6 @@
 package net.journey.entity.mob.boiling;
 
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.minecraft.entity.Entity;
@@ -11,8 +11,6 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.slayer.api.entity.JEntityMob;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.List;
 
 public class EntityFrightener extends JEntityMob {
@@ -22,6 +20,14 @@ public class EntityFrightener extends JEntityMob {
         addMeleeAttackingAI();
         setSize(0.7F, 2.0F);
         isImmuneToFire = true;
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+
+        EntityAttributesHelper.setMaxHealth(this, 40);
+        EntityAttributesHelper.setAttackDamage(this, 9);
     }
 
     @Override
@@ -57,9 +63,4 @@ public class EntityFrightener extends JEntityMob {
 	public ResourceLocation getLootTable() {
 		return JourneyLootTables.FRIGHTENER;
 	}
-
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return MobStats.FRIGHTENER;
-    }
 }

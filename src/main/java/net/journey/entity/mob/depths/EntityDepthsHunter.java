@@ -1,6 +1,6 @@
 package net.journey.entity.mob.depths;
 
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.journey.util.PotionEffects;
@@ -12,8 +12,6 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.slayer.api.entity.JEntityMob;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.List;
 
 public class EntityDepthsHunter extends JEntityMob {
@@ -22,6 +20,14 @@ public class EntityDepthsHunter extends JEntityMob {
         super(par1World);
         addMeleeAttackingAI();
         setSize(1.0F, 2.3F);
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+
+        EntityAttributesHelper.setMaxHealth(this, 58);
+        EntityAttributesHelper.setAttackDamage(this, 13);
     }
 
     @Override
@@ -57,9 +63,4 @@ public class EntityDepthsHunter extends JEntityMob {
 	public ResourceLocation getLootTable() {
 		return JourneyLootTables.DEPTHS_HUNTER;
 	}
-
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return MobStats.DEPTHS_HUNTER;
-    }
 }

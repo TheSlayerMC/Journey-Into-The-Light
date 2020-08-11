@@ -1,13 +1,12 @@
 package net.journey.entity.mob.overworld.jungle;
 
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.journey.util.PotionEffects;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.potion.PotionEffect;
@@ -18,8 +17,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.slayer.api.entity.JEntityMob;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -34,7 +31,10 @@ public class EntityJungleGolem extends JEntityMob {
     @Override
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(3);
+
+        EntityAttributesHelper.setMaxHealth(this, 20);
+        EntityAttributesHelper.setAttackDamage(this, 4);
+        EntityAttributesHelper.setKnockbackResistance(this, 3);
     }
 
     @Override
@@ -89,10 +89,5 @@ public class EntityJungleGolem extends JEntityMob {
 
     @Override
     protected void dropFewItems(boolean b, int j) {
-    }
-
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return MobStats.JUNGLE_GOLEM;
     }
 }

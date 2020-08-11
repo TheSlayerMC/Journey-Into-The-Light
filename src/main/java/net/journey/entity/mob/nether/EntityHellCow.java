@@ -1,6 +1,6 @@
 package net.journey.entity.mob.nether;
 
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.init.JourneyLootTables;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -19,7 +19,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityPeacefullUntillAttacked;
-import org.jetbrains.annotations.NotNull;
 
 public class EntityHellCow extends EntityPeacefullUntillAttacked {
 
@@ -33,6 +32,15 @@ public class EntityHellCow extends EntityPeacefullUntillAttacked {
         this.tasks.addTask(7, new EntityAILookIdle(this));
         this.isImmuneToFire = true;
         setSize(1.0F, 1.5F);
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+
+        EntityAttributesHelper.setMaxHealth(this, 35);
+        EntityAttributesHelper.setAttackDamage(this, 7);
+        EntityAttributesHelper.setMovementSpeed(this, 0.3);
     }
 
     @Override
@@ -98,10 +106,5 @@ public class EntityHellCow extends EntityPeacefullUntillAttacked {
 
     public EntityHellCow createChild(EntityAgeable ageable) {
         return new EntityHellCow(this.world);
-    }
-
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return MobStats.HELL_COW;
     }
 }

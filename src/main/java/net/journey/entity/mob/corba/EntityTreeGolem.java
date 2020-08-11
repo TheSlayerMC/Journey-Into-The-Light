@@ -1,6 +1,6 @@
 package net.journey.entity.mob.corba;
 
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.journey.util.PotionEffects;
@@ -16,8 +16,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.slayer.api.entity.JEntityMob;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.List;
 
 public class EntityTreeGolem extends JEntityMob {
@@ -26,6 +24,14 @@ public class EntityTreeGolem extends JEntityMob {
         super(par1World);
         addMeleeAttackingAI();
         setSize(1.2F, 1.5F);
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+
+        EntityAttributesHelper.setMaxHealth(this, 62);
+        EntityAttributesHelper.setAttackDamage(this, 14);
     }
 
     @Override
@@ -75,9 +81,4 @@ public class EntityTreeGolem extends JEntityMob {
 	public ResourceLocation getLootTable() {
 		return JourneyLootTables.TREE_GOLEM;
 	}
-
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return MobStats.TREE_GOLEM;
-    }
 }

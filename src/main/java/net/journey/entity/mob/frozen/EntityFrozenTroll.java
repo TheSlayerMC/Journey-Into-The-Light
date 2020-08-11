@@ -1,12 +1,11 @@
 package net.journey.entity.mob.frozen;
 
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.journey.util.PotionEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
@@ -14,8 +13,6 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.slayer.api.entity.JEntityMob;
-
-import org.jetbrains.annotations.NotNull;
 
 public class EntityFrozenTroll extends JEntityMob {
     public EntityFrozenTroll(World par1World) {
@@ -27,7 +24,10 @@ public class EntityFrozenTroll extends JEntityMob {
     @Override
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(1);
+
+        EntityAttributesHelper.setMaxHealth(this, 42);
+        EntityAttributesHelper.setAttackDamage(this, 10);
+        EntityAttributesHelper.setKnockbackResistance(this, 1);
     }
 
     @Override
@@ -64,11 +64,5 @@ public class EntityFrozenTroll extends JEntityMob {
     @Override
     public ResourceLocation getLootTable() {
         return JourneyLootTables.FROZEN_TROLL;
-    }
-
-    @NotNull
-    @Override
-    public EntitySettings getEntitySettings() {
-        return MobStats.FROZEN_TROLL;
     }
 }

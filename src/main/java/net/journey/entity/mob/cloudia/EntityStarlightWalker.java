@@ -1,6 +1,6 @@
 package net.journey.entity.mob.cloudia;
 
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.minecraft.init.SoundEvents;
@@ -10,14 +10,20 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.slayer.api.entity.JEntityMob;
 
-import org.jetbrains.annotations.NotNull;
-
 public class EntityStarlightWalker extends JEntityMob {
 
     public EntityStarlightWalker(World w) {
         super(w);
         addMeleeAttackingAI();
         setSize(1.0F, 1.0F);
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+
+        EntityAttributesHelper.setMaxHealth(this, 75);
+        EntityAttributesHelper.setAttackDamage(this, 17);
     }
 
     @Override
@@ -39,9 +45,4 @@ public class EntityStarlightWalker extends JEntityMob {
 	public ResourceLocation getLootTable() {
 		return JourneyLootTables.STARLIGHT_WALKER;
 	}
-
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return MobStats.STARLIGHT_WALKER;
-    }
 }

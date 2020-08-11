@@ -1,6 +1,6 @@
 package net.journey.entity.mob.corba;
 
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.journey.util.PotionEffects;
@@ -12,8 +12,6 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.slayer.api.entity.JEntityMob;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.List;
 
 public class EntityWoodCreature extends JEntityMob {
@@ -22,6 +20,14 @@ public class EntityWoodCreature extends JEntityMob {
         super(par1World);
         addMeleeAttackingAI();
         setSize(1.2F, 1.5F);
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+
+        EntityAttributesHelper.setMaxHealth(this, 62);
+        EntityAttributesHelper.setAttackDamage(this, 12);
     }
 
     @Override
@@ -57,9 +63,4 @@ public class EntityWoodCreature extends JEntityMob {
 	public ResourceLocation getLootTable() {
 		return JourneyLootTables.WOOD_CREATURE;
 	}
-
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return MobStats.WOOD_CREATURE;
-    }
 }

@@ -1,6 +1,6 @@
 package net.journey.entity.mob.boiling;
 
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.projectile.EntityMagmaFireball;
 import net.journey.init.JourneyLootTables;
 import net.minecraft.entity.Entity;
@@ -16,8 +16,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.slayer.api.entity.JEntityMob;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -40,6 +38,14 @@ public class EntityObserver extends JEntityMob {
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
         this.isImmuneToFire = true;
         setSize(0.8F, 2.0F);
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+
+        EntityAttributesHelper.setMaxHealth(this, 58);
+        EntityAttributesHelper.setAttackDamage(this, 8);
     }
 
     @Override
@@ -141,13 +147,8 @@ public class EntityObserver extends JEntityMob {
         this.dataManager.set(ON_FIRE, Byte.valueOf(b0));
     }
 
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return MobStats.OBSERVER;
-    }
-
     class AIFireballAttack extends EntityAIBase {
-        private EntityObserver entity = EntityObserver.this;
+        private final EntityObserver entity = EntityObserver.this;
         private int x;
         private int y;
 

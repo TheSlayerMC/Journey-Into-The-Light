@@ -52,11 +52,11 @@ public abstract class EntityModWaterMob extends EntityWaterMob implements IJERCo
     }
 
     public double setMovementSpeed() {
-        return MobStats.standardMovementSpeed;
+        return MobStats.STANDARD_MOVEMENT_SPEED;
     }
 
     public double setKnockbackResistance() {
-        return MobStats.standardKnockBackResistance;
+        return MobStats.STANDARD_KNOCKBACK_RESISTANCE;
     }
 
     public abstract double setMaxHealth(MobStats s);

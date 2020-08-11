@@ -1,6 +1,6 @@
 package net.journey.entity.mob.boss;
 
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.util.EntityBossCrystal;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
@@ -28,6 +28,15 @@ public class EntityEudor extends EntityEssenceBoss {
         super(par1World);
         addMeleeAttackingAI();
         this.setSize(3.5F, 5.2F);
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+
+        EntityAttributesHelper.setMaxHealth(this, 900);
+        EntityAttributesHelper.setAttackDamage(this, 10);
+        EntityAttributesHelper.setKnockbackResistance(this, 1);
     }
 
     @Override
@@ -82,10 +91,5 @@ public class EntityEudor extends EntityEssenceBoss {
     @Override
     protected @NotNull EntityBossCrystal.Type getDeathCrystalType() {
         return EntityBossCrystal.Type.EUCA;
-    }
-
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return MobStats.EUDOR;
     }
 }

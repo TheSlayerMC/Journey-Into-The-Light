@@ -1,6 +1,6 @@
 package net.journey.entity.mob.boss;
 
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.projectile.EntityDeathSkull;
 import net.journey.entity.util.EntityBossCrystal;
 import net.journey.init.JourneyLootTables;
@@ -14,7 +14,6 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityEssenceBoss;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class EntityWitheringBeast extends EntityEssenceBoss implements IRangedAttackMob {
@@ -30,6 +29,14 @@ public class EntityWitheringBeast extends EntityEssenceBoss implements IRangedAt
         super.initEntityAI();
         this.tasks.addTask(0, new EntityAIAttackRanged(this, 0.27F, 30, 10.0F));
         addMeleeAttackingAI();
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+
+        EntityAttributesHelper.setMaxHealth(this, 750);
+        EntityAttributesHelper.setAttackDamage(this, 10);
     }
 
     @Override
@@ -108,10 +115,5 @@ public class EntityWitheringBeast extends EntityEssenceBoss implements IRangedAt
 
     @Override
     public void setSwingingArms(boolean swingingArms) {
-    }
-
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return MobStats.WITHERING_BEAST;
     }
 }

@@ -1,6 +1,6 @@
 package net.journey.entity.mob.boiling;
 
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.projectile.EntityMagmaFireball;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
@@ -27,8 +27,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.entity.JEntityMob;
-
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
@@ -85,8 +83,9 @@ public class EntityHellwing extends JEntityMob {
 	@Override
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(14.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(4.0D);
+
+		EntityAttributesHelper.setMaxHealth(this, 40);
+		EntityAttributesHelper.setAttackDamage(this, 8);
 	}
 
 	@Override
@@ -214,11 +213,6 @@ public class EntityHellwing extends JEntityMob {
 	protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty) {
 		this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.IRON_SWORD));
 		this.setDropChance(EntityEquipmentSlot.MAINHAND, 0.0F);
-	}
-
-	@Override
-	public @NotNull EntitySettings getEntitySettings() {
-		return MobStats.HELLWING;
 	}
 
 	class AIChargeAttack extends EntityAIBase {
@@ -377,7 +371,7 @@ public class EntityHellwing extends JEntityMob {
 
 	class AIFireballAttack extends EntityAIBase {
 		private static final String __OBFID = "CL_00002225";
-		private EntityHellwing field_179469_a = EntityHellwing.this;
+		private final EntityHellwing field_179469_a = EntityHellwing.this;
 		private int field_179467_b;
 		private int field_179468_c;
 

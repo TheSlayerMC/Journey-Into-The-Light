@@ -78,7 +78,7 @@ public abstract class EntityPeacefullMob extends EntityCreature implements IMob 
     }
 
     public double setKnockbackResistance() {
-        return MobStats.standardKnockBackResistance;
+        return MobStats.STANDARD_KNOCKBACK_RESISTANCE;
     }
 
     public abstract double setMaxHealth(MobStats s);

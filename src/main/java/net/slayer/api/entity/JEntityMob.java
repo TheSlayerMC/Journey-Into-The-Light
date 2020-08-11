@@ -1,13 +1,11 @@
 package net.slayer.api.entity;
 
 import net.journey.api.entity.IJERCompatible;
-import net.journey.api.entity.ISettingsConsumer;
 import net.journey.entity.MobStats;
-import net.journey.entity.base.EntitySettingsHelper;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
-import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -19,7 +17,7 @@ import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public abstract class JEntityMob extends EntityMob implements ISettingsConsumer, IJERCompatible {
+public abstract class JEntityMob extends EntityMob implements IJERCompatible {
 
 	public JEntityMob(World world) {
 		super(world);
@@ -46,21 +44,9 @@ public abstract class JEntityMob extends EntityMob implements ISettingsConsumer,
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
 
-		EntitySettingsHelper.setMovementSpeed(this, MobStats.standardMovementSpeed);
-
-		EntitySettings entitySettings = getEntitySettings();
-		if (entitySettings != null) {//maybe null in entities, where we moved away from this system
-			entitySettings.getAttributes().forEach((attribute, value) -> {
-				IAttributeInstance instance = getEntityAttribute(attribute);
-
-				//noinspection ConstantConditions
-				if (instance == null) {
-					instance = getAttributeMap().registerAttribute(attribute);
-				}
-
-				instance.setBaseValue(value);
-			});
-		}
+		EntityAttributesHelper.setMovementSpeed(this, MobStats.STANDARD_MOVEMENT_SPEED);
+		EntityAttributesHelper.setFollowRange(this, MobStats.STANDARD_FOLLOW_RANGE);
+		EntityAttributesHelper.setKnockbackResistance(this, MobStats.STANDARD_KNOCKBACK_RESISTANCE);
 	}
 
 	@Override
@@ -79,10 +65,6 @@ public abstract class JEntityMob extends EntityMob implements ISettingsConsumer,
 
 	@Override
 	protected abstract SoundEvent getDeathSound();
-
-	public double getHP() {
-		return getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getAttributeValue();
-	}
 
 	public double getMoveSpeed() {
 		return getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue();

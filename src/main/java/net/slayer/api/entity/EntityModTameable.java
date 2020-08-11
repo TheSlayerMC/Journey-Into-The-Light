@@ -1,8 +1,6 @@
 package net.slayer.api.entity;
 
 import com.google.common.base.Optional;
-
-import net.journey.api.entity.ISettingsConsumer;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -26,7 +24,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nullable;
 import java.util.UUID;
 
-public abstract class EntityModTameable extends EntityTameable implements ISettingsConsumer {
+public abstract class EntityModTameable extends EntityTameable {
 
 	protected static final DataParameter<Byte> TAMED = EntityDataManager.createKey(EntityModTameable.class, DataSerializers.BYTE);
 	protected static final DataParameter<Optional<UUID>> OWNER_UNIQUE_ID = EntityDataManager.createKey(EntityModTameable.class, DataSerializers.OPTIONAL_UNIQUE_ID);
@@ -37,8 +35,6 @@ public abstract class EntityModTameable extends EntityTameable implements ISetti
 		this.aiSit = new EntityAISit(this);
 		this.tasks.addTask(2, this.aiSit);
 	}
-
-
 
 	@Override
 	protected void initEntityAI() {
@@ -53,10 +49,6 @@ public abstract class EntityModTameable extends EntityTameable implements ISetti
 		this.targetTasks.addTask(1, new EntityAIOwnerHurtByTarget(this));
 		this.targetTasks.addTask(2, new EntityAIOwnerHurtTarget(this));
 		this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));
-	}
-
-	public double getHP() {
-		return getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getAttributeValue();
 	}
 
 	public double getMoveSpeed() {
