@@ -65,6 +65,8 @@ public class JourneySounds {
     public static SoundEvent STAFF = registerSound("staff");
     public static SoundEvent WRAPPER = registerSound("wrapper");
     public static SoundEvent PAGE_FLIP = registerSound("page_flip");
+    public static SoundEvent CRYSTAL = registerSound("crystal");
+    public static SoundEvent CRYSTAL_ERROR = registerSound("crystal_error");
     public static SoundEvent MAGIC_SPARKLE = registerSound("magic_sparkle");
     public static SoundEvent CANNON = registerSound("cannon");
     public static SoundEvent PLASMA = registerSound("plasma");

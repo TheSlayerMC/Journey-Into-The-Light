@@ -67,16 +67,78 @@
  "sentry_hurt_1":{"category":"hostile","sounds": ["journey:sentry_hurt_1"]},
  "sentry_hurt_2":{"category":"hostile","sounds": ["journey:sentry_hurt_2"]},
  "cave_mob": {"category": "neutral","sounds": ["journey:cave_mob"]},
- "chest_open_0":{"category":"master","sounds": ["journey:chest_open_0"]},
- "obelisk_idle":{"category":"master","sounds": ["journey:obelisk_idle"]},
- "obelisk_open":{"category":"master","sounds": ["journey:obelisk_open"]},
- "chest_close":{"category":"master","sounds": ["journey:chest_close"]},
- "chest":{"category":"master","sounds": ["journey:chest"]},
- "cannon":{"category":"neutral","sounds": ["journey:cannon"] },
- "gate_creak":{"category":"master","sounds": ["journey:gate_creak"]},
- "hammer":{"category":"master","sounds": ["journey:hammer"]},
- "magic_sparkle":{"category":"neutral","sounds": ["journey:magic_sparkle"]},
- "page_flip":{"category":"neutral","sounds": ["journey:page_flip"]},
+  "chest_open_0": {
+    "category": "master",
+    "sounds": [
+      "journey:chest_open_0"
+    ]
+  },
+  "obelisk_idle": {
+    "category": "master",
+    "sounds": [
+      "journey:obelisk_idle"
+    ]
+  },
+  "obelisk_open": {
+    "category": "master",
+    "sounds": [
+      "journey:obelisk_open"
+    ]
+  },
+  "chest_close": {
+    "category": "master",
+    "sounds": [
+      "journey:chest_close"
+    ]
+  },
+  "chest": {
+    "category": "master",
+    "sounds": [
+      "journey:chest"
+    ]
+  },
+  "cannon": {
+    "category": "neutral",
+    "sounds": [
+      "journey:cannon"
+    ]
+  },
+  "gate_creak": {
+    "category": "master",
+    "sounds": [
+      "journey:gate_creak"
+    ]
+  },
+  "hammer": {
+    "category": "master",
+    "sounds": [
+      "journey:hammer"
+    ]
+  },
+  "magic_sparkle": {
+    "category": "neutral",
+    "sounds": [
+      "journey:magic_sparkle"
+    ]
+  },
+  "page_flip": {
+    "category": "neutral",
+    "sounds": [
+      "journey:page_flip"
+    ]
+  },
+  "crystal": {
+    "category": "neutral",
+    "sounds": [
+      "journey:crystal"
+    ]
+  },
+  "crystal_error": {
+    "category": "neutral",
+    "sounds": [
+      "journey:crystal_error"
+    ]
+  },
   "plasma": {
     "category": "neutral",
     "sounds": [
