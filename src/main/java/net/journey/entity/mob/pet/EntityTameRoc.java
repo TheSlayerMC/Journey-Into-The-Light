@@ -1,9 +1,6 @@
 package net.journey.entity.mob.pet;
 
-import org.jetbrains.annotations.NotNull;
-
-import net.journey.api.entity.ISettingsConsumer.EntitySettings;
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.init.JourneySounds;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.player.EntityPlayer;
@@ -22,6 +19,14 @@ public class EntityTameRoc extends EntityJourneyPet {
 	}
 
 	@Override
+	protected void applyEntityAttributes() {
+		super.applyEntityAttributes();
+
+		EntityAttributesHelper.setMaxHealth(this, 60);
+		EntityAttributesHelper.setAttackDamage(this, 7);
+	}
+
+	@Override
 	public SoundEvent setLivingSound() {
 		return JourneySounds.BIRD;
 	}
@@ -36,14 +41,8 @@ public class EntityTameRoc extends EntityJourneyPet {
 		return JourneySounds.BIRD_DEATH;
 	}
 
-
 	@Override
 	public EntityAgeable createChild(EntityAgeable ageable) {
 		return null;
-	}
-
-	@Override
-	public @NotNull EntitySettings getEntitySettings() {
-		return MobStats.PET_ROC;
 	}
 }

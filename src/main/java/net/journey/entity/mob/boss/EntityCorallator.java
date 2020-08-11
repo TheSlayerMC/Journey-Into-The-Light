@@ -1,6 +1,6 @@
 package net.journey.entity.mob.boss;
 
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.mob.euca.EntityShimmerer;
 import net.journey.entity.projectile.EntityMagmaFireball;
 import net.journey.entity.util.EntityBossCrystal;
@@ -21,7 +21,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityEssenceBoss;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
@@ -40,6 +39,14 @@ public class EntityCorallator extends EntityEssenceBoss implements IRangedAttack
         addMeleeAttackingAI();
         setSize(3.0F, 4.0F);
         spawnTimer = 0;
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+
+        EntityAttributesHelper.setMaxHealth(this, 950);
+        EntityAttributesHelper.setAttackDamage(this, 10);
     }
 
     @Override
@@ -219,11 +226,6 @@ public class EntityCorallator extends EntityEssenceBoss implements IRangedAttack
 
     @Override
     public void setSwingingArms(boolean swingingArms) {
-    }
-
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return MobStats.CORALLATOR;
     }
 
     private class AIRandomFly extends EntityAIBase {

@@ -1,6 +1,6 @@
 package net.journey.entity.mob.nether;
 
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.init.JourneyLootTables;
 import net.journey.util.PotionEffects;
 import net.minecraft.entity.Entity;
@@ -12,8 +12,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.slayer.api.entity.JEntityMob;
-
-import org.jetbrains.annotations.NotNull;
 
 public class EntityReaper extends JEntityMob {
 
@@ -38,6 +36,15 @@ public class EntityReaper extends JEntityMob {
     }
 
     @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+
+        EntityAttributesHelper.setMaxHealth(this, 35);
+        EntityAttributesHelper.setAttackDamage(this, 7);
+        EntityAttributesHelper.setMovementSpeed(this, 0.3);
+    }
+
+    @Override
     protected SoundEvent getAmbientSound() {
         return SoundEvents.ENTITY_WITHER_AMBIENT;
     }
@@ -56,9 +63,4 @@ public class EntityReaper extends JEntityMob {
 	public ResourceLocation getLootTable() {
 		return JourneyLootTables.REAPER;
 	}
-
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return MobStats.REAPER;
-    }
 }

@@ -1,6 +1,6 @@
 package net.journey.entity.mob.boiling;
 
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.projectile.EntityMagmaFireball;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.items.JourneyItems;
@@ -17,8 +17,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.slayer.api.entity.JEntityMob;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -41,6 +39,14 @@ public class EntityScreamer extends JEntityMob {
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
         this.isImmuneToFire = true;
         setSize(0.7F, 1.5F);
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+
+        EntityAttributesHelper.setMaxHealth(this, 48);
+        EntityAttributesHelper.setAttackDamage(this, 9);
     }
 
     @Override
@@ -153,13 +159,8 @@ public class EntityScreamer extends JEntityMob {
         return JourneyLootTables.SCREAMER;
     }
 
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return MobStats.SCREAMER;
-    }
-
     class AIFireballAttack extends EntityAIBase {
-        private EntityScreamer field_179469_a = EntityScreamer.this;
+        private final EntityScreamer field_179469_a = EntityScreamer.this;
         private int field_179467_b;
         private int field_179468_c;
 

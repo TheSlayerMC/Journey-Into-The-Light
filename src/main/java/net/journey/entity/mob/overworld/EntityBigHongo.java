@@ -1,6 +1,6 @@
 package net.journey.entity.mob.overworld;
 
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.minecraft.util.DamageSource;
@@ -10,14 +10,20 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.slayer.api.entity.JEntityMob;
 
-import org.jetbrains.annotations.NotNull;
-
 public class EntityBigHongo extends JEntityMob {
 
     public EntityBigHongo(World par1World) {
         super(par1World);
         addMeleeAttackingAI();
         this.setSize(1.0F, 2.0F);
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+
+        EntityAttributesHelper.setMaxHealth(this, 40);
+        EntityAttributesHelper.setAttackDamage(this, 8.5);
     }
 
     @Override
@@ -44,10 +50,5 @@ public class EntityBigHongo extends JEntityMob {
     public boolean getCanSpawnHere() {
         return this.isValidLightLevel() &&
                 this.world.getBlockState(new BlockPos(this.posX, this.posY - 1, this.posZ)).isFullBlock() && this.dimension == 0;
-    }
-
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return MobStats.BIG_HONGO;
     }
 }

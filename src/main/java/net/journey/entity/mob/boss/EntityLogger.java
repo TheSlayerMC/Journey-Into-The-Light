@@ -1,6 +1,6 @@
 package net.journey.entity.mob.boss;
 
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.util.EntityBossCrystal;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
@@ -16,7 +16,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityEssenceBoss;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class EntityLogger extends EntityEssenceBoss {
@@ -27,6 +26,14 @@ public class EntityLogger extends EntityEssenceBoss {
         super(par1World);
         addMeleeAttackingAI();
         setSize(3.0F, 3.5F);
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+
+        EntityAttributesHelper.setMaxHealth(this, 2350);
+        EntityAttributesHelper.setAttackDamage(this, 10);
     }
 
     @Override
@@ -81,10 +88,5 @@ public class EntityLogger extends EntityEssenceBoss {
     @Override
     protected @Nullable ResourceLocation getLootTable() {
         return JourneyLootTables.LOGGER;
-    }
-
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return MobStats.LOGGER;
     }
 }

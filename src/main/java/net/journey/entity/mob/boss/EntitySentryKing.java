@@ -5,7 +5,7 @@ CUSTOM PROJECTILES: A GRAVITY-AFFECTED GRENADE THAT CAUSES SMALL EXPLOSIONS FOR 
 */
 package net.journey.entity.mob.boss;
 
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.projectile.EntityMagmaFireball;
 import net.journey.entity.projectile.EntitySentryKingGrenade;
 import net.journey.entity.util.EntityBossCrystal;
@@ -27,7 +27,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityEssenceBoss;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class EntitySentryKing extends EntityEssenceBoss implements IRangedAttackMob {
@@ -49,6 +48,15 @@ public class EntitySentryKing extends EntityEssenceBoss implements IRangedAttack
         this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
         this.tasks.addTask(0, new EntityAIAttackRanged(this, 1.0D, 1, 20.0F));
         addMeleeAttackingAI();
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+
+        EntityAttributesHelper.setMaxHealth(this, 2500);
+        EntityAttributesHelper.setAttackDamage(this, 20);
+        EntityAttributesHelper.setKnockbackResistance(this, 1);
     }
 
     @Override
@@ -152,11 +160,6 @@ public class EntitySentryKing extends EntityEssenceBoss implements IRangedAttack
 
     @Override
     public void setSwingingArms(boolean swingingArms) {
-    }
-
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return MobStats.SENTRY_KING;
     }
 
     private class MoveHelper extends EntityMoveHelper {

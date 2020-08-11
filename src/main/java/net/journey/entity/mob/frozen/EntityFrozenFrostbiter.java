@@ -1,6 +1,6 @@
 package net.journey.entity.mob.frozen;
 
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.projectile.EntityIceBall;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.items.JourneyItems;
@@ -17,8 +17,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.slayer.api.entity.JEntityMob;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -39,6 +37,14 @@ public class EntityFrozenFrostbiter extends JEntityMob {
         this.tasks.addTask(8, new EntityAILookIdle(this));
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+
+        EntityAttributesHelper.setMaxHealth(this, 45);
+        EntityAttributesHelper.setAttackDamage(this, 8);
     }
 
     @Override
@@ -146,13 +152,8 @@ public class EntityFrozenFrostbiter extends JEntityMob {
         return JourneyLootTables.FROZEN_FROSTBITER;
     }
 
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return MobStats.FROZEN_FROSTBITER;
-    }
-
     class AIFireballAttack extends EntityAIBase {
-        private EntityFrozenFrostbiter field_179469_a = EntityFrozenFrostbiter.this;
+        private final EntityFrozenFrostbiter field_179469_a = EntityFrozenFrostbiter.this;
         private int field_179467_b;
         private int field_179468_c;
 

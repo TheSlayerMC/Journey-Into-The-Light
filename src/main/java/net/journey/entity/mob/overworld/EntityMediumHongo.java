@@ -1,6 +1,6 @@
 package net.journey.entity.mob.overworld;
 
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.minecraft.util.DamageSource;
@@ -10,14 +10,20 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.slayer.api.entity.JEntityMob;
 
-import org.jetbrains.annotations.NotNull;
-
 public class EntityMediumHongo extends JEntityMob {
 
     public EntityMediumHongo(World par1World) {
         super(par1World);
-	    addMeleeAttackingAI();
-	    setSize(1.0F, 1.0F);
+        addMeleeAttackingAI();
+        setSize(1.0F, 1.0F);
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+
+        EntityAttributesHelper.setMaxHealth(this, 30);
+        EntityAttributesHelper.setAttackDamage(this, 5);
     }
 
     @Override
@@ -44,10 +50,5 @@ public class EntityMediumHongo extends JEntityMob {
     @Override
     public ResourceLocation getLootTable() {
         return JourneyLootTables.MEDIUM_HONGO;
-    }
-
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return MobStats.MEDIUM_HONGO;
     }
 }

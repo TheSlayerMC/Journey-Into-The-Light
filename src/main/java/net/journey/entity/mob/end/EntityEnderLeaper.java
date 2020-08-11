@@ -1,6 +1,6 @@
 package net.journey.entity.mob.end;
 
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.minecraft.util.DamageSource;
@@ -9,14 +9,20 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.slayer.api.entity.JEntityMob;
 
-import org.jetbrains.annotations.NotNull;
-
 public class EntityEnderLeaper extends JEntityMob {
 
     public EntityEnderLeaper(World par1World) {
         super(par1World);
         addMeleeAttackingAI();
         setSize(0.7F, 1.2F);
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+
+        EntityAttributesHelper.setMaxHealth(this, 40);
+        EntityAttributesHelper.setAttackDamage(this, 6);
     }
 
     @Override
@@ -38,9 +44,4 @@ public class EntityEnderLeaper extends JEntityMob {
 	public ResourceLocation getLootTable() {
 		return JourneyLootTables.ENDER_LEAPER;
 	}
-
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return MobStats.ENDER_LEAPER;
-    }
 }

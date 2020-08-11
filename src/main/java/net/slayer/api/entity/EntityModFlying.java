@@ -51,11 +51,11 @@ public abstract class EntityModFlying extends EntityFlying implements IJERCompat
     }
 
     public double setMovementSpeed() {
-        return MobStats.standardMovementSpeed;
+        return MobStats.STANDARD_MOVEMENT_SPEED;
     }
 
     public double setKnockbackResistance() {
-        return MobStats.standardKnockBackResistance;
+        return MobStats.STANDARD_KNOCKBACK_RESISTANCE;
     }
 
     public abstract double setMaxHealth(MobStats s);

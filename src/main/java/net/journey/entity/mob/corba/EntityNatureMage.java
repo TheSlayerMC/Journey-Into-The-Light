@@ -1,6 +1,6 @@
 package net.journey.entity.mob.corba;
 
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.projectile.EntityFireBall;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
@@ -25,7 +25,6 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.slayer.api.entity.JEntityMob;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
@@ -40,6 +39,13 @@ public class EntityNatureMage extends JEntityMob implements IRangedAttackMob {
         if (par1World != null && !par1World.isRemote) {
             this.setCombatTask();
         }
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+
+        EntityAttributesHelper.setMaxHealth(this, 60);
     }
 
     @Override
@@ -134,10 +140,5 @@ public class EntityNatureMage extends JEntityMob implements IRangedAttackMob {
     @Override
     public void setSwingingArms(boolean swingingArms) {
 
-    }
-
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return MobStats.NATURE_MAGE;
     }
 }

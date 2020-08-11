@@ -1,6 +1,6 @@
 package net.journey.entity.mob.terrania.mob;
 
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.init.JourneyLootTables;
 import net.journey.util.PotionEffects;
 import net.minecraft.block.Block;
@@ -31,8 +31,6 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.slayer.api.entity.JEntityMob;
-
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.Random;
@@ -86,6 +84,14 @@ public class EntityAranaKing extends JEntityMob {
         if (!this.world.isRemote) {
             this.setBesideClimbableBlock(this.collidedHorizontally);
         }
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+        //TODO it doesn't have his own stats, but it should. For now it copies Journey's Jungle Spider
+        EntityAttributesHelper.setMaxHealth(this, 18);
+        EntityAttributesHelper.setAttackDamage(this, 4);
     }
 
     @Override
@@ -200,11 +206,6 @@ public class EntityAranaKing extends JEntityMob {
     @Override
     public ResourceLocation getLootTable() {
         return JourneyLootTables.ARANA_KING;
-    }
-
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return MobStats.JUNGLE_SPIDER; //TODO it doesn't have his own stats, but it should. For now it copies Journey's Jungle Spider
     }
 
     static class AISpiderAttack extends EntityAIAttackMelee {

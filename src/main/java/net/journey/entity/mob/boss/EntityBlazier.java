@@ -1,6 +1,6 @@
 package net.journey.entity.mob.boss;
 
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.projectile.EntityMagmaFireball;
 import net.journey.entity.util.EntityBossCrystal;
 import net.journey.init.JourneyLootTables;
@@ -21,7 +21,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.entity.EntityEssenceBoss;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class EntityBlazier extends EntityEssenceBoss implements IRangedAttackMob {
@@ -45,6 +44,14 @@ public class EntityBlazier extends EntityEssenceBoss implements IRangedAttackMob
         this.isImmuneToFire = true;
         this.setSize(2.0F, 6.0F);
         spawnTimer = 0;
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+
+        EntityAttributesHelper.setMaxHealth(this, 850);
+        EntityAttributesHelper.setAttackDamage(this, 20);
     }
 
     @Override
@@ -220,11 +227,6 @@ public class EntityBlazier extends EntityEssenceBoss implements IRangedAttackMob
 
     @Override
     public void setSwingingArms(boolean swingingArms) {
-    }
-
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return MobStats.BLAZIER;
     }
 
     class AIFireballAttack extends EntityAIBase {

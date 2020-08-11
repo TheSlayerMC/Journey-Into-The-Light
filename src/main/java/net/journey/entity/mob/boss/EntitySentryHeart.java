@@ -2,6 +2,7 @@ package net.journey.entity.mob.boss;
 
 import net.journey.blocks.BlockLament;
 import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.util.EntityBossCrystal;
 import net.journey.init.JourneySounds;
 import net.minecraft.block.state.pattern.BlockPattern;
@@ -16,15 +17,14 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityEssenceBoss;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class EntitySentryHeart extends EntityEssenceBoss {
     
 	public int maxHealth = (int) MobStats.sentryHeartHealth;
-	
+
 	private boolean isActivated;
-	
+
 	public final int sleep = 0, alert = 1;
 	public int stage;
 
@@ -32,6 +32,15 @@ public class EntitySentryHeart extends EntityEssenceBoss {
 		super(par1World);
 		this.setSize(4.0F, 17.0F);
 		this.stage = sleep;
+	}
+
+	@Override
+	protected void applyEntityAttributes() {
+		super.applyEntityAttributes();
+		//TODO change
+		EntityAttributesHelper.setMaxHealth(this, 5000);
+		EntityAttributesHelper.setMovementSpeed(this, 0);
+		EntityAttributesHelper.setKnockbackResistance(this, 1);
 	}
 
 	public int getStage() {
@@ -144,11 +153,6 @@ public class EntitySentryHeart extends EntityEssenceBoss {
 	@Override
 	protected boolean canTriggerWalking() {
 		return false;
-	}
-
-	@Override
-	public @NotNull EntitySettings getEntitySettings() {
-		return MobStats.SENTRY_HEART;
 	}
 
 	@Nullable

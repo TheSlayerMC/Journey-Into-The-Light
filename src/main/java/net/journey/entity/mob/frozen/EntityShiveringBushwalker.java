@@ -1,6 +1,6 @@
 package net.journey.entity.mob.frozen;
 
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.minecraft.util.DamageSource;
@@ -9,14 +9,20 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.slayer.api.entity.JEntityMob;
 
-import org.jetbrains.annotations.NotNull;
-
 public class EntityShiveringBushwalker extends JEntityMob {
 
     public EntityShiveringBushwalker(World par1World) {
         super(par1World);
         addMeleeAttackingAI();
         this.setSize(0.65F, 1F);
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+
+        EntityAttributesHelper.setMaxHealth(this, 42);
+        EntityAttributesHelper.setAttackDamage(this, 9);
     }
 
     @Override
@@ -42,10 +48,5 @@ public class EntityShiveringBushwalker extends JEntityMob {
     @Override
     public ResourceLocation getLootTable() {
         return JourneyLootTables.SHIVERING_BUSHWALKER;
-    }
-
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return MobStats.SHIVERING_BUSHWALKER;
     }
 }

@@ -1,6 +1,6 @@
 package net.journey.entity.mob.corba;
 
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.journey.util.PotionEffects;
@@ -12,8 +12,6 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.slayer.api.entity.JEntityMob;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.List;
 
 public class EntityLeafBlower extends JEntityMob {
@@ -22,6 +20,14 @@ public class EntityLeafBlower extends JEntityMob {
         super(par1World);
         addMeleeAttackingAI();
         setSize(1.0F, 2.0F);
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+
+        EntityAttributesHelper.setMaxHealth(this, 65);
+        EntityAttributesHelper.setAttackDamage(this, 13);
     }
 
     @Override
@@ -56,10 +62,5 @@ public class EntityLeafBlower extends JEntityMob {
             if (entity instanceof EntityPlayer && canEntityBeSeen(entity))
                 ((EntityPlayer) entity).addPotionEffect(PotionEffects.setPotionEffect(PotionEffects.poison, 60, 1));
         }
-    }
-
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return MobStats.LEAF_BLOWER;
     }
 }

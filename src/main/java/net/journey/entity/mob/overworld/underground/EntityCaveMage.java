@@ -1,6 +1,6 @@
 package net.journey.entity.mob.overworld.underground;
 
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.projectile.staff.EntityConjuring;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
@@ -24,7 +24,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import net.slayer.api.entity.JEntityMob;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
@@ -39,6 +38,13 @@ public class EntityCaveMage extends JEntityMob implements IRangedAttackMob {
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
         this.tasks.addTask(0, new EntityAIAttackRanged(this, 0.27F, 30, 10.0F));
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+
+        EntityAttributesHelper.setMaxHealth(this, 30);
     }
 
     @Override
@@ -110,10 +116,5 @@ public class EntityCaveMage extends JEntityMob implements IRangedAttackMob {
 
     @Override
     public void setSwingingArms(boolean swingingArms) {
-    }
-
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return MobStats.CAVE_MAGE;
     }
 }

@@ -1,6 +1,6 @@
 package net.journey.entity.mob.frozen;
 
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.minecraft.util.DamageSource;
@@ -9,14 +9,20 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.slayer.api.entity.JEntityMob;
 
-import org.jetbrains.annotations.NotNull;
-
 public class EntityPermafraust extends JEntityMob {
 
     public EntityPermafraust(World par1World) {
         super(par1World);
         addMeleeAttackingAI();
         this.setSize(0.5F, 2F);
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+
+        EntityAttributesHelper.setMaxHealth(this, 44);
+        EntityAttributesHelper.setAttackDamage(this, 10);
     }
 
     @Override
@@ -47,10 +53,5 @@ public class EntityPermafraust extends JEntityMob {
     @Override
     public ResourceLocation getLootTable() {
         return JourneyLootTables.PERMAFRAUST;
-    }
-
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return MobStats.PERMAFRAUST;
     }
 }

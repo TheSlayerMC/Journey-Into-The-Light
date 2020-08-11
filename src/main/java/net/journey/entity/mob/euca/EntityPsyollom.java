@@ -1,6 +1,6 @@
 package net.journey.entity.mob.euca;
 
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.minecraft.util.DamageSource;
@@ -9,8 +9,6 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.slayer.api.entity.JEntityMob;
 
-import org.jetbrains.annotations.NotNull;
-
 public class EntityPsyollom extends JEntityMob {
     public static final int ENTITY_TYPE = 25;
 
@@ -18,6 +16,14 @@ public class EntityPsyollom extends JEntityMob {
         super(par1World);
         addMeleeAttackingAI();
         setSize(1.7F, 2.7F);
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+
+        EntityAttributesHelper.setMaxHealth(this, 44);
+        EntityAttributesHelper.setAttackDamage(this, 10);
     }
 
     @Override
@@ -39,9 +45,4 @@ public class EntityPsyollom extends JEntityMob {
 	public ResourceLocation getLootTable() {
 		return JourneyLootTables.PSYOLLUM;
 	}
-
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return MobStats.PSYOLLOM;
-    }
 }

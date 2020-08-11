@@ -1,13 +1,12 @@
 package net.journey.entity.mob.overworld.underground;
 
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
@@ -23,8 +22,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.entity.JEntityMob;
-
-import org.jetbrains.annotations.NotNull;
 
 public class EntityRockiteSmasher extends JEntityMob {
 
@@ -49,7 +46,10 @@ public class EntityRockiteSmasher extends JEntityMob {
     @Override
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(3);
+
+        EntityAttributesHelper.setMaxHealth(this, 175);
+        EntityAttributesHelper.setAttackDamage(this, 10);
+        EntityAttributesHelper.setKnockbackResistance(this, 3);
     }
     
 	public boolean attackEntityFrom(DamageSource source, float amount) {
@@ -168,10 +168,5 @@ public class EntityRockiteSmasher extends JEntityMob {
     @Override
     public ResourceLocation getLootTable() {
         return JourneyLootTables.ROCKITE;
-    }
-
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return MobStats.ROCKITE_SMASHER;
     }
 }

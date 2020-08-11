@@ -1,6 +1,6 @@
 package net.journey.entity.mob.overworld;
 
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.minecraft.init.Blocks;
@@ -11,14 +11,20 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.slayer.api.entity.JEntityMob;
 
-import org.jetbrains.annotations.NotNull;
-
 public class EntitySandCrawler extends JEntityMob {
 
     public EntitySandCrawler(World par1World) {
         super(par1World);
-	    addMeleeAttackingAI();
-	    this.setSize(1.8F, 1.0F);
+        addMeleeAttackingAI();
+        this.setSize(1.8F, 1.0F);
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+
+        EntityAttributesHelper.setMaxHealth(this, 20);
+        EntityAttributesHelper.setAttackDamage(this, 4);
     }
 
     @Override
@@ -48,10 +54,5 @@ public class EntitySandCrawler extends JEntityMob {
                         this.world.getBlockState(new BlockPos(this.posX, this.posY - 1, this.posZ)).getBlock() == Blocks.LEAVES ||
                         this.world.getBlockState(new BlockPos(this.posX, this.posY - 1, this.posZ)).getBlock() == Blocks.SAND ||
                         this.world.getBlockState(new BlockPos(this.posX, this.posY - 1, this.posZ)).getBlock() == Blocks.DIRT && this.dimension == 0;
-    }
-
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return MobStats.SAND_CRAWLER;
     }
 }

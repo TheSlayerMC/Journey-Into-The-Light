@@ -1,6 +1,6 @@
 package net.journey.entity.mob.euca;
 
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.journey.util.PotionEffects;
@@ -12,15 +12,20 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.slayer.api.entity.JEntityMob;
 
-import org.jetbrains.annotations.NotNull;
-
 public class EntityInsecto extends JEntityMob {
-
 
     public EntityInsecto(World par1World) {
         super(par1World);
         addMeleeAttackingAI();
         setSize(0.7F, 1.7F);
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+
+        EntityAttributesHelper.setMaxHealth(this, 42);
+        EntityAttributesHelper.setAttackDamage(this, 9);
     }
 
     @Override
@@ -49,9 +54,4 @@ public class EntityInsecto extends JEntityMob {
 	public ResourceLocation getLootTable() {
 		return JourneyLootTables.INSECTO;
 	}
-
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return MobStats.INSECTO;
-    }
 }

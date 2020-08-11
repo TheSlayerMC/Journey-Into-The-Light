@@ -1,7 +1,7 @@
 package net.journey.entity.mob.overworld;
 
 import net.journey.JITL;
-import net.journey.entity.base.EntitySettingsHelper;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.projectile.EntityFloroDirtProjectile;
 import net.journey.init.JAnimations;
 import net.journey.init.JourneyLootTables;
@@ -145,8 +145,8 @@ public class EntityFloro extends JEntityMob implements IRangedAttackMob, Animati
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
 
-		EntitySettingsHelper.setMaxHealth(this, 25);
-		EntitySettingsHelper.setFollowRange(this, 25);
+		EntityAttributesHelper.setMaxHealth(this, 25);
+		EntityAttributesHelper.setFollowRange(this, 25);
 	}
 
 	@Override
@@ -247,11 +247,6 @@ public class EntityFloro extends JEntityMob implements IRangedAttackMob, Animati
 
 	@Override
 	public void setSwingingArms(boolean swingingArms) {
-	}
-
-	@Override
-	public EntitySettings getEntitySettings() {
-		return null;
 	}
 
 	@Override

@@ -1,6 +1,6 @@
 package net.journey.entity.mob.senterian.mob;
 
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.init.JourneyLootTables;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
@@ -8,14 +8,20 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.slayer.api.entity.JEntityMob;
 
-import org.jetbrains.annotations.NotNull;
-
 public class EntitySentryLord extends JEntityMob {
 
     public EntitySentryLord(World par1World) {
         super(par1World);
         this.setSize(1.0F, 2.5F);
         addMeleeAttackingAI();
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+
+        EntityAttributesHelper.setMaxHealth(this, 75);
+        EntityAttributesHelper.setAttackDamage(this, 16);
     }
 
     @Override
@@ -42,9 +48,4 @@ public class EntitySentryLord extends JEntityMob {
 	public ResourceLocation getLootTable() {
 		return JourneyLootTables.SENTRY_LORD;
 	}
-
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return MobStats.SENTRY_LORD;
-    }
 }

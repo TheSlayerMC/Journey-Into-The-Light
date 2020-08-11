@@ -1,6 +1,6 @@
 package net.journey.entity.mob.overworld;
 
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.journey.init.items.JourneyConsumables;
@@ -12,13 +12,20 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityPeacefullUntillAttacked;
-import org.jetbrains.annotations.NotNull;
 
 public class EntityTurducken extends EntityPeacefullUntillAttacked {
 
     public EntityTurducken(World w) {
         super(w);
         setSize(0.7F, 1.0F);
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+
+        EntityAttributesHelper.setMaxHealth(this, 20);
+        EntityAttributesHelper.setAttackDamage(this, 5);
     }
 
     @Override
@@ -59,10 +66,5 @@ public class EntityTurducken extends EntityPeacefullUntillAttacked {
             if (rand.nextInt(2) == 0) dropItem(JourneyConsumables.rocMeat, 2);
         }
         super.dropFewItems(b, j);
-    }
-
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return MobStats.TURDUCKEN;
     }
 }

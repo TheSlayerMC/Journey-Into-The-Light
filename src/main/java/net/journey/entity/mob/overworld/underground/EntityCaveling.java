@@ -1,6 +1,6 @@
 package net.journey.entity.mob.overworld.underground;
 
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.minecraft.block.material.Material;
@@ -12,14 +12,20 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.slayer.api.entity.JEntityMob;
 
-import org.jetbrains.annotations.NotNull;
-
 public class EntityCaveling extends JEntityMob {
 
     public EntityCaveling(World par1World) {
         super(par1World);
         addMeleeAttackingAI();
         this.setSize(1.0F, 1.0F);
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+
+        EntityAttributesHelper.setMaxHealth(this, 25);
+        EntityAttributesHelper.setAttackDamage(this, 4);
     }
 
     @Override
@@ -55,10 +61,5 @@ public class EntityCaveling extends JEntityMob {
     @Override
     public ResourceLocation getLootTable() {
         return JourneyLootTables.CAVELING;
-    }
-
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return MobStats.CAVELING;
     }
 }

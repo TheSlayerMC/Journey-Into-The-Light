@@ -1,6 +1,6 @@
 package net.journey.entity.mob.cloudia;
 
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.journey.init.items.JourneyItems;
@@ -9,13 +9,20 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityPeacefullUntillAttacked;
-import org.jetbrains.annotations.NotNull;
 
 public class EntityStarlightTransporter extends EntityPeacefullUntillAttacked {
 
     public EntityStarlightTransporter(World w) {
         super(w);
         setSize(1.5F, 1.7F);
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+
+        EntityAttributesHelper.setMaxHealth(this, 75);
+        EntityAttributesHelper.setAttackDamage(this, 18);
     }
 
     @Override
@@ -44,9 +51,4 @@ public class EntityStarlightTransporter extends EntityPeacefullUntillAttacked {
 	public ResourceLocation getLootTable() {
 		return JourneyLootTables.STARLIGHT_TRANSPORTER;
 	}
-
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return MobStats.STARLIGHT_TRANSPORTER;
-    }
 }

@@ -1,6 +1,6 @@
 package net.journey.entity.mob.boss;
 
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.projectile.EntityFloroDirtProjectile;
 import net.journey.entity.projectile.EntityMagmaFireball;
 import net.journey.entity.util.EntityBossCrystal;
@@ -47,6 +47,13 @@ public class EntityTempleGuardian extends EntityEssenceBoss implements IRangedAt
         this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(7, new EntityAILookIdle(this));
         this.tasks.addTask(0, new EntityAIAttackRanged(this, 0.27F, 30, 10.0F));
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+
+        EntityAttributesHelper.setMaxHealth(this, 275);
     }
 
     @Override
@@ -160,10 +167,5 @@ public class EntityTempleGuardian extends EntityEssenceBoss implements IRangedAt
 
     @Override
     public void setSwingingArms(boolean swingingArms) {
-    }
-
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return MobStats.TEMPLE_GUARDIAN;
     }
 }

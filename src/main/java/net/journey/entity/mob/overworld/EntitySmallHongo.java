@@ -1,6 +1,6 @@
 package net.journey.entity.mob.overworld;
 
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.minecraft.init.Blocks;
@@ -11,14 +11,20 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.slayer.api.entity.JEntityMob;
 
-import org.jetbrains.annotations.NotNull;
-
 public class EntitySmallHongo extends JEntityMob {
 
     public EntitySmallHongo(World par1World) {
         super(par1World);
-	    addMeleeAttackingAI();
-	    this.setSize(0.5F, 0.7F);
+        addMeleeAttackingAI();
+        this.setSize(0.5F, 0.7F);
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+
+        EntityAttributesHelper.setMaxHealth(this, 20);
+        EntityAttributesHelper.setAttackDamage(this, 3);
     }
 
     @Override
@@ -48,10 +54,5 @@ public class EntitySmallHongo extends JEntityMob {
     @Override
     public ResourceLocation getLootTable() {
         return JourneyLootTables.SMALL_HONGO;
-    }
-
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return MobStats.SMALL_HONGO;
     }
 }

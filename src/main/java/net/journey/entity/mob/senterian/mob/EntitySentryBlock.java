@@ -1,8 +1,7 @@
 package net.journey.entity.mob.senterian.mob;
 
 import com.google.common.base.Optional;
-
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.init.JourneyLootTables;
 import net.minecraft.block.BlockPistonBase;
 import net.minecraft.block.BlockPistonExtension;
@@ -35,8 +34,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.entity.JEntityMob;
-
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -71,6 +68,14 @@ public class EntitySentryBlock extends JEntityMob {
         this.tasks.addTask(7, new EntitySentryBlock.AIPeek());
         this.tasks.addTask(8, new EntityAILookIdle(this));
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+
+        EntityAttributesHelper.setMaxHealth(this, 75);
+        EntityAttributesHelper.setMovementSpeed(this, 0);
     }
 
     @Override
@@ -496,11 +501,6 @@ public class EntitySentryBlock extends JEntityMob {
     @Override
     public ResourceLocation getLootTable() {
         return JourneyLootTables.SENTRY_BLOCK;
-    }
-
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return MobStats.SENTRY_BLOCK;
     }
 
     class AIPeek extends EntityAIBase {

@@ -1,8 +1,7 @@
 package net.journey.entity.mob.frozen;
 
 import com.google.common.base.Predicate;
-
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.minecraft.block.Block;
@@ -10,7 +9,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.monster.IMob;
@@ -26,8 +24,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.entity.JEntityMob;
-
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
@@ -61,7 +57,10 @@ public class EntityIceGolem extends JEntityMob {
     @Override
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(3);
+
+        EntityAttributesHelper.setMaxHealth(this, 250);
+        EntityAttributesHelper.setAttackDamage(this, 20);
+        EntityAttributesHelper.setKnockbackResistance(this, 3);
     }
 
     @Override
@@ -164,10 +163,5 @@ public class EntityIceGolem extends JEntityMob {
 
     @Override
     protected void dropFewItems(boolean b, int j) {
-    }
-
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return MobStats.ICE_GOLEM;
     }
 }

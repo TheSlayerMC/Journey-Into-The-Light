@@ -1,6 +1,6 @@
 package net.journey.entity.mob.cloudia;
 
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.init.JourneyLootTables;
 import net.journey.util.PotionEffects;
 import net.minecraft.entity.Entity;
@@ -12,8 +12,6 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.slayer.api.entity.JEntityMob;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.List;
 
 public class EntityCloudFlower extends JEntityMob {
@@ -21,6 +19,14 @@ public class EntityCloudFlower extends JEntityMob {
     public EntityCloudFlower(World par1World) {
         super(par1World);
         this.setSize(2.0F, 0.2145F);
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+
+        EntityAttributesHelper.setMaxHealth(this, 75);
+        EntityAttributesHelper.setMovementSpeed(this, 0);
     }
 
     @Override
@@ -63,9 +69,4 @@ public class EntityCloudFlower extends JEntityMob {
 	public ResourceLocation getLootTable() {
 		return JourneyLootTables.CLOUD_FLOWER;
 	}
-
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return MobStats.CLOUD_FLOWER;
-    }
 }

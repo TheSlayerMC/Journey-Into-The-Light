@@ -1,6 +1,6 @@
 package net.journey.entity.mob.nether;
 
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.journey.init.blocks.JourneyBlocks;
@@ -15,8 +15,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.slayer.api.entity.JEntityMob;
-
-import org.jetbrains.annotations.NotNull;
 
 public class EntityHellTurtle extends JEntityMob {
 
@@ -35,6 +33,15 @@ public class EntityHellTurtle extends JEntityMob {
                         world.getBlockState(new BlockPos(this.posX, this.posY - 1, this.posZ)).getBlock() == JourneyBlocks.heatSoil ||
                 world.getBlockState(new BlockPos(this.posX, this.posY - 1, this.posZ)).getBlock() == JourneyBlocks.lavaRock ||
                 world.getBlockState(new BlockPos(this.posX, this.posY - 1, this.posZ)).getBlock() == JourneyBlocks.nethicanSludge;
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+
+        EntityAttributesHelper.setMaxHealth(this, 40);
+        EntityAttributesHelper.setAttackDamage(this, 7);
+        EntityAttributesHelper.setKnockbackResistance(this, 1);
     }
 
     @Override
@@ -67,10 +74,5 @@ public class EntityHellTurtle extends JEntityMob {
     @Override
     public ResourceLocation getLootTable() {
         return JourneyLootTables.HELL_TURTLE;
-    }
-
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return MobStats.HELL_TURTLE;
     }
 }

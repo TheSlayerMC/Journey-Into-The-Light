@@ -1,6 +1,6 @@
 package net.journey.entity.mob.boss;
 
-import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.util.EntityBossCrystal;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
@@ -27,6 +27,15 @@ public class EntityCalcia extends EntityEssenceBoss {
         super(par1World);
         addMeleeAttackingAI();
         this.setSize(1.6F, 3.2F);
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+
+        EntityAttributesHelper.setMaxHealth(this, 650);
+        EntityAttributesHelper.setAttackDamage(this, 10);
+        EntityAttributesHelper.setKnockbackResistance(this, 1);
     }
 
     @Override
@@ -86,10 +95,5 @@ public class EntityCalcia extends EntityEssenceBoss {
     @Override
     protected @NotNull EntityBossCrystal.Type getDeathCrystalType() {
         return EntityBossCrystal.Type.NETHER;
-    }
-
-    @Override
-    public @NotNull EntitySettings getEntitySettings() {
-        return MobStats.CALCIA;
     }
 }
