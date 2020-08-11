@@ -1,12 +1,10 @@
 package net.journey.blocks.base;
 
 import net.journey.JITL;
-import net.journey.api.block.IHasCustomItemPath;
+import net.journey.api.block.CustomItemModelProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.Entity;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -16,11 +14,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.EnumMaterialTypes;
-import net.slayer.api.block.BlockModFlower;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
-
-import org.jetbrains.annotations.NotNull;
 
 /**
  * Base class for flower blocks.<br>
@@ -47,7 +43,7 @@ import org.jetbrains.annotations.NotNull;
  * The item model for it should be placed to "models/item/block/plant/" by default.
  */
 @SuppressWarnings("JavadocReference")
-public class JBlockFlower extends JBlockPlant implements IHasCustomItemPath {
+public class JBlockFlower extends JBlockPlant implements CustomItemModelProvider {
 	/**
 	 * If true, flower will have small model and bounding box offset as vanilla flowers have.
 	 */

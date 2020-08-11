@@ -85,7 +85,7 @@ public class JourneyWeapons {
     public static Item iceWand;
     public static Item lightningWand;
 
-    public static Item hammerCreative;
+    public static Item creativeHammer;
     public static Item earthenHammer;
     public static Item flamingHammer;
     public static Item nethicHammer;
@@ -93,7 +93,7 @@ public class JourneyWeapons {
     public static Item royalHammer;
     public static Item overgrownHammer;
     public static Item rockyHammer;
-    public static Item crystalizedHammer;
+    public static Item crystallizedHammer;
 
     public static Item rockyBattleaxe;
     public static Item crystalizedBattleaxe;
@@ -318,22 +318,22 @@ public class JourneyWeapons {
         starlightBow = new ItemModBow("starlightBow", "Starlight Bow", 5.5F, 384, EntityEssenceArrow.BowEffects.POISON_BOW, 24000);
         fluffyBow = new ItemModBow("fluffyBow", "Fluffy Bow", 5.5F, 384, EntityEssenceArrow.BowEffects.FROZEN_BOW, 18000);
         golemBow = new ItemModBow("golemBow", "Golem Bow", 5.5F, 384, EntityEssenceArrow.BowEffects.DARKNESS_BOW, 36000);
-        
+
         //Unobtainable
         deathPiercerBow = new ItemModBow("deathPiercerBow", "Death Piercer", 3, 384, EntityEssenceArrow.BowEffects.DARKNESS_BOW, 72000);
         fusionBow = new ItemModBow("fusionBow", "Fusion Bow", 3, 384, EntityEssenceArrow.BowEffects.DARKNESS_BOW, 72000);
         springBow = new ItemModBow("springBow", "Spring Bow", 5, 384, EntityEssenceArrow.BowEffects.FLAME_BOW, 72000);
         wastefulBow = new ItemModBow("wastefulBow", "Wasteful Bow", 3, 384, EntityEssenceArrow.BowEffects.DOUBLE_ARROW, 72000);
 
-        hammerCreative = new ItemCreativeHammer("hammerCreative", "Hammer of Creative Spellbinding", JourneyToolMaterial.CREATIVE, false, EntityLightningBall.class);
-        earthenHammer = new ItemHammer("earthenHammer", "Earthen Hammer", JourneyToolMaterial.EARTHEN_HAMMER, false, EntityEarthen.class, 4, 4, 642);
-        flamingHammer = new ItemHammer("flamingHammer", "Flaming Hammer", JourneyToolMaterial.FLAMING_HAMMER, false, EntityFireBall.class, 10, 4, 1230);
-        nethicHammer = new ItemHammer("nethicHammer", "Nethic Hammer", JourneyToolMaterial.NETHIC_HAMMER, false, EntityFireBall.class, 8, 4, 825);
-        withicHammer = new ItemHammer("withicHammer", "Withic Hammer", JourneyToolMaterial.WITHIC_HAMMER, false, EntityWithic.class, 9, 4, 1230);
-        royalHammer = new ItemHammer("royalHammer", "Royal Hammer", JourneyToolMaterial.ROYAL_HAMMER, false, EntityFireBall.class, 12, 4, 1320);
-        overgrownHammer = new ItemHammer("overgrownHammer", "Overgrown Hammer", JourneyToolMaterial.OVERGROWN_HAMMER, false, EntityOvergrown.class, 12, 4, 1320);
-        rockyHammer = new ItemHammer("rockyHammer", "Rocky Hammer", JourneyToolMaterial.ROCKY_HAMMER, false, EntityRock.class, 6, 4, 2230);
-        crystalizedHammer = new ItemHammer("crystalizedHammer", "Crystalized Hammer", JourneyToolMaterial.CRYSTAL_HAMMER, false, EntityIceBall.class, 7, 4, 3320);
+        creativeHammer = new ItemCreativeHammer("creative_hammer", "Hammer of Creative Spellbinding", JourneyToolMaterial.CREATIVE, false, EntityLightningBall.class);
+        earthenHammer = new ItemHammer("earthen_hammer", "Earthen Hammer", JourneyToolMaterial.EARTHEN_HAMMER, false, EntityEarthen.class, 4, 4, 642);
+        flamingHammer = new ItemHammer("flaming_hammer", "Flaming Hammer", JourneyToolMaterial.FLAMING_HAMMER, false, EntityFireBall.class, 10, 4, 1230);
+        nethicHammer = new ItemHammer("nethic_hammer", "Nethic Hammer", JourneyToolMaterial.NETHIC_HAMMER, false, EntityFireBall.class, 8, 4, 825);
+        withicHammer = new ItemHammer("withic_hammer", "Withic Hammer", JourneyToolMaterial.WITHIC_HAMMER, false, EntityWithic.class, 9, 4, 1230);
+        royalHammer = new ItemHammer("royal_hammer", "Royal Hammer", JourneyToolMaterial.ROYAL_HAMMER, false, EntityFireBall.class, 12, 4, 1320);
+        overgrownHammer = new ItemHammer("overgrown_hammer", "Overgrown Hammer", JourneyToolMaterial.OVERGROWN_HAMMER, false, EntityOvergrown.class, 12, 4, 1320);
+        rockyHammer = new ItemHammer("rocky_hammer", "Rocky Hammer", JourneyToolMaterial.ROCKY_HAMMER, false, EntityRock.class, 6, 4, 2230);
+        crystallizedHammer = new ItemHammer("crystallized_hammer", "Crystallized Hammer", JourneyToolMaterial.CRYSTALLIZED_HAMMER, false, EntityIceBall.class, 7, 4, 3320);
 
         chaosCannon = new ItemGun("chaosCannon", "Chaos Cannon", 6, "Shoots a bouncing projectile", null);
         rockLauncher = new ItemGun("rockLauncher", "Rock Launcher", 4, "Stuns mobs for 10 seconds", EntityRock.class);

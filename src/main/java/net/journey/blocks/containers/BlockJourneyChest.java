@@ -1,7 +1,7 @@
 package net.journey.blocks.containers;
 
 import net.journey.JITL;
-import net.journey.api.block.IHasCustomItemPath;
+import net.journey.api.block.CustomItemModelProvider;
 import net.journey.api.block.IHasTeisr;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.client.render.block.JourneyChestTESR;
@@ -39,12 +39,12 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Iterator;
 import java.util.function.Supplier;
 
-public class BlockJourneyChest extends BlockModContainer implements IHasTeisr, IHasCustomItemPath {
+public class BlockJourneyChest extends BlockModContainer implements IHasTeisr, CustomItemModelProvider {
 
 	public static final PropertyDirection FACING = BlockHorizontal.FACING;
 	public final BlockJourneyChest.Type chestType;
 	public boolean isInitiallyLocked;
-	private Item key;
+	private final Item key;
 
 	public BlockJourneyChest(String name, String f, BlockJourneyChest.Type chestTypeIn) {
 		this(name, f, chestTypeIn, false, ItemStack.EMPTY.getItem());

@@ -1,0 +1,6 @@
+{
+  "parent": "journey:item/hammer/base",
+  "textures": {
+    "base": "journey:items/hammer/creative"
+  }
+}

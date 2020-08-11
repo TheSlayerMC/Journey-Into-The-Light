@@ -1,7 +1,7 @@
 package net.journey.blocks.base;
 
 import net.journey.JITL;
-import net.journey.api.block.IHasCustomItemPath;
+import net.journey.api.block.CustomItemModelProvider;
 import net.journey.init.JourneyTabs;
 import net.journey.util.StuffConstructor;
 import net.minecraft.block.Block;
@@ -16,16 +16,16 @@ import org.jetbrains.annotations.NotNull;
  * Base class for wall blocks.
  * The item model for it should be placed to "models/item/block/wall/" by default.
  */
-public class JBlockWall extends BlockWall implements IHasCustomItemPath {
-	public JBlockWall(String name, String enName, Block modelBlock) {
-		super(modelBlock);
-		StuffConstructor.regAndSetupBlock(this, name, enName, JourneyTabs.BLOCKS);
-	}
+public class JBlockWall extends BlockWall implements CustomItemModelProvider {
+    public JBlockWall(String name, String enName, Block modelBlock) {
+        super(modelBlock);
+        StuffConstructor.regAndSetupBlock(this, name, enName, JourneyTabs.BLOCKS);
+    }
 
-	@Override
-	public @NotNull ResourceLocation getItemModelResourceLocation() {
-		return new ResourceLocation(JITL.MOD_ID, "block/wall/" + getRegistryName().getPath());
-	}
+    @Override
+    public @NotNull ResourceLocation getItemModelResourceLocation() {
+        return new ResourceLocation(JITL.MOD_ID, "block/wall/" + getRegistryName().getPath());
+    }
 
 	/**
 	 * Needs to disable adding mossy blocks in {@link BlockWall#getSubBlocks(CreativeTabs, NonNullList)}

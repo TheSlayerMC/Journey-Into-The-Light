@@ -1,6 +1,7 @@
 package net.journey.items.ranged;
 
 import net.journey.JITL;
+import net.journey.api.block.CustomItemModelProvider;
 import net.journey.entity.projectile.EntityDamagingProjectile;
 import net.journey.entity.projectile.EntityLightningBall;
 import net.journey.init.JourneySounds;
@@ -17,20 +18,22 @@ import net.minecraft.item.ItemSword;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.SlayerAPI;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class ItemCreativeHammer extends ItemSword {
+public class ItemCreativeHammer extends ItemSword implements CustomItemModelProvider {
 
     protected int use;
     protected int dam;
-	protected boolean unbreakable;
-	protected Class<? extends EntityDamagingProjectile> projectile;
-	protected JourneyToolMaterial mat;
+    protected boolean unbreakable;
+    protected Class<? extends EntityDamagingProjectile> projectile;
+    protected JourneyToolMaterial mat;
 
     public ItemCreativeHammer(String name, String f, JourneyToolMaterial toolMaterial, boolean unbreakable, Class<? extends EntityLightningBall> projectile) {
         super(toolMaterial.getToolMaterial());
@@ -78,5 +81,10 @@ public class ItemCreativeHammer extends ItemSword {
             infoList.add(item.getMaxDamage() - item.getItemDamage() + " " + LangHelper.getUsesRemaining());
         else infoList.add(SlayerAPI.Colour.GREEN + LangHelper.getInfiniteUses());
         infoList.add(SlayerAPI.Colour.YELLOW + "Creative Only");
+    }
+
+    @Override
+    public @NotNull ResourceLocation getItemModelResourceLocation() {
+        return new ResourceLocation(JITL.MOD_ID, "hammer/" + getRegistryName().getPath());
     }
 }

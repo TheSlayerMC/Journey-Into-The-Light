@@ -1,7 +1,7 @@
 package net.journey.blocks.containers;
 
 import net.journey.JITL;
-import net.journey.api.block.IHasCustomItemPath;
+import net.journey.api.block.CustomItemModelProvider;
 import net.journey.api.block.IHasTeisr;
 import net.journey.blocks.tileentity.TileEntityObelisk;
 import net.journey.client.render.block.ObeliskRenderer;
@@ -23,14 +23,14 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Random;
 import java.util.function.Supplier;
 
-public class BlockObelisk extends BlockModContainer implements IHasTeisr, IHasCustomItemPath {
+public class BlockObelisk extends BlockModContainer implements IHasTeisr, CustomItemModelProvider {
 
-	private AxisAlignedBB size = new AxisAlignedBB(0.0F, 0.3F, 0.0F, 1.0F, 2.8F, 1.0F);
+    private final AxisAlignedBB size = new AxisAlignedBB(0.0F, 0.3F, 0.0F, 1.0F, 2.8F, 1.0F);
 
-	public BlockObelisk(String name, String finalName) {
-		super(name, finalName);
-		setCreativeTab(JourneyTabs.INTERACTIVE_BLOCKS);
-	}
+    public BlockObelisk(String name, String finalName) {
+        super(name, finalName);
+        setCreativeTab(JourneyTabs.INTERACTIVE_BLOCKS);
+    }
 
     @Override
     @SideOnly(Side.CLIENT)

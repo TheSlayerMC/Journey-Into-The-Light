@@ -1,6 +1,7 @@
 package net.journey.items.ranged;
 
 import net.journey.JITL;
+import net.journey.api.block.CustomItemModelProvider;
 import net.journey.api.item.IUsesEssence;
 import net.journey.client.server.EssenceProvider;
 import net.journey.client.server.IEssence;
@@ -19,14 +20,16 @@ import net.minecraft.item.ItemSword;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.SlayerAPI;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class ItemHammer extends ItemSword implements IUsesEssence {
+public class ItemHammer extends ItemSword implements IUsesEssence, CustomItemModelProvider {
 
 	protected final int usage;
 	protected int damage;
@@ -84,13 +87,18 @@ public class ItemHammer extends ItemSword implements IUsesEssence {
         return super.getIsRepairable(i, i1);
     }
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack item, World worldIn, List<String> l, ITooltipFlag flagIn) {
-        if (item.getMaxDamage() != -1)
-            l.add(item.getMaxDamage() - item.getItemDamage() + " " + LangHelper.getUsesRemaining());
-        else l.add(SlayerAPI.Colour.GREEN + LangHelper.getInfiniteUses());
-        LangHelper.useEssence(usage);
-        l.add(SlayerAPI.Colour.DARK_GREEN + "+" + LangHelper.rangedDamage(damage));
-    }
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void addInformation(ItemStack item, World worldIn, List<String> l, ITooltipFlag flagIn) {
+		if (item.getMaxDamage() != -1)
+			l.add(item.getMaxDamage() - item.getItemDamage() + " " + LangHelper.getUsesRemaining());
+		else l.add(SlayerAPI.Colour.GREEN + LangHelper.getInfiniteUses());
+		LangHelper.useEssence(usage);
+		l.add(SlayerAPI.Colour.DARK_GREEN + "+" + LangHelper.rangedDamage(damage));
+	}
+
+	@Override
+	public @NotNull ResourceLocation getItemModelResourceLocation() {
+		return new ResourceLocation(JITL.MOD_ID, "hammer/" + getRegistryName().getPath());
+	}
 }

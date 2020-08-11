@@ -1,7 +1,7 @@
 package net.journey.blocks.base;
 
 import net.journey.JITL;
-import net.journey.api.block.IHasCustomItemPath;
+import net.journey.api.block.CustomItemModelProvider;
 import net.journey.init.JourneyTabs;
 import net.journey.util.StuffConstructor;
 import net.minecraft.block.BlockLog;
@@ -17,7 +17,7 @@ import org.jetbrains.annotations.NotNull;
  * Base class for log blocks.
  * The item model for it should be placed to "models/item/block/log/" by default.
  */
-public class JBlockLog extends BlockLog implements IHasCustomItemPath {
+public class JBlockLog extends BlockLog implements CustomItemModelProvider {
 
     public JBlockLog(String name, String enName) {
         super();

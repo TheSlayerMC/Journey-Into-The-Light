@@ -1,5 +1,6 @@
 package net.journey.eventhandler.migration;
 
+import net.journey.init.items.JourneyWeapons;
 import net.minecraft.block.Block;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -10,7 +11,15 @@ import java.util.Map;
 public class ItemMigrator extends Migrator<Item> {
     @Override
     public void regRemappers() {
-
+        remap("hammerCreative", JourneyWeapons.creativeHammer);
+        remap("earthenHammer", JourneyWeapons.earthenHammer);
+        remap("flamingHammer", JourneyWeapons.flamingHammer);
+        remap("nethicHammer", JourneyWeapons.nethicHammer);
+        remap("withicHammer", JourneyWeapons.withicHammer);
+        remap("royalHammer", JourneyWeapons.royalHammer);
+        remap("overgrownHammer", JourneyWeapons.overgrownHammer);
+        remap("rockyHammer", JourneyWeapons.rockyHammer);
+        remap("crystalizedHammer", JourneyWeapons.crystallizedHammer);
     }
 
     @Override

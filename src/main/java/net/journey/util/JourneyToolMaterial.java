@@ -113,7 +113,7 @@ public enum JourneyToolMaterial {
     ROYAL_HAMMER(SlayerAPI.addMeleeMaterial(1000, 9.5F, 25)),
     OVERGROWN_HAMMER(SlayerAPI.addMeleeMaterial(1000, 12.5F, 25)),
     ROCKY_HAMMER(SlayerAPI.addMeleeMaterial(2230, 6.5F, 25)),
-    CRYSTAL_HAMMER(SlayerAPI.addMeleeMaterial(3320, 7.5F, 25)),
+    CRYSTALLIZED_HAMMER(SlayerAPI.addMeleeMaterial(3320, 7.5F, 25)),
 
     DEVELOPER_SWORD(SlayerAPI.addMeleeMaterial(3000, 9000, 1000)),
 
@@ -145,9 +145,9 @@ public enum JourneyToolMaterial {
     CELEKIUM_BATTLEAXE(SlayerAPI.addAxeMaterial(1300, 3, 13, 16.5F, 25)),
     THUNDERBIRD_BATTLEAXE(SlayerAPI.addAxeMaterial(1300, 3, 13, 18.25F, 25));
 
-    private ToolMaterial toolMaterial;
-    private Item repairItem;
-    private int harvestLevel;
+    private final ToolMaterial toolMaterial;
+    private final Item repairItem;
+    private final int harvestLevel;
 
     JourneyToolMaterial(ToolMaterial toolMaterial, Item repair) {
         this.toolMaterial = toolMaterial;
