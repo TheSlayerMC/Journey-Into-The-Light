@@ -28,12 +28,12 @@ public class MigrationHandler {
 		ImmutableList<Mapping<T>> mappings = event.getMappings();
 
 		if (!mappings.isEmpty()) {
-			Map<ResourceLocation, T> remappers = migrator.getRemappers();
+			Map<ResourceLocation, Migrator.MappingEntryResolver<T>> remappers = migrator.getRemappers();
 
 			if (!remappers.isEmpty()) {
 				for (Mapping<T> mapping : mappings) {
 					if (remappers.containsKey(mapping.key)) {
-						mapping.remap(remappers.get(mapping.key));
+						remappers.get(mapping.key).process(mapping);
 					}
 				}
 			}
