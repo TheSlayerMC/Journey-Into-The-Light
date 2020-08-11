@@ -2,6 +2,7 @@ package net.journey.entity.util;
 
 import io.netty.buffer.ByteBuf;
 import net.journey.JITL;
+import net.journey.init.JourneySounds;
 import net.journey.util.ChatUtils;
 import net.journey.util.LootHelper;
 import net.minecraft.entity.Entity;
@@ -85,11 +86,14 @@ public class EntityBossCrystal extends Entity implements IEntityAdditionalSpawnD
                     iterator.remove();
                 } else {
                     ChatUtils.sendColored(player, TextFormatting.RED, new TextComponentTranslation("msg.journey.boss_crystal.not_enough_space"));
+                    playSound(JourneySounds.CRYSTAL_ERROR, 1.0F, 1.0F);
                     break;
                 }
             }
 
             if (storedItems.isEmpty()) {
+                playSound(JourneySounds.CRYSTAL_ALL_RETRIEVED, 1.0F, 1.0F);
+
                 setDead();
             }
         }
