@@ -83,7 +83,8 @@ public class PlayerEventsHandler {
 					helmet.damageItem(1, p);
 				}
 				if (heldItem == JourneyArmory.HOE_OF_EARTH_LOVING) {
-					List<ItemStack> i = LootHelper.readFromLootTable(JourneyLootTables.LOOT_SEEDS, playerMP, playerMP.getLuck());
+					List<ItemStack> i = LootHelper.genFromLootTable(JourneyLootTables.LOOT_SEEDS, playerMP, builder -> {
+					});
 					int index = random.nextInt(i.size());
 					Item it = i.get(index).getItem();
 					if (harvestedState.getBlock().getRegistryName().toString().contains("grass")) {
@@ -93,7 +94,8 @@ public class PlayerEventsHandler {
 				}
 				if (heldItem == JourneyArmory.PICKAXE_OF_GOOD_FORTUNE) {
 
-					List<ItemStack> i = LootHelper.readFromLootTable(JourneyLootTables.LOOT_BASIC, playerMP, playerMP.getLuck()); // make new loot table
+					List<ItemStack> i = LootHelper.genFromLootTable(JourneyLootTables.LOOT_BASIC, playerMP, builder -> {
+					}); // make new loot table
 					int index = random.nextInt(i.size());
 					Item it = i.get(index).getItem();
 

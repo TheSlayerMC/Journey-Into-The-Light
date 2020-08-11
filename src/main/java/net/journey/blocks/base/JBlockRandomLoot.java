@@ -31,7 +31,7 @@ public class JBlockRandomLoot extends BlockMod {
 
 	@Override
 	public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
-		drops.addAll(LootHelper.readFromLootTable(lootTable, (WorldServer) world, fortune));
+		drops.addAll(LootHelper.genFromLootTable(lootTable, ((WorldServer) world), builder -> builder.withLuck(fortune)));
 	}
 
 	public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state) {

@@ -60,7 +60,7 @@ public class ItemLoot extends JItem {
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
 		if (!world.isRemote) {
 			Random r = new Random();
-			List<ItemStack> lootTable = LootHelper.readFromLootTable(loot, (EntityPlayerMP) player, player.getLuck());
+			List<ItemStack> lootTable = LootHelper.genFromLootTable(loot, (EntityPlayerMP) player, builder -> builder.withLuck(player.getLuck()));
 			int index = r.nextInt(lootTable.size());
 			ItemStack itemToSpawn = lootTable.get(index);
 

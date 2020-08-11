@@ -1,7 +1,7 @@
 package net.journey.client.render.block;
 
 import net.journey.blocks.tileentity.TileEntityBossCrystal;
-import net.journey.client.render.model.block.ModelBossCrystal;
+import net.journey.client.render.model.mob.ModelBossCrystal;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderItem;
@@ -47,7 +47,7 @@ public class BossCrystalTESR extends TileEntitySpecialRenderer<TileEntityBossCry
         GlStateManager.enableBlend();
         GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
         GlStateManager.enableAlpha();
-        crystal.render(0.0625F, false);
+        crystal.render(0.0625F);
         GlStateManager.disableAlpha();
         GlStateManager.disableBlend();
 

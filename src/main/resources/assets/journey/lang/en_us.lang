@@ -131,6 +131,8 @@ msg.journey.summon.nether_beast=The Nether Beast has been summoned!
 msg.journey.summon.withering_beast=The Withering Beast has been summoned!
 msg.journey.summon.soul_watcher=The Soul Watcher has been summoned!
 
+msg.journey.boss_crystal.not_enough_space=Not enough space in your inventory to retrieve more items from the crystal.
+
 world.journey.overworld=Overworld
 world.journey.the_nether=Nether
 world.journey.the_end=End
