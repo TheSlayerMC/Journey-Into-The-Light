@@ -116,6 +116,7 @@ public class EntityRendering {
 
         RenderingRegistry.registerEntityRenderingHandler(EntityLavasnake.class, manager -> new AnimatedMobRenderer<>(manager, TimeModelLoader.loadJsonEntityModel(Textures.getEntityModelLocation("lavasnake")).setScaleMultiplier(2.0F), Textures.getMobTextureLocation("lavasnake")));
         RenderingRegistry.registerEntityRenderingHandler(EntityFloro.class, manager -> new AnimatedMobRenderer<>(manager, TimeModelLoader.loadJsonEntityModel(Textures.getEntityModelLocation("floro")).setScaleMultiplier(1.6F), Textures.getMobTextureLocation("floro")));
+        RenderingRegistry.registerEntityRenderingHandler(EntityTurducken.class, manager -> new AnimatedMobRenderer<>(manager, TimeModelLoader.loadJsonEntityModel(Textures.getEntityModelLocation("turducken")).setScaleMultiplier(1.35F), Textures.getMobTextureLocation("turducken")));
 
         RenderingRegistry.registerEntityRenderingHandler(EntityBossCrystal.class, RenderBossCrystal::new);
     }
@@ -231,7 +232,7 @@ public class EntityRendering {
         RenderingRegistry.registerEntityRenderingHandler(EntityFrozenFrostbiter.class, new RenderModMob(new ModelFrozenFrostbiter(), Textures.frozenFrostbiter));
         RenderingRegistry.registerEntityRenderingHandler(EntityIceman.class, new RenderEntityTransparent(new ModelSnowMan(), Textures.iceman));
         RenderingRegistry.registerEntityRenderingHandler(EntityWraith.class, new RenderWraith(new ModelWraith(), Textures.wraith));
-        RenderingRegistry.registerEntityRenderingHandler(EntityTurducken.class, new RenderModMob(new ModelRoc(), Textures.turducken));
+        //RenderingRegistry.registerEntityRenderingHandler(EntityTurducken.class, new RenderModMob(new ModelRoc(), Textures.turducken));
         RenderingRegistry.registerEntityRenderingHandler(EntityDarkener.class, new RenderModMob(new ModelDarkener(), Textures.darkener));
         RenderingRegistry.registerEntityRenderingHandler(EntityStarlightGolem.class, new RenderModMob(new ModelStarlightGolem(), Textures.starlightGolem));
         RenderingRegistry.registerEntityRenderingHandler(EntityIceGolem.class, new RenderIceGolem(new ModelIceGolem(), Textures.iceGolem));

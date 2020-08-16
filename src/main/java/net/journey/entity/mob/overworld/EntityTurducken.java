@@ -1,6 +1,7 @@
 package net.journey.entity.mob.overworld;
 
 import net.journey.entity.base.EntityAttributesHelper;
+import net.journey.init.JAnimations;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.journey.init.items.JourneyConsumables;
@@ -12,12 +13,34 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityPeacefullUntillAttacked;
+import org.jetbrains.annotations.NotNull;
+import ru.timeconqueror.timecore.animation.ActionManagerBuilder;
+import ru.timeconqueror.timecore.animation.AnimationManagerBuilder;
+import ru.timeconqueror.timecore.animation.AnimationStarter;
+import ru.timeconqueror.timecore.api.animation.ActionManager;
+import ru.timeconqueror.timecore.api.animation.AnimationProvider;
+import ru.timeconqueror.timecore.api.animation.BlendType;
 
-public class EntityTurducken extends EntityPeacefullUntillAttacked {
+public class EntityTurducken extends EntityPeacefullUntillAttacked implements AnimationProvider<EntityTurducken> {
+
+    private final ActionManager<EntityTurducken> actionManager;
+
+    private static final String LAYER_ANGRY = "angry";
+    private static final String LAYER_WALKING = "walking";
 
     public EntityTurducken(World w) {
         super(w);
         setSize(0.7F, 1.0F);
+        actionManager = ActionManagerBuilder.<EntityTurducken>create(
+                AnimationManagerBuilder.create()
+                        .addLayer(LAYER_WALKING, BlendType.ADDING, 1F)
+                        .addWalkingAnimationHandling(new AnimationStarter(JAnimations.TURDUCKEN_WALK).setSpeed(1F), LAYER_WALKING)
+        ).build(this, world);
+    }
+
+    @Override
+    public @NotNull ActionManager<EntityTurducken> getActionManager() {
+        return actionManager;
     }
 
     @Override

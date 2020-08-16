@@ -150,7 +150,7 @@ public class EntityRegistry {
 				//NETHER
 				SlayerAPI.buildMobEntry(EntityHellbot.class, "hellbot", "Hellbot", 0x7c4c2c, 0x26b530),
 				SlayerAPI.buildMobEntry(EntityWitherspine.class, "witherspine", "Witherspine", 0x7c4c2c, 0x26b530),
-				SlayerAPI.buildMobEntry(EntityLavasnake.class, "lavasnake", "Lava Snake", 0x7c4c2c, 0x26b530),
+				SlayerAPI.buildMobEntry(EntityLavasnake.class, "lavasnake", "Hell Serpent", 0x7c4c2c, 0x26b530),
 				SlayerAPI.buildMobEntry(EntityHellCow.class, "hellcow", "Hell Cow", 0x7c4c2c, 0x26b530),
 				SlayerAPI.buildMobEntry(EntityReaper.class, "reaper", "Reaper", 0x7c4c2c, 0x26b530),
 				SlayerAPI.buildMobEntry(EntityMiniGhast.class, "minighast", "Mini-Ghast", 0x7c4c2c, 0x26b530),
@@ -170,7 +170,7 @@ public class EntityRegistry {
 				SlayerAPI.buildMobEntry(EntityCaveling.class, "caveling", "Caveling", 0x7c4c2c, 0x26b530),
 				SlayerAPI.buildMobEntry(EntityWraith.class, "wraith", "Wraith", 0x7c4c2c, 0x26b530),
 				SlayerAPI.buildMobEntry(EntityStonewalker.class, "stonewalker", "Stone Walker", 0x7c4c2c, 0x26b530),
-				SlayerAPI.buildMobEntry(EntityTurducken.class, "turducken", "Turducken", 0x7c4c2c, 0x26b530),
+				SlayerAPI.buildMobEntry(EntityTurducken.class, "turducken", "Phorus", 0x7c4c2c, 0x26b530),
 				SlayerAPI.buildMobEntry(EntityFloro.class, "floro", "Floro", 0x7c4c2c, 0x26b530),
 				SlayerAPI.buildMobEntry(EntitySpectre.class, "spectre", "Spectre", 0x7c4c2c, 0x26b530),
 				SlayerAPI.buildMobEntry(EntityGreenHonglow.class, "greenhonglow", "Green Honglow", 0x7c4c2c, 0x26b530),

@@ -1,0 +1,63 @@
+{
+  "format_version": "1.8.0",
+  "animations": {
+    "animation.model.charge": {
+      "loop": true,
+      "animation_length": 0.44,
+      "bones": {
+        "head": {
+          "position": [
+            0,
+            -7,
+            -8
+          ]
+        },
+        "left": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.2": [
+              0,
+              100,
+              0
+            ],
+            "0.4": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "right": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.2": [
+              0,
+              -100,
+              0
+            ],
+            "0.4": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "neck": {
+          "rotation": [
+            75,
+            0,
+            0
+          ]
+        }
+      }
+    }
+  }
+}
