@@ -19,7 +19,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.lwjgl.opengl.GL11;
 
 public class RenderEssenceBar {
-
+	private float transparency;
 	public static final ResourceLocation TEXTURE = new ResourceLocation(JITL.MOD_ID, "textures/gui/misc.png");
 	
     @SubscribeEvent
@@ -34,13 +34,17 @@ public class RenderEssenceBar {
 	private void onTickRender(EntityPlayer player) {
 		Minecraft mc = Minecraft.getMinecraft();
 		if (player != null) {
-			if (mc.currentScreen == null && player.getHeldItemMainhand() != null && instanceOfEssenceItem(player.getHeldItemMainhand().getItem())) {
+			if (mc.currentScreen == null && player.getHeldItemMainhand() != null && instanceOfEssenceItem(player.getHeldItemMainhand().getItem()) && transparency < 1.0) {
+				transparency += .1;
+			}
+			else if (transparency > 0) transparency -= .1;
+			if (transparency > 0) {
 				IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
 				if(!mc.gameSettings.hideGUI) {
 					GL11.glPushMatrix();
 					GlStateManager.enableBlend();
 					GlStateManager.enableAlpha();
-					GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+					GL11.glColor4f(1.0F, 1.0F, 1.0F, transparency);
 					GuiIngame gig = mc.ingameGUI;
 					ScaledResolution scaledresolution = new ScaledResolution(mc);
 					mc.getTextureManager().bindTexture(TEXTURE);
