@@ -16,4 +16,6 @@ public class JAnimations {
 
 	public static final Animation LAVASNAKE_TAIL = AnimationAPI.loadAndRegisterAnimation(JITL.rl("animations/lavasnake.tail.json"));
 	public static final Animation LAVASNAKE_SHOOT = AnimationAPI.loadAndRegisterAnimation(JITL.rl("animations/lavasnake.shoot.json"));
+
+	public static final Animation FLUNGUS_LIVING = AnimationAPI.loadAndRegisterAnimation(JITL.rl("animations/flungus.jiggle.json"));
 }
