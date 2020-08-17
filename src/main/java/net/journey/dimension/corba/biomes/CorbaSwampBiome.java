@@ -1,7 +1,5 @@
 package net.journey.dimension.corba.biomes;
 
-import net.journey.dimension.base.biome.JDimensionBiome;
-import net.journey.dimension.corba.biomes.properties.BiomePropertiesCorba;
 import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.block.BlockSand;
@@ -18,14 +16,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.awt.*;
 import java.util.Random;
 
-public class BiomeGenCorbaSwamp extends JDimensionBiome {
+public class CorbaSwampBiome extends CorbaBiome {
 
 	protected static final IBlockState WATER_LILY = JourneyBlocks.swampLily.getDefaultState();
 
-	public BiomeGenCorbaSwamp() {
-		super(new BiomePropertiesCorba("Corba Swamp").setBaseHeight(-0.2F).setHeightVariation(0.1F));
-		this.topBlock = JourneyBlocks.taintedMud.getDefaultState();
-		this.fillerBlock = JourneyBlocks.corbaStone.getDefaultState();
+	public CorbaSwampBiome(BiomeProperties properties, IBlockState topBlock, IBlockState fillerBlock) {
+		super(properties, topBlock, fillerBlock);
 	}
 
 	@Override
@@ -40,10 +36,6 @@ public class BiomeGenCorbaSwamp extends JDimensionBiome {
 
 	@Override
 	public void genTerrainBlocks(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z, double noiseVal) {
-
-	}
-
-	public final void generateModdedBiomeTerrain(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z, double noiseVal) {
 		IBlockState STONE = JourneyBlocks.corbaGrass.getDefaultState();
 		int i = worldIn.getSeaLevel();
 		IBlockState iblockstate = this.topBlock;

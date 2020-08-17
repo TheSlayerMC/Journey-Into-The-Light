@@ -5,7 +5,6 @@ import net.journey.api.block.GroundPredicate;
 import net.journey.dimension.base.DimensionHelper;
 import net.journey.dimension.base.gen.JWorldGenPlants;
 import net.journey.dimension.base.gen.JWorldGenRuins;
-import net.journey.dimension.corba.biomes.BiomeGenCorbaSwamp;
 import net.journey.dimension.corba.gen.WorldGenCorbaLamp;
 import net.journey.dimension.corba.gen.WorldGenCorbaVillage;
 import net.journey.dimension.corba.gen.WorldGenHugeCorbaTree;
@@ -22,8 +21,6 @@ import net.journey.dimension.overworld.gen.WorldGenTallGlowshroom;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.Config;
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockStateMatcher;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
@@ -40,6 +37,7 @@ import net.minecraft.world.gen.*;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenSwamp;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.event.ForgeEventFactory;
 import net.slayer.api.worldgen.WorldGenAPI;
 
 import java.util.ArrayList;
@@ -201,62 +199,14 @@ public class ChunkGeneratorCorba implements IChunkGenerator {
 		}
 	}
 
-	public void replaceBiomeBlocks(int x, int z, ChunkPrimer primer, Biome[] biomesIn) {
-		if (!net.minecraftforge.event.ForgeEventFactory.onReplaceBiomeBlocks(this, x, z, primer, this.worldObj)) return;
-		double d0 = 0.03125D;
-		this.depthBuffer = this.surfaceNoise.getRegion(this.depthBuffer, x * 16, z * 16, 16, 16, 0.0625D, 0.0625D, 1.0D);
+	public void replaceBiomeBlocks(int chunkX, int chunkZ, ChunkPrimer primer, Biome[] biomesIn) {
+		if (!ForgeEventFactory.onReplaceBiomeBlocks(this, chunkX, chunkZ, primer, this.worldObj)) return;
+		this.depthBuffer = this.surfaceNoise.getRegion(this.depthBuffer, chunkX * 16, chunkZ * 16, 16, 16, 0.0625D, 0.0625D, 1.0D);
 
-		for (int i = 0; i < 16; ++i) {
-			for (int j = 0; j < 16; ++j) {
-				Biome biome = biomesIn[j + i * 16];
-				if (biome == DimensionHelper.CORBA_SWAMP_BIOME) {
-					BiomeGenCorbaSwamp swamp = (BiomeGenCorbaSwamp) biome;
-					swamp.generateModdedBiomeTerrain(worldObj, this.rand, primer, x * 16 + i, z * 16 + j, this.depthBuffer[j + i * 16]);
-				} else {
-					generateBiomeTerrain(biome, this.rand, primer, x * 16 + i, z * 16 + j, this.depthBuffer[j + i * 16]);
-				}
-			}
-		}
-	}
-
-	public final void generateBiomeTerrain(Biome b, Random r, ChunkPrimer c, int x, int z, double s) {
-		boolean flag = true;
-		IBlockState iblockstate = b.topBlock;
-		IBlockState iblockstate1 = b.fillerBlock;
-		int k = -1;
-		int l = (int) (s / 3.0D + 3.0D + r.nextDouble() * 0.25D);
-		int i1 = x & 15;
-		int j1 = z & 15;
-		for (int k1 = 255; k1 >= 0; --k1) {
-			if (k1 <= 1) {
-				c.setBlockState(j1, k1, i1, Blocks.BEDROCK.getDefaultState());
-			} else {
-				IBlockState iblockstate2 = c.getBlockState(j1, k1, i1);
-
-				if (iblockstate2.getMaterial() == Material.AIR) k = -1;
-				else if (iblockstate2.getBlock() == JourneyBlocks.corbaStone) {
-					if (k == -1) {
-						if (l <= 0) {
-							iblockstate = null;
-							iblockstate1 = JourneyBlocks.corbaStone.getDefaultState();
-						} else if (k1 >= 7 && k1 <= 8) {
-							iblockstate =  b.topBlock;
-							iblockstate1 =  b.fillerBlock;
-						}
-
-						if (k1 < 8 && (iblockstate == null || iblockstate.getMaterial() == Material.AIR))
-							iblockstate = JourneyBlocks.corbaStone.getDefaultState();
-						k = l;
-						if (k1 >= 8) c.setBlockState(j1, k1, i1, iblockstate);
-						else if (k1 < 7 - l) {
-							iblockstate = null;
-							iblockstate1 = JourneyBlocks.corbaStone.getDefaultState();
-						} else c.setBlockState(j1, k1, i1, iblockstate1);
-					} else if (k > 0) {
-						--k;
-						c.setBlockState(j1, k1, i1, iblockstate1);
-					}
-				}
+		for (int relX = 0; relX < 16; ++relX) {
+			for (int relZ = 0; relZ < 16; ++relZ) {
+				Biome biome = biomesIn[relX + relZ * 16];
+				biome.genTerrainBlocks(this.worldObj, this.rand, primer, chunkX * 16 + relX, chunkZ * 16 + relZ, this.depthBuffer[relX + relZ * 16]);
 			}
 		}
 	}

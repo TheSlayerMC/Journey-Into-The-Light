@@ -1,21 +1,18 @@
 package net.journey.dimension.corba.biomes;
 
-import net.journey.dimension.base.biome.JDimensionBiome;
-import net.journey.dimension.corba.biomes.properties.BiomePropertiesCorba;
-import net.journey.init.blocks.JourneyBlocks;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.awt.*;
 
-public class BiomeGenCorbaHills extends JDimensionBiome {
+public class CorbaPlainsBiome extends CorbaBiome {
 
-    public BiomeGenCorbaHills() {
-        super(new BiomePropertiesCorba("Corba Hills").setBaseHeight(0.2F).setHeightVariation(0.3F));
-        this.topBlock = JourneyBlocks.corbaGrass.getDefaultState();
-        this.fillerBlock = JourneyBlocks.corbaStone.getDefaultState();
-        this.decorator.mushroomsPerChunk = 64;
+    public CorbaPlainsBiome(BiomeProperties properties, IBlockState topBlock, IBlockState fillerBlock) {
+        super(properties, topBlock, fillerBlock);
+        this.topBlock = topBlock;
+        this.fillerBlock = fillerBlock;
     }
 
     @Override

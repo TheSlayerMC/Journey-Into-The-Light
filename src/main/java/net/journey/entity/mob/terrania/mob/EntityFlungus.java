@@ -26,7 +26,7 @@ public class EntityFlungus extends JEntityMob implements AnimationProvider<Entit
 
 	public EntityFlungus(World world) {
 		super(world);
-		this.setSize(1.0F, 0.3F);
+		this.setSize(2.0F, 1.3F);
 		actionManager = ActionManagerBuilder.<EntityFlungus>create(
 				AnimationManagerBuilder.create()
 						.addLayer(LAYER_LIVING, BlendType.ADDING, 1F)

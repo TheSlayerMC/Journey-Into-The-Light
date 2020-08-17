@@ -8,10 +8,10 @@ import net.journey.dimension.boil.biome.BiomeGenScorchedWasteland;
 import net.journey.dimension.cloudia.BiomeGenCloudia;
 import net.journey.dimension.cloudia.WorldProviderCloudia;
 import net.journey.dimension.corba.WorldProviderCorba;
-import net.journey.dimension.corba.biomes.BiomeGenCorba;
-import net.journey.dimension.corba.biomes.BiomeGenCorbaHills;
-import net.journey.dimension.corba.biomes.BiomeGenCorbaPlains;
-import net.journey.dimension.corba.biomes.BiomeGenCorbaSwamp;
+import net.journey.dimension.corba.biomes.CorbaBiome;
+import net.journey.dimension.corba.biomes.CorbaHillsBiome;
+import net.journey.dimension.corba.biomes.CorbaPlainsBiome;
+import net.journey.dimension.corba.biomes.CorbaSwampBiome;
 import net.journey.dimension.depths.BiomeGenDepths;
 import net.journey.dimension.depths.WorldProviderDepths;
 import net.journey.dimension.euca.WorldProviderEuca;
@@ -75,9 +75,30 @@ public class DimensionHelper {
     @Deprecated //it's better to keep them inside biomes
     public static final float[] CORBA_PLAINS_HEIGHT = new float[]{0.0F, 0.0F};
 
-    public static final Biome EUCA_GOLD_BIOME = new EucaGoldBiome(new Biome.BiomeProperties("Euca Gold Forest").setRainDisabled().setRainfall(0.0F), JourneyBlocks.eucaGrass.getDefaultState(), JourneyBlocks.eucaDirt.getDefaultState());
-    public static final Biome EUCA_SILVER_BIOME = new EucaSilverBiome(new Biome.BiomeProperties("Euca Silver Forest").setRainDisabled().setRainfall(0.0F).setBaseHeight(0.125F).setHeightVariation(0.05F), JourneyBlocks.eucaSilverGrass.getDefaultState(), JourneyBlocks.eucaDirt.getDefaultState());
-    public static final Biome EUCA_GOLDITE_GRAINS_BIOME = new EucaGolditeGrainsBiome(new Biome.BiomeProperties("Euca Goldite Grains").setRainDisabled().setRainfall(0.0F).setBaseHeight(0.125F).setHeightVariation(0.05F), JourneyBlocks.eucaGolditeGrass.getDefaultState(), JourneyBlocks.eucaGolditeDirt.getDefaultState());
+    public static final Biome EUCA_GOLD_BIOME = new EucaGoldBiome(new Biome.BiomeProperties
+            ("Gold Forest")
+            .setRainDisabled()
+            .setRainfall(0.0F),
+            JourneyBlocks.eucaGrass.getDefaultState(),
+            JourneyBlocks.eucaDirt.getDefaultState());
+
+    public static final Biome EUCA_SILVER_BIOME = new EucaSilverBiome(new Biome.BiomeProperties
+            ("Silver Forest")
+            .setRainDisabled()
+            .setRainfall(0.0F)
+            .setBaseHeight(0.125F)
+            .setHeightVariation(0.05F),
+            JourneyBlocks.eucaSilverGrass.getDefaultState(),
+            JourneyBlocks.eucaDirt.getDefaultState());
+
+    public static final Biome EUCA_GOLDITE_GRAINS_BIOME = new EucaGolditeGrainsBiome(new Biome.BiomeProperties
+            ("Goldite Grains")
+            .setRainDisabled()
+            .setRainfall(0.0F)
+            .setBaseHeight(0.125F)
+            .setHeightVariation(0.05F),
+            JourneyBlocks.eucaGolditeGrass.getDefaultState(),
+            JourneyBlocks.eucaGolditeDirt.getDefaultState());
 
     public static final Biome BOILING_BIOME = new BiomeGenBoiling();
     public static final Biome SCORCHED_WASTELAND_BIOME = new BiomeGenScorchedWasteland();
@@ -86,10 +107,33 @@ public class DimensionHelper {
 
     public static final Biome CLOUDIA_BIOME = new BiomeGenCloudia();
 
-    public static final Biome CORBA_BIOME = new BiomeGenCorba();
-    public static final Biome CORBA_PLAINS_BIOME = new BiomeGenCorbaPlains();
-    public static final Biome CORBA_HILLS_BIOME = new BiomeGenCorbaHills();
-    public static final Biome CORBA_SWAMP_BIOME = new BiomeGenCorbaSwamp();
+    public static final Biome CORBA_BIOME = new CorbaBiome(new Biome.BiomeProperties
+            ("Tainted Forest")
+            .setBaseHeight(0.2F)
+            .setHeightVariation(0.2F),
+            JourneyBlocks.corbaGrass.getDefaultState(),
+            JourneyBlocks.corbaStone.getDefaultState());
+
+    public static final Biome CORBA_PLAINS_BIOME = new CorbaPlainsBiome(new Biome.BiomeProperties
+            ("Swampy Plains")
+            .setBaseHeight(0.01F)
+            .setHeightVariation(0.05F),
+            JourneyBlocks.corbaGrass.getDefaultState(),
+            JourneyBlocks.corbaStone.getDefaultState());
+
+    public static final Biome CORBA_HILLS_BIOME = new CorbaHillsBiome(new Biome.BiomeProperties
+            ("Corrupted Hills")
+            .setBaseHeight(0.2F)
+            .setHeightVariation(0.4F),
+            JourneyBlocks.corbaGrass.getDefaultState(),
+            JourneyBlocks.corbaStone.getDefaultState());
+
+    public static final Biome CORBA_SWAMP_BIOME = new CorbaSwampBiome(new Biome.BiomeProperties
+            ("Tainted Swamp")
+            .setBaseHeight(0.2F)
+            .setHeightVariation(0.2F),
+            JourneyBlocks.taintedMud.getDefaultState(),
+            JourneyBlocks.corbaStone.getDefaultState());
 
     public static final Biome DEPTHS_BIOME = new BiomeGenDepths();
     public static final Biome FROZEN_BIOME = new BiomeGenFrozenLands();
@@ -241,6 +285,7 @@ public class DimensionHelper {
         EntityRegistry.addSpawn(EntityTerragrow.class, 5, 1, 1, EnumCreatureType.MONSTER, TERRANIA_BIOMES);
         EntityRegistry.addSpawn(EntityTerrashroom.class, 5, 1, 1, EnumCreatureType.MONSTER, TERRANIA_BIOMES);
         EntityRegistry.addSpawn(EntityTerraslug.class, 5, 1, 1, EnumCreatureType.MONSTER, TERRANIA_BIOMES);
+        EntityRegistry.addSpawn(EntityFlungus.class, 5, 1, 1, EnumCreatureType.MONSTER, ENCHANTED_SHROOM_FOREST_BIOME);
     }
 
     private static void addEucaSpawns() {
