@@ -35,12 +35,14 @@ public class RenderEssenceBar {
 		Minecraft mc = Minecraft.getMinecraft();
 		if (player != null) {
 			if (mc.currentScreen == null && player.getHeldItemMainhand() != null && instanceOfEssenceItem(player.getHeldItemMainhand().getItem()) && transparency < 1.0) {
-				transparency += .1;
-			}
-			else if (transparency > 0) transparency -= .1;
+				transparency += .02;
+			} else if (transparency > 0) transparency -= .02;
 			if (transparency > 0) {
 				IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
-				if(!mc.gameSettings.hideGUI) {
+				if (mana.getEssenceValue() < 10 && player.getHeldItemMainhand() != null && !instanceOfEssenceItem(player.getHeldItemMainhand().getItem())) {
+					transparency = 0.35F;
+				}
+				if (!mc.gameSettings.hideGUI) {
 					GL11.glPushMatrix();
 					GlStateManager.enableBlend();
 					GlStateManager.enableAlpha();
