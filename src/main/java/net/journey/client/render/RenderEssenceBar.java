@@ -45,7 +45,7 @@ public class RenderEssenceBar {
 		if (transparency > 0) {
 			IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
 
-			if (mana.getEssenceValue() < 10 && !instanceOfEssenceItem(heldItemMainhand.getItem())) {
+			if (mana.isFull() && !instanceOfEssenceItem(heldItemMainhand.getItem())) {
 				transparency = 0.35F;
 			}
 
@@ -63,7 +63,7 @@ public class RenderEssenceBar {
 				gig.drawTexturedModalRect(x - 10, y + 10, 0, 177, 117, 19);
 				gig.drawTexturedModalRect(x - 6, y + 17, 0, 23, 109, 5);
 				for (int i = 0; i < mana.getEssenceValue(); i++) {
-					if (!(i >= 10)) {
+					if (!(i >= mana.getMaxValue())) {
 						x += 11;
 						gig.drawTexturedModalRect(x - 17, y + 17, 0, 0, 10, 5);
 					}

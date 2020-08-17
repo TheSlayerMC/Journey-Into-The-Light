@@ -1,13 +1,18 @@
 package net.journey.client.server;
 
-import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagInt;
 
 public class EssenceBar implements IEssence {
 
+    private final int maxValue;
+
     private int essenceValue = 0;
-    private int regenValue = 0;
+    private int regenCooldown = 0;
+
+    public EssenceBar(int maxValue) {
+        this.maxValue = maxValue;
+    }
 
     @Override
     public boolean useEssence(int points) {
@@ -20,11 +25,8 @@ public class EssenceBar implements IEssence {
     @Override
     public void addEssence(int points) {
         essenceValue += points;
-    }
 
-    @Override
-    public void setEssence(int essence) {
-        essenceValue = essence;
+        coerceEssence(this);
     }
 
     @Override
@@ -33,12 +35,19 @@ public class EssenceBar implements IEssence {
     }
 
     @Override
+    public int getMaxValue() {
+        return maxValue;
+    }
+
+    @Override
+    public boolean isFull() {
+        return getEssenceValue() == getMaxValue();
+    }
+
+    @Override
     public void update() {
-        if (getEssenceValue() > 10) setEssence(10);
-        if (regenValue-- <= 0) regenValue = 30;
-        if (regenValue >= 30) regen();
-        //essenceValue = 10;
-        //System.out.println(getEssenceValue());
+        if (regenCooldown-- <= 0) regenCooldown = 30;
+        if (regenCooldown >= 30) regen();
     }
 
     @Override
@@ -46,15 +55,27 @@ public class EssenceBar implements IEssence {
         addEssence(1);
     }
 
-    @Override
-    public NBTBase writeNBT(IEssence essence, NBTTagCompound tag) {
-        tag.setInteger("regen", 30);
-        return new NBTTagInt(essence.getEssenceValue());
+    public static NBTTagCompound writeToNBT(EssenceBar essence) {
+        NBTTagCompound compound = new NBTTagCompound();
+        compound.setInteger("regen_cooldown", essence.regenCooldown);
+        compound.setInteger("essence_value", essence.getEssenceValue());
+
+        return compound;
     }
 
-    @Override
-    public void readNBT(NBTBase nbt, IEssence essence, NBTTagCompound tag) {
-        essence.setEssence(((NBTTagInt) nbt).getInt());
-        regenValue = tag.getInteger("regen");
+    public static void readFromNBT(EssenceBar essence, NBTTagCompound tag) {
+        essence.regenCooldown = tag.getInteger("regen_cooldown");
+        essence.essenceValue = tag.getInteger("essence_value");
+
+        coerceEssence(essence);
+    }
+
+    @Deprecated //remove in 1.13+
+    public static void readFromOldNBT(EssenceBar essence, NBTTagInt tag) {
+        essence.essenceValue = tag.getInt();
+    }
+
+    private static void coerceEssence(EssenceBar essenceBar){
+        essenceBar.essenceValue = Math.min(essenceBar.getEssenceValue(), essenceBar.getMaxValue());
     }
 }

@@ -90,7 +90,7 @@ public class CommonProxy {
         DimensionHelper.addSpawns();
         SlayerAPI.registerEventListener(new BarTickHandler());
         SlayerAPI.registerEventListener(new RenderBar());
-        CapabilityManager.INSTANCE.register(IEssence.class, new EssenceStorage(), EssenceBar.class);
+        CapabilityManager.INSTANCE.register(IEssence.class, new EssenceSerializer(), () -> new EssenceBar(10));
 
         Integrations.onPreInit(event);
         TCNetworkHandler.registerPackets();
