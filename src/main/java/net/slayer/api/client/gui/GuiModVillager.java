@@ -1,10 +1,10 @@
 package net.slayer.api.client.gui;
 
 import io.netty.buffer.Unpooled;
+import net.journey.client.render.gui.base.JGuiContainer;
 import net.journey.util.LangHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.resources.I18n;
@@ -28,12 +28,12 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 
 @SideOnly(Side.CLIENT)
-public class GuiModVillager extends GuiContainer {
+public class GuiModVillager extends JGuiContainer {
 
     private static final Logger logger = LogManager.getLogger();
     private final String texture;
     protected String name;
-    private IMerchant theIMerchant;
+    private final IMerchant theIMerchant;
     private GuiModVillager.ModMerchantButton nextRecipeButtonIndex;
     private GuiModVillager.ModMerchantButton previousRecipeButtonIndex;
     private int currentRecipeIndex = 0;
@@ -187,7 +187,7 @@ public class GuiModVillager extends GuiContainer {
     @SideOnly(Side.CLIENT)
     private static class ModMerchantButton extends GuiButton {
         private final boolean rev;
-        private String texture;
+        private final String texture;
 
         public ModMerchantButton(int par1, int par2, int par3, boolean par4, String tex) {
             super(par1, par2, par3, 12, 19, "");

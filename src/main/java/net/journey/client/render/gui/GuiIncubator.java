@@ -2,7 +2,7 @@ package net.journey.client.render.gui;
 
 import net.journey.blocks.tileentity.TileEntityIncubator;
 import net.journey.blocks.tileentity.container.ContainerIncubator;
-import net.minecraft.client.gui.inventory.GuiContainer;
+import net.journey.client.render.gui.base.JGuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.IInventory;
@@ -12,7 +12,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.SlayerAPI;
 
 @SideOnly(Side.CLIENT)
-public class GuiIncubator extends GuiContainer {
+public class GuiIncubator extends JGuiContainer {
 
 	private static final ResourceLocation Incubator_GUI_TEXTURES = new ResourceLocation(SlayerAPI.PREFIX + "textures/gui/incubator.png");
 	private final InventoryPlayer playerInventory;

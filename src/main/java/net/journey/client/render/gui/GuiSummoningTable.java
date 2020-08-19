@@ -3,9 +3,9 @@ package net.journey.client.render.gui;
 import io.netty.buffer.Unpooled;
 import net.journey.blocks.tileentity.TileEntitySummoningTable;
 import net.journey.blocks.tileentity.container.ContainerSummoningTable;
+import net.journey.client.render.gui.base.JGuiContainer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -20,10 +20,9 @@ import org.lwjgl.opengl.GL11;
 
 import java.io.IOException;
 
-public class GuiSummoningTable extends GuiContainer {
+public class GuiSummoningTable extends JGuiContainer {
 
-    private GuiSummoningTable.CraftButton button;
-    private TileEntitySummoningTable table;
+    private final TileEntitySummoningTable table;
 
     public GuiSummoningTable(InventoryPlayer inventory, TileEntitySummoningTable table, World w) {
         super(new ContainerSummoningTable(inventory, table));
