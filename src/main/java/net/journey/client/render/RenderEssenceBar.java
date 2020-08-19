@@ -15,7 +15,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.lwjgl.opengl.GL11;
 
@@ -45,7 +44,7 @@ public class RenderEssenceBar {
 		if (transparency > 0) {
 			IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
 
-			if (mana.isFull() && !instanceOfEssenceItem(heldItemMainhand.getItem())) {
+			if (!mana.isFull() && !instanceOfEssenceItem(heldItemMainhand.getItem())) {
 				transparency = 0.35F;
 			}
 

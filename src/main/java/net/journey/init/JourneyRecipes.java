@@ -116,13 +116,7 @@ public class JourneyRecipes {
 		addShapelessRecipe(JourneyItems.nethicgemstone, JourneyItems.bleedstonedust, JourneyItems.smithstonedust);
 		addShapelessRecipe(JourneyItems.darkGem, JourneyItems.shadiumIngot, Items.DIAMOND);
 
-		addOPFoodRecipes(JourneyConsumables.goldenPork, JourneyConsumables.goldenPorkOP, Items.PORKCHOP);
-		addOPFoodRecipes(JourneyConsumables.goldenSteak, JourneyConsumables.goldenSteakOP, Items.BEEF);
 		addOPFoodRecipes(JourneyConsumables.goldenPotato, JourneyConsumables.goldenPotatoOP, Items.POTATO);
-		addOPFoodRecipes(JourneyConsumables.goldenFish, JourneyConsumables.goldenFishOP, Items.FISH);
-		addOPFoodRecipes(JourneyConsumables.goldenChicken, JourneyConsumables.goldenChickenOP, Items.CHICKEN);
-		addOPFoodRecipes(JourneyConsumables.goldenRabbit, JourneyConsumables.goldenRabbitOP, Items.RABBIT);
-		addOPFoodRecipes(JourneyConsumables.goldenMutton, JourneyConsumables.goldenMuttonOP, Items.MUTTON);
 		addOPFoodRecipes(JourneyConsumables.goldenWing, JourneyConsumables.goldenWingOP, JourneyConsumables.rocMeat);
 
 		addShapedRecipe(JourneyItems.hellstoneClump, "iii", 'i', JourneyItems.hellstoneIngot);
@@ -257,12 +251,13 @@ public class JourneyRecipes {
 		GameRegistry.addSmelting(JourneyItems.ironDust, new ItemStack(Items.IRON_INGOT), 0.5F);
 		GameRegistry.addSmelting(JourneyItems.goldDust, new ItemStack(Items.GOLD_INGOT), 0.5F);
 		GameRegistry.addSmelting(JourneyItems.diamondDust, new ItemStack(Items.DIAMOND), 0.5F);
-		GameRegistry.addSmelting(JourneyItems.enderilliumDust, new ItemStack(JourneyItems.enderilliumShard), 0.5F);
-		GameRegistry.addSmelting(Items.ROTTEN_FLESH, new ItemStack(Items.LEATHER), 0.5F);
+		GameRegistry.addSmelting(JourneyItems.enderilliumDust, new ItemStack(JourneyItems.enderilliumShard), 1.5F);
+		GameRegistry.addSmelting(Items.ROTTEN_FLESH, new ItemStack(Items.LEATHER), 1.0F);
 		GameRegistry.addSmelting(Items.EGG, new ItemStack(JourneyConsumables.friedEgg), 0.5F);
 		GameRegistry.addSmelting(JourneyConsumables.rocMeat, new ItemStack(JourneyConsumables.cookedRocMeat), 0.5F);
 		GameRegistry.addSmelting(JourneyConsumables.ghastTentacle, new ItemStack(JourneyConsumables.friedGhastTentacale), 0.5F);
 		GameRegistry.addSmelting(JourneyConsumables.flamingGhastTentacle, new ItemStack(JourneyConsumables.friedFlamingGhastTentacale), 0.5F);
+		GameRegistry.addSmelting(JourneyConsumables.breathing_fungus, new ItemStack(JourneyConsumables.breathing_fungus_cooked), 0.5F);
 	}
 
 	private static void addShapedRecipe(Block b, Object... params) {
@@ -306,6 +301,14 @@ public class JourneyRecipes {
 	private static void addOPFoodRecipes(Item nonOP, Item OP, Item base) {
 		addShapedRecipe(new ItemStack(nonOP), "iii", "ibi", "iii", 'i', Items.GOLD_INGOT, 'b', base);
 		addShapedRecipe(new ItemStack(OP), "iii", "ibi", "iii", 'i', Blocks.GOLD_BLOCK, 'b', base);
+	}
+
+	private static void addFurnaceRecipes(Block stone) {
+		addShapedRecipe(new ItemStack(Blocks.FURNACE), "iii", "i i", "iii", 'i', stone);
+	}
+
+	private static void addCraftingTableRecipes(Block plank) {
+		addShapelessRecipe(new ItemStack(Blocks.FURNACE), "ii", "ii", 'i', plank);
 	}
 
 	private static void addWoodRecipes(Block log, Block plank, Block stair, int slabMeta, boolean smelt) {

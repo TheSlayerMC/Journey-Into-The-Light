@@ -2,11 +2,18 @@ package net.journey.entity.mob.terrania.mob;
 
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.init.JAnimations;
+import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
+import net.journey.init.blocks.JourneyBlocks;
+import net.journey.init.items.JourneyItems;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.SoundEvent;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.*;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.slayer.api.entity.JEntityMob;
@@ -51,6 +58,11 @@ public class EntityFlungus extends JEntityMob implements AnimationProvider<Entit
 	@Override
 	protected void initEntityAI() {
 		this.tasks.addTask(1, new EntityAILookIdle(this));
+	}
+
+	@Override
+	public boolean getCanSpawnHere() {
+		return this.world.getBlockState(new BlockPos(this.posX, this.posY - 1, this.posZ)).getBlock() == JourneyBlocks.terrashroomBlockPink;
 	}
 
 	@Override
@@ -113,6 +125,23 @@ public class EntityFlungus extends JEntityMob implements AnimationProvider<Entit
 	}
 
 	@Override
+	public boolean processInteract(EntityPlayer player, EnumHand hand) {
+		ItemStack itemstack = player.getHeldItem(hand);
+		if (itemstack.getItem() == Items.GLASS_BOTTLE) {
+			world.playSound(player.posX, player.posY, player.posZ, SoundEvents.ITEM_BOTTLE_FILL, SoundCategory.MASTER, 1.0f, 1.0f, false);
+			itemstack.shrink(1);
+			if (itemstack.isEmpty()) {
+				player.setHeldItem(hand, new ItemStack(JourneyItems.bile_vial));
+			} else if (!player.inventory.addItemStackToInventory(new ItemStack(JourneyItems.bile_vial))) {
+				player.dropItem(new ItemStack(JourneyItems.bile_vial), false);
+			}
+			return true;
+		} else {
+			return super.processInteract(player, hand);
+		}
+	}
+
+	@Override
 	protected SoundEvent getAmbientSound() {
 		return JourneySounds.TERRA_SLUG;
 	}
@@ -125,5 +154,10 @@ public class EntityFlungus extends JEntityMob implements AnimationProvider<Entit
 	@Override
 	protected SoundEvent getDeathSound() {
 		return JourneySounds.TERRA_SLUG_DEATH;
+	}
+
+	@Override
+	public ResourceLocation getLootTable() {
+		return JourneyLootTables.FLUNGUS;
 	}
 }

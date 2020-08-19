@@ -1,25 +1,18 @@
 package net.journey.dimension.terrania.biome;
 
-import net.journey.dimension.base.biome.JDimensionBiome;
-import net.journey.init.blocks.JourneyBlocks;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.awt.*;
 
-public class BiomeGenEnchantedShroomForest extends JDimensionBiome {
+public class TerraniaShroomForestBiome extends TerraniaBiome {
 
-	public BiomeGenEnchantedShroomForest() {
-		super(new BiomeProperties("Enchanted Shroom Forest"));
-		this.topBlock = JourneyBlocks.terranianGrass.getDefaultState();
-		this.fillerBlock = JourneyBlocks.terranianDirt.getDefaultState();
-		this.spawnableCreatureList.clear();
-		this.spawnableMonsterList.clear();
-		this.spawnableCaveCreatureList.clear();
-		this.spawnableWaterCreatureList.clear();
+	public TerraniaShroomForestBiome(BiomeProperties properties, IBlockState topBlock, IBlockState fillerBlock) {
+		super(properties, topBlock, fillerBlock);
 	}
-	
+
 	@Override
 	public int getFoliageColorAtPos(BlockPos pos) {
 		return 0xC40600;

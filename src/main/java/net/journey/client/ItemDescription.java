@@ -37,7 +37,7 @@ public class ItemDescription {
             list.add(SlayerAPI.Colour.GREEN + "Light Green - Nightvision (only)");
         if (item == JourneyConsumables.honglowShroom || item == JourneyConsumables.redHonglowShroom || item == JourneyConsumables.greenHonglowShroom || item == JourneyConsumables.blueHonglowShroom)
             list.add(SlayerAPI.Colour.YELLOW + "Note: All Variants Grant Nightvision Upon Eaten");
-        if (item == JourneyItems.iridium) list.add("Longer Smelting Fuel");
+        if (item == JourneyItems.iridium) list.add("Radioactive");
         if (item == JourneyItems.demonicEye) list.add("Inserted into the Corba Portal Frame");
         if (item == JourneyItems.darkGem) list.add("Inserted into the Depths Portal Frame");
         if (item == JourneyItems.sentryEye) list.add("Inserted into the Senterian Portal Frame");
@@ -46,12 +46,17 @@ public class ItemDescription {
         if (item == JourneyItems.TAMED_ROBOT_SPAWN_EGG) list.add("Spawns: Pet Robot");
         if (item == JourneyItems.ROBOT_EGG) list.add("Needs to be Incubated");
 
+        if (item == JourneyConsumables.breathing_fungus || item == JourneyConsumables.breathing_fungus_cooked)
+            list.add(SlayerAPI.Colour.GREEN + "Smells Horrible...");
+
+        if (item == JourneyItems.bile_vial) list.add(SlayerAPI.Colour.GREEN + "Very Vile!");
+
         if (item == JourneyItems.TAMED_EUCA_HOPPER_SPAWN_EGG) list.add("Spawns: Pet Euca Hopper");
         if (item == JourneyItems.EUCA_HOPPER_EGG) list.add("Needs to be Incubated");
-        
+
         if (item == JourneyItems.TAMED_ROC_SPAWN_EGG) list.add("Spawns: Pet Roc");
         if (item == JourneyItems.ROC_EGG) list.add("Needs to be Incubated");
-        
+
         if (item == JourneyItems.TAMED_SHIVERWOLF_SPAWN_EGG) list.add("Spawns: Pet Shiverwolf");
         if (item == JourneyItems.SHIVERWOLF_EGG) list.add("Needs to be Incubated");
     }

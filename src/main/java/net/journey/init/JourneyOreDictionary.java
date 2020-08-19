@@ -11,6 +11,7 @@ public class JourneyOreDictionary {
         initOreItems();
         initLogBlocks();
         initPlankBlocks();
+		initStoneBlocks();
     }
 
     public static void initOreBlocks() {
@@ -81,14 +82,26 @@ public class JourneyOreDictionary {
         OreDictionary.registerOre("logWood", JourneyBlocks.sizzlerWoodLog);
         OreDictionary.registerOre("logWood", JourneyBlocks.terranianLog);
         OreDictionary.registerOre("logWood", JourneyBlocks.witherwoodLog);
-    }
+	}
 
-    public static void initPlankBlocks() {
-        OreDictionary.registerOre("plankWood", JourneyBlocks.goldEucaPlank);
-        OreDictionary.registerOre("plankWood", JourneyBlocks.corbaPlank);
-        OreDictionary.registerOre("plankWood", JourneyBlocks.depthsPlank);
-        OreDictionary.registerOre("plankWood", JourneyBlocks.cloudiaPlanks);
-        OreDictionary.registerOre("plankWood", JourneyBlocks.earthenNetherPlanks);
-        OreDictionary.registerOre("plankWood", JourneyBlocks.frozenPlanks);
-    }
+	public static void initPlankBlocks() {
+		OreDictionary.registerOre("plankWood", JourneyBlocks.goldEucaPlank);
+		OreDictionary.registerOre("plankWood", JourneyBlocks.corbaPlank);
+		OreDictionary.registerOre("plankWood", JourneyBlocks.depthsPlank);
+		OreDictionary.registerOre("plankWood", JourneyBlocks.cloudiaPlanks);
+		OreDictionary.registerOre("plankWood", JourneyBlocks.earthenNetherPlanks);
+		OreDictionary.registerOre("plankWood", JourneyBlocks.frozenPlanks);
+	}
+
+	public static void initStoneBlocks() {
+		OreDictionary.registerOre("stone", JourneyBlocks.workshopStone);
+		OreDictionary.registerOre("stone", JourneyBlocks.corbaStone);
+		OreDictionary.registerOre("stone", JourneyBlocks.depthsStone);
+		OreDictionary.registerOre("stone", JourneyBlocks.cloudiaRock);
+		OreDictionary.registerOre("stone", JourneyBlocks.eucaStone);
+		OreDictionary.registerOre("stone", JourneyBlocks.ashBlock);
+		OreDictionary.registerOre("stone", JourneyBlocks.scorchedRubble);
+		OreDictionary.registerOre("stone", JourneyBlocks.frozenStone);
+		OreDictionary.registerOre("stone", JourneyBlocks.terranianStone);
+	}
 }

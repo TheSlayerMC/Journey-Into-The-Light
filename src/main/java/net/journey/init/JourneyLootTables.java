@@ -141,26 +141,27 @@ public class JourneyLootTables {
     public static final ResourceLocation OVERSEER_ELDER = register("mobs/corba/overseer_elder");
     public static final ResourceLocation SURFACE_SEER = register("mobs/corba/surface_seer");
     public static final ResourceLocation TREE_GOLEM = register("mobs/corba/tree_golem");
-    public static final ResourceLocation WOOD_CREATURE = register("mobs/corba/wood_creature");
+	public static final ResourceLocation WOOD_CREATURE = register("mobs/corba/wood_creature");
 
-    //Terrania
-    public static final ResourceLocation ARANA_KING = register("mobs/terrania/arana_king");
-    public static final ResourceLocation PURPLIAN = register("mobs/terrania/purplian");
-    public static final ResourceLocation TERRAGROW = register("mobs/terrania/terragrow");
-    public static final ResourceLocation TERRALIGHT = register("mobs/terrania/terralight");
-    public static final ResourceLocation TERRA_SCATTERER = register("mobs/terrania/terra_scatterer");
-    public static final ResourceLocation TERRASHROOM = register("mobs/terrania/terrashroom");
-    public static final ResourceLocation TERRA_SLUG = register("mobs/terrania/terra_slug");
+	//Terrania
+	public static final ResourceLocation ARANA_KING = register("mobs/terrania/arana_king");
+	public static final ResourceLocation PURPLIAN = register("mobs/terrania/purplian");
+	public static final ResourceLocation TERRAGROW = register("mobs/terrania/terragrow");
+	public static final ResourceLocation TERRALIGHT = register("mobs/terrania/terralight");
+	public static final ResourceLocation TERRA_SCATTERER = register("mobs/terrania/terra_scatterer");
+	public static final ResourceLocation TERRASHROOM = register("mobs/terrania/terrashroom");
+	public static final ResourceLocation TERRA_SLUG = register("mobs/terrania/terra_slug");
+	public static final ResourceLocation FLUNGUS = register("mobs/terrania/flungus");
 
-    //Cloudia
-    public static final ResourceLocation CLOUD_FLOWER = register("mobs/cloudia/cloud_flower");
-    public static final ResourceLocation CLOUD_GHOST = register("mobs/cloudia/cloud_ghost");
-    public static final ResourceLocation SKY_EEL = register("mobs/cloudia/sky_eel");
-    public static final ResourceLocation STARLIGHT_GOLEM = register("mobs/cloudia/starlight_golem");
-    public static final ResourceLocation STARLIGHT_TRANSPORTER = register("mobs/cloudia/starlight_transporter");
-    public static final ResourceLocation STARLIGHT_WALKER = register("mobs/cloudia/starlight_walker");
-    
-    //Senterian
+	//Cloudia
+	public static final ResourceLocation CLOUD_FLOWER = register("mobs/cloudia/cloud_flower");
+	public static final ResourceLocation CLOUD_GHOST = register("mobs/cloudia/cloud_ghost");
+	public static final ResourceLocation SKY_EEL = register("mobs/cloudia/sky_eel");
+	public static final ResourceLocation STARLIGHT_GOLEM = register("mobs/cloudia/starlight_golem");
+	public static final ResourceLocation STARLIGHT_TRANSPORTER = register("mobs/cloudia/starlight_transporter");
+	public static final ResourceLocation STARLIGHT_WALKER = register("mobs/cloudia/starlight_walker");
+
+	//Senterian
     public static final ResourceLocation MINI_SENTRY_LORD = register("mobs/senterian/mini_sentry_lord");
     public static final ResourceLocation MINI_SENTRY_STALKER = register("mobs/senterian/mini_sentry_stalker");
     public static final ResourceLocation MINI_SENTRY_WALKER = register("mobs/senterian/mini_sentry_walker");

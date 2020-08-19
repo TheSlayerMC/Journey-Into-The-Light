@@ -23,8 +23,8 @@ import net.journey.dimension.frozen.WorldProviderFrozenLands;
 import net.journey.dimension.senterian.BiomeGenSenterian;
 import net.journey.dimension.senterian.WorldProviderSenterian;
 import net.journey.dimension.terrania.WorldProviderTerrania;
-import net.journey.dimension.terrania.biome.BiomeGenEnchantedShroomForest;
-import net.journey.dimension.terrania.biome.BiomeGenTerrania;
+import net.journey.dimension.terrania.biome.TerraniaBiome;
+import net.journey.dimension.terrania.biome.TerraniaShroomForestBiome;
 import net.journey.entity.mob.boiling.EntityBurningLight;
 import net.journey.entity.mob.boiling.EntityFrightener;
 import net.journey.entity.mob.boiling.EntityMagmaBlaze;
@@ -71,9 +71,6 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 public class DimensionHelper {
 
     public static final float[] boilHeight = new float[]{0.125F, 0.1F};
-
-    @Deprecated //it's better to keep them inside biomes
-    public static final float[] CORBA_PLAINS_HEIGHT = new float[]{0.0F, 0.0F};
 
     public static final Biome EUCA_GOLD_BIOME = new EucaGoldBiome(new Biome.BiomeProperties
             ("Gold Forest")
@@ -139,8 +136,19 @@ public class DimensionHelper {
     public static final Biome FROZEN_BIOME = new BiomeGenFrozenLands();
     public static final Biome SENTERIAN_BIOME = new BiomeGenSenterian();
 
-    public static final Biome TERRANIA_BIOME = new BiomeGenTerrania();
-    public static final Biome ENCHANTED_SHROOM_FOREST_BIOME = new BiomeGenEnchantedShroomForest();
+    public static final Biome TERRANIA_BIOME = new TerraniaBiome(new Biome.BiomeProperties
+            ("Enchanted Forest")
+            .setBaseHeight(0.2F)
+            .setHeightVariation(0.2F),
+            JourneyBlocks.terranianGrass.getDefaultState(),
+            JourneyBlocks.terranianStone.getDefaultState());
+
+    public static final Biome ENCHANTED_SHROOM_FOREST_BIOME = new TerraniaShroomForestBiome(new Biome.BiomeProperties
+            ("Enchanted Shroom Forest")
+            .setBaseHeight(0.0F)
+            .setHeightVariation(0.0F),
+            JourneyBlocks.terranianGrass.getDefaultState(),
+            JourneyBlocks.terranianStone.getDefaultState());
 
     public static final Biome[] BOILING_BIOMES = {BOILING_BIOME, CHARRED_FIELDS_BIOME, SCORCHED_WASTELAND_BIOME, BOILING_SANDS_BIOME};
     public static final Biome[] EUCA_BIOMES = {EUCA_SILVER_BIOME, EUCA_GOLD_BIOME, EUCA_GOLDITE_GRAINS_BIOME};

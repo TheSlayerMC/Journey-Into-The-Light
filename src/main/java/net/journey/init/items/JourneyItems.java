@@ -128,25 +128,27 @@ public class JourneyItems {
     
     public static Item SENTRY_NODE_BLOOD;
     public static Item SENTRY_NODE_DESTRUCTION;
-    public static Item SENTRY_NODE_LIGHT;
-    public static Item SENTRY_ROCK;
+	public static Item SENTRY_NODE_LIGHT;
+	public static Item SENTRY_ROCK;
 
-    public static Item obsidianRod;
+	public static Item obsidianRod;
 
-    public static Item ancientPiece_1;
-    public static Item ancientPiece_2;
-    public static Item ancientPiece_3;
-    public static Item ancientPiece_4;
+	public static Item ancientPiece_1;
+	public static Item ancientPiece_2;
+	public static Item ancientPiece_3;
+	public static Item ancientPiece_4;
 
-    public static Item bleedstone;
-    public static Item smithstone;
+	public static Item bile_vial;
 
-    public static Item bleedstonedust;
-    public static Item smithstonedust;
+	public static Item bleedstone;
+	public static Item smithstone;
 
-    public static Item nethicgemstone;
+	public static Item bleedstonedust;
+	public static Item smithstonedust;
 
-    public static Item elderKey;
+	public static Item nethicgemstone;
+
+	public static Item elderKey;
     public static Item boilPowder;
     public static Item blazingFireball;
     public static Item hellTurtleShell;
@@ -398,25 +400,27 @@ public class JourneyItems {
 	    enderilliumShard = new JItem("enderilliumShard", "Enderillium Shard");
 	    orbaditeIngot = new JItem("orbaditeIngot", "Orbadite Ingot");
 	    gorbiteGem = new JItem("gorbiteGem", "Gorbite Gem");
-	    desIngot = new JItem("desIngot", "Des Ingot");
-	    bleedstone = new JItem("bleedstone", "Bleedstone");
-	    smithstone = new JItem("smithstone", "Smithstone");
-	    nethicgemstone = new JItem("soulstone", "Soulstone");
+		desIngot = new JItem("desIngot", "Des Ingot");
+		bleedstone = new JItem("bleedstone", "Bleedstone");
+		smithstone = new JItem("smithstone", "Smithstone");
+		nethicgemstone = new JItem("soulstone", "Soulstone");
 
-	    ancientPiece_1 = new ItemAncientPiece("ancientpiece_1", "Ancient Piece");
-	    ancientPiece_2 = new ItemAncientPiece("ancientpiece_2", "Ancient Shard");
-	    ancientPiece_3 = new ItemAncientPiece("ancientpiece_3", "Ancient Chunk");
-	    ancientPiece_4 = new ItemAncientPiece("ancientpiece_4", "Ancient Fragment");
+		ancientPiece_1 = new ItemAncientPiece("ancientpiece_1", "Ancient Piece");
+		ancientPiece_2 = new ItemAncientPiece("ancientpiece_2", "Ancient Shard");
+		ancientPiece_3 = new ItemAncientPiece("ancientpiece_3", "Ancient Chunk");
+		ancientPiece_4 = new ItemAncientPiece("ancientpiece_4", "Ancient Fragment");
 
-	    spawnerBar = new JItem("spawnerBar", "Spawner Bar");
-	    spawnerClump = new JItem("spawnerClump", "Spawner Clump");
-	    hellstoneClump = new JItem("hellstoneClump", "Hellstone Clump");
-	    shadiumClump = new JItem("shadiumClump", "Shadium Clump");
-	    luniumClump = new JItem("luniumClump", "Lunium Clump");
-	    elderKey = new JItem("elderKey", "Elder Key").setMaxStackSize(1);
-	    boilPowder = new JItem("boilPowder", "Boiling Powder");
-	    blazingFireball = new JItem("blazingFireball", "Blazing Fireball");
-	    hellTurtleShell = new JItem("hellTurtleShell", "Hell Turtle Shell");
+		bile_vial = new JItem("bile_vial", "Bile Vial");
+
+		spawnerBar = new JItem("spawnerBar", "Spawner Bar");
+		spawnerClump = new JItem("spawnerClump", "Spawner Clump");
+		hellstoneClump = new JItem("hellstoneClump", "Hellstone Clump");
+		shadiumClump = new JItem("shadiumClump", "Shadium Clump");
+		luniumClump = new JItem("luniumClump", "Lunium Clump");
+		elderKey = new JItem("elderKey", "Elder Key").setMaxStackSize(1);
+		boilPowder = new JItem("boilPowder", "Boiling Powder");
+		blazingFireball = new JItem("blazingFireball", "Blazing Fireball");
+		hellTurtleShell = new JItem("hellTurtleShell", "Hell Turtle Shell");
 	    sizzlingEye = new JItem("sizzlingEye", "Sizzling Eye");
 	    sentryEye = new ItemSentryEye("sentryEye", "Sentry Eye");
 	    boilingSkull = new JItem("boilingskull", "Boiling Skull");

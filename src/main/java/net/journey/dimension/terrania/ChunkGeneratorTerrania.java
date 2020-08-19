@@ -26,6 +26,7 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.*;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.event.ForgeEventFactory;
 import net.slayer.api.worldgen.WorldGenAPI;
 
 import java.util.List;
@@ -152,12 +153,14 @@ public class ChunkGeneratorTerrania implements IChunkGenerator {
 	}
 
 
-	public void biomeBlocks(int x, int z, ChunkPrimer c, Biome[] b) {
-		double d0 = 0.03125D;
-		this.stoneNoise = this.noiseGen4.getRegion(this.stoneNoise, x * 16, z * 16, 16, 16, d0 * 2.0D, d0 * 2.0D, 1.0D);
-		for (int k = 0; k < 16; ++k) {
-			for (int l = 0; l < 16; ++l) {
-				generateBiomeTerrain(this.rand, c, x * 16 + k, z * 16 + l, this.stoneNoise[l + k * 16]);
+	public void biomeBlocks(int chunkX, int chunkZ, ChunkPrimer primer, Biome[] biomesIn) {
+		if (!ForgeEventFactory.onReplaceBiomeBlocks(this, chunkX, chunkZ, primer, this.world)) return;
+		this.stoneNoise = this.noiseGen4.getRegion(this.stoneNoise, chunkX * 16, chunkZ * 16, 16, 16, 0.0625D, 0.0625D, 1.0D);
+
+		for (int relX = 0; relX < 16; ++relX) {
+			for (int relZ = 0; relZ < 16; ++relZ) {
+				Biome biome = biomesIn[relX + relZ * 16];
+				biome.genTerrainBlocks(this.world, this.rand, primer, chunkX * 16 + relX, chunkZ * 16 + relZ, this.stoneNoise[relX + relZ * 16]);
 			}
 		}
 	}
