@@ -9,107 +9,104 @@ import net.minecraft.world.World;
 
 public class ContainerCrafting extends Container {
 
-    public InventoryCrafting matrix = new InventoryCrafting(this, 3, 3);
-    public InventoryCraftResult result = new InventoryCraftResult();
-    private World w;
-    private BlockPos pos;
-    private EntityPlayer player;
+	public InventoryCrafting craftMatrix = new InventoryCrafting(this, 3, 3);
+	public InventoryCraftResult craftResult = new InventoryCraftResult();
+	private final World world;
+	private final BlockPos pos;
+	private final EntityPlayer player;
 
-    public ContainerCrafting(InventoryPlayer inv, World w, BlockPos pos) {
+	public ContainerCrafting(InventoryPlayer playerInventory, World worldIn, BlockPos posIn) {
+		this.world = worldIn;
+		this.pos = posIn;
+		this.player = playerInventory.player;
+		this.addSlotToContainer(new SlotCrafting(playerInventory.player, this.craftMatrix, this.craftResult, 0, 124, 35));
 
-        this.w = w;
-        this.pos = pos;
-        this.addSlotToContainer(new SlotCrafting(inv.player, this.matrix, this.result, 0, 124, 35));
-        int i;
-        int j;
+		int l;
+		int i1;
+		for (l = 0; l < 3; ++l) {
+			for (i1 = 0; i1 < 3; ++i1) {
+				this.addSlotToContainer(new Slot(this.craftMatrix, i1 + l * 3, 30 + i1 * 18, 17 + l * 18));
+			}
+		}
 
-        for (i = 0; i < 3; ++i) {
-            for (j = 0; j < 3; ++j) {
-                this.addSlotToContainer(new Slot(this.matrix, j + i * 3, 30 + j * 18, 17 + i * 18));
-            }
-        }
+		for (l = 0; l < 3; ++l) {
+			for (i1 = 0; i1 < 9; ++i1) {
+				this.addSlotToContainer(new Slot(playerInventory, i1 + l * 9 + 9, 8 + i1 * 18, 84 + l * 18));
+			}
+		}
 
-        for (i = 0; i < 3; ++i) {
-            for (j = 0; j < 9; ++j) {
-                this.addSlotToContainer(new Slot(inv, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
-            }
-        }
+		for (l = 0; l < 9; ++l) {
+			this.addSlotToContainer(new Slot(playerInventory, l, 8 + l * 18, 142));
+		}
 
-        for (i = 0; i < 9; ++i) {
-            this.addSlotToContainer(new Slot(inv, i, 8 + i * 18, 142));
-        }
+	}
 
-        this.onCraftMatrixChanged(this.matrix);
-    }
+	@Override
+	public void onCraftMatrixChanged(IInventory inventoryIn) {
+		this.slotChangedCraftingGrid(this.world, this.player, this.craftMatrix, this.craftResult);
+	}
 
-    @Override
-    public void onCraftMatrixChanged(IInventory inventoryIn) {
-        this.slotChangedCraftingGrid(this.w, this.player, this.matrix, this.result);
-    }
+	@Override
+	public void onContainerClosed(EntityPlayer playerIn) {
+		super.onContainerClosed(playerIn);
+		if (!this.world.isRemote) {
+			this.clearContainer(playerIn, this.world, this.craftMatrix);
+		}
 
-    @Override
-    public void onContainerClosed(EntityPlayer playerIn) {
-        super.onContainerClosed(playerIn);
+	}
 
-        if (!this.w.isRemote) {
-            this.clearContainer(playerIn, this.w, this.matrix);
-        }
-    }
+	@Override
+	public boolean canInteractWith(EntityPlayer playerIn) {
+		return playerIn.getDistanceSq((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D, (double) this.pos.getZ() + 0.5D) <= 64.0D;
+	}
 
-    @Override
-    public ItemStack transferStackInSlot(EntityPlayer playerIn, int index) {
-        ItemStack itemstack = null;
-        Slot slot = this.inventorySlots.get(index);
+	@Override
+	public ItemStack transferStackInSlot(EntityPlayer playerIn, int index) {
+		ItemStack itemstack = ItemStack.EMPTY;
+		Slot slot = this.inventorySlots.get(index);
+		if (slot != null && slot.getHasStack()) {
+			ItemStack itemstack1 = slot.getStack();
+			itemstack = itemstack1.copy();
+			if (index == 0) {
+				itemstack1.getItem().onCreated(itemstack1, this.world, playerIn);
+				if (!this.mergeItemStack(itemstack1, 10, 46, true)) {
+					return ItemStack.EMPTY;
+				}
 
-        if (slot != null && slot.getHasStack()) {
-            ItemStack itemstack1 = slot.getStack();
-            itemstack = itemstack1.copy();
+				slot.onSlotChange(itemstack1, itemstack);
+			} else if (index >= 10 && index < 37) {
+				if (!this.mergeItemStack(itemstack1, 37, 46, false)) {
+					return ItemStack.EMPTY;
+				}
+			} else if (index >= 37 && index < 46) {
+				if (!this.mergeItemStack(itemstack1, 10, 37, false)) {
+					return ItemStack.EMPTY;
+				}
+			} else if (!this.mergeItemStack(itemstack1, 10, 46, false)) {
+				return ItemStack.EMPTY;
+			}
 
-            if (index == 0) {
-                if (!this.mergeItemStack(itemstack1, 10, 46, true)) {
-                    return null;
-                }
+			if (itemstack1.isEmpty()) {
+				slot.putStack(ItemStack.EMPTY);
+			} else {
+				slot.onSlotChanged();
+			}
 
-                slot.onSlotChange(itemstack1, itemstack);
-            } else if (index >= 10 && index < 37) {
-                if (!this.mergeItemStack(itemstack1, 37, 46, false)) {
-                    return null;
-                }
-            } else if (index >= 37 && index < 46) {
-                if (!this.mergeItemStack(itemstack1, 10, 37, false)) {
-                    return null;
-                }
-            } else if (!this.mergeItemStack(itemstack1, 10, 46, false)) {
-                return null;
-            }
+			if (itemstack1.getCount() == itemstack.getCount()) {
+				return ItemStack.EMPTY;
+			}
 
-            if (itemstack1.isEmpty()) {
-                slot.putStack(ItemStack.EMPTY);
-            } else {
-                slot.onSlotChanged();
-            }
+			ItemStack itemstack2 = slot.onTake(playerIn, itemstack1);
+			if (index == 0) {
+				playerIn.dropItem(itemstack2, false);
+			}
+		}
 
-            if (itemstack1.getCount() == itemstack.getCount()) {
-                return ItemStack.EMPTY;
-            }
+		return itemstack;
+	}
 
-            ItemStack itemstack2 = slot.onTake(playerIn, itemstack1);
-
-            if (index == 0) {
-                playerIn.dropItem(itemstack2, false);
-            }
-        }
-
-        return itemstack;
-    }
-
-    @Override
-    public boolean canMergeSlot(ItemStack stack, Slot slot) {
-        return slot.inventory != this.result && super.canMergeSlot(stack, slot);
-    }
-
-    @Override
-    public boolean canInteractWith(EntityPlayer playerIn) {
-        return true;
-    }
+	@Override
+	public boolean canMergeSlot(ItemStack stack, Slot slotIn) {
+		return slotIn.inventory != this.craftResult && super.canMergeSlot(stack, slotIn);
+	}
 }

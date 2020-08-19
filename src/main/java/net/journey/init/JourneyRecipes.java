@@ -72,8 +72,7 @@ public class JourneyRecipes {
 		addShapedRecipe(JourneyBlocks.summoningTable, "dsd", "iii", 'i', JourneyBlocks.bloodRock, 'd', JourneyItems.hellstoneIngot, 's', JourneyItems.bleedstone);
 		addShapedRecipe(new ItemStack(JourneyBlocks.boilingBars, 4), "ddd", "ddd", 'd', Items.BLAZE_ROD);
 		addShapedRecipe(new ItemStack(JourneyItems.obsidianRod, 2), "d", "d", 'd', Blocks.OBSIDIAN);
-//		addShapedRecipe(new ItemStack(JourneyBlocks.stoneCraftingTable, 1),
-//				"dd", "dd", 'd', Blocks.COBBLESTONE);
+		addShapedRecipe(new ItemStack(JourneyBlocks.stoneCraftingTable, 1), "dd", "dd", 'd', Blocks.COBBLESTONE);
 		addShapedRecipe(JourneyBlocks.trophy, "d d", "ddd", " d ", 'd', Items.GOLD_INGOT);
 		addShapedRecipe(JourneyBlocks.grindstone, " o ", "bib", "bbb", 'b', Blocks.BRICK_BLOCK, 'o', Blocks.OBSIDIAN, 'i', Items.IRON_INGOT);
 		addShapedRecipe(Blocks.WEB, "sss", "sss", "sss", 's', Items.STRING);
@@ -305,10 +304,6 @@ public class JourneyRecipes {
 
 	private static void addFurnaceRecipes(Block stone) {
 		addShapedRecipe(new ItemStack(Blocks.FURNACE), "iii", "i i", "iii", 'i', stone);
-	}
-
-	private static void addCraftingTableRecipes(Block plank) {
-		addShapelessRecipe(new ItemStack(Blocks.FURNACE), "ii", "ii", 'i', plank);
 	}
 
 	private static void addWoodRecipes(Block log, Block plank, Block stair, int slabMeta, boolean smelt) {

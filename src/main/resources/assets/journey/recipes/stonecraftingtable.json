@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "dd",
+    "dd"
+  ],
+  "key": {
+    "d": {
+      "item": "minecraft:cobblestone"
+    }
+  },
+  "result": {
+    "item": "journey:stonecraftingtable"
+  }
+}

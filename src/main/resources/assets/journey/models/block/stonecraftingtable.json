@@ -1,9 +1,9 @@
 {
-	"parent": "journey:block/grass",
-	"textures": {
-		"particle": "journey:blocks/stoneCraftingTable_top",
-		"bottom": "journey:blocks/stoneCraftingTable_bottom",
-		"top": "journey:blocks/stoneCraftingTable_top",
-		"side": "journey:blocks/stoneCraftingTable_side"
-	}
+  "parent": "block/cube_bottom_top",
+  "textures": {
+    "particle": "journey:blocks/stoneCraftingTable_top",
+    "bottom": "journey:blocks/stoneCraftingTable_bottom",
+    "top": "journey:blocks/stoneCraftingTable_top",
+    "side": "journey:blocks/stoneCraftingTable_side"
+  }
 }
