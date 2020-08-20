@@ -67,7 +67,7 @@ public class BlockSenterianPortal extends BlockMod {
     @Override
 	public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entity) {
 		if ((entity.getRidingEntity() == null) && ((entity instanceof EntityPlayerMP))) {
-			
+
 			EntityPlayerMP playerMP = (EntityPlayerMP) entity;
 			Block blockFrame = JourneyBlocks.senterianPortalFrame;
 
@@ -77,11 +77,11 @@ public class BlockSenterianPortal extends BlockMod {
 			if (entity.timeUntilPortal > 0) {
 				return;
 			}
-			entity.timeUntilPortal = 75;
+			entity.timeUntilPortal = 300;
 
 			/*
 			 * sets destination
-			 * 
+			 *
 			 * if player is in 'dimensionID' dimension, send player to overworld
 			 * otherwise, send player to 'dimensionID' dimension
 			 */

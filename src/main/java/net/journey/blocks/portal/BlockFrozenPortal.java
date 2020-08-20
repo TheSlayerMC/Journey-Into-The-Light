@@ -40,11 +40,11 @@ public class BlockFrozenPortal extends JBlockPortal {
 			if (entity.timeUntilPortal > 0) {
 				return;
 			}
-			entity.timeUntilPortal = 75;
+			entity.timeUntilPortal = 300;
 
 			/*
 			 * sets destination
-			 * 
+			 *
 			 * if player is in 'dimensionID' dimension, send player to overworld
 			 * otherwise, send player to 'dimensionID' dimension
 			 */
