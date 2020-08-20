@@ -91,7 +91,12 @@ public class EntityRegistry {
 				SlayerAPI.buildProjectileEntry(EntityEnlightenment.class, "enlightment"),
 				SlayerAPI.buildProjectileEntry(EntityGreenpace.class, "greenpace"),
 				SlayerAPI.buildProjectileEntry(EntityWizardsStar.class, "wizardsstar"),
+				SlayerAPI.buildProjectileEntry(EntitySentryDrainLaser.class, "sentry_drain_laser"),
+				SlayerAPI.buildProjectileEntry(EntitySentryKingFlamethrower.class, "sentry_king_flamethrower"),
+				SlayerAPI.buildProjectileEntry(EntitySentryBlast.class, "sentry_blast"),
 				SlayerAPI.buildProjectileEntry(EntitySentryKingGrenade.class, "sentry_king_grenade"),
+				SlayerAPI.buildProjectileEntry(EntitySentryKingRocket.class, "sentry_king_rocket"),
+				SlayerAPI.buildProjectileEntry(EntityRealityShot.class, "reality_shot"),
 				SlayerAPI.buildProjectileEntry(EntityMagmaFireball.class, "magmaball"),
 				SlayerAPI.buildProjectileEntry(EntityFlameArrow.class, "flamearrow"),
 				SlayerAPI.buildProjectileEntry(EntityFireBall.class, "fireball"),
@@ -147,17 +152,15 @@ public class EntityRegistry {
 				//END
 				SlayerAPI.buildMobEntry(EntityEnderLeaper.class, "enderleaper", "Ender Leaper", 0x440089, 0xBC00BC),
 				SlayerAPI.buildMobEntry(EntityEnderCrawler.class, "endercrawler", "Ender Crawler", 0x440089, 0xBC00BC),
-
 				//NETHER
-				SlayerAPI.buildMobEntry(EntityHellbot.class, "hellbot", "Hellbot", 0xa00000, 0xff9600),
-				SlayerAPI.buildMobEntry(EntityWitherspine.class, "witherspine", "Witherspine", 0xa00000, 0xff9600),
-				SlayerAPI.buildMobEntry(EntityLavasnake.class, "lavasnake", "Hell Serpent", 0xa00000, 0xff9600),
-				SlayerAPI.buildMobEntry(EntityHellCow.class, "hellcow", "Hell Cow", 0xa00000, 0xff9600),
-				SlayerAPI.buildMobEntry(EntityReaper.class, "reaper", "Reaper", 0xa00000, 0xff9600),
-				SlayerAPI.buildMobEntry(EntityMiniGhast.class, "minighast", "Mini-Ghast", 0xa00000, 0xff9600),
-				SlayerAPI.buildMobEntry(EntityInfernoBlaze.class, "infernoblaze", "Inferno Blaze", 0xa00000, 0xff9600),
-				SlayerAPI.buildMobEntry(EntityHellTurtle.class, "hellturtle", "Hell Turtle", 0xa00000, 0xff9600),
-
+				SlayerAPI.buildMobEntry(EntityHellbot.class, "hellbot", "Hellbot", 0x7c4c2c, 0x26b530),
+				SlayerAPI.buildMobEntry(EntityWitherspine.class, "witherspine", "Witherspine", 0x7c4c2c, 0x26b530),
+				SlayerAPI.buildMobEntry(EntityLavasnake.class, "lavasnake", "Hell Serpent", 0x7c4c2c, 0x26b530),
+				SlayerAPI.buildMobEntry(EntityHellCow.class, "hellcow", "Hell Cow", 0x7c4c2c, 0x26b530),
+				SlayerAPI.buildMobEntry(EntityReaper.class, "reaper", "Reaper", 0x7c4c2c, 0x26b530),
+				SlayerAPI.buildMobEntry(EntityMiniGhast.class, "minighast", "Mini-Ghast", 0x7c4c2c, 0x26b530),
+				SlayerAPI.buildMobEntry(EntityInfernoBlaze.class, "infernoblaze", "Inferno Blaze", 0x7c4c2c, 0x26b530),
+				SlayerAPI.buildMobEntry(EntityHellTurtle.class, "hellturtle", "Hell Turtle", 0x7c4c2c, 0x26b530),
 				//OVERWORLD
 				SlayerAPI.buildMobEntry(EntityRobot.class, "robot", "Robot", 0x7c4c2c, 0x26b530),
 				SlayerAPI.buildMobEntry(EntitySpyclops.class, "spyclops", "Spyclopse", 0x7c4c2c, 0x26b530),
@@ -190,7 +193,6 @@ public class EntityRegistry {
 				SlayerAPI.buildMobEntry(EntityTameRoc.class, "tameroc", "Roc", 0x7c4c2c, 0x26b530),
 				
 				SlayerAPI.buildMobEntry(EntityPetRobot.class, "petrobot", "Pet Robot", 0x7c4c2c, 0x26b530),
-
 
 				//BP
 				SlayerAPI.buildMobEntry(EntityMagmaBlaze.class, "magmablaze", "Magma Blaze", 0xff7800, 0xffa800),
