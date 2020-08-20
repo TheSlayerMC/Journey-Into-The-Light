@@ -19,13 +19,13 @@ import net.minecraftforge.fml.relauncher.Side;
 @Mod.EventBusSubscriber(value = Side.CLIENT, modid = JITL.MOD_ID)
 public class RenderEventHandler {
 
-	@SubscribeEvent()
-	public static void renderPortalEvent(RenderGameOverlayEvent.Pre event) {
+	@SubscribeEvent
+	public static void renderPortalEvent(RenderGameOverlayEvent event) {
 		Minecraft mc = Minecraft.getMinecraft();
 
 		JITL.LOGGER.debug("Portal Render L27");
 
-		if (event.getType() == RenderGameOverlayEvent.ElementType.TEXT) {
+		if (event.getType() == RenderGameOverlayEvent.ElementType.PORTAL) {
 
 			JITL.LOGGER.debug("Portal Render L31");
 
