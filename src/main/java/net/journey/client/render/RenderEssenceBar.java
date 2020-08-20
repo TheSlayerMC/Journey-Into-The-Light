@@ -34,20 +34,21 @@ public class RenderEssenceBar {
 
 	private void renderManaBar(Minecraft mc, EntityPlayer player) {
 		ItemStack heldItemMainhand = player.getHeldItemMainhand();
+		IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
 
 		if (mc.currentScreen == null && instanceOfEssenceItem(heldItemMainhand.getItem()) && transparency < 1.0) {
-			transparency += .02;
+			transparency += 0.02;
+		} else if (mana.getEssenceValue() < mana.getMaxValue()) {
+			if (transparency > 0.36) {
+				transparency -= 0.02;
+			} else if (transparency < 0.36) {
+				transparency += 0.02;
+			}
 		} else if (transparency > 0) {
-			transparency -= .02;
+			transparency -=0.02;
 		}
 
 		if (transparency > 0) {
-			IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
-
-			if (!mana.isFull() && !instanceOfEssenceItem(heldItemMainhand.getItem())) {
-				transparency = 0.35F;
-			}
-
 			if (!mc.gameSettings.hideGUI) {
 				GlStateManager.pushMatrix();
 				GlStateManager.enableBlend();
