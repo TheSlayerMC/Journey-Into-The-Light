@@ -115,18 +115,21 @@ public class TileEntitySenterianAltar extends TileEntity implements ITickable {
 			case 2:
 				mob = new EntityMiniSentryWalker(world);
 				break;
-		default: 
+		default:
 			mob = new EntityMiniSentryLord(world);
 			break;
 		}
 
 
 		mob.setLocationAndAngles(x + 0.5, y + 1, z + 0.5, 0.0F, 0.0F);
-		if(!world.isRemote && mob != null)
+		if (!world.isRemote && mob != null)
 			world.spawnEntity(mob);
-		
-        world.playSound(x, y, z, JourneySounds.SENTRY_HURT_2, SoundCategory.BLOCKS, 1.0f, 1.0f, false);
-		for(int i = 0; i < 50; i++)
-			JITL.proxy.spawnParticle(EnumParticlesClasses.WITHER , this.world, x + 0.25, y + 0.5, z + 0.25, r.nextFloat(), r.nextFloat(), r.nextFloat());
+
+		world.playSound(x, y, z, JourneySounds.SENTRY_HURT_2, SoundCategory.BLOCKS, 1.0f, 1.0f, false);
+		if (world.isRemote) {
+			for (int i = 0; i < 50; i++) {
+				JITL.proxy.spawnParticle(EnumParticlesClasses.WITHER, this.world, x + 0.25, y + 0.5, z + 0.25, r.nextFloat(), r.nextFloat(), r.nextFloat());
+			}
+		}
 	}
 }

@@ -317,7 +317,7 @@ public class ModTeleporter extends Teleporter {
                     f1 = 0.0F;
                 }
 
-                d4 = ((BlockPos) object).getX() + 0.5D;
+                d4 = ((BlockPos) object).getX() + 1.0D;
                 d5 = ((BlockPos) object).getY() + 0.5D;
                 d6 = ((BlockPos) object).getZ() + 0.5D;
                 d4 += enumfacing2.getXOffset() * f6 + enumfacing.getXOffset() * f1;
