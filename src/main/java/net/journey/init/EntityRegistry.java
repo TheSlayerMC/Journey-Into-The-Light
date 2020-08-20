@@ -246,6 +246,7 @@ public class EntityRegistry {
 				SlayerAPI.buildMobEntry(EntityStarlightWalker.class, "starlightwalker", "Starlight Walker", 0xa87abd, 0x9000ff),
 				SlayerAPI.buildMobEntry(EntitySkyEel.class, "skyeel", "Sky Eel", 0xa87abd, 0x9000ff),
 				SlayerAPI.buildMobEntry(EntityCloudFlower.class, "cloudflower", "Cloud Flower", 0xa87abd, 0x9000ff),
+				SlayerAPI.buildMobEntry(EntityCloudiaGuardian.class, "cloudia_guardian", "Cloudia Guardian", 0xa87abd, 0x9000ff),
 				//NPC
 				SlayerAPI.buildMobEntry(EntityStarlightVillager.class, "starlightvillager", "Starlight Villager", 0x00FF8C, 0x00F6FF),
 				SlayerAPI.buildMobEntry(EntityStarlightBlacksmith.class, "starlightblacksmith", "Starlight Blacksmith", 0x00FF8C, 0x00F6FF),

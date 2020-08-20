@@ -18,4 +18,9 @@ public class JAnimations {
 	public static final Animation LAVASNAKE_SHOOT = AnimationAPI.loadAndRegisterAnimation(JITL.rl("animations/lavasnake.shoot.json"));
 
 	public static final Animation FLUNGUS_LIVING = AnimationAPI.loadAndRegisterAnimation(JITL.rl("animations/flungus.jiggle.json"));
+
+	public static final Animation CLOUDIA_GUARDIAN_WALK = AnimationAPI.loadAndRegisterAnimation(JITL.rl("animations/cloudia_guardian.walk.json"));
+	public static final Animation CLOUDIA_GUARDIAN_REVEAL = AnimationAPI.loadAndRegisterAnimation(JITL.rl("animations/cloudia_guardian.showing.json"));
+	public static final Animation CLOUDIA_GUARDIAN_HIDDEN = AnimationAPI.loadAndRegisterAnimation(JITL.rl("animations/cloudia_guardian.hidden.json"));
+	public static final Animation CLOUDIA_GUARDIAN_HIDE = AnimationAPI.register(AnimationAPI.reverse(CLOUDIA_GUARDIAN_REVEAL));
 }

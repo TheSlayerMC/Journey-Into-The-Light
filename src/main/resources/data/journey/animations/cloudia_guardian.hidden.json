@@ -1,0 +1,31 @@
+{
+  "format_version": "1.8.0",
+  "animations": {
+    "animation.model.hiding": {
+      "animation_length": 0.72,
+      "bones": {
+        "head": {
+          "rotation": [
+            72,
+            0,
+            0
+          ]
+        },
+        "wing1": {
+          "rotation": [
+            0,
+            72,
+            0
+          ]
+        },
+        "wing2": {
+          "rotation": [
+            0,
+            -72,
+            0
+          ]
+        }
+      }
+    }
+  }
+}
