@@ -20,36 +20,32 @@ import net.minecraftforge.fml.relauncher.Side;
 public class RenderEventHandler {
 
 	@SubscribeEvent
-	public static void renderPortalEvent(RenderGameOverlayEvent event) {
+	public static void renderPortalEvent(RenderGameOverlayEvent.Post event) {
 		Minecraft mc = Minecraft.getMinecraft();
 
-		JITL.LOGGER.debug("Portal Render L27");
+		ScaledResolution scaledRes = new ScaledResolution(mc);
+		EntityPlayerSP player = mc.player;
+
+		float partialTicks = event.getPartialTicks();
+		float timeInPortal = player.prevTimeInPortal + player.timeInPortal - player.prevTimeInPortal * partialTicks;
+
+		//Doesn't get past this point
+		//TODO: add player capability to detect when the player is inside of a JITL portal
 
 		if (event.getType() == RenderGameOverlayEvent.ElementType.PORTAL) {
-
-			JITL.LOGGER.debug("Portal Render L31");
-
-			ScaledResolution scaledRes = new ScaledResolution(mc);
-			EntityPlayerSP player = mc.player;
-
-			float partialTicks = event.getPartialTicks();
-			float timeInPortal = player.prevTimeInPortal + player.timeInPortal - player.prevTimeInPortal * partialTicks;
-
 			if (timeInPortal > 0.0F) {
 
-				JITL.LOGGER.debug("Portal Render L40");
+				JITL.LOGGER.info("Portal Render L36");
 
 				if (timeInPortal > 0.0F) {
 
-					JITL.LOGGER.debug("Portal Render L42");
+					JITL.LOGGER.info("Portal Render L40");
 
 					if (timeInPortal < 1.0F) {
 						timeInPortal *= timeInPortal;
 						timeInPortal *= timeInPortal;
 						timeInPortal = timeInPortal * 0.8F + 0.2F;
 					}
-
-					JITL.LOGGER.debug("Portal Render L48");
 
 					GlStateManager.disableAlpha();
 					GlStateManager.disableDepth();

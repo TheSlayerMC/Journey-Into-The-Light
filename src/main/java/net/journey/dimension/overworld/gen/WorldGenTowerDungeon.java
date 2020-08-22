@@ -1,10 +1,15 @@
 package net.journey.dimension.overworld.gen;
 
+import net.journey.blocks.containers.BlockJourneyChest;
+import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.entity.mob.boss.EntityTempleGuardian;
+import net.journey.init.JourneyLootTables;
 import net.journey.init.blocks.JourneyBlocks;
+import net.journey.util.RandHelper;
 import net.journey.util.handler.LogHelper;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntityMobSpawner;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -168,15 +173,31 @@ public class WorldGenTowerDungeon extends WorldGenerator {
         WorldGenAPI.addBlock(w, x + 1, y + height - 5, z + 8, JourneyBlocks.dungeonLamp);
         WorldGenAPI.addBlock(w, x + 13, y + height - 5, z + 8, JourneyBlocks.dungeonLamp);
 
-        this.setBlockAndNotifyAdequately(w, new BlockPos(x + 11, y + height - 3, z + 2), Blocks.MOB_SPAWNER.getDefaultState());
-        this.setBlockAndNotifyAdequately(w, new BlockPos(x + 11, y + height - 3, z + 7), Blocks.MOB_SPAWNER.getDefaultState());
-        this.setBlockAndNotifyAdequately(w, new BlockPos(x + 11, y + height + 1, z + 2), Blocks.MOB_SPAWNER.getDefaultState());
-        this.setBlockAndNotifyAdequately(w, new BlockPos(x + 11, y + height + 1, z + 7), Blocks.MOB_SPAWNER.getDefaultState());
+        this.setBlockAndNotifyAdequately(w, new BlockPos(x + 11, y + height - 2, z + 2), Blocks.MOB_SPAWNER.getDefaultState());
+        this.setBlockAndNotifyAdequately(w, new BlockPos(x + 11, y + height - 2, z + 7), Blocks.MOB_SPAWNER.getDefaultState());
+        this.setBlockAndNotifyAdequately(w, new BlockPos(x + 11, y + height + 2, z + 2), Blocks.MOB_SPAWNER.getDefaultState());
+        this.setBlockAndNotifyAdequately(w, new BlockPos(x + 11, y + height + 2, z + 7), Blocks.MOB_SPAWNER.getDefaultState());
 
-        TileEntityMobSpawner spawner1 = (TileEntityMobSpawner) w.getTileEntity(new BlockPos(x + 11, y + height - 3, z + 2));
-        TileEntityMobSpawner spawner2 = (TileEntityMobSpawner) w.getTileEntity(new BlockPos(x + 11, y + height - 3, z + 7));
-        TileEntityMobSpawner spawner3 = (TileEntityMobSpawner) w.getTileEntity(new BlockPos(x + 11, y + height + 1, z + 2));
-        TileEntityMobSpawner spawner4 = (TileEntityMobSpawner) w.getTileEntity(new BlockPos(x + 11, y + height + 1, z + 7));
+        TileEntityMobSpawner spawner1 = (TileEntityMobSpawner) w.getTileEntity(new BlockPos(x + 11, y + height - 2, z + 2));
+        TileEntityMobSpawner spawner2 = (TileEntityMobSpawner) w.getTileEntity(new BlockPos(x + 11, y + height - 2, z + 7));
+        TileEntityMobSpawner spawner3 = (TileEntityMobSpawner) w.getTileEntity(new BlockPos(x + 11, y + height + 2, z + 2));
+        TileEntityMobSpawner spawner4 = (TileEntityMobSpawner) w.getTileEntity(new BlockPos(x + 11, y + height + 2, z + 7));
+
+        this.setBlockAndNotifyAdequately(w, new BlockPos(x + 11, y + height - 3, z + 2), JourneyBlocks.journeyChest.getDefaultState().withProperty(BlockJourneyChest.FACING, EnumFacing.WEST));
+        this.setBlockAndNotifyAdequately(w, new BlockPos(x + 11, y + height - 3, z + 7), JourneyBlocks.journeyChest.getDefaultState().withProperty(BlockJourneyChest.FACING, EnumFacing.WEST));
+        this.setBlockAndNotifyAdequately(w, new BlockPos(x + 11, y + height + 1, z + 2), JourneyBlocks.journeyChest.getDefaultState().withProperty(BlockJourneyChest.FACING, EnumFacing.WEST));
+        this.setBlockAndNotifyAdequately(w, new BlockPos(x + 11, y + height + 1, z + 7), JourneyBlocks.journeyChest.getDefaultState().withProperty(BlockJourneyChest.FACING, EnumFacing.WEST));
+
+        TileEntityJourneyChest chest1 = (TileEntityJourneyChest) w.getTileEntity(new BlockPos(x + 11, y + height - 3, z + 2));
+        TileEntityJourneyChest chest2 = (TileEntityJourneyChest) w.getTileEntity(new BlockPos(x + 11, y + height - 3, z + 7));
+        TileEntityJourneyChest chest3 = (TileEntityJourneyChest) w.getTileEntity(new BlockPos(x + 11, y + height + 1, z + 2));
+        TileEntityJourneyChest chest4 = (TileEntityJourneyChest) w.getTileEntity(new BlockPos(x + 11, y + height + 1, z + 7));
+
+        ResourceLocation lootTable = RandHelper.chooseEqual(r, JourneyLootTables.VANILLA_SIMPLE_DUNGEON, JourneyLootTables.LOOT_BASIC, JourneyLootTables.LOOT_GOLD);
+        chest1.setLootTable(lootTable, r.nextLong());
+        chest2.setLootTable(lootTable, r.nextLong());
+        chest3.setLootTable(lootTable, r.nextLong());
+        chest4.setLootTable(lootTable, r.nextLong());
 
         if (spawner1 != null && spawner2 != null && spawner3 != null && spawner4 != null) {
             spawner1.getSpawnerBaseLogic().setEntityId(new ResourceLocation(mobName));

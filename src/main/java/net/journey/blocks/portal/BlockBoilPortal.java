@@ -30,17 +30,17 @@ public class BlockBoilPortal extends JBlockPortal {
 	@Override
 	public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entity) {
 		if ((entity.getRidingEntity() == null) && ((entity instanceof EntityPlayerMP))) {
-
 			EntityPlayerMP playerMP = (EntityPlayerMP) entity;
 			Block blockFrame = JourneyBlocks.boilPortalFrame;
 
+			worldIn.playSound(playerMP, pos, SoundEvents.BLOCK_PORTAL_TRIGGER, SoundCategory.PLAYERS, 1.0F, 1.0F);
 			/*
 			 * sets timer for dimension travel
 			 */
 			if (entity.timeUntilPortal > 0) {
 				return;
 			}
-			entity.timeUntilPortal = 300;
+			entity.timeUntilPortal = 125;
 
 			/*
 			 * sets destination

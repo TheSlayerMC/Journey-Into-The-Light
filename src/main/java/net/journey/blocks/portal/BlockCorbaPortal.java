@@ -76,7 +76,7 @@ public class BlockCorbaPortal extends BlockMod {
 			if (entity.timeUntilPortal > 0) {
 				return;
 			}
-			entity.timeUntilPortal = 300;
+			entity.timeUntilPortal = 125;
 
 			/*
 			 * sets destination
