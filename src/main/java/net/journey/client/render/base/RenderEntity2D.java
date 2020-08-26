@@ -12,16 +12,16 @@ import org.jetbrains.annotations.NotNull;
 import org.lwjgl.opengl.GL11;
 
 //TODO T should extend EntityBasicProjectile?
-public class RenderProjectile<T extends Entity> extends Render<T> {
+public class RenderEntity2D<T extends Entity> extends Render<T> {
 
     public ResourceLocation texture;
-    private float scale;
+    private final float scale;
 
-    public RenderProjectile(RenderManager renderManager, ResourceLocation texture) {
+    public RenderEntity2D(RenderManager renderManager, ResourceLocation texture) {
         this(renderManager, texture, 1F);
     }
 
-    public RenderProjectile(RenderManager renderManager, ResourceLocation texture, float scaleFactor) {
+    public RenderEntity2D(RenderManager renderManager, ResourceLocation texture, float scaleFactor) {
         super(renderManager);
         this.texture = texture;
         scale = scaleFactor;

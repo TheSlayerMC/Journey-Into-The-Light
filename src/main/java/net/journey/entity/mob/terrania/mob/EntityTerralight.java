@@ -40,6 +40,7 @@ public class EntityTerralight extends EntityModFlying {
         return 10.0F;
     }
 
+
     @Override
     public double setMaxHealth(MobStats s) {
         return MobStats.TerralightDamage;
@@ -64,7 +65,7 @@ public class EntityTerralight extends EntityModFlying {
     public void onLivingUpdate() {
         super.onLivingUpdate();
         double d1 = this.posX;
-        double d2 = this.posY;
+        double d2 = this.posY - 0.25F;
         double d3 = this.posZ;
         for (int i = 0; i < 1; ++i) {
         	JITL.proxy.spawnOreParticle(this.world, d1, d2, d3, 1.5F, 0.1F, 1.6F);
@@ -82,7 +83,7 @@ public class EntityTerralight extends EntityModFlying {
     }
 
     private class AIRandomFly extends EntityAIBase {
-        private EntityTerralight e = EntityTerralight.this;
+        private final EntityTerralight e = EntityTerralight.this;
 
         public AIRandomFly() {
             this.setMutexBits(1);
@@ -118,7 +119,7 @@ public class EntityTerralight extends EntityModFlying {
     }
 
     private class ShattererMoveHelper extends EntityMoveHelper {
-        private EntityTerralight e = EntityTerralight.this;
+        private final EntityTerralight e = EntityTerralight.this;
         private int height;
 
         public ShattererMoveHelper() {

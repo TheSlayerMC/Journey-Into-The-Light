@@ -47,6 +47,10 @@ public class EntitySwampFly extends EntityModFlying {
         return 15728880F;
     }
 
+    public boolean shouldRenderInPass(int pass) {
+        return pass == 1;
+    }
+
     public float getBrightness(float p_70013_1_) {
         return 13.0F;
     }
@@ -80,10 +84,10 @@ public class EntitySwampFly extends EntityModFlying {
     public void onLivingUpdate() {
         super.onLivingUpdate();
         double d1 = this.posX;
-        double d2 = this.posY;
+        double d2 = this.posY + 0.5F;
         double d3 = this.posZ;
         for (int i = 0; i < 1; ++i) {
-        	JITL.proxy.spawnOreParticle(this.world, d1, d2, d3, 0.7F, 1.0F, 0.1F);
+            JITL.proxy.spawnOreParticle(this.world, d1, d2, d3, 1.7F, 2.0F, 1.1F);
         }
     }
 
@@ -106,7 +110,7 @@ public class EntitySwampFly extends EntityModFlying {
     }
 
     private class AIRandomFly extends EntityAIBase {
-        private EntitySwampFly e = EntitySwampFly.this;
+        private final EntitySwampFly e = EntitySwampFly.this;
 
         public AIRandomFly() {
             this.setMutexBits(1);
@@ -142,7 +146,7 @@ public class EntitySwampFly extends EntityModFlying {
     }
 
     private class SwampFlyMoveHelper extends EntityMoveHelper {
-        private EntitySwampFly e = EntitySwampFly.this;
+        private final EntitySwampFly e = EntitySwampFly.this;
         private int height;
 
         public SwampFlyMoveHelper() {

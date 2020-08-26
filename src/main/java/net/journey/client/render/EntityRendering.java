@@ -102,26 +102,29 @@ import ru.timeconqueror.timecore.client.render.model.TimeModelLoader;
 public class EntityRendering {
 
     public static void preInit() {
-        RenderingRegistry.registerEntityRenderingHandler(EntitySentryKingGrenade.class, manager -> new RenderProjectile<>(manager, Textures.getProjectileTextureLocation("sentry_king_grenade")));
-		RenderingRegistry.registerEntityRenderingHandler(EntityMagmaFireball.class, manager -> new RenderProjectile<>(manager, Textures.getProjectileTextureLocation("magma_ball")));
-        RenderingRegistry.registerEntityRenderingHandler(EntityBouncingProjectile.class, manager -> new RenderProjectile<>(manager, Textures.getProjectileTextureLocation("bouncing")));
-        RenderingRegistry.registerEntityRenderingHandler(EntityRockProjectile.class, manager -> new RenderProjectile<>(manager, Textures.getProjectileTextureLocation("rock_chunk")));
-        RenderingRegistry.registerEntityRenderingHandler(EntityNetherPlasma.class, manager -> new RenderProjectile<>(manager, Textures.getProjectileTextureLocation("plasma_ball")));
-        RenderingRegistry.registerEntityRenderingHandler(EntityOceanPlasma.class, manager -> new RenderProjectile<>(manager, Textures.getProjectileTextureLocation("plasma_ball")));
-        RenderingRegistry.registerEntityRenderingHandler(EntityForestPlasma.class, manager -> new RenderProjectile<>(manager, Textures.getProjectileTextureLocation("plasma_ball")));
-        RenderingRegistry.registerEntityRenderingHandler(EntityShimmererProjectile.class, manager -> new RenderProjectile<>(manager, Textures.getProjectileTextureLocation("shimmerer_projectile")));
-        RenderingRegistry.registerEntityRenderingHandler(EntityBubbleProjectile.class, manager -> new RenderProjectile<>(manager, Textures.getProjectileTextureLocation("bubble")));
-        RenderingRegistry.registerEntityRenderingHandler(EntityDetractor.class, manager -> new RenderProjectile<>(manager, Textures.getProjectileTextureLocation("detractor")));
-        RenderingRegistry.registerEntityRenderingHandler(EntityFloroDirtProjectile.class, manager -> new RenderProjectile<>(manager, Textures.getProjectileTextureLocation("floro_mud")));
+		RenderingRegistry.registerEntityRenderingHandler(EntitySentryKingGrenade.class, manager -> new RenderEntity2D<>(manager, Textures.getProjectileTextureLocation("sentry_king_grenade")));
+		RenderingRegistry.registerEntityRenderingHandler(EntityMagmaFireball.class, manager -> new RenderEntity2D<>(manager, Textures.getProjectileTextureLocation("magma_ball")));
+		RenderingRegistry.registerEntityRenderingHandler(EntityBouncingProjectile.class, manager -> new RenderEntity2D<>(manager, Textures.getProjectileTextureLocation("bouncing")));
+		RenderingRegistry.registerEntityRenderingHandler(EntityRockProjectile.class, manager -> new RenderEntity2D<>(manager, Textures.getProjectileTextureLocation("rock_chunk")));
+		RenderingRegistry.registerEntityRenderingHandler(EntityNetherPlasma.class, manager -> new RenderEntity2D<>(manager, Textures.getProjectileTextureLocation("plasma_ball")));
+		RenderingRegistry.registerEntityRenderingHandler(EntityOceanPlasma.class, manager -> new RenderEntity2D<>(manager, Textures.getProjectileTextureLocation("plasma_ball")));
+		RenderingRegistry.registerEntityRenderingHandler(EntityForestPlasma.class, manager -> new RenderEntity2D<>(manager, Textures.getProjectileTextureLocation("plasma_ball")));
+		RenderingRegistry.registerEntityRenderingHandler(EntityShimmererProjectile.class, manager -> new RenderEntity2D<>(manager, Textures.getProjectileTextureLocation("shimmerer_projectile")));
+		RenderingRegistry.registerEntityRenderingHandler(EntityBubbleProjectile.class, manager -> new RenderEntity2D<>(manager, Textures.getProjectileTextureLocation("bubble")));
+		RenderingRegistry.registerEntityRenderingHandler(EntityDetractor.class, manager -> new RenderEntity2D<>(manager, Textures.getProjectileTextureLocation("detractor")));
+		RenderingRegistry.registerEntityRenderingHandler(EntityFloroDirtProjectile.class, manager -> new RenderEntity2D<>(manager, Textures.getProjectileTextureLocation("floro_mud")));
 
-        RenderingRegistry.registerEntityRenderingHandler(EntityLavasnake.class, manager -> new AnimatedMobRenderer<>(manager, TimeModelLoader.loadJsonEntityModel(Textures.getEntityModelLocation("lavasnake")).setScaleMultiplier(2.0F), Textures.getMobTextureLocation("lavasnake")));
-        RenderingRegistry.registerEntityRenderingHandler(EntityFloro.class, manager -> new AnimatedMobRenderer<>(manager, TimeModelLoader.loadJsonEntityModel(Textures.getEntityModelLocation("floro")).setScaleMultiplier(1.6F), Textures.getMobTextureLocation("floro")));
-        RenderingRegistry.registerEntityRenderingHandler(EntityTurducken.class, manager -> new AnimatedMobRenderer<>(manager, TimeModelLoader.loadJsonEntityModel(Textures.getEntityModelLocation("turducken")).setScaleMultiplier(1.35F), Textures.getMobTextureLocation("turducken")));
-        RenderingRegistry.registerEntityRenderingHandler(EntityFlungus.class, manager -> new AnimatedMobRenderer<>(manager, TimeModelLoader.loadJsonEntityModel(Textures.getEntityModelLocation("flungus")).setScaleMultiplier(2.55F), Textures.getMobTextureLocation("flungus")));
-        RenderingRegistry.registerEntityRenderingHandler(EntityCloudiaGuardian.class, manager -> new AnimatedMobRenderer<>(manager, TimeModelLoader.loadJsonEntityModel(Textures.getEntityModelLocation("cloudia_guardian")).setScaleMultiplier(1.0F), Textures.getMobTextureLocation("cloudia_guardian")));
+		RenderingRegistry.registerEntityRenderingHandler(EntitySwampFly.class, manager -> new RenderEntity2D<>(manager, Textures.getMobTextureLocation("swamp_fly")));
+		RenderingRegistry.registerEntityRenderingHandler(EntityTerralight.class, manager -> new RenderEntity2D<>(manager, Textures.getMobTextureLocation("terralight")));
 
-        RenderingRegistry.registerEntityRenderingHandler(EntityBossCrystal.class, RenderBossCrystal::new);
-    }
+		RenderingRegistry.registerEntityRenderingHandler(EntityLavasnake.class, manager -> new AnimatedMobRenderer<>(manager, TimeModelLoader.loadJsonEntityModel(Textures.getEntityModelLocation("lavasnake")).setScaleMultiplier(2.0F), Textures.getMobTextureLocation("lavasnake")));
+		RenderingRegistry.registerEntityRenderingHandler(EntityFloro.class, manager -> new AnimatedMobRenderer<>(manager, TimeModelLoader.loadJsonEntityModel(Textures.getEntityModelLocation("floro")).setScaleMultiplier(1.6F), Textures.getMobTextureLocation("floro")));
+		RenderingRegistry.registerEntityRenderingHandler(EntityTurducken.class, manager -> new AnimatedMobRenderer<>(manager, TimeModelLoader.loadJsonEntityModel(Textures.getEntityModelLocation("turducken")).setScaleMultiplier(1.35F), Textures.getMobTextureLocation("turducken")));
+		RenderingRegistry.registerEntityRenderingHandler(EntityFlungus.class, manager -> new AnimatedMobRenderer<>(manager, TimeModelLoader.loadJsonEntityModel(Textures.getEntityModelLocation("flungus")).setScaleMultiplier(2.55F), Textures.getMobTextureLocation("flungus")));
+		RenderingRegistry.registerEntityRenderingHandler(EntityCloudiaGuardian.class, manager -> new AnimatedMobRenderer<>(manager, TimeModelLoader.loadJsonEntityModel(Textures.getEntityModelLocation("cloudia_guardian")).setScaleMultiplier(1.0F), Textures.getMobTextureLocation("cloudia_guardian")));
+
+		RenderingRegistry.registerEntityRenderingHandler(EntityBossCrystal.class, RenderBossCrystal::new);
+	}
 
     public static void init() {
         /**Projectiles*/
@@ -249,8 +252,6 @@ public class EntityRendering {
         RenderingRegistry.registerEntityRenderingHandler(EntityStarlightVillager.class, new RenderModMob(new ModelStarlightVillager(), Textures.starlightVillager));
         RenderingRegistry.registerEntityRenderingHandler(EntityStarlightBlacksmith.class, new RenderModMob(new ModelStarlightVillager(), Textures.starlightBlacksmith));
         RenderingRegistry.registerEntityRenderingHandler(EntitySkyEel.class, new RenderModMob(new ModelSkyEel(), Textures.skyEel));
-        RenderingRegistry.registerEntityRenderingHandler(EntityTerralight.class, new RenderSizeable(new ModelTerralight(), 0.5F, 0.5F, Textures.terralight));
-        RenderingRegistry.registerEntityRenderingHandler(EntitySwampFly.class, new RenderSizeable(new ModelTerralight(), 0.5F, 0.5F, Textures.swampFly));
         RenderingRegistry.registerEntityRenderingHandler(EntityTerranianTrader.class, new RenderModMob(new ModelTerranianTrader(), Textures.terranianTrader));
         RenderingRegistry.registerEntityRenderingHandler(EntityTerranianEnchanter.class, new RenderModMob(new ModelTerranianTrader(), Textures.terranianEnchanter));
         RenderingRegistry.registerEntityRenderingHandler(EntityTerraScatterer.class, new RenderModMob(new ModelTerraScatterer(), Textures.terraScatterer));
