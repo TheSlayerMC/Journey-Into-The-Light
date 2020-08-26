@@ -1,10 +1,11 @@
 package net.journey.entity.mob.overworld;
 
-import net.journey.JITL;
+import net.journey.client.render.particles.ParticleSwampFly;
 import net.journey.entity.MobStats;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.journey.init.blocks.JourneyBlocks;
+import net.journey.util.WorldUtils;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
 import net.minecraft.entity.ai.EntityMoveHelper;
@@ -85,9 +86,9 @@ public class EntitySwampFly extends EntityModFlying {
         super.onLivingUpdate();
         double d1 = this.posX;
         double d2 = this.posY + 0.5F;
-        double d3 = this.posZ;
+        double d3 = this.posZ - 0.25F;
         for (int i = 0; i < 1; ++i) {
-            JITL.proxy.spawnOreParticle(this.world, d1, d2, d3, 1.7F, 2.0F, 1.1F);
+            WorldUtils.spawnParticle(new ParticleSwampFly(world, d1, d2, d3, 1.0F, 1.0F, 1.0F), world);
         }
     }
 

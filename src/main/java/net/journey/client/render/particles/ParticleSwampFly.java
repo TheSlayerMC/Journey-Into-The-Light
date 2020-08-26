@@ -13,15 +13,20 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 
 @Mod.EventBusSubscriber(Side.CLIENT)
-public class ParticleFloroMud extends Particle {
-
-	private static final ResourceLocation TEXTURE = new ResourceLocation(JITL.MOD_ID, "particles/floro_mud");
+public class ParticleSwampFly extends Particle {
+	private static final ResourceLocation TEXTURE = new ResourceLocation(JITL.MOD_ID, "particles/swamp_fly");
 	private final float jParticleScale = 2.0F;
 	private final double jPosX;
 	private final double jPosY;
 	private final double jPosZ;
 
-	public ParticleFloroMud(World world, double x, double y, double z, double motionX, double motionY, double motionZ) {
+	private final int particleLife;
+	private final int particleHalflife;
+
+	private final int minMaxAge = 5;
+	private final int maxAge = 10;
+
+	public ParticleSwampFly(World world, double x, double y, double z, double motionX, double motionY, double motionZ) {
 		super(world, x, y, z, motionX, motionY, motionZ);
 		this.motionX = motionX;
 		this.motionY = motionY;
@@ -33,6 +38,9 @@ public class ParticleFloroMud extends Particle {
 		this.particleBlue = 1.0F;
 		this.particleGreen = 1.0F;
 		this.particleRed = 1.0F;
+		this.particleLife = this.particleMaxAge = minMaxAge + rand.nextInt(maxAge);
+		this.particleMaxAge *= 1.0F;
+		this.particleHalflife = this.particleLife / 2;
 		this.setParticleTexture(Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(TEXTURE.toString()));
 	}
 
@@ -44,7 +52,14 @@ public class ParticleFloroMud extends Particle {
 	@Override
 	public void renderParticle(BufferBuilder buffer, Entity entity, float par2, float p_180434_4_, float p_180434_5_, float p_180434_6_, float p_180434_7_, float p_180434_8_) {
 		this.particleScale = jParticleScale;
+		this.particleAlpha = renderAlpha();
 		super.renderParticle(buffer, entity, par2, p_180434_4_, p_180434_5_, p_180434_6_, p_180434_7_, p_180434_8_);
+	}
+
+	public float renderAlpha() {
+		if (this.particleLife <= this.particleHalflife) {
+			return (float) particleLife / (float) particleHalflife;
+		} else return (float) Math.cos(((particleLife - particleHalflife) / particleHalflife));
 	}
 
 	@Override
@@ -56,5 +71,6 @@ public class ParticleFloroMud extends Particle {
 	@SubscribeEvent
 	public static void onPreTextureStich(TextureStitchEvent.Pre event) {
 		event.getMap().registerSprite(TEXTURE);
+		JITL.LOGGER.info("ParticleSwampFly texture stitch");
 	}
 }
