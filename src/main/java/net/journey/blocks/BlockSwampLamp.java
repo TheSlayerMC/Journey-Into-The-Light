@@ -26,7 +26,7 @@ public class BlockSwampLamp extends BlockMod {
 		super(EnumMaterialTypes.GLASS, name, finalName, hardness);
 		setCreativeTab(JourneyTabs.DECORATION);
 		setTickRandomly(true);
-		setLightLevel(0.5F);
+		setLightLevel(0.33F);
 	}
 
 	@Override

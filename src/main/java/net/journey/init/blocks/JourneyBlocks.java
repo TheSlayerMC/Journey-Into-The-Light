@@ -313,6 +313,7 @@ public class JourneyBlocks {
     public static JBlockFlower cloudiaFlower;
 
     public static BlockMod swampLamp;
+    public static BlockMod terralightLamp;
 
     public static BlockJourneyChest journeyChest;
     public static BlockJourneyChest netherChest;
@@ -846,6 +847,7 @@ public class JourneyBlocks {
         cloudiaFlower = (JBlockFlower) new JBlockFlower("cloudia_flower", "Cloudia Flower").setGroundPredicate(GroundPredicate.COMMON_AND_CLOUDIA_GRASS);
 
         swampLamp = new BlockSwampLamp("swampLamp", "Swamp Fly Bottle", 0);
+        terralightLamp = new BlockTerraLamp("terralight_lamp", "Terralight Lamp", 0);
 
         journeyChest = new BlockJourneyChest("journeychest", "Journey Chest", BlockJourneyChest.Type.JOURNEY);
         netherChest = new BlockJourneyChest("netherchest", "Nether Chest", BlockJourneyChest.Type.NETHER);

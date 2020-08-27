@@ -4,11 +4,17 @@ import net.journey.client.render.particles.ParticleTerralight;
 import net.journey.entity.MobStats;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
+import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.WorldUtils;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
 import net.minecraft.entity.ai.EntityMoveHelper;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.MathHelper;
@@ -70,6 +76,24 @@ public class EntityTerralight extends EntityModFlying {
         double d3 = this.posZ;
         for (int i = 0; i < 1; ++i) {
             WorldUtils.spawnParticle(new ParticleTerralight(world, d1, d2, d3, 1.0F, 1.0F, 1.0F), world);
+        }
+    }
+
+    @Override
+    public boolean processInteract(EntityPlayer player, EnumHand hand) {
+        ItemStack itemstack = player.getHeldItem(hand);
+        if (itemstack.getItem() == Items.GLASS_BOTTLE) {
+            world.playSound(player.posX, player.posY, player.posZ, JourneySounds.BOTTLE_PLUG, SoundCategory.MASTER, 1.0f, 1.0f, false);
+            itemstack.shrink(1);
+            if (itemstack.isEmpty()) {
+                player.setHeldItem(hand, new ItemStack(JourneyBlocks.terralightLamp));
+            } else if (!player.inventory.addItemStackToInventory(new ItemStack(JourneyBlocks.terralightLamp))) {
+                player.dropItem(new ItemStack(JourneyBlocks.terralightLamp), false);
+            }
+            this.setDead();
+            return true;
+        } else {
+            return super.processInteract(player, hand);
         }
     }
 
