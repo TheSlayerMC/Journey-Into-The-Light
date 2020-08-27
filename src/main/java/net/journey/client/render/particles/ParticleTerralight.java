@@ -52,7 +52,21 @@ public class ParticleTerralight extends Particle {
 	@Override
 	public void renderParticle(BufferBuilder buffer, Entity entity, float par2, float p_180434_4_, float p_180434_5_, float p_180434_6_, float p_180434_7_, float p_180434_8_) {
 		this.particleScale = jParticleScale;
-		this.particleAlpha = renderAlpha();
+
+		float brightness = 3.5F;
+		float alpha = this.renderAlpha();
+
+
+		/*useless
+		GL11.glColor4f(brightness, brightness, brightness, alpha);
+
+		GlStateManager.enableBlend();
+		GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+		GlStateManager.depthMask(true);
+		GlStateManager.enableAlpha();
+		*/
+
+
 		super.renderParticle(buffer, entity, par2, p_180434_4_, p_180434_5_, p_180434_6_, p_180434_7_, p_180434_8_);
 	}
 
