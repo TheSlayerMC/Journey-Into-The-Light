@@ -383,6 +383,8 @@ public class JourneyItems {
 	public static Item luckyCharm;
 
 	public static Item swampLily;
+	
+	public static Item SENTACOIN;
 
 	public static void init() {
 
@@ -674,6 +676,8 @@ public class JourneyItems {
 		luckyCharm = new ItemLuckyCharm("charm_of_luck", "Lucky Charm");
 
 		swampLily = new JItemWaterLily("swamp_lily_item", "Swamp Lily");
+		
+		SENTACOIN = new ItemSentaCoin("sentacoin", "Sentacoin");
 	}
 
     public static ToolMaterial addToolMaterial(int uses, float efficiency, float dam, boolean breakable) {
