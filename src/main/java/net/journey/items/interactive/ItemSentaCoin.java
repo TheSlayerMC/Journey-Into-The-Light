@@ -19,7 +19,6 @@ public class ItemSentaCoin extends JItem {
 			if(e instanceof EntityPlayer) {
 				EntityPlayer player = (EntityPlayer)e;
 				//ADD TO PLAYER CURRENCY CAPABILITY
-				System.out.println("ITEM ENTERED INVENTORY");
 				player.inventory.decrStackSize(itemSlot, 1);
 			} else {
 				s = null;
