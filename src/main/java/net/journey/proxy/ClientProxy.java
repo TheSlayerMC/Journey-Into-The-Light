@@ -4,6 +4,7 @@ import net.journey.JITL;
 import net.journey.client.PlayerStats;
 import net.journey.client.handler.BossTickHandler;
 import net.journey.client.handler.GuiHandler;
+import net.journey.client.handler.KeyInputHandler;
 import net.journey.client.render.EntityRendering;
 import net.journey.client.render.RenderEssenceBar;
 import net.journey.client.render.particles.OreParticleFX;
@@ -18,6 +19,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.client.FMLClientHandler;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -52,6 +54,7 @@ public class ClientProxy extends CommonProxy {
         SlayerAPI.registerEventListener(new BossTickHandler());
         SlayerAPI.registerEventListener(new ClientTickEvent());
         SlayerAPI.registerEventListener(new PlayerStats());
+        SlayerAPI.registerEventListener(new KeyInputHandler());
     }
 
     @Override
