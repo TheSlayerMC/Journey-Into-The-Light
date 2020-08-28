@@ -1,22 +1,17 @@
 package net.journey.client.render.gui;
 
-import org.lwjgl.opengl.GL11;
-
 import net.journey.JITL;
 import net.journey.util.ContainerEmpty;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.village.MerchantRecipeList;
-import net.slayer.api.SlayerAPI;
-import net.slayer.api.client.gui.GuiModVillager;
+import org.lwjgl.opengl.GL11;
 
 public class GUIPlayerStats extends GuiContainer {
 
-	private ResourceLocation knowledge_sprite = new ResourceLocation(JITL.MOD_ID, "textures/gui/knowledge/knowledge_sprites.png");
-	private ResourceLocation background = new ResourceLocation(JITL.MOD_ID, "textures/gui/stats.png");
+	private final ResourceLocation knowledge_sprite = new ResourceLocation(JITL.MOD_ID, "textures/gui/knowledge/knowledge_sprites.png");
+	private final ResourceLocation background = new ResourceLocation(JITL.MOD_ID, "textures/gui/stats.png");
 
 	private GUIPlayerStats.PageButton nextButton;
 	private GUIPlayerStats.PageButton previousButton;
@@ -61,13 +56,19 @@ public class GUIPlayerStats extends GuiContainer {
 		int h = 9;
 		drawSprite(x, h, 0, 74, "Sentacoins:");
 		drawKnowledgeSprite(126, h, 32, 10, 0.50F, "Overworld");
+
 		h += height;
-		drawKnowledgeSprite(x, h, 64, 10, 0.30F, "Nether");
-		drawKnowledgeSprite(126, h, 96, 10, 0.75F, "End");
-		h += height;
-		drawKnowledgeSprite(x, h, 128, 10, 0.30F, "Boiling Point");
+
 		drawKnowledgeSprite(126, h, 160, 10, 0.75F, "Frozen Lands");
-		h+= height - 2;
+		drawKnowledgeSprite(x, h, 64, 10, 0.30F, "Nether");
+
+		h += height;
+
+		drawKnowledgeSprite(126, h, 96, 10, 0.75F, "End");
+		drawKnowledgeSprite(x, h, 128, 10, 0.30F, "Boiling Point");
+
+		h += height - 2;
+
 		drawKnowledgeSprite(x, h, 192, 10, 0.10F, "Euca");
 		drawKnowledgeSprite(126, h, 224, 10, 0.60F, "The Depths");
 	}
@@ -76,9 +77,12 @@ public class GUIPlayerStats extends GuiContainer {
 		int height = 43;
 		int x = 9;
 		int h = 9;
+
 		drawKnowledgeSprite(x, h, 0, 42, 0.48F, "Corba");
 		drawKnowledgeSprite(126, h, 32, 42, 0.90F, "Terrania");
+
 		h += height;
+
 		drawKnowledgeSprite(x, h, 64, 42, 0.57F, "Cloudia");
 		drawKnowledgeSprite(126, h, 96, 42, 0.28F, "Senterain");
 		/*h += height;
