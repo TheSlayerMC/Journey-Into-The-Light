@@ -96,6 +96,8 @@ public class GUIPlayerStats extends GuiContainer {
 	public void drawSprite(int x, int y, int spriteX, int spriteY, String s) {
 		int k = (width - xSize) / 2;
 		int l = (height - ySize) / 2;
+		mc.getTextureManager().bindTexture(background);
+		drawTexturedModalRect(k + x - 4, l + y - 4, 138, 212, 115, 40);
 		mc.getTextureManager().bindTexture(knowledge_sprite);
 		drawTexturedModalRect(k + x, l + y, spriteX, spriteY, 32, 32);
 		fontRenderer.drawString(s, k + x + 35, l + y + 5, 4210752);
@@ -127,7 +129,6 @@ public class GUIPlayerStats extends GuiContainer {
 		} else if (button == this.previousButton) {
 			this.pageNumber--;
 		}
-		System.out.println(pageNumber);
 	}
 
 	private static class PageButton extends GuiButton {
