@@ -1,5 +1,6 @@
 package net.journey.client.server.player;
 
+import net.journey.client.server.EssenceBar;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagInt;
@@ -28,6 +29,10 @@ public class PlayerStatsSerializer implements IStorage<IPlayerStats> {
 
 		PlayerStats stats = (PlayerStats) instance;
 
-		PlayerStats.readFromNBT(stats, ((NBTTagCompound) nbt));
+		if(nbt instanceof NBTTagInt) {
+			PlayerStats.readFromOldNBT(stats, (NBTTagInt) nbt);
+        } else {
+        	PlayerStats.readFromNBT(stats, ((NBTTagCompound) nbt));
+        }
 	}
 }

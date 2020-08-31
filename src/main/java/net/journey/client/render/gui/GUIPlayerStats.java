@@ -22,10 +22,10 @@ public class GUIPlayerStats extends GuiContainer {
 	private IPlayerStats stats;
 
 	private int pageNumber = 0;
+	private int coinAmount = 0;
 
 	public GUIPlayerStats() {
 		super(new ContainerEmpty());
-		stats = Minecraft.getMinecraft().player.getCapability(PlayerStatsProvider.PLAYER_STATS_CAP, null);
 		this.xSize = 242;
 		this.ySize = 204;
 	}
@@ -33,7 +33,7 @@ public class GUIPlayerStats extends GuiContainer {
 	@Override
 	public void initGui() {
 		super.initGui();
-		
+		this.stats = Minecraft.getMinecraft().player.getCapability(PlayerStatsProvider.PLAYER_STATS_CAP, null);
 		int w = (this.width - this.xSize) / 2;
 		int h = (this.height - this.ySize) / 2;
 		this.buttonList.add(this.nextButton = new GUIPlayerStats.PageButton(1, w + 134, h + 180, true));
@@ -44,8 +44,8 @@ public class GUIPlayerStats extends GuiContainer {
 
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
-		//GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		mc.getTextureManager().bindTexture(background);
+
 		int k = (width - xSize) / 2;
 		int l = (height - ySize) / 2;
 		drawTexturedModalRect(k, l, 0, 0, xSize, ySize);
@@ -120,7 +120,6 @@ public class GUIPlayerStats extends GuiContainer {
 		fontRenderer.drawString(s, k + x + 35, l + y + 5, 4210752);
 		if(s == "Sentacoins:") {
 			fontRenderer.drawString("x" + stats.getSentacoinValue(), k + x + 35, l + y + 15, 4210752);
-			//System.out.println(stats.getSentacoinValue());
 		}
 		GlStateManager.disableAlpha();
 		GlStateManager.disableBlend();

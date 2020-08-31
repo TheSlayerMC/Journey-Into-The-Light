@@ -6,4 +6,5 @@ public interface IPlayerStats {
     
     int getSentacoinValue();
 
+    void update();
 }
