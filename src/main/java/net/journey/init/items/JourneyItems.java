@@ -677,7 +677,7 @@ public class JourneyItems {
 
 		swampLily = new JItemWaterLily("swamp_lily_item", "Swamp Lily");
 		
-		SENTACOIN = new ItemSentaCoin("sentacoin", "Sentacoin");
+		SENTACOIN = new ItemSentacoin("sentacoin", "Sentacoin");
 	}
 
     public static ToolMaterial addToolMaterial(int uses, float efficiency, float dam, boolean breakable) {

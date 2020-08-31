@@ -3,6 +3,9 @@ package net.journey.proxy;
 import net.journey.JITL;
 import net.journey.client.handler.GuiHandler;
 import net.journey.client.server.*;
+import net.journey.client.server.player.IPlayerStats;
+import net.journey.client.server.player.PlayerStats;
+import net.journey.client.server.player.PlayerStatsSerializer;
 import net.journey.command.DimensionCommand;
 import net.journey.command.JourneyCommands;
 import net.journey.dimension.base.DimensionHelper;
@@ -91,6 +94,7 @@ public class CommonProxy {
         SlayerAPI.registerEventListener(new BarTickHandler());
         SlayerAPI.registerEventListener(new RenderBar());
         CapabilityManager.INSTANCE.register(IEssence.class, new EssenceSerializer(), () -> new EssenceBar(10));
+        CapabilityManager.INSTANCE.register(IPlayerStats.class, new PlayerStatsSerializer(), () -> new PlayerStats());
 
         Integrations.onPreInit(event);
         TCNetworkHandler.registerPackets();

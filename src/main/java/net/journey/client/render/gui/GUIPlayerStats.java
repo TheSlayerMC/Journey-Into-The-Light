@@ -1,10 +1,14 @@
 package net.journey.client.render.gui;
 
 import net.journey.JITL;
+import net.journey.client.server.player.IPlayerStats;
+import net.journey.client.server.player.PlayerStatsProvider;
 import net.journey.util.ContainerEmpty;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
@@ -15,30 +19,33 @@ public class GUIPlayerStats extends GuiContainer {
 
 	private GUIPlayerStats.PageButton nextButton;
 	private GUIPlayerStats.PageButton previousButton;
+	private IPlayerStats stats;
 
 	private int pageNumber = 0;
 
 	public GUIPlayerStats() {
 		super(new ContainerEmpty());
+		stats = Minecraft.getMinecraft().player.getCapability(PlayerStatsProvider.PLAYER_STATS_CAP, null);
+		this.xSize = 242;
+		this.ySize = 204;
 	}
 
 	@Override
 	public void initGui() {
 		super.initGui();
+		
 		int w = (this.width - this.xSize) / 2;
 		int h = (this.height - this.ySize) / 2;
-		this.buttonList.add(this.nextButton = new GUIPlayerStats.PageButton(1, w + 100, h + 163, true));
-		this.buttonList.add(this.previousButton = new GUIPlayerStats.PageButton(2, w + 67, h + 163, false));
+		this.buttonList.add(this.nextButton = new GUIPlayerStats.PageButton(1, w + 134, h + 180, true));
+		this.buttonList.add(this.previousButton = new GUIPlayerStats.PageButton(2, w + 100, h + 180, false));
 		this.nextButton.enabled = false;
 		this.previousButton.enabled = false;
 	}
 
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+		//GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		mc.getTextureManager().bindTexture(background);
-		xSize = 242;
-		ySize = 204;
 		int k = (width - xSize) / 2;
 		int l = (height - ySize) / 2;
 		drawTexturedModalRect(k, l, 0, 0, xSize, ySize);
@@ -48,6 +55,12 @@ public class GUIPlayerStats extends GuiContainer {
 		if(pageNumber == 1) {
 			page2();
 		}
+	}
+	
+	@Override
+	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
+		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+		
 	}
 
 	public void page1() {
@@ -94,6 +107,10 @@ public class GUIPlayerStats extends GuiContainer {
 	}
 
 	public void drawSprite(int x, int y, int spriteX, int spriteY, String s) {
+		GlStateManager.pushMatrix();
+		GlStateManager.enableBlend();
+		GlStateManager.enableAlpha();
+		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		int k = (width - xSize) / 2;
 		int l = (height - ySize) / 2;
 		mc.getTextureManager().bindTexture(background);
@@ -101,11 +118,21 @@ public class GUIPlayerStats extends GuiContainer {
 		mc.getTextureManager().bindTexture(knowledge_sprite);
 		drawTexturedModalRect(k + x, l + y, spriteX, spriteY, 32, 32);
 		fontRenderer.drawString(s, k + x + 35, l + y + 5, 4210752);
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+		if(s == "Sentacoins:") {
+			fontRenderer.drawString("x" + stats.getSentacoinValue(), k + x + 35, l + y + 15, 4210752);
+			//System.out.println(stats.getSentacoinValue());
+		}
+		GlStateManager.disableAlpha();
+		GlStateManager.disableBlend();
+		GlStateManager.popMatrix();
 	}
 
 	public void drawKnowledgeSprite(int x, int y, int spriteX, int spriteY, float percent, String s) {
 		drawSprite(x, y, spriteX, spriteY, s);
+		GlStateManager.pushMatrix();
+		GlStateManager.enableBlend();
+		GlStateManager.enableAlpha();
+		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		int progressBarSize = 65;
 		int k = (width - xSize) / 2;
 		int l = (height - ySize) / 2;
@@ -113,6 +140,9 @@ public class GUIPlayerStats extends GuiContainer {
 		int xpLevel = (int)(percent * (float)(progressBarSize));
 		drawTexturedModalRect(k + x + 35, l + y + 15, 0, 5, 65, 5);
 		drawTexturedModalRect(k + x + 35, l + y + 15, 0, 0, xpLevel, 5);
+		GlStateManager.disableAlpha();
+		GlStateManager.disableBlend();
+		GlStateManager.popMatrix();
 	}
 
 	@Override
@@ -142,6 +172,9 @@ public class GUIPlayerStats extends GuiContainer {
 		@Override
 		public void drawButton(Minecraft mc, int x, int y, float f) {
 			mc.getTextureManager().bindTexture(new ResourceLocation(JITL.MOD_ID, "textures/gui/stats.png"));
+			GlStateManager.pushMatrix();
+			GlStateManager.enableBlend();
+			GlStateManager.enableAlpha();
 			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 			height = 15;
 			boolean flag = x >= this.x && y >= this.y && x < this.x + this.width && y < this.y + this.height;
@@ -158,6 +191,9 @@ public class GUIPlayerStats extends GuiContainer {
 				k += this.height;
 			}
 			this.drawTexturedModalRect(this.x, this.y, l, k, this.width, this.height);
+			GlStateManager.disableAlpha();
+			GlStateManager.disableBlend();
+			GlStateManager.popMatrix();
 		}
 	}
 }
