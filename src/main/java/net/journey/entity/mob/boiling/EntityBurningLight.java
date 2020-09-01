@@ -1,5 +1,6 @@
 package net.journey.entity.mob.boiling;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
 import net.journey.init.JourneyLootTables;
@@ -28,8 +29,8 @@ public class EntityBurningLight extends JEntityMob {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 45);
-        EntityAttributesHelper.setAttackDamage(this, 8);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.BURNING_LIGHT_HEALTH);
+        EntityAttributesHelper.setAttackDamage(this, MobStats.BURNING_LIGHT_DAMAGE);
     }
 
     @Override

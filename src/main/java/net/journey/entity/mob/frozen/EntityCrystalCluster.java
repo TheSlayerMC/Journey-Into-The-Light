@@ -44,7 +44,7 @@ public class EntityCrystalCluster extends JEntityFlyingMob {
 
     @Override
     public double getEntityMaxHealth() {
-        return MobStats.CrystalClusterHealth;
+        return MobStats.CRYSTAL_CLUSTER_HEALTH;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package net.journey.entity.mob.depths;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
 import net.journey.entity.projectile.EntityFireBall;
@@ -43,7 +44,7 @@ public class EntityDarkSorcerer extends JEntityMob implements IRangedAttackMob {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 50);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.DARK_SORCERER_HEALTH);
     }
 
     @Override

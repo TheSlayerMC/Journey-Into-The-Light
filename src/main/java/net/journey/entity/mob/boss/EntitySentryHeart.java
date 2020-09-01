@@ -20,9 +20,6 @@ import net.slayer.api.entity.EntityEssenceBoss;
 import org.jetbrains.annotations.Nullable;
 
 public class EntitySentryHeart extends EntityEssenceBoss {
-    
-	public int maxHealth = (int) MobStats.sentryHeartHealth;
-
 	private boolean isActivated;
 
 	public final int sleep = 0, alert = 1;
@@ -38,9 +35,9 @@ public class EntitySentryHeart extends EntityEssenceBoss {
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
 		//TODO change
-		EntityAttributesHelper.setMaxHealth(this, 5000);
-		EntityAttributesHelper.setMovementSpeed(this, 0);
-		EntityAttributesHelper.setKnockbackResistance(this, 1);
+		EntityAttributesHelper.setMaxHealth(this, MobStats.SENTRY_HEART_HEALTH);
+		EntityAttributesHelper.setMovementSpeed(this, MobStats.SENTRY_HEART_MOVEMENT_SPEED);
+		EntityAttributesHelper.setKnockbackResistance(this, MobStats.SENTRY_HEART_KNOCKBACK_RESISTANCE);
 	}
 
 	public int getStage() {

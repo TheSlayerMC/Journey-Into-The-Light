@@ -52,12 +52,12 @@ public class EntityScale extends EntityFlyingBoss {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setKnockbackResistance(this, 1.0D);
+        EntityAttributesHelper.setKnockbackResistance(this, MobStats.SCALE_KNOCKBACK_RESISTANCE);
     }
 
     @Override
     public double getEntityMaxHealth() {
-        return MobStats.scaleHealth;
+        return MobStats.SCALE_HEALTH;
     }
     
     @Override

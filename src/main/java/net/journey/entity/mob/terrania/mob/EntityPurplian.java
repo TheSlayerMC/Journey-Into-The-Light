@@ -1,5 +1,6 @@
 package net.journey.entity.mob.terrania.mob;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
 import net.journey.entity.projectile.EntityMagmaFireball;
@@ -43,8 +44,8 @@ public class EntityPurplian extends JEntityMob {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 75);
-        EntityAttributesHelper.setAttackDamage(this, 16);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.PURPLIAN_HEALTH);
+        EntityAttributesHelper.setAttackDamage(this, MobStats.PURPLIAN_DAMAGE);
     }
 
     @Override

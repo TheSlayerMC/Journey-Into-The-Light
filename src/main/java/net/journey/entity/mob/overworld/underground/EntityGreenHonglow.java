@@ -1,5 +1,6 @@
 package net.journey.entity.mob.overworld.underground;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
 import net.journey.init.JourneyLootTables;
@@ -25,8 +26,8 @@ public class EntityGreenHonglow extends JEntityMob {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 20);
-        EntityAttributesHelper.setAttackDamage(this, 4);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.GREEN_HONGLOW_HEALTH);
+        EntityAttributesHelper.setAttackDamage(this, MobStats.GREEN_HONGLOW_DAMAGE);
     }
 
     @Override

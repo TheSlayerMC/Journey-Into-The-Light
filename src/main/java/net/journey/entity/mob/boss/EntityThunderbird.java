@@ -1,5 +1,6 @@
 package net.journey.entity.mob.boss;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.util.EntityBossCrystal;
 import net.journey.init.JourneyLootTables;
@@ -32,8 +33,8 @@ public class EntityThunderbird extends EntityEssenceBoss {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 2000);
-        EntityAttributesHelper.setAttackDamage(this, 10);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.THUNDERBIRD_HEALTH);
+        EntityAttributesHelper.setAttackDamage(this, MobStats.THUNDERBIRD_DAMAGE);
     }
 
     @Override

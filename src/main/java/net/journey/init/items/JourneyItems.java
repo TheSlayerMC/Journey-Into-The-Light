@@ -5,7 +5,7 @@ import net.journey.entity.mob.boss.*;
 import net.journey.entity.mob.pet.EntityEucaHopper;
 import net.journey.entity.mob.pet.EntityPetRobot;
 import net.journey.entity.mob.pet.EntityShiverwolf;
-import net.journey.entity.mob.pet.EntityTameRoc;
+import net.journey.entity.mob.pet.EntityTamedRoc;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.journey.items.*;
@@ -630,27 +630,27 @@ public class JourneyItems {
 		AQUASTONE = new JItem("aquastone", "Aquastone");
 
 		PET_FOOD = new JItem("pet_food", "Pet Food");
-		ROBOT_EGG = new JItem("robot_egg", "Robot Egg");
-		TAMED_ROBOT_SPAWN_EGG = new ItemSpawnerEgg("robot_spawner_egg", "Incubated Robot Egg", EntityPetRobot.class);
+        ROBOT_EGG = new JItem("robot_egg", "Robot Egg");
+        TAMED_ROBOT_SPAWN_EGG = new ItemSpawnerEgg("robot_spawner_egg", "Incubated Robot Egg", EntityPetRobot.class);
 
-		EUCA_HOPPER_EGG = new JItem("euca_hopper_egg", "Euca Hopper Egg");
-		TAMED_EUCA_HOPPER_SPAWN_EGG = new ItemSpawnerEgg("euca_hopper_spawner_egg", "Incubated Euca Hopper Egg", EntityEucaHopper.class);
+        EUCA_HOPPER_EGG = new JItem("euca_hopper_egg", "Euca Hopper Egg");
+        TAMED_EUCA_HOPPER_SPAWN_EGG = new ItemSpawnerEgg("euca_hopper_spawner_egg", "Incubated Euca Hopper Egg", EntityEucaHopper.class);
 
-		SHIVERWOLF_EGG = new JItem("shiverwolf_egg", "Shiverwolf Egg");
-		TAMED_SHIVERWOLF_SPAWN_EGG = new ItemSpawnerEgg("shiverwolf_spawner_egg", "Incubated Shiverwolf Egg", EntityShiverwolf.class);
+        SHIVERWOLF_EGG = new JItem("shiverwolf_egg", "Shiverwolf Egg");
+        TAMED_SHIVERWOLF_SPAWN_EGG = new ItemSpawnerEgg("shiverwolf_spawner_egg", "Incubated Shiverwolf Egg", EntityShiverwolf.class);
 
-		ROC_EGG = new JItem("roc_egg", "Roc Egg");
-		TAMED_ROC_SPAWN_EGG = new ItemSpawnerEgg("roc_spawner_egg", "Incubated Roc Egg", EntityTameRoc.class);
+        ROC_EGG = new JItem("roc_egg", "Roc Egg");
+        TAMED_ROC_SPAWN_EGG = new ItemSpawnerEgg("roc_spawner_egg", "Incubated Roc Egg", EntityTamedRoc.class);
 
-		loreScroll = new ItemLoreScroll("lore_scroll", "Lore Scroll");
-		debugItem = new ItemTestBug("test_bug", "Test Bug");
+        loreScroll = new ItemLoreScroll("lore_scroll", "Lore Scroll");
+        debugItem = new ItemTestBug("test_bug", "Test Bug");
 
-		//obsidianBoat = new ItemObsidianBoat("obsidianboat", "Obsidian Boat");
-		//infernoshield = new ItemModShield("infernoshield", "Inferno Shield", 2, false);
-		dynasterAmulet = new ItemDynasterAmulet("amulet_dynaster", "Amulet of the Dynaster");
-		aquaticAmulet = new ItemAquaticAmulet("amulet_aquatic", "Amulet of the Depths");
-		magmaAmulet = new ItemMagmaAmulet("amulet_magma", "Amulet of Eternal Magma");
-		iceAmulet = new ItemIceAmulet("amulet_ice", "Amulet of Glacial Bloodlust");
+        //obsidianBoat = new ItemObsidianBoat("obsidianboat", "Obsidian Boat");
+        //infernoshield = new ItemModShield("infernoshield", "Inferno Shield", 2, false);
+        dynasterAmulet = new ItemDynasterAmulet("amulet_dynaster", "Amulet of the Dynaster");
+        aquaticAmulet = new ItemAquaticAmulet("amulet_aquatic", "Amulet of the Depths");
+        magmaAmulet = new ItemMagmaAmulet("amulet_magma", "Amulet of Eternal Magma");
+        iceAmulet = new ItemIceAmulet("amulet_ice", "Amulet of Glacial Bloodlust");
 		emptyAmulet = new JItem("amulet_empty", "Empty Amulet");
 
 		skullOfDecay = new ItemSkullOfDecay("skull_of_decay", "Skull Of Decay");

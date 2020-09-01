@@ -23,7 +23,6 @@ import net.journey.entity.mob.euca.npc.EntityAlloyMender;
 import net.journey.entity.mob.frozen.*;
 import net.journey.entity.mob.frozen.npc.EntityFrozenMerchant;
 import net.journey.entity.mob.nether.*;
-import net.journey.entity.mob.overworld.EntityWraith;
 import net.journey.entity.mob.overworld.*;
 import net.journey.entity.mob.overworld.cold.EntityBlizzard;
 import net.journey.entity.mob.overworld.jungle.EntityJungleGolem;
@@ -36,7 +35,7 @@ import net.journey.entity.mob.overworld.underground.npc.EntityRockiteGolem;
 import net.journey.entity.mob.pet.EntityEucaHopper;
 import net.journey.entity.mob.pet.EntityPetRobot;
 import net.journey.entity.mob.pet.EntityShiverwolf;
-import net.journey.entity.mob.pet.EntityTameRoc;
+import net.journey.entity.mob.pet.EntityTamedRoc;
 import net.journey.entity.mob.senterian.mob.*;
 import net.journey.entity.mob.terrania.mob.*;
 import net.journey.entity.mob.terrania.npc.EntityTerranianEnchanter;
@@ -187,8 +186,8 @@ public class EntityRegistry {
 
 				SlayerAPI.buildMobEntry(EntityJungleTurtle.class, "jungleturtle", "Jungle Turtle", 0x7c4c2c, 0x26b530),
 				SlayerAPI.buildMobEntry(EntityJungleSpider.class, "jungleSpider", "Jungle Spider", 0x7c4c2c, 0x26b530),
-				SlayerAPI.buildMobEntry(EntityTameRoc.class, "tameroc", "Roc", 0x7c4c2c, 0x26b530),
-				
+				SlayerAPI.buildMobEntry(EntityTamedRoc.class, "tameroc", "Roc", 0x7c4c2c, 0x26b530),
+
 				SlayerAPI.buildMobEntry(EntityPetRobot.class, "petrobot", "Pet Robot", 0x7c4c2c, 0x26b530),
 
 

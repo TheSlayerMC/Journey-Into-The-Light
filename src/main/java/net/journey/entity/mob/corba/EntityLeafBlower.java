@@ -1,5 +1,6 @@
 package net.journey.entity.mob.corba;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
 import net.journey.init.JourneyLootTables;
@@ -26,8 +27,8 @@ public class EntityLeafBlower extends JEntityMob {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 65);
-        EntityAttributesHelper.setAttackDamage(this, 13);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.LEAF_BLOWER_HEALTH);
+        EntityAttributesHelper.setAttackDamage(this, MobStats.LEAF_BLOWER_DAMAGE);
     }
 
     @Override

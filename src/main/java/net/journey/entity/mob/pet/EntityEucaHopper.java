@@ -1,5 +1,6 @@
 package net.journey.entity.mob.pet;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.init.JourneySounds;
 import net.minecraft.entity.EntityAgeable;
@@ -24,8 +25,8 @@ public class EntityEucaHopper extends EntityJourneyPet {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 40);
-        EntityAttributesHelper.setAttackDamage(this, 7.5);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.EUCA_HOPPER_HEALTH);
+        EntityAttributesHelper.setAttackDamage(this, MobStats.EUCA_HOPPER_DAMAGE);
     }
 
     @Override

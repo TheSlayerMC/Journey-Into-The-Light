@@ -1,5 +1,6 @@
 package net.journey.entity.mob.depths;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
 import net.journey.init.JourneyLootTables;
@@ -26,8 +27,8 @@ public class EntityDepthsBeast extends JEntityMob {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 60);
-        EntityAttributesHelper.setAttackDamage(this, 15);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.DEPTHS_BEAST_HEALTH);
+        EntityAttributesHelper.setAttackDamage(this, MobStats.DEPTHS_BEAST_DAMAGE);
     }
 
     @Override

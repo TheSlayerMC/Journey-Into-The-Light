@@ -47,7 +47,7 @@ public class EntityTerralight extends JEntityFlyingMob {
 
     @Override
     public double getEntityMaxHealth() {
-        return MobStats.TerralightDamage;
+        return MobStats.TERRALIGHT_HEALTH;
     }
 
     @Override

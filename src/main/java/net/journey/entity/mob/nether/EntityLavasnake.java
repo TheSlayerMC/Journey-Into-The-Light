@@ -200,7 +200,7 @@ public class EntityLavasnake extends JEntityFlyingMob implements IRangedAttackMo
 
     @Override
     public double getEntityMaxHealth() {
-        return MobStats.LavaSnakeHealth;
+        return MobStats.LAVASNAKE_HEALTH;
     }
 
     @Override

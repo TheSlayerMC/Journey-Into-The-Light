@@ -1,5 +1,6 @@
 package net.journey.entity.mob.overworld;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
 import net.journey.init.JourneyLootTables;
@@ -23,8 +24,8 @@ public class EntityDuneworm extends JEntityMob {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 25);
-        EntityAttributesHelper.setAttackDamage(this, 6);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.DUNEWORM_HEALTH);
+        EntityAttributesHelper.setAttackDamage(this, MobStats.DUNEWORM_DAMAGE);
     }
 
     @Override

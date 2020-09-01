@@ -1,5 +1,6 @@
 package net.journey.entity.mob.overworld.underground;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
 import net.journey.init.JourneyLootTables;
@@ -24,8 +25,8 @@ public class EntityStonewalker extends JEntityMob {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 30);
-        EntityAttributesHelper.setAttackDamage(this, 3);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.STONEWALKER_HEALTH);
+        EntityAttributesHelper.setAttackDamage(this, MobStats.STONEWALKER_DAMAGE);
     }
 
     @Override

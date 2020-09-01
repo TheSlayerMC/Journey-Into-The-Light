@@ -1,5 +1,6 @@
 package net.journey.entity.mob.terrania.mob;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
 import net.journey.init.JourneyLootTables;
@@ -89,9 +90,9 @@ public class EntityAranaKing extends JEntityMob {
     @Override
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
-        //TODO it doesn't have his own stats, but it should. For now it copies Journey's Jungle Spider
-        EntityAttributesHelper.setMaxHealth(this, 18);
-        EntityAttributesHelper.setAttackDamage(this, 4);
+
+        EntityAttributesHelper.setMaxHealth(this, MobStats.ARANA_KING_HEALTH);
+        EntityAttributesHelper.setAttackDamage(this, MobStats.ARANA_KING_DAMAGE);
     }
 
     @Override

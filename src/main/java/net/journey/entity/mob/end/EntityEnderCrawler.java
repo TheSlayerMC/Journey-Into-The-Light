@@ -1,5 +1,6 @@
 package net.journey.entity.mob.end;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
 import net.journey.init.JourneyLootTables;
@@ -24,8 +25,8 @@ public class EntityEnderCrawler extends JEntityMob {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 40);
-        EntityAttributesHelper.setAttackDamage(this, 7);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.ENDER_CRAWLER_HEALTH);
+        EntityAttributesHelper.setAttackDamage(this, MobStats.ENDER_CRAWLER_DAMAGE);
     }
 
     @Override

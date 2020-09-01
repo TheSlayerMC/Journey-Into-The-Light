@@ -58,12 +58,12 @@ public class EntitySoulWatcher extends EntityFlyingBoss /*implements IRangedAtta
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setKnockbackResistance(this, 1.0D);
+        EntityAttributesHelper.setKnockbackResistance(this, MobStats.SOUL_WATCHER_KNOCKBACK_RESISTANCE);
     }
 
     @Override
     public double getEntityMaxHealth() {
-        return MobStats.soulWatcherHealth;
+        return MobStats.SOUL_WATCHER_HEALTH;
     }
 
     @Override

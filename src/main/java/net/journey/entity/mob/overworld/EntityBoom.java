@@ -1,6 +1,7 @@
 package net.journey.entity.mob.overworld;
 
 import net.journey.entity.AI.EntityAIBoomSwell;
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
 import net.journey.init.JourneyLootTables;
@@ -131,8 +132,8 @@ public class EntityBoom extends JEntityMob {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 20);
-        EntityAttributesHelper.setMovementSpeed(this, 0.200000011920929);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.BOOM_HEALTH);
+        EntityAttributesHelper.setMovementSpeed(this, MobStats.BOOM_MOVEMENT_SPEED);
     }
 
 

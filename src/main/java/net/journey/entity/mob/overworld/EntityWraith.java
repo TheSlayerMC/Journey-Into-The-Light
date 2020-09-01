@@ -1,5 +1,6 @@
 package net.journey.entity.mob.overworld;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
 import net.journey.init.JourneyLootTables;
@@ -28,8 +29,8 @@ public class EntityWraith extends JEntityMob {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 30);
-        EntityAttributesHelper.setAttackDamage(this, 6);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.WRAITH_HEALTH);
+        EntityAttributesHelper.setAttackDamage(this, MobStats.WRAITH_DAMAGE);
     }
 
     @Override

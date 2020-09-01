@@ -1,5 +1,6 @@
 package net.journey.entity.mob.boiling;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
 import net.journey.entity.projectile.EntityMagmaFireball;
@@ -49,8 +50,8 @@ public class EntityMagmaBlaze extends JEntityMob {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 40);
-        EntityAttributesHelper.setAttackDamage(this, 8);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.MAGMA_BLAZE_HEALTH);
+        EntityAttributesHelper.setAttackDamage(this, MobStats.MAGMA_BLAZE_DAMAGE);
     }
 
     @Override

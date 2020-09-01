@@ -1,5 +1,6 @@
 package net.journey.entity.mob.corba;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
 import net.journey.init.JourneyLootTables;
@@ -26,8 +27,8 @@ public class EntityWoodCreature extends JEntityMob {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 62);
-        EntityAttributesHelper.setAttackDamage(this, 12);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.WOOD_CREATURE_HEALTH);
+        EntityAttributesHelper.setAttackDamage(this, MobStats.WOOD_CREATURE_DAMAGE);
     }
 
     @Override

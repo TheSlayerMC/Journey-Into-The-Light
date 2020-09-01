@@ -1,5 +1,6 @@
 package net.journey.entity.mob.euca;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
 import net.journey.init.JourneyLootTables;
@@ -22,8 +23,8 @@ public class EntityPsyollom extends JEntityMob {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 44);
-        EntityAttributesHelper.setAttackDamage(this, 10);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.PSYOLLOM_HEALTH);
+        EntityAttributesHelper.setAttackDamage(this, MobStats.PSYOLLOM_DAMAGE);
     }
 
     @Override

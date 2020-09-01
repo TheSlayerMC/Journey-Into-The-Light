@@ -5,6 +5,7 @@ CUSTOM PROJECTILES: A GRAVITY-AFFECTED GRENADE THAT CAUSES SMALL EXPLOSIONS FOR 
 */
 package net.journey.entity.mob.boss;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.projectile.EntityMagmaFireball;
 import net.journey.entity.projectile.EntitySentryKingGrenade;
@@ -54,9 +55,9 @@ public class EntitySentryKing extends EntityEssenceBoss implements IRangedAttack
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 2500);
-        EntityAttributesHelper.setAttackDamage(this, 20);
-        EntityAttributesHelper.setKnockbackResistance(this, 1);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.SENTRY_KING_HEALTH);
+        EntityAttributesHelper.setAttackDamage(this, MobStats.SENTRY_KING_DAMAGE);
+        EntityAttributesHelper.setKnockbackResistance(this, MobStats.SENTRY_KING_KNOCKBACK_RESISTANCE);
     }
 
     @Override

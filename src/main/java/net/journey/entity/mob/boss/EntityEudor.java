@@ -1,5 +1,6 @@
 package net.journey.entity.mob.boss;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.util.EntityBossCrystal;
 import net.journey.init.JourneyLootTables;
@@ -34,9 +35,9 @@ public class EntityEudor extends EntityEssenceBoss {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 900);
-        EntityAttributesHelper.setAttackDamage(this, 10);
-        EntityAttributesHelper.setKnockbackResistance(this, 1);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.EUDOR_HEALTH);
+        EntityAttributesHelper.setAttackDamage(this, MobStats.EUDOR_DAMAGE);
+        EntityAttributesHelper.setKnockbackResistance(this, MobStats.EUDOR_KNOCKBACK_RESISTANCE);
     }
 
     @Override

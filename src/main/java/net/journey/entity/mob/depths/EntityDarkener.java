@@ -160,7 +160,7 @@ public class EntityDarkener extends JEntityFlyingMob {
 
     @Override
     public double getEntityMaxHealth() {
-        return MobStats.DarkenerHealth;
+        return MobStats.DARKENER_HEALTH;
     }
 
     static class AIFireballAttack extends EntityAIBase {

@@ -1,5 +1,6 @@
 package net.journey.entity.mob.cloudia;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
 import net.journey.init.JourneyLootTables;
@@ -25,8 +26,8 @@ public class EntityCloudFlower extends JEntityMob {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 75);
-        EntityAttributesHelper.setMovementSpeed(this, 0);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.CLOUD_FLOWER_HEALTH);
+        EntityAttributesHelper.setMovementSpeed(this, MobStats.CLOUD_FLOWER_MOVEMENT_SPEED);
     }
 
     @Override

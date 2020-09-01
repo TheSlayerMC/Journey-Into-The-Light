@@ -1,5 +1,6 @@
 package net.journey.entity.mob.boss;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.util.EntityBossCrystal;
 import net.journey.init.JourneySounds;
@@ -44,9 +45,9 @@ public class EntityGuardianOfDestruction extends EntityEssenceBoss {
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
 
-		EntityAttributesHelper.setMaxHealth(this, 1500);
-		EntityAttributesHelper.setAttackDamage(this, 15);
-		EntityAttributesHelper.setKnockbackResistance(this, 1);
+		EntityAttributesHelper.setMaxHealth(this, MobStats.GUARDIAN_OF_DESTRUCTION_HEALTH);
+		EntityAttributesHelper.setAttackDamage(this, MobStats.GUARDIAN_OF_DESTRUCTION_DAMAGE);
+		EntityAttributesHelper.setKnockbackResistance(this, MobStats.GUARDIAN_OF_DESTRUCTION_KNOCKBACK_RESISTANCE);
 	}
 
 	@Override

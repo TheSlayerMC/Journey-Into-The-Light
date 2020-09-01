@@ -43,7 +43,7 @@ public class EntityShimmerer extends JEntityFlyingMob {
 
     @Override
     public double getEntityMaxHealth() {
-        return MobStats.ShimmerHealth;
+        return MobStats.SHIMMERER_HEALTH;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package net.journey.entity.mob.euca;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
 import net.journey.entity.projectile.EntityFireBall;
@@ -42,7 +43,7 @@ public class EntityGolditeMage extends JEntityMob implements IRangedAttackMob {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 40);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.GOLDITE_MAGE_HEALTH);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package net.journey.entity.mob.boss;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.projectile.arrow.EntityDarknessArrow;
 import net.journey.entity.projectile.arrow.EntityFlameArrow;
@@ -50,9 +51,9 @@ public class EntityFourfa extends EntityEssenceBoss implements IRangedAttackMob 
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 900);
-        EntityAttributesHelper.setAttackDamage(this, 10);
-        EntityAttributesHelper.setKnockbackResistance(this, 1);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.FOURFA_HEALTH);
+        EntityAttributesHelper.setAttackDamage(this, MobStats.FOURFA_DAMAGE);
+        EntityAttributesHelper.setKnockbackResistance(this, MobStats.FOURFA_KNOCKBACK_RESISTANCE);
     }
 
     @Override

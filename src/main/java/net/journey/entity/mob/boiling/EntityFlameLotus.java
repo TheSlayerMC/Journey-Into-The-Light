@@ -1,5 +1,6 @@
 package net.journey.entity.mob.boiling;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
 import net.journey.init.JourneyLootTables;
@@ -19,8 +20,8 @@ public class EntityFlameLotus extends JEntityMob {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 100);
-        EntityAttributesHelper.setMovementSpeed(this, 0);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.FLAME_LOTUS_HEALTH);
+        EntityAttributesHelper.setMovementSpeed(this, MobStats.FLAME_LOTUS_MOVEMENT_SPEED);
     }
 
     @Override

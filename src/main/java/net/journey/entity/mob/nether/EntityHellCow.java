@@ -1,5 +1,6 @@
 package net.journey.entity.mob.nether;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.init.JourneyLootTables;
 import net.minecraft.block.Block;
@@ -38,9 +39,9 @@ public class EntityHellCow extends EntityPeacefullUntillAttacked {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 35);
-        EntityAttributesHelper.setAttackDamage(this, 7);
-        EntityAttributesHelper.setMovementSpeed(this, 0.3);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.HELL_COW_HEALTH);
+        EntityAttributesHelper.setAttackDamage(this, MobStats.HELL_COW_DAMAGE);
+        EntityAttributesHelper.setMovementSpeed(this, MobStats.HELL_COW_MOVEMENT_SPEED);
     }
 
     @Override

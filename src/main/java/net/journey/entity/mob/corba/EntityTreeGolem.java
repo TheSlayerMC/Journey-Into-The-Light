@@ -1,5 +1,6 @@
 package net.journey.entity.mob.corba;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
 import net.journey.init.JourneyLootTables;
@@ -30,8 +31,8 @@ public class EntityTreeGolem extends JEntityMob {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 62);
-        EntityAttributesHelper.setAttackDamage(this, 14);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.TREE_GOLEM_HEALTH);
+        EntityAttributesHelper.setAttackDamage(this, MobStats.TREE_GOLEM_ATTACK);
     }
 
     @Override

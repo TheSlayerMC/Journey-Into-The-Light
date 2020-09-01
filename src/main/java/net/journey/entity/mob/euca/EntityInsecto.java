@@ -1,5 +1,6 @@
 package net.journey.entity.mob.euca;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
 import net.journey.init.JourneyLootTables;
@@ -24,8 +25,8 @@ public class EntityInsecto extends JEntityMob {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 42);
-        EntityAttributesHelper.setAttackDamage(this, 9);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.INSECTO_HEALTH);
+        EntityAttributesHelper.setAttackDamage(this, MobStats.INSECTO_DAMAGE);
     }
 
     @Override

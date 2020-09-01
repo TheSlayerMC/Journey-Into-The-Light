@@ -1,5 +1,6 @@
 package net.journey.entity.mob.overworld.cold;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
 import net.journey.entity.projectile.EntityBlizzardFireball;
@@ -54,7 +55,7 @@ public class EntityBlizzard extends JEntityMob {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 20);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.BLIZZARD_HEALTH);
     }
 
     @Override

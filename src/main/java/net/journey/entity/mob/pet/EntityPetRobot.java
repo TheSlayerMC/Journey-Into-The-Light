@@ -1,5 +1,6 @@
 package net.journey.entity.mob.pet;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.player.EntityPlayer;
@@ -23,8 +24,8 @@ public class EntityPetRobot extends EntityJourneyPet {
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
 
-		EntityAttributesHelper.setMaxHealth(this, 20);
-		EntityAttributesHelper.setAttackDamage(this, 5);
+		EntityAttributesHelper.setMaxHealth(this, MobStats.PET_ROBOT_HEALTH);
+		EntityAttributesHelper.setAttackDamage(this, MobStats.PET_ROBOT_DAMAGE);
 	}
 
 	@Override

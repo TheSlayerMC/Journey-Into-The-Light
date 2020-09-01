@@ -58,7 +58,6 @@ import net.journey.entity.mob.euca.npc.EntityAlloyMender;
 import net.journey.entity.mob.frozen.*;
 import net.journey.entity.mob.frozen.npc.EntityFrozenMerchant;
 import net.journey.entity.mob.nether.*;
-import net.journey.entity.mob.overworld.EntityWraith;
 import net.journey.entity.mob.overworld.*;
 import net.journey.entity.mob.overworld.cold.EntityBlizzard;
 import net.journey.entity.mob.overworld.jungle.EntityJungleGolem;
@@ -71,7 +70,7 @@ import net.journey.entity.mob.overworld.underground.npc.EntityRockiteGolem;
 import net.journey.entity.mob.pet.EntityEucaHopper;
 import net.journey.entity.mob.pet.EntityPetRobot;
 import net.journey.entity.mob.pet.EntityShiverwolf;
-import net.journey.entity.mob.pet.EntityTameRoc;
+import net.journey.entity.mob.pet.EntityTamedRoc;
 import net.journey.entity.mob.senterian.mob.*;
 import net.journey.entity.mob.terrania.mob.*;
 import net.journey.entity.mob.terrania.npc.EntityTerranianEnchanter;
@@ -311,7 +310,7 @@ public class EntityRendering {
         RenderingRegistry.registerEntityRenderingHandler(EntityEudor.class, new RenderBoss(new ModelEudor(), 0.5F, 2.0F, Textures.eudor, "eudor"));
         RenderingRegistry.registerEntityRenderingHandler(EntityScale.class, new RenderBoss(new ModelSoulWatcher(), 0.5F, 2.0F, Textures.scale, "scale"));
 
-        RenderingRegistry.registerEntityRenderingHandler(EntityTameRoc.class, new RenderModMob(new ModelRoc(), Textures.tameRoc));
+        RenderingRegistry.registerEntityRenderingHandler(EntityTamedRoc.class, new RenderModMob(new ModelRoc(), Textures.tameRoc));
         RenderingRegistry.registerEntityRenderingHandler(EntityJungleTurtle.class, new RenderSizeable(new ModelJungleTurtle(), 0.5F, 1.5F, Textures.jungleTurtle));
         RenderingRegistry.registerEntityRenderingHandler(EntityJungleSpider.class, new RenderSizeable(new ModelJungleSpider(), 0.5F, 0.5F, Textures.jungleSpider));
         //RenderingRegistry.registerEntityRenderingHandler(EntityWraith.class, new RenderBoss(new ModelWraith(), 0.5F, 1.0F, tex.wraith, stat.wraithBossID));

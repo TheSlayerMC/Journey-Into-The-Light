@@ -47,7 +47,7 @@ public class EntityTerranianProtector extends EntityFlyingBoss {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setKnockbackResistance(this, 1.0D);
+        EntityAttributesHelper.setKnockbackResistance(this, MobStats.TERRANIAN_PROTECTOR_KNOCKBACK_RESISTANCE);
     }
 
     @Override
@@ -102,7 +102,7 @@ public class EntityTerranianProtector extends EntityFlyingBoss {
 
     @Override
     public double getEntityMaxHealth() {
-        return MobStats.terranianHealth;
+        return MobStats.TERRANIAN_PROTECTOR_HEALTH;
     }
 
     @Override

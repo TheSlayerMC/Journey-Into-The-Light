@@ -1,6 +1,7 @@
 package net.journey.entity.mob.cloudia;
 
 import net.journey.JITL;
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
 import net.journey.init.JAnimations;
@@ -25,6 +26,7 @@ import ru.timeconqueror.timecore.api.animation.AnimationAPI;
 import ru.timeconqueror.timecore.api.animation.AnimationProvider;
 import ru.timeconqueror.timecore.api.animation.BlendType;
 
+//todo WTF cloudia guardian is a copy of floro code? :/
 public class EntityCloudiaGuardian extends JEntityMob implements AnimationProvider<EntityCloudiaGuardian> {
 	private static final DataParameter<Boolean> HIDDEN = EntityDataManager.createKey(EntityCloudiaGuardian.class, DataSerializers.BOOLEAN);
 
@@ -99,8 +101,8 @@ public class EntityCloudiaGuardian extends JEntityMob implements AnimationProvid
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
 
-		EntityAttributesHelper.setMaxHealth(this, 25);
-		EntityAttributesHelper.setFollowRange(this, 25);
+		EntityAttributesHelper.setMaxHealth(this, MobStats.CLOUD_GUARDIAN_HEALTH);
+		EntityAttributesHelper.setFollowRange(this, MobStats.CLOUD_GUARDIAN_FOLLOW_RANGE);
 	}
 
 	@Override

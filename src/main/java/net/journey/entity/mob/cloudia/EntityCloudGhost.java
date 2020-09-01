@@ -1,5 +1,6 @@
 package net.journey.entity.mob.cloudia;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
 import net.journey.init.JourneyLootTables;
@@ -21,8 +22,8 @@ public class EntityCloudGhost extends JEntityMob {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 75);
-        EntityAttributesHelper.setAttackDamage(this, 18);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.CLOUD_GHOST_HEALTH);
+        EntityAttributesHelper.setAttackDamage(this, MobStats.CLOUD_GHOST_DAMAGE);
     }
 
     @Override

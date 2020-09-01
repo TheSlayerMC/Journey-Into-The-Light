@@ -1,5 +1,6 @@
 package net.journey.entity.mob.overworld.underground;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
 import net.journey.init.JourneyLootTables;
@@ -24,8 +25,8 @@ public class EntityCaveling extends JEntityMob {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 25);
-        EntityAttributesHelper.setAttackDamage(this, 4);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.CAVELING_HEALTH);
+        EntityAttributesHelper.setAttackDamage(this, MobStats.CAVELING_DAMAGE);
     }
 
     @Override

@@ -155,7 +155,7 @@ public class EntityOverseer extends JEntityFlyingMob {
 
     @Override
     public double getEntityMaxHealth() {
-        return MobStats.OverseerHealth;
+        return MobStats.OVERSEER_HEALTH;
     }
 
     static class AIFireballAttack extends EntityAIBase {

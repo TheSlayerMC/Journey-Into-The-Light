@@ -1,5 +1,6 @@
 package net.journey.entity.mob.boss;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.util.EntityBossCrystal;
 import net.journey.init.JourneyLootTables;
@@ -33,9 +34,9 @@ public class EntityCalcia extends EntityEssenceBoss {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 650);
-        EntityAttributesHelper.setAttackDamage(this, 10);
-        EntityAttributesHelper.setKnockbackResistance(this, 1);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.CALCIA_HEALTH);
+        EntityAttributesHelper.setAttackDamage(this, MobStats.CALCIA_DAMAGE);
+        EntityAttributesHelper.setKnockbackResistance(this, MobStats.CALCIA_KNOCKBACK_RESISTANCE);
     }
 
     @Override

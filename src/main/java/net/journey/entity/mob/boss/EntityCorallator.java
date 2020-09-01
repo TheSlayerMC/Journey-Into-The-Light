@@ -1,5 +1,6 @@
 package net.journey.entity.mob.boss;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.mob.euca.EntityShimmerer;
 import net.journey.entity.projectile.EntityMagmaFireball;
@@ -45,8 +46,8 @@ public class EntityCorallator extends EntityEssenceBoss implements IRangedAttack
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 950);
-        EntityAttributesHelper.setAttackDamage(this, 10);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.CORALLATOR_HEALTH);
+        EntityAttributesHelper.setAttackDamage(this, MobStats.CORALLATOR_DAMAGE);
     }
 
     @Override

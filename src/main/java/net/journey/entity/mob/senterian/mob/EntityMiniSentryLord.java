@@ -1,5 +1,6 @@
 package net.journey.entity.mob.senterian.mob;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
 import net.journey.init.JourneyLootTables;
@@ -20,8 +21,8 @@ public class EntityMiniSentryLord extends JEntityMob {
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
 
-		EntityAttributesHelper.setMaxHealth(this, 20);
-		EntityAttributesHelper.setAttackDamage(this, 5);
+		EntityAttributesHelper.setMaxHealth(this, MobStats.MINI_SENTRY_LORD_HEALTH);
+		EntityAttributesHelper.setAttackDamage(this, MobStats.MINI_SENTRY_LORD_DAMAGE);
 	}
 
 	@Override

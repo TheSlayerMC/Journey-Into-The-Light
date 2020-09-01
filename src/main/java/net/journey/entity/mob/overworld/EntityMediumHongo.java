@@ -1,5 +1,6 @@
 package net.journey.entity.mob.overworld;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
 import net.journey.init.JourneyLootTables;
@@ -22,8 +23,8 @@ public class EntityMediumHongo extends JEntityMob {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 30);
-        EntityAttributesHelper.setAttackDamage(this, 5);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.MEDIUM_HONGO_HEALTH);
+        EntityAttributesHelper.setAttackDamage(this, MobStats.MEDIUM_HONGO_DAMAGE);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package net.journey.entity.mob.senterian.mob;
 
 import com.google.common.base.Optional;
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
 import net.journey.init.JourneyLootTables;
@@ -74,8 +75,8 @@ public class EntitySentryBlock extends JEntityMob {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 75);
-        EntityAttributesHelper.setMovementSpeed(this, 0);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.SENTRY_BLOCK_HEALTH);
+        EntityAttributesHelper.setMovementSpeed(this, MobStats.SENTRY_BLOCK_MOVEMENT_SPEED);
     }
 
     @Override

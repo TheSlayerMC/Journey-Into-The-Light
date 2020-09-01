@@ -1,5 +1,6 @@
 package net.journey.entity.mob.overworld.jungle;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
 import net.journey.init.JourneyLootTables;
@@ -65,8 +66,8 @@ public class EntityJungleSpider extends JEntityMob {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 18);
-        EntityAttributesHelper.setAttackDamage(this, 4);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.JUNGLE_SPIDER_HEALTH);
+        EntityAttributesHelper.setAttackDamage(this, MobStats.JUNGLE_SPIDER_DAMAGE);
     }
 
     @Override

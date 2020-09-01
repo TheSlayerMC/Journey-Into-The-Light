@@ -53,7 +53,7 @@ public class EntityMiniGhast extends JEntityFlyingMob {
 
     @Override
     public double getEntityMaxHealth() {
-        return MobStats.MiniGhastHealth;
+        return MobStats.MINI_GHAST_HEALTH;
     }
 
     @Override

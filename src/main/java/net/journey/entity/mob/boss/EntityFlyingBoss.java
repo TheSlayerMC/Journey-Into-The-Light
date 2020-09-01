@@ -1,7 +1,6 @@
 package net.journey.entity.mob.boss;
 
 import net.journey.api.entity.IEssenceBoss;
-import net.journey.entity.MobStats;
 import net.journey.entity.base.JEntityFlyingMob;
 import net.journey.entity.util.EntityBossCrystal;
 import net.journey.init.JourneySounds;
@@ -49,10 +48,6 @@ public abstract class EntityFlyingBoss extends JEntityFlyingMob implements IEsse
     @Override
     public float getModMaxHealth() {
         return (float) getEntityMaxHealth();
-    }
-
-    public double setFollowRange() {
-        return MobStats.boss_follow;
     }
 
     @Override

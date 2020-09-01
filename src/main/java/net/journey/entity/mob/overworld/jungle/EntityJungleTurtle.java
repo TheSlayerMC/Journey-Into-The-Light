@@ -1,5 +1,6 @@
 package net.journey.entity.mob.overworld.jungle;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
 import net.journey.init.JourneyLootTables;
@@ -26,9 +27,9 @@ public class EntityJungleTurtle extends JEntityMob {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 30);
-        EntityAttributesHelper.setAttackDamage(this, 4);
-        EntityAttributesHelper.setKnockbackResistance(this, 1);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.JUNGLE_TURTLE_HEALTH);
+        EntityAttributesHelper.setAttackDamage(this, MobStats.JUNGLE_TURTLE_DAMAGE);
+        EntityAttributesHelper.setKnockbackResistance(this, MobStats.JUNGLE_TURTLE_KNOCKBACK_RESISTANCE);
     }
 
     @Override

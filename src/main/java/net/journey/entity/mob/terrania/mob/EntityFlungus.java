@@ -1,5 +1,6 @@
 package net.journey.entity.mob.terrania.mob;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
 import net.journey.init.JAnimations;
@@ -49,10 +50,10 @@ public class EntityFlungus extends JEntityMob implements AnimationProvider<Entit
 	@Override
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
-		//TODO change
-		EntityAttributesHelper.setMaxHealth(this, 50);
-		EntityAttributesHelper.setMovementSpeed(this, 0);
-		EntityAttributesHelper.setKnockbackResistance(this, 1);
+
+		EntityAttributesHelper.setMaxHealth(this, MobStats.FLUNGUS_HEALTH);
+		EntityAttributesHelper.setMovementSpeed(this, MobStats.FLUNGUS_MOVEMENT_SPEED);
+		EntityAttributesHelper.setKnockbackResistance(this, MobStats.FLUNGUS_KNOCKBACK_RESISTANCE);
 	}
 
 	@Override

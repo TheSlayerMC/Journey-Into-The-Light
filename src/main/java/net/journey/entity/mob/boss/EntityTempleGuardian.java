@@ -1,5 +1,6 @@
 package net.journey.entity.mob.boss;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.projectile.EntityFloroDirtProjectile;
 import net.journey.entity.projectile.EntityMagmaFireball;
@@ -53,7 +54,7 @@ public class EntityTempleGuardian extends EntityEssenceBoss implements IRangedAt
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 275);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.TEMPLE_GUARDIAN_HEALTH);
     }
 
     @Override

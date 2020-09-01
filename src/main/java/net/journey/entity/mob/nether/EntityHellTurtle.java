@@ -1,5 +1,6 @@
 package net.journey.entity.mob.nether;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
 import net.journey.init.JourneyLootTables;
@@ -39,9 +40,9 @@ public class EntityHellTurtle extends JEntityMob {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 40);
-        EntityAttributesHelper.setAttackDamage(this, 7);
-        EntityAttributesHelper.setKnockbackResistance(this, 1);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.HELL_TURTLE_HEALTH);
+        EntityAttributesHelper.setAttackDamage(this, MobStats.HELL_TURTLE_DAMAGE);
+        EntityAttributesHelper.setKnockbackResistance(this, MobStats.HELL_TURTLE_KNOCKBACK_RESISTANCE);
     }
 
     @Override

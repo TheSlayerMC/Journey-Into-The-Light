@@ -1,6 +1,7 @@
 package net.journey.entity.mob.frozen;
 
 import com.google.common.base.Predicate;
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
 import net.journey.init.JourneyLootTables;
@@ -58,9 +59,9 @@ public class EntityIceGolem extends JEntityMob {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 250);
-        EntityAttributesHelper.setAttackDamage(this, 20);
-        EntityAttributesHelper.setKnockbackResistance(this, 3);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.ICE_GOLEM_HEALTH);
+        EntityAttributesHelper.setAttackDamage(this, MobStats.ICE_GOLEM_DAMAGE);
+        EntityAttributesHelper.setKnockbackResistance(this, MobStats.ICE_GOLEM_KNOCKBACK_RESISTANCE);
     }
 
     @Override

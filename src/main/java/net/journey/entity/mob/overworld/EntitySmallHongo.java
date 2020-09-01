@@ -1,5 +1,6 @@
 package net.journey.entity.mob.overworld;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
 import net.journey.init.JourneyLootTables;
@@ -23,8 +24,8 @@ public class EntitySmallHongo extends JEntityMob {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 20);
-        EntityAttributesHelper.setAttackDamage(this, 3);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.SMALL_HONGO_HEALTH);
+        EntityAttributesHelper.setAttackDamage(this, MobStats.SMALL_HONGO_DAMAGE);
     }
 
     @Override

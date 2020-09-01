@@ -1,6 +1,7 @@
 package net.journey.entity.mob.overworld;
 
 import net.journey.JITL;
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
 import net.journey.entity.projectile.EntityFloroDirtProjectile;
@@ -145,8 +146,7 @@ public class EntityFloro extends JEntityMob implements IRangedAttackMob, Animati
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
 
-		EntityAttributesHelper.setMaxHealth(this, 25);
-		EntityAttributesHelper.setFollowRange(this, 25);
+		EntityAttributesHelper.setMaxHealth(this, MobStats.FLORO_HEALTH);
 	}
 
 	@Override

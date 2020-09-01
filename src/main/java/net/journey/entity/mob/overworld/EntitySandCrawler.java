@@ -1,5 +1,6 @@
 package net.journey.entity.mob.overworld;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
 import net.journey.init.JourneyLootTables;
@@ -23,8 +24,8 @@ public class EntitySandCrawler extends JEntityMob {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 20);
-        EntityAttributesHelper.setAttackDamage(this, 4);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.SAND_CRAWLER_HEALTH);
+        EntityAttributesHelper.setAttackDamage(this, MobStats.SAND_CRAWLER_DAMAGE);
     }
 
     @Override

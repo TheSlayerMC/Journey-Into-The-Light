@@ -51,7 +51,7 @@ public class EntitySkyStalker extends EntityFlyingBoss {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setKnockbackResistance(this, 1.0D);
+        EntityAttributesHelper.setKnockbackResistance(this, MobStats.SKY_STALKER_KNOCKBACK_RESISTANCE);
     }
     
     @Override
@@ -105,7 +105,7 @@ public class EntitySkyStalker extends EntityFlyingBoss {
 
     @Override
     public double getEntityMaxHealth() {
-        return MobStats.skyStalkerHealth;
+        return MobStats.SKY_STALKER_HEALTH;
     }
 
     @Override

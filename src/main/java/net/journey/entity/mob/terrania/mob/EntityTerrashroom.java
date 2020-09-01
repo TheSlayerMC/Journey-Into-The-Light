@@ -1,5 +1,6 @@
 package net.journey.entity.mob.terrania.mob;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
 import net.journey.init.JourneyLootTables;
@@ -21,8 +22,8 @@ public class EntityTerrashroom extends JEntityMob {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 75);
-        EntityAttributesHelper.setAttackDamage(this, 16);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.TERRASHROOM_HEALTH);
+        EntityAttributesHelper.setAttackDamage(this, MobStats.TERRASHROOM_DAMAGE);
     }
 
     @Override

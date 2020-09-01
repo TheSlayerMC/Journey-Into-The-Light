@@ -1,5 +1,6 @@
 package net.journey.entity.mob.overworld;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.init.JAnimations;
 import net.journey.init.JourneyLootTables;
@@ -47,8 +48,8 @@ public class EntityTurducken extends EntityPeacefullUntillAttacked implements An
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 20);
-        EntityAttributesHelper.setAttackDamage(this, 5);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.TURDUCKEN_HEALTH);
+        EntityAttributesHelper.setAttackDamage(this, MobStats.TURDUCKEN_DAMAGE);
     }
 
     @Override

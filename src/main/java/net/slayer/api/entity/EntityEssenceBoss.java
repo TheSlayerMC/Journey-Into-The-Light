@@ -1,7 +1,6 @@
 package net.slayer.api.entity;
 
 import net.journey.api.entity.IEssenceBoss;
-import net.journey.entity.MobStats;
 import net.journey.entity.base.JEntityMob;
 import net.journey.entity.util.EntityBossCrystal;
 import net.journey.init.JourneySounds;
@@ -48,10 +47,6 @@ public abstract class EntityEssenceBoss extends JEntityMob implements IEssenceBo
     @Override
     public float getModMaxHealth() {
         return getMaxHealth();
-    }
-
-    public double applyFollowRange() {
-        return MobStats.boss_follow;
     }
 
     @Override

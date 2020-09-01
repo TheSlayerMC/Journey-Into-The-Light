@@ -1,5 +1,6 @@
 package net.journey.entity.mob.euca;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
 import net.journey.init.JourneyLootTables;
@@ -21,9 +22,9 @@ public class EntityEucaCharger extends JEntityMob {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 44);
-        EntityAttributesHelper.setAttackDamage(this, 8);
-        EntityAttributesHelper.setMovementSpeed(this, 0.5);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.EUCA_CHARGER_HEALTH);
+        EntityAttributesHelper.setAttackDamage(this, MobStats.EUCA_CHARGER_DAMAGE);
+        EntityAttributesHelper.setMovementSpeed(this, MobStats.EUCA_CHARGER_MOVEMENT_SPEED);
     }
 
     @Override

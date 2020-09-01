@@ -1,5 +1,6 @@
 package net.journey.entity.mob.boiling;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
 import net.journey.entity.projectile.EntityMagmaFireball;
@@ -44,8 +45,8 @@ public class EntityObserver extends JEntityMob {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 58);
-        EntityAttributesHelper.setAttackDamage(this, 8);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.OBSERVER_HEALTH);
+        EntityAttributesHelper.setAttackDamage(this, MobStats.OBSERVER_DAMAGE);
     }
 
     @Override

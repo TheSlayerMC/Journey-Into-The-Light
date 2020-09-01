@@ -167,7 +167,7 @@ public class EntitySkyEel extends JEntityFlyingMob {
 
     @Override
     public double getEntityMaxHealth() {
-        return MobStats.SkyEelHealth;
+        return MobStats.SKY_EEL_HEALTH;
     }
 
     static class AIFireballAttack extends EntityAIBase {

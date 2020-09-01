@@ -1,5 +1,6 @@
 package net.journey.entity.mob.frozen;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
 import net.journey.entity.projectile.EntityFrozenSnowball;
@@ -47,7 +48,7 @@ public class EntityIceman extends JEntityMob implements IRangedAttackMob {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 25);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.ICEMAN_HEALTH);
     }
 
     @Override

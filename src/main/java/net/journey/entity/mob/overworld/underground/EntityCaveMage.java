@@ -1,5 +1,6 @@
 package net.journey.entity.mob.overworld.underground;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
 import net.journey.entity.projectile.staff.EntityConjuring;
@@ -44,7 +45,7 @@ public class EntityCaveMage extends JEntityMob implements IRangedAttackMob {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 30);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.CAVE_MAGE_HEALTH);
     }
 
     @Override

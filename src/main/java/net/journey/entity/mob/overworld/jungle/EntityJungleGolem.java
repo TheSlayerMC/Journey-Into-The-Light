@@ -1,5 +1,6 @@
 package net.journey.entity.mob.overworld.jungle;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
 import net.journey.init.JourneyLootTables;
@@ -32,9 +33,9 @@ public class EntityJungleGolem extends JEntityMob {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 20);
-        EntityAttributesHelper.setAttackDamage(this, 4);
-        EntityAttributesHelper.setKnockbackResistance(this, 3);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.JUNGLE_GOLEM_HEALTH);
+        EntityAttributesHelper.setAttackDamage(this, MobStats.JUNGLE_GOLEM_DAMAGE);
+        EntityAttributesHelper.setKnockbackResistance(this, MobStats.JUNGLE_GOLEM_KNOCKBACK_RESISTANCE);
     }
 
     @Override

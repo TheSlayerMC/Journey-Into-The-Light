@@ -1,5 +1,6 @@
 package net.journey.entity.mob.frozen;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
 import net.journey.init.JourneyLootTables;
@@ -15,6 +16,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
 public class EntityFrozenTroll extends JEntityMob {
+
     public EntityFrozenTroll(World par1World) {
         super(par1World);
         addMeleeAttackingAI();
@@ -25,9 +27,9 @@ public class EntityFrozenTroll extends JEntityMob {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 42);
-        EntityAttributesHelper.setAttackDamage(this, 10);
-        EntityAttributesHelper.setKnockbackResistance(this, 1);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.FROZEN_TROLL_HEALTH);
+        EntityAttributesHelper.setAttackDamage(this, MobStats.FROZEN_TROLL_DAMAGE);
+        EntityAttributesHelper.setKnockbackResistance(this, MobStats.FROZEN_TROLL_KNOCKBACK_RESISTANCE);
     }
 
     @Override

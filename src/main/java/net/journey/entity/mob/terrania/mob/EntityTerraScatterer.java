@@ -1,5 +1,6 @@
 package net.journey.entity.mob.terrania.mob;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
 import net.journey.init.JourneyLootTables;
@@ -20,8 +21,8 @@ public class EntityTerraScatterer extends JEntityMob {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 75);
-        EntityAttributesHelper.setAttackDamage(this, 17);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.TERRA_SCATTERRER_HEALTH);
+        EntityAttributesHelper.setAttackDamage(this, MobStats.TERRA_SCATTERRER_DAMAGE);
     }
 
     @Override

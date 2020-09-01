@@ -1,5 +1,6 @@
 package net.journey.entity.mob.boss;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.projectile.EntityMagmaFireball;
 import net.journey.entity.util.EntityBossCrystal;
@@ -50,8 +51,8 @@ public class EntityBlazier extends EntityEssenceBoss implements IRangedAttackMob
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 850);
-        EntityAttributesHelper.setAttackDamage(this, 20);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.BLAZIER_HEALTH);
+        EntityAttributesHelper.setAttackDamage(this, MobStats.BLAZIER_DAMAGE);
     }
 
     @Override

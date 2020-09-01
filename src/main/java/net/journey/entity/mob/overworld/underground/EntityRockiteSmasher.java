@@ -1,5 +1,6 @@
 package net.journey.entity.mob.overworld.underground;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
 import net.journey.init.JourneyLootTables;
@@ -47,9 +48,9 @@ public class EntityRockiteSmasher extends JEntityMob {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 175);
-        EntityAttributesHelper.setAttackDamage(this, 10);
-        EntityAttributesHelper.setKnockbackResistance(this, 3);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.ROCKITE_SMASHER_HEALTH);
+        EntityAttributesHelper.setAttackDamage(this, MobStats.ROCKITE_SMASHER_DAMAGE);
+        EntityAttributesHelper.setKnockbackResistance(this, MobStats.ROCKITE_SMASHER_KNOCKBACK_RESISTANCE);
     }
     
 	public boolean attackEntityFrom(DamageSource source, float amount) {

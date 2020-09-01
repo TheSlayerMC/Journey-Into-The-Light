@@ -1,5 +1,6 @@
 package net.journey.entity.mob.cloudia;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
 import net.journey.init.JourneyLootTables;
@@ -22,8 +23,8 @@ public class EntityStarlightWalker extends JEntityMob {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 75);
-        EntityAttributesHelper.setAttackDamage(this, 17);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.STARLIGHT_WALKER_HEALTH);
+        EntityAttributesHelper.setAttackDamage(this, MobStats.STARLIGHT_WALKER_DAMAGE);
     }
 
     @Override

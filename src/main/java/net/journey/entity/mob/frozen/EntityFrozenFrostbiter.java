@@ -1,5 +1,6 @@
 package net.journey.entity.mob.frozen;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
 import net.journey.entity.projectile.EntityIceBall;
@@ -43,8 +44,8 @@ public class EntityFrozenFrostbiter extends JEntityMob {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 45);
-        EntityAttributesHelper.setAttackDamage(this, 8);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.FROZEN_FROSTBITER_HEALTH);
+        EntityAttributesHelper.setAttackDamage(this, MobStats.FROZEN_FROSTBITER_DAMAGE);
     }
 
     @Override

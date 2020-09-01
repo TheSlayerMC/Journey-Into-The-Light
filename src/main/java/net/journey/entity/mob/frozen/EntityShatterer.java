@@ -41,7 +41,7 @@ public class EntityShatterer extends JEntityFlyingMob {
 
     @Override
     public double getEntityMaxHealth() {
-        return MobStats.ShattererHealth;
+        return MobStats.SHATTERER_HEALTH;
     }
 
     @Override

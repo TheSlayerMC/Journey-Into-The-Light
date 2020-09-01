@@ -1,5 +1,6 @@
 package net.journey.entity.mob.frozen;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
 import net.journey.init.JourneyLootTables;
@@ -21,8 +22,8 @@ public class EntityShiveringBushwalker extends JEntityMob {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 42);
-        EntityAttributesHelper.setAttackDamage(this, 9);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.SHIVERING_BUSHWALKER_HEALTH);
+        EntityAttributesHelper.setAttackDamage(this, MobStats.SHIVERING_BUSHWALKER_DAMAGE);
     }
 
     @Override

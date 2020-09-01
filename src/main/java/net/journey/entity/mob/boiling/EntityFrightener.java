@@ -1,5 +1,6 @@
 package net.journey.entity.mob.boiling;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
 import net.journey.init.JourneyLootTables;
@@ -26,8 +27,8 @@ public class EntityFrightener extends JEntityMob {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 40);
-        EntityAttributesHelper.setAttackDamage(this, 9);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.FRIGHTENER_HEALTH);
+        EntityAttributesHelper.setAttackDamage(this, MobStats.FRIGHTENER_DAMAGE);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package net.journey.entity.mob.pet;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.init.JourneySounds;
 import net.minecraft.entity.EntityAgeable;
@@ -23,8 +24,8 @@ public class EntityShiverwolf extends EntityJourneyPet {
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
 
-		EntityAttributesHelper.setMaxHealth(this, 30);
-		EntityAttributesHelper.setAttackDamage(this, 5);
+		EntityAttributesHelper.setMaxHealth(this, MobStats.SHIVERWOLF_HEALTH);
+		EntityAttributesHelper.setAttackDamage(this, MobStats.SHIVERWOLF_DAMAGE);
 	}
 
 	@Override

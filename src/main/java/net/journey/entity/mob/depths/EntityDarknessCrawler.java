@@ -1,5 +1,6 @@
 package net.journey.entity.mob.depths;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
 import net.journey.init.JourneyLootTables;
@@ -26,8 +27,8 @@ public class EntityDarknessCrawler extends JEntityMob {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 58);
-        EntityAttributesHelper.setAttackDamage(this, 11);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.DARKNESS_CRAWLER_HEALTH);
+        EntityAttributesHelper.setAttackDamage(this, MobStats.DARKNESS_CRAWLER_DAMAGE);
     }
 
     @Override

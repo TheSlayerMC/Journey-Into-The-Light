@@ -155,7 +155,7 @@ public class EntityDarkfish extends JEntityFlyingMob {
 
     @Override
     public double getEntityMaxHealth() {
-        return MobStats.DarkfishHealth;
+        return MobStats.DARKFISH_HEALTH;
     }
 
     static class AIFireballAttack extends EntityAIBase {

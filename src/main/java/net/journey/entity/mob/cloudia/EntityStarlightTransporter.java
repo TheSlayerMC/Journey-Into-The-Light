@@ -1,5 +1,6 @@
 package net.journey.entity.mob.cloudia;
 
+import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
@@ -21,8 +22,8 @@ public class EntityStarlightTransporter extends EntityPeacefullUntillAttacked {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        EntityAttributesHelper.setMaxHealth(this, 75);
-        EntityAttributesHelper.setAttackDamage(this, 18);
+        EntityAttributesHelper.setMaxHealth(this, MobStats.STARLIGHT_TRANSPORTER_HEALTH);
+        EntityAttributesHelper.setAttackDamage(this, MobStats.STARLIGHT_TRANSPORTER_DAMAGE);
     }
 
     @Override
