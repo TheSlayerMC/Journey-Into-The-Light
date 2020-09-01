@@ -20,6 +20,19 @@ public class ItemMigrator extends Migrator<Item> {
         remap("overgrownHammer", JourneyWeapons.overgrownHammer);
         remap("rockyHammer", JourneyWeapons.rockyHammer);
         remap("crystalizedHammer", JourneyWeapons.crystallizedHammer);
+
+        ignore("opgoldenchicken");
+        ignore("opgoldenpork");
+        ignore("opgoldensteak");
+        ignore("opgoldenmutton");
+        ignore("normalgoldenchicken");
+        ignore("opgoldenfish");
+        ignore("normalgoldenfish");
+        ignore("normalgoldenpork");
+        ignore("normalgoldenrabbit");
+        ignore("normalgoldenmutton");
+        ignore("normalgoldensteak");
+        ignore("opgoldenrabbit");
     }
 
     @Override
