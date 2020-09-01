@@ -20,10 +20,11 @@ public abstract class JEntityFlyingMob extends EntityFlying implements IJERCompa
     @Override
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(MobStats.STANDARD_FLYING_FOLLOW_RANGE);
-        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(MobStats.STANDARD_MOVEMENT_SPEED);
-        this.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(MobStats.STANDARD_KNOCKBACK_RESISTANCE);
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(getEntityMaxHealth());
+
+        EntityAttributesHelper.setFollowRange(this, MobStats.STANDARD_FLYING_FOLLOW_RANGE);
+        EntityAttributesHelper.setMovementSpeed(this, MobStats.STANDARD_MOVEMENT_SPEED);
+        EntityAttributesHelper.setKnockbackResistance(this, MobStats.STANDARD_KNOCKBACK_RESISTANCE);
+        EntityAttributesHelper.setMaxHealth(this, getEntityMaxHealth());
     }
 
     /**
