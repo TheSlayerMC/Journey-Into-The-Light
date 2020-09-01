@@ -19,7 +19,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.client.FMLClientHandler;
-import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -54,7 +53,7 @@ public class ClientProxy extends CommonProxy {
         SlayerAPI.registerEventListener(new BossTickHandler());
         SlayerAPI.registerEventListener(new ClientTickEvent());
         SlayerAPI.registerEventListener(new PlayerStats());
-        SlayerAPI.registerEventListener(new KeyInputHandler());
+        KeyInputHandler.init();
     }
 
     @Override
