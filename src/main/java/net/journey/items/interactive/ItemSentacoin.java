@@ -1,6 +1,5 @@
 package net.journey.items.interactive;
 
-import net.journey.client.server.IEssence;
 import net.journey.client.server.player.IPlayerStats;
 import net.journey.client.server.player.PlayerStatsProvider;
 import net.journey.items.base.JItem;
