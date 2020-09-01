@@ -11,6 +11,7 @@ import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -18,11 +19,11 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-import net.slayer.api.entity.EntityModFlying;
+import net.slayer.api.entity.JEntityFlyingMob;
 
 import java.util.Random;
 
-public class EntityShimmerer extends EntityModFlying {
+public class EntityShimmerer extends JEntityFlyingMob {
 
     private static final DataParameter<Boolean> FIRE = EntityDataManager.createKey(EntityShimmerer.class, DataSerializers.BOOLEAN);
 
@@ -41,7 +42,7 @@ public class EntityShimmerer extends EntityModFlying {
     }
 
     @Override
-    public double setMaxHealth(MobStats s) {
+    public double getEntityMaxHealth() {
         return MobStats.ShimmerHealth;
     }
 
@@ -52,17 +53,17 @@ public class EntityShimmerer extends EntityModFlying {
     }
 
     @Override
-    public SoundEvent setLivingSound() {
+    public SoundEvent getAmbientSound() {
         return JourneySounds.SHIMMERER;
     }
 
     @Override
-    public SoundEvent setHurtSound() {
+    public SoundEvent getHurtSound(DamageSource source) {
         return JourneySounds.SHIMMERER_HURT;
     }
 
     @Override
-    public SoundEvent setDeathSound() {
+    public SoundEvent getDeathSound() {
         return JourneySounds.SHIMMERER_DEATH;
     }
 
@@ -97,7 +98,7 @@ public class EntityShimmerer extends EntityModFlying {
     }
 
     private class AIRandomFly extends EntityAIBase {
-        private EntityShimmerer e = EntityShimmerer.this;
+        private final EntityShimmerer e = EntityShimmerer.this;
 
         public AIRandomFly() {
             this.setMutexBits(1);
@@ -133,7 +134,7 @@ public class EntityShimmerer extends EntityModFlying {
     }
 
     private class MoveHelper extends EntityMoveHelper {
-        private EntityShimmerer e = EntityShimmerer.this;
+        private final EntityShimmerer e = EntityShimmerer.this;
         private int height;
 
         public MoveHelper() {
@@ -177,7 +178,7 @@ public class EntityShimmerer extends EntityModFlying {
     }
 
     public class AILookAround extends EntityAIBase {
-        private EntityShimmerer e = EntityShimmerer.this;
+        private final EntityShimmerer e = EntityShimmerer.this;
 
         public AILookAround() {
             this.setMutexBits(2);
@@ -207,7 +208,7 @@ public class EntityShimmerer extends EntityModFlying {
 
     public class AIFireballAttack extends EntityAIBase {
         public int counter;
-        private EntityShimmerer entity = EntityShimmerer.this;
+        private final EntityShimmerer entity = EntityShimmerer.this;
 
         @Override
         public boolean shouldExecute() {

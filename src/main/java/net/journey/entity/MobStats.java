@@ -1,7 +1,7 @@
 package net.journey.entity;
 
 public class MobStats {
-    public static final double STANDARD_MOVEMENT_SPEED = 0.26D, STANDARD_FOLLOW_RANGE = 20D, flying_follow = 100D, boss_follow = 150D, STANDARD_KNOCKBACK_RESISTANCE = 0.0D;
+    public static final double STANDARD_MOVEMENT_SPEED = 0.26D, STANDARD_FOLLOW_RANGE = 20D, STANDARD_FLYING_FOLLOW_RANGE = 100D, boss_follow = 150D, STANDARD_KNOCKBACK_RESISTANCE = 0.0D;
 
     //ToDO get rid of bottom values
 

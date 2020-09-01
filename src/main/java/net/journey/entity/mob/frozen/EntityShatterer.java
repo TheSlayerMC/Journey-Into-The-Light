@@ -7,6 +7,7 @@ import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
 import net.minecraft.entity.ai.EntityMoveHelper;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -14,11 +15,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-import net.slayer.api.entity.EntityModFlying;
+import net.slayer.api.entity.JEntityFlyingMob;
 
 import java.util.Random;
 
-public class EntityShatterer extends EntityModFlying {
+public class EntityShatterer extends JEntityFlyingMob {
 
     public EntityShatterer(World par1World) {
         super(par1World);
@@ -39,22 +40,22 @@ public class EntityShatterer extends EntityModFlying {
     }
 
     @Override
-    public double setMaxHealth(MobStats s) {
+    public double getEntityMaxHealth() {
         return MobStats.ShattererHealth;
     }
 
     @Override
-    public SoundEvent setLivingSound() {
+    public SoundEvent getAmbientSound() {
         return JourneySounds.HONGO;
     }
 
     @Override
-    public SoundEvent setHurtSound() {
+    public SoundEvent getHurtSound(DamageSource source) {
         return JourneySounds.SAND_CRAWLER;
     }
 
     @Override
-    public SoundEvent setDeathSound() {
+    public SoundEvent getDeathSound() {
         return JourneySounds.SAND_CRAWLER;
     }
 
@@ -74,7 +75,7 @@ public class EntityShatterer extends EntityModFlying {
     }
 
     private class AIRandomFly extends EntityAIBase {
-        private EntityShatterer e = EntityShatterer.this;
+        private final EntityShatterer e = EntityShatterer.this;
 
         public AIRandomFly() {
             this.setMutexBits(1);
@@ -110,7 +111,7 @@ public class EntityShatterer extends EntityModFlying {
     }
 
     private class ShattererMoveHelper extends EntityMoveHelper {
-        private EntityShatterer e = EntityShatterer.this;
+        private final EntityShatterer e = EntityShatterer.this;
         private int height;
 
         public ShattererMoveHelper() {

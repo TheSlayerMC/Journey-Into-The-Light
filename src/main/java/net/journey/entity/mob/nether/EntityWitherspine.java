@@ -46,11 +46,6 @@ public class EntityWitherspine extends JEntityMob {
     }
 
     @Override
-    public double getMoveSpeed() {
-        return 20.0D;
-    }
-
-    @Override
     protected SoundEvent getAmbientSound() {
         return SoundEvents.ENTITY_WITHER_AMBIENT;
     }

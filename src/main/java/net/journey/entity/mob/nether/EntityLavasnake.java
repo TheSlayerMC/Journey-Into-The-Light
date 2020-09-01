@@ -35,7 +35,7 @@ import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.slayer.api.entity.EntityModFlying;
+import net.slayer.api.entity.JEntityFlyingMob;
 import org.jetbrains.annotations.NotNull;
 import ru.timeconqueror.timecore.animation.ActionManagerBuilder;
 import ru.timeconqueror.timecore.animation.AnimationManagerBuilder;
@@ -49,7 +49,7 @@ import ru.timeconqueror.timecore.api.animation.BlendType;
 
 import java.util.Random;
 
-public class EntityLavasnake extends EntityModFlying implements IRangedAttackMob, AnimationProvider<EntityLavasnake> {
+public class EntityLavasnake extends JEntityFlyingMob implements IRangedAttackMob, AnimationProvider<EntityLavasnake> {
 
     private static final DataParameter<Boolean> ATTACKING = EntityDataManager.createKey(EntityLavasnake.class, DataSerializers.BOOLEAN);
 
@@ -184,22 +184,22 @@ public class EntityLavasnake extends EntityModFlying implements IRangedAttackMob
     }
 
     @Override
-    public SoundEvent setLivingSound() {
+    public SoundEvent getAmbientSound() {
         return JourneySounds.LAVASNAKE_IDLE;
     }
 
     @Override
-    public SoundEvent setHurtSound() {
+    public SoundEvent getHurtSound(DamageSource source) {
         return JourneySounds.LAVASNAKE_HURT;
     }
 
     @Override
-    public SoundEvent setDeathSound() {
+    public SoundEvent getDeathSound() {
         return JourneySounds.LAVASNAKE_HURT;
     }
 
     @Override
-    public double setMaxHealth(MobStats s) {
+    public double getEntityMaxHealth() {
         return MobStats.LavaSnakeHealth;
     }
 

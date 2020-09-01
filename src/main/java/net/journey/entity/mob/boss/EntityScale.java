@@ -1,6 +1,7 @@
 package net.journey.entity.mob.boss;
 
 import net.journey.entity.MobStats;
+import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.projectile.EntityBubbleProjectile;
 import net.journey.entity.util.EntityBossCrystal;
 import net.journey.init.JourneyLootTables;
@@ -13,6 +14,7 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -47,12 +49,14 @@ public class EntityScale extends EntityFlyingBoss {
     }
 
     @Override
-    public double setKnockbackResistance() {
-        return 1.0D;
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+
+        EntityAttributesHelper.setKnockbackResistance(this, 1.0D);
     }
 
     @Override
-    public double setMaxHealth(MobStats s) {
+    public double getEntityMaxHealth() {
         return MobStats.scaleHealth;
     }
     
@@ -63,17 +67,17 @@ public class EntityScale extends EntityFlyingBoss {
     }
 
     @Override
-    public SoundEvent setLivingSound() {
+    public SoundEvent getAmbientSound() {
         return SoundEvents.ENTITY_WITHER_AMBIENT;
     }
 
     @Override
-    public SoundEvent setHurtSound() {
+    public SoundEvent getHurtSound(DamageSource source) {
         return SoundEvents.ENTITY_WITHER_HURT;
     }
 
     @Override
-    public SoundEvent setDeathSound() {
+    public SoundEvent getDeathSound() {
         return JourneySounds.BOSS_DEATH;
     }
 

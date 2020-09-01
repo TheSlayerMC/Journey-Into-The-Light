@@ -12,18 +12,15 @@ import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvent;
+import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import net.slayer.api.entity.EntityModFlying;
+import net.slayer.api.entity.JEntityFlyingMob;
 
 import java.util.Random;
 
-public class EntityTerralight extends EntityModFlying {
+public class EntityTerralight extends JEntityFlyingMob {
 
     public EntityTerralight(World par1World) {
         super(par1World);
@@ -49,22 +46,22 @@ public class EntityTerralight extends EntityModFlying {
 
 
     @Override
-    public double setMaxHealth(MobStats s) {
+    public double getEntityMaxHealth() {
         return MobStats.TerralightDamage;
     }
 
     @Override
-    public SoundEvent setLivingSound() {
+    public SoundEvent getAmbientSound() {
         return JourneySounds.EMPTY;
     }
 
     @Override
-    public SoundEvent setHurtSound() {
+    public SoundEvent getHurtSound(DamageSource source) {
         return JourneySounds.EMPTY;
     }
 
     @Override
-    public SoundEvent setDeathSound() {
+    public SoundEvent getDeathSound() {
         return JourneySounds.EMPTY;
     }
     

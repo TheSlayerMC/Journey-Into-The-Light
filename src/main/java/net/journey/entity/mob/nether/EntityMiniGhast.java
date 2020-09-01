@@ -27,11 +27,11 @@ import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.slayer.api.entity.EntityModFlying;
+import net.slayer.api.entity.JEntityFlyingMob;
 
 import java.util.Random;
 
-public class EntityMiniGhast extends EntityModFlying {
+public class EntityMiniGhast extends JEntityFlyingMob {
 
     private static final DataParameter<Boolean> ATTACKING = EntityDataManager.createKey(EntityMiniGhast.class,
             DataSerializers.BOOLEAN);
@@ -52,7 +52,7 @@ public class EntityMiniGhast extends EntityModFlying {
     }
 
     @Override
-    public double setMaxHealth(MobStats s) {
+    public double getEntityMaxHealth() {
         return MobStats.MiniGhastHealth;
     }
 
@@ -119,17 +119,17 @@ public class EntityMiniGhast extends EntityModFlying {
     }
 
     @Override
-    protected SoundEvent getAmbientSound() {
+    public SoundEvent getAmbientSound() {
         return SoundEvents.ENTITY_GHAST_AMBIENT;
     }
 
     @Override
-    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
+    public SoundEvent getHurtSound(DamageSource damageSourceIn) {
         return SoundEvents.ENTITY_GHAST_HURT;
     }
 
     @Override
-    protected SoundEvent getDeathSound() {
+    public SoundEvent getDeathSound() {
         return SoundEvents.ENTITY_GHAST_DEATH;
     }
 
@@ -161,21 +161,6 @@ public class EntityMiniGhast extends EntityModFlying {
     @Override
     public float getEyeHeight() {
         return 0.5F;
-    }
-
-    @Override
-    public SoundEvent setLivingSound() {
-        return SoundEvents.ENTITY_GHAST_AMBIENT;
-    }
-
-    @Override
-    public SoundEvent setHurtSound() {
-        return SoundEvents.ENTITY_GHAST_HURT;
-    }
-
-    @Override
-    public SoundEvent setDeathSound() {
-        return SoundEvents.ENTITY_GHAST_DEATH;
     }
 
     static class AIFireballAttack extends EntityAIBase {

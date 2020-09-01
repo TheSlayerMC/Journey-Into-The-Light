@@ -28,11 +28,11 @@ import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.slayer.api.entity.EntityModFlying;
+import net.slayer.api.entity.JEntityFlyingMob;
 
 import java.util.Random;
 
-public class EntityOverseerElder extends EntityModFlying {
+public class EntityOverseerElder extends JEntityFlyingMob {
 
     private static final DataParameter<Boolean> ATTACKING = EntityDataManager.createKey(EntityOverseerElder.class, DataSerializers.BOOLEAN);
     private int explosionStrength = 1;
@@ -112,17 +112,17 @@ public class EntityOverseerElder extends EntityModFlying {
     }
 
     @Override
-    protected SoundEvent getAmbientSound() {
+    public SoundEvent getAmbientSound() {
         return SoundEvents.ENTITY_GUARDIAN_AMBIENT;
     }
 
     @Override
-    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
+    public SoundEvent getHurtSound(DamageSource damageSourceIn) {
         return SoundEvents.ENTITY_GUARDIAN_HURT;
     }
 
     @Override
-    protected SoundEvent getDeathSound() {
+    public SoundEvent getDeathSound() {
         return SoundEvents.ENTITY_GUARDIAN_DEATH;
     }
 
@@ -157,25 +157,7 @@ public class EntityOverseerElder extends EntityModFlying {
     }
 
     @Override
-    public SoundEvent setLivingSound() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public SoundEvent setHurtSound() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public SoundEvent setDeathSound() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public double setMaxHealth(MobStats s) {
+    public double getEntityMaxHealth() {
         return MobStats.OverseerElderHealth;
     }
 

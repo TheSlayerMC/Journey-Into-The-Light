@@ -11,13 +11,13 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
-import net.slayer.api.entity.EntityModFlying;
+import net.slayer.api.entity.JEntityFlyingMob;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Collections;
 
 //TODO somehow merge with EntityEssenceBoss
-public abstract class EntityFlyingBoss extends EntityModFlying implements IEssenceBoss {
+public abstract class EntityFlyingBoss extends JEntityFlyingMob implements IEssenceBoss {
 
     private int deathTicks;
 
@@ -37,7 +37,7 @@ public abstract class EntityFlyingBoss extends EntityModFlying implements IEssen
     }
 
     @Override
-    public SoundEvent setDeathSound() {
+    public SoundEvent getDeathSound() {
         return JourneySounds.BOSS_DEATH;
     }
 
@@ -48,7 +48,7 @@ public abstract class EntityFlyingBoss extends EntityModFlying implements IEssen
 
     @Override
     public float getModMaxHealth() {
-        return getMaxHealth();
+        return (float) getEntityMaxHealth();
     }
 
     public double setFollowRange() {

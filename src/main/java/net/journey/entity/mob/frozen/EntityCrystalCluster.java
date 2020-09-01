@@ -11,6 +11,7 @@ import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -18,11 +19,11 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-import net.slayer.api.entity.EntityModFlying;
+import net.slayer.api.entity.JEntityFlyingMob;
 
 import java.util.Random;
 
-public class EntityCrystalCluster extends EntityModFlying {
+public class EntityCrystalCluster extends JEntityFlyingMob {
 
     private static final DataParameter<Boolean> IS_FIRE = EntityDataManager.createKey(EntityCrystalCluster.class, DataSerializers.BOOLEAN);
 
@@ -42,7 +43,7 @@ public class EntityCrystalCluster extends EntityModFlying {
     }
 
     @Override
-    public double setMaxHealth(MobStats s) {
+    public double getEntityMaxHealth() {
         return MobStats.CrystalClusterHealth;
     }
 
@@ -53,17 +54,17 @@ public class EntityCrystalCluster extends EntityModFlying {
     }
 
     @Override
-    public SoundEvent setLivingSound() {
+    public SoundEvent getAmbientSound() {
         return JourneySounds.SHIMMERER;
     }
 
     @Override
-    public SoundEvent setHurtSound() {
+    public SoundEvent getHurtSound(DamageSource source) {
         return JourneySounds.SHIMMERER_HURT;
     }
 
     @Override
-    public SoundEvent setDeathSound() {
+    public SoundEvent getDeathSound() {
         return JourneySounds.SHIMMERER_DEATH;
     }
 
@@ -98,7 +99,7 @@ public class EntityCrystalCluster extends EntityModFlying {
     }
 
     private class AIRandomFly extends EntityAIBase {
-        private EntityCrystalCluster e = EntityCrystalCluster.this;
+        private final EntityCrystalCluster e = EntityCrystalCluster.this;
 
         public AIRandomFly() {
             this.setMutexBits(1);
@@ -134,7 +135,7 @@ public class EntityCrystalCluster extends EntityModFlying {
     }
 
     private class MoveHelper extends EntityMoveHelper {
-        private EntityCrystalCluster e = EntityCrystalCluster.this;
+        private final EntityCrystalCluster e = EntityCrystalCluster.this;
         private int height;
 
         public MoveHelper() {
@@ -178,7 +179,7 @@ public class EntityCrystalCluster extends EntityModFlying {
     }
 
     public class AILookAround extends EntityAIBase {
-        private EntityCrystalCluster e = EntityCrystalCluster.this;
+        private final EntityCrystalCluster e = EntityCrystalCluster.this;
 
         public AILookAround() {
             this.setMutexBits(2);
@@ -208,7 +209,7 @@ public class EntityCrystalCluster extends EntityModFlying {
 
     public class AIFireballAttack extends EntityAIBase {
         public int counter;
-        private EntityCrystalCluster entity = EntityCrystalCluster.this;
+        private final EntityCrystalCluster entity = EntityCrystalCluster.this;
 
         @Override
         public boolean shouldExecute() {
