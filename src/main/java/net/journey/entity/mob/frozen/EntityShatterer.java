@@ -1,6 +1,7 @@
 package net.journey.entity.mob.frozen;
 
 import net.journey.entity.MobStats;
+import net.journey.entity.base.JEntityFlyingMob;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.journey.init.blocks.JourneyBlocks;
@@ -15,7 +16,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-import net.slayer.api.entity.JEntityFlyingMob;
 
 import java.util.Random;
 

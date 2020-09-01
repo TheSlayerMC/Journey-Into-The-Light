@@ -2,6 +2,7 @@ package net.journey.entity.mob.overworld;
 
 import net.journey.entity.AI.EntityAIBoomSwell;
 import net.journey.entity.base.EntityAttributesHelper;
+import net.journey.entity.base.JEntityMob;
 import net.journey.init.JourneyLootTables;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -25,7 +26,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.slayer.api.entity.JEntityMob;
 
 public class EntityBoom extends JEntityMob {
 

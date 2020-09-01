@@ -1,6 +1,7 @@
 package net.journey.blocks.tileentity;
 
 import net.journey.JITL;
+import net.journey.entity.base.JEntityMob;
 import net.journey.entity.mob.senterian.mob.EntityMiniSentryLord;
 import net.journey.entity.mob.senterian.mob.EntityMiniSentryStalker;
 import net.journey.entity.mob.senterian.mob.EntityMiniSentryWalker;
@@ -14,7 +15,6 @@ import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.SoundCategory;
-import net.slayer.api.entity.JEntityMob;
 
 import java.util.Random;
 

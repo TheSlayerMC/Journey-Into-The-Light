@@ -1,6 +1,7 @@
 package net.journey.entity.mob.overworld.underground;
 
 import net.journey.entity.base.EntityAttributesHelper;
+import net.journey.entity.base.JEntityMob;
 import net.journey.entity.projectile.staff.EntityConjuring;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
@@ -17,7 +18,6 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import net.slayer.api.entity.JEntityMob;
 
 public class EntityCavurn extends JEntityMob implements IRangedAttackMob {
 

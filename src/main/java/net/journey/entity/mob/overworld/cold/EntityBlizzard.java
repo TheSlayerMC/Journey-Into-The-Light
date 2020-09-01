@@ -1,6 +1,7 @@
 package net.journey.entity.mob.overworld.cold;
 
 import net.journey.entity.base.EntityAttributesHelper;
+import net.journey.entity.base.JEntityMob;
 import net.journey.entity.projectile.EntityBlizzardFireball;
 import net.journey.init.JourneyLootTables;
 import net.minecraft.entity.EntityLivingBase;
@@ -23,7 +24,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.SlayerAPI;
-import net.slayer.api.entity.JEntityMob;
 
 public class EntityBlizzard extends JEntityMob {
 

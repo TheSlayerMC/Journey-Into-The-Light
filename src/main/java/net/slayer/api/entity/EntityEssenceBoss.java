@@ -2,6 +2,7 @@ package net.slayer.api.entity;
 
 import net.journey.api.entity.IEssenceBoss;
 import net.journey.entity.MobStats;
+import net.journey.entity.base.JEntityMob;
 import net.journey.entity.util.EntityBossCrystal;
 import net.journey.init.JourneySounds;
 import net.minecraft.entity.item.EntityXPOrb;

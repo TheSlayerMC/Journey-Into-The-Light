@@ -2,6 +2,7 @@ package net.journey.entity.mob.senterian.mob;
 
 import com.google.common.base.Optional;
 import net.journey.entity.base.EntityAttributesHelper;
+import net.journey.entity.base.JEntityMob;
 import net.journey.init.JourneyLootTables;
 import net.minecraft.block.BlockPistonBase;
 import net.minecraft.block.BlockPistonExtension;
@@ -33,7 +34,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.slayer.api.entity.JEntityMob;
 
 import javax.annotation.Nullable;
 import java.util.List;

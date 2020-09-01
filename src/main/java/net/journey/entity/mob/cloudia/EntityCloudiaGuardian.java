@@ -2,6 +2,7 @@ package net.journey.entity.mob.cloudia;
 
 import net.journey.JITL;
 import net.journey.entity.base.EntityAttributesHelper;
+import net.journey.entity.base.JEntityMob;
 import net.journey.init.JAnimations;
 import net.journey.init.JourneySounds;
 import net.minecraft.entity.Entity;
@@ -13,7 +14,6 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
-import net.slayer.api.entity.JEntityMob;
 import org.jetbrains.annotations.NotNull;
 import ru.timeconqueror.timecore.animation.ActionManagerBuilder;
 import ru.timeconqueror.timecore.animation.AnimationManagerBuilder;

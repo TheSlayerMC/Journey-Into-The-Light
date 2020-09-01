@@ -1,6 +1,7 @@
 package net.journey.entity.mob.overworld.underground;
 
 import net.journey.entity.base.EntityAttributesHelper;
+import net.journey.entity.base.JEntityMob;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.journey.init.items.JourneyConsumables;
@@ -11,7 +12,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.slayer.api.entity.JEntityMob;
 
 public class EntityGreenHonglow extends JEntityMob {
 

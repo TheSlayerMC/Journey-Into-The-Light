@@ -1,6 +1,7 @@
 package net.journey.entity.mob.euca;
 
 import net.journey.entity.MobStats;
+import net.journey.entity.base.JEntityFlyingMob;
 import net.journey.entity.projectile.EntityShimmererProjectile;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
@@ -19,7 +20,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-import net.slayer.api.entity.JEntityFlyingMob;
 
 import java.util.Random;
 

@@ -2,6 +2,7 @@ package net.journey.entity.mob.boss;
 
 import net.journey.api.entity.IEssenceBoss;
 import net.journey.entity.MobStats;
+import net.journey.entity.base.JEntityFlyingMob;
 import net.journey.entity.util.EntityBossCrystal;
 import net.journey.init.JourneySounds;
 import net.minecraft.entity.item.EntityXPOrb;
@@ -11,7 +12,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
-import net.slayer.api.entity.JEntityFlyingMob;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Collections;

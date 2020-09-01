@@ -1,4 +1,4 @@
-package net.slayer.api.entity;
+package net.journey.entity.base;
 
 import net.journey.api.entity.IJERCompatible;
 import net.journey.entity.MobStats;

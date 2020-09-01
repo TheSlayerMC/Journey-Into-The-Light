@@ -1,5 +1,6 @@
 package net.slayer.api.entity;
 
+import net.journey.entity.base.JEntityMob;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;

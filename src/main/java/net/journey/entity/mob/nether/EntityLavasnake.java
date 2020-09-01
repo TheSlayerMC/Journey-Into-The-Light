@@ -7,6 +7,7 @@ package net.journey.entity.mob.nether;
 
 import net.journey.JITL;
 import net.journey.entity.MobStats;
+import net.journey.entity.base.JEntityFlyingMob;
 import net.journey.entity.projectile.EntityFireBall;
 import net.journey.init.JAnimations;
 import net.journey.init.JourneyLootTables;
@@ -35,7 +36,6 @@ import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.slayer.api.entity.JEntityFlyingMob;
 import org.jetbrains.annotations.NotNull;
 import ru.timeconqueror.timecore.animation.ActionManagerBuilder;
 import ru.timeconqueror.timecore.animation.AnimationManagerBuilder;

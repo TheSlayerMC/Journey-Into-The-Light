@@ -2,6 +2,7 @@ package net.journey.entity.mob.overworld;
 
 import net.journey.JITL;
 import net.journey.entity.base.EntityAttributesHelper;
+import net.journey.entity.base.JEntityMob;
 import net.journey.entity.projectile.EntityFloroDirtProjectile;
 import net.journey.init.JAnimations;
 import net.journey.init.JourneyLootTables;
@@ -24,7 +25,6 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import net.slayer.api.entity.JEntityMob;
 import org.jetbrains.annotations.NotNull;
 import ru.timeconqueror.timecore.animation.ActionManagerBuilder;
 import ru.timeconqueror.timecore.animation.AnimationManagerBuilder;
