@@ -1,5 +1,6 @@
 package net.journey.eventhandler;
 
+import net.journey.client.render.gui.GuiButtonToggleMenu;
 import net.journey.client.render.gui.JourneyMainMenu;
 import net.journey.client.render.gui.base.JLoadingScreen;
 import net.journey.init.items.JourneyArmory;
@@ -7,10 +8,12 @@ import net.journey.util.Config;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiDownloadTerrain;
 import net.minecraft.client.gui.GuiMainMenu;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraftforge.client.event.GuiOpenEvent;
+import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
@@ -24,6 +27,7 @@ public class ClientTickEvent {
 
 	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public void openGui(GuiOpenEvent event) {
+
 		if (Config.changeMainMenu == true) {
 			if (event.getGui() instanceof GuiMainMenu) {
 				JourneyMainMenu customMainMenu = new JourneyMainMenu();
@@ -32,6 +36,7 @@ public class ClientTickEvent {
 				}
 			}
 		}
+
 		if (event.getGui() instanceof GuiDownloadTerrain) {
 			Minecraft mc = Minecraft.getMinecraft();
 			JLoadingScreen loading = new JLoadingScreen("");
@@ -90,6 +95,17 @@ public class ClientTickEvent {
 					event.setGui(new JLoadingScreen("end"));
 				}
 			}
+		}
+	}
+
+	@SubscribeEvent()
+	public void onGuiInit(GuiScreenEvent.InitGuiEvent.Post event) {
+		GuiScreen gui = event.getGui();
+
+
+		GuiButtonToggleMenu buttonToggleMenu = new GuiButtonToggleMenu(event.getGui().width - 20, event.getGui().height - 74);
+		if (event.getGui() instanceof GuiMainMenu || event.getGui() instanceof JourneyMainMenu) {
+			event.getButtonList().add(buttonToggleMenu);
 		}
 	}
 

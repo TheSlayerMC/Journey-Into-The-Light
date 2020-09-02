@@ -135,7 +135,18 @@ public class JourneyMainMenu extends GuiScreen {
 
     private String randomDimPrefix() {
         Random r = new Random();
-        return RandHelper.chooseEqual(r, "euca", "senterian", "corba");
+        return RandHelper.chooseEqual(r,
+                "overworld",
+                "nether",
+                "end",
+                "frozen",
+                "boil",
+                "euca",
+                "depths",
+                "corba",
+                "terrania",
+                "cloudia",
+                "senterian");
     }
 
     private boolean areRealmsNotificationsEnabled() {
