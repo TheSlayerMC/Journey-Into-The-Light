@@ -2,8 +2,8 @@ package net.journey.dimension.corba;
 
 import com.google.common.collect.Lists;
 import net.journey.dimension.base.BaseWorldProvider;
-import net.journey.dimension.base.BiomeProviderMultiple;
 import net.journey.dimension.base.DimensionHelper;
+import net.journey.dimension.base.biome.BiomeProviderMultiple;
 import net.journey.init.JourneySounds;
 import net.minecraft.client.audio.MusicTicker;
 import net.minecraft.util.math.Vec3d;

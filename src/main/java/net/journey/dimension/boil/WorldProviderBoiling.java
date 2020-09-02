@@ -2,8 +2,8 @@ package net.journey.dimension.boil;
 
 import com.google.common.collect.Lists;
 import net.journey.dimension.base.BaseWorldProvider;
-import net.journey.dimension.base.BiomeProviderMultiple;
 import net.journey.dimension.base.DimensionHelper;
+import net.journey.dimension.base.biome.BiomeProviderMultiple;
 import net.journey.init.JourneySounds;
 import net.journey.proxy.ClientProxy;
 import net.minecraft.client.audio.MusicTicker;
