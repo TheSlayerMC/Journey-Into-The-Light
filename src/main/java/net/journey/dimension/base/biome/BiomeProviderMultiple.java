@@ -1,7 +1,6 @@
-package net.journey.dimension.base;
+package net.journey.dimension.base.biome;
 
 import net.journey.dimension.base.gen.layer.GenLayerBiomes;
-import net.journey.util.Config;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeProvider;
@@ -16,8 +15,9 @@ import java.util.List;
 
 public class BiomeProviderMultiple extends BiomeProvider {
 
-	private List<Biome> common, rare;
-	
+    private final List<Biome> common;
+    private final List<Biome> rare;
+
     public BiomeProviderMultiple(WorldInfo info, List<Biome> common, List<Biome> rare) {
         super(info);
         this.common = common;
@@ -40,6 +40,7 @@ public class BiomeProviderMultiple extends BiomeProvider {
         biomes = new GenLayerZoom(1002 /*baseSeed*/, biomes /*parent*/);
         biomes = new GenLayerZoom(1003 /*baseSeed*/, biomes /*parent*/);
         biomes = new GenLayerZoom(1004 /*baseSeed*/, biomes /*parent*/);
+        biomes = new GenLayerZoom(1005 /*baseSeed*/, biomes /*parent*/);
         GenLayer layer = new GenLayerVoronoiZoom(10L /*baseSeed*/, biomes /*parent*/);
         layer.initWorldGenSeed(seed);
 

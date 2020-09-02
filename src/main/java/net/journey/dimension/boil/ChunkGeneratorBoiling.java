@@ -418,19 +418,19 @@ public class ChunkGeneratorBoiling implements IChunkGenerator {
             generateStructure(x1, z1, r, boilLamp);
         }
 
-        if (rand.nextInt(8) == 0) {
+        if (rand.nextInt(7) == 0) {
             generateStructure(x1, z1, r, brison);
         }
 
-        if (rand.nextInt(4) == 0) {
+        if (rand.nextInt(3) == 0) {
             generateStructure(x1, z1, r, hut);
         }
 
-        if (rand.nextInt(6) == 0) {
+        if (rand.nextInt(5) == 0) {
             generateStructure(x1, z1, r, smallDungeon);
         }
 
-        if (rand.nextInt(10) == 0) {
+        if (rand.nextInt(9) == 0) {
             generateStructure(x1, z1, r, bigDungeon);
         }
 
