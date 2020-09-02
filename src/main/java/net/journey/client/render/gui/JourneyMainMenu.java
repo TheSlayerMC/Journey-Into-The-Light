@@ -133,7 +133,7 @@ public class JourneyMainMenu extends GuiScreen {
         }
     }
 
-    private static String randomDimPrefix() {
+    private String randomDimPrefix() {
         Random r = new Random();
         return RandHelper.chooseEqual(r, "euca", "senterian", "corba");
     }
