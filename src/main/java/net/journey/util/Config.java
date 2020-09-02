@@ -112,7 +112,7 @@ public class Config {
         showEntityHealth = cfg.get("Entity", "Show the health bar above the entitys head?", true).getBoolean();
 
         showManaBar = cfg.get("Gui", "Show Mana Bar?", true).getBoolean();
-        changeMainMenu = cfg.get("Gui", "Use custom title screen?", true).getBoolean();
+        changeMainMenu = cfg.get("Gui", "Enable custom title screen?", true).getBoolean();
 
         enableGlowshrooms = cfg.get("Generation", "Generate cave vines?", true).getBoolean();
         enableCaveVines = cfg.get("Generation", "Generate glowshrooms?", true).getBoolean();

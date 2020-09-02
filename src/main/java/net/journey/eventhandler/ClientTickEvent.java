@@ -8,7 +8,6 @@ import net.journey.util.Config;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiDownloadTerrain;
 import net.minecraft.client.gui.GuiMainMenu;
-import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumParticleTypes;
@@ -100,9 +99,6 @@ public class ClientTickEvent {
 
 	@SubscribeEvent()
 	public void onGuiInit(GuiScreenEvent.InitGuiEvent.Post event) {
-		GuiScreen gui = event.getGui();
-
-
 		GuiButtonToggleMenu buttonToggleMenu = new GuiButtonToggleMenu(event.getGui().width - 20, event.getGui().height - 74);
 		if (event.getGui() instanceof GuiMainMenu || event.getGui() instanceof JourneyMainMenu) {
 			event.getButtonList().add(buttonToggleMenu);
