@@ -1,9 +1,11 @@
 package net.journey.client.render.gui;
 
+import net.journey.JITL;
 import net.journey.util.Config;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiMainMenu;
+import net.minecraftforge.common.config.ConfigManager;
 
 public class GuiButtonToggleMenu extends GuiButton {
 
@@ -13,12 +15,18 @@ public class GuiButtonToggleMenu extends GuiButton {
 
 	@Override
 	public void mouseReleased(int mouseX, int mouseY) {
-		boolean menu = Config.changeMainMenu;
-		if (menu) {
-			Minecraft.getMinecraft().displayGuiScreen(new JourneyMainMenu());
-		}
-		if (!menu) {
+		boolean menuEnabled = Config.changeMainMenu;
+
+		if (menuEnabled) {
+			menuEnabled = false;
 			Minecraft.getMinecraft().displayGuiScreen(new GuiMainMenu());
 		}
+
+		if (!menuEnabled) {
+			menuEnabled = true;
+			Minecraft.getMinecraft().displayGuiScreen(new JourneyMainMenu());
+		}
+
+		ConfigManager.sync(JITL.MOD_ID, net.minecraftforge.common.config.Config.Type.INSTANCE);
 	}
 }
