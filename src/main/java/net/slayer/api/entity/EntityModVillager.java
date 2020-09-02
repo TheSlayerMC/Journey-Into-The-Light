@@ -1,6 +1,7 @@
 package net.slayer.api.entity;
 
 import net.journey.JITL;
+import net.journey.client.handler.GuiHandler;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
@@ -17,8 +18,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.UUID;
 
@@ -132,19 +131,20 @@ public abstract class EntityModVillager extends EntityVillager implements INpc, 
     }
 
     @Override
-    public boolean processInteract(EntityPlayer var1, EnumHand hand) {
+    public boolean processInteract(EntityPlayer player, EnumHand hand) {
         if (!this.world.isRemote) {
-            abstractInteract(var1);
-            var1.openGui(JITL.instance, guiID(), this.world, getEntityId(), 0, 0);
+            abstractInteract(player);
+            GuiHandler.Identifier guiId = getGuiIdentifier();
+            player.openGui(JITL.instance, guiId.get(), this.world, getEntityId()/*used here instead of posX to provide info, which will be used in GuiHandler */, 0, 0);
             return true;
         } else {
-            return super.processInteract(var1, hand);
+            return super.processInteract(player, hand);
         }
     }
 
     public abstract void abstractInteract(EntityPlayer p);
 
-    public abstract int guiID();
+    public abstract GuiHandler.Identifier getGuiIdentifier();
 
     public abstract void addRecipies(MerchantRecipeList list);
 

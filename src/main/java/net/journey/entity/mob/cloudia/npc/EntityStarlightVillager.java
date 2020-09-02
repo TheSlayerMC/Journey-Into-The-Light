@@ -22,9 +22,9 @@ public class EntityStarlightVillager extends EntityModVillager {
     }
 
     @Override
-    public int guiID() {
-        return GuiHandler.starlightVillager;
-    }
+	public GuiHandler.Identifier getGuiIdentifier() {
+		return GuiHandler.STARLIGHT_VILLAGER;
+	}
 
     @Override
     public void addRecipies(MerchantRecipeList list) {

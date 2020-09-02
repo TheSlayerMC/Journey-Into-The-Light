@@ -1,40 +1,31 @@
 package net.journey.blocks.containers;
 
-import java.util.Random;
-
 import net.journey.JITL;
 import net.journey.blocks.tileentity.TileEntityIncubator;
 import net.journey.client.handler.GuiHandler;
 import net.journey.init.JourneyTabs;
 import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.block.BlockHorizontal;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.stats.StatList;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumBlockRenderType;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.Mirror;
-import net.minecraft.util.Rotation;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.EnumMaterialTypes;
 import net.slayer.api.entity.tileentity.container.BlockModContainer;
+
+import java.util.Random;
 
 public class BlockIncubator extends BlockModContainer {
 
@@ -66,7 +57,7 @@ public class BlockIncubator extends BlockModContainer {
 			TileEntity tileentity = worldIn.getTileEntity(pos);
 
 			if (tileentity instanceof TileEntityIncubator) {
-				playerIn.openGui(JITL.MOD_ID, GuiHandler.incubator, worldIn, pos.getX(), pos.getY(), pos.getZ());
+				playerIn.openGui(JITL.MOD_ID, GuiHandler.INCUBATOR.get(), worldIn, pos.getX(), pos.getY(), pos.getZ());
 			}
 
 			return true;
@@ -100,15 +91,13 @@ public class BlockIncubator extends BlockModContainer {
 			IBlockState iblockstate1 = worldIn.getBlockState(pos.south());
 			IBlockState iblockstate2 = worldIn.getBlockState(pos.west());
 			IBlockState iblockstate3 = worldIn.getBlockState(pos.east());
-			EnumFacing enumfacing = (EnumFacing)state.getValue(FACING);
+			EnumFacing enumfacing = state.getValue(FACING);
 
-			if (enumfacing == EnumFacing.NORTH && iblockstate.isFullBlock() && !iblockstate1.isFullBlock())  {
+			if (enumfacing == EnumFacing.NORTH && iblockstate.isFullBlock() && !iblockstate1.isFullBlock()) {
 				enumfacing = EnumFacing.SOUTH;
-			}
-			else if (enumfacing == EnumFacing.SOUTH && iblockstate1.isFullBlock() && !iblockstate.isFullBlock()) {
+			} else if (enumfacing == EnumFacing.SOUTH && iblockstate1.isFullBlock() && !iblockstate.isFullBlock()) {
 				enumfacing = EnumFacing.NORTH;
-			}
-			else if (enumfacing == EnumFacing.WEST && iblockstate2.isFullBlock() && !iblockstate3.isFullBlock()) {
+			} else if (enumfacing == EnumFacing.WEST && iblockstate2.isFullBlock() && !iblockstate3.isFullBlock()) {
 				enumfacing = EnumFacing.EAST;
 			}
 			else if (enumfacing == EnumFacing.EAST && iblockstate3.isFullBlock() && !iblockstate2.isFullBlock()) {
@@ -182,22 +171,22 @@ public class BlockIncubator extends BlockModContainer {
 
 	@Override
 	public int getMetaFromState(IBlockState state) {
-		return ((EnumFacing)state.getValue(FACING)).getIndex();
+		return state.getValue(FACING).getIndex();
 	}
 
 	@Override
 	public IBlockState withRotation(IBlockState state, Rotation rot) {
-		return state.withProperty(FACING, rot.rotate((EnumFacing)state.getValue(FACING)));
+		return state.withProperty(FACING, rot.rotate(state.getValue(FACING)));
 	}
 
 	@Override
 	public IBlockState withMirror(IBlockState state, Mirror mirrorIn) {
-		return state.withRotation(mirrorIn.toRotation((EnumFacing)state.getValue(FACING)));
+		return state.withRotation(mirrorIn.toRotation(state.getValue(FACING)));
 	}
 
 	@Override
 	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, new IProperty[] {FACING});
+		return new BlockStateContainer(this, FACING);
 	}
 
 	@Override
@@ -205,15 +194,15 @@ public class BlockIncubator extends BlockModContainer {
 	@SuppressWarnings("incomplete-switch")
 	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
 		if (this.isBurning) {
-			EnumFacing enumfacing = (EnumFacing)stateIn.getValue(FACING);
-			double d0 = (double)pos.getX() + 0.5D;
-			double d1 = (double)pos.getY() + 0.3D + rand.nextDouble() * 6.0D / 16.0D;
-			double d2 = (double)pos.getZ() + 0.5D;
+			EnumFacing enumfacing = stateIn.getValue(FACING);
+			double d0 = (double) pos.getX() + 0.5D;
+			double d1 = (double) pos.getY() + 0.3D + rand.nextDouble() * 6.0D / 16.0D;
+			double d2 = (double) pos.getZ() + 0.5D;
 			double d3 = 0.52D;
 			double d4 = rand.nextDouble() * 0.6D - 0.3D;
 
 			if (rand.nextDouble() < 0.1D) {
-				worldIn.playSound((double)pos.getX() + 0.5D, (double)pos.getY(), (double)pos.getZ() + 0.5D, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
+				worldIn.playSound((double) pos.getX() + 0.5D, pos.getY(), (double) pos.getZ() + 0.5D, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
 			}
 
 			switch (enumfacing) {

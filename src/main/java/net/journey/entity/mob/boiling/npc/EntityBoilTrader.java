@@ -37,9 +37,9 @@ public class EntityBoilTrader extends EntityModVillager {
     }
 
     @Override
-    public int guiID() {
-        return GuiHandler.boilTrader;
-    }
+	public GuiHandler.Identifier getGuiIdentifier() {
+		return GuiHandler.BOIL_TRADER;
+	}
 
     @Override
     public void addRecipies(MerchantRecipeList list) {

@@ -60,9 +60,9 @@ public class EntityMage extends EntityModVillager {
     }
 
     @Override
-    public int guiID() {
-        return GuiHandler.mage;
-    }
+	public GuiHandler.Identifier getGuiIdentifier() {
+		return GuiHandler.MAGE;
+	}
 
     @Override
     public void addRecipies(MerchantRecipeList list) {

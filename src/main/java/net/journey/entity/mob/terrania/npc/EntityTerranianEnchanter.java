@@ -35,9 +35,9 @@ public class EntityTerranianEnchanter extends EntityModVillager {
     }
 
     @Override
-    public int guiID() {
-        return GuiHandler.terranianEnchanter;
-    }
+	public GuiHandler.Identifier getGuiIdentifier() {
+		return GuiHandler.TERRANIAN_ENCHANTER;
+	}
 
     @Override
     public void addRecipies(MerchantRecipeList list) {

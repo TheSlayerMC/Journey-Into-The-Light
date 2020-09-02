@@ -43,9 +43,9 @@ public class EntityRockiteGolem extends EntityModVillager {
     }
 
     @Override
-    public int guiID() {
-        return GuiHandler.rockite;
-    }
+	public GuiHandler.Identifier getGuiIdentifier() {
+		return GuiHandler.ROCKITE;
+	}
 
     @Override
     public boolean getCanSpawnHere() {

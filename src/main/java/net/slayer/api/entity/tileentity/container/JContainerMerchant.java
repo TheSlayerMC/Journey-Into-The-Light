@@ -6,14 +6,14 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ContainerMerchant;
 import net.minecraft.world.World;
 
-public class ContainerModVillager extends ContainerMerchant {
+public class JContainerMerchant extends ContainerMerchant {
 
-    public ContainerModVillager(InventoryPlayer par1InventoryPlayer, IMerchant par2IMerchant, World par3World) {
-        super(par1InventoryPlayer, par2IMerchant, par3World);
+    public JContainerMerchant(InventoryPlayer playerInventory, IMerchant merchant, World worldIn) {
+        super(playerInventory, merchant, worldIn);
     }
 
     @Override
-    public boolean canInteractWith(EntityPlayer par1EntityPlayer) {
+    public boolean canInteractWith(EntityPlayer playerIn) {
         return true;
     }
 }

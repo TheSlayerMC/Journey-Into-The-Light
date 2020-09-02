@@ -36,9 +36,9 @@ public class EntityTordo extends EntityModVillager {
     }
 
     @Override
-    public int guiID() {
-        return GuiHandler.tordo;
-    }
+	public GuiHandler.Identifier getGuiIdentifier() {
+		return GuiHandler.TORDO;
+	}
 
     @Override
     public void addRecipies(MerchantRecipeList list) {

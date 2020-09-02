@@ -33,9 +33,9 @@ public class EntityStaringGuardian extends EntityModVillager {
     }
 
     @Override
-    public int guiID() {
-        return GuiHandler.staringGuardian;
-    }
+	public GuiHandler.Identifier getGuiIdentifier() {
+		return GuiHandler.STARING_GUARDIAN;
+	}
 
     @Override
     public boolean shouldRenderInPass(int pass) {

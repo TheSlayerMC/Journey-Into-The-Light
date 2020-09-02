@@ -35,9 +35,9 @@ public class EntityEscapedConvict extends EntityModVillager {
     }
 
     @Override
-    public int guiID() {
-        return GuiHandler.escaped;
-    }
+	public GuiHandler.Identifier getGuiIdentifier() {
+		return GuiHandler.ESCAPED;
+	}
 
     @Override
     public void addRecipies(MerchantRecipeList list) {

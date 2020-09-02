@@ -6,6 +6,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.DimensionType;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.server.command.TextComponentHelper;
 
 public class LangHelper {
@@ -76,7 +77,14 @@ public class LangHelper {
 	/**
 	 * Creates localization key from provided dimension type.
 	 */
-	public static String createI18nKey(DimensionType type) {
-		return "world.journey." + type.getName();
+	public static String createTranslationKey(DimensionType type) {
+		return "world." + JITL.MOD_ID + "." + type.getName();
+	}
+
+	/**
+	 * Creates localization key from provided entity entry.
+	 */
+	public static String createTranslationKey(EntityRegistry.EntityRegistration entityEntry) {
+		return "entity." + entityEntry.getEntityName() + ".name";
 	}
 }

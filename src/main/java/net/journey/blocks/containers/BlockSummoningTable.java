@@ -1,8 +1,6 @@
 package net.journey.blocks.containers;
 
 import net.journey.JITL;
-import net.journey.blocks.BlockAncientCatalyst;
-import net.journey.blocks.BlockAncientSocket;
 import net.journey.blocks.tileentity.TileEntitySummoningTable;
 import net.journey.client.handler.GuiHandler;
 import net.journey.init.JourneyTabs;
@@ -32,8 +30,6 @@ import net.slayer.api.SlayerAPI;
 import net.slayer.api.entity.tileentity.container.BlockModContainer;
 
 import java.util.Random;
-
-import com.google.common.base.Predicates;
 
 public class BlockSummoningTable extends BlockModContainer {
 
@@ -143,14 +139,14 @@ public class BlockSummoningTable extends BlockModContainer {
 
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        BlockPattern.PatternHelper firstLayer = this.getFirstLayer().match(worldIn, pos.add(0, -1, 0));
-        BlockPattern.PatternHelper secondLayer = this.getSecondLayer().match(worldIn, pos.add(0, 0, 0));
-        BlockPattern.PatternHelper thirdLayer = this.getThirdLayer().match(worldIn, pos.add(0, 1, 0));
-        BlockPattern.PatternHelper fourthLayer = this.getFourthLayer().match(worldIn, pos.add(0, 2, 0));
-        BlockPattern.PatternHelper fifthLayer = this.getFifthLayer().match(worldIn, pos.add(0, 3, 0));
+        BlockPattern.PatternHelper firstLayer = getFirstLayer().match(worldIn, pos.add(0, -1, 0));
+        BlockPattern.PatternHelper secondLayer = getSecondLayer().match(worldIn, pos.add(0, 0, 0));
+        BlockPattern.PatternHelper thirdLayer = getThirdLayer().match(worldIn, pos.add(0, 1, 0));
+        BlockPattern.PatternHelper fourthLayer = getFourthLayer().match(worldIn, pos.add(0, 2, 0));
+        BlockPattern.PatternHelper fifthLayer = getFifthLayer().match(worldIn, pos.add(0, 3, 0));
 
         if (firstLayer != null && secondLayer != null && thirdLayer != null && fourthLayer != null && fifthLayer != null) {
-        	playerIn.openGui(JITL.MOD_ID, GuiHandler.summoning, worldIn, pos.getX(), pos.getY(), pos.getZ());
+            playerIn.openGui(JITL.MOD_ID, GuiHandler.SUMMONING_TABLE.get(), worldIn, pos.getX(), pos.getY(), pos.getZ());
         }
         return true;
     }

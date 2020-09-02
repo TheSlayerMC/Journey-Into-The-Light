@@ -34,9 +34,9 @@ public class EntityFrozenMerchant extends EntityModVillager {
     }
 
     @Override
-    public int guiID() {
-        return GuiHandler.frozenMerchant;
-    }
+	public GuiHandler.Identifier getGuiIdentifier() {
+		return GuiHandler.FROZEN_MERCHANT;
+	}
 
     @Override
     public boolean shouldRenderInPass(int pass) {

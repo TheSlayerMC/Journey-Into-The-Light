@@ -35,9 +35,9 @@ public class EntityStarlightBlacksmith extends EntityModVillager {
     }
 
     @Override
-    public int guiID() {
-        return GuiHandler.starlightBlacksmith;
-    }
+	public GuiHandler.Identifier getGuiIdentifier() {
+		return GuiHandler.STARLIGHT_BLACKSMITH;
+	}
 
     @Override
     public void addRecipies(MerchantRecipeList list) {

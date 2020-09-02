@@ -34,9 +34,9 @@ public class EntityAlloyMender extends EntityModVillager {
     }
 
     @Override
-    public int guiID() {
-        return GuiHandler.alloyMender;
-    }
+	public GuiHandler.Identifier getGuiIdentifier() {
+		return GuiHandler.ALLOY_MENDER;
+	}
 
     @Override
     public void addRecipies(MerchantRecipeList list) {

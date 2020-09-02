@@ -59,9 +59,9 @@ public class EntityBlacksmith extends EntityModVillager {
     }
 
     @Override
-    public int guiID() {
-        return GuiHandler.blacksmith;
-    }
+	public GuiHandler.Identifier getGuiIdentifier() {
+		return GuiHandler.BLACKSMITH;
+	}
 
     @Override
     public void addRecipies(MerchantRecipeList list) {

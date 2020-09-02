@@ -28,8 +28,8 @@ import java.util.List;
 import java.util.function.Supplier;
 
 public class ItemBossSpawner extends JItem {
-	private Supplier<DimensionType> accessibleDimSupplier;
-	private Class<? extends Entity> entityClass;
+	private final Supplier<DimensionType> accessibleDimSupplier;
+	private final Class<? extends Entity> entityClass;
 
 	/**
 	 * Constructor to create an entity. Will be null, if there is an error while searching the constructor of class.
@@ -88,7 +88,7 @@ public class ItemBossSpawner extends JItem {
 
 				if (!player.capabilities.isCreativeMode) player.getHeldItem(hand).shrink(1);
 			} else {
-				ChatUtils.sendColoredTranslated(player, TextFormatting.DARK_PURPLE, "msg.journey.summon.wrong_dimension", new TextComponentTranslation(LangHelper.createI18nKey(dimensionType)));
+				ChatUtils.sendColoredTranslated(player, TextFormatting.DARK_PURPLE, "msg.journey.summon.wrong_dimension", new TextComponentTranslation(LangHelper.createTranslationKey(dimensionType)));
 			}
 		}
 

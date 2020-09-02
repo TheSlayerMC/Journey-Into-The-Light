@@ -39,8 +39,8 @@ public class EntityOvergrownMerchant extends EntityModVillager {
     }
 
     @Override
-    public int guiID() {
-        return GuiHandler.overgrownMerchant;
+    public GuiHandler.Identifier getGuiIdentifier() {
+        return GuiHandler.OVERGROWN_MERCHANT;
     }
 
     @Override
