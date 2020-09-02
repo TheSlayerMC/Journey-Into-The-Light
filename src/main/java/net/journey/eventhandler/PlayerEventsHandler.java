@@ -1,5 +1,6 @@
 package net.journey.eventhandler;
 
+import net.journey.common.capability.JCapabilityManager;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.init.items.JourneyArmory;
@@ -28,6 +29,7 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.slayer.api.PlayerHelper;
 
 import java.util.List;
@@ -143,6 +145,13 @@ public class PlayerEventsHandler {
 			if (random.nextInt(Config.diamondLootBagRarity) == 0) {
 				entity.dropItem(JourneyItems.LOOT_POUCH_DIAMOND, 1);
 			}
+		}
+	}
+
+	@SubscribeEvent
+	public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
+		if (event.phase == TickEvent.Phase.END && event.player != null) {
+			JCapabilityManager.asJourneyPlayer(event.player).onTick(event.side);
 		}
 	}
 }

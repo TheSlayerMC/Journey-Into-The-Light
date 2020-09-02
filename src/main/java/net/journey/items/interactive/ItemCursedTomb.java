@@ -1,8 +1,8 @@
 package net.journey.items.interactive;
 
+import net.journey.api.capability.EssenceStorage;
 import net.journey.api.item.IUsesEssence;
-import net.journey.client.server.EssenceProvider;
-import net.journey.client.server.IEssence;
+import net.journey.common.capability.JCapabilityManager;
 import net.journey.init.JourneyTabs;
 import net.journey.items.base.JItem;
 import net.journey.util.PotionEffects;
@@ -31,10 +31,10 @@ public class ItemCursedTomb extends JItem implements IUsesEssence {
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand handIn) {
 		ItemStack stack = player.getHeldItem(handIn);
-		IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);		
+		EssenceStorage mana = JCapabilityManager.asJourneyPlayer(player).getEssenceStorage();
 		try {
-			if(mana.useEssence(3)) {
-				if(!world.isRemote) {
+			if (mana.useEssence(3)) {
+				if (!world.isRemote) {
 					player.addPotionEffect(PotionEffects.setPotionEffect(PotionEffects.levitate, 100, 1));
 					stack.damageItem(1, player);
 				}

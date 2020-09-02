@@ -1,7 +1,7 @@
 package net.journey.items.ranged;
 
-import net.journey.client.server.EssenceProvider;
-import net.journey.client.server.IEssence;
+import net.journey.api.capability.EssenceStorage;
+import net.journey.common.capability.JCapabilityManager;
 import net.journey.entity.projectile.EntityAttractor;
 import net.journey.entity.projectile.EntityDetractor;
 import net.journey.init.JourneySounds;
@@ -24,15 +24,15 @@ import java.util.Random;
 
 public class ItemDetractor extends JItem {
 
-	public boolean attracts;
-	public boolean detracts;
-	private int magic;
+    public boolean attracts;
+    public boolean detracts;
+    private final int magic;
 
-	public ItemDetractor(String name, String finalName, int magic, boolean attracts, boolean detracts) {
-		super(name, finalName, JourneyTabs.WEAPONS);
-		setMaxStackSize(1);
-		this.magic = magic;
-		this.attracts = attracts;
+    public ItemDetractor(String name, String finalName, int magic, boolean attracts, boolean detracts) {
+        super(name, finalName, JourneyTabs.WEAPONS);
+        setMaxStackSize(1);
+        this.magic = magic;
+        this.attracts = attracts;
         this.detracts = detracts;
         this.setFull3D();
     }
@@ -40,7 +40,7 @@ public class ItemDetractor extends JItem {
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand handIn) {
         Random r = new Random();
-        IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
+        EssenceStorage mana = JCapabilityManager.asJourneyPlayer(player).getEssenceStorage();
 
         if (detracts) {
             if (!world.isRemote && mana.useEssence(magic)) {

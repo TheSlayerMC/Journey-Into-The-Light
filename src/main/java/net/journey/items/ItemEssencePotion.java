@@ -1,7 +1,7 @@
 package net.journey.items;
 
-import net.journey.client.server.EssenceProvider;
-import net.journey.client.server.IEssence;
+import net.journey.api.capability.EssenceStorage;
+import net.journey.common.capability.JCapabilityManager;
 import net.journey.init.JourneyTabs;
 import net.journey.items.base.JItem;
 import net.minecraft.advancements.CriteriaTriggers;
@@ -26,7 +26,7 @@ import java.util.List;
 
 public class ItemEssencePotion extends JItem {
 
-    private boolean isStrong;
+    private final boolean isStrong;
 
     public ItemEssencePotion(String name, String f, boolean strong) {
         super(name, f, JourneyTabs.UTIL);
@@ -69,7 +69,7 @@ public class ItemEssencePotion extends JItem {
     public ItemStack drink(ItemStack stack, World world, EntityPlayer player) {
         int amount = isStrong ? 10 : 5;
         if (!world.isRemote) {
-            IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
+            EssenceStorage mana = JCapabilityManager.asJourneyPlayer(player).getEssenceStorage();
             mana.addEssence(amount);
             if (!player.capabilities.isCreativeMode) stack.shrink(1);
         }

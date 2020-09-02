@@ -1,4 +1,4 @@
-package net.journey.client.server.player;
+package net.journey.common.knowledge;
 
 public enum EnumPlayerStats {
 
@@ -12,6 +12,6 @@ public enum EnumPlayerStats {
 	CORBA,
 	CLOUDIA,
 	TERRANIA,
-	SENTERIAN;
-	
+	SENTERIAN
+
 }

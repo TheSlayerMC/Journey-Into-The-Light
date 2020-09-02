@@ -1,9 +1,9 @@
 package net.journey.client.render;
 
 import net.journey.JITL;
+import net.journey.api.capability.EssenceStorage;
 import net.journey.api.item.IUsesEssence;
-import net.journey.client.server.EssenceProvider;
-import net.journey.client.server.IEssence;
+import net.journey.common.capability.JCapabilityManager;
 import net.journey.init.items.JourneyWeapons;
 import net.journey.util.Config;
 import net.minecraft.client.Minecraft;
@@ -42,7 +42,8 @@ public class RenderEssenceBar {
 		}
 
 		if (transparency > 0) {
-			IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
+
+			EssenceStorage mana = JCapabilityManager.asJourneyPlayer(player).getEssenceStorage();
 
 			if (!mana.isFull() && !instanceOfEssenceItem(heldItemMainhand.getItem())) {
 				transparency = 0.35F;

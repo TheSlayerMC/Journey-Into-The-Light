@@ -1,7 +1,7 @@
 package net.journey.items.interactive;
 
-import net.journey.client.server.player.IPlayerStats;
-import net.journey.client.server.player.PlayerStatsProvider;
+import net.journey.api.capability.PlayerStats;
+import net.journey.common.capability.JCapabilityManager;
 import net.journey.items.base.JItem;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,8 +19,8 @@ public class ItemSentacoin extends JItem {
 	public void onUpdate(ItemStack s, World w, Entity e, int itemSlot, boolean isSelected) {
 		if(!w.isRemote) {
 			if(e instanceof EntityPlayer) {
-				EntityPlayer player = (EntityPlayer)e;
-				IPlayerStats stats = player.getCapability(PlayerStatsProvider.PLAYER_STATS_CAP, null);
+				EntityPlayer player = (EntityPlayer) e;
+				PlayerStats stats = JCapabilityManager.asJourneyPlayer(player).getPlayerStats();
 				stats.addSentacoin(1);
 				System.out.println(stats.getSentacoinValue());
 				player.inventory.decrStackSize(itemSlot, 1);

@@ -7,8 +7,7 @@ import net.journey.client.handler.KeyInputHandler;
 import net.journey.client.render.EntityRendering;
 import net.journey.client.render.RenderEssenceBar;
 import net.journey.client.render.particles.OreParticleFX;
-import net.journey.client.server.player.PlayerStats;
-import net.journey.client.server.player.PlayerStatsProvider;
+import net.journey.common.capability.innercaps.PlayerStatsImpl;
 import net.journey.dimension.boil.BoilSkyRenderer;
 import net.journey.dimension.cloudia.CloudiaSkyRenderer;
 import net.journey.enums.EnumParticlesClasses;
@@ -30,11 +29,6 @@ public class ClientProxy extends CommonProxy {
 
     public static final IRenderHandler boilSkyRenderer = new BoilSkyRenderer();
     public static final IRenderHandler cloudiaSkyRenderer = new CloudiaSkyRenderer();
-
-    @Override
-    public PlayerStats getPlayerStats() {
-    	return (PlayerStats)Minecraft.getMinecraft().player.getCapability(PlayerStatsProvider.PLAYER_STATS_CAP, null);
-    }
     
     @Override
     public EntityPlayer getPlayer() {
@@ -58,7 +52,7 @@ public class ClientProxy extends CommonProxy {
         EntityRendering.init();
         SlayerAPI.registerEventListener(new BossTickHandler());
         SlayerAPI.registerEventListener(new ClientTickEvent());
-        SlayerAPI.registerEventListener(new PlayerStats());
+        SlayerAPI.registerEventListener(new PlayerStatsImpl());
         KeyInputHandler.init();
     }
 

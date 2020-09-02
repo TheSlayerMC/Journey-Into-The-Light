@@ -1,7 +1,7 @@
 package net.journey.items.ranged;
 
-import net.journey.client.server.EssenceProvider;
-import net.journey.client.server.IEssence;
+import net.journey.api.capability.EssenceStorage;
+import net.journey.common.capability.JCapabilityManager;
 import net.journey.entity.projectile.piercer.EntityEssenceShuriken;
 import net.journey.init.JourneyTabs;
 import net.journey.items.base.JItem;
@@ -32,9 +32,9 @@ public class ItemEssenceShuriken extends JItem {
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand handIn) {
 		ItemStack stack = player.getHeldItem(handIn);
-		IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);		
+		EssenceStorage mana = JCapabilityManager.asJourneyPlayer(player).getEssenceStorage();
 		try {
-			if(mana.useEssence(3)) {
+			if (mana.useEssence(3)) {
 				if (!world.isRemote) {
 					EntityEssenceShuriken t = new EntityEssenceShuriken(world, player, 5, 3);
 					t.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F, 1.0F);

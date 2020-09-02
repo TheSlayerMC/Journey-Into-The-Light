@@ -1,8 +1,8 @@
 package net.journey.items.interactive;
 
+import net.journey.api.capability.EssenceStorage;
 import net.journey.api.item.IUsesEssence;
-import net.journey.client.server.EssenceProvider;
-import net.journey.client.server.IEssence;
+import net.journey.common.capability.JCapabilityManager;
 import net.journey.init.JourneySounds;
 import net.journey.init.JourneyTabs;
 import net.journey.items.base.JItem;
@@ -28,8 +28,8 @@ public class ItemEternalNight extends JItem implements IUsesEssence {
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer player, EnumHand handIn) {
 		ItemStack stack = player.getHeldItem(handIn);
-		IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
-		if(mana.useEssence(10)) {
+		EssenceStorage mana = JCapabilityManager.asJourneyPlayer(player).getEssenceStorage();
+		if (mana.useEssence(10)) {
 			worldIn.setWorldTime(18000L);
 			stack.damageItem(1, player);
 			worldIn.playSound(player, player.getPosition(), JourneySounds.ETERNAL_NIGHT, SoundCategory.PLAYERS, 1.0F, 1.0F);

@@ -1,8 +1,8 @@
 package net.journey.items.ranged;
 
+import net.journey.api.capability.EssenceStorage;
 import net.journey.api.item.IUsesEssence;
-import net.journey.client.server.EssenceProvider;
-import net.journey.client.server.IEssence;
+import net.journey.common.capability.JCapabilityManager;
 import net.journey.entity.projectile.EntityDamagingProjectile;
 import net.journey.entity.projectile.launcher.EntityBouncingProjectile;
 import net.journey.init.JourneySounds;
@@ -42,7 +42,7 @@ public class ItemGun extends JItem implements IUsesEssence {
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand handIn) {
-        IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
+        EssenceStorage mana = JCapabilityManager.asJourneyPlayer(player).getEssenceStorage();
         ItemStack stack = player.getHeldItem(handIn);
         if (mana.useEssence(2)) {
             JourneySounds.playSound(JourneySounds.CANNON, world, player);

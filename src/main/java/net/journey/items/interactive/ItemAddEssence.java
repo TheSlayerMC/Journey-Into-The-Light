@@ -1,8 +1,8 @@
 package net.journey.items.interactive;
 
+import net.journey.api.capability.EssenceStorage;
 import net.journey.api.item.IUsesEssence;
-import net.journey.client.server.EssenceProvider;
-import net.journey.client.server.IEssence;
+import net.journey.common.capability.JCapabilityManager;
 import net.journey.init.JourneyTabs;
 import net.journey.items.base.JItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -29,9 +29,9 @@ public class ItemAddEssence extends JItem implements IUsesEssence {
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer player, EnumHand handIn) {
 		ItemStack stack = player.getHeldItem(handIn);
-        worldIn.playEvent(2002, player.getPosition(), PotionUtils.getPotionColor(PotionTypes.STRONG_LEAPING));
-		IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
-		if(!worldIn.isRemote) {
+		worldIn.playEvent(2002, player.getPosition(), PotionUtils.getPotionColor(PotionTypes.STRONG_LEAPING));
+		EssenceStorage mana = JCapabilityManager.asJourneyPlayer(player).getEssenceStorage();
+		if (!worldIn.isRemote) {
 			mana.addEssence(amount);
 			stack.shrink(1);
 		}

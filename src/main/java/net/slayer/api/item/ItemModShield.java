@@ -1,7 +1,7 @@
 package net.slayer.api.item;
 
-import net.journey.client.server.EssenceProvider;
-import net.journey.client.server.IEssence;
+import net.journey.api.capability.EssenceStorage;
+import net.journey.common.capability.JCapabilityManager;
 import net.journey.init.JourneySounds;
 import net.journey.items.base.JItem;
 import net.journey.util.LangHelper;
@@ -67,7 +67,7 @@ public class ItemModShield extends JItem {
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand handIn) {
-        IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
+        EssenceStorage mana = JCapabilityManager.asJourneyPlayer(player).getEssenceStorage();
         ItemStack itemstack = player.getHeldItem(handIn);
         player.setActiveHand(handIn);
         if (!world.isRemote && mana.useEssence(usage)) {

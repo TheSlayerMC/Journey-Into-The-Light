@@ -24,7 +24,7 @@ public class ClientTickEvent {
 
 	private Item boots = null, body = null, legs = null, helmet = null;
 
-	@SubscribeEvent(priority = EventPriority.LOWEST)
+	@SubscribeEvent(priority = EventPriority.LOWEST)//TODO rewrite
 	public void openGui(GuiOpenEvent event) {
 
 		if (Config.changeMainMenu == true) {

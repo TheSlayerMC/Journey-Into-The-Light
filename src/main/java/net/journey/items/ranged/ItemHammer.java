@@ -2,9 +2,9 @@ package net.journey.items.ranged;
 
 import net.journey.JITL;
 import net.journey.api.block.CustomItemModelProvider;
+import net.journey.api.capability.EssenceStorage;
 import net.journey.api.item.IUsesEssence;
-import net.journey.client.server.EssenceProvider;
-import net.journey.client.server.IEssence;
+import net.journey.common.capability.JCapabilityManager;
 import net.journey.entity.projectile.EntityDamagingProjectile;
 import net.journey.init.JourneySounds;
 import net.journey.init.JourneyTabs;
@@ -55,7 +55,7 @@ public class ItemHammer extends ItemSword implements IUsesEssence, CustomItemMod
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand handIn) {
 		ItemStack stack = player.getHeldItem(handIn);
-		IEssence mana = player.getCapability(EssenceProvider.ESSENCE_CAP, null);
+		EssenceStorage mana = JCapabilityManager.asJourneyPlayer(player).getEssenceStorage();
 		if (mana.useEssence(usage)) {
 			JourneySounds.playSound(JourneySounds.HAMMER, world, player);
 			if (!world.isRemote) {

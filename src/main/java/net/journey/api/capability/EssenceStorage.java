@@ -1,6 +1,6 @@
-package net.journey.client.server;
+package net.journey.api.capability;
 
-public interface IEssence {
+public interface EssenceStorage {
 
     boolean useEssence(int points);
 

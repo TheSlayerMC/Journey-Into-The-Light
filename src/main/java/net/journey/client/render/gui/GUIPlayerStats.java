@@ -1,15 +1,14 @@
 package net.journey.client.render.gui;
 
 import net.journey.JITL;
-import net.journey.client.server.player.EnumPlayerStats;
-import net.journey.client.server.player.IPlayerStats;
-import net.journey.client.server.player.PlayerStatsProvider;
+import net.journey.api.capability.PlayerStats;
+import net.journey.common.capability.JCapabilityManager;
+import net.journey.common.knowledge.EnumPlayerStats;
 import net.journey.util.ContainerEmpty;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
@@ -20,10 +19,10 @@ public class GUIPlayerStats extends GuiContainer {
 
 	private GUIPlayerStats.PageButton nextButton;
 	private GUIPlayerStats.PageButton previousButton;
-	private IPlayerStats stats;
+	private PlayerStats stats;
 
 	private int pageNumber = 0;
-	private int coinAmount = 0;
+	private final int coinAmount = 0;
 
 	public GUIPlayerStats() {
 		super(new ContainerEmpty());
@@ -34,7 +33,7 @@ public class GUIPlayerStats extends GuiContainer {
 	@Override
 	public void initGui() {
 		super.initGui();
-		this.stats = Minecraft.getMinecraft().player.getCapability(PlayerStatsProvider.PLAYER_STATS_CAP, null);
+		this.stats = JCapabilityManager.asJourneyPlayer(mc.player).getPlayerStats();
 		int w = (this.width - this.xSize) / 2;
 		int h = (this.height - this.ySize) / 2;
 		this.buttonList.add(this.nextButton = new GUIPlayerStats.PageButton(1, w + 134, h + 180, true));
