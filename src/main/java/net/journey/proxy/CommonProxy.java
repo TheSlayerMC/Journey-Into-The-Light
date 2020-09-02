@@ -60,9 +60,16 @@ public class CommonProxy {
         return null;
     }
 
+    public PlayerStats getPlayerStats() { 
+    	return null;
+    }
+    
     public void preInit(FMLPreInitializationEvent event) {
         JourneyFluids.init(); //needs to be first
-
+        
+        CapabilityManager.INSTANCE.register(IEssence.class, new EssenceSerializer(), () -> new EssenceBar(10));
+        CapabilityManager.INSTANCE.register(IPlayerStats.class, new PlayerStatsSerializer(), () -> new PlayerStats());
+        
         ObfuscationReflectionHelper.setPrivateValue((Class) RangedAttribute.class, SharedMonsterAttributes.MAX_HEALTH, Double.MAX_VALUE, 1);
         Config.init(event);
         NetherEvent.init();
@@ -93,8 +100,7 @@ public class CommonProxy {
         DimensionHelper.addSpawns();
         SlayerAPI.registerEventListener(new BarTickHandler());
         SlayerAPI.registerEventListener(new RenderBar());
-        CapabilityManager.INSTANCE.register(IEssence.class, new EssenceSerializer(), () -> new EssenceBar(10));
-        CapabilityManager.INSTANCE.register(IPlayerStats.class, new PlayerStatsSerializer(), () -> new PlayerStats());
+        
 
         Integrations.onPreInit(event);
         TCNetworkHandler.registerPackets();

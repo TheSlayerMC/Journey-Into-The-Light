@@ -29,12 +29,12 @@ public class GUIPlayerStats extends GuiContainer {
 		super(new ContainerEmpty());
 		this.xSize = 242;
 		this.ySize = 204;
+		stats = JITL.proxy.getPlayerStats();
 	}
 
 	@Override
 	public void initGui() {
 		super.initGui();
-		this.stats = Minecraft.getMinecraft().player.getCapability(PlayerStatsProvider.PLAYER_STATS_CAP, null);
 		int w = (this.width - this.xSize) / 2;
 		int h = (this.height - this.ySize) / 2;
 		this.buttonList.add(this.nextButton = new GUIPlayerStats.PageButton(1, w + 134, h + 180, true));
@@ -56,6 +56,8 @@ public class GUIPlayerStats extends GuiContainer {
 		if(pageNumber == 1) {
 			page2();
 		}
+		//System.out.println(stats.getPlayerLevel(EnumPlayerStats.OVERWORLD));
+
 	}
 	
 	@Override
@@ -137,10 +139,10 @@ public class GUIPlayerStats extends GuiContainer {
 		int k = (width - xSize) / 2;
 		int l = (height - ySize) / 2;
 		mc.getTextureManager().bindTexture(knowledge_sprite);
-		fontRenderer.drawString("Lv: " + stats.getPlayerLevel(stat), k + x + 35, l + y + 22, 4210752);
 		int xpLevel = (int)(stats.getPlayerXP(stat) * (float)(progressBarSize));
 		drawTexturedModalRect(k + x + 35, l + y + 15, 0, 5, 65, 5);
 		drawTexturedModalRect(k + x + 35, l + y + 15, 0, 0, xpLevel, 5);
+		fontRenderer.drawString("Lv: " + stats.getPlayerLevel(stat), k + x + 35, l + y + 22, 4210752);
 		GlStateManager.disableAlpha();
 		GlStateManager.disableBlend();
 		GlStateManager.popMatrix();

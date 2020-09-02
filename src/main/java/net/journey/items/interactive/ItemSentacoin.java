@@ -1,5 +1,6 @@
 package net.journey.items.interactive;
 
+import net.journey.client.server.player.EnumPlayerStats;
 import net.journey.client.server.player.IPlayerStats;
 import net.journey.client.server.player.PlayerStatsProvider;
 import net.journey.items.base.JItem;
@@ -22,7 +23,9 @@ public class ItemSentacoin extends JItem {
 				EntityPlayer player = (EntityPlayer)e;
 				IPlayerStats stats = player.getCapability(PlayerStatsProvider.PLAYER_STATS_CAP, null);
 				stats.addSentacoin(1);
+				stats.addLevel(EnumPlayerStats.OVERWORLD, 1, player);
 				System.out.println(stats.getSentacoinValue());
+
 				player.inventory.decrStackSize(itemSlot, 1);
 			}
 		}
