@@ -1,6 +1,7 @@
 package net.journey.client.render.gui;
 
 import net.journey.JITL;
+import net.journey.client.server.player.EnumPlayerStats;
 import net.journey.client.server.player.IPlayerStats;
 import net.journey.client.server.player.PlayerStatsProvider;
 import net.journey.util.ContainerEmpty;
@@ -68,22 +69,22 @@ public class GUIPlayerStats extends GuiContainer {
 		int x = 9;
 		int h = 9;
 		drawSprite(x, h, 0, 74, "Sentacoins:");
-		drawKnowledgeSprite(126, h, 32, 10, 0.50F, "Overworld");
+		drawKnowledgeSprite(126, h, 32, 10, EnumPlayerStats.OVERWORLD, "Overworld");
 
 		h += height;
 
-		drawKnowledgeSprite(126, h, 160, 10, 0.75F, "Frozen Lands");
-		drawKnowledgeSprite(x, h, 64, 10, 0.30F, "Nether");
+		drawKnowledgeSprite(126, h, 160, 10, EnumPlayerStats.FROZEN, "Frozen Lands");
+		drawKnowledgeSprite(x, h, 64, 10, EnumPlayerStats.NETHER, "Nether");
 
 		h += height;
 
-		drawKnowledgeSprite(126, h, 96, 10, 0.75F, "End");
-		drawKnowledgeSprite(x, h, 128, 10, 0.30F, "Boiling Point");
+		drawKnowledgeSprite(126, h, 96, 10, EnumPlayerStats.END, "End");
+		drawKnowledgeSprite(x, h, 128, 10, EnumPlayerStats.BOIL, "Boiling Point");
 
 		h += height - 2;
 
-		drawKnowledgeSprite(x, h, 192, 10, 0.10F, "Euca");
-		drawKnowledgeSprite(126, h, 224, 10, 0.60F, "The Depths");
+		drawKnowledgeSprite(x, h, 192, 10, EnumPlayerStats.EUCA, "Euca");
+		drawKnowledgeSprite(126, h, 224, 10, EnumPlayerStats.DEPTHS, "The Depths");
 	}
 
 	public void page2() {
@@ -91,13 +92,13 @@ public class GUIPlayerStats extends GuiContainer {
 		int x = 9;
 		int h = 9;
 
-		drawKnowledgeSprite(x, h, 0, 42, 0.48F, "Corba");
-		drawKnowledgeSprite(126, h, 32, 42, 0.90F, "Terrania");
+		drawKnowledgeSprite(x, h, 0, 42, EnumPlayerStats.CORBA, "Corba");
+		drawKnowledgeSprite(126, h, 32, 42, EnumPlayerStats.TERRANIA, "Terrania");
 
 		h += height;
 
-		drawKnowledgeSprite(x, h, 64, 42, 0.57F, "Cloudia");
-		drawKnowledgeSprite(126, h, 96, 42, 0.28F, "Senterain");
+		drawKnowledgeSprite(x, h, 64, 42, EnumPlayerStats.CLOUDIA, "Cloudia");
+		drawKnowledgeSprite(126, h, 96, 42, EnumPlayerStats.SENTERIAN, "Senterain");
 		/*h += height;
 		drawKnowledgeSprite(x, h, 128, 10, 0.30F, "SDHFSDH");
 		drawKnowledgeSprite(126, h, 160, 10, 0.75F, "Frozen Lands");
@@ -126,7 +127,7 @@ public class GUIPlayerStats extends GuiContainer {
 		GlStateManager.popMatrix();
 	}
 
-	public void drawKnowledgeSprite(int x, int y, int spriteX, int spriteY, float percent, String s) {
+	public void drawKnowledgeSprite(int x, int y, int spriteX, int spriteY, EnumPlayerStats stat, String s) {
 		drawSprite(x, y, spriteX, spriteY, s);
 		GlStateManager.pushMatrix();
 		GlStateManager.enableBlend();
@@ -136,7 +137,8 @@ public class GUIPlayerStats extends GuiContainer {
 		int k = (width - xSize) / 2;
 		int l = (height - ySize) / 2;
 		mc.getTextureManager().bindTexture(knowledge_sprite);
-		int xpLevel = (int)(percent * (float)(progressBarSize));
+		fontRenderer.drawString("Lv: " + stats.getPlayerLevel(stat), k + x + 35, l + y + 22, 4210752);
+		int xpLevel = (int)(stats.getPlayerXP(stat) * (float)(progressBarSize));
 		drawTexturedModalRect(k + x + 35, l + y + 15, 0, 5, 65, 5);
 		drawTexturedModalRect(k + x + 35, l + y + 15, 0, 0, xpLevel, 5);
 		GlStateManager.disableAlpha();
