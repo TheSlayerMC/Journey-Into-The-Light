@@ -36,8 +36,8 @@ public class JourneyPlayerImpl implements JourneyPlayer {
 
     @Override
     public void onTick(Side side) {
-        essenceStorage.update();
-        playerStats.update();
+        essenceStorage.onTick();
+        playerStats.onTick();
     }
 
     public static class Serializer implements Capability.IStorage<JourneyPlayer> {

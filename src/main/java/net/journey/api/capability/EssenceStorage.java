@@ -12,7 +12,7 @@ public interface EssenceStorage {
 
     boolean isFull();
 
-    void update();
+    void onTick();
 
     void regen();
 }

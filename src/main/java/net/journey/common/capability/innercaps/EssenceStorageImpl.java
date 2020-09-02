@@ -48,7 +48,7 @@ public class EssenceStorageImpl implements EssenceStorage {
     }
 
     @Override
-    public void update() {
+    public void onTick() {
         if (regenCooldown-- <= 0) regenCooldown = 30;
         if (regenCooldown >= 30) regen();
     }
