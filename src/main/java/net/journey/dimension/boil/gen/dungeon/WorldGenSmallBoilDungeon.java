@@ -10,20 +10,14 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.slayer.api.worldgen.WorldGenAPI;
 
 import java.util.Random;
 
 public class WorldGenSmallBoilDungeon extends WorldGenerator {
-	
-    public boolean locationIsValidSpawn(World w, int x, int y, int z) {
-        return WorldGenAPI.checkRadius(w, new BlockPos(x, y, z), 11, JourneyBlocks.volcanicSand);
-    }
-			
-    @Override
+
+	@Override
     public boolean generate(World worldIn, Random r, BlockPos pos) {
         int i = pos.getX(), j = pos.getY(), k = pos.getZ();
-        if (locationIsValidSpawn(worldIn, i, j, k)) return true;
         this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 0, j + 0, k + 0), JourneyBlocks.hotBlock.getDefaultState());
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 0, j + 0, k + 1), JourneyBlocks.hotBlock.getDefaultState());
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 0, j + 0, k + 2), JourneyBlocks.hotBlock.getDefaultState());

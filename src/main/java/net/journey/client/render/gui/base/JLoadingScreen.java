@@ -200,7 +200,7 @@ public class JLoadingScreen extends GuiScreen {
 		this.drawGradientRect(0, 0, this.width, this.height, -2130706433, 16777215);
 		this.drawGradientRect(0, 0, this.width, this.height, 0, Integer.MIN_VALUE);
 		//this.drawBackground(0);
-		this.drawCenteredString(this.fontRenderer, I18n.format("loading.journey." + this.dimension), this.width / 2, this.height / 2 - 50, 16777215);
+		this.drawCenteredString(this.fontRenderer, I18n.format("loading.journey." + this.dimension), this.width / 2, this.height / 2, 16777215);
 		super.drawScreen(mouseX, mouseY, partialTicks);
 	}
 
