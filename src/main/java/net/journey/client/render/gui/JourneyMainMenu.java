@@ -2,7 +2,7 @@ package net.journey.client.render.gui;
 
 import com.google.common.collect.Lists;
 import com.google.common.util.concurrent.Runnables;
-
+import net.journey.util.RandHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -33,7 +33,6 @@ import org.lwjgl.opengl.GLContext;
 import org.lwjgl.util.glu.Project;
 
 import java.io.BufferedReader;
-import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URI;
@@ -54,13 +53,9 @@ public class JourneyMainMenu extends GuiScreen {
             SlayerAPI.PREFIX + "textures/gui/title/minecraft.png");
     private static final ResourceLocation EDITION = new ResourceLocation(
             SlayerAPI.PREFIX + "textures/gui/title/edition.png");
-    private static final ResourceLocation[] TITLE_PANORAMA_PATHS = new ResourceLocation[]{
-            new ResourceLocation(SlayerAPI.PREFIX + "textures/gui/title/background/panorama_0.png"),
-            new ResourceLocation(SlayerAPI.PREFIX + "textures/gui/title/background/panorama_1.png"),
-            new ResourceLocation(SlayerAPI.PREFIX + "textures/gui/title/background/panorama_2.png"),
-            new ResourceLocation(SlayerAPI.PREFIX + "textures/gui/title/background/panorama_3.png"),
-            new ResourceLocation(SlayerAPI.PREFIX + "textures/gui/title/background/panorama_4.png"),
-            new ResourceLocation(SlayerAPI.PREFIX + "textures/gui/title/background/panorama_5.png")};
+
+    private static ResourceLocation[] TITLE_PANORAMA_PATHS;
+
     private final float minceraftRoll;
     private final Object threadLock = new Object();
     private String splashText;
@@ -86,6 +81,15 @@ public class JourneyMainMenu extends GuiScreen {
     private net.minecraftforge.client.gui.NotificationModUpdateScreen modUpdateNotification;
 
     public JourneyMainMenu() {
+        String prefix = randomDimPrefix();
+        TITLE_PANORAMA_PATHS = new ResourceLocation[]{
+                new ResourceLocation(SlayerAPI.PREFIX + "textures/gui/title/background/" + prefix + "/panorama_0.png"),
+                new ResourceLocation(SlayerAPI.PREFIX + "textures/gui/title/background/" + prefix + "/panorama_1.png"),
+                new ResourceLocation(SlayerAPI.PREFIX + "textures/gui/title/background/" + prefix + "/panorama_2.png"),
+                new ResourceLocation(SlayerAPI.PREFIX + "textures/gui/title/background/" + prefix + "/panorama_3.png"),
+                new ResourceLocation(SlayerAPI.PREFIX + "textures/gui/title/background/" + prefix + "/panorama_4.png"),
+                new ResourceLocation(SlayerAPI.PREFIX + "textures/gui/title/background/" + prefix + "/panorama_5.png")};
+
         this.openGLWarning2 = MORE_INFO_TEXT;
         this.splashText = "missingno";
         IResource iresource = null;
@@ -127,6 +131,11 @@ public class JourneyMainMenu extends GuiScreen {
             this.openGLWarning2 = I18n.format("title.oldgl2");
             this.openGLWarningLink = "https://help.mojang.com/customer/portal/articles/325948?ref=game";
         }
+    }
+
+    private static String randomDimPrefix() {
+        Random r = new Random();
+        return RandHelper.chooseEqual(r, "euca", "senterian", "corba");
     }
 
     private boolean areRealmsNotificationsEnabled() {

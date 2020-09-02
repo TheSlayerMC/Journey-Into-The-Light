@@ -167,7 +167,10 @@ loading.journey.depths=Falling To The Depths
 loading.journey.corba=Untangling Corba
 loading.journey.terrania=Enchanting Terrania
 loading.journey.cloudia=Fluffing Cloudia
-loading.journey.senterian=Turn Back
+loading.journey.senterian=Entering The Labyrinth
+loading.journey.overworld=Returning To The Overworld
+loading.journey.nether=Descending Into The Nether
+loading.journey.end=Reaching The End
 
 advancement.journey.title=Journey Into the Light
 advancement.journey.desc=Successfully Installed Journey Into the Light

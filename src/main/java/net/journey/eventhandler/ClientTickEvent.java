@@ -1,7 +1,7 @@
 package net.journey.eventhandler;
 
 import net.journey.client.render.gui.JourneyMainMenu;
-import net.journey.client.render.gui.loading.GuiEucaLoading;
+import net.journey.client.render.gui.base.JLoadingScreen;
 import net.journey.init.items.JourneyArmory;
 import net.journey.util.Config;
 import net.minecraft.client.Minecraft;
@@ -34,10 +34,60 @@ public class ClientTickEvent {
 		}
 		if (event.getGui() instanceof GuiDownloadTerrain) {
 			Minecraft mc = Minecraft.getMinecraft();
-			GuiEucaLoading eucaLoading = new GuiEucaLoading();
+			JLoadingScreen loading = new JLoadingScreen("");
+			if (mc.player.dimension == Config.frozen) {
+				if (loading != null) {
+					event.setGui(new JLoadingScreen("frozen"));
+				}
+			}
+			if (mc.player.dimension == Config.boil) {
+				if (loading != null) {
+					event.setGui(new JLoadingScreen("boil"));
+				}
+			}
 			if (mc.player.dimension == Config.euca) {
-				if(eucaLoading !=null) {
-					event.setGui(eucaLoading);
+				if (loading != null) {
+					event.setGui(new JLoadingScreen("euca"));
+				}
+			}
+			if (mc.player.dimension == Config.depths) {
+				if (loading != null) {
+					event.setGui(new JLoadingScreen("depths"));
+				}
+			}
+			if (mc.player.dimension == Config.corba) {
+				if (loading != null) {
+					event.setGui(new JLoadingScreen("corba"));
+				}
+			}
+			if (mc.player.dimension == Config.terrania) {
+				if (loading != null) {
+					event.setGui(new JLoadingScreen("terrania"));
+				}
+			}
+			if (mc.player.dimension == Config.cloudia) {
+				if (loading != null) {
+					event.setGui(new JLoadingScreen("cloudia"));
+				}
+			}
+			if (mc.player.dimension == Config.senterian) {
+				if (loading != null) {
+					event.setGui(new JLoadingScreen("senterian"));
+				}
+			}
+			if (mc.player.dimension == 0) {
+				if (loading != null) {
+					event.setGui(new JLoadingScreen("overworld"));
+				}
+			}
+			if (mc.player.dimension == -1) {
+				if (loading != null) {
+					event.setGui(new JLoadingScreen("nether"));
+				}
+			}
+			if (mc.player.dimension == 1) {
+				if (loading != null) {
+					event.setGui(new JLoadingScreen("end"));
 				}
 			}
 		}
