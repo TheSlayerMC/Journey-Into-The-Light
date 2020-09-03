@@ -6,15 +6,17 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.resources.I18n;
 
 public class GuiButtonToggleMenu extends GuiButton {
 
 	public GuiButtonToggleMenu(int x, int y) {
-		super(137, x, y, 20, 20, "J");
+		super(137, x, y, 20, 20, "");
 	}
 
 	@Override
 	public void drawButton(Minecraft mc, int mouseX, int mouseY, float partialTicks) {
+		super.drawButton(mc, mouseX, mouseY, partialTicks);
 		if (this.visible) {
 			mc.getTextureManager().bindTexture(GuiJourneyButton.GOLD_BUTTON_TEXTURES);
 			GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
@@ -32,7 +34,7 @@ public class GuiButtonToggleMenu extends GuiButton {
 			this.drawTexturedModalRect(this.x, this.y, 0, i, this.width, this.height);
 
 			if (this.hovered) {
-				this.drawCenteredString(mc.fontRenderer, "journey.menu.theme", mouseX, mouseY, 16777215);
+				this.drawCenteredString(mc.fontRenderer, I18n.format("journey.menu.theme"), mouseX + 48, mouseY + 8, 16777215);
 			}
 		}
 	}
