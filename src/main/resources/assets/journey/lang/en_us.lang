@@ -197,7 +197,8 @@ fluid.journey.flairium.name=Molten Flairium
 fluid.journey.des.name=Molten Des
 fluid.journey.orbadite.name=Molten Orbadite
 
-journey.menu.theme=Change Menu Theme
+journey.menu.theme.mc=Use Default Menu Theme
+journey.menu.theme.jitl=Use JITL Menu Theme
 
 #MARK AUTO GEN START
 

@@ -34,7 +34,14 @@ public class GuiButtonToggleMenu extends GuiButton {
 			this.drawTexturedModalRect(this.x, this.y, 0, i, this.width, this.height);
 
 			if (this.hovered) {
-				this.drawCenteredString(mc.fontRenderer, I18n.format("journey.menu.theme"), mouseX + 48, mouseY + 8, 16777215);
+				BooleanManagedProperty propChangeMenu = Config.changeMainMenu;
+				Boolean changeMainMenu = propChangeMenu.get();
+				if (changeMainMenu) {
+					this.drawCenteredString(mc.fontRenderer, I18n.format("journey.menu.theme.mc"), mouseX + 48, mouseY + 8, 16777215);
+				}
+				if (!changeMainMenu) {
+					this.drawCenteredString(mc.fontRenderer, I18n.format("journey.menu.theme.jitl"), mouseX + 48, mouseY + 8, 16777215);
+				}
 			}
 		}
 	}
