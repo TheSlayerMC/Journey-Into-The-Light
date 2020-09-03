@@ -25,11 +25,13 @@ public class WorldGenAncientDungeon extends WorldGenerator {
 
 	public IBlockState getDungeonBricks() {
 		return RandHelper.chooseEqual(rand,
-				JourneyBlocks.ANCIENT_STONE.getDefaultState(),
-				JourneyBlocks.ANCIENT_RUNIC_STONE_0.getDefaultState(),
-				JourneyBlocks.ANCIENT_RUNIC_STONE_1.getDefaultState(),
-				JourneyBlocks.ANCIENT_RUNIC_STONE_2.getDefaultState(),
-				JourneyBlocks.ANCIENT_RUNIC_STONE_3.getDefaultState());
+				JourneyBlocks.ANCIENT_STONE,
+				JourneyBlocks.ANCIENT_RUNIC_STONE_0,
+				JourneyBlocks.ANCIENT_RUNIC_STONE_1,
+				JourneyBlocks.ANCIENT_RUNIC_STONE_2,
+				JourneyBlocks.ANCIENT_RUNIC_STONE_3)
+
+				.getDefaultState();
 	}
 
 	@Override

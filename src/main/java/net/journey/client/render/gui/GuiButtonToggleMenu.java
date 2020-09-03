@@ -36,12 +36,10 @@ public class GuiButtonToggleMenu extends GuiButton {
 
 			if (this.hovered) {
 				BooleanManagedProperty propChangeMenu = Config.changeMainMenu;
-				Boolean changeMainMenu = propChangeMenu.get();
-				if (changeMainMenu) {
-					this.renderTextOverlay(mc, mouseX, mouseY, "journey.menu.theme.mc");
-				} else {
-					this.renderTextOverlay(mc, mouseX, mouseY, "journey.menu.theme.jitl");
-				}
+				boolean changeMainMenu = propChangeMenu.get();
+
+				String textKey = changeMainMenu ? "journey.menu.theme.mc" : "journey.menu.theme.jitl";
+				renderTextOverlay(mc, mouseX, mouseY, textKey);
 			}
 		}
 	}
