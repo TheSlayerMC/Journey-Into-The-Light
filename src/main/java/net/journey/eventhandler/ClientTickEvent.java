@@ -100,7 +100,7 @@ public class ClientTickEvent {
 	@SubscribeEvent()
 	public void onGuiInit(GuiScreenEvent.InitGuiEvent.Post event) {
 		GuiButtonToggleMenu buttonToggleMenu = new GuiButtonToggleMenu(event.getGui().width - 20, event.getGui().height - 128);
-		if (event.getGui() instanceof GuiMainMenu || event.getGui() instanceof JourneyMainMenu) {
+		if (event.getGui() instanceof GuiMainMenu) {
 			event.getButtonList().add(buttonToggleMenu);
 		}
 	}
