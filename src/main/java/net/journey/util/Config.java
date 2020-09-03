@@ -3,6 +3,7 @@ package net.journey.util;
 import net.journey.dimension.nether.JNWorldGenerator;
 import net.journey.dimension.nether.biomes.BiomeRegister;
 import net.journey.dimension.nether.biomes.NetherBiome;
+import net.journey.util.ManagedProperty.BooleanManagedProperty;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
@@ -17,7 +18,7 @@ public class Config {
     public static boolean keepLoadingEuca, keepLoadingTerrania, keepLoadingDepths, keepLoadingBoil, keepLoadingFrozen, boilBlockSpawnSmoke;
     public static boolean keepLoadingCorba, keepLoadingWastelands, keepLoadingCloudia, keepLoadingSenterian, keepLoadingWither;
     public static boolean showManaBar;
-    public static boolean changeMainMenu;
+    public static BooleanManagedProperty changeMainMenu;
     public static boolean spawnSwordParticles, showEntityHealth;
     public static int eucaSilverBiome, eucaBiome;
     public static int euca, depths, boil, frozen, corba, wastelands, cloudia, terrania, senterian, wither;
@@ -112,7 +113,7 @@ public class Config {
         showEntityHealth = cfg.get("Entity", "Show the health bar above the entitys head?", true).getBoolean();
 
         showManaBar = cfg.get("Gui", "Show Mana Bar?", true).getBoolean();
-        changeMainMenu = cfg.get("Gui", "Enable custom title screen?", true).getBoolean();
+        changeMainMenu = new BooleanManagedProperty(cfg, cfg.get("Gui", "Enable custom title screen?", true));
 
         enableGlowshrooms = cfg.get("Generation", "Generate cave vines?", true).getBoolean();
         enableCaveVines = cfg.get("Generation", "Generate glowshrooms?", true).getBoolean();

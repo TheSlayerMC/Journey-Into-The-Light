@@ -27,12 +27,9 @@ public class ClientTickEvent {
 	@SubscribeEvent(priority = EventPriority.LOWEST)//TODO rewrite
 	public void openGui(GuiOpenEvent event) {
 
-		if (Config.changeMainMenu == true) {
+		if (Config.changeMainMenu.get()) {
 			if (event.getGui() instanceof GuiMainMenu) {
-				JourneyMainMenu customMainMenu = new JourneyMainMenu();
-				if (customMainMenu != null) {
-					event.setGui(customMainMenu);
-				}
+				event.setGui(new JourneyMainMenu());
 			}
 		}
 
