@@ -17,65 +17,71 @@ import java.util.Random;
 
 public class WorldGenAncientDungeon extends WorldGenerator {
 
-	private Random rand = new Random();
-    
+	private final Random rand = new Random();
+
 	public IBlockState floor = JourneyBlocks.ANCIENT_STONE.getDefaultState();
 	public IBlockState pillars = Blocks.MOSSY_COBBLESTONE.getDefaultState();
 	public IBlockState catalyst = JourneyBlocks.ANCIENT_STONE.getDefaultState();
-    
-    public IBlockState getDungeonBricks() {
-	    return RandHelper.chooseEqual(rand,
-			    JourneyBlocks.ANCIENT_STONE.getDefaultState(),
-			    JourneyBlocks.ANCIENT_RUNIC_STONE_0.getDefaultState(),
-			    JourneyBlocks.ANCIENT_RUNIC_STONE_1.getDefaultState(),
-			    JourneyBlocks.ANCIENT_RUNIC_STONE_2.getDefaultState(),
-			    JourneyBlocks.ANCIENT_RUNIC_STONE_3.getDefaultState());
-    }
 
-    @Override
-    public boolean generate(World worldIn, Random rand, BlockPos p) {
-        int i = p.getX(), j = p.getY() - 10, k = p.getZ();
-        int height = 2 + rand.nextInt(2);
-        int height1 = 3 + rand.nextInt(2);
-        int height2 = 4 + rand.nextInt(2);
-        for (int y = 0; y < height; y++) { this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 3,  y + j + 13, k + 5), pillars); }
-        for (int y = 0; y < height1; y++) { this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 5,  y + j + 13, k + 11), pillars); }
-        for (int y = 0; y < height2; y++) { this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 8,  y + j + 13, k + 4), pillars); }
-			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 0, j + 4, k + 6), Blocks.STONE.getDefaultState());
-			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 0, j + 4, k + 7), Blocks.STONE.getDefaultState());
-			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 0, j + 4, k + 8), Blocks.STONE.getDefaultState());
-			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 0, j + 5, k + 5), Blocks.STONE.getDefaultState());
-			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 0, j + 5, k + 6), Blocks.STONE.getDefaultState());
-			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 0, j + 5, k + 7), Blocks.STONE.getDefaultState());
-			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 0, j + 5, k + 8), Blocks.STONE.getDefaultState());
-			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 0, j + 5, k + 9), Blocks.STONE.getDefaultState());
-			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 0, j + 6, k + 5), Blocks.STONE.getDefaultState());
-			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 0, j + 6, k + 6), Blocks.STONE.getDefaultState());
-			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 0, j + 6, k + 7), Blocks.STONE.getDefaultState());
-			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 0, j + 6, k + 8), Blocks.STONE.getDefaultState());
-			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 0, j + 6, k + 9), Blocks.STONE.getDefaultState());
-			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 0, j + 7, k + 5), Blocks.STONE.getDefaultState());
-			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 0, j + 7, k + 6), Blocks.STONE.getDefaultState());
-			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 0, j + 7, k + 7), Blocks.STONE.getDefaultState());
-			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 0, j + 7, k + 8), Blocks.STONE.getDefaultState());
-			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 0, j + 7, k + 9), Blocks.STONE.getDefaultState());
-			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 0, j + 8, k + 6), Blocks.STONE.getDefaultState());
-			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 0, j + 8, k + 7), Blocks.STONE.getDefaultState());
-			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 0, j + 8, k + 8), Blocks.STONE.getDefaultState());
-			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 2, k + 6), Blocks.STONE.getDefaultState());
-			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 2, k + 7), Blocks.STONE.getDefaultState());
-			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 2, k + 8), Blocks.STONE.getDefaultState());
-			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 3, k + 5), Blocks.STONE.getDefaultState());
-			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 3, k + 6), Blocks.STONE.getDefaultState());
-			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 3, k + 7), Blocks.STONE.getDefaultState());
-			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 3, k + 8), Blocks.STONE.getDefaultState());
-			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 3, k + 9), Blocks.STONE.getDefaultState());
-			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 4, k + 4), Blocks.STONE.getDefaultState());
-			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 4, k + 5), Blocks.STONE.getDefaultState());
-			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 4, k + 6), Blocks.STONE.getDefaultState());
-			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 4, k + 7), Blocks.STONE.getDefaultState());
-			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 4, k + 8), Blocks.STONE.getDefaultState());
-			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 4, k + 9), Blocks.STONE.getDefaultState());
+	public IBlockState getDungeonBricks() {
+		return RandHelper.chooseEqual(rand,
+				JourneyBlocks.ANCIENT_STONE.getDefaultState(),
+				JourneyBlocks.ANCIENT_RUNIC_STONE_0.getDefaultState(),
+				JourneyBlocks.ANCIENT_RUNIC_STONE_1.getDefaultState(),
+				JourneyBlocks.ANCIENT_RUNIC_STONE_2.getDefaultState(),
+				JourneyBlocks.ANCIENT_RUNIC_STONE_3.getDefaultState());
+	}
+
+	@Override
+	public boolean generate(World worldIn, Random rand, BlockPos p) {
+		int i = p.getX(), j = p.getY() - 11, k = p.getZ();
+		int height = 2 + rand.nextInt(2);
+		int height1 = 3 + rand.nextInt(2);
+		int height2 = 4 + rand.nextInt(2);
+		for (int y = 0; y < height; y++) {
+			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 3, y + j + 13, k + 5), pillars);
+		}
+		for (int y = 0; y < height1; y++) {
+			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 5, y + j + 13, k + 11), pillars);
+		}
+		for (int y = 0; y < height2; y++) {
+			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 8, y + j + 13, k + 4), pillars);
+		}
+		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 0, j + 4, k + 6), Blocks.STONE.getDefaultState());
+		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 0, j + 4, k + 7), Blocks.STONE.getDefaultState());
+		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 0, j + 4, k + 8), Blocks.STONE.getDefaultState());
+		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 0, j + 5, k + 5), Blocks.STONE.getDefaultState());
+		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 0, j + 5, k + 6), Blocks.STONE.getDefaultState());
+		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 0, j + 5, k + 7), Blocks.STONE.getDefaultState());
+		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 0, j + 5, k + 8), Blocks.STONE.getDefaultState());
+		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 0, j + 5, k + 9), Blocks.STONE.getDefaultState());
+		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 0, j + 6, k + 5), Blocks.STONE.getDefaultState());
+		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 0, j + 6, k + 6), Blocks.STONE.getDefaultState());
+		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 0, j + 6, k + 7), Blocks.STONE.getDefaultState());
+		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 0, j + 6, k + 8), Blocks.STONE.getDefaultState());
+		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 0, j + 6, k + 9), Blocks.STONE.getDefaultState());
+		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 0, j + 7, k + 5), Blocks.STONE.getDefaultState());
+		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 0, j + 7, k + 6), Blocks.STONE.getDefaultState());
+		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 0, j + 7, k + 7), Blocks.STONE.getDefaultState());
+		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 0, j + 7, k + 8), Blocks.STONE.getDefaultState());
+		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 0, j + 7, k + 9), Blocks.STONE.getDefaultState());
+		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 0, j + 8, k + 6), Blocks.STONE.getDefaultState());
+		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 0, j + 8, k + 7), Blocks.STONE.getDefaultState());
+		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 0, j + 8, k + 8), Blocks.STONE.getDefaultState());
+		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 2, k + 6), Blocks.STONE.getDefaultState());
+		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 2, k + 7), Blocks.STONE.getDefaultState());
+		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 2, k + 8), Blocks.STONE.getDefaultState());
+		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 3, k + 5), Blocks.STONE.getDefaultState());
+		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 3, k + 6), Blocks.STONE.getDefaultState());
+		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 3, k + 7), Blocks.STONE.getDefaultState());
+		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 3, k + 8), Blocks.STONE.getDefaultState());
+		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 3, k + 9), Blocks.STONE.getDefaultState());
+		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 4, k + 4), Blocks.STONE.getDefaultState());
+		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 4, k + 5), Blocks.STONE.getDefaultState());
+		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 4, k + 6), Blocks.STONE.getDefaultState());
+		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 4, k + 7), Blocks.STONE.getDefaultState());
+		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 4, k + 8), Blocks.STONE.getDefaultState());
+		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 4, k + 9), Blocks.STONE.getDefaultState());
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 4, k + 10), Blocks.STONE.getDefaultState());
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 5, k + 3), Blocks.STONE.getDefaultState());
 			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 1, j + 5, k + 4), Blocks.STONE.getDefaultState());

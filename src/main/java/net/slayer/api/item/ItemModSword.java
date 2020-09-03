@@ -32,7 +32,7 @@ import java.util.Random;
 public class ItemModSword extends ItemSword {
 
 	protected JourneyToolMaterial mat;
-	private EnumSwordType type;
+	private final EnumSwordType type;
 	private float health;
 
 	public ItemModSword(String name, String f, EnumSwordType type, JourneyToolMaterial toolMaterial, float heart) {
@@ -64,7 +64,6 @@ public class ItemModSword extends ItemSword {
 
 	@Override
 	public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase player) {
-		Random r = new Random();
 		float hearts = player.getHealth();
 		if(type != null) {
 			switch(type) {
@@ -78,63 +77,60 @@ public class ItemModSword extends ItemSword {
 			case FIRE:
 				target.setFire(10);
 				break;
-			case FIRE_HEALTH:
-				target.setFire(10);
-				if ((hearts >= 1F) & (hearts < 20F)) {
-					player.setHealth(hearts + this.health);
-				}
-				else if(r.nextInt(4) == 0) {
-					player.setHealth(hearts - 10);
-				}
-				player.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.moveSlow, 100, 2)));
-				break;
-			case FIRE_WITHER: 
-				target.setFire(10);
-				target.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.wither, 100, 20)));
-				break;
-			case HEALTH:
-				if (hearts >= 1F) {
-					player.setHealth(hearts + health);
-				}
-				else if(r.nextInt(2) == 0) {
+				case FIRE_HEALTH:
+					target.setFire(10);
+					if ((hearts >= 1F) & (hearts < 20F)) {
+						player.setHealth(hearts + this.health);
+					} else if (itemRand.nextInt(4) == 0) {
+						player.setHealth(hearts - 10);
+					}
 					player.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.moveSlow, 100, 2)));
-					player.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.blindness, 100, 2)));
-				}
-				else if(r.nextInt(4) == 0) {
-					player.setHealth(hearts - 4);
-				}
-				break;
-			case NIGHTVISION_HEALTH:
-				player.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.nightVision, 1000, 20)));
-				player.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.regeneration, 10, 200)));
-				break;
-			case POISON_HEALTH:
-				target.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.poison, 100, 2)));
-				if(hearts >= 1F) {
-					player.setHealth(hearts + this.health);
-				}
-				else if(r.nextInt(2) == 0) {
-					player.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.poison, 100, 2)));
-				}
-				break;
-			case REGEN:
-				player.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.regeneration, 100, 1)));
-				break;
-			case STUN:
-				target.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.wither, 70, 1)));
-				target.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.harm, 50, 1)));
-				break;
-			case STUN_WITHER:
-				target.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.moveSlow, 1000, 200)));
-				target.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.wither, 100, 2)));
-				break;
-			case WITHER:
-				target.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.wither, 100, 5)));
-				break;
-			case NIGHTVISION:
-				player.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.nightVision, 10, 2)));
-				break;
-			default: break;
+					break;
+				case FIRE_WITHER:
+					target.setFire(10);
+					target.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.wither, 100, 20)));
+					break;
+				case HEALTH:
+					if (hearts >= 1F) {
+						player.setHealth(hearts + health);
+					} else if (itemRand.nextInt(2) == 0) {
+						player.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.moveSlow, 100, 2)));
+						player.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.blindness, 100, 2)));
+					} else if (itemRand.nextInt(4) == 0) {
+						player.setHealth(hearts - 4);
+					}
+					break;
+				case NIGHTVISION_HEALTH:
+					player.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.nightVision, 1000, 20)));
+					player.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.regeneration, 10, 200)));
+					break;
+				case POISON_HEALTH:
+					target.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.poison, 100, 2)));
+					if (hearts >= 1F) {
+						player.setHealth(hearts + this.health);
+					} else if (itemRand.nextInt(2) == 0) {
+						player.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.poison, 100, 2)));
+					}
+					break;
+				case REGEN:
+					player.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.regeneration, 100, 1)));
+					break;
+				case STUN:
+					target.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.wither, 70, 1)));
+					target.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.harm, 50, 1)));
+					break;
+				case STUN_WITHER:
+					target.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.moveSlow, 1000, 200)));
+					target.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.wither, 100, 2)));
+					break;
+				case WITHER:
+					target.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.wither, 100, 5)));
+					break;
+				case NIGHTVISION:
+					player.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.nightVision, 10, 2)));
+					break;
+				default:
+					break;
 			}
 			addParticles(target);
 		}

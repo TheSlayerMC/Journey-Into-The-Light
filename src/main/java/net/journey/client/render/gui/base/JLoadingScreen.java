@@ -9,6 +9,7 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.TextFormatting;
 import net.slayer.api.SlayerAPI;
 import org.lwjgl.util.glu.Project;
 
@@ -200,7 +201,7 @@ public class JLoadingScreen extends GuiScreen {
 		this.drawGradientRect(0, 0, this.width, this.height, -2130706433, 16777215);
 		this.drawGradientRect(0, 0, this.width, this.height, 0, Integer.MIN_VALUE);
 		//this.drawBackground(0);
-		this.drawCenteredString(this.fontRenderer, I18n.format("loading.journey." + this.dimension), this.width / 2, this.height / 2, 16777215);
+		this.drawCenteredString(this.fontRenderer, TextFormatting.BOLD + I18n.format("loading.journey." + this.dimension), this.width / 2, this.height / 2, 16777215);
 		super.drawScreen(mouseX, mouseY, partialTicks);
 	}
 

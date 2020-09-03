@@ -387,14 +387,14 @@ public class ChunkGeneratorBoiling implements IChunkGenerator {
         }
 
         if (worldObj.getBiome(chunkStart) == DimensionHelper.BOILING_SANDS_BIOME) {
-            if (rand.nextInt(6) == 0) {
-                generateStructure(x1, z1, r, bigDungeon);
+            if (rand.nextInt(9) == 0) {
+                generateStructure(x1, z1, r, bigDungeon, JourneyBlocks.volcanicSand);
             }
         }
 
         if (worldObj.getBiome(chunkStart) == DimensionHelper.BOILING_SANDS_BIOME) {
-            if (rand.nextInt(3) == 0) {
-                generateStructure(x1, z1, r, smallDungeon);
+            if (rand.nextInt(5) == 0) {
+                generateStructure(x1, z1, r, smallDungeon, JourneyBlocks.volcanicSand);
             }
         }
 
@@ -426,16 +426,22 @@ public class ChunkGeneratorBoiling implements IChunkGenerator {
             }
         }
 
-        for (times = 0; times < 30; times++) {
-            generateStructure(x1, z1, r, boilLamp);
+        if (worldObj.getBiome(chunkStart) == DimensionHelper.CHARRED_FIELDS_BIOME) {
+            for (times = 0; times < 30; times++) {
+                generateStructure(x1, z1, r, boilLamp, JourneyBlocks.charredGrass);
+            }
         }
 
-        if (rand.nextInt(7) == 0) {
-            generateStructure(x1, z1, r, brison);
+        if (worldObj.getBiome(chunkStart) == DimensionHelper.BOILING_BIOME) {
+            if (rand.nextInt(7) == 0) {
+                generateStructure(x1, z1, r, brison, JourneyBlocks.hotBlock);
+            }
         }
 
-        if (rand.nextInt(3) == 0) {
-            generateStructure(x1, z1, r, hut);
+        if (worldObj.getBiome(chunkStart) == DimensionHelper.BOILING_BIOME) {
+            if (rand.nextInt(3) == 0) {
+                generateStructure(x1, z1, r, hut, JourneyBlocks.hotBlock);
+            }
         }
 
         if (worldObj.getBiome(chunkStart) == DimensionHelper.CHARRED_FIELDS_BIOME) {
@@ -456,9 +462,9 @@ public class ChunkGeneratorBoiling implements IChunkGenerator {
         }
     }
 
-    private void generateStructure(int x1, int z1, Random r, WorldGenerator tower) {
+    private void generateStructure(int x1, int z1, Random r, WorldGenerator tower, Block surfaceBlock) {
         BlockPos pos = WorldGenAPI.createRandom(x1, 128, z1, r).up();
-        if (isBlockTop(pos.getX(), pos.getY() - 1, pos.getZ(), JourneyBlocks.hotBlock)) {
+        if (isBlockTop(pos.getX(), pos.getY() - 1, pos.getZ(), surfaceBlock)) {
             tower.generate(worldObj, rand, pos);
         }
     }

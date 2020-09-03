@@ -7,6 +7,7 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.util.text.TextFormatting;
 
 public class GuiButtonToggleMenu extends GuiButton {
 
@@ -37,13 +38,16 @@ public class GuiButtonToggleMenu extends GuiButton {
 				BooleanManagedProperty propChangeMenu = Config.changeMainMenu;
 				Boolean changeMainMenu = propChangeMenu.get();
 				if (changeMainMenu) {
-					this.drawCenteredString(mc.fontRenderer, I18n.format("journey.menu.theme.mc"), mouseX + 48, mouseY + 8, 16777215);
-				}
-				if (!changeMainMenu) {
-					this.drawCenteredString(mc.fontRenderer, I18n.format("journey.menu.theme.jitl"), mouseX + 48, mouseY + 8, 16777215);
+					this.renderTextOverlay(mc, mouseX, mouseY, "journey.menu.theme.mc");
+				} else {
+					this.renderTextOverlay(mc, mouseX, mouseY, "journey.menu.theme.jitl");
 				}
 			}
 		}
+	}
+
+	private void renderTextOverlay(Minecraft mc, int mouseX, int mouseY, String theme) {
+		this.drawCenteredString(mc.fontRenderer, TextFormatting.BOLD + I18n.format(theme), mouseX + 64, mouseY + 8, 16777215);
 	}
 
 	@Override

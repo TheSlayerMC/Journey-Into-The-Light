@@ -12,19 +12,19 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
-public class GUIPlayerStats extends GuiContainer {
+public class GuiPlayerStats extends GuiContainer {
 
 	private final ResourceLocation knowledge_sprite = new ResourceLocation(JITL.MOD_ID, "textures/gui/knowledge/knowledge_sprites.png");
 	private final ResourceLocation background = new ResourceLocation(JITL.MOD_ID, "textures/gui/stats.png");
 
-	private GUIPlayerStats.PageButton nextButton;
-	private GUIPlayerStats.PageButton previousButton;
+	private GuiPlayerStats.PageButton nextButton;
+	private GuiPlayerStats.PageButton previousButton;
 	private PlayerStats stats;
 
 	private int pageNumber = 0;
 	private final int coinAmount = 0;
 
-	public GUIPlayerStats() {
+	public GuiPlayerStats() {
 		super(new ContainerEmpty());
 		this.xSize = 242;
 		this.ySize = 204;
@@ -36,8 +36,8 @@ public class GUIPlayerStats extends GuiContainer {
 		this.stats = JCapabilityManager.asJourneyPlayer(mc.player).getPlayerStats();
 		int w = (this.width - this.xSize) / 2;
 		int h = (this.height - this.ySize) / 2;
-		this.buttonList.add(this.nextButton = new GUIPlayerStats.PageButton(1, w + 134, h + 180, true));
-		this.buttonList.add(this.previousButton = new GUIPlayerStats.PageButton(2, w + 100, h + 180, false));
+		this.buttonList.add(this.nextButton = new GuiPlayerStats.PageButton(1, w + 134, h + 180, true));
+		this.buttonList.add(this.previousButton = new GuiPlayerStats.PageButton(2, w + 100, h + 180, false));
 		this.nextButton.enabled = false;
 		this.previousButton.enabled = false;
 	}
