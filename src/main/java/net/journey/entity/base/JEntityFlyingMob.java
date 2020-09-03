@@ -8,6 +8,8 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jetbrains.annotations.Nullable;
 
 public abstract class JEntityFlyingMob extends EntityFlying implements IJERCompatible {
@@ -25,6 +27,20 @@ public abstract class JEntityFlyingMob extends EntityFlying implements IJERCompa
         EntityAttributesHelper.setMovementSpeed(this, MobStats.STANDARD_MOVEMENT_SPEED);
         EntityAttributesHelper.setKnockbackResistance(this, MobStats.STANDARD_KNOCKBACK_RESISTANCE);
         EntityAttributesHelper.setMaxHealth(this, getEntityMaxHealth());
+    }
+
+    @Override
+    public void onLivingUpdate() {
+        super.onLivingUpdate();
+
+        if (!isServerWorld()) {
+            onClientUpdate();
+        }
+    }
+
+    @SideOnly(Side.CLIENT)
+    protected void onClientUpdate() {
+
     }
 
     /**

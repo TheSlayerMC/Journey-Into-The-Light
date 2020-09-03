@@ -17,6 +17,8 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Random;
 
@@ -64,10 +66,12 @@ public class EntityTerralight extends JEntityFlyingMob {
     public SoundEvent getDeathSound() {
         return JourneySounds.EMPTY;
     }
-    
+
     @Override
-    public void onLivingUpdate() {
-        super.onLivingUpdate();
+    @SideOnly(Side.CLIENT)
+    protected void onClientUpdate() {
+        super.onClientUpdate();
+
         double d1 = this.posX;
         double d2 = this.posY;
         double d3 = this.posZ;
