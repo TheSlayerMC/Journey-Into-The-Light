@@ -386,6 +386,18 @@ public class ChunkGeneratorBoiling implements IChunkGenerator {
             infernoPlant.generate(worldObj, r, chunkStart);
         }
 
+        if (worldObj.getBiome(chunkStart) == DimensionHelper.BOILING_SANDS_BIOME) {
+            if (rand.nextInt(6) == 0) {
+                generateStructure(x1, z1, r, bigDungeon);
+            }
+        }
+
+        if (worldObj.getBiome(chunkStart) == DimensionHelper.BOILING_SANDS_BIOME) {
+            if (rand.nextInt(3) == 0) {
+                generateStructure(x1, z1, r, smallDungeon);
+            }
+        }
+
         for (i = 0; i < 50; i++) {
             Block flowers = RandHelper.chooseEqual(rand, JourneyBlocks.crumblingPlant, JourneyBlocks.lavaBloom, JourneyBlocks.crispGrass);
             new WorldGenDesertFlower(flowers, JourneyBlocks.volcanicSand).generate(worldObj, rand, chunkStart);
@@ -426,14 +438,6 @@ public class ChunkGeneratorBoiling implements IChunkGenerator {
             generateStructure(x1, z1, r, hut);
         }
 
-        if (rand.nextInt(5) == 0) {
-            generateStructure(x1, z1, r, smallDungeon);
-        }
-
-        if (rand.nextInt(9) == 0) {
-            generateStructure(x1, z1, r, bigDungeon);
-        }
-
         if (worldObj.getBiome(chunkStart) == DimensionHelper.CHARRED_FIELDS_BIOME) {
             for (times = 0; times < 400; times++) {
                 BlockPos pos = WorldGenAPI.createRandom(x1, 128, z1, r).up();
@@ -443,9 +447,9 @@ public class ChunkGeneratorBoiling implements IChunkGenerator {
             }
         }
 
-        if (r.nextInt(4) == 0) {
+        /*if (r.nextInt(4) == 0) {
             boilLava.generate(worldObj, rand, chunkStart.add(r.nextInt(16), r.nextInt(worldObj.getHeight()), r.nextInt(16)));
-        }
+        }*/
 
         for (i = 0; i < 50; i++) {
             fire.generate(worldObj, rand, WorldGenAPI.createRandom(x1, 1, worldObj.getHeight(), z1, r, 8));

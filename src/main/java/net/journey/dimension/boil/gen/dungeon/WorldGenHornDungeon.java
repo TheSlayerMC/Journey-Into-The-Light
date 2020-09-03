@@ -12,22 +12,16 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.slayer.api.worldgen.WorldGenAPI;
 
 import java.util.Random;
 
 public class WorldGenHornDungeon extends WorldGenerator {
-
-	public boolean locationIsValidSpawn(World w, int x, int y, int z) {
-		return WorldGenAPI.checkRadius(w, new BlockPos(x, y, z), 11, JourneyBlocks.volcanicSand);
-	}
 
 	private final Block stairs = RandHelper.chooseEqual(new Random(), JourneyBlocks.boilBricks, JourneyBlocks.boilSquareBrick);
 
 	@Override
 	public boolean generate(World worldIn, Random r, BlockPos pos) {
 		int i = pos.getX(), j = pos.getY(), k = pos.getZ();
-		if (locationIsValidSpawn(worldIn, i, j, k)) return true;
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 0, j + 17, k + 1), JourneyBlocks.boilShingle.getDefaultState());
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 0, j + 17, k + 2), Blocks.AIR.getDefaultState());
 		this.setBlockAndNotifyAdequately(worldIn, new BlockPos(i + 0, j + 17, k + 3), Blocks.AIR.getDefaultState());
