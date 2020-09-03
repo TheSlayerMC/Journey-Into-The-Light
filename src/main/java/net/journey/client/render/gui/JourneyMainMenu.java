@@ -43,7 +43,7 @@ import java.util.List;
 import java.util.Random;
 
 @SideOnly(Side.CLIENT)
-public class JourneyMainMenu extends GuiScreen {
+public class JourneyMainMenu extends GuiMainMenu {
     public static final String MORE_INFO_TEXT = "Please click " + TextFormatting.UNDERLINE + "here"
             + TextFormatting.RESET + " for more information.";
     private static final Logger LOGGER = LogManager.getLogger();
@@ -167,6 +167,7 @@ public class JourneyMainMenu extends GuiScreen {
     protected void keyTyped(char typedChar, int keyCode) throws IOException {
     }
 
+    @Override
     public void initGui() {
         this.viewportTexture = new DynamicTexture(256, 256);
         this.backgroundTexture = this.mc.getTextureManager().getDynamicTextureLocation("background",
@@ -243,6 +244,7 @@ public class JourneyMainMenu extends GuiScreen {
         }
     }
 
+    @Override
     protected void actionPerformed(GuiButton button) throws IOException {
         if (button.id == 0) {
             this.mc.displayGuiScreen(new GuiOptions(this, this.mc.gameSettings));
@@ -293,6 +295,7 @@ public class JourneyMainMenu extends GuiScreen {
         realmsbridge.switchToRealms(this);
     }
 
+    @Override
     public void confirmClicked(boolean result, int id) {
         if (result && id == 12) {
             ISaveFormat isaveformat = this.mc.getSaveLoader();
@@ -465,6 +468,7 @@ public class JourneyMainMenu extends GuiScreen {
         tessellator.draw();
     }
 
+    @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         this.panoramaTimer += partialTicks;
         GlStateManager.disableAlpha();
@@ -536,13 +540,21 @@ public class JourneyMainMenu extends GuiScreen {
                     (this.buttonList.get(0)).y - 12, -1);
         }
 
-        super.drawScreen(mouseX, mouseY, partialTicks);
+        int buttonSize;
+        for (buttonSize = 0; buttonSize < this.buttonList.size(); ++buttonSize) {
+            (this.buttonList.get(buttonSize)).drawButton(this.mc, mouseX, mouseY, partialTicks);
+        }
+
+        for (buttonSize = 0; buttonSize < this.labelList.size(); ++buttonSize) {
+            (this.labelList.get(buttonSize)).drawLabel(this.mc, mouseX, mouseY);
+        }
 
         if (this.areRealmsNotificationsEnabled()) {
             this.realmsNotification.drawScreen(mouseX, mouseY, partialTicks);
         }
     }
 
+    @Override
     protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException {
         super.mouseClicked(mouseX, mouseY, mouseButton);
 
@@ -562,6 +574,7 @@ public class JourneyMainMenu extends GuiScreen {
         }
     }
 
+    @Override
     public void onGuiClosed() {
         if (this.realmsNotification != null) {
             this.realmsNotification.onGuiClosed();
