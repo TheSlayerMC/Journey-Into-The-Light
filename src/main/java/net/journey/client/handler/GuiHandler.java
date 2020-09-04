@@ -6,13 +6,13 @@ import net.journey.blocks.tileentity.container.ContainerIncubator;
 import net.journey.blocks.tileentity.container.ContainerSummoningTable;
 import net.journey.client.render.gui.GuiIncubator;
 import net.journey.client.render.gui.GuiSummoningTable;
+import net.journey.client.render.gui.base.MerchantGuis;
 import net.minecraft.entity.IMerchant;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
-import net.slayer.api.client.gui.MerchantGuis;
 import net.slayer.api.entity.tileentity.container.JContainerMerchant;
 import ru.timeconqueror.timecore.api.util.Wrapper;
 

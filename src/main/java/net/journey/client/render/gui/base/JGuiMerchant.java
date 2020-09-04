@@ -1,7 +1,6 @@
-package net.slayer.api.client.gui;
+package net.journey.client.render.gui.base;
 
 import io.netty.buffer.Unpooled;
-import net.journey.client.render.gui.base.JGuiContainer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;

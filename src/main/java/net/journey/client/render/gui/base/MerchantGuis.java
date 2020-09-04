@@ -1,4 +1,4 @@
-package net.slayer.api.client.gui;
+package net.journey.client.render.gui.base;
 
 import net.journey.JITL;
 import net.journey.entity.mob.boiling.npc.EntityBoilTrader;
@@ -27,7 +27,7 @@ import ru.timeconqueror.timecore.api.util.Wrapper;
 import java.awt.*;
 import java.util.Optional;
 
-import static net.slayer.api.client.gui.MerchantGuis.GuiFactory.defaultFactory;
+import static net.journey.client.render.gui.base.MerchantGuis.GuiFactory.defaultFactory;
 
 public enum MerchantGuis {
 	ESCAPED(EntityEscapedConvict.class, "escapedConvict", defaultFactory(Color.WHITE)),
