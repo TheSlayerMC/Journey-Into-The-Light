@@ -1,14 +1,13 @@
 package net.journey.blocks.containers;
 
 import net.journey.JITL;
-import net.journey.api.block.CustomItemModelProvider;
-import net.journey.api.block.IHasTeisr;
+import net.journey.api.block.FeatureProvider;
 import net.journey.blocks.tileentity.TileEntityObelisk;
+import net.journey.blocks.util.Feature;
 import net.journey.client.render.block.ObeliskRenderer;
 import net.journey.init.JourneySounds;
 import net.journey.init.JourneyTabs;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -21,19 +20,18 @@ import net.slayer.api.entity.tileentity.container.BlockModContainer;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
-import java.util.function.Supplier;
 
-public class BlockObelisk extends BlockModContainer implements IHasTeisr, CustomItemModelProvider {
+public class BlockObelisk extends BlockModContainer implements FeatureProvider {
 
-    private final AxisAlignedBB size = new AxisAlignedBB(0.0F, 0.3F, 0.0F, 1.0F, 2.8F, 1.0F);
+	private final AxisAlignedBB size = new AxisAlignedBB(0.0F, 0.3F, 0.0F, 1.0F, 2.8F, 1.0F);
 
-    public BlockObelisk(String name, String finalName) {
-        super(name, finalName);
-        setCreativeTab(JourneyTabs.INTERACTIVE_BLOCKS);
-    }
+	public BlockObelisk(String name, String finalName) {
+		super(name, finalName);
+		setCreativeTab(JourneyTabs.INTERACTIVE_BLOCKS);
+	}
 
-    @Override
-    @SideOnly(Side.CLIENT)
+	@Override
+	@SideOnly(Side.CLIENT)
     public void randomDisplayTick(IBlockState stateIn, World w, BlockPos pos, Random random) {
         if (random.nextInt(10) == 0)
             w.playSound((double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, JourneySounds.OBELISK_IDLE, SoundCategory.BLOCKS, 0.5F, rand.nextFloat() * 0.4F + 0.8F, false);
@@ -79,15 +77,11 @@ public class BlockObelisk extends BlockModContainer implements IHasTeisr, Custom
         return size;
     }
 
-	@NotNull
 	@Override
-	public Supplier<TileEntityItemStackRenderer> createTeisr() {
-		return ObeliskRenderer.ObeliskTEISR::new;
-	}
-
-	@NotNull
-	@Override
-	public ResourceLocation getItemModelResourceLocation() {
-		return new ResourceLocation(JITL.MOD_ID, "block/boss_crystal");
+	public @NotNull Feature getExtraFeatures() {
+		return Feature.Builder.create()
+				.setCustomItemModelLocation(new ResourceLocation(JITL.MOD_ID, "block/boss_crystal"))
+				.regTEISR(ObeliskRenderer.ObeliskTEISR::new)
+				.build();
 	}
 }

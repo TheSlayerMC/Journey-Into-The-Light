@@ -1,9 +1,10 @@
 package net.journey.items.ranged;
 
 import net.journey.JITL;
-import net.journey.api.block.CustomItemModelProvider;
+import net.journey.api.block.FeatureProvider;
 import net.journey.api.capability.EssenceStorage;
 import net.journey.api.item.IUsesEssence;
+import net.journey.blocks.util.Feature;
 import net.journey.common.capability.JCapabilityManager;
 import net.journey.entity.projectile.EntityDamagingProjectile;
 import net.journey.init.JourneySounds;
@@ -29,7 +30,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class ItemHammer extends ItemSword implements IUsesEssence, CustomItemModelProvider {
+public class ItemHammer extends ItemSword implements IUsesEssence, FeatureProvider {
 
 	protected final int usage;
 	protected int damage;
@@ -98,7 +99,9 @@ public class ItemHammer extends ItemSword implements IUsesEssence, CustomItemMod
 	}
 
 	@Override
-	public @NotNull ResourceLocation getItemModelResourceLocation() {
-		return new ResourceLocation(JITL.MOD_ID, "hammer/" + getRegistryName().getPath());
+	public @NotNull Feature getExtraFeatures() {
+		return Feature.Builder.create()
+				.setCustomItemModelLocation(new ResourceLocation(JITL.MOD_ID, "hammer/" + getRegistryName().getPath()))
+				.build();
 	}
 }

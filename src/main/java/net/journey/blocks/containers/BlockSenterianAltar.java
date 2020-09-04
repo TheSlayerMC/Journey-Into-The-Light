@@ -1,14 +1,13 @@
 package net.journey.blocks.containers;
 
 import net.journey.JITL;
-import net.journey.api.block.CustomItemModelProvider;
-import net.journey.api.block.IHasTeisr;
+import net.journey.api.block.FeatureProvider;
 import net.journey.blocks.tileentity.TileEntitySenterianAltar;
+import net.journey.blocks.util.Feature;
 import net.journey.client.render.block.SenterianAltarRenderer;
 import net.journey.init.JourneyTabs;
 import net.journey.init.items.JourneyItems;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
@@ -23,9 +22,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.entity.tileentity.container.BlockModContainer;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.function.Supplier;
-
-public class BlockSenterianAltar extends BlockModContainer implements IHasTeisr, CustomItemModelProvider {
+public class BlockSenterianAltar extends BlockModContainer implements FeatureProvider {
 
 	private final AxisAlignedBB size = new AxisAlignedBB(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 
@@ -97,12 +94,10 @@ public class BlockSenterianAltar extends BlockModContainer implements IHasTeisr,
 	}
 
 	@Override
-	public @NotNull ResourceLocation getItemModelResourceLocation() {
-		return new ResourceLocation(JITL.MOD_ID, "block/boss_crystal");
-	}
-
-	@Override
-	public @NotNull Supplier<TileEntityItemStackRenderer> createTeisr() {
-		return SenterianAltarRenderer.SenterianAltarTEISR::new;
+	public @NotNull Feature getExtraFeatures() {
+		return Feature.Builder.create()
+				.setCustomItemModelLocation(new ResourceLocation(JITL.MOD_ID, "block/senterian_altar"))
+				.regTEISR(SenterianAltarRenderer.SenterianAltarTEISR::new)
+				.build();
 	}
 }

@@ -1,7 +1,8 @@
 package net.journey.blocks.base;
 
 import net.journey.JITL;
-import net.journey.api.block.CustomItemModelProvider;
+import net.journey.api.block.FeatureProvider;
+import net.journey.blocks.util.Feature;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
@@ -20,7 +21,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
-public class BlockModSapling extends BlockModFlower implements IGrowable, CustomItemModelProvider {
+public class BlockModSapling extends BlockModFlower implements IGrowable, FeatureProvider {
 
     public static final PropertyInteger STAGE = PropertyInteger.create("stage", 0, 1);
     protected static final AxisAlignedBB SAPLING_AABB = new AxisAlignedBB(0.09999999403953552D, 0.0D, 0.09999999403953552D, 0.8999999761581421D, 0.800000011920929D, 0.8999999761581421D);
@@ -94,9 +95,10 @@ public class BlockModSapling extends BlockModFlower implements IGrowable, Custom
         }
     }
 
-    @NotNull
     @Override
-    public ResourceLocation getItemModelResourceLocation() {
-	    return new ResourceLocation(JITL.MOD_ID, "block/sapling/" + getRegistryName().getPath());
+    public @NotNull Feature getExtraFeatures() {
+        return Feature.Builder.create()
+                .setCustomItemModelLocation(new ResourceLocation(JITL.MOD_ID, "block/sapling/" + getRegistryName().getPath()))
+                .build();
     }
 }

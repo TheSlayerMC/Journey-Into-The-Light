@@ -1,7 +1,8 @@
 package net.journey.blocks.base;
 
 import net.journey.JITL;
-import net.journey.api.block.CustomItemModelProvider;
+import net.journey.api.block.FeatureProvider;
+import net.journey.blocks.util.Feature;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -43,7 +44,7 @@ import java.util.Random;
  * The item model for it should be placed to "models/item/block/plant/" by default.
  */
 @SuppressWarnings("JavadocReference")
-public class JBlockFlower extends JBlockPlant implements CustomItemModelProvider {
+public class JBlockFlower extends JBlockPlant implements FeatureProvider {
 	/**
 	 * If true, flower will have small model and bounding box offset as vanilla flowers have.
 	 */
@@ -99,7 +100,10 @@ public class JBlockFlower extends JBlockPlant implements CustomItemModelProvider
 	}
 
 	@Override
-	public @NotNull ResourceLocation getItemModelResourceLocation() {
-		return new ResourceLocation(JITL.MOD_ID, "block/plant/" + getRegistryName().getPath());
+	public @NotNull Feature getExtraFeatures() {
+		return Feature.Builder.create()
+				.setCustomItemModelLocation(new ResourceLocation(JITL.MOD_ID, "block/plant/" + getRegistryName().getPath()))
+				.build();
 	}
+
 }

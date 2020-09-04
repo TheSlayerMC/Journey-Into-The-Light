@@ -1,7 +1,8 @@
 package net.journey.blocks.base;
 
 import net.journey.JITL;
-import net.journey.api.block.CustomItemModelProvider;
+import net.journey.api.block.FeatureProvider;
+import net.journey.blocks.util.Feature;
 import net.journey.init.JourneyTabs;
 import net.journey.util.StuffConstructor;
 import net.minecraft.block.BlockLog;
@@ -17,7 +18,7 @@ import org.jetbrains.annotations.NotNull;
  * Base class for log blocks.
  * The item model for it should be placed to "models/item/block/log/" by default.
  */
-public class JBlockLog extends BlockLog implements CustomItemModelProvider {
+public class JBlockLog extends BlockLog implements FeatureProvider {
 
     public JBlockLog(String name, String enName) {
         super();
@@ -82,9 +83,10 @@ public class JBlockLog extends BlockLog implements CustomItemModelProvider {
         }
     }
 
-    @NotNull
     @Override
-    public ResourceLocation getItemModelResourceLocation() {
-	    return new ResourceLocation(JITL.MOD_ID, "block/log/" + getRegistryName().getPath());
+    public @NotNull Feature getExtraFeatures() {
+        return Feature.Builder.create()
+                .setCustomItemModelLocation(new ResourceLocation(JITL.MOD_ID, "block/log/" + getRegistryName().getPath()))
+                .build();
     }
 }

@@ -1,8 +1,9 @@
 package net.journey.blocks.base;
 
 import net.journey.JITL;
-import net.journey.api.block.CustomItemModelProvider;
+import net.journey.api.block.FeatureProvider;
 import net.journey.api.block.GroundPredicate;
+import net.journey.blocks.util.Feature;
 import net.journey.init.JourneyTabs;
 import net.journey.util.StuffConstructor;
 import net.minecraft.block.BlockBush;
@@ -46,7 +47,7 @@ import org.jetbrains.annotations.Nullable;
  * <p>
  * The item model for it should be placed to "models/item/block/plant/" by default.
  */
-public abstract class JBlockPlant extends BlockBush implements CustomItemModelProvider {
+public abstract class JBlockPlant extends BlockBush implements FeatureProvider {
 	public static final AxisAlignedBB SMALL_PLANT_BB = BUSH_AABB;
 	public static final AxisAlignedBB TALL_PLANT_BB = new AxisAlignedBB(BUSH_AABB.minX, 0, BUSH_AABB.minZ, BUSH_AABB.maxX, 1, BUSH_AABB.maxZ);
 	public static final AxisAlignedBB BIG_PLANT_BB = new AxisAlignedBB(0.15, 0, 0.15, 0.85, 1, 0.85);
@@ -87,10 +88,11 @@ public abstract class JBlockPlant extends BlockBush implements CustomItemModelPr
 		StuffConstructor.regAndSetupBlock(this, name, enName, tab);
 	}
 
-	@NotNull
 	@Override
-	public ResourceLocation getItemModelResourceLocation() {
-		return new ResourceLocation(JITL.MOD_ID, "block/plant/" + getRegistryName().getPath());
+	public @NotNull Feature getExtraFeatures() {
+		return Feature.Builder.create()
+				.setCustomItemModelLocation(new ResourceLocation(JITL.MOD_ID, "block/plant/" + getRegistryName().getPath()))
+				.build();
 	}
 
 	public JBlockPlant setGroundPredicate(@Nullable GroundPredicate groundPredicate) {

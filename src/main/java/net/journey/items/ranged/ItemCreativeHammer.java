@@ -1,7 +1,8 @@
 package net.journey.items.ranged;
 
 import net.journey.JITL;
-import net.journey.api.block.CustomItemModelProvider;
+import net.journey.api.block.FeatureProvider;
+import net.journey.blocks.util.Feature;
 import net.journey.entity.projectile.EntityDamagingProjectile;
 import net.journey.entity.projectile.EntityLightningBall;
 import net.journey.init.JourneySounds;
@@ -27,7 +28,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class ItemCreativeHammer extends ItemSword implements CustomItemModelProvider {
+public class ItemCreativeHammer extends ItemSword implements FeatureProvider {
 
     protected int use;
     protected int dam;
@@ -84,7 +85,9 @@ public class ItemCreativeHammer extends ItemSword implements CustomItemModelProv
     }
 
     @Override
-    public @NotNull ResourceLocation getItemModelResourceLocation() {
-        return new ResourceLocation(JITL.MOD_ID, "hammer/" + getRegistryName().getPath());
+    public @NotNull Feature getExtraFeatures() {
+        return Feature.Builder.create()
+                .setCustomItemModelLocation(new ResourceLocation(JITL.MOD_ID, "hammer/" + getRegistryName().getPath()))
+                .build();
     }
 }

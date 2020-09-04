@@ -1,9 +1,9 @@
 package net.journey.blocks.containers;
 
 import net.journey.JITL;
-import net.journey.api.block.CustomItemModelProvider;
-import net.journey.api.block.IHasTeisr;
+import net.journey.api.block.FeatureProvider;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
+import net.journey.blocks.util.Feature;
 import net.journey.client.render.block.JourneyChestTESR;
 import net.journey.init.JourneyTabs;
 import net.minecraft.block.Block;
@@ -12,7 +12,6 @@ import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.player.EntityPlayer;
@@ -37,9 +36,8 @@ import net.slayer.api.entity.tileentity.container.BlockModContainer;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
-import java.util.function.Supplier;
 
-public class BlockJourneyChest extends BlockModContainer implements IHasTeisr, CustomItemModelProvider {
+public class BlockJourneyChest extends BlockModContainer implements FeatureProvider {
 
 	public static final PropertyDirection FACING = BlockHorizontal.FACING;
 	public final BlockJourneyChest.Type chestType;
@@ -489,16 +487,13 @@ public class BlockJourneyChest extends BlockModContainer implements IHasTeisr, C
 		return Container.calcRedstoneFromInventory(this.getLockableContainer(worldIn, pos));
 	}
 
-	@NotNull
 	@Override
-	public Supplier<TileEntityItemStackRenderer> createTeisr() {
-		return JourneyChestTESR.ChestTEISR::new;
-	}
-
-	@NotNull
-	@Override
-	public ResourceLocation getItemModelResourceLocation() {
-		return new ResourceLocation(JITL.MOD_ID, "block/base_chest");
+	public @NotNull Feature getExtraFeatures() {
+		return Feature.Builder.create()
+				.setCustomItemModelLocation(new ResourceLocation(JITL.MOD_ID, "block/base_chest"))
+				.regTEISR(JourneyChestTESR.ChestTEISR::new)
+				.regDummyVariantBlockState()
+				.build();
 	}
 
 	public enum Type {

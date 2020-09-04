@@ -1,6 +1,5 @@
 package net.journey.blocks.base;
 
-import net.journey.api.block.CustomItemModelProvider;
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -29,7 +28,7 @@ import org.jetbrains.annotations.NotNull;
  * <p>
  * The item model for it should be placed to "models/item/block/plant" by default.
  */
-public class JBlockDoublePlant extends JBlockPlant implements CustomItemModelProvider {
+public class JBlockDoublePlant extends JBlockPlant {
 	public static final AxisAlignedBB DOUBLE_TALL_PLANT_BB = TALL_PLANT_BB.setMaxY(TALL_PLANT_BB.maxY + BUSH_AABB.maxY);
 	public static final AxisAlignedBB DOUBLE_BIG_PLANT_BB = BIG_PLANT_BB.setMaxY(2);
 
