@@ -15,7 +15,6 @@ import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
@@ -103,7 +102,7 @@ public class SlayerAPI {
     @SuppressWarnings("unchecked")
     private static <E extends Entity> EntityEntryBuilder<E> createInitialSetup(Class<? extends Entity> entityClass, String entityName) {
         return ((EntityEntryBuilder<E>) EntityEntryBuilder.create().entity(entityClass)
-                .id(new ResourceLocation(JITL.MOD_ID, entityName), entityId++)
+                .id(JITL.rl(entityName), entityId++)
                 .name(JITL.MOD_ID + "." + entityName));
     }
 

@@ -7,7 +7,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -102,7 +101,7 @@ public class JBlockFlower extends JBlockPlant implements FeatureProvider {
 	@Override
 	public @NotNull Features getExtraFeatures() {
 		return Features.Builder.create()
-				.setCustomItemModelLocation(new ResourceLocation(JITL.MOD_ID, "block/plant/" + getRegistryName().getPath()))
+				.setCustomItemModelLocation(JITL.rl("block/plant/" + getRegistryName().getPath()))
 				.build();
 	}
 

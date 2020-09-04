@@ -11,7 +11,7 @@ import static org.lwjgl.opengl.GL11.*;
 
 public class EntityKnowledgeTableFX extends Particle {
 
-    private static final ResourceLocation texture = new ResourceLocation(JITL.MOD_ID, "textures/particle/knowledge.png");
+    private static final ResourceLocation texture = JITL.rl("textures/particle/knowledge.png");
 
     public EntityKnowledgeTableFX(World par1World, double x, double y, double z) {
         super(par1World, x, y, z);

@@ -28,7 +28,7 @@ import java.util.List;
  * Code by TimeConqueror
  */
 public class GuiLoreScroll extends GuiScreen {
-    private static final ResourceLocation BG = new ResourceLocation(JITL.MOD_ID, "textures/gui/gui_scroll_base.png");
+    private static final ResourceLocation BG = JITL.rl("textures/gui/gui_scroll_base.png");
     public ScrollCategory currentCategory;
     protected HashMap<Integer, GuiEntryButton> entryButtonList = new HashMap<>();
     //For Dragging Menu

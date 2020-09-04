@@ -81,6 +81,6 @@ public class JITL {
 	 * @param path path under {@link #MOD_ID} namespace.
 	 */
 	public static ResourceLocation rl(String path) {
-		return new ResourceLocation(JITL.MOD_ID, path);
+		return new ResourceLocation(MOD_ID, path);
 	}
 }

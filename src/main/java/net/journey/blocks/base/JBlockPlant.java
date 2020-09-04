@@ -14,7 +14,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -91,7 +90,7 @@ public abstract class JBlockPlant extends BlockBush implements FeatureProvider {
 	@Override
 	public @NotNull Features getExtraFeatures() {
 		return Features.Builder.create()
-				.setCustomItemModelLocation(new ResourceLocation(JITL.MOD_ID, "block/plant/" + getRegistryName().getPath()))
+				.setCustomItemModelLocation(JITL.rl("block/plant/" + getRegistryName().getPath()))
 				.build();
 	}
 

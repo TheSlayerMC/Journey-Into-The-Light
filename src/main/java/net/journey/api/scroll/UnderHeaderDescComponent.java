@@ -22,7 +22,7 @@ public class UnderHeaderDescComponent implements IDescComponent {
     private int contentHeight;
 
     public UnderHeaderDescComponent() {
-        this.content = new ResourceLocation(JITL.MOD_ID, "textures/gui/gui_scroll_base.png");
+        this.content = JITL.rl("textures/gui/gui_scroll_base.png");
     }
 
     @Override

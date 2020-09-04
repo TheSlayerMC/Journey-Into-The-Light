@@ -21,7 +21,6 @@ import net.minecraft.item.ItemSword;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -101,7 +100,7 @@ public class ItemHammer extends ItemSword implements IUsesEssence, FeatureProvid
 	@Override
 	public @NotNull Features getExtraFeatures() {
 		return Features.Builder.create()
-				.setCustomItemModelLocation(new ResourceLocation(JITL.MOD_ID, "hammer/" + getRegistryName().getPath()))
+				.setCustomItemModelLocation(JITL.rl("hammer/" + getRegistryName().getPath()))
 				.build();
 	}
 }

@@ -139,8 +139,8 @@ public class JourneySounds {
     public static final SoundEvent FROZEN_1 = registerSound("frozen_1");
 
     public static SoundEvent registerSound(String soundName) {
-        ResourceLocation rl = new ResourceLocation(JITL.MOD_ID, soundName);
-        SoundEvent sound = new SoundEvent(rl);
+        ResourceLocation rl = JITL.rl(soundName);
+	    SoundEvent sound = new SoundEvent(rl);
         sound.setRegistryName(rl);
 
         soundsToReg.add(sound);

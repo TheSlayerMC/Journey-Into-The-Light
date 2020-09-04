@@ -18,11 +18,11 @@ import net.minecraft.util.ResourceLocation;
  * Code by TimeConqueror
  */
 public class GuiEntryButton extends Gui {
-    protected static final ResourceLocation BUTTON_TEXTURE = new ResourceLocation(JITL.MOD_ID, "textures/gui/gui_scroll_base.png");
-    /**
-     * Button width in pixels
-     */
-    public int width;
+    protected static final ResourceLocation BUTTON_TEXTURE = JITL.rl("textures/gui/gui_scroll_base.png");
+	/**
+	 * Button width in pixels
+	 */
+	public int width;
     /**
      * Button height in pixels
      */

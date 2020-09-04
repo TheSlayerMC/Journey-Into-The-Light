@@ -20,17 +20,17 @@ import org.lwjgl.opengl.GL11;
 
 public class RenderEssenceBar {
 	private float transparency;
-	public static final ResourceLocation TEXTURE = new ResourceLocation(JITL.MOD_ID, "textures/gui/misc.png");
-	
-    @SubscribeEvent
-    public void onRender(RenderGameOverlayEvent.Post event) {
-        if (event.getType() == RenderGameOverlayEvent.ElementType.ALL) {
-        	if (Config.showManaBar) {
-        		Minecraft mc = Minecraft.getMinecraft();
-                renderManaBar(mc, mc.player);
-        	}
-        }
-    }
+	public static final ResourceLocation TEXTURE = JITL.rl("textures/gui/misc.png");
+
+	@SubscribeEvent
+	public void onRender(RenderGameOverlayEvent.Post event) {
+		if (event.getType() == RenderGameOverlayEvent.ElementType.ALL) {
+			if (Config.showManaBar) {
+				Minecraft mc = Minecraft.getMinecraft();
+				renderManaBar(mc, mc.player);
+			}
+		}
+	}
 
 	private void renderManaBar(Minecraft mc, EntityPlayer player) {
 		ItemStack heldItemMainhand = player.getHeldItemMainhand();

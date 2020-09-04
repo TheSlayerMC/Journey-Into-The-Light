@@ -17,7 +17,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @Mod.EventBusSubscriber(Side.CLIENT)
 public class EntityWitherFX extends Particle {
 
-	private static final ResourceLocation TEXTURE = new ResourceLocation(JITL.MOD_ID, "particles/wither");
+	private static final ResourceLocation TEXTURE = JITL.rl("particles/wither");
 	private final float jParticleScale;
 	private final double jPosX;
 	private final double jPosY;

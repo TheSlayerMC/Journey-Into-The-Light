@@ -10,7 +10,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class JParticle extends Particle {
 
-	private static ResourceLocation TEXTURE = new ResourceLocation(JITL.MOD_ID, "particles/floro_mud");
+	private static ResourceLocation TEXTURE = JITL.rl("particles/floro_mud");
 
 	public JParticle(World worldIn, double posXIn, double posYIn, double posZIn) {
 		super(worldIn, posXIn, posYIn, posZIn);

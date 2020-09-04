@@ -9,7 +9,6 @@ import net.minecraft.block.BlockLog;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import org.jetbrains.annotations.NotNull;
@@ -86,7 +85,7 @@ public class JBlockLog extends BlockLog implements FeatureProvider {
     @Override
     public @NotNull Features getExtraFeatures() {
         return Features.Builder.create()
-                .setCustomItemModelLocation(new ResourceLocation(JITL.MOD_ID, "block/log/" + getRegistryName().getPath()))
+                .setCustomItemModelLocation(JITL.rl("block/log/" + getRegistryName().getPath()))
                 .build();
     }
 }

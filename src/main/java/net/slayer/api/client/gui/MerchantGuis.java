@@ -65,7 +65,7 @@ public enum MerchantGuis {
 			return name.get();
 		};
 
-		this.guiTexture = new ResourceLocation(JITL.MOD_ID, "textures/gui/" + textureName + ".png");
+		this.guiTexture = JITL.rl("textures/gui/" + textureName + ".png");
 		this.factory = factory;
 	}
 

@@ -10,7 +10,6 @@ import net.minecraft.block.BlockWall;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -26,7 +25,7 @@ public class JBlockWall extends BlockWall implements FeatureProvider {
 	@Override
 	public @NotNull Features getExtraFeatures() {
 		return Features.Builder.create()
-				.setCustomItemModelLocation(new ResourceLocation(JITL.MOD_ID, "block/wall/" + getRegistryName().getPath()))
+				.setCustomItemModelLocation(JITL.rl("block/wall/" + getRegistryName().getPath()))
 				.build();
 	}
 

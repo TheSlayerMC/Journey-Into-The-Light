@@ -9,7 +9,10 @@ import net.journey.init.JourneySounds;
 import net.journey.init.JourneyTabs;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.*;
+import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumBlockRenderType;
+import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -80,7 +83,7 @@ public class BlockObelisk extends BlockModContainer implements FeatureProvider {
 	@Override
 	public @NotNull Features getExtraFeatures() {
 		return Features.Builder.create()
-				.setCustomItemModelLocation(new ResourceLocation(JITL.MOD_ID, "block/boss_crystal"))
+				.setCustomItemModelLocation(JITL.rl("block/boss_crystal"))
 				.regTEISR(ObeliskRenderer.ObeliskTEISR::new)
 				.build();
 	}

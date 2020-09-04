@@ -7,7 +7,6 @@ import net.journey.init.JourneyTabs;
 import net.journey.util.StuffConstructor;
 import net.minecraft.block.BlockPane;
 import net.minecraft.block.state.BlockStateContainer;
-import net.minecraft.util.ResourceLocation;
 import net.slayer.api.EnumMaterialTypes;
 import org.jetbrains.annotations.NotNull;
 
@@ -26,7 +25,7 @@ public class JBlockPane extends BlockPane implements FeatureProvider {
 	@Override
 	public @NotNull Features getExtraFeatures() {
 		return Features.Builder.create()
-				.setCustomItemModelLocation(new ResourceLocation(JITL.MOD_ID, "block/pane/" + getRegistryName().getPath()))
+				.setCustomItemModelLocation(JITL.rl("block/pane/" + getRegistryName().getPath()))
 				.build();
 	}
 }

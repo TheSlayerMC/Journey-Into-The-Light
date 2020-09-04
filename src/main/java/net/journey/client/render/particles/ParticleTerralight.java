@@ -14,7 +14,7 @@ import net.minecraftforge.fml.relauncher.Side;
 
 @Mod.EventBusSubscriber(Side.CLIENT)
 public class ParticleTerralight extends Particle {
-	private static final ResourceLocation TEXTURE = new ResourceLocation(JITL.MOD_ID, "particles/terralight");
+	private static final ResourceLocation TEXTURE = JITL.rl("particles/terralight");
 	private final float jParticleScale = 2.0F;
 	private final double jPosX;
 	private final double jPosY;

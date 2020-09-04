@@ -14,7 +14,7 @@ import net.minecraft.util.ResourceLocation;
  * Code by TimeConqueror
  */
 public class ScrollRegistry {
-	private static final ResourceLocation BG = new ResourceLocation(JITL.MOD_ID, "textures/gui/scroll_background.png");
+	private static final ResourceLocation BG = JITL.rl("textures/gui/scroll_background.png");
 
 	public static final ScrollEntry SENTERIAN_GOSPEL = new ScrollEntryBuilder("senterian_gospel", "Senterian Gospel", "Book of Divinity", () -> new ItemStack(JourneyItems.sentryKingOrb), 10, 10)
 			.addTextComponent("scroll.journey.sentry_gospel")

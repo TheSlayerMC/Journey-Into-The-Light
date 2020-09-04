@@ -174,6 +174,6 @@ public class JourneyLootTables {
     public static final ResourceLocation VANILLA_SIMPLE_DUNGEON = LootTableList.CHESTS_SIMPLE_DUNGEON;
 
     private static ResourceLocation register(String path) {
-	    return LootTableList.register(new ResourceLocation(JITL.MOD_ID, path));
-	}
+	    return LootTableList.register(JITL.rl(path));
+    }
 }

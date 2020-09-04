@@ -14,8 +14,8 @@ import org.lwjgl.opengl.GL11;
 
 public class GuiPlayerStats extends GuiContainer {
 
-	private final ResourceLocation knowledge_sprite = new ResourceLocation(JITL.MOD_ID, "textures/gui/knowledge/knowledge_sprites.png");
-	private final ResourceLocation background = new ResourceLocation(JITL.MOD_ID, "textures/gui/stats.png");
+	private final ResourceLocation knowledge_sprite = JITL.rl("textures/gui/knowledge/knowledge_sprites.png");
+	private final ResourceLocation background = JITL.rl("textures/gui/stats.png");
 
 	private GuiPlayerStats.PageButton nextButton;
 	private GuiPlayerStats.PageButton previousButton;
@@ -172,7 +172,7 @@ public class GuiPlayerStats extends GuiContainer {
 
 		@Override
 		public void drawButton(Minecraft mc, int x, int y, float f) {
-			mc.getTextureManager().bindTexture(new ResourceLocation(JITL.MOD_ID, "textures/gui/stats.png"));
+			mc.getTextureManager().bindTexture(JITL.rl("textures/gui/stats.png"));
 			GlStateManager.pushMatrix();
 			GlStateManager.enableBlend();
 			GlStateManager.enableAlpha();

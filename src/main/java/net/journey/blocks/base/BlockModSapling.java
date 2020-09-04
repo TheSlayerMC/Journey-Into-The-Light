@@ -8,7 +8,6 @@ import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -98,7 +97,7 @@ public class BlockModSapling extends BlockModFlower implements IGrowable, Featur
     @Override
     public @NotNull Features getExtraFeatures() {
         return Features.Builder.create()
-                .setCustomItemModelLocation(new ResourceLocation(JITL.MOD_ID, "block/sapling/" + getRegistryName().getPath()))
+                .setCustomItemModelLocation(JITL.rl("block/sapling/" + getRegistryName().getPath()))
                 .build();
     }
 }

@@ -7,14 +7,13 @@ import net.minecraft.init.Enchantments;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
-import net.minecraft.util.ResourceLocation;
 
 public class EnchantmentHotTouch extends Enchantment {
 
     public EnchantmentHotTouch() {
         super(Rarity.RARE, EnumEnchantmentType.DIGGER, new EntityEquipmentSlot[]{EntityEquipmentSlot.MAINHAND});
         this.setName("Hot Touch");
-        setRegistryName(new ResourceLocation(JITL.MOD_ID, "Hot Touch"));
+        setRegistryName(JITL.rl("Hot Touch"));
     }
 
     @Override

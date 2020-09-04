@@ -50,7 +50,7 @@ public class WorldGenStructure extends WorldGenerator implements IGeneratedStruc
     public void generateStructure(World w, BlockPos pos) {
         MinecraftServer server = w.getMinecraftServer();
         TemplateManager manager = getWorldServer(w).getStructureTemplateManager();
-        ResourceLocation location = new ResourceLocation(JITL.MOD_ID, name);
+        ResourceLocation location = JITL.rl(name);
         Template template = manager.get(server, location);
 
 
@@ -113,9 +113,9 @@ public class WorldGenStructure extends WorldGenerator implements IGeneratedStruc
 
     public class TileEntityChestArgs {
 
-        private World world;
-        private TileEntityLockableLoot tileEntity;
-        private BlockPos pos;
+        private final World world;
+        private final TileEntityLockableLoot tileEntity;
+        private final BlockPos pos;
 
         public TileEntityChestArgs(World world, TileEntityLockableLoot tileEntity, BlockPos pos) {
             this.world = world;

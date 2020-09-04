@@ -17,7 +17,7 @@ import org.jetbrains.annotations.NotNull;
 
 @Mod.EventBusSubscriber
 public class JCapabilityManager {
-    public static final ResourceLocation JOURNEY_PLAYER_CAP = new ResourceLocation(JITL.MOD_ID, "journey_player");
+    public static final ResourceLocation JOURNEY_PLAYER_CAP = JITL.rl("journey_player");
 
     @CapabilityInject(JourneyPlayer.class)
     private static final Capability<JourneyPlayer> JOURNEY_PLAYER = null;

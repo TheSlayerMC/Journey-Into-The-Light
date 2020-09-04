@@ -14,7 +14,7 @@ import net.minecraft.util.ResourceLocation;
  */
 public class GuiCategoryButton extends GuiButton {
 
-    protected static final ResourceLocation BUTTON_TEXTURE = new ResourceLocation(JITL.MOD_ID, "textures/gui/gui_scroll_base.png");
+    protected static final ResourceLocation BUTTON_TEXTURE = JITL.rl("textures/gui/gui_scroll_base.png");
 
     public GuiCategoryButton(int buttonId, int x, int y, int widthIn, int heightIn, ScrollCategory category) {
         super(buttonId, x, y, widthIn, heightIn, I18n.format(category.getCategoryKey()));

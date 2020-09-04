@@ -201,14 +201,14 @@ public class Textures {
 	}
 
 	public static ResourceLocation getProjectileTextureLocation(String path) {
-		return new ResourceLocation(JITL.MOD_ID, "textures/entity/projectile/" + path + ".png");
+		return JITL.rl("textures/entity/projectile/" + path + ".png");
 	}
 
 	public static ResourceLocation getMobTextureLocation(String path) {
-		return new ResourceLocation(JITL.MOD_ID, "textures/entity/mob/" + path + ".png");
+		return JITL.rl("textures/entity/mob/" + path + ".png");
 	}
 
 	public static ResourceLocation getEntityModelLocation(String path) {
-		return new ResourceLocation(JITL.MOD_ID, "models/entity/" + path + ".json");
+		return JITL.rl("models/entity/" + path + ".json");
 	}
 }
