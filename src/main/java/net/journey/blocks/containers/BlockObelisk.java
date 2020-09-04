@@ -3,7 +3,7 @@ package net.journey.blocks.containers;
 import net.journey.JITL;
 import net.journey.api.block.FeatureProvider;
 import net.journey.blocks.tileentity.TileEntityObelisk;
-import net.journey.blocks.util.Feature;
+import net.journey.blocks.util.Features;
 import net.journey.client.render.block.ObeliskRenderer;
 import net.journey.init.JourneySounds;
 import net.journey.init.JourneyTabs;
@@ -78,8 +78,8 @@ public class BlockObelisk extends BlockModContainer implements FeatureProvider {
     }
 
 	@Override
-	public @NotNull Feature getExtraFeatures() {
-		return Feature.Builder.create()
+	public @NotNull Features getExtraFeatures() {
+		return Features.Builder.create()
 				.setCustomItemModelLocation(new ResourceLocation(JITL.MOD_ID, "block/boss_crystal"))
 				.regTEISR(ObeliskRenderer.ObeliskTEISR::new)
 				.build();

@@ -2,7 +2,7 @@ package net.journey.blocks.base;
 
 import net.journey.JITL;
 import net.journey.api.block.FeatureProvider;
-import net.journey.blocks.util.Feature;
+import net.journey.blocks.util.Features;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
@@ -96,8 +96,8 @@ public class BlockModSapling extends BlockModFlower implements IGrowable, Featur
     }
 
     @Override
-    public @NotNull Feature getExtraFeatures() {
-        return Feature.Builder.create()
+    public @NotNull Features getExtraFeatures() {
+        return Features.Builder.create()
                 .setCustomItemModelLocation(new ResourceLocation(JITL.MOD_ID, "block/sapling/" + getRegistryName().getPath()))
                 .build();
     }

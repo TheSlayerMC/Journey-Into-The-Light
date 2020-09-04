@@ -1,9 +1,9 @@
 package net.journey.api.block;
 
-import net.journey.blocks.util.Feature;
+import net.journey.blocks.util.Features;
 import org.jetbrains.annotations.NotNull;
 
 public interface FeatureProvider {
 	@NotNull
-	Feature getExtraFeatures();
+	Features getExtraFeatures();
 }

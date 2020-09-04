@@ -7,14 +7,20 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Supplier;
 
-public class Feature {
+public class Features {
+
 	@Nullable
 	private Supplier<TileEntityItemStackRenderer> teisr = null;
+
 	@Nullable
 	private ResourceLocation itemModelLocation = null;
+
+	@Nullable
+	private ResourceLocation blockStateLocation = null;
+
 	private boolean regDummyVariantBlockState = false;
 
-	private Feature() {
+	private Features() {
 	}
 
 	public @Nullable ResourceLocation getItemModelLocation() {
@@ -25,12 +31,17 @@ public class Feature {
 		return teisr;
 	}
 
+	@Nullable
+	public ResourceLocation getBlockStateLocation() {
+		return blockStateLocation;
+	}
+
 	public boolean isRegDummyVariantBlockState() {
 		return regDummyVariantBlockState;
 	}
 
 	public static class Builder {
-		private final Feature feature = new Feature();
+		private final Features feature = new Features();
 
 		public static Builder create() {
 			return new Builder();
@@ -76,7 +87,12 @@ public class Feature {
 			return this;
 		}
 
-		public Feature build() {
+		public Builder setBlockStateLocation(ResourceLocation location) {
+			feature.blockStateLocation = location;
+			return this;
+		}
+
+		public Features build() {
 			return feature;
 		}
 	}

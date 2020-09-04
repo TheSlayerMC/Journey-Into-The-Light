@@ -3,7 +3,7 @@ package net.journey.blocks.base;
 import net.journey.JITL;
 import net.journey.api.block.FeatureProvider;
 import net.journey.api.block.GroundPredicate;
-import net.journey.blocks.util.Feature;
+import net.journey.blocks.util.Features;
 import net.journey.init.JourneyTabs;
 import net.journey.util.StuffConstructor;
 import net.minecraft.block.BlockBush;
@@ -89,8 +89,8 @@ public abstract class JBlockPlant extends BlockBush implements FeatureProvider {
 	}
 
 	@Override
-	public @NotNull Feature getExtraFeatures() {
-		return Feature.Builder.create()
+	public @NotNull Features getExtraFeatures() {
+		return Features.Builder.create()
 				.setCustomItemModelLocation(new ResourceLocation(JITL.MOD_ID, "block/plant/" + getRegistryName().getPath()))
 				.build();
 	}

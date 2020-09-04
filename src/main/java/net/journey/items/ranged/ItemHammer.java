@@ -4,7 +4,7 @@ import net.journey.JITL;
 import net.journey.api.block.FeatureProvider;
 import net.journey.api.capability.EssenceStorage;
 import net.journey.api.item.IUsesEssence;
-import net.journey.blocks.util.Feature;
+import net.journey.blocks.util.Features;
 import net.journey.common.capability.JCapabilityManager;
 import net.journey.entity.projectile.EntityDamagingProjectile;
 import net.journey.init.JourneySounds;
@@ -99,8 +99,8 @@ public class ItemHammer extends ItemSword implements IUsesEssence, FeatureProvid
 	}
 
 	@Override
-	public @NotNull Feature getExtraFeatures() {
-		return Feature.Builder.create()
+	public @NotNull Features getExtraFeatures() {
+		return Features.Builder.create()
 				.setCustomItemModelLocation(new ResourceLocation(JITL.MOD_ID, "hammer/" + getRegistryName().getPath()))
 				.build();
 	}

@@ -3,7 +3,7 @@ package net.journey.blocks.containers;
 import net.journey.JITL;
 import net.journey.api.block.FeatureProvider;
 import net.journey.blocks.tileentity.TileEntitySenterianAltar;
-import net.journey.blocks.util.Feature;
+import net.journey.blocks.util.Features;
 import net.journey.client.render.block.SenterianAltarRenderer;
 import net.journey.init.JourneyTabs;
 import net.journey.init.items.JourneyItems;
@@ -94,8 +94,8 @@ public class BlockSenterianAltar extends BlockModContainer implements FeaturePro
 	}
 
 	@Override
-	public @NotNull Feature getExtraFeatures() {
-		return Feature.Builder.create()
+	public @NotNull Features getExtraFeatures() {
+		return Features.Builder.create()
 				.setCustomItemModelLocation(new ResourceLocation(JITL.MOD_ID, "block/senterian_altar"))
 				.regTEISR(SenterianAltarRenderer.SenterianAltarTEISR::new)
 				.build();

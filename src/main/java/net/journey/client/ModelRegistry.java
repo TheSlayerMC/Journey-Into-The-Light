@@ -1,7 +1,7 @@
 package net.journey.client;
 
 import net.journey.api.block.FeatureProvider;
-import net.journey.blocks.util.Feature;
+import net.journey.blocks.util.Features;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.init.items.JourneyItems;
 import net.minecraft.block.Block;
@@ -20,10 +20,36 @@ import net.minecraftforge.fml.relauncher.Side;
 
 @EventBusSubscriber(Side.CLIENT)
 public class ModelRegistry {
-	private static final IStateMapper ONLY_TESR_STATE_MAPPER = new StateMapperBase() {
+	private static final IStateMapper FEATURE_SUPPORT_MAPPER = new StateMapperBase() {
+
 		@Override
 		protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
-			return new ModelResourceLocation(Block.REGISTRY.getNameForObject(state.getBlock()), "dummy");
+			Block block = state.getBlock();
+
+			String variants = null;
+			ResourceLocation location = null;
+
+			if (block instanceof FeatureProvider) {
+				Features features = ((FeatureProvider) block).getExtraFeatures();
+
+				if (features.getBlockStateLocation() != null) {
+					location = features.getBlockStateLocation();
+				}
+
+				if (features.isRegDummyVariantBlockState()) {
+					variants = "dummy";
+				}
+			}
+
+			if (location == null) {
+				location = Block.REGISTRY.getNameForObject(state.getBlock());
+			}
+
+			if (variants == null) {
+				variants = getPropertyString(state.getProperties());
+			}
+
+			return new ModelResourceLocation(location, variants);
 		}
 	};
 
@@ -35,15 +61,13 @@ public class ModelRegistry {
 
 		for (Block b : JourneyBlocks.blocks) {
 			if (b instanceof FeatureProvider) {
-				Feature feature = ((FeatureProvider) b).getExtraFeatures();
+				Features feature = ((FeatureProvider) b).getExtraFeatures();
 
 				if (feature.getTeisr() != null) {
 					Item.getItemFromBlock(b).setTileEntityItemStackRenderer(feature.getTeisr().get());
 				}
 
-				if (feature.isRegDummyVariantBlockState()) {
-					ModelLoader.setCustomStateMapper(b, ONLY_TESR_STATE_MAPPER);
-				}
+				ModelLoader.setCustomStateMapper(b, FEATURE_SUPPORT_MAPPER);
 			}
 		}
 
@@ -58,7 +82,7 @@ public class ModelRegistry {
 		ResourceLocation modelLocation = null;
 		if (block != Blocks.AIR) {
 			if (block instanceof FeatureProvider) {
-				Feature feature = ((FeatureProvider) block).getExtraFeatures();
+				Features feature = ((FeatureProvider) block).getExtraFeatures();
 
 				if (feature.getItemModelLocation() != null) {
 					modelLocation = feature.getItemModelLocation();
@@ -70,7 +94,7 @@ public class ModelRegistry {
 			}
 		} else {
 			if (item instanceof FeatureProvider) {
-				Feature feature = ((FeatureProvider) item).getExtraFeatures();
+				Features feature = ((FeatureProvider) item).getExtraFeatures();
 
 				if (feature.getItemModelLocation() != null) {
 					modelLocation = feature.getItemModelLocation();

@@ -3,7 +3,7 @@ package net.journey.blocks.containers;
 import net.journey.JITL;
 import net.journey.api.block.FeatureProvider;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
-import net.journey.blocks.util.Feature;
+import net.journey.blocks.util.Features;
 import net.journey.client.render.block.JourneyChestTESR;
 import net.journey.init.JourneyTabs;
 import net.minecraft.block.Block;
@@ -488,10 +488,11 @@ public class BlockJourneyChest extends BlockModContainer implements FeatureProvi
 	}
 
 	@Override
-	public @NotNull Feature getExtraFeatures() {
-		return Feature.Builder.create()
+	public @NotNull Features getExtraFeatures() {
+		return Features.Builder.create()
 				.setCustomItemModelLocation(new ResourceLocation(JITL.MOD_ID, "block/base_chest"))
 				.regTEISR(JourneyChestTESR.ChestTEISR::new)
+				.setBlockStateLocation(JITL.rl("chest/" + getRegistryName().getPath()))
 				.regDummyVariantBlockState()
 				.build();
 	}

@@ -2,7 +2,7 @@ package net.journey.blocks.base;
 
 import net.journey.JITL;
 import net.journey.api.block.FeatureProvider;
-import net.journey.blocks.util.Feature;
+import net.journey.blocks.util.Features;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -100,8 +100,8 @@ public class JBlockFlower extends JBlockPlant implements FeatureProvider {
 	}
 
 	@Override
-	public @NotNull Feature getExtraFeatures() {
-		return Feature.Builder.create()
+	public @NotNull Features getExtraFeatures() {
+		return Features.Builder.create()
 				.setCustomItemModelLocation(new ResourceLocation(JITL.MOD_ID, "block/plant/" + getRegistryName().getPath()))
 				.build();
 	}
