@@ -1,0 +1,14 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "textures": {
+      "particle": "journey:models/blocks/chest_cloudia"
+    },
+    "model": "block"
+  },
+  "variants": {
+    "dummy": [
+      {}
+    ]
+  }
+}

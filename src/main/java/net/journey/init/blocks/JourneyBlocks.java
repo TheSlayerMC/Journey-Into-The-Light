@@ -849,17 +849,17 @@ public class JourneyBlocks {
         swampLamp = new BlockSwampLamp("swampLamp", "Swamp Fly Bottle", 0);
         terralightLamp = new BlockTerraLamp("terralight_lamp", "Terralight Lamp", 0);
 
-        journeyChest = new BlockJourneyChest("journeychest", "Journey Chest", BlockJourneyChest.Type.JOURNEY);
-        netherChest = new BlockJourneyChest("netherchest", "Nether Chest", BlockJourneyChest.Type.NETHER);
-        boilChest = new BlockJourneyChest("boilchest", "Boil Chest", BlockJourneyChest.Type.BOIL);
-        eucaChest = new BlockJourneyChest("eucachest", "Euca Chest", BlockJourneyChest.Type.EUCA);
-        frozenChest = new BlockJourneyChest("frozenchest", "Frozen Chest", BlockJourneyChest.Type.FROZEN);
-        depthsChest = new BlockJourneyChest("depthschest", "Depths Chest", BlockJourneyChest.Type.DEPTHS);
-        corbaChest = new BlockJourneyChest("corbachest", "Corba Chest", BlockJourneyChest.Type.CORBA);
-        terraniaChest = new BlockJourneyChest("terraniachest", "Terrania Chest", BlockJourneyChest.Type.TERRA);
-        cloudiaChest = new BlockJourneyChest("cloudiachest", "Cloudia Chest", BlockJourneyChest.Type.CLOUDIA);
+        journeyChest = new BlockJourneyChest("journey_chest", "Journey Chest", BlockJourneyChest.Type.JOURNEY);
+        netherChest = new BlockJourneyChest("nether_chest", "Nether Chest", BlockJourneyChest.Type.NETHER);
+        boilChest = new BlockJourneyChest("boil_chest", "Boil Chest", BlockJourneyChest.Type.BOIL);
+        eucaChest = new BlockJourneyChest("euca_chest", "Euca Chest", BlockJourneyChest.Type.EUCA);
+        frozenChest = new BlockJourneyChest("frozen_chest", "Frozen Chest", BlockJourneyChest.Type.FROZEN);
+        depthsChest = new BlockJourneyChest("depths_chest", "Depths Chest", BlockJourneyChest.Type.DEPTHS);
+        corbaChest = new BlockJourneyChest("corba_chest", "Corba Chest", BlockJourneyChest.Type.CORBA);
+        terraniaChest = new BlockJourneyChest("terrania_chest", "Terrania Chest", BlockJourneyChest.Type.TERRA);
+        cloudiaChest = new BlockJourneyChest("cloudia_chest", "Cloudia Chest", BlockJourneyChest.Type.CLOUDIA);
 
-        lockedChest = (BlockJourneyChest) new BlockJourneyChest("lockedchest", "Locked Chest", BlockJourneyChest.Type.JOURNEY, true, JourneyItems.CHEST_KEY).setResistance(10000F).setBlockUnbreakable();
+        lockedChest = (BlockJourneyChest) new BlockJourneyChest("locked_chest", "Locked Chest", BlockJourneyChest.Type.JOURNEY, true, JourneyItems.CHEST_KEY).setResistance(10000F).setBlockUnbreakable();
 
         nethicDungeonBricks = new BlockMod("nethicDungeonBricks", "Nethic Dungeon Bricks");
         boilChain = new Initializer<>(new JBlockPane(EnumMaterialTypes.STONE, "boilChain", "Boil Chain", false)).apply(pane -> pane.setBlockUnbreakable().setResistance(6000000.0F));

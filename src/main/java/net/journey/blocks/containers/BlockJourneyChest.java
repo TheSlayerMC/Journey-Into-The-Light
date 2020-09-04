@@ -498,24 +498,24 @@ public class BlockJourneyChest extends BlockModContainer implements FeatureProvi
 	}
 
 	public enum Type {
-		JOURNEY(new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/chestjourney.png"),
-				new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/chestjourney_double.png")),
-		NETHER(new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/chestnether.png"),
-				new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/chestnether_double.png")),
-		EUCA(new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/chesteuca.png"),
-				new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/chesteuca_double.png")),
-		BOIL(new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/chestboil.png"),
-				new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/chestboil_double.png")),
-		DEPTHS(new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/chestdepths.png"),
-				new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/chestdepths_double.png")),
-		CORBA(new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/chestcorba.png"),
-				new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/chestcorba_double.png")),
-		TERRA(new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/chestterra.png"),
-				new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/chestterra_double.png")),
-		CLOUDIA(new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/chestcloudia.png"),
-				new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/chestcloudia_double.png")),
-		FROZEN(new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/chestfrozen.png"),
-				new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/chestfrozen_double.png"));
+		JOURNEY(new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/chest_journey.png"),
+				new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/chest_journey_double.png")),
+		NETHER(new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/chest_nether.png"),
+				new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/chest_nether_double.png")),
+		EUCA(new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/chest_euca.png"),
+				new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/chest_euca_double.png")),
+		BOIL(new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/chest_boil.png"),
+				new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/chest_boil_double.png")),
+		DEPTHS(new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/chest_depths.png"),
+				new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/chest_depths_double.png")),
+		CORBA(new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/chest_corba.png"),
+				new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/chest_corba_double.png")),
+		TERRA(new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/chest_terrania.png"),
+				new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/chest_terrania_double.png")),
+		CLOUDIA(new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/chest_cloudia.png"),
+				new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/chest_cloudia_double.png")),
+		FROZEN(new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/chest_frozen.png"),
+				new ResourceLocation(JITL.MOD_ID, "textures/models/blocks/chest_frozen_double.png"));
 
 		private final ResourceLocation singleChestTexture;
 		private final ResourceLocation doubleChestTexture;
