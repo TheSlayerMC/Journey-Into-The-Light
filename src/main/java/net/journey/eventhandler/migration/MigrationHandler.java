@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.RegistryEvent.MissingMappings.Mapping;
 import net.minecraftforge.fml.common.Mod;
@@ -22,6 +23,11 @@ public class MigrationHandler {
 	@SubscribeEvent
 	public static void onMissingItemMappings(RegistryEvent.MissingMappings<Item> event) {
 		remap(event, new ItemMigrator());
+	}
+
+	@SubscribeEvent
+	public static void onMissingBiomeMappings(RegistryEvent.MissingMappings<Biome> event) {
+		remap(event, new BiomeMigrator());
 	}
 
 	private static <T extends IForgeRegistryEntry<T>> void remap(RegistryEvent.MissingMappings<T> event, Migrator<T> migrator) {

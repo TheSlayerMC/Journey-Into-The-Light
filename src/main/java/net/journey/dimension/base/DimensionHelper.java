@@ -8,10 +8,7 @@ import net.journey.dimension.boil.biome.BiomeGenScorchedWasteland;
 import net.journey.dimension.cloudia.BiomeGenCloudia;
 import net.journey.dimension.cloudia.WorldProviderCloudia;
 import net.journey.dimension.corba.WorldProviderCorba;
-import net.journey.dimension.corba.biomes.CorbaBiome;
-import net.journey.dimension.corba.biomes.CorbaHillsBiome;
-import net.journey.dimension.corba.biomes.CorbaPlainsBiome;
-import net.journey.dimension.corba.biomes.CorbaSwampBiome;
+import net.journey.dimension.corba.biomes.*;
 import net.journey.dimension.depths.BiomeGenDepths;
 import net.journey.dimension.depths.WorldProviderDepths;
 import net.journey.dimension.euca.WorldProviderEuca;
@@ -132,6 +129,13 @@ public class DimensionHelper {
             JourneyBlocks.taintedMud.getDefaultState(),
             JourneyBlocks.corbaStone.getDefaultState());
 
+    public static final Biome CORBA_BOGWEED_FIELDS_BIOME = new CorbaBogweedFieldsBiome(new Biome.BiomeProperties
+            ("Bogweed Fields")
+            .setBaseHeight(0.2F)
+            .setHeightVariation(0.2F),
+            JourneyBlocks.driedMud.getDefaultState(),
+            JourneyBlocks.corbaStone.getDefaultState());
+
     public static final Biome DEPTHS_BIOME = new BiomeGenDepths();
     public static final Biome FROZEN_BIOME = new BiomeGenFrozenLands();
     public static final Biome SENTERIAN_BIOME = new BiomeGenSenterian();
@@ -175,23 +179,24 @@ public class DimensionHelper {
 			DimensionManager.unregisterDimension(1);
 			DimensionManager.registerDimension(1, DimensionType.register("End", "END", 1, WorldProviderEndJourney.class, true));
 		} */
-        addDimBiome(EUCA_GOLD_BIOME, "Euca", Type.MAGICAL, Type.MOUNTAIN);
-        addDimBiome(EUCA_SILVER_BIOME, "Euca Silver", Type.MAGICAL, Type.MOUNTAIN);
-        addDimBiome(EUCA_GOLDITE_GRAINS_BIOME, "Euca Goldite", Type.MAGICAL, Type.MOUNTAIN);
-        addDimBiome(CHARRED_FIELDS_BIOME, "Charred Fields", Type.HOT);
-        addDimBiome(SCORCHED_WASTELAND_BIOME, "Scorched Wasteland", Type.HOT);
-        addDimBiome(BOILING_SANDS_BIOME, "Boiling Sands", Type.HOT);
-        addDimBiome(BOILING_BIOME, "Boiling Point", Type.HOT);
-        addDimBiome(CLOUDIA_BIOME, "Cloudia", Type.MAGICAL);
-        addDimBiome(CORBA_BIOME, "Corba", Type.DRY, Type.PLAINS, Type.DEAD);
-        addDimBiome(CORBA_PLAINS_BIOME, "Corba Plains", Type.DRY, Type.PLAINS, Type.DEAD);
-        addDimBiome(CORBA_HILLS_BIOME, "Corba Hills", Type.DRY, Type.PLAINS, Type.DEAD);
-        addDimBiome(CORBA_SWAMP_BIOME, "Corba Swamp", Type.DRY, Type.PLAINS, Type.DEAD);
-        addDimBiome(DEPTHS_BIOME, "Depths", Type.MAGICAL, Type.SPOOKY);
-        addDimBiome(FROZEN_BIOME, "Frozen Lands", Type.COLD);
-        addDimBiome(TERRANIA_BIOME, "Terrania", Type.MAGICAL, Type.SPOOKY);
-        addDimBiome(ENCHANTED_SHROOM_FOREST_BIOME, "EnchantedShroomForest", Type.MAGICAL, Type.SPOOKY);
-        addDimBiome(SENTERIAN_BIOME, "Senterian Labyrinth", Type.MAGICAL, Type.SPOOKY);
+        addDimBiome(EUCA_GOLD_BIOME, "biome_euca_gold", Type.MAGICAL, Type.MOUNTAIN);
+        addDimBiome(EUCA_SILVER_BIOME, "biome_euca_silver", Type.MAGICAL, Type.MOUNTAIN);
+        addDimBiome(EUCA_GOLDITE_GRAINS_BIOME, "biome_euca_goldite_grains", Type.MAGICAL, Type.MOUNTAIN);
+        addDimBiome(CHARRED_FIELDS_BIOME, "biome_boil_charred_fields", Type.HOT);
+        addDimBiome(SCORCHED_WASTELAND_BIOME, "biome_boil_scorched_wasteland", Type.HOT);
+        addDimBiome(BOILING_SANDS_BIOME, "biome_boil_boiling_sands", Type.HOT);
+        addDimBiome(BOILING_BIOME, "biome_boil_boiling_point", Type.HOT);
+        addDimBiome(CLOUDIA_BIOME, "biome_cloudia", Type.MAGICAL);
+        addDimBiome(CORBA_BIOME, "biome_corba_forest", Type.DRY, Type.PLAINS, Type.DEAD);
+        addDimBiome(CORBA_PLAINS_BIOME, "biome_corba_plains", Type.DRY, Type.PLAINS, Type.DEAD);
+        addDimBiome(CORBA_HILLS_BIOME, "biome_corba_hills", Type.DRY, Type.PLAINS, Type.DEAD);
+        addDimBiome(CORBA_SWAMP_BIOME, "biome_corba_swamp", Type.WET, Type.PLAINS, Type.MAGICAL);
+        addDimBiome(CORBA_BOGWEED_FIELDS_BIOME, "biome_corba_bogweed_fields", Type.WET, Type.PLAINS, Type.MAGICAL);
+        addDimBiome(DEPTHS_BIOME, "biome_depths", Type.MAGICAL, Type.SPOOKY);
+        addDimBiome(FROZEN_BIOME, "biome_frozen_lands", Type.COLD);
+        addDimBiome(TERRANIA_BIOME, "biome_terrania", Type.MAGICAL, Type.SPOOKY);
+        addDimBiome(ENCHANTED_SHROOM_FOREST_BIOME, "biome_enchanted_shroom_forest", Type.MAGICAL, Type.SPOOKY);
+        addDimBiome(SENTERIAN_BIOME, "biome_senterian_labyrinth", Type.MAGICAL, Type.SPOOKY);
         addDimension(Config.euca, EUCA_DIM);
         addDimension(Config.boil, BOILING_DIM);
         addDimension(Config.cloudia, CLOUDIA_DIM);
