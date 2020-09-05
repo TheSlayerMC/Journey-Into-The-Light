@@ -2,6 +2,8 @@ package net.journey.dimension.corba.gen.trees;
 
 import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockCocoa;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -500,5 +502,9 @@ public class WorldGenCorbaLargeTree extends WorldGenerator {
         setBlockAndNotifyAdequately(world, new BlockPos(i + 13, j + 5, k + 10), leaves.getDefaultState());
         setBlockAndNotifyAdequately(world, new BlockPos(i + 14, j + 5, k + 6), leaves.getDefaultState());
         return true;
+    }
+
+    private void placeShelf(World worldIn, BlockPos pos, EnumFacing side) {
+        this.setBlockAndNotifyAdequately(worldIn, pos, JourneyBlocks.swamp_shelf.getDefaultState().withProperty(BlockCocoa.FACING, side));
     }
 }

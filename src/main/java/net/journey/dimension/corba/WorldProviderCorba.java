@@ -21,7 +21,7 @@ import java.util.List;
 public class WorldProviderCorba extends BaseWorldProvider {
 
     private static final List<Biome> COMMON_BIOMES = Lists.newArrayList(DimensionHelper.CORBA_BIOME, DimensionHelper.CORBA_PLAINS_BIOME, DimensionHelper.CORBA_SWAMP_BIOME);
-    private static final List<Biome> RARE_BIOMES = Lists.newArrayList(DimensionHelper.CORBA_HILLS_BIOME);
+    private static final List<Biome> RARE_BIOMES = Lists.newArrayList(DimensionHelper.CORBA_HILLS_BIOME, DimensionHelper.CORBA_BOGWEED_FIELDS_BIOME);
 
     public WorldProviderCorba() {
         super(world1 -> new BiomeProviderMultiple(new WorldInfoCorba(), COMMON_BIOMES, RARE_BIOMES), new Vec3d(0.5, 0.55, 0));
