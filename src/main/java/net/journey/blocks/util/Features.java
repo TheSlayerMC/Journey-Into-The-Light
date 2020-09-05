@@ -15,10 +15,7 @@ public class Features {
 	@Nullable
 	private ResourceLocation itemModelLocation = null;
 
-	@Nullable
-	private ResourceLocation blockStateLocation = null;
-
-	private boolean regDummyVariantBlockState = false;
+	private DummyStateData dummyVariantBlockState = null;
 
 	private Features() {
 	}
@@ -32,12 +29,8 @@ public class Features {
 	}
 
 	@Nullable
-	public ResourceLocation getBlockStateLocation() {
-		return blockStateLocation;
-	}
-
-	public boolean isRegDummyVariantBlockState() {
-		return regDummyVariantBlockState;
+	public DummyStateData getDummyVariantBlockStateData() {
+		return dummyVariantBlockState;
 	}
 
 	public static class Builder {
@@ -67,11 +60,39 @@ public class Features {
 		 *  }
 		 *     </pre>
 		 * </blockquote>
+		 *
+		 * @param overriddenStateLocation location, where you will place state json file.
+		 *                                If provided null, then state json file location will be default.
 		 */
-		public Builder regDummyVariantBlockState() {
-			feature.regDummyVariantBlockState = true;
+		public Builder enableDummyVariantBlockState(@Nullable ResourceLocation overriddenStateLocation) {
+			feature.dummyVariantBlockState = new DummyStateData(overriddenStateLocation);
 
 			return this;
+		}
+
+		/**
+		 * Is needed for TESR-only blocks, where we need to setup breaking particles.
+		 * <p>
+		 * Example of using:
+		 * <blockquote>
+		 * <pre>
+		 *  {
+		 *      "forge_marker": 1,
+		 *      "defaults": {
+		 *          "textures": {
+		 *              "particle": "blocks/dirt"
+		 *          },
+		 *          "model": "block"
+		 *      },
+		 *      "variants": {
+		 *          "dummy": [{}]
+		 *      }
+		 *  }
+		 *     </pre>
+		 * </blockquote>
+		 */
+		public Builder enableDummyVariantBlockState() {
+			return enableDummyVariantBlockState(null);
 		}
 
 		/**
@@ -87,13 +108,21 @@ public class Features {
 			return this;
 		}
 
-		public Builder setBlockStateLocation(ResourceLocation location) {
-			feature.blockStateLocation = location;
-			return this;
-		}
-
 		public Features build() {
 			return feature;
+		}
+	}
+
+	public static class DummyStateData {
+		@Nullable
+		private final ResourceLocation overriddenStateLocation;
+
+		public DummyStateData(@Nullable ResourceLocation overriddenStateLocation) {
+			this.overriddenStateLocation = overriddenStateLocation;
+		}
+
+		public @Nullable ResourceLocation getOverriddenStateLocation() {
+			return overriddenStateLocation;
 		}
 	}
 }

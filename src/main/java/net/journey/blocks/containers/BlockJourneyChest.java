@@ -492,8 +492,7 @@ public class BlockJourneyChest extends BlockModContainer implements FeatureProvi
 		return Features.Builder.create()
 				.setCustomItemModelLocation(JITL.rl("block/base_chest"))
 				.regTEISR(JourneyChestTESR.ChestTEISR::new)
-				.setBlockStateLocation(JITL.rl("chest/" + getRegistryName().getPath()))
-				.regDummyVariantBlockState()
+				.enableDummyVariantBlockState(JITL.rl("chest/" + getRegistryName().getPath()))
 				.build();
 	}
 

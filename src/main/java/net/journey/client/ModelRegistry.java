@@ -18,35 +18,34 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 
+import java.util.Objects;
+
 @EventBusSubscriber(Side.CLIENT)
 public class ModelRegistry {
+	//only for use in #regDummyStateIfRequired
 	private static final IStateMapper FEATURE_SUPPORT_MAPPER = new StateMapperBase() {
 
 		@Override
 		protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
 			Block block = state.getBlock();
 
-			String variants = null;
+			final String variants = "dummy";
 			ResourceLocation location = null;
 
 			if (block instanceof FeatureProvider) {
 				Features features = ((FeatureProvider) block).getExtraFeatures();
 
-				if (features.getBlockStateLocation() != null) {
-					location = features.getBlockStateLocation();
-				}
+				Features.DummyStateData data = features.getDummyVariantBlockStateData();
 
-				if (features.isRegDummyVariantBlockState()) {
-					variants = "dummy";
+				Objects.requireNonNull(data, "Block should enable dummy blockstate feature to use this mapper.");
+
+				if (data.getOverriddenStateLocation() != null) {
+					location = data.getOverriddenStateLocation();
 				}
 			}
 
 			if (location == null) {
 				location = Block.REGISTRY.getNameForObject(state.getBlock());
-			}
-
-			if (variants == null) {
-				variants = getPropertyString(state.getProperties());
 			}
 
 			return new ModelResourceLocation(location, variants);
@@ -67,7 +66,7 @@ public class ModelRegistry {
 					Item.getItemFromBlock(b).setTileEntityItemStackRenderer(feature.getTeisr().get());
 				}
 
-				ModelLoader.setCustomStateMapper(b, FEATURE_SUPPORT_MAPPER);
+				regDummyStateIfRequired(b);
 			}
 		}
 
@@ -107,5 +106,15 @@ public class ModelRegistry {
 		}
 
 		ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(modelLocation, "inventory"));
+	}
+
+	private static void regDummyStateIfRequired(Block block) {
+		if (block instanceof FeatureProvider) {
+			Features features = ((FeatureProvider) block).getExtraFeatures();
+
+			if (features.getDummyVariantBlockStateData() != null) {
+				ModelLoader.setCustomStateMapper(block, FEATURE_SUPPORT_MAPPER);
+			}
+		}
 	}
 }
