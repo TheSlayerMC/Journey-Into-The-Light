@@ -31,6 +31,7 @@ public class PlayerStatsImpl implements PlayerStats {
 	public void addLevel(EnumPlayerStats stat, int amount, EntityPlayer p) {
 		if(stat == EnumPlayerStats.OVERWORLD) {
 			overworldLevel += amount;
+			overworldXP = 0;
 		}
 	}
 
