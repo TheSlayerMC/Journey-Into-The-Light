@@ -107,12 +107,13 @@ public class JsonModelParser {
 				Vector3f size = JsonUtils.getVec3f("size", cube);
 				Vector2f uv = JsonUtils.getVec2f("uv", cube);
 
-				if (cube.getAsJsonObject().has("rotation") || cube.getAsJsonObject().has("inflate")) {
+				if (cube.getAsJsonObject().has("rotation") || cube.getAsJsonObject().has("inflate") || cube.getAsJsonObject().has("mirror")) {
 					Vector3f rotation = JsonUtils.getVec3f("rotation", cube, new Vector3f(0, 0, 0));
 					Vector3f innerPivot = JsonUtils.getVec3f("pivot", cube, new Vector3f(0, 0, 0));
+					boolean innerMirror = JsonUtils.getBoolean("mirror", cube, false);
 
 					float cubeInflate = JsonUtils.getFloat("inflate", cube, 0F);
-					extraBones.add(new RawModelBone(Lists.newArrayList(new RawModelCube(origin, size, uv)), innerPivot, rotation, false, false, cubeInflate, "cube_wrapper/" + extraBones.size(), name));
+					extraBones.add(new RawModelBone(Lists.newArrayList(new RawModelCube(origin, size, uv)), innerPivot, rotation, innerMirror, false, cubeInflate, "cube_wrapper/" + extraBones.size(), name));
 				} else {
 					cubes.add(new RawModelCube(origin, size, uv));
 				}
