@@ -16,17 +16,21 @@ import net.journey.util.gen.lang.LangGeneratorFacade;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumAction;
+import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.SlayerAPI;
 import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 public class ItemHammer extends ItemSword implements IUsesEssence, FeatureProvider {
@@ -48,15 +52,42 @@ public class ItemHammer extends ItemSword implements IUsesEssence, FeatureProvid
 		mat = toolMaterial;
 		setCreativeTab(JourneyTabs.WEAPONS);
 		JourneyItems.items.add(this);
-	    setRegistryName(JITL.MOD_ID, name);
-	    LangGeneratorFacade.addItemEntry(this, f);
-    }
+		setRegistryName(JITL.MOD_ID, name);
+		LangGeneratorFacade.addItemEntry(this, f);
+
+		this.addPropertyOverride(new ResourceLocation("pull"), new IItemPropertyGetter() {
+			@SideOnly(Side.CLIENT)
+			public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {
+				if (entityIn == null) {
+					return 0.0F;
+				} else {
+					return !(entityIn.getActiveItemStack().getItem() instanceof ItemHammer) ? 0.0F : (float) (stack.getMaxItemUseDuration() - entityIn.getItemInUseCount()) / 20.0F;
+				}
+			}
+		});
+		this.addPropertyOverride(new ResourceLocation("pulling"), new IItemPropertyGetter() {
+			@SideOnly(Side.CLIENT)
+			public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {
+				return entityIn != null && entityIn.isHandActive() && entityIn.isSneaking() && entityIn.getActiveItemStack() == stack ? 1.0F : 0.0F;
+			}
+		});
+	}
+
+	@Override
+	public int getMaxItemUseDuration(ItemStack stack) {
+		return 72000;
+	}
+
+	@Override
+	public EnumAction getItemUseAction(ItemStack stack) {
+		return EnumAction.BOW;
+	}
 
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand handIn) {
 		ItemStack stack = player.getHeldItem(handIn);
 		EssenceStorage mana = JCapabilityManager.asJourneyPlayer(player).getEssenceStorage();
-		if (mana.useEssence(usage)) {
+		if (mana.useEssence(usage) && !player.isSneaking()) {
 			JourneySounds.playSound(JourneySounds.HAMMER, world, player);
 			if (!world.isRemote) {
 				if (!unbreakable)
@@ -71,6 +102,8 @@ public class ItemHammer extends ItemSword implements IUsesEssence, FeatureProvid
 					e.printStackTrace();
 				}
 			}
+		} else if (player.isSneaking()) {
+			JourneySounds.playSound(JourneySounds.PLASMA, world, player);
 		}
 		return new ActionResult<ItemStack>(EnumActionResult.FAIL, stack);
 	}
