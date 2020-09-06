@@ -3,7 +3,7 @@ package net.journey.client.render.gui;
 import net.journey.JITL;
 import net.journey.api.capability.PlayerStats;
 import net.journey.common.capability.JCapabilityManager;
-import net.journey.common.knowledge.EnumPlayerStats;
+import net.journey.common.knowledge.EnumKnowledgeType;
 import net.journey.util.ContainerEmpty;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
@@ -19,7 +19,7 @@ public class GuiPlayerStats extends GuiContainer {
 
 	private GuiPlayerStats.PageButton nextButton;
 	private GuiPlayerStats.PageButton previousButton;
-	private PlayerStats stats;
+	private final PlayerStats stats;
 
 	private int pageNumber = 0;
 	private final int coinAmount = 0;
@@ -28,7 +28,8 @@ public class GuiPlayerStats extends GuiContainer {
 		super(new ContainerEmpty());
 		this.xSize = 242;
 		this.ySize = 204;
-		this.stats = JCapabilityManager.asJourneyPlayer(mc.player).getPlayerStats();
+
+		this.stats = JCapabilityManager.asJourneyPlayer(Minecraft.getMinecraft().player).getPlayerStats();
 	}
 
 	@Override
@@ -68,22 +69,22 @@ public class GuiPlayerStats extends GuiContainer {
 		int x = 9;
 		int h = 9;
 		drawSprite(x, h, 0, 74, "Sentacoins:");
-		drawKnowledgeSprite(126, h, 32, 10, EnumPlayerStats.OVERWORLD, "Overworld");
+		drawKnowledgeSprite(126, h, 32, 10, EnumKnowledgeType.OVERWORLD, "Overworld");
 
 		h += height;
 
-		drawKnowledgeSprite(126, h, 160, 10, EnumPlayerStats.FROZEN, "Frozen Lands");
-		drawKnowledgeSprite(x, h, 64, 10, EnumPlayerStats.NETHER, "Nether");
+		drawKnowledgeSprite(126, h, 160, 10, EnumKnowledgeType.FROZEN, "Frozen Lands");
+		drawKnowledgeSprite(x, h, 64, 10, EnumKnowledgeType.NETHER, "Nether");
 
 		h += height;
 
-		drawKnowledgeSprite(126, h, 96, 10, EnumPlayerStats.END, "End");
-		drawKnowledgeSprite(x, h, 128, 10, EnumPlayerStats.BOIL, "Boiling Point");
+		drawKnowledgeSprite(126, h, 96, 10, EnumKnowledgeType.END, "End");
+		drawKnowledgeSprite(x, h, 128, 10, EnumKnowledgeType.BOIL, "Boiling Point");
 
 		h += height - 2;
 
-		drawKnowledgeSprite(x, h, 192, 10, EnumPlayerStats.EUCA, "Euca");
-		drawKnowledgeSprite(126, h, 224, 10, EnumPlayerStats.DEPTHS, "The Depths");
+		drawKnowledgeSprite(x, h, 192, 10, EnumKnowledgeType.EUCA, "Euca");
+		drawKnowledgeSprite(126, h, 224, 10, EnumKnowledgeType.DEPTHS, "The Depths");
 	}
 
 	public void page2() {
@@ -91,13 +92,13 @@ public class GuiPlayerStats extends GuiContainer {
 		int x = 9;
 		int h = 9;
 
-		drawKnowledgeSprite(x, h, 0, 42, EnumPlayerStats.CORBA, "Corba");
-		drawKnowledgeSprite(126, h, 32, 42, EnumPlayerStats.TERRANIA, "Terrania");
+		drawKnowledgeSprite(x, h, 0, 42, EnumKnowledgeType.CORBA, "Corba");
+		drawKnowledgeSprite(126, h, 32, 42, EnumKnowledgeType.TERRANIA, "Terrania");
 
 		h += height;
 
-		drawKnowledgeSprite(x, h, 64, 42, EnumPlayerStats.CLOUDIA, "Cloudia");
-		drawKnowledgeSprite(126, h, 96, 42, EnumPlayerStats.SENTERIAN, "Senterain");
+		drawKnowledgeSprite(x, h, 64, 42, EnumKnowledgeType.CLOUDIA, "Cloudia");
+		drawKnowledgeSprite(126, h, 96, 42, EnumKnowledgeType.SENTERIAN, "Senterain");
 		/*h += height;
 		drawKnowledgeSprite(x, h, 128, 10, 0.30F, "SDHFSDH");
 		drawKnowledgeSprite(126, h, 160, 10, 0.75F, "Frozen Lands");
@@ -118,7 +119,7 @@ public class GuiPlayerStats extends GuiContainer {
 		mc.getTextureManager().bindTexture(knowledge_sprite);
 		drawTexturedModalRect(k + x, l + y, spriteX, spriteY, 32, 32);
 		fontRenderer.drawString(s, k + x + 35, l + y + 5, 4210752);
-		if(s == "Sentacoins:") {
+		if (s == "Sentacoins:") {
 			fontRenderer.drawString("x" + stats.getSentacoinValue(), k + x + 35, l + y + 15, 4210752);
 		}
 		GlStateManager.disableAlpha();
@@ -126,7 +127,7 @@ public class GuiPlayerStats extends GuiContainer {
 		GlStateManager.popMatrix();
 	}
 
-	public void drawKnowledgeSprite(int x, int y, int spriteX, int spriteY, EnumPlayerStats stat, String s) {
+	public void drawKnowledgeSprite(int x, int y, int spriteX, int spriteY, EnumKnowledgeType type, String s) {
 		drawSprite(x, y, spriteX, spriteY, s);
 		GlStateManager.pushMatrix();
 		GlStateManager.enableBlend();
@@ -136,11 +137,14 @@ public class GuiPlayerStats extends GuiContainer {
 		int k = (width - xSize) / 2;
 		int l = (height - ySize) / 2;
 		mc.getTextureManager().bindTexture(knowledge_sprite);
-		
-		int xpLevel = (int)(stats.getPlayerXP(stat) * (float)(progressBarSize));
+
+		PlayerStats.KnowledgeStorage knowledge = stats.getKnowledge(type);
+
+
+		int xpLevel = (int) (knowledge.getAmountOnCurrentLevel() * (float) (progressBarSize));
 		drawTexturedModalRect(k + x + 35, l + y + 15, 0, 5, 65, 5);
 		drawTexturedModalRect(k + x + 35, l + y + 15, 0, 0, xpLevel, 5);
-		fontRenderer.drawString("Lv: " + stats.getPlayerLevel(stat), k + x + 35, l + y + 22, 4210752);
+		fontRenderer.drawString("Lv: " + knowledge.getLevelCount(), k + x + 35, l + y + 22, 4210752);
 		GlStateManager.disableAlpha();
 		GlStateManager.disableBlend();
 		GlStateManager.popMatrix();

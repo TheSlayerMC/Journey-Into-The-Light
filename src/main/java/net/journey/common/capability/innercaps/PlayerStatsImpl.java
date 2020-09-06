@@ -2,58 +2,36 @@ package net.journey.common.capability.innercaps;
 
 import net.journey.api.capability.PlayerStats;
 import net.journey.common.capability.InnerCapSerializer;
-import net.journey.common.knowledge.EnumPlayerStats;
-import net.minecraft.entity.player.EntityPlayer;
+import net.journey.common.knowledge.EnumKnowledgeType;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagInt;
+
+import java.util.HashMap;
 
 public class PlayerStatsImpl implements PlayerStats {
-
+	private final HashMap<EnumKnowledgeType, KnowledgeStorageImpl> knowledgeMap;
 	private int sentacoinValue = 0;
 
-	private float overworldXP = 0;
-	private int overworldLevel = 0;
+	public PlayerStatsImpl() {
+		knowledgeMap = new HashMap<>(EnumKnowledgeType.values().length, 1);
 
-	@Override
-	public void addExperience(EnumPlayerStats stat, float amount, EntityPlayer p) {
-		if (stat == EnumPlayerStats.OVERWORLD) {
-			int value = Integer.MAX_VALUE - overworldLevel;
-			if (amount > value) amount = value;
-			overworldXP += (float) amount / (float) normalCap();
-			for (overworldLevel += amount; overworldXP >= 1.0F; overworldXP /= (float) normalCap()) {
-				overworldXP = (overworldXP - 1.0F) * (float) 18;
-				addLevel(EnumPlayerStats.OVERWORLD, 1, p);
-			}
+		for (EnumKnowledgeType type : EnumKnowledgeType.values()) {
+			knowledgeMap.put(type, new KnowledgeStorageImpl());
 		}
 	}
 
 	@Override
-	public void addLevel(EnumPlayerStats stat, int amount, EntityPlayer p) {
-		if(stat == EnumPlayerStats.OVERWORLD) {
-			overworldLevel += amount;
-		}
+	public void addKnowledge(EnumKnowledgeType type, float amount) {
+		getKnowledge(type).add(amount);
 	}
 
 	@Override
-	public float getPlayerXP(EnumPlayerStats stat) {
-		switch (stat) {
-			case OVERWORLD:
-				return overworldXP;
-			default:
-				break;
-		}
-		return 0F;
+	public float removeKnowledge(EnumKnowledgeType type, float amount) {
+		return getKnowledge(type).remove(amount);
 	}
 
 	@Override
-	public int getPlayerLevel(EnumPlayerStats stat) {
-		switch (stat) {
-			case OVERWORLD:
-				return overworldLevel;
-			default:
-				break;
-		}
-		return 0;
+	public KnowledgeStorageImpl getKnowledge(EnumKnowledgeType type) {
+		return knowledgeMap.get(type);
 	}
 
 	@Override
@@ -71,22 +49,15 @@ public class PlayerStatsImpl implements PlayerStats {
 		//sentacoinValue = getSentacoinValue();
 	}
 
-	public static void readFromOldNBT(PlayerStatsImpl stats, NBTTagInt tag) {
-		stats.sentacoinValue = tag.getInt();
-	}
-
-	public int normalCap() {
-		return 23;
-	}
-
 	public static class Serializer extends InnerCapSerializer<PlayerStatsImpl, NBTTagCompound> {
 
 		public NBTTagCompound writeToNBT(PlayerStatsImpl stats) {
 			NBTTagCompound compound = new NBTTagCompound();
 			compound.setInteger("sentacoin_value", stats.sentacoinValue);
 
-			compound.setFloat("overworld_xp", stats.overworldXP);
-			compound.setInteger("overworld_level", stats.overworldLevel);
+			NBTTagCompound knowledgeTag = new NBTTagCompound();
+			stats.knowledgeMap.forEach((type, storage) -> knowledgeTag.setTag(type.getName(), storage.serializeNBT()));
+			compound.setTag("knowledge", knowledgeTag);
 
 			return compound;
 		}
@@ -95,8 +66,16 @@ public class PlayerStatsImpl implements PlayerStats {
 		protected void readFromNBTCasted(PlayerStatsImpl stats, NBTTagCompound tag) {
 			stats.sentacoinValue = tag.getInteger("sentacoin_value");
 
-			stats.overworldLevel = tag.getInteger("overworld_level");
-			stats.overworldXP = tag.getFloat("overworld_xp");
+			NBTTagCompound knowledgeMapTag = tag.getCompoundTag("knowledge");
+
+			stats.knowledgeMap.forEach((type, storage) -> {
+				NBTTagCompound knowledgeTag = knowledgeMapTag.getCompoundTag(type.getName());
+
+				//noinspection ConstantConditions
+				if (knowledgeTag != null) {
+					storage.deserializeNBT(knowledgeTag);
+				}
+			});
 		}
 	}
 }

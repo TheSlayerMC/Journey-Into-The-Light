@@ -1,7 +1,6 @@
 package net.journey.api.capability;
 
-import net.journey.common.knowledge.EnumPlayerStats;
-import net.minecraft.entity.player.EntityPlayer;
+import net.journey.common.knowledge.EnumKnowledgeType;
 
 public interface PlayerStats {
 
@@ -9,11 +8,39 @@ public interface PlayerStats {
 
     int getSentacoinValue();
 
-    void addExperience(EnumPlayerStats type, float amount, EntityPlayer p);
+    /**
+     * Adds knowledge to the player.
+     */
+    void addKnowledge(EnumKnowledgeType type, float amount);
 
-    void addLevel(EnumPlayerStats type, int amount, EntityPlayer p);
+    /**
+     * Removes knowledge from the player.
+     *
+     * @return amount, that can't be removed due to storage contained smaller amount than requested.
+     */
+    float removeKnowledge(EnumKnowledgeType type, float amount);
 
-    int getPlayerLevel(EnumPlayerStats type);
+    KnowledgeStorage getKnowledge(EnumKnowledgeType type);
 
-    float getPlayerXP(EnumPlayerStats type);
+    interface KnowledgeStorage {
+        /**
+         * Adds knowledge to the player.
+         */
+        void add(float amount);
+
+        /**
+         * Removes knowledge from the player.
+         *
+         * @return amount, that can't be removed due to storage contained smaller amount than requested.
+         */
+        float remove(float amount);
+
+        float getLevelCapacity(int level);
+
+        int getLevelCount();
+
+        float getAmountOnCurrentLevel();
+
+        float getTotal();
+    }
 }
