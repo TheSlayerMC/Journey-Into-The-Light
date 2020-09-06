@@ -15,7 +15,7 @@ public class PlayerStatsImpl implements PlayerStats {
 	private int overworldLevel = 0;
 
 	@Override
-	public void addExperience(EnumPlayerStats stat, int amount, EntityPlayer p) {
+	public void addExperience(EnumPlayerStats stat, float amount, EntityPlayer p) {
 		if (stat == EnumPlayerStats.OVERWORLD) {
 			int value = Integer.MAX_VALUE - overworldLevel;
 			if (amount > value) amount = value;

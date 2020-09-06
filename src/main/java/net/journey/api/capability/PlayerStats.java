@@ -9,7 +9,7 @@ public interface PlayerStats {
 
     int getSentacoinValue();
 
-    void addExperience(EnumPlayerStats type, int amount, EntityPlayer p);
+    void addExperience(EnumPlayerStats type, float amount, EntityPlayer p);
 
     void addLevel(EnumPlayerStats type, int amount, EntityPlayer p);
 
