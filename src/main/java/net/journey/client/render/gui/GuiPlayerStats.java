@@ -49,12 +49,17 @@ public class GuiPlayerStats extends GuiContainer {
 		int k = (width - xSize) / 2;
 		int l = (height - ySize) / 2;
 		drawTexturedModalRect(k, l, 0, 0, xSize, ySize);
-		if(pageNumber == 0) {
+		switch(pageNumber) {
+		case 0:
 			page1();
-		} 
-		if(pageNumber == 1) {
+			break;
+		case 1:
 			page2();
+			break;
+		default:
+			break;
 		}
+
 	}
 	
 	@Override
