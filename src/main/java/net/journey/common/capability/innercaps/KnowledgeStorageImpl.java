@@ -1,10 +1,11 @@
 package net.journey.common.capability.innercaps;
 
 import net.journey.api.capability.PlayerStats;
+import net.journey.common.capability.SerializableInnerCap;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.common.util.INBTSerializable;
+import net.minecraft.network.PacketBuffer;
 
-public class KnowledgeStorageImpl implements PlayerStats.KnowledgeStorage, INBTSerializable<NBTTagCompound> {
+public class KnowledgeStorageImpl extends SerializableInnerCap<NBTTagCompound, KnowledgeStorageImpl> implements PlayerStats.KnowledgeStorage {
 	private float amountOnLevel;
 	private int levels;
 
@@ -93,5 +94,17 @@ public class KnowledgeStorageImpl implements PlayerStats.KnowledgeStorage, INBTS
 	public void deserializeNBT(NBTTagCompound nbt) {
 		amountOnLevel = nbt.getFloat("amount_on_level");
 		levels = nbt.getInteger("levels");
+	}
+
+	@Override
+	public void writeToBuffer(PacketBuffer buffer) {
+		buffer.writeFloat(amountOnLevel);
+		buffer.writeInt(levels);
+	}
+
+	@Override
+	public void readFromBuffer(PacketBuffer buffer) {
+		amountOnLevel = buffer.readFloat();
+		levels = buffer.readInt();
 	}
 }

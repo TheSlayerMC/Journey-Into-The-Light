@@ -1,12 +1,17 @@
 package net.journey.common.capability;
 
+import io.netty.buffer.Unpooled;
 import net.journey.api.capability.EssenceStorage;
 import net.journey.api.capability.JourneyPlayer;
 import net.journey.api.capability.PlayerStats;
 import net.journey.common.capability.innercaps.EssenceStorageImpl;
 import net.journey.common.capability.innercaps.PlayerStatsImpl;
+import net.journey.common.network.NetworkHandler;
+import net.journey.common.network.S2CSyncJourneyCap;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.relauncher.Side;
@@ -14,8 +19,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import javax.annotation.Nullable;
 
 public class JourneyPlayerImpl implements JourneyPlayer {
-    private static final EssenceStorageImpl.Serializer ESSENCE_STORAGE_SERIALIZER = new EssenceStorageImpl.Serializer();
-    private static final PlayerStatsImpl.Serializer PLAYER_STATS_SERIALIZER = new PlayerStatsImpl.Serializer();
     private final EssenceStorageImpl essenceStorage;
     private final PlayerStatsImpl playerStats;
 
@@ -40,40 +43,67 @@ public class JourneyPlayerImpl implements JourneyPlayer {
         playerStats.onTick();
     }
 
-    public static class Serializer implements Capability.IStorage<JourneyPlayer> {
+    @Override
+    public void sendUpdates(EntityPlayerMP player) {
+        NetworkHandler.INSTANCE.sendTo(new S2CSyncJourneyCap(this), player);
+    }
+
+    public static class Serializer extends SyncableStorage<JourneyPlayer, JourneyPlayerImpl> {
+        public static final Serializer INSTANCE = new Serializer();
+
+        public Serializer() {
+            super(JourneyPlayerImpl.class);
+        }
+
         @Nullable
         @Override
         public NBTBase writeNBT(Capability<JourneyPlayer> capability, JourneyPlayer instance, EnumFacing side) {
-            if (!(instance instanceof JourneyPlayerImpl)) {
-                throw new IllegalArgumentException("Can not serialize an instance that isn't the default implementation");
-            }
-
-            JourneyPlayerImpl playerCap = (JourneyPlayerImpl) instance;
+            JourneyPlayerImpl playerCap = validateDefaultImpl(instance);
 
             NBTTagCompound compound = new NBTTagCompound();
-            compound.setTag("essence_storage", ESSENCE_STORAGE_SERIALIZER.writeToNBT(playerCap.essenceStorage));
-            compound.setTag("player_stats", PLAYER_STATS_SERIALIZER.writeToNBT(playerCap.playerStats));
+            compound.setTag("essence_storage", playerCap.essenceStorage.serializeNBT());
+            compound.setTag("player_stats", playerCap.playerStats.serializeNBT());
 
             return compound;
         }
 
         @Override
         public void readNBT(Capability<JourneyPlayer> capability, JourneyPlayer instance, EnumFacing side, NBTBase nbt) {
-            if (!(instance instanceof JourneyPlayerImpl)) {
-                throw new IllegalArgumentException("Can not deserialize to an instance that isn't the default implementation");
-            }
-
-            JourneyPlayerImpl playerCap = (JourneyPlayerImpl) instance;
+            JourneyPlayerImpl playerCap = validateDefaultImpl(instance);
 
             NBTTagCompound compound = ((NBTTagCompound) nbt);
 
             if (compound.hasKey("essence_storage")) {
-                ESSENCE_STORAGE_SERIALIZER.readFromNBT(playerCap.essenceStorage, compound.getTag("essence_storage"));
+                playerCap.essenceStorage.deserializeNBT(compound.getTag("essence_storage"));
             }
 
             if (compound.hasKey("player_stats")) {
-                PLAYER_STATS_SERIALIZER.readFromNBT(playerCap.playerStats, compound.getTag("player_stats"));
+                playerCap.playerStats.deserializeNBT((NBTTagCompound) compound.getTag("player_stats"));
             }
+        }
+
+        @Override
+        public void writeToBuffer(JourneyPlayer instance, PacketBuffer buffer) {
+            JourneyPlayerImpl playerCap = validateDefaultImpl(instance);
+
+            playerCap.essenceStorage.writeToBuffer(buffer);
+            playerCap.playerStats.writeToBuffer(buffer);
+        }
+
+        @Override
+        public void readFromBuffer(JourneyPlayer instance, PacketBuffer buffer) {
+            JourneyPlayerImpl playerCap = validateDefaultImpl(instance);
+
+            playerCap.essenceStorage.readFromBuffer(buffer);
+            playerCap.playerStats.readFromBuffer(buffer);
+        }
+
+        @Override
+        public void copy(JourneyPlayer from, JourneyPlayer to) {
+            PacketBuffer buffer = new PacketBuffer(Unpooled.buffer());
+
+            writeToBuffer(from, buffer);
+            readFromBuffer(to, buffer);
         }
     }
 }

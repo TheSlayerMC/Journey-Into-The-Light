@@ -5,6 +5,7 @@ import net.journey.client.handler.GuiHandler;
 import net.journey.command.DimensionCommand;
 import net.journey.command.JourneyCommands;
 import net.journey.common.capability.JCapabilityManager;
+import net.journey.common.network.NetworkHandler;
 import net.journey.dimension.base.DimensionHelper;
 import net.journey.dimension.base.WorldGenJourney;
 import net.journey.dimension.corba.village.StructureCorbaVillagePieces;
@@ -91,6 +92,8 @@ public class CommonProxy {
         DimensionHelper.addSpawns();
 
         Integrations.onPreInit(event);
+
+        NetworkHandler.registerPackets();
         TCNetworkHandler.registerPackets();
     }
 

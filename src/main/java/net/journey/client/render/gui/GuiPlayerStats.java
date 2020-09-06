@@ -145,10 +145,11 @@ public class GuiPlayerStats extends GuiContainer {
 
 		PlayerStats.KnowledgeStorage knowledge = stats.getKnowledge(type);
 
+		float percents = knowledge.getAmountOnCurrentLevel() / knowledge.getLevelCapacity(knowledge.getLevelCount());
+		int width = (int) (percents * progressBarSize);
 
-		int xpLevel = (int) (knowledge.getAmountOnCurrentLevel() * (float) (progressBarSize));
-		drawTexturedModalRect(k + x + 35, l + y + 15, 0, 5, 65, 5);
-		drawTexturedModalRect(k + x + 35, l + y + 15, 0, 0, xpLevel, 5);
+		drawTexturedModalRect(k + x + 35, l + y + 15, 0, 5, progressBarSize, 5);
+		drawTexturedModalRect(k + x + 35, l + y + 15, 0, 0, width, 5);
 		fontRenderer.drawString("Lv: " + knowledge.getLevelCount(), k + x + 35, l + y + 22, 4210752);
 		GlStateManager.disableAlpha();
 		GlStateManager.disableBlend();

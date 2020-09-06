@@ -6,11 +6,14 @@ import net.journey.common.capability.innercaps.EssenceStorageImpl;
 import net.journey.common.capability.innercaps.PlayerStatsImpl;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.jetbrains.annotations.NotNull;
@@ -33,13 +36,27 @@ public class JCapabilityManager {
     }
 
     public static void init() {
-        CapabilityManager.INSTANCE.register(JourneyPlayer.class, new JourneyPlayerImpl.Serializer(), () -> new JourneyPlayerImpl(new EssenceStorageImpl(10), new PlayerStatsImpl()));
+        CapabilityManager.INSTANCE.register(JourneyPlayer.class, JourneyPlayerImpl.Serializer.INSTANCE, () -> new JourneyPlayerImpl(new EssenceStorageImpl(), new PlayerStatsImpl()));
     }
 
     @SubscribeEvent
-    public static void attachCapability(AttachCapabilitiesEvent<Entity> event) {
+    public static void attachCapabilities(AttachCapabilitiesEvent<Entity> event) {
         if (event.getObject() instanceof EntityPlayer) {
             event.addCapability(JOURNEY_PLAYER_CAP, new JourneyPlayerCapProvider());
         }
+    }
+
+    @SubscribeEvent
+    public static void syncCapabilities(EntityJoinWorldEvent event) {
+        if (!event.getWorld().isRemote && event.getEntity() instanceof EntityPlayer) {
+            JourneyPlayer journeyPlayer = asJourneyPlayer(((EntityPlayer) event.getEntity()));
+            journeyPlayer.sendUpdates(((EntityPlayerMP) event.getEntity()));
+        }
+    }
+
+    @SubscribeEvent
+    public static void onPlayerDeath(PlayerEvent.Clone event) {
+        JourneyPlayerImpl.Serializer.INSTANCE.copy(asJourneyPlayer(event.getOriginal()), asJourneyPlayer(event.getEntityPlayer()));
+        //We don't need to send packets here, because after this method, the method onPlayerJoin will be fired.
     }
 }

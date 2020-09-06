@@ -1,13 +1,14 @@
 package net.journey.common.capability.innercaps;
 
 import net.journey.api.capability.PlayerStats;
-import net.journey.common.capability.InnerCapSerializer;
+import net.journey.common.capability.SerializableInnerCap;
 import net.journey.common.knowledge.EnumKnowledgeType;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.PacketBuffer;
 
 import java.util.HashMap;
 
-public class PlayerStatsImpl implements PlayerStats {
+public class PlayerStatsImpl extends SerializableInnerCap<NBTTagCompound, PlayerStatsImpl> implements PlayerStats {
 	private final HashMap<EnumKnowledgeType, KnowledgeStorageImpl> knowledgeMap;
 	private int sentacoinValue = 0;
 
@@ -49,33 +50,53 @@ public class PlayerStatsImpl implements PlayerStats {
 		//sentacoinValue = getSentacoinValue();
 	}
 
-	public static class Serializer extends InnerCapSerializer<PlayerStatsImpl, NBTTagCompound> {
+	@Override
+	public NBTTagCompound serializeNBT() {
+		NBTTagCompound compound = new NBTTagCompound();
+		compound.setInteger("sentacoin_value", sentacoinValue);
 
-		public NBTTagCompound writeToNBT(PlayerStatsImpl stats) {
-			NBTTagCompound compound = new NBTTagCompound();
-			compound.setInteger("sentacoin_value", stats.sentacoinValue);
+		NBTTagCompound knowledgeTag = new NBTTagCompound();
+		knowledgeMap.forEach((type, storage) -> knowledgeTag.setTag(type.getName(), storage.serializeNBT()));
+		compound.setTag("knowledge", knowledgeTag);
 
-			NBTTagCompound knowledgeTag = new NBTTagCompound();
-			stats.knowledgeMap.forEach((type, storage) -> knowledgeTag.setTag(type.getName(), storage.serializeNBT()));
-			compound.setTag("knowledge", knowledgeTag);
+		return compound;
+	}
 
-			return compound;
-		}
+	@Override
+	public void deserializeNBT(NBTTagCompound tag) {
+		sentacoinValue = tag.getInteger("sentacoin_value");
 
-		@Override
-		protected void readFromNBTCasted(PlayerStatsImpl stats, NBTTagCompound tag) {
-			stats.sentacoinValue = tag.getInteger("sentacoin_value");
+		NBTTagCompound knowledgeMapTag = tag.getCompoundTag("knowledge");
 
-			NBTTagCompound knowledgeMapTag = tag.getCompoundTag("knowledge");
+		knowledgeMap.forEach((type, storage) -> {
+			NBTTagCompound knowledgeTag = knowledgeMapTag.getCompoundTag(type.getName());
 
-			stats.knowledgeMap.forEach((type, storage) -> {
-				NBTTagCompound knowledgeTag = knowledgeMapTag.getCompoundTag(type.getName());
+			//noinspection ConstantConditions
+			if (knowledgeTag != null) {
+				storage.deserializeNBT(knowledgeTag);
+			}
+		});
+	}
 
-				//noinspection ConstantConditions
-				if (knowledgeTag != null) {
-					storage.deserializeNBT(knowledgeTag);
-				}
-			});
+	@Override
+	public void writeToBuffer(PacketBuffer buffer) {
+		buffer.writeInt(sentacoinValue);
+
+		buffer.writeInt(knowledgeMap.size());
+		knowledgeMap.forEach((type, storage) -> {
+			EnumKnowledgeType.writeToBuffer(type, buffer);
+			storage.writeToBuffer(buffer);
+		});
+	}
+
+	@Override
+	public void readFromBuffer(PacketBuffer buffer) {
+		sentacoinValue = buffer.readInt();
+
+		int size = buffer.readInt();
+		for (int i = 0; i < size; i++) {
+			EnumKnowledgeType type = EnumKnowledgeType.readFromBuffer(buffer);
+			knowledgeMap.get(type).readFromBuffer(buffer);
 		}
 	}
 }
