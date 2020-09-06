@@ -28,12 +28,12 @@ public class GuiPlayerStats extends GuiContainer {
 		super(new ContainerEmpty());
 		this.xSize = 242;
 		this.ySize = 204;
+		this.stats = JCapabilityManager.asJourneyPlayer(mc.player).getPlayerStats();
 	}
 
 	@Override
 	public void initGui() {
 		super.initGui();
-		this.stats = JCapabilityManager.asJourneyPlayer(mc.player).getPlayerStats();
 		int w = (this.width - this.xSize) / 2;
 		int h = (this.height - this.ySize) / 2;
 		this.buttonList.add(this.nextButton = new GuiPlayerStats.PageButton(1, w + 134, h + 180, true));
