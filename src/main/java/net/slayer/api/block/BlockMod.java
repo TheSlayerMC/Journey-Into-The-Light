@@ -1,7 +1,11 @@
 package net.slayer.api.block;
 
 import net.journey.JITL;
+import net.journey.api.capability.JourneyPlayer;
+import net.journey.api.capability.PlayerStats;
 import net.journey.client.ItemDescription;
+import net.journey.common.capability.JCapabilityManager;
+import net.journey.common.knowledge.EnumKnowledgeType;
 import net.journey.enums.EnumParticlesClasses;
 import net.journey.init.JourneyTabs;
 import net.journey.init.blocks.JourneyBlocks;
@@ -10,6 +14,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -27,6 +33,9 @@ import java.util.Random;
 
 public class BlockMod extends Block {
     protected Boolean isFireSource;
+
+    private EnumKnowledgeType knowledgeType;
+    private int knowledgeAmount;
 
     public BlockMod(String name, String enName, float hardness) {
         this(EnumMaterialTypes.STONE, name, enName, hardness, JourneyTabs.BLOCKS);
@@ -80,11 +89,30 @@ public class BlockMod extends Block {
         return this;
     }
 
+    public BlockMod applyKnowledge(EnumKnowledgeType type, int amount) {
+        this.knowledgeType = type;
+        this.knowledgeAmount = amount;
+        return this;
+    }
+
+    @Override
+    public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player) {
+        super.onBlockHarvested(worldIn, pos, state, player);
+        if (!worldIn.isRemote) {
+            if (this.knowledgeType != null && this.knowledgeAmount > 0) {
+                PlayerStats stats = JCapabilityManager.asJourneyPlayer(player).getPlayerStats();
+                JourneyPlayer journeyPlayer = JCapabilityManager.asJourneyPlayer(player);
+                stats.addKnowledge(this.knowledgeType, this.knowledgeAmount);
+                journeyPlayer.sendUpdates(((EntityPlayerMP) player));
+            }
+        }
+    }
+
     @Override
     public boolean isNormalCube(IBlockState state) {//TODO is it really needed? May prevent player from passing some block types.
         return true;
     }
-    
+
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack i, World worldIn, List<String> l, ITooltipFlag flagIn) {

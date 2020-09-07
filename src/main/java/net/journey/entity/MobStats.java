@@ -21,6 +21,7 @@ public class MobStats {
 
     public static final double FLAME_LOTUS_HEALTH = 100;
     public static final double FLAME_LOTUS_MOVEMENT_SPEED = 0;
+    public static final double FLAME_LOTUS_KNOCKBACK_RESISTANCE = 1;
 
     public static final double FRIGHTENER_HEALTH = 40;
     public static final double FRIGHTENER_DAMAGE = 9;

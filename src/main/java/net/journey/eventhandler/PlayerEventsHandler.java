@@ -43,7 +43,7 @@ public class PlayerEventsHandler {
 		EntityPlayer p = event.getEntityPlayer();
 		World world = event.getWorld();
 		BlockPos pos = event.getPos();
-		if (event.getEntityPlayer() != null && event.getEntityPlayer().getHeldItemMainhand().getDisplayName().contains("Shovel")) {
+		if (event.getEntityPlayer() != null && event.getEntityPlayer().getHeldItemMainhand().getDisplayName().contains("shovel")) {
 			if (world.getBlockState(pos) == JourneyBlocks.corbaGrass) {
 				world.setBlockState(pos, JourneyBlocks.ashBlock.getDefaultState(), 2);
 			}

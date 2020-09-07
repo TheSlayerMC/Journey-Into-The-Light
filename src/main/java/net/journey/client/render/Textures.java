@@ -132,10 +132,10 @@ public class Textures {
     //Boil
     public static final ResourceLocation magmaBlaze = addMob("magmablaze");
     public static final ResourceLocation crisp = addMob("crisp");
-    public static final ResourceLocation exposedFlame = addMob("exposedflame");
+    public static final ResourceLocation exposedFlame = addMob("exposed_flame");
     public static final ResourceLocation burningLight = addMob("burninglight");
     public static final ResourceLocation ashHoarder = addMob("ashhoarder");
-    public static final ResourceLocation magmaGiant = addMob("magmagiant");
+    public static final ResourceLocation magmaGiant = addMob("magma_giant");
     public static final ResourceLocation frightener = addMob("frightener");
     public static final ResourceLocation hellwing = addMob("hellwing");
     public static final ResourceLocation observer = addMob("observer");

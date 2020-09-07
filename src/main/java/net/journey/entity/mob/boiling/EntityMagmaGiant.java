@@ -1,5 +1,6 @@
 package net.journey.entity.mob.boiling;
 
+import net.journey.common.knowledge.EnumKnowledgeType;
 import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
@@ -29,6 +30,7 @@ public class EntityMagmaGiant extends JEntityMob {
 
         EntityAttributesHelper.setMaxHealth(this, MobStats.MAGMA_GIANT_HEALTH);
         EntityAttributesHelper.setAttackDamage(this, MobStats.MAGMA_GIANT_DAMAGE);
+        this.applyKnowledge(EnumKnowledgeType.BOIL, 5);
     }
 
     @Override

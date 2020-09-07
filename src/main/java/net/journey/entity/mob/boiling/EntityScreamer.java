@@ -1,5 +1,6 @@
 package net.journey.entity.mob.boiling;
 
+import net.journey.common.knowledge.EnumKnowledgeType;
 import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
@@ -40,6 +41,7 @@ public class EntityScreamer extends JEntityMob {
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
         this.isImmuneToFire = true;
         setSize(0.7F, 1.5F);
+        this.applyKnowledge(EnumKnowledgeType.BOIL, 5);
     }
 
     @Override

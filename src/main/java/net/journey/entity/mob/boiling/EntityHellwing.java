@@ -1,5 +1,6 @@
 package net.journey.entity.mob.boiling;
 
+import net.journey.common.knowledge.EnumKnowledgeType;
 import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
@@ -46,6 +47,7 @@ public class EntityHellwing extends JEntityMob {
 		this.moveHelper = new EntityHellwing.AIMoveControl(this);
 		this.setSize(1.0F, 1.3F);
 		this.experienceValue = 3;
+		this.applyKnowledge(EnumKnowledgeType.BOIL, 5);
 	}
 
 	@Override

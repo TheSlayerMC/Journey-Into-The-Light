@@ -194,6 +194,8 @@ public class EntityRegistry {
 				//BP
 				SlayerAPI.buildMobEntry(EntityMagmaBlaze.class, "magmablaze", "Magma Blaze", 0xff7800, 0xffa800),
 				SlayerAPI.buildMobEntry(EntityBurningLight.class, "burninglight", "Burning Light", 0xff7800, 0xffa800),
+				SlayerAPI.buildMobEntry(EntityExposedFlame.class, "exposed_flame", "Exposed Flame", 0xff7800, 0xffa800),
+				SlayerAPI.buildMobEntry(EntityMagmaGiant.class, "magma_giant", "Magma Giant", 0xff7800, 0xffa800),
 				SlayerAPI.buildMobEntry(EntityFrightener.class, "frightener", "Frightener", 0xff7800, 0xffa800),
 				SlayerAPI.buildMobEntry(EntityHellwing.class, "hellwing", "Hellwing", 0xff7800, 0xffa800),
 				SlayerAPI.buildMobEntry(EntityObserver.class, "observer", "Observer", 0xff7800, 0xffa800),

@@ -1,5 +1,6 @@
 package net.journey.entity.mob.boss;
 
+import net.journey.common.knowledge.EnumKnowledgeType;
 import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.projectile.EntityMagmaFireball;
@@ -44,6 +45,7 @@ public class EntityBlazier extends EntityEssenceBoss implements IRangedAttackMob
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
         this.isImmuneToFire = true;
         this.setSize(2.0F, 6.0F);
+        this.applyKnowledge(EnumKnowledgeType.BOIL, 20);
         spawnTimer = 0;
     }
 

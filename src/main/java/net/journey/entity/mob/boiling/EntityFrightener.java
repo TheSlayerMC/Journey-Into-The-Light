@@ -1,5 +1,6 @@
 package net.journey.entity.mob.boiling;
 
+import net.journey.common.knowledge.EnumKnowledgeType;
 import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
@@ -21,6 +22,7 @@ public class EntityFrightener extends JEntityMob {
         addMeleeAttackingAI();
         setSize(0.7F, 2.0F);
         isImmuneToFire = true;
+        this.applyKnowledge(EnumKnowledgeType.BOIL, 1);
     }
 
     @Override
