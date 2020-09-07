@@ -22,9 +22,7 @@ import net.journey.dimension.senterian.WorldProviderSenterian;
 import net.journey.dimension.terrania.WorldProviderTerrania;
 import net.journey.dimension.terrania.biome.TerraniaBiome;
 import net.journey.dimension.terrania.biome.TerraniaShroomForestBiome;
-import net.journey.entity.mob.boiling.EntityBurningLight;
-import net.journey.entity.mob.boiling.EntityFrightener;
-import net.journey.entity.mob.boiling.EntityMagmaBlaze;
+import net.journey.entity.mob.boiling.*;
 import net.journey.entity.mob.cloudia.*;
 import net.journey.entity.mob.corba.EntityLeafBlower;
 import net.journey.entity.mob.corba.EntitySurfaceSeer;
@@ -156,7 +154,7 @@ public class DimensionHelper {
 
     public static final Biome[] BOILING_BIOMES = {BOILING_BIOME, CHARRED_FIELDS_BIOME, SCORCHED_WASTELAND_BIOME, BOILING_SANDS_BIOME};
     public static final Biome[] EUCA_BIOMES = {EUCA_SILVER_BIOME, EUCA_GOLD_BIOME, EUCA_GOLDITE_GRAINS_BIOME};
-    public static final Biome[] CORBA_BIOMES = {CORBA_BIOME, CORBA_PLAINS_BIOME, CORBA_HILLS_BIOME, CORBA_SWAMP_BIOME};
+    public static final Biome[] CORBA_BIOMES = {CORBA_BIOME, CORBA_PLAINS_BIOME, CORBA_HILLS_BIOME, CORBA_SWAMP_BIOME, CORBA_BOGWEED_FIELDS_BIOME};
     public static final Biome[] TERRANIA_BIOMES = {TERRANIA_BIOME, ENCHANTED_SHROOM_FOREST_BIOME};
 
     public static final DimensionType EUCA_DIM = DimensionType.register("euca", "_euca", Config.euca, WorldProviderEuca.class, Config.keepLoadingEuca);
@@ -314,6 +312,9 @@ public class DimensionHelper {
         EntityRegistry.addSpawn(EntityFrightener.class, amount, 1, 1, EnumCreatureType.MONSTER, BOILING_BIOMES);
         EntityRegistry.addSpawn(EntityBurningLight.class, amount, 1, 1, EnumCreatureType.MONSTER, BOILING_BIOMES);
         EntityRegistry.addSpawn(EntityMagmaBlaze.class, amount, 1, 1, EnumCreatureType.MONSTER, BOILING_BIOMES);
+        EntityRegistry.addSpawn(EntityExposedFlame.class, amount, 1, 1, EnumCreatureType.MONSTER, BOILING_SANDS_BIOME);
+        EntityRegistry.addSpawn(EntityMagmaGiant.class, amount, 1, 1, EnumCreatureType.MONSTER, SCORCHED_WASTELAND_BIOME);
+        EntityRegistry.addSpawn(EntityFlameLotus.class, amount, 1, 1, EnumCreatureType.MONSTER, BOILING_BIOME);
     }
 
     private static void addDepthsSpawns() {

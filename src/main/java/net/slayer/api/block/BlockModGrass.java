@@ -1,16 +1,20 @@
 package net.slayer.api.block;
 
 import net.journey.init.JourneyTabs;
+import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.IPlantable;
 import net.slayer.api.EnumMaterialTypes;
 import net.slayer.api.SlayerAPI;
 
@@ -20,6 +24,7 @@ public class BlockModGrass extends BlockMod implements IGrowable {
 
     protected BlockMod dirt;
     protected String tex;
+    public Block path;
 
     public BlockModGrass(BlockMod dirt, String name, String finalName, float hardness) {
         super(EnumMaterialTypes.GRASS, name, finalName, hardness);
@@ -47,6 +52,23 @@ public class BlockModGrass extends BlockMod implements IGrowable {
                 }
             }
         }
+    }
+
+    public BlockModGrass setGrassPath(Block path) {
+        this.path = path;
+        return this;
+    }
+
+    @Override
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+        super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
+        if (this.path != null) {
+            if (playerIn.getHeldItemMainhand().getItem() instanceof ItemSpade || playerIn.getHeldItemMainhand().getDisplayName().contains("Shovel")) {
+                worldIn.setBlockState(pos, this.path.getDefaultState());
+                worldIn.playSound(playerIn, pos, SoundEvents.ITEM_HOE_TILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            }
+        }
+        return this.path == null;
     }
 
     @Override

@@ -382,11 +382,7 @@ public class ChunkGeneratorCorba implements IChunkGenerator {
 			}
 			if (rand.nextInt(10) == 0) {
 				new JWorldGenRuins(GroundPredicate.CORBA_MUD, JWorldGenRuins.LootType.RUINS,
-						JourneyBlocks.corbaDarkBricks.getDefaultState(),
-						JourneyBlocks.corbaLightBricks.getDefaultState(),
-						JourneyBlocks.corbaCrackedBricks.getDefaultState(),
-						JourneyBlocks.corbaCobblestone.getDefaultState(),
-						JourneyBlocks.corbaBricks.getDefaultState()).generate(worldObj, rand, startPos);
+						JourneyBlocks.corbaCobblestone.getDefaultState()).generate(worldObj, rand, startPos);
 			}
 		}
 

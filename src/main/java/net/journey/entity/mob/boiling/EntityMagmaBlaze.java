@@ -1,5 +1,6 @@
 package net.journey.entity.mob.boiling;
 
+import net.journey.common.knowledge.EnumKnowledgeType;
 import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
@@ -44,6 +45,7 @@ public class EntityMagmaBlaze extends JEntityMob {
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
         this.isImmuneToFire = true;
+        this.applyKnowledge(EnumKnowledgeType.BOIL, 1);
     }
 
     @Override

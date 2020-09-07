@@ -2,7 +2,6 @@ package net.journey.eventhandler;
 
 import net.journey.common.capability.JCapabilityManager;
 import net.journey.init.JourneyLootTables;
-import net.journey.init.blocks.JourneyBlocks;
 import net.journey.init.items.JourneyArmory;
 import net.journey.init.items.JourneyConsumables;
 import net.journey.init.items.JourneyItems;
@@ -21,11 +20,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -37,18 +33,6 @@ import java.util.Random;
 
 @Mod.EventBusSubscriber
 public class PlayerEventsHandler {
-
-	@SubscribeEvent
-	public static void onBlockClicked(PlayerInteractEvent event) {
-		EntityPlayer p = event.getEntityPlayer();
-		World world = event.getWorld();
-		BlockPos pos = event.getPos();
-		if (event.getEntityPlayer() != null && event.getEntityPlayer().getHeldItemMainhand().getDisplayName().contains("Shovel")) {
-			if (world.getBlockState(pos) == JourneyBlocks.corbaGrass) {
-				world.setBlockState(pos, JourneyBlocks.ashBlock.getDefaultState(), 2);
-			}
-		}
-	}
 
 	@SubscribeEvent
 	public static void onBlockHarvested(HarvestDropsEvent event) {

@@ -7,6 +7,7 @@ import net.journey.blocks.containers.*;
 import net.journey.blocks.meta.BlockMetaBase;
 import net.journey.blocks.plant.*;
 import net.journey.blocks.portal.*;
+import net.journey.common.knowledge.EnumKnowledgeType;
 import net.journey.dimension.boil.trees.WorldGenBoilTree1;
 import net.journey.dimension.corba.gen.trees.WorldGenCorbaSmallTree;
 import net.journey.dimension.corba.gen.trees.WorldGenCorbaSwampTree;
@@ -584,8 +585,8 @@ public class JourneyBlocks {
         luniumOre = new BlockModOre("luniumOre", "Lunium Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
         hellstoneOre = new BlockModOre("hellstoneOre", "Hellstone Ore", false)
                 .setHarvestLevel(EnumToolType.DIAMOND_PICK);
-        ashualOre = new BlockModOre("ashualOre", "Ashual Ore", false);
-        blaziumOre = new BlockModOre("blaziumOre", "Blazium Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
+        ashualOre = new BlockModOre("ashualOre", "Ashual Ore", false).applyKnowledge(EnumKnowledgeType.BOIL, 2);
+        blaziumOre = new BlockModOre("blaziumOre", "Blazium Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK).applyKnowledge(EnumKnowledgeType.BOIL, 1);
         celestiumOre = new BlockModOre("celestiumOre", "Celestium Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
         mekyumOre = new BlockModOre("mekyumOre", "Mekyum Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
         koriteOre = new BlockModOre("koriteOre", "Korite Ore").setHarvestLevel(EnumToolType.DIAMOND_PICK);
@@ -767,7 +768,7 @@ public class JourneyBlocks {
         corbaStone = new BlockMod("corbaStone", "Corba Stone");
         corbaCobblestone = new BlockMod("corba_cobblestone", "Corba Cobblestone");
         corbaWall = new JBlockWall("corba_wall", "Corba Wall", corbaCobblestone);
-        corbaGrass = new BlockModGrass(null, "corbaGrass", "Corba Grass", 0.5F);
+        corbaGrass = new BlockModGrass(null, "corbaGrass", "Corba Grass", 0.5F).setGrassPath(corbaGrassPath);
         corbaLog = new JBlockLog("corbaLog", "Corba Log");
         corbaLeaves = new BlockModLeaves("corbaLeaves", "Corba Leaves", 0.2F, corbaSapling);
         corbaPillar = new BlockMod("corbaPillar", "Corba Pillar");

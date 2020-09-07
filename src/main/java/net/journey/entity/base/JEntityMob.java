@@ -1,12 +1,17 @@
 package net.journey.entity.base;
 
+import net.journey.api.capability.JourneyPlayer;
+import net.journey.api.capability.PlayerStats;
 import net.journey.api.entity.IJERCompatible;
+import net.journey.common.capability.JCapabilityManager;
+import net.journey.common.knowledge.EnumKnowledgeType;
 import net.journey.entity.MobStats;
 import net.minecraft.block.Block;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
@@ -17,6 +22,9 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 public abstract class JEntityMob extends EntityMob implements IJERCompatible {
+
+	private EnumKnowledgeType knowledgeType;
+	private int knowledgeAmount;
 
 	public JEntityMob(World world) {
 		super(world);
@@ -84,6 +92,24 @@ public abstract class JEntityMob extends EntityMob implements IJERCompatible {
 	@Override
 	public boolean getCanSpawnHere() {
 		return world.getDifficulty() != EnumDifficulty.PEACEFUL && this.world.checkNoEntityCollision(this.getEntityBoundingBox()) && this.world.getCollisionBoxes(this, this.getEntityBoundingBox()).isEmpty() && !this.world.containsAnyLiquid(this.getEntityBoundingBox());
+	}
+
+	public JEntityMob applyKnowledge(EnumKnowledgeType type, int amount) {
+		this.knowledgeType = type;
+		this.knowledgeAmount = amount;
+		return this;
+	}
+
+	@Override
+	public void onDeath(DamageSource cause) {
+		super.onDeath(cause);
+		if (cause.getTrueSource() instanceof EntityPlayer) {
+			EntityPlayer player = (EntityPlayer) cause.getTrueSource();
+			PlayerStats stats = JCapabilityManager.asJourneyPlayer(player).getPlayerStats();
+			JourneyPlayer journeyPlayer = JCapabilityManager.asJourneyPlayer(player);
+			stats.addKnowledge(this.knowledgeType, this.knowledgeAmount);
+			journeyPlayer.sendUpdates(((EntityPlayerMP) player));
+		}
 	}
 
 	@Override
