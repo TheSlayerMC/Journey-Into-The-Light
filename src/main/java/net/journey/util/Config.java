@@ -125,7 +125,7 @@ public class Config {
         blacksmithHouse = cfg.get("Generation", "Blacksmith House spawn rate (The higher, the rarer)", 40).getInt();
         glowshroomTrys = cfg.get("Generation", "Glowshroom spawn rate (The lower, the rarer)", 64).getInt();
         caveVinesTrys = cfg.get("Generation", "Cave vine spawn rate (The lower, the rarer)", 55).getInt();
-        ruinsRarity = cfg.get("Generation", "Ruins spawn rate (The higher, the rarer)", 75).getInt();
+        ruinsRarity = cfg.get("Generation", "Ruins spawn rate (The higher, the rarer)", 175).getInt();
 
         shadiumOreTrys = cfg.get("Ore Generation", "Shadium Ore Trys Per Chunk", 2).getInt();
         shadiumOreGenAmount = cfg.get("Ore Generation", "Shadium Ore Vein Max Amount", 3).getInt();

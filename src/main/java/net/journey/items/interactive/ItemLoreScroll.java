@@ -8,6 +8,7 @@ import net.journey.client.render.gui.scroll.GuiLoreScrollEntry;
 import net.journey.items.base.JItem;
 import net.journey.util.ChatUtils;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -15,6 +16,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -100,22 +102,22 @@ public class ItemLoreScroll extends JItem {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack i, World worldIn, List<String> l, ITooltipFlag flagIn) {
-		String overworld = new String(SlayerAPI.Colour.AQUA + "scroll.journey.chapter.one" + ": ");
-		String nether = new String(SlayerAPI.Colour.RED + "scroll.journey.chapter.two" + ": ");
-		String end = new String(SlayerAPI.Colour.PURPLE + "scroll.journey.chapter.three" + ": ");
-		String boil = new String(SlayerAPI.Colour.GOLD + "scroll.journey.chapter.four" + ": ");
-		String euca = new String(SlayerAPI.Colour.YELLOW + "scroll.journey.chapter.five" + ": ");
-		String depths = new String(SlayerAPI.Colour.DARK_AQUA + "scroll.journey.chapter.six" + ": ");
-		String corba = new String(SlayerAPI.Colour.DARK_GREEN + "scroll.journey.chapter.seven" + ": ");
-		String terrania = new String(SlayerAPI.Colour.LIGHT_PURPLE + "scroll.journey.chapter.eight" + ": ");
-		String cloudia = new String(SlayerAPI.Colour.LIGHT_PURPLE + "scroll.journey.chapter.nine" + ": ");
-		String senterian = new String(SlayerAPI.Colour.GRAY + "scroll.journey.chapter.ten" + ": ");
+		String overworld = TextFormatting.AQUA + I18n.format("scroll.journey.chapter.one") + ": ";
+		String nether = TextFormatting.RED + I18n.format("scroll.journey.chapter.two") + ": ";
+		String end = TextFormatting.DARK_PURPLE + I18n.format("scroll.journey.chapter.three") + ": ";
+		String boil = TextFormatting.YELLOW + ("scroll.journey.chapter.four") + ": ";
+		String euca = TextFormatting.GOLD + I18n.format("scroll.journey.chapter.five") + ": ";
+		String depths = TextFormatting.BLUE + I18n.format("scroll.journey.chapter.six") + ": ";
+		String corba = TextFormatting.DARK_GREEN + I18n.format("scroll.journey.chapter.seven") + ": ";
+		String terrania = TextFormatting.DARK_PURPLE + I18n.format("scroll.journey.chapter.eight") + ": ";
+		String cloudia = TextFormatting.LIGHT_PURPLE + I18n.format("scroll.journey.chapter.nine") + ": ";
+		String senterian = TextFormatting.GRAY + I18n.format("scroll.journey.chapter.ten") + ": ";
 
-		if(i.hasTagCompound() && i.getTagCompound().toString().contains("senterian_gospel")) {
+		if (i.hasTagCompound() && i.getTagCompound().toString().contains("senterian_gospel")) {
 			l.add(corba + SlayerAPI.Colour.GOLD + "The Senterian Gospel");
 		}
-		if(i.hasTagCompound() && i.getTagCompound().toString().contains("my_last_words")) {
-			l.add(overworld + SlayerAPI.Colour.GOLD +  "My Last Words");
+		if (i.hasTagCompound() && i.getTagCompound().toString().contains("my_last_words")) {
+			l.add(overworld + SlayerAPI.Colour.GOLD + "My Last Words");
 		}
 	}
 }

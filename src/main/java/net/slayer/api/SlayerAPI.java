@@ -212,6 +212,10 @@ public class SlayerAPI {
         return boolAddedToInventory;
     }
 
+    @Deprecated
+    /**
+     * use 'TextFormatting'
+     */
     public static final class Colour {
         public static final String BLACK = SECTION_SIGN + "0";
         public static final String DARK_BLUE = SECTION_SIGN + "1";
