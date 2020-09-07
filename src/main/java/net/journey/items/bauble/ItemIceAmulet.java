@@ -2,7 +2,6 @@ package net.journey.items.bauble;
 
 import baubles.api.BaubleType;
 import baubles.api.IBauble;
-import net.journey.init.JourneyTabs;
 import net.journey.items.base.JItem;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
@@ -28,9 +27,7 @@ public class ItemIceAmulet extends JItem implements IBauble {
 	protected static final AttributeModifier DAMAGE_MOD = new AttributeModifier(DAMAGE_MODIFIER, "Damage Modifier", 1.0F, 0);
 	protected static final AttributeModifier ATTACK_MOD = new AttributeModifier(ATTACK_MODIFIER, "Attack Speed Modifier", 0.5F, 0);
 
-	public ItemIceAmulet(String name, String enName) {
-		super(name, enName);
-		setCreativeTab(JourneyTabs.UTIL);
+	public ItemIceAmulet() {
 		setMaxStackSize(1);
 	}
 

@@ -15,11 +15,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class ItemAncientCatalyst extends JItem {
-
-	public ItemAncientCatalyst(String name, String f) {
-		super(name, f);
-	}
-
 	@Override
 	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		IBlockState iblockstate = worldIn.getBlockState(pos);

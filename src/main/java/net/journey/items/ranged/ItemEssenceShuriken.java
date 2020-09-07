@@ -3,7 +3,6 @@ package net.journey.items.ranged;
 import net.journey.api.capability.EssenceStorage;
 import net.journey.common.capability.JCapabilityManager;
 import net.journey.entity.projectile.piercer.EntityEssenceShuriken;
-import net.journey.init.JourneyTabs;
 import net.journey.items.base.JItem;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
@@ -22,9 +21,7 @@ import java.util.List;
 
 public class ItemEssenceShuriken extends JItem {
 
-	public ItemEssenceShuriken(String name, String f) {
-		super(name, f);
-		setCreativeTab(JourneyTabs.WEAPONS);
+	public ItemEssenceShuriken() {
 		setMaxDamage(20);
 		setMaxStackSize(1);
 	}
@@ -46,7 +43,7 @@ public class ItemEssenceShuriken extends JItem {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getHeldItem(handIn));
+		return new ActionResult<>(EnumActionResult.SUCCESS, player.getHeldItem(handIn));
 	}
 
 	@Override

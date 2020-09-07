@@ -1,19 +1,12 @@
 package net.journey.items;
 
 import net.journey.entity.projectile.arrow.EntityEssenceArrow;
-import net.journey.init.JourneyTabs;
 import net.journey.items.base.JItem;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class ItemEssenceArrow extends JItem {
-
-	public ItemEssenceArrow(String name, String finalname) {
-		super(name, finalname);
-		this.setCreativeTab(JourneyTabs.WEAPONS);
-	}
-
 	public EntityEssenceArrow createArrow(World worldIn, ItemStack stack, EntityLivingBase shooter) {
 		EntityEssenceArrow e = new EntityEssenceArrow(worldIn);
 		return null;

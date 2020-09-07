@@ -132,9 +132,9 @@ public class EntityFlungus extends JEntityMob implements AnimationProvider<Entit
 			world.playSound(player.posX, player.posY, player.posZ, SoundEvents.ITEM_BOTTLE_FILL, SoundCategory.MASTER, 1.0f, 1.0f, false);
 			itemstack.shrink(1);
 			if (itemstack.isEmpty()) {
-				player.setHeldItem(hand, new ItemStack(JourneyItems.bile_vial));
-			} else if (!player.inventory.addItemStackToInventory(new ItemStack(JourneyItems.bile_vial))) {
-				player.dropItem(new ItemStack(JourneyItems.bile_vial), false);
+				player.setHeldItem(hand, new ItemStack(JourneyItems.bileVial));
+			} else if (!player.inventory.addItemStackToInventory(new ItemStack(JourneyItems.bileVial))) {
+				player.dropItem(new ItemStack(JourneyItems.bileVial), false);
 			}
 			return true;
 		} else {

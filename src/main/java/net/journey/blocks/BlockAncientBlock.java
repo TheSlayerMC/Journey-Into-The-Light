@@ -26,12 +26,12 @@ public class BlockAncientBlock extends BlockMod {
 
     @Override
     public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
-        Item dropItem = RandHelper.chooseEqual(RANDOM, JourneyItems.ancientPiece_1, JourneyItems.ancientPiece_2, JourneyItems.ancientPiece_3, JourneyItems.ancientPiece_4);
-        int count = RANDOM.nextInt(1) + 1;
+        Item dropItem = RandHelper.chooseEqual(RANDOM, JourneyItems.ancientPiece1, JourneyItems.ancientPiece2, JourneyItems.ancientPiece3, JourneyItems.ancientPiece4);
+	    int count = RANDOM.nextInt(1) + 1;
 
         if (RANDOM.nextInt(10) == 0) {
-            dropItem = JourneyItems.untitled_disc;
-            count = 1;
+	        dropItem = JourneyItems.untitledDisc;
+	        count = 1;
         }
         ItemStack drop = new ItemStack(dropItem, count);
         drops.add(drop);

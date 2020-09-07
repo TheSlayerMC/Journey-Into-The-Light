@@ -3,6 +3,8 @@ package net.journey.init.common;
 import net.journey.blocks.BlockMelon;
 import net.journey.blocks.crop.*;
 import net.journey.blocks.crop.base.BlockFruitCrop;
+import net.journey.init.JourneyTabs;
+import net.journey.init.Registrar;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.init.items.JourneyConsumables;
 import net.journey.items.interactive.ItemFruit;
@@ -53,16 +55,16 @@ public class JourneyCrops {
         airRootCrop = new BlockAirRootCrop("airRootCrop");
         airRootMelon = new BlockMelon("airRootMelon", "Air Root", JourneyConsumables.airMelon);
 
-        bleedheart = new ItemFruit("bleedheart", "Bleedheart Fruit", 2, 0.1F, false, (BlockFruitCrop) JourneyCrops.bleedheartFruit, JourneyBlocks.sizzlerWoodLog).setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.moveSlow, 100, 10), 1.0F);
-        glowshroomPowder = new ItemModSeeds("glowshroomPowder", "Glowshroom Powder", JourneyCrops.glowshroomCrop);
-        tomatoSeeds = new ItemModSeeds("tomatoSeeds", "Tomato Seeds", JourneyCrops.tomatoCrop);
-        corveggieSeeds = new ItemModSeeds("corveggieSeeds", "Corveggie", JourneyCrops.corveggieCrop);
-        crackenCaneSeeds = new ItemModSeeds("crackenCaneSeeds", "Kracken Cane Seeds", JourneyCrops.crackenCaneCrop);
-        crakeBulbSeeds = new ItemModSeeds("crakeBulbSeeds", "Crake Bulb Seeds", JourneyCrops.crakeBulbCrop);
-        spineberrySeeds = new ItemModSeeds("spineBerrySeeds", "Spine Berry Seeds", JourneyCrops.spineberryCrop);
-        glowaSeeds = new ItemModSeeds("glowaSeeds", "Glowa Seeds", JourneyCrops.glowaCrop);
-        zatSeeds = new ItemModSeeds("zatSeeds", "Zat Seeds", JourneyCrops.zatPedalsCrop);
-        floroSeeds = new ItemModSeeds("floroSeeds", "Floro Seeds", JourneyCrops.floroCrop);
-        airRootSeed = new ItemModSeeds("airRootSeed", "Air Root Seed", JourneyCrops.airRootCrop);
+        bleedheart = Registrar.regAndSetupItem("bleedheart", "Bleedheart Fruit", new ItemFruit(2, 0.1F, false, (BlockFruitCrop) JourneyCrops.bleedheartFruit, JourneyBlocks.sizzlerWoodLog).setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.moveSlow, 100, 10), 1.0F), JourneyTabs.CROPS);
+        glowshroomPowder = Registrar.regAndSetupItem("glowshroomPowder", "Glowshroom Powder", new ItemModSeeds(JourneyCrops.glowshroomCrop), JourneyTabs.CROPS);
+        tomatoSeeds = Registrar.regAndSetupItem("tomatoSeeds", "Tomato Seeds", new ItemModSeeds(JourneyCrops.tomatoCrop), JourneyTabs.CROPS);
+        corveggieSeeds = Registrar.regAndSetupItem("corveggieSeeds", "Corveggie", new ItemModSeeds(JourneyCrops.corveggieCrop), JourneyTabs.CROPS);
+        crackenCaneSeeds = Registrar.regAndSetupItem("crackenCaneSeeds", "Kracken Cane Seeds", new ItemModSeeds(JourneyCrops.crackenCaneCrop), JourneyTabs.CROPS);
+        crakeBulbSeeds = Registrar.regAndSetupItem("crakeBulbSeeds", "Crake Bulb Seeds", new ItemModSeeds(JourneyCrops.crakeBulbCrop), JourneyTabs.CROPS);
+        spineberrySeeds = Registrar.regAndSetupItem("spineBerrySeeds", "Spine Berry Seeds", new ItemModSeeds(JourneyCrops.spineberryCrop), JourneyTabs.CROPS);
+        glowaSeeds = Registrar.regAndSetupItem("glowaSeeds", "Glowa Seeds", new ItemModSeeds(JourneyCrops.glowaCrop), JourneyTabs.CROPS);
+        zatSeeds = Registrar.regAndSetupItem("zatSeeds", "Zat Seeds", new ItemModSeeds(JourneyCrops.zatPedalsCrop), JourneyTabs.CROPS);
+        floroSeeds = Registrar.regAndSetupItem("floroSeeds", "Floro Seeds", new ItemModSeeds(JourneyCrops.floroCrop), JourneyTabs.CROPS);
+        airRootSeed = Registrar.regAndSetupItem("airRootSeed", "Air Root Seed", new ItemModSeeds(JourneyCrops.airRootCrop), JourneyTabs.CROPS);
     }
 }

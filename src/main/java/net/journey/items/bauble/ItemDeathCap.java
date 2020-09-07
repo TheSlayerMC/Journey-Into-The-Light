@@ -15,8 +15,7 @@ import java.util.List;
 
 public class ItemDeathCap extends JItem implements IBauble {
 
-	public ItemDeathCap(String name, String enName) {
-		super(name, enName);
+	public ItemDeathCap() {
 		setCreativeTab(JourneyTabs.UTIL);
 	}
 

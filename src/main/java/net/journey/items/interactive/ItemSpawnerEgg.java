@@ -1,6 +1,5 @@
 package net.journey.items.interactive;
 
-import net.journey.init.JourneyTabs;
 import net.journey.items.base.JItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumActionResult;
@@ -12,10 +11,9 @@ import net.slayer.api.entity.EntityJourneyPet;
 
 public class ItemSpawnerEgg extends JItem {
 
-	private Class<? extends EntityJourneyPet> pet;
+	private final Class<? extends EntityJourneyPet> pet;
 
-	public ItemSpawnerEgg(String name, String finalName, Class<? extends EntityJourneyPet> pet) {
-		super(name, finalName, JourneyTabs.SPAWNERS);
+	public ItemSpawnerEgg(Class<? extends EntityJourneyPet> pet) {
 		this.pet = pet;
 		setMaxStackSize(1);
 	}

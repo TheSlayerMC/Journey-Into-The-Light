@@ -5,7 +5,6 @@ import net.journey.api.item.IUsesEssence;
 import net.journey.common.capability.JCapabilityManager;
 import net.journey.entity.projectile.EntityDamagingProjectile;
 import net.journey.init.JourneySounds;
-import net.journey.init.JourneyTabs;
 import net.journey.items.base.JItem;
 import net.journey.util.LangHelper;
 import net.minecraft.client.util.ITooltipFlag;
@@ -24,13 +23,12 @@ import java.util.List;
 
 public class ItemStaff extends JItem implements IUsesEssence {
 
-    protected final int usage;
-    protected int damage;
+	protected final int usage;
+	protected int damage;
 	protected boolean unBreakable;
 	protected Class<? extends EntityDamagingProjectile> projectile;
 
-	public ItemStaff(String name, String f, int magic, int uses, int dam, boolean unbreakable, Class<? extends EntityDamagingProjectile> projectile) {
-		super(name, f);
+	public ItemStaff(int magic, int uses, int dam, boolean unbreakable, Class<? extends EntityDamagingProjectile> projectile) {
 		this.projectile = projectile;
 		damage = dam;
 		usage = magic;
@@ -38,10 +36,9 @@ public class ItemStaff extends JItem implements IUsesEssence {
 		setMaxDamage(uses);
 		setMaxStackSize(1);
 		setFull3D();
-		setCreativeTab(JourneyTabs.WEAPONS);
 	}
 
-    public static float getMagicVelocity(int charge) {
+	public static float getMagicVelocity(int charge) {
         float f = (float) charge / 20.0F;
         f = (f * f + f * 2.0F) / 3.0F;
 

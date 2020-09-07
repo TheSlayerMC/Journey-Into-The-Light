@@ -1,11 +1,7 @@
 package net.slayer.api.item;
 
-import net.journey.JITL;
-import net.journey.init.JourneyTabs;
-import net.journey.init.items.JourneyItems;
 import net.journey.util.JourneyToolMaterial;
 import net.journey.util.LangHelper;
-import net.journey.util.gen.lang.LangGeneratorFacade;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
@@ -20,16 +16,11 @@ public class ItemModPickaxe extends ItemPickaxe {
 
     protected JourneyToolMaterial mat;
 
-    public ItemModPickaxe(String name, String f, JourneyToolMaterial tool) {
+    public ItemModPickaxe(JourneyToolMaterial tool) {
         super(tool.getToolMaterial());
         mat = tool;
-        setTranslationKey(name);
-        setCreativeTab(JourneyTabs.TOOLS);
-        setHarvestLevel("pickaxe", tool.getHarvestLevel());
-        JourneyItems.items.add(this);
-        setRegistryName(JITL.MOD_ID, name);
 
-        LangGeneratorFacade.addItemEntry(this, f);
+        setHarvestLevel("pickaxe", tool.getHarvestLevel());
     }
 
     @Override

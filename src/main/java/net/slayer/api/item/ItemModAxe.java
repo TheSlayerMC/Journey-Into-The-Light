@@ -1,13 +1,9 @@
 package net.slayer.api.item;
 
 import com.google.common.collect.Sets;
-import net.journey.JITL;
 import net.journey.client.ItemDescription;
-import net.journey.init.JourneyTabs;
-import net.journey.init.items.JourneyItems;
 import net.journey.util.JourneyToolMaterial;
 import net.journey.util.LangHelper;
-import net.journey.util.gen.lang.LangGeneratorFacade;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -28,17 +24,12 @@ public class ItemModAxe extends ItemTool {
     private static final Set<Block> EFFECTIVE_ON = Sets.newHashSet(Blocks.PLANKS, Blocks.BOOKSHELF, Blocks.LOG, Blocks.LOG2, Blocks.CHEST, Blocks.PUMPKIN, Blocks.LIT_PUMPKIN, Blocks.MELON_BLOCK, Blocks.LADDER, Blocks.WOODEN_BUTTON, Blocks.WOODEN_PRESSURE_PLATE);
     protected JourneyToolMaterial mat;
 
-    public ItemModAxe(String name, String f, JourneyToolMaterial tool) {
+    public ItemModAxe(JourneyToolMaterial tool) {
         super(tool.getToolMaterial(), EFFECTIVE_ON);
         this.efficiency = tool.getToolMaterial().getEfficiency();
         this.attackDamage = tool.getToolMaterial().getAttackDamage();
         this.attackSpeed = -2.5F;
         mat = tool;
-        setTranslationKey(name);
-        setCreativeTab(JourneyTabs.TOOLS);
-        JourneyItems.items.add(this);
-        setRegistryName(JITL.MOD_ID, name);
-        LangGeneratorFacade.addItemEntry(this, f);
     }
 
     @Override

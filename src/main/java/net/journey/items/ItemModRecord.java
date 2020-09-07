@@ -1,13 +1,8 @@
 package net.journey.items;
 
-import com.google.common.collect.Maps;
-import net.journey.JITL;
-import net.journey.init.JourneyTabs;
-import net.journey.init.items.JourneyItems;
-import net.journey.util.LangHelper;
-import net.journey.util.gen.lang.LangGeneratorFacade;
 import net.minecraft.block.BlockJukebox;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -27,70 +22,43 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 import java.util.List;
-import java.util.Map;
 
 public class ItemModRecord extends ItemRecord {
+	public ItemModRecord(SoundEvent sound) {
+		super("", sound);
+	}
 
-    private static final Map RECORDS = Maps.newHashMap();
-    private final SoundEvent sound;
-    private String soundName;
-    private String description;
+	@Override
+	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		IBlockState iblockstate = worldIn.getBlockState(pos);
+		if (iblockstate.getBlock() == Blocks.JUKEBOX && !iblockstate.getValue(BlockJukebox.HAS_RECORD)) {
+			if (!worldIn.isRemote) {
+				ItemStack itemstack = player.getHeldItem(hand);
+				((BlockJukebox) Blocks.JUKEBOX).insertRecord(worldIn, pos, iblockstate, itemstack);
+				worldIn.playEvent(null, 1010, pos, Item.getIdFromItem(this));
+				itemstack.shrink(1);
+				player.addStat(StatList.RECORD_PLAYED);
+			}
+			return EnumActionResult.SUCCESS;
+		} else {
+			return EnumActionResult.FAIL;
+		}
+	}
 
-    public ItemModRecord(String name, String finalName, /*String desc,*/ SoundEvent sound) {
-        super(name, sound);
-        setTranslationKey(name + "Record");
-        soundName = name;
-        //description = desc;
-        setRegistryName(JITL.MOD_ID, name + "Record");
-        LangGeneratorFacade.addItemEntry(this, finalName);
-        setCreativeTab(JourneyTabs.UTIL);
-        this.sound = sound;
-        this.maxStackSize = 1;
-        RECORDS.put(name, this);
-        JourneyItems.items.add(this);
-    }
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+		tooltip.add(this.getRecordNameLocal());
+	}
 
-    @SideOnly(Side.CLIENT)
-    public static ItemModRecord getRecord(String name) {
-        return (ItemModRecord) RECORDS.get(name);
-    }
+	@Override
+	@SideOnly(Side.CLIENT)
+	public String getRecordNameLocal() {
+		return I18n.format(getTranslationKey() + ".desc");
+	}
 
-    @Override
-    public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        IBlockState iblockstate = worldIn.getBlockState(pos);
-        if (iblockstate.getBlock() == Blocks.JUKEBOX && !iblockstate.getValue(BlockJukebox.HAS_RECORD).booleanValue()) {
-            if (!worldIn.isRemote) {
-                ItemStack itemstack = player.getHeldItem(hand);
-                ((BlockJukebox) Blocks.JUKEBOX).insertRecord(worldIn, pos, iblockstate, itemstack);
-                worldIn.playEvent(null, 1010, pos, Item.getIdFromItem(this));
-                itemstack.shrink(1);
-                player.addStat(StatList.RECORD_PLAYED);
-            }
-            return EnumActionResult.SUCCESS;
-        } else {
-            return EnumActionResult.FAIL;
-        }
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-        tooltip.add(this.getRecordNameLocal());
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public String getRecordNameLocal() {
-        return LangHelper.getFormattedText("item.record." + this.soundName + ".desc");
-    }
-
-    @Override
-    public EnumRarity getRarity(ItemStack stack) {
-        return EnumRarity.RARE;
-    }
-
-    @Override
-    public SoundEvent getSound() {
-        return this.sound;
-    }
+	@Override
+	public EnumRarity getRarity(ItemStack stack) {
+		return EnumRarity.RARE;
+	}
 }

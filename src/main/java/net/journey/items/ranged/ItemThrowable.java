@@ -1,7 +1,6 @@
 package net.journey.items.ranged;
 
 import net.journey.client.ItemDescription;
-import net.journey.init.JourneyTabs;
 import net.journey.items.base.JItem;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
@@ -21,22 +20,20 @@ import java.util.List;
 
 public class ItemThrowable extends JItem {
 
-	private Class<? extends EntityThrowable> entity;
-	private float damage;
+	private final Class<? extends EntityThrowable> entity;
+	private final float damage;
 
-	public ItemThrowable(String name, String f, float damage, Class<? extends EntityThrowable> entity) {
-		super(name, f);
+	public ItemThrowable(float damage, Class<? extends EntityThrowable> entity) {
 		this.damage = damage;
 		this.entity = entity;
-		setCreativeTab(JourneyTabs.WEAPONS);
 	}
 
-    @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand handIn) {
-        ItemStack stack = player.getHeldItem(handIn);
-        try {
-            if (!world.isRemote) {
-                EntityThrowable t = entity.getConstructor(World.class, EntityLivingBase.class, float.class).newInstance(world, player, damage);
+	@Override
+	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand handIn) {
+		ItemStack stack = player.getHeldItem(handIn);
+		try {
+			if (!world.isRemote) {
+				EntityThrowable t = entity.getConstructor(World.class, EntityLivingBase.class, float.class).newInstance(world, player, damage);
                 t.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F, 1.0F);
                 world.spawnEntity(t);
                 if (!player.capabilities.isCreativeMode) stack.shrink(1);
@@ -45,7 +42,7 @@ public class ItemThrowable extends JItem {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getHeldItem(handIn));
+		return new ActionResult<>(EnumActionResult.SUCCESS, player.getHeldItem(handIn));
     }
 
     @Override

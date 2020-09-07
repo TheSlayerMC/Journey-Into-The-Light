@@ -2,7 +2,6 @@ package net.journey.items.bauble;
 
 import baubles.api.BaubleType;
 import baubles.api.IBauble;
-import net.journey.init.JourneyTabs;
 import net.journey.items.base.JItem;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
@@ -16,9 +15,7 @@ import java.util.List;
 
 public class ItemStringOfTethering extends JItem implements IBauble {
 
-	public ItemStringOfTethering(String name, String enName) {
-		super(name, enName);
-		setCreativeTab(JourneyTabs.UTIL);
+	public ItemStringOfTethering() {
 		setMaxStackSize(1);
 	}
 

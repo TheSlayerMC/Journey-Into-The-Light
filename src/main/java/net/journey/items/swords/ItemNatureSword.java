@@ -19,8 +19,8 @@ import java.util.Random;
 
 public class ItemNatureSword extends ItemModSword {
 
-    public ItemNatureSword(String name, String f, JourneyToolMaterial toolMaterial) {
-        super(name, f, toolMaterial);
+    public ItemNatureSword(JourneyToolMaterial toolMaterial) {
+        super(toolMaterial);
     }
 
     @Override

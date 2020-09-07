@@ -6,7 +6,6 @@ import net.journey.common.capability.JCapabilityManager;
 import net.journey.entity.projectile.EntityDamagingProjectile;
 import net.journey.entity.projectile.launcher.EntityBouncingProjectile;
 import net.journey.init.JourneySounds;
-import net.journey.init.JourneyTabs;
 import net.journey.init.items.JourneyWeapons;
 import net.journey.items.base.JItem;
 import net.minecraft.client.util.ITooltipFlag;
@@ -25,13 +24,12 @@ import java.util.List;
 
 public class ItemGun extends JItem implements IUsesEssence {
 
-    public int damage;
+	public int damage;
 	public String ability;
 	protected Class<? extends EntityDamagingProjectile> projectile;
 
-	public ItemGun(String name, String f, int damage, String ability,
+	public ItemGun(int damage, String ability,
 	               Class<? extends EntityDamagingProjectile> projectile) {
-		super(name, f, JourneyTabs.WEAPONS);
 		this.ability = ability;
 		this.projectile = projectile;
 		this.damage = damage;
@@ -40,7 +38,7 @@ public class ItemGun extends JItem implements IUsesEssence {
 		setFull3D();
 	}
 
-    @Override
+	@Override
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand handIn) {
         EssenceStorage mana = JCapabilityManager.asJourneyPlayer(player).getEssenceStorage();
         ItemStack stack = player.getHeldItem(handIn);

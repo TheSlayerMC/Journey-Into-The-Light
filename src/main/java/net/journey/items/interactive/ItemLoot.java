@@ -1,7 +1,6 @@
 package net.journey.items.interactive;
 
 import net.journey.init.JourneySounds;
-import net.journey.init.JourneyTabs;
 import net.journey.items.base.JItem;
 import net.journey.util.LootHelper;
 import net.minecraft.client.util.ITooltipFlag;
@@ -29,8 +28,7 @@ public class ItemLoot extends JItem {
 	private final ResourceLocation loot;
 	private int tier;
 
-	public ItemLoot(String name, String f, ResourceLocation lootTable) {
-		super(name, f, JourneyTabs.UTIL);
+	public ItemLoot(ResourceLocation lootTable) {
 		this.loot = lootTable;
 	}
 

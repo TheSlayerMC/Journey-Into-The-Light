@@ -2,7 +2,6 @@ package net.journey.util;
 
 import net.journey.JITL;
 import net.journey.init.blocks.JourneyBlocks;
-import net.journey.init.items.JourneyItems;
 import net.journey.util.gen.lang.LangGeneratorFacade;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
@@ -41,17 +40,4 @@ public class StuffConstructor {
 
 		LangGeneratorFacade.addBlockEntry(block, enName);
 	}
-
-	public static void regAndSetupItem(Item item, String name, String enName, @Nullable CreativeTabs tab) {
-		name = name.toLowerCase();
-
-		item.setRegistryName(JITL.MOD_ID, name)
-				.setTranslationKey(name)
-				.setCreativeTab(tab);
-
-		JourneyItems.items.add(item);
-
-		LangGeneratorFacade.addItemEntry(item, enName);
-	}
-
 }

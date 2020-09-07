@@ -12,11 +12,6 @@ import net.slayer.api.SlayerAPI;
 import java.util.List;
 
 public class ItemRingSlowness extends ItemRingBase {
-
-    public ItemRingSlowness(String name, String enName) {
-        super(name, enName);
-    }
-
     @Override
     public void onWornTick(ItemStack itemstack, EntityLivingBase player) {
         if (!player.world.isRemote && player.isPotionActive(MobEffects.SLOWNESS)) {

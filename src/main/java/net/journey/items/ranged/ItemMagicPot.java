@@ -1,7 +1,6 @@
 package net.journey.items.ranged;
 
 import net.journey.client.ItemDescription;
-import net.journey.init.JourneyTabs;
 import net.journey.items.base.JItem;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
@@ -21,23 +20,21 @@ import java.util.List;
 
 public class ItemMagicPot extends JItem {
 
-	private Class<? extends EntityThrowable> entity;
-	private float damage;
+	private final Class<? extends EntityThrowable> entity;
+	private final float damage;
 	private int maxBounces = 0;
 
-	public ItemMagicPot(String name, String f, float damage, int bounces, Class<? extends EntityThrowable> entity) {
-		super(name, f);
+	public ItemMagicPot(float damage, int bounces, Class<? extends EntityThrowable> entity) {
 		this.maxBounces = bounces;
 		this.damage = damage;
 		this.entity = entity;
-        setCreativeTab(JourneyTabs.WEAPONS);
-    }
+	}
 
-    @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand handIn) {
-        ItemStack stack = player.getHeldItem(handIn);
-        try {
-            if (!world.isRemote) {
+	@Override
+	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand handIn) {
+		ItemStack stack = player.getHeldItem(handIn);
+		try {
+			if (!world.isRemote) {
                 EntityThrowable t = entity.getConstructor(World.class, EntityLivingBase.class, float.class, int.class).newInstance(world, player, damage, maxBounces);
                 t.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F, 1.0F);
                 world.spawnEntity(t);

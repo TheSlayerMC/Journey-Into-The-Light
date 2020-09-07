@@ -1,11 +1,6 @@
 package net.journey.items.interactive;
 
-import net.journey.JITL;
-import net.journey.init.JourneyTabs;
-import net.journey.init.items.JourneyItems;
-import net.journey.util.gen.lang.LangGeneratorFacade;
 import net.minecraft.block.BlockWorkbench;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -16,21 +11,12 @@ import net.minecraft.world.World;
 
 public class ItemCrafting extends Item {
 
-    private int type;
+    private final int type;
 
-    public ItemCrafting(String name, String finalName, int type) {
-        this(name, finalName, JourneyTabs.ITEMS);
+    public ItemCrafting(int type) {
         this.maxStackSize = 1;
         this.type = type;
         this.setMaxDamage(128);
-    }
-
-    public ItemCrafting(String name, String finalName, CreativeTabs tab) {
-        setTranslationKey(name);
-        JourneyItems.items.add(this);
-        setCreativeTab(JourneyTabs.UTIL);
-        setRegistryName(JITL.MOD_ID, name);
-        LangGeneratorFacade.addItemEntry(this, finalName);
     }
 
     @Override
@@ -44,6 +30,6 @@ public class ItemCrafting extends Item {
                 }
             }
         }
-        return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(handIn));
+        return new ActionResult<>(EnumActionResult.PASS, player.getHeldItem(handIn));
     }
 }

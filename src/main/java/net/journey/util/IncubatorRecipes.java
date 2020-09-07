@@ -1,21 +1,19 @@
 package net.journey.util;
 
-import java.util.Map;
-import java.util.Map.Entry;
-
 import com.google.common.collect.Maps;
-
 import net.journey.init.items.JourneyItems;
 import net.minecraft.block.Block;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
+import java.util.Map;
+import java.util.Map.Entry;
+
 public class IncubatorRecipes {
-	
+
     private static final IncubatorRecipes SMELTING_BASE = new IncubatorRecipes();
-    private final Map<ItemStack, ItemStack> smeltingList = Maps.<ItemStack, ItemStack>newHashMap();
-    private final Map<ItemStack, Float> experienceList = Maps.<ItemStack, Float>newHashMap();
+    private final Map<ItemStack, ItemStack> smeltingList = Maps.newHashMap();
+    private final Map<ItemStack, Float> experienceList = Maps.newHashMap();
 
     public static IncubatorRecipes instance() {
         return SMELTING_BASE;
@@ -24,10 +22,10 @@ public class IncubatorRecipes {
     private IncubatorRecipes() {
         //this.addSmeltingRecipeForBlock(Blocks.SAND, new ItemStack(Blocks.GLASS), 0.1F);
         //this.addSmeltingRecipe(new ItemStack(Blocks.SPONGE, 1, 1), new ItemStack(Blocks.SPONGE, 1, 0), 0.15F);
-        this.addSmelting(JourneyItems.ROBOT_EGG, new ItemStack(JourneyItems.TAMED_ROBOT_SPAWN_EGG), 0.1F);
-        this.addSmelting(JourneyItems.EUCA_HOPPER_EGG, new ItemStack(JourneyItems.TAMED_EUCA_HOPPER_SPAWN_EGG), 0.1F);
-        this.addSmelting(JourneyItems.ROC_EGG, new ItemStack(JourneyItems.TAMED_ROC_SPAWN_EGG), 0.1F); 
-        this.addSmelting(JourneyItems.SHIVERWOLF_EGG, new ItemStack(JourneyItems.TAMED_SHIVERWOLF_SPAWN_EGG), 0.1F);
+        this.addSmelting(JourneyItems.robotEgg, new ItemStack(JourneyItems.tamedRobotSpawnEgg), 0.1F);
+        this.addSmelting(JourneyItems.eucaHopperEgg, new ItemStack(JourneyItems.tamedEucaHopperSpawnEgg), 0.1F);
+        this.addSmelting(JourneyItems.rocEgg, new ItemStack(JourneyItems.tamedRocSpawnEgg), 0.1F);
+        this.addSmelting(JourneyItems.shiverwolfEgg, new ItemStack(JourneyItems.tamedShiverwolfSpawnEgg), 0.1F);
     }
 
     public void addSmeltingRecipeForBlock(Block input, ItemStack stack, float experience) {
@@ -66,7 +64,7 @@ public class IncubatorRecipes {
         if (ret != -1) return ret;
         for (Entry<ItemStack, Float> entry : this.experienceList.entrySet()) {
             if (this.compareItemStacks(stack, entry.getKey())) {
-                return ((Float)entry.getValue()).floatValue();
+                return entry.getValue().floatValue();
             }
         }
         return 0.0F;

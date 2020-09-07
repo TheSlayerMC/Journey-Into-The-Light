@@ -6,11 +6,8 @@ import net.journey.blocks.util.Features;
 import net.journey.entity.projectile.EntityDamagingProjectile;
 import net.journey.entity.projectile.EntityLightningBall;
 import net.journey.init.JourneySounds;
-import net.journey.init.JourneyTabs;
-import net.journey.init.items.JourneyItems;
 import net.journey.util.JourneyToolMaterial;
 import net.journey.util.LangHelper;
-import net.journey.util.gen.lang.LangGeneratorFacade;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -35,17 +32,12 @@ public class ItemCreativeHammer extends ItemSword implements FeatureProvider {
     protected Class<? extends EntityDamagingProjectile> projectile;
     protected JourneyToolMaterial mat;
 
-    public ItemCreativeHammer(String name, String f, JourneyToolMaterial toolMaterial, boolean unbreakable, Class<? extends EntityLightningBall> projectile) {
+    public ItemCreativeHammer(JourneyToolMaterial toolMaterial, boolean unbreakable, Class<? extends EntityLightningBall> projectile) {
         super(toolMaterial.getToolMaterial());
         this.projectile = projectile;
         this.unbreakable = unbreakable;
         setMaxStackSize(1);
-        setTranslationKey(name);
         mat = toolMaterial;
-        setCreativeTab(JourneyTabs.WEAPONS);
-        JourneyItems.items.add(this);
-        setRegistryName(JITL.MOD_ID, name);
-        LangGeneratorFacade.addItemEntry(this, f);
     }
 
     @Override

@@ -20,10 +20,6 @@ import java.util.List;
 
 public class ItemTippedEssenceArrow extends ItemEssenceArrow {
 
-    public ItemTippedEssenceArrow(String name, String finalname) {
-        super(name, finalname);
-    }
-
     @SideOnly(Side.CLIENT)
     public ItemStack getDefaultInstance() {
         return PotionUtils.addPotionToItemStack(super.getDefaultInstance(), PotionTypes.POISON);

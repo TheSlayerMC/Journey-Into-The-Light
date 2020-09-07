@@ -71,7 +71,7 @@ public class TileEntitySenterianAltar extends TileEntity implements ITickable {
 	@Override
 	public void update() {
 		int x = this.pos.getX(), y = this.pos.getY(), z = this.pos.getZ();
-		isFull = getOrbItem() == JourneyItems.SENTRY_OBSERVER;
+		isFull = getOrbItem() == JourneyItems.sentryObserver;
 		if (!isFull) orb = null;
 
 		if (isFull && spawnTimer == 0) {

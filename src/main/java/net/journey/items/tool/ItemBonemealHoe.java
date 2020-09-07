@@ -29,8 +29,8 @@ import java.util.List;
 
 public class ItemBonemealHoe extends ItemModHoe {
 
-    public ItemBonemealHoe(String name, String f, JourneyToolMaterial tool) {
-        super(name, f, tool);
+    public ItemBonemealHoe(JourneyToolMaterial tool) {
+        super(tool);
     }
 
     public static boolean applyBonemeal(ItemStack stack, World worldIn, BlockPos target) {
@@ -138,7 +138,7 @@ public class ItemBonemealHoe extends ItemModHoe {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, World player, List<String> list, ITooltipFlag par4) {
         list.add(SlayerAPI.Colour.GOLD + "Crouch + Right Click to Bonemeal, Right Click to Till");
-        if (this == JourneyArmory.HOE_OF_EARTH_LOVING) {
+        if (this == JourneyArmory.hoeOfEarthLoving) {
             list.add(SlayerAPI.Colour.LIGHT_PURPLE + "Grants a random seed when a grass-type block is mined");
         }
         list.add(SlayerAPI.Colour.BLUE + "Efficiency: " + toolMaterial.getEfficiency());

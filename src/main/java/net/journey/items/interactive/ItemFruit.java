@@ -17,12 +17,12 @@ public class ItemFruit extends ItemModFood {
     public BlockFruitCrop fruitblock;
     public Block log;
 
-    public ItemFruit(String name, String f, int food, float sat, boolean wolfFood) {
-        super(name, f, food, sat, wolfFood);
+    public ItemFruit(int food, float sat, boolean wolfFood) {
+        super(food, sat, wolfFood);
     }
 
-    public ItemFruit(String name, String f, int food, float sat, boolean wolfFood, BlockFruitCrop crop, Block log) {
-        super(name, f, food, sat, wolfFood);
+    public ItemFruit(int food, float sat, boolean wolfFood, BlockFruitCrop crop, Block log) {
+        super(food, sat, wolfFood);
         this.fruitblock = crop;
         this.log = log;
     }

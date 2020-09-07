@@ -13,11 +13,6 @@ import net.slayer.api.SlayerAPI;
 import java.util.List;
 
 public class ItemRingMiningFatigue extends ItemRingBase {
-
-    public ItemRingMiningFatigue(String name, String enName) {
-        super(name, enName);
-    }
-
     @Override
     public void onWornTick(ItemStack itemstack, EntityLivingBase player) {
         Potion potion = Potion.getPotionById(PotionEffects.digSlow);

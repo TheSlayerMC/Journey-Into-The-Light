@@ -2,7 +2,6 @@ package net.journey.items;
 
 import net.journey.api.capability.EssenceStorage;
 import net.journey.common.capability.JCapabilityManager;
-import net.journey.init.JourneyTabs;
 import net.journey.items.base.JItem;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.client.util.ITooltipFlag;
@@ -28,8 +27,7 @@ public class ItemEssencePotion extends JItem {
 
     private final boolean isStrong;
 
-    public ItemEssencePotion(String name, String f, boolean strong) {
-        super(name, f, JourneyTabs.UTIL);
+    public ItemEssencePotion(boolean strong) {
         isStrong = strong;
     }
 

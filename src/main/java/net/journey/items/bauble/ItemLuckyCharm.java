@@ -2,9 +2,7 @@ package net.journey.items.bauble;
 
 import baubles.api.BaubleType;
 import baubles.api.IBauble;
-import net.journey.init.JourneyTabs;
 import net.journey.items.base.JItem;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -16,9 +14,7 @@ import java.util.List;
 
 public class ItemLuckyCharm extends JItem implements IBauble {
 
-    public ItemLuckyCharm(String name, String enName) {
-        super(name, enName);
-        setCreativeTab(JourneyTabs.UTIL);
+    public ItemLuckyCharm() {
         setMaxStackSize(1);
     }
 

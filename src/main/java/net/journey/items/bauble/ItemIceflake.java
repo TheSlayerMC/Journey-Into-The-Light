@@ -2,7 +2,6 @@ package net.journey.items.bauble;
 
 import baubles.api.BaubleType;
 import baubles.api.IBauble;
-import net.journey.init.JourneyTabs;
 import net.journey.items.base.JItem;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
@@ -14,9 +13,7 @@ import java.util.List;
 
 public class ItemIceflake extends JItem implements IBauble {
 
-    public ItemIceflake(String name, String enName) {
-        super(name, enName);
-        setCreativeTab(JourneyTabs.UTIL);
+    public ItemIceflake() {
         setMaxStackSize(1);
     }
 

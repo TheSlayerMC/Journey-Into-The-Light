@@ -119,8 +119,8 @@ public class JourneySounds {
     public static final SoundEvent BLAZIER_DEATH = registerSound("blazier_death");
 
     public static final SoundEvent EMPTY = registerSound("empty");
-    public static final SoundEvent UNTITLED_DISK = registerSound("untitled_disk");
-    public static final SoundEvent RACE_TO_SHORE = registerSound("race_shore");
+	public static final SoundEvent UNTITLED_DISC = registerSound("untitled_disk");
+	public static final SoundEvent RACE_TO_SHORE = registerSound("race_shore");
     public static final SoundEvent DEEP_BLUE = registerSound("deep_blue");
     public static final SoundEvent COMPETITION_BEGINS = registerSound("comp_begins");
     public static final SoundEvent RACE_STAR = registerSound("race_star");

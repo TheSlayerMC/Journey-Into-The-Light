@@ -4,7 +4,6 @@ import net.journey.api.capability.EssenceStorage;
 import net.journey.api.item.IUsesEssence;
 import net.journey.common.capability.JCapabilityManager;
 import net.journey.init.JourneySounds;
-import net.journey.init.JourneyTabs;
 import net.journey.items.base.JItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -19,8 +18,7 @@ import java.util.List;
 
 public class ItemEternalNight extends JItem implements IUsesEssence {
 
-	public ItemEternalNight(String name, String finalName) {
-		super(name, finalName, JourneyTabs.UTIL);
+	public ItemEternalNight() {
 		setMaxDamage(3);
 		setMaxStackSize(1);
 	}
@@ -34,9 +32,9 @@ public class ItemEternalNight extends JItem implements IUsesEssence {
 			stack.damageItem(1, player);
 			worldIn.playSound(player, player.getPosition(), JourneySounds.ETERNAL_NIGHT, SoundCategory.PLAYERS, 1.0F, 1.0F);
 			SlayerAPI.addChatMessage(player, player.getDisplayNameString() + " isn't scared of the dark...");
-			return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
+			return new ActionResult<>(EnumActionResult.SUCCESS, stack);
 		}
-		return new ActionResult<ItemStack>(EnumActionResult.FAIL, stack);
+		return new ActionResult<>(EnumActionResult.FAIL, stack);
 	}
 
 	@Override
