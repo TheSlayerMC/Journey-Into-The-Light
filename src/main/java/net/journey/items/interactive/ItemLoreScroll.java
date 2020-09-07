@@ -29,10 +29,6 @@ import java.util.List;
 
 public class ItemLoreScroll extends JItem {
 
-	public ItemLoreScroll(String name, String finalName) {
-		super(name, finalName);
-	}
-
 	@Override
 	public @NotNull ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, @NotNull EnumHand handIn) {
 		ItemStack heldItem = playerIn.getHeldItem(handIn);
