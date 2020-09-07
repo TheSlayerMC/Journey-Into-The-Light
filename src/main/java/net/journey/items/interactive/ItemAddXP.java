@@ -1,6 +1,5 @@
 package net.journey.items.interactive;
 
-import net.journey.init.JourneyTabs;
 import net.journey.items.base.JItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.PotionTypes;
@@ -15,22 +14,21 @@ import java.util.List;
 
 public class ItemAddXP extends JItem {
 
-	private int amount;
+	private final int amount;
 
-	public ItemAddXP(String name, String finalN, int amount) {
-		super(name, finalN, JourneyTabs.UTIL);
+	public ItemAddXP(int amount) {
 		this.amount = amount;
 	}
 
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer player, EnumHand handIn) {
 		ItemStack stack = player.getHeldItem(handIn);
-        worldIn.playEvent(2002, player.getPosition(), PotionUtils.getPotionColor(PotionTypes.LEAPING));
-		if(!worldIn.isRemote) {
+		worldIn.playEvent(2002, player.getPosition(), PotionUtils.getPotionColor(PotionTypes.LEAPING));
+		if (!worldIn.isRemote) {
 			player.addExperienceLevel(amount);
 			stack.shrink(1);
 		}
-		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
+		return new ActionResult<>(EnumActionResult.SUCCESS, stack);
 	}
 
 	@Override

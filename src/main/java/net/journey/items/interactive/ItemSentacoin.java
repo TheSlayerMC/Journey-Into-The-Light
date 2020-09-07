@@ -13,18 +13,17 @@ import net.minecraft.world.World;
 
 public class ItemSentacoin extends JItem {
 
-	public ItemSentacoin(String name, String enName) {
-		super(name, enName);
+	public ItemSentacoin() {
 		setMaxStackSize(1);
 	}
 
 	@Override
 	public void onUpdate(ItemStack s, World w, Entity e, int itemSlot, boolean isSelected) {
-		if(!w.isRemote) {
-			if(e instanceof EntityPlayer) {
+		if (!w.isRemote) {
+			if (e instanceof EntityPlayer) {
 				EntityPlayer player = (EntityPlayer) e;
 				PlayerStats stats = JCapabilityManager.asJourneyPlayer(player).getPlayerStats();
-	            JourneyPlayer journeyPlayer = JCapabilityManager.asJourneyPlayer(player);
+				JourneyPlayer journeyPlayer = JCapabilityManager.asJourneyPlayer(player);
 				stats.addSentacoin(1);
 				journeyPlayer.sendUpdates(((EntityPlayerMP)e));
 				player.inventory.decrStackSize(itemSlot, 1);

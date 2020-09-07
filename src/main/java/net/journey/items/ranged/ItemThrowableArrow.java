@@ -1,7 +1,6 @@
 package net.journey.items.ranged;
 
 import net.journey.client.ItemDescription;
-import net.journey.init.JourneyTabs;
 import net.journey.items.base.JItem;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
@@ -23,22 +22,20 @@ import java.util.List;
 public class ItemThrowableArrow extends JItem {
 
 	String string;
-	private double damage;
-	private Class<? extends EntityTippedArrow> entity;
+	private final double damage;
+	private final Class<? extends EntityTippedArrow> entity;
 
-	public ItemThrowableArrow(String name, String f, double damage, Class<? extends EntityTippedArrow> entity, String description) {
-		super(name, f);
+	public ItemThrowableArrow(double damage, Class<? extends EntityTippedArrow> entity, String description) {
 		this.entity = entity;
 		this.string = description;
 		this.damage = damage;
-        setCreativeTab(JourneyTabs.WEAPONS);
-    }
+	}
 
-    @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand handIn) {
-        ItemStack stack = player.getHeldItem(handIn);
-        try {
-            if (!world.isRemote) {
+	@Override
+	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand handIn) {
+		ItemStack stack = player.getHeldItem(handIn);
+		try {
+			if (!world.isRemote) {
                 EntityTippedArrow t = entity.getConstructor(World.class, EntityLivingBase.class).newInstance(world, player);
                 t.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F, 1.0F);
                 t.setDamage(damage);

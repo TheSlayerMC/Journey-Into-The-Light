@@ -1,13 +1,9 @@
 package net.journey.items.tool;
 
 import com.google.common.collect.Sets;
-import net.journey.JITL;
 import net.journey.client.ItemDescription;
-import net.journey.init.JourneyTabs;
-import net.journey.init.items.JourneyItems;
 import net.journey.util.JourneyToolMaterial;
 import net.journey.util.LangHelper;
-import net.journey.util.gen.lang.LangGeneratorFacade;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirt;
 import net.minecraft.block.state.IBlockState;
@@ -35,17 +31,11 @@ public class ItemMultiTool extends ItemTool {
     private static final Set<Block> blocksEffectiveAgainst = Sets.newHashSet(Block.REGISTRY);
     protected JourneyToolMaterial mat;
 
-    public ItemMultiTool(String name, String f, JourneyToolMaterial tool, int damage) {
+    public ItemMultiTool(JourneyToolMaterial tool, int damage) {
         super(tool.getToolMaterial(), blocksEffectiveAgainst);
         mat = tool;
         this.setMaxDamage(damage);
-        setTranslationKey(name);
-        setCreativeTab(JourneyTabs.TOOLS);
         setHarvestLevel("pickaxe", tool.getHarvestLevel());
-        JourneyItems.items.add(this);
-        setRegistryName(JITL.MOD_ID, name);
-
-        LangGeneratorFacade.addItemEntry(this, f);
     }
 
     @Override

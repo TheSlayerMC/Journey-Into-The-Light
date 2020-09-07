@@ -1,6 +1,5 @@
 package net.journey.items;
 
-import net.journey.init.JourneyTabs;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.items.base.JItem;
 import net.minecraft.block.Block;
@@ -22,19 +21,17 @@ import java.util.Random;
 
 public class ItemFlameCoin extends JItem {
 
-	public ItemFlameCoin(String name, String f) {
-		super(name, f);
-		setCreativeTab(JourneyTabs.UTIL);
+	public ItemFlameCoin() {
 		setMaxStackSize(1);
 	}
 
 	@Override
 	public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing fa, float hitX, float hitY, float hitZ) {
 		Random r = new Random();
-        int x = pos.getX(), y = pos.getY(), z = pos.getZ();
-        if (fa != EnumFacing.UP && world.getBlockState(pos.up()).getBlock() != Blocks.AIR) {
-            return EnumActionResult.FAIL;
-        } else {
+		int x = pos.getX(), y = pos.getY(), z = pos.getZ();
+		if (fa != EnumFacing.UP && world.getBlockState(pos.up()).getBlock() != Blocks.AIR) {
+			return EnumActionResult.FAIL;
+		} else {
             Block block = world.getBlockState(pos).getBlock();
             if (block == JourneyBlocks.frozenPortalFrame || block == JourneyBlocks.eucaPortalFrame || block == JourneyBlocks.boilPortalFrame
                     || block == JourneyBlocks.cloudiaPortalFrame || block == JourneyBlocks.terraniaPortalFrame) {

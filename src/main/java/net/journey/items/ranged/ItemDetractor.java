@@ -5,7 +5,6 @@ import net.journey.common.capability.JCapabilityManager;
 import net.journey.entity.projectile.EntityAttractor;
 import net.journey.entity.projectile.EntityDetractor;
 import net.journey.init.JourneySounds;
-import net.journey.init.JourneyTabs;
 import net.journey.items.base.JItem;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
@@ -28,8 +27,7 @@ public class ItemDetractor extends JItem {
     public boolean detracts;
     private final int magic;
 
-    public ItemDetractor(String name, String finalName, int magic, boolean attracts, boolean detracts) {
-        super(name, finalName, JourneyTabs.WEAPONS);
+    public ItemDetractor(int magic, boolean attracts, boolean detracts) {
         setMaxStackSize(1);
         this.magic = magic;
         this.attracts = attracts;

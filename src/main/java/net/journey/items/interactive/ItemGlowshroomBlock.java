@@ -17,21 +17,20 @@ import net.minecraft.world.World;
 
 public class ItemGlowshroomBlock extends JItem {
 
-	private BlockTallGlowshroom shroombottom;
-	private BlockTallGlowshroom shroomtop;
+	private final BlockTallGlowshroom shroombottom;
+	private final BlockTallGlowshroom shroomtop;
 
-	public ItemGlowshroomBlock(String name, String finalName, BlockTallGlowshroom shroombottom, BlockTallGlowshroom shroomtop) {
-		super(name, finalName);
+	public ItemGlowshroomBlock(BlockTallGlowshroom shroombottom, BlockTallGlowshroom shroomtop) {
 		this.shroombottom = shroombottom;
 		this.shroomtop = shroomtop;
 		this.setCreativeTab(JourneyTabs.DECORATION);
 	}
 
-    @Override
-    public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        if (facing != EnumFacing.UP) {
-            return EnumActionResult.FAIL;
-        } else {
+	@Override
+	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		if (facing != EnumFacing.UP) {
+			return EnumActionResult.FAIL;
+		} else {
             IBlockState iblockstate = worldIn.getBlockState(pos);
             Block block = iblockstate.getBlock();
 

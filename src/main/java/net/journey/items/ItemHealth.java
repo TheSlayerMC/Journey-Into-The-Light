@@ -1,11 +1,7 @@
 package net.journey.items;
 
-import net.journey.JITL;
 import net.journey.init.JourneySounds;
-import net.journey.init.JourneyTabs;
-import net.journey.init.items.JourneyItems;
 import net.journey.util.Config;
-import net.journey.util.gen.lang.LangGeneratorFacade;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
@@ -32,11 +28,6 @@ public class ItemHealth extends ItemFood {
         this.isSentry = isSentry;
         setMaxStackSize(8);
         setAlwaysEdible();
-        setTranslationKey(name);
-        setCreativeTab(JourneyTabs.CROPS);
-        JourneyItems.items.add(this);
-        setRegistryName(JITL.MOD_ID, name);
-        LangGeneratorFacade.addItemEntry(this, actual);
     }
 
     @Override

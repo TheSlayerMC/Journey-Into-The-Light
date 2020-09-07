@@ -1,11 +1,7 @@
 package net.slayer.api.item;
 
-import net.journey.JITL;
-import net.journey.init.JourneyTabs;
-import net.journey.init.items.JourneyItems;
 import net.journey.util.JourneyToolMaterial;
 import net.journey.util.LangHelper;
-import net.journey.util.gen.lang.LangGeneratorFacade;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
@@ -20,15 +16,9 @@ public class ItemModShovel extends ItemSpade {
 
     protected JourneyToolMaterial mat;
 
-    public ItemModShovel(String name, String f, JourneyToolMaterial tool) {
+    public ItemModShovel(JourneyToolMaterial tool) {
         super(tool.getToolMaterial());
         mat = tool;
-        setTranslationKey(name);
-        setCreativeTab(JourneyTabs.TOOLS);
-        JourneyItems.items.add(this);
-        setRegistryName(JITL.MOD_ID, name);
-
-        LangGeneratorFacade.addItemEntry(this, f);
     }
 
     @Override

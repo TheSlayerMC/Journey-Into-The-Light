@@ -13,26 +13,21 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class ItemDarkGem extends JItem {
-
-	public ItemDarkGem(String name, String f) {
-		super(name, f);
-	}
-
 	@Override
 	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		IBlockState iblockstate = worldIn.getBlockState(pos);
 		ItemStack itemstack = player.getHeldItem(hand);
-		if (player.canPlayerEdit(pos.offset(facing), facing, itemstack) && iblockstate.getBlock() == JourneyBlocks.depthsPortalFrame && !iblockstate.getValue(BlockDepthsPortalFrame.EYE).booleanValue()) {
-            if (worldIn.isRemote) {
-                return EnumActionResult.SUCCESS;
-            } else {
-                worldIn.setBlockState(pos, iblockstate.withProperty(BlockDepthsPortalFrame.EYE, Boolean.valueOf(true)), 2);
-                worldIn.updateComparatorOutputLevel(pos, JourneyBlocks.depthsPortalFrame);
-                itemstack.shrink(1);
+		if (player.canPlayerEdit(pos.offset(facing), facing, itemstack) && iblockstate.getBlock() == JourneyBlocks.depthsPortalFrame && !iblockstate.getValue(BlockDepthsPortalFrame.EYE)) {
+			if (worldIn.isRemote) {
+				return EnumActionResult.SUCCESS;
+			} else {
+				worldIn.setBlockState(pos, iblockstate.withProperty(BlockDepthsPortalFrame.EYE, true), 2);
+				worldIn.updateComparatorOutputLevel(pos, JourneyBlocks.depthsPortalFrame);
+				itemstack.shrink(1);
 
-                for (int i = 0; i < 16; ++i) {
-                    double d0 = (float) pos.getX() + (5.0F + itemRand.nextFloat() * 6.0F) / 16.0F;
-                    double d1 = (float) pos.getY() + 0.8125F;
+				for (int i = 0; i < 16; ++i) {
+					double d0 = (float) pos.getX() + (5.0F + itemRand.nextFloat() * 6.0F) / 16.0F;
+					double d1 = (float) pos.getY() + 0.8125F;
                     double d2 = (float) pos.getZ() + (5.0F + itemRand.nextFloat() * 6.0F) / 16.0F;
                     double d3 = 0.0D;
                     double d4 = 0.0D;

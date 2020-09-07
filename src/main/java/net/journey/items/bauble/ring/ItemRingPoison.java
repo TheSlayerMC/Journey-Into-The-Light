@@ -1,6 +1,5 @@
 package net.journey.items.bauble.ring;
 
-import baubles.common.items.ItemRing;
 import net.journey.util.PotionEffects;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
@@ -14,11 +13,6 @@ import net.slayer.api.SlayerAPI;
 import java.util.List;
 
 public class ItemRingPoison extends ItemRingBase {
-
-    public ItemRingPoison(String name, String enName) {
-        super(name, enName);
-    }
-
     @Override
     public void onWornTick(ItemStack itemstack, EntityLivingBase player) {
         Potion potion = Potion.getPotionById(PotionEffects.poison);

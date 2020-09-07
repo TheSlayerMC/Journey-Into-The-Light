@@ -51,9 +51,9 @@ public class JourneyRecipes {
 
 		addShapedRecipe(JourneyItems.nauseaRing, " i ", "i i", " i ", 'i', Blocks.OBSIDIAN);
 
-		addShapedRecipe(JourneyItems.aquaticAmulet, " i ", "ixi", 'i', JourneyItems.AQUASTONE, 'x', JourneyItems.emptyAmulet);
+		addShapedRecipe(JourneyItems.aquaticAmulet, " i ", "ixi", 'i', JourneyItems.aquastone, 'x', JourneyItems.emptyAmulet);
 
-		addShapedRecipe(JourneyBlocks.magicExplosive, "ixi", "xix", "ixi", 'i', JourneyItems.MAGIC_DUST, 'x', Blocks.SAND);
+		addShapedRecipe(JourneyBlocks.magicExplosive, "ixi", "xix", "ixi", 'i', JourneyItems.magicDust, 'x', Blocks.SAND);
 
 		addShapedRecipe(JourneyBlocks.INCUBATOR, "iii", "jkj", "ckc", 'i', Blocks.OBSIDIAN, 'j', Items.IRON_INGOT, 'k', JourneyItems.luniumIngot, 'c', Blocks.COBBLESTONE);
 
@@ -81,10 +81,10 @@ public class JourneyRecipes {
 		addShapedRecipe(JourneyItems.hellcrustIngot, "iii", "idi", "iii", 'i', JourneyItems.ash, 'd', JourneyItems.hellstoneIngot);
 		addShapedRecipe(JourneyItems.reinforcedStoneIngot, "ddd", "did", "ddd", 'd', JourneyItems.stoneClump, 'i', Blocks.STONE);
 		addShapedRecipe(JourneyItems.reinforcedCrystalIngot, "ddd", "did", "ddd", 'd', JourneyItems.stoneClump, 'i', JourneyItems.caveCrystal);
-		addShapedRecipe(JourneyItems.crystalBall, "idi", "iii", 'i', JourneyItems.MAGIC_DUST, 'd', Items.ENDER_PEARL);
+		addShapedRecipe(JourneyItems.crystalBall, "idi", "iii", 'i', JourneyItems.magicDust, 'd', Items.ENDER_PEARL);
 		addShapedRecipe(new ItemStack(JourneyBlocks.senterianPortalFrame, 4), "iii", "iii", 'i', JourneyBlocks.ANCIENT_STONE);
 		addShapedRecipe(new ItemStack(JourneyWeapons.demonicBomb, 16), "ddd", "did", "ddd", 'd', JourneyItems.demonicDust, 'i', JourneyItems.crystalBall);
-		addShapedRecipe(JourneyWeapons.MAGIC_BOMB, "ddd", "did", "ddd", 'd', JourneyItems.MAGIC_DUST, 'i', JourneyItems.crystalBall);
+		addShapedRecipe(JourneyWeapons.magicBomb, "ddd", "did", "ddd", 'd', JourneyItems.magicDust, 'i', JourneyItems.crystalBall);
 		addShapedRecipe(new ItemStack(JourneyItems.stoneClump, 4), "ddd", "ddd", "ddd", 'd', JourneyItems.caveDust);
 		addShapedRecipe(new ItemStack(JourneyItems.stoneStick, 16), "d", "d", "d", 'd', Blocks.STONE);
 		addShapedRecipe(new ItemStack(JourneyItems.stoneClump, 16), "ddd", "ddd", "ddd", 'd', Blocks.STONE);
@@ -94,7 +94,7 @@ public class JourneyRecipes {
 		addShapedRecipe(new ItemStack(JourneyBlocks.bloodLamp, 4), "ddd", "did", "ddd", 'i', Blocks.GLOWSTONE, 'd', JourneyBlocks.bloodRock);
 		addShapedRecipe(JourneyBlocks.obelisk, "ddd", "did", "ddd", 'i', JourneyBlocks.bloodRock, 'd', JourneyItems.boilPowder);
 		addShapedRecipe(JourneyBlocks.bloodCatalyst, "ddd", "did", "ddd", 'i', JourneyBlocks.bloodRock, 'd', JourneyItems.blood);
-		addShapedRecipe(new ItemStack(JourneyBlocks.bloodRune, 4), "ddd", "did", "ddd", 'd', JourneyBlocks.bloodRock, 'i', JourneyItems.BALMY_TEARDROP);
+		addShapedRecipe(new ItemStack(JourneyBlocks.bloodRune, 4), "ddd", "did", "ddd", 'd', JourneyBlocks.bloodRock, 'i', JourneyItems.balmyTeardrop);
 		addShapedRecipe(new ItemStack(JourneyBlocks.bloodPillar, 4), "dd", "dd", 'd', JourneyBlocks.carvedBloodRock);
 
 		addShapedRecipe(new ItemStack(JourneyItems.stoneClump, 16), "ddd", "ddd", "ddd", 'd', Blocks.COBBLESTONE);
@@ -110,9 +110,9 @@ public class JourneyRecipes {
 		 * JourneyItems.flamingHide, 'i', JourneyItems.concentratedBlood });
 		 */
 		addShapelessRecipe(new ItemStack(JourneyItems.demonicDust, 5), JourneyItems.demonicBone);
-		addShapelessRecipe(new ItemStack(JourneyItems.smithstonedust, 4), JourneyItems.smithstone);
-		addShapelessRecipe(new ItemStack(JourneyItems.bleedstonedust, 4), JourneyItems.bleedstone);
-		addShapelessRecipe(JourneyItems.nethicgemstone, JourneyItems.bleedstonedust, JourneyItems.smithstonedust);
+		addShapelessRecipe(new ItemStack(JourneyItems.smithstoneDust, 4), JourneyItems.smithstone);
+		addShapelessRecipe(new ItemStack(JourneyItems.bleedstoneDust, 4), JourneyItems.bleedstone);
+		addShapelessRecipe(JourneyItems.soulstone, JourneyItems.bleedstoneDust, JourneyItems.smithstoneDust);
 		addShapelessRecipe(JourneyItems.darkGem, JourneyItems.shadiumIngot, Items.DIAMOND);
 
 		addOPFoodRecipes(JourneyConsumables.goldenPotato, JourneyConsumables.goldenPotatoOP, Items.POTATO);
@@ -130,7 +130,7 @@ public class JourneyRecipes {
 		addShapelessRecipe(new ItemStack(JourneyCrops.glowshroomPowder, 4), JourneyBlocks.tallGlowshroomBlue);
 		addShapelessRecipe(new ItemStack(JourneyCrops.glowshroomPowder, 4), JourneyConsumables.glowshroom);
 		addShapelessRecipe(new ItemStack(JourneyCrops.floroSeeds, 4), JourneyConsumables.floroPedal);
-		addShapelessRecipe(new ItemStack(JourneyItems.eucaPortalGem, 10), JourneyItems.eucaPortalPiece, JourneyItems.eucaPortalPiece_0, JourneyItems.eucaPortalPiece_1);
+		addShapelessRecipe(new ItemStack(JourneyItems.eucaPortalGem, 10), JourneyItems.eucaPortalPiece, JourneyItems.eucaPortalPiece0, JourneyItems.eucaPortalPiece1);
 		addWoodRecipes(JourneyBlocks.eucaGoldLog, JourneyBlocks.goldEucaPlank, JourneyBlocks.eucaGoldStairs, 0, true);
 		addWoodRecipes(JourneyBlocks.depthsLog, JourneyBlocks.depthsPlank, JourneyBlocks.depthsPlank, 1, true);
 		addWoodRecipes(JourneyBlocks.corbaLog, JourneyBlocks.corbaPlank, null, 1, true);
@@ -212,7 +212,7 @@ public class JourneyRecipes {
 		addDefaultRecipes(JourneyBlocks.mekyumOre, JourneyItems.mekyumIngot, JourneyBlocks.mekyumBlock, JourneyArmory.mekyumAxe,
 				JourneyArmory.mekyumPickaxe, JourneyArmory.mekyumShovel, JourneyArmory.mekyumHoe,
 				JourneyWeapons.mekyumSword, JourneyArmory.mekyumMultiTool, null, null, null, null, null);
-		addDefaultRecipes(null, JourneyItems.nethicgemstone, JourneyBlocks.nethicGemstoneBlock, JourneyArmory.nethicAxe,
+		addDefaultRecipes(null, JourneyItems.soulstone, JourneyBlocks.nethicGemstoneBlock, JourneyArmory.nethicAxe,
 				JourneyArmory.nethicPickaxe, JourneyArmory.nethicShovel, null,
 				null, null, null, null, null, null, null);
 		//addDefaultRecipes(b.ashualOre, i.ash, b.ashualBlock, null, null, null, null,
@@ -256,7 +256,7 @@ public class JourneyRecipes {
 		GameRegistry.addSmelting(JourneyConsumables.rocMeat, new ItemStack(JourneyConsumables.cookedRocMeat), 0.5F);
 		GameRegistry.addSmelting(JourneyConsumables.ghastTentacle, new ItemStack(JourneyConsumables.friedGhastTentacale), 0.5F);
 		GameRegistry.addSmelting(JourneyConsumables.flamingGhastTentacle, new ItemStack(JourneyConsumables.friedFlamingGhastTentacale), 0.5F);
-		GameRegistry.addSmelting(JourneyConsumables.breathing_fungus, new ItemStack(JourneyConsumables.breathing_fungus_cooked), 0.5F);
+		GameRegistry.addSmelting(JourneyConsumables.breathingFungus, new ItemStack(JourneyConsumables.breathingFungusCooked), 0.5F);
 	}
 
 	private static void addShapedRecipe(Block b, Object... params) {

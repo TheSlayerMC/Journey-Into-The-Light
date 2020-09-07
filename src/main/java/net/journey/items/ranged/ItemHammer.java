@@ -8,11 +8,8 @@ import net.journey.blocks.util.Features;
 import net.journey.common.capability.JCapabilityManager;
 import net.journey.entity.projectile.EntityDamagingProjectile;
 import net.journey.init.JourneySounds;
-import net.journey.init.JourneyTabs;
-import net.journey.init.items.JourneyItems;
 import net.journey.util.JourneyToolMaterial;
 import net.journey.util.LangHelper;
-import net.journey.util.gen.lang.LangGeneratorFacade;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -41,19 +38,14 @@ public class ItemHammer extends ItemSword implements IUsesEssence, FeatureProvid
 	protected Class<? extends EntityDamagingProjectile> projectile;
 	protected JourneyToolMaterial mat;
 
-	public ItemHammer(String name, String f, JourneyToolMaterial toolMaterial, boolean durability, Class<? extends EntityDamagingProjectile> projectile, int dam, int magic, int uses) {
+	public ItemHammer(JourneyToolMaterial toolMaterial, boolean durability, Class<? extends EntityDamagingProjectile> projectile, int dam, int magic, int uses) {
 		super(toolMaterial.getToolMaterial());
 		this.projectile = projectile;
 		damage = dam;
 		usage = magic;
 		setMaxDamage(uses);
 		setMaxStackSize(1);
-		setTranslationKey(name);
 		mat = toolMaterial;
-		setCreativeTab(JourneyTabs.WEAPONS);
-		JourneyItems.items.add(this);
-		setRegistryName(JITL.MOD_ID, name);
-		LangGeneratorFacade.addItemEntry(this, f);
 
 		this.addPropertyOverride(new ResourceLocation("pull"), new IItemPropertyGetter() {
 			@SideOnly(Side.CLIENT)

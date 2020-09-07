@@ -2,8 +2,8 @@ package net.journey.client;
 
 import net.journey.api.block.FeatureProvider;
 import net.journey.blocks.util.Features;
+import net.journey.init.Registrar;
 import net.journey.init.blocks.JourneyBlocks;
-import net.journey.init.items.JourneyItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -54,7 +54,7 @@ public class ModelRegistry {
 
 	@SubscribeEvent
 	public static void onModelRegEvent(ModelRegistryEvent event) {
-		for (Item i : JourneyItems.items) {
+		for (Item i : Registrar.JOURNEY_ITEMS) {
 			registerModel(i);
 		}
 

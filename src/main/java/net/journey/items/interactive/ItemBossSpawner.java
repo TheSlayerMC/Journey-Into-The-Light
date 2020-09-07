@@ -1,7 +1,6 @@
 package net.journey.items.interactive;
 
 import net.journey.init.JourneySounds;
-import net.journey.init.JourneyTabs;
 import net.journey.init.items.JourneyItems;
 import net.journey.items.base.JItem;
 import net.journey.util.ChatUtils;
@@ -38,8 +37,7 @@ public class ItemBossSpawner extends JItem {
 
 	private String langKey;
 
-	public ItemBossSpawner(String key, String enName, Supplier<DimensionType> accessibleDimSupplier, Class<? extends Entity> entityToSummonClass) {
-		super(key, enName, JourneyTabs.SPAWNERS);
+	public ItemBossSpawner(Supplier<DimensionType> accessibleDimSupplier, Class<? extends Entity> entityToSummonClass) {
 		this.accessibleDimSupplier = accessibleDimSupplier;
 		this.entityClass = entityToSummonClass;
 

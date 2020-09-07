@@ -2,15 +2,12 @@ package net.journey.items.bauble;
 
 import baubles.api.BaubleType;
 import baubles.api.IBauble;
-import net.journey.init.JourneyTabs;
 import net.journey.items.base.JItem;
-import net.journey.util.PotionEffects;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -24,10 +21,8 @@ public class ItemHeartContainer extends JItem implements IBauble {
     protected static final UUID HEALTH_MODIFIER = UUID.fromString("9769f32f-1489-40ab-aa87-2985aa3246fd");
     public double hearts;
 
-    public ItemHeartContainer(String name, String enName, double hearts) {
-        super(name, enName);
+    public ItemHeartContainer(double hearts) {
         this.hearts = hearts;
-        setCreativeTab(JourneyTabs.UTIL);
         setMaxStackSize(1);
     }
 

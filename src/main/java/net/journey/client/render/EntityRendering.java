@@ -152,15 +152,15 @@ public class EntityRendering {
         RenderingRegistry.registerEntityRenderingHandler(EntityFrostyPiercer.class, new RenderItemProjectile(JourneyWeapons.frostyPiercer));
         RenderingRegistry.registerEntityRenderingHandler(EntitySunsetPiercer.class, new RenderItemProjectile(JourneyWeapons.sunsetPiercer));
         RenderingRegistry.registerEntityRenderingHandler(EntitySkyPiercer.class, new RenderItemProjectile(JourneyWeapons.skyPiercer));
-        RenderingRegistry.registerEntityRenderingHandler(EntityMagicPot.class, new RenderItemProjectile(JourneyWeapons.MAGIC_POT_OF_DESTRUCTION));
+        RenderingRegistry.registerEntityRenderingHandler(EntityMagicPot.class, new RenderItemProjectile(JourneyWeapons.magicPotOfDestruction));
         RenderingRegistry.registerEntityRenderingHandler(EntityMoltenKnife.class, new RenderItemProjectile(JourneyWeapons.moltenKnife));
         RenderingRegistry.registerEntityRenderingHandler(EntityAquaticKnife.class, new RenderItemProjectile(JourneyWeapons.aquaticKnife));
         RenderingRegistry.registerEntityRenderingHandler(EntityBloodKnife.class, new RenderItemProjectile(JourneyWeapons.bloodKnife));
         RenderingRegistry.registerEntityRenderingHandler(EntityCharredKnife.class, new RenderItemProjectile(JourneyWeapons.charredKnife));
         RenderingRegistry.registerEntityRenderingHandler(EntitySizzlingKnife.class, new RenderItemProjectile(JourneyWeapons.sizzlingKnife));
-        RenderingRegistry.registerEntityRenderingHandler(EntityMagicBomb.class, new RenderItemProjectile(JourneyWeapons.MAGIC_BOMB));
+        RenderingRegistry.registerEntityRenderingHandler(EntityMagicBomb.class, new RenderItemProjectile(JourneyWeapons.magicBomb));
         RenderingRegistry.registerEntityRenderingHandler(EntityFrozenSnowball.class, new RenderItemProjectile(Items.SNOWBALL));
-        RenderingRegistry.registerEntityRenderingHandler(EntityEssenceShuriken.class, new RenderItemProjectile(JourneyWeapons.ESSENCE_SHURIKEN));
+        RenderingRegistry.registerEntityRenderingHandler(EntityEssenceShuriken.class, new RenderItemProjectile(JourneyWeapons.essenceShuriken));
         RenderingRegistry.registerEntityRenderingHandler(EntityDemonicBomb.class, new RenderItemProjectile(JourneyWeapons.demonicBomb));
         RenderingRegistry.registerEntityRenderingHandler(EntityFireBomb.class, new RenderItemProjectile(JourneyWeapons.fireBomb));
         //RenderingRegistry.registerEntityRenderingHandler(EntityRoyalKnife.class, new RenderItemProjectile(JourneyItems.royalKnife));

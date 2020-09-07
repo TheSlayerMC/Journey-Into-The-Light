@@ -2,7 +2,6 @@ package net.journey.items.bauble;
 
 import baubles.api.BaubleType;
 import baubles.api.IBauble;
-import net.journey.init.JourneyTabs;
 import net.journey.items.base.JItem;
 import net.journey.util.PotionEffects;
 import net.minecraft.client.util.ITooltipFlag;
@@ -16,9 +15,7 @@ import java.util.List;
 
 public class ItemWaterbending extends JItem implements IBauble {
 
-	public ItemWaterbending(String name, String f) {
-		super(name, f);
-		setCreativeTab(JourneyTabs.UTIL);
+	public ItemWaterbending() {
 		setMaxStackSize(1);
 	}
 

@@ -1,26 +1,22 @@
 package net.journey.entity.projectile.throwable;
 
-import java.util.List;
-
-import javax.annotation.Nullable;
-
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
-
 import net.journey.init.JourneySounds;
 import net.journey.init.items.JourneyWeapons;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IProjectile;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.entity.projectile.EntityTippedArrow;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EntitySelectors;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class EntityMagicBomb extends EntityTippedArrow implements IProjectile {
 
@@ -104,6 +100,6 @@ public class EntityMagicBomb extends EntityTippedArrow implements IProjectile {
 
     @Override
     protected ItemStack getArrowStack() {
-        return new ItemStack(JourneyWeapons.MAGIC_BOMB);
+	    return new ItemStack(JourneyWeapons.magicBomb);
     }
 }

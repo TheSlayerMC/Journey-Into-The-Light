@@ -19,8 +19,7 @@ import net.minecraft.world.World;
 
 public class JItemWaterLily extends JItem {
 
-	public JItemWaterLily(String name, String enName) {
-		super(name, enName);
+	public JItemWaterLily() {
 		setCreativeTab(JourneyTabs.DECORATION);
 	}
 

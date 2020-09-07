@@ -1,6 +1,8 @@
 package net.journey.init.items;
 
 import net.journey.enums.EnumArmor;
+import net.journey.init.JourneyTabs;
+import net.journey.init.Registrar;
 import net.journey.items.ItemModArmor;
 import net.journey.items.tool.ItemBonemealHoe;
 import net.journey.items.tool.ItemMultiTool;
@@ -61,8 +63,8 @@ public class JourneyArmory {
     public static Item koriteShovel;
     public static Item storonShovel;
     public static Item mekyumShovel;
-    
-    public static Item BEDROCK_SHOVEL;
+
+    public static Item bedrockShovel;
 
     public static Item hellstoneAxe;
     public static Item shadiumAxe;
@@ -92,12 +94,12 @@ public class JourneyArmory {
     public static Item mekyumHoe;
 
     public static Item hoeOfEternalLife;
-    public static Item HOE_OF_EARTH_LOVING;
+    public static Item hoeOfEarthLoving;
     public static Item multiToolOfEternalSmelting;
-    public static Item SLIMY_PICKAXE;
-    public static Item PICKAXE_OF_GOOD_FORTUNE;
+    public static Item slimyPickaxe;
+    public static Item pickaxeOfGoodFortune;
 
-    public static Item MASK_OF_HELLMETAL;
+    public static Item maskOfHellmetal;
 
     public static Item hellstoneHelmet;
     public static Item hellstoneChest;
@@ -250,237 +252,236 @@ public class JourneyArmory {
     public static Item bleedrockBoots;
 
     public static void init() {
+        hellstoneMultiTool = Registrar.regAndSetupItem("hellstoneMultiTool", "Bloodcrust Multi Tool", new ItemMultiTool(JourneyToolMaterial.HELLSTONE_MULTI_TOOL, 1750), JourneyTabs.TOOLS);
+        shadiumMultiTool = Registrar.regAndSetupItem("shadiumMultiTool", "Shadium Multi Tool", new ItemMultiTool(JourneyToolMaterial.SHADIUM_MULTI_TOOL, 1670), JourneyTabs.TOOLS);
+        celestiumMultiTool = Registrar.regAndSetupItem("celestiumMultiTool", "Celestium Multi Tool", new ItemMultiTool(JourneyToolMaterial.CELESTIUM_MULTI_TOOL, 1820), JourneyTabs.TOOLS);
+        luniumMultiTool = Registrar.regAndSetupItem("luniumMultiTool", "Lunium Multi Tool", new ItemMultiTool(JourneyToolMaterial.LUNIUM_MULTI_TOOL, 1670), JourneyTabs.TOOLS);
+        flairiumMultiTool = Registrar.regAndSetupItem("flairiumMultiTool", "Flairium Multi Tool", new ItemMultiTool(JourneyToolMaterial.FLAIRIUM_MULTI_TOOL, 1202), JourneyTabs.TOOLS);
+        sapphireMultiTool = Registrar.regAndSetupItem("sapphireMultiTool", "Sapphire Multi Tool", new ItemMultiTool(JourneyToolMaterial.SAPPHIRE_MULTI_TOOL, 2456), JourneyTabs.TOOLS);
+        gorbiteMultiTool = Registrar.regAndSetupItem("gorbiteMultiTool", "Gorbite Multi Tool", new ItemMultiTool(JourneyToolMaterial.GORBITE_MULTI_TOOL, 2115), JourneyTabs.TOOLS);
+        orbaditeMultiTool = Registrar.regAndSetupItem("orbaditeMultiTool", "Orbadite Multi Tool", new ItemMultiTool(JourneyToolMaterial.ORBADITE_MULTI_TOOL, 2115), JourneyTabs.TOOLS);
+        desMultiTool = Registrar.regAndSetupItem("desMultiTool", "Des Multi Tool", new ItemMultiTool(JourneyToolMaterial.DES_MULTI_TOOL, 2102), JourneyTabs.TOOLS);
+        koriteMultiTool = Registrar.regAndSetupItem("koriteMultiTool", "Korite Multi Tool", new ItemMultiTool(JourneyToolMaterial.KORITE_MULTI_TOOL, 1820), JourneyTabs.TOOLS);
+        storonMultiTool = Registrar.regAndSetupItem("storonMultiTool", "Storon Multi Tool", new ItemMultiTool(JourneyToolMaterial.KORITE_MULTI_TOOL, 1820), JourneyTabs.TOOLS);
+        mekyumMultiTool = Registrar.regAndSetupItem("mekyumMultiTool", "Mekyum Multi Tool", new ItemMultiTool(JourneyToolMaterial.KORITE_MULTI_TOOL, 1820), JourneyTabs.TOOLS);
+        woodMultiTool = Registrar.regAndSetupItem("woodMultiTool", "Wooden Multi Tool", new ItemMultiTool(JourneyToolMaterial.WOOD_MULTI_TOOL, 60), JourneyTabs.TOOLS);
+        stoneMultiTool = Registrar.regAndSetupItem("stoneMultiTool", "Stone Multi Tool", new ItemMultiTool(JourneyToolMaterial.STONE_MULTI_TOOL, 132), JourneyTabs.TOOLS);
+        ironMultiTool = Registrar.regAndSetupItem("ironMultiTool", "Iron Multi Tool", new ItemMultiTool(JourneyToolMaterial.IRON_MULTI_TOOL, 251), JourneyTabs.TOOLS);
+        goldMultiTool = Registrar.regAndSetupItem("goldMultiTool", "Gold Multi Tool", new ItemMultiTool(JourneyToolMaterial.GOLD_MULTI_TOOL, 33), JourneyTabs.TOOLS);
+        diamondMultiTool = Registrar.regAndSetupItem("diamondMultiTool", "Diamond Multi Tool", new ItemMultiTool(JourneyToolMaterial.DIAMOND_MULTI_TOOL, 1562), JourneyTabs.TOOLS);
+        multiToolOfEternalSmelting = Registrar.regAndSetupItem("multiToolOfEternalSmelting", "Multi Tool of Eternal Smelting", new ItemMultiTool(JourneyToolMaterial.SMELTING_TOOL, 512), JourneyTabs.TOOLS);
 
-        hellstoneMultiTool = new ItemMultiTool("hellstoneMultiTool", "Bloodcrust Multi Tool", JourneyToolMaterial.HELLSTONE_MULTI_TOOL, 1750);
-        shadiumMultiTool = new ItemMultiTool("shadiumMultiTool", "Shadium Multi Tool", JourneyToolMaterial.SHADIUM_MULTI_TOOL, 1670);
-        celestiumMultiTool = new ItemMultiTool("celestiumMultiTool", "Celestium Multi Tool", JourneyToolMaterial.CELESTIUM_MULTI_TOOL, 1820);
-        luniumMultiTool = new ItemMultiTool("luniumMultiTool", "Lunium Multi Tool", JourneyToolMaterial.LUNIUM_MULTI_TOOL, 1670);
-        flairiumMultiTool = new ItemMultiTool("flairiumMultiTool", "Flairium Multi Tool", JourneyToolMaterial.FLAIRIUM_MULTI_TOOL, 1202);
-        sapphireMultiTool = new ItemMultiTool("sapphireMultiTool", "Sapphire Multi Tool", JourneyToolMaterial.SAPPHIRE_MULTI_TOOL, 2456);
-        gorbiteMultiTool = new ItemMultiTool("gorbiteMultiTool", "Gorbite Multi Tool", JourneyToolMaterial.GORBITE_MULTI_TOOL, 2115);
-        orbaditeMultiTool = new ItemMultiTool("orbaditeMultiTool", "Orbadite Multi Tool", JourneyToolMaterial.ORBADITE_MULTI_TOOL, 2115);
-        desMultiTool = new ItemMultiTool("desMultiTool", "Des Multi Tool", JourneyToolMaterial.DES_MULTI_TOOL, 2102);
-        koriteMultiTool = new ItemMultiTool("koriteMultiTool", "Korite Multi Tool", JourneyToolMaterial.KORITE_MULTI_TOOL, 1820);
-        storonMultiTool = new ItemMultiTool("storonMultiTool", "Storon Multi Tool", JourneyToolMaterial.KORITE_MULTI_TOOL, 1820);
-        mekyumMultiTool = new ItemMultiTool("mekyumMultiTool", "Mekyum Multi Tool", JourneyToolMaterial.KORITE_MULTI_TOOL, 1820);
-        woodMultiTool = new ItemMultiTool("woodMultiTool", "Wooden Multi Tool", JourneyToolMaterial.WOOD_MULTI_TOOL, 60);
-        stoneMultiTool = new ItemMultiTool("stoneMultiTool", "Stone Multi Tool", JourneyToolMaterial.STONE_MULTI_TOOL, 132);
-        ironMultiTool = new ItemMultiTool("ironMultiTool", "Iron Multi Tool", JourneyToolMaterial.IRON_MULTI_TOOL, 251);
-        goldMultiTool = new ItemMultiTool("goldMultiTool", "Gold Multi Tool", JourneyToolMaterial.GOLD_MULTI_TOOL, 33);
-        diamondMultiTool = new ItemMultiTool("diamondMultiTool", "Diamond Multi Tool", JourneyToolMaterial.DIAMOND_MULTI_TOOL, 1562);
-        multiToolOfEternalSmelting = new ItemMultiTool("multiToolOfEternalSmelting", "Multi Tool of Eternal Smelting", JourneyToolMaterial.SMELTING_TOOL, 512);
+        sapphirePickaxe = Registrar.regAndSetupItem("sapphirePickaxe", "Sapphire Pickaxe", new ItemModPickaxe(JourneyToolMaterial.SAPPHIRE), JourneyTabs.TOOLS);
+        shadiumPickaxe = Registrar.regAndSetupItem("shadiumPickaxe", "Shadium Pickaxe", new ItemModPickaxe(JourneyToolMaterial.SHADIUM), JourneyTabs.TOOLS);
+        luniumPickaxe = Registrar.regAndSetupItem("luniumPickaxe", "Lunium Pickaxe", new ItemModPickaxe(JourneyToolMaterial.LUNIUM), JourneyTabs.TOOLS);
+        hellstonePickaxe = Registrar.regAndSetupItem("hellstonePickaxe", "Bloodcrust Pickaxe", new ItemModPickaxe(JourneyToolMaterial.HELLSTONE), JourneyTabs.TOOLS);
+        nethicPickaxe = Registrar.regAndSetupItem("nethicPickaxe", "Nethic Pickaxe", new ItemModPickaxe(JourneyToolMaterial.NETHIC), JourneyTabs.TOOLS);
+        nethicAxe = Registrar.regAndSetupItem("nethicaxe", "Nethic Axe", new ItemModAxe(JourneyToolMaterial.NETHIC), JourneyTabs.TOOLS);
+        koritePickaxe = Registrar.regAndSetupItem("koritePickaxe", "Korite Pickaxe", new ItemModPickaxe(JourneyToolMaterial.KORITE), JourneyTabs.TOOLS);
+        storonPickaxe = Registrar.regAndSetupItem("storonPickaxe", "Storon Pickaxe", new ItemModPickaxe(JourneyToolMaterial.KORITE), JourneyTabs.TOOLS);
+        mekyumPickaxe = Registrar.regAndSetupItem("mekyumPickaxe", "Mekyum Pickaxe", new ItemModPickaxe(JourneyToolMaterial.KORITE), JourneyTabs.TOOLS);
+        celestiumPickaxe = Registrar.regAndSetupItem("celestiumPickaxe", "Celestium Pickaxe", new ItemModPickaxe(JourneyToolMaterial.CELESTIUM), JourneyTabs.TOOLS);
+        flairiumPickaxe = Registrar.regAndSetupItem("flairiumPickaxe", "Flairium Pickaxe", new ItemModPickaxe(JourneyToolMaterial.FLAIRIUM), JourneyTabs.TOOLS);
+        desPickaxe = Registrar.regAndSetupItem("desPickaxe", "Des Pickaxe", new ItemModPickaxe(JourneyToolMaterial.DES), JourneyTabs.TOOLS);
+        gorbitePickaxe = Registrar.regAndSetupItem("gorbitePickaxe", "Gorbite Pickaxe", new ItemModPickaxe(JourneyToolMaterial.GORBITE), JourneyTabs.TOOLS);
+        orbaditePickaxe = Registrar.regAndSetupItem("orbaditePickaxe", "Orbadite Pickaxe", new ItemModPickaxe(JourneyToolMaterial.ORBADITE), JourneyTabs.TOOLS);
+        slimyPickaxe = Registrar.regAndSetupItem("slimy_pickaxe", "Slimy Pickaxe", new ItemModPickaxe(JourneyToolMaterial.SLIMY_PICK), JourneyTabs.TOOLS);
+        pickaxeOfGoodFortune = Registrar.regAndSetupItem("pickaxe_of_good_fortune", "Pickaxe of Good Fortune", new ItemModPickaxe(JourneyToolMaterial.SLIMY_PICK), JourneyTabs.TOOLS);
 
-        sapphirePickaxe = new ItemModPickaxe("sapphirePickaxe", "Sapphire Pickaxe", JourneyToolMaterial.SAPPHIRE);
-        shadiumPickaxe = new ItemModPickaxe("shadiumPickaxe", "Shadium Pickaxe", JourneyToolMaterial.SHADIUM);
-        luniumPickaxe = new ItemModPickaxe("luniumPickaxe", "Lunium Pickaxe", JourneyToolMaterial.LUNIUM);
-        hellstonePickaxe = new ItemModPickaxe("hellstonePickaxe", "Bloodcrust Pickaxe", JourneyToolMaterial.HELLSTONE);
-        nethicPickaxe = new ItemModPickaxe("nethicPickaxe", "Nethic Pickaxe", JourneyToolMaterial.NETHIC);
-        nethicAxe = new ItemModAxe("nethicaxe", "Nethic Axe", JourneyToolMaterial.NETHIC);
-        koritePickaxe = new ItemModPickaxe("koritePickaxe", "Korite Pickaxe", JourneyToolMaterial.KORITE);
-        storonPickaxe = new ItemModPickaxe("storonPickaxe", "Storon Pickaxe", JourneyToolMaterial.KORITE);
-        mekyumPickaxe = new ItemModPickaxe("mekyumPickaxe", "Mekyum Pickaxe", JourneyToolMaterial.KORITE);
-        celestiumPickaxe = new ItemModPickaxe("celestiumPickaxe", "Celestium Pickaxe", JourneyToolMaterial.CELESTIUM);
-        flairiumPickaxe = new ItemModPickaxe("flairiumPickaxe", "Flairium Pickaxe", JourneyToolMaterial.FLAIRIUM);
-        desPickaxe = new ItemModPickaxe("desPickaxe", "Des Pickaxe", JourneyToolMaterial.DES);
-        gorbitePickaxe = new ItemModPickaxe("gorbitePickaxe", "Gorbite Pickaxe", JourneyToolMaterial.GORBITE);
-        orbaditePickaxe = new ItemModPickaxe("orbaditePickaxe", "Orbadite Pickaxe", JourneyToolMaterial.ORBADITE);
-        SLIMY_PICKAXE = new ItemModPickaxe("slimy_pickaxe", "Slimy Pickaxe", JourneyToolMaterial.SLIMY_PICK);
-        PICKAXE_OF_GOOD_FORTUNE = new ItemModPickaxe("pickaxe_of_good_fortune", "Pickaxe of Good Fortune", JourneyToolMaterial.SLIMY_PICK);
+        hellstoneShovel = Registrar.regAndSetupItem("hellstoneShovel", "Bloodcrust Shovel", new ItemModShovel(JourneyToolMaterial.HELLSTONE), JourneyTabs.TOOLS);
+        shadiumShovel = Registrar.regAndSetupItem("shadiumShovel", "Shadium Shovel", new ItemModShovel(JourneyToolMaterial.SHADIUM), JourneyTabs.TOOLS);
+        celestiumShovel = Registrar.regAndSetupItem("celestiumShovel", "Celestium Shovel", new ItemModShovel(JourneyToolMaterial.CELESTIUM), JourneyTabs.TOOLS);
+        luniumShovel = Registrar.regAndSetupItem("luniumShovel", "Lunium Shovel", new ItemModShovel(JourneyToolMaterial.LUNIUM), JourneyTabs.TOOLS);
+        flairiumShovel = Registrar.regAndSetupItem("flairiumShovel", "Flairium Shovel", new ItemModShovel(JourneyToolMaterial.FLAIRIUM), JourneyTabs.TOOLS);
+        sapphireShovel = Registrar.regAndSetupItem("sapphireShovel", "Sapphire Shovel", new ItemModShovel(JourneyToolMaterial.SAPPHIRE), JourneyTabs.TOOLS);
+        gorbiteShovel = Registrar.regAndSetupItem("gorbiteShovel", "Gorbite Shovel", new ItemModShovel(JourneyToolMaterial.GORBITE), JourneyTabs.TOOLS);
+        orbaditeShovel = Registrar.regAndSetupItem("orbaditeShovel", "Orbadite Shovel", new ItemModShovel(JourneyToolMaterial.ORBADITE), JourneyTabs.TOOLS);
+        desShovel = Registrar.regAndSetupItem("desShovel", "Des Shovel", new ItemModShovel(JourneyToolMaterial.DES), JourneyTabs.TOOLS);
+        nethicShovel = Registrar.regAndSetupItem("nethicShovel", "Nethic Shovel", new ItemModShovel(JourneyToolMaterial.NETHIC), JourneyTabs.TOOLS);
+        koriteShovel = Registrar.regAndSetupItem("koriteShovel", "Korite Shovel", new ItemModShovel(JourneyToolMaterial.KORITE), JourneyTabs.TOOLS);
+        storonShovel = Registrar.regAndSetupItem("storonShovel", "Storon Shovel", new ItemModShovel(JourneyToolMaterial.KORITE), JourneyTabs.TOOLS);
+        mekyumShovel = Registrar.regAndSetupItem("mekyumShovel", "Mekyum Shovel", new ItemModShovel(JourneyToolMaterial.KORITE), JourneyTabs.TOOLS);
 
-        hellstoneShovel = new ItemModShovel("hellstoneShovel", "Bloodcrust Shovel", JourneyToolMaterial.HELLSTONE);
-        shadiumShovel = new ItemModShovel("shadiumShovel", "Shadium Shovel", JourneyToolMaterial.SHADIUM);
-        celestiumShovel = new ItemModShovel("celestiumShovel", "Celestium Shovel", JourneyToolMaterial.CELESTIUM);
-        luniumShovel = new ItemModShovel("luniumShovel", "Lunium Shovel", JourneyToolMaterial.LUNIUM);
-        flairiumShovel = new ItemModShovel("flairiumShovel", "Flairium Shovel", JourneyToolMaterial.FLAIRIUM);
-        sapphireShovel = new ItemModShovel("sapphireShovel", "Sapphire Shovel", JourneyToolMaterial.SAPPHIRE);
-        gorbiteShovel = new ItemModShovel("gorbiteShovel", "Gorbite Shovel", JourneyToolMaterial.GORBITE);
-        orbaditeShovel = new ItemModShovel("orbaditeShovel", "Orbadite Shovel", JourneyToolMaterial.ORBADITE);
-        desShovel = new ItemModShovel("desShovel", "Des Shovel", JourneyToolMaterial.DES);
-        nethicShovel = new ItemModShovel("nethicShovel", "Nethic Shovel", JourneyToolMaterial.NETHIC);
-        koriteShovel = new ItemModShovel("koriteShovel", "Korite Shovel", JourneyToolMaterial.KORITE);
-        storonShovel = new ItemModShovel("storonShovel", "Storon Shovel", JourneyToolMaterial.KORITE);
-        mekyumShovel = new ItemModShovel("mekyumShovel", "Mekyum Shovel", JourneyToolMaterial.KORITE);
-        
-        BEDROCK_SHOVEL = new ItemModShovel("bedrock_shovel", "Bedrock Shovel", JourneyToolMaterial.BEDROCK_SHOVEL);
+        bedrockShovel = Registrar.regAndSetupItem("bedrock_shovel", "Bedrock Shovel", new ItemModShovel(JourneyToolMaterial.BEDROCK_SHOVEL), JourneyTabs.TOOLS);
 
-        hellstoneAxe = new ItemModAxe("hellstoneAxe", "Bloodcrust Axe", JourneyToolMaterial.HELLSTONE);
-        shadiumAxe = new ItemModAxe("shadiumAxe", "Shadium Axe", JourneyToolMaterial.SHADIUM);
-        celestiumAxe = new ItemModAxe("celestiumAxe", "Celestium Axe", JourneyToolMaterial.CELESTIUM);
-        luniumAxe = new ItemModAxe("luniumAxe", "Lunium Axe", JourneyToolMaterial.LUNIUM);
-        flairiumAxe = new ItemModAxe("flairiumAxe", "Flairium Axe", JourneyToolMaterial.FLAIRIUM);
-        sapphireAxe = new ItemModAxe("sapphireAxe", "Sapphire Axe", JourneyToolMaterial.SAPPHIRE);
-        gorbiteAxe = new ItemModAxe("gorbiteAxe", "Gorbite Axe", JourneyToolMaterial.GORBITE);
-        orbaditeAxe = new ItemModAxe("orbaditeAxe", "Orbadite Axe", JourneyToolMaterial.ORBADITE);
-        desAxe = new ItemModAxe("desAxe", "Des Axe", JourneyToolMaterial.DES);
-        koriteAxe = new ItemModAxe("koriteAxe", "Korite Axe", JourneyToolMaterial.KORITE);
-        storonAxe = new ItemModAxe("storonAxe", "Storon Axe", JourneyToolMaterial.KORITE);
-        mekyumAxe = new ItemModAxe("mekyumAxe", "Mekyum Axe", JourneyToolMaterial.KORITE);
+        hellstoneAxe = Registrar.regAndSetupItem("hellstoneAxe", "Bloodcrust Axe", new ItemModAxe(JourneyToolMaterial.HELLSTONE), JourneyTabs.TOOLS);
+        shadiumAxe = Registrar.regAndSetupItem("shadiumAxe", "Shadium Axe", new ItemModAxe(JourneyToolMaterial.SHADIUM), JourneyTabs.TOOLS);
+        celestiumAxe = Registrar.regAndSetupItem("celestiumAxe", "Celestium Axe", new ItemModAxe(JourneyToolMaterial.CELESTIUM), JourneyTabs.TOOLS);
+        luniumAxe = Registrar.regAndSetupItem("luniumAxe", "Lunium Axe", new ItemModAxe(JourneyToolMaterial.LUNIUM), JourneyTabs.TOOLS);
+        flairiumAxe = Registrar.regAndSetupItem("flairiumAxe", "Flairium Axe", new ItemModAxe(JourneyToolMaterial.FLAIRIUM), JourneyTabs.TOOLS);
+        sapphireAxe = Registrar.regAndSetupItem("sapphireAxe", "Sapphire Axe", new ItemModAxe(JourneyToolMaterial.SAPPHIRE), JourneyTabs.TOOLS);
+        gorbiteAxe = Registrar.regAndSetupItem("gorbiteAxe", "Gorbite Axe", new ItemModAxe(JourneyToolMaterial.GORBITE), JourneyTabs.TOOLS);
+        orbaditeAxe = Registrar.regAndSetupItem("orbaditeAxe", "Orbadite Axe", new ItemModAxe(JourneyToolMaterial.ORBADITE), JourneyTabs.TOOLS);
+        desAxe = Registrar.regAndSetupItem("desAxe", "Des Axe", new ItemModAxe(JourneyToolMaterial.DES), JourneyTabs.TOOLS);
+        koriteAxe = Registrar.regAndSetupItem("koriteAxe", "Korite Axe", new ItemModAxe(JourneyToolMaterial.KORITE), JourneyTabs.TOOLS);
+        storonAxe = Registrar.regAndSetupItem("storonAxe", "Storon Axe", new ItemModAxe(JourneyToolMaterial.KORITE), JourneyTabs.TOOLS);
+        mekyumAxe = Registrar.regAndSetupItem("mekyumAxe", "Mekyum Axe", new ItemModAxe(JourneyToolMaterial.KORITE), JourneyTabs.TOOLS);
 
-        hellstoneHoe = new ItemModHoe("hellstoneHoe", "Bloodcrust Hoe", JourneyToolMaterial.HELLSTONE);
-        shadiumHoe = new ItemModHoe("shadiumHoe", "Shadium Hoe", JourneyToolMaterial.SHADIUM);
-        celestiumHoe = new ItemModHoe("celestiumHoe", "Celestium Hoe", JourneyToolMaterial.CELESTIUM);
-        luniumHoe = new ItemModHoe("luniumHoe", "Lunium Hoe", JourneyToolMaterial.LUNIUM);
-        flairiumHoe = new ItemModHoe("flairiumHoe", "Flairium Hoe", JourneyToolMaterial.FLAIRIUM);
-        sapphireHoe = new ItemModHoe("sapphireHoe", "Sapphire Hoe", JourneyToolMaterial.SAPPHIRE);
-        gorbiteHoe = new ItemModHoe("gorbiteHoe", "Gorbite Hoe", JourneyToolMaterial.GORBITE);
-        orbaditeHoe = new ItemModHoe("orbaditeHoe", "Orbadite Hoe", JourneyToolMaterial.ORBADITE);
-        desHoe = new ItemModHoe("desHoe", "Des Hoe", JourneyToolMaterial.DES);
-        koriteHoe = new ItemModHoe("koriteHoe", "Korite Hoe", JourneyToolMaterial.KORITE);
-        storonHoe = new ItemModHoe("storonHoe", "Storon Hoe", JourneyToolMaterial.KORITE);
-        mekyumHoe = new ItemModHoe("mekyumHoe", "Mekyum Hoe", JourneyToolMaterial.KORITE);
-        hoeOfEternalLife = new ItemBonemealHoe("hoeofeternallife", "Hoe Of Eternal Life", JourneyToolMaterial.HOEOFLIFE);
-        HOE_OF_EARTH_LOVING = new ItemBonemealHoe("hoe_of_earth_loving", "Hoe of Earth Loving", JourneyToolMaterial.HOEOFEARTH);
+        hellstoneHoe = Registrar.regAndSetupItem("hellstoneHoe", "Bloodcrust Hoe", new ItemModHoe(JourneyToolMaterial.HELLSTONE), JourneyTabs.TOOLS);
+        shadiumHoe = Registrar.regAndSetupItem("shadiumHoe", "Shadium Hoe", new ItemModHoe(JourneyToolMaterial.SHADIUM), JourneyTabs.TOOLS);
+        celestiumHoe = Registrar.regAndSetupItem("celestiumHoe", "Celestium Hoe", new ItemModHoe(JourneyToolMaterial.CELESTIUM), JourneyTabs.TOOLS);
+        luniumHoe = Registrar.regAndSetupItem("luniumHoe", "Lunium Hoe", new ItemModHoe(JourneyToolMaterial.LUNIUM), JourneyTabs.TOOLS);
+        flairiumHoe = Registrar.regAndSetupItem("flairiumHoe", "Flairium Hoe", new ItemModHoe(JourneyToolMaterial.FLAIRIUM), JourneyTabs.TOOLS);
+        sapphireHoe = Registrar.regAndSetupItem("sapphireHoe", "Sapphire Hoe", new ItemModHoe(JourneyToolMaterial.SAPPHIRE), JourneyTabs.TOOLS);
+        gorbiteHoe = Registrar.regAndSetupItem("gorbiteHoe", "Gorbite Hoe", new ItemModHoe(JourneyToolMaterial.GORBITE), JourneyTabs.TOOLS);
+        orbaditeHoe = Registrar.regAndSetupItem("orbaditeHoe", "Orbadite Hoe", new ItemModHoe(JourneyToolMaterial.ORBADITE), JourneyTabs.TOOLS);
+        desHoe = Registrar.regAndSetupItem("desHoe", "Des Hoe", new ItemModHoe(JourneyToolMaterial.DES), JourneyTabs.TOOLS);
+        koriteHoe = Registrar.regAndSetupItem("koriteHoe", "Korite Hoe", new ItemModHoe(JourneyToolMaterial.KORITE), JourneyTabs.TOOLS);
+        storonHoe = Registrar.regAndSetupItem("storonHoe", "Storon Hoe", new ItemModHoe(JourneyToolMaterial.KORITE), JourneyTabs.TOOLS);
+        mekyumHoe = Registrar.regAndSetupItem("mekyumHoe", "Mekyum Hoe", new ItemModHoe(JourneyToolMaterial.KORITE), JourneyTabs.TOOLS);
+        hoeOfEternalLife = Registrar.regAndSetupItem("hoeofeternallife", "Hoe Of Eternal Life", new ItemBonemealHoe(JourneyToolMaterial.HOEOFLIFE), JourneyTabs.TOOLS);
+        hoeOfEarthLoving = Registrar.regAndSetupItem("hoe_of_earth_loving", "Hoe of Earth Loving", new ItemBonemealHoe(JourneyToolMaterial.HOEOFEARTH), JourneyTabs.TOOLS);
 
-        MASK_OF_HELLMETAL = new ItemModArmor(EnumArmor.HELL_METAL, HEAD, "Mask of %material%");
-        
-        hellstoneHelmet = new ItemModArmor(EnumArmor.HELLSTONE, HEAD);
-        hellstoneChest = new ItemModArmor(EnumArmor.HELLSTONE, BODY);
-        hellstoneLegs = new ItemModArmor(EnumArmor.HELLSTONE, LEGS);
-        hellstoneBoots = new ItemModArmor(EnumArmor.HELLSTONE, BOOTS);
+        maskOfHellmetal = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.HELL_METAL, HEAD), "Mask of %material%");
 
-        flairiumHelmet = new ItemModArmor(EnumArmor.FLAIRIUM, HEAD);
-        flairiumChest = new ItemModArmor(EnumArmor.FLAIRIUM, BODY);
-        flairiumLegs = new ItemModArmor(EnumArmor.FLAIRIUM, LEGS);
-        flairiumBoots = new ItemModArmor(EnumArmor.FLAIRIUM, BOOTS);
+        hellstoneHelmet = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.HELLSTONE, HEAD));
+        hellstoneChest = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.HELLSTONE, BODY));
+        hellstoneLegs = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.HELLSTONE, LEGS));
+        hellstoneBoots = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.HELLSTONE, BOOTS));
 
-        celestiumHelmet = new ItemModArmor(EnumArmor.CELESTIUM, HEAD);
-        celestiumChest = new ItemModArmor(EnumArmor.CELESTIUM, BODY);
-        celestiumLegs = new ItemModArmor(EnumArmor.CELESTIUM, LEGS);
-        celestiumBoots = new ItemModArmor(EnumArmor.CELESTIUM, BOOTS);
+        flairiumHelmet = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.FLAIRIUM, HEAD));
+        flairiumChest = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.FLAIRIUM, BODY));
+        flairiumLegs = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.FLAIRIUM, LEGS));
+        flairiumBoots = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.FLAIRIUM, BOOTS));
 
-        luniumHelmet = new ItemModArmor(EnumArmor.LUNIUM, HEAD);
-        luniumChest = new ItemModArmor(EnumArmor.LUNIUM, BODY);
-        luniumLegs = new ItemModArmor(EnumArmor.LUNIUM, LEGS);
-        luniumBoots = new ItemModArmor(EnumArmor.LUNIUM, BOOTS);
+        celestiumHelmet = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.CELESTIUM, HEAD));
+        celestiumChest = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.CELESTIUM, BODY));
+        celestiumLegs = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.CELESTIUM, LEGS));
+        celestiumBoots = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.CELESTIUM, BOOTS));
 
-        shadiumHelmet = new ItemModArmor(EnumArmor.SHADIUM, HEAD);
-        shadiumChest = new ItemModArmor(EnumArmor.SHADIUM, BODY);
-        shadiumLegs = new ItemModArmor(EnumArmor.SHADIUM, LEGS);
-        shadiumBoots = new ItemModArmor(EnumArmor.SHADIUM, BOOTS);
+        luniumHelmet = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.LUNIUM, HEAD));
+        luniumChest = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.LUNIUM, BODY));
+        luniumLegs = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.LUNIUM, LEGS));
+        luniumBoots = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.LUNIUM, BOOTS));
 
-        sapphireHelmet = new ItemModArmor(EnumArmor.SAPPHIRE, HEAD);
-        sapphireChest = new ItemModArmor(EnumArmor.SAPPHIRE, BODY);
-        sapphireLegs = new ItemModArmor(EnumArmor.SAPPHIRE, LEGS);
-        sapphireBoots = new ItemModArmor(EnumArmor.SAPPHIRE, BOOTS);
+        shadiumHelmet = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.SHADIUM, HEAD));
+        shadiumChest = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.SHADIUM, BODY));
+        shadiumLegs = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.SHADIUM, LEGS));
+        shadiumBoots = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.SHADIUM, BOOTS));
 
-        gorbiteHelmet = new ItemModArmor(EnumArmor.GORBITE, HEAD);
-        gorbiteChest = new ItemModArmor(EnumArmor.GORBITE, BODY);
-        gorbiteLegs = new ItemModArmor(EnumArmor.GORBITE, LEGS);
-        gorbiteBoots = new ItemModArmor(EnumArmor.GORBITE, BOOTS);
+        sapphireHelmet = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.SAPPHIRE, HEAD));
+        sapphireChest = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.SAPPHIRE, BODY));
+        sapphireLegs = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.SAPPHIRE, LEGS));
+        sapphireBoots = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.SAPPHIRE, BOOTS));
 
-        orbaditeHelmet = new ItemModArmor(EnumArmor.ORBADITE, HEAD);
-        orbaditeChest = new ItemModArmor(EnumArmor.ORBADITE, BODY);
-        orbaditeLegs = new ItemModArmor(EnumArmor.ORBADITE, LEGS);
-        orbaditeBoots = new ItemModArmor(EnumArmor.ORBADITE, BOOTS);
+        gorbiteHelmet = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.GORBITE, HEAD));
+        gorbiteChest = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.GORBITE, BODY));
+        gorbiteLegs = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.GORBITE, LEGS));
+        gorbiteBoots = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.GORBITE, BOOTS));
 
-        flameHelmet = new ItemModArmor(EnumArmor.FLAME, HEAD);
-        flameChest = new ItemModArmor(EnumArmor.FLAME, BODY);
-        flameLegs = new ItemModArmor(EnumArmor.FLAME, LEGS);
-        flameBoots = new ItemModArmor(EnumArmor.FLAME, BOOTS);
+        orbaditeHelmet = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.ORBADITE, HEAD));
+        orbaditeChest = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.ORBADITE, BODY));
+        orbaditeLegs = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.ORBADITE, LEGS));
+        orbaditeBoots = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.ORBADITE, BOOTS));
 
-        twilightHelmet = new ItemModArmor(EnumArmor.TWILIGHT, HEAD);
-        twilightChest = new ItemModArmor(EnumArmor.TWILIGHT, BODY);
-        twilightLegs = new ItemModArmor(EnumArmor.TWILIGHT, LEGS);
-        twilightBoots = new ItemModArmor(EnumArmor.TWILIGHT, BOOTS);
+        flameHelmet = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.FLAME, HEAD));
+        flameChest = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.FLAME, BODY));
+        flameLegs = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.FLAME, LEGS));
+        flameBoots = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.FLAME, BOOTS));
 
-        leapersHelmet = new ItemModArmor(EnumArmor.LEAPERS, HEAD);
-        leapersChest = new ItemModArmor(EnumArmor.LEAPERS, BODY);
-        leapersLegs = new ItemModArmor(EnumArmor.LEAPERS, LEGS);
-        leapersBoots = new ItemModArmor(EnumArmor.LEAPERS, BOOTS);
+        twilightHelmet = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.TWILIGHT, HEAD));
+        twilightChest = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.TWILIGHT, BODY));
+        twilightLegs = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.TWILIGHT, LEGS));
+        twilightBoots = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.TWILIGHT, BOOTS));
 
-        snakeskinHelmet = new ItemModArmor(EnumArmor.SNAKESKIN, HEAD);
-        snakeskinChest = new ItemModArmor(EnumArmor.SNAKESKIN, BODY);
-        snakeskinLegs = new ItemModArmor(EnumArmor.SNAKESKIN, LEGS);
-        snakeskinBoots = new ItemModArmor(EnumArmor.SNAKESKIN, BOOTS);
+        leapersHelmet = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.LEAPERS, HEAD));
+        leapersChest = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.LEAPERS, BODY));
+        leapersLegs = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.LEAPERS, LEGS));
+        leapersBoots = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.LEAPERS, BOOTS));
 
-        treehuggersHelmet = new ItemModArmor(EnumArmor.TREEHUGGERS, HEAD);
-        treehuggersChest = new ItemModArmor(EnumArmor.TREEHUGGERS, BODY);
-        treehuggersLegs = new ItemModArmor(EnumArmor.TREEHUGGERS, LEGS);
-        treehuggersBoots = new ItemModArmor(EnumArmor.TREEHUGGERS, BOOTS);
+        snakeskinHelmet = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.SNAKESKIN, HEAD));
+        snakeskinChest = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.SNAKESKIN, BODY));
+        snakeskinLegs = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.SNAKESKIN, LEGS));
+        snakeskinBoots = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.SNAKESKIN, BOOTS));
 
-        charskullHelmet = new ItemModArmor(EnumArmor.CHAR_SKULL, HEAD);
-        charskullChest = new ItemModArmor(EnumArmor.CHAR_SKULL, BODY);
-        charskullLegs = new ItemModArmor(EnumArmor.CHAR_SKULL, LEGS);
-        charskullBoots = new ItemModArmor(EnumArmor.CHAR_SKULL, BOOTS);
+        treehuggersHelmet = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.TREEHUGGERS, HEAD));
+        treehuggersChest = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.TREEHUGGERS, BODY));
+        treehuggersLegs = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.TREEHUGGERS, LEGS));
+        treehuggersBoots = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.TREEHUGGERS, BOOTS));
 
-        bronzedHelmet = new ItemModArmor(EnumArmor.BRONZED, HEAD);
-        bronzedChest = new ItemModArmor(EnumArmor.BRONZED, BODY);
-        bronzedLegs = new ItemModArmor(EnumArmor.BRONZED, LEGS);
-        bronzedBoots = new ItemModArmor(EnumArmor.BRONZED, BOOTS);
+        charskullHelmet = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.CHAR_SKULL, HEAD));
+        charskullChest = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.CHAR_SKULL, BODY));
+        charskullLegs = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.CHAR_SKULL, LEGS));
+        charskullBoots = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.CHAR_SKULL, BOOTS));
 
-        golditeHelmet = new ItemModArmor(EnumArmor.GOLDITE, HEAD);
-        golditeChest = new ItemModArmor(EnumArmor.GOLDITE, BODY);
-        golditeLegs = new ItemModArmor(EnumArmor.GOLDITE, LEGS);
-        golditeBoots = new ItemModArmor(EnumArmor.GOLDITE, BOOTS);
+        bronzedHelmet = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.BRONZED, HEAD));
+        bronzedChest = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.BRONZED, BODY));
+        bronzedLegs = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.BRONZED, LEGS));
+        bronzedBoots = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.BRONZED, BOOTS));
 
-        corbarkHelmet = new ItemModArmor(EnumArmor.CORBARK, HEAD);
-        corbarkChest = new ItemModArmor(EnumArmor.CORBARK, BODY);
-        corbarkLegs = new ItemModArmor(EnumArmor.CORBARK, LEGS);
-        corbarkBoots = new ItemModArmor(EnumArmor.CORBARK, BOOTS);
+        golditeHelmet = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.GOLDITE, HEAD));
+        golditeChest = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.GOLDITE, BODY));
+        golditeLegs = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.GOLDITE, LEGS));
+        golditeBoots = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.GOLDITE, BOOTS));
 
-        crystalFlakeHelmet = new ItemModArmor(EnumArmor.CRYSTAL_FLAKE, HEAD);
-        crystalFlakeChest = new ItemModArmor(EnumArmor.CRYSTAL_FLAKE, BODY);
-        crystalFlakeLegs = new ItemModArmor(EnumArmor.CRYSTAL_FLAKE, LEGS);
-        crystalFlakeBoots = new ItemModArmor(EnumArmor.CRYSTAL_FLAKE, BOOTS);
+        corbarkHelmet = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.CORBARK, HEAD));
+        corbarkChest = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.CORBARK, BODY));
+        corbarkLegs = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.CORBARK, LEGS));
+        corbarkBoots = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.CORBARK, BOOTS));
 
-        darklyHelmet = new ItemModArmor(EnumArmor.DARKLY, HEAD);
-        darklyChest = new ItemModArmor(EnumArmor.DARKLY, BODY);
-        darklyLegs = new ItemModArmor(EnumArmor.DARKLY, LEGS);
-        darklyBoots = new ItemModArmor(EnumArmor.DARKLY, BOOTS);
+        crystalFlakeHelmet = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.CRYSTAL_FLAKE, HEAD));
+        crystalFlakeChest = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.CRYSTAL_FLAKE, BODY));
+        crystalFlakeLegs = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.CRYSTAL_FLAKE, LEGS));
+        crystalFlakeBoots = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.CRYSTAL_FLAKE, BOOTS));
 
-        depthsHelmet = new ItemModArmor(EnumArmor.DEPTHS, HEAD);
-        depthsChest = new ItemModArmor(EnumArmor.DEPTHS, BODY);
-        depthsLegs = new ItemModArmor(EnumArmor.DEPTHS, LEGS);
-        depthsBoots = new ItemModArmor(EnumArmor.DEPTHS, BOOTS);
+        darklyHelmet = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.DARKLY, HEAD));
+        darklyChest = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.DARKLY, BODY));
+        darklyLegs = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.DARKLY, LEGS));
+        darklyBoots = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.DARKLY, BOOTS));
 
-        enlightenerHelmet = new ItemModArmor(EnumArmor.ENLIGHTENER, HEAD);
-        enlightenerChest = new ItemModArmor(EnumArmor.ENLIGHTENER, BODY);
-        enlightenerLegs = new ItemModArmor(EnumArmor.ENLIGHTENER, LEGS);
-        enlightenerBoots = new ItemModArmor(EnumArmor.ENLIGHTENER, BOOTS);
+        depthsHelmet = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.DEPTHS, HEAD));
+        depthsChest = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.DEPTHS, BODY));
+        depthsLegs = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.DEPTHS, LEGS));
+        depthsBoots = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.DEPTHS, BOOTS));
 
-        fireboundHelmet = new ItemModArmor(EnumArmor.FIREBOUND, HEAD);
-        fireboundChest = new ItemModArmor(EnumArmor.FIREBOUND, BODY);
-        fireboundLegs = new ItemModArmor(EnumArmor.FIREBOUND, LEGS);
-        fireboundBoots = new ItemModArmor(EnumArmor.FIREBOUND, BOOTS);
+        enlightenerHelmet = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.ENLIGHTENER, HEAD));
+        enlightenerChest = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.ENLIGHTENER, BODY));
+        enlightenerLegs = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.ENLIGHTENER, LEGS));
+        enlightenerBoots = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.ENLIGHTENER, BOOTS));
 
-        frostbittenHelmet = new ItemModArmor(EnumArmor.FROSTBITTEN, HEAD);
-        frostbittenChest = new ItemModArmor(EnumArmor.FROSTBITTEN, BODY);
-        frostbittenLegs = new ItemModArmor(EnumArmor.FROSTBITTEN, LEGS);
-        frostbittenBoots = new ItemModArmor(EnumArmor.FROSTBITTEN, BOOTS);
+        fireboundHelmet = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.FIREBOUND, HEAD));
+        fireboundChest = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.FIREBOUND, BODY));
+        fireboundLegs = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.FIREBOUND, LEGS));
+        fireboundBoots = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.FIREBOUND, BOOTS));
 
-        hollowHelmet = new ItemModArmor(EnumArmor.HOLLOW, HEAD);
-        hollowChest = new ItemModArmor(EnumArmor.HOLLOW, BODY);
-        hollowLegs = new ItemModArmor(EnumArmor.HOLLOW, LEGS);
-        hollowBoots = new ItemModArmor(EnumArmor.HOLLOW, BOOTS);
+        frostbittenHelmet = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.FROSTBITTEN, HEAD));
+        frostbittenChest = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.FROSTBITTEN, BODY));
+        frostbittenLegs = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.FROSTBITTEN, LEGS));
+        frostbittenBoots = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.FROSTBITTEN, BOOTS));
 
-        lightstoneHelmet = new ItemModArmor(EnumArmor.LIGHTSTONE, HEAD);
-        lightstoneChest = new ItemModArmor(EnumArmor.LIGHTSTONE, BODY);
-        lightstoneLegs = new ItemModArmor(EnumArmor.LIGHTSTONE, LEGS);
-        lightstoneBoots = new ItemModArmor(EnumArmor.LIGHTSTONE, BOOTS);
+        hollowHelmet = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.HOLLOW, HEAD));
+        hollowChest = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.HOLLOW, BODY));
+        hollowLegs = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.HOLLOW, LEGS));
+        hollowBoots = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.HOLLOW, BOOTS));
 
-        livegreenHelmet = new ItemModArmor(EnumArmor.LIVEGREEN, HEAD);
-        livegreenChest = new ItemModArmor(EnumArmor.LIVEGREEN, BODY);
-        livegreenLegs = new ItemModArmor(EnumArmor.LIVEGREEN, LEGS);
-        livegreenBoots = new ItemModArmor(EnumArmor.LIVEGREEN, BOOTS);
+        lightstoneHelmet = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.LIGHTSTONE, HEAD));
+        lightstoneChest = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.LIGHTSTONE, BODY));
+        lightstoneLegs = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.LIGHTSTONE, LEGS));
+        lightstoneBoots = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.LIGHTSTONE, BOOTS));
 
-        starlightHelmet = new ItemModArmor(EnumArmor.STARLIGHT, HEAD);
-        starlightChest = new ItemModArmor(EnumArmor.STARLIGHT, BODY);
-        starlightLegs = new ItemModArmor(EnumArmor.STARLIGHT, LEGS);
-        starlightBoots = new ItemModArmor(EnumArmor.STARLIGHT, BOOTS);
+        livegreenHelmet = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.LIVEGREEN, HEAD));
+        livegreenChest = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.LIVEGREEN, BODY));
+        livegreenLegs = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.LIVEGREEN, LEGS));
+        livegreenBoots = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.LIVEGREEN, BOOTS));
 
-        bloodcrustHelmet = new ItemModArmor(EnumArmor.BLOODCRUST, HEAD);
-        bloodcrustChest = new ItemModArmor(EnumArmor.BLOODCRUST, BODY);
-        bloodcrustLegs = new ItemModArmor(EnumArmor.BLOODCRUST, LEGS);
-        bloodcrustBoots = new ItemModArmor(EnumArmor.BLOODCRUST, BOOTS);
+        starlightHelmet = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.STARLIGHT, HEAD));
+        starlightChest = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.STARLIGHT, BODY));
+        starlightLegs = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.STARLIGHT, LEGS));
+        starlightBoots = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.STARLIGHT, BOOTS));
 
-        blazehornHelmet = new ItemModArmor(EnumArmor.BLAZEHORN, HEAD);
-        blazehornChest = new ItemModArmor(EnumArmor.BLAZEHORN, BODY);
-        blazehornLegs = new ItemModArmor(EnumArmor.BLAZEHORN, LEGS);
-        blazehornBoots = new ItemModArmor(EnumArmor.BLAZEHORN, BOOTS);
+        bloodcrustHelmet = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.BLOODCRUST, HEAD));
+        bloodcrustChest = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.BLOODCRUST, BODY));
+        bloodcrustLegs = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.BLOODCRUST, LEGS));
+        bloodcrustBoots = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.BLOODCRUST, BOOTS));
 
-        bleedrockHelmet = new ItemModArmor(EnumArmor.BLEEDROCK, HEAD);
-        bleedrockChest = new ItemModArmor(EnumArmor.BLEEDROCK, BODY);
-        bleedrockLegs = new ItemModArmor(EnumArmor.BLEEDROCK, LEGS);
-        bleedrockBoots = new ItemModArmor(EnumArmor.BLEEDROCK, BOOTS);
+        blazehornHelmet = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.BLAZEHORN, HEAD));
+        blazehornChest = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.BLAZEHORN, BODY));
+        blazehornLegs = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.BLAZEHORN, LEGS));
+        blazehornBoots = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.BLAZEHORN, BOOTS));
+
+        bleedrockHelmet = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.BLEEDROCK, HEAD));
+        bleedrockChest = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.BLEEDROCK, BODY));
+        bleedrockLegs = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.BLEEDROCK, LEGS));
+        bleedrockBoots = Registrar.regAndSetupArmor(new ItemModArmor(EnumArmor.BLEEDROCK, BOOTS));
     }
 }

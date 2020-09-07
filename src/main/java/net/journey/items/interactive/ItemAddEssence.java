@@ -3,7 +3,6 @@ package net.journey.items.interactive;
 import net.journey.api.capability.EssenceStorage;
 import net.journey.api.item.IUsesEssence;
 import net.journey.common.capability.JCapabilityManager;
-import net.journey.init.JourneyTabs;
 import net.journey.items.base.JItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.PotionTypes;
@@ -20,8 +19,7 @@ public class ItemAddEssence extends JItem implements IUsesEssence {
 
 	private final int amount;
 
-	public ItemAddEssence(String name, String finalN, int amount) {
-		super(name, finalN, JourneyTabs.UTIL);
+	public ItemAddEssence(int amount) {
 		this.amount = amount;
 		setMaxStackSize(1);
 	}
@@ -35,7 +33,7 @@ public class ItemAddEssence extends JItem implements IUsesEssence {
 			mana.addEssence(amount);
 			stack.shrink(1);
 		}
-		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
+		return new ActionResult<>(EnumActionResult.SUCCESS, stack);
 	}
 
 	@Override

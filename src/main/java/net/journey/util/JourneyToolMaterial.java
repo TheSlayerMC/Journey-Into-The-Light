@@ -23,9 +23,9 @@ public enum JourneyToolMaterial {
     NETHIC(JourneyItems.nethic, JourneyItems.bleedstone, 20),
     KORITE(JourneyItems.korite, JourneyItems.koriteIngot, 14),
     HOEOFLIFE(JourneyItems.hoeoflife, JourneyConsumables.floroPedal, 14),
-    HOEOFEARTH(JourneyItems.hoeofearth, JourneyArmory.HOE_OF_EARTH_LOVING, 14),
-    SLIMY_PICK(JourneyItems.SLIMY_PICK_MATERIAL, JourneyArmory.SLIMY_PICKAXE, 3),
-    BEDROCK_SHOVEL(JourneyItems.BEDROCK_SHOVEL_MATERIAL, JourneyArmory.BEDROCK_SHOVEL, 6),
+    HOEOFEARTH(JourneyItems.hoeofearth, JourneyArmory.hoeOfEarthLoving, 14),
+    SLIMY_PICK(JourneyItems.SLIMY_PICK_MATERIAL, JourneyArmory.slimyPickaxe, 3),
+    BEDROCK_SHOVEL(JourneyItems.BEDROCK_SHOVEL_MATERIAL, JourneyArmory.bedrockShovel, 6),
 
     CHAMPIONS_SWORD(SlayerAPI.addMeleeMaterial(3000, 14, 25)),
     THE_WRAITH(SlayerAPI.addMeleeMaterial(3000, 17, 25)),

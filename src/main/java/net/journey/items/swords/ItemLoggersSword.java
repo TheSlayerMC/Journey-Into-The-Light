@@ -19,17 +19,17 @@ import java.util.Random;
 
 public class ItemLoggersSword extends ItemModSword {
 
-    public ItemLoggersSword(String name, String f, JourneyToolMaterial toolMaterial) {
-        super(name, f, toolMaterial);
-    }
+	public ItemLoggersSword(JourneyToolMaterial toolMaterial) {
+		super(toolMaterial);
+	}
 
-    @Override
-    public boolean hitEntity(ItemStack par1ItemStack, EntityLivingBase hit, EntityLivingBase player) {
-        hit.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.poison, 1000, 200)));
-        hit.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.wither, 100, 20)));
-        addParticles(hit);
-        return super.hitEntity(par1ItemStack, hit, player);
-    }
+	@Override
+	public boolean hitEntity(ItemStack par1ItemStack, EntityLivingBase hit, EntityLivingBase player) {
+		hit.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.poison, 1000, 200)));
+		hit.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.wither, 100, 20)));
+		addParticles(hit);
+		return super.hitEntity(par1ItemStack, hit, player);
+	}
 
     @SideOnly(Side.CLIENT)
     public void addParticles(EntityLivingBase hit) {

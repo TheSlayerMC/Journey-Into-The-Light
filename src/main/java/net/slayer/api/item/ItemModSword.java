@@ -8,12 +8,9 @@ import net.journey.client.render.particles.EntityModSnowFX;
 import net.journey.client.render.particles.EntityPoisionFX;
 import net.journey.enums.EnumParticlesClasses;
 import net.journey.enums.EnumSwordType;
-import net.journey.init.JourneyTabs;
-import net.journey.init.items.JourneyItems;
 import net.journey.util.JourneyToolMaterial;
 import net.journey.util.LangHelper;
 import net.journey.util.PotionEffects;
-import net.journey.util.gen.lang.LangGeneratorFacade;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
@@ -35,41 +32,31 @@ public class ItemModSword extends ItemSword {
 	private final EnumSwordType type;
 	private float health;
 
-	public ItemModSword(String name, String f, EnumSwordType type, JourneyToolMaterial toolMaterial, float heart) {
+	public ItemModSword(EnumSwordType type, JourneyToolMaterial toolMaterial, float heart) {
 		super(toolMaterial.getToolMaterial());
 		this.type = type;
 		this.health = heart;
-		setTranslationKey(name);
 		mat = toolMaterial;
-		setCreativeTab(JourneyTabs.WEAPONS);
-		JourneyItems.items.add(this);
-		setRegistryName(JITL.MOD_ID, name);
-		LangGeneratorFacade.addItemEntry(this, f);
 	}
 
-	public ItemModSword(String name, String f, EnumSwordType type, JourneyToolMaterial toolMaterial) {
+	public ItemModSword(EnumSwordType type, JourneyToolMaterial toolMaterial) {
 		super(toolMaterial.getToolMaterial());
 		this.type = type;
-		setTranslationKey(name);
 		mat = toolMaterial;
-		setCreativeTab(JourneyTabs.WEAPONS);
-		JourneyItems.items.add(this);
-		setRegistryName(JITL.MOD_ID, name);
-		LangGeneratorFacade.addItemEntry(this, f);
 	}
 
-	public ItemModSword(String name, String f, JourneyToolMaterial toolMaterial) {
-		this(name, f, null, toolMaterial, 0);
+	public ItemModSword(JourneyToolMaterial toolMaterial) {
+		this(null, toolMaterial, 0);
 	}
 
 	@Override
 	public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase player) {
 		float hearts = player.getHealth();
-		if(type != null) {
-			switch(type) {
-			case FREEZE:
-				target.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.moveSlow, 100, 5)));
-				target.extinguish();
+		if (type != null) {
+			switch (type) {
+				case FREEZE:
+					target.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.moveSlow, 100, 5)));
+					target.extinguish();
 				break;
 			case POISON:
 				target.addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.poison, 100, 2)));

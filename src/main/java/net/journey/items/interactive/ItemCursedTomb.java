@@ -3,7 +3,6 @@ package net.journey.items.interactive;
 import net.journey.api.capability.EssenceStorage;
 import net.journey.api.item.IUsesEssence;
 import net.journey.common.capability.JCapabilityManager;
-import net.journey.init.JourneyTabs;
 import net.journey.items.base.JItem;
 import net.journey.util.PotionEffects;
 import net.minecraft.client.util.ITooltipFlag;
@@ -21,9 +20,7 @@ import java.util.List;
 
 public class ItemCursedTomb extends JItem implements IUsesEssence {
 
-	public ItemCursedTomb(String name, String f) {
-		super(name, f);
-		setCreativeTab(JourneyTabs.WEAPONS);
+	public ItemCursedTomb() {
 		setMaxDamage(32);
 		setMaxStackSize(1);
 	}

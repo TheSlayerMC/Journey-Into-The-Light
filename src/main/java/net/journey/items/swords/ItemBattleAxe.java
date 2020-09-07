@@ -1,6 +1,5 @@
 package net.journey.items.swords;
 
-import net.journey.init.JourneyTabs;
 import net.journey.util.JourneyToolMaterial;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,10 +18,8 @@ import java.util.List;
 public class ItemBattleAxe extends ItemModAxe {
 
 
-    public ItemBattleAxe(String name, String f, JourneyToolMaterial m) {
-        super(name, f, m);
-        setTranslationKey(name);
-        setCreativeTab(JourneyTabs.WEAPONS);
+    public ItemBattleAxe(JourneyToolMaterial m) {
+        super(m);
         attackSpeed = -3.3F;
     }
 

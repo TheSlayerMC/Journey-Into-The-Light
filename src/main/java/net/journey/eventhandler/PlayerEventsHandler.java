@@ -53,7 +53,7 @@ public class PlayerEventsHandler {
 						drops.add(stack.copy());
 					}
 				}
-				if (heldItem == JourneyArmory.SLIMY_PICKAXE) {
+				if (heldItem == JourneyArmory.slimyPickaxe) {
 					for (ItemStack s : drops) {
 						EntityItem item = new EntityItem(event.getWorld(), p.getPosition().getX(), p.getPosition().getY(), p.getPosition().getZ());
 						item.setItem(s);
@@ -62,13 +62,13 @@ public class PlayerEventsHandler {
 					}
 				}
 				helmet = p.inventory.armorInventory.get(3);
-				if (helmet.getItem() == JourneyArmory.MASK_OF_HELLMETAL) {
+				if (helmet.getItem() == JourneyArmory.maskOfHellmetal) {
 					ItemStack stack = FurnaceRecipes.instance().getSmeltingResult(new ItemStack(harvestedState.getBlock()));
 					drops.clear();
 					drops.add(stack.copy());
 					helmet.damageItem(1, p);
 				}
-				if (heldItem == JourneyArmory.HOE_OF_EARTH_LOVING) {
+				if (heldItem == JourneyArmory.hoeOfEarthLoving) {
 					List<ItemStack> i = LootHelper.genFromLootTable(JourneyLootTables.LOOT_SEEDS, playerMP, builder -> {
 					});
 					int index = random.nextInt(i.size());
@@ -78,7 +78,7 @@ public class PlayerEventsHandler {
 							drops.add(new ItemStack(it));
 					}
 				}
-				if (heldItem == JourneyArmory.PICKAXE_OF_GOOD_FORTUNE) {
+				if (heldItem == JourneyArmory.pickaxeOfGoodFortune) {
 
 					List<ItemStack> i = LootHelper.genFromLootTable(JourneyLootTables.LOOT_BASIC, playerMP, builder -> {
 					}); // make new loot table
@@ -121,13 +121,13 @@ public class PlayerEventsHandler {
 
 		if (Config.enableLootPouchDrops && event.getSource().getTrueSource() instanceof EntityPlayer) {
 			if (random.nextInt(Config.commonLootBagRarity) == 0) {
-				entity.dropItem(JourneyItems.LOOT_POUCH, 1);
+				entity.dropItem(JourneyItems.lootPouch, 1);
 			}
 			if (random.nextInt(Config.goldLootBagRarity) == 0) {
-				entity.dropItem(JourneyItems.LOOT_POUCH_GOLD, 1);
+				entity.dropItem(JourneyItems.lootPouchGold, 1);
 			}
 			if (random.nextInt(Config.diamondLootBagRarity) == 0) {
-				entity.dropItem(JourneyItems.LOOT_POUCH_DIAMOND, 1);
+				entity.dropItem(JourneyItems.lootPouchDiamond, 1);
 			}
 		}
 	}

@@ -14,10 +14,6 @@ import java.util.List;
 
 public class ItemRingNausea extends ItemRingBase {
 
-    public ItemRingNausea(String name, String enName) {
-        super(name, enName);
-    }
-
     @Override
     public void onWornTick(ItemStack itemstack, EntityLivingBase player) {
         Potion potion = Potion.getPotionById(PotionEffects.confusion);

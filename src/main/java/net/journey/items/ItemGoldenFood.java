@@ -1,6 +1,5 @@
 package net.journey.items;
 
-import net.journey.init.JourneyTabs;
 import net.journey.util.PotionEffects;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
@@ -13,21 +12,19 @@ import net.slayer.api.item.ItemModFood;
 
 public class ItemGoldenFood extends ItemModFood {
 
-    private boolean op;
+	private final boolean op;
 
-    public ItemGoldenFood(String name, String actual, int heal, float sat, boolean wolf, boolean isOP) {
-        super(name, actual, heal, sat, wolf);
-        op = isOP;
-        setTranslationKey(name);
-        setCreativeTab(JourneyTabs.CROPS);
-        this.setAlwaysEdible();
-    }
+	public ItemGoldenFood(int heal, float sat, boolean wolf, boolean isOP) {
+		super(heal, sat, wolf);
+		op = isOP;
+		this.setAlwaysEdible();
+	}
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public boolean hasEffect(ItemStack i) {
-        return op;
-    }
+	@Override
+	@SideOnly(Side.CLIENT)
+	public boolean hasEffect(ItemStack i) {
+		return op;
+	}
 
     @Override
     public EnumRarity getRarity(ItemStack i) {

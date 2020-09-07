@@ -3,7 +3,6 @@ package net.journey.items.interactive;
 import net.journey.api.capability.EssenceStorage;
 import net.journey.api.item.IUsesEssence;
 import net.journey.common.capability.JCapabilityManager;
-import net.journey.init.JourneyTabs;
 import net.journey.items.base.JItem;
 import net.journey.util.LangHelper;
 import net.minecraft.client.util.ITooltipFlag;
@@ -28,8 +27,7 @@ import java.util.List;
 
 public class ItemTeleport extends JItem implements IUsesEssence {
 
-    public ItemTeleport(String name, String f) {
-        super(name, f, JourneyTabs.UTIL);
+    public ItemTeleport() {
         setMaxStackSize(1);
         setMaxDamage(100);
     }

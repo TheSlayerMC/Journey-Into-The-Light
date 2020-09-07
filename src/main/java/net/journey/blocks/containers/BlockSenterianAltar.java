@@ -71,7 +71,7 @@ public class BlockSenterianAltar extends BlockModContainer implements FeaturePro
 		TileEntitySenterianAltar altar = (TileEntitySenterianAltar)worldIn.getTileEntity(pos);
 		if(heldItem != null) {	
 			if(altar.orb == null) {
-				if(heldItem == JourneyItems.SENTRY_OBSERVER) {//replace with a new item
+				if (heldItem == JourneyItems.sentryObserver) {//replace with a new item
 					altar.orb = heldItem;
 					playerIn.getHeldItemMainhand().shrink(1);
 					((WorldServer) worldIn).getPlayerChunkMap().markBlockForUpdate(pos);

@@ -24,7 +24,7 @@ public class JeiHooks implements IModPlugin {
         registerHiddenItems(registry);
         registry.addRecipeCatalyst(new ItemStack(JourneyBlocks.summoningTable), "journey.summoningtable");
         registry.addRecipes(compileSummoningRecipes(), "journey.summoningtable");
-        registry.addIngredientInfo(new ItemStack(JourneyItems.ANCIENT_EYE_OF_OPENING), ItemStack.class, "jei.jitl.ancient_eye.desc");
+        registry.addIngredientInfo(new ItemStack(JourneyItems.ancientEyeOfOpening), ItemStack.class, "jei.jitl.ancient_eye.desc");
     }
 
     @Override

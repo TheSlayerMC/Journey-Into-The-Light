@@ -1,6 +1,5 @@
 package net.slayer.api.item;
 
-import net.journey.init.JourneyTabs;
 import net.journey.items.base.JItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -18,15 +17,13 @@ import net.slayer.api.block.BlockModDoor;
 
 public class ItemModDoor extends JItem {
 
-	private Block door;
+    private final Block door;
 
-	public ItemModDoor(BlockModDoor block, String name, String f) {
-		super(name, f);
-		this.door = block;
-		setCreativeTab(JourneyTabs.BLOCKS);
-	}
+    public ItemModDoor(BlockModDoor block) {
+        this.door = block;
+    }
 
-	@Override
+    @Override
     public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         if (facing != EnumFacing.UP) {
             return EnumActionResult.FAIL;

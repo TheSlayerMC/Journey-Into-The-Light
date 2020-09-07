@@ -2,15 +2,11 @@ package net.journey.items.bauble;
 
 import baubles.api.BaubleType;
 import baubles.api.IBauble;
-import net.journey.init.JourneyTabs;
 import net.journey.items.base.JItem;
 import net.journey.util.PotionEffects;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -20,9 +16,7 @@ import java.util.List;
 
 public class ItemMagmaAmulet extends JItem implements IBauble {
 
-    public ItemMagmaAmulet(String name, String enName) {
-        super(name, enName);
-        setCreativeTab(JourneyTabs.UTIL);
+    public ItemMagmaAmulet() {
         setMaxStackSize(1);
     }
 

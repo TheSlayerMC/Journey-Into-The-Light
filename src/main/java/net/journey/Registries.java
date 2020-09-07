@@ -2,8 +2,8 @@ package net.journey;
 
 import net.journey.blocks.tileentity.TileEntityHandler;
 import net.journey.init.JourneyEnchantments;
+import net.journey.init.Registrar;
 import net.journey.init.blocks.JourneyBlocks;
-import net.journey.init.items.JourneyItems;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.Item;
@@ -18,13 +18,13 @@ public class Registries {
 
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event) {
-		for (Item item : JourneyItems.items) {
+		for (Item item : Registrar.JOURNEY_ITEMS) {
 			event.getRegistry().register(item);
 		}
 		for (Item item : JourneyBlocks.itemBlocks) {
 			event.getRegistry().register(item);
 		}
-		JITL.LOGGER.info("Successfully registered " + JourneyItems.items.size() + " items");
+		JITL.LOGGER.info("Successfully registered " + Registrar.JOURNEY_ITEMS.size() + " items");
 	}
 
 	@SubscribeEvent

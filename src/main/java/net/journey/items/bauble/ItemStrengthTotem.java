@@ -2,7 +2,6 @@ package net.journey.items.bauble;
 
 import baubles.api.BaubleType;
 import baubles.api.IBauble;
-import net.journey.init.JourneyTabs;
 import net.journey.items.base.JItem;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
@@ -23,9 +22,7 @@ public class ItemStrengthTotem extends JItem implements IBauble {
 
     protected static final AttributeModifier knockbackMod = new AttributeModifier(KNOCKBACK_MODIFIER, "Knockback Modifier", 0.6F, 0);
 
-    public ItemStrengthTotem(String name, String enName) {
-        super(name, enName);
-        setCreativeTab(JourneyTabs.UTIL);
+    public ItemStrengthTotem() {
         setMaxStackSize(1);
     }
 

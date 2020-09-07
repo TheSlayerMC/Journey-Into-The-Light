@@ -1,14 +1,11 @@
 package net.journey.items.bows;
 
-import net.journey.JITL;
 import net.journey.api.capability.EssenceStorage;
 import net.journey.client.ItemDescription;
 import net.journey.common.capability.JCapabilityManager;
 import net.journey.entity.projectile.arrow.EntityEssenceArrow;
-import net.journey.init.JourneyTabs;
 import net.journey.init.items.JourneyItems;
 import net.journey.items.ItemEssenceArrow;
-import net.journey.util.gen.lang.LangGeneratorFacade;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
@@ -39,29 +36,21 @@ public class ItemModBow extends ItemBow {
     protected float damage;
     protected int uses;
     protected int manaUse = 3;
-    protected String name;
     protected EntityEssenceArrow.BowEffects effect;
     private final Class<? extends EntityArrow> arrowClass;
 
     
-    public ItemModBow(String name, String properName, float damage, int uses, EntityEssenceArrow.BowEffects effect, int pullbackSpeed) {
-    	super();
-    	this.effect = effect;
-    	this.maxStackSize = 1;
-        this.arrowItem = JourneyItems.essenceArrow;
-        this.arrowClass = EntityEssenceArrow.class;
-        this.damage = damage;
-        this.uses = uses;
-        this.maxUseDuration = pullbackSpeed;
-        this.setMaxDamage(uses);
-        this.setFull3D();
-        this.name = name;
-        setTranslationKey(name.toLowerCase());
-        setCreativeTab(JourneyTabs.WEAPONS);
-        JourneyItems.items.add(this);
-        setRegistryName(JITL.MOD_ID, name.toLowerCase());
-        LangGeneratorFacade.addItemEntry(this, properName);
-        addPropertyOverrides();
+    public ItemModBow(float damage, int uses, EntityEssenceArrow.BowEffects effect, int pullbackSpeed) {
+	    this.effect = effect;
+	    this.maxStackSize = 1;
+	    this.arrowItem = JourneyItems.essenceArrow;
+	    this.arrowClass = EntityEssenceArrow.class;
+	    this.damage = damage;
+	    this.uses = uses;
+	    this.maxUseDuration = pullbackSpeed;
+	    this.setMaxDamage(uses);
+	    this.setFull3D();
+	    addPropertyOverrides();
     }
 
     public float getScaledArrowVelocity(int charge) {

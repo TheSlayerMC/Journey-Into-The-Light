@@ -1,12 +1,8 @@
 package net.slayer.api.item;
 
-import net.journey.JITL;
 import net.journey.client.ItemDescription;
-import net.journey.init.JourneyTabs;
 import net.journey.init.items.JourneyConsumables;
-import net.journey.init.items.JourneyItems;
 import net.journey.util.PotionEffects;
-import net.journey.util.gen.lang.LangGeneratorFacade;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemFood;
@@ -23,32 +19,22 @@ public class ItemModFood extends ItemFood {
     private int time = 32;
     private boolean op = false;
 
-    public ItemModFood(String name, String f, int food, float sat, boolean wolfFood) {
+    public ItemModFood(int food, float sat, boolean wolfFood) {
         super(food, sat, wolfFood);
-        setTranslationKey(name);
-        setCreativeTab(JourneyTabs.CROPS);
-        JourneyItems.items.add(this);
-        setRegistryName(JITL.MOD_ID, name);
-        LangGeneratorFacade.addItemEntry(this, f);
     }
 
-    public ItemModFood(String name, String f, int food, float sat, int timeToEat, boolean wolfFood) {
-        this(name, f, food, sat, wolfFood);
+    public ItemModFood(int food, float sat, int timeToEat, boolean wolfFood) {
+        this(food, sat, wolfFood);
         time = timeToEat;
     }
 
-    public ItemModFood(String name, String f, int food, float sat, boolean wolfFood, PotionEffect potionID, float potionEffectProbability) {
-        this(name, f, food, sat, wolfFood);
+    public ItemModFood(int food, float sat, boolean wolfFood, PotionEffect potionID, float potionEffectProbability) {
+        this(food, sat, wolfFood);
         setPotionEffect(potionID, potionEffectProbability);
     }
 
-    public ItemModFood(String name, String actual, int heal, float f, boolean sat, boolean b) {
+    public ItemModFood(int heal, float f, boolean sat, boolean b) {
         super(heal, sat);
-        setTranslationKey(name);
-        JourneyItems.items.add(this);
-        setCreativeTab(JourneyTabs.CROPS);
-        setRegistryName(JITL.MOD_ID, name);
-        LangGeneratorFacade.addItemEntry(this, actual);
         this.op = b;
     }
 
