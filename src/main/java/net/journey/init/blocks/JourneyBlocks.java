@@ -768,7 +768,7 @@ public class JourneyBlocks {
         corbaStone = new BlockMod("corbaStone", "Corba Stone");
         corbaCobblestone = new BlockMod("corba_cobblestone", "Corba Cobblestone");
         corbaWall = new JBlockWall("corba_wall", "Corba Wall", corbaCobblestone);
-        corbaGrass = new BlockModGrass(null, "corbaGrass", "Corba Grass", 0.5F);
+        corbaGrass = new BlockModGrass(null, "corbaGrass", "Corba Grass", 0.5F).setGrassPath(corbaGrassPath);
         corbaLog = new JBlockLog("corbaLog", "Corba Log");
         corbaLeaves = new BlockModLeaves("corbaLeaves", "Corba Leaves", 0.2F, corbaSapling);
         corbaPillar = new BlockMod("corbaPillar", "Corba Pillar");
