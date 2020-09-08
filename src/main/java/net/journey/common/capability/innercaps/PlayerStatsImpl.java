@@ -47,7 +47,10 @@ public class PlayerStatsImpl extends SerializableInnerCap<NBTTagCompound, Player
 
 	@Override
 	public boolean useCoins(int amount) {
-		return getSentacoinValue() >= amount;
+		if (sentacoinValue < amount)
+			return false;
+		sentacoinValue -= amount;
+		return true;
 	}
 	
 	public void onTick() {
