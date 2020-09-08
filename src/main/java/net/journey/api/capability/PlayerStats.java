@@ -8,6 +8,8 @@ public interface PlayerStats {
 
     int getSentacoinValue();
 
+    boolean useCoins(int amount);
+
     /**
      * Adds knowledge to the player.
      */
@@ -42,5 +44,6 @@ public interface PlayerStats {
         float getAmountOnCurrentLevel();
 
         float getTotal();
+        
     }
 }
