@@ -111,20 +111,20 @@ public class EntityRendering {
 		RenderingRegistry.registerEntityRenderingHandler(EntityShimmererProjectile.class, manager -> new RenderEntity2D<>(manager, Textures.getProjectileTextureLocation("shimmerer_projectile")));
 		RenderingRegistry.registerEntityRenderingHandler(EntityBubbleProjectile.class, manager -> new RenderEntity2D<>(manager, Textures.getProjectileTextureLocation("bubble")));
 		RenderingRegistry.registerEntityRenderingHandler(EntityDetractor.class, manager -> new RenderEntity2D<>(manager, Textures.getProjectileTextureLocation("detractor")));
-		RenderingRegistry.registerEntityRenderingHandler(EntityFloroDirtProjectile.class, manager -> new RenderEntity2D<>(manager, Textures.getProjectileTextureLocation("floro_mud")));
+        RenderingRegistry.registerEntityRenderingHandler(EntityFloroDirtProjectile.class, manager -> new RenderEntity2D<>(manager, Textures.getProjectileTextureLocation("floro_mud")));
 
-		RenderingRegistry.registerEntityRenderingHandler(EntitySwampFly.class, manager -> new RenderEntity2D<>(manager, Textures.getMobTextureLocation("swamp_fly")));
-		RenderingRegistry.registerEntityRenderingHandler(EntityTerralight.class, manager -> new RenderEntity2D<>(manager, Textures.getMobTextureLocation("terralight")));
+        RenderingRegistry.registerEntityRenderingHandler(EntitySwampFly.class, manager -> new RenderEntity2D<>(manager, Textures.getMobTextureLocation("swamp_fly")));
+        RenderingRegistry.registerEntityRenderingHandler(EntityTerralight.class, manager -> new RenderEntity2D<>(manager, Textures.getMobTextureLocation("terralight")));
 
-		RenderingRegistry.registerEntityRenderingHandler(EntityLavasnake.class, manager -> new AnimatedMobRenderer<>(manager, TimeModelLoader.loadJsonEntityModel(Textures.getEntityModelLocation("lavasnake")).setScaleMultiplier(2.0F), Textures.getMobTextureLocation("lavasnake")));
-		RenderingRegistry.registerEntityRenderingHandler(EntityFloro.class, manager -> new AnimatedMobRenderer<>(manager, TimeModelLoader.loadJsonEntityModel(Textures.getEntityModelLocation("floro")).setScaleMultiplier(1.6F), Textures.getMobTextureLocation("floro")));
-		RenderingRegistry.registerEntityRenderingHandler(EntityTurducken.class, manager -> new AnimatedMobRenderer<>(manager, TimeModelLoader.loadJsonEntityModel(Textures.getEntityModelLocation("turducken")).setScaleMultiplier(1.35F), Textures.getMobTextureLocation("turducken")));
-		RenderingRegistry.registerEntityRenderingHandler(EntityFlungus.class, manager -> new AnimatedMobRenderer<>(manager, TimeModelLoader.loadJsonEntityModel(Textures.getEntityModelLocation("flungus")).setScaleMultiplier(2.55F), Textures.getMobTextureLocation("flungus")));
-		RenderingRegistry.registerEntityRenderingHandler(EntityCloudiaGuardian.class, manager -> new AnimatedMobRenderer<>(manager, TimeModelLoader.loadJsonEntityModel(Textures.getEntityModelLocation("cloudia_guardian")).setScaleMultiplier(1.0F), Textures.getMobTextureLocation("cloudia_guardian")));
-		RenderingRegistry.registerEntityRenderingHandler(EntityCorbanianMollusk.class, manager -> new AnimatedMobRenderer<>(manager, TimeModelLoader.loadJsonEntityModel(Textures.getEntityModelLocation("corbanian_mollusk")).setScaleMultiplier(2.0F), Textures.getMobTextureLocation("corbanian_mollusk")));
+        RenderingRegistry.registerEntityRenderingHandler(EntityLavasnake.class, manager -> new AnimatedMobRenderer<>(manager, TimeModelLoader.loadJsonEntityModel(Textures.getEntityModelLocation("lavasnake")).setScaleMultiplier(2.0F), Textures.getMobTextureLocation("lavasnake")));
+        RenderingRegistry.registerEntityRenderingHandler(EntityFloro.class, manager -> new AnimatedMobRenderer<>(manager, TimeModelLoader.loadJsonEntityModel(Textures.getEntityModelLocation("floro")).setScaleMultiplier(1.6F), Textures.getMobTextureLocation("floro")));
+        RenderingRegistry.registerEntityRenderingHandler(EntityTurducken.class, manager -> new AnimatedMobRenderer<>(manager, TimeModelLoader.loadJsonEntityModel(Textures.getEntityModelLocation("turducken")).setScaleMultiplier(1.35F), Textures.getMobTextureLocation("turducken")));
+        RenderingRegistry.registerEntityRenderingHandler(EntityFlungus.class, manager -> new AnimatedMobRenderer<>(manager, TimeModelLoader.loadJsonEntityModel(Textures.getEntityModelLocation("flungus")).setScaleMultiplier(2.55F), Textures.getMobTextureLocation("flungus")));
+        RenderingRegistry.registerEntityRenderingHandler(EntityCloudiaGuardian.class, manager -> new AnimatedMobRenderer<>(manager, TimeModelLoader.loadJsonEntityModel(Textures.getEntityModelLocation("cloudia_guardian")).setScaleMultiplier(1.0F), Textures.getMobTextureLocation("cloudia_guardian")));
+        RenderingRegistry.registerEntityRenderingHandler(EntityCorbanianMollusk.class, manager -> new AnimatedMobRenderer<>(manager, TimeModelLoader.loadJsonEntityModel(Textures.getEntityModelLocation("corbanian_mollusk")).setScaleMultiplier(2.5F), Textures.getMobTextureLocation("corbanian_mollusk")));
 
-		RenderingRegistry.registerEntityRenderingHandler(EntityBossCrystal.class, RenderBossCrystal::new);
-	}
+        RenderingRegistry.registerEntityRenderingHandler(EntityBossCrystal.class, RenderBossCrystal::new);
+    }
 
     public static void init() {
         /**Projectiles*/
@@ -293,6 +293,7 @@ public class EntityRendering {
         RenderingRegistry.registerEntityRenderingHandler(EntityPermafraust.class, new RenderModMob(new ModelPermafraust(), Textures.permafraust));
         RenderingRegistry.registerEntityRenderingHandler(EntityShiveringBushwalker.class, new RenderModMob(new ModelShiveringBushwalker(), Textures.shiveringBushwalker));
         RenderingRegistry.registerEntityRenderingHandler(EntityLeafBlower.class, new RenderModMob(new ModelLeafBlower(), Textures.leafBlower));
+        RenderingRegistry.registerEntityRenderingHandler(EntityStinky.class, new RenderModMob(new ModelStinky(), Textures.getMobTextureLocation("stinky")));
 
         RenderingRegistry.registerEntityRenderingHandler(EntityTerranianProtector.class, new RenderBoss(new ModelTerranianProtector(), 0.5F, 2.0F, Textures.terranianProtector, "terranianProtector"));
         RenderingRegistry.registerEntityRenderingHandler(EntitySoulWatcher.class, new RenderBoss(new ModelSoulWatcher(), 0.5F, 2.0F, Textures.soulWatcher, "soulWatcher"));

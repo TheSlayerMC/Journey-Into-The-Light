@@ -30,7 +30,7 @@ public class EntityTreeGolem extends JEntityMob {
     @Override
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
-
+        EntityAttributesHelper.setMovementSpeed(this, MobStats.TREE_GOLEM_SPEED);
         EntityAttributesHelper.setMaxHealth(this, MobStats.TREE_GOLEM_HEALTH);
         EntityAttributesHelper.setAttackDamage(this, MobStats.TREE_GOLEM_ATTACK);
     }
@@ -38,9 +38,6 @@ public class EntityTreeGolem extends JEntityMob {
     @Override
     public void onLivingUpdate() {
         super.onLivingUpdate();
-        if (this.world.isDaytime() && !this.world.isRemote) {
-            float var1 = getBrightness();
-        }
 
         List<Entity> e = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox());
         for (Entity entity : e) {

@@ -241,6 +241,7 @@ public class EntityRegistry {
 				SlayerAPI.buildMobEntry(EntityNatureMage.class, "naturemage", "Nature Mage", 0x1e8c00, 0x36ff00),
 				SlayerAPI.buildMobEntry(EntityLeafBlower.class, "leafblower", "Leaf Blower", 0x1e8c00, 0x36ff00),
 				SlayerAPI.buildMobEntry(EntityCorbanianMollusk.class, "corbanian_mollusk", "Corbanian Mollusk", 0x1e8c00, 0x36ff00),
+				SlayerAPI.buildMobEntry(EntityStinky.class, "stinky", "Stinky", 0x1e8c00, 0x36ff00),
 				//CLOUDIA
 				SlayerAPI.buildMobEntry(EntityCloudGhost.class, "cloudghost", "Cloud Ghost", 0xa87abd, 0x9000ff),
 				SlayerAPI.buildMobEntry(EntityStarlightGolem.class, "starlightgolem", "Starlight Golem", 0xa87abd, 0x9000ff),

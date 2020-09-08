@@ -103,7 +103,7 @@ public abstract class JEntityMob extends EntityMob implements IJERCompatible {
 	@Override
 	public void onDeath(DamageSource cause) {
 		super.onDeath(cause);
-		if (cause.getTrueSource() instanceof EntityPlayer) {
+		if (cause.getTrueSource() instanceof EntityPlayer && knowledgeType != null && knowledgeAmount > 0) {
 			EntityPlayer player = (EntityPlayer) cause.getTrueSource();
 			PlayerStats stats = JCapabilityManager.asJourneyPlayer(player).getPlayerStats();
 			JourneyPlayer journeyPlayer = JCapabilityManager.asJourneyPlayer(player);
