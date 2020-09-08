@@ -10,8 +10,7 @@ import net.slayer.api.worldgen.WorldGenAPI;
 
 import java.util.Random;
 
-public class WorldGenCorbaVillage extends WorldGenerator {
-
+public class WorldGenTordoSmallVillage extends WorldGenerator {
     public boolean locationIsValidSpawn(World w, int x, int y, int z) {
         return WorldGenAPI.checkRadius(w, new BlockPos(x, y, z), 11, JourneyBlocks.corbaGrass);
     }

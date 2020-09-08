@@ -9,16 +9,16 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.structure.MapGenStructure;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.StructureStart;
+import org.jetbrains.annotations.ApiStatus;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Random;
 
 public class MapGenCorbaVillage extends MapGenStructure {
-
-	public static List<Biome> VILLAGE_SPAWN_BIOMES = Arrays.asList(DimensionHelper.CORBA_PLAINS_BIOME);
+	public static final List<Biome> VILLAGE_SPAWN_BIOMES = Collections.singletonList(DimensionHelper.CORBA_PLAINS_BIOME);
 	private int size;
 	private int distance;
 	private final int minTownSeparation;
@@ -67,9 +67,7 @@ public class MapGenCorbaVillage extends MapGenStructure {
 		l = l + random.nextInt(this.distance - 8);
 
 		if (i == k && j == l) {
-			boolean flag = this.world.getBiomeProvider().areBiomesViable(i * 16 + 8, j * 16 + 8, 0, VILLAGE_SPAWN_BIOMES);
-
-			return flag;
+			return this.world.getBiomeProvider().areBiomesViable(i * 16 + 8, j * 16 + 8, 0, VILLAGE_SPAWN_BIOMES);
 		}
 		return false;
 	}
@@ -88,26 +86,28 @@ public class MapGenCorbaVillage extends MapGenStructure {
 	public static class Start extends StructureStart {
 		private boolean hasMoreThanTwoComponents;
 
-		public Start() { }
+		@ApiStatus.Internal
+		public Start() {
+		}
 
 		public Start(World worldIn, Random rand, int x, int z, int size) {
 			super(x, z);
 			List<StructureCorbaVillagePieces.PieceWeight> list = StructureCorbaVillagePieces.getStructureVillageWeightedPieceList(rand, size);
-			StructureCorbaVillagePieces.Start structurevillagepieces$start = new StructureCorbaVillagePieces.Start(worldIn.getBiomeProvider(), 0, rand, (x << 4) + 2, (z << 4) + 2, list, size);
-			this.components.add(structurevillagepieces$start);
-			structurevillagepieces$start.buildComponent(structurevillagepieces$start, this.components, rand);
-			List<StructureComponent> list1 = structurevillagepieces$start.pendingRoads;
-			List<StructureComponent> list2 = structurevillagepieces$start.pendingHouses;
+			StructureCorbaVillagePieces.Start starterPiece = new StructureCorbaVillagePieces.Start(worldIn.getBiomeProvider(), rand, (x << 4) + 2, (z << 4) + 2, list, size);
+			this.components.add(starterPiece);
+			starterPiece.buildComponent(starterPiece, this.components, rand);
+			List<StructureComponent> pendingRoads = starterPiece.pendingRoads;
+			List<StructureComponent> pendingHouses = starterPiece.pendingHouses;
 
-			while (!list1.isEmpty() || !list2.isEmpty()) {
-				if (list1.isEmpty()) {
-					int i = rand.nextInt(list2.size());
-					StructureComponent structurecomponent = list2.remove(i);
-					structurecomponent.buildComponent(structurevillagepieces$start, this.components, rand);
+			while (!pendingRoads.isEmpty() || !pendingHouses.isEmpty()) {
+				if (pendingRoads.isEmpty()) {
+					int i = rand.nextInt(pendingHouses.size());
+					StructureComponent structurecomponent = pendingHouses.remove(i);
+					structurecomponent.buildComponent(starterPiece, this.components, rand);
 				} else {
-					int j = rand.nextInt(list1.size());
-					StructureComponent structurecomponent2 = list1.remove(j);
-					structurecomponent2.buildComponent(structurevillagepieces$start, this.components, rand);
+					int j = rand.nextInt(pendingRoads.size());
+					StructureComponent structurecomponent2 = pendingRoads.remove(j);
+					structurecomponent2.buildComponent(starterPiece, this.components, rand);
 				}
 			}
 

@@ -1,6 +1,7 @@
 package net.journey.dimension.corba.village;
 
 import com.google.common.collect.Lists;
+import net.journey.dimension.base.JStructureComponent;
 import net.journey.dimension.corba.village.pieces.*;
 import net.journey.entity.mob.corba.npc.EntityTheHooded;
 import net.journey.init.Registrar;
@@ -621,13 +622,13 @@ public class StructureCorbaVillagePieces {
 		public Start() {
 		}
 
-		public Start(BiomeProvider biomeProviderIn, int p_i2104_2_, Random rand, int p_i2104_4_, int p_i2104_5_,
-		             List<StructureCorbaVillagePieces.PieceWeight> p_i2104_6_, int p_i2104_7_) {
-			super(null, 0, rand, p_i2104_4_, p_i2104_5_);
+		public Start(BiomeProvider biomeProviderIn, Random rand, int startX, int startZ,
+		             List<StructureCorbaVillagePieces.PieceWeight> structureVillageWeightedPieceList, int terrainType) {
+			super(null, 0, rand, startX, startZ);
 			this.biomeProvider = biomeProviderIn;
-			this.structureVillageWeightedPieceList = p_i2104_6_;
-			this.terrainType = p_i2104_7_;
-			Biome biome = biomeProviderIn.getBiome(new BlockPos(p_i2104_4_, 0, p_i2104_5_), Biomes.DEFAULT);
+			this.structureVillageWeightedPieceList = structureVillageWeightedPieceList;
+			this.terrainType = terrainType;
+			Biome biome = biomeProviderIn.getBiome(new BlockPos(startX, 0, startZ), Biomes.DEFAULT);
 			this.biome = biome;
 			this.startPiece = this;
 
@@ -644,7 +645,7 @@ public class StructureCorbaVillagePieces {
 		}
 	}
 
-	public abstract static class Village extends StructureComponent {
+	public abstract static class Village extends JStructureComponent {
 		protected int averageGroundLvl = -1;
 		/**
 		 * The number of villagers that have been spawned in this component.

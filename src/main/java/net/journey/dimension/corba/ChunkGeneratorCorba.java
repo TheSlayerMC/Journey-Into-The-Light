@@ -6,8 +6,8 @@ import net.journey.dimension.base.DimensionHelper;
 import net.journey.dimension.base.gen.JWorldGenPlants;
 import net.journey.dimension.base.gen.JWorldGenRuins;
 import net.journey.dimension.corba.gen.WorldGenCorbaLamp;
-import net.journey.dimension.corba.gen.WorldGenCorbaVillage;
 import net.journey.dimension.corba.gen.WorldGenHugeCorbaTree;
+import net.journey.dimension.corba.gen.WorldGenTordoSmallVillage;
 import net.journey.dimension.corba.gen.WorldGenTreehouse;
 import net.journey.dimension.corba.gen.trees.WorldGenCorbaLargeTree;
 import net.journey.dimension.corba.gen.trees.WorldGenCorbaMediumTree;
@@ -83,7 +83,7 @@ public class ChunkGeneratorCorba implements IChunkGenerator {
 	private final JWorldGenPlants genBogweed = new JWorldGenPlants(JourneyBlocks.bogweed, GroundPredicate.CORBA_MUD, 10);
 
 	private final WorldGenTreehouse worldGenTreehouse = new WorldGenTreehouse();
-	private final WorldGenCorbaVillage village = new WorldGenCorbaVillage();
+	private final WorldGenTordoSmallVillage tordoSmallVillage = new WorldGenTordoSmallVillage();
 	private final WorldGenHugeCorbaTree tree = new WorldGenHugeCorbaTree();
 	private final WorldGenCorbaLamp lamp = new WorldGenCorbaLamp();
 	private final WorldGenMinable gorbite;
@@ -438,7 +438,7 @@ public class ChunkGeneratorCorba implements IChunkGenerator {
 					z + rand.nextInt(8) + 8);
 
 			if (isBlockTop(pos.getX(), pos.getY(), pos.getZ(), JourneyBlocks.corbaGrass)) {
-				village.generate(world, this.rand, pos);
+				tordoSmallVillage.generate(world, this.rand, pos);
 			}
 		}
 
