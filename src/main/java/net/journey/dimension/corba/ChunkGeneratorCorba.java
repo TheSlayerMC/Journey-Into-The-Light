@@ -39,6 +39,7 @@ import net.minecraft.world.gen.feature.WorldGenSwamp;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.slayer.api.worldgen.WorldGenAPI;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -212,25 +213,20 @@ public class ChunkGeneratorCorba implements IChunkGenerator {
 	}
 
 	@Override
-	public Chunk generateChunk(int x, int z) {
-		return this.provideChunk(x, z);
-	}
-
-	public Chunk provideChunk(int x, int z) {
-		this.rand.setSeed(x * 341873128712L + z * 132897987541L);
-		ChunkPrimer chunkprimer = new ChunkPrimer();
-		this.setBlocksInChunk(x, z, chunkprimer);
+	public @NotNull Chunk generateChunk(int x, int z) {
+		this.rand.setSeed((long) x * 341873128712L + (long) z * 132897987541L);
+		ChunkPrimer chunkPrimer = new ChunkPrimer();
+		this.setBlocksInChunk(x, z, chunkPrimer);
 		this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomes(this.biomesForGeneration, x * 16, z * 16, 16, 16);
-		this.replaceBiomeBlocks(x, z, chunkprimer, this.biomesForGeneration);
-		this.caveGenerator.generate(this.worldObj, x, z, chunkprimer);
-		this.ravineGenerator.generate(this.worldObj, x, z, chunkprimer);
+		this.replaceBiomeBlocks(x, z, chunkPrimer, biomesForGeneration);
+		Chunk chunk = new Chunk(this.worldObj, chunkPrimer, x, z);
 
-		this.villageGenerator.generate(this.worldObj, x, z, chunkprimer);
-
-		Chunk chunk = new Chunk(this.worldObj, chunkprimer, x, z);
-		byte[] abyte = chunk.getBiomeArray();
-		for (int k = 0; k < abyte.length; ++k) abyte[k] = (byte) Biome.getIdForBiome(this.biomesForGeneration[k]);
+		byte[] chunkBiomes = chunk.getBiomeArray();
+		for (int i = 0; i < chunkBiomes.length; ++i) {
+			chunkBiomes[i] = (byte) Biome.getIdForBiome(this.biomesForGeneration[i]);
+		}
 		chunk.generateSkylightMap();
+
 		return chunk;
 	}
 
@@ -355,7 +351,8 @@ public class ChunkGeneratorCorba implements IChunkGenerator {
 		BlockPos startPos = new BlockPos(x1, 0, z1);
 		this.villageGenerator.generateStructure(this.worldObj, this.rand, chunkpos);
 
-		if(worldObj.getBiome(chunkStart) != DimensionHelper.CORBA_SWAMP_BIOME) {
+
+		if (worldObj.getBiome(chunkStart) == DimensionHelper.CORBA_BIOME) {
 			for (i = 0; i < 5; i++) {
 				genCorbaTallGrass.generate(worldObj, r, chunkStart);
 				genCorbaFlower.generate(worldObj, r, chunkStart);
@@ -364,6 +361,21 @@ public class ChunkGeneratorCorba implements IChunkGenerator {
 				flower3.generate(worldObj, r, chunkStart);
 				flower4.generate(worldObj, r, chunkStart);
 				flower5.generate(worldObj, r, chunkStart);
+			}
+		}
+
+		if (worldObj.getBiome(chunkStart) == DimensionHelper.CORBA_PLAINS_BIOME) {
+			for (i = 0; i < 5; i++) {
+				genCorbaTallGrass.generate(worldObj, r, chunkStart);
+				genCorbaFlower.generate(worldObj, r, chunkStart);
+			}
+			for (times = 0; times < 20; times++) {
+				int randX = x1 + 8 + rand.nextInt(16);
+				int randZ = z1 + 8 + rand.nextInt(16);
+				int randY = rand.nextInt(80);
+				if (isBlockTop(randX, randY - 1, randZ, JourneyBlocks.corbaGrass)) {
+					trees.get(rand.nextInt(trees.size())).generate(worldObj, rand, new BlockPos(randX, randY, randZ));
+				}
 			}
 		}
 
@@ -407,7 +419,7 @@ public class ChunkGeneratorCorba implements IChunkGenerator {
 			generateStructure(x1, z1, worldGenTreehouse);
 		}
 
-		if (rand.nextInt(85) == 0) {
+		if (rand.nextInt(115) == 0) {
 			new JWorldGenRuins(GroundPredicate.CORBA_MUD, JWorldGenRuins.LootType.SPECIAL_BLOCK,
 					JourneyBlocks.corbaDarkBricks.getDefaultState(),
 					JourneyBlocks.corbaLightBricks.getDefaultState(),
@@ -439,8 +451,8 @@ public class ChunkGeneratorCorba implements IChunkGenerator {
 			generateStructure(x1, z1, tree);
 		}
 
-		if(worldObj.getBiome(chunkStart) != DimensionHelper.CORBA_SWAMP_BIOME || worldObj.getBiome(chunkStart) != DimensionHelper.CORBA_PLAINS_BIOME) {
-			for(times = 0; times < 200; times++) {
+		if (worldObj.getBiome(chunkStart) == DimensionHelper.CORBA_BIOME || worldObj.getBiome(chunkStart) == DimensionHelper.CORBA_HILLS_BIOME) {
+			for (times = 0; times < 200; times++) {
 				int randX = x1 + 8 + rand.nextInt(16);
 				int randZ = z1 + 8 + rand.nextInt(16);
 				int randY = rand.nextInt(80);

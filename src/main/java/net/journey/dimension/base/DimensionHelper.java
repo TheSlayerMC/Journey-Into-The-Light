@@ -24,10 +24,7 @@ import net.journey.dimension.terrania.biome.TerraniaBiome;
 import net.journey.dimension.terrania.biome.TerraniaShroomForestBiome;
 import net.journey.entity.mob.boiling.*;
 import net.journey.entity.mob.cloudia.*;
-import net.journey.entity.mob.corba.EntityLeafBlower;
-import net.journey.entity.mob.corba.EntitySurfaceSeer;
-import net.journey.entity.mob.corba.EntityTreeGolem;
-import net.journey.entity.mob.corba.EntityWoodCreature;
+import net.journey.entity.mob.corba.*;
 import net.journey.entity.mob.depths.*;
 import net.journey.entity.mob.euca.EntityDynaster;
 import net.journey.entity.mob.euca.EntityEucaCharger;
@@ -99,7 +96,7 @@ public class DimensionHelper {
 
     public static final Biome CLOUDIA_BIOME = new BiomeGenCloudia();
 
-    public static final Biome CORBA_BIOME = new CorbaBiome(new Biome.BiomeProperties
+    public static final Biome CORBA_BIOME = new CorbaForestBiome(new Biome.BiomeProperties
             ("Tainted Forest")
             .setBaseHeight(0.2F)
             .setHeightVariation(0.2F),
@@ -155,6 +152,7 @@ public class DimensionHelper {
     public static final Biome[] BOILING_BIOMES = {BOILING_BIOME, CHARRED_FIELDS_BIOME, SCORCHED_WASTELAND_BIOME, BOILING_SANDS_BIOME};
     public static final Biome[] EUCA_BIOMES = {EUCA_SILVER_BIOME, EUCA_GOLD_BIOME, EUCA_GOLDITE_GRAINS_BIOME};
     public static final Biome[] CORBA_BIOMES = {CORBA_BIOME, CORBA_PLAINS_BIOME, CORBA_HILLS_BIOME, CORBA_SWAMP_BIOME, CORBA_BOGWEED_FIELDS_BIOME};
+    public static final Biome[] CORBA_FOREST_BIOMES = {CORBA_BIOME, CORBA_PLAINS_BIOME, CORBA_HILLS_BIOME};
     public static final Biome[] TERRANIA_BIOMES = {TERRANIA_BIOME, ENCHANTED_SHROOM_FOREST_BIOME};
 
     public static final DimensionType EUCA_DIM = DimensionType.register("euca", "_euca", Config.euca, WorldProviderEuca.class, Config.keepLoadingEuca);
@@ -268,6 +266,7 @@ public class DimensionHelper {
         EntityRegistry.addSpawn(EntityLeafBlower.class, amount, 1, 1, EnumCreatureType.MONSTER, CORBA_BIOMES);
         EntityRegistry.addSpawn(EntitySurfaceSeer.class, amount, 1, 1, EnumCreatureType.MONSTER, CORBA_BIOMES);
         EntityRegistry.addSpawn(EntityWoodCreature.class, amount, 1, 1, EnumCreatureType.MONSTER, CORBA_BIOMES);
+        EntityRegistry.addSpawn(EntityCorbanianMollusk.class, amount, 1, 1, EnumCreatureType.MONSTER, CORBA_BIOMES);
     }
 
     private static void addColdFrozenSpawns() {

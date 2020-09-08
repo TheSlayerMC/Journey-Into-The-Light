@@ -54,6 +54,7 @@ public class JourneyConsumables {
     public static Item flamingBeefCooked;
     public static Item breathingFungus;
     public static Item breathingFungusCooked;
+    public static Item slimy_flesh;
 
     public static void init() {
         friedFlamingGhastTentacale = Registrar.regAndSetupItem("friedFlamingGhastTentacle", "Fried Flaming Tentacale", new ItemModFood(4, 0.6F, 10, true).setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.fireResistance, 5, 1), 1.0F), JourneyTabs.CROPS);
@@ -98,7 +99,9 @@ public class JourneyConsumables {
         flamingBeefCooked = Registrar.regAndSetupItem("flamingBeefCooked", "Cooked Flaming Beef", new ItemModFood(10, 1.2F, true).setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.fireResistance, 100, 2), 2.0F), JourneyTabs.CROPS);
 
         breathingFungus = Registrar.regAndSetupItem("breathing_fungus", "Breathing Fungus", new ItemModFood(4, 3.5F, true).setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.poison, 100, 2), 0.5F), JourneyTabs.CROPS);
-        breathingFungusCooked = Registrar.regAndSetupItem("breathing_fungus_cooked", "Cooked Fungus", new ItemModFood(6, 3.5F, true).setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.poison, 100, 2), 0.5F), JourneyTabs.CROPS);
+        breathingFungusCooked = Registrar.regAndSetupItem("breathing_fungus_cooked", "Cooked Fungus", new ItemModFood(6, 3.5F, false).setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.poison, 100, 2), 0.5F), JourneyTabs.CROPS);
+
+        slimy_flesh = Registrar.regAndSetupItem("slimy_flesh", "Slimy Flesh", new ItemModFood(2, 3.5F, true).setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.confusion, 100, 2), 0.5F), JourneyTabs.CROPS);
 
         sizzleberry = Registrar.regAndSetupItem("sizzleberry", "Sizzleberry", new ItemModFood(1, 4, 1, false).setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.fireResistance, 50, 1), 1.0F).setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.moveSlow, 50, 1), 1.0F), JourneyTabs.CROPS);
         bradberry = Registrar.regAndSetupItem("bradberry", "Bradberry", new ItemModFood(1, 8, 4, false).setPotionEffect(PotionEffects.setPotionEffect(PotionEffects.confusion, 50, 1), 1.0F), JourneyTabs.CROPS);

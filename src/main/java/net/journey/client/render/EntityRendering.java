@@ -121,6 +121,7 @@ public class EntityRendering {
 		RenderingRegistry.registerEntityRenderingHandler(EntityTurducken.class, manager -> new AnimatedMobRenderer<>(manager, TimeModelLoader.loadJsonEntityModel(Textures.getEntityModelLocation("turducken")).setScaleMultiplier(1.35F), Textures.getMobTextureLocation("turducken")));
 		RenderingRegistry.registerEntityRenderingHandler(EntityFlungus.class, manager -> new AnimatedMobRenderer<>(manager, TimeModelLoader.loadJsonEntityModel(Textures.getEntityModelLocation("flungus")).setScaleMultiplier(2.55F), Textures.getMobTextureLocation("flungus")));
 		RenderingRegistry.registerEntityRenderingHandler(EntityCloudiaGuardian.class, manager -> new AnimatedMobRenderer<>(manager, TimeModelLoader.loadJsonEntityModel(Textures.getEntityModelLocation("cloudia_guardian")).setScaleMultiplier(1.0F), Textures.getMobTextureLocation("cloudia_guardian")));
+		RenderingRegistry.registerEntityRenderingHandler(EntityCorbanianMollusk.class, manager -> new AnimatedMobRenderer<>(manager, TimeModelLoader.loadJsonEntityModel(Textures.getEntityModelLocation("corbanian_mollusk")).setScaleMultiplier(2.0F), Textures.getMobTextureLocation("corbanian_mollusk")));
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityBossCrystal.class, RenderBossCrystal::new);
 	}

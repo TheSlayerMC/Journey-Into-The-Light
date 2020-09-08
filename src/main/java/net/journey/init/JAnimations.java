@@ -23,4 +23,6 @@ public class JAnimations {
 	public static final Animation CLOUDIA_GUARDIAN_REVEAL = AnimationAPI.loadAndRegisterAnimation(JITL.rl("animations/cloudia_guardian.showing.json"));
 	public static final Animation CLOUDIA_GUARDIAN_HIDDEN = AnimationAPI.loadAndRegisterAnimation(JITL.rl("animations/cloudia_guardian.hidden.json"));
 	public static final Animation CLOUDIA_GUARDIAN_HIDE = AnimationAPI.register(AnimationAPI.reverse(CLOUDIA_GUARDIAN_REVEAL));
+
+	public static final Animation CORBANIAN_MOLLUSK_WALK = AnimationAPI.loadAndRegisterAnimation(JITL.rl("animations/corbanian_mollusk.walk.json"));
 }

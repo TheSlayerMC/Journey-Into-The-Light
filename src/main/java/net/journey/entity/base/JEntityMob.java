@@ -73,19 +73,19 @@ public abstract class JEntityMob extends EntityMob implements IJERCompatible {
 	@Override
 	protected abstract SoundEvent getDeathSound();
 
-	public final double getMoveSpeed() {
+	public double getMoveSpeed() {
 		return getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue();
 	}
 
-	public final double getAttackDamage() {
+	public double getAttackDamage() {
 		return getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue();
 	}
 
-	public final double getFollowRange() {
+	public double getFollowRange() {
 		return getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).getAttributeValue();
 	}
 
-	public final double getKnockbackResistance() {
+	public double getKnockbackResistance() {
 		return getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).getAttributeValue();
 	}
 

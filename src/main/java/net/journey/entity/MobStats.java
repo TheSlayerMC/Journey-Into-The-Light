@@ -76,25 +76,28 @@ public class MobStats {
 
     public static final double OVERSEER_HEALTH = 62;
 
-    public static final double OVERSEER_ELDER_HEALTH = 68;
+	public static final double OVERSEER_ELDER_HEALTH = 68;
 
-    public static final double SURFACE_SEER_HEALTH = 65;
+	public static final double SURFACE_SEER_HEALTH = 65;
 
-    public static final double TREE_GOLEM_HEALTH = 62;
-    public static final double TREE_GOLEM_ATTACK = 14;
+	public static final double TREE_GOLEM_HEALTH = 62;
+	public static final double TREE_GOLEM_ATTACK = 14;
 
-    public static final double WOOD_CREATURE_HEALTH = 62;
-    public static final double WOOD_CREATURE_DAMAGE = 12;
+	public static final double WOOD_CREATURE_HEALTH = 62;
+	public static final double WOOD_CREATURE_DAMAGE = 12;
 
-    // =======================================================
-    // ====================== DEPTHS MOBS ====================
-    // =======================================================
+	public static final double CORBANIAN_MOLLUSK_HEALTH = 52;
+	public static final double CORBANIAN_MOLLUSK_SPEED = 0.1;
 
-    public static final double DARKENER_HEALTH = 55;
+	// =======================================================
+	// ====================== DEPTHS MOBS ====================
+	// =======================================================
 
-    public static final double DARKFISH_HEALTH = 55;
+	public static final double DARKENER_HEALTH = 55;
 
-    public static final double DARKNESS_CRAWLER_HEALTH = 58;
+	public static final double DARKFISH_HEALTH = 55;
+
+	public static final double DARKNESS_CRAWLER_HEALTH = 58;
     public static final double DARKNESS_CRAWLER_DAMAGE = 11;
 
     public static final double DARK_SORCERER_HEALTH = 50;

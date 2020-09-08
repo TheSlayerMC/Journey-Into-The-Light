@@ -261,6 +261,8 @@ public class JourneyBlocks {
     public static BlockModStairs corbaBrickStairs;
     public static BlockModStairs corbaPlankStairs;
 
+    public static BlockSlime slime;
+
     public static BlockMod boilingLamp;
     public static BlockMod blazierBricks;
     public static BlockMod ashBlock;
@@ -793,6 +795,8 @@ public class JourneyBlocks {
         corbaPlankDoubleSlab = new JBlockSlab(Material.WOOD, "corba_plank_double_slab", "Corba Plank Double Slab", true);
 
         corbaPlankStairs = new BlockModStairs(corbaPlank, "corba_plank_stairs", "Corba Plank Stairs");
+
+        slime = new BlockSlime(EnumMaterialTypes.SLIME, "slime", "Slime", 0.1F);
 
         boilingLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "boilingLamp", "Boiling Lamp", 0.1F)
                 .setLightLevel(1.0F).setCreativeTab(JourneyTabs.DECORATION);

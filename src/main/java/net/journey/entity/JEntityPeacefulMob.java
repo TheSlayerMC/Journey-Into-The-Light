@@ -1,15 +1,17 @@
 package net.journey.entity;
 
+import net.journey.entity.base.JEntityMob;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.*;
+import net.minecraft.entity.ai.EntityAILookIdle;
+import net.minecraft.entity.ai.EntityAISwimming;
+import net.minecraft.entity.ai.EntityAIWander;
+import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.Item;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
@@ -18,39 +20,16 @@ import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 
-public abstract class EntityPeacefullMob extends EntityCreature implements IMob {
+public abstract class JEntityPeacefulMob extends JEntityMob implements IMob {
 
-    public EntityPeacefullMob(World worldIn) {
-        super(worldIn);
+    public JEntityPeacefulMob(World world) {
+        super(world);
         this.experienceValue = 5;
         addBasicAI();
     }
 
     public double getHP() {
         return getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getAttributeValue();
-    }
-
-    public double getMoveSpeed() {
-        return getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue();
-    }
-
-    public double getAttackDamage() {
-        return getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue();
-    }
-
-    public double getFollowRange() {
-        return getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).getAttributeValue();
-    }
-
-    public double getKnockbackResistance() {
-        return getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).getAttributeValue();
-    }
-
-    protected void addAttackingAI() {
-        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
-        this.tasks.addTask(2, new EntityAIAttackMelee(this, 1.4D, false));
-        //this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1.4F, false));
-        this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
     }
 
     protected void addBasicAI() {
@@ -61,37 +40,6 @@ public abstract class EntityPeacefullMob extends EntityCreature implements IMob 
     }
 
     @Override
-    protected void applyEntityAttributes() {
-        super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(setFollowRange());
-        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(setMovementSpeed());
-        this.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(setKnockbackResistance());
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(setMaxHealth(new MobStats()));
-    }
-
-    public double setFollowRange() {
-        return MobStats.STANDARD_FOLLOW_RANGE;
-    }
-
-    public double setMovementSpeed() {
-        return 0.200000011920929D;
-    }
-
-    public double setKnockbackResistance() {
-        return MobStats.STANDARD_KNOCKBACK_RESISTANCE;
-    }
-
-    public abstract double setMaxHealth(MobStats s);
-
-    public abstract SoundEvent setLivingSound();
-
-    public abstract SoundEvent setHurtSound();
-
-    public abstract SoundEvent setDeathSound();
-
-    public abstract Item getItemDropped();
-
-    @Override
     public void onLivingUpdate() {
         this.updateArmSwingProgress();
         float f = this.getBrightness();
@@ -99,22 +47,6 @@ public abstract class EntityPeacefullMob extends EntityCreature implements IMob 
             this.idleTime += 2;
         }
         super.onLivingUpdate();
-    }
-
-    @Override
-    protected Item getDropItem() {
-        return getItemDropped();
-    }
-
-    @Override
-    protected void dropFewItems(boolean b, int j) {
-        for (int i = 0; i < 1 + rand.nextInt(1); i++)
-            this.dropItem(getItemDropped(), 1);
-    }
-
-    @Override
-    protected SoundEvent getAmbientSound() {
-        return setLivingSound();
     }
 
     @Override
@@ -144,15 +76,6 @@ public abstract class EntityPeacefullMob extends EntityCreature implements IMob 
         }
     }
 
-    @Override
-    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-        return setHurtSound();
-    }
-
-    @Override
-    protected SoundEvent getDeathSound() {
-        return setDeathSound();
-    }
 
     @Override
     protected SoundEvent getFallSound(int heightIn) {

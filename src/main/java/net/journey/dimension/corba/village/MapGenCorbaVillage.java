@@ -18,7 +18,7 @@ import java.util.Random;
 
 public class MapGenCorbaVillage extends MapGenStructure {
 
-	public static List<Biome> VILLAGE_SPAWN_BIOMES = Arrays.asList(DimensionHelper.CORBA_BIOME);
+	public static List<Biome> VILLAGE_SPAWN_BIOMES = Arrays.asList(DimensionHelper.CORBA_PLAINS_BIOME);
 	private int size;
 	private int distance;
 	private final int minTownSeparation;
