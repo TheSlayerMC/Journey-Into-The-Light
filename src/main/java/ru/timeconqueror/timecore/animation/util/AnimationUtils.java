@@ -53,7 +53,7 @@ public class AnimationUtils {
 	}
 
 	private static float calcWeightedScale(float scale, float weight) {
-		return scale > 1 ? 1 + (scale - 1) * weight : (scale + (1 - scale) * weight);
+		return scale > 1 ? 1 + (scale - 1) * weight : 1 - (1 - scale) * weight;
 	}
 
 	public static void multiply(Vector3f vec, float multiplier) {
