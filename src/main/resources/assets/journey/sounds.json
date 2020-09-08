@@ -217,6 +217,24 @@
       "journey:lavasnake_idle"
     ]
   },
+  "stinky_ambient": {
+    "category": "hostile",
+    "sounds": [
+      "journey:stinky_ambient"
+    ]
+  },
+  "stinky_hurt": {
+    "category": "hostile",
+    "sounds": [
+      "journey:stinky_hurt"
+    ]
+  },
+  "stinky_death": {
+    "category": "hostile",
+    "sounds": [
+      "journey:stinky_death"
+    ]
+  },
   "sentry_heart_hit": {
     "category": "master",
     "sounds": [

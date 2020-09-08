@@ -261,11 +261,11 @@ public class DimensionHelper {
     }
 
     private static void addCorbaSpawns() {
-        int amount = 20;
+        int amount = 10;
         EntityRegistry.addSpawn(EntityTreeGolem.class, amount, 1, 1, EnumCreatureType.MONSTER, CORBA_FOREST_BIOMES);
         EntityRegistry.addSpawn(EntityLeafBlower.class, amount, 1, 1, EnumCreatureType.MONSTER, CORBA_FOREST_BIOMES);
         EntityRegistry.addSpawn(EntitySurfaceSeer.class, amount, 1, 1, EnumCreatureType.MONSTER, CORBA_FOREST_BIOMES);
-        EntityRegistry.addSpawn(EntityWoodCreature.class, amount, 1, 2, EnumCreatureType.MONSTER, CORBA_FOREST_BIOMES);
+        EntityRegistry.addSpawn(EntityWoodCreature.class, amount, 1, 1, EnumCreatureType.MONSTER, CORBA_FOREST_BIOMES);
         EntityRegistry.addSpawn(EntityCorbanianMollusk.class, amount, 1, 1, EnumCreatureType.MONSTER, CORBA_BIOMES);
         EntityRegistry.addSpawn(EntityStinky.class, amount, 5, 10, EnumCreatureType.MONSTER, CORBA_BIOMES);
     }
