@@ -44,7 +44,6 @@ public enum MerchantGuis {
 	OVERGROWN_MERCHANT(EntityOvergrownMerchant.class, "overgrownMerchant", defaultFactory(Color.WHITE)),
 	ROCKITE_GOLEM(EntityRockiteGolem.class, "rockiteGolem", defaultFactory(Color.WHITE));
 
-
 	private final Lazy<String> entityNameKey;
 	private final ResourceLocation guiTexture;
 	private final GuiFactory factory;
