@@ -24,7 +24,6 @@ import net.minecraftforge.fml.common.registry.VillagerRegistry;
 import net.slayer.api.entity.EntityModVillager;
 
 import javax.annotation.Nullable;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -66,13 +65,7 @@ public class StructureCorbaVillagePieces {
 
 		//list.add(new StructureCorbaVillagePieces.PieceWeight(StructureCorbaVillagePieces.House3.class, 8, MathHelper.getInt(random, 0 + size, 3 + size * 2)));
 
-		Iterator<StructureCorbaVillagePieces.PieceWeight> iterator = list.iterator();
-
-		while (iterator.hasNext()) {
-			if ((iterator.next()).villagePiecesLimit == 0) {
-				iterator.remove();
-			}
-		}
+		list.removeIf(pieceWeight -> (pieceWeight).villagePiecesLimit == 0);
 		return list;
 	}
 
@@ -94,36 +87,36 @@ public class StructureCorbaVillagePieces {
 	private static StructureCorbaVillagePieces.Village findAndCreateComponentFactory(StructureCorbaVillagePieces.Start start, StructureCorbaVillagePieces.PieceWeight weight, List<StructureComponent> structureComponents, Random rand, int structureMinX, int structureMinY, int structureMinZ, EnumFacing facing, int componentType) {
 
 		Class<? extends StructureCorbaVillagePieces.Village> oclass = weight.villagePieceClass;
-		StructureCorbaVillagePieces.Village structurevillagepieces$village = null;
+		StructureCorbaVillagePieces.Village piece = null;
 
 		if (oclass == CorbaVillageGarden.class) {
-			structurevillagepieces$village = CorbaVillageGarden.createPiece(start, structureComponents, rand, structureMinX, structureMinY, structureMinZ, facing, componentType);
+			piece = CorbaVillageGarden.createPiece(start, structureComponents, rand, structureMinX, structureMinY, structureMinZ, facing, componentType);
 
 		} else if (oclass == CorbaVillageChurch.class) {
-			structurevillagepieces$village = CorbaVillageChurch.createPiece(start, structureComponents, rand, structureMinX, structureMinY, structureMinZ, facing, componentType);
+			piece = CorbaVillageChurch.createPiece(start, structureComponents, rand, structureMinX, structureMinY, structureMinZ, facing, componentType);
 
 		} else if (oclass == CorbaVillageHouse1.class) {
-			structurevillagepieces$village = CorbaVillageHouse1.createPiece(start, structureComponents, rand, structureMinX, structureMinY, structureMinZ, facing, componentType);
+			piece = CorbaVillageHouse1.createPiece(start, structureComponents, rand, structureMinX, structureMinY, structureMinZ, facing, componentType);
 
 		} else if (oclass == CorbaVillageOuthouse.class) {
-			structurevillagepieces$village = CorbaVillageOuthouse.createPiece(start, structureComponents, rand, structureMinX, structureMinY, structureMinZ, facing, componentType);
+			piece = CorbaVillageOuthouse.createPiece(start, structureComponents, rand, structureMinX, structureMinY, structureMinZ, facing, componentType);
 
 		} else if (oclass == CorbaVillageBlacksmith.class) {
-			structurevillagepieces$village = CorbaVillageBlacksmith.createPiece(start, structureComponents, rand, structureMinX, structureMinY, structureMinZ, facing, componentType);
+			piece = CorbaVillageBlacksmith.createPiece(start, structureComponents, rand, structureMinX, structureMinY, structureMinZ, facing, componentType);
 
 		} else if (oclass == CorbaVillageHouse2.class) {
-			structurevillagepieces$village = CorbaVillageHouse2.createPiece(start, structureComponents, rand, structureMinX, structureMinY, structureMinZ, facing, componentType);
+			piece = CorbaVillageHouse2.createPiece(start, structureComponents, rand, structureMinX, structureMinY, structureMinZ, facing, componentType);
 
 		} else if (oclass == CorbaVillageLibrary.class) {
-			structurevillagepieces$village = CorbaVillageLibrary.createPiece(start, structureComponents, rand, structureMinX, structureMinY, structureMinZ, facing, componentType);
+			piece = CorbaVillageLibrary.createPiece(start, structureComponents, rand, structureMinX, structureMinY, structureMinZ, facing, componentType);
 
 			//} else if (oclass == StructureCorbaVillagePieces.House3.class) {
-			//structurevillagepieces$village = StructureCorbaVillagePieces.House3.createPiece(start, structureComponents, rand, structureMinX, structureMinY, structureMinZ, facing, componentType);
+			//piece = StructureCorbaVillagePieces.House3.createPiece(start, structureComponents, rand, structureMinX, structureMinY, structureMinZ, facing, componentType);
 
 		} else {
-			structurevillagepieces$village = CorbaVillageGarden.createPiece(start, structureComponents, rand, structureMinX, structureMinY, structureMinZ, facing, componentType);
+			piece = CorbaVillageGarden.createPiece(start, structureComponents, rand, structureMinX, structureMinY, structureMinZ, facing, componentType);
 		}
-		return structurevillagepieces$village;
+		return piece;
 	}
 
 	private static StructureCorbaVillagePieces.Village generateComponent(StructureCorbaVillagePieces.Start start, List<StructureComponent> structureComponents, Random rand, int structureMinX, int structureMinY, int structureMinZ, EnumFacing facing, int componentType) {
@@ -148,9 +141,9 @@ public class StructureCorbaVillagePieces {
 							break;
 						}
 
-						StructureCorbaVillagePieces.Village structurevillagepieces$village = findAndCreateComponentFactory(start, structurevillagepieces$pieceweight, structureComponents, rand, structureMinX, structureMinY, structureMinZ, facing, componentType);
+						StructureCorbaVillagePieces.Village village = findAndCreateComponentFactory(start, structurevillagepieces$pieceweight, structureComponents, rand, structureMinX, structureMinY, structureMinZ, facing, componentType);
 
-						if (structurevillagepieces$village != null) {
+						if (village != null) {
 							++structurevillagepieces$pieceweight.villagePiecesSpawned;
 							start.lastPlaced = structurevillagepieces$pieceweight;
 
@@ -158,7 +151,7 @@ public class StructureCorbaVillagePieces {
 								start.structureVillageWeightedPieceList.remove(structurevillagepieces$pieceweight);
 							}
 
-							return structurevillagepieces$village;
+							return village;
 						}
 					}
 				}
@@ -779,6 +772,8 @@ public class StructureCorbaVillagePieces {
 						i += Math.max(worldIn.getTopSolidOrLiquidBlock(blockpos$mutableblockpos).getY(),
 								worldIn.provider.getAverageGroundLevel() - 1);
 						++j;
+
+						System.out.println("World height: " + worldIn.getHeight(blockpos$mutableblockpos) + ", block on height: " + worldIn.getBlockState(worldIn.getHeight(blockpos$mutableblockpos)) + ", +1 height below " + worldIn.getBlockState(worldIn.getHeight(blockpos$mutableblockpos).down()));
 					}
 				}
 			}

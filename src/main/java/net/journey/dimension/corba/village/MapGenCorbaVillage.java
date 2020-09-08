@@ -3,10 +3,12 @@ package net.journey.dimension.corba.village;
 import net.journey.dimension.base.DimensionHelper;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.structure.MapGenStructure;
+import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.StructureStart;
 import org.jetbrains.annotations.ApiStatus;
@@ -93,33 +95,43 @@ public class MapGenCorbaVillage extends MapGenStructure {
 		public Start(World worldIn, Random rand, int x, int z, int size) {
 			super(x, z);
 			List<StructureCorbaVillagePieces.PieceWeight> list = StructureCorbaVillagePieces.getStructureVillageWeightedPieceList(rand, size);
-			StructureCorbaVillagePieces.Start starterPiece = new StructureCorbaVillagePieces.Start(worldIn.getBiomeProvider(), rand, (x << 4) + 2, (z << 4) + 2, list, size);
-			this.components.add(starterPiece);
-			starterPiece.buildComponent(starterPiece, this.components, rand);
-			List<StructureComponent> pendingRoads = starterPiece.pendingRoads;
-			List<StructureComponent> pendingHouses = starterPiece.pendingHouses;
+			StructureCorbaVillagePieces.Start startPiece = new StructureCorbaVillagePieces.Start(worldIn.getBiomeProvider(), rand, (x << 4) + 2, (z << 4) + 2, list, size);
+			this.components.add(startPiece);
+			startPiece.buildComponent(startPiece, this.components, rand);
+			List<StructureComponent> pendingRoads = startPiece.pendingRoads;
+			List<StructureComponent> pendingHouses = startPiece.pendingHouses;
 
 			while (!pendingRoads.isEmpty() || !pendingHouses.isEmpty()) {
 				if (pendingRoads.isEmpty()) {
 					int i = rand.nextInt(pendingHouses.size());
-					StructureComponent structurecomponent = pendingHouses.remove(i);
-					structurecomponent.buildComponent(starterPiece, this.components, rand);
+					StructureComponent house = pendingHouses.remove(i);
+					house.buildComponent(startPiece, this.components, rand);
 				} else {
 					int j = rand.nextInt(pendingRoads.size());
-					StructureComponent structurecomponent2 = pendingRoads.remove(j);
-					structurecomponent2.buildComponent(starterPiece, this.components, rand);
+					StructureComponent road = pendingRoads.remove(j);
+					road.buildComponent(startPiece, this.components, rand);
 				}
 			}
 
 			this.updateBoundingBox();
 			int k = 0;
 
-			for (StructureComponent structurecomponent1 : this.components) {
-				if (!(structurecomponent1 instanceof StructureCorbaVillagePieces.Road)) {
-					++k;
+			for (StructureComponent component : this.components) {
+				if (!(component instanceof StructureCorbaVillagePieces.Road)) {
+					k++;
 				}
 			}
 			this.hasMoreThanTwoComponents = k > 2;
+
+			System.out.println("hasMoreThanTwoComponents = " + hasMoreThanTwoComponents);
+			System.out.println("in Village.Start: " + new ChunkPos(x, z).getBlock(0, 0, 0));
+		}
+
+		@Override
+		public void generateStructure(World worldIn, Random rand, StructureBoundingBox structurebb) {
+			System.out.println("Start.generateStructure");
+			super.generateStructure(worldIn, rand, structurebb);
+
 		}
 
 		@Override

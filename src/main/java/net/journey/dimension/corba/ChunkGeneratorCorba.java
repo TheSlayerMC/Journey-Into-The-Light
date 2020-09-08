@@ -347,6 +347,8 @@ public class ChunkGeneratorCorba implements IChunkGenerator {
 
 		this.villageGenerator.generateStructure(this.world, this.rand, chunkPos);
 
+//		System.out.println(villageGenerator.getNearestStructurePos(world, startPos, false));
+
 		if (world.getBiome(startPos) == DimensionHelper.CORBA_BIOME) {
 			for (i = 0; i < 5; i++) {
 				genCorbaTallGrass.generate(world, rand, startPos);
@@ -501,17 +503,19 @@ public class ChunkGeneratorCorba implements IChunkGenerator {
 
 	@Override
 	public BlockPos getNearestStructurePos(World worldIn, String structureName, BlockPos position, boolean findUnexplored) {
-		if ("CorbaVillage".equals(structureName) && this.villageGenerator != null) {
-			return this.villageGenerator.getNearestStructurePos(worldIn, position, findUnexplored);
+		if (structureName.equals("CorbaVillage")) {
+			return villageGenerator.getNearestStructurePos(worldIn, position, findUnexplored);
 		}
+
 		return null;
 	}
 
 	@Override
 	public boolean isInsideStructure(World worldIn, String structureName, BlockPos pos) {
-		if ("CorbaVillage".equals(structureName) && this.villageGenerator != null) {
-			return this.villageGenerator.isInsideStructure(pos);
+		if (structureName.equals("CorbaVillage")) {
+			return villageGenerator.isInsideStructure(pos);
 		}
+
 		return false;
 	}
 }

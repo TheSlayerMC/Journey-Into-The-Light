@@ -26,7 +26,7 @@ public class CorbaVillageChurch extends StructureCorbaVillagePieces.Village {
 	}
 
 	public static CorbaVillageChurch createPiece(StructureCorbaVillagePieces.Start start, List<StructureComponent> components, Random rand, int x, int y, int z, EnumFacing facing, int type) {
-		StructureBoundingBox bb = StructureBoundingBox.getComponentToAddBoundingBox(x, y, z, 0, 0, 0, 16, 20, 16, facing);
+		StructureBoundingBox bb = StructureBoundingBox.getComponentToAddBoundingBox(x, y, z, 0, 0, 0, 19, 19, 12, facing);
 		//noinspection ConstantConditions
 		return canVillageGoDeeper(bb) && StructureComponent.findIntersecting(components, bb) == null ? new CorbaVillageChurch(start, type, rand, bb, facing) : null;
 	}
