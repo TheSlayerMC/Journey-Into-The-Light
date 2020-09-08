@@ -24,7 +24,7 @@
           ]
         },
         {
-          "name": "middle",
+          "name": "middlebody",
           "parent": "slime",
           "pivot": [
             0,
@@ -51,7 +51,7 @@
           ]
         },
         {
-          "name": "bottom",
+          "name": "bottombody",
           "parent": "slime",
           "pivot": [
             0,
