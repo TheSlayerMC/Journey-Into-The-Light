@@ -4,6 +4,7 @@ import net.journey.common.knowledge.EnumKnowledgeType;
 import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
+import net.journey.init.JourneySounds;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
@@ -13,7 +14,7 @@ public class EntityStinky extends JEntityMob {
 	public EntityStinky(World world) {
 		super(world);
 		addMeleeAttackingAI();
-		setSize(2.0F, 2.0F);
+		setSize(0.75F, 1.5F);
 	}
 
 	@Override
@@ -27,16 +28,16 @@ public class EntityStinky extends JEntityMob {
 
 	@Override
 	protected SoundEvent getAmbientSound() {
-		return null;
+		return JourneySounds.STINKY_AMBIENT;
 	}
 
 	@Override
 	protected SoundEvent getHurtSound(DamageSource d) {
-		return null;
+		return JourneySounds.STINKY_HURT;
 	}
 
 	@Override
 	protected SoundEvent getDeathSound() {
-		return null;
+		return JourneySounds.STINKY_DEATH;
 	}
 }
