@@ -22,7 +22,7 @@ import ru.timeconqueror.timecore.api.animation.ActionManager;
 import ru.timeconqueror.timecore.api.animation.AnimationProvider;
 import ru.timeconqueror.timecore.api.animation.BlendType;
 
-public class EntityCorbanianMollusk extends JEntityPeacefulMob implements AnimationProvider {
+public class EntityCorbanianMollusk extends JEntityPeacefulMob implements AnimationProvider<EntityCorbanianMollusk> {
 
 	private final ActionManager<EntityCorbanianMollusk> actionManager;
 
