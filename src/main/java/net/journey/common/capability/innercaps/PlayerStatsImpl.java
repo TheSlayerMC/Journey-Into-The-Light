@@ -45,9 +45,16 @@ public class PlayerStatsImpl extends SerializableInnerCap<NBTTagCompound, Player
 		return sentacoinValue;
 	}
 
+	@Override
+	public boolean useCoins(int amount) {
+		if (sentacoinValue < amount)
+			return false;
+		sentacoinValue -= amount;
+		return true;
+	}
+	
 	public void onTick() {
-		//addSentacoin(1);
-		//sentacoinValue = getSentacoinValue();
+		
 	}
 
 	@Override
@@ -99,4 +106,6 @@ public class PlayerStatsImpl extends SerializableInnerCap<NBTTagCompound, Player
 			knowledgeMap.get(type).readFromBuffer(buffer);
 		}
 	}
+
+
 }
