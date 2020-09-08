@@ -54,8 +54,7 @@ public class PlayerStatsImpl extends SerializableInnerCap<NBTTagCompound, Player
 	}
 	
 	public void onTick() {
-		//addSentacoin(1);
-		//sentacoinValue = getSentacoinValue();
+		
 	}
 
 	@Override
