@@ -1,107 +1,70 @@
 package net.journey.dimension.corba.village;
 
-import java.util.Iterator;
-import java.util.List;
-import java.util.Random;
-
-import javax.annotation.Nullable;
-
 import com.google.common.collect.Lists;
-
-import net.journey.dimension.corba.village.pieces.CorbaVillageBlacksmith;
-import net.journey.dimension.corba.village.pieces.CorbaVillageChurch;
-import net.journey.dimension.corba.village.pieces.CorbaVillageGarden;
-import net.journey.dimension.corba.village.pieces.CorbaVillageHouse1;
-import net.journey.dimension.corba.village.pieces.CorbaVillageHouse2;
-import net.journey.dimension.corba.village.pieces.CorbaVillageLamp;
-import net.journey.dimension.corba.village.pieces.CorbaVillageLibrary;
-import net.journey.dimension.corba.village.pieces.CorbaVillageOuthouse;
-import net.journey.entity.mob.corba.npc.EntityOvergrownMerchant;
-import net.journey.entity.mob.corba.npc.EntityRedTordo;
+import net.journey.dimension.corba.village.pieces.*;
 import net.journey.entity.mob.corba.npc.EntityTheHooded;
-import net.journey.entity.mob.corba.npc.EntityTordo;
+import net.journey.init.Registrar;
 import net.journey.init.blocks.JourneyBlocks;
-import net.journey.util.RandHelper;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockCrops;
-import net.minecraft.block.BlockDoor;
-import net.minecraft.block.BlockDoor.EnumDoorHalf;
-import net.minecraft.block.BlockLadder;
-import net.minecraft.block.BlockLog;
-import net.minecraft.block.BlockNewLog;
-import net.minecraft.block.BlockOldLog;
-import net.minecraft.block.BlockPlanks;
-import net.minecraft.block.BlockSandStone;
-import net.minecraft.block.BlockStairs;
-import net.minecraft.block.BlockTorch;
+import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.IEntityLivingData;
-import net.minecraft.entity.monster.EntityZombieVillager;
-import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.EnumDyeColor;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeDesert;
-import net.minecraft.world.biome.BiomeProvider;
-import net.minecraft.world.biome.BiomeSavanna;
-import net.minecraft.world.biome.BiomeTaiga;
-import net.minecraft.world.gen.structure.MapGenStructureIO;
+import net.minecraft.world.biome.*;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.template.TemplateManager;
-import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.fml.common.registry.VillagerRegistry;
-import net.slayer.api.SlayerAPI;
 import net.slayer.api.entity.EntityModVillager;
-import net.slayer.api.worldgen.WorldGenAPI;
+
+import javax.annotation.Nullable;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Random;
+
+import static net.journey.init.StructureRegistry.*;
 
 public class StructureCorbaVillagePieces {
+	public static void registerPieces() {
+		Registrar.regStructureComponent(COMPONENT_CORBA_VILLAGE_START, StructureCorbaVillagePieces.Start.class);
+		Registrar.regStructureComponent(COMPONENT_CORBA_VILLAGE_PATH, StructureCorbaVillagePieces.Path.class);
+		Registrar.regStructureComponent(COMPONENT_CORBA_VILLAGE_WELL, StructureCorbaVillagePieces.Well.class);
 
-	public static void registerVillagePieces() {
-		SlayerAPI.addMapGen(MapGenCorbaVillage.class, "CorbaVillage");
-		SlayerAPI.addMapGen(MapGenCorbaVillage.Start.class, "CorbaVillageStart");
-		SlayerAPI.addMapGen(StructureCorbaVillagePieces.Start.class, "CorbaVillagePieceStart");
-		SlayerAPI.addMapGen(StructureCorbaVillagePieces.Path.class, "CorbaVillagePath");
-		SlayerAPI.addMapGen(StructureCorbaVillagePieces.Well.class, "CorbaVillageWell");
-		
-		SlayerAPI.addMapGen(CorbaVillageHouse1.class, "CorbaVillageHouse1");
-		SlayerAPI.addMapGen(CorbaVillageLamp.class, "CorbaVillageLamp");
-		SlayerAPI.addMapGen(CorbaVillageBlacksmith.class, "CorbaVillageBlacksmith");
-		SlayerAPI.addMapGen(CorbaVillageGarden.class, "CorbaVillageGarden"); //fix bounding box, make less common
-		SlayerAPI.addMapGen(CorbaVillageOuthouse.class, "CorbaVillageOuthouse"); //fix bounding box, make less common
-		SlayerAPI.addMapGen(CorbaVillageChurch.class, "CorbaVillageChurch"); //replace with new structure
-		SlayerAPI.addMapGen(CorbaVillageHouse2.class, "CorbaVillageHouse2");
-		SlayerAPI.addMapGen(CorbaVillageLibrary.class, "CorbaVillageLibrary");
-		//SlayerAPI.addMapGen(StructureCorbaVillagePieces.House3.class, "CorbaVillageHouse3");
-
+		Registrar.regStructureComponent(COMPONENT_CORBA_VILLAGE_HOUSE1, CorbaVillageHouse1.class);
+		Registrar.regStructureComponent(COMPONENT_CORBA_VILLAGE_HOUSE2, CorbaVillageHouse2.class);
+		Registrar.regStructureComponent(COMPONENT_CORBA_VILLAGE_LAMP, CorbaVillageLamp.class);
+		Registrar.regStructureComponent(COMPONENT_CORBA_VILLAGE_BLACKSMITH, CorbaVillageBlacksmith.class);
+		Registrar.regStructureComponent(COMPONENT_CORBA_VILLAGE_GARDEN, CorbaVillageGarden.class);//todo fix bounding box, make less common
+		Registrar.regStructureComponent(COMPONENT_CORBA_VILLAGE_OUTHOUSE, CorbaVillageOuthouse.class);//todo fix bounding box, make less common
+		Registrar.regStructureComponent(COMPONENT_CORBA_VILLAGE_CHURCH, CorbaVillageChurch.class);//todo replace with new structure
+		Registrar.regStructureComponent(COMPONENT_CORBA_VILLAGE_LIBRARY, CorbaVillageLibrary.class);
+		//SlayerAPI.addMapGen(StructureCorbaVillagePieces.House3.class, "CorbaVillageHouse3"); //legacy?
 	}
 
 	public static List<StructureCorbaVillagePieces.PieceWeight> getStructureVillageWeightedPieceList(Random random, int size) {
-		List<StructureCorbaVillagePieces.PieceWeight> list = Lists.<StructureCorbaVillagePieces.PieceWeight>newArrayList();
-		
+		List<StructureCorbaVillagePieces.PieceWeight> list = Lists.newArrayList();
+
 		list.add(new StructureCorbaVillagePieces.PieceWeight(CorbaVillageGarden.class, 10, MathHelper.getInt(random, 2 + size, 4 + size * 2)));
-		
+
 		list.add(new StructureCorbaVillagePieces.PieceWeight(CorbaVillageChurch.class, 15, MathHelper.getInt(random, 0 + size, 1 + size)));
-		
+
 		list.add(new StructureCorbaVillagePieces.PieceWeight(CorbaVillageHouse1.class, 5, MathHelper.getInt(random, 0 + size, 2 + size)));
-		
+
 		list.add(new StructureCorbaVillagePieces.PieceWeight(CorbaVillageOuthouse.class, 8, MathHelper.getInt(random, 2 + size, 5 + size * 3)));
-		
+
 		list.add(new StructureCorbaVillagePieces.PieceWeight(CorbaVillageBlacksmith.class, 20, MathHelper.getInt(random, 0 + size, 2 + size)));
-		
+
 		list.add(new StructureCorbaVillagePieces.PieceWeight(CorbaVillageHouse2.class, 3, MathHelper.getInt(random, 0, 1 + size)));
-		
+
 		list.add(new StructureCorbaVillagePieces.PieceWeight(CorbaVillageLibrary.class, 20, MathHelper.getInt(random, 0, 1 + size)));
-		
+
 		//list.add(new StructureCorbaVillagePieces.PieceWeight(StructureCorbaVillagePieces.House3.class, 8, MathHelper.getInt(random, 0 + size, 3 + size * 2)));
-		
+
 		Iterator<StructureCorbaVillagePieces.PieceWeight> iterator = list.iterator();
 
 		while (iterator.hasNext()) {
@@ -128,34 +91,34 @@ public class StructureCorbaVillagePieces {
 	}
 
 	private static StructureCorbaVillagePieces.Village findAndCreateComponentFactory(StructureCorbaVillagePieces.Start start, StructureCorbaVillagePieces.PieceWeight weight, List<StructureComponent> structureComponents, Random rand, int structureMinX, int structureMinY, int structureMinZ, EnumFacing facing, int componentType) {
-		
+
 		Class<? extends StructureCorbaVillagePieces.Village> oclass = weight.villagePieceClass;
 		StructureCorbaVillagePieces.Village structurevillagepieces$village = null;
 
 		if (oclass == CorbaVillageGarden.class) {
 			structurevillagepieces$village = CorbaVillageGarden.createPiece(start, structureComponents, rand, structureMinX, structureMinY, structureMinZ, facing, componentType);
-			
+
 		} else if (oclass == CorbaVillageChurch.class) {
 			structurevillagepieces$village = CorbaVillageChurch.createPiece(start, structureComponents, rand, structureMinX, structureMinY, structureMinZ, facing, componentType);
-			
+
 		} else if (oclass == CorbaVillageHouse1.class) {
 			structurevillagepieces$village = CorbaVillageHouse1.createPiece(start, structureComponents, rand, structureMinX, structureMinY, structureMinZ, facing, componentType);
-			
+
 		} else if (oclass == CorbaVillageOuthouse.class) {
 			structurevillagepieces$village = CorbaVillageOuthouse.createPiece(start, structureComponents, rand, structureMinX, structureMinY, structureMinZ, facing, componentType);
-			
+
 		} else if (oclass == CorbaVillageBlacksmith.class) {
 			structurevillagepieces$village = CorbaVillageBlacksmith.createPiece(start, structureComponents, rand, structureMinX, structureMinY, structureMinZ, facing, componentType);
-			
+
 		} else if (oclass == CorbaVillageHouse2.class) {
 			structurevillagepieces$village = CorbaVillageHouse2.createPiece(start, structureComponents, rand, structureMinX, structureMinY, structureMinZ, facing, componentType);
-			
+
 		} else if (oclass == CorbaVillageLibrary.class) {
 			structurevillagepieces$village = CorbaVillageLibrary.createPiece(start, structureComponents, rand, structureMinX, structureMinY, structureMinZ, facing, componentType);
-			
-		//} else if (oclass == StructureCorbaVillagePieces.House3.class) {
+
+			//} else if (oclass == StructureCorbaVillagePieces.House3.class) {
 			//structurevillagepieces$village = StructureCorbaVillagePieces.House3.createPiece(start, structureComponents, rand, structureMinX, structureMinY, structureMinZ, facing, componentType);
-			
+
 		} else {
 			structurevillagepieces$village = CorbaVillageGarden.createPiece(start, structureComponents, rand, structureMinX, structureMinY, structureMinZ, facing, componentType);
 		}
@@ -180,7 +143,7 @@ public class StructureCorbaVillagePieces {
 					if (k < 0) {
 						if (!structurevillagepieces$pieceweight.canSpawnMoreVillagePiecesOfType(componentType)
 								|| structurevillagepieces$pieceweight == start.lastPlaced
-										&& start.structureVillageWeightedPieceList.size() > 1) {
+								&& start.structureVillageWeightedPieceList.size() > 1) {
 							break;
 						}
 
@@ -251,29 +214,28 @@ public class StructureCorbaVillagePieces {
 		}
 	}
 
-	
 
 	public static class House3 extends StructureCorbaVillagePieces.Village {
 		public House3() {
 		}
 
 		public House3(StructureCorbaVillagePieces.Start start, int type, Random rand, StructureBoundingBox p_i45561_4_,
-				EnumFacing facing) {
+		              EnumFacing facing) {
 			super(start, type);
 			this.setCoordBaseMode(facing);
 			this.boundingBox = p_i45561_4_;
 		}
 
 		public static StructureCorbaVillagePieces.House3 createPiece(StructureCorbaVillagePieces.Start start,
-				List<StructureComponent> p_175849_1_, Random rand, int p_175849_3_, int p_175849_4_, int p_175849_5_,
-				EnumFacing facing, int p_175849_7_) {
+		                                                             List<StructureComponent> p_175849_1_, Random rand, int p_175849_3_, int p_175849_4_, int p_175849_5_,
+		                                                             EnumFacing facing, int p_175849_7_) {
 			StructureBoundingBox structureboundingbox = StructureBoundingBox.getComponentToAddBoundingBox(p_175849_3_,
 					p_175849_4_, p_175849_5_, 0, 0, 0, 9, 7, 12, facing);
 			return canVillageGoDeeper(structureboundingbox)
 					&& StructureComponent.findIntersecting(p_175849_1_, structureboundingbox) == null
-							? new StructureCorbaVillagePieces.House3(start, p_175849_7_, rand, structureboundingbox,
-									facing)
-							: null;
+					? new StructureCorbaVillagePieces.House3(start, p_175849_7_, rand, structureboundingbox,
+					facing)
+					: null;
 		}
 
 		/**
@@ -399,7 +361,7 @@ public class StructureCorbaVillagePieces {
 
 			if (this.getBlockStateFromPos(worldIn, 2, 0, -1, structureBoundingBoxIn).getMaterial() == Material.AIR
 					&& this.getBlockStateFromPos(worldIn, 2, -1, -1, structureBoundingBoxIn)
-							.getMaterial() != Material.AIR) {
+					.getMaterial() != Material.AIR) {
 				this.setBlockState(worldIn, iblockstate7, 2, 0, -1, structureBoundingBoxIn);
 
 				if (this.getBlockStateFromPos(worldIn, 2, -1, -1, structureBoundingBoxIn)
@@ -428,7 +390,6 @@ public class StructureCorbaVillagePieces {
 		}
 	}
 
-	
 
 	public static class Path extends StructureCorbaVillagePieces.Road {
 		private int length;
@@ -437,7 +398,7 @@ public class StructureCorbaVillagePieces {
 		}
 
 		public Path(StructureCorbaVillagePieces.Start start, int p_i45562_2_, Random rand,
-				StructureBoundingBox p_i45562_4_, EnumFacing facing) {
+		            StructureBoundingBox p_i45562_4_, EnumFacing facing) {
 			super(start, p_i45562_2_);
 			this.setCoordBaseMode(facing);
 			this.boundingBox = p_i45562_4_;
@@ -493,58 +454,58 @@ public class StructureCorbaVillagePieces {
 
 			if (flag && rand.nextInt(3) > 0 && enumfacing != null) {
 				switch (enumfacing) {
-				case NORTH:
-				default:
-					StructureCorbaVillagePieces.generateAndAddRoadPiece((StructureCorbaVillagePieces.Start) componentIn,
-							listIn, rand, this.boundingBox.minX - 1, this.boundingBox.minY, this.boundingBox.minZ,
-							EnumFacing.WEST, this.getComponentType());
-					break;
-				case SOUTH:
-					StructureCorbaVillagePieces.generateAndAddRoadPiece((StructureCorbaVillagePieces.Start) componentIn,
-							listIn, rand, this.boundingBox.minX - 1, this.boundingBox.minY, this.boundingBox.maxZ - 2,
-							EnumFacing.WEST, this.getComponentType());
-					break;
-				case WEST:
-					StructureCorbaVillagePieces.generateAndAddRoadPiece((StructureCorbaVillagePieces.Start) componentIn,
-							listIn, rand, this.boundingBox.minX, this.boundingBox.minY, this.boundingBox.minZ - 1,
-							EnumFacing.NORTH, this.getComponentType());
-					break;
-				case EAST:
-					StructureCorbaVillagePieces.generateAndAddRoadPiece((StructureCorbaVillagePieces.Start) componentIn,
-							listIn, rand, this.boundingBox.maxX - 2, this.boundingBox.minY, this.boundingBox.minZ - 1,
-							EnumFacing.NORTH, this.getComponentType());
+					case NORTH:
+					default:
+						StructureCorbaVillagePieces.generateAndAddRoadPiece((StructureCorbaVillagePieces.Start) componentIn,
+								listIn, rand, this.boundingBox.minX - 1, this.boundingBox.minY, this.boundingBox.minZ,
+								EnumFacing.WEST, this.getComponentType());
+						break;
+					case SOUTH:
+						StructureCorbaVillagePieces.generateAndAddRoadPiece((StructureCorbaVillagePieces.Start) componentIn,
+								listIn, rand, this.boundingBox.minX - 1, this.boundingBox.minY, this.boundingBox.maxZ - 2,
+								EnumFacing.WEST, this.getComponentType());
+						break;
+					case WEST:
+						StructureCorbaVillagePieces.generateAndAddRoadPiece((StructureCorbaVillagePieces.Start) componentIn,
+								listIn, rand, this.boundingBox.minX, this.boundingBox.minY, this.boundingBox.minZ - 1,
+								EnumFacing.NORTH, this.getComponentType());
+						break;
+					case EAST:
+						StructureCorbaVillagePieces.generateAndAddRoadPiece((StructureCorbaVillagePieces.Start) componentIn,
+								listIn, rand, this.boundingBox.maxX - 2, this.boundingBox.minY, this.boundingBox.minZ - 1,
+								EnumFacing.NORTH, this.getComponentType());
 				}
 			}
 
 			if (flag && rand.nextInt(3) > 0 && enumfacing != null) {
 				switch (enumfacing) {
-				case NORTH:
-				default:
-					StructureCorbaVillagePieces.generateAndAddRoadPiece((StructureCorbaVillagePieces.Start) componentIn,
-							listIn, rand, this.boundingBox.maxX + 1, this.boundingBox.minY, this.boundingBox.minZ,
-							EnumFacing.EAST, this.getComponentType());
-					break;
-				case SOUTH:
-					StructureCorbaVillagePieces.generateAndAddRoadPiece((StructureCorbaVillagePieces.Start) componentIn,
-							listIn, rand, this.boundingBox.maxX + 1, this.boundingBox.minY, this.boundingBox.maxZ - 2,
-							EnumFacing.EAST, this.getComponentType());
-					break;
-				case WEST:
-					StructureCorbaVillagePieces.generateAndAddRoadPiece((StructureCorbaVillagePieces.Start) componentIn,
-							listIn, rand, this.boundingBox.minX, this.boundingBox.minY, this.boundingBox.maxZ + 1,
-							EnumFacing.SOUTH, this.getComponentType());
-					break;
-				case EAST:
-					StructureCorbaVillagePieces.generateAndAddRoadPiece((StructureCorbaVillagePieces.Start) componentIn,
-							listIn, rand, this.boundingBox.maxX - 2, this.boundingBox.minY, this.boundingBox.maxZ + 1,
-							EnumFacing.SOUTH, this.getComponentType());
+					case NORTH:
+					default:
+						StructureCorbaVillagePieces.generateAndAddRoadPiece((StructureCorbaVillagePieces.Start) componentIn,
+								listIn, rand, this.boundingBox.maxX + 1, this.boundingBox.minY, this.boundingBox.minZ,
+								EnumFacing.EAST, this.getComponentType());
+						break;
+					case SOUTH:
+						StructureCorbaVillagePieces.generateAndAddRoadPiece((StructureCorbaVillagePieces.Start) componentIn,
+								listIn, rand, this.boundingBox.maxX + 1, this.boundingBox.minY, this.boundingBox.maxZ - 2,
+								EnumFacing.EAST, this.getComponentType());
+						break;
+					case WEST:
+						StructureCorbaVillagePieces.generateAndAddRoadPiece((StructureCorbaVillagePieces.Start) componentIn,
+								listIn, rand, this.boundingBox.minX, this.boundingBox.minY, this.boundingBox.maxZ + 1,
+								EnumFacing.SOUTH, this.getComponentType());
+						break;
+					case EAST:
+						StructureCorbaVillagePieces.generateAndAddRoadPiece((StructureCorbaVillagePieces.Start) componentIn,
+								listIn, rand, this.boundingBox.maxX - 2, this.boundingBox.minY, this.boundingBox.maxZ + 1,
+								EnumFacing.SOUTH, this.getComponentType());
 				}
 			}
 		}
 
 		public static StructureBoundingBox findPieceBox(StructureCorbaVillagePieces.Start start,
-				List<StructureComponent> p_175848_1_, Random rand, int p_175848_3_, int p_175848_4_, int p_175848_5_,
-				EnumFacing facing) {
+		                                                List<StructureComponent> p_175848_1_, Random rand, int p_175848_3_, int p_175848_4_, int p_175848_5_,
+		                                                EnumFacing facing) {
 			for (int i = 7 * MathHelper.getInt(rand, 3, 5); i >= 7; i -= 7) {
 				StructureBoundingBox structureboundingbox = StructureBoundingBox
 						.getComponentToAddBoundingBox(p_175848_3_, p_175848_4_, p_175848_5_, 0, 0, 0, 3, 3, i, facing);
@@ -617,7 +578,7 @@ public class StructureCorbaVillagePieces {
 		public int villagePiecesLimit;
 
 		public PieceWeight(Class<? extends StructureCorbaVillagePieces.Village> p_i2098_1_, int p_i2098_2_,
-				int p_i2098_3_) {
+		                   int p_i2098_3_) {
 			this.villagePieceClass = p_i2098_1_;
 			this.villagePieceWeight = p_i2098_2_;
 			this.villagePiecesLimit = p_i2098_3_;
@@ -643,7 +604,9 @@ public class StructureCorbaVillagePieces {
 
 	public static class Start extends StructureCorbaVillagePieces.Well {
 		public BiomeProvider biomeProvider;
-		/** World terrain type, 0 for normal, 1 for flap map */
+		/**
+		 * World terrain type, 0 for normal, 1 for flap map
+		 */
 		public int terrainType;
 		public StructureCorbaVillagePieces.PieceWeight lastPlaced;
 		/**
@@ -651,16 +614,16 @@ public class StructureCorbaVillagePieces {
 		 * Pieces of a type can be spawned, they are removed from this list
 		 */
 		public List<StructureCorbaVillagePieces.PieceWeight> structureVillageWeightedPieceList;
-		public List<StructureComponent> pendingHouses = Lists.<StructureComponent>newArrayList();
-		public List<StructureComponent> pendingRoads = Lists.<StructureComponent>newArrayList();
+		public List<StructureComponent> pendingHouses = Lists.newArrayList();
+		public List<StructureComponent> pendingRoads = Lists.newArrayList();
 		public Biome biome;
 
 		public Start() {
 		}
 
 		public Start(BiomeProvider biomeProviderIn, int p_i2104_2_, Random rand, int p_i2104_4_, int p_i2104_5_,
-				List<StructureCorbaVillagePieces.PieceWeight> p_i2104_6_, int p_i2104_7_) {
-			super((StructureCorbaVillagePieces.Start) null, 0, rand, p_i2104_4_, p_i2104_5_);
+		             List<StructureCorbaVillagePieces.PieceWeight> p_i2104_6_, int p_i2104_7_) {
+			super(null, 0, rand, p_i2104_4_, p_i2104_5_);
 			this.biomeProvider = biomeProviderIn;
 			this.structureVillageWeightedPieceList = p_i2104_6_;
 			this.terrainType = p_i2104_7_;
@@ -683,7 +646,9 @@ public class StructureCorbaVillagePieces {
 
 	public abstract static class Village extends StructureComponent {
 		protected int averageGroundLvl = -1;
-		/** The number of villagers that have been spawned in this component. */
+		/**
+		 * The number of villagers that have been spawned in this component.
+		 */
 		private int villagersSpawned;
 		protected int structureType;
 		protected boolean isZombieInfested;
@@ -733,28 +698,28 @@ public class StructureCorbaVillagePieces {
 		 */
 		@Nullable
 		protected StructureComponent getNextComponentNN(StructureCorbaVillagePieces.Start start,
-				List<StructureComponent> structureComponents, Random rand, int p_74891_4_, int p_74891_5_) {
+		                                                List<StructureComponent> structureComponents, Random rand, int p_74891_4_, int p_74891_5_) {
 			EnumFacing enumfacing = this.getCoordBaseMode();
 
 			if (enumfacing != null) {
 				switch (enumfacing) {
-				case NORTH:
-				default:
-					return StructureCorbaVillagePieces.generateAndAddComponent(start, structureComponents, rand,
-							this.boundingBox.minX - 1, this.boundingBox.minY + p_74891_4_,
-							this.boundingBox.minZ + p_74891_5_, EnumFacing.WEST, this.getComponentType());
-				case SOUTH:
-					return StructureCorbaVillagePieces.generateAndAddComponent(start, structureComponents, rand,
-							this.boundingBox.minX - 1, this.boundingBox.minY + p_74891_4_,
-							this.boundingBox.minZ + p_74891_5_, EnumFacing.WEST, this.getComponentType());
-				case WEST:
-					return StructureCorbaVillagePieces.generateAndAddComponent(start, structureComponents, rand,
-							this.boundingBox.minX + p_74891_5_, this.boundingBox.minY + p_74891_4_,
-							this.boundingBox.minZ - 1, EnumFacing.NORTH, this.getComponentType());
-				case EAST:
-					return StructureCorbaVillagePieces.generateAndAddComponent(start, structureComponents, rand,
-							this.boundingBox.minX + p_74891_5_, this.boundingBox.minY + p_74891_4_,
-							this.boundingBox.minZ - 1, EnumFacing.NORTH, this.getComponentType());
+					case NORTH:
+					default:
+						return StructureCorbaVillagePieces.generateAndAddComponent(start, structureComponents, rand,
+								this.boundingBox.minX - 1, this.boundingBox.minY + p_74891_4_,
+								this.boundingBox.minZ + p_74891_5_, EnumFacing.WEST, this.getComponentType());
+					case SOUTH:
+						return StructureCorbaVillagePieces.generateAndAddComponent(start, structureComponents, rand,
+								this.boundingBox.minX - 1, this.boundingBox.minY + p_74891_4_,
+								this.boundingBox.minZ + p_74891_5_, EnumFacing.WEST, this.getComponentType());
+					case WEST:
+						return StructureCorbaVillagePieces.generateAndAddComponent(start, structureComponents, rand,
+								this.boundingBox.minX + p_74891_5_, this.boundingBox.minY + p_74891_4_,
+								this.boundingBox.minZ - 1, EnumFacing.NORTH, this.getComponentType());
+					case EAST:
+						return StructureCorbaVillagePieces.generateAndAddComponent(start, structureComponents, rand,
+								this.boundingBox.minX + p_74891_5_, this.boundingBox.minY + p_74891_4_,
+								this.boundingBox.minZ - 1, EnumFacing.NORTH, this.getComponentType());
 				}
 			} else {
 				return null;
@@ -767,28 +732,28 @@ public class StructureCorbaVillagePieces {
 		 */
 		@Nullable
 		protected StructureComponent getNextComponentPP(StructureCorbaVillagePieces.Start start,
-				List<StructureComponent> structureComponents, Random rand, int p_74894_4_, int p_74894_5_) {
+		                                                List<StructureComponent> structureComponents, Random rand, int p_74894_4_, int p_74894_5_) {
 			EnumFacing enumfacing = this.getCoordBaseMode();
 
 			if (enumfacing != null) {
 				switch (enumfacing) {
-				case NORTH:
-				default:
-					return StructureCorbaVillagePieces.generateAndAddComponent(start, structureComponents, rand,
-							this.boundingBox.maxX + 1, this.boundingBox.minY + p_74894_4_,
-							this.boundingBox.minZ + p_74894_5_, EnumFacing.EAST, this.getComponentType());
-				case SOUTH:
-					return StructureCorbaVillagePieces.generateAndAddComponent(start, structureComponents, rand,
-							this.boundingBox.maxX + 1, this.boundingBox.minY + p_74894_4_,
-							this.boundingBox.minZ + p_74894_5_, EnumFacing.EAST, this.getComponentType());
-				case WEST:
-					return StructureCorbaVillagePieces.generateAndAddComponent(start, structureComponents, rand,
-							this.boundingBox.minX + p_74894_5_, this.boundingBox.minY + p_74894_4_,
-							this.boundingBox.maxZ + 1, EnumFacing.SOUTH, this.getComponentType());
-				case EAST:
-					return StructureCorbaVillagePieces.generateAndAddComponent(start, structureComponents, rand,
-							this.boundingBox.minX + p_74894_5_, this.boundingBox.minY + p_74894_4_,
-							this.boundingBox.maxZ + 1, EnumFacing.SOUTH, this.getComponentType());
+					case NORTH:
+					default:
+						return StructureCorbaVillagePieces.generateAndAddComponent(start, structureComponents, rand,
+								this.boundingBox.maxX + 1, this.boundingBox.minY + p_74894_4_,
+								this.boundingBox.minZ + p_74894_5_, EnumFacing.EAST, this.getComponentType());
+					case SOUTH:
+						return StructureCorbaVillagePieces.generateAndAddComponent(start, structureComponents, rand,
+								this.boundingBox.maxX + 1, this.boundingBox.minY + p_74894_4_,
+								this.boundingBox.minZ + p_74894_5_, EnumFacing.EAST, this.getComponentType());
+					case WEST:
+						return StructureCorbaVillagePieces.generateAndAddComponent(start, structureComponents, rand,
+								this.boundingBox.minX + p_74894_5_, this.boundingBox.minY + p_74894_4_,
+								this.boundingBox.maxZ + 1, EnumFacing.SOUTH, this.getComponentType());
+					case EAST:
+						return StructureCorbaVillagePieces.generateAndAddComponent(start, structureComponents, rand,
+								this.boundingBox.minX + p_74894_5_, this.boundingBox.minY + p_74894_4_,
+								this.boundingBox.maxZ + 1, EnumFacing.SOUTH, this.getComponentType());
 				}
 			} else {
 				return null;
@@ -845,9 +810,9 @@ public class StructureCorbaVillagePieces {
 
 					} else {
 						EntityModVillager villager = new EntityTheHooded(worldIn);
-						villager.setLocationAndAngles((double) j + 0.5D, (double) k, (double) l + 0.5D, 0.0F, 0.0F);
+						villager.setLocationAndAngles((double) j + 0.5D, k, (double) l + 0.5D, 0.0F, 0.0F);
 						villager.finalizeMobSpawn(worldIn.getDifficultyForLocation(new BlockPos(villager)),
-								(IEntityLivingData) null, false);
+								null, false);
 						worldIn.spawnEntity(villager);
 					}
 				}
@@ -951,17 +916,17 @@ public class StructureCorbaVillagePieces {
 
 		protected BlockDoor biomeDoor() {
 			switch (this.structureType) {
-			case 2:
-				return Blocks.ACACIA_DOOR;
-			case 3:
-				return Blocks.SPRUCE_DOOR;
-			default:
-				return Blocks.OAK_DOOR;
+				case 2:
+					return Blocks.ACACIA_DOOR;
+				case 3:
+					return Blocks.SPRUCE_DOOR;
+				default:
+					return Blocks.OAK_DOOR;
 			}
 		}
 
 		protected void createVillageDoor(World p_189927_1_, StructureBoundingBox p_189927_2_, Random p_189927_3_,
-				int p_189927_4_, int p_189927_5_, int p_189927_6_, EnumFacing p_189927_7_) {
+		                                 int p_189927_4_, int p_189927_5_, int p_189927_6_, EnumFacing p_189927_7_) {
 			if (!this.isZombieInfested) {
 				this.generateDoor(p_189927_1_, p_189927_2_, p_189927_3_, p_189927_4_, p_189927_5_, p_189927_6_,
 						EnumFacing.NORTH, this.biomeDoor());
@@ -969,7 +934,7 @@ public class StructureCorbaVillagePieces {
 		}
 
 		protected void placeTorch(World p_189926_1_, EnumFacing p_189926_2_, int p_189926_3_, int p_189926_4_,
-				int p_189926_5_, StructureBoundingBox p_189926_6_) {
+		                          int p_189926_5_, StructureBoundingBox p_189926_6_) {
 			if (!this.isZombieInfested) {
 				this.setBlockState(p_189926_1_,
 						Blocks.TORCH.getDefaultState().withProperty(BlockTorch.FACING, p_189926_2_), p_189926_3_,
@@ -982,7 +947,7 @@ public class StructureCorbaVillagePieces {
 		 * hitting anything else than air or liquid
 		 */
 		protected void replaceAirAndLiquidDownwards(World worldIn, IBlockState blockstateIn, int x, int y, int z,
-				StructureBoundingBox boundingboxIn) {
+		                                            StructureBoundingBox boundingboxIn) {
 			IBlockState iblockstate = this.getBiomeSpecificBlockState(blockstateIn);
 			super.replaceAirAndLiquidDownwards(worldIn, iblockstate, x, y, z, boundingboxIn);
 		}
@@ -993,8 +958,9 @@ public class StructureCorbaVillagePieces {
 	}
 
 	public static class Well extends StructureCorbaVillagePieces.Village {
-		
-		public Well() {}
+
+		public Well() {
+		}
 
 		public Well(StructureCorbaVillagePieces.Start start, int type, Random rand, int x, int z) {
 			super(start, type);
@@ -1006,7 +972,7 @@ public class StructureCorbaVillagePieces {
 				this.boundingBox = new StructureBoundingBox(x, 64, z, x + 8 - 1, 78, z + 8 - 1);
 			}
 		}
-		
+
 		@Override
 		public void buildComponent(StructureComponent componentIn, List<StructureComponent> listIn, Random rand) {
 			StructureCorbaVillagePieces.generateAndAddRoadPiece((StructureCorbaVillagePieces.Start) componentIn, listIn,
@@ -1203,7 +1169,7 @@ public class StructureCorbaVillagePieces {
 			this.setBlockState(worldIn, structureBoundingBoxIn, i + 5, j + 9, k + 5, JourneyBlocks.corbaPlankStairs.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.WEST));
 			return true;
 		}
-		
+
 		private void setBlockState(World worldIn, StructureBoundingBox structureBoundingBoxIn, int x, int y, int z, IBlockState defaultState) {
 			this.setBlockState(worldIn, defaultState, x, y, z, structureBoundingBoxIn);
 		}

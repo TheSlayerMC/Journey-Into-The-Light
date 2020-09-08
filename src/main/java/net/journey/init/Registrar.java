@@ -7,6 +7,9 @@ import net.journey.util.gen.lang.LangGeneratorFacade;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
+import net.minecraft.world.gen.structure.MapGenStructureIO;
+import net.minecraft.world.gen.structure.StructureComponent;
+import net.minecraft.world.gen.structure.StructureStart;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -74,5 +77,13 @@ public class Registrar {
 		}
 
 		return item;
+	}
+
+	public static void regStructure(String structureName, Class<? extends StructureStart> structureStartClass) {
+		MapGenStructureIO.registerStructure(structureStartClass, structureName);
+	}
+
+	public static void regStructureComponent(String componentName, Class<? extends StructureComponent> componentClass) {
+		MapGenStructureIO.registerStructureComponent(componentClass, componentName);
 	}
 }

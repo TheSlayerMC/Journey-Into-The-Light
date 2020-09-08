@@ -18,7 +18,6 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.client.FMLClientHandler;
@@ -30,7 +29,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.opengl.GL11;
 
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class SlayerAPI {
@@ -58,15 +56,6 @@ public class SlayerAPI {
         double fixScale = 1 / scale;
         GL11.glScaled(fixScale, fixScale, fixScale);
         GL11.glPopMatrix();
-    }
-
-    public static void addMapGen(Class c, String s) {
-        try {
-            MapGenStructureIO.registerStructureComponent(c, s);
-            MapGenStructureIO.registerStructure(c, s);
-        } catch (Exception e) {
-            logger.log(Level.WARNING, "[" + JITL.MOD_NAME + "] Failed To Spawn The Map Piece With The ID: " + s);
-        }
     }
 
     public static void addVillageCreationHandler(IVillageCreationHandler v) {

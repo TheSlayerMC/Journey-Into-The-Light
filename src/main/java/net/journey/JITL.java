@@ -21,6 +21,8 @@ public class JITL {
 	public static final String DEPENDENCIES = "required-after:baubles@[1.5.2,);";
 	public static final String UPDATE_URL = "https://raw.githubusercontent.com/TheSlayerMC/Journey-Into-The-Light/master/update.json";
 
+	public static final String ABBREV = "jitl";
+
 	/**
 	 * Equals true only if journey is launched in its development workspace.
 	 * Will be set to false in any other mod dev workspace.
