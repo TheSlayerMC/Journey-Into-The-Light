@@ -26,7 +26,7 @@ public class ChunkGeneratorCloudia implements IChunkGenerator {
 	private final ArrayList toprooms;
 	private final CloudiaEmptyChunk emptyChunk;
 	private final CloudiaZoneBase[] bridges;
-	private final World worldObj;
+	private final World world;
 	private final Random random;
 	private final Map chunkTileEntityMap;
 	private Biome[] biomesForGeneration;
@@ -37,7 +37,7 @@ public class ChunkGeneratorCloudia implements IChunkGenerator {
 	private final WorldGenMinable luniteOre;
 
 	public ChunkGeneratorCloudia(World worldIn, long seed) {
-		worldObj = worldIn;
+		world = worldIn;
 		random = new Random(seed);
 		bottomrooms = new ArrayList(4);
 		bottomrooms.add(new CloudiaDungeon1());
@@ -64,7 +64,7 @@ public class ChunkGeneratorCloudia implements IChunkGenerator {
 	@Override
 	public Chunk generateChunk(int chunkX, int chunkZ) {
 		CloudiaChunkPrimer cloudiaChunk = new CloudiaChunkPrimer();
-		this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomes(this.biomesForGeneration, chunkX * 16, chunkZ * 16, 16, 16);
+		this.biomesForGeneration = this.world.getBiomeProvider().getBiomes(this.biomesForGeneration, chunkX * 16, chunkZ * 16, 16, 16);
 		int bottomLayer = 32;
 		int secondLayer = 51;
 
@@ -92,7 +92,7 @@ public class ChunkGeneratorCloudia implements IChunkGenerator {
 		//checks all tile entitys
 		chunkTileEntityMap.put(new ChunkPos(chunkX, chunkZ), cloudiaChunk.chunkTileEntityPositions);
 
-		Chunk chunk = new Chunk(this.worldObj, cloudiaChunk, chunkX, chunkZ);
+		Chunk chunk = new Chunk(this.world, cloudiaChunk, chunkX, chunkZ);
 		byte[] abyte = chunk.getBiomeArray();
 
 		for (int i = 0; i < abyte.length; ++i) {
@@ -108,57 +108,56 @@ public class ChunkGeneratorCloudia implements IChunkGenerator {
 		int x = chunkX * 16;
 		int z = chunkZ * 16;
 		BlockPos pos = new BlockPos(x, 0, z);
-		Biome biome = this.worldObj.getBiome(pos.add(16, 0, 16));
-		this.random.setSeed(this.worldObj.getSeed());
+		Biome biome = this.world.getBiome(pos.add(16, 0, 16));
+		this.random.setSeed(this.world.getSeed());
 		long k = this.random.nextLong() / 2L * 2L + 1L;
 		long l = this.random.nextLong() / 2L * 2L + 1L;
 		ChunkPos chunkpos = new ChunkPos(chunkX, chunkZ);
-		this.random.setSeed((long) chunkX * k + (long) chunkZ * l ^ this.worldObj.getSeed());
+		this.random.setSeed((long) chunkX * k + (long) chunkZ * l ^ this.world.getSeed());
 		BlockPos chunkStart = new BlockPos(chunkX * 16, 0, chunkZ * 16);
 
 		//checks all tile entitys in the world and updates (renders) them
 		List<BlockPos> chunkTileEntityPositions = (List<BlockPos>) chunkTileEntityMap.get(chunkpos);
 		if (chunkTileEntityPositions != null) {
-			Chunk chunk = this.worldObj.getChunk(chunkX, chunkZ);
+			Chunk chunk = this.world.getChunk(chunkX, chunkZ);
 			for (int i = 0; i < chunkTileEntityPositions.size(); i++) {
 				BlockPos chunkPosition = chunkTileEntityPositions.get(i);
 				IBlockState state = chunk.getBlockState(chunkPosition.getX(), chunkPosition.getY(),
 						chunkPosition.getZ());
-				TileEntity te = state.getBlock().createTileEntity(this.worldObj, state);
-				this.worldObj.setTileEntity(chunkPosition.add(x, 0, z), te);
+				TileEntity te = state.getBlock().createTileEntity(this.world, state);
+				this.world.setTileEntity(chunkPosition.add(x, 0, z), te);
 			}
 			chunkTileEntityMap.remove(chunkpos);
 		}
 
-		WorldEntitySpawner.performWorldGenSpawning(this.worldObj, biome, x + 8, z + 8, 16, 16, this.random);
-
+		WorldEntitySpawner.performWorldGenSpawning(this.world, biome, x + 8, z + 8, 16, 16, this.random);
 
 
 		if (random.nextInt(3) == 0) {
-			cloudiaRock.generate(worldObj, random, chunkStart.add(random.nextInt(16), random.nextInt(worldObj.getHeight()), random.nextInt(16)));
+			cloudiaRock.generate(world, random, chunkStart.add(random.nextInt(16), random.nextInt(world.getHeight()), random.nextInt(16)));
 		}
 
 		if (random.nextInt(3) == 0) {
-			luniteOre.generate(worldObj, random, chunkStart.add(random.nextInt(16), random.nextInt(worldObj.getHeight()), random.nextInt(16)));
+			luniteOre.generate(world, random, chunkStart.add(random.nextInt(16), random.nextInt(world.getHeight()), random.nextInt(16)));
 		}
 
 		for(int i = 0; i < 2; i++) {
-			BlockPos p = chunkStart.add(random.nextInt(16), random.nextInt(worldObj.getHeight()), random.nextInt(16));
+			BlockPos p = chunkStart.add(random.nextInt(16), random.nextInt(world.getHeight()), random.nextInt(16));
 			if (10 < p.getY() && p.getY() < 120)
-				pinkCloudiaCloud.generate(worldObj, random, p);
+				pinkCloudiaCloud.generate(world, random, p);
 		}
 
 		for(int i = 0; i < 2; i++) {
-			BlockPos p = chunkStart.add(random.nextInt(16), random.nextInt(worldObj.getHeight()), random.nextInt(16));
+			BlockPos p = chunkStart.add(random.nextInt(16), random.nextInt(world.getHeight()), random.nextInt(16));
 			if (10 < p.getY() && p.getY() < 120)
-				lightBlueCloudiaCloud.generate(worldObj, random, p);
+				lightBlueCloudiaCloud.generate(world, random, p);
 		}
 
 	}
 
 	@Override
 	public List<SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos) {
-		Biome biome = this.worldObj.getBiome(pos);
+		Biome biome = this.world.getBiome(pos);
 		return biome.getSpawnableList(creatureType);
 	}
 

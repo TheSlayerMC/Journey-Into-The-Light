@@ -64,9 +64,9 @@ public class ChunkGeneratorCorba implements IChunkGenerator {
 	private final float[] biomeWeights;
 	private double[] depthBuffer = new double[256];
 
-	private Random rand;
+	private final Random rand;
 	private final ArrayList<WorldGenerator> trees;
-	private final World worldObj;
+	private final World world;
 	private final MapGenBase caveGenerator;
 	private final MapGenBase ravineGenerator;
 	private Biome[] biomesForGeneration;
@@ -97,10 +97,9 @@ public class ChunkGeneratorCorba implements IChunkGenerator {
 	public ChunkGeneratorCorba(World worldIn, long seed, String generatorOptions) {
 		this.caveGenerator = new MapGenCaves();
 		this.ravineGenerator = new MapGenRavine();
-		this.worldObj = worldIn;
+		this.world = worldIn;
 		this.rand = new Random(seed);
 		this.terrainType = worldIn.getWorldInfo().getTerrainType();
-		this.rand = new Random(seed);
 		this.minLimitPerlinNoise = new NoiseGeneratorOctaves(this.rand, 16);
 		this.maxLimitPerlinNoise = new NoiseGeneratorOctaves(this.rand, 16);
 		this.mainPerlinNoise = new NoiseGeneratorOctaves(this.rand, 8);
@@ -133,16 +132,14 @@ public class ChunkGeneratorCorba implements IChunkGenerator {
 	}
 
 	public void setBlocksInChunk(int x, int z, ChunkPrimer primer) {
-		this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomesForGeneration(this.biomesForGeneration, x * 4 - 2, z * 4 - 2, 10, 10);
+		this.biomesForGeneration = this.world.getBiomeProvider().getBiomesForGeneration(this.biomesForGeneration, x * 4 - 2, z * 4 - 2, 10, 10);
 		this.generateHeightmap(x * 4, 0, z * 4);
 
-		for (int i = 0; i < 4; ++i)
-		{
+		for (int i = 0; i < 4; ++i) {
 			int j = i * 5;
 			int k = (i + 1) * 5;
 
-			for (int l = 0; l < 4; ++l)
-			{
+			for (int l = 0; l < 4; ++l) {
 				int i1 = (j + l) * 33;
 				int j1 = (j + l + 1) * 33;
 				int k1 = (k + l) * 33;
@@ -201,13 +198,13 @@ public class ChunkGeneratorCorba implements IChunkGenerator {
 	}
 
 	public void replaceBiomeBlocks(int chunkX, int chunkZ, ChunkPrimer primer, Biome[] biomesIn) {
-		if (!ForgeEventFactory.onReplaceBiomeBlocks(this, chunkX, chunkZ, primer, this.worldObj)) return;
+		if (!ForgeEventFactory.onReplaceBiomeBlocks(this, chunkX, chunkZ, primer, this.world)) return;
 		this.depthBuffer = this.surfaceNoise.getRegion(this.depthBuffer, chunkX * 16, chunkZ * 16, 16, 16, 0.0625D, 0.0625D, 1.0D);
 
 		for (int relX = 0; relX < 16; ++relX) {
 			for (int relZ = 0; relZ < 16; ++relZ) {
 				Biome biome = biomesIn[relX + relZ * 16];
-				biome.genTerrainBlocks(this.worldObj, this.rand, primer, chunkX * 16 + relX, chunkZ * 16 + relZ, this.depthBuffer[relX + relZ * 16]);
+				biome.genTerrainBlocks(this.world, this.rand, primer, chunkX * 16 + relX, chunkZ * 16 + relZ, this.depthBuffer[relX + relZ * 16]);
 			}
 		}
 	}
@@ -217,9 +214,9 @@ public class ChunkGeneratorCorba implements IChunkGenerator {
 		this.rand.setSeed((long) x * 341873128712L + (long) z * 132897987541L);
 		ChunkPrimer chunkPrimer = new ChunkPrimer();
 		this.setBlocksInChunk(x, z, chunkPrimer);
-		this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomes(this.biomesForGeneration, x * 16, z * 16, 16, 16);
+		this.biomesForGeneration = this.world.getBiomeProvider().getBiomes(this.biomesForGeneration, x * 16, z * 16, 16, 16);
 		this.replaceBiomeBlocks(x, z, chunkPrimer, biomesForGeneration);
-		Chunk chunk = new Chunk(this.worldObj, chunkPrimer, x, z);
+		Chunk chunk = new Chunk(this.world, chunkPrimer, x, z);
 
 		byte[] chunkBiomes = chunk.getBiomeArray();
 		for (int i = 0; i < chunkBiomes.length; ++i) {
@@ -340,139 +337,137 @@ public class ChunkGeneratorCorba implements IChunkGenerator {
 	}
 
 	@Override
-	public void populate(int cx, int cz) {
-		final int x1 = cx * 16;
-		final int z1 = cz * 16;
+	public void populate(int chunkX, int chunkZ) {
+		final int x = chunkX * 16;
+		final int z = chunkZ * 16;
 		int i;
 		int times;
-		Random r = rand;
-		BlockPos chunkStart = new BlockPos(x1, 0, z1);
-		ChunkPos chunkpos = new ChunkPos(cx, cz);
-		BlockPos startPos = new BlockPos(x1, 0, z1);
-		this.villageGenerator.generateStructure(this.worldObj, this.rand, chunkpos);
+		BlockPos startPos = new BlockPos(x, 0, z);
+		ChunkPos chunkPos = new ChunkPos(chunkX, chunkZ);
 
+		this.villageGenerator.generateStructure(this.world, this.rand, chunkPos);
 
-		if (worldObj.getBiome(chunkStart) == DimensionHelper.CORBA_BIOME) {
+		if (world.getBiome(startPos) == DimensionHelper.CORBA_BIOME) {
 			for (i = 0; i < 5; i++) {
-				genCorbaTallGrass.generate(worldObj, r, chunkStart);
-				genCorbaFlower.generate(worldObj, r, chunkStart);
-				flower1.generate(worldObj, r, chunkStart);
-				flower2.generate(worldObj, r, chunkStart);
-				flower3.generate(worldObj, r, chunkStart);
-				flower4.generate(worldObj, r, chunkStart);
-				flower5.generate(worldObj, r, chunkStart);
+				genCorbaTallGrass.generate(world, rand, startPos);
+				genCorbaFlower.generate(world, rand, startPos);
+				flower1.generate(world, rand, startPos);
+				flower2.generate(world, rand, startPos);
+				flower3.generate(world, rand, startPos);
+				flower4.generate(world, rand, startPos);
+				flower5.generate(world, rand, startPos);
 			}
 		}
 
-		if (worldObj.getBiome(chunkStart) == DimensionHelper.CORBA_PLAINS_BIOME) {
+		if (world.getBiome(startPos) == DimensionHelper.CORBA_PLAINS_BIOME) {
 			for (i = 0; i < 5; i++) {
-				genCorbaTallGrass.generate(worldObj, r, chunkStart);
-				genCorbaFlower.generate(worldObj, r, chunkStart);
+				genCorbaTallGrass.generate(world, rand, startPos);
+				genCorbaFlower.generate(world, rand, startPos);
 			}
 			for (times = 0; times < 20; times++) {
-				int randX = x1 + 8 + rand.nextInt(16);
-				int randZ = z1 + 8 + rand.nextInt(16);
-				int randY = rand.nextInt(80);
+				int randX = x + 8 + this.rand.nextInt(16);
+				int randZ = z + 8 + this.rand.nextInt(16);
+				int randY = this.rand.nextInt(80);
 				if (isBlockTop(randX, randY - 1, randZ, JourneyBlocks.corbaGrass)) {
-					trees.get(rand.nextInt(trees.size())).generate(worldObj, rand, new BlockPos(randX, randY, randZ));
+					trees.get(this.rand.nextInt(trees.size())).generate(world, this.rand, new BlockPos(randX, randY, randZ));
 				}
 			}
 		}
 
-		if (worldObj.getBiome(chunkStart) == DimensionHelper.CORBA_SWAMP_BIOME) {
+		if (world.getBiome(startPos) == DimensionHelper.CORBA_SWAMP_BIOME) {
 			for (i = 0; i < 5; i++) {
-				genCorbaTallGrass.generate(worldObj, r, chunkStart);
-				genBogshroomsSmall.generate(worldObj, r, chunkStart);
-				genBogshroomTall.generate(worldObj, r, chunkStart);
-				genBogweed.generate(worldObj, r, chunkStart);
+				genCorbaTallGrass.generate(world, rand, startPos);
+				genBogshroomsSmall.generate(world, rand, startPos);
+				genBogshroomTall.generate(world, rand, startPos);
+				genBogweed.generate(world, rand, startPos);
 			}
 		}
 
-		if (worldObj.getBiome(chunkStart) == DimensionHelper.CORBA_BOGWEED_FIELDS_BIOME) {
+		if (world.getBiome(startPos) == DimensionHelper.CORBA_BOGWEED_FIELDS_BIOME) {
 			for (i = 0; i < 5; i++) {
-				genBogweed.generate(worldObj, r, chunkStart);
+				genBogweed.generate(world, rand, startPos);
 			}
-			if (rand.nextInt(10) == 0) {
+			if (this.rand.nextInt(10) == 0) {
 				new JWorldGenRuins(GroundPredicate.CORBA_MUD, JWorldGenRuins.LootType.RUINS,
-						JourneyBlocks.corbaCobblestone.getDefaultState()).generate(worldObj, rand, startPos);
+						JourneyBlocks.corbaCobblestone.getDefaultState()).generate(world, this.rand, startPos);
 			}
 		}
 
-		if (worldObj.getBiome(chunkStart) == DimensionHelper.CORBA_SWAMP_BIOME) {
+		if (world.getBiome(startPos) == DimensionHelper.CORBA_SWAMP_BIOME) {
 			for (times = 0; times < 25; times++) {
-				WorldGenAPI.genOnGround(worldObj, chunkpos, rand, new WorldGenCorbaSwampTree(true));
+				WorldGenAPI.genOnGround(world, chunkPos, this.rand, new WorldGenCorbaSwampTree(true));
 			}
 		}
 
-		if (worldObj.getBiome(chunkStart) == DimensionHelper.CORBA_SWAMP_BIOME || worldObj.getBiome(chunkStart) == DimensionHelper.CORBA_BOGWEED_FIELDS_BIOME) {
+		if (world.getBiome(startPos) == DimensionHelper.CORBA_SWAMP_BIOME || world.getBiome(startPos) == DimensionHelper.CORBA_BOGWEED_FIELDS_BIOME) {
 			for (i = 0; i < 100; i++) {
-				int randX = x1 + 8 + rand.nextInt(8);
-				int randZ = z1 + 8 + rand.nextInt(8);
-				int randY = rand.nextInt(80);
+				int randX = x + 8 + this.rand.nextInt(8);
+				int randZ = z + 8 + this.rand.nextInt(8);
+				int randY = this.rand.nextInt(80);
 				if (isBlockTop(randX, randY, randZ, JourneyBlocks.corbaGrass) || isBlockTop(randX, randY, randZ, Blocks.WATER)) {
-					new WorldGenSwamp().generate(worldObj, rand, new BlockPos(randX, randY, randZ));
+					new WorldGenSwamp().generate(world, this.rand, new BlockPos(randX, randY, randZ));
 				}
 			}
 		}
 
-		if (rand.nextInt(5) == 0) {
-			generateStructure(x1, z1, worldGenTreehouse);
+		if (this.rand.nextInt(5) == 0) {
+			generateStructure(x, z, worldGenTreehouse);
 		}
 
-		if (rand.nextInt(115) == 0) {
+		if (this.rand.nextInt(115) == 0) {
 			new JWorldGenRuins(GroundPredicate.CORBA_MUD, JWorldGenRuins.LootType.SPECIAL_BLOCK,
 					JourneyBlocks.corbaDarkBricks.getDefaultState(),
 					JourneyBlocks.corbaLightBricks.getDefaultState(),
 					JourneyBlocks.corbaCrackedBricks.getDefaultState(),
 					JourneyBlocks.corbaCobblestone.getDefaultState(),
 					JourneyBlocks.corbaBricks.getDefaultState())
-					.setSpecialBlock(JourneyBlocks.overgrownLootBox).generate(worldObj, rand, startPos);
+					.setSpecialBlock(JourneyBlocks.overgrownLootBox).generate(world, this.rand, startPos);
 		}
 
 		for (i = 0; i < 64; i++) {
-			TALL_GLOWSHROOMS_GEN.generate(worldObj, rand, startPos);
-			SMALL_GLOWSHROOMS.generate(worldObj, rand, startPos);
+			TALL_GLOWSHROOMS_GEN.generate(world, this.rand, startPos);
+			SMALL_GLOWSHROOMS.generate(world, this.rand, startPos);
 		}
 
 		for (i = 0; i < 55; i++) {
-			CAVE_VINE_GEN.generate(worldObj, rand, startPos);
+			CAVE_VINE_GEN.generate(world, this.rand, startPos);
 		}
 
-		if (rand.nextInt(6) == 0) {
-			BlockPos pos = new BlockPos(x1 + 1, r.nextInt(128) + 1,
-					z1 + r.nextInt(8) + 8);
+		if (this.rand.nextInt(6) == 0) {
+			BlockPos pos = new BlockPos(x + 1, rand.nextInt(128) + 1,
+					z + rand.nextInt(8) + 8);
 
 			if (isBlockTop(pos.getX(), pos.getY(), pos.getZ(), JourneyBlocks.corbaGrass)) {
-				village.generate(worldObj, rand, pos);
+				village.generate(world, this.rand, pos);
 			}
 		}
 
-		if (rand.nextInt(6) == 0) {
-			generateStructure(x1, z1, tree);
+		if (this.rand.nextInt(6) == 0) {
+			generateStructure(x, z, tree);
 		}
 
-		if (worldObj.getBiome(chunkStart) == DimensionHelper.CORBA_BIOME || worldObj.getBiome(chunkStart) == DimensionHelper.CORBA_HILLS_BIOME) {
+		if (world.getBiome(startPos) == DimensionHelper.CORBA_BIOME || world.getBiome(startPos) == DimensionHelper.CORBA_HILLS_BIOME) {
 			for (times = 0; times < 200; times++) {
-				int randX = x1 + 8 + rand.nextInt(16);
-				int randZ = z1 + 8 + rand.nextInt(16);
-				int randY = rand.nextInt(80);
+				int randX = x + 8 + this.rand.nextInt(16);
+				int randZ = z + 8 + this.rand.nextInt(16);
+				int randY = this.rand.nextInt(80);
 				if (isBlockTop(randX, randY - 1, randZ, JourneyBlocks.corbaGrass)) {
-					trees.get(rand.nextInt(trees.size())).generate(worldObj, rand, new BlockPos(randX, randY, randZ));
+					trees.get(this.rand.nextInt(trees.size())).generate(world, this.rand, new BlockPos(randX, randY, randZ));
 				}
 			}
 		}
 
 
 		for (times = 0; times < 30; times++) {
-			generateStructure(x1, z1, lamp);
+			generateStructure(x, z, lamp);
 		}
 
 		for (i = 0; i < Config.gorbiteOreTrys; i++) {
-			gorbite.generate(worldObj, rand, chunkStart.add(rand.nextInt(16), rand.nextInt(worldObj.getHeight()), rand.nextInt(16)));
+			gorbite.generate(world, this.rand, startPos.add(this.rand.nextInt(16), this.rand.nextInt(world.getHeight()), this.rand.nextInt(16)));
 		}
 
 		for (i = 0; i < Config.orbaditeOreTrys; i++) {
-			orbaditeOre.generate(worldObj, rand, chunkStart.add(rand.nextInt(16), rand.nextInt(worldObj.getHeight()), rand.nextInt(16)));
+			orbaditeOre.generate(world, this.rand, startPos.add(this.rand.nextInt(16), this.rand.nextInt(world.getHeight()), this.rand.nextInt(16)));
 		}
 
 	}
@@ -480,23 +475,23 @@ public class ChunkGeneratorCorba implements IChunkGenerator {
 	private void generateStructure(int x, int z, WorldGenerator generator) {
 		BlockPos pos = WorldGenAPI.createRandom(x, 1, 128 + 1, z, rand, 10);
 		if (isBlockTop(pos.getX(), pos.getY(), pos.getZ(), JourneyBlocks.corbaGrass)) {
-			generator.generate(worldObj, rand, pos);
+			generator.generate(world, rand, pos);
 		}
 	}
 
 	public boolean isBlockTop(int x, int y, int z, Block grass) {
-		return WorldGenAPI.isBlockTop(x, y, z, grass, worldObj);
+		return WorldGenAPI.isBlockTop(x, y, z, grass, world);
 	}
 
 	@Override
 	public List<SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos) {
-		Biome biome = this.worldObj.getBiome(pos);
+		Biome biome = this.world.getBiome(pos);
 		return biome.getSpawnableList(creatureType);
 	}
 
 	@Override
 	public void recreateStructures(Chunk c, int x, int z) {
-		this.villageGenerator.generate(this.worldObj, x, z, null);
+		this.villageGenerator.generate(this.world, x, z, null);
 	}
 
 	@Override

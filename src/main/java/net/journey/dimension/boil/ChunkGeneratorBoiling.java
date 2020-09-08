@@ -69,7 +69,7 @@ public class ChunkGeneratorBoiling implements IChunkGenerator {
     private NoiseGeneratorOctaves noiseGen2;
     private NoiseGeneratorOctaves noiseGen3;
     private final NoiseGeneratorPerlin noiseGen4;
-    private final World worldObj;
+    private final World world;
     private double[] stoneNoise;
     private final MapGenBase caveGenerator;
     private final MapGenBase ravineGenerator;
@@ -85,7 +85,7 @@ public class ChunkGeneratorBoiling implements IChunkGenerator {
         this.stoneNoise = new double[256];
         this.caveGenerator = new MapGenCaves();
         this.ravineGenerator = new MapGenRavine();
-        this.worldObj = worldIn;
+        this.world = worldIn;
         this.rand = new Random(p_i45636_2_);
         this.noiseGen1 = new NoiseGeneratorOctaves(this.rand, 16);
         this.noiseGen2 = new NoiseGeneratorOctaves(this.rand, 16);
@@ -132,7 +132,7 @@ public class ChunkGeneratorBoiling implements IChunkGenerator {
     }
 
     public void setBlocksInChunk(int x, int z, ChunkPrimer primer) {
-        this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomesForGeneration(this.biomesForGeneration, x * 4 - 2, z * 4 - 2, 10, 10);
+        this.biomesForGeneration = this.world.getBiomeProvider().getBiomesForGeneration(this.biomesForGeneration, x * 4 - 2, z * 4 - 2, 10, 10);
         this.generate(x * 4, 0, z * 4);
         for (int k = 0; k < 4; ++k) {
             int l = k * 5;
@@ -187,7 +187,7 @@ public class ChunkGeneratorBoiling implements IChunkGenerator {
     }
 
     public void biomeBlocks(int x, int z, ChunkPrimer c, Biome[] b) {
-        if (!net.minecraftforge.event.ForgeEventFactory.onReplaceBiomeBlocks(this, x, z, c, this.worldObj)) return;
+        if (!net.minecraftforge.event.ForgeEventFactory.onReplaceBiomeBlocks(this, x, z, c, this.world)) return;
         double d0 = 0.03125D;
         this.stoneNoise = this.noiseGen4.getRegion(this.stoneNoise, x * 16, z * 16, 16, 16, d0 * 2.0D, d0 * 2.0D, 1.0D);
         for (int k = 0; k < 16; ++k) {
@@ -196,15 +196,15 @@ public class ChunkGeneratorBoiling implements IChunkGenerator {
 
                 if (biome == DimensionHelper.CHARRED_FIELDS_BIOME) {
                     BiomeGenCharredFields charredFields = (BiomeGenCharredFields) biome;
-                    charredFields.generateModdedBiomeTerrain(worldObj, this.rand, c, x * 16 + k, z * 16 + l, this.stoneNoise[l + k * 16]);
+                    charredFields.generateModdedBiomeTerrain(world, this.rand, c, x * 16 + k, z * 16 + l, this.stoneNoise[l + k * 16]);
 
                 } else if (biome == DimensionHelper.SCORCHED_WASTELAND_BIOME) {
                     BiomeGenScorchedWasteland wasteland = (BiomeGenScorchedWasteland) biome;
-                    wasteland.generateModdedBiomeTerrain(worldObj, this.rand, c, x * 16 + k, z * 16 + l, this.stoneNoise[l + k * 16]);
+                    wasteland.generateModdedBiomeTerrain(world, this.rand, c, x * 16 + k, z * 16 + l, this.stoneNoise[l + k * 16]);
 
                 } else if (biome == DimensionHelper.BOILING_SANDS_BIOME) {
                     BiomeGenBoilingSands sands = (BiomeGenBoilingSands) biome;
-                    sands.generateModdedBiomeTerrain(worldObj, this.rand, c, x * 16 + k, z * 16 + l, this.stoneNoise[l + k * 16]);
+                    sands.generateModdedBiomeTerrain(world, this.rand, c, x * 16 + k, z * 16 + l, this.stoneNoise[l + k * 16]);
 
                 } else {
                     generateBiomeTerrain(biome, this.rand, c, x * 16 + k, z * 16 + l, this.stoneNoise[l + k * 16]);
@@ -264,11 +264,11 @@ public class ChunkGeneratorBoiling implements IChunkGenerator {
         this.rand.setSeed(x * 341873128712L + z * 132897987541L);
         ChunkPrimer chunkprimer = new ChunkPrimer();
         this.setBlocksInChunk(x, z, chunkprimer);
-        this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomes(this.biomesForGeneration, x * 16, z * 16, 16, 16);
+        this.biomesForGeneration = this.world.getBiomeProvider().getBiomes(this.biomesForGeneration, x * 16, z * 16, 16, 16);
         this.biomeBlocks(x, z, chunkprimer, this.biomesForGeneration);
-        this.caveGenerator.generate(this.worldObj, x, z, chunkprimer);
-        this.ravineGenerator.generate(this.worldObj, x, z, chunkprimer);
-        Chunk chunk = new Chunk(this.worldObj, chunkprimer, x, z);
+        this.caveGenerator.generate(this.world, x, z, chunkprimer);
+        this.ravineGenerator.generate(this.world, x, z, chunkprimer);
+        Chunk chunk = new Chunk(this.world, chunkprimer, x, z);
         byte[] abyte = chunk.getBiomeArray();
         for (int k = 0; k < abyte.length; ++k) abyte[k] = (byte) Biome.getIdForBiome(this.biomesForGeneration[k]);
         chunk.generateSkylightMap();
@@ -381,18 +381,18 @@ public class ChunkGeneratorBoiling implements IChunkGenerator {
         BlockPos chunkStart = new BlockPos(x1, 0, z1);
 
         for (i = 0; i < 15; i++) {
-            flameFlower.generate(worldObj, r, chunkStart);
-            flameFlower2.generate(worldObj, r, chunkStart);
-            infernoPlant.generate(worldObj, r, chunkStart);
+            flameFlower.generate(world, r, chunkStart);
+            flameFlower2.generate(world, r, chunkStart);
+            infernoPlant.generate(world, r, chunkStart);
         }
 
-        if (worldObj.getBiome(chunkStart) == DimensionHelper.BOILING_SANDS_BIOME) {
+        if (world.getBiome(chunkStart) == DimensionHelper.BOILING_SANDS_BIOME) {
             if (rand.nextInt(9) == 0) {
                 generateStructure(x1, z1, r, bigDungeon, JourneyBlocks.volcanicSand);
             }
         }
 
-        if (worldObj.getBiome(chunkStart) == DimensionHelper.BOILING_SANDS_BIOME) {
+        if (world.getBiome(chunkStart) == DimensionHelper.BOILING_SANDS_BIOME) {
             if (rand.nextInt(5) == 0) {
                 generateStructure(x1, z1, r, smallDungeon, JourneyBlocks.volcanicSand);
             }
@@ -400,55 +400,55 @@ public class ChunkGeneratorBoiling implements IChunkGenerator {
 
         for (i = 0; i < 50; i++) {
             Block flowers = RandHelper.chooseEqual(rand, JourneyBlocks.crumblingPlant, JourneyBlocks.lavaBloom, JourneyBlocks.crispGrass);
-            new WorldGenDesertFlower(flowers, JourneyBlocks.volcanicSand).generate(worldObj, rand, chunkStart);
+            new WorldGenDesertFlower(flowers, JourneyBlocks.volcanicSand).generate(world, rand, chunkStart);
         }
 
-        TALL_CRUMBLING_PLANTS.generate(worldObj, r, chunkStart);
-        TALL_MOLTEN_PLANTS.generate(worldObj, r, chunkStart);
+        TALL_CRUMBLING_PLANTS.generate(world, r, chunkStart);
+        TALL_MOLTEN_PLANTS.generate(world, r, chunkStart);
 
         for (i = 0; i < Config.blaziumOreTrys; i++) {
-            blazium.generate(worldObj, rand, new BlockPos(x1, rand.nextInt(250), z1));
+            blazium.generate(world, rand, new BlockPos(x1, rand.nextInt(250), z1));
         }
 
         for (i = 0; i < Config.ashualOreTrys; i++) {
-            ashual.generate(worldObj, rand, new BlockPos(x1, rand.nextInt(250), z1));
+            ashual.generate(world, rand, new BlockPos(x1, rand.nextInt(250), z1));
         }
 
-        if (worldObj.getBiome(chunkStart) == DimensionHelper.SCORCHED_WASTELAND_BIOME) {
+        if (world.getBiome(chunkStart) == DimensionHelper.SCORCHED_WASTELAND_BIOME) {
             for (times = 0; times < 10; times++) {
-                new WorldGenBoilStalagmite().generate(worldObj, rand, chunkStart);
+                new WorldGenBoilStalagmite().generate(world, rand, chunkStart);
             }
         }
 
-        if (worldObj.getBiome(chunkStart) == DimensionHelper.BOILING_SANDS_BIOME) {
+        if (world.getBiome(chunkStart) == DimensionHelper.BOILING_SANDS_BIOME) {
             for (times = 0; times < 5; times++) {
-                new WorldGenScorchedCactus().generate(worldObj, rand, chunkStart);
+                new WorldGenScorchedCactus().generate(world, rand, chunkStart);
             }
         }
 
-        if (worldObj.getBiome(chunkStart) == DimensionHelper.CHARRED_FIELDS_BIOME) {
+        if (world.getBiome(chunkStart) == DimensionHelper.CHARRED_FIELDS_BIOME) {
             for (times = 0; times < 30; times++) {
                 generateStructure(x1, z1, r, boilLamp, JourneyBlocks.charredGrass);
             }
         }
 
-        if (worldObj.getBiome(chunkStart) == DimensionHelper.BOILING_BIOME) {
+        if (world.getBiome(chunkStart) == DimensionHelper.BOILING_BIOME) {
             if (rand.nextInt(7) == 0) {
                 generateStructure(x1, z1, r, brison, JourneyBlocks.hotBlock);
             }
         }
 
-        if (worldObj.getBiome(chunkStart) == DimensionHelper.BOILING_BIOME) {
+        if (world.getBiome(chunkStart) == DimensionHelper.BOILING_BIOME) {
             if (rand.nextInt(3) == 0) {
                 generateStructure(x1, z1, r, hut, JourneyBlocks.hotBlock);
             }
         }
 
-        if (worldObj.getBiome(chunkStart) == DimensionHelper.CHARRED_FIELDS_BIOME) {
+        if (world.getBiome(chunkStart) == DimensionHelper.CHARRED_FIELDS_BIOME) {
             for (times = 0; times < 400; times++) {
                 BlockPos pos = WorldGenAPI.createRandom(x1, 128, z1, r).up();
                 if (isBlockTop(pos.getX(), pos.getY() - 1, pos.getZ(), JourneyBlocks.charredGrass)) {
-                    trees.get(rand.nextInt(trees.size())).generate(worldObj, rand, pos);
+                    trees.get(rand.nextInt(trees.size())).generate(world, rand, pos);
                 }
             }
         }
@@ -458,24 +458,24 @@ public class ChunkGeneratorBoiling implements IChunkGenerator {
         }*/
 
         for (i = 0; i < 50; i++) {
-            fire.generate(worldObj, rand, WorldGenAPI.createRandom(x1, 1, worldObj.getHeight(), z1, r, 8));
+            fire.generate(world, rand, WorldGenAPI.createRandom(x1, 1, world.getHeight(), z1, r, 8));
         }
     }
 
     private void generateStructure(int x1, int z1, Random r, WorldGenerator tower, Block surfaceBlock) {
         BlockPos pos = WorldGenAPI.createRandom(x1, 128, z1, r).up();
         if (isBlockTop(pos.getX(), pos.getY() - 1, pos.getZ(), surfaceBlock)) {
-            tower.generate(worldObj, rand, pos);
+            tower.generate(world, rand, pos);
         }
     }
 
     public boolean isBlockTop(int x, int y, int z, Block grass) {
-        return WorldGenAPI.isBlockTop(x, y, z, grass, worldObj);
+        return WorldGenAPI.isBlockTop(x, y, z, grass, world);
     }
 
     @Override
     public List<SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos) {
-        Biome biome = this.worldObj.getBiome(pos);
+        Biome biome = this.world.getBiome(pos);
         return biome.getSpawnableList(creatureType);
     }
 
