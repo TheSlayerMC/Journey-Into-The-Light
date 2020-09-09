@@ -262,12 +262,12 @@ public class DimensionHelper {
 
     private static void addCorbaSpawns() {
         int amount = 10;
-        EntityRegistry.addSpawn(EntityTreeGolem.class, amount, 1, 1, EnumCreatureType.MONSTER, CORBA_FOREST_BIOMES);
-        EntityRegistry.addSpawn(EntityLeafBlower.class, amount, 1, 1, EnumCreatureType.MONSTER, CORBA_FOREST_BIOMES);
-        EntityRegistry.addSpawn(EntitySurfaceSeer.class, amount, 1, 1, EnumCreatureType.MONSTER, CORBA_FOREST_BIOMES);
-        EntityRegistry.addSpawn(EntityWoodCreature.class, amount, 1, 1, EnumCreatureType.MONSTER, CORBA_FOREST_BIOMES);
-        EntityRegistry.addSpawn(EntityCorbanianMollusk.class, amount, 1, 1, EnumCreatureType.MONSTER, CORBA_BIOMES);
-        EntityRegistry.addSpawn(EntityStinky.class, amount, 5, 10, EnumCreatureType.MONSTER, CORBA_BIOMES);
+        EntityRegistry.addSpawn(EntityTreeGolem.class, 2, 1, 1, EnumCreatureType.MONSTER, CORBA_FOREST_BIOMES);
+        EntityRegistry.addSpawn(EntityLeafBlower.class, 3, 1, 1, EnumCreatureType.MONSTER, CORBA_FOREST_BIOMES);
+        EntityRegistry.addSpawn(EntitySurfaceSeer.class, 7, 1, 1, EnumCreatureType.MONSTER, CORBA_FOREST_BIOMES);
+        EntityRegistry.addSpawn(EntityWoodCreature.class, 5, 1, 1, EnumCreatureType.MONSTER, CORBA_FOREST_BIOMES);
+        EntityRegistry.addSpawn(EntityCorbanianMollusk.class, 10, 1, 1, EnumCreatureType.MONSTER, CORBA_BIOMES);
+        EntityRegistry.addSpawn(EntityStinky.class, 1, 5, 10, EnumCreatureType.MONSTER, CORBA_BIOMES);
     }
 
     private static void addColdFrozenSpawns() {
