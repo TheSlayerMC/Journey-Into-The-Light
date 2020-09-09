@@ -8,6 +8,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextFormatting;
 
 import java.io.IOException;
 import java.util.List;
@@ -34,9 +35,9 @@ public class JGuiInteractiveMerchant extends GuiScreen {
 		int topButtonPos = this.height / 2 + 64;
 		int width = this.width / 2 - 100;
 
-		this.buttonList.add(new GuiButton(156, width, topButtonPos, I18n.format("dialogue option 1")));
-		this.buttonList.add(new GuiButton(156, width, topButtonPos + 32, I18n.format("dialogue option 2")));
-		this.buttonList.add(new GuiButton(156, width, topButtonPos + 64, I18n.format("dialogue option 3")));
+		this.buttonList.add(new GuiButton(156, width, topButtonPos, I18n.format("What?")));
+		this.buttonList.add(new GuiButton(156, width, topButtonPos + 32, I18n.format("What? (but more aggressively)")));
+		this.buttonList.add(new GuiButton(156, width, topButtonPos + 64, I18n.format("What? (but you're crying and peeing your pants)")));
 	}
 
 	@Override
@@ -50,6 +51,7 @@ public class JGuiInteractiveMerchant extends GuiScreen {
 		drawButtons(x, y, partialTicks);
 		drawCharacterTexture(x, y, partialTicks);
 		drawCharacterTopicString(x, y, partialTicks);
+		drawCharacterNameString(x, y, partialTicks);
 	}
 
 	public void drawButtons(int x, int y, float partialTicks) {
@@ -66,7 +68,11 @@ public class JGuiInteractiveMerchant extends GuiScreen {
 	}
 
 	public void drawCharacterTopicString(int x, int y, float partialTicks) {
-		drawCenteredString(mc.getRenderManager().getFontRenderer(), "sooo uhhh why you uhhh in my dimension??", x, y + 48, 0xffffff);
+		drawCenteredString(mc.getRenderManager().getFontRenderer(), TextFormatting.ITALIC + I18n.format("'IJEIHFIEHFVIVHEIJFAP CEFJ OIJAOCE JVJOIWJEOFJ OCJAOIJECOIJOIEJOI JAO'"), this.width / 2, this.height / 2 + 32, 0xffffff);
+	}
+
+	public void drawCharacterNameString(int x, int y, float partialTicks) {
+		drawCenteredString(mc.getRenderManager().getFontRenderer(), TextFormatting.BOLD + I18n.format("The Architect"), this.width / 2, this.height / 2 - 142, 0xffffff);
 	}
 
 	public void drawCenteredString(FontRenderer fontRenderer, String text, int x, int y, int color) {
