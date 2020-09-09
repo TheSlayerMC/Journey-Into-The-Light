@@ -49,9 +49,9 @@ public class JGuiInteractiveMerchant extends GuiScreen {
 	public void drawScreen(int x, int y, float partialTicks) {
 		super.drawScreen(x, y, partialTicks);
 		drawButtons(x, y, partialTicks);
-		drawCharacterTexture(x, y, partialTicks);
-		drawCharacterTopicString(x, y, partialTicks);
-		drawCharacterNameString(x, y, partialTicks);
+		drawCharacterTexture();
+		drawCharacterTopicString();
+		drawCharacterNameString();
 	}
 
 	public void drawButtons(int x, int y, float partialTicks) {
@@ -61,17 +61,17 @@ public class JGuiInteractiveMerchant extends GuiScreen {
 		}
 	}
 
-	public void drawCharacterTexture(int x, int y, float partialTicks) {
+	public void drawCharacterTexture() {
 		mc.getTextureManager().bindTexture(npcTexture);
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 		drawScaledCustomSizeModalRect(this.width / 2 - 94, this.height / 2 - 148, 0, 0, 256, 256, 192, 192, 256, 256);
 	}
 
-	public void drawCharacterTopicString(int x, int y, float partialTicks) {
+	public void drawCharacterTopicString() {
 		drawCenteredString(mc.getRenderManager().getFontRenderer(), TextFormatting.ITALIC + I18n.format("'IJEIHFIEHFVIVHEIJFAP CEFJ OIJAOCE JVJOIWJEOFJ OCJAOIJECOIJOIEJOI JAO'"), this.width / 2, this.height / 2 + 32, 0xffffff);
 	}
 
-	public void drawCharacterNameString(int x, int y, float partialTicks) {
+	public void drawCharacterNameString() {
 		drawCenteredString(mc.getRenderManager().getFontRenderer(), TextFormatting.BOLD + I18n.format("The Architect"), this.width / 2, this.height / 2 - 142, 0xffffff);
 	}
 
