@@ -416,7 +416,7 @@ public class ChunkGeneratorCorba implements IChunkGenerator {
 			generateStructure(x, z, worldGenTreehouse);
 		}
 
-		if (this.rand.nextInt(115) == 0) {
+		if (this.rand.nextInt(215) == 0) {
 			new JWorldGenRuins(GroundPredicate.CORBA_MUD, JWorldGenRuins.LootType.SPECIAL_BLOCK,
 					JourneyBlocks.corbaDarkBricks.getDefaultState(),
 					JourneyBlocks.corbaLightBricks.getDefaultState(),

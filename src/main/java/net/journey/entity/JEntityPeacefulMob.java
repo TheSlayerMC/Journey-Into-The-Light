@@ -1,6 +1,10 @@
 package net.journey.entity;
 
-import net.journey.entity.base.JEntityMob;
+import net.journey.api.capability.JourneyPlayer;
+import net.journey.api.capability.PlayerStats;
+import net.journey.api.entity.IJERCompatible;
+import net.journey.common.capability.JCapabilityManager;
+import net.journey.common.knowledge.EnumKnowledgeType;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -10,17 +14,24 @@ import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.IMob;
+import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
-public abstract class JEntityPeacefulMob extends JEntityMob implements IMob {
+public abstract class JEntityPeacefulMob extends EntityAnimal implements IMob, IJERCompatible {
+
+    private EnumKnowledgeType knowledgeType;
+    private int knowledgeAmount;
 
     public JEntityPeacefulMob(World world) {
         super(world);
@@ -125,4 +136,28 @@ public abstract class JEntityPeacefulMob extends JEntityMob implements IMob {
             return i <= this.rand.nextInt(8);
         }
     }
+
+    public JEntityPeacefulMob setKnowledge(EnumKnowledgeType type, int amount) {
+        this.knowledgeType = type;
+        this.knowledgeAmount = amount;
+        return this;
+    }
+
+    @Override
+    public void onDeath(DamageSource cause) {
+        super.onDeath(cause);
+        if (cause.getTrueSource() instanceof EntityPlayer && knowledgeType != null && knowledgeAmount > 0) {
+            EntityPlayer player = (EntityPlayer) cause.getTrueSource();
+            PlayerStats stats = JCapabilityManager.asJourneyPlayer(player).getPlayerStats();
+            JourneyPlayer journeyPlayer = JCapabilityManager.asJourneyPlayer(player);
+            stats.addKnowledge(this.knowledgeType, this.knowledgeAmount);
+            journeyPlayer.sendUpdates(((EntityPlayerMP) player));
+        }
+    }
+
+    @Override
+    public @Nullable ResourceLocation getJERLootLocation() {
+        return getLootTable();
+    }
+
 }

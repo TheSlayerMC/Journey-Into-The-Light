@@ -8,6 +8,9 @@ import net.journey.init.JAnimations;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.journey.init.blocks.JourneyBlocks;
+import net.minecraft.entity.EntityAgeable;
+import net.minecraft.entity.ai.*;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
@@ -22,6 +25,8 @@ import ru.timeconqueror.timecore.api.animation.ActionManager;
 import ru.timeconqueror.timecore.api.animation.AnimationProvider;
 import ru.timeconqueror.timecore.api.animation.BlendType;
 
+import javax.annotation.Nullable;
+
 public class EntityCorbanianMollusk extends JEntityPeacefulMob implements AnimationProvider<EntityCorbanianMollusk> {
 
 	private final ActionManager<EntityCorbanianMollusk> actionManager;
@@ -30,7 +35,6 @@ public class EntityCorbanianMollusk extends JEntityPeacefulMob implements Animat
 
 	public EntityCorbanianMollusk(World par1World) {
 		super(par1World);
-		addMeleeAttackingAI();
 		setSize(2.0F, 2.0F);
 		actionManager = ActionManagerBuilder.<EntityCorbanianMollusk>create(
 				AnimationManagerBuilder.create()
@@ -38,6 +42,23 @@ public class EntityCorbanianMollusk extends JEntityPeacefulMob implements Animat
 						.addWalkingAnimationHandling(new AnimationStarter(JAnimations.CORBANIAN_MOLLUSK_WALK).setSpeed(1F), LAYER_WALKING)
 		).build(this, world);
 		setKnowledge(EnumKnowledgeType.CORBA, 1);
+	}
+
+	@Override
+	protected void initEntityAI() {
+		this.tasks.addTask(0, new EntityAISwimming(this));
+		this.tasks.addTask(1, new EntityAIPanic(this, 1.25D));
+		this.tasks.addTask(3, new EntityAIMate(this, 1.0D));
+		this.tasks.addTask(5, new EntityAIFollowParent(this, 1.1D));
+		this.tasks.addTask(6, new EntityAIWanderAvoidWater(this, 1.0D));
+		this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
+		this.tasks.addTask(8, new EntityAILookIdle(this));
+	}
+
+	@Nullable
+	@Override
+	public EntityAgeable createChild(EntityAgeable entityAgeable) {
+		return new EntityCorbanianMollusk(world);
 	}
 
 	@Override
