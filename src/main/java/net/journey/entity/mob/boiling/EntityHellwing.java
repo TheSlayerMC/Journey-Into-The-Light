@@ -47,7 +47,7 @@ public class EntityHellwing extends JEntityMob {
 		this.moveHelper = new EntityHellwing.AIMoveControl(this);
 		this.setSize(1.0F, 1.3F);
 		this.experienceValue = 3;
-		this.applyKnowledge(EnumKnowledgeType.BOIL, 5);
+		this.setKnowledge(EnumKnowledgeType.BOIL, 5);
 	}
 
 	@Override

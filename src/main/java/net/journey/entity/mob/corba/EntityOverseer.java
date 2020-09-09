@@ -1,10 +1,10 @@
 package net.journey.entity.mob.corba;
 
+import net.journey.common.knowledge.EnumKnowledgeType;
 import net.journey.entity.MobStats;
 import net.journey.entity.base.JEntityFlyingMob;
 import net.journey.entity.projectile.EntityMagmaFireball;
 import net.journey.init.JourneyLootTables;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
@@ -20,7 +20,6 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.datafix.DataFixer;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -43,10 +42,7 @@ public class EntityOverseer extends JEntityFlyingMob {
         initEntityAI();
         this.isImmuneToFire = true;
         setSize(0.7F, 1.2F);
-    }
-
-    public static void registerFixesLavasnake(DataFixer fixer) {
-        EntityLiving.registerFixesMob(fixer, EntityOverseer.class);
+        setKnowledge(EnumKnowledgeType.CORBA, 2);
     }
 
     public void initEntityAI() {

@@ -1,9 +1,15 @@
 package net.journey.entity.base;
 
+import net.journey.api.capability.JourneyPlayer;
+import net.journey.api.capability.PlayerStats;
 import net.journey.api.entity.IJERCompatible;
+import net.journey.common.capability.JCapabilityManager;
+import net.journey.common.knowledge.EnumKnowledgeType;
 import net.journey.entity.MobStats;
 import net.minecraft.entity.EntityFlying;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
@@ -13,6 +19,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jetbrains.annotations.Nullable;
 
 public abstract class JEntityFlyingMob extends EntityFlying implements IJERCompatible {
+
+    private EnumKnowledgeType knowledgeType;
+    private int knowledgeAmount;
 
     public JEntityFlyingMob(World w) {
         super(w);
@@ -71,6 +80,24 @@ public abstract class JEntityFlyingMob extends EntityFlying implements IJERCompa
 
     public final double getKnockbackResistance() {
         return getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).getAttributeValue();
+    }
+
+    public JEntityFlyingMob setKnowledge(EnumKnowledgeType type, int amount) {
+        this.knowledgeType = type;
+        this.knowledgeAmount = amount;
+        return this;
+    }
+
+    @Override
+    public void onDeath(DamageSource cause) {
+        super.onDeath(cause);
+        if (cause.getTrueSource() instanceof EntityPlayer && knowledgeType != null && knowledgeAmount > 0) {
+            EntityPlayer player = (EntityPlayer) cause.getTrueSource();
+            PlayerStats stats = JCapabilityManager.asJourneyPlayer(player).getPlayerStats();
+            JourneyPlayer journeyPlayer = JCapabilityManager.asJourneyPlayer(player);
+            stats.addKnowledge(this.knowledgeType, this.knowledgeAmount);
+            journeyPlayer.sendUpdates(((EntityPlayerMP) player));
+        }
     }
 
     @Override

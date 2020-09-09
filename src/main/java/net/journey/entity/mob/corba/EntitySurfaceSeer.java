@@ -1,5 +1,6 @@
 package net.journey.entity.mob.corba;
 
+import net.journey.common.knowledge.EnumKnowledgeType;
 import net.journey.entity.MobStats;
 import net.journey.entity.base.JEntityFlyingMob;
 import net.journey.entity.projectile.EntityMagmaFireball;
@@ -42,7 +43,8 @@ public class EntitySurfaceSeer extends JEntityFlyingMob {
         this.moveHelper = new EntitySurfaceSeer.LavasnakeMoveHelper(this);
         initEntityAI();
         this.isImmuneToFire = true;
-        setSize(0.7F, 1.2F);
+		setSize(0.7F, 1.2F);
+		setKnowledge(EnumKnowledgeType.CORBA, 2);
     }
 
     public static void registerFixesLavasnake(DataFixer fixer) {

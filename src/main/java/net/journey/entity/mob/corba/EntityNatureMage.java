@@ -1,5 +1,6 @@
 package net.journey.entity.mob.corba;
 
+import net.journey.common.knowledge.EnumKnowledgeType;
 import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
@@ -40,6 +41,8 @@ public class EntityNatureMage extends JEntityMob implements IRangedAttackMob {
         if (par1World != null && !par1World.isRemote) {
             this.setCombatTask();
         }
+
+        setKnowledge(EnumKnowledgeType.CORBA, 1);
     }
 
     @Override

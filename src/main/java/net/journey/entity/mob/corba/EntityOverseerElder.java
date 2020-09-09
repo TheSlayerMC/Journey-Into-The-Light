@@ -1,5 +1,6 @@
 package net.journey.entity.mob.corba;
 
+import net.journey.common.knowledge.EnumKnowledgeType;
 import net.journey.entity.MobStats;
 import net.journey.entity.base.JEntityFlyingMob;
 import net.journey.entity.projectile.EntityMagmaFireball;
@@ -42,7 +43,8 @@ public class EntityOverseerElder extends JEntityFlyingMob {
         this.moveHelper = new EntityOverseerElder.LavasnakeMoveHelper(this);
         initEntityAI();
         this.isImmuneToFire = true;
-        setSize(2.0F, 1.2F);
+		setSize(2.0F, 1.2F);
+		setKnowledge(EnumKnowledgeType.CORBA, 5);
     }
 
     public static void registerFixesLavasnake(DataFixer fixer) {

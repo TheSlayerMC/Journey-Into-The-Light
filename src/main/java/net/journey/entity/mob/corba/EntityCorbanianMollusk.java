@@ -37,6 +37,7 @@ public class EntityCorbanianMollusk extends JEntityPeacefulMob implements Animat
 						.addLayer(LAYER_WALKING, BlendType.ADDING, 1F)
 						.addWalkingAnimationHandling(new AnimationStarter(JAnimations.CORBANIAN_MOLLUSK_WALK).setSpeed(1F), LAYER_WALKING)
 		).build(this, world);
+		setKnowledge(EnumKnowledgeType.CORBA, 1);
 	}
 
 	@Override
@@ -49,7 +50,6 @@ public class EntityCorbanianMollusk extends JEntityPeacefulMob implements Animat
 		super.applyEntityAttributes();
 		EntityAttributesHelper.setMovementSpeed(this, MobStats.CORBANIAN_MOLLUSK_SPEED);
 		EntityAttributesHelper.setMaxHealth(this, MobStats.CORBANIAN_MOLLUSK_HEALTH);
-		this.applyKnowledge(EnumKnowledgeType.CORBA, 1);
 	}
 
 	@Override

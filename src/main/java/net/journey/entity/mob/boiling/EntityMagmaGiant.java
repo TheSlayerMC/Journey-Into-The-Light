@@ -30,7 +30,7 @@ public class EntityMagmaGiant extends JEntityMob {
 
         EntityAttributesHelper.setMaxHealth(this, MobStats.MAGMA_GIANT_HEALTH);
         EntityAttributesHelper.setAttackDamage(this, MobStats.MAGMA_GIANT_DAMAGE);
-        this.applyKnowledge(EnumKnowledgeType.BOIL, 5);
+		this.setKnowledge(EnumKnowledgeType.BOIL, 5);
     }
 
     @Override

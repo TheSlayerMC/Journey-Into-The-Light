@@ -45,7 +45,7 @@ public class EntityBlazier extends EntityEssenceBoss implements IRangedAttackMob
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
         this.isImmuneToFire = true;
         this.setSize(2.0F, 6.0F);
-        this.applyKnowledge(EnumKnowledgeType.BOIL, 20);
+        this.setKnowledge(EnumKnowledgeType.BOIL, 20);
         spawnTimer = 0;
     }
 

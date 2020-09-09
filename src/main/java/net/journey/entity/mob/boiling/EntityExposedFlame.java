@@ -24,7 +24,7 @@ public class EntityExposedFlame extends JEntityMob {
         addMeleeAttackingAI();
         setSize(0.7F, 2.0F);
         isImmuneToFire = true;
-        this.applyKnowledge(EnumKnowledgeType.BOIL, 1);
+		this.setKnowledge(EnumKnowledgeType.BOIL, 1);
     }
 
     @Override

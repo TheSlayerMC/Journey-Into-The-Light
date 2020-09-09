@@ -1,5 +1,6 @@
 package net.journey.entity.mob.corba;
 
+import net.journey.common.knowledge.EnumKnowledgeType;
 import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
@@ -20,7 +21,8 @@ public class EntityLeafBlower extends JEntityMob {
     public EntityLeafBlower(World par1World) {
         super(par1World);
         addMeleeAttackingAI();
-        setSize(1.0F, 2.0F);
+		setSize(1.0F, 2.0F);
+		setKnowledge(EnumKnowledgeType.CORBA, 1);
     }
 
     @Override
@@ -54,9 +56,6 @@ public class EntityLeafBlower extends JEntityMob {
     @Override
     public void onLivingUpdate() {
         super.onLivingUpdate();
-        if (this.world.isDaytime() && !this.world.isRemote) {
-            float var1 = getBrightness();
-        }
 
         List<Entity> e = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox());
         for (Entity entity : e) {

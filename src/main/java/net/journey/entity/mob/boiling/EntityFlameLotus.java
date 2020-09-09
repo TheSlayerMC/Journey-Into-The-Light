@@ -18,7 +18,7 @@ public class EntityFlameLotus extends JEntityMob {
 	public EntityFlameLotus(World par1World) {
 		super(par1World);
 		this.setSize(2.0F, 0.4F);
-		this.applyKnowledge(EnumKnowledgeType.BOIL, 1);
+		this.setKnowledge(EnumKnowledgeType.BOIL, 1);
 	}
 
 	@Override

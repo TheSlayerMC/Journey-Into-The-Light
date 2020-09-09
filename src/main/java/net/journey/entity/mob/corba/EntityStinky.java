@@ -15,6 +15,7 @@ public class EntityStinky extends JEntityMob {
 		super(world);
 		addMeleeAttackingAI();
 		setSize(0.75F, 1.5F);
+		setKnowledge(EnumKnowledgeType.CORBA, 2);
 	}
 
 	@Override
@@ -23,7 +24,6 @@ public class EntityStinky extends JEntityMob {
 		EntityAttributesHelper.setMovementSpeed(this, MobStats.STINKY_SPEED);
 		EntityAttributesHelper.setMaxHealth(this, MobStats.STINKY_HEALTH);
 		EntityAttributesHelper.setAttackDamage(this, MobStats.STINKY_DAMAGE);
-		this.applyKnowledge(EnumKnowledgeType.CORBA, 1);
 	}
 
 	@Override

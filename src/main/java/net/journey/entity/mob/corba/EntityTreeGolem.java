@@ -1,5 +1,6 @@
 package net.journey.entity.mob.corba;
 
+import net.journey.common.knowledge.EnumKnowledgeType;
 import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
@@ -24,7 +25,8 @@ public class EntityTreeGolem extends JEntityMob {
     public EntityTreeGolem(World par1World) {
         super(par1World);
         addMeleeAttackingAI();
-        setSize(1.2F, 1.5F);
+		setSize(1.2F, 1.5F);
+		setKnowledge(EnumKnowledgeType.CORBA, 1);
     }
 
     @Override

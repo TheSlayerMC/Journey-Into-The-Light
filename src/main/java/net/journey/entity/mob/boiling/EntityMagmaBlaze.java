@@ -45,7 +45,7 @@ public class EntityMagmaBlaze extends JEntityMob {
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
         this.isImmuneToFire = true;
-        this.applyKnowledge(EnumKnowledgeType.BOIL, 1);
+        this.setKnowledge(EnumKnowledgeType.BOIL, 1);
     }
 
     @Override

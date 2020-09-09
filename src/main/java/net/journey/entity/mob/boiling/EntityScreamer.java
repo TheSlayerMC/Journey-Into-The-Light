@@ -41,7 +41,7 @@ public class EntityScreamer extends JEntityMob {
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
         this.isImmuneToFire = true;
         setSize(0.7F, 1.5F);
-        this.applyKnowledge(EnumKnowledgeType.BOIL, 5);
+        this.setKnowledge(EnumKnowledgeType.BOIL, 5);
     }
 
     @Override

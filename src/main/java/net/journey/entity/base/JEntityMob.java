@@ -94,7 +94,7 @@ public abstract class JEntityMob extends EntityMob implements IJERCompatible {
 		return world.getDifficulty() != EnumDifficulty.PEACEFUL && this.world.checkNoEntityCollision(this.getEntityBoundingBox()) && this.world.getCollisionBoxes(this, this.getEntityBoundingBox()).isEmpty() && !this.world.containsAnyLiquid(this.getEntityBoundingBox());
 	}
 
-	public JEntityMob applyKnowledge(EnumKnowledgeType type, int amount) {
+	public JEntityMob setKnowledge(EnumKnowledgeType type, int amount) {
 		this.knowledgeType = type;
 		this.knowledgeAmount = amount;
 		return this;
