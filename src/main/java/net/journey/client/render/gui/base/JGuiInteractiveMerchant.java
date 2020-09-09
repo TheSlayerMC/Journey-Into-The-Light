@@ -2,6 +2,7 @@ package net.journey.client.render.gui.base;
 
 import com.google.common.collect.Lists;
 import net.journey.JITL;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
@@ -30,7 +31,7 @@ public class JGuiInteractiveMerchant extends GuiScreen {
 	public void initGui() {
 		super.initGui();
 
-		int topButtonPos = this.height / 2 + 32;
+		int topButtonPos = this.height / 2 + 64;
 		int width = this.width / 2 - 100;
 
 		this.buttonList.add(new GuiButton(156, width, topButtonPos, I18n.format("dialogue option 1")));
@@ -48,6 +49,7 @@ public class JGuiInteractiveMerchant extends GuiScreen {
 		super.drawScreen(x, y, partialTicks);
 		drawButtons(x, y, partialTicks);
 		drawCharacterTexture(x, y, partialTicks);
+		drawCharacterTopicString(x, y, partialTicks);
 	}
 
 	public void drawButtons(int x, int y, float partialTicks) {
@@ -60,7 +62,15 @@ public class JGuiInteractiveMerchant extends GuiScreen {
 	public void drawCharacterTexture(int x, int y, float partialTicks) {
 		mc.getTextureManager().bindTexture(npcTexture);
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-		drawScaledCustomSizeModalRect(this.width / 2 - 64, 32, 0, 0, 256, 256, 128, 128, 256, 256);
+		drawScaledCustomSizeModalRect(this.width / 2 - 94, this.height / 2 - 148, 0, 0, 256, 256, 192, 192, 256, 256);
+	}
+
+	public void drawCharacterTopicString(int x, int y, float partialTicks) {
+		drawCenteredString(mc.getRenderManager().getFontRenderer(), "sooo uhhh why you uhhh in my dimension??", x, y + 48, 0xffffff);
+	}
+
+	public void drawCenteredString(FontRenderer fontRenderer, String text, int x, int y, int color) {
+		fontRenderer.drawStringWithShadow(text, (float) (x - fontRenderer.getStringWidth(text) / 2), (float) y, color);
 	}
 
 	@Override
