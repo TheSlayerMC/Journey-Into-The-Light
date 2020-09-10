@@ -45,10 +45,10 @@ public class AnimationUtils {
 				calcWeightedScale(scaleIn.getZ(), weight));
 
 		if (blendType == BlendType.OVERRIDE) {
-			piece.setScaleFactor(scaleIn.getX(), scaleIn.getY(), scaleIn.getZ());
+			piece.setAnimationScaleFactor(scaleIn.getX(), scaleIn.getY(), scaleIn.getZ());
 		} else if (blendType == BlendType.ADDING) {
 			Vector3f currentScale = piece.getScaleFactor();
-			piece.setScaleFactor(scaleIn.getX() * currentScale.getX(), scaleIn.getY() * currentScale.getY(), scaleIn.getZ() * currentScale.getZ());
+			piece.setAnimationScaleFactor(scaleIn.getX() * currentScale.getX(), scaleIn.getY() * currentScale.getY(), scaleIn.getZ() * currentScale.getZ());
 		} else throw new UnsupportedOperationException();
 	}
 

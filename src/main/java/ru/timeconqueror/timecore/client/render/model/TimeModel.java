@@ -53,6 +53,7 @@ public class TimeModel extends ModelBase {
 		}
 	}
 
+	@Nullable
 	public List<TimeModelRenderer> getPieces() {
 		return pieces;
 	}

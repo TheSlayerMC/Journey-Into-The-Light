@@ -12,7 +12,12 @@ public abstract class TimeEntityRenderer<T extends EntityLiving & AnimationProvi
 
 	@Override
 	public void doRender(T entity, double x, double y, double z, float entityYaw, float partialTicks) {
-		entity.getActionManager().getAnimationManager().applyAnimations((TimeEntityModel) getMainModel());
+		entity.getActionManager().getAnimationManager().applyAnimations(getMainModel());
 		super.doRender(entity, x, y, z, entityYaw, partialTicks);
+	}
+
+	@Override
+	public TimeEntityModel getMainModel() {
+		return (TimeEntityModel) super.getMainModel();
 	}
 }
