@@ -8,23 +8,35 @@ import net.journey.common.capability.innercaps.EssenceStorageImpl;
 import net.journey.common.capability.innercaps.PlayerStatsImpl;
 import net.journey.common.network.NetworkHandler;
 import net.journey.common.network.S2CSyncJourneyCap;
+import net.journey.util.exception.WrongSideException;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 
 import javax.annotation.Nullable;
+import java.util.UUID;
 
 public class JourneyPlayerImpl implements JourneyPlayer {
     private final EssenceStorageImpl essenceStorage;
     private final PlayerStatsImpl playerStats;
 
+    /**
+     * If equals null, then it is on client, otherwise - on server.
+     */
+    private UUID playerId = null;
+
     public JourneyPlayerImpl(EssenceStorageImpl essenceStorage, PlayerStatsImpl playerStats) {
         this.essenceStorage = essenceStorage;
         this.playerStats = playerStats;
+    }
+
+    void bindPlayer(EntityPlayerMP player) {
+        playerId = player.getPersistentID();
     }
 
     @Override
@@ -44,7 +56,12 @@ public class JourneyPlayerImpl implements JourneyPlayer {
     }
 
     @Override
-    public void sendUpdates(EntityPlayerMP player) {
+    public void sendUpdates() {
+        if (playerId == null) {
+            throw new WrongSideException(Side.CLIENT);
+        }
+
+        EntityPlayerMP player = FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayerByUUID(playerId);
         NetworkHandler.INSTANCE.sendTo(new S2CSyncJourneyCap(this), player);
     }
 

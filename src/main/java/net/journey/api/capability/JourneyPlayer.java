@@ -1,6 +1,6 @@
 package net.journey.api.capability;
 
-import net.minecraft.entity.player.EntityPlayerMP;
+import net.journey.util.exception.WrongSideException;
 import net.minecraftforge.fml.relauncher.Side;
 
 public interface JourneyPlayer {
@@ -10,5 +10,11 @@ public interface JourneyPlayer {
 
     void onTick(Side side);
 
-    void sendUpdates(EntityPlayerMP player);
+    /**
+     * Syncs all capability data with client.
+     * Should be called only on server.
+     *
+     * @throws WrongSideException if called on client.
+     */
+    void sendUpdates();
 }

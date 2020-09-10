@@ -16,7 +16,6 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
@@ -148,10 +147,10 @@ public abstract class JEntityPeacefulMob extends EntityAnimal implements IMob, I
         super.onDeath(cause);
         if (cause.getTrueSource() instanceof EntityPlayer && knowledgeType != null && knowledgeAmount > 0) {
             EntityPlayer player = (EntityPlayer) cause.getTrueSource();
-            PlayerStats stats = JCapabilityManager.asJourneyPlayer(player).getPlayerStats();
             JourneyPlayer journeyPlayer = JCapabilityManager.asJourneyPlayer(player);
+            PlayerStats stats = journeyPlayer.getPlayerStats();
             stats.addKnowledge(this.knowledgeType, this.knowledgeAmount);
-            journeyPlayer.sendUpdates(((EntityPlayerMP) player));
+            journeyPlayer.sendUpdates();
         }
     }
 

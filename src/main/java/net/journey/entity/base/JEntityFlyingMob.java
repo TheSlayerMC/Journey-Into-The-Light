@@ -9,7 +9,6 @@ import net.journey.entity.MobStats;
 import net.minecraft.entity.EntityFlying;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
@@ -93,10 +92,10 @@ public abstract class JEntityFlyingMob extends EntityFlying implements IJERCompa
         super.onDeath(cause);
         if (cause.getTrueSource() instanceof EntityPlayer && knowledgeType != null && knowledgeAmount > 0) {
             EntityPlayer player = (EntityPlayer) cause.getTrueSource();
-            PlayerStats stats = JCapabilityManager.asJourneyPlayer(player).getPlayerStats();
             JourneyPlayer journeyPlayer = JCapabilityManager.asJourneyPlayer(player);
+            PlayerStats stats = journeyPlayer.getPlayerStats();
             stats.addKnowledge(this.knowledgeType, this.knowledgeAmount);
-            journeyPlayer.sendUpdates(((EntityPlayerMP) player));
+            journeyPlayer.sendUpdates();
         }
     }
 

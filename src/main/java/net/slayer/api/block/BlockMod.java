@@ -15,7 +15,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -100,10 +99,10 @@ public class BlockMod extends Block {
         super.onBlockHarvested(worldIn, pos, state, player);
         if (!worldIn.isRemote) {
             if (this.knowledgeType != null && this.knowledgeAmount > 0) {
-                PlayerStats stats = JCapabilityManager.asJourneyPlayer(player).getPlayerStats();
                 JourneyPlayer journeyPlayer = JCapabilityManager.asJourneyPlayer(player);
+                PlayerStats stats = journeyPlayer.getPlayerStats();
                 stats.addKnowledge(this.knowledgeType, this.knowledgeAmount);
-                journeyPlayer.sendUpdates(((EntityPlayerMP) player));
+                journeyPlayer.sendUpdates();
             }
         }
     }
