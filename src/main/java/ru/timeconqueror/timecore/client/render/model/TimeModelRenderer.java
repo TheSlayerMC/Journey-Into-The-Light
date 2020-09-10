@@ -36,7 +36,7 @@ public class TimeModelRenderer extends ModelRenderer {
 
 				GlStateManager.pushMatrix();
 
-				Vector3f scale = scaleFactor.getScale();
+				Vector3f scale = scaleFactor.getResultScale();
 				GlStateManager.translate(this.offsetX * initialScale * scale.x, this.offsetY * initialScale * scale.y, this.offsetZ * initialScale * scale.z);
 
 				applyRotations(initialScale);
@@ -67,7 +67,7 @@ public class TimeModelRenderer extends ModelRenderer {
 	}
 
 	private void draw(float initialScale) {
-		Vector3f scale = scaleFactor.getScale();
+		Vector3f scale = scaleFactor.getResultScale();
 		GlStateManager.scale(scale.x, scale.y, scale.z);
 		GlStateManager.callList(this.displayList);
 		if (this.childModels != null) {

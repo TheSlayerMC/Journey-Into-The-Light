@@ -21,7 +21,7 @@ public class ScaleFactor {
 		updateScale();
 	}
 
-	public Vector3f getScale() {
+	public Vector3f getResultScale() {
 		return scaleFactor;
 	}
 
