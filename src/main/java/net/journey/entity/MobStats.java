@@ -76,9 +76,9 @@ public class MobStats {
 
     public static final double OVERSEER_HEALTH = 62;
 
-	public static final double OVERSEER_ELDER_HEALTH = 68;
+    public static final double OVERSEER_ELDER_HEALTH = 68;
 
-	public static final double SURFACE_SEER_HEALTH = 65;
+    public static final double SURFACE_SEER_HEALTH = 65;
 
     public static final double TREE_GOLEM_HEALTH = 62;
     public static final double TREE_GOLEM_SPEED = 0.2;
@@ -93,6 +93,10 @@ public class MobStats {
     public static final double STINKY_HEALTH = 40;
     public static final double STINKY_SPEED = 0.4;
     public static final double STINKY_DAMAGE = 11;
+
+    public static final double SMELLY_HEALTH = 80;
+    public static final double SMELLY_SPEED = 0.1;
+    public static final double SMELLY_DAMAGE = 15;
 
     // =======================================================
     // ====================== DEPTHS MOBS ====================

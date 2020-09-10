@@ -293,7 +293,9 @@ public class EntityRendering {
         RenderingRegistry.registerEntityRenderingHandler(EntityPermafraust.class, new RenderModMob(new ModelPermafraust(), Textures.permafraust));
         RenderingRegistry.registerEntityRenderingHandler(EntityShiveringBushwalker.class, new RenderModMob(new ModelShiveringBushwalker(), Textures.shiveringBushwalker));
         RenderingRegistry.registerEntityRenderingHandler(EntityLeafBlower.class, new RenderModMob(new ModelLeafBlower(), Textures.leafBlower));
+
         RenderingRegistry.registerEntityRenderingHandler(EntityStinky.class, new RenderModMob(new ModelStinky(), Textures.getMobTextureLocation("stinky")));
+        RenderingRegistry.registerEntityRenderingHandler(EntitySmelly.class, new RenderModMob(new ModelSmelly(), Textures.getMobTextureLocation("smelly")));
 
         RenderingRegistry.registerEntityRenderingHandler(EntityTerranianProtector.class, new RenderBoss(new ModelTerranianProtector(), 0.5F, 2.0F, Textures.terranianProtector, "terranianProtector"));
         RenderingRegistry.registerEntityRenderingHandler(EntitySoulWatcher.class, new RenderBoss(new ModelSoulWatcher(), 0.5F, 2.0F, Textures.soulWatcher, "soulWatcher"));
