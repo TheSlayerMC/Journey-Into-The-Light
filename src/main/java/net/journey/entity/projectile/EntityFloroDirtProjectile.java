@@ -41,7 +41,7 @@ public class EntityFloroDirtProjectile extends EntityDamagingProjectile {
 	protected void onEntityImpact(RayTraceResult rayTraceResult, Entity target) {
 		super.onEntityImpact(rayTraceResult, target);
 		if (target instanceof EntityLivingBase) {
-			((EntityLivingBase) target).addPotionEffect(new PotionEffect(MobEffects.POISON, 5 * 20, 1));
+			((EntityLivingBase) target).addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, 5 * 20, 1));
 		}
 	}
 

@@ -2,6 +2,7 @@ package net.journey.blocks.portal;
 
 import net.journey.blocks.base.JBlockPortal;
 import net.journey.client.render.particles.EntityBoilPotalFX;
+import net.journey.common.capability.JCapabilityManager;
 import net.journey.dimension.base.ModTeleporter;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.Config;
@@ -33,8 +34,10 @@ public class BlockBoilPortal extends JBlockPortal {
 			EntityPlayerMP playerMP = (EntityPlayerMP) entity;
 			Block blockFrame = JourneyBlocks.boilPortalFrame;
 
+			JCapabilityManager.asJourneyPlayer((EntityPlayerMP) entity).inPortal();
+
 			worldIn.playSound(playerMP, pos, SoundEvents.BLOCK_PORTAL_TRIGGER, SoundCategory.PLAYERS, 1.0F, 1.0F);
-			/*
+			/**
 			 * sets timer for dimension travel
 			 */
 			if (entity.timeUntilPortal > 0) {
@@ -42,7 +45,7 @@ public class BlockBoilPortal extends JBlockPortal {
 			}
 			entity.timeUntilPortal = 125;
 
-			/*
+			/**
 			 * sets destination
 			 *
 			 * if player is in 'dimensionID' dimension, send player to overworld
@@ -55,8 +58,8 @@ public class BlockBoilPortal extends JBlockPortal {
 			} else {
 				destination = dimensionID;
 			}
-			
-			/*
+
+			/**
 			 * change player dimension to destination dimension based on current dim ID
 			 */
 			entity.changeDimension(destination, new ModTeleporter(entity.getServer().getWorld(destination), this, blockFrame.getDefaultState()));

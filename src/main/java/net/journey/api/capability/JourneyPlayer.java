@@ -10,6 +10,8 @@ public interface JourneyPlayer {
 
     void onTick(Side side);
 
+    void inPortal();
+
     /**
      * Syncs all capability data with client.
      * Should be called only on server.

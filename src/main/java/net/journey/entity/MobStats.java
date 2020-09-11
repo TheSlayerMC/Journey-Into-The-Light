@@ -95,7 +95,7 @@ public class MobStats {
     public static final double STINKY_DAMAGE = 11;
 
     public static final double SMELLY_HEALTH = 80;
-    public static final double SMELLY_SPEED = 0.1;
+    public static final double SMELLY_SPEED = 0.2;
     public static final double SMELLY_DAMAGE = 15;
 
     // =======================================================

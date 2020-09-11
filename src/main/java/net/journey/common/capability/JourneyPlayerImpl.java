@@ -30,6 +30,11 @@ public class JourneyPlayerImpl implements JourneyPlayer {
      */
     private UUID playerId = null;
 
+    /**
+     * Called whenever a player has collided with a JITL portal block. initiates portal animation
+     */
+    public boolean inPortal = false;
+
     public JourneyPlayerImpl(EssenceStorageImpl essenceStorage, PlayerStatsImpl playerStats) {
         this.essenceStorage = essenceStorage;
         this.playerStats = playerStats;
@@ -53,6 +58,11 @@ public class JourneyPlayerImpl implements JourneyPlayer {
     public void onTick(Side side) {
         essenceStorage.onTick();
         playerStats.onTick();
+    }
+
+    @Override
+    public void inPortal() {
+        this.inPortal = true;
     }
 
     @Override
