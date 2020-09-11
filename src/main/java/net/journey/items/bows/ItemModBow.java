@@ -1,6 +1,7 @@
 package net.journey.items.bows;
 
 import net.journey.api.capability.EssenceStorage;
+import net.journey.api.capability.JourneyPlayer;
 import net.journey.client.ItemDescription;
 import net.journey.common.capability.JCapabilityManager;
 import net.journey.entity.projectile.arrow.EntityEssenceArrow;
@@ -128,23 +129,26 @@ public class ItemModBow extends ItemBow {
     public void onPlayerStoppedUsing(ItemStack stack, World worldIn, EntityLivingBase entityLiving, int timeLeft) {
 
         if (entityLiving instanceof EntityPlayer) {
-            EntityPlayer entityplayer = (EntityPlayer) entityLiving;
-            boolean flag = entityplayer.capabilities.isCreativeMode ||
-                    EnchantmentHelper.getEnchantmentLevel(Enchantments.INFINITY, stack) > 0 ||
-                    effect == EntityEssenceArrow.BowEffects.ESSENCE_BOW;
+			EntityPlayer entityplayer = (EntityPlayer) entityLiving;
+			boolean flag = entityplayer.capabilities.isCreativeMode ||
+					EnchantmentHelper.getEnchantmentLevel(Enchantments.INFINITY, stack) > 0 ||
+					effect == EntityEssenceArrow.BowEffects.ESSENCE_BOW;
 
-            ItemStack itemstack = this.findAmmo(entityplayer);
-            EssenceStorage mana = JCapabilityManager.asJourneyPlayer(entityplayer).getEssenceStorage();
-            int i = this.maxUseDuration - timeLeft;
-            i = net.minecraftforge.event.ForgeEventFactory.onArrowLoose(stack, worldIn, entityplayer, i, !itemstack.isEmpty() || flag);
-            if (i < 0) return;
+			ItemStack itemstack = this.findAmmo(entityplayer);
 
-            if (!itemstack.isEmpty() || flag) {
-                if (itemstack.isEmpty()) {
-                    itemstack = new ItemStack(arrowItem);
-                }
+			JourneyPlayer journeyPlayer = JCapabilityManager.asJourneyPlayer(entityplayer);
+			EssenceStorage mana = journeyPlayer.getEssenceStorage();
 
-                float f = getScaledArrowVelocity(i);
+			int i = this.maxUseDuration - timeLeft;
+			i = net.minecraftforge.event.ForgeEventFactory.onArrowLoose(stack, worldIn, entityplayer, i, !itemstack.isEmpty() || flag);
+			if (i < 0) return;
+
+			if (!itemstack.isEmpty() || flag) {
+				if (itemstack.isEmpty()) {
+					itemstack = new ItemStack(arrowItem);
+				}
+
+				float f = getScaledArrowVelocity(i);
 				if ((double) f >= 0.1D) {
 
 					if (!worldIn.isRemote) {
@@ -232,6 +236,7 @@ public class ItemModBow extends ItemBow {
 
 							if (effect == EntityEssenceArrow.BowEffects.ESSENCE_BOW) {
 								if (mana.useEssence(this.manaUse)) {
+									journeyPlayer.sendUpdates();
 									worldIn.spawnEntity(entityarrow);
 								}
 							} else if (effect != EntityEssenceArrow.BowEffects.ESSENCE_BOW) {

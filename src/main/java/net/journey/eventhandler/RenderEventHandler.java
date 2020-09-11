@@ -2,9 +2,9 @@ package net.journey.eventhandler;
 
 import net.journey.JITL;
 import net.journey.api.capability.JourneyPlayer;
+import net.journey.api.capability.PlayerPortalOverlay;
 import net.journey.client.render.gui.GuiPortalOverlay;
 import net.journey.common.capability.JCapabilityManager;
-import net.journey.common.capability.JourneyPlayerImpl;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.gui.ScaledResolution;
@@ -22,15 +22,16 @@ public class RenderEventHandler {
 		ScaledResolution scaledResolution = new ScaledResolution(mc);
 		EntityPlayerSP player = mc.player;
 		JourneyPlayer journeyPlayer = JCapabilityManager.asJourneyPlayer(player);
+		PlayerPortalOverlay playerPortalOverlay = journeyPlayer.getPlayerPortalOverlay();
 
 		if (event.getType() == RenderGameOverlayEvent.ElementType.PORTAL) {
 
-			float timeInPortal = ((JourneyPlayerImpl) journeyPlayer).portalOverlayTime * 1.2F + (((JourneyPlayerImpl) journeyPlayer).oldPortalOverlayTime - ((JourneyPlayerImpl) journeyPlayer).portalOverlayTime);
+			float timeInPortal = playerPortalOverlay.portalOverlayTime() * 1.2F + playerPortalOverlay.oldPortalOverlayTime() - playerPortalOverlay.portalOverlayTime();
 
 			//JITL.LOGGER.info("RenderEventHandler " + timeInPortal);
 
 			if (timeInPortal > 0.0F) {
-				GuiPortalOverlay.renderPortalOverlay(timeInPortal, mc, scaledResolution, ((JourneyPlayerImpl) journeyPlayer).portalBlockToRender);
+				GuiPortalOverlay.renderPortalOverlay(timeInPortal, mc, scaledResolution, playerPortalOverlay.getPortalBlockToRender());
 			}
 		}
 	}

@@ -1,13 +1,13 @@
 package net.journey.blocks.portal;
 
+import net.journey.api.capability.JourneyPlayer;
+import net.journey.api.capability.PlayerPortalOverlay;
 import net.journey.common.capability.JCapabilityManager;
 import net.journey.dimension.corba.TeleporterCorba;
 import net.journey.init.JourneyTabs;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.Config;
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -68,47 +68,47 @@ public class BlockCorbaPortal extends BlockMod {
 
     @Override
 	public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entity) {
+		if ((entity.getRidingEntity() == null) && entity instanceof EntityPlayer) {
 
-		if ((entity.getRidingEntity() == null) && ((entity instanceof EntityPlayerSP))) {
-			JCapabilityManager.asJourneyPlayer((EntityPlayer) entity).setInPortal(JourneyBlocks.corbaPortal);
-		}
+			JourneyPlayer journeyPlayer = JCapabilityManager.asJourneyPlayer((EntityPlayer) entity);
+			PlayerPortalOverlay playerPortalOverlay = journeyPlayer.getPlayerPortalOverlay();
+			playerPortalOverlay.setInPortal(JourneyBlocks.corbaPortal);
+			int timeBeforeTeleport = playerPortalOverlay.timeBeforeTeleport();
 
-		if ((entity.getRidingEntity() == null) && ((entity instanceof EntityPlayerMP))) {
+			if ((entity instanceof EntityPlayerMP)) {
 
-			int timeBeforeTeleport = JCapabilityManager.asJourneyPlayer((EntityPlayer) entity).timeBeforeTeleport();
+				EntityPlayerMP playerMP = (EntityPlayerMP) entity;
 
-			EntityPlayerMP playerMP = (EntityPlayerMP) entity;
-			Block blockFrame = JourneyBlocks.corbaPortalFrame;
+				/**
+				 * sets timer for dimension travel
+				 */
+				if (entity.timeUntilPortal > 0) {
+					return;
+				}
+				entity.timeUntilPortal = timeBeforeTeleport;
 
-			/*
-			 * sets timer for dimension travel
-			 */
-			if (entity.timeUntilPortal > 0) {
-				return;
-			}
-			entity.timeUntilPortal = timeBeforeTeleport;
+				/**
+				 * sets destination
+				 *
+				 * if player is in 'dimensionID' dimension, send player to overworld
+				 * otherwise, send player to 'dimensionID' dimension
+				 */
+				int dimensionID = Config.corba;
+				int destination;
+				if (entity.dimension == dimensionID) {
+					destination = 0;
+				} else {
+					destination = dimensionID;
+				}
 
-			/*
-			 * sets destination
-			 *
-			 * if player is in 'dimensionID' dimension, send player to overworld
-			 * otherwise, send player to 'dimensionID' dimension
-			 */
-			int dimensionID = Config.corba;
-			int destination;
-			if (entity.dimension == dimensionID) {
-				destination = 0;
-			} else {
-				destination = dimensionID;
-			}
-			
-			/*
-			 * change player dimension to destination dimension based on current dim ID
-			 */
-			entity.changeDimension(destination, new TeleporterCorba(entity.getServer().getWorld(destination)));
-			
-			if (destination == dimensionID) {
-				playerMP.setSpawnChunk(new BlockPos(playerMP), true, dimensionID);
+				/**
+				 * change player dimension to destination dimension based on current dim ID
+				 */
+				entity.changeDimension(destination, new TeleporterCorba(entity.getServer().getWorld(destination)));
+
+				if (destination == dimensionID) {
+					playerMP.setSpawnChunk(new BlockPos(playerMP), true, dimensionID);
+				}
 			}
 		}
     }

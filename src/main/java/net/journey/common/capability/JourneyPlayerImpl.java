@@ -3,13 +3,14 @@ package net.journey.common.capability;
 import io.netty.buffer.Unpooled;
 import net.journey.api.capability.EssenceStorage;
 import net.journey.api.capability.JourneyPlayer;
+import net.journey.api.capability.PlayerPortalOverlay;
 import net.journey.api.capability.PlayerStats;
 import net.journey.common.capability.innercaps.EssenceStorageImpl;
+import net.journey.common.capability.innercaps.PlayerPortalOverlayImpl;
 import net.journey.common.capability.innercaps.PlayerStatsImpl;
 import net.journey.common.network.NetworkHandler;
 import net.journey.common.network.S2CSyncJourneyCap;
 import net.journey.util.exception.WrongSideException;
-import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
@@ -25,27 +26,17 @@ import java.util.UUID;
 public class JourneyPlayerImpl implements JourneyPlayer {
     private final EssenceStorageImpl essenceStorage;
     private final PlayerStatsImpl playerStats;
-
-    public float portalOverlayTime;
-    public float oldPortalOverlayTime;
-
-    public Block portalBlockToRender;
-
-    public int timeBeforeTeleport = 300;
+    private final PlayerPortalOverlayImpl playerPortalOverlay;
 
     /**
      * If equals null, then it is on client, otherwise - on server.
      */
     private UUID playerId = null;
 
-    /**
-     * Called whenever a player has collided with a JITL portal block. initiates portal animation
-     */
-    public boolean inPortal = false;
-
-    public JourneyPlayerImpl(EssenceStorageImpl essenceStorage, PlayerStatsImpl playerStats) {
+    public JourneyPlayerImpl(EssenceStorageImpl essenceStorage, PlayerStatsImpl playerStats, PlayerPortalOverlayImpl playerPortalOverlay) {
         this.essenceStorage = essenceStorage;
         this.playerStats = playerStats;
+        this.playerPortalOverlay = playerPortalOverlay;
     }
 
     void bindPlayer(EntityPlayerMP player) {
@@ -63,35 +54,15 @@ public class JourneyPlayerImpl implements JourneyPlayer {
     }
 
     @Override
+    public PlayerPortalOverlay getPlayerPortalOverlay() {
+        return playerPortalOverlay;
+    }
+
+    @Override
     public void onTick(Side side) {
         essenceStorage.onTick();
         playerStats.onTick();
-        oldPortalOverlayTime = portalOverlayTime;
-
-        float alphaTime = 0.01F;
-        if (inPortal) {
-            portalOverlayTime += alphaTime;
-            inPortal = false;
-        } else {
-            if (portalOverlayTime > 0) portalOverlayTime -= alphaTime;
-            if (portalOverlayTime < 0) portalOverlayTime = 0;
-        }
-    }
-
-    @Override
-    public int timeBeforeTeleport() {
-        return timeBeforeTeleport;
-    }
-
-    @Override
-    public void setInPortal(Block portalBlock) {
-        portalBlockToRender = portalBlock;
-        inPortal = true;
-    }
-
-    @Override
-    public boolean isInPortal() {
-        return inPortal;
+        playerPortalOverlay.onTick();
     }
 
     @Override
