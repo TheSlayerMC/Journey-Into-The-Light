@@ -35,7 +35,7 @@ public class PlayerPortalOverlayImpl implements PlayerPortalOverlay {
 	}
 
 	@Override
-	public int timeBeforeTeleport() {
+	public int getTimeBeforeTeleport() {
 		return timeBeforeTeleport;
 	}
 
@@ -55,12 +55,12 @@ public class PlayerPortalOverlayImpl implements PlayerPortalOverlay {
 	}
 
 	@Override
-	public float portalOverlayTime() {
+	public float getPortalOverlayTime() {
 		return portalOverlayTime;
 	}
 
 	@Override
-	public float oldPortalOverlayTime() {
+	public float getOldPortalOverlayTime() {
 		return oldPortalOverlayTime;
 	}
 }

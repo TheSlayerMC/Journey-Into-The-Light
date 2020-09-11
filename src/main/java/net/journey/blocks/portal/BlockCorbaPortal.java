@@ -73,7 +73,7 @@ public class BlockCorbaPortal extends BlockMod {
 			JourneyPlayer journeyPlayer = JCapabilityManager.asJourneyPlayer((EntityPlayer) entity);
 			PlayerPortalOverlay playerPortalOverlay = journeyPlayer.getPlayerPortalOverlay();
 			playerPortalOverlay.setInPortal(JourneyBlocks.corbaPortal);
-			int timeBeforeTeleport = playerPortalOverlay.timeBeforeTeleport();
+			int timeBeforeTeleport = playerPortalOverlay.getTimeBeforeTeleport();
 
 			if ((entity instanceof EntityPlayerMP)) {
 

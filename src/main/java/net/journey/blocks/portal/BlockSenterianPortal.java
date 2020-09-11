@@ -75,7 +75,7 @@ public class BlockSenterianPortal extends BlockMod {
 			JourneyPlayer journeyPlayer = JCapabilityManager.asJourneyPlayer((EntityPlayer) entity);
 			PlayerPortalOverlay playerPortalOverlay = journeyPlayer.getPlayerPortalOverlay();
 			playerPortalOverlay.setInPortal(JourneyBlocks.senterianPortal);
-			int timeBeforeTeleport = playerPortalOverlay.timeBeforeTeleport();
+			int timeBeforeTeleport = playerPortalOverlay.getTimeBeforeTeleport();
 
 			if ((entity instanceof EntityPlayerMP)) {
 

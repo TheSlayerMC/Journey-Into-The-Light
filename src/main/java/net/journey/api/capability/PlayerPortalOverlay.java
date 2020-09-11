@@ -9,7 +9,7 @@ public interface PlayerPortalOverlay {
 	/**
 	 * Universal time before teleporting for all portals
 	 */
-	int timeBeforeTeleport();
+	int getTimeBeforeTeleport();
 
 	/**
 	 * Call whenever a player collides with portal block
@@ -18,9 +18,9 @@ public interface PlayerPortalOverlay {
 
 	boolean isInPortal();
 
-	float portalOverlayTime();
+	float getPortalOverlayTime();
 
-	float oldPortalOverlayTime();
+	float getOldPortalOverlayTime();
 
 	Block getPortalBlockToRender();
 }

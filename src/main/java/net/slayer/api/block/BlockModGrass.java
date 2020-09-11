@@ -66,9 +66,10 @@ public class BlockModGrass extends BlockMod implements IGrowable {
             if (playerIn.getHeldItemMainhand().getItem() instanceof ItemSpade || playerIn.getHeldItemMainhand().getDisplayName().contains("Shovel")) {
                 worldIn.setBlockState(pos, this.path.getDefaultState());
                 worldIn.playSound(playerIn, pos, SoundEvents.ITEM_HOE_TILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                return true;
             }
         }
-        return this.path == null;
+        return this.path != null;
     }
 
     @Override

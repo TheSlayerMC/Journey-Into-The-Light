@@ -21,14 +21,13 @@ public class RenderEventHandler {
 		Minecraft mc = Minecraft.getMinecraft();
 		ScaledResolution scaledResolution = new ScaledResolution(mc);
 		EntityPlayerSP player = mc.player;
+
 		JourneyPlayer journeyPlayer = JCapabilityManager.asJourneyPlayer(player);
 		PlayerPortalOverlay playerPortalOverlay = journeyPlayer.getPlayerPortalOverlay();
 
 		if (event.getType() == RenderGameOverlayEvent.ElementType.PORTAL) {
 
-			float timeInPortal = playerPortalOverlay.portalOverlayTime() * 1.2F + playerPortalOverlay.oldPortalOverlayTime() - playerPortalOverlay.portalOverlayTime();
-
-			//JITL.LOGGER.info("RenderEventHandler " + timeInPortal);
+			float timeInPortal = playerPortalOverlay.getPortalOverlayTime() * 1.2F + playerPortalOverlay.getOldPortalOverlayTime() - playerPortalOverlay.getPortalOverlayTime();
 
 			if (timeInPortal > 0.0F) {
 				GuiPortalOverlay.renderPortalOverlay(timeInPortal, mc, scaledResolution, playerPortalOverlay.getPortalBlockToRender());
