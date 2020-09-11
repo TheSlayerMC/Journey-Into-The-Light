@@ -1,6 +1,7 @@
 package net.journey.api.capability;
 
 import net.journey.util.exception.WrongSideException;
+import net.minecraft.block.Block;
 import net.minecraftforge.fml.relauncher.Side;
 
 public interface JourneyPlayer {
@@ -10,7 +11,15 @@ public interface JourneyPlayer {
 
     void onTick(Side side);
 
-    void setInPortal();
+    /**
+     * Universal time before teleporting for all portals
+     */
+    int timeBeforeTeleport();
+
+    /**
+     * Call whenever a player collides with portal block
+     */
+    void setInPortal(Block portalBlock);
 
     boolean isInPortal();
 

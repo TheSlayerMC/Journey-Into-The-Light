@@ -2,13 +2,16 @@ package net.journey.blocks.portal;
 
 import net.journey.blocks.base.JBlockPortal;
 import net.journey.client.render.particles.EntityFrozenPotalFX;
+import net.journey.common.capability.JCapabilityManager;
 import net.journey.dimension.base.ModTeleporter;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.Config;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.effect.EntityLightningBolt;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.EnumFacing;
@@ -29,7 +32,14 @@ public class BlockFrozenPortal extends JBlockPortal {
 
 	@Override
 	public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entity) {
+
+		if ((entity.getRidingEntity() == null) && ((entity instanceof EntityPlayerSP))) {
+			JCapabilityManager.asJourneyPlayer((EntityPlayer) entity).setInPortal(JourneyBlocks.frozenPortal);
+		}
+
 		if ((entity.getRidingEntity() == null) && ((entity instanceof EntityPlayerMP))) {
+
+			int timeBeforeTeleport = JCapabilityManager.asJourneyPlayer((EntityPlayer) entity).timeBeforeTeleport();
 
 			EntityPlayerMP playerMP = (EntityPlayerMP) entity;
 			Block blockFrame = JourneyBlocks.frozenPortalFrame;
@@ -40,7 +50,7 @@ public class BlockFrozenPortal extends JBlockPortal {
 			if (entity.timeUntilPortal > 0) {
 				return;
 			}
-			entity.timeUntilPortal = 125;
+			entity.timeUntilPortal = timeBeforeTeleport;
 
 			/*
 			 * sets destination

@@ -1,6 +1,7 @@
 package net.journey.blocks.portal;
 
 import net.journey.JITL;
+import net.journey.common.capability.JCapabilityManager;
 import net.journey.dimension.depths.TeleporterDepths;
 import net.journey.enums.EnumParticlesClasses;
 import net.journey.init.JourneyTabs;
@@ -9,7 +10,9 @@ import net.journey.util.Config;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumBlockRenderType;
@@ -89,7 +92,14 @@ public class BlockDepthsPortal extends BlockMod {
 
     @Override
 	public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entity) {
+
+		if ((entity.getRidingEntity() == null) && ((entity instanceof EntityPlayerSP))) {
+			JCapabilityManager.asJourneyPlayer((EntityPlayer) entity).setInPortal(JourneyBlocks.depthsPortal);
+		}
+
 		if ((entity.getRidingEntity() == null) && ((entity instanceof EntityPlayerMP))) {
+
+			int timeBeforeTeleport = JCapabilityManager.asJourneyPlayer((EntityPlayer) entity).timeBeforeTeleport();
 
 			EntityPlayerMP playerMP = (EntityPlayerMP) entity;
 			Block blockFrame = JourneyBlocks.depthsPortalFrame;
@@ -100,7 +110,7 @@ public class BlockDepthsPortal extends BlockMod {
 			if (entity.timeUntilPortal > 0) {
 				return;
 			}
-			entity.timeUntilPortal = 125;
+			entity.timeUntilPortal = timeBeforeTeleport;
 
 			/*
 			 * sets destination

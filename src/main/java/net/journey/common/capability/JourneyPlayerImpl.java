@@ -9,6 +9,7 @@ import net.journey.common.capability.innercaps.PlayerStatsImpl;
 import net.journey.common.network.NetworkHandler;
 import net.journey.common.network.S2CSyncJourneyCap;
 import net.journey.util.exception.WrongSideException;
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
@@ -24,6 +25,13 @@ import java.util.UUID;
 public class JourneyPlayerImpl implements JourneyPlayer {
     private final EssenceStorageImpl essenceStorage;
     private final PlayerStatsImpl playerStats;
+
+    public float portalOverlayTime;
+    public float oldPortalOverlayTime;
+
+    public Block portalBlockToRender;
+
+    public int timeBeforeTeleport = 300;
 
     /**
      * If equals null, then it is on client, otherwise - on server.
@@ -58,11 +66,27 @@ public class JourneyPlayerImpl implements JourneyPlayer {
     public void onTick(Side side) {
         essenceStorage.onTick();
         playerStats.onTick();
+        oldPortalOverlayTime = portalOverlayTime;
+
+        float alphaTime = 0.01F;
+        if (inPortal) {
+            portalOverlayTime += alphaTime;
+            inPortal = false;
+        } else {
+            if (portalOverlayTime > 0) portalOverlayTime -= alphaTime;
+            if (portalOverlayTime < 0) portalOverlayTime = 0;
+        }
     }
 
     @Override
-    public void setInPortal() {
-        this.inPortal = true;
+    public int timeBeforeTeleport() {
+        return timeBeforeTeleport;
+    }
+
+    @Override
+    public void setInPortal(Block portalBlock) {
+        portalBlockToRender = portalBlock;
+        inPortal = true;
     }
 
     @Override

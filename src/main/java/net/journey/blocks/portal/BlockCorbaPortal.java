@@ -1,12 +1,15 @@
 package net.journey.blocks.portal;
 
+import net.journey.common.capability.JCapabilityManager;
 import net.journey.dimension.corba.TeleporterCorba;
 import net.journey.init.JourneyTabs;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.Config;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumBlockRenderType;
@@ -65,7 +68,14 @@ public class BlockCorbaPortal extends BlockMod {
 
     @Override
 	public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entity) {
+
+		if ((entity.getRidingEntity() == null) && ((entity instanceof EntityPlayerSP))) {
+			JCapabilityManager.asJourneyPlayer((EntityPlayer) entity).setInPortal(JourneyBlocks.corbaPortal);
+		}
+
 		if ((entity.getRidingEntity() == null) && ((entity instanceof EntityPlayerMP))) {
+
+			int timeBeforeTeleport = JCapabilityManager.asJourneyPlayer((EntityPlayer) entity).timeBeforeTeleport();
 
 			EntityPlayerMP playerMP = (EntityPlayerMP) entity;
 			Block blockFrame = JourneyBlocks.corbaPortalFrame;
@@ -76,7 +86,7 @@ public class BlockCorbaPortal extends BlockMod {
 			if (entity.timeUntilPortal > 0) {
 				return;
 			}
-			entity.timeUntilPortal = 125;
+			entity.timeUntilPortal = timeBeforeTeleport;
 
 			/*
 			 * sets destination
