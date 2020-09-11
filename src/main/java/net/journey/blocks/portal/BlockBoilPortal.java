@@ -34,7 +34,7 @@ public class BlockBoilPortal extends JBlockPortal {
 			EntityPlayerMP playerMP = (EntityPlayerMP) entity;
 			Block blockFrame = JourneyBlocks.boilPortalFrame;
 
-			JCapabilityManager.asJourneyPlayer((EntityPlayerMP) entity).inPortal();
+			JCapabilityManager.asJourneyPlayer((EntityPlayerMP) entity).setInPortal();
 
 			worldIn.playSound(playerMP, pos, SoundEvents.BLOCK_PORTAL_TRIGGER, SoundCategory.PLAYERS, 1.0F, 1.0F);
 			/**

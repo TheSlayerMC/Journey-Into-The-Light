@@ -61,8 +61,13 @@ public class JourneyPlayerImpl implements JourneyPlayer {
     }
 
     @Override
-    public void inPortal() {
+    public void setInPortal() {
         this.inPortal = true;
+    }
+
+    @Override
+    public boolean isInPortal() {
+        return inPortal;
     }
 
     @Override

@@ -10,7 +10,9 @@ public interface JourneyPlayer {
 
     void onTick(Side side);
 
-    void inPortal();
+    void setInPortal();
+
+    boolean isInPortal();
 
     /**
      * Syncs all capability data with client.
