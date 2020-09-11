@@ -2,13 +2,16 @@ package net.journey.eventhandler;
 
 import baubles.api.BaublesApi;
 import net.journey.JITL;
+import net.journey.init.JourneyLootTables;
 import net.journey.init.items.JourneyItems;
+import net.journey.util.LootHelper;
 import net.journey.util.PotionEffects;
 import net.journey.util.RandHelper;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.world.BlockEvent;
@@ -42,7 +45,7 @@ public class BaublesEventHandler {
 
     @SubscribeEvent
     public static void onBlockHarvested(BlockEvent.HarvestDropsEvent event) {
-        EntityPlayer player = event.getHarvester();
+        EntityPlayerMP player = (EntityPlayerMP) event.getHarvester();
         IBlockState state = event.getState();
         List<ItemStack> drops = event.getDrops();
 
@@ -50,7 +53,10 @@ public class BaublesEventHandler {
             if (BaublesApi.isBaubleEquipped(player, JourneyItems.luckyCharm) != -1) {
                 if (RandHelper.RANDOM.nextInt(2) == 0) {
                     if (state.getBlock() instanceof IGrowable) {
-                        drops.add(new ItemStack(state.getBlock().getItemDropped(state, RandHelper.RANDOM, 2), 1));
+                        List<ItemStack> lootTable = LootHelper.genFromLootTable(JourneyLootTables.LOOT_BASIC, player, builder -> builder.withLuck(1).build());
+                        int index = player.world.rand.nextInt(lootTable.size());
+                        ItemStack itemToSpawn = lootTable.get(index);
+                        drops.add(itemToSpawn);
                     }
                 }
             }

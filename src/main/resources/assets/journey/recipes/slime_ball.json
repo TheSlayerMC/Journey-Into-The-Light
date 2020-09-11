@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ddd",
+    "ddd",
+    "ddd"
+  ],
+  "key": {
+    "d": {
+      "item": "journey:slime"
+    }
+  },
+  "result": {
+    "item": "minecraft:slime_ball"
+  }
+}

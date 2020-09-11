@@ -88,6 +88,7 @@ public class JourneyRecipes {
 		addShapedRecipe(new ItemStack(JourneyItems.stoneClump, 4), "ddd", "ddd", "ddd", 'd', JourneyItems.caveDust);
 		addShapedRecipe(new ItemStack(JourneyItems.stoneStick, 16), "d", "d", "d", 'd', Blocks.STONE);
 		addShapedRecipe(new ItemStack(JourneyItems.stoneClump, 16), "ddd", "ddd", "ddd", 'd', Blocks.STONE);
+		addShapedRecipe(new ItemStack(Items.SLIME_BALL, 1), "ddd", "ddd", "ddd", 'd', JourneyBlocks.slime);
 
 		addShapedRecipe(new ItemStack(JourneyBlocks.bloodBricks, 4), "dd", "dd", 'd', JourneyBlocks.bloodRock);
 		addShapedRecipe(new ItemStack(JourneyBlocks.carvedBloodRock, 4), "dd", "dd", 'd', JourneyBlocks.bloodBricks);
