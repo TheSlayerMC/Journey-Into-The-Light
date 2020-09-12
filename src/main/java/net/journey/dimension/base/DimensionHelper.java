@@ -63,6 +63,7 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 public class DimensionHelper {
 
     public static final float[] boilHeight = new float[]{0.125F, 0.1F};
+    public static final int lowestWeight = 15;
 
     public static final Biome EUCA_GOLD_BIOME = new EucaGoldBiome(new Biome.BiomeProperties
             ("Gold Forest")
@@ -243,7 +244,7 @@ public class DimensionHelper {
     }
 
     private static void addSenterainSpawns() {
-        int amount = 50;
+        int amount = lowestWeight;
         EntityRegistry.addSpawn(EntitySentryBlock.class, amount, 10, 20, EnumCreatureType.MONSTER, SENTERIAN_BIOME);
         EntityRegistry.addSpawn(EntitySentryLord.class, amount, 10, 20, EnumCreatureType.MONSTER, SENTERIAN_BIOME);
         EntityRegistry.addSpawn(EntitySentryStalker.class, amount, 10, 20, EnumCreatureType.MONSTER, SENTERIAN_BIOME);
@@ -252,7 +253,7 @@ public class DimensionHelper {
     }
 
     private static void addCloudiaSpawns() {
-        int amount = 50;
+        int amount = lowestWeight;
         EntityRegistry.addSpawn(EntityStarlightTransporter.class, amount, 10, 20, EnumCreatureType.MONSTER, CLOUDIA_BIOME);
         EntityRegistry.addSpawn(EntityStarlightGolem.class, amount, 10, 20, EnumCreatureType.MONSTER, CLOUDIA_BIOME);
         EntityRegistry.addSpawn(EntityStarlightWalker.class, amount, 10, 20, EnumCreatureType.MONSTER, CLOUDIA_BIOME);
@@ -261,16 +262,17 @@ public class DimensionHelper {
     }
 
     private static void addCorbaSpawns() {
-        EntityRegistry.addSpawn(EntityTreeGolem.class, 2, 1, 1, EnumCreatureType.MONSTER, CORBA_FOREST_BIOMES);
-        EntityRegistry.addSpawn(EntityLeafBlower.class, 5, 1, 1, EnumCreatureType.MONSTER, CORBA_FOREST_BIOMES);
+        EntityRegistry.addSpawn(EntityTreeGolem.class, 6, 1, 1, EnumCreatureType.MONSTER, CORBA_FOREST_BIOMES);
+        EntityRegistry.addSpawn(EntityLeafBlower.class, 7, 1, 1, EnumCreatureType.MONSTER, CORBA_FOREST_BIOMES);
         EntityRegistry.addSpawn(EntitySurfaceSeer.class, 9, 1, 1, EnumCreatureType.MONSTER, CORBA_FOREST_BIOMES);
-        EntityRegistry.addSpawn(EntityWoodCreature.class, 6, 1, 1, EnumCreatureType.MONSTER, CORBA_FOREST_BIOMES);
-        EntityRegistry.addSpawn(EntityCorbanianMollusk.class, 10, 1, 1, EnumCreatureType.MONSTER, CORBA_BIOMES);
-        EntityRegistry.addSpawn(EntityStinky.class, 1, 5, 10, EnumCreatureType.MONSTER, CORBA_BIOMES);
+        EntityRegistry.addSpawn(EntityWoodCreature.class, 8, 1, 1, EnumCreatureType.MONSTER, CORBA_FOREST_BIOMES);
+        EntityRegistry.addSpawn(EntityCorbanianMollusk.class, lowestWeight, 1, 1, EnumCreatureType.MONSTER, CORBA_BIOMES);
+        EntityRegistry.addSpawn(EntityStinky.class, 2, 5, 10, EnumCreatureType.MONSTER, CORBA_BIOMES);
+        EntityRegistry.addSpawn(EntitySwampFly.class, 9, 1, 1, EnumCreatureType.MONSTER, CORBA_BIOMES);
     }
 
     private static void addColdFrozenSpawns() {
-        int amount = 25;
+        int amount = lowestWeight;
         EntityRegistry.addSpawn(EntityIceman.class, amount, 1, amount, EnumCreatureType.CREATURE, FROZEN_BIOME);
         EntityRegistry.addSpawn(EntityFrozenTroll.class, amount, 10, amount, EnumCreatureType.MONSTER, FROZEN_BIOME);
         EntityRegistry.addSpawn(EntityPermafraust.class, amount, 10, 20, EnumCreatureType.MONSTER, FROZEN_BIOME);
@@ -280,7 +282,7 @@ public class DimensionHelper {
     }
 
     private static void addFrostFrozenSpawns() {
-        int amount = 30;
+        int amount = lowestWeight;
         EntityRegistry.addSpawn(EntityIceman.class, amount, 1, amount, EnumCreatureType.CREATURE, FROZEN_BIOME);
         EntityRegistry.addSpawn(EntityPermafraust.class, amount, 10, amount, EnumCreatureType.MONSTER, FROZEN_BIOME);
         EntityRegistry.addSpawn(EntityShatterer.class, amount, 10, amount, EnumCreatureType.MONSTER, FROZEN_BIOME);
@@ -289,7 +291,7 @@ public class DimensionHelper {
     }
 
     private static void addTerraniaSpawns() {
-        int amount = 15;
+        int amount = lowestWeight;
         EntityRegistry.addSpawn(EntityTerraScatterer.class, 5, 1, 1, EnumCreatureType.MONSTER, TERRANIA_BIOMES);
         EntityRegistry.addSpawn(EntityTerralight.class, 5, 1, 1, EnumCreatureType.MONSTER, TERRANIA_BIOMES);
         EntityRegistry.addSpawn(EntityTerragrow.class, 5, 1, 1, EnumCreatureType.MONSTER, TERRANIA_BIOMES);
@@ -299,7 +301,7 @@ public class DimensionHelper {
     }
 
     private static void addEucaSpawns() {
-        int amount = 10;
+        int amount = lowestWeight;
         EntityRegistry.addSpawn(EntityEucaCharger.class, amount, 1, 1, EnumCreatureType.MONSTER, EUCA_BIOMES);
         EntityRegistry.addSpawn(EntityDynaster.class, amount, 1, 1, EnumCreatureType.MONSTER, EUCA_BIOMES);
         EntityRegistry.addSpawn(EntityShimmerer.class, amount, 1, 1, EnumCreatureType.MONSTER, EUCA_BIOMES);
@@ -307,7 +309,7 @@ public class DimensionHelper {
     }
 
     private static void addBoilSpawns() {
-        int amount = 15;
+        int amount = lowestWeight;
         EntityRegistry.addSpawn(EntityFrightener.class, amount, 1, 1, EnumCreatureType.MONSTER, BOILING_BIOMES);
         EntityRegistry.addSpawn(EntityBurningLight.class, amount, 1, 1, EnumCreatureType.MONSTER, BOILING_BIOMES);
         EntityRegistry.addSpawn(EntityMagmaBlaze.class, amount, 1, 1, EnumCreatureType.MONSTER, BOILING_BIOMES);
@@ -317,7 +319,7 @@ public class DimensionHelper {
     }
 
     private static void addDepthsSpawns() {
-        int amount = 20;
+        int amount = lowestWeight;
         EntityRegistry.addSpawn(EntityDarknessCrawler.class, amount, 10, 1, EnumCreatureType.MONSTER, DEPTHS_BIOME);
         EntityRegistry.addSpawn(EntityDepthsBeast.class, amount, 10, 1, EnumCreatureType.MONSTER, DEPTHS_BIOME);
         EntityRegistry.addSpawn(EntitySpikedBeast.class, amount, 10, 1, EnumCreatureType.MONSTER, DEPTHS_BIOME);

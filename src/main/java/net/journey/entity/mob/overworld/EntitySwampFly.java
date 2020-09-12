@@ -1,12 +1,10 @@
 package net.journey.entity.mob.overworld;
 
-import net.journey.client.render.particles.ParticleSwampFly;
 import net.journey.entity.MobStats;
 import net.journey.entity.base.JEntityFlyingMob;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.journey.init.blocks.JourneyBlocks;
-import net.journey.util.WorldUtils;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
 import net.minecraft.entity.ai.EntityMoveHelper;
@@ -18,8 +16,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Random;
 
@@ -78,19 +74,6 @@ public class EntitySwampFly extends JEntityFlyingMob {
 	@Override
 	public ResourceLocation getLootTable() {
 		return JourneyLootTables.SWAMP_FLY;
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	protected void onClientUpdate() {
-		super.onClientUpdate();
-
-		double d1 = this.posX;
-		double d2 = this.posY + 0.5F;
-		double d3 = this.posZ - 0.25F;
-		for (int i = 0; i < 1; ++i) {
-			WorldUtils.spawnParticle(new ParticleSwampFly(world, d1, d2, d3, 1.0F, 1.0F, 1.0F), world);
-		}
 	}
 
 	@Override
