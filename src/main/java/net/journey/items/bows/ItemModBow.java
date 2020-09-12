@@ -18,11 +18,11 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.item.*;
 import net.minecraft.stats.StatList;
 import net.minecraft.util.*;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.slayer.api.SlayerAPI;
 
 import javax.annotation.Nullable;
 import java.text.DecimalFormat;
@@ -279,26 +279,31 @@ public class ItemModBow extends ItemBow {
     @Override
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> list, ITooltipFlag flagIn) {
 		ItemDescription.addInformation(stack, list);
-		list.add("Damage: " + SlayerAPI.Colour.GOLD + damage + " - " + SlayerAPI.Colour.GOLD + damage * 4);
+		list.add("Damage: " + TextFormatting.GOLD + damage + " - " + TextFormatting.GOLD + damage * 4);
 
 		float maxUse = (float) DEFAULT_MAX_USE_DURATION / (float) this.maxUseDuration;
 		DecimalFormat df = new DecimalFormat("#.##");
-		list.add("Pull Back Speed: " + SlayerAPI.Colour.GOLD + df.format(maxUse));
+		list.add("Pull Back Speed: " + TextFormatting.GOLD + df.format(maxUse));
 
 		if (effects.contains(EntityEssenceArrow.BowEffects.WITHER)) {
-			list.add(SlayerAPI.Colour.DARK_GRAY + "Ability: Withers foe");
-		} else if (effects.contains(EntityEssenceArrow.BowEffects.FLAME)) {
-			list.add(SlayerAPI.Colour.GOLD + "Ability: Sets foe ablaze");
-		} else if (effects.contains(EntityEssenceArrow.BowEffects.POISON)) {
-			list.add(SlayerAPI.Colour.GREEN + "Ability: Poisons foe");
-		} else if (effects.contains(EntityEssenceArrow.BowEffects.SLOWNESS)) {
-			list.add(SlayerAPI.Colour.BLUE + "Ability: Stuns foe");
-		} else if (effects.contains(EntityEssenceArrow.BowEffects.DOUBLE_ARROW)) {
-			list.add(SlayerAPI.Colour.BLUE + "Ability: Shoots 2 arrows");
-		} else if (effects.contains(EntityEssenceArrow.BowEffects.CONSUMES_ESSENCE)) {
-			list.add(SlayerAPI.Colour.BLUE + "Ability: Consumes Essence instead of arrows");
+			list.add(TextFormatting.DARK_GRAY + "Ability: Withers foe");
 		}
-		list.add("Uses remaining: " + SlayerAPI.Colour.GRAY + uses);
+		if (effects.contains(EntityEssenceArrow.BowEffects.FLAME)) {
+			list.add(TextFormatting.GOLD + "Ability: Sets foe ablaze");
+		}
+		if (effects.contains(EntityEssenceArrow.BowEffects.POISON)) {
+			list.add(TextFormatting.GREEN + "Ability: Poisons foe");
+		}
+		if (effects.contains(EntityEssenceArrow.BowEffects.SLOWNESS)) {
+			list.add(TextFormatting.BLUE + "Ability: Stuns foe");
+		}
+		if (effects.contains(EntityEssenceArrow.BowEffects.DOUBLE_ARROW)) {
+			list.add(TextFormatting.BLUE + "Ability: Shoots 2 arrows");
+		}
+		if (effects.contains(EntityEssenceArrow.BowEffects.CONSUMES_ESSENCE)) {
+			list.add(TextFormatting.GREEN + "Ability: Consumes Essence instead of arrows");
+		}
+		list.add("Uses remaining: " + TextFormatting.GRAY + uses);
 	}
 
     @Override
