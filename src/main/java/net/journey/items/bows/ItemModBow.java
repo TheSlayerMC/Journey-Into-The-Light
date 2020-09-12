@@ -234,6 +234,9 @@ public class ItemModBow extends ItemBow {
 									journeyPlayer.sendUpdates();
 									worldIn.spawnEntity(entityarrow);
 								}
+							}
+
+							if (!effects.contains(EntityEssenceArrow.BowEffects.CONSUMES_ESSENCE)) {
 								worldIn.spawnEntity(entityarrow);
 							}
 						}
