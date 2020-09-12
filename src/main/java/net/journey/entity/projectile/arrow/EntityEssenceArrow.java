@@ -1,39 +1,27 @@
 package net.journey.entity.projectile.arrow;
 
-import com.google.common.base.Predicate;
-import com.google.common.base.Predicates;
 import net.journey.init.items.JourneyItems;
-import net.journey.util.PotionEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.EntitySelectors;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
-import javax.annotation.Nullable;
+import java.util.EnumSet;
 
 public class EntityEssenceArrow extends EntityArrow implements IProjectile {
-
-    private static final Predicate<Entity> ARROW_TARGETS = Predicates.and(EntitySelectors.NOT_SPECTATING, EntitySelectors.IS_ALIVE, new Predicate<Entity>() {
-        public boolean apply(@Nullable Entity e) {
-            return e.canBeCollidedWith();
-        }
-    });
     public int canBePickedUp;
     public Entity shootingEntity;
     protected boolean inGround;
     protected int timeInGround;
-    private final int xTile = -1;
-    private final int yTile = -1;
-    private final int zTile = -1;
-    private final double damage = 0.0D;
-    private BowEffects effect;
+    private EnumSet<BowEffects> effects;
 
     public EntityEssenceArrow(World worldIn) {
         super(worldIn);
@@ -43,36 +31,10 @@ public class EntityEssenceArrow extends EntityArrow implements IProjectile {
         super(worldIn, x, y, z);
     }
 
-    public EntityEssenceArrow(World worldIn, EntityLivingBase shooter, BowEffects effect) {
+    public EntityEssenceArrow(World worldIn, EntityLivingBase shooter, EnumSet<BowEffects> effects) {
         super(worldIn, shooter);
         this.shootingEntity = shooter;
-        this.effect = effect;
-    }
-
-    public EntityEssenceArrow(World worldIn, EntityLivingBase shooter, EntityLivingBase p_i1755_3_, float p_i1755_4_, float p_i1755_5_) {
-        super(worldIn);
-        Entity.setRenderDistanceWeight(10.0D);
-        this.shootingEntity = shooter;
-
-        if (shooter instanceof EntityPlayer) {
-            this.canBePickedUp = 1;
-        }
-
-        this.posY = shooter.posY + shooter.getEyeHeight() - 0.10000000149011612D;
-        double d0 = p_i1755_3_.posX - shooter.posX;
-        double d1 = p_i1755_3_.getEntityBoundingBox().minY + p_i1755_3_.height / 3.0F - this.posY;
-        double d2 = p_i1755_3_.posZ - shooter.posZ;
-        double d3 = MathHelper.sqrt(d0 * d0 + d2 * d2);
-
-        if (d3 >= 1.0E-7D) {
-            float f = (float) (MathHelper.atan2(d2, d0) * 180.0D / Math.PI) - 90.0F;
-            float f1 = (float) (-(MathHelper.atan2(d1, d3) * 180.0D / Math.PI));
-            double d4 = d0 / d3;
-            double d5 = d2 / d3;
-            this.setLocationAndAngles(shooter.posX + d4, this.posY, shooter.posZ + d5, f, f1);
-            float f2 = (float) (d3 * 0.20000000298023224D);
-            this.shoot(d0, d1 + f2, d2, p_i1755_4_, p_i1755_5_);
-        }
+        this.effects = effects;
     }
 
     public EntityEssenceArrow(World worldIn, EntityLivingBase shooter, float velocity) {
@@ -101,32 +63,29 @@ public class EntityEssenceArrow extends EntityArrow implements IProjectile {
 
         Entity hitEntity = target.entityHit;
         if (hitEntity != null && shootingEntity != null && hitEntity instanceof EntityLivingBase) {
-            switch (this.effect) {
-                case DARKNESS_BOW:
-                    ((EntityLivingBase) hitEntity).addPotionEffect(new PotionEffect(PotionEffects.getPotionFromID(PotionEffects.wither), 100, 2));
-                    break;
-                case FLAME_BOW:
-                    hitEntity.setFire(5);
-                    break;
-                case FROZEN_BOW:
-                    ((EntityLivingBase) hitEntity).addPotionEffect(new PotionEffect(PotionEffects.getPotionFromID(PotionEffects.moveSlow), 100, 2));
-                    break;
-                case POISON_BOW:
-                    ((EntityLivingBase) hitEntity).addPotionEffect(new PotionEffect(PotionEffects.getPotionFromID(PotionEffects.poison), 100, 2));
-                    break;
-                case DEFAULT:
-                    break;
-                case DOUBLE_ARROW:
-                    break;
-                case ESSENCE_BOW:
-                    break;
-                default:
-                    break;
+            if (effects.contains(BowEffects.DARKNESS_BOW)) {
+                applyPotionEffect(hitEntity, MobEffects.WITHER, 100, 2);
 
+            } else if (effects.contains(BowEffects.FLAME_BOW)) {
+                hitEntity.setFire(5);
+
+            } else if (effects.contains(BowEffects.FROZEN_BOW)) {
+                applyPotionEffect(hitEntity, MobEffects.WITHER, 100, 2);
+
+            } else if (effects.contains(BowEffects.POISON_BOW)) {
+                applyPotionEffect(hitEntity, MobEffects.POISON, 100, 2);
+
+            } else if (effects.contains(BowEffects.DEFAULT)) {
+
+            } else if (effects.contains(BowEffects.DOUBLE_ARROW)) {
+
+            } else if (effects.contains(BowEffects.ESSENCE_BOW)) {
             }
         }
+    }
 
-
+    private void applyPotionEffect(Entity hitEntity, Potion potionEffect, int duration, int amplifier) {
+        ((EntityLivingBase) hitEntity).addPotionEffect(new PotionEffect(potionEffect, duration, amplifier));
     }
 
     @Override

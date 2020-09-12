@@ -63,7 +63,7 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 public class DimensionHelper {
 
     public static final float[] boilHeight = new float[]{0.125F, 0.1F};
-    public static final int lowestWeight = 15;
+    public static final int heavyWeight = 15;
 
     public static final Biome EUCA_GOLD_BIOME = new EucaGoldBiome(new Biome.BiomeProperties
             ("Gold Forest")
@@ -220,11 +220,10 @@ public class DimensionHelper {
     private static Biome addOverworldBiome(Biome biome, String name, BiomeType biomeType, Type... types) {
         biome.setRegistryName(name);
         ForgeRegistries.BIOMES.register(biome);
-        LogHelper.info("Biome Registered");
         BiomeDictionary.addTypes(biome, types);
         BiomeManager.addBiome(biomeType, new BiomeEntry(biome, 10));
         BiomeManager.addSpawnBiome(biome);
-        LogHelper.info("Biome Added");
+        LogHelper.info("Biome Registered: " + biome);
         return biome;
     }
 
@@ -244,7 +243,7 @@ public class DimensionHelper {
     }
 
     private static void addSenterainSpawns() {
-        int amount = lowestWeight;
+        int amount = heavyWeight;
         EntityRegistry.addSpawn(EntitySentryBlock.class, amount, 10, 20, EnumCreatureType.MONSTER, SENTERIAN_BIOME);
         EntityRegistry.addSpawn(EntitySentryLord.class, amount, 10, 20, EnumCreatureType.MONSTER, SENTERIAN_BIOME);
         EntityRegistry.addSpawn(EntitySentryStalker.class, amount, 10, 20, EnumCreatureType.MONSTER, SENTERIAN_BIOME);
@@ -253,7 +252,7 @@ public class DimensionHelper {
     }
 
     private static void addCloudiaSpawns() {
-        int amount = lowestWeight;
+        int amount = heavyWeight;
         EntityRegistry.addSpawn(EntityStarlightTransporter.class, amount, 10, 20, EnumCreatureType.MONSTER, CLOUDIA_BIOME);
         EntityRegistry.addSpawn(EntityStarlightGolem.class, amount, 10, 20, EnumCreatureType.MONSTER, CLOUDIA_BIOME);
         EntityRegistry.addSpawn(EntityStarlightWalker.class, amount, 10, 20, EnumCreatureType.MONSTER, CLOUDIA_BIOME);
@@ -266,13 +265,13 @@ public class DimensionHelper {
         EntityRegistry.addSpawn(EntityLeafBlower.class, 7, 1, 1, EnumCreatureType.MONSTER, CORBA_FOREST_BIOMES);
         EntityRegistry.addSpawn(EntitySurfaceSeer.class, 9, 1, 1, EnumCreatureType.MONSTER, CORBA_FOREST_BIOMES);
         EntityRegistry.addSpawn(EntityWoodCreature.class, 8, 1, 1, EnumCreatureType.MONSTER, CORBA_FOREST_BIOMES);
-        EntityRegistry.addSpawn(EntityCorbanianMollusk.class, lowestWeight, 1, 1, EnumCreatureType.MONSTER, CORBA_BIOMES);
+        EntityRegistry.addSpawn(EntityCorbanianMollusk.class, heavyWeight, 1, 1, EnumCreatureType.MONSTER, CORBA_BIOMES);
         EntityRegistry.addSpawn(EntityStinky.class, 2, 5, 10, EnumCreatureType.MONSTER, CORBA_BIOMES);
         EntityRegistry.addSpawn(EntitySwampFly.class, 9, 1, 1, EnumCreatureType.MONSTER, CORBA_BIOMES);
     }
 
     private static void addColdFrozenSpawns() {
-        int amount = lowestWeight;
+        int amount = heavyWeight;
         EntityRegistry.addSpawn(EntityIceman.class, amount, 1, amount, EnumCreatureType.CREATURE, FROZEN_BIOME);
         EntityRegistry.addSpawn(EntityFrozenTroll.class, amount, 10, amount, EnumCreatureType.MONSTER, FROZEN_BIOME);
         EntityRegistry.addSpawn(EntityPermafraust.class, amount, 10, 20, EnumCreatureType.MONSTER, FROZEN_BIOME);
@@ -282,7 +281,7 @@ public class DimensionHelper {
     }
 
     private static void addFrostFrozenSpawns() {
-        int amount = lowestWeight;
+        int amount = heavyWeight;
         EntityRegistry.addSpawn(EntityIceman.class, amount, 1, amount, EnumCreatureType.CREATURE, FROZEN_BIOME);
         EntityRegistry.addSpawn(EntityPermafraust.class, amount, 10, amount, EnumCreatureType.MONSTER, FROZEN_BIOME);
         EntityRegistry.addSpawn(EntityShatterer.class, amount, 10, amount, EnumCreatureType.MONSTER, FROZEN_BIOME);
@@ -291,7 +290,7 @@ public class DimensionHelper {
     }
 
     private static void addTerraniaSpawns() {
-        int amount = lowestWeight;
+        int amount = heavyWeight;
         EntityRegistry.addSpawn(EntityTerraScatterer.class, 5, 1, 1, EnumCreatureType.MONSTER, TERRANIA_BIOMES);
         EntityRegistry.addSpawn(EntityTerralight.class, 5, 1, 1, EnumCreatureType.MONSTER, TERRANIA_BIOMES);
         EntityRegistry.addSpawn(EntityTerragrow.class, 5, 1, 1, EnumCreatureType.MONSTER, TERRANIA_BIOMES);
@@ -301,7 +300,7 @@ public class DimensionHelper {
     }
 
     private static void addEucaSpawns() {
-        int amount = lowestWeight;
+        int amount = heavyWeight;
         EntityRegistry.addSpawn(EntityEucaCharger.class, amount, 1, 1, EnumCreatureType.MONSTER, EUCA_BIOMES);
         EntityRegistry.addSpawn(EntityDynaster.class, amount, 1, 1, EnumCreatureType.MONSTER, EUCA_BIOMES);
         EntityRegistry.addSpawn(EntityShimmerer.class, amount, 1, 1, EnumCreatureType.MONSTER, EUCA_BIOMES);
@@ -309,7 +308,7 @@ public class DimensionHelper {
     }
 
     private static void addBoilSpawns() {
-        int amount = lowestWeight;
+        int amount = heavyWeight;
         EntityRegistry.addSpawn(EntityFrightener.class, amount, 1, 1, EnumCreatureType.MONSTER, BOILING_BIOMES);
         EntityRegistry.addSpawn(EntityBurningLight.class, amount, 1, 1, EnumCreatureType.MONSTER, BOILING_BIOMES);
         EntityRegistry.addSpawn(EntityMagmaBlaze.class, amount, 1, 1, EnumCreatureType.MONSTER, BOILING_BIOMES);
@@ -319,7 +318,7 @@ public class DimensionHelper {
     }
 
     private static void addDepthsSpawns() {
-        int amount = lowestWeight;
+        int amount = heavyWeight;
         EntityRegistry.addSpawn(EntityDarknessCrawler.class, amount, 10, 1, EnumCreatureType.MONSTER, DEPTHS_BIOME);
         EntityRegistry.addSpawn(EntityDepthsBeast.class, amount, 10, 1, EnumCreatureType.MONSTER, DEPTHS_BIOME);
         EntityRegistry.addSpawn(EntitySpikedBeast.class, amount, 10, 1, EnumCreatureType.MONSTER, DEPTHS_BIOME);
@@ -329,8 +328,7 @@ public class DimensionHelper {
     }
 
     private static void addCaveSpawns() {
-        int amount = 75;
-        int amount2 = 10;
+        int amount = 20;
         for (Biome b : Biome.REGISTRY) {
             Biome biome = b;
             if (biome != null && biome != Biomes.HELL) {
@@ -341,23 +339,23 @@ public class DimensionHelper {
                 EntityRegistry.addSpawn(EntityHonglow.class, amount, 3, 4, EnumCreatureType.MONSTER, biome);
                 EntityRegistry.addSpawn(EntityBlueHonglow.class, amount, 3, 4, EnumCreatureType.MONSTER, biome);
                 EntityRegistry.addSpawn(EntityGreenHonglow.class, amount, 3, 4, EnumCreatureType.MONSTER, biome);
-                EntityRegistry.addSpawn(EntityRockiteGolem.class, amount2, 3, 4, EnumCreatureType.MONSTER, biome);
+                EntityRegistry.addSpawn(EntityRockiteGolem.class, 10, 3, 4, EnumCreatureType.MONSTER, biome);
             }
         }
     }
 
     private static void addNetherSpawns() {
-        EntityRegistry.addSpawn(EntityLavasnake.class, 60, 1, 1, EnumCreatureType.MONSTER, Biomes.HELL);
-        EntityRegistry.addSpawn(EntityWitherspine.class, 50, 1, 1, EnumCreatureType.MONSTER, Biomes.HELL);
-        EntityRegistry.addSpawn(EntityReaper.class, 50, 1, 1, EnumCreatureType.MONSTER, Biomes.HELL);
-        EntityRegistry.addSpawn(EntityHellCow.class, 100, 1, 1, EnumCreatureType.MONSTER, Biomes.HELL);
-        EntityRegistry.addSpawn(EntityMiniGhast.class, 5, 1, 1, EnumCreatureType.MONSTER, Biomes.HELL);
-        EntityRegistry.addSpawn(EntityInfernoBlaze.class, 10, 1, 2, EnumCreatureType.MONSTER, Biomes.HELL);
-        EntityRegistry.addSpawn(EntityHellTurtle.class, 100, 1, 2, EnumCreatureType.MONSTER, Biomes.HELL);
+        EntityRegistry.addSpawn(EntityLavasnake.class, heavyWeight, 1, 1, EnumCreatureType.MONSTER, Biomes.HELL);
+        EntityRegistry.addSpawn(EntityWitherspine.class, 8, 1, 1, EnumCreatureType.MONSTER, Biomes.HELL);
+        EntityRegistry.addSpawn(EntityReaper.class, 8, 1, 1, EnumCreatureType.MONSTER, Biomes.HELL);
+        EntityRegistry.addSpawn(EntityHellCow.class, heavyWeight, 1, 1, EnumCreatureType.MONSTER, Biomes.HELL);
+        EntityRegistry.addSpawn(EntityMiniGhast.class, 3, 1, 1, EnumCreatureType.MONSTER, Biomes.HELL);
+        EntityRegistry.addSpawn(EntityInfernoBlaze.class, 2, 1, 2, EnumCreatureType.MONSTER, Biomes.HELL);
+        EntityRegistry.addSpawn(EntityHellTurtle.class, heavyWeight, 1, 2, EnumCreatureType.MONSTER, Biomes.HELL);
     }
 
     private static void addVanillaSpawns() {
-        int amount = 4;
+        int amount = heavyWeight;
         for (Biome b : Biome.REGISTRY) {
             Biome biome = b;
             if (b != Biomes.HELL && b != Biomes.SKY && b != EUCA_GOLD_BIOME && b != BOILING_BIOME && b != CLOUDIA_BIOME && b != CORBA_BIOME && b != DEPTHS_BIOME && b != CORBA_PLAINS_BIOME && b != FROZEN_BIOME && b != TERRANIA_BIOME && b != SENTERIAN_BIOME) {
