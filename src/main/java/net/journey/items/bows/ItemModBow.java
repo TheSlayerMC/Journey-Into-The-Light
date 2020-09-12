@@ -34,8 +34,6 @@ public class ItemModBow extends ItemBow {
 	public static final int DEFAULT_MAX_USE_DURATION = 72000;
 	protected int maxUseDuration;
 	public Item arrowItem;
-	public int dur = 18;
-	public String ability;
 	protected float damage;
 	protected int uses;
 	protected int manaUse = 3;
@@ -102,7 +100,7 @@ public class ItemModBow extends ItemBow {
         } else if (this.isArrow(player.getHeldItem(EnumHand.MAIN_HAND))) {
 			return player.getHeldItem(EnumHand.MAIN_HAND);
 
-		} else if (effects.contains(EntityEssenceArrow.BowEffects.ESSENCE_BOW)) {
+		} else if (effects.contains(EntityEssenceArrow.BowEffects.CONSUMES_ESSENCE)) {
 			return ItemStack.EMPTY;
 
 		} else {
@@ -122,10 +120,6 @@ public class ItemModBow extends ItemBow {
     protected boolean isArrow(ItemStack stack) {
         return stack.getItem() instanceof ItemEssenceArrow;
     }
-    
-    public int setEssenceValue(int essence) {
-    	return essence;
-    }
 
     @Override
     public void onPlayerStoppedUsing(ItemStack stack, World worldIn, EntityLivingBase entityLiving, int timeLeft) {
@@ -133,7 +127,7 @@ public class ItemModBow extends ItemBow {
 			EntityPlayer entityplayer = (EntityPlayer) entityLiving;
 			boolean flag = entityplayer.capabilities.isCreativeMode ||
 					EnchantmentHelper.getEnchantmentLevel(Enchantments.INFINITY, stack) > 0 ||
-					effects.contains(EntityEssenceArrow.BowEffects.ESSENCE_BOW);
+					effects.contains(EntityEssenceArrow.BowEffects.CONSUMES_ESSENCE);
 
 			ItemStack itemstack = this.findAmmo(entityplayer);
 
@@ -235,12 +229,11 @@ public class ItemModBow extends ItemBow {
 								entityarrow.pickupStatus = EntityArrow.PickupStatus.CREATIVE_ONLY;
 							}
 
-							if (effects.contains(EntityEssenceArrow.BowEffects.ESSENCE_BOW)) {
+							if (effects.contains(EntityEssenceArrow.BowEffects.CONSUMES_ESSENCE)) {
 								if (mana.useEssence(this.manaUse)) {
 									journeyPlayer.sendUpdates();
 									worldIn.spawnEntity(entityarrow);
 								}
-							} else if (effects.contains(EntityEssenceArrow.BowEffects.ESSENCE_BOW)) {
 								worldIn.spawnEntity(entityarrow);
 							}
 						}
@@ -292,17 +285,17 @@ public class ItemModBow extends ItemBow {
 		DecimalFormat df = new DecimalFormat("#.##");
 		list.add("Pull Back Speed: " + SlayerAPI.Colour.GOLD + df.format(maxUse));
 
-		if (effects.contains(EntityEssenceArrow.BowEffects.DARKNESS_BOW)) {
+		if (effects.contains(EntityEssenceArrow.BowEffects.WITHER)) {
 			list.add(SlayerAPI.Colour.DARK_GRAY + "Ability: Withers foe");
-		} else if (effects.contains(EntityEssenceArrow.BowEffects.FLAME_BOW)) {
+		} else if (effects.contains(EntityEssenceArrow.BowEffects.FLAME)) {
 			list.add(SlayerAPI.Colour.GOLD + "Ability: Sets foe ablaze");
-		} else if (effects.contains(EntityEssenceArrow.BowEffects.POISON_BOW)) {
+		} else if (effects.contains(EntityEssenceArrow.BowEffects.POISON)) {
 			list.add(SlayerAPI.Colour.GREEN + "Ability: Poisons foe");
-		} else if (effects.contains(EntityEssenceArrow.BowEffects.FROZEN_BOW)) {
+		} else if (effects.contains(EntityEssenceArrow.BowEffects.SLOWNESS)) {
 			list.add(SlayerAPI.Colour.BLUE + "Ability: Stuns foe");
 		} else if (effects.contains(EntityEssenceArrow.BowEffects.DOUBLE_ARROW)) {
 			list.add(SlayerAPI.Colour.BLUE + "Ability: Shoots 2 arrows");
-		} else if (effects.contains(EntityEssenceArrow.BowEffects.ESSENCE_BOW)) {
+		} else if (effects.contains(EntityEssenceArrow.BowEffects.CONSUMES_ESSENCE)) {
 			list.add(SlayerAPI.Colour.BLUE + "Ability: Consumes Essence instead of arrows");
 		}
 		list.add("Uses remaining: " + SlayerAPI.Colour.GRAY + uses);
@@ -311,7 +304,7 @@ public class ItemModBow extends ItemBow {
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 		ItemStack itemstack = playerIn.getHeldItem(handIn);
-		boolean flag = !this.findAmmo(playerIn).isEmpty() || effects.contains(EntityEssenceArrow.BowEffects.ESSENCE_BOW);
+		boolean flag = !this.findAmmo(playerIn).isEmpty() || effects.contains(EntityEssenceArrow.BowEffects.CONSUMES_ESSENCE);
 
 		ActionResult<ItemStack> ret = net.minecraftforge.event.ForgeEventFactory.onArrowNock(itemstack, worldIn,
 				playerIn, handIn, flag);

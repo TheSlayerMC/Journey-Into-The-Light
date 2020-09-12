@@ -60,32 +60,31 @@ public class EntityEssenceArrow extends EntityArrow implements IProjectile {
     @Override
     protected void onHit(RayTraceResult target) {
         super.onHit(target);
-
-        Entity hitEntity = target.entityHit;
+        EntityLivingBase hitEntity = (EntityLivingBase) target.entityHit;
         if (hitEntity != null && shootingEntity != null && hitEntity instanceof EntityLivingBase) {
-            if (effects.contains(BowEffects.DARKNESS_BOW)) {
+            if (effects.contains(BowEffects.WITHER)) {
                 applyPotionEffect(hitEntity, MobEffects.WITHER, 100, 2);
-
-            } else if (effects.contains(BowEffects.FLAME_BOW)) {
+            }
+            if (effects.contains(BowEffects.FLAME)) {
                 hitEntity.setFire(5);
-
-            } else if (effects.contains(BowEffects.FROZEN_BOW)) {
+            }
+            if (effects.contains(BowEffects.SLOWNESS)) {
                 applyPotionEffect(hitEntity, MobEffects.WITHER, 100, 2);
-
-            } else if (effects.contains(BowEffects.POISON_BOW)) {
+            }
+            if (effects.contains(BowEffects.POISON)) {
                 applyPotionEffect(hitEntity, MobEffects.POISON, 100, 2);
-
-            } else if (effects.contains(BowEffects.DEFAULT)) {
-
-            } else if (effects.contains(BowEffects.DOUBLE_ARROW)) {
-
-            } else if (effects.contains(BowEffects.ESSENCE_BOW)) {
+            }
+            if (effects.contains(BowEffects.DEFAULT)) {
+            }
+            if (effects.contains(BowEffects.DOUBLE_ARROW)) {
+            }
+            if (effects.contains(BowEffects.CONSUMES_ESSENCE)) {
             }
         }
     }
 
-    private void applyPotionEffect(Entity hitEntity, Potion potionEffect, int duration, int amplifier) {
-        ((EntityLivingBase) hitEntity).addPotionEffect(new PotionEffect(potionEffect, duration, amplifier));
+    private void applyPotionEffect(EntityLivingBase effectedEntity, Potion potionEffect, int duration, int amplifier) {
+        effectedEntity.addPotionEffect(new PotionEffect(potionEffect, duration, amplifier));
     }
 
     @Override
@@ -94,6 +93,6 @@ public class EntityEssenceArrow extends EntityArrow implements IProjectile {
     }
 
     public enum BowEffects {
-        DARKNESS_BOW, FROZEN_BOW, FLAME_BOW, POISON_BOW, DEFAULT, DOUBLE_ARROW, ESSENCE_BOW
+        WITHER, SLOWNESS, FLAME, POISON, DEFAULT, DOUBLE_ARROW, CONSUMES_ESSENCE
     }
 }
