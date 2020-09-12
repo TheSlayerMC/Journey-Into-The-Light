@@ -182,5 +182,4 @@ public class JourneySounds {
 
         soundsToReg = null;
     }
-
 }

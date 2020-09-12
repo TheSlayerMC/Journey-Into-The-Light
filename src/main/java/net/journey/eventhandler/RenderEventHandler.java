@@ -2,7 +2,7 @@ package net.journey.eventhandler;
 
 import net.journey.JITL;
 import net.journey.api.capability.JourneyPlayer;
-import net.journey.api.capability.PlayerPortalOverlay;
+import net.journey.api.capability.PlayerOverlay;
 import net.journey.client.render.gui.GuiPortalOverlay;
 import net.journey.common.capability.JCapabilityManager;
 import net.minecraft.client.Minecraft;
@@ -23,7 +23,7 @@ public class RenderEventHandler {
 		EntityPlayerSP player = mc.player;
 
 		JourneyPlayer journeyPlayer = JCapabilityManager.asJourneyPlayer(player);
-		PlayerPortalOverlay playerPortalOverlay = journeyPlayer.getPlayerPortalOverlay();
+		PlayerOverlay playerPortalOverlay = journeyPlayer.getPlayerOverlay();
 
 		if (event.getType() == RenderGameOverlayEvent.ElementType.PORTAL) {
 

@@ -1,7 +1,7 @@
 package net.journey.blocks.portal;
 
 import net.journey.api.capability.JourneyPlayer;
-import net.journey.api.capability.PlayerPortalOverlay;
+import net.journey.api.capability.PlayerOverlay;
 import net.journey.common.capability.JCapabilityManager;
 import net.journey.dimension.senterian.TeleporterSenterian;
 import net.journey.dimension.senterian.TeleporterSenterianToOverworld;
@@ -73,9 +73,9 @@ public class BlockSenterianPortal extends BlockMod {
 		if ((entity.getRidingEntity() == null) && entity instanceof EntityPlayer) {
 
 			JourneyPlayer journeyPlayer = JCapabilityManager.asJourneyPlayer((EntityPlayer) entity);
-			PlayerPortalOverlay playerPortalOverlay = journeyPlayer.getPlayerPortalOverlay();
-			playerPortalOverlay.setInPortal(JourneyBlocks.senterianPortal);
-			int timeBeforeTeleport = playerPortalOverlay.getTimeBeforeTeleport();
+			PlayerOverlay playerOverlay = journeyPlayer.getPlayerOverlay();
+			playerOverlay.setInPortal(JourneyBlocks.senterianPortal);
+			int timeBeforeTeleport = playerOverlay.getTimeBeforeTeleport();
 
 			if ((entity instanceof EntityPlayerMP)) {
 

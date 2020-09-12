@@ -1,7 +1,7 @@
 package net.journey.blocks.portal;
 
 import net.journey.api.capability.JourneyPlayer;
-import net.journey.api.capability.PlayerPortalOverlay;
+import net.journey.api.capability.PlayerOverlay;
 import net.journey.common.capability.JCapabilityManager;
 import net.journey.dimension.corba.TeleporterCorba;
 import net.journey.init.JourneyTabs;
@@ -71,9 +71,9 @@ public class BlockCorbaPortal extends BlockMod {
 		if ((entity.getRidingEntity() == null) && entity instanceof EntityPlayer) {
 
 			JourneyPlayer journeyPlayer = JCapabilityManager.asJourneyPlayer((EntityPlayer) entity);
-			PlayerPortalOverlay playerPortalOverlay = journeyPlayer.getPlayerPortalOverlay();
-			playerPortalOverlay.setInPortal(JourneyBlocks.corbaPortal);
-			int timeBeforeTeleport = playerPortalOverlay.getTimeBeforeTeleport();
+			PlayerOverlay playerOverlay = journeyPlayer.getPlayerOverlay();
+			playerOverlay.setInPortal(JourneyBlocks.corbaPortal);
+			int timeBeforeTeleport = playerOverlay.getTimeBeforeTeleport();
 
 			if ((entity instanceof EntityPlayerMP)) {
 

@@ -79,6 +79,9 @@ public class RenderEssenceBar {
 	public boolean instanceOfEssenceItem(Item isEssence) {
 		return isEssence instanceof IUsesEssence ||
 				isEssence == JourneyWeapons.darkEnforcer ||
+				isEssence == JourneyWeapons.depthsBow ||
+				isEssence == JourneyWeapons.coreExpender ||
+				isEssence == JourneyWeapons.terralightBow ||
 				isEssence == JourneyWeapons.essenceShuriken;
 	}
 }

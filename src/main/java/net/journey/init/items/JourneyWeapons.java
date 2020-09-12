@@ -282,45 +282,45 @@ public class JourneyWeapons {
 	    frostbittenBow = Registrar.regAndSetupItem("frostbittenBow", "Frostbitten Bow", new ItemModBow(2.5F, 384, EntityEssenceArrow.BowEffects.FROZEN_BOW, 64000), JourneyTabs.WEAPONS);
 	    frostyBow = Registrar.regAndSetupItem("frostyBow", "Frosty Bow", new ItemModBow(2.5F, 384, EntityEssenceArrow.BowEffects.FROZEN_BOW, 64000), JourneyTabs.WEAPONS);
 
-	    //Nether
-	    staringBow = Registrar.regAndSetupItem("staringBow", "Staring Bow", new ItemModBow(2.5F, 384, EntityEssenceArrow.BowEffects.FLAME_BOW, 56000), JourneyTabs.WEAPONS);
+		//Nether
+		staringBow = Registrar.regAndSetupItem("staringBow", "Staring Bow", new ItemModBow(2.5F, 384, EntityEssenceArrow.BowEffects.FLAME_BOW, 56000), JourneyTabs.WEAPONS);
 
-	    //Boil
-	    charredBow = Registrar.regAndSetupItem("charredBow", "Charred Bow", new ItemModBow(2.75F, 384, EntityEssenceArrow.BowEffects.DARKNESS_BOW, 64000), JourneyTabs.WEAPONS);
-	    flamingBow = Registrar.regAndSetupItem("flamingBow", "Flaming Bow", new ItemModBow(2.75F, 384, EntityEssenceArrow.BowEffects.FLAME_BOW, 64000), JourneyTabs.WEAPONS);
-	    blazingBow = Registrar.regAndSetupItem("blazingBow", "Blazing Bow", new ItemModBow(2.75F, 384, EntityEssenceArrow.BowEffects.FLAME_BOW, 56000), JourneyTabs.WEAPONS);
+		//Boil
+		charredBow = Registrar.regAndSetupItem("charredBow", "Charred Bow", new ItemModBow(2.75F, 384, EntityEssenceArrow.BowEffects.DARKNESS_BOW, 64000), JourneyTabs.WEAPONS);
+		flamingBow = Registrar.regAndSetupItem("flamingBow", "Flaming Bow", new ItemModBow(2.75F, 384, EntityEssenceArrow.BowEffects.FLAME_BOW, 64000), JourneyTabs.WEAPONS);
+		blazingBow = Registrar.regAndSetupItem("blazingBow", "Blazing Bow", new ItemModBow(2.75F, 384, EntityEssenceArrow.BowEffects.FLAME_BOW, 56000), JourneyTabs.WEAPONS);
 
-	    //Euca
-	    mantleBow = Registrar.regAndSetupItem("mantleBow", "Mantle Bow", new ItemModBow(3.5F, 384, EntityEssenceArrow.BowEffects.FLAME_BOW, 48000), JourneyTabs.WEAPONS);
-	    coreExpender = Registrar.regAndSetupItem("coreExpender", "Core Expender", new ItemModBow(3.5F, 384, EntityEssenceArrow.BowEffects.FLAME_BOW, 48000), JourneyTabs.WEAPONS);
-	    royalBow = Registrar.regAndSetupItem("royalBow", "Royal Bow", new ItemModBow(3.0F, 384, EntityEssenceArrow.BowEffects.DARKNESS_BOW, 64000), JourneyTabs.WEAPONS);
+		//Euca
+		mantleBow = Registrar.regAndSetupItem("mantleBow", "Mantle Bow", new ItemModBow(3.5F, 384, EntityEssenceArrow.BowEffects.FLAME_BOW, 48000), JourneyTabs.WEAPONS);
+		coreExpender = Registrar.regAndSetupItem("coreExpender", "Core Expender", new ItemModBow(3.5F, 384, EntityEssenceArrow.BowEffects.ESSENCE_BOW, 48000), JourneyTabs.WEAPONS);
+		royalBow = Registrar.regAndSetupItem("royalBow", "Royal Bow", new ItemModBow(3.0F, 384, EntityEssenceArrow.BowEffects.DARKNESS_BOW, 64000), JourneyTabs.WEAPONS);
 
-	    //Depths
-	    darkEnforcer = Registrar.regAndSetupItem("darkEnforcer", "Dark Enforcer", new ItemModBow(4.0F, 384, EntityEssenceArrow.BowEffects.ESSENCE_BOW, 64000), JourneyTabs.WEAPONS);
-	    depthsBow = Registrar.regAndSetupItem("depthsBow", "Depths Bow", new ItemModBow(4.0F, 384, EntityEssenceArrow.BowEffects.DARKNESS_BOW, 64000), JourneyTabs.WEAPONS);
-	    rocsWing = Registrar.regAndSetupItem("rocsWing", "Roc's Wing", new ItemModBow(4.0F, 384, EntityEssenceArrow.BowEffects.DARKNESS_BOW, 54000), JourneyTabs.WEAPONS);
-	    scaleBow = Registrar.regAndSetupItem("scaleBow", "Scale Bow", new ItemModBow(4.0F, 384, EntityEssenceArrow.BowEffects.FROZEN_BOW, 54000), JourneyTabs.WEAPONS);
+		//Depths
+		darkEnforcer = Registrar.regAndSetupItem("darkEnforcer", "Dark Enforcer", new ItemModBow(5.0F, 384, EntityEssenceArrow.BowEffects.ESSENCE_BOW, 64000), JourneyTabs.WEAPONS);
+		depthsBow = Registrar.regAndSetupItem("depthsBow", "Depths Bow", new ItemModBow(4.0F, 384, EntityEssenceArrow.BowEffects.ESSENCE_BOW, 32000), JourneyTabs.WEAPONS);
+		rocsWing = Registrar.regAndSetupItem("rocsWing", "Roc's Wing", new ItemModBow(4.0F, 384, EntityEssenceArrow.BowEffects.DARKNESS_BOW, 54000), JourneyTabs.WEAPONS);
+		scaleBow = Registrar.regAndSetupItem("scaleBow", "Scale Bow", new ItemModBow(4.0F, 384, EntityEssenceArrow.BowEffects.FROZEN_BOW, 54000), JourneyTabs.WEAPONS);
 
-	    //Corba
-	    loggersBow = Registrar.regAndSetupItem("loggersBow", "Logger's Bow", new ItemModBow(4.5F, 384, EntityEssenceArrow.BowEffects.POISON_BOW, 48000), JourneyTabs.WEAPONS);
-	    overgrownBow = Registrar.regAndSetupItem("overgrownBow", "Overgrown Bow", new ItemModBow(4.5F, 384, EntityEssenceArrow.BowEffects.POISON_BOW, 54000), JourneyTabs.WEAPONS);
-	    overseerBow = Registrar.regAndSetupItem("overseerBow", "Overseer Bow", new ItemModBow(4.5F, 384, EntityEssenceArrow.BowEffects.DARKNESS_BOW, 38000), JourneyTabs.WEAPONS);
-	    woodlandBow = Registrar.regAndSetupItem("woodlandBow", "Woodland Bow", new ItemModBow(4.5F, 384, EntityEssenceArrow.BowEffects.POISON_BOW, 54000), JourneyTabs.WEAPONS);
+		//Corba
+		loggersBow = Registrar.regAndSetupItem("loggersBow", "Logger's Bow", new ItemModBow(4.5F, 384, EntityEssenceArrow.BowEffects.POISON_BOW, 48000), JourneyTabs.WEAPONS);
+		overgrownBow = Registrar.regAndSetupItem("overgrownBow", "Overgrown Bow", new ItemModBow(4.5F, 384, EntityEssenceArrow.BowEffects.POISON_BOW, 54000), JourneyTabs.WEAPONS);
+		overseerBow = Registrar.regAndSetupItem("overseerBow", "Overseer Bow", new ItemModBow(4.5F, 384, EntityEssenceArrow.BowEffects.DARKNESS_BOW, 38000), JourneyTabs.WEAPONS);
+		woodlandBow = Registrar.regAndSetupItem("woodlandBow", "Woodland Bow", new ItemModBow(4.5F, 384, EntityEssenceArrow.BowEffects.POISON_BOW, 54000), JourneyTabs.WEAPONS);
 
-	    //Terrania
-	    darkTerraBow = Registrar.regAndSetupItem("darkTerraBow", "Dark Terra Bow", new ItemModBow(5.0F, 384, EntityEssenceArrow.BowEffects.DARKNESS_BOW, 48000), JourneyTabs.WEAPONS);
-	    lavenderBow = Registrar.regAndSetupItem("lavenderBow", "Lavender Bow", new ItemModBow(5.0F, 384, EntityEssenceArrow.BowEffects.FROZEN_BOW, 36000), JourneyTabs.WEAPONS);
-	    terralightBow = Registrar.regAndSetupItem("terralightBow", "Terralight Bow", new ItemModBow(5.0F, 384, EntityEssenceArrow.BowEffects.POISON_BOW, 32000), JourneyTabs.WEAPONS);
-	    terrianBow = Registrar.regAndSetupItem("terrianBow", "Terrian Bow", new ItemModBow(5.0F, 384, EntityEssenceArrow.BowEffects.POISON_BOW, 40000), JourneyTabs.WEAPONS);
+		//Terrania
+		darkTerraBow = Registrar.regAndSetupItem("darkTerraBow", "Dark Terra Bow", new ItemModBow(5.0F, 384, EntityEssenceArrow.BowEffects.DARKNESS_BOW, 48000), JourneyTabs.WEAPONS);
+		lavenderBow = Registrar.regAndSetupItem("lavenderBow", "Lavender Bow", new ItemModBow(5.0F, 384, EntityEssenceArrow.BowEffects.FROZEN_BOW, 36000), JourneyTabs.WEAPONS);
+		terralightBow = Registrar.regAndSetupItem("terralightBow", "Terralight Bow", new ItemModBow(5.0F, 384, EntityEssenceArrow.BowEffects.ESSENCE_BOW, 32000), JourneyTabs.WEAPONS);
+		terrianBow = Registrar.regAndSetupItem("terrianBow", "Terrian Bow", new ItemModBow(5.0F, 384, EntityEssenceArrow.BowEffects.POISON_BOW, 40000), JourneyTabs.WEAPONS);
 
-	    //Cloudia
-	    starlightBow = Registrar.regAndSetupItem("starlightBow", "Starlight Bow", new ItemModBow(5.5F, 384, EntityEssenceArrow.BowEffects.POISON_BOW, 24000), JourneyTabs.WEAPONS);
-	    fluffyBow = Registrar.regAndSetupItem("fluffyBow", "Fluffy Bow", new ItemModBow(5.5F, 384, EntityEssenceArrow.BowEffects.FROZEN_BOW, 18000), JourneyTabs.WEAPONS);
-	    golemBow = Registrar.regAndSetupItem("golemBow", "Golem Bow", new ItemModBow(5.5F, 384, EntityEssenceArrow.BowEffects.DARKNESS_BOW, 36000), JourneyTabs.WEAPONS);
+		//Cloudia
+		starlightBow = Registrar.regAndSetupItem("starlightBow", "Starlight Bow", new ItemModBow(5.5F, 384, EntityEssenceArrow.BowEffects.POISON_BOW, 24000), JourneyTabs.WEAPONS);
+		fluffyBow = Registrar.regAndSetupItem("fluffyBow", "Fluffy Bow", new ItemModBow(5.5F, 384, EntityEssenceArrow.BowEffects.FROZEN_BOW, 18000), JourneyTabs.WEAPONS);
+		golemBow = Registrar.regAndSetupItem("golemBow", "Golem Bow", new ItemModBow(5.5F, 384, EntityEssenceArrow.BowEffects.DARKNESS_BOW, 36000), JourneyTabs.WEAPONS);
 
-	    //Unobtainable
-	    deathPiercerBow = Registrar.regAndSetupItem("deathPiercerBow", "Death Piercer", new ItemModBow(3, 384, EntityEssenceArrow.BowEffects.DARKNESS_BOW, 72000), JourneyTabs.WEAPONS);
-	    fusionBow = Registrar.regAndSetupItem("fusionBow", "Fusion Bow", new ItemModBow(3, 384, EntityEssenceArrow.BowEffects.DARKNESS_BOW, 72000), JourneyTabs.WEAPONS);
+		//Unobtainable
+		deathPiercerBow = Registrar.regAndSetupItem("deathPiercerBow", "Death Piercer", new ItemModBow(3, 384, EntityEssenceArrow.BowEffects.DARKNESS_BOW, 72000), JourneyTabs.WEAPONS);
+		fusionBow = Registrar.regAndSetupItem("fusionBow", "Fusion Bow", new ItemModBow(3, 384, EntityEssenceArrow.BowEffects.DARKNESS_BOW, 72000), JourneyTabs.WEAPONS);
 	    springBow = Registrar.regAndSetupItem("springBow", "Spring Bow", new ItemModBow(5, 384, EntityEssenceArrow.BowEffects.FLAME_BOW, 72000), JourneyTabs.WEAPONS);
 	    wastefulBow = Registrar.regAndSetupItem("wastefulBow", "Wasteful Bow", new ItemModBow(3, 384, EntityEssenceArrow.BowEffects.DOUBLE_ARROW, 72000), JourneyTabs.WEAPONS);
 

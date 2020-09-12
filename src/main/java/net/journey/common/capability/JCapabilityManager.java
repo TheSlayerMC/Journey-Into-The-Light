@@ -3,7 +3,7 @@ package net.journey.common.capability;
 import net.journey.JITL;
 import net.journey.api.capability.JourneyPlayer;
 import net.journey.common.capability.innercaps.EssenceStorageImpl;
-import net.journey.common.capability.innercaps.PlayerPortalOverlayImpl;
+import net.journey.common.capability.innercaps.PlayerOverlayImpl;
 import net.journey.common.capability.innercaps.PlayerStatsImpl;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -37,7 +37,7 @@ public class JCapabilityManager {
 	}
 
 	public static void init() {
-		CapabilityManager.INSTANCE.register(JourneyPlayer.class, JourneyPlayerImpl.Serializer.INSTANCE, () -> new JourneyPlayerImpl(new EssenceStorageImpl(), new PlayerStatsImpl(), new PlayerPortalOverlayImpl()));
+		CapabilityManager.INSTANCE.register(JourneyPlayer.class, JourneyPlayerImpl.Serializer.INSTANCE, () -> new JourneyPlayerImpl(new EssenceStorageImpl(), new PlayerStatsImpl(), new PlayerOverlayImpl()));
 	}
 
 	@SubscribeEvent

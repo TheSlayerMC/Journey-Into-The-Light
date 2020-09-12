@@ -1,9 +1,9 @@
 package net.journey.common.capability.innercaps;
 
-import net.journey.api.capability.PlayerPortalOverlay;
+import net.journey.api.capability.PlayerOverlay;
 import net.minecraft.block.Block;
 
-public class PlayerPortalOverlayImpl implements PlayerPortalOverlay {
+public class PlayerOverlayImpl implements PlayerOverlay {
 
 	public float portalOverlayTime;
 	public float oldPortalOverlayTime;

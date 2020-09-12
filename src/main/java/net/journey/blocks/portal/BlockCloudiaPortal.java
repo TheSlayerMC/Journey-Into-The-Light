@@ -1,7 +1,7 @@
 package net.journey.blocks.portal;
 
 import net.journey.api.capability.JourneyPlayer;
-import net.journey.api.capability.PlayerPortalOverlay;
+import net.journey.api.capability.PlayerOverlay;
 import net.journey.blocks.base.JBlockPortal;
 import net.journey.client.render.particles.EntityCloudiaPortalFX;
 import net.journey.common.capability.JCapabilityManager;
@@ -37,9 +37,9 @@ public class BlockCloudiaPortal extends JBlockPortal {
 		if ((entity.getRidingEntity() == null) && entity instanceof EntityPlayer) {
 
 			JourneyPlayer journeyPlayer = JCapabilityManager.asJourneyPlayer((EntityPlayer) entity);
-			PlayerPortalOverlay playerPortalOverlay = journeyPlayer.getPlayerPortalOverlay();
-			playerPortalOverlay.setInPortal(JourneyBlocks.cloudiaPortal);
-			int timeBeforeTeleport = playerPortalOverlay.getTimeBeforeTeleport();
+			PlayerOverlay playerOverlay = journeyPlayer.getPlayerOverlay();
+			playerOverlay.setInPortal(JourneyBlocks.cloudiaPortal);
+			int timeBeforeTeleport = playerOverlay.getTimeBeforeTeleport();
 
 			if ((entity instanceof EntityPlayerMP)) {
 

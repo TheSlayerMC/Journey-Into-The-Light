@@ -8,7 +8,7 @@ public interface JourneyPlayer {
 
     PlayerStats getPlayerStats();
 
-    PlayerPortalOverlay getPlayerPortalOverlay();
+    PlayerOverlay getPlayerOverlay();
 
     void onTick(Side side);
 

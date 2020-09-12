@@ -3,10 +3,10 @@ package net.journey.common.capability;
 import io.netty.buffer.Unpooled;
 import net.journey.api.capability.EssenceStorage;
 import net.journey.api.capability.JourneyPlayer;
-import net.journey.api.capability.PlayerPortalOverlay;
+import net.journey.api.capability.PlayerOverlay;
 import net.journey.api.capability.PlayerStats;
 import net.journey.common.capability.innercaps.EssenceStorageImpl;
-import net.journey.common.capability.innercaps.PlayerPortalOverlayImpl;
+import net.journey.common.capability.innercaps.PlayerOverlayImpl;
 import net.journey.common.capability.innercaps.PlayerStatsImpl;
 import net.journey.common.network.NetworkHandler;
 import net.journey.common.network.S2CSyncJourneyCap;
@@ -26,17 +26,17 @@ import java.util.UUID;
 public class JourneyPlayerImpl implements JourneyPlayer {
     private final EssenceStorageImpl essenceStorage;
     private final PlayerStatsImpl playerStats;
-    private final PlayerPortalOverlayImpl playerPortalOverlay;
+    private final PlayerOverlayImpl playerOverlay;
 
     /**
      * If equals null, then it is on client, otherwise - on server.
      */
     private UUID playerId = null;
 
-    public JourneyPlayerImpl(EssenceStorageImpl essenceStorage, PlayerStatsImpl playerStats, PlayerPortalOverlayImpl playerPortalOverlay) {
+    public JourneyPlayerImpl(EssenceStorageImpl essenceStorage, PlayerStatsImpl playerStats, PlayerOverlayImpl playerPortalOverlay) {
         this.essenceStorage = essenceStorage;
         this.playerStats = playerStats;
-        this.playerPortalOverlay = playerPortalOverlay;
+        this.playerOverlay = playerPortalOverlay;
     }
 
     void bindPlayer(EntityPlayerMP player) {
@@ -54,15 +54,15 @@ public class JourneyPlayerImpl implements JourneyPlayer {
     }
 
     @Override
-    public PlayerPortalOverlay getPlayerPortalOverlay() {
-        return playerPortalOverlay;
+    public PlayerOverlay getPlayerOverlay() {
+        return playerOverlay;
     }
 
     @Override
     public void onTick(Side side) {
         essenceStorage.onTick();
         playerStats.onTick();
-        playerPortalOverlay.onTick();
+        playerOverlay.onTick();
     }
 
     @Override

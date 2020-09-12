@@ -4,16 +4,12 @@ import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 import net.journey.init.items.JourneyItems;
 import net.journey.util.PotionEffects;
-import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EntitySelectors;
 import net.minecraft.util.math.MathHelper;
@@ -29,22 +25,14 @@ public class EntityEssenceArrow extends EntityArrow implements IProjectile {
             return e.canBeCollidedWith();
         }
     });
-    private static final DataParameter<Byte> CRITICAL = EntityDataManager.createKey(EntityArrow.class, DataSerializers.BYTE);
     public int canBePickedUp;
-    public int arrowShake;
-    public EntityArrow.PickupStatus pickupStatus;
     public Entity shootingEntity;
     protected boolean inGround;
     protected int timeInGround;
-    private int xTile = -1;
-    private int yTile = -1;
-    private int zTile = -1;
-    private Block inTile;
-    private int inData;
-    private int ticksInGround;
-    private int ticksInAir;
-    private double damage = 0.0D;
-    private int knockbackStrength;
+    private final int xTile = -1;
+    private final int yTile = -1;
+    private final int zTile = -1;
+    private final double damage = 0.0D;
     private BowEffects effect;
 
     public EntityEssenceArrow(World worldIn) {

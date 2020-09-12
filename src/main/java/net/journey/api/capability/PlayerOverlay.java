@@ -2,7 +2,7 @@ package net.journey.api.capability;
 
 import net.minecraft.block.Block;
 
-public interface PlayerPortalOverlay {
+public interface PlayerOverlay {
 
 	void onTick();
 

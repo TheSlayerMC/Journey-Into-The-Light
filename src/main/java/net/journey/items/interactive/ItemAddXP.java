@@ -33,6 +33,7 @@ public class ItemAddXP extends JItem {
 
 	@Override
 	public void addInformation(ItemStack i, List l) {
-		l.add("Adds " + amount + " experience level");
+		if (amount < 1) l.add("Adds " + amount + " experience level");
+		else if (amount > 1) l.add("Adds " + amount + " experience levels");
 	}
 }

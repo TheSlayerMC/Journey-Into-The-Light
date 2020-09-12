@@ -2,7 +2,7 @@ package net.journey.blocks.portal;
 
 import net.journey.JITL;
 import net.journey.api.capability.JourneyPlayer;
-import net.journey.api.capability.PlayerPortalOverlay;
+import net.journey.api.capability.PlayerOverlay;
 import net.journey.common.capability.JCapabilityManager;
 import net.journey.dimension.depths.TeleporterDepths;
 import net.journey.enums.EnumParticlesClasses;
@@ -96,7 +96,7 @@ public class BlockDepthsPortal extends BlockMod {
 		if ((entity.getRidingEntity() == null) && entity instanceof EntityPlayer) {
 
 			JourneyPlayer journeyPlayer = JCapabilityManager.asJourneyPlayer((EntityPlayer) entity);
-			PlayerPortalOverlay playerPortalOverlay = journeyPlayer.getPlayerPortalOverlay();
+			PlayerOverlay playerPortalOverlay = journeyPlayer.getPlayerOverlay();
 			playerPortalOverlay.setInPortal(JourneyBlocks.depthsPortal);
 			int timeBeforeTeleport = playerPortalOverlay.getTimeBeforeTeleport();
 
