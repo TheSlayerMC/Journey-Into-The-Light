@@ -18,13 +18,13 @@ public class JourneyKnowledgeEventListener {
 
 	@SubscribeEvent
 	public static void onBlockHarvested(HarvestDropsEvent event) {
-		if(event.getHarvester() != null && event.getHarvester() instanceof EntityPlayer && event.getHarvester().getHeldItemMainhand() != null) {
+		if(event.getHarvester() != null && event.getHarvester() instanceof EntityPlayer) {
 			EntityPlayer player = event.getHarvester();
 			JourneyPlayer journeyPlayer = JCapabilityManager.asJourneyPlayer(player);
 			PlayerStats stats = journeyPlayer.getPlayerStats();
-			
+
 			//Can use this to add knowledge depending on the block harvested
-			
+
 			journeyPlayer.sendUpdates();
 		}
 	}
@@ -33,14 +33,12 @@ public class JourneyKnowledgeEventListener {
 	public void onMobKilled(LivingDeathEvent event) {
 		if(event.getSource().getTrueSource() instanceof EntityPlayer){
 			EntityPlayer player = (EntityPlayer)event.getSource().getTrueSource();
-			if(player.getHeldItemMainhand() != null) {
-				JourneyPlayer journeyPlayer = JCapabilityManager.asJourneyPlayer(player);
-				PlayerStats stats = journeyPlayer.getPlayerStats();
-				
-				//Can use this to add knowledge depending on the entity killed
-				
-				journeyPlayer.sendUpdates();
-			}
+			JourneyPlayer journeyPlayer = JCapabilityManager.asJourneyPlayer(player);
+			PlayerStats stats = journeyPlayer.getPlayerStats();
+
+			//Can use this to add knowledge depending on the entity killed
+
+			journeyPlayer.sendUpdates();
 		}
 	}
 
@@ -48,14 +46,12 @@ public class JourneyKnowledgeEventListener {
 	public void onMobDrop(LivingDropsEvent event){
 		if(event.getSource().getTrueSource() instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer)event.getSource().getTrueSource();
-			if(player.getHeldItemMainhand() != null) {
-				JourneyPlayer journeyPlayer = JCapabilityManager.asJourneyPlayer(player);
-				PlayerStats stats = journeyPlayer.getPlayerStats();
-				
-				//Can use this to change what mobs drop depending on knowledge level
-				
-				journeyPlayer.sendUpdates();
-			}
+			JourneyPlayer journeyPlayer = JCapabilityManager.asJourneyPlayer(player);
+			PlayerStats stats = journeyPlayer.getPlayerStats();
+
+			//Can use this to change what mobs drop depending on knowledge level
+
+			journeyPlayer.sendUpdates();
 		}
 	}
 
