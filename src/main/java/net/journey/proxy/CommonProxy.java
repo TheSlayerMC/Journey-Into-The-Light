@@ -5,6 +5,7 @@ import net.journey.client.handler.GuiHandler;
 import net.journey.command.DimensionCommand;
 import net.journey.command.JourneyCommands;
 import net.journey.common.capability.JCapabilityManager;
+import net.journey.common.knowledge.JourneyKnowledgeEvent;
 import net.journey.common.network.NetworkHandler;
 import net.journey.dimension.base.DimensionHelper;
 import net.journey.dimension.base.WorldGenJourney;
@@ -85,6 +86,7 @@ public class CommonProxy {
         SlayerAPI.registerEventListener(new ArmorAbilityEvent());
         SlayerAPI.registerEventListener(new VanillaFixEvent());
         SlayerAPI.registerEventListener(new JourneyEnchantments());
+        SlayerAPI.registerEventListener(new JourneyKnowledgeEvent());
         SlayerAPI.registerEventListener(new BowZoomEvent());
         MinecraftForge.addGrassSeed(new ItemStack(JourneyCrops.tomatoSeeds), 5);
         //FMLCommonHandler.instance().bus().register(new JourneyAdvancementEvent());
