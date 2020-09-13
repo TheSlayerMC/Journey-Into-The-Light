@@ -30,7 +30,7 @@ public class JourneyKnowledgeEventListener {
 	}
 
 	@SubscribeEvent
-	public void onMobKilled(LivingDeathEvent event) {
+	public static void onMobKilled(LivingDeathEvent event) {
 		if(event.getSource().getTrueSource() instanceof EntityPlayer){
 			EntityPlayer player = (EntityPlayer)event.getSource().getTrueSource();
 			JourneyPlayer journeyPlayer = JCapabilityManager.asJourneyPlayer(player);
@@ -43,7 +43,7 @@ public class JourneyKnowledgeEventListener {
 	}
 
 	@SubscribeEvent
-	public void onMobDrop(LivingDropsEvent event){
+	public static void onMobDrop(LivingDropsEvent event){
 		if(event.getSource().getTrueSource() instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer)event.getSource().getTrueSource();
 			JourneyPlayer journeyPlayer = JCapabilityManager.asJourneyPlayer(player);

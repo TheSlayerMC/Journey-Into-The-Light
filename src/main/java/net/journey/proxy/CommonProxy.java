@@ -86,7 +86,6 @@ public class CommonProxy {
         SlayerAPI.registerEventListener(new ArmorAbilityEvent());
         SlayerAPI.registerEventListener(new VanillaFixEvent());
         SlayerAPI.registerEventListener(new JourneyEnchantments());
-        SlayerAPI.registerEventListener(new JourneyKnowledgeEventListener());
         SlayerAPI.registerEventListener(new BowZoomEvent());
         MinecraftForge.addGrassSeed(new ItemStack(JourneyCrops.tomatoSeeds), 5);
         //FMLCommonHandler.instance().bus().register(new JourneyAdvancementEvent());
