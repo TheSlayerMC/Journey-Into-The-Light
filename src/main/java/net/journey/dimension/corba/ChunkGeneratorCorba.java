@@ -349,7 +349,7 @@ public class ChunkGeneratorCorba implements IChunkGenerator {
 
 //		System.out.println(villageGenerator.getNearestStructurePos(world, startPos, false));
 
-		if (world.getBiome(startPos) == DimensionHelper.CORBA_BIOME) {
+		if (world.getBiome(startPos) == DimensionHelper.CORBA_BIOME || world.getBiome(startPos) == DimensionHelper.CORBA_HILLS_BIOME) {
 			for (i = 0; i < 5; i++) {
 				genCorbaTallGrass.generate(world, rand, startPos);
 				genCorbaFlower.generate(world, rand, startPos);
@@ -417,7 +417,7 @@ public class ChunkGeneratorCorba implements IChunkGenerator {
 		}
 
 		if (this.rand.nextInt(215) == 0) {
-			new JWorldGenRuins(GroundPredicate.CORBA_MUD, JWorldGenRuins.LootType.SPECIAL_BLOCK,
+			new JWorldGenRuins(GroundPredicate.CORBA_TAINTED_MUD, JWorldGenRuins.LootType.SPECIAL_BLOCK,
 					JourneyBlocks.corbaDarkBricks.getDefaultState(),
 					JourneyBlocks.corbaLightBricks.getDefaultState(),
 					JourneyBlocks.corbaCrackedBricks.getDefaultState(),

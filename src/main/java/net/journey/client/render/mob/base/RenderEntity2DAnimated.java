@@ -1,7 +1,6 @@
-package net.journey.client.render.mob;
+package net.journey.client.render.mob.base;
 
 import net.journey.client.render.Textures;
-import net.journey.client.render.base.RenderEntity2D;
 import net.journey.util.RandHelper;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;

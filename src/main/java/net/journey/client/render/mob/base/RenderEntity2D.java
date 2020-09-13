@@ -1,4 +1,4 @@
-package net.journey.client.render.base;
+package net.journey.client.render.mob.base;
 
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;

@@ -1,4 +1,4 @@
-package net.journey.client.render.mob;
+package net.journey.client.render.mob.base;
 
 import net.journey.util.Config;
 import net.minecraft.client.Minecraft;
@@ -16,7 +16,7 @@ import org.lwjgl.opengl.GL11;
 
 public class RenderModBiped<T extends EntityLiving> extends RenderBiped<T> {
 
-    private ResourceLocation texture;
+    private final ResourceLocation texture;
 
     public RenderModBiped(ModelBiped model, float shadow, ResourceLocation tex) {
         super(Minecraft.getMinecraft().getRenderManager(), model, shadow);
