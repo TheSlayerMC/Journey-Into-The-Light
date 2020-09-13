@@ -5,10 +5,7 @@ import net.journey.api.block.GroundPredicate;
 import net.journey.dimension.base.DimensionHelper;
 import net.journey.dimension.base.gen.JWorldGenPlants;
 import net.journey.dimension.base.gen.JWorldGenRuins;
-import net.journey.dimension.corba.gen.WorldGenCorbaLamp;
-import net.journey.dimension.corba.gen.WorldGenHugeCorbaTree;
-import net.journey.dimension.corba.gen.WorldGenTordoSmallVillage;
-import net.journey.dimension.corba.gen.WorldGenTreehouse;
+import net.journey.dimension.corba.gen.*;
 import net.journey.dimension.corba.gen.trees.WorldGenCorbaLargeTree;
 import net.journey.dimension.corba.gen.trees.WorldGenCorbaMediumTree;
 import net.journey.dimension.corba.gen.trees.WorldGenCorbaSmallTree;
@@ -394,6 +391,13 @@ public class ChunkGeneratorCorba implements IChunkGenerator {
 						JourneyBlocks.corbaCobblestone.getDefaultState()).generate(world, this.rand, startPos);
 			}
 		}
+
+		if (world.getBiome(startPos) == DimensionHelper.CORBA_BIOME) {
+			if (this.rand.nextInt(10) == 0) {
+				new WorldGenCorbaTotems().generate(world, this.rand, startPos);
+			}
+		}
+
 
 		if (world.getBiome(startPos) == DimensionHelper.CORBA_SWAMP_BIOME) {
 			for (times = 0; times < 25; times++) {

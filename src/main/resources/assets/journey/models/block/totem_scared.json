@@ -1,0 +1,8 @@
+{
+  "parent": "block/orientable",
+  "textures": {
+    "top": "journey:blocks/totem_base_top",
+    "front": "journey:blocks/totem_scared",
+    "side": "journey:blocks/totem_base_1"
+  }
+}

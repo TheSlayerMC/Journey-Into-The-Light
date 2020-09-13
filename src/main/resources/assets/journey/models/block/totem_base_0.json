@@ -1,0 +1,9 @@
+{
+  "parent": "block/cube_bottom_top",
+  "textures": {
+    "particle": "journey:blocks/totem_base_0",
+    "top": "journey:blocks/totem_base_top",
+    "side": "journey:blocks/totem_base_0",
+    "bottom": "journey:blocks/totem_base_top"
+  }
+}

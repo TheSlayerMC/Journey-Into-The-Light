@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "journey:totem_sad"
+    },
+    "facing=south": {
+      "model": "journey:totem_sad",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "journey:totem_sad",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "journey:totem_sad",
+      "y": 90
+    }
+  }
+}
