@@ -27,7 +27,7 @@ public class WorldGenCorbaSwampTree extends WorldGenAbstractTree {
     }
 
     public boolean generate(World worldIn, Random rand, BlockPos position) {
-        int i = rand.nextInt(2) + rand.nextInt(2) + 4;
+        int i = rand.nextInt(2) + rand.nextInt(2) + 10;
         boolean flag = true;
         if (position.getY() >= 1 && position.getY() + i + 1 <= 256) {
             int k2;
@@ -91,9 +91,9 @@ public class WorldGenCorbaSwampTree extends WorldGenAbstractTree {
                     BlockPos blockpos2 = new BlockPos(i3, k1, j1);
 
                     int l3;
-                    for(k3 = -5; k3 <= 5; ++k3) {
-                        for(l3 = -5; l3 <= 5; ++l3) {
-                            if (Math.abs(k3) != 5 || Math.abs(l3) != 5) {
+                    for (k3 = -6; k3 <= 6; ++k3) {
+                        for (l3 = -6; l3 <= 6; ++l3) {
+                            if (Math.abs(k3) != 6 || Math.abs(l3) != 6) {
                                 this.placeLeafAt(worldIn, blockpos2.add(k3, 0, l3));
                             }
                         }
@@ -101,8 +101,16 @@ public class WorldGenCorbaSwampTree extends WorldGenAbstractTree {
 
                     blockpos2 = blockpos2.up();
 
-                    for(k3 = -1; k3 <= 1; ++k3) {
-                        for(l3 = -1; l3 <= 1; ++l3) {
+                    for (k3 = -4; k3 <= 4; ++k3) {
+                        for (l3 = -4; l3 <= 4; ++l3) {
+                            this.placeLeafAt(worldIn, blockpos2.add(k3, 0, l3));
+                        }
+                    }
+
+                    blockpos2 = blockpos2.up();
+
+                    for (k3 = -1; k3 <= 1; ++k3) {
+                        for (l3 = -1; l3 <= 1; ++l3) {
                             this.placeLeafAt(worldIn, blockpos2.add(k3, 0, l3));
                         }
                     }
@@ -140,9 +148,9 @@ public class WorldGenCorbaSwampTree extends WorldGenAbstractTree {
                             BlockPos blockpos3 = new BlockPos(i3, k1, j1);
 
                             int l5;
-                            for(j5 = -2; j5 <= 2; ++j5) {
-                                for(l5 = -2; l5 <= 2; ++l5) {
-                                    if (Math.abs(j5) != 2 || Math.abs(l5) != 2) {
+                            for (j5 = -4; j5 <= 4; ++j5) {
+                                for (l5 = -4; l5 <= 4; ++l5) {
+                                    if (Math.abs(j5) != 4 || Math.abs(l5) != 4) {
                                         this.placeLeafAt(worldIn, blockpos3.add(j5, 0, l5));
                                     }
                                 }
@@ -150,8 +158,8 @@ public class WorldGenCorbaSwampTree extends WorldGenAbstractTree {
 
                             blockpos3 = blockpos3.up();
 
-                            for(j5 = -1; j5 <= 1; ++j5) {
-                                for(l5 = -1; l5 <= 1; ++l5) {
+                            for (j5 = -2; j5 <= 2; ++j5) {
+                                for (l5 = -2; l5 <= 2; ++l5) {
                                     this.placeLeafAt(worldIn, blockpos3.add(j5, 0, l5));
                                 }
                             }
@@ -181,6 +189,6 @@ public class WorldGenCorbaSwampTree extends WorldGenAbstractTree {
     }
 
     static {
-        
+
     }
 }

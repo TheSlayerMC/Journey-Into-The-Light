@@ -298,12 +298,14 @@ public class JourneyWeapons {
 		mantleBow = Registrar.regAndSetupItem("mantleBow", "Mantle Bow", new ItemModBow(3.5F, 384, EnumSet.of(EntityEssenceArrow.BowEffects.FLAME), 48000), JourneyTabs.WEAPONS);
 		coreExpender = Registrar.regAndSetupItem("coreExpender", "Core Expender", new ItemModBow(2.5F, 384, EnumSet.of(
 				EntityEssenceArrow.BowEffects.CONSUMES_ESSENCE,
-				EntityEssenceArrow.BowEffects.FLAME), 72000), JourneyTabs.WEAPONS);
+				EntityEssenceArrow.BowEffects.FLAME), 72000), JourneyTabs.WEAPONS).setEssenceValue(3);
 		royalBow = Registrar.regAndSetupItem("royalBow", "Royal Bow", new ItemModBow(3.0F, 384, EnumSet.of(EntityEssenceArrow.BowEffects.WITHER), 64000), JourneyTabs.WEAPONS);
 
 		//Depths
-		darkEnforcer = Registrar.regAndSetupItem("darkEnforcer", "Dark Enforcer", new ItemModBow(5.0F, 384, EnumSet.of(EntityEssenceArrow.BowEffects.CONSUMES_ESSENCE), 64000), JourneyTabs.WEAPONS);
-		depthsBow = Registrar.regAndSetupItem("depthsBow", "Depths Bow", new ItemModBow(4.0F, 384, EnumSet.of(EntityEssenceArrow.BowEffects.CONSUMES_ESSENCE), 32000), JourneyTabs.WEAPONS);
+		darkEnforcer = Registrar.regAndSetupItem("darkEnforcer", "Dark Enforcer", new ItemModBow(5.0F, 384, EnumSet.of(
+				EntityEssenceArrow.BowEffects.CONSUMES_ESSENCE), 64000), JourneyTabs.WEAPONS).setEssenceValue(3);
+		depthsBow = Registrar.regAndSetupItem("depthsBow", "Depths Bow", new ItemModBow(4.0F, 384, EnumSet.of(
+				EntityEssenceArrow.BowEffects.CONSUMES_ESSENCE), 32000), JourneyTabs.WEAPONS).setEssenceValue(3);
 		rocsWing = Registrar.regAndSetupItem("rocsWing", "Roc's Wing", new ItemModBow(4.0F, 384, EnumSet.of(EntityEssenceArrow.BowEffects.WITHER), 54000), JourneyTabs.WEAPONS);
 		scaleBow = Registrar.regAndSetupItem("scaleBow", "Scale Bow", new ItemModBow(4.0F, 384, EnumSet.of(EntityEssenceArrow.BowEffects.SLOWNESS), 54000), JourneyTabs.WEAPONS);
 
@@ -316,7 +318,8 @@ public class JourneyWeapons {
 		//Terrania
 		darkTerraBow = Registrar.regAndSetupItem("darkTerraBow", "Dark Terra Bow", new ItemModBow(5.0F, 384, EnumSet.of(EntityEssenceArrow.BowEffects.WITHER), 48000), JourneyTabs.WEAPONS);
 		lavenderBow = Registrar.regAndSetupItem("lavenderBow", "Lavender Bow", new ItemModBow(5.0F, 384, EnumSet.of(EntityEssenceArrow.BowEffects.SLOWNESS), 36000), JourneyTabs.WEAPONS);
-		terralightBow = Registrar.regAndSetupItem("terralightBow", "Terralight Bow", new ItemModBow(5.0F, 384, EnumSet.of(EntityEssenceArrow.BowEffects.CONSUMES_ESSENCE), 32000), JourneyTabs.WEAPONS);
+		terralightBow = Registrar.regAndSetupItem("terralightBow", "Terralight Bow", new ItemModBow(5.0F, 384, EnumSet.of(
+				EntityEssenceArrow.BowEffects.CONSUMES_ESSENCE), 32000), JourneyTabs.WEAPONS).setEssenceValue(2);
 		terrianBow = Registrar.regAndSetupItem("terrianBow", "Terrian Bow", new ItemModBow(5.0F, 384, EnumSet.of(EntityEssenceArrow.BowEffects.POISON), 40000), JourneyTabs.WEAPONS);
 
 		//Cloudia

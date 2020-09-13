@@ -36,7 +36,7 @@ public class ItemModBow extends ItemBow {
 	public Item arrowItem;
 	protected float damage;
 	protected int uses;
-	protected int manaUse = 3;
+	protected int manaUse;
 	protected EnumSet<EntityEssenceArrow.BowEffects> effects;
 	private final Class<? extends EntityArrow> arrowClass;
 
@@ -114,16 +114,24 @@ public class ItemModBow extends ItemBow {
 
 			return ItemStack.EMPTY;
 		}
-    }
+	}
 
-    @Override
-    protected boolean isArrow(ItemStack stack) {
-        return stack.getItem() instanceof ItemEssenceArrow;
-    }
+	public ItemModBow setEssenceValue(int essenceValue) {
+		this.manaUse = essenceValue;
+		if (essenceValue <= 0) {
+			this.manaUse = 3;
+		}
+		return this;
+	}
 
-    @Override
-    public void onPlayerStoppedUsing(ItemStack stack, World worldIn, EntityLivingBase entityLiving, int timeLeft) {
-        if (entityLiving instanceof EntityPlayer) {
+	@Override
+	protected boolean isArrow(ItemStack stack) {
+		return stack.getItem() instanceof ItemEssenceArrow;
+	}
+
+	@Override
+	public void onPlayerStoppedUsing(ItemStack stack, World worldIn, EntityLivingBase entityLiving, int timeLeft) {
+		if (entityLiving instanceof EntityPlayer) {
 			EntityPlayer entityplayer = (EntityPlayer) entityLiving;
 			boolean flag = entityplayer.capabilities.isCreativeMode ||
 					EnchantmentHelper.getEnchantmentLevel(Enchantments.INFINITY, stack) > 0 ||
@@ -304,7 +312,7 @@ public class ItemModBow extends ItemBow {
 			list.add(TextFormatting.BLUE + "Ability: Shoots 2 arrows");
 		}
 		if (effects.contains(EntityEssenceArrow.BowEffects.CONSUMES_ESSENCE)) {
-			list.add(TextFormatting.GREEN + "Ability: Consumes Essence instead of arrows");
+			list.add(TextFormatting.GREEN + "Ability: Consumes " + manaUse + " Essence instead of arrows");
 		}
 		list.add("Uses remaining: " + TextFormatting.GRAY + uses);
 	}
