@@ -14,7 +14,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 @Mod.EventBusSubscriber(modid = JITL.MOD_ID)
-public class JourneyKnowledgeEvent {
+public class JourneyKnowledgeEventListener {
 
 	@SubscribeEvent
 	public static void onBlockHarvested(HarvestDropsEvent event) {
