@@ -57,7 +57,7 @@ public class KnowledgeStorageImpl extends SerializableInnerCap<NBTTagCompound, K
 
 	@Override
 	public float getLevelCapacity(int level) {
-		return 32;//TODO change to formula, where cap increases on every level
+		return level >= 5 ? 50 : level >= 10 ? 70 : level >= 15 ? 90 : level >= 20 ? 110 : level >= 30 ? 130 : level >= 40 ? 150 : 30; //May need balancing
 	}
 
 	@Override
