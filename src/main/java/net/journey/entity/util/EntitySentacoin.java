@@ -34,7 +34,7 @@ public class EntitySentacoin extends Entity {
 
 	public EntitySentacoin(World worldIn) {
 		super(worldIn);
-		this.setSize(0.25F, 0.25F);
+		this.setSize(0.15F, 0.15F);
 	}
 
 	@Override
@@ -49,41 +49,13 @@ public class EntitySentacoin extends Entity {
 	public void onUpdate() {
 		super.onUpdate();
 
-		if(this.delayBeforeCanPickup > 0) --this.delayBeforeCanPickup;
-
 		this.prevPosX = this.posX;
 		this.prevPosY = this.posY;
 		this.prevPosZ = this.posZ;
 
 		if(!this.hasNoGravity()) this.motionY -= 0.029999999329447746D;
 
-		if(this.world.getBlockState(new BlockPos(this)).getMaterial() == Material.LAVA) {
-			this.motionY = 0.20000000298023224D;
-			this.motionX = (double)((this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F);
-			this.motionZ = (double)((this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F);
-			this.playSound(SoundEvents.ENTITY_GENERIC_BURN, 0.4F, 2.0F + this.rand.nextFloat() * 0.4F);
-		}
-
 		this.pushOutOfBlocks(this.posX, (this.getEntityBoundingBox().minY + this.getEntityBoundingBox().maxY) / 2.0D, this.posZ);
-		double d0 = 8.0D;
-
-		if(this.closestPlayer != null && this.closestPlayer.isSpectator()) this.closestPlayer = null;
-
-		if(this.closestPlayer != null) {
-			double d1 = (this.closestPlayer.posX - this.posX) / 8.0D;
-			double d2 = (this.closestPlayer.posY + (double)this.closestPlayer.getEyeHeight() / 2.0D - this.posY) / 8.0D;
-			double d3 = (this.closestPlayer.posZ - this.posZ) / 8.0D;
-			double d4 = Math.sqrt(d1 * d1 + d2 * d2 + d3 * d3);
-			double d5 = 1.0D - d4;
-
-			if(d5 > 0.0D) {
-				d5 = d5 * d5;
-				this.motionX += d1 / d4 * d5 * 0.1D;
-				this.motionY += d2 / d4 * d5 * 0.1D;
-				this.motionZ += d3 / d4 * d5 * 0.1D;
-			}
-		}
-
 		this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
 		float f = 0.98F;
 
@@ -144,15 +116,13 @@ public class EntitySentacoin extends Entity {
 	@Override
 	public void onCollideWithPlayer(EntityPlayer entityIn) {
 		if(!this.world.isRemote) {
-			if(this.delayBeforeCanPickup == 0) {
-				JourneyPlayer journeyPlayer = JCapabilityManager.asJourneyPlayer(entityIn);
-				PlayerStats stats = journeyPlayer.getPlayerStats();
-				entityIn.onItemPickup(this, 1);
-				stats.addSentacoin(1);
-				this.playSound(JourneySounds.COIN_PICKUP, 1.0F, 1.0F + rand.nextFloat());
-				journeyPlayer.sendUpdates();
-				this.setDead();
-			}
+			JourneyPlayer journeyPlayer = JCapabilityManager.asJourneyPlayer(entityIn);
+			PlayerStats stats = journeyPlayer.getPlayerStats();
+			entityIn.onItemPickup(this, 1);
+			stats.addSentacoin(1);
+			this.playSound(JourneySounds.COIN_PICKUP, 1.0F, 1.0F + rand.nextFloat());
+			journeyPlayer.sendUpdates();
+			this.setDead();
 		}
 	}
 
