@@ -5,6 +5,8 @@ import net.journey.api.capability.PlayerStats;
 import net.journey.common.capability.JCapabilityManager;
 import net.journey.common.knowledge.EnumKnowledgeType;
 import net.journey.util.ContainerEmpty;
+import net.journey.util.EnumHexColorHelper;
+import net.journey.util.gui.TextRenderUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -148,9 +150,15 @@ public class GuiPlayerStats extends GuiContainer {
 		float percents = knowledge.getAmountOnCurrentLevel() / knowledge.getLevelCapacity(knowledge.getLevelCount());
 		int width = (int) (percents * progressBarSize);
 
-		drawTexturedModalRect(k + x + 35, l + y + 15, 0, 5, progressBarSize, 5);
-		drawTexturedModalRect(k + x + 35, l + y + 15, 0, 0, width, 5);
-		fontRenderer.drawString("Lv: " + knowledge.getLevelCount(), k + x + 35, l + y + 22, 4210752);
+		int progressBarX = k + x + 35, progressBarY = l + y + 15;
+
+		drawTexturedModalRect(progressBarX, progressBarY, 0, 5, progressBarSize, 5);
+		drawTexturedModalRect(progressBarX, progressBarY, 0, 0, width, 5);
+
+		TextRenderUtils TextRenderUtils = new TextRenderUtils();
+		int lvX = progressBarX + 29, lvY = progressBarY - 1;
+
+		TextRenderUtils.drawBoldString(fontRenderer, lvX, lvY, "" + knowledge.getLevelCount(), EnumHexColorHelper.LIGHT_BLUE);
 		GlStateManager.disableAlpha();
 		GlStateManager.disableBlend();
 		GlStateManager.popMatrix();
