@@ -5,10 +5,7 @@ import net.journey.api.block.GroundPredicate;
 import net.journey.dimension.base.DimensionHelper;
 import net.journey.dimension.base.gen.JWorldGenPlants;
 import net.journey.dimension.base.gen.JWorldGenRuins;
-import net.journey.dimension.corba.gen.WorldGenCorbaLamp;
-import net.journey.dimension.corba.gen.WorldGenHugeCorbaTree;
-import net.journey.dimension.corba.gen.WorldGenTordoSmallVillage;
-import net.journey.dimension.corba.gen.WorldGenTreehouse;
+import net.journey.dimension.corba.gen.*;
 import net.journey.dimension.corba.gen.trees.WorldGenCorbaLargeTree;
 import net.journey.dimension.corba.gen.trees.WorldGenCorbaMediumTree;
 import net.journey.dimension.corba.gen.trees.WorldGenCorbaSmallTree;
@@ -349,7 +346,7 @@ public class ChunkGeneratorCorba implements IChunkGenerator {
 
 //		System.out.println(villageGenerator.getNearestStructurePos(world, startPos, false));
 
-		if (world.getBiome(startPos) == DimensionHelper.CORBA_BIOME) {
+		if (world.getBiome(startPos) == DimensionHelper.CORBA_BIOME || world.getBiome(startPos) == DimensionHelper.CORBA_HILLS_BIOME) {
 			for (i = 0; i < 5; i++) {
 				genCorbaTallGrass.generate(world, rand, startPos);
 				genCorbaFlower.generate(world, rand, startPos);
@@ -395,6 +392,13 @@ public class ChunkGeneratorCorba implements IChunkGenerator {
 			}
 		}
 
+		if (world.getBiome(startPos) == DimensionHelper.CORBA_BIOME) {
+			if (this.rand.nextInt(10) == 0) {
+				new WorldGenCorbaTotems().generate(world, this.rand, startPos);
+			}
+		}
+
+
 		if (world.getBiome(startPos) == DimensionHelper.CORBA_SWAMP_BIOME) {
 			for (times = 0; times < 25; times++) {
 				WorldGenAPI.genOnGround(world, chunkPos, this.rand, new WorldGenCorbaSwampTree(true));
@@ -417,7 +421,7 @@ public class ChunkGeneratorCorba implements IChunkGenerator {
 		}
 
 		if (this.rand.nextInt(215) == 0) {
-			new JWorldGenRuins(GroundPredicate.CORBA_MUD, JWorldGenRuins.LootType.SPECIAL_BLOCK,
+			new JWorldGenRuins(GroundPredicate.CORBA_TAINTED_MUD, JWorldGenRuins.LootType.SPECIAL_BLOCK,
 					JourneyBlocks.corbaDarkBricks.getDefaultState(),
 					JourneyBlocks.corbaLightBricks.getDefaultState(),
 					JourneyBlocks.corbaCrackedBricks.getDefaultState(),

@@ -69,7 +69,7 @@ public class BlockModGrass extends BlockMod implements IGrowable {
                 return true;
             }
         }
-        return this.path != null;
+        return this.path != null && playerIn.getHeldItemMainhand().getItem() instanceof ItemSpade;
     }
 
     @Override

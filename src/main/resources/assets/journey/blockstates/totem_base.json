@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "normal": [
+      {
+        "model": "journey:totem_base_0"
+      },
+      {
+        "model": "journey:totem_base_1"
+      }
+    ]
+  }
+}

@@ -263,6 +263,12 @@ public class JourneyBlocks {
 
     public static BlockSlime slime;
 
+    public static BlockMod totemBase;
+    public static BlockMod totemAngry;
+    public static BlockMod totemHappy;
+    public static BlockMod totemScared;
+    public static BlockMod totemSad;
+
     public static BlockMod boilingLamp;
     public static BlockMod blazierBricks;
     public static BlockMod ashBlock;
@@ -797,6 +803,13 @@ public class JourneyBlocks {
         corbaPlankStairs = new BlockModStairs(corbaPlank, "corba_plank_stairs", "Corba Plank Stairs");
 
         slime = new BlockSlime(EnumMaterialTypes.SLIME, "slime", "Slime", 0.1F);
+
+        totemBase = (BlockMod) new BlockMod(EnumMaterialTypes.WOOD, "totem_base", "Totem Base", 1.0F).setBlockUnbreakable().setResistance(100000F);
+        totemHappy = (BlockMod) new JBlockFacing(EnumMaterialTypes.WOOD, "totem_happy", "Happy Totem", 1.0F).setBlockUnbreakable().setResistance(100000F);
+        totemSad = (BlockMod) new JBlockFacing(EnumMaterialTypes.WOOD, "totem_sad", "Sad Totem", 1.0F).setBlockUnbreakable().setResistance(100000F);
+        totemAngry = (BlockMod) new JBlockFacing(EnumMaterialTypes.WOOD, "totem_angry", "Angry Totem", 1.0F).setBlockUnbreakable().setResistance(100000F);
+        totemScared = (BlockMod) new JBlockFacing(EnumMaterialTypes.WOOD, "totem_scared", "Scared Totem", 1.0F).setBlockUnbreakable().setResistance(100000F);
+
 
         boilingLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "boilingLamp", "Boiling Lamp", 0.1F)
                 .setLightLevel(1.0F).setCreativeTab(JourneyTabs.DECORATION);

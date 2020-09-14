@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "journey:totem_scared"
+    },
+    "facing=south": {
+      "model": "journey:totem_scared",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "journey:totem_scared",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "journey:totem_scared",
+      "y": 90
+    }
+  }
+}

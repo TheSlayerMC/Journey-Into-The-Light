@@ -5,6 +5,7 @@ import net.journey.client.handler.GuiHandler;
 import net.journey.command.DimensionCommand;
 import net.journey.command.JourneyCommands;
 import net.journey.common.capability.JCapabilityManager;
+import net.journey.common.knowledge.JourneyKnowledgeEventListener;
 import net.journey.common.network.NetworkHandler;
 import net.journey.dimension.base.DimensionHelper;
 import net.journey.dimension.base.WorldGenJourney;

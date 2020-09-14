@@ -1,4 +1,4 @@
-package net.journey.client.render.mob;
+package net.journey.client.render.mob.base;
 
 import net.journey.client.render.base.RenderModMob;
 import net.minecraft.client.model.ModelBase;
