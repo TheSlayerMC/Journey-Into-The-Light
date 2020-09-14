@@ -1,6 +1,5 @@
 package net.journey.common.knowledge;
 
-import net.journey.JITL;
 import net.journey.api.capability.JourneyPlayer;
 import net.journey.api.capability.PlayerStats;
 import net.journey.common.capability.JCapabilityManager;
@@ -43,7 +42,6 @@ public class JourneyKnowledgeEventListener {
 			PlayerStats stats = journeyPlayer.getPlayerStats();
 
 			//Can use this to add knowledge depending on the entity killed
-			JITL.LOGGER.info("Uhhhhh");
 			addKnowledgeFromMob(event, stats, EntitySkeleton.class, EnumKnowledgeType.OVERWORLD, 1);
 			addKnowledgeFromMob(event, stats, EntityZombie.class, EnumKnowledgeType.OVERWORLD, 1);
 			addKnowledgeFromMob(event, stats, EntitySpider.class, EnumKnowledgeType.OVERWORLD, 1);
@@ -88,7 +86,6 @@ public class JourneyKnowledgeEventListener {
 		EntityLivingBase killedEntity = event.getEntityLiving();
 		if (killedEntity.getClass() == entityLivingBase) {
 			stats.addKnowledge(knowledgeType, knowledge);
-			JITL.LOGGER.info("AHHHHH");
 		}
 	}
 }
