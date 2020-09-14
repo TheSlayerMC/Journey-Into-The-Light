@@ -2,11 +2,9 @@ package net.journey.client.render.mob;
 
 import net.journey.client.render.Textures;
 import net.journey.client.render.base.RenderBoss;
-import net.journey.client.render.mob.layers.LayerFourfaHeldItem;
-import net.journey.client.render.model.mob.boss.ModelFourfa;
 import net.journey.client.render.model.mob.boss.ModelGuardianOfDestruction;
-import net.journey.entity.mob.boss.EntityFourfa;
 import net.journey.entity.mob.boss.EntityGuardianOfDestruction;
+import net.journey.util.EnumHexColorHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.slayer.api.SlayerAPI;
@@ -14,7 +12,7 @@ import net.slayer.api.SlayerAPI;
 public class RenderGuardianOfDestruction extends RenderBoss {
 
     public RenderGuardianOfDestruction() {
-        super(new ModelGuardianOfDestruction(), 0, 2.0F, Textures.blank, "guardianofdestruction");
+        super(new ModelGuardianOfDestruction(), 0, 2.0F, Textures.blank, "guardianofdestruction", EnumHexColorHelper.ORANGE.getInt());
     }
 
     @Override

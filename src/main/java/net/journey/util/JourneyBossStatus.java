@@ -8,10 +8,14 @@ public final class JourneyBossStatus {
     public static int statusBarTime;
     public static boolean hasColorModifier;
     public static String bar;
+    public static String bossName;
+    public static int stringTextColor;
 
-    public static void setStatus(IEssenceBoss boss, String id1) {
+    public static void setStatus(IEssenceBoss boss, String id1, int bossTextColor) {
         healthScale = boss.getModHealth() / boss.getModMaxHealth();
         statusBarTime = 100;
         bar = id1;
+        bossName = id1;
+        stringTextColor = bossTextColor;
     }
 }

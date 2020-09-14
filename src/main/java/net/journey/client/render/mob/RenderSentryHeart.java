@@ -2,11 +2,9 @@ package net.journey.client.render.mob;
 
 import net.journey.client.render.Textures;
 import net.journey.client.render.base.RenderBoss;
-import net.journey.client.render.mob.layers.LayerFourfaHeldItem;
-import net.journey.client.render.model.mob.boss.ModelFourfa;
 import net.journey.client.render.model.mob.boss.ModelSentryHeart;
-import net.journey.entity.mob.boss.EntityFourfa;
 import net.journey.entity.mob.boss.EntitySentryHeart;
+import net.journey.util.EnumHexColorHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.slayer.api.SlayerAPI;
@@ -14,7 +12,7 @@ import net.slayer.api.SlayerAPI;
 public class RenderSentryHeart extends RenderBoss {
 
     public RenderSentryHeart() {
-        super(new ModelSentryHeart(), 0, 2.0F, Textures.blank, "sentryheart");
+		super(new ModelSentryHeart(), 0, 2.0F, Textures.blank, "sentryheart", EnumHexColorHelper.RED.getInt());
     }
 
     @Override

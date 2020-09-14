@@ -3,16 +3,17 @@ package net.journey.client.render.mob;
 import net.journey.client.render.Textures;
 import net.journey.client.render.base.RenderBoss;
 import net.journey.entity.mob.boss.EntityCalcia;
+import net.journey.util.EnumHexColorHelper;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 
 public class RenderCalcia extends RenderBoss {
 
-    private ResourceLocation texture;
+    private final ResourceLocation texture;
 
     public RenderCalcia(ModelBase model, float shadow, float size, ResourceLocation tex, String bar) {
-        super(model, shadow, size, tex, bar);
+        super(model, shadow, size, tex, bar, EnumHexColorHelper.RED.getInt());
         texture = tex;
     }
 

@@ -200,6 +200,23 @@ fluid.journey.orbadite.name=Molten Orbadite
 journey.menu.theme.mc=Use Default Menu Theme
 journey.menu.theme.jitl=Use JITL Menu Theme
 
+journey.boss.name.terranianProtector=TERRANIAN         PROTECTOR
+journey.boss.name.soulWatcher=SOUL         WATCHER
+journey.boss.name.netherBeast=NETHER BEAST
+journey.boss.name.witheringBeast=WITHERING BEAST
+journey.boss.name.calcia=CALCIA
+journey.boss.name.templeGuardian=TEMPLE GUARDIAN
+journey.boss.name.fourfa=FOURFA
+journey.boss.name.guardianofdestruction=GUARDIAN OF DESTRUCTION
+journey.boss.name.blazier=BLAZIER
+journey.boss.name.sentryKing=SENTRY         KING
+journey.boss.name.thunderbird=THUNDERBIRD
+journey.boss.name.logger=LOGGER
+journey.boss.name.corallator=CORALLATOR
+journey.boss.name.skyStalker=THE SKY STALKER
+journey.boss.name.eudor=EUDOR
+journey.boss.name.scale=SCALE
+
 #MARK AUTO GEN START
 
 #CreativeTabs

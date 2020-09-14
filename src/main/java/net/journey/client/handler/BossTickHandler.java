@@ -6,7 +6,9 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiIngame;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.RenderTickEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -16,7 +18,7 @@ import org.lwjgl.opengl.GL11;
 
 public class BossTickHandler {
 
-    private Minecraft mc = Minecraft.getMinecraft();
+    private final Minecraft mc = Minecraft.getMinecraft();
 
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
@@ -50,7 +52,22 @@ public class BossTickHandler {
             gig.drawTexturedModalRect(barDisX, barDisY, 0, 0, health, barHeight);
             gig.drawTexturedModalRect(barDisX, barDisY, 0, barHeight, finalBarLength, barHeight);
             if (health > 0) gig.drawTexturedModalRect(barDisX, barDisY, 0, 0, health, 10);
+
+            String glitchedText;
+            if (health <= 50) {
+                glitchedText = TextFormatting.OBFUSCATED.toString();
+            } else {
+                glitchedText = "";
+            }
+
+            if (JourneyBossStatus.bossName != null) {
+                this.drawCenteredString(fontrenderer, glitchedText + I18n.format("journey.boss.name." + JourneyBossStatus.bossName), barDisX + 92, barDisY, JourneyBossStatus.stringTextColor);
+            }
         }
+    }
+
+    public void drawCenteredString(FontRenderer fontRenderer, String text, int x, int y, int color) {
+        fontRenderer.drawStringWithShadow(text, (float) (x - fontRenderer.getStringWidth(text) / 2), (float) y, color);
     }
 
     private ResourceLocation set(String name) {
