@@ -1,27 +1,21 @@
 package net.journey.dialogue;
 
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.util.ResourceLocation;
 
 public class Dialogue {
-	private final EntityLivingBase npc;
+	private final ResourceLocation id;
 	private final DialogueNode rootNode;
-	private final DialogueNode currentNode;
 
-	public Dialogue(EntityLivingBase npc, DialogueNode rootNode) {
-		this.npc = npc;
+	protected Dialogue(ResourceLocation id, DialogueNode rootNode) {
+		this.id = id;
 		this.rootNode = rootNode;
-		this.currentNode = rootNode;
+	}
+
+	public ResourceLocation getId() {
+		return id;
 	}
 
 	public DialogueNode getRootNode() {
 		return rootNode;
-	}
-
-	public DialogueNode getCurrentNode() {
-		return currentNode;
-	}
-
-	public EntityLivingBase getNpc() {
-		return npc;
 	}
 }

@@ -1,8 +1,10 @@
 package net.journey.client.render.gui.base.dialogue;
 
 import net.journey.client.render.gui.base.JGuiScreen;
-import net.journey.dialogue.Dialogue;
-import net.journey.dialogue.DialogueNode;
+import net.journey.common.network.NetworkHandler;
+import net.journey.common.network.dialogue.C2SChosenOptionMsg;
+import net.journey.dialogue.ClientDialogueNode;
+import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.EntityLivingBase;
@@ -10,7 +12,7 @@ import net.minecraft.entity.EntityLivingBase;
 import java.util.List;
 
 public class GuiDialogue extends JGuiScreen {
-	private final Dialogue dialogue;
+	private final ClientDialogueNode node;
 
 	//TODO make constant variables private static final
 	//TODO make nonconstant variables private final
@@ -36,8 +38,8 @@ public class GuiDialogue extends JGuiScreen {
 	int optionsLeft;
 	int optionsTop;
 
-	public GuiDialogue(Dialogue dialogue) {
-		this.dialogue = dialogue;
+	public GuiDialogue(ClientDialogueNode node) {
+		this.node = node;
 	}
 
 	@Override
@@ -62,15 +64,20 @@ public class GuiDialogue extends JGuiScreen {
 		int allHeight = guiBottom - indent - optionsTop;
 		int buttonHeight = 20;
 
-		DialogueNode node = dialogue.getCurrentNode();
-		List<DialogueNode.Option> options = node.getOptions();
+		List<String> options = node.getOptionTextKeys();
 
 		int optionsCenterY = optionsTop + allHeight / 2;
 		int indentCount = options.size() - 1;
 		int minimalIndent = 1;
 
-		int allIndent = (allHeight - buttonHeight * options.size()) / indentCount;
-		int indent = allIndent / indentCount;
+		int indent;
+		if (indentCount != 0) {
+			int allIndent = (allHeight - buttonHeight * options.size()) / indentCount;
+			indent = allIndent / indentCount;
+		} else {
+			indent = 0;
+		}
+
 		indent = Math.min(Math.max(indent, minimalIndent), this.indent); // when options don't fit the space
 
 		int startY = optionsCenterY - buttonHeight * options.size() / 2 - indent * (indentCount / 2);
@@ -79,8 +86,8 @@ public class GuiDialogue extends JGuiScreen {
 
 		int x = centerX - 200 /*default button width*/ / 2;
 
-		for (DialogueNode.Option option : options) {
-			buttonList.add(new GuiOptionButton(option, buttonList.size(), x, startY));
+		for (int i = 0; i < options.size(); i++) {
+			addButton(new GuiOptionButton(options.get(i), i, x, startY));
 			startY += incrementor;
 		}
 	}
@@ -89,7 +96,7 @@ public class GuiDialogue extends JGuiScreen {
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
 		drawDebugLayout(mouseX, mouseY, partialTicks);
 
-		drawEntity(mobIconRight - mobIconWidth / 2, (int) (mobIconBottom - mobIconHeight / 5F), mouseX, mouseY, dialogue.getNpc());
+		drawEntity(mobIconRight - mobIconWidth / 2, (int) (mobIconBottom - mobIconHeight / 5F), mouseX, mouseY, node.getNpc());
 
 		super.drawScreen(mouseX, mouseY, partialTicks);
 	}
@@ -115,5 +122,12 @@ public class GuiDialogue extends JGuiScreen {
 
 		GlStateManager.color(1, 1, 1, 1);
 		GuiInventory.drawEntityOnScreen(posX, posY, adaptiveScale, posX - mouseX, posY - mouseY - eyeOffset, entity);
+	}
+
+	@Override
+	protected void actionPerformed(GuiButton button) {
+		if (button instanceof GuiOptionButton) {
+			NetworkHandler.INSTANCE.sendToServer(new C2SChosenOptionMsg(button.id));
+		}
 	}
 }

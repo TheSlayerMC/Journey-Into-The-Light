@@ -1,58 +1,83 @@
 package net.journey.dialogue;
 
-import net.journey.dialogue.DialogueBuilder.NodeBuilder;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.world.World;
-import org.apache.commons.lang3.NotImplementedException;
 
 import java.util.ArrayList;
 import java.util.List;
-
+//FIXME WHAT TO DO WITH EMPTY OPTIONS
 public class DialogueNode {
-    private final String text;
-    private final List<Option> options;
+	public static final DialogueNode END = new DialogueNode("");
+	public static final Action EMPTY_ACTION = (world, player) -> {
+	};
 
-    public DialogueNode(String text) {
-        this.text = text;
-        this.options = new ArrayList<>();
-    }
+	private final String text;
+	private final List<Option> options;
 
-    protected void addOption(Option option) {
-        options.add(option);
-    }
+	protected DialogueNode(String text) {
+		this.text = text;
+		this.options = new ArrayList<>();
+	}
 
-    public List<Option> getOptions() {
-        return options;
-    }
+	protected void addOption(Option option) {
+		options.add(option);
+	}
 
-    public static class Option {
-        private final String text;
-        private Action onClickAction = Action.END_DIALOGUE;
+	public List<Option> getOptions() {
+		return options;
+	}
 
-        public Option(String text) {
-            this.text = text;
-        }
+	public String getTextKey() {
+		return text;
+	}
 
-        protected void setOnClickAction(Action onClickAction) {
-            this.onClickAction = onClickAction;
-        }
+	@Override
+	public String toString() {
+		return "DialogueNode{" +
+				"text='" + text + '\'' +
+				", options=" + options +
+				'}';
+	}
 
-        public String getText() {
-            return text;
-        }
-    }
+	public static class Option {
+		private final String text;
+		private DialogueNode nextNode = END;
+		private Action onClickAction = EMPTY_ACTION;
 
-    public interface Action {
-        Action END_DIALOGUE = (world, player) -> {
-            throw new NotImplementedException("");
-        };  //FIXME
+		protected Option(String text) {
+			this.text = text;
+		}
 
-        static Action newDialogNode(NodeBuilder nodeBuilder) {
-            return (world, player) -> {
-                throw new NotImplementedException("");
-            };
-        }
+		protected void setOnClickAction(Action onClickAction) {
+			this.onClickAction = onClickAction;
+		}
 
-        void onClick(World world, EntityPlayerMP player);
-    }
+		protected void setNextNode(DialogueNode nextNode) {
+			this.nextNode = nextNode;
+		}
+
+		public String getText() {
+			return text;
+		}
+
+		public DialogueNode getNextNode() {
+			return nextNode;
+		}
+
+		public void onClickAction(World world, EntityPlayerMP player) {
+			onClickAction.onClick(world, player);
+		}
+
+		@Override
+		public String toString() {
+			return "Option{" +
+					"text='" + text + '\'' +
+					", hasNextNode=" + (nextNode != END) +
+					'}';
+		}
+	}
+
+	public interface Action {
+		void onClick(World world, EntityPlayerMP player);
+	}
 }

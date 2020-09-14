@@ -10,8 +10,10 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class S2CSyncJourneyCapMsg extends BasePacket {
+public class S2CSyncJourneyCapMsg extends BaseMsg {
 	private JourneyPlayer playerCap;
 	private ByteBuf clientBuf;
 
@@ -36,6 +38,7 @@ public class S2CSyncJourneyCapMsg extends BasePacket {
 	public static class Handler implements IMessageHandler<S2CSyncJourneyCapMsg, IMessage> {
 
 		@Override
+		@SideOnly(Side.CLIENT)
 		public IMessage onMessage(S2CSyncJourneyCapMsg message, MessageContext ctx) {
 			Minecraft.getMinecraft().addScheduledTask(() -> {
 				PacketBuffer packetBuffer = new PacketBuffer(Unpooled.wrappedBuffer(message.clientBuf));

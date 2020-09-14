@@ -1,41 +1,56 @@
 package net.journey.dialogue;
 
+import net.minecraft.util.ResourceLocation;
+
 public class DialogueBuilder {
-    public static DialogueNode createDialog(NodeBuilder rootBuilder) {
-        return rootBuilder.node;
-    }
+	public static DialogueNode makeBranch(NodeBuilder rootBuilder) {
+		return rootBuilder.node;
+	}
 
-    public static class NodeBuilder {
-        private final DialogueNode node;
+	public static Dialogue makeDialogue(ResourceLocation id, NodeBuilder rootNodeBuilder) {
+		return makeDialogue(id, rootNodeBuilder.node);
+	}
 
-        private NodeBuilder(String text) {
-            node = new DialogueNode(text);
-        }
+	public static Dialogue makeDialogue(ResourceLocation id, DialogueNode rootNode) {
+		return new Dialogue(id, rootNode);
+	}
 
-        public static NodeBuilder create(String text) {
-            return new NodeBuilder(text);
-        }
+	public static class NodeBuilder {
+		private final DialogueNode node;
 
-        public NodeBuilder addOption(OptionBuilder builder) {
-            node.addOption(builder.option);
-            return this;
-        }
-    }
+		private NodeBuilder(String text) {
+			node = new DialogueNode(text);
+		}
 
-    public static class OptionBuilder {
-        private final DialogueNode.Option option;
+		public static NodeBuilder create(String text) {
+			return new NodeBuilder(text);
+		}
 
-        private OptionBuilder(String text) {
-            option = new DialogueNode.Option(text);
-        }
+		public NodeBuilder addOption(OptionBuilder builder) {
+			node.addOption(builder.option);
+			return this;
+		}
+	}
 
-        public static OptionBuilder create(String text) {
-            return new OptionBuilder(text);
-        }
+	public static class OptionBuilder {
+		private final DialogueNode.Option option;
 
-        public OptionBuilder leadsTo(DialogueNode.Action action) {
-            option.setOnClickAction(action);
-            return this;
-        }
-    }
+		private OptionBuilder(String text) {
+			option = new DialogueNode.Option(text);
+		}
+
+		public static OptionBuilder create(String text) {
+			return new OptionBuilder(text);
+		}
+
+		public OptionBuilder leadsTo(NodeBuilder nextNode) {
+			option.setNextNode(nextNode.node);
+			return this;
+		}
+
+		public OptionBuilder withAction(DialogueNode.Action action) {
+			option.setOnClickAction(action);
+			return this;
+		}
+	}
 }
