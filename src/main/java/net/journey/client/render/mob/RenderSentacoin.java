@@ -26,7 +26,7 @@ public class RenderSentacoin extends Render<EntitySentacoin>{
 	@Override
 	public void doRender(EntitySentacoin entity, double x, double y, double z, float entityYaw, float partialTicks) {
         float angle = (float) (360.0 * (System.currentTimeMillis() & 0x3FFFL) / 0x3FFFL) * 10;
-        float scale = 0.5F;
+        float scale = 0.55F;
         GlStateManager.pushMatrix();
         GlStateManager.translate((float)x, (float)y + 0.05F, (float)z);
         GlStateManager.enableRescaleNormal();
