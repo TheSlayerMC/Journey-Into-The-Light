@@ -54,7 +54,7 @@ public class BossTickHandler {
             if (health > 0) gig.drawTexturedModalRect(barDisX, barDisY, 0, 0, health, 10);
 
             String glitchedText;
-            if (health <= 50) {
+            if (health <= health % 33) {
                 glitchedText = TextFormatting.OBFUSCATED.toString();
             } else {
                 glitchedText = "";
