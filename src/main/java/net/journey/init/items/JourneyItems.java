@@ -675,7 +675,7 @@ public class JourneyItems {
 
 		swampLily = Registrar.regAndSetupItem("swamp_lily_item", "Swamp Lily", new JItemWaterLily(), JourneyTabs.DECORATION);
 
-		sentacoin = Registrar.regAndSetupItem("sentacoin", "Sentacoin", new ItemSentacoin());
+		sentacoin = Registrar.regAndSetupItem("sentacoin", "Sentacoin", new JItem()).setCreativeTab(null);
 	}
 
     public static ToolMaterial addToolMaterial(int uses, float efficiency, float dam, boolean breakable) {

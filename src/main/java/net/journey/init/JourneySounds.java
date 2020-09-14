@@ -85,6 +85,7 @@ public class JourneySounds {
     public static final SoundEvent OVERSEER = registerSound("overseer");
     public static final SoundEvent OVERSEER_HURT = registerSound("overseer_hurt");
     public static final SoundEvent OVERSEER_DEATH = registerSound("overseer_death");
+    public static final SoundEvent COIN_PICKUP = registerSound("coin_pickup");
 
     public static final SoundEvent STINKY_AMBIENT = registerSound("stinky_ambient");
     public static final SoundEvent STINKY_HURT = registerSound("stinky_hurt");

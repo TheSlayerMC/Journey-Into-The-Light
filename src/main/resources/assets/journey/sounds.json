@@ -121,6 +121,12 @@
       "journey:magic_sparkle"
     ]
   },
+  "coin_pickup": {
+    "category": "neutral",
+    "sounds": [
+      "journey:coin_pickup"
+    ]
+  },
   "page_flip": {
     "category": "neutral",
     "sounds": [

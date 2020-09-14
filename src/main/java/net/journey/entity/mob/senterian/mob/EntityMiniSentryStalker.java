@@ -3,6 +3,7 @@ package net.journey.entity.mob.senterian.mob;
 import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
 import net.journey.entity.base.JEntityMob;
+import net.journey.entity.util.EntitySentacoin;
 import net.journey.init.JourneyLootTables;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
@@ -44,5 +45,15 @@ public class EntityMiniSentryStalker extends JEntityMob {
 	@Override
 	public ResourceLocation getLootTable() {
 		return JourneyLootTables.MINI_SENTRY_STALKER;
+	}
+	
+	@Override
+	public void onDeath(DamageSource cause) {
+		super.onDeath(cause);
+		if(!world.isRemote) {
+			for(int i = 0; i < 2 + rand.nextInt(4); i++) {
+				this.world.spawnEntity(new EntitySentacoin(this.world, this.posX, this.posY, this.posZ));
+			}
+		}
 	}
 }

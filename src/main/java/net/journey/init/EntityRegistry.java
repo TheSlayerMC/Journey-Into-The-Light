@@ -51,6 +51,7 @@ import net.journey.entity.projectile.throwable.EntityFireBomb;
 import net.journey.entity.projectile.throwable.EntityMagicBomb;
 import net.journey.entity.projectile.throwable.EntityMagicPot;
 import net.journey.entity.util.EntityBossCrystal;
+import net.journey.entity.util.EntitySentacoin;
 import net.journey.util.handler.LogHelper;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -309,6 +310,7 @@ public class EntityRegistry {
 				SlayerAPI.buildMobEntryNoEgg(EntityMagicExplosive.class, "magic_explosive"),
 				//UTIL
 				SlayerAPI.buildMobEntryNoEgg(EntityBossCrystal.class, "boss_crystal"),
+				SlayerAPI.buildMobEntryNoEgg(EntitySentacoin.class, "sentacoin"),
 		};
 
 		event.getRegistry().registerAll(entries);

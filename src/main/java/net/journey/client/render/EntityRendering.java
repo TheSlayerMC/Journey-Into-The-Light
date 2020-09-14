@@ -88,6 +88,7 @@ import net.journey.entity.projectile.throwable.EntityFireBomb;
 import net.journey.entity.projectile.throwable.EntityMagicBomb;
 import net.journey.entity.projectile.throwable.EntityMagicPot;
 import net.journey.entity.util.EntityBossCrystal;
+import net.journey.entity.util.EntitySentacoin;
 import net.journey.init.items.JourneyWeapons;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBiped;
@@ -125,6 +126,7 @@ public class EntityRendering {
         RenderingRegistry.registerEntityRenderingHandler(EntityCorbanianMollusk.class, manager -> new AnimatedAgeableMobRenderer<>(manager, TimeModelLoader.loadJsonEntityModel(Textures.getEntityModelLocation("corbanian_mollusk")).setScaleMultiplier(2.5F), Textures.getMobTextureLocation("corbanian_mollusk")));
 
         RenderingRegistry.registerEntityRenderingHandler(EntityBossCrystal.class, RenderBossCrystal::new);
+
     }
 
     public static void init() {
@@ -341,5 +343,8 @@ public class EntityRendering {
 
         //RenderingRegistry.registerBlockHandler(EssenceBlocks.celestiumOre.getRenderType(), new OreRenderer());
         //RenderingRegistry.registerBlockHandler(EssenceBlocks.mossyEssenceStone.getRenderType(), new OtherBlockRenderer());
+        
+        RenderingRegistry.registerEntityRenderingHandler(EntitySentacoin.class, new RenderSentacoin());
+
     }
 }
