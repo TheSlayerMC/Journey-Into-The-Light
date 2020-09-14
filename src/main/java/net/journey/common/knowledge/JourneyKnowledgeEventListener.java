@@ -7,8 +7,7 @@ import net.journey.common.capability.JCapabilityManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.monster.EntitySkeleton;
-import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.entity.monster.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.MathHelper;
@@ -45,8 +44,11 @@ public class JourneyKnowledgeEventListener {
 
 			//Can use this to add knowledge depending on the entity killed
 			JITL.LOGGER.info("Uhhhhh");
-			addKnowledgeFromMob(event, stats, new EntitySkeleton(event.getEntityLiving().world), EnumKnowledgeType.OVERWORLD, 5);
-			addKnowledgeFromMob(event, stats, new EntityZombie(event.getEntityLiving().world), EnumKnowledgeType.OVERWORLD, 5);
+			addKnowledgeFromMob(event, stats, EntitySkeleton.class, EnumKnowledgeType.OVERWORLD, 1);
+			addKnowledgeFromMob(event, stats, EntityZombie.class, EnumKnowledgeType.OVERWORLD, 1);
+			addKnowledgeFromMob(event, stats, EntitySpider.class, EnumKnowledgeType.OVERWORLD, 1);
+			addKnowledgeFromMob(event, stats, EntityCreeper.class, EnumKnowledgeType.OVERWORLD, 1);
+			addKnowledgeFromMob(event, stats, EntityEnderman.class, EnumKnowledgeType.OVERWORLD, 2);
 
 			journeyPlayer.sendUpdates();
 		}
@@ -82,9 +84,9 @@ public class JourneyKnowledgeEventListener {
 		}
 	}
 
-	public void addKnowledgeFromMob(LivingDeathEvent event, PlayerStats stats, EntityLivingBase entityLivingBase, EnumKnowledgeType knowledgeType, int knowledge) {
+	public void addKnowledgeFromMob(LivingDeathEvent event, PlayerStats stats, Class<? extends EntityLivingBase> entityLivingBase, EnumKnowledgeType knowledgeType, int knowledge) {
 		EntityLivingBase killedEntity = event.getEntityLiving();
-		if (killedEntity == entityLivingBase) {
+		if (killedEntity.getClass() == entityLivingBase) {
 			stats.addKnowledge(knowledgeType, knowledge);
 			JITL.LOGGER.info("AHHHHH");
 		}
