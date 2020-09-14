@@ -33,7 +33,6 @@ public class JourneyKnowledgeEventListener {
 			PlayerStats stats = journeyPlayer.getPlayerStats();
 			//Can use this to add knowledge depending on the block harvested
 
-			//OVERWORLD
 			addKnowledgeFromBlock(event, stats, Blocks.EMERALD_ORE, EnumKnowledgeType.OVERWORLD, 6F, 3);
 			addKnowledgeFromBlock(event, stats, Blocks.DIAMOND_ORE, EnumKnowledgeType.OVERWORLD, 6F, 3);
 			addKnowledgeFromBlock(event, stats, Blocks.GOLD_ORE, EnumKnowledgeType.OVERWORLD, 3F, 2);
@@ -42,53 +41,12 @@ public class JourneyKnowledgeEventListener {
 			addKnowledgeFromBlock(event, stats, Blocks.IRON_ORE, EnumKnowledgeType.OVERWORLD, 2F, 1);
 			addKnowledgeFromBlock(event, stats, Blocks.COAL_ORE, EnumKnowledgeType.OVERWORLD, 1F, 2);
 			addKnowledgeFromBlock(event, stats, Blocks.STONE, EnumKnowledgeType.OVERWORLD, 0.02F, 0);
-			addKnowledgeFromBlock(event, stats, JourneyBlocks.luniumOre, EnumKnowledgeType.OVERWORLD, 6F, 3);
-			addKnowledgeFromBlock(event, stats, JourneyBlocks.sapphireOre, EnumKnowledgeType.OVERWORLD, 6F, 3);
-			addKnowledgeFromBlock(event, stats, JourneyBlocks.shadiumOre, EnumKnowledgeType.OVERWORLD, 6F, 3);
-			addKnowledgeFromBlock(event, stats, JourneyBlocks.iridiumOre, EnumKnowledgeType.OVERWORLD, 2F, 3);
-			
-			//NETHER
+
 			addKnowledgeFromBlock(event, stats, Blocks.QUARTZ_ORE, EnumKnowledgeType.NETHER, 2F, 3);
 			addKnowledgeFromBlock(event, stats, Blocks.GLOWSTONE, EnumKnowledgeType.NETHER, 2F, 3);
 			addKnowledgeFromBlock(event, stats, Blocks.NETHERRACK, EnumKnowledgeType.NETHER, 0.02F, 0);
-			addKnowledgeFromBlock(event, stats, JourneyBlocks.firestoneOre, EnumKnowledgeType.NETHER, 4F, 3);
-			addKnowledgeFromBlock(event, stats, JourneyBlocks.firestoneOre, EnumKnowledgeType.NETHER, 4F, 3);
-			addKnowledgeFromBlock(event, stats, JourneyBlocks.hellstoneOre, EnumKnowledgeType.NETHER, 3F, 3);
-
-			//END
-			addKnowledgeFromBlock(event, stats, JourneyBlocks.enderilliumOre, EnumKnowledgeType.END, 6F, 3);
+			
 			addKnowledgeFromBlock(event, stats, Blocks.END_STONE, EnumKnowledgeType.END, 0.02F, 0);
-
-			//BOILING
-			addKnowledgeFromBlock(event, stats, JourneyBlocks.ashualOre, EnumKnowledgeType.BOIL, 3F, 3);
-			addKnowledgeFromBlock(event, stats, JourneyBlocks.blaziumOre, EnumKnowledgeType.BOIL, 4F, 3);
-			addKnowledgeFromBlock(event, stats, JourneyBlocks.rubble, EnumKnowledgeType.BOIL, 0.02F, 0);
-			addKnowledgeFromBlock(event, stats, JourneyBlocks.scorchedRubble, EnumKnowledgeType.BOIL, 0.02F, 0);
-			addKnowledgeFromBlock(event, stats, JourneyBlocks.ashBlock, EnumKnowledgeType.BOIL, 0.02F, 0);
-
-			//FROZEN
-
-			//EUCA
-			addKnowledgeFromBlock(event, stats, JourneyBlocks.mekyumOre, EnumKnowledgeType.EUCA, 3F, 3);
-			addKnowledgeFromBlock(event, stats, JourneyBlocks.storonOre, EnumKnowledgeType.EUCA, 3F, 3);
-			addKnowledgeFromBlock(event, stats, JourneyBlocks.koriteOre, EnumKnowledgeType.EUCA, 3F, 3);
-			addKnowledgeFromBlock(event, stats, JourneyBlocks.celestiumOre, EnumKnowledgeType.EUCA, 3F, 3);
-			addKnowledgeFromBlock(event, stats, JourneyBlocks.eucaStone, EnumKnowledgeType.EUCA, 0.02F, 0);
-
-			//DEPTHS
-			addKnowledgeFromBlock(event, stats, JourneyBlocks.flairiumOre, EnumKnowledgeType.DEPTHS, 5F, 3);
-			addKnowledgeFromBlock(event, stats, JourneyBlocks.desOre, EnumKnowledgeType.DEPTHS, 5F, 3);
-			addKnowledgeFromBlock(event, stats, JourneyBlocks.depthsStone, EnumKnowledgeType.DEPTHS, 0.2F, 0);
-
-			//Corba
-			addKnowledgeFromBlock(event, stats, JourneyBlocks.gorbiteOre, EnumKnowledgeType.CORBA, 5F, 3);
-			addKnowledgeFromBlock(event, stats, JourneyBlocks.orbaditeOre, EnumKnowledgeType.CORBA, 5F, 3);
-			addKnowledgeFromBlock(event, stats, JourneyBlocks.corbaStone, EnumKnowledgeType.CORBA, 0.2F, 0);
-			
-			//Cloudia
-			addKnowledgeFromBlock(event, stats, JourneyBlocks.luniteOre, EnumKnowledgeType.CLOUDIA, 5F, 3);
-			
-			//Senterian
 			
 			journeyPlayer.sendUpdates();
 		}
