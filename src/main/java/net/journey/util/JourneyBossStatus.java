@@ -9,9 +9,9 @@ public final class JourneyBossStatus {
     public static boolean hasColorModifier;
     public static String bar;
     public static String bossName;
-    public static int stringTextColor;
+    public static EnumHexColorHelper stringTextColor;
 
-    public static void setStatus(IEssenceBoss boss, String id1, int bossTextColor) {
+    public static void setStatus(IEssenceBoss boss, String id1, EnumHexColorHelper bossTextColor) {
         healthScale = boss.getModHealth() / boss.getModMaxHealth();
         statusBarTime = 100;
         bar = id1;

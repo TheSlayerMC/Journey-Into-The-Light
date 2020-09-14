@@ -301,22 +301,22 @@ public class EntityRendering {
         RenderingRegistry.registerEntityRenderingHandler(EntityStinky.class, new RenderModMob(new ModelStinky(), Textures.getMobTextureLocation("stinky")));
         RenderingRegistry.registerEntityRenderingHandler(EntitySmelly.class, new RenderModMob(new ModelSmelly(), Textures.getMobTextureLocation("smelly")));
 
-        RenderingRegistry.registerEntityRenderingHandler(EntityTerranianProtector.class, new RenderBoss(new ModelTerranianProtector(), 0.5F, 2.0F, Textures.terranianProtector, "terranianProtector", EnumHexColorHelper.WHITE.getInt()));
-        RenderingRegistry.registerEntityRenderingHandler(EntitySoulWatcher.class, new RenderBoss(new ModelSoulWatcher(), 0.5F, 2.0F, Textures.soulWatcher, "soulWatcher", EnumHexColorHelper.WHITE.getInt()));
-        RenderingRegistry.registerEntityRenderingHandler(EntityNetherBeast.class, new RenderBoss(new ModelBeastOfTheNether(), 0.5F, 2.0F, Textures.netherBeast, "netherBeast", EnumHexColorHelper.WHITE.getInt()));
-        RenderingRegistry.registerEntityRenderingHandler(EntityWitheringBeast.class, new RenderBoss(new ModelWitheringBeast(), 0.5F, 2.0F, Textures.witheringBeast, "witheringBeast", EnumHexColorHelper.WHITE.getInt()));
+        RenderingRegistry.registerEntityRenderingHandler(EntityTerranianProtector.class, new RenderBoss(new ModelTerranianProtector(), 0.5F, 2.0F, Textures.terranianProtector, "terranianProtector", EnumHexColorHelper.WHITE));
+        RenderingRegistry.registerEntityRenderingHandler(EntitySoulWatcher.class, new RenderBoss(new ModelSoulWatcher(), 0.5F, 2.0F, Textures.soulWatcher, "soulWatcher", EnumHexColorHelper.WHITE));
+        RenderingRegistry.registerEntityRenderingHandler(EntityNetherBeast.class, new RenderBoss(new ModelBeastOfTheNether(), 0.5F, 2.0F, Textures.netherBeast, "netherBeast", EnumHexColorHelper.WHITE));
+        RenderingRegistry.registerEntityRenderingHandler(EntityWitheringBeast.class, new RenderBoss(new ModelWitheringBeast(), 0.5F, 2.0F, Textures.witheringBeast, "witheringBeast", EnumHexColorHelper.WHITE));
         RenderingRegistry.registerEntityRenderingHandler(EntityCalcia.class, new RenderCalcia(new ModelClacia(), 0.5F, 2.0F, Textures.calcia, "calcia"));
-        RenderingRegistry.registerEntityRenderingHandler(EntityTempleGuardian.class, new RenderBoss(new ModelMage(), 0.5F, 2.0F, Textures.templeGuardian, "templeGuardian", EnumHexColorHelper.RED.getInt()));
+        RenderingRegistry.registerEntityRenderingHandler(EntityTempleGuardian.class, new RenderBoss(new ModelMage(), 0.5F, 2.0F, Textures.templeGuardian, "templeGuardian", EnumHexColorHelper.RED));
         RenderingRegistry.registerEntityRenderingHandler(EntityFourfa.class, new RenderFourfa());
         RenderingRegistry.registerEntityRenderingHandler(EntityGuardianOfDestruction.class, new RenderGuardianOfDestruction());
-        RenderingRegistry.registerEntityRenderingHandler(EntityBlazier.class, new RenderBoss(new ModelBlazier(), 0.5F, 2.0F, Textures.blazier, "blazier", EnumHexColorHelper.WHITE.getInt()));
-        RenderingRegistry.registerEntityRenderingHandler(EntitySentryKing.class, new RenderBoss(new ModelSentryKing(), 0.5F, 2.0F, Textures.sentryKing, "sentryKing", EnumHexColorHelper.YELLOW.getInt()));
-        RenderingRegistry.registerEntityRenderingHandler(EntityThunderbird.class, new RenderBoss(new ModelRoc(), 0.5F, 2.0F, Textures.thunderbird, "thunderbird", EnumHexColorHelper.WHITE.getInt()));
-        RenderingRegistry.registerEntityRenderingHandler(EntityLogger.class, new RenderBoss(new ModelLogger(), 0.5F, 2.0F, Textures.logger, "logger", EnumHexColorHelper.GREEN.getInt()));
-        RenderingRegistry.registerEntityRenderingHandler(EntityCorallator.class, new RenderBoss(new ModelCorallator(), 0.5F, 2.0F, Textures.corallator, "corallator", EnumHexColorHelper.WHITE.getInt()));
-        RenderingRegistry.registerEntityRenderingHandler(EntitySkyStalker.class, new RenderBoss(new ModelSkyStalker(), 0.5F, 2.0F, Textures.skyStalker, "skyStalker", EnumHexColorHelper.WHITE.getInt()));
-        RenderingRegistry.registerEntityRenderingHandler(EntityEudor.class, new RenderBoss(new ModelEudor(), 0.5F, 2.0F, Textures.eudor, "eudor", EnumHexColorHelper.WHITE.getInt()));
-        RenderingRegistry.registerEntityRenderingHandler(EntityScale.class, new RenderBoss(new ModelSoulWatcher(), 0.5F, 2.0F, Textures.scale, "scale", EnumHexColorHelper.TURQUOISE.getInt()));
+        RenderingRegistry.registerEntityRenderingHandler(EntityBlazier.class, new RenderBoss(new ModelBlazier(), 0.5F, 2.0F, Textures.blazier, "blazier", EnumHexColorHelper.WHITE));
+        RenderingRegistry.registerEntityRenderingHandler(EntitySentryKing.class, new RenderBoss(new ModelSentryKing(), 0.5F, 2.0F, Textures.sentryKing, "sentryKing", EnumHexColorHelper.YELLOW));
+        RenderingRegistry.registerEntityRenderingHandler(EntityThunderbird.class, new RenderBoss(new ModelRoc(), 0.5F, 2.0F, Textures.thunderbird, "thunderbird", EnumHexColorHelper.WHITE));
+        RenderingRegistry.registerEntityRenderingHandler(EntityLogger.class, new RenderBoss(new ModelLogger(), 0.5F, 2.0F, Textures.logger, "logger", EnumHexColorHelper.GREEN));
+        RenderingRegistry.registerEntityRenderingHandler(EntityCorallator.class, new RenderBoss(new ModelCorallator(), 0.5F, 2.0F, Textures.corallator, "corallator", EnumHexColorHelper.WHITE));
+        RenderingRegistry.registerEntityRenderingHandler(EntitySkyStalker.class, new RenderBoss(new ModelSkyStalker(), 0.5F, 2.0F, Textures.skyStalker, "skyStalker", EnumHexColorHelper.WHITE));
+        RenderingRegistry.registerEntityRenderingHandler(EntityEudor.class, new RenderBoss(new ModelEudor(), 0.5F, 2.0F, Textures.eudor, "eudor", EnumHexColorHelper.WHITE));
+        RenderingRegistry.registerEntityRenderingHandler(EntityScale.class, new RenderBoss(new ModelSoulWatcher(), 0.5F, 2.0F, Textures.scale, "scale", EnumHexColorHelper.TURQUOISE));
 
         RenderingRegistry.registerEntityRenderingHandler(EntityTamedRoc.class, new RenderModMob(new ModelRoc(), Textures.tameRoc));
         RenderingRegistry.registerEntityRenderingHandler(EntityJungleTurtle.class, new RenderSizeable(new ModelJungleTurtle(), 0.5F, 1.5F, Textures.jungleTurtle));

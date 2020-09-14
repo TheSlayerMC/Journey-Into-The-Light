@@ -13,9 +13,9 @@ import net.slayer.api.SlayerAPI;
 public class RenderFourfa extends RenderBoss {
 
     public RenderFourfa() {
-		super(new ModelFourfa(), 0, 2.0F, Textures.blank, "fourfa", EnumHexColorHelper.GREEN.getInt());
+		super(new ModelFourfa(), 0, 2.0F, Textures.blank, "fourfa", EnumHexColorHelper.GREEN);
 		this.addLayer(new LayerFourfaHeldItem(this));
-    }
+	}
 
     @Override
     protected ResourceLocation getEntityTexture(Entity entity) {

@@ -9,6 +9,24 @@ public class TextRenderUtils {
 	public TextRenderUtils() {
 	}
 
+	public void drawBoldCenteredString(FontRenderer fontRenderer, int x, int y, String text, EnumHexColorHelper color) {
+		int j = x, k = y;
+		drawCenteredString(fontRenderer, j + 1, k, text, EnumHexColorHelper.BLACK);
+		drawCenteredString(fontRenderer, j - 1, k, text, EnumHexColorHelper.BLACK);
+		drawCenteredString(fontRenderer, j, k + 1, text, EnumHexColorHelper.BLACK);
+		drawCenteredString(fontRenderer, j, k - 1, text, EnumHexColorHelper.BLACK);
+		drawCenteredString(fontRenderer, j, k, text, color);
+	}
+
+	public void drawBoldCenteredI18nString(FontRenderer fontRenderer, int x, int y, String text, EnumHexColorHelper color) {
+		int j = x, k = y;
+		drawCenteredString(fontRenderer, j + 1, k, I18n.format(text), EnumHexColorHelper.BLACK);
+		drawCenteredString(fontRenderer, j - 1, k, I18n.format(text), EnumHexColorHelper.BLACK);
+		drawCenteredString(fontRenderer, j, k + 1, I18n.format(text), EnumHexColorHelper.BLACK);
+		drawCenteredString(fontRenderer, j, k - 1, I18n.format(text), EnumHexColorHelper.BLACK);
+		drawCenteredString(fontRenderer, j, k, text, color);
+	}
+
 	public void drawBoldString(FontRenderer fontRenderer, int x, int y, String text, EnumHexColorHelper color) {
 		int j = x, k = y;
 		fontRenderer.drawString(text, j + 1, k, 0);

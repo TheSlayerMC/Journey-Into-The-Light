@@ -1,6 +1,7 @@
 package net.journey.client.render.base;
 
 import net.journey.api.entity.IEssenceBoss;
+import net.journey.util.EnumHexColorHelper;
 import net.journey.util.JourneyBossStatus;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.EntityLiving;
@@ -9,10 +10,10 @@ import net.minecraft.util.ResourceLocation;
 public class RenderBoss extends RenderSizeable {
 
     private final String bar;
-    public int stringHexColor;
+    public EnumHexColorHelper stringHexColor;
     boolean splitText = false;
 
-    public RenderBoss(ModelBase model, float shadow, float size, ResourceLocation tex, final String bar, final int bossTextColor) {
+    public RenderBoss(ModelBase model, float shadow, float size, ResourceLocation tex, final String bar, final EnumHexColorHelper bossTextColor) {
         super(model, shadow, size, tex);
         this.bar = bar;
         this.stringHexColor = bossTextColor;

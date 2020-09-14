@@ -13,8 +13,8 @@ public class RenderCalcia extends RenderBoss {
     private final ResourceLocation texture;
 
     public RenderCalcia(ModelBase model, float shadow, float size, ResourceLocation tex, String bar) {
-        super(model, shadow, size, tex, bar, EnumHexColorHelper.RED.getInt());
-        texture = tex;
+        super(model, shadow, size, tex, bar, EnumHexColorHelper.RED);
+		texture = tex;
     }
 
     @Override

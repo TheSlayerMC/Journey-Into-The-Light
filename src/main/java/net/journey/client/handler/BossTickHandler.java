@@ -1,6 +1,7 @@
 package net.journey.client.handler;
 
 import net.journey.util.JourneyBossStatus;
+import net.journey.util.gui.TextRenderUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiIngame;
@@ -60,8 +61,10 @@ public class BossTickHandler {
                 glitchedText = "";
             }
 
+            TextRenderUtils textRenderUtils = new TextRenderUtils();
+
             if (JourneyBossStatus.bossName != null) {
-                this.drawCenteredString(fontrenderer, glitchedText + I18n.format("journey.boss.name." + JourneyBossStatus.bossName), barDisX + 92, barDisY, JourneyBossStatus.stringTextColor);
+                textRenderUtils.drawBoldCenteredString(fontrenderer, barDisX + 92, barDisY, glitchedText + I18n.format("journey.boss.name." + JourneyBossStatus.bossName), JourneyBossStatus.stringTextColor);
             }
         }
     }
