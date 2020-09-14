@@ -3,7 +3,6 @@ package ru.timeconqueror.timecore.common.network;
 import net.minecraft.entity.Entity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import org.jetbrains.annotations.ApiStatus;
 import ru.timeconqueror.timecore.TimeCore;
 import ru.timeconqueror.timecore.animation.AnimationStarter;
 import ru.timeconqueror.timecore.api.animation.Animation;
@@ -12,17 +11,17 @@ import ru.timeconqueror.timecore.api.animation.AnimationProvider;
 public class S2CStartAnimationMsg extends S2CAnimationMsg {
 	private AnimationStarter.AnimationData animationData;
 
-	@ApiStatus.Internal
+	@Deprecated // is called via reflection, not for direct use
 	public S2CStartAnimationMsg() {
 	}
 
 	public S2CStartAnimationMsg(Entity entity, String layerName, AnimationStarter.AnimationData animationData) {
 		super(entity, layerName);
 		this.animationData = animationData;
-    }
+	}
 
-    public S2CStartAnimationMsg(int entityId, String layerName, AnimationStarter.AnimationData animationData) {
-        super(entityId, layerName);
+	public S2CStartAnimationMsg(int entityId, String layerName, AnimationStarter.AnimationData animationData) {
+		super(entityId, layerName);
         this.animationData = animationData;
     }
 

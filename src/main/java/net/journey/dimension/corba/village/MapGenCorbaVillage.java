@@ -11,7 +11,6 @@ import net.minecraft.world.gen.structure.MapGenStructure;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.StructureStart;
-import org.jetbrains.annotations.ApiStatus;
 
 import java.util.Collections;
 import java.util.List;
@@ -88,7 +87,7 @@ public class MapGenCorbaVillage extends MapGenStructure {
 	public static class Start extends StructureStart {
 		private boolean hasMoreThanTwoComponents;
 
-		@ApiStatus.Internal
+		@Deprecated // is called via reflection, not for direct use
 		public Start() {
 		}
 

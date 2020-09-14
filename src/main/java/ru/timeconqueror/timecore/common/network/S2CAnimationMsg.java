@@ -8,7 +8,6 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import org.jetbrains.annotations.ApiStatus;
 import ru.timeconqueror.timecore.TimeCore;
 import ru.timeconqueror.timecore.api.animation.AnimationProvider;
 
@@ -16,7 +15,7 @@ public abstract class S2CAnimationMsg implements IMessage {
 	protected int entityId;
 	protected String layerName;
 
-	@ApiStatus.Internal
+	@Deprecated // is called via reflection, not for direct use
 	public S2CAnimationMsg() {
 	}
 

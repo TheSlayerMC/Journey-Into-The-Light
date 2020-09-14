@@ -10,6 +10,6 @@ public class NetworkHandler {
 
 	public static void registerPackets() {
 		int idx = 0;
-		INSTANCE.registerMessage(S2CSyncJourneyCap.Handler.class, S2CSyncJourneyCap.class, idx++, Side.CLIENT);
+		INSTANCE.registerMessage(S2CSyncJourneyCapMsg.Handler.class, S2CSyncJourneyCapMsg.class, idx++, Side.CLIENT);
 	}
 }

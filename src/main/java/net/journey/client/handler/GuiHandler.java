@@ -157,7 +157,7 @@ public class GuiHandler implements IGuiHandler {
     }
 
     private static boolean isTileEntity(Identifier id) {
-        return id.get() > 1000;
+        return id.get() >= 1000;
     }
 
     private static boolean exists(Identifier id) {

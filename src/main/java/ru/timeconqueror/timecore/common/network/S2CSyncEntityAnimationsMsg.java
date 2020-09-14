@@ -8,7 +8,6 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import org.jetbrains.annotations.ApiStatus;
 import ru.timeconqueror.timecore.TimeCore;
 import ru.timeconqueror.timecore.animation.BaseAnimationManager;
 import ru.timeconqueror.timecore.animation.ServerAnimationManager;
@@ -25,7 +24,7 @@ public class S2CSyncEntityAnimationsMsg implements IMessage {
 	private Map<String, AnimationWatcher> layerMap;
 	private int entityId;
 
-	@ApiStatus.Internal
+	@Deprecated // is called via reflection, not for direct use
 	public S2CSyncEntityAnimationsMsg() {
 	}
 

@@ -3,14 +3,13 @@ package ru.timeconqueror.timecore.common.network;
 import net.minecraft.entity.Entity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import org.jetbrains.annotations.ApiStatus;
 import ru.timeconqueror.timecore.api.animation.AnimationManager;
 import ru.timeconqueror.timecore.api.animation.AnimationProvider;
 
 public class S2CEndAnimationMsg extends S2CAnimationMsg {
 	private int transitionTime;
 
-	@ApiStatus.Internal
+	@Deprecated // is called via reflection, not for direct use
 	public S2CEndAnimationMsg() {
 	}
 

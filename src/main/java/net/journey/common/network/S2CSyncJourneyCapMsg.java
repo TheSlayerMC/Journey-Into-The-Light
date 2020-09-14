@@ -10,36 +10,33 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import org.jetbrains.annotations.ApiStatus;
 
-public class S2CSyncJourneyCap implements IMessage {
+public class S2CSyncJourneyCapMsg extends BasePacket {
 	private JourneyPlayer playerCap;
 	private ByteBuf clientBuf;
 
-	@ApiStatus.Internal
-	public S2CSyncJourneyCap() {
+	@Deprecated // is called via reflection, not for direct use
+	public S2CSyncJourneyCapMsg() {
 	}
 
-	public S2CSyncJourneyCap(JourneyPlayer playerCap) {
+	public S2CSyncJourneyCapMsg(JourneyPlayer playerCap) {
 		this.playerCap = playerCap;
 	}
 
 	@Override
-	public void toBytes(ByteBuf buf) {
-		PacketBuffer buffer = new PacketBuffer(buf);
-
+	public void write(PacketBuffer buffer) {
 		JourneyPlayerImpl.Serializer.INSTANCE.writeToBuffer(playerCap, buffer);
 	}
 
 	@Override
-	public void fromBytes(ByteBuf buf) {
-		this.clientBuf = buf.copy();
+	public void read(PacketBuffer buffer) {
+		this.clientBuf = buffer.copy();
 	}
 
-	public static class Handler implements IMessageHandler<S2CSyncJourneyCap, IMessage> {
+	public static class Handler implements IMessageHandler<S2CSyncJourneyCapMsg, IMessage> {
 
 		@Override
-		public IMessage onMessage(S2CSyncJourneyCap message, MessageContext ctx) {
+		public IMessage onMessage(S2CSyncJourneyCapMsg message, MessageContext ctx) {
 			Minecraft.getMinecraft().addScheduledTask(() -> {
 				PacketBuffer packetBuffer = new PacketBuffer(Unpooled.wrappedBuffer(message.clientBuf));
 

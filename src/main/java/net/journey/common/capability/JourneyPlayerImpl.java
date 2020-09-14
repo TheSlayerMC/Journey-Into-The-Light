@@ -9,7 +9,7 @@ import net.journey.common.capability.innercaps.EssenceStorageImpl;
 import net.journey.common.capability.innercaps.PlayerOverlayImpl;
 import net.journey.common.capability.innercaps.PlayerStatsImpl;
 import net.journey.common.network.NetworkHandler;
-import net.journey.common.network.S2CSyncJourneyCap;
+import net.journey.common.network.S2CSyncJourneyCapMsg;
 import net.journey.util.exception.WrongSideException;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTBase;
@@ -72,7 +72,7 @@ public class JourneyPlayerImpl implements JourneyPlayer {
         }
 
         EntityPlayerMP player = FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayerByUUID(playerId);
-        NetworkHandler.INSTANCE.sendTo(new S2CSyncJourneyCap(this), player);
+        NetworkHandler.INSTANCE.sendTo(new S2CSyncJourneyCapMsg(this), player);
     }
 
     public static class Serializer extends SyncableStorage<JourneyPlayer, JourneyPlayerImpl> {
