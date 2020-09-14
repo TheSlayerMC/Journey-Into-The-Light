@@ -19,7 +19,7 @@ public class RenderSentacoin extends Render<EntitySentacoin>{
 
 	public RenderSentacoin() {
 		super(Minecraft.getMinecraft().getRenderManager());
-        this.shadowSize = 0.7F;
+        this.shadowSize = 0.07F;
         this.shadowOpaque = 0.75F;
 	}
 
