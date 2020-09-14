@@ -1,6 +1,8 @@
 package net.journey.items;
 
 import net.journey.common.JManagers;
+import net.journey.dialogue.DialogueManager;
+import net.journey.dialogue.DialogueNode;
 import net.journey.entity.mob.corba.npc.EntityTordo;
 import net.journey.init.JDialogues;
 import net.journey.items.base.JItem;
@@ -11,12 +13,16 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
+import ru.timeconqueror.timecore.util.reflection.ReflectionHelper;
+import ru.timeconqueror.timecore.util.reflection.UnlockedMethod;
 
 public class ItemTestBug extends JItem {
+	private final UnlockedMethod<Void> mStartDialogue = ReflectionHelper.findMethodUnsuppressed(DialogueManager.class, "startDialogue", EntityPlayerMP.class, Class.class, DialogueNode.class);
+
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand handIn) {
 		if (!world.isRemote) {
-			JManagers.DIALOGUE_MANAGER.startDialogue((EntityPlayerMP) player, EntityTordo.class, JDialogues.TEST.getRootNode());
+			mStartDialogue.invoke(JManagers.DIALOGUE_MANAGER, player, EntityTordo.class, JDialogues.TEST.getRootNode());
 		}
 
 		return new ActionResult<>(EnumActionResult.SUCCESS, player.getHeldItem(handIn));

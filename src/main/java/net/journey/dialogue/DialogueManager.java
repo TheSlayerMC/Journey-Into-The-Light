@@ -17,9 +17,7 @@ public class DialogueManager {
 		startDialogue(player, npc.getClass(), dialogue.getRootNode());
 	}
 
-
-	//fixme make private
-	public void startDialogue(EntityPlayerMP player, Class<? extends EntityLivingBase> npcClass, DialogueNode node) {
+	private void startDialogue(EntityPlayerMP player, Class<? extends EntityLivingBase> npcClass, DialogueNode node) {
 		DialogueTracker tracker = new DialogueTracker(player.getUniqueID(), npcClass, node);
 		trackers.put(player.getUniqueID(), tracker);
 
