@@ -2,6 +2,7 @@ package net.journey.blocks.plant;
 
 import net.journey.api.block.GroundPredicate;
 import net.journey.blocks.base.JBlockPlant;
+import net.journey.util.Config;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -17,6 +18,6 @@ public class BlockGlowshroom extends JBlockPlant {
 
     @Override
     public int getPackedLightmapCoords(IBlockState state, IBlockAccess source, BlockPos pos) {
-        return 14500000;
+        return !Config.disableOverworldCaveBlockLuminance ? 14500000 : super.getPackedLightmapCoords(state, source, pos);
     }
 }

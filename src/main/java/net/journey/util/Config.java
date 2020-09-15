@@ -62,6 +62,8 @@ public class Config {
     public static boolean enableLootPouchDrops;
     public static int commonLootBagRarity, goldLootBagRarity, diamondLootBagRarity;
 
+    public static boolean disableOverworldCaveBlockLuminance;
+
     public static void init(FMLPreInitializationEvent event) {
         cfg = new Configuration(new File(event.getModConfigurationDirectory() + "/Journey.cfg"));
         cfg.load();
@@ -73,7 +75,9 @@ public class Config {
     public static void dimensionInit() {
         maxHealthNormal = cfg.get("Maximum Health", "Max health achievable with normal battle hearts:", 60).getInt();
         maxHealthSentry = cfg.get("Maximum Health", "Max health achievable with Sentry hearts:", 70).getInt();
-        
+
+        disableOverworldCaveBlockLuminance = cfg.get("common", "disableOverworldCaveBlockLuminance", false, "If true, disables cave block glowing in the darkness. This can be set, if you are playing with shaders, so these blocks become very bright.").getBoolean();
+
         eucaBiome = cfg.get("Dimension", "Euca biome ID", 40).getInt();
         eucaSilverBiome = cfg.get("Dimension", "Euca Silver biome ID", 60).getInt();
         euca = cfg.get("Dimension", "Euca ID", 20).getInt();

@@ -2,6 +2,7 @@ package net.journey.blocks.plant;
 
 import net.journey.api.block.GroundPredicate;
 import net.journey.blocks.base.JBlockPlant;
+import net.journey.util.Config;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.properties.PropertyInteger;
@@ -92,7 +93,7 @@ public class BlockCaveVine extends JBlockPlant implements IGrowable {
 
     @Override
     public int getPackedLightmapCoords(IBlockState state, IBlockAccess source, BlockPos pos) {
-        return 14500000;
+        return !Config.disableOverworldCaveBlockLuminance ? 14500000 : super.getPackedLightmapCoords(state, source, pos);
     }
 
     @Override

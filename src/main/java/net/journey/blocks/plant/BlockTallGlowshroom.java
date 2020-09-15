@@ -3,6 +3,7 @@ package net.journey.blocks.plant;
 import net.journey.api.block.GroundPredicate;
 import net.journey.blocks.base.JBlockDoublePlant;
 import net.journey.init.JourneyTabs;
+import net.journey.util.Config;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -32,6 +33,6 @@ public class BlockTallGlowshroom extends JBlockDoublePlant {
 
     @Override
     public int getPackedLightmapCoords(@NotNull IBlockState state, @NotNull IBlockAccess source, @NotNull BlockPos pos) {
-        return 14500000;
+        return !Config.disableOverworldCaveBlockLuminance ? 14500000 : super.getPackedLightmapCoords(state, source, pos);
     }
 }
