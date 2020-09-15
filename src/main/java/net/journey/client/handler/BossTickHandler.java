@@ -64,8 +64,11 @@ public class BossTickHandler {
             TextRenderUtils textRenderUtils = new TextRenderUtils();
 
             if (JourneyBossStatus.bossName != null) {
-                textRenderUtils.drawOutlinedCenteredString(fontrenderer, barDisX + 92, barDisY, glitchedText + I18n.format("journey.boss.name." + JourneyBossStatus.bossName), JourneyBossStatus.stringTextColor, JourneyBossStatus.stringOutlineColor);
-            }
+				textRenderUtils.drawOutlinedCenteredString(fontrenderer, barDisX + 92, barDisY, glitchedText + I18n.format(
+						"journey.boss.name." + JourneyBossStatus.bossName),
+						JourneyBossStatus.stringTextColor,
+						JourneyBossStatus.stringOutlineColor);
+			}
         }
     }
 

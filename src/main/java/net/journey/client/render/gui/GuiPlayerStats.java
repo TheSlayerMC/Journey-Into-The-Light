@@ -5,7 +5,7 @@ import net.journey.api.capability.PlayerStats;
 import net.journey.common.capability.JCapabilityManager;
 import net.journey.common.knowledge.EnumKnowledgeType;
 import net.journey.util.ContainerEmpty;
-import net.journey.util.EnumHexColorHelper;
+import net.journey.util.EnumHexColor;
 import net.journey.util.gui.TextRenderUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
@@ -160,7 +160,7 @@ public class GuiPlayerStats extends GuiContainer {
 		TextRenderUtils TextRenderUtils = new TextRenderUtils();
 		int lvX = progressBarX + 29, lvY = progressBarY - 1;
 
-		TextRenderUtils.drawOutlinedString(fontRenderer, knowledge.getLevelCount() > 10 ? lvX - 2 : lvX, lvY, "" + knowledge.getLevelCount(), EnumHexColorHelper.LIGHT_BLUE, EnumHexColorHelper.BLACK);
+		TextRenderUtils.drawOutlinedString(fontRenderer, knowledge.getLevelCount() > 10 ? lvX - 2 : lvX, lvY, "" + knowledge.getLevelCount(), EnumHexColor.LIGHT_BLUE, EnumHexColor.BLACK);
 		GlStateManager.disableAlpha();
 		GlStateManager.disableBlend();
 		GlStateManager.popMatrix();

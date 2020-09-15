@@ -1,6 +1,6 @@
 package net.journey.util;
 
-public enum EnumHexColorHelper {
+public enum EnumHexColor {
 
 	GREEN(0x00ff2a),
 	DARK_GREEN(0x00a41b),
@@ -22,6 +22,10 @@ public enum EnumHexColorHelper {
 	PURPLE(0x9000ff),
 	PINK(0xfc00ff),
 
+	LIGHT_BROWN(0xffc18a),
+	BROWN(0xa47c59),
+	DARK_BROWN(0x55402e),
+
 	WHITE(0xffffff),
 	LIGHT_GRAY(0xc8c8c8),
 	GRAY(0x8a8a8a),
@@ -30,7 +34,7 @@ public enum EnumHexColorHelper {
 
 	private final int color;
 
-	EnumHexColorHelper(int hexColor) {
+	EnumHexColor(int hexColor) {
 		this.color = hexColor;
 	}
 
