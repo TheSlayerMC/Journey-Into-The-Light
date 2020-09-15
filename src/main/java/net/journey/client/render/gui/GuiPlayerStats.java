@@ -30,8 +30,12 @@ public class GuiPlayerStats extends GuiContainer {
 		super(new ContainerEmpty());
 		this.xSize = 242;
 		this.ySize = 204;
-
 		this.stats = JCapabilityManager.asJourneyPlayer(Minecraft.getMinecraft().player).getPlayerStats();
+	}
+	
+	@Override
+	public boolean doesGuiPauseGame() {
+		return true;
 	}
 
 	@Override
@@ -48,7 +52,6 @@ public class GuiPlayerStats extends GuiContainer {
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
 		mc.getTextureManager().bindTexture(background);
-
 		int k = (width - xSize) / 2;
 		int l = (height - ySize) / 2;
 		drawTexturedModalRect(k, l, 0, 0, xSize, ySize);
@@ -62,13 +65,12 @@ public class GuiPlayerStats extends GuiContainer {
 		default:
 			break;
 		}
-
 	}
 	
 	@Override
-	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		
+	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+		this.drawDefaultBackground();
+		super.drawScreen(mouseX, mouseY, partialTicks);
 	}
 
 	public void page1() {
@@ -158,7 +160,7 @@ public class GuiPlayerStats extends GuiContainer {
 		TextRenderUtils TextRenderUtils = new TextRenderUtils();
 		int lvX = progressBarX + 29, lvY = progressBarY - 1;
 
-		TextRenderUtils.drawBoldString(fontRenderer, lvX, lvY, "" + knowledge.getLevelCount(), EnumHexColorHelper.LIGHT_BLUE);
+		TextRenderUtils.drawBoldString(fontRenderer, knowledge.getLevelCount() > 10 ? lvX - 2 : lvX, lvY, "" + knowledge.getLevelCount(), EnumHexColorHelper.LIGHT_BLUE);
 		GlStateManager.disableAlpha();
 		GlStateManager.disableBlend();
 		GlStateManager.popMatrix();
