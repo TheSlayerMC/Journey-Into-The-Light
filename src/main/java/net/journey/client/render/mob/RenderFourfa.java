@@ -13,7 +13,7 @@ import net.slayer.api.SlayerAPI;
 public class RenderFourfa extends RenderBoss {
 
     public RenderFourfa() {
-		super(new ModelFourfa(), 0, 2.0F, Textures.blank, "fourfa", EnumHexColorHelper.GREEN);
+		super(new ModelFourfa(), 0, 2.0F, Textures.blank, "fourfa", EnumHexColorHelper.GREEN, EnumHexColorHelper.WHITE);
 		this.addLayer(new LayerFourfaHeldItem(this));
 	}
 

@@ -160,7 +160,7 @@ public class GuiPlayerStats extends GuiContainer {
 		TextRenderUtils TextRenderUtils = new TextRenderUtils();
 		int lvX = progressBarX + 29, lvY = progressBarY - 1;
 
-		TextRenderUtils.drawBoldString(fontRenderer, knowledge.getLevelCount() > 10 ? lvX - 2 : lvX, lvY, "" + knowledge.getLevelCount(), EnumHexColorHelper.LIGHT_BLUE);
+		TextRenderUtils.drawOutlinedString(fontRenderer, knowledge.getLevelCount() > 10 ? lvX - 2 : lvX, lvY, "" + knowledge.getLevelCount(), EnumHexColorHelper.LIGHT_BLUE, EnumHexColorHelper.BLACK);
 		GlStateManager.disableAlpha();
 		GlStateManager.disableBlend();
 		GlStateManager.popMatrix();

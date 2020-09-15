@@ -12,7 +12,7 @@ import net.slayer.api.SlayerAPI;
 public class RenderSentryHeart extends RenderBoss {
 
     public RenderSentryHeart() {
-        super(new ModelSentryHeart(), 0, 2.0F, Textures.blank, "sentryheart", EnumHexColorHelper.RED);
+        super(new ModelSentryHeart(), 0, 2.0F, Textures.blank, "sentryheart", EnumHexColorHelper.DARK_RED, EnumHexColorHelper.RED);
     }
 
     @Override

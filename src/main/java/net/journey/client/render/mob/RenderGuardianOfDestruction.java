@@ -12,7 +12,7 @@ import net.slayer.api.SlayerAPI;
 public class RenderGuardianOfDestruction extends RenderBoss {
 
     public RenderGuardianOfDestruction() {
-        super(new ModelGuardianOfDestruction(), 0, 2.0F, Textures.blank, "guardianofdestruction", EnumHexColorHelper.ORANGE);
+        super(new ModelGuardianOfDestruction(), 0, 2.0F, Textures.blank, "guardianofdestruction", EnumHexColorHelper.ORANGE, EnumHexColorHelper.RED);
     }
 
     @Override
