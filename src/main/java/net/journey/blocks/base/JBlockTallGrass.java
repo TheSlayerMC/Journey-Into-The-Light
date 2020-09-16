@@ -46,6 +46,7 @@ import java.util.Random;
 @SuppressWarnings("JavadocReference")
 public class JBlockTallGrass extends JBlockPlant implements IShearable {
 	protected static final AxisAlignedBB TALL_GRASS_AABB = new AxisAlignedBB(0.09999999403953552D, 0.0D, 0.09999999403953552D, 0.8999999761581421D, 0.800000011920929D, 0.8999999761581421D);
+	private boolean hasOffset = true;
 
 	public JBlockTallGrass(String name, String enName) {
 		super(name, enName);
@@ -57,6 +58,11 @@ public class JBlockTallGrass extends JBlockPlant implements IShearable {
 
 	public JBlockTallGrass(EnumMaterialTypes type, String name, String enName, CreativeTabs tab) {
 		super(type, name, enName, tab);
+	}
+
+	public JBlockTallGrass disableOffset() {
+		this.hasOffset = false;
+		return this;
 	}
 
 	@Override

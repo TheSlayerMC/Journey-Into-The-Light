@@ -517,7 +517,7 @@ public class JourneyBlocks {
     public static BlockModFlower depthsFlower;
     public static BlockModFlower depthsBlueFlower;
     public static BlockModFlower corbaFlower;
-    public static BlockModFlower corbaTallGrass;
+    public static JBlockTallGrass corbaTallGrass;
     public static BlockModFlower corbaSpeckledFlower;
     public static BlockModFlower corbaLightPurpleFlower;
     public static BlockModFlower corbaRedFlower;
@@ -1087,7 +1087,7 @@ public class JourneyBlocks {
         depthsFlower = new BlockModFlower("depthsFlower", "Depths Flower");
         depthsBlueFlower = new BlockModFlower("depthsBlueFlower", "Depths Blue Flower");
         corbaFlower = new BlockModFlower("corbaFlower", "Corba Flower");
-        corbaTallGrass = new BlockModFlower("corbaTallGrass", "Corba Tall Grass", true);
+        corbaTallGrass = new JBlockTallGrass("corbaTallGrass", "Corba Tall Grass");
         corbaSpeckledFlower = new BlockModFlower("corbaSpeckledFlower", "Speckled Flower");
         corbaLightPurpleFlower = new BlockModFlower("corbaLightPurpleFlower", "Light Purple Flower");
         corbaRedFlower = new BlockModFlower("corbaRedFlower", "Red Flower");

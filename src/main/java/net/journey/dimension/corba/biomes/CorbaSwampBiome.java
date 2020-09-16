@@ -38,7 +38,11 @@ public class CorbaSwampBiome extends CorbaBiome {
 	public void genTerrainBlocks(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z, double noiseVal) {
 		IBlockState STONE = JourneyBlocks.corbaGrass.getDefaultState();
 		int i = worldIn.getSeaLevel();
-		IBlockState iblockstate = this.topBlock;
+		IBlockState iblockstate;
+
+		if (rand.nextInt(3) == 0) iblockstate = this.topBlock;
+		else iblockstate = JourneyBlocks.driedMud.getDefaultState();
+
 		IBlockState iblockstate1 = this.fillerBlock;
 		int j = -1;
 		int k = (int) (noiseVal / 3.0D + 3.0D + rand.nextDouble() * 0.25D);

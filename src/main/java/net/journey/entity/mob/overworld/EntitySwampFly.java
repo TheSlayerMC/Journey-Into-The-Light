@@ -5,6 +5,7 @@ import net.journey.entity.base.JEntityFlyingMob;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.journey.init.blocks.JourneyBlocks;
+import net.journey.util.Config;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
 import net.minecraft.entity.ai.EntityMoveHelper;
@@ -35,7 +36,7 @@ public class EntitySwampFly extends JEntityFlyingMob {
 
 	@Override
 	public boolean getCanSpawnHere() {
-		return this.world.getBlockState(new BlockPos(this.posX, this.posY - 1, this.posZ)).isFullBlock() && this.dimension == 0;
+		return this.world.getBlockState(new BlockPos(this.posX, this.posY - 1, this.posZ)).isFullBlock() && this.dimension == 0 || this.dimension == Config.corba;
 	}
 
 	@Override
