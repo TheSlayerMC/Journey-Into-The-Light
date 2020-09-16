@@ -1,5 +1,7 @@
 package net.journey.client.render.gui;
 
+import org.lwjgl.opengl.GL11;
+
 import net.journey.JITL;
 import net.journey.api.capability.PlayerStats;
 import net.journey.common.capability.JCapabilityManager;
@@ -12,7 +14,6 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;
-import org.lwjgl.opengl.GL11;
 
 public class GuiPlayerStats extends GuiContainer {
 
@@ -160,7 +161,7 @@ public class GuiPlayerStats extends GuiContainer {
 		TextRenderUtils TextRenderUtils = new TextRenderUtils();
 		int lvX = progressBarX + 29, lvY = progressBarY - 1;
 
-		TextRenderUtils.drawBoldString(fontRenderer, knowledge.getLevelCount() > 10 ? lvX - 2 : knowledge.getLevelCount() > 100 ? lvX - 4 : lvX, lvY, "" + knowledge.getLevelCount(), EnumHexColorHelper.LIGHT_BLUE);
+		TextRenderUtils.drawOutlinedString(fontRenderer, knowledge.getLevelCount() > 10 ? lvX - 2 : knowledge.getLevelCount() > 100 ? lvX - 4 : lvX, lvY, "" + knowledge.getLevelCount(), EnumHexColor.LIGHT_BLUE, EnumHexColor.BLACK);
 		GlStateManager.disableAlpha();
 		GlStateManager.disableBlend();
 		GlStateManager.popMatrix();
