@@ -8,7 +8,7 @@ import net.journey.dimension.euca.gen.WorldGenEucaSphere;
 import net.journey.dimension.euca.gen.WorldGenEucaWater;
 import net.journey.dimension.euca.gen.WorldGenSmeltery;
 import net.journey.dimension.euca.gen.dungeon.EucaSmallSphereDungeon;
-import net.journey.dimension.euca.gen.trees.WorldGenBotSpawner;
+import net.journey.dimension.euca.gen.dungeon.WorldGenBotSpawner;
 import net.journey.dimension.euca.gen.trees.WorldGenEucaTree;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.Config;

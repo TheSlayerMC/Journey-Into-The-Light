@@ -77,7 +77,8 @@ public class CorbaSwampBiome extends CorbaBiome {
 						}
 
 						if (j1 < i && (iblockstate == null || iblockstate.getMaterial() == Material.AIR)) {
-							iblockstate = WATER;
+							if (rand.nextInt(3) == 0) iblockstate = this.topBlock;
+							else iblockstate = Blocks.WATER.getDefaultState();
 						}
 
 						j = k;
