@@ -113,7 +113,7 @@ public class WorldGenTowerDungeon extends WorldGenerator {
     public void addDifferentBlocks(World w, int x, int y, int z) {
         Random r = new Random();
         for (int x1 = 0; x1 < 15; x1++) {
-            for (int y1 = 0; y1 < 200; y1++) {
+            for (int y1 = 0; y1 < 50; y1++) {
                 for (int z1 = 0; z1 < 15; z1++) {
                     if (w.getBlockState(new BlockPos(x + x1, y + y1, z + z1)) == JourneyBlocks.dungeonBrick.getDefaultState() && r.nextInt(15) == 0) {
                         this.setBlockAndNotifyAdequately(w, new BlockPos(x + x1, y + y1, z + z1), JourneyBlocks.dungeonChisledBrick.getDefaultState());
@@ -124,7 +124,7 @@ public class WorldGenTowerDungeon extends WorldGenerator {
         }
 
         for (int x1 = 0; x1 < 15; x1++) {
-            for (int y1 = 0; y1 < 200; y1++) {
+            for (int y1 = 0; y1 < 50; y1++) {
                 for (int z1 = 0; z1 < 15; z1++) {
                     if (w.getBlockState(new BlockPos(x + x1, y + y1, z + z1)) == JourneyBlocks.dungeonBrick.getDefaultState() && r.nextInt(10) == 0) {
                         this.setBlockAndNotifyAdequately(w, new BlockPos(x + x1, y + y1, z + z1), JourneyBlocks.dungeonBrickCarved.getDefaultState());
@@ -135,7 +135,7 @@ public class WorldGenTowerDungeon extends WorldGenerator {
         }
 
         for (int x1 = 0; x1 < 15; x1++) {
-            for (int y1 = 0; y1 < 200; y1++) {
+            for (int y1 = 0; y1 < 50; y1++) {
                 for (int z1 = 0; z1 < 15; z1++) {
                     if (w.getBlockState(new BlockPos(x + x1, y + y1, z + z1)) == JourneyBlocks.dungeonBrick.getDefaultState() && r.nextInt(10) == 0) {
                         this.setBlockAndNotifyAdequately(w, new BlockPos(x + x1, y + y1, z + z1), JourneyBlocks.dungeonCrackedBrick.getDefaultState());
@@ -146,7 +146,7 @@ public class WorldGenTowerDungeon extends WorldGenerator {
         }
 
         for (int i = 0; i < 50; i++) {
-            for (int j = 0; j < 200; j++) {
+            for (int j = 0; j < 50; j++) {
                 for (int k = 0; k < 50; k++) {
                     if (w.getBlockState(new BlockPos(i, j, k)) == JourneyBlocks.dungeonBrick.getDefaultState()) {
                         if (r.nextInt(10) == 0)
