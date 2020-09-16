@@ -3,6 +3,7 @@ package net.journey.items;
 import net.journey.common.JManagers;
 import net.journey.dialogue.DialogueManager;
 import net.journey.dialogue.DialogueNode;
+import net.journey.dimension.overworld.gen.WorldGenTowerDungeonCyl;
 import net.journey.entity.mob.corba.npc.EntityTordo;
 import net.journey.init.JDialogues;
 import net.journey.items.base.JItem;
@@ -22,10 +23,10 @@ public class ItemTestBug extends JItem {
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand handIn) {
 		if (!world.isRemote) {
-			mStartDialogue.invoke(JManagers.DIALOGUE_MANAGER, player, EntityTordo.class, JDialogues.TEST.getRootNode());
-
-			//new WorldGenCorbaSwampTree().generate(world, itemRand, player.getPosition());
+			//mStartDialogue.invoke(JManagers.DIALOGUE_MANAGER, player, EntityTordo.class, JDialogues.TEST.getRootNode());
+			new WorldGenTowerDungeonCyl().generate(world, itemRand, player.getPosition());
 		}
+
 		return new ActionResult<>(EnumActionResult.SUCCESS, player.getHeldItem(handIn));
 	}
 }
