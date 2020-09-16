@@ -5,7 +5,7 @@ import net.journey.client.render.base.RenderBoss;
 import net.journey.client.render.mob.layers.LayerFourfaHeldItem;
 import net.journey.client.render.model.mob.boss.ModelFourfa;
 import net.journey.entity.mob.boss.EntityFourfa;
-import net.journey.util.EnumHexColorHelper;
+import net.journey.util.EnumHexColor;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.slayer.api.SlayerAPI;
@@ -13,7 +13,7 @@ import net.slayer.api.SlayerAPI;
 public class RenderFourfa extends RenderBoss {
 
     public RenderFourfa() {
-		super(new ModelFourfa(), 0, 2.0F, Textures.blank, "fourfa", EnumHexColorHelper.GREEN);
+		super(new ModelFourfa(), 0, 2.0F, Textures.blank, "fourfa", EnumHexColor.GREEN, EnumHexColor.WHITE);
 		this.addLayer(new LayerFourfaHeldItem(this));
 	}
 

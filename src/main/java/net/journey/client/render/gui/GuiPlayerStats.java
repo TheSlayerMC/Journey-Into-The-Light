@@ -5,7 +5,7 @@ import net.journey.api.capability.PlayerStats;
 import net.journey.common.capability.JCapabilityManager;
 import net.journey.common.knowledge.EnumKnowledgeType;
 import net.journey.util.ContainerEmpty;
-import net.journey.util.EnumHexColorHelper;
+import net.journey.util.EnumHexColor;
 import net.journey.util.gui.TextRenderUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
