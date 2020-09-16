@@ -56,41 +56,43 @@ public class CorbaBiome extends JDimensionBiome {
 
     @Override
     public void genTerrainBlocks(@NotNull World world, @NotNull Random r, @NotNull ChunkPrimer c, int x, int z, double s) {
-        IBlockState iblockstate = topBlock;
-        IBlockState iblockstate1 = fillerBlock;
-        int k = -1;
-        int l = (int) (s / 3.0D + 3.0D + r.nextDouble() * 0.25D);
-        int i1 = x & 15;
-        int j1 = z & 15;
-        for (int k1 = 255; k1 >= 0; --k1) {
-            if (k1 <= 1) {
-                c.setBlockState(j1, k1, i1, Blocks.BEDROCK.getDefaultState());
-            } else {
-                IBlockState iblockstate2 = c.getBlockState(j1, k1, i1);
+		IBlockState iblockstate = topBlock;
+		IBlockState iblockstate1 = fillerBlock;
+		int k = -1;
+		int l = (int) (s / 3.0D + 3.0D + r.nextDouble() * 0.25D);
 
-                if (iblockstate2.getMaterial() == Material.AIR) k = -1;
-                else if (iblockstate2.getBlock() == JourneyBlocks.corbaStone) {
-                    if (k == -1) {
-                        if (l <= 0) {
-                            iblockstate = null;
-                            iblockstate1 = JourneyBlocks.corbaStone.getDefaultState();
-                        } else if (k1 >= 7 && k1 <= 8) {
-                            iblockstate = topBlock;
-                            iblockstate1 = fillerBlock;
-                        }
+		int x1 = x & 15;
+		int z1 = z & 15;
 
-                        if (k1 < 8 && (iblockstate == null || iblockstate.getMaterial() == Material.AIR))
-                            iblockstate = JourneyBlocks.corbaStone.getDefaultState();
-                        k = l;
-                        if (k1 >= 8) c.setBlockState(j1, k1, i1, iblockstate);
-                        else if (k1 < 7 - l) {
-                            iblockstate = null;
-                            iblockstate1 = JourneyBlocks.corbaStone.getDefaultState();
-                        } else c.setBlockState(j1, k1, i1, iblockstate1);
-                    } else if (k > 0) {
-                        --k;
-                        c.setBlockState(j1, k1, i1, iblockstate1);
-                    }
+		for (int k1 = 255; k1 >= 0; --k1) {
+			if (k1 <= 1) {
+				c.setBlockState(x1, k1, z1, Blocks.BEDROCK.getDefaultState());
+			} else {
+				IBlockState iblockstate2 = c.getBlockState(x1, k1, z1);
+
+				if (iblockstate2.getMaterial() == Material.AIR) k = -1;
+				else if (iblockstate2.getBlock() == JourneyBlocks.corbaStone) {
+					if (k == -1) {
+						if (l <= 0) {
+							iblockstate = null;
+							iblockstate1 = JourneyBlocks.corbaStone.getDefaultState();
+						} else if (k1 >= 7 && k1 <= 8) {
+							iblockstate = topBlock;
+							iblockstate1 = fillerBlock;
+						}
+
+						if (k1 < 8 && (iblockstate == null || iblockstate.getMaterial() == Material.AIR))
+							iblockstate = JourneyBlocks.corbaStone.getDefaultState();
+						k = l;
+						if (k1 >= 8) c.setBlockState(x1, k1, z1, iblockstate);
+						else if (k1 < 7 - l) {
+							iblockstate = null;
+							iblockstate1 = JourneyBlocks.corbaStone.getDefaultState();
+						} else c.setBlockState(x1, k1, z1, iblockstate1);
+					} else if (k > 0) {
+						--k;
+						c.setBlockState(x1, k1, z1, iblockstate1);
+					}
                 }
             }
         }

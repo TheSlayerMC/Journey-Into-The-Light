@@ -2,17 +2,17 @@
   "variants": {
     "normal": [
       {
-        "model": "journey:tainted_mud"
+        "model": "journey:dried_mud"
       },
       {
-        "model": "journey:tainted_mud_mirrored"
+        "model": "journey:dried_mud_mirrored"
       },
       {
-        "model": "journey:tainted_mud",
+        "model": "journey:dried_mud",
         "y": 180
       },
       {
-        "model": "journey:tainted_mud",
+        "model": "journey:dried_mud",
         "y": 180
       }
     ]
