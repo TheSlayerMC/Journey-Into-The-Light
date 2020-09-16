@@ -400,7 +400,7 @@ public class ChunkGeneratorCorba implements IChunkGenerator {
 
 
 		if (world.getBiome(startPos) == DimensionHelper.CORBA_SWAMP_BIOME) {
-			for (times = 0; times < 25; times++) {
+			for (times = 0; times < 7; times++) {
 				WorldGenAPI.genOnGround(world, chunkPos, this.rand, new WorldGenCorbaSwampTree(true));
 			}
 		}

@@ -23,8 +23,9 @@ public class ItemTestBug extends JItem {
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand handIn) {
 		if (!world.isRemote) {
 			mStartDialogue.invoke(JManagers.DIALOGUE_MANAGER, player, EntityTordo.class, JDialogues.TEST.getRootNode());
-		}
 
+			//new WorldGenCorbaSwampTree().generate(world, itemRand, player.getPosition());
+		}
 		return new ActionResult<>(EnumActionResult.SUCCESS, player.getHeldItem(handIn));
 	}
 }
