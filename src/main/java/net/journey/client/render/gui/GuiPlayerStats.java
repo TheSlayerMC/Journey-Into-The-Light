@@ -153,7 +153,7 @@ public class GuiPlayerStats extends GuiContainer {
 		float percents = knowledge.getAmountOnCurrentLevel() / knowledge.getLevelCapacity(knowledge.getLevelCount());
 		int width = (int) (percents * progressBarSize);
 
-		int progressBarX = k + x + 35, progressBarY = l + y + 15;
+		int progressBarX = k + x + 35, progressBarY = l + y + 19;
 
 		drawTexturedModalRect(progressBarX, progressBarY, 0, 5, progressBarSize, 5);
 		drawTexturedModalRect(progressBarX, progressBarY, 0, 0, width, 5);
