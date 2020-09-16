@@ -328,6 +328,7 @@ public class JourneyItems {
 	public static Item heartStone;
 	public static Item lightBuckler;
 	public static Item magicDust;
+	public static Item bogshroomShelfSpore;
 
 	public static Item moonOfEternalNight;
 	public static Item nethicObstructor;
@@ -617,6 +618,9 @@ public class JourneyItems {
 		heartStone = Registrar.regAndSetupItem("heart_stone", "Heart Stone", new ItemRestoreHealth(true), JourneyTabs.UTIL);
 		lightBuckler = Registrar.regAndSetupItem("light_buckler", "Light Buckler", new JItem());
 		magicDust = Registrar.regAndSetupItem("magic_dust", "Magic Dust", new JItem());
+
+		bogshroomShelfSpore = Registrar.regAndSetupItem("bogshroom_shelf_spore", "Bogshroom Shelf Spore", new ItemMushroomSpore());
+
 		moonOfEternalNight = Registrar.regAndSetupItem("moon_of_eternal_night", "Moon of Eternal Night", new ItemEternalNight(), JourneyTabs.UTIL);
 		nethicObstructor = Registrar.regAndSetupItem("nethic_obstructor", "Nethic Obstructor", new JItem());
 		slimeBerry = Registrar.regAndSetupItem("slime_berry", "Slimeberry", new JItem());

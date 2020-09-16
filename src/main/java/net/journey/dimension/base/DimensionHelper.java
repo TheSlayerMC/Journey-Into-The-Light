@@ -262,11 +262,11 @@ public class DimensionHelper {
 
     private static void addCorbaSpawns() {
         EntityRegistry.addSpawn(EntityTreeGolem.class, 6, 1, 1, EnumCreatureType.MONSTER, CORBA_FOREST_BIOMES);
-        EntityRegistry.addSpawn(EntityLeafBlower.class, 7, 1, 1, EnumCreatureType.MONSTER, CORBA_FOREST_BIOMES);
-        EntityRegistry.addSpawn(EntitySurfaceSeer.class, 9, 1, 1, EnumCreatureType.MONSTER, CORBA_FOREST_BIOMES);
-        EntityRegistry.addSpawn(EntityWoodCreature.class, 8, 1, 1, EnumCreatureType.MONSTER, CORBA_FOREST_BIOMES);
+        EntityRegistry.addSpawn(EntityLeafBlower.class, 7, 1, 1, EnumCreatureType.MONSTER, CORBA_BIOMES);
+        EntityRegistry.addSpawn(EntitySurfaceSeer.class, 9, 1, 1, EnumCreatureType.MONSTER, CORBA_BIOMES);
+        EntityRegistry.addSpawn(EntityWoodCreature.class, 8, 1, 1, EnumCreatureType.MONSTER, CORBA_BIOMES);
         EntityRegistry.addSpawn(EntityCorbanianMollusk.class, heavyWeight, 1, 1, EnumCreatureType.MONSTER, CORBA_BIOMES);
-        EntityRegistry.addSpawn(EntityStinky.class, 2, 5, 10, EnumCreatureType.MONSTER, CORBA_BIOMES);
+        EntityRegistry.addSpawn(EntityStinky.class, 2, 5, 10, EnumCreatureType.MONSTER, CORBA_SWAMP_BIOME);
         EntityRegistry.addSpawn(EntitySwampFly.class, heavyWeight, 1, 1, EnumCreatureType.MONSTER, CORBA_SWAMP_BIOME);
     }
 
