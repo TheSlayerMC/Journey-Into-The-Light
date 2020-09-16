@@ -311,7 +311,7 @@ public class ChunkGeneratorFrozenLands implements IChunkGenerator {
 		}
 
 		for (times = 0; times < 7; times++) {
-			WorldGenAPI.genOnGround(world, chunkPos, rand, new net.journey.dimension.frozen.gen.trees.WorldGenFrozenTree(true));
+			WorldGenAPI.genOnGroundWithShiftingPos(world, chunkPos, rand, new net.journey.dimension.frozen.gen.trees.WorldGenFrozenTree(true));
 		}
 
 		for (times = 0; times < 100; times++) {

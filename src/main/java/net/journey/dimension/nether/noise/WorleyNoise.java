@@ -5,8 +5,8 @@ public class WorleyNoise {
     /* Created by paulevs, from the Better Nether mod
      * Big thanks to him*/
 
-    private PermutationTable randX;
-    private PermutationTable randY;
+    private final PermutationTable randX;
+    private final PermutationTable randY;
 
     public WorleyNoise(long seed) {
         randX = new PermutationTable(seed);

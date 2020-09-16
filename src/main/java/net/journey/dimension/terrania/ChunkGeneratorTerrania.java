@@ -333,12 +333,12 @@ public class ChunkGeneratorTerrania implements IChunkGenerator {
 
 		for (times = 0; times < 5; times++) {
 			if (world.getBiome(chunkStart) == DimensionHelper.ENCHANTED_SHROOM_FOREST_BIOME)
-				WorldGenAPI.genOnGround(world, chunkPos, rand, new WorldGenTerrashroom(JourneyBlocks.terrashroomBlockPink));
+				WorldGenAPI.genOnGroundWithShiftingPos(world, chunkPos, rand, new WorldGenTerrashroom(JourneyBlocks.terrashroomBlockPink));
 		}
 
 		for (times = 0; times < 5; times++) {
 			if (world.getBiome(chunkStart) == DimensionHelper.ENCHANTED_SHROOM_FOREST_BIOME)
-				WorldGenAPI.genOnGround(world, chunkPos, rand, new WorldGenTerrashroom(JourneyBlocks.terrashroomBlockPurple));
+				WorldGenAPI.genOnGroundWithShiftingPos(world, chunkPos, rand, new WorldGenTerrashroom(JourneyBlocks.terrashroomBlockPurple));
 		}
 
 		for (int i = 0; i < 3; i++) {
@@ -387,13 +387,13 @@ public class ChunkGeneratorTerrania implements IChunkGenerator {
 		}
 
 		for (times = 0; times < 1; times++) {
-			if (world.getBiome(chunkStart) == DimensionHelper.TERRANIA_BIOME) 
-				WorldGenAPI.genOnGround(world, chunkPos, rand, new WorldGenTerraniaTree(true, 0, 1, JourneyBlocks.terranianLog.getDefaultState(), JourneyBlocks.terraniaLeaves.getDefaultState()));
+			if (world.getBiome(chunkStart) == DimensionHelper.TERRANIA_BIOME)
+				WorldGenAPI.genOnGroundWithShiftingPos(world, chunkPos, rand, new WorldGenTerraniaTree(true, 0, 1, JourneyBlocks.terranianLog.getDefaultState(), JourneyBlocks.terraniaLeaves.getDefaultState()));
 		}
 
 		for (times = 0; times < 2; times++) {
-			if (world.getBiome(chunkStart) == DimensionHelper.TERRANIA_BIOME) 
-				WorldGenAPI.genOnGround(world, chunkPos, rand, new WorldGenTerraniaTree(true, 5, 10, JourneyBlocks.terranianLog.getDefaultState(), JourneyBlocks.terraniaLeaves.getDefaultState()));
+			if (world.getBiome(chunkStart) == DimensionHelper.TERRANIA_BIOME)
+				WorldGenAPI.genOnGroundWithShiftingPos(world, chunkPos, rand, new WorldGenTerraniaTree(true, 5, 10, JourneyBlocks.terranianLog.getDefaultState(), JourneyBlocks.terraniaLeaves.getDefaultState()));
 		}
 
 		if (rand.nextInt(8) == 0) {
