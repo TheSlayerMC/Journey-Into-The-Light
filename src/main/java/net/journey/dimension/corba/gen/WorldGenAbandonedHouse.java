@@ -2,7 +2,6 @@ package net.journey.dimension.corba.gen;
 
 import net.journey.JITL;
 import net.journey.api.block.GroundPredicate;
-import net.journey.blocks.containers.BlockJourneyChest;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.blocks.JourneyBlocks;
@@ -64,15 +63,15 @@ public class WorldGenAbandonedHouse extends WorldGenerator {
 		return RandHelper.chooseEqual(rand, EnumFacing.EAST, EnumFacing.NORTH, EnumFacing.WEST, EnumFacing.SOUTH);
 	}
 
-	//WHY IS THE BLOCK POS OVER 1000 BLOCKS AWAY?
-	private void setTileEntityLootTable(World world, Random random, BlockPos pos, ResourceLocation lootTable) {
-		JITL.LOGGER.info(" " + pos.getX() + " " + pos.getY() + " " + pos.getZ());
-		if (world.getBlockState(pos) instanceof BlockJourneyChest) {
-			TileEntity chest = world.getTileEntity(pos);
-			if (chest instanceof TileEntityJourneyChest) {
-				((TileEntityJourneyChest) chest).setLootTable(JourneyLootTables.LOOT_OVERGROWN, random.nextLong());
-			}
+	private void setTileEntityLootTable(World world, Random random, BlockPos pos) {
+		TileEntity chest = world.getTileEntity(pos);
+		if (chest instanceof TileEntityJourneyChest) {
+			((TileEntityJourneyChest) chest).setLootTable(getRandomLootTable(random), random.nextLong());
 		}
+	}
+
+	private ResourceLocation getRandomLootTable(Random random) {
+		return RandHelper.chooseEqual(random, JourneyLootTables.LOOT_BASIC, JourneyLootTables.LOOT_GOLD, JourneyLootTables.LOOT_DIAMOND, JourneyLootTables.LOOT_OVERGROWN);
 	}
 
 	@Override
@@ -148,7 +147,7 @@ public class WorldGenAbandonedHouse extends WorldGenerator {
 			this.setBlockAndNotifyAdequately(world, soilPos.add(i + 2, j + 1, k + 1), getRandomStairStates(random, EnumFacing.SOUTH));
 			this.setBlockAndNotifyAdequately(world, soilPos.add(i + 2, j + 1, k + 5), getRandomChestStates(random, EnumFacing.SOUTH));
 
-			this.setTileEntityLootTable(world, random, soilPos.add(i + 2, j + 1, k + 5), JourneyLootTables.LOOT_OVERGROWN);
+			setTileEntityLootTable(world, random, soilPos.add(i + 2, j + 1, k + 5));
 
 			this.setBlockAndNotifyAdequately(world, soilPos.add(i + 2, j + 1, k + 7), getRandomStairStates(random, EnumFacing.NORTH));
 			this.setBlockAndNotifyAdequately(world, soilPos.add(i + 2, j + 2, k + 1), getRandomGlassStates(random));
@@ -291,7 +290,9 @@ public class WorldGenAbandonedHouse extends WorldGenerator {
 			this.setBlockAndNotifyAdequately(world, soilPos.add(i + 6, j + 0, k + 7), getRandomPlankStates(random));
 			this.setBlockAndNotifyAdequately(world, soilPos.add(i + 6, j + 1, k + 1), getRandomStairStates(random, EnumFacing.SOUTH));
 			this.setBlockAndNotifyAdequately(world, soilPos.add(i + 6, j + 1, k + 2), getRandomChestStates(random, EnumFacing.WEST));
-			this.setTileEntityLootTable(world, random, soilPos.add(i + 6, j + 1, k + 2), JourneyLootTables.LOOT_OVERGROWN);
+
+			this.setTileEntityLootTable(world, random, soilPos.add(i + 6, j + 1, k + 2));
+
 			this.setBlockAndNotifyAdequately(world, soilPos.add(i + 6, j + 1, k + 7), getRandomStairStates(random, EnumFacing.NORTH));
 			this.setBlockAndNotifyAdequately(world, soilPos.add(i + 6, j + 2, k + 1), getRandomGlassStates(random));
 			this.setBlockAndNotifyAdequately(world, soilPos.add(i + 6, j + 2, k + 7), getRandomGlassStates(random));
