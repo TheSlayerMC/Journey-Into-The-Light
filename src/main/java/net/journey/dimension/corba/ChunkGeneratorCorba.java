@@ -397,6 +397,12 @@ public class ChunkGeneratorCorba implements IChunkGenerator {
 			}
 		}
 
+		if (world.getBiome(startPos) == DimensionHelper.CORBA_SWAMP_BIOME) {
+			if (this.rand.nextInt(256) == 0) {
+				WorldGenAPI.genOnGroundWithShiftingPos(world, chunkPos, this.rand, new WorldGenAbandonedHouse());
+			}
+		}
+
 		if (world.getBiome(startPos) == DimensionHelper.CORBA_SWAMP_BIOME || world.getBiome(startPos) == DimensionHelper.CORBA_BOGWEED_FIELDS_BIOME) {
 			for (i = 0; i < 100; i++) {
 				int randX = x + 8 + this.rand.nextInt(8);

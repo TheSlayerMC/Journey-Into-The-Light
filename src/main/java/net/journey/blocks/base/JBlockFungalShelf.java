@@ -7,9 +7,13 @@ import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.stats.StatList;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.Mirror;
@@ -24,7 +28,8 @@ import net.slayer.api.EnumMaterialTypes;
 import net.slayer.api.SlayerAPI;
 import net.slayer.api.block.BlockMod;
 
-import java.util.List;
+import javax.annotation.Nullable;
+import java.util.Objects;
 import java.util.Random;
 //FIXME Merge with JBlockPlant
 public class JBlockFungalShelf extends BlockMod {
@@ -114,6 +119,16 @@ public class JBlockFungalShelf extends BlockMod {
     }
 
     @Override
+    public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity te, ItemStack stack) {
+        if (!worldIn.isRemote && stack.getItem() == Items.SHEARS) {
+            player.addStat(Objects.requireNonNull(StatList.getBlockStats(this)));
+            spawnAsEntity(worldIn, pos, new ItemStack(JourneyItems.bogshroomShelfSpore, 1));
+        } else {
+            super.harvestBlock(worldIn, player, pos, state, te, stack);
+        }
+    }
+
+    @Override
     public Item getItemDropped(IBlockState par1, Random par2, int par3) {
         return SlayerAPI.toItem(Blocks.AIR);
     }
@@ -126,13 +141,6 @@ public class JBlockFungalShelf extends BlockMod {
     @Override
     public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune) {
         super.dropBlockAsItemWithChance(worldIn, pos, state, chance, fortune);
-    }
-
-    @Override
-    public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
-        List<ItemStack> dropped = super.getDrops(world, pos, state, fortune);
-        dropped.add(new ItemStack(JourneyItems.bogshroomShelfSpore));
-        return dropped;
     }
 
     @Override

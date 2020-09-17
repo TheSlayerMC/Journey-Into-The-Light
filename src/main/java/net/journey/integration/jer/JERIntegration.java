@@ -50,11 +50,18 @@ public class JERIntegration {
 		});
 	}
 
+	//TODO: finish JER dungeon loot
 	private static void initDungeonLoot() {
 		IDungeonRegistry dungeonRegistry = jerAPI.getDungeonRegistry();
 		dungeonRegistry.registerChest("Rockite Dungeon", JourneyLootTables.ROCKITE_CHEST_LOOT);
+
+		//TODO: maybe create custom registry for loot pouches and loot boxes?
+		dungeonRegistry.registerChest("Basic Loot Pouch", JourneyLootTables.LOOT_BASIC);
+		dungeonRegistry.registerChest("Gold Loot Pouch", JourneyLootTables.LOOT_GOLD);
+		dungeonRegistry.registerChest("Diamond Loot Pouch", JourneyLootTables.LOOT_DIAMOND);
 	}
 
+	//TODO: finish JER ore gen
 	private static void initOreGen() {
 		IWorldGenRegistry worldGenRegistry = jerAPI.getWorldGenRegistry();
 		worldGenRegistry.register(new ItemStack(JourneyBlocks.sapphireOre), new DistributionSquare(0, Config.sapphireOreGenMaxY, Config.sapphireOreTrys), new LootDrop(new ItemStack(JourneyItems.sapphire)));
