@@ -350,13 +350,6 @@ public class WorldGenAPI {
         for (int i = 0; i < height; i++) placeFlatCircle(w, x, y + i, z, radius, b);
     }
 
-    @Deprecated // use WorldGenHelper#genHollowCylinder
-    public static void addHollowCylinder(World w, int height, int radius, Random r, int x, int y, int z, Block b) {
-        for (int i = 0; i < height; i++) placeFlatCircle(w, x, y + i, z, radius, b);
-        for (int i = 0; i < height; i++) placeFlatCircle(w, x, y + i, z, radius - 2, Blocks.AIR);
-
-    }
-
     @Deprecated // use WorldGenHelper#genHollowCircle
     public static void placeFlatCircle(World par1World, int x, int y, int z, int radius, Block block) {
         for (float i = 0; i < radius; i += 0.5) {
