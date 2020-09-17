@@ -19,13 +19,13 @@ public class WorldGenTowerDungeonCyl extends WorldGenerator {
 		int height = levels * 4;
 
 		WorldGenHelper.genHollowCylinder(position, 6, 4, EnumFacing.UP, mutablePos -> {
-			IBlockState state = JourneyBlocks.dungeonBrick.getDefaultState();
+			IBlockState state = JourneyBlocks.dungeonBricks.getDefaultState();
 
 			if (rand.nextInt(15) == 0) {
-				state = JourneyBlocks.dungeonChisledBrick.getDefaultState();
+				state = JourneyBlocks.dungeonChiseledBricks.getDefaultState();
 			}
 			if (rand.nextInt(10) == 0) {
-				state = RandHelper.chooseEqual(rand, JourneyBlocks.dungeonBrickCarved, JourneyBlocks.dungeonCrackedBrick)
+				state = RandHelper.chooseEqual(rand, JourneyBlocks.dungeonCarvedBricks, JourneyBlocks.dungeonCrackedBricks)
 						.getDefaultState();
 			}
 
