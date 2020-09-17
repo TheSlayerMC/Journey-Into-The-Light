@@ -22,6 +22,8 @@ public class ItemTestBug extends JItem {
 		if (!world.isRemote) {
 			//mStartDialogue.invoke(JManagers.DIALOGUE_MANAGER, player, EntityTordo.class, JDialogues.TEST.getRootNode());
 			new WorldGenTowerDungeonCyl().generate(world, itemRand, player.getPosition());
+
+//			WorldGenHelper.genHollowCylinder(player.getPosition(), 5, 3, EnumFacing.NORTH, mPos -> WorldGenHelper.setStateFast(world, mPos, Blocks.BEDROCK.getDefaultState()));
 		}
 
 		return new ActionResult<>(EnumActionResult.SUCCESS, player.getHeldItem(handIn));

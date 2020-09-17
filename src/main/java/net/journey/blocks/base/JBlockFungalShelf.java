@@ -26,7 +26,7 @@ import net.slayer.api.block.BlockMod;
 
 import java.util.List;
 import java.util.Random;
-
+//FIXME Merge with JBlockPlant
 public class JBlockFungalShelf extends BlockMod {
 
     public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
@@ -54,17 +54,16 @@ public class JBlockFungalShelf extends BlockMod {
 
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-
         switch (state.getValue(FACING)) {
             case SOUTH:
                 return SHROOM_SOUTH_AABB;
-            case NORTH:
-            default:
-                return SHROOM_NORTH_AABB;
             case WEST:
                 return SHROOM_WEST_AABB;
             case EAST:
                 return SHROOM_EAST_AABB;
+            case NORTH:
+            default:
+                return SHROOM_NORTH_AABB;
         }
     }
 

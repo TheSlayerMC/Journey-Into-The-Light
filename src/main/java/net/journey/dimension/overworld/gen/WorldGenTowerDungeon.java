@@ -34,9 +34,9 @@ public class WorldGenTowerDungeon extends WorldGenerator {
         WorldGenAPI.addRectangle(17, 12, 1, w, x - 1, y, z - 1, Blocks.GRASS);
         WorldGenAPI.addRectangle(17, 12, 10, w, x - 1, y - 10, z - 1, Blocks.DIRT);
 
-        WorldGenAPI.addCornerlessRectangle(15, 10, height + 10, w, x, y + 1, z, JourneyBlocks.dungeonBrick);
+        WorldGenAPI.addCornerlessRectangle(15, 10, height + 10, w, x, y + 1, z, JourneyBlocks.dungeonBricks);
         WorldGenAPI.addRectangle(13, 8, height + 10, w, x + 1, y + 1, z + 1, Blocks.AIR);
-        WorldGenAPI.addRectangle(13, 8, 1, w, x + 1, y, z + 1, JourneyBlocks.dungeonBrick);
+        WorldGenAPI.addRectangle(13, 8, 1, w, x + 1, y, z + 1, JourneyBlocks.dungeonBricks);
         WorldGenAPI.addRectangle(2, 1, 3, w, x + 6, y + 1, z, Blocks.AIR);
         WorldGenAPI.addRectangle(2, 1, 3, w, x + 6, y + 1, z + 9, Blocks.AIR);
         WorldGenAPI.addRectangle(1, 2, 3, w, x, y + 1, z + 4, Blocks.AIR);
@@ -69,7 +69,7 @@ public class WorldGenTowerDungeon extends WorldGenerator {
         WorldGenAPI.addRectangleWithMetadata(1, 10, 1, w, x - 1, y + height * 2 - 6, z, JourneyBlocks.dungeonBrickStairs, 12);
 
         WorldGenAPI.addRectangle(13, 8, 1, w, x + 1, y + height + 8, z + 1, JourneyBlocks.mossyEssenceStone);
-        WorldGenAPI.addRectangle(15, 10, 1, w, x, y + height + 10, z, JourneyBlocks.dungeonBrick);
+        WorldGenAPI.addRectangle(15, 10, 1, w, x, y + height + 10, z, JourneyBlocks.dungeonBricks);
         WorldGenAPI.addRectangle(13, 8, 1, w, x + 1, y + height + 10, z + 1, Blocks.AIR);
 
         WorldGenAPI.addHollowRectangle(15, 10, 1, w, x, y + height + 11, z, JourneyBlocks.dungeonLampFence);
@@ -115,8 +115,8 @@ public class WorldGenTowerDungeon extends WorldGenerator {
         for (int x1 = 0; x1 < 15; x1++) {
             for (int y1 = 0; y1 < 50; y1++) {
                 for (int z1 = 0; z1 < 15; z1++) {
-                    if (w.getBlockState(new BlockPos(x + x1, y + y1, z + z1)) == JourneyBlocks.dungeonBrick.getDefaultState() && r.nextInt(15) == 0) {
-                        this.setBlockAndNotifyAdequately(w, new BlockPos(x + x1, y + y1, z + z1), JourneyBlocks.dungeonChisledBrick.getDefaultState());
+                    if (w.getBlockState(new BlockPos(x + x1, y + y1, z + z1)) == JourneyBlocks.dungeonBricks.getDefaultState() && r.nextInt(15) == 0) {
+                        this.setBlockAndNotifyAdequately(w, new BlockPos(x + x1, y + y1, z + z1), JourneyBlocks.dungeonChiseledBricks.getDefaultState());
                         break;
                     }
                 }
@@ -126,8 +126,8 @@ public class WorldGenTowerDungeon extends WorldGenerator {
         for (int x1 = 0; x1 < 15; x1++) {
             for (int y1 = 0; y1 < 50; y1++) {
                 for (int z1 = 0; z1 < 15; z1++) {
-                    if (w.getBlockState(new BlockPos(x + x1, y + y1, z + z1)) == JourneyBlocks.dungeonBrick.getDefaultState() && r.nextInt(10) == 0) {
-                        this.setBlockAndNotifyAdequately(w, new BlockPos(x + x1, y + y1, z + z1), JourneyBlocks.dungeonBrickCarved.getDefaultState());
+                    if (w.getBlockState(new BlockPos(x + x1, y + y1, z + z1)) == JourneyBlocks.dungeonBricks.getDefaultState() && r.nextInt(10) == 0) {
+                        this.setBlockAndNotifyAdequately(w, new BlockPos(x + x1, y + y1, z + z1), JourneyBlocks.dungeonCarvedBricks.getDefaultState());
                         break;
                     }
                 }
@@ -137,8 +137,8 @@ public class WorldGenTowerDungeon extends WorldGenerator {
         for (int x1 = 0; x1 < 15; x1++) {
             for (int y1 = 0; y1 < 50; y1++) {
                 for (int z1 = 0; z1 < 15; z1++) {
-                    if (w.getBlockState(new BlockPos(x + x1, y + y1, z + z1)) == JourneyBlocks.dungeonBrick.getDefaultState() && r.nextInt(10) == 0) {
-                        this.setBlockAndNotifyAdequately(w, new BlockPos(x + x1, y + y1, z + z1), JourneyBlocks.dungeonCrackedBrick.getDefaultState());
+                    if (w.getBlockState(new BlockPos(x + x1, y + y1, z + z1)) == JourneyBlocks.dungeonBricks.getDefaultState() && r.nextInt(10) == 0) {
+                        this.setBlockAndNotifyAdequately(w, new BlockPos(x + x1, y + y1, z + z1), JourneyBlocks.dungeonCrackedBricks.getDefaultState());
                         break;
                     }
                 }
@@ -148,9 +148,9 @@ public class WorldGenTowerDungeon extends WorldGenerator {
         for (int i = 0; i < 50; i++) {
             for (int j = 0; j < 50; j++) {
                 for (int k = 0; k < 50; k++) {
-                    if (w.getBlockState(new BlockPos(i, j, k)) == JourneyBlocks.dungeonBrick.getDefaultState()) {
+                    if (w.getBlockState(new BlockPos(i, j, k)) == JourneyBlocks.dungeonBricks.getDefaultState()) {
                         if (r.nextInt(10) == 0)
-                            this.setBlockAndNotifyAdequately(w, new BlockPos(i, j, k), JourneyBlocks.dungeonCrackedBrick.getDefaultState());
+                            this.setBlockAndNotifyAdequately(w, new BlockPos(i, j, k), JourneyBlocks.dungeonCrackedBricks.getDefaultState());
                     }
                 }
             }
@@ -160,8 +160,8 @@ public class WorldGenTowerDungeon extends WorldGenerator {
     //TODO optimize, 200 attempts to place isn't a good way of generating
     public void addLevel(World w, int x, int y, int z, int height, int lor, String mobName, String mobName2) {
         Random r = new Random();
-        WorldGenAPI.addRectangle(13, 8, 1, w, x + 1, y + height, z + 1, JourneyBlocks.dungeonBrick);
-        WorldGenAPI.addRectangle(13, 8, 1, w, x + 1, y + height + 4, z + 1, JourneyBlocks.dungeonBrick);
+        WorldGenAPI.addRectangle(13, 8, 1, w, x + 1, y + height, z + 1, JourneyBlocks.dungeonBricks);
+        WorldGenAPI.addRectangle(13, 8, 1, w, x + 1, y + height + 4, z + 1, JourneyBlocks.dungeonBricks);
         WorldGenAPI.addRectangle(4, 2, 1, w, x + 2, y + height + 4, z + 1, Blocks.AIR);
         WorldGenAPI.addRectangle(4, 2, 1, w, x + 2, y + height, z + 7, Blocks.AIR);
         WorldGenAPI.addBlock(w, x + 13, y + height - 1, z + 1, JourneyBlocks.dungeonLamp);
