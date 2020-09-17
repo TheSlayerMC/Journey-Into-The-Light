@@ -69,11 +69,7 @@ public class ChunkGeneratorCorba implements IChunkGenerator {
 	private Biome[] biomesForGeneration;
 
 	private final WorldGenModFlower flower1 = new WorldGenModFlower(JourneyBlocks.corbaSpeckledFlower, JourneyBlocks.corbaGrass);
-	private final WorldGenModFlower flower2 = new WorldGenModFlower(JourneyBlocks.corbaDarkPurpleFlower, JourneyBlocks.corbaGrass);
-	private final WorldGenModFlower flower3 = new WorldGenModFlower(JourneyBlocks.corbaRedFlower, JourneyBlocks.corbaGrass);
-	private final WorldGenModFlower flower4 = new WorldGenModFlower(JourneyBlocks.corbaBlueFlower, JourneyBlocks.corbaGrass);
-	private final WorldGenModFlower flower5 = new WorldGenModFlower(JourneyBlocks.corbaLightPurpleFlower, JourneyBlocks.corbaGrass);
-	private final JWorldGenPlants genCorbaTallGrass = new JWorldGenPlants(JourneyBlocks.corbaTallGrass, GroundPredicate.COMMON_AND_CORBA_GRASS, 10);
+	private final JWorldGenPlants genCorbaTallGrass = new JWorldGenPlants(JourneyBlocks.corbaTallGrass, GroundPredicate.COMMON_AND_CORBA_GRASS, 20);
 	private final JWorldGenPlants genCorbaFlower = new JWorldGenPlants(JourneyBlocks.corbaFlower, GroundPredicate.COMMON_AND_CORBA_GRASS, 3);
 	private final JWorldGenPlants genBogshroomsSmall = new JWorldGenPlants(JourneyBlocks.bogshroomsSmall, 3);
 	private final JWorldGenPlants genBogshroomTall = new JWorldGenPlants(JourneyBlocks.bogshroomTall, 1);
@@ -351,10 +347,6 @@ public class ChunkGeneratorCorba implements IChunkGenerator {
 				genCorbaTallGrass.generate(world, rand, startPos);
 				genCorbaFlower.generate(world, rand, startPos);
 				flower1.generate(world, rand, startPos);
-				flower2.generate(world, rand, startPos);
-				flower3.generate(world, rand, startPos);
-				flower4.generate(world, rand, startPos);
-				flower5.generate(world, rand, startPos);
 			}
 		}
 

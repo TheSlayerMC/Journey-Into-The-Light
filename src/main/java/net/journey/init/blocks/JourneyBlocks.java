@@ -805,10 +805,10 @@ public class JourneyBlocks {
         slime = new BlockSlime(EnumMaterialTypes.SLIME, "slime", "Slime", 0.1F);
 
         totemBase = (BlockMod) new BlockMod(EnumMaterialTypes.WOOD, "totem_base", "Totem Base", 1.0F).setBlockUnbreakable().setResistance(100000F);
-        totemHappy = (BlockMod) new JBlockFacing(EnumMaterialTypes.WOOD, "totem_happy", "Happy Totem", 1.0F).setBlockUnbreakable().setResistance(100000F);
-        totemSad = (BlockMod) new JBlockFacing(EnumMaterialTypes.WOOD, "totem_sad", "Sad Totem", 1.0F).setBlockUnbreakable().setResistance(100000F);
-        totemAngry = (BlockMod) new JBlockFacing(EnumMaterialTypes.WOOD, "totem_angry", "Angry Totem", 1.0F).setBlockUnbreakable().setResistance(100000F);
-        totemScared = (BlockMod) new JBlockFacing(EnumMaterialTypes.WOOD, "totem_scared", "Scared Totem", 1.0F).setBlockUnbreakable().setResistance(100000F);
+        totemHappy = (BlockMod) new BlockTotem(EnumMaterialTypes.WOOD, "totem_happy", "Happy Totem", 1.0F, BlockTotem.TotemType.HAPPY).setBlockUnbreakable().setResistance(100000F);
+        totemSad = (BlockMod) new BlockTotem(EnumMaterialTypes.WOOD, "totem_sad", "Sad Totem", 1.0F, BlockTotem.TotemType.SAD).setBlockUnbreakable().setResistance(100000F);
+        totemAngry = (BlockMod) new BlockTotem(EnumMaterialTypes.WOOD, "totem_angry", "Angry Totem", 1.0F, BlockTotem.TotemType.MAD).setBlockUnbreakable().setResistance(100000F);
+        totemScared = (BlockMod) new BlockTotem(EnumMaterialTypes.WOOD, "totem_scared", "Scared Totem", 1.0F, BlockTotem.TotemType.SCARED).setBlockUnbreakable().setResistance(100000F);
 
 
         boilingLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "boilingLamp", "Boiling Lamp", 0.1F)
@@ -1087,7 +1087,7 @@ public class JourneyBlocks {
         depthsFlower = new BlockModFlower("depthsFlower", "Depths Flower");
         depthsBlueFlower = new BlockModFlower("depthsBlueFlower", "Depths Blue Flower");
         corbaFlower = new BlockModFlower("corbaFlower", "Corba Flower");
-        corbaTallGrass = new JBlockTallGrass("corbaTallGrass", "Corba Tall Grass");
+        corbaTallGrass = (JBlockTallGrass) new JBlockTallGrass("corbaTallGrass", "Corba Tall Grass").setGroundPredicate(GroundPredicate.COMMON_AND_CORBA_GRASS);
         corbaSpeckledFlower = new BlockModFlower("corbaSpeckledFlower", "Speckled Flower");
         corbaLightPurpleFlower = new BlockModFlower("corbaLightPurpleFlower", "Light Purple Flower");
         corbaRedFlower = new BlockModFlower("corbaRedFlower", "Red Flower");

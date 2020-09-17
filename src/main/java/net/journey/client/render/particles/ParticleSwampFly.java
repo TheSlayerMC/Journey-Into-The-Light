@@ -52,14 +52,8 @@ public class ParticleSwampFly extends Particle {
 	@Override
 	public void renderParticle(BufferBuilder buffer, Entity entity, float par2, float p_180434_4_, float p_180434_5_, float p_180434_6_, float p_180434_7_, float p_180434_8_) {
 		this.particleScale = jParticleScale;
-		this.particleAlpha = renderAlpha();
+		this.particleAlpha = 0.5F;
 		super.renderParticle(buffer, entity, par2, p_180434_4_, p_180434_5_, p_180434_6_, p_180434_7_, p_180434_8_);
-	}
-
-	public float renderAlpha() {
-		if (this.particleLife <= this.particleHalflife) {
-			return (float) particleLife / (float) particleHalflife;
-		} else return (float) Math.cos(((particleLife - particleHalflife) / particleHalflife));
 	}
 
 	@Override
