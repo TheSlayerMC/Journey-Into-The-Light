@@ -1,12 +1,14 @@
 package net.journey.blocks;
 
 import net.journey.JITL;
-import net.journey.blocks.base.JBlockFacing;
 import net.journey.blocks.tileentity.TileEntityTotem;
 import net.journey.client.render.particles.ParticleSwampFly;
 import net.journey.init.items.JourneyItems;
 import net.journey.util.WorldUtils;
+import net.minecraft.block.properties.PropertyDirection;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
@@ -18,19 +20,49 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.EnumMaterialTypes;
+import net.slayer.api.entity.tileentity.container.BlockModContainer;
 
+import javax.annotation.Nullable;
 import java.util.Random;
 
-public class BlockTotem extends JBlockFacing {
+public class BlockTotem extends BlockModContainer {
+
+	public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
 
 	private final TotemType totemType;
 
 	public BlockTotem(EnumMaterialTypes enumMaterialTypes, String name, String f, float hardness, TotemType totemType) {
 		super(enumMaterialTypes, name, f, hardness);
 		this.totemType = totemType;
+		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
+		this.setTickRandomly(true);
+		this.setBlockUnbreakable();
+		this.setResistance(100000F);
 	}
 
-	public TileEntity createTileEntity(World world, IBlockState state) {
+	@Override
+	public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
+		return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite());
+	}
+
+	@Override
+	public IBlockState getStateFromMeta(int meta) {
+		return this.getDefaultState().withProperty(FACING, EnumFacing.byHorizontalIndex(meta));
+	}
+
+	@Override
+	public int getMetaFromState(IBlockState state) {
+		return state.getValue(FACING).getHorizontalIndex();
+	}
+
+	@Override
+	protected BlockStateContainer createBlockState() {
+		return new BlockStateContainer(this, FACING);
+	}
+
+	@Nullable
+	@Override
+	public TileEntity createNewTileEntity(World world, int i) {
 		TileEntityTotem totem = new TileEntityTotem();
 		totem.setLockCode(new LockCode("TOTEMBOI"));
 		return totem;

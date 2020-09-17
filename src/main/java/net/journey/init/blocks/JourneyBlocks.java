@@ -31,6 +31,7 @@ import net.minecraft.util.BlockRenderLayer;
 import net.slayer.api.EnumMaterialTypes;
 import net.slayer.api.EnumToolType;
 import net.slayer.api.block.*;
+import net.slayer.api.entity.tileentity.container.BlockModContainer;
 
 import java.util.ArrayList;
 
@@ -264,10 +265,10 @@ public class JourneyBlocks {
     public static BlockSlime slime;
 
     public static BlockMod totemBase;
-    public static BlockMod totemAngry;
-    public static BlockMod totemHappy;
-    public static BlockMod totemScared;
-    public static BlockMod totemSad;
+    public static BlockModContainer totemAngry;
+    public static BlockModContainer totemHappy;
+    public static BlockModContainer totemScared;
+    public static BlockModContainer totemSad;
 
     public static BlockMod boilingLamp;
     public static BlockMod blazierBricks;
@@ -805,11 +806,10 @@ public class JourneyBlocks {
         slime = new BlockSlime(EnumMaterialTypes.SLIME, "slime", "Slime", 0.1F);
 
         totemBase = (BlockMod) new BlockMod(EnumMaterialTypes.WOOD, "totem_base", "Totem Base", 1.0F).setBlockUnbreakable().setResistance(100000F);
-        totemHappy = (BlockMod) new BlockTotem(EnumMaterialTypes.WOOD, "totem_happy", "Happy Totem", 1.0F, BlockTotem.TotemType.HAPPY).setBlockUnbreakable().setResistance(100000F);
-        totemSad = (BlockMod) new BlockTotem(EnumMaterialTypes.WOOD, "totem_sad", "Sad Totem", 1.0F, BlockTotem.TotemType.SAD).setBlockUnbreakable().setResistance(100000F);
-        totemAngry = (BlockMod) new BlockTotem(EnumMaterialTypes.WOOD, "totem_angry", "Angry Totem", 1.0F, BlockTotem.TotemType.MAD).setBlockUnbreakable().setResistance(100000F);
-        totemScared = (BlockMod) new BlockTotem(EnumMaterialTypes.WOOD, "totem_scared", "Scared Totem", 1.0F, BlockTotem.TotemType.SCARED).setBlockUnbreakable().setResistance(100000F);
-
+        totemHappy = new BlockTotem(EnumMaterialTypes.WOOD, "totem_happy", "Happy Totem", 1.0F, BlockTotem.TotemType.HAPPY);
+        totemSad = new BlockTotem(EnumMaterialTypes.WOOD, "totem_sad", "Sad Totem", 1.0F, BlockTotem.TotemType.SAD);
+        totemAngry = new BlockTotem(EnumMaterialTypes.WOOD, "totem_angry", "Angry Totem", 1.0F, BlockTotem.TotemType.MAD);
+        totemScared = new BlockTotem(EnumMaterialTypes.WOOD, "totem_scared", "Scared Totem", 1.0F, BlockTotem.TotemType.SCARED);
 
         boilingLamp = (BlockMod) new BlockMod(EnumMaterialTypes.GLASS, "boilingLamp", "Boiling Lamp", 0.1F)
                 .setLightLevel(1.0F).setCreativeTab(JourneyTabs.DECORATION);
