@@ -1,4 +1,4 @@
-package net.journey.dimension.euca.gen.trees;
+package net.journey.dimension.euca.gen.dungeon;
 
 import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.util.math.BlockPos;

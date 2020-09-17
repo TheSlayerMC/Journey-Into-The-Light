@@ -1,7 +1,10 @@
 package net.journey.dimension.euca.gen.trees;
 
+import net.journey.api.block.GroundPredicate;
+import net.journey.init.blocks.JourneyBlocks;
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -10,294 +13,118 @@ import net.slayer.api.worldgen.WorldGenAPI;
 import java.util.Random;
 
 public class WorldGenEucaTree extends WorldGenerator {
-    @Override
-    public boolean generate(World world, Random rand, BlockPos pos) {
-        int i = pos.getX(), j = pos.getY(), k = pos.getZ();
-        IBlockState leaves = WorldGenAPI.getEucaLeaves().getDefaultState(), log = WorldGenAPI.getEucaLog().getDefaultState();
-        int height = 10 + rand.nextInt(5);
-        for (int y = 0; y < height; y++) {
-            this.setBlockAndNotifyAdequately(world, new BlockPos(i, y + j, k), log);
-        }
 
-        j += height;
-        int x = i - 4, y1 = j - 8, z = k - 4;
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 0, y1 + 6, z + 4), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 0, y1 + 7, z + 3), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 0, y1 + 7, z + 4), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 0, y1 + 7, z + 5), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 0, y1 + 8, z + 4), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 1, y1 + 5, z + 3), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 1, y1 + 5, z + 4), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 1, y1 + 5, z + 5), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 1, y1 + 6, z + 2), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 1, y1 + 6, z + 3), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 1, y1 + 6, z + 4), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 1, y1 + 6, z + 5), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 1, y1 + 6, z + 6), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 1, y1 + 7, z + 2), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 1, y1 + 7, z + 3), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 1, y1 + 7, z + 4), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 1, y1 + 7, z + 5), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 1, y1 + 7, z + 6), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 1, y1 + 8, z + 2), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 1, y1 + 8, z + 3), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 1, y1 + 8, z + 4), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 1, y1 + 8, z + 5), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 1, y1 + 8, z + 6), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 1, y1 + 9, z + 3), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 1, y1 + 9, z + 4), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 1, y1 + 9, z + 5), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 2, y1 + 4, z + 3), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 2, y1 + 4, z + 4), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 2, y1 + 4, z + 5), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 2, y1 + 5, z + 2), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 2, y1 + 5, z + 3), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 2, y1 + 5, z + 4), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 2, y1 + 5, z + 5), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 2, y1 + 5, z + 6), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 2, y1 + 6, z + 1), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 2, y1 + 6, z + 2), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 2, y1 + 6, z + 3), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 2, y1 + 6, z + 4), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 2, y1 + 6, z + 5), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 2, y1 + 6, z + 6), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 2, y1 + 6, z + 7), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 2, y1 + 7, z + 1), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 2, y1 + 7, z + 2), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 2, y1 + 7, z + 3), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 2, y1 + 7, z + 4), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 2, y1 + 7, z + 5), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 2, y1 + 7, z + 6), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 2, y1 + 7, z + 7), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 2, y1 + 8, z + 1), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 2, y1 + 8, z + 2), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 2, y1 + 8, z + 3), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 2, y1 + 8, z + 4), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 2, y1 + 8, z + 5), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 2, y1 + 8, z + 6), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 2, y1 + 8, z + 7), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 2, y1 + 9, z + 2), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 2, y1 + 9, z + 3), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 2, y1 + 9, z + 4), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 2, y1 + 9, z + 5), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 2, y1 + 9, z + 6), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 2, y1 + 10, z + 3), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 2, y1 + 10, z + 4), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 2, y1 + 10, z + 5), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 3, y1 + 3, z + 4), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 3, y1 + 4, z + 2), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 3, y1 + 4, z + 3), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 3, y1 + 4, z + 4), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 3, y1 + 4, z + 5), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 3, y1 + 4, z + 6), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 3, y1 + 5, z + 1), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 3, y1 + 5, z + 2), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 3, y1 + 5, z + 3), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 3, y1 + 5, z + 4), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 3, y1 + 5, z + 5), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 3, y1 + 5, z + 6), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 3, y1 + 5, z + 7), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 3, y1 + 6, z + 1), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 3, y1 + 6, z + 2), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 3, y1 + 6, z + 3), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 3, y1 + 6, z + 4), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 3, y1 + 6, z + 5), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 3, y1 + 6, z + 6), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 3, y1 + 6, z + 7), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 3, y1 + 7, z + 0), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 3, y1 + 7, z + 1), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 3, y1 + 7, z + 2), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 3, y1 + 7, z + 3), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 3, y1 + 7, z + 4), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 3, y1 + 7, z + 5), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 3, y1 + 7, z + 6), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 3, y1 + 7, z + 7), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 3, y1 + 7, z + 8), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 3, y1 + 8, z + 1), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 3, y1 + 8, z + 2), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 3, y1 + 8, z + 3), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 3, y1 + 8, z + 4), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 3, y1 + 8, z + 5), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 3, y1 + 8, z + 6), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 3, y1 + 8, z + 7), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 3, y1 + 9, z + 1), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 3, y1 + 9, z + 2), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 3, y1 + 9, z + 3), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 3, y1 + 9, z + 4), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 3, y1 + 9, z + 5), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 3, y1 + 9, z + 6), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 3, y1 + 9, z + 7), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 3, y1 + 10, z + 2), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 3, y1 + 10, z + 3), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 3, y1 + 10, z + 4), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 3, y1 + 10, z + 5), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 3, y1 + 10, z + 6), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 3, y1 + 11, z + 4), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 4, y1 + 3, z + 3), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 4, y1 + 3, z + 5), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 4, y1 + 4, z + 2), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 4, y1 + 4, z + 3), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 4, y1 + 4, z + 5), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 4, y1 + 4, z + 6), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 4, y1 + 5, z + 1), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 4, y1 + 5, z + 2), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 4, y1 + 5, z + 3), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 4, y1 + 5, z + 5), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 4, y1 + 5, z + 6), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 4, y1 + 5, z + 7), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 4, y1 + 6, z + 0), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 4, y1 + 6, z + 1), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 4, y1 + 6, z + 2), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 4, y1 + 6, z + 3), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 4, y1 + 6, z + 5), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 4, y1 + 6, z + 6), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 4, y1 + 6, z + 7), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 4, y1 + 6, z + 8), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 4, y1 + 7, z + 0), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 4, y1 + 7, z + 1), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 4, y1 + 7, z + 2), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 4, y1 + 7, z + 3), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 4, y1 + 7, z + 5), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 4, y1 + 7, z + 6), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 4, y1 + 7, z + 7), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 4, y1 + 7, z + 8), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 4, y1 + 8, z + 0), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 4, y1 + 8, z + 1), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 4, y1 + 8, z + 2), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 4, y1 + 8, z + 3), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 4, y1 + 8, z + 4), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 4, y1 + 8, z + 5), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 4, y1 + 8, z + 6), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 4, y1 + 8, z + 7), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 4, y1 + 8, z + 8), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 4, y1 + 9, z + 1), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 4, y1 + 9, z + 2), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 4, y1 + 9, z + 3), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 4, y1 + 9, z + 4), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 4, y1 + 9, z + 5), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 4, y1 + 9, z + 6), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 4, y1 + 9, z + 7), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 4, y1 + 10, z + 2), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 4, y1 + 10, z + 3), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 4, y1 + 10, z + 4), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 4, y1 + 10, z + 5), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 4, y1 + 10, z + 6), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 4, y1 + 11, z + 3), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 4, y1 + 11, z + 4), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 4, y1 + 11, z + 5), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 5, y1 + 3, z + 4), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 5, y1 + 4, z + 2), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 5, y1 + 4, z + 3), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 5, y1 + 4, z + 4), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 5, y1 + 4, z + 5), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 5, y1 + 4, z + 6), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 5, y1 + 5, z + 1), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 5, y1 + 5, z + 2), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 5, y1 + 5, z + 3), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 5, y1 + 5, z + 4), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 5, y1 + 5, z + 5), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 5, y1 + 5, z + 6), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 5, y1 + 5, z + 7), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 5, y1 + 6, z + 1), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 5, y1 + 6, z + 2), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 5, y1 + 6, z + 3), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 5, y1 + 6, z + 4), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 5, y1 + 6, z + 5), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 5, y1 + 6, z + 6), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 5, y1 + 6, z + 7), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 5, y1 + 7, z + 0), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 5, y1 + 7, z + 1), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 5, y1 + 7, z + 2), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 5, y1 + 7, z + 3), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 5, y1 + 7, z + 4), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 5, y1 + 7, z + 5), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 5, y1 + 7, z + 6), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 5, y1 + 7, z + 7), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 5, y1 + 7, z + 8), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 5, y1 + 8, z + 1), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 5, y1 + 8, z + 2), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 5, y1 + 8, z + 3), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 5, y1 + 8, z + 4), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 5, y1 + 8, z + 5), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 5, y1 + 8, z + 6), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 5, y1 + 8, z + 7), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 5, y1 + 9, z + 1), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 5, y1 + 9, z + 2), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 5, y1 + 9, z + 3), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 5, y1 + 9, z + 4), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 5, y1 + 9, z + 5), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 5, y1 + 9, z + 6), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 5, y1 + 9, z + 7), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 5, y1 + 10, z + 2), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 5, y1 + 10, z + 3), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 5, y1 + 10, z + 4), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 5, y1 + 10, z + 5), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 5, y1 + 10, z + 6), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 5, y1 + 11, z + 4), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 6, y1 + 4, z + 3), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 6, y1 + 4, z + 4), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 6, y1 + 4, z + 5), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 6, y1 + 5, z + 2), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 6, y1 + 5, z + 3), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 6, y1 + 5, z + 4), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 6, y1 + 5, z + 5), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 6, y1 + 5, z + 6), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 6, y1 + 6, z + 1), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 6, y1 + 6, z + 2), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 6, y1 + 6, z + 3), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 6, y1 + 6, z + 4), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 6, y1 + 6, z + 5), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 6, y1 + 6, z + 6), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 6, y1 + 6, z + 7), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 6, y1 + 7, z + 1), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 6, y1 + 7, z + 2), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 6, y1 + 7, z + 3), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 6, y1 + 7, z + 4), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 6, y1 + 7, z + 5), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 6, y1 + 7, z + 6), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 6, y1 + 7, z + 7), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 6, y1 + 8, z + 1), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 6, y1 + 8, z + 2), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 6, y1 + 8, z + 3), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 6, y1 + 8, z + 4), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 6, y1 + 8, z + 5), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 6, y1 + 8, z + 6), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 6, y1 + 8, z + 7), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 6, y1 + 9, z + 2), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 6, y1 + 9, z + 3), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 6, y1 + 9, z + 4), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 6, y1 + 9, z + 5), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 6, y1 + 9, z + 6), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 6, y1 + 10, z + 3), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 6, y1 + 10, z + 4), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 6, y1 + 10, z + 5), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 7, y1 + 5, z + 3), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 7, y1 + 5, z + 4), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 7, y1 + 5, z + 5), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 7, y1 + 6, z + 2), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 7, y1 + 6, z + 3), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 7, y1 + 6, z + 4), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 7, y1 + 6, z + 5), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 7, y1 + 6, z + 6), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 7, y1 + 7, z + 2), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 7, y1 + 7, z + 3), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 7, y1 + 7, z + 4), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 7, y1 + 7, z + 5), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 7, y1 + 7, z + 6), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 7, y1 + 8, z + 2), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 7, y1 + 8, z + 3), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 7, y1 + 8, z + 4), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 7, y1 + 8, z + 5), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 7, y1 + 8, z + 6), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 7, y1 + 9, z + 3), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 7, y1 + 9, z + 4), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 7, y1 + 9, z + 5), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 8, y1 + 6, z + 4), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 8, y1 + 7, z + 3), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 8, y1 + 7, z + 4), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 8, y1 + 7, z + 5), leaves);
-		this.setBlockAndNotifyAdequately(world, new BlockPos(x + 8, y1 + 8, z + 4), leaves);
+	protected GroundPredicate groundPredicate = GroundPredicate.COMMON_AND_EUCA_GRASS;
 
-        return true;
-    }
+	private Block leaves;
+	private Block log;
+
+	private final int treeHeight;
+	private final int leafSize;
+
+	public WorldGenEucaTree() {
+		super(false);
+		leaves = JourneyBlocks.eucaGoldLeaves;
+		log = JourneyBlocks.eucaGoldLog;
+		treeHeight = 7;
+		leafSize = 6;
+	}
+
+	public WorldGenEucaTree(boolean doBlockNotify, Block log, Block leaves, int treeHeight, int leafSize) {
+		super(doBlockNotify);
+		this.leaves = leaves;
+		this.log = log;
+		this.treeHeight = treeHeight;
+		this.leafSize = leafSize;
+	}
+
+	public WorldGenEucaTree setLeaves(Block leaves) {
+		this.leaves = leaves;
+		return this;
+	}
+
+	public WorldGenEucaTree setLog(Block log) {
+		this.log = log;
+		return this;
+	}
+
+	@Override
+	public boolean generate(World world, Random random, BlockPos blockPos) {
+		int treeHeight = random.nextInt(2) + random.nextInt(2) + this.treeHeight;
+
+		BlockPos soilPos = blockPos.down();
+		IBlockState soilState = world.getBlockState(soilPos);
+		boolean isSoil = groundPredicate.testGround(world, soilPos, soilState, EnumFacing.UP);
+
+		BlockPos.MutableBlockPos basePos = new BlockPos.MutableBlockPos(WorldGenAPI.findPosAboveSurface(world, blockPos)).move(EnumFacing.DOWN);
+		BlockPos.MutableBlockPos logPos = basePos;
+
+		if (isSoil) {
+
+			BlockPos.MutableBlockPos stumpPos = basePos;
+
+			int stumpHeight = random.nextInt(2) + 2;
+
+			for (int i = 0; i < stumpHeight; i++) {
+				placeStumps(world, stumpPos);
+			}
+
+			for (int i = 0; i < treeHeight; i++) {
+				placeLog(world, logPos);
+			}
+
+			BlockPos.MutableBlockPos leafPos = logPos.move(EnumFacing.DOWN);
+
+			for (int j5 = 0; j5 <= 10; ++j5) {
+				for (int l5 = 0; l5 <= 10; ++l5) {
+					createCrown(world, leafPos, leafSize);
+				}
+			}
+		}
+		return true;
+	}
+
+	private void placeLog(World world, BlockPos.MutableBlockPos pos) {
+		setBlockAndNotifyAdequately(world, pos.move(EnumFacing.UP), log.getDefaultState());
+	}
+
+	private void placeStumps(World world, BlockPos.MutableBlockPos logPos) {
+		setBlockAndNotifyAdequately(world, logPos.move(EnumFacing.UP).offset(EnumFacing.EAST), log.getDefaultState());
+		setBlockAndNotifyAdequately(world, logPos.offset(EnumFacing.WEST), log.getDefaultState());
+		setBlockAndNotifyAdequately(world, logPos.offset(EnumFacing.NORTH), log.getDefaultState());
+		setBlockAndNotifyAdequately(world, logPos.offset(EnumFacing.SOUTH), log.getDefaultState());
+	}
+
+	private void createCrown(World world, BlockPos pos, int size) {
+		pos = pos.offset(EnumFacing.UP, 2);
+		for (byte x = 0; x <= size; x++) {
+			for (byte y = 0; y <= size; y++) {
+				for (byte z = 0; z <= size; z++) {
+
+					int distance;
+
+					if (x >= y & x >= z) distance = x + (Math.max(y, z) >> 1) + (Math.min(y, z) >> 1);
+
+					else if (y >= x & y >= z) distance = y + (Math.max(x, z) >> 1) + (Math.min(x, z) >> 1);
+
+					else distance = z + (Math.max(x, y) >> 1) + (Math.min(x, y) >> 1);
+
+					if (distance <= size) {
+						placeLeaves(world, pos.add(+x, +y, +z));
+						placeLeaves(world, pos.add(+x, +y, -z));
+						placeLeaves(world, pos.add(-x, +y, +z));
+						placeLeaves(world, pos.add(-x, +y, -z));
+						placeLeaves(world, pos.add(+x, -y, +z));
+						placeLeaves(world, pos.add(+x, -y, -z));
+						placeLeaves(world, pos.add(-x, -y, +z));
+						placeLeaves(world, pos.add(-x, -y, -z));
+					}
+				}
+			}
+		}
+	}
+
+	private void placeLeaves(World world, BlockPos pos) {
+		setBlockAndNotifyAdequately(world, pos, leaves.getDefaultState());
+	}
 }

@@ -35,7 +35,9 @@ public interface GroundPredicate {
 	GroundPredicate COMMON_AND_CORBA_GRASS = GRASS_BLOCK.or(blockPredicate(block -> block == JourneyBlocks.corbaGrass || block == JourneyBlocks.taintedMud));
 	GroundPredicate COMMON_AND_EUCA_GOLD_GRASS = GRASS_BLOCK.or(blockPredicate(block -> block == JourneyBlocks.eucaGrass));
 	GroundPredicate COMMON_AND_EUCA_GOLDITE_GRASS = GRASS_BLOCK.or(blockPredicate(block -> block == JourneyBlocks.eucaGolditeGrass));
+	GroundPredicate COMMON_AND_EUCA_GRASS = GRASS_BLOCK.or(blockPredicate(block -> block == JourneyBlocks.eucaGrass || block == JourneyBlocks.eucaGolditeGrass || block == JourneyBlocks.eucaSilverGrass));
 
+	GroundPredicate CORBA_SWAMP = GRASS_BLOCK.or(blockPredicate(block -> block == JourneyBlocks.taintedMud || block == JourneyBlocks.driedMud || block == JourneyBlocks.corbaStone));
 	GroundPredicate CORBA_MUD = GRASS_BLOCK.or(blockPredicate(block -> block == JourneyBlocks.taintedMud || block == JourneyBlocks.driedMud));
 	GroundPredicate CORBA_TAINTED_MUD = GRASS_BLOCK.or(blockPredicate(block -> block == JourneyBlocks.taintedMud));
 	GroundPredicate CORBA_DRIED_MUD = GRASS_BLOCK.or(blockPredicate(block -> block == JourneyBlocks.driedMud));

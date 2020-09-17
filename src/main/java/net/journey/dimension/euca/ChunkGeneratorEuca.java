@@ -1,14 +1,18 @@
 package net.journey.dimension.euca;
 
+import net.journey.api.block.GroundPredicate;
 import net.journey.dimension.base.DimensionHelper;
+import net.journey.dimension.base.gen.JWorldGenRuins;
 import net.journey.dimension.euca.gen.WorldGenEucaPumpkin;
 import net.journey.dimension.euca.gen.WorldGenEucaSphere;
 import net.journey.dimension.euca.gen.WorldGenEucaWater;
 import net.journey.dimension.euca.gen.WorldGenSmeltery;
 import net.journey.dimension.euca.gen.dungeon.EucaSmallSphereDungeon;
-import net.journey.dimension.euca.gen.trees.*;
+import net.journey.dimension.euca.gen.dungeon.WorldGenBotSpawner;
+import net.journey.dimension.euca.gen.trees.WorldGenEucaTree;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.Config;
+import net.journey.util.RandHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockStateMatcher;
@@ -46,12 +50,6 @@ public class ChunkGeneratorEuca implements IChunkGenerator {
 	private final NoiseGeneratorOctaves perlinNoise1;
 	private double[] buffer;
 	//private ArrayList<WorldGenerator> treesgreen;
-	private final WorldGenerator[] treesnormal = {
-			new WorldGenEucaTree2()
-	};
-	private final WorldGenerator[] treestall = {
-			new WorldGenEucaTree()
-	};
 
 	private final WorldGenMinable celestium;
 	private final WorldGenMinable storonOre;
@@ -77,12 +75,6 @@ public class ChunkGeneratorEuca implements IChunkGenerator {
 		storonOre = new WorldGenMinable(JourneyBlocks.storonOre.getDefaultState(), Config.storonOreGenAmount, BlockStateMatcher.forBlock(JourneyBlocks.eucaStone));
 		koriteOre = new WorldGenMinable(JourneyBlocks.koriteOre.getDefaultState(), Config.koriteOreGenAmount, BlockStateMatcher.forBlock(JourneyBlocks.eucaStone));
 		mekyumOre = new WorldGenMinable(JourneyBlocks.mekyumOre.getDefaultState(), Config.mekyumOreGenAmount, BlockStateMatcher.forBlock(JourneyBlocks.eucaStone));
-
-		//	treesgreen = new ArrayList<WorldGenerator>(3);
-		//	treesgreen.add(new WorldGenEucaTree6());
-		//treesgreen.add(new WorldGenEucaTree7());
-		//treesgreen.add(new WorldGenEucaTree8());
-		//treesgreen.add(new WorldGenEucaTree9());
 	}
 
 	protected static long getSeed(int x, int z) {
@@ -239,7 +231,7 @@ public class ChunkGeneratorEuca implements IChunkGenerator {
 		int x1 = chunkX * chunkSize;
 		int z1 = chunkZ * chunkSize;
 		int times;
-		BlockPos chunkStart = new BlockPos(chunkX * chunkSize, 0, chunkZ * chunkSize);
+		BlockPos chunkStart = new BlockPos(x1, 0, z1);
 
 		boolean hasVillagesGenerated = false;
 
@@ -256,47 +248,29 @@ public class ChunkGeneratorEuca implements IChunkGenerator {
 			generateStructure(x1, z1, spawner);
 		}
 
-		for (times = 0; times < 500; times++) {
-			int randX = chunkX * 16 + 8 + rand.nextInt(16);
-			int randZ = chunkZ * 16 + 8 + rand.nextInt(16);
-			int randY = rand.nextInt(150) + 1;
-			if (world.getBiome(new BlockPos(randX, randY, randZ)) == DimensionHelper.EUCA_GOLD_BIOME && isBlockTop(randX, randY - 1, randZ, JourneyBlocks.eucaGrass)) {
-				treesnormal[rand.nextInt(treesnormal.length)].generate(world, rand, new BlockPos(randX, randY, randZ));
+		if (world.getBiome(chunkStart) == DimensionHelper.EUCA_GOLD_BIOME) {
+			for (times = 0; times < 2; times++) {
+				WorldGenAPI.genOnGroundWithShiftingPos(world, chunkPos, this.rand, new WorldGenEucaTree(true, JourneyBlocks.eucaGoldLog, JourneyBlocks.eucaGoldLeaves, 6, (rand.nextInt(2) + 3)));
 			}
 		}
 
-		for (times = 0; times < 70; times++) {
-			int randX = chunkX * 16 + 8 + rand.nextInt(16);
-			int randZ = chunkZ * 16 + 8 + rand.nextInt(16);
-			int randY = rand.nextInt(150) + 1;
-			if (world.getBiome(new BlockPos(randX, randY, randZ)) == DimensionHelper.EUCA_GOLD_BIOME && isBlockTop(randX, randY - 1, randZ, JourneyBlocks.eucaGrass)) {
-				treestall[rand.nextInt(treestall.length)].generate(world, rand, new BlockPos(randX, randY, randZ));
+		if (world.getBiome(chunkStart) == DimensionHelper.EUCA_SILVER_BIOME) {
+			for (times = 0; times < 2; times++) {
+				WorldGenAPI.genOnGroundWithShiftingPos(world, chunkPos, this.rand, new WorldGenEucaTree(true, JourneyBlocks.eucaGoldLog, JourneyBlocks.eucaSilverLeaves, 6, (rand.nextInt(2) + 3)));
 			}
 		}
 
-		for (times = 0; times < 570; times++) {
-			int randX = chunkX * 16 + 8 + rand.nextInt(16);
-			int randZ = chunkZ * 16 + 8 + rand.nextInt(16);
-			int randY = rand.nextInt(150) + 1;
-			if (world.getBiome(new BlockPos(randX, randY, randZ)) == DimensionHelper.EUCA_SILVER_BIOME && isBlockTop(randX, randY - 1, randZ, JourneyBlocks.eucaSilverGrass)) {
-				new WorldGenEucaSilverTree(true).generate(world, rand, new BlockPos(randX, randY, randZ));
+		if (world.getBiome(chunkStart) == DimensionHelper.EUCA_GOLDITE_GRAINS_BIOME) {
+			Block leaves = RandHelper.chooseEqual(rand, JourneyBlocks.eucaDarkGreenLeaves, JourneyBlocks.eucaLightGreenLeaves, JourneyBlocks.eucaGoldLeaves);
+			for (times = 0; times < 2; times++) {
+				WorldGenAPI.genOnGroundWithShiftingPos(world, chunkPos, this.rand, new WorldGenEucaTree(true, JourneyBlocks.GOLDITE_OAK_LOG, leaves, 9, (rand.nextInt(2) + 3)));
 			}
 		}
 
-		for (times = 0; times < 50; times++) {
-			int randX = chunkX * 16 + 8 + rand.nextInt(16);
-			int randZ = chunkZ * 16 + 8 + rand.nextInt(16);
-			int randY = rand.nextInt(150) + 1;
-			if (world.getBiome(chunkStart) == DimensionHelper.EUCA_GOLDITE_GRAINS_BIOME && isBlockTop(randX, randY - 1, randZ, JourneyBlocks.eucaGolditeGrass))
-				new WorldGenEucaGolditeTree().generate(world, rand, new BlockPos(randX, randY, randZ));
-		}
-
-		for (times = 0; times < 50; times++) {
-			int randX = chunkX * 16 + 8 + rand.nextInt(16);
-			int randZ = chunkZ * 16 + 8 + rand.nextInt(16);
-			int randY = rand.nextInt(150) + 1;
-			if (world.getBiome(chunkStart) == DimensionHelper.EUCA_GOLDITE_GRAINS_BIOME && isBlockTop(randX, randY - 1, randZ, JourneyBlocks.eucaGolditeGrass))
-				new WorldGenEucaGolditeTree2().generate(world, rand, new BlockPos(randX, randY, randZ));
+		if (this.rand.nextInt(10) == 0) {
+			Block bricks = RandHelper.chooseEqual(rand, JourneyBlocks.EUCA_DUNGEON_BRICKS, JourneyBlocks.EUCA_GOLD_STONE, JourneyBlocks.EUCA_SQUARE_DUNGEON_BRICKS);
+			new JWorldGenRuins(GroundPredicate.COMMON_AND_EUCA_GRASS, JWorldGenRuins.LootType.RUINS,
+					bricks.getDefaultState()).generate(world, this.rand, chunkStart);
 		}
 
 		for (times = 0; times < 1; times++) {
@@ -307,11 +281,11 @@ public class ChunkGeneratorEuca implements IChunkGenerator {
 			water.generate(world, rand, new BlockPos(x1 + this.rand.nextInt(16) + 8, this.rand.nextInt(120) + 4, z1 + this.rand.nextInt(16) + 8));
 		}
 
-		if (rand.nextInt(25) == 0) {
+		if (rand.nextInt(128) == 0) {
 			sphere.generate(world, rand, new BlockPos(x1, this.rand.nextInt(120) + 4, z1));
 		}
 
-		if (rand.nextInt(256) == 0) {
+		if (rand.nextInt(512) == 0) {
 			smallsphere.generate(world, rand, new BlockPos(x1, this.rand.nextInt(120) + 4, z1));
 		}
 

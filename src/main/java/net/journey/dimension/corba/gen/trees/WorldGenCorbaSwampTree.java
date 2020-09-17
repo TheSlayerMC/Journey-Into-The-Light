@@ -1,9 +1,10 @@
 package net.journey.dimension.corba.gen.trees;
 
+import net.journey.api.block.GroundPredicate;
 import net.journey.blocks.base.JBlockFungalShelf;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.RandHelper;
-import net.minecraft.init.Blocks;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -14,7 +15,9 @@ import java.util.Random;
 
 public class WorldGenCorbaSwampTree extends WorldGenAbstractTree {
 
-    private final int treeHeight = 10;
+    protected GroundPredicate groundPredicate = GroundPredicate.CORBA_SWAMP;
+
+    private final int treeHeight = 5;
 
     public WorldGenCorbaSwampTree() {
         super(false);
@@ -28,13 +31,20 @@ public class WorldGenCorbaSwampTree extends WorldGenAbstractTree {
     public boolean generate(World world, Random random, BlockPos blockPos) {
         int treeHeight = random.nextInt(2) + random.nextInt(2) + this.treeHeight;
 
-        BlockPos.MutableBlockPos logPos = new BlockPos.MutableBlockPos(WorldGenAPI.findPosAboveSurface(world, WorldGenAPI.optimizeAndRandomize(blockPos, random))).move(EnumFacing.DOWN);
+        BlockPos soilPos = blockPos.down();
+        IBlockState soilState = world.getBlockState(soilPos);
+        boolean isSoil = groundPredicate.testGround(world, soilPos, soilState, EnumFacing.UP);
 
-        if (world.getBlockState(logPos.up()) == Blocks.AIR.getDefaultState()) {
+        BlockPos.MutableBlockPos basePos = new BlockPos.MutableBlockPos(WorldGenAPI.findPosAboveSurface(world, blockPos)).move(EnumFacing.DOWN);
+        BlockPos.MutableBlockPos logPos = basePos;
 
-            BlockPos.MutableBlockPos stumpPos = logPos;
+        if (isSoil) {
 
-            for (int i = 0; i < random.nextInt(5) + 2; i++) {
+            BlockPos.MutableBlockPos stumpPos = basePos;
+
+            int stumpHeight = random.nextInt(5) + 2;
+
+            for (int i = 0; i < stumpHeight; i++) {
                 placeStumps(world, stumpPos);
             }
 
@@ -59,15 +69,40 @@ public class WorldGenCorbaSwampTree extends WorldGenAbstractTree {
 
             BlockPos.MutableBlockPos stemPos1 = leafPos;
 
-            for (int j5 = 0; j5 <= 1; ++j5) {
-                for (int l5 = 0; l5 <= 1; ++l5) {
-                    placeStems(world, stemPos1, EnumFacing.EAST);
-                }
+            int stemChance = random.nextInt(2);
+            switch (stemChance) {
+                case 0:
+                    for (int j5 = 0; j5 <= 1; ++j5) {
+                        for (int l5 = 0; l5 <= 1; ++l5) {
+                            placeStems(world, stemPos1, EnumFacing.EAST);
+                        }
+                    }
+                case 1:
+                    for (int j5 = 0; j5 <= 1; ++j5) {
+                        for (int l5 = 0; l5 <= 1; ++l5) {
+                            placeStems(world, stemPos1, EnumFacing.WEST);
+                        }
+                    }
+                case 2:
             }
 
-            BlockPos.MutableBlockPos shroomPos = leafPos;
+            for (int i = 0; i < random.nextInt(3); i++) {
+                placeMushroom(world, blockPos.north(2).up(random.nextInt(stumpHeight - 1) + 1), EnumFacing.NORTH);
+                placeMushroom(world, blockPos.north(1).up(stumpHeight + 1 + (random.nextInt(treeHeight - 4))), EnumFacing.NORTH);
 
-            placeMushroom(world, shroomPos.move(EnumFacing.DOWN, random.nextInt(8) + 8).move(EnumFacing.WEST, 3), EnumFacing.EAST);
+                if (stemChance != 1) {
+                    placeMushroom(world, blockPos.west(2).up(random.nextInt(stumpHeight - 1) + 1), EnumFacing.WEST);
+                    placeMushroom(world, blockPos.west(1).up(stumpHeight + 1 + (random.nextInt(treeHeight - 4))), EnumFacing.WEST);
+                }
+
+                if (stemChance != 0) {
+                    placeMushroom(world, blockPos.east(2).up(random.nextInt(stumpHeight - 1) + 1), EnumFacing.EAST);
+                    placeMushroom(world, blockPos.east(1).up(stumpHeight + 1 + (random.nextInt(treeHeight - 4))), EnumFacing.EAST);
+                }
+
+                placeMushroom(world, blockPos.south(2).up(random.nextInt(stumpHeight - 1) + 1), EnumFacing.SOUTH);
+                placeMushroom(world, blockPos.south(1).up(stumpHeight + 1 + (random.nextInt(treeHeight - 4))), EnumFacing.SOUTH);
+            }
         }
         return true;
     }
@@ -81,8 +116,8 @@ public class WorldGenCorbaSwampTree extends WorldGenAbstractTree {
     }
 
     private void placeStumps(World world, BlockPos.MutableBlockPos logPos) {
-        setBlockAndNotifyAdequately(world, logPos.offset(EnumFacing.EAST), JourneyBlocks.bogwoodLog.getDefaultState());
-        setBlockAndNotifyAdequately(world, logPos.move(EnumFacing.UP).offset(EnumFacing.WEST), JourneyBlocks.bogwoodLog.getDefaultState());
+        setBlockAndNotifyAdequately(world, logPos.move(EnumFacing.UP).offset(EnumFacing.EAST), JourneyBlocks.bogwoodLog.getDefaultState());
+        setBlockAndNotifyAdequately(world, logPos.offset(EnumFacing.WEST), JourneyBlocks.bogwoodLog.getDefaultState());
         setBlockAndNotifyAdequately(world, logPos.offset(EnumFacing.NORTH), JourneyBlocks.bogwoodLog.getDefaultState());
         setBlockAndNotifyAdequately(world, logPos.offset(EnumFacing.SOUTH), JourneyBlocks.bogwoodLog.getDefaultState());
     }
