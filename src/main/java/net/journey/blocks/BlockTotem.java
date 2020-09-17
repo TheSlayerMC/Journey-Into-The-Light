@@ -2,18 +2,18 @@ package net.journey.blocks;
 
 import net.journey.JITL;
 import net.journey.blocks.base.JBlockFacing;
+import net.journey.blocks.tileentity.TileEntityTotem;
 import net.journey.client.render.particles.ParticleSwampFly;
-import net.journey.init.JourneySounds;
 import net.journey.init.items.JourneyItems;
 import net.journey.util.WorldUtils;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.LockCode;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -23,28 +23,25 @@ import java.util.Random;
 
 public class BlockTotem extends JBlockFacing {
 
-	private TotemType totemType;
-	boolean activated;
+	private final TotemType totemType;
 
 	public BlockTotem(EnumMaterialTypes enumMaterialTypes, String name, String f, float hardness, TotemType totemType) {
 		super(enumMaterialTypes, name, f, hardness);
 		this.totemType = totemType;
-		this.activated = false;
 	}
 
-	public BlockTotem setTotemType(TotemType totemType) {
-		this.totemType = totemType;
-		return this;
-	}
-
-	public boolean isActivated() {
-		return activated;
+	public TileEntity createTileEntity(World world, IBlockState state) {
+		TileEntityTotem totem = new TileEntityTotem();
+		totem.setLockCode(new LockCode("TOTEMBOI"));
+		return totem;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
-		if (activated) renderParticle(worldIn, pos.getX(), pos.getY(), pos.getZ(), pos);
+		TileEntityTotem totem = new TileEntityTotem();
+		if (!totem.isLocked()) renderParticle(worldIn, pos.getX(), pos.getY(), pos.getZ(), pos);
+		JITL.LOGGER.info("" + totem.isLocked());
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -68,6 +65,7 @@ public class BlockTotem extends JBlockFacing {
 		}
 	}
 
+	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		Item activator = null;
 		if (totemType == TotemType.HAPPY) activator = JourneyItems.boilPowder;
@@ -75,13 +73,23 @@ public class BlockTotem extends JBlockFacing {
 		if (totemType == TotemType.SCARED) activator = JourneyItems.natureTablet;
 		if (totemType == TotemType.SAD) activator = JourneyItems.enchantedLeaf;
 
-		if (playerIn.getHeldItemMainhand().getItem() == activator) {
-			worldIn.playSound(playerIn, pos, JourneySounds.SUMMON_TABLE, SoundCategory.BLOCKS, 1.0F, 1.0F);
-			activated = true;
+		boolean flag = playerIn.getHeldItemMainhand().getItem() == activator;
+
+		if (!worldIn.isRemote) {
+			TileEntityTotem totem = (TileEntityTotem) worldIn.getTileEntity(pos);
+			if (totem != null) {
+				if (flag) {
+					playerIn.getHeldItemMainhand().shrink(1);
+					totem.setUnlocked();
+				}
+			}
+			if (totem != null && totem.isLocked()) {
+				return true;
+			}
 		}
 
 		JITL.LOGGER.info("" + activator.getRegistryName());
-		return playerIn.getHeldItemMainhand() == new ItemStack(activator);
+		return flag;
 	}
 
 	public enum TotemType {

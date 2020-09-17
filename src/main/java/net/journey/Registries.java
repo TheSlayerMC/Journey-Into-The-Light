@@ -1,8 +1,8 @@
 package net.journey;
 
-import net.journey.blocks.tileentity.TileEntityHandler;
 import net.journey.init.JourneyEnchantments;
 import net.journey.init.Registrar;
+import net.journey.init.TileEntityHandler;
 import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;

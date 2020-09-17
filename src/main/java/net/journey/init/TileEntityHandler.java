@@ -1,5 +1,6 @@
-package net.journey.blocks.tileentity;
+package net.journey.init;
 
+import net.journey.blocks.tileentity.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.slayer.api.SlayerAPI;
@@ -18,5 +19,6 @@ public class TileEntityHandler {
         GameRegistry.registerTileEntity(TileEntityJourneyMobSpawner.class, new ResourceLocation(SlayerAPI.PREFIX + "Mob Spawner"));
         GameRegistry.registerTileEntity(TileEntityIncubator.class, new ResourceLocation(SlayerAPI.PREFIX + "Incubator"));
         GameRegistry.registerTileEntity(TileEntityBossSpawner.class, new ResourceLocation(SlayerAPI.PREFIX + "BossBlock"));
+        GameRegistry.registerTileEntity(TileEntityTotem.class, new ResourceLocation(SlayerAPI.PREFIX + "totem"));
     }
 }
