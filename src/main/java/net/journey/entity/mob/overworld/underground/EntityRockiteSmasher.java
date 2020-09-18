@@ -14,6 +14,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemPickaxe;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
@@ -31,7 +33,7 @@ public class EntityRockiteSmasher extends JEntityMob {
     public EntityRockiteSmasher(World par1World) {
         super(par1World);
         initEntityAI();
-        setSize(1.0F, 2.5F);
+        setSize(1.5F, 1.75F);
     }
 
     protected void initEntityAI() {
@@ -54,22 +56,26 @@ public class EntityRockiteSmasher extends JEntityMob {
     }
     
 	public boolean attackEntityFrom(DamageSource source, float amount) {
-		if (this.isEntityInvulnerable(source)) {
-			return false;
-		} else if (source == DamageSource.DROWN) {
-			return false;
-		} else {
-			Entity entity;
-			{
-				entity = source.getImmediateSource();
-				if (entity instanceof EntityArrow) {
-					return false;
-				}
-				else if (entity instanceof EntityThrowable) {
-					return false;
-				}
-			}
-		}
+        EntityPlayer player = (EntityPlayer) source.getImmediateSource();
+        Item heldItem = player.inventory.getCurrentItem().getItem();
+
+        if (this.isEntityInvulnerable(source)) {
+            return false;
+        } else if (source == DamageSource.DROWN) {
+            return false;
+        } else {
+            Entity entity;
+            {
+                entity = source.getImmediateSource();
+                if (entity instanceof EntityArrow) {
+                    return false;
+                } else if (entity instanceof EntityThrowable) {
+                    return false;
+                } else if (!(heldItem instanceof ItemPickaxe) || !(heldItem.getRegistryName().toString().contains("pickaxe"))) {
+                    return false;
+                }
+            }
+        }
 		return super.attackEntityFrom(source, amount);
 	}
 

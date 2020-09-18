@@ -1,7 +1,7 @@
 package net.journey.client.handler;
 
 import net.journey.util.JourneyBossStatus;
-import net.journey.util.gui.TextRenderUtils;
+import net.journey.util.gui.RenderUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiIngame;
@@ -61,7 +61,7 @@ public class BossTickHandler {
                 glitchedText = "";
             }
 
-            TextRenderUtils textRenderUtils = new TextRenderUtils();
+            RenderUtils textRenderUtils = new RenderUtils();
 
             if (JourneyBossStatus.bossName != null) {
 				textRenderUtils.drawOutlinedCenteredString(fontrenderer, barDisX + 92, barDisY, glitchedText + I18n.format(

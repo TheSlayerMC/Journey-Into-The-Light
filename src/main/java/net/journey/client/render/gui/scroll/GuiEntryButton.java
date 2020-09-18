@@ -3,7 +3,7 @@ package net.journey.client.render.gui.scroll;
 import net.journey.JITL;
 import net.journey.api.scroll.ScrollCategory;
 import net.journey.api.scroll.ScrollEntry;
-import net.journey.util.RenderUtils;
+import net.journey.util.gui.RenderUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.audio.SoundHandler;

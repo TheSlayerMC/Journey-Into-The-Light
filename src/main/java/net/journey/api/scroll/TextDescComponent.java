@@ -1,5 +1,6 @@
 package net.journey.api.scroll;
 
+import net.journey.util.EnumHexColor;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 
@@ -28,7 +29,7 @@ public class TextDescComponent implements IDescComponent {
         int i = y0;
 
         for (String s : wrappedText) {
-            Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(s, x0, i, 0xFFFFFF);
+            Minecraft.getMinecraft().fontRenderer.drawString(s, x0, i, EnumHexColor.DARK_BROWN.getInt());
             i += Minecraft.getMinecraft().fontRenderer.FONT_HEIGHT;
         }
     }

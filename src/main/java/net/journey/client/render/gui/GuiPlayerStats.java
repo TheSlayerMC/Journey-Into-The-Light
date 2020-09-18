@@ -1,19 +1,18 @@
 package net.journey.client.render.gui;
 
-import org.lwjgl.opengl.GL11;
-
 import net.journey.JITL;
 import net.journey.api.capability.PlayerStats;
 import net.journey.common.capability.JCapabilityManager;
 import net.journey.common.knowledge.EnumKnowledgeType;
 import net.journey.util.ContainerEmpty;
 import net.journey.util.EnumHexColor;
-import net.journey.util.gui.TextRenderUtils;
+import net.journey.util.gui.RenderUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
 
 public class GuiPlayerStats extends GuiContainer {
 
@@ -158,7 +157,7 @@ public class GuiPlayerStats extends GuiContainer {
 		drawTexturedModalRect(progressBarX, progressBarY, 0, 5, progressBarSize, 5);
 		drawTexturedModalRect(progressBarX, progressBarY, 0, 0, width, 5);
 
-		TextRenderUtils TextRenderUtils = new TextRenderUtils();
+		RenderUtils TextRenderUtils = new RenderUtils();
 		int lvX = progressBarX + 29, lvY = progressBarY - 1;
 
 		TextRenderUtils.drawOutlinedString(fontRenderer, knowledge.getLevelCount() > 10 ? lvX - 2 : knowledge.getLevelCount() > 100 ? lvX - 4 : lvX, lvY, "" + knowledge.getLevelCount(), EnumHexColor.LIGHT_BLUE, EnumHexColor.BLACK);

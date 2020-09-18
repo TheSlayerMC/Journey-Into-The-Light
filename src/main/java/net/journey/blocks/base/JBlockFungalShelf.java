@@ -113,8 +113,29 @@ public class JBlockFungalShelf extends BlockMod {
 
     @Override
     public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
-        if (!this.canBlockStay(worldIn, pos, state)) {
-            this.dropBlock(worldIn, pos, state);
+        if (state.getValue(FACING) == EnumFacing.NORTH) {
+            if (!worldIn.getBlockState(pos.south()).getBlock().isNormalCube(state, worldIn, pos)) {
+                worldIn.setBlockToAir(pos);
+                //spawnAsEntity(worldIn, pos, new ItemStack(JourneyItems.bogshroomShelfSpore, 1));
+            }
+        }
+        if (state.getValue(FACING) == EnumFacing.WEST) {
+            if (!worldIn.getBlockState(pos.east()).getBlock().isNormalCube(state, worldIn, pos)) {
+                worldIn.setBlockToAir(pos);
+                //spawnAsEntity(worldIn, pos, new ItemStack(JourneyItems.bogshroomShelfSpore, 1));
+            }
+        }
+        if (state.getValue(FACING) == EnumFacing.EAST) {
+            if (!worldIn.getBlockState(pos.west()).getBlock().isNormalCube(state, worldIn, pos)) {
+                worldIn.setBlockToAir(pos);
+                //spawnAsEntity(worldIn, pos, new ItemStack(JourneyItems.bogshroomShelfSpore, 1));
+            }
+        }
+        if (state.getValue(FACING) == EnumFacing.SOUTH) {
+            if (!worldIn.getBlockState(pos.north()).getBlock().isNormalCube(state, worldIn, pos)) {
+                worldIn.setBlockToAir(pos);
+                // spawnAsEntity(worldIn, pos, new ItemStack(JourneyItems.bogshroomShelfSpore, 1));
+            }
         }
     }
 

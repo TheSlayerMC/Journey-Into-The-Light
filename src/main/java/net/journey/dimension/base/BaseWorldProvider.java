@@ -1,6 +1,6 @@
 package net.journey.dimension.base;
 
-import net.journey.util.RenderUtils;
+import net.journey.util.gui.RenderUtils;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;

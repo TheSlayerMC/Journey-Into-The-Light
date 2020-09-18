@@ -23,69 +23,71 @@ import net.minecraftforge.common.util.EnumHelper;
 
 public class JourneyItems {
 
-    public static final EntityEquipmentSlot HEAD = EntityEquipmentSlot.HEAD, BODY = EntityEquipmentSlot.CHEST, LEGS = EntityEquipmentSlot.LEGS, BOOTS = EntityEquipmentSlot.FEET;
-    //overworld
-    public static ToolMaterial shadiumSwordMat = addToolMaterial(2210, 13F, 8.5F, true);
-    public static ToolMaterial luniumSwordMat = addToolMaterial(2210, 13F, 8.5F, true);
-    public static ToolMaterial sapphiretoolSwordMat = addToolMaterial(1561, 13F, 8, true);
-    
-    //nether
-    public static ToolMaterial hellstoneSwordMat = addToolMaterial(2356, 13F, 8.5F, true);
-    
-    //euca
-    public static ToolMaterial mekyumSwordMat = addToolMaterial(3120, 13F, 11.5F, true);
+	public static final EntityEquipmentSlot HEAD = EntityEquipmentSlot.HEAD, BODY = EntityEquipmentSlot.CHEST, LEGS = EntityEquipmentSlot.LEGS, BOOTS = EntityEquipmentSlot.FEET;
+
+	//TODO: make a new system. durability, damage, efficiency, etc. should be static values for each tool material, with an alogorithm that changes each value based on tool type.
+	//overworld
+	public static ToolMaterial shadiumSwordMat = addToolMaterial(2210, 13F, 8.5F, true);
+	public static ToolMaterial luniumSwordMat = addToolMaterial(2210, 13F, 8.5F, true);
+	public static ToolMaterial sapphiretoolSwordMat = addToolMaterial(1561, 13F, 8, true);
+
+	//nether
+	public static ToolMaterial hellstoneSwordMat = addToolMaterial(2356, 13F, 8.5F, true);
+
+	//euca
+	public static ToolMaterial mekyumSwordMat = addToolMaterial(3120, 13F, 11.5F, true);
     public static ToolMaterial storonSwordMat = addToolMaterial(3120, 13F, 11.5F, true);
     public static ToolMaterial koriteSwordMat = addToolMaterial(3120, 13F, 11.5F, true);
-    public static ToolMaterial celestiumSwordMat = addToolMaterial(3120, 13F, 11.5F, true);
-    
-    //depths
-    public static ToolMaterial flairiumSwordMat = addToolMaterial(3120, 14.5F, 12, true);
-    public static ToolMaterial desSwordMat = addToolMaterial(3120, 15F, 13, true);
-    
-    //corba
-    public static ToolMaterial gorbiteSwordMat = addToolMaterial(3120, 13F, 16.5F, true);
-    public static ToolMaterial orbaditeSwordMat = addToolMaterial(3120, 13F, 16.5F, true);
+	public static ToolMaterial celestiumSwordMat = addToolMaterial(3120, 13F, 11.5F, true);
 
-    public static ToolMaterial sapphiretool = addToolMaterial(1461, 10F, 5F, true);
-    public static ToolMaterial lunium = addToolMaterial(1490, 12F, 5F, true);
-    public static ToolMaterial shadium = addToolMaterial(1521, 12F, 5F, true);
-    public static ToolMaterial hellstone = addToolMaterial(1432, 15F, 5F, true);
-    public static ToolMaterial nethic = addToolMaterial(481, 21F, 5F, true);
-    public static ToolMaterial celestium = addToolMaterial(1621, 18F, 5F, true);
-    public static ToolMaterial mekyum = addToolMaterial(1621, 18F, 5F, true);
-    public static ToolMaterial storon = addToolMaterial(1621, 18F, 5F, true);
-    public static ToolMaterial korite = addToolMaterial(1621, 18F, 5F, true);
-    public static ToolMaterial flairium = addToolMaterial(2130, 21F, 5F, true);
-    public static ToolMaterial des = addToolMaterial(2130, 21F, 5F, true);
-    public static ToolMaterial orbadite = addToolMaterial(3142, 28F, 5F, true);
-    public static ToolMaterial gorbite = addToolMaterial(3142, 28F, 5F, true);
-    public static ToolMaterial hoeoflife = addToolMaterial(126, 28F, 5F, true);
-    public static ToolMaterial hoeofearth = addToolMaterial(512, 28F, 5F, true);
-    public static ToolMaterial hellstoneMulti = addToolMaterial(3000, 10F, 5F, false);
-    public static ToolMaterial flairiumMulti = addToolMaterial(3000, 16F, 5F, false);
-    public static ToolMaterial luniumMulti = addToolMaterial(3000, 7F, 5F, false);
-    public static ToolMaterial celestiumMulti = addToolMaterial(3000, 13F, 5F, false);
-    public static ToolMaterial mekyumMulti = addToolMaterial(3000, 13F, 5F, false);
-    public static ToolMaterial storonMulti = addToolMaterial(3000, 13F, 5F, false);
-    public static ToolMaterial koriteMulti = addToolMaterial(3000, 13F, 5F, false);
-    public static ToolMaterial shadiumMulti = addToolMaterial(3000, 9F, 5F, false);
-    public static ToolMaterial sapphireMulti = addToolMaterial(3000, 7F, 5F, false);
-    public static ToolMaterial orbaditeMulti = addToolMaterial(3000, 20F, 5F, false);
-    public static ToolMaterial gorbiteMulti = addToolMaterial(3000, 20F, 5F, false);
-    public static ToolMaterial desMulti = addToolMaterial(3000, 16F, 5F, false);
-    public static ToolMaterial smeltingMulti = addToolMaterial(3000, 8F, 5F, false);
-    public static ToolMaterial SLIMY_PICK_MATERIAL = addToolMaterial(3000, 2F, 5F, true);
-    public static ToolMaterial BEDROCK_SHOVEL_MATERIAL = addToolMaterial(1000, 4F, 5F, false);
-    
-    //TODO MATERIALS
-    public static ToolMaterial woodMulti = addToolMaterial(60, 2F, 5F, false);
-    public static ToolMaterial stoneMulti = addToolMaterial(132, 3F, 5F, false);
-    public static ToolMaterial ironMulti = addToolMaterial(251, 4F, 5F, false);
-    public static ToolMaterial goldMulti = addToolMaterial(33, 5F, 5F, false);
-    public static ToolMaterial diamondMulti = addToolMaterial(1562, 6F, 5F, false);
+	//depths
+	public static ToolMaterial flairiumSwordMat = addToolMaterial(3120, 14.5F, 12, true);
+	public static ToolMaterial desSwordMat = addToolMaterial(3120, 15F, 13, true);
 
-    public static Item hellstoneIngot;
-    public static Item shadiumIngot;
+	//corba
+	public static ToolMaterial gorbiteSwordMat = addToolMaterial(3120, 13F, 16.5F, true);
+	public static ToolMaterial orbaditeSwordMat = addToolMaterial(3120, 13F, 16.5F, true);
+
+	public static ToolMaterial sapphiretool = addToolMaterial(1461, 10F, 8F, true);
+	public static ToolMaterial lunium = addToolMaterial(1490, 12F, 8.5F, true);
+	public static ToolMaterial shadium = addToolMaterial(1521, 12F, 8.5F, true);
+	public static ToolMaterial hellstone = addToolMaterial(1432, 15F, 8.5F, true);
+	public static ToolMaterial nethic = addToolMaterial(481, 21F, 8.0F, true);
+	public static ToolMaterial celestium = addToolMaterial(1621, 18F, 11.5F, true);
+	public static ToolMaterial mekyum = addToolMaterial(1621, 18F, 11.5F, true);
+	public static ToolMaterial storon = addToolMaterial(1621, 18F, 11.5F, true);
+	public static ToolMaterial korite = addToolMaterial(1621, 18F, 11.5F, true);
+	public static ToolMaterial flairium = addToolMaterial(2130, 21F, 14.5F, true);
+	public static ToolMaterial des = addToolMaterial(2130, 21F, 13F, true);
+	public static ToolMaterial orbadite = addToolMaterial(3142, 28F, 16.5F, true);
+	public static ToolMaterial gorbite = addToolMaterial(3142, 28F, 16.5F, true);
+	public static ToolMaterial hoeoflife = addToolMaterial(126, 28F, 5F, true);
+	public static ToolMaterial hoeofearth = addToolMaterial(512, 28F, 7F, true);
+	public static ToolMaterial hellstoneMulti = addToolMaterial(3000, 10F, 6.5F, false);
+	public static ToolMaterial flairiumMulti = addToolMaterial(3000, 16F, 12.5F, false);
+	public static ToolMaterial luniumMulti = addToolMaterial(3000, 7F, 6.5F, false);
+	public static ToolMaterial celestiumMulti = addToolMaterial(3000, 13F, 9.5F, false);
+	public static ToolMaterial mekyumMulti = addToolMaterial(3000, 13F, 9.5F, false);
+	public static ToolMaterial storonMulti = addToolMaterial(3000, 13F, 9.5F, false);
+	public static ToolMaterial koriteMulti = addToolMaterial(3000, 13F, 9.5F, false);
+	public static ToolMaterial shadiumMulti = addToolMaterial(3000, 9F, 6.5F, false);
+	public static ToolMaterial sapphireMulti = addToolMaterial(3000, 7F, 6.0F, false);
+	public static ToolMaterial orbaditeMulti = addToolMaterial(3000, 20F, 14.5F, false);
+	public static ToolMaterial gorbiteMulti = addToolMaterial(3000, 20F, 14.5F, false);
+	public static ToolMaterial desMulti = addToolMaterial(3000, 16F, 11F, false);
+	public static ToolMaterial smeltingMulti = addToolMaterial(3000, 8F, 5F, false);
+	public static ToolMaterial SLIMY_PICK_MATERIAL = addToolMaterial(3000, 2F, 3F, true);
+	public static ToolMaterial BEDROCK_SHOVEL_MATERIAL = addToolMaterial(1000, 4F, 5.5F, false);
+
+	//TODO MATERIALS
+	public static ToolMaterial woodMulti = addToolMaterial(60, 2F, 5F, false);
+	public static ToolMaterial stoneMulti = addToolMaterial(132, 3F, 5F, false);
+	public static ToolMaterial ironMulti = addToolMaterial(251, 4F, 5F, false);
+	public static ToolMaterial goldMulti = addToolMaterial(33, 5F, 5F, false);
+	public static ToolMaterial diamondMulti = addToolMaterial(1562, 6F, 5F, false);
+
+	public static Item hellstoneIngot;
+	public static Item shadiumIngot;
     public static Item celestiumIngot;
     public static Item mekyumIngot;
     public static Item koriteIngot;

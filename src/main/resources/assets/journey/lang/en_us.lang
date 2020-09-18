@@ -217,6 +217,19 @@ journey.boss.name.skyStalker=THE SKY STALKER
 journey.boss.name.eudor=EUDOR
 journey.boss.name.scale=SCALE
 
+jei.jitl.ancient_eye.desc=A mysterious eye made out of an unbreakable rock. It's not organic, but it feels alive... the yellow light from it's cornea might be the key to unlocking something.
+jei.jitl.ancient_fragment.desc=Made of a material unlike any other, found inside of ancient blocks scattered around the Overworld and Nether. Perhaps they act as some kind of key...
+jei.jitl.ancient_obelisk.desc=An illusive rock that floats above ancient structures in the Overworld. Is it powered by magic? Is it a machine? Is it alive? The only thing that's certain is that it yearns to be looked upon and bathed in a mellow light...
+jei.jitl.ancient_socket.desc=Located on the corners of ancient structures found in the Overworld. Activating them with some kind of item might do something...
+jei.jitl.ore_sapphire.desc=It's shiny and beautiful, but an iron pickaxe can't seem to break it apart.
+jei.jitl.ore_shadium.desc=It's dark and mysterious, but an iron pickaxe can't seem to break it apart.
+jei.jitl.ore_lunium.desc=It's glows like the sun, but an iron pickaxe can't seem to break it apart.
+jei.jitl.ore_iridium.desc=It bathes its surroundings in a neon green light, and nearly burns you just by standing close to it. An iron pickaxe can't seem to do it justice...
+jei.jitl.ore_hellstone.desc=If you weren't paying attention, you might have mistaken it for Netherrack. But, upon further inspection, the material is hard and cold, yet it feels alive.
+jei.jitl.ore_bloodrock.desc=It's tough, yet glossy and malleable. If arranged in a certain order, it could power the Summoning Table.
+jei.jitl.ore_bleedstone.desc=On the ceiling of the Nether, it can be found illuminating bright red rays of light. It's said to give the Summoning Table a consciousness of its own.
+jei.jitl.ore_smithstone.desc=On the ceiling of the Nether, it can be found illuminating a blinding purple light. When combined with Bleedstone, it can create tools that have minds of their own.
+
 #MARK AUTO GEN START
 
 #CreativeTabs

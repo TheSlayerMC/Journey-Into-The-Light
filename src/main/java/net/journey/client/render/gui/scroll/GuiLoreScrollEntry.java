@@ -4,7 +4,8 @@ import net.journey.JITL;
 import net.journey.api.scroll.IDescComponent;
 import net.journey.api.scroll.ScrollCategory;
 import net.journey.api.scroll.ScrollEntry;
-import net.journey.util.RenderUtils;
+import net.journey.util.EnumHexColor;
+import net.journey.util.gui.RenderUtils;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -104,10 +105,10 @@ public class GuiLoreScrollEntry extends GuiScreen {
      */
     private void drawHeader(int maxX, int y0, Tessellator tess) {
         if (scrollEntry.hasComment()) {
-            RenderUtils.drawCenteredStringWithCustomScale(fontRenderer, I18n.format(scrollEntry.getTitleKey()), left + (maxX - left) / 2 + 1, y0, (int) zLevel, 0xFFFFFF, 1.5F, headerHeight - 5);
-            RenderUtils.drawCenteredStringWithCustomScale(fontRenderer, I18n.format(scrollEntry.getCommentKey()), left + (maxX - left) / 2 + 1, y0 + (int) ((float) fontRenderer.FONT_HEIGHT * 0.7), (int) zLevel, 0xFFFFFF, 1F, headerHeight + 5);
+            RenderUtils.drawCenteredStringWithCustomScale(fontRenderer, I18n.format(scrollEntry.getTitleKey()), left + (maxX - left) / 2 + 1, y0, (int) zLevel, EnumHexColor.BLACK.getInt(), 1.5F, headerHeight - 5, false);
+            RenderUtils.drawCenteredStringWithCustomScale(fontRenderer, I18n.format(scrollEntry.getCommentKey()), left + (maxX - left) / 2 + 1, y0 + (int) ((float) fontRenderer.FONT_HEIGHT * 0.7), (int) zLevel, EnumHexColor.DARK_BROWN.getInt(), 1F, headerHeight + 5, false);
         } else {
-            RenderUtils.drawCenteredStringWithCustomScale(fontRenderer, I18n.format(scrollEntry.getTitleKey()), left + (maxX - left) / 2 + 1, y0, (int) zLevel, 0xFFFFFF, 1.2F, headerHeight);
+            RenderUtils.drawCenteredStringWithCustomScale(fontRenderer, I18n.format(scrollEntry.getTitleKey()), left + (maxX - left) / 2 + 1, y0, (int) zLevel, EnumHexColor.BLACK.getInt(), 1.2F, headerHeight, false);
         }
     }
 
