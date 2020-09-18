@@ -31,7 +31,6 @@ import net.minecraft.util.BlockRenderLayer;
 import net.slayer.api.EnumMaterialTypes;
 import net.slayer.api.EnumToolType;
 import net.slayer.api.block.*;
-import net.slayer.api.entity.tileentity.container.BlockModContainer;
 
 import java.util.ArrayList;
 
@@ -265,10 +264,10 @@ public class JourneyBlocks {
     public static BlockSlime slime;
 
     public static BlockMod totemBase;
-    public static BlockModContainer totemAngry;
-    public static BlockModContainer totemHappy;
-    public static BlockModContainer totemScared;
-    public static BlockModContainer totemSad;
+    public static BlockMod totemAngry;
+    public static BlockMod totemHappy;
+    public static BlockMod totemScared;
+    public static BlockMod totemSad;
 
     public static BlockMod boilingLamp;
     public static BlockMod blazierBricks;

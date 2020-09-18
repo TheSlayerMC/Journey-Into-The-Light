@@ -1,19 +1,34 @@
 {
   "variants": {
-    "facing=north": {
+    "activated=false,facing=south": {
       "model": "journey:totem_happy"
     },
-    "facing=south": {
+    "activated=false,facing=west": {
+      "model": "journey:totem_happy",
+      "y": 90
+    },
+    "activated=false,facing=north": {
       "model": "journey:totem_happy",
       "y": 180
     },
-    "facing=west": {
+    "activated=false,facing=east": {
       "model": "journey:totem_happy",
       "y": 270
     },
-    "facing=east": {
-      "model": "journey:totem_happy",
+    "activated=true,facing=south": {
+      "model": "journey:totem_happy_awake"
+    },
+    "activated=true,facing=west": {
+      "model": "journey:totem_happy_awake",
       "y": 90
+    },
+    "activated=true,facing=north": {
+      "model": "journey:totem_happy_awake",
+      "y": 180
+    },
+    "activated=true,facing=east": {
+      "model": "journey:totem_happy_awake",
+      "y": 270
     }
   }
 }
