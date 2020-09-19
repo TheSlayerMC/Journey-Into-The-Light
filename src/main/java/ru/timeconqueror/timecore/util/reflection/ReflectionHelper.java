@@ -213,6 +213,25 @@ public class ReflectionHelper {
 
 	/**
 	 * Finds a constructor in the specified class that has matching parameter types.
+	 * <p>
+	 * Throws {@link RuntimeException} if the constructor is not found.
+	 *
+	 * @param clazz  The class to find the constructor in
+	 * @param params The parameter types of the constructor.
+	 * @param <T>    The type of constructor.
+	 * @return The constructor with specified params or throws an exception.
+	 */
+	public static <T> UnlockedConstructor<T> findConstructorUnsuppressed(Class<T> clazz, Class<?>... params) {
+		try {
+			Constructor<T> constructor = ObfuscationReflectionHelper.findConstructor(clazz, params);
+			return new UnlockedConstructor<>(constructor);
+		} catch (Throwable e) {
+			throw new RuntimeException("Can't retrieve constructor of class " + clazz + " with params " + Arrays.toString(params), e);
+		}
+	}
+
+	/**
+	 * Finds a constructor in the specified class that has matching parameter types.
 	 *
 	 * @param clazz  The class to find the constructor in
 	 * @param params The parameter types of the constructor.

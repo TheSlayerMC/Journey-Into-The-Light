@@ -1,19 +1,12 @@
 package net.journey.common.network.dialogue;
 
-import net.journey.client.render.gui.base.dialogue.GuiDialogue;
 import net.journey.common.network.BaseMsg;
-import net.journey.common.network.BasicMsgHandler;
 import net.journey.dialogue.ClientDialogueNode;
 import net.journey.dialogue.DialogueNode;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,11 +53,7 @@ public class S2COpenDialogueGuiMsg extends BaseMsg {
 		clientNode = new ClientDialogueNode(npcKey, text, optionKeys);
 	}
 
-	public static class Handler extends BasicMsgHandler<S2COpenDialogueGuiMsg, IMessage> {
-		@Override
-		@SideOnly(Side.CLIENT)
-		protected void doOnMessage(S2COpenDialogueGuiMsg message, MessageContext ctx) {
-			Minecraft.getMinecraft().displayGuiScreen(new GuiDialogue(message.clientNode));
-		}
+	public ClientDialogueNode getClientNode() {
+		return clientNode;
 	}
 }

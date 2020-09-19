@@ -40,6 +40,7 @@ public class DialogueTracker {
 
 		if (currentNode == DialogueNode.END) {
 			JManagers.DIALOGUE_MANAGER.removeTracker(this);
+
 		} else {
 			openGuiWithCurrentNode();
 		}

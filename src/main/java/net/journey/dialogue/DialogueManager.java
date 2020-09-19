@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.UUID;
 
 public class DialogueManager {
+	private final DialogueNetHandler netHandler = new DialogueNetHandler();
 	private final HashMap<UUID, DialogueTracker> trackers = new HashMap<>();//FIXME move to map of lists of trackers
 
 	public void startDialogue(EntityPlayerMP player, EntityLivingBase npc, Dialogue dialogue) {
@@ -17,6 +18,10 @@ public class DialogueManager {
 		startDialogue(player, npc.getClass(), dialogue.getRootNode());
 	}
 
+	public DialogueNetHandler getNetHandler() {
+		return netHandler;
+	}
+
 	private void startDialogue(EntityPlayerMP player, Class<? extends EntityLivingBase> npcClass, DialogueNode node) {
 		DialogueTracker tracker = new DialogueTracker(player.getUniqueID(), npcClass, node);
 		trackers.put(player.getUniqueID(), tracker);
@@ -24,7 +29,7 @@ public class DialogueManager {
 		tracker.openGuiWithCurrentNode();
 	}
 
-	public void handleDialogueChosenOption(EntityPlayerMP player, int optionIndex) throws DialogueSystemException {
+	void handleDialogueChosenOption(EntityPlayerMP player, int optionIndex) throws DialogueSystemException {
 		DialogueTracker dialogueTracker = trackers.get(player.getUniqueID());
 		if (dialogueTracker == null) { // this can be achieved when someone try to use cheaty exploits
 			throw new DialogueSystemException("There are no opened dialogues on server! What are you trying to do???");
