@@ -2,7 +2,6 @@ package net.journey.items;
 
 import net.journey.dialogue.DialogueManager;
 import net.journey.dialogue.DialogueNode;
-import net.journey.dimension.corba.gen.WorldGenCorbaTotems;
 import net.journey.items.base.JItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -21,9 +20,7 @@ public class ItemTestBug extends JItem {
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand handIn) {
 		if (!world.isRemote) {
 			//mStartDialogue.invoke(JManagers.DIALOGUE_MANAGER, player, EntityTordo.class, JDialogues.TEST.getRootNode());
-			new WorldGenCorbaTotems().generate(world, itemRand, player.getPosition());
-
-//			WorldGenHelper.genHollowCylinder(player.getPosition(), 5, 3, EnumFacing.NORTH, mPos -> WorldGenHelper.setStateFast(world, mPos, Blocks.BEDROCK.getDefaultState()));
+//			new WorldGenCorbaTotems().generate(world, itemRand, player.getPosition());
 		}
 
 		return new ActionResult<>(EnumActionResult.SUCCESS, player.getHeldItem(handIn));

@@ -1,5 +1,6 @@
 package net.journey.blocks;
 
+import net.journey.blocks.base.BlockPropertyCodec;
 import net.journey.client.render.particles.ParticleSwampFly;
 import net.journey.init.JourneySounds;
 import net.journey.init.items.JourneyItems;
@@ -52,21 +53,12 @@ public class BlockTotem extends BlockMod {
 
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		boolean activated = meta > 3;
-		int horizontalIndex = activated ? meta / 2 : meta;
-
-		return this.getDefaultState().withProperty(ACTIVATED, activated).withProperty(FACING, EnumFacing.byHorizontalIndex(horizontalIndex));
+		return BlockPropertyCodec.decode(meta, getDefaultState(), FACING, ACTIVATED);
 	}
 
 	@Override
 	public int getMetaFromState(IBlockState state) {
-		int meta = state.getValue(FACING).getHorizontalIndex();
-
-		if (state.getValue(ACTIVATED)) {
-			meta *= 2;
-		}
-
-		return meta;
+		return BlockPropertyCodec.encode(state, FACING, ACTIVATED);
 	}
 
 	@Override
