@@ -23,7 +23,7 @@ public class EntitySpiritCrystal extends Entity {
 		return true;
 	}
 
-	//Horrible FPS lag??
+	//FIXME: Horrible FPS lag?? something's also wrong with the pattern
 	@Override
 	public void onEntityUpdate() {
 		BlockPattern.PatternHelper totemPattern = BlockTotem.getTotemPattern().match(world, this.getPosition().add(0, 0, 0));

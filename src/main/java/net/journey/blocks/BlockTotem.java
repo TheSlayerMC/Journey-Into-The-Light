@@ -61,7 +61,7 @@ public class BlockTotem extends BlockMod {
 					"?????????",
 					"????G????").where(
 					'?', BlockWorldState.hasState(BlockStateMatcher.ANY)).where(
-					'V', BlockWorldState.hasState(BlockStateMatcher.forBlock(JourneyBlocks.totemSad/**make these use state property*/))).where(
+					'V', BlockWorldState.hasState(BlockStateMatcher.forBlock(JourneyBlocks.totemSad/**TODO:make these use state property*/))).where(
 					'G', BlockWorldState.hasState(BlockStateMatcher.forBlock(JourneyBlocks.totemHappy))).where(
 					'S', BlockWorldState.hasState(BlockStateMatcher.forBlock(JourneyBlocks.totemScared))).where(
 					'A', BlockWorldState.hasState(BlockStateMatcher.forBlock(JourneyBlocks.totemAngry))).build();
