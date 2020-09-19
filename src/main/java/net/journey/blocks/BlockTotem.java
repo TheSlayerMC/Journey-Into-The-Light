@@ -4,6 +4,7 @@ import net.journey.client.render.particles.ParticleSwampFly;
 import net.journey.init.JourneySounds;
 import net.journey.init.items.JourneyItems;
 import net.journey.util.WorldUtils;
+import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
@@ -25,7 +26,7 @@ import java.util.Random;
 
 public class BlockTotem extends BlockMod {
 
-	public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
+	public static final PropertyDirection FACING = BlockHorizontal.FACING;
 	public static final PropertyBool ACTIVATED = PropertyBool.create("activated");
 
 	private final TotemType totemType;
@@ -33,7 +34,7 @@ public class BlockTotem extends BlockMod {
 	public BlockTotem(EnumMaterialTypes enumMaterialTypes, String name, String f, float hardness, TotemType totemType) {
 		super(enumMaterialTypes, name, f, hardness);
 		this.totemType = totemType;
-		this.setDefaultState(this.blockState.getBaseState().withProperty(ACTIVATED, false).withProperty(FACING, EnumFacing.NORTH));
+		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(ACTIVATED, false));
 		this.setTickRandomly(true);
 		this.setBlockUnbreakable();
 		this.setResistance(100000F);
@@ -41,7 +42,7 @@ public class BlockTotem extends BlockMod {
 
 	@Override
 	public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
-		return this.getDefaultState().withProperty(ACTIVATED, false).withProperty(FACING, placer.getHorizontalFacing());
+		return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite()).withProperty(ACTIVATED, false);
 	}
 
 	@Override
