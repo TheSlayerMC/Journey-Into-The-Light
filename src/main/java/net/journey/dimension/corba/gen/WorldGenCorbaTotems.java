@@ -1,7 +1,7 @@
 package net.journey.dimension.corba.gen;
 
 import net.journey.api.block.GroundPredicate;
-import net.journey.blocks.containers.BlockJourneyChest;
+import net.journey.blocks.BlockTotem;
 import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
@@ -38,10 +38,10 @@ public class WorldGenCorbaTotems extends WorldGenerator {
 				setBlockAndNotifyAdequately(world, placePos.add(0, i, -size), JourneyBlocks.totemBase.getDefaultState());
 				setBlockAndNotifyAdequately(world, placePos.add(0, i, size), JourneyBlocks.totemBase.getDefaultState());
 
-				setBlockAndNotifyAdequately(world, placePos.add(size, i + 1, 0), JourneyBlocks.totemScared.getDefaultState().withProperty(BlockJourneyChest.FACING, EnumFacing.WEST));
-				setBlockAndNotifyAdequately(world, placePos.add(-size, i + 1, 0), JourneyBlocks.totemAngry.getDefaultState().withProperty(BlockJourneyChest.FACING, EnumFacing.EAST));
-				setBlockAndNotifyAdequately(world, placePos.add(0, i + 1, -size), JourneyBlocks.totemSad.getDefaultState().withProperty(BlockJourneyChest.FACING, EnumFacing.SOUTH));
-				setBlockAndNotifyAdequately(world, placePos.add(0, i + 1, size), JourneyBlocks.totemHappy.getDefaultState().withProperty(BlockJourneyChest.FACING, EnumFacing.NORTH));
+				setBlockAndNotifyAdequately(world, placePos.add(size, i + 1, 0), JourneyBlocks.totemScared.getDefaultState().withProperty(BlockTotem.FACING, EnumFacing.EAST).withProperty(BlockTotem.ACTIVATED, false));
+				setBlockAndNotifyAdequately(world, placePos.add(-size, i + 1, 0), JourneyBlocks.totemAngry.getDefaultState().withProperty(BlockTotem.FACING, EnumFacing.WEST).withProperty(BlockTotem.ACTIVATED, false));
+				setBlockAndNotifyAdequately(world, placePos.add(0, i + 1, -size), JourneyBlocks.totemSad.getDefaultState().withProperty(BlockTotem.FACING, EnumFacing.NORTH).withProperty(BlockTotem.ACTIVATED, false));
+				setBlockAndNotifyAdequately(world, placePos.add(0, i + 1, size), JourneyBlocks.totemHappy.getDefaultState().withProperty(BlockTotem.FACING, EnumFacing.SOUTH).withProperty(BlockTotem.ACTIVATED, false));
 
 				setBlockAndNotifyAdequately(world, placePos.add(0, 2, 0), JourneyBlocks.driedMud.getDefaultState());
 			}

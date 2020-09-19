@@ -97,6 +97,12 @@
       "journey:chest"
     ]
   },
+  "totem_activate": {
+    "category": "master",
+    "sounds": [
+      "journey:totem_activate"
+    ]
+  },
   "cannon": {
     "category": "neutral",
     "sounds": [

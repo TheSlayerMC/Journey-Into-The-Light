@@ -1,7 +1,7 @@
 package net.journey.blocks;
 
-import net.journey.JITL;
 import net.journey.client.render.particles.ParticleSwampFly;
+import net.journey.init.JourneySounds;
 import net.journey.init.items.JourneyItems;
 import net.journey.util.WorldUtils;
 import net.minecraft.block.properties.PropertyBool;
@@ -13,6 +13,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -32,7 +33,7 @@ public class BlockTotem extends BlockMod {
 	public BlockTotem(EnumMaterialTypes enumMaterialTypes, String name, String f, float hardness, TotemType totemType) {
 		super(enumMaterialTypes, name, f, hardness);
 		this.totemType = totemType;
-		this.setDefaultState(this.blockState.getBaseState().withProperty(ACTIVATED, Boolean.valueOf(false)).withProperty(FACING, EnumFacing.NORTH));
+		this.setDefaultState(this.blockState.getBaseState().withProperty(ACTIVATED, false).withProperty(FACING, EnumFacing.NORTH));
 		this.setTickRandomly(true);
 		this.setBlockUnbreakable();
 		this.setResistance(100000F);
@@ -40,7 +41,7 @@ public class BlockTotem extends BlockMod {
 
 	@Override
 	public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
-		return this.getDefaultState().withProperty(ACTIVATED, Boolean.valueOf(false)).withProperty(FACING, placer.getHorizontalFacing().getOpposite());
+		return this.getDefaultState().withProperty(ACTIVATED, false).withProperty(FACING, placer.getHorizontalFacing());
 	}
 
 	@Override
@@ -50,7 +51,7 @@ public class BlockTotem extends BlockMod {
 
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		return this.getDefaultState().withProperty(ACTIVATED, Boolean.valueOf((meta & 1) != 0)).withProperty(FACING, EnumFacing.byHorizontalIndex(meta));
+		return this.getDefaultState().withProperty(ACTIVATED, (meta & 1) != 0).withProperty(FACING, EnumFacing.byHorizontalIndex(meta));
 	}
 
 	@Override
@@ -58,7 +59,7 @@ public class BlockTotem extends BlockMod {
 		int i = 0;
 		i = i | state.getValue(FACING).getHorizontalIndex();
 
-		if (state.getValue(ACTIVATED).booleanValue()) {
+		if (state.getValue(ACTIVATED)) {
 			i |= 4;
 		}
 
@@ -71,14 +72,19 @@ public class BlockTotem extends BlockMod {
 	}
 
 	@Override
+	public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state) {
+		this.getDefaultState().withProperty(ACTIVATED, false);
+	}
+
+	@Override
 	public int getComparatorInputOverride(IBlockState blockState, World worldIn, BlockPos pos) {
-		return blockState.getValue(ACTIVATED).booleanValue() ? 15 : 0;
+		return blockState.getValue(ACTIVATED) ? 15 : 0;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
-		if (stateIn.getValue(ACTIVATED).booleanValue()) {
+		if (stateIn.getValue(ACTIVATED)) {
 			renderParticle(worldIn, pos.getX(), pos.getY(), pos.getZ(), pos);
 		}
 	}
@@ -113,15 +119,13 @@ public class BlockTotem extends BlockMod {
 		if (totemType == TotemType.SAD) activator = JourneyItems.enchantedLeaf;
 
 		boolean flag = playerIn.getHeldItemMainhand().getItem() == activator;
-
 		if (flag) {
+			worldIn.playSound(playerIn, pos, JourneySounds.TOTEM_ACTIVATE, SoundCategory.BLOCKS, 1.0F, 1.0F);
 			if (!worldIn.isRemote) {
 				worldIn.setBlockState(pos, state.withProperty(BlockTotem.ACTIVATED, true));
 				worldIn.updateComparatorOutputLevel(pos, this);
 			}
 		}
-
-		JITL.LOGGER.info("" + activator.getRegistryName());
 		return flag;
 	}
 
