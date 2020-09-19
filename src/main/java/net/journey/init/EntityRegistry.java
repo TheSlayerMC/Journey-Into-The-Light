@@ -52,6 +52,7 @@ import net.journey.entity.projectile.throwable.EntityMagicBomb;
 import net.journey.entity.projectile.throwable.EntityMagicPot;
 import net.journey.entity.util.EntityBossCrystal;
 import net.journey.entity.util.EntitySentacoin;
+import net.journey.entity.util.EntitySpiritCrystal;
 import net.journey.util.handler.LogHelper;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -244,6 +245,7 @@ public class EntityRegistry {
 				SlayerAPI.buildMobEntry(EntityCorbanianMollusk.class, "corbanian_mollusk", "Corbanian Mollusk", 0x1e8c00, 0x36ff00),
 				SlayerAPI.buildMobEntry(EntityStinky.class, "stinky", "Stinky", 0x1e8c00, 0x36ff00),
 				SlayerAPI.buildMobEntry(EntitySmelly.class, "smelly", "Smelly", 0x1e8c00, 0x36ff00),
+				SlayerAPI.buildMobEntry(EntitySpiritCrystal.class, "spirit_crystal", "Spirit Crystal", 0x1e8c00, 0x36ff00),
 				//CLOUDIA
 				SlayerAPI.buildMobEntry(EntityCloudGhost.class, "cloudghost", "Cloud Ghost", 0xa87abd, 0x9000ff),
 				SlayerAPI.buildMobEntry(EntityStarlightGolem.class, "starlightgolem", "Starlight Golem", 0xa87abd, 0x9000ff),

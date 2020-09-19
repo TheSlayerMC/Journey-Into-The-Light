@@ -89,6 +89,7 @@ import net.journey.entity.projectile.throwable.EntityMagicBomb;
 import net.journey.entity.projectile.throwable.EntityMagicPot;
 import net.journey.entity.util.EntityBossCrystal;
 import net.journey.entity.util.EntitySentacoin;
+import net.journey.entity.util.EntitySpiritCrystal;
 import net.journey.init.items.JourneyWeapons;
 import net.journey.util.EnumHexColor;
 import net.minecraft.client.Minecraft;
@@ -300,6 +301,8 @@ public class EntityRendering {
 
         RenderingRegistry.registerEntityRenderingHandler(EntityStinky.class, new RenderModMob(new ModelStinky(), Textures.getMobTextureLocation("stinky")));
         RenderingRegistry.registerEntityRenderingHandler(EntitySmelly.class, new RenderModMob(new ModelSmelly(), Textures.getMobTextureLocation("smelly")));
+
+        RenderingRegistry.registerEntityRenderingHandler(EntitySpiritCrystal.class, new RenderSpiritCrystal(Minecraft.getMinecraft().getRenderManager()));
 
         RenderingRegistry.registerEntityRenderingHandler(EntityTerranianProtector.class, new RenderBoss(new ModelTerranianProtector(), 0.5F, 2.0F, Textures.terranianProtector, "terranianProtector", EnumHexColor.WHITE, EnumHexColor.PURPLE));
         RenderingRegistry.registerEntityRenderingHandler(EntitySoulWatcher.class, new RenderBoss(new ModelSoulWatcher(), 0.5F, 2.0F, Textures.soulWatcher, "soulWatcher", EnumHexColor.WHITE, EnumHexColor.RED));
