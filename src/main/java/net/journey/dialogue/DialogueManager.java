@@ -26,7 +26,7 @@ public class DialogueManager {
 		DialogueTracker tracker = new DialogueTracker(player.getUniqueID(), npcClass, node);
 		trackers.put(player.getUniqueID(), tracker);
 
-		tracker.openGuiWithCurrentNode();
+		tracker.start();
 	}
 
 	void handleDialogueChosenOption(EntityPlayerMP player, int optionIndex) throws DialogueSystemException {

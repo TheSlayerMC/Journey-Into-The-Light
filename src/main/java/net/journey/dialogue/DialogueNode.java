@@ -4,27 +4,33 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-//FIXME WHAT TO DO WITH EMPTY OPTIONS
+
 public class DialogueNode {
 	public static final DialogueNode END = new DialogueNode("");
 	public static final Action EMPTY_ACTION = (world, player) -> {
 	};
 
+	/**
+	 * Will be shown when there is no option added to the node.
+	 */
+	private static final List<Option> STANDBY_END_OPTION_LIST = Collections.singletonList(new Option("dialogue.jitl.standby_end_option"));
+
 	private final String text;
-	private final List<Option> options;
+	private List<Option> options;
 
 	protected DialogueNode(String text) {
 		this.text = text;
-		this.options = new ArrayList<>();
 	}
 
 	protected void addOption(Option option) {
+		if (options == null) options = new ArrayList<>();
 		options.add(option);
 	}
 
 	public List<Option> getOptions() {
-		return options;
+		return options != null ? options : STANDBY_END_OPTION_LIST;
 	}
 
 	public String getTextKey() {

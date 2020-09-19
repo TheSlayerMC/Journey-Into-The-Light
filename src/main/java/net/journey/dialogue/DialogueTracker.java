@@ -2,6 +2,7 @@ package net.journey.dialogue;
 
 import net.journey.common.JManagers;
 import net.journey.common.network.NetworkHandler;
+import net.journey.common.network.dialogue.S2CCloseDialogueGuiMsg;
 import net.journey.common.network.dialogue.S2COpenDialogueGuiMsg;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -28,6 +29,10 @@ public class DialogueTracker {
 		return currentNode;
 	}
 
+	public void start() {
+		openGuiWithCurrentNode();
+	}
+
 	public void pressOption(EntityPlayerMP player, int optionIndex) throws DialogueSystemException {
 		if (optionIndex >= currentNode.getOptions().size()) { // this can be achieved when someone try to use cheaty exploits
 			throw new DialogueSystemException("Tracker received the index " + optionIndex + "that doesn't fit options list size (" + currentNode.getOptions().size() + "). Problem node: " + currentNode);
@@ -40,14 +45,21 @@ public class DialogueTracker {
 
 		if (currentNode == DialogueNode.END) {
 			JManagers.DIALOGUE_MANAGER.removeTracker(this);
-
+			closeGui();
 		} else {
 			openGuiWithCurrentNode();
 		}
 	}
 
-	void openGuiWithCurrentNode() {
-		EntityPlayerMP player = FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayerByUUID(playerId);
-		NetworkHandler.INSTANCE.sendTo(new S2COpenDialogueGuiMsg(npcClass, currentNode), player);
+	private void openGuiWithCurrentNode() {
+		NetworkHandler.INSTANCE.sendTo(new S2COpenDialogueGuiMsg(npcClass, currentNode), getPlayer());
+	}
+
+	private void closeGui() {
+		NetworkHandler.INSTANCE.sendTo(new S2CCloseDialogueGuiMsg(), getPlayer());
+	}
+
+	private EntityPlayerMP getPlayer() {
+		return FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayerByUUID(playerId);
 	}
 }

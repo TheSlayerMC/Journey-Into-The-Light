@@ -230,6 +230,8 @@ jei.jitl.ore_bloodrock.desc=It's tough, yet glossy and malleable. If arranged in
 jei.jitl.ore_bleedstone.desc=On the ceiling of the Nether, it can be found illuminating bright red rays of light. It's said to give the Summoning Table a consciousness of its own.
 jei.jitl.ore_smithstone.desc=On the ceiling of the Nether, it can be found illuminating a blinding purple light. When combined with Bleedstone, it can create tools that have minds of their own.
 
+dialogue.jitl.standby_end_option=Leave
+
 #MARK AUTO GEN START
 
 #CreativeTabs
