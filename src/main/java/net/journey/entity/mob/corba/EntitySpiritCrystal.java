@@ -1,16 +1,26 @@
 package net.journey.entity.mob.corba;
 
+import net.journey.JITL;
 import net.journey.blocks.BlockTotem;
-import net.minecraft.block.state.pattern.BlockPattern;
+import net.journey.init.JourneyLootTables;
+import net.journey.init.blocks.JourneyBlocks;
+import net.journey.util.LootHelper;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
+
+import java.util.List;
+import java.util.Random;
 
 public class EntitySpiritCrystal extends Entity {
+
+	private int spawnTimer;
 
 	public EntitySpiritCrystal(World worldIn) {
 		super(worldIn);
@@ -23,22 +33,48 @@ public class EntitySpiritCrystal extends Entity {
 		return true;
 	}
 
-	//FIXME: Horrible FPS lag?? something's also wrong with the pattern
 	@Override
 	public void onEntityUpdate() {
-		BlockPattern.PatternHelper totemPattern = BlockTotem.getTotemPattern().match(world, this.getPosition().add(0, 0, 0));
-		if (totemPattern != null) {
-			BlockPos blockpos = totemPattern.getFrontTopLeft().add(-1, 0, -1);
-			world.setBlockState(blockpos.add(0, 1, 0), Blocks.OBSIDIAN.getDefaultState(), 2);
+		if (ticksExisted % 20 == 0) {
+			if (world.getBlockState(getPosition().east(4)) == JourneyBlocks.totemScared.getDefaultState().withProperty(BlockTotem.ACTIVATED, true).withProperty(BlockTotem.FACING, EnumFacing.EAST) &&
+					world.getBlockState(getPosition().west(4)) == JourneyBlocks.totemAngry.getDefaultState().withProperty(BlockTotem.ACTIVATED, true).withProperty(BlockTotem.FACING, EnumFacing.WEST) &&
+					world.getBlockState(getPosition().south(4)) == JourneyBlocks.totemHappy.getDefaultState().withProperty(BlockTotem.ACTIVATED, true).withProperty(BlockTotem.FACING, EnumFacing.SOUTH) &&
+					world.getBlockState(getPosition().north(4)) == JourneyBlocks.totemSad.getDefaultState().withProperty(BlockTotem.ACTIVATED, true).withProperty(BlockTotem.FACING, EnumFacing.NORTH)) {
+
+				if (spawnTimer == 0) {
+					spawnTimer = 10;
+					if (!world.isRemote) {
+						Random r = new Random();
+						List<ItemStack> lootTable = LootHelper.genFromLootTable(JourneyLootTables.LOOT_BASIC, (WorldServer) world, builder -> builder.withLootedEntity(this));
+						int index = r.nextInt(lootTable.size());
+						ItemStack itemToSpawn = lootTable.get(index);
+
+						EntityItem item = new EntityItem(world, this.posX, this.posY, this.posZ, itemToSpawn);
+						world.spawnEntity(item);
+					}
+				}
+				//TODO: stop the timer once it's finished
+				if (spawnTimer >= 0) {
+					spawnTimer--;
+				}
+
+				if (spawnTimer <= 0) {
+					spawnTimer = 0;
+				}
+
+				JITL.LOGGER.info("" + spawnTimer);
+			}
 		}
 	}
 
 	@Override
 	protected void readEntityFromNBT(NBTTagCompound nbtTagCompound) {
+		spawnTimer = nbtTagCompound.getInteger("spawnTimer");
 	}
 
 	@Override
 	protected void writeEntityToNBT(NBTTagCompound nbtTagCompound) {
+		nbtTagCompound.setInteger("spawnTimer", 0);
 	}
 
 	@Override
