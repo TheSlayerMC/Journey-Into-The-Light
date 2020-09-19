@@ -1,9 +1,11 @@
 package net.journey.client.render.gui.base.dialogue;
 
 import net.journey.client.render.gui.base.JGuiScreen;
+import net.journey.client.util.Rectangle;
 import net.journey.common.network.NetworkHandler;
 import net.journey.common.network.dialogue.C2SChosenOptionMsg;
 import net.journey.dialogue.ClientDialogueNode;
+import net.journey.util.gui.RenderUtils;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.client.renderer.GlStateManager;
@@ -12,31 +14,14 @@ import net.minecraft.entity.EntityLivingBase;
 import java.util.List;
 
 public class GuiDialogue extends JGuiScreen {
+	private static final int INDENT = 6;
+
 	private final ClientDialogueNode node;
 
-	//TODO make constant variables private static final
-	//TODO make nonconstant variables private final
-	int guiWidth = 300;
-	int guiHeight = 200;
-
-	int guiLeft;
-	int guiTop;
-	int guiRight;
-	int guiBottom;
-
-	int indent = 6;
-
-	int mobIconWidth = 80;
-	int mobIconHeight = 80;
-	int mobIconRight;
-	int mobIconLeft;
-	int mobIconTop;
-	int mobIconBottom;
-
-	int horizontalSinglePart;
-
-	int optionsLeft;
-	int optionsTop;
+	private Rectangle guiRect;
+	private Rectangle mobIconRect;
+	private Rectangle optionsRect;
+	private Rectangle mobTextRect;
 
 	public GuiDialogue(ClientDialogueNode node) {
 		this.node = node;
@@ -46,27 +31,32 @@ public class GuiDialogue extends JGuiScreen {
 	public void initGui() {
 		super.initGui();
 
-		guiLeft = centerX - guiWidth / 2;
-		guiTop = centerY - guiHeight / 2;
-		guiRight = guiLeft + guiWidth;
-		guiBottom = guiTop + guiHeight;
-		mobIconRight = guiRight - indent;
-		mobIconLeft = mobIconRight - mobIconWidth;
-		mobIconTop = guiTop + indent;
-		mobIconBottom = mobIconTop + mobIconHeight;
-		horizontalSinglePart = (guiWidth - indent * 2) / 7;
-		optionsLeft = guiLeft + horizontalSinglePart;
-		optionsTop = mobIconBottom + indent;
+		int guiWidth = 300;
+		int guiHeight = 200;
+
+		int mobIconWidth = 80;
+		int mobIconHeight = 80;
+
+		guiRect = Rectangle.createWithWidthHeight(centerX - guiWidth / 2, centerY - guiHeight / 2, guiWidth, guiHeight);
+		int mobIconRight = guiRect.getRight() - INDENT;
+		int mobIconTop = guiRect.getTop() + INDENT;
+		mobIconRect = new Rectangle(mobIconRight - mobIconWidth, guiRect.getTop() + INDENT, mobIconRight, mobIconTop + mobIconHeight);
+
+		int horizontalSinglePart = (guiWidth - INDENT * 2) / 7;
+
+		optionsRect = new Rectangle(guiRect.getLeft() + horizontalSinglePart, mobIconRect.getBottom() + INDENT, guiRect.getRight() - horizontalSinglePart, guiRect.getBottom() - INDENT);
+		mobTextRect = new Rectangle(guiRect.getLeft() + INDENT, mobIconRect.getTop(), mobIconRect.getLeft() - INDENT, mobIconRect.getBottom());
+
 		initOptionButtons();
 	}
 
 	private void initOptionButtons() {
-		int allHeight = guiBottom - indent - optionsTop;
+		int allHeight = guiRect.getBottom() - INDENT - optionsRect.getTop();
 		int buttonHeight = 20;
 
 		List<String> options = node.getOptionTextKeys();
 
-		int optionsCenterY = optionsTop + allHeight / 2;
+		int optionsCenterY = optionsRect.getTop() + allHeight / 2;
 		int indentCount = options.size() - 1;
 		int minimalIndent = 1;
 
@@ -78,7 +68,7 @@ public class GuiDialogue extends JGuiScreen {
 			indent = 0;
 		}
 
-		indent = Math.min(Math.max(indent, minimalIndent), this.indent); // when options don't fit the space
+		indent = Math.min(Math.max(indent, minimalIndent), INDENT); // when options don't fit the space
 
 		int startY = optionsCenterY - buttonHeight * options.size() / 2 - indent * (indentCount / 2);
 
@@ -96,19 +86,19 @@ public class GuiDialogue extends JGuiScreen {
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
 		drawDebugLayout(mouseX, mouseY, partialTicks);
 
-		drawEntity(mobIconRight - mobIconWidth / 2, (int) (mobIconBottom - mobIconHeight / 5F), mouseX, mouseY, node.getNpc());
+		drawEntity(mobIconRect.getRight() - mobIconRect.getWidth() / 2, (int) (mobIconRect.getBottom() - mobIconRect.getHeight() / 5F), mouseX, mouseY, node.getNpc());
 
 		super.drawScreen(mouseX, mouseY, partialTicks);
 	}
 
 	private void drawDebugLayout(int mouseX, int mouseY, float partialTicks) {
-		drawRect(guiLeft, guiTop, guiRight, guiBottom, 0xFF8851FF); // whole gui
+		RenderUtils.drawRect(guiRect, 0xFF8851FF); // whole gui
 
-		drawRect(mobIconLeft, mobIconTop, mobIconRight, mobIconBottom, 0xFF194378); // mob icon background
+		RenderUtils.drawRect(mobIconRect, 0xFF194378); // mob icon background
 
-		drawRect(guiLeft + indent, mobIconTop, mobIconLeft - indent, mobIconBottom, 0xFF963232); // mob text background
+		RenderUtils.drawRect(mobTextRect, 0xFF963232); // mob text background
 
-		drawRect(optionsLeft, optionsTop, guiRight - horizontalSinglePart, guiBottom - indent, 0xFF554887); // options background
+		RenderUtils.drawRect(optionsRect, 0xFF554887); // options background
 	}
 
 	public static void drawEntity(int posX, int posY, float mouseX, float mouseY, EntityLivingBase entity) {

@@ -6,7 +6,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 
 import java.util.HashMap;
 import java.util.UUID;
-
+//TODO add DialogueTracker serializing
 public class DialogueManager {
 	private final DialogueNetHandler netHandler = new DialogueNetHandler();
 	private final HashMap<UUID, DialogueTracker> trackers = new HashMap<>();//FIXME move to map of lists of trackers

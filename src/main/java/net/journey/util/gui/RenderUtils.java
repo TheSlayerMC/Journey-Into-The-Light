@@ -1,7 +1,9 @@
 package net.journey.util.gui;
 
+import net.journey.client.util.Rectangle;
 import net.journey.util.EnumHexColor;
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
@@ -9,9 +11,6 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.resources.I18n;
 import org.lwjgl.opengl.GL11;
 
-/*
- * Code by TimeConqueror
- */
 public class RenderUtils {
 
 	public static void drawTexturedQuad(int x, int y, int requestedWidth, int requestedHeight, int textureX, int textureY, int textureWidth, int textureHeight, float zLevel) {
@@ -98,6 +97,11 @@ public class RenderUtils {
 
 	public void drawCenteredString(FontRenderer fontRendererIn, int x, int y, String text, EnumHexColor color) {
 		fontRendererIn.drawString(text, (x - fontRendererIn.getStringWidth(text) / 2), y, color.getInt());
+	}
+
+	public static void drawRect(Rectangle rectangle, int argbColor) {
+		Gui.drawRect(rectangle.getLeft(), rectangle.getTop(), rectangle.getRight(), rectangle.getBottom(), argbColor);
+		GlStateManager.color(1, 1, 1, 1);
 	}
 
 	public static int getRed(int argb) {
