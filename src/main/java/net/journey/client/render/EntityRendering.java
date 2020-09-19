@@ -89,7 +89,6 @@ import net.journey.entity.projectile.throwable.EntityMagicBomb;
 import net.journey.entity.projectile.throwable.EntityMagicPot;
 import net.journey.entity.util.EntityBossCrystal;
 import net.journey.entity.util.EntitySentacoin;
-import net.journey.entity.util.EntitySpiritCrystal;
 import net.journey.init.items.JourneyWeapons;
 import net.journey.util.EnumHexColor;
 import net.minecraft.client.Minecraft;

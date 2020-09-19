@@ -1,9 +1,13 @@
-package net.journey.entity.util;
+package net.journey.entity.mob.corba;
 
+import net.journey.blocks.BlockTotem;
+import net.minecraft.block.state.pattern.BlockPattern;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class EntitySpiritCrystal extends Entity {
@@ -11,12 +15,22 @@ public class EntitySpiritCrystal extends Entity {
 	public EntitySpiritCrystal(World worldIn) {
 		super(worldIn);
 
-		setSize(3, 3);
+		setSize(1.0F, 1.0F);
 	}
 
 	@Override
 	public boolean canBeCollidedWith() {
 		return true;
+	}
+
+	//Horrible FPS lag??
+	@Override
+	public void onEntityUpdate() {
+		BlockPattern.PatternHelper totemPattern = BlockTotem.getTotemPattern().match(world, this.getPosition().add(0, 0, 0));
+		if (totemPattern != null) {
+			BlockPos blockpos = totemPattern.getFrontTopLeft().add(-1, 0, -1);
+			world.setBlockState(blockpos.add(0, 1, 0), Blocks.OBSIDIAN.getDefaultState(), 2);
+		}
 	}
 
 	@Override

@@ -2,7 +2,7 @@ package net.journey.client.render.mob;
 
 import net.journey.client.render.Textures;
 import net.journey.client.render.model.mob.corba.ModelSpiritCrystal;
-import net.journey.entity.util.EntitySpiritCrystal;
+import net.journey.entity.mob.corba.EntitySpiritCrystal;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
@@ -37,7 +37,7 @@ public class RenderSpiritCrystal extends Render<EntitySpiritCrystal> {
 		GL11.glColor4f(brightness, brightness, brightness, alpha);
 
 		//offsets model by camera's position
-		GL11.glTranslated(x, y, z);
+		GL11.glTranslated(x, y + 1, z);
 
 		//binds texture
 		bindEntityTexture(entity);

@@ -2,8 +2,9 @@ package net.journey.dimension.corba.gen;
 
 import net.journey.api.block.GroundPredicate;
 import net.journey.blocks.BlockTotem;
+import net.journey.entity.mob.corba.EntitySpiritCrystal;
 import net.journey.init.blocks.JourneyBlocks;
-import net.minecraft.init.Blocks;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -14,13 +15,16 @@ import java.util.Random;
 
 public class WorldGenCorbaTotems extends WorldGenerator {
 
-	public GroundPredicate acceptableSurface = GroundPredicate.GRASS_BLOCK;
+	public GroundPredicate groundPredicate = GroundPredicate.COMMON_AND_CORBA_GRASS;
 
 	@Override
 	public boolean generate(World world, Random random, BlockPos blockPos) {
-		BlockPos.MutableBlockPos placePos = new BlockPos.MutableBlockPos(WorldGenAPI.findPosAboveSurface(world, WorldGenAPI.optimizeAndRandomize(blockPos, random))).move(EnumFacing.DOWN);
+		BlockPos.MutableBlockPos placePos = new BlockPos.MutableBlockPos(WorldGenAPI.findPosAboveSurface(world, blockPos)).move(EnumFacing.DOWN);
 
-		if (world.getBlockState(placePos.up()) == Blocks.AIR.getDefaultState()) {
+		BlockPos soilPos = blockPos.down();
+		IBlockState soilState = world.getBlockState(soilPos);
+		boolean isSoil = groundPredicate.testGround(world, soilPos, soilState, EnumFacing.UP);
+		if (isSoil) {
 			int height = 3;
 			for (int i = 0; i < height; i++) {
 				int size = 3;
@@ -40,7 +44,13 @@ public class WorldGenCorbaTotems extends WorldGenerator {
 				setBlockAndNotifyAdequately(world, placePos.add(0, i + 1, -size), JourneyBlocks.totemSad.getDefaultState().withProperty(BlockTotem.FACING, EnumFacing.NORTH).withProperty(BlockTotem.ACTIVATED, false));
 				setBlockAndNotifyAdequately(world, placePos.add(0, i + 1, size), JourneyBlocks.totemHappy.getDefaultState().withProperty(BlockTotem.FACING, EnumFacing.SOUTH).withProperty(BlockTotem.ACTIVATED, false));
 
-				setBlockAndNotifyAdequately(world, placePos.add(0, 2, 0), JourneyBlocks.driedMud.getDefaultState());
+				if (!world.isRemote) {
+					EntitySpiritCrystal crystal = new EntitySpiritCrystal(world);
+					crystal.posX = placePos.getX() + .5F;
+					crystal.posY = placePos.getY() + 3F;
+					crystal.posZ = placePos.getZ() + .5F;
+					world.spawnEntity(crystal);
+				}
 			}
 
 			return true;

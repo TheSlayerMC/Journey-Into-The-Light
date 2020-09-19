@@ -3,13 +3,18 @@ package net.journey.blocks;
 import net.journey.blocks.base.BlockPropertyCodec;
 import net.journey.client.render.particles.ParticleSwampFly;
 import net.journey.init.JourneySounds;
+import net.journey.init.blocks.JourneyBlocks;
 import net.journey.init.items.JourneyItems;
 import net.journey.util.WorldUtils;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
+import net.minecraft.block.state.BlockWorldState;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.block.state.pattern.BlockPattern;
+import net.minecraft.block.state.pattern.BlockStateMatcher;
+import net.minecraft.block.state.pattern.FactoryBlockPattern;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -30,6 +35,8 @@ public class BlockTotem extends BlockMod {
 	public static final PropertyDirection FACING = BlockHorizontal.FACING;
 	public static final PropertyBool ACTIVATED = PropertyBool.create("activated");
 
+	private static BlockPattern totemPattern;
+
 	private final TotemType totemType;
 
 	public BlockTotem(EnumMaterialTypes enumMaterialTypes, String name, String f, float hardness, TotemType totemType) {
@@ -39,6 +46,27 @@ public class BlockTotem extends BlockMod {
 		this.setTickRandomly(true);
 		this.setBlockUnbreakable();
 		this.setResistance(100000F);
+	}
+
+	public static BlockPattern getTotemPattern() {
+		if (totemPattern == null) {
+			totemPattern = FactoryBlockPattern.start().aisle(
+					"????V????",
+					"?????????",
+					"?????????",
+					"?????????",
+					"S???????A",
+					"?????????",
+					"?????????",
+					"?????????",
+					"????G????").where(
+					'?', BlockWorldState.hasState(BlockStateMatcher.ANY)).where(
+					'V', BlockWorldState.hasState(BlockStateMatcher.forBlock(JourneyBlocks.totemSad))).where(
+					'G', BlockWorldState.hasState(BlockStateMatcher.forBlock(JourneyBlocks.totemHappy))).where(
+					'S', BlockWorldState.hasState(BlockStateMatcher.forBlock(JourneyBlocks.totemScared))).where(
+					'A', BlockWorldState.hasState(BlockStateMatcher.forBlock(JourneyBlocks.totemAngry))).build();
+		}
+		return totemPattern;
 	}
 
 	@Override
