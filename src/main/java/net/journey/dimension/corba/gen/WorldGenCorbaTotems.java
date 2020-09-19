@@ -16,8 +16,6 @@ public class WorldGenCorbaTotems extends WorldGenerator {
 
 	public GroundPredicate acceptableSurface = GroundPredicate.GRASS_BLOCK;
 
-	private int size;
-
 	@Override
 	public boolean generate(World world, Random random, BlockPos blockPos) {
 		BlockPos.MutableBlockPos placePos = new BlockPos.MutableBlockPos(WorldGenAPI.findPosAboveSurface(world, WorldGenAPI.optimizeAndRandomize(blockPos, random))).move(EnumFacing.DOWN);
@@ -25,8 +23,7 @@ public class WorldGenCorbaTotems extends WorldGenerator {
 		if (world.getBlockState(placePos.up()) == Blocks.AIR.getDefaultState()) {
 			int height = 3;
 			for (int i = 0; i < height; i++) {
-
-				size = 3;
+				int size = 3;
 				setBlockAndNotifyAdequately(world, placePos.add(size, i, size), JourneyBlocks.totemBase.getDefaultState());
 				setBlockAndNotifyAdequately(world, placePos.add(-size, i, -size), JourneyBlocks.totemBase.getDefaultState());
 				setBlockAndNotifyAdequately(world, placePos.add(size, i, -size), JourneyBlocks.totemBase.getDefaultState());
@@ -45,7 +42,9 @@ public class WorldGenCorbaTotems extends WorldGenerator {
 
 				setBlockAndNotifyAdequately(world, placePos.add(0, 2, 0), JourneyBlocks.driedMud.getDefaultState());
 			}
+
+			return true;
 		}
-		return true;
+		return false;
 	}
 }

@@ -52,19 +52,21 @@ public class BlockTotem extends BlockMod {
 
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		return this.getDefaultState().withProperty(ACTIVATED, (meta & 1) != 0).withProperty(FACING, EnumFacing.byHorizontalIndex(meta));
+		boolean activated = meta > 3;
+		int horizontalIndex = activated ? meta / 2 : meta;
+
+		return this.getDefaultState().withProperty(ACTIVATED, activated).withProperty(FACING, EnumFacing.byHorizontalIndex(horizontalIndex));
 	}
 
 	@Override
 	public int getMetaFromState(IBlockState state) {
-		int i = 0;
-		i = i | state.getValue(FACING).getHorizontalIndex();
+		int meta = state.getValue(FACING).getHorizontalIndex();
 
 		if (state.getValue(ACTIVATED)) {
-			i |= 4;
+			meta *= 2;
 		}
 
-		return i;
+		return meta;
 	}
 
 	@Override
