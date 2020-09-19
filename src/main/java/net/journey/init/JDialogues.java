@@ -9,10 +9,10 @@ import net.minecraft.util.text.TextComponentString;
 public class JDialogues {
 	public static final Dialogue TEST = JRegistries.DIALOGUE_REGISTRY.register(
 			DialogueBuilder.makeDialogue(JITL.rl("test"),
-					DialogueBuilder.NodeBuilder.create("Hello, player!")
-							.addOption(DialogueBuilder.OptionBuilder.create("Hello, mob!")
-									.leadsTo(DialogueBuilder.NodeBuilder.create("How are you, player?")
-											.addOption(DialogueBuilder.OptionBuilder.create("I'm fine!")
+					DialogueBuilder.NodeBuilder.create("dialogue.jitl.test.hello.text")
+							.addOption(DialogueBuilder.OptionBuilder.create("dialogue.jitl.test.hello.answer.to_nonsense")
+									.leadsTo(DialogueBuilder.NodeBuilder.create("dialogue.jitl.test.nonsense.text")
+											.addOption(DialogueBuilder.OptionBuilder.create("dialogue.jitl.test.nonsense.answer.wtf")
 													.withAction((world, player) -> {
 														if (!world.isRemote) {
 															player.sendMessage(new TextComponentString("Woop-woop!"));
@@ -21,9 +21,9 @@ public class JDialogues {
 											)
 									)
 							)
-							.addOption(DialogueBuilder.OptionBuilder.create("Bye, mob!"))
-							.addOption(DialogueBuilder.OptionBuilder.create("Bye, mob 2!"))
-							.addOption(DialogueBuilder.OptionBuilder.create("Bye, mob 3!"))
+							.addOption(DialogueBuilder.OptionBuilder.create("dialogue.jitl.test.hello.answer.bye"))
+							.addOption(DialogueBuilder.OptionBuilder.create("dialogue.jitl.test.hello.answer.bye2"))
+							.addOption(DialogueBuilder.OptionBuilder.create("dialogue.jitl.test.hello.answer.bye3"))
 			)
 	);
 }

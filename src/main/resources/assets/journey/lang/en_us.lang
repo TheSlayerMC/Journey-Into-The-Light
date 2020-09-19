@@ -232,6 +232,19 @@ jei.jitl.ore_smithstone.desc=On the ceiling of the Nether, it can be found illum
 
 dialogue.jitl.standby_end_option=Leave
 
+# Just to keep it readable for translators:
+#dialogue.jitl.<dialogue_name>.<node_name>.text - npc text
+#dialogue.jitl.<dialogue_name>.<node_name>.answer.to_<node> - player's answer with redirect to another node
+#dialogue.jitl.<dialogue_name>.<node_name>.answer.<just_some_name> - player's answer that triggers smth and ends dialogue
+dialogue.jitl.test.hello.text=Hello, player!
+dialogue.jitl.test.hello.answer.to_nonsense=Hello, mob!
+dialogue.jitl.test.hello.answer.bye=Bye, mob!
+dialogue.jitl.test.hello.answer.bye2=Bye, mob 2!
+dialogue.jitl.test.hello.answer.bye3=Bye, mob 3!
+
+dialogue.jitl.test.nonsense.text=Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dictum placerat dolor ut pretium. Aenean viverra, tortor vel luctus tincidunt, turpis nibh dignissim dui, at efficitur dui arcu id odio. Curabitur sodales diam nisl, a sagittis urna pharetra interdum.
+dialogue.jitl.test.nonsense.answer.wtf=WTF??? Bye!
+
 #MARK AUTO GEN START
 
 #CreativeTabs

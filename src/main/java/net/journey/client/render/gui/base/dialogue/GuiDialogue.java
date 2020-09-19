@@ -9,6 +9,7 @@ import net.journey.util.gui.RenderUtils;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityLivingBase;
 
 import java.util.List;
@@ -86,9 +87,15 @@ public class GuiDialogue extends JGuiScreen {
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
 		drawDebugLayout(mouseX, mouseY, partialTicks);
 
+		drawMobText();
 		drawEntity(mobIconRect.getRight() - mobIconRect.getWidth() / 2, (int) (mobIconRect.getBottom() - mobIconRect.getHeight() / 5F), mouseX, mouseY, node.getNpc());
 
 		super.drawScreen(mouseX, mouseY, partialTicks);
+	}
+
+	private void drawMobText() {
+		String text = I18n.format(node.getTextKey());
+		fontRenderer.drawSplitString(text, mobTextRect.getLeft() + INDENT, mobTextRect.getTop() + INDENT, Math.max(mobTextRect.getWidth() - INDENT * 2, 2), 0xFFFFFF);
 	}
 
 	private void drawDebugLayout(int mouseX, int mouseY, float partialTicks) {
