@@ -73,7 +73,7 @@ public class EntitySpiritCrystal extends Entity {
 	private boolean checkSide(World world, Block requiredBlock, PropertyBool activatedProp, EnumFacing direction) {
 		IBlockState state = world.getBlockState(getPosition().offset(direction, 4));
 
-		return state.getValue(activatedProp) && state.getBlock() == requiredBlock;
+		return state.getBlock() == requiredBlock && state.getValue(activatedProp);
 	}
 
 	@Override
