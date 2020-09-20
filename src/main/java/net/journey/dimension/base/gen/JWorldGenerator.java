@@ -1,8 +1,8 @@
 package net.journey.dimension.base.gen;
 
-import net.journey.blocks.base.JBlockFacing;
 import net.journey.util.RandHelper;
 import net.minecraft.block.Block;
+import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -18,19 +18,19 @@ public class JWorldGenerator extends WorldGenerator {
 		return true;
 	}
 
-	public IBlockState getRandomBlockStates(Random rand, IBlockState... blocks) {
-		return RandHelper.chooseEqual(rand, blocks);
+	public IBlockState getRandomState(Random rand, IBlockState... states) {
+		return RandHelper.chooseEqual(rand, states);
 	}
 
-	public void placeBlock(World world, BlockPos pos, Block block) {
+	public void setDefaultState(World world, BlockPos pos, Block block) {
 		this.setBlockAndNotifyAdequately(world, pos, block.getDefaultState());
 	}
 
-	public void placeBlockWithFacing(World world, BlockPos pos, Block block, EnumFacing facing) {
-		setBlockAndNotifyAdequately(world, pos, block.getDefaultState().withProperty(JBlockFacing.FACING, facing));
+	public void setStateWithFacing(World world, BlockPos pos, Block block, PropertyDirection directionProp, EnumFacing facing) {
+		setBlockAndNotifyAdequately(world, pos, block.getDefaultState().withProperty(directionProp, facing));
 	}
 
-	public EnumFacing getRandomDirection(Random random) {
+	public EnumFacing getRandomHorizontalDirection(Random random) {
 		return RandHelper.chooseEqual(random,
 				EnumFacing.NORTH,
 				EnumFacing.SOUTH,
@@ -38,7 +38,7 @@ public class JWorldGenerator extends WorldGenerator {
 				EnumFacing.WEST);
 	}
 
-	public EnumFacing getRandomDirectionWithUpAndDown(Random random) {
+	public EnumFacing getRandomDirection(Random random) {
 		return RandHelper.chooseEqual(random,
 				EnumFacing.NORTH,
 				EnumFacing.SOUTH,
