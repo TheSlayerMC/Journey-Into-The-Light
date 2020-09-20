@@ -1,8 +1,8 @@
-package net.journey.entity.mob.overworld.underground;
+package net.journey.entity.mob.boss;
 
 import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
-import net.journey.entity.base.JEntityMob;
+import net.journey.entity.base.JEntityMiniBoss;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
 import net.minecraft.block.Block;
@@ -26,7 +26,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class EntityRockiteSmasher extends JEntityMob {
+public class EntityRockiteSmasher extends JEntityMiniBoss {
 
     private int attackTimer;
 

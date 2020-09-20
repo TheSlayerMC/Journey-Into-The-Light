@@ -2,7 +2,7 @@ package net.journey.dimension.overworld.gen;
 
 import net.journey.blocks.containers.BlockJourneyChest;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
-import net.journey.entity.mob.overworld.underground.EntityRockiteSmasher;
+import net.journey.entity.mob.boss.EntityRockiteSmasher;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.RandHelper;
@@ -21,20 +21,20 @@ import java.util.Random;
 
 public class WorldGenRockiteDungeon extends WorldGenerator {
 
-	private Random rand = new Random();
-	
-    private IBlockState stone = Blocks.STONE.getDefaultState();
-    private IBlockState pillar = Blocks.STONEBRICK.getDefaultState().withProperty(BlockStoneBrick.VARIANT, BlockStoneBrick.EnumType.CHISELED);
-    
-    /*
-     * Selects a random cobblestone varient each time the method is called
-     */
-    
-    public IBlockState getCobblestone() {
-	    return RandHelper.chooseEqual(rand, Blocks.COBBLESTONE.getDefaultState(), Blocks.MOSSY_COBBLESTONE.getDefaultState());
-    }
-    
-    /*
+	private final Random rand = new Random();
+
+	private final IBlockState stone = Blocks.STONE.getDefaultState();
+	private final IBlockState pillar = Blocks.STONEBRICK.getDefaultState().withProperty(BlockStoneBrick.VARIANT, BlockStoneBrick.EnumType.CHISELED);
+
+	/*
+	 * Selects a random cobblestone varient each time the method is called
+	 */
+
+	public IBlockState getCobblestone() {
+		return RandHelper.chooseEqual(rand, Blocks.COBBLESTONE.getDefaultState(), Blocks.MOSSY_COBBLESTONE.getDefaultState());
+	}
+
+	/*
      * Selects a random stone brick varient each time the method is called
      */
     public IBlockState getDungeonBricks() {

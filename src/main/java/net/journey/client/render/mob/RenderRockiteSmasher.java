@@ -1,15 +1,19 @@
 package net.journey.client.render.mob;
 
-import net.journey.client.render.base.RenderModMob;
-import net.journey.entity.mob.overworld.underground.EntityRockiteSmasher;
-import net.minecraft.client.model.ModelBase;
+import net.journey.client.render.Textures;
+import net.journey.client.render.base.RenderBoss;
+import net.journey.client.render.model.mob.overworld.underground.ModelRockiteSmasher;
+import net.journey.entity.mob.boss.EntityRockiteSmasher;
+import net.journey.util.EnumHexColor;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
+import net.slayer.api.SlayerAPI;
 
-public class RenderRockiteSmasher extends RenderModMob {
+public class RenderRockiteSmasher extends RenderBoss {
 
-    public RenderRockiteSmasher(ModelBase model, ResourceLocation tex) {
-        super(model, tex);
+    public RenderRockiteSmasher() {
+        super(new ModelRockiteSmasher(), 0, 1.2F, Textures.blank, "rockite_smasher", EnumHexColor.RED, EnumHexColor.BLACK);
     }
 
     protected void applyRotations(EntityRockiteSmasher entityLiving, float f3, float rotationYaw, float partialTicks) {
@@ -21,5 +25,10 @@ public class RenderRockiteSmasher extends RenderModMob {
             float f2 = (Math.abs(f1 % 13.0F - 6.5F) - 3.25F) / 3.25F;
             GlStateManager.rotate(6.5F * f2, 0.0F, 0.0F, 1.0F);
         }
+    }
+
+    @Override
+    protected ResourceLocation getEntityTexture(Entity entity) {
+        return new ResourceLocation(SlayerAPI.PREFIX + "textures/models/mobs/rockitesmasher.png");
     }
 }

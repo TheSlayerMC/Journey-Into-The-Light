@@ -27,7 +27,6 @@ import net.journey.client.render.model.mob.overworld.jungle.ModelJungleSpider;
 import net.journey.client.render.model.mob.overworld.jungle.ModelJungleTurtle;
 import net.journey.client.render.model.mob.overworld.underground.ModelCaveling;
 import net.journey.client.render.model.mob.overworld.underground.ModelCavurn;
-import net.journey.client.render.model.mob.overworld.underground.ModelRockiteSmasher;
 import net.journey.client.render.model.mob.overworld.underground.ModelStonewalker;
 import net.journey.client.render.model.mob.overworld.underground.npc.ModelRockiteGolem;
 import net.journey.client.render.model.mob.senterian.ModelSentryBlock;
@@ -245,7 +244,6 @@ public class EntityRendering {
         RenderingRegistry.registerEntityRenderingHandler(EntityDarkener.class, new RenderModMob(new ModelDarkener(), Textures.darkener));
         RenderingRegistry.registerEntityRenderingHandler(EntityStarlightGolem.class, new RenderModMob(new ModelStarlightGolem(), Textures.starlightGolem));
         RenderingRegistry.registerEntityRenderingHandler(EntityIceGolem.class, new RenderIceGolem(new ModelIceGolem(), Textures.iceGolem));
-        RenderingRegistry.registerEntityRenderingHandler(EntityRockiteSmasher.class, new RenderRockiteSmasher(new ModelRockiteSmasher(), Textures.rockiteSmasher));
         RenderingRegistry.registerEntityRenderingHandler(EntityLightener.class, new RenderModMob(new ModelLightener(), Textures.lightener));
         RenderingRegistry.registerEntityRenderingHandler(EntityDarkSorcerer.class, new RenderModMob(new ModelDarkSorcerer(), Textures.darkSorcerer));
         RenderingRegistry.registerEntityRenderingHandler(EntityStarlightTransporter.class, new RenderModMob(new ModelStarlightTransporter(), Textures.starlightTransporter));
@@ -319,6 +317,7 @@ public class EntityRendering {
         RenderingRegistry.registerEntityRenderingHandler(EntitySkyStalker.class, new RenderBoss(new ModelSkyStalker(), 0.5F, 2.0F, Textures.skyStalker, "skyStalker", EnumHexColor.WHITE, EnumHexColor.PINK));
         RenderingRegistry.registerEntityRenderingHandler(EntityEudor.class, new RenderBoss(new ModelEudor(), 0.5F, 2.0F, Textures.eudor, "eudor", EnumHexColor.YELLOW, EnumHexColor.ORANGE));
         RenderingRegistry.registerEntityRenderingHandler(EntityScale.class, new RenderBoss(new ModelSoulWatcher(), 0.5F, 2.0F, Textures.scale, "scale", EnumHexColor.LIGHT_BLUE, EnumHexColor.DARK_BLUE));
+        RenderingRegistry.registerEntityRenderingHandler(EntityRockiteSmasher.class, new RenderRockiteSmasher());
 
         RenderingRegistry.registerEntityRenderingHandler(EntityTamedRoc.class, new RenderModMob(new ModelRoc(), Textures.tameRoc));
         RenderingRegistry.registerEntityRenderingHandler(EntityJungleTurtle.class, new RenderSizeable(new ModelJungleTurtle(), 0.5F, 1.5F, Textures.jungleTurtle));

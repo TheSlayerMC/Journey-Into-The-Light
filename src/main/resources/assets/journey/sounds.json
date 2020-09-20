@@ -103,6 +103,12 @@
       "journey:totem_activate"
     ]
   },
+  "spirit_crystal_activate": {
+    "category": "master",
+    "sounds": [
+      "journey:spirit_crystal_activate"
+    ]
+  },
   "cannon": {
     "category": "neutral",
     "sounds": [

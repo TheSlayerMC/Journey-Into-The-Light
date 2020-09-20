@@ -1,7 +1,6 @@
 package net.journey.client.render.model.mob.overworld.underground;
 
-import net.journey.entity.mob.frozen.EntityIceGolem;
-import net.journey.entity.mob.overworld.underground.EntityRockiteSmasher;
+import net.journey.entity.mob.boss.EntityRockiteSmasher;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
