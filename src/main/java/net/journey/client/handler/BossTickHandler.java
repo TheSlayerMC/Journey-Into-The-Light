@@ -17,6 +17,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.SlayerAPI;
 import org.lwjgl.opengl.GL11;
 
+//FIXME: should be renamed to BossHealthRenderer or smth
 public class BossTickHandler {
 
     private final Minecraft mc = Minecraft.getMinecraft();
@@ -64,11 +65,11 @@ public class BossTickHandler {
             RenderUtils textRenderUtils = new RenderUtils();
 
             if (JourneyBossStatus.bossName != null) {
-				textRenderUtils.drawOutlinedCenteredString(fontrenderer, barDisX + 92, barDisY, glitchedText + I18n.format(
-						"journey.boss.name." + JourneyBossStatus.bossName),
-						JourneyBossStatus.stringTextColor,
-						JourneyBossStatus.stringOutlineColor);
-			}
+                textRenderUtils.drawOutlinedCenteredString(fontrenderer, barDisX + 92, barDisY, glitchedText + I18n.format(
+                        "journey.boss.name." + JourneyBossStatus.bossName),
+                        JourneyBossStatus.stringTextColor,
+                        JourneyBossStatus.stringOutlineColor);
+            }
         }
     }
 
