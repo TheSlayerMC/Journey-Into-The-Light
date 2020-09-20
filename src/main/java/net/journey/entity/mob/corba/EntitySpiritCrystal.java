@@ -5,6 +5,9 @@ import net.journey.blocks.BlockTotem;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.LootHelper;
+import net.minecraft.block.Block;
+import net.minecraft.block.properties.PropertyBool;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -36,10 +39,10 @@ public class EntitySpiritCrystal extends Entity {
 	@Override
 	public void onEntityUpdate() {
 		if (ticksExisted % 20 == 0) {
-			if (world.getBlockState(getPosition().east(4)) == JourneyBlocks.totemScared.getDefaultState().withProperty(BlockTotem.ACTIVATED, true).withProperty(BlockTotem.FACING, EnumFacing.EAST) &&
-					world.getBlockState(getPosition().west(4)) == JourneyBlocks.totemAngry.getDefaultState().withProperty(BlockTotem.ACTIVATED, true).withProperty(BlockTotem.FACING, EnumFacing.WEST) &&
-					world.getBlockState(getPosition().south(4)) == JourneyBlocks.totemHappy.getDefaultState().withProperty(BlockTotem.ACTIVATED, true).withProperty(BlockTotem.FACING, EnumFacing.SOUTH) &&
-					world.getBlockState(getPosition().north(4)) == JourneyBlocks.totemSad.getDefaultState().withProperty(BlockTotem.ACTIVATED, true).withProperty(BlockTotem.FACING, EnumFacing.NORTH)) {
+			if (checkSide(world, JourneyBlocks.totemScared, BlockTotem.ACTIVATED, EnumFacing.EAST)
+					&& checkSide(world, JourneyBlocks.totemAngry, BlockTotem.ACTIVATED, EnumFacing.WEST)
+					&& checkSide(world, JourneyBlocks.totemHappy, BlockTotem.ACTIVATED, EnumFacing.SOUTH)
+					&& checkSide(world, JourneyBlocks.totemSad, BlockTotem.ACTIVATED, EnumFacing.NORTH)) {
 
 				if (spawnTimer == 0) {
 					spawnTimer = 10;
@@ -65,6 +68,12 @@ public class EntitySpiritCrystal extends Entity {
 				JITL.LOGGER.info("" + spawnTimer);
 			}
 		}
+	}
+
+	private boolean checkSide(World world, Block requiredBlock, PropertyBool activatedProp, EnumFacing direction) {
+		IBlockState state = world.getBlockState(getPosition().offset(direction, 4));
+
+		return state.getValue(activatedProp) && state.getBlock() == requiredBlock;
 	}
 
 	@Override
