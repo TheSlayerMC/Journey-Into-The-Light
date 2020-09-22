@@ -1,6 +1,7 @@
 package net.journey.blocks.containers;
 
 import net.journey.blocks.tileentity.TileEntityAdvancedLoot;
+import net.journey.init.JourneySounds;
 import net.journey.init.JourneyTabs;
 import net.journey.init.items.JourneyItems;
 import net.minecraft.block.state.BlockFaceShape;
@@ -87,6 +88,9 @@ public class BlockAdvancedLoot extends BlockModContainer {
 
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		if (worldIn.isRemote) {
+			JourneySounds.playSound(JourneySounds.BOTTLE_PLUG, worldIn, playerIn, 1.0F, 0.3F + rand.nextFloat());
+		}
 		if (!worldIn.isRemote) {
 			/**
 			 * why does this act so buggy?
