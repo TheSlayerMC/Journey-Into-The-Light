@@ -366,6 +366,7 @@ public class JourneyItems {
 	public static Item iceAmulet;
 	public static Item emptyAmulet;
 	public static Item skullOfDecay;
+	public static Item minersPearl;
 	public static Item magicThreadOfTethering;
 	public static Item iceFlake;
 	public static Item strengthTotem;
@@ -658,6 +659,7 @@ public class JourneyItems {
 		emptyAmulet = Registrar.regAndSetupItem("amulet_empty", "Empty Amulet", new JItem());
 
 		skullOfDecay = Registrar.regAndSetupItem("skull_of_decay", "Skull Of Decay", new ItemSkullOfDecay(), JourneyTabs.UTIL);
+		minersPearl = Registrar.regAndSetupItem("miners_pearl", "Miners Pearl", new ItemMinersPearl(), JourneyTabs.UTIL);
 		magicThreadOfTethering = Registrar.regAndSetupItem("magic_thread_of_tethering", "Magic Thread of Tethering", new ItemStringOfTethering(), JourneyTabs.UTIL);
 		iceFlake = Registrar.regAndSetupItem("iceflake", "Iceflake", new ItemIceflake(), JourneyTabs.UTIL);
 		strengthTotem = Registrar.regAndSetupItem("totem_strength", "Totem of Impeccable Strength", new ItemStrengthTotem(), JourneyTabs.UTIL);

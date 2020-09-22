@@ -167,11 +167,6 @@ public class BlockSummoningTable extends BlockModContainer {
         return false;
     }
 
-    private IBlockState getStructureBlocks(IBlockState state, World worldIn, BlockPos pos, float hitX, float hitY, float hitZ) {
-        return state;
-
-    }
-
     @Override
     public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
         TileEntitySummoningTable tile = (TileEntitySummoningTable) worldIn.getTileEntity(pos);

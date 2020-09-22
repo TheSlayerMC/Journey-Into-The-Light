@@ -3,6 +3,7 @@ package net.journey.init.blocks;
 import net.journey.api.block.GroundPredicate;
 import net.journey.blocks.*;
 import net.journey.blocks.base.*;
+import net.journey.blocks.base.JBlockRandomLoot.LootType;
 import net.journey.blocks.containers.*;
 import net.journey.blocks.meta.BlockMetaBase;
 import net.journey.blocks.plant.*;
@@ -126,6 +127,8 @@ public class JourneyBlocks {
     public static BlockMod goldLootBox;
     public static BlockMod diamondLootBox;
     public static BlockMod overgrownLootBox;
+
+    public static BlockAdvancedLoot basePot;
 
     public static BlockModBush sizzleberryBush;
     public static BlockModBush bradberryBush;
@@ -683,10 +686,12 @@ public class JourneyBlocks {
         purpleGemBlock = new BlockMod("purpleGemBlock", "Purple Gem Block");
         blueGemBlock = new BlockMod("blueGemBlock", "Blue Gem Block");
         yellowGemBlock = new BlockMod("yellowGemBlock", "Yellow Gem Block");
-        ironLootBox = new JBlockRandomLoot("iron_loot_box", "Iron Loot Box", JourneyLootTables.LOOT_BASIC);
-        goldLootBox = new JBlockRandomLoot("gold_loot_box", "Gold Loot Box", JourneyLootTables.LOOT_GOLD);
-        diamondLootBox = new JBlockRandomLoot("diamond_loot_box", "Diamond Loot Box", JourneyLootTables.LOOT_DIAMOND);
-        overgrownLootBox = new JBlockRandomLoot("overgrown_loot_box", "Overgrown Loot Box", JourneyLootTables.LOOT_OVERGROWN);
+        ironLootBox = new JBlockRandomLoot(EnumMaterialTypes.WOOD, "iron_loot_box", "Iron Loot Box", JourneyLootTables.LOOT_BASIC, LootType.BOX);
+        goldLootBox = new JBlockRandomLoot(EnumMaterialTypes.WOOD, "gold_loot_box", "Gold Loot Box", JourneyLootTables.LOOT_GOLD, LootType.BOX);
+        diamondLootBox = new JBlockRandomLoot(EnumMaterialTypes.WOOD, "diamond_loot_box", "Diamond Loot Box", JourneyLootTables.LOOT_DIAMOND, LootType.BOX);
+        overgrownLootBox = new JBlockRandomLoot(EnumMaterialTypes.WOOD, "overgrown_loot_box", "Overgrown Loot Box", JourneyLootTables.LOOT_OVERGROWN, LootType.BOX);
+
+        basePot = new BlockAdvancedLoot(EnumMaterialTypes.GLASS, "pot_base", "Pot", 0.1F);
 
         magicExplosive = new JBlockTNT("magic_explosive", "Magic Explosive", 10.0F);
 
