@@ -92,14 +92,15 @@ public class BlockAdvancedLoot extends BlockModContainer {
 			 * why does this act so buggy?
 			 */
 			TileEntityAdvancedLoot chest = (TileEntityAdvancedLoot) worldIn.getTileEntity(pos);
-			InvWrapper wrapper = new InvWrapper(chest);
 			if (chest != null) {
+				InvWrapper wrapper = new InvWrapper(chest);
 				for (int i = 0; i < wrapper.getSlots(); i++) {
-					ItemStack itemStack = wrapper.extractItem(i, 1, false);
+					ItemStack itemStack = wrapper.extractItem(i, /** why tf is it spawning more than one item at a time?*/1, false);
 
 					EntityItem entityItem = new EntityItem(worldIn);
 					entityItem.setItem(itemStack);
 					entityItem.setPosition(pos.getX(), pos.getY() + 1.0F, pos.getZ());
+					entityItem.motionY = 0.2D;
 
 					if (!itemStack.isEmpty()) {
 						worldIn.spawnEntity(entityItem);
