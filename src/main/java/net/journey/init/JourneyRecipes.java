@@ -51,6 +51,8 @@ public class JourneyRecipes {
 
 		addShapedRecipe(JourneyItems.nauseaRing, " i ", "i i", " i ", 'i', Blocks.OBSIDIAN);
 
+		addShapedRecipe(JourneyBlocks.basePot, "iii", "i i", "iii", 'i', JourneyItems.pottery_shard);
+
 		addShapedRecipe(JourneyItems.aquaticAmulet, " i ", "ixi", 'i', JourneyItems.aquastone, 'x', JourneyItems.emptyAmulet);
 
 		addShapedRecipe(JourneyBlocks.magicExplosive, "ixi", "xix", "ixi", 'i', JourneyItems.magicDust, 'x', Blocks.SAND);

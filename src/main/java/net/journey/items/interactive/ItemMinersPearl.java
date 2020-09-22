@@ -5,6 +5,7 @@ import net.journey.api.capability.EssenceStorage;
 import net.journey.api.capability.JourneyPlayer;
 import net.journey.api.item.IUsesEssence;
 import net.journey.common.capability.JCapabilityManager;
+import net.journey.init.JourneySounds;
 import net.journey.items.base.JItem;
 import net.journey.util.ChatUtils;
 import net.minecraft.client.util.ITooltipFlag;
@@ -35,7 +36,7 @@ public class ItemMinersPearl extends JItem implements IUsesEssence {
 	boolean canTeleport = false;
 
 	public ItemMinersPearl() {
-		setMaxDamage(32);
+		setMaxDamage(16);
 		setMaxStackSize(1);
 	}
 
@@ -55,6 +56,7 @@ public class ItemMinersPearl extends JItem implements IUsesEssence {
 					if (world.isRemote) {
 						world.playSound(player, player.getPosition(), SoundEvents.BLOCK_PORTAL_TRIGGER, SoundCategory.PLAYERS, 1.0F, 0.05F);
 					}
+
 					if (!world.isRemote) {
 						player.addPotionEffect(new PotionEffect(MobEffects.NAUSEA, 200, 2));
 						canTeleport = true;
@@ -62,6 +64,10 @@ public class ItemMinersPearl extends JItem implements IUsesEssence {
 					}
 				}
 			} else if (!flag) {
+				if (world.isRemote) {
+					world.playSound(player, player.getPosition(), JourneySounds.STAFF, SoundCategory.PLAYERS, 1.0F, 0.05F);
+				}
+
 				if (!world.isRemote) {
 					ChatUtils.sendColoredTranslated(player, TextFormatting.DARK_PURPLE, "msg.journey.item.miners_pearl");
 				}

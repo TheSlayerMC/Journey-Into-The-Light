@@ -1,5 +1,7 @@
 package net.journey.blocks.tileentity;
 
+import net.journey.init.JourneyLootTables;
+import net.journey.util.RandHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -18,6 +20,7 @@ public class TileEntityAdvancedLoot extends TileEntityLockableLoot implements IT
 	private int ticksSinceSync;
 
 	public TileEntityAdvancedLoot() {
+		this.setLootTable(JourneyLootTables.LOOT_OVERGROWN, RandHelper.RANDOM.nextLong());
 	}
 
 	@Override

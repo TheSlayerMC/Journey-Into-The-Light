@@ -340,6 +340,7 @@ public class JourneyItems {
 	public static Item withicObstructor;
 	public static Item xpCatalyst;
 	public static Item aquastone;
+	public static Item pottery_shard;
 	public static Item volcanicStone;
 	public static Item chestKey;
 
@@ -634,6 +635,8 @@ public class JourneyItems {
 		xpCatalyst = Registrar.regAndSetupItem("xp_catalyst", "Experience Catalyst", new ItemAddXP(1), JourneyTabs.UTIL);
 		chestKey = Registrar.regAndSetupItem("chest_key", "Chest Key", new JItem());
 		aquastone = Registrar.regAndSetupItem("aquastone", "Aquastone", new JItem());
+
+		pottery_shard = Registrar.regAndSetupItem("pottery_shard", "Pottery Shard", new JItem());
 
 		petFood = Registrar.regAndSetupItem("pet_food", "Pet Food", new JItem());
 		robotEgg = Registrar.regAndSetupItem("robot_egg", "Robot Egg", new JItem());

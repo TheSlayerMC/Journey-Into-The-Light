@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "iii",
+    "i i",
+    "iii"
+  ],
+  "key": {
+    "i": {
+      "item": "journey:pottery_shard"
+    }
+  },
+  "result": {
+    "item": "journey:pot_base"
+  }
+}
