@@ -24,6 +24,9 @@ import java.util.Random;
 public class EntitySpiritCrystal extends Entity {
 
 	private int spawnTimer;
+	private int maxSpawnTimer = 5;
+	private boolean canSpawnItem = false;
+
 
 	public EntitySpiritCrystal(World worldIn) {
 		super(worldIn);
@@ -42,10 +45,13 @@ public class EntitySpiritCrystal extends Entity {
 			if (checkSide(world, JourneyBlocks.totemScared, BlockTotem.ACTIVATED, EnumFacing.EAST)
 					&& checkSide(world, JourneyBlocks.totemAngry, BlockTotem.ACTIVATED, EnumFacing.WEST)
 					&& checkSide(world, JourneyBlocks.totemHappy, BlockTotem.ACTIVATED, EnumFacing.SOUTH)
-					&& checkSide(world, JourneyBlocks.totemSad, BlockTotem.ACTIVATED, EnumFacing.NORTH)) {
-
-				if (spawnTimer == 0) {
-					spawnTimer = 10;
+					&& checkSide(world, JourneyBlocks.totemSad, BlockTotem.ACTIVATED, EnumFacing.NORTH) &&
+					spawnTimer < maxSpawnTimer) {
+				canSpawnItem = true;
+			}
+			if (canSpawnItem) {
+				spawnTimer++;
+				if (spawnTimer > 0 && spawnTimer < maxSpawnTimer) {
 					if (!world.isRemote) {
 						Random r = new Random();
 						List<ItemStack> lootTable = LootHelper.genFromLootTable(JourneyLootTables.LOOT_BASIC, (WorldServer) world, builder -> builder.withLootedEntity(this));
@@ -56,15 +62,9 @@ public class EntitySpiritCrystal extends Entity {
 						world.spawnEntity(item);
 					}
 				}
-				//TODO: stop the timer once it's finished
-				if (spawnTimer >= 0) {
-					spawnTimer--;
+				if (spawnTimer > maxSpawnTimer) {
+					spawnTimer = maxSpawnTimer + 1;
 				}
-
-				if (spawnTimer <= 0) {
-					spawnTimer = 0;
-				}
-
 				JITL.LOGGER.info("" + spawnTimer);
 			}
 		}
@@ -79,11 +79,15 @@ public class EntitySpiritCrystal extends Entity {
 	@Override
 	protected void readEntityFromNBT(NBTTagCompound nbtTagCompound) {
 		spawnTimer = nbtTagCompound.getInteger("spawnTimer");
+		maxSpawnTimer = nbtTagCompound.getInteger("maxSpawnTimer");
+		canSpawnItem = nbtTagCompound.getBoolean("canSpawnItem");
 	}
 
 	@Override
 	protected void writeEntityToNBT(NBTTagCompound nbtTagCompound) {
 		nbtTagCompound.setInteger("spawnTimer", 0);
+		nbtTagCompound.setInteger("maxSpawnTimer", 5);
+		nbtTagCompound.setBoolean("canSpawnItem", false);
 	}
 
 	@Override
