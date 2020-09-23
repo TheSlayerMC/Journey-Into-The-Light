@@ -38,20 +38,15 @@ import net.journey.entity.mob.pet.EntityShiverwolf;
 import net.journey.entity.mob.pet.EntityTamedRoc;
 import net.journey.entity.mob.senterian.mob.*;
 import net.journey.entity.mob.terrania.mob.*;
-import net.journey.entity.mob.terrania.npc.EntityTerranianEnchanter;
-import net.journey.entity.mob.terrania.npc.EntityTerranianTrader;
+import net.journey.entity.mob.terrania.npc.*;
 import net.journey.entity.projectile.*;
 import net.journey.entity.projectile.arrow.*;
 import net.journey.entity.projectile.knife.*;
 import net.journey.entity.projectile.launcher.*;
 import net.journey.entity.projectile.piercer.*;
 import net.journey.entity.projectile.staff.*;
-import net.journey.entity.projectile.throwable.EntityDemonicBomb;
-import net.journey.entity.projectile.throwable.EntityFireBomb;
-import net.journey.entity.projectile.throwable.EntityMagicBomb;
-import net.journey.entity.projectile.throwable.EntityMagicPot;
-import net.journey.entity.util.EntityBossCrystal;
-import net.journey.entity.util.EntitySentacoin;
+import net.journey.entity.projectile.throwable.*;
+import net.journey.entity.util.*;
 import net.journey.util.handler.LogHelper;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -312,6 +307,7 @@ public class EntityRegistry {
 				//UTIL
 				SlayerAPI.buildMobEntryNoEgg(EntityBossCrystal.class, "boss_crystal"),
 				SlayerAPI.buildMobEntryNoEgg(EntitySentacoin.class, "sentacoin"),
+				SlayerAPI.buildMobEntryNoEgg(EntitySentacoinBag.class, "sentacoin_bag"),
 		};
 
 		event.getRegistry().registerAll(entries);

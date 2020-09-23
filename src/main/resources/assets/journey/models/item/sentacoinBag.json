@@ -1,0 +1,6 @@
+{
+  "parent": "journey:item/sentacoinBagBase",
+  "textures": {
+    "base": "journey:items/sentacoinBag"
+  }
+}

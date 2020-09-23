@@ -390,6 +390,7 @@ public class JourneyItems {
 	public static Item swampLily;
 
 	public static Item sentacoin;
+	public static Item sentacoinBag;
 
 	public static void init() {
 		hellstoneIngot = Registrar.regAndSetupItem("hellstoneIngot", "Hellstone Ingot", new JItem());
@@ -687,6 +688,7 @@ public class JourneyItems {
 		swampLily = Registrar.regAndSetupItem("swamp_lily_item", "Swamp Lily", new JItemWaterLily(), JourneyTabs.DECORATION);
 
 		sentacoin = Registrar.regAndSetupItem("sentacoin", "Sentacoin", new JItem()).setCreativeTab(null);
+		sentacoinBag = Registrar.regAndSetupItem("sentacoin_bag", "Sentacoin Bag", new JItem()).setCreativeTab(null);
 	}
 
     public static ToolMaterial addToolMaterial(int uses, float efficiency, float dam, boolean breakable) {
