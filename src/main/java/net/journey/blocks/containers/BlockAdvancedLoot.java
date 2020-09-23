@@ -103,7 +103,7 @@ public class BlockAdvancedLoot extends BlockModContainer {
 
 					EntityItem entityItem = new EntityItem(worldIn);
 					entityItem.setItem(itemStack);
-					entityItem.setPosition(pos.getX(), pos.getY() + 1.0F, pos.getZ());
+					entityItem.setPosition(pos.getX() + 0.5, pos.getY() + 1.0F, pos.getZ() + 0.5);
 					entityItem.motionY = 0.2D;
 
 					if (!itemStack.isEmpty()) {
