@@ -12,6 +12,8 @@ public interface EssenceStorage {
 
     boolean isFull();
 
+    boolean isBeingUsed();
+
     void onTick();
 
     void regen();

@@ -12,6 +12,7 @@ public class EssenceStorageImpl extends SerializableInnerCap<NBTBase, EssenceSto
 
 	private int essenceValue = 0;
 	private int regenCooldown = 0;
+	private boolean isBeingUsed = false;
 
 	@Override
 	public boolean useEssence(int points) {
@@ -44,9 +45,21 @@ public class EssenceStorageImpl extends SerializableInnerCap<NBTBase, EssenceSto
 	}
 
 	@Override
+	public boolean isBeingUsed() {
+		return isBeingUsed;
+	}
+
+	@Override
 	public void onTick() {
 		if (regenCooldown-- <= 0) regenCooldown = 30;
 		if (regenCooldown >= 30) regen();
+
+		if (regenCooldown < 30 && essenceValue < 10) {
+			isBeingUsed = true;
+		}
+		if (isFull()) {
+			isBeingUsed = false;
+		}
 	}
 
 	@Override

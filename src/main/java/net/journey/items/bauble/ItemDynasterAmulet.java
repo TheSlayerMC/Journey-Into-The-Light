@@ -2,9 +2,13 @@ package net.journey.items.bauble;
 
 import baubles.api.BaubleType;
 import baubles.api.IBauble;
+import net.journey.api.capability.EssenceStorage;
+import net.journey.api.capability.JourneyPlayer;
+import net.journey.common.capability.JCapabilityManager;
 import net.journey.items.base.JItem;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -27,9 +31,13 @@ public class ItemDynasterAmulet extends JItem implements IBauble {
     @Override
     public void onWornTick(ItemStack itemstack, EntityLivingBase player) {
         if(player.motionY < 0.0D && !player.onGround && !player.isInWater() && !player.isInLava() && player.isSneaking()) {
-            if(player.world.getBlockState(player.getPosition().down(5)).isBlockNormalCube()) {
-                player.motionY *= 0.75F;
-                player.fallDistance = -1.0F;
+            if (player.world.getBlockState(player.getPosition().down()).isBlockNormalCube()) {
+                JourneyPlayer journeyPlayer = JCapabilityManager.asJourneyPlayer((EntityPlayer) player);
+                EssenceStorage mana = journeyPlayer.getEssenceStorage();
+                if (mana.useEssence(1)) {
+                    player.motionY *= 0.75F;
+                    player.fallDistance = -1.0F;
+                }
             }
         }
     }

@@ -34,16 +34,15 @@ public class RenderEssenceBar {
 
 	private void renderManaBar(Minecraft mc, EntityPlayer player) {
 		ItemStack heldItemMainhand = player.getHeldItemMainhand();
+		EssenceStorage mana = JCapabilityManager.asJourneyPlayer(player).getEssenceStorage();
 
-		if (mc.currentScreen == null && instanceOfEssenceItem(heldItemMainhand.getItem()) && transparency < 1.0) {
+		if (mc.currentScreen == null && instanceOfEssenceItem(heldItemMainhand.getItem()) || mana.isBeingUsed() && transparency < 1.0) {
 			transparency += .02;
 		} else if (transparency > 0) {
 			transparency -= .02;
 		}
 
 		if (transparency > 0) {
-
-			EssenceStorage mana = JCapabilityManager.asJourneyPlayer(player).getEssenceStorage();
 
 			if (!mana.isFull() && !instanceOfEssenceItem(heldItemMainhand.getItem())) {
 				transparency = 0.35F;
