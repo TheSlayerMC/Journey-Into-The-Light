@@ -85,9 +85,9 @@ public class EntitySpiritCrystal extends Entity {
 
 	@Override
 	protected void writeEntityToNBT(NBTTagCompound nbtTagCompound) {
-		nbtTagCompound.setInteger("spawnTimer", 0);
-		nbtTagCompound.setInteger("maxSpawnTimer", 5);
-		nbtTagCompound.setBoolean("canSpawnItem", false);
+		nbtTagCompound.setInteger("spawnTimer", spawnTimer);
+		nbtTagCompound.setInteger("maxSpawnTimer", maxSpawnTimer);
+		nbtTagCompound.setBoolean("canSpawnItem", canSpawnItem);
 	}
 
 	@Override
