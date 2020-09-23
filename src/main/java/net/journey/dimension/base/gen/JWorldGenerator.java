@@ -22,6 +22,10 @@ public class JWorldGenerator extends WorldGenerator {
 		return RandHelper.chooseEqual(rand, states);
 	}
 
+	public Block getRandomBlock(Random rand, Block... blocks) {
+		return RandHelper.chooseEqual(rand, blocks);
+	}
+
 	public void setDefaultState(World world, BlockPos pos, Block block) {
 		this.setBlockAndNotifyAdequately(world, pos, block.getDefaultState());
 	}

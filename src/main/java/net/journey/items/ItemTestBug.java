@@ -3,8 +3,7 @@ package net.journey.items;
 import net.journey.common.JManagers;
 import net.journey.dialogue.DialogueManager;
 import net.journey.dialogue.DialogueNode;
-import net.journey.dimension.overworld.gen.WorldGenTowerDungeonCyl;
-import net.journey.entity.mob.corba.npc.EntityTordo;
+import net.journey.entity.mob.overworld.EntityBigHongo;
 import net.journey.init.JDialogues;
 import net.journey.items.base.JItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -23,9 +22,9 @@ public class ItemTestBug extends JItem {
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand handIn) {
 		if (!world.isRemote) {
-			//mStartDialogue.invoke(JManagers.DIALOGUE_MANAGER, player, EntityTordo.class, JDialogues.TEST.getRootNode());
+			mStartDialogue.invoke(JManagers.DIALOGUE_MANAGER, player, EntityBigHongo.class, JDialogues.TEST.getRootNode());
 //			new WorldGenCorbaTotems().generate(world, itemRand, player.getPosition());
-			new WorldGenTowerDungeonCyl().generate(world, itemRand, player.getPosition());
+			//new WorldGenTowerDungeonCyl().generate(world, itemRand, player.getPosition());
 		}
 
 		return new ActionResult<>(EnumActionResult.SUCCESS, player.getHeldItem(handIn));
