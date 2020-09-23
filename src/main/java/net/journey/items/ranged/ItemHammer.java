@@ -108,20 +108,26 @@ public class ItemHammer extends ItemSword implements IUsesEssence, FeatureProvid
 		return new ActionResult<>(EnumActionResult.FAIL, stack);
 	}
 
+	/*TODO:
+	 * > Make actual power attack
+	 * > Make sure essence is at max value
+	 * > When essence hits zero, use power attack
+	 */
 	@Override
 	public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
 		EntityPlayer player = (EntityPlayer) entityIn;
 		JourneyPlayer journeyPlayer = JCapabilityManager.asJourneyPlayer(player);
 		EssenceStorage mana = journeyPlayer.getEssenceStorage();
-		if (player.isSneaking()) {
-			if (mana.useEssence(1)) {
-				if (canUseChargedAttack) {
-					if (!worldIn.isRemote) {
+		if (player.ticksExisted % 10 == 0) {
+			if (player.isSneaking() && canUseChargedAttack) {
+				if (!worldIn.isRemote) {
+					if (mana.useEssence(1)) {
 						EntityBlaze blaze = new EntityBlaze(worldIn);
 						blaze.setPosition(player.posX, player.posY, player.posZ);
 						worldIn.spawnEntity(blaze);
 						JITL.LOGGER.info("GUMBUBMB");
 						canUseChargedAttack = false;
+						journeyPlayer.sendUpdates();
 					}
 				}
 			}

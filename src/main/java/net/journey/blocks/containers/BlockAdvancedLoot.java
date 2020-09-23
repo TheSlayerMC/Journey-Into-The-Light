@@ -1,13 +1,10 @@
 package net.journey.blocks.containers;
 
 import net.journey.blocks.tileentity.TileEntityAdvancedLoot;
-import net.journey.init.JourneySounds;
 import net.journey.init.JourneyTabs;
 import net.journey.init.items.JourneyItems;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
@@ -15,14 +12,12 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.ILockableContainer;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.items.wrapper.InvWrapper;
 import net.slayer.api.EnumMaterialTypes;
 import net.slayer.api.entity.tileentity.container.BlockModContainer;
 
@@ -84,35 +79,6 @@ public class BlockAdvancedLoot extends BlockModContainer {
 		ArrayList<ItemStack> drops = new ArrayList<>();
 		drops.add(new ItemStack(JourneyItems.pottery_shard, rand.nextInt(4) + 4));
 		return drops;
-	}
-
-	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		if (worldIn.isRemote) {
-			JourneySounds.playSound(JourneySounds.BOTTLE_PLUG, worldIn, playerIn, 1.0F, 0.3F + rand.nextFloat());
-		}
-		if (!worldIn.isRemote) {
-			/**
-			 * why does this act so buggy?
-			 */
-			TileEntityAdvancedLoot chest = (TileEntityAdvancedLoot) worldIn.getTileEntity(pos);
-			if (chest != null) {
-				InvWrapper wrapper = new InvWrapper(chest);
-				for (int i = 0; i < wrapper.getSlots(); i++) {
-					ItemStack itemStack = wrapper.extractItem(i, /** why tf is it spawning more than one item at a time?*/1, false);
-
-					EntityItem entityItem = new EntityItem(worldIn);
-					entityItem.setItem(itemStack);
-					entityItem.setPosition(pos.getX() + 0.5, pos.getY() + 1.0F, pos.getZ() + 0.5);
-					entityItem.motionY = 0.2D;
-
-					if (!itemStack.isEmpty()) {
-						worldIn.spawnEntity(entityItem);
-					}
-				}
-			}
-		}
-		return true;
 	}
 
 	public ILockableContainer getLockableContainer(World worldIn, BlockPos pos) {
