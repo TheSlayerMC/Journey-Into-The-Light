@@ -101,13 +101,13 @@ public class GuiDialogue extends JGuiScreen {
 	}
 
 	private void drawDebugLayout(int mouseX, int mouseY, float partialTicks) {
-		RenderUtils.drawRect(guiRect, 0xFF8851FF, 1.5F); // whole gui
+		RenderUtils.drawRect(guiRect, 0xFF8851FF); // whole gui
 
-		RenderUtils.drawRect(mobIconRect, 0xFF194378, 0.1F); // mob icon background
+		RenderUtils.drawRect(mobIconRect, 0xFF194378); // mob icon background
 
-		RenderUtils.drawRect(mobTextRect, 0xFF963232, 1.0F); // mob text background
+		RenderUtils.drawRect(mobTextRect, 0xFF963232); // mob text background
 
-		RenderUtils.drawRect(optionsRect, 0xFF554887, 2.0F); // options background
+		RenderUtils.drawRect(optionsRect, 0xFF554887); // options background
 	}
 
 	public static void drawEntity(int posX, int posY, float mouseX, float mouseY, EntityLivingBase entity) {

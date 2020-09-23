@@ -99,9 +99,9 @@ public class RenderUtils {
 		fontRendererIn.drawString(text, (x - fontRendererIn.getStringWidth(text) / 2), y, color.getInt());
 	}
 
-	public static void drawRect(Rectangle rectangle, int argbColor, float alpha) {
+	public static void drawRect(Rectangle rectangle, int argbColor) {
 		Gui.drawRect(rectangle.getLeft(), rectangle.getTop(), rectangle.getRight(), rectangle.getBottom(), argbColor);
-		GlStateManager.color(1, 1, 1, alpha);
+		GlStateManager.color(1, 1, 1, 1);
 	}
 
 	public static int getRed(int argb) {
