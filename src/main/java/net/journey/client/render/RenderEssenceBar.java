@@ -44,8 +44,6 @@ public class RenderEssenceBar {
 			transparency -= .02;
 		}
 
-		journeyPlayer.sendUpdates();
-
 		if (transparency > 0) {
 
 			if (!mana.isFull() && !instanceOfEssenceItem(heldItemMainhand.getItem())) {

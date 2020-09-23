@@ -3,6 +3,7 @@ package net.journey.items.ranged;
 import net.journey.JITL;
 import net.journey.api.block.FeatureProvider;
 import net.journey.api.capability.EssenceStorage;
+import net.journey.api.capability.JourneyPlayer;
 import net.journey.api.item.IUsesEssence;
 import net.journey.blocks.util.Features;
 import net.journey.common.capability.JCapabilityManager;
@@ -11,7 +12,9 @@ import net.journey.init.JourneySounds;
 import net.journey.util.JourneyToolMaterial;
 import net.journey.util.LangHelper;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.monster.EntityBlaze;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.IItemPropertyGetter;
@@ -37,6 +40,8 @@ public class ItemHammer extends ItemSword implements IUsesEssence, FeatureProvid
 	protected boolean essence, unbreakable;
 	protected Class<? extends EntityDamagingProjectile> projectile;
 	protected JourneyToolMaterial mat;
+
+	private boolean canUseChargedAttack = false;
 
 	public ItemHammer(JourneyToolMaterial toolMaterial, boolean durability, Class<? extends EntityDamagingProjectile> projectile, int dam, int magic, int uses) {
 		super(toolMaterial.getToolMaterial());
@@ -89,28 +94,51 @@ public class ItemHammer extends ItemSword implements IUsesEssence, FeatureProvid
 					shoot.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 3.5F, 0.2F);
 					world.spawnEntity(shoot);
 					stack.damageItem(1, player);
-					return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
+					return new ActionResult<>(EnumActionResult.SUCCESS, stack);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
-		} else if (player.isSneaking()) {
-			JourneySounds.playSound(JourneySounds.PLASMA, world, player);
 		}
-		return new ActionResult<ItemStack>(EnumActionResult.FAIL, stack);
+		if (!world.isRemote) {
+			if (player.isSneaking()) {
+				canUseChargedAttack = true;
+			}
+		}
+		return new ActionResult<>(EnumActionResult.FAIL, stack);
 	}
 
-    @Override
-    public boolean isEnchantable(ItemStack stack) {
-        return true;
-    }
+	@Override
+	public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
+		EntityPlayer player = (EntityPlayer) entityIn;
+		JourneyPlayer journeyPlayer = JCapabilityManager.asJourneyPlayer(player);
+		EssenceStorage mana = journeyPlayer.getEssenceStorage();
+		if (player.isSneaking()) {
+			if (mana.useEssence(1)) {
+				if (canUseChargedAttack) {
+					if (!worldIn.isRemote) {
+						EntityBlaze blaze = new EntityBlaze(worldIn);
+						blaze.setPosition(player.posX, player.posY, player.posZ);
+						worldIn.spawnEntity(blaze);
+						JITL.LOGGER.info("GUMBUBMB");
+						canUseChargedAttack = false;
+					}
+				}
+			}
+		}
+	}
 
-    @Override
-    public boolean getIsRepairable(ItemStack i, ItemStack i1) {
-        boolean canRepair = mat.getRepairItem() != null;
-        if (canRepair) return mat.getRepairItem() == i1.getItem() || super.getIsRepairable(i, i1);
-        return super.getIsRepairable(i, i1);
-    }
+	@Override
+	public boolean isEnchantable(ItemStack stack) {
+		return true;
+	}
+
+	@Override
+	public boolean getIsRepairable(ItemStack i, ItemStack i1) {
+		boolean canRepair = mat.getRepairItem() != null;
+		if (canRepair) return mat.getRepairItem() == i1.getItem() || super.getIsRepairable(i, i1);
+		return super.getIsRepairable(i, i1);
+	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
