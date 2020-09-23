@@ -2,6 +2,7 @@ package net.journey.client.render;
 
 import net.journey.JITL;
 import net.journey.api.capability.EssenceStorage;
+import net.journey.api.capability.JourneyPlayer;
 import net.journey.api.item.IUsesEssence;
 import net.journey.common.capability.JCapabilityManager;
 import net.journey.init.items.JourneyWeapons;
@@ -34,13 +35,16 @@ public class RenderEssenceBar {
 
 	private void renderManaBar(Minecraft mc, EntityPlayer player) {
 		ItemStack heldItemMainhand = player.getHeldItemMainhand();
-		EssenceStorage mana = JCapabilityManager.asJourneyPlayer(player).getEssenceStorage();
+		JourneyPlayer journeyPlayer = JCapabilityManager.asJourneyPlayer(player);
+		EssenceStorage mana = journeyPlayer.getEssenceStorage();
 
 		if (mc.currentScreen == null && instanceOfEssenceItem(heldItemMainhand.getItem()) || mana.isBeingUsed() && transparency < 1.0) {
 			transparency += .02;
 		} else if (transparency > 0) {
 			transparency -= .02;
 		}
+
+		journeyPlayer.sendUpdates();
 
 		if (transparency > 0) {
 
