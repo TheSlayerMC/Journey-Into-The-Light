@@ -23,16 +23,15 @@ import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
 import net.slayer.api.EnumMaterialTypes;
 
-import java.util.Random;
-
 import javax.annotation.Nullable;
+import java.util.Random;
 
 public class BlockModBush extends BlockMod implements IPlantable, IGrowable {
 
 	public static final PropertyInteger AGE = PropertyInteger.create("age", 0, 2);
-    protected static final AxisAlignedBB BUSH_AABB = new AxisAlignedBB(0.30000001192092896D, 0.0D, 0.30000001192092896D, 0.699999988079071D, 0.6000000238418579D, 0.699999988079071D);
-	private boolean isNether;
-	private Item berry;
+	protected static final AxisAlignedBB BUSH_AABB = new AxisAlignedBB(0.30000001192092896D, 0.0D, 0.30000001192092896D, 0.699999988079071D, 0.6000000238418579D, 0.699999988079071D);
+	private final boolean isNether;
+	private final Item berry;
 
 	public BlockModBush(String name, String finalName, Item berry, boolean isNether) {
 		super(EnumMaterialTypes.LEAVES, name, finalName, 1.0F);
@@ -165,19 +164,22 @@ public class BlockModBush extends BlockMod implements IPlantable, IGrowable {
 	@Override
 	public boolean onBlockActivated(World w, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
 		double
-		x = player.posX,
-		y = player.posY,
-		z = player.posZ;
+				x = player.posX,
+				y = player.posY,
+				z = player.posZ;
 
-		if(w.isRemote){
+		//uhhh what?
+		if (w.isRemote) {
 			return true;
 		}
 
 		if (state.getValue(AGE) == 2) {
-			EntityItem drop = new EntityItem(w, x, y, z, new ItemStack(berry));
+			EntityItem drop = new EntityItem(w, x, y, z, new ItemStack(berry, w.rand.nextInt(3) + 1));
 			w.spawnEntity(drop);
 			w.setBlockState(pos, state.withProperty(AGE, 0));
 			return true;
-		} else return false;
+		} else {
+			return false;
+		}
 	}
 }

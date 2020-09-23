@@ -29,7 +29,7 @@ public class GuiOptionButton extends GuiButton {
 			} else if (this.hovered) {
 				j = EnumHexColor.YELLOW.getInt();
 			}
-			this.drawCenteredString(fontrenderer, this.displayString, this.x + this.width / 2, this.y + (this.height - 8) / 2, j);
+			this.drawString(fontrenderer, this.displayString, this.x + this.width / this.x - 38, this.y + (this.height - 8) / 2, j);
 		}
 	}
 }

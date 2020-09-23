@@ -11,6 +11,7 @@ import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.List;
 
@@ -85,6 +86,7 @@ public class GuiDialogue extends JGuiScreen {
 
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+		drawDefaultBackground();
 		drawDebugLayout(mouseX, mouseY, partialTicks);
 
 		drawMobText();
@@ -94,18 +96,18 @@ public class GuiDialogue extends JGuiScreen {
 	}
 
 	private void drawMobText() {
-		String text = I18n.format(node.getTextKey());
-		fontRenderer.drawSplitString(text, mobTextRect.getLeft() + INDENT, mobTextRect.getTop() + INDENT, Math.max(mobTextRect.getWidth() - INDENT * 2, 2), 0xFFFFFF);
+		String text = TextFormatting.YELLOW + "" + TextFormatting.ITALIC + I18n.format(node.getTextKey());
+		fontRenderer.drawSplitString(text, mobTextRect.getLeft() + INDENT, mobTextRect.getTop() + INDENT + 48, Math.max(mobTextRect.getWidth() - INDENT * 2, 2), 0xFFFFFF);
 	}
 
 	private void drawDebugLayout(int mouseX, int mouseY, float partialTicks) {
-		RenderUtils.drawRect(guiRect, 0xFF8851FF); // whole gui
+		RenderUtils.drawRect(guiRect, 0xFF8851FF, 1.5F); // whole gui
 
-		RenderUtils.drawRect(mobIconRect, 0xFF194378); // mob icon background
+		RenderUtils.drawRect(mobIconRect, 0xFF194378, 0.1F); // mob icon background
 
-		RenderUtils.drawRect(mobTextRect, 0xFF963232); // mob text background
+		RenderUtils.drawRect(mobTextRect, 0xFF963232, 1.0F); // mob text background
 
-		RenderUtils.drawRect(optionsRect, 0xFF554887); // options background
+		RenderUtils.drawRect(optionsRect, 0xFF554887, 2.0F); // options background
 	}
 
 	public static void drawEntity(int posX, int posY, float mouseX, float mouseY, EntityLivingBase entity) {
