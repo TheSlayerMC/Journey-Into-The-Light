@@ -115,8 +115,8 @@ public class EntityRendering {
         RenderingRegistry.registerEntityRenderingHandler(EntityDetractor.class, manager -> new RenderEntity2D<>(manager, Textures.getProjectileTextureLocation("detractor")));
         RenderingRegistry.registerEntityRenderingHandler(EntityFloroDirtProjectile.class, manager -> new RenderEntity2D<>(manager, Textures.getProjectileTextureLocation("floro_mud")));
 
-        RenderingRegistry.registerEntityRenderingHandler(EntitySwampFly.class, manager -> new RenderEntity2DAnimated(manager, 1, "swamp_fly_0", "swamp_fly_1", "swamp_fly_2", "swamp_fly_3"));
-        RenderingRegistry.registerEntityRenderingHandler(EntityTerralight.class, manager -> new RenderEntity2DAnimated(manager, 20, "terralight_0", "terralight_1", "terralight_2", "terralight_3"));
+        RenderingRegistry.registerEntityRenderingHandler(EntitySwampFly.class, manager -> new RenderEntity2DAnimated(manager, 10, "swamp_fly_0", "swamp_fly_1", "swamp_fly_2", "swamp_fly_3"));
+        RenderingRegistry.registerEntityRenderingHandler(EntityTerralight.class, manager -> new RenderEntity2DAnimated(manager, 10, "terralight_0", "terralight_1", "terralight_2", "terralight_3"));
 
         RenderingRegistry.registerEntityRenderingHandler(EntityLavasnake.class, manager -> new AnimatedMobRenderer<>(manager, TimeModelLoader.loadJsonEntityModel(Textures.getEntityModelLocation("lavasnake")).setScaleMultiplier(2.0F), Textures.getMobTextureLocation("lavasnake")));
         RenderingRegistry.registerEntityRenderingHandler(EntityFloro.class, manager -> new AnimatedMobRenderer<>(manager, TimeModelLoader.loadJsonEntityModel(Textures.getEntityModelLocation("floro")).setScaleMultiplier(1.6F), Textures.getMobTextureLocation("floro")));

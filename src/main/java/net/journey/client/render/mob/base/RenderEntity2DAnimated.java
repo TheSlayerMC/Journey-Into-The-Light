@@ -22,10 +22,15 @@ public class RenderEntity2DAnimated extends RenderEntity2D {
 	@Override
 	protected ResourceLocation getEntityTexture(Entity var1) {
 		Random r = new Random();
-		for (int i = 0; i < animationSpeed; i++) {
+		if (var1.ticksExisted % animationSpeed == 0) {
 			String name = RandHelper.chooseEqual(r, textures);
 			return Textures.getMobTextureLocation(name);
 		}
-		return null;
+		if (var1.ticksExisted % (animationSpeed / 2) == 0) {
+			String name = RandHelper.chooseEqual(r, textures);
+			return Textures.getMobTextureLocation(name);
+		} else {
+			return Textures.getMobTextureLocation(textures[1]);
+		}
 	}
 }

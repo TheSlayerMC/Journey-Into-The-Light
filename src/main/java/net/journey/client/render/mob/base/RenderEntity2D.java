@@ -27,17 +27,17 @@ public class RenderEntity2D<T extends Entity> extends Render<T> {
         scale = scaleFactor;
     }
 
-    public void renderProjectile(T projectile, double x, double y, double z) {
-        GlStateManager.pushMatrix();
+    public void renderEntity(T projectile, double x, double y, double z) {
+		GlStateManager.pushMatrix();
 
-        this.bindEntityTexture(projectile);
-        GlStateManager.translate(x, y + projectile.height / 2, z);
-        GlStateManager.enableRescaleNormal();
+		this.bindEntityTexture(projectile);
+		GlStateManager.translate(x, y + projectile.height / 2, z);
+		GlStateManager.enableRescaleNormal();
 
-        GlStateManager.scale(scale * 0.5F, scale * 0.5F, scale * 0.5F);
+		GlStateManager.scale(scale * 0.5F, scale * 0.5F, scale * 0.5F);
 
-        GlStateManager.rotate(180.0F - this.renderManager.playerViewY, 0.0F, 1.0F, 0.0F);
-        GlStateManager.rotate((float) (this.renderManager.options.thirdPersonView == 2 ? -1 : 1) * -this.renderManager.playerViewX, 1.0F, 0.0F, 0.0F);
+		GlStateManager.rotate(180.0F - this.renderManager.playerViewY, 0.0F, 1.0F, 0.0F);
+		GlStateManager.rotate((float) (this.renderManager.options.thirdPersonView == 2 ? -1 : 1) * -this.renderManager.playerViewX, 1.0F, 0.0F, 0.0F);
 
         if (this.renderOutlines) {
             GlStateManager.enableColorMaterial();
@@ -65,7 +65,7 @@ public class RenderEntity2D<T extends Entity> extends Render<T> {
 
     @Override
     public void doRender(@NotNull T projectile, double par2, double par4, double par6, float par8, float par9) {
-        this.renderProjectile(projectile, par2, par4, par6);
+		this.renderEntity(projectile, par2, par4, par6);
     }
 
     @Override
