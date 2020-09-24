@@ -5,6 +5,7 @@ import net.journey.util.EnumHexColor;
 import net.journey.util.JourneyBossStatus;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 
 public class RenderBoss extends RenderSizeable {
@@ -21,9 +22,14 @@ public class RenderBoss extends RenderSizeable {
         this.stringOutlineColor = textOutlineColor;
     }
 
+    //TODO: fix the rendering for boss health bars
     @Override
     public void doRender(EntityLiving par1Entity, double par2, double par4, double par6, float par8, float par9) {
-        JourneyBossStatus.setStatus((IEssenceBoss) par1Entity, bar, stringHexColor, stringOutlineColor);
+        EntityPlayer player = (EntityPlayer) par1Entity.getAttackTarget();
+
+        if (player != null) {
+            JourneyBossStatus.setStatus((IEssenceBoss) par1Entity, bar, stringHexColor, stringOutlineColor);
+        }
         super.doRender(par1Entity, par2, par4, par6, par8, par9);
     }
 

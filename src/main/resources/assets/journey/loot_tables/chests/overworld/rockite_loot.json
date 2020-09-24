@@ -1,210 +1,350 @@
- {
-  "pools": [{
-    "name": "main",
-    "rolls": 6,
-    "entries": [
-      {
-        "type": "item",
-        "name": "journey:heart_stone",
-        "functions": [
-          {
-            "function": "set_count",
-            "count": {
-              "min": 1,
-              "max": 1
+{
+  "pools": [
+    {
+      "name": "main",
+      "rolls": 6,
+      "entries": [
+        {
+          "type": "item",
+          "name": "journey:heart_stone",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 1
+              }
             }
-          }
-        ],
-        "weight": 1
-      },
-      {
-        "type": "item",
-        "name": "journey:xp_catalyst",
-        "functions": [{ "function": "set_count", "count": { "min": 1, "max": 1 } }],
-        "weight": 6
-      },
-      {
-        "type": "item",
-        "name": "journey:essence_catalyst",
-        "functions": [
-          {
-            "function": "set_count",
-            "count": {
-              "min": 1,
-              "max": 1
+          ],
+          "weight": 1
+        },
+        {
+          "type": "item",
+          "name": "journey:xp_catalyst",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 1
+              }
             }
-          }
-        ],
-        "weight": 5
-      },
-      {
-        "type": "item",
-        "name": "journey:loot_pouch",
-        "functions": [
-          {
-            "function": "set_count",
-            "count": {
-              "min": 1,
-              "max": 5
+          ],
+          "weight": 6
+        },
+        {
+          "type": "item",
+          "name": "journey:essence_catalyst",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 1
+              }
             }
-          }
-        ],
-        "weight": 7
-      },
-      {
-        "type": "item",
-        "name": "journey:loot_pouch_gold",
-        "functions": [
-          {
-            "function": "set_count",
-            "count": {
-              "min": 1,
-              "max": 3
+          ],
+          "weight": 5
+        },
+        {
+          "type": "item",
+          "name": "journey:loot_pouch",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 5
+              }
             }
-          }
-        ],
-        "weight": 5
-      },
-      {
-        "type": "item",
-        "name": "journey:loot_pouch_diamond",
-        "functions": [
-          {
-            "function": "set_count",
-            "count": {
-              "min": 1,
-              "max": 2
+          ],
+          "weight": 7
+        },
+        {
+          "type": "item",
+          "name": "journey:loot_pouch_gold",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 3
+              }
             }
-          }
-        ],
-        "weight": 3
-      },
-      {
-        "type": "item",
-        "name": "journey:heartsml",
-        "functions": [
-          {
-            "function": "set_count",
-            "count": {
-              "min": 1,
-              "max": 1
+          ],
+          "weight": 5
+        },
+        {
+          "type": "item",
+          "name": "journey:loot_pouch_diamond",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 2
+              }
             }
-          }
-        ],
-        "weight": 2
-      },
-      {
-        "type": "item",
-        "name": "journey:heartmed",
-        "functions": [
-          {
-            "function": "set_count",
-            "count": {
-              "min": 1,
-              "max": 1
+          ],
+          "weight": 3
+        },
+        {
+          "type": "item",
+          "name": "journey:heartsml",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 1
+              }
             }
-          }
-        ],
-        "weight": 1
-      },
-      {
-        "type": "item",
-        "name": "journey:cavecrystal",
-        "functions": [
-          {
-            "function": "set_count",
-            "count": {
-              "min": 1,
-              "max": 1
+          ],
+          "weight": 2
+        },
+        {
+          "type": "item",
+          "name": "journey:heartmed",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 1
+              }
             }
-          }
-        ],
-        "weight": 4
-      },
-      {
-        "type": "item",
-        "name": "minecraft:diamond",
-        "functions": [
-          {
-            "function": "set_count",
-            "count": {
-              "min": 1,
-              "max": 2
+          ],
+          "weight": 1
+        },
+        {
+          "type": "item",
+          "name": "journey:cavecrystal",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 5
+              }
             }
-          }
-        ],
-        "weight": 5
-      },
-      {
-        "type": "item",
-        "name": "minecraft:emerald",
-        "functions": [
-          {
-            "function": "set_count",
-            "count": {
-              "min": 1,
-              "max": 3
+          ],
+          "weight": 4
+        },
+        {
+          "type": "item",
+          "name": "minecraft:diamond",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 2
+              }
             }
-          }
-        ],
-        "weight": 6
-      },
-      {
-        "type": "item",
-        "name": "minecraft:gold_ingot",
-        "functions": [
-          {
-            "function": "set_count",
-            "count": {
-              "min": 1,
-              "max": 4
+          ],
+          "weight": 5
+        },
+        {
+          "type": "item",
+          "name": "minecraft:emerald",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 3
+              }
             }
-          }
-        ],
-        "weight": 7
-      },
-      {
-        "type": "item",
-        "name": "minecraft:iron_ingot",
-        "functions": [
-          {
-            "function": "set_count",
-            "count": {
-              "min": 1,
-              "max": 5
+          ],
+          "weight": 6
+        },
+        {
+          "type": "item",
+          "name": "minecraft:gold_ingot",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 4
+              }
             }
-          }
-        ],
-        "weight": 8
-      },
-      {
-        "type": "item",
-        "name": "minecraft:gold_nugget",
-        "functions": [
-          {
-            "function": "set_count",
-            "count": {
-              "min": 1,
-              "max": 6
+          ],
+          "weight": 7
+        },
+        {
+          "type": "item",
+          "name": "minecraft:iron_ingot",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 5
+              }
             }
-          }
-        ],
-        "weight": 9
-      },
-      {
-        "type": "item",
-        "name": "journey:magic_pot_of_destruction",
-        "functions": [
-          {
-            "function": "set_count",
-            "count": {
-              "min": 3,
-              "max": 16
+          ],
+          "weight": 8
+        },
+        {
+          "type": "item",
+          "name": "minecraft:gold_nugget",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 6
+              }
             }
-          }
-        ],
-        "weight": 13
-      }
-    ]
-  }]
+          ],
+          "weight": 9
+        },
+        {
+          "type": "item",
+          "name": "minecraft:book",
+          "weight": 20,
+          "functions": [
+            {
+              "function": "enchant_randomly"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "minecraft:iron_sword",
+          "weight": 3,
+          "functions": [
+            {
+              "function": "enchant_with_levels",
+              "treasure": true,
+              "levels": {
+                "min": 10,
+                "max": 29
+              }
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "minecraft:iron_boots",
+          "weight": 3,
+          "functions": [
+            {
+              "function": "enchant_with_levels",
+              "treasure": true,
+              "levels": {
+                "min": 10,
+                "max": 29
+              }
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "minecraft:iron_chestplate",
+          "weight": 3,
+          "functions": [
+            {
+              "function": "enchant_with_levels",
+              "treasure": true,
+              "levels": {
+                "min": 10,
+                "max": 29
+              }
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "minecraft:iron_leggings",
+          "weight": 3,
+          "functions": [
+            {
+              "function": "enchant_with_levels",
+              "treasure": true,
+              "levels": {
+                "min": 10,
+                "max": 29
+              }
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "minecraft:iron_helmet",
+          "weight": 3,
+          "functions": [
+            {
+              "function": "enchant_with_levels",
+              "treasure": true,
+              "levels": {
+                "min": 10,
+                "max": 29
+              }
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "minecraft:diamond_helmet",
+          "weight": 3,
+          "functions": [
+            {
+              "function": "enchant_with_levels",
+              "treasure": true,
+              "levels": {
+                "min": 1,
+                "max": 10
+              }
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "minecraft:diamond_boots",
+          "weight": 3,
+          "functions": [
+            {
+              "function": "enchant_with_levels",
+              "treasure": true,
+              "levels": {
+                "min": 1,
+                "max": 10
+              }
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "minecraft:diamond_pickaxe",
+          "weight": 3,
+          "functions": [
+            {
+              "function": "enchant_with_levels",
+              "treasure": true,
+              "levels": {
+                "min": 10,
+                "max": 29
+              }
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "journey:magic_pot_of_destruction",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 3,
+                "max": 16
+              }
+            }
+          ],
+          "weight": 13
+        }
+      ]
+    }
+  ]
 }

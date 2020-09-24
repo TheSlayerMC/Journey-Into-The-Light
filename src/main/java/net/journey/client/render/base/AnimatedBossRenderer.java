@@ -3,6 +3,7 @@ package net.journey.client.render.base;
 import net.journey.util.EnumHexColor;
 import net.journey.util.JourneyBossStatus;
 import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.slayer.api.entity.EntityEssenceBoss;
 import ru.timeconqueror.timecore.api.animation.AnimationProvider;
@@ -42,7 +43,11 @@ public class AnimatedBossRenderer<T extends EntityEssenceBoss & AnimationProvide
 
 	@Override
 	public void doRender(T entity, double x, double y, double z, float entityYaw, float partialTicks) {
-		JourneyBossStatus.setStatus(entity, bar, stringHexColor, stringOutlineColor);
+		EntityPlayer player = (EntityPlayer) entity.getAttackTarget();
+
+		if (player != null) {
+			JourneyBossStatus.setStatus(entity, bar, stringHexColor, stringOutlineColor);
+		}
 		super.doRender(entity, x, y, z, entityYaw, partialTicks);
 	}
 }
