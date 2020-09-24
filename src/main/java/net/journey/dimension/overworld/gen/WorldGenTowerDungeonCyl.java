@@ -1,5 +1,6 @@
 package net.journey.dimension.overworld.gen;
 
+import net.journey.blocks.containers.BlockJourneyChest;
 import net.journey.entity.mob.boss.EntityTempleGuardian;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.RandHelper;
@@ -105,6 +106,30 @@ public class WorldGenTowerDungeonCyl extends WorldGenerator {
 		w.setBlockState(new BlockPos(x + 3, y + 3, z + 3), Blocks.MOB_SPAWNER.getDefaultState());
 		w.setBlockState(new BlockPos(x - 3, y + 3, z + 3), Blocks.MOB_SPAWNER.getDefaultState());
 		w.setBlockState(new BlockPos(x + 3, y + 3, z - 3), Blocks.MOB_SPAWNER.getDefaultState());
+		
+		w.setBlockState(new BlockPos(x + 5, y, z + 1), JourneyBlocks.dungeonBrickStairs.getStateFromMeta(3));
+		w.setBlockState(new BlockPos(x + 5, y, z), JourneyBlocks.dungeonBricks.getDefaultState());
+		w.setBlockState(new BlockPos(x + 5, y + 1, z), JourneyBlocks.journeyChest.getDefaultState().withProperty(BlockJourneyChest.FACING, EnumFacing.WEST));
+		w.setBlockState(new BlockPos(x + 5, y, z - 1), JourneyBlocks.dungeonBrickStairs.getStateFromMeta(2));
+		w.setBlockState(new BlockPos(x + 5, y + 3, z + 2), JourneyBlocks.dungeonBrickStairs.getStateFromMeta(6));
+		w.setBlockState(new BlockPos(x + 5, y + 3, z - 2), JourneyBlocks.dungeonBrickStairs.getStateFromMeta(7));
+
+		w.setBlockState(new BlockPos(x - 5, y, z + 1), JourneyBlocks.dungeonBrickStairs.getStateFromMeta(3));
+		w.setBlockState(new BlockPos(x - 5, y, z), JourneyBlocks.dungeonBricks.getDefaultState());
+		w.setBlockState(new BlockPos(x - 5, y + 1, z), JourneyBlocks.journeyChest.getDefaultState().withProperty(BlockJourneyChest.FACING, EnumFacing.EAST));
+		w.setBlockState(new BlockPos(x - 5, y, z - 1), JourneyBlocks.dungeonBrickStairs.getStateFromMeta(2));
+		w.setBlockState(new BlockPos(x - 5, y + 3, z + 2), JourneyBlocks.dungeonBrickStairs.getStateFromMeta(6));
+		w.setBlockState(new BlockPos(x - 5, y + 3, z - 2), JourneyBlocks.dungeonBrickStairs.getStateFromMeta(7));
+		
+		w.setBlockState(new BlockPos(x - 2, y + 3, z - 5), JourneyBlocks.dungeonBrickStairs.getStateFromMeta(5));
+		w.setBlockState(new BlockPos(x + 2, y + 3, z - 5), JourneyBlocks.dungeonBrickStairs.getStateFromMeta(4));
+		w.setBlockState(new BlockPos(x - 2, y, z - 5), JourneyBlocks.dungeonBrickStairs.getStateFromMeta(1));
+		w.setBlockState(new BlockPos(x + 2, y, z - 5), JourneyBlocks.dungeonBrickStairs.getStateFromMeta(0));
+		
+		w.setBlockState(new BlockPos(x - 2, y + 3, z + 5), JourneyBlocks.dungeonBrickStairs.getStateFromMeta(5));
+		w.setBlockState(new BlockPos(x + 2, y + 3, z + 5), JourneyBlocks.dungeonBrickStairs.getStateFromMeta(4));
+		w.setBlockState(new BlockPos(x - 2, y, z + 5), JourneyBlocks.dungeonBrickStairs.getStateFromMeta(1));
+		w.setBlockState(new BlockPos(x + 2, y, z + 5), JourneyBlocks.dungeonBrickStairs.getStateFromMeta(0));
 		
 		TileEntityMobSpawner spawner1 = (TileEntityMobSpawner) w.getTileEntity(new BlockPos(x - 3, y + 3, z - 3));
 		TileEntityMobSpawner spawner2 = (TileEntityMobSpawner) w.getTileEntity(new BlockPos(x + 3, y + 3, z + 3));
