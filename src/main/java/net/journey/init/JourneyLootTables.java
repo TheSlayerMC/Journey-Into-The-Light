@@ -19,6 +19,7 @@ public class JourneyLootTables {
 	public static final ResourceLocation LOOT_OVERGROWN = register("loot/loot_overgrown");
 	public static final ResourceLocation LOOT_SEEDS = register("loot/seeds");
 	public static final ResourceLocation LOOT_PRESENT = register("loot/loot_present");
+	public static final ResourceLocation LOOT_SPIRIT_CRYSTAL = register("loot/loot_spirit_crystal");
 
 	public static final ResourceLocation DEPTHS_SHRINE_CHEST = register("chests/depthsshrine");
 	public static final ResourceLocation TERRANIA_TREE_HUT_CHEST = register("chests/terraniatreehut");

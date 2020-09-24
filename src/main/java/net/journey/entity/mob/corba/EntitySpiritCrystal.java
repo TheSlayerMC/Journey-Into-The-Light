@@ -54,7 +54,7 @@ public class EntitySpiritCrystal extends Entity {
 				if (spawnTimer > 0 && spawnTimer < maxSpawnTimer) {
 					if (!world.isRemote) {
 						Random r = new Random();
-						List<ItemStack> lootTable = LootHelper.genFromLootTable(JourneyLootTables.LOOT_BASIC, (WorldServer) world, builder -> builder.withLootedEntity(this));
+						List<ItemStack> lootTable = LootHelper.genFromLootTable(JourneyLootTables.LOOT_SPIRIT_CRYSTAL, (WorldServer) world, builder -> builder.withLootedEntity(this));
 						int index = r.nextInt(lootTable.size());
 						ItemStack itemToSpawn = lootTable.get(index);
 

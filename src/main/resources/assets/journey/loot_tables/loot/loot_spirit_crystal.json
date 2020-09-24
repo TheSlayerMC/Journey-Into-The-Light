@@ -20,7 +20,49 @@
         },
         {
           "type": "item",
-          "name": "journey:magic_dust",
+          "name": "minecraft:book",
+          "weight": 20,
+          "functions": [
+            {
+              "function": "enchant_randomly"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "entryName": "golden_apple",
+          "name": "minecraft:golden_apple",
+          "weight": 15
+        },
+        {
+          "type": "item",
+          "entryName": "god_apple",
+          "name": "minecraft:golden_apple",
+          "weight": 2,
+          "functions": [
+            {
+              "function": "set_data",
+              "data": 1
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "minecraft:gold_nugget",
+          "weight": 10,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1,
+                "max": 7
+              }
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "journey:heartmed",
           "functions": [
             {
               "function": "set_count",
@@ -30,11 +72,11 @@
               }
             }
           ],
-          "weight": 10
+          "weight": 2
         },
         {
           "type": "item",
-          "name": "journey:xp_catalyst",
+          "name": "minecraft:diamond_block",
           "functions": [
             {
               "function": "set_count",
@@ -48,7 +90,7 @@
         },
         {
           "type": "item",
-          "name": "minecraft:experience_bottle",
+          "name": "minecraft:gold_block",
           "functions": [
             {
               "function": "set_count",
@@ -58,49 +100,49 @@
               }
             }
           ],
-          "weight": 10
-        },
-        {
-          "type": "item",
-          "name": "journey:demonicbone",
-          "functions": [
-            {
-              "function": "set_count",
-              "count": {
-                "min": 1,
-                "max": 5
-              }
-            }
-          ],
-          "weight": 22
-        },
-        {
-          "type": "item",
-          "name": "minecraft:bone",
-          "functions": [
-            {
-              "function": "set_count",
-              "count": {
-                "min": 1,
-                "max": 5
-              }
-            }
-          ],
-          "weight": 22
-        },
-        {
-          "type": "item",
-          "name": "journey:shadiumingot",
-          "functions": [
-            {
-              "function": "set_count",
-              "count": {
-                "min": 1,
-                "max": 3
-              }
-            }
-          ],
           "weight": 3
+        },
+        {
+          "type": "item",
+          "name": "minecraft:iron_block",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 2
+              }
+            }
+          ],
+          "weight": 4
+        },
+        {
+          "type": "item",
+          "name": "journey:xp_catalyst",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 2
+              }
+            }
+          ],
+          "weight": 6
+        },
+        {
+          "type": "item",
+          "name": "minecraft:experience_bottle",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 5
+              }
+            }
+          ],
+          "weight": 12
         },
         {
           "type": "item",
@@ -118,76 +160,6 @@
         },
         {
           "type": "item",
-          "name": "journey:greengem",
-          "functions": [
-            {
-              "function": "set_count",
-              "count": {
-                "min": 1,
-                "max": 6
-              }
-            }
-          ],
-          "weight": 13
-        },
-        {
-          "type": "item",
-          "name": "journey:yellowgem",
-          "functions": [
-            {
-              "function": "set_count",
-              "count": {
-                "min": 1,
-                "max": 6
-              }
-            }
-          ],
-          "weight": 13
-        },
-        {
-          "type": "item",
-          "name": "journey:bluegem",
-          "functions": [
-            {
-              "function": "set_count",
-              "count": {
-                "min": 1,
-                "max": 6
-              }
-            }
-          ],
-          "weight": 13
-        },
-        {
-          "type": "item",
-          "name": "journey:purplegem",
-          "functions": [
-            {
-              "function": "set_count",
-              "count": {
-                "min": 1,
-                "max": 6
-              }
-            }
-          ],
-          "weight": 13
-        },
-        {
-          "type": "item",
-          "name": "journey:charm_of_luck",
-          "functions": [
-            {
-              "function": "set_count",
-              "count": {
-                "min": 1,
-                "max": 1
-              }
-            }
-          ],
-          "weight": 7
-        },
-        {
-          "type": "item",
           "name": "journey:luniumingot",
           "functions": [
             {
@@ -198,7 +170,7 @@
               }
             }
           ],
-          "weight": 3
+          "weight": 8
         },
         {
           "type": "item",
@@ -212,7 +184,35 @@
               }
             }
           ],
-          "weight": 4
+          "weight": 7
+        },
+        {
+          "type": "item",
+          "name": "journey:gorbitegem",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 3
+              }
+            }
+          ],
+          "weight": 7
+        },
+        {
+          "type": "item",
+          "name": "journey:orbaditeingot",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 3
+              }
+            }
+          ],
+          "weight": 7
         },
         {
           "type": "item",
@@ -226,7 +226,7 @@
               }
             }
           ],
-          "weight": 6
+          "weight": 9
         },
         {
           "type": "item",
@@ -240,70 +240,7 @@
               }
             }
           ],
-          "weight": 9
-        },
-        {
-          "type": "item",
-          "name": "minecraft:ender_pearl",
-          "functions": [
-            {
-              "function": "set_count",
-              "count": {
-                "min": 1,
-                "max": 2
-              }
-            }
-          ],
-          "weight": 4
-        },
-        {
-          "type": "item",
-          "name": "minecraft:book",
-          "weight": 10,
-          "functions": [
-            {
-              "function": "enchant_randomly"
-            }
-          ]
-        },
-        {
-          "type": "item",
-          "name": "minecraft:saddle",
-          "functions": [
-            {
-              "function": "set_count",
-              "count": {
-                "min": 1,
-                "max": 1
-              }
-            }
-          ],
-          "weight": 10
-        },
-        {
-          "type": "item",
-          "entryName": "golden_apple",
-          "name": "minecraft:golden_apple",
-          "weight": 9
-        },
-        {
-          "type": "item",
-          "name": "minecraft:name_tag",
-          "weight": 8
-        },
-        {
-          "type": "item",
-          "name": "minecraft:gold_nugget",
-          "weight": 7,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 1,
-                "max": 3
-              }
-            }
-          ]
+          "weight": 13
         },
         {
           "type": "item",
@@ -317,7 +254,7 @@
               }
             }
           ],
-          "weight": 10
+          "weight": 16
         },
         {
           "type": "item",
@@ -331,7 +268,7 @@
               }
             }
           ],
-          "weight": 8
+          "weight": 10
         }
       ]
     }

@@ -385,7 +385,7 @@ public class ChunkGeneratorCorba implements IChunkGenerator {
 		}
 
 		if (world.getBiome(startPos) == DimensionHelper.CORBA_BIOME) {
-			if (this.rand.nextInt(10) == 0) {
+			if (this.rand.nextInt(128) == 0) {
 				WorldGenAPI.genOnGroundWithShiftingPos(world, chunkPos, this.rand, new WorldGenCorbaTotems());
 			}
 		}

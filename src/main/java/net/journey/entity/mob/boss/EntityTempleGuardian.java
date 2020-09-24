@@ -98,6 +98,16 @@ public class EntityTempleGuardian extends EntityEssenceBoss implements Animation
     }
 
     @Override
+    public boolean attackEntityAsMob(Entity entityIn) {
+        EntityPlayer player = (EntityPlayer) entityIn;
+        if (!player.isPassenger(this)) {
+            player.dismountRidingEntity();
+            player.startRiding(this, true);
+        }
+        return true;
+    }
+
+    @Override
     protected SoundEvent getAmbientSound() {
         return JourneySounds.SENTRY_AMBIENT_1;
     }
