@@ -40,6 +40,7 @@ public class ItemAncientCatalyst extends JItem {
                     worldIn.setBlockState(blockpos.add(0, 0, 0), Blocks.AIR.getDefaultState(), 2);
                     worldIn.createExplosion(player, blockpos.getX(), blockpos.getY(), blockpos.getZ(), 10F, false);
                     worldIn.playSound(null, pos, JourneySounds.OBELISK_OPEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                    itemstack.shrink(1);
                 }
                 return EnumActionResult.SUCCESS;
             }

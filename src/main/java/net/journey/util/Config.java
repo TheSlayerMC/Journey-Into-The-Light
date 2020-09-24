@@ -24,7 +24,7 @@ public class Config {
     public static int euca, depths, boil, frozen, corba, wastelands, cloudia, terrania, senterian, wither;
     public static String depthsBiome, boilBiome, frozenBiome, corbaBiome, wastelandsBiome, cloudiaBiome, terraniaBiome, senterianBiome;
     public static int entityHealthDistance;
-    public static int towerDungeon, mageHouse, blacksmithHouse, rockiteDungeon;
+    public static int towerDungeon, towerDungeonCyl, mageHouse, blacksmithHouse, rockiteDungeon;
     private static boolean[] registerBiomes;
     public static int specialBiomeRarity;
     private static int indexBiome;
@@ -123,13 +123,15 @@ public class Config {
         enableCaveVines = cfg.get("Generation", "Generate glowshrooms?", true).getBoolean();
         enableRuins = cfg.get("Generation", "Generate ruins?", true).getBoolean();
 
-        towerDungeon = cfg.get("Generation", "Dungeon tower spawn rate (The higher, the rarer)", 16).getInt();
+        towerDungeon = cfg.get("Generation", "Dungeon tower spawn rate (The higher, the rarer)", 10).getInt();
+        towerDungeonCyl = cfg.get("Generation", "Ultimate dungeon tower spawn rate (The higher, the rarer)", 20).getInt();
+
         rockiteDungeon = cfg.get("Generation", "Rockit dungeon spawn rate (The higher, the rarer)", 64).getInt();
         mageHouse = cfg.get("Generation", "Mage House spawn rate (The higher, the rarer)", 40).getInt();
         blacksmithHouse = cfg.get("Generation", "Blacksmith House spawn rate (The higher, the rarer)", 40).getInt();
         glowshroomTrys = cfg.get("Generation", "Glowshroom spawn rate (The lower, the rarer)", 64).getInt();
         caveVinesTrys = cfg.get("Generation", "Cave vine spawn rate (The lower, the rarer)", 55).getInt();
-        ruinsRarity = cfg.get("Generation", "Ruins spawn rate (The higher, the rarer)", 175).getInt();
+        ruinsRarity = cfg.get("Generation", "Ruins spawn rate (The higher, the rarer)", 256).getInt();
 
         shadiumOreTrys = cfg.get("Ore Generation", "Shadium Ore Trys Per Chunk", 2).getInt();
         shadiumOreGenAmount = cfg.get("Ore Generation", "Shadium Ore Vein Max Amount", 3).getInt();

@@ -366,6 +366,14 @@ public class WorldGenJourney implements IWorldGenerator {
             IRIDIUM_ORE_GEN.getValue().generate(w, rand, startPos);
         }
 
+        if (rand.nextInt(Config.towerDungeonCyl) == 0) {
+            y = rand.nextInt(200);
+            x = posX + rand.nextInt(16) + 8;
+            z = posZ + rand.nextInt(16) + 8;
+            if (w.getBlockState(new BlockPos(x, y - 1, z)) == Blocks.GRASS.getDefaultState())
+                new WorldGenTowerDungeonCyl().generate(w, rand, new BlockPos(x, y, z));
+        }
+
         if (rand.nextInt(Config.towerDungeon) == 0) {
             y = rand.nextInt(200);
             x = posX + rand.nextInt(16) + 8;

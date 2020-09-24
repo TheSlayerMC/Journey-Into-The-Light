@@ -35,6 +35,7 @@ public class EntityTempleGuardian extends EntityEssenceBoss implements Animation
 
     private int ticks;
 
+    //TODO: make this have actual good AI
     public EntityTempleGuardian(World par1World) {
         super(par1World);
         setSize(2.0F, 3.8F);
