@@ -431,6 +431,10 @@ public class MobStats {
     public static final int SENTRY_KING_KNOCKBACK_RESISTANCE = 1;
 
     public static final int TEMPLE_GUARDIAN_HEALTH = 275;
+    public static final int TEMPLE_GUARDIAN_DAMAGE = 5;
+    public static final double TEMPLE_GUARDIAN_SPEED = 0.2;
+    public static final int TEMPLE_GUARDIAN_KNOCKBACK_RESISTANCE = 2;
+
     public static final int THUNDERBIRD_HEALTH = 2000;
     public static final int THUNDERBIRD_DAMAGE = 10;
     public static final int WITHERING_BEAST_HEALTH = 750;

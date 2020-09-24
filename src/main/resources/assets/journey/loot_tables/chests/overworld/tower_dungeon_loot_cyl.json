@@ -3,8 +3,8 @@
     {
       "name": "main",
       "rolls": {
-        "min": 2,
-        "max": 4
+        "min": 6,
+        "max": 9
       },
       "entries": [
         {
@@ -15,11 +15,11 @@
               "function": "set_count",
               "count": {
                 "min": 1,
-                "max": 1
+                "max": 2
               }
             }
           ],
-          "weight": 1
+          "weight": 2
         },
         {
           "type": "item",
@@ -75,11 +75,39 @@
               }
             }
           ],
-          "weight": 4
+          "weight": 5
+        },
+        {
+          "type": "item",
+          "name": "journey:loot_pouch_diamond",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 2
+              }
+            }
+          ],
+          "weight": 3
         },
         {
           "type": "item",
           "name": "journey:heartsml",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 1
+              }
+            }
+          ],
+          "weight": 1
+        },
+        {
+          "type": "item",
+          "name": "journey:heartmed",
           "functions": [
             {
               "function": "set_count",
@@ -99,11 +127,11 @@
               "function": "set_count",
               "count": {
                 "min": 1,
-                "max": 2
+                "max": 5
               }
             }
           ],
-          "weight": 3
+          "weight": 5
         },
         {
           "type": "item",
@@ -127,7 +155,7 @@
               "function": "set_count",
               "count": {
                 "min": 1,
-                "max": 10
+                "max": 16
               }
             }
           ],
@@ -141,7 +169,7 @@
               "function": "set_count",
               "count": {
                 "min": 1,
-                "max": 2
+                "max": 5
               }
             }
           ],
@@ -155,7 +183,7 @@
               "function": "set_count",
               "count": {
                 "min": 1,
-                "max": 16
+                "max": 24
               }
             }
           ],
@@ -169,7 +197,7 @@
               "function": "set_count",
               "count": {
                 "min": 1,
-                "max": 8
+                "max": 10
               }
             }
           ],
@@ -183,7 +211,7 @@
               "function": "set_count",
               "count": {
                 "min": 1,
-                "max": 1
+                "max": 2
               }
             }
           ],
@@ -197,7 +225,7 @@
               "function": "set_count",
               "count": {
                 "min": 1,
-                "max": 1
+                "max": 2
               }
             }
           ],
@@ -225,7 +253,21 @@
               "function": "set_count",
               "count": {
                 "min": 1,
-                "max": 3
+                "max": 5
+              }
+            }
+          ],
+          "weight": 3
+        },
+        {
+          "type": "item",
+          "name": "journey:sapphire",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 2
               }
             }
           ],
@@ -366,6 +408,36 @@
         },
         {
           "type": "item",
+          "name": "minecraft:diamond_helmet",
+          "weight": 3,
+          "functions": [
+            {
+              "function": "enchant_with_levels",
+              "treasure": true,
+              "levels": {
+                "min": 1,
+                "max": 10
+              }
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "minecraft:diamond_boots",
+          "weight": 3,
+          "functions": [
+            {
+              "function": "enchant_with_levels",
+              "treasure": true,
+              "levels": {
+                "min": 1,
+                "max": 10
+              }
+            }
+          ]
+        },
+        {
+          "type": "item",
           "name": "minecraft:iron_pickaxe",
           "weight": 3,
           "functions": [
@@ -375,6 +447,66 @@
               "levels": {
                 "min": 10,
                 "max": 29
+              }
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "minecraft:diamond_pickaxe",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "enchant_with_levels",
+              "treasure": true,
+              "levels": {
+                "min": 1,
+                "max": 10
+              }
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "minecraft:diamond_shovel",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "enchant_with_levels",
+              "treasure": true,
+              "levels": {
+                "min": 4,
+                "max": 16
+              }
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "journey:sapphireshovel",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "enchant_with_levels",
+              "treasure": true,
+              "levels": {
+                "min": 1,
+                "max": 10
+              }
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "journey:sapphirehoe",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "enchant_with_levels",
+              "treasure": true,
+              "levels": {
+                "min": 4,
+                "max": 16
               }
             }
           ]
@@ -419,7 +551,7 @@
               "function": "set_count",
               "count": {
                 "min": 1,
-                "max": 4
+                "max": 10
               }
             }
           ],
@@ -453,7 +585,7 @@
               "function": "minecraft:set_count",
               "count": {
                 "min": 1,
-                "max": 3
+                "max": 7
               }
             }
           ]

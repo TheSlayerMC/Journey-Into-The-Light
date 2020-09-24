@@ -2,11 +2,11 @@ package net.journey.blocks.containers;
 
 import net.journey.blocks.tileentity.TileEntityAdvancedLoot;
 import net.journey.init.JourneyTabs;
-import net.journey.init.items.JourneyItems;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.InventoryHelper;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
@@ -31,8 +31,11 @@ import java.util.ArrayList;
 
 public class BlockAdvancedLoot extends BlockModContainer {
 
-	public BlockAdvancedLoot(EnumMaterialTypes enumMaterialTypes, String name, String f, float hardness) {
+	private final Item shard;
+
+	public BlockAdvancedLoot(EnumMaterialTypes enumMaterialTypes, String name, String f, float hardness, Item shard) {
 		super(enumMaterialTypes, name, f, hardness, JourneyTabs.INTERACTIVE_BLOCKS);
+		this.shard = shard;
 	}
 
 	@Override
@@ -77,7 +80,7 @@ public class BlockAdvancedLoot extends BlockModContainer {
 	@Override
 	public ArrayList<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
 		ArrayList<ItemStack> drops = new ArrayList<>();
-		drops.add(new ItemStack(JourneyItems.pottery_shard, rand.nextInt(4) + 4));
+		drops.add(new ItemStack(shard, rand.nextInt(4) + 4));
 		return drops;
 	}
 

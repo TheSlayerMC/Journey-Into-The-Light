@@ -33,18 +33,18 @@ public class WorldGenTowerDungeonCyl extends WorldGenerator {
 
 		ArrayList<String> mobNames = new ArrayList<String>();
 
-        
-		Block stair = JourneyBlocks.dungeonBrickStairs;
+
+		BlockModStairs stair = JourneyBlocks.dungeonBrickStairs;
 
 		BlockMod stone = JourneyBlocks.dungeonBricks;
-		
+
 		mobNames.add("minecraft:spider");
-        mobNames.add("minecraft:creeper");
-        mobNames.add("journey:boomBoom");
-        mobNames.add("journey:robot");
-        mobNames.add("journey:spyclops");
-        mobNames.add("journey:bighongo");
-        mobNames.add("journey:mediumhongo");
+		mobNames.add("minecraft:creeper");
+		mobNames.add("journey:boomBoom");
+		mobNames.add("journey:robot");
+		mobNames.add("journey:spyclops");
+		mobNames.add("journey:bighongo");
+		mobNames.add("journey:mediumhongo");
         mobNames.add("minecraft:zombie");
         mobNames.add("minecraft:skeleton");
         mobNames.add("journey:sandcrawler");
@@ -60,25 +60,40 @@ public class WorldGenTowerDungeonCyl extends WorldGenerator {
 		addLevel(worldIn, x, y + 25, z, 5, stone, mobNames.get(rand.nextInt(mobNames.size())), mobNames.get(rand.nextInt(mobNames.size())));
 		addLevel(worldIn, x, y + 30, z, 5, stone, mobNames.get(rand.nextInt(mobNames.size())), mobNames.get(rand.nextInt(mobNames.size())));
 		addLevel(worldIn, x, y + 35, z, 5, stone, mobNames.get(rand.nextInt(mobNames.size())), mobNames.get(rand.nextInt(mobNames.size())));
-		
-		
+
+
 		Block mossyStone = JourneyBlocks.mossyEssenceStone;
 		WorldGenAPI.addCylinder(worldIn, 1, 6, null, x, y + 39, z, mossyStone);
 		WorldGenHelper.genHollowCylinder(new BlockPos(x, y + 39, z), 6, 1, EnumFacing.UP, mutablePos -> {
 			IBlockState state = stone.getDefaultState();
 			WorldGenHelper.setStateFast(worldIn, mutablePos, state);
 		});
-		
-		WorldGenHelper.genHollowCylinder(new BlockPos(x, y + 40, z), 6, 4, EnumFacing.UP, mutablePos -> {
+
+		WorldGenHelper.genHollowCylinder(new BlockPos(x, y + 39, z), 7, 3, EnumFacing.UP, mutablePos -> {
+			IBlockState state = stone.getDefaultState();
+			WorldGenHelper.setStateFast(worldIn, mutablePos, state);
+		});
+
+		WorldGenHelper.genHollowCylinder(new BlockPos(x, y + 41, z), 8, 1, EnumFacing.UP, mutablePos -> {
+			IBlockState state = stone.getDefaultState();
+			WorldGenHelper.setStateFast(worldIn, mutablePos, state);
+		});
+
+		WorldGenHelper.genHollowCylinder(new BlockPos(x, y + 42, z), 7, 1, EnumFacing.UP, mutablePos -> {
 			IBlockState state = JourneyBlocks.dungeonLampFence.getDefaultState();
 			WorldGenHelper.setStateFast(worldIn, mutablePos, state);
 		});
 
-		addStaircase(worldIn, x, y, z, stone, (BlockModStairs)stair);
-		addStaircase(worldIn, x, y + 10, z, stone, (BlockModStairs)stair);
-		addStaircase(worldIn, x, y + 20, z, stone, (BlockModStairs)stair);
-		addStaircase(worldIn, x, y + 30, z, stone, (BlockModStairs)stair);
-		
+		WorldGenHelper.genHollowCylinder(new BlockPos(x, y + 42, z), 8, 1, EnumFacing.UP, mutablePos -> {
+			IBlockState state = JourneyBlocks.dungeonLampFence.getDefaultState();
+			WorldGenHelper.setStateFast(worldIn, mutablePos, state);
+		});
+
+		addStaircase(worldIn, x, y, z, stone, stair);
+		addStaircase(worldIn, x, y + 10, z, stone, stair);
+		addStaircase(worldIn, x, y + 20, z, stone, stair);
+		addStaircase(worldIn, x, y + 30, z, stone, stair);
+
 		WorldGenAPI.addRectangle(3, 3, 1, worldIn, x - 1, y + 39, z - 1, mossyStone);
 		worldIn.setBlockState(new BlockPos(x - 1, y + 39, z - 2), mossyStone.getDefaultState());
 
@@ -164,9 +179,9 @@ public class WorldGenTowerDungeonCyl extends WorldGenerator {
 		TileEntityMobSpawner spawner4 = (TileEntityMobSpawner) w.getTileEntity(new BlockPos(x + 3, y + 3, z - 3));
 		
 		if(chest1 != null && chest2 != null) {
-			 ResourceLocation lootTable = RandHelper.chooseEqual(w.rand, JourneyLootTables.VANILLA_SIMPLE_DUNGEON, JourneyLootTables.LOOT_BASIC, JourneyLootTables.LOOT_GOLD);
-		     chest1.setLootTable(lootTable, w.rand.nextLong());
-		     chest2.setLootTable(lootTable, w.rand.nextLong());
+			ResourceLocation lootTable = RandHelper.chooseEqual(w.rand, JourneyLootTables.VANILLA_SIMPLE_DUNGEON, JourneyLootTables.TOWER_CHEST_LOOT_CYL);
+			chest1.setLootTable(lootTable, w.rand.nextLong());
+			chest2.setLootTable(lootTable, w.rand.nextLong());
 		}
 
 		if(spawner1 != null && spawner2 != null && spawner3 != null && spawner4 != null) {

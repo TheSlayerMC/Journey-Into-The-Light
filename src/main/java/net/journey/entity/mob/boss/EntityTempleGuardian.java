@@ -2,39 +2,52 @@ package net.journey.entity.mob.boss;
 
 import net.journey.entity.MobStats;
 import net.journey.entity.base.EntityAttributesHelper;
-import net.journey.entity.projectile.EntityFloroDirtProjectile;
-import net.journey.entity.projectile.EntityMagmaFireball;
 import net.journey.entity.util.EntityBossCrystal;
+import net.journey.init.JAnimations;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
-import net.journey.init.items.JourneyWeapons;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.IEntityLivingData;
-import net.minecraft.entity.IRangedAttackMob;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.*;
-import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.SoundEvents;
-import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.ItemStack;
+import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.entity.projectile.EntityThrowable;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemPickaxe;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import net.slayer.api.entity.EntityEssenceBoss;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import ru.timeconqueror.timecore.animation.ActionManagerBuilder;
+import ru.timeconqueror.timecore.animation.AnimationManagerBuilder;
+import ru.timeconqueror.timecore.animation.AnimationStarter;
+import ru.timeconqueror.timecore.api.animation.ActionManager;
+import ru.timeconqueror.timecore.api.animation.AnimationProvider;
+import ru.timeconqueror.timecore.api.animation.BlendType;
 
-public class EntityTempleGuardian extends EntityEssenceBoss implements IRangedAttackMob {
+public class EntityTempleGuardian extends EntityEssenceBoss implements AnimationProvider<EntityTempleGuardian> {
+
+    private final ActionManager<EntityTempleGuardian> actionManager;
+
+    private static final String LAYER_WALKING = "walking";
 
     private int ticks;
 
     public EntityTempleGuardian(World par1World) {
         super(par1World);
         setSize(2.0F, 3.8F);
+        actionManager = ActionManagerBuilder.<EntityTempleGuardian>create(
+                AnimationManagerBuilder.create()
+                        .addLayer(LAYER_WALKING, BlendType.ADDING, 1F)
+                        .addWalkingAnimationHandling(new AnimationStarter(JAnimations.TEMPLE_GUARDIAN_WALK).setSpeed(1F), LAYER_WALKING)
+        ).build(this, world);
+    }
+
+    @Override
+    public @NotNull ActionManager<EntityTempleGuardian> getActionManager() {
+        return actionManager;
     }
 
     @Override
@@ -43,28 +56,53 @@ public class EntityTempleGuardian extends EntityEssenceBoss implements IRangedAt
         addMeleeAttackingAI();
         this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, false));
         this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
-        this.tasks.addTask(4, new EntityAIAvoidEntity(this, EntityWolf.class, 6.0F, 1.0D, 1.2D));
         this.tasks.addTask(5, new EntityAIWander(this, 1.0D));
         this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(7, new EntityAILookIdle(this));
-        this.tasks.addTask(0, new EntityAIAttackRanged(this, 0.27F, 30, 10.0F));
     }
 
     @Override
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
-
         EntityAttributesHelper.setMaxHealth(this, MobStats.TEMPLE_GUARDIAN_HEALTH);
+        EntityAttributesHelper.setAttackDamage(this, MobStats.TEMPLE_GUARDIAN_DAMAGE);
+        EntityAttributesHelper.setKnockbackResistance(this, MobStats.TEMPLE_GUARDIAN_KNOCKBACK_RESISTANCE);
+    }
+
+    @Override
+    public boolean attackEntityFrom(DamageSource source, float amount) {
+        if (source.getImmediateSource() instanceof EntityPlayer) {
+            EntityPlayer player = (EntityPlayer) source.getImmediateSource();
+            Item heldItem = player.inventory.getCurrentItem().getItem();
+            if (this.isEntityInvulnerable(source)) {
+                return false;
+            } else if (source == DamageSource.DROWN) {
+                return false;
+            } else {
+                Entity entity;
+                {
+                    entity = source.getImmediateSource();
+                    if (entity instanceof EntityArrow) {
+                        return false;
+                    } else if (entity instanceof EntityThrowable) {
+                        return false;
+                    } else if (!(heldItem instanceof ItemPickaxe) || !(heldItem.getRegistryName().toString().contains("pickaxe"))) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return super.attackEntityFrom(source, amount);
     }
 
     @Override
     protected SoundEvent getAmbientSound() {
-        return SoundEvents.ENTITY_BLAZE_AMBIENT;
+        return JourneySounds.SENTRY_AMBIENT_1;
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource d) {
-        return SoundEvents.ENTITY_BLAZE_HURT;
+        return JourneySounds.ROCK;
     }
 
     @Override
@@ -73,34 +111,8 @@ public class EntityTempleGuardian extends EntityEssenceBoss implements IRangedAt
     }
 
     @Override
-    protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty) {
-        super.setEquipmentBasedOnDifficulty(difficulty);
-        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(JourneyWeapons.staffOfHellstone));
-    }
-
-    @Override
-    @Nullable
-    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata) {
-        livingdata = super.onInitialSpawn(difficulty, livingdata);
-        this.setEquipmentBasedOnDifficulty(difficulty);
-        return livingdata;
-    }
-
-    @Override
-    public ItemStack getHeldItem(EnumHand hand) {
-        return new ItemStack(JourneyWeapons.staffOfHellstone);
-    }
-
-    @Override
-    public void attackEntityWithRangedAttack(EntityLivingBase target, float distanceFactor) {
-        EntityFloroDirtProjectile b = new EntityFloroDirtProjectile(this.world, this, 5F);//FIXME WHY FLORO???
-        double d0 = target.posX - this.posX;
-        double d1 = target.getEntityBoundingBox().minY + (double) (target.height / 3.0F) - b.posY;
-        double d2 = target.posZ - this.posZ;
-        double d3 = MathHelper.sqrt(d0 * d0 + d2 * d2);
-        b.shoot(d0, d1 + d3 * 0.20000000298023224D, d2, 1.6F, (float) (14 - this.world.getDifficulty().getId() * 4));
-        JourneySounds.playSound(JourneySounds.HAMMER, this);
-        this.world.spawnEntity(b);
+    public float getSoundPitch() {
+        return 0.6F;
     }
 
     @Override
@@ -114,59 +126,7 @@ public class EntityTempleGuardian extends EntityEssenceBoss implements IRangedAt
     }
 
     @Override
-    public void fall(float distance, float damageMultiplier) {
-    }
-
-    @Override
     protected boolean canDespawn() {
         return false;
-    }
-
-    private void launchWitherSkullToEntity(int var1, EntityLivingBase e) {
-        this.launchWitherSkullToCoords(var1, e.posX, e.posY + e.getEyeHeight() * 0.5D, e.posZ, var1 == 0 && this.rand.nextFloat() < 0.001F);
-
-    }
-
-    private void launchWitherSkullToCoords(int var1, double f2, double f4, double f6, boolean f8) {
-        // this.world.playAuxSFXAtEntity((EntityPlayer)null, 1014, new BlockPos(this), 0);
-        double d3 = this.coordX(var1);
-        double d4 = this.coordY(var1);
-        double d5 = this.coordZ(var1);
-        double d6 = f2 - d3;
-        double d7 = f4 - d4;
-        double d8 = f6 - d5;
-        EntityMagmaFireball entitydeathskull = new EntityMagmaFireball(this.world, this, d6, d7, d8);
-        entitydeathskull.posY = d4;
-        entitydeathskull.posX = d3;
-        entitydeathskull.posZ = d5;
-        this.world.spawnEntity(entitydeathskull);
-    }
-
-    private double coordX(int par1) {
-        if (par1 <= 0) {
-            return this.posX;
-        } else {
-            float f = (this.renderYawOffset + 180 * (par1 - 1)) / 180.0F * (float) Math.PI;
-            float f1 = MathHelper.cos(f);
-            return this.posX + f1 * 1.3D;
-        }
-    }
-
-    private double coordY(int par1) {
-        return par1 <= 0 ? this.posY + 3.0D : this.posY + 2.2D;
-    }
-
-    private double coordZ(int par1) {
-        if (par1 <= 0) {
-            return this.posZ;
-        } else {
-            float f = (this.renderYawOffset + 180 * (par1 - 1)) / 180.0F * (float) Math.PI;
-            float f1 = MathHelper.sin(f);
-            return this.posZ + f1 * 1.3D;
-        }
-    }
-
-    @Override
-    public void setSwingingArms(boolean swingingArms) {
     }
 }

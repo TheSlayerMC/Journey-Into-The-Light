@@ -691,7 +691,7 @@ public class JourneyBlocks {
         diamondLootBox = new JBlockRandomLoot(EnumMaterialTypes.WOOD, "diamond_loot_box", "Diamond Loot Box", JourneyLootTables.LOOT_DIAMOND, LootType.BOX);
         overgrownLootBox = new JBlockRandomLoot(EnumMaterialTypes.WOOD, "overgrown_loot_box", "Overgrown Loot Box", JourneyLootTables.LOOT_OVERGROWN, LootType.BOX);
 
-        basePot = new BlockAdvancedLoot(EnumMaterialTypes.GLASS, "pot_base", "Pot", 0.1F);
+        basePot = new BlockAdvancedLoot(EnumMaterialTypes.GLASS, "pot_base", "Pot", 0.1F, JourneyItems.pottery_shard);
 
         magicExplosive = new JBlockTNT("magic_explosive", "Magic Explosive", 10.0F);
 

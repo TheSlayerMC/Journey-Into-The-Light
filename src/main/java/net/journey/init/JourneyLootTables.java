@@ -24,6 +24,7 @@ public class JourneyLootTables {
 	public static final ResourceLocation TERRANIA_TREE_HUT_CHEST = register("chests/terraniatreehut");
 	public static final ResourceLocation ROCKITE_CHEST_LOOT = register("chests/overworld/rockite_loot");
 	public static final ResourceLocation TOWER_CHEST_LOOT = register("chests/overworld/tower_dungeon_loot");
+	public static final ResourceLocation TOWER_CHEST_LOOT_CYL = register("chests/overworld/tower_dungeon_loot_cyl");
 	public static final ResourceLocation ANCIENT_CHEST_LOOT = register("chests/overworld/ancient_loot");
 	public static final ResourceLocation BOIL_DUNGEON_CHEST = register("chests/boil/boil_dungeon");
 	public static final ResourceLocation SENTRY_BASE_CHEST_LOOT = register("chests/senterian/sentry_dungeon");

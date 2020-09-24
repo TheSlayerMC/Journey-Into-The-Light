@@ -193,7 +193,7 @@ public class WorldGenTowerDungeon extends WorldGenerator {
         TileEntityJourneyChest chest3 = (TileEntityJourneyChest) w.getTileEntity(new BlockPos(x + 11, y + height + 1, z + 2));
         TileEntityJourneyChest chest4 = (TileEntityJourneyChest) w.getTileEntity(new BlockPos(x + 11, y + height + 1, z + 7));
 
-        ResourceLocation lootTable = RandHelper.chooseEqual(r, JourneyLootTables.VANILLA_SIMPLE_DUNGEON, JourneyLootTables.LOOT_BASIC, JourneyLootTables.LOOT_GOLD);
+        ResourceLocation lootTable = RandHelper.chooseEqual(r, JourneyLootTables.VANILLA_SIMPLE_DUNGEON, JourneyLootTables.TOWER_CHEST_LOOT);
         chest1.setLootTable(lootTable, r.nextLong());
         chest2.setLootTable(lootTable, r.nextLong());
         chest3.setLootTable(lootTable, r.nextLong());
