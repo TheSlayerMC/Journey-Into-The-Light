@@ -1,7 +1,9 @@
 package net.journey.dimension.overworld.gen;
 
 import net.journey.blocks.containers.BlockJourneyChest;
+import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.entity.mob.boss.EntityTempleGuardian;
+import net.journey.init.JourneyLootTables;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.RandHelper;
 import net.journey.util.WorldGenHelper;
@@ -67,7 +69,7 @@ public class WorldGenTowerDungeonCyl extends WorldGenerator {
 			WorldGenHelper.setStateFast(worldIn, mutablePos, state);
 		});
 		
-		WorldGenHelper.genHollowCylinder(new BlockPos(x, y + 40, z), 6, 3, EnumFacing.UP, mutablePos -> {
+		WorldGenHelper.genHollowCylinder(new BlockPos(x, y + 40, z), 6, 4, EnumFacing.UP, mutablePos -> {
 			IBlockState state = JourneyBlocks.dungeonLampFence.getDefaultState();
 			WorldGenHelper.setStateFast(worldIn, mutablePos, state);
 		});
@@ -80,6 +82,28 @@ public class WorldGenTowerDungeonCyl extends WorldGenerator {
 		WorldGenAPI.addRectangle(3, 3, 1, worldIn, x - 1, y + 39, z - 1, mossyStone);
 		worldIn.setBlockState(new BlockPos(x - 1, y + 39, z - 2), mossyStone.getDefaultState());
 
+		y = y + 40;
+		worldIn.setBlockState(new BlockPos(x + 5, y, z + 1), JourneyBlocks.dungeonBrickStairs.getStateFromMeta(3));
+		worldIn.setBlockState(new BlockPos(x + 5, y, z), JourneyBlocks.dungeonBricks.getDefaultState());
+		worldIn.setBlockState(new BlockPos(x + 5, y + 1, z), JourneyBlocks.redGems.getDefaultState());
+		worldIn.setBlockState(new BlockPos(x + 5, y, z - 1), JourneyBlocks.dungeonBrickStairs.getStateFromMeta(2));
+
+		worldIn.setBlockState(new BlockPos(x - 5, y, z + 1), JourneyBlocks.dungeonBrickStairs.getStateFromMeta(3));
+		worldIn.setBlockState(new BlockPos(x - 5, y, z), JourneyBlocks.dungeonBricks.getDefaultState());
+		worldIn.setBlockState(new BlockPos(x - 5, y + 1, z), JourneyBlocks.redGems.getDefaultState());
+		worldIn.setBlockState(new BlockPos(x - 5, y, z - 1), JourneyBlocks.dungeonBrickStairs.getStateFromMeta(2));
+		
+		worldIn.setBlockState(new BlockPos(x + 1, y, z - 5), JourneyBlocks.dungeonBrickStairs.getStateFromMeta(1));
+		worldIn.setBlockState(new BlockPos(x, y, z - 5), JourneyBlocks.dungeonBricks.getDefaultState());
+		worldIn.setBlockState(new BlockPos(x, y + 1, z - 5), JourneyBlocks.blueGems.getDefaultState());
+		worldIn.setBlockState(new BlockPos(x - 1, y, z - 5), JourneyBlocks.dungeonBrickStairs.getStateFromMeta(0));
+		
+		worldIn.setBlockState(new BlockPos(x + 1, y, z + 5), JourneyBlocks.dungeonBrickStairs.getStateFromMeta(1));
+		worldIn.setBlockState(new BlockPos(x, y, z + 5), JourneyBlocks.dungeonBricks.getDefaultState());
+		worldIn.setBlockState(new BlockPos(x, y + 1, z + 5), JourneyBlocks.blueGems.getDefaultState());
+		worldIn.setBlockState(new BlockPos(x - 1, y, z + 5), JourneyBlocks.dungeonBrickStairs.getStateFromMeta(0));
+		
+		y = y - 40;
 		randomizeBlocks(worldIn, x, y, z);
 		
 		 if (!worldIn.isRemote) {
@@ -131,10 +155,19 @@ public class WorldGenTowerDungeonCyl extends WorldGenerator {
 		w.setBlockState(new BlockPos(x - 2, y, z + 5), JourneyBlocks.dungeonBrickStairs.getStateFromMeta(1));
 		w.setBlockState(new BlockPos(x + 2, y, z + 5), JourneyBlocks.dungeonBrickStairs.getStateFromMeta(0));
 		
+		TileEntityJourneyChest chest1 = (TileEntityJourneyChest) w.getTileEntity(new BlockPos(x + 5, y + 1, z));
+		TileEntityJourneyChest chest2 = (TileEntityJourneyChest) w.getTileEntity(new BlockPos(x - 5, y + 1, z));
+
 		TileEntityMobSpawner spawner1 = (TileEntityMobSpawner) w.getTileEntity(new BlockPos(x - 3, y + 3, z - 3));
 		TileEntityMobSpawner spawner2 = (TileEntityMobSpawner) w.getTileEntity(new BlockPos(x + 3, y + 3, z + 3));
 		TileEntityMobSpawner spawner3 = (TileEntityMobSpawner) w.getTileEntity(new BlockPos(x - 3, y + 3, z + 3));
 		TileEntityMobSpawner spawner4 = (TileEntityMobSpawner) w.getTileEntity(new BlockPos(x + 3, y + 3, z - 3));
+		
+		if(chest1 != null && chest2 != null) {
+			 ResourceLocation lootTable = RandHelper.chooseEqual(w.rand, JourneyLootTables.VANILLA_SIMPLE_DUNGEON, JourneyLootTables.LOOT_BASIC, JourneyLootTables.LOOT_GOLD);
+		     chest1.setLootTable(lootTable, w.rand.nextLong());
+		     chest2.setLootTable(lootTable, w.rand.nextLong());
+		}
 
 		if(spawner1 != null && spawner2 != null && spawner3 != null && spawner4 != null) {
 			spawner1.getSpawnerBaseLogic().setEntityId(new ResourceLocation(mobName));
