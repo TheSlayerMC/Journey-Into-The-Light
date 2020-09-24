@@ -432,7 +432,7 @@ public class MobStats {
 
     public static final int TEMPLE_GUARDIAN_HEALTH = 275;
     public static final int TEMPLE_GUARDIAN_DAMAGE = 5;
-    public static final double TEMPLE_GUARDIAN_SPEED = 0.2;
+    public static final double TEMPLE_GUARDIAN_SPEED = 0.1;
     public static final int TEMPLE_GUARDIAN_KNOCKBACK_RESISTANCE = 2;
 
     public static final int THUNDERBIRD_HEALTH = 2000;

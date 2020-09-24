@@ -66,6 +66,7 @@ public class EntityTempleGuardian extends EntityEssenceBoss implements Animation
         super.applyEntityAttributes();
         EntityAttributesHelper.setMaxHealth(this, MobStats.TEMPLE_GUARDIAN_HEALTH);
         EntityAttributesHelper.setAttackDamage(this, MobStats.TEMPLE_GUARDIAN_DAMAGE);
+        EntityAttributesHelper.setMovementSpeed(this, MobStats.TEMPLE_GUARDIAN_SPEED);
         EntityAttributesHelper.setKnockbackResistance(this, MobStats.TEMPLE_GUARDIAN_KNOCKBACK_RESISTANCE);
     }
 
