@@ -2,7 +2,7 @@ package net.journey.items.bauble.amulet;
 
 import baubles.api.BaubleType;
 import baubles.api.IBauble;
-import net.journey.items.base.JItem;
+import net.journey.items.bauble.ItemBaubleBase;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
@@ -13,7 +13,7 @@ import net.slayer.api.SlayerAPI;
 
 import java.util.List;
 
-public class ItemAquaticAmulet extends JItem implements IBauble {
+public class ItemAquaticAmulet extends ItemBaubleBase implements IBauble {
 
     public ItemAquaticAmulet() {
         setMaxStackSize(1);

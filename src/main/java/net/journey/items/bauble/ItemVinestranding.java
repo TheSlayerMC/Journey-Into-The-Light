@@ -3,7 +3,6 @@ package net.journey.items.bauble;
 import baubles.api.BaubleType;
 import baubles.api.IBauble;
 import net.journey.init.blocks.JourneyBlocks;
-import net.journey.items.base.JItem;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,16 +15,16 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public class ItemVinestranding extends JItem implements IBauble {
+public class ItemVinestranding extends ItemBaubleBase implements IBauble {
 
-    public ItemVinestranding() {
-	    setMaxStackSize(1);
-    }
+	public ItemVinestranding() {
+		setMaxStackSize(1);
+	}
 
-    @Override
-    public BaubleType getBaubleType(ItemStack itemStack) {
-        return BaubleType.CHARM;
-    }
+	@Override
+	public BaubleType getBaubleType(ItemStack itemStack) {
+		return BaubleType.CHARM;
+	}
 
     @Override
     public void onWornTick(ItemStack itemstack, EntityLivingBase entityIn) {

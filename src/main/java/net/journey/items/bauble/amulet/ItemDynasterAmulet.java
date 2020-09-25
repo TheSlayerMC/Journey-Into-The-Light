@@ -5,7 +5,7 @@ import baubles.api.IBauble;
 import net.journey.api.capability.EssenceStorage;
 import net.journey.api.capability.JourneyPlayer;
 import net.journey.common.capability.JCapabilityManager;
-import net.journey.items.base.JItem;
+import net.journey.items.bauble.ItemBaubleBase;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,7 +17,7 @@ import net.slayer.api.SlayerAPI;
 
 import java.util.List;
 
-public class ItemDynasterAmulet extends JItem implements IBauble {
+public class ItemDynasterAmulet extends ItemBaubleBase implements IBauble {
 
     public ItemDynasterAmulet() {
         setMaxStackSize(1);

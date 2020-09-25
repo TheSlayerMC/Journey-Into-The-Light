@@ -2,7 +2,6 @@ package net.journey.items.bauble;
 
 import baubles.api.BaubleType;
 import baubles.api.IBauble;
-import net.journey.items.base.JItem;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -16,7 +15,7 @@ import net.slayer.api.SlayerAPI;
 import java.util.List;
 import java.util.UUID;
 
-public class ItemHeartContainer extends JItem implements IBauble {
+public class ItemHeartContainer extends ItemBaubleBase implements IBauble {
 
     protected static final UUID HEALTH_MODIFIER = UUID.fromString("9769f32f-1489-40ab-aa87-2985aa3246fd");
     public double hearts;

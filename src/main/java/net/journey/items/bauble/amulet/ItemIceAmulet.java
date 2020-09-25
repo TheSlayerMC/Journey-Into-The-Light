@@ -2,7 +2,7 @@ package net.journey.items.bauble.amulet;
 
 import baubles.api.BaubleType;
 import baubles.api.IBauble;
-import net.journey.items.base.JItem;
+import net.journey.items.bauble.ItemBaubleBase;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -17,7 +17,7 @@ import net.slayer.api.SlayerAPI;
 import java.util.List;
 import java.util.UUID;
 
-public class ItemIceAmulet extends JItem implements IBauble {
+public class ItemIceAmulet extends ItemBaubleBase implements IBauble {
 
 	protected static final UUID SPEED_MODIFIER = UUID.fromString("758787ea-2eda-4941-8f41-4e3efd1a95a7");
 	protected static final UUID DAMAGE_MODIFIER = UUID.fromString("b0d292cf-74cd-4c6e-925f-eb81e78e3582");

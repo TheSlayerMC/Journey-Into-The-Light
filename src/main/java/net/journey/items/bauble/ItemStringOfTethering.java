@@ -2,7 +2,6 @@ package net.journey.items.bauble;
 
 import baubles.api.BaubleType;
 import baubles.api.IBauble;
-import net.journey.items.base.JItem;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
@@ -13,7 +12,7 @@ import net.slayer.api.SlayerAPI;
 
 import java.util.List;
 
-public class ItemStringOfTethering extends JItem implements IBauble {
+public class ItemStringOfTethering extends ItemBaubleBase implements IBauble {
 
 	public ItemStringOfTethering() {
 		setMaxStackSize(1);

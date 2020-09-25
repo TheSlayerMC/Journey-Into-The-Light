@@ -2,7 +2,6 @@ package net.journey.items.bauble;
 
 import baubles.api.BaubleType;
 import baubles.api.IBauble;
-import net.journey.items.base.JItem;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -11,7 +10,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public class ItemSkullOfDecay extends JItem implements IBauble {
+public class ItemSkullOfDecay extends ItemBaubleBase implements IBauble {
 
     public ItemSkullOfDecay() {
         setMaxStackSize(1);

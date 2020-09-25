@@ -2,7 +2,6 @@ package net.journey.items.bauble;
 
 import baubles.api.BaubleType;
 import baubles.api.IBauble;
-import net.journey.items.base.JItem;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -16,7 +15,7 @@ import net.slayer.api.SlayerAPI;
 import java.util.List;
 import java.util.UUID;
 
-public class ItemStrengthTotem extends JItem implements IBauble {
+public class ItemStrengthTotem extends ItemBaubleBase implements IBauble {
 
     protected static final UUID KNOCKBACK_MODIFIER = UUID.fromString("21f85109-9fdd-4b25-b48d-0a3d6bf40e84");
 

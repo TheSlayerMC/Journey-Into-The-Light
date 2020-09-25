@@ -2,7 +2,7 @@ package net.journey.items.bauble.amulet;
 
 import baubles.api.BaubleType;
 import baubles.api.IBauble;
-import net.journey.items.base.JItem;
+import net.journey.items.bauble.ItemBaubleBase;
 import net.journey.util.PotionEffects;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
@@ -14,7 +14,7 @@ import net.slayer.api.SlayerAPI;
 
 import java.util.List;
 
-public class ItemMagmaAmulet extends JItem implements IBauble {
+public class ItemMagmaAmulet extends ItemBaubleBase implements IBauble {
 
     public ItemMagmaAmulet() {
         setMaxStackSize(1);

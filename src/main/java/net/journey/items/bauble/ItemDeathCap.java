@@ -1,9 +1,7 @@
 package net.journey.items.bauble;
 
 import baubles.api.BaubleType;
-import baubles.api.IBauble;
 import net.journey.init.JourneyTabs;
-import net.journey.items.base.JItem;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -13,7 +11,7 @@ import net.slayer.api.SlayerAPI;
 
 import java.util.List;
 
-public class ItemDeathCap extends JItem implements IBauble {
+public class ItemDeathCap extends ItemBaubleBase {
 
 	public ItemDeathCap() {
 		setCreativeTab(JourneyTabs.UTIL);
