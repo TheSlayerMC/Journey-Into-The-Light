@@ -1,5 +1,7 @@
 package net.journey.entity.base;
 
+import baubles.api.BaublesApi;
+import net.journey.items.base.JItem;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.SoundEvent;
@@ -10,17 +12,31 @@ import javax.annotation.Nullable;
 
 public class JEntityBuddy extends EntityModTameable {
 
+	JItem bauble;
+
 	public JEntityBuddy(World w) {
 		super(w);
-		setSize(1.0F, 1.0F);
+		this.setSize(1.0F, 1.0F);
 		this.setTamed(true);
 	}
 
-	public JEntityBuddy(World w, EntityPlayer owner) {
+	public JEntityBuddy(World w, EntityPlayer owner, JItem bauble) {
 		super(w);
-		setSize(1.0F, 1.0F);
+		this.setSize(1.0F, 1.0F);
 		this.setTamed(true);
 		this.setOwnerId(owner.getUniqueID());
+		this.bauble = bauble;
+	}
+
+	@Override
+	public void onEntityUpdate() {
+		if (ticksExisted % 20 == 0) {
+			if (getOwner() != null && bauble != null) {
+				if (BaublesApi.isBaubleEquipped((EntityPlayer) getOwner(), bauble) == -1) {
+					this.setDead();
+				}
+			}
+		}
 	}
 
 	@Override

@@ -29,7 +29,7 @@ public class ItemBuddyBase extends JItem implements IBauble {
 			EntityPlayer entityPlayer = (EntityPlayer) player;
 			World world = entityPlayer.world;
 			try {
-				JEntityBuddy spawnBuddy = buddy.getConstructor(World.class, EntityPlayer.class).newInstance(world, entityPlayer);
+				JEntityBuddy spawnBuddy = buddy.getConstructor(World.class, EntityPlayer.class, JItem.class).newInstance(world, entityPlayer, this);
 				spawnBuddy.posX = entityPlayer.posX;
 				spawnBuddy.posY = entityPlayer.posY;
 				spawnBuddy.posZ = entityPlayer.posZ;
