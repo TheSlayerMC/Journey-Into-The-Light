@@ -1,4 +1,4 @@
-package net.journey.items.bauble;
+package net.journey.items.bauble.amulet;
 
 import baubles.api.BaubleType;
 import baubles.api.IBauble;

@@ -2,6 +2,7 @@ package net.journey.init.items;
 
 import net.journey.dimension.base.DimensionHelper;
 import net.journey.entity.mob.boss.*;
+import net.journey.entity.mob.buddy.EntitySpiritLurker;
 import net.journey.entity.mob.pet.EntityEucaHopper;
 import net.journey.entity.mob.pet.EntityPetRobot;
 import net.journey.entity.mob.pet.EntityShiverwolf;
@@ -13,7 +14,11 @@ import net.journey.init.Registrar;
 import net.journey.items.*;
 import net.journey.items.base.JItem;
 import net.journey.items.bauble.*;
-import net.journey.items.bauble.buddies.ItemBuddySoul;
+import net.journey.items.bauble.amulet.ItemAquaticAmulet;
+import net.journey.items.bauble.amulet.ItemDynasterAmulet;
+import net.journey.items.bauble.amulet.ItemIceAmulet;
+import net.journey.items.bauble.amulet.ItemMagmaAmulet;
+import net.journey.items.bauble.buddies.ItemBuddyBase;
 import net.journey.items.bauble.ring.*;
 import net.journey.items.interactive.*;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -689,7 +694,7 @@ public class JourneyItems {
 		witherRing = Registrar.regAndSetupItem("ring_wither", "Ring of Inverse Decay", new ItemRingWither(), JourneyTabs.UTIL);
 		luckyCharm = Registrar.regAndSetupItem("charm_of_luck", "Lucky Charm", new ItemLuckyCharm(), JourneyTabs.UTIL);
 
-		soulBuddy = Registrar.regAndSetupItem("soul_buddy", "Soul Buddy", new ItemBuddySoul(), JourneyTabs.UTIL);
+		soulBuddy = Registrar.regAndSetupItem("soul_buddy", "Soul Buddy", new ItemBuddyBase(EntitySpiritLurker.class), JourneyTabs.UTIL);
 
 		swampLily = Registrar.regAndSetupItem("swamp_lily_item", "Swamp Lily", new JItemWaterLily(), JourneyTabs.DECORATION);
 

@@ -6,6 +6,7 @@ import net.journey.entity.mob.boiling.*;
 import net.journey.entity.mob.boiling.npc.EntityBoilTrader;
 import net.journey.entity.mob.boiling.npc.EntityEscapedConvict;
 import net.journey.entity.mob.boss.*;
+import net.journey.entity.mob.buddy.EntitySpiritLurker;
 import net.journey.entity.mob.cloudia.*;
 import net.journey.entity.mob.cloudia.npc.EntityStarlightBlacksmith;
 import net.journey.entity.mob.cloudia.npc.EntityStarlightVillager;
@@ -38,15 +39,21 @@ import net.journey.entity.mob.pet.EntityShiverwolf;
 import net.journey.entity.mob.pet.EntityTamedRoc;
 import net.journey.entity.mob.senterian.mob.*;
 import net.journey.entity.mob.terrania.mob.*;
-import net.journey.entity.mob.terrania.npc.*;
+import net.journey.entity.mob.terrania.npc.EntityTerranianEnchanter;
+import net.journey.entity.mob.terrania.npc.EntityTerranianTrader;
 import net.journey.entity.projectile.*;
 import net.journey.entity.projectile.arrow.*;
 import net.journey.entity.projectile.knife.*;
 import net.journey.entity.projectile.launcher.*;
 import net.journey.entity.projectile.piercer.*;
 import net.journey.entity.projectile.staff.*;
-import net.journey.entity.projectile.throwable.*;
-import net.journey.entity.util.*;
+import net.journey.entity.projectile.throwable.EntityDemonicBomb;
+import net.journey.entity.projectile.throwable.EntityFireBomb;
+import net.journey.entity.projectile.throwable.EntityMagicBomb;
+import net.journey.entity.projectile.throwable.EntityMagicPot;
+import net.journey.entity.util.EntityBossCrystal;
+import net.journey.entity.util.EntitySentacoin;
+import net.journey.entity.util.EntitySentacoinBag;
 import net.journey.util.handler.LogHelper;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -186,6 +193,7 @@ public class EntityRegistry {
 
 				SlayerAPI.buildMobEntry(EntityPetRobot.class, "petrobot", "Pet Robot", 0x7c4c2c, 0x26b530),
 
+				SlayerAPI.buildMobEntry(EntitySpiritLurker.class, "spirit_lurker", "Spirit Lurker", 0x7c4c2c, 0x26b530),
 
 				//BP
 				SlayerAPI.buildMobEntry(EntityMagmaBlaze.class, "magmablaze", "Magma Blaze", 0xff7800, 0xffa800),
