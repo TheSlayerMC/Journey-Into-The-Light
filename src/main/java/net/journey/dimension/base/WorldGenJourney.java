@@ -17,6 +17,8 @@ import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.Config;
 import net.journey.util.handler.LogHelper;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockGrass;
+import net.minecraft.block.BlockSand;
 import net.minecraft.block.BlockStoneBrick;
 import net.minecraft.block.state.pattern.BlockStateMatcher;
 import net.minecraft.init.Blocks;
@@ -370,7 +372,7 @@ public class WorldGenJourney implements IWorldGenerator {
             y = rand.nextInt(200);
             x = posX + rand.nextInt(16) + 8;
             z = posZ + rand.nextInt(16) + 8;
-            if (w.getBlockState(new BlockPos(x, y - 1, z)) == Blocks.GRASS.getDefaultState())
+            if (w.getBlockState(new BlockPos(x, y - 1, z)) instanceof BlockGrass)
                 new WorldGenTowerDungeonCyl().generate(w, rand, new BlockPos(x, y, z));
         }
 
@@ -378,7 +380,7 @@ public class WorldGenJourney implements IWorldGenerator {
             y = rand.nextInt(200);
             x = posX + rand.nextInt(16) + 8;
             z = posZ + rand.nextInt(16) + 8;
-            if (w.getBlockState(new BlockPos(x, y - 1, z)) == Blocks.GRASS.getDefaultState())
+            if (w.getBlockState(new BlockPos(x, y - 1, z)) instanceof BlockGrass)
                 new WorldGenTowerDungeon().generate(w, rand, new BlockPos(x, y, z));
         }
 
@@ -390,39 +392,41 @@ public class WorldGenJourney implements IWorldGenerator {
                 new WorldGenRockiteDungeon().generate(w, rand, new BlockPos(x, y, z));
         }
 
-        if (rand.nextInt(5) == 0) {
+        if (rand.nextInt(10) == 0) {
             y = rand.nextInt(200);
             x = posX + rand.nextInt(16) + 8;
             z = posZ + rand.nextInt(16) + 8;
-            if (w.getBlockState(new BlockPos(x, y - 1, z)) == Blocks.GRASS.getDefaultState())
+            if (w.getBlockState(new BlockPos(x, y - 1, z)) instanceof BlockGrass)
                 new WorldGenAncientDungeon().generate(w, rand, new BlockPos(x, y, z));
         }
+
+        //TODO: replace blocks with groundpredicate and optimize worldgen. also, we don't need 2 mage houses just to generate it in multiple biomes...
 
         if (rand.nextInt(Config.mageHouse) == 0) {
             y = rand.nextInt(200);
             x = posX + rand.nextInt(16) + 8;
             z = posZ + rand.nextInt(16) + 8;
-            if (w.getBlockState(new BlockPos(x, y - 1, z)) == Blocks.GRASS.getDefaultState() ||
-                    w.getBlockState(new BlockPos(x, y, z)) == Blocks.GRASS.getDefaultState())
-            	 new WorldGenMageHouse(Blocks.GRASS, Blocks.DIRT).generate(w, rand, new BlockPos(x, y, z));    
+            if (w.getBlockState(new BlockPos(x, y - 1, z)) instanceof BlockGrass ||
+                    w.getBlockState(new BlockPos(x, y, z)) instanceof BlockGrass)
+                new WorldGenMageHouse(Blocks.GRASS, Blocks.DIRT).generate(w, rand, new BlockPos(x, y, z));
         }
         
         if (rand.nextInt(Config.mageHouse) == 0) {
             y = rand.nextInt(200);
             x = posX + rand.nextInt(16) + 8;
             z = posZ + rand.nextInt(16) + 8;
-            if (w.getBlockState(new BlockPos(x, y - 1, z)) == Blocks.SAND.getDefaultState() ||
-                    w.getBlockState(new BlockPos(x, y, z)) == Blocks.SAND.getDefaultState())
-            	 new WorldGenMageHouse(Blocks.SAND, Blocks.SAND).generate(w, rand, new BlockPos(x, y, z));    
+            if (w.getBlockState(new BlockPos(x, y - 1, z)) instanceof BlockSand ||
+                    w.getBlockState(new BlockPos(x, y, z)) instanceof BlockSand)
+                new WorldGenMageHouse(Blocks.SAND, Blocks.SAND).generate(w, rand, new BlockPos(x, y, z));
         }
         
         if (rand.nextInt(Config.blacksmithHouse) == 0) {
             y = rand.nextInt(200);
             x = posX + rand.nextInt(16) + 8;
             z = posZ + rand.nextInt(16) + 8;
-            if (w.getBlockState(new BlockPos(x, y - 1, z)) == Blocks.GRASS.getDefaultState() ||
-                    w.getBlockState(new BlockPos(x, y, z)) == Blocks.GRASS.getDefaultState())
-            	 new WorldGenBlacksmithHouse(Blocks.GRASS, Blocks.DIRT).generate(w, rand, new BlockPos(x, y, z));    
+            if (w.getBlockState(new BlockPos(x, y - 1, z)) instanceof BlockGrass ||
+                    w.getBlockState(new BlockPos(x, y, z)) instanceof BlockGrass)
+                new WorldGenBlacksmithHouse(Blocks.GRASS, Blocks.DIRT).generate(w, rand, new BlockPos(x, y, z));
         }
         
         if (rand.nextInt(Config.blacksmithHouse) == 0) {

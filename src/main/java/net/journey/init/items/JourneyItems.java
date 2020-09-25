@@ -13,6 +13,7 @@ import net.journey.init.Registrar;
 import net.journey.items.*;
 import net.journey.items.base.JItem;
 import net.journey.items.bauble.*;
+import net.journey.items.bauble.buddies.ItemBuddySoul;
 import net.journey.items.bauble.ring.*;
 import net.journey.items.interactive.*;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -385,6 +386,8 @@ public class JourneyItems {
 	public static Item slownessRing;
 	public static Item witherRing;
 
+	public static Item soulBuddy;
+
 	public static Item luckyCharm;
 
 	public static Item swampLily;
@@ -662,6 +665,7 @@ public class JourneyItems {
 		iceAmulet = Registrar.regAndSetupItem("amulet_ice", "Amulet of Glacial Bloodlust", new ItemIceAmulet(), JourneyTabs.UTIL);
 		emptyAmulet = Registrar.regAndSetupItem("amulet_empty", "Empty Amulet", new JItem());
 
+
 		skullOfDecay = Registrar.regAndSetupItem("skull_of_decay", "Skull Of Decay", new ItemSkullOfDecay(), JourneyTabs.UTIL);
 		minersPearl = Registrar.regAndSetupItem("miners_pearl", "Miners Pearl", new ItemMinersPearl(), JourneyTabs.UTIL);
 		magicThreadOfTethering = Registrar.regAndSetupItem("magic_thread_of_tethering", "Magic Thread of Tethering", new ItemStringOfTethering(), JourneyTabs.UTIL);
@@ -684,6 +688,8 @@ public class JourneyItems {
 		slownessRing = Registrar.regAndSetupItem("ring_slowness", "Ring of Protected Movement", new ItemRingSlowness(), JourneyTabs.UTIL);
 		witherRing = Registrar.regAndSetupItem("ring_wither", "Ring of Inverse Decay", new ItemRingWither(), JourneyTabs.UTIL);
 		luckyCharm = Registrar.regAndSetupItem("charm_of_luck", "Lucky Charm", new ItemLuckyCharm(), JourneyTabs.UTIL);
+
+		soulBuddy = Registrar.regAndSetupItem("soul_buddy", "Soul Buddy", new ItemBuddySoul(), JourneyTabs.UTIL);
 
 		swampLily = Registrar.regAndSetupItem("swamp_lily_item", "Swamp Lily", new JItemWaterLily(), JourneyTabs.DECORATION);
 
