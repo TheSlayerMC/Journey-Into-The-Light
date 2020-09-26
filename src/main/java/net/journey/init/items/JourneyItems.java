@@ -694,7 +694,7 @@ public class JourneyItems {
 		witherRing = Registrar.regAndSetupItem("ring_wither", "Ring of Inverse Decay", new ItemRingWither(), JourneyTabs.UTIL);
 		luckyCharm = Registrar.regAndSetupItem("charm_of_luck", "Lucky Charm", new ItemLuckyCharm(), JourneyTabs.UTIL);
 
-		soulBuddy = Registrar.regAndSetupItem("soul_buddy", "Soul Buddy", new ItemBuddyBase(EntitySpiritLurker.class), JourneyTabs.UTIL);
+		soulBuddy = Registrar.regAndSetupItem("soul_buddy", "Soul Buddy", new ItemBuddyBase(EntitySpiritLurker::new), JourneyTabs.UTIL);
 
 		swampLily = Registrar.regAndSetupItem("swamp_lily_item", "Swamp Lily", new JItemWaterLily(), JourneyTabs.DECORATION);
 

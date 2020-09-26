@@ -5,6 +5,7 @@ import baubles.api.IBauble;
 import net.journey.entity.base.JEntityBuddy;
 import net.journey.items.base.JItem;
 import net.journey.items.bauble.ItemBaubleBase;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -12,9 +13,9 @@ import net.minecraft.world.World;
 
 public class ItemBuddyBase extends ItemBaubleBase implements IBauble {
 
-	protected Class<? extends JEntityBuddy> buddy;
+	protected BuddyFactory<JEntityBuddy> buddy;
 
-	public ItemBuddyBase(Class<? extends JEntityBuddy> buddy) {
+	public ItemBuddyBase(BuddyFactory<JEntityBuddy> buddy) {
 		setMaxStackSize(1);
 		this.buddy = buddy;
 	}
@@ -29,19 +30,21 @@ public class ItemBuddyBase extends ItemBaubleBase implements IBauble {
 		if (!player.world.isRemote) {
 			World world = player.getEntityWorld();
 			EntityPlayer entityPlayer = (EntityPlayer) player;
-			try {
-				JEntityBuddy spawnBuddy = buddy.getConstructor(World.class, EntityPlayer.class, JItem.class).newInstance(world, entityPlayer, this);
-				spawnBuddy.posX = entityPlayer.posX;
-				spawnBuddy.posY = entityPlayer.posY;
-				spawnBuddy.posZ = entityPlayer.posZ;
-				world.spawnEntity(spawnBuddy);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+
+			JEntityBuddy spawnBuddy = buddy.create(world, entityPlayer, this);
+			spawnBuddy.posX = entityPlayer.posX;
+			spawnBuddy.posY = entityPlayer.posY;
+			spawnBuddy.posZ = entityPlayer.posZ;
+			world.spawnEntity(spawnBuddy);
 		}
 	}
 
 	@Override
 	public void onUnequipped(ItemStack itemstack, EntityLivingBase player) {
+	}
+
+	@FunctionalInterface
+	public interface BuddyFactory<T extends Entity> {
+		T create(World world, EntityPlayer owner, JItem bauble);
 	}
 }
