@@ -17,6 +17,7 @@ public class ItemBuddyBase extends ItemBaubleBase implements IBauble {
 
 	public ItemBuddyBase(BuddyFactory<JEntityBuddy> buddy) {
 		setMaxStackSize(1);
+		setMaxDamage(8);
 		this.buddy = buddy;
 	}
 
@@ -27,7 +28,7 @@ public class ItemBuddyBase extends ItemBaubleBase implements IBauble {
 
 	@Override
 	public void onEquipped(ItemStack itemstack, EntityLivingBase player) {
-		if (!player.world.isRemote) {
+		if (!player.world.isRemote && getDamage(itemstack) != 0) {
 			World world = player.getEntityWorld();
 			EntityPlayer entityPlayer = (EntityPlayer) player;
 

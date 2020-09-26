@@ -6,6 +6,9 @@ import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
@@ -48,9 +51,26 @@ public class JEntityBuddy extends EntityTameable {
 				if (BaublesApi.isBaubleEquipped((EntityPlayer) getOwner(), bauble) == -1) {
 					this.setDead();
 				}
+				ItemStack itemStack = new ItemStack(bauble);
+				itemStack.damageItem(1, this);
+
+				if (bauble.getDamage(itemStack) == 0) {
+					this.setDead();
+					this.performHurtAnimation();
+				}
 			}
 		}
 	}
+
+	@Override
+	public boolean attackEntityFrom(DamageSource source, float amount) {
+		if (bauble != null && getOwner() != null) {
+			ItemStack itemStack = new ItemStack(bauble);
+			itemStack.damageItem(1, getOwner());
+		}
+		return super.attackEntityFrom(source, amount);
+	}
+
 
 	@Override
 	public boolean getLeashed() {
@@ -66,5 +86,10 @@ public class JEntityBuddy extends EntityTameable {
 	@Override
 	public EntityAgeable createChild(EntityAgeable entityAgeable) {
 		return null;
+	}
+
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+		return super.writeToNBT(compound);
 	}
 }
