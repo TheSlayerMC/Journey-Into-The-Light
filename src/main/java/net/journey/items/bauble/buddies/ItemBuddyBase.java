@@ -32,9 +32,7 @@ public class ItemBuddyBase extends ItemBaubleBase implements IBauble {
 			EntityPlayer entityPlayer = (EntityPlayer) player;
 
 			JEntityBuddy spawnBuddy = buddy.create(world, entityPlayer, this);
-			spawnBuddy.posX = entityPlayer.posX;
-			spawnBuddy.posY = entityPlayer.posY;
-			spawnBuddy.posZ = entityPlayer.posZ;
+			spawnBuddy.setPosition(entityPlayer.posX, entityPlayer.posY, entityPlayer.posZ);
 			world.spawnEntity(spawnBuddy);
 		}
 	}
