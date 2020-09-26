@@ -39,7 +39,7 @@ public class JEntityBuddy extends EntityTameable {
 		this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));
 	}
 
-	//TODO: NBT stuff for linking bauble durability, player UUID, and if bauble is / isn't equipped
+	//TODO: NBT stuff for linking bauble durability, player owner (bauble user), and if bauble is / isn't equipped
 
 	@Override
 	public void onEntityUpdate() {
