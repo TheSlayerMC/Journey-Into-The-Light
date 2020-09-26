@@ -5,6 +5,7 @@ import net.journey.items.base.JItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
+//TODO: create move helper to make it float in the air. also noclip
 public class EntitySpiritLurker extends JEntityBuddy {
 
 	public EntitySpiritLurker(World w) {

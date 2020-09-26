@@ -670,7 +670,6 @@ public class JourneyItems {
 		iceAmulet = Registrar.regAndSetupItem("amulet_ice", "Amulet of Glacial Bloodlust", new ItemIceAmulet(), JourneyTabs.UTIL);
 		emptyAmulet = Registrar.regAndSetupItem("amulet_empty", "Empty Amulet", new JItem());
 
-
 		skullOfDecay = Registrar.regAndSetupItem("skull_of_decay", "Skull Of Decay", new ItemSkullOfDecay(), JourneyTabs.UTIL);
 		minersPearl = Registrar.regAndSetupItem("miners_pearl", "Miners Pearl", new ItemMinersPearl(), JourneyTabs.UTIL);
 		magicThreadOfTethering = Registrar.regAndSetupItem("magic_thread_of_tethering", "Magic Thread of Tethering", new ItemStringOfTethering(), JourneyTabs.UTIL);
