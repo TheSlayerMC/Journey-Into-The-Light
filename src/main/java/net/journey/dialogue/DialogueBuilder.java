@@ -3,16 +3,24 @@ package net.journey.dialogue;
 import net.minecraft.util.ResourceLocation;
 
 public class DialogueBuilder {
-	public static DialogueNode makeBranch(NodeBuilder rootBuilder) {
+	public static DialogueNode branch(NodeBuilder rootBuilder) {
 		return rootBuilder.node;
 	}
 
-	public static Dialogue makeDialogue(ResourceLocation id, NodeBuilder rootNodeBuilder) {
-		return makeDialogue(id, rootNodeBuilder.node);
+	public static Dialogue dialogue(ResourceLocation id, NodeBuilder rootNodeBuilder) {
+		return dialogue(id, rootNodeBuilder.node);
 	}
 
-	public static Dialogue makeDialogue(ResourceLocation id, DialogueNode rootNode) {
+	public static Dialogue dialogue(ResourceLocation id, DialogueNode rootNode) {
 		return new Dialogue(id, rootNode);
+	}
+
+	public static NodeBuilder node(String text) {
+		return new NodeBuilder(text);
+	}
+
+	public static OptionBuilder option(String text) {
+		return new OptionBuilder(text);
 	}
 
 	public static class NodeBuilder {
@@ -20,10 +28,6 @@ public class DialogueBuilder {
 
 		private NodeBuilder(String text) {
 			node = new DialogueNode(text);
-		}
-
-		public static NodeBuilder create(String text) {
-			return new NodeBuilder(text);
 		}
 
 		public NodeBuilder addOption(OptionBuilder builder) {
@@ -37,10 +41,6 @@ public class DialogueBuilder {
 
 		private OptionBuilder(String text) {
 			option = new DialogueNode.Option(text);
-		}
-
-		public static OptionBuilder create(String text) {
-			return new OptionBuilder(text);
 		}
 
 		public OptionBuilder leadsTo(NodeBuilder nextNode) {
