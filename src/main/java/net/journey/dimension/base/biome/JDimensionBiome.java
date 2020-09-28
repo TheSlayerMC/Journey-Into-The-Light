@@ -4,6 +4,9 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.world.biome.Biome;
 
 public class JDimensionBiome extends Biome {
+
+	protected BiomeFactory<Biome> biomeFactory;
+
 	public JDimensionBiome(BiomeProperties properties) {
 		super(properties);
 
@@ -17,5 +20,14 @@ public class JDimensionBiome extends Biome {
 		this(properties);
 		this.topBlock = topBlock;
 		this.fillerBlock = fillerBlock;
+	}
+
+	public JDimensionBiome isRareBiome(boolean isRare) {
+		biomeFactory.create(this, isRare);
+		return this;
+	}
+
+	public interface BiomeFactory<T extends Biome> {
+		T create(Biome biome, boolean isRare);
 	}
 }

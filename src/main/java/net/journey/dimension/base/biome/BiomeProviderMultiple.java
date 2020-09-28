@@ -34,7 +34,7 @@ public class BiomeProviderMultiple extends BiomeProvider {
 
     @Override
     public GenLayer[] getModdedBiomeGenerators(WorldType worldType, long seed, GenLayer[] original) {
-        GenLayer biomes = new GenLayerBiomes(1, this.getBiomesToSpawnIn(), getBiomesToSpawnIn() /*<<<this is redundant until we figure out how to make rare biomes generate without hard-coding them into the GenLayer*/);
+        GenLayer biomes = new GenLayerBiomes(1, this.getBiomesToSpawnIn() /*<<<this is redundant until we figure out how to make rare biomes generate without hard-coding them into the GenLayer*/);
         biomes = new GenLayerZoom(1000 /*baseSeed*/, biomes /*parent*/);
         biomes = new GenLayerZoom(1001 /*baseSeed*/, biomes /*parent*/);
         biomes = new GenLayerZoom(1002 /*baseSeed*/, biomes /*parent*/);

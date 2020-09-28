@@ -77,7 +77,7 @@ public class GuiDialogue extends JGuiScreen {
 
 		int incrementor = buttonHeight + indent;
 
-		int x = centerX /*default button width*/ - 108 + INDENT * -(INDENT_OFFSET);
+		int x = mobTextRect.getLeft() + INDENT * -(INDENT_OFFSET);
 
 		for (int i = 0; i < options.size(); i++) {
 			addButton(new GuiOptionButton(options.get(i), i, x, startY));
@@ -91,7 +91,7 @@ public class GuiDialogue extends JGuiScreen {
 		drawDebugLayout(mouseX, mouseY, partialTicks);
 
 		drawMobText();
-		drawEntity(mobIconRect.getWidth() * (INDENT_OFFSET), (int) (mobIconRect.getBottom() - mobIconRect.getHeight() * -3.75F), mouseX, mouseY, node.getNpc());
+		drawEntity(width / (INDENT_OFFSET) * 6, (int) (mobIconRect.getBottom() - mobIconRect.getHeight() * -3.75F), mouseX, mouseY, node.getNpc());
 
 		super.drawScreen(mouseX, mouseY, partialTicks);
 	}
@@ -112,13 +112,13 @@ public class GuiDialogue extends JGuiScreen {
 	}
 
 	public static void drawEntity(int posX, int posY, float mouseX, float mouseY, EntityLivingBase entity) {
-		float scaleFactor = entity.height / 3.8F /*height of player */;
+		float scaleFactor = entity.height / 1.8F /*height of player */;
 		scaleFactor = Math.max(scaleFactor, 0.5F); // make it so very small mobs won't be super big
 
-		int adaptiveScale = (int) (75 /*scale for player */ / scaleFactor);
+		int adaptiveScale = (int) (164 /*scale for player */ / scaleFactor);
 
-		int playerEyeHeight = adaptiveScale - 16; // eye height of player in pixels of inventory gui
-		float eyeOffset = playerEyeHeight * entity.getEyeHeight() / (1.62F * scaleFactor) /* eye height of player in blocks */;
+		int playerEyeHeight = (int) entity.getEyeHeight() * (int) (adaptiveScale * 2.0F); // eye height of player in pixels of inventory gui
+		float eyeOffset = playerEyeHeight * entity.getEyeHeight() / (1.65F * scaleFactor) /* eye height of player in blocks */;
 
 		GlStateManager.color(1, 1, 1, 1);
 		GuiInventory.drawEntityOnScreen(posX, posY, adaptiveScale, posX - mouseX, posY - mouseY - eyeOffset, entity);

@@ -9,7 +9,7 @@ import net.minecraft.client.resources.I18n;
 public class GuiOptionButton extends GuiButton {
 
 	public GuiOptionButton(String optionTextKey, int buttonId, int x, int y) {
-		super(buttonId, x - 38, y, 276, 20, I18n.format(optionTextKey));
+		super(buttonId, x, y, 276, 20, I18n.format(optionTextKey));
 	}
 
 	public GuiOptionButton(String optionTextKey, int buttonId, int x, int y, int widthIn, int heightIn) {
