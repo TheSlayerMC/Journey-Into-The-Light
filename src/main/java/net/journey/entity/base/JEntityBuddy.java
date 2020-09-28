@@ -52,7 +52,7 @@ public class JEntityBuddy extends EntityTameable {
 					this.setDead();
 				}
 				ItemStack itemStack = new ItemStack(bauble);
-				itemStack.damageItem(1, this);
+				itemStack.damageItem(1, getOwner());
 
 				if (bauble.getDamage(itemStack) == 0) {
 					this.setDead();

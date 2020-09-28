@@ -1,4 +1,4 @@
-package net.journey.client.render.gui.base.dialogue;
+package net.journey.client.render.gui.dialogue;
 
 import net.journey.util.EnumHexColor;
 import net.minecraft.client.Minecraft;
@@ -9,7 +9,7 @@ import net.minecraft.client.resources.I18n;
 public class GuiOptionButton extends GuiButton {
 
 	public GuiOptionButton(String optionTextKey, int buttonId, int x, int y) {
-		super(buttonId, x, y, I18n.format(optionTextKey));
+		super(buttonId, x - 38, y, 276, 20, I18n.format(optionTextKey));
 	}
 
 	public GuiOptionButton(String optionTextKey, int buttonId, int x, int y, int widthIn, int heightIn) {
@@ -29,7 +29,7 @@ public class GuiOptionButton extends GuiButton {
 			} else if (this.hovered) {
 				j = EnumHexColor.YELLOW.getInt();
 			}
-			this.drawString(fontrenderer, this.displayString, this.x + this.width / this.x - 38, this.y + (this.height - 8) / 2, j);
+			this.drawString(fontrenderer, this.displayString, this.x + this.width / this.x, this.y + (this.height - 8) / 2, j);
 		}
 	}
 }

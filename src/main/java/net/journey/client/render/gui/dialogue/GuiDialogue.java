@@ -1,4 +1,4 @@
-package net.journey.client.render.gui.base.dialogue;
+package net.journey.client.render.gui.dialogue;
 
 import net.journey.client.render.gui.base.JGuiScreen;
 import net.journey.client.util.Rectangle;
@@ -17,6 +17,7 @@ import java.util.List;
 
 public class GuiDialogue extends JGuiScreen {
 	private static final int INDENT = 6;
+	private static final int INDENT_OFFSET = 8;
 
 	private final ClientDialogueNode node;
 
@@ -44,7 +45,7 @@ public class GuiDialogue extends JGuiScreen {
 		int mobIconTop = guiRect.getTop() + INDENT;
 		mobIconRect = new Rectangle(mobIconRight - mobIconWidth, guiRect.getTop() + INDENT, mobIconRight, mobIconTop + mobIconHeight);
 
-		int horizontalSinglePart = (guiWidth - INDENT * 2) / 7;
+		int horizontalSinglePart = (INDENT * guiWidth);
 
 		optionsRect = new Rectangle(guiRect.getLeft() + horizontalSinglePart, mobIconRect.getBottom() + INDENT, guiRect.getRight() - horizontalSinglePart, guiRect.getBottom() - INDENT);
 		mobTextRect = new Rectangle(guiRect.getLeft() + INDENT, mobIconRect.getTop(), mobIconRect.getLeft() - INDENT, mobIconRect.getBottom());
@@ -76,7 +77,7 @@ public class GuiDialogue extends JGuiScreen {
 
 		int incrementor = buttonHeight + indent;
 
-		int x = centerX - 200 /*default button width*/ / 2;
+		int x = centerX /*default button width*/ - 108 + INDENT * -(INDENT_OFFSET);
 
 		for (int i = 0; i < options.size(); i++) {
 			addButton(new GuiOptionButton(options.get(i), i, x, startY));
@@ -90,33 +91,33 @@ public class GuiDialogue extends JGuiScreen {
 		drawDebugLayout(mouseX, mouseY, partialTicks);
 
 		drawMobText();
-		drawEntity(mobIconRect.getRight() - mobIconRect.getWidth() / 2, (int) (mobIconRect.getBottom() - mobIconRect.getHeight() / 5F), mouseX, mouseY, node.getNpc());
+		drawEntity(mobIconRect.getWidth() * (INDENT_OFFSET), (int) (mobIconRect.getBottom() - mobIconRect.getHeight() * -3.75F), mouseX, mouseY, node.getNpc());
 
 		super.drawScreen(mouseX, mouseY, partialTicks);
 	}
 
 	private void drawMobText() {
 		String text = TextFormatting.YELLOW + "" + TextFormatting.ITALIC + I18n.format(node.getTextKey());
-		fontRenderer.drawSplitString(text, mobTextRect.getLeft() + INDENT, mobTextRect.getTop() + INDENT + 48, Math.max(mobTextRect.getWidth() - INDENT * 2, 2), 0xFFFFFF);
+		fontRenderer.drawSplitString(text, mobTextRect.getLeft() + INDENT * -(INDENT_OFFSET), mobTextRect.getTop() + INDENT + 64, Math.max(mobTextRect.getWidth(), 2), 0xFFFFFF);
 	}
 
 	private void drawDebugLayout(int mouseX, int mouseY, float partialTicks) {
-		RenderUtils.drawRect(guiRect, 0xFF8851FF); // whole gui
+		//RenderUtils.drawRect(guiRect, 0xFF8851FF); // whole gui
 
-		RenderUtils.drawRect(mobIconRect, 0xFF194378); // mob icon background
+		//RenderUtils.drawRect(mobIconRect, 0xFF194378); // mob icon background
 
-		RenderUtils.drawRect(mobTextRect, 0xFF963232); // mob text background
+		//RenderUtils.drawRect(mobTextRect, 0xFF963232); // mob text background
 
-		RenderUtils.drawRect(optionsRect, 0xFF554887); // options background
+		RenderUtils.drawRect(optionsRect, 0x75000000); // options background
 	}
 
 	public static void drawEntity(int posX, int posY, float mouseX, float mouseY, EntityLivingBase entity) {
-		float scaleFactor = entity.height / 1.8F /*height of player */;
+		float scaleFactor = entity.height / 3.8F /*height of player */;
 		scaleFactor = Math.max(scaleFactor, 0.5F); // make it so very small mobs won't be super big
 
-		int adaptiveScale = (int) (30 /*scale for player */ / scaleFactor);
+		int adaptiveScale = (int) (75 /*scale for player */ / scaleFactor);
 
-		int playerEyeHeight = 49; // eye height of player in pixels of inventory gui
+		int playerEyeHeight = adaptiveScale - 16; // eye height of player in pixels of inventory gui
 		float eyeOffset = playerEyeHeight * entity.getEyeHeight() / (1.62F * scaleFactor) /* eye height of player in blocks */;
 
 		GlStateManager.color(1, 1, 1, 1);

@@ -1,8 +1,8 @@
 package net.journey.eventhandler;
 
-import net.journey.client.render.gui.GuiButtonToggleMenu;
-import net.journey.client.render.gui.JourneyMainMenu;
 import net.journey.client.render.gui.base.JLoadingScreen;
+import net.journey.client.render.gui.menu.GuiButtonToggleMenu;
+import net.journey.client.render.gui.menu.JourneyMainMenu;
 import net.journey.init.items.JourneyArmory;
 import net.journey.util.Config;
 import net.minecraft.client.Minecraft;

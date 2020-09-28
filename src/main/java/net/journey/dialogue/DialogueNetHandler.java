@@ -1,6 +1,6 @@
 package net.journey.dialogue;
 
-import net.journey.client.render.gui.base.dialogue.GuiDialogue;
+import net.journey.client.render.gui.dialogue.GuiDialogue;
 import net.journey.common.JManagers;
 import net.journey.common.network.BasicMsgHandler;
 import net.journey.common.network.dialogue.C2SChosenOptionMsg;

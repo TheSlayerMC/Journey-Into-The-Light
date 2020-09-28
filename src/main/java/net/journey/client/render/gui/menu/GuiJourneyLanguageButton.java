@@ -1,4 +1,4 @@
-package net.journey.client.render.gui;
+package net.journey.client.render.gui.menu;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButtonLanguage;

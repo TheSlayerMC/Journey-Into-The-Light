@@ -20,7 +20,7 @@ public class DialogueBuilder {
 	}
 
 	public static OptionBuilder option(String text) {
-		return new OptionBuilder(text);
+		return new OptionBuilder("> " + text);
 	}
 
 	public static class NodeBuilder {

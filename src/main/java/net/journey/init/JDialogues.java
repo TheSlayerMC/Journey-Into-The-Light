@@ -14,6 +14,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextComponentString;
 
 public class JDialogues {
+	public static String STRING_HOODED = "The Hooded: ";
 	public static final Dialogue TEST = JRegistries.DIALOGUE_REGISTRY.register(
 			DialogueBuilder.dialogue(JITL.rl("test"),
 					DialogueBuilder.node("dialogue.jitl.test.hello.text")

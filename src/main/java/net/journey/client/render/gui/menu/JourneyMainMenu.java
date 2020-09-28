@@ -1,4 +1,4 @@
-package net.journey.client.render.gui;
+package net.journey.client.render.gui.menu;
 
 import com.google.common.collect.Lists;
 import com.google.common.util.concurrent.Runnables;

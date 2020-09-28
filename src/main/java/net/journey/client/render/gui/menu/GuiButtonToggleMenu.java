@@ -1,4 +1,4 @@
-package net.journey.client.render.gui;
+package net.journey.client.render.gui.menu;
 
 import net.journey.util.Config;
 import net.journey.util.ManagedProperty.BooleanManagedProperty;
