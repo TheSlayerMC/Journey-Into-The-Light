@@ -326,13 +326,13 @@ public class MobStats {
     // =======================================================
 
     public static final int MINI_SENTRY_LORD_HEALTH = 20;
-    public static final int MINI_SENTRY_LORD_DAMAGE = 5;
+    public static final int MINI_SENTRY_LORD_DAMAGE = 15;
 
     public static final int MINI_SENTRY_STALKER_HEALTH = 20;
-    public static final int MINI_SENTRY_STALKER_DAMAGE = 5;
+    public static final int MINI_SENTRY_STALKER_DAMAGE = 15;
 
     public static final int MINI_SENTRY_WALKER_HEALTH = 20;
-    public static final int MINI_SENTRY_WALKER_DAMAGE = 5;
+    public static final int MINI_SENTRY_WALKER_DAMAGE = 15;
 
     public static final int SENTRY_BLOCK_HEALTH = 75;
     public static final int SENTRY_BLOCK_MOVEMENT_SPEED = 0;

@@ -306,6 +306,15 @@ public class ChunkGeneratorFrozenLands implements IChunkGenerator {
 			int randZ = j * 16 + 7 + rand.nextInt(9);
 			int randY = rand.nextInt(bottomYMax) + 1;
 			if (isBlockTop(randX, randY - 1, randZ, JourneyBlocks.frozenGrass)) {
+				house.generate(world, rand, new BlockPos(randX, randY, randZ));
+			}
+		}
+		
+		if (rand.nextInt(5) == 0) {
+			int randX = i * 16 + 7 + rand.nextInt(9);
+			int randZ = j * 16 + 7 + rand.nextInt(9);
+			int randY = rand.nextInt(bottomYMax) + 1;
+			if (isBlockTop(randX, randY - 1, randZ, JourneyBlocks.frozenGrass)) {
 				spike.generate(world, rand, new BlockPos(randX, randY, randZ));
 			}
 		}
@@ -323,9 +332,7 @@ public class ChunkGeneratorFrozenLands implements IChunkGenerator {
 			}
 		}
 
-		if (rand.nextInt(5) == 0) {
-			generateStructure(x1, z1, JourneyBlocks.frozenGrass, house);
-		}
+		
 
 		for (times = 0; times < 20; times++) {
             int randX = i * 16 + 8 + rand.nextInt(16);
