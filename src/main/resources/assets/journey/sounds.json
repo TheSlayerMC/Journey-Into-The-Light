@@ -91,6 +91,12 @@
       "journey:chest_close"
     ]
   },
+  "chest_key": {
+    "category": "master",
+    "sounds": [
+      "journey:chest_key"
+    ]
+  },
   "chest": {
     "category": "master",
     "sounds": [

@@ -5,6 +5,7 @@ import net.journey.api.block.FeatureProvider;
 import net.journey.blocks.tileentity.TileEntityJourneyChest;
 import net.journey.blocks.util.Features;
 import net.journey.client.render.block.JourneyChestTESR;
+import net.journey.init.JourneySounds;
 import net.journey.init.JourneyTabs;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
@@ -98,7 +99,7 @@ public class BlockJourneyChest extends BlockModContainer implements FeatureProvi
 
 	@Override
 	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer,
-	                            ItemStack stack) {
+			ItemStack stack) {
 		EnumFacing enumfacing = EnumFacing
 				.byHorizontalIndex(MathHelper.floor((double) (placer.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3)
 				.getOpposite();
@@ -388,6 +389,8 @@ public class BlockJourneyChest extends BlockModContainer implements FeatureProvi
 						chest.setUnlocked();
 						if (playerIn.getHeldItemMainhand().getItem() == key) {
 							playerIn.getHeldItemMainhand().shrink(1);
+							
+							worldIn.playSound(pos.getX(), pos.getY(), pos.getZ(), JourneySounds.CHEST_KEY_OPEN, SoundCategory.BLOCKS, 1.5F, 1.0F, false);//??
 						}
 					}
 

@@ -35,6 +35,7 @@ public class JourneySounds {
     public static final SoundEvent CHEST_OPEN_0 = registerSound("chest_open_0");
     public static final SoundEvent CHEST_OPEN = registerSound("chest_open");
     public static final SoundEvent CHEST_CLOSE = registerSound("chest_close");
+    public static final SoundEvent CHEST_KEY_OPEN = registerSound("chest_key");
     public static final SoundEvent SPIRIT_CRYSTAL_ACTIVATE = registerSound("spirit_crystal_activate");
     public static final SoundEvent TOTEM_ACTIVATE = registerSound("totem_activate");
 	public static final SoundEvent ROBOT = registerSound("robot");
