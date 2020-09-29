@@ -1,7 +1,6 @@
 package net.journey.dimension.euca;
 
 import net.journey.api.block.GroundPredicate;
-import net.journey.dimension.base.DimensionHelper;
 import net.journey.dimension.base.gen.JWorldGenRuins;
 import net.journey.dimension.euca.gen.WorldGenEucaPumpkin;
 import net.journey.dimension.euca.gen.WorldGenEucaSphere;
@@ -9,7 +8,6 @@ import net.journey.dimension.euca.gen.WorldGenEucaWater;
 import net.journey.dimension.euca.gen.WorldGenSmeltery;
 import net.journey.dimension.euca.gen.dungeon.EucaSmallSphereDungeon;
 import net.journey.dimension.euca.gen.dungeon.WorldGenBotSpawner;
-import net.journey.dimension.euca.gen.trees.WorldGenEucaTree;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.Config;
 import net.journey.util.RandHelper;
@@ -246,25 +244,6 @@ public class ChunkGeneratorEuca implements IChunkGenerator {
 
 		for (times = 0; times < 1; times++) {
 			generateStructure(x1, z1, spawner);
-		}
-
-		if (world.getBiome(chunkStart) == DimensionHelper.EUCA_GOLD_BIOME) {
-			for (times = 0; times < 2; times++) {
-				WorldGenAPI.genOnGroundWithShiftingPos(world, chunkPos, this.rand, new WorldGenEucaTree(true, JourneyBlocks.eucaGoldLog, JourneyBlocks.eucaGoldLeaves, 6, (rand.nextInt(2) + 3)));
-			}
-		}
-
-		if (world.getBiome(chunkStart) == DimensionHelper.EUCA_SILVER_BIOME) {
-			for (times = 0; times < 2; times++) {
-				WorldGenAPI.genOnGroundWithShiftingPos(world, chunkPos, this.rand, new WorldGenEucaTree(true, JourneyBlocks.eucaGoldLog, JourneyBlocks.eucaSilverLeaves, 6, (rand.nextInt(2) + 3)));
-			}
-		}
-
-		if (world.getBiome(chunkStart) == DimensionHelper.EUCA_GOLDITE_GRAINS_BIOME) {
-			Block leaves = RandHelper.chooseEqual(rand, JourneyBlocks.eucaDarkGreenLeaves, JourneyBlocks.eucaLightGreenLeaves, JourneyBlocks.eucaGoldLeaves);
-			for (times = 0; times < 2; times++) {
-				WorldGenAPI.genOnGroundWithShiftingPos(world, chunkPos, this.rand, new WorldGenEucaTree(true, JourneyBlocks.GOLDITE_OAK_LOG, leaves, 9, (rand.nextInt(2) + 3)));
-			}
 		}
 
 		if (this.rand.nextInt(10) == 0) {
