@@ -389,8 +389,6 @@ public class BlockJourneyChest extends BlockModContainer implements FeatureProvi
 						chest.setUnlocked();
 						if (playerIn.getHeldItemMainhand().getItem() == key) {
 							playerIn.getHeldItemMainhand().shrink(1);
-							
-							worldIn.playSound(pos.getX(), pos.getY(), pos.getZ(), JourneySounds.CHEST_KEY_OPEN, SoundCategory.BLOCKS, 1.5F, 1.0F, false);//??
 						}
 					}
 
@@ -401,7 +399,21 @@ public class BlockJourneyChest extends BlockModContainer implements FeatureProvi
 					playerIn.displayGUIChest(container);
 				}
 			}
+			//I HATE REMOTE CHECKS, THEY MAKE EVERYTHING MORE COMPLICATED
 		}
+		if (worldIn.isRemote) {
+			TileEntityJourneyChest chest = (TileEntityJourneyChest) worldIn.getTileEntity(pos);
+			if (chest != null) {
+				ILockableContainer container = getLockableContainer(worldIn, pos);
+
+				if (container != null) {
+					if (chest.isLocked() && canBeUnlocked(playerIn, worldIn, pos)) {
+						worldIn.playSound(pos.getX(), pos.getY(), pos.getZ(), JourneySounds.CHEST_KEY_OPEN, SoundCategory.BLOCKS, 1.5F, 1.0F, false);
+					}
+				}
+			}
+		}
+
 		return true;
 	}
 

@@ -134,7 +134,6 @@ public abstract class EntityModVillager extends EntityVillager implements INpc, 
 
     @Override
     public boolean processInteract(EntityPlayer player, EnumHand hand) {
-
         if (!this.world.isRemote && hand == EnumHand.MAIN_HAND) {
             abstractInteract(player);
             GuiHandler.Identifier guiId = getGuiIdentifier();
