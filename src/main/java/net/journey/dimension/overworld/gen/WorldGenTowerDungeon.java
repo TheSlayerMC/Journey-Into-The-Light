@@ -27,10 +27,6 @@ public class WorldGenTowerDungeon extends WorldGenerator {
         int levels = 4;
         int height = levels * 4;
 
-		/*WorldGenAPI.placeChestWithContents(w, x + 13, y + 14, z + 1, 1, false, items);
-		WorldGenAPI.placeChestWithContents(w, x + 1, y + 14, z + 8, 2, false, items);
-		WorldGenAPI.placeChestWithContents(w, x + 13, y + 14, z + 8, 2, false, items);*/
-
         WorldGenAPI.addRectangle(17, 12, 1, w, x - 1, y, z - 1, Blocks.GRASS);
         WorldGenAPI.addRectangle(17, 12, 10, w, x - 1, y - 10, z - 1, Blocks.DIRT);
 
@@ -87,6 +83,19 @@ public class WorldGenTowerDungeon extends WorldGenerator {
 
         this.setBlockAndNotifyAdequately(w, new BlockPos(x + 13, y + height + 10, z + 1), JourneyBlocks.blueGems.getDefaultState());
         this.setBlockAndNotifyAdequately(w, new BlockPos(x + 1, y + height + 10, z + 8), JourneyBlocks.blueGems.getDefaultState());
+
+        this.setBlockAndNotifyAdequately(w, new BlockPos(x + 13, y + height + 9, z + 4), JourneyBlocks.lockedChest.getDefaultState().withProperty(BlockJourneyChest.FACING, EnumFacing.WEST));
+        this.setBlockAndNotifyAdequately(w, new BlockPos(x + 13, y + height + 9, z + 5), JourneyBlocks.lockedChest.getDefaultState().withProperty(BlockJourneyChest.FACING, EnumFacing.WEST));
+
+        TileEntityJourneyChest guardianChest1 = (TileEntityJourneyChest) w.getTileEntity(new BlockPos(x + 13, y + height + 9, z + 4));
+        TileEntityJourneyChest guardianChest2 = (TileEntityJourneyChest) w.getTileEntity(new BlockPos(x + 13, y + height + 9, z + 5));
+
+        if (guardianChest1 != null && guardianChest2 != null) {
+            ResourceLocation lootTable = JourneyLootTables.TOWER_CHEST_LOCKED_LOOT_BASIC;
+            guardianChest1.setLootTable(lootTable, r.nextLong());
+            guardianChest2.setLootTable(lootTable, r.nextLong());
+        }
+
         this.setBlockAndNotifyAdequately(w, new BlockPos(x + 13, y + height + 10, z + 8), JourneyBlocks.blueGems.getDefaultState());
 
         this.setBlockAndNotifyAdequately(w, new BlockPos(x + 12, y + height + 9, z + 8), JourneyBlocks.dungeonLampStairs.getStateFromMeta(0));

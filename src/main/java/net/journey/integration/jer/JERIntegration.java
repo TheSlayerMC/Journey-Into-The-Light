@@ -65,6 +65,8 @@ public class JERIntegration {
 	private static void initOreGen() {
 		IWorldGenRegistry worldGenRegistry = jerAPI.getWorldGenRegistry();
 		worldGenRegistry.register(new ItemStack(JourneyBlocks.sapphireOre), new DistributionSquare(0, Config.sapphireOreGenMaxY, Config.sapphireOreTrys), new LootDrop(new ItemStack(JourneyItems.sapphire)));
+		worldGenRegistry.register(new ItemStack(JourneyBlocks.shadiumOre), new DistributionSquare(0, Config.shadiumOreGenMaxY, Config.shadiumOreTrys), new LootDrop(new ItemStack(JourneyBlocks.shadiumOre)));
+		worldGenRegistry.register(new ItemStack(JourneyBlocks.luniumOre), new DistributionSquare(0, Config.luniumOreGenMaxY, Config.luniumOreTrys), new LootDrop(new ItemStack(JourneyBlocks.luniumOre)));
 	}
 
 	@Nullable

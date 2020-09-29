@@ -107,25 +107,32 @@ public class WorldGenTowerDungeonCyl extends WorldGenerator {
 		worldIn.setBlockState(new BlockPos(x - 5, y, z), JourneyBlocks.dungeonBricks.getDefaultState());
 		worldIn.setBlockState(new BlockPos(x - 5, y + 1, z), JourneyBlocks.redGems.getDefaultState());
 		worldIn.setBlockState(new BlockPos(x - 5, y, z - 1), JourneyBlocks.dungeonBrickStairs.getStateFromMeta(2));
-		
+
 		worldIn.setBlockState(new BlockPos(x + 1, y, z - 5), JourneyBlocks.dungeonBrickStairs.getStateFromMeta(1));
 		worldIn.setBlockState(new BlockPos(x, y, z - 5), JourneyBlocks.dungeonBricks.getDefaultState());
-		worldIn.setBlockState(new BlockPos(x, y + 1, z - 5), JourneyBlocks.blueGems.getDefaultState());
+		worldIn.setBlockState(new BlockPos(x, y + 1, z - 5), JourneyBlocks.lockedChest.getDefaultState().withProperty(BlockJourneyChest.FACING, EnumFacing.SOUTH));
 		worldIn.setBlockState(new BlockPos(x - 1, y, z - 5), JourneyBlocks.dungeonBrickStairs.getStateFromMeta(0));
-		
+
 		worldIn.setBlockState(new BlockPos(x + 1, y, z + 5), JourneyBlocks.dungeonBrickStairs.getStateFromMeta(1));
 		worldIn.setBlockState(new BlockPos(x, y, z + 5), JourneyBlocks.dungeonBricks.getDefaultState());
 		worldIn.setBlockState(new BlockPos(x, y + 1, z + 5), JourneyBlocks.blueGems.getDefaultState());
 		worldIn.setBlockState(new BlockPos(x - 1, y, z + 5), JourneyBlocks.dungeonBrickStairs.getStateFromMeta(0));
-		
+
+		TileEntityJourneyChest guardianChest = (TileEntityJourneyChest) worldIn.getTileEntity(new BlockPos(x, y + 1, z - 5));
+
+		if (guardianChest != null) {
+			ResourceLocation lootTable = JourneyLootTables.TOWER_CHEST_LOCKED_LOOT;
+			guardianChest.setLootTable(lootTable, worldIn.rand.nextLong());
+		}
+
 		y = y - 40;
 		randomizeBlocks(worldIn, x, y, z);
-		
-		 if (!worldIn.isRemote) {
-	            EntityTempleGuardian guard = new EntityTempleGuardian(worldIn);
-	            guard.setLocationAndAngles(x, y + 40, z, 0.0F, 0.0F);
-	            worldIn.spawnEntity(guard);
-	        }
+
+		if (!worldIn.isRemote) {
+			EntityTempleGuardian guard = new EntityTempleGuardian(worldIn);
+			guard.setLocationAndAngles(x, y + 40, z, 0.0F, 0.0F);
+			worldIn.spawnEntity(guard);
+		}
 		return true;
 	}
 
