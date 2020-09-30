@@ -3,6 +3,7 @@ package net.journey.dimension.euca.biomes;
 import net.journey.dimension.base.gen.JWorldGenPlants;
 import net.journey.dimension.euca.gen.trees.WorldGenEucaTree;
 import net.journey.init.blocks.JourneyBlocks;
+import net.journey.util.RandHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
@@ -18,7 +19,7 @@ public class EucaSilverBiome extends EucaBiome {
 	private final JWorldGenPlants SILVER_TALL_GRASS = new JWorldGenPlants(JourneyBlocks.eucaSilverTallGrass, EUCA_SILVER_GRASS_GROUND, 25);
 	private final JWorldGenPlants SILVER_SPROUT = new JWorldGenPlants(JourneyBlocks.eucaSilverSprouts, EUCA_SILVER_GRASS_GROUND);
 	private final JWorldGenPlants SILVER_GOLD_FLOWER = new JWorldGenPlants(JourneyBlocks.eucaSilverGoldFlower, EUCA_SILVER_GRASS_GROUND);
-	private final JWorldGenPlants SILVER_SHORT_GRASS = new JWorldGenPlants(JourneyBlocks.eucaSilverShortGrass, EUCA_SILVER_GRASS_GROUND, 25);
+	private final JWorldGenPlants SILVER_SHORT_GRASS = new JWorldGenPlants(JourneyBlocks.eucaSilverShortGrass, EUCA_SILVER_GRASS_GROUND, 50);
 
 	private final WorldGenerator[] FLOWERS = new WorldGenerator[]{SILVER_TALL_GRASS, SILVER_SHORT_GRASS, SILVER_SPROUT, SILVER_GOLD_FLOWER};
 
@@ -39,8 +40,8 @@ public class EucaSilverBiome extends EucaBiome {
 
 	@Override
 	public @NotNull WorldGenAbstractTree getRandomTreeFeature(Random rand) {
-		Block leaves = JourneyBlocks.eucaSilverLeaves;
-		WorldGenAbstractTree tree = new WorldGenEucaTree(true, JourneyBlocks.eucaGoldLog, leaves, 6, (rand.nextInt(2) + 3));
+		Block leaves = RandHelper.chooseEqual(rand, JourneyBlocks.eucaSilverLeaves, JourneyBlocks.eucaGoldLeaves);
+		WorldGenAbstractTree tree = new WorldGenEucaTree(true, JourneyBlocks.eucaGoldLog, leaves, 5, (rand.nextInt(2) + 3));
 		return tree;
 	}
 }

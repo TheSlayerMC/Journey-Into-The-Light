@@ -54,7 +54,7 @@ public class EntityShimmerer extends JEntityFlyingMob {
 
     @Override
     public SoundEvent getAmbientSound() {
-        return JourneySounds.SHIMMERER;
+        return null;
     }
 
     @Override

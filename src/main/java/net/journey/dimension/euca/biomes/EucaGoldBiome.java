@@ -29,16 +29,15 @@ public class EucaGoldBiome extends EucaBiome {
 
 	public EucaGoldBiome(BiomeProperties properties, IBlockState topBlock, IBlockState fillerBlock) {
 		super(properties, topBlock, fillerBlock);
-		decorator.treesPerChunk = 2;
+		decorator.treesPerChunk = 1;
 	}
 
 	@Override
 	public void decorate(World worldIn, Random rand, BlockPos chunkStart) {
 		for (WorldGenerator flowerGen : FLOWERS) {
-			int j = rand.nextInt(16) + 8;
-			int k = rand.nextInt(16) + 8;
-			int l = rand.nextInt(worldIn.getHeight(chunkStart.add(j, 0, k)).getY() + 8);
-			flowerGen.generate(worldIn, rand, chunkStart.add(j, l, k));
+			int j = rand.nextInt(8);
+			int k = rand.nextInt(8);
+			flowerGen.generate(worldIn, rand, chunkStart.add(j, 0, k));
 		}
 		super.decorate(worldIn, rand, chunkStart);
 	}
@@ -46,7 +45,7 @@ public class EucaGoldBiome extends EucaBiome {
 	@Override
 	public @NotNull WorldGenAbstractTree getRandomTreeFeature(Random rand) {
 		Block leaves = RandHelper.chooseEqual(rand, JourneyBlocks.eucaGoldLeaves, JourneyBlocks.eucaSilverLeaves);
-		WorldGenAbstractTree tree = new WorldGenEucaTree(true, JourneyBlocks.eucaGoldLog, leaves, 6, (rand.nextInt(2) + 3));
+		WorldGenAbstractTree tree = new WorldGenEucaTree(true, JourneyBlocks.eucaGoldLog, leaves, 5, (rand.nextInt(2) + 3));
 		return tree;
 	}
 }
