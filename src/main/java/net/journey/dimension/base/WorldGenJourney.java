@@ -16,10 +16,7 @@ import net.journey.dimension.overworld.gen.*;
 import net.journey.init.blocks.JourneyBlocks;
 import net.journey.util.Config;
 import net.journey.util.handler.LogHelper;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockGrass;
-import net.minecraft.block.BlockSand;
-import net.minecraft.block.BlockStoneBrick;
+import net.minecraft.block.*;
 import net.minecraft.block.state.pattern.BlockStateMatcher;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.LazyLoadBase;
@@ -372,7 +369,7 @@ public class WorldGenJourney implements IWorldGenerator {
             y = rand.nextInt(200);
             x = posX + rand.nextInt(16) + 8;
             z = posZ + rand.nextInt(16) + 8;
-            if (w.getBlockState(new BlockPos(x, y - 1, z)) instanceof BlockGrass)
+            if (w.getBlockState(new BlockPos(x, y - 1, z)).getBlock() instanceof BlockGrass)
                 new WorldGenTowerDungeonCyl().generate(w, rand, new BlockPos(x, y, z));
         }
 
@@ -380,7 +377,7 @@ public class WorldGenJourney implements IWorldGenerator {
             y = rand.nextInt(200);
             x = posX + rand.nextInt(16) + 8;
             z = posZ + rand.nextInt(16) + 8;
-            if (w.getBlockState(new BlockPos(x, y - 1, z)) instanceof BlockGrass)
+            if (w.getBlockState(new BlockPos(x, y - 1, z)).getBlock() instanceof BlockGrass)
                 new WorldGenTowerDungeon().generate(w, rand, new BlockPos(x, y, z));
         }
 
@@ -388,7 +385,7 @@ public class WorldGenJourney implements IWorldGenerator {
             y = rand.nextInt(30);
             x = posX + rand.nextInt(16) + 8;
             z = posZ + rand.nextInt(16) + 8;
-            if (w.getBlockState(new BlockPos(x, y - 1, z)) == Blocks.STONE.getDefaultState() && y > 10)
+            if (w.getBlockState(new BlockPos(x, y - 1, z)).getBlock() instanceof BlockStone && y > 10)
                 new WorldGenRockiteDungeon().generate(w, rand, new BlockPos(x, y, z));
         }
 
@@ -396,7 +393,7 @@ public class WorldGenJourney implements IWorldGenerator {
             y = rand.nextInt(200);
             x = posX + rand.nextInt(16) + 8;
             z = posZ + rand.nextInt(16) + 8;
-            if (w.getBlockState(new BlockPos(x, y - 1, z)) instanceof BlockGrass)
+            if (w.getBlockState(new BlockPos(x, y - 1, z)).getBlock() instanceof BlockGrass)
                 new WorldGenAncientDungeon().generate(w, rand, new BlockPos(x, y, z));
         }
 
@@ -406,8 +403,8 @@ public class WorldGenJourney implements IWorldGenerator {
             y = rand.nextInt(200);
             x = posX + rand.nextInt(16) + 8;
             z = posZ + rand.nextInt(16) + 8;
-            if (w.getBlockState(new BlockPos(x, y - 1, z)) instanceof BlockGrass ||
-                    w.getBlockState(new BlockPos(x, y, z)) instanceof BlockGrass)
+            if (w.getBlockState(new BlockPos(x, y - 1, z)).getBlock() instanceof BlockGrass ||
+                    w.getBlockState(new BlockPos(x, y, z)).getBlock() instanceof BlockGrass)
                 new WorldGenMageHouse(Blocks.GRASS, Blocks.DIRT).generate(w, rand, new BlockPos(x, y, z));
         }
         
@@ -415,8 +412,8 @@ public class WorldGenJourney implements IWorldGenerator {
             y = rand.nextInt(200);
             x = posX + rand.nextInt(16) + 8;
             z = posZ + rand.nextInt(16) + 8;
-            if (w.getBlockState(new BlockPos(x, y - 1, z)) instanceof BlockSand ||
-                    w.getBlockState(new BlockPos(x, y, z)) instanceof BlockSand)
+            if (w.getBlockState(new BlockPos(x, y - 1, z)).getBlock() instanceof BlockSand ||
+                    w.getBlockState(new BlockPos(x, y, z)).getBlock() instanceof BlockSand)
                 new WorldGenMageHouse(Blocks.SAND, Blocks.SAND).generate(w, rand, new BlockPos(x, y, z));
         }
         
@@ -424,8 +421,8 @@ public class WorldGenJourney implements IWorldGenerator {
             y = rand.nextInt(200);
             x = posX + rand.nextInt(16) + 8;
             z = posZ + rand.nextInt(16) + 8;
-            if (w.getBlockState(new BlockPos(x, y - 1, z)) instanceof BlockGrass ||
-                    w.getBlockState(new BlockPos(x, y, z)) instanceof BlockGrass)
+            if (w.getBlockState(new BlockPos(x, y - 1, z)).getBlock() instanceof BlockGrass ||
+                    w.getBlockState(new BlockPos(x, y, z)).getBlock() instanceof BlockGrass)
                 new WorldGenBlacksmithHouse(Blocks.GRASS, Blocks.DIRT).generate(w, rand, new BlockPos(x, y, z));
         }
         
@@ -433,9 +430,9 @@ public class WorldGenJourney implements IWorldGenerator {
             y = rand.nextInt(200);
             x = posX + rand.nextInt(16) + 8;
             z = posZ + rand.nextInt(16) + 8;
-            if (w.getBlockState(new BlockPos(x, y - 1, z)) == Blocks.SAND.getDefaultState() ||
-                    w.getBlockState(new BlockPos(x, y, z)) == Blocks.SAND.getDefaultState())
-            	 new WorldGenBlacksmithHouse(Blocks.SAND, Blocks.SAND).generate(w, rand, new BlockPos(x, y, z));    
+            if (w.getBlockState(new BlockPos(x, y - 1, z)).getBlock() instanceof BlockSand ||
+                    w.getBlockState(new BlockPos(x, y, z)).getBlock() instanceof BlockSand)
+                new WorldGenBlacksmithHouse(Blocks.SAND, Blocks.SAND).generate(w, rand, new BlockPos(x, y, z));
         }
     }
 
