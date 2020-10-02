@@ -1,5 +1,6 @@
 package net.journey.dimension.corba.biomes;
 
+import net.journey.dimension.base.biome.EnumBiomeColor;
 import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.block.BlockSand;
@@ -110,13 +111,13 @@ public class CorbaSwampBiome extends CorbaBiome {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int getFoliageColorAtPos(BlockPos pos) {
-		return 0x5b592d;
+		return EnumBiomeColor.CORBA_FOREST.getInt();
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int getGrassColorAtPos(BlockPos pos) {
-		return 0x5b592d;
+		return EnumBiomeColor.CORBA_FOREST.getInt();
 	}
 
 	@Override

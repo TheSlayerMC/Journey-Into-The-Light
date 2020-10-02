@@ -9,20 +9,20 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.slayer.api.block.BlockMod;
 import net.slayer.api.block.BlockModGrass;
 
 public class BlockBrittleIce extends BlockModGrass {
 
-    protected BlockMod dirt;
+    protected Block dirt;
     protected String tex;
 
-    public BlockBrittleIce(BlockMod dirt, String name, String finalName, float hardness) {
-        super(dirt, name, finalName, hardness);
+    public BlockBrittleIce(Block dirt, String name, String finalName) {
+        super(dirt, name, finalName);
         this.dirt = dirt;
+        setHardness(0.2F);
         setCreativeTab(JourneyTabs.BLOCKS);
         setTickRandomly(true);
-        this.slipperiness = 0.98F;
+        slipperiness = 0.98F;
     }
 
     @Override

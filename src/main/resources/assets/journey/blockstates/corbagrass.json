@@ -1,11 +1,24 @@
 {
-	"variants": {
-        "normal": [
-            { "model": "journey:corbaGrass" },
-            { "model": "journey:corbaGrass", "y": 90 },
-            { "model": "journey:corbaGrass", "y": 180 },
-            { "model": "journey:corbaGrass", "y": 270 }
-        ]
-
-	}
+  "variants": {
+    "snowy=false": [
+      {
+        "model": "journey:corbagrass"
+      },
+      {
+        "model": "journey:corbagrass",
+        "y": 90
+      },
+      {
+        "model": "journey:corbagrass",
+        "y": 180
+      },
+      {
+        "model": "journey:corbagrass",
+        "y": 270
+      }
+    ],
+    "snowy=true": {
+      "model": "journey:corbagrass_snowed"
+    }
+  }
 }

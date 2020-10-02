@@ -1,36 +1,56 @@
 package net.slayer.api.block;
 
+import net.journey.JITL;
 import net.journey.init.JourneyTabs;
+import net.journey.init.blocks.JourneyBlocks;
+import net.journey.util.gen.lang.LangGeneratorFacade;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockGrass;
 import net.minecraft.block.IGrowable;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.properties.PropertyBool;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.slayer.api.EnumMaterialTypes;
 import net.slayer.api.SlayerAPI;
 
+import java.util.Objects;
 import java.util.Random;
 
-public class BlockModGrass extends BlockMod implements IGrowable {
+public class BlockModGrass extends BlockGrass implements IGrowable {
 
-    protected BlockMod dirt;
+    public static final PropertyBool SNOWY = PropertyBool.create("snowy");
+
+    protected Block dirt;
     protected String tex;
     public Block path;
 
-    public BlockModGrass(BlockMod dirt, String name, String finalName, float hardness) {
-        super(EnumMaterialTypes.GRASS, name, finalName, hardness);
+    public BlockModGrass(Block dirt, String name, String finalName) {
+        super();
         this.dirt = dirt;
+        setSoundType(SoundType.PLANT);
+        setHardness(0.5F);
         setCreativeTab(JourneyTabs.BLOCKS);
         setTickRandomly(true);
+        setDefaultState(this.blockState.getBaseState().withProperty(SNOWY, false));
+
+        JourneyBlocks.blocks.add(this);
+        setRegistryName(JITL.MOD_ID, name);
+
+        LangGeneratorFacade.addBlockEntry(this, finalName);
+        JourneyBlocks.itemBlocks.add(new ItemBlock(this).setRegistryName(Objects.requireNonNull(this.getRegistryName())));
     }
 
     @Override
@@ -95,4 +115,21 @@ public class BlockModGrass extends BlockMod implements IGrowable {
     public boolean canGrow(World worldIn, BlockPos pos, IBlockState state, boolean isClient) {
         return true;
     }
+
+    @Override
+    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+        Block block = worldIn.getBlockState(pos.up()).getBlock();
+        return state.withProperty(SNOWY, block == Blocks.SNOW || block == Blocks.SNOW_LAYER);
+    }
+
+    @Override
+    public int getMetaFromState(IBlockState state) {
+        return 0;
+    }
+
+    @Override
+    protected BlockStateContainer createBlockState() {
+        return new BlockStateContainer(this, SNOWY);
+    }
+
 }

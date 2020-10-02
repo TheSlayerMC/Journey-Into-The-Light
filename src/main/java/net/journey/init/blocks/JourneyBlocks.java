@@ -148,9 +148,9 @@ public class JourneyBlocks {
     public static BlockMod frozenSapling;
     public static BlockMod frozenIceSapling;
 
-    public static BlockMod eucaGrass;
-    public static BlockMod eucaSilverGrass;
-    public static BlockMod eucaGolditeGrass;
+    public static BlockModGrass eucaGrass;
+    public static BlockModGrass eucaSilverGrass;
+    public static BlockModGrass eucaGolditeGrass;
     public static BlockMod eucaDirt;
     public static BlockMod eucaGolditeDirt;
     public static BlockMod eucaStone;
@@ -185,9 +185,9 @@ public class JourneyBlocks {
     public static BlockMod EUCA_RUNIC_LAMP;
     public static BlockMod EUCA_DUNGEON_TILE;
     public static BlockMod EUCA_GOLD_STONE;
-    
+
     public static BlockMod depthsDirt;
-    public static BlockMod depthsGrass;
+    public static BlockModGrass depthsGrass;
     public static BlockMod depthsStone;
     public static JBlockLog depthsLog;
     public static BlockMod depthsPlank;
@@ -212,7 +212,7 @@ public class JourneyBlocks {
     public static BlockMod iceLeaves;
     public static BlockMod frozenDirt;
     public static BlockMod frozenStone;
-    public static BlockMod frozenGrass;
+    public static BlockModGrass frozenGrass;
     public static BlockMod frozenLeaves;
     public static JBlockLog frozenLog;
     public static BlockMod frozenPlanks;
@@ -234,7 +234,7 @@ public class JourneyBlocks {
     public static BlockMod corbaStone;
     public static BlockMod corbaCobblestone;
     public static JBlockWall corbaWall;
-    public static BlockMod corbaGrass;
+    public static BlockModGrass corbaGrass;
     public static JBlockLog corbaLog;
     public static BlockMod corbaLeaves;
     public static BlockMod corbaPillar;
@@ -305,7 +305,7 @@ public class JourneyBlocks {
     public static JBlockPlant boilingStem;
 
     public static BlockMod cloudiaDirt;
-    public static BlockMod cloudiaGrass;
+    public static BlockModGrass cloudiaGrass;
     public static JBlockLog cloudiaLog;
     public static BlockMod cloudiaPlanks;
     public static BlockMod cloudiaPillar;
@@ -441,7 +441,7 @@ public class JourneyBlocks {
     public static BlockMod terraniaVine;
     public static BlockMod terranianDirt;
     public static JBlockLog terranianLog;
-    public static BlockMod terranianGrass;
+    public static BlockModGrass terranianGrass;
     public static BlockMod terranianStone;
     public static JBlockPane terranianBars;
     public static BlockMod terranianDarkPanels;
@@ -475,7 +475,7 @@ public class JourneyBlocks {
 
     public static JBlockDoublePlant hellThorn;
     public static BlockMod hellThornRoot;
-    public static BlockMod nethicGrass;
+    public static BlockModGrass nethicGrass;
 
     public static JBlockDoublePlant tallGolditeStalks;
     public static JBlockFlower golditeBulb;
@@ -505,7 +505,7 @@ public class JourneyBlocks {
     public static BlockModFlower shiverFlower;
     public static BlockModFlower iceBush;
     public static BlockIceLog iceLog;
-    public static BlockMod brittleIce;
+    public static BlockModGrass brittleIce;
 
     public static BlockModFlower eucaTallGrass;
     public static BlockModFlower eucaTallFlowers;
@@ -708,10 +708,10 @@ public class JourneyBlocks {
         frozenSapling = new BlockModSapling("frozenSapling", "Frozen Sapling", new WorldGenFrozenTree());
 
         eucaDirt = new BlockMod(EnumMaterialTypes.DIRT, "eucaDirt", "Euca Dirt", 2.0F);
-        eucaGrass = new BlockModGrass(eucaDirt, "eucaGrass", "Euca Grass", 2.0F);
-        eucaGolditeGrass = new BlockModGrass(eucaGolditeDirt, "goldite_grass", "Goldite Grass", 2.0F);
-        eucaGolditeDirt = new BlockMod(EnumMaterialTypes.DIRT, "goldite_dirt", "Goldite Dirt", 2.0F);
-        eucaSilverGrass = new BlockModGrass(eucaDirt, "eucaSilverGrass", "Euca Grass", 2.0F);
+        eucaGrass = new BlockModGrass(eucaDirt, "eucaGrass", "Euca Grass");
+        eucaGolditeGrass = new BlockModGrass(eucaGolditeDirt, "goldite_grass", "Goldite Grass");
+        eucaGolditeDirt = new BlockMod(EnumMaterialTypes.DIRT, "goldite_dirt", "Goldite Dirt", 1.0F);
+        eucaSilverGrass = new BlockModGrass(eucaDirt, "eucaSilverGrass", "Euca Grass");
         eucaStone = new BlockMod("eucaStone", "Euca Stone", 2.0F);
         eucaGoldLog = new JBlockLog("eucaGoldLog", "Golden Euca Log");
         goldEucaPlank = new BlockMod(EnumMaterialTypes.WOOD, "goldEucaPlank", "Golden Euca Plank", 1.0F);
@@ -736,7 +736,7 @@ public class JourneyBlocks {
         EUCA_GOLD_STONE = new BlockMod("euca_gold_stone", "Euca Gold Stone");
 
         depthsDirt = new BlockMod(EnumMaterialTypes.DIRT, "depthsDirt", "Depths Dirt", 2.0F);
-        depthsGrass = new BlockModGrass(depthsDirt, "depthsGrass", "Depths Grass", 2.0F);
+        depthsGrass = new BlockModGrass(depthsDirt, "depthsGrass", "Depths Grass");
         depthsStone = new BlockMod("depthsStone", "Depths Stone", 2.0F);
         depthsLog = new JBlockLog("depthsLog", "Depths Log");
         depthsPlank = new BlockMod(EnumMaterialTypes.WOOD, "depthsPlank", "Depths Plank", 1.0F);
@@ -765,7 +765,7 @@ public class JourneyBlocks {
         iceLeaves = new BlockDepthsLeaves("iceLeaves", "Ice Leaves", 1.0F, frozenIceSapling);
         frozenDirt = new BlockMod(EnumMaterialTypes.DIRT, "frozenDirt", "Frozen Dirt", 2.0F);
         frozenStone = new BlockMod(EnumMaterialTypes.STONE, "frozenStone", "Frozen Stone", 5.0F);
-        frozenGrass = new BlockModGrass(frozenDirt, "frozenGrass", "Frozen Grass", 2.0F);
+        frozenGrass = new BlockModGrass(frozenDirt, "frozenGrass", "Frozen Grass");
         frozenLeaves = new BlockModLeaves("frozenLeaves", "Frozen Leaves", 0.5F, frozenSapling).setFrozenPlant();
         frozenLog = new JBlockLog("frozenLog", "Frozen Log");
         frozenPlanks = new BlockMod(EnumMaterialTypes.WOOD, "frozenPlanks", "Frozen Planks", 0.5F);
@@ -782,7 +782,7 @@ public class JourneyBlocks {
         corbaStone = new BlockMod("corbaStone", "Corba Stone");
         corbaCobblestone = new BlockMod("corba_cobblestone", "Corba Cobblestone");
         corbaWall = new JBlockWall("corba_wall", "Corba Wall", corbaCobblestone);
-        corbaGrass = new BlockModGrass(null, "corbaGrass", "Corba Grass", 0.5F).setGrassPath(corbaGrassPath);
+        corbaGrass = new BlockModGrass(null, "corbaGrass", "Corba Grass").setGrassPath(corbaGrassPath);
         corbaLog = new JBlockLog("corbaLog", "Corba Log");
         corbaLeaves = new BlockModLeaves("corbaLeaves", "Corba Leaves", 0.2F, corbaSapling);
         corbaPillar = new BlockMod("corbaPillar", "Corba Pillar");
@@ -850,7 +850,7 @@ public class JourneyBlocks {
         boilingLog = new JBlockLog("boilingLog", "Boiling Log");
 
         cloudiaDirt = new BlockMod(EnumMaterialTypes.DIRT, "cloudiaDirt", "Cloudia Dirt", 2.0F);
-        cloudiaGrass = new BlockModGrass(cloudiaDirt, "cloudiaGrass", "Cloudia Grass", 2.0F);
+        cloudiaGrass = new BlockModGrass(cloudiaDirt, "cloudiaGrass", "Cloudia Grass");
         cloudiaLog = new JBlockLog("cloudiaLog", "Cloudia Log");
         cloudiaRock = new BlockMod("cloudiaRock", "Cloudia Rock");
         cloudiaPillar = new BlockMod("cloudiaPillar", "Cloudia Pillar");
@@ -1009,7 +1009,7 @@ public class JourneyBlocks {
         terraniaVine = new BlockModVine("terranianVine", "Terrania Vine", 12);
         terranianDirt = new BlockMod(EnumMaterialTypes.DIRT, "terranianDirt", "Terranian Dirt", 2.0F);
         terranianLog = new JBlockLog("terranianLog", "Terranian Log");
-        terranianGrass = new BlockModGrass(terranianDirt, "terranianGrass", "Terranian Grass", 2.0F);
+        terranianGrass = new BlockModGrass(terranianDirt, "terranianGrass", "Terranian Grass");
         terranianStone = new BlockMod("terranianStone", "Terranian Stone", 2.0F);
         terranianBars = Initializer.of(new JBlockPane(EnumMaterialTypes.STONE, "terranianBars", "Terranian Bars", true)).apply(pane -> pane.setHardness(5.0F));
         terranianDarkPanels = new BlockMod("terranianDarkPanels", "Terranian Dark Panels", 2.0F);
@@ -1039,7 +1039,7 @@ public class JourneyBlocks {
         darkbloom = (JBlockDoublePlant) new JBlockDoublePlant("darkbloom", "Darkbloom").setGroundPredicate(GroundPredicate.COMMON_AND_DEPTHS_GRASS);
         hellThorn = (JBlockDoublePlant) new JBlockDoublePlant("hell_thorn", "Hell Thorn").setGroundPredicate(GroundPredicate.NETHER).setBoundingBox(JBlockDoublePlant.DOUBLE_BIG_PLANT_BB);
         hellThornRoot = new BlockRoot("hellThornRoot", "HellThornRoot");
-        nethicGrass = new BlockModGrass(null, "nethicGrass", "Nethic Grass", 2.0F);
+        nethicGrass = new BlockModGrass(null, "nethicGrass", "Nethic Grass");
 
         tallGlowshroomRed = new BlockTallGlowshroom("tall_glowshroom_red", "Red Tall Glowshroom");
         tallGlowshroomGreen = new BlockTallGlowshroom("tall_glowshroom_green", "Green Tall Glowshroom");
@@ -1077,7 +1077,7 @@ public class JourneyBlocks {
         shiverFlower = new BlockModFlower("shiverFlower", "Shiver Flower").setFrozenPlant();
         iceBush = new BlockModFlower("iceBush", "Ice Bush").setFrozenPlant();
         iceLog = new BlockIceLog();
-        brittleIce = new BlockBrittleIce(JourneyBlocks.brittleIce, "brittleIce", "Brittle Ice", 2);
+        brittleIce = new BlockBrittleIce(JourneyBlocks.brittleIce, "brittleIce", "Brittle Ice");
 
         eucaTallGrass = new BlockModFlower("eucaTallGrass", "Euca Tall Grass", true);
         eucaTallFlowers = new BlockModFlower("eucaTallFlowers", "Euca Tall Flowers");
