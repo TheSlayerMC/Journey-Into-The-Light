@@ -6,6 +6,7 @@ import net.journey.entity.base.JEntityMob;
 import net.journey.entity.projectile.EntityIceBall;
 import net.journey.init.JourneyLootTables;
 import net.journey.init.JourneySounds;
+import net.journey.init.blocks.JourneyBlocks;
 import net.journey.init.items.JourneyWeapons;
 import net.journey.util.Config;
 import net.minecraft.entity.EntityLivingBase;
@@ -101,6 +102,7 @@ public class EntityIceMage extends JEntityMob implements IRangedAttackMob {
                 this.world.getBlockState(new BlockPos(this.posX, this.posY - 1, this.posZ)).getBlock() == Blocks.GRASS ||
                         this.world.getBlockState(new BlockPos(this.posX, this.posY - 1, this.posZ)).getBlock() == Blocks.LEAVES ||
                         this.world.getBlockState(new BlockPos(this.posX, this.posY - 1, this.posZ)).getBlock() == Blocks.SAND ||
+                        this.world.getBlockState(new BlockPos(this.posX, this.posY - 1, this.posZ)).getBlock() == JourneyBlocks.dungeonBricks ||
                         this.world.getBlockState(new BlockPos(this.posX, this.posY - 1, this.posZ)).getBlock() == Blocks.DIRT && this.dimension == 0 || this.dimension == Config.frozen;
     }
 
