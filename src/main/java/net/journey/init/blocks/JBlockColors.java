@@ -1,11 +1,13 @@
 package net.journey.init.blocks;
 
 import net.journey.JITL;
+import net.journey.dimension.base.biome.EnumBiomeColor;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.client.renderer.color.IItemColor;
+import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -29,7 +31,7 @@ public class JBlockColors implements IBlockColor, IItemColor {
 
 	@Override
 	public int colorMultiplier(ItemStack itemStack, int i) {
-		return 0;
+		return EnumBiomeColor.CORBA_SWAMP.getInt();
 	}
 
 	public static void init() {
@@ -38,7 +40,15 @@ public class JBlockColors implements IBlockColor, IItemColor {
 		BlockColors blockColors = minecraft.getBlockColors();
 		blockColors.registerBlockColorHandler(BLOCK_COLOR_INSTANCE,
 				JourneyBlocks.corbaGrass,
-				JourneyBlocks.corbaTallGrass
+				JourneyBlocks.corbaTallGrass,
+				JourneyBlocks.bogwoodLeaves,
+				JourneyBlocks.corbaLeaves
 		);
+		ItemColors itemColors = minecraft.getItemColors();
+		itemColors.registerItemColorHandler(ITEM_COLOR_INSTANCE,
+				JourneyBlocks.corbaGrass,
+				JourneyBlocks.corbaTallGrass,
+				JourneyBlocks.bogwoodLeaves,
+				JourneyBlocks.corbaLeaves);
 	}
 }

@@ -1,6 +1,6 @@
 {
-	"parent": "block/cube_all",
-	"textures": {
-		"all": "journey:blocks/bogwood_leaves"
-	}
+  "parent": "block/leaves",
+  "textures": {
+    "all": "journey:blocks/bogwood_leaves"
+  }
 }

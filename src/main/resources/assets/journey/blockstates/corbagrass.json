@@ -1,6 +1,6 @@
 {
   "variants": {
-    "snowy=false": [
+    "normal": [
       {
         "model": "journey:corbagrass"
       },
@@ -16,9 +16,6 @@
         "model": "journey:corbagrass",
         "y": 270
       }
-    ],
-    "snowy=true": {
-      "model": "journey:corbagrass_snowed"
-    }
+    ]
   }
 }
