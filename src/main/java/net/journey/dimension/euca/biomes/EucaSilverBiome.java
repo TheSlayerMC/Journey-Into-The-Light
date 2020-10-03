@@ -1,5 +1,6 @@
 package net.journey.dimension.euca.biomes;
 
+import net.journey.dimension.base.biome.EnumBiomeColor;
 import net.journey.dimension.base.gen.JWorldGenPlants;
 import net.journey.dimension.euca.gen.trees.WorldGenEucaTree;
 import net.journey.init.blocks.JourneyBlocks;
@@ -10,6 +11,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
@@ -26,6 +29,18 @@ public class EucaSilverBiome extends EucaBiome {
 	public EucaSilverBiome(BiomeProperties properties, IBlockState topBlock, IBlockState fillerBlock) {
 		super(properties, topBlock, fillerBlock);
 		decorator.treesPerChunk = 2;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public int getFoliageColorAtPos(BlockPos pos) {
+		return EnumBiomeColor.EUCA_SILVER.getInt();
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public int getGrassColorAtPos(BlockPos pos) {
+		return EnumBiomeColor.EUCA_SILVER.getInt();
 	}
 
 	@Override

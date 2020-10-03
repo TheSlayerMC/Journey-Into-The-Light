@@ -1,9 +1,10 @@
 {
-	"parent": "block/cube_bottom_top",
-	"textures": {
-		"particle": "journey:blocks/eucadirt",
-		"bottom": "journey:blocks/eucadirt",
-		"top": "journey:blocks/eucaGrass_top",
-		"side": "journey:blocks/eucaGrass_side"
-	}
+  "parent": "block/grass",
+  "textures": {
+    "particle": "journey:blocks/eucadirt",
+    "bottom": "journey:blocks/eucadirt",
+    "top": "journey:blocks/eucagrass_top",
+    "side": "journey:blocks/eucagrass_side",
+    "overlay": "journey:blocks/eucagrass_side_overlay"
+  }
 }

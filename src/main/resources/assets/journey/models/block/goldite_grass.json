@@ -1,9 +1,10 @@
 {
-	"parent": "block/cube_bottom_top",
-	"textures": {
-		"particle": "journey:blocks/goldite_dirt",
-		"bottom": "journey:blocks/goldite_dirt",
-		"top": "journey:blocks/goldite_grass_top",
-		"side": "journey:blocks/goldite_grass_side"
-	}
+  "parent": "block/grass",
+  "textures": {
+    "particle": "journey:blocks/goldite_dirt",
+    "bottom": "journey:blocks/goldite_dirt",
+    "top": "journey:blocks/goldite_grass_top",
+    "side": "journey:blocks/goldite_grass_side",
+    "overlay": "journey:blocks/goldite_grass_side_overlay"
+  }
 }

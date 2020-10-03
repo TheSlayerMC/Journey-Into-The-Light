@@ -1,5 +1,6 @@
 package net.journey.dimension.euca.biomes;
 
+import net.journey.dimension.base.biome.EnumBiomeColor;
 import net.journey.dimension.base.gen.JWorldGenPlants;
 import net.journey.dimension.euca.gen.trees.WorldGenEucaTree;
 import net.journey.init.blocks.JourneyBlocks;
@@ -28,6 +29,18 @@ public class EucaGolditeGrainsBiome extends EucaBiome {
 	public EucaGolditeGrainsBiome(BiomeProperties properties, IBlockState topBlock, IBlockState fillerBlock) {
 		super(properties, topBlock, fillerBlock);
 		decorator.treesPerChunk = 3;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public int getFoliageColorAtPos(BlockPos pos) {
+		return EnumBiomeColor.EUCA_GOLDITE.getInt();
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public int getGrassColorAtPos(BlockPos pos) {
+		return EnumBiomeColor.EUCA_GOLDITE.getInt();
 	}
 
 	@Override

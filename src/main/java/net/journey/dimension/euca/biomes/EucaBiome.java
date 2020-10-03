@@ -1,11 +1,13 @@
 package net.journey.dimension.euca.biomes;
 
 import net.journey.api.block.GroundPredicate;
+import net.journey.dimension.base.biome.EnumBiomeColor;
 import net.journey.dimension.base.biome.JDimensionBiome;
 import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraftforge.fml.relauncher.Side;
@@ -16,15 +18,27 @@ import java.awt.*;
 import java.util.Random;
 
 public class EucaBiome extends JDimensionBiome {
-	
+
 	protected final GroundPredicate EUCA_GRASS_GROUND = GroundPredicate.SOLID_SIDE.and(GroundPredicate.blockPredicate(block -> block == JourneyBlocks.eucaGrass));
 	protected final GroundPredicate EUCA_GOLDITE_GRASS_GROUND = GroundPredicate.SOLID_SIDE.and(GroundPredicate.blockPredicate(block -> block == JourneyBlocks.eucaGolditeGrass));
 	protected final GroundPredicate EUCA_SILVER_GRASS_GROUND = GroundPredicate.SOLID_SIDE.and(GroundPredicate.blockPredicate(block -> block == JourneyBlocks.eucaSilverGrass));
-	
+
 	public EucaBiome(BiomeProperties properties, IBlockState topBlock, IBlockState fillerBlock) {
 		super(properties, topBlock, fillerBlock);
 		this.topBlock = topBlock;
 		this.fillerBlock = fillerBlock;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public int getFoliageColorAtPos(BlockPos pos) {
+		return EnumBiomeColor.EUCA_GOLD.getInt();
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public int getGrassColorAtPos(BlockPos pos) {
+		return EnumBiomeColor.EUCA_GOLD.getInt();
 	}
 
 	@Override
