@@ -1,6 +1,5 @@
 package net.journey.dimension.euca.biomes;
 
-import net.journey.api.block.GroundPredicate;
 import net.journey.dimension.base.biome.EnumBiomeColor;
 import net.journey.dimension.base.gen.JWorldGenPlants;
 import net.journey.dimension.euca.gen.trees.WorldGenEucaTree;
@@ -19,12 +18,11 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Random;
 
 public class EucaGoldBiome extends EucaBiome {
-	private final GroundPredicate EUCA_GRASS_GROUND = GroundPredicate.SOLID_SIDE.and(GroundPredicate.blockPredicate(block -> block == JourneyBlocks.eucaGrass));
 
-	private final JWorldGenPlants EUCA_TALL_GRASS = new JWorldGenPlants(JourneyBlocks.eucaTallGrass, EUCA_GRASS_GROUND, 50);
+	private final JWorldGenPlants EUCA_TALL_GRASS = new JWorldGenPlants(JourneyBlocks.eucaTallGrass, EUCA_GRASS_GROUND, 75);
 	private final JWorldGenPlants EUCA_TALL_FLOWERS = new JWorldGenPlants(JourneyBlocks.eucaTallFlowers, EUCA_GRASS_GROUND);
 	private final JWorldGenPlants EUCA_BLUE_FLOWER = new JWorldGenPlants(JourneyBlocks.eucaBlueFlower, EUCA_GRASS_GROUND);
-	private final JWorldGenPlants GOLDEN_STALKS = new JWorldGenPlants(JourneyBlocks.goldenStalks, EUCA_GRASS_GROUND);
+	private final JWorldGenPlants GOLDEN_STALKS = new JWorldGenPlants(JourneyBlocks.goldenStalks, EUCA_GRASS_GROUND, 25);
 	private final JWorldGenPlants GOLDEN_BULB = new JWorldGenPlants(JourneyBlocks.goldenBulb, EUCA_GRASS_GROUND);
 	private final JWorldGenPlants GOLDEN_BLOOM = new JWorldGenPlants(JourneyBlocks.goldenBloom, EUCA_GRASS_GROUND);
 
@@ -32,7 +30,7 @@ public class EucaGoldBiome extends EucaBiome {
 
 	public EucaGoldBiome(BiomeProperties properties, IBlockState topBlock, IBlockState fillerBlock) {
 		super(properties, topBlock, fillerBlock);
-		decorator.treesPerChunk = 1;
+		decorator.treesPerChunk = 2;
 	}
 
 	@Override
@@ -44,15 +42,13 @@ public class EucaGoldBiome extends EucaBiome {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int getGrassColorAtPos(BlockPos pos) {
-		return EnumBiomeColor.EUCA_GOLD.getInt();
+		return EnumBiomeColor.EUCA_SILVER.getInt();
 	}
 
 	@Override
 	public void decorate(World worldIn, Random rand, BlockPos chunkStart) {
 		for (WorldGenerator flowerGen : FLOWERS) {
-			int j = rand.nextInt(8);
-			int k = rand.nextInt(8);
-			flowerGen.generate(worldIn, rand, chunkStart.add(j, 0, k));
+			flowerGen.generate(worldIn, rand, chunkStart);
 		}
 		super.decorate(worldIn, rand, chunkStart);
 	}

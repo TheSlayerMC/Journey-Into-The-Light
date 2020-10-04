@@ -27,6 +27,7 @@ public class EucaBiome extends JDimensionBiome {
 		super(properties, topBlock, fillerBlock);
 		this.topBlock = topBlock;
 		this.fillerBlock = fillerBlock;
+		this.decorator.mushroomsPerChunk = 0;
 	}
 
 	@Override

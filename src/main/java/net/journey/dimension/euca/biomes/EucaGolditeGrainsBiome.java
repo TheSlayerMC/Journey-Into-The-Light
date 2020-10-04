@@ -28,7 +28,7 @@ public class EucaGolditeGrainsBiome extends EucaBiome {
 
 	public EucaGolditeGrainsBiome(BiomeProperties properties, IBlockState topBlock, IBlockState fillerBlock) {
 		super(properties, topBlock, fillerBlock);
-		decorator.treesPerChunk = 3;
+		decorator.treesPerChunk = 1;
 	}
 
 	@Override
@@ -52,9 +52,7 @@ public class EucaGolditeGrainsBiome extends EucaBiome {
 	@Override
 	public void decorate(World worldIn, Random rand, BlockPos chunkStart) {
 		for (WorldGenerator flowerGen : FLOWERS) {
-			int j = rand.nextInt(8);
-			int k = rand.nextInt(8);
-			flowerGen.generate(worldIn, rand, chunkStart.add(j, 0, k));
+			flowerGen.generate(worldIn, rand, chunkStart);
 		}
 		super.decorate(worldIn, rand, chunkStart);
 	}
@@ -62,7 +60,7 @@ public class EucaGolditeGrainsBiome extends EucaBiome {
 	@Override
 	public @NotNull WorldGenAbstractTree getRandomTreeFeature(Random rand) {
 		Block leaves = RandHelper.chooseEqual(rand, JourneyBlocks.eucaLightGreenLeaves, JourneyBlocks.eucaDarkGreenLeaves, JourneyBlocks.eucaGoldLeaves);
-		WorldGenAbstractTree tree = new WorldGenEucaTree(true, JourneyBlocks.GOLDITE_OAK_LOG, leaves, 10, (rand.nextInt(2) + 3));
+		WorldGenAbstractTree tree = new WorldGenEucaTree(true, JourneyBlocks.GOLDITE_OAK_LOG, leaves, 5, (rand.nextInt(2) + 3));
 		return tree;
 	}
 }

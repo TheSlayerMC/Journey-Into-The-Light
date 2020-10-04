@@ -51,20 +51,6 @@
         },
         {
           "type": "item",
-          "name": "journey:loot_pouch",
-          "functions": [
-            {
-              "function": "set_count",
-              "count": {
-                "min": 1,
-                "max": 5
-              }
-            }
-          ],
-          "weight": 7
-        },
-        {
-          "type": "item",
           "name": "journey:loot_pouch_gold",
           "functions": [
             {
@@ -93,73 +79,17 @@
         },
         {
           "type": "item",
-          "name": "journey:heartsml",
-          "functions": [
-            {
-              "function": "set_count",
-              "count": {
-                "min": 1,
-                "max": 1
-              }
-            }
-          ],
-          "weight": 1
-        },
-        {
-          "type": "item",
-          "name": "journey:heartmed",
-          "functions": [
-            {
-              "function": "set_count",
-              "count": {
-                "min": 1,
-                "max": 1
-              }
-            }
-          ],
-          "weight": 1
-        },
-        {
-          "type": "item",
           "name": "minecraft:diamond",
           "functions": [
             {
               "function": "set_count",
               "count": {
                 "min": 1,
-                "max": 5
+                "max": 8
               }
             }
           ],
           "weight": 5
-        },
-        {
-          "type": "item",
-          "name": "journey:mossyessencestone",
-          "functions": [
-            {
-              "function": "set_count",
-              "count": {
-                "min": 1,
-                "max": 16
-              }
-            }
-          ],
-          "weight": 25
-        },
-        {
-          "type": "item",
-          "name": "journey:essencearrow",
-          "functions": [
-            {
-              "function": "set_count",
-              "count": {
-                "min": 1,
-                "max": 16
-              }
-            }
-          ],
-          "weight": 16
         },
         {
           "type": "item",
@@ -197,7 +127,7 @@
               "function": "set_count",
               "count": {
                 "min": 1,
-                "max": 10
+                "max": 16
               }
             }
           ],
@@ -233,17 +163,17 @@
         },
         {
           "type": "item",
-          "name": "minecraft:redstone",
+          "name": "minecraft:diamond_block",
           "functions": [
             {
               "function": "set_count",
               "count": {
                 "min": 1,
-                "max": 32
+                "max": 2
               }
             }
           ],
-          "weight": 10
+          "weight": 2
         },
         {
           "type": "item",
@@ -257,7 +187,7 @@
               }
             }
           ],
-          "weight": 3
+          "weight": 4
         },
         {
           "type": "item",
@@ -272,16 +202,6 @@
             }
           ],
           "weight": 3
-        },
-        {
-          "type": "item",
-          "name": "minecraft:saddle",
-          "weight": 5
-        },
-        {
-          "type": "item",
-          "name": "minecraft:iron_horse_armor",
-          "weight": 5
         },
         {
           "type": "item",
@@ -300,81 +220,6 @@
           "functions": [
             {
               "function": "enchant_randomly"
-            }
-          ]
-        },
-        {
-          "type": "item",
-          "name": "minecraft:iron_sword",
-          "weight": 3,
-          "functions": [
-            {
-              "function": "enchant_with_levels",
-              "treasure": true,
-              "levels": {
-                "min": 10,
-                "max": 29
-              }
-            }
-          ]
-        },
-        {
-          "type": "item",
-          "name": "minecraft:iron_boots",
-          "weight": 3,
-          "functions": [
-            {
-              "function": "enchant_with_levels",
-              "treasure": true,
-              "levels": {
-                "min": 10,
-                "max": 29
-              }
-            }
-          ]
-        },
-        {
-          "type": "item",
-          "name": "minecraft:iron_chestplate",
-          "weight": 3,
-          "functions": [
-            {
-              "function": "enchant_with_levels",
-              "treasure": true,
-              "levels": {
-                "min": 10,
-                "max": 29
-              }
-            }
-          ]
-        },
-        {
-          "type": "item",
-          "name": "minecraft:iron_leggings",
-          "weight": 3,
-          "functions": [
-            {
-              "function": "enchant_with_levels",
-              "treasure": true,
-              "levels": {
-                "min": 10,
-                "max": 29
-              }
-            }
-          ]
-        },
-        {
-          "type": "item",
-          "name": "minecraft:iron_helmet",
-          "weight": 3,
-          "functions": [
-            {
-              "function": "enchant_with_levels",
-              "treasure": true,
-              "levels": {
-                "min": 10,
-                "max": 29
-              }
             }
           ]
         },
@@ -404,21 +249,6 @@
               "levels": {
                 "min": 1,
                 "max": 10
-              }
-            }
-          ]
-        },
-        {
-          "type": "item",
-          "name": "minecraft:iron_pickaxe",
-          "weight": 3,
-          "functions": [
-            {
-              "function": "enchant_with_levels",
-              "treasure": true,
-              "levels": {
-                "min": 10,
-                "max": 29
               }
             }
           ]
@@ -485,6 +315,111 @@
         },
         {
           "type": "item",
+          "name": "journey:sapphirepickaxe",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "enchant_with_levels",
+              "treasure": true,
+              "levels": {
+                "min": 4,
+                "max": 16
+              }
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "journey:sapphirelegs",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "enchant_with_levels",
+              "treasure": true,
+              "levels": {
+                "min": 4,
+                "max": 16
+              }
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "journey:sapphirebody",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "enchant_with_levels",
+              "treasure": true,
+              "levels": {
+                "min": 4,
+                "max": 16
+              }
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "journey:shadiumboots",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "enchant_with_levels",
+              "treasure": true,
+              "levels": {
+                "min": 4,
+                "max": 16
+              }
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "journey:luniumboots",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "enchant_with_levels",
+              "treasure": true,
+              "levels": {
+                "min": 4,
+                "max": 16
+              }
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "journey:luniumhelmet",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "enchant_with_levels",
+              "treasure": true,
+              "levels": {
+                "min": 4,
+                "max": 16
+              }
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "journey:shadiumhelmet",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "enchant_with_levels",
+              "treasure": true,
+              "levels": {
+                "min": 4,
+                "max": 16
+              }
+            }
+          ]
+        },
+        {
+          "type": "item",
           "entryName": "golden_apple",
           "name": "minecraft:golden_apple",
           "weight": 20
@@ -503,25 +438,6 @@
         },
         {
           "type": "item",
-          "name": "journey:magic_dust",
-          "functions": [
-            {
-              "function": "set_count",
-              "count": {
-                "min": 1,
-                "max": 10
-              }
-            }
-          ],
-          "weight": 13
-        },
-        {
-          "type": "item",
-          "name": "minecraft:name_tag",
-          "weight": 14
-        },
-        {
-          "type": "item",
           "name": "minecraft:gold_nugget",
           "weight": 10,
           "functions": [
@@ -529,7 +445,7 @@
               "function": "minecraft:set_count",
               "count": {
                 "min": 1,
-                "max": 7
+                "max": 32
               }
             }
           ]

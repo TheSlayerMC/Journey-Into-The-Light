@@ -11,12 +11,14 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.slayer.api.EnumMaterialTypes;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.slayer.api.SlayerAPI;
 
 import java.util.Random;
@@ -28,10 +30,11 @@ public class BlockModGrass extends BlockMod implements IGrowable {
     public Block path;
 
     public BlockModGrass(Block dirt, String name, String finalName) {
-        super(EnumMaterialTypes.GRASS, name, finalName, 0.5F);
+        super(name, finalName);
         this.dirt = dirt;
         setSoundType(SoundType.PLANT);
         setCreativeTab(JourneyTabs.BLOCKS);
+        setHardness(0.5F);
         setTickRandomly(true);
     }
 
@@ -96,5 +99,10 @@ public class BlockModGrass extends BlockMod implements IGrowable {
     @Override
     public boolean canGrow(World worldIn, BlockPos pos, IBlockState state, boolean isClient) {
         return true;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public BlockRenderLayer getRenderLayer() {
+        return BlockRenderLayer.CUTOUT_MIPPED;
     }
 }
