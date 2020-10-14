@@ -71,21 +71,27 @@ public class MusicTicker {
 
 		if (dimension == DimensionHelper.DEPTHS_DIM) {
 			return RandHelper.chooseEqual(RandHelper.RANDOM, TrackType.DEPTHS_1, TrackType.DEPTHS_2);
-		} else if (dimension == DimensionHelper.EUCA_DIM) {
-			return RandHelper.chooseEqual(RandHelper.RANDOM, TrackType.EUCA_1, TrackType.EUCA_2, TrackType.EUCA_3);
-		} else if (dimension == DimensionHelper.CORBA_DIM) {
-			return TrackType.CORBA_1;
-		} else if (dimension == DimensionHelper.TERRANIA_DIM) {
-			return TrackType.TERRANIA_1;
-		} else if (dimension == DimensionHelper.BOILING_DIM) {
-			return TrackType.BOIL_1;
-		} else if (dimension == DimensionHelper.CLOUDIA_DIM) {
-			return RandHelper.chooseEqual(RandHelper.RANDOM, TrackType.CLOUDIA_1, TrackType.CLOUDIA_2);
-		} else if (dimension == DimensionHelper.FROZEN_DIM) {
-			return TrackType.FROZEN_1;
 		}
-
-		return type;
+		if (dimension == DimensionHelper.EUCA_DIM) {
+			return RandHelper.chooseEqual(RandHelper.RANDOM, TrackType.EUCA_1, TrackType.EUCA_2, TrackType.EUCA_3);
+		}
+		if (dimension == DimensionHelper.CORBA_DIM) {
+			return TrackType.CORBA_1;
+		}
+		if (dimension == DimensionHelper.TERRANIA_DIM) {
+			return TrackType.TERRANIA_1;
+		}
+		if (dimension == DimensionHelper.BOILING_DIM) {
+			return TrackType.BOIL_1;
+		}
+		if (dimension == DimensionHelper.CLOUDIA_DIM) {
+			return RandHelper.chooseEqual(RandHelper.RANDOM, TrackType.CLOUDIA_1, TrackType.CLOUDIA_2);
+		}
+		if (dimension == DimensionHelper.FROZEN_DIM) {
+			return TrackType.FROZEN_1;
+		} else {
+			return type;
+		}
 	}
 
     public void playMusic(TrackType requestedMusicType) {
