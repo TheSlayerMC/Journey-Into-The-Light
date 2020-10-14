@@ -33,12 +33,6 @@ public class EucaGolditeGrainsBiome extends EucaBiome {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public int getFoliageColorAtPos(BlockPos pos) {
-		return EnumBiomeColor.EUCA_GOLDITE.getInt();
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
 	public int getGrassColorAtPos(BlockPos pos) {
 		return EnumBiomeColor.EUCA_GOLDITE.getInt();
 	}

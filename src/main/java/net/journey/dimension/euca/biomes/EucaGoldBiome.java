@@ -35,14 +35,8 @@ public class EucaGoldBiome extends EucaBiome {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public int getFoliageColorAtPos(BlockPos pos) {
-		return EnumBiomeColor.EUCA_GOLD.getInt();
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
 	public int getGrassColorAtPos(BlockPos pos) {
-		return EnumBiomeColor.EUCA_SILVER.getInt();
+		return EnumBiomeColor.EUCA_GOLD.getInt();
 	}
 
 	@Override

@@ -1,7 +1,10 @@
 package net.journey.dimension.base.biome;
 
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class JDimensionBiome extends Biome {
 
@@ -20,6 +23,12 @@ public class JDimensionBiome extends Biome {
 		this(properties);
 		this.topBlock = topBlock;
 		this.fillerBlock = fillerBlock;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public int getFoliageColorAtPos(BlockPos pos) {
+		return getGrassColorAtPos(pos);
 	}
 
 	public JDimensionBiome isRareBiome(boolean isRare) {

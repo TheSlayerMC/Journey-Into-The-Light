@@ -18,6 +18,7 @@ import net.minecraftforge.event.terraingen.TerrainGen;
 import net.slayer.api.block.BlockModFlower;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Objects;
 import java.util.Random;
 
 public class BlockModSapling extends BlockModFlower implements IGrowable, FeatureProvider {
@@ -48,56 +49,56 @@ public class BlockModSapling extends BlockModFlower implements IGrowable, Featur
         }
     }
 
-    private void generate(World w, BlockPos pos, Random r) {
-        if (!TerrainGen.saplingGrowTree(w, r, pos))
-            return;
-        w.setBlockState(pos, Blocks.AIR.getDefaultState(), 4);
-        if (!treeStructure.generate(w, r, pos.add(0, 0, 0))) {
-            w.setBlockState(pos, this.getDefaultState(), 4);
-        }
-    }
+	private void generate(World w, BlockPos pos, Random r) {
+		if (!TerrainGen.saplingGrowTree(w, r, pos))
+			return;
+		w.setBlockState(pos, Blocks.AIR.getDefaultState(), 4);
+		if (!treeStructure.generate(w, r, pos.add(0, 0, 0))) {
+			w.setBlockState(pos, this.getDefaultState(), 4);
+		}
+	}
 
-    @Override
-    public IBlockState getStateFromMeta(int meta) {
-        return getDefaultState().withProperty(STAGE, Integer.valueOf((meta & 8) >> 3));
-    }
+	@Override
+	public @NotNull IBlockState getStateFromMeta(int meta) {
+		return getDefaultState().withProperty(STAGE, (meta & 8) >> 3);
+	}
 
-    @Override
-    public int getMetaFromState(IBlockState state) {
-        int i = 0;
-        i = i | state.getValue(STAGE).intValue() << 3;
-        return i;
-    }
+	@Override
+	public int getMetaFromState(IBlockState state) {
+		int i = 0;
+		i = i | state.getValue(STAGE) << 3;
+		return i;
+	}
 
-    @Override
-    protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, STAGE);
-    }
+	@Override
+	protected @NotNull BlockStateContainer createBlockState() {
+		return new BlockStateContainer(this, STAGE);
+	}
 
-    public EnumPlantType getPlantType(IBlockAccess world, BlockPos pos) {
-        return EnumPlantType.Plains;
-    }
+	public EnumPlantType getPlantType(IBlockAccess world, BlockPos pos) {
+		return EnumPlantType.Plains;
+	}
 
-    public boolean canGrow(World worldIn, BlockPos pos, IBlockState state, boolean isClient) {
-        return true;
-    }
+	public boolean canGrow(@NotNull World worldIn, @NotNull BlockPos pos, @NotNull IBlockState state, boolean isClient) {
+		return true;
+	}
 
-    public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, IBlockState state) {
-        return true;
-    }
+	public boolean canUseBonemeal(@NotNull World worldIn, @NotNull Random rand, @NotNull BlockPos pos, @NotNull IBlockState state) {
+		return true;
+	}
 
-    public void grow(World worldIn, Random rand, BlockPos pos, IBlockState state) {
-        if (state.getValue(STAGE).intValue() == 0) {
-            worldIn.setBlockState(pos, state.cycleProperty(STAGE), 4);
-        } else {
-            generate(worldIn, pos, rand);
-        }
-    }
+	public void grow(@NotNull World worldIn, @NotNull Random rand, @NotNull BlockPos pos, IBlockState state) {
+		if (state.getValue(STAGE) == 0) {
+			worldIn.setBlockState(pos, state.cycleProperty(STAGE), 4);
+		} else {
+			generate(worldIn, pos, rand);
+		}
+	}
 
-    @Override
-    public @NotNull Features getExtraFeatures() {
-        return Features.Builder.create()
-                .setCustomItemModelLocation(JITL.rl("block/sapling/" + getRegistryName().getPath()))
-                .build();
-    }
+	@Override
+	public @NotNull Features getExtraFeatures() {
+		return Features.Builder.create()
+				.setCustomItemModelLocation(JITL.rl("block/sapling/" + Objects.requireNonNull(getRegistryName()).getPath()))
+				.build();
+	}
 }

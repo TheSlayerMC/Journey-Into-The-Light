@@ -28,12 +28,6 @@ public class CorbaBiome extends JDimensionBiome {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public int getFoliageColorAtPos(BlockPos pos) {
-	    return EnumBiomeColor.CORBA_FOREST.getInt();
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
     public int getGrassColorAtPos(BlockPos pos) {
 	    return EnumBiomeColor.CORBA_FOREST.getInt();
     }

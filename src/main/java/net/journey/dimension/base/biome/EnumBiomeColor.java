@@ -7,7 +7,7 @@ public enum EnumBiomeColor {
 	CORBA_PLAINS(0x86b800),
 
 	EUCA_GOLDITE(0x72b011),
-	EUCA_GOLD(0xffe400),
+	EUCA_GOLD(0xffdb13),
 	EUCA_SILVER(0xffffff);
 
 	private final int color;

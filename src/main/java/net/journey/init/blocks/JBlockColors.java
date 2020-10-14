@@ -11,6 +11,7 @@ import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jetbrains.annotations.NotNull;
@@ -26,7 +27,7 @@ public class JBlockColors implements IBlockColor, IItemColor {
 	@Override
 	public int colorMultiplier(@NotNull IBlockState iBlockState, @Nullable IBlockAccess iBlockAccess, @Nullable BlockPos blockPos, int i) {
 		assert iBlockAccess != null && blockPos != null;
-		return iBlockAccess.getBiome(blockPos).getGrassColorAtPos(blockPos);
+		return BiomeColorHelper.getGrassColorAtPos(iBlockAccess, blockPos);
 	}
 
 	@Override
@@ -45,7 +46,6 @@ public class JBlockColors implements IBlockColor, IItemColor {
 				JourneyBlocks.corbaLeaves,
 
 				JourneyBlocks.eucaGolditeGrass,
-				JourneyBlocks.eucaGrass,
 				JourneyBlocks.eucaSilverGrass
 		);
 		ItemColors itemColors = minecraft.getItemColors();
@@ -56,7 +56,6 @@ public class JBlockColors implements IBlockColor, IItemColor {
 				JourneyBlocks.corbaLeaves,
 
 				JourneyBlocks.eucaGolditeGrass,
-				JourneyBlocks.eucaGrass,
 				JourneyBlocks.eucaSilverGrass
 		);
 	}
