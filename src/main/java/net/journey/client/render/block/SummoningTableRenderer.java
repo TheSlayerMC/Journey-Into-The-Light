@@ -9,15 +9,14 @@ import net.minecraft.client.renderer.entity.RenderEntityItem;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
 
-public class SummoningTableRenderer extends TileEntitySpecialRenderer {
+public class SummoningTableRenderer extends TileEntitySpecialRenderer<TileEntitySummoningTable> {
 
-    private Minecraft mc = Minecraft.getMinecraft();
-    private RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
-    private RenderEntityItem renderEntity;
+    private final Minecraft mc = Minecraft.getMinecraft();
+    private final RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
+    private final RenderEntityItem renderEntity;
 
     public SummoningTableRenderer() {
         renderEntity = new RenderEntityItem(Minecraft.getMinecraft().getRenderManager(), Minecraft.getMinecraft().getRenderItem()) {
@@ -39,15 +38,14 @@ public class SummoningTableRenderer extends TileEntitySpecialRenderer {
     }
 
     @Override
-    public void render(TileEntity t, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
-        TileEntitySummoningTable tile = (TileEntitySummoningTable) t;
-        renderItem(tile.getStackInSlot(0), t.getWorld(), x + 0.85D, y, z + 0.85D, false);
-        renderItem(tile.getStackInSlot(1), t.getWorld(), x + 0.85D, y, z + 0.5D, false);
-        renderItem(tile.getStackInSlot(2), t.getWorld(), x + 0.85D, y, z + 0.15D, false);
-        renderItem(tile.getStackInSlot(3), t.getWorld(), x + 0.5D, y, z + 0.5D, true);
-        renderItem(tile.getStackInSlot(4), t.getWorld(), x + 0.15D, y, z + 0.85D, false);
-        renderItem(tile.getStackInSlot(5), t.getWorld(), x + 0.15D, y, z + 0.5D, false);
-        renderItem(tile.getStackInSlot(6), t.getWorld(), x + 0.15D, y, z + 0.15D, false);
+    public void render(TileEntitySummoningTable t, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
+        renderItem(t.getStackInSlot(0), t.getWorld(), x + 0.85D, y, z + 0.85D, false);
+        renderItem(t.getStackInSlot(1), t.getWorld(), x + 0.85D, y, z + 0.5D, false);
+        renderItem(t.getStackInSlot(2), t.getWorld(), x + 0.85D, y, z + 0.15D, false);
+        renderItem(t.getStackInSlot(3), t.getWorld(), x + 0.5D, y, z + 0.5D, true);
+        renderItem(t.getStackInSlot(4), t.getWorld(), x + 0.15D, y, z + 0.85D, false);
+        renderItem(t.getStackInSlot(5), t.getWorld(), x + 0.15D, y, z + 0.5D, false);
+        renderItem(t.getStackInSlot(6), t.getWorld(), x + 0.15D, y, z + 0.15D, false);
     }
 
     public void renderItem(ItemStack stack, World w, double x, double y, double z, boolean middle) {

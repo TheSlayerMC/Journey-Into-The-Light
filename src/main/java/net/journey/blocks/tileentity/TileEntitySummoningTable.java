@@ -20,13 +20,11 @@ import java.util.Random;
 
 public class TileEntitySummoningTable extends TileEntityLockableLoot implements ITickable {
 
-    public static final TileEntitySummoningTable INSTANCE = new TileEntitySummoningTable();
-
     private NonNullList<ItemStack> inventory = NonNullList.withSize(7, ItemStack.EMPTY);
     private String customName;
 
-    public static TileEntitySummoningTable getInstance() {
-        return INSTANCE;
+    public void onServerBlockClicked() {
+
     }
 
     @Override
