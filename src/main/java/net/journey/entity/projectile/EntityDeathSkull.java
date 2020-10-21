@@ -36,7 +36,7 @@ public class EntityDeathSkull extends EntityWitherSkull {
     protected void onImpact(RayTraceResult par1MovingObjectPosition) {
         if (!this.world.isRemote) {
             if (par1MovingObjectPosition.entityHit != null) {
-                par1MovingObjectPosition.entityHit.attackEntityFrom(DamageSource.MAGIC, 20.0F);
+                par1MovingObjectPosition.entityHit.attackEntityFrom(DamageSource.causeMobDamage(this.shootingEntity), 8.0F);
                 if (par1MovingObjectPosition.entityHit instanceof EntityLivingBase) {
                     byte witherSeconds = 10;
                     if (witherSeconds > 0)
