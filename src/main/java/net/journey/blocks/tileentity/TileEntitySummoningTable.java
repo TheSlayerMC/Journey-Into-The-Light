@@ -3,6 +3,7 @@ package net.journey.blocks.tileentity;
 import net.journey.JITL;
 import net.journey.blocks.tileentity.container.ContainerSummoningTable;
 import net.journey.enums.EnumParticlesClasses;
+import net.journey.enums.EnumSummoningRecipes;
 import net.journey.init.JourneySounds;
 import net.journey.init.items.JourneyItems;
 import net.minecraft.entity.player.EntityPlayer;
@@ -38,13 +39,13 @@ public class TileEntitySummoningTable extends TileEntityLockableLoot implements 
         ItemStack slot7 = this.inventory.get(6);
         if (slot1 != null && slot2 != null && slot3 != null && slot4 != null && slot5 != null && slot6 != null && slot7 != null) {
             if (areItemsInSlots(
-                    JourneyItems.boilPowder,
-                    JourneyItems.boilPowder,
-                    JourneyItems.boilPowder,
-                    JourneyItems.blazingFireball,
-                    JourneyItems.boilPowder,
-                    JourneyItems.boilPowder,
-                    JourneyItems.boilPowder)) {
+                    EnumSummoningRecipes.BLAZIER.getTopLeftIngredient().getItem(),
+                    EnumSummoningRecipes.BLAZIER.getMiddleLeftIngredient().getItem(),
+                    EnumSummoningRecipes.BLAZIER.getBottomLeftIngredient().getItem(),
+                    EnumSummoningRecipes.BLAZIER.getMiddleIngredient().getItem(),
+                    EnumSummoningRecipes.BLAZIER.getTopRightIngredient().getItem(),
+                    EnumSummoningRecipes.BLAZIER.getMiddleRightIngredient().getItem(),
+                    EnumSummoningRecipes.BLAZIER.getBottomRightIngredient().getItem())) {
                 summonItem(new ItemStack(JourneyItems.blazierOrb));
             } else if (areItemsInSlots(
                     JourneyItems.snakeSkin,
