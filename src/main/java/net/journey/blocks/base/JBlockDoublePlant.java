@@ -34,6 +34,8 @@ public class JBlockDoublePlant extends JBlockPlant {
 
 	public static final PropertyEnum<EnumHalf> HALF = PropertyEnum.create("half", EnumHalf.class);
 
+	private final boolean hasOffset = true;
+
 	private AxisAlignedBB topBox;
 
 	public JBlockDoublePlant(String name, String enName) {
@@ -73,7 +75,24 @@ public class JBlockDoublePlant extends JBlockPlant {
 
 	@Override
 	public @NotNull AxisAlignedBB getBoundingBox(@NotNull IBlockState state, @NotNull IBlockAccess source, @NotNull BlockPos pos) {
-		return state.getValue(HALF) == EnumHalf.BOTTOM ? super.getBoundingBox(state, source, pos) : topBox;
+		if (!hasOffset) {
+			if (state.getValue(HALF) == EnumHalf.BOTTOM) {
+				return super.getBoundingBox(state, source, pos);
+			} else {
+				return topBox;
+			}
+		} else {
+			if (state.getValue(HALF) == EnumHalf.BOTTOM) {
+				return super.getBoundingBox(state, source, pos).offset(state.getOffset(source, pos));
+			} else {
+				return topBox.offset(state.getOffset(source, pos));
+			}
+		}
+	}
+
+	@Override
+	public @NotNull EnumOffsetType getOffsetType() {
+		return hasOffset ? EnumOffsetType.XZ : EnumOffsetType.NONE;
 	}
 
 	@Override
