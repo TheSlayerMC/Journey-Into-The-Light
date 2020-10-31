@@ -16,6 +16,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.slayer.api.SlayerAPI;
 import net.slayer.api.block.BlockMod;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -31,8 +32,8 @@ public class BlockAncientSocket extends BlockMod {
     protected static final AxisAlignedBB AABB_INSERT = new AxisAlignedBB(0.3125D, 0.8125D, 0.3125D, 0.6875D, 1.0D, 0.6875D);
 
     public BlockAncientSocket(String name, String f) {
-        super(name, f, false);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(INSERT, Boolean.valueOf(false)));
+	    super(name, f, false);
+	    this.setDefaultState(this.blockState.getBaseState().withProperty(INSERT, Boolean.FALSE));
     }
 
     @Override
@@ -59,9 +60,9 @@ public class BlockAncientSocket extends BlockMod {
     public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean p_185477_7_) {
         addCollisionBoxToList(pos, entityBox, collidingBoxes, AABB_BLOCK);
 
-        if (worldIn.getBlockState(pos).getValue(INSERT).booleanValue()) {
-            addCollisionBoxToList(pos, entityBox, collidingBoxes, AABB_INSERT);
-        }
+	    if (worldIn.getBlockState(pos).getValue(INSERT)) {
+		    addCollisionBoxToList(pos, entityBox, collidingBoxes, AABB_INSERT);
+	    }
     }
 
     @Override
@@ -69,27 +70,27 @@ public class BlockAncientSocket extends BlockMod {
         return SlayerAPI.toItem(this);
     }
 
-    @Override
-    public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
-        return this.getDefaultState().withProperty(INSERT, Boolean.valueOf(false));
-    }
+	@Override
+	public @NotNull IBlockState getStateForPlacement(@NotNull World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
+		return this.getDefaultState().withProperty(INSERT, Boolean.FALSE);
+	}
 
-    @Override
-    public boolean hasComparatorInputOverride(IBlockState state) {
-        return true;
-    }
+	@Override
+	public boolean hasComparatorInputOverride(@NotNull IBlockState state) {
+		return true;
+	}
 
-    @Override
-    public IBlockState getStateFromMeta(int meta) {
-        return this.getDefaultState().withProperty(INSERT, Boolean.valueOf((meta & 1) != 0));
-    }
+	@Override
+	public @NotNull IBlockState getStateFromMeta(int meta) {
+		return this.getDefaultState().withProperty(INSERT, (meta & 1) != 0);
+	}
 
     @Override
     public int getMetaFromState(IBlockState state) {
         int i = 0;
-        if (state.getValue(INSERT).booleanValue()) {
-            i = 1;
-        }
+	    if (state.getValue(INSERT)) {
+		    i = 1;
+	    }
         return i;
     }
 
@@ -100,7 +101,7 @@ public class BlockAncientSocket extends BlockMod {
 
     @Override
     public int getComparatorInputOverride(IBlockState blockState, World worldIn, BlockPos pos) {
-        return blockState.getValue(INSERT).booleanValue() ? 15 : 0;
+	    return blockState.getValue(INSERT) ? 15 : 0;
     }
 
     @Override

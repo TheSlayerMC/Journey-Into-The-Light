@@ -39,6 +39,6 @@ public class ItemStringOfTethering extends ItemBaubleBase implements IBauble {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack i, World worldIn, List<String> l, ITooltipFlag flagIn) {
-		l.add(SlayerAPI.Colour.YELLOW + "Crouch within 5 block of a surface to negate fall damage");
+		l.add(SlayerAPI.Colour.YELLOW + "Crouch on the side of a block to slow down");
 	}
 }
