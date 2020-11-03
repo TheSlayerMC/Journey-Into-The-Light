@@ -46,6 +46,10 @@ repositories {
         name = 'sponge'
         url = 'https://repo.spongepowered.org/maven'
     }
+    maven {
+        name = "TimeConqueror's Maven"
+        url = "https://repo.repsy.io/mvn/timeconqueror/mc/"
+    }
 }
 
 minecraft {
@@ -65,6 +69,7 @@ minecraft {
     // Default run configurations.
     // These can be tweaked, removed, or duplicated as needed.
     def extraArgs = Arrays.asList(/*here you can add arguments for every launch mode*/)
+    def extraVmArgs = Arrays.asList('-Dmixin.env.disableRefMap=true')
     runs {
         client {
             workingDirectory project.file('run')
@@ -76,6 +81,7 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             setArgs(extraArgs)
+            setJvmArgs(extraVmArgs)
 
             mods {
                 jitl {
@@ -96,6 +102,7 @@ minecraft {
             //property 'forge.logging.console.level', 'debug'
 
             setArgs(extraArgs)
+            setJvmArgs(extraVmArgs)
 
             mods {
                 jitl {
@@ -117,6 +124,7 @@ minecraft {
 
             args '--mod', 'jitl', '--all', '--output', ("\"" + projectDir.path + "/src/generated/resources/\"")
             setArgs(extraArgs)
+            setJvmArgs(extraVmArgs)
 
             mods {
                 jitl {
@@ -155,6 +163,8 @@ dependencies {
             }
         }
     }
+
+    implementation fg.deobf(group: 'ru.timeconqueror', name: 'TimeCore', version: '1.16.3-3.1.0.0.build4', changing: true)
 }
 
 jar {

@@ -47,8 +47,14 @@ A full progressional experience that adds Weapons, Mobs, Dimensions, Bosses, and
     # Side this dependency is applied on - BOTH, CLIENT or SERVER
     side="BOTH"
 [[dependencies.jitl]]
-    modId="minecraft"
-    mandatory=true
-    versionRange="[1.16.3]"
-    ordering="NONE"
-    side="BOTH"
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.16.3]"
+ordering = "NONE"
+side = "BOTH"
+[[dependencies.jitl]]
+modId = "timecore"
+mandatory = true
+versionRange = "[1.16.3-3.1.0,)"
+ordering = "NONE"
+side = "BOTH"
