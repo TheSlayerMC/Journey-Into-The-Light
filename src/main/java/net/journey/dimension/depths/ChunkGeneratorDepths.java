@@ -153,7 +153,7 @@ public class ChunkGeneratorDepths implements IChunkGenerator {
 										
 									if(k2 * 8 + l2 > 44) {
 										cp.setBlockState(k * 4 + i3, k2 * 8 + l2, j1 * 4 + j3, stone);
-										cp.setBlockState(k * 4 + i3, k2 * 8 + l2 + 1, j1 * 4 + j3, grass);
+										cp.setBlockState(k * 4 + i3, k2 * 8 + l2 + 1, j1 * 4 + j3, Blocks.BEDROCK.getDefaultState());
 									}
 								}
 
@@ -190,8 +190,6 @@ public class ChunkGeneratorDepths implements IChunkGenerator {
 		for (int i = 0; i < 16; i++) {
 			for (int k = 0; k < 16; k++) {
 				cp.setBlockState(i, 0, k, Blocks.BEDROCK.getDefaultState());
-				cp.setBlockState(i, 120, k, Blocks.BEDROCK.getDefaultState());
-				cp.setBlockState(i, 119, k, stone);
 
 				for (int j = 48; j > 0; j--) {
 					if (cp.getBlockState(i, j, k) == top_grass) {

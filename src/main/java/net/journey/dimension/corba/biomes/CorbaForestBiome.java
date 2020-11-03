@@ -15,6 +15,7 @@ public class CorbaForestBiome extends CorbaBiome {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int getGrassColorAtPos(BlockPos pos) {
-		return EnumBiomeColor.CORBA_FOREST.getInt();
+		double d0 = GRASS_COLOR_NOISE.getValue((double) pos.getX() * 0.0225D, (double) pos.getZ() * 0.0225D);
+		return this.getModdedBiomeGrassColor(d0 < -0.1D ? EnumBiomeColor.CORBA_FOREST.getInt() : EnumBiomeColor.CORBA_FOREST_2.getInt());
 	}
 }

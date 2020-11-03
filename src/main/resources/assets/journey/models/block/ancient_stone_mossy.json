@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_column",
+  "textures": {
+    "side": "journey:blocks/ancient_stone_side_mossy",
+    "end": "journey:blocks/ancient_stone_top_mossy"
+  }
+}

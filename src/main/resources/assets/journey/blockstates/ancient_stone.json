@@ -1,5 +1,12 @@
 {
-	"variants": {
-		"normal": { "model": "journey:ancient_stone"}
-	}
+  "variants": {
+    "normal": [
+      {
+        "model": "journey:ancient_stone"
+      },
+      {
+        "model": "journey:ancient_stone_mossy"
+      }
+    ]
+  }
 }

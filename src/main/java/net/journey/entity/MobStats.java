@@ -420,7 +420,7 @@ public class MobStats {
     public static final int LOGGER_DAMAGE = 10;
 
     public static final int NETHER_BEAST_HEALTH = 600;
-    public static final int NETHER_BEAST_DAMAGE = 10;
+    public static final int NETHER_BEAST_DAMAGE = 8;
 
     public static final int SENTRY_HEART_HEALTH = 5000;//TODO CHANGE
     public static final int SENTRY_HEART_MOVEMENT_SPEED = 0;

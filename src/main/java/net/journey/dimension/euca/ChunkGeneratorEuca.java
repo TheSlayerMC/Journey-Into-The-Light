@@ -246,7 +246,7 @@ public class ChunkGeneratorEuca implements IChunkGenerator {
 			generateStructure(x1, z1, spawner);
 		}
 
-		if (this.rand.nextInt(10) == 0) {
+		if (this.rand.nextInt(3) == 0) {
 			Block bricks = RandHelper.chooseEqual(rand, JourneyBlocks.EUCA_DUNGEON_BRICKS, JourneyBlocks.EUCA_GOLD_STONE, JourneyBlocks.EUCA_SQUARE_DUNGEON_BRICKS);
 			new JWorldGenRuins(GroundPredicate.COMMON_AND_EUCA_GRASS, JWorldGenRuins.LootType.RUINS,
 					bricks.getDefaultState()).generate(world, this.rand, chunkStart);
@@ -283,15 +283,6 @@ public class ChunkGeneratorEuca implements IChunkGenerator {
 		for (chunkX = 0; chunkX < Config.storonOreTrys; chunkX++) {
 			storonOre.generate(world, rand, chunkStart.add(rand.nextInt(16), rand.nextInt(world.getHeight()), rand.nextInt(16)));
 		}
-
-		/*for (times = 0; times < 5; times++) {
-			x = x1 + this.rand.nextInt(chunkSize);
-			z = z1 + this.rand.nextInt(chunkSize);
-			int yCoord = rand.nextInt(128) + 1;
-			if (isBlockTop(x, yCoord - 1, z, JourneyBlocks.eucaGrass)) {
-				treesgreen.get(rand.nextInt(treesgreen.size())).generate(worldObj, rand, new BlockPos(x, yCoord, z));
-			}
-		} */
 	}
 
 	private void generateStructure(int x, int z, WorldGenerator... generators) {

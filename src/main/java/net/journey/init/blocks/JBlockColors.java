@@ -46,7 +46,10 @@ public class JBlockColors implements IBlockColor, IItemColor {
 				JourneyBlocks.corbaLeaves,
 
 				JourneyBlocks.eucaGolditeGrass,
-				JourneyBlocks.eucaSilverGrass
+				JourneyBlocks.eucaSilverGrass,
+				JourneyBlocks.eucaSilverLeaves,
+				JourneyBlocks.eucaSilverShortGrass,
+				JourneyBlocks.eucaSilverTallGrass
 		);
 		ItemColors itemColors = minecraft.getItemColors();
 		itemColors.registerItemColorHandler(ITEM_COLOR_INSTANCE,
@@ -55,8 +58,7 @@ public class JBlockColors implements IBlockColor, IItemColor {
 				JourneyBlocks.bogwoodLeaves,
 				JourneyBlocks.corbaLeaves,
 
-				JourneyBlocks.eucaGolditeGrass,
-				JourneyBlocks.eucaSilverGrass
+				JourneyBlocks.eucaGolditeGrass
 		);
 	}
 }

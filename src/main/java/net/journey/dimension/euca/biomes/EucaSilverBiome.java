@@ -34,7 +34,8 @@ public class EucaSilverBiome extends EucaBiome {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int getGrassColorAtPos(BlockPos pos) {
-		return EnumBiomeColor.EUCA_SILVER.getInt();
+		double d0 = GRASS_COLOR_NOISE.getValue((double) pos.getX() * 0.0225D, (double) pos.getZ() * 0.0225D);
+		return this.getModdedBiomeGrassColor(d0 < -0.1D ? EnumBiomeColor.EUCA_SILVER.getInt() : EnumBiomeColor.EUCA_SILVER_2.getInt());
 	}
 
 	@Override

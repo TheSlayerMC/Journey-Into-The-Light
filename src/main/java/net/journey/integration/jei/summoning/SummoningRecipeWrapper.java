@@ -3,6 +3,7 @@ package net.journey.integration.jei.summoning;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.ingredients.VanillaTypes;
 import mezz.jei.api.recipe.IRecipeWrapper;
+import net.journey.enums.EnumSummoningRecipes;
 import net.journey.init.items.JourneyItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.Item;
@@ -29,15 +30,16 @@ public class SummoningRecipeWrapper implements IRecipeWrapper {
 
     public void setSummons(IIngredients ingredients) {
         if (output == JourneyItems.blazierOrb) {
-            inputs.add(new ItemStack(JourneyItems.boilPowder));
-            inputs.add(new ItemStack(JourneyItems.boilPowder));
-            inputs.add(new ItemStack(JourneyItems.boilPowder));
+            inputs.add(EnumSummoningRecipes.BLAZIER.getTopLeftIngredient());
+            inputs.add(EnumSummoningRecipes.BLAZIER.getMiddleLeftIngredient());
+            inputs.add(EnumSummoningRecipes.BLAZIER.getBottomLeftIngredient());
 
-            inputs.add(new ItemStack(JourneyItems.blazingFireball));
+            inputs.add(EnumSummoningRecipes.BLAZIER.getMiddleIngredient());
 
-            inputs.add(new ItemStack(JourneyItems.boilPowder));
-            inputs.add(new ItemStack(JourneyItems.boilPowder));
-            inputs.add(new ItemStack(JourneyItems.boilPowder));
+            inputs.add(EnumSummoningRecipes.BLAZIER.getTopRightIngredient());
+            inputs.add(EnumSummoningRecipes.BLAZIER.getMiddleRightIngredient());
+            inputs.add(EnumSummoningRecipes.BLAZIER.getBottomRightIngredient());
+
         } else if (output == JourneyItems.soulWatcherOrb) {
             inputs.add(new ItemStack(JourneyItems.snakeSkin));
             inputs.add(new ItemStack(JourneyItems.concentratedBlood));

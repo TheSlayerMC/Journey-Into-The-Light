@@ -20,7 +20,7 @@ public class WorldGenAncientDungeon extends WorldGenerator {
 	private final Random rand = new Random();
 
 	public IBlockState floor = JourneyBlocks.ANCIENT_STONE.getDefaultState();
-	public IBlockState pillars = Blocks.MOSSY_COBBLESTONE.getDefaultState();
+	public IBlockState pillars = JourneyBlocks.mossyEssenceStone.getDefaultState();
 	public IBlockState catalyst = JourneyBlocks.ANCIENT_STONE.getDefaultState();
 
 	public IBlockState getDungeonBricks() {
