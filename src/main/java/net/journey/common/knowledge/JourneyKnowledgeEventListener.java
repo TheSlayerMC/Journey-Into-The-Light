@@ -1,33 +1,29 @@
 package net.journey.common.knowledge;
 
-import java.util.Random;
-
 import net.journey.api.capability.JourneyPlayer;
 import net.journey.api.capability.PlayerStats;
 import net.journey.common.capability.JCapabilityManager;
-import net.journey.init.blocks.JourneyBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.monster.EntityCreeper;
-import net.minecraft.entity.monster.EntityEnderman;
-import net.minecraft.entity.monster.EntitySkeleton;
-import net.minecraft.entity.monster.EntitySpider;
-import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.entity.monster.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.MathHelper;
+import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
+import java.util.Random;
+
 public class JourneyKnowledgeEventListener {
-	
+
 	@SubscribeEvent
 	public void onBlockHarvested(HarvestDropsEvent event) {
-		if (event.getHarvester() != null && event.getHarvester() instanceof EntityPlayer) {
+		if (event.getHarvester() != null && !(event.getHarvester() instanceof FakePlayer)) {
 			EntityPlayer player = event.getHarvester();
 			JourneyPlayer journeyPlayer = JCapabilityManager.asJourneyPlayer(player);
 			PlayerStats stats = journeyPlayer.getPlayerStats();
@@ -45,9 +41,9 @@ public class JourneyKnowledgeEventListener {
 			addKnowledgeFromBlock(event, stats, Blocks.QUARTZ_ORE, EnumKnowledgeType.NETHER, 2F, 3);
 			addKnowledgeFromBlock(event, stats, Blocks.GLOWSTONE, EnumKnowledgeType.NETHER, 2F, 3);
 			addKnowledgeFromBlock(event, stats, Blocks.NETHERRACK, EnumKnowledgeType.NETHER, 0.02F, 0);
-			
+
 			addKnowledgeFromBlock(event, stats, Blocks.END_STONE, EnumKnowledgeType.END, 0.02F, 0);
-			
+
 			journeyPlayer.sendUpdates();
 		}
 	}
@@ -97,10 +93,10 @@ public class JourneyKnowledgeEventListener {
 		Random rand = new Random();
 		IBlockState harvestedState = event.getState();
 		if (harvestedState.getBlock() == block) {
-			if(randExtra != 0) {//check is to stop positive bounds error
+			if (randExtra != 0) {//check is to stop positive bounds error
 				stats.addKnowledge(knowledgeType, rand.nextInt(randExtra) + knowledgeExp); //for some reason its not random, its the total of the random + base number
 			} else {
-				stats.addKnowledge(knowledgeType, knowledgeExp);	
+				stats.addKnowledge(knowledgeType, knowledgeExp);
 			}
 		}
 	}
@@ -108,11 +104,11 @@ public class JourneyKnowledgeEventListener {
 	public void addKnowledgeFromMob(LivingDeathEvent event, PlayerStats stats, Class<? extends EntityLivingBase> entityLivingBase, EnumKnowledgeType knowledgeType, float knowledgeExp, int randExtra) {
 		Random rand = new Random();
 		EntityLivingBase killedEntity = event.getEntityLiving();
-		if(killedEntity.getClass() == entityLivingBase) {
-			if(randExtra != 0)
+		if (killedEntity.getClass() == entityLivingBase) {
+			if (randExtra != 0)
 				stats.addKnowledge(knowledgeType, knowledgeExp + rand.nextInt(randExtra));
 			else
-				stats.addKnowledge(knowledgeType, knowledgeExp);		
+				stats.addKnowledge(knowledgeType, knowledgeExp);
 		}
 	}
 }
