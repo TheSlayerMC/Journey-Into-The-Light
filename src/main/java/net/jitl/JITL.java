@@ -1,6 +1,5 @@
 package net.jitl;
 
-import net.jitl.init.JourneyTabs;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -20,13 +19,12 @@ public class JITL {
     public JITL() {
         Registration.register(FMLJavaModLoadingContext.get().getModEventBus());
 
-        JourneyTabs.init();
-
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::preInit);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientSetup);
 
         MinecraftForge.EVENT_BUS.register(this);
     }
+
     private void preInit(final FMLCommonSetupEvent event) {
 
     }
