@@ -26,3 +26,18 @@ forge*changelog.txt
 
 #Custom
 /logs
+/saves
+/world
+/crash-reports
+/screenshots
+/config
+banned-ips.json
+banned-players.json
+eula.txt
+ops.json
+options.txt
+server.properties
+servers.dat
+usercache.json
+usernamecache.json
+whitelist.json
