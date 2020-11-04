@@ -9,4 +9,8 @@ public class JBlockOre extends JBlock {
     public JBlockOre(String enName, float hardness) {
         super(EnumMaterialTypes.STONE, enName, hardness);
     }
+
+    public JBlockOre(String enName) {
+        this(enName, 2.0F);
+    }
 }
