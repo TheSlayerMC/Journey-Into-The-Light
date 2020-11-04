@@ -1,6 +1,5 @@
 package net.jitl;
 
-import net.jitl.init.JourneyBlocks;
 import net.jitl.init.JourneyItems;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -18,6 +17,5 @@ public class Registration {
         ITEMS.register(bus);
 
         JourneyItems.register();
-        JourneyBlocks.register();
     }
 }

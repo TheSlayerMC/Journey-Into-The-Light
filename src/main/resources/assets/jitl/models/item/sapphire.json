@@ -1,6 +1,6 @@
 {
 	"parent": "item/generated",
 	"textures": {
-		"layer0": "jitl:items/sapphire"
+		"layer0": "jitl:item/sapphire"
 	}
 }

@@ -1,6 +1,6 @@
 {
     "parent": "item/handheld",
     "textures": {
-        "layer0": "jitl:items/lunium_sword"
+        "layer0": "jitl:item/lunium_sword"
     }
 }

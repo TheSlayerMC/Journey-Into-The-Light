@@ -9,9 +9,10 @@ import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import ru.timeconqueror.timecore.api.TimeMod;
 
 @Mod(JITL.MODID)
-public class JITL {
+public class JITL implements TimeMod {
     public static final String MODID = "jitl";
     public static final String NAME = "Journey Into the Light";
     public static final Logger LOGGER = LogManager.getLogger(MODID);

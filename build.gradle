@@ -164,7 +164,7 @@ dependencies {
         }
     }
 
-    implementation fg.deobf(group: 'ru.timeconqueror', name: 'TimeCore', version: '1.16.3-3.1.0.0.build6', changing: true)
+    implementation fg.deobf(group: 'ru.timeconqueror', name: 'TimeCore', version: '1.16.3-3.1.0.0.build11', changing: true)
 }
 
 jar {
