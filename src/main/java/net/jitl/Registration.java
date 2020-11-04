@@ -1,5 +1,7 @@
 package net.jitl;
 
+import net.jitl.init.JourneyBlocks;
+import net.jitl.init.JourneyItems;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;

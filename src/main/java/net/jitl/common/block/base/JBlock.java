@@ -1,6 +1,6 @@
-package net.jitl.block.base;
+package net.jitl.common.block.base;
 
-import net.jitl.helper.EnumMaterialTypes;
+import net.jitl.common.helper.EnumMaterialTypes;
 import net.jitl.init.JourneyTabs;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;

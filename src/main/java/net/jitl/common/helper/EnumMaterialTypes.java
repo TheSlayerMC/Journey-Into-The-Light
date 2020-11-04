@@ -1,4 +1,4 @@
-package net.jitl.helper;
+package net.jitl.common.helper;
 
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;

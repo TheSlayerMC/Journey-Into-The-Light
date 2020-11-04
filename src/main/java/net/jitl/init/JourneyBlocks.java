@@ -1,12 +1,9 @@
-package net.jitl;
+package net.jitl.init;
 
-import net.jitl.block.JBlockOre;
-import net.jitl.block.base.JBlock;
-import net.jitl.init.JourneyTabs;
-import net.minecraft.block.AbstractBlock;
+import net.jitl.Registration;
+import net.jitl.common.block.JBlockOre;
+import net.jitl.common.block.base.JBlock;
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.material.MaterialColor;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;

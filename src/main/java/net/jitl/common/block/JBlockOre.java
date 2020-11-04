@@ -1,8 +1,7 @@
-package net.jitl.block;
+package net.jitl.common.block;
 
-import net.jitl.block.base.JBlock;
-import net.jitl.helper.EnumMaterialTypes;
-import net.minecraft.item.ItemGroup;
+import net.jitl.common.block.base.JBlock;
+import net.jitl.common.helper.EnumMaterialTypes;
 
 public class JBlockOre extends JBlock {
 

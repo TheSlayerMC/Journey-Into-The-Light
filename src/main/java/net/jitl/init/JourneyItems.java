@@ -1,6 +1,6 @@
-package net.jitl;
+package net.jitl.init;
 
-import net.jitl.init.JourneyTabs;
+import net.jitl.Registration;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
 
