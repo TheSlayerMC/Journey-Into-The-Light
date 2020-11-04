@@ -19,9 +19,11 @@ public class JourneyBlocks {
     public static RegistryObject<Block> SAPPHIRE_ORE = register("sapphire_ore", () -> new JBlockOre("Sapphire Ore",2.0F));//drops are loot tables now?
     public static RegistryObject<Block> SAPPHIRE_BLOCK = register("sapphire_block", () -> new JBlock("Sapphire Block"));
 
-    public static void register() {
+    public static RegistryObject<Block> LUNIUM_ORE = register("lunium_ore", () -> new JBlockOre("Lunium Ore",2.0F));//drops are loot tables now?
+    public static RegistryObject<Block> LUNIUM_BLOCK = register("lunium_block", () -> new JBlock("Lunium Block"));
 
-    }
+
+    public static void register() { }
 
     private static <T extends Block> RegistryObject<T> registerNoItem(String name, Supplier<T> block) {
         return Registration.BLOCKS.register(name, block);

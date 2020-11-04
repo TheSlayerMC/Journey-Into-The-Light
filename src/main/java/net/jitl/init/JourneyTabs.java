@@ -11,6 +11,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.function.Supplier;
 
 public class JourneyTabs {
+
     public static final ItemGroup ITEMS = new ItemGroup("journey.items") {
         @Override
         public ItemStack makeIcon() {
