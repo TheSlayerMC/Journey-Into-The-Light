@@ -1,28 +1,19 @@
 package net.slayer.json;
 
 import java.awt.Container;
-import java.awt.Desktop;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-
 
 public class JsonGenerator extends JFrame {
 
@@ -32,20 +23,17 @@ public class JsonGenerator extends JFrame {
     public JTextField nameField, texNameField;
     public JLabel name, textureName, copy, version;
     public JButton exit, generate;
-    public JCheckBox block, tool, stairs, flower;
+    public JCheckBox block, tool;
     public BufferedWriter itemModelWriter, blockModelWriter, blockStateWriter;
 
     public static String MOD_ID = "jitl";
-
     public static JsonGenerator INSTANCE = new JsonGenerator();
 
     public static void main(String[] args) { }
 
     public JsonGenerator() {
         block = new JCheckBox("Is block?");
-        stairs = new JCheckBox("Is the Block 'stairs'?");
         tool = new JCheckBox("Render in 3D? (Things like tools)");
-        flower = new JCheckBox("Is it crossed like a flower?");
 
         texNameField = new JTextField(10);
         nameField = new JTextField(10);
@@ -100,7 +88,7 @@ public class JsonGenerator extends JFrame {
                 e.printStackTrace();
             }
 
-            if(!tool.isSelected() && block.isSelected() || stairs.isSelected()) {
+            if(!tool.isSelected() && block.isSelected()) {
                 File blockModel = new File(blockModelDir);
                 try {
                     if(blockModel.exists()) blockModel.delete();
@@ -125,13 +113,11 @@ public class JsonGenerator extends JFrame {
                 Block.INSTANCE.writeNormalBlock(nameField.getText(), texNameField.getText());
             }
 
-            else if(!block.isSelected() && tool.isSelected()) {
+            else if(!block.isSelected() && tool.isSelected())
                 Item.INSTANCE.write3DItem(nameField.getText(), texNameField.getText());
-            }
 
-            if(!block.isSelected() && !tool.isSelected()) {
+            if(!block.isSelected() && !tool.isSelected())
                 Item.INSTANCE.writeNormalItem(nameField.getText(), texNameField.getText());
-            }
 
             if(block.isSelected()) {
                 itemModelInit();
