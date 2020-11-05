@@ -1,4 +1,4 @@
-package net.slayer.json;
+package main.java.net.slayer.json;
 
 import javax.swing.*;
 import java.awt.*;
