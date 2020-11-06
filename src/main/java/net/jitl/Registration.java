@@ -1,7 +1,6 @@
 package net.jitl;
 
 import net.jitl.init.JourneyItems;
-import net.jitl.world.gen.JOreGen;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.world.gen.feature.Feature;
@@ -19,8 +18,6 @@ public class Registration {
         FEATURES.register(bus);
         BLOCKS.register(bus);
         ITEMS.register(bus);
-
-        JOreGen.init();
         JourneyItems.register();
     }
 }

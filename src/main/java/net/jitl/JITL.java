@@ -1,5 +1,6 @@
 package net.jitl;
 
+import net.jitl.world.gen.JFeatureGen;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -27,7 +28,7 @@ public class JITL implements TimeMod {
     }
 
     private void preInit(final FMLCommonSetupEvent event) {
-
+        JFeatureGen.init();
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
