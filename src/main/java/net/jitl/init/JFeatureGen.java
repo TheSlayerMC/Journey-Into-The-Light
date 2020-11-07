@@ -71,7 +71,7 @@ public class JFeatureGen {
 						1)));
 		OVERWORLD_ORES.add(
 				register("iridium_ore", defaultOreFeature(
-						JBlocks.SHADIUM_ORE.defaultBlockState(),
+						JBlocks.IRIDIUM_ORE.defaultBlockState(),
 						JRuleTests.STONE_DEFAULT,
 						4,
 						8,
