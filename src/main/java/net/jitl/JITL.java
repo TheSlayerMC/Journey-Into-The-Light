@@ -1,7 +1,7 @@
 package net.jitl;
 
-import net.jitl.common.world.gen.JFeatureGen;
 import net.jitl.init.JConfiguredStructures;
+import net.jitl.init.JFeatureGen;
 import net.jitl.init.JStructures;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.FlatChunkGenerator;

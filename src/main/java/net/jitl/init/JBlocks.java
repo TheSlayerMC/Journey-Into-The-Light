@@ -1,4 +1,4 @@
-package net.jitl.registry;
+package net.jitl.init;
 
 import net.jitl.JITL;
 import net.minecraft.block.Block;

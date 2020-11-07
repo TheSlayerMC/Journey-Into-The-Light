@@ -1,4 +1,4 @@
-package net.jitl.registry.internal;
+package net.jitl.init.internal;
 
 import net.jitl.JITL;
 import net.jitl.init.JTabs;
