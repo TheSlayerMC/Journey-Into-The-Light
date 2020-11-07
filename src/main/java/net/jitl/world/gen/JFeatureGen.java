@@ -1,9 +1,9 @@
 package net.jitl.world.gen;
 
 import net.jitl.JITL;
+import net.jitl.registry.JBlocks;
 import net.jitl.util.JRuleTests;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
@@ -22,7 +22,7 @@ import net.minecraftforge.fml.common.Mod;
 
 import java.util.ArrayList;
 
-@Mod.EventBusSubscriber(modid = JITL.MODID)
+@Mod.EventBusSubscriber
 public class JFeatureGen {
 
 	/**
@@ -45,22 +45,22 @@ public class JFeatureGen {
 	 */
 	public static void registerOres() {
 		OVERWORLD_ORES.add(
-				register("ore_sapphire", defaultOreFeature(
-						Blocks.DIAMOND_ORE.defaultBlockState(), //replace this
+				register("sapphire_ore", defaultOreFeature(
+						JBlocks.SAPPHIRE_ORE.defaultBlockState(), //replace this
 						JRuleTests.STONE_DEFAULT, //the block it can generate in
 						12, //max vein size
 						128, //max gen height
 						20))); //quantity per chunk (I assume)
 		NETHER_ORES.add(
-				register("ore_hellcrust", defaultOreFeature(
-						Blocks.GLASS.defaultBlockState(),
+				register("hellcrust_ore", defaultOreFeature(
+						JBlocks.HELLSTONE_ORE.defaultBlockState(),
 						JRuleTests.STONE_NETHERRACK,
 						12,
 						128,
 						20)));
 		END_ORES.add(
-				register("ore_enderillium", defaultOreFeature(
-						Blocks.GLOWSTONE.defaultBlockState(),
+				register("enderillium_ore", defaultOreFeature(
+						JBlocks.ENDERILLIUM_ORE.defaultBlockState(),
 						JRuleTests.STONE_END,
 						12,
 						128,
@@ -112,6 +112,7 @@ public class JFeatureGen {
 	 */
 	private static void genOres(BiomeLoadingEvent event) {
 		BiomeGenerationSettingsBuilder builder = event.getGeneration();
+
 		if (event.getCategory().equals(Biome.Category.NETHER)) {
 			for (ConfiguredFeature<?, ?> ore : NETHER_ORES) {
 				if (ore != null) {
