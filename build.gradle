@@ -31,6 +31,12 @@ archivesBaseName = "Journey-Into-The-Light"
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 
+sourceSets {
+    main {
+        ext.refMap = "mixins.timecore.refmap.json"
+    }
+}
+
 repositories {
     flatDir {
         dirs 'runtimeMods'
@@ -64,11 +70,11 @@ minecraft {
     }
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
 
-    // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+     accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
     // Default run configurations.
     // These can be tweaked, removed, or duplicated as needed.
-    def extraArgs = Arrays.asList(/*here you can add arguments for every launch mode*/)
+    def extraArgs = Arrays.asList('--mixin mixins.jitl.json'.split(' '))
     def extraVmArgs = Arrays.asList('-Dmixin.env.disableRefMap=true')
     runs {
         client {
@@ -165,6 +171,10 @@ dependencies {
     }
 
     implementation fg.deobf(group: 'ru.timeconqueror', name: 'TimeCore', version: '1.16.3-3.1.0.0.build11', changing: true)
+
+    compile("org.spongepowered:mixin:0.8.+") {
+        transitive = false
+    }
 }
 
 jar {

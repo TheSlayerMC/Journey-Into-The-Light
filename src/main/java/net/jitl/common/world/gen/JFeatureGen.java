@@ -1,4 +1,4 @@
-package net.jitl.world.gen;
+package net.jitl.common.world.gen;
 
 import net.jitl.JITL;
 import net.jitl.registry.JBlocks;
@@ -19,6 +19,7 @@ import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
 import java.util.ArrayList;
 
@@ -36,8 +37,10 @@ public class JFeatureGen {
 	 * Helper used to condense all feature registries into a single method.
 	 * Called during preInit stage.
 	 */
-	public static void init() {
-		registerOres();
+	public static void init(FMLCommonSetupEvent event) {
+		// because of it's called from mod thread, we need to send this task to the main thread
+		// otherwise 1 per 100 times you'll see a strange behaviour because of data races
+		event.enqueueWork(JFeatureGen::registerOres);
 	}
 
 	/**

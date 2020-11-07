@@ -55,6 +55,8 @@ public class BlockRegistrator {
         registerDefaultBlock("lunite_block", "Lunite Block");
         registerDefaultBlock("nethic_gemstone_block", "Nethic Gemstone Block");
         registerDefaultBlock("frost_gem_block", "Frost Gems Block");
+
+        registerDefaultBlock("dungeon_bricks", "Dungeon Bricks");
     }
 
     private static void registerDefaultBlock(String name, String enName) {
