@@ -1,6 +1,6 @@
 package net.jitl;
 
-import net.jitl.init.JourneyItems;
+import net.jitl.init.JItems;
 import net.minecraft.item.Item;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -14,6 +14,6 @@ public class Registration {
     public static void register(IEventBus bus) {
         FEATURES.register(bus);
         ITEMS.register(bus);
-        JourneyItems.register();
+        JItems.register();
     }
 }

@@ -1,7 +1,6 @@
-package net.jitl.common.world.gen;
+package net.jitl.init;
 
 import net.jitl.JITL;
-import net.jitl.registry.JBlocks;
 import net.jitl.util.JRuleTests;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.ResourceLocation;
@@ -9,10 +8,7 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.IFeatureConfig;
-import net.minecraft.world.gen.feature.OreFeatureConfig;
+import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.template.RuleTest;
 import net.minecraftforge.common.world.BiomeGenerationSettingsBuilder;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
@@ -47,20 +43,51 @@ public class JFeatureGen {
 	 * Registers ore generation with an ArrayList based on dimension.
 	 */
 	public static void registerOres() {
+		/**
+		 * Size: Max vein size
+		 * Range: Max generation height
+		 * Count: Quantity that can spawn per chunk
+		 */
 		OVERWORLD_ORES.add(
 				register("sapphire_ore", defaultOreFeature(
-						JBlocks.SAPPHIRE_ORE.defaultBlockState(), //replace this
-						JRuleTests.STONE_DEFAULT, //the block it can generate in
-						12, //max vein size
-						128, //max gen height
-						20))); //quantity per chunk (I assume)
+						JBlocks.SAPPHIRE_ORE.defaultBlockState(),
+						JRuleTests.STONE_DEFAULT,
+						7,
+						24,
+						2)));
+		OVERWORLD_ORES.add(
+				register("lunium_ore", defaultOreFeature(
+						JBlocks.LUNIUM_ORE.defaultBlockState(),
+						JRuleTests.STONE_DEFAULT,
+						5,
+						16,
+						1)));
+		OVERWORLD_ORES.add(
+				register("shadium_ore", defaultOreFeature(
+						JBlocks.SHADIUM_ORE.defaultBlockState(),
+						JRuleTests.STONE_DEFAULT,
+						3,
+						10,
+						1)));
+		OVERWORLD_ORES.add(
+				register("iridium_ore", defaultOreFeature(
+						JBlocks.IRIDIUM_ORE.defaultBlockState(),
+						JRuleTests.STONE_DEFAULT,
+						7,
+						10,
+						16)));
 		NETHER_ORES.add(
-				register("hellcrust_ore", defaultOreFeature(
+				register("hellcrust_ore", netherOreFeature(
 						JBlocks.HELLSTONE_ORE.defaultBlockState(),
 						JRuleTests.STONE_NETHERRACK,
-						12,
-						128,
-						20)));
+						10,
+						10)));
+		NETHER_ORES.add(
+				register("firestone_ore", netherOreFeature(
+						JBlocks.FIRESTONE_ORE.defaultBlockState(),
+						JRuleTests.STONE_NETHERRACK,
+						10,
+						24)));
 		END_ORES.add(
 				register("enderillium_ore", defaultOreFeature(
 						JBlocks.ENDERILLIUM_ORE.defaultBlockState(),
@@ -82,6 +109,10 @@ public class JFeatureGen {
 	 */
 	private static ConfiguredFeature<?, ?> defaultOreFeature(BlockState ore, RuleTest spawnBlock, int size, int range, int count) {
 		return Feature.ORE.configured(new OreFeatureConfig(spawnBlock, ore, size)).range(range).squared().count(count);
+	}
+
+	private static ConfiguredFeature<?, ?> netherOreFeature(BlockState ore, RuleTest spawnBlock, int size, int count) {
+		return Feature.ORE.configured(new OreFeatureConfig(spawnBlock, ore, size)).decorated(Features.Placements.RANGE_10_20_ROOFED).squared().count(count);
 	}
 
 	/**
