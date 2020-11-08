@@ -7,9 +7,13 @@ buildscript {
             name = 'sponge'
             url = 'https://repo.spongepowered.org/maven'
         }
+        maven {
+            name = "TimeConqueror's Maven"
+            url = "https://repo.repsy.io/mvn/timeconqueror/mc/"
+        }
     }
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.0.187-patched'
         classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
     }
 }
@@ -170,7 +174,7 @@ dependencies {
         }
     }
 
-    implementation fg.deobf(group: 'ru.timeconqueror', name: 'TimeCore', version: '1.16.3-3.1.0.0.build11', changing: true)
+    implementation fg.deobf('ru.timeconqueror:TimeCore:1.16.3-3.1.0.0.build12', true)
 
     compile("org.spongepowered:mixin:0.8.+") {
         transitive = false
