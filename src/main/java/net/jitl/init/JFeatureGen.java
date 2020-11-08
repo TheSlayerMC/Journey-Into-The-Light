@@ -73,8 +73,8 @@ public class JFeatureGen {
 				register("iridium_ore", defaultOreFeature(
 						JBlocks.IRIDIUM_ORE.defaultBlockState(),
 						JRuleTests.STONE_DEFAULT,
-						4,
-						8,
+						7,
+						10,
 						16)));
 		NETHER_ORES.add(
 				register("hellcrust_ore", netherOreFeature(
