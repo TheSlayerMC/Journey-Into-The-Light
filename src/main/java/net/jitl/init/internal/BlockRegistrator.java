@@ -1,42 +1,40 @@
 package net.jitl.init.internal;
 
 import net.jitl.JITL;
+import net.jitl.common.block.JOreBlock;
+import net.jitl.common.helper.EnumHarvestLevel;
 import net.jitl.init.JTabs;
-import net.minecraft.block.AbstractBlock.Properties;
+import net.jitl.util.JBlockProperties;
 import net.minecraft.block.Block;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
 import ru.timeconqueror.timecore.registry.AutoRegistrable;
-import ru.timeconqueror.timecore.registry.BlockPropsFactory;
 import ru.timeconqueror.timecore.registry.newreg.BlockRegister;
 
 public class BlockRegistrator {
-    private static final BlockPropsFactory STONE_PROPS = new BlockPropsFactory(() -> Properties.of(Material.STONE).sound(SoundType.STONE));
 
     @AutoRegistrable
     private static final BlockRegister REGISTER = new BlockRegister(JITL.MODID);
 
     @AutoRegistrable.InitMethod
     private static void register() {
-        registerDefaultBlock("sapphire_ore", "Sapphire Ore");
-        registerDefaultBlock("lunium_ore", "Lunium Ore");
-        registerDefaultBlock("shadium_ore", "Shadium Ore");
-        registerDefaultBlock("iridium_ore", "Iridium Ore");
-        registerDefaultBlock("hellstone_ore", "Hellstone Ore");
-        registerDefaultBlock("ashual_ore", "Ashual Ore");
-        registerDefaultBlock("blazium_ore", "Blazium Ore");
-        registerDefaultBlock("mekyum_ore", "Mekyum Ore");
-        registerDefaultBlock("celestium_ore", "Celestium Ore");
-        registerDefaultBlock("storon_ore", "Storon Ore");
-        registerDefaultBlock("flairium_ore", "Flairium Ore");
-        registerDefaultBlock("des_ore", "Des Ore");
-        registerDefaultBlock("enderillium_ore", "Enderillium Ore");
-        registerDefaultBlock("gorbite_ore", "Gorbite Ore");
-        registerDefaultBlock("orbadite_ore", "Orbadite Ore");
-        registerDefaultBlock("lunite_ore", "Lunite Ore");
-        registerDefaultBlock("firestone_ore", "Firestone Ore");
-        registerDefaultBlock("lava_rock", "Lava Rock");
+        registerOreBlock("sapphire_ore", "Sapphire Ore", EnumHarvestLevel.DIAMOND.getInt(), 3);
+        registerOreBlock("lunium_ore", "Lunium Ore", EnumHarvestLevel.DIAMOND.getInt(), 0);
+        registerOreBlock("shadium_ore", "Shadium Ore", EnumHarvestLevel.DIAMOND.getInt(), 0);
+        registerOreBlock("iridium_ore", "Iridium Ore", EnumHarvestLevel.IRON.getInt(), 3);
+        registerOreBlock("hellstone_ore", "Hellstone Ore", EnumHarvestLevel.DIAMOND.getInt(), 0);
+        registerOreBlock("ashual_ore", "Ashual Ore", EnumHarvestLevel.DIAMOND.getInt(), 4);
+        registerOreBlock("blazium_ore", "Blazium Ore", EnumHarvestLevel.DIAMOND.getInt(), 4);
+        registerOreBlock("mekyum_ore", "Mekyum Ore", EnumHarvestLevel.DIAMOND.getInt(), 0);
+        registerOreBlock("celestium_ore", "Celestium Ore", EnumHarvestLevel.DIAMOND.getInt(), 0);
+        registerOreBlock("storon_ore", "Storon Ore", EnumHarvestLevel.DIAMOND.getInt(), 0);
+        registerOreBlock("flairium_ore", "Flairium Ore", EnumHarvestLevel.DIAMOND.getInt(), 0);
+        registerOreBlock("des_ore", "Des Ore", EnumHarvestLevel.DIAMOND.getInt(), 0);
+        registerOreBlock("enderillium_ore", "Enderillium Ore", EnumHarvestLevel.DIAMOND.getInt(), 4);
+        registerOreBlock("gorbite_ore", "Gorbite Ore", EnumHarvestLevel.DIAMOND.getInt(), 4);
+        registerOreBlock("orbadite_ore", "Orbadite Ore", EnumHarvestLevel.DIAMOND.getInt(), 0);
+        registerOreBlock("lunite_ore", "Lunite Ore", EnumHarvestLevel.DIAMOND.getInt(), 6);
+        registerOreBlock("firestone_ore", "Firestone Ore", EnumHarvestLevel.DIAMOND.getInt(), 3);
 
+        registerDefaultBlock("lava_rock", "Lava Rock");
         registerDefaultBlock("sapphire_block", "Sapphire Block");
         registerDefaultBlock("lunium_block", "Lunium Block");
         registerDefaultBlock("shadium_block", "Shadium Block");
@@ -60,7 +58,18 @@ public class BlockRegistrator {
     }
 
     private static void registerDefaultBlock(String name, String enName) {
-        REGISTER.register(name, () -> new Block(STONE_PROPS.create()))
+        REGISTER.register(name, () -> new Block
+                (JBlockProperties.STONE_PROPS.create()))
+                .genLangEntry(enName)
+                .regDefaultBlockItem(JTabs.BLOCKS)
+                .genDefaultStateAndModel();
+    }
+
+    private static void registerOreBlock(String name, String enName, int harvestLevel, int minExp) {
+        REGISTER.register(name, () -> new JOreBlock
+                (JBlockProperties.ORE_PROPS.create()
+                        .harvestLevel(harvestLevel))
+                .setExpDrop(minExp))
                 .genLangEntry(enName)
                 .regDefaultBlockItem(JTabs.BLOCKS)
                 .genDefaultStateAndModel();

@@ -5,6 +5,9 @@ import net.minecraft.block.material.Material;
 
 public enum EnumMaterialTypes {
 
+    /*
+    This can me made 10x easier with BlockProperties
+     */
     STONE(Material.STONE, SoundType.STONE),
     LEAVES(Material.LEAVES, SoundType.CROP),
     DIRT(Material.DIRT, SoundType.GRAVEL),
