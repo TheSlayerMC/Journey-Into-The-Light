@@ -15,5 +15,9 @@ public class JLootTableSet extends BlockLootTableSet {
 	public void register() {
 		//test
 		registerLootTable(JBlocks.ENDERILLIUM_ORE, block -> createSelfDropDispatchTable(block, FLIP_COIN_CHANCE, ItemLootEntry.lootTableItem(JItems.LUNIUM_INGOT.get())));
+
+		registerDropsSelf(JBlocks.LUNIUM_ORE);
+		registerDropsSelf(JBlocks.SHADIUM_ORE);
+		registerDropsSelf(JBlocks.HELLSTONE_ORE);
 	}
 }
