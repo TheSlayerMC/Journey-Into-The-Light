@@ -68,15 +68,18 @@ public class JsonGenerator extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent arg0) {
-            String dir = "./src/main/resources/assets/" + JsonGenerator.MOD_ID + "/";
+            String dir = ".../src/main/resources/assets/" + JsonGenerator.MOD_ID + "/";
             String itemModelDir = dir + "models/item/" + nameField.getText() + ".json";
             String blockModelDir = dir + "models/block/" + nameField.getText() + ".json";
             String blockStateDir = dir + "blockstates/" + nameField.getText() + ".json";
-
             File itemModel = new File(itemModelDir);
+
+
+
             try {
                 if(itemModel.exists()) itemModel.delete();
                 itemModel.createNewFile();
+
                 itemModelWriter = new BufferedWriter(new FileWriter(itemModel));
             } catch (IOException e) {
                 e.printStackTrace();
@@ -100,7 +103,11 @@ public class JsonGenerator extends JFrame {
                     e.printStackTrace();
                 }
             }
-
+            try {
+                Desktop.getDesktop().open(itemModel);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             if(texNameField.getText().equals("")) texNameField = nameField;
 
             if(block.isSelected()) {
