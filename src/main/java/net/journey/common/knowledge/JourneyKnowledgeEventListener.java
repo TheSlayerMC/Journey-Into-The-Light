@@ -50,7 +50,7 @@ public class JourneyKnowledgeEventListener {
 
 	@SubscribeEvent
 	public void onMobKilled(LivingDeathEvent event) {
-		if (event.getSource().getTrueSource() instanceof EntityPlayer) {
+		if (event.getSource().getTrueSource() instanceof EntityPlayer && !(event.getSource().getTrueSource() instanceof FakePlayer)) {
 			EntityPlayer player = (EntityPlayer) event.getSource().getTrueSource();
 			JourneyPlayer journeyPlayer = JCapabilityManager.asJourneyPlayer(player);
 			PlayerStats stats = journeyPlayer.getPlayerStats();
@@ -68,7 +68,7 @@ public class JourneyKnowledgeEventListener {
 
 	@SubscribeEvent
 	public void onMobDrop(LivingDropsEvent event) {
-		if (event.getSource().getTrueSource() instanceof EntityPlayer) {
+		if (event.getSource().getTrueSource() instanceof EntityPlayer && !(event.getSource().getTrueSource() instanceof FakePlayer)) {
 			EntityPlayer player = (EntityPlayer) event.getSource().getTrueSource();
 			JourneyPlayer journeyPlayer = JCapabilityManager.asJourneyPlayer(player);
 			PlayerStats stats = journeyPlayer.getPlayerStats();
