@@ -36,7 +36,7 @@ public class EntityIceBall extends EntityDamagingProjectile {
 
 	@Override
 	protected void onImpact(@NotNull RayTraceResult rayTraceResult) {
-		if (rayTraceResult.entityHit != null) {
+		if (rayTraceResult.entityHit instanceof EntityLivingBase) {
 			rayTraceResult.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), getDamage());
 			((EntityLivingBase) rayTraceResult.entityHit).addPotionEffect(new PotionEffect(PotionEffects.setPotionEffect(PotionEffects.moveSlow, 100, 5)));
 			rayTraceResult.entityHit.extinguish();

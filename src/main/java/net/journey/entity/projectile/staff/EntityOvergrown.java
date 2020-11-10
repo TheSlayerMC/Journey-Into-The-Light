@@ -38,7 +38,7 @@ public class EntityOvergrown extends EntityDamagingProjectile {
 
 	@Override
 	protected void onImpact(@NotNull RayTraceResult rayTraceResult) {
-		if (rayTraceResult.entityHit != null) {
+		if (rayTraceResult.entityHit instanceof EntityLivingBase) {
 			rayTraceResult.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), getDamage());
 			((EntityLivingBase) rayTraceResult.entityHit).addPotionEffect(new PotionEffect(PotionEffects.getPotionFromID(PotionEffects.poison), 100, 1));
 		}

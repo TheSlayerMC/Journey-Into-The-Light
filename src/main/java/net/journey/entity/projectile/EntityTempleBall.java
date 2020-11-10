@@ -33,7 +33,7 @@ public class EntityTempleBall extends EntityDamagingProjectile {
 
 	@Override
 	protected void onImpact(@NotNull RayTraceResult rayTraceResult) {
-		if (rayTraceResult.entityHit != null) {
+		if (rayTraceResult.entityHit instanceof EntityLivingBase) {
 			rayTraceResult.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), getDamage());
 			((EntityLivingBase) rayTraceResult.entityHit).addPotionEffect(new PotionEffect(PotionEffects.getPotionFromID(PotionEffects.moveSlow), 100, 2));
 			((EntityLivingBase) rayTraceResult.entityHit).addPotionEffect(new PotionEffect(PotionEffects.getPotionFromID(PotionEffects.confusion), 100, 5));
