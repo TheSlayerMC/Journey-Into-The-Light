@@ -16,23 +16,23 @@ public class BlockRegistrator {
 
     @AutoRegistrable.InitMethod
     private static void register() {
-        registerOreBlock("sapphire_ore", "Sapphire Ore", EnumHarvestLevel.DIAMOND.getInt(), 3);
-        registerOreBlock("lunium_ore", "Lunium Ore", EnumHarvestLevel.DIAMOND.getInt(), 0);
-        registerOreBlock("shadium_ore", "Shadium Ore", EnumHarvestLevel.DIAMOND.getInt(), 0);
-        registerOreBlock("iridium_ore", "Iridium Ore", EnumHarvestLevel.IRON.getInt(), 3);
-        registerOreBlock("hellstone_ore", "Hellstone Ore", EnumHarvestLevel.DIAMOND.getInt(), 0);
-        registerOreBlock("ashual_ore", "Ashual Ore", EnumHarvestLevel.DIAMOND.getInt(), 4);
-        registerOreBlock("blazium_ore", "Blazium Ore", EnumHarvestLevel.DIAMOND.getInt(), 4);
-        registerOreBlock("mekyum_ore", "Mekyum Ore", EnumHarvestLevel.DIAMOND.getInt(), 0);
-        registerOreBlock("celestium_ore", "Celestium Ore", EnumHarvestLevel.DIAMOND.getInt(), 0);
-        registerOreBlock("storon_ore", "Storon Ore", EnumHarvestLevel.DIAMOND.getInt(), 0);
-        registerOreBlock("flairium_ore", "Flairium Ore", EnumHarvestLevel.DIAMOND.getInt(), 0);
-        registerOreBlock("des_ore", "Des Ore", EnumHarvestLevel.DIAMOND.getInt(), 0);
-        registerOreBlock("enderillium_ore", "Enderillium Ore", EnumHarvestLevel.DIAMOND.getInt(), 4);
-        registerOreBlock("gorbite_ore", "Gorbite Ore", EnumHarvestLevel.DIAMOND.getInt(), 4);
-        registerOreBlock("orbadite_ore", "Orbadite Ore", EnumHarvestLevel.DIAMOND.getInt(), 0);
-        registerOreBlock("lunite_ore", "Lunite Ore", EnumHarvestLevel.DIAMOND.getInt(), 6);
-        registerOreBlock("firestone_ore", "Firestone Ore", EnumHarvestLevel.DIAMOND.getInt(), 3);
+        registerOreBlock("sapphire_ore", "Sapphire Ore", EnumHarvestLevel.DIAMOND, 3);
+        registerOreBlock("lunium_ore", "Lunium Ore", EnumHarvestLevel.DIAMOND, 0);
+        registerOreBlock("shadium_ore", "Shadium Ore", EnumHarvestLevel.DIAMOND, 0);
+        registerOreBlock("iridium_ore", "Iridium Ore", EnumHarvestLevel.IRON, 3);
+        registerOreBlock("hellstone_ore", "Hellstone Ore", EnumHarvestLevel.DIAMOND, 0);
+        registerOreBlock("ashual_ore", "Ashual Ore", EnumHarvestLevel.DIAMOND, 4);
+        registerOreBlock("blazium_ore", "Blazium Ore", EnumHarvestLevel.DIAMOND, 4);
+        registerOreBlock("mekyum_ore", "Mekyum Ore", EnumHarvestLevel.DIAMOND, 0);
+        registerOreBlock("celestium_ore", "Celestium Ore", EnumHarvestLevel.DIAMOND, 0);
+        registerOreBlock("storon_ore", "Storon Ore", EnumHarvestLevel.DIAMOND, 0);
+        registerOreBlock("flairium_ore", "Flairium Ore", EnumHarvestLevel.DIAMOND, 0);
+        registerOreBlock("des_ore", "Des Ore", EnumHarvestLevel.DIAMOND, 0);
+        registerOreBlock("enderillium_ore", "Enderillium Ore", EnumHarvestLevel.DIAMOND, 4);
+        registerOreBlock("gorbite_ore", "Gorbite Ore", EnumHarvestLevel.DIAMOND, 4);
+        registerOreBlock("orbadite_ore", "Orbadite Ore", EnumHarvestLevel.DIAMOND, 0);
+        registerOreBlock("lunite_ore", "Lunite Ore", EnumHarvestLevel.DIAMOND, 6);
+        registerOreBlock("firestone_ore", "Firestone Ore", EnumHarvestLevel.DIAMOND, 3);
 
         registerDefaultBlock("lava_rock", "Lava Rock");
         registerDefaultBlock("sapphire_block", "Sapphire Block");
@@ -67,10 +67,10 @@ public class BlockRegistrator {
                 .genDefaultStateAndModel();
     }
 
-    private static void registerOreBlock(String name, String enName, int harvestLevel, int minExp) {
+    private static void registerOreBlock(String name, String enName, EnumHarvestLevel harvestLevel, int minExp) {
         REGISTER.register(name, () -> new JOreBlock
                 (JBlockProperties.ORE_PROPS.create()
-                        .harvestLevel(harvestLevel))
+                        .harvestLevel(harvestLevel.getInt()))
                 .setExpDrop(minExp))
                 .genLangEntry(enName)
                 .regDefaultBlockItem(JTabs.BLOCKS)
