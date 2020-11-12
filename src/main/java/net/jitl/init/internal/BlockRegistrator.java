@@ -20,7 +20,7 @@ public class BlockRegistrator {
         registerOreBlock("lunium_ore", "Lunium Ore", EnumHarvestLevel.DIAMOND, 0);
         registerOreBlock("shadium_ore", "Shadium Ore", EnumHarvestLevel.DIAMOND, 0);
         registerOreBlock("iridium_ore", "Iridium Ore", EnumHarvestLevel.IRON, 3);
-        registerOreBlock("hellstone_ore", "Hellstone Ore", EnumHarvestLevel.DIAMOND, 0);
+        registerOreBlock("bloodcrust_ore", "Bloodcrust Ore", EnumHarvestLevel.DIAMOND, 0);
         registerOreBlock("ashual_ore", "Ashual Ore", EnumHarvestLevel.DIAMOND, 4);
         registerOreBlock("blazium_ore", "Blazium Ore", EnumHarvestLevel.DIAMOND, 4);
         registerOreBlock("mekyum_ore", "Mekyum Ore", EnumHarvestLevel.DIAMOND, 0);
@@ -39,7 +39,7 @@ public class BlockRegistrator {
         registerDefaultBlock("lunium_block", "Lunium Block");
         registerDefaultBlock("shadium_block", "Shadium Block");
         registerDefaultBlock("iridium_block", "Iridium Block");
-        registerDefaultBlock("hellstone_block", "Hellstone Block");
+        registerDefaultBlock("bloodcrust_block", "Bloodcrust Block");
         registerDefaultBlock("ashual_block", "Ashual Block");
         registerDefaultBlock("blazium_block", "Blazium Block");
         registerDefaultBlock("mekyum_block", "Mekyum Block");
@@ -59,8 +59,8 @@ public class BlockRegistrator {
         registerDefaultBlock("dungeon_bricks_chiseled", "Chiseled Dungeon Bricks");
         registerDefaultBlock("dungeon_bricks_cracked", "Cracked Dungeon Bricks");
         registerDefaultBlock("dungeon_lamp", "Dungeon Lamp");
-        registerDefaultBlock("blue_gems", "Blue Gems");
-        registerDefaultBlock("red_gems", "Red Gems");
+        registerDefaultBlock("common_gems", "Common Gems");
+        registerDefaultBlock("rare_gems", "Rare Gems");
 
         registerDefaultBlock("euca_brick", "Euca Brick");
     }

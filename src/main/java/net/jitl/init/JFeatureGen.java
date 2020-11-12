@@ -78,7 +78,7 @@ public class JFeatureGen {
 						16)));
 		NETHER_ORES.add(
 				register("hellcrust_ore", netherOreFeature(
-						JBlocks.HELLSTONE_ORE.defaultBlockState(),
+						JBlocks.BLOODCRUST_ORE.defaultBlockState(),
 						JRuleTests.STONE_NETHERRACK,
 						10,
 						10)));

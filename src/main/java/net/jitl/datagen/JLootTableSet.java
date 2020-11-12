@@ -18,6 +18,6 @@ public class JLootTableSet extends BlockLootTableSet {
 
 		registerDropsSelf(JBlocks.LUNIUM_ORE);
 		registerDropsSelf(JBlocks.SHADIUM_ORE);
-		registerDropsSelf(JBlocks.HELLSTONE_ORE);
+		registerDropsSelf(JBlocks.BLOODCRUST_ORE);
 	}
 }
