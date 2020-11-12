@@ -18,6 +18,7 @@ import java.util.Collections;
 //TODO somehow merge with EntityEssenceBoss
 public abstract class EntityFlyingBoss extends JEntityFlyingMob implements IEssenceBoss {
 
+	private float healAmmount;
     private int deathTicks;
 
     public EntityFlyingBoss(World par1World) {
@@ -48,6 +49,19 @@ public abstract class EntityFlyingBoss extends JEntityFlyingMob implements IEsse
     @Override
     public float getModMaxHealth() {
         return (float) getEntityMaxHealth();
+    }
+    
+    @Override
+    public void onLivingUpdate() {
+    	if (!this.world.isRemote) {
+    		if (getAttackTarget() == null && this.getHealth() < this.getMaxHealth()) {
+        		healAmmount += 0.001;
+            	this.heal(healAmmount);
+        	} else {
+        		healAmmount = 0;
+        	}
+    	}
+    	super.onLivingUpdate();
     }
 
     @Override

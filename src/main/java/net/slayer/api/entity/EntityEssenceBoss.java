@@ -17,6 +17,7 @@ import java.util.Collections;
 
 public abstract class EntityEssenceBoss extends JEntityMob implements IEssenceBoss {
 
+	private float healAmmount;
     private int deathTicks;
 
     public EntityEssenceBoss(World par1World) {
@@ -60,6 +61,19 @@ public abstract class EntityEssenceBoss extends JEntityMob implements IEssenceBo
 
     @Nullable
     protected abstract EntityBossCrystal.Type getDeathCrystalType();
+    
+    @Override
+    public void onLivingUpdate() {
+    	if (!this.world.isRemote) {
+    		if (getAttackTarget() == null && this.getHealth() < this.getMaxHealth()) {
+        		healAmmount += 0.001;
+            	this.heal(healAmmount);
+        	} else {
+        		healAmmount = 0;
+        	}
+    	}
+    	super.onLivingUpdate();
+    }
 
     @Override //TODO somehow merge with EntityFlyingBoss
     public void onDeath(DamageSource cause) {

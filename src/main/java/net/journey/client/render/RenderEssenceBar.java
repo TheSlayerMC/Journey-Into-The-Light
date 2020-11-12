@@ -38,42 +38,41 @@ public class RenderEssenceBar {
 		JourneyPlayer journeyPlayer = JCapabilityManager.asJourneyPlayer(player);
 		EssenceStorage mana = journeyPlayer.getEssenceStorage();
 
-		if (mc.currentScreen == null && instanceOfEssenceItem(heldItemMainhand.getItem()) || mana.isBeingUsed() && transparency < 1.0) {
-			transparency += .02;
+		if (instanceOfEssenceItem(heldItemMainhand.getItem())) {
+			if (transparency < 1) transparency += 0.02;
+		} else if (!mana.isFull()) {
+			if (transparency < 0.36) {
+				transparency += 0.02;
+			} else if (transparency > 0.36) {
+				transparency -= 0.02;
+			}
 		} else if (transparency > 0) {
-			transparency -= .02;
+			transparency -= 0.02;
 		}
 
-		if (transparency > 0) {
+		if (transparency > 0 && mc.currentScreen == null && !mc.gameSettings.hideGUI) {
+			GlStateManager.pushMatrix();
+			GlStateManager.enableBlend();
+			GlStateManager.enableAlpha();
 
-			if (!mana.isFull() && !instanceOfEssenceItem(heldItemMainhand.getItem())) {
-				transparency = 0.35F;
-			}
-
-			if (!mc.gameSettings.hideGUI) {
-				GlStateManager.pushMatrix();
-				GlStateManager.enableBlend();
-				GlStateManager.enableAlpha();
-
-				GL11.glColor4f(1.0F, 1.0F, 1.0F, transparency);
-				GuiIngame gig = mc.ingameGUI;
-				ScaledResolution scaledresolution = new ScaledResolution(mc);
-				mc.getTextureManager().bindTexture(TEXTURE);
-				int y = scaledresolution.getScaledHeight() - 30;
-				int x = 10;
-				gig.drawTexturedModalRect(x - 10, y + 10, 0, 177, 117, 19);
-				gig.drawTexturedModalRect(x - 6, y + 17, 0, 23, 109, 5);
-				for (int i = 0; i < mana.getEssenceValue(); i++) {
-					if (!(i >= mana.getMaxValue())) {
-						x += 11;
-						gig.drawTexturedModalRect(x - 17, y + 17, 0, 0, 10, 5);
-					}
+			GL11.glColor4f(1.0F, 1.0F, 1.0F, transparency);
+			GuiIngame gig = mc.ingameGUI;
+			ScaledResolution scaledresolution = new ScaledResolution(mc);
+			mc.getTextureManager().bindTexture(TEXTURE);
+			int y = scaledresolution.getScaledHeight() - 30;
+			int x = 10;
+			gig.drawTexturedModalRect(x - 10, y + 10, 0, 177, 117, 19);
+			gig.drawTexturedModalRect(x - 6, y + 17, 0, 23, 109, 5);
+			for (int i = 0; i < mana.getEssenceValue(); i++) {
+				if (!(i >= mana.getMaxValue())) {
+					x += 11;
+					gig.drawTexturedModalRect(x - 17, y + 17, 0, 0, 10, 5);
 				}
-
-				GlStateManager.disableAlpha();
-				GlStateManager.disableBlend();
-				GlStateManager.popMatrix();
 			}
+
+			GlStateManager.disableAlpha();
+			GlStateManager.disableBlend();
+			GlStateManager.popMatrix();
 		}
 	}
 	

@@ -181,6 +181,7 @@ public class EntityRendering {
     public static void init() {
         /**Projectiles*/
         RenderingRegistry.registerEntityRenderingHandler(EntityDamagingProjectile.class, new RenderStaffProjectile(Textures.basic, 1.0F, 0.2F, 0.2F));
+        RenderingRegistry.registerEntityRenderingHandler(EntityEnchantedShot.class, new RenderStaffProjectile(Textures.basic, 1.0F, 0.2F, 0.2F));
         RenderingRegistry.registerEntityRenderingHandler(EntityDoomsBringer.class, new RenderStaffProjectile(Textures.basic, 1.2F, 0.2F, 0.2F));
         RenderingRegistry.registerEntityRenderingHandler(EntityConjuring.class, new RenderStaffProjectile(Textures.basic, 0.1F, 1.0F, 0.7F));
         RenderingRegistry.registerEntityRenderingHandler(EntityEnlightenment.class, new RenderStaffProjectile(Textures.basic, 0.7F, 0.0F, 0.7F));

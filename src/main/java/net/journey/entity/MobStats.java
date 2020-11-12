@@ -394,9 +394,6 @@ public class MobStats {
     public static final int BLAZIER_HEALTH = 850;
     public static final int BLAZIER_DAMAGE = 20;
 
-    public static final int CALCIA_DAMAGE = 10;
-    public static final int CALCIA_KNOCKBACK_RESISTANCE = 1;
-
     public static final int CORALLATOR_HEALTH = 950;
     public static final int CORALLATOR_DAMAGE = 10;
 
@@ -411,8 +408,6 @@ public class MobStats {
     public static final int GUARDIAN_OF_DESTRUCTION_HEALTH = 1500;
     public static final int GUARDIAN_OF_DESTRUCTION_DAMAGE = 15;
     public static final int GUARDIAN_OF_DESTRUCTION_KNOCKBACK_RESISTANCE = 1;
-
-    public static final int CALCIA_HEALTH = 650;
 
     public static final int TERRASHROOM_DAMAGE = 16;
 
@@ -429,11 +424,17 @@ public class MobStats {
     public static final int SENTRY_KING_HEALTH = 2500;
     public static final int SENTRY_KING_DAMAGE = 20;
     public static final int SENTRY_KING_KNOCKBACK_RESISTANCE = 1;
+    public static final int SENTRY_KING_FOLLOW_RANGE = 150;
 
     public static final int TEMPLE_GUARDIAN_HEALTH = 275;
     public static final int TEMPLE_GUARDIAN_DAMAGE = 5;
     public static final double TEMPLE_GUARDIAN_SPEED = 0.1;
     public static final int TEMPLE_GUARDIAN_KNOCKBACK_RESISTANCE = 2;
+    
+    public static final double CALCIA_HEALTH = 400;
+    public static final double CALCIA_DAMAGE = 7;
+    public static final double CALCIA_KNOCKBACK_RESISTANCE = 1;
+    public static final double CALCIA_MOVEMENT_SPEED = 0.2;
 
     public static final int THUNDERBIRD_HEALTH = 2000;
     public static final int THUNDERBIRD_DAMAGE = 10;
