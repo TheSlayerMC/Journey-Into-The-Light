@@ -46,7 +46,7 @@ public class GenHelper {
      * @param generator function, which will be called for every found position (x, y) to draw a hollow circle.
      *                  Note, that 0, 0 is the center of the circle.
      */
-    private static void genHollowCircle(int radius, BiConsumer<Integer, Integer> generator) {
+    public static void genHollowCircle(int radius, BiConsumer<Integer, Integer> generator) {
         int x = radius;
         int y = 0;
 

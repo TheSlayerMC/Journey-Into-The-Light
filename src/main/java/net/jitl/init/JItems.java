@@ -1,6 +1,7 @@
 package net.jitl.init;
 
 import net.jitl.JITL;
+import net.jitl.common.item.TestBugItem;
 import net.minecraft.item.Item;
 import net.minecraftforge.registries.ObjectHolder;
 
@@ -13,4 +14,6 @@ public class JItems {
     public static final Item LUNIUM_INGOT = promise();
 
     public static final Item LUNIUM_SWORD = promise();
+
+    public static final TestBugItem TEST_BUG = promise();
 }

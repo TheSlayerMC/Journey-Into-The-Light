@@ -1,6 +1,7 @@
 package net.jitl.init.internal;
 
 import net.jitl.JITL;
+import net.jitl.common.item.TestBugItem;
 import net.jitl.util.JItemProperties;
 import net.minecraft.item.Item;
 import ru.timeconqueror.timecore.api.client.resource.StandardItemModelParents;
@@ -18,6 +19,7 @@ public class ItemRegistrator {
         registerItem("sapphire", "Sapphire", Item::new, StandardItemModelParents.DEFAULT);
         registerItem("lunium_ingot", "Lunium Ingot", Item::new, StandardItemModelParents.DEFAULT);
         registerItem("lunium_sword", "Lunium Sword", Item::new, StandardItemModelParents.DEFAULT);
+        registerItem("test_bug", "Test Bug", TestBugItem::new, StandardItemModelParents.DEFAULT);
     }
 
     private static void registerItem(String name, String enName, Function<Item.Properties, ? extends Item> itemFactory, StandardItemModelParents modelType) {
