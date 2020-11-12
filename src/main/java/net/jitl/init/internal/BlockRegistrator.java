@@ -55,6 +55,12 @@ public class BlockRegistrator {
         registerDefaultBlock("frost_gem_block", "Frost Gems Block");
 
         registerDefaultBlock("dungeon_bricks", "Dungeon Bricks");
+        registerDefaultBlock("dungeon_bricks_carved", "Carved Dungeon Bricks");
+        registerDefaultBlock("dungeon_bricks_chiseled", "Chiseled Dungeon Bricks");
+        registerDefaultBlock("dungeon_bricks_cracked", "Cracked Dungeon Bricks");
+        registerDefaultBlock("dungeon_lamp", "Dungeon Lamp");
+        registerDefaultBlock("blue_gems", "Blue Gems");
+        registerDefaultBlock("red_gems", "Red Gems");
 
         registerDefaultBlock("euca_brick", "Euca Brick");
     }

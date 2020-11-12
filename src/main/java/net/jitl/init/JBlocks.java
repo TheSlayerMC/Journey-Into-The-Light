@@ -48,6 +48,12 @@ public class JBlocks {
     public static final Block FROST_GEM_BLOCK = promise();
 
     public static final Block DUNGEON_BRICKS = promise();
+    public static final Block DUNGEON_BRICKS_CARVED = promise();
+    public static final Block DUNGEON_BRICKS_CHISELED = promise();
+    public static final Block DUNGEON_BRICKS_CRACKED = promise();
+    public static final Block DUNGEON_LAMP = promise();
+    public static final Block BLUE_GEMS = promise();
+    public static final Block RED_GEMS = promise();
 
     public static final Block EUCA_BRICK = promise();
 }
