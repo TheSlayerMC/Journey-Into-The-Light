@@ -6,12 +6,12 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "jitl:lunium_ore"
+          "name": "jitl:dungeon_bricks_chiseled"
         }
       ],
-      "functions": [
+      "conditions": [
         {
-          "function": "minecraft:explosion_decay"
+          "condition": "minecraft:survives_explosion"
         }
       ]
     }

@@ -17,7 +17,9 @@ public class ItemRegistrator {
     @AutoRegistrable.InitMethod
     private static void register() {
         registerItem("sapphire", "Sapphire", Item::new, StandardItemModelParents.DEFAULT);
+        registerItem("iridium_nugget", "Iridium Nugget", Item::new, StandardItemModelParents.DEFAULT);
         registerItem("lunium_ingot", "Lunium Ingot", Item::new, StandardItemModelParents.DEFAULT);
+        registerItem("shadium_ingot", "Shadium Ingot", Item::new, StandardItemModelParents.DEFAULT);
         registerItem("lunium_sword", "Lunium Sword", Item::new, StandardItemModelParents.DEFAULT);
         registerItem("test_bug", "Test Bug", TestBugItem::new, StandardItemModelParents.DEFAULT);
     }

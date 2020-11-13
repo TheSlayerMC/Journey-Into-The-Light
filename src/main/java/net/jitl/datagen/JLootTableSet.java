@@ -2,22 +2,91 @@ package net.jitl.datagen;
 
 import net.jitl.init.JBlocks;
 import net.jitl.init.JItems;
+import net.minecraft.block.Block;
+import net.minecraft.enchantment.Enchantments;
+import net.minecraft.item.Item;
+import net.minecraft.loot.ConstantRange;
 import net.minecraft.loot.ItemLootEntry;
-import net.minecraft.loot.conditions.ILootCondition;
-import net.minecraft.loot.conditions.RandomChance;
+import net.minecraft.loot.LootPool;
+import net.minecraft.loot.LootTable;
+import net.minecraft.loot.functions.ApplyBonus;
+import net.minecraft.util.IItemProvider;
 import ru.timeconqueror.timecore.devtools.gen.loottable.BlockLootTableSet;
 
 public class JLootTableSet extends BlockLootTableSet {
 
-	private final ILootCondition.IBuilder FLIP_COIN_CHANCE = RandomChance.randomChance(.5F);
-
 	@Override
 	public void register() {
-		//test
-		registerLootTable(JBlocks.ENDERILLIUM_ORE, block -> createSelfDropDispatchTable(block, FLIP_COIN_CHANCE, ItemLootEntry.lootTableItem(JItems.LUNIUM_INGOT)));
+		initOres();
+		initBuildingBlocks();
+	}
 
-		registerDropsSelf(JBlocks.LUNIUM_ORE);
-		registerDropsSelf(JBlocks.SHADIUM_ORE);
-		registerDropsSelf(JBlocks.BLOODCRUST_ORE);
+	private void initOres() {
+		registerSpecialOre(JBlocks.SAPPHIRE_ORE, JItems.SAPPHIRE);
+		registerSpecialOre(JBlocks.IRIDIUM_ORE, JItems.IRIDIUM_NUGGET);
+		registerDefaultOre(JBlocks.LUNIUM_ORE);
+		registerDefaultOre(JBlocks.SHADIUM_ORE);
+		registerDefaultOre(JBlocks.BLOODCRUST_ORE);
+	}
+
+	private void initBuildingBlocks() {
+		registerDropsSelf(JBlocks.DUNGEON_BRICKS);
+		registerDropsSelf(JBlocks.DUNGEON_LAMP);
+		registerDropsSelf(JBlocks.DUNGEON_BRICKS_CARVED);
+		registerDropsSelf(JBlocks.DUNGEON_BRICKS_CHISELED);
+		registerDropsSelf(JBlocks.DUNGEON_BRICKS_CRACKED);
+	}
+
+	/**
+	 * Registers a loot table that drops a different item with luck when mined with a normal tool.
+	 * When mined with a silk-touch tool, the block will drop itself.
+	 * Behaves just like diamond or emerald ore.
+	 *
+	 * @param block The block being registered, and also the block being dropped when mined with a silktouch tool.
+	 * @param drop  The item dropped by the block when mined with a normal tool.
+	 */
+	public void registerSpecialOre(Block block, Item drop) {
+		registerLootTable(block, createSilkTouchWithLuckDispatchTable(block, drop));
+	}
+
+	/**
+	 * Registers a loot table that drops itself in every condition, even in the case of explosions.
+	 *
+	 * @param block The block being registered, and also the block being dropped.
+	 */
+	public void registerDefaultOre(Block block) {
+		registerWithExplosionDecay(block, block);
+	}
+
+	/**
+	 * Registers a loot table that can drop in the case of explosions.
+	 *
+	 * @param block The block being registered.
+	 * @param drop  The item or block being dropped.
+	 */
+	public void registerWithExplosionDecay(Block block, IItemProvider drop) {
+		registerLootTable(block, createSingleItemWithExplosionDecayTable(drop));
+	}
+
+	/**
+	 * Creates a table where {@code silkTouchDrop} is dropped when the player is using a tool with silktouch.
+	 * If the player is not using a tool with silktouch, the table will drop the {@code dropWithoutSilkTouch} item.
+	 * Depending if the player has a tool with the fortune enchantment, and the level of the enchantment, it will drop extra of the {@code dropWithoutSilkTouch} drop.
+	 *
+	 * @param silkTouchDrop        The block dropped when the user's tool has silktouch applied.
+	 * @param dropWithoutSilkTouch The item dropped when the tool doesn't have silktouch applied.
+	 */
+	protected static LootTable.Builder createSilkTouchWithLuckDispatchTable(Block silkTouchDrop, IItemProvider dropWithoutSilkTouch) {
+		return createSilkTouchDispatchTable(silkTouchDrop, applyExplosionDecay(ItemLootEntry.lootTableItem(dropWithoutSilkTouch).apply(ApplyBonus.addOreBonusCount(Enchantments.BLOCK_FORTUNE))));
+	}
+
+	/**
+	 * Creates a table where the {@code drop} is always dropped, even in the case of explosions.
+	 *
+	 * @param drop The block or item being dropped.
+	 */
+	protected static LootTable.Builder createSingleItemWithExplosionDecayTable(IItemProvider drop) {
+		return LootTable.lootTable()
+				.withPool(applyExplosionDecay(LootPool.lootPool().setRolls(ConstantRange.exactly(1)).add(ItemLootEntry.lootTableItem(drop))));
 	}
 }
