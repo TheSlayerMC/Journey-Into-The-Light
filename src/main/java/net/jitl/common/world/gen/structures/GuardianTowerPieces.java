@@ -17,12 +17,12 @@ import net.minecraft.world.gen.feature.template.TemplateManager;
 import java.util.Random;
 
 public class GuardianTowerPieces {
-    private static final int WIDTH = 21;
+    public static final int WIDTH = 21;
     private static final int H_CENTER_MINUS_ONE = WIDTH / 2;
 
     public static class Floor extends ScatteredStructurePiece {
-        public Floor(Random rand, int x, int z) {
-            super(JStructurePieces.GUARDIAN_TOWER_PIECE, rand, x, 1, z, WIDTH, 5, WIDTH);
+        public Floor(Random rand, int x, int y, int z) {
+            super(JStructurePieces.GUARDIAN_TOWER_PIECE, rand, x, y, z, WIDTH, 5, WIDTH);
         }
 
         public Floor(TemplateManager templateManager, CompoundNBT nbt) {
@@ -36,10 +36,6 @@ public class GuardianTowerPieces {
 
         @Override
         public boolean postProcess(ISeedReader world, StructureManager structureManager_, ChunkGenerator chunkGenerator_, Random random_, MutableBoundingBox chunkBox, ChunkPos chunkPos_, BlockPos pos) {
-            if (!this.updateAverageGroundHeight(world, chunkBox, 0)) {
-                return false;
-            }
-
             GenHelper.genHollowCircle(10, Direction.Axis.Y, relPos -> {
                 placeBlock(world, JBlocks.DUNGEON_BRICKS.defaultBlockState(), H_CENTER_MINUS_ONE + relPos.getX(), relPos.getY(), H_CENTER_MINUS_ONE + relPos.getZ(), chunkBox);
             });

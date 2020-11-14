@@ -2,6 +2,9 @@ package net.jitl.common.world.gen.util;
 
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.gen.ChunkGenerator;
+import net.minecraft.world.gen.Heightmap;
+import ru.timeconqueror.timecore.api.util.MathUtils;
 
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
@@ -46,7 +49,7 @@ public class GenHelper {
      * @param generator function, which will be called for every found position (x, y) to draw a hollow circle.
      *                  Note, that 0, 0 is the center of the circle.
      */
-    public static void genHollowCircle(int radius, BiConsumer<Integer, Integer> generator) {
+    private static void genHollowCircle(int radius, BiConsumer<Integer, Integer> generator) {
         int x = radius;
         int y = 0;
 
@@ -98,6 +101,14 @@ public class GenHelper {
                 generator.accept(-y, -x);
             }
         }
+    }
+
+    public static int getAveragePlacementHeight(ChunkGenerator chunkGenerator, int x, int z, int x1, int z1) {
+        int n1 = chunkGenerator.getFirstFreeHeight(x, z, Heightmap.Type.WORLD_SURFACE_WG);
+        int n2 = chunkGenerator.getFirstFreeHeight(x1, z, Heightmap.Type.WORLD_SURFACE_WG);
+        int n3 = chunkGenerator.getFirstFreeHeight(x, z1, Heightmap.Type.WORLD_SURFACE_WG);
+        int n4 = chunkGenerator.getFirstFreeHeight(x1, z1, Heightmap.Type.WORLD_SURFACE_WG);
+        return MathUtils.average(n1, n2, n3, n4);
     }
 
     public static class BoundMutablePos extends BlockPos.Mutable {
