@@ -19,7 +19,8 @@ public class GenHelper {
      *
      * @param radius    circle radius
      * @param direction the front direction of generated circle
-     * @param generator function, which will be called for every found position in order to draw a hollow circle
+     * @param generator function, which will be called for every found position in order to draw a hollow circle.
+     *                  Position 0, 0, 0 will be at the center of the circle.
      *                  <font color="yellow">Note, that these positions are RELATIVE, not absolute!</font>
      */
     public static void genHollowCircle(int radius, Direction.Axis direction, Consumer<BlockPos> generator) {
@@ -42,35 +43,63 @@ public class GenHelper {
     }
 
     /**
+     * Generates horizontal hollow cylinder with provided radius.
+     * Overall width of cylinder will be {@code 1 + radius * 2}.
+     *
+     * @param radius    cylinder radius
+     * @param height    cylinder height
+     * @param generator function, which will be called for every found position in order to draw a hollow cylinder.
+     *                  Position 0, 0, 0 will be at the center of the lowest circle of the cylinder.
+     *                  <font color="yellow">Note, that these positions are RELATIVE, not absolute!</font>
+     */
+    public static void genHollowCyl(int radius, int height, Direction.Axis direction, Consumer<BlockPos> generator) {
+        BlockPos.Mutable pos = new BlockPos.Mutable();
+        genHollowCircle(radius, (x, y) -> {
+            for (int depth = 0; depth < height; depth++) {
+                switch (direction) {
+                    case X:
+                        generator.accept(pos.set(depth, y, x));
+                        break;
+                    case Y:
+                        generator.accept(pos.set(x, depth, y));
+                        break;
+                    case Z:
+                        generator.accept(pos.set(x, y, depth));
+                        break;
+                    default:
+                        throw new UnsupportedOperationException("Unsupported direction: " + direction);
+                }
+            }
+        });
+    }
+
+    /**
      * Generates filled circle with provided radius.
      * Overall height of circle will be {@code 1 + radius * 2}.
      *
      * @param radius    circle radius
      * @param direction the front direction of generated circle
-     * @param generator function, which will be called for every found position in order to draw a filled circle
+     * @param generator function, which will be called for every found position in order to draw a filled circle.
+     *                  Position 0, 0, 0 will be at the center of the circle.
      *                  <font color="yellow">Note, that these positions are RELATIVE, not absolute!</font>
      */
     public static void genFilledCircle(int radius, Direction.Axis direction, Consumer<BlockPos> generator) {
         BlockPos.Mutable pos = new BlockPos.Mutable();
         genFilledCircle(radius, (line) -> {
-            switch (direction) {
-                case X:
-                    for (int x = line.getX0(); x >= line.getX1(); x--) {
+            for (int x = line.getX0(); x >= line.getX1(); x--) {
+                switch (direction) {
+                    case X:
                         generator.accept(pos.set(0, line.getY(), x));
-                    }
-                    break;
-                case Y:
-                    for (int x = line.getX0(); x >= line.getX1(); x--) {
+                        break;
+                    case Y:
                         generator.accept(pos.set(x, 0, line.getY()));
-                    }
-                    break;
-                case Z:
-                    for (int x = line.getX0(); x >= line.getX1(); x--) {
+                        break;
+                    case Z:
                         generator.accept(pos.set(x, line.getY(), 0));
-                    }
-                    break;
-                default:
-                    throw new UnsupportedOperationException("Unsupported direction: " + direction);
+                        break;
+                    default:
+                        throw new UnsupportedOperationException("Unsupported direction: " + direction);
+                }
             }
         });
     }
