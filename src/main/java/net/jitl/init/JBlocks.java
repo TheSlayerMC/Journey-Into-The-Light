@@ -13,7 +13,7 @@ public class JBlocks {
     public static final Block LUNIUM_ORE = promise();
     public static final Block SHADIUM_ORE = promise();
     public static final Block IRIDIUM_ORE = promise();
-    public static final Block HELLSTONE_ORE = promise();
+    public static final Block BLOODCRUST_ORE = promise();
     public static final Block ASHUAL_ORE = promise();
     public static final Block BLAZIUM_ORE = promise();
     public static final Block CELESTIUM_ORE = promise();
@@ -32,7 +32,7 @@ public class JBlocks {
     public static final Block LUNIUM_BLOCK = promise();
     public static final Block SHADIUM_BLOCK = promise();
     public static final Block IRIDIUM_BLOCK = promise();
-    public static final Block HELLSTONE_BLOCK = promise();
+    public static final Block BLOODCRUST_BLOCK = promise();
     public static final Block ASHUAL_BLOCK = promise();
     public static final Block BLAZIUM_BLOCK = promise();
     public static final Block CELESTIUM_BLOCK = promise();
@@ -52,8 +52,8 @@ public class JBlocks {
     public static final Block DUNGEON_BRICKS_CHISELED = promise();
     public static final Block DUNGEON_BRICKS_CRACKED = promise();
     public static final Block DUNGEON_LAMP = promise();
-    public static final Block BLUE_GEMS = promise();
-    public static final Block RED_GEMS = promise();
+    public static final Block COMMON_GEMS = promise();
+    public static final Block RARE_GEMS = promise();
 
     public static final Block EUCA_BRICK = promise();
 }

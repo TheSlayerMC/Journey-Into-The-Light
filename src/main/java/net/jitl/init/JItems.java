@@ -11,6 +11,8 @@ import static ru.timeconqueror.timecore.util.Hacks.promise;
 public class JItems {
 
     public static final Item SAPPHIRE = promise();
+    public static final Item IRIDIUM_NUGGET = promise();
+    public static final Item SHADIUM_INGOT = promise();
     public static final Item LUNIUM_INGOT = promise();
 
     public static final Item LUNIUM_SWORD = promise();

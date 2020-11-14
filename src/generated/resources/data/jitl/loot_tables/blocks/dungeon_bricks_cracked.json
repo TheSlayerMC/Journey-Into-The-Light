@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "jitl:hellstone_ore"
+          "name": "jitl:dungeon_bricks_cracked"
         }
       ],
       "conditions": [
