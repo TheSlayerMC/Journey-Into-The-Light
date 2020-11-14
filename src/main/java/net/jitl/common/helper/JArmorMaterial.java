@@ -7,37 +7,38 @@ import net.minecraft.item.Item;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
+import org.apache.commons.lang3.NotImplementedException;
 
 public enum JArmorMaterial implements IArmorMaterial {
 
-    SAPPHIRE("sapphire", 27, new int[] {3, 6, 8, 3}, 0.5F, 0.2F, SoundEvents.ARMOR_EQUIP_IRON, JItems.SAPPHIRE);
+    SAPPHIRE("sapphire", 27, new int[]{3, 6, 8, 3}, 0.5F, 0.2F, SoundEvents.ARMOR_EQUIP_IRON, JItems.SAPPHIRE);
 
-    private final String NAME;
-    private final int DURABILITY_MULTIPLIER;
-    private final float TOUGHNESS, KNOCKBACK;
-    private final int[] PROTECTION_PER_PIECE;
-    private final SoundEvent SLOT_IN;
-    private final Ingredient REPAIR_ITEM;
-    private static final int[] HEALTH_PER_SLOT = new int[]{13, 15, 16, 11};
+    private final String name;
+    private final int durabilityMultiplier;
+    private final float toughness, knockback;
+    private final int[] protectionPerPiece;
+    private final SoundEvent slotIn;
+    private final Ingredient repairItem;
+    private static final int[] BASE_DURABILITY = new int[]{13, 15, 16, 11};
 
-    private JArmorMaterial(String name, int dur, int[] protection, float toughness, float knockback, SoundEvent putIn, Item repair) {
-        this.NAME = name;
-        this.DURABILITY_MULTIPLIER = dur;
-        this.PROTECTION_PER_PIECE = protection;
-        this.SLOT_IN = putIn;
-        this.TOUGHNESS = toughness;
-        this.KNOCKBACK = knockback;
-        this.REPAIR_ITEM = Ingredient.of(repair);
+    JArmorMaterial(String name, int dur, int[] protection, float toughness, float knockback, SoundEvent putIn, Item repair) {
+        this.name = name;
+        this.durabilityMultiplier = dur;
+        this.protectionPerPiece = protection;
+        this.slotIn = putIn;
+        this.toughness = toughness;
+        this.knockback = knockback;
+        this.repairItem = Ingredient.of(repair);
     }
 
     @Override
     public int getDurabilityForSlot(EquipmentSlotType slot) {
-        return HEALTH_PER_SLOT[slot.getIndex()] * this.DURABILITY_MULTIPLIER;
+        return BASE_DURABILITY[slot.getIndex()] * this.durabilityMultiplier;
     }
 
     @Override
     public int getDefenseForSlot(EquipmentSlotType slotIn) {
-        return PROTECTION_PER_PIECE[slotIn.getIndex()];
+        return protectionPerPiece[slotIn.getIndex()];
     }
 
     @Override
@@ -47,26 +48,27 @@ public enum JArmorMaterial implements IArmorMaterial {
 
     @Override
     public SoundEvent getEquipSound() {
-        return SLOT_IN;
+        return slotIn;
     }
 
     @Override
     public Ingredient getRepairIngredient() {
-        return REPAIR_ITEM;
+        return repairItem;
     }
 
     @Override
     public String getName() {
-        return this.name;
+//        return this.name;
+        throw new NotImplementedException("TODO");
     }
 
     @Override
     public float getToughness() {
-        return this.TOUGHNESS;
+        return this.toughness;
     }
 
     @Override
     public float getKnockbackResistance() {
-        return this.KNOCKBACK;
+        return this.knockback;
     }
 }
