@@ -8,6 +8,6 @@ import net.minecraft.item.ShovelItem;
 public class JItemShovel extends ShovelItem {
 
     public JItemShovel(JToolTiers tier) {
-        super(tier, 0, tier.getAttackSpeed(), new Item.Properties().tab(JTabs.TOOLS));
+        super(tier, tier.getShovelDam(), tier.getAttackSpeed(), new Item.Properties().tab(JTabs.TOOLS));
     }
 }

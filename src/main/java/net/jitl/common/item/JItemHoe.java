@@ -8,6 +8,6 @@ import net.minecraft.item.Item;
 public class JItemHoe extends HoeItem {
 
     public JItemHoe(JToolTiers tier) {
-        super(tier, 0, tier.getAttackSpeed(), new Item.Properties().tab(JTabs.TOOLS));
+        super(tier, 1, tier.getAttackSpeed(), new Item.Properties().tab(JTabs.TOOLS));
     }
 }

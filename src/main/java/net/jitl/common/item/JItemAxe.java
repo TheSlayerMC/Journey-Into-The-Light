@@ -8,6 +8,6 @@ import net.minecraft.item.Item;
 public class JItemAxe extends AxeItem {
 
     public JItemAxe(JToolTiers tier) {
-        super(tier, 0, tier.getAttackSpeed(), new Item.Properties().tab(JTabs.TOOLS));
+        super(tier, tier.getAxeDam(), tier.getAttackSpeed(), new Item.Properties().tab(JTabs.TOOLS));
     }
 }

@@ -10,34 +10,49 @@ import java.util.function.Supplier;
 
 public enum JToolTiers implements IItemTier {
 
-    SAPPHIRE(1461, 10F, 8F, -2.4F, JItems.SAPPHIRE),
-    SHADIUM(1461, 10F, 8F, -2.4F, JItems.SHADIUM_INGOT),
-    LUNIUM(1490, 12F, 8.5F, -2.4F, JItems.LUNIUM_INGOT);
+    SAPPHIRE(1461, 10F, 8F, 5F, 3F, 1.6F, JItems.SAPPHIRE),
+    SHADIUM(1461, 10F, 8F, 5F, 3F, 1.6F, JItems.SHADIUM_INGOT),
+    LUNIUM(1490, 12F, 8F, 6F, 4F, 1.7F, JItems.LUNIUM_INGOT);
 
     private final int level;
     private final int uses;
     private final float speed;
-    private final float damage;
+    /** Swords are casted to int so cant do half damage **/
+    private final float swordDamage, axeDam, shovelDam;
     private final int enchantmentValue;
     private final float attackSpeed;
     private final Ingredient repairIngredient;
 
-    private JToolTiers(int harvest, int uses, float eff, float dam, float attackSpeed, Item repair) {
+    private JToolTiers(int harvest, int uses, float eff, float swordDam, float axeDam, float shovelDam, float attackSpeed, Item repair) {
         this.level = harvest;
         this.uses = uses;
         this.speed = eff;
-        this.damage = dam - 1;
+        this.swordDamage = swordDam;
+        this.axeDam = axeDam;
+        this.shovelDam = shovelDam;
         this.enchantmentValue = 30;
         this.attackSpeed = attackSpeed;
         this.repairIngredient = Ingredient.of(repair);
     }
 
-    private JToolTiers(int uses, float eff, float dam, float attackSpeed, Item repair) {
-        this(3, uses, eff, dam, attackSpeed, repair);
+    private JToolTiers(int uses, float eff, float swordDam, float axeDam, float shovelDam, float attackSpeed, Item repair) {
+        this(3, uses, eff, swordDam, axeDam, shovelDam, attackSpeed, repair);
+    }
+
+    public float getSwordDamage() {
+        return swordDamage;
+    }
+
+    public float getAxeDam() {
+        return axeDam;
+    }
+
+    public float getShovelDam() {
+        return shovelDam;
     }
 
     public float getAttackSpeed() {
-        return attackSpeed;
+        return attackSpeed - 4F;
     }
 
     @Override
@@ -52,7 +67,7 @@ public enum JToolTiers implements IItemTier {
 
     @Override
     public float getAttackDamageBonus() {
-        return damage;
+        return -1;//fuck that off
     }
 
     @Override

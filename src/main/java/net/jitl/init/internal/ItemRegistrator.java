@@ -38,31 +38,31 @@ public class ItemRegistrator {
 
     private static void registerSwordItem(String name, String enName, JToolTiers material) {
         REGISTER.register(name, () -> new JItemSword(material))
-                .genModel(StandardItemModelParents.DEFAULT)
+                .genModel(StandardItemModelParents.HANDHELD)
                 .genLangEntry(enName);
     }
 
     private static void registerShovelItem(String name, String enName, JToolTiers material) {
         REGISTER.register(name, () -> new JItemShovel(material))
-                .genModel(StandardItemModelParents.DEFAULT)
+                .genModel(StandardItemModelParents.HANDHELD)
                 .genLangEntry(enName);
     }
 
     private static void registerHoeItem(String name, String enName, JToolTiers material) {
         REGISTER.register(name, () -> new JItemHoe(material))
-                .genModel(StandardItemModelParents.DEFAULT)
+                .genModel(StandardItemModelParents.HANDHELD)
                 .genLangEntry(enName);
     }
 
     private static void registerAxeItem(String name, String enName, JToolTiers material) {
         REGISTER.register(name, () -> new JItemAxe(material))
-                .genModel(StandardItemModelParents.DEFAULT)
+                .genModel(StandardItemModelParents.HANDHELD)
                 .genLangEntry(enName);
     }
 
     private static void registerPickaxeItem(String name, String enName, JToolTiers material) {
         REGISTER.register(name, () -> new JItemPickaxe(material))
-                .genModel(StandardItemModelParents.DEFAULT)
+                .genModel(StandardItemModelParents.HANDHELD)
                 .genLangEntry(enName);
     }
 

@@ -8,6 +8,6 @@ import net.minecraft.item.SwordItem;
 public class JItemSword extends SwordItem {
 
     public JItemSword(JToolTiers tier) {
-        super(tier, 0, tier.getAttackSpeed(), new Item.Properties().tab(JTabs.WEAPONS));
+        super(tier, (int)tier.getSwordDamage(), tier.getAttackSpeed(), new Item.Properties().tab(JTabs.WEAPONS));
     }
 }
