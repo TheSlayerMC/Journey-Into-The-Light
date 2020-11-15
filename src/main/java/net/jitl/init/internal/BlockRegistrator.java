@@ -6,6 +6,9 @@ import net.jitl.common.helper.EnumHarvestLevel;
 import net.jitl.init.JTabs;
 import net.jitl.util.JBlockProperties;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockReader;
 import ru.timeconqueror.timecore.registry.AutoRegistrable;
 import ru.timeconqueror.timecore.registry.newreg.BlockRegister;
 
@@ -17,7 +20,7 @@ public class BlockRegistrator {
     @AutoRegistrable.InitMethod
     private static void register() {
         registerOreBlock("sapphire_ore", "Sapphire Ore", EnumHarvestLevel.DIAMOND, 3);
-        registerOreBlock("lunium_ore", "Lunium Ore", EnumHarvestLevel.DIAMOND, 0);
+        registerEmissiveOreBlock("lunium_ore", "Lunium Ore", EnumHarvestLevel.DIAMOND, 0);
         registerOreBlock("shadium_ore", "Shadium Ore", EnumHarvestLevel.DIAMOND, 0);
         registerOreBlock("iridium_ore", "Iridium Ore", EnumHarvestLevel.IRON, 3);
         registerOreBlock("bloodcrust_ore", "Bloodcrust Ore", EnumHarvestLevel.DIAMOND, 0);
@@ -81,5 +84,22 @@ public class BlockRegistrator {
                 .genLangEntry(enName)
                 .regDefaultBlockItem(JTabs.BLOCKS)
                 .genDefaultStateAndModel();
+    }
+
+    //test
+    private static void registerEmissiveOreBlock(String name, String enName, EnumHarvestLevel harvestLevel, int minExp) {
+        REGISTER.register(name, () -> new JOreBlock
+                (JBlockProperties.ORE_PROPS.create()
+                        .harvestLevel(harvestLevel.getInt())
+                        .lightLevel((state11) -> 3)
+                        .emissiveRendering(BlockRegistrator::always))
+                .setExpDrop(minExp))
+                .genLangEntry(enName)
+                .regDefaultBlockItem(JTabs.BLOCKS)
+                .genDefaultStateAndModel();
+    }
+
+    private static boolean always(BlockState blockState, IBlockReader blockReader, BlockPos blockPos) {
+        return true;
     }
 }
