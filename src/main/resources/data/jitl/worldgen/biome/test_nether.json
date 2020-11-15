@@ -1,0 +1,58 @@
+{
+  // https://minecraft.gamepedia.com/Custom_world_generation#Biome
+  "precipitation": "rain",
+  "category": "nether",
+  "depth": 1.1,
+  "scale": 1.2,
+  "temperature": 0,
+  "temperature_modifier": "none",
+  "downfall": 0.5,
+  "effects": {
+    "fog_color": 12648408,
+    "water_color": 4159204,
+    "water_fog_color": 329011,
+    "sky_color": 0,
+    "foliage_color": 0,
+    "grass_color": 0
+  },
+  "surface_builder": {
+    "config": {
+      "top_material": {
+        "Properties": {
+          "snowy": "false"
+        },
+        "Name": "minecraft:grass_block"
+      },
+      "under_material": {
+        "Name": "minecraft:dirt"
+      },
+      "underwater_material": {
+        "Name": "minecraft:gravel"
+      }
+    },
+    "type": "minecraft:default"
+  },
+  "carvers": {
+    "air": []
+  },
+  "features": [],
+  "starts": [],
+  "spawners": {
+    "monster": [
+    ],
+    "creature": [
+    ],
+    "ambient": [
+    ],
+    "water_creature": [
+    ],
+    "water_ambient": [
+    ],
+    "misc": [
+    ]
+  },
+  "player_spawn_friendly": true,
+  "creature_spawn_probability": 0.5,
+  "spawn_costs": {
+  }
+}

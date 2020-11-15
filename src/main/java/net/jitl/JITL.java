@@ -1,6 +1,7 @@
 package net.jitl;
 
 import net.jitl.init.JFeatureGen;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -32,11 +33,13 @@ public class JITL implements TimeMod {
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
-
     }
 
     @SubscribeEvent
     public void onServerStarting(FMLServerStartingEvent event) {
+    }
 
+    public static ResourceLocation resourceLocation(String location) {
+        return new ResourceLocation(MODID, location);
     }
 }

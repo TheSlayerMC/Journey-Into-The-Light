@@ -8,6 +8,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class JBiomes {
 
 	private static final DeferredRegister<Biome> REGISTER = DeferredRegister.create(ForgeRegistries.BIOMES, JITL.MODID);
-
-	//public static final RegistryObject<Biome> NETHER_BLOOD_FOREST = REGISTER.register("blood_forest", () -> new)
+	//wtf
+	//public static final RegistryKey<Biome> TEST_NETHER = REGISTER.register("test_nether", );
 }
