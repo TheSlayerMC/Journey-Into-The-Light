@@ -33,12 +33,14 @@ public class JITL implements TimeMod {
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
-
     }
 
     @SubscribeEvent
     public void onServerStarting(FMLServerStartingEvent event) {
+    }
 
+    public static ResourceLocation resourceLocation(String location) {
+        return new ResourceLocation(MODID, location);
     }
 
     public static ResourceLocation rl(String path) {

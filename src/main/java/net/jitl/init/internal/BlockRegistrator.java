@@ -20,23 +20,23 @@ public class BlockRegistrator {
 
     @AutoRegistrable.InitMethod
     private static void register() {
-        registerOreBlock("sapphire_ore", "Sapphire Ore", EnumHarvestLevel.DIAMOND, 3);
-        registerEmissiveOreBlock("lunium_ore", "Lunium Ore", EnumHarvestLevel.DIAMOND, 0);
-        registerOreBlock("shadium_ore", "Shadium Ore", EnumHarvestLevel.DIAMOND, 0);
+        registerOreBlock("sapphire_ore", "Sapphire Ore", EnumHarvestLevel.NETHERITE, 3);
+        registerEmissiveOreBlock("lunium_ore", "Lunium Ore", EnumHarvestLevel.NETHERITE, 0);
+        registerOreBlock("shadium_ore", "Shadium Ore", EnumHarvestLevel.NETHERITE, 0);
         registerOreBlock("iridium_ore", "Iridium Ore", EnumHarvestLevel.IRON, 3);
-        registerOreBlock("bloodcrust_ore", "Bloodcrust Ore", EnumHarvestLevel.DIAMOND, 0);
-        registerOreBlock("ashual_ore", "Ashual Ore", EnumHarvestLevel.DIAMOND, 4);
-        registerOreBlock("blazium_ore", "Blazium Ore", EnumHarvestLevel.DIAMOND, 4);
-        registerOreBlock("mekyum_ore", "Mekyum Ore", EnumHarvestLevel.DIAMOND, 0);
-        registerOreBlock("celestium_ore", "Celestium Ore", EnumHarvestLevel.DIAMOND, 0);
-        registerOreBlock("storon_ore", "Storon Ore", EnumHarvestLevel.DIAMOND, 0);
-        registerOreBlock("flairium_ore", "Flairium Ore", EnumHarvestLevel.DIAMOND, 0);
-        registerOreBlock("des_ore", "Des Ore", EnumHarvestLevel.DIAMOND, 0);
-        registerOreBlock("enderillium_ore", "Enderillium Ore", EnumHarvestLevel.DIAMOND, 4);
-        registerOreBlock("gorbite_ore", "Gorbite Ore", EnumHarvestLevel.DIAMOND, 4);
-        registerOreBlock("orbadite_ore", "Orbadite Ore", EnumHarvestLevel.DIAMOND, 0);
-        registerOreBlock("lunite_ore", "Lunite Ore", EnumHarvestLevel.DIAMOND, 6);
-        registerOreBlock("firestone_ore", "Firestone Ore", EnumHarvestLevel.DIAMOND, 3);
+        registerOreBlock("bloodcrust_ore", "Bloodcrust Ore", EnumHarvestLevel.NETHERITE, 0);
+        registerOreBlock("ashual_ore", "Ashual Ore", EnumHarvestLevel.NETHERITE, 4);
+        registerOreBlock("blazium_ore", "Blazium Ore", EnumHarvestLevel.NETHERITE, 4);
+        registerOreBlock("mekyum_ore", "Mekyum Ore", EnumHarvestLevel.NETHERITE, 0);
+        registerOreBlock("celestium_ore", "Celestium Ore", EnumHarvestLevel.NETHERITE, 0);
+        registerOreBlock("storon_ore", "Storon Ore", EnumHarvestLevel.NETHERITE, 0);
+        registerOreBlock("flairium_ore", "Flairium Ore", EnumHarvestLevel.NETHERITE, 0);
+        registerOreBlock("des_ore", "Des Ore", EnumHarvestLevel.NETHERITE, 0);
+        registerOreBlock("enderillium_ore", "Enderillium Ore", EnumHarvestLevel.NETHERITE, 4);
+        registerOreBlock("gorbite_ore", "Gorbite Ore", EnumHarvestLevel.NETHERITE, 4);
+        registerOreBlock("orbadite_ore", "Orbadite Ore", EnumHarvestLevel.NETHERITE, 0);
+        registerOreBlock("lunite_ore", "Lunite Ore", EnumHarvestLevel.NETHERITE, 6);
+        registerOreBlock("firestone_ore", "Firestone Ore", EnumHarvestLevel.NETHERITE, 3);
 
         registerDefaultBlock("lava_rock", "Lava Rock");
         registerDefaultBlock("sapphire_block", "Sapphire Block");

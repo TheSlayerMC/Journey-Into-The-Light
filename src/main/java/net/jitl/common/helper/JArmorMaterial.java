@@ -1,5 +1,6 @@
 package net.jitl.common.helper;
 
+import net.jitl.JITL;
 import net.jitl.init.JItems;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IArmorMaterial;
@@ -11,7 +12,10 @@ import org.apache.commons.lang3.NotImplementedException;
 
 public enum JArmorMaterial implements IArmorMaterial {
 
-    SAPPHIRE("sapphire", 27, new int[]{3, 6, 8, 3}, 0.5F, 0.2F, SoundEvents.ARMOR_EQUIP_IRON, JItems.SAPPHIRE);
+    //Change these
+    SAPPHIRE("sapphire", 27, new int[]{3, 6, 8, 3}, 0.5F, 0.2F, SoundEvents.ARMOR_EQUIP_IRON, JItems.SAPPHIRE),
+    LUNIUM("lunium", 27, new int[]{3, 6, 8, 3}, 0.5F, 0.2F, SoundEvents.ARMOR_EQUIP_IRON, JItems.LUNIUM_INGOT),
+    SHADIUM("shadium", 27, new int[]{3, 6, 8, 3}, 0.5F, 0.2F, SoundEvents.ARMOR_EQUIP_IRON, JItems.SHADIUM_INGOT);
 
     private final String name;
     private final int durabilityMultiplier;
@@ -56,10 +60,12 @@ public enum JArmorMaterial implements IArmorMaterial {
         return repairItem;
     }
 
+    /**
+     * This sets the model texture name
+     */
     @Override
     public String getName() {
-//        return this.name;
-        throw new NotImplementedException("TODO");
+        return JITL.MODID + ":" + this.name;
     }
 
     @Override
