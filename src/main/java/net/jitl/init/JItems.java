@@ -14,6 +14,7 @@ public class JItems {
     public static final Item IRIDIUM_NUGGET = promise();
     public static final Item SHADIUM_INGOT = promise();
     public static final Item LUNIUM_INGOT = promise();
+    public static final Item BLOODCRUST_INGOT = promise();
     public static final TestBugItem TEST_BUG = promise();
 
     public static final Item SAPPHIRE_SWORD = promise();

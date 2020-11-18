@@ -23,11 +23,14 @@ public class ItemRegistrator {
         registerItem("iridium_nugget", "Iridium Nugget");
         registerItem("lunium_ingot", "Lunium Ingot");
         registerItem("shadium_ingot", "Shadium Ingot");
+        registerItem("bloodcrust_ingot", "Bloodcrust Ingot");
         registerItem("test_bug", "Test Bug", TestBugItem::new);
 
         registerArmorAndToolsSet("sapphire", "Sapphire", JToolTiers.SAPPHIRE, JArmorMaterial.SAPPHIRE);
         registerArmorAndToolsSet("lunium", "Lunium", JToolTiers.LUNIUM, JArmorMaterial.LUNIUM);
         registerArmorAndToolsSet("shadium", "Shadium", JToolTiers.SHADIUM, JArmorMaterial.SHADIUM);
+        registerArmorAndToolsSet("bloodcrust", "Bloodcrust", JToolTiers.BLOODCRUST, JArmorMaterial.BLOODCRUST);
+
     }
 
     public static void registerArmorAndToolsSet(String name, String engName, JToolTiers toolTiers, JArmorMaterial armorMaterial) {
