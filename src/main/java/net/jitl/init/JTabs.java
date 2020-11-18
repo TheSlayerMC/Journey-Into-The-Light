@@ -38,14 +38,14 @@ public class JTabs {
     public static final ItemGroup TOOLS = new ItemGroup("jitl.tools") {
         @Override
         public ItemStack makeIcon() {
-            return new ItemStack(Items.DIAMOND_PICKAXE);
+            return new ItemStack(JItems.SAPPHIRE_PICKAXE);
         }
     };
 
     public static final ItemGroup ARMOR = new ItemGroup("jitl.armor") {
         @Override
         public ItemStack makeIcon() {
-            return new ItemStack(Items.DIAMOND_HELMET);
+            return new ItemStack(JItems.SAPPHIRE_HELMET);
         }
     };
 

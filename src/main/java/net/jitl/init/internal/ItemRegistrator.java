@@ -44,6 +44,7 @@ public class ItemRegistrator {
 
     public static void registerToolSet(String name, String engName, JToolTiers mat) {
         registerSwordItem(name + "_sword", engName + " Sword", mat);
+        registerMultiToolItem(name + "_multitool", engName + " Multitool", mat);
         registerPickaxeItem(name + "_pickaxe", engName + " Pickaxe", mat);
         registerAxeItem(name + "_axe", engName + " Axe", mat);
         registerShovelItem(name + "_shovel", engName + " Shovel", mat);
@@ -100,6 +101,12 @@ public class ItemRegistrator {
 
     private static void registerPickaxeItem(String name, String enName, JToolTiers material) {
         REGISTER.register(name, () -> new JItemPickaxe(material))
+                .genModel(StandardItemModelParents.HANDHELD)
+                .genLangEntry(enName);
+    }
+
+    private static void registerMultiToolItem(String name, String enName, JToolTiers material) {
+        REGISTER.register(name, () -> new ItemMultitool(material))
                 .genModel(StandardItemModelParents.HANDHELD)
                 .genLangEntry(enName);
     }
