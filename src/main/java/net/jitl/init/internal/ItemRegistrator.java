@@ -1,9 +1,11 @@
 package net.jitl.init.internal;
 
 import net.jitl.JITL;
+import net.jitl.common.helper.JArmorMaterial;
 import net.jitl.common.helper.JToolTiers;
 import net.jitl.common.item.*;
 import net.jitl.util.JItemProperties;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import ru.timeconqueror.timecore.api.client.resource.StandardItemModelParents;
 import ru.timeconqueror.timecore.registry.AutoRegistrable;
@@ -23,9 +25,21 @@ public class ItemRegistrator {
         registerItem("shadium_ingot", "Shadium Ingot");
         registerItem("test_bug", "Test Bug", TestBugItem::new);
 
-        registerToolSet("sapphire", "Sapphire", JToolTiers.SAPPHIRE);
-        registerToolSet("lunium", "Lunium", JToolTiers.LUNIUM);
-        registerToolSet("shadium", "Shadium", JToolTiers.SHADIUM);
+        registerArmorAndToolsSet("sapphire", "Sapphire", JToolTiers.SAPPHIRE, JArmorMaterial.SAPPHIRE);
+        registerArmorAndToolsSet("lunium", "Lunium", JToolTiers.LUNIUM, JArmorMaterial.LUNIUM);
+        registerArmorAndToolsSet("shadium", "Shadium", JToolTiers.SHADIUM, JArmorMaterial.SHADIUM);
+    }
+
+    public static void registerArmorAndToolsSet(String name, String engName, JToolTiers toolTiers, JArmorMaterial armorMaterial) {
+        registerToolSet(name, engName, toolTiers);
+        registerArmorSet(name, engName, armorMaterial);
+    }
+
+    public static void registerArmorSet(String name, String engName, JArmorMaterial mat) {
+        registerHelmetItem(name + "_helmet", engName + " Helmet", mat);
+        registerChestplateItem(name + "_chestplate", engName + " Chestplate", mat);
+        registerLeggingsItem(name + "_leggings", engName + " Leggings", mat);
+        registerBootsItem(name + "_boots", engName + " Boots", mat);
     }
 
     public static void registerToolSet(String name, String engName, JToolTiers mat) {
@@ -34,6 +48,30 @@ public class ItemRegistrator {
         registerAxeItem(name + "_axe", engName + " Axe", mat);
         registerShovelItem(name + "_shovel", engName + " Shovel", mat);
         registerHoeItem(name + "_hoe", engName + " Hoe", mat);
+    }
+
+    private static void registerHelmetItem(String name, String enName, JArmorMaterial material) {
+        REGISTER.register(name, () -> new JItemArmor(material, EquipmentSlotType.HEAD))
+                .genModel(StandardItemModelParents.DEFAULT)
+                .genLangEntry(enName);
+    }
+
+    private static void registerChestplateItem(String name, String enName, JArmorMaterial material) {
+        REGISTER.register(name, () -> new JItemArmor(material, EquipmentSlotType.CHEST))
+                .genModel(StandardItemModelParents.DEFAULT)
+                .genLangEntry(enName);
+    }
+
+    private static void registerLeggingsItem(String name, String enName, JArmorMaterial material) {
+        REGISTER.register(name, () -> new JItemArmor(material, EquipmentSlotType.LEGS))
+                .genModel(StandardItemModelParents.DEFAULT)
+                .genLangEntry(enName);
+    }
+
+    private static void registerBootsItem(String name, String enName, JArmorMaterial material) {
+        REGISTER.register(name, () -> new JItemArmor(material, EquipmentSlotType.FEET))
+                .genModel(StandardItemModelParents.DEFAULT)
+                .genLangEntry(enName);
     }
 
     private static void registerSwordItem(String name, String enName, JToolTiers material) {

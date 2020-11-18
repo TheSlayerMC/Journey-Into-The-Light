@@ -42,6 +42,13 @@ public class JTabs {
         }
     };
 
+    public static final ItemGroup ARMOR = new ItemGroup("journey.armor") {
+        @Override
+        public ItemStack makeIcon() {
+            return new ItemStack(Items.DIAMOND_HELMET);
+        }
+    };
+
     public static final ItemGroup WEAPONS = new ItemGroup("journey.weapons") {
         @Override
         public ItemStack makeIcon() {
