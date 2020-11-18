@@ -9,6 +9,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
+import ru.timeconqueror.timecore.api.client.resource.location.BlockModelLocation;
 import ru.timeconqueror.timecore.registry.AutoRegistrable;
 import ru.timeconqueror.timecore.registry.newreg.BlockRegister;
 
@@ -91,12 +92,12 @@ public class BlockRegistrator {
         REGISTER.register(name, () -> new JOreBlock
                 (JBlockProperties.ORE_PROPS.create()
                         .harvestLevel(harvestLevel.getInt())
-                        .lightLevel((state11) -> 3)
-                        .emissiveRendering(BlockRegistrator::always))
+//                        .emissiveRendering(BlockRegistrator::always))
+                )
                 .setExpDrop(minExp))
                 .genLangEntry(enName)
                 .regDefaultBlockItem(JTabs.BLOCKS)
-                .genDefaultStateAndModel();
+                .genDefaultState(new BlockModelLocation(JITL.MODID, "block/" + name));
     }
 
     private static boolean always(BlockState blockState, IBlockReader blockReader, BlockPos blockPos) {
