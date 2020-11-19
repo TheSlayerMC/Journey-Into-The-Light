@@ -56,4 +56,6 @@ public class JBlocks {
     public static final Block RARE_GEMS = promise();
 
     public static final Block EUCA_BRICK = promise();
+
+    public static final Block LASER_EMITTER = promise();
 }

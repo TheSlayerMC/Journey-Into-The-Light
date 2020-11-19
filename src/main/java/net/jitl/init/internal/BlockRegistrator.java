@@ -2,6 +2,7 @@ package net.jitl.init.internal;
 
 import net.jitl.JITL;
 import net.jitl.common.block.JOreBlock;
+import net.jitl.common.block.LaserEmitterBlock;
 import net.jitl.common.helper.EnumHarvestLevel;
 import net.jitl.init.JTabs;
 import net.jitl.util.JBlockProperties;
@@ -12,6 +13,8 @@ import net.minecraft.world.IBlockReader;
 import ru.timeconqueror.timecore.api.client.resource.location.BlockModelLocation;
 import ru.timeconqueror.timecore.registry.AutoRegistrable;
 import ru.timeconqueror.timecore.registry.newreg.BlockRegister;
+
+import java.util.function.Supplier;
 
 public class BlockRegistrator {
 
@@ -67,6 +70,15 @@ public class BlockRegistrator {
         registerDefaultBlock("rare_gems", "Rare Gems");
 
         registerDefaultBlock("euca_brick", "Euca Brick");
+
+        registerDefaultBlock("laser_emitter", "Laser Emitter", () -> new LaserEmitterBlock(JBlockProperties.STONE_PROPS.create()));
+    }
+
+    private static void registerDefaultBlock(String name, String enName, Supplier<Block> blockSupplier) {
+        REGISTER.register(name, blockSupplier)
+                .genLangEntry(enName)
+                .regDefaultBlockItem(JTabs.BLOCKS)
+                .genDefaultStateAndModel();
     }
 
     private static void registerDefaultBlock(String name, String enName) {
