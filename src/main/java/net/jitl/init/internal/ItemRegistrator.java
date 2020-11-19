@@ -24,12 +24,26 @@ public class ItemRegistrator {
         registerItem("lunium_ingot", "Lunium Ingot");
         registerItem("shadium_ingot", "Shadium Ingot");
         registerItem("bloodcrust_ingot", "Bloodcrust Ingot");
+
+        registerItem("ash", "Ash");
+        registerItem("enderillium_shard", "Enderillium Shard");
+        registerItem("celestium_ingot", "Celestium Ingot");
+        registerItem("korite_ingot", "Korite Ingot");
+        registerItem("mekyum_ingot", "Mekyum Ingot");
+        registerItem("storon_ingot", "Storon Ingot");
+
         registerItem("test_bug", "Test Bug", TestBugItem::new);
 
         registerArmorAndToolsSet("sapphire", "Sapphire", JToolTiers.SAPPHIRE, JArmorMaterial.SAPPHIRE);
         registerArmorAndToolsSet("lunium", "Lunium", JToolTiers.LUNIUM, JArmorMaterial.LUNIUM);
         registerArmorAndToolsSet("shadium", "Shadium", JToolTiers.SHADIUM, JArmorMaterial.SHADIUM);
+
         registerArmorAndToolsSet("bloodcrust", "Bloodcrust", JToolTiers.BLOODCRUST, JArmorMaterial.BLOODCRUST);
+
+        registerArmorAndToolsSet("celestium", "Celestium", JToolTiers.CELESTIUM, JArmorMaterial.CELESTIUM);
+        registerToolSet("korite", "Korite", JToolTiers.KORITE);
+        registerToolSet("mekyum", "Mekyum", JToolTiers.MEKYUM);
+        registerToolSet("storon", "Storon", JToolTiers.STORON);
 
     }
 
