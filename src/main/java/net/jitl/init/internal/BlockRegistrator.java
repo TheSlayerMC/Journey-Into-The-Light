@@ -7,9 +7,6 @@ import net.jitl.common.helper.EnumHarvestLevel;
 import net.jitl.init.JTabs;
 import net.jitl.util.JBlockProperties;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockReader;
 import ru.timeconqueror.timecore.api.client.resource.location.BlockModelLocation;
 import ru.timeconqueror.timecore.registry.AutoRegistrable;
 import ru.timeconqueror.timecore.registry.newreg.BlockRegister;
@@ -24,7 +21,7 @@ public class BlockRegistrator {
     @AutoRegistrable.InitMethod
     private static void register() {
         registerOreBlock("sapphire_ore", "Sapphire Ore", EnumHarvestLevel.NETHERITE, 3);
-        registerEmissiveOreBlock("lunium_ore", "Lunium Ore", EnumHarvestLevel.NETHERITE, 0);
+        registerSpeciallyRenderedOreBlock("lunium_ore", "Lunium Ore", EnumHarvestLevel.NETHERITE, 0);
         registerOreBlock("shadium_ore", "Shadium Ore", EnumHarvestLevel.NETHERITE, 0);
         registerOreBlock("iridium_ore", "Iridium Ore", EnumHarvestLevel.IRON, 3);
         registerOreBlock("bloodcrust_ore", "Bloodcrust Ore", EnumHarvestLevel.NETHERITE, 0);
@@ -43,7 +40,7 @@ public class BlockRegistrator {
 
         registerDefaultBlock("lava_rock", "Lava Rock");
         registerDefaultBlock("sapphire_block", "Sapphire Block");
-        registerDefaultBlock("lunium_block", "Lunium Block");
+        registerSpeciallyRenderedDefaultBlock("lunium_block", "Lunium Block");
         registerDefaultBlock("shadium_block", "Shadium Block");
         registerDefaultBlock("iridium_block", "Iridium Block");
         registerDefaultBlock("bloodcrust_block", "Bloodcrust Block");
@@ -99,12 +96,10 @@ public class BlockRegistrator {
                 .genDefaultStateAndModel();
     }
 
-    //test
-    private static void registerEmissiveOreBlock(String name, String enName, EnumHarvestLevel harvestLevel, int minExp) {
+    private static void registerSpeciallyRenderedOreBlock(String name, String enName, EnumHarvestLevel harvestLevel, int minExp) {
         REGISTER.register(name, () -> new JOreBlock
                 (JBlockProperties.ORE_PROPS.create()
                         .harvestLevel(harvestLevel.getInt())
-//                        .emissiveRendering(BlockRegistrator::always))
                 )
                 .setExpDrop(minExp))
                 .genLangEntry(enName)
@@ -112,7 +107,11 @@ public class BlockRegistrator {
                 .genDefaultState(new BlockModelLocation(JITL.MODID, "block/" + name));
     }
 
-    private static boolean always(BlockState blockState, IBlockReader blockReader, BlockPos blockPos) {
-        return true;
+    private static void registerSpeciallyRenderedDefaultBlock(String name, String enName) {
+        REGISTER.register(name, () -> new Block
+                (JBlockProperties.STONE_PROPS.create()))
+                .genLangEntry(enName)
+                .regDefaultBlockItem(JTabs.BLOCKS)
+                .genDefaultState(new BlockModelLocation(JITL.MODID, "block/" + name));
     }
 }
