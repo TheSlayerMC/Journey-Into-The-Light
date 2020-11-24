@@ -50,5 +50,9 @@ public class JClientConfig extends Config {
 		public boolean isJITLMenuEnabled() {
 			return ENABLE_JITL_MENU_SCREEN.get();
 		}
+
+		public void setJITLMenu(boolean enabled) {
+			ENABLE_JITL_MENU_SCREEN.set(enabled);
+		}
 	}
 }

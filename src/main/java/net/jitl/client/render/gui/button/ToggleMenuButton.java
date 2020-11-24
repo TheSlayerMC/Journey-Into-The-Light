@@ -17,12 +17,13 @@ public class ToggleMenuButton extends JImageButton {
 	private static final ITextComponent DISABLE_JITL_MENU = new TranslationTextComponent("jitl.tooltip.disable_menu");
 
 	public ToggleMenuButton(int xIn, int yIn, IPressable onPressIn) {
-		super(xIn, yIn, 20, 20, 0, 0, 20, JITL.rl("textures/gui/title/menu_toggle.png"), onPressIn);
+		super(xIn, yIn, 20, 20, 0, 0, 20, JITL.rl("textures/gui/title/menu_toggle.png"), 20, 40, onPressIn);
 	}
 
 
 	@Override
 	public void renderButton(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
+		super.renderButton(matrixStack, mouseX, mouseY, partialTicks);
 		if (isHovered()) {
 			ITextComponent textkey = menuEnabled ? DISABLE_JITL_MENU : ENABLE_JITL_MENU;
 			renderTextOverlay(matrixStack, mouseX, mouseY, textkey);

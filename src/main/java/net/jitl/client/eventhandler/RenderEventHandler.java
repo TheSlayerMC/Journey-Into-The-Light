@@ -5,7 +5,6 @@ import net.jitl.client.render.gui.button.ToggleMenuButton;
 import net.jitl.client.render.gui.menu.JMainMenuGui;
 import net.jitl.config.JClientConfig;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screen.LanguageScreen;
 import net.minecraft.client.gui.screen.MainMenuScreen;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.GuiOpenEvent;
@@ -28,19 +27,25 @@ public class RenderEventHandler {
 	}
 
 	@SubscribeEvent()
-	public void onGuiInit(GuiScreenEvent.InitGuiEvent.Post event) {
+	public static void onGuiInit(GuiScreenEvent.InitGuiEvent.Post event) {
+		JClientConfig clientConfig = JClientConfig.INSTANCE;
+		JClientConfig.GuiCategory guiConfig = clientConfig.GUI_CATEGORY;
 		Minecraft minecraft = Minecraft.getInstance();
 		int x = event.getGui().width / 1024;
 
 		/*
 		 * I can't tell if it's not rendering because of this, or if something else is happening in the button class
 		 */
-		ToggleMenuButton buttonToggleMenu = new ToggleMenuButton(x, 0, (button9_) ->
-				minecraft.setScreen(/*instead of changing the screen, this can change the config value*/
-						new LanguageScreen(new JMainMenuGui(), minecraft.options,
-								minecraft.getLanguageManager())));
+		ToggleMenuButton buttonToggleMenu = new ToggleMenuButton(x, 0, (action) -> {
+			guiConfig.setJITLMenu(!guiConfig.isJITLMenuEnabled());
+			if (!guiConfig.isJITLMenuEnabled()) {
+				minecraft.setScreen(new MainMenuScreen());
+			} else {
+				minecraft.setScreen(new JMainMenuGui());
+			}
+		});
 		if (event.getGui() instanceof MainMenuScreen) {
-			event.getWidgetList().add(buttonToggleMenu);
+			event.addWidget(buttonToggleMenu);
 		}
 	}
 }

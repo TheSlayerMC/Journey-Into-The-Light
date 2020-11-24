@@ -1,4 +1,6 @@
 {
+  "jitl.tooltip.enable_menu": "Use JITL Menu Theme",
+  "jitl.tooltip.disable_menu": "Use Default Menu Theme",
   "#MARK AUTO GEN START": "",
   "_comment": "#Items",
   "block.jitl.ashual_block": "Ashual Block",
