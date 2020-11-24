@@ -33,9 +33,4 @@ public class ToggleMenuButton extends JImageButton {
 	private void renderTextOverlay(MatrixStack matrixStack, int mouseX, int mouseY, ITextComponent theme) {
 		drawCenteredString(matrixStack, Minecraft.getInstance().font, TextFormatting.BOLD + theme.getString(), mouseX + 64, mouseY + 8, 0xaefeff);
 	}
-
-	@Override
-	public void onRelease(double mouseX, double mouseY) {
-		//TODO: add config toggle (might not be necessary if IPressable field in constructor toggles config option)
-	}
 }

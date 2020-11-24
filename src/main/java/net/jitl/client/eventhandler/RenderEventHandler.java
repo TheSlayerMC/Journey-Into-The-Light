@@ -33,9 +33,6 @@ public class RenderEventHandler {
 		Minecraft minecraft = Minecraft.getInstance();
 		int x = event.getGui().width / 1024;
 
-		/*
-		 * I can't tell if it's not rendering because of this, or if something else is happening in the button class
-		 */
 		ToggleMenuButton buttonToggleMenu = new ToggleMenuButton(x, 0, (action) -> {
 			guiConfig.setJITLMenu(!guiConfig.isJITLMenuEnabled());
 			if (!guiConfig.isJITLMenuEnabled()) {
