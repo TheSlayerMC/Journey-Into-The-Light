@@ -60,19 +60,20 @@ public class EntityEssenceArrow extends EntityArrow implements IProjectile {
     @Override
     protected void onHit(RayTraceResult target) {
         super.onHit(target);
-        EntityLivingBase hitEntity = (EntityLivingBase) target.entityHit;
-        if (hitEntity != null && shootingEntity != null && hitEntity instanceof EntityLivingBase) {
+        Entity entityTarget = target.entityHit;
+        if (shootingEntity != null && entityTarget instanceof EntityLivingBase) {
+            EntityLivingBase livingTarget = (EntityLivingBase) entityTarget;
             if (effects.contains(BowEffects.WITHER)) {
-                applyPotionEffect(hitEntity, MobEffects.WITHER, 100, 2);
+                applyPotionEffect(livingTarget, MobEffects.WITHER, 100, 2);
             }
             if (effects.contains(BowEffects.FLAME)) {
-                hitEntity.setFire(5);
+                entityTarget.setFire(5);
             }
             if (effects.contains(BowEffects.SLOWNESS)) {
-                applyPotionEffect(hitEntity, MobEffects.WITHER, 100, 2);
+                applyPotionEffect(livingTarget, MobEffects.WITHER, 100, 2);
             }
             if (effects.contains(BowEffects.POISON)) {
-                applyPotionEffect(hitEntity, MobEffects.POISON, 100, 2);
+                applyPotionEffect(livingTarget, MobEffects.POISON, 100, 2);
             }
             if (effects.contains(BowEffects.DEFAULT)) {
             }
