@@ -7,8 +7,6 @@ import ru.timeconqueror.timecore.api.common.config.ImprovedConfigBuilder;
 
 public class JCommonConfig extends Config {
 
-	public static final JServerConfig INSTANCE = new JServerConfig();
-
 	public JCommonConfig() {
 		super(ModConfig.Type.SERVER, JITL.MODID + "_common_config", "Common Configuration");
 	}

@@ -4,6 +4,7 @@ import net.jitl.JITL;
 import net.jitl.client.render.gui.button.ToggleMenuButton;
 import net.jitl.client.render.gui.menu.JMainMenuGui;
 import net.jitl.config.JClientConfig;
+import net.jitl.config.JConfigs;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.MainMenuScreen;
 import net.minecraftforge.api.distmarker.Dist;
@@ -18,8 +19,7 @@ public class RenderEventHandler {
 
 	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public static void overrideMainMenu(GuiOpenEvent event) {
-		JClientConfig clientConfig = JClientConfig.INSTANCE;
-		if (clientConfig.GUI_CATEGORY.isJITLMenuEnabled()) {
+		if (JConfigs.CLIENT.GUI_CATEGORY.isJITLMenuEnabled()) {
 			if (event.getGui() instanceof MainMenuScreen) {
 				event.setGui(new JMainMenuGui());
 			}
@@ -28,8 +28,7 @@ public class RenderEventHandler {
 
 	@SubscribeEvent()
 	public static void onGuiInit(GuiScreenEvent.InitGuiEvent.Post event) {
-		JClientConfig clientConfig = JClientConfig.INSTANCE;
-		JClientConfig.GuiCategory guiConfig = clientConfig.GUI_CATEGORY;
+		JClientConfig.GuiCategory guiConfig = JConfigs.CLIENT.GUI_CATEGORY;
 		Minecraft minecraft = Minecraft.getInstance();
 		int x = event.getGui().width / 1024;
 
