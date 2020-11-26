@@ -52,7 +52,7 @@ public class JMainMenuGui extends MainMenuScreen {
 	@Nullable
 	private String splash;
 	private Button resetDemoButton;
-	private static final ResourceLocation MINECRAFT_LOGO = JITL.rl("textures/gui/title/jitl.png");
+	private static final ResourceLocation MINECRAFT_LOGO = JITL.rl("textures/gui/title/logo.png");
 	private static final ResourceLocation MINECRAFT_EDITION = JITL.rl("textures/gui/title/edition.png");
 	/**
 	 * Has the check for a realms notification screen been performed?
@@ -244,23 +244,8 @@ public class JMainMenuGui extends MainMenuScreen {
 		if ((l & -67108864) != 0) {
 			this.minecraft.getTextureManager().bind(MINECRAFT_LOGO);
 			RenderSystem.color4f(1.0F, 1.0F, 1.0F, f1);
-			if (this.minceraftEasterEgg) {
-				this.blitOutlineBlack(j, 30, (integer2_, integer3_) -> {
-					this.blit(matrixStack, integer2_, integer3_, 0, 0, 99, 44);
-					this.blit(matrixStack, integer2_ + 99, integer3_, 129, 0, 27, 44);
-					this.blit(matrixStack, integer2_ + 99 + 26, integer3_, 126, 0, 3, 44);
-					this.blit(matrixStack, integer2_ + 99 + 26 + 3, integer3_, 99, 0, 26, 44);
-					this.blit(matrixStack, integer2_ + 155, integer3_, 0, 45, 155, 44);
-				});
-			} else {
-				this.blitOutlineBlack(j, 30, (integer_, integer1_) -> {
-					this.blit(matrixStack, integer_, integer1_, 0, 0, 155, 44);
-					this.blit(matrixStack, integer_ + 155, integer1_, 0, 45, 155, 44);
-				});
-			}
+			blit(matrixStack, j + 23, 36, 0.0F, 0.0F, 227, 55, 227, 55);
 
-			this.minecraft.getTextureManager().bind(MINECRAFT_EDITION);
-			blit(matrixStack, j + 88, 67, 0.0F, 0.0F, 98, 14, 128, 16);
 			net.minecraftforge.client.ForgeHooksClient.renderMainMenu(this, matrixStack, this.font, this.width, this.height);
 			if (this.splash != null) {
 				RenderSystem.pushMatrix();
