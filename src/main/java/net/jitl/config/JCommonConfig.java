@@ -8,7 +8,7 @@ import ru.timeconqueror.timecore.api.common.config.ImprovedConfigBuilder;
 public class JCommonConfig extends Config {
 
 	public JCommonConfig() {
-		super(ModConfig.Type.SERVER, JITL.MODID + "_common_config", "Common Configuration");
+		super(ModConfig.Type.COMMON, JITL.MODID + "_common_config", "Common Configuration");
 	}
 
 	/**
