@@ -3,13 +3,14 @@ package net.jitl.client.render.gui.button;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.jitl.JITL;
 import net.jitl.config.JClientConfig;
+import net.jitl.config.JConfigs;
 import net.jitl.util.JRenderUtils;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
 public class ToggleMenuButton extends JImageButton {
 
-	JClientConfig clientConfig = JClientConfig.INSTANCE;
+	JClientConfig clientConfig = JConfigs.CLIENT;
 	private final boolean menuEnabled = clientConfig.GUI_CATEGORY.isJITLMenuEnabled();
 
 	private static final int TEXT_WIDTH = 128;

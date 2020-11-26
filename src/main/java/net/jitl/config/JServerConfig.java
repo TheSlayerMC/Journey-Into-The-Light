@@ -7,8 +7,6 @@ import ru.timeconqueror.timecore.api.common.config.ImprovedConfigBuilder;
 
 public class JServerConfig extends Config {
 
-	public static final JServerConfig INSTANCE = new JServerConfig();
-
 	public JServerConfig() {
 		super(ModConfig.Type.SERVER, JITL.MODID + "_server_config", "Server-Side Configuration");
 	}

@@ -11,8 +11,6 @@ import ru.timeconqueror.timecore.api.common.config.ImprovedConfigBuilder;
 
 public class JClientConfig extends Config {
 
-	public static final JClientConfig INSTANCE = new JClientConfig();
-
 	public GuiCategory GUI_CATEGORY;
 
 	public JClientConfig() {
