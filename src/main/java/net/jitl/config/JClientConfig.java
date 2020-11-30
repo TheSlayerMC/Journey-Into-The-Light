@@ -18,7 +18,7 @@ public class JClientConfig extends Config {
 	}
 
 	/**
-	 * Sets up client-side config sections, entries, and categories
+	 * Sets up client-side config entries and categories
 	 */
 	@Override
 	public void setup(ImprovedConfigBuilder builder) {

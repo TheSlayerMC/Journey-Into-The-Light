@@ -21,7 +21,8 @@ public class JItems {
     public static final Item KORITE_INGOT = promise();
     public static final Item MEKYUM_INGOT = promise();
     public static final Item STORON_INGOT = promise();
-    
+    public static final Item OBSIDIAN_ROD = promise();
+
     public static final TestBugItem TEST_BUG = promise();
 
     public static final Item SAPPHIRE_SWORD = promise();
