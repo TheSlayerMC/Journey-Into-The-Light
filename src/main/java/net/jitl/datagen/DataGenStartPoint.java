@@ -20,5 +20,8 @@ public class DataGenStartPoint {
         lootTableProvider.addLootTableSet(set);
 
         dataGenerator.addProvider(lootTableProvider);
+
+        JRecipeProvider recipeProvider = new JRecipeProvider(dataGenerator);
+        dataGenerator.addProvider(recipeProvider);
     }
 }

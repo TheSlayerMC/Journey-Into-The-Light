@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "jitl:bloodcrust_ingot"
+    }
+  },
+  "result": {
+    "item": "jitl:bloodcrust_block"
+  }
+}

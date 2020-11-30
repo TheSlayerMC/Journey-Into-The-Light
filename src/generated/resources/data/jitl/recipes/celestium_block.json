@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "jitl:celestium_ingot"
+    }
+  },
+  "result": {
+    "item": "jitl:celestium_block"
+  }
+}
