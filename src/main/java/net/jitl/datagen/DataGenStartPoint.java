@@ -15,13 +15,16 @@ public class DataGenStartPoint {
         DataGenerator dataGenerator = event.getGenerator();
 
         TimeLootTableProvider lootTableProvider = new TimeLootTableProvider(dataGenerator);
+        JRecipeProvider recipeProvider = new JRecipeProvider(dataGenerator);
+        JBiomeProvider biomeProvider = new JBiomeProvider(dataGenerator);
 
+        //Adds data providers
+        dataGenerator.addProvider(lootTableProvider);
+        dataGenerator.addProvider(recipeProvider);
+        dataGenerator.addProvider(biomeProvider);
+
+        //Adds loot table set to the loot table provider
         LootTableSet set = new JLootTableSet();
         lootTableProvider.addLootTableSet(set);
-
-        dataGenerator.addProvider(lootTableProvider);
-
-        JRecipeProvider recipeProvider = new JRecipeProvider(dataGenerator);
-        dataGenerator.addProvider(recipeProvider);
     }
 }
