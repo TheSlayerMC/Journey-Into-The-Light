@@ -1,4 +1,4 @@
-package net.jitl.mixins;
+package net.jitl.mixins.client;
 
 import com.mojang.datafixers.util.Either;
 import net.minecraft.client.renderer.model.BlockModel;

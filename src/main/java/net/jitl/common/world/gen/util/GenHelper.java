@@ -9,6 +9,7 @@ import net.minecraft.world.gen.Heightmap;
 import ru.timeconqueror.timecore.api.util.MathUtils;
 
 import java.util.function.BiConsumer;
+import java.util.function.BiPredicate;
 import java.util.function.Consumer;
 
 public class GenHelper {
@@ -26,19 +27,8 @@ public class GenHelper {
     public static void genHollowCircle(int radius, Direction.Axis direction, Consumer<BlockPos> generator) {
         BlockPos.Mutable pos = new BlockPos.Mutable();
         genHollowCircle(radius, (x, y) -> {
-            switch (direction) {
-                case X:
-                    generator.accept(pos.set(0, y, x));
-                    break;
-                case Y:
-                    generator.accept(pos.set(x, 0, y));
-                    break;
-                case Z:
-                    generator.accept(pos.set(x, y, 0));
-                    break;
-                default:
-                    throw new UnsupportedOperationException("Unsupported direction: " + direction);
-            }
+            applyDirection(pos, x, y, 0, direction);
+            generator.accept(pos);
         });
     }
 
@@ -56,19 +46,8 @@ public class GenHelper {
         BlockPos.Mutable pos = new BlockPos.Mutable();
         genHollowCircle(radius, (x, y) -> {
             for (int depth = 0; depth < height; depth++) {
-                switch (direction) {
-                    case X:
-                        generator.accept(pos.set(depth, y, x));
-                        break;
-                    case Y:
-                        generator.accept(pos.set(x, depth, y));
-                        break;
-                    case Z:
-                        generator.accept(pos.set(x, y, depth));
-                        break;
-                    default:
-                        throw new UnsupportedOperationException("Unsupported direction: " + direction);
-                }
+                applyDirection(pos, x, y, depth, direction);
+                generator.accept(pos);
             }
         });
     }
@@ -87,21 +66,76 @@ public class GenHelper {
         BlockPos.Mutable pos = new BlockPos.Mutable();
         genFilledCircle(radius, (line) -> {
             for (int x = line.getX0(); x >= line.getX1(); x--) {
-                switch (direction) {
-                    case X:
-                        generator.accept(pos.set(0, line.getY(), x));
-                        break;
-                    case Y:
-                        generator.accept(pos.set(x, 0, line.getY()));
-                        break;
-                    case Z:
-                        generator.accept(pos.set(x, line.getY(), 0));
-                        break;
-                    default:
-                        throw new UnsupportedOperationException("Unsupported direction: " + direction);
-                }
+                applyDirection(pos, x, line.getY(), 0, direction);
+                generator.accept(pos);
             }
         });
+    }
+
+    public static void genFilledBorderedCircle(int radius, Direction.Axis direction, IBorderGenerator borderGenerator, Consumer<BlockPos> filledPartGenerator) {
+        genHollowCircle(radius, direction, borderGenerator::gen);
+
+        BlockPos.Mutable pos = new BlockPos.Mutable();
+
+        fillConvexPolygon(0, 0, radius, (x, y) -> {
+            applyDirection(pos, x, y, 0, direction);
+            return borderGenerator.isBorder(pos);
+        }, (x, y) -> filledPartGenerator.accept(applyDirection(pos, x, y, 0, direction)));
+    }
+
+    private static BlockPos.Mutable applyDirection(BlockPos.Mutable pos, int x, int y, int z, Direction.Axis direction) {
+        switch (direction) {
+            case X:
+                return pos.set(z, y, x);
+            case Y:
+                return pos.set(x, z, y);
+            case Z:
+                return pos.set(x, y, z);
+            default:
+                throw new UnsupportedOperationException("Unsupported direction: " + direction);
+        }
+    }
+
+    public interface IBorderGenerator {
+        void gen(BlockPos relPos);
+
+        boolean isBorder(BlockPos relPos);
+    }
+
+    private static void fillConvexPolygon(int startX, int startY, int fillingDistance, BiPredicate<Integer, Integer> stopCondition, BiConsumer<Integer, Integer> generator) {
+        if (stopCondition.test(startX, startY)) return;
+
+        generator.accept(startX, startY);
+
+        int py = startY;
+        int ny = startY - 1;
+
+        while (py < startY + fillingDistance) {
+            fill1Dimensional(startX, py, fillingDistance, stopCondition, generator);
+            py++;
+        }
+
+        while (ny > startY - fillingDistance) {
+            fill1Dimensional(startX, ny, fillingDistance, stopCondition, generator);
+            ny--;
+        }
+    }
+
+    private static void fill1Dimensional(int startX, int startY, int fillingRadius, BiPredicate<Integer, Integer> stopCondition, BiConsumer<Integer, Integer> generator) {
+        int px = startX;
+        int nx = startX - 1;
+
+        while (px < startX + fillingRadius) {
+            if (stopCondition.test(px, startY)) break;
+            generator.accept(px, startY);
+            px++;
+        }
+
+        while (nx > startX - fillingRadius) {
+            if (stopCondition.test(nx, startY)) break;
+            generator.accept(nx, startY);
+            nx--;
+        }
     }
 
     /**
@@ -234,33 +268,6 @@ public class GenHelper {
         int n3 = chunkGenerator.getFirstFreeHeight(x, z1, Heightmap.Type.WORLD_SURFACE_WG);
         int n4 = chunkGenerator.getFirstFreeHeight(x1, z1, Heightmap.Type.WORLD_SURFACE_WG);
         return MathUtils.average(n1, n2, n3, n4);
-    }
-
-    public static class BoundMutablePos extends BlockPos.Mutable {
-        private final BlockPos bound;
-
-        public BoundMutablePos() {
-            this(0, 0, 0);
-        }
-
-        public BoundMutablePos(BlockPos pos) {
-            this(pos.getX(), pos.getY(), pos.getZ());
-        }
-
-        public BoundMutablePos(int x, int y, int z) {
-            super(x, y, z);
-            bound = new BlockPos(x, y, z);
-        }
-
-        public BoundMutablePos addFromBound(int x, int y, int z) {
-            set(bound.getX() + x, bound.getY() + y, bound.getZ() + z);
-            return this;
-        }
-
-        public BoundMutablePos offsetFromBound(Direction offset, int n) {
-            set(bound.getX() + offset.getStepX() * n, bound.getY() + offset.getStepY() * n, bound.getZ() + offset.getStepZ() * n);
-            return this;
-        }
     }
 
     public interface ILine {

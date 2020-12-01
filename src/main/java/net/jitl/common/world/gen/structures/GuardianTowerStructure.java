@@ -36,7 +36,7 @@ public class GuardianTowerStructure extends Structure<NoFeatureConfig> {
             int x = chunkX * 16;
             int z = chunkZ * 16;
 
-            int height = GenHelper.getAveragePlacementHeight(chunkGenerator_, x, z, x + GuardianTowerPieces.WIDTH, z + GuardianTowerPieces.WIDTH);
+            int height = GenHelper.getAveragePlacementHeight(chunkGenerator_, x, z, x + GuardianTowerPieces.BB_WIDTH, z + GuardianTowerPieces.BB_WIDTH);
 
             pieces.add(new GuardianTowerPieces.Floor(this.random, x, height, z));
             this.calculateBoundingBox();
