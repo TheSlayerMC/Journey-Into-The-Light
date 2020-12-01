@@ -5,11 +5,9 @@ import net.jitl.init.JItems;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.Item;
-import net.minecraft.loot.ConstantRange;
-import net.minecraft.loot.ItemLootEntry;
-import net.minecraft.loot.LootPool;
-import net.minecraft.loot.LootTable;
+import net.minecraft.loot.*;
 import net.minecraft.loot.functions.ApplyBonus;
+import net.minecraft.loot.functions.SetCount;
 import net.minecraft.util.IItemProvider;
 import ru.timeconqueror.timecore.devtools.gen.loottable.BlockLootTableSet;
 
@@ -27,6 +25,7 @@ public class JLootTableSet extends BlockLootTableSet {
 		registerDefaultOre(JBlocks.LUNIUM_ORE);
 		registerDefaultOre(JBlocks.SHADIUM_ORE);
 		registerDefaultOre(JBlocks.BLOODCRUST_ORE);
+		registerSpecialOreWithExtraCount(JBlocks.FIRESTONE_ORE, JItems.FIRESTONE_SHARD, 1, 4);
 	}
 
 	private void initBuildingBlocks() {
@@ -47,6 +46,18 @@ public class JLootTableSet extends BlockLootTableSet {
 	 */
 	public void registerSpecialOre(Block block, Item drop) {
 		registerLootTable(block, createSilkTouchWithLuckDispatchTable(block, drop));
+	}
+
+	/**
+	 * Registers a loot table that drops a different item with luck when mined with a normal tool.
+	 * When mined with a silk-touch tool, the block will drop itself.
+	 * Behaves just like diamond or emerald ore.
+	 *
+	 * @param block The block being registered, and also the block being dropped when mined with a silktouch tool.
+	 * @param drop  The item dropped by the block when mined with a normal tool.
+	 */
+	public void registerSpecialOreWithExtraCount(Block block, Item drop, int minimumQuantity, int maximumQuantity) {
+		registerLootTable(block, createSilkTouchWithExtraLuckDispatchTable(block, drop, minimumQuantity, maximumQuantity));
 	}
 
 	/**
@@ -78,6 +89,19 @@ public class JLootTableSet extends BlockLootTableSet {
 	 */
 	protected static LootTable.Builder createSilkTouchWithLuckDispatchTable(Block silkTouchDrop, IItemProvider dropWithoutSilkTouch) {
 		return createSilkTouchDispatchTable(silkTouchDrop, applyExplosionDecay(ItemLootEntry.lootTableItem(dropWithoutSilkTouch).apply(ApplyBonus.addOreBonusCount(Enchantments.BLOCK_FORTUNE))));
+	}
+
+	/**
+	 * Creates a table where {@code silkTouchDrop} is dropped when the player is using a tool with silktouch.
+	 * If the player is not using a tool with silktouch, the table will drop the {@code dropWithoutSilkTouch} item.
+	 * Depending if the player has a tool with the fortune enchantment, and the level of the enchantment, it will drop extra of the {@code dropWithoutSilkTouch} drop.
+	 * This specific table drops multiple of the item, regardless of luck applied.
+	 *
+	 * @param silkTouchDrop        The block dropped when the user's tool has silktouch applied.
+	 * @param dropWithoutSilkTouch The item dropped when the tool doesn't have silktouch applied.
+	 */
+	protected static LootTable.Builder createSilkTouchWithExtraLuckDispatchTable(Block silkTouchDrop, IItemProvider dropWithoutSilkTouch, int minimumQuantity, int maximumQuantity) {
+		return createSilkTouchDispatchTable(silkTouchDrop, applyExplosionDecay(ItemLootEntry.lootTableItem(dropWithoutSilkTouch).apply(SetCount.setCount(RandomValueRange.between(minimumQuantity, maximumQuantity))).apply(ApplyBonus.addOreBonusCount(Enchantments.BLOCK_FORTUNE))));
 	}
 
 	/**

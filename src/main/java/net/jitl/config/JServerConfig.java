@@ -12,7 +12,7 @@ public class JServerConfig extends Config {
 	}
 
 	/**
-	 * Sets up server-side config sections, entries, and categories
+	 * Sets up server-side config entries and categories
 	 */
 	@Override
 	public void setup(ImprovedConfigBuilder builder) {

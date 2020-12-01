@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "I",
+    "I"
+  ],
+  "key": {
+    "#": {
+      "item": "jitl:sapphire"
+    },
+    "I": {
+      "item": "jitl:obsidian_rod"
+    }
+  },
+  "result": {
+    "item": "jitl:sapphire_shovel"
+  }
+}

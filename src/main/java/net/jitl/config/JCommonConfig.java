@@ -12,7 +12,7 @@ public class JCommonConfig extends Config {
 	}
 
 	/**
-	 * Sets up config sections, entries, and categories that operate on both client and server
+	 * Sets up config entries and categories that operate on both client and server
 	 */
 	@Override
 	public void setup(ImprovedConfigBuilder builder) {
