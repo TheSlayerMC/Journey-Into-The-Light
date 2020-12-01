@@ -56,7 +56,7 @@ public class BlockRegistrator {
         registerDefaultBlock("orbadite_block", "Orbadite Block");
         registerDefaultBlock("lunite_block", "Lunite Block");
         registerDefaultBlock("nethic_gemstone_block", "Nethic Gemstone Block");
-        registerDefaultBlock("frost_gem_block", "Frost Gems Block");
+        registerDefaultBlock("frost_gem_block", "Frost Gem Block");
 
         registerDefaultBlock("dungeon_bricks", "Dungeon Bricks");
         registerDefaultBlock("dungeon_bricks_carved", "Carved Dungeon Bricks");

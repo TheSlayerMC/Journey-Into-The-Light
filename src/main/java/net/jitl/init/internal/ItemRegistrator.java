@@ -4,6 +4,7 @@ import net.jitl.JITL;
 import net.jitl.common.helper.JArmorMaterial;
 import net.jitl.common.helper.JToolTiers;
 import net.jitl.common.item.*;
+import net.jitl.init.JTabs;
 import net.jitl.util.JItemProperties;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
@@ -31,6 +32,8 @@ public class ItemRegistrator {
 
         //NETHER ITEMS
         registerItem("bloodcrust_ingot", "Bloodcrust Ingot");
+        registerItem("firestone_shard", "Firestone Shard", () -> new JFuelItem(new Item.Properties().fireResistant().tab(JTabs.ITEMS), 300));
+        registerItem("firestone_clump", "Firestone Clump", () -> new JFuelItem(new Item.Properties().fireResistant().tab(JTabs.ITEMS), 2750));
 
         //END ITEMS
         registerItem("enderillium_shard", "Enderillium Shard");
@@ -142,6 +145,12 @@ public class ItemRegistrator {
     private static void registerToolItem(String name, String enName, Supplier<ToolItem> toolItemSupplier) {
         REGISTER.register(name, toolItemSupplier)
                 .genModel(StandardItemModelParents.HANDHELD)
+                .genLangEntry(enName);
+    }
+
+    private static void registerItem(String name, String enName, Supplier<Item> itemSupplier) {
+        REGISTER.register(name, itemSupplier)
+                .genModel(StandardItemModelParents.DEFAULT)
                 .genLangEntry(enName);
     }
 
