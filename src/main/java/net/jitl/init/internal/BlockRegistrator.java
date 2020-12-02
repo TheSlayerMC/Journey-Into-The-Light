@@ -6,8 +6,11 @@ import net.jitl.common.block.LaserEmitterBlock;
 import net.jitl.common.helper.EnumHarvestLevel;
 import net.jitl.init.JTabs;
 import net.jitl.util.JBlockProperties;
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
+import ru.timeconqueror.timecore.api.client.resource.BlockModel;
 import ru.timeconqueror.timecore.api.client.resource.location.BlockModelLocation;
+import ru.timeconqueror.timecore.api.client.resource.location.TextureLocation;
 import ru.timeconqueror.timecore.registry.AutoRegistrable;
 import ru.timeconqueror.timecore.registry.newreg.BlockRegister;
 
@@ -36,11 +39,12 @@ public class BlockRegistrator {
         registerOreBlock("gorbite_ore", "Gorbite Ore", EnumHarvestLevel.NETHERITE, 4);
         registerOreBlock("orbadite_ore", "Orbadite Ore", EnumHarvestLevel.NETHERITE, 0);
         registerOreBlock("lunite_ore", "Lunite Ore", EnumHarvestLevel.NETHERITE, 6);
-        registerOreBlock("firestone_ore", "Firestone Ore", EnumHarvestLevel.NETHERITE, 3);
+        registerColumnRenderedBlock("firestone_ore", "Firestone Ore",
+                () -> new JOreBlock(JBlockProperties.NETHER_ORE_PROPS.create()).setExpDrop(4), "firestone_ore_top", "firestone_ore_side");
 
         registerDefaultBlock("lava_rock", "Lava Rock");
         registerDefaultBlock("sapphire_block", "Sapphire Block");
-        registerSpeciallyRenderedDefaultBlock("lunium_block", "Lunium Block");
+        registerSpeciallyRenderedBlock("lunium_block", "Lunium Block", JBlockProperties.METAL_PROPS::create);
         registerDefaultBlock("shadium_block", "Shadium Block");
         registerDefaultBlock("iridium_block", "Iridium Block");
         registerDefaultBlock("bloodcrust_block", "Bloodcrust Block");
@@ -107,11 +111,20 @@ public class BlockRegistrator {
                 .genDefaultState(new BlockModelLocation(JITL.MODID, "block/" + name));
     }
 
-    private static void registerSpeciallyRenderedDefaultBlock(String name, String enName) {
+    private static void registerSpeciallyRenderedBlock(String name, String enName, Supplier<AbstractBlock.Properties> blockPropertiesSupplier) {
         REGISTER.register(name, () -> new Block
-                (JBlockProperties.STONE_PROPS.create()))
+                (blockPropertiesSupplier.get()))
                 .genLangEntry(enName)
                 .regDefaultBlockItem(JTabs.BLOCKS)
                 .genDefaultState(new BlockModelLocation(JITL.MODID, "block/" + name));
+    }
+
+    private static void registerColumnRenderedBlock(String name, String enName, Supplier<Block> blockSupplier, String topTexture, String sideTexture) {
+        REGISTER.register(name, blockSupplier)
+                .genLangEntry(enName)
+                .regDefaultBlockItem(JTabs.BLOCKS)
+                .genDefaultState(new BlockModelLocation(JITL.MODID, "block/" + name))
+                .genModel(new BlockModelLocation(JITL.MODID, "block/" + name),
+                        () -> BlockModel.createCubeColumnModel(new TextureLocation(JITL.MODID, "block/" + topTexture), new TextureLocation(JITL.MODID, "block/" + sideTexture)));
     }
 }

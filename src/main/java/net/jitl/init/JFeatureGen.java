@@ -18,6 +18,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 @Mod.EventBusSubscriber
 public class JFeatureGen {
@@ -28,6 +29,8 @@ public class JFeatureGen {
 	private static final ArrayList<ConfiguredFeature<?, ?>> OVERWORLD_ORES = new ArrayList<>();
 	private static final ArrayList<ConfiguredFeature<?, ?>> NETHER_ORES = new ArrayList<>();
 	private static final ArrayList<ConfiguredFeature<?, ?>> END_ORES = new ArrayList<>();
+
+	private static final ArrayList<ConfiguredFeature<?, ?>> WARPED_FOREST_ORES = new ArrayList<>();
 
 	/**
 	 * Helper used to condense all feature registries into a single method.
@@ -85,7 +88,7 @@ public class JFeatureGen {
 		NETHER_ORES.add(
 				register("firestone_ore", netherOreFeature(
 						JBlocks.FIRESTONE_ORE.defaultBlockState(),
-						JRuleTests.STONE_NETHERRACK,
+						JRuleTests.STONE_BASALT,
 						10,
 						24)));
 		END_ORES.add(
@@ -147,6 +150,20 @@ public class JFeatureGen {
 	private static void genOres(BiomeLoadingEvent event) {
 		BiomeGenerationSettingsBuilder builder = event.getGeneration();
 
+		if (event.getCategory().equals(Biome.Category.NETHER)) {
+			for (ConfiguredFeature<?, ?> ore : NETHER_ORES) {
+				if (ore != null) {
+					builder.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, ore);
+				}
+			}
+		}
+		if (Objects.equals(event.getName(), new ResourceLocation("warped_forest"))) {
+			for (ConfiguredFeature<?, ?> ore : WARPED_FOREST_ORES) {
+				if (ore != null) {
+					builder.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, ore);
+				}
+			}
+		}
 		if (event.getCategory().equals(Biome.Category.NETHER)) {
 			for (ConfiguredFeature<?, ?> ore : NETHER_ORES) {
 				if (ore != null) {

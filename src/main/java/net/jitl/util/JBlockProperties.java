@@ -14,6 +14,12 @@ public class JBlockProperties {
 			.harvestTool(ToolType.PICKAXE)
 			.requiresCorrectToolForDrops()
 			.strength(1.5F, 6.0F));
+	public static final BlockPropsFactory METAL_PROPS = new BlockPropsFactory(() -> AbstractBlock.Properties.of
+			(Material.METAL)
+			.sound(SoundType.METAL)
+			.harvestTool(ToolType.PICKAXE)
+			.requiresCorrectToolForDrops()
+			.strength(1.5F, 6.0F));
 	public static final BlockPropsFactory WOOD_PROPS = new BlockPropsFactory(() -> AbstractBlock.Properties.of
 			(Material.WOOD)
 			.sound(SoundType.WOOD)
@@ -32,6 +38,12 @@ public class JBlockProperties {
 	public static final BlockPropsFactory ORE_PROPS = new BlockPropsFactory(() -> AbstractBlock.Properties.of
 			(Material.STONE)
 			.sound(SoundType.STONE)
+			.harvestTool(ToolType.PICKAXE)
+			.requiresCorrectToolForDrops()
+			.strength(3.0F, 3.0F));
+	public static final BlockPropsFactory NETHER_ORE_PROPS = new BlockPropsFactory(() -> AbstractBlock.Properties.of
+			(Material.STONE)
+			.sound(SoundType.BASALT)
 			.harvestTool(ToolType.PICKAXE)
 			.requiresCorrectToolForDrops()
 			.strength(3.0F, 3.0F));
