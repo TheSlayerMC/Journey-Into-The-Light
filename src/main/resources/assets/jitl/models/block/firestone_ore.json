@@ -1,0 +1,19 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "loader": "jitl:emissive",
+  "particle": "#emissive",
+  "emissive": {
+    "parent": "minecraft:block/cube_column",
+    "textures": {
+      "side": "jitl:block/firestone_ore_side_front",
+      "end": "jitl:block/firestone_ore_top_front"
+    }
+  },
+  "normal": {
+    "parent": "minecraft:block/cube_column",
+    "textures": {
+      "side": "jitl:block/firestone_ore_side_back",
+      "end": "jitl:block/firestone_ore_top_back"
+    }
+  }
+}
