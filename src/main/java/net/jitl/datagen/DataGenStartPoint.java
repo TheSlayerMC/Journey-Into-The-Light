@@ -15,7 +15,7 @@ public class DataGenStartPoint {
 
         TimeLootTableGenerator lootTableGenerator = new TimeLootTableGenerator(dataGenerator)
                 .addSet(new JLootTableSet());
-        JRecipeProvider recipeProvider = new JRecipeProvider(dataGenerator);
+        JRecipeRegister recipeProvider = new JRecipeRegister(dataGenerator);
         JBiomeProvider biomeProvider = new JBiomeProvider(dataGenerator);
 
         //Adds data providers
