@@ -1,6 +1,7 @@
 package net.jitl.init;
 
 import net.jitl.JITL;
+import net.jitl.common.item.JFuelItem;
 import net.jitl.common.item.TestBugItem;
 import net.minecraft.item.Item;
 import net.minecraftforge.registries.ObjectHolder;
@@ -23,8 +24,8 @@ public class JItems {
     public static final Item STORON_INGOT = promise();
     public static final Item OBSIDIAN_ROD = promise();
 
-    public static final Item FIRESTONE_CLUMP = promise();
-    public static final Item FIRESTONE_SHARD = promise();
+    public static final JFuelItem FIRESTONE_CLUMP = promise();
+    public static final JFuelItem FIRESTONE_SHARD = promise();
 
     public static final TestBugItem TEST_BUG = promise();
 
