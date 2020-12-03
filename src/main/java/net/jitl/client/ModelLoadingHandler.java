@@ -23,6 +23,7 @@ public class ModelLoadingHandler {
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
         RenderTypeLookup.setRenderLayer(JBlocks.LUNIUM_ORE, RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(JBlocks.FIRESTONE_ORE, RenderType.cutout());
     }
 
 //    private static void onRegisterBlockColors(ColorHandlerEvent.Block event) {

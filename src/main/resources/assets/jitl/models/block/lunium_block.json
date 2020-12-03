@@ -7,11 +7,5 @@
     "textures": {
       "all": "jitl:block/lunium_block"
     }
-  },
-  "normal": {
-    "parent": "minecraft:block/cube_all",
-    "textures": {
-      "all": "jitl:block/lunium_block"
-    }
   }
 }
