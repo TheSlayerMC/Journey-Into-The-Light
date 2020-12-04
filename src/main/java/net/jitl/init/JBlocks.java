@@ -27,6 +27,8 @@ public class JBlocks {
     public static final Block LUNITE_ORE = promise();
     public static final Block FIRESTONE_ORE = promise();
     public static final Block LAVA_ROCK = promise();
+    public static final Block WARPED_QUARTZ_ORE = promise();
+    public static final Block CRIMSON_QUARTZ_ORE = promise();
 
     public static final Block SAPPHIRE_BLOCK = promise();
     public static final Block LUNIUM_BLOCK = promise();

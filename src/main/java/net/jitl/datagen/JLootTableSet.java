@@ -26,6 +26,8 @@ public class JLootTableSet extends BlockLootTableSet {
 		registerDefaultOre(JBlocks.SHADIUM_ORE);
 		registerDefaultOre(JBlocks.BLOODCRUST_ORE);
 		registerSpecialOreWithExtraCount(JBlocks.FIRESTONE_ORE, JItems.FIRESTONE_SHARD, 1, 4);
+		registerSpecialOre(JBlocks.WARPED_QUARTZ_ORE, JItems.WARPED_QUARTZ);
+		registerSpecialOre(JBlocks.CRIMSON_QUARTZ_ORE, JItems.CRIMSON_QUARTZ);
 	}
 
 	private void initBuildingBlocks() {

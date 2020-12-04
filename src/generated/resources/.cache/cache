@@ -1,4 +1,5 @@
 1144031ecc869e24707663b218e1f7ae0001e828 data/jitl/loot_tables/blocks/bloodcrust_ore.json
+75a6b39ee16cbd55eb1e3c1171b5c281638e0176 data/jitl/loot_tables/blocks/crimson_quartz_ore.json
 965606960c09651165ef592a9ac66f2001f3d9cd data/jitl/loot_tables/blocks/dungeon_bricks.json
 522f85525f7dd77dbb27b1e958a7da992a0b78e8 data/jitl/loot_tables/blocks/dungeon_bricks_carved.json
 d4a0e30d14cd2cfa1e51deacd68165b2905b98ae data/jitl/loot_tables/blocks/dungeon_bricks_chiseled.json
@@ -9,6 +10,7 @@ fef2888c7278102f3bb43e9c29474d353b88ffb3 data/jitl/loot_tables/blocks/dungeon_la
 a960bc5d9a9a7b1b627300cd21f2dbdbd7ce117b data/jitl/loot_tables/blocks/lunium_ore.json
 929db8495a8e05fec47aff7206a0f1a272828dcf data/jitl/loot_tables/blocks/sapphire_ore.json
 cce368314d14630813b9f81e0e8fa045b377e247 data/jitl/loot_tables/blocks/shadium_ore.json
+47e4f69f3b4676c72549fc6cc3902a1a122f0160 data/jitl/loot_tables/blocks/warped_quartz_ore.json
 36dc8e690ebff95de7688aaa11eb68cac700bac6 data/jitl/recipes/ashual_block.json
 060d25a7344ee30a59206f85dc2b2ad5f6565d60 data/jitl/recipes/bloodcrust_block.json
 8d6d1e938532c9ed88c585e28db46cc5b0d0e282 data/jitl/recipes/celestium_block.json

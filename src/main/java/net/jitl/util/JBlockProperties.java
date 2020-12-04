@@ -41,9 +41,15 @@ public class JBlockProperties {
 			.harvestTool(ToolType.PICKAXE)
 			.requiresCorrectToolForDrops()
 			.strength(3.0F, 3.0F));
-	public static final BlockPropsFactory NETHER_ORE_PROPS = new BlockPropsFactory(() -> AbstractBlock.Properties.of
+	public static final BlockPropsFactory NETHER_BASALT_ORE_PROPS = new BlockPropsFactory(() -> AbstractBlock.Properties.of
 			(Material.STONE)
 			.sound(SoundType.BASALT)
+			.harvestTool(ToolType.PICKAXE)
+			.requiresCorrectToolForDrops()
+			.strength(3.0F, 3.0F));
+	public static final BlockPropsFactory NETHER_NETHERRACK_ORE_PROPS = new BlockPropsFactory(() -> AbstractBlock.Properties.of
+			(Material.STONE)
+			.sound(SoundType.NETHER_ORE)
 			.harvestTool(ToolType.PICKAXE)
 			.requiresCorrectToolForDrops()
 			.strength(3.0F, 3.0F));

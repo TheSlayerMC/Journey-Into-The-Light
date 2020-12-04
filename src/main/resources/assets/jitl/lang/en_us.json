@@ -12,6 +12,7 @@
   "block.jitl.celestium_block": "Celestium Block",
   "block.jitl.celestium_ore": "Celestium Ore",
   "block.jitl.common_gems": "Common Gems",
+  "block.jitl.crimson_quartz_ore": "Crimson Quartz Ore",
   "block.jitl.des_block": "Des Block",
   "block.jitl.des_ore": "Des Ore",
   "block.jitl.dungeon_bricks": "Dungeon Bricks",
@@ -48,6 +49,7 @@
   "block.jitl.shadium_ore": "Shadium Ore",
   "block.jitl.storon_block": "Storon Block",
   "block.jitl.storon_ore": "Storon Ore",
+  "block.jitl.warped_quartz_ore": "Warped Quartz Ore",
   "item.jitl.ash": "Ash",
   "item.jitl.bloodcrust_axe": "Bloodcrust Axe",
   "item.jitl.bloodcrust_boots": "Bloodcrust Boots",
@@ -71,6 +73,7 @@
   "item.jitl.celestium_pickaxe": "Celestium Pickaxe",
   "item.jitl.celestium_shovel": "Celestium Shovel",
   "item.jitl.celestium_sword": "Celestium Sword",
+  "item.jitl.crimson_quartz": "Crimson Quartz",
   "item.jitl.enderillium_shard": "Enderillium Shard",
   "item.jitl.firestone_clump": "Firestone Clump",
   "item.jitl.firestone_shard": "Firestone Shard",
@@ -131,5 +134,6 @@
   "item.jitl.storon_shovel": "Storon Shovel",
   "item.jitl.storon_sword": "Storon Sword",
   "item.jitl.test_bug": "Test Bug",
+  "item.jitl.warped_quartz": "Warped Quartz",
   "#MARK AUTO GEN END": ""
 }

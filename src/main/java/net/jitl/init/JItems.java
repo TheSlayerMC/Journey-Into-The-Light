@@ -26,6 +26,8 @@ public class JItems {
 
     public static final JFuelItem FIRESTONE_CLUMP = promise();
     public static final JFuelItem FIRESTONE_SHARD = promise();
+    public static final Item WARPED_QUARTZ = promise();
+    public static final Item CRIMSON_QUARTZ = promise();
 
     public static final TestBugItem TEST_BUG = promise();
 

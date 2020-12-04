@@ -34,6 +34,8 @@ public class ItemRegistrator {
         registerItem("bloodcrust_ingot", "Bloodcrust Ingot");
         registerItem("firestone_shard", "Firestone Shard", () -> new JFuelItem(new Item.Properties().fireResistant().tab(JTabs.ITEMS), 200));
         registerItem("firestone_clump", "Firestone Clump", () -> new JFuelItem(new Item.Properties().fireResistant().tab(JTabs.ITEMS), 2000));
+        registerItem("warped_quartz", "Warped Quartz");
+        registerItem("crimson_quartz", "Crimson Quartz");
 
         //END ITEMS
         registerItem("enderillium_shard", "Enderillium Shard");
