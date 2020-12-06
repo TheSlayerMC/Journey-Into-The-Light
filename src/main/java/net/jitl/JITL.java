@@ -39,10 +39,6 @@ public class JITL implements TimeMod {
     public void onServerStarting(FMLServerStartingEvent event) {
     }
 
-    public static ResourceLocation resourceLocation(String location) {
-        return new ResourceLocation(MODID, location);
-    }
-
     public static ResourceLocation rl(String path) {
         return new ResourceLocation(MODID, path);
     }
