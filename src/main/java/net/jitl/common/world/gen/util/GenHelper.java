@@ -6,7 +6,7 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.Heightmap;
-import ru.timeconqueror.timecore.api.util.MathUtils;
+import ru.timeconqueror.timecore.util.MathUtils;
 
 import java.util.function.BiConsumer;
 import java.util.function.BiPredicate;
