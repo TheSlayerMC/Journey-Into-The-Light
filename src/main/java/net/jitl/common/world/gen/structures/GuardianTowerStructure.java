@@ -1,6 +1,7 @@
 package net.jitl.common.world.gen.structures;
 
 import com.mojang.serialization.Codec;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.util.registry.DynamicRegistries;
 import net.minecraft.world.biome.Biome;
@@ -36,9 +37,11 @@ public class GuardianTowerStructure extends Structure<NoFeatureConfig> {
             int x = chunkX * 16;
             int z = chunkZ * 16;
 
-            int height = GenHelper.getAverageFirstFreeHeight(chunkGenerator_, x, z, x + GuardianTowerPieces.BB_WIDTH, z + GuardianTowerPieces.BB_WIDTH);
+            int surface = GenHelper.getAverageFirstFreeHeight(chunkGenerator_, x, z, x + GuardianTowerPieces.BB_WIDTH, z + GuardianTowerPieces.BB_WIDTH);
+            surface -= 1;
 
-            pieces.add(new GuardianTowerPieces.Floor(this.random, x, height, z));
+            System.out.println(new BlockPos(x, surface, z));
+            pieces.add(new GuardianTowerPieces.Floor(templateManager_, new BlockPos(x, surface, z)));
             this.calculateBoundingBox();
         }
     }

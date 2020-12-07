@@ -76,6 +76,7 @@ public class BlockRegistrator {
         registerDefaultBlock("dungeon_lamp", "Dungeon Lamp");
         RegistryObject<Block> gildedDungeonBricks = registerDefaultBlock("gilded_dungeon_bricks", "Gilded Dungeon Bricks");
         registerStairs("gilded_dungeon_stairs", "Gilded Dungeon Stairs", gildedDungeonBricks, JBlockProperties.STONE_PROPS.create());
+        registerDefaultBlock("dungeon_floor", "Dungeon Floor");
 
         registerDefaultBlock("common_gems", "Common Gems");
         registerDefaultBlock("rare_gems", "Rare Gems");
