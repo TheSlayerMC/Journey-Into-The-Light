@@ -7,8 +7,14 @@ import net.jitl.common.block.base.JBlock;
 import net.jitl.common.helper.EnumHarvestLevel;
 import net.jitl.init.JTabs;
 import net.jitl.util.JBlockProperties;
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.StairsBlock;
+import net.minecraftforge.fml.RegistryObject;
 import ru.timeconqueror.timecore.api.client.resource.BlockModels;
+import ru.timeconqueror.timecore.api.client.resource.BlockStateResource;
+import ru.timeconqueror.timecore.api.client.resource.BlockStateResources;
 import ru.timeconqueror.timecore.api.client.resource.location.BlockModelLocation;
 import ru.timeconqueror.timecore.api.client.resource.location.TextureLocation;
 import ru.timeconqueror.timecore.registry.AutoRegistrable;
@@ -68,8 +74,8 @@ public class BlockRegistrator {
         registerDefaultBlock("dungeon_bricks_chiseled", "Chiseled Dungeon Bricks");
         registerDefaultBlock("dungeon_bricks_cracked", "Cracked Dungeon Bricks");
         registerDefaultBlock("dungeon_lamp", "Dungeon Lamp");
-        registerDefaultBlock("gilded_dungeon_bricks", "Gilded Dungeon Bricks");
-        registerDefaultBlock("gilded_dungeon_brick_stairs", "Gilded Dungeon Brick Stairs");
+        RegistryObject<Block> gildedDungeonBricks = registerDefaultBlock("gilded_dungeon_bricks", "Gilded Dungeon Bricks");
+        registerStairs("gilded_dungeon_stairs", "Gilded Dungeon Stairs", gildedDungeonBricks, JBlockProperties.STONE_PROPS.create());
 
         registerDefaultBlock("common_gems", "Common Gems");
         registerDefaultBlock("rare_gems", "Rare Gems");
@@ -86,22 +92,33 @@ public class BlockRegistrator {
                 .genDefaultStateAndModel();
     }
 
-    private static void registerDefaultBlock(String name, String enName) {
-        REGISTER.register(name, () -> new Block
+    private static RegistryObject<Block> registerDefaultBlock(String name, String enName) {
+        return REGISTER.register(name, () -> new Block
                 (JBlockProperties.STONE_PROPS.create()))
                 .genLangEntry(enName)
                 .regDefaultBlockItem(JTabs.BLOCKS)
-                .genDefaultStateAndModel();
+                .genDefaultStateAndModel()
+                .asRegistryObject();
     }
 
-//    private static void registerStairs(String name, String enName, Properties properties){
-//        REGISTER.register(name, () -> new StairsBlock(Blocks.AIR::defaultBlockState, properties))
-//                .apply(chain -> {
-//                    chain.genModelWithRegNamePath(BlockModel);
-//                })
-//                .regDefaultBlockItem(JTabs.BLOCKS)
-//                .genLangEntry(enName);
-//    }
+    private static void registerStairs(String name, String enName, RegistryObject<? extends Block> sourceBlock, AbstractBlock.Properties properties) {
+        REGISTER.register(name, () -> new StairsBlock(Blocks.AIR::defaultBlockState, properties))
+                .apply(chain -> {
+                    BlockModelLocation stairs = new BlockModelLocation(chain.getModId(), name);
+                    BlockModelLocation innerStairs = new BlockModelLocation(chain.getModId(), name + "/inner");
+                    BlockModelLocation outerStairs = new BlockModelLocation(chain.getModId(), name + "/outer");
+                    TextureLocation sourceBlockTexture = new TextureLocation(chain.getModId(), "block/" + sourceBlock.getId().getPath());
+
+                    chain.genModel(stairs, BlockModels.stairsModel(sourceBlockTexture, sourceBlockTexture, sourceBlockTexture));
+                    chain.genModel(innerStairs, BlockModels.stairsInnerModel(sourceBlockTexture, sourceBlockTexture, sourceBlockTexture));
+                    chain.genModel(outerStairs, BlockModels.stairsOuterModel(sourceBlockTexture, sourceBlockTexture, sourceBlockTexture));
+
+                    BlockStateResource state = BlockStateResources.stairs(stairs, innerStairs, outerStairs);
+                    chain.genState(state);
+                })
+                .regDefaultBlockItem(JTabs.BLOCKS)
+                .genLangEntry(enName);
+    }
 
     private static void registerOreBlock(String name, String enName, EnumHarvestLevel harvestLevel, int minExp) {
         REGISTER.register(name, () -> new JOreBlock

@@ -55,7 +55,6 @@ public class JBlocks {
     public static final Block DUNGEON_BRICKS_CHISELED = promise();
     public static final Block DUNGEON_BRICKS_CRACKED = promise();
     public static final Block DUNGEON_LAMP = promise();
-    public static final Block GILDED_DUNGEON_BRICKS = promise();
     public static final StairsBlock GILDED_DUNGEON_STAIRS = promise();
     public static final Block COMMON_GEMS = promise();
     public static final Block RARE_GEMS = promise();
