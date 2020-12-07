@@ -8,7 +8,7 @@ import net.jitl.common.helper.EnumHarvestLevel;
 import net.jitl.init.JTabs;
 import net.jitl.util.JBlockProperties;
 import net.minecraft.block.Block;
-import ru.timeconqueror.timecore.api.client.resource.BlockModel;
+import ru.timeconqueror.timecore.api.client.resource.BlockModels;
 import ru.timeconqueror.timecore.api.client.resource.location.BlockModelLocation;
 import ru.timeconqueror.timecore.api.client.resource.location.TextureLocation;
 import ru.timeconqueror.timecore.registry.AutoRegistrable;
@@ -91,6 +91,15 @@ public class BlockRegistrator {
                 .genDefaultStateAndModel();
     }
 
+//    private static void registerStairs(String name, String enName, Properties properties){
+//        REGISTER.register(name, () -> new StairsBlock(Blocks.AIR::defaultBlockState, properties))
+//                .apply(chain -> {
+//                    chain.genModelWithRegNamePath(BlockModel);
+//                })
+//                .regDefaultBlockItem(JTabs.BLOCKS)
+//                .genLangEntry(enName);
+//    }
+
     private static void registerOreBlock(String name, String enName, EnumHarvestLevel harvestLevel, int minExp) {
         REGISTER.register(name, () -> new JOreBlock
                 (JBlockProperties.ORE_PROPS.create()
@@ -125,6 +134,6 @@ public class BlockRegistrator {
                 .regDefaultBlockItem(JTabs.BLOCKS)
                 .genDefaultState(new BlockModelLocation(JITL.MODID, "block/" + name))
                 .genModel(new BlockModelLocation(JITL.MODID, "block/" + name),
-                        () -> BlockModel.createCubeColumnModel(new TextureLocation(JITL.MODID, "block/" + topTexture), new TextureLocation(JITL.MODID, "block/" + sideTexture)));
+                        () -> BlockModels.cubeColumnModel(new TextureLocation(JITL.MODID, "block/" + topTexture), new TextureLocation(JITL.MODID, "block/" + sideTexture)));
     }
 }
