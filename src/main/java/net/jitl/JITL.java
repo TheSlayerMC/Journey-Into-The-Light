@@ -1,5 +1,7 @@
 package net.jitl;
 
+import net.jitl.client.eventhandler.KeybindEventHandler;
+import net.jitl.common.helper.JourneyContainers;
 import net.jitl.init.JFeatureGen;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
@@ -26,6 +28,8 @@ public class JITL implements TimeMod {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientSetup);
 
         MinecraftForge.EVENT_BUS.register(this);
+        MinecraftForge.EVENT_BUS.register(new JourneyContainers());
+        KeybindEventHandler.registerKeys();
     }
 
     private void preInit(final FMLCommonSetupEvent event) {
