@@ -35,20 +35,24 @@ public class GuardianTowerStructure extends Structure<NoFeatureConfig> {
             super(structure, chunkX, chunkZ, mutableBoundingBox_, references, seed);
         }
 
-        public void generatePieces(DynamicRegistries dynamicRegistries_, ChunkGenerator chunkGenerator_, TemplateManager templateManager_, int chunkX, int chunkZ, Biome biome_, NoFeatureConfig featureConfig_) {
+        public void generatePieces(DynamicRegistries dynamicRegistries, ChunkGenerator chunkGenerator, TemplateManager templateManager, int chunkX, int chunkZ, Biome biome_, NoFeatureConfig featureConfig_) {
             int x = chunkX << 4;
             int z = chunkZ << 4;
 
-            int surface = GenHelper.getAverageFirstFreeHeight(chunkGenerator_, x, z, x + GuardianTowerPieces.BB_WIDTH, z + GuardianTowerPieces.BB_WIDTH);
+            int surface = GenHelper.getAverageFirstFreeHeight(chunkGenerator, x, z, x + GuardianTowerPieces.BB_WIDTH, z + GuardianTowerPieces.BB_WIDTH);
             surface -= 1;
 
-            BlockPos blockPos = new BlockPos(x, surface, z);
-            JITL.LOGGER.debug(JStructures.STRUCTURE_MARKER, "Attempting to generate {} on {}", GuardianTowerStructure.class.getSimpleName(), blockPos);
+            BlockPos start = new BlockPos(x, surface, z);
+            JITL.LOGGER.debug(JStructures.STRUCTURE_MARKER, "Attempting to generate {} on {}", GuardianTowerStructure.class.getSimpleName(), start);
 
+            BlockPos changeable = start;
             for (int i = 0; i < 4; i++) {
-                pieces.add(new GuardianTowerPieces.Floor(templateManager_, blockPos));
-                blockPos = blockPos.above(6);
+                pieces.add(new GuardianTowerPieces.Piece(templateManager, GuardianTowerPieces.FLOOR_PIECE, changeable));
+                changeable = changeable.above(6);
             }
+
+            pieces.add(new GuardianTowerPieces.Piece(templateManager, GuardianTowerPieces.FIRST_FLOOR_DECORATION_PIECE, start));
+
             this.calculateBoundingBox();
         }
     }

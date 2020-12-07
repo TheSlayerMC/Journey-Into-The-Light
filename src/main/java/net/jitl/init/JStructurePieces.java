@@ -10,5 +10,5 @@ public class JStructurePieces {
     @AutoRegistrable
     private static final StructurePieceRegister REGISTER = new StructurePieceRegister(JITL.MODID);
 
-    public static final IStructurePieceType GUARDIAN_TOWER_PIECE = REGISTER.register("gt/fl", GuardianTowerPieces.Floor::new);
+    public static final IStructurePieceType GUARDIAN_TOWER_PIECE = REGISTER.register("gt/fl", GuardianTowerPieces.Piece::new);
 }
