@@ -6,7 +6,7 @@ import net.minecraft.data.CookingRecipeBuilder;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.ShapedRecipeBuilder;
-import net.minecraft.item.crafting.CookingRecipeSerializer;
+import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
@@ -118,8 +118,9 @@ public class JRecipeProvider extends ForgeRecipeProvider {
 		CookingRecipeBuilder.blasting(Ingredient.of(input), output, xpGiven, time);
 	}
 
-	protected void addCookingRecipe(IItemProvider input, IItemProvider output, float xpGiven, int time, CookingRecipeSerializer<?> serializer) {
-		CookingRecipeBuilder.cooking(Ingredient.of(input), output, xpGiven, time, serializer);
+	protected void addCookingRecipe(IItemProvider input, IItemProvider output, float xpGiven) {
+		CookingRecipeBuilder.cooking(Ingredient.of(input), output, xpGiven, 100, IRecipeSerializer.SMOKING_RECIPE);
+		CookingRecipeBuilder.cooking(Ingredient.of(input), output, xpGiven, 600, IRecipeSerializer.CAMPFIRE_COOKING_RECIPE);
 	}
 
 	/**

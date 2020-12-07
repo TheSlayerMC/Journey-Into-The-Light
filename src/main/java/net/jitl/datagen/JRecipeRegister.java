@@ -56,5 +56,6 @@ public class JRecipeRegister extends JRecipeProvider {
 	}
 
 	public void buildCookingRecipes() {
+		addCookingRecipe();
 	}
 }
