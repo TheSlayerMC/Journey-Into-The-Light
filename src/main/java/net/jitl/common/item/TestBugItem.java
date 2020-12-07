@@ -1,6 +1,5 @@
 package net.jitl.common.item;
 
-import net.jitl.common.world.gen.util.GenHelper;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -10,6 +9,7 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import ru.timeconqueror.timecore.util.GenHelper;
 
 public class TestBugItem extends Item {
     public TestBugItem(Properties properties) {

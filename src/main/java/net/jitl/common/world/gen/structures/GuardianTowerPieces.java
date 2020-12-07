@@ -1,7 +1,6 @@
 package net.jitl.common.world.gen.structures;
 
 import net.jitl.common.world.gen.util.BoundMutablePos;
-import net.jitl.common.world.gen.util.GenHelper;
 import net.jitl.init.JBlocks;
 import net.jitl.init.JStructurePieces;
 import net.minecraft.block.Blocks;
@@ -15,6 +14,7 @@ import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.feature.structure.ScatteredStructurePiece;
 import net.minecraft.world.gen.feature.structure.StructureManager;
 import net.minecraft.world.gen.feature.template.TemplateManager;
+import ru.timeconqueror.timecore.util.GenHelper;
 
 import java.util.Random;
 

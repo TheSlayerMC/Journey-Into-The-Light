@@ -4,28 +4,25 @@ import net.jitl.client.render.screen.ScreenPlayerStats;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.client.event.InputEvent;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import org.lwjgl.glfw.GLFW;
 
 public class KeybindEventHandler {
 
-    public static KeyBinding STATS;
+    public static KeyBinding keyStats;
 
-    public static void registerKeys() {
-        STATS = new KeyBinding("Open Journey Stats", 74, "JITL Keys");
+    public static void registerKeys(FMLClientSetupEvent event) {
+        keyStats = new KeyBinding("Open Journey Stats", GLFW.GLFW_KEY_J, "JITL Keys");//TODO I18n
 
-        MinecraftForge.EVENT_BUS.register(new KeybindEventHandler());
-        ClientRegistry.registerKeyBinding(STATS);
+        ClientRegistry.registerKeyBinding(keyStats);
     }
 
-    @SubscribeEvent
-    public void pressKey(InputEvent.KeyInputEvent event) {
-        if(STATS.isDown()) {
-            if(Minecraft.getInstance().screen == null) {
+    static void onKeyPressed(InputEvent.KeyInputEvent event) {
+        if (keyStats.isDown()) {
+            if (Minecraft.getInstance().screen == null) {
                 Minecraft.getInstance().setScreen(new ScreenPlayerStats(Minecraft.getInstance().player.inventory));
             }
         }
     }
-
 }
