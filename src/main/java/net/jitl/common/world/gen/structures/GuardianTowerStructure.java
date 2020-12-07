@@ -1,6 +1,8 @@
 package net.jitl.common.world.gen.structures;
 
 import com.mojang.serialization.Codec;
+import net.jitl.JITL;
+import net.jitl.init.JStructures;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.util.registry.DynamicRegistries;
@@ -34,14 +36,19 @@ public class GuardianTowerStructure extends Structure<NoFeatureConfig> {
         }
 
         public void generatePieces(DynamicRegistries dynamicRegistries_, ChunkGenerator chunkGenerator_, TemplateManager templateManager_, int chunkX, int chunkZ, Biome biome_, NoFeatureConfig featureConfig_) {
-            int x = chunkX * 16;
-            int z = chunkZ * 16;
+            int x = chunkX << 4;
+            int z = chunkZ << 4;
 
             int surface = GenHelper.getAverageFirstFreeHeight(chunkGenerator_, x, z, x + GuardianTowerPieces.BB_WIDTH, z + GuardianTowerPieces.BB_WIDTH);
             surface -= 1;
 
-            System.out.println(new BlockPos(x, surface, z));
-            pieces.add(new GuardianTowerPieces.Floor(templateManager_, new BlockPos(x, surface, z)));
+            BlockPos blockPos = new BlockPos(x, surface, z);
+            JITL.LOGGER.debug(JStructures.STRUCTURE_MARKER, "Attempting to generate {} on {}", GuardianTowerStructure.class.getSimpleName(), blockPos);
+
+            for (int i = 0; i < 4; i++) {
+                pieces.add(new GuardianTowerPieces.Floor(templateManager_, blockPos));
+                blockPos = blockPos.above(6);
+            }
             this.calculateBoundingBox();
         }
     }

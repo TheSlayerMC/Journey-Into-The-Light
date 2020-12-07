@@ -4,12 +4,16 @@ import net.jitl.JITL;
 import net.jitl.common.world.gen.structures.GuardianTowerStructure;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
+import org.apache.logging.log4j.Marker;
+import org.apache.logging.log4j.MarkerManager;
 import ru.timeconqueror.timecore.registry.AutoRegistrable;
 import ru.timeconqueror.timecore.registry.newreg.StructureRegister;
 import ru.timeconqueror.timecore.registry.newreg.StructureRegister.StructureHolder;
 import ru.timeconqueror.timecore.registry.newreg.StructureRegister.TimeStructureSeparationSettings;
 
 public class JStructures {
+    public static final Marker STRUCTURE_MARKER = MarkerManager.getMarker("JSTRUCTURES");
+
     @AutoRegistrable
     private static final StructureRegister REGISTER = new StructureRegister(JITL.MODID);
 
