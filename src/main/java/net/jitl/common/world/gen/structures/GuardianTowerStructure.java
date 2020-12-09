@@ -45,13 +45,7 @@ public class GuardianTowerStructure extends Structure<NoFeatureConfig> {
             BlockPos start = new BlockPos(x, surface, z);
             JITL.LOGGER.debug(JStructures.STRUCTURE_MARKER, "Attempting to generate {} on {}", GuardianTowerStructure.class.getSimpleName(), start);
 
-            BlockPos changeable = start;
-            for (int i = 0; i < 4; i++) {
-                pieces.add(new GuardianTowerPieces.NoGrassTouchedPiece(templateManager, GuardianTowerPieces.FLOOR_PIECE, changeable));
-                changeable = changeable.above(6);
-            }
-
-            pieces.add(new GuardianTowerPieces.Piece(templateManager, GuardianTowerPieces.FIRST_FLOOR_DECORATION_PIECE, start));
+            GuardianTowerPieces.generate(pieces, templateManager, start);
 
             this.calculateBoundingBox();
         }
