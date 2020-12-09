@@ -47,7 +47,7 @@ public class GuardianTowerStructure extends Structure<NoFeatureConfig> {
 
             BlockPos changeable = start;
             for (int i = 0; i < 4; i++) {
-                pieces.add(new GuardianTowerPieces.Piece(templateManager, GuardianTowerPieces.FLOOR_PIECE, changeable));
+                pieces.add(new GuardianTowerPieces.NoGrassTouchedPiece(templateManager, GuardianTowerPieces.FLOOR_PIECE, changeable));
                 changeable = changeable.above(6);
             }
 
