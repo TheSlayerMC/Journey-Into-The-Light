@@ -51,7 +51,7 @@ public class BlockRegistrator {
 
         registerDefaultBlock("lava_rock", "Lava Rock");
         registerDefaultBlock("sapphire_block", "Sapphire Block");
-        registerSpeciallyRenderedBlock("lunium_block", "Lunium Block", () -> new JBlock(JBlockProperties.METAL_PROPS.create()));
+        registerSpeciallyRenderedBlock("lunium_block", "Lunium Block", () -> new JBlock(JBlockProperties.TEST_PROPS.create()));
         registerDefaultBlock("shadium_block", "Shadium Block");
         registerDefaultBlock("iridium_block", "Iridium Block");
         registerDefaultBlock("bloodcrust_block", "Bloodcrust Block");
@@ -69,14 +69,14 @@ public class BlockRegistrator {
         registerDefaultBlock("nethic_gemstone_block", "Nethic Gemstone Block");
         registerDefaultBlock("frost_gem_block", "Frost Gem Block");
 
-        registerDefaultBlock("dungeon_bricks", "Dungeon Bricks");
-        registerDefaultBlock("dungeon_bricks_carved", "Carved Dungeon Bricks");
-        registerDefaultBlock("dungeon_bricks_chiseled", "Chiseled Dungeon Bricks");
-        registerDefaultBlock("dungeon_bricks_cracked", "Cracked Dungeon Bricks");
-        registerDefaultBlock("dungeon_lamp", "Dungeon Lamp");
-        RegistryObject<Block> gildedDungeonBricks = registerDefaultBlock("gilded_dungeon_bricks", "Gilded Dungeon Bricks");
-        registerStairs("gilded_dungeon_stairs", "Gilded Dungeon Stairs", gildedDungeonBricks, JBlockProperties.STONE_PROPS.create());
-        registerDefaultBlock("dungeon_floor", "Dungeon Floor");
+        registerDefaultBlock("dungeon_bricks", "Dungeon Bricks", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
+        registerDefaultBlock("dungeon_bricks_carved", "Carved Dungeon Bricks", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
+        registerDefaultBlock("dungeon_bricks_chiseled", "Chiseled Dungeon Bricks", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
+        registerDefaultBlock("dungeon_bricks_cracked", "Cracked Dungeon Bricks", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
+        registerDefaultBlock("dungeon_lamp", "Dungeon Lamp", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
+        RegistryObject<Block> gildedDungeonBricks = registerBlock("gilded_dungeon_bricks", "Gilded Dungeon Bricks", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
+        registerStairs("gilded_dungeon_stairs", "Gilded Dungeon Stairs", gildedDungeonBricks, JBlockProperties.BRICK_PROPS.create());
+        registerDefaultBlock("dungeon_floor", "Dungeon Floor", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
 
         registerDefaultBlock("common_gems", "Common Gems");
         registerDefaultBlock("rare_gems", "Rare Gems");
@@ -96,6 +96,14 @@ public class BlockRegistrator {
     private static RegistryObject<Block> registerDefaultBlock(String name, String enName) {
         return REGISTER.register(name, () -> new Block
                 (JBlockProperties.STONE_PROPS.create()))
+                .genLangEntry(enName)
+                .regDefaultBlockItem(JTabs.BLOCKS)
+                .genDefaultStateAndModel()
+                .asRegistryObject();
+    }
+
+    private static RegistryObject<Block> registerBlock(String name, String enName, Supplier<Block> blockSupplier) {
+        return REGISTER.register(name, blockSupplier)
                 .genLangEntry(enName)
                 .regDefaultBlockItem(JTabs.BLOCKS)
                 .genDefaultStateAndModel()

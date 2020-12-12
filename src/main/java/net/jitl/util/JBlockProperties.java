@@ -1,5 +1,6 @@
 package net.jitl.util;
 
+import net.jitl.init.JSoundType;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -41,6 +42,12 @@ public class JBlockProperties {
 			.harvestTool(ToolType.PICKAXE)
 			.requiresCorrectToolForDrops()
 			.strength(3.0F, 3.0F));
+	public static final BlockPropsFactory BRICK_PROPS = new BlockPropsFactory(() -> AbstractBlock.Properties.of
+			(Material.STONE)
+			.sound(SoundType.NETHER_BRICKS)
+			.harvestTool(ToolType.PICKAXE)
+			.requiresCorrectToolForDrops()
+			.strength(1.5F, 6.0F));
 	public static final BlockPropsFactory NETHER_BASALT_ORE_PROPS = new BlockPropsFactory(() -> AbstractBlock.Properties.of
 			(Material.STONE)
 			.sound(SoundType.BASALT)
@@ -53,4 +60,10 @@ public class JBlockProperties {
 			.harvestTool(ToolType.PICKAXE)
 			.requiresCorrectToolForDrops()
 			.strength(3.0F, 3.0F));
+	public static final BlockPropsFactory TEST_PROPS = new BlockPropsFactory(() -> AbstractBlock.Properties.of
+			(Material.STONE)
+			.sound(JSoundType.TEST)
+			.harvestTool(ToolType.PICKAXE)
+			.requiresCorrectToolForDrops()
+			.strength(1.5F, 6.0F));
 }

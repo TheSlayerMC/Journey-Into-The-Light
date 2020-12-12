@@ -1,0 +1,11 @@
+{
+  "test_sound": {
+    "category": "blocks",
+    "sounds": [
+      {
+        "name": "jitl:blocks/test_sound",
+        "stream": false
+      }
+    ]
+  }
+}
