@@ -51,7 +51,7 @@ public class BlockRegistrator {
 
         registerDefaultBlock("lava_rock", "Lava Rock");
         registerDefaultBlock("sapphire_block", "Sapphire Block");
-        registerSpeciallyRenderedBlock("lunium_block", "Lunium Block", () -> new JBlock(JBlockProperties.TEST_PROPS.create()));
+        registerSpeciallyRenderedBlock("lunium_block", "Lunium Block", () -> new JBlock(JBlockProperties.LUNIUM_BLOCK_PROPS.create()));
         registerDefaultBlock("shadium_block", "Shadium Block");
         registerDefaultBlock("iridium_block", "Iridium Block");
         registerDefaultBlock("bloodcrust_block", "Bloodcrust Block");

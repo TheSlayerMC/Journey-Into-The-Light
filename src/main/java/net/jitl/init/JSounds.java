@@ -1,12 +1,19 @@
 package net.jitl.init;
 
 import net.jitl.JITL;
-import net.minecraft.util.SoundEvent;
-import net.minecraftforge.registries.ObjectHolder;
+import net.minecraftforge.fml.RegistryObject;
+import ru.timeconqueror.timecore.api.common.sound.TimeSound;
+import ru.timeconqueror.timecore.registry.AutoRegistrable;
+import ru.timeconqueror.timecore.registry.newreg.SoundRegister;
 
-import static ru.timeconqueror.timecore.util.Hacks.promise;
-
-@ObjectHolder(JITL.MODID)
 public class JSounds {
-	public static final SoundEvent TEST_SOUND = promise();
+
+	@AutoRegistrable
+	private static final SoundRegister REGISTER = new SoundRegister(JITL.MODID);
+
+	public static final RegistryObject<TimeSound> MUD_BLOCK_BREAK = REGISTER.register("block.mud.break");
+	public static final RegistryObject<TimeSound> MUD_BLOCK_DIG = REGISTER.register("block.mud.dig");
+
+	public static final RegistryObject<TimeSound> LUNIUM_BLOCK_BREAK = REGISTER.register("block.lunium.break");
+	public static final RegistryObject<TimeSound> LUNIUM_BLOCK_DIG = REGISTER.register("block.lunium.dig");
 }

@@ -60,9 +60,14 @@ public class JBlockProperties {
 			.harvestTool(ToolType.PICKAXE)
 			.requiresCorrectToolForDrops()
 			.strength(3.0F, 3.0F));
-	public static final BlockPropsFactory TEST_PROPS = new BlockPropsFactory(() -> AbstractBlock.Properties.of
-			(Material.STONE)
-			.sound(JSoundType.TEST)
+	public static final BlockPropsFactory MUD_PROPS = new BlockPropsFactory(() -> AbstractBlock.Properties.of
+			(Material.DIRT)
+			.sound(JSoundType.MUD)
+			.harvestTool(ToolType.SHOVEL)
+			.strength(0.5F));
+	public static final BlockPropsFactory LUNIUM_BLOCK_PROPS = new BlockPropsFactory(() -> AbstractBlock.Properties.of
+			(Material.METAL)
+			.sound(JSoundType.LUNIUM_BLOCK)
 			.harvestTool(ToolType.PICKAXE)
 			.requiresCorrectToolForDrops()
 			.strength(1.5F, 6.0F));

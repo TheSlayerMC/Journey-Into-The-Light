@@ -1,11 +1,38 @@
 {
-  "test_sound": {
-    "category": "blocks",
+  "block.mud.break": {
     "sounds": [
-      {
-        "name": "jitl:blocks/test_sound",
-        "stream": false
-      }
-    ]
+      "jitl:blocks/break/mud_break_1",
+      "jitl:blocks/break/mud_break_2",
+      "jitl:blocks/break/mud_break_3",
+      "jitl:blocks/break/mud_break_4"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.mud.dig": {
+    "sounds": [
+      "jitl:blocks/dig/mud_dig_1",
+      "jitl:blocks/dig/mud_dig_2",
+      "jitl:blocks/dig/mud_dig_3",
+      "jitl:blocks/dig/mud_dig_4"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.lunium.break": {
+    "sounds": [
+      "jitl:blocks/break/lunium_break_1",
+      "jitl:blocks/break/lunium_break_2",
+      "jitl:blocks/break/lunium_break_3",
+      "jitl:blocks/break/lunium_break_4"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.lunium.dig": {
+    "sounds": [
+      "jitl:blocks/dig/lunium_dig_1",
+      "jitl:blocks/dig/lunium_dig_2",
+      "jitl:blocks/dig/lunium_dig_3",
+      "jitl:blocks/dig/lunium_dig_4"
+    ],
+    "subtitle": "subtitles.block.generic.break"
   }
 }

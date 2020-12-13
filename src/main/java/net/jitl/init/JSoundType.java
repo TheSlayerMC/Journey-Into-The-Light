@@ -1,23 +1,25 @@
 package net.jitl.init;
 
 import net.minecraft.block.SoundType;
-import net.minecraft.util.SoundEvent;
 import ru.timeconqueror.timecore.common.block.TimeSoundType;
 
-import java.util.function.Supplier;
+public class JSoundType {
 
-public class JSoundType extends TimeSoundType {
+	public static final SoundType MUD = new TimeSoundType(
+			0.8F,
+			1.2F,
+			JSounds.MUD_BLOCK_BREAK::get,
+			JSounds.MUD_BLOCK_DIG::get,
+			JSounds.MUD_BLOCK_BREAK::get,
+			JSounds.MUD_BLOCK_DIG::get,
+			JSounds.MUD_BLOCK_BREAK::get);
 
-	public static final SoundType TEST = new TimeSoundType(
-			1.0F,
-			1.0F,
-			() -> JSounds.TEST_SOUND,
-			() -> JSounds.TEST_SOUND,
-			() -> JSounds.TEST_SOUND,
-			() -> JSounds.TEST_SOUND,
-			() -> JSounds.TEST_SOUND);
-
-	public JSoundType(float volumeIn, float pitchIn, Supplier<SoundEvent> breakSound, Supplier<SoundEvent> stepSound, Supplier<SoundEvent> placeSound, Supplier<SoundEvent> hitSound, Supplier<SoundEvent> fallSound) {
-		super(volumeIn, pitchIn, breakSound, stepSound, placeSound, hitSound, fallSound);
-	}
+	public static final SoundType LUNIUM_BLOCK = new TimeSoundType(
+			0.8F,
+			1.2F,
+			JSounds.LUNIUM_BLOCK_BREAK::get,
+			JSounds.LUNIUM_BLOCK_DIG::get,
+			JSounds.LUNIUM_BLOCK_BREAK::get,
+			JSounds.LUNIUM_BLOCK_DIG::get,
+			JSounds.LUNIUM_BLOCK_BREAK::get);
 }
