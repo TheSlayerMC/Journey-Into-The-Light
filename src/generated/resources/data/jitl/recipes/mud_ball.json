@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "jitl:block_of_mud"
+    }
+  ],
+  "result": {
+    "item": "jitl:mud_ball",
+    "count": 4
+  }
+}

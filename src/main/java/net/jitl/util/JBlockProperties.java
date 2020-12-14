@@ -42,9 +42,21 @@ public class JBlockProperties {
 			.harvestTool(ToolType.PICKAXE)
 			.requiresCorrectToolForDrops()
 			.strength(3.0F, 3.0F));
+	public static final BlockPropsFactory LUNIUM_ORE_PROPS = new BlockPropsFactory(() -> AbstractBlock.Properties.of
+			(Material.STONE)
+			.sound(JSoundType.LUNIUM_ORE)
+			.harvestTool(ToolType.PICKAXE)
+			.requiresCorrectToolForDrops()
+			.strength(3.0F, 3.0F));
+	public static final BlockPropsFactory SHADIUM_ORE_PROPS = new BlockPropsFactory(() -> AbstractBlock.Properties.of
+			(Material.STONE)
+			.sound(JSoundType.SHADIUM_ORE)
+			.harvestTool(ToolType.PICKAXE)
+			.requiresCorrectToolForDrops()
+			.strength(3.0F, 3.0F));
 	public static final BlockPropsFactory BRICK_PROPS = new BlockPropsFactory(() -> AbstractBlock.Properties.of
 			(Material.STONE)
-			.sound(SoundType.NETHER_BRICKS)
+			.sound(JSoundType.BRICK)
 			.harvestTool(ToolType.PICKAXE)
 			.requiresCorrectToolForDrops()
 			.strength(1.5F, 6.0F));
@@ -68,6 +80,12 @@ public class JBlockProperties {
 	public static final BlockPropsFactory LUNIUM_BLOCK_PROPS = new BlockPropsFactory(() -> AbstractBlock.Properties.of
 			(Material.METAL)
 			.sound(JSoundType.LUNIUM_BLOCK)
+			.harvestTool(ToolType.PICKAXE)
+			.requiresCorrectToolForDrops()
+			.strength(1.5F, 6.0F));
+	public static final BlockPropsFactory SHADIUM_BLOCK_PROPS = new BlockPropsFactory(() -> AbstractBlock.Properties.of
+			(Material.METAL)
+			.sound(JSoundType.SHADIUM_BLOCK)
 			.harvestTool(ToolType.PICKAXE)
 			.requiresCorrectToolForDrops()
 			.strength(1.5F, 6.0F));

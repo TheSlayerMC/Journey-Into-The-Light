@@ -29,6 +29,12 @@ public class JRecipeProvider extends ForgeRecipeProvider {
 				.pattern("###").unlockedBy(inputToKey(input), has(input)).save(recipeConsumer);
 	}
 
+	protected void add2x2Recipe(Consumer<IFinishedRecipe> recipeConsumer, IItemProvider input, IItemProvider output) {
+		ShapedRecipeBuilder.shaped(output, 1).define('#', input)
+				.pattern("##")
+				.pattern("##").unlockedBy(inputToKey(input), has(input)).save(recipeConsumer);
+	}
+
 	protected void addToolsetAndArmorRecipes(Consumer<IFinishedRecipe> recipeConsumer, IItemProvider stickItem, IItemProvider materialItem, EnumRecipePrefix recipePrefix) {
 		addToolsetRecipes(recipeConsumer, stickItem, materialItem, recipePrefix);
 		addArmorRecipes(recipeConsumer, materialItem, recipePrefix);

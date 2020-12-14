@@ -51,17 +51,19 @@ public class JBlocks {
     public static final Block FROST_GEM_BLOCK = promise();
 
     public static final Block DUNGEON_BRICKS = promise();
-    public static final Block DUNGEON_BRICKS_CARVED = promise();
-    public static final Block DUNGEON_BRICKS_CHISELED = promise();
-    public static final Block DUNGEON_BRICKS_CRACKED = promise();
-    public static final Block DUNGEON_LAMP = promise();
-    public static final Block GILDED_DUNGEON_BRICKS = promise();
-    public static final StairsBlock GILDED_DUNGEON_STAIRS = promise();
-    public static final Block DUNGEON_FLOOR = promise();
-    public static final Block COMMON_GEMS = promise();
-    public static final Block RARE_GEMS = promise();
+	public static final Block DUNGEON_BRICKS_CARVED = promise();
+	public static final Block DUNGEON_BRICKS_CHISELED = promise();
+	public static final Block DUNGEON_BRICKS_CRACKED = promise();
+	public static final Block DUNGEON_LAMP = promise();
+	public static final Block GILDED_DUNGEON_BRICKS = promise();
+	public static final StairsBlock GILDED_DUNGEON_STAIRS = promise();
+	public static final Block DUNGEON_FLOOR = promise();
+	public static final Block COMMON_GEMS = promise();
+	public static final Block RARE_GEMS = promise();
 
-    public static final Block EUCA_BRICK = promise();
+	public static final Block BLOCK_OF_MUD = promise();
 
-    public static final Block LASER_EMITTER = promise();
+	public static final Block EUCA_BRICK = promise();
+
+	public static final Block LASER_EMITTER = promise();
 }

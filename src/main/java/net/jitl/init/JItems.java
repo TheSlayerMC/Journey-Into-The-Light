@@ -24,6 +24,7 @@ public class JItems {
     public static final Item STORON_INGOT = promise();
     public static final Item OBSIDIAN_ROD = promise();
 
+    public static final Item MUD_BALL = promise();
     public static final JFuelItem FIRESTONE_CLUMP = promise();
     public static final JFuelItem FIRESTONE_SHARD = promise();
     public static final Item WARPED_QUARTZ = promise();

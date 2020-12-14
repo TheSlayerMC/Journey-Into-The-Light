@@ -36,6 +36,7 @@ public class JLootTableSet extends BlockLootTableSet {
 		registerDropsSelf(JBlocks.DUNGEON_BRICKS_CARVED);
 		registerDropsSelf(JBlocks.DUNGEON_BRICKS_CHISELED);
 		registerDropsSelf(JBlocks.DUNGEON_BRICKS_CRACKED);
+		registerSpecialOreWithExtraCount(JBlocks.BLOCK_OF_MUD, JItems.MUD_BALL, 3, 4);
 	}
 
 	/**

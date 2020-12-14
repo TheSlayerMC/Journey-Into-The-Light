@@ -29,40 +29,45 @@ public class BlockRegistrator {
 
     @AutoRegistrable.InitMethod
     private static void register() {
-        registerOreBlock("sapphire_ore", "Sapphire Ore", EnumHarvestLevel.NETHERITE, 3);
-        registerSpeciallyRenderedOreBlock("lunium_ore", "Lunium Ore", EnumHarvestLevel.NETHERITE, 0);
-        registerOreBlock("shadium_ore", "Shadium Ore", EnumHarvestLevel.NETHERITE, 0);
-        registerOreBlock("iridium_ore", "Iridium Ore", EnumHarvestLevel.IRON, 3);
-        registerOreBlock("bloodcrust_ore", "Bloodcrust Ore", EnumHarvestLevel.NETHERITE, 0);
-        registerOreBlock("ashual_ore", "Ashual Ore", EnumHarvestLevel.NETHERITE, 4);
-        registerOreBlock("blazium_ore", "Blazium Ore", EnumHarvestLevel.NETHERITE, 4);
-        registerOreBlock("mekyum_ore", "Mekyum Ore", EnumHarvestLevel.NETHERITE, 0);
-        registerOreBlock("celestium_ore", "Celestium Ore", EnumHarvestLevel.NETHERITE, 0);
-        registerOreBlock("storon_ore", "Storon Ore", EnumHarvestLevel.NETHERITE, 0);
-        registerOreBlock("flairium_ore", "Flairium Ore", EnumHarvestLevel.NETHERITE, 0);
-        registerOreBlock("des_ore", "Des Ore", EnumHarvestLevel.NETHERITE, 0);
-        registerOreBlock("enderillium_ore", "Enderillium Ore", EnumHarvestLevel.NETHERITE, 4);
-        registerOreBlock("gorbite_ore", "Gorbite Ore", EnumHarvestLevel.NETHERITE, 4);
-        registerOreBlock("orbadite_ore", "Orbadite Ore", EnumHarvestLevel.NETHERITE, 0);
-        registerOreBlock("lunite_ore", "Lunite Ore", EnumHarvestLevel.NETHERITE, 6);
-        registerSpeciallyRenderedBlock("firestone_ore", "Firestone Ore", () -> new JOreBlock(JBlockProperties.NETHER_BASALT_ORE_PROPS.create()).setExpDrop(1));
-        registerDefaultBlock("warped_quartz_ore", "Warped Quartz Ore", () -> new JOreBlock(JBlockProperties.NETHER_NETHERRACK_ORE_PROPS.create()).setExpDrop(2));
-        registerDefaultBlock("crimson_quartz_ore", "Crimson Quartz Ore", () -> new JOreBlock(JBlockProperties.NETHER_NETHERRACK_ORE_PROPS.create()).setExpDrop(2));
+		registerOreBlock("sapphire_ore", "Sapphire Ore", EnumHarvestLevel.DIAMOND, 3);
+		registerSpeciallyRenderedBlock("lunium_ore", "Lunium Ore", () -> new JOreBlock(JBlockProperties.LUNIUM_ORE_PROPS.create()
+				.lightLevel((state) -> 3)
+				.harvestLevel(EnumHarvestLevel.DIAMOND.getInt()))
+				.setExpDrop(0));
+		registerDefaultBlock("shadium_ore", "Shadium Ore", () -> new JOreBlock(JBlockProperties.SHADIUM_ORE_PROPS.create()
+				.harvestLevel(EnumHarvestLevel.DIAMOND.getInt()))
+				.setExpDrop(0));
+		registerOreBlock("iridium_ore", "Iridium Ore", EnumHarvestLevel.IRON, 3);
+		registerOreBlock("bloodcrust_ore", "Bloodcrust Ore", EnumHarvestLevel.NETHERITE, 0);
+		registerOreBlock("ashual_ore", "Ashual Ore", EnumHarvestLevel.NETHERITE, 4);
+		registerOreBlock("blazium_ore", "Blazium Ore", EnumHarvestLevel.NETHERITE, 4);
+		registerOreBlock("mekyum_ore", "Mekyum Ore", EnumHarvestLevel.NETHERITE, 0);
+		registerOreBlock("celestium_ore", "Celestium Ore", EnumHarvestLevel.NETHERITE, 0);
+		registerOreBlock("storon_ore", "Storon Ore", EnumHarvestLevel.NETHERITE, 0);
+		registerOreBlock("flairium_ore", "Flairium Ore", EnumHarvestLevel.NETHERITE, 0);
+		registerOreBlock("des_ore", "Des Ore", EnumHarvestLevel.NETHERITE, 0);
+		registerOreBlock("enderillium_ore", "Enderillium Ore", EnumHarvestLevel.NETHERITE, 4);
+		registerOreBlock("gorbite_ore", "Gorbite Ore", EnumHarvestLevel.NETHERITE, 4);
+		registerOreBlock("orbadite_ore", "Orbadite Ore", EnumHarvestLevel.NETHERITE, 0);
+		registerOreBlock("lunite_ore", "Lunite Ore", EnumHarvestLevel.NETHERITE, 6);
+		registerSpeciallyRenderedBlock("firestone_ore", "Firestone Ore", () -> new JOreBlock(JBlockProperties.NETHER_BASALT_ORE_PROPS.create().harvestLevel(EnumHarvestLevel.IRON.getInt())).setExpDrop(1));
+		registerDefaultBlock("warped_quartz_ore", "Warped Quartz Ore", () -> new JOreBlock(JBlockProperties.NETHER_NETHERRACK_ORE_PROPS.create().harvestLevel(EnumHarvestLevel.IRON.getInt())).setExpDrop(2));
+		registerDefaultBlock("crimson_quartz_ore", "Crimson Quartz Ore", () -> new JOreBlock(JBlockProperties.NETHER_NETHERRACK_ORE_PROPS.create().harvestLevel(EnumHarvestLevel.IRON.getInt())).setExpDrop(2));
 
-        registerDefaultBlock("lava_rock", "Lava Rock");
-        registerDefaultBlock("sapphire_block", "Sapphire Block");
-        registerSpeciallyRenderedBlock("lunium_block", "Lunium Block", () -> new JBlock(JBlockProperties.LUNIUM_BLOCK_PROPS.create()));
-        registerDefaultBlock("shadium_block", "Shadium Block");
-        registerDefaultBlock("iridium_block", "Iridium Block");
-        registerDefaultBlock("bloodcrust_block", "Bloodcrust Block");
-        registerDefaultBlock("ashual_block", "Ashual Block");
-        registerDefaultBlock("blazium_block", "Blazium Block");
-        registerDefaultBlock("mekyum_block", "Mekyum Block");
-        registerDefaultBlock("celestium_block", "Celestium Block");
-        registerDefaultBlock("storon_block", "Storon Block");
-        registerDefaultBlock("flairium_block", "Flairium Block");
-        registerDefaultBlock("des_block", "Des Block");
-        registerDefaultBlock("enderillium_block", "Enderillium Block");
+		registerDefaultBlock("lava_rock", "Lava Rock");
+		registerDefaultBlock("sapphire_block", "Sapphire Block");
+		registerSpeciallyRenderedBlock("lunium_block", "Lunium Block", () -> new JBlock(JBlockProperties.LUNIUM_BLOCK_PROPS.create().lightLevel((state) -> 5)));
+		registerDefaultBlock("shadium_block", "Shadium Block", () -> new JBlock(JBlockProperties.SHADIUM_BLOCK_PROPS.create()));
+		registerDefaultBlock("iridium_block", "Iridium Block");
+		registerDefaultBlock("bloodcrust_block", "Bloodcrust Block");
+		registerDefaultBlock("ashual_block", "Ashual Block");
+		registerDefaultBlock("blazium_block", "Blazium Block");
+		registerDefaultBlock("mekyum_block", "Mekyum Block");
+		registerDefaultBlock("celestium_block", "Celestium Block");
+		registerDefaultBlock("storon_block", "Storon Block");
+		registerDefaultBlock("flairium_block", "Flairium Block");
+		registerDefaultBlock("des_block", "Des Block");
+		registerDefaultBlock("enderillium_block", "Enderillium Block");
         registerDefaultBlock("gorbite_block", "Gorbite Block");
         registerDefaultBlock("orbadite_block", "Orbadite Block");
         registerDefaultBlock("lunite_block", "Lunite Block");
@@ -71,20 +76,22 @@ public class BlockRegistrator {
 
         registerDefaultBlock("dungeon_bricks", "Dungeon Bricks", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
         registerDefaultBlock("dungeon_bricks_carved", "Carved Dungeon Bricks", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
-        registerDefaultBlock("dungeon_bricks_chiseled", "Chiseled Dungeon Bricks", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
-        registerDefaultBlock("dungeon_bricks_cracked", "Cracked Dungeon Bricks", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
-        registerDefaultBlock("dungeon_lamp", "Dungeon Lamp", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
-        RegistryObject<Block> gildedDungeonBricks = registerBlock("gilded_dungeon_bricks", "Gilded Dungeon Bricks", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
-        registerStairs("gilded_dungeon_stairs", "Gilded Dungeon Stairs", gildedDungeonBricks, JBlockProperties.BRICK_PROPS.create());
-        registerDefaultBlock("dungeon_floor", "Dungeon Floor", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
+		registerDefaultBlock("dungeon_bricks_chiseled", "Chiseled Dungeon Bricks", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
+		registerDefaultBlock("dungeon_bricks_cracked", "Cracked Dungeon Bricks", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
+		registerDefaultBlock("dungeon_lamp", "Dungeon Lamp", () -> new Block(JBlockProperties.BRICK_PROPS.create().lightLevel((state) -> 14)));
+		RegistryObject<Block> gildedDungeonBricks = registerBlock("gilded_dungeon_bricks", "Gilded Dungeon Bricks", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
+		registerStairs("gilded_dungeon_stairs", "Gilded Dungeon Stairs", gildedDungeonBricks, JBlockProperties.BRICK_PROPS.create());
+		registerDefaultBlock("dungeon_floor", "Dungeon Floor", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
 
-        registerDefaultBlock("common_gems", "Common Gems");
-        registerDefaultBlock("rare_gems", "Rare Gems");
+		registerDefaultBlock("common_gems", "Common Gems");
+		registerDefaultBlock("rare_gems", "Rare Gems");
 
-        registerDefaultBlock("euca_brick", "Euca Brick");
+		registerDefaultBlock("block_of_mud", "Block O' Mud", () -> new Block(JBlockProperties.MUD_PROPS.create()));
 
-        registerDefaultBlock("laser_emitter", "Laser Emitter", () -> new LaserEmitterBlock(JBlockProperties.STONE_PROPS.create()));
-    }
+		registerDefaultBlock("euca_brick", "Euca Brick");
+
+		registerDefaultBlock("laser_emitter", "Laser Emitter", () -> new LaserEmitterBlock(JBlockProperties.STONE_PROPS.create()));
+	}
 
     private static void registerDefaultBlock(String name, String enName, Supplier<Block> blockSupplier) {
         REGISTER.register(name, blockSupplier)

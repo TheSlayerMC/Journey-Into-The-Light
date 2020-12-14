@@ -29,6 +29,7 @@ public class ItemRegistrator {
         registerItem("lunium_ingot", "Lunium Ingot");
         registerItem("shadium_ingot", "Shadium Ingot");
         registerItem("obsidian_rod", "Obsidian Rod");
+        registerItem("mud_ball", "Mud Ball");
 
         //NETHER ITEMS
         registerItem("bloodcrust_ingot", "Bloodcrust Ingot");

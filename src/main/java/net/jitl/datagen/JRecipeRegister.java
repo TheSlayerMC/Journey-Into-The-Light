@@ -5,6 +5,7 @@ import net.jitl.init.JItems;
 import net.jitl.util.EnumRecipePrefix;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
+import net.minecraft.data.ShapelessRecipeBuilder;
 
 import java.util.function.Consumer;
 
@@ -35,10 +36,13 @@ public class JRecipeRegister extends JRecipeProvider {
 		add3x3Recipe(recipeConsumer, JItems.CELESTIUM_INGOT, JBlocks.CELESTIUM_BLOCK);
 		add3x3Recipe(recipeConsumer, JItems.MEKYUM_INGOT, JBlocks.MEKYUM_BLOCK);
 		add3x3Recipe(recipeConsumer, JItems.STORON_INGOT, JBlocks.STORON_BLOCK);
+
+		add2x2Recipe(recipeConsumer, JItems.MUD_BALL, JBlocks.BLOCK_OF_MUD);
 	}
 
 	public void buildItemRecipes(Consumer<IFinishedRecipe> recipeConsumer) {
 		add3x3Recipe(recipeConsumer, JItems.FIRESTONE_SHARD, JItems.FIRESTONE_CLUMP);
+		ShapelessRecipeBuilder.shapeless(JItems.MUD_BALL, 4).requires(JBlocks.BLOCK_OF_MUD).unlockedBy(inputToKey(JBlocks.BLOCK_OF_MUD), has(JBlocks.BLOCK_OF_MUD)).save(recipeConsumer);
 	}
 
 	public void buildToolRecipes(Consumer<IFinishedRecipe> recipeConsumer) {

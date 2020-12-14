@@ -1,37 +1,101 @@
 {
   "block.mud.break": {
     "sounds": [
-      "jitl:blocks/break/mud_break_1",
-      "jitl:blocks/break/mud_break_2",
-      "jitl:blocks/break/mud_break_3",
-      "jitl:blocks/break/mud_break_4"
+      "jitl:blocks/break/mud_1",
+      "jitl:blocks/break/mud_2",
+      "jitl:blocks/break/mud_3",
+      "jitl:blocks/break/mud_4"
     ],
     "subtitle": "subtitles.block.generic.break"
   },
   "block.mud.dig": {
     "sounds": [
-      "jitl:blocks/dig/mud_dig_1",
-      "jitl:blocks/dig/mud_dig_2",
-      "jitl:blocks/dig/mud_dig_3",
-      "jitl:blocks/dig/mud_dig_4"
+      "jitl:blocks/dig/mud_1",
+      "jitl:blocks/dig/mud_2",
+      "jitl:blocks/dig/mud_3",
+      "jitl:blocks/dig/mud_4"
     ],
     "subtitle": "subtitles.block.generic.break"
   },
-  "block.lunium.break": {
+  "block.brick.break": {
     "sounds": [
-      "jitl:blocks/break/lunium_break_1",
-      "jitl:blocks/break/lunium_break_2",
-      "jitl:blocks/break/lunium_break_3",
-      "jitl:blocks/break/lunium_break_4"
+      "jitl:blocks/break/brick_1",
+      "jitl:blocks/break/brick_2",
+      "jitl:blocks/break/brick_3",
+      "jitl:blocks/break/brick_4",
+      "jitl:blocks/break/brick_5",
+      "jitl:blocks/break/brick_6"
     ],
     "subtitle": "subtitles.block.generic.break"
   },
-  "block.lunium.dig": {
+  "block.brick.dig": {
     "sounds": [
-      "jitl:blocks/dig/lunium_dig_1",
-      "jitl:blocks/dig/lunium_dig_2",
-      "jitl:blocks/dig/lunium_dig_3",
-      "jitl:blocks/dig/lunium_dig_4"
+      "jitl:blocks/dig/brick_1",
+      "jitl:blocks/dig/brick_2",
+      "jitl:blocks/dig/brick_3",
+      "jitl:blocks/dig/brick_4",
+      "jitl:blocks/dig/brick_5",
+      "jitl:blocks/dig/brick_6"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.lunium_ore.break": {
+    "sounds": [
+      "jitl:blocks/break/lunium_ore_1",
+      "jitl:blocks/break/lunium_ore_2",
+      "jitl:blocks/break/lunium_ore_3",
+      "jitl:blocks/break/lunium_ore_4"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.lunium_block.break": {
+    "sounds": [
+      "jitl:blocks/break/lunium_block_1",
+      "jitl:blocks/break/lunium_block_2",
+      "jitl:blocks/break/lunium_block_3",
+      "jitl:blocks/break/lunium_block_4"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.lunium_block.dig": {
+    "sounds": [
+      "jitl:blocks/dig/lunium_block_1",
+      "jitl:blocks/dig/lunium_block_2",
+      "jitl:blocks/dig/lunium_block_3",
+      "jitl:blocks/dig/lunium_block_4"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.shadium_ore.break": {
+    "sounds": [
+      "jitl:blocks/break/shadium_ore_1",
+      "jitl:blocks/break/shadium_ore_2",
+      "jitl:blocks/break/shadium_ore_3",
+      "jitl:blocks/break/shadium_ore_4",
+      "jitl:blocks/break/shadium_ore_5",
+      "jitl:blocks/break/shadium_ore_6"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.shadium_block.break": {
+    "sounds": [
+      "jitl:blocks/break/shadium_block_1",
+      "jitl:blocks/break/shadium_block_2",
+      "jitl:blocks/break/shadium_block_3",
+      "jitl:blocks/break/shadium_block_4",
+      "jitl:blocks/break/shadium_block_5",
+      "jitl:blocks/break/shadium_block_6"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.shadium_block.dig": {
+    "sounds": [
+      "jitl:blocks/dig/shadium_block_1",
+      "jitl:blocks/dig/shadium_block_2",
+      "jitl:blocks/dig/shadium_block_3",
+      "jitl:blocks/dig/shadium_block_4",
+      "jitl:blocks/dig/shadium_block_5",
+      "jitl:blocks/dig/shadium_block_6"
     ],
     "subtitle": "subtitles.block.generic.break"
   }

@@ -1,8 +1,10 @@
 package net.jitl.init;
 
+import com.google.common.collect.ImmutableList;
 import net.jitl.JITL;
 import net.jitl.util.JRuleTests;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
@@ -26,9 +28,9 @@ public class JFeatureGen {
 	/**
 	 * Used for registering ore features based on dimension ArrayLists.
 	 */
-	private static final ArrayList<ConfiguredFeature<?, ?>> OVERWORLD_ORES = new ArrayList<>();
-	private static final ArrayList<ConfiguredFeature<?, ?>> NETHER_ORES = new ArrayList<>();
-	private static final ArrayList<ConfiguredFeature<?, ?>> END_ORES = new ArrayList<>();
+	private static final ArrayList<ConfiguredFeature<?, ?>> OVERWORLD_FEATURES = new ArrayList<>();
+	private static final ArrayList<ConfiguredFeature<?, ?>> NETHER_FEATURES = new ArrayList<>();
+	private static final ArrayList<ConfiguredFeature<?, ?>> END_FEATURES = new ArrayList<>();
 
 	private static final ArrayList<ConfiguredFeature<?, ?>> WARPED_FOREST_ORES = new ArrayList<>();
 
@@ -40,6 +42,7 @@ public class JFeatureGen {
 		// because of it's called from mod thread, we need to send this task to the main thread
 		// otherwise 1 per 100 times you'll see a strange behaviour because of data races
 		event.enqueueWork(JFeatureGen::registerOres);
+		event.enqueueWork(JFeatureGen::registerFeatures);
 	}
 
 	/**
@@ -51,53 +54,63 @@ public class JFeatureGen {
 		 * Range: Max generation height
 		 * Count: Quantity that can spawn per chunk
 		 */
-		OVERWORLD_ORES.add(
+		OVERWORLD_FEATURES.add(
 				register("sapphire_ore", defaultOreFeature(
 						JBlocks.SAPPHIRE_ORE.defaultBlockState(),
 						JRuleTests.STONE_DEFAULT,
 						7,
 						24,
 						2)));
-		OVERWORLD_ORES.add(
+		OVERWORLD_FEATURES.add(
 				register("lunium_ore", defaultOreFeature(
 						JBlocks.LUNIUM_ORE.defaultBlockState(),
 						JRuleTests.STONE_DEFAULT,
 						5,
 						16,
 						1)));
-		OVERWORLD_ORES.add(
+		OVERWORLD_FEATURES.add(
 				register("shadium_ore", defaultOreFeature(
 						JBlocks.SHADIUM_ORE.defaultBlockState(),
 						JRuleTests.STONE_DEFAULT,
 						3,
 						10,
 						1)));
-		OVERWORLD_ORES.add(
+		OVERWORLD_FEATURES.add(
 				register("iridium_ore", defaultOreFeature(
 						JBlocks.IRIDIUM_ORE.defaultBlockState(),
 						JRuleTests.STONE_DEFAULT,
 						7,
 						10,
 						16)));
-		NETHER_ORES.add(
+		NETHER_FEATURES.add(
 				register("bloodcrust_ore", netherOreFeature(
 						JBlocks.BLOODCRUST_ORE.defaultBlockState(),
 						JRuleTests.STONE_NETHERRACK,
 						10,
 						10)));
-		NETHER_ORES.add(
+		NETHER_FEATURES.add(
 				register("firestone_ore", netherOreFeature(
 						JBlocks.FIRESTONE_ORE.defaultBlockState(),
 						JRuleTests.STONE_BASALT,
 						10,
 						24)));
-		END_ORES.add(
+		END_FEATURES.add(
 				register("enderillium_ore", defaultOreFeature(
 						JBlocks.ENDERILLIUM_ORE.defaultBlockState(),
 						JRuleTests.STONE_END,
 						12,
 						128,
 						20)));
+	}
+
+	public static void registerFeatures() {
+		OVERWORLD_FEATURES.add(
+				register("mud_disk", defaultDiskFeature(
+						JBlocks.BLOCK_OF_MUD.defaultBlockState(),
+						Blocks.DIRT.defaultBlockState(),
+						2,
+						6,
+						1)));
 	}
 
 	/**
@@ -116,6 +129,12 @@ public class JFeatureGen {
 
 	private static ConfiguredFeature<?, ?> netherOreFeature(BlockState ore, RuleTest spawnBlock, int size, int count) {
 		return Feature.ORE.configured(new OreFeatureConfig(spawnBlock, ore, size)).decorated(Features.Placements.RANGE_10_20_ROOFED).squared().count(count);
+	}
+
+	private static ConfiguredFeature<?, ?> defaultDiskFeature(BlockState ore, BlockState spawnBlock, int baseValue, int spread, int halfHeight) {
+		return Feature.DISK.configured(
+				new SphereReplaceConfig(ore, FeatureSpread.of(baseValue, spread), halfHeight, ImmutableList.of(spawnBlock)))
+				.decorated(Features.Placements.TOP_SOLID_HEIGHTMAP_SQUARE);
 	}
 
 	/**
@@ -151,7 +170,7 @@ public class JFeatureGen {
 		BiomeGenerationSettingsBuilder builder = event.getGeneration();
 
 		if (event.getCategory().equals(Biome.Category.NETHER)) {
-			for (ConfiguredFeature<?, ?> ore : NETHER_ORES) {
+			for (ConfiguredFeature<?, ?> ore : NETHER_FEATURES) {
 				if (ore != null) {
 					builder.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, ore);
 				}
@@ -165,20 +184,20 @@ public class JFeatureGen {
 			}
 		}
 		if (event.getCategory().equals(Biome.Category.NETHER)) {
-			for (ConfiguredFeature<?, ?> ore : NETHER_ORES) {
+			for (ConfiguredFeature<?, ?> ore : NETHER_FEATURES) {
 				if (ore != null) {
 					builder.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, ore);
 				}
 			}
 		}
 		if (event.getCategory().equals(Biome.Category.THEEND)) {
-			for (ConfiguredFeature<?, ?> ore : END_ORES) {
+			for (ConfiguredFeature<?, ?> ore : END_FEATURES) {
 				if (ore != null) {
 					builder.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, ore);
 				}
 			}
 		} else {
-			for (ConfiguredFeature<?, ?> ore : OVERWORLD_ORES) {
+			for (ConfiguredFeature<?, ?> ore : OVERWORLD_FEATURES) {
 				if (ore != null) {
 					builder.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, ore);
 				}
