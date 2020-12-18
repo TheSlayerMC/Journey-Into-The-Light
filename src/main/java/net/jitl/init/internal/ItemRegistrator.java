@@ -29,6 +29,7 @@ public class ItemRegistrator {
         registerItem("lunium_ingot", "Lunium Ingot");
         registerItem("shadium_ingot", "Shadium Ingot");
         registerItem("obsidian_rod", "Obsidian Rod");
+        registerItem("light_level_thing", "grgrjgrgj", () -> new SelfRepairingItem(new Item.Properties().durability(50).tab(JTabs.ITEMS)));
         registerItem("mud_ball", "Mud Ball");
 
         //NETHER ITEMS
