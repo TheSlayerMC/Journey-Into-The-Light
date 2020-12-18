@@ -18,7 +18,7 @@ public class SelfRepairingItem extends Item {
     public void inventoryTick(@NotNull ItemStack stack, @NotNull World worldIn, @NotNull Entity entityIn, int itemSlot, boolean isSelected) {
         if (!worldIn.isClientSide() && worldIn.getGameTime() % 20 == 0) {
             if (entityIn instanceof PlayerEntity) {
-                if (isDayTime(worldIn)) {
+                if (isDayTime(worldIn) && worldIn.canSeeSky(entityIn.blockPosition())) {
                     stack.hurt(-2, random, null);
                 }
             }

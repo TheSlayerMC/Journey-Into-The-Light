@@ -1,13 +1,9 @@
 package net.jitl.common.item;
 
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import net.jitl.common.helper.JToolTiers;
 import net.jitl.init.JTabs;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -22,18 +18,17 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
-import java.util.Map;
+public class MultitoolItem extends ToolItem {
 
-public class ItemMultitool extends ToolItem {
-
-    public ItemMultitool(JToolTiers tier) {
-        super((int)tier.getShovelDam(), tier.getAttackSpeed(), tier, Sets.newHashSet(Registry.BLOCK), new Item.Properties().tab(JTabs.TOOLS));
+    public MultitoolItem(JToolTiers tier) {
+        super((int) tier.getShovelDam(), tier.getAttackSpeed(), tier, Sets.newHashSet(Registry.BLOCK), new Item.Properties().tab(JTabs.TOOLS));
     }
 
     @Override
     public boolean isCorrectToolForDrops(BlockState blockIn) {
         int i = this.getTier().getLevel();
-        if (blockIn.getHarvestTool() == net.minecraftforge.common.ToolType.PICKAXE) return i >= blockIn.getHarvestLevel();
+        if (blockIn.getHarvestTool() == net.minecraftforge.common.ToolType.PICKAXE)
+            return i >= blockIn.getHarvestLevel();
         Material material = blockIn.getMaterial();
         return material == Material.STONE || material == Material.METAL || material == Material.HEAVY_METAL;
     }

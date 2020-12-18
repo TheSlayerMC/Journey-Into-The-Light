@@ -90,10 +90,10 @@ public class ItemRegistrator {
      * @param armorMaterial Stats for the armor set
      */
     public static void registerArmorSet(String name, String engName, JArmorMaterial armorMaterial) {
-        registerArmorItem(name + "_helmet", engName + " Helmet", () -> new JItemArmor(armorMaterial, EquipmentSlotType.HEAD));
-        registerArmorItem(name + "_chestplate", engName + " Chestplate", () -> new JItemArmor(armorMaterial, EquipmentSlotType.CHEST));
-        registerArmorItem(name + "_leggings", engName + " Leggings", () -> new JItemArmor(armorMaterial, EquipmentSlotType.LEGS));
-        registerArmorItem(name + "_boots", engName + " Boots", () -> new JItemArmor(armorMaterial, EquipmentSlotType.FEET));
+        registerArmorItem(name + "_helmet", engName + " Helmet", () -> new JArmorItem(armorMaterial, EquipmentSlotType.HEAD));
+        registerArmorItem(name + "_chestplate", engName + " Chestplate", () -> new JArmorItem(armorMaterial, EquipmentSlotType.CHEST));
+        registerArmorItem(name + "_leggings", engName + " Leggings", () -> new JArmorItem(armorMaterial, EquipmentSlotType.LEGS));
+        registerArmorItem(name + "_boots", engName + " Boots", () -> new JArmorItem(armorMaterial, EquipmentSlotType.FEET));
     }
 
     /**
@@ -106,11 +106,11 @@ public class ItemRegistrator {
     public static void registerToolSet(String name, String engName, JToolTiers toolTiers) {
         registerSwordItem(name + "_sword", engName + " Sword", toolTiers);
 
-        registerToolItem(name + "_multitool", engName + " Multitool", () -> new ItemMultitool(toolTiers));
-        registerToolItem(name + "_pickaxe", engName + " Pickaxe", () -> new JItemPickaxe(toolTiers));
-        registerToolItem(name + "_axe", engName + " Axe", () -> new JItemAxe(toolTiers));
-        registerToolItem(name + "_shovel", engName + " Shovel", () -> new JItemShovel(toolTiers));
-        registerToolItem(name + "_hoe", engName + " Hoe", () -> new JItemHoe(toolTiers));
+        registerToolItem(name + "_multitool", engName + " Multitool", () -> new MultitoolItem(toolTiers));
+        registerToolItem(name + "_pickaxe", engName + " Pickaxe", () -> new JPickaxeItem(toolTiers));
+        registerToolItem(name + "_axe", engName + " Axe", () -> new JAxeItem(toolTiers));
+        registerToolItem(name + "_shovel", engName + " Shovel", () -> new JShovelItem(toolTiers));
+        registerToolItem(name + "_hoe", engName + " Hoe", () -> new JHoeItem(toolTiers));
     }
 
     /**
@@ -120,7 +120,7 @@ public class ItemRegistrator {
      * @param enName        English name
      * @param armorSupplier Supplier for the JArmorItem class
      */
-    private static void registerArmorItem(String name, String enName, Supplier<JItemArmor> armorSupplier) {
+    private static void registerArmorItem(String name, String enName, Supplier<JArmorItem> armorSupplier) {
         REGISTER.register(name, armorSupplier)
                 .genModel(StandardItemModelParents.DEFAULT)
                 .genLangEntry(enName);
@@ -134,7 +134,7 @@ public class ItemRegistrator {
      * @param material Stats for the sword item
      */
     private static void registerSwordItem(String name, String enName, JToolTiers material) {
-        REGISTER.register(name, () -> new JItemSword(material))
+        REGISTER.register(name, () -> new JSwordItem(material))
                 .genModel(StandardItemModelParents.HANDHELD)
                 .genLangEntry(enName);
     }
