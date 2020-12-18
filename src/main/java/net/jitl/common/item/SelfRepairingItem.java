@@ -34,7 +34,9 @@ public class SelfRepairingItem extends Item {
 	public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
 		ItemStack itemstack = playerIn.getItemInHand(handIn);
 		//immediately resets to full value. what the fuck.
-		itemstack.hurt(40, random, null);
-		return ActionResult.sidedSuccess(itemstack, worldIn.isClientSide());
+		if (!worldIn.isClientSide) {
+			itemstack.setDamageValue(40);
+		}
+		return ActionResult.pass(itemstack);
 	}
 }
