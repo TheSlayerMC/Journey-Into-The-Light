@@ -1,6 +1,6 @@
 package net.jitl.util;
 
-import net.jitl.init.JSoundType;
+import net.jitl.init.JSoundTypes;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -44,19 +44,19 @@ public class JBlockProperties {
 			.strength(3.0F, 3.0F));
 	public static final BlockPropsFactory LUNIUM_ORE_PROPS = new BlockPropsFactory(() -> AbstractBlock.Properties.of
 			(Material.STONE)
-			.sound(JSoundType.LUNIUM_ORE)
+			.sound(JSoundTypes.LUNIUM_ORE)
 			.harvestTool(ToolType.PICKAXE)
 			.requiresCorrectToolForDrops()
 			.strength(3.0F, 3.0F));
 	public static final BlockPropsFactory SHADIUM_ORE_PROPS = new BlockPropsFactory(() -> AbstractBlock.Properties.of
 			(Material.STONE)
-			.sound(JSoundType.SHADIUM_ORE)
+			.sound(JSoundTypes.SHADIUM_ORE)
 			.harvestTool(ToolType.PICKAXE)
 			.requiresCorrectToolForDrops()
 			.strength(3.0F, 3.0F));
 	public static final BlockPropsFactory BRICK_PROPS = new BlockPropsFactory(() -> AbstractBlock.Properties.of
 			(Material.STONE)
-			.sound(JSoundType.BRICK)
+			.sound(JSoundTypes.BRICK)
 			.harvestTool(ToolType.PICKAXE)
 			.requiresCorrectToolForDrops()
 			.strength(1.5F, 6.0F));
@@ -74,18 +74,18 @@ public class JBlockProperties {
 			.strength(3.0F, 3.0F));
 	public static final BlockPropsFactory MUD_PROPS = new BlockPropsFactory(() -> AbstractBlock.Properties.of
 			(Material.DIRT)
-			.sound(JSoundType.MUD)
+			.sound(JSoundTypes.MUD)
 			.harvestTool(ToolType.SHOVEL)
 			.strength(0.5F));
 	public static final BlockPropsFactory LUNIUM_BLOCK_PROPS = new BlockPropsFactory(() -> AbstractBlock.Properties.of
 			(Material.METAL)
-			.sound(JSoundType.LUNIUM_BLOCK)
+			.sound(JSoundTypes.LUNIUM_BLOCK)
 			.harvestTool(ToolType.PICKAXE)
 			.requiresCorrectToolForDrops()
 			.strength(1.5F, 6.0F));
 	public static final BlockPropsFactory SHADIUM_BLOCK_PROPS = new BlockPropsFactory(() -> AbstractBlock.Properties.of
 			(Material.METAL)
-			.sound(JSoundType.SHADIUM_BLOCK)
+			.sound(JSoundTypes.SHADIUM_BLOCK)
 			.harvestTool(ToolType.PICKAXE)
 			.requiresCorrectToolForDrops()
 			.strength(1.5F, 6.0F));

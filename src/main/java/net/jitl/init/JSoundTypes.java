@@ -4,7 +4,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.util.SoundEvents;
 import ru.timeconqueror.timecore.common.block.TimeSoundType;
 
-public class JSoundType {
+public class JSoundTypes {
 
 	public static final SoundType MUD = new TimeSoundType(
 			0.35F,
