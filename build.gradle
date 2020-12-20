@@ -37,7 +37,7 @@ sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = co
 
 sourceSets {
     main {
-        ext.refMap = "mixins.timecore.refmap.json"
+        ext.refMap = "mixins.jitl.refmap.json"
     }
 }
 
