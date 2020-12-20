@@ -30,6 +30,7 @@ public class RuinsFeature extends Feature<NoFeatureConfig> {
 
 	@Override
 	public boolean place(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config) {
+		boolean generated = false;
 		if (!reader.isEmptyBlock(pos)) {
 			return false;
 		} else {
@@ -38,10 +39,16 @@ public class RuinsFeature extends Feature<NoFeatureConfig> {
 				return false;
 			} else {
 				for (int j1 = 0; j1 < rand.nextInt(3) + 5 /* amount of columns */; j1++) {
-					//do stuff here
+					BlockPos placePos = pos.offset(rand.nextInt(SPREADING), 0, rand.nextInt(SPREADING));
+					int height = 1 + rand.nextInt(5);
+					for (int j = 0; j < height; j++) {
+						reader.setBlock(placePos, getRandomStates(rand), 2);
+						placePos = placePos.above();
+					}
+					generated = true;
 				}
 			}
 		}
-		return true;
+		return generated;
 	}
 }
