@@ -25,7 +25,7 @@ public class RuinsFeature extends Feature<NoFeatureConfig> {
 	}
 
 	public BlockState getRandomStates(Random rand) {
-		return RandHelper.chooseEqual(rand, ruinBlockStates);
+		return RandHelper.chooseEqually(rand, ruinBlockStates);
 	}
 
 	@Override

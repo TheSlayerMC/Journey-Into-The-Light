@@ -30,7 +30,7 @@ public class TestBugItem extends Item {
         }
 
         if (worldIn.isClientSide()) {
-            SoundEvent soundEvent = RandHelper.chooseEqual(JSounds.MUD_BLOCK_BREAK.get(), JSounds.MUD_BLOCK_DIG.get());
+            SoundEvent soundEvent = RandHelper.chooseEqually(JSounds.MUD_BLOCK_BREAK.get(), JSounds.MUD_BLOCK_DIG.get());
             worldIn.playSound(playerIn, playerIn.blockPosition(), soundEvent, SoundCategory.MASTER, 1.0F, 1.0F);
         }
         return ActionResult.success(playerIn.getItemInHand(handIn));
