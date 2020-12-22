@@ -34,7 +34,7 @@ public class JFeatureGen {
 
 	private static final ArrayList<ConfiguredFeature<?, ?>> WARPED_FOREST_ORES = new ArrayList<>();
 
-	public static final ConfiguredFeature<?, ?> OVERWORLD_RUINS = register("overworld_ruins", JFeatures.RUINS.configured(IFeatureConfig.NONE).chance(64));
+	public static final ConfiguredFeature<?, ?> OVERWORLD_RUINS = register("overworld_ruins", JFeatures.RUINS.get().configured(IFeatureConfig.NONE).chance(64));
 
 	/**
 	 * Helper used to condense all feature registries into a single method.
