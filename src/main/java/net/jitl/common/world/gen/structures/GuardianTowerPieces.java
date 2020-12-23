@@ -48,11 +48,11 @@ public class GuardianTowerPieces {
 
     public static class NoGrassTouchedPiece extends Piece implements INoNoiseStructurePiece {
         public NoGrassTouchedPiece(TemplateManager templateManager, ResourceLocation templateLocation, BlockPos pos) {
-            super(JStructurePieces.GUARDIAN_TOWER_NO_GRASS_TOUCHED_PIECE, templateManager, templateLocation, pos);
+            super(JStructurePieces.GUARDIAN_TOWER_NO_GRASS_TOUCHED_PIECE.get(), templateManager, templateLocation, pos);
         }
 
         public NoGrassTouchedPiece(TemplateManager templateManager, CompoundNBT nbt) {
-            super(JStructurePieces.GUARDIAN_TOWER_NO_GRASS_TOUCHED_PIECE, templateManager, nbt);
+            super(JStructurePieces.GUARDIAN_TOWER_NO_GRASS_TOUCHED_PIECE.get(), templateManager, nbt);
         }
     }
 
@@ -60,11 +60,11 @@ public class GuardianTowerPieces {
         private final ResourceLocation templateLocation;
 
         public Piece(TemplateManager templateManager, ResourceLocation templateLocation, BlockPos pos) {
-            this(JStructurePieces.GUARDIAN_TOWER_PIECE, templateManager, templateLocation, pos);
+            this(JStructurePieces.GUARDIAN_TOWER_PIECE.get(), templateManager, templateLocation, pos);
         }
 
         public Piece(TemplateManager templateManager, CompoundNBT nbt) {
-            this(JStructurePieces.GUARDIAN_TOWER_PIECE, templateManager, nbt);
+            this(JStructurePieces.GUARDIAN_TOWER_PIECE.get(), templateManager, nbt);
         }
 
         protected Piece(IStructurePieceType type, TemplateManager templateManager, ResourceLocation templateLocation, BlockPos pos) {

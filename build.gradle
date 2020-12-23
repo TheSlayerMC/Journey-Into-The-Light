@@ -182,7 +182,7 @@ dependencies {
         }
     }
 
-    implementation fg.deobf('ru.timeconqueror:TimeCore:1.16.4-3.1.0.2.build68:dev', true)
+    implementation fg.deobf('ru.timeconqueror:TimeCore:1.16.4-3.1.0.2.build73:dev', true)
 
     compile("org.spongepowered:mixin:0.8.+") {
         transitive = false

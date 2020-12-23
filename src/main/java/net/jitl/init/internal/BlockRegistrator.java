@@ -130,8 +130,8 @@ public class BlockRegistrator {
 					chain.genModel(outerStairs, BlockModels.stairsOuterModel(sourceBlockTexture, sourceBlockTexture, sourceBlockTexture));
 
 					BlockStateResource state = BlockStateResources.stairs(stairs, innerStairs, outerStairs);
-                    chain.genState(state);
-                })
+					chain.genState(state);
+				})
                 .regDefaultBlockItem(JTabs.BLOCKS)
                 .genLangEntry(enName);
     }
