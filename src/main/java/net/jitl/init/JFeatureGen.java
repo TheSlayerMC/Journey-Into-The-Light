@@ -28,7 +28,9 @@ public class JFeatureGen {
 	/**
 	 * Used for registering ore features based on dimension ArrayLists.
 	 */
+	private static final ArrayList<ConfiguredFeature<?, ?>> OVERWORLD_ORES = new ArrayList<>();
 	private static final ArrayList<ConfiguredFeature<?, ?>> OVERWORLD_FEATURES = new ArrayList<>();
+
 	private static final ArrayList<ConfiguredFeature<?, ?>> NETHER_FEATURES = new ArrayList<>();
 	private static final ArrayList<ConfiguredFeature<?, ?>> END_FEATURES = new ArrayList<>();
 
@@ -54,28 +56,28 @@ public class JFeatureGen {
 		 * Range: Max generation height
 		 * Count: Quantity that can spawn per chunk
 		 */
-		OVERWORLD_FEATURES.add(
+		OVERWORLD_ORES.add(
 				register("sapphire_ore", defaultOreFeature(
 						JBlocks.SAPPHIRE_ORE.defaultBlockState(),
 						JRuleTests.STONE_DEFAULT,
 						7,
 						24,
 						2)));
-		OVERWORLD_FEATURES.add(
+		OVERWORLD_ORES.add(
 				register("lunium_ore", defaultOreFeature(
 						JBlocks.LUNIUM_ORE.defaultBlockState(),
 						JRuleTests.STONE_DEFAULT,
 						5,
 						16,
 						1)));
-		OVERWORLD_FEATURES.add(
+		OVERWORLD_ORES.add(
 				register("shadium_ore", defaultOreFeature(
 						JBlocks.SHADIUM_ORE.defaultBlockState(),
 						JRuleTests.STONE_DEFAULT,
 						3,
 						10,
 						1)));
-		OVERWORLD_FEATURES.add(
+		OVERWORLD_ORES.add(
 				register("iridium_ore", defaultOreFeature(
 						JBlocks.IRIDIUM_ORE.defaultBlockState(),
 						JRuleTests.STONE_DEFAULT,
@@ -115,7 +117,8 @@ public class JFeatureGen {
 				register("overworld_ruins",
 						JFeatures.OVERWORLD_RUINS.get()
 								.configured(IFeatureConfig.NONE)
-								.chance(1)));
+								.decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE)
+								.chance(512)));
 	}
 
 	/**
@@ -202,9 +205,14 @@ public class JFeatureGen {
 				}
 			}
 		} else {
-			for (ConfiguredFeature<?, ?> ore : OVERWORLD_FEATURES) {
+			for (ConfiguredFeature<?, ?> ore : OVERWORLD_ORES) {
 				if (ore != null) {
 					builder.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, ore);
+				}
+			}
+			for (ConfiguredFeature<?, ?> feature : OVERWORLD_FEATURES) {
+				if (feature != null) {
+					builder.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, feature);
 				}
 			}
 		}
