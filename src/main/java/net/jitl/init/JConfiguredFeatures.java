@@ -37,6 +37,7 @@ public class JConfiguredFeatures {
                             .configured(IFeatureConfig.NONE)
                             .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE)
                             .chance(512))
+                    .setBiomePredicate(COMMON_BIOMES)
                     .asPromise();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> SAPPHIRE_ORE =
