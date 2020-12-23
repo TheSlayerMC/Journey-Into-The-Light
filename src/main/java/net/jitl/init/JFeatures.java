@@ -13,5 +13,5 @@ public class JFeatures {
 	@AutoRegistrable
 	private static final SimpleForgeRegister<Feature<?>> REGISTER = new SimpleForgeRegister<>(ForgeRegistries.FEATURES, JITL.MODID);
 
-	public static final RegistryObject<Feature<NoFeatureConfig>> RUINS = REGISTER.register("overworld_ruins", () -> new RuinsFeature(NoFeatureConfig.CODEC));
+	public static final RegistryObject<Feature<NoFeatureConfig>> OVERWORLD_RUINS = REGISTER.register("overworld_ruins", () -> new RuinsFeature(NoFeatureConfig.CODEC));
 }

@@ -119,17 +119,17 @@ public class BlockRegistrator {
 
     private static void registerStairs(String name, String enName, RegistryObject<? extends Block> sourceBlock, AbstractBlock.Properties properties) {
         REGISTER.register(name, () -> new StairsBlock(Blocks.AIR::defaultBlockState, properties))
-                .apply(chain -> {
-                    BlockModelLocation stairs = new BlockModelLocation(chain.getModId(), name);
-                    BlockModelLocation innerStairs = new BlockModelLocation(chain.getModId(), name + "/inner");
-                    BlockModelLocation outerStairs = new BlockModelLocation(chain.getModId(), name + "/outer");
-                    TextureLocation sourceBlockTexture = new TextureLocation(chain.getModId(), "block/" + sourceBlock.getId().getPath());
+				.also(chain -> {
+					BlockModelLocation stairs = new BlockModelLocation(chain.getModId(), name);
+					BlockModelLocation innerStairs = new BlockModelLocation(chain.getModId(), name + "/inner");
+					BlockModelLocation outerStairs = new BlockModelLocation(chain.getModId(), name + "/outer");
+					TextureLocation sourceBlockTexture = new TextureLocation(chain.getModId(), "block/" + sourceBlock.getId().getPath());
 
-                    chain.genModel(stairs, BlockModels.stairsModel(sourceBlockTexture, sourceBlockTexture, sourceBlockTexture));
-                    chain.genModel(innerStairs, BlockModels.stairsInnerModel(sourceBlockTexture, sourceBlockTexture, sourceBlockTexture));
-                    chain.genModel(outerStairs, BlockModels.stairsOuterModel(sourceBlockTexture, sourceBlockTexture, sourceBlockTexture));
+					chain.genModel(stairs, BlockModels.stairsModel(sourceBlockTexture, sourceBlockTexture, sourceBlockTexture));
+					chain.genModel(innerStairs, BlockModels.stairsInnerModel(sourceBlockTexture, sourceBlockTexture, sourceBlockTexture));
+					chain.genModel(outerStairs, BlockModels.stairsOuterModel(sourceBlockTexture, sourceBlockTexture, sourceBlockTexture));
 
-                    BlockStateResource state = BlockStateResources.stairs(stairs, innerStairs, outerStairs);
+					BlockStateResource state = BlockStateResources.stairs(stairs, innerStairs, outerStairs);
                     chain.genState(state);
                 })
                 .regDefaultBlockItem(JTabs.BLOCKS)
