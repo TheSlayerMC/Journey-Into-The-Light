@@ -2,12 +2,14 @@ package net.jitl.init;
 
 import com.google.common.collect.ImmutableList;
 import net.jitl.JITL;
+import net.jitl.common.world.gen.features.featureconfig.RuinsFeatureConfig;
 import net.jitl.util.JRuleTests;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage.Decoration;
+import net.minecraft.world.gen.blockstateprovider.WeightedBlockStateProvider;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.template.RuleTest;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
@@ -30,13 +32,44 @@ public class JConfiguredFeatures {
     public static final Predicate<BiomeLoadingEvent> COMMON_BIOMES = event -> event.getCategory() != Biome.Category.NETHER && event.getCategory() != Biome.Category.NETHER; //TODO rework
 
 
-    public static final Promised<? extends ConfiguredFeature<?, ?>> OVERWORLD_RUINS =
-            REGISTER.register("overworld_ruins",
+    public static final Promised<? extends ConfiguredFeature<?, ?>> DEFAULT_OVERWORLD_RUINS =
+            REGISTER.register("default_overworld_ruins",
                     Decoration.SURFACE_STRUCTURES,
-                    () -> JFeatures.OVERWORLD_RUINS.get()
-                            .configured(IFeatureConfig.NONE)
+                    () -> JFeatures.RUINS.get()
+                            .configured(new RuinsFeatureConfig(
+                                    JRuleTests.GRASS_DEFAULT,
+                                    new WeightedBlockStateProvider()
+                                            .add(Blocks.STONE_BRICKS.defaultBlockState(), 6)
+                                            .add(Blocks.CRACKED_STONE_BRICKS.defaultBlockState(), 5)
+                                            .add(Blocks.MOSSY_STONE_BRICKS.defaultBlockState(), 4)
+                                            .add(Blocks.MOSSY_COBBLESTONE.defaultBlockState(), 3)
+                                            .add(Blocks.COBBLESTONE.defaultBlockState(), 4)
+                                            .add(Blocks.CHISELED_STONE_BRICKS.defaultBlockState(), 2)
+                                            .add(Blocks.INFESTED_COBBLESTONE.defaultBlockState(), 2)
+                                            .add(Blocks.INFESTED_STONE_BRICKS.defaultBlockState(), 2)
+                                            .add(Blocks.INFESTED_MOSSY_STONE_BRICKS.defaultBlockState(), 2)
+                                            .add(Blocks.INFESTED_CRACKED_STONE_BRICKS.defaultBlockState(), 2),
+                                    5,
+                                    5))
                             .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE)
-                            .chance(512))
+                            .chance(128))
+                    .setBiomePredicate(COMMON_BIOMES)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> DESERT_OVERWORLD_RUINS =
+            REGISTER.register("desert_overworld_ruins",
+                    Decoration.SURFACE_STRUCTURES,
+                    () -> JFeatures.RUINS.get()
+                            .configured(new RuinsFeatureConfig(
+                                    JRuleTests.SAND_DEFAULT,
+                                    new WeightedBlockStateProvider()
+                                            .add(Blocks.SANDSTONE.defaultBlockState(), 3)
+                                            .add(Blocks.CHISELED_SANDSTONE.defaultBlockState(), 1)
+                                            .add(Blocks.CUT_SANDSTONE.defaultBlockState(), 2),
+                                    5,
+                                    5))
+                            .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE)
+                            .chance(128))
                     .setBiomePredicate(COMMON_BIOMES)
                     .asPromise();
 
