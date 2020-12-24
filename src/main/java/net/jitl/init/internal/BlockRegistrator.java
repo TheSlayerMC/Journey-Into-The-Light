@@ -1,9 +1,11 @@
 package net.jitl.init.internal;
 
 import net.jitl.JITL;
+import net.jitl.client.render.JBlockModels;
 import net.jitl.common.block.JOreBlock;
 import net.jitl.common.block.LaserEmitterBlock;
 import net.jitl.common.block.base.JBlock;
+import net.jitl.common.block.base.JOrientableBlock;
 import net.jitl.common.helper.EnumHarvestLevel;
 import net.jitl.init.JTabs;
 import net.jitl.util.JBlockProperties;
@@ -68,14 +70,14 @@ public class BlockRegistrator {
 		registerDefaultBlock("flairium_block", "Flairium Block");
 		registerDefaultBlock("des_block", "Des Block");
 		registerDefaultBlock("enderillium_block", "Enderillium Block");
-        registerDefaultBlock("gorbite_block", "Gorbite Block");
-        registerDefaultBlock("orbadite_block", "Orbadite Block");
-        registerDefaultBlock("lunite_block", "Lunite Block");
-        registerDefaultBlock("nethic_gemstone_block", "Nethic Gemstone Block");
-        registerDefaultBlock("frost_gem_block", "Frost Gem Block");
+		registerDefaultBlock("gorbite_block", "Gorbite Block");
+		registerDefaultBlock("orbadite_block", "Orbadite Block");
+		registerDefaultBlock("lunite_block", "Lunite Block");
+		registerDefaultBlock("nethic_gemstone_block", "Nethic Gemstone Block");
+		registerDefaultBlock("frost_gem_block", "Frost Gem Block");
 
-        registerDefaultBlock("dungeon_bricks", "Dungeon Bricks", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
-        registerDefaultBlock("dungeon_bricks_carved", "Carved Dungeon Bricks", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
+		registerDefaultBlock("dungeon_bricks", "Dungeon Bricks", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
+		registerDefaultBlock("dungeon_bricks_carved", "Carved Dungeon Bricks", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
 		registerDefaultBlock("dungeon_bricks_chiseled", "Chiseled Dungeon Bricks", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
 		registerDefaultBlock("dungeon_bricks_cracked", "Cracked Dungeon Bricks", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
 		registerDefaultBlock("dungeon_lamp", "Dungeon Lamp", () -> new Block(JBlockProperties.BRICK_PROPS.create().lightLevel((state) -> 14)));
@@ -85,6 +87,11 @@ public class BlockRegistrator {
 
 		registerDefaultBlock("common_gems", "Common Gems");
 		registerDefaultBlock("rare_gems", "Rare Gems");
+
+		registerOrientableRenderedBlock("iron_crate", "Iron Crate", () -> new JOrientableBlock(JBlockProperties.WOOD_PROPS.create()),
+				"iron_crate_top",
+				"iron_crate_side",
+				"iron_crate_front");
 
 		registerDefaultBlock("block_of_mud", "Block O' Mud", () -> new Block(JBlockProperties.MUD_PROPS.create()));
 
@@ -136,40 +143,41 @@ public class BlockRegistrator {
                 .genLangEntry(enName);
     }
 
-    private static void registerOreBlock(String name, String enName, EnumHarvestLevel harvestLevel, int minExp) {
-        REGISTER.register(name, () -> new JOreBlock
-                (JBlockProperties.ORE_PROPS.create()
-                        .harvestLevel(harvestLevel.getInt()))
-                .setExpDrop(minExp))
-                .genLangEntry(enName)
-                .regDefaultBlockItem(JTabs.BLOCKS)
-                .genDefaultStateAndModel();
-    }
+	private static void registerOreBlock(String name, String enName, EnumHarvestLevel harvestLevel, int minExp) {
+		REGISTER.register(name, () -> new JOreBlock
+				(JBlockProperties.ORE_PROPS.create()
+						.harvestLevel(harvestLevel.getInt()))
+				.setExpDrop(minExp))
+				.genLangEntry(enName)
+				.regDefaultBlockItem(JTabs.BLOCKS)
+				.genDefaultStateAndModel();
+	}
 
-    private static void registerSpeciallyRenderedOreBlock(String name, String enName, EnumHarvestLevel harvestLevel, int minExp) {
-        REGISTER.register(name, () -> new JOreBlock
-                (JBlockProperties.ORE_PROPS.create()
-                        .harvestLevel(harvestLevel.getInt())
-                )
-                .setExpDrop(minExp))
-                .genLangEntry(enName)
-                .regDefaultBlockItem(JTabs.BLOCKS)
-                .genDefaultState(new BlockModelLocation(JITL.MODID, "block/" + name));
-    }
+	private static void registerSpeciallyRenderedBlock(String name, String enName, Supplier<Block> blockSupplier) {
+		REGISTER.register(name, blockSupplier)
+				.genLangEntry(enName)
+				.regDefaultBlockItem(JTabs.BLOCKS)
+				.genDefaultState(new BlockModelLocation(JITL.MODID, "block/" + name));
+	}
 
-    private static void registerSpeciallyRenderedBlock(String name, String enName, Supplier<Block> blockSupplier) {
-        REGISTER.register(name, blockSupplier)
-                .genLangEntry(enName)
-                .regDefaultBlockItem(JTabs.BLOCKS)
-                .genDefaultState(new BlockModelLocation(JITL.MODID, "block/" + name));
-    }
+	private static void registerColumnRenderedBlock(String name, String enName, Supplier<Block> blockSupplier, String topTexture, String sideTexture) {
+		REGISTER.register(name, blockSupplier)
+				.genLangEntry(enName)
+				.regDefaultBlockItem(JTabs.BLOCKS)
+				.genDefaultState(new BlockModelLocation(JITL.MODID, "block/" + name))
+				.genModel(new BlockModelLocation(JITL.MODID, "block/" + name),
+						() -> BlockModels.cubeColumnModel(new TextureLocation(JITL.MODID, "block/" + topTexture), new TextureLocation(JITL.MODID, "block/" + sideTexture)));
+	}
 
-    private static void registerColumnRenderedBlock(String name, String enName, Supplier<Block> blockSupplier, String topTexture, String sideTexture) {
-        REGISTER.register(name, blockSupplier)
-                .genLangEntry(enName)
-                .regDefaultBlockItem(JTabs.BLOCKS)
-                .genDefaultState(new BlockModelLocation(JITL.MODID, "block/" + name))
-                .genModel(new BlockModelLocation(JITL.MODID, "block/" + name),
-                        () -> BlockModels.cubeColumnModel(new TextureLocation(JITL.MODID, "block/" + topTexture), new TextureLocation(JITL.MODID, "block/" + sideTexture)));
-    }
+	private static void registerOrientableRenderedBlock(String name, String enName, Supplier<Block> blockSupplier, String topTexture, String sideTexture, String frontTexture) {
+		REGISTER.register(name, blockSupplier)
+				.genLangEntry(enName)
+				.regDefaultBlockItem(JTabs.BLOCKS)
+				.genDefaultState(new BlockModelLocation(JITL.MODID, "block/" + name))
+				.genModel(new BlockModelLocation(JITL.MODID, "block/" + name),
+						() -> JBlockModels.cubeOrientableModel(
+								new TextureLocation(JITL.MODID, "block/" + topTexture),
+								new TextureLocation(JITL.MODID, "block/" + sideTexture),
+								new TextureLocation(JITL.MODID, "block/" + frontTexture)));
+	}
 }
