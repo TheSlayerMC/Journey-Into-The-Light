@@ -6,7 +6,9 @@ import net.jitl.common.world.gen.features.featureconfig.RuinsFeatureConfig;
 import net.jitl.util.JRuleTests;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.loot.LootTables;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.WeightedList;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage.Decoration;
 import net.minecraft.world.gen.blockstateprovider.WeightedBlockStateProvider;
@@ -50,9 +52,13 @@ public class JConfiguredFeatures {
                                             .add(Blocks.INFESTED_MOSSY_STONE_BRICKS.defaultBlockState(), 2)
                                             .add(Blocks.INFESTED_CRACKED_STONE_BRICKS.defaultBlockState(), 2),
                                     5,
-                                    5))
+                                    5,
+                                    new WeightedList<ResourceLocation>()
+                                            .add(LootTables.ABANDONED_MINESHAFT, 5)
+                                            .add(LootTables.SIMPLE_DUNGEON, 6)
+                                            .add(LootTables.STRONGHOLD_CORRIDOR, 2)))
                             .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE)
-                            .chance(128))
+                            .chance(5))
                     .setBiomePredicate(COMMON_BIOMES)
                     .asPromise();
 
@@ -67,9 +73,13 @@ public class JConfiguredFeatures {
                                             .add(Blocks.CHISELED_SANDSTONE.defaultBlockState(), 1)
                                             .add(Blocks.CUT_SANDSTONE.defaultBlockState(), 2),
                                     5,
-                                    5))
+                                    5,
+                                    new WeightedList<ResourceLocation>()
+                                            .add(LootTables.DESERT_PYRAMID, 4)
+                                            .add(LootTables.VILLAGE_DESERT_HOUSE, 6)
+                                            .add(LootTables.STRONGHOLD_CORRIDOR, 2)))
                             .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE)
-                            .chance(128))
+                            .chance(5))
                     .setBiomePredicate(COMMON_BIOMES)
                     .asPromise();
 

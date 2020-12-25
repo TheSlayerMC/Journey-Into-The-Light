@@ -2,6 +2,8 @@ package net.jitl.common.world.gen.features;
 
 import com.mojang.serialization.Codec;
 import net.jitl.common.world.gen.features.featureconfig.RuinsFeatureConfig;
+import net.minecraft.block.Blocks;
+import net.minecraft.tileentity.LockableLootTileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.gen.ChunkGenerator;
@@ -25,31 +27,27 @@ public class RuinsFeature extends Feature<RuinsFeatureConfig> {
 		if (!config.spawnBlock.test(reader.getBlockState(pos.below()), rand)) {
 			return false;
 		} else {
+			BlockPos.Mutable placePos = pos.mutable();
 			for (int j1 = 0; j1 < rand.nextInt(3) + 5 /* amount of columns */; j1++) {
-				/*
-				 * gets X pos and adds spreading
-				 */
-				int xSpreading = pos.getX() + rand.nextInt(config.maxSpreading);
 
-				/*
-				 * gets Z pos and adds spreading
-				 */
-				int zSpreading = pos.getZ() + rand.nextInt(config.maxSpreading);
-
-				/*
-				 * gets Y pos by getting world surface heightmap
-				 */
-				int yPos = reader.getHeight(Heightmap.Type.WORLD_SURFACE_WG, xSpreading, zSpreading);
-
-				/*
-				 * combines spreading pos and heightmap pos to create new block position
-				 */
-				BlockPos placePos = new BlockPos(xSpreading, yPos, zSpreading);
-
+				int xSpreading = rand.nextInt(config.maxSpreading);
+				int zSpreading = rand.nextInt(config.maxSpreading);
+				int yPos = reader.getHeight(Heightmap.Type.WORLD_SURFACE_WG, pos.getX() + xSpreading, pos.getZ() + zSpreading);
 				int height = 1 + rand.nextInt(config.maxHeight);
-				for (int j = 0; j < height; j++) {
+
+				for (int i = 0; i < height; ++i) {
+					placePos.set(pos);
+					placePos.move(xSpreading, yPos, zSpreading);
+					placePos.setY(i);
 					reader.setBlock(placePos, config.ruinedBlocksProvider.getState(rand, placePos), 2);
-					placePos = placePos.above();
+				}
+
+				if (rand.nextInt(2) == 0) {
+					BlockPos chestPos = new BlockPos(pos.getX(), yPos, pos.getZ());
+					if (config.spawnBlock.test(reader.getBlockState(chestPos.below()), rand) && reader.getBlockState(chestPos).getBlock().is(Blocks.AIR)) {
+						reader.setBlock(chestPos, Blocks.CHEST.defaultBlockState(), 2);
+						LockableLootTileEntity.setLootTable(reader, rand, chestPos, config.lootWeightedList.getOne(rand));
+					}
 				}
 			}
 			return true;
