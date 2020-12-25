@@ -60,7 +60,7 @@ public class JConfiguredFeatures {
                                             .add(LootTables.SIMPLE_DUNGEON, 6)
                                             .add(LootTables.STRONGHOLD_CORRIDOR, 2)))
                             .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE)
-                            .chance(32))
+                            .chance(128))
                     .setBiomePredicate(COMMON_BIOMES)
                     .asPromise();
 
@@ -81,7 +81,7 @@ public class JConfiguredFeatures {
                                             .add(LootTables.VILLAGE_DESERT_HOUSE, 6)
                                             .add(LootTables.STRONGHOLD_CORRIDOR, 2)))
                             .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE)
-                            .chance(32))
+                            .chance(128))
                     .setBiomePredicate(COMMON_BIOMES)
                     .asPromise();
 
