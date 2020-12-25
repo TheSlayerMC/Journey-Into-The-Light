@@ -31,6 +31,8 @@ public class JConfiguredFeatures {
     public static final Predicate<BiomeLoadingEvent> IN_NETHER = event -> event.getCategory() == Biome.Category.NETHER;
     public static final Predicate<BiomeLoadingEvent> IN_END = event -> event.getCategory() == Biome.Category.THEEND;
     public static final Predicate<BiomeLoadingEvent> IN_WARPED_FOREST = event -> Objects.equals(event.getName(), new ResourceLocation("warped_forest"));
+    public static final Predicate<BiomeLoadingEvent> IN_CRIMSON_FOREST = event -> Objects.equals(event.getName(), new ResourceLocation("crimson_forest"));
+
     public static final Predicate<BiomeLoadingEvent> COMMON_BIOMES = event -> event.getCategory() != Biome.Category.NETHER && event.getCategory() != Biome.Category.NETHER; //TODO rework
 
 
@@ -58,7 +60,7 @@ public class JConfiguredFeatures {
                                             .add(LootTables.SIMPLE_DUNGEON, 6)
                                             .add(LootTables.STRONGHOLD_CORRIDOR, 2)))
                             .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE)
-                            .chance(5))
+                            .chance(32))
                     .setBiomePredicate(COMMON_BIOMES)
                     .asPromise();
 
@@ -79,7 +81,7 @@ public class JConfiguredFeatures {
                                             .add(LootTables.VILLAGE_DESERT_HOUSE, 6)
                                             .add(LootTables.STRONGHOLD_CORRIDOR, 2)))
                             .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE)
-                            .chance(5))
+                            .chance(32))
                     .setBiomePredicate(COMMON_BIOMES)
                     .asPromise();
 
@@ -123,6 +125,27 @@ public class JConfiguredFeatures {
                     Decoration.UNDERGROUND_ORES,
                     netherOreFeature(() -> JBlocks.FIRESTONE_ORE.defaultBlockState(), JRuleTests.STONE_BASALT, 10, 24))
                     .setBiomePredicate(IN_NETHER)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> LAVA_ROCK_CLUMP =
+            REGISTER.register("lava_rock_clump",
+                    Decoration.UNDERGROUND_ORES,
+                    netherOreFeature(() -> JBlocks.LAVA_ROCK.defaultBlockState(), JRuleTests.STONE_NETHERRACK, 10, 24))
+                    .setBiomePredicate(IN_NETHER)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> CRIMSON_QUARTZ_ORE =
+            REGISTER.register("crimson_quartz_ore",
+                    Decoration.UNDERGROUND_ORES,
+                    netherOreFeature(() -> JBlocks.CRIMSON_QUARTZ_ORE.defaultBlockState(), JRuleTests.STONE_NETHERRACK, 10, 10))
+                    .setBiomePredicate(IN_CRIMSON_FOREST)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> WARPED_QUARTZ_ORE =
+            REGISTER.register("crimson_quartz_ore",
+                    Decoration.UNDERGROUND_ORES,
+                    netherOreFeature(() -> JBlocks.WARPED_QUARTZ_ORE.defaultBlockState(), JRuleTests.STONE_NETHERRACK, 10, 10))
+                    .setBiomePredicate(IN_WARPED_FOREST)
                     .asPromise();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> ENDERILLIUM_ORE =

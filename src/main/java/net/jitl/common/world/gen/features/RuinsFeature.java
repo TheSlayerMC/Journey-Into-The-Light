@@ -2,24 +2,29 @@ package net.jitl.common.world.gen.features;
 
 import com.mojang.serialization.Codec;
 import net.jitl.common.world.gen.features.featureconfig.RuinsFeatureConfig;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.ChestBlock;
 import net.minecraft.tileentity.LockableLootTileEntity;
+import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.Feature;
 import org.jetbrains.annotations.NotNull;
+import ru.timeconqueror.timecore.util.RandHelper;
 
 import java.util.Random;
 
 public class RuinsFeature extends Feature<RuinsFeatureConfig> {
-	/**
-	 * Maximum amount of space between blocks
-	 */
 
 	public RuinsFeature(Codec<RuinsFeatureConfig> codec) {
 		super(codec);
+	}
+
+	public Direction getRandomFacing(Random rand) {
+		return RandHelper.chooseEqually(rand, Direction.EAST, Direction.WEST, Direction.NORTH, Direction.SOUTH);
 	}
 
 	@Override
@@ -28,24 +33,28 @@ public class RuinsFeature extends Feature<RuinsFeatureConfig> {
 			return false;
 		} else {
 			BlockPos.Mutable placePos = pos.mutable();
-			for (int j1 = 0; j1 < rand.nextInt(3) + 5 /* amount of columns */; j1++) {
 
-				int xSpreading = rand.nextInt(config.maxSpreading);
-				int zSpreading = rand.nextInt(config.maxSpreading);
-				int yPos = reader.getHeight(Heightmap.Type.WORLD_SURFACE_WG, pos.getX() + xSpreading, pos.getZ() + zSpreading);
+			int columns = rand.nextInt(3) + 5;
+			for (int j1 = 0; j1 < columns /* amount of columns */; j1++) {
+
+				int xPos = pos.getX() + rand.nextInt(config.maxSpreading);
+				int zPos = pos.getZ() + rand.nextInt(config.maxSpreading);
+				int yPos = reader.getHeight(Heightmap.Type.WORLD_SURFACE_WG, xPos, zPos);
+
 				int height = 1 + rand.nextInt(config.maxHeight);
 
+				placePos.set(xPos, yPos, zPos);
+
 				for (int i = 0; i < height; ++i) {
-					placePos.set(pos);
-					placePos.move(xSpreading, yPos, zSpreading);
-					placePos.setY(i);
 					reader.setBlock(placePos, config.ruinedBlocksProvider.getState(rand, placePos), 2);
+					placePos.move(Direction.UP);
 				}
 
-				if (rand.nextInt(2) == 0) {
+				if (rand.nextInt(4) == 0) {
 					BlockPos chestPos = new BlockPos(pos.getX(), yPos, pos.getZ());
 					if (config.spawnBlock.test(reader.getBlockState(chestPos.below()), rand) && reader.getBlockState(chestPos).getBlock().is(Blocks.AIR)) {
-						reader.setBlock(chestPos, Blocks.CHEST.defaultBlockState(), 2);
+						BlockState chestState = Blocks.CHEST.defaultBlockState().setValue(ChestBlock.FACING, getRandomFacing(rand));
+						reader.setBlock(chestPos, chestState, 2);
 						LockableLootTileEntity.setLootTable(reader, rand, chestPos, config.lootWeightedList.getOne(rand));
 					}
 				}

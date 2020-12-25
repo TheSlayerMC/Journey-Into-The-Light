@@ -56,7 +56,7 @@ public class BlockRegistrator {
 		registerDefaultBlock("warped_quartz_ore", "Warped Quartz Ore", () -> new JOreBlock(JBlockProperties.NETHER_NETHERRACK_ORE_PROPS.create().harvestLevel(EnumHarvestLevel.IRON.getInt())).setExpDrop(2));
 		registerDefaultBlock("crimson_quartz_ore", "Crimson Quartz Ore", () -> new JOreBlock(JBlockProperties.NETHER_NETHERRACK_ORE_PROPS.create().harvestLevel(EnumHarvestLevel.IRON.getInt())).setExpDrop(2));
 
-		registerDefaultBlock("lava_rock", "Lava Rock");
+		registerDefaultBlock("lava_rock", "Lava Rock", () -> new JBlock(JBlockProperties.NETHER_BASALT_ORE_PROPS.create()));
 		registerDefaultBlock("sapphire_block", "Sapphire Block");
 		registerSpeciallyRenderedBlock("lunium_block", "Lunium Block", () -> new JBlock(JBlockProperties.LUNIUM_BLOCK_PROPS.create().lightLevel((state) -> 5)));
 		registerDefaultBlock("shadium_block", "Shadium Block", () -> new JBlock(JBlockProperties.SHADIUM_BLOCK_PROPS.create()));

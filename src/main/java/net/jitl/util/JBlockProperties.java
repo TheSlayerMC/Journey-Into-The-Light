@@ -15,6 +15,12 @@ public class JBlockProperties {
 			.harvestTool(ToolType.PICKAXE)
 			.requiresCorrectToolForDrops()
 			.strength(1.5F, 6.0F));
+	public static final BlockPropsFactory BASALT_PROPS = new BlockPropsFactory(() -> AbstractBlock.Properties.of
+			(Material.STONE)
+			.sound(SoundType.BASALT)
+			.harvestTool(ToolType.PICKAXE)
+			.requiresCorrectToolForDrops()
+			.strength(1.5F, 6.0F));
 	public static final BlockPropsFactory METAL_PROPS = new BlockPropsFactory(() -> AbstractBlock.Properties.of
 			(Material.METAL)
 			.sound(SoundType.METAL)
