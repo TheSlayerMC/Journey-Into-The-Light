@@ -16,14 +16,13 @@ public class ModelLoadingHandler {
     @SubscribeEvent
     public static void onModelReg(ModelRegistryEvent event) {
         ModelLoaderRegistry.registerLoader(JITL.rl("emissive"), EmissiveModelGeometry.Loader.INSTANCE);
-
-
     }
 
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
         RenderTypeLookup.setRenderLayer(JBlocks.LUNIUM_ORE, RenderType.cutout());
         RenderTypeLookup.setRenderLayer(JBlocks.FIRESTONE_ORE, RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(JBlocks.BRADBERRY_BUSH, RenderType.cutout());
     }
 
 //    private static void onRegisterBlockColors(ColorHandlerEvent.Block event) {

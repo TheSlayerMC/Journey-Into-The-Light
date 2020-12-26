@@ -191,12 +191,14 @@ public class BlockRegistrator {
 				(JBlockProperties.BERRY_BUSH_PROPS.create()), itemProviderSupplier))
 				.genLangEntry(enName)
 				.regDefaultBlockItem(JTabs.BLOCKS)
+				.genModel(new BlockModelLocation(JITL.MODID, "block/" + name + "_0"), () -> BlockModels.crossModel(JITL.tl("block/" + name + "_0")))
+				.genModel(new BlockModelLocation(JITL.MODID, "block/" + name + "_1"), () -> BlockModels.crossModel(JITL.tl("block/" + name + "_1")))
+				.genModel(new BlockModelLocation(JITL.MODID, "block/" + name + "_2"), () -> BlockModels.crossModel(JITL.tl("block/" + name + "_2")))
+				.genModel(new BlockModelLocation(JITL.MODID, "block/" + name + "_3"), () -> BlockModels.crossModel(JITL.tl("block/" + name + "_3")))
 				.genState(() -> BlockStateResource.fromBuilder(BlockStateResource.Builder.create()
 						.addVariant(new BlockStateResource.Variant("age=0", JITL.bml("block/" + name + "_0")))
 						.addVariant(new BlockStateResource.Variant("age=1", JITL.bml("block/" + name + "_1")))
-						.addVariant(new BlockStateResource.Variant("age=2", JITL.bml("block/" + name + "_2")))))
-				.genModel(new BlockModelLocation(JITL.MODID, "block/" + name + "_0"), () -> BlockModels.crossModel(JITL.tl(name + "_0")))
-				.genModel(new BlockModelLocation(JITL.MODID, "block/" + name + "_1"), () -> BlockModels.crossModel(JITL.tl(name + "_1")))
-				.genModel(new BlockModelLocation(JITL.MODID, "block/" + name + "_2"), () -> BlockModels.crossModel(JITL.tl(name + "_2")));
+						.addVariant(new BlockStateResource.Variant("age=2", JITL.bml("block/" + name + "_2")))
+						.addVariant(new BlockStateResource.Variant("age=3", JITL.bml("block/" + name + "_3")))));
 	}
 }
