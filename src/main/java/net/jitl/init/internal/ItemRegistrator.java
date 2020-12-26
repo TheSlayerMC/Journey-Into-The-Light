@@ -4,6 +4,7 @@ import net.jitl.JITL;
 import net.jitl.common.helper.JArmorMaterial;
 import net.jitl.common.helper.JToolTiers;
 import net.jitl.common.item.*;
+import net.jitl.init.JFoods;
 import net.jitl.init.JTabs;
 import net.jitl.util.JItemProperties;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -29,8 +30,8 @@ public class ItemRegistrator {
         registerItem("lunium_ingot", "Lunium Ingot");
         registerItem("shadium_ingot", "Shadium Ingot");
         registerItem("obsidian_rod", "Obsidian Rod");
-        registerItem("light_level_thing", "grgrjgrgj", () -> new SelfRepairingItem(new Item.Properties().durability(50).tab(JTabs.ITEMS)));
         registerItem("mud_ball", "Mud Ball");
+        registerItem("bradberry", "Bradberry", () -> new Item(new Item.Properties().food(JFoods.BRADBERRY).tab(JTabs.ITEMS)));
 
         //NETHER ITEMS
         registerItem("bloodcrust_ingot", "Bloodcrust Ingot");

@@ -4,15 +4,18 @@ import net.jitl.JITL;
 import net.jitl.client.render.JBlockModels;
 import net.jitl.common.block.JOreBlock;
 import net.jitl.common.block.LaserEmitterBlock;
+import net.jitl.common.block.base.JBerryBushBlock;
 import net.jitl.common.block.base.JBlock;
 import net.jitl.common.block.base.JOrientableBlock;
 import net.jitl.common.helper.EnumHarvestLevel;
+import net.jitl.init.JItems;
 import net.jitl.init.JTabs;
 import net.jitl.util.JBlockProperties;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.StairsBlock;
+import net.minecraft.util.IItemProvider;
 import net.minecraftforge.fml.RegistryObject;
 import ru.timeconqueror.timecore.api.client.resource.BlockModels;
 import ru.timeconqueror.timecore.api.client.resource.BlockStateResource;
@@ -36,45 +39,47 @@ public class BlockRegistrator {
 				.lightLevel((state) -> 3)
 				.harvestLevel(EnumHarvestLevel.DIAMOND.getInt()))
 				.setExpDrop(0));
-		registerDefaultBlock("shadium_ore", "Shadium Ore", () -> new JOreBlock(JBlockProperties.SHADIUM_ORE_PROPS.create()
-				.harvestLevel(EnumHarvestLevel.DIAMOND.getInt()))
-				.setExpDrop(0));
-		registerOreBlock("iridium_ore", "Iridium Ore", EnumHarvestLevel.IRON, 3);
-		registerOreBlock("bloodcrust_ore", "Bloodcrust Ore", EnumHarvestLevel.NETHERITE, 0);
-		registerOreBlock("ashual_ore", "Ashual Ore", EnumHarvestLevel.NETHERITE, 4);
-		registerOreBlock("blazium_ore", "Blazium Ore", EnumHarvestLevel.NETHERITE, 4);
-		registerOreBlock("mekyum_ore", "Mekyum Ore", EnumHarvestLevel.NETHERITE, 0);
-		registerOreBlock("celestium_ore", "Celestium Ore", EnumHarvestLevel.NETHERITE, 0);
-		registerOreBlock("storon_ore", "Storon Ore", EnumHarvestLevel.NETHERITE, 0);
-		registerOreBlock("flairium_ore", "Flairium Ore", EnumHarvestLevel.NETHERITE, 0);
-		registerOreBlock("des_ore", "Des Ore", EnumHarvestLevel.NETHERITE, 0);
-		registerOreBlock("enderillium_ore", "Enderillium Ore", EnumHarvestLevel.NETHERITE, 4);
-		registerOreBlock("gorbite_ore", "Gorbite Ore", EnumHarvestLevel.NETHERITE, 4);
-		registerOreBlock("orbadite_ore", "Orbadite Ore", EnumHarvestLevel.NETHERITE, 0);
-		registerOreBlock("lunite_ore", "Lunite Ore", EnumHarvestLevel.NETHERITE, 6);
-		registerSpeciallyRenderedBlock("firestone_ore", "Firestone Ore", () -> new JOreBlock(JBlockProperties.NETHER_BASALT_ORE_PROPS.create().harvestLevel(EnumHarvestLevel.IRON.getInt())).setExpDrop(1));
-		registerDefaultBlock("warped_quartz_ore", "Warped Quartz Ore", () -> new JOreBlock(JBlockProperties.NETHER_NETHERRACK_ORE_PROPS.create().harvestLevel(EnumHarvestLevel.IRON.getInt())).setExpDrop(2));
-		registerDefaultBlock("crimson_quartz_ore", "Crimson Quartz Ore", () -> new JOreBlock(JBlockProperties.NETHER_NETHERRACK_ORE_PROPS.create().harvestLevel(EnumHarvestLevel.IRON.getInt())).setExpDrop(2));
+	    registerDefaultBlock("shadium_ore", "Shadium Ore", () -> new JOreBlock(JBlockProperties.SHADIUM_ORE_PROPS.create()
+			    .harvestLevel(EnumHarvestLevel.DIAMOND.getInt()))
+			    .setExpDrop(0));
+	    registerOreBlock("iridium_ore", "Iridium Ore", EnumHarvestLevel.IRON, 3);
+	    registerOreBlock("bloodcrust_ore", "Bloodcrust Ore", EnumHarvestLevel.NETHERITE, 0);
+	    registerOreBlock("ashual_ore", "Ashual Ore", EnumHarvestLevel.NETHERITE, 4);
+	    registerOreBlock("blazium_ore", "Blazium Ore", EnumHarvestLevel.NETHERITE, 4);
+	    registerOreBlock("mekyum_ore", "Mekyum Ore", EnumHarvestLevel.NETHERITE, 0);
+	    registerOreBlock("celestium_ore", "Celestium Ore", EnumHarvestLevel.NETHERITE, 0);
+	    registerOreBlock("storon_ore", "Storon Ore", EnumHarvestLevel.NETHERITE, 0);
+	    registerOreBlock("flairium_ore", "Flairium Ore", EnumHarvestLevel.NETHERITE, 0);
+	    registerOreBlock("des_ore", "Des Ore", EnumHarvestLevel.NETHERITE, 0);
+	    registerOreBlock("enderillium_ore", "Enderillium Ore", EnumHarvestLevel.NETHERITE, 4);
+	    registerOreBlock("gorbite_ore", "Gorbite Ore", EnumHarvestLevel.NETHERITE, 4);
+	    registerOreBlock("orbadite_ore", "Orbadite Ore", EnumHarvestLevel.NETHERITE, 0);
+	    registerOreBlock("lunite_ore", "Lunite Ore", EnumHarvestLevel.NETHERITE, 6);
+	    registerSpeciallyRenderedBlock("firestone_ore", "Firestone Ore", () -> new JOreBlock(JBlockProperties.NETHER_BASALT_ORE_PROPS.create().harvestLevel(EnumHarvestLevel.IRON.getInt())).setExpDrop(1));
+	    registerDefaultBlock("warped_quartz_ore", "Warped Quartz Ore", () -> new JOreBlock(JBlockProperties.NETHER_NETHERRACK_ORE_PROPS.create().harvestLevel(EnumHarvestLevel.IRON.getInt())).setExpDrop(2));
+	    registerDefaultBlock("crimson_quartz_ore", "Crimson Quartz Ore", () -> new JOreBlock(JBlockProperties.NETHER_NETHERRACK_ORE_PROPS.create().harvestLevel(EnumHarvestLevel.IRON.getInt())).setExpDrop(2));
 
-		registerDefaultBlock("lava_rock", "Lava Rock", () -> new JBlock(JBlockProperties.NETHER_BASALT_ORE_PROPS.create()));
-		registerDefaultBlock("sapphire_block", "Sapphire Block");
-		registerSpeciallyRenderedBlock("lunium_block", "Lunium Block", () -> new JBlock(JBlockProperties.LUNIUM_BLOCK_PROPS.create().lightLevel((state) -> 5)));
-		registerDefaultBlock("shadium_block", "Shadium Block", () -> new JBlock(JBlockProperties.SHADIUM_BLOCK_PROPS.create()));
-		registerDefaultBlock("iridium_block", "Iridium Block");
-		registerDefaultBlock("bloodcrust_block", "Bloodcrust Block");
-		registerDefaultBlock("ashual_block", "Ashual Block");
-		registerDefaultBlock("blazium_block", "Blazium Block");
-		registerDefaultBlock("mekyum_block", "Mekyum Block");
-		registerDefaultBlock("celestium_block", "Celestium Block");
-		registerDefaultBlock("storon_block", "Storon Block");
-		registerDefaultBlock("flairium_block", "Flairium Block");
-		registerDefaultBlock("des_block", "Des Block");
-		registerDefaultBlock("enderillium_block", "Enderillium Block");
-		registerDefaultBlock("gorbite_block", "Gorbite Block");
-		registerDefaultBlock("orbadite_block", "Orbadite Block");
-		registerDefaultBlock("lunite_block", "Lunite Block");
-		registerDefaultBlock("nethic_gemstone_block", "Nethic Gemstone Block");
-		registerDefaultBlock("frost_gem_block", "Frost Gem Block");
+	    registerBerryBushBlock("bradberry_bush", "Bradberry Bush", () -> JItems.BRADBERRY);
+
+	    registerDefaultBlock("lava_rock", "Lava Rock", () -> new JBlock(JBlockProperties.NETHER_BASALT_ORE_PROPS.create()));
+	    registerDefaultBlock("sapphire_block", "Sapphire Block");
+	    registerSpeciallyRenderedBlock("lunium_block", "Lunium Block", () -> new JBlock(JBlockProperties.LUNIUM_BLOCK_PROPS.create().lightLevel((state) -> 5)));
+	    registerDefaultBlock("shadium_block", "Shadium Block", () -> new JBlock(JBlockProperties.SHADIUM_BLOCK_PROPS.create()));
+	    registerDefaultBlock("iridium_block", "Iridium Block");
+	    registerDefaultBlock("bloodcrust_block", "Bloodcrust Block");
+	    registerDefaultBlock("ashual_block", "Ashual Block");
+	    registerDefaultBlock("blazium_block", "Blazium Block");
+	    registerDefaultBlock("mekyum_block", "Mekyum Block");
+	    registerDefaultBlock("celestium_block", "Celestium Block");
+	    registerDefaultBlock("storon_block", "Storon Block");
+	    registerDefaultBlock("flairium_block", "Flairium Block");
+	    registerDefaultBlock("des_block", "Des Block");
+	    registerDefaultBlock("enderillium_block", "Enderillium Block");
+	    registerDefaultBlock("gorbite_block", "Gorbite Block");
+	    registerDefaultBlock("orbadite_block", "Orbadite Block");
+	    registerDefaultBlock("lunite_block", "Lunite Block");
+	    registerDefaultBlock("nethic_gemstone_block", "Nethic Gemstone Block");
+	    registerDefaultBlock("frost_gem_block", "Frost Gem Block");
 
 		registerDefaultBlock("dungeon_bricks", "Dungeon Bricks", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
 		registerDefaultBlock("dungeon_bricks_carved", "Carved Dungeon Bricks", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
@@ -164,20 +169,34 @@ public class BlockRegistrator {
 		REGISTER.register(name, blockSupplier)
 				.genLangEntry(enName)
 				.regDefaultBlockItem(JTabs.BLOCKS)
-				.genDefaultState(new BlockModelLocation(JITL.MODID, "block/" + name))
-				.genModel(new BlockModelLocation(JITL.MODID, "block/" + name),
-						() -> BlockModels.cubeColumnModel(new TextureLocation(JITL.MODID, "block/" + topTexture), new TextureLocation(JITL.MODID, "block/" + sideTexture)));
+				.genDefaultState(JITL.bml("block/" + name))
+				.genModel(JITL.bml("block/" + name),
+						() -> BlockModels.cubeColumnModel(JITL.tl("block/" + topTexture), JITL.tl("block/" + sideTexture)));
 	}
 
 	private static void registerOrientableRenderedBlock(String name, String enName, Supplier<Block> blockSupplier, String topTexture, String sideTexture, String frontTexture) {
 		REGISTER.register(name, blockSupplier)
 				.genLangEntry(enName)
 				.regDefaultBlockItem(JTabs.BLOCKS)
-				.genDefaultState(new BlockModelLocation(JITL.MODID, "block/" + name))
-				.genModel(new BlockModelLocation(JITL.MODID, "block/" + name),
+				.genDefaultState(JITL.bml("block/" + name))
+				.genModel(JITL.bml("block/" + name),
 						() -> JBlockModels.cubeOrientableModel(
-								new TextureLocation(JITL.MODID, "block/" + topTexture),
-								new TextureLocation(JITL.MODID, "block/" + sideTexture),
-								new TextureLocation(JITL.MODID, "block/" + frontTexture)));
+								JITL.tl("block/" + topTexture),
+								JITL.tl("block/" + sideTexture),
+								JITL.tl("block/" + frontTexture)));
+	}
+
+	private static void registerBerryBushBlock(String name, String enName, Supplier<IItemProvider> itemProviderSupplier) {
+		REGISTER.register(name, () -> new JBerryBushBlock(
+				(JBlockProperties.BERRY_BUSH_PROPS.create()), itemProviderSupplier))
+				.genLangEntry(enName)
+				.regDefaultBlockItem(JTabs.BLOCKS)
+				.genState(() -> BlockStateResource.fromBuilder(BlockStateResource.Builder.create()
+						.addVariant(new BlockStateResource.Variant("age=0", JITL.bml("block/" + name + "_0")))
+						.addVariant(new BlockStateResource.Variant("age=1", JITL.bml("block/" + name + "_1")))
+						.addVariant(new BlockStateResource.Variant("age=2", JITL.bml("block/" + name + "_2")))))
+				.genModel(new BlockModelLocation(JITL.MODID, "block/" + name + "_0"), () -> BlockModels.crossModel(JITL.tl(name + "_0")))
+				.genModel(new BlockModelLocation(JITL.MODID, "block/" + name + "_1"), () -> BlockModels.crossModel(JITL.tl(name + "_1")))
+				.genModel(new BlockModelLocation(JITL.MODID, "block/" + name + "_2"), () -> BlockModels.crossModel(JITL.tl(name + "_2")));
 	}
 }

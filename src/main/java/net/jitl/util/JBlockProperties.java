@@ -95,4 +95,9 @@ public class JBlockProperties {
 			.harvestTool(ToolType.PICKAXE)
 			.requiresCorrectToolForDrops()
 			.strength(1.5F, 6.0F));
+	public static final BlockPropsFactory BERRY_BUSH_PROPS = new BlockPropsFactory(() -> AbstractBlock.Properties.of
+			(Material.PLANT)
+			.sound(SoundType.SWEET_BERRY_BUSH)
+			.randomTicks()
+			.noCollission());
 }

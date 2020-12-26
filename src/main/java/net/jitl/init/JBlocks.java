@@ -63,6 +63,8 @@ public class JBlocks {
 
 	public static final Block BLOCK_OF_MUD = promise();
 
+	public static final Block BRADBERRY_BUSH = promise();
+
 	public static final Block EUCA_BRICK = promise();
 
 	public static final Block LASER_EMITTER = promise();

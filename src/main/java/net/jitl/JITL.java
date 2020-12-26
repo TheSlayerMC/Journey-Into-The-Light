@@ -15,6 +15,8 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import ru.timeconqueror.timecore.api.TimeMod;
+import ru.timeconqueror.timecore.api.client.resource.location.BlockModelLocation;
+import ru.timeconqueror.timecore.api.client.resource.location.TextureLocation;
 
 @Mod(JITL.MODID)
 public class JITL implements TimeMod {
@@ -31,24 +33,32 @@ public class JITL implements TimeMod {
         modEventBus.addListener(this::preInit);
         modEventBus.addListener(this::clientSetup);
 
-        MinecraftForge.EVENT_BUS.register(this);
-        MinecraftForge.EVENT_BUS.register(new JourneyContainers());
+	    MinecraftForge.EVENT_BUS.register(this);
+	    MinecraftForge.EVENT_BUS.register(new JourneyContainers());
 
-        ClientLoadingEventHandler.regToBus(modEventBus, forgeEventBus);
-        ClientEventHandler.regToBus(modEventBus, forgeEventBus);
+	    ClientLoadingEventHandler.regToBus(modEventBus, forgeEventBus);
+	    ClientEventHandler.regToBus(modEventBus, forgeEventBus);
     }
 
-    private void preInit(final FMLCommonSetupEvent event) {
-    }
+	private void preInit(final FMLCommonSetupEvent event) {
+	}
 
-    private void clientSetup(final FMLClientSetupEvent event) {
-    }
+	private void clientSetup(final FMLClientSetupEvent event) {
+	}
 
-    @SubscribeEvent
-    public void onServerStarting(FMLServerStartingEvent event) {
-    }
+	@SubscribeEvent
+	public void onServerStarting(FMLServerStartingEvent event) {
+	}
 
-    public static ResourceLocation rl(String path) {
-        return new ResourceLocation(MODID, path);
-    }
+	public static ResourceLocation rl(String path) {
+		return new ResourceLocation(MODID, path);
+	}
+
+	public static BlockModelLocation bml(String path) {
+		return new BlockModelLocation(MODID, path);
+	}
+
+	public static TextureLocation tl(String path) {
+		return new TextureLocation(MODID, path);
+	}
 }
