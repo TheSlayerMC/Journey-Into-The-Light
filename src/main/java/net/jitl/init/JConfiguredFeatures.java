@@ -1,6 +1,7 @@
 package net.jitl.init;
 
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSet;
 import net.jitl.JITL;
 import net.jitl.common.world.gen.features.featureconfig.RuinsFeatureConfig;
 import net.jitl.util.JRuleTests;
@@ -11,6 +12,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.WeightedList;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage.Decoration;
+import net.minecraft.world.gen.blockplacer.SimpleBlockPlacer;
+import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.blockstateprovider.WeightedBlockStateProvider;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.template.RuleTest;
@@ -35,6 +38,13 @@ public class JConfiguredFeatures {
 
     public static final Predicate<BiomeLoadingEvent> COMMON_BIOMES = event -> event.getCategory() != Biome.Category.NETHER && event.getCategory() != Biome.Category.NETHER; //TODO rework
 
+    public static final Promised<? extends ConfiguredFeature<?, ?>> PATCH_BRADBERRY_BUSH =
+            REGISTER.register("patch_bradberry_bush", Decoration.VEGETAL_DECORATION, patchFeature(
+                    () -> JBlocks.BRADBERRY_BUSH.defaultBlockState(),
+                    () -> Blocks.GRASS.defaultBlockState(),
+                    64))
+                    .setBiomePredicate(event -> event.getCategory() == Biome.Category.FOREST)
+                    .asPromise();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> DEFAULT_OVERWORLD_RUINS =
             REGISTER.register("default_overworld_ruins",
@@ -184,5 +194,14 @@ public class JConfiguredFeatures {
         return () -> Feature.DISK.configured(
                 new SphereReplaceConfig(oreSup.get(), FeatureSpread.of(baseValue, spread), halfHeight, ImmutableList.of(spawnBlock)))
                 .decorated(Features.Placements.TOP_SOLID_HEIGHTMAP_SQUARE);
+    }
+
+    private static Supplier<ConfiguredFeature<?, ?>> patchFeature(Supplier<BlockState> blockStateSupplier, Supplier<BlockState> surfaceStateSupplier, int tries) {
+        return () -> Feature.RANDOM_PATCH.configured((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(
+                blockStateSupplier.get()), SimpleBlockPlacer.INSTANCE))
+                .tries(tries)
+                .whitelist(ImmutableSet.of(surfaceStateSupplier.get().getBlock()))
+                .noProjection()
+                .build());
     }
 }
