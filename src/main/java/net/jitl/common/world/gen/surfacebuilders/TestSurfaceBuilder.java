@@ -9,7 +9,7 @@ import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 import net.minecraft.world.gen.surfacebuilders.ValleySurfaceBuilder;
 
 public class TestSurfaceBuilder extends ValleySurfaceBuilder {
-	private static final BlockState LAVAROCK = JBlocks.LAVA_ROCK.defaultBlockState();
+	private static final BlockState LAVAROCK = JBlocks.BLOOD_ROCK.defaultBlockState();
 	private static final BlockState BLACKSTONE = Blocks.BLACKSTONE.defaultBlockState();
 	private static final BlockState GRAVEL = Blocks.GRAVEL.defaultBlockState();
 	private static final ImmutableList<BlockState> FLOOR_BLOCK_STATES = ImmutableList.of(LAVAROCK, BLACKSTONE);

@@ -139,8 +139,8 @@ public class JConfiguredFeatures {
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> LAVA_ROCK_CLUMP =
             REGISTER.register("lava_rock_clump",
-                    Decoration.UNDERGROUND_ORES,
-                    netherOreFeature(() -> JBlocks.LAVA_ROCK.defaultBlockState(), JRuleTests.STONE_NETHERRACK, 10, 24))
+					Decoration.UNDERGROUND_ORES,
+					netherOreFeature(() -> JBlocks.BLOOD_ROCK.defaultBlockState(), JRuleTests.STONE_NETHERRACK, 10, 24))
                     .setBiomePredicate(IN_NETHER)
                     .asPromise();
 
@@ -197,11 +197,11 @@ public class JConfiguredFeatures {
     }
 
     private static Supplier<ConfiguredFeature<?, ?>> patchFeature(Supplier<BlockState> blockStateSupplier, Supplier<BlockState> surfaceStateSupplier, int tries) {
-        return () -> Feature.RANDOM_PATCH.configured((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(
-                blockStateSupplier.get()), SimpleBlockPlacer.INSTANCE))
-                .tries(tries)
-                .whitelist(ImmutableSet.of(surfaceStateSupplier.get().getBlock()))
-                .noProjection()
-                .build());
-    }
+		return () -> Feature.RANDOM_PATCH.configured((
+				new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(blockStateSupplier.get()), SimpleBlockPlacer.INSTANCE))
+				.tries(tries)
+				.whitelist(ImmutableSet.of(surfaceStateSupplier.get().getBlock()))
+				.noProjection()
+				.build());
+	}
 }

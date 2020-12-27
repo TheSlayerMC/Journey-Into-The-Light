@@ -17,26 +17,38 @@ public class JBlocks {
     public static final Block BLOODCRUST_ORE = promise();
     public static final Block ASHUAL_ORE = promise();
     public static final Block BLAZIUM_ORE = promise();
-    public static final Block CELESTIUM_ORE = promise();
-    public static final Block MEKYUM_ORE = promise();
-    public static final Block STORON_ORE = promise();
-    public static final Block FLAIRIUM_ORE = promise();
-    public static final Block DES_ORE = promise();
-    public static final Block ENDERILLIUM_ORE = promise();
-    public static final Block GORBITE_ORE = promise();
-    public static final Block ORBADITE_ORE = promise();
-    public static final Block LUNITE_ORE = promise();
-    public static final Block FIRESTONE_ORE = promise();
-    public static final Block LAVA_ROCK = promise();
-    public static final Block WARPED_QUARTZ_ORE = promise();
-    public static final Block CRIMSON_QUARTZ_ORE = promise();
+	public static final Block CELESTIUM_ORE = promise();
+	public static final Block MEKYUM_ORE = promise();
+	public static final Block STORON_ORE = promise();
+	public static final Block FLAIRIUM_ORE = promise();
+	public static final Block DES_ORE = promise();
+	public static final Block ENDERILLIUM_ORE = promise();
+	public static final Block GORBITE_ORE = promise();
+	public static final Block ORBADITE_ORE = promise();
+	public static final Block LUNITE_ORE = promise();
+	public static final Block FIRESTONE_ORE = promise();
 
-    public static final Block SAPPHIRE_BLOCK = promise();
-    public static final Block LUNIUM_BLOCK = promise();
-    public static final Block SHADIUM_BLOCK = promise();
-    public static final Block IRIDIUM_BLOCK = promise();
-    public static final Block BLOODCRUST_BLOCK = promise();
-    public static final Block ASHUAL_BLOCK = promise();
+	public static final Block BLOOD_ROCK = promise();
+	public static final Block BLOOD_ROCK_BRICKS = promise();
+	public static final Block SMOOTH_BLOOD_ROCK = promise();
+	public static final Block CARVED_BLOOD_ROCK = promise();
+	public static final Block EMPTY_BLOOD_RUNE = promise();
+	public static final Block BLOOD_ROCK_PILLAR = promise();
+
+	public static final Block BLOOD_RUNE_SOUL = promise();
+	public static final Block BLOOD_RUNE_FLESH = promise();
+	public static final Block BLOOD_RUNE_LIFE = promise();
+	public static final Block BLOOD_RUNE_DEATH = promise();
+
+	public static final Block WARPED_QUARTZ_ORE = promise();
+	public static final Block CRIMSON_QUARTZ_ORE = promise();
+
+	public static final Block SAPPHIRE_BLOCK = promise();
+	public static final Block LUNIUM_BLOCK = promise();
+	public static final Block SHADIUM_BLOCK = promise();
+	public static final Block IRIDIUM_BLOCK = promise();
+	public static final Block BLOODCRUST_BLOCK = promise();
+	public static final Block ASHUAL_BLOCK = promise();
     public static final Block BLAZIUM_BLOCK = promise();
     public static final Block CELESTIUM_BLOCK = promise();
     public static final Block MEKYUM_BLOCK = promise();
