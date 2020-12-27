@@ -30,25 +30,28 @@ public class ItemRegistrator {
         registerItem("lunium_ingot", "Lunium Ingot");
         registerItem("shadium_ingot", "Shadium Ingot");
         registerItem("obsidian_rod", "Obsidian Rod");
-        registerItem("mud_ball", "Mud Ball");
-        registerItem("bradberry", "Bradberry", () -> new Item(new Item.Properties().food(JFoods.BRADBERRY).tab(JTabs.ITEMS)));
+		registerItem("mud_ball", "Mud Ball");
+		registerItem("bradberry", "Bradberry", () -> new Item(new Item.Properties().food(JFoods.BRADBERRY).tab(JTabs.ITEMS)));
+		registerItem("lunium_powder", "Lunium Powder");
 
-        //NETHER ITEMS
-        registerItem("bloodcrust_ingot", "Bloodcrust Ingot");
-        registerItem("firestone_shard", "Firestone Shard", () -> new JFuelItem(new Item.Properties().fireResistant().tab(JTabs.ITEMS), 200));
-        registerItem("firestone_clump", "Firestone Clump", () -> new JFuelItem(new Item.Properties().fireResistant().tab(JTabs.ITEMS), 2000));
-        registerItem("warped_quartz", "Warped Quartz");
-        registerItem("crimson_quartz", "Crimson Quartz");
+		//NETHER ITEMS
+		registerItem("bloodcrust_ingot", "Bloodcrust Ingot");
+		registerItem("firestone_shard", "Firestone Shard", () -> new JFuelItem(new Item.Properties().fireResistant().tab(JTabs.ITEMS), 200));
+		registerItem("firestone_clump", "Firestone Clump", () -> new JFuelItem(new Item.Properties().fireResistant().tab(JTabs.ITEMS), 2000));
+		registerItem("warped_quartz", "Warped Quartz");
+		registerItem("crimson_quartz", "Crimson Quartz");
+		registerItem("blood", "Blood");
+		registerItem("powder_of_essencia", "Powder Of Essencia");
 
-        //END ITEMS
-        registerItem("enderillium_shard", "Enderillium Shard");
+		//END ITEMS
+		registerItem("enderillium_shard", "Enderillium Shard");
 
-        //BOILING POINT ITEMS
-        registerItem("ash", "Ash");
+		//BOILING POINT ITEMS
+		registerItem("ash", "Ash");
 
-        //EUCA ITEMS
-        registerItem("celestium_ingot", "Celestium Ingot");
-        registerItem("korite_ingot", "Korite Ingot");
+		//EUCA ITEMS
+		registerItem("celestium_ingot", "Celestium Ingot");
+		registerItem("korite_ingot", "Korite Ingot");
         registerItem("mekyum_ingot", "Mekyum Ingot");
         registerItem("storon_ingot", "Storon Ingot");
 

@@ -98,5 +98,10 @@
       "jitl:blocks/dig/shadium_block_6"
     ],
     "subtitle": "subtitles.block.generic.break"
+  },
+  "block.rune.activate": {
+    "sounds": [
+      "jitl:blocks/activate/rune_activate"
+    ]
   }
 }

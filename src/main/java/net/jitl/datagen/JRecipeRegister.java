@@ -53,10 +53,13 @@ public class JRecipeRegister extends JRecipeProvider {
 
 	public void buildBlastingRecipes() {
 		addBlastingRecipe(JBlocks.FIRESTONE_ORE, JItems.FIRESTONE_CLUMP, 1.0F, 100);
+		addBlastingRecipe(JBlocks.LUNIUM_ORE, JItems.LUNIUM_INGOT, 1.0F, 100);
+		addBlastingRecipe(JItems.LUNIUM_POWDER, JItems.LUNIUM_INGOT, 1.0F, 100);
 	}
 
 	public void buildSmeltingRecipes() {
 		addSmeltingRecipe(JBlocks.FIRESTONE_ORE, JItems.FIRESTONE_CLUMP, 1.0F, 200);
+		addSmeltingRecipe(JItems.LUNIUM_POWDER, JItems.LUNIUM_INGOT, 1.0F, 200);
 	}
 
 	public void buildCookingRecipes() {

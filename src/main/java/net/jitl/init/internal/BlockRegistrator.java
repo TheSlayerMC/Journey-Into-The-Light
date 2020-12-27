@@ -4,6 +4,7 @@ import net.jitl.JITL;
 import net.jitl.client.render.JBlockModels;
 import net.jitl.common.block.JOreBlock;
 import net.jitl.common.block.LaserEmitterBlock;
+import net.jitl.common.block.base.BloodRuneBlock;
 import net.jitl.common.block.base.JBerryBushBlock;
 import net.jitl.common.block.base.JBlock;
 import net.jitl.common.block.base.JOrientableBlock;
@@ -68,7 +69,7 @@ public class BlockRegistrator {
 		registerDefaultBlock("blood_rock_bricks", "Blood Rock Bricks", () -> new JBlock(JBlockProperties.BRICK_PROPS.create()));
 		registerDefaultBlock("smooth_blood_rock", "Smooth Blood Rock", () -> new JBlock(JBlockProperties.BRICK_PROPS.create()));
 		registerDefaultBlock("carved_blood_rock", "Carved Blood Rock", () -> new JBlock(JBlockProperties.BRICK_PROPS.create()));
-		registerDefaultBlock("empty_blood_rune", "Empty Blood Rune", () -> new JBlock(JBlockProperties.BRICK_PROPS.create()));
+		registerDefaultBlock("empty_blood_rune", "Empty Blood Rune", () -> new BloodRuneBlock(JBlockProperties.BRICK_PROPS.create()));
 		registerColumnRenderedBlock("blood_rock_pillar", "Block Rock Pillar", () -> new RotatedPillarBlock(JBlockProperties.BRICK_PROPS.create()), "smooth_blood_rock", "blood_rock_pillar_side");
 		registerEmissiveAllRenderedBlock("blood_rune_soul", "Blood Rune Of Soul", () -> new JBlock(JBlockProperties.BRICK_PROPS.create()), "blood_rune_soul_back", "blood_rune_soul_front");
 		registerEmissiveAllRenderedBlock("blood_rune_flesh", "Blood Rune Of Flesh", () -> new JBlock(JBlockProperties.BRICK_PROPS.create()), "blood_rune_flesh_back", "blood_rune_flesh_front");
