@@ -57,6 +57,8 @@ public class BloodRuneBlock extends Block {
 					if (!player.isCreative()) {
 						inHandItem.shrink(1);
 					}
+				} else {
+					return ActionResultType.FAIL;
 				}
 			}
 		}
