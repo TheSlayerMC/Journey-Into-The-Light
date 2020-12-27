@@ -5,7 +5,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.StairsBlock;
 import net.minecraftforge.registries.ObjectHolder;
 
-import static ru.timeconqueror.timecore.util.Hacks.promise;
+import static ru.timeconqueror.timecore.api.util.Hacks.promise;
 
 @ObjectHolder(JITL.MODID)
 public class JBlocks {

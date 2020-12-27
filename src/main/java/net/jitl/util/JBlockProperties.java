@@ -5,7 +5,7 @@ import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.common.ToolType;
-import ru.timeconqueror.timecore.registry.BlockPropsFactory;
+import ru.timeconqueror.timecore.api.registry.util.BlockPropsFactory;
 
 public class JBlockProperties {
 

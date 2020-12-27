@@ -8,8 +8,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import ru.timeconqueror.timecore.util.GenHelper;
-import ru.timeconqueror.timecore.util.RandHelper;
+import ru.timeconqueror.timecore.api.util.GenHelper;
+import ru.timeconqueror.timecore.api.util.RandHelper;
 
 public class TestBugItem extends Item {
     public TestBugItem(Properties properties) {

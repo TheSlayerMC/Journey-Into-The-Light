@@ -22,7 +22,7 @@ import net.minecraftforge.client.model.IModelLoader;
 import net.minecraftforge.client.model.data.EmptyModelData;
 import net.minecraftforge.client.model.geometry.IModelGeometry;
 import org.jetbrains.annotations.Nullable;
-import ru.timeconqueror.timecore.util.RandHelper;
+import ru.timeconqueror.timecore.api.util.RandHelper;
 
 import java.util.*;
 import java.util.function.BiFunction;

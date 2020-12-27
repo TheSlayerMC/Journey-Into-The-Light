@@ -6,8 +6,8 @@ import net.jitl.common.world.gen.features.featureconfig.RuinsFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.ForgeRegistries;
-import ru.timeconqueror.timecore.registry.AutoRegistrable;
-import ru.timeconqueror.timecore.registry.newreg.SimpleForgeRegister;
+import ru.timeconqueror.timecore.api.registry.SimpleForgeRegister;
+import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable;
 
 public class JFeatures {
 	@AutoRegistrable

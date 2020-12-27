@@ -1,8 +1,8 @@
 package net.jitl.config;
 
 import net.jitl.JITL;
-import ru.timeconqueror.timecore.registry.AutoRegistrable;
-import ru.timeconqueror.timecore.registry.newreg.ConfigRegister;
+import ru.timeconqueror.timecore.api.registry.ConfigRegister;
+import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable;
 
 public class JConfigs {
 	public static final JClientConfig CLIENT = new JClientConfig();

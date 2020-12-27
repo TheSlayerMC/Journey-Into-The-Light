@@ -20,8 +20,8 @@ import ru.timeconqueror.timecore.api.client.resource.BlockStateResource;
 import ru.timeconqueror.timecore.api.client.resource.BlockStateResources;
 import ru.timeconqueror.timecore.api.client.resource.location.BlockModelLocation;
 import ru.timeconqueror.timecore.api.client.resource.location.TextureLocation;
-import ru.timeconqueror.timecore.registry.AutoRegistrable;
-import ru.timeconqueror.timecore.registry.newreg.BlockRegister;
+import ru.timeconqueror.timecore.api.registry.BlockRegister;
+import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable;
 
 import java.util.function.Supplier;
 

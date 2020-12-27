@@ -5,10 +5,10 @@ import net.jitl.client.render.tile.LaserEmitterTER;
 import net.jitl.common.tile.LaserEmitterTile;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.registries.ObjectHolder;
-import ru.timeconqueror.timecore.registry.AutoRegistrable;
-import ru.timeconqueror.timecore.registry.newreg.TileEntityRegister;
+import ru.timeconqueror.timecore.api.registry.TileEntityRegister;
+import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable;
 
-import static ru.timeconqueror.timecore.util.Hacks.promise;
+import static ru.timeconqueror.timecore.api.util.Hacks.promise;
 
 @ObjectHolder(JITL.MODID)
 public class JTiles {

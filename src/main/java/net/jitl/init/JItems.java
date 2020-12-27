@@ -6,7 +6,7 @@ import net.jitl.common.item.TestBugItem;
 import net.minecraft.item.Item;
 import net.minecraftforge.registries.ObjectHolder;
 
-import static ru.timeconqueror.timecore.util.Hacks.promise;
+import static ru.timeconqueror.timecore.api.util.Hacks.promise;
 
 @ObjectHolder(JITL.MODID)
 public class JItems {

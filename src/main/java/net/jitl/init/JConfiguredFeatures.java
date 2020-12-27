@@ -18,9 +18,9 @@ import net.minecraft.world.gen.blockstateprovider.WeightedBlockStateProvider;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.template.RuleTest;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
-import ru.timeconqueror.timecore.registry.AutoRegistrable;
-import ru.timeconqueror.timecore.registry.Promised;
-import ru.timeconqueror.timecore.registry.newreg.ConfiguredFeatureRegister;
+import ru.timeconqueror.timecore.api.registry.ConfiguredFeatureRegister;
+import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable;
+import ru.timeconqueror.timecore.api.registry.util.Promised;
 
 import java.util.Objects;
 import java.util.function.Predicate;
@@ -36,7 +36,7 @@ public class JConfiguredFeatures {
     public static final Predicate<BiomeLoadingEvent> IN_WARPED_FOREST = event -> Objects.equals(event.getName(), new ResourceLocation("warped_forest"));
     public static final Predicate<BiomeLoadingEvent> IN_CRIMSON_FOREST = event -> Objects.equals(event.getName(), new ResourceLocation("crimson_forest"));
 
-    public static final Predicate<BiomeLoadingEvent> COMMON_BIOMES = event -> event.getCategory() != Biome.Category.NETHER && event.getCategory() != Biome.Category.NETHER; //TODO rework
+    public static final Predicate<BiomeLoadingEvent> COMMON_BIOMES = IN_NETHER.and(IN_END).negate();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> PATCH_BRADBERRY_BUSH =
             REGISTER.register("patch_bradberry_bush", Decoration.VEGETAL_DECORATION, patchFeature(

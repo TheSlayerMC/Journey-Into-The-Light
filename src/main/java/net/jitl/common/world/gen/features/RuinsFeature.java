@@ -13,7 +13,7 @@ import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.Feature;
 import org.jetbrains.annotations.NotNull;
-import ru.timeconqueror.timecore.util.RandHelper;
+import ru.timeconqueror.timecore.api.util.RandHelper;
 
 import java.util.Random;
 

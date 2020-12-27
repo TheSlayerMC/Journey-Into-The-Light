@@ -6,11 +6,12 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import org.apache.logging.log4j.Marker;
 import org.apache.logging.log4j.MarkerManager;
-import ru.timeconqueror.timecore.registry.AutoRegistrable;
-import ru.timeconqueror.timecore.registry.newreg.StructureRegister;
-import ru.timeconqueror.timecore.registry.newreg.StructureRegister.StructureHolder;
-import ru.timeconqueror.timecore.registry.newreg.StructureRegister.TimeStructureSeparationSettings;
-import ru.timeconqueror.timecore.storage.StructureTags.Tag;
+import ru.timeconqueror.timecore.api.registry.StructureRegister;
+import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable;
+
+import static ru.timeconqueror.timecore.api.registry.StructureRegister.StructureHolder;
+import static ru.timeconqueror.timecore.api.registry.StructureRegister.TimeStructureSeparationSettings;
+import static ru.timeconqueror.timecore.api.storage.StructureTags.Tag;
 
 public class JStructures {
     public static final Marker STRUCTURE_MARKER = MarkerManager.getMarker("JSTRUCTURES");

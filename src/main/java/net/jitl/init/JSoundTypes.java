@@ -2,7 +2,7 @@ package net.jitl.init;
 
 import net.minecraft.block.SoundType;
 import net.minecraft.util.SoundEvents;
-import ru.timeconqueror.timecore.common.block.TimeSoundType;
+import ru.timeconqueror.timecore.api.common.block.TimeSoundType;
 
 public class JSoundTypes {
 

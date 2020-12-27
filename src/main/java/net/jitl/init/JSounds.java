@@ -3,8 +3,8 @@ package net.jitl.init;
 import net.jitl.JITL;
 import net.minecraftforge.fml.RegistryObject;
 import ru.timeconqueror.timecore.api.common.sound.TimeSound;
-import ru.timeconqueror.timecore.registry.AutoRegistrable;
-import ru.timeconqueror.timecore.registry.newreg.SoundRegister;
+import ru.timeconqueror.timecore.api.registry.SoundRegister;
+import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable;
 
 public class JSounds {
 

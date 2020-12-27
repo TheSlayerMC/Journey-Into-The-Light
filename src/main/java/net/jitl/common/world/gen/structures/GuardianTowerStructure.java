@@ -13,7 +13,7 @@ import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.feature.structure.StructureStart;
 import net.minecraft.world.gen.feature.template.TemplateManager;
-import ru.timeconqueror.timecore.util.GenHelper;
+import ru.timeconqueror.timecore.api.util.GenHelper;
 
 public class GuardianTowerStructure extends Structure<NoFeatureConfig> {
     public GuardianTowerStructure(Codec<NoFeatureConfig> codec) {

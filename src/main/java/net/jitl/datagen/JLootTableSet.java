@@ -9,7 +9,7 @@ import net.minecraft.loot.*;
 import net.minecraft.loot.functions.ApplyBonus;
 import net.minecraft.loot.functions.SetCount;
 import net.minecraft.util.IItemProvider;
-import ru.timeconqueror.timecore.devtools.gen.loottable.BlockLootTableSet;
+import ru.timeconqueror.timecore.api.devtools.gen.loottable.BlockLootTableSet;
 
 public class JLootTableSet extends BlockLootTableSet {
 

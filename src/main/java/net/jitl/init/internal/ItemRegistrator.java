@@ -11,8 +11,8 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ToolItem;
 import ru.timeconqueror.timecore.api.client.resource.StandardItemModelParents;
-import ru.timeconqueror.timecore.registry.AutoRegistrable;
-import ru.timeconqueror.timecore.registry.newreg.ItemRegister;
+import ru.timeconqueror.timecore.api.registry.ItemRegister;
+import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable;
 
 import java.util.function.Function;
 import java.util.function.Supplier;
