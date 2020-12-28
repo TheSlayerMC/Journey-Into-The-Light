@@ -25,10 +25,12 @@ public class GuardianTowerPieces {
     public static final ResourceLocation FLOOR_PIECE = JITL.rl("overworld/guardian_tower/floor");
     public static final ResourceLocation FIRST_FLOOR_DECORATION_PIECE = JITL.rl("overworld/guardian_tower/first_floor_decoration");
     public static final ResourceLocation TOP_FLOOR_PIECE = JITL.rl("overworld/guardian_tower/top_floor");
+    public static final ResourceLocation TOP_FLOOR_DECORATION_PIECE = JITL.rl("overworld/guardian_tower/top_floor_decoration");
     private static final Map<ResourceLocation, BlockPos> OFFSETS = ImmutableMap.of(
             TOP_FLOOR_PIECE, BlockPos.ZERO,
             FIRST_FLOOR_DECORATION_PIECE, new BlockPos(2, 0, 2),
-            FLOOR_PIECE, new BlockPos(3, 0, 3)
+            FLOOR_PIECE, new BlockPos(3, 0, 3),
+            TOP_FLOOR_DECORATION_PIECE, new BlockPos(1, 0, 1)
     );
 
     public static void generate(List<StructurePiece> pieces, TemplateManager templateManager, BlockPos surfacePos) {
@@ -39,6 +41,7 @@ public class GuardianTowerPieces {
         }
 
         pieces.add(createPiece(templateManager, GuardianTowerPieces.TOP_FLOOR_PIECE, changeable, false));
+        pieces.add(createPiece(templateManager, GuardianTowerPieces.TOP_FLOOR_DECORATION_PIECE, changeable.below(10), false));
         pieces.add(createPiece(templateManager, GuardianTowerPieces.FIRST_FLOOR_DECORATION_PIECE, surfacePos, true));
     }
 
