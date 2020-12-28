@@ -220,6 +220,7 @@ public class BlockRegistrator {
 								JITL.tl("block/" + sideTexture)));
 	}
 
+	//TODO remove itemblock, bind berry bush to 'berries' item
 	private static void registerBerryBushBlock(String name, String enName, Supplier<IItemProvider> itemProviderSupplier) {
 		REGISTER.register(name, () -> new JBerryBushBlock(
 				(JBlockProperties.BERRY_BUSH_PROPS.create()), itemProviderSupplier))
