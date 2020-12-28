@@ -8,9 +8,9 @@ object JInternalModels {
     @JvmStatic
     fun emissiveModel(normal: BlockModel?, emissive: BlockModel?): BlockModel {
         val json = json {
-            "parent" set "block/cube_all"
+            "parent" set "block/block"
             "loader" set JITL.MODID + ":emissive"
-            "particle" set "#emissive"
+            "particle" set "#normal"
 
             if (normal != null) {
                 "normal" setRaw normal.toJson()

@@ -28,6 +28,10 @@ import java.util.*;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
+/**
+ * The highest "parent" property is for items, because for now they have weird behavior without this property.
+ * //TODO Maybe add built-in support, so you don't need to specify parent at all, why not just use "block/block"?
+ */
 public class EmissiveModelGeometry implements IModelGeometry<EmissiveModelGeometry> {
     public static final int FULLBRIGHT = LightTexture.pack(15, 15);
     public static final String VANILLA_PARTICLE_NAME = "particle";
