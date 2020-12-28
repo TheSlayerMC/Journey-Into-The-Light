@@ -194,7 +194,7 @@ public class BlockRegistrator {
 				.regDefaultBlockItem(JTabs.BLOCKS)
 				.genDefaultState(JITL.bml("block/" + name))
 				.genModel(JITL.bml("block/" + name),
-						() -> JBlockModels.emissiveAllModel(JITL.tl("block/" + backTexture), JITL.tl("block/" + frontTexture)));
+						() -> JBlockModels.emissiveCubeAll(JITL.tl("block/" + backTexture), JITL.tl("block/" + frontTexture)));
 	}
 
 	private static void registerOrientableRenderedBlock(String name, String enName, Supplier<Block> blockSupplier, String topTexture, String sideTexture, String frontTexture) {
