@@ -38,10 +38,10 @@ public class JConfiguredFeatures {
 
     public static final Predicate<BiomeLoadingEvent> COMMON_BIOMES = IN_NETHER.and(IN_END).negate();
 
-    public static final Promised<? extends ConfiguredFeature<?, ?>> PATCH_BRADBERRY_BUSH =
-            REGISTER.register("patch_bradberry_bush", Decoration.VEGETAL_DECORATION, patchFeature(
+    public static final Promised<? extends ConfiguredFeature<?, ?>> BRADBERRY_BUSH =
+            REGISTER.register("patch_bradberry_bush", Decoration.VEGETAL_DECORATION, surfacePatchFeature(
                     () -> JBlocks.BRADBERRY_BUSH.defaultBlockState(),
-                    () -> Blocks.GRASS.defaultBlockState(),
+                    () -> Blocks.GRASS_BLOCK.defaultBlockState(),
                     64))
                     .setBiomePredicate(event -> event.getCategory() == Biome.Category.FOREST)
                     .asPromise();
@@ -196,12 +196,11 @@ public class JConfiguredFeatures {
                 .decorated(Features.Placements.TOP_SOLID_HEIGHTMAP_SQUARE);
     }
 
-    private static Supplier<ConfiguredFeature<?, ?>> patchFeature(Supplier<BlockState> blockStateSupplier, Supplier<BlockState> surfaceStateSupplier, int tries) {
-		return () -> Feature.RANDOM_PATCH.configured((
-				new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(blockStateSupplier.get()), SimpleBlockPlacer.INSTANCE))
-				.tries(tries)
-				.whitelist(ImmutableSet.of(surfaceStateSupplier.get().getBlock()))
-				.noProjection()
-				.build());
-	}
+    private static Supplier<ConfiguredFeature<?, ?>> surfacePatchFeature(Supplier<BlockState> blockStateSupplier, Supplier<BlockState> surfaceStateSupplier, int tries) {
+        return () -> Feature.RANDOM_PATCH.configured((
+                new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(blockStateSupplier.get()), SimpleBlockPlacer.INSTANCE))
+                .tries(tries)
+                .whitelist(ImmutableSet.of(surfaceStateSupplier.get().getBlock()))
+                .build());
+    }
 }
