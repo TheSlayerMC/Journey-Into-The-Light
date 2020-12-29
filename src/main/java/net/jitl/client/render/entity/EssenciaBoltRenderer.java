@@ -99,8 +99,8 @@ public class EssenciaBoltRenderer extends EntityRenderer<EssenciaBoltEntity> {
      * @param r                         red channel: from 0 to 1
      * @param g                         green channel: from 0 to 1
      * @param b                         blue channel: from 0 to 1
-     * @param oneDirectionExpansion     expansion from center to the start of quad
-     * @param anotherDirectionExpansion expansion from center to the end of quad
+     * @param oneDirectionExpansion     expansion from center to the left(?) border of quad
+     * @param anotherDirectionExpansion expansion from center to the right(?) border  of quad
      */
     private static void quad(Matrix4f matrix, IVertexBuilder builder, float startCenterX, float startCenterZ, int startY, float endCenterX, float endCenterZ, float r, float g, float b, float oneDirectionExpansion, float anotherDirectionExpansion, boolean boolean_, boolean boolean1_, boolean boolean2_, boolean boolean3_) {
         builder.vertex(matrix, startCenterX + (boolean_ ? anotherDirectionExpansion : -anotherDirectionExpansion), (float) (startY * 16), startCenterZ + (boolean1_ ? anotherDirectionExpansion : -anotherDirectionExpansion)).color(r, g, b, 0.9F).endVertex();
