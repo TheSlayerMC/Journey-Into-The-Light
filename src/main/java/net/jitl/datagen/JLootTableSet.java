@@ -22,7 +22,7 @@ public class JLootTableSet extends BlockLootTableSet {
 	private void initOres() {
 		registerSpecialOre(JBlocks.SAPPHIRE_ORE, JItems.SAPPHIRE);
 		registerSpecialOre(JBlocks.IRIDIUM_ORE, JItems.IRIDIUM_NUGGET);
-		registerDefaultOre(JBlocks.LUNIUM_ORE);
+		registerSpecialOreWithExtraCount(JBlocks.LUNIUM_ORE, JItems.LUNIUM_POWDER, 1, 2);
 		registerDefaultOre(JBlocks.SHADIUM_ORE);
 		registerDefaultOre(JBlocks.BLOODCRUST_ORE);
 		registerSpecialOreWithExtraCount(JBlocks.FIRESTONE_ORE, JItems.FIRESTONE_SHARD, 1, 4);
@@ -36,6 +36,19 @@ public class JLootTableSet extends BlockLootTableSet {
 		registerDropsSelf(JBlocks.DUNGEON_BRICKS_CARVED);
 		registerDropsSelf(JBlocks.DUNGEON_BRICKS_CHISELED);
 		registerDropsSelf(JBlocks.DUNGEON_BRICKS_CRACKED);
+		registerDropsSelf(JBlocks.DUNGEON_FLOOR);
+
+		registerDropsSelf(JBlocks.BLOOD_ROCK);
+		registerDropsSelf(JBlocks.BLOOD_ROCK_BRICKS);
+		registerDropsSelf(JBlocks.EMPTY_BLOOD_RUNE);
+		registerDropsSelf(JBlocks.CARVED_BLOOD_ROCK);
+		registerDropsSelf(JBlocks.SMOOTH_BLOOD_ROCK);
+		registerDropsSelf(JBlocks.BLOOD_ROCK_PILLAR);
+		registerDropsSelf(JBlocks.BLOOD_RUNE_DEATH);
+		registerDropsSelf(JBlocks.BLOOD_RUNE_FLESH);
+		registerDropsSelf(JBlocks.BLOOD_RUNE_LIFE);
+		registerDropsSelf(JBlocks.BLOOD_RUNE_SOUL);
+
 		registerSpecialOreWithExtraCount(JBlocks.BLOCK_OF_MUD, JItems.MUD_BALL, 3, 4);
 	}
 

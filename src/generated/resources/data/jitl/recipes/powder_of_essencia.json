@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#I#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "jitl:lunium_powder"
+    },
+    "I": {
+      "item": "jitl:blood"
+    }
+  },
+  "result": {
+    "item": "jitl:powder_of_essencia",
+    "count": 8
+  }
+}

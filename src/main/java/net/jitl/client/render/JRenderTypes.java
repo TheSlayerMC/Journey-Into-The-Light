@@ -27,4 +27,19 @@ public class JRenderTypes extends RenderType {
                         .setOutputState(RenderState.WEATHER_TARGET)
                         .createCompositeState(false));
     }
+
+    public static RenderType essenciaBolt() {
+        return RenderType.create(JITL.rl("essencia_bolt").toString(),
+                DefaultVertexFormats.POSITION_COLOR,
+                GL11.GL_QUADS,
+                256,
+                false,
+                true,
+                RenderType.State.builder()
+                        .setTransparencyState(RenderState.LIGHTNING_TRANSPARENCY)
+                        .setWriteMaskState(RenderState.COLOR_DEPTH_WRITE)
+                        .setOutputState(RenderState.WEATHER_TARGET)
+                        .setShadeModelState(RenderState.SMOOTH_SHADE)
+                        .createCompositeState(false));
+    }
 }

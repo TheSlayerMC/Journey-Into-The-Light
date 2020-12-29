@@ -2,11 +2,11 @@ package net.jitl.common.block.base;
 
 import net.jitl.common.entity.EssenciaBoltEntity;
 import net.jitl.init.JBlocks;
+import net.jitl.init.JEntityTypes;
 import net.jitl.init.JItems;
 import net.jitl.init.JSounds;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.EntityType;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -46,13 +46,13 @@ public class BloodRuneBlock extends Block {
 				}
 
 				if (rune != null) {
-					EssenciaBoltEntity essenciaBoltEntity = new EssenciaBoltEntity(EntityType.LIGHTNING_BOLT, worldIn);
+					EssenciaBoltEntity essenciaBoltEntity = new EssenciaBoltEntity(JEntityTypes.ESSENCIA_BOLT_TYPE, worldIn);
 					essenciaBoltEntity.setPos(pos.getX(), pos.above().getY(), pos.getZ());
 					essenciaBoltEntity.setVisualOnly(true);
 
 					worldIn.addFreshEntity(essenciaBoltEntity);
 					worldIn.setBlock(pos, rune.defaultBlockState(), 1);
-					itementity.kill();
+					itementity.remove();
 					worldIn.playSound(null, pos, JSounds.RUNE_ACTIVATE.get(), SoundCategory.BLOCKS, 1.0F, player.getRandom().nextFloat() + 0.5F);
 					if (!player.isCreative()) {
 						inHandItem.shrink(1);

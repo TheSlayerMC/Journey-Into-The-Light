@@ -1,7 +1,6 @@
 package net.jitl.datagen;
 
 import net.jitl.JITL;
-import net.jitl.util.EnumRecipePrefix;
 import net.minecraft.data.CookingRecipeBuilder;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
@@ -35,12 +34,12 @@ public class JRecipeProvider extends ForgeRecipeProvider {
 				.pattern("##").unlockedBy(inputToKey(input), has(input)).save(recipeConsumer);
 	}
 
-	protected void addToolsetAndArmorRecipes(Consumer<IFinishedRecipe> recipeConsumer, IItemProvider stickItem, IItemProvider materialItem, EnumRecipePrefix recipePrefix) {
+	protected void addToolsetAndArmorRecipes(Consumer<IFinishedRecipe> recipeConsumer, IItemProvider stickItem, IItemProvider materialItem, RecipePrefix recipePrefix) {
 		addToolsetRecipes(recipeConsumer, stickItem, materialItem, recipePrefix);
 		addArmorRecipes(recipeConsumer, materialItem, recipePrefix);
 	}
 
-	protected void addToolsetRecipes(Consumer<IFinishedRecipe> recipeConsumer, IItemProvider stickItem, IItemProvider materialItem, EnumRecipePrefix recipePrefix) {
+	protected void addToolsetRecipes(Consumer<IFinishedRecipe> recipeConsumer, IItemProvider stickItem, IItemProvider materialItem, RecipePrefix recipePrefix) {
 		addAxeRecipe(recipeConsumer, stickItem, materialItem, getItemFromRegistryName((recipePrefix.getString() + "axe")));
 		addPickaxeRecipe(recipeConsumer, stickItem, materialItem, getItemFromRegistryName(recipePrefix.getString() + "pickaxe"));
 		addShovelRecipe(recipeConsumer, stickItem, materialItem, getItemFromRegistryName(recipePrefix.getString() + "shovel"));
@@ -48,7 +47,7 @@ public class JRecipeProvider extends ForgeRecipeProvider {
 		addHoeRecipe(recipeConsumer, stickItem, materialItem, getItemFromRegistryName(recipePrefix.getString() + "hoe"));
 	}
 
-	public void addArmorRecipes(Consumer<IFinishedRecipe> recipeConsumer, IItemProvider materialItem, EnumRecipePrefix recipePrefix) {
+	public void addArmorRecipes(Consumer<IFinishedRecipe> recipeConsumer, IItemProvider materialItem, RecipePrefix recipePrefix) {
 		addHelmetRecipe(recipeConsumer, materialItem, getItemFromRegistryName((recipePrefix.getString() + "helmet")));
 		addChestplateRecipe(recipeConsumer, materialItem, getItemFromRegistryName((recipePrefix.getString() + "chestplate")));
 		addLeggingsRecipe(recipeConsumer, materialItem, getItemFromRegistryName((recipePrefix.getString() + "leggings")));
@@ -143,12 +142,29 @@ public class JRecipeProvider extends ForgeRecipeProvider {
 	/**
 	 * Helps simplify recipe creation.
 	 * Allows the ingredient to be referenced with a prefix and suffix, instead of having to be referenced directly in the method or constructor.
-	 * This is useful in the case of bulk registering, as seen in the {@link #addArmorRecipes(Consumer, IItemProvider, EnumRecipePrefix)} method
+	 * This is useful in the case of bulk registering, as seen in the {@link #addArmorRecipes(Consumer, IItemProvider, RecipePrefix)} method
 	 *
 	 * @param registryName
 	 * @return
 	 */
 	public IItemProvider getItemFromRegistryName(String registryName) {
 		return ForgeRegistries.ITEMS.getValue(new ResourceLocation(JITL.MODID, registryName));
+	}
+
+	public enum RecipePrefix {
+
+		SAPPHIRE("sapphire_"),
+		LUNIUM("lunium_"),
+		SHADIUM("shadium_");
+
+		String prefix;
+
+		RecipePrefix(String prefix) {
+			this.prefix = prefix;
+		}
+
+		public String getString() {
+			return prefix;
+		}
 	}
 }

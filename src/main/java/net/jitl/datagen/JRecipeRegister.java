@@ -2,9 +2,9 @@ package net.jitl.datagen;
 
 import net.jitl.init.JBlocks;
 import net.jitl.init.JItems;
-import net.jitl.util.EnumRecipePrefix;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
+import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.data.ShapelessRecipeBuilder;
 
 import java.util.function.Consumer;
@@ -42,13 +42,24 @@ public class JRecipeRegister extends JRecipeProvider {
 
 	public void buildItemRecipes(Consumer<IFinishedRecipe> recipeConsumer) {
 		add3x3Recipe(recipeConsumer, JItems.FIRESTONE_SHARD, JItems.FIRESTONE_CLUMP);
-		ShapelessRecipeBuilder.shapeless(JItems.MUD_BALL, 4).requires(JBlocks.BLOCK_OF_MUD).unlockedBy(inputToKey(JBlocks.BLOCK_OF_MUD), has(JBlocks.BLOCK_OF_MUD)).save(recipeConsumer);
+
+		ShapelessRecipeBuilder.shapeless(JItems.MUD_BALL, 4)
+				.requires(JBlocks.BLOCK_OF_MUD)
+				.unlockedBy(inputToKey(JBlocks.BLOCK_OF_MUD),
+						has(JBlocks.BLOCK_OF_MUD))
+				.save(recipeConsumer);
+
+		ShapedRecipeBuilder.shaped(JItems.POWDER_OF_ESSENCIA, 8).define('#', JItems.LUNIUM_POWDER).define('I', JItems.BLOOD)
+				.pattern("###")
+				.pattern("#I#")
+				.pattern("###").unlockedBy(inputToKey(JItems.BLOOD), has(JItems.BLOOD)).save(recipeConsumer);
+
 	}
 
 	public void buildToolRecipes(Consumer<IFinishedRecipe> recipeConsumer) {
-		addToolsetAndArmorRecipes(recipeConsumer, JItems.OBSIDIAN_ROD, JItems.SAPPHIRE, EnumRecipePrefix.SAPPHIRE);
-		addToolsetAndArmorRecipes(recipeConsumer, JItems.OBSIDIAN_ROD, JItems.LUNIUM_INGOT, EnumRecipePrefix.LUNIUM);
-		addToolsetAndArmorRecipes(recipeConsumer, JItems.OBSIDIAN_ROD, JItems.SHADIUM_INGOT, EnumRecipePrefix.SHADIUM);
+		addToolsetAndArmorRecipes(recipeConsumer, JItems.OBSIDIAN_ROD, JItems.SAPPHIRE, RecipePrefix.SAPPHIRE);
+		addToolsetAndArmorRecipes(recipeConsumer, JItems.OBSIDIAN_ROD, JItems.LUNIUM_INGOT, RecipePrefix.LUNIUM);
+		addToolsetAndArmorRecipes(recipeConsumer, JItems.OBSIDIAN_ROD, JItems.SHADIUM_INGOT, RecipePrefix.SHADIUM);
 	}
 
 	public void buildBlastingRecipes() {
