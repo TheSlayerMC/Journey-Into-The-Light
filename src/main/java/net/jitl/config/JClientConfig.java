@@ -29,6 +29,7 @@ public class JClientConfig extends Config {
 	public static class GuiCategory extends ConfigSection {
 
 		public ForgeConfigSpec.BooleanValue ENABLE_JITL_MENU_SCREEN;
+		public ForgeConfigSpec.BooleanValue ENABLE_MENU_TOGGLE_BUTTON;
 
 		public GuiCategory(@NotNull String key, @Nullable String comment) {
 			super(key, comment);
@@ -41,8 +42,13 @@ public class JClientConfig extends Config {
 		public void setup(ImprovedConfigBuilder builder) {
 			ENABLE_JITL_MENU_SCREEN = builder
 					.comment("If set to 'true', the JITL main menu theme will be enabled by default. "
-							+ "This can also be toggled in the main menu itself by toggling the top-left button.")
+							+ "This can also be toggled in the main menu itself by pressing the top-left button.")
 					.define("enable_jitl_menu_screen", true);
+
+			ENABLE_MENU_TOGGLE_BUTTON = builder
+					.comment("If set to 'true', the button that toggles the main menu theme will be visible. "
+							+ "If set to 'false', the button will no longer appear on the main menu screen.")
+					.define("enable_toggle_menu_screen", true);
 		}
 
 		public boolean isJITLMenuEnabled() {
@@ -51,6 +57,10 @@ public class JClientConfig extends Config {
 
 		public void setJITLMenu(boolean enabled) {
 			ENABLE_JITL_MENU_SCREEN.set(enabled);
+		}
+
+		public boolean isToggleMenuButtonEnabled() {
+			return ENABLE_MENU_TOGGLE_BUTTON.get();
 		}
 	}
 }
