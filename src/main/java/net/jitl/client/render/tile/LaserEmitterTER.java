@@ -5,14 +5,19 @@ import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.jitl.JITL;
 import net.jitl.client.render.JRenderTypes;
 import net.jitl.common.tile.LaserEmitterTile;
+import net.jitl.util.VecUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ActiveRenderInfo;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.RayTraceContext;
 import net.minecraft.util.math.vector.Matrix4f;
 import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.util.math.vector.Vector3f;
+import net.minecraft.world.World;
 import net.minecraftforge.client.model.animation.Animation;
 
 public class LaserEmitterTER extends TileEntityRenderer<LaserEmitterTile> {
@@ -21,9 +26,28 @@ public class LaserEmitterTER extends TileEntityRenderer<LaserEmitterTile> {
     }
 
     @Override
-    public void render(LaserEmitterTile tileEntityIn, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int combinedLightIn, int combinedOverlayIn) {
-        float gameTime = Animation.getWorldTime(tileEntityIn.getLevel(), partialTicks) * 20;
-        renderBeam(tileEntityIn.getBlockPos(), gameTime, matrixStackIn, bufferIn, new Vector3d(0.5, 0.5, 0.5), new Vector3d(20, 0.5, 20));
+    public void render(LaserEmitterTile tile, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int combinedLightIn, int combinedOverlayIn) {
+        World world = tile.getLevel();
+
+        if (world != null) {
+            float gameTime = Animation.getWorldTime(world, partialTicks) * 20;
+
+//            float angleDegrees = 0;
+            float angleDegrees = world.getGameTime() % 360 * 2;
+            int distance = 20;
+            Vector3f end = new Vector3f(distance, 0.5F, 0);
+            end.transform(Vector3f.YP.rotationDegrees(angleDegrees));
+
+            BlockPos pos = tile.getBlockPos();
+            Vector3d posVec = VecUtils.vec3d(pos).add(0.5, 0.5, 0.5);
+
+            Vector3d endNormalized = new Vector3d(end).normalize();
+
+            BlockRayTraceResult rayTraceResult = world.clip(new RayTraceContext(posVec.add(endNormalized.x, 0, endNormalized.z), posVec.add(end.x(), end.y(), end.z()), RayTraceContext.BlockMode.VISUAL, RayTraceContext.FluidMode.NONE, null));
+            Vector3d endPos = rayTraceResult.getLocation();
+
+            renderBeam(pos, gameTime, matrixStackIn, bufferIn, new Vector3d(0.5, 0.5, 0.5), endPos.subtract(VecUtils.vec3d(pos)));
+        }
     }
 
     public static void renderBeam(BlockPos pos, float gameTime, MatrixStack stack, IRenderTypeBuffer bufferIn, Vector3d start, Vector3d end) {
