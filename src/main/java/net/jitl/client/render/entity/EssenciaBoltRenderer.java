@@ -85,10 +85,14 @@ public class EssenciaBoltRenderer extends EntityRenderer<EssenciaBoltEntity> {
                     oneDirectionExpansion *= 1F / 3;
                     anotherDirectionExpansion *= 1F / 3;
 
-                    quad(matrix4f, ivertexbuilder, f2, f3, j1, f4, f5, 1.0F, 0.25F, 0.1F, oneDirectionExpansion, anotherDirectionExpansion, false, false, true, false);
-                    quad(matrix4f, ivertexbuilder, f2, f3, j1, f4, f5, 1.0F, 0.25F, 0.1F, oneDirectionExpansion, anotherDirectionExpansion, true, false, true, true);
-                    quad(matrix4f, ivertexbuilder, f2, f3, j1, f4, f5, 1.0F, 0.25F, 0.1F, oneDirectionExpansion, anotherDirectionExpansion, true, true, false, true);
-                    quad(matrix4f, ivertexbuilder, f2, f3, j1, f4, f5, 1.0F, 0.25F, 0.1F, oneDirectionExpansion, anotherDirectionExpansion, false, true, false, false);
+                    float red = 1.0F;
+                    float green = 0.0F;
+                    float blue = 0.0F;
+
+                    quad(matrix4f, ivertexbuilder, f2, f3, j1, f4, f5, red, green, blue, oneDirectionExpansion, anotherDirectionExpansion, false, false, true, false);
+                    quad(matrix4f, ivertexbuilder, f2, f3, j1, f4, f5, red, green, blue, oneDirectionExpansion, anotherDirectionExpansion, true, false, true, true);
+                    quad(matrix4f, ivertexbuilder, f2, f3, j1, f4, f5, red, green, blue, oneDirectionExpansion, anotherDirectionExpansion, true, true, false, true);
+                    quad(matrix4f, ivertexbuilder, f2, f3, j1, f4, f5, red, green, blue, oneDirectionExpansion, anotherDirectionExpansion, false, true, false, false);
                 }
             }
         }
@@ -103,10 +107,10 @@ public class EssenciaBoltRenderer extends EntityRenderer<EssenciaBoltEntity> {
      * @param anotherDirectionExpansion expansion from center to the right(?) border  of quad
      */
     private static void quad(Matrix4f matrix, IVertexBuilder builder, float startCenterX, float startCenterZ, int startY, float endCenterX, float endCenterZ, float r, float g, float b, float oneDirectionExpansion, float anotherDirectionExpansion, boolean boolean_, boolean boolean1_, boolean boolean2_, boolean boolean3_) {
-        builder.vertex(matrix, startCenterX + (boolean_ ? anotherDirectionExpansion : -anotherDirectionExpansion), (float) (startY * 16), startCenterZ + (boolean1_ ? anotherDirectionExpansion : -anotherDirectionExpansion)).color(r, g, b, 0.9F).endVertex();
-        builder.vertex(matrix, endCenterX + (boolean_ ? oneDirectionExpansion : -oneDirectionExpansion), (float) ((startY + 1) * 16), endCenterZ + (boolean1_ ? oneDirectionExpansion : -oneDirectionExpansion)).color(r, g, b, 0.9F).endVertex();
-        builder.vertex(matrix, endCenterX + (boolean2_ ? oneDirectionExpansion : -oneDirectionExpansion), (float) ((startY + 1) * 16), endCenterZ + (boolean3_ ? oneDirectionExpansion : -oneDirectionExpansion)).color(r, g, b, 0.9F).endVertex();
-        builder.vertex(matrix, startCenterX + (boolean2_ ? anotherDirectionExpansion : -anotherDirectionExpansion), (float) (startY * 16), startCenterZ + (boolean3_ ? anotherDirectionExpansion : -anotherDirectionExpansion)).color(r, g, b, 0.9F).endVertex();
+        builder.vertex(matrix, startCenterX + (boolean_ ? anotherDirectionExpansion : -anotherDirectionExpansion) + 0.5F, (float) (startY * 16), startCenterZ + (boolean1_ ? anotherDirectionExpansion : -anotherDirectionExpansion) + 0.5F).color(r, g, b, 0.9F).endVertex();
+        builder.vertex(matrix, endCenterX + (boolean_ ? oneDirectionExpansion : -oneDirectionExpansion) + 0.5F, (float) ((startY + 1) * 16), endCenterZ + (boolean1_ ? oneDirectionExpansion : -oneDirectionExpansion) + 0.5F).color(r, g, b, 0.9F).endVertex();
+        builder.vertex(matrix, endCenterX + (boolean2_ ? oneDirectionExpansion : -oneDirectionExpansion) + 0.5F, (float) ((startY + 1) * 16), endCenterZ + (boolean3_ ? oneDirectionExpansion : -oneDirectionExpansion) + 0.5F).color(r, g, b, 0.9F).endVertex();
+        builder.vertex(matrix, startCenterX + (boolean2_ ? anotherDirectionExpansion : -anotherDirectionExpansion) + 0.5F, (float) (startY * 16), startCenterZ + (boolean3_ ? anotherDirectionExpansion : -anotherDirectionExpansion) + 0.5F).color(r, g, b, 0.9F).endVertex();
     }
 
     /**
