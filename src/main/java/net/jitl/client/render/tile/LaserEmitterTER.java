@@ -36,13 +36,13 @@ public class LaserEmitterTER extends TileEntityRenderer<LaserEmitterTile> {
         if (world == null) return;
 
         float gameTime = Animation.getWorldTime(world, partialTicks) * 20;
-        float angleDegrees = world.getGameTime() % 360 * 2;
+        float angleDegrees = gameTime % 360;
         Quaternion rotationQuaternion = Vector3f.YP.rotationDegrees(angleDegrees);
 
-        renderModel(Models.fullCube, JITL.rl("textures/block/laser_emitter.png"), matrixStackIn, bufferIn, combinedLightIn, combinedOverlayIn);
+        renderModel(Models.fullCube, JITL.rl("textures/block/laser_emitter.png"), rotationQuaternion, matrixStackIn, bufferIn, combinedLightIn, combinedOverlayIn);
 
-        int distance = 20;
-        Vector3f end = new Vector3f(distance, 0.5F, 0);
+        int maxDistance = 20;
+        Vector3f end = new Vector3f(maxDistance, 0.5F, 0);
         end.transform(rotationQuaternion);
 
         BlockPos pos = tile.getBlockPos();
@@ -56,15 +56,13 @@ public class LaserEmitterTER extends TileEntityRenderer<LaserEmitterTile> {
         renderBeam(pos, gameTime, matrixStackIn, bufferIn, new Vector3d(0.5, 0.5, 0.5), endPos.subtract(VecUtils.vec3d(pos)));
     }
 
-    public static void renderModel(TimeModel model, ResourceLocation texture, MatrixStack matrixStack, IRenderTypeBuffer buffer, int combinedLightIn, int combinedOverlayIn) {
+    public static void renderModel(TimeModel model, ResourceLocation texture, Quaternion rotationQuaternion, MatrixStack matrixStack, IRenderTypeBuffer buffer, int combinedLightIn, int combinedOverlayIn) {
         matrixStack.pushPose();
 
         matrixStack.translate(0.5F, 0, 0.5F);
 
-        float angleDegrees = Minecraft.getInstance().level.getGameTime() % 360 * 2;
-        Quaternion rotationQuaternion = Vector3f.YP.rotationDegrees(angleDegrees);
-
         matrixStack.mulPose(rotationQuaternion);
+
         matrixStack.scale(-1, -1, 1);
         model.renderToBuffer(matrixStack, buffer.getBuffer(model.renderType(texture)), combinedLightIn, combinedOverlayIn, 1, 1, 1, 1);
 
@@ -80,7 +78,7 @@ public class LaserEmitterTER extends TileEntityRenderer<LaserEmitterTile> {
         ActiveRenderInfo activeRenderInfo = Minecraft.getInstance().gameRenderer.getMainCamera();
         Vector3d camera = activeRenderInfo.getPosition().subtract(pos.getX(), pos.getY(), pos.getZ());
 
-        float radius = 3 / 16F + (float) Math.sin((float) Math.toRadians(gameTime % (360 * 1) / 10F)) / 64F;
+        float radius = 3 / 16F + (float) Math.sin((float) Math.toRadians(gameTime % 360 / 10F)) / 64F;
         float texWidth = 32;
 
         float uPerBlock = 1 / (256 / texWidth * (radius * 2));
