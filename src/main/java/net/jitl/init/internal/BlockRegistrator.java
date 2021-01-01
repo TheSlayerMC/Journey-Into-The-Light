@@ -2,6 +2,7 @@ package net.jitl.init.internal;
 
 import net.jitl.JITL;
 import net.jitl.client.render.JBlockModels;
+import net.jitl.client.render.JBlockStateResources;
 import net.jitl.common.block.JOreBlock;
 import net.jitl.common.block.LaserEmitterBlock;
 import net.jitl.common.block.base.BloodRuneBlock;
@@ -71,22 +72,38 @@ public class BlockRegistrator {
 		registerDefaultBlock("smooth_blood_rock", "Smooth Blood Rock", () -> new JBlock(JBlockProperties.BRICK_PROPS.create()));
 		registerDefaultBlock("carved_blood_rock", "Carved Blood Rock", () -> new JBlock(JBlockProperties.BRICK_PROPS.create()));
 		registerDefaultBlock("empty_blood_rune", "Empty Blood Rune", () -> new BloodRuneBlock(JBlockProperties.BRICK_PROPS.create()));
-		registerColumnRenderedBlock("blood_rock_pillar", "Block Rock Pillar", () -> new RotatedPillarBlock(JBlockProperties.BRICK_PROPS.create()), "smooth_blood_rock", "blood_rock_pillar_side");
+		registerColumnRenderedBlock("blood_rock_pillar", "Block Rock Pillar", () -> new RotatedPillarBlock(JBlockProperties.BRICK_PROPS.create()),
+				"smooth_blood_rock",
+				"blood_rock_pillar_side");
+
 		registerEmissiveRenderedBlock("blood_rune_soul", "Blood Rune Of Soul", () -> new JBlock(JBlockProperties.BRICK_PROPS.create()),
-				BlockModels.cubeTopModel(JITL.tl("block/blood_rune_soul_back"), JITL.tl("block/empty_blood_rune")),
+				BlockModels.cubeTopModel(JITL.tl("block/empty_blood_rune"), JITL.tl("block/empty_blood_rune")),
 				BlockModels.cubeTopModel(JITL.tl("block/blood_rune_soul_front"), JITL.tl("block/blank")));
 
 		registerEmissiveRenderedBlock("blood_rune_flesh", "Blood Rune Of Flesh", () -> new JBlock(JBlockProperties.BRICK_PROPS.create()),
-				BlockModels.cubeTopModel(JITL.tl("block/blood_rune_flesh_back"), JITL.tl("block/empty_blood_rune")),
+				BlockModels.cubeTopModel(JITL.tl("block/empty_blood_rune"), JITL.tl("block/empty_blood_rune")),
 				BlockModels.cubeTopModel(JITL.tl("block/blood_rune_flesh_front"), JITL.tl("block/blank")));
 
 		registerEmissiveRenderedBlock("blood_rune_life", "Blood Rune Of Life", () -> new JBlock(JBlockProperties.BRICK_PROPS.create()),
-				BlockModels.cubeTopModel(JITL.tl("block/blood_rune_life_back"), JITL.tl("block/empty_blood_rune")),
+				BlockModels.cubeTopModel(JITL.tl("block/empty_blood_rune"), JITL.tl("block/empty_blood_rune")),
 				BlockModels.cubeTopModel(JITL.tl("block/blood_rune_life_front"), JITL.tl("block/blank")));
 
 		registerEmissiveRenderedBlock("blood_rune_death", "Blood Rune Of Death", () -> new JBlock(JBlockProperties.BRICK_PROPS.create()),
-				BlockModels.cubeTopModel(JITL.tl("block/blood_rune_death_back"), JITL.tl("block/empty_blood_rune")),
+				BlockModels.cubeTopModel(JITL.tl("block/empty_blood_rune"), JITL.tl("block/empty_blood_rune")),
 				BlockModels.cubeTopModel(JITL.tl("block/blood_rune_death_front"), JITL.tl("block/blank")));
+
+		registerDefaultBlock("corrupted_blood_rock", "Corrupted Blood Rock", () -> new JBlock(JBlockProperties.NETHER_BASALT_ORE_PROPS.create()));
+		registerDefaultBlock("smooth_corrupted_blood_rock", "Smooth Corrupted Blood Rock", () -> new JBlock(JBlockProperties.BRICK_PROPS.create()));
+
+		registerOrientableRenderedBlock("runic_connector", "Runic Connector", () -> new JOrientableBlock(JBlockProperties.BRICK_PROPS.create()),
+				"runic_connector",
+				"smooth_corrupted_blood_rock",
+				"smooth_corrupted_blood_rock");
+
+		registerEmissiveRenderedBlock("charged_runic_connector", "Charged Runic Connector", () -> new JOrientableBlock(JBlockProperties.BRICK_PROPS.create()),
+				JBlockStateResources.orientableState(JITL.bml("block/charged_runic_connector")),
+				BlockModels.cubeTopModel(JITL.tl("block/runic_connector"), JITL.tl("block/smooth_corrupted_blood_rock")),
+				BlockModels.cubeTopModel(JITL.tl("block/runic_connector_charged"), JITL.tl("block/blank")));
 
 		registerDefaultBlock("sapphire_block", "Sapphire Block");
 		registerSpeciallyRenderedBlock("lunium_block", "Lunium Block", () -> new JBlock(JBlockProperties.LUNIUM_BLOCK_PROPS.create().lightLevel((state) -> 5)));
@@ -131,32 +148,44 @@ public class BlockRegistrator {
 		registerDefaultBlock("laser_emitter", "Laser Emitter", () -> new LaserEmitterBlock(JBlockProperties.STONE_PROPS.create().noOcclusion()));
 	}
 
-    private static void registerDefaultBlock(String name, String enName, Supplier<Block> blockSupplier) {
-        REGISTER.register(name, blockSupplier)
-                .genLangEntry(enName)
-                .regDefaultBlockItem(JTabs.BLOCKS)
-                .genDefaultStateAndModel();
-    }
+	/**
+	 * Registers a block with a default model and blockstate
+	 */
+	private static void registerDefaultBlock(String name, String enName, Supplier<Block> blockSupplier) {
+		REGISTER.register(name, blockSupplier)
+				.genLangEntry(enName)
+				.regDefaultBlockItem(JTabs.BLOCKS)
+				.genDefaultStateAndModel();
+	}
 
-    private static RegistryObject<Block> registerDefaultBlock(String name, String enName) {
-        return REGISTER.register(name, () -> new Block
-                (JBlockProperties.STONE_PROPS.create()))
-                .genLangEntry(enName)
-                .regDefaultBlockItem(JTabs.BLOCKS)
-                .genDefaultStateAndModel()
-                .asRegistryObject();
-    }
+	/**
+	 * Registers a block with a default model, blockstate, and stone properties as a registry object
+	 */
+	private static RegistryObject<Block> registerDefaultBlock(String name, String enName) {
+		return REGISTER.register(name, () -> new Block
+				(JBlockProperties.STONE_PROPS.create()))
+				.genLangEntry(enName)
+				.regDefaultBlockItem(JTabs.BLOCKS)
+				.genDefaultStateAndModel()
+				.asRegistryObject();
+	}
 
-    private static RegistryObject<Block> registerBlock(String name, String enName, Supplier<Block> blockSupplier) {
-        return REGISTER.register(name, blockSupplier)
-                .genLangEntry(enName)
-                .regDefaultBlockItem(JTabs.BLOCKS)
-                .genDefaultStateAndModel()
-                .asRegistryObject();
-    }
+	/**
+	 * Registers a block with a default model and blockstate as a registry object
+	 */
+	private static RegistryObject<Block> registerBlock(String name, String enName, Supplier<Block> blockSupplier) {
+		return REGISTER.register(name, blockSupplier)
+				.genLangEntry(enName)
+				.regDefaultBlockItem(JTabs.BLOCKS)
+				.genDefaultStateAndModel()
+				.asRegistryObject();
+	}
 
-    private static void registerStairs(String name, String enName, RegistryObject<? extends Block> sourceBlock, AbstractBlock.Properties properties) {
-        REGISTER.register(name, () -> new StairsBlock(Blocks.AIR::defaultBlockState, properties))
+	/**
+	 * Registers a 'stairs' block
+	 */
+	private static void registerStairs(String name, String enName, RegistryObject<? extends Block> sourceBlock, AbstractBlock.Properties properties) {
+		REGISTER.register(name, () -> new StairsBlock(Blocks.AIR::defaultBlockState, properties))
 				.also(chain -> {
 					BlockModelLocation stairs = new BlockModelLocation(chain.getModId(), name);
 					BlockModelLocation innerStairs = new BlockModelLocation(chain.getModId(), name + "/inner");
@@ -170,10 +199,13 @@ public class BlockRegistrator {
 					BlockStateResource state = BlockStateResources.stairs(stairs, innerStairs, outerStairs);
 					chain.genState(state);
 				})
-                .regDefaultBlockItem(JTabs.BLOCKS)
-                .genLangEntry(enName);
-    }
+				.regDefaultBlockItem(JTabs.BLOCKS)
+				.genLangEntry(enName);
+	}
 
+	/**
+	 * Registers a 'JOreBlock' block, with ore properties
+	 */
 	private static void registerOreBlock(String name, String enName, EnumHarvestLevel harvestLevel, int minExp) {
 		REGISTER.register(name, () -> new JOreBlock
 				(JBlockProperties.ORE_PROPS.create()
@@ -184,6 +216,10 @@ public class BlockRegistrator {
 				.genDefaultStateAndModel();
 	}
 
+	/**
+	 * For blocks with special rendering that isn't already provided by the available BlockModels or BlockStateResources that are available
+	 * For available BlockStates and BlockModels, see {@link JBlockStateResources}, {@link JBlockModels}, and {@link BlockModels}
+	 */
 	private static void registerSpeciallyRenderedBlock(String name, String enName, Supplier<Block> blockSupplier) {
 		REGISTER.register(name, blockSupplier)
 				.genLangEntry(enName)
@@ -191,15 +227,21 @@ public class BlockRegistrator {
 				.genDefaultState(new BlockModelLocation(JITL.MODID, "block/" + name));
 	}
 
+	/**
+	 * Registers a block with a "block/cube_column" model type
+	 */
 	private static void registerColumnRenderedBlock(String name, String enName, Supplier<Block> blockSupplier, String topTexture, String sideTexture) {
 		REGISTER.register(name, blockSupplier)
 				.genLangEntry(enName)
 				.regDefaultBlockItem(JTabs.BLOCKS)
-				.genDefaultState(JITL.bml("block/" + name))
+				.genState(JBlockStateResources.rotatablePillarState(JITL.bml("block/" + name)))
 				.genModel(JITL.bml("block/" + name),
 						() -> BlockModels.cubeColumnModel(JITL.tl("block/" + topTexture), JITL.tl("block/" + sideTexture)));
 	}
 
+	/**
+	 * Registers a block with emissive rendering
+	 */
 	private static void registerEmissiveRenderedBlock(String name, String enName, Supplier<Block> blockSupplier, BlockModel normal, BlockModel emissive) {
 		REGISTER.register(name, blockSupplier)
 				.genLangEntry(enName)
@@ -209,11 +251,26 @@ public class BlockRegistrator {
 						() -> JBlockModels.emissive(normal, emissive));
 	}
 
+	/**
+	 * Registers a block with emissive rendering, with {@link BlockStateResource} for custom BlockState properties
+	 */
+	private static void registerEmissiveRenderedBlock(String name, String enName, Supplier<Block> blockSupplier, BlockStateResource blockStateResource, BlockModel normal, BlockModel emissive) {
+		REGISTER.register(name, blockSupplier)
+				.genLangEntry(enName)
+				.regDefaultBlockItem(JTabs.BLOCKS)
+				.genState(blockStateResource)
+				.genModel(JITL.bml("block/" + name),
+						() -> JBlockModels.emissive(normal, emissive));
+	}
+
+	/**
+	 * Registers a block with an orientable BlockState, for rotatable blocks.
+	 */
 	private static void registerOrientableRenderedBlock(String name, String enName, Supplier<Block> blockSupplier, String topTexture, String sideTexture, String frontTexture) {
 		REGISTER.register(name, blockSupplier)
 				.genLangEntry(enName)
 				.regDefaultBlockItem(JTabs.BLOCKS)
-				.genDefaultState(JITL.bml("block/" + name))
+				.genState(JBlockStateResources.orientableState(JITL.bml("block/" + name)))
 				.genModel(JITL.bml("block/" + name),
 						() -> JBlockModels.cubeOrientableModel(
 								JITL.tl("block/" + topTexture),
@@ -221,17 +278,9 @@ public class BlockRegistrator {
 								JITL.tl("block/" + frontTexture)));
 	}
 
-	private static void registerPillarRenderedBlock(String name, String enName, Supplier<Block> blockSupplier, String topTexture, String sideTexture) {
-		REGISTER.register(name, blockSupplier)
-				.genLangEntry(enName)
-				.regDefaultBlockItem(JTabs.BLOCKS)
-				.genDefaultState(JITL.bml("block/" + name))
-				.genModel(JITL.bml("block/" + name),
-						() -> BlockModels.cubeColumnModel(
-								JITL.tl("block/" + topTexture),
-								JITL.tl("block/" + sideTexture)));
-	}
-
+	/**
+	 * Registers a berry bush block
+	 */
 	//TODO remove itemblock, bind berry bush to 'berries' item
 	private static void registerBerryBushBlock(String name, String enName, Supplier<IItemProvider> itemProviderSupplier) {
 		REGISTER.register(name, () -> new JBerryBushBlock(

@@ -40,6 +40,11 @@ public class JBlocks {
 	public static final Block BLOOD_RUNE_LIFE = promise();
 	public static final Block BLOOD_RUNE_DEATH = promise();
 
+	public static final Block CORRUPTED_BLOOD_ROCK = promise();
+	public static final Block SMOOTH_CORRUPTED_BLOOD_ROCK = promise();
+	public static final Block RUNIC_CONNECTOR = promise();
+	public static final Block CHARGED_RUNIC_CONNECTOR = promise();
+
 	public static final Block WARPED_QUARTZ_ORE = promise();
 	public static final Block CRIMSON_QUARTZ_ORE = promise();
 
