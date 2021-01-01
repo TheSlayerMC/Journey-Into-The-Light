@@ -15,6 +15,7 @@ import net.jitl.util.JBlockProperties;
 import net.minecraft.block.*;
 import net.minecraft.util.IItemProvider;
 import net.minecraftforge.fml.RegistryObject;
+import ru.timeconqueror.timecore.api.client.resource.BlockModel;
 import ru.timeconqueror.timecore.api.client.resource.BlockModels;
 import ru.timeconqueror.timecore.api.client.resource.BlockStateResource;
 import ru.timeconqueror.timecore.api.client.resource.BlockStateResources;
@@ -71,10 +72,21 @@ public class BlockRegistrator {
 		registerDefaultBlock("carved_blood_rock", "Carved Blood Rock", () -> new JBlock(JBlockProperties.BRICK_PROPS.create()));
 		registerDefaultBlock("empty_blood_rune", "Empty Blood Rune", () -> new BloodRuneBlock(JBlockProperties.BRICK_PROPS.create()));
 		registerColumnRenderedBlock("blood_rock_pillar", "Block Rock Pillar", () -> new RotatedPillarBlock(JBlockProperties.BRICK_PROPS.create()), "smooth_blood_rock", "blood_rock_pillar_side");
-		registerEmissiveAllRenderedBlock("blood_rune_soul", "Blood Rune Of Soul", () -> new JBlock(JBlockProperties.BRICK_PROPS.create()), "blood_rune_soul_back", "blood_rune_soul_front");
-		registerEmissiveAllRenderedBlock("blood_rune_flesh", "Blood Rune Of Flesh", () -> new JBlock(JBlockProperties.BRICK_PROPS.create()), "blood_rune_flesh_back", "blood_rune_flesh_front");
-		registerEmissiveAllRenderedBlock("blood_rune_life", "Blood Rune Of Life", () -> new JBlock(JBlockProperties.BRICK_PROPS.create()), "blood_rune_life_back", "blood_rune_life_front");
-		registerEmissiveAllRenderedBlock("blood_rune_death", "Blood Rune Of Death", () -> new JBlock(JBlockProperties.BRICK_PROPS.create()), "blood_rune_death_back", "blood_rune_death_front");
+		registerEmissiveRenderedBlock("blood_rune_soul", "Blood Rune Of Soul", () -> new JBlock(JBlockProperties.BRICK_PROPS.create()),
+				BlockModels.cubeTopModel(JITL.tl("block/blood_rune_soul_back"), JITL.tl("block/empty_blood_rune")),
+				BlockModels.cubeTopModel(JITL.tl("block/blood_rune_soul_front"), JITL.tl("block/blank")));
+
+		registerEmissiveRenderedBlock("blood_rune_flesh", "Blood Rune Of Flesh", () -> new JBlock(JBlockProperties.BRICK_PROPS.create()),
+				BlockModels.cubeTopModel(JITL.tl("block/blood_rune_flesh_back"), JITL.tl("block/empty_blood_rune")),
+				BlockModels.cubeTopModel(JITL.tl("block/blood_rune_flesh_front"), JITL.tl("block/blank")));
+
+		registerEmissiveRenderedBlock("blood_rune_life", "Blood Rune Of Life", () -> new JBlock(JBlockProperties.BRICK_PROPS.create()),
+				BlockModels.cubeTopModel(JITL.tl("block/blood_rune_life_back"), JITL.tl("block/empty_blood_rune")),
+				BlockModels.cubeTopModel(JITL.tl("block/blood_rune_life_front"), JITL.tl("block/blank")));
+
+		registerEmissiveRenderedBlock("blood_rune_death", "Blood Rune Of Death", () -> new JBlock(JBlockProperties.BRICK_PROPS.create()),
+				BlockModels.cubeTopModel(JITL.tl("block/blood_rune_death_back"), JITL.tl("block/empty_blood_rune")),
+				BlockModels.cubeTopModel(JITL.tl("block/blood_rune_death_front"), JITL.tl("block/blank")));
 
 		registerDefaultBlock("sapphire_block", "Sapphire Block");
 		registerSpeciallyRenderedBlock("lunium_block", "Lunium Block", () -> new JBlock(JBlockProperties.LUNIUM_BLOCK_PROPS.create().lightLevel((state) -> 5)));
@@ -188,13 +200,13 @@ public class BlockRegistrator {
 						() -> BlockModels.cubeColumnModel(JITL.tl("block/" + topTexture), JITL.tl("block/" + sideTexture)));
 	}
 
-	private static void registerEmissiveAllRenderedBlock(String name, String enName, Supplier<Block> blockSupplier, String backTexture, String frontTexture) {
+	private static void registerEmissiveRenderedBlock(String name, String enName, Supplier<Block> blockSupplier, BlockModel normal, BlockModel emissive) {
 		REGISTER.register(name, blockSupplier)
 				.genLangEntry(enName)
 				.regDefaultBlockItem(JTabs.BLOCKS)
 				.genDefaultState(JITL.bml("block/" + name))
 				.genModel(JITL.bml("block/" + name),
-						() -> JBlockModels.emissiveCubeAll(JITL.tl("block/" + backTexture), JITL.tl("block/" + frontTexture)));
+						() -> JBlockModels.emissive(normal, emissive));
 	}
 
 	private static void registerOrientableRenderedBlock(String name, String enName, Supplier<Block> blockSupplier, String topTexture, String sideTexture, String frontTexture) {

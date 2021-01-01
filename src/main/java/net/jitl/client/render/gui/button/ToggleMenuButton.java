@@ -27,8 +27,8 @@ public class ToggleMenuButton extends JImageButton {
 	public void renderButton(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
 		super.renderButton(matrixStack, mouseX, mouseY, partialTicks);
 		if (isHovered()) {
-			ITextComponent textkey = menuEnabled ? DISABLE_JITL_MENU : ENABLE_JITL_MENU;
-			JRenderUtils.Text.renderTooltip(matrixStack, textkey, 16, 0, TEXT_WIDTH, TEXT_HEIGHT);
+			ITextComponent textKey = menuEnabled ? DISABLE_JITL_MENU : ENABLE_JITL_MENU;
+			JRenderUtils.Text.renderTooltip(matrixStack, textKey, 16, 0, TEXT_WIDTH, TEXT_HEIGHT);
 		}
 	}
 }
