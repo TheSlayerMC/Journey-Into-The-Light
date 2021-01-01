@@ -2,6 +2,7 @@ package net.jitl.init.internal;
 
 import net.jitl.JITL;
 import net.jitl.client.render.JBlockModels;
+import net.jitl.client.render.JBlockStates;
 import net.jitl.common.block.JOreBlock;
 import net.jitl.common.block.LaserEmitterBlock;
 import net.jitl.common.block.base.BloodRuneBlock;
@@ -72,21 +73,34 @@ public class BlockRegistrator {
 		registerDefaultBlock("carved_blood_rock", "Carved Blood Rock", () -> new JBlock(JBlockProperties.BRICK_PROPS.create()));
 		registerDefaultBlock("empty_blood_rune", "Empty Blood Rune", () -> new BloodRuneBlock(JBlockProperties.BRICK_PROPS.create()));
 		registerColumnRenderedBlock("blood_rock_pillar", "Block Rock Pillar", () -> new RotatedPillarBlock(JBlockProperties.BRICK_PROPS.create()), "smooth_blood_rock", "blood_rock_pillar_side");
+
 		registerEmissiveRenderedBlock("blood_rune_soul", "Blood Rune Of Soul", () -> new JBlock(JBlockProperties.BRICK_PROPS.create()),
-				BlockModels.cubeTopModel(JITL.tl("block/blood_rune_soul_back"), JITL.tl("block/empty_blood_rune")),
+				BlockModels.cubeTopModel(JITL.tl("block/empty_blood_rune"), JITL.tl("block/empty_blood_rune")),
 				BlockModels.cubeTopModel(JITL.tl("block/blood_rune_soul_front"), JITL.tl("block/blank")));
 
 		registerEmissiveRenderedBlock("blood_rune_flesh", "Blood Rune Of Flesh", () -> new JBlock(JBlockProperties.BRICK_PROPS.create()),
-				BlockModels.cubeTopModel(JITL.tl("block/blood_rune_flesh_back"), JITL.tl("block/empty_blood_rune")),
+				BlockModels.cubeTopModel(JITL.tl("block/empty_blood_rune"), JITL.tl("block/empty_blood_rune")),
 				BlockModels.cubeTopModel(JITL.tl("block/blood_rune_flesh_front"), JITL.tl("block/blank")));
 
 		registerEmissiveRenderedBlock("blood_rune_life", "Blood Rune Of Life", () -> new JBlock(JBlockProperties.BRICK_PROPS.create()),
-				BlockModels.cubeTopModel(JITL.tl("block/blood_rune_life_back"), JITL.tl("block/empty_blood_rune")),
+				BlockModels.cubeTopModel(JITL.tl("block/empty_blood_rune"), JITL.tl("block/empty_blood_rune")),
 				BlockModels.cubeTopModel(JITL.tl("block/blood_rune_life_front"), JITL.tl("block/blank")));
 
 		registerEmissiveRenderedBlock("blood_rune_death", "Blood Rune Of Death", () -> new JBlock(JBlockProperties.BRICK_PROPS.create()),
-				BlockModels.cubeTopModel(JITL.tl("block/blood_rune_death_back"), JITL.tl("block/empty_blood_rune")),
+				BlockModels.cubeTopModel(JITL.tl("block/empty_blood_rune"), JITL.tl("block/empty_blood_rune")),
 				BlockModels.cubeTopModel(JITL.tl("block/blood_rune_death_front"), JITL.tl("block/blank")));
+
+		registerDefaultBlock("corrupted_blood_rock", "Corrupted Blood Rock", () -> new JBlock(JBlockProperties.NETHER_BASALT_ORE_PROPS.create()));
+		registerDefaultBlock("smooth_corrupted_blood_rock", "Smooth Corrupted Blood Rock", () -> new JBlock(JBlockProperties.BRICK_PROPS.create()));
+
+		registerOrientableRenderedBlock("runic_connector", "Runic Connector", () -> new JOrientableBlock(JBlockProperties.BRICK_PROPS.create()),
+				"runic_connector",
+				"smooth_corrupted_blood_rock",
+				"smooth_corrupted_blood_rock");
+
+		registerOrientableEmissiveRenderedBlock("charged_runic_connector", "Charged Runic Connector", () -> new JOrientableBlock(JBlockProperties.BRICK_PROPS.create()),
+				BlockModels.cubeTopModel(JITL.tl("block/runic_connector"), JITL.tl("block/smooth_corrupted_blood_rock")),
+				BlockModels.cubeTopModel(JITL.tl("block/runic_connector_charged"), JITL.tl("block/blank")));
 
 		registerDefaultBlock("sapphire_block", "Sapphire Block");
 		registerSpeciallyRenderedBlock("lunium_block", "Lunium Block", () -> new JBlock(JBlockProperties.LUNIUM_BLOCK_PROPS.create().lightLevel((state) -> 5)));
@@ -209,27 +223,25 @@ public class BlockRegistrator {
 						() -> JBlockModels.emissive(normal, emissive));
 	}
 
+	private static void registerOrientableEmissiveRenderedBlock(String name, String enName, Supplier<Block> blockSupplier, BlockModel normal, BlockModel emissive) {
+		REGISTER.register(name, blockSupplier)
+				.genLangEntry(enName)
+				.regDefaultBlockItem(JTabs.BLOCKS)
+				.genState(JBlockStates.orientableState(JITL.bml("block/" + name)))
+				.genModel(JITL.bml("block/" + name),
+						() -> JBlockModels.emissive(normal, emissive));
+	}
+
 	private static void registerOrientableRenderedBlock(String name, String enName, Supplier<Block> blockSupplier, String topTexture, String sideTexture, String frontTexture) {
 		REGISTER.register(name, blockSupplier)
 				.genLangEntry(enName)
 				.regDefaultBlockItem(JTabs.BLOCKS)
-				.genDefaultState(JITL.bml("block/" + name))
+				.genState(JBlockStates.orientableState(JITL.bml("block/" + name)))
 				.genModel(JITL.bml("block/" + name),
 						() -> JBlockModels.cubeOrientableModel(
 								JITL.tl("block/" + topTexture),
 								JITL.tl("block/" + sideTexture),
 								JITL.tl("block/" + frontTexture)));
-	}
-
-	private static void registerPillarRenderedBlock(String name, String enName, Supplier<Block> blockSupplier, String topTexture, String sideTexture) {
-		REGISTER.register(name, blockSupplier)
-				.genLangEntry(enName)
-				.regDefaultBlockItem(JTabs.BLOCKS)
-				.genDefaultState(JITL.bml("block/" + name))
-				.genModel(JITL.bml("block/" + name),
-						() -> BlockModels.cubeColumnModel(
-								JITL.tl("block/" + topTexture),
-								JITL.tl("block/" + sideTexture)));
 	}
 
 	//TODO remove itemblock, bind berry bush to 'berries' item

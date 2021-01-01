@@ -29,6 +29,7 @@ public class ModelLoadingHandler {
         RenderTypeLookup.setRenderLayer(JBlocks.BLOOD_RUNE_SOUL, RenderType.cutout());
         RenderTypeLookup.setRenderLayer(JBlocks.BLOOD_RUNE_FLESH, RenderType.cutout());
 
+        RenderTypeLookup.setRenderLayer(JBlocks.CHARGED_RUNIC_CONNECTOR, RenderType.cutout());
     }
 
 //    private static void onRegisterBlockColors(ColorHandlerEvent.Block event) {
