@@ -53,7 +53,7 @@ public class RuinsFeature extends Feature<RuinsFeatureConfig> {
 				if (rand.nextInt(4) == 0) {
 					BlockPos chestPos = new BlockPos(pos.getX(), yPos, pos.getZ());
 					if (config.spawnBlock.test(reader.getBlockState(chestPos.below()), rand) && reader.getBlockState(chestPos).getBlock().is(Blocks.AIR)) {
-						BlockState chestState = Blocks.CHEST.defaultBlockState().setValue(ChestBlock.FACING, getRandomFacing(rand));
+						BlockState chestState = Blocks.CHEST.defaultBlockState().setValue(ChestBlock.FACING, Direction.Plane.HORIZONTAL.getRandomDirection(rand));
 						reader.setBlock(chestPos, chestState, 2);
 						LockableLootTileEntity.setLootTable(reader, rand, chestPos, config.lootWeightedList.getOne(rand));
 					}
