@@ -116,7 +116,7 @@ public class BlockRegistrator {
 
 		registerDefaultBlock("euca_brick", "Euca Brick");
 
-		registerDefaultBlock("laser_emitter", "Laser Emitter", () -> new LaserEmitterBlock(JBlockProperties.STONE_PROPS.create()));
+		registerDefaultBlock("laser_emitter", "Laser Emitter", () -> new LaserEmitterBlock(JBlockProperties.STONE_PROPS.create().noOcclusion()));
 	}
 
     private static void registerDefaultBlock(String name, String enName, Supplier<Block> blockSupplier) {
