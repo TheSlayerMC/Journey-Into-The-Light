@@ -22,9 +22,7 @@ public class JRenderTypes extends RenderType {
                 true,
                 RenderType.State.builder()
                         .setTextureState(new TextureState(location, false/*blur*/, false/*mipmap*/))
-                        .setTransparencyState(RenderState.TRANSLUCENT_TRANSPARENCY)
-                        .setWriteMaskState(RenderState.COLOR_DEPTH_WRITE)
-                        .setOutputState(RenderState.WEATHER_TARGET)
+                        .setAlphaState(RenderState.MIDWAY_ALPHA)
                         .createCompositeState(false));
     }
 

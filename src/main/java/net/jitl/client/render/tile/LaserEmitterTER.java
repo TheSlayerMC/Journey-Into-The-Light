@@ -10,6 +10,7 @@ import net.jitl.util.VecUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ActiveRenderInfo;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.util.ResourceLocation;
@@ -24,7 +25,10 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.model.animation.Animation;
 import ru.timeconqueror.timecore.client.render.model.TimeModel;
 
+//TODO optimize - TimeCore- add registry for buffers to endBatch them in WorldRenderer to heavily increase FPS
 public class LaserEmitterTER extends TileEntityRenderer<LaserEmitterTile> {
+    private static final RenderType TYPE_LASER_BEAM = JRenderTypes.laserBeam(JITL.rl("textures/tile/laser_beam.png"));
+    private static final Vector3d BLOCK_CENTER = new Vector3d(0.5, 0.5, 0.5);
 
     public LaserEmitterTER(TileEntityRendererDispatcher rendererDispatcherIn) {
         super(rendererDispatcherIn);
@@ -37,7 +41,7 @@ public class LaserEmitterTER extends TileEntityRenderer<LaserEmitterTile> {
 
         float gameTime = Animation.getWorldTime(world, partialTicks) * 20;
         float angleDegrees = gameTime % 360;
-        Quaternion rotationQuaternion = Vector3f.YP.rotationDegrees(0);
+        Quaternion rotationQuaternion = Vector3f.YP.rotationDegrees(angleDegrees);
 
         renderModel(Models.fullCube, JITL.rl("textures/block/laser_emitter.png"), rotationQuaternion, matrixStackIn, bufferIn, combinedLightIn, combinedOverlayIn);
 
@@ -46,24 +50,25 @@ public class LaserEmitterTER extends TileEntityRenderer<LaserEmitterTile> {
         beamEndVec.transform(rotationQuaternion);
 
         BlockPos emitterPos = tile.getBlockPos();
-        Vector3d posVec = VecUtils.vec3d(emitterPos).add(0.5, 0.5, 0.5);
+        Vector3d posVec = VecUtils.vec3d(emitterPos);
 
-        Vector3d endNormalized = new Vector3d(beamEndVec).normalize();
+        Vector3f beamStartVec = new Vector3f(0.5F, 0, 0);
+        beamStartVec.transform(rotationQuaternion);
+        VecUtils.addToFirst(beamStartVec, BLOCK_CENTER);
 
-//        Vector3f testStart = new Vector3f(0.5F, 0, 0);
-//        testStart.transform(rotationQuaternion);
-//        testStart.add(0.5F, 0.5F, 0.5F);
+        Vector3f blockSide = new Vector3f(1F, 0, 0);
+        blockSide.transform(rotationQuaternion);
+        VecUtils.cubify(blockSide, 1, 1, 1);
+        VecUtils.addToFirst(blockSide, BLOCK_CENTER);
+
 //        IVertexBuilder buffer = bufferIn.getBuffer(RenderType.lines());
 //        Matrix4f pose = matrixStackIn.last().pose();
-//        buffer.vertex(pose, testStart.x(), testStart.y(), testStart.z()).color(255, 255, 255, 255).endVertex();
-//        buffer.vertex(pose, testStart.x(),  testStart.y() + 16, testStart.z()).color(255, 255, 255, 255).endVertex();
-
-        BlockRayTraceResult rayTraceResult = world.clip(new RayTraceContext(posVec.add(endNormalized.x, 0, endNormalized.z), posVec.add(beamEndVec.x(), beamEndVec.y(), beamEndVec.z()), RayTraceContext.BlockMode.VISUAL, RayTraceContext.FluidMode.NONE, null));
+//        buffer.vertex(pose, blockSide.x(), blockSide.y(), blockSide.z()).color(255, 255, 255, 255).endVertex();
+//        buffer.vertex(pose, blockSide.x(), blockSide.y() + 16, blockSide.z()).color(255, 255, 255, 255).endVertex();
+        BlockRayTraceResult rayTraceResult = world.clip(new RayTraceContext(VecUtils.add(posVec, blockSide), VecUtils.add(posVec, beamEndVec), RayTraceContext.BlockMode.VISUAL, RayTraceContext.FluidMode.NONE, null));
         Vector3d endPos = rayTraceResult.getLocation();
 
-//        System.out.println("endPos.subtract(VecUtils.vec3d(emitterPos)) = " + endPos.subtract(VecUtils.vec3d(emitterPos)));
-        renderBeam(emitterPos, gameTime, matrixStackIn, bufferIn, new Vector3d(0.5, 0.5, 0.5), endPos.subtract(VecUtils.vec3d(emitterPos)));
-//        renderBeam(emitterPos, gameTime, matrixStackIn, bufferIn, new Vector3d(0.5, 0.5, 0.5), new Vector3d(20.5, 1, 0.5));
+        renderBeam(emitterPos, gameTime, matrixStackIn, bufferIn, VecUtils.vec3d(beamStartVec), endPos.subtract(posVec));
     }
 
     public static void renderModel(TimeModel model, ResourceLocation texture, Quaternion rotationQuaternion, MatrixStack matrixStack, IRenderTypeBuffer buffer, int combinedLightIn, int combinedOverlayIn) {
@@ -82,7 +87,7 @@ public class LaserEmitterTER extends TileEntityRenderer<LaserEmitterTile> {
     public static void renderBeam(BlockPos pos, float gameTime, MatrixStack stack, IRenderTypeBuffer bufferIn, Vector3d startIn, Vector3d endIn) {
         Vector3f start = new Vector3f(startIn);
         Vector3f end = new Vector3f(endIn);
-        IVertexBuilder bufferBuilder = bufferIn.getBuffer(JRenderTypes.laserBeam(JITL.rl("textures/tile/laser_beam.png")));
+        IVertexBuilder bufferBuilder = bufferIn.getBuffer(TYPE_LASER_BEAM);
 
         MatrixStack.Entry last = stack.last();
         Matrix4f posMatrix = last.pose();
@@ -110,9 +115,6 @@ public class LaserEmitterTER extends TileEntityRenderer<LaserEmitterTile> {
         perpendicular.cross(startToCamera);
         perpendicular.normalize();
         perpendicular.mul(radius); // perpendicular to beam and camera
-
-//        Vector3d startToLeft = startToEnd.cross(startToCamera).normalize().scale(radius);
-//        Vector3d startToRight = startToLeft.scale(-1);
 
         bufferBuilder.vertex(posMatrix, start.x() + perpendicular.x(), start.y() + perpendicular.y(), start.z() + perpendicular.z()).uv(endU, 0).endVertex();
         bufferBuilder.vertex(posMatrix, end.x() + perpendicular.x(), end.y() + perpendicular.y(), end.z() + perpendicular.z()).uv(startU, 0).endVertex();
