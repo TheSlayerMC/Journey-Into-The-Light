@@ -13,7 +13,6 @@ import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.Feature;
 import org.jetbrains.annotations.NotNull;
-import ru.timeconqueror.timecore.api.util.RandHelper;
 
 import java.util.Random;
 
@@ -21,10 +20,6 @@ public class RuinsFeature extends Feature<RuinsFeatureConfig> {
 
 	public RuinsFeature(Codec<RuinsFeatureConfig> codec) {
 		super(codec);
-	}
-
-	public Direction getRandomFacing(Random rand) {
-		return RandHelper.chooseEqually(rand, Direction.EAST, Direction.WEST, Direction.NORTH, Direction.SOUTH);
 	}
 
 	@Override
