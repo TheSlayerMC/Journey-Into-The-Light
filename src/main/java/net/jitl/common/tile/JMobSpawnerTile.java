@@ -40,7 +40,7 @@ public class JMobSpawnerTile extends TileEntity implements ITickableTileEntity {
     };
 
     public JMobSpawnerTile() {
-        super(JTiles.MOB_SPAWNER);
+        super(JTiles.JMOB_SPAWNER);
     }
 
     @Override

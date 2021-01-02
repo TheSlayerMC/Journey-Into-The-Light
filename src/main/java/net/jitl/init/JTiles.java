@@ -15,7 +15,7 @@ import static ru.timeconqueror.timecore.api.util.Hacks.promise;
 public class JTiles {
 
     public static final TileEntityType<LaserEmitterTile> LASER_EMITTER = promise();
-    public static final TileEntityType<JMobSpawnerTile> MOB_SPAWNER = promise();
+    public static final TileEntityType<JMobSpawnerTile> JMOB_SPAWNER = promise();
 
     private static class Registrator {
         @AutoRegistrable
