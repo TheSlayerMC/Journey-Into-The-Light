@@ -2,6 +2,7 @@ package net.jitl.util;
 
 import net.jitl.init.JSoundTypes;
 import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.common.ToolType;
@@ -100,10 +101,11 @@ public class JBlockProperties {
 			.sound(SoundType.SWEET_BERRY_BUSH)
 			.randomTicks()
 			.noCollission());
-	public static final AbstractBlock.Properties SPAWNER_PROPS = AbstractBlock.Properties.of
+	public static final BlockPropsFactory SPAWNER_PROPS = new BlockPropsFactory(() -> AbstractBlock.Properties.of
 			(Material.STONE)
 			.sound(SoundType.METAL)
 			.requiresCorrectToolForDrops()
 			.noOcclusion()
-			.strength(1.5F, 6.0F);
+			.isViewBlocking(false)
+			.strength(1.5F, 6.0F));
 }
