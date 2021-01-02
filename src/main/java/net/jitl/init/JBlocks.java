@@ -85,4 +85,7 @@ public class JBlocks {
 	public static final Block EUCA_BRICK = promise();
 
 	public static final Block LASER_EMITTER = promise();
+
+	public static final Block TEST_SPAWNER = promise();
+
 }

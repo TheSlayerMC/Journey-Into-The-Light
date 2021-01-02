@@ -100,4 +100,10 @@ public class JBlockProperties {
 			.sound(SoundType.SWEET_BERRY_BUSH)
 			.randomTicks()
 			.noCollission());
+	public static final AbstractBlock.Properties SPAWNER_PROPS = AbstractBlock.Properties.of
+			(Material.STONE)
+			.sound(SoundType.METAL)
+			.requiresCorrectToolForDrops()
+			.noOcclusion()
+			.strength(1.5F, 6.0F);
 }

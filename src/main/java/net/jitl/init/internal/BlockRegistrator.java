@@ -4,12 +4,14 @@ import net.jitl.JITL;
 import net.jitl.client.render.JBlockModels;
 import net.jitl.client.render.JBlockStateResources;
 import net.jitl.common.block.JOreBlock;
+import net.jitl.common.block.JSpawnerBlock;
 import net.jitl.common.block.LaserEmitterBlock;
 import net.jitl.common.block.base.BloodRuneBlock;
 import net.jitl.common.block.base.JBerryBushBlock;
 import net.jitl.common.block.base.JBlock;
 import net.jitl.common.block.base.JOrientableBlock;
 import net.jitl.common.helper.EnumHarvestLevel;
+import net.jitl.init.JEntityTypes;
 import net.jitl.init.JItems;
 import net.jitl.init.JTabs;
 import net.jitl.util.JBlockProperties;
@@ -146,6 +148,7 @@ public class BlockRegistrator {
 		registerDefaultBlock("euca_brick", "Euca Brick");
 
 		registerDefaultBlock("laser_emitter", "Laser Emitter", () -> new LaserEmitterBlock(JBlockProperties.STONE_PROPS.create().noOcclusion()));
+		registerDefaultBlock("test_spawner", "Test Spawner", () -> new JSpawnerBlock(JEntityTypes.FLORO_TYPE));
 	}
 
 	/**
