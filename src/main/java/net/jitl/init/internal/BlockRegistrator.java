@@ -272,7 +272,7 @@ public class BlockRegistrator {
 				.regDefaultBlockItem(JTabs.BLOCKS)
 				.genState(JBlockStateResources.orientableState(JITL.bml("block/" + name)))
 				.genModel(JITL.bml("block/" + name),
-						() -> JBlockModels.cubeOrientableModel(
+						() -> BlockModels.cubeOrientableModel(
 								JITL.tl("block/" + topTexture),
 								JITL.tl("block/" + sideTexture),
 								JITL.tl("block/" + frontTexture)));
