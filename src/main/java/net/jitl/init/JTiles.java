@@ -15,7 +15,7 @@ import static ru.timeconqueror.timecore.api.util.Hacks.promise;
 public class JTiles {
 
     public static final TileEntityType<LaserEmitterTile> LASER_EMITTER = promise();
-    public static final TileEntityType<JMobSpawnerTile> JMOB_SPAWNER = promise();
+    public static final TileEntityType<JMobSpawnerTile> MOB_SPAWNER = promise();
 
     private static class Registrator {
         @AutoRegistrable
@@ -24,7 +24,7 @@ public class JTiles {
         @AutoRegistrable.InitMethod
         private static void register() {
             REGISTER.registerSingleBound("laser_emitter", LaserEmitterTile::new, () -> JBlocks.LASER_EMITTER).regCustomRenderer(() -> LaserEmitterTER::new);
-            REGISTER.registerSingleBound("jmob_spawner", JMobSpawnerTile::new, () -> JBlocks.TEST_SPAWNER);
+            REGISTER.registerSingleBound("mob_spawner", JMobSpawnerTile::new, () -> JBlocks.TEST_SPAWNER);
         }
     }
 }

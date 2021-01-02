@@ -1,7 +1,5 @@
 package net.jitl.common.tile;
 
-import javax.annotation.Nullable;
-
 import net.jitl.init.JTiles;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -13,6 +11,8 @@ import net.minecraft.util.WeightedSpawnerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.spawner.AbstractSpawner;
+
+import javax.annotation.Nullable;
 
 public class JMobSpawnerTile extends TileEntity implements ITickableTileEntity {
 
@@ -40,7 +40,7 @@ public class JMobSpawnerTile extends TileEntity implements ITickableTileEntity {
     };
 
     public JMobSpawnerTile() {
-        super(JTiles.JMOB_SPAWNER);
+        super(JTiles.MOB_SPAWNER);
     }
 
     @Override
@@ -76,7 +76,7 @@ public class JMobSpawnerTile extends TileEntity implements ITickableTileEntity {
 
     @Override
     public boolean triggerEvent(int id, int type) {
-        return this.spawner.onEventTriggered(id) ? true : super.triggerEvent(id, type);
+        return this.spawner.onEventTriggered(id) || super.triggerEvent(id, type);
     }
 
     @Override
