@@ -106,6 +106,6 @@ public class JBlockProperties {
 			.sound(SoundType.METAL)
 			.requiresCorrectToolForDrops()
 			.noOcclusion()
-			.isViewBlocking(false)
+			//.isViewBlocking(Blocks::never) why tf is it private
 			.strength(1.5F, 6.0F));
 }
