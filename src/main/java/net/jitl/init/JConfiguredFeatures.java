@@ -42,7 +42,7 @@ public class JConfiguredFeatures {
             REGISTER.register("patch_bradberry_bush", Decoration.VEGETAL_DECORATION, surfacePatchFeature(
                     () -> JBlocks.BRADBERRY_BUSH.defaultBlockState(),
                     () -> Blocks.GRASS_BLOCK.defaultBlockState(),
-                    64))
+                    8))
                     .setBiomePredicate(event -> event.getCategory() == Biome.Category.FOREST)
                     .asPromise();
 
