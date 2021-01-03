@@ -2,6 +2,7 @@ package net.jitl.common.entity;
 
 import net.jitl.common.entity.projectile.FloroMudProjectileEntity;
 import net.jitl.init.JAnimations;
+import net.jitl.init.JSounds;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -197,6 +198,7 @@ public class FloroEntity extends MonsterEntity implements IRangedAttackMob, Anim
         double dZ = target.getZ() - this.getZ();
         double distortion = MathHelper.sqrt(dX * dX + dZ * dZ);
         projectile.shoot(dX, dY + distortion * 0.20000000298023224D, dZ, 1.6F, (float) (7 - this.level.getDifficulty().getId()));
+        this.playSound(JSounds.MUD_BLOCK_BREAK.get(), 1.0F, 0.85F);
 
         this.level.addFreshEntity(projectile);
     }

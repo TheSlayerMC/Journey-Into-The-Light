@@ -1,6 +1,7 @@
 package net.jitl.init;
 
 import net.jitl.JITL;
+import net.jitl.client.particle.MudParticle;
 import net.jitl.client.particle.RedFlameParticle;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.ParticleManager;
@@ -23,11 +24,13 @@ public class JParticleManager {
 	public static final SimpleForgeRegister<ParticleType<?>> REGISTER = new SimpleForgeRegister<>(ForgeRegistries.PARTICLE_TYPES, JITL.MODID);
 
 	public static final RegistryObject<BasicParticleType> RED_FLAME = REGISTER.register("red_flame", () -> new BasicParticleType(false));
+	public static final RegistryObject<BasicParticleType> MUD = REGISTER.register("mud", () -> new BasicParticleType(false));
 
 	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public static void registerParticleFactories(ParticleFactoryRegisterEvent event) {
 		Minecraft minecraft = Minecraft.getInstance();
 		ParticleManager manager = minecraft.particleEngine;
 		manager.register(RED_FLAME.get(), RedFlameParticle.Factory::new);
+		manager.register(MUD.get(), MudParticle.Factory::new);
 	}
 }

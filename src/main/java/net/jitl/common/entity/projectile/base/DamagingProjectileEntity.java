@@ -9,6 +9,8 @@ import net.minecraft.network.IPacket;
 import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 import java.util.Objects;
@@ -42,7 +44,13 @@ public class DamagingProjectileEntity extends ThrowableEntity {
             if (tickCount >= 20 * 10) {
                 remove();
             }
+        } else {
+            onClientTick();
         }
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public void onClientTick() {
     }
 
     @Override
