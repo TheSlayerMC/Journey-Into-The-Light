@@ -141,8 +141,9 @@ public class LaserEmitterTER extends TileEntityRenderer<LaserEmitterTile> {
         upPerpendicular.cross(toCamera);
         upPerpendicular.normalize();
 
-        leftPerpendicular.mul(radius - 0.01F /*small radius decrease to make more hi-res spark texture be mixed with beam itself */);
-        upPerpendicular.mul(radius - 0.01F);
+        float decreased = radius - 0.01F; /*small radius decrease to make more hi-res spark texture be mixed with beam itself */
+        leftPerpendicular.mul(decreased);
+        upPerpendicular.mul(decreased);
 
         int sparkTexIndex = 1;
         float sparkSize = 19 / 128F;
