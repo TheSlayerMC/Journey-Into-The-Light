@@ -32,7 +32,7 @@ public class ItemRegistrator {
         registerItem("lunium_ingot", "Lunium Ingot");
         registerItem("shadium_ingot", "Shadium Ingot");
         registerItem("obsidian_rod", "Obsidian Rod");
-        registerItem("mud_ball", "Mud Ball", () -> new ThrowableItem(new Item.Properties().tab(JTabs.ITEMS), world -> new FloroMudProjectileEntity(JEntityTypes.FLORO_MUD_PROJECTILE_TYPE, world)));
+        registerItem("mud_ball", "Mud Ball", () -> new ThrowableItem(new Item.Properties().tab(JTabs.ITEMS), (world, thrower) -> new FloroMudProjectileEntity(JEntityTypes.FLORO_MUD_PROJECTILE_TYPE, world, thrower)));
         registerItem("bradberry", "Bradberry", () -> new Item(new Item.Properties().food(JFoods.BRADBERRY).tab(JTabs.ITEMS)));
         registerItem("lunium_powder", "Lunium Powder");
 

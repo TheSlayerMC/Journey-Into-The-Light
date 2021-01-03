@@ -28,6 +28,10 @@ public class FloroMudProjectileEntity extends DamagingProjectileEntity implement
         super(type, world);
     }
 
+    public FloroMudProjectileEntity(EntityType<FloroMudProjectileEntity> type, World world, LivingEntity thrower) {
+        super(type, world, thrower, 0.5F);
+    }
+
     public FloroMudProjectileEntity(World world, LivingEntity thrower, float damage) {
         super(JEntityTypes.FLORO_MUD_PROJECTILE_TYPE, world, thrower, damage);
     }
@@ -57,13 +61,13 @@ public class FloroMudProjectileEntity extends DamagingProjectileEntity implement
         if (target instanceof LivingEntity) {
             EffectInstance effectInstance = new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20);
             ((LivingEntity) target).addEffect(effectInstance);
-            target.hurt(DamageSource.thrown(this, this.getOwner()), 0.5F);
+            target.hurt(DamageSource.thrown(this, this.getOwner()), damage);
         }
     }
 
     @Override
     protected float getGravity() {
-        return 0.001F;
+        return 0.03F;
     }
 
     @Override
