@@ -52,8 +52,10 @@ public class FloroMudProjectileEntity extends DamagingProjectileEntity implement
 
     @Override
     protected void onEntityImpact(RayTraceResult result, Entity target) {
-        EffectInstance effectInstance = new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20);
-        ((LivingEntity) target).addEffect(effectInstance);
+        if (target instanceof LivingEntity) {
+            EffectInstance effectInstance = new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20);
+            ((LivingEntity) target).addEffect(effectInstance);
+        }
     }
 
     @Override
