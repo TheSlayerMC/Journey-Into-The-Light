@@ -4,11 +4,15 @@ import net.jitl.common.entity.projectile.base.DamagingProjectileEntity;
 import net.jitl.init.JEntityTypes;
 import net.jitl.init.JItems;
 import net.jitl.init.JParticleManager;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.IRendersAsItem;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.IPacket;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -44,6 +48,12 @@ public class FloroMudProjectileEntity extends DamagingProjectileEntity implement
                     vector3d.y,
                     vector3d.z);
         }
+    }
+
+    @Override
+    protected void onEntityImpact(RayTraceResult result, Entity target) {
+        EffectInstance effectInstance = new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20);
+        ((LivingEntity) target).addEffect(effectInstance);
     }
 
     @Override
