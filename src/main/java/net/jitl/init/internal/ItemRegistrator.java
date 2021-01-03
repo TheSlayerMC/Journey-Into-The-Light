@@ -1,12 +1,14 @@
 package net.jitl.init.internal;
 
 import net.jitl.JITL;
+import net.jitl.common.entity.projectile.FloroMudProjectileEntity;
 import net.jitl.common.helper.JArmorMaterial;
 import net.jitl.common.helper.JToolTiers;
 import net.jitl.common.item.*;
 import net.jitl.init.JFoods;
 import net.jitl.init.JTabs;
 import net.jitl.util.JItemProperties;
+import net.minecraft.entity.projectile.ThrowableEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ToolItem;
@@ -30,17 +32,22 @@ public class ItemRegistrator {
         registerItem("lunium_ingot", "Lunium Ingot");
         registerItem("shadium_ingot", "Shadium Ingot");
         registerItem("obsidian_rod", "Obsidian Rod");
-		registerItem("mud_ball", "Mud Ball");
-		registerItem("bradberry", "Bradberry", () -> new Item(new Item.Properties().food(JFoods.BRADBERRY).tab(JTabs.ITEMS)));
-		registerItem("lunium_powder", "Lunium Powder");
+        registerItem("mud_ball", "Mud Ball", () -> new ThrowableItem(new Item.Properties().tab(JTabs.ITEMS), new Supplier<ThrowableEntity>() {
+            @Override
+            public ThrowableEntity get() {
+                return new FloroMudProjectileEntity(biFunction);
+            }
+        }));
+        registerItem("bradberry", "Bradberry", () -> new Item(new Item.Properties().food(JFoods.BRADBERRY).tab(JTabs.ITEMS)));
+        registerItem("lunium_powder", "Lunium Powder");
 
-		//NETHER ITEMS
-		registerItem("bloodcrust_ingot", "Bloodcrust Ingot");
-		registerItem("firestone_shard", "Firestone Shard", () -> new JFuelItem(new Item.Properties().fireResistant().tab(JTabs.ITEMS), 200));
-		registerItem("firestone_clump", "Firestone Clump", () -> new JFuelItem(new Item.Properties().fireResistant().tab(JTabs.ITEMS), 2000));
-		registerItem("warped_quartz", "Warped Quartz");
-		registerItem("crimson_quartz", "Crimson Quartz");
-		registerItem("blood", "Blood");
+        //NETHER ITEMS
+        registerItem("bloodcrust_ingot", "Bloodcrust Ingot");
+        registerItem("firestone_shard", "Firestone Shard", () -> new JFuelItem(new Item.Properties().fireResistant().tab(JTabs.ITEMS), 200));
+        registerItem("firestone_clump", "Firestone Clump", () -> new JFuelItem(new Item.Properties().fireResistant().tab(JTabs.ITEMS), 2000));
+        registerItem("warped_quartz", "Warped Quartz");
+        registerItem("crimson_quartz", "Crimson Quartz");
+        registerItem("blood", "Blood");
 		registerItem("powder_of_essencia", "Powder Of Essencia");
 
 		//END ITEMS

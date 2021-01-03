@@ -12,12 +12,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.IPacket;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkHooks;
+import org.jetbrains.annotations.NotNull;
 
 @OnlyIn(value = Dist.CLIENT, _interface = IRendersAsItem.class)
 public class FloroMudProjectileEntity extends DamagingProjectileEntity implements IRendersAsItem {
@@ -55,6 +57,7 @@ public class FloroMudProjectileEntity extends DamagingProjectileEntity implement
         if (target instanceof LivingEntity) {
             EffectInstance effectInstance = new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20);
             ((LivingEntity) target).addEffect(effectInstance);
+            target.hurt(DamageSource.thrown(this, this.getOwner()), 0.5F);
         }
     }
 
@@ -69,7 +72,7 @@ public class FloroMudProjectileEntity extends DamagingProjectileEntity implement
     }
 
     @Override
-    public ItemStack getItem() {
+    public @NotNull ItemStack getItem() {
         return new ItemStack(JItems.MUD_BALL);
     }
 }
