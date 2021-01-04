@@ -48,7 +48,7 @@ public class FloroMudProjectileEntity extends DamagingProjectileEntity implement
         for (int i = 0; i < count; ++i) {
             this.level.addParticle(JParticleManager.MUD.get(),
                     d0 - vector3d.x * 0.25D + this.random.nextDouble() * 0.6D - 0.3D,
-                    d1 - vector3d.y,
+                    d1 - vector3d.y + 0.25F,
                     d2 - vector3d.z * 0.25D + this.random.nextDouble() * 0.6D - 0.3D,
                     vector3d.x,
                     vector3d.y,

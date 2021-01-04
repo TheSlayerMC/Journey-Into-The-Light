@@ -18,15 +18,17 @@ import org.jetbrains.annotations.NotNull;
 public class Entity2DRenderer<T extends Entity> extends EntityRenderer<T> {
     private final RenderType renderType;
     private final float scale;
+    private final boolean fullBright;
 
-    public Entity2DRenderer(EntityRendererManager renderManager, ResourceLocation texture) {
-        this(renderManager, texture, 1F);
+    public Entity2DRenderer(EntityRendererManager renderManager, ResourceLocation texture, boolean fullBright) {
+        this(renderManager, texture, 1F, fullBright);
     }
 
-    public Entity2DRenderer(EntityRendererManager renderManager, ResourceLocation texture, float scaleFactor) {
+    public Entity2DRenderer(EntityRendererManager renderManager, ResourceLocation texture, float scaleFactor, boolean fullBright) {
         super(renderManager);
         this.renderType = RenderType.entityCutoutNoCull(texture);
-        scale = scaleFactor;
+        this.scale = scaleFactor;
+        this.fullBright = fullBright;
     }
 
     @Override //copypaste from DragonFireballRenderer except for custom scale
@@ -39,10 +41,17 @@ public class Entity2DRenderer<T extends Entity> extends EntityRenderer<T> {
         Matrix4f pose = lastMatrix.pose();
         Matrix3f normal = lastMatrix.normal();
         IVertexBuilder ivertexbuilder = bufferIn.getBuffer(renderType);
-        vertex(ivertexbuilder, pose, normal, packedLightIn, 0, 0, 0, 1);
-        vertex(ivertexbuilder, pose, normal, packedLightIn, 1, 0, 1, 1);
-        vertex(ivertexbuilder, pose, normal, packedLightIn, 1, 1, 1, 0);
-        vertex(ivertexbuilder, pose, normal, packedLightIn, 0, 1, 0, 0);
+        int packedLightLevel;
+        if (fullBright) {
+            packedLightLevel = 15728880;
+        } else {
+            packedLightLevel = packedLightIn;
+        }
+        vertex(ivertexbuilder, pose, normal, packedLightLevel, 0, 0, 0, 1);
+        vertex(ivertexbuilder, pose, normal, packedLightLevel, 1, 0, 1, 1);
+        vertex(ivertexbuilder, pose, normal, packedLightLevel, 1, 1, 1, 0);
+        vertex(ivertexbuilder, pose, normal, packedLightLevel, 0, 1, 0, 0);
+
         matrixStackIn.popPose();
         super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
     }
