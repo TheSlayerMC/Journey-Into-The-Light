@@ -20,7 +20,7 @@ public class JBasePortalBlock extends NetherPortalBlock {
 
     public JBasePortalBlock(Properties properties, RegistryKey<World> dimID, Block frame) {
         super(properties);
-        dimensionID = dimID;
+        this.dimensionID = dimID;
         this.frame = frame;
     }
 
