@@ -2,13 +2,10 @@ package net.jitl.common.entity.projectile;
 
 import net.jitl.common.entity.projectile.base.DamagingProjectileEntity;
 import net.jitl.init.JEntityTypes;
-import net.jitl.init.JItems;
 import net.jitl.init.JParticleManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.IRendersAsItem;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.network.IPacket;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
@@ -19,20 +16,19 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkHooks;
-import org.jetbrains.annotations.NotNull;
 
-@OnlyIn(value = Dist.CLIENT, _interface = IRendersAsItem.class)
-public class FloroMudProjectileEntity extends DamagingProjectileEntity implements IRendersAsItem {
+@OnlyIn(value = Dist.CLIENT)
+public class ConjuringProjectileEntity extends DamagingProjectileEntity {
 
-    public FloroMudProjectileEntity(EntityType<FloroMudProjectileEntity> type, World world) {
+    public ConjuringProjectileEntity(EntityType<ConjuringProjectileEntity> type, World world) {
         super(type, world);
     }
 
-    public FloroMudProjectileEntity(EntityType<FloroMudProjectileEntity> type, World world, LivingEntity thrower, float damage) {
+    public ConjuringProjectileEntity(EntityType<ConjuringProjectileEntity> type, World world, LivingEntity thrower, float damage) {
         super(type, world, thrower, damage);
     }
 
-    public FloroMudProjectileEntity(World world, LivingEntity thrower, float damage) {
+    public ConjuringProjectileEntity(World world, LivingEntity thrower, float damage) {
         super(JEntityTypes.FLORO_MUD_PROJECTILE_TYPE, world, thrower, damage);
     }
 
@@ -46,7 +42,7 @@ public class FloroMudProjectileEntity extends DamagingProjectileEntity implement
         double d1 = this.getY() + vector3d.y;
         double d2 = this.getZ() + vector3d.z;
         for (int i = 0; i < count; ++i) {
-            this.level.addParticle(JParticleManager.MUD.get(),
+            this.level.addParticle(JParticleManager.CONJURING.get(),
                     d0 - vector3d.x * 0.25D + this.random.nextDouble() * 0.6D - 0.3D,
                     d1 - vector3d.y,
                     d2 - vector3d.z * 0.25D + this.random.nextDouble() * 0.6D - 0.3D,
@@ -59,7 +55,7 @@ public class FloroMudProjectileEntity extends DamagingProjectileEntity implement
     @Override
     protected void onEntityImpact(RayTraceResult result, Entity target) {
         if (target instanceof LivingEntity) {
-            EffectInstance effectInstance = new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20);
+            EffectInstance effectInstance = new EffectInstance(Effects.POISON, 60);
             ((LivingEntity) target).addEffect(effectInstance);
             target.hurt(DamageSource.thrown(this, this.getOwner()), damage);
         }
@@ -67,16 +63,11 @@ public class FloroMudProjectileEntity extends DamagingProjectileEntity implement
 
     @Override
     protected float getGravity() {
-        return 0.03F;
+        return 0.003F;
     }
 
     @Override
     public IPacket<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
-    }
-
-    @Override
-    public @NotNull ItemStack getItem() {
-        return new ItemStack(JItems.MUD_BALL);
     }
 }

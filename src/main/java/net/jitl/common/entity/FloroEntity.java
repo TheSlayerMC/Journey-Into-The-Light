@@ -71,16 +71,6 @@ public class FloroEntity extends MonsterEntity implements IRangedAttackMob, Anim
     public FloroEntity(EntityType<? extends FloroEntity> type, World world) {
         super(type, world);
 
-        // For testing idle animations
-//        animationSystem = AnimationSystemBuilder.forEntity(this, world, builder -> {
-//            builder.addLayer(LAYER_SHOWING, BlendType.OVERRIDE, 0F);
-//            builder.addLayer(LAYER_WALKING, BlendType.ADDING, 1F);
-//            builder.addLayer(LAYER_ATTACK, BlendType.ADDING, 0.9F);
-//        }, predefinedAnimations -> {
-//            predefinedAnimations.setWalkingAnimation(new AnimationStarter(JAnimations.floroWalk).setSpeed(3F), LAYER_WALKING);
-//            predefinedAnimations.setIdleAnimation(new AnimationStarter(JAnimations.floroIdle), LAYER_WALKING);
-//        });
-
         animationSystem = AnimationSystemBuilder.forEntity(this, world, builder -> {
             builder.addLayer(LAYER_SHOWING, BlendType.OVERRIDE, 1F);
             builder.addLayer(LAYER_WALKING, BlendType.ADDING, 1F);
@@ -192,7 +182,7 @@ public class FloroEntity extends MonsterEntity implements IRangedAttackMob, Anim
 
     @Override
     public void performRangedAttack(LivingEntity target, float distanceFactor) {
-        FloroMudProjectileEntity projectile = new FloroMudProjectileEntity(this.level, this, 1.0F);
+        FloroMudProjectileEntity projectile = new FloroMudProjectileEntity(this.level, this, 0.5F);
         double dX = target.getX() - this.getX();
         double dY = target.getY(0.3333333333333333D) - projectile.getY();
         double dZ = target.getZ() - this.getZ();

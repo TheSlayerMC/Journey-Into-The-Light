@@ -27,4 +27,6 @@ public class JSounds {
 
 	public static final RegistryObject<TimeSound> RUNE_ACTIVATE = REGISTER.register("block.rune.activate");
 
+	public static final RegistryObject<TimeSound> STAFF_0 = REGISTER.register("items.staff.staff_0");
+
 }

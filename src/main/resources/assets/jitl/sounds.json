@@ -103,5 +103,10 @@
     "sounds": [
       "jitl:blocks/activate/rune_activate"
     ]
+  },
+  "items.staff.staff_0": {
+    "sounds": [
+      "jitl:items/staff/staff_0"
+    ]
   }
 }
