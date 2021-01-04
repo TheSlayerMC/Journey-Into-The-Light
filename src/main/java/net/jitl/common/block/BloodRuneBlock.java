@@ -1,4 +1,4 @@
-package net.jitl.common.block.base;
+package net.jitl.common.block;
 
 import net.jitl.common.entity.EssenciaBoltEntity;
 import net.jitl.init.*;

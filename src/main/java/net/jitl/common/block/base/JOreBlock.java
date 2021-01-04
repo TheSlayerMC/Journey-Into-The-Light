@@ -1,4 +1,4 @@
-package net.jitl.common.block;
+package net.jitl.common.block.base;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.OreBlock;

@@ -21,6 +21,7 @@ public class JEntityRenderRegistry {
         RenderingRegistry.registerEntityRenderingHandler(JEntityTypes.ESSENCIA_BOLT_TYPE, EssenciaBoltRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(JEntityTypes.FLORO_TYPE, FloroRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(JEntityTypes.FLORO_MUD_PROJECTILE_TYPE, manager -> new SpriteRenderer<>(manager, Minecraft.getInstance().getItemRenderer()));
-        RenderingRegistry.registerEntityRenderingHandler(JEntityTypes.CONJURING_PROJECTILE_TYPE, manager -> new Entity2DRenderer<>(manager, JITL.rl("textures/entity/projectile/conjuring.png")));
+        RenderingRegistry.registerEntityRenderingHandler(JEntityTypes.CONJURING_PROJECTILE_TYPE, manager -> new Entity2DRenderer<>(manager, JITL.rl("textures/entity/projectile/conjuring.png"), 0.5F));
+        RenderingRegistry.registerEntityRenderingHandler(JEntityTypes.ESSENCIA_PROJECTILE_TYPE, manager -> new Entity2DRenderer<>(manager, JITL.rl("textures/entity/projectile/essencia.png"), 0.5F));
     }
 }

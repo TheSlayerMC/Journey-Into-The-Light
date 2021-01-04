@@ -2,6 +2,7 @@ package net.jitl.init.internal;
 
 import net.jitl.JITL;
 import net.jitl.common.entity.projectile.ConjuringProjectileEntity;
+import net.jitl.common.entity.projectile.EssenciaProjectileEntity;
 import net.jitl.common.entity.projectile.FloroMudProjectileEntity;
 import net.jitl.common.helper.JArmorMaterial;
 import net.jitl.common.helper.JToolTiers;
@@ -12,7 +13,6 @@ import net.jitl.init.JTabs;
 import net.jitl.util.JItemProperties;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
-import net.minecraft.item.ToolItem;
 import ru.timeconqueror.timecore.api.client.resource.StandardItemModelParents;
 import ru.timeconqueror.timecore.api.registry.ItemRegister;
 import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable;
@@ -35,10 +35,15 @@ public class ItemRegistrator {
         registerItem("obsidian_rod", "Obsidian Rod");
         registerItem("mud_ball", "Mud Ball", () -> new ThrowableItem(new Item.Properties().tab(JTabs.ITEMS),
                 (world, thrower) -> new FloroMudProjectileEntity(JEntityTypes.FLORO_MUD_PROJECTILE_TYPE, world, thrower, 0.0F)));
+
         registerItem("bradberry", "Bradberry", () -> new Item(new Item.Properties().food(JFoods.BRADBERRY).tab(JTabs.ITEMS)));
         registerItem("lunium_powder", "Lunium Powder");
-        registerItem("staff_of_conjuring", "Staff of Conjuring", () -> new StaffItem(new Item.Properties().tab(JTabs.RANGED_WEAPONS),
+
+        registerHandheldItem("staff_of_conjuring", "Staff of Conjuring", () -> new StaffItem(new Item.Properties().tab(JTabs.RANGED_WEAPONS),
                 (world, thrower) -> new ConjuringProjectileEntity(JEntityTypes.CONJURING_PROJECTILE_TYPE, world, thrower, 0.0F)));
+
+        registerHandheldItem("staff_of_essencia", "Staff of Essencia", () -> new StaffItem(new Item.Properties().tab(JTabs.RANGED_WEAPONS),
+                (world, thrower) -> new EssenciaProjectileEntity(JEntityTypes.ESSENCIA_PROJECTILE_TYPE, world, thrower, 0.0F)));
 
         //NETHER ITEMS
         registerItem("bloodcrust_ingot", "Bloodcrust Ingot");
@@ -116,11 +121,11 @@ public class ItemRegistrator {
     public static void registerToolSet(String name, String engName, JToolTiers toolTiers) {
         registerSwordItem(name + "_sword", engName + " Sword", toolTiers);
 
-        registerToolItem(name + "_multitool", engName + " Multitool", () -> new MultitoolItem(toolTiers));
-        registerToolItem(name + "_pickaxe", engName + " Pickaxe", () -> new JPickaxeItem(toolTiers));
-        registerToolItem(name + "_axe", engName + " Axe", () -> new JAxeItem(toolTiers));
-        registerToolItem(name + "_shovel", engName + " Shovel", () -> new JShovelItem(toolTiers));
-        registerToolItem(name + "_hoe", engName + " Hoe", () -> new JHoeItem(toolTiers));
+        registerHandheldItem(name + "_multitool", engName + " Multitool", () -> new MultitoolItem(toolTiers));
+        registerHandheldItem(name + "_pickaxe", engName + " Pickaxe", () -> new JPickaxeItem(toolTiers));
+        registerHandheldItem(name + "_axe", engName + " Axe", () -> new JAxeItem(toolTiers));
+        registerHandheldItem(name + "_shovel", engName + " Shovel", () -> new JShovelItem(toolTiers));
+        registerHandheldItem(name + "_hoe", engName + " Hoe", () -> new JHoeItem(toolTiers));
     }
 
     /**
@@ -156,7 +161,7 @@ public class ItemRegistrator {
      * @param enName           English name
      * @param toolItemSupplier Supplier for the ToolItem class
      */
-    private static void registerToolItem(String name, String enName, Supplier<ToolItem> toolItemSupplier) {
+    private static void registerHandheldItem(String name, String enName, Supplier<Item> toolItemSupplier) {
         REGISTER.register(name, toolItemSupplier)
                 .genModel(StandardItemModelParents.HANDHELD)
                 .genLangEntry(enName);

@@ -1,4 +1,4 @@
-package net.jitl.common.block;
+package net.jitl.common.block.base;
 
 import net.jitl.common.tile.JMobSpawnerTile;
 import net.jitl.util.JBlockProperties;

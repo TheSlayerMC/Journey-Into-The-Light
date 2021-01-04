@@ -4,6 +4,7 @@ import net.jitl.JITL;
 import net.jitl.common.entity.EssenciaBoltEntity;
 import net.jitl.common.entity.FloroEntity;
 import net.jitl.common.entity.projectile.ConjuringProjectileEntity;
+import net.jitl.common.entity.projectile.EssenciaProjectileEntity;
 import net.jitl.common.entity.projectile.FloroMudProjectileEntity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
@@ -43,12 +44,19 @@ public class JEntityTypes {
 			.sized(0.5F, 0.5F)
 			.build(JITL.MODID + ":conjuring_projectile");
 
+	public static final EntityType<EssenciaProjectileEntity> ESSENCIA_PROJECTILE_TYPE = EntityType.Builder.<EssenciaProjectileEntity>of(EssenciaProjectileEntity::new, EntityClassification.MISC)
+			.setTrackingRange(80)
+			.setShouldReceiveVelocityUpdates(true)
+			.sized(0.5F, 0.5F)
+			.build(JITL.MODID + ":essencia_projectile");
+
 	@SubscribeEvent
 	public static void register(RegistryEvent.Register<EntityType<?>> event) {
 		event.getRegistry().register(FLORO_TYPE.setRegistryName(JITL.MODID + ":floro"));
 		event.getRegistry().register(ESSENCIA_BOLT_TYPE.setRegistryName(JITL.MODID + ":essencia_bolt"));
 		event.getRegistry().register(FLORO_MUD_PROJECTILE_TYPE.setRegistryName(JITL.MODID + ":floro_mud_projectile"));
 		event.getRegistry().register(CONJURING_PROJECTILE_TYPE.setRegistryName(JITL.MODID + ":conjuring_projectile"));
+		event.getRegistry().register(ESSENCIA_PROJECTILE_TYPE.setRegistryName(JITL.MODID + ":essencia_projectile"));
 		GlobalEntityTypeAttributes.put(FLORO_TYPE, FloroEntity.createAttributes().build());
 	}
 
