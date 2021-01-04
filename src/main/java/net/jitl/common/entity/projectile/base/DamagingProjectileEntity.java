@@ -6,6 +6,8 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.ThrowableEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
@@ -17,6 +19,7 @@ import java.util.Objects;
 
 public class DamagingProjectileEntity extends ThrowableEntity {
     private float damage;
+    private EffectInstance effect;
 
     public DamagingProjectileEntity(EntityType<? extends DamagingProjectileEntity> type, World world) {
         super(type, world);
@@ -25,6 +28,11 @@ public class DamagingProjectileEntity extends ThrowableEntity {
     public DamagingProjectileEntity(EntityType<? extends DamagingProjectileEntity> type, World world, LivingEntity thrower, float damage) {
         super(type, thrower, world);
         this.damage = damage;
+    }
+
+    public DamagingProjectileEntity setPotionEffect(EffectInstance potionEffect) {
+        this.effect = potionEffect;
+        return this;
     }
 
     public float getDamage() {
@@ -77,7 +85,14 @@ public class DamagingProjectileEntity extends ThrowableEntity {
      * @param target target of projectile. Never equals to the thrower.
      */
     protected void onEntityImpact(RayTraceResult result, Entity target) {
-//        target.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), damage);
+        if (target instanceof LivingEntity) {
+            if (effect != null) {
+                ((LivingEntity) target).addEffect(effect);
+            }
+            if (damage > 0) {
+                target.hurt(DamageSource.thrown(this, this.getOwner()), getDamage());
+            }
+        }
     }
 
     @Override

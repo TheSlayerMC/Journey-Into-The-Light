@@ -3,14 +3,11 @@ package net.jitl.common.entity.projectile;
 import net.jitl.common.entity.projectile.base.DamagingProjectileEntity;
 import net.jitl.init.JEntityTypes;
 import net.jitl.init.JParticleManager;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.network.IPacket;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -22,10 +19,12 @@ public class ConjuringProjectileEntity extends DamagingProjectileEntity {
 
     public ConjuringProjectileEntity(EntityType<ConjuringProjectileEntity> type, World world) {
         super(type, world);
+        this.setPotionEffect(new EffectInstance(Effects.POISON));
     }
 
     public ConjuringProjectileEntity(EntityType<ConjuringProjectileEntity> type, World world, LivingEntity thrower, float damage) {
         super(type, world, thrower, damage);
+        this.setPotionEffect(new EffectInstance(Effects.POISON));
     }
 
     public ConjuringProjectileEntity(World world, LivingEntity thrower, float damage) {
@@ -50,15 +49,6 @@ public class ConjuringProjectileEntity extends DamagingProjectileEntity {
                     vector3d.x,
                     vector3d.y,
                     vector3d.z);
-        }
-    }
-
-    @Override
-    protected void onEntityImpact(RayTraceResult result, Entity target) {
-        if (target instanceof LivingEntity) {
-            EffectInstance effectInstance = new EffectInstance(Effects.POISON, 60);
-            ((LivingEntity) target).addEffect(effectInstance);
-            target.hurt(DamageSource.thrown(this, this.getOwner()), getDamage());
         }
     }
 
