@@ -16,7 +16,7 @@ import net.minecraftforge.fml.network.NetworkHooks;
 import java.util.Objects;
 
 public class DamagingProjectileEntity extends ThrowableEntity {
-    public float damage;
+    private float damage;
 
     public DamagingProjectileEntity(EntityType<? extends DamagingProjectileEntity> type, World world) {
         super(type, world);

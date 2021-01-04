@@ -16,7 +16,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkHooks;
-
+//TODO maybe merge with FloroMud?
 @OnlyIn(value = Dist.CLIENT)
 public class ConjuringProjectileEntity extends DamagingProjectileEntity {
 
@@ -58,7 +58,7 @@ public class ConjuringProjectileEntity extends DamagingProjectileEntity {
         if (target instanceof LivingEntity) {
             EffectInstance effectInstance = new EffectInstance(Effects.POISON, 60);
             ((LivingEntity) target).addEffect(effectInstance);
-            target.hurt(DamageSource.thrown(this, this.getOwner()), damage);
+            target.hurt(DamageSource.thrown(this, this.getOwner()), getDamage());
         }
     }
 

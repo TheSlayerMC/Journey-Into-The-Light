@@ -61,7 +61,7 @@ public class FloroMudProjectileEntity extends DamagingProjectileEntity implement
         if (target instanceof LivingEntity) {
             EffectInstance effectInstance = new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20);
             ((LivingEntity) target).addEffect(effectInstance);
-            target.hurt(DamageSource.thrown(this, this.getOwner()), damage);
+            target.hurt(DamageSource.thrown(this, this.getOwner()), getDamage());
         }
     }
 
@@ -71,7 +71,7 @@ public class FloroMudProjectileEntity extends DamagingProjectileEntity implement
     }
 
     @Override
-    public IPacket<?> getAddEntityPacket() {
+    public IPacket<?> getAddEntityPacket() {//TODO move tosuperclass
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
