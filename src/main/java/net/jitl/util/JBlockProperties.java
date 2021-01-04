@@ -2,7 +2,6 @@ package net.jitl.util;
 
 import net.jitl.init.JSoundTypes;
 import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.common.ToolType;
@@ -106,6 +105,10 @@ public class JBlockProperties {
 			.sound(SoundType.METAL)
 			.requiresCorrectToolForDrops()
 			.noOcclusion()
-			//.isViewBlocking(Blocks::never) why tf is it private
+			//.isViewBlocking(() -> (Blocks::never))
 			.strength(1.5F, 6.0F));
+	public static final BlockPropsFactory GLOWSHROOM_PROPS = new BlockPropsFactory(() -> AbstractBlock.Properties.of
+			(Material.REPLACEABLE_PLANT)
+			.sound(SoundType.SWEET_BERRY_BUSH)
+			.noCollission());
 }

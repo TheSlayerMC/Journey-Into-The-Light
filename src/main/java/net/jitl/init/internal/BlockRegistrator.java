@@ -4,6 +4,7 @@ import net.jitl.JITL;
 import net.jitl.client.render.JBlockModels;
 import net.jitl.client.render.JBlockStateResources;
 import net.jitl.common.block.BloodRuneBlock;
+import net.jitl.common.block.GlowshroomBlock;
 import net.jitl.common.block.LaserEmitterBlock;
 import net.jitl.common.block.base.*;
 import net.jitl.common.helper.EnumHarvestLevel;
@@ -12,6 +13,7 @@ import net.jitl.init.JItems;
 import net.jitl.init.JTabs;
 import net.jitl.util.JBlockProperties;
 import net.minecraft.block.*;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.util.IItemProvider;
 import net.minecraftforge.fml.RegistryObject;
 import ru.timeconqueror.timecore.api.client.resource.BlockModel;
@@ -145,6 +147,20 @@ public class BlockRegistrator {
 
 		registerDefaultBlock("laser_emitter", "Laser Emitter", () -> new LaserEmitterBlock(JBlockProperties.STONE_PROPS.create().noOcclusion()));
 		registerDefaultBlock("test_spawner", "Test Spawner", () -> new JSpawnerBlock(JEntityTypes.FLORO_TYPE));
+
+		registerTallCrossRenderedBlock("glowshroom_green", "Green Glowshroom", () -> new GlowshroomBlock(JBlockProperties.GLOWSHROOM_PROPS.create()));
+		registerTallCrossRenderedBlock("glowshroom_blue", "Blue Glowshroom", () -> new GlowshroomBlock(JBlockProperties.GLOWSHROOM_PROPS.create()));
+		registerTallCrossRenderedBlock("glowshroom_red", "Red Glowshroom", () -> new GlowshroomBlock(JBlockProperties.GLOWSHROOM_PROPS.create()));
+
+		registerDefaultBlock("boil_portal_frame", "Boiling Point Portal Frame");
+		registerDefaultBlock("euca_portal_frame", "Euca Portal Frame");
+		registerDefaultBlock("frozen_portal_frame", "Frozen Lands Portal Frame");
+		registerDefaultBlock("depths_portal_frame", "The Depths Portal Frame");//different style
+		registerDefaultBlock("corba_portal_frame", "Corba Portal Frame");//different style
+		registerDefaultBlock("terrania_portal_frame", "Terrania Portal Frame");
+		registerDefaultBlock("cloudia_portal_frame", "Cloudia Portal Frame");
+		registerDefaultBlock("senterian_portal_frame", "Senterian Portal Frame");//different style
+
 	}
 
 	/**
@@ -236,6 +252,21 @@ public class BlockRegistrator {
 				.genState(JBlockStateResources.rotatablePillarState(JITL.bml("block/" + name)))
 				.genModel(JITL.bml("block/" + name),
 						() -> BlockModels.cubeColumnModel(JITL.tl("block/" + topTexture), JITL.tl("block/" + sideTexture)));
+	}
+
+	/**
+	 * Registers a block that's double tall and cross rendered
+	 */
+	private static void registerTallCrossRenderedBlock(String name, String enName, Supplier<Block> blockSupplier) {
+		REGISTER.register(name, blockSupplier)
+				.genLangEntry(enName)
+				.setRenderLayer(RenderType::cutoutMipped)
+				.regDefaultBlockItem(JTabs.DECORATION)
+				.genState(JBlockStateResources.doublePlantState(JITL.bml("block/" + name + "_bottom"), JITL.bml("block/" + name + "_top")))
+				.genModel(JITL.bml("block/" + name + "_top"),
+						() -> BlockModels.crossModel(JITL.tl("block/" + name + "_top")))
+				.genModel(JITL.bml("block/" + name + "_bottom"),
+				() -> BlockModels.crossModel(JITL.tl("block/" + name + "_bottom")));
 	}
 
 	/**

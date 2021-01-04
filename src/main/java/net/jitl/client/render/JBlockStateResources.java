@@ -53,4 +53,20 @@ public class JBlockStateResources {
 				);
 		return BlockStateResource.fromJson(json);
 	}
+
+	public static BlockStateResource doublePlantState(BlockModelLocation bottom, BlockModelLocation top) {
+		String json =
+				object(null, listOf(
+						object("variants", listOf(
+								object("half=lower", listOf(
+										property("model", bottom.toString())
+								)),
+								object("half=upper", listOf(
+										property("model", top.toString())
+								))
+							))
+						)
+				);
+		return BlockStateResource.fromJson(json);
+	}
 }
