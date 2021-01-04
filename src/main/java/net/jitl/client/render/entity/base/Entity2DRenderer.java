@@ -35,21 +35,21 @@ public class Entity2DRenderer<T extends Entity> extends EntityRenderer<T> {
         matrixStackIn.scale(scale, scale, scale);
         matrixStackIn.mulPose(this.entityRenderDispatcher.cameraOrientation());
         matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(180.0F));
-        MatrixStack.Entry matrixstack$entry = matrixStackIn.last();
-        Matrix4f pose = matrixstack$entry.pose();
-        Matrix3f normal = matrixstack$entry.normal();
+        MatrixStack.Entry lastMatrix = matrixStackIn.last();
+        Matrix4f pose = lastMatrix.pose();
+        Matrix3f normal = lastMatrix.normal();
         IVertexBuilder ivertexbuilder = bufferIn.getBuffer(renderType);
-        vertex(ivertexbuilder, pose, normal, packedLightIn, 0.0F, 0, 0, 1);
-        vertex(ivertexbuilder, pose, normal, packedLightIn, 1.0F, 0, 1, 1);
-        vertex(ivertexbuilder, pose, normal, packedLightIn, 1.0F, 1, 1, 0);
-        vertex(ivertexbuilder, pose, normal, packedLightIn, 0.0F, 1, 0, 0);
+        vertex(ivertexbuilder, pose, normal, packedLightIn, 0, 0, 0, 1);
+        vertex(ivertexbuilder, pose, normal, packedLightIn, 1, 0, 1, 1);
+        vertex(ivertexbuilder, pose, normal, packedLightIn, 1, 1, 1, 0);
+        vertex(ivertexbuilder, pose, normal, packedLightIn, 0, 1, 0, 0);
         matrixStackIn.popPose();
         super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
     }
 
     //copypaste from DragonFireballRenderer
     private static void vertex(IVertexBuilder builder, Matrix4f pose, Matrix3f normal, int lightmapUV, float x, float y, int u, int v) {
-        builder.vertex(pose, x - 0.5F, y - 0.25F, 0.0F).color(255, 255, 255, 255).uv((float) u, (float) v).overlayCoords(OverlayTexture.NO_OVERLAY).uv2(lightmapUV).normal(normal, 0.0F, 1.0F, 0.0F).endVertex();
+        builder.vertex(pose, x - 0.5F, y - 0.5F, 0.0F).color(255, 255, 255, 255).uv((float) u, (float) v).overlayCoords(OverlayTexture.NO_OVERLAY).uv2(lightmapUV).normal(normal, 0.0F, 1.0F, 0.0F).endVertex();
     }
 
     @Override
