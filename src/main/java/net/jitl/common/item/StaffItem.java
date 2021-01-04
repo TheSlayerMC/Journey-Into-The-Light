@@ -37,9 +37,6 @@ public class StaffItem extends Item {
         }
 
         playerIn.awardStat(Stats.ITEM_USED.get(this));
-        if (!playerIn.abilities.instabuild) {
-            itemstack.shrink(1);
-        }
 
         return ActionResult.sidedSuccess(itemstack, worldIn.isClientSide());
     }
