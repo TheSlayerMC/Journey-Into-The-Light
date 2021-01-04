@@ -32,6 +32,7 @@ public class ConjuringProjectileEntity extends DamagingProjectileEntity {
         super(JEntityTypes.FLORO_MUD_PROJECTILE_TYPE, world, thrower, damage);
     }
 
+    //TODO do something with duplicated stuff
     @Override
     @OnlyIn(Dist.CLIENT)
     public void onClientTick() {
