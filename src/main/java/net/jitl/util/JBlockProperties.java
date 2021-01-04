@@ -104,11 +104,16 @@ public class JBlockProperties {
 			(Material.STONE)
 			.sound(SoundType.METAL)
 			.requiresCorrectToolForDrops()
-			.noOcclusion()
 			//.isViewBlocking(() -> (Blocks::never))
 			.strength(1.5F, 6.0F));
 	public static final BlockPropsFactory GLOWSHROOM_PROPS = new BlockPropsFactory(() -> AbstractBlock.Properties.of
 			(Material.REPLACEABLE_PLANT)
 			.sound(SoundType.SWEET_BERRY_BUSH)
 			.noCollission());
+	public static final BlockPropsFactory PORTAL = new BlockPropsFactory(() -> AbstractBlock.Properties.of
+			(Material.PORTAL)
+			.sound(SoundType.GLASS)
+			.randomTicks()
+			.noCollission()
+			.strength(-1.0F));
 }

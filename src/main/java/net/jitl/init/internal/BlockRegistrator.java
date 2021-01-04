@@ -7,7 +7,10 @@ import net.jitl.common.block.BloodRuneBlock;
 import net.jitl.common.block.GlowshroomBlock;
 import net.jitl.common.block.LaserEmitterBlock;
 import net.jitl.common.block.base.*;
+import net.jitl.common.block.portal.JBasePortalBlock;
+import net.jitl.common.dimension.Dimensions;
 import net.jitl.common.helper.EnumHarvestLevel;
+import net.jitl.init.JBlocks;
 import net.jitl.init.JEntityTypes;
 import net.jitl.init.JItems;
 import net.jitl.init.JTabs;
@@ -160,6 +163,8 @@ public class BlockRegistrator {
 		registerDefaultBlock("terrania_portal_frame", "Terrania Portal Frame");
 		registerDefaultBlock("cloudia_portal_frame", "Cloudia Portal Frame");
 		registerDefaultBlock("senterian_portal_frame", "Senterian Portal Frame");//different style
+
+		registerDefaultBlock("euca_portal", "Euca Portal", () -> new JBasePortalBlock(JBlockProperties.PORTAL.create(), Dimensions.EUCA, JBlocks.EUCA_PORTAL_FRAME));
 
 	}
 

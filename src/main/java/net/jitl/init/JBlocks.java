@@ -88,4 +88,7 @@ public class JBlocks {
 
 	public static final Block TEST_SPAWNER = promise();
 
+	public static final Block EUCA_PORTAL_FRAME = promise();
+	public static final Block EUCA_PORTAL = promise();
+
 }
