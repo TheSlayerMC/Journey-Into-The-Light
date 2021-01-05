@@ -1,6 +1,7 @@
 package net.jitl.init;
 
 import net.jitl.JITL;
+import net.jitl.common.block.GlowshroomBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.StairsBlock;
 import net.minecraftforge.registries.ObjectHolder;
@@ -88,9 +89,9 @@ public class JBlocks {
 
 	public static final Block TEST_SPAWNER = promise();
 
-	public static final Block GREEN_GLOWSHROOM = promise();
-	public static final Block BLUE_GLOWSHROOM = promise();
-	public static final Block RED_GLOWSHROOM = promise();
+	public static final GlowshroomBlock GREEN_GLOWSHROOM = promise();
+	public static final GlowshroomBlock BLUE_GLOWSHROOM = promise();
+	public static final GlowshroomBlock RED_GLOWSHROOM = promise();
 
 	public static final Block EUCA_PORTAL_FRAME = promise();
 	public static final Block EUCA_PORTAL = promise();

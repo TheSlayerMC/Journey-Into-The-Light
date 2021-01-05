@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import net.jitl.JITL;
 import net.jitl.common.world.gen.features.featureconfig.RuinsFeatureConfig;
+import net.jitl.common.world.gen.features.featureconfig.TallGlowshroomFeatureConfig;
 import net.jitl.util.JRuleTests;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -92,6 +93,16 @@ public class JConfiguredFeatures {
                                             .add(LootTables.STRONGHOLD_CORRIDOR, 2)))
                             .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE)
                             .chance(128))
+                    .setBiomePredicate(COMMON_BIOMES)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> GLOWSHROOMS =
+            REGISTER.register("glowshrooms",
+                    Decoration.UNDERGROUND_DECORATION,
+                    () -> JFeatures.GLOWSHROOMS.get()
+                            .configured(new TallGlowshroomFeatureConfig(JRuleTests.STONE_DEFAULT))
+                            .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE)
+                            .chance(1))
                     .setBiomePredicate(COMMON_BIOMES)
                     .asPromise();
 
