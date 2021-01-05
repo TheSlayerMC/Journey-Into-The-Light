@@ -4,6 +4,7 @@ import net.jitl.common.entity.projectile.base.DamagingProjectileEntity;
 import net.jitl.init.JEntityTypes;
 import net.jitl.init.JItems;
 import net.jitl.init.JParticleManager;
+import net.jitl.init.JSounds;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.IRendersAsItem;
@@ -13,6 +14,8 @@ import net.minecraft.network.IPacket;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
@@ -63,6 +66,7 @@ public class FloroMudProjectileEntity extends DamagingProjectileEntity implement
             ((LivingEntity) target).addEffect(effectInstance);
             target.hurt(DamageSource.thrown(this, this.getOwner()), getDamage());
         }
+        target.level.playSound(null, new BlockPos(result.getLocation()), JSounds.MUD_BLOCK_BREAK.get(), SoundCategory.AMBIENT, 1.0F, 1.5F);
     }
 
     @Override

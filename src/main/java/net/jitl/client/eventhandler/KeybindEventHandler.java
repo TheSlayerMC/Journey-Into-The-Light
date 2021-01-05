@@ -21,6 +21,7 @@ public class KeybindEventHandler {
     static void onKeyPressed(InputEvent.KeyInputEvent event) {
         if (keyStats.isDown()) {
             if (Minecraft.getInstance().screen == null) {
+                assert Minecraft.getInstance().player != null;
                 Minecraft.getInstance().setScreen(new ScreenPlayerStats(Minecraft.getInstance().player.inventory));
             }
         }

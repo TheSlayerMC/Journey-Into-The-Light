@@ -1,15 +1,21 @@
 package net.jitl.common.item;
 
-import net.jitl.init.JSounds;
+import net.jitl.JITL;
+import net.jitl.client.dialogue.ClientDialogueNode;
+import net.jitl.client.render.gui.dialogue.DialogueScreen;
 import net.minecraft.block.Blocks;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.*;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Direction;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import ru.timeconqueror.timecore.api.util.GenHelper;
-import ru.timeconqueror.timecore.api.util.RandHelper;
+
+import java.util.Arrays;
 
 public class TestBugItem extends Item {
     public TestBugItem(Properties properties) {
@@ -30,8 +36,8 @@ public class TestBugItem extends Item {
         }
 
         if (worldIn.isClientSide()) {
-            SoundEvent soundEvent = RandHelper.chooseEqually(JSounds.MUD_BLOCK_BREAK.get(), JSounds.MUD_BLOCK_DIG.get());
-            worldIn.playSound(playerIn, playerIn.blockPosition(), soundEvent, SoundCategory.MASTER, 1.0F, 1.0F);
+            //TODO: create dialogue registry and network syncing *looks at TimeConqueror*
+            Minecraft.getInstance().setScreen(new DialogueScreen(new ClientDialogueNode(JITL.rl("floro"), "Hello!", Arrays.asList("helols", "hey", "heyyooooo"))));
         }
         return ActionResult.success(playerIn.getItemInHand(handIn));
     }
