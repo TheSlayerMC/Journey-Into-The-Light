@@ -10,7 +10,9 @@ import net.minecraft.util.RegistryKey;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import org.jetbrains.annotations.NotNull;
 
+import java.util.Objects;
 import java.util.Random;
 
 public class JBasePortalBlock extends NetherPortalBlock {
@@ -25,17 +27,18 @@ public class JBasePortalBlock extends NetherPortalBlock {
     }
 
     @Override
-    public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
-       //make particals call in constructor
+    public void randomTick(@NotNull BlockState state, @NotNull ServerWorld worldIn, @NotNull BlockPos pos, @NotNull Random random) {
+        //make particals call in constructor
     }
 
     @Override
-    public void entityInside(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
-        if(entityIn instanceof ServerPlayerEntity) {
-            if(!entityIn.isPassenger() && !entityIn.isVehicle() && entityIn.canChangeDimensions()) {
-                ServerPlayerEntity playerMP = (ServerPlayerEntity)entityIn;
+    public void entityInside(@NotNull BlockState state, @NotNull World worldIn, @NotNull BlockPos pos, @NotNull Entity entityIn) {
+        if (entityIn instanceof ServerPlayerEntity) {
+            if (!entityIn.isPassenger() && !entityIn.isVehicle() && entityIn.canChangeDimensions()) {
+                ServerPlayerEntity playerMP = (ServerPlayerEntity) entityIn;
                 RegistryKey<World> dimension = worldIn.dimension() == dimensionID ? World.OVERWORLD : dimensionID;
-                ServerWorld serverworld = (ServerWorld)playerMP.level.getServer().getLevel(dimension);
+                ServerWorld serverworld = Objects.requireNonNull(playerMP.level.getServer()).getLevel(dimension);
+                assert serverworld != null;
                 playerMP.changeDimension(serverworld, new BaseTeleporter(serverworld, this, this.frame));//I have a feeling this has to be done in events
             }
         }

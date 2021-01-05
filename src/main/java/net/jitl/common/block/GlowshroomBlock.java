@@ -1,19 +1,21 @@
 package net.jitl.common.block;
 
+import net.jitl.api.block.GroundPredicate;
+import net.jitl.common.block.base.JDoublePlantBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.DoublePlantBlock;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 
-public class GlowshroomBlock extends DoublePlantBlock {
+public class GlowshroomBlock extends JDoublePlantBlock {
 
     private static final VoxelShape HITBOX = Block.box(3.0D, 0.0D, 3.0D, 13.0D, 14.0D, 13.0D);
 
     public GlowshroomBlock(Properties properties) {
         super(properties);
+        setGroundPredicate(GroundPredicate.UNDERGROUND);
     }
 
     @Override

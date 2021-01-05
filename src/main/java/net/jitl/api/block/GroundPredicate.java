@@ -3,7 +3,6 @@ package net.jitl.api.block;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.HorizontalFaceBlock;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -16,7 +15,7 @@ public interface GroundPredicate {
     /**
      * Any ground is accepted, but it should have solid side at the place direction.
      */
-    GroundPredicate SOLID_SIDE = (world, groundPos, horizontalFaceBlock, placeDirection) -> HorizontalFaceBlock.canAttach(world, groundPos, placeDirection);
+    GroundPredicate SOLID_SIDE = (world, groundPos, blockState, placeDirection) -> blockState.isFaceSturdy(world, groundPos, placeDirection);
     /**
      * Default version for plants. Simulates BlockBush#canSustainBush
      */
@@ -52,7 +51,7 @@ public interface GroundPredicate {
     }
 
     static GroundPredicate blockStatePredicate(Predicate<BlockState> blockStatePredicate) {
-        return (world, groundPos, groundState, plantDirection) -> blockStatePredicate.test(groundState.defaultBlockState());
+        return (world, groundPos, groundState, plantDirection) -> blockStatePredicate.test(groundState);
     }
 
     /**
@@ -60,13 +59,13 @@ public interface GroundPredicate {
      * <p>
      * !!! Don't check here for plant block, it can be not placed yet.
      *
-     * @param groundPos           position of ground state
-     * @param horizontalFaceBlock state of the ground
-     * @param plantDirection      direction of plant, regarding to ground position.
+     * @param groundPos      position of ground state
+     * @param blockState     state of the ground
+     * @param plantDirection direction of plant, regarding to ground position.
      * @return {@code true} if the input argument matches the predicate,
      * otherwise {@code false}
      */
-    boolean testGround(World world, BlockPos groundPos, HorizontalFaceBlock horizontalFaceBlock, Direction plantDirection);
+    boolean testGround(World world, BlockPos groundPos, BlockState blockState, Direction plantDirection);
 
     /**
      * Returns a composed predicate that represents a short-circuiting logical

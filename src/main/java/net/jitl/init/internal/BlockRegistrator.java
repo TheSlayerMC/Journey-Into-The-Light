@@ -151,18 +151,21 @@ public class BlockRegistrator {
 		registerDefaultBlock("laser_emitter", "Laser Emitter", () -> new LaserEmitterBlock(JBlockProperties.STONE_PROPS.create().noOcclusion()));
 		registerDefaultBlock("test_spawner", "Test Spawner", () -> new JSpawnerBlock(JEntityTypes.FLORO_TYPE));
 
-		registerTallCrossRenderedBlock("glowshroom_green", "Green Glowshroom", () -> new GlowshroomBlock(JBlockProperties.GLOWSHROOM_PROPS.create()));
-		registerTallCrossRenderedBlock("glowshroom_blue", "Blue Glowshroom", () -> new GlowshroomBlock(JBlockProperties.GLOWSHROOM_PROPS.create()));
-		registerTallCrossRenderedBlock("glowshroom_red", "Red Glowshroom", () -> new GlowshroomBlock(JBlockProperties.GLOWSHROOM_PROPS.create()));
+		registerTallCrossRenderedBlock("green_glowshroom", "Green Glowshroom", () -> new GlowshroomBlock(JBlockProperties.GLOWSHROOM_PROPS.create()));
+		registerTallCrossRenderedBlock("blue_glowshroom", "Blue Glowshroom", () -> new GlowshroomBlock(JBlockProperties.GLOWSHROOM_PROPS.create()));
+		registerTallCrossRenderedBlock("red_glowshroom", "Red Glowshroom", () -> new GlowshroomBlock(JBlockProperties.GLOWSHROOM_PROPS.create()));
 
 		registerDefaultBlock("boil_portal_frame", "Boiling Point Portal Frame");
 		registerDefaultBlock("euca_portal_frame", "Euca Portal Frame");
 		registerDefaultBlock("frozen_portal_frame", "Frozen Lands Portal Frame");
-		registerDefaultBlock("depths_portal_frame", "The Depths Portal Frame");//different style
-		registerDefaultBlock("corba_portal_frame", "Corba Portal Frame");//different style
-		registerDefaultBlock("terrania_portal_frame", "Terrania Portal Frame");
-		registerDefaultBlock("cloudia_portal_frame", "Cloudia Portal Frame");
-		registerDefaultBlock("senterian_portal_frame", "Senterian Portal Frame");//different style
+		/*
+		we'll keep these separated for a while
+		 */
+		//registerDefaultBlock("depths_portal_frame", "The Depths Portal Frame");//different style
+		//registerDefaultBlock("corba_portal_frame", "Corba Portal Frame");//different style
+		//registerDefaultBlock("terrania_portal_frame", "Terrania Portal Frame");
+		//registerDefaultBlock("cloudia_portal_frame", "Cloudia Portal Frame");
+		//registerDefaultBlock("senterian_portal_frame", "Senterian Portal Frame");//different style
 
 		registerDefaultBlock("euca_portal", "Euca Portal", () -> new JBasePortalBlock(JBlockProperties.PORTAL.create(), Dimensions.EUCA, JBlocks.EUCA_PORTAL_FRAME));
 
