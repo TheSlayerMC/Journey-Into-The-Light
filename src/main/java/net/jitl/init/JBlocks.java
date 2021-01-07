@@ -1,6 +1,8 @@
 package net.jitl.init;
 
 import net.jitl.JITL;
+import net.jitl.common.block.CaveVinesBlock;
+import net.jitl.common.block.CaveVinesTopBlock;
 import net.jitl.common.block.GlowshroomBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.StairsBlock;
@@ -83,17 +85,20 @@ public class JBlocks {
 
 	public static final Block BRADBERRY_BUSH = promise();
 
-	public static final Block EUCA_BRICK = promise();
+    public static final Block EUCA_BRICK = promise();
 
-	public static final Block LASER_EMITTER = promise();
+    public static final Block LASER_EMITTER = promise();
 
-	public static final Block TEST_SPAWNER = promise();
+    public static final Block TEST_SPAWNER = promise();
 
-	public static final GlowshroomBlock GREEN_GLOWSHROOM = promise();
-	public static final GlowshroomBlock BLUE_GLOWSHROOM = promise();
-	public static final GlowshroomBlock RED_GLOWSHROOM = promise();
+    public static final GlowshroomBlock GREEN_GLOWSHROOM = promise();
+    public static final GlowshroomBlock BLUE_GLOWSHROOM = promise();
+    public static final GlowshroomBlock RED_GLOWSHROOM = promise();
 
-	public static final Block EUCA_PORTAL_FRAME = promise();
-	public static final Block EUCA_PORTAL = promise();
+    public static final CaveVinesTopBlock CAVE_VINES = promise();
+    public static final CaveVinesBlock CAVE_VINES_PLANT = promise();
+
+    public static final Block EUCA_PORTAL_FRAME = promise();
+    public static final Block EUCA_PORTAL = promise();
 
 }

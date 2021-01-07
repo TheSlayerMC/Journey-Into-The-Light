@@ -30,6 +30,8 @@ public class ModelLoadingHandler {
         RenderTypeLookup.setRenderLayer(JBlocks.BLOOD_RUNE_FLESH, RenderType.cutout());
 
         RenderTypeLookup.setRenderLayer(JBlocks.CHARGED_RUNIC_CONNECTOR, RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(JBlocks.CAVE_VINES, RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(JBlocks.CAVE_VINES_PLANT, RenderType.cutout());
     }
 }
 /*

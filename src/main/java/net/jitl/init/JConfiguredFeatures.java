@@ -4,7 +4,6 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import net.jitl.JITL;
 import net.jitl.common.world.gen.features.featureconfig.RuinsFeatureConfig;
-import net.jitl.common.world.gen.features.featureconfig.TallGlowshroomFeatureConfig;
 import net.jitl.util.JRuleTests;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -13,6 +12,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.WeightedList;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage.Decoration;
+import net.minecraft.world.gen.blockplacer.DoublePlantBlockPlacer;
 import net.minecraft.world.gen.blockplacer.SimpleBlockPlacer;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.blockstateprovider.WeightedBlockStateProvider;
@@ -96,13 +96,42 @@ public class JConfiguredFeatures {
                     .setBiomePredicate(COMMON_BIOMES)
                     .asPromise();
 
-    public static final Promised<? extends ConfiguredFeature<?, ?>> GLOWSHROOMS =
-            REGISTER.register("glowshrooms",
+    public static final Promised<? extends ConfiguredFeature<?, ?>> TALL_GLOWSHROOMS =
+            REGISTER.register("tall_glowshrooms",
                     Decoration.UNDERGROUND_DECORATION,
-                    () -> JFeatures.GLOWSHROOMS.get()
-                            .configured(new TallGlowshroomFeatureConfig(JRuleTests.STONE_DEFAULT))
-                            .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE)
-                            .chance(1))
+                    () -> Feature.RANDOM_PATCH
+                            .configured((new BlockClusterFeatureConfig.Builder(
+                                    new WeightedBlockStateProvider()
+                                            .add(JBlocks.GREEN_GLOWSHROOM.defaultBlockState(), 1)
+                                            .add(JBlocks.BLUE_GLOWSHROOM.defaultBlockState(), 1)
+                                            .add(JBlocks.RED_GLOWSHROOM.defaultBlockState(), 1),
+                                    new DoublePlantBlockPlacer()))
+                                    .tries(128)
+                                    .xspread(6)
+                                    .zspread(6)
+                                    .whitelist(ImmutableSet.of(
+                                            Blocks.STONE,
+                                            Blocks.COBBLESTONE,
+                                            Blocks.MOSSY_COBBLESTONE,
+                                            Blocks.ANDESITE,
+                                            Blocks.GRANITE,
+                                            Blocks.DIORITE))
+                                    .noProjection()
+                                    .build())
+                            .range(55)
+                            .count(1))
+                    .setBiomePredicate(COMMON_BIOMES)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> CAVE_VINES =
+            REGISTER.register("cave_vines",
+                    Decoration.UNDERGROUND_STRUCTURES,
+                    () -> JFeatures.CAVE_VINES.get()
+                            .configured(IFeatureConfig.NONE)
+                            .range(55)
+                            .squared()
+                            //.chance(1)
+                            .countRandom(16))
                     .setBiomePredicate(COMMON_BIOMES)
                     .asPromise();
 

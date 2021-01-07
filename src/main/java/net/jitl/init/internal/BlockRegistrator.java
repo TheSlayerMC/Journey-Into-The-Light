@@ -3,9 +3,7 @@ package net.jitl.init.internal;
 import net.jitl.JITL;
 import net.jitl.client.render.JBlockModels;
 import net.jitl.client.render.JBlockStateResources;
-import net.jitl.common.block.BloodRuneBlock;
-import net.jitl.common.block.GlowshroomBlock;
-import net.jitl.common.block.LaserEmitterBlock;
+import net.jitl.common.block.*;
 import net.jitl.common.block.base.*;
 import net.jitl.common.block.portal.JBasePortalBlock;
 import net.jitl.common.dimension.Dimensions;
@@ -155,6 +153,12 @@ public class BlockRegistrator {
 		registerTallCrossRenderedBlock("blue_glowshroom", "Blue Glowshroom", () -> new GlowshroomBlock(JBlockProperties.GLOWSHROOM_PROPS.create()));
 		registerTallCrossRenderedBlock("red_glowshroom", "Red Glowshroom", () -> new GlowshroomBlock(JBlockProperties.GLOWSHROOM_PROPS.create()));
 
+		registerSpeciallyRenderedBlock("cave_vines", "Cave Vines", () -> new CaveVinesTopBlock(JBlockProperties.CAVE_VINE_PROPS.create()),
+				() -> JBlockModels.emissive(BlockModels.crossModel(JITL.tl("block/cave_vines_back")), BlockModels.crossModel(JITL.tl("block/cave_vines_front"))));
+
+		registerSpeciallyRenderedBlock("cave_vines_plant", "Cave Vines", () -> new CaveVinesBlock(JBlockProperties.CAVE_VINE_PROPS.create()),
+				() -> JBlockModels.emissive(BlockModels.crossModel(JITL.tl("block/cave_vines_plant_back")), BlockModels.crossModel(JITL.tl("block/cave_vines_plant_front"))));
+
 		registerDefaultBlock("boil_portal_frame", "Boiling Point Portal Frame");
 		registerDefaultBlock("euca_portal_frame", "Euca Portal Frame");
 		registerDefaultBlock("frozen_portal_frame", "Frozen Lands Portal Frame");
@@ -248,6 +252,17 @@ public class BlockRegistrator {
 				.genLangEntry(enName)
 				.regDefaultBlockItem(JTabs.BLOCKS)
 				.genDefaultState(new BlockModelLocation(JITL.MODID, "block/" + name));
+	}
+
+	/**
+	 * Registers a block with a BlockModel supplier
+	 */
+	private static void registerSpeciallyRenderedBlock(String name, String enName, Supplier<Block> blockSupplier, Supplier<BlockModel> blockModelSupplier) {
+		REGISTER.register(name, blockSupplier)
+				.genLangEntry(enName)
+				.regDefaultBlockItem(JTabs.BLOCKS)
+				.genDefaultState(new BlockModelLocation(JITL.MODID, "block/" + name))
+				.genModel(JITL.bml("block/" + name), blockModelSupplier);
 	}
 
 	/**

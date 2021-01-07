@@ -8,7 +8,7 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
@@ -39,12 +39,9 @@ public class JDoublePlantBlock extends DoublePlantBlock {
     }
 
     @Override
-    public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {
-        BlockPos groundPos = pos.offset(plantDirection.getOpposite().getNormal());
-        BlockState groundState = worldIn.getBlockState(groundPos);
-
+    public boolean canSurvive(BlockState state, @NotNull IWorldReader worldIn, BlockPos pos) {
         if (state.getValue(HALF) != DoubleBlockHalf.UPPER) {
-            return groundPredicate.testGround((World) worldIn, groundPos, groundState, plantDirection);
+            return mayPlaceOn(state, worldIn, pos);
         } else {
             BlockState blockstate = worldIn.getBlockState(pos.below());
             if (state.getBlock() != this) return super.canSurvive(state, worldIn, pos);
@@ -53,10 +50,10 @@ public class JDoublePlantBlock extends DoublePlantBlock {
     }
 
     @Override
-    protected boolean mayPlaceOn(BlockState state, IBlockReader worldIn, BlockPos pos) {
+    protected boolean mayPlaceOn(@NotNull BlockState state, IBlockReader worldIn, BlockPos pos) {
         BlockPos groundPos = pos.offset(plantDirection.getOpposite().getNormal());
         BlockState groundState = worldIn.getBlockState(groundPos);
 
-        return groundPredicate.testGround((World) worldIn, groundPos, groundState, plantDirection);
+        return groundPredicate.testGround((IWorldReader) worldIn, groundPos, groundState, plantDirection);
     }
 }

@@ -5,13 +5,14 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.IWorldReader;
 
 import java.util.Objects;
 import java.util.function.Predicate;
 
 public interface GroundPredicate {
-    GroundPredicate ANY = (world, groundPos, horizontalFaceBlock, plantDirection) -> true;
+
+    GroundPredicate ANY = (world, groundPos, blockState, plantDirection) -> true;
     /**
      * Any ground is accepted, but it should have solid side at the place direction.
      */
@@ -65,7 +66,7 @@ public interface GroundPredicate {
      * @return {@code true} if the input argument matches the predicate,
      * otherwise {@code false}
      */
-    boolean testGround(World world, BlockPos groundPos, BlockState blockState, Direction plantDirection);
+    boolean testGround(IWorldReader world, BlockPos groundPos, BlockState blockState, Direction plantDirection);
 
     /**
      * Returns a composed predicate that represents a short-circuiting logical

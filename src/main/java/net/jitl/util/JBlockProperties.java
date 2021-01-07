@@ -109,6 +109,7 @@ public class JBlockProperties {
 	public static final BlockPropsFactory GLOWSHROOM_PROPS = new BlockPropsFactory(() -> AbstractBlock.Properties.of
 			(Material.REPLACEABLE_PLANT)
 			.sound(SoundType.SWEET_BERRY_BUSH)
+			.lightLevel((state) -> 9)
 			.noCollission());
 	public static final BlockPropsFactory PORTAL = new BlockPropsFactory(() -> AbstractBlock.Properties.of
 			(Material.PORTAL)
@@ -116,4 +117,9 @@ public class JBlockProperties {
 			.randomTicks()
 			.noCollission()
 			.strength(-1.0F));
+	public static final BlockPropsFactory CAVE_VINE_PROPS = new BlockPropsFactory(() -> AbstractBlock.Properties.of
+			(Material.REPLACEABLE_PLANT)
+			.sound(SoundType.SWEET_BERRY_BUSH)
+			.lightLevel((state) -> 3)
+			.noCollission());
 }

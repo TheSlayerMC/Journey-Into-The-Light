@@ -66,7 +66,18 @@ public class FloroMudProjectileEntity extends DamagingProjectileEntity implement
             ((LivingEntity) target).addEffect(effectInstance);
             target.hurt(DamageSource.thrown(this, this.getOwner()), getDamage());
         }
-        target.level.playSound(null, new BlockPos(result.getLocation()), JSounds.MUD_BLOCK_BREAK.get(), SoundCategory.AMBIENT, 1.0F, 1.5F);
+    }
+
+    @Override
+    protected void onHit(RayTraceResult result) {
+        super.onHit(result);
+        if (!level.isClientSide) {
+            if (result.getType() != RayTraceResult.Type.MISS) {
+                level.playSound(null, new BlockPos(result.getLocation()), JSounds.MUD_BLOCK_BREAK.get(), SoundCategory.AMBIENT, 1.0F, 1.5F);
+            }
+        } else {
+            remove();
+        }
     }
 
     @Override

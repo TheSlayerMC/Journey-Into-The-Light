@@ -1,6 +1,7 @@
 package net.jitl.init;
 
 import net.jitl.JITL;
+import net.jitl.client.particle.CaveVineParticle;
 import net.jitl.client.particle.ConjuringParticle;
 import net.jitl.client.particle.MudParticle;
 import net.jitl.client.particle.RedFlameParticle;
@@ -27,6 +28,7 @@ public class JParticleManager {
 	public static final RegistryObject<BasicParticleType> RED_FLAME = REGISTER.register("red_flame", () -> new BasicParticleType(false));
 	public static final RegistryObject<BasicParticleType> MUD = REGISTER.register("mud", () -> new BasicParticleType(false));
 	public static final RegistryObject<BasicParticleType> CONJURING = REGISTER.register("conjuring", () -> new BasicParticleType(false));
+	public static final RegistryObject<BasicParticleType> CAVE_VINE = REGISTER.register("cave_vine", () -> new BasicParticleType(false));
 
 	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public static void registerParticleFactories(ParticleFactoryRegisterEvent event) {
@@ -35,5 +37,6 @@ public class JParticleManager {
 		manager.register(RED_FLAME.get(), RedFlameParticle.Factory::new);
 		manager.register(MUD.get(), MudParticle.Factory::new);
 		manager.register(CONJURING.get(), ConjuringParticle.Factory::new);
+		manager.register(CAVE_VINE.get(), CaveVineParticle.Factory::new);
 	}
 }
