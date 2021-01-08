@@ -22,14 +22,7 @@ public class ModelLoadingHandler {
     public static void onClientSetup(FMLClientSetupEvent event) {
         RenderTypeLookup.setRenderLayer(JBlocks.LUNIUM_ORE, RenderType.cutout());
         RenderTypeLookup.setRenderLayer(JBlocks.FIRESTONE_ORE, RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(JBlocks.BRADBERRY_BUSH, RenderType.cutout());
 
-        RenderTypeLookup.setRenderLayer(JBlocks.BLOOD_RUNE_DEATH, RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(JBlocks.BLOOD_RUNE_LIFE, RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(JBlocks.BLOOD_RUNE_SOUL, RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(JBlocks.BLOOD_RUNE_FLESH, RenderType.cutout());
-
-        RenderTypeLookup.setRenderLayer(JBlocks.CHARGED_RUNIC_CONNECTOR, RenderType.cutout());
         RenderTypeLookup.setRenderLayer(JBlocks.CAVE_VINES, RenderType.cutout());
         RenderTypeLookup.setRenderLayer(JBlocks.CAVE_VINES_PLANT, RenderType.cutout());
 

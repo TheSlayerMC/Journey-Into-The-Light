@@ -29,7 +29,7 @@ public class CaveVinesBlock extends AbstractBodyPlantBlock {
 
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
+    public void animateTick(@NotNull BlockState stateIn, @NotNull World worldIn, @NotNull BlockPos pos, Random rand) {
         if (rand.nextInt(8) == 0) {
             double d0 = (double) pos.getX() + rand.nextDouble();
             double d1 = (double) pos.getY() - 0.05D;

@@ -44,10 +44,11 @@ public class JLootTableSet extends BlockLootTableSet {
 		registerDropsSelf(JBlocks.CARVED_BLOOD_ROCK);
 		registerDropsSelf(JBlocks.SMOOTH_BLOOD_ROCK);
 		registerDropsSelf(JBlocks.BLOOD_ROCK_PILLAR);
-		registerDropsSelf(JBlocks.BLOOD_RUNE_DEATH);
-		registerDropsSelf(JBlocks.BLOOD_RUNE_FLESH);
-		registerDropsSelf(JBlocks.BLOOD_RUNE_LIFE);
-		registerDropsSelf(JBlocks.BLOOD_RUNE_SOUL);
+		registerDropsOther(JBlocks.BLOOD_RUNE_DEATH, JBlocks.EMPTY_BLOOD_RUNE);
+		registerDropsOther(JBlocks.BLOOD_RUNE_FLESH, JBlocks.EMPTY_BLOOD_RUNE);
+		registerDropsOther(JBlocks.BLOOD_RUNE_LIFE, JBlocks.EMPTY_BLOOD_RUNE);
+		registerDropsOther(JBlocks.BLOOD_RUNE_SOUL, JBlocks.EMPTY_BLOOD_RUNE);
+		registerDropsOther(JBlocks.CHARGED_RUNIC_CONNECTOR, JBlocks.RUNIC_CONNECTOR);
 
 		registerSpecialOreWithExtraCount(JBlocks.BLOCK_OF_MUD, JItems.MUD_BALL, 3, 4);
 	}

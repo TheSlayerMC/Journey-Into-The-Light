@@ -94,6 +94,10 @@ public class BlockRegistrator {
 				BlockModels.cubeTopModel(JITL.tl("block/empty_blood_rune"), JITL.tl("block/empty_blood_rune")),
 				BlockModels.cubeTopModel(JITL.tl("block/blood_rune_death_front"), JITL.tl("block/blank")));
 
+		registerEmissiveRenderedBlock("essencia_altar", "Essencia Altar", () -> new JBlock(JBlockProperties.BRICK_PROPS.create()),
+				BlockModels.cubeBottomTopModel(JITL.tl("block/essencia_altar_top"), JITL.tl("block/essencia_altar_side"), JITL.tl("block/essencia_altar_bottom")),
+				BlockModels.cubeBottomTopModel(JITL.tl("block/essencia_altar_top_front"), JITL.tl("block/essencia_altar_side_front"), JITL.tl("block/blank")));
+
 		registerDefaultBlock("corrupted_blood_rock", "Corrupted Blood Rock", () -> new JBlock(JBlockProperties.NETHER_BASALT_ORE_PROPS.create()));
 		registerDefaultBlock("smooth_corrupted_blood_rock", "Smooth Corrupted Blood Rock", () -> new JBlock(JBlockProperties.BRICK_PROPS.create()));
 
@@ -314,6 +318,7 @@ public class BlockRegistrator {
 	private static void registerEmissiveRenderedBlock(String name, String enName, Supplier<Block> blockSupplier, BlockModel normal, BlockModel emissive) {
 		REGISTER.register(name, blockSupplier)
 				.genLangEntry(enName)
+				.setRenderLayer(RenderType::cutout)
 				.regDefaultBlockItem(JTabs.BLOCKS)
 				.genDefaultState(JITL.bml("block/" + name))
 				.genModel(JITL.bml("block/" + name),
@@ -326,6 +331,7 @@ public class BlockRegistrator {
 	private static void registerEmissiveRenderedBlock(String name, String enName, Supplier<Block> blockSupplier, BlockStateResource blockStateResource, BlockModel normal, BlockModel emissive) {
 		REGISTER.register(name, blockSupplier)
 				.genLangEntry(enName)
+				.setRenderLayer(RenderType::cutout)
 				.regDefaultBlockItem(JTabs.BLOCKS)
 				.genState(blockStateResource)
 				.genModel(JITL.bml("block/" + name),
@@ -355,6 +361,7 @@ public class BlockRegistrator {
 		REGISTER.register(name, () -> new JBerryBushBlock(
 				(JBlockProperties.BERRY_BUSH_PROPS.create()), itemProviderSupplier))
 				.genLangEntry(enName)
+				.setRenderLayer(RenderType::cutout)
 				.regDefaultBlockItem(JTabs.BLOCKS).also((chain) -> {
 			String model0 = "block/" + name + "_0";
 			String model1 = "block/" + name + "_1";
