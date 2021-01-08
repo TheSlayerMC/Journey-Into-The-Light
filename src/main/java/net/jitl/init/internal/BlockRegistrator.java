@@ -1,6 +1,7 @@
 package net.jitl.init.internal;
 
 import net.jitl.JITL;
+import net.jitl.api.block.GroundPredicate;
 import net.jitl.client.render.JBlockModels;
 import net.jitl.client.render.JBlockStateResources;
 import net.jitl.common.block.*;
@@ -149,9 +150,24 @@ public class BlockRegistrator {
 		registerDefaultBlock("laser_emitter", "Laser Emitter", () -> new LaserEmitterBlock(JBlockProperties.STONE_PROPS.create().noOcclusion()));
 		registerDefaultBlock("test_spawner", "Test Spawner", () -> new JSpawnerBlock(JEntityTypes.FLORO_TYPE));
 
-		registerTallCrossRenderedBlock("green_glowshroom", "Green Glowshroom", () -> new GlowshroomBlock(JBlockProperties.GLOWSHROOM_PROPS.create()));
-		registerTallCrossRenderedBlock("blue_glowshroom", "Blue Glowshroom", () -> new GlowshroomBlock(JBlockProperties.GLOWSHROOM_PROPS.create()));
-		registerTallCrossRenderedBlock("red_glowshroom", "Red Glowshroom", () -> new GlowshroomBlock(JBlockProperties.GLOWSHROOM_PROPS.create()));
+		registerTallCrossRenderedBlock("tall_green_glowshroom", "Tall Green Glowshroom", () -> new TallGlowshroomBlock(JBlockProperties.GLOWSHROOM_PROPS.create()));
+		registerTallCrossRenderedBlock("tall_blue_glowshroom", "Tall Blue Glowshroom", () -> new TallGlowshroomBlock(JBlockProperties.GLOWSHROOM_PROPS.create()));
+		registerTallCrossRenderedBlock("tall_red_glowshroom", "Tall Red Glowshroom", () -> new TallGlowshroomBlock(JBlockProperties.GLOWSHROOM_PROPS.create()));
+
+		registerSpeciallyRenderedBlock("green_glowshroom", "Green Glowshroom", () -> new JPlantBlock(JBlockProperties.GLOWSHROOM_PROPS.create())
+						.setGrownPlant(() -> JBlocks.TALL_GREEN_GLOWSHROOM)
+						.setGroundPredicate(GroundPredicate.UNDERGROUND),
+				() -> BlockModels.crossModel(JITL.tl("block/tall_green_glowshroom_top")));
+
+		registerSpeciallyRenderedBlock("blue_glowshroom", "Blue Glowshroom", () -> new JPlantBlock(JBlockProperties.GLOWSHROOM_PROPS.create())
+						.setGrownPlant(() -> JBlocks.TALL_BLUE_GLOWSHROOM)
+						.setGroundPredicate(GroundPredicate.UNDERGROUND),
+				() -> BlockModels.crossModel(JITL.tl("block/tall_blue_glowshroom_top")));
+
+		registerSpeciallyRenderedBlock("red_glowshroom", "Red Glowshroom", () -> new JPlantBlock(JBlockProperties.GLOWSHROOM_PROPS.create())
+						.setGrownPlant(() -> JBlocks.TALL_RED_GLOWSHROOM)
+						.setGroundPredicate(GroundPredicate.UNDERGROUND),
+				() -> BlockModels.crossModel(JITL.tl("block/tall_red_glowshroom_top")));
 
 		registerSpeciallyRenderedBlock("cave_vines", "Cave Vines", () -> new CaveVinesTopBlock(JBlockProperties.CAVE_VINE_PROPS.create()),
 				() -> JBlockModels.emissive(BlockModels.crossModel(JITL.tl("block/cave_vines_back")), BlockModels.crossModel(JITL.tl("block/cave_vines_front"))));

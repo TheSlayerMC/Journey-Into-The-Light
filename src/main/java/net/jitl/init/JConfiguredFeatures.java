@@ -102,10 +102,37 @@ public class JConfiguredFeatures {
                     () -> Feature.RANDOM_PATCH
                             .configured((new BlockClusterFeatureConfig.Builder(
                                     new WeightedBlockStateProvider()
+                                            .add(JBlocks.TALL_GREEN_GLOWSHROOM.defaultBlockState(), 1)
+                                            .add(JBlocks.TALL_BLUE_GLOWSHROOM.defaultBlockState(), 1)
+                                            .add(JBlocks.TALL_RED_GLOWSHROOM.defaultBlockState(), 1),
+                                    new DoublePlantBlockPlacer()))
+                                    .tries(64)
+                                    .xspread(6)
+                                    .zspread(6)
+                                    .whitelist(ImmutableSet.of(
+                                            Blocks.STONE,
+                                            Blocks.COBBLESTONE,
+                                            Blocks.MOSSY_COBBLESTONE,
+                                            Blocks.ANDESITE,
+                                            Blocks.GRANITE,
+                                            Blocks.DIORITE))
+                                    .noProjection()
+                                    .build())
+                            .range(55)
+                            .count(1))
+                    .setBiomePredicate(COMMON_BIOMES)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> SMALL_GLOWSHROOMS =
+            REGISTER.register("small_glowshrooms",
+                    Decoration.UNDERGROUND_DECORATION,
+                    () -> Feature.RANDOM_PATCH
+                            .configured((new BlockClusterFeatureConfig.Builder(
+                                    new WeightedBlockStateProvider()
                                             .add(JBlocks.GREEN_GLOWSHROOM.defaultBlockState(), 1)
                                             .add(JBlocks.BLUE_GLOWSHROOM.defaultBlockState(), 1)
                                             .add(JBlocks.RED_GLOWSHROOM.defaultBlockState(), 1),
-                                    new DoublePlantBlockPlacer()))
+                                    new SimpleBlockPlacer()))
                                     .tries(128)
                                     .xspread(6)
                                     .zspread(6)
@@ -128,10 +155,10 @@ public class JConfiguredFeatures {
                     Decoration.UNDERGROUND_STRUCTURES,
                     () -> JFeatures.CAVE_VINES.get()
                             .configured(IFeatureConfig.NONE)
-                            .range(55)
+                            .range(60)
                             .squared()
-                            //.chance(1)
-                            .countRandom(16))
+                            .chance(1)
+                            .countRandom(32))
                     .setBiomePredicate(COMMON_BIOMES)
                     .asPromise();
 

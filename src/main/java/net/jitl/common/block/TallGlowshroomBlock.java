@@ -10,11 +10,11 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import org.jetbrains.annotations.NotNull;
 
-public class GlowshroomBlock extends JDoublePlantBlock {
+public class TallGlowshroomBlock extends JDoublePlantBlock {
 
     private static final VoxelShape HITBOX = Block.box(3.0D, 0.0D, 3.0D, 13.0D, 14.0D, 13.0D);
 
-    public GlowshroomBlock(Properties properties) {
+    public TallGlowshroomBlock(Properties properties) {
         super(properties);
         setGroundPredicate(GroundPredicate.UNDERGROUND);
     }
@@ -22,10 +22,5 @@ public class GlowshroomBlock extends JDoublePlantBlock {
     @Override
     public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull IBlockReader worldIn, @NotNull BlockPos pos, @NotNull ISelectionContext context) {
         return HITBOX;
-    }
-
-    @Override
-    public int getLightValue(BlockState state, IBlockReader world, BlockPos pos) {
-        return 2;
     }
 }
