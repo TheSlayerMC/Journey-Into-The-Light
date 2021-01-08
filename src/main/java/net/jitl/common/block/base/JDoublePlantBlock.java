@@ -1,6 +1,8 @@
 package net.jitl.common.block.base;
 
+import net.jitl.JITL;
 import net.jitl.api.block.GroundPredicate;
+import net.jitl.util.Logs;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.DoublePlantBlock;
 import net.minecraft.state.properties.DoubleBlockHalf;
@@ -54,6 +56,17 @@ public class JDoublePlantBlock extends DoublePlantBlock {
         BlockPos groundPos = pos.offset(plantDirection.getOpposite().getNormal());
         BlockState groundState = worldIn.getBlockState(groundPos);
 
-        return groundPredicate.testGround((IWorldReader) worldIn, groundPos, groundState, plantDirection);
+        if (worldIn instanceof IWorldReader) {
+            return groundPredicate.testGround((IWorldReader) worldIn, groundPos, groundState, plantDirection);
+        } else {
+            JITL.LOGGER.warn(
+                    "Can't test the surface for {} placement. " +
+                            "The World is supposed to be {}, but is {}. ",
+                    getClass().getName(),
+                    IWorldReader.class.getName(),
+                    worldIn.getClass().getName());
+            Logs.printReportMessage();
+            return false;
+        }
     }
 }
