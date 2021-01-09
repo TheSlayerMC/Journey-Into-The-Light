@@ -108,5 +108,21 @@
     "sounds": [
       "jitl:items/staff/staff_0"
     ]
+  },
+  "entities.hongo_ambient": {
+    "sounds": [
+      "jitl:entities/hongo_ambient_0",
+      "jitl:entities/hongo_ambient_1"
+    ]
+  },
+  "entities.hongo_hurt": {
+    "sounds": [
+      "jitl:entities/hongo_hurt"
+    ]
+  },
+  "entities.hongo_death": {
+    "sounds": [
+      "jitl:entities/hongo_death"
+    ]
   }
 }

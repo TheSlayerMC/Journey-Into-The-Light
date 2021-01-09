@@ -5,6 +5,7 @@ import net.jitl.client.render.JEntityRenderRegistry;
 import net.jitl.common.entity.FloroEntity;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.util.ResourceLocation;
+import org.jetbrains.annotations.NotNull;
 import ru.timeconqueror.timecore.animation.renderer.AnimatedLivingEntityRenderer;
 import ru.timeconqueror.timecore.client.render.model.TimeEntityModel;
 
@@ -14,7 +15,7 @@ public class FloroRenderer extends AnimatedLivingEntityRenderer<FloroEntity, Tim
     }
 
     @Override
-    public ResourceLocation getTextureLocation(FloroEntity entity) {
-        return new ResourceLocation(JITL.MODID, "textures/entity/floro.png");
+    public @NotNull ResourceLocation getTextureLocation(@NotNull FloroEntity entity) {
+        return new ResourceLocation(JITL.MODID, "textures/entity/overworld/floro.png");
     }
 }
