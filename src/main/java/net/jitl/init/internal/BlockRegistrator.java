@@ -9,6 +9,7 @@ import net.jitl.common.block.base.*;
 import net.jitl.common.block.portal.JBasePortalBlock;
 import net.jitl.common.dimension.Dimensions;
 import net.jitl.common.helper.EnumHarvestLevel;
+import net.jitl.common.tile.EssenciaAltarTile;
 import net.jitl.init.JBlocks;
 import net.jitl.init.JEntities;
 import net.jitl.init.JItems;
@@ -94,9 +95,8 @@ public class BlockRegistrator {
 				BlockModels.cubeTopModel(JITL.tl("block/empty_blood_rune"), JITL.tl("block/empty_blood_rune")),
 				BlockModels.cubeTopModel(JITL.tl("block/blood_rune_death_front"), JITL.tl("block/blank")));
 
-		registerEmissiveRenderedBlock("essencia_altar", "Essencia Altar", () -> new JBlock(JBlockProperties.BRICK_PROPS.create()),
-				BlockModels.cubeBottomTopModel(JITL.tl("block/essencia_altar_top"), JITL.tl("block/essencia_altar_side"), JITL.tl("block/essencia_altar_bottom")),
-				BlockModels.cubeBottomTopModel(JITL.tl("block/essencia_altar_top_front"), JITL.tl("block/essencia_altar_side_front"), JITL.tl("block/blank")));
+		registerSpeciallyRenderedBlock("essencia_altar", "Essencia Altar", () -> new JTileContainerBlock(JBlockProperties.BRICK_PROPS.create(), (blockState, iBlockReader) -> new EssenciaAltarTile()),
+				() -> BlockModels.cubeBottomTopModel(JITL.tl("block/essencia_altar_top"), JITL.tl("block/essencia_altar_side"), JITL.tl("block/essencia_altar_bottom")));
 
 		registerDefaultBlock("corrupted_blood_rock", "Corrupted Blood Rock", () -> new JBlock(JBlockProperties.NETHER_BASALT_ORE_PROPS.create()));
 		registerDefaultBlock("smooth_corrupted_blood_rock", "Smooth Corrupted Blood Rock", () -> new JBlock(JBlockProperties.BRICK_PROPS.create()));
