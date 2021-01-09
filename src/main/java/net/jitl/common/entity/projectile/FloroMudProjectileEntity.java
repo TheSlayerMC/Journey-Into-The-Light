@@ -1,7 +1,7 @@
 package net.jitl.common.entity.projectile;
 
 import net.jitl.common.entity.projectile.base.DamagingProjectileEntity;
-import net.jitl.init.JEntityTypes;
+import net.jitl.init.JEntities;
 import net.jitl.init.JItems;
 import net.jitl.init.JParticleManager;
 import net.jitl.init.JSounds;
@@ -36,7 +36,7 @@ public class FloroMudProjectileEntity extends DamagingProjectileEntity implement
     }
 
     public FloroMudProjectileEntity(World world, LivingEntity thrower, float damage) {
-        super(JEntityTypes.FLORO_MUD_PROJECTILE_TYPE, world, thrower, damage);
+        super(JEntities.FLORO_MUD_PROJECTILE_TYPE, world, thrower, damage);
     }
 
     @Override

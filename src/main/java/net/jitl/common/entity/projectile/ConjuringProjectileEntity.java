@@ -1,7 +1,7 @@
 package net.jitl.common.entity.projectile;
 
 import net.jitl.common.entity.projectile.base.DamagingProjectileEntity;
-import net.jitl.init.JEntityTypes;
+import net.jitl.init.JEntities;
 import net.jitl.init.JParticleManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -29,7 +29,7 @@ public class ConjuringProjectileEntity extends DamagingProjectileEntity {
     }
 
     public ConjuringProjectileEntity(World world, LivingEntity thrower, float damage) {
-        super(JEntityTypes.CONJURING_PROJECTILE_TYPE, world, thrower, damage);
+        super(JEntities.CONJURING_PROJECTILE_TYPE, world, thrower, damage);
     }
 
     //TODO do something with duplicated stuff

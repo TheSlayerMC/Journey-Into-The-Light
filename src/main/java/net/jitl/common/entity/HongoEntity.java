@@ -2,8 +2,10 @@ package net.jitl.common.entity;
 
 import net.jitl.init.JSounds;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
@@ -13,8 +15,12 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Random;
 
 public class HongoEntity extends MonsterEntity {
 
@@ -28,6 +34,13 @@ public class HongoEntity extends MonsterEntity {
         this.goalSelector.addGoal(6, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
         this.goalSelector.addGoal(7, new LookAtGoal(this, PlayerEntity.class, 6.0F));
         this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
+    }
+
+    public static boolean canSpawn(EntityType<? extends MonsterEntity> entityType, IWorld worldIn, SpawnReason reason, BlockPos pos, Random random) {
+        return !worldIn.getBlockState(pos).is(Blocks.WATER)
+                && worldIn.getBlockState(pos.below()).is(Blocks.GRASS_BLOCK)
+                && worldIn.getBiome(pos).getBiomeCategory() == Biome.Category.MUSHROOM
+                || worldIn.getBiome(pos).getBiomeCategory() == Biome.Category.SWAMP;
     }
 
     public static AttributeModifierMap.MutableAttribute createAttributes() {

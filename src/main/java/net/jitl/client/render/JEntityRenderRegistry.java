@@ -6,7 +6,7 @@ import net.jitl.client.render.entity.FloroRenderer;
 import net.jitl.client.render.entity.base.Entity2DRenderer;
 import net.jitl.client.render.entity.base.HongoRenderer;
 import net.jitl.common.entity.FloroEntity;
-import net.jitl.init.JEntityTypes;
+import net.jitl.init.JEntities;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.SpriteRenderer;
 import net.minecraft.util.ResourceLocation;
@@ -21,15 +21,15 @@ public class JEntityRenderRegistry {
 
     public static void registerEntityRenders() {
         //Misc
-        RenderingRegistry.registerEntityRenderingHandler(JEntityTypes.ESSENCIA_BOLT_TYPE, EssenciaBoltRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(JEntities.ESSENCIA_BOLT_TYPE, EssenciaBoltRenderer::new);
 
         //Mobs
-        RenderingRegistry.registerEntityRenderingHandler(JEntityTypes.FLORO_TYPE, FloroRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(JEntityTypes.HONGO_TYPE, HongoRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(JEntities.FLORO_TYPE, FloroRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(JEntities.HONGO_TYPE, HongoRenderer::new);
 
         //Projectiles
-        RenderingRegistry.registerEntityRenderingHandler(JEntityTypes.FLORO_MUD_PROJECTILE_TYPE, manager -> new SpriteRenderer<>(manager, Minecraft.getInstance().getItemRenderer()));
-        RenderingRegistry.registerEntityRenderingHandler(JEntityTypes.CONJURING_PROJECTILE_TYPE, manager -> new Entity2DRenderer<>(manager, JITL.rl("textures/entity/projectile/conjuring.png"), 0.5F, true));
-        RenderingRegistry.registerEntityRenderingHandler(JEntityTypes.ESSENCIA_PROJECTILE_TYPE, manager -> new Entity2DRenderer<>(manager, JITL.rl("textures/entity/projectile/essencia.png"), 0.5F, true));
+        RenderingRegistry.registerEntityRenderingHandler(JEntities.FLORO_MUD_PROJECTILE_TYPE, manager -> new SpriteRenderer<>(manager, Minecraft.getInstance().getItemRenderer()));
+        RenderingRegistry.registerEntityRenderingHandler(JEntities.CONJURING_PROJECTILE_TYPE, manager -> new Entity2DRenderer<>(manager, JITL.rl("textures/entity/projectile/conjuring.png"), 0.5F, true));
+        RenderingRegistry.registerEntityRenderingHandler(JEntities.ESSENCIA_PROJECTILE_TYPE, manager -> new Entity2DRenderer<>(manager, JITL.rl("textures/entity/projectile/essencia.png"), 0.5F, true));
     }
 }

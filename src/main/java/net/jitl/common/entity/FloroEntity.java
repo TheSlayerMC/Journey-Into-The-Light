@@ -3,6 +3,7 @@ package net.jitl.common.entity;
 import net.jitl.common.entity.projectile.FloroMudProjectileEntity;
 import net.jitl.init.JAnimations;
 import net.jitl.init.JSounds;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -14,7 +15,9 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Lazy;
 import org.jetbrains.annotations.NotNull;
@@ -31,6 +34,7 @@ import ru.timeconqueror.timecore.api.animation.BlendType;
 import ru.timeconqueror.timecore.api.animation.builders.AnimationSystemBuilder;
 
 import java.util.EnumSet;
+import java.util.Random;
 
 /**
  * How vanilla tasks work:
@@ -79,6 +83,10 @@ public class FloroEntity extends MonsterEntity implements IRangedAttackMob, Anim
             predefinedAnimations.setWalkingAnimation(new AnimationStarter(JAnimations.floroWalk).setSpeed(3F), LAYER_WALKING);
             predefinedAnimations.setIdleAnimation(new AnimationStarter(JAnimations.floroIdle), LAYER_WALKING);
         });
+    }
+
+    public static boolean canSpawn(EntityType<? extends MonsterEntity> entityType, IWorld worldIn, SpawnReason reason, BlockPos pos, Random random) {
+        return !worldIn.getBlockState(pos).is(Blocks.WATER) && worldIn.getBlockState(pos.below()).is(Blocks.GRASS_BLOCK);
     }
 
     @Override

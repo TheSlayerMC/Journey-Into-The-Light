@@ -7,7 +7,7 @@ import net.jitl.common.entity.projectile.FloroMudProjectileEntity;
 import net.jitl.common.helper.JArmorMaterial;
 import net.jitl.common.helper.JToolTiers;
 import net.jitl.common.item.*;
-import net.jitl.init.JEntityTypes;
+import net.jitl.init.JEntities;
 import net.jitl.init.JFoods;
 import net.jitl.init.JTabs;
 import net.jitl.util.JItemProperties;
@@ -34,16 +34,16 @@ public class ItemRegistrator {
         registerItem("shadium_ingot", "Shadium Ingot");
         registerItem("obsidian_rod", "Obsidian Rod");
         registerItem("mud_ball", "Mud Ball", () -> new ThrowableItem(new Item.Properties().tab(JTabs.ITEMS),
-                (world, thrower) -> new FloroMudProjectileEntity(JEntityTypes.FLORO_MUD_PROJECTILE_TYPE, world, thrower, 0.0F)));
+                (world, thrower) -> new FloroMudProjectileEntity(JEntities.FLORO_MUD_PROJECTILE_TYPE, world, thrower, 0.0F)));
 
         registerItem("bradberry", "Bradberry", () -> new Item(new Item.Properties().food(JFoods.BRADBERRY).tab(JTabs.ITEMS)));
         registerItem("lunium_powder", "Lunium Powder");
 
         registerHandheldItem("staff_of_conjuring", "Staff of Conjuring", () -> new StaffItem(new Item.Properties().tab(JTabs.RANGED_WEAPONS),
-                (world, thrower) -> new ConjuringProjectileEntity(JEntityTypes.CONJURING_PROJECTILE_TYPE, world, thrower, 0.0F)));
+                (world, thrower) -> new ConjuringProjectileEntity(JEntities.CONJURING_PROJECTILE_TYPE, world, thrower, 0.0F)));
 
         registerHandheldItem("staff_of_essencia", "Staff of Essencia", () -> new StaffItem(new Item.Properties().tab(JTabs.RANGED_WEAPONS),
-                (world, thrower) -> new EssenciaProjectileEntity(JEntityTypes.ESSENCIA_PROJECTILE_TYPE, world, thrower, 0.0F)));
+                (world, thrower) -> new EssenciaProjectileEntity(JEntities.ESSENCIA_PROJECTILE_TYPE, world, thrower, 0.0F)));
 
         //NETHER ITEMS
         registerItem("bloodcrust_ingot", "Bloodcrust Ingot");

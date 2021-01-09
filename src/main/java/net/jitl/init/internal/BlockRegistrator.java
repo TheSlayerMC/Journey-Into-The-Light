@@ -10,7 +10,7 @@ import net.jitl.common.block.portal.JBasePortalBlock;
 import net.jitl.common.dimension.Dimensions;
 import net.jitl.common.helper.EnumHarvestLevel;
 import net.jitl.init.JBlocks;
-import net.jitl.init.JEntityTypes;
+import net.jitl.init.JEntities;
 import net.jitl.init.JItems;
 import net.jitl.init.JTabs;
 import net.jitl.util.JBlockProperties;
@@ -132,46 +132,46 @@ public class BlockRegistrator {
 
 		registerDefaultBlock("dungeon_bricks", "Dungeon Bricks", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
 		registerDefaultBlock("dungeon_bricks_carved", "Carved Dungeon Bricks", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
-		registerDefaultBlock("dungeon_bricks_chiseled", "Chiseled Dungeon Bricks", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
-		registerDefaultBlock("dungeon_bricks_cracked", "Cracked Dungeon Bricks", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
-		registerDefaultBlock("dungeon_lamp", "Dungeon Lamp", () -> new Block(JBlockProperties.BRICK_PROPS.create().lightLevel((state) -> 14)));
-		RegistryObject<Block> gildedDungeonBricks = registerBlock("gilded_dungeon_bricks", "Gilded Dungeon Bricks", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
-		registerStairs("gilded_dungeon_stairs", "Gilded Dungeon Stairs", gildedDungeonBricks, JBlockProperties.BRICK_PROPS.create());
-		registerDefaultBlock("dungeon_floor", "Dungeon Floor", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
+	    registerDefaultBlock("dungeon_bricks_chiseled", "Chiseled Dungeon Bricks", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
+	    registerDefaultBlock("dungeon_bricks_cracked", "Cracked Dungeon Bricks", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
+	    registerDefaultBlock("dungeon_lamp", "Dungeon Lamp", () -> new Block(JBlockProperties.BRICK_PROPS.create().lightLevel((state) -> 14)));
+	    RegistryObject<Block> gildedDungeonBricks = registerBlock("gilded_dungeon_bricks", "Gilded Dungeon Bricks", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
+	    registerStairs("gilded_dungeon_stairs", "Gilded Dungeon Stairs", gildedDungeonBricks, JBlockProperties.BRICK_PROPS.create());
+	    registerDefaultBlock("dungeon_floor", "Dungeon Floor", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
 
-		registerDefaultBlock("common_gems", "Common Gems");
-		registerDefaultBlock("rare_gems", "Rare Gems");
+	    registerDefaultBlock("common_gems", "Common Gems");
+	    registerDefaultBlock("rare_gems", "Rare Gems");
 
-		registerOrientableRenderedBlock("iron_crate", "Iron Crate", () -> new JOrientableBlock(JBlockProperties.WOOD_PROPS.create()),
-				"iron_crate_top",
-				"iron_crate_side",
-				"iron_crate_front");
+	    registerOrientableRenderedBlock("iron_crate", "Iron Crate", () -> new JOrientableBlock(JBlockProperties.WOOD_PROPS.create()),
+			    "iron_crate_top",
+			    "iron_crate_side",
+			    "iron_crate_front");
 
-		registerDefaultBlock("block_of_mud", "Block O' Mud", () -> new Block(JBlockProperties.MUD_PROPS.create()));
+	    registerDefaultBlock("block_of_mud", "Block O' Mud", () -> new Block(JBlockProperties.MUD_PROPS.create()));
 
-		registerDefaultBlock("euca_brick", "Euca Brick");
+	    registerDefaultBlock("euca_brick", "Euca Brick");
 
-		registerDefaultBlock("laser_emitter", "Laser Emitter", () -> new LaserEmitterBlock(JBlockProperties.STONE_PROPS.create().noOcclusion()));
-		registerDefaultBlock("test_spawner", "Test Spawner", () -> new JSpawnerBlock(JEntityTypes.FLORO_TYPE));
+	    registerDefaultBlock("laser_emitter", "Laser Emitter", () -> new LaserEmitterBlock(JBlockProperties.STONE_PROPS.create().noOcclusion()));
+	    registerDefaultBlock("test_spawner", "Test Spawner", () -> new JSpawnerBlock(JEntities.FLORO_TYPE));
 
-		registerTallCrossRenderedBlock("tall_green_glowshroom", "Tall Green Glowshroom", () -> new TallGlowshroomBlock(JBlockProperties.GLOWSHROOM_PROPS.create()));
-		registerTallCrossRenderedBlock("tall_blue_glowshroom", "Tall Blue Glowshroom", () -> new TallGlowshroomBlock(JBlockProperties.GLOWSHROOM_PROPS.create()));
-		registerTallCrossRenderedBlock("tall_red_glowshroom", "Tall Red Glowshroom", () -> new TallGlowshroomBlock(JBlockProperties.GLOWSHROOM_PROPS.create()));
+	    registerTallCrossRenderedBlock("tall_green_glowshroom", "Tall Green Glowshroom", () -> new TallGlowshroomBlock(JBlockProperties.GLOWSHROOM_PROPS.create()));
+	    registerTallCrossRenderedBlock("tall_blue_glowshroom", "Tall Blue Glowshroom", () -> new TallGlowshroomBlock(JBlockProperties.GLOWSHROOM_PROPS.create()));
+	    registerTallCrossRenderedBlock("tall_red_glowshroom", "Tall Red Glowshroom", () -> new TallGlowshroomBlock(JBlockProperties.GLOWSHROOM_PROPS.create()));
 
-		registerSpeciallyRenderedBlock("green_glowshroom", "Green Glowshroom", () -> new JPlantBlock(JBlockProperties.GLOWSHROOM_PROPS.create())
-						.setGrownPlant(() -> JBlocks.TALL_GREEN_GLOWSHROOM)
-						.setGroundPredicate(GroundPredicate.UNDERGROUND),
-				() -> BlockModels.crossModel(JITL.tl("block/tall_green_glowshroom_top")));
+	    registerSpeciallyRenderedBlock("green_glowshroom", "Green Glowshroom", () -> new JPlantBlock(JBlockProperties.GLOWSHROOM_PROPS.create())
+					    .setGrownPlant(() -> JBlocks.TALL_GREEN_GLOWSHROOM)
+					    .setGroundPredicate(GroundPredicate.UNDERGROUND),
+			    () -> BlockModels.crossModel(JITL.tl("block/tall_green_glowshroom_top")));
 
-		registerSpeciallyRenderedBlock("blue_glowshroom", "Blue Glowshroom", () -> new JPlantBlock(JBlockProperties.GLOWSHROOM_PROPS.create())
-						.setGrownPlant(() -> JBlocks.TALL_BLUE_GLOWSHROOM)
-						.setGroundPredicate(GroundPredicate.UNDERGROUND),
-				() -> BlockModels.crossModel(JITL.tl("block/tall_blue_glowshroom_top")));
+	    registerSpeciallyRenderedBlock("blue_glowshroom", "Blue Glowshroom", () -> new JPlantBlock(JBlockProperties.GLOWSHROOM_PROPS.create())
+					    .setGrownPlant(() -> JBlocks.TALL_BLUE_GLOWSHROOM)
+					    .setGroundPredicate(GroundPredicate.UNDERGROUND),
+			    () -> BlockModels.crossModel(JITL.tl("block/tall_blue_glowshroom_top")));
 
-		registerSpeciallyRenderedBlock("red_glowshroom", "Red Glowshroom", () -> new JPlantBlock(JBlockProperties.GLOWSHROOM_PROPS.create())
-						.setGrownPlant(() -> JBlocks.TALL_RED_GLOWSHROOM)
-						.setGroundPredicate(GroundPredicate.UNDERGROUND),
-				() -> BlockModels.crossModel(JITL.tl("block/tall_red_glowshroom_top")));
+	    registerSpeciallyRenderedBlock("red_glowshroom", "Red Glowshroom", () -> new JPlantBlock(JBlockProperties.GLOWSHROOM_PROPS.create())
+					    .setGrownPlant(() -> JBlocks.TALL_RED_GLOWSHROOM)
+					    .setGroundPredicate(GroundPredicate.UNDERGROUND),
+			    () -> BlockModels.crossModel(JITL.tl("block/tall_red_glowshroom_top")));
 
 		registerSpeciallyRenderedBlock("cave_vines", "Cave Vines", () -> new CaveVinesTopBlock(JBlockProperties.CAVE_VINE_PROPS.create()),
 				() -> JBlockModels.emissive(BlockModels.crossModel(JITL.tl("block/cave_vines_back")), BlockModels.crossModel(JITL.tl("block/cave_vines_front"))));

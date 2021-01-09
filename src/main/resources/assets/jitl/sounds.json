@@ -111,8 +111,7 @@
   },
   "entities.hongo_ambient": {
     "sounds": [
-      "jitl:entities/hongo_ambient_0",
-      "jitl:entities/hongo_ambient_1"
+      "jitl:entities/hongo_ambient"
     ]
   },
   "entities.hongo_hurt": {

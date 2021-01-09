@@ -2,7 +2,7 @@ package net.jitl.common.entity.projectile;
 
 import net.jitl.common.entity.EssenciaBoltEntity;
 import net.jitl.common.entity.projectile.base.DamagingProjectileEntity;
-import net.jitl.init.JEntityTypes;
+import net.jitl.init.JEntities;
 import net.jitl.init.JParticleManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -26,7 +26,7 @@ public class EssenciaProjectileEntity extends DamagingProjectileEntity {
     }
 
     public EssenciaProjectileEntity(World world, LivingEntity thrower, float damage) {
-        super(JEntityTypes.ESSENCIA_PROJECTILE_TYPE, world, thrower, damage);
+        super(JEntities.ESSENCIA_PROJECTILE_TYPE, world, thrower, damage);
     }
 
     @Override
@@ -51,7 +51,7 @@ public class EssenciaProjectileEntity extends DamagingProjectileEntity {
 
     @Override
     protected void onEntityImpact(RayTraceResult result, Entity target) {
-        EssenciaBoltEntity essenciaBoltEntity = new EssenciaBoltEntity(JEntityTypes.ESSENCIA_BOLT_TYPE, level);
+        EssenciaBoltEntity essenciaBoltEntity = new EssenciaBoltEntity(JEntities.ESSENCIA_BOLT_TYPE, level);
         essenciaBoltEntity.setPos(result.getLocation().x(), result.getLocation().y(), result.getLocation().z());
         level.addFreshEntity(essenciaBoltEntity);
     }
