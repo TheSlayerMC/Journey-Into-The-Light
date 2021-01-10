@@ -10,6 +10,7 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.util.math.vector.Matrix4f;
+import net.minecraftforge.client.model.animation.Animation;
 
 public class EssenciaAltarTER extends TileEntityRenderer<EssenciaAltarTile> {
 
@@ -19,7 +20,7 @@ public class EssenciaAltarTER extends TileEntityRenderer<EssenciaAltarTile> {
 
     @Override
     public void render(EssenciaAltarTile tileEntityIn, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int combinedLightIn, int combinedOverlayIn) {
-        RenderType rtEssenciaAltarSide = JRenderTypes.fullbrightCutout(JITL.rl("textures/tile/charge_indicator_essencia_altar.png"));
+        RenderType rtEssenciaAltarSide = JRenderTypes.fullbrightCutout(JITL.rl("textures/tile/charge_indicator_essencia_altar.png"));//fixme move to static
 
         matrixStackIn.pushPose();
 
@@ -30,9 +31,16 @@ public class EssenciaAltarTER extends TileEntityRenderer<EssenciaAltarTile> {
         verticalQuad(builder, matrixStackIn, 0, 1, 1, 1, true, -offset, false); //to west
         verticalQuad(builder, matrixStackIn, 0, 1, 1, 1, true, 1 + offset, true); //to east
 
-        RenderType rtEssenciaAltarTop = JRenderTypes.fullbrightCutout(JITL.rl("textures/tile/charge_indicator_essencia_altar_top.png"));
+        RenderType rtEssenciaAltarTop = JRenderTypes.fullbrightCutout(JITL.rl("textures/tile/charge_indicator_essencia_altar_top.png"));//fixme move to static
         builder = bufferIn.getBuffer(rtEssenciaAltarTop);
         facedTopHorizontalQuad(builder, matrixStackIn, 0, 0, 1, 1, 1 + offset);
+
+        float v = Animation.getWorldTime(tileEntityIn.getLevel(), partialTicks) * 0.5F % 3 + 0.1F;
+
+        RenderType rtConnector = JRenderTypes.fullbrightCutout(JITL.rl("textures/tile/charge_indicator_runic_connector.png"));//fixme move to static
+        builder = bufferIn.getBuffer(rtConnector);
+
+        facedTopPercentedQuad(builder, matrixStackIn, 0, 1 + 1 / 16F, 1, v, offset);
 
         matrixStackIn.popPose();
     }
@@ -59,6 +67,19 @@ public class EssenciaAltarTER extends TileEntityRenderer<EssenciaAltarTile> {
         builder.vertex(pose, x0, y, z0).uv(0, 0).endVertex();
         builder.vertex(pose, x0, y, z0 + height).uv(0, 1).endVertex();
         builder.vertex(pose, x0 + width, y, z0 + height).uv(1, 1).endVertex();
+        builder.vertex(pose, x0 + width, y, z0).uv(1, 0).endVertex();
+    }
+
+    public static void facedTopPercentedQuad(IVertexBuilder builder, MatrixStack matrixStack, float x0, float z0, float width, float height, float y) {
+        Matrix4f pose = matrixStack.last().pose();
+
+        int pixelHeight = (int) (height * 16);
+        pixelHeight -= pixelHeight % 2 == 1 ? 1 : 0;
+        float v = pixelHeight / 16F;
+
+        builder.vertex(pose, x0, y, z0).uv(0, 0).endVertex();
+        builder.vertex(pose, x0, y, z0 + v).uv(0, v).endVertex();
+        builder.vertex(pose, x0 + width, y, z0 + v).uv(1, v).endVertex();
         builder.vertex(pose, x0 + width, y, z0).uv(1, 0).endVertex();
     }
 }
