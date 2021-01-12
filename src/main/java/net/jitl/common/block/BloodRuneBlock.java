@@ -1,7 +1,10 @@
 package net.jitl.common.block;
 
 import net.jitl.common.entity.EssenciaBoltEntity;
-import net.jitl.init.*;
+import net.jitl.init.JEntities;
+import net.jitl.init.JItems;
+import net.jitl.init.JParticleManager;
+import net.jitl.init.JSounds;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.item.ItemEntity;
@@ -31,16 +34,16 @@ public class BloodRuneBlock extends Block {
 			for (ItemEntity itementity : worldIn.getEntitiesOfClass(ItemEntity.class, new AxisAlignedBB(pos.above()))) {
 				Block rune = null;
 				if (itementity.getItem().getItem() == Items.ROTTEN_FLESH) {
-					rune = JBlocks.BLOOD_RUNE_FLESH;
+//					rune = JBlocks.BLOOD_RUNE_FLESH;
 				}
 				if (itementity.getItem().getItem() == Items.TORCH) { //TODO: replace this with new item
-					rune = JBlocks.BLOOD_RUNE_SOUL;
+//					rune = JBlocks.BLOOD_RUNE_SOUL;
 				}
 				if (itementity.getItem().getItem() == Items.BONE) { //TODO: replace this with new item
-					rune = JBlocks.BLOOD_RUNE_DEATH;
+//					rune = JBlocks.BLOOD_RUNE_DEATH;
 				}
 				if (itementity.getItem().getItem() == Items.APPLE) { //TODO: replace this with new item
-					rune = JBlocks.BLOOD_RUNE_LIFE;
+//					rune = JBlocks.BLOOD_RUNE_LIFE;
 				}
 
 				if (rune != null) {

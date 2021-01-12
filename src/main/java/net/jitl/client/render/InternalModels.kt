@@ -4,7 +4,7 @@ import net.jitl.JITL
 import ru.timeconqueror.timecore.api.client.resource.BlockModel
 import ru.timeconqueror.timecore.api.util.json
 
-object JInternalModels {
+object InternalModels {
     @JvmStatic
     fun emissiveModel(normal: BlockModel?, emissive: BlockModel?): BlockModel {
         val json = json {
