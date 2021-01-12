@@ -1,5 +1,6 @@
 package net.jitl.common.entity;
 
+//import net.jitl.common.entity.projectile.base.JourneyEffectCloudEntity;
 import net.jitl.init.JSounds;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -46,18 +47,26 @@ public class HongoEntity extends MonsterEntity {
                 || worldIn.getBiome(pos).getBiomeCategory() == Biome.Category.SWAMP;
     }
     
-    public void tick() {
-    	this.removeEffect(Effects.POISON); //code custom cloud projectile to remove this
-    	super.tick();
+    @Override
+    public boolean canBeAffected(EffectInstance instance) {
+    	return (instance.getEffect() != Effects.POISON);
     }
     
+    @Override
     public boolean hurt(DamageSource source, float amount) {
     	if (super.hurt(source, amount)) {
     		if (source != DamageSource.OUT_OF_WORLD && source != DamageSource.MAGIC) {
+    			/*JourneyEffectCloudEntity poison = new JourneyEffectCloudEntity(this, this.level, this.getX(), this.getY(), this.getZ(), 0.5F);
+    			poison.treatOwnerAsException();
+    			poison.addPrimaryEffect(new EffectInstance(Effects.POISON, 500, 3));
+    			poison.addPrimaryEffect(new EffectInstance(Effects.CONFUSION, 200));
+    			poison.addSizeKey(10, 4);
+    			poison.addSizeKey(200, 0);
+    			poison.spawn();*/
     			AreaEffectCloudEntity poison = new AreaEffectCloudEntity(this.level, this.getX(), this.getY(), this.getZ());
-    			poison.setRadius((float) 0.5); //the base radius. Vanilla starts large and shrinks down, but I think the opposite is more realistic
+    			poison.setRadius(0.5F); //the base radius. Vanilla starts large and shrinks down, but I think the opposite is more realistic
     			poison.setWaitTime(5); //time before the cloud starts growing/damaging. Might be worth decreasing since player can run away anyways
-    			poison.setRadiusPerTick((float) 0.15); //the speed at which the cloud size changes. Set negative if you want it to shrink like in vanilla
+    			poison.setRadiusPerTick(0.15F); //the speed at which the cloud size changes. Set negative if you want it to shrink like in vanilla
     			poison.setOwner(this); //does nothing to my knowledge
     			poison.setDuration(20); //how long the cloud lasts
     			poison.setPotion(new Potion(new EffectInstance(Effects.POISON, 500, 3)));
