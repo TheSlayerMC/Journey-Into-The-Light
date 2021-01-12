@@ -11,6 +11,10 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
+import net.minecraft.potion.Potion;
+import net.minecraft.entity.AreaEffectCloudEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
@@ -19,7 +23,6 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import org.jetbrains.annotations.NotNull;
-
 import java.util.Random;
 
 public class HongoEntity extends MonsterEntity {
@@ -41,6 +44,30 @@ public class HongoEntity extends MonsterEntity {
                 && worldIn.getBlockState(pos.below()).is(Blocks.GRASS_BLOCK)
                 && worldIn.getBiome(pos).getBiomeCategory() == Biome.Category.MUSHROOM
                 || worldIn.getBiome(pos).getBiomeCategory() == Biome.Category.SWAMP;
+    }
+    
+    public void tick() {
+    	this.removeEffect(Effects.POISON); //code custom cloud projectile to remove this
+    	super.tick();
+    }
+    
+    public boolean hurt(DamageSource source, float amount) {
+    	if (super.hurt(source, amount)) {
+    		if (source != DamageSource.OUT_OF_WORLD && source != DamageSource.MAGIC) {
+    			AreaEffectCloudEntity poison = new AreaEffectCloudEntity(this.level, this.getX(), this.getY(), this.getZ());
+    			poison.setRadius((float) 0.5); //the base radius. Vanilla starts large and shrinks down, but I think the opposite is more realistic
+    			poison.setWaitTime(5); //time before the cloud starts growing/damaging. Might be worth decreasing since player can run away anyways
+    			poison.setRadiusPerTick((float) 0.15); //the speed at which the cloud size changes. Set negative if you want it to shrink like in vanilla
+    			poison.setOwner(this); //does nothing to my knowledge
+    			poison.setDuration(20); //how long the cloud lasts
+    			poison.setPotion(new Potion(new EffectInstance(Effects.POISON, 500, 3)));
+    			poison.addEffect(new EffectInstance(Effects.CONFUSION, 200));
+    			this.level.addFreshEntity(poison);
+    		}
+    		return true;
+    	} else {
+    		return false;
+    	}
     }
 
     public static AttributeModifierMap.MutableAttribute createAttributes() {
