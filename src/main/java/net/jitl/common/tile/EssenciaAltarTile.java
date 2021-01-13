@@ -2,6 +2,7 @@ package net.jitl.common.tile;
 
 import net.jitl.init.JBlocks;
 import net.jitl.init.JTiles;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -18,10 +19,10 @@ import static ru.timeconqueror.timecore.api.util.HorizontalDirection.*;
 
 public class EssenciaAltarTile extends TileEntity implements ITickableTileEntity {
     private static final int ACTIVATION_DELAY = 3 * 20;
-    private final Path northPath = new Path(NORTH);
-    private final Path eastPath = new Path(EAST);
-    private final Path westPath = new Path(WEST);
-    private final Path southPath = new Path(SOUTH);
+    private final Path northPath = new Path(NORTH, JBlocks.BLOOD_RUNE_DEATH);
+    private final Path eastPath = new Path(EAST, JBlocks.BLOOD_RUNE_FLESH);
+    private final Path westPath = new Path(WEST, JBlocks.BLOOD_RUNE_LIFE);
+    private final Path southPath = new Path(SOUTH, JBlocks.BLOOD_RUNE_SOUL);
 
     private int ticks = 0;
     private final int activationDelay = -1;
@@ -67,7 +68,7 @@ public class EssenciaAltarTile extends TileEntity implements ITickableTileEntity
                 mutable.move(4 * path.getStepX(), 0, 4 * path.getStepZ());
 
                 BlockState runeState = level.getBlockState(mutable);
-                if (runeState.getBlock() == JBlocks.ACTIVATED_BLOOD_RUNE) {
+                if (runeState.getBlock() == path.validRune) {
                     i++;
                 }
 
@@ -102,10 +103,12 @@ public class EssenciaAltarTile extends TileEntity implements ITickableTileEntity
 
     private static class Path {
         private final HorizontalDirection direction;
+        private final Block validRune;
         private int validBlocks = 0;
 
-        public Path(HorizontalDirection direction) {
+        public Path(HorizontalDirection direction, Block validRune) {
             this.direction = direction;
+            this.validRune = validRune;
         }
 
         public int getStepX() {

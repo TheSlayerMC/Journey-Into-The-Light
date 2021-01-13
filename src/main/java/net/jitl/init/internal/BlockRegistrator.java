@@ -4,7 +4,6 @@ import net.jitl.JITL;
 import net.jitl.api.block.GroundPredicate;
 import net.jitl.client.render.JBlockModels;
 import net.jitl.client.render.JBlockStateResources;
-import net.jitl.client.render.ResourceFillers;
 import net.jitl.common.block.*;
 import net.jitl.common.block.base.*;
 import net.jitl.common.block.portal.JBasePortalBlock;
@@ -81,31 +80,18 @@ public class BlockRegistrator {
                 "blood_rock_pillar_side");
 
         BlockModel emptyBloodRuneModel = BlockModels.cubeTopModel(JITL.tl("block/empty_blood_rune"), JITL.tl("block/empty_blood_rune"));
-        REGISTER.register("activated_blood_rune", () -> new Block(JBlockProperties.BRICK_PROPS.create()))
-                .genLangEntry("Activated Blood Rune")
-                .setRenderLayer(RenderType::cutout)
-                .also(chain -> {
-                    ResourceFillers.randomModeled(chain,
-                            JBlockModels.emissive(emptyBloodRuneModel, BlockModels.cubeTopModel(JITL.tl("block/blood_rune_soul_front"), JITL.tl("block/blank"))),
-                            JBlockModels.emissive(emptyBloodRuneModel, BlockModels.cubeTopModel(JITL.tl("block/blood_rune_flesh_front"), JITL.tl("block/blank"))),
-                            JBlockModels.emissive(emptyBloodRuneModel, BlockModels.cubeTopModel(JITL.tl("block/blood_rune_life_front"), JITL.tl("block/blank"))),
-                            JBlockModels.emissive(emptyBloodRuneModel, BlockModels.cubeTopModel(JITL.tl("block/blood_rune_death_front"), JITL.tl("block/blank")))
-                    );
-
-                    chain.regDefaultBlockItem(JTabs.BLOCKS, new BlockModelLocation(chain.getModId(), chain.getName() + "_0"));
-                });
-//        registerEmissiveRenderedBlock("blood_rune_soul", "Blood Rune Of Soul", () -> new Block(JBlockProperties.BRICK_PROPS.create()),
-//                emptyBloodRuneModel,
-//                BlockModels.cubeTopModel(JITL.tl("block/blood_rune_soul_front"), JITL.tl("block/blank")));
-//        registerEmissiveRenderedBlock("blood_rune_flesh", "Blood Rune Of Flesh", () -> new Block(JBlockProperties.BRICK_PROPS.create()),
-//                emptyBloodRuneModel,
-//                BlockModels.cubeTopModel(JITL.tl("block/blood_rune_flesh_front"), JITL.tl("block/blank")));
-//        registerEmissiveRenderedBlock("blood_rune_life", "Blood Rune Of Life", () -> new Block(JBlockProperties.BRICK_PROPS.create()),
-//                emptyBloodRuneModel,
-//                BlockModels.cubeTopModel(JITL.tl("block/blood_rune_life_front"), JITL.tl("block/blank")));
-//        registerEmissiveRenderedBlock("blood_rune_death", "Blood Rune Of Death", () -> new Block(JBlockProperties.BRICK_PROPS.create()),
-//                emptyBloodRuneModel,
-//                BlockModels.cubeTopModel(JITL.tl("block/blood_rune_death_front"), JITL.tl("block/blank")));
+        registerEmissiveRenderedBlock("blood_rune_soul", "Blood Rune Of Soul", () -> new Block(JBlockProperties.BRICK_PROPS.create()),
+                emptyBloodRuneModel,
+                BlockModels.cubeTopModel(JITL.tl("block/blood_rune_soul_front"), JITL.tl("block/blank")));
+        registerEmissiveRenderedBlock("blood_rune_flesh", "Blood Rune Of Flesh", () -> new Block(JBlockProperties.BRICK_PROPS.create()),
+                emptyBloodRuneModel,
+                BlockModels.cubeTopModel(JITL.tl("block/blood_rune_flesh_front"), JITL.tl("block/blank")));
+        registerEmissiveRenderedBlock("blood_rune_life", "Blood Rune Of Life", () -> new Block(JBlockProperties.BRICK_PROPS.create()),
+                emptyBloodRuneModel,
+                BlockModels.cubeTopModel(JITL.tl("block/blood_rune_life_front"), JITL.tl("block/blank")));
+        registerEmissiveRenderedBlock("blood_rune_death", "Blood Rune Of Death", () -> new Block(JBlockProperties.BRICK_PROPS.create()),
+                emptyBloodRuneModel,
+                BlockModels.cubeTopModel(JITL.tl("block/blood_rune_death_front"), JITL.tl("block/blank")));
 
         registerSpeciallyRenderedBlock("essencia_altar", "Essencia Altar", () -> new JTileContainerBlock(JBlockProperties.BRICK_PROPS.create(), (blockState, iBlockReader) -> new EssenciaAltarTile()),
                 () -> BlockModels.cubeBottomTopModel(JITL.tl("block/essencia_altar_top"), JITL.tl("block/essencia_altar_side"), JITL.tl("block/essencia_altar_bottom")));

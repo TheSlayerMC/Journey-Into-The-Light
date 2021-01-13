@@ -37,13 +37,12 @@ public class JBlocks {
 	public static final Block SMOOTH_BLOOD_ROCK = promise();
 	public static final Block CARVED_BLOOD_ROCK = promise();
 	public static final Block EMPTY_BLOOD_RUNE = promise();
-	public static final Block ACTIVATED_BLOOD_RUNE = promise();
 	public static final Block BLOOD_ROCK_PILLAR = promise();
 
-//	public static final Block BLOOD_RUNE_SOUL = promise();
-//	public static final Block BLOOD_RUNE_FLESH = promise();
-//	public static final Block BLOOD_RUNE_LIFE = promise();
-//	public static final Block BLOOD_RUNE_DEATH = promise();
+	public static final Block BLOOD_RUNE_SOUL = promise();
+	public static final Block BLOOD_RUNE_FLESH = promise();
+	public static final Block BLOOD_RUNE_LIFE = promise();
+	public static final Block BLOOD_RUNE_DEATH = promise();
 
 	public static final Block ESSENCIA_ALTAR = promise();
 
