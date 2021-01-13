@@ -3,7 +3,7 @@ package net.jitl.client.render.entity.base;
 
 import net.jitl.JITL;
 import net.jitl.client.render.model.HongoModel;
-import net.jitl.common.entity.HongoEntity;
+import net.jitl.common.entity.overworld.HongoEntity;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;

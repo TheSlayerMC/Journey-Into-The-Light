@@ -127,6 +127,11 @@ public class BlockRegistrator {
         registerDefaultBlock("lunite_block", "Lunite Block");
         registerDefaultBlock("nethic_gemstone_block", "Nethic Gemstone Block");
         registerDefaultBlock("frost_gem_block", "Frost Gem Block");
+        registerDefaultBlock("gem_block_green", "Green Gem Block");
+        registerDefaultBlock("gem_block_purple", "Purple Gem Block");
+        registerDefaultBlock("gem_block_blue", "blue Gem Block");
+        registerDefaultBlock("gem_block_yellow", "Yellow Gem Block");
+
 
         registerDefaultBlock("dungeon_bricks", "Dungeon Bricks", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
         registerDefaultBlock("dungeon_bricks_carved", "Carved Dungeon Bricks", () -> new Block(JBlockProperties.BRICK_PROPS.create()));

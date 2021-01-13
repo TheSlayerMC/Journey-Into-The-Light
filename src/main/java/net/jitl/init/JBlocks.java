@@ -72,6 +72,10 @@ public class JBlocks {
     public static final Block LUNITE_BLOCK = promise();
     public static final Block NETHIC_GEMSTONE_BLOCK = promise();
     public static final Block FROST_GEM_BLOCK = promise();
+	public static final Block GREEN_GEM_BLOCK = promise();
+	public static final Block PURPLE_GEM_BLOCK = promise();
+	public static final Block BLUE_GEM_BLOCK = promise();
+	public static final Block YELLOW_GEM_BLOCK = promise();
 
     public static final Block DUNGEON_BRICKS = promise();
 	public static final Block DUNGEON_BRICKS_CARVED = promise();

@@ -2,7 +2,7 @@ package net.jitl.client.render.entity;
 
 import net.jitl.JITL;
 import net.jitl.client.render.JEntityRenderRegistry;
-import net.jitl.common.entity.FloroEntity;
+import net.jitl.common.entity.overworld.FloroEntity;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.util.ResourceLocation;
 import org.jetbrains.annotations.NotNull;

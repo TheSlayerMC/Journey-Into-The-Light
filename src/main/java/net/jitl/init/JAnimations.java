@@ -16,6 +16,9 @@ public class JAnimations {
     public static Animation floroHide;
     public static Animation floroIdle;
 
+    public static Animation witherspineWalk;
+    public static Animation witherspineIdle;
+
     @SubscribeEvent
     public static void registerAnimations(FMLCommonSetupEvent event) {
         floroWalk = AnimationAPI.loadAndRegisterAnimation(JITL.rl("animations/floro.walk.json"));
@@ -24,5 +27,8 @@ public class JAnimations {
         floroHidden = AnimationAPI.loadAndRegisterAnimation(JITL.rl("animations/floro.hidden.json"));
         floroIdle = AnimationAPI.loadAndRegisterAnimation(JITL.rl("animations/floro.idle.json"));
         floroHide = AnimationAPI.register(AnimationAPI.reverse(floroReveal));
+
+        witherspineWalk = AnimationAPI.loadAndRegisterAnimation(JITL.rl("animations/witherspine.walk.json"));
+        witherspineIdle = AnimationAPI.loadAndRegisterAnimation(JITL.rl("animations/witherspine.idle.json"));
     }
 }
