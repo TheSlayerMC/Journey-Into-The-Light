@@ -33,9 +33,9 @@ public class EssenciaAltarTile extends TileEntity implements ITickableTileEntity
 
     @Override
     public void tick() {
-        if (ticks % 5 == 0) {
+        if (ticks % 2 == 0) {
             checkNeighbours();
-            System.out.println(Arrays.stream(getPaths()).map(path -> path.direction.get() + ": " + path.validBlocks + ", ").collect(Collectors.joining()));
+            System.out.println(Arrays.stream(getPaths()).map(path -> path.direction.get() + ": " + path.validBlockCount + ", ").collect(Collectors.joining()));
         }
 
         ticks++;
@@ -83,16 +83,29 @@ public class EssenciaAltarTile extends TileEntity implements ITickableTileEntity
 //                }
             }
 
-            if (path.validBlocks != i) {
+            if (path.validBlockCount != i) {
                 changed = true;
             }
 
-            path.validBlocks = i;
+            path.validBlockCount = i;
         }
     }
 
     private Path[] getPaths() {
         return new Path[]{northPath, eastPath, southPath, westPath};
+    }
+
+    public Path getPath(HorizontalDirection direction) {
+        switch (direction) {
+            case EAST:
+                return eastPath;
+            case WEST:
+                return westPath;
+            case SOUTH:
+                return southPath;
+            default:
+                return northPath;
+        }
     }
 
     @Override
@@ -101,10 +114,10 @@ public class EssenciaAltarTile extends TileEntity implements ITickableTileEntity
         return new AxisAlignedBB(pos.offset(-5, 0, -5), pos.offset(4, 1, 4));
     }
 
-    private static class Path {
+    public static class Path {
         private final HorizontalDirection direction;
         private final Block validRune;
-        private int validBlocks = 0;
+        private int validBlockCount = 0;
 
         public Path(HorizontalDirection direction, Block validRune) {
             this.direction = direction;
@@ -117,6 +130,10 @@ public class EssenciaAltarTile extends TileEntity implements ITickableTileEntity
 
         public int getStepZ() {
             return direction.get().getStepZ();
+        }
+
+        public int getValidBlockCount() {
+            return validBlockCount;
         }
     }
 }
