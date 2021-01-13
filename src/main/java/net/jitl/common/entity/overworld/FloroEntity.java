@@ -1,4 +1,4 @@
-package net.jitl.common.entity;
+package net.jitl.common.entity.overworld;
 
 import net.jitl.common.entity.projectile.FloroMudProjectileEntity;
 import net.jitl.init.JAnimations;

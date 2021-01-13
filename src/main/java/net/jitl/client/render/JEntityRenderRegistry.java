@@ -3,9 +3,11 @@ package net.jitl.client.render;
 import net.jitl.JITL;
 import net.jitl.client.render.entity.EssenciaBoltRenderer;
 import net.jitl.client.render.entity.FloroRenderer;
+import net.jitl.client.render.entity.WitherspineRenderer;
 import net.jitl.client.render.entity.base.Entity2DRenderer;
 import net.jitl.client.render.entity.base.HongoRenderer;
-import net.jitl.common.entity.FloroEntity;
+import net.jitl.common.entity.nether.WitherspineEntity;
+import net.jitl.common.entity.overworld.FloroEntity;
 import net.jitl.init.JEntities;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.SpriteRenderer;
@@ -17,6 +19,7 @@ import ru.timeconqueror.timecore.client.render.model.TimeEntityModel;
 public class JEntityRenderRegistry {
 
     public static TimeEntityModel<FloroEntity> floroModel = TimeModelLoader.loadJsonEntityModel(new ResourceLocation(JITL.MODID, "models/entity/floro.json"));
+    public static TimeEntityModel<WitherspineEntity> witherspineModel = TimeModelLoader.loadJsonEntityModel(new ResourceLocation(JITL.MODID, "models/entity/witherspine.json"));
 
 
     public static void registerEntityRenders() {
@@ -26,6 +29,7 @@ public class JEntityRenderRegistry {
         //Mobs
         RenderingRegistry.registerEntityRenderingHandler(JEntities.FLORO_TYPE, FloroRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(JEntities.HONGO_TYPE, HongoRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(JEntities.WITHERSPINE_TYPE, WitherspineRenderer::new);
 
         //Projectiles
         RenderingRegistry.registerEntityRenderingHandler(JEntities.FLORO_MUD_PROJECTILE_TYPE, manager -> new SpriteRenderer<>(manager, Minecraft.getInstance().getItemRenderer()));

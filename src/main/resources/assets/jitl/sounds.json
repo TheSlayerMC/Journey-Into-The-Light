@@ -123,5 +123,10 @@
     "sounds": [
       "jitl:entities/hongo_death"
     ]
+  },
+  "entities.hongo_spore_release": {
+    "sounds": [
+      "jitl:entities/hongo_spore_release"
+    ]
   }
 }
