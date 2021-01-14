@@ -11,7 +11,7 @@ import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.util.math.vector.Matrix4f;
 import net.minecraft.util.math.vector.Vector3f;
-import net.minecraftforge.client.model.animation.Animation;
+import ru.timeconqueror.timecore.api.util.HorizontalDirection;
 
 public class EssenciaAltarTER extends TileEntityRenderer<EssenciaAltarTile> {
 
@@ -20,7 +20,7 @@ public class EssenciaAltarTER extends TileEntityRenderer<EssenciaAltarTile> {
     }
 
     @Override
-    public void render(EssenciaAltarTile tileEntityIn, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int combinedLightIn, int combinedOverlayIn) {
+    public void render(EssenciaAltarTile tile, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int combinedLightIn, int combinedOverlayIn) {
         RenderType rtEssenciaAltarSide = JRenderTypes.fullbrightCutout(JITL.rl("textures/tile/charge_indicator_essencia_altar.png"));//fixme move to static
 
         matrixStackIn.pushPose();
@@ -36,21 +36,27 @@ public class EssenciaAltarTER extends TileEntityRenderer<EssenciaAltarTile> {
         builder = bufferIn.getBuffer(rtEssenciaAltarTop);
         facedTopHorizontalQuad(builder, matrixStackIn, 0, 0, 1, 1, 1 + offset);
 
-        float v = Animation.getWorldTime(tileEntityIn.getLevel(), partialTicks) * 0.5F % 3 + 0.1F /*needed to set light to the last brick*/;
-        v = 3 /*needed to set light to the last brick*/;
-
         RenderType rtConnector = JRenderTypes.fullbrightCutout(JITL.rl("textures/tile/charge_indicator_runic_connector.png"));//fixme move to static
         builder = bufferIn.getBuffer(rtConnector);
 
+        float v = getLength(tile, HorizontalDirection.SOUTH);
         facedTopPercentedQuad(builder, matrixStackIn, 0, 1 + 1 / 16F, 1, v, offset, false);//south
         matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(90));
+        v = getLength(tile, HorizontalDirection.EAST);
         facedTopPercentedQuad(builder, matrixStackIn, -1, 1 + 1 / 16F, 1, v, offset, false);//east
         matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(90));
+        v = getLength(tile, HorizontalDirection.NORTH);
         facedTopPercentedQuad(builder, matrixStackIn, -1, 1 / 16F, 1, v, offset, false);//north
         matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(90));
+        v = getLength(tile, HorizontalDirection.WEST);
         facedTopPercentedQuad(builder, matrixStackIn, 0, 1 / 16F, 1, v, offset, false);//west
 
         matrixStackIn.popPose();
+    }
+
+    private float getLength(EssenciaAltarTile tile, HorizontalDirection direction) {
+        int count = tile.getPath(direction).getValidBlockCount();
+        return Math.min(count, 3) + 0.1F/*needed to set light to the last brick*/;
     }
 
     public static void verticalQuad(IVertexBuilder builder, MatrixStack matrixStack, float x0, float y0, float width, float height, boolean rotateToZ, float offset, boolean invertRenderOrder) {

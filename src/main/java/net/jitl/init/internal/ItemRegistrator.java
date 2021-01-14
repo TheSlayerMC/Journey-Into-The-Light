@@ -33,10 +33,22 @@ public class ItemRegistrator {
         registerItem("lunium_ingot", "Lunium Ingot");
         registerItem("shadium_ingot", "Shadium Ingot");
         registerItem("obsidian_rod", "Obsidian Rod");
+        registerItem("green_gem", "Green Gem");
+        registerItem("blue_gem", "blue Gem");
+        registerItem("purple_gem", "purple Gem");
+        registerItem("yellow_gem", "Yellow Gem");
+
         registerItem("mud_ball", "Mud Ball", () -> new ThrowableItem(new Item.Properties().tab(JTabs.ITEMS),
                 (world, thrower) -> new FloroMudProjectileEntity(JEntities.FLORO_MUD_PROJECTILE_TYPE, world, thrower, 0.0F)));
 
         registerItem("bradberry", "Bradberry", () -> new Item(new Item.Properties().food(JFoods.BRADBERRY).tab(JTabs.ITEMS)));
+
+        registerItem("hongoshroom", "Hongoshroom", () -> new Item(new Item.Properties().food(JFoods.HONGOSROOM).tab(JTabs.ITEMS)));
+        registerItem("red_honglowshroom", "Red Honglowshroom", () -> new Item(new Item.Properties().food(JFoods.RED_HONGLOWSROOM).tab(JTabs.ITEMS)));
+        registerItem("green_honglowshroom", "Green Honglowshroom", () -> new Item(new Item.Properties().food(JFoods.GREEN_HONGLOWSROOM).tab(JTabs.ITEMS)));
+        registerItem("blue_honglowshroom", "Blue Honglowshroom", () -> new Item(new Item.Properties().food(JFoods.BLUE_HONGLOWSROOM).tab(JTabs.ITEMS)));
+        registerItem("floro_pedal", "Floro Pedal", () -> new Item(new Item.Properties().food(JFoods.FLORO_PEDAL).tab(JTabs.ITEMS)));
+
         registerItem("lunium_powder", "Lunium Powder");
 
         registerHandheldItem("staff_of_conjuring", "Staff of Conjuring", () -> new StaffItem(new Item.Properties().tab(JTabs.RANGED_WEAPONS),
