@@ -33,6 +33,12 @@ public class JItems {
     public static final JFuelItem FIRESTONE_SHARD = promise();
     public static final Item WARPED_QUARTZ = promise();
     public static final Item CRIMSON_QUARTZ = promise();
+    public static final Item GREEN_GEM = promise();
+    public static final Item YELLOW_GEM = promise();
+    public static final Item PURPLE_GEM = promise();
+    public static final Item BLUE_GEM = promise();
+    public static final Item FLORO_PEDAL = promise();
+
 
     public static final Item BRADBERRY = promise();
 
