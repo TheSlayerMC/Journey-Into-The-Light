@@ -37,10 +37,13 @@ public class JItems {
     public static final Item YELLOW_GEM = promise();
     public static final Item PURPLE_GEM = promise();
     public static final Item BLUE_GEM = promise();
-    public static final Item FLORO_PEDAL = promise();
-
 
     public static final Item BRADBERRY = promise();
+    public static final Item FLORO_PEDAL = promise();
+    public static final Item HONGOSHROOM = promise();
+    public static final Item RED_HONGLOWSHROOM = promise();
+    public static final Item GREEN_HONGLOWSHROOM = promise();
+    public static final Item BLUE_HONGLOWSHROOM = promise();
 
     public static final TestBugItem TEST_BUG = promise();
 

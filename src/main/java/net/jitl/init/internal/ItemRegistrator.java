@@ -37,7 +37,6 @@ public class ItemRegistrator {
         registerItem("blue_gem", "blue Gem");
         registerItem("purple_gem", "purple Gem");
         registerItem("yellow_gem", "Yellow Gem");
-        registerItem("floro_pedal", "Floro Pedal");
 
         registerItem("mud_ball", "Mud Ball", () -> new ThrowableItem(new Item.Properties().tab(JTabs.ITEMS),
                 (world, thrower) -> new FloroMudProjectileEntity(JEntities.FLORO_MUD_PROJECTILE_TYPE, world, thrower, 0.0F)));
@@ -48,6 +47,7 @@ public class ItemRegistrator {
         registerItem("red_honglowshroom", "Red Honglowshroom", () -> new Item(new Item.Properties().food(JFoods.RED_HONGLOWSROOM).tab(JTabs.ITEMS)));
         registerItem("green_honglowshroom", "Green Honglowshroom", () -> new Item(new Item.Properties().food(JFoods.GREEN_HONGLOWSROOM).tab(JTabs.ITEMS)));
         registerItem("blue_honglowshroom", "Blue Honglowshroom", () -> new Item(new Item.Properties().food(JFoods.BLUE_HONGLOWSROOM).tab(JTabs.ITEMS)));
+        registerItem("floro_pedal", "Floro Pedal", () -> new Item(new Item.Properties().food(JFoods.FLORO_PEDAL).tab(JTabs.ITEMS)));
 
         registerItem("lunium_powder", "Lunium Powder");
 
