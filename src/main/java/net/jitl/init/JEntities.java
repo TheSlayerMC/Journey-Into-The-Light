@@ -4,6 +4,7 @@ import net.jitl.JITL;
 import net.jitl.common.entity.EssenciaBoltEntity;
 import net.jitl.common.entity.nether.WitherspineEntity;
 import net.jitl.common.entity.overworld.FloroEntity;
+import net.jitl.common.entity.overworld.HonglowEntity;
 import net.jitl.common.entity.overworld.HongoEntity;
 import net.jitl.common.entity.projectile.ConjuringProjectileEntity;
 import net.jitl.common.entity.projectile.EssenciaProjectileEntity;
@@ -34,6 +35,12 @@ public class JEntities {
 			.setShouldReceiveVelocityUpdates(true)
 			.sized(1.5F, 2)
 			.build(JITL.MODID + ":hongo");
+
+	public static final EntityType<HonglowEntity> HONGLOW_TYPE = EntityType.Builder.of(HonglowEntity::new, EntityClassification.MONSTER)
+			.setTrackingRange(80)
+			.setShouldReceiveVelocityUpdates(true)
+			.sized(1.5F, 2)
+			.build(JITL.MODID + ":honglow");
 
 	public static final EntityType<WitherspineEntity> WITHERSPINE_TYPE = EntityType.Builder.of(WitherspineEntity::new, EntityClassification.MONSTER)
 			.setTrackingRange(80)
@@ -70,6 +77,7 @@ public class JEntities {
 	public static void registerEntities(RegistryEvent.Register<EntityType<?>> event) {
 		event.getRegistry().register(FLORO_TYPE.setRegistryName(JITL.MODID + ":floro"));
 		event.getRegistry().register(HONGO_TYPE.setRegistryName(JITL.MODID + ":hongo"));
+		event.getRegistry().register(HONGLOW_TYPE.setRegistryName(JITL.MODID + ":honglow"));
 		event.getRegistry().register(WITHERSPINE_TYPE.setRegistryName(JITL.MODID + ":witherspine"));
 		event.getRegistry().register(ESSENCIA_BOLT_TYPE.setRegistryName(JITL.MODID + ":essencia_bolt"));
 		event.getRegistry().register(FLORO_MUD_PROJECTILE_TYPE.setRegistryName(JITL.MODID + ":floro_mud_projectile"));
@@ -78,12 +86,15 @@ public class JEntities {
 
 		GlobalEntityTypeAttributes.put(FLORO_TYPE, FloroEntity.createAttributes().build());
 		GlobalEntityTypeAttributes.put(HONGO_TYPE, HongoEntity.createAttributes().build());
+		GlobalEntityTypeAttributes.put(HONGLOW_TYPE, HongoEntity.createAttributes().build());
 		GlobalEntityTypeAttributes.put(WITHERSPINE_TYPE, WitherspineEntity.createAttributes().build());
 	}
 
 	public static void registerSpawnPlacements() {
 		EntitySpawnPlacementRegistry.register(JEntities.FLORO_TYPE, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, FloroEntity::canSpawn);
 		EntitySpawnPlacementRegistry.register(JEntities.HONGO_TYPE, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, HongoEntity::canSpawn);
+		EntitySpawnPlacementRegistry.register(JEntities.HONGLOW_TYPE, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, HonglowEntity::canSpawn);
+		EntitySpawnPlacementRegistry.register(JEntities.HONGLOW_TYPE, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, HongoEntity::canSpawn);
 	}
 
 	//TODO: create streamlined registry system that registers a spawn egg alongside each entity
@@ -92,6 +103,7 @@ public class JEntities {
 		event.getRegistry().registerAll(
 				new SpawnEggItem(FLORO_TYPE, 0xFF00FF00, 0xFF000000, new Item.Properties().tab(ItemGroup.TAB_MISC)).setRegistryName(JITL.MODID, "spawn_floro"),
 				new SpawnEggItem(HONGO_TYPE, 0xFF00FF00, 0xFF000000, new Item.Properties().tab(ItemGroup.TAB_MISC)).setRegistryName(JITL.MODID, "spawn_hongo"),
+				new SpawnEggItem(HONGLOW_TYPE, 0xFF00FF00, 0xFF000000, new Item.Properties().tab(ItemGroup.TAB_MISC)).setRegistryName(JITL.MODID, "spawn_honglow"),
 				new SpawnEggItem(WITHERSPINE_TYPE, 0xFF00FF00, 0xFF000000, new Item.Properties().tab(ItemGroup.TAB_MISC)).setRegistryName(JITL.MODID, "spawn_witherspine")
 		);
 	}

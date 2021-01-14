@@ -1,11 +1,8 @@
 package net.jitl.client.render;
 
 import net.jitl.JITL;
-import net.jitl.client.render.entity.EssenciaBoltRenderer;
-import net.jitl.client.render.entity.FloroRenderer;
-import net.jitl.client.render.entity.WitherspineRenderer;
+import net.jitl.client.render.entity.*;
 import net.jitl.client.render.entity.base.Entity2DRenderer;
-import net.jitl.client.render.entity.base.HongoRenderer;
 import net.jitl.common.entity.nether.WitherspineEntity;
 import net.jitl.common.entity.overworld.FloroEntity;
 import net.jitl.init.JEntities;
@@ -29,6 +26,7 @@ public class JEntityRenderRegistry {
         //Mobs
         RenderingRegistry.registerEntityRenderingHandler(JEntities.FLORO_TYPE, FloroRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(JEntities.HONGO_TYPE, HongoRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(JEntities.HONGLOW_TYPE, HonglowRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(JEntities.WITHERSPINE_TYPE, WitherspineRenderer::new);
 
         //Projectiles
