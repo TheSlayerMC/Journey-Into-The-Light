@@ -37,6 +37,24 @@ public class ItemRegistrator {
         registerItem("blue_gem", "blue Gem");
         registerItem("purple_gem", "purple Gem");
         registerItem("yellow_gem", "Yellow Gem");
+        registerItem("ancient_piece", "Ancient Piece");
+        registerItem("ancient_shard", "Ancient Shard");
+        registerItem("ancient_chunk", "Ancient Chunk");
+        registerItem("ancient_fragment", "Ancient Fragment");
+        registerItem("balmy_teardrop", "Balmy Teardrop");
+        registerItem("cave_crystal", "Cave Crystal");
+        registerItem("stone_clump", "Stone Clump");
+        registerItem("crystal_ball", "Crystal Ball");
+        registerItem("cave_dust", "Cave Dust");
+        registerItem("smithstone", "Smithstone");
+        registerItem("bleedstone", "Bleedstone");
+        registerItem("soulstone", "Soulstone");
+        registerItem("magic_dust", "Magic Dust");
+        registerItem("demonic_skull", "Demonic Skull");
+        registerItem("glossy_eye", "Glossy Eye");
+        registerItem("volcanic_stone", "Volcanic Stone");
+        registerItem("sentacoin", "Sentacoin");//TODO make an entity
+        registerItem("sentacoin_bag", "Sentacoin Bag", () -> new Item(new Item.Properties().tab(JTabs.ITEMS)), "item/sentacoin_bag_model");
 
         registerItem("mud_ball", "Mud Ball", () -> new ThrowableItem(new Item.Properties().tab(JTabs.ITEMS),
                 (world, thrower) -> new FloroMudProjectileEntity(JEntities.FLORO_MUD_PROJECTILE_TYPE, world, thrower, 0.0F)));
@@ -182,6 +200,12 @@ public class ItemRegistrator {
     private static void registerItem(String name, String enName, Supplier<Item> itemSupplier) {
         REGISTER.register(name, itemSupplier)
                 .genModel(StandardItemModelParents.DEFAULT)
+                .genLangEntry(enName);
+    }
+
+    private static void registerItem(String name, String enName, Supplier<Item> itemSupplier, String itemLoc) {
+        REGISTER.register(name, itemSupplier)
+                .genModel(JITL.iml(itemLoc))
                 .genLangEntry(enName);
     }
 

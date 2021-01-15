@@ -18,6 +18,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import ru.timeconqueror.timecore.api.TimeMod;
 import ru.timeconqueror.timecore.api.client.resource.location.BlockModelLocation;
+import ru.timeconqueror.timecore.api.client.resource.location.ItemModelLocation;
 import ru.timeconqueror.timecore.api.client.resource.location.TextureLocation;
 
 @Mod(JITL.MODID)
@@ -60,6 +61,10 @@ public class JITL implements TimeMod {
 
 	public static BlockModelLocation bml(String path) {
 		return new BlockModelLocation(MODID, path);
+	}
+
+	public static ItemModelLocation iml(String path) {
+		return new ItemModelLocation(MODID, path);
 	}
 
 	public static TextureLocation tl(String path) {
