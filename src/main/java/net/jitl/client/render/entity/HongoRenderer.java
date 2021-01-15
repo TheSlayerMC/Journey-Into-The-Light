@@ -1,4 +1,4 @@
-package net.jitl.client.render.entity.base;
+package net.jitl.client.render.entity;
 
 
 import net.jitl.JITL;

@@ -2,6 +2,7 @@ package net.jitl.common.tile;
 
 import net.jitl.init.JBlocks;
 import net.jitl.init.JTiles;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -18,10 +19,10 @@ import static ru.timeconqueror.timecore.api.util.HorizontalDirection.*;
 
 public class EssenciaAltarTile extends TileEntity implements ITickableTileEntity {
     private static final int ACTIVATION_DELAY = 3 * 20;
-    private final Path northPath = new Path(NORTH);
-    private final Path eastPath = new Path(EAST);
-    private final Path westPath = new Path(WEST);
-    private final Path southPath = new Path(SOUTH);
+    private final Path northPath = new Path(NORTH, JBlocks.BLOOD_RUNE_DEATH);
+    private final Path eastPath = new Path(EAST, JBlocks.BLOOD_RUNE_FLESH);
+    private final Path westPath = new Path(WEST, JBlocks.BLOOD_RUNE_LIFE);
+    private final Path southPath = new Path(SOUTH, JBlocks.BLOOD_RUNE_SOUL);
 
     private int ticks = 0;
     private final int activationDelay = -1;
@@ -32,9 +33,9 @@ public class EssenciaAltarTile extends TileEntity implements ITickableTileEntity
 
     @Override
     public void tick() {
-        if (ticks % 5 == 0) {
+        if (ticks % 2 == 0) {
             checkNeighbours();
-            System.out.println(Arrays.stream(getPaths()).map(path -> path.direction.get() + ": " + path.validBlocks + ", ").collect(Collectors.joining()));
+            System.out.println(Arrays.stream(getPaths()).map(path -> path.direction.get() + ": " + path.validBlockCount + ", ").collect(Collectors.joining()));
         }
 
         ticks++;
@@ -67,7 +68,7 @@ public class EssenciaAltarTile extends TileEntity implements ITickableTileEntity
                 mutable.move(4 * path.getStepX(), 0, 4 * path.getStepZ());
 
                 BlockState runeState = level.getBlockState(mutable);
-                if (runeState.getBlock() == JBlocks.ACTIVATED_BLOOD_RUNE) {
+                if (runeState.getBlock() == path.validRune) {
                     i++;
                 }
 
@@ -82,16 +83,29 @@ public class EssenciaAltarTile extends TileEntity implements ITickableTileEntity
 //                }
             }
 
-            if (path.validBlocks != i) {
+            if (path.validBlockCount != i) {
                 changed = true;
             }
 
-            path.validBlocks = i;
+            path.validBlockCount = i;
         }
     }
 
     private Path[] getPaths() {
         return new Path[]{northPath, eastPath, southPath, westPath};
+    }
+
+    public Path getPath(HorizontalDirection direction) {
+        switch (direction) {
+            case EAST:
+                return eastPath;
+            case WEST:
+                return westPath;
+            case SOUTH:
+                return southPath;
+            default:
+                return northPath;
+        }
     }
 
     @Override
@@ -100,12 +114,14 @@ public class EssenciaAltarTile extends TileEntity implements ITickableTileEntity
         return new AxisAlignedBB(pos.offset(-5, 0, -5), pos.offset(4, 1, 4));
     }
 
-    private static class Path {
+    public static class Path {
         private final HorizontalDirection direction;
-        private int validBlocks = 0;
+        private final Block validRune;
+        private int validBlockCount = 0;
 
-        public Path(HorizontalDirection direction) {
+        public Path(HorizontalDirection direction, Block validRune) {
             this.direction = direction;
+            this.validRune = validRune;
         }
 
         public int getStepX() {
@@ -114,6 +130,10 @@ public class EssenciaAltarTile extends TileEntity implements ITickableTileEntity
 
         public int getStepZ() {
             return direction.get().getStepZ();
+        }
+
+        public int getValidBlockCount() {
+            return validBlockCount;
         }
     }
 }
