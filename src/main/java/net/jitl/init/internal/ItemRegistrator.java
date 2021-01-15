@@ -9,6 +9,7 @@ import net.jitl.common.helper.JToolTiers;
 import net.jitl.common.item.*;
 import net.jitl.init.JEntities;
 import net.jitl.init.JFoods;
+import net.jitl.init.JLootTables;
 import net.jitl.init.JTabs;
 import net.jitl.util.JItemProperties;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -74,6 +75,10 @@ public class ItemRegistrator {
 
         registerHandheldItem("staff_of_essencia", "Staff of Essencia", () -> new StaffItem(new Item.Properties().tab(JTabs.RANGED_WEAPONS),
                 (world, thrower) -> new EssenciaProjectileEntity(JEntities.ESSENCIA_PROJECTILE_TYPE, world, thrower, 0.0F)));
+
+        registerItem("loot_pouch_basic", "Loot Pouch", () -> new LootItem(JLootTables.LOOT_POUCH_BASIC, false));
+        registerItem("loot_pouch_gold", "Gold Loot Pouch", () -> new LootItem(JLootTables.LOOT_POUCH_GOLD, true));
+        registerItem("loot_pouch_diamond", "Diamond Loot Pouch", () -> new LootItem(JLootTables.LOOT_POUCH_DIAMOND, true));
 
         //NETHER ITEMS
         registerItem("bloodcrust_ingot", "Bloodcrust Ingot");
