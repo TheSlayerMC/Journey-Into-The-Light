@@ -9,6 +9,7 @@ import net.jitl.common.entity.overworld.HongoEntity;
 import net.jitl.common.entity.projectile.ConjuringProjectileEntity;
 import net.jitl.common.entity.projectile.EssenciaProjectileEntity;
 import net.jitl.common.entity.projectile.FloroMudProjectileEntity;
+import net.jitl.common.entity.projectile.base.JourneyEffectCloudEntity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityType;
@@ -72,6 +73,13 @@ public class JEntities {
 			.setShouldReceiveVelocityUpdates(true)
 			.sized(0.5F, 0.5F)
 			.build(JITL.MODID + ":essencia_projectile");
+	
+	public static final EntityType<JourneyEffectCloudEntity> EFFECT_CLOUD_TYPE = EntityType.Builder.<JourneyEffectCloudEntity>of(JourneyEffectCloudEntity::new, EntityClassification.MISC)
+			.fireImmune()
+			.clientTrackingRange(10)
+			.sized(0.0F, 0.0F)
+			.build(JITL.MODID + ":effect_cloud");
+			
 
 	@SubscribeEvent
 	public static void registerEntities(RegistryEvent.Register<EntityType<?>> event) {
@@ -83,6 +91,7 @@ public class JEntities {
 		event.getRegistry().register(FLORO_MUD_PROJECTILE_TYPE.setRegistryName(JITL.MODID + ":floro_mud_projectile"));
 		event.getRegistry().register(CONJURING_PROJECTILE_TYPE.setRegistryName(JITL.MODID + ":conjuring_projectile"));
 		event.getRegistry().register(ESSENCIA_PROJECTILE_TYPE.setRegistryName(JITL.MODID + ":essencia_projectile"));
+		event.getRegistry().register(EFFECT_CLOUD_TYPE.setRegistryName(JITL.MODID + ":effect_cloud"));
 
 		GlobalEntityTypeAttributes.put(FLORO_TYPE, FloroEntity.createAttributes().build());
 		GlobalEntityTypeAttributes.put(HONGO_TYPE, HongoEntity.createAttributes().build());
