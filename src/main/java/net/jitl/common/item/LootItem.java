@@ -1,5 +1,6 @@
 package net.jitl.common.item;
 
+import net.jitl.init.JSounds;
 import net.jitl.init.JTabs;
 import net.jitl.util.LootHelper;
 import net.minecraft.entity.item.ItemEntity;
@@ -12,6 +13,8 @@ import net.minecraft.stats.Stats;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
@@ -39,8 +42,7 @@ public class LootItem extends Item {
             ItemEntity item = new ItemEntity(worldIn, playerMP.getX(), playerMP.getY(), playerMP.getZ(), itemToSpawn);
             worldIn.addFreshEntity(item);
             playerMP.getItemInHand(handIn).shrink(1);
-            //worldIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), JSounds.LOOT.get(), SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
-            //TODO add loot sound
+            worldIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), JSounds.LOOT.get(), SoundCategory.NEUTRAL, 0.75F, MathHelper.nextFloat(random, 0.75F, 1.25F));
         }
 
         playerIn.awardStat(Stats.ITEM_USED.get(this));

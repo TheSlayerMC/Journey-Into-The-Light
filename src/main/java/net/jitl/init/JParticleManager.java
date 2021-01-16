@@ -1,10 +1,7 @@
 package net.jitl.init;
 
 import net.jitl.JITL;
-import net.jitl.client.particle.CaveVineParticle;
-import net.jitl.client.particle.ConjuringParticle;
-import net.jitl.client.particle.MudParticle;
-import net.jitl.client.particle.RedFlameParticle;
+import net.jitl.client.particle.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.ParticleManager;
 import net.minecraft.particles.BasicParticleType;
@@ -22,21 +19,23 @@ import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable;
 @Mod.EventBusSubscriber(modid = JITL.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class JParticleManager {
 
-	@AutoRegistrable
-	public static final SimpleForgeRegister<ParticleType<?>> REGISTER = new SimpleForgeRegister<>(ForgeRegistries.PARTICLE_TYPES, JITL.MODID);
+    @AutoRegistrable
+    public static final SimpleForgeRegister<ParticleType<?>> REGISTER = new SimpleForgeRegister<>(ForgeRegistries.PARTICLE_TYPES, JITL.MODID);
 
-	public static final RegistryObject<BasicParticleType> RED_FLAME = REGISTER.register("red_flame", () -> new BasicParticleType(false));
-	public static final RegistryObject<BasicParticleType> MUD = REGISTER.register("mud", () -> new BasicParticleType(false));
-	public static final RegistryObject<BasicParticleType> CONJURING = REGISTER.register("conjuring", () -> new BasicParticleType(false));
-	public static final RegistryObject<BasicParticleType> CAVE_VINE = REGISTER.register("cave_vine", () -> new BasicParticleType(false));
+    public static final RegistryObject<BasicParticleType> RED_FLAME = REGISTER.register("red_flame", () -> new BasicParticleType(false));
+    public static final RegistryObject<BasicParticleType> MUD = REGISTER.register("mud", () -> new BasicParticleType(false));
+    public static final RegistryObject<BasicParticleType> CONJURING = REGISTER.register("conjuring", () -> new BasicParticleType(false));
+    public static final RegistryObject<BasicParticleType> CAVE_VINE = REGISTER.register("cave_vine", () -> new BasicParticleType(false));
+    public static final RegistryObject<BasicParticleType> ESSENCIA_LIGHTNING = REGISTER.register("essencia_lightning", () -> new BasicParticleType(false));
 
-	@SubscribeEvent(priority = EventPriority.LOWEST)
-	public static void registerParticleFactories(ParticleFactoryRegisterEvent event) {
-		Minecraft minecraft = Minecraft.getInstance();
-		ParticleManager manager = minecraft.particleEngine;
-		manager.register(RED_FLAME.get(), RedFlameParticle.Factory::new);
-		manager.register(MUD.get(), MudParticle.Factory::new);
-		manager.register(CONJURING.get(), ConjuringParticle.Factory::new);
-		manager.register(CAVE_VINE.get(), CaveVineParticle.Factory::new);
-	}
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void registerParticleFactories(ParticleFactoryRegisterEvent event) {
+        Minecraft minecraft = Minecraft.getInstance();
+        ParticleManager manager = minecraft.particleEngine;
+        manager.register(RED_FLAME.get(), RedFlameParticle.Factory::new);
+        manager.register(MUD.get(), MudParticle.Factory::new);
+        manager.register(CONJURING.get(), ConjuringParticle.Factory::new);
+        manager.register(CAVE_VINE.get(), CaveVineParticle.Factory::new);
+        manager.register(ESSENCIA_LIGHTNING.get(), EssenciaLightningParticle.Factory::new);
+    }
 }

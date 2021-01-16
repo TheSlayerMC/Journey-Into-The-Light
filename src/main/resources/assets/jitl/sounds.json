@@ -109,6 +109,11 @@
       "jitl:items/staff/staff_0"
     ]
   },
+  "items.loot": {
+    "sounds": [
+      "jitl:items/loot"
+    ]
+  },
   "entities.hongo_ambient": {
     "sounds": [
       "jitl:entities/hongo_ambient"
