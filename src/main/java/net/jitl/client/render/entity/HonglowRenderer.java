@@ -1,6 +1,5 @@
 package net.jitl.client.render.entity;
 
-import net.jitl.JITL;
 import net.jitl.client.render.JRenderTypes;
 import net.jitl.client.render.model.HongoModel;
 import net.jitl.common.entity.overworld.HonglowEntity;
@@ -16,18 +15,12 @@ import javax.annotation.Nullable;
 
 @OnlyIn(Dist.CLIENT)
 public class HonglowRenderer extends MobRenderer<HonglowEntity, HongoModel<HonglowEntity>> {
-	private final String[] textures = {
-			"honglow_blue.png",
-			"honglow_red.png",
-			"honglow_green.png"
-	};
-
 	public HonglowRenderer(EntityRendererManager renderManagerIn) {
 		super(renderManagerIn, new HongoModel<>(), 0.7F);
 	}
 
 	public @NotNull ResourceLocation getTextureLocation(@NotNull HonglowEntity entityIn) {
-		return JITL.rl("textures/entity/overworld/" + textures[entityIn.getVariant()]);
+		return entityIn.getVariant().getTexture();
 	}
 
 	@Nullable

@@ -9,7 +9,7 @@ import net.jitl.common.entity.overworld.HongoEntity;
 import net.jitl.common.entity.projectile.ConjuringProjectileEntity;
 import net.jitl.common.entity.projectile.EssenciaProjectileEntity;
 import net.jitl.common.entity.projectile.FloroMudProjectileEntity;
-import net.jitl.common.entity.projectile.base.JourneyEffectCloudEntity;
+import net.jitl.common.entity.projectile.base.JEffectCloudEntity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityType;
@@ -31,13 +31,13 @@ public class JEntities {
 			.sized(1, 2)
 			.build(JITL.MODID + ":floro");
 
-	public static final EntityType<HongoEntity> HONGO_TYPE = EntityType.Builder.of(HongoEntity::new, EntityClassification.MONSTER)
+	public static final EntityType<HongoEntity> HONGO_TYPE = EntityType.Builder.of(HongoEntity::new, EntityClassification.CREATURE)
 			.setTrackingRange(80)
 			.setShouldReceiveVelocityUpdates(true)
 			.sized(1.5F, 2)
 			.build(JITL.MODID + ":hongo");
 
-	public static final EntityType<HonglowEntity> HONGLOW_TYPE = EntityType.Builder.of(HonglowEntity::new, EntityClassification.MONSTER)
+	public static final EntityType<HonglowEntity> HONGLOW_TYPE = EntityType.Builder.of(HonglowEntity::new, EntityClassification.CREATURE)
 			.setTrackingRange(80)
 			.setShouldReceiveVelocityUpdates(true)
 			.sized(1.5F, 2)
@@ -74,7 +74,7 @@ public class JEntities {
 			.sized(0.5F, 0.5F)
 			.build(JITL.MODID + ":essencia_projectile");
 	
-	public static final EntityType<JourneyEffectCloudEntity> EFFECT_CLOUD_TYPE = EntityType.Builder.<JourneyEffectCloudEntity>of(JourneyEffectCloudEntity::new, EntityClassification.MISC)
+	public static final EntityType<JEffectCloudEntity> EFFECT_CLOUD_TYPE = EntityType.Builder.<JEffectCloudEntity>of(JEffectCloudEntity::new, EntityClassification.MISC)
 			.fireImmune()
 			.clientTrackingRange(10)
 			.sized(0.0F, 0.0F)

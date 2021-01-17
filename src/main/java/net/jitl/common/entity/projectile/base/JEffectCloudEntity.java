@@ -24,26 +24,27 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.network.NetworkHooks;
+import ru.timeconqueror.timecore.api.util.Requirements;
 
-public class JourneyEffectCloudEntity extends Entity {
-	public static final DataParameter<Float> RADIUS = EntityDataManager.defineId(JourneyEffectCloudEntity.class, DataSerializers.FLOAT); //the current radius of the cloud
-	public static final DataParameter<Integer> COLOR = EntityDataManager.defineId(JourneyEffectCloudEntity.class, DataSerializers.INT);
+public class JEffectCloudEntity extends Entity {
+	public static final DataParameter<Float> RADIUS = EntityDataManager.defineId(JEffectCloudEntity.class, DataSerializers.FLOAT); //the current radius of the cloud
+	public static final DataParameter<Integer> COLOR = EntityDataManager.defineId(JEffectCloudEntity.class, DataSerializers.INT);
 	public ArrayList<ImmutablePair<Integer, Float>> sizes = new ArrayList<ImmutablePair<Integer, Float>>(); //the list of size keys
-	public LivingEntity owner; //the entity who is considered the cloud's owner
+	public UUID ownerUUID; //the entity who is considered the cloud's owner
 	public boolean isOwnerException = false; //whether the owner should be considered an exception
-	public ArrayList<LivingEntity> exceptions = new ArrayList<LivingEntity>(); //the enemies who are exceptions
+	public ArrayList<UUID> exceptionUUIDs = new ArrayList<UUID>(); //the enemies who are exceptions
 	public ArrayList<EffectInstance> primaryEffects = new ArrayList<EffectInstance>(); //the effects that will be inflicted normally
 	public ArrayList<EffectInstance> secondaryEffects = new ArrayList<EffectInstance>(); //the effects that will be inflicted to enemies who are exceptions
 	
 
-	public JourneyEffectCloudEntity(EntityType<? extends JourneyEffectCloudEntity> entityType, World world) {
+	public JEffectCloudEntity(EntityType<? extends JEffectCloudEntity> entityType, World world) {
 		super(entityType, world);
 		this.noPhysics = true;
 	}
 	
-	public JourneyEffectCloudEntity(LivingEntity cloudCreator, World world, double x, double y, double z, float initialRadius) {
+	public JEffectCloudEntity(LivingEntity cloudCreator, World world, double x, double y, double z, float initialRadius) {
 		this(JEntities.EFFECT_CLOUD_TYPE, world);
-		owner = cloudCreator;
+		ownerUUID = cloudCreator.getUUID();
 		this.setPos(x, y, z);
 		this.addSizeKey(0, initialRadius);
 	}
@@ -54,6 +55,7 @@ public class JourneyEffectCloudEntity extends Entity {
 	 * @param size the size the cloud will have at this stage of its life
 	 */
 	public void addSizeKey(int time, float size) {
+		Requirements.greaterOrEqualsThan(time, 0);
 		sizes.add(new ImmutablePair<Integer, Float>(time, size));
 	}
 	
@@ -66,7 +68,7 @@ public class JourneyEffectCloudEntity extends Entity {
 	
 	
 	public void markMobException(LivingEntity mob) {
-		exceptions.add(mob);
+		exceptionUUIDs.add(mob.getUUID());
 	}
 	
 	
@@ -89,7 +91,7 @@ public class JourneyEffectCloudEntity extends Entity {
 	 */
 	public void spawn() {
 		sizes.trimToSize();
-		exceptions.trimToSize();
+		exceptionUUIDs.trimToSize();
 		primaryEffects.trimToSize();
 		secondaryEffects.trimToSize();
 		this.level.addFreshEntity(this);
@@ -126,11 +128,11 @@ public class JourneyEffectCloudEntity extends Entity {
 				}
 			}
 			if (previousPair != null && nextPair != null) {
-				float timeFromLastPair = this.tickCount - ((Integer) previousPair.getKey()).intValue();
-				float timeBetweenPairs = ((Integer) nextPair.getKey()).intValue() - ((Integer) previousPair.getKey()).intValue();
-				float sizeDifference = ((Float) nextPair.getValue()).floatValue() - ((Float) previousPair.getValue()).floatValue();
+				float timeFromLastPair = this.tickCount - previousPair.getKey().intValue();
+				float timeBetweenPairs = nextPair.getKey().intValue() - previousPair.getKey().intValue();
+				float sizeDifference = nextPair.getValue().floatValue() - previousPair.getValue().floatValue();
 				//radius = ((Float) previousPair.getValue()).floatValue() + sizeDifference * (timeFromLastPair / timeBetweenPairs);
-				getEntityData().set(RADIUS, (timeFromLastPair / timeBetweenPairs) * sizeDifference + ((Float) previousPair.getValue()).floatValue());
+				getEntityData().set(RADIUS, (timeFromLastPair / timeBetweenPairs) * sizeDifference + (previousPair.getValue().floatValue()));
 			}
 			
 			//handle entity collisions
@@ -146,9 +148,9 @@ public class JourneyEffectCloudEntity extends Entity {
 	}
 	
 	private boolean isEntityException(LivingEntity entity) {
-		if (isOwnerException && entity == owner) return true;
-		for (LivingEntity listEntity : exceptions) {
-			if (entity.getClass() == listEntity.getClass()) return true;
+		if (isOwnerException && entity == getEntityFromUUID(ownerUUID)) return true;
+		for (UUID currentUUID : exceptionUUIDs) {
+			if (entity.getClass() == getEntityFromUUID(currentUUID).getClass()) return true;
 		}
 		return false;
 	}
@@ -160,84 +162,73 @@ public class JourneyEffectCloudEntity extends Entity {
 	
 	@Override
 	protected void addAdditionalSaveData(CompoundNBT nbt) {
-		nbt.putInt("Time", this.tickCount);
-		nbt.putFloat("Radius", getEntityData().get(RADIUS));
-		nbt.putInt("Color", getEntityData().get(COLOR));
-		nbt.putUUID("Owner UUID", owner.getUUID());
-		nbt.putBoolean("Owner exception", isOwnerException);
+		nbt.putInt("time", this.tickCount);
+		nbt.putFloat("radius", getEntityData().get(RADIUS));
+		nbt.putInt("color", getEntityData().get(COLOR));
+		nbt.putUUID("owner_uuid", ownerUUID);
+		nbt.putBoolean("owner_exception", isOwnerException);
 		ListNBT primaryEffectList = new ListNBT();
 		for (EffectInstance effect : primaryEffects) {
 			primaryEffectList.add(effect.save(new CompoundNBT()));
 		}//
-		nbt.put("Primary Effects", primaryEffectList);
+		nbt.put("primary_effects", primaryEffectList);
 		ListNBT secondaryEffectList = new ListNBT();
 		for (EffectInstance effect : secondaryEffects) {
 			secondaryEffectList.add(effect.save(new CompoundNBT()));
 		}//
-		nbt.put("Secondary Effects", secondaryEffectList);
+		nbt.put("secondary_effects", secondaryEffectList);
 		ListNBT sizesNBT = new ListNBT();
 		for (ImmutablePair<Integer, Float> pair : sizes) {
 			CompoundNBT pairNBT = new CompoundNBT();
-			pairNBT.putInt("Time", pair.getKey());
-			pairNBT.putFloat("Size", pair.getValue());
+			pairNBT.putInt("time", pair.getKey());
+			pairNBT.putFloat("size", pair.getValue());
 			sizesNBT.add(pairNBT);
 		}
-		nbt.put("Sizes", sizesNBT);
+		nbt.put("sizes", sizesNBT);
 		ListNBT exceptionsNBT = new ListNBT();
-		for (LivingEntity entity : exceptions) {
+		for (UUID id : exceptionUUIDs) {
 			CompoundNBT entityCompound = new CompoundNBT();
-			entityCompound.putUUID("Exception UUID", entity.getUUID());
+			entityCompound.putUUID("Exception UUID", id);
 			exceptionsNBT.add(entityCompound);
 		}
-		nbt.put("Exceptions", exceptionsNBT);
+		nbt.put("exceptions", exceptionsNBT);
 	}
 	
 	
 	@Override
 	protected void readAdditionalSaveData(CompoundNBT nbt) {
 		//commented = broken
-		this.tickCount = nbt.getInt("Time");
-		getEntityData().set(RADIUS, nbt.getFloat("Radius"));
-		getEntityData().set(COLOR, nbt.getInt("Color"));
-		/*LOGGER.debug("Reading owner");
+		this.tickCount = nbt.getInt("time");
+		getEntityData().set(RADIUS, nbt.getFloat("radius"));
+		getEntityData().set(COLOR, nbt.getInt("color"));
 		if (nbt.hasUUID("Owner UUID")) {
-			LOGGER.debug("Owner UUID is saved");
-			owner = getEntityFromUUID(nbt.getUUID("Owner UUID"));
-			LOGGER.debug("Owner is " + owner.getName().getString());
-		}*/
-		isOwnerException = nbt.getBoolean("Owner exception");
-		/*LOGGER.debug("Reading primary effects");
-		ListNBT primaryList = nbt.getList("Primary Effects", 9);
+			ownerUUID = nbt.getUUID("owner_uuid");
+		}
+		isOwnerException = nbt.getBoolean("owner_exception");
+		ListNBT primaryList = nbt.getList("primary_effects", 9);
 		for (int current = 0; current < primaryList.size(); current++) {
 			addPrimaryEffect(EffectInstance.load(primaryList.getCompound(current)));
 		}
-		LOGGER.debug("There are " + primaryEffects.size() + " primary effects");
-		LOGGER.debug("Reading secondary effects");
-		ListNBT secondaryList = nbt.getList("Secondary Effects", 9);
+		ListNBT secondaryList = nbt.getList("secondary_effects", 9);
 		for (int current = 0; current < secondaryList.size(); current++) {
 			addSecondaryEffect(EffectInstance.load(secondaryList.getCompound(current)));
 		}
-		LOGGER.debug("There are " + secondaryEffects.size() + " secondary effects");
-		LOGGER.debug("Reading size keys");
-		ListNBT sizesNBT = nbt.getList("Sizes", 9);
+		ListNBT sizesNBT = nbt.getList("sizes", 9);
 		for (int current = 0; current < sizesNBT.size(); current++) {
 			CompoundNBT pairCompound = sizesNBT.getCompound(current);
-			addSizeKey(pairCompound.getInt("Time"), pairCompound.getFloat("Size"));
+			addSizeKey(pairCompound.getInt("time"), pairCompound.getFloat("size"));
 		}
-		LOGGER.debug("There are " + sizes.size() + " size keys");
-		LOGGER.debug("Reading exceptions");
-		ListNBT exceptionsList = nbt.getList("Exceptions", 9);
+		ListNBT exceptionsList = nbt.getList("exceptions", 9);
 		for (int current = 0; current < exceptionsList.size(); current++) {
 			CompoundNBT exceptionCompound = exceptionsList.getCompound(current);
-			if (exceptionCompound.hasUUID("Exception UUID")) {
-				exceptions.add(getEntityFromUUID(exceptionCompound.getUUID("ExceptionUUID")));
+			if (exceptionCompound.hasUUID("exception_uuid")) {
+				exceptionUUIDs.add(exceptionCompound.getUUID("exception_uuid"));
 			}
 		}
-		LOGGER.debug("Reading there are " + exceptions.size() + " exceptions");*/
 	}
 	
 	private LivingEntity getEntityFromUUID(UUID id) {
-		return (LivingEntity) (LivingEntity) ((ServerWorld) this.level).getEntity(id);
+		return (LivingEntity) ((ServerWorld) this.level).getEntity(id);
 	}
 	
 	
