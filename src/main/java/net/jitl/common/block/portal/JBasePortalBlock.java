@@ -43,7 +43,7 @@ public class JBasePortalBlock extends NetherPortalBlock {
                     destination = dimensionID;
                 }
                 ServerWorld serverworld = Objects.requireNonNull(playerMP.level.getServer()).getLevel(destination);
-                playerMP.changeDimension(serverworld, new BaseTeleporter(serverworld, this, this.frame));//I have a feeling this has to be done in events
+                playerMP.changeDimension(((ServerPlayerEntity) entityIn).getLevel(), new BaseTeleporter(((ServerPlayerEntity) entityIn).getLevel(), this, this.frame));//I have a feeling this has to be done in events
             }
         }
     }
