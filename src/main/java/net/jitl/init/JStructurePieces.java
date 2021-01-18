@@ -1,7 +1,7 @@
 package net.jitl.init;
 
 import net.jitl.JITL;
-import net.jitl.common.world.gen.structures.GuardianTowerPieces;
+import net.jitl.common.world.gen.structures.guardian.GuardianTowerPieces;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.gen.feature.structure.IStructurePieceType;
 import ru.timeconqueror.timecore.api.registry.SimpleVanillaRegister;

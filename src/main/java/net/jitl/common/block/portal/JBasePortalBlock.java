@@ -36,9 +36,13 @@ public class JBasePortalBlock extends NetherPortalBlock {
         if (entityIn instanceof ServerPlayerEntity) {
             if (!entityIn.isPassenger() && !entityIn.isVehicle() && entityIn.canChangeDimensions()) {
                 ServerPlayerEntity playerMP = (ServerPlayerEntity) entityIn;
-                RegistryKey<World> dimension = worldIn.dimension() == dimensionID ? World.OVERWORLD : dimensionID;
-                ServerWorld serverworld = Objects.requireNonNull(playerMP.level.getServer()).getLevel(dimension);
-                assert serverworld != null;
+                RegistryKey<World> destination;
+                if (((ServerPlayerEntity) entityIn).getLevel().dimension() == dimensionID) {
+                    destination = World.OVERWORLD;
+                } else {
+                    destination = dimensionID;
+                }
+                ServerWorld serverworld = Objects.requireNonNull(playerMP.level.getServer()).getLevel(destination);
                 playerMP.changeDimension(serverworld, new BaseTeleporter(serverworld, this, this.frame));//I have a feeling this has to be done in events
             }
         }

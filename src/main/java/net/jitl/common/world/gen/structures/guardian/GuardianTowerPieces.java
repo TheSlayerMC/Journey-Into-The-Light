@@ -1,4 +1,4 @@
-package net.jitl.common.world.gen.structures;
+package net.jitl.common.world.gen.structures.guardian;
 
 import com.google.common.collect.ImmutableMap;
 import net.jitl.JITL;

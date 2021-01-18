@@ -1,7 +1,7 @@
 package net.jitl.init;
 
 import net.jitl.JITL;
-import net.jitl.common.world.gen.structures.GuardianTowerStructure;
+import net.jitl.common.world.gen.structures.guardian.GuardianTowerStructure;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import org.apache.logging.log4j.Marker;
