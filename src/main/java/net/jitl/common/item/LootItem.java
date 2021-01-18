@@ -32,10 +32,9 @@ public class LootItem extends Item {
     }
 
     @Override
-    public @NotNull ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, @NotNull Hand handIn) {
-
-        if(!worldIn.isClientSide) {
-            ServerPlayerEntity playerMP = (ServerPlayerEntity)playerIn;
+    public @NotNull ActionResult<ItemStack> use(World worldIn, @NotNull PlayerEntity playerIn, @NotNull Hand handIn) {
+        if (!worldIn.isClientSide) {
+            ServerPlayerEntity playerMP = (ServerPlayerEntity) playerIn;
             List<ItemStack> lootTable = LootHelper.genFromLootTable(this.lootTable, playerMP, builder -> builder.withLuck(playerMP.getLuck()));
             int index = worldIn.random.nextInt(lootTable.size());
             ItemStack itemToSpawn = lootTable.get(index);
@@ -50,12 +49,12 @@ public class LootItem extends Item {
     }
 
     @Override
-    public Rarity getRarity(ItemStack stack) {
+    public @NotNull Rarity getRarity(@NotNull ItemStack stack) {
         return hasEffect ? Rarity.RARE : Rarity.COMMON;
     }
 
     @Override
-    public boolean isFoil(ItemStack stack) {
+    public boolean isFoil(@NotNull ItemStack stack) {
         return this.hasEffect;
     }
 }
