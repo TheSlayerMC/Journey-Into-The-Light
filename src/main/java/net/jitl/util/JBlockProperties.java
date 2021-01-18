@@ -104,7 +104,7 @@ public class JBlockProperties {
 			(Material.STONE)
 			.sound(SoundType.METAL)
 			.requiresCorrectToolForDrops()
-			//.isViewBlocking(() -> (Blocks::never))
+			.noOcclusion()
 			.strength(1.5F, 6.0F));
 	public static final BlockPropsFactory GLOWSHROOM_PROPS = new BlockPropsFactory(() -> AbstractBlock.Properties.of
 			(Material.REPLACEABLE_PLANT)

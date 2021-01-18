@@ -17,6 +17,7 @@ import net.jitl.init.JTabs;
 import net.jitl.util.JBlockProperties;
 import net.minecraft.block.*;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.util.IItemProvider;
 import net.minecraftforge.fml.RegistryObject;
 import ru.timeconqueror.timecore.api.client.resource.BlockModel;
@@ -155,7 +156,7 @@ public class BlockRegistrator {
         registerDefaultBlock("euca_brick", "Euca Brick");
 
         registerDefaultBlock("laser_emitter", "Laser Emitter", () -> new LaserEmitterBlock(JBlockProperties.STONE_PROPS.create().noOcclusion()));
-        registerDefaultBlock("test_spawner", "Test Spawner", () -> new JSpawnerBlock(JEntities.FLORO_TYPE));
+        registerCutoutMippedRenderedBlock("test_spawner", "Test Spawner", () -> new JSpawnerBlock(JEntities.WITHERSPINE_TYPE), JTabs.SPAWNERS);
 
         registerTallCrossRenderedBlock("tall_green_glowshroom", "Tall Green Glowshroom", () -> new TallGlowshroomBlock(JBlockProperties.GLOWSHROOM_PROPS.create()));
         registerTallCrossRenderedBlock("tall_blue_glowshroom", "Tall Blue Glowshroom", () -> new TallGlowshroomBlock(JBlockProperties.GLOWSHROOM_PROPS.create()));
@@ -206,6 +207,17 @@ public class BlockRegistrator {
                 .genLangEntry(enName)
                 .regDefaultBlockItem(JTabs.BLOCKS)
                 .genDefaultStateAndModel();
+    }
+
+    /**
+     * Registers block as usual with a creative tab
+     */
+    private static RegistryObject<Block> registerBlock(String name, String enName, Supplier<Block> blockSupplier, ItemGroup cTab) {
+        return REGISTER.register(name, blockSupplier)
+                .genLangEntry(enName)
+                .regDefaultBlockItem(cTab)
+                .genDefaultStateAndModel()
+                .asRegistryObject();
     }
 
     /**
@@ -275,6 +287,14 @@ public class BlockRegistrator {
                 .genLangEntry(enName)
                 .regDefaultBlockItem(JTabs.BLOCKS)
                 .genDefaultState(new BlockModelLocation(JITL.MODID, "block/" + name));
+    }
+
+    private static void registerCutoutMippedRenderedBlock(String name, String enName, Supplier<Block> blockSupplier, ItemGroup cTab) {
+        REGISTER.register(name, blockSupplier)
+                .genLangEntry(enName)
+                .setRenderLayer(RenderType::cutoutMipped)
+                .regDefaultBlockItem(cTab)
+                .genDefaultStateAndModel();
     }
 
     /**
