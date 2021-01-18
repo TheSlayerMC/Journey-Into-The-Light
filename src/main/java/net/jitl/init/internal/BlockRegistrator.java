@@ -7,6 +7,7 @@ import net.jitl.client.render.JBlockStateResources;
 import net.jitl.common.block.*;
 import net.jitl.common.block.base.*;
 import net.jitl.common.block.portal.JBasePortalBlock;
+import net.jitl.common.dimension.Dimensions;
 import net.jitl.common.helper.EnumHarvestLevel;
 import net.jitl.common.tile.EssenciaAltarTile;
 import net.jitl.init.JBlocks;
@@ -18,7 +19,6 @@ import net.minecraft.block.*;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.util.IItemProvider;
-import net.minecraft.world.World;
 import net.minecraftforge.fml.RegistryObject;
 import ru.timeconqueror.timecore.api.client.resource.BlockModel;
 import ru.timeconqueror.timecore.api.client.resource.BlockModels;
@@ -195,7 +195,7 @@ public class BlockRegistrator {
         //registerDefaultBlock("cloudia_portal_frame", "Cloudia Portal Frame");
         //registerDefaultBlock("senterian_portal_frame", "Senterian Portal Frame");//different style
 
-        registerDefaultBlock("euca_portal", "Euca Portal", () -> new JBasePortalBlock(JBlockProperties.PORTAL.create(), World.NETHER, JBlocks.EUCA_PORTAL_FRAME));
+        registerDefaultBlock("euca_portal", "Euca Portal", () -> new JBasePortalBlock(JBlockProperties.PORTAL.create(), Dimensions.EUCA, JBlocks.EUCA_PORTAL_FRAME));
 
     }
 
