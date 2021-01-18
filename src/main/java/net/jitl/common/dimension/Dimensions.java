@@ -7,6 +7,6 @@ import net.minecraft.world.World;
 
 public class Dimensions {
 
-    public static final RegistryKey<World> EUCA = RegistryKey.create(Registry.DIMENSION_REGISTRY, JITL.rl("euca/euca"));
+    public static final RegistryKey<World> EUCA = RegistryKey.create(Registry.DIMENSION_REGISTRY, JITL.rl("euca"));
 
 }

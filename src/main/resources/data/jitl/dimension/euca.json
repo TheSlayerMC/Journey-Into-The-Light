@@ -22,7 +22,7 @@
     "biome_source": {
       "type": "minecraft:fixed",
       "seed": -22426074,
-      "biome": "jitl:euca_plains"
+      "biome": "jitl:euca/euca_plains"
     },
     "settings": {
       "name": "jitl:euca",
