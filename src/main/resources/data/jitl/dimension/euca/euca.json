@@ -1,6 +1,6 @@
 {
   "type": {
-    "name": "minecraft:euca",
+    "name": "jitl:euca",
     "ultrawarm": false,
     "natural": true,
     "piglin_safe": false,
@@ -22,16 +22,16 @@
     "biome_source": {
       "type": "minecraft:fixed",
       "seed": -22426074,
-      "biome": "minecraft:plains"
+      "biome": "jitl:euca/euca_plains"
     },
     "settings": {
-      "name": "minecraft:euca",
+      "name": "jitl:euca",
       "bedrock_roof_position": -10,
       "bedrock_floor_position": 0,
       "sea_level": 63,
       "disable_mob_generation": false,
       "default_block": {
-        "Name": "minecraft:stone"
+        "Name": "jitl:bloodcrust_ore"
       },
       "default_fluid": {
         "Name": "minecraft:water",
