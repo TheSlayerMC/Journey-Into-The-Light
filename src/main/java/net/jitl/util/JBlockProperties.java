@@ -9,16 +9,22 @@ import ru.timeconqueror.timecore.api.registry.util.BlockPropsFactory;
 
 public class JBlockProperties {
 
-	public static final BlockPropsFactory STONE_PROPS = new BlockPropsFactory(() -> AbstractBlock.Properties.of
-			(Material.STONE)
-			.sound(SoundType.STONE)
-			.harvestTool(ToolType.PICKAXE)
-			.requiresCorrectToolForDrops()
-			.strength(1.5F, 6.0F));
-	public static final BlockPropsFactory BASALT_PROPS = new BlockPropsFactory(() -> AbstractBlock.Properties.of
-			(Material.STONE)
-			.sound(SoundType.BASALT)
-			.harvestTool(ToolType.PICKAXE)
+    public static final BlockPropsFactory GRASS_PROPS = new BlockPropsFactory(() -> AbstractBlock.Properties.of
+            (Material.GRASS)
+            .sound(SoundType.GRASS)
+            .harvestTool(ToolType.SHOVEL)
+            .randomTicks()
+            .strength(0.6F));
+    public static final BlockPropsFactory STONE_PROPS = new BlockPropsFactory(() -> AbstractBlock.Properties.of
+            (Material.STONE)
+            .sound(SoundType.STONE)
+            .harvestTool(ToolType.PICKAXE)
+            .requiresCorrectToolForDrops()
+            .strength(1.5F, 6.0F));
+    public static final BlockPropsFactory BASALT_PROPS = new BlockPropsFactory(() -> AbstractBlock.Properties.of
+            (Material.STONE)
+            .sound(SoundType.BASALT)
+            .harvestTool(ToolType.PICKAXE)
 			.requiresCorrectToolForDrops()
 			.strength(1.5F, 6.0F));
 	public static final BlockPropsFactory METAL_PROPS = new BlockPropsFactory(() -> AbstractBlock.Properties.of

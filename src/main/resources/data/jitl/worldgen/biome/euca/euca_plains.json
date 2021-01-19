@@ -1,9 +1,9 @@
 {
-  "surface_builder": "minecraft:grass",
+  "surface_builder": "jitl:euca_plains",
   "depth": 0.125,
   "scale": 0.05,
   "temperature": 0.8,
-  "downfall": 0.4,
+  "downfall": 0.0,
   "precipitation": "rain",
   "category": "plains",
   "effects": {

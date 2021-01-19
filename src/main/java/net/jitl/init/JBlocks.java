@@ -102,14 +102,17 @@ public class JBlocks {
 	public static final TallGlowshroomBlock TALL_BLUE_GLOWSHROOM = promise();
 	public static final TallGlowshroomBlock TALL_RED_GLOWSHROOM = promise();
 
-	public static final JPlantBlock GREEN_GLOWSHROOM = promise();
-	public static final JPlantBlock BLUE_GLOWSHROOM = promise();
-	public static final JPlantBlock RED_GLOWSHROOM = promise();
+    public static final JPlantBlock GREEN_GLOWSHROOM = promise();
+    public static final JPlantBlock BLUE_GLOWSHROOM = promise();
+    public static final JPlantBlock RED_GLOWSHROOM = promise();
 
-	public static final CaveVinesTopBlock CAVE_VINES = promise();
-	public static final CaveVinesBlock CAVE_VINES_PLANT = promise();
+    public static final CaveVinesTopBlock CAVE_VINES = promise();
+    public static final CaveVinesBlock CAVE_VINES_PLANT = promise();
 
-	public static final Block EUCA_PORTAL_FRAME = promise();
-	public static final Block EUCA_PORTAL = promise();
+    public static final Block EUCA_PORTAL_FRAME = promise();
+    public static final Block EUCA_PORTAL = promise();
 
+    public static final Block GOLDITE_GRASS_BLOCK = promise();
+    public static final Block GOLDITE_SOIL = promise();
+    public static final Block GOLDITE_STONE = promise();
 }
