@@ -51,9 +51,9 @@
         "island_noise_override": false,
         "amplified": false,
         "sampling": {
-          "xz_scale": 2,
+          "xz_scale": 5,
           "y_scale": 1,
-          "xz_factor": 80,
+          "xz_factor": 160,
           "y_factor": 80
         },
         "bottom_slide": {

@@ -1,16 +1,16 @@
 {
   "surface_builder": "jitl:euca_plains",
-  "depth": 0.125,
-  "scale": 0.05,
+  "depth": 0.525,
+  "scale": 0.75,
   "temperature": 0.8,
   "downfall": 0.0,
   "precipitation": "rain",
   "category": "plains",
   "effects": {
-    "sky_color": 14810880,
-    "fog_color": 7038976,
-    "water_color": 9215244,
-    "water_fog_color": 2831109,
+    "sky_color": 14876538,
+    "fog_color": 15597506,
+    "water_color": 14995007,
+    "water_fog_color": 3355141,
     "grass_color": 13159169,
     "foliage_color": 5660928
   },
