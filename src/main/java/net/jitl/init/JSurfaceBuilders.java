@@ -15,4 +15,6 @@ public class JSurfaceBuilders {
     private static final SimpleForgeRegister<SurfaceBuilder<?>> REGISTER = new SimpleForgeRegister<>(ForgeRegistries.SURFACE_BUILDERS, JITL.MODID);
 
     public static final RegistryObject<SurfaceBuilder<?>> EUCA = REGISTER.register("euca_plains", () -> new TestSurfaceBuilder(SurfaceBuilderConfig.CODEC));
+    public static final RegistryObject<SurfaceBuilder<?>> EUCA_SILVER = REGISTER.register("euca_silver_plains", () -> new TestSurfaceBuilder(SurfaceBuilderConfig.CODEC));
+
 }

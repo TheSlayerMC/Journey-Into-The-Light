@@ -1,5 +1,5 @@
 {
-  "surface_builder": "jitl:euca_plains",
+  "surface_builder": "jitl:euca_silver_plains",
   "depth": 0.835,
   "scale": 0.75,
   "temperature": 0.8,
@@ -7,12 +7,12 @@
   "precipitation": "rain",
   "category": "plains",
   "effects": {
-    "sky_color": 14876538,
-    "fog_color": 15597506,
-    "water_color": 14995007,
-    "water_fog_color": 3355141,
-    "grass_color": 13159169,
-    "foliage_color": 5660928
+    "sky_color": 11253711,
+    "fog_color": 9871019,
+    "water_color": 11253711,
+    "water_fog_color": 11253711,
+    "grass_color": 9871019,
+    "foliage_color": 9871019
   },
   "starts": [],
   "spawners": {},
