@@ -2,16 +2,20 @@ package net.jitl.common.tile;
 
 import net.jitl.common.block.base.XZFacedBlock;
 import net.jitl.init.JBlocks;
+import net.jitl.init.JItems;
 import net.jitl.init.JTiles;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import ru.timeconqueror.timecore.api.common.tile.SerializationType;
+import ru.timeconqueror.timecore.api.common.tile.SyncableTile;
 import ru.timeconqueror.timecore.api.util.HorizontalDirection;
 import ru.timeconqueror.timecore.api.util.RandHelper;
 
@@ -20,12 +24,17 @@ import java.util.stream.Collectors;
 
 import static ru.timeconqueror.timecore.api.util.HorizontalDirection.*;
 
-public class EssenciaAltarTile extends TileEntity implements ITickableTileEntity {
-    private static final int ACTIVATION_DELAY = 3 * 20;
+public class EssenciaAltarTile extends SyncableTile implements ITickableTileEntity {
+    private static final int PATH_PROGRESS_DELAY = 5;
+    private static final float PATH_PROGRESS = 0.1F;
     private final Path northPath = new Path(NORTH, JBlocks.BLOOD_RUNE_DEATH);
     private final Path eastPath = new Path(EAST, JBlocks.BLOOD_RUNE_FLESH);
     private final Path westPath = new Path(WEST, JBlocks.BLOOD_RUNE_LIFE);
     private final Path southPath = new Path(SOUTH, JBlocks.BLOOD_RUNE_SOUL);
+
+    private final Path[] paths = new Path[]{northPath, eastPath, southPath, westPath};
+
+    private boolean activated;
 
     private int ticks = 0;
     private final int activationDelay = -1;
@@ -37,14 +46,38 @@ public class EssenciaAltarTile extends TileEntity implements ITickableTileEntity
 
     @Override
     public void tick() {
-        checkNeighbours();
-        System.out.println(Arrays.stream(getPaths()).map(path -> path.direction.get() + ": " + path.validBlockCount + ", ").collect(Collectors.joining()));
+        for (Path path : getPaths()) {
+            path.tick();
+        }
+
+        if (activated) {
+            checkNeighbours();
+            System.out.println(Arrays.stream(getPaths()).map(path -> path.direction.get() + ": " + path.getValidBlockCount() + ", ").collect(Collectors.joining()));
+        } else {
+            for (Path path : getPaths()) {
+                path.setValidBlockCount(0);
+            }
+        }
+
+        if (ticks % PATH_PROGRESS_DELAY == 0) {
+            for (Path path : getPaths()) {
+                path.updateCurrentLength();
+            }
+        }
 
         if (ticks % 4 == 0) {
             randomSeed = RandHelper.RAND.nextLong();
         }
 
         ticks++;
+    }
+
+    public void onRightClick(ServerPlayerEntity entity, ItemStack itemStack) {
+        if (itemStack.getItem() == JItems.POWDER_OF_ESSENCIA) {
+            itemStack.shrink(1);
+            activated = true;
+            saveAndSync();
+        }
     }
 
     public long getRandomSeed() {
@@ -93,26 +126,30 @@ public class EssenciaAltarTile extends TileEntity implements ITickableTileEntity
 //                }
             }
 
-            if (path.validBlockCount != i) {
+            if (path.getValidBlockCount() != i) {
                 changed = true;
             }
 
-            path.validBlockCount = i;
+            path.setValidBlockCount(i);
         }
     }
 
     @Override
-    public CompoundNBT save(CompoundNBT compound) {
-        return super.save(compound);
+    protected void writeNBT(CompoundNBT nbt, SerializationType type) {
+        super.writeNBT(nbt, type);
+
+        nbt.putBoolean("activated", activated);
     }
 
     @Override
-    public void load(BlockState state, CompoundNBT nbt) {
-        super.load(state, nbt);
+    protected void readNBT(BlockState state, CompoundNBT nbt, SerializationType type) {
+        super.readNBT(state, nbt, type);
+
+        activated = nbt.getBoolean("activated");
     }
 
     private Path[] getPaths() {
-        return new Path[]{northPath, eastPath, southPath, westPath};
+        return paths;
     }
 
     public Path getPath(HorizontalDirection direction) {
@@ -128,6 +165,10 @@ public class EssenciaAltarTile extends TileEntity implements ITickableTileEntity
         }
     }
 
+    public boolean isActivated() {
+        return activated;
+    }
+
     @Override
     public AxisAlignedBB getRenderBoundingBox() {
         BlockPos pos = getBlockPos();
@@ -139,11 +180,16 @@ public class EssenciaAltarTile extends TileEntity implements ITickableTileEntity
         private final Block validRune;
         private int validBlockCount = 0;
 
-        private final float cLastLength = validBlockCount;
+        private float currentLength = validBlockCount;
+        private boolean activateLags;
 
         public Path(HorizontalDirection direction, Block validRune) {
             this.direction = direction;
             this.validRune = validRune;
+        }
+
+        private void tick() {
+
         }
 
         public int stepX() {
@@ -154,16 +200,38 @@ public class EssenciaAltarTile extends TileEntity implements ITickableTileEntity
             return direction.get().getStepZ();
         }
 
-        public int validBlockCount() {
+        public int getValidBlockCount() {
             return validBlockCount;
+        }
+
+        public void setValidBlockCount(int validBlockCount) {
+            int lastCount = this.validBlockCount;
+            this.validBlockCount = validBlockCount;
+
+            if (validBlockCount < lastCount) {
+                updateCurrentLength();
+            }
+        }
+
+        private void updateCurrentLength() {
+            currentLength = Math.min(validBlockCount, currentLength + PATH_PROGRESS);
+            activateLags = currentLength == validBlockCount;
+
+            if (currentLength == 3) {
+
+            }
+        }
+
+        public boolean shouldLag() {
+            return activateLags;
         }
 
         public Direction.Axis connectorAxis() {
             return direction.get().getAxis();
         }
 
-        public float cGetLastLength() {
-            return cLastLength;
+        public float getCurrentLength() {
+            return currentLength;
         }
     }
 }
