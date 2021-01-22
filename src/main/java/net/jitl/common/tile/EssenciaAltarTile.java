@@ -1,9 +1,11 @@
 package net.jitl.common.tile;
 
+import net.jitl.common.block.base.XZFacedBlock;
 import net.jitl.init.JBlocks;
 import net.jitl.init.JTiles;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
@@ -11,6 +13,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import ru.timeconqueror.timecore.api.util.HorizontalDirection;
+import ru.timeconqueror.timecore.api.util.RandHelper;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
@@ -26,6 +29,7 @@ public class EssenciaAltarTile extends TileEntity implements ITickableTileEntity
 
     private int ticks = 0;
     private final int activationDelay = -1;
+    private long randomSeed;
 
     public EssenciaAltarTile() {
         super(JTiles.ESSENCIA_ALTAR);
@@ -33,12 +37,18 @@ public class EssenciaAltarTile extends TileEntity implements ITickableTileEntity
 
     @Override
     public void tick() {
-        if (ticks % 2 == 0) {
-            checkNeighbours();
-            System.out.println(Arrays.stream(getPaths()).map(path -> path.direction.get() + ": " + path.validBlockCount + ", ").collect(Collectors.joining()));
+        checkNeighbours();
+        System.out.println(Arrays.stream(getPaths()).map(path -> path.direction.get() + ": " + path.validBlockCount + ", ").collect(Collectors.joining()));
+
+        if (ticks % 4 == 0) {
+            randomSeed = RandHelper.RAND.nextLong();
         }
 
         ticks++;
+    }
+
+    public long getRandomSeed() {
+        return randomSeed;
     }
 
     private void checkNeighbours() {
@@ -54,10 +64,10 @@ public class EssenciaAltarTile extends TileEntity implements ITickableTileEntity
             for (; i < 3; i++) {
                 mutable.set(pos);
                 mutable.move(Direction.DOWN, 1);
-                mutable.move((i + 1) * path.getStepX(), 0, (i + 1) * path.getStepZ());
+                mutable.move((i + 1) * path.stepX(), 0, (i + 1) * path.stepZ());
 
                 BlockState blockState = level.getBlockState(mutable);
-                if (blockState.getBlock() != JBlocks.RUNIC_CONNECTOR) {
+                if (blockState.getBlock() != JBlocks.RUNIC_CONNECTOR || blockState.getValue(XZFacedBlock.HORIZONTAL_AXIS) != path.connectorAxis()) {
                     changed = true;
                     break;
                 }
@@ -65,7 +75,7 @@ public class EssenciaAltarTile extends TileEntity implements ITickableTileEntity
 
             if (!changed) {
                 mutable.set(pos);
-                mutable.move(4 * path.getStepX(), 0, 4 * path.getStepZ());
+                mutable.move(4 * path.stepX(), 0, 4 * path.stepZ());
 
                 BlockState runeState = level.getBlockState(mutable);
                 if (runeState.getBlock() == path.validRune) {
@@ -89,6 +99,16 @@ public class EssenciaAltarTile extends TileEntity implements ITickableTileEntity
 
             path.validBlockCount = i;
         }
+    }
+
+    @Override
+    public CompoundNBT save(CompoundNBT compound) {
+        return super.save(compound);
+    }
+
+    @Override
+    public void load(BlockState state, CompoundNBT nbt) {
+        super.load(state, nbt);
     }
 
     private Path[] getPaths() {
@@ -119,21 +139,31 @@ public class EssenciaAltarTile extends TileEntity implements ITickableTileEntity
         private final Block validRune;
         private int validBlockCount = 0;
 
+        private final float cLastLength = validBlockCount;
+
         public Path(HorizontalDirection direction, Block validRune) {
             this.direction = direction;
             this.validRune = validRune;
         }
 
-        public int getStepX() {
+        public int stepX() {
             return direction.get().getStepX();
         }
 
-        public int getStepZ() {
+        public int stepZ() {
             return direction.get().getStepZ();
         }
 
-        public int getValidBlockCount() {
+        public int validBlockCount() {
             return validBlockCount;
+        }
+
+        public Direction.Axis connectorAxis() {
+            return direction.get().getAxis();
+        }
+
+        public float cGetLastLength() {
+            return cLastLength;
         }
     }
 }

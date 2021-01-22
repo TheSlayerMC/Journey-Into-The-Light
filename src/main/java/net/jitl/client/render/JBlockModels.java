@@ -5,7 +5,7 @@ import ru.timeconqueror.timecore.api.client.resource.BlockModel;
 import ru.timeconqueror.timecore.api.client.resource.BlockModels;
 import ru.timeconqueror.timecore.api.client.resource.location.TextureLocation;
 
-public class JBlockModels extends BlockModels {
+public class JBlockModels {
     public static BlockModel emissive(@Nullable BlockModel normal, @Nullable BlockModel emissive) {
         return InternalModels.emissiveModel(normal, emissive);
     }

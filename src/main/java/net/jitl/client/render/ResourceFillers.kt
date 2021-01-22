@@ -16,7 +16,7 @@ object ResourceFillers {
             BlockModelLocation(chain.modId, "${chain.name}_$i")
 
         for ((index, model) in models.withIndex()) {
-            chain.genModel(modelLocation(chain, index), model)
+            chain.model(modelLocation(chain, index), model)
         }
 
         val state = json {
@@ -31,6 +31,6 @@ object ResourceFillers {
             }
         }
 
-        chain.genState(BlockStateResource.fromJson(state))
+        chain.state(BlockStateResource.fromJson(state))
     }
 }

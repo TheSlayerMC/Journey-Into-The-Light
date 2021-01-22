@@ -170,8 +170,8 @@ public class ItemRegistrator {
      */
     private static void registerArmorItem(String name, String enName, Supplier<JArmorItem> armorSupplier) {
         REGISTER.register(name, armorSupplier)
-                .genModel(StandardItemModelParents.DEFAULT)
-                .genLangEntry(enName);
+                .model(StandardItemModelParents.DEFAULT)
+                .name(enName);
     }
 
     /**
@@ -183,8 +183,8 @@ public class ItemRegistrator {
      */
     private static void registerSwordItem(String name, String enName, JToolTiers material) {
         REGISTER.register(name, () -> new JSwordItem(material))
-                .genModel(StandardItemModelParents.HANDHELD)
-                .genLangEntry(enName);
+                .model(StandardItemModelParents.HANDHELD)
+                .name(enName);
     }
 
     /**
@@ -196,39 +196,39 @@ public class ItemRegistrator {
      */
     private static void registerHandheldItem(String name, String enName, Supplier<Item> toolItemSupplier) {
         REGISTER.register(name, toolItemSupplier)
-                .genModel(StandardItemModelParents.HANDHELD)
-                .genLangEntry(enName);
+                .model(StandardItemModelParents.HANDHELD)
+                .name(enName);
     }
 
     private static void registerItem(String name, String enName, Supplier<Item> itemSupplier) {
         REGISTER.register(name, itemSupplier)
-                .genModel(StandardItemModelParents.DEFAULT)
-                .genLangEntry(enName);
+                .model(StandardItemModelParents.DEFAULT)
+                .name(enName);
     }
 
     private static void registerItem(String name, String enName, Supplier<Item> itemSupplier, String itemLoc) {
         REGISTER.register(name, itemSupplier)
-                .genModel(JITL.iml(itemLoc))
-                .genLangEntry(enName);
+                .model(JITL.iml(itemLoc))
+                .name(enName);
     }
 
     private static void registerItem(String name, String enName) {
         Function<Item.Properties, ? extends Item> itemFactory = Item::new;
 
         REGISTER.register(name, () -> itemFactory.apply(JItemProperties.DEFAULT.create()))
-                .genModel(StandardItemModelParents.DEFAULT)
-                .genLangEntry(enName);
+                .model(StandardItemModelParents.DEFAULT)
+                .name(enName);
     }
 
     private static void registerItem(String name, String enName, Function<Item.Properties, ? extends Item> itemFactory) {
         REGISTER.register(name, () -> itemFactory.apply(JItemProperties.DEFAULT.create()))
-                .genModel(StandardItemModelParents.DEFAULT)
-                .genLangEntry(enName);
+                .model(StandardItemModelParents.DEFAULT)
+                .name(enName);
     }
 
     private static void registerItem(String name, String enName, Function<Item.Properties, ? extends Item> itemFactory, StandardItemModelParents modelType) {
         REGISTER.register(name, () -> itemFactory.apply(JItemProperties.DEFAULT.create()))
-                .genModel(modelType)
-                .genLangEntry(enName);
+                .model(modelType)
+                .name(enName);
     }
 }

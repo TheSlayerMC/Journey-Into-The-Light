@@ -5,6 +5,7 @@ import net.jitl.common.block.CaveVinesBlock;
 import net.jitl.common.block.CaveVinesTopBlock;
 import net.jitl.common.block.TallGlowshroomBlock;
 import net.jitl.common.block.base.JPlantBlock;
+import net.jitl.common.block.base.XZFacedBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.StairsBlock;
 import net.minecraftforge.registries.ObjectHolder;
@@ -48,7 +49,7 @@ public class JBlocks {
 
 	public static final Block CORRUPTED_BLOOD_ROCK = promise();
 	public static final Block SMOOTH_CORRUPTED_BLOOD_ROCK = promise();
-	public static final Block RUNIC_CONNECTOR = promise();
+	public static final XZFacedBlock RUNIC_CONNECTOR = promise();
 	public static final Block CHARGED_RUNIC_CONNECTOR = promise();
 
 	public static final Block WARPED_QUARTZ_ORE = promise();
