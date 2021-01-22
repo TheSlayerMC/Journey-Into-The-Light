@@ -37,7 +37,6 @@ public class EssenciaAltarTile extends SyncableTile implements ITickableTileEnti
     private boolean activated;
 
     private int ticks = 0;
-    private final int activationDelay = -1;
     private long randomSeed;
 
     public EssenciaAltarTile() {
@@ -113,17 +112,9 @@ public class EssenciaAltarTile extends SyncableTile implements ITickableTileEnti
                 BlockState runeState = level.getBlockState(mutable);
                 if (runeState.getBlock() == path.validRune) {
                     i++;
+                } else if (isServerSide() && path.readyToActivateRune() && runeState.getBlock() == JBlocks.EMPTY_BLOOD_RUNE) {
+                    transformRune(level, path, mutable);
                 }
-
-//                if (runeState.getBlock() != JBlocks.ACTIVATED_BLOOD_RUNE) {
-//                    if (runeState.getBlock() == JBlocks.EMPTY_BLOOD_RUNE && activationDelay == -1) {
-//                        activationDelay = ACTIVATION_DELAY;
-//                    } else {
-//                        activationDelay = -1;
-//                    }
-//                } else {
-//                    activationDelay = -1;
-//                }
             }
 
             if (path.getValidBlockCount() != i) {
@@ -132,6 +123,10 @@ public class EssenciaAltarTile extends SyncableTile implements ITickableTileEnti
 
             path.setValidBlockCount(i);
         }
+    }
+
+    private void transformRune(World world, Path path, BlockPos pos) {
+        world.setBlockAndUpdate(pos, path.validRune.defaultBlockState());
     }
 
     @Override
@@ -216,10 +211,10 @@ public class EssenciaAltarTile extends SyncableTile implements ITickableTileEnti
         private void updateCurrentLength() {
             currentLength = Math.min(validBlockCount, currentLength + PATH_PROGRESS);
             activateLags = currentLength == validBlockCount;
+        }
 
-            if (currentLength == 3) {
-
-            }
+        public boolean readyToActivateRune() {
+            return currentLength == 3;
         }
 
         public boolean shouldLag() {
