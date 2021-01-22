@@ -117,11 +117,13 @@ public class EssenciaAltarTile extends SyncableTile implements ITickableTileEnti
                 }
             }
 
-            if (path.getValidBlockCount() != i) {
+            if (path.getValidBlockCount() != i || path.isFullLength()) {
                 changed = true;
             }
 
             path.setValidBlockCount(i);
+
+            if (changed) save();
         }
     }
 
@@ -176,7 +178,7 @@ public class EssenciaAltarTile extends SyncableTile implements ITickableTileEnti
         private int validBlockCount = 0;
 
         private float currentLength = validBlockCount;
-        private boolean activateLags;
+        private boolean isFullLength;
 
         public Path(HorizontalDirection direction, Block validRune) {
             this.direction = direction;
@@ -210,15 +212,15 @@ public class EssenciaAltarTile extends SyncableTile implements ITickableTileEnti
 
         private void updateCurrentLength() {
             currentLength = Math.min(validBlockCount, currentLength + PATH_PROGRESS);
-            activateLags = currentLength == validBlockCount;
+            isFullLength = currentLength == validBlockCount;
         }
 
         public boolean readyToActivateRune() {
             return currentLength == 3;
         }
 
-        public boolean shouldLag() {
-            return activateLags;
+        public boolean isFullLength() {
+            return isFullLength;
         }
 
         public Direction.Axis connectorAxis() {

@@ -64,7 +64,7 @@ public class EssenciaAltarTER extends TileEntityRenderer<EssenciaAltarTile> {
         float length = path.getCurrentLength();
 
         RANDOM.setSeed(tile.getRandomSeed());
-        float decrement = length < 3 && path.shouldLag() ? RANDOM.nextFloat() / 3 : 0;
+        float decrement = length < 4 && path.isFullLength() ? RANDOM.nextFloat() / 3 : 0;
         return Math.max(0, Math.min(length, 3) - decrement) + 0.1F/*needed to set light to the last brick*/;
     }
 
