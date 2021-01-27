@@ -20,14 +20,32 @@
     "type": "minecraft:noise",
     "seed": -22426074,
     "biome_source": {
-      "type": "minecraft:fixed",
+      "type": "minecraft:multi_noise",
       "seed": -22426074,
       "biomes": [
-        "jitl:euca/euca_plains",
-        "jitl:euca/euca_silver_plains"
+        {
+          "biome": "jitl:euca/euca_silver_plains",
+          "parameters": {
+            "altitude": 1,
+            "temperature": 0,
+            "humidity": 0,
+            "weirdness": 0,
+            "offset": 0
+          }
+        },
+        {
+          "biome": "jitl:euca/euca_plains",
+          "parameters": {
+            "altitude": 0,
+            "temperature": 0,
+            "humidity": 0,
+            "weirdness": 0,
+            "offset": 0
+          }
+        }
       ]
     },
-    "settings": {
+      "settings": {
       "name": "jitl:euca",
       "bedrock_roof_position": -10,
       "bedrock_floor_position": -10,
@@ -49,9 +67,9 @@
         "density_offset": 0,
         "size_horizontal": 2,
         "size_vertical": 2,
-        "simplex_surface_noise": false,
+        "simplex_surface_noise": true,
         "random_density_offset": false,
-        "island_noise_override": false,
+        "island_noise_override": true,
         "amplified": false,
         "sampling": {
           "xz_scale": 5,
