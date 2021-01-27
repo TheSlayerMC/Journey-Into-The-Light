@@ -26,17 +26,17 @@
         {
           "biome": "jitl:euca/euca_silver_plains",
           "parameters": {
-            "altitude": 1,
+            "altitude": 0,
             "temperature": 0,
             "humidity": 0,
-            "weirdness": 0,
+            "weirdness": 1,
             "offset": 0
           }
         },
         {
           "biome": "jitl:euca/euca_plains",
           "parameters": {
-            "altitude": 0,
+            "altitude": 1,
             "temperature": 0,
             "humidity": 0,
             "weirdness": 0,
