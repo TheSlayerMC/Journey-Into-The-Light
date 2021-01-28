@@ -20,30 +20,9 @@
     "type": "minecraft:noise",
     "seed": -22426074,
     "biome_source": {
-      "type": "minecraft:multi_noise",
+      "type": "jitl:euca_provider",
       "seed": -22426074,
-      "biomes": [
-        {
-          "biome": "jitl:euca/euca_silver_plains",
-          "parameters": {
-            "altitude": 0,
-            "temperature": 0,
-            "humidity": 0,
-            "weirdness": 0,
-            "offset": 0
-          }
-        },
-        {
-          "biome": "jitl:euca/euca_silver_plains",
-          "parameters": {
-            "altitude": 0,
-            "temperature": 0,
-            "humidity": 0,
-            "weirdness": 0,
-            "offset": 0
-          }
-        }
-      ]
+      "biome": "jitl:euca/euca_silver_plains"
     },
       "settings": {
       "name": "jitl:euca",
