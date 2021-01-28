@@ -5,9 +5,10 @@ import net.minecraft.inventory.container.ContainerType;
 import net.minecraftforge.common.extensions.IForgeContainerType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
+@Mod.EventBusSubscriber
 public class JourneyContainers {
-
     public static ContainerType<ContainerEmpty> EMPTY_CONTAINER;
 
     @SubscribeEvent

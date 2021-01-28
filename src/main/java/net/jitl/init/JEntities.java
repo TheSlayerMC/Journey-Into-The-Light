@@ -6,7 +6,10 @@ import net.jitl.common.entity.nether.WitherspineEntity;
 import net.jitl.common.entity.overworld.FloroEntity;
 import net.jitl.common.entity.overworld.HonglowEntity;
 import net.jitl.common.entity.overworld.HongoEntity;
-import net.jitl.common.entity.projectile.*;
+import net.jitl.common.entity.projectile.ConjuringProjectileEntity;
+import net.jitl.common.entity.projectile.EntityMoltenKnife;
+import net.jitl.common.entity.projectile.EssenciaProjectileEntity;
+import net.jitl.common.entity.projectile.FloroMudProjectileEntity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityType;
@@ -89,12 +92,14 @@ public class JEntities {
 		event.getRegistry().register(ESSENCIA_PROJECTILE_TYPE.setRegistryName(JITL.MODID + ":essencia_projectile"));
 		event.getRegistry().register(MOLTEN_KNIFE_PROJECTILE_TYPE.setRegistryName(JITL.MODID + ":molten_knife_projectile"));
 
+		//fixme not thread-safe
 		GlobalEntityTypeAttributes.put(FLORO_TYPE, FloroEntity.createAttributes().build());
 		GlobalEntityTypeAttributes.put(HONGO_TYPE, HongoEntity.createAttributes().build());
 		GlobalEntityTypeAttributes.put(HONGLOW_TYPE, HongoEntity.createAttributes().build());
 		GlobalEntityTypeAttributes.put(WITHERSPINE_TYPE, WitherspineEntity.createAttributes().build());
 	}
 
+	//fixme not thread-safe
 	public static void registerSpawnPlacements() {
 		EntitySpawnPlacementRegistry.register(JEntities.FLORO_TYPE, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, FloroEntity::canSpawn);
 		EntitySpawnPlacementRegistry.register(JEntities.HONGO_TYPE, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, HongoEntity::canSpawn);

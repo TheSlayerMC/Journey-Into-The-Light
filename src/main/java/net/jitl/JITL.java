@@ -3,7 +3,6 @@ package net.jitl;
 import net.jitl.client.eventhandler.ClientEventHandler;
 import net.jitl.client.eventhandler.ClientLoadingEventHandler;
 import net.jitl.client.render.JEntityRenderRegistry;
-import net.jitl.common.helper.JourneyContainers;
 import net.jitl.init.JEntities;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
@@ -37,7 +36,6 @@ public class JITL implements TimeMod {
         modEventBus.addListener(this::clientSetup);
 
 	    MinecraftForge.EVENT_BUS.register(this);
-	    MinecraftForge.EVENT_BUS.register(new JourneyContainers());
 
 	    ClientLoadingEventHandler.regToBus(modEventBus, forgeEventBus);
 	    ClientEventHandler.regToBus(modEventBus, forgeEventBus);
