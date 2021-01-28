@@ -6,9 +6,7 @@ import net.jitl.common.entity.nether.WitherspineEntity;
 import net.jitl.common.entity.overworld.FloroEntity;
 import net.jitl.common.entity.overworld.HonglowEntity;
 import net.jitl.common.entity.overworld.HongoEntity;
-import net.jitl.common.entity.projectile.ConjuringProjectileEntity;
-import net.jitl.common.entity.projectile.EssenciaProjectileEntity;
-import net.jitl.common.entity.projectile.FloroMudProjectileEntity;
+import net.jitl.common.entity.projectile.*;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityType;
@@ -73,6 +71,12 @@ public class JEntities {
 			.sized(0.5F, 0.5F)
 			.build(JITL.MODID + ":essencia_projectile");
 
+	public static final EntityType<EntityMoltenKnife> MOLTEN_KNIFE_PROJECTILE_TYPE = EntityType.Builder.<EntityMoltenKnife>of(EntityMoltenKnife::new, EntityClassification.MISC)
+			.setTrackingRange(80)
+			.setShouldReceiveVelocityUpdates(true)
+			.sized(0.5F, 0.5F)
+			.build(JITL.MODID + ":molten_knife_projectile");
+
 	@SubscribeEvent
 	public static void registerEntities(RegistryEvent.Register<EntityType<?>> event) {
 		event.getRegistry().register(FLORO_TYPE.setRegistryName(JITL.MODID + ":floro"));
@@ -83,6 +87,7 @@ public class JEntities {
 		event.getRegistry().register(FLORO_MUD_PROJECTILE_TYPE.setRegistryName(JITL.MODID + ":floro_mud_projectile"));
 		event.getRegistry().register(CONJURING_PROJECTILE_TYPE.setRegistryName(JITL.MODID + ":conjuring_projectile"));
 		event.getRegistry().register(ESSENCIA_PROJECTILE_TYPE.setRegistryName(JITL.MODID + ":essencia_projectile"));
+		event.getRegistry().register(MOLTEN_KNIFE_PROJECTILE_TYPE.setRegistryName(JITL.MODID + ":molten_knife_projectile"));
 
 		GlobalEntityTypeAttributes.put(FLORO_TYPE, FloroEntity.createAttributes().build());
 		GlobalEntityTypeAttributes.put(HONGO_TYPE, HongoEntity.createAttributes().build());

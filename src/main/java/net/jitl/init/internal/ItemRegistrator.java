@@ -4,6 +4,7 @@ import net.jitl.JITL;
 import net.jitl.common.entity.projectile.ConjuringProjectileEntity;
 import net.jitl.common.entity.projectile.EssenciaProjectileEntity;
 import net.jitl.common.entity.projectile.FloroMudProjectileEntity;
+import net.jitl.common.helper.EnumItemWeapon;
 import net.jitl.common.helper.JArmorMaterial;
 import net.jitl.common.helper.JToolTiers;
 import net.jitl.common.item.*;
@@ -115,6 +116,8 @@ public class ItemRegistrator {
         registerToolSet("korite", "Korite", JToolTiers.KORITE);
         registerToolSet("mekyum", "Mekyum", JToolTiers.MEKYUM);
         registerToolSet("storon", "Storon", JToolTiers.STORON);
+
+        registerItem("molten_knife", "Molten Knife", () -> new ThrowableArrowItem(EnumItemWeapon.MOLTEN_KNIFE));
     }
 
     /**

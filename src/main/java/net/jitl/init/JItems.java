@@ -111,4 +111,6 @@ public class JItems {
     public static final Item STORON_AXE = promise();
     public static final Item STORON_SHOVEL = promise();
     public static final Item STORON_HOE = promise();
+
+    public static final Item MOLTEN_KNIFE = promise();
 }
