@@ -87,6 +87,7 @@ public class JEntities {
 		event.getRegistry().register(FLORO_MUD_PROJECTILE_TYPE.setRegistryName(JITL.MODID + ":floro_mud_projectile"));
 		event.getRegistry().register(CONJURING_PROJECTILE_TYPE.setRegistryName(JITL.MODID + ":conjuring_projectile"));
 		event.getRegistry().register(ESSENCIA_PROJECTILE_TYPE.setRegistryName(JITL.MODID + ":essencia_projectile"));
+		event.getRegistry().register(MOLTEN_KNIFE_PROJECTILE_TYPE.setRegistryName(JITL.MODID + ":molten_knife_projectile"));
 
 		GlobalEntityTypeAttributes.put(FLORO_TYPE, FloroEntity.createAttributes().build());
 		GlobalEntityTypeAttributes.put(HONGO_TYPE, HongoEntity.createAttributes().build());
