@@ -1,6 +1,5 @@
 package net.jitl.util;
 
-import net.jitl.init.JBlocks;
 import net.minecraft.block.Blocks;
 import net.minecraft.world.gen.feature.template.BlockStateMatchRuleTest;
 import net.minecraft.world.gen.feature.template.RuleTest;
@@ -15,6 +14,6 @@ public class JRuleTests {
 	public static RuleTest STONE_BASALT = new BlockStateMatchRuleTest(Blocks.BASALT.defaultBlockState());
 	public static RuleTest STONE_END = new BlockStateMatchRuleTest(Blocks.END_STONE.defaultBlockState());
 
-	public static RuleTest STONE_EUCA = new BlockStateMatchRuleTest(JBlocks.GOLDITE_STONE.defaultBlockState());
-
+	//fixme JBlocks.GOLDITE_STONE is null upon creating JRuleTests, so it crashes
+//	public static RuleTest STONE_EUCA = new BlockStateMatchRuleTest(JBlocks.GOLDITE_STONE.defaultBlockState());
 }

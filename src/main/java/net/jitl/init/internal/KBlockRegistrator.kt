@@ -9,7 +9,6 @@ import ru.timeconqueror.timecore.api.client.resource.BlockModels
 import ru.timeconqueror.timecore.api.registry.BlockRegister
 import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable
 import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable.InitMethod
-import ru.timeconqueror.timecore.api.registry.util.blockTl
 import ru.timeconqueror.timecore.api.registry.util.defaultBml
 import ru.timeconqueror.timecore.api.registry.util.invoke
 
