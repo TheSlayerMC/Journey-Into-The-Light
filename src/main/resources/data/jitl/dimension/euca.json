@@ -22,9 +22,16 @@
     "biome_source": {
       "type": "jitl:euca_provider",
       "seed": -22426074,
-      "biome": "jitl:euca/euca_silver_plains"
+      "biomes": [
+        {
+          "biome": "jitl:euca/euca_silver_plains"
+        },
+        {
+          "biome": "jitl:euca/euca_plains"
+        }
+      ]
     },
-      "settings": {
+    "settings": {
       "name": "jitl:euca",
       "bedrock_roof_position": -10,
       "bedrock_floor_position": -10,

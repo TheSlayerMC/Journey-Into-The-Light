@@ -1,11 +1,10 @@
 package net.jitl.init;
 
-import com.mojang.serialization.Codec;
 import net.jitl.JITL;
+import net.jitl.common.dimension.EucaBiomeProvider;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -16,11 +15,8 @@ public class JourneyBiomeRegistry {
     public static Biome EUCA_PLAINS;
     public static Biome EUCA_SILVER_PLAINS;
 
-    public static final RegistryKey<Codec<? extends BiomeProvider>> EUCA_BIOME_PROVIDER = RegistryKey.create(Registry.BIOME_SOURCE_REGISTRY, JITL.rl("euca_provider"));
-
-
-    public static void registerProviders() {
-
+    private static RegistryKey<Biome> registerBiome(String name) {
+        return RegistryKey.create(Registry.BIOME_REGISTRY, JITL.rl(name));
     }
 
     @SubscribeEvent
@@ -30,5 +26,9 @@ public class JourneyBiomeRegistry {
 
         EUCA_SILVER_PLAINS.setRegistryName(JITL.rl("euca/euca_silver_plains"));
         event.getRegistry().register(EUCA_SILVER_PLAINS);
+    }
+
+    public static void registerProviders() {
+        Registry.register(Registry.BIOME_SOURCE, JITL.rl("euca_provider"), EucaBiomeProvider.CODEC);
     }
 }
