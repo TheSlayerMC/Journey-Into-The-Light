@@ -25,18 +25,18 @@ import net.minecraftforge.fml.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
 
 @OnlyIn(value = Dist.CLIENT, _interface = IRendersAsItem.class)
-public class FloroMudProjectileEntity extends DamagingProjectileEntity implements IRendersAsItem {
+public class FloroMudEntity extends DamagingProjectileEntity implements IRendersAsItem {
 
-    public FloroMudProjectileEntity(EntityType<FloroMudProjectileEntity> type, World world) {
+    public FloroMudEntity(EntityType<FloroMudEntity> type, World world) {
         super(type, world);
     }
 
-    public FloroMudProjectileEntity(EntityType<FloroMudProjectileEntity> type, World world, LivingEntity thrower, float damage) {
+    public FloroMudEntity(EntityType<FloroMudEntity> type, World world, LivingEntity thrower, float damage) {
         super(type, world, thrower, damage);
     }
 
-    public FloroMudProjectileEntity(World world, LivingEntity thrower, float damage) {
-        super(JEntities.FLORO_MUD_PROJECTILE_TYPE, world, thrower, damage);
+    public FloroMudEntity(World world, LivingEntity thrower, float damage) {
+        super(JEntities.FLORO_MUD_TYPE, world, thrower, damage);
     }
 
     @Override

@@ -3,7 +3,7 @@ package net.jitl.init.internal;
 import net.jitl.JITL;
 import net.jitl.common.entity.projectile.ConjuringProjectileEntity;
 import net.jitl.common.entity.projectile.EssenciaProjectileEntity;
-import net.jitl.common.entity.projectile.FloroMudProjectileEntity;
+import net.jitl.common.entity.projectile.FloroMudEntity;
 import net.jitl.common.helper.EnumItemWeapon;
 import net.jitl.common.helper.JArmorMaterial;
 import net.jitl.common.helper.JToolTiers;
@@ -59,7 +59,7 @@ public class ItemRegistrator {
         registerItem("sentacoin_bag", "Sentacoin Bag", () -> new Item(new Item.Properties().tab(JTabs.ITEMS)), "item/sentacoin_bag_model");
 
         registerItem("mud_ball", "Mud Ball", () -> new ThrowableItem(new Item.Properties().tab(JTabs.ITEMS),
-                (world, thrower) -> new FloroMudProjectileEntity(JEntities.FLORO_MUD_PROJECTILE_TYPE, world, thrower, 0.0F)));
+                (world, thrower) -> new FloroMudEntity(JEntities.FLORO_MUD_TYPE, world, thrower, 0.0F)));
 
         registerItem("bradberry", "Bradberry", () -> new Item(new Item.Properties().food(JFoods.BRADBERRY).tab(JTabs.ITEMS)));
 

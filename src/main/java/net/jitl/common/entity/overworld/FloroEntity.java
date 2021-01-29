@@ -1,6 +1,6 @@
 package net.jitl.common.entity.overworld;
 
-import net.jitl.common.entity.projectile.FloroMudProjectileEntity;
+import net.jitl.common.entity.projectile.FloroMudEntity;
 import net.jitl.init.JAnimations;
 import net.jitl.init.JSounds;
 import net.minecraft.block.Blocks;
@@ -190,7 +190,7 @@ public class FloroEntity extends MonsterEntity implements IRangedAttackMob, Anim
 
     @Override
     public void performRangedAttack(LivingEntity target, float distanceFactor) {
-        FloroMudProjectileEntity projectile = new FloroMudProjectileEntity(this.level, this, 0.5F);
+        FloroMudEntity projectile = new FloroMudEntity(this.level, this, 0.5F);
         double dX = target.getX() - this.getX();
         double dY = target.getY(0.3333333333333333D) - projectile.getY();
         double dZ = target.getZ() - this.getZ();

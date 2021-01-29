@@ -8,13 +8,13 @@ import net.minecraft.entity.projectile.AbstractArrowEntity;
 
 public enum EnumItemWeapon {
 
-    MOLTEN_KNIFE(EntityMoltenKnife.class, JEntities.MOLTEN_KNIFE_PROJECTILE_TYPE, 10);
+    MOLTEN_KNIFE(EntityMoltenKnife.class, JEntities.MOLTEN_KNIFE_TYPE, 10);
 
-    private Class<? extends EntityThrowableArrow> throwableArrow;
-    private EntityType<? extends AbstractArrowEntity> arrow;
-    private double damage;
+    private final Class<? extends EntityThrowableArrow> throwableArrow;
+    private final EntityType<? extends AbstractArrowEntity> arrow;
+    private final double damage;
 
-    private EnumItemWeapon(Class<? extends EntityThrowableArrow> throwable, EntityType<? extends AbstractArrowEntity> type, double damage) {
+    EnumItemWeapon(Class<? extends EntityThrowableArrow> throwable, EntityType<? extends AbstractArrowEntity> type, double damage) {
         this.throwableArrow = throwable;
         this.damage = damage;
         this.arrow = type;
