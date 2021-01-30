@@ -1,17 +1,7 @@
 package net.jitl.common.entity.projectile.base;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-
-import org.apache.commons.lang3.tuple.ImmutablePair;
-
 import net.jitl.init.JEntities;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntitySize;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.Pose;
+import net.minecraft.entity.*;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.network.IPacket;
@@ -24,7 +14,12 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.network.NetworkHooks;
+import org.apache.commons.lang3.tuple.ImmutablePair;
 import ru.timeconqueror.timecore.api.util.Requirements;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 public class JEffectCloudEntity extends Entity {
 	public static final DataParameter<Float> RADIUS = EntityDataManager.defineId(JEffectCloudEntity.class, DataSerializers.FLOAT); //the current radius of the cloud
@@ -55,7 +50,7 @@ public class JEffectCloudEntity extends Entity {
 	 * @param size the size the cloud will have at this stage of its life
 	 */
 	public void addSizeKey(int time, float size) {
-		Requirements.greaterOrEqualsThan(time, 0);
+		Requirements.greaterOrEquals(time, 0);
 		sizes.add(new ImmutablePair<Integer, Float>(time, size));
 	}
 	
