@@ -41,9 +41,7 @@ public class JItems {
     public static final Item BRADBERRY = promise();
     public static final Item FLORO_PEDAL = promise();
     public static final Item HONGOSHROOM = promise();
-    public static final Item RED_HONGLOWSHROOM = promise();
-    public static final Item GREEN_HONGLOWSHROOM = promise();
-    public static final Item BLUE_HONGLOWSHROOM = promise();
+    public static final Item HONGLOWSHROOM = promise();
 
     public static final TestBugItem TEST_BUG = promise();
 
@@ -113,4 +111,6 @@ public class JItems {
     public static final Item STORON_AXE = promise();
     public static final Item STORON_SHOVEL = promise();
     public static final Item STORON_HOE = promise();
+
+    public static final Item MOLTEN_KNIFE = promise();
 }

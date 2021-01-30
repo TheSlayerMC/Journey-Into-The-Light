@@ -3,8 +3,7 @@ package net.jitl;
 import net.jitl.client.eventhandler.ClientEventHandler;
 import net.jitl.client.eventhandler.ClientLoadingEventHandler;
 import net.jitl.client.render.JEntityRenderRegistry;
-import net.jitl.common.helper.JourneyContainers;
-import net.jitl.init.JEntities;
+import net.jitl.init.JourneyBiomeRegistry;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -18,6 +17,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import ru.timeconqueror.timecore.api.TimeMod;
 import ru.timeconqueror.timecore.api.client.resource.location.BlockModelLocation;
+import ru.timeconqueror.timecore.api.client.resource.location.ItemModelLocation;
 import ru.timeconqueror.timecore.api.client.resource.location.TextureLocation;
 
 @Mod(JITL.MODID)
@@ -36,14 +36,13 @@ public class JITL implements TimeMod {
         modEventBus.addListener(this::clientSetup);
 
 	    MinecraftForge.EVENT_BUS.register(this);
-	    MinecraftForge.EVENT_BUS.register(new JourneyContainers());
 
 	    ClientLoadingEventHandler.regToBus(modEventBus, forgeEventBus);
 	    ClientEventHandler.regToBus(modEventBus, forgeEventBus);
     }
 
 	private void preInit(final FMLCommonSetupEvent event) {
-		event.enqueueWork(JEntities::registerSpawnPlacements);
+		event.enqueueWork(JourneyBiomeRegistry::registerProviders);
 	}
 
 	private void clientSetup(final FMLClientSetupEvent event) {
@@ -60,6 +59,10 @@ public class JITL implements TimeMod {
 
 	public static BlockModelLocation bml(String path) {
 		return new BlockModelLocation(MODID, path);
+	}
+
+	public static ItemModelLocation iml(String path) {
+		return new ItemModelLocation(MODID, path);
 	}
 
 	public static TextureLocation tl(String path) {

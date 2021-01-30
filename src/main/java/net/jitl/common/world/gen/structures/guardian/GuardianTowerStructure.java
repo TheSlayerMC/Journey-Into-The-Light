@@ -1,4 +1,4 @@
-package net.jitl.common.world.gen.structures;
+package net.jitl.common.world.gen.structures.guardian;
 
 import com.mojang.serialization.Codec;
 import net.jitl.JITL;

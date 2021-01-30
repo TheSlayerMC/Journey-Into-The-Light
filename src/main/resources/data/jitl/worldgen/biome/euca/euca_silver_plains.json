@@ -1,0 +1,22 @@
+{
+  "surface_builder": "jitl:euca_silver_plains",
+  "depth": 0.935,
+  "scale": 0.85,
+  "temperature": 0.8,
+  "downfall": 0.0,
+  "precipitation": "rain",
+  "category": "plains",
+  "effects": {
+    "sky_color": 11253711,
+    "fog_color": 9871019,
+    "water_color": 11253711,
+    "water_fog_color": 11253711,
+    "grass_color": 9871019,
+    "foliage_color": 9871019
+  },
+  "starts": [],
+  "spawners": {},
+  "spawn_costs": {},
+  "carvers": {},
+  "features": []
+}

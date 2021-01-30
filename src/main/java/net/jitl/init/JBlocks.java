@@ -5,6 +5,7 @@ import net.jitl.common.block.CaveVinesBlock;
 import net.jitl.common.block.CaveVinesTopBlock;
 import net.jitl.common.block.TallGlowshroomBlock;
 import net.jitl.common.block.base.JPlantBlock;
+import net.jitl.common.block.base.XZFacedBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.StairsBlock;
 import net.minecraftforge.registries.ObjectHolder;
@@ -48,7 +49,7 @@ public class JBlocks {
 
 	public static final Block CORRUPTED_BLOOD_ROCK = promise();
 	public static final Block SMOOTH_CORRUPTED_BLOOD_ROCK = promise();
-	public static final Block RUNIC_CONNECTOR = promise();
+	public static final XZFacedBlock RUNIC_CONNECTOR = promise();
 	public static final Block CHARGED_RUNIC_CONNECTOR = promise();
 
 	public static final Block WARPED_QUARTZ_ORE = promise();
@@ -102,14 +103,17 @@ public class JBlocks {
 	public static final TallGlowshroomBlock TALL_BLUE_GLOWSHROOM = promise();
 	public static final TallGlowshroomBlock TALL_RED_GLOWSHROOM = promise();
 
-	public static final JPlantBlock GREEN_GLOWSHROOM = promise();
-	public static final JPlantBlock BLUE_GLOWSHROOM = promise();
-	public static final JPlantBlock RED_GLOWSHROOM = promise();
+    public static final JPlantBlock GREEN_GLOWSHROOM = promise();
+    public static final JPlantBlock BLUE_GLOWSHROOM = promise();
+    public static final JPlantBlock RED_GLOWSHROOM = promise();
 
-	public static final CaveVinesTopBlock CAVE_VINES = promise();
-	public static final CaveVinesBlock CAVE_VINES_PLANT = promise();
+    public static final CaveVinesTopBlock CAVE_VINES = promise();
+    public static final CaveVinesBlock CAVE_VINES_PLANT = promise();
 
-	public static final Block EUCA_PORTAL_FRAME = promise();
-	public static final Block EUCA_PORTAL = promise();
+    public static final Block EUCA_PORTAL_FRAME = promise();
+    public static final Block EUCA_PORTAL = promise();
 
+    public static final Block GOLDITE_GRASS_BLOCK = promise();
+	public static final Block GOLDITE_DIRT = promise();
+	public static final Block GOLDITE_STONE = promise();
 }

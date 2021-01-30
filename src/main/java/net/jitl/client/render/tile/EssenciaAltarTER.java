@@ -13,7 +13,10 @@ import net.minecraft.util.math.vector.Matrix4f;
 import net.minecraft.util.math.vector.Vector3f;
 import ru.timeconqueror.timecore.api.util.HorizontalDirection;
 
+import java.util.Random;
+
 public class EssenciaAltarTER extends TileEntityRenderer<EssenciaAltarTile> {
+    private static final Random RANDOM = new Random();
 
     public EssenciaAltarTER(TileEntityRendererDispatcher rendererDispatcherIn) {
         super(rendererDispatcherIn);
@@ -21,6 +24,8 @@ public class EssenciaAltarTER extends TileEntityRenderer<EssenciaAltarTile> {
 
     @Override
     public void render(EssenciaAltarTile tile, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int combinedLightIn, int combinedOverlayIn) {
+        if (!tile.isActivated()) return;
+
         RenderType rtEssenciaAltarSide = JRenderTypes.fullbrightCutout(JITL.rl("textures/tile/charge_indicator_essencia_altar.png"));//fixme move to static
 
         matrixStackIn.pushPose();
@@ -55,8 +60,12 @@ public class EssenciaAltarTER extends TileEntityRenderer<EssenciaAltarTile> {
     }
 
     private float getLength(EssenciaAltarTile tile, HorizontalDirection direction) {
-        int count = tile.getPath(direction).getValidBlockCount();
-        return Math.min(count, 3) + 0.1F/*needed to set light to the last brick*/;
+        EssenciaAltarTile.Path path = tile.getPath(direction);
+        float length = path.getCurrentLength();
+
+        RANDOM.setSeed(tile.getRandomSeed());
+        float decrement = length < 4 && path.isFullLength() ? RANDOM.nextFloat() / 3 : 0;
+        return Math.max(0, Math.min(length, 3) - decrement) + 0.1F/*needed to set light to the last brick*/;
     }
 
     public static void verticalQuad(IVertexBuilder builder, MatrixStack matrixStack, float x0, float y0, float width, float height, boolean rotateToZ, float offset, boolean invertRenderOrder) {

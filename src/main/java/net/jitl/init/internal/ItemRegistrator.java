@@ -3,12 +3,14 @@ package net.jitl.init.internal;
 import net.jitl.JITL;
 import net.jitl.common.entity.projectile.ConjuringProjectileEntity;
 import net.jitl.common.entity.projectile.EssenciaProjectileEntity;
-import net.jitl.common.entity.projectile.FloroMudProjectileEntity;
+import net.jitl.common.entity.projectile.FloroMudEntity;
+import net.jitl.common.helper.EnumItemWeapon;
 import net.jitl.common.helper.JArmorMaterial;
 import net.jitl.common.helper.JToolTiers;
 import net.jitl.common.item.*;
 import net.jitl.init.JEntities;
 import net.jitl.init.JFoods;
+import net.jitl.init.JLootTables;
 import net.jitl.init.JTabs;
 import net.jitl.util.JItemProperties;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -37,16 +39,32 @@ public class ItemRegistrator {
         registerItem("blue_gem", "blue Gem");
         registerItem("purple_gem", "purple Gem");
         registerItem("yellow_gem", "Yellow Gem");
+        registerItem("ancient_piece", "Ancient Piece");
+        registerItem("ancient_shard", "Ancient Shard");
+        registerItem("ancient_chunk", "Ancient Chunk");
+        registerItem("ancient_fragment", "Ancient Fragment");
+        registerItem("balmy_teardrop", "Balmy Teardrop");
+        registerItem("cave_crystal", "Cave Crystal");
+        registerItem("stone_clump", "Stone Clump");
+        registerItem("crystal_ball", "Crystal Ball");
+        registerItem("cave_dust", "Cave Dust");
+        registerItem("smithstone", "Smithstone");
+        registerItem("bleedstone", "Bleedstone");
+        registerItem("soulstone", "Soulstone");
+        registerItem("magic_dust", "Magic Dust");
+        registerItem("demonic_skull", "Demonic Skull");
+        registerItem("glossy_eye", "Glossy Eye");
+        registerItem("volcanic_stone", "Volcanic Stone");
+        registerItem("sentacoin", "Sentacoin");//TODO make an entity
+        registerItem("sentacoin_bag", "Sentacoin Bag", () -> new Item(new Item.Properties().tab(JTabs.ITEMS)), "item/sentacoin_bag_model");
 
         registerItem("mud_ball", "Mud Ball", () -> new ThrowableItem(new Item.Properties().tab(JTabs.ITEMS),
-                (world, thrower) -> new FloroMudProjectileEntity(JEntities.FLORO_MUD_PROJECTILE_TYPE, world, thrower, 0.0F)));
+                (world, thrower) -> new FloroMudEntity(JEntities.FLORO_MUD_TYPE, world, thrower, 0.0F)));
 
         registerItem("bradberry", "Bradberry", () -> new Item(new Item.Properties().food(JFoods.BRADBERRY).tab(JTabs.ITEMS)));
 
         registerItem("hongoshroom", "Hongoshroom", () -> new Item(new Item.Properties().food(JFoods.HONGOSROOM).tab(JTabs.ITEMS)));
-        registerItem("red_honglowshroom", "Red Honglowshroom", () -> new Item(new Item.Properties().food(JFoods.RED_HONGLOWSROOM).tab(JTabs.ITEMS)));
-        registerItem("green_honglowshroom", "Green Honglowshroom", () -> new Item(new Item.Properties().food(JFoods.GREEN_HONGLOWSROOM).tab(JTabs.ITEMS)));
-        registerItem("blue_honglowshroom", "Blue Honglowshroom", () -> new Item(new Item.Properties().food(JFoods.BLUE_HONGLOWSROOM).tab(JTabs.ITEMS)));
+        registerItem("honglowshroom", "Honglowshroom", () -> new Item(new Item.Properties().food(JFoods.HONGLOWSROOM).tab(JTabs.ITEMS)));
         registerItem("floro_pedal", "Floro Pedal", () -> new Item(new Item.Properties().food(JFoods.FLORO_PEDAL).tab(JTabs.ITEMS)));
 
         registerItem("lunium_powder", "Lunium Powder");
@@ -56,6 +74,10 @@ public class ItemRegistrator {
 
         registerHandheldItem("staff_of_essencia", "Staff of Essencia", () -> new StaffItem(new Item.Properties().tab(JTabs.RANGED_WEAPONS),
                 (world, thrower) -> new EssenciaProjectileEntity(JEntities.ESSENCIA_PROJECTILE_TYPE, world, thrower, 0.0F)));
+
+        registerItem("loot_pouch_basic", "Loot Pouch", () -> new LootItem(JLootTables.LOOT_POUCH_BASIC, false));
+        registerItem("loot_pouch_gold", "Gold Loot Pouch", () -> new LootItem(JLootTables.LOOT_POUCH_GOLD, true));
+        registerItem("loot_pouch_diamond", "Diamond Loot Pouch", () -> new LootItem(JLootTables.LOOT_POUCH_DIAMOND, true));
 
         //NETHER ITEMS
         registerItem("bloodcrust_ingot", "Bloodcrust Ingot");
@@ -94,6 +116,8 @@ public class ItemRegistrator {
         registerToolSet("korite", "Korite", JToolTiers.KORITE);
         registerToolSet("mekyum", "Mekyum", JToolTiers.MEKYUM);
         registerToolSet("storon", "Storon", JToolTiers.STORON);
+
+        registerItem("molten_knife", "Molten Knife", () -> new ThrowableArrowItem(EnumItemWeapon.MOLTEN_KNIFE));
     }
 
     /**
@@ -149,8 +173,8 @@ public class ItemRegistrator {
      */
     private static void registerArmorItem(String name, String enName, Supplier<JArmorItem> armorSupplier) {
         REGISTER.register(name, armorSupplier)
-                .genModel(StandardItemModelParents.DEFAULT)
-                .genLangEntry(enName);
+                .model(StandardItemModelParents.DEFAULT)
+                .name(enName);
     }
 
     /**
@@ -162,8 +186,8 @@ public class ItemRegistrator {
      */
     private static void registerSwordItem(String name, String enName, JToolTiers material) {
         REGISTER.register(name, () -> new JSwordItem(material))
-                .genModel(StandardItemModelParents.HANDHELD)
-                .genLangEntry(enName);
+                .model(StandardItemModelParents.HANDHELD)
+                .name(enName);
     }
 
     /**
@@ -175,33 +199,39 @@ public class ItemRegistrator {
      */
     private static void registerHandheldItem(String name, String enName, Supplier<Item> toolItemSupplier) {
         REGISTER.register(name, toolItemSupplier)
-                .genModel(StandardItemModelParents.HANDHELD)
-                .genLangEntry(enName);
+                .model(StandardItemModelParents.HANDHELD)
+                .name(enName);
     }
 
     private static void registerItem(String name, String enName, Supplier<Item> itemSupplier) {
         REGISTER.register(name, itemSupplier)
-                .genModel(StandardItemModelParents.DEFAULT)
-                .genLangEntry(enName);
+                .model(StandardItemModelParents.DEFAULT)
+                .name(enName);
+    }
+
+    private static void registerItem(String name, String enName, Supplier<Item> itemSupplier, String itemLoc) {
+        REGISTER.register(name, itemSupplier)
+                .model(JITL.iml(itemLoc))
+                .name(enName);
     }
 
     private static void registerItem(String name, String enName) {
         Function<Item.Properties, ? extends Item> itemFactory = Item::new;
 
         REGISTER.register(name, () -> itemFactory.apply(JItemProperties.DEFAULT.create()))
-                .genModel(StandardItemModelParents.DEFAULT)
-                .genLangEntry(enName);
+                .model(StandardItemModelParents.DEFAULT)
+                .name(enName);
     }
 
     private static void registerItem(String name, String enName, Function<Item.Properties, ? extends Item> itemFactory) {
         REGISTER.register(name, () -> itemFactory.apply(JItemProperties.DEFAULT.create()))
-                .genModel(StandardItemModelParents.DEFAULT)
-                .genLangEntry(enName);
+                .model(StandardItemModelParents.DEFAULT)
+                .name(enName);
     }
 
     private static void registerItem(String name, String enName, Function<Item.Properties, ? extends Item> itemFactory, StandardItemModelParents modelType) {
         REGISTER.register(name, () -> itemFactory.apply(JItemProperties.DEFAULT.create()))
-                .genModel(modelType)
-                .genLangEntry(enName);
+                .model(modelType)
+                .name(enName);
     }
 }

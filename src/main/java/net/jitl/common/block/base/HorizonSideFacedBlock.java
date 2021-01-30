@@ -7,16 +7,14 @@ import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.Direction;
-import net.minecraft.util.Mirror;
-import net.minecraft.util.Rotation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorld;
-import org.jetbrains.annotations.NotNull;
 
-public class JOrientableBlock extends Block {
+/**
+ * Block that can be faced to any horizontal side of the world
+ */
+public class HorizonSideFacedBlock extends HorizontalBlock {
 	public static final DirectionProperty FACING = HorizontalBlock.FACING;
 
-	public JOrientableBlock(Properties properties) {
+	public HorizonSideFacedBlock(Properties properties) {
 		super(properties);
 		registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
 	}
@@ -24,16 +22,6 @@ public class JOrientableBlock extends Block {
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
 		return defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
-	}
-
-	@Override
-	public BlockState rotate(BlockState state, IWorld world, BlockPos pos, Rotation direction) {
-		return state.setValue(FACING, direction.rotate(state.getValue(FACING)));
-	}
-
-	@Override
-	public @NotNull BlockState mirror(BlockState state, Mirror mirrorIn) {
-		return state.rotate(mirrorIn.getRotation(state.getValue(FACING)));
 	}
 
 	@Override

@@ -1,31 +1,47 @@
 package net.jitl.common.tile;
 
-import net.jitl.init.JBlocks;
-import net.jitl.init.JTiles;
+import net.jitl.common.block.base.XZFacedBlock;
+import net.jitl.common.entity.EssenciaBoltEntity;
+import net.jitl.init.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.particles.IParticleData;
 import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import ru.timeconqueror.timecore.api.common.tile.SerializationType;
+import ru.timeconqueror.timecore.api.common.tile.SyncableTile;
 import ru.timeconqueror.timecore.api.util.HorizontalDirection;
+import ru.timeconqueror.timecore.api.util.RandHelper;
 
 import java.util.Arrays;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 import static ru.timeconqueror.timecore.api.util.HorizontalDirection.*;
 
-public class EssenciaAltarTile extends TileEntity implements ITickableTileEntity {
-    private static final int ACTIVATION_DELAY = 3 * 20;
+public class EssenciaAltarTile extends SyncableTile implements ITickableTileEntity {
+    private static final int PATH_PROGRESS_DELAY = 5;
+    private static final float PATH_PROGRESS = 0.1F;
     private final Path northPath = new Path(NORTH, JBlocks.BLOOD_RUNE_DEATH);
     private final Path eastPath = new Path(EAST, JBlocks.BLOOD_RUNE_FLESH);
     private final Path westPath = new Path(WEST, JBlocks.BLOOD_RUNE_LIFE);
     private final Path southPath = new Path(SOUTH, JBlocks.BLOOD_RUNE_SOUL);
 
+    private final Path[] paths = new Path[]{northPath, eastPath, southPath, westPath};
+
+    private boolean activated;
+
     private int ticks = 0;
-    private final int activationDelay = -1;
+    private long randomSeed;
+
+    private final Random random = new Random();
 
     public EssenciaAltarTile() {
         super(JTiles.ESSENCIA_ALTAR);
@@ -33,12 +49,42 @@ public class EssenciaAltarTile extends TileEntity implements ITickableTileEntity
 
     @Override
     public void tick() {
-        if (ticks % 2 == 0) {
+        for (Path path : getPaths()) {
+            path.tick();
+        }
+
+        if (activated) {
             checkNeighbours();
-            System.out.println(Arrays.stream(getPaths()).map(path -> path.direction.get() + ": " + path.validBlockCount + ", ").collect(Collectors.joining()));
+            System.out.println(Arrays.stream(getPaths()).map(path -> path.direction.get() + ": " + path.getValidBlockCount() + ", ").collect(Collectors.joining()));
+        } else {
+            for (Path path : getPaths()) {
+                path.setValidBlockCount(0);
+            }
+        }
+
+        if (ticks % PATH_PROGRESS_DELAY == 0) {
+            for (Path path : getPaths()) {
+                path.updateCurrentLength();
+            }
+        }
+
+        if (ticks % 4 == 0) {
+            randomSeed = RandHelper.RAND.nextLong();
         }
 
         ticks++;
+    }
+
+    public void onRightClick(ServerPlayerEntity entity, ItemStack itemStack) {
+        if (itemStack.getItem() == JItems.POWDER_OF_ESSENCIA) {
+            itemStack.shrink(1);
+            activated = true;
+            saveAndSync();
+        }
+    }
+
+    public long getRandomSeed() {
+        return randomSeed;
     }
 
     private void checkNeighbours() {
@@ -54,10 +100,10 @@ public class EssenciaAltarTile extends TileEntity implements ITickableTileEntity
             for (; i < 3; i++) {
                 mutable.set(pos);
                 mutable.move(Direction.DOWN, 1);
-                mutable.move((i + 1) * path.getStepX(), 0, (i + 1) * path.getStepZ());
+                mutable.move((i + 1) * path.stepX(), 0, (i + 1) * path.stepZ());
 
                 BlockState blockState = level.getBlockState(mutable);
-                if (blockState.getBlock() != JBlocks.RUNIC_CONNECTOR) {
+                if (blockState.getBlock() != JBlocks.RUNIC_CONNECTOR || blockState.getValue(XZFacedBlock.HORIZONTAL_AXIS) != path.connectorAxis()) {
                     changed = true;
                     break;
                 }
@@ -65,34 +111,79 @@ public class EssenciaAltarTile extends TileEntity implements ITickableTileEntity
 
             if (!changed) {
                 mutable.set(pos);
-                mutable.move(4 * path.getStepX(), 0, 4 * path.getStepZ());
+                mutable.move(4 * path.stepX(), 0, 4 * path.stepZ());
 
                 BlockState runeState = level.getBlockState(mutable);
                 if (runeState.getBlock() == path.validRune) {
                     i++;
+                } else if (path.readyToActivateRune() && runeState.getBlock() == JBlocks.EMPTY_BLOOD_RUNE) {
+                    if (isServerSide()) {
+                        transformRune(level, path, mutable);
+                        doEffects(level, mutable);
+                    } else {
+                        spawnParticles(level, mutable);
+                    }
                 }
-
-//                if (runeState.getBlock() != JBlocks.ACTIVATED_BLOOD_RUNE) {
-//                    if (runeState.getBlock() == JBlocks.EMPTY_BLOOD_RUNE && activationDelay == -1) {
-//                        activationDelay = ACTIVATION_DELAY;
-//                    } else {
-//                        activationDelay = -1;
-//                    }
-//                } else {
-//                    activationDelay = -1;
-//                }
             }
 
-            if (path.validBlockCount != i) {
+            if (path.getValidBlockCount() != i || path.isFullLength()) {
                 changed = true;
             }
 
-            path.validBlockCount = i;
+            path.setValidBlockCount(i);
+
+            if (changed) save();
         }
     }
 
+    private void transformRune(World world, Path path, BlockPos pos) {
+        world.setBlockAndUpdate(pos, path.validRune.defaultBlockState());
+    }
+
+    private void doEffects(World world, BlockPos pos) {
+        EssenciaBoltEntity essenciaBoltEntity = new EssenciaBoltEntity(JEntities.ESSENCIA_BOLT_TYPE, world);
+        essenciaBoltEntity.setPos(pos.getX(), pos.above().getY(), pos.getZ());
+        essenciaBoltEntity.setVisualOnly(true);
+        world.addFreshEntity(essenciaBoltEntity);
+        world.playSound(null, pos, JSounds.RUNE_ACTIVATE.get(), SoundCategory.BLOCKS, 1.0F, random.nextFloat() + 0.5F);
+    }
+
+    public void spawnParticles(World worldIn, BlockPos pos) {
+        for (int i = 0; i < 6; i++) {
+            IParticleData particle = JParticleManager.RED_FLAME.get();
+            int posThreshold = 16;
+            int speedThreshold = 64;
+            float posRandom0 = (float) random.nextInt(2 + i) / posThreshold;
+            float posRandom1 = (float) random.nextInt(2 + i) / posThreshold;
+            float posRandom2 = (float) random.nextInt(2 + i) / posThreshold;
+            float posRandom3 = (float) random.nextInt(2 + i) / posThreshold;
+            float speedRandom0 = (posRandom0 + 1) / speedThreshold;
+            float speedRandom1 = (posRandom1 + 2) / speedThreshold;
+            float speedRandom2 = (posRandom2 + 1) / speedThreshold;
+            float speedRandom3 = (posRandom3 + 2) / speedThreshold;
+            worldIn.addParticle(particle, (pos.getX() + posRandom0) + 0.5F, pos.above().getY(), (pos.getZ() - posRandom0) + 0.5F, speedRandom0, speedRandom2, -speedRandom3);
+            worldIn.addParticle(particle, (pos.getX() - posRandom1) + 0.5F, pos.above().getY(), (pos.getZ() + posRandom1) + 0.5F, -speedRandom1, speedRandom1, speedRandom2);
+            worldIn.addParticle(particle, (pos.getX() - posRandom2) + 0.5F, pos.above().getY(), (pos.getZ() - posRandom2) + 0.5F, -speedRandom2, speedRandom0, -speedRandom1);
+            worldIn.addParticle(particle, (pos.getX() + posRandom3) + 0.5F, pos.above().getY(), (pos.getZ() + posRandom3) + 0.5F, speedRandom3, speedRandom3, speedRandom0);
+        }
+    }
+
+    @Override
+    protected void writeNBT(CompoundNBT nbt, SerializationType type) {
+        super.writeNBT(nbt, type);
+
+        nbt.putBoolean("activated", activated);
+    }
+
+    @Override
+    protected void readNBT(BlockState state, CompoundNBT nbt, SerializationType type) {
+        super.readNBT(state, nbt, type);
+
+        activated = nbt.getBoolean("activated");
+    }
+
     private Path[] getPaths() {
-        return new Path[]{northPath, eastPath, southPath, westPath};
+        return paths;
     }
 
     public Path getPath(HorizontalDirection direction) {
@@ -108,6 +199,10 @@ public class EssenciaAltarTile extends TileEntity implements ITickableTileEntity
         }
     }
 
+    public boolean isActivated() {
+        return activated;
+    }
+
     @Override
     public AxisAlignedBB getRenderBoundingBox() {
         BlockPos pos = getBlockPos();
@@ -119,21 +214,58 @@ public class EssenciaAltarTile extends TileEntity implements ITickableTileEntity
         private final Block validRune;
         private int validBlockCount = 0;
 
+        private float currentLength = validBlockCount;
+        private boolean isFullLength;
+
         public Path(HorizontalDirection direction, Block validRune) {
             this.direction = direction;
             this.validRune = validRune;
         }
 
-        public int getStepX() {
+        private void tick() {
+
+        }
+
+        public int stepX() {
             return direction.get().getStepX();
         }
 
-        public int getStepZ() {
+        public int stepZ() {
             return direction.get().getStepZ();
         }
 
         public int getValidBlockCount() {
             return validBlockCount;
+        }
+
+        public void setValidBlockCount(int validBlockCount) {
+            int lastCount = this.validBlockCount;
+            this.validBlockCount = validBlockCount;
+
+            if (validBlockCount < lastCount) {
+                updateCurrentLength();
+            }
+        }
+
+        private void updateCurrentLength() {
+            currentLength = Math.min(validBlockCount, currentLength + PATH_PROGRESS);
+            isFullLength = currentLength == validBlockCount;
+        }
+
+        public boolean readyToActivateRune() {
+            return currentLength == 3;
+        }
+
+        public boolean isFullLength() {
+            return isFullLength;
+        }
+
+        public Direction.Axis connectorAxis() {
+            return direction.get().getAxis();
+        }
+
+        public float getCurrentLength() {
+            return currentLength;
         }
     }
 }
