@@ -15,13 +15,12 @@ import javax.annotation.Nullable;
 
 @OnlyIn(Dist.CLIENT)
 public class HonglowRenderer extends MobRenderer<HonglowEntity, HongoModel<HonglowEntity>> {
-
 	public HonglowRenderer(EntityRendererManager renderManagerIn) {
 		super(renderManagerIn, new HongoModel<>(), 0.7F);
 	}
 
 	public @NotNull ResourceLocation getTextureLocation(@NotNull HonglowEntity entityIn) {
-		return entityIn.getRandomTexture();
+		return entityIn.getVariant().getTexture();
 	}
 
 	@Nullable

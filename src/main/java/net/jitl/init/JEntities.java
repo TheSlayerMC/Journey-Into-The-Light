@@ -9,7 +9,6 @@ import net.jitl.common.entity.overworld.HongoEntity;
 import net.jitl.common.entity.projectile.ConjuringProjectileEntity;
 import net.jitl.common.entity.projectile.EntityMoltenKnife;
 import net.jitl.common.entity.projectile.EssenciaProjectileEntity;
-import net.jitl.common.entity.projectile.FloroMudEntity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityType;
@@ -61,7 +60,7 @@ public class JEntities {
             .attributes(() -> WitherspineEntity.createAttributes().build())
             .spawnEgg(0xFF00FF00, 0xFF000000, JTabs.SPAWNERS)
             .retrieve();
-
+			
     public static final EntityType<EssenciaBoltEntity> ESSENCIA_BOLT_TYPE = REGISTER.register("essencia_bolt",
             Builder.of(EssenciaBoltEntity::new, EntityClassification.MISC)
                     .noSave()
