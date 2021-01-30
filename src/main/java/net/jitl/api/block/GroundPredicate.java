@@ -1,5 +1,6 @@
 package net.jitl.api.block;
 
+import net.jitl.init.JBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -24,6 +25,9 @@ public interface GroundPredicate {
             block == Blocks.GRASS ||
                     block == Blocks.DIRT ||
                     block == Blocks.FARMLAND));
+
+    GroundPredicate EUCA_GOLD_GRASS_BLOCK = SOLID_SIDE.and(blockPredicate(block ->
+            block == JBlocks.GOLDITE_GRASS_BLOCK));
 
     GroundPredicate UNDERGROUND = SOLID_SIDE.and(blockPredicate(block ->
             block == Blocks.STONE ||

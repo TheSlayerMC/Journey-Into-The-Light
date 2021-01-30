@@ -182,6 +182,8 @@ public class EucaBiomeProvider extends BiomeProvider {
         public static final EucaBiomeProvider.Preset EUCA = new EucaBiomeProvider.Preset(JITL.rl("euca"), (preset, lookupRegistry1, seed1) -> {
             return new EucaBiomeProvider(seed1, ImmutableList.of(Pair.of(new Biome.Attributes(0.0F, 0.0F, 0.0F, 0.0F, 0.0F), () -> {
                 return lookupRegistry1.get(JourneyBiomeRegistry.EUCA_PLAINS.getRegistryName());
+            }), Pair.of(new Biome.Attributes(0.0F, 0.5F, 0.0F, 0.0F, 0.375F), () -> {
+                return lookupRegistry1.get(JourneyBiomeRegistry.EUCA_GOLDITE_GRAINS.getRegistryName());
             }), Pair.of(new Biome.Attributes(0.0F, 0.0F, 0.0F, 0.0F, 0.0F), () -> {
                 return lookupRegistry1.get(JourneyBiomeRegistry.EUCA_SILVER_PLAINS.getRegistryName());
             })), Optional.of(Pair.of(lookupRegistry1, preset)));

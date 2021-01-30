@@ -1,0 +1,26 @@
+{
+  "surface_builder": "jitl:euca_goldite_grains",
+  "depth": 0.835,
+  "scale": 0.75,
+  "temperature": 0.8,
+  "downfall": 0.0,
+  "precipitation": "rain",
+  "category": "plains",
+  "effects": {
+    "sky_color": 14876538,
+    "fog_color": 15597506,
+    "water_color": 14995007,
+    "water_fog_color": 3355141,
+    "grass_color": 13159169,
+    "foliage_color": 5660928
+  },
+  "starts": [],
+  "spawners": {},
+  "spawn_costs": {},
+  "carvers": {},
+  "features": [
+    [
+      "jitl:tall_goldite_grass"
+    ]
+  ]
+}

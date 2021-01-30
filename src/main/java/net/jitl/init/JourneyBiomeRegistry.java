@@ -13,6 +13,7 @@ import net.minecraftforge.fml.common.Mod;
 public class JourneyBiomeRegistry {
 
     public static Biome EUCA_PLAINS;
+    public static Biome EUCA_GOLDITE_GRAINS;
     public static Biome EUCA_SILVER_PLAINS;
 
     private static RegistryKey<Biome> registerBiome(String name) {
@@ -23,6 +24,9 @@ public class JourneyBiomeRegistry {
     public static void registerBiomes(RegistryEvent.Register<Biome> event) {
         EUCA_PLAINS.setRegistryName(JITL.rl("euca/euca_plains"));
         event.getRegistry().register(EUCA_PLAINS);
+
+        EUCA_GOLDITE_GRAINS.setRegistryName(JITL.rl("euca/euca_goldite_grains"));
+        event.getRegistry().register(EUCA_GOLDITE_GRAINS);
 
         EUCA_SILVER_PLAINS.setRegistryName(JITL.rl("euca/euca_silver_plains"));
         event.getRegistry().register(EUCA_SILVER_PLAINS);

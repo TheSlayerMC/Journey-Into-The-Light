@@ -37,6 +37,8 @@ public class JConfiguredFeatures {
     public static final Predicate<BiomeLoadingEvent> IN_WARPED_FOREST = event -> Objects.equals(event.getName(), new ResourceLocation("warped_forest"));
     public static final Predicate<BiomeLoadingEvent> IN_CRIMSON_FOREST = event -> Objects.equals(event.getName(), new ResourceLocation("crimson_forest"));
 
+    public static final Predicate<BiomeLoadingEvent> GOLDITE_GRAINS = event -> Objects.equals(event.getName(), JITL.rl("euca/euca_goldite_grains"));
+
     public static final Predicate<BiomeLoadingEvent> COMMON_BIOMES = IN_NETHER.and(IN_END).negate();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> BRADBERRY_BUSH =
@@ -121,6 +123,24 @@ public class JConfiguredFeatures {
                             .range(55)
                             .count(1))
                     .setBiomePredicate(COMMON_BIOMES)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> TALL_GOLDITE_GRASS =
+            REGISTER.register("tall_goldite_grass", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
+                    .configured((new BlockClusterFeatureConfig.Builder(
+                            new WeightedBlockStateProvider()
+                                    .add(JBlocks.GOLDITE_TALL_GRASS.defaultBlockState(), 1),
+                            new DoublePlantBlockPlacer()))
+                            .tries(256)
+                            .xspread(16)
+                            .zspread(16)
+                            .whitelist(ImmutableSet.of(
+                                    JBlocks.GOLDITE_GRASS_BLOCK))
+                            .noProjection()
+                            .build())
+                    .range(128)
+                    .count(10))
+                    .setBiomePredicate(GOLDITE_GRAINS)
                     .asPromise();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> SMALL_GLOWSHROOMS =

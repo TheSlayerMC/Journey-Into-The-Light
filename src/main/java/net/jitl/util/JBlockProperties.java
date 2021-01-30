@@ -117,6 +117,12 @@ public class JBlockProperties {
 			.sound(SoundType.SWEET_BERRY_BUSH)
 			.lightLevel((state) -> 5)
 			.noCollission());
+
+	public static final BlockPropsFactory PLANT_PROPS = new BlockPropsFactory(() -> AbstractBlock.Properties.of
+			(Material.REPLACEABLE_PLANT)
+			.sound(SoundType.SWEET_BERRY_BUSH)
+			.noCollission());
+
 	public static final BlockPropsFactory PORTAL = new BlockPropsFactory(() -> AbstractBlock.Properties.of
 			(Material.PORTAL)
 			.sound(SoundType.GLASS)

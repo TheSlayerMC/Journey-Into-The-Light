@@ -26,6 +26,11 @@ public class JDoublePlantBlock extends DoublePlantBlock {
         this.groundPredicate = groundPredicate;
     }
 
+    public JDoublePlantBlock setPredicate(@Nullable GroundPredicate groundPredicate) {
+        this.groundPredicate = groundPredicate;
+        return this;
+    }
+
     public GroundPredicate getGroundPredicate() {
         return groundPredicate;
     }

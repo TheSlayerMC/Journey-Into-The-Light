@@ -4,6 +4,7 @@ import net.jitl.JITL;
 import net.jitl.common.block.CaveVinesBlock;
 import net.jitl.common.block.CaveVinesTopBlock;
 import net.jitl.common.block.TallGlowshroomBlock;
+import net.jitl.common.block.base.JDoublePlantBlock;
 import net.jitl.common.block.base.JPlantBlock;
 import net.jitl.common.block.base.XZFacedBlock;
 import net.minecraft.block.Block;
@@ -103,6 +104,7 @@ public class JBlocks {
 	public static final TallGlowshroomBlock TALL_BLUE_GLOWSHROOM = promise();
 	public static final TallGlowshroomBlock TALL_RED_GLOWSHROOM = promise();
 
+
     public static final JPlantBlock GREEN_GLOWSHROOM = promise();
     public static final JPlantBlock BLUE_GLOWSHROOM = promise();
     public static final JPlantBlock RED_GLOWSHROOM = promise();
@@ -116,4 +118,6 @@ public class JBlocks {
     public static final Block GOLDITE_GRASS_BLOCK = promise();
 	public static final Block GOLDITE_DIRT = promise();
 	public static final Block GOLDITE_STONE = promise();
+	public static final JDoublePlantBlock GOLDITE_TALL_GRASS = promise();
+
 }

@@ -70,6 +70,16 @@
             "weirdness": 0,
             "offset": 0
           }
+        },
+        {
+          "biome": "jitl:euca/euca_goldite_grains",
+          "parameters": {
+            "altitude": 0,
+            "temperature": 0,
+            "humidity": 1,
+            "weirdness": 0,
+            "offset": 0
+          }
         }
       ]
     },

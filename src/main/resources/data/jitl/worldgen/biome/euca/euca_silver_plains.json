@@ -1,7 +1,7 @@
 {
   "surface_builder": "jitl:euca_silver_plains",
-  "depth": 0.935,
-  "scale": 0.85,
+  "depth": 1.935,
+  "scale": 1.85,
   "temperature": 0.8,
   "downfall": 0.0,
   "precipitation": "rain",
