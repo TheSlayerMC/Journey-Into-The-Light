@@ -3,6 +3,7 @@ package net.jitl.init;
 import net.jitl.JITL;
 import net.jitl.common.world.gen.structures.guardian.GuardianTowerPieces;
 import net.jitl.common.world.gen.structures.overworld.BlacksmithStructure;
+import net.jitl.common.world.gen.structures.overworld.MageHouseStructure;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.gen.feature.structure.IStructurePieceType;
 import ru.timeconqueror.timecore.api.registry.SimpleVanillaRegister;
@@ -18,5 +19,7 @@ public class JStructurePieces {
     public static final Promised<IStructurePieceType> GUARDIAN_TOWER_NO_GRASS_TOUCHED_PIECE = REGISTER.register("gt/ngtp", () -> GuardianTowerPieces.NoGrassTouchedPiece::new);
 
     public static final Promised<IStructurePieceType> BLACKSMITH = REGISTER.register("bs", () -> BlacksmithStructure.Piece::new);
+    public static final Promised<IStructurePieceType> MAGE = REGISTER.register("mage", () -> MageHouseStructure.Piece::new);
+
 
 }

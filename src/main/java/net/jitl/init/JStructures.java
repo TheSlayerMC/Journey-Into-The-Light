@@ -3,6 +3,7 @@ package net.jitl.init;
 import net.jitl.JITL;
 import net.jitl.common.world.gen.structures.guardian.GuardianTowerStructure;
 import net.jitl.common.world.gen.structures.overworld.BlacksmithStructure;
+import net.jitl.common.world.gen.structures.overworld.MageHouseStructure;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import org.apache.logging.log4j.Marker;
@@ -29,6 +30,13 @@ public class JStructures {
 
     public static final StructureHolder<NoFeatureConfig, BlacksmithStructure> BLACKSMITH =
             REGISTER.register("blacksmith", BlacksmithStructure::new, TimeStructureSeparationSettings.create(10, 5), NoFeatureConfig.CODEC, NoFeatureConfig.NONE)
+                    .transformsSurroundingLand()
+                    .setDimensionPredicate(serverWorld -> serverWorld.dimension() == World.OVERWORLD)
+                    .addToTag(Tag.DISABLE_BREAKING_BY_LAKES)
+                    .asHolder();
+
+    public static final StructureHolder<NoFeatureConfig, MageHouseStructure> MAGE_HOUSE =
+            REGISTER.register("mage_house", MageHouseStructure::new, TimeStructureSeparationSettings.create(10, 5), NoFeatureConfig.CODEC, NoFeatureConfig.NONE)
                     .transformsSurroundingLand()
                     .setDimensionPredicate(serverWorld -> serverWorld.dimension() == World.OVERWORLD)
                     .addToTag(Tag.DISABLE_BREAKING_BY_LAKES)
