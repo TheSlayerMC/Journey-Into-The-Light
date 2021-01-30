@@ -1,9 +1,7 @@
 package net.jitl.common.world.gen.structures.overworld;
 
 import com.google.common.collect.ImmutableMap;
-import com.mojang.serialization.Codec;
 import net.jitl.JITL;
-import net.jitl.init.JStructurePieces;
 import net.jitl.init.JStructures;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Mirror;
@@ -21,27 +19,34 @@ import net.minecraft.world.gen.feature.structure.*;
 import net.minecraft.world.gen.feature.template.PlacementSettings;
 import net.minecraft.world.gen.feature.template.Template;
 import net.minecraft.world.gen.feature.template.TemplateManager;
+import ru.timeconqueror.timecore.api.registry.util.Promised;
 import ru.timeconqueror.timecore.api.util.GenHelper;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-public class BlacksmithStructure extends Structure<NoFeatureConfig> {
+public class NBTStructure extends Structure<NoFeatureConfig> {
 
-    public static final ResourceLocation BLACKSMITH = JITL.rl("overworld/blacksmith");
+    public static ResourceLocation NBT;
+    public static Promised<IStructurePieceType> type;
+    private static int structX, structZ;
+
+    public NBTStructure(ResourceLocation nbt, Promised<IStructurePieceType> type, int x, int z) {
+        super(NoFeatureConfig.CODEC);
+        this.NBT = nbt;
+        this.type = type;
+        this.structX = x;
+        this.structZ = z;
+    }
 
     private static final Map<ResourceLocation, BlockPos> OFFSETS = ImmutableMap.of(
-            BLACKSMITH, BlockPos.ZERO
+            NBT, BlockPos.ZERO
     );
-
-    public BlacksmithStructure(Codec<NoFeatureConfig> codec) {
-        super(codec);
-    }
 
     @Override
     public IStartFactory<NoFeatureConfig> getStartFactory() {
-        return BlacksmithStructure.Start::new;
+        return NBTStructure.Start::new;
     }
 
     @Override
@@ -50,12 +55,12 @@ public class BlacksmithStructure extends Structure<NoFeatureConfig> {
     }
 
     public static StructurePiece createPiece(TemplateManager templateManager, ResourceLocation templateLocation, BlockPos pos, boolean applyGenerationNoise) {
-        return new BlacksmithStructure.Piece(templateManager, templateLocation, pos);
+        return new NBTStructure.Piece(templateManager, templateLocation, pos);
     }
 
     public static void generate(List<StructurePiece> pieces, TemplateManager templateManager, BlockPos surfacePos) {
         BlockPos changeable = surfacePos;
-        pieces.add(createPiece(templateManager, BlacksmithStructure.BLACKSMITH, surfacePos, true));
+        pieces.add(createPiece(templateManager, NBTStructure.NBT, surfacePos, true));
     }
 
     public static class Start extends StructureStart<NoFeatureConfig> {
@@ -67,11 +72,11 @@ public class BlacksmithStructure extends Structure<NoFeatureConfig> {
             int x = chunkX << 4;
             int z = chunkZ << 4;
 
-            int surface = GenHelper.getAverageFirstFreeHeight(chunkGenerator, x, z, x + 10, z + 10);
+            int surface = GenHelper.getAverageFirstFreeHeight(chunkGenerator, x, z, x + structX, z + structZ);
             surface -= 1;
 
             BlockPos start = new BlockPos(x, surface, z);
-            JITL.LOGGER.debug(JStructures.STRUCTURE_MARKER, "Attempting to generate {} on {}", BlacksmithStructure.class.getSimpleName(), start);
+            JITL.LOGGER.debug(JStructures.STRUCTURE_MARKER, "Attempting to generate {} on {}", NBTStructure.class.getSimpleName(), start);
 
             generate(pieces, templateManager, start);
 
@@ -83,11 +88,11 @@ public class BlacksmithStructure extends Structure<NoFeatureConfig> {
         private final ResourceLocation templateLocation;
 
         public Piece(TemplateManager templateManager, ResourceLocation templateLocation, BlockPos pos) {
-            this(JStructurePieces.BLACKSMITH.get(), templateManager, templateLocation, pos);
+            this(type.get(), templateManager, templateLocation, pos);
         }
 
         public Piece(TemplateManager templateManager, CompoundNBT nbt) {
-            this(JStructurePieces.BLACKSMITH.get(), templateManager, nbt);
+            this(type.get(), templateManager, nbt);
         }
 
         protected Piece(IStructurePieceType type, TemplateManager templateManager, ResourceLocation templateLocation, BlockPos pos) {
