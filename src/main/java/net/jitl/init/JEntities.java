@@ -9,6 +9,8 @@ import net.jitl.common.entity.overworld.HongoEntity;
 import net.jitl.common.entity.projectile.ConjuringProjectileEntity;
 import net.jitl.common.entity.projectile.EntityMoltenKnife;
 import net.jitl.common.entity.projectile.EssenciaProjectileEntity;
+import net.jitl.common.entity.projectile.FloroMudEntity;
+import net.jitl.common.entity.projectile.base.JEffectCloudEntity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityType;
@@ -96,4 +98,13 @@ public class JEntities {
                     .setShouldReceiveVelocityUpdates(true)
                     .sized(0.5F, 0.5F))
             .retrieve();
+
+    public static final EntityType<JEffectCloudEntity> EFFECT_CLOUD_TYPE = REGISTER.register("effect_cloud",
+            Builder.<JEffectCloudEntity>of(JEffectCloudEntity::new, EntityClassification.MISC)
+                    .fireImmune()
+                    .clientTrackingRange(10)
+                    .sized(0.0F, 0.0F))
+            .retrieve();
 }
+
+
