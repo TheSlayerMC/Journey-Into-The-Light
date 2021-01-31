@@ -6,6 +6,7 @@ import net.jitl.common.entity.nether.WitherspineEntity;
 import net.jitl.common.entity.overworld.FloroEntity;
 import net.jitl.common.entity.overworld.HonglowEntity;
 import net.jitl.common.entity.overworld.HongoEntity;
+import net.jitl.common.entity.overworld.TowerGuardianEntity;
 import net.jitl.common.entity.projectile.ConjuringProjectileEntity;
 import net.jitl.common.entity.projectile.EntityMoltenKnife;
 import net.jitl.common.entity.projectile.EssenciaProjectileEntity;
@@ -62,7 +63,16 @@ public class JEntities {
             .attributes(() -> WitherspineEntity.createAttributes().build())
             .spawnEgg(0xFF00FF00, 0xFF000000, JTabs.SPAWNERS)
             .retrieve();
-			
+
+    public static final EntityType<TowerGuardianEntity> TOWER_GUARDIAN_TYPE = REGISTER.registerMob("tower_guardian",
+            Builder.of(TowerGuardianEntity::new, EntityClassification.MONSTER)
+                    .setTrackingRange(80)
+                    .setShouldReceiveVelocityUpdates(true)
+                    .sized(1.5F, 3))//TODO add spawn settings
+            .attributes(() -> TowerGuardianEntity.createAttributes().build())
+            .spawnEgg(0xFF00FF00, 0xFF000000, JTabs.SPAWNERS)
+            .retrieve();
+
     public static final EntityType<EssenciaBoltEntity> ESSENCIA_BOLT_TYPE = REGISTER.register("essencia_bolt",
             Builder.of(EssenciaBoltEntity::new, EntityClassification.MISC)
                     .noSave()
