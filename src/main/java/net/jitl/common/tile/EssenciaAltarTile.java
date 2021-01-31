@@ -20,9 +20,7 @@ import ru.timeconqueror.timecore.api.common.tile.SyncableTile;
 import ru.timeconqueror.timecore.api.util.HorizontalDirection;
 import ru.timeconqueror.timecore.api.util.RandHelper;
 
-import java.util.Arrays;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 import static ru.timeconqueror.timecore.api.util.HorizontalDirection.*;
 
@@ -49,22 +47,13 @@ public class EssenciaAltarTile extends SyncableTile implements ITickableTileEnti
 
     @Override
     public void tick() {
-        for (Path path : getPaths()) {
-            path.tick();
-        }
-
         if (activated) {
             checkNeighbours();
-            System.out.println(Arrays.stream(getPaths()).map(path -> path.direction.get() + ": " + path.getValidBlockCount() + ", ").collect(Collectors.joining()));
-        } else {
-            for (Path path : getPaths()) {
-                path.setValidBlockCount(0);
-            }
-        }
 
-        if (ticks % PATH_PROGRESS_DELAY == 0) {
-            for (Path path : getPaths()) {
-                path.updateCurrentLength();
+            if (ticks % PATH_PROGRESS_DELAY == 0) {
+                for (Path path : getPaths()) {
+                    path.updateCurrentLength();
+                }
             }
         }
 
@@ -220,10 +209,6 @@ public class EssenciaAltarTile extends SyncableTile implements ITickableTileEnti
         public Path(HorizontalDirection direction, Block validRune) {
             this.direction = direction;
             this.validRune = validRune;
-        }
-
-        private void tick() {
-
         }
 
         public int stepX() {

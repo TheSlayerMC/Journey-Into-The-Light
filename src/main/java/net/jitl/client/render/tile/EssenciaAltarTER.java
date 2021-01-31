@@ -14,7 +14,7 @@ import net.minecraft.util.math.vector.Vector3f;
 import ru.timeconqueror.timecore.api.util.HorizontalDirection;
 
 import java.util.Random;
-
+//TODO add path increasing start from the center block
 public class EssenciaAltarTER extends TileEntityRenderer<EssenciaAltarTile> {
     private static final Random RANDOM = new Random();
 
