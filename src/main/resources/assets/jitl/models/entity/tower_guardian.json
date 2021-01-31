@@ -1,0 +1,213 @@
+{
+  "format_version": "1.12.0",
+  "minecraft:geometry": [
+    {
+      "description": {
+        "identifier": "geometry.unknown",
+        "texture_width": 256,
+        "texture_height": 256,
+        "visible_bounds_width": 5,
+        "visible_bounds_height": 5,
+        "visible_bounds_offset": [
+          0,
+          0,
+          0
+        ]
+      },
+      "bones": [
+        {
+          "name": "leg_1",
+          "pivot": [
+            8,
+            22,
+            0
+          ],
+          "cubes": [
+            {
+              "origin": [
+                2,
+                0,
+                -6
+              ],
+              "size": [
+                12,
+                22,
+                12
+              ],
+              "uv": [
+                104,
+                50
+              ]
+            }
+          ]
+        },
+        {
+          "name": "leg_2",
+          "pivot": [
+            -8,
+            22,
+            0
+          ],
+          "cubes": [
+            {
+              "origin": [
+                -14,
+                0,
+                -6
+              ],
+              "size": [
+                12,
+                22,
+                12
+              ],
+              "uv": [
+                102,
+                114
+              ]
+            }
+          ]
+        },
+        {
+          "name": "arm_1",
+          "pivot": [
+            23,
+            52,
+            -4
+          ],
+          "cubes": [
+            {
+              "origin": [
+                18,
+                18,
+                -9
+              ],
+              "size": [
+                10,
+                38,
+                10
+              ],
+              "uv": [
+                74,
+                78
+              ]
+            }
+          ]
+        },
+        {
+          "name": "arm_2",
+          "pivot": [
+            -23,
+            52,
+            -4
+          ],
+          "cubes": [
+            {
+              "origin": [
+                -28,
+                18,
+                -9
+              ],
+              "size": [
+                10,
+                38,
+                10
+              ],
+              "uv": [
+                0,
+                88
+              ]
+            }
+          ]
+        },
+        {
+          "name": "head_group",
+          "pivot": [
+            0,
+            54,
+            -6
+          ],
+          "cubes": [
+            {
+              "origin": [
+                -6,
+                55,
+                -12
+              ],
+              "size": [
+                12,
+                12,
+                12
+              ],
+              "pivot": [
+                1,
+                54.13509,
+                -5.56961
+              ],
+              "rotation": [
+                15,
+                0,
+                0
+              ],
+              "uv": [
+                100,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "chest_group",
+          "pivot": [
+            0,
+            36.51764,
+            -1.56815
+          ],
+          "cubes": [
+            {
+              "origin": [
+                -18,
+                34.03528,
+                -17.1363
+              ],
+              "size": [
+                36,
+                22,
+                28
+              ],
+              "pivot": [
+                0,
+                45.03528,
+                -3.1363
+              ],
+              "rotation": [
+                15,
+                0,
+                0
+              ],
+              "uv": [
+                0,
+                0
+              ]
+            },
+            {
+              "origin": [
+                -11,
+                19,
+                -10
+              ],
+              "size": [
+                22,
+                18,
+                20
+              ],
+              "uv": [
+                0,
+                50
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
