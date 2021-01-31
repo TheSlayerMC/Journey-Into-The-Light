@@ -104,6 +104,11 @@
       "jitl:blocks/activate/rune_activate"
     ]
   },
+  "block.essencia_altar.activate": {
+    "sounds": [
+      "jitl:blocks/activate/essencia_altar_activate"
+    ]
+  },
   "items.staff.staff_0": {
     "sounds": [
       "jitl:items/staff/staff_0"

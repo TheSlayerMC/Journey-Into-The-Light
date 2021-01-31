@@ -25,7 +25,7 @@ import java.util.Random;
 import static ru.timeconqueror.timecore.api.util.HorizontalDirection.*;
 
 public class EssenciaAltarTile extends SyncableTile implements ITickableTileEntity {
-    private static final int PATH_PROGRESS_DELAY = 5;
+    private static final int PATH_PROGRESS_DELAY = 1;
     private static final float PATH_PROGRESS = 0.1F;
     private final Path northPath = new Path(NORTH, JBlocks.BLOOD_RUNE_DEATH);
     private final Path eastPath = new Path(EAST, JBlocks.BLOOD_RUNE_FLESH);
@@ -67,6 +67,7 @@ public class EssenciaAltarTile extends SyncableTile implements ITickableTileEnti
     public void onRightClick(ServerPlayerEntity entity, ItemStack itemStack) {
         if (itemStack.getItem() == JItems.POWDER_OF_ESSENCIA) {
             itemStack.shrink(1);
+            level.playSound(null, this.getBlockPos(), JSounds.ESSENCIA_ALTAR_ACTIVATE.get(), SoundCategory.BLOCKS, 1.0F, 1.0F);
             activated = true;
             saveAndSync();
         }
