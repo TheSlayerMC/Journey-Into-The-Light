@@ -4,14 +4,20 @@ import net.jitl.common.helper.EnumItemWeapon;
 import net.jitl.init.JItems;
 import net.jitl.init.JParticleManager;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.IRendersAsItem;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.network.IPacket;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.network.NetworkHooks;
+import org.jetbrains.annotations.NotNull;
 
-public class EntityMoltenKnife extends EntityThrowableArrow {
+@OnlyIn(value = Dist.CLIENT, _interface = IRendersAsItem.class)
+public class EntityMoltenKnife extends EntityThrowableArrow implements IRendersAsItem {
 
     public EntityMoltenKnife(EntityType<EntityMoltenKnife> type, World world) {
         super(type, world);
@@ -44,5 +50,15 @@ public class EntityMoltenKnife extends EntityThrowableArrow {
     @Override
     public Item pickupItem() {
         return JItems.MOLTEN_KNIFE;
+    }
+
+    @Override
+    public IPacket<?> getAddEntityPacket() {//TODO move tosuperclass
+        return NetworkHooks.getEntitySpawningPacket(this);
+    }
+
+    @Override
+    public @NotNull ItemStack getItem() {
+        return new ItemStack(JItems.MOLTEN_KNIFE);
     }
 }

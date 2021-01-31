@@ -51,7 +51,7 @@ public class JEffectCloudEntity extends Entity {
 	 */
 	public void addSizeKey(int time, float size) {
 		Requirements.greaterOrEquals(time, 0);
-		sizes.add(new ImmutablePair<Integer, Float>(time, size));
+		sizes.add(new ImmutablePair<>(time, size));
 	}
 	
 	/**
@@ -123,11 +123,11 @@ public class JEffectCloudEntity extends Entity {
 				}
 			}
 			if (previousPair != null && nextPair != null) {
-				float timeFromLastPair = this.tickCount - previousPair.getKey().intValue();
-				float timeBetweenPairs = nextPair.getKey().intValue() - previousPair.getKey().intValue();
-				float sizeDifference = nextPair.getValue().floatValue() - previousPair.getValue().floatValue();
+				float timeFromLastPair = this.tickCount - previousPair.getKey();
+				float timeBetweenPairs = nextPair.getKey() - previousPair.getKey();
+				float sizeDifference = nextPair.getValue() - previousPair.getValue();
 				//radius = ((Float) previousPair.getValue()).floatValue() + sizeDifference * (timeFromLastPair / timeBetweenPairs);
-				getEntityData().set(RADIUS, (timeFromLastPair / timeBetweenPairs) * sizeDifference + (previousPair.getValue().floatValue()));
+				getEntityData().set(RADIUS, (timeFromLastPair / timeBetweenPairs) * sizeDifference + (previousPair.getValue()));
 			}
 			
 			//handle entity collisions

@@ -2,10 +2,6 @@ package net.jitl.client.render;
 
 import net.jitl.JITL;
 import net.jitl.client.render.entity.*;
-import net.jitl.client.render.entity.EffectCloudRenderer;
-import net.jitl.client.render.entity.EssenciaBoltRenderer;
-import net.jitl.client.render.entity.FloroRenderer;
-import net.jitl.client.render.entity.WitherspineRenderer;
 import net.jitl.client.render.entity.base.Entity2DRenderer;
 import net.jitl.common.entity.nether.WitherspineEntity;
 import net.jitl.common.entity.overworld.FloroEntity;
@@ -26,7 +22,7 @@ public class JEntityRenderRegistry {
     public static void registerEntityRenders() {
         //Misc
         RenderingRegistry.registerEntityRenderingHandler(JEntities.ESSENCIA_BOLT_TYPE, EssenciaBoltRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(JEntities.EFFECT_CLOUD_TYPE, manager -> new EffectCloudRenderer(manager));
+        RenderingRegistry.registerEntityRenderingHandler(JEntities.EFFECT_CLOUD_TYPE, EffectCloudRenderer::new);
 
         //Mobs
         RenderingRegistry.registerEntityRenderingHandler(JEntities.FLORO_TYPE, FloroRenderer::new);
@@ -38,6 +34,6 @@ public class JEntityRenderRegistry {
         RenderingRegistry.registerEntityRenderingHandler(JEntities.FLORO_MUD_TYPE, manager -> new SpriteRenderer<>(manager, Minecraft.getInstance().getItemRenderer()));
         RenderingRegistry.registerEntityRenderingHandler(JEntities.CONJURING_PROJECTILE_TYPE, manager -> new Entity2DRenderer<>(manager, JITL.rl("textures/entity/projectile/conjuring.png"), 0.5F, true));
         RenderingRegistry.registerEntityRenderingHandler(JEntities.ESSENCIA_PROJECTILE_TYPE, manager -> new Entity2DRenderer<>(manager, JITL.rl("textures/entity/projectile/essencia.png"), 0.5F, true));
-        RenderingRegistry.registerEntityRenderingHandler(JEntities.MOLTEN_KNIFE_TYPE, manager -> new Entity2DRenderer<>(manager, JITL.rl("textures/entity/projectile/molten_knife.png"), 0.5F, true));
+        RenderingRegistry.registerEntityRenderingHandler(JEntities.MOLTEN_KNIFE_TYPE, manager -> new SpriteRenderer<>(manager, Minecraft.getInstance().getItemRenderer()));
     }
 }
