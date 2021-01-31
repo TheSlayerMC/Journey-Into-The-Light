@@ -28,6 +28,10 @@ public class EucaPiercerEntity extends DamagingProjectileEntity implements IRend
         this.dam = damage;
     }
 
+    public EucaPiercerEntity(EntityType<EucaPiercerEntity> type, World world) {
+        super(type, world);
+    }
+
     @Override
     public ItemStack getItem() {
         return null;

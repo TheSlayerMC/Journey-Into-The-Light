@@ -7,10 +7,7 @@ import net.jitl.common.entity.overworld.FloroEntity;
 import net.jitl.common.entity.overworld.HonglowEntity;
 import net.jitl.common.entity.overworld.HongoEntity;
 import net.jitl.common.entity.overworld.TowerGuardianEntity;
-import net.jitl.common.entity.projectile.ConjuringProjectileEntity;
-import net.jitl.common.entity.projectile.EntityMoltenKnife;
-import net.jitl.common.entity.projectile.EssenciaProjectileEntity;
-import net.jitl.common.entity.projectile.FloroMudEntity;
+import net.jitl.common.entity.projectile.*;
 import net.jitl.common.entity.projectile.base.JEffectCloudEntity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
@@ -104,6 +101,13 @@ public class JEntities {
 
     public static final EntityType<EntityMoltenKnife> MOLTEN_KNIFE_TYPE = REGISTER.register("molten_knife",
             Builder.<EntityMoltenKnife>of(EntityMoltenKnife::new, EntityClassification.MISC)
+                    .setTrackingRange(80)
+                    .setShouldReceiveVelocityUpdates(true)
+                    .sized(0.5F, 0.5F))
+            .retrieve();
+
+    public static final EntityType<EucaPiercerEntity> EUCA_PIERCER_TYPE = REGISTER.register("euca_piercer",
+            Builder.<EucaPiercerEntity>of(EucaPiercerEntity::new, EntityClassification.MISC)
                     .setTrackingRange(80)
                     .setShouldReceiveVelocityUpdates(true)
                     .sized(0.5F, 0.5F))
