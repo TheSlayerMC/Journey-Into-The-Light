@@ -54,7 +54,7 @@ public class JConfiguredFeatures {
                     Decoration.SURFACE_STRUCTURES,
                     () -> JFeatures.RUINS.get()
                             .configured(new RuinsFeatureConfig(
-                                    JRuleTests.GRASS_DEFAULT,
+                                    JRuleTests.GRASS,
                                     new WeightedBlockStateProvider()
                                             .add(Blocks.STONE_BRICKS.defaultBlockState(), 6)
                                             .add(Blocks.CRACKED_STONE_BRICKS.defaultBlockState(), 5)
@@ -82,7 +82,7 @@ public class JConfiguredFeatures {
                     Decoration.SURFACE_STRUCTURES,
                     () -> JFeatures.RUINS.get()
                             .configured(new RuinsFeatureConfig(
-                                    JRuleTests.SAND_DEFAULT,
+                                    JRuleTests.SAND,
                                     new WeightedBlockStateProvider()
                                             .add(Blocks.SANDSTONE.defaultBlockState(), 3)
                                             .add(Blocks.CHISELED_SANDSTONE.defaultBlockState(), 1)
@@ -185,70 +185,70 @@ public class JConfiguredFeatures {
     public static final Promised<? extends ConfiguredFeature<?, ?>> SAPPHIRE_ORE =
             REGISTER.register("sapphire_ore",
                     Decoration.UNDERGROUND_ORES,
-                    defaultOreFeature(() -> JBlocks.SAPPHIRE_ORE.defaultBlockState(), JRuleTests.STONE_DEFAULT, 7, 24, 2))
+                    defaultOreFeature(() -> JBlocks.SAPPHIRE_ORE.defaultBlockState(), JRuleTests.STONE, 7, 24, 2))
                     .setBiomePredicate(COMMON_BIOMES)
                     .asPromise();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> LUNIUM_ORE =
             REGISTER.register("lunium_ore",
                     Decoration.UNDERGROUND_ORES,
-                    defaultOreFeature(() -> JBlocks.LUNIUM_ORE.defaultBlockState(), JRuleTests.STONE_DEFAULT, 5, 16, 1))
+                    defaultOreFeature(() -> JBlocks.LUNIUM_ORE.defaultBlockState(), JRuleTests.STONE, 5, 16, 1))
                     .setBiomePredicate(COMMON_BIOMES)
                     .asPromise();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> SHADIUM_ORE =
             REGISTER.register("shadium_ore",
                     Decoration.UNDERGROUND_ORES,
-                    defaultOreFeature(() -> JBlocks.SHADIUM_ORE.defaultBlockState(), JRuleTests.STONE_DEFAULT, 3, 10, 1))
+                    defaultOreFeature(() -> JBlocks.SHADIUM_ORE.defaultBlockState(), JRuleTests.STONE, 3, 10, 1))
                     .setBiomePredicate(COMMON_BIOMES)
                     .asPromise();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> IRIDIUM_ORE =
             REGISTER.register("iridium_ore",
                     Decoration.UNDERGROUND_ORES,
-                    defaultOreFeature(() -> JBlocks.IRIDIUM_ORE.defaultBlockState(), JRuleTests.STONE_DEFAULT, 7, 10, 16))
+                    defaultOreFeature(() -> JBlocks.IRIDIUM_ORE.defaultBlockState(), JRuleTests.STONE, 7, 10, 16))
                     .setBiomePredicate(COMMON_BIOMES)
                     .asPromise();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> BLOODCRUST_ORE =
             REGISTER.register("bloodcrust_ore",
                     Decoration.UNDERGROUND_ORES,
-                    netherOreFeature(() -> JBlocks.BLOODCRUST_ORE.defaultBlockState(), JRuleTests.STONE_NETHERRACK, 10, 10))
+                    netherOreFeature(() -> JBlocks.BLOODCRUST_ORE.defaultBlockState(), JRuleTests.NETHERRACK, 10, 10))
                     .setBiomePredicate(IN_NETHER)
                     .asPromise();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> FIRESTONE_ORE =
             REGISTER.register("firestone_ore",
                     Decoration.UNDERGROUND_ORES,
-                    netherOreFeature(() -> JBlocks.FIRESTONE_ORE.defaultBlockState(), JRuleTests.STONE_BASALT, 10, 24))
+                    netherOreFeature(() -> JBlocks.FIRESTONE_ORE.defaultBlockState(), JRuleTests.BASALT, 10, 24))
                     .setBiomePredicate(IN_NETHER)
                     .asPromise();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> LAVA_ROCK_CLUMP =
             REGISTER.register("lava_rock_clump",
-					Decoration.UNDERGROUND_ORES,
-					netherOreFeature(() -> JBlocks.BLOOD_ROCK.defaultBlockState(), JRuleTests.STONE_NETHERRACK, 10, 24))
+                    Decoration.UNDERGROUND_ORES,
+                    netherOreFeature(() -> JBlocks.BLOOD_ROCK.defaultBlockState(), JRuleTests.NETHERRACK, 10, 24))
                     .setBiomePredicate(IN_NETHER)
                     .asPromise();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> CRIMSON_QUARTZ_ORE =
             REGISTER.register("crimson_quartz_ore",
                     Decoration.UNDERGROUND_ORES,
-                    netherOreFeature(() -> JBlocks.CRIMSON_QUARTZ_ORE.defaultBlockState(), JRuleTests.STONE_NETHERRACK, 10, 10))
+                    netherOreFeature(() -> JBlocks.CRIMSON_QUARTZ_ORE.defaultBlockState(), JRuleTests.NETHERRACK, 10, 10))
                     .setBiomePredicate(IN_CRIMSON_FOREST)
                     .asPromise();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> WARPED_QUARTZ_ORE =
             REGISTER.register("crimson_quartz_ore",
                     Decoration.UNDERGROUND_ORES,
-                    netherOreFeature(() -> JBlocks.WARPED_QUARTZ_ORE.defaultBlockState(), JRuleTests.STONE_NETHERRACK, 10, 10))
+                    netherOreFeature(() -> JBlocks.WARPED_QUARTZ_ORE.defaultBlockState(), JRuleTests.NETHERRACK, 10, 10))
                     .setBiomePredicate(IN_WARPED_FOREST)
                     .asPromise();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> ENDERILLIUM_ORE =
             REGISTER.register("enderillium_ore",
                     Decoration.UNDERGROUND_ORES,
-                    defaultOreFeature(() -> JBlocks.ENDERILLIUM_ORE.defaultBlockState(), JRuleTests.STONE_END, 12, 128, 20))
+                    defaultOreFeature(() -> JBlocks.ENDERILLIUM_ORE.defaultBlockState(), JRuleTests.END_STONE, 12, 128, 20))
                     .setBiomePredicate(IN_END)
                     .asPromise();
 
