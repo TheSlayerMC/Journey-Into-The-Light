@@ -118,6 +118,9 @@ public class ItemRegistrator {
         registerToolSet("storon", "Storon", JToolTiers.STORON);
 
         registerItem("molten_knife", "Molten Knife", () -> new ThrowableArrowItem(EnumItemWeapon.MOLTEN_KNIFE));
+
+        registerItem("euca_piercer", "Euca Piercer", () -> new ThrowablePiercerItem(EnumItemWeapon.EUCA_PIERCER));
+
     }
 
     /**

@@ -9,6 +9,7 @@ import net.jitl.common.entity.overworld.HongoEntity;
 import net.jitl.common.entity.overworld.TowerGuardianEntity;
 import net.jitl.common.entity.projectile.*;
 import net.jitl.common.entity.projectile.base.JEffectCloudEntity;
+import net.jitl.common.entity.projectile.base.PiercerEntity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityType;
@@ -106,8 +107,8 @@ public class JEntities {
                     .sized(0.5F, 0.5F))
             .retrieve();
 
-    public static final EntityType<EucaPiercerEntity> EUCA_PIERCER_TYPE = REGISTER.register("euca_piercer",
-            Builder.<EucaPiercerEntity>of(EucaPiercerEntity::new, EntityClassification.MISC)
+    public static final EntityType<PiercerEntity> EUCA_PIERCER_TYPE = REGISTER.register("euca_piercer",
+            Builder.<PiercerEntity>of(EucaPiercerEntity::new, EntityClassification.MISC)
                     .setTrackingRange(80)
                     .setShouldReceiveVelocityUpdates(true)
                     .sized(0.5F, 0.5F))

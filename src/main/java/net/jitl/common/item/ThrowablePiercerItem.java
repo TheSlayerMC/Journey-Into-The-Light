@@ -1,6 +1,6 @@
 package net.jitl.common.item;
 
-import net.jitl.common.entity.projectile.EntityThrowableArrow;
+import net.jitl.common.entity.projectile.base.PiercerEntity;
 import net.jitl.common.helper.EnumItemWeapon;
 import net.jitl.init.JSounds;
 import net.jitl.init.JTabs;
@@ -17,13 +17,13 @@ import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.InvocationTargetException;
 
-public class ThrowableArrowItem extends Item {
+public class ThrowablePiercerItem extends Item {
 
-    private EnumItemWeapon arrow;
+    private EnumItemWeapon weapon;
 
-    public ThrowableArrowItem(EnumItemWeapon weapon) {
+    public ThrowablePiercerItem(EnumItemWeapon weapon) {
         super(new Item.Properties().tab(JTabs.RANGED_WEAPONS));
-        this.arrow = weapon;
+        this.weapon = weapon;
     }
 
     @Override
@@ -31,9 +31,9 @@ public class ThrowableArrowItem extends Item {
         ItemStack itemstack = playerIn.getItemInHand(handIn);
         worldIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), JSounds.STAFF_0.get(), SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
         if (!worldIn.isClientSide) {
-            EntityThrowableArrow throwableEntity = null;
+            PiercerEntity throwableEntity = null;
             try {
-                throwableEntity = arrow.getThrowableArrow().getConstructor(World.class, LivingEntity.class).newInstance(worldIn, playerIn);
+                throwableEntity = weapon.getPiercer().getConstructor(World.class, LivingEntity.class, float.class, int.class).newInstance(worldIn, playerIn, (float)weapon.getDamage(), weapon.getMaxBounces());
             } catch (InstantiationException e) {
                 e.printStackTrace();
             } catch (IllegalAccessException e) {
@@ -43,7 +43,6 @@ public class ThrowableArrowItem extends Item {
             } catch (NoSuchMethodException e) {
                 e.printStackTrace();
             }
-            throwableEntity.setBaseDamage(arrow.getDamage());
             throwableEntity.shootFromRotation(playerIn, playerIn.xRot, playerIn.yRot, 0.0F, 1.5F, 1.0F);
             worldIn.addFreshEntity(throwableEntity);
 

@@ -87,7 +87,7 @@ public class DamagingProjectileEntity extends ThrowableEntity {
 
     @Override
     protected float getGravity() {
-        return 0.001F;
+        return 0.03F;
     }
 
     @Override
@@ -103,4 +103,5 @@ public class DamagingProjectileEntity extends ThrowableEntity {
 
         damage = compound.getFloat("damage");
     }
+
 }

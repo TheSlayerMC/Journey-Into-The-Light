@@ -9,6 +9,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.IPacket;
+import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -44,6 +45,14 @@ public class EntityMoltenKnife extends EntityThrowableArrow implements IRendersA
                     vector3d.x,
                     vector3d.y,
                     vector3d.z);
+        }
+    }
+
+    @Override
+    protected void onHitEntity(EntityRayTraceResult rt) {
+        super.onHitEntity(rt);
+        if(rt.getEntity() != null && rt.getEntity() instanceof LivingEntity) {
+            ((LivingEntity)rt.getEntity()).setSecondsOnFire(2);
         }
     }
 
