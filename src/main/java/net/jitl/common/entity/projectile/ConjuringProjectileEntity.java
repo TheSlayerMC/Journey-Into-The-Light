@@ -17,7 +17,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkHooks;
 //TODO maybe merge with FloroMud?
-@OnlyIn(value = Dist.CLIENT)
 public class ConjuringProjectileEntity extends DamagingProjectileEntity {
 
     public ConjuringProjectileEntity(EntityType<ConjuringProjectileEntity> type, World world) {
