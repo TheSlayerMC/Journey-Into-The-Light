@@ -15,7 +15,7 @@ import net.minecraftforge.fml.network.NetworkHooks;
 public abstract class PiercerEntity extends DamagingProjectileEntity implements IRendersAsItem {
 
     protected int bounces, maxBounces;
-    private LivingEntity thrower;
+    private LivingEntity thrower;//FIXME memory leak
 
     public PiercerEntity(EntityType<? extends DamagingProjectileEntity> type, World world, LivingEntity thrower, float damage, int maxBounces) {
         super(type, world, thrower, damage);

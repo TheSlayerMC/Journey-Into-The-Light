@@ -1,6 +1,6 @@
 package net.jitl.common.entity.projectile;
 
-import net.jitl.common.helper.EnumItemWeapon;
+import net.jitl.init.JEntities;
 import net.jitl.init.JItems;
 import net.jitl.init.JParticleManager;
 import net.minecraft.entity.EntityType;
@@ -24,8 +24,13 @@ public class EntityMoltenKnife extends EntityThrowableArrow implements IRendersA
         super(type, world);
     }
 
-    public EntityMoltenKnife(World worldIn, LivingEntity player) {
-        super(EnumItemWeapon.MOLTEN_KNIFE.getArrowEntity(), worldIn, player);
+    public EntityMoltenKnife(World worldIn, LivingEntity owner) {
+        super(JEntities.MOLTEN_KNIFE_TYPE, worldIn, owner);
+    }
+
+    public EntityMoltenKnife withBaseDamage(double damageIn) {
+        super.setBaseDamage(damageIn);
+        return this;
     }
 
     @Override
@@ -51,8 +56,8 @@ public class EntityMoltenKnife extends EntityThrowableArrow implements IRendersA
     @Override
     protected void onHitEntity(EntityRayTraceResult rt) {
         super.onHitEntity(rt);
-        if(rt.getEntity() != null && rt.getEntity() instanceof LivingEntity) {
-            ((LivingEntity)rt.getEntity()).setSecondsOnFire(2);
+        if (rt.getEntity() != null) {
+            rt.getEntity().setSecondsOnFire(2);
         }
     }
 

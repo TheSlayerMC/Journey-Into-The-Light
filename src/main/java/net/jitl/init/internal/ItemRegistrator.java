@@ -1,26 +1,26 @@
 package net.jitl.init.internal;
 
 import net.jitl.JITL;
-import net.jitl.common.entity.projectile.ConjuringProjectileEntity;
-import net.jitl.common.entity.projectile.EssenciaProjectileEntity;
-import net.jitl.common.entity.projectile.FloroMudEntity;
-import net.jitl.common.helper.EnumItemWeapon;
+import net.jitl.common.entity.projectile.*;
 import net.jitl.common.helper.JArmorMaterial;
 import net.jitl.common.helper.JToolTiers;
 import net.jitl.common.item.*;
 import net.jitl.init.JEntities;
 import net.jitl.init.JFoods;
 import net.jitl.init.JLootTables;
-import net.jitl.init.JTabs;
-import net.jitl.util.JItemProperties;
+import net.jitl.init.JSounds;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
+import net.minecraft.util.SoundEvents;
 import ru.timeconqueror.timecore.api.client.resource.StandardItemModelParents;
 import ru.timeconqueror.timecore.api.registry.ItemRegister;
 import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable;
 
 import java.util.function.Function;
 import java.util.function.Supplier;
+
+import static net.jitl.util.JItemProperties.itemGrouped;
+import static net.jitl.util.JItemProperties.rangedWeaponsGrouped;
 
 public class ItemRegistrator {
     @AutoRegistrable
@@ -56,23 +56,23 @@ public class ItemRegistrator {
         registerItem("glossy_eye", "Glossy Eye");
         registerItem("volcanic_stone", "Volcanic Stone");
         registerItem("sentacoin", "Sentacoin");//TODO make an entity
-        registerItem("sentacoin_bag", "Sentacoin Bag", () -> new Item(new Item.Properties().tab(JTabs.ITEMS)), "item/sentacoin_bag_model");
+        registerItem("sentacoin_bag", "Sentacoin Bag", () -> new Item(itemGrouped()), "item/sentacoin_bag_model");
 
-        registerItem("mud_ball", "Mud Ball", () -> new ThrowableItem(new Item.Properties().tab(JTabs.ITEMS),
-                (world, thrower) -> new FloroMudEntity(JEntities.FLORO_MUD_TYPE, world, thrower, 0.0F)));
+        registerItem("mud_ball", "Mud Ball", () -> new ThrowableItem(itemGrouped(),
+                (world, thrower) -> new FloroMudEntity(JEntities.FLORO_MUD_TYPE, world, thrower, 0.0F)).setSound(() -> SoundEvents.SNOWBALL_THROW));
 
-        registerItem("bradberry", "Bradberry", () -> new Item(new Item.Properties().food(JFoods.BRADBERRY).tab(JTabs.ITEMS)));
+        registerItem("bradberry", "Bradberry", () -> new Item(itemGrouped().food(JFoods.BRADBERRY)));
 
-        registerItem("hongoshroom", "Hongoshroom", () -> new Item(new Item.Properties().food(JFoods.HONGOSROOM).tab(JTabs.ITEMS)));
-        registerItem("honglowshroom", "Honglowshroom", () -> new Item(new Item.Properties().food(JFoods.HONGLOWSROOM).tab(JTabs.ITEMS)));
-        registerItem("floro_pedal", "Floro Pedal", () -> new Item(new Item.Properties().food(JFoods.FLORO_PEDAL).tab(JTabs.ITEMS)));
+        registerItem("hongoshroom", "Hongoshroom", () -> new Item(itemGrouped().food(JFoods.HONGOSROOM)));
+        registerItem("honglowshroom", "Honglowshroom", () -> new Item(itemGrouped().food(JFoods.HONGLOWSROOM)));
+        registerItem("floro_pedal", "Floro Pedal", () -> new Item(itemGrouped().food(JFoods.FLORO_PEDAL)));
 
         registerItem("lunium_powder", "Lunium Powder");
 
-        registerHandheldItem("staff_of_conjuring", "Staff of Conjuring", () -> new StaffItem(new Item.Properties().tab(JTabs.RANGED_WEAPONS),
+        registerHandheldItem("staff_of_conjuring", "Staff of Conjuring", () -> new StaffItem(rangedWeaponsGrouped(),
                 (world, thrower) -> new ConjuringProjectileEntity(JEntities.CONJURING_PROJECTILE_TYPE, world, thrower, 0.0F)));
 
-        registerHandheldItem("staff_of_essencia", "Staff of Essencia", () -> new StaffItem(new Item.Properties().tab(JTabs.RANGED_WEAPONS),
+        registerHandheldItem("staff_of_essencia", "Staff of Essencia", () -> new StaffItem(rangedWeaponsGrouped(),
                 (world, thrower) -> new EssenciaProjectileEntity(JEntities.ESSENCIA_PROJECTILE_TYPE, world, thrower, 0.0F)));
 
         registerItem("loot_pouch_basic", "Loot Pouch", () -> new LootItem(JLootTables.LOOT_POUCH_BASIC, false));
@@ -81,18 +81,18 @@ public class ItemRegistrator {
 
         //NETHER ITEMS
         registerItem("bloodcrust_ingot", "Bloodcrust Ingot");
-        registerItem("firestone_shard", "Firestone Shard", () -> new JFuelItem(new Item.Properties().fireResistant().tab(JTabs.ITEMS), 200));
-        registerItem("firestone_clump", "Firestone Clump", () -> new JFuelItem(new Item.Properties().fireResistant().tab(JTabs.ITEMS), 2000));
+        registerItem("firestone_shard", "Firestone Shard", () -> new JFuelItem(itemGrouped().fireResistant(), 200));
+        registerItem("firestone_clump", "Firestone Clump", () -> new JFuelItem(itemGrouped().fireResistant(), 2000));
         registerItem("warped_quartz", "Warped Quartz");
         registerItem("crimson_quartz", "Crimson Quartz");
         registerItem("blood", "Blood");
         registerItem("powder_of_essencia", "Powder Of Essencia");
 
-		//END ITEMS
-		registerItem("enderillium_shard", "Enderillium Shard");
+        //END ITEMS
+        registerItem("enderillium_shard", "Enderillium Shard");
 
-		//BOILING POINT ITEMS
-		registerItem("ash", "Ash");
+        //BOILING POINT ITEMS
+        registerItem("ash", "Ash");
 
 		//EUCA ITEMS
 		registerItem("celestium_ingot", "Celestium Ingot");
@@ -117,9 +117,9 @@ public class ItemRegistrator {
         registerToolSet("mekyum", "Mekyum", JToolTiers.MEKYUM);
         registerToolSet("storon", "Storon", JToolTiers.STORON);
 
-        registerItem("molten_knife", "Molten Knife", () -> new ThrowableArrowItem(EnumItemWeapon.MOLTEN_KNIFE));
+        registerItem("molten_knife", "Molten Knife", () -> new ThrowableItem(rangedWeaponsGrouped(), (worldIn, owner) -> new EntityMoltenKnife(worldIn, owner).withBaseDamage(10)).setSound(JSounds.STAFF_0::get));
 
-        registerItem("euca_piercer", "Euca Piercer", () -> new ThrowablePiercerItem(EnumItemWeapon.EUCA_PIERCER));
+        registerItem("euca_piercer", "Euca Piercer", () -> new ThrowableItem(rangedWeaponsGrouped(), (world, livingEntity) -> new EucaPiercerEntity(world, livingEntity, 10, 5)).setSound(JSounds.STAFF_0::get));
 
     }
 
@@ -221,19 +221,19 @@ public class ItemRegistrator {
     private static void registerItem(String name, String enName) {
         Function<Item.Properties, ? extends Item> itemFactory = Item::new;
 
-        REGISTER.register(name, () -> itemFactory.apply(JItemProperties.DEFAULT.create()))
+        REGISTER.register(name, () -> itemFactory.apply(itemGrouped()))
                 .model(StandardItemModelParents.DEFAULT)
                 .name(enName);
     }
 
     private static void registerItem(String name, String enName, Function<Item.Properties, ? extends Item> itemFactory) {
-        REGISTER.register(name, () -> itemFactory.apply(JItemProperties.DEFAULT.create()))
+        REGISTER.register(name, () -> itemFactory.apply(itemGrouped()))
                 .model(StandardItemModelParents.DEFAULT)
                 .name(enName);
     }
 
     private static void registerItem(String name, String enName, Function<Item.Properties, ? extends Item> itemFactory, StandardItemModelParents modelType) {
-        REGISTER.register(name, () -> itemFactory.apply(JItemProperties.DEFAULT.create()))
+        REGISTER.register(name, () -> itemFactory.apply(itemGrouped()))
                 .model(modelType)
                 .name(enName);
     }

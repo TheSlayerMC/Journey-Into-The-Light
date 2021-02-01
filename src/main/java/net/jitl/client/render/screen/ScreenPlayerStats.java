@@ -4,13 +4,14 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.jitl.JITL;
 import net.jitl.common.container.ContainerEmpty;
-import net.jitl.common.helper.EnumHexColor;
+import net.jitl.common.helper.ArgbColor;
 import net.jitl.common.helper.EnumKnowledgeType;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 import org.jetbrains.annotations.NotNull;
 import org.lwjgl.opengl.GL11;
 
@@ -158,7 +159,7 @@ public class ScreenPlayerStats extends ContainerScreen<ContainerEmpty> {
 
         int getLevelCount = 48;
 
-        font.drawShadow(matrixStack, "" + getLevelCount, getLevelCount > 10 ? lvX - 2 : getLevelCount > 100 ? lvX - 4 : lvX, lvY, EnumHexColor.LIGHT_BLUE.getInt());
+        font.drawShadow(matrixStack, "" + getLevelCount, getLevelCount > 10 ? lvX - 2 : getLevelCount > 100 ? lvX - 4 : lvX, lvY, ArgbColor.from(TextFormatting.BLUE));
         RenderSystem.popMatrix();
         RenderSystem.enableDepthTest();
     }
