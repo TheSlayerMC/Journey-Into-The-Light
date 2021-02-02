@@ -18,5 +18,11 @@
   "spawners": {},
   "spawn_costs": {},
   "carvers": {},
-  "features": []
+  "features": [
+    [
+      "jitl:goldite_bulb",
+      "jitl:goldite_flower",
+      "jitl:goldite_stalks"
+    ]
+  ]
 }

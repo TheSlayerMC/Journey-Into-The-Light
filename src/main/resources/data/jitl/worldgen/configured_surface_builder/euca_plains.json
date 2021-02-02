@@ -2,7 +2,7 @@
   "type": "default",
   "config": {
     "top_material": {
-      "Name": "jitl:goldite_grass_block",
+      "Name": "jitl:euca_gold_grass_block",
       "Properties": {
         "snowy": "false",
         "double_drops": "false"

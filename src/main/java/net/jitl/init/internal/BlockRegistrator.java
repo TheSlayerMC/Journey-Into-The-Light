@@ -192,12 +192,28 @@ public class BlockRegistrator {
 
         registerDefaultBlock("euca_portal", "Euca Portal", () -> new JBasePortalBlock(JBlockProperties.PORTAL.create(), Dimensions.EUCA, JBlocks.EUCA_PORTAL_FRAME));
 
+
+        registerSpeciallyRenderedBlock("euca_gold_grass_block", "Euca Gold Grass", () -> new Block(JBlockProperties.GRASS_PROPS.create()),
+                () -> BlockModels.cubeBottomTopModel(JITL.tl("block/euca_gold_grass_block_top"), JITL.tl("block/euca_gold_grass_block_side"), JITL.tl("block/goldite_dirt")));
         registerSpeciallyRenderedBlock("goldite_grass_block", "Goldite Grass", () -> new Block(JBlockProperties.GRASS_PROPS.create()),
                 () -> BlockModels.cubeBottomTopModel(JITL.tl("block/goldite_grass_block_top"), JITL.tl("block/goldite_grass_block_side"), JITL.tl("block/goldite_dirt")));
+
         registerDefaultBlock("goldite_dirt", "Goldite Dirt", () -> new Block(JBlockProperties.DIRT_PROPS.create()));
         registerDefaultBlock("goldite_stone", "Goldite Stone", () -> new Block(JBlockProperties.STONE_PROPS.create()));
 
-        registerTallCrossRenderedBlock("goldite_tall_grass", "Tall Goldite Grass", () -> new JDoublePlantBlock(JBlockProperties.PLANT_PROPS.create()).setPredicate(GroundPredicate.EUCA_GOLD_GRASS_BLOCK));
+        registerTallCrossRenderedBlock("goldite_tall_grass", "Tall Goldite Grass", () -> new JDoublePlantBlock(JBlockProperties.PLANT_PROPS.create()).setPredicate(GroundPredicate.EUCA_GRASS_BLOCKS));
+
+        registerSpeciallyRenderedBlock("goldite_bulb", "Goldite Bulb", () -> new JPlantBlock(JBlockProperties.PLANT_PROPS.create())
+                        .setGroundPredicate(GroundPredicate.EUCA_GRASS_BLOCKS),
+                () -> BlockModels.crossModel(JITL.tl("block/goldite_bulb")));
+
+        registerSpeciallyRenderedBlock("goldite_flower", "Goldite Flower", () -> new JPlantBlock(JBlockProperties.PLANT_PROPS.create())
+                        .setGroundPredicate(GroundPredicate.EUCA_GRASS_BLOCKS),
+                () -> BlockModels.crossModel(JITL.tl("block/goldite_flower")));
+
+        registerSpeciallyRenderedBlock("goldite_stalks", "Goldite Stalks", () -> new JPlantBlock(JBlockProperties.PLANT_PROPS.create())
+                        .setGroundPredicate(GroundPredicate.EUCA_GRASS_BLOCKS),
+                () -> BlockModels.crossModel(JITL.tl("block/goldite_stalks")));
 
         registerSpeciallyRenderedBlock("euca_silver_grass_block", "Euca Silver Grass", () -> new Block(JBlockProperties.GRASS_PROPS.create()),
                 () -> BlockModels.cubeBottomTopModel(JITL.tl("block/euca_silver_grass_block_top"), JITL.tl("block/euca_silver_grass_block_side"), JITL.tl("block/euca_silver_dirt")));

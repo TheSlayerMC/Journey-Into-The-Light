@@ -38,6 +38,8 @@ public class JConfiguredFeatures {
     public static final Predicate<BiomeLoadingEvent> IN_CRIMSON_FOREST = event -> Objects.equals(event.getName(), new ResourceLocation("crimson_forest"));
 
     public static final Predicate<BiomeLoadingEvent> GOLDITE_GRAINS = event -> Objects.equals(event.getName(), JITL.rl("euca/euca_goldite_grains"));
+    public static final Predicate<BiomeLoadingEvent> EUCA_GOLD_PLAINS = event -> Objects.equals(event.getName(), JITL.rl("euca/euca_plains"));
+    public static final Predicate<BiomeLoadingEvent> EUCA_SILVER_PLAINS = event -> Objects.equals(event.getName(), JITL.rl("euca/euca_silver_plains"));
 
     public static final Predicate<BiomeLoadingEvent> COMMON_BIOMES = IN_NETHER.and(IN_END).negate();
 
@@ -131,7 +133,7 @@ public class JConfiguredFeatures {
                             new WeightedBlockStateProvider()
                                     .add(JBlocks.GOLDITE_TALL_GRASS.defaultBlockState(), 1),
                             new DoublePlantBlockPlacer()))
-                            .tries(256)
+                            .tries(100)
                             .xspread(16)
                             .zspread(16)
                             .whitelist(ImmutableSet.of(
@@ -141,6 +143,60 @@ public class JConfiguredFeatures {
                     .range(128)
                     .count(10))
                     .setBiomePredicate(GOLDITE_GRAINS)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> GOLDITE_BULB =
+            REGISTER.register("goldite_bulb", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
+                    .configured((new BlockClusterFeatureConfig.Builder(
+                            new WeightedBlockStateProvider()
+                                    .add(JBlocks.GOLDITE_BULB.defaultBlockState(), 1),
+                            new SimpleBlockPlacer()))
+                            .tries(50)
+                            .xspread(10)
+                            .zspread(10)
+                            .whitelist(ImmutableSet.of(
+                                    JBlocks.GOLDITE_GRASS_BLOCK, JBlocks.EUCA_GOLD_GRASS_BLOCK))
+                            .noProjection()
+                            .build())
+                    .range(128)
+                    .count(10))
+                    .setBiomePredicate(GOLDITE_GRAINS.and(EUCA_GOLD_PLAINS))
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> GOLDITE_FLOWER =
+            REGISTER.register("goldite_flower", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
+                    .configured((new BlockClusterFeatureConfig.Builder(
+                            new WeightedBlockStateProvider()
+                                    .add(JBlocks.GOLDITE_FLOWER.defaultBlockState(), 1),
+                            new SimpleBlockPlacer()))
+                            .tries(50)
+                            .xspread(6)
+                            .zspread(6)
+                            .whitelist(ImmutableSet.of(
+                                    JBlocks.GOLDITE_GRASS_BLOCK, JBlocks.EUCA_GOLD_GRASS_BLOCK))
+                            .noProjection()
+                            .build())
+                    .range(128)
+                    .count(10))
+                    .setBiomePredicate(GOLDITE_GRAINS.and(EUCA_GOLD_PLAINS))
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> GOLDITE_STALKS =
+            REGISTER.register("goldite_stalks", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
+                    .configured((new BlockClusterFeatureConfig.Builder(
+                            new WeightedBlockStateProvider()
+                                    .add(JBlocks.GOLDITE_STALKS.defaultBlockState(), 1),
+                            new SimpleBlockPlacer()))
+                            .tries(50)
+                            .xspread(5)
+                            .zspread(5)
+                            .whitelist(ImmutableSet.of(
+                                    JBlocks.GOLDITE_GRASS_BLOCK, JBlocks.EUCA_GOLD_GRASS_BLOCK))
+                            .noProjection()
+                            .build())
+                    .range(128)
+                    .count(10))
+                    .setBiomePredicate(GOLDITE_GRAINS.and(EUCA_GOLD_PLAINS))
                     .asPromise();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> SMALL_GLOWSHROOMS =

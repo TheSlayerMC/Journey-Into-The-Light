@@ -116,8 +116,15 @@ public class JBlocks {
     public static final Block EUCA_PORTAL = promise();
 
     public static final Block GOLDITE_GRASS_BLOCK = promise();
+	public static final Block EUCA_GOLD_GRASS_BLOCK = promise();
+	public static final Block EUCA_SILVER_GRASS_BLOCK = promise();
+
 	public static final Block GOLDITE_DIRT = promise();
 	public static final Block GOLDITE_STONE = promise();
 	public static final JDoublePlantBlock GOLDITE_TALL_GRASS = promise();
+
+	public static final JPlantBlock GOLDITE_BULB = promise();
+	public static final JPlantBlock GOLDITE_STALKS = promise();
+	public static final JPlantBlock GOLDITE_FLOWER = promise();
 
 }

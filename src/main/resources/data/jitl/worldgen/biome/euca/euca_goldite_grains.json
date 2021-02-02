@@ -20,7 +20,10 @@
   "carvers": {},
   "features": [
     [
-      "jitl:tall_goldite_grass"
+      "jitl:tall_goldite_grass",
+      "jitl:goldite_bulb",
+      "jitl:goldite_flower",
+      "jitl:goldite_stalks"
     ]
   ]
 }
