@@ -1,7 +1,7 @@
 {
   "surface_builder": "jitl:euca_goldite_grains",
-  "depth": 0.835,
-  "scale": 0.75,
+  "depth": 1.535,
+  "scale": 0.45,
   "temperature": 0.8,
   "downfall": 0.0,
   "precipitation": "rain",
