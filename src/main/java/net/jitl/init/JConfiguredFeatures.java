@@ -416,6 +416,28 @@ public class JConfiguredFeatures {
                     .setBiomePredicate(IN_END)
                     .asPromise();
 
+    /*public static final Promised<? extends ConfiguredFeature<?, ?>> MEKYUM_ORE =
+            REGISTER.register("mekyum_ore",
+                    Decoration.UNDERGROUND_ORES,
+                    defaultOreFeature(() -> JBlocks.MEKYUM_ORE.defaultBlockState(), JRuleTests.STONE_EUCA, 12, 128, 20))
+                    .setBiomePredicate(EUCA_SILVER_PLAINS)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> STORON_ORE =
+            REGISTER.register("storon_ore",
+                    Decoration.UNDERGROUND_ORES,
+                    defaultOreFeature(() -> JBlocks.STORON_ORE.defaultBlockState(), JRuleTests.STONE_EUCA, 12, 128, 20))
+                    .setBiomePredicate(EUCA_GOLD_PLAINS)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> CELESTIUM_ORE =
+            REGISTER.register("celestium_ore",
+                    Decoration.UNDERGROUND_ORES,
+                    defaultOreFeature(() -> JBlocks.CELESTIUM_ORE.defaultBlockState(), JRuleTests.STONE_EUCA, 12, 128, 20))
+                    .setBiomePredicate(GOLDITE_GRAINS)
+                    .asPromise();
+    */
+
     public static final Promised<? extends ConfiguredFeature<?, ?>> MUD_DISK =
             REGISTER.register("mud_disk",
                     Decoration.UNDERGROUND_ORES,
