@@ -328,6 +328,7 @@ public class BlockRegistrator {
     private static void registerSpeciallyRenderedBlock(String name, String enName, Supplier<Block> blockSupplier, Supplier<BlockModel> blockModelSupplier) {
         REGISTER.register(name, blockSupplier)
                 .name(enName)
+                .renderLayer(RenderType::cutoutMipped)
                 .defaultBlockItem(JTabs.BLOCKS)
                 .oneVariantState(new BlockModelLocation(JITL.MODID, "block/" + name))
                 .model(JITL.bml("block/" + name), blockModelSupplier);
