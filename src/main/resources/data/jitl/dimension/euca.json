@@ -112,9 +112,9 @@
         "amplified": false,
         "sampling": {
           "xz_scale": 1,
-          "y_scale": 1,
+          "y_scale": 5,
           "xz_factor": 80,
-          "y_factor": 80
+          "y_factor": 120
         },
         "bottom_slide": {
           "target": -40,
