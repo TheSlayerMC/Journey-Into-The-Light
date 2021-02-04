@@ -133,14 +133,14 @@ public class JConfiguredFeatures {
                             new WeightedBlockStateProvider()
                                     .add(JBlocks.GOLDITE_TALL_GRASS.defaultBlockState(), 1),
                             new DoublePlantBlockPlacer()))
-                            .tries(100)
+                            .tries(120)
                             .xspread(16)
                             .zspread(16)
                             .whitelist(ImmutableSet.of(
                                     JBlocks.GOLDITE_GRASS_BLOCK))
                             .noProjection()
                             .build())
-                    .range(128)
+                    .range(250)
                     .count(10))
                     .setBiomePredicate(GOLDITE_GRAINS)
                     .asPromise();
@@ -151,14 +151,14 @@ public class JConfiguredFeatures {
                             new WeightedBlockStateProvider()
                                     .add(JBlocks.GOLDITE_BULB.defaultBlockState(), 1),
                             new SimpleBlockPlacer()))
-                            .tries(50)
+                            .tries(80)
                             .xspread(10)
                             .zspread(10)
                             .whitelist(ImmutableSet.of(
                                     JBlocks.GOLDITE_GRASS_BLOCK, JBlocks.EUCA_GOLD_GRASS_BLOCK))
                             .noProjection()
                             .build())
-                    .range(128)
+                    .range(250)
                     .count(10))
                     .setBiomePredicate(GOLDITE_GRAINS.and(EUCA_GOLD_PLAINS))
                     .asPromise();
@@ -169,14 +169,14 @@ public class JConfiguredFeatures {
                             new WeightedBlockStateProvider()
                                     .add(JBlocks.EUCA_SILVER_GOLD_FLOWER.defaultBlockState(), 1),
                             new SimpleBlockPlacer()))
-                            .tries(50)
+                            .tries(80)
                             .xspread(10)
                             .zspread(10)
                             .whitelist(ImmutableSet.of(
                                     JBlocks.EUCA_SILVER_GRASS_BLOCK, JBlocks.EUCA_GOLD_GRASS_BLOCK))
                             .noProjection()
                             .build())
-                    .range(128)
+                    .range(250)
                     .count(10))
                     .setBiomePredicate(EUCA_SILVER_PLAINS.and(EUCA_GOLD_PLAINS))
                     .asPromise();
@@ -187,14 +187,14 @@ public class JConfiguredFeatures {
                             new WeightedBlockStateProvider()
                                     .add(JBlocks.EUCA_SILVER_SHORT_GRASS.defaultBlockState(), 1),
                             new SimpleBlockPlacer()))
-                            .tries(50)
+                            .tries(80)
                             .xspread(6)
                             .zspread(6)
                             .whitelist(ImmutableSet.of(
                                     JBlocks.EUCA_SILVER_GRASS_BLOCK))
                             .noProjection()
                             .build())
-                    .range(128)
+                    .range(250)
                     .count(10))
                     .setBiomePredicate(EUCA_SILVER_PLAINS)
                     .asPromise();
@@ -205,14 +205,14 @@ public class JConfiguredFeatures {
                             new WeightedBlockStateProvider()
                                     .add(JBlocks.EUCA_SILVER_SPROUTS.defaultBlockState(), 1),
                             new SimpleBlockPlacer()))
-                            .tries(50)
+                            .tries(80)
                             .xspread(6)
                             .zspread(6)
                             .whitelist(ImmutableSet.of(
                                     JBlocks.EUCA_SILVER_GRASS_BLOCK))
                             .noProjection()
                             .build())
-                    .range(128)
+                    .range(250)
                     .count(10))
                     .setBiomePredicate(EUCA_SILVER_PLAINS)
                     .asPromise();
@@ -223,14 +223,14 @@ public class JConfiguredFeatures {
                             new WeightedBlockStateProvider()
                                     .add(JBlocks.EUCA_SILVER_TALL_GRASS.defaultBlockState(), 1),
                             new SimpleBlockPlacer()))
-                            .tries(50)
+                            .tries(100)
                             .xspread(6)
                             .zspread(6)
                             .whitelist(ImmutableSet.of(
                                     JBlocks.EUCA_SILVER_GRASS_BLOCK))
                             .noProjection()
                             .build())
-                    .range(128)
+                    .range(250)
                     .count(10))
                     .setBiomePredicate(EUCA_SILVER_PLAINS)
                     .asPromise();
@@ -241,14 +241,14 @@ public class JConfiguredFeatures {
                             new WeightedBlockStateProvider()
                                     .add(JBlocks.EUCA_TALL_FLOWERS.defaultBlockState(), 1),
                             new SimpleBlockPlacer()))
-                            .tries(50)
+                            .tries(80)
                             .xspread(6)
                             .zspread(6)
                             .whitelist(ImmutableSet.of(
                                     JBlocks.EUCA_GOLD_GRASS_BLOCK))
                             .noProjection()
                             .build())
-                    .range(128)
+                    .range(250)
                     .count(10))
                     .setBiomePredicate(EUCA_GOLD_PLAINS)
                     .asPromise();
@@ -266,7 +266,7 @@ public class JConfiguredFeatures {
                                     JBlocks.EUCA_GOLD_GRASS_BLOCK))
                             .noProjection()
                             .build())
-                    .range(128)
+                    .range(250)
                     .count(10))
                     .setBiomePredicate(EUCA_GOLD_PLAINS)
                     .asPromise();
@@ -277,14 +277,14 @@ public class JConfiguredFeatures {
                             new WeightedBlockStateProvider()
                                     .add(JBlocks.GOLDITE_FLOWER.defaultBlockState(), 1),
                             new SimpleBlockPlacer()))
-                            .tries(50)
+                            .tries(80)
                             .xspread(6)
                             .zspread(6)
                             .whitelist(ImmutableSet.of(
                                     JBlocks.GOLDITE_GRASS_BLOCK, JBlocks.EUCA_GOLD_GRASS_BLOCK))
                             .noProjection()
                             .build())
-                    .range(128)
+                    .range(250)
                     .count(10))
                     .setBiomePredicate(GOLDITE_GRAINS.and(EUCA_GOLD_PLAINS))
                     .asPromise();
@@ -302,7 +302,7 @@ public class JConfiguredFeatures {
                                     JBlocks.GOLDITE_GRASS_BLOCK, JBlocks.EUCA_GOLD_GRASS_BLOCK))
                             .noProjection()
                             .build())
-                    .range(128)
+                    .range(250)
                     .count(10))
                     .setBiomePredicate(GOLDITE_GRAINS.and(EUCA_GOLD_PLAINS))
                     .asPromise();
