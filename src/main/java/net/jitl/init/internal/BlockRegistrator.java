@@ -215,6 +215,35 @@ public class BlockRegistrator {
                         .setGroundPredicate(GroundPredicate.EUCA_GRASS_BLOCKS),
                 () -> BlockModels.crossModel(JITL.tl("block/goldite_stalks")));
 
+        registerSpeciallyRenderedBlock("euca_tall_grass", "Euca Tall Grass", () -> new JPlantBlock(JBlockProperties.PLANT_PROPS.create())
+                        .setGroundPredicate(GroundPredicate.EUCA_GRASS_BLOCKS),
+                () -> BlockModels.crossModel(JITL.tl("block/euca_tall_grass")));
+
+        registerSpeciallyRenderedBlock("euca_tall_flowers", "Euca Tall Flowers", () -> new JPlantBlock(JBlockProperties.PLANT_PROPS.create())
+                        .setGroundPredicate(GroundPredicate.EUCA_GRASS_BLOCKS),
+                () -> BlockModels.crossModel(JITL.tl("block/euca_tall_flowers")));
+
+        registerSpeciallyRenderedBlock("euca_blue_flower", "Euca Blue Flowers", () -> new JPlantBlock(JBlockProperties.PLANT_PROPS.create())
+                        .setGroundPredicate(GroundPredicate.EUCA_GRASS_BLOCKS),
+                () -> BlockModels.crossModel(JITL.tl("block/euca_blue_flower")));
+
+        registerSpeciallyRenderedBlock("euca_silver_gold_flower", "Euca Silver Gold Flower", () -> new JPlantBlock(JBlockProperties.PLANT_PROPS.create())
+                        .setGroundPredicate(GroundPredicate.EUCA_GRASS_BLOCKS),
+                () -> BlockModels.crossModel(JITL.tl("block/euca_silver_gold_flower")));
+
+        registerSpeciallyRenderedBlock("euca_silver_short_grass", "Euca Silver Short Grass", () -> new JPlantBlock(JBlockProperties.PLANT_PROPS.create())
+                        .setGroundPredicate(GroundPredicate.EUCA_GRASS_BLOCKS),
+                () -> BlockModels.crossModel(JITL.tl("block/euca_silver_short_grass")));
+
+        registerSpeciallyRenderedBlock("euca_silver_tall_grass", "Euca Silver Tall Grass", () -> new JPlantBlock(JBlockProperties.PLANT_PROPS.create())
+                        .setGroundPredicate(GroundPredicate.EUCA_GRASS_BLOCKS),
+                () -> BlockModels.crossModel(JITL.tl("block/euca_silver_tall_grass")));
+
+        registerSpeciallyRenderedBlock("euca_silver_sprouts", "Euca Silver Sprouts", () -> new JPlantBlock(JBlockProperties.PLANT_PROPS.create())
+                        .setGroundPredicate(GroundPredicate.EUCA_GRASS_BLOCKS),
+                () -> BlockModels.crossModel(JITL.tl("block/euca_silver_sprouts")));
+
+
         registerSpeciallyRenderedBlock("euca_silver_grass_block", "Euca Silver Grass", () -> new Block(JBlockProperties.GRASS_PROPS.create()),
                 () -> BlockModels.cubeBottomTopModel(JITL.tl("block/euca_silver_grass_block_top"), JITL.tl("block/euca_silver_grass_block_side"), JITL.tl("block/euca_silver_dirt")));
         registerDefaultBlock("euca_silver_dirt", "Euca Silver Dirt", () -> new Block(JBlockProperties.DIRT_PROPS.create()));

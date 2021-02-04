@@ -22,7 +22,10 @@
     [
       "jitl:goldite_bulb",
       "jitl:goldite_flower",
-      "jitl:goldite_stalks"
+      "jitl:goldite_stalks",
+      "jitl:euca_silver_gold_flower",
+      "jitl:euca_tall_flowers",
+      "jitl:euca_tall_grass"
     ]
   ]
 }

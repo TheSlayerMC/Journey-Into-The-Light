@@ -163,6 +163,114 @@ public class JConfiguredFeatures {
                     .setBiomePredicate(GOLDITE_GRAINS.and(EUCA_GOLD_PLAINS))
                     .asPromise();
 
+    public static final Promised<? extends ConfiguredFeature<?, ?>> EUCA_SILVER_GOLD_FLOWER =
+            REGISTER.register("euca_silver_gold_flower", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
+                    .configured((new BlockClusterFeatureConfig.Builder(
+                            new WeightedBlockStateProvider()
+                                    .add(JBlocks.EUCA_SILVER_GOLD_FLOWER.defaultBlockState(), 1),
+                            new SimpleBlockPlacer()))
+                            .tries(50)
+                            .xspread(10)
+                            .zspread(10)
+                            .whitelist(ImmutableSet.of(
+                                    JBlocks.EUCA_SILVER_GRASS_BLOCK, JBlocks.EUCA_GOLD_GRASS_BLOCK))
+                            .noProjection()
+                            .build())
+                    .range(128)
+                    .count(10))
+                    .setBiomePredicate(EUCA_SILVER_PLAINS.and(EUCA_GOLD_PLAINS))
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> EUCA_SILVER_SHORT_GRASS =
+            REGISTER.register("euca_silver_short_grass", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
+                    .configured((new BlockClusterFeatureConfig.Builder(
+                            new WeightedBlockStateProvider()
+                                    .add(JBlocks.EUCA_SILVER_SHORT_GRASS.defaultBlockState(), 1),
+                            new SimpleBlockPlacer()))
+                            .tries(50)
+                            .xspread(6)
+                            .zspread(6)
+                            .whitelist(ImmutableSet.of(
+                                    JBlocks.EUCA_SILVER_GRASS_BLOCK))
+                            .noProjection()
+                            .build())
+                    .range(128)
+                    .count(10))
+                    .setBiomePredicate(EUCA_SILVER_PLAINS)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> EUCA_SILVER_SPROUTS =
+            REGISTER.register("euca_silver_sprouts", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
+                    .configured((new BlockClusterFeatureConfig.Builder(
+                            new WeightedBlockStateProvider()
+                                    .add(JBlocks.EUCA_SILVER_SPROUTS.defaultBlockState(), 1),
+                            new SimpleBlockPlacer()))
+                            .tries(50)
+                            .xspread(6)
+                            .zspread(6)
+                            .whitelist(ImmutableSet.of(
+                                    JBlocks.EUCA_SILVER_GRASS_BLOCK))
+                            .noProjection()
+                            .build())
+                    .range(128)
+                    .count(10))
+                    .setBiomePredicate(EUCA_SILVER_PLAINS)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> EUCA_SILVER_TALL_GRASS =
+            REGISTER.register("euca_silver_tall_grass", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
+                    .configured((new BlockClusterFeatureConfig.Builder(
+                            new WeightedBlockStateProvider()
+                                    .add(JBlocks.EUCA_SILVER_TALL_GRASS.defaultBlockState(), 1),
+                            new SimpleBlockPlacer()))
+                            .tries(50)
+                            .xspread(6)
+                            .zspread(6)
+                            .whitelist(ImmutableSet.of(
+                                    JBlocks.EUCA_SILVER_GRASS_BLOCK))
+                            .noProjection()
+                            .build())
+                    .range(128)
+                    .count(10))
+                    .setBiomePredicate(EUCA_SILVER_PLAINS)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> EUCA_TALL_FLOWERS =
+            REGISTER.register("euca_tall_flower", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
+                    .configured((new BlockClusterFeatureConfig.Builder(
+                            new WeightedBlockStateProvider()
+                                    .add(JBlocks.EUCA_TALL_FLOWERS.defaultBlockState(), 1),
+                            new SimpleBlockPlacer()))
+                            .tries(50)
+                            .xspread(6)
+                            .zspread(6)
+                            .whitelist(ImmutableSet.of(
+                                    JBlocks.EUCA_GOLD_GRASS_BLOCK))
+                            .noProjection()
+                            .build())
+                    .range(128)
+                    .count(10))
+                    .setBiomePredicate(EUCA_GOLD_PLAINS)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> EUCA_TALL_GRASS =
+            REGISTER.register("euca_tall_grass", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
+                    .configured((new BlockClusterFeatureConfig.Builder(
+                            new WeightedBlockStateProvider()
+                                    .add(JBlocks.EUCA_TALL_GRASS.defaultBlockState(), 1),
+                            new SimpleBlockPlacer()))
+                            .tries(100)
+                            .xspread(10)
+                            .zspread(10)
+                            .whitelist(ImmutableSet.of(
+                                    JBlocks.EUCA_GOLD_GRASS_BLOCK))
+                            .noProjection()
+                            .build())
+                    .range(128)
+                    .count(10))
+                    .setBiomePredicate(EUCA_GOLD_PLAINS)
+                    .asPromise();
+
     public static final Promised<? extends ConfiguredFeature<?, ?>> GOLDITE_FLOWER =
             REGISTER.register("goldite_flower", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
                     .configured((new BlockClusterFeatureConfig.Builder(
@@ -187,9 +295,9 @@ public class JConfiguredFeatures {
                             new WeightedBlockStateProvider()
                                     .add(JBlocks.GOLDITE_STALKS.defaultBlockState(), 1),
                             new SimpleBlockPlacer()))
-                            .tries(50)
-                            .xspread(5)
-                            .zspread(5)
+                            .tries(80)
+                            .xspread(10)
+                            .zspread(10)
                             .whitelist(ImmutableSet.of(
                                     JBlocks.GOLDITE_GRASS_BLOCK, JBlocks.EUCA_GOLD_GRASS_BLOCK))
                             .noProjection()

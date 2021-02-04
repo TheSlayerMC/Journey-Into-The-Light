@@ -127,4 +127,11 @@ public class JBlocks {
 	public static final JPlantBlock GOLDITE_STALKS = promise();
 	public static final JPlantBlock GOLDITE_FLOWER = promise();
 
+	public static final JPlantBlock EUCA_SILVER_GOLD_FLOWER = promise();
+	public static final JPlantBlock EUCA_SILVER_SHORT_GRASS = promise();
+	public static final JPlantBlock EUCA_SILVER_SPROUTS = promise();
+	public static final JPlantBlock EUCA_SILVER_TALL_GRASS = promise();
+	public static final JPlantBlock EUCA_TALL_FLOWERS = promise();
+	public static final JPlantBlock EUCA_TALL_GRASS = promise();
+
 }

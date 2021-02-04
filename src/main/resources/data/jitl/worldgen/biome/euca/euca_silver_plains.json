@@ -18,5 +18,12 @@
   "spawners": {},
   "spawn_costs": {},
   "carvers": {},
-  "features": []
+  "features": [
+    [
+      "jitl:euca_silver_gold_flower",
+      "jitl:euca_silver_short_grass",
+      "jitl:euca_silver_sprouts",
+      "jitl:euca_silver_tall_grass"
+    ]
+  ]
 }
