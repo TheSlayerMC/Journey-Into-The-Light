@@ -20,11 +20,8 @@
   "carvers": {},
   "features": [
     [
-      "jitl:tall_goldite_grass",
-      "jitl:goldite_bulb",
-      "jitl:goldite_flower",
-      "jitl:goldite_stalks",
-      "jitl:euca_tall_flowers",
+      "jitl:goldite_foiliage",
+      "jitl:euca_goldite_gold_foiliage",
       "jitl:celestium_ore"
     ]
   ]

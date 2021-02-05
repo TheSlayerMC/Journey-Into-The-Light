@@ -20,12 +20,9 @@
   "carvers": {},
   "features": [
     [
-      "jitl:goldite_bulb",
-      "jitl:goldite_flower",
-      "jitl:goldite_stalks",
-      "jitl:euca_silver_gold_flower",
-      "jitl:euca_tall_flowers",
-      "jitl:euca_tall_grass",
+      "jitl:euca_gold_foiliage",
+      "jitl:euca_silver_gold_foiliage",
+      "jitl:euca_goldite_gold_foiliage",
       "jitl:storon_ore"
 
     ]
