@@ -21,6 +21,7 @@
   "features": [
     [
       "jitl:goldite_foiliage",
+      "jitl:goldite_tall_foiliage",
       "jitl:euca_goldite_gold_foiliage",
       "jitl:celestium_ore"
     ]

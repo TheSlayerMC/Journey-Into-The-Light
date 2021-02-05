@@ -127,13 +127,30 @@ public class JConfiguredFeatures {
                     .setBiomePredicate(COMMON_BIOMES)
                     .asPromise();
 
+    public static final Promised<? extends ConfiguredFeature<?, ?>> GOLDITE_TALL_FOILIAGE =
+            REGISTER.register("goldite_tall_foiliage", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
+                    .configured((new BlockClusterFeatureConfig.Builder(
+                            new WeightedBlockStateProvider()
+                                    .add(JBlocks.GOLDITE_TALL_GRASS.defaultBlockState(), 1),
+                            new DoublePlantBlockPlacer()))
+                            .tries(120)
+                            .xspread(16)
+                            .zspread(16)
+                            .whitelist(ImmutableSet.of(
+                                    JBlocks.GOLDITE_GRASS_BLOCK))
+                            .noProjection()
+                            .build())
+                    .range(250)
+                    .count(10))
+                    .setBiomePredicate(GOLDITE_GRAINS)
+                    .asPromise();
+
     public static final Promised<? extends ConfiguredFeature<?, ?>> GOLDITE_FOILIAGE =
             REGISTER.register("goldite_foiliage", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
                     .configured((new BlockClusterFeatureConfig.Builder(
                             new WeightedBlockStateProvider()
-                                    .add(JBlocks.GOLDITE_TALL_GRASS.defaultBlockState(), 1)
                                     .add(JBlocks.GOLDITE_BULB.defaultBlockState(), 1),
-                            new DoublePlantBlockPlacer()))
+                            new SimpleBlockPlacer()))
                             .tries(120)
                             .xspread(16)
                             .zspread(16)
