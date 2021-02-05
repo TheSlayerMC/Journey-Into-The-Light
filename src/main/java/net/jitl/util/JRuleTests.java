@@ -5,6 +5,8 @@ import net.minecraft.block.Blocks;
 import net.minecraft.world.gen.feature.template.BlockStateMatchRuleTest;
 import net.minecraft.world.gen.feature.template.RuleTest;
 
+import java.util.function.Supplier;
+
 public class JRuleTests {
 
 	public static RuleTest GRASS = new BlockStateMatchRuleTest(Blocks.GRASS_BLOCK.defaultBlockState());
@@ -15,6 +17,5 @@ public class JRuleTests {
 	public static RuleTest BASALT = new BlockStateMatchRuleTest(Blocks.BASALT.defaultBlockState());
 	public static RuleTest END_STONE = new BlockStateMatchRuleTest(Blocks.END_STONE.defaultBlockState());
 
-	//fixme JBlocks.GOLDITE_STONE is null upon creating JRuleTests, so it crashes
-	//public static RuleTest STONE_EUCA = new BlockStateMatchRuleTest(JBlocks.GOLDITE_STONE.defaultBlockState());
+	public static Supplier<RuleTest> STONE_EUCA = () -> new BlockStateMatchRuleTest(JBlocks.GOLDITE_STONE.defaultBlockState());
 }

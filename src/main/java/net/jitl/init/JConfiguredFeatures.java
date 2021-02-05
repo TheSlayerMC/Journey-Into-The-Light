@@ -416,7 +416,7 @@ public class JConfiguredFeatures {
                     .setBiomePredicate(IN_END)
                     .asPromise();
 
-    /*public static final Promised<? extends ConfiguredFeature<?, ?>> MEKYUM_ORE =
+    public static final Promised<? extends ConfiguredFeature<?, ?>> MEKYUM_ORE =
             REGISTER.register("mekyum_ore",
                     Decoration.UNDERGROUND_ORES,
                     defaultOreFeature(() -> JBlocks.MEKYUM_ORE.defaultBlockState(), JRuleTests.STONE_EUCA, 12, 128, 20))
@@ -436,7 +436,7 @@ public class JConfiguredFeatures {
                     defaultOreFeature(() -> JBlocks.CELESTIUM_ORE.defaultBlockState(), JRuleTests.STONE_EUCA, 12, 128, 20))
                     .setBiomePredicate(GOLDITE_GRAINS)
                     .asPromise();
-    */
+
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> MUD_DISK =
             REGISTER.register("mud_disk",
@@ -457,6 +457,10 @@ public class JConfiguredFeatures {
      */
     private static Supplier<ConfiguredFeature<?, ?>> defaultOreFeature(Supplier<BlockState> oreSup, RuleTest spawnBlock, int size, int range, int count) {
         return () -> Feature.ORE.configured(new OreFeatureConfig(spawnBlock, oreSup.get(), size)).range(range).squared().count(count);
+    }
+
+    private static Supplier<ConfiguredFeature<?, ?>> defaultOreFeature(Supplier<BlockState> oreSup, Supplier<RuleTest> spawnBlock, int size, int range, int count) {
+        return () -> Feature.ORE.configured(new OreFeatureConfig(spawnBlock.get(), oreSup.get(), size)).range(range).squared().count(count);
     }
 
     private static Supplier<ConfiguredFeature<?, ?>> netherOreFeature(Supplier<BlockState> oreSup, RuleTest spawnBlock, int size, int count) {
