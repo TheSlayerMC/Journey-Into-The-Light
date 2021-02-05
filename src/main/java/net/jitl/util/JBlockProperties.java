@@ -2,8 +2,11 @@ package net.jitl.util;
 
 import net.jitl.init.JSoundTypes;
 import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.material.MaterialColor;
+import net.minecraft.util.Direction;
 import net.minecraftforge.common.ToolType;
 import ru.timeconqueror.timecore.api.registry.util.BlockPropsFactory;
 
@@ -21,7 +24,20 @@ public class JBlockProperties {
             .harvestTool(ToolType.PICKAXE)
             .requiresCorrectToolForDrops()
             .strength(1.5F, 6.0F));
-    public static final BlockPropsFactory BASALT_PROPS = new BlockPropsFactory(() -> AbstractBlock.Properties.of
+
+	public static final BlockPropsFactory LEAVES_PROPS = new BlockPropsFactory(() -> AbstractBlock.Properties.of
+			(Material.LEAVES)
+			.sound(SoundType.GRASS)
+			.requiresCorrectToolForDrops()
+			.strength(0.2F, 0.1F));
+
+	public static final BlockPropsFactory LOG_PROPS = new BlockPropsFactory(() -> AbstractBlock.Properties.of(Material.WOOD, (state5) -> {
+		return state5.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? MaterialColor.COLOR_BROWN : MaterialColor.TERRACOTTA_BROWN;
+	})
+			.sound(SoundType.WOOD)
+			.harvestTool(ToolType.AXE)
+			.strength(2F, 6.0F));
+	public static final BlockPropsFactory BASALT_PROPS = new BlockPropsFactory(() -> AbstractBlock.Properties.of
             (Material.STONE)
             .sound(SoundType.BASALT)
             .harvestTool(ToolType.PICKAXE)

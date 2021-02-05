@@ -28,6 +28,7 @@ import ru.timeconqueror.timecore.api.client.resource.location.TextureLocation;
 import ru.timeconqueror.timecore.api.registry.BlockRegister;
 import ru.timeconqueror.timecore.api.registry.BlockRegister.BlockRegisterChain;
 import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable;
+import ru.timeconqueror.timecore.api.registry.util.BlockPropsFactory;
 
 import java.util.function.Supplier;
 
@@ -243,10 +244,17 @@ public class BlockRegistrator {
                         .setGroundPredicate(GroundPredicate.EUCA_GRASS_BLOCKS),
                 () -> BlockModels.crossModel(JITL.tl("block/euca_silver_sprouts")));
 
-
         registerSpeciallyRenderedBlock("euca_silver_grass_block", "Euca Silver Grass", () -> new Block(JBlockProperties.GRASS_PROPS.create()),
                 () -> BlockModels.cubeBottomTopModel(JITL.tl("block/euca_silver_grass_block_top"), JITL.tl("block/euca_silver_grass_block_side"), JITL.tl("block/euca_silver_dirt")));
         registerDefaultBlock("euca_silver_dirt", "Euca Silver Dirt", () -> new Block(JBlockProperties.DIRT_PROPS.create()));
+
+        registerLogBlock("euca_gold_log", "Gold Euca Log");
+        registerLogBlock("euca_silver_log", "Silver Euca Log");
+
+        registerCutoutMippedRenderedBlock("euca_gold_leaves", "Euca Gold Leaves", () -> new Block(JBlockProperties.LEAVES_PROPS.create()), JTabs.DECORATION);
+        registerCutoutMippedRenderedBlock("euca_silver_leaves", "Euca Silver Leaves", () -> new Block(JBlockProperties.LEAVES_PROPS.create()), JTabs.DECORATION);
+
+
     }
 
     private static <B extends Block> BlockRegisterChain<B> register(String name, String enName, Supplier<B> block) {
@@ -272,6 +280,18 @@ public class BlockRegistrator {
                 .defaultBlockItem(cTab)
                 .oneVarStateAndCubeAllModel()
                 .asRegistryObject();
+    }
+
+    /**
+     * Registers a log style block
+     */
+    private static void registerLogBlock(String name, String enName) {
+        REGISTER.register(name, () -> new RotatedPillarBlock(JBlockProperties.LOG_PROPS.create()))
+                .name(enName)
+                .defaultBlockItem(JTabs.DECORATION)
+                .state(JBlockStateResources.rotatablePillarState(JITL.bml("block/" + name)))
+                .model(JITL.bml("block/" + name),
+                        () -> BlockModels.cubeBottomTopModel(JITL.tl("block/" + name + "_top"), JITL.tl("block/" + name + "_side"), JITL.tl("block/" + name + "_top")));
     }
 
     /**
