@@ -41,5 +41,5 @@ public class JStructures {
                     .setDimensionPredicate(serverWorld -> serverWorld.dimension() == World.OVERWORLD)
                     .addToTag(Tag.DISABLE_BREAKING_BY_LAKES)
                     .asHolder();
-    
+
 }
