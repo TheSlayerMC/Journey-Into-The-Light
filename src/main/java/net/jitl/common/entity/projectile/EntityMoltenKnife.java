@@ -3,12 +3,14 @@ package net.jitl.common.entity.projectile;
 import net.jitl.init.JEntities;
 import net.jitl.init.JItems;
 import net.jitl.init.JParticleManager;
+import net.jitl.init.JSounds;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.IRendersAsItem;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.IPacket;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
@@ -51,6 +53,11 @@ public class EntityMoltenKnife extends EntityThrowableArrow implements IRendersA
                     vector3d.y,
                     vector3d.z);
         }
+    }
+
+    @Override
+    protected @NotNull SoundEvent getDefaultHitGroundSoundEvent() {
+        return JSounds.MUD_BLOCK_BREAK.get();
     }
 
     @Override
