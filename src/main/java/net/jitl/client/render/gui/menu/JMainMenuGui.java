@@ -38,7 +38,6 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.io.IOException;
-import java.util.Random;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 
@@ -50,10 +49,8 @@ public class JMainMenuGui extends MainMenuScreen {
 	private static final ResourceLocation PANORAMA_OVERLAY = new ResourceLocation("textures/gui/title/background/panorama_overlay.png");
 	private static final ResourceLocation ACCESSIBILITY_TEXTURE = new ResourceLocation("textures/gui/accessibility.png");
 	private static final ResourceLocation LANGUAGE_TEXTURE = JITL.rl("textures/gui/title/language_button.png");
-	private final boolean minceraftEasterEgg;
 	@Nullable
 	private String splash;
-	private Button resetDemoButton;
 	private static final ResourceLocation MINECRAFT_LOGO = JITL.rl("textures/gui/title/logo.png");
 	private static final ResourceLocation MINECRAFT_EDITION = JITL.rl("textures/gui/title/edition.png");
 	/**
@@ -70,7 +67,6 @@ public class JMainMenuGui extends MainMenuScreen {
 	private final RenderSkybox panorama = new RenderSkybox(CUBE_MAP);
 	private final boolean fading;
 	private long fadeInStart;
-	private net.minecraftforge.client.gui.NotificationModUpdateScreen modUpdateNotification;
 
 	public JMainMenuGui() {
 		this(true);
@@ -79,7 +75,6 @@ public class JMainMenuGui extends MainMenuScreen {
 	public JMainMenuGui(boolean fadeIn) {
 		super(true);
 		this.fading = fadeIn;
-		this.minceraftEasterEgg = (double) (new Random()).nextFloat() < 1.0E-4D;
 	}
 
 	/**
@@ -117,16 +112,11 @@ public class JMainMenuGui extends MainMenuScreen {
 		this.copyrightWidth = this.font.width("Copyright Mojang AB. Do not distribute!");
 		this.copyrightX = this.width - this.copyrightWidth - 2;
 		int j = this.height / 4 + 48;
-		JButton modButton = null;
 		if (this.minecraft.isDemo()) {
 			this.createDemoMenuOptions(j, 24);
 		} else {
 			this.createNormalMenuOptions(j);
-			modButton = this.addButton(new JButton(this.width / 2 - 206, 30 + j - 15, 200, 20, new TranslationTextComponent("fml.menu.mods"), button -> {
-				this.minecraft.setScreen(new net.minecraftforge.fml.client.gui.screen.ModListScreen(this));
-			}, false));
 		}
-		modUpdateNotification = net.minecraftforge.client.gui.NotificationModUpdateScreen.init(this, modButton);
 
 		this.addButton(new JImageButton(this.width / 2 - 206, j + 75, 20, 20, 0, 0, 20, LANGUAGE_TEXTURE, 20, 40, (button9_) -> {
 			this.minecraft.setScreen(new LanguageScreen(this, this.minecraft.options, this.minecraft.getLanguageManager()));
@@ -192,7 +182,7 @@ public class JMainMenuGui extends MainMenuScreen {
 			}
 
 		}));
-		this.resetDemoButton = this.addButton(new Button(this.width / 2 - 100, yIn + rowHeightIn * 1, 200, 20, new TranslationTextComponent("menu.resetdemo"), (button_) -> {
+		Button resetDemoButton = this.addButton(new Button(this.width / 2 - 100, yIn + rowHeightIn, 200, 20, new TranslationTextComponent("menu.resetdemo"), (button_) -> {
 			SaveFormat saveformat = this.minecraft.getLevelSource();
 
 			try (SaveFormat.LevelSave saveformat$levelsave = saveformat.createAccess("Demo_World")) {
@@ -206,7 +196,7 @@ public class JMainMenuGui extends MainMenuScreen {
 			}
 
 		}));
-		this.resetDemoButton.active = flag;
+		resetDemoButton.active = flag;
 	}
 
 	private boolean checkDemoWorldPresence() {
