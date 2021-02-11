@@ -28,6 +28,14 @@ public class TowerGuardianEntity extends MonsterEntity implements AnimatedObject
 				predefinedAnimations.setWalkingAnimation(new AnimationStarter(JAnimations.towerGuardianWalk).setSpeed(3F), LAYER_WALKING));
 	}
 
+	/*@Override
+	public void tick() {
+		super.tick();
+		if (this.level.isClientSide()) {
+			JMusicTicker.addTrack(JSounds.PLACEHOLDER_MUSIC.get(), 1, 0, 5);
+		}
+	}*/
+
 	@Override
 	public @NotNull AnimationSystem<TowerGuardianEntity> getSystem() {
 		return animationSystem;

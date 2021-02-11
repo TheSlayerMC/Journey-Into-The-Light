@@ -138,5 +138,14 @@
     "sounds": [
       "jitl:entities/hongo_spore_release"
     ]
+  },
+  "music.menu": {
+    "category": "music",
+    "sounds": [
+      {
+        "name": "jitl:music/menu",
+        "stream": true
+      }
+    ]
   }
 }

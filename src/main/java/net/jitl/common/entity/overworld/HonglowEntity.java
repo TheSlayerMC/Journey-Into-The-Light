@@ -29,6 +29,8 @@ import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import ru.timeconqueror.timecore.api.util.EnumLookup;
+import ru.timeconqueror.timecore.api.util.RandHelper;
 import ru.timeconqueror.timecore.api.util.Requirements;
 
 import org.jetbrains.annotations.NotNull;
@@ -55,23 +57,9 @@ public class HonglowEntity extends CreatureEntity {
 		return this.getEntityData().get(VARIANT);
 	}
 	
-	public Type getVariantFromInt(int number) {
-		Requirements.inRangeInclusive(number, 0, 2);
-		switch (number) {
-			case 0:
-				return Type.RED;	
-			case 1: 
-				return Type.GREEN;	
-			case 2:
-				return Type.BLUE;
-		}
-		return null;
-	}
-	
 	@Override
 	public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
-		
-		this.getEntityData().set(VARIANT, getVariantFromInt(this.random.nextInt(3)));
+		this.getEntityData().set(VARIANT, RandHelper.chooseEqually(Type.values()));
 	    return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 	
@@ -90,7 +78,7 @@ public class HonglowEntity extends CreatureEntity {
 	@Override
 	public void readAdditionalSaveData(CompoundNBT nbt) {
 		super.readAdditionalSaveData(nbt);
-		this.getEntityData().set(VARIANT, getVariantFromInt(nbt.getInt("color")));
+		this.getEntityData().set(VARIANT, Type.getVariantFromInt(nbt.getInt("color")));
 	}
 
 	public static boolean canSpawn(EntityType<? extends CreatureEntity> entityType, IWorld worldIn, SpawnReason reason, BlockPos pos, Random random) {
@@ -115,37 +103,11 @@ public class HonglowEntity extends CreatureEntity {
     			poison.addPrimaryEffect(getVariant().getPrimaryPotion());
     			poison.addSecondaryEffect(getVariant().getSecondaryPotion());
     			poison.setColor(getVariant().getPotionColor());
-    			/*switch (this.getEntityData().get(VARIANT)) {
-    				case 0: //blue
-    					poison.addPrimaryEffect(new EffectInstance(Effects.MOVEMENT_SPEED, 500, 3));
-    	    			poison.addSecondaryEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 200));
-    	    			poison.setColor(Effects.MOVEMENT_SPEED.getColor());
-    	    			break;
-    				case 1: //red
-    					poison.addPrimaryEffect(new EffectInstance(Effects.DAMAGE_BOOST, 500, 3));
-    	    			poison.addSecondaryEffect(new EffectInstance(Effects.WEAKNESS, 200));
-    	    			poison.setColor(Effects.REGENERATION.getColor());
-    	    			break;
-    				case 2: //green
-    					poison.addPrimaryEffect(new EffectInstance(Effects.DAMAGE_RESISTANCE, 500, 3));
-    	    			poison.addSecondaryEffect(new EffectInstance(Effects.DIG_SLOWDOWN, 200));
-    	    			poison.setColor(Effects.JUMP.getColor());
-    			}*/
     			Entity attacker = source.getEntity();
     			if (attacker != null && attacker instanceof LivingEntity) {
     				poison.markMobException((LivingEntity) attacker); 
     			}
     			poison.spawn();
-                /*AreaEffectCloudEntity poison = new AreaEffectCloudEntity(this.level, this.getX(), this.getY(), this.getZ());
-                poison.setRadius(0.5F); //the base radius. Vanilla starts large and shrinks down, but I think the opposite is more realistic
-                poison.setWaitTime(5); //time before the cloud starts growing/damaging. Might be worth decreasing since player can run away anyways
-                poison.setRadiusPerTick(0.15F); //the speed at which the cloud size changes. Set negative if you want it to shrink like in vanilla
-                poison.setOwner(this); //does nothing to my knowledge
-                poison.setDuration(20); //how long the cloud lasts
-                poison.setPotion(new Potion(new EffectInstance(Effects.POISON, 500, 3)));
-                poison.addEffect(new EffectInstance(Effects.CONFUSION, 200));
-                level.playSound(null, this.blockPosition(), JSounds.HONGO_SPORE_RELEASE.get(), SoundCategory.HOSTILE, 1.0F, 1.0F);
-                this.level.addFreshEntity(poison);*/
             }
     		return true;
     	} else {
@@ -185,6 +147,7 @@ public class HonglowEntity extends CreatureEntity {
 		private final EffectInstance primaryPotionEffect;
 		private final EffectInstance secondaryPotionEffect;
 		private final int cloudColor;
+		private static final EnumLookup<Type, Integer> VARIANTFINDER = EnumLookup.make(Type.class, Type::getTypeInt);
 		
 		Type(int id, ResourceLocation location, EffectInstance goodPotion, EffectInstance badPotion, int potionColor) {
 			variantNum = id;
@@ -196,6 +159,10 @@ public class HonglowEntity extends CreatureEntity {
 		
 		public int getTypeInt() {
 			return this.variantNum;
+		}
+
+		public static Type getVariantFromInt(int number) {
+			return VARIANTFINDER.get(number);
 		}
 		
 		public ResourceLocation getTexture() {

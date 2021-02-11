@@ -20,9 +20,28 @@ import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable;
 import static net.minecraft.entity.EntityType.Builder;
 
 public class JEntities {
+    //dimension colors
+    private static final int overworldColor = 0x32f53f;
+    private static final int netherColor = 0x881a2b;
+    private static final int endColor = 0x000000/*0x931aa3*/;
+    private static final int frozenColor = 0x3ea4ff;
+    private static final int boilingColor = 0xeb8026;
+    private static final int eucaColor = 0xffff0b;
+    private static final int depthsColor = 0x0705a7;
+    private static final int corbaColor = 0x106903;
+    private static final int terraniaColor = 0x91046d;
+    private static final int cloudiaColor = 0xfa45cd;
+    private static final int senterianColor = 0x2e2d2c;
+
+    //mob type colors
+    private static final int passiveColor = 0x00ff00;
+    private static final int neutralColor = 0x555555;
+    private static final int hostileColor = 0xff0000;
+    private static final int traderColor = 0x7d007d;
+    private static final int bossColor = 0xffff7d;
+
     @AutoRegistrable
     private static final EntityRegister REGISTER = new EntityRegister(JITL.MODID);
-
     public static final EntityType<FloroEntity> FLORO_TYPE = REGISTER.registerMob("floro",
             Builder.of(FloroEntity::new, EntityClassification.MONSTER)
                     .setTrackingRange(80)
@@ -30,7 +49,7 @@ public class JEntities {
                     .sized(1, 2))
             .spawnSettings(EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, FloroEntity::canSpawn)
             .attributes(() -> FloroEntity.createAttributes().build())
-            .spawnEgg(0xFF00FF00, 0xFF000000, JTabs.SPAWNERS)
+            .spawnEgg(overworldColor, hostileColor, JTabs.SPAWNERS)
             .retrieve();
 
     public static final EntityType<HongoEntity> HONGO_TYPE = REGISTER.registerMob("hongo",
@@ -40,7 +59,7 @@ public class JEntities {
                     .sized(1.5F, 2))
             .spawnSettings(EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, HongoEntity::canSpawn)
             .attributes(() -> HongoEntity.createAttributes().build())
-            .spawnEgg(0xFF00FF00, 0xFF000000, JTabs.SPAWNERS)
+            .spawnEgg(overworldColor, neutralColor, JTabs.SPAWNERS)
             .retrieve();
 
     public static final EntityType<HonglowEntity> HONGLOW_TYPE = REGISTER.registerMob("honglow",
@@ -50,7 +69,7 @@ public class JEntities {
                     .sized(1.5F, 2))
             .spawnSettings(EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, HonglowEntity::canSpawn)
             .attributes(() -> HongoEntity.createAttributes().build())//FIXME is Hongo attributes for Honglow not an error?
-            .spawnEgg(0xFF00FF00, 0xFF000000, JTabs.SPAWNERS)
+            .spawnEgg(overworldColor, neutralColor, JTabs.SPAWNERS)
             .retrieve();
 
     public static final EntityType<WitherspineEntity> WITHERSPINE_TYPE = REGISTER.registerMob("witherspine",
@@ -59,7 +78,7 @@ public class JEntities {
                     .setShouldReceiveVelocityUpdates(true)
                     .sized(1.5F, 3))//TODO add spawn settings
             .attributes(() -> WitherspineEntity.createAttributes().build())
-            .spawnEgg(0xFF00FF00, 0xFF000000, JTabs.SPAWNERS)
+            .spawnEgg(netherColor, hostileColor, JTabs.SPAWNERS)
             .retrieve();
 
     public static final EntityType<TowerGuardianEntity> TOWER_GUARDIAN_TYPE = REGISTER.registerMob("tower_guardian",
@@ -68,7 +87,7 @@ public class JEntities {
                     .setShouldReceiveVelocityUpdates(true)
                     .sized(1.5F, 3))//TODO add spawn settings
             .attributes(() -> TowerGuardianEntity.createAttributes().build())
-            .spawnEgg(0xFF00FF00, 0xFF000000, JTabs.SPAWNERS)
+            .spawnEgg(overworldColor, bossColor, JTabs.SPAWNERS)
             .retrieve();
 
     public static final EntityType<EssenciaBoltEntity> ESSENCIA_BOLT_TYPE = REGISTER.register("essencia_bolt",

@@ -145,7 +145,8 @@ public class JEffectCloudEntity extends Entity {
 	private boolean isEntityException(LivingEntity entity) {
 		if (isOwnerException && entity == getEntityFromUUID(ownerUUID)) return true;
 		for (UUID currentUUID : exceptionUUIDs) {
-			if (entity.getClass() == getEntityFromUUID(currentUUID).getClass()) return true;
+			Entity currentEntity = getEntityFromUUID(currentUUID);
+			if (currentEntity != null && entity.getClass() == currentEntity.getClass()) return true;
 		}
 		return false;
 	}
@@ -192,7 +193,6 @@ public class JEffectCloudEntity extends Entity {
 	
 	@Override
 	protected void readAdditionalSaveData(CompoundNBT nbt) {
-		//commented = broken
 		this.tickCount = nbt.getInt("time");
 		getEntityData().set(RADIUS, nbt.getFloat("radius"));
 		getEntityData().set(COLOR, nbt.getInt("color"));

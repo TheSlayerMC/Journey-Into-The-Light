@@ -35,4 +35,6 @@ public class JSounds {
     public static final RegistryObject<TimeSound> HONGO_HURT = REGISTER.register("entities.hongo_hurt");
     public static final RegistryObject<TimeSound> HONGO_DEATH = REGISTER.register("entities.hongo_death");
     public static final RegistryObject<TimeSound> HONGO_SPORE_RELEASE = REGISTER.register("entities.hongo_spore_release");
+
+    public static final RegistryObject<TimeSound> MENU_MUSIC = REGISTER.register("music.menu");
 }
