@@ -73,7 +73,7 @@ public class JMainMenuGui extends MainMenuScreen {
 	private net.minecraftforge.client.gui.NotificationModUpdateScreen modUpdateNotification;
 
 	public JMainMenuGui() {
-		this(false);
+		this(true);
 	}
 
 	public JMainMenuGui(boolean fadeIn) {
