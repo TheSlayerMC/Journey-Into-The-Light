@@ -147,5 +147,23 @@
         "stream": true
       }
     ]
+  },
+  "music.euca.ambience": {
+    "category": "music",
+    "sounds": [
+      {
+        "name": "jitl:music/ambience/euca",
+        "stream": true
+      }
+    ]
+  },
+  "music.biome.gold_plains": {
+    "category": "music",
+    "sounds": [
+      {
+        "name": "jitl:music/biome/gold_plains",
+        "stream": true
+      }
+    ]
   }
 }

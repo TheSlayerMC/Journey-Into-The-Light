@@ -12,7 +12,14 @@
     "water_color": 14995007,
     "water_fog_color": 3355141,
     "grass_color": 13159169,
-    "foliage_color": 5660928
+    "foliage_color": 5660928,
+    "ambient_sound": "jitl:music.euca.ambience",
+    "music": {
+      "sound": "jitl:music.biome.gold_plains",
+      "min_delay": 10,
+      "max_delay": 1000,
+      "replace_current_music": true
+    }
   },
   "starts": [],
   "spawners": {},

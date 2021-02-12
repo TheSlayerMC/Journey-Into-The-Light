@@ -3,6 +3,7 @@ package net.jitl.init;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import net.jitl.JITL;
+import net.jitl.common.world.gen.features.featureconfig.EucaTreeFeatureConfig;
 import net.jitl.common.world.gen.features.featureconfig.RuinsFeatureConfig;
 import net.jitl.util.JRuleTests;
 import net.minecraft.block.BlockState;
@@ -278,6 +279,22 @@ public class JConfiguredFeatures {
                             .chance(1)
                             .countRandom(32))
                     .setBiomePredicate(COMMON_BIOMES)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> EUCA_GOLD_TREES =
+            REGISTER.register("euca_gold_trees",
+                    Decoration.SURFACE_STRUCTURES,
+                    () -> JFeatures.EUCA_TREE.get()
+                            .configured(new EucaTreeFeatureConfig(
+                                    JRuleTests.GRASS_EUCA.get(),
+                                    new SimpleBlockStateProvider(JBlocks.LUNITE_BLOCK.defaultBlockState()),
+                                    new SimpleBlockStateProvider(JBlocks.LUNIUM_ORE.defaultBlockState()),
+                                    5,
+                                    2,
+                                    5))
+                            .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE)
+                            .chance(128))
+                    .setBiomePredicate(EUCA_GOLD_PLAINS)
                     .asPromise();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> SAPPHIRE_ORE =
