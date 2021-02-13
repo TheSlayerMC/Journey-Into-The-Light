@@ -28,7 +28,6 @@ import ru.timeconqueror.timecore.api.client.resource.location.TextureLocation;
 import ru.timeconqueror.timecore.api.registry.BlockRegister;
 import ru.timeconqueror.timecore.api.registry.BlockRegister.BlockRegisterChain;
 import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable;
-import ru.timeconqueror.timecore.api.registry.util.BlockPropsFactory;
 
 import java.util.function.Supplier;
 
@@ -152,7 +151,7 @@ public class BlockRegistrator {
         registerDefaultBlock("euca_brick", "Euca Brick");
 
         registerDefaultBlock("laser_emitter", "Laser Emitter", () -> new LaserEmitterBlock(JBlockProperties.STONE_PROPS.create().noOcclusion()));
-        registerCutoutMippedRenderedBlock("test_spawner", "Test Spawner", () -> new JSpawnerBlock(JEntities.WITHERSPINE_TYPE), JTabs.SPAWNERS);
+        registerCutoutRenderedBlock("test_spawner", "Test Spawner", () -> new JSpawnerBlock(JEntities.WITHERSPINE_TYPE), JTabs.SPAWNERS);
 
         registerTallCrossRenderedBlock("tall_green_glowshroom", "Tall Green Glowshroom", () -> new TallGlowshroomBlock(JBlockProperties.GLOWSHROOM_PROPS.create()));
         registerTallCrossRenderedBlock("tall_blue_glowshroom", "Tall Blue Glowshroom", () -> new TallGlowshroomBlock(JBlockProperties.GLOWSHROOM_PROPS.create()));
@@ -251,8 +250,8 @@ public class BlockRegistrator {
         registerLogBlock("euca_gold_log", "Gold Euca Log");
         registerLogBlock("euca_silver_log", "Silver Euca Log");
 
-        registerCutoutMippedRenderedBlock("euca_gold_leaves", "Euca Gold Leaves", () -> new Block(JBlockProperties.LEAVES_PROPS.create()), JTabs.DECORATION);
-        registerCutoutMippedRenderedBlock("euca_silver_leaves", "Euca Silver Leaves", () -> new Block(JBlockProperties.LEAVES_PROPS.create()), JTabs.DECORATION);
+        registerCutoutRenderedBlock("euca_gold_leaves", "Euca Gold Leaves", () -> new Block(JBlockProperties.LEAVES_PROPS.create()), JTabs.DECORATION);
+        registerCutoutRenderedBlock("euca_silver_leaves", "Euca Silver Leaves", () -> new Block(JBlockProperties.LEAVES_PROPS.create()), JTabs.DECORATION);
 
 
     }
@@ -363,10 +362,10 @@ public class BlockRegistrator {
                 .oneVariantState(new BlockModelLocation(JITL.MODID, "block/" + name));
     }
 
-    private static void registerCutoutMippedRenderedBlock(String name, String enName, Supplier<Block> blockSupplier, ItemGroup cTab) {
+    private static void registerCutoutRenderedBlock(String name, String enName, Supplier<Block> blockSupplier, ItemGroup cTab) {
         REGISTER.register(name, blockSupplier)
                 .name(enName)
-                .renderLayer(RenderType::cutoutMipped)
+                .renderLayer(RenderType::cutout)
                 .defaultBlockItem(cTab)
                 .oneVarStateAndCubeAllModel();
     }

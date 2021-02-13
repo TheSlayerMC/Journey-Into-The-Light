@@ -128,8 +128,8 @@ public class JConfiguredFeatures {
                     .setBiomePredicate(COMMON_BIOMES)
                     .asPromise();
 
-    public static final Promised<? extends ConfiguredFeature<?, ?>> GOLDITE_TALL_FOILIAGE =
-            REGISTER.register("goldite_tall_foiliage", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
+    public static final Promised<? extends ConfiguredFeature<?, ?>> GOLDITE_TALL_FOLIAGE =
+            REGISTER.register("goldite_tall_foliage", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
                     .configured((new BlockClusterFeatureConfig.Builder(
                             new WeightedBlockStateProvider()
                                     .add(JBlocks.GOLDITE_TALL_GRASS.defaultBlockState(), 1),
@@ -146,8 +146,8 @@ public class JConfiguredFeatures {
                     .setBiomePredicate(GOLDITE_GRAINS)
                     .asPromise();
 
-    public static final Promised<? extends ConfiguredFeature<?, ?>> GOLDITE_FOILIAGE =
-            REGISTER.register("goldite_foiliage", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
+    public static final Promised<? extends ConfiguredFeature<?, ?>> GOLDITE_FOLIAGE =
+            REGISTER.register("goldite_foliage", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
                     .configured((new BlockClusterFeatureConfig.Builder(
                             new WeightedBlockStateProvider()
                                     .add(JBlocks.GOLDITE_BULB.defaultBlockState(), 1),
@@ -165,8 +165,8 @@ public class JConfiguredFeatures {
                     .asPromise();
 
 
-    public static final Promised<? extends ConfiguredFeature<?, ?>> SILVER_GOLD_FOILIAGE =
-            REGISTER.register("euca_silver_gold_foiliage", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
+    public static final Promised<? extends ConfiguredFeature<?, ?>> SILVER_GOLD_FOLIAGE =
+            REGISTER.register("euca_silver_gold_foliage", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
                     .configured((new BlockClusterFeatureConfig.Builder(
                             new WeightedBlockStateProvider()
                                     .add(JBlocks.EUCA_SILVER_GOLD_FLOWER.defaultBlockState(), 1),
@@ -183,8 +183,8 @@ public class JConfiguredFeatures {
                     .setBiomePredicate(EUCA_SILVER_PLAINS.and(EUCA_GOLD_PLAINS))
                     .asPromise();
 
-    public static final Promised<? extends ConfiguredFeature<?, ?>> EUCA_SILVER_FOILIAGE =
-            REGISTER.register("euca_silver_foiliage", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
+    public static final Promised<? extends ConfiguredFeature<?, ?>> EUCA_SILVER_FOLIAGE =
+            REGISTER.register("euca_silver_foliage", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
                     .configured((new BlockClusterFeatureConfig.Builder(
                             new WeightedBlockStateProvider()
                                     .add(JBlocks.EUCA_SILVER_TALL_GRASS.defaultBlockState(), 1)
@@ -203,8 +203,8 @@ public class JConfiguredFeatures {
                     .setBiomePredicate(EUCA_SILVER_PLAINS)
                     .asPromise();
 
-    public static final Promised<? extends ConfiguredFeature<?, ?>> EUCA_GOLD_FOILIAGE =
-            REGISTER.register("euca_gold_foiliage", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
+    public static final Promised<? extends ConfiguredFeature<?, ?>> EUCA_GOLD_FOLIAGE =
+            REGISTER.register("euca_gold_foliage", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
                     .configured((new BlockClusterFeatureConfig.Builder(
                             new WeightedBlockStateProvider()
                                     .add(JBlocks.EUCA_TALL_FLOWERS.defaultBlockState(), 1)
@@ -223,8 +223,8 @@ public class JConfiguredFeatures {
                     .asPromise();
 
 
-    public static final Promised<? extends ConfiguredFeature<?, ?>> GOLDITE_GOLD_FOILIAGE =
-            REGISTER.register("euca_goldite_gold_foiliage", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
+    public static final Promised<? extends ConfiguredFeature<?, ?>> GOLDITE_GOLD_FOLIAGE =
+            REGISTER.register("euca_goldite_gold_foliage", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
                     .configured((new BlockClusterFeatureConfig.Builder(
                             new WeightedBlockStateProvider()
                                     .add(JBlocks.GOLDITE_STALKS.defaultBlockState(), 1)
@@ -282,7 +282,7 @@ public class JConfiguredFeatures {
                     .asPromise();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> EUCA_GOLD_TREES =
-            REGISTER.register("euca_gold_trees",
+            REGISTER.register("euca_gold_tree",
                     Decoration.SURFACE_STRUCTURES,
                     () -> JFeatures.EUCA_TREE.get()
                             .configured(new EucaTreeFeatureConfig(
