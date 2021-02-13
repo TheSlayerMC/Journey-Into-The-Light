@@ -5,10 +5,8 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.jitl.JITL;
-import net.jitl.client.JMusicTicker;
 import net.jitl.client.render.gui.button.JButton;
 import net.jitl.client.render.gui.button.JImageButton;
-import net.jitl.init.JSounds;
 import net.minecraft.client.gui.AccessibilityScreen;
 import net.minecraft.client.gui.DialogTexts;
 import net.minecraft.client.gui.screen.*;
@@ -83,7 +81,6 @@ public class JMainMenuGui extends MainMenuScreen {
 	}
 
 	public void tick() {
-		JMusicTicker.addTrack(JSounds.MENU_MUSIC.get(), 10, 10, 50);
 		if (this.realmsNotificationsEnabled()) {
 			this.realmsNotificationsScreen.tick();
 		}
@@ -236,7 +233,7 @@ public class JMainMenuGui extends MainMenuScreen {
 		if ((l & -67108864) != 0) {
 			this.minecraft.getTextureManager().bind(MINECRAFT_LOGO);
 			RenderSystem.color4f(1.0F, 1.0F, 1.0F, f1);
-			blit(matrixStack, j + 23, 36, 1.0F, 0.0F, 227, 55, 227, 55);
+			blit(matrixStack, j + 23, 36, 0.0F, 0.0F, 227, 55, 227, 55);
 
 			net.minecraftforge.client.ForgeHooksClient.renderMainMenu(this, matrixStack, this.font, this.width, this.height);
 			if (this.splash != null) {

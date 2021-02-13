@@ -1,6 +1,8 @@
 package net.jitl.common.entity.overworld;
 
+import net.jitl.client.music.JMusicTicker;
 import net.jitl.init.JAnimations;
+import net.jitl.init.JSounds;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
@@ -28,13 +30,17 @@ public class TowerGuardianEntity extends MonsterEntity implements AnimatedObject
 				predefinedAnimations.setWalkingAnimation(new AnimationStarter(JAnimations.towerGuardianWalk).setSpeed(3F), LAYER_WALKING));
 	}
 
-	/*@Override
+	@Override
 	public void tick() {
 		super.tick();
 		if (this.level.isClientSide()) {
-			JMusicTicker.addTrack(JSounds.PLACEHOLDER_MUSIC.get(), 1, 0, 5);
+			if (getHealth() / getMaxHealth() > 0.5 || JMusicTicker.isMusicPlaying(JSounds.TEMPLE_GUARDIAN_MUSIC.get())) {
+				JMusicTicker.addTrack(JSounds.TEMPLE_GUARDIAN_MUSIC.get(), 1, 1, 1);
+			} else {
+				JMusicTicker.addTrack(JSounds.TEMPLE_GUARDIAN_SECOND_MUSIC.get(), 1, 1, 1);
+			}
 		}
-	}*/
+	}
 
 	@Override
 	public @NotNull AnimationSystem<TowerGuardianEntity> getSystem() {

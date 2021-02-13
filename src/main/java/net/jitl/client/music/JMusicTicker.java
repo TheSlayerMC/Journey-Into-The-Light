@@ -1,4 +1,4 @@
-package net.jitl.client;
+package net.jitl.client.music;
 
 import net.jitl.JITL;
 import net.minecraft.client.Minecraft;
@@ -26,7 +26,7 @@ public class JMusicTicker {
     private static final Random random = new Random();
 
     @SubscribeEvent()
-    public static void onClientTick(TickEvent.ClientTickEvent musicEvent) {
+    public static void musicTick(TickEvent.ClientTickEvent musicEvent) {
         if (musicEvent.phase == TickEvent.Phase.START) {
             shouldPlayTrack = null; //make sure the music stops alongside whatever was playing it
             currentPriority = 0;
@@ -68,5 +68,9 @@ public class JMusicTicker {
             BackgroundMusicSelector vanillaMusic = MINECRAFT.getSituationalMusic();
             MINECRAFT.getMusicManager().nextSongDelay = (MathHelper.nextInt(random, 0, vanillaMusic.getMinDelay() / 2)); //recreates a vanilla music swap
         }
+    }
+
+    public static boolean isMusicPlaying(SoundEvent event) {
+        return (currentTrack != null && event.getLocation() == currentTrack.getLocation() && MINECRAFT.getSoundManager().isActive(currentTrack));
     }
 }
