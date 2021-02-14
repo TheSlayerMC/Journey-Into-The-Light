@@ -1,22 +1,24 @@
 package net.jitl.network;
 
 import net.jitl.JITL;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.network.NetworkRegistry;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraftforge.fml.network.PacketDistributor;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
+import ru.timeconqueror.timecore.api.registry.PacketRegister;
+import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable;
+import ru.timeconqueror.timecore.mod.common.packet.InternalPacketManager;
 
 public class JPacketHandler {
-    private static final String PROTOCOL_VERSION = "1"; //idk exactly what this does
-    public static final SimpleChannel INSTANCE = NetworkRegistry.newSimpleChannel( //this object handles packets. It includes methods for registering and sending them
-            new ResourceLocation(JITL.MODID, "journey"), //specifies the name of the channel
-            () -> PROTOCOL_VERSION, //a Supplier for PROTOCOL_VERSION
-            PROTOCOL_VERSION :: equals, //provides the protocol version to check whether an incoming connection is compatible with the client
-            PROTOCOL_VERSION :: equals //same as previous but for the server
-    );
+    @AutoRegistrable
+    private static final PacketRegister REGISTER = new PacketRegister(JITL.MODID);
 
-    public static void registerPackets() { //a method called in preInit to register all the packets in the mod
-        int packet = 0; //every packet needs a unique id. This int will be incremented per packet to generate these ids
-        //the arguments for registerMessage() are: an id, the class for the packet, the method which writes the packet, the method which reads the packet, and the method which handles the information in the packet
-        INSTANCE.registerMessage(packet++, CurrentStructurePacket.class, CurrentStructurePacket::encode, CurrentStructurePacket::decode, CurrentStructurePacket::onReceivePacket);
+    private static final String PROTOCOL_STRING = "1";
+
+    public static final SimpleChannel INSTANCE = REGISTER.createChannel("main", () -> PROTOCOL_STRING, PROTOCOL_STRING::equals, PROTOCOL_STRING::equals)
+            .regPacket(SCurrentStructurePacket.class, new SCurrentStructurePacket.Handler())
+            .asChannel();
+
+    public static <MSG> void sendToPlayer(ServerPlayerEntity player, MSG message) {
+        InternalPacketManager.INSTANCE.send(PacketDistributor.PLAYER.with(() -> player), message);
     }
 }
