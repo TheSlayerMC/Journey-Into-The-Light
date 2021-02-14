@@ -18,5 +18,5 @@ public class JRuleTests {
 	public static RuleTest END_STONE = new BlockStateMatchRuleTest(Blocks.END_STONE.defaultBlockState());
 
 	public static Supplier<RuleTest> STONE_EUCA = () -> new BlockStateMatchRuleTest(JBlocks.GOLDITE_STONE.defaultBlockState());
-	public static Supplier<RuleTest> GRASS_EUCA = () -> new BlockStateMatchRuleTest(JBlocks.GOLDITE_GRASS_BLOCK.defaultBlockState());
+	public static Supplier<RuleTest> GRASS_EUCA = () -> new BlockStateMatchRuleTest(JBlocks.EUCA_GOLD_GRASS_BLOCK.defaultBlockState());
 }
