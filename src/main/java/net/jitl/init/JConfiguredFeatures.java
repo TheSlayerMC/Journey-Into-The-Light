@@ -293,7 +293,7 @@ public class JConfiguredFeatures {
                                     5,
                                     15))
                             .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE)
-                            .chance(128))
+                            .chance(3))
                     .setBiomePredicate(EUCA_GOLD_PLAINS)
                     .asPromise();
 
@@ -307,10 +307,10 @@ public class JConfiguredFeatures {
                                     new SimpleBlockStateProvider(JBlocks.EUCA_SILVER_LOG.defaultBlockState()),
                                     5,
                                     5,
-                                    15))
+                                    17))
                             .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE)
-                            .chance(128))
-                    .setBiomePredicate(EUCA_GOLD_PLAINS)
+                            .chance(3))
+                    .setBiomePredicate(EUCA_SILVER_PLAINS)
                     .asPromise();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> SAPPHIRE_ORE =

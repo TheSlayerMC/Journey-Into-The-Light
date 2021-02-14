@@ -2,6 +2,7 @@ package net.jitl.common.world.gen.features.euca;
 
 import com.mojang.serialization.Codec;
 import net.jitl.common.world.gen.features.featureconfig.EucaTreeFeatureConfig;
+import net.minecraft.block.Blocks;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ISeedReader;
@@ -19,10 +20,9 @@ public class EucaTreeFeature extends Feature<EucaTreeFeatureConfig> {
 
     @Override
     public boolean place(ISeedReader reader, ChunkGenerator generator, Random random, BlockPos pos, EucaTreeFeatureConfig config) {
-        int xPos = pos.getX();
-        int zPos = pos.getZ();
+        int xPos = pos.getX() + random.nextInt(6) - random.nextInt(4);
+        int zPos = pos.getZ() + random.nextInt(6) - random.nextInt(4);
         int yPos = reader.getHeight(Heightmap.Type.WORLD_SURFACE_WG, xPos, zPos) - 1;
-        System.out.println("X:" + xPos + ", Y:" + yPos + ", Z:" + zPos);
 
         if (!config.spawnBlock.test(reader.getBlockState(pos.below()), random)) {
             return false;
@@ -94,6 +94,7 @@ public class EucaTreeFeature extends Feature<EucaTreeFeatureConfig> {
     }
 
     private void placeLeaves(ISeedReader reader, BlockPos pos, Random rand, EucaTreeFeatureConfig config) {
-        setBlock(reader, pos, config.leafBlock.getState(rand, pos));
+        if(reader.getBlockState(pos).getBlock() == Blocks.AIR)
+            setBlock(reader, pos, config.leafBlock.getState(rand, pos));
     }
 }
