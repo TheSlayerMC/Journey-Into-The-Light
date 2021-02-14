@@ -8,6 +8,7 @@ import net.minecraft.world.ISeedReader;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.Feature;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
@@ -18,15 +19,15 @@ public class EucaTreeFeature extends Feature<EucaTreeFeatureConfig> {
 
     @Override
     public boolean place(ISeedReader reader, ChunkGenerator generator, Random random, BlockPos pos, EucaTreeFeatureConfig config) {
+        int xPos = pos.getX();
+        int zPos = pos.getZ();
+        int yPos = reader.getHeight(Heightmap.Type.WORLD_SURFACE_WG, xPos, zPos) - 1;
+        System.out.println("X:" + xPos + ", Y:" + yPos + ", Z:" + zPos);
+
         if (!config.spawnBlock.test(reader.getBlockState(pos.below()), random)) {
             return false;
         } else {
             int treeHeight = random.nextInt(config.minHeight) + random.nextInt(2) + config.maxHeight;
-
-            int xPos = pos.getX();
-            int zPos = pos.getZ();
-            int yPos = reader.getHeight(Heightmap.Type.WORLD_SURFACE_WG, xPos, zPos);
-
             BlockPos.Mutable stumpPos = pos.mutable();
             stumpPos.set(xPos, yPos, zPos);
 
@@ -47,7 +48,6 @@ public class EucaTreeFeature extends Feature<EucaTreeFeatureConfig> {
                     createCrown(reader, leafPos, random, config);
                 }
             }
-
             return true;
         }
     }
