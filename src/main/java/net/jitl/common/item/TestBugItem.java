@@ -14,6 +14,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import ru.timeconqueror.timecore.api.util.GenHelper;
+import ru.timeconqueror.timecore.api.util.Hacks;
 
 import java.util.Arrays;
 
@@ -37,7 +38,7 @@ public class TestBugItem extends Item {
 
         if (worldIn.isClientSide()) {
             //TODO: create dialogue registry and network syncing *looks at TimeConqueror*
-            Minecraft.getInstance().setScreen(new DialogueScreen(new ClientDialogueNode(JITL.rl("floro"), "Hello!", Arrays.asList("helols", "hey", "heyyooooo"))));
+            Minecraft.getInstance().setScreen(Hacks.safeCast(new DialogueScreen(new ClientDialogueNode(JITL.rl("floro"), "Hello!", Arrays.asList("helols", "hey", "heyyooooo")))));
         }
         return ActionResult.success(playerIn.getItemInHand(handIn));
     }
