@@ -151,7 +151,7 @@ public class BlockRegistrator {
         registerDefaultBlock("euca_brick", "Euca Brick");
 
         registerDefaultBlock("laser_emitter", "Laser Emitter", () -> new LaserEmitterBlock(JBlockProperties.STONE_PROPS.create().noOcclusion()));
-        registerCutoutRenderedBlock("test_spawner", "Test Spawner", () -> new JSpawnerBlock(JEntities.WITHERSPINE_TYPE), JTabs.SPAWNERS);
+        registerCustomRenderLayerBlock("test_spawner", "Test Spawner", () -> new JSpawnerBlock(JEntities.WITHERSPINE_TYPE), JTabs.SPAWNERS, RenderType::cutoutMipped);
 
         registerTallCrossRenderedBlock("tall_green_glowshroom", "Tall Green Glowshroom", () -> new TallGlowshroomBlock(JBlockProperties.GLOWSHROOM_PROPS.create()));
         registerTallCrossRenderedBlock("tall_blue_glowshroom", "Tall Blue Glowshroom", () -> new TallGlowshroomBlock(JBlockProperties.GLOWSHROOM_PROPS.create()));
@@ -250,8 +250,8 @@ public class BlockRegistrator {
         registerLogBlock("euca_gold_log", "Gold Euca Log");
         registerLogBlock("euca_silver_log", "Silver Euca Log");
 
-        registerCutoutRenderedBlock("euca_gold_leaves", "Euca Gold Leaves", () -> new Block(JBlockProperties.LEAVES_PROPS.create()), JTabs.DECORATION);
-        registerCutoutRenderedBlock("euca_silver_leaves", "Euca Silver Leaves", () -> new Block(JBlockProperties.LEAVES_PROPS.create()), JTabs.DECORATION);
+        registerCustomRenderLayerBlock("euca_gold_leaves", "Euca Gold Leaves", () -> new Block(JBlockProperties.LEAVES_PROPS.create()), JTabs.DECORATION, RenderType::cutoutMipped);
+        registerCustomRenderLayerBlock("euca_silver_leaves", "Euca Silver Leaves", () -> new Block(JBlockProperties.LEAVES_PROPS.create()), JTabs.DECORATION, RenderType::cutoutMipped);
 
 
     }
@@ -362,10 +362,10 @@ public class BlockRegistrator {
                 .oneVariantState(new BlockModelLocation(JITL.MODID, "block/" + name));
     }
 
-    private static void registerCutoutRenderedBlock(String name, String enName, Supplier<Block> blockSupplier, ItemGroup cTab) {
+    private static void registerCustomRenderLayerBlock(String name, String enName, Supplier<Block> blockSupplier, ItemGroup cTab, Supplier<RenderType> renderType) {
         REGISTER.register(name, blockSupplier)
                 .name(enName)
-                .renderLayer(RenderType::cutout)
+                .renderLayer(renderType)
                 .defaultBlockItem(cTab)
                 .oneVarStateAndCubeAllModel();
     }

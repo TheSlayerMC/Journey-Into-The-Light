@@ -29,6 +29,7 @@ import net.minecraft.world.storage.SaveFormat;
 import net.minecraft.world.storage.WorldSummary;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.gui.NotificationModUpdateScreen;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
@@ -112,7 +113,7 @@ public class JMainMenuGui extends MainMenuScreen {
 				this.minecraft.setScreen(new net.minecraftforge.fml.client.gui.screen.ModListScreen(this));
 			}, false));
 		}
-		net.minecraftforge.client.gui.NotificationModUpdateScreen modUpdateNotification = net.minecraftforge.client.gui.NotificationModUpdateScreen.init(this, modButton);
+		NotificationModUpdateScreen modUpdateNotification = NotificationModUpdateScreen.init(this, modButton);
 
 		this.addButton(new JImageButton(this.width / 2 - 206, j + 75, 20, 20, 0, 0, 20, LANGUAGE_TEXTURE, 20, 40, (button9_) -> {
 			this.minecraft.setScreen(new LanguageScreen(this, this.minecraft.options, this.minecraft.getLanguageManager()));

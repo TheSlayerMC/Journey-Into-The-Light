@@ -25,7 +25,6 @@ public class EucaTreeFeature extends Feature<EucaTreeFeatureConfig> {
             int xPos = pos.getX();
             int zPos = pos.getZ();
             int yPos = reader.getHeight(Heightmap.Type.WORLD_SURFACE_WG, xPos, zPos);
-            System.out.println("X:" + xPos + ", Y:" + yPos + ", Z:" + zPos);
             int treeHeight = random.nextInt(config.minHeight) + random.nextInt(2) + config.maxHeight;
             BlockPos.Mutable stumpPos = pos.mutable();
             stumpPos.set(xPos, yPos, zPos);
