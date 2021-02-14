@@ -8,6 +8,7 @@ import net.minecraft.world.ISeedReader;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.Feature;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
