@@ -18,14 +18,11 @@ public class EucaTreeFeature extends Feature<EucaTreeFeatureConfig> {
 
     @Override
     public boolean place(ISeedReader reader, ChunkGenerator generator, Random random, BlockPos pos, EucaTreeFeatureConfig config) {
-        if (!config.spawnBlock.test(reader.getBlockState(pos.below()), random)) {
-            return false;
-        } else {
+        int xPos = pos.getX();
+        int zPos = pos.getZ();
+        int yPos = reader.getHeight(Heightmap.Type.WORLD_SURFACE_WG, xPos, zPos);
+        System.out.println("X:" + xPos + ", Y:" + yPos + ", Z:" + zPos);
             int treeHeight = random.nextInt(config.minHeight) + random.nextInt(2) + config.maxHeight;
-
-            int xPos = pos.getX();
-            int zPos = pos.getZ();
-            int yPos = reader.getHeight(Heightmap.Type.WORLD_SURFACE_WG, xPos, zPos);
             BlockPos.Mutable stumpPos = pos.mutable();
             stumpPos.set(xPos, yPos, zPos);
 
@@ -46,9 +43,7 @@ public class EucaTreeFeature extends Feature<EucaTreeFeatureConfig> {
                     createCrown(reader, leafPos, random, config);
                 }
             }
-            System.out.println("X:" + xPos + ", Y:" + yPos + ", Z:" + zPos);
             return true;
-        }
     }
 
     private void placeLog(ISeedReader reader, BlockPos.Mutable pos, Random rand, EucaTreeFeatureConfig config) {
