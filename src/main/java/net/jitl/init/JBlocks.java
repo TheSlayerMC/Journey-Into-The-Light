@@ -8,6 +8,7 @@ import net.jitl.common.block.base.JDoublePlantBlock;
 import net.jitl.common.block.base.JPlantBlock;
 import net.jitl.common.block.base.XZFacedBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.block.StairsBlock;
 import net.minecraftforge.registries.ObjectHolder;
 
@@ -133,5 +134,11 @@ public class JBlocks {
 	public static final JPlantBlock EUCA_SILVER_TALL_GRASS = promise();
 	public static final JPlantBlock EUCA_TALL_FLOWERS = promise();
 	public static final JPlantBlock EUCA_TALL_GRASS = promise();
+
+	public static final RotatedPillarBlock EUCA_GOLD_LOG = promise();
+	public static final RotatedPillarBlock EUCA_SILVER_LOG = promise();
+
+	public static final Block EUCA_GOLD_LEAVES = promise();
+	public static final Block EUCA_SILVER_LEAVES = promise();
 
 }

@@ -287,8 +287,8 @@ public class JConfiguredFeatures {
                     () -> JFeatures.EUCA_TREE.get()
                             .configured(new EucaTreeFeatureConfig(
                                     JRuleTests.GRASS_EUCA.get(),
-                                    new SimpleBlockStateProvider(JBlocks.LUNITE_BLOCK.defaultBlockState()),
-                                    new SimpleBlockStateProvider(JBlocks.LUNIUM_ORE.defaultBlockState()),
+                                    new SimpleBlockStateProvider(JBlocks.EUCA_SILVER_LEAVES.defaultBlockState()),
+                                    new SimpleBlockStateProvider(JBlocks.EUCA_GOLD_LOG.defaultBlockState()),
                                     5,
                                     2,
                                     5))

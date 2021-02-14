@@ -26,7 +26,6 @@ public class EucaTreeFeature extends Feature<EucaTreeFeatureConfig> {
             int xPos = pos.getX();
             int zPos = pos.getZ();
             int yPos = reader.getHeight(Heightmap.Type.WORLD_SURFACE_WG, xPos, zPos);
-
             BlockPos.Mutable stumpPos = pos.mutable();
             stumpPos.set(xPos, yPos, zPos);
 
@@ -47,7 +46,7 @@ public class EucaTreeFeature extends Feature<EucaTreeFeatureConfig> {
                     createCrown(reader, leafPos, random, config);
                 }
             }
-
+            System.out.println("X:" + xPos + ", Y:" + yPos + ", Z:" + zPos);
             return true;
         }
     }
