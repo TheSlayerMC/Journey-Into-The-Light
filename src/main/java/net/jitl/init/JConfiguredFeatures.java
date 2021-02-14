@@ -286,14 +286,30 @@ public class JConfiguredFeatures {
                     Decoration.SURFACE_STRUCTURES,
                     () -> JFeatures.EUCA_TREE.get()
                             .configured(new EucaTreeFeatureConfig(
-                                    JRuleTests.GRASS_EUCA.get(),
+                                    JRuleTests.GOLD_GRASS_EUCA.get(),
                                     new SimpleBlockStateProvider(JBlocks.EUCA_SILVER_LEAVES.defaultBlockState()),
                                     new SimpleBlockStateProvider(JBlocks.EUCA_GOLD_LOG.defaultBlockState()),
                                     5,
-                                    2,
-                                    5))
+                                    5,
+                                    15))
                             .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE)
-                            .chance(128))
+                            .chance(512))
+                    .setBiomePredicate(EUCA_GOLD_PLAINS)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> SILVER_GOLD_TREES =
+            REGISTER.register("silver_gold_tree",
+                    Decoration.SURFACE_STRUCTURES,
+                    () -> JFeatures.EUCA_TREE.get()
+                            .configured(new EucaTreeFeatureConfig(
+                                    JRuleTests.SILVER_GRASS_EUCA.get(),
+                                    new SimpleBlockStateProvider(JBlocks.EUCA_GOLD_LEAVES.defaultBlockState()),
+                                    new SimpleBlockStateProvider(JBlocks.EUCA_SILVER_LOG.defaultBlockState()),
+                                    5,
+                                    5,
+                                    15))
+                            .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE)
+                            .chance(512))
                     .setBiomePredicate(EUCA_GOLD_PLAINS)
                     .asPromise();
 

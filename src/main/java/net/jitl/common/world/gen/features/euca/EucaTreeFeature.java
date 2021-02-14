@@ -22,6 +22,10 @@ public class EucaTreeFeature extends Feature<EucaTreeFeatureConfig> {
         int zPos = pos.getZ();
         int yPos = reader.getHeight(Heightmap.Type.WORLD_SURFACE_WG, xPos, zPos);
         System.out.println("X:" + xPos + ", Y:" + yPos + ", Z:" + zPos);
+
+        if (!config.spawnBlock.test(reader.getBlockState(pos.below()), random)) {
+            return false;
+        } else {
             int treeHeight = random.nextInt(config.minHeight) + random.nextInt(2) + config.maxHeight;
             BlockPos.Mutable stumpPos = pos.mutable();
             stumpPos.set(xPos, yPos, zPos);
@@ -44,6 +48,7 @@ public class EucaTreeFeature extends Feature<EucaTreeFeatureConfig> {
                 }
             }
             return true;
+        }
     }
 
     private void placeLog(ISeedReader reader, BlockPos.Mutable pos, Random rand, EucaTreeFeatureConfig config) {
