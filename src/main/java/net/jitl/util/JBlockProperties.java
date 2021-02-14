@@ -1,12 +1,12 @@
 package net.jitl.util;
 
 import net.jitl.init.JSoundTypes;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.RotatedPillarBlock;
-import net.minecraft.block.SoundType;
+import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.util.Direction;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockReader;
 import net.minecraftforge.common.ToolType;
 import ru.timeconqueror.timecore.api.registry.util.BlockPropsFactory;
 
@@ -29,6 +29,9 @@ public class JBlockProperties {
 			(Material.LEAVES)
 			.sound(SoundType.GRASS)
 			.requiresCorrectToolForDrops()
+			.noOcclusion()
+			.isSuffocating(JBlockProperties::never)
+			.isViewBlocking(JBlockProperties::never)
 			.strength(0.2F, 0.1F));
 
 	public static final BlockPropsFactory LOG_PROPS = new BlockPropsFactory(() -> AbstractBlock.Properties.of(Material.WOOD, (state5) -> {
@@ -127,6 +130,7 @@ public class JBlockProperties {
 			.sound(SoundType.METAL)
 			.requiresCorrectToolForDrops()
 			.noOcclusion()
+			.isViewBlocking(JBlockProperties::never)
 			.strength(1.5F, 6.0F));
 	public static final BlockPropsFactory GLOWSHROOM_PROPS = new BlockPropsFactory(() -> AbstractBlock.Properties.of
 			(Material.REPLACEABLE_PLANT)
@@ -144,10 +148,15 @@ public class JBlockProperties {
 			.sound(SoundType.GLASS)
 			.randomTicks()
 			.noCollission()
+			.isViewBlocking(JBlockProperties::never)
 			.strength(-1.0F));
 	public static final BlockPropsFactory CAVE_VINE_PROPS = new BlockPropsFactory(() -> AbstractBlock.Properties.of
 			(Material.REPLACEABLE_PLANT)
 			.sound(SoundType.SWEET_BERRY_BUSH)
 			.lightLevel((state) -> 3)
 			.noCollission());
+
+	private static boolean never(BlockState state, IBlockReader reader, BlockPos pos) {
+		return false;
+	}
 }
