@@ -2,9 +2,8 @@ package net.jitl.common.helper;
 
 import net.jitl.JITL;
 import net.jitl.client.music.StructureMusicHandler;
-import net.jitl.init.JStructures;
-import net.jitl.network.CurrentStructurePacket;
 import net.jitl.network.JPacketHandler;
+import net.jitl.network.SCurrentStructurePacket;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.world.gen.feature.structure.StructureStart;
 import net.minecraftforge.event.TickEvent;
@@ -12,15 +11,13 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.network.PacketDistributor;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.util.HashMap;
 import java.util.UUID;
 
 @Mod.EventBusSubscriber(modid = JITL.MODID)
 public class StructureTracker {
-    private static HashMap<UUID, StructureStart> playerStructures = new HashMap<>(1); //all players and their current structure will be saved here
+    private static final HashMap<UUID, StructureStart> playerStructures = new HashMap<>(1); //all players and their current structure will be saved here
 
     @SubscribeEvent()
     public static void onPlayerTick(TickEvent.PlayerTickEvent structureEvent) {
@@ -31,7 +28,7 @@ public class StructureTracker {
                         currentStructure.getStructure()).isValid()) {
                     JPacketHandler.INSTANCE.send(
                             PacketDistributor.PLAYER.with(() -> (ServerPlayerEntity) structureEvent.player),
-                            new CurrentStructurePacket(currentStructure.getID())
+                            new SCurrentStructurePacket(currentStructure.getID())
                     );
                 }
             }

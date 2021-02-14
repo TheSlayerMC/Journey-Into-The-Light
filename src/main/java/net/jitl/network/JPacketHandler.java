@@ -1,27 +1,24 @@
 package net.jitl.network;
 
 import net.jitl.JITL;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.network.NetworkRegistry;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraftforge.fml.network.PacketDistributor;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
+import ru.timeconqueror.timecore.api.registry.PacketRegister;
+import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable;
+import ru.timeconqueror.timecore.mod.common.packet.InternalPacketManager;
 
 public class JPacketHandler {
-    private static final String PROTOCOL_VERSION = "1";
-    public static final SimpleChannel INSTANCE = NetworkRegistry.newSimpleChannel(
-            new ResourceLocation(JITL.MODID, "main"),
-            () -> PROTOCOL_VERSION,
-            PROTOCOL_VERSION :: equals,
-            PROTOCOL_VERSION :: equals
-    );
+    @AutoRegistrable
+    private static final PacketRegister REGISTER = new PacketRegister(JITL.MODID);
 
-    public static void registerPackets() {
-        int packet = 0;
-        INSTANCE.registerMessage(
-                packet++,
-                CurrentStructurePacket.class,
-                CurrentStructurePacket::encode,
-                CurrentStructurePacket::decode,
-                CurrentStructurePacket::onReceivePacket
-        );
+    private static final String PROTOCOL_STRING = "1";
+
+    public static final SimpleChannel INSTANCE = REGISTER.createChannel("main", () -> PROTOCOL_STRING, PROTOCOL_STRING::equals, PROTOCOL_STRING::equals)
+            .regPacket(SCurrentStructurePacket.class, new SCurrentStructurePacket.Handler())
+            .asChannel();
+
+    public static <MSG> void sendToPlayer(ServerPlayerEntity player, MSG message) {
+        InternalPacketManager.INSTANCE.send(PacketDistributor.PLAYER.with(() -> player), message);
     }
 }
