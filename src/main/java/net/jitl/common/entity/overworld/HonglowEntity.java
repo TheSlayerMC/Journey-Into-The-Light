@@ -104,7 +104,7 @@ public class HonglowEntity extends CreatureEntity {
     			poison.addSecondaryEffect(getVariant().getSecondaryPotion());
     			poison.setColor(getVariant().getPotionColor());
     			Entity attacker = source.getEntity();
-    			if (attacker != null && attacker instanceof LivingEntity) {
+    			if (attacker instanceof LivingEntity) {
     				poison.markMobException((LivingEntity) attacker); 
     			}
     			poison.spawn();
@@ -147,7 +147,7 @@ public class HonglowEntity extends CreatureEntity {
 		private final EffectInstance primaryPotionEffect;
 		private final EffectInstance secondaryPotionEffect;
 		private final int cloudColor;
-		private static final EnumLookup<Type, Integer> VARIANTFINDER = EnumLookup.make(Type.class, Type::getTypeInt);
+		private static final EnumLookup<Type, Integer> VARIANT_FINDER = EnumLookup.make(Type.class, Type::getTypeInt);
 		
 		Type(int id, ResourceLocation location, EffectInstance goodPotion, EffectInstance badPotion, int potionColor) {
 			variantNum = id;
@@ -162,7 +162,7 @@ public class HonglowEntity extends CreatureEntity {
 		}
 
 		public static Type getVariantFromInt(int number) {
-			return VARIANTFINDER.get(number);
+			return VARIANT_FINDER.get(number);
 		}
 		
 		public ResourceLocation getTexture() {

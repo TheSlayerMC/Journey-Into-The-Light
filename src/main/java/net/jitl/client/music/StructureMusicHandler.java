@@ -13,6 +13,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import ru.timeconqueror.timecore.api.util.EnumLookup;
 
 @Mod.EventBusSubscriber(modid = JITL.MODID, value = Dist.CLIENT)
 public class StructureMusicHandler {
@@ -25,14 +26,17 @@ public class StructureMusicHandler {
         }
     }
 
-        public enum MusicStructure {
+    public enum MusicStructure {
+        EMPTY(null, null, 0, 0, 0, 0),
         GUARDIAN_TOWER(JStructures.GUARDIAN_TOWER_HOLDER.getStructure(), JSounds.TOWER_THEME.get(), 5, 2, 5, 1);
+
         private final Structure structure;
         private final SoundEvent music;
         private final int priority;
         private final int minDuration;
         private final int maxDuration;
         private final int id;
+        private static EnumLookup<MusicStructure, Integer> STRUCTURE_FINDER = EnumLookup.make(MusicStructure.class, MusicStructure::getID);
 
         MusicStructure(Structure structureIn, SoundEvent event, int musicPriority, int musicMin, int musicMax, int musicID) {
             structure = structureIn;
@@ -52,7 +56,7 @@ public class StructureMusicHandler {
         }
 
         public static MusicStructure getFromID(int id) {
-            return MusicStructure.GUARDIAN_TOWER;
+            return STRUCTURE_FINDER.get(id);
         }
     }
 }

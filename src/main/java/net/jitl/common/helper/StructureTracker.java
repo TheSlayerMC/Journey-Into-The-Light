@@ -20,20 +20,20 @@ import java.util.UUID;
 
 @Mod.EventBusSubscriber(modid = JITL.MODID)
 public class StructureTracker {
-    private static HashMap<UUID, StructureStart> playerStructures = new HashMap<>(1); //all players and their current structure will be saved here
+    private static HashMap<UUID, StructureMusicHandler.MusicStructure> playerStructures = new HashMap<>(1); //all players and their current structure will be saved here
 
     @SubscribeEvent()
     public static void onPlayerTick(TickEvent.PlayerTickEvent structureEvent) {
         if (structureEvent.side == LogicalSide.SERVER && structureEvent.phase == TickEvent.Phase.START) {
+            StructureMusicHandler.MusicStructure newStructure = StructureMusicHandler.MusicStructure.EMPTY;
             for (StructureMusicHandler.MusicStructure currentStructure : StructureMusicHandler.MusicStructure.values()) {
-                if (((ServerPlayerEntity) structureEvent.player).getLevel().structureFeatureManager().getStructureAt(structureEvent.player.blockPosition(),
-                        true,
-                        currentStructure.getStructure()).isValid()) {
-                    JPacketHandler.INSTANCE.send(
-                            PacketDistributor.PLAYER.with(() -> (ServerPlayerEntity) structureEvent.player),
-                            new CurrentStructurePacket(currentStructure.getID())
-                    );
+                if (((ServerPlayerEntity) structureEvent.player).getLevel().structureFeatureManager().getStructureAt(structureEvent.player.blockPosition(), true, currentStructure.getStructure()).isValid()) {
+                    newStructure = currentStructure;
                 }
+            }
+            if (newStructure != playerStructures.get(structureEvent.player.getUUID())) {
+                playerStructures.put(structureEvent.player.getUUID(), newStructure);
+                JPacketHandler.INSTANCE.send(PacketDistributor.PLAYER.with(() -> (ServerPlayerEntity) structureEvent.player), new CurrentStructurePacket(newStructure.getID()));
             }
             /*StructureStart structure = ((ServerPlayerEntity) structureEvent.player).getLevel().structureFeatureManager().getStructureAt(structureEvent.player.blockPosition(), true, JStructures.GUARDIAN_TOWER_HOLDER.getStructure());
             if (playerStructures.get(structureEvent.player.getUUID()) != structure) {
