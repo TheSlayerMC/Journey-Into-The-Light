@@ -23,7 +23,7 @@ public class JMusicTicker {
     private static int lowestTimeToNext;
     private static int highestTimeToNext;
     private static int timeToNext;
-    private static final Random random = new Random();
+    private static final Random RANDOM = new Random();
 
     @SubscribeEvent()
     public static void musicTick(TickEvent.ClientTickEvent musicEvent) {
@@ -42,7 +42,7 @@ public class JMusicTicker {
                 if (!MINECRAFT.getSoundManager().isActive(currentTrack)) { //music loop
                     if (timeToNext <= 0) {
                         MINECRAFT.getSoundManager().play(currentTrack);
-                        timeToNext = MathHelper.nextInt(random, lowestTimeToNext, highestTimeToNext);;
+                        timeToNext = MathHelper.nextInt(RANDOM, lowestTimeToNext, highestTimeToNext);
                         MINECRAFT.getMusicManager().stopPlaying(); //kills vanilla music
                     } else {
                         timeToNext--;
@@ -66,7 +66,7 @@ public class JMusicTicker {
         currentTrack = shouldPlayTrack;
         if (currentTrack == null) {
             BackgroundMusicSelector vanillaMusic = MINECRAFT.getSituationalMusic();
-            MINECRAFT.getMusicManager().nextSongDelay = (MathHelper.nextInt(random, 0, vanillaMusic.getMinDelay() / 2)); //recreates a vanilla music swap
+            MINECRAFT.getMusicManager().nextSongDelay = (MathHelper.nextInt(RANDOM, 0, vanillaMusic.getMinDelay() / 2)); //recreates a vanilla music swap
         }
     }
 

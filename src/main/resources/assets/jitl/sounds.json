@@ -148,6 +148,15 @@
       }
     ]
   },
+  "music.guardian_tower": {
+    "category": "music",
+    "sounds": [
+      {
+        "name": "jitl:music/guardian_tower",
+        "stream": true
+      }
+    ]
+  },
   "music.temple_guardian": {
     "category": "music",
     "sounds": [
