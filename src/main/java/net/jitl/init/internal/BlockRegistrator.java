@@ -27,6 +27,7 @@ import ru.timeconqueror.timecore.api.client.resource.location.BlockModelLocation
 import ru.timeconqueror.timecore.api.client.resource.location.TextureLocation;
 import ru.timeconqueror.timecore.api.registry.BlockRegister;
 import ru.timeconqueror.timecore.api.registry.BlockRegister.BlockRegisterChain;
+import ru.timeconqueror.timecore.api.registry.BlockRegister.RenderTypeWrapper;
 import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable;
 
 import java.util.function.Supplier;
@@ -151,7 +152,7 @@ public class BlockRegistrator {
         registerDefaultBlock("euca_brick", "Euca Brick");
 
         registerDefaultBlock("laser_emitter", "Laser Emitter", () -> new LaserEmitterBlock(JBlockProperties.STONE_PROPS.create().noOcclusion()));
-        registerCustomRenderLayerBlock("test_spawner", "Test Spawner", () -> new JSpawnerBlock(JEntities.WITHERSPINE_TYPE), JTabs.SPAWNERS, RenderType::cutoutMipped);
+        registerCustomRenderLayerBlock("test_spawner", "Test Spawner", () -> new JSpawnerBlock(JEntities.WITHERSPINE_TYPE), JTabs.SPAWNERS, () -> RenderTypeWrappers.CUTOUT);
 
         registerTallCrossRenderedBlock("tall_green_glowshroom", "Tall Green Glowshroom", () -> new TallGlowshroomBlock(JBlockProperties.GLOWSHROOM_PROPS.create()));
         registerTallCrossRenderedBlock("tall_blue_glowshroom", "Tall Blue Glowshroom", () -> new TallGlowshroomBlock(JBlockProperties.GLOWSHROOM_PROPS.create()));
@@ -250,8 +251,8 @@ public class BlockRegistrator {
         registerLogBlock("euca_gold_log", "Gold Euca Log");
         registerLogBlock("euca_silver_log", "Silver Euca Log");
 
-        registerCustomRenderLayerBlock("euca_gold_leaves", "Euca Gold Leaves", () -> new Block(JBlockProperties.LEAVES_PROPS.create()), JTabs.DECORATION, RenderType::cutoutMipped);
-        registerCustomRenderLayerBlock("euca_silver_leaves", "Euca Silver Leaves", () -> new Block(JBlockProperties.LEAVES_PROPS.create()), JTabs.DECORATION, RenderType::cutoutMipped);
+        registerCustomRenderLayerBlock("euca_gold_leaves", "Euca Gold Leaves", () -> new Block(JBlockProperties.LEAVES_PROPS.create()), JTabs.DECORATION, () -> RenderTypeWrappers.CUTOUT);
+        registerCustomRenderLayerBlock("euca_silver_leaves", "Euca Silver Leaves", () -> new Block(JBlockProperties.LEAVES_PROPS.create()), JTabs.DECORATION, () -> RenderTypeWrappers.CUTOUT);
 
 
     }
@@ -362,7 +363,7 @@ public class BlockRegistrator {
                 .oneVariantState(new BlockModelLocation(JITL.MODID, "block/" + name));
     }
 
-    private static void registerCustomRenderLayerBlock(String name, String enName, Supplier<Block> blockSupplier, ItemGroup cTab, Supplier<RenderType> renderType) {
+    private static void registerCustomRenderLayerBlock(String name, String enName, Supplier<Block> blockSupplier, ItemGroup cTab, Supplier<RenderTypeWrapper> renderType) {
         REGISTER.register(name, blockSupplier)
                 .name(enName)
                 .renderLayer(renderType)
@@ -376,7 +377,7 @@ public class BlockRegistrator {
     private static void registerSpeciallyRenderedBlock(String name, String enName, Supplier<Block> blockSupplier, Supplier<BlockModel> blockModelSupplier) {
         REGISTER.register(name, blockSupplier)
                 .name(enName)
-                .renderLayer(RenderType::cutoutMipped)
+                .renderLayer(() -> RenderTypeWrappers.CUTOUT_MIPPED)
                 .defaultBlockItem(JTabs.BLOCKS)
                 .oneVariantState(new BlockModelLocation(JITL.MODID, "block/" + name))
                 .model(JITL.bml("block/" + name), blockModelSupplier);
@@ -400,7 +401,7 @@ public class BlockRegistrator {
     private static void registerTallCrossRenderedBlock(String name, String enName, Supplier<Block> blockSupplier) {
         REGISTER.register(name, blockSupplier)
                 .name(enName)
-                .renderLayer(RenderType::cutoutMipped)
+                .renderLayer(() -> RenderTypeWrappers.CUTOUT_MIPPED)
                 .defaultBlockItem(JTabs.DECORATION)
                 .state(JBlockStateResources.doublePlantState(JITL.bml("block/" + name + "_bottom"), JITL.bml("block/" + name + "_top")))
                 .model(JITL.bml("block/" + name + "_top"),
@@ -415,7 +416,7 @@ public class BlockRegistrator {
     private static void registerEmissiveRenderedBlock(String name, String enName, Supplier<Block> blockSupplier, BlockModel normal, BlockModel emissive) {
         REGISTER.register(name, blockSupplier)
                 .name(enName)
-                .renderLayer(RenderType::cutout)
+                .renderLayer(() -> RenderTypeWrappers.CUTOUT)
                 .defaultBlockItem(JTabs.BLOCKS)
                 .oneVariantState(JITL.bml("block/" + name))
                 .model(JITL.bml("block/" + name),
@@ -428,7 +429,7 @@ public class BlockRegistrator {
     private static void registerEmissiveRenderedBlock(String name, String enName, Supplier<Block> blockSupplier, BlockStateResource blockStateResource, BlockModel normal, BlockModel emissive) {
         REGISTER.register(name, blockSupplier)
                 .name(enName)
-                .renderLayer(RenderType::cutout)
+                .renderLayer(() -> RenderTypeWrappers.CUTOUT)
                 .defaultBlockItem(JTabs.BLOCKS)
                 .state(blockStateResource)
                 .model(JITL.bml("block/" + name),
@@ -458,7 +459,7 @@ public class BlockRegistrator {
         REGISTER.register(name, () -> new JBerryBushBlock(
                 (JBlockProperties.BERRY_BUSH_PROPS.create()), itemProviderSupplier))
                 .name(enName)
-                .renderLayer(RenderType::cutout)
+                .renderLayer(() -> RenderTypeWrappers.CUTOUT)
                 .defaultBlockItem(JTabs.BLOCKS).also((chain) -> {
             String model0 = "block/" + name + "_0";
             String model1 = "block/" + name + "_1";
@@ -475,5 +476,10 @@ public class BlockRegistrator {
                             .addVariant(new BlockStateResource.Variant("age=2", JITL.bml(model2)))
                             .addVariant(new BlockStateResource.Variant("age=3", JITL.bml(model3)))));
         });
+    }
+
+    public static class RenderTypeWrappers {
+        public static final RenderTypeWrapper CUTOUT = new RenderTypeWrapper(RenderType.cutout());
+        public static final RenderTypeWrapper CUTOUT_MIPPED = new RenderTypeWrapper(RenderType.cutoutMipped());
     }
 }
