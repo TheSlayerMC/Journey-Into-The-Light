@@ -297,8 +297,8 @@ public class JConfiguredFeatures {
                     .setBiomePredicate(EUCA_GOLD_PLAINS)
                     .asPromise();
 
-    public static final Promised<? extends ConfiguredFeature<?, ?>> SILVER_GOLD_TREES =
-            REGISTER.register("silver_gold_tree",
+    public static final Promised<? extends ConfiguredFeature<?, ?>> EUCA_SILVER_TREES =
+            REGISTER.register("euca_silver_tree",
                     Decoration.SURFACE_STRUCTURES,
                     () -> JFeatures.EUCA_TREE.get()
                             .configured(new EucaTreeFeatureConfig(
