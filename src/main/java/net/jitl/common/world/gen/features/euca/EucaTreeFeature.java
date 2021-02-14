@@ -21,7 +21,7 @@ public class EucaTreeFeature extends Feature<EucaTreeFeatureConfig> {
     public boolean place(ISeedReader reader, ChunkGenerator generator, Random random, BlockPos pos, EucaTreeFeatureConfig config) {
         int xPos = pos.getX();
         int zPos = pos.getZ();
-        int yPos = reader.getHeight(Heightmap.Type.WORLD_SURFACE_WG, xPos, zPos);
+        int yPos = reader.getHeight(Heightmap.Type.WORLD_SURFACE_WG, xPos, zPos) - 1;
         System.out.println("X:" + xPos + ", Y:" + yPos + ", Z:" + zPos);
 
         if (!config.spawnBlock.test(reader.getBlockState(pos.below()), random)) {
