@@ -52,12 +52,12 @@ public class JMusicTicker {
         }
     }
 
-    public static void addTrack(SoundEvent event, int priority, int minDelay, int maxDelay) {
-        if (priority > currentPriority) {
-            shouldPlayTrack = SimpleSound.forMusic(event);
-            currentPriority = priority;
-            lowestTimeToNext = minDelay;
-            highestTimeToNext = maxDelay;
+    public static void addTrack(JMusic track) {
+        if (track.getMusicImportance() > currentPriority) {
+            shouldPlayTrack = SimpleSound.forMusic(track.getEvent());
+            currentPriority = track.getMusicImportance();
+            lowestTimeToNext = track.getMin();
+            highestTimeToNext = track.getMin();
         }
     }
 

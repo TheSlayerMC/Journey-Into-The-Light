@@ -1,6 +1,7 @@
 package net.jitl.network;
 
 import net.jitl.client.music.StructureMusicHandler;
+import net.jitl.common.helper.EnumStructureMusic;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.LogicalSide;
@@ -33,8 +34,7 @@ public class SCurrentStructurePacket implements ITimePacket {
 
         @Override
         public void onPacketReceived(SCurrentStructurePacket packet, NetworkEvent.Context ctx, World world) {
-            StructureMusicHandler.currentMusic = StructureMusicHandler.MusicStructure.getFromID(packet.storedID);
-            System.out.println("Packet received");
+            StructureMusicHandler.currentMusic = EnumStructureMusic.getFromID(packet.storedID);
         }
     }
 }

@@ -1,5 +1,6 @@
 package net.jitl.common.entity.overworld;
 
+import net.jitl.client.music.JMusic;
 import net.jitl.client.music.JMusicTicker;
 import net.jitl.init.JAnimations;
 import net.jitl.init.JSounds;
@@ -35,9 +36,9 @@ public class TowerGuardianEntity extends MonsterEntity implements AnimatedObject
 		super.tick();
 		if (this.level.isClientSide()) {
 			if (getHealth() / getMaxHealth() > 0.5 || JMusicTicker.isMusicPlaying(JSounds.TEMPLE_GUARDIAN_MUSIC.get())) {
-				JMusicTicker.addTrack(JSounds.TEMPLE_GUARDIAN_MUSIC.get(), 1, 1, 1);
+				JMusicTicker.addTrack(new JMusic(JSounds.TEMPLE_GUARDIAN_MUSIC.get(), 1, 1, 1));
 			} else {
-				JMusicTicker.addTrack(JSounds.TEMPLE_GUARDIAN_SECOND_MUSIC.get(), 1, 1, 1);
+				JMusicTicker.addTrack(new JMusic(JSounds.TEMPLE_GUARDIAN_SECOND_MUSIC.get(), 1, 1, 1));
 			}
 		}
 	}
