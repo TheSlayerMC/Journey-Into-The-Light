@@ -14,7 +14,7 @@ public class GUIMusicHandler {
     @SubscribeEvent()
     public static void guiMusicTick(TickEvent.ClientTickEvent event) {
             if (Minecraft.getInstance().player == null) {
-                JMusicTicker.addTrack(JSounds.MENU_MUSIC.get(), 10, 0, 0);
+                JMusicTicker.addTrack(new JMusic(JSounds.MENU_MUSIC.get(), 10, 0, 0));
             }
     }
 }

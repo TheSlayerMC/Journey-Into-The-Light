@@ -17,26 +17,26 @@ import java.util.UUID;
 
 @Mod.EventBusSubscriber(modid = JITL.MODID)
 public class StructureTracker {
-    private static final HashMap<UUID, StructureStart> playerStructures = new HashMap<>(1); //all players and their current structure will be saved here
+    private static final HashMap<UUID, Integer> playerStructures = new HashMap<>(1); //all players and their current structure will be saved here
 
     @SubscribeEvent()
     public static void onPlayerTick(TickEvent.PlayerTickEvent structureEvent) {
         if (structureEvent.side == LogicalSide.SERVER && structureEvent.phase == TickEvent.Phase.START) {
-            for (StructureMusicHandler.MusicStructure currentStructure : StructureMusicHandler.MusicStructure.values()) {
-                if (((ServerPlayerEntity) structureEvent.player).getLevel().structureFeatureManager().getStructureAt(structureEvent.player.blockPosition(),
-                        true,
-                        currentStructure.getStructure()).isValid()) {
-                    JPacketHandler.INSTANCE.send(
-                            PacketDistributor.PLAYER.with(() -> (ServerPlayerEntity) structureEvent.player),
-                            new SCurrentStructurePacket(currentStructure.getID())
-                    );
-                }
+            ServerPlayerEntity player = (ServerPlayerEntity) structureEvent.player;
+            int id = findStructure(player);
+            if (playerStructures.get(player.getUUID()) == null || playerStructures.get(player.getUUID()) != id) {
+                playerStructures.put(player.getUUID(), id);
+                JPacketHandler.INSTANCE.send(PacketDistributor.PLAYER.with(() -> player), new SCurrentStructurePacket(id));
             }
-            /*StructureStart structure = ((ServerPlayerEntity) structureEvent.player).getLevel().structureFeatureManager().getStructureAt(structureEvent.player.blockPosition(), true, JStructures.GUARDIAN_TOWER_HOLDER.getStructure());
-            if (playerStructures.get(structureEvent.player.getUUID()) != structure) {
-                //TODO: Sync
-                playerStructures.put(structureEvent.player.getUUID(), structure);
-            }*/
         }
+    }
+
+    private static int findStructure(ServerPlayerEntity player) {
+        for (EnumStructureMusic currentStructure : EnumStructureMusic.values()) {
+            if (player.getLevel().structureFeatureManager().getStructureAt(player.blockPosition(), true, currentStructure.getStructure()).isValid()) {
+                return currentStructure.getID();
+            }
+        }
+        return 0;
     }
 }
