@@ -1,11 +1,9 @@
 package net.jitl.common.helper;
 
 import net.jitl.JITL;
-import net.jitl.client.music.StructureMusicHandler;
 import net.jitl.network.JPacketHandler;
 import net.jitl.network.SCurrentStructurePacket;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.world.gen.feature.structure.StructureStart;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
