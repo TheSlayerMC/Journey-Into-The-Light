@@ -35,11 +35,7 @@ public class TowerGuardianEntity extends MonsterEntity implements AnimatedObject
 	public void tick() {
 		super.tick();
 		if (this.level.isClientSide()) {
-			if (getHealth() / getMaxHealth() > 0.5 || JMusicTicker.isMusicPlaying(JSounds.TEMPLE_GUARDIAN_MUSIC.get())) {
-				JMusicTicker.addTrack(new JMusic(JSounds.TEMPLE_GUARDIAN_MUSIC.get(), 1, 1, 1));
-			} else {
-				JMusicTicker.addTrack(new JMusic(JSounds.TEMPLE_GUARDIAN_SECOND_MUSIC.get(), 1, 1, 1));
-			}
+			JMusicTicker.addTrack(new JMusic(JSounds.TEMPLE_GUARDIAN_MUSIC.get(), 2, 0, 0));
 		}
 	}
 
