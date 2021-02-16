@@ -39,7 +39,6 @@ public class JSounds {
     public static final RegistryObject<TimeSound> MENU_MUSIC = REGISTER.register("music.menu");
     public static final RegistryObject<TimeSound> TOWER_THEME = REGISTER.register("music.guardian_tower");
     public static final RegistryObject<TimeSound> TEMPLE_GUARDIAN_MUSIC = REGISTER.register("music.temple_guardian");
-    public static final RegistryObject<TimeSound> TEMPLE_GUARDIAN_SECOND_MUSIC = REGISTER.register("music.temple_guardian_2");
     public static final RegistryObject<TimeSound> EUCA_AMBIENCE = REGISTER.register("music.euca.ambience");
     public static final RegistryObject<TimeSound> GOLD_PLAINS_MUSIC = REGISTER.register("music.biome.gold_plains");
 }

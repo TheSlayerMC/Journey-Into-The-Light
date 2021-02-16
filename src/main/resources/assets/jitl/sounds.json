@@ -166,15 +166,6 @@
       }
     ]
   },
-  "music.temple_guardian_2": {
-    "category": "music",
-    "sounds": [
-      {
-        "name": "jitl:music/temple_guardian_2",
-        "stream": true
-      }
-    ]
-  },
   "music.euca.ambience": {
     "category": "music",
     "sounds": [
