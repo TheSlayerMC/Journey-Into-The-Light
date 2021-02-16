@@ -1,6 +1,7 @@
 package net.jitl.client.music;
 
 import net.jitl.JITL;
+import net.jitl.common.helper.JMusic;
 import net.jitl.init.JSounds;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.api.distmarker.Dist;

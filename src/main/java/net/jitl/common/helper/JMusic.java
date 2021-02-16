@@ -1,4 +1,4 @@
-package net.jitl.client.music;
+package net.jitl.common.helper;
 
 import net.minecraft.util.SoundEvent;
 

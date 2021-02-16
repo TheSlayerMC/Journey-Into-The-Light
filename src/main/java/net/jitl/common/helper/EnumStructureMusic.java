@@ -1,9 +1,7 @@
 package net.jitl.common.helper;
 
-import net.jitl.client.music.JMusic;
 import net.jitl.init.JSounds;
 import net.jitl.init.JStructures;
-import net.minecraft.util.SoundEvent;
 import net.minecraft.world.gen.feature.structure.Structure;
 import ru.timeconqueror.timecore.api.util.EnumLookup;
 

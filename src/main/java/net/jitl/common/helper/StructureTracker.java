@@ -24,8 +24,8 @@ public class StructureTracker {
         if (structureEvent.side == LogicalSide.SERVER && structureEvent.phase == TickEvent.Phase.START) {
             ServerPlayerEntity player = (ServerPlayerEntity) structureEvent.player;
             int id = findStructure(player);
-            if (playerStructures.get(player.getUUID()) == null || playerStructures.get(player.getUUID()) != id) {
-                playerStructures.put(player.getUUID(), id);
+            if (!playerStructures.containsKey(player.getUUID()) || playerStructures.get(player.getUUID()) != id) {
+                playerStructures.put(player.getUUID(), id); //Any way to do this without sending pointless packets on player joins?
                 JPacketHandler.INSTANCE.send(PacketDistributor.PLAYER.with(() -> player), new SCurrentStructurePacket(id));
             }
         }

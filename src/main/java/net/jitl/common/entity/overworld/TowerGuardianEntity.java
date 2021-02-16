@@ -1,6 +1,6 @@
 package net.jitl.common.entity.overworld;
 
-import net.jitl.client.music.JMusic;
+import net.jitl.common.helper.JMusic;
 import net.jitl.client.music.JMusicTicker;
 import net.jitl.init.JAnimations;
 import net.jitl.init.JSounds;
