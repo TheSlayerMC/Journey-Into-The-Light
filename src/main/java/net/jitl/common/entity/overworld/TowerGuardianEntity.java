@@ -1,7 +1,7 @@
 package net.jitl.common.entity.overworld;
 
+import net.jitl.client.eventhandler.music.JMusicTicker;
 import net.jitl.common.helper.JMusic;
-import net.jitl.client.music.JMusicTicker;
 import net.jitl.init.JAnimations;
 import net.jitl.init.JSounds;
 import net.minecraft.entity.EntityType;

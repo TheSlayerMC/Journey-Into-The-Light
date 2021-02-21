@@ -5,6 +5,7 @@ import net.jitl.common.block.CaveVinesBlock;
 import net.jitl.common.block.CaveVinesTopBlock;
 import net.jitl.common.block.TallGlowshroomBlock;
 import net.jitl.common.block.base.JDoublePlantBlock;
+import net.jitl.common.block.base.JLeavesBlock;
 import net.jitl.common.block.base.JPlantBlock;
 import net.jitl.common.block.base.XZFacedBlock;
 import net.minecraft.block.Block;
@@ -96,6 +97,7 @@ public class JBlocks {
 	public static final Block BRADBERRY_BUSH = promise();
 
 	public static final Block EUCA_BRICK = promise();
+	public static final Block EUCA_TILE = promise();
 
 	public static final Block LASER_EMITTER = promise();
 
@@ -138,7 +140,10 @@ public class JBlocks {
 	public static final RotatedPillarBlock EUCA_GOLD_LOG = promise();
 	public static final RotatedPillarBlock EUCA_SILVER_LOG = promise();
 
-	public static final Block EUCA_GOLD_LEAVES = promise();
-	public static final Block EUCA_SILVER_LEAVES = promise();
+	public static final JLeavesBlock EUCA_GOLD_LEAVES = promise();
+	public static final JLeavesBlock EUCA_SILVER_LEAVES = promise();
+
+	public static final Block SILVER_BOT_SPAWNER = promise();
+	public static final Block GOLD_BOT_SPAWNER = promise();
 
 }
