@@ -9,17 +9,21 @@ import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.common.util.LazyOptional;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import ru.timeconqueror.timecore.api.util.Hacks;
 
 public class ArmorProvider implements ICapabilitySerializable<INBT> {
-    @CapabilityInject(ArmorManager.class)
-    public static Capability<ArmorManager> ARMOR = null;
+    @CapabilityInject(IArmorManager.class)
+    public static final Capability<IArmorManager> ARMOR = Hacks.promise();
 
+    private final IArmorManager instance = ARMOR.getDefaultInstance();
+
+    @NotNull
     @Override
     public <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-        if (cap == ARMOR) {
-            return LazyOptional.of(() -> ARMOR).cast();
+        if (cap == ARMOR && instance != null) {
+            return LazyOptional.of(() -> instance).cast();
         }
-        return null;
+        return LazyOptional.empty();
     }
 
     @Override

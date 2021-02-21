@@ -1,8 +1,8 @@
 package net.jitl.eventhandler;
 
 import net.jitl.JITL;
-import net.jitl.capabilities.ArmorManager;
 import net.jitl.capabilities.ArmorProvider;
+import net.jitl.capabilities.IArmorManager;
 import net.jitl.common.helper.JArmorMaterial;
 import net.jitl.common.item.JArmorItem;
 import net.minecraft.entity.LivingEntity;
@@ -39,7 +39,7 @@ public class ArmorAbilityEvents {
             }
         }
         if (material != null) {
-            Optional<ArmorManager> optional = entity.getCapability(ArmorProvider.ARMOR).resolve();
+            Optional<IArmorManager> optional = entity.getCapability(ArmorProvider.ARMOR).resolve();
             if (optional.isPresent()) {
                 optional.get().setArmor(material);
                 LOGGER.debug("Full set on " + entity.getType().getRegistryName().getPath() + ": " + optional.get().getArmor());

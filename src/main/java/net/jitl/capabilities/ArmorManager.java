@@ -2,6 +2,7 @@ package net.jitl.capabilities;
 
 import net.jitl.JITL;
 import net.jitl.common.helper.JArmorMaterial;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -20,7 +21,7 @@ public class ArmorManager implements IArmorManager {
     }
 
     @SubscribeEvent()
-    public static void registerCapabilities(AttachCapabilitiesEvent event) {
+    public static void registerCapabilities(AttachCapabilitiesEvent<Entity> event) {
         if (event.getObject() instanceof LivingEntity) {
             event.addCapability(JITL.rl("current_armor"), new ArmorProvider());
         }
