@@ -1,4 +1,4 @@
-package net.jitl.capabilities;
+package net.jitl.capabilities.armorcapability;
 
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.INBT;
@@ -11,11 +11,11 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import ru.timeconqueror.timecore.api.util.Hacks;
 
-public class ArmorProvider implements ICapabilitySerializable<INBT> {
-    @CapabilityInject(IArmorManager.class)
-    public static final Capability<IArmorManager> ARMOR = Hacks.promise();
+public class ArmorSetProvider implements ICapabilitySerializable<INBT> {
+    @CapabilityInject(IArmorSetCapability.class)
+    public static final Capability<IArmorSetCapability> ARMOR = Hacks.promise();
 
-    private final IArmorManager instance = ARMOR.getDefaultInstance();
+    private final IArmorSetCapability instance = ARMOR.getDefaultInstance();
 
     @NotNull
     @Override

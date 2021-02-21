@@ -1,8 +1,8 @@
 package net.jitl;
 
-import net.jitl.capabilities.ArmorManager;
-import net.jitl.capabilities.ArmorStorage;
-import net.jitl.capabilities.IArmorManager;
+import net.jitl.capabilities.armorcapability.ArmorSetCapability;
+import net.jitl.capabilities.armorcapability.ArmorSetStorage;
+import net.jitl.capabilities.armorcapability.IArmorSetCapability;
 import net.jitl.client.eventhandler.ClientEventHandler;
 import net.jitl.client.eventhandler.ClientLoadingEventHandler;
 import net.jitl.client.render.JEntityRenderRegistry;
@@ -47,7 +47,7 @@ public class JITL implements TimeMod {
 
 	private void preInit(final FMLCommonSetupEvent event) {
 		event.enqueueWork(JourneyBiomeRegistry::registerProviders);
-		CapabilityManager.INSTANCE.register(IArmorManager.class, new ArmorStorage(), ArmorManager::new);
+		CapabilityManager.INSTANCE.register(IArmorSetCapability.class, new ArmorSetStorage(), ArmorSetCapability::new);
 	}
 
 	private void clientSetup(final FMLClientSetupEvent event) {

@@ -1,4 +1,4 @@
-package net.jitl.capabilities;
+package net.jitl.capabilities.armorcapability;
 
 import net.jitl.JITL;
 import net.jitl.common.helper.JArmorMaterial;
@@ -9,7 +9,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = JITL.MODID)
-public class ArmorManager implements IArmorManager {
+public class ArmorSetCapability implements IArmorSetCapability {
     private JArmorMaterial material;
 
     public void setArmor(JArmorMaterial setMaterial) {
@@ -22,8 +22,8 @@ public class ArmorManager implements IArmorManager {
 
     @SubscribeEvent()
     public static void registerCapabilities(AttachCapabilitiesEvent<Entity> event) {
-        if (event.getObject() instanceof LivingEntity) {
-            event.addCapability(JITL.rl("current_armor"), new ArmorProvider());
+        if (!event.getObject().level.isClientSide() && event.getObject() instanceof LivingEntity) {
+            event.addCapability(JITL.rl("current_armor"), new ArmorSetProvider());
         }
     }
 }
