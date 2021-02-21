@@ -12,7 +12,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class ArmorProvider implements ICapabilitySerializable<INBT> {
     @CapabilityInject(ArmorManager.class)
-    public static Capability ARMOR = null;
+    public static Capability<ArmorManager> ARMOR = null;
 
     @Override
     public <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {

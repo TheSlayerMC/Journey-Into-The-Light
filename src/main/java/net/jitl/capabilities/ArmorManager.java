@@ -5,7 +5,9 @@ import net.jitl.common.helper.JArmorMaterial;
 import net.minecraft.entity.LivingEntity;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
+@Mod.EventBusSubscriber(modid = JITL.MODID)
 public class ArmorManager implements IArmorManager {
     private JArmorMaterial material;
 
