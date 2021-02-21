@@ -23,7 +23,8 @@
       "jitl:euca_silver_foiliage",
       "jitl:euca_silver_gold_foiliage",
       "jitl:euca_silver_tree",
-      "jitl:mekyum_ore"
+      "jitl:mekyum_ore",
+      "jitl:euca_silverbot_spawner"
     ]
   ]
 }

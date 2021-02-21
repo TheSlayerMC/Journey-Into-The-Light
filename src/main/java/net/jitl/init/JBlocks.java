@@ -97,6 +97,7 @@ public class JBlocks {
 	public static final Block BRADBERRY_BUSH = promise();
 
 	public static final Block EUCA_BRICK = promise();
+	public static final Block EUCA_TILE = promise();
 
 	public static final Block LASER_EMITTER = promise();
 
@@ -141,5 +142,8 @@ public class JBlocks {
 
 	public static final JLeavesBlock EUCA_GOLD_LEAVES = promise();
 	public static final JLeavesBlock EUCA_SILVER_LEAVES = promise();
+
+	public static final Block SILVER_BOT_SPAWNER = promise();
+	public static final Block GOLD_BOT_SPAWNER = promise();
 
 }

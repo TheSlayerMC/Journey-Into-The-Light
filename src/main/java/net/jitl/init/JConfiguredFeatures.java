@@ -3,6 +3,7 @@ package net.jitl.init;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import net.jitl.JITL;
+import net.jitl.common.world.gen.features.featureconfig.EucaSpawnerFeatureConfig;
 import net.jitl.common.world.gen.features.featureconfig.EucaTreeFeatureConfig;
 import net.jitl.common.world.gen.features.featureconfig.RuinsFeatureConfig;
 import net.jitl.util.JRuleTests;
@@ -290,8 +291,8 @@ public class JConfiguredFeatures {
                                     new SimpleBlockStateProvider(JBlocks.EUCA_SILVER_LEAVES.defaultBlockState()),
                                     new SimpleBlockStateProvider(JBlocks.EUCA_GOLD_LOG.defaultBlockState()),
                                     5,
-                                    5,
-                                    15))
+                                    15,
+                                    18))
                             .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE)
                             .chance(3))
                     .setBiomePredicate(EUCA_GOLD_PLAINS)
@@ -306,11 +307,39 @@ public class JConfiguredFeatures {
                                     new SimpleBlockStateProvider(JBlocks.EUCA_GOLD_LEAVES.defaultBlockState()),
                                     new SimpleBlockStateProvider(JBlocks.EUCA_SILVER_LOG.defaultBlockState()),
                                     5,
-                                    5,
-                                    17))
+                                    15,
+                                    18))
                             .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE)
                             .chance(3))
                     .setBiomePredicate(EUCA_SILVER_PLAINS)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> EUCA_SILVERBOT_SAPWNER =
+            REGISTER.register("euca_silverbot_spawner",
+                    Decoration.SURFACE_STRUCTURES,
+                    () -> JFeatures.EUCA_BOT_SPAWNER.get()
+                            .configured(new EucaSpawnerFeatureConfig(
+                                    JRuleTests.SILVER_GRASS_EUCA.get(),
+                                    new SimpleBlockStateProvider(JBlocks.SILVER_BOT_SPAWNER.defaultBlockState()),
+                                    13,
+                                    7))
+                            .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE)
+                            .chance(5))
+                    .setBiomePredicate(EUCA_SILVER_PLAINS)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> EUCA_GOLDBOT_SAPWNER =
+            REGISTER.register("euca_goldbot_spawner",
+                    Decoration.SURFACE_STRUCTURES,
+                    () -> JFeatures.EUCA_BOT_SPAWNER.get()
+                            .configured(new EucaSpawnerFeatureConfig(
+                                    JRuleTests.GOLD_GRASS_EUCA.get(),
+                                    new SimpleBlockStateProvider(JBlocks.GOLD_BOT_SPAWNER.defaultBlockState()),
+                                    13,
+                                    7))
+                            .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE)
+                            .chance(5))
+                    .setBiomePredicate(EUCA_GOLD_PLAINS)
                     .asPromise();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> SAPPHIRE_ORE =
