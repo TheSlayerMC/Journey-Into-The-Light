@@ -20,7 +20,7 @@ public class ArmorManager implements IArmorManager {
     @SubscribeEvent()
     public static void registerCapabilities(AttachCapabilitiesEvent event) {
         if (event.getObject() instanceof LivingEntity) {
-            event.addCapability(JITL.rl("Current armor"), new ArmorProvider());
+            event.addCapability(JITL.rl("currentArmor"), new ArmorProvider());
         }
     }
 }
