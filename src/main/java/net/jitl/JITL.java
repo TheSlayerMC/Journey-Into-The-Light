@@ -1,11 +1,15 @@
 package net.jitl;
 
+import net.jitl.capabilities.ArmorManager;
+import net.jitl.capabilities.ArmorStorage;
+import net.jitl.capabilities.IArmorManager;
 import net.jitl.client.eventhandler.ClientEventHandler;
 import net.jitl.client.eventhandler.ClientLoadingEventHandler;
 import net.jitl.client.render.JEntityRenderRegistry;
 import net.jitl.init.JourneyBiomeRegistry;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -43,6 +47,7 @@ public class JITL implements TimeMod {
 
 	private void preInit(final FMLCommonSetupEvent event) {
 		event.enqueueWork(JourneyBiomeRegistry::registerProviders);
+		CapabilityManager.INSTANCE.register(IArmorManager.class, new ArmorStorage(), ArmorManager::new);
 	}
 
 	private void clientSetup(final FMLClientSetupEvent event) {

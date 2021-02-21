@@ -1,6 +1,7 @@
-package net.jitl.common.helper;
+package net.jitl.eventhandler;
 
 import net.jitl.JITL;
+import net.jitl.common.helper.EnumStructureMusic;
 import net.jitl.network.JPacketHandler;
 import net.jitl.network.SCurrentStructurePacket;
 import net.minecraft.entity.player.ServerPlayerEntity;

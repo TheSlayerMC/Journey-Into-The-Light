@@ -1,6 +1,6 @@
 package net.jitl.network;
 
-import net.jitl.client.music.StructureMusicHandler;
+import net.jitl.client.eventhandler.music.StructureMusicHandler;
 import net.jitl.common.helper.EnumStructureMusic;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.world.World;

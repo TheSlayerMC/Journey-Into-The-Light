@@ -1,4 +1,4 @@
-package net.jitl.client.music;
+package net.jitl.client.eventhandler.music;
 
 import net.jitl.JITL;
 import net.jitl.common.helper.EnumStructureMusic;
