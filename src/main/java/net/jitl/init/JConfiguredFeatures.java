@@ -324,7 +324,7 @@ public class JConfiguredFeatures {
                                     13,
                                     7))
                             .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE)
-                            .chance(5))
+                            .chance(50))
                     .setBiomePredicate(EUCA_SILVER_PLAINS)
                     .asPromise();
 
@@ -338,7 +338,7 @@ public class JConfiguredFeatures {
                                     13,
                                     7))
                             .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE)
-                            .chance(5))
+                            .chance(50))
                     .setBiomePredicate(EUCA_GOLD_PLAINS)
                     .asPromise();
 
