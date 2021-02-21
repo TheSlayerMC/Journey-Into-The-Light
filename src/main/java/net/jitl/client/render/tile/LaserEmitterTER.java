@@ -40,7 +40,7 @@ public class LaserEmitterTER extends TileEntityRenderer<LaserEmitterTile> {
         if (world == null) return;
 
         float gameTime = Animation.getWorldTime(world, partialTicks) * 20;
-        float angleDegrees = gameTime % 360;
+        float angleDegrees = tile.getLaserAngle() + partialTicks;
         Quaternion rotationQuaternion = Vector3f.YP.rotationDegrees(angleDegrees);
 
         renderModel(Models.fullCube, JITL.rl("textures/block/laser_emitter.png"), rotationQuaternion, matrixStackIn, bufferIn, combinedLightIn, combinedOverlayIn);
