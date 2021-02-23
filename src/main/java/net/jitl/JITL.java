@@ -1,8 +1,8 @@
 package net.jitl;
 
-import net.jitl.capabilities.armorcapability.ArmorSetCapability;
-import net.jitl.capabilities.armorcapability.ArmorSetStorage;
-import net.jitl.capabilities.armorcapability.IArmorSetCapability;
+import net.jitl.capabilities.armorability.ArmorSetCapability;
+import net.jitl.capabilities.armorability.ArmorSetStorage;
+import net.jitl.capabilities.armorability.IArmorSetCapability;
 import net.jitl.client.eventhandler.ClientEventHandler;
 import net.jitl.client.eventhandler.ClientLoadingEventHandler;
 import net.jitl.client.render.JEntityRenderRegistry;

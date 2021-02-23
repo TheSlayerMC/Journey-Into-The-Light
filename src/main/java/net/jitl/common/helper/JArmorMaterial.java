@@ -1,6 +1,10 @@
 package net.jitl.common.helper;
 
+import mcp.MethodsReturnNonnullByDefault;
 import net.jitl.JITL;
+import net.jitl.common.item.gearabilities.BaseAbilities;
+import net.jitl.common.item.gearabilities.IGearAbilities;
+import net.jitl.common.item.gearabilities.ShadiumAbilities;
 import net.jitl.init.JItems;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IArmorMaterial;
@@ -8,16 +12,15 @@ import net.minecraft.item.Item;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
-import org.apache.commons.lang3.NotImplementedException;
 
 public enum JArmorMaterial implements IArmorMaterial {
 
     //Change these
-    SAPPHIRE("sapphire", 27, new int[]{3, 6, 8, 3}, 0.5F, 0.2F, SoundEvents.ARMOR_EQUIP_IRON, JItems.SAPPHIRE),
-    LUNIUM("lunium", 27, new int[]{3, 6, 8, 3}, 0.5F, 0.2F, SoundEvents.ARMOR_EQUIP_IRON, JItems.LUNIUM_INGOT),
-    SHADIUM("shadium", 27, new int[]{3, 6, 8, 3}, 0.5F, 0.2F, SoundEvents.ARMOR_EQUIP_IRON, JItems.SHADIUM_INGOT),
-    BLOODCRUST("bloodcrust", 27, new int[]{3, 6, 8, 3}, 0.5F, 0.2F, SoundEvents.ARMOR_EQUIP_IRON, JItems.BLOODCRUST_INGOT),
-    CELESTIUM("celestium", 27, new int[]{3, 6, 8, 3}, 0.5F, 0.2F, SoundEvents.ARMOR_EQUIP_IRON, JItems.CELESTIUM_INGOT);
+    SAPPHIRE("sapphire", 27, new int[]{3, 6, 8, 3}, 0.5F, 0.2F, SoundEvents.ARMOR_EQUIP_IRON, JItems.SAPPHIRE, new BaseAbilities()),
+    LUNIUM("lunium", 27, new int[]{3, 6, 8, 3}, 0.5F, 0.2F, SoundEvents.ARMOR_EQUIP_IRON, JItems.LUNIUM_INGOT, new BaseAbilities()),
+    SHADIUM("shadium", 27, new int[]{3, 6, 8, 3}, 0.5F, 0.2F, SoundEvents.ARMOR_EQUIP_IRON, JItems.SHADIUM_INGOT, new ShadiumAbilities()),
+    BLOODCRUST("bloodcrust", 27, new int[]{3, 6, 8, 3}, 0.5F, 0.2F, SoundEvents.ARMOR_EQUIP_IRON, JItems.BLOODCRUST_INGOT, new BaseAbilities()),
+    CELESTIUM("celestium", 27, new int[]{3, 6, 8, 3}, 0.5F, 0.2F, SoundEvents.ARMOR_EQUIP_IRON, JItems.CELESTIUM_INGOT, new BaseAbilities());
 
     private final String name;
     private final int durabilityMultiplier;
@@ -26,8 +29,9 @@ public enum JArmorMaterial implements IArmorMaterial {
     private final SoundEvent slotIn;
     private final Ingredient repairItem;
     private static final int[] BASE_DURABILITY = new int[]{13, 15, 16, 11};
+    private final IGearAbilities abilities;
 
-    JArmorMaterial(String name, int dur, int[] protection, float toughness, float knockback, SoundEvent putIn, Item repair) {
+    JArmorMaterial(String name, int dur, int[] protection, float toughness, float knockback, SoundEvent putIn, Item repair, IGearAbilities abilityManager) {
         this.name = name;
         this.durabilityMultiplier = dur;
         this.protectionPerPiece = protection;
@@ -35,6 +39,7 @@ public enum JArmorMaterial implements IArmorMaterial {
         this.toughness = toughness;
         this.knockback = knockback;
         this.repairItem = Ingredient.of(repair);
+        this.abilities = abilityManager;
     }
 
     @Override
@@ -52,11 +57,13 @@ public enum JArmorMaterial implements IArmorMaterial {
         return 30;
     }
 
+    @MethodsReturnNonnullByDefault
     @Override
     public SoundEvent getEquipSound() {
         return slotIn;
     }
 
+    @MethodsReturnNonnullByDefault
     @Override
     public Ingredient getRepairIngredient() {
         return repairItem;
@@ -78,5 +85,9 @@ public enum JArmorMaterial implements IArmorMaterial {
     @Override
     public float getKnockbackResistance() {
         return this.knockback;
+    }
+
+    public IGearAbilities getAbilities() {
+        return this.abilities;
     }
 }

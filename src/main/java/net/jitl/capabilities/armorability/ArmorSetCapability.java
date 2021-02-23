@@ -1,7 +1,7 @@
-package net.jitl.capabilities.armorcapability;
+package net.jitl.capabilities.armorability;
 
 import net.jitl.JITL;
-import net.jitl.common.helper.JArmorMaterial;
+import net.jitl.common.item.gearabilities.IGearAbilities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
@@ -10,14 +10,14 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = JITL.MODID)
 public class ArmorSetCapability implements IArmorSetCapability {
-    private JArmorMaterial material;
+    private IGearAbilities armorAbility;
 
-    public void setArmor(JArmorMaterial setMaterial) {
-        material = setMaterial;
+    public void setArmor(IGearAbilities setAbility) {
+        armorAbility = setAbility;
     }
 
-    public JArmorMaterial getArmor() {
-        return material;
+    public IGearAbilities getArmor() {
+        return armorAbility;
     }
 
     @SubscribeEvent()

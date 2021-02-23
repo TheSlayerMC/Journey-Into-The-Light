@@ -1,4 +1,4 @@
-package net.jitl.capabilities.armorcapability;
+package net.jitl.capabilities.armorability;
 
 import net.minecraft.nbt.INBT;
 import net.minecraft.util.Direction;
