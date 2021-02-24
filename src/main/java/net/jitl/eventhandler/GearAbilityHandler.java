@@ -27,7 +27,7 @@ public class GearAbilityHandler {
     @SubscribeEvent()
     public static void handlePreHurt(LivingHurtEvent event) {
         System.out.println("Pre damage: " + event.getAmount());
-        Entity attacker = event.getSource().getEntity();
+        Entity attacker = event.getSource().getDirectEntity();
         float damageModifier = 0;
         if (attacker instanceof LivingEntity) {
             Item heldItem = ((LivingEntity) attacker).getItemInHand(Hand.MAIN_HAND).getItem();
