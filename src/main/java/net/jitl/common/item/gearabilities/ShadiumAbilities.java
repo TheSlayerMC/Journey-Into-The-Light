@@ -28,7 +28,7 @@ public class ShadiumAbilities implements IGearAbilities {
 
     public double getArmorReduction(LivingDamageEvent event) {
         System.out.println("Darkness: " + (1 - event.getSource().getEntity().getBrightness()));
-        System.out.println("Damage reduction: " + (event.getAmount() / 5) * -(1 - event.getSource().getEntity().getBrightness()));
-        return (event.getAmount() / 5) * -(1 - event.getSource().getEntity().getBrightness());
+        System.out.println("Damage reduction: " + (event.getSource().isBypassArmor() ? 0 : (event.getAmount() / 5) * -(1 - event.getSource().getEntity().getBrightness())));
+        return event.getSource().isBypassArmor() ? 0 : (event.getAmount() / 5) * -(1 - event.getSource().getEntity().getBrightness());
     }
 }
