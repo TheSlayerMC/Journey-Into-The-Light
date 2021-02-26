@@ -15,6 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -23,6 +24,18 @@ import java.util.Optional;
 
 @Mod.EventBusSubscriber(modid = JITL.MODID)
 public class GearAbilityHandler {
+
+    @SubscribeEvent()
+    public static void handleTick(LivingEvent.LivingUpdateEvent event) {
+        LivingEntity entity = event.getEntityLiving();
+        Optional<IArmorSetCapability> optional = entity.getCapability(ArmorSetProvider.ARMOR).resolve();
+        if (optional.isPresent()) {
+            IGearAbilities gear = optional.get().getArmor();
+            if (gear != null) {
+                gear.doTickAbility(event);
+            }
+        }
+    }
 
     @SubscribeEvent()
     public static void handlePreHurt(LivingHurtEvent event) {

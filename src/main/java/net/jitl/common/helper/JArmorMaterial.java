@@ -3,6 +3,7 @@ package net.jitl.common.helper;
 import mcp.MethodsReturnNonnullByDefault;
 import net.jitl.JITL;
 import net.jitl.common.item.gearabilities.BaseAbilities;
+import net.jitl.common.item.gearabilities.CelestiumAbilities;
 import net.jitl.common.item.gearabilities.IGearAbilities;
 import net.jitl.common.item.gearabilities.ShadiumAbilities;
 import net.jitl.init.JItems;
@@ -20,7 +21,7 @@ public enum JArmorMaterial implements IArmorMaterial {
     LUNIUM("lunium", 27, new int[]{3, 6, 8, 3}, 0.5F, 0.2F, SoundEvents.ARMOR_EQUIP_IRON, JItems.LUNIUM_INGOT, new BaseAbilities()),
     SHADIUM("shadium", 27, new int[]{3, 6, 8, 3}, 0.5F, 0.2F, SoundEvents.ARMOR_EQUIP_IRON, JItems.SHADIUM_INGOT, new ShadiumAbilities()),
     BLOODCRUST("bloodcrust", 27, new int[]{3, 6, 8, 3}, 0.5F, 0.2F, SoundEvents.ARMOR_EQUIP_IRON, JItems.BLOODCRUST_INGOT, new BaseAbilities()),
-    CELESTIUM("celestium", 27, new int[]{3, 6, 8, 3}, 0.5F, 0.2F, SoundEvents.ARMOR_EQUIP_IRON, JItems.CELESTIUM_INGOT, new BaseAbilities());
+    CELESTIUM("celestium", 27, new int[]{3, 6, 8, 3}, 0.5F, 0.2F, SoundEvents.ARMOR_EQUIP_IRON, JItems.CELESTIUM_INGOT, new CelestiumAbilities());
 
     private final String name;
     private final int durabilityMultiplier;
