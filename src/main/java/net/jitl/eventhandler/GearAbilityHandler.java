@@ -7,7 +7,7 @@ import net.jitl.common.helper.JArmorMaterial;
 import net.jitl.common.helper.JToolTiers;
 import net.jitl.common.item.JArmorItem;
 import net.jitl.common.item.JSwordItem;
-import net.jitl.common.item.gearabilities.IGearAbilities;
+import net.jitl.common.item.gearabilities.BaseAbilities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;
@@ -30,7 +30,7 @@ public class GearAbilityHandler {
         LivingEntity entity = event.getEntityLiving();
         Optional<IArmorSetCapability> optional = entity.getCapability(ArmorSetProvider.ARMOR).resolve();
         if (optional.isPresent()) {
-            IGearAbilities gear = optional.get().getArmor();
+            BaseAbilities gear = optional.get().getArmor();
             if (gear != null) {
                 gear.doTickAbility(event);
             }
@@ -45,7 +45,10 @@ public class GearAbilityHandler {
         if (attacker instanceof LivingEntity) {
             Item heldItem = ((LivingEntity) attacker).getItemInHand(Hand.MAIN_HAND).getItem();
             if (heldItem instanceof JSwordItem) {
-                damageModifier += ((JToolTiers) ((JSwordItem) heldItem).getTier()).getAbility().getSwordDamageModifier(event);
+                BaseAbilities ability = ((JToolTiers) ((JSwordItem) heldItem).getTier()).getAbilities();
+                if (ability != null) {
+                    damageModifier += ability.getSwordDamageModifier(event);
+                }
             }
         }
         event.setAmount(event.getAmount() + damageModifier);
@@ -57,7 +60,7 @@ public class GearAbilityHandler {
         float damageModifier = 0;
         Optional<IArmorSetCapability> optional = event.getEntityLiving().getCapability(ArmorSetProvider.ARMOR).resolve();
         if (optional.isPresent()) {
-            IGearAbilities gear = optional.get().getArmor();
+            BaseAbilities gear = optional.get().getArmor();
             if (gear != null) {
                 damageModifier += gear.getArmorReduction(event);
             }
@@ -86,11 +89,9 @@ public class GearAbilityHandler {
                 break;
             }
         }
-        if (material != null) {
-            Optional<IArmorSetCapability> optional = entity.getCapability(ArmorSetProvider.ARMOR).resolve();
-            if (optional.isPresent()) {
-                optional.get().setArmor(material.getAbilities());
-            }
+        Optional<IArmorSetCapability> optional = entity.getCapability(ArmorSetProvider.ARMOR).resolve();
+        if (optional.isPresent()) {
+            optional.get().setArmor(material != null ? material.getAbilities() : null);
         }
     }
 }

@@ -1,9 +1,9 @@
 package net.jitl.capabilities.armorability;
 
-import net.jitl.common.item.gearabilities.IGearAbilities;
+import net.jitl.common.item.gearabilities.BaseAbilities;
 
 public interface IArmorSetCapability {
-    void setArmor(IGearAbilities material);
+    void setArmor(BaseAbilities material);
 
-    IGearAbilities getArmor();
+    BaseAbilities getArmor();
 }

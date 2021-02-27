@@ -31,7 +31,7 @@ public class KeybindEventHandler {
                 if (key == keyStats.getKey()) {
                     System.out.println("Stats");
                     MINECRAFT.setScreen(new ScreenPlayerStats(MINECRAFT.player.inventory));
-                } else if (key == MINECRAFT.options.keyJump.getKey() && !MINECRAFT.player.isOnGround()) {
+                } else if (key == MINECRAFT.options.keyJump.getKey() && !MINECRAFT.player.isOnGround() && !MINECRAFT.player.isCreative()) {
                     System.out.println("Jump");
                     Vector3d move = MINECRAFT.player.getDeltaMovement();
                     JPacketHandler.INSTANCE.sendToServer(new KeyPressedPacket(Math.atan2(move.z(), move.x())));

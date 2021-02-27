@@ -6,7 +6,7 @@ import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
-public class BaseAbilities implements IGearAbilities {
+public abstract class BaseAbilities {
     public void doTickAbility(LivingEvent.LivingUpdateEvent event) {
 
     }

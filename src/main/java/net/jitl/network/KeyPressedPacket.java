@@ -2,8 +2,8 @@ package net.jitl.network;
 
 import net.jitl.capabilities.armorability.ArmorSetProvider;
 import net.jitl.capabilities.armorability.IArmorSetCapability;
+import net.jitl.common.item.gearabilities.BaseAbilities;
 import net.jitl.common.item.gearabilities.CelestiumAbilities;
-import net.jitl.common.item.gearabilities.IGearAbilities;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.world.World;
@@ -43,7 +43,7 @@ public class KeyPressedPacket implements ITimePacket {
             LivingEntity entity = ctx.getSender();
             Optional<IArmorSetCapability> optional = entity.getCapability(ArmorSetProvider.ARMOR).resolve();
             if (optional.isPresent()) {
-                IGearAbilities gear = optional.get().getArmor();
+                BaseAbilities gear = optional.get().getArmor();
                 if (gear instanceof CelestiumAbilities) {
                     ((CelestiumAbilities) gear).doCharge(entity, packet.angle);
                 }
