@@ -130,13 +130,6 @@ public class EntityRendering {
                 "terralight_2",
                 "terralight_3"));
 
-        RenderingRegistry.registerEntityRenderingHandler(EntityTempleGuardian.class, manager -> new AnimatedBossRenderer<>(manager, TimeModelLoader
-                .loadJsonEntityModel(Textures
-                        .getEntityModelLocation("temple_guardian"))
-                .setScaleMultiplier(1.0F), Textures
-                .getMobTextureLocation("temple_guardian"))
-                .setBossString("templeGuardian", EnumHexColor.RED, EnumHexColor.BLACK));
-
         RenderingRegistry.registerEntityRenderingHandler(EntitySpiritLurker.class, manager -> new RenderEntity2DAnimated(manager,
                 10,
                 "terralight_0",
@@ -179,6 +172,7 @@ public class EntityRendering {
     }
 
     public static void init() {
+        RenderingRegistry.registerEntityRenderingHandler(EntityTempleGuardian.class, new RenderBoss(new ModelMage(), 0.5F, 2.0F, Textures.templeGuardian, "templeGuardian", EnumHexColor.RED, EnumHexColor.BLACK));
         /**Projectiles*/
         RenderingRegistry.registerEntityRenderingHandler(EntityDamagingProjectile.class, new RenderStaffProjectile(Textures.basic, 1.0F, 0.2F, 0.2F));
         RenderingRegistry.registerEntityRenderingHandler(EntityDoomsBringer.class, new RenderStaffProjectile(Textures.basic, 1.2F, 0.2F, 0.2F));
