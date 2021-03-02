@@ -28,7 +28,7 @@ public abstract class JWorldGenHugeTrees extends WorldGenHugeTrees {
 	 * It also generates dirt around the block in a 2x2 square if there is dirt underneath the blockpos.
 	 */
 	@Override
-	protected boolean ensureDirtsUnderneath(BlockPos pos, World worldIn) {
+	public boolean ensureDirtsUnderneath(BlockPos pos, World worldIn) {
 		BlockPos blockpos = pos.down();
 		IBlockState state = worldIn.getBlockState(blockpos);
 

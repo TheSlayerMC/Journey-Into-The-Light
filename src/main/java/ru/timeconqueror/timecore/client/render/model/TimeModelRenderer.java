@@ -125,7 +125,7 @@ public class TimeModelRenderer extends ModelRenderer {
 	 * Compiles a GL display list for this model
 	 */
 	@Override
-	protected void compileDisplayList(float initialScale) {
+	public void compileDisplayList(float initialScale) {
 		this.displayList = GLAllocation.generateDisplayLists(1);
 		GlStateManager.glNewList(this.displayList, 4864);
 		BufferBuilder bufferbuilder = Tessellator.getInstance().getBuffer();
