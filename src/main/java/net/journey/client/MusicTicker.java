@@ -17,47 +17,45 @@ import java.util.Random;
 @SideOnly(Side.CLIENT)
 public class MusicTicker {
 
-    private final Random rand = new Random();
-    private final Minecraft mc;
-    private ISound currentMusic;
-    private int timeUntilNextMusic = 100;
-    private int id;
+	private final Random rand = new Random();
+	private final Minecraft mc;
+	private ISound currentMusic;
+	private int timeUntilNextMusic = 100;
+	private Integer lastDimensionId = null;
 
-    public MusicTicker(Minecraft mcIn) {
-        this.mc = mcIn;
-    }
-
-    public void update() {
-        TrackType tracktype = this.getRandomTrack();
-
-        if (this.mc.player != null) {
-            if (this.mc.player.dimension != getDimensionID()) {
-                this.stopMusic();
-            } else if (this.mc.player.dimension == getDimensionID()) {
-                if (this.currentMusic != null) {
-                    if (!this.mc.getSoundHandler().isSoundPlaying(this.currentMusic)) {
-                        this.currentMusic = null;
-                        this.timeUntilNextMusic = Math.min(MathHelper.getInt(this.rand, tracktype.getMinDelay(), tracktype.getMaxDelay()), this.timeUntilNextMusic);
-                    }
-                }
-	            this.timeUntilNextMusic = Math.min(this.timeUntilNextMusic, tracktype.getMaxDelay());
-	            if (this.currentMusic == null && this.timeUntilNextMusic-- <= 0) {
-		            this.playMusic(tracktype);
-	            }
-            }
-        }
-    }
-
-	public int getDimensionID() {
-		return id;
+	public MusicTicker(Minecraft mcIn) {
+		this.mc = mcIn;
 	}
 
-	public DimensionType getDimension() {
-		return DimensionType.getById(id);
+	public void update() {
+		int currentId = Minecraft.getMinecraft().world.provider.getDimensionType().getId();
+
+		if (lastDimensionId == null) lastDimensionId = currentId; // id initialization
+
+		if (this.mc.player != null) {
+			if (currentId != lastDimensionId) {
+				stopMusic();
+			} else {
+				TrackType tracktype = this.getRandomTrack();
+
+				if (this.currentMusic != null) {
+					if (!this.mc.getSoundHandler().isSoundPlaying(this.currentMusic)) {
+						this.currentMusic = null;
+						this.timeUntilNextMusic = Math.min(MathHelper.getInt(this.rand, tracktype.getMinDelay(), tracktype.getMaxDelay()), this.timeUntilNextMusic);
+					}
+				}
+				this.timeUntilNextMusic = Math.min(this.timeUntilNextMusic, tracktype.getMaxDelay());
+				if (this.currentMusic == null && this.timeUntilNextMusic-- <= 0) {
+					this.playMusic(tracktype);
+				}
+			}
+
+			this.lastDimensionId = currentId;
+		}
 	}
 
-	public void setDimensionID(int id) {
-		this.id = id;
+	private DimensionType getDimension() {
+		return DimensionType.getById(lastDimensionId);
 	}
 
 	public boolean isPlayingMusic() {
@@ -94,19 +92,19 @@ public class MusicTicker {
 		}
 	}
 
-    public void playMusic(TrackType requestedMusicType) {
-	    this.currentMusic = PositionedSoundRecord.getMusicRecord(requestedMusicType.getSound());
-	    this.mc.getSoundHandler().playSound(this.currentMusic);
-	    this.timeUntilNextMusic = Integer.MAX_VALUE;
-    }
+	public void playMusic(TrackType requestedMusicType) {
+		this.currentMusic = PositionedSoundRecord.getMusicRecord(requestedMusicType.getSound());
+		this.mc.getSoundHandler().playSound(this.currentMusic);
+		this.timeUntilNextMusic = Integer.MAX_VALUE;
+	}
 
-    public void stopMusic() {
-        if (this.currentMusic != null) {
-            this.mc.getSoundHandler().stopSound(this.currentMusic);
-            this.currentMusic = null;
-            this.timeUntilNextMusic = 0;
-        }
-    }
+	public void stopMusic() {
+		if (this.currentMusic != null) {
+			this.mc.getSoundHandler().stopSound(this.currentMusic);
+			this.currentMusic = null;
+			this.timeUntilNextMusic = 0;
+		}
+	}
 
 	@SideOnly(Side.CLIENT)
 	public enum TrackType {

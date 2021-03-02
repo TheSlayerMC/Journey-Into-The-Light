@@ -24,7 +24,7 @@ public class ClientDimensionMusic {
 
 		if (phase == TickEvent.Phase.END) {
 			if (type.equals(TickEvent.Type.CLIENT)) {
-				if (!MC.isGamePaused()) {
+				if (!MC.isGamePaused() && MC.world != null) {
 					MUSIC_TICKER.update();
 				}
 			}
@@ -39,7 +39,6 @@ public class ClientDimensionMusic {
 		if (category == SoundCategory.MUSIC) {
 			if (MC.currentScreen != null) {
 				if (MC.player != null) {
-					MUSIC_TICKER.setDimensionID(MC.player.dimension);
 					if (MC.player.dimension == Config.euca ||
 							MC.player.dimension == Config.depths ||
 							MC.player.dimension == Config.boil ||
