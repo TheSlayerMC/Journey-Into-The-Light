@@ -19,7 +19,6 @@ public class LaserEmitterTile extends InitableTile implements ITickableTileEntit
     public static final Vector3d BEAM_OFFSET = new Vector3d(0.5, 0, 0);
 
     private long activationTime;
-    public float laserAngle;
     private final float speed = 0.9F;
 
     public LaserEmitterTile() {
@@ -33,8 +32,6 @@ public class LaserEmitterTile extends InitableTile implements ITickableTileEntit
 
     @Override
     public void tick() {
-        this.laserAngle = MathHelper.wrapDegrees(getLaserAngle() + speed);
-
         BeamCalculation.TillBlockResult beamTillBlock = BeamCalculation.tillBlock(level, getBlockPos(), BEAM_OFFSET, getLaserRotation(0), MAX_DISTANCE);
 
         BeamCalculation.forAllEntitiesOnWay(level, beamTillBlock, entity -> true, entity -> {
@@ -68,6 +65,6 @@ public class LaserEmitterTile extends InitableTile implements ITickableTileEntit
     }
 
     public Quaternion getLaserRotation(float partialTicks) {
-        return Vector3f.YP.rotationDegrees(getLaserAngle() + partialTicks);
+        return Vector3f.YP.rotationDegrees(getLaserAngle() + speed * partialTicks);
     }
 }
