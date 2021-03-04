@@ -139,9 +139,11 @@ public class JBlocks {
 
 	public static final RotatedPillarBlock EUCA_GOLD_LOG = promise();
 	public static final RotatedPillarBlock EUCA_SILVER_LOG = promise();
+	public static final RotatedPillarBlock EUCA_BROWN_LOG = promise();
 
 	public static final JLeavesBlock EUCA_GOLD_LEAVES = promise();
 	public static final JLeavesBlock EUCA_SILVER_LEAVES = promise();
+	public static final JLeavesBlock EUCA_GREEN_LEAVES = promise();
 
 	public static final Block SILVER_BOT_SPAWNER = promise();
 	public static final Block GOLD_BOT_SPAWNER = promise();

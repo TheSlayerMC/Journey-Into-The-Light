@@ -150,6 +150,9 @@ public class BlockRegistrator {
         registerDefaultBlock("block_of_mud", "Block O' Mud", () -> new Block(JBlockProperties.MUD_PROPS.create()));
 
         registerDefaultBlock("euca_brick", "Euca Brick");
+        RegistryObject<Block> eucaGoldPlank = registerBlock("euca_gold_plank", "Euca Golden Plank", () -> new Block(JBlockProperties.WOOD_PROPS.create()));
+        registerStairs("euca_golden_stairs", "Euca Golden Stairs", eucaGoldPlank, JBlockProperties.WOOD_PROPS.create());
+
         registerDefaultBlock("euca_tile", "Euca Tile");
 
         registerDefaultBlock("laser_emitter", "Laser Emitter", () -> new LaserEmitterBlock(JBlockProperties.STONE_PROPS.create().noOcclusion()));
@@ -251,9 +254,11 @@ public class BlockRegistrator {
 
         registerLogBlock("euca_gold_log", "Gold Euca Log");
         registerLogBlock("euca_silver_log", "Silver Euca Log");
+        registerLogBlock("euca_brown_log", "Brown Euca Log");
 
         registerCustomRenderLayerBlock("euca_gold_leaves", "Euca Gold Leaves", () -> new JLeavesBlock(JBlockProperties.LEAVES_PROPS.create()), JTabs.DECORATION, () -> RenderTypeWrappers.CUTOUT);
         registerCustomRenderLayerBlock("euca_silver_leaves", "Euca Silver Leaves", () -> new JLeavesBlock(JBlockProperties.LEAVES_PROPS.create()), JTabs.DECORATION, () -> RenderTypeWrappers.CUTOUT);
+        registerCustomRenderLayerBlock("euca_green_leaves", "Euca Green Leaves", () -> new JLeavesBlock(JBlockProperties.LEAVES_PROPS.create()), JTabs.DECORATION, () -> RenderTypeWrappers.CUTOUT);
 
         registerCustomRenderLayerBlock("silver_bot_spawner", "Silverbot Spawner", () -> new JSpawnerBlock(JEntities.TOWER_GUARDIAN_TYPE), JTabs.SPAWNERS, () -> RenderTypeWrappers.CUTOUT);
         registerCustomRenderLayerBlock("gold_bot_spawner", "Goldbot Spawner", () -> new JSpawnerBlock(JEntities.FLORO_TYPE), JTabs.SPAWNERS, () -> RenderTypeWrappers.CUTOUT);
