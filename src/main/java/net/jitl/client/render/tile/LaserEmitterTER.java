@@ -6,7 +6,8 @@ import net.jitl.JITL;
 import net.jitl.client.Models;
 import net.jitl.client.render.JRenderTypes;
 import net.jitl.common.tile.LaserEmitterTile;
-import net.jitl.util.VecUtils;
+import net.jitl.util.calculation.BeamCalculation;
+import net.jitl.util.calculation.BeamCalculation.TillBlockResult;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ActiveRenderInfo;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
@@ -15,20 +16,18 @@ import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.RayTraceContext;
 import net.minecraft.util.math.vector.Matrix4f;
 import net.minecraft.util.math.vector.Quaternion;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.math.vector.Vector3f;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.animation.Animation;
+import ru.timeconqueror.timecore.api.util.VecUtils;
 import ru.timeconqueror.timecore.client.render.model.TimeModel;
 
 //TODO optimize - TimeCore- add registry for buffers to endBatch them in WorldRenderer to heavily increase FPS
 public class LaserEmitterTER extends TileEntityRenderer<LaserEmitterTile> {
     private static final RenderType TYPE_LASER_BEAM = JRenderTypes.laserBeam(JITL.rl("textures/tile/laser_beam.png"));
-    private static final Vector3d BLOCK_CENTER = new Vector3d(0.5, 0.5, 0.5);
 
     public LaserEmitterTER(TileEntityRendererDispatcher rendererDispatcherIn) {
         super(rendererDispatcherIn);
@@ -40,31 +39,16 @@ public class LaserEmitterTER extends TileEntityRenderer<LaserEmitterTile> {
         if (world == null) return;
 
         float gameTime = Animation.getWorldTime(world, partialTicks) * 20;
-        float angleDegrees = tile.getLaserAngle() + partialTicks;
-        Quaternion rotationQuaternion = Vector3f.YP.rotationDegrees(angleDegrees);
+        Quaternion rotation = tile.getLaserRotation(partialTicks);
 
-        renderModel(Models.fullCube, JITL.rl("textures/block/laser_emitter.png"), rotationQuaternion, matrixStackIn, bufferIn, combinedLightIn, combinedOverlayIn);
+        renderModel(Models.fullCube, JITL.rl("textures/block/laser_emitter.png"), rotation, matrixStackIn, bufferIn, combinedLightIn, combinedOverlayIn);
 
-        int maxDistance = 20;
-        Vector3f beamEndVec = new Vector3f(maxDistance, 0.5F, 0);
-        beamEndVec.transform(rotationQuaternion);
+        BlockPos blockPos = tile.getBlockPos();
+        Vector3d blockVec = VecUtils.vec3d(blockPos);
 
-        BlockPos emitterPos = tile.getBlockPos();
-        Vector3d posVec = VecUtils.vec3d(emitterPos);
+        TillBlockResult result = BeamCalculation.tillBlock(world, blockPos, LaserEmitterTile.BEAM_OFFSET, rotation, LaserEmitterTile.MAX_DISTANCE);
 
-        Vector3f beamStartVec = new Vector3f(0.5F, 0, 0);
-        beamStartVec.transform(rotationQuaternion);
-        VecUtils.addToFirst(beamStartVec, BLOCK_CENTER);
-
-        Vector3f blockSide = new Vector3f(1F, 0, 0);
-        blockSide.transform(rotationQuaternion);
-        VecUtils.cubify(blockSide, 1, 1, 1);
-        VecUtils.addToFirst(blockSide, BLOCK_CENTER);
-
-        BlockRayTraceResult rayTraceResult = world.clip(new RayTraceContext(VecUtils.add(posVec, blockSide), VecUtils.add(posVec, beamEndVec), RayTraceContext.BlockMode.VISUAL, RayTraceContext.FluidMode.NONE, null));
-        Vector3d endPos = rayTraceResult.getLocation();
-
-        renderBeam(emitterPos, gameTime, matrixStackIn, bufferIn, VecUtils.vec3d(beamStartVec), endPos.subtract(posVec));
+        renderBeam(blockPos, gameTime, matrixStackIn, bufferIn, VecUtils.vec3d(result.getRelBeamStart()), result.getRayTraceEnd().subtract(blockVec));
     }
 
     public static void renderModel(TimeModel model, ResourceLocation texture, Quaternion rotationQuaternion, MatrixStack matrixStack, IRenderTypeBuffer buffer, int combinedLightIn, int combinedOverlayIn) {
