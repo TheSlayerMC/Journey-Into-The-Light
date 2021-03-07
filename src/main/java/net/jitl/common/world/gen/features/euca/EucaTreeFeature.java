@@ -9,7 +9,6 @@ import net.minecraft.world.ISeedReader;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.Feature;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
@@ -42,12 +41,7 @@ public class EucaTreeFeature extends Feature<EucaTreeFeatureConfig> {
             }
 
             BlockPos.Mutable leafPos = stumpPos.move(Direction.DOWN);
-
-            for (int j5 = 0; j5 <= 10; ++j5) {
-                for (int l5 = 0; l5 <= 10; ++l5) {
-                    createCrown(reader, leafPos, random, config);
-                }
-            }
+            createCrown(reader, leafPos, random, config);
             return true;
         }
     }
