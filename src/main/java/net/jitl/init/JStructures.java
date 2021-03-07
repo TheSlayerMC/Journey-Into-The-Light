@@ -1,6 +1,7 @@
 package net.jitl.init;
 
 import net.jitl.JITL;
+import net.jitl.common.world.gen.structures.euca.AlloyMenderStructure;
 import net.jitl.common.world.gen.structures.guardian.GuardianTowerStructure;
 import net.jitl.common.world.gen.structures.overworld.BlacksmithStructure;
 import net.jitl.common.world.gen.structures.overworld.MageHouseStructure;
@@ -42,4 +43,10 @@ public class JStructures {
                     .addToTag(Tag.DISABLE_BREAKING_BY_LAKES)
                     .asHolder();
 
+    public static final StructureHolder<NoFeatureConfig, AlloyMenderStructure> ALLOY_MENDER =
+            REGISTER.register("alloy_mender_hut", AlloyMenderStructure::new, TimeStructureSeparationSettings.create(10, 5), NoFeatureConfig.CODEC, NoFeatureConfig.NONE)
+                    .transformsSurroundingLand()
+                    .setDimensionPredicate(serverWorld -> serverWorld.dimension() == JDimensions.EUCA_WORLD)
+                    .addToTag(Tag.DISABLE_BREAKING_BY_LAKES)
+                    .asHolder();
 }

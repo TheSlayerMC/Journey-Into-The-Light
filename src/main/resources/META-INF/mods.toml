@@ -41,7 +41,7 @@ modId = "forge" #mandatory
 # Does this dependency have to exist - if not, ordering below must be specified
 mandatory = true #mandatory
 # The version range of the dependency
-versionRange = "[36,)" #mandatory
+versionRange = "[36.0.43,)" #mandatory
 # An ordering relationship for the dependency - BEFORE or AFTER required if the relationship is not mandatory
 ordering = "NONE"
 # Side this dependency is applied on - BOTH, CLIENT or SERVER
@@ -49,12 +49,12 @@ side = "BOTH"
 [[dependencies.jitl]]
 modId = "minecraft"
 mandatory = true
-versionRange = "[1.16.4]"
+versionRange = "[1.16.5]"
 ordering = "NONE"
 side = "BOTH"
 [[dependencies.jitl]]
 modId = "timecore"
 mandatory = true
-versionRange = "[1.16.4-3.1.0,)"
+versionRange = "[1.16.5-3.1.2,)"
 ordering = "NONE"
 side = "BOTH"

@@ -1,6 +1,7 @@
 package net.jitl.init;
 
 import net.jitl.JITL;
+import net.jitl.common.world.gen.structures.euca.AlloyMenderStructure;
 import net.jitl.common.world.gen.structures.guardian.GuardianTowerPieces;
 import net.jitl.common.world.gen.structures.overworld.BlacksmithStructure;
 import net.jitl.common.world.gen.structures.overworld.MageHouseStructure;
@@ -21,5 +22,6 @@ public class JStructurePieces {
     public static final Promised<IStructurePieceType> BLACKSMITH = REGISTER.register("bs", () -> BlacksmithStructure.Piece::new);
     public static final Promised<IStructurePieceType> MAGE = REGISTER.register("mage", () -> MageHouseStructure.Piece::new);
 
+    public static final Promised<IStructurePieceType> ALLOY_MENDER = REGISTER.register("alloy_mender", () -> AlloyMenderStructure.Piece::new);
 
 }

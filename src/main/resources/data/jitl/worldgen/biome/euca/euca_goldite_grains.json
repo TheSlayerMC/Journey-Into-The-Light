@@ -23,7 +23,9 @@
       "jitl:goldite_foiliage",
       "jitl:goldite_tall_foiliage",
       "jitl:euca_goldite_gold_foiliage",
-      "jitl:celestium_ore"
+      "jitl:celestium_ore",
+      "jitl:euca_green_tree",
+      "jitl:euca_gold_gold_tree"
     ]
   ]
 }

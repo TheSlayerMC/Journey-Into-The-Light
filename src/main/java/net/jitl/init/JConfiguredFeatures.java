@@ -314,6 +314,38 @@ public class JConfiguredFeatures {
                     .setBiomePredicate(EUCA_SILVER_PLAINS)
                     .asPromise();
 
+    public static final Promised<? extends ConfiguredFeature<?, ?>> EUCA_GOLD_GOLD_TREES =
+            REGISTER.register("euca_gold_gold_tree",
+                    Decoration.SURFACE_STRUCTURES,
+                    () -> JFeatures.EUCA_TREE.get()
+                            .configured(new EucaTreeFeatureConfig(
+                                    JRuleTests.GOLDITE_GRASS_EUCA.get(),
+                                    new SimpleBlockStateProvider(JBlocks.EUCA_GOLD_LEAVES.defaultBlockState()),
+                                    new SimpleBlockStateProvider(JBlocks.EUCA_GOLD_LOG.defaultBlockState()),
+                                    5,
+                                    15,
+                                    18))
+                            .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE)
+                            .chance(3))
+                    .setBiomePredicate(GOLDITE_GRAINS)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> EUCA_GREEN_TREES =
+            REGISTER.register("euca_green_tree",
+                    Decoration.SURFACE_STRUCTURES,
+                    () -> JFeatures.EUCA_TREE.get()
+                            .configured(new EucaTreeFeatureConfig(
+                                    JRuleTests.GOLDITE_GRASS_EUCA.get(),
+                                    new SimpleBlockStateProvider(JBlocks.EUCA_GREEN_LEAVES.defaultBlockState()),
+                                    new SimpleBlockStateProvider(JBlocks.EUCA_BROWN_LOG.defaultBlockState()),
+                                    5,
+                                    15,
+                                    18))
+                            .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE)
+                            .chance(3))
+                    .setBiomePredicate(GOLDITE_GRAINS)
+                    .asPromise();
+
     public static final Promised<? extends ConfiguredFeature<?, ?>> EUCA_SILVERBOT_SAPWNER =
             REGISTER.register("euca_silverbot_spawner",
                     Decoration.SURFACE_STRUCTURES,

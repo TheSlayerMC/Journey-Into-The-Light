@@ -2,22 +2,23 @@ package net.jitl.common.tile;
 
 import net.jitl.common.tile.base.InitableTile;
 import net.jitl.init.JTiles;
-import net.jitl.util.VecUtils;
+import net.jitl.util.calculation.BeamCalculation;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.projectile.ProjectileHelper;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.util.math.*;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Quaternion;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.math.vector.Vector3f;
 import ru.timeconqueror.timecore.api.common.tile.SerializationType;
 
+//TODO beam burning particles near beam end vector
 public class LaserEmitterTile extends InitableTile implements ITickableTileEntity {
-    private static final int MAX_DISTANCE = 20;
-    private static final Vector3d BLOCK_CENTER = new Vector3d(0.5, 0.5, 0.5);
+    public static final int MAX_DISTANCE = 20;
+    public static final Vector3d BEAM_OFFSET = new Vector3d(0.5, 0, 0);
+
     private long activationTime;
-    public float laserAngle;
     private final float speed = 0.9F;
 
     public LaserEmitterTile() {
@@ -31,35 +32,11 @@ public class LaserEmitterTile extends InitableTile implements ITickableTileEntit
 
     @Override
     public void tick() {
-        this.laserAngle = MathHelper.wrapDegrees(laserAngle + speed);
+        BeamCalculation.TillBlockResult beamTillBlock = BeamCalculation.tillBlock(level, getBlockPos(), BEAM_OFFSET, getLaserRotation(0), MAX_DISTANCE);
 
-        Quaternion rotationQuaternion = Vector3f.YP.rotationDegrees(laserAngle);
-        Vector3f beamEndVec = new Vector3f(MAX_DISTANCE, 0.5F, 0);
-        beamEndVec.transform(rotationQuaternion);
-
-        Vector3d posVec = VecUtils.vec3d(getBlockPos());
-
-        Vector3f beamStartVec = new Vector3f(0.5F, 0, 0);
-        beamStartVec.transform(rotationQuaternion);
-        VecUtils.addToFirst(beamStartVec, BLOCK_CENTER);
-
-        Vector3f blockSide = new Vector3f(1F, 0, 0);
-        blockSide.transform(rotationQuaternion);
-        VecUtils.cubify(blockSide, 1, 1, 1);
-        VecUtils.addToFirst(blockSide, BLOCK_CENTER);
-
-        Vector3d start = VecUtils.add(posVec, blockSide);
-        Vector3d end = VecUtils.add(posVec, beamEndVec);
-
-        BlockRayTraceResult rayTraceResult = level.clip(new RayTraceContext(start, end, RayTraceContext.BlockMode.VISUAL, RayTraceContext.FluidMode.NONE, null));
-
-        Vector3d rayTraceLoc = rayTraceResult.getLocation();
-
-        //noinspection ConstantConditions
-        EntityRayTraceResult result = ProjectileHelper.getEntityHitResult(level, null, start, rayTraceLoc, new AxisAlignedBB(getBlockPos().getX(), getBlockPos().getY(), getBlockPos().getZ(), rayTraceLoc.x, rayTraceLoc.y, rayTraceLoc.z), entity -> true);
-        if (result != null) {
-            System.out.println("Detected: " + result.getEntity().getName().toString());
-        }
+        BeamCalculation.forAllEntitiesOnWay(level, beamTillBlock, entity -> true, entity -> {
+            System.out.println("Found!");
+        });
     }
 
     @Override
@@ -85,5 +62,9 @@ public class LaserEmitterTile extends InitableTile implements ITickableTileEntit
     @Override
     public AxisAlignedBB getRenderBoundingBox() {
         return INFINITE_EXTENT_AABB;
+    }
+
+    public Quaternion getLaserRotation(float partialTicks) {
+        return Vector3f.YP.rotationDegrees(getLaserAngle() + speed * partialTicks);
     }
 }
