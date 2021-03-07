@@ -1,6 +1,6 @@
 package net.jitl.common.item.gearabilities;
 
-import net.jitl.common.helper.TooltipHelper;
+import net.jitl.common.helper.TooltipFiller;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
@@ -36,11 +36,11 @@ public abstract class BaseAbilities {
         return 0;
     }
 
-    public void addSwordTooltip(TooltipHelper helper) {
+    public void fillSwordTooltip(TooltipFiller filler) {
 
     }
 
-    public void addArmorTooltip(TooltipHelper helper) {
+    public void fillArmorTooltip(TooltipFiller filler) {
 
     }
 }

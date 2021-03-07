@@ -1,6 +1,6 @@
 package net.jitl.common.item.gearabilities;
 
-import net.jitl.common.helper.TooltipHelper;
+import net.jitl.common.helper.TooltipFiller;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
@@ -18,14 +18,14 @@ public class ShadiumAbilities extends BaseAbilities {
     }
 
     @Override
-    public void addSwordTooltip(TooltipHelper helper) {
-        helper.addOverview();
-        helper.addDetail();
+    public void fillSwordTooltip(TooltipFiller filler) {
+        filler.addOverview();
+        filler.addDetail();
     }
 
     @Override
-    public void addArmorTooltip(TooltipHelper helper) {
-        helper.addOverview();
-        helper.addDetail();
+    public void fillArmorTooltip(TooltipFiller filler) {
+        filler.addOverview();
+        filler.addDetail();
     }
 }

@@ -54,9 +54,6 @@ public class BeamCalculation {
     public static void forAllEntitiesOnWay(World world, TillBlockResult beamTillBlock, Predicate<Entity> filter, Consumer<Entity> action) {
         Vector3d rayTraceStart = beamTillBlock.getRayTraceStart();
         Vector3d rayTraceEnd = beamTillBlock.getRayTraceEnd();
-//
-//        System.out.println("rayTraceStart = " + rayTraceStart);
-//        System.out.println("rayTraceEnd = " + rayTraceEnd);
 
         raytraceEntitiesOnWay(world,
                 rayTraceStart,
@@ -76,14 +73,9 @@ public class BeamCalculation {
      * Modified version of {@link ProjectileHelper#getEntityHitResult(World, Entity, Vector3d, Vector3d, AxisAlignedBB, Predicate)}
      */
     private static void raytraceEntitiesOnWay(World worldIn, Vector3d startVec, Vector3d endVec, AxisAlignedBB boundingBox, Predicate<Entity> filter, Consumer<Entity> doForEveryEntity) {
-//        System.out.println("startVec = " + startVec);
-//        System.out.println("endVec = " + endVec);
-//        System.out.println("boundingBox = " + boundingBox);
         for (Entity entity : worldIn.getEntities((Entity) null, boundingBox, filter)) {
             AxisAlignedBB axisalignedbb = entity.getBoundingBox();
-//            System.out.println("entity bb = " + axisalignedbb);
             Optional<Vector3d> optional = axisalignedbb.clip(startVec, endVec);
-//            System.out.println("optional.isPresent() = " + optional.isPresent());
             if (optional.isPresent() || axisalignedbb.contains(startVec) || axisalignedbb.contains(endVec)) {
                 doForEveryEntity.accept(entity);
             }

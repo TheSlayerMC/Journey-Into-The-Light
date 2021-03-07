@@ -1,6 +1,6 @@
 package net.jitl.common.item.gearabilities;
 
-import net.jitl.common.helper.TooltipHelper;
+import net.jitl.common.helper.TooltipFiller;
 import net.minecraft.entity.LivingEntity;
 import net.minecraftforge.event.entity.living.LivingEvent;
 
@@ -34,10 +34,10 @@ public class CelestiumAbilities extends BaseAbilities {
     }
 
     @Override
-    public void addArmorTooltip(TooltipHelper helper) {
-        helper.addOverview();
-        helper.addDetail();
-        helper.addDrawback();
+    public void fillArmorTooltip(TooltipFiller filler) {
+        filler.addOverview();
+        filler.addDetail();
+        filler.addDrawback();
         /*text.add(new TranslationTextComponent("\u00a76Jumping in the air allows you to dash."));
         text.add(new TranslationTextComponent("\u00a7BDash cancels your vertical movement and increases your horizontal movement."));
         text.add(new TranslationTextComponent("\u00a7CTo recharge this ability, touch the ground at least 2 seconds after previous dash."));*/

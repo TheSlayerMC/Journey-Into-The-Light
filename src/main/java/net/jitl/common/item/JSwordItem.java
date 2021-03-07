@@ -1,7 +1,7 @@
 package net.jitl.common.item;
 
 import net.jitl.common.helper.JToolTiers;
-import net.jitl.common.helper.TooltipHelper;
+import net.jitl.common.helper.TooltipFiller;
 import net.jitl.common.item.gearabilities.BaseAbilities;
 import net.jitl.init.JTabs;
 import net.minecraft.client.util.ITooltipFlag;
@@ -60,7 +60,7 @@ public class JSwordItem extends SwordItem {
 	public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> text, ITooltipFlag flag) {
 		BaseAbilities ability = ((JToolTiers) this.getTier()).getAbilities();
 		if (ability != null) {
-			ability.addSwordTooltip(new TooltipHelper(text, this.getRegistryName().getPath()));
+			ability.fillSwordTooltip(new TooltipFiller(text, this.getRegistryName().getPath()));
 		}
 	}
 }
