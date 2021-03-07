@@ -1,6 +1,13 @@
 {
   "jitl.tooltip.enable_menu": "Use JITL Menu Theme",
   "jitl.tooltip.disable_menu": "Use Default Menu Theme",
+  "jitl.tooltip.shadium_sword_1": "Deal more damage while in darkness.",
+  "jitl.tooltip.shadium_sword_2": "Maximum 50% damage increase.",
+  "jitl.tooltip.shadium_armor_1": "Take less damage while in darkness.",
+  "jitl.tooltip.shadium_armor_2": "Maximum 25% damage reduction.",
+  "jitl.tooltip.celestium_armor_1": "Jumping in the air allows you to dash.",
+  "jitl.tooltip.celestium_armor_2": "Dash cancels your vertical movement and increases your horizontal movement.",
+  "jitl.tooltip.celestium_armor_3": "To recharge this ability, touch the ground at least 2 seconds after previous dash.",
   "#MARK AUTO GEN START": "",
   "_comment": "#Items",
   "block.jitl.ashual_block": "Ashual Block",
