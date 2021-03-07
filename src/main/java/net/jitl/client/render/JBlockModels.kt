@@ -1,16 +1,43 @@
-package net.jitl.client.render;
+package net.jitl.client.render
 
-import org.jetbrains.annotations.Nullable;
-import ru.timeconqueror.timecore.api.client.resource.BlockModel;
-import ru.timeconqueror.timecore.api.client.resource.BlockModels;
-import ru.timeconqueror.timecore.api.client.resource.location.TextureLocation;
+import net.jitl.JITL
+import ru.timeconqueror.timecore.api.client.resource.BlockModel
+import ru.timeconqueror.timecore.api.client.resource.BlockModels
+import ru.timeconqueror.timecore.api.client.resource.location.TextureLocation
+import ru.timeconqueror.timecore.api.util.json
 
-public class JBlockModels {
-    public static BlockModel emissive(@Nullable BlockModel normal, @Nullable BlockModel emissive) {
-        return InternalModels.emissiveModel(normal, emissive);
+object JBlockModels {
+    @JvmStatic
+    fun emissive(normal: BlockModel?, emissive: BlockModel?): BlockModel {
+        return emissiveModel(normal, emissive)
     }
 
-    public static BlockModel emissiveCubeAll(TextureLocation normalTexture, TextureLocation emissiveTexture) {
-        return emissive(BlockModels.cubeAllModel(normalTexture), BlockModels.cubeAllModel(emissiveTexture));
+    @JvmStatic
+    fun emissiveCubeAll(normalTexture: TextureLocation, emissiveTexture: TextureLocation): BlockModel {
+        return emissive(BlockModels.cubeAllModel(normalTexture), BlockModels.cubeAllModel(emissiveTexture))
+    }
+
+    @JvmStatic
+    fun emissiveModel(normal: BlockModel?, emissive: BlockModel?): BlockModel {
+        val json = json {
+            "parent" set "block/block"
+            "loader" set JITL.MODID + ":emissive"
+            "particle" set "#normal"
+
+            if (normal != null) {
+                "normal" setRaw normal.toJson()
+            }
+
+            if (emissive != null) {
+                "emissive" setRaw emissive.toJson()
+            }
+        }
+
+        return BlockModel(json)
+    }
+
+    @JvmStatic
+    fun empty(): BlockModel {
+        return BlockModel(json { })
     }
 }

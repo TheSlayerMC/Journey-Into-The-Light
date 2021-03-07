@@ -42,4 +42,8 @@ public class TestBugItem extends Item {
         }
         return ActionResult.success(playerIn.getItemInHand(handIn));
     }
+
+    public boolean isInMainHand(PlayerEntity player) {
+        return player.getItemInHand(Hand.MAIN_HAND).getItem() == this;
+    }
 }

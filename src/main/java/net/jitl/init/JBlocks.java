@@ -81,7 +81,7 @@ public class JBlocks {
 	public static final Block BLUE_GEM_BLOCK = promise();
 	public static final Block YELLOW_GEM_BLOCK = promise();
 
-    public static final Block DUNGEON_BRICKS = promise();
+	public static final Block DUNGEON_BRICKS = promise();
 	public static final Block DUNGEON_BRICKS_CARVED = promise();
 	public static final Block DUNGEON_BRICKS_CHISELED = promise();
 	public static final Block DUNGEON_BRICKS_CRACKED = promise();
@@ -89,6 +89,7 @@ public class JBlocks {
 	public static final Block GILDED_DUNGEON_BRICKS = promise();
 	public static final StairsBlock GILDED_DUNGEON_STAIRS = promise();
 	public static final Block DUNGEON_FLOOR = promise();
+	public static final Block GUARDIAN_TOWER_HEART = promise();
 	public static final Block COMMON_GEMS = promise();
 	public static final Block RARE_GEMS = promise();
 
@@ -147,5 +148,4 @@ public class JBlocks {
 
 	public static final Block SILVER_BOT_SPAWNER = promise();
 	public static final Block GOLD_BOT_SPAWNER = promise();
-
 }
