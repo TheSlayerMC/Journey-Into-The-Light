@@ -65,6 +65,10 @@ repositories {
         name = "TimeConqueror's Maven"
         url = "https://repo.repsy.io/mvn/timeconqueror/mc/"
     }
+    maven {
+        name = "Curios Maven"
+        url = "https://maven.theillusivec4.top/"
+    }
 }
 
 minecraft {
@@ -183,6 +187,7 @@ dependencies {
     }
 
     implementation fg.deobf('ru.timeconqueror:TimeCore:1.16.5-3.1.2.1.build1:dev', true)
+    implementation fg.deobf('top.theillusivec4.curios:curios-forge:1.16.5-4.0.5.0', true)
 
     compile("org.spongepowered:mixin:0.8.+") {
         transitive = false
