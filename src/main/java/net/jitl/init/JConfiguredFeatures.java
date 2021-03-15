@@ -326,7 +326,7 @@ public class JConfiguredFeatures {
                                     15,
                                     18))
                             .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE)
-                            .chance(3))
+                            .chance(2))
                     .setBiomePredicate(GOLDITE_GRAINS)
                     .asPromise();
 
@@ -342,7 +342,7 @@ public class JConfiguredFeatures {
                                     15,
                                     18))
                             .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE)
-                            .chance(3))
+                            .chance(2))
                     .setBiomePredicate(GOLDITE_GRAINS)
                     .asPromise();
 
