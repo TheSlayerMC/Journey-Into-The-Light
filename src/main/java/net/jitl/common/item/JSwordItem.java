@@ -2,14 +2,17 @@ package net.jitl.common.item;
 
 import net.jitl.common.helper.JToolTiers;
 import net.jitl.common.helper.TooltipFiller;
-import net.jitl.common.item.gearabilities.BaseAbilities;
+import net.jitl.common.item.gearabilities.BaseArmorAbilities;
+import net.jitl.common.item.gearabilities.BaseToolAbilities;
 import net.jitl.init.JTabs;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
+import net.minecraft.potion.Effects;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.text.ITextComponent;
@@ -44,7 +47,6 @@ public class JSwordItem extends SwordItem {
 		final long time = world.getDayTime() % 24000L;
 		return time < 13000L || time > 23000L;
 	}
-
 	@Override
 	public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
 		ItemStack itemstack = playerIn.getItemInHand(handIn);
@@ -58,7 +60,7 @@ public class JSwordItem extends SwordItem {
 	@Override
 	@OnlyIn(Dist.CLIENT)
 	public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> text, ITooltipFlag flag) {
-		BaseAbilities ability = ((JToolTiers) this.getTier()).getAbilities();
+		BaseToolAbilities ability = ((JToolTiers) this.getTier()).getAbilities();
 		if (ability != null) {
 			ability.fillSwordTooltip(new TooltipFiller(text, this.getRegistryName().getPath()));
 		}

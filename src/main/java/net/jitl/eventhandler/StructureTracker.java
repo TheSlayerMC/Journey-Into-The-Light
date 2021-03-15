@@ -1,6 +1,10 @@
 package net.jitl.eventhandler;
 
 import net.jitl.JITL;
+import net.jitl.capabilities.JourneyCapabilityProvider;
+import net.jitl.capabilities.armorability.IArmorSetCapability;
+import net.jitl.capabilities.currentstructure.CurrentStructureCapability;
+import net.jitl.capabilities.currentstructure.ICurrentStructureCapability;
 import net.jitl.common.helper.EnumStructureMusic;
 import net.jitl.network.JPacketHandler;
 import net.jitl.network.SCurrentStructurePacket;
@@ -12,20 +16,26 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.network.PacketDistributor;
 
 import java.util.HashMap;
+import java.util.Optional;
 import java.util.UUID;
 
 @Mod.EventBusSubscriber(modid = JITL.MODID)
 public class StructureTracker {
-    private static final HashMap<UUID, Integer> playerStructures = new HashMap<>(1); //all players and their current structure will be saved here
+    //private static final HashMap<UUID, Integer> playerStructures = new HashMap<>(1); //all players and their current structure will be saved here
 
     @SubscribeEvent()
     public static void onPlayerTick(TickEvent.PlayerTickEvent structureEvent) {
         if (structureEvent.side == LogicalSide.SERVER && structureEvent.phase == TickEvent.Phase.START) {
             ServerPlayerEntity player = (ServerPlayerEntity) structureEvent.player;
-            int id = findStructure(player);
-            if (!playerStructures.containsKey(player.getUUID()) || playerStructures.get(player.getUUID()) != id) {
-                playerStructures.put(player.getUUID(), id); //Any way to do this without sending pointless packets on player joins?
-                JPacketHandler.INSTANCE.send(PacketDistributor.PLAYER.with(() -> player), new SCurrentStructurePacket(id));
+            Optional<ICurrentStructureCapability> optional = player.getCapability(JourneyCapabilityProvider.STRUCTURE).resolve();
+            if (optional.isPresent()) {
+                ICurrentStructureCapability capability = optional.get();
+                int id = findStructure(player);
+                if (id != capability.getStructure()) {
+                    JPacketHandler.INSTANCE.send(PacketDistributor.PLAYER.with(() -> player), new SCurrentStructurePacket(id));
+                    capability.setStructure(id);
+                    System.out.println("Packet sent");
+                }
             }
         }
     }

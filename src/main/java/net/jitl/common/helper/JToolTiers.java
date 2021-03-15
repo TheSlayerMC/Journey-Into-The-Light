@@ -1,9 +1,12 @@
 package net.jitl.common.helper;
 
 import mcp.MethodsReturnNonnullByDefault;
-import net.jitl.common.item.gearabilities.BaseAbilities;
-import net.jitl.common.item.gearabilities.CelestiumAbilities;
-import net.jitl.common.item.gearabilities.ShadiumAbilities;
+import net.jitl.common.item.gearabilities.BaseArmorAbilities;
+import net.jitl.common.item.gearabilities.BaseToolAbilities;
+import net.jitl.common.item.gearabilities.celestium.CelestiumArmorAbilities;
+import net.jitl.common.item.gearabilities.celestium.CelestiumToolAbilities;
+import net.jitl.common.item.gearabilities.shadium.ShadiumArmorAbilities;
+import net.jitl.common.item.gearabilities.shadium.ShadiumToolAbilities;
 import net.jitl.init.JItems;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.Item;
@@ -11,10 +14,10 @@ import net.minecraft.item.crafting.Ingredient;
 
 public enum JToolTiers implements IItemTier {
     SAPPHIRE(1461, 10F, 8F, 5F, 3F, 1.6F, JItems.SAPPHIRE, null),
-    SHADIUM(1461, 10F, 8F, 5F, 3F, 1.6F, JItems.SHADIUM_INGOT, ShadiumAbilities.class),
+    SHADIUM(1461, 10F, 8F, 5F, 3F, 1.6F, JItems.SHADIUM_INGOT, ShadiumToolAbilities.INSTANCE),
     LUNIUM(1490, 12F, 8F, 6F, 4F, 1.7F, JItems.LUNIUM_INGOT, null),
     BLOODCRUST(1490, 12F, 8F, 6F, 4F, 1.7F, JItems.BLOODCRUST_INGOT, null),
-    CELESTIUM(1490, 12F, 8F, 6F, 4F, 1.7F, JItems.CELESTIUM_INGOT, CelestiumAbilities.class),
+    CELESTIUM(1490, 12F, 8F, 6F, 4F, 1.7F, JItems.CELESTIUM_INGOT, CelestiumToolAbilities.INSTANCE),
     KORITE(1490, 12F, 8F, 6F, 4F, 1.7F, JItems.KORITE_INGOT, null),
     MEKYUM(1490, 12F, 8F, 6F, 4F, 1.7F, JItems.MEKYUM_INGOT, null),
     STORON(1490, 12F, 8F, 6F, 4F, 1.7F, JItems.STORON_INGOT, null);
@@ -29,9 +32,9 @@ public enum JToolTiers implements IItemTier {
     private final int enchantmentValue;
     private final float attackSpeed;
     private final Ingredient repairIngredient;
-    private final Class<? extends BaseAbilities> ability;
+    private final BaseToolAbilities ability;
 
-    JToolTiers(int harvest, int uses, float eff, float swordDam, float axeDam, float shovelDam, float attackSpeed, Item repair, Class<? extends BaseAbilities> abilityManager) {
+    JToolTiers(int harvest, int uses, float eff, float swordDam, float axeDam, float shovelDam, float attackSpeed, Item repair, BaseToolAbilities abilityManager) {
         this.level = harvest;
         this.uses = uses;
         this.speed = eff;
@@ -44,7 +47,7 @@ public enum JToolTiers implements IItemTier {
         ability = abilityManager;
     }
 
-    JToolTiers(int uses, float eff, float swordDam, float axeDam, float shovelDam, float attackSpeed, Item repair, Class<? extends BaseAbilities> abilityManager) {
+    JToolTiers(int uses, float eff, float swordDam, float axeDam, float shovelDam, float attackSpeed, Item repair, BaseToolAbilities abilityManager) {
         this(3, uses, eff, swordDam, axeDam, shovelDam, attackSpeed, repair, abilityManager);
     }
 
@@ -95,11 +98,7 @@ public enum JToolTiers implements IItemTier {
         return repairIngredient;
     }
 
-    public BaseAbilities getAbilities() {
-        try {
-            return ability != null ? ability.newInstance() : null; //TODO: figure out what to do with instances
-        } catch (Exception e) {
-            return null;
-        }
+    public BaseToolAbilities getAbilities() {
+        return ability;
     }
 }

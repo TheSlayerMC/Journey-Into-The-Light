@@ -1,9 +1,9 @@
 package net.jitl.network;
 
-import net.jitl.capabilities.armorability.ArmorSetProvider;
+import net.jitl.capabilities.JourneyCapabilityProvider;
 import net.jitl.capabilities.armorability.IArmorSetCapability;
-import net.jitl.common.item.gearabilities.BaseAbilities;
-import net.jitl.common.item.gearabilities.CelestiumAbilities;
+import net.jitl.common.item.gearabilities.BaseArmorAbilities;
+import net.jitl.common.item.gearabilities.celestium.CelestiumArmorAbilities;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.world.World;
@@ -41,11 +41,11 @@ public class KeyPressedPacket implements ITimePacket {
         @Override
         public void onPacketReceived(KeyPressedPacket packet, NetworkEvent.Context ctx, World world) {
             LivingEntity entity = ctx.getSender();
-            Optional<IArmorSetCapability> optional = entity.getCapability(ArmorSetProvider.ARMOR).resolve();
+            Optional<IArmorSetCapability> optional = entity.getCapability(JourneyCapabilityProvider.ARMOR).resolve();
             if (optional.isPresent()) {
-                BaseAbilities gear = optional.get().getArmor();
-                if (gear instanceof CelestiumAbilities) {
-                    ((CelestiumAbilities) gear).doCharge(entity, packet.angle);
+                BaseArmorAbilities gear = optional.get().getArmor();
+                if (gear instanceof CelestiumArmorAbilities) {
+                    ((CelestiumArmorAbilities) gear).doCharge(entity, packet.angle);
                 }
             }
             System.out.println("Angle: " + Math.toDegrees(packet.angle));
