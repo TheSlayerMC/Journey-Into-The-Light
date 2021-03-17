@@ -2,7 +2,7 @@ package net.jitl.common.item;
 
 import net.jitl.common.helper.JArmorMaterial;
 import net.jitl.common.helper.TooltipFiller;
-import net.jitl.common.item.gearabilities.BaseAbilities;
+import net.jitl.common.item.gearabilities.BaseArmorAbilities;
 import net.jitl.init.JTabs;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
@@ -61,7 +61,7 @@ public class JArmorItem extends ArmorItem {
 	@Override
 	@OnlyIn(Dist.CLIENT)
 	public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> text, ITooltipFlag flag) {
-		BaseAbilities ability = ((JArmorMaterial) this.getMaterial()).getAbilities();
+		BaseArmorAbilities ability = ((JArmorMaterial) this.getMaterial()).getAbilities();
 		if (ability != null) {
 			ability.fillArmorTooltip(new TooltipFiller(text, getMaterial().toString().toLowerCase() + "_armor"));
 		}

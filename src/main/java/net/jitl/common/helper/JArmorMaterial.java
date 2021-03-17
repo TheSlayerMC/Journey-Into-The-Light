@@ -2,9 +2,9 @@ package net.jitl.common.helper;
 
 import mcp.MethodsReturnNonnullByDefault;
 import net.jitl.JITL;
-import net.jitl.common.item.gearabilities.BaseAbilities;
-import net.jitl.common.item.gearabilities.CelestiumAbilities;
-import net.jitl.common.item.gearabilities.ShadiumAbilities;
+import net.jitl.common.item.gearabilities.BaseArmorAbilities;
+import net.jitl.common.item.gearabilities.celestium.CelestiumArmorAbilities;
+import net.jitl.common.item.gearabilities.shadium.ShadiumArmorAbilities;
 import net.jitl.init.JItems;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IArmorMaterial;
@@ -18,9 +18,9 @@ public enum JArmorMaterial implements IArmorMaterial {
     //Change these
     SAPPHIRE("sapphire", 27, new int[]{3, 6, 8, 3}, 0.5F, 0.2F, SoundEvents.ARMOR_EQUIP_IRON, JItems.SAPPHIRE, null),
     LUNIUM("lunium", 27, new int[]{3, 6, 8, 3}, 0.5F, 0.2F, SoundEvents.ARMOR_EQUIP_IRON, JItems.LUNIUM_INGOT, null),
-    SHADIUM("shadium", 27, new int[]{3, 6, 8, 3}, 0.5F, 0.2F, SoundEvents.ARMOR_EQUIP_IRON, JItems.SHADIUM_INGOT, ShadiumAbilities.class),
+    SHADIUM("shadium", 27, new int[]{3, 6, 8, 3}, 0.5F, 0.2F, SoundEvents.ARMOR_EQUIP_IRON, JItems.SHADIUM_INGOT, ShadiumArmorAbilities.class),
     BLOODCRUST("bloodcrust", 27, new int[]{3, 6, 8, 3}, 0.5F, 0.2F, SoundEvents.ARMOR_EQUIP_IRON, JItems.BLOODCRUST_INGOT, null),
-    CELESTIUM("celestium", 27, new int[]{3, 6, 8, 3}, 0.5F, 0.2F, SoundEvents.ARMOR_EQUIP_IRON, JItems.CELESTIUM_INGOT, CelestiumAbilities.class);
+    CELESTIUM("celestium", 27, new int[]{2, 5, 7, 3}, 0F, 0.2F, SoundEvents.ARMOR_EQUIP_IRON, JItems.CELESTIUM_INGOT, CelestiumArmorAbilities.class);
 
     private final String name;
     private final int durabilityMultiplier;
@@ -29,9 +29,9 @@ public enum JArmorMaterial implements IArmorMaterial {
     private final SoundEvent slotIn;
     private final Ingredient repairItem;
     private static final int[] BASE_DURABILITY = new int[]{13, 15, 16, 11};
-    private final Class<? extends BaseAbilities> abilities;
+    private final Class<? extends BaseArmorAbilities> abilities;
 
-    JArmorMaterial(String name, int dur, int[] protection, float toughness, float knockback, SoundEvent putIn, Item repair, Class<? extends BaseAbilities> abilityManager) {
+    JArmorMaterial(String name, int dur, int[] protection, float toughness, float knockback, SoundEvent putIn, Item repair, Class<? extends BaseArmorAbilities> abilityManager) {
         this.name = name;
         this.durabilityMultiplier = dur;
         this.protectionPerPiece = protection;
@@ -87,7 +87,7 @@ public enum JArmorMaterial implements IArmorMaterial {
         return this.knockback;
     }
 
-    public BaseAbilities getAbilities() {
+    public BaseArmorAbilities getAbilities() {
         try {
             return this.abilities != null ? abilities.newInstance() : null;
         } catch (Exception e) {

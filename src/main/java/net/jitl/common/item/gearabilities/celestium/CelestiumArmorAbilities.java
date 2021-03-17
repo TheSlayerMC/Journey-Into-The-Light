@@ -1,10 +1,11 @@
-package net.jitl.common.item.gearabilities;
+package net.jitl.common.item.gearabilities.celestium;
 
 import net.jitl.common.helper.TooltipFiller;
+import net.jitl.common.item.gearabilities.BaseArmorAbilities;
 import net.minecraft.entity.LivingEntity;
 import net.minecraftforge.event.entity.living.LivingEvent;
 
-public class CelestiumAbilities extends BaseAbilities {
+public class CelestiumArmorAbilities extends BaseArmorAbilities {
     private int cooldown = 0;
     private boolean isJumpReady = false;
 
