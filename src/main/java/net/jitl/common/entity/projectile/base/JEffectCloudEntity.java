@@ -208,7 +208,7 @@ public class JEffectCloudEntity extends Entity {
         for (UUID id : excludedEntities) {
             exceptionList.add(NBTUtil.createUUID(id));
         }
-        nbt.put("excluded", exceptionList);
+        nbt.put("exceptions", exceptionList);
     }
 
     @Override

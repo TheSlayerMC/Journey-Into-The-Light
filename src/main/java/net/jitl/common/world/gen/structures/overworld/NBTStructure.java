@@ -34,10 +34,10 @@ public class NBTStructure extends Structure<NoFeatureConfig> {
 
     public NBTStructure(ResourceLocation nbt, Promised<IStructurePieceType> type, int x, int z) {
         super(NoFeatureConfig.CODEC);
-        this.NBT = nbt;
-        this.type = type;
-        this.structX = x;
-        this.structZ = z;
+        NBT = nbt;
+        NBTStructure.type = type;
+        structX = x;
+        structZ = z;
     }
 
     private static final Map<ResourceLocation, BlockPos> OFFSETS = ImmutableMap.of(
