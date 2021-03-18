@@ -1,7 +1,6 @@
 package net.jitl.common.entity.overworld;
 
 import net.jitl.common.entity.projectile.base.JEffectCloudEntity;
-
 import net.jitl.init.JSounds;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -11,7 +10,10 @@ import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.ai.goal.LookAtGoal;
+import net.minecraft.entity.ai.goal.LookRandomlyGoal;
+import net.minecraft.entity.ai.goal.SwimGoal;
+import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
@@ -50,14 +52,14 @@ public class HongoEntity extends CreatureEntity {
     public boolean hurt(@NotNull DamageSource source, float amount) {
         if (super.hurt(source, amount) && random.nextInt(10) == 0) {
             if (source != DamageSource.OUT_OF_WORLD && source != DamageSource.MAGIC) {
-    			JEffectCloudEntity poison = new JEffectCloudEntity(this, this.level, this.getX(), this.getY(), this.getZ(), 0.5F);
-    			poison.treatOwnerAsException();
-    			poison.addPrimaryEffect(new EffectInstance(Effects.POISON, 500, 3));
-    			poison.addPrimaryEffect(new EffectInstance(Effects.CONFUSION, 200));
-    			poison.addSizeKey(10, 4);
-    			poison.addSizeKey(200, 0);
-    			poison.setColor(Effects.POISON.getColor());
-    			poison.spawn();
+                JEffectCloudEntity poison = new JEffectCloudEntity(this, this.level, this.getX(), this.getY(), this.getZ(), 0.5F);
+                poison.excludeOwner();
+                poison.addPrimaryEffect(new EffectInstance(Effects.POISON, 500, 3));
+                poison.addPrimaryEffect(new EffectInstance(Effects.CONFUSION, 200));
+                poison.addSizeKey(10, 4);
+                poison.addSizeKey(200, 0);
+                poison.setColor(Effects.POISON.getColor());
+                poison.spawn();
                 /*AreaEffectCloudEntity poison = new AreaEffectCloudEntity(this.level, this.getX(), this.getY(), this.getZ());
                 poison.setRadius(0.5F); //the base radius. Vanilla starts large and shrinks down, but I think the opposite is more realistic
                 poison.setWaitTime(5); //time before the cloud starts growing/damaging. Might be worth decreasing since player can run away anyways

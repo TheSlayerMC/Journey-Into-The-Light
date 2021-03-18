@@ -6,38 +6,35 @@ import net.jitl.init.JDataSerializers;
 import net.jitl.init.JSounds;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.entity.CreatureEntity;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ILivingEntityData;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.ai.goal.LookAtGoal;
+import net.minecraft.entity.ai.goal.LookRandomlyGoal;
+import net.minecraft.entity.ai.goal.SwimGoal;
+import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
-import net.minecraft.util.*;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import org.jetbrains.annotations.NotNull;
 import ru.timeconqueror.timecore.api.util.EnumLookup;
 import ru.timeconqueror.timecore.api.util.RandHelper;
-import ru.timeconqueror.timecore.api.util.Requirements;
-
-import org.jetbrains.annotations.NotNull;
-
-import java.util.Random;
 
 import javax.annotation.Nullable;
+import java.util.Random;
 
 public class HonglowEntity extends CreatureEntity {
 	public static final DataParameter<Type> VARIANT = EntityDataManager.defineId(HonglowEntity.class, JDataSerializers.HONGLOW_VARIANT);
@@ -105,8 +102,8 @@ public class HonglowEntity extends CreatureEntity {
     			poison.setColor(getVariant().getPotionColor());
     			Entity attacker = source.getEntity();
     			if (attacker instanceof LivingEntity) {
-    				poison.markMobException((LivingEntity) attacker); 
-    			}
+					poison.exclude((LivingEntity) attacker);
+				}
     			poison.spawn();
             }
     		return true;

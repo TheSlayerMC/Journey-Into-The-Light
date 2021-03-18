@@ -185,7 +185,7 @@ dependencies {
     }
 
 //    implementation fg.deobf('ru.timeconqueror:TimeCore:1.16.5-3.1.2.1.build1:dev', true)
-    implementation fg.deobf('ru.timeconqueror:TimeCore:1.16.5-3.1.2.1.build4:dev')
+    implementation fg.deobf('ru.timeconqueror:TimeCore:1.16.5-3.1.2.1.build5:dev')
 //    implementation fg.deobf('top.theillusivec4.curios:curios-forge:1.16.5-4.0.5.0', true)
     implementation fg.deobf('top.theillusivec4.curios:curios-forge:1.16.5-4.0.5.0')
 }
