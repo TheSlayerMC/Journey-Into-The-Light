@@ -20,7 +20,7 @@ buildscript {
 }
 
 plugins {
-    id "org.jetbrains.kotlin.jvm" version "1.3.72"
+    id "org.jetbrains.kotlin.jvm" version "1.4.31"
 }
 
 apply plugin: 'net.minecraftforge.gradle'
@@ -160,14 +160,11 @@ minecraft {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 dependencies {
-    // Specify the version of Minecraft to use, If this is any group other then 'net.minecraft' it is assumed
-    // that the dep is a ForgeGradle 'patcher' dependency. And it's patches will be applied.
-    // The userdev artifact is a special name and will get all sorts of transformations applied to it.
     minecraft 'net.minecraftforge:forge:1.16.5-36.1.0'
 
     runtimeOnly fg.deobf("mezz.jei:jei-${buildProps.minecraft.version}:7.6.0.58")
 
-    implementation 'org.jetbrains:annotations:18.0.0'
+    implementation 'org.jetbrains:annotations:20.1.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
     implementation "org.jetbrains.kotlin:kotlin-reflect"
 
@@ -188,13 +185,9 @@ dependencies {
     }
 
 //    implementation fg.deobf('ru.timeconqueror:TimeCore:1.16.5-3.1.2.1.build1:dev', true)
-    implementation fg.deobf('ru.timeconqueror:TimeCore:1.16.5-3.1.2.1.build1:dev')
+    implementation fg.deobf('ru.timeconqueror:TimeCore:1.16.5-3.1.2.1.build4:dev')
 //    implementation fg.deobf('top.theillusivec4.curios:curios-forge:1.16.5-4.0.5.0', true)
     implementation fg.deobf('top.theillusivec4.curios:curios-forge:1.16.5-4.0.5.0')
-
-    compile("org.spongepowered:mixin:0.8.+") {
-        transitive = false
-    }
 }
 
 jar {
@@ -204,7 +197,7 @@ jar {
                 "Specification-Vendor"    : "The_SlayerMC, Time_Conqueror, Dizzlepop12",
                 "Specification-Version"   : "1", // We are version 1 of ourselves
                 "Implementation-Title"    : project.name,
-                "Implementation-Version"  : "${version}",
+                "Implementation-Version"  : archiveVersion,
                 "Implementation-Vendor"   : "The_SlayerMC, Time_Conqueror, Dizzlepop12",
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
                 "MixinConfigs": "mixins.jitl.json"
@@ -221,7 +214,7 @@ jar.finalizedBy('reobfJar')
 // Create source attachment for dev jar
 task sourcesJar(type: Jar) {
     from sourceSets.main.allJava
-    classifier = 'sources'
+    it.archiveClassifier = 'sources'
 }
 
 publishing {
