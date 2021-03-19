@@ -89,6 +89,14 @@ public class JBlocks {
 	public static final Block GILDED_DUNGEON_BRICKS = promise();
 	public static final StairsBlock GILDED_DUNGEON_STAIRS = promise();
 	public static final Block DUNGEON_FLOOR = promise();
+	public static final Block SHIELDED_DUNGEON_BRICKS = promise();
+	public static final Block SHIELDED_DUNGEON_BRICKS_CARVED = promise();
+	public static final Block SHIELDED_DUNGEON_BRICKS_CHISELED = promise();
+	public static final Block SHIELDED_DUNGEON_BRICKS_CRACKED = promise();
+	public static final Block SHIELDED_DUNGEON_LAMP = promise();
+	public static final Block SHIELDED_GILDED_DUNGEON_BRICKS = promise();
+	public static final StairsBlock SHIELDED_GILDED_DUNGEON_STAIRS = promise();
+	public static final Block SHIELDED_DUNGEON_FLOOR = promise();
 	public static final Block GUARDIAN_TOWER_BRAIN = promise();
 	public static final Block COMMON_GEMS = promise();
 	public static final Block RARE_GEMS = promise();
@@ -107,7 +115,6 @@ public class JBlocks {
 	public static final TallGlowshroomBlock TALL_GREEN_GLOWSHROOM = promise();
 	public static final TallGlowshroomBlock TALL_BLUE_GLOWSHROOM = promise();
 	public static final TallGlowshroomBlock TALL_RED_GLOWSHROOM = promise();
-
 
     public static final JPlantBlock GREEN_GLOWSHROOM = promise();
     public static final JPlantBlock BLUE_GLOWSHROOM = promise();

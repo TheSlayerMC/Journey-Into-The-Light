@@ -7,6 +7,7 @@ import net.jitl.common.block.GuardianTowerBrainBlock
 import net.jitl.common.block.base.XZFacedBlock
 import net.jitl.init.JTabs
 import net.jitl.util.JBlockProperties
+import net.minecraft.block.Block
 import ru.timeconqueror.timecore.api.client.resource.BlockModels
 import ru.timeconqueror.timecore.api.client.resource.location.BlockModelLocation
 import ru.timeconqueror.timecore.api.registry.BlockRegister
@@ -35,6 +36,30 @@ object KBlockRegistrator {
                             blockTl("smooth_corrupted_blood_rock")
                         )
                     )
+                }
+            }
+
+            groupSettings<Block> {
+                defaultBlockItem(JTabs.BLOCKS)
+                oneVarStateAndCubeAllModel()
+            } applyFor {
+                "dungeon_bricks" represents { Block(JBlockProperties.BRICK_PROPS.create()) } with {
+                    name("Dungeon Bricks")
+                }
+                "carved_dungeon_bricks" represents { Block(JBlockProperties.BRICK_PROPS.create()) } with {
+                    name("Carved Dungeon Bricks")
+                }
+                "chiseled_dungeon_bricks" represents { Block(JBlockProperties.BRICK_PROPS.create()) } with {
+                    name("Chiseled Dungeon Bricks")
+                }
+                "cracked_dungeon_bricks" represents { Block(JBlockProperties.BRICK_PROPS.create()) } with {
+                    name("Cracked Dungeon Bricks")
+                }
+                "dungeon_floor" represents { Block(JBlockProperties.BRICK_PROPS.create()) } with {
+                    name("Dungeon Floor")
+                }
+                "dungeon_lamp" represents { Block(JBlockProperties.BRICK_PROPS.create().lightLevel { 14 }) } with {
+                    name("Dungeon Lamp")
                 }
             }
 
