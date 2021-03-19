@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "jitl:blood_rune_flesh"
+          "name": "jitl:empty_blood_rune"
         }
       ],
       "conditions": [

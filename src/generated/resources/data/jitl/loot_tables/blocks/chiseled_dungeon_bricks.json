@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "jitl:dungeon_bricks_cracked"
+          "name": "jitl:chiseled_dungeon_bricks"
         }
       ],
       "conditions": [

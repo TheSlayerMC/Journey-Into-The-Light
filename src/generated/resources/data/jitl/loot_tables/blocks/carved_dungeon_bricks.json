@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "jitl:dungeon_bricks_carved"
+          "name": "jitl:carved_dungeon_bricks"
         }
       ],
       "conditions": [

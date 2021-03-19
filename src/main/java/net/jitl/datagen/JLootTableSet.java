@@ -33,9 +33,9 @@ public class JLootTableSet extends BlockLootTableSet {
 	private void initBuildingBlocks() {
 		registerDropsSelf(JBlocks.DUNGEON_BRICKS);
 		registerDropsSelf(JBlocks.DUNGEON_LAMP);
-		registerDropsSelf(JBlocks.DUNGEON_BRICKS_CARVED);
-		registerDropsSelf(JBlocks.DUNGEON_BRICKS_CHISELED);
-		registerDropsSelf(JBlocks.DUNGEON_BRICKS_CRACKED);
+		registerDropsSelf(JBlocks.CARVED_DUNGEON_BRICKS);
+		registerDropsSelf(JBlocks.CHISELED_DUNGEON_BRICKS);
+		registerDropsSelf(JBlocks.CRACKED_DUNGEON_BRICKS);
 		registerDropsSelf(JBlocks.DUNGEON_FLOOR);
 
 		registerDropsSelf(JBlocks.BLOOD_ROCK);
