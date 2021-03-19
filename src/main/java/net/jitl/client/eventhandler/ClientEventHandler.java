@@ -22,7 +22,7 @@ public class ClientEventHandler {
     private static void onBlockHighlight(DrawHighlightEvent.HighlightBlock event) {
         BlockPos blockPos = event.getTarget().getBlockPos();
         BlockState state = ClientProxy.world().getBlockState(blockPos);
-        if (state.getBlock() == JBlocks.GUARDIAN_TOWER_HEART && !JItems.TEST_BUG.isInMainHand(ClientProxy.player())) {
+        if (state.getBlock() == JBlocks.GUARDIAN_TOWER_BRAIN && !JItems.TEST_BUG.isInMainHand(ClientProxy.player())) {
             event.setCanceled(true);
         }
     }

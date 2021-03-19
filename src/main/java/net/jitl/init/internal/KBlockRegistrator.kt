@@ -3,7 +3,7 @@ package net.jitl.init.internal
 import net.jitl.JITL
 import net.jitl.client.render.JBlockModels
 import net.jitl.client.render.JBlockStateResources
-import net.jitl.common.block.GuardianTowerHeartBlock
+import net.jitl.common.block.GuardianTowerBrainBlock
 import net.jitl.common.block.base.XZFacedBlock
 import net.jitl.init.JTabs
 import net.jitl.util.JBlockProperties
@@ -38,8 +38,8 @@ object KBlockRegistrator {
                 }
             }
 
-            "guardian_tower_heart" represents { GuardianTowerHeartBlock() } with {
-                name("Guardian Tower Heart")
+            "guardian_tower_brain" represents { GuardianTowerBrainBlock() } with {
+                name("Guardian Tower Brain")
                 clientSideOnly {
                     val modelLoc = BlockModelLocation(modId, name)
                     oneVariantState(modelLoc)

@@ -15,15 +15,15 @@ import ru.timeconqueror.timecore.api.util.client.ClientProxy;
 
 import java.util.Random;
 
-public class GuardianTowerHeartBlock extends Block {
-    public GuardianTowerHeartBlock() {
+public class GuardianTowerBrainBlock extends Block {
+    public GuardianTowerBrainBlock() {
         super(JBlockProperties.UNBREAKABLE_UTILITY.create());
     }
 
     @Nullable
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return JTiles.GUARDIAN_TOWER_HEART.create();
+        return JTiles.GUARDIAN_TOWER_BRAIN.create();
     }
 
     @Override

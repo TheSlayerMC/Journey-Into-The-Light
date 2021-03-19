@@ -89,7 +89,7 @@ public class JBlocks {
 	public static final Block GILDED_DUNGEON_BRICKS = promise();
 	public static final StairsBlock GILDED_DUNGEON_STAIRS = promise();
 	public static final Block DUNGEON_FLOOR = promise();
-	public static final Block GUARDIAN_TOWER_HEART = promise();
+	public static final Block GUARDIAN_TOWER_BRAIN = promise();
 	public static final Block COMMON_GEMS = promise();
 	public static final Block RARE_GEMS = promise();
 
