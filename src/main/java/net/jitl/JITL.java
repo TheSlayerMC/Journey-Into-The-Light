@@ -1,17 +1,12 @@
 package net.jitl;
 
 import net.jitl.capabilities.JourneyCapabilityProvider;
-import net.jitl.capabilities.armorability.ArmorSetCapability;
-import net.jitl.capabilities.armorability.ArmorSetStorage;
-import net.jitl.capabilities.armorability.IArmorSetCapability;
 import net.jitl.client.eventhandler.ClientEventHandler;
 import net.jitl.client.eventhandler.ClientLoadingEventHandler;
 import net.jitl.client.render.JEntityRenderRegistry;
 import net.jitl.init.JourneyBiomeRegistry;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -74,5 +69,13 @@ public class JITL implements TimeMod {
 
 	public static TextureLocation tl(String path) {
 		return new TextureLocation(MODID, path);
+	}
+
+	public static TextureLocation blockTl(String path) {
+		return new TextureLocation(MODID, "block/" + path);
+	}
+
+	public static TextureLocation itemTl(String path) {
+		return new TextureLocation(MODID, "item/" + path);
 	}
 }

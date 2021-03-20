@@ -14,7 +14,8 @@ import net.jitl.init.JEntities;
 import net.jitl.init.JItems;
 import net.jitl.init.JTabs;
 import net.jitl.util.JBlockProperties;
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.util.IItemProvider;
@@ -22,9 +23,7 @@ import net.minecraftforge.fml.RegistryObject;
 import ru.timeconqueror.timecore.api.client.resource.BlockModel;
 import ru.timeconqueror.timecore.api.client.resource.BlockModels;
 import ru.timeconqueror.timecore.api.client.resource.BlockStateResource;
-import ru.timeconqueror.timecore.api.client.resource.BlockStateResources;
 import ru.timeconqueror.timecore.api.client.resource.location.BlockModelLocation;
-import ru.timeconqueror.timecore.api.client.resource.location.TextureLocation;
 import ru.timeconqueror.timecore.api.registry.BlockRegister;
 import ru.timeconqueror.timecore.api.registry.BlockRegister.BlockRegisterChain;
 import ru.timeconqueror.timecore.api.registry.BlockRegister.RenderTypeWrapper;
@@ -129,9 +128,6 @@ public class BlockRegistrator {
         registerDefaultBlock("blue_gem_block", "Blue Gem Block");
         registerDefaultBlock("yellow_gem_block", "Yellow Gem Block");
 
-        RegistryObject<Block> gildedDungeonBricks = registerBlock("gilded_dungeon_bricks", "Gilded Dungeon Bricks", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
-        registerStairs("gilded_dungeon_stairs", "Gilded Dungeon Stairs", gildedDungeonBricks, JBlockProperties.BRICK_PROPS.create());
-
         registerDefaultBlock("common_gems", "Common Gems");
         registerDefaultBlock("rare_gems", "Rare Gems");
 
@@ -144,7 +140,7 @@ public class BlockRegistrator {
 
         registerDefaultBlock("euca_brick", "Euca Brick");
         RegistryObject<Block> eucaGoldPlank = registerBlock("euca_gold_plank", "Euca Golden Plank", () -> new Block(JBlockProperties.WOOD_PROPS.create()));
-        registerStairs("euca_golden_stairs", "Euca Golden Stairs", eucaGoldPlank, JBlockProperties.WOOD_PROPS.create());
+        KBlockRegistrator.INSTANCE.registerStairs("euca_golden_stairs", "Euca Golden Stairs", eucaGoldPlank, JBlockProperties.WOOD_PROPS.create());
 
         registerDefaultBlock("euca_tile", "Euca Tile");
 
@@ -316,28 +312,6 @@ public class BlockRegistrator {
                 .defaultBlockItem(JTabs.BLOCKS)
                 .oneVarStateAndCubeAllModel()
                 .asRegistryObject();
-    }
-
-    /**
-     * Registers a 'stairs' block
-     */
-    private static void registerStairs(String name, String enName, RegistryObject<? extends Block> sourceBlock, AbstractBlock.Properties properties) {
-        REGISTER.register(name, () -> new StairsBlock(Blocks.AIR::defaultBlockState, properties))
-                .also(chain -> {
-                    BlockModelLocation stairs = new BlockModelLocation(chain.getModId(), name);
-                    BlockModelLocation innerStairs = new BlockModelLocation(chain.getModId(), name + "/inner");
-                    BlockModelLocation outerStairs = new BlockModelLocation(chain.getModId(), name + "/outer");
-                    TextureLocation sourceBlockTexture = new TextureLocation(chain.getModId(), "block/" + sourceBlock.getId().getPath());
-
-                    chain.model(stairs, BlockModels.stairsModel(sourceBlockTexture, sourceBlockTexture, sourceBlockTexture));
-                    chain.model(innerStairs, BlockModels.stairsInnerModel(sourceBlockTexture, sourceBlockTexture, sourceBlockTexture));
-                    chain.model(outerStairs, BlockModels.stairsOuterModel(sourceBlockTexture, sourceBlockTexture, sourceBlockTexture));
-
-                    BlockStateResource state = BlockStateResources.stairs(stairs, innerStairs, outerStairs);
-                    chain.state(state);
-                })
-                .defaultBlockItem(JTabs.BLOCKS)
-                .name(enName);
     }
 
     /**
