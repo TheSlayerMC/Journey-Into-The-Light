@@ -10,6 +10,7 @@ public class ShadiumArmorAbilities extends BaseArmorAbilities {
         System.out.println("Darkness: " + (1 - event.getSource().getEntity().getBrightness()));
         System.out.println("Damage reduction: " + (event.getSource().isBypassArmor() ? 0 : (event.getAmount() / 5) * -(1 - event.getSource().getEntity().getBrightness())));
         return event.getSource().isBypassArmor() ? 0 : (event.getAmount() / 5) * -(1 - event.getSource().getEntity().getBrightness());
+        //TODO: write system to make this work per-piece
     }
 
     @Override

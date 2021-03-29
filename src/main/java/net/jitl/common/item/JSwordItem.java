@@ -32,14 +32,8 @@ public class JSwordItem extends SwordItem {
 
 	@Override
 	public void inventoryTick(@NotNull ItemStack stack, @NotNull World worldIn, @NotNull Entity entityIn, int itemSlot, boolean isSelected) {
-		if (!worldIn.isClientSide() && worldIn.getGameTime() % 40 == 0) {
-			if (getTier() == JToolTiers.LUNIUM) {
-				if (entityIn instanceof PlayerEntity) {
-					if (isDayTime(worldIn) && worldIn.canSeeSky(entityIn.blockPosition())) {
-						stack.hurt(-2, random, null);
-					}
-				}
-			}
+		if (!worldIn.isClientSide()) {
+			((JToolTiers) this.getTier()).getAbilities().swordTick(stack, worldIn, entityIn, itemSlot, isSelected);
 		}
 	}
 

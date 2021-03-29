@@ -10,7 +10,7 @@ public class ArmorSetStorage implements Capability.IStorage<IArmorSetCapability>
     @Nullable
     @Override
     public INBT writeNBT(Capability<IArmorSetCapability> capability, IArmorSetCapability instance, Direction side) {
-        return null;
+        return null; //TODO: make system to store ability counters
     }
 
     @Override

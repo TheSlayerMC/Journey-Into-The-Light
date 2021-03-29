@@ -5,9 +5,14 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 public abstract class BaseToolAbilities {
+    public void swordTick(ItemStack item, World world, Entity holder, int slot, boolean isHeld) {
+
+    }
+
     public double getSwordDamageModifier(LivingHurtEvent event) {
         return 0;
     }
