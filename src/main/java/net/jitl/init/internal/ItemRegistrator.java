@@ -123,7 +123,7 @@ public class ItemRegistrator {
 
         registerItem("euca_piercer", "Euca Piercer", () -> new ThrowableItem(rangedWeaponsGrouped(), (world, livingEntity) -> new EucaPiercerEntity(world, livingEntity, 10, 5)).setSound(JSounds.STAFF_0::get));
         registerItem("skull_of_decay", "Skull Of Decay", () -> new JCurioItem(itemGrouped()));
-        registerItem("heart_container_medium", "Heart Container", () -> new HeartContainerItem(itemGrouped()));
+        registerItem("heart_container_medium", "Heart Container", () -> new HeartContainerItem(itemGrouped()).health(6));
     }
 
     /**

@@ -4,6 +4,7 @@ import net.jitl.JITL;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import top.theillusivec4.curios.api.SlotContext;
 
@@ -18,15 +19,24 @@ public class HeartContainerItem extends JCurioItem {
         super(properties);
     }
 
+    public HeartContainerItem health(int hearts) {
+        this.hearts = hearts;
+        return this;
+    }
+
     @Override
     public void onEquip(SlotContext slotContext, ItemStack prevStack) {
         LivingEntity livingEntity = slotContext.getWearer();
-        Objects.requireNonNull(livingEntity.getAttribute(Attributes.MAX_HEALTH)).addTransientModifier(new AttributeModifier(HEALTH_MODIFIER, JITL.MODID + ":health_modifier", hearts, AttributeModifier.Operation.ADDITION));
+        if (livingEntity instanceof PlayerEntity) {
+            Objects.requireNonNull(livingEntity.getAttribute(Attributes.MAX_HEALTH)).addTransientModifier(new AttributeModifier(HEALTH_MODIFIER, JITL.MODID + ":health_modifier", hearts, AttributeModifier.Operation.ADDITION));
+        }
     }
 
     @Override
     public void onUnequip(SlotContext slotContext, ItemStack prevStack) {
         LivingEntity livingEntity = slotContext.getWearer();
-        Objects.requireNonNull(livingEntity.getAttribute(Attributes.MAX_HEALTH)).removeModifier(new AttributeModifier(HEALTH_MODIFIER, JITL.MODID + ":health_modifier", hearts, AttributeModifier.Operation.ADDITION));
+        if (livingEntity instanceof PlayerEntity) {
+            Objects.requireNonNull(livingEntity.getAttribute(Attributes.MAX_HEALTH)).removeModifier(new AttributeModifier(HEALTH_MODIFIER, JITL.MODID + ":health_modifier", hearts, AttributeModifier.Operation.ADDITION));
+        }
     }
 }
