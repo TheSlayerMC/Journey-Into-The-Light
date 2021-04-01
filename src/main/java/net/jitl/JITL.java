@@ -61,7 +61,7 @@ public class JITL implements TimeMod {
 	}
 
 	private void enqueue(InterModEnqueueEvent event) {
-		InterModComms.sendTo(Curios.MODID, SlotTypeMessage.REGISTER_TYPE, () -> new SlotTypeMessage.Builder("heart_container").icon(rl("gui/curios/heart_container")).priority(1).size(2).build());
+		InterModComms.sendTo(Curios.MODID, SlotTypeMessage.REGISTER_TYPE, () -> new SlotTypeMessage.Builder("heart_container").icon(rl("gui/curios/heart_container")).priority(1).size(1).build());
 	}
 
 	public static ResourceLocation rl(String path) {
