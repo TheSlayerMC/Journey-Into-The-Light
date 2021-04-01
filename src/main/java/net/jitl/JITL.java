@@ -9,9 +9,11 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
@@ -20,6 +22,8 @@ import ru.timeconqueror.timecore.api.TimeMod;
 import ru.timeconqueror.timecore.api.client.resource.location.BlockModelLocation;
 import ru.timeconqueror.timecore.api.client.resource.location.ItemModelLocation;
 import ru.timeconqueror.timecore.api.client.resource.location.TextureLocation;
+import top.theillusivec4.curios.Curios;
+import top.theillusivec4.curios.api.SlotTypeMessage;
 
 @Mod(JITL.MODID)
 public class JITL implements TimeMod {
@@ -34,7 +38,8 @@ public class JITL implements TimeMod {
         Registration.register(modEventBus);
 
         modEventBus.addListener(this::preInit);
-        modEventBus.addListener(this::clientSetup);
+		modEventBus.addListener(this::clientSetup);
+		modEventBus.addListener(this::enqueue);
 
 	    MinecraftForge.EVENT_BUS.register(this);
 
@@ -53,6 +58,10 @@ public class JITL implements TimeMod {
 
 	@SubscribeEvent
 	public void onServerStarting(FMLServerStartingEvent event) {
+	}
+
+	private void enqueue(InterModEnqueueEvent event) {
+		InterModComms.sendTo(Curios.MODID, SlotTypeMessage.REGISTER_TYPE, () -> new SlotTypeMessage.Builder("heart_container").icon(rl("gui/curios/heart_container")).priority(1).size(2).build());
 	}
 
 	public static ResourceLocation rl(String path) {

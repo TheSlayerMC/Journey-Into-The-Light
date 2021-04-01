@@ -8,6 +8,7 @@ import net.jitl.client.render.gui.button.NoTextureButton;
 import net.jitl.client.util.Rectangle;
 import net.minecraft.client.gui.screen.inventory.InventoryScreen;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import org.jetbrains.annotations.NotNull;
@@ -99,8 +100,8 @@ public class DialogueScreen extends JScreen {
 
     private void renderMobText() {
         //TODO: find out how spit string is done
-        String text = TextFormatting.YELLOW + "" + new TranslationTextComponent(TextFormatting.ITALIC + node.getTextKey());
-        //font.drawSplitString(text, mobTextRect.getLeft() + INDENT * -(INDENT_OFFSET), mobTextRect.getTop() + INDENT + 64, Math.max(mobTextRect.getWidth(), 2), 0xFFFFFF);
+        ITextComponent text = new TranslationTextComponent(TextFormatting.YELLOW + "" + TextFormatting.ITALIC + node.getTextKey());
+        font.drawWordWrap(text, mobTextRect.getLeft() + INDENT * -(INDENT_OFFSET), mobTextRect.getTop() + INDENT + 48, Math.max(mobTextRect.getWidth(), 2), 0xFFFFFF);
     }
 
     private void renderDebugLayout(int mouseX, int mouseY, float partialTicks) {

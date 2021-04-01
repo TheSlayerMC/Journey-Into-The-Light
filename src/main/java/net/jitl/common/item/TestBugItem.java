@@ -30,7 +30,7 @@ public class TestBugItem extends Item {
 
         if (worldIn.isClientSide()) {
             //TODO: create dialogue registry and network syncing *looks at TimeConqueror*
-            Minecraft.getInstance().setScreen(Hacks.safeCast(new DialogueScreen(new ClientDialogueNode(JITL.rl("floro"), "Hello!", Arrays.asList("helols", "hey", "heyyooooo")))));
+            Minecraft.getInstance().setScreen(Hacks.safeCast(new DialogueScreen(new ClientDialogueNode(JITL.rl("floro"), "Hello! This line is supposed to very long to demonstrate wrapped text. So, how are you? How are the kids? Aw that's too bad, I hate my kids too. Anyways, see ya later.", Arrays.asList("helols", "hey", "heyyooooo")))));
         }
         return ActionResult.success(playerIn.getItemInHand(handIn));
     }
