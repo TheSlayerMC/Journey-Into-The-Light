@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "jitl:ring_of_poison",
+      "required": false
+    }
+  ]
+}

@@ -7,6 +7,7 @@ import net.jitl.common.helper.JToolTiers;
 import net.jitl.common.item.*;
 import net.jitl.common.item.curios.HeartContainerItem;
 import net.jitl.common.item.curios.JCurioItem;
+import net.jitl.common.item.curios.ring.PoisonRingItem;
 import net.jitl.init.JEntities;
 import net.jitl.init.JFoods;
 import net.jitl.init.JLootTables;
@@ -123,7 +124,9 @@ public class ItemRegistrator {
 
         registerItem("euca_piercer", "Euca Piercer", () -> new ThrowableItem(rangedWeaponsGrouped(), (world, livingEntity) -> new EucaPiercerEntity(world, livingEntity, 10, 5)).setSound(JSounds.STAFF_0::get));
         registerItem("skull_of_decay", "Skull Of Decay", () -> new JCurioItem(itemGrouped()));
+
         registerItem("heart_container_medium", "Heart Container", () -> new HeartContainerItem(itemGrouped()).health(6));
+        registerItem("ring_of_poison", "Ring of Poison", () -> new PoisonRingItem(itemGrouped()));
     }
 
     /**

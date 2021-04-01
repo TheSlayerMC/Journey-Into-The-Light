@@ -117,4 +117,5 @@ public class JItems {
     public static final Item EUCA_PIERCER = promise();
     public static final Item SKULL_OF_DECAY = promise();
     public static final Item HEART_CONTAINER_MEDIUM = promise();
+    public static final Item RING_OF_POISON = promise();
 }
