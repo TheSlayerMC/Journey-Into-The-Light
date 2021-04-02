@@ -31,7 +31,6 @@ public class DynasterAmuletItem extends JCurioItem {
 
     private boolean isFloatReady(World world, BlockPos block) {
         for (int i = 0; i < 5; i++) {
-            System.out.println("Checking block (" + block.getX() + ", " + block.getY() + ", " + block.getZ() + ")");
             if (world.getBlockState(block).isCollisionShapeFullBlock(world, block)) {
                 return true;
             }
