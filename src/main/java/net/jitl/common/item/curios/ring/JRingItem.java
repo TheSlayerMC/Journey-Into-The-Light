@@ -4,15 +4,23 @@ import net.jitl.common.item.curios.JCurioItem;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Effect;
-import net.minecraft.potion.Effects;
 
-public class PoisonRingItem extends JCurioItem {
-    public PoisonRingItem(Properties properties) {
+import java.util.function.Supplier;
+
+public class JRingItem extends JCurioItem {
+    private Effect potion;
+
+    public JRingItem(Properties properties) {
         super(properties);
     }
 
+    public JRingItem effect(Supplier<Effect> effectSupplier) {
+        this.potion = effectSupplier.get();
+        return this;
+    }
+
+    @Override
     public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
-        Effect potion = Effects.POISON.getEffect();
         if (livingEntity.hasEffect(potion)) {
             livingEntity.removeEffect(potion);
         }

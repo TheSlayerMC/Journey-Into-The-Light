@@ -4,6 +4,30 @@
     {
       "id": "jitl:ring_of_poison",
       "required": false
+    },
+    {
+      "id": "jitl:ring_of_blindness",
+      "required": false
+    },
+    {
+      "id": "jitl:ring_of_harming",
+      "required": false
+    },
+    {
+      "id": "jitl:ring_of_mining_fatigue",
+      "required": false
+    },
+    {
+      "id": "jitl:ring_of_nausea",
+      "required": false
+    },
+    {
+      "id": "jitl:ring_of_slowness",
+      "required": false
+    },
+    {
+      "id": "jitl:ring_of_withering",
+      "required": false
     }
   ]
 }

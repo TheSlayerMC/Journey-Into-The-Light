@@ -7,13 +7,15 @@ import net.jitl.common.helper.JToolTiers;
 import net.jitl.common.item.*;
 import net.jitl.common.item.curios.HeartContainerItem;
 import net.jitl.common.item.curios.JCurioItem;
-import net.jitl.common.item.curios.ring.PoisonRingItem;
+import net.jitl.common.item.curios.amulate.DynasterAmuletItem;
+import net.jitl.common.item.curios.ring.JRingItem;
 import net.jitl.init.JEntities;
 import net.jitl.init.JFoods;
 import net.jitl.init.JLootTables;
 import net.jitl.init.JSounds;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
+import net.minecraft.potion.Effects;
 import net.minecraft.util.SoundEvents;
 import ru.timeconqueror.timecore.api.client.resource.StandardItemModelParents;
 import ru.timeconqueror.timecore.api.registry.ItemRegister;
@@ -125,8 +127,20 @@ public class ItemRegistrator {
         registerItem("euca_piercer", "Euca Piercer", () -> new ThrowableItem(rangedWeaponsGrouped(), (world, livingEntity) -> new EucaPiercerEntity(world, livingEntity, 10, 5)).setSound(JSounds.STAFF_0::get));
         registerItem("skull_of_decay", "Skull Of Decay", () -> new JCurioItem(itemGrouped()));
 
-        registerItem("heart_container_medium", "Heart Container", () -> new HeartContainerItem(itemGrouped()).health(6));
-        registerItem("ring_of_poison", "Ring of Poison", () -> new PoisonRingItem(itemGrouped()));
+        registerItem("heart_container_small", "Heart Container", () -> new HeartContainerItem(itemGrouped()).health(1));
+        registerItem("heart_container_medium", "Heart Container", () -> new HeartContainerItem(itemGrouped()).health(4));
+        registerItem("heart_container_large", "Heart Container", () -> new HeartContainerItem(itemGrouped()).health(8));
+        registerItem("heart_container_ultimate", "Heart Container", () -> new HeartContainerItem(itemGrouped()).health(16));
+
+        registerItem("ring_of_poison", "Ring of Poison", () -> new JRingItem(itemGrouped()).effect(Effects.POISON::getEffect));
+        registerItem("ring_of_blindness", "Ring of Blindness", () -> new JRingItem(itemGrouped()).effect(Effects.BLINDNESS::getEffect));
+        registerItem("ring_of_harming", "Ring of Harming", () -> new JRingItem(itemGrouped()).effect(Effects.HARM::getEffect));
+        registerItem("ring_of_mining_fatigue", "Ring of Mining Fatigue", () -> new JRingItem(itemGrouped()).effect(Effects.DIG_SLOWDOWN::getEffect));
+        registerItem("ring_of_nausea", "Ring of Nausea", () -> new JRingItem(itemGrouped()).effect(Effects.CONFUSION::getEffect));
+        registerItem("ring_of_slowness", "Ring of Slowness", () -> new JRingItem(itemGrouped()).effect(Effects.MOVEMENT_SLOWDOWN::getEffect));
+        registerItem("ring_of_withering", "Ring of Withering", () -> new JRingItem(itemGrouped()).effect(Effects.WITHER::getEffect));
+
+        registerItem("dynaster_amulet", "Dynaster Amulet", () -> new DynasterAmuletItem(itemGrouped()));
     }
 
     /**

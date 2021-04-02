@@ -12,7 +12,7 @@ import top.theillusivec4.curios.api.SlotContext;
 import java.util.UUID;
 
 public class HeartContainerItem extends JCurioItem {
-    public double hearts;
+    public int hearts;
 
     public HeartContainerItem(Properties properties) {
         super(properties);
@@ -23,6 +23,7 @@ public class HeartContainerItem extends JCurioItem {
         return this;
     }
 
+    @Override
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid, ItemStack stack) {
         Multimap<Attribute, AttributeModifier> modifierMultimap = LinkedHashMultimap.create();
         modifierMultimap.put(Attributes.MAX_HEALTH, new AttributeModifier(uuid, JITL.MODID + ":health_modifier", hearts, AttributeModifier.Operation.ADDITION));

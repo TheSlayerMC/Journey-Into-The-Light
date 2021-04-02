@@ -2,7 +2,19 @@
   "replace": false,
   "values": [
     {
+      "id": "jitl:heart_container_small",
+      "required": false
+    },
+    {
       "id": "jitl:heart_container_medium",
+      "required": false
+    },
+    {
+      "id": "jitl:heart_container_large",
+      "required": false
+    },
+    {
+      "id": "jitl:heart_container_ultimate",
       "required": false
     }
   ]
