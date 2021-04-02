@@ -7,7 +7,7 @@ import net.jitl.common.helper.JToolTiers;
 import net.jitl.common.item.*;
 import net.jitl.common.item.curios.HeartContainerItem;
 import net.jitl.common.item.curios.JCurioItem;
-import net.jitl.common.item.curios.amulate.DynasterAmuletItem;
+import net.jitl.common.item.curios.amulet.DynasterAmuletItem;
 import net.jitl.common.item.curios.ring.JRingItem;
 import net.jitl.init.JEntities;
 import net.jitl.init.JFoods;
