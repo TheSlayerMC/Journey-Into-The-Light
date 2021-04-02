@@ -21,7 +21,7 @@ public class DynasterAmuletItem extends JCurioItem {
     public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
         if (livingEntity.isCrouching()) {
             if (!livingEntity.isOnGround() && !livingEntity.isInLava() && !livingEntity.isInWaterOrBubble()) {
-                if (isFloatReady(livingEntity.level, livingEntity.blockPosition())) {
+                if (isFloatReady(livingEntity.level, livingEntity.blockPosition().below())) {
                     livingEntity.setDeltaMovement(livingEntity.getDeltaMovement().multiply(1, 0.75, 1));
                     livingEntity.fallDistance = -1.0F;
                 }
@@ -31,6 +31,7 @@ public class DynasterAmuletItem extends JCurioItem {
 
     private boolean isFloatReady(World world, BlockPos block) {
         for (int i = 0; i < 5; i++) {
+            System.out.println("Checking block (" + block.getX() + ", " + block.getY() + ", " + block.getZ() + ")");
             if (world.getBlockState(block).isCollisionShapeFullBlock(world, block)) {
                 return true;
             }
