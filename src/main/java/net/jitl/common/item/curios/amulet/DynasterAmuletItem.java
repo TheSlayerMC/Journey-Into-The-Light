@@ -14,7 +14,7 @@ public class DynasterAmuletItem extends JCurioItem {
 
     @Override
     public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
-        if (livingEntity.isShiftKeyDown()) {
+        if (livingEntity.isShiftKeyDown() && !livingEntity.isFallFlying()) {
             if (!livingEntity.isOnGround() && !livingEntity.isInLava() && !livingEntity.isInWaterOrBubble()) {
                 if (isFloatReady(livingEntity.level, livingEntity.blockPosition().below())) {
                     //TODO: "drain" essence, once essence is added
