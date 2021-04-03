@@ -30,11 +30,6 @@ public class GuiEventHandler {
 
 	@SubscribeEvent()
 	public static void onGuiInit(GuiScreenEvent.InitGuiEvent.Post event) {
-		addMainMenuGui(event);
-		addInventoryGui(event);
-	}
-
-	public static void addMainMenuGui(GuiScreenEvent.InitGuiEvent.Post event) {
 		JClientConfig.GuiCategory guiConfig = JConfigs.CLIENT.GUI_CATEGORY;
 		Minecraft minecraft = Minecraft.getInstance();
 		int x = event.getGui().width / 1024;
@@ -51,19 +46,6 @@ public class GuiEventHandler {
 			if (guiConfig.isToggleMenuButtonEnabled()) {
 				event.addWidget(buttonToggleMenu);
 			}
-		}
-	}
-
-	public static void addInventoryGui(GuiScreenEvent.InitGuiEvent.Post event) {
-		//TODO: fix position with crafting book GUI
-		int x = event.getGui().width / 2 - 24;
-		int y = event.getGui().height / 2 - 16;
-		JImageButton trinketButton = new JImageButton(x, y, 8, 8, 0, 0, 8, JITL.rl("textures/gui/trinket_icon.png"), 8, 16, (action) -> {
-			//add button functionality here
-			//TODO: create special inventory
-		});
-		if (event.getGui() instanceof InventoryScreen) {
-			event.addWidget(trinketButton);
 		}
 	}
 }
