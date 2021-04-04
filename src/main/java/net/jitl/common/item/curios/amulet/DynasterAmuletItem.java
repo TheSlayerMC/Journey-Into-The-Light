@@ -1,10 +1,16 @@
 package net.jitl.common.item.curios.amulet;
 
+import net.jitl.capabilities.JourneyCapabilityProvider;
+import net.jitl.capabilities.essence.IEssenceCapability;
 import net.jitl.common.item.curios.JCurioItem;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.entity.projectile.ThrowableEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+
+import java.util.Optional;
 
 public class DynasterAmuletItem extends JCurioItem {
     public DynasterAmuletItem(Properties properties) {
@@ -17,9 +23,11 @@ public class DynasterAmuletItem extends JCurioItem {
         if (livingEntity.isShiftKeyDown()) {
             if (!livingEntity.isOnGround() && !livingEntity.isInLava() && !livingEntity.isInWaterOrBubble()) {
                 if (isFloatReady(livingEntity.level, livingEntity.blockPosition().below())) {
-                    //TODO: "drain" essence, once essence is added
-                    livingEntity.fallDistance = 0.0F;
-                    livingEntity.setDeltaMovement(livingEntity.getDeltaMovement().multiply(1, 0.75, 1));
+                    Optional<IEssenceCapability> optional = livingEntity.getCapability(JourneyCapabilityProvider.ESSENCE).resolve();
+                    if (optional.isPresent() && optional.get().consumeEssence((ServerPlayerEntity) livingEntity, 0.2F)) {
+                        livingEntity.fallDistance = 0.0F;
+                        livingEntity.setDeltaMovement(livingEntity.getDeltaMovement().multiply(1, 0.75, 1));
+                    }
                 }
             }
         }

@@ -1,8 +1,13 @@
 package net.jitl.common.item;
 
+import net.jitl.capabilities.JourneyCapabilityProvider;
+import net.jitl.capabilities.armorability.IArmorSetCapability;
+import net.jitl.capabilities.essence.IEssenceCapability;
+import net.jitl.common.item.gearabilities.BaseArmorAbilities;
 import net.jitl.init.JSounds;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.entity.projectile.ThrowableEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -13,6 +18,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Optional;
 import java.util.function.BiFunction;
 
 public class StaffItem extends Item {
@@ -31,9 +37,12 @@ public class StaffItem extends Item {
         ItemStack itemstack = playerIn.getItemInHand(handIn);
         worldIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), JSounds.STAFF_0.get(), SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
         if (!worldIn.isClientSide) {
-            ThrowableEntity throwableEntity = projectileFactory.apply(worldIn, playerIn);
-            throwableEntity.shootFromRotation(playerIn, playerIn.xRot, playerIn.yRot, 0.0F, 1.5F, 1.0F);
-            worldIn.addFreshEntity(throwableEntity);
+            Optional<IEssenceCapability> optional = playerIn.getCapability(JourneyCapabilityProvider.ESSENCE).resolve();
+            if (optional.isPresent() && optional.get().consumeEssence((ServerPlayerEntity) playerIn, 1.0F)) {
+                ThrowableEntity throwableEntity = projectileFactory.apply(worldIn, playerIn);
+                throwableEntity.shootFromRotation(playerIn, playerIn.xRot, playerIn.yRot, 0.0F, 1.5F, 1.0F);
+                worldIn.addFreshEntity(throwableEntity);
+            }
         }
 
         playerIn.awardStat(Stats.ITEM_USED.get(this));
