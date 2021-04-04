@@ -1,7 +1,7 @@
-package net.jitl.capabilities.essence;
+package net.jitl.common.capability.essence;
 
 import net.jitl.JITL;
-import net.jitl.capabilities.JourneyCapabilityProvider;
+import net.jitl.common.capability.JourneyCapabilityProvider;
 import net.jitl.network.JPacketHandler;
 import net.jitl.network.SEssenceUpdatePacket;
 import net.minecraft.entity.Entity;

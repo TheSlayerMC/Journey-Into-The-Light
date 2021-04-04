@@ -1,14 +1,14 @@
-package net.jitl.capabilities;
+package net.jitl.common.capability;
 
-import net.jitl.capabilities.armorability.ArmorSetCapability;
-import net.jitl.capabilities.armorability.ArmorSetStorage;
-import net.jitl.capabilities.armorability.IArmorSetCapability;
-import net.jitl.capabilities.currentstructure.CurrentStructureCapability;
-import net.jitl.capabilities.currentstructure.CurrentStructureStorage;
-import net.jitl.capabilities.currentstructure.ICurrentStructureCapability;
-import net.jitl.capabilities.essence.EssenceCapability;
-import net.jitl.capabilities.essence.EssenceStorage;
-import net.jitl.capabilities.essence.IEssenceCapability;
+import net.jitl.common.capability.armorability.ArmorSetCapability;
+import net.jitl.common.capability.armorability.ArmorSetStorage;
+import net.jitl.common.capability.armorability.IArmorSetCapability;
+import net.jitl.common.capability.currentstructure.CurrentStructureCapability;
+import net.jitl.common.capability.currentstructure.CurrentStructureStorage;
+import net.jitl.common.capability.currentstructure.ICurrentStructureCapability;
+import net.jitl.common.capability.essence.EssenceCapability;
+import net.jitl.common.capability.essence.EssenceStorage;
+import net.jitl.common.capability.essence.IEssenceCapability;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.INBT;
 import net.minecraft.util.Direction;

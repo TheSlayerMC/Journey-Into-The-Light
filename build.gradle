@@ -31,10 +31,10 @@ apply plugin: 'org.spongepowered.mixin'
 file "build.properties" withReader {
     def prop = new Properties()
     prop.load(it)
-    ext.buildProps = new ConfigSlurper().parse prop
+    ext.buildProps = prop
 }
 
-version = "${buildProps.minecraft.version}-${buildProps.jitl.version}"
+version = "${buildProps["minecraft.version"]}-${buildProps["jitl.version"]}"
 group = "net.pm" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "Journey-Into-The-Light"
 
@@ -77,9 +77,9 @@ minecraft {
     // Otherwise, we use official mappings in a build script version
     def officialVersion = System.getenv("OFFICIAL_MAPPINGS")
     if (officialVersion == null) {
-        mappings channel: 'snapshot', version: buildProps.snapshot_mappings
+        mappings channel: 'snapshot', version: buildProps["snapshot_mappings"]
     } else {
-        mappings channel: 'official', version: buildProps.minecraft.version
+        mappings channel: 'official', version: buildProps["minecraft.version"]
     }
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
 
@@ -161,7 +161,7 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 dependencies {
     minecraft 'net.minecraftforge:forge:1.16.5-36.1.0'
 
-    runtimeOnly fg.deobf("mezz.jei:jei-${buildProps.minecraft.version}:7.6.0.58")
+    runtimeOnly fg.deobf("mezz.jei:jei-${buildProps["minecraft.version"]}:7.6.0.58")
 
     implementation 'org.jetbrains:annotations:20.1.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"

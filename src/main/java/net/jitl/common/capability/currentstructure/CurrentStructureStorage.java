@@ -1,6 +1,5 @@
-package net.jitl.capabilities.currentstructure;
+package net.jitl.common.capability.currentstructure;
 
-import net.jitl.capabilities.currentstructure.ICurrentStructureCapability;
 import net.minecraft.nbt.INBT;
 import net.minecraft.util.Direction;
 import net.minecraftforge.common.capabilities.Capability;

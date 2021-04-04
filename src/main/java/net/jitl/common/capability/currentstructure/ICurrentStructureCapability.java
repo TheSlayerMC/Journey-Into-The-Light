@@ -1,4 +1,4 @@
-package net.jitl.capabilities.currentstructure;
+package net.jitl.common.capability.currentstructure;
 
 public interface ICurrentStructureCapability {
     void setStructure(int id);

@@ -1,7 +1,7 @@
 package net.jitl.network;
 
-import net.jitl.capabilities.JourneyCapabilityProvider;
-import net.jitl.capabilities.armorability.IArmorSetCapability;
+import net.jitl.common.capability.JourneyCapabilityProvider;
+import net.jitl.common.capability.armorability.IArmorSetCapability;
 import net.jitl.common.item.gearabilities.BaseArmorAbilities;
 import net.jitl.common.item.gearabilities.celestium.CelestiumArmorAbilities;
 import net.minecraft.entity.LivingEntity;

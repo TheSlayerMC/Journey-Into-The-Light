@@ -1,4 +1,4 @@
-package net.jitl.capabilities.essence;
+package net.jitl.common.capability.essence;
 
 import net.minecraft.nbt.INBT;
 import net.minecraft.util.Direction;

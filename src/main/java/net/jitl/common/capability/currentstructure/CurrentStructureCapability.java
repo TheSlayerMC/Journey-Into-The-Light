@@ -1,7 +1,7 @@
-package net.jitl.capabilities.currentstructure;
+package net.jitl.common.capability.currentstructure;
 
 import net.jitl.JITL;
-import net.jitl.capabilities.JourneyCapabilityProvider;
+import net.jitl.common.capability.JourneyCapabilityProvider;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraftforge.event.AttachCapabilitiesEvent;

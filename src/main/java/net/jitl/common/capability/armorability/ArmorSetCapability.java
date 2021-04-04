@@ -1,7 +1,7 @@
-package net.jitl.capabilities.armorability;
+package net.jitl.common.capability.armorability;
 
 import net.jitl.JITL;
-import net.jitl.capabilities.JourneyCapabilityProvider;
+import net.jitl.common.capability.JourneyCapabilityProvider;
 import net.jitl.common.item.gearabilities.BaseArmorAbilities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;

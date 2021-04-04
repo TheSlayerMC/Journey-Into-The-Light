@@ -1,9 +1,7 @@
 package net.jitl.common.item;
 
-import net.jitl.capabilities.JourneyCapabilityProvider;
-import net.jitl.capabilities.armorability.IArmorSetCapability;
-import net.jitl.capabilities.essence.IEssenceCapability;
-import net.jitl.common.item.gearabilities.BaseArmorAbilities;
+import net.jitl.common.capability.JourneyCapabilityProvider;
+import net.jitl.common.capability.essence.IEssenceCapability;
 import net.jitl.init.JSounds;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;

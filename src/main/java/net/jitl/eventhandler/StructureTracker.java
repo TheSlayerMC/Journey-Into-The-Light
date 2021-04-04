@@ -1,10 +1,8 @@
 package net.jitl.eventhandler;
 
 import net.jitl.JITL;
-import net.jitl.capabilities.JourneyCapabilityProvider;
-import net.jitl.capabilities.armorability.IArmorSetCapability;
-import net.jitl.capabilities.currentstructure.CurrentStructureCapability;
-import net.jitl.capabilities.currentstructure.ICurrentStructureCapability;
+import net.jitl.common.capability.JourneyCapabilityProvider;
+import net.jitl.common.capability.currentstructure.ICurrentStructureCapability;
 import net.jitl.common.helper.EnumStructureMusic;
 import net.jitl.network.JPacketHandler;
 import net.jitl.network.SCurrentStructurePacket;
@@ -15,9 +13,7 @@ import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.network.PacketDistributor;
 
-import java.util.HashMap;
 import java.util.Optional;
-import java.util.UUID;
 
 @Mod.EventBusSubscriber(modid = JITL.MODID)
 public class StructureTracker {

@@ -1,9 +1,9 @@
 package net.jitl;
 
-import net.jitl.capabilities.JourneyCapabilityProvider;
 import net.jitl.client.eventhandler.ClientEventHandler;
 import net.jitl.client.eventhandler.ClientLoadingEventHandler;
 import net.jitl.client.render.JEntityRenderRegistry;
+import net.jitl.common.capability.JourneyCapabilityProvider;
 import net.jitl.init.JourneyBiomeRegistry;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;

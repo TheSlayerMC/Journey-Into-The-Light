@@ -1,4 +1,4 @@
-package net.jitl.capabilities.essence;
+package net.jitl.common.capability.essence;
 
 import net.minecraft.entity.player.ServerPlayerEntity;
 

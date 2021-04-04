@@ -1,11 +1,10 @@
 package net.jitl.common.item.curios.amulet;
 
-import net.jitl.capabilities.JourneyCapabilityProvider;
-import net.jitl.capabilities.essence.IEssenceCapability;
+import net.jitl.common.capability.JourneyCapabilityProvider;
+import net.jitl.common.capability.essence.IEssenceCapability;
 import net.jitl.common.item.curios.JCurioItem;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.entity.projectile.ThrowableEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;

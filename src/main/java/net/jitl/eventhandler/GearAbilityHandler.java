@@ -1,8 +1,8 @@
 package net.jitl.eventhandler;
 
 import net.jitl.JITL;
-import net.jitl.capabilities.JourneyCapabilityProvider;
-import net.jitl.capabilities.armorability.IArmorSetCapability;
+import net.jitl.common.capability.JourneyCapabilityProvider;
+import net.jitl.common.capability.armorability.IArmorSetCapability;
 import net.jitl.common.helper.JArmorMaterial;
 import net.jitl.common.helper.JToolTiers;
 import net.jitl.common.item.JArmorItem;
