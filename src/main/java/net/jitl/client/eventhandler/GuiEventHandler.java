@@ -18,6 +18,9 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = JITL.MODID, value = Dist.CLIENT)
 public class GuiEventHandler {
+	public static float maxEssence = 10F;
+
+	public static float essence = 10F;
 
 	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public static void overrideMainMenu(GuiOpenEvent event) {
