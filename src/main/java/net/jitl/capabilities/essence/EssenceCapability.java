@@ -2,9 +2,8 @@ package net.jitl.capabilities.essence;
 
 import net.jitl.JITL;
 import net.jitl.capabilities.JourneyCapabilityProvider;
-import net.jitl.network.EssenceUpdatePacket;
 import net.jitl.network.JPacketHandler;
-import net.jitl.network.SCurrentStructurePacket;
+import net.jitl.network.SEssenceUpdatePacket;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -16,7 +15,7 @@ import ru.timeconqueror.timecore.api.util.Requirements;
 
 @Mod.EventBusSubscriber(modid = JITL.MODID)
 public class EssenceCapability implements IEssenceCapability {
-    private float maxEssence = 10.0F;
+    private final float maxEssence = 10.0F;
 
     private float currentEssence = maxEssence;
 
@@ -24,7 +23,7 @@ public class EssenceCapability implements IEssenceCapability {
     public void setEssence(ServerPlayerEntity player, float value) {
         if (value != currentEssence) {
             currentEssence = value;
-            JPacketHandler.INSTANCE.send(PacketDistributor.PLAYER.with(() -> player), new EssenceUpdatePacket(currentEssence));
+            JPacketHandler.INSTANCE.send(PacketDistributor.PLAYER.with(() -> player), new SEssenceUpdatePacket(currentEssence));
         }
     }
 

@@ -2,6 +2,7 @@ package net.jitl.network;
 
 import net.jitl.JITL;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraftforge.fml.network.NetworkDirection;
 import net.minecraftforge.fml.network.PacketDistributor;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
 import ru.timeconqueror.timecore.api.registry.PacketRegister;
@@ -15,9 +16,9 @@ public class JPacketHandler {
     private static final String PROTOCOL_STRING = "1";
 
     public static final SimpleChannel INSTANCE = REGISTER.createChannel("main", () -> PROTOCOL_STRING, PROTOCOL_STRING::equals, PROTOCOL_STRING::equals)
-            .regPacket(SCurrentStructurePacket.class, new SCurrentStructurePacket.Handler())
-            .regPacket(KeyPressedPacket.class, new KeyPressedPacket.Handler())
-            .regPacket(EssenceUpdatePacket.class, new EssenceUpdatePacket.Handler())
+            .regPacket(SCurrentStructurePacket.class, new SCurrentStructurePacket.Handler(), NetworkDirection.PLAY_TO_CLIENT)
+            .regPacket(KeyPressedPacket.class, new KeyPressedPacket.Handler(), NetworkDirection.PLAY_TO_SERVER)
+            .regPacket(SEssenceUpdatePacket.class, new SEssenceUpdatePacket.Handler(), NetworkDirection.PLAY_TO_CLIENT)
             .asChannel();
 
     public static <MSG> void sendToPlayer(ServerPlayerEntity player, MSG message) {

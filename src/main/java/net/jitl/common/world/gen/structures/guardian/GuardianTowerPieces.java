@@ -2,6 +2,7 @@ package net.jitl.common.world.gen.structures.guardian;
 
 import com.google.common.collect.ImmutableMap;
 import net.jitl.JITL;
+import net.jitl.init.JBlocks;
 import net.jitl.init.JStructurePieces;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
@@ -12,6 +13,7 @@ import net.minecraft.world.gen.feature.template.PlacementSettings;
 import net.minecraft.world.gen.feature.template.TemplateManager;
 import ru.timeconqueror.timecore.api.common.world.structure.INoNoiseStructurePiece;
 import ru.timeconqueror.timecore.api.common.world.structure.TunedTemplateStructurePiece;
+import ru.timeconqueror.timecore.api.common.world.structure.processor.RandomizeBlockProcessor;
 
 import java.util.List;
 import java.util.Map;
@@ -75,7 +77,10 @@ public class GuardianTowerPieces {
 
         @Override
         protected PlacementSettings makePlacementSettings() {
-            return new PlacementSettings();
+            return new PlacementSettings()
+                    .addProcessor(new RandomizeBlockProcessor(JBlocks.SHIELDED_DUNGEON_BRICKS, JBlocks.SHIELDED_CARVED_DUNGEON_BRICKS))
+                    .addProcessor(new RandomizeBlockProcessor(JBlocks.SHIELDED_DUNGEON_BRICKS, JBlocks.SHIELDED_CHISELED_DUNGEON_BRICKS))
+                    .addProcessor(new RandomizeBlockProcessor(JBlocks.SHIELDED_DUNGEON_BRICKS, JBlocks.SHIELDED_CRACKED_DUNGEON_BRICKS));
         }
     }
 }
