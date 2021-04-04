@@ -3,7 +3,7 @@
   "animations": {
     "animation.model.walk": {
       "loop": true,
-      "animation_length": 2.08,
+      "animation_length": 2.12,
       "bones": {
         "leg_1": {
           "rotation": {
