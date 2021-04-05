@@ -7,5 +7,7 @@ public interface IEssenceCapability {
 
     void addEssence(ServerPlayerEntity player, float value);
 
+    float getEssenceValue();
+
     boolean consumeEssence(ServerPlayerEntity player, float value);
 }

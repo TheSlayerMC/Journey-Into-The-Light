@@ -20,6 +20,7 @@ public class JAnimations {
 	public static Animation witherspineIdle;
 
 	public static Animation towerGuardianWalk;
+	public static Animation towerGuardianSmash;
 
 	@SubscribeEvent
 	public static void registerAnimations(FMLCommonSetupEvent event) {
@@ -34,5 +35,6 @@ public class JAnimations {
 		witherspineIdle = AnimationAPI.loadAndRegisterAnimation(JITL.rl("animations/witherspine.idle.json"));
 
 		towerGuardianWalk = AnimationAPI.loadAndRegisterAnimation(JITL.rl("animations/tower_guardian.walk.json"));
+		towerGuardianSmash = AnimationAPI.loadAndRegisterAnimation(JITL.rl("animations/tower_guardian.smash.json"));
 	}
 }

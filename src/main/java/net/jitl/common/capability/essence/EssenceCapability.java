@@ -34,6 +34,11 @@ public class EssenceCapability implements IEssenceCapability {
     }
 
     @Override
+    public float getEssenceValue() {
+        return currentEssence;
+    }
+
+    @Override
     public boolean consumeEssence(ServerPlayerEntity player, float price) {
         Requirements.greaterThan(price, 0);
         float postValue = currentEssence - price;
