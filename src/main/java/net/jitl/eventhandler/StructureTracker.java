@@ -1,7 +1,7 @@
 package net.jitl.eventhandler;
 
 import net.jitl.JITL;
-import net.jitl.common.capability.JourneyCapabilityProvider;
+import net.jitl.common.capability.JCapabilityProvider;
 import net.jitl.common.capability.currentstructure.ICurrentStructureCapability;
 import net.jitl.common.helper.EnumStructureMusic;
 import net.jitl.network.JPacketHandler;
@@ -23,7 +23,7 @@ public class StructureTracker {
     public static void onPlayerTick(TickEvent.PlayerTickEvent structureEvent) {
         if (structureEvent.side == LogicalSide.SERVER && structureEvent.phase == TickEvent.Phase.START) {
             ServerPlayerEntity player = (ServerPlayerEntity) structureEvent.player;
-            Optional<ICurrentStructureCapability> optional = player.getCapability(JourneyCapabilityProvider.STRUCTURE).resolve();
+            Optional<ICurrentStructureCapability> optional = player.getCapability(JCapabilityProvider.STRUCTURE).resolve();
             if (optional.isPresent()) {
                 ICurrentStructureCapability capability = optional.get();
                 int id = findStructure(player);

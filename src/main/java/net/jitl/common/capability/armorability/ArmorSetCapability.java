@@ -1,7 +1,7 @@
 package net.jitl.common.capability.armorability;
 
 import net.jitl.JITL;
-import net.jitl.common.capability.JourneyCapabilityProvider;
+import net.jitl.common.capability.JCapabilityProvider;
 import net.jitl.common.item.gearabilities.BaseArmorAbilities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -24,7 +24,7 @@ public class ArmorSetCapability implements IArmorSetCapability {
     @SubscribeEvent()
     public static void registerCapabilities(AttachCapabilitiesEvent<Entity> event) {
         if (!event.getObject().level.isClientSide() && event.getObject() instanceof LivingEntity) {
-            event.addCapability(JITL.rl("current_armor"), new JourneyCapabilityProvider());
+            event.addCapability(JITL.rl("current_armor"), new JCapabilityProvider());
         }
     }
 }

@@ -3,7 +3,7 @@ package net.jitl;
 import net.jitl.client.eventhandler.ClientEventHandler;
 import net.jitl.client.eventhandler.ClientLoadingEventHandler;
 import net.jitl.client.render.JEntityRenderRegistry;
-import net.jitl.common.capability.JourneyCapabilityProvider;
+import net.jitl.common.capability.JCapabilityProvider;
 import net.jitl.init.JourneyBiomeRegistry;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
@@ -50,7 +50,7 @@ public class JITL implements TimeMod {
 
 	private void preInit(final FMLCommonSetupEvent event) {
 		event.enqueueWork(JourneyBiomeRegistry::registerProviders);
-		JourneyCapabilityProvider.registerCapabilities();
+		JCapabilityProvider.registerCapabilities();
 	}
 
 	private void clientSetup(final FMLClientSetupEvent event) {

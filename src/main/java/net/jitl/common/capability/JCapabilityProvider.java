@@ -21,7 +21,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import ru.timeconqueror.timecore.api.util.Hacks;
 
-public class JourneyCapabilityProvider implements ICapabilitySerializable<INBT> {
+public class JCapabilityProvider implements ICapabilitySerializable<INBT> {
     @CapabilityInject(IArmorSetCapability.class)
     public static final Capability<IArmorSetCapability> ARMOR = Hacks.promise();
 

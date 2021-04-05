@@ -1,6 +1,6 @@
 package net.jitl.common.item.curios.amulet;
 
-import net.jitl.common.capability.JourneyCapabilityProvider;
+import net.jitl.common.capability.JCapabilityProvider;
 import net.jitl.common.capability.essence.IEssenceCapability;
 import net.jitl.common.item.curios.JCurioItem;
 import net.minecraft.entity.LivingEntity;
@@ -22,7 +22,7 @@ public class DynasterAmuletItem extends JCurioItem {
         if (livingEntity.isShiftKeyDown()) {
             if (!livingEntity.isOnGround() && !livingEntity.isInLava() && !livingEntity.isInWaterOrBubble()) {
                 if (isFloatReady(livingEntity.level, livingEntity.blockPosition().below())) {
-                    Optional<IEssenceCapability> optional = livingEntity.getCapability(JourneyCapabilityProvider.ESSENCE).resolve();
+                    Optional<IEssenceCapability> optional = livingEntity.getCapability(JCapabilityProvider.ESSENCE).resolve();
                     if (optional.isPresent() && optional.get().consumeEssence((ServerPlayerEntity) livingEntity, 0.2F)) {
                         livingEntity.fallDistance = 0.0F;
                         livingEntity.setDeltaMovement(livingEntity.getDeltaMovement().multiply(1, 0.75, 1));

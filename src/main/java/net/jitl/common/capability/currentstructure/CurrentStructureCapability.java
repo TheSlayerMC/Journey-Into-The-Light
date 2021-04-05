@@ -1,7 +1,7 @@
 package net.jitl.common.capability.currentstructure;
 
 import net.jitl.JITL;
-import net.jitl.common.capability.JourneyCapabilityProvider;
+import net.jitl.common.capability.JCapabilityProvider;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
@@ -23,7 +23,7 @@ public class CurrentStructureCapability implements ICurrentStructureCapability {
     @SubscribeEvent()
     public static void registerCapabilities(AttachCapabilitiesEvent<Entity> event) {
         if (!event.getObject().level.isClientSide() && event.getObject() instanceof PlayerEntity) {
-            event.addCapability(JITL.rl("current_structure"), new JourneyCapabilityProvider());
+            event.addCapability(JITL.rl("current_structure"), new JCapabilityProvider());
         }
     }
 }

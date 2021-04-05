@@ -1,7 +1,7 @@
 package net.jitl.eventhandler;
 
 import net.jitl.JITL;
-import net.jitl.common.capability.JourneyCapabilityProvider;
+import net.jitl.common.capability.JCapabilityProvider;
 import net.jitl.common.capability.armorability.IArmorSetCapability;
 import net.jitl.common.helper.JArmorMaterial;
 import net.jitl.common.helper.JToolTiers;
@@ -31,7 +31,7 @@ public class GearAbilityHandler {
     @SubscribeEvent()
     public static void handleTick(LivingEvent.LivingUpdateEvent event) {
         LivingEntity entity = event.getEntityLiving();
-        Optional<IArmorSetCapability> optional = entity.getCapability(JourneyCapabilityProvider.ARMOR).resolve();
+        Optional<IArmorSetCapability> optional = entity.getCapability(JCapabilityProvider.ARMOR).resolve();
         if (optional.isPresent()) {
             BaseArmorAbilities gear = optional.get().getArmor();
             if (gear != null) {
@@ -77,7 +77,7 @@ public class GearAbilityHandler {
     public static void handlePostHurt(LivingDamageEvent event) {
         System.out.println("Post damage: " + event.getAmount());
         float damageModifier = 0;
-        Optional<IArmorSetCapability> optional = event.getEntityLiving().getCapability(JourneyCapabilityProvider.ARMOR).resolve();
+        Optional<IArmorSetCapability> optional = event.getEntityLiving().getCapability(JCapabilityProvider.ARMOR).resolve();
         if (optional.isPresent()) {
             BaseArmorAbilities gear = optional.get().getArmor();
             if (gear != null) {
@@ -108,7 +108,7 @@ public class GearAbilityHandler {
                 break;
             }
         }
-        Optional<IArmorSetCapability> optional = entity.getCapability(JourneyCapabilityProvider.ARMOR).resolve();
+        Optional<IArmorSetCapability> optional = entity.getCapability(JCapabilityProvider.ARMOR).resolve();
         if (optional.isPresent()) {
             optional.get().setArmor(material != null ? material.getAbilities() : null);
         }

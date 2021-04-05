@@ -1,7 +1,7 @@
 package net.jitl.common.capability.essence;
 
 import net.jitl.JITL;
-import net.jitl.common.capability.JourneyCapabilityProvider;
+import net.jitl.common.capability.JCapabilityProvider;
 import net.jitl.network.JPacketHandler;
 import net.jitl.network.SEssenceUpdatePacket;
 import net.minecraft.entity.Entity;
@@ -40,6 +40,9 @@ public class EssenceCapability implements IEssenceCapability {
         if (postValue >= 0) {
             setEssence(player, postValue);
             return true;
+        } else if (currentEssence < price) {
+            //TODO: overheat
+            return false;
         }
         return false;
     }
@@ -47,7 +50,7 @@ public class EssenceCapability implements IEssenceCapability {
     @SubscribeEvent()
     public static void registerCapabilities(AttachCapabilitiesEvent<Entity> event) {
         if (!event.getObject().level.isClientSide() && event.getObject() instanceof PlayerEntity) {
-            event.addCapability(JITL.rl("essence"), new JourneyCapabilityProvider());
+            event.addCapability(JITL.rl("essence"), new JCapabilityProvider());
         }
     }
 }

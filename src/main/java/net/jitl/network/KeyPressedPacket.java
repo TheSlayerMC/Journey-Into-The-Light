@@ -1,6 +1,6 @@
 package net.jitl.network;
 
-import net.jitl.common.capability.JourneyCapabilityProvider;
+import net.jitl.common.capability.JCapabilityProvider;
 import net.jitl.common.capability.armorability.IArmorSetCapability;
 import net.jitl.common.item.gearabilities.BaseArmorAbilities;
 import net.jitl.common.item.gearabilities.celestium.CelestiumArmorAbilities;
@@ -35,7 +35,7 @@ public class KeyPressedPacket implements ITimePacket {
         public boolean handle(KeyPressedPacket packet, NetworkEvent.Context ctx) {
             ctx.enqueueWork(() -> {
                 LivingEntity entity = ctx.getSender();
-                Optional<IArmorSetCapability> optional = entity.getCapability(JourneyCapabilityProvider.ARMOR).resolve();
+                Optional<IArmorSetCapability> optional = entity.getCapability(JCapabilityProvider.ARMOR).resolve();
                 if (optional.isPresent()) {
                     BaseArmorAbilities gear = optional.get().getArmor();
                     if (gear instanceof CelestiumArmorAbilities) {
