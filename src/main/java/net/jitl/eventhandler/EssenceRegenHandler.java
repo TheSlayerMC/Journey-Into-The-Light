@@ -18,7 +18,7 @@ public class EssenceRegenHandler {
         if (event.player instanceof ServerPlayerEntity) {
             ServerPlayerEntity entity = (ServerPlayerEntity) event.player;
             Optional<IEssenceCapability> essenceCapability = entity.getCapability(JCapabilityProvider.ESSENCE).resolve();
-            essenceCapability.ifPresent(iEssenceCapability -> iEssenceCapability.onTick(entity));
+            essenceCapability.ifPresent(iEssenceCapability -> iEssenceCapability.addEssence(entity, 0.003125F));
         }
     }
 }

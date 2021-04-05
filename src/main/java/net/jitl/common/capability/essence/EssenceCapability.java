@@ -17,8 +17,6 @@ import ru.timeconqueror.timecore.api.util.Requirements;
 public class EssenceCapability implements IEssenceCapability {
     private final float maxEssence = 10.0F;
 
-    private float regenCooldown = 0;
-
     private float currentEssence = maxEssence;
 
     @Override
@@ -32,7 +30,7 @@ public class EssenceCapability implements IEssenceCapability {
     @Override
     public void addEssence(ServerPlayerEntity player, float add) {
         Requirements.greaterThan(add, 0);
-        setEssence(player, Math.max(add, maxEssence));
+        setEssence(player, Math.min(currentEssence + add, maxEssence));
     }
 
     @Override
@@ -42,24 +40,9 @@ public class EssenceCapability implements IEssenceCapability {
         if (postValue >= 0) {
             setEssence(player, postValue);
             return true;
-        } else if (currentEssence < price) {
-            //TODO: overheat
-            return false;
         }
+        //TODO: overheat
         return false;
-    }
-
-    @Override
-    public void onTick(ServerPlayerEntity player) {
-        if (regenCooldown-- <= 0F) regenCooldown = 30F;
-        if (regenCooldown >= 30F) regen(player);
-        JITL.LOGGER.info("Max Essence:" + maxEssence);
-        JITL.LOGGER.info("Regen Cooldown:" + regenCooldown);
-        JITL.LOGGER.info("Current Essence:" + currentEssence);
-    }
-
-    public void regen(ServerPlayerEntity player) {
-        addEssence(player, 0.1F);
     }
 
     @SubscribeEvent()
