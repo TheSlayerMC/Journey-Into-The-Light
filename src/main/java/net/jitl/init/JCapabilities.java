@@ -32,7 +32,12 @@ public class JCapabilities {
     @SubscribeEvent
     public static void onCommonSetup(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-            TimeCore.INSTANCE.getCapabilityManager().attachStaticCoffeeCapability(CapabilityOwner.ENTITY, PLAYER, entity -> entity instanceof PlayerEntity, entity -> new JPlayer());
+            TimeCore.INSTANCE.getCapabilityManager().attachStaticCoffeeCapability(CapabilityOwner.ENTITY, PLAYER, entity -> entity instanceof PlayerEntity, entity -> new JPlayer((PlayerEntity) entity));
+            TimeCore.INSTANCE.getCapabilityManager().enableKeepingPlayerCapability(JPlayer::byPlayer);
+            TimeCore.INSTANCE.getCapabilityManager().enableSyncingPlayerCapabilityOnJoin(entity -> {
+                JPlayer cap = JPlayer.byPlayer(entity);
+                if (cap != null) cap.sendAllData();
+            });
         });
     }
 }

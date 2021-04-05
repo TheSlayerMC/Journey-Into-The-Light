@@ -183,7 +183,7 @@ dependencies {
         }
     }
 
-    implementation fg.deobf('ru.timeconqueror:TimeCore:1.16.5-3.1.2.1.build17:dev', true)
+    implementation fg.deobf('ru.timeconqueror:TimeCore:1.16.5-3.1.2.1.build25:dev', true)
     implementation fg.deobf('top.theillusivec4.curios:curios-forge:1.16.5-4.0.5.0')
 }
 
@@ -212,6 +212,13 @@ jar.finalizedBy('reobfJar')
 task sourcesJar(type: Jar) {
     from sourceSets.main.allJava
     it.archiveClassifier = 'sources'
+}
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    kotlinOptions {
+        jvmTarget = "1.8"
+        languageVersion = "1.4"
+    }
 }
 
 publishing {
