@@ -8,4 +8,6 @@ public interface IEssenceCapability {
     void addEssence(ServerPlayerEntity player, float value);
 
     boolean consumeEssence(ServerPlayerEntity player, float value);
+
+    void onTick(ServerPlayerEntity playerEntity);
 }
