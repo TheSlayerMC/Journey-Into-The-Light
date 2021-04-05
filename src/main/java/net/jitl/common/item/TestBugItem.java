@@ -29,7 +29,7 @@ public class TestBugItem extends Item {
 //            Minecraft.getInstance().setScreen(Hacks.safeCast(new DialogueScreen(new ClientDialogueNode(JITL.rl("floro"), "Hello! This line is supposed to very long to demonstrate wrapped text. So, how are you? How are the kids? Aw that's too bad, I hate my kids too. Anyways, see ya later.", Arrays.asList("helols", "hey", "heyyooooo")))));
 //        }
         if (!worldIn.isClientSide() && playerIn.isShiftKeyDown()) {
-            JPlayer cap = JPlayer.byPlayer(playerIn);
+            JPlayer cap = JPlayer.from(playerIn);
             CallbackProperty<Float> essence = cap.essence.get().currentEssence;
             System.out.println("Was: " + essence.get());
             essence.set(new Random().nextFloat() * 5);
@@ -38,7 +38,7 @@ public class TestBugItem extends Item {
         }
 
         if (!playerIn.isShiftKeyDown()) {
-            JPlayer cap = JPlayer.byPlayer(playerIn);
+            JPlayer cap = JPlayer.from(playerIn);
             CallbackProperty<Float> essence = cap.essence.get().currentEssence;
 
             System.out.println("essence.get() = " + essence.get());

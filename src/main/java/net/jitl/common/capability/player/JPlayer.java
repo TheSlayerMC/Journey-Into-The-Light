@@ -54,7 +54,7 @@ public class JPlayer extends CoffeeCapability<Entity> implements IJPlayer {
     }
 
     @Nullable
-    public static JPlayer byPlayer(@Nullable PlayerEntity player) {
+    public static JPlayer from(@Nullable PlayerEntity player) {
         if (player != null) {
             LazyOptional<IJPlayer> cap = player.getCapability(JCapabilities.PLAYER);
 
