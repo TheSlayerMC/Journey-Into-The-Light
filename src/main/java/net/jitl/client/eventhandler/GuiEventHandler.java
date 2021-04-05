@@ -1,11 +1,12 @@
 package net.jitl.client.eventhandler;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.jitl.JITL;
 import net.jitl.client.render.gui.button.ToggleMenuButton;
 import net.jitl.client.render.gui.menu.JMainMenuGui;
-import net.jitl.common.capability.JCapabilityProvider;
-import net.jitl.common.capability.essence.IEssenceCapability;
+import net.jitl.client.util.RenderUtils;
+import net.jitl.common.capability.player.JPlayer;
 import net.jitl.config.JClientConfig;
 import net.jitl.config.JConfigs;
 import net.minecraft.client.Minecraft;
@@ -17,8 +18,7 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-
-import java.util.Optional;
+import ru.timeconqueror.timecore.common.capability.CallbackProperty;
 
 @Mod.EventBusSubscriber(modid = JITL.MODID, value = Dist.CLIENT)
 public class GuiEventHandler {
@@ -59,21 +59,16 @@ public class GuiEventHandler {
 	@SubscribeEvent()
 	public static void renderEssenceBar(RenderGameOverlayEvent.Post event) {
 		Minecraft minecraft = Minecraft.getInstance();
-		Optional<IEssenceCapability> essenceCapability = minecraft.player.getCapability(JCapabilityProvider.ESSENCE).resolve();
-
-		if (event.getType() == RenderGameOverlayEvent.ElementType.ALL && essenceCapability.isPresent()) {
-			float percent = essenceCapability.get().getEssenceValue();
+		MatrixStack matrixStack = event.getMatrixStack();
+		JPlayer cap = JPlayer.from(minecraft.player);
+		CallbackProperty<Float> essence = cap.essence.get().currentEssence;
+		if (event.getType() == RenderGameOverlayEvent.ElementType.ALL) {
 			RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-			minecraft.getTextureManager().bind(JITL.tl("gui/essence").fullLocation());
+			minecraft.getTextureManager().bind(JITL.tl("gui/essence.png").fullLocation());
+			RenderUtils.blit(matrixStack, 10, 10, 0, 5, 64, 5, 64, 5);
 
-			//render essence bar
-
-			int i = (int) (percent * 64.0F);
-			if (i > 0) {
-
-				//render overlay
-
-			}
+			int i = (int) (essence.get() * 64F);
+			RenderUtils.blit(matrixStack, 10, 16, 0, 5, 64, 5, 64, 5);
 		}
 	}
 }
