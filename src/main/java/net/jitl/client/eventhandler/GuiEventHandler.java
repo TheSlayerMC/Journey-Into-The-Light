@@ -61,8 +61,8 @@ public class GuiEventHandler {
 		Minecraft minecraft = Minecraft.getInstance();
 		MatrixStack matrixStack = event.getMatrixStack();
 		JPlayer cap = JPlayer.from(minecraft.player);
-		CallbackProperty<Float> essence = cap.essence.get().currentEssence;
-		if (event.getType() == RenderGameOverlayEvent.ElementType.ALL && essence != null) {
+		if (event.getType() == RenderGameOverlayEvent.ElementType.ALL && cap != null) {
+			CallbackProperty<Float> essence = cap.essence.get().currentEssence;
 			RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 			minecraft.getTextureManager().bind(JITL.tl("gui/essence.png").fullLocation());
 			RenderUtils.blit(matrixStack, 10, 10, 0, 5, 64, 5, 64, 5);
