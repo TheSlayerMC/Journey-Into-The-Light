@@ -33,4 +33,25 @@ public class Essence implements INBTSerializable<CompoundNBT>, IChangable {
     public void setChanged(boolean state) {
         this.changed = state;
     }
+
+    public void setEssence(float value) {
+        if (currentEssence.get() != value) {
+            currentEssence.set(value);
+            setChanged(true);
+        }
+    }
+
+    public void addEssence(float add) {
+        setEssence(Math.min(currentEssence.get() + add, maxEssence));
+    }
+
+    public boolean consumeEssence(float price) {
+        float postValue = currentEssence.get() - price;
+        if (postValue >= 0) {
+            setEssence(postValue);
+            return true;
+        }
+        //TODO overheat
+        return false;
+    }
 }

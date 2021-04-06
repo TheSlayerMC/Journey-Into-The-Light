@@ -18,7 +18,6 @@ public class JPacketHandler {
     public static final SimpleChannel INSTANCE = REGISTER.createChannel("main", () -> PROTOCOL_STRING, PROTOCOL_STRING::equals, PROTOCOL_STRING::equals)
             .regPacket(SCurrentStructurePacket.class, new SCurrentStructurePacket.Handler(), NetworkDirection.PLAY_TO_CLIENT)
             .regPacket(KeyPressedPacket.class, new KeyPressedPacket.Handler(), NetworkDirection.PLAY_TO_SERVER)
-            .regPacket(SEssenceUpdatePacket.class, new SEssenceUpdatePacket.Handler(), NetworkDirection.PLAY_TO_CLIENT)
             .asChannel();
 
     public static <MSG> void sendToPlayer(ServerPlayerEntity player, MSG message) {

@@ -1,7 +1,7 @@
 package net.jitl.common.item;
 
 import net.jitl.common.capability.JCapabilityProvider;
-import net.jitl.common.capability.essence.IEssenceCapability;
+import net.jitl.common.capability.player.JPlayer;
 import net.jitl.init.JSounds;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -35,8 +35,8 @@ public class StaffItem extends Item {
         ItemStack itemstack = playerIn.getItemInHand(handIn);
         worldIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), JSounds.STAFF_0.get(), SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
         if (!worldIn.isClientSide) {
-            Optional<IEssenceCapability> optional = playerIn.getCapability(JCapabilityProvider.ESSENCE).resolve();
-            if (optional.isPresent() && optional.get().consumeEssence((ServerPlayerEntity) playerIn, 1.0F)) {
+            JPlayer capability = JPlayer.from(playerIn);
+            if (capability != null && capability.essence.get().consumeEssence(1.0F)) {
                 ThrowableEntity throwableEntity = projectileFactory.apply(worldIn, playerIn);
                 throwableEntity.shootFromRotation(playerIn, playerIn.xRot, playerIn.yRot, 0.0F, 1.5F, 1.0F);
                 worldIn.addFreshEntity(throwableEntity);

@@ -58,17 +58,20 @@ public class GuiEventHandler {
 
 	@SubscribeEvent()
 	public static void renderEssenceBar(RenderGameOverlayEvent.Post event) {
-		Minecraft minecraft = Minecraft.getInstance();
-		MatrixStack matrixStack = event.getMatrixStack();
-		JPlayer cap = JPlayer.from(minecraft.player);
-		if (event.getType() == RenderGameOverlayEvent.ElementType.ALL && cap != null) {
-			CallbackProperty<Float> essence = cap.essence.get().currentEssence;
-			RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-			minecraft.getTextureManager().bind(JITL.tl("gui/essence.png").fullLocation());
-			RenderUtils.blit(matrixStack, 10, 10, 0, 5, 64, 5, 64, 5);
+		if (event.getType() == RenderGameOverlayEvent.ElementType.ALL) {
+			Minecraft minecraft = Minecraft.getInstance();
+			MatrixStack matrixStack = event.getMatrixStack();
+			JPlayer cap = JPlayer.from(minecraft.player);
+			if (cap != null) {
+				CallbackProperty<Float> essence = cap.essence.get().currentEssence;
+				//JITL.LOGGER.info("Current essence: " + essence.get());
+				RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+				minecraft.getTextureManager().bind(JITL.tl("gui/essence.png").fullLocation());
+				RenderUtils.blit(matrixStack, 10, 10, 0, 5, 64, 5, 64, 5);
 
-			int i = (int) essence.get().floatValue();
-			RenderUtils.blit(matrixStack, 10, 16, 0, 5, i, 5, 64, 5);
+				int i = (int) essence.get().floatValue();
+				RenderUtils.blit(matrixStack, 10, 16, 0, 5, i, 5, 64, 5);
+			}
 		}
 	}
 }
