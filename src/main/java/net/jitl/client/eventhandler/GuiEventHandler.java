@@ -67,8 +67,8 @@ public class GuiEventHandler {
 			minecraft.getTextureManager().bind(JITL.tl("gui/essence.png").fullLocation());
 			RenderUtils.blit(matrixStack, 10, 10, 0, 5, 64, 5, 64, 5);
 
-			int i = (int) (essence.get() * 64F);
-			RenderUtils.blit(matrixStack, 10, 16, 0, 5, 64, 5, 64, 5);
+			int i = (int) essence.get().floatValue();
+			RenderUtils.blit(matrixStack, 10, 16, 0, 5, i, 5, 64, 5);
 		}
 	}
 }
