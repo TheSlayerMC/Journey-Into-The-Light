@@ -64,7 +64,7 @@ public class GuiEventHandler {
 			JPlayer cap = JPlayer.from(minecraft.player);
 			if (cap != null) {
 				CallbackProperty<Float> essence = cap.essence.get().currentEssence;
-				//JITL.LOGGER.info("Current essence: " + essence.get());
+				JITL.LOGGER.info("Current essence: " + essence.get());
 				RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 				minecraft.getTextureManager().bind(JITL.tl("gui/essence.png").fullLocation());
 				RenderUtils.blit(matrixStack, 10, 10, 0, 5, 64, 5, 64, 5);
