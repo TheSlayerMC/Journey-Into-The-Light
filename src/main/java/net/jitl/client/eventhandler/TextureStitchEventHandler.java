@@ -14,6 +14,7 @@ public class TextureStitchEventHandler {
     public static void stitchTextures(TextureStitchEvent.Pre evt) {
         if (evt.getMap().location() == PlayerContainer.BLOCK_ATLAS) {
             evt.addSprite(JITL.rl("gui/curios/heart_container"));
+            evt.addSprite(JITL.rl("gui/curios/catalyst"));
         }
     }
 }
