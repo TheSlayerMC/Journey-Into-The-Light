@@ -6,7 +6,7 @@ import ru.timeconqueror.timecore.common.capability.CallbackProperty;
 import ru.timeconqueror.timecore.common.capability.property.IChangable;
 
 public class Essence implements INBTSerializable<CompoundNBT>, IChangable {
-    private final float maxEssence = 10.0F;
+    public final float maxEssence = 10.0F; //todo: change to current attribute number
 
     public final CallbackProperty<Float> currentEssence = new CallbackProperty<>(this, maxEssence);
 
