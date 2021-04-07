@@ -17,7 +17,6 @@ public class EssenceRegenHandler {
             if (playerCapability != null) {
                 playerCapability.essence.get().addEssence(0.012125F);
                 playerCapability.detectAndSendChanges();
-                JITL.LOGGER.info("Current essence " + playerCapability.essence.get().currentEssence.get());
             }
         }
     }

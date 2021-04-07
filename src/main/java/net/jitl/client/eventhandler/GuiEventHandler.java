@@ -82,10 +82,10 @@ public class GuiEventHandler {
 					RenderSystem.color4f(1.0F, 1.0F, 1.0F, transparency);
 					//JITL.LOGGER.info(transparency);
 					minecraft.getTextureManager().bind(JITL.tl("gui/essence.png").fullLocation());
-					RenderUtils.blit(matrixStack, w, l, 0, 5, 71, 5, 71, 10);
+					RenderUtils.blit(matrixStack, w, l, 0, 5, 81, 5, 81, 10);
 
-					int i = (int) (essence.get() * 7.1);
-					RenderUtils.blit(matrixStack, w, l, 0, 0, i, 5, 71, 10);
+					int i = (int) (essence.get() * 8.1);
+					RenderUtils.blit(matrixStack, w, l, 0, 0, i, 5, 81, 10);
 				}
 			}
 		}
