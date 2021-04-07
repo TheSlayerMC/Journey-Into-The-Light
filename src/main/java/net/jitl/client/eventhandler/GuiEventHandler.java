@@ -9,7 +9,7 @@ import net.jitl.client.util.RenderUtils;
 import net.jitl.common.capability.player.JPlayer;
 import net.jitl.config.JClientConfig;
 import net.jitl.config.JConfigs;
-import net.jitl.init.JItems;
+import net.jitl.util.IEssenceItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.MainMenuScreen;
 import net.minecraft.item.Item;
@@ -68,7 +68,7 @@ public class GuiEventHandler {
 			JPlayer cap = JPlayer.from(minecraft.player);
 			if (cap != null) {
 				CallbackProperty<Float> essence = cap.essence.get().currentEssence;
-				boolean isEssenceUsed = cap.essence.get().getChanged();
+				boolean isEssenceUsed = cap.essence.get().currentEssence.get() < 10F;
 
 				if (instanceOfEssenceItem(minecraft.player.getMainHandItem().getItem()) || isEssenceUsed && transparency < 1.0) {
 					transparency += .02;
@@ -92,6 +92,6 @@ public class GuiEventHandler {
 	}
 
 	public static boolean instanceOfEssenceItem(Item isEssence) {
-		return isEssence == JItems.STAFF_OF_CONJURING;
+		return isEssence instanceof IEssenceItem;
 	}
 }
