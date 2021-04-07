@@ -1,8 +1,5 @@
 package net.jitl.common.capability.player.data;
 
-import net.jitl.init.JAttributes;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraftforge.common.util.INBTSerializable;
 import ru.timeconqueror.timecore.common.capability.CallbackProperty;
@@ -28,7 +25,6 @@ public class Essence implements INBTSerializable<CompoundNBT>, IChangable {
     }
 
     public float getMaxEssence() {
-        maxEssence = (float) GlobalEntityTypeAttributes.getSupplier(EntityType.PLAYER).getValue(JAttributes.MAX_ESSENCE.get());
         return maxEssence;
     }
 
@@ -50,6 +46,10 @@ public class Essence implements INBTSerializable<CompoundNBT>, IChangable {
         if (getCurrentEssence() != value) {
             currentEssence.set(value);
         }
+    }
+
+    public void setMaxEssence(float value) {
+        maxEssence = value;
     }
 
     public void addEssence(float add) {
