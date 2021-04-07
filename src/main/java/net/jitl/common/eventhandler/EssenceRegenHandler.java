@@ -16,6 +16,7 @@ public class EssenceRegenHandler {
             JPlayer playerCapability = JPlayer.from(event.player);
             if (playerCapability != null) {
                 playerCapability.essence.get().addEssence(0.012125F);
+                JITL.LOGGER.info(playerCapability.essence.get().getMaxEssence());
                 playerCapability.detectAndSendChanges();
             }
         }

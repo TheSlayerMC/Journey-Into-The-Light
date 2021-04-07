@@ -125,4 +125,6 @@ public class JItems {
     public static final Item RING_OF_POISON = promise();
 
     public static final Item DYNASTER_AMULET = promise();
+
+    public static final Item ESSENCE_CATALYST = promise();
 }

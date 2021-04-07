@@ -20,7 +20,6 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import ru.timeconqueror.timecore.common.capability.CallbackProperty;
 
 @Mod.EventBusSubscriber(modid = JITL.MODID, value = Dist.CLIENT)
 public class GuiEventHandler {
@@ -67,8 +66,10 @@ public class GuiEventHandler {
 			MatrixStack matrixStack = event.getMatrixStack();
 			JPlayer cap = JPlayer.from(minecraft.player);
 			if (cap != null) {
-				CallbackProperty<Float> essence = cap.essence.get().currentEssence;
-				boolean isEssenceUsed = cap.essence.get().currentEssence.get() < 10F;
+				float currentEssence = cap.essence.get().getCurrentEssence();
+				float maxEssence = cap.essence.get().getMaxEssence();
+
+				boolean isEssenceUsed = currentEssence < maxEssence;
 
 				if (instanceOfEssenceItem(minecraft.player.getMainHandItem().getItem()) || isEssenceUsed && transparency < 1.0) {
 					transparency += .02;
@@ -84,7 +85,7 @@ public class GuiEventHandler {
 					minecraft.getTextureManager().bind(JITL.tl("gui/essence.png").fullLocation());
 					RenderUtils.blit(matrixStack, w, l, 0, 5, 81, 5, 81, 10);
 
-					int i = (int) (essence.get() * 8.1);
+					int i = (int) ((currentEssence / maxEssence) * 81);
 					RenderUtils.blit(matrixStack, w, l, 0, 0, i, 5, 81, 10);
 				}
 			}
