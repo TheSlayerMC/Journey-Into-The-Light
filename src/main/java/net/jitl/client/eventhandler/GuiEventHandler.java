@@ -81,7 +81,6 @@ public class GuiEventHandler {
 					int w = event.getWindow().getGuiScaledWidth() / 2 - 91;
 
 					RenderSystem.color4f(1.0F, 1.0F, 1.0F, transparency);
-					//JITL.LOGGER.info(transparency);
 					minecraft.getTextureManager().bind(JITL.tl("gui/essence.png").fullLocation());
 					RenderUtils.blit(matrixStack, w, l, 0, 5, 81, 5, 81, 10);
 

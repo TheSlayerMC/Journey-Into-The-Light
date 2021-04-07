@@ -13,6 +13,5 @@ public class EntityAttributeEventHandler {
     @SubscribeEvent
     public static void addAttributes(EntityAttributeModificationEvent event) {
         event.add(EntityType.PLAYER, JAttributes.MAX_ESSENCE.get());
-        JITL.LOGGER.info("attribute added");
     }
 }

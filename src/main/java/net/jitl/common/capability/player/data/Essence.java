@@ -6,8 +6,7 @@ import ru.timeconqueror.timecore.common.capability.CallbackProperty;
 import ru.timeconqueror.timecore.common.capability.property.IChangable;
 
 public class Essence implements INBTSerializable<CompoundNBT>, IChangable {
-    public float maxEssence;
-
+    public final CallbackProperty<Float> maxEssence = new CallbackProperty<>(this, 0.0F);
     public final CallbackProperty<Float> currentEssence = new CallbackProperty<>(this, getMaxEssence());
 
     private boolean changed = false;
@@ -16,16 +15,18 @@ public class Essence implements INBTSerializable<CompoundNBT>, IChangable {
     public CompoundNBT serializeNBT() {
         CompoundNBT nbt = new CompoundNBT();
         nbt.putFloat("current_essence", getCurrentEssence());
+        nbt.putFloat("max_essence", getMaxEssence());
         return nbt;
     }
 
     @Override
     public void deserializeNBT(CompoundNBT nbt) {
         currentEssence.set(nbt.getFloat("current_essence"));
+        maxEssence.set(nbt.getFloat("max_essence"));
     }
 
     public float getMaxEssence() {
-        return maxEssence;
+        return maxEssence.get();
     }
 
     public float getCurrentEssence() {
@@ -49,7 +50,7 @@ public class Essence implements INBTSerializable<CompoundNBT>, IChangable {
     }
 
     public void setMaxEssence(float value) {
-        maxEssence = value;
+        maxEssence.set(value);
     }
 
     public void addEssence(float add) {

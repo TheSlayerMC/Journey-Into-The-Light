@@ -2,13 +2,14 @@ package net.jitl.common.eventhandler;
 
 import net.jitl.JITL;
 import net.jitl.common.capability.player.JPlayer;
+import net.jitl.common.capability.player.data.Essence;
 import net.jitl.init.JAttributes;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.Mod;
+
+import java.util.Objects;
 
 @Mod.EventBusSubscriber(modid = JITL.MODID)
 public class EssenceTickHandler {
@@ -18,9 +19,11 @@ public class EssenceTickHandler {
         if (event.side == LogicalSide.SERVER) {
             JPlayer playerCapability = JPlayer.from(event.player);
             if (playerCapability != null) {
-                playerCapability.essence.get().addEssence(0.012125F);
-                JITL.LOGGER.info(playerCapability.essence.get().getMaxEssence());
-                playerCapability.essence.get().setMaxEssence((float) GlobalEntityTypeAttributes.getSupplier(EntityType.PLAYER).getValue(JAttributes.MAX_ESSENCE.get()));
+                Essence essence = playerCapability.essence.get();
+                essence.setMaxEssence((float) Objects.requireNonNull(event.player.getAttribute(JAttributes.MAX_ESSENCE.get())).getValue());
+                if (essence.getMaxEssence() > 0) {
+                    essence.addEssence(0.012125F);
+                }
                 playerCapability.detectAndSendChanges();
             }
         }
