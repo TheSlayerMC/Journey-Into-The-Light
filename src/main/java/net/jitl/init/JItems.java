@@ -127,4 +127,5 @@ public class JItems {
     public static final Item DYNASTER_AMULET = promise();
 
     public static final Item ESSENCE_CATALYST = promise();
+    public static final Item REGEN_CATALYST = promise();
 }

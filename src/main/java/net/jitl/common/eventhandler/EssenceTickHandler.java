@@ -22,7 +22,7 @@ public class EssenceTickHandler {
                 Essence essence = playerCapability.essence.get();
                 essence.setMaxEssence((float) Objects.requireNonNull(event.player.getAttribute(JAttributes.MAX_ESSENCE.get())).getValue());
                 if (essence.getMaxEssence() > 0) {
-                    essence.addEssence(0.012125F);
+                    essence.addEssence((float) Objects.requireNonNull(event.player.getAttribute(JAttributes.ESSENCE_REGEN_SPEED.get())).getValue());
                 }
                 playerCapability.detectAndSendChanges();
             }

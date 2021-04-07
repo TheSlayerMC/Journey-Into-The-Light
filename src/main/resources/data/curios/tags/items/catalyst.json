@@ -4,6 +4,10 @@
     {
       "id": "jitl:essence_catalyst",
       "required": false
+    },
+    {
+      "id": "jitl:regen_catalyst",
+      "required": false
     }
   ]
 }

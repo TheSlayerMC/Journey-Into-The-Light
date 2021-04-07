@@ -9,6 +9,7 @@ import net.jitl.common.item.curios.HeartContainerItem;
 import net.jitl.common.item.curios.JCurioItem;
 import net.jitl.common.item.curios.amulet.DynasterAmuletItem;
 import net.jitl.common.item.curios.catalyst.EssenceCatalystItem;
+import net.jitl.common.item.curios.catalyst.RegenCatalystItem;
 import net.jitl.common.item.curios.ring.JRingItem;
 import net.jitl.init.JEntities;
 import net.jitl.init.JFoods;
@@ -142,7 +143,8 @@ public class ItemRegistrator {
         registerItem("ring_of_withering", "Ring of Withering", () -> new JRingItem(itemGrouped(), "test", null).effect(Effects.WITHER::getEffect));
 
         registerItem("dynaster_amulet", "Dynaster Amulet", () -> new DynasterAmuletItem(itemGrouped(), "test", null));
-        registerItem("essence_catalyst", "Essence Catalyst", () -> new EssenceCatalystItem(itemGrouped(), "adds essence", "idk lol").essence(10));
+        registerItem("essence_catalyst", "Essence Catalyst", () -> new EssenceCatalystItem(itemGrouped(), "adds essence", "idk lol").essence(10F));
+        registerItem("regen_catalyst", "Regeneration Catalyst", () -> new RegenCatalystItem(itemGrouped(), "makes essence fast", "idk lol").speed(0.1F));
     }
 
     /**

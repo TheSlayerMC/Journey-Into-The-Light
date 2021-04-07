@@ -13,5 +13,6 @@ public class EntityAttributeEventHandler {
     @SubscribeEvent
     public static void addAttributes(EntityAttributeModificationEvent event) {
         event.add(EntityType.PLAYER, JAttributes.MAX_ESSENCE.get());
+        event.add(EntityType.PLAYER, JAttributes.ESSENCE_REGEN_SPEED.get());
     }
 }
