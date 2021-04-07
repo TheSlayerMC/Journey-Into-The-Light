@@ -143,8 +143,8 @@ public class ItemRegistrator {
         registerItem("ring_of_withering", "Ring of Withering", () -> new JRingItem(itemGrouped(), "test", null).effect(Effects.WITHER::getEffect));
 
         registerItem("dynaster_amulet", "Dynaster Amulet", () -> new DynasterAmuletItem(itemGrouped(), "test", null));
-        registerItem("essence_catalyst", "Essence Catalyst", () -> new EssenceCatalystItem(itemGrouped(), "adds essence", "idk lol").essence(10F));
-        registerItem("regen_catalyst", "Regeneration Catalyst", () -> new RegenCatalystItem(itemGrouped(), "makes essence fast", "idk lol").speed(0.1F));
+        registerItem("weak_essence_catalyst", "Essence Catalyst", () -> new EssenceCatalystItem(itemGrouped(), "adds essence", "idk lol").essence(10F));
+        registerItem("weak_regen_catalyst", "Regeneration Catalyst", () -> new RegenCatalystItem(itemGrouped(), "makes essence fast", "idk lol").speed(0.0112F));
     }
 
     /**

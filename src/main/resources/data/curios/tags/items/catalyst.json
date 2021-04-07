@@ -2,11 +2,11 @@
   "replace": false,
   "values": [
     {
-      "id": "jitl:essence_catalyst",
+      "id": "jitl:weak_essence_catalyst",
       "required": false
     },
     {
-      "id": "jitl:regen_catalyst",
+      "id": "jitl:weak_regen_catalyst",
       "required": false
     }
   ]
