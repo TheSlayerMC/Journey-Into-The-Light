@@ -10,8 +10,8 @@ import java.util.function.Supplier;
 public class JRingItem extends JCurioItem {
     private Effect potion;
 
-    public JRingItem(Properties properties) {
-        super(properties);
+    public JRingItem(Properties properties, String ability, String negativeEffects) {
+        super(properties, ability, negativeEffects);
     }
 
     public JRingItem effect(Supplier<Effect> effectSupplier) {

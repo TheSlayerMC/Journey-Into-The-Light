@@ -63,14 +63,17 @@ public class GuiEventHandler {
 			MatrixStack matrixStack = event.getMatrixStack();
 			JPlayer cap = JPlayer.from(minecraft.player);
 			if (cap != null) {
+				int guiHeight = event.getWindow().getGuiScaledHeight();
+				int guiWidth = event.getWindow().getGuiScaledWidth();
+
 				CallbackProperty<Float> essence = cap.essence.get().currentEssence;
 				JITL.LOGGER.info("Current essence: " + essence.get());
 				RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 				minecraft.getTextureManager().bind(JITL.tl("gui/essence.png").fullLocation());
-				RenderUtils.blit(matrixStack, 10, 10, 0, 5, 64, 5, 64, 5);
+				RenderUtils.blit(matrixStack, (int) ((guiWidth / 6) * 2.75), guiWidth / 6, 0, 5, 71, 5, 71, 10);
 
-				int i = (int) essence.get().floatValue();
-				RenderUtils.blit(matrixStack, 10, 16, 0, 5, i, 5, 64, 5);
+				int i = (int) (essence.get() * 7.1);
+				RenderUtils.blit(matrixStack, (int) ((guiWidth / 6) * 2.75), guiWidth / 6, 0, 0, i, 5, 71, 10);
 			}
 		}
 	}

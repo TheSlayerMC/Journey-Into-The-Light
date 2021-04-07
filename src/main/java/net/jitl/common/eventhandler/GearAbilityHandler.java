@@ -1,4 +1,4 @@
-package net.jitl.eventhandler;
+package net.jitl.common.eventhandler;
 
 import net.jitl.JITL;
 import net.jitl.common.capability.JCapabilityProvider;
