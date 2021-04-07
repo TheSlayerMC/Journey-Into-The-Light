@@ -9,8 +9,10 @@ import net.jitl.client.util.RenderUtils;
 import net.jitl.common.capability.player.JPlayer;
 import net.jitl.config.JClientConfig;
 import net.jitl.config.JConfigs;
+import net.jitl.init.JItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.MainMenuScreen;
+import net.minecraft.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.client.event.GuiScreenEvent;
@@ -25,6 +27,8 @@ public class GuiEventHandler {
 	public static float maxEssence = 10F;
 
 	public static float essence = 10F;
+
+	private static float transparency;
 
 	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public static void overrideMainMenu(GuiOpenEvent event) {
@@ -63,18 +67,31 @@ public class GuiEventHandler {
 			MatrixStack matrixStack = event.getMatrixStack();
 			JPlayer cap = JPlayer.from(minecraft.player);
 			if (cap != null) {
-				int guiHeight = event.getWindow().getGuiScaledHeight();
-				int guiWidth = event.getWindow().getGuiScaledWidth();
-
 				CallbackProperty<Float> essence = cap.essence.get().currentEssence;
-				JITL.LOGGER.info("Current essence: " + essence.get());
-				RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-				minecraft.getTextureManager().bind(JITL.tl("gui/essence.png").fullLocation());
-				RenderUtils.blit(matrixStack, (int) ((guiWidth / 6) * 2.75), guiWidth / 6, 0, 5, 71, 5, 71, 10);
+				boolean isEssenceUsed = cap.essence.get().getChanged();
 
-				int i = (int) (essence.get() * 7.1);
-				RenderUtils.blit(matrixStack, (int) ((guiWidth / 6) * 2.75), guiWidth / 6, 0, 0, i, 5, 71, 10);
+				if (instanceOfEssenceItem(minecraft.player.getMainHandItem().getItem()) || isEssenceUsed && transparency < 1.0) {
+					transparency += .02;
+				} else if (transparency > 0) {
+					transparency -= .02;
+				}
+				if (!minecraft.options.hideGui) {
+					int l = event.getWindow().getGuiScaledHeight() - 32 + 3;
+					int w = event.getWindow().getGuiScaledWidth() / 2 - 91;
+
+					RenderSystem.color4f(1.0F, 1.0F, 1.0F, transparency);
+					//JITL.LOGGER.info(transparency);
+					minecraft.getTextureManager().bind(JITL.tl("gui/essence.png").fullLocation());
+					RenderUtils.blit(matrixStack, w, l, 0, 5, 71, 5, 71, 10);
+
+					int i = (int) (essence.get() * 7.1);
+					RenderUtils.blit(matrixStack, w, l, 0, 0, i, 5, 71, 10);
+				}
 			}
 		}
+	}
+
+	public static boolean instanceOfEssenceItem(Item isEssence) {
+		return isEssence == JItems.STAFF_OF_CONJURING;
 	}
 }
