@@ -38,7 +38,7 @@ public class EssenceRegenEffect extends Effect {
             if (!entityLivingBaseIn.level.isClientSide()) {
                 PlayerEntity player = (PlayerEntity) entityLivingBaseIn;
                 Objects.requireNonNull(player.getAttribute(JAttributes.ESSENCE_REGEN_SPEED.get())).addTransientModifier(
-                        new AttributeModifier(ESSENCE_REGEN.toString(), player.getAttributeValue(JAttributes.ESSENCE_REGEN_SPEED.get()) + (float) (0.01 * (amplifier + 1)), AttributeModifier.Operation.ADDITION));
+                        new AttributeModifier(ESSENCE_REGEN, JITL.MODID + ":essence_regen_modifier", player.getAttributeValue(JAttributes.ESSENCE_REGEN_SPEED.get()) + (float) (0.01 * (amplifier + 1)), AttributeModifier.Operation.ADDITION));
             }
             JITL.LOGGER.info("addMod");
         }
