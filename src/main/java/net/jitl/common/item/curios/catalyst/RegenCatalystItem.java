@@ -15,8 +15,8 @@ import java.util.UUID;
 public class RegenCatalystItem extends JCurioItem {
     public float regenSpeed;
 
-    public RegenCatalystItem(Properties properties, String ability, String negativeEffects) {
-        super(properties, ability, negativeEffects);
+    public RegenCatalystItem(Properties properties) {
+        super(properties);
     }
 
     public RegenCatalystItem speed(float regenSpeed) {

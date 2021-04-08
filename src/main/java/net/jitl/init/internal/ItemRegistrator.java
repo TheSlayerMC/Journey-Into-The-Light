@@ -127,24 +127,24 @@ public class ItemRegistrator {
         registerItem("molten_knife", "Molten Knife", () -> new ThrowableItem(rangedWeaponsGrouped(), (worldIn, owner) -> new EntityMoltenKnife(worldIn, owner).withBaseDamage(10)).setSound(JSounds.STAFF_0::get));
 
         registerItem("euca_piercer", "Euca Piercer", () -> new ThrowableItem(rangedWeaponsGrouped(), (world, livingEntity) -> new EucaPiercerEntity(world, livingEntity, 10, 5)).setSound(JSounds.STAFF_0::get));
-        registerItem("skull_of_decay", "Skull Of Decay", () -> new JCurioItem(itemGrouped(), "jitl.tooltip.skull_of_decay", null));
+        registerItem("skull_of_decay", "Skull Of Decay", () -> new JCurioItem(itemGrouped().stacksTo(1)).ability(true).drawback(true).overview(true));
 
-        registerItem("heart_container_small", "Heart Container", () -> new HeartContainerItem(itemGrouped(), "ability", "bad effects").health(1));
-        registerItem("heart_container_medium", "Heart Container", () -> new HeartContainerItem(itemGrouped(), "test", null).health(4));
-        registerItem("heart_container_large", "Heart Container", () -> new HeartContainerItem(itemGrouped(), "test", null).health(8));
-        registerItem("heart_container_ultimate", "Heart Container", () -> new HeartContainerItem(itemGrouped(), "test", null).health(16));
+        registerItem("heart_container_small", "Heart Container", () -> new HeartContainerItem(itemGrouped().stacksTo(1)).health(1).ability(true).drawback(true).overview(true));
+        registerItem("heart_container_medium", "Heart Container", () -> new HeartContainerItem(itemGrouped().stacksTo(1)).health(4));
+        registerItem("heart_container_large", "Heart Container", () -> new HeartContainerItem(itemGrouped().stacksTo(1)).health(8));
+        registerItem("heart_container_ultimate", "Heart Container", () -> new HeartContainerItem(itemGrouped().stacksTo(1)).health(16));
 
-        registerItem("ring_of_poison", "Ring of Poison", () -> new JRingItem(itemGrouped(), "test", null).effect(Effects.POISON::getEffect));
-        registerItem("ring_of_blindness", "Ring of Blindness", () -> new JRingItem(itemGrouped(), "test", null).effect(Effects.BLINDNESS::getEffect));
-        registerItem("ring_of_harming", "Ring of Harming", () -> new JRingItem(itemGrouped(), "test", null).effect(Effects.HARM::getEffect));
-        registerItem("ring_of_mining_fatigue", "Ring of Mining Fatigue", () -> new JRingItem(itemGrouped(), "test", null).effect(Effects.DIG_SLOWDOWN::getEffect));
-        registerItem("ring_of_nausea", "Ring of Nausea", () -> new JRingItem(itemGrouped(), "test", null).effect(Effects.CONFUSION::getEffect));
-        registerItem("ring_of_slowness", "Ring of Slowness", () -> new JRingItem(itemGrouped(), "test", null).effect(Effects.MOVEMENT_SLOWDOWN::getEffect));
-        registerItem("ring_of_withering", "Ring of Withering", () -> new JRingItem(itemGrouped(), "test", null).effect(Effects.WITHER::getEffect));
+        registerItem("ring_of_poison", "Ring of Poison", () -> new JRingItem(itemGrouped().stacksTo(1)).effect(Effects.POISON::getEffect));
+        registerItem("ring_of_blindness", "Ring of Blindness", () -> new JRingItem(itemGrouped().stacksTo(1)).effect(Effects.BLINDNESS::getEffect));
+        registerItem("ring_of_harming", "Ring of Harming", () -> new JRingItem(itemGrouped().stacksTo(1)).effect(Effects.HARM::getEffect));
+        registerItem("ring_of_mining_fatigue", "Ring of Mining Fatigue", () -> new JRingItem(itemGrouped().stacksTo(1)).effect(Effects.DIG_SLOWDOWN::getEffect));
+        registerItem("ring_of_nausea", "Ring of Nausea", () -> new JRingItem(itemGrouped().stacksTo(1)).effect(Effects.CONFUSION::getEffect));
+        registerItem("ring_of_slowness", "Ring of Slowness", () -> new JRingItem(itemGrouped().stacksTo(1)).effect(Effects.MOVEMENT_SLOWDOWN::getEffect));
+        registerItem("ring_of_withering", "Ring of Withering", () -> new JRingItem(itemGrouped().stacksTo(1)).effect(Effects.WITHER::getEffect));
 
-        registerItem("dynaster_amulet", "Dynaster Amulet", () -> new DynasterAmuletItem(itemGrouped(), "test", null));
-        registerItem("weak_essence_catalyst", "Essence Catalyst", () -> new EssenceCatalystItem(itemGrouped(), "adds essence", "idk lol").essence(10F));
-        registerItem("weak_regen_catalyst", "Regeneration Catalyst", () -> new RegenCatalystItem(itemGrouped(), "makes essence fast", "idk lol").speed(0.0112F));
+        registerItem("dynaster_amulet", "Dynaster Amulet", () -> new DynasterAmuletItem(itemGrouped().stacksTo(1)));
+        registerItem("weak_essence_catalyst", "Essence Catalyst", () -> new EssenceCatalystItem(itemGrouped().stacksTo(1)).essence(10F));
+        registerItem("weak_regen_catalyst", "Regeneration Catalyst", () -> new RegenCatalystItem(itemGrouped().stacksTo(1)).speed(0.0112F));
     }
 
     /**

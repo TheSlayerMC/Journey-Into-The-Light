@@ -14,8 +14,8 @@ import java.util.UUID;
 public class HeartContainerItem extends JCurioItem {
     public int hearts;
 
-    public HeartContainerItem(Properties properties, String ability, String negativeEffects) {
-        super(properties, ability, negativeEffects);
+    public HeartContainerItem(Properties properties) {
+        super(properties);
     }
 
     public HeartContainerItem health(int hearts) {

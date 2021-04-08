@@ -66,7 +66,7 @@ public class JMainMenuGui extends MainMenuScreen {
 	private long fadeInStart;
 
 	public JMainMenuGui() {
-		this(true);
+		this(false);
 	}
 
 	public JMainMenuGui(boolean fadeIn) {

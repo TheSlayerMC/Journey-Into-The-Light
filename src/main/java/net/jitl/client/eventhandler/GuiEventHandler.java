@@ -71,7 +71,7 @@ public class GuiEventHandler {
 
 				boolean isEssenceUsed = currentEssence < maxEssence;
 
-				if (instanceOfEssenceItem(minecraft.player.getMainHandItem().getItem()) || isEssenceUsed && transparency < 1.0) {
+				if (instanceOfEssenceItem(minecraft.player.getMainHandItem().getItem()) || isEssenceUsed && transparency <= 1.0) {
 					transparency += .02;
 				} else if (transparency > 0) {
 					transparency -= .02;

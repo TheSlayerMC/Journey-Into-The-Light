@@ -15,8 +15,8 @@ import java.util.UUID;
 public class EssenceCatalystItem extends JCurioItem {
     public float maxEssence;
 
-    public EssenceCatalystItem(Properties properties, String ability, String negativeEffects) {
-        super(properties, ability, negativeEffects);
+    public EssenceCatalystItem(Properties properties) {
+        super(properties);
     }
 
     public EssenceCatalystItem essence(float maxEssence) {

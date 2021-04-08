@@ -24,6 +24,7 @@ public class EssenceTickHandler {
                 if (essence.getMaxEssence() > 0) {
                     essence.addEssence((float) Objects.requireNonNull(event.player.getAttribute(JAttributes.ESSENCE_REGEN_SPEED.get())).getValue());
                 }
+                JITL.LOGGER.info(Objects.requireNonNull(event.player.getAttribute(JAttributes.ESSENCE_REGEN_SPEED.get())).getValue());
                 playerCapability.detectAndSendChanges();
             }
         }
