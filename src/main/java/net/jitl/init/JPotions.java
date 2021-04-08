@@ -23,6 +23,6 @@ public class JPotions {
         public static SimpleForgeRegister<Potion> REGISTER = new SimpleForgeRegister<>(ForgeRegistries.POTION_TYPES, JITL.MODID);
 
         public static final RegistryObject<Potion> ESSENCE_REGEN =
-                REGISTER.register("essence_regen", () -> new Potion("essence_regen", new EffectInstance(JPotions.ESSENCE_REGEN.get(), 100, 10)));
+                REGISTER.register("essence_regen", () -> new Potion("essence_regen", new EffectInstance(JPotions.ESSENCE_REGEN.get(), 100, 3)));
     }
 }
