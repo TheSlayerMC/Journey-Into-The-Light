@@ -23,10 +23,8 @@ public class EssenceRegenEffect extends Effect {
     @Override
     public void removeAttributeModifiers(@NotNull LivingEntity entityLivingBaseIn, @NotNull AttributeModifierManager attributeMapIn, int amplifier) {
         if (entityLivingBaseIn instanceof PlayerEntity) {
-            if (!entityLivingBaseIn.level.isClientSide()) {
-                PlayerEntity player = (PlayerEntity) entityLivingBaseIn;
-                Objects.requireNonNull(player.getAttribute(JAttributes.ESSENCE_REGEN_SPEED.get())).removeModifier(ESSENCE_REGEN);
-            }
+            PlayerEntity player = (PlayerEntity) entityLivingBaseIn;
+            Objects.requireNonNull(player.getAttribute(JAttributes.ESSENCE_REGEN_SPEED.get())).removeModifier(ESSENCE_REGEN);
             JITL.LOGGER.info("removeMod");
         }
         super.removeAttributeModifiers(entityLivingBaseIn, attributeMapIn, amplifier);
@@ -35,11 +33,9 @@ public class EssenceRegenEffect extends Effect {
     @Override
     public void addAttributeModifiers(@NotNull LivingEntity entityLivingBaseIn, @NotNull AttributeModifierManager attributeMapIn, int amplifier) {
         if (entityLivingBaseIn instanceof PlayerEntity) {
-            if (!entityLivingBaseIn.level.isClientSide()) {
-                PlayerEntity player = (PlayerEntity) entityLivingBaseIn;
-                Objects.requireNonNull(player.getAttribute(JAttributes.ESSENCE_REGEN_SPEED.get())).addTransientModifier(
-                        new AttributeModifier(ESSENCE_REGEN, JITL.MODID + ":essence_regen_modifier", player.getAttributeValue(JAttributes.ESSENCE_REGEN_SPEED.get()) + (float) (0.01 * (amplifier + 1)), AttributeModifier.Operation.ADDITION));
-            }
+            PlayerEntity player = (PlayerEntity) entityLivingBaseIn;
+            Objects.requireNonNull(player.getAttribute(JAttributes.ESSENCE_REGEN_SPEED.get())).addTransientModifier(
+                    new AttributeModifier(ESSENCE_REGEN, JITL.MODID + ":essence_regen_modifier", player.getAttributeValue(JAttributes.ESSENCE_REGEN_SPEED.get()) + (float) (0.01 * (amplifier + 1)), AttributeModifier.Operation.ADDITION));
             JITL.LOGGER.info("addMod");
         }
         super.addAttributeModifiers(entityLivingBaseIn, attributeMapIn, amplifier);
