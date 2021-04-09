@@ -1,13 +1,18 @@
 package net.jitl.common.capability.player.data;
 
+import net.jitl.JITL;
+import net.jitl.init.JAttributes;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraftforge.common.util.INBTSerializable;
 import ru.timeconqueror.timecore.common.capability.CallbackProperty;
 import ru.timeconqueror.timecore.common.capability.property.IChangable;
 
+import java.util.Objects;
+
 public class Essence implements INBTSerializable<CompoundNBT>, IChangable {
-    public final CallbackProperty<Float> maxEssence = new CallbackProperty<>(this, 0.0F);
-    public final CallbackProperty<Float> currentEssence = new CallbackProperty<>(this, getMaxEssence());
+    public final CallbackProperty<Float> currentEssence = new CallbackProperty<>(this, 0.0F);
+    public float burnoutTime = 0.0F;
 
     private boolean changed = false;
 
@@ -15,22 +20,30 @@ public class Essence implements INBTSerializable<CompoundNBT>, IChangable {
     public CompoundNBT serializeNBT() {
         CompoundNBT nbt = new CompoundNBT();
         nbt.putFloat("current_essence", getCurrentEssence());
-        nbt.putFloat("max_essence", getMaxEssence());
+        nbt.putFloat("burnout", getBurnout());
         return nbt;
     }
 
     @Override
     public void deserializeNBT(CompoundNBT nbt) {
         currentEssence.set(nbt.getFloat("current_essence"));
-        maxEssence.set(nbt.getFloat("max_essence"));
+        setBurnout(nbt.getFloat("burnout"));
     }
 
-    public float getMaxEssence() {
-        return maxEssence.get();
+    public static float getMaxEssence(PlayerEntity player) {
+        return (float) player.getAttribute(JAttributes.MAX_ESSENCE.get()).getValue();
     }
 
     public float getCurrentEssence() {
         return currentEssence.get();
+    }
+
+    public void setBurnout(float value) {
+        burnoutTime = Math.max(value, 0.0F);
+    }
+
+    public float getBurnout() {
+        return burnoutTime;
     }
 
     @Override
@@ -49,31 +62,30 @@ public class Essence implements INBTSerializable<CompoundNBT>, IChangable {
         }
     }
 
-    public void setMaxEssence(float value) {
-        maxEssence.set(value);
+    public void addEssence(PlayerEntity player, float add) {
+        setEssence(Math.min(getCurrentEssence() + add, getMaxEssence(player)));
     }
 
-    public void addEssence(float add) {
-        setEssence(Math.min(getCurrentEssence() + add, getMaxEssence()));
-    }
-
-    public boolean consumeEssence(float price) {
-        if (hasEssence(price)) {
-            setEssence(getCurrentEssence() - price);
-            return true;
+    public boolean consumeEssence(PlayerEntity player, float price) {
+        if (!player.isCreative()) {
+            if (hasEssence(price)) {
+                setEssence(getCurrentEssence() - price);
+                return true;
+            }
+            setBurnout(getBurnout() + Objects.requireNonNull(player.getAttribute(JAttributes.ESSENCE_BURNOUT.get()).getValue()).floatValue());
+            return false;
         }
-        //TODO overheat
-        return false;
+        return true;
     }
 
     public boolean hasEssence(float price) {
         return getCurrentEssence() >= price;
     }
 
-    public boolean checkEssenceEitherSide(boolean client, float price) {
+    public boolean checkEssenceEitherSide(boolean client, PlayerEntity player, float price) {
         if (client) {
-            return hasEssence(price);
+            return player.isCreative() || hasEssence(price);
         }
-        return consumeEssence(price);
+        return consumeEssence(player, price);
     }
 }

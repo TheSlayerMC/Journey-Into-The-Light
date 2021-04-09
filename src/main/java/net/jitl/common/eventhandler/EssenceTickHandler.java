@@ -17,14 +17,16 @@ public class EssenceTickHandler {
     @SubscribeEvent()
     public static void tick(TickEvent.PlayerTickEvent event) {
         if (event.side == LogicalSide.SERVER) {
-            JPlayer playerCapability = JPlayer.from(event.player);
-            if (playerCapability != null) {
-                Essence essence = playerCapability.essence.get();
-                essence.setMaxEssence((float) Objects.requireNonNull(event.player.getAttribute(JAttributes.MAX_ESSENCE.get())).getValue());
-                if (essence.getMaxEssence() > 0) {
-                    essence.addEssence((float) Objects.requireNonNull(event.player.getAttribute(JAttributes.ESSENCE_REGEN_SPEED.get())).getValue());
+            if (Essence.getMaxEssence(event.player) > 0) {
+                JPlayer playerCapability = JPlayer.from(event.player);
+                if (playerCapability != null) {
+                    Essence essence = playerCapability.essence.get();
+                    if (essence.getBurnout() <= 0) {
+                        essence.addEssence(event.player, (float) Objects.requireNonNull(event.player.getAttribute(JAttributes.ESSENCE_REGEN_SPEED.get())).getValue());
+                    } else {
+                        essence.setBurnout(essence.getBurnout() - 0.1F);
+                    }
                 }
-                JITL.LOGGER.info(Objects.requireNonNull(event.player.getAttribute(JAttributes.ESSENCE_REGEN_SPEED.get())).getValue());
                 playerCapability.detectAndSendChanges();
             }
         }

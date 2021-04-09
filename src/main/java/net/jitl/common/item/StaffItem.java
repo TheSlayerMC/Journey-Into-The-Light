@@ -33,7 +33,7 @@ public class StaffItem extends Item implements IEssenceItem {
         ItemStack itemstack = playerIn.getItemInHand(handIn);
         if (!worldIn.isClientSide) {
             JPlayer capability = JPlayer.from(playerIn);
-            if (capability != null && capability.essence.get().consumeEssence(1.0F)) {
+            if (capability != null && capability.essence.get().consumeEssence(playerIn, 1.0F)) {
                 ThrowableEntity throwableEntity = projectileFactory.apply(worldIn, playerIn);
                 throwableEntity.shootFromRotation(playerIn, playerIn.xRot, playerIn.yRot, 0.0F, 1.5F, 1.0F);
                 worldIn.addFreshEntity(throwableEntity);

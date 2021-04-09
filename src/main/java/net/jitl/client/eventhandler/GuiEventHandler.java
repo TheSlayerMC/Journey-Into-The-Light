@@ -7,6 +7,7 @@ import net.jitl.client.render.gui.button.ToggleMenuButton;
 import net.jitl.client.render.gui.menu.JMainMenuGui;
 import net.jitl.client.util.RenderUtils;
 import net.jitl.common.capability.player.JPlayer;
+import net.jitl.common.capability.player.data.Essence;
 import net.jitl.config.JClientConfig;
 import net.jitl.config.JConfigs;
 import net.jitl.util.IEssenceItem;
@@ -67,7 +68,7 @@ public class GuiEventHandler {
 			JPlayer cap = JPlayer.from(minecraft.player);
 			if (cap != null) {
 				float currentEssence = cap.essence.get().getCurrentEssence();
-				float maxEssence = cap.essence.get().getMaxEssence();
+				float maxEssence = Essence.getMaxEssence(minecraft.player);
 
 				boolean isEssenceUsed = currentEssence < maxEssence;
 

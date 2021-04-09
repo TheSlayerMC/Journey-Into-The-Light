@@ -18,4 +18,7 @@ public class JAttributes {
 
     public static final RegistryObject<Attribute> ESSENCE_REGEN_SPEED =
             REGISTER.register("essence_regen_speed", () -> new RangedAttribute("jitl.essence_regen_speed", 0.012F, 0.0F, 0.065F).setSyncable(true));
+
+    public static final RegistryObject<Attribute> ESSENCE_BURNOUT =
+            REGISTER.register("essence_burnout_time", () -> new RangedAttribute("jitl.essence_burnout_time", 5.0F, 0.0F, 50.0F).setSyncable(false));
 }
