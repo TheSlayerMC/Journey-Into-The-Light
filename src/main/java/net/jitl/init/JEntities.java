@@ -139,6 +139,20 @@ public class JEntities {
                     .clientTrackingRange(10)
                     .sized(0.0F, 0.0F))
             .retrieve();
+
+    public static final EntityType<CalciaMineEntity> CALCIA_MINE_TYPE = REGISTER.register("calcia_mine",
+            Builder.<CalciaMineEntity>of(CalciaMineEntity::new, EntityClassification.MISC)
+                    .fireImmune()
+                    .clientTrackingRange(10)
+                    .sized(0.0F, 0.0F))
+            .retrieve();
+
+    public static final EntityType<CalciaBurstEntity> CALCIA_BURST_TYPE = REGISTER.register("calcia_burst",
+            Builder.<CalciaBurstEntity>of(CalciaBurstEntity::new, EntityClassification.MISC)
+                    .setTrackingRange(80)
+                    .setShouldReceiveVelocityUpdates(true)
+                    .sized(0.4F, 0.4F))
+            .retrieve();
 }
 
 

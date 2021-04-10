@@ -41,7 +41,7 @@ public class DamagingProjectileEntity extends ThrowableEntity {
         super.tick();
 
         if (!level.isClientSide) {
-            if (tickCount >= 20 * 10) {
+            if (tickCount >= getDuration()) {
                 remove();
             }
         } else {
@@ -51,6 +51,10 @@ public class DamagingProjectileEntity extends ThrowableEntity {
 
     @OnlyIn(Dist.CLIENT)
     public void onClientTick() {
+    }
+
+    protected int getDuration() {
+        return 20 * 10;
     }
 
     @Override
