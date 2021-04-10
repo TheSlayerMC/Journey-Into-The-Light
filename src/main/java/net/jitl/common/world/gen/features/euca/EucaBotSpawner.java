@@ -39,7 +39,7 @@ public class EucaBotSpawner extends Feature<EucaSpawnerFeatureConfig> {
                 placeShaft(reader, placement.move(Direction.UP));
             }
             BlockPos spawnerPos = placement.above(2);
-            setBlock(reader, spawnerPos, JBlocks.EUCA_TILE.defaultBlockState());
+            setBlock(reader, spawnerPos, JBlocks.EUCA_BRICK.defaultBlockState());
             spawnerPos = spawnerPos.above(1);
             setBlock(reader, spawnerPos, config.spawnerBlock.getState(random, spawnerPos));
             spawnerPos = spawnerPos.above(1);
