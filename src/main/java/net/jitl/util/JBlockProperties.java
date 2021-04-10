@@ -146,6 +146,13 @@ public class JBlockProperties {
 			.sound(SoundType.SWEET_BERRY_BUSH)
 			.noCollission());
 
+	public static final BlockPropsFactory CROP_PROPS = new BlockPropsFactory(() -> Properties.of
+			(Material.PLANT)
+			.sound(SoundType.CROP)
+			.noCollission()
+			.instabreak()
+			.randomTicks());
+
 	public static final BlockPropsFactory PORTAL = new BlockPropsFactory(() -> Properties.of
 			(Material.PORTAL)
 			.sound(SoundType.GLASS)

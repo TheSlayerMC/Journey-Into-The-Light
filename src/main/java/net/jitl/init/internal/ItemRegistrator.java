@@ -11,12 +11,12 @@ import net.jitl.common.item.curios.amulet.DynasterAmuletItem;
 import net.jitl.common.item.curios.catalyst.EssenceCatalystItem;
 import net.jitl.common.item.curios.catalyst.RegenCatalystItem;
 import net.jitl.common.item.curios.ring.JRingItem;
-import net.jitl.init.JEntities;
-import net.jitl.init.JFoods;
-import net.jitl.init.JLootTables;
-import net.jitl.init.JSounds;
+import net.jitl.init.*;
 import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.BlockNamedItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.Items;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.SoundEvents;
 import ru.timeconqueror.timecore.api.client.resource.StandardItemModelParents;
@@ -73,6 +73,9 @@ public class ItemRegistrator {
         registerItem("hongoshroom", "Hongoshroom", () -> new Item(itemGrouped().food(JFoods.HONGOSROOM)));
         registerItem("honglowshroom", "Honglowshroom", () -> new Item(itemGrouped().food(JFoods.HONGLOWSROOM)));
         registerItem("floro_pedal", "Floro Pedal", () -> new Item(itemGrouped().food(JFoods.FLORO_PEDAL)));
+
+        registerItem("tomato", "Tomato", () -> new Item(itemGrouped().food(JFoods.TOMATO)));
+        registerItem("tomato_seeds", "Tomato Seeds", () -> new SeedsItem(JBlocks.TOMATO_CROP));
 
         registerItem("lunium_powder", "Lunium Powder");
 

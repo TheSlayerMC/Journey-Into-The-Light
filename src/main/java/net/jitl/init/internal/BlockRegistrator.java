@@ -6,6 +6,7 @@ import net.jitl.client.render.JBlockModels;
 import net.jitl.client.render.JBlockStateResources;
 import net.jitl.common.block.*;
 import net.jitl.common.block.base.*;
+import net.jitl.common.block.crop.TomatoCropBlock;
 import net.jitl.common.block.portal.JBasePortalBlock;
 import net.jitl.common.dimension.Dimensions;
 import net.jitl.common.helper.EnumHarvestLevel;
@@ -252,6 +253,8 @@ public class BlockRegistrator {
         registerCustomRenderLayerBlock("silver_bot_spawner", "Silverbot Spawner", () -> new JSpawnerBlock(JEntities.TOWER_GUARDIAN_TYPE), JTabs.SPAWNERS, () -> RenderTypeWrappers.CUTOUT);
         registerCustomRenderLayerBlock("gold_bot_spawner", "Goldbot Spawner", () -> new JSpawnerBlock(JEntities.FLORO_TYPE), JTabs.SPAWNERS, () -> RenderTypeWrappers.CUTOUT);
 
+        registerSpeciallyRenderedBlock("tomato_crop", "Tomato Crop", () -> new TomatoCropBlock(),
+                () -> BlockModels.crossModel(JITL.tl("block/tomato_crop_6")));
     }
 
     private static <B extends Block> BlockRegisterChain<B> register(String name, String enName, Supplier<B> block) {

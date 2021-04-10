@@ -12,4 +12,7 @@ public class JFoods {
 
 	public static final Food HONGOSROOM = (new Food.Builder()).nutrition(4).saturationMod(0.5F).build();
 	public static final Food HONGLOWSROOM = (new Food.Builder()).nutrition(4).saturationMod(0.5F).effect(new EffectInstance(Effects.NIGHT_VISION, 1000, 1), 0.5F).build();
+
+	public static final Food TOMATO = (new Food.Builder()).nutrition(3).saturationMod(0.6F).build();
+
 }

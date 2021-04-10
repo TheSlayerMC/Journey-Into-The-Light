@@ -43,6 +43,9 @@ public class JItems {
     public static final Item HONGOSHROOM = promise();
     public static final Item HONGLOWSHROOM = promise();
 
+    public static final Item TOMATO = promise();
+    public static final Item TOMATO_SEEDS = promise();
+
     public static final TestBugItem TEST_BUG = promise();
 
     public static final StaffItem STAFF_OF_CONJURING = promise();
