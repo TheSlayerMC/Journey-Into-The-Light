@@ -253,8 +253,7 @@ public class BlockRegistrator {
         registerCustomRenderLayerBlock("silver_bot_spawner", "Silverbot Spawner", () -> new JSpawnerBlock(JEntities.TOWER_GUARDIAN_TYPE), JTabs.SPAWNERS, () -> RenderTypeWrappers.CUTOUT);
         registerCustomRenderLayerBlock("gold_bot_spawner", "Goldbot Spawner", () -> new JSpawnerBlock(JEntities.FLORO_TYPE), JTabs.SPAWNERS, () -> RenderTypeWrappers.CUTOUT);
 
-        registerSpeciallyRenderedBlock("tomato_crop", "Tomato Crop", () -> new TomatoCropBlock(),
-                () -> BlockModels.crossModel(JITL.tl("block/tomato_crop_6")));
+        registerCropBlock("tomato_crop", "Tomato Crop", new TomatoCropBlock());
     }
 
     private static <B extends Block> BlockRegisterChain<B> register(String name, String enName, Supplier<B> block) {
@@ -453,6 +452,40 @@ public class BlockRegistrator {
                             .addVariant(new BlockStateResource.Variant("age=1", JITL.bml(model1)))
                             .addVariant(new BlockStateResource.Variant("age=2", JITL.bml(model2)))
                             .addVariant(new BlockStateResource.Variant("age=3", JITL.bml(model3)))));
+        });
+    }
+
+    private static void registerCropBlock(String name, String enName, Block block) {
+        REGISTER.register(name, () -> block)
+                .name(enName)
+                .renderLayer(() -> RenderTypeWrappers.CUTOUT)
+                .also((chain) -> {
+            String model0 = "block/" + name + "_0";
+            String model1 = "block/" + name + "_1";
+            String model2 = "block/" + name + "_2";
+            String model3 = "block/" + name + "_3";
+            String model4 = "block/" + name + "_4";
+            String model5 = "block/" + name + "_5";
+            String model6 = "block/" + name + "_6";
+            String model7 = "block/" + name + "_7";
+
+            chain.model(JITL.bml(model0), () -> BlockModels.crossModel(JITL.tl(model0)))
+                    .model(JITL.bml(model1), () -> BlockModels.crossModel(JITL.tl(model1)))
+                    .model(JITL.bml(model2), () -> BlockModels.crossModel(JITL.tl(model2)))
+                    .model(JITL.bml(model3), () -> BlockModels.crossModel(JITL.tl(model3)))
+                    .model(JITL.bml(model4), () -> BlockModels.crossModel(JITL.tl(model4)))
+                    .model(JITL.bml(model5), () -> BlockModels.crossModel(JITL.tl(model5)))
+                    .model(JITL.bml(model6), () -> BlockModels.crossModel(JITL.tl(model6)))
+                    .model(JITL.bml(model7), () -> BlockModels.crossModel(JITL.tl(model7)))
+                    .state(() -> BlockStateResource.fromBuilder(BlockStateResource.Builder.create()
+                            .addVariant(new BlockStateResource.Variant("age=0", JITL.bml(model0)))
+                            .addVariant(new BlockStateResource.Variant("age=1", JITL.bml(model1)))
+                            .addVariant(new BlockStateResource.Variant("age=2", JITL.bml(model2)))
+                            .addVariant(new BlockStateResource.Variant("age=3", JITL.bml(model3)))
+                            .addVariant(new BlockStateResource.Variant("age=4", JITL.bml(model4)))
+                            .addVariant(new BlockStateResource.Variant("age=5", JITL.bml(model5)))
+                            .addVariant(new BlockStateResource.Variant("age=6", JITL.bml(model6)))
+                            .addVariant(new BlockStateResource.Variant("age=7", JITL.bml(model7)))));
         });
     }
 
