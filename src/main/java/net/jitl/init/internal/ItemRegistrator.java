@@ -70,6 +70,20 @@ public class ItemRegistrator {
 
         registerItem("bradberry", "Bradberry", () -> new Item(itemGrouped().food(JFoods.BRADBERRY)));
 
+        registerItem("fried_ghast_tenticle", "Fried Ghast Tenticle", () -> new Item(itemGrouped().food(JFoods.FRIED_GHAST_TENTACLE)));
+        registerItem("flaming_ghast_tenticle", "Flaming Ghast Tenticle", () -> new Item(itemGrouped().food(JFoods.FLAMING_GHAST_TENTACLE)));
+        registerItem("fried_flaming_ghast_tenticle", "Fried Flaming Ghast Tenticle", () -> new Item(itemGrouped().food(JFoods.FRIED_FLAMING_GHAST_TENTACLE)));
+        registerItem("ghast_tenticle", "Ghast Tenticle", () -> new Item(itemGrouped().food(JFoods.GHAST_TENTACLE)));
+        registerItem("fried_egg", "Fried Egg", () -> new Item(itemGrouped().food(JFoods.FRIED_EGG)));
+        registerItem("mint_candy_cane", "Mint Candy Cane", () -> new Item(itemGrouped().food(JFoods.MINT_CANDY_CANE)));
+        registerItem("fruity_candy_cane", "Fruity Candy Cane", () -> new Item(itemGrouped().food(JFoods.FRUITY_CANDY_CANE)));
+        registerItem("cherry_candy_cane", "Cherry Candy Cane", () -> new Item(itemGrouped().food(JFoods.CHERRY_CANDY_CANE)));
+        registerItem("peppermint", "Peppermint", () -> new Item(itemGrouped().food(JFoods.PEPPERMINT)));
+        registerItem("jellybeans", "Jellybeans", () -> new Item(itemGrouped().food(JFoods.JELLYBEANS)));
+        registerItem("chocolate", "Chocolate", () -> new Item(itemGrouped().food(JFoods.CHOCOLATE)));
+        registerItem("vanilla_wafer", "Vanilla Wafer", () -> new Item(itemGrouped().food(JFoods.VANILLA_WAFER)));
+        registerItem("euca_meat", "Euca Meat", () -> new Item(itemGrouped().food(JFoods.EUCA_MEAT)));
+
         registerItem("hongoshroom", "Hongoshroom", () -> new Item(itemGrouped().food(JFoods.HONGOSROOM)));
         registerItem("honglowshroom", "Honglowshroom", () -> new Item(itemGrouped().food(JFoods.HONGLOWSROOM)));
 

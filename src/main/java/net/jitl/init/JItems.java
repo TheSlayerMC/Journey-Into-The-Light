@@ -42,6 +42,20 @@ public class JItems {
     public static final Item HONGOSHROOM = promise();
     public static final Item HONGLOWSHROOM = promise();
 
+    public static final Item FRIED_GHAST_TENTACLE = promise();
+    public static final Item FLAMING_GHAST_TENTACLE = promise();
+    public static final Item FRIED_FLAMING_GHAST_TENTACLE = promise();
+    public static final Item GHAST_TENTACLE = promise();
+    public static final Item FRIED_EGG = promise();
+    public static final Item MINT_CANDY_CANE = promise();
+    public static final Item FRUITY_CANDY_CANE = promise();
+    public static final Item CHERRY_CANDY_CANE = promise();
+    public static final Item PEPPERMINT = promise();
+    public static final Item JELLYBEANS = promise();
+    public static final Item CHOCOLATE = promise();
+    public static final Item VANILLA_WAFER = promise();
+    public static final Item EUCA_MEAT = promise();
+
     public static final Item TOMATO = promise();
     public static final Item TOMATO_SEEDS = promise();
 
