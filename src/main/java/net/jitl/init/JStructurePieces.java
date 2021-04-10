@@ -24,4 +24,6 @@ public class JStructurePieces {
 
     public static final Promised<IStructurePieceType> ALLOY_MENDER = REGISTER.register("alloy_mender", () -> AlloyMenderStructure.Piece::new);
 
+    public static final Promised<IStructurePieceType> EUCA_DUNGEON = REGISTER.register("euca_dungeon", () -> AlloyMenderStructure.Piece::new);
+
 }

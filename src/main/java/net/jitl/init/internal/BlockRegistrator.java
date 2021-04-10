@@ -143,7 +143,16 @@ public class BlockRegistrator {
         registerDefaultBlock("euca_brick", "Euca Brick");
         RegistryObject<Block> eucaGoldPlank = registerBlock("euca_gold_plank", "Euca Golden Plank", () -> new Block(JBlockProperties.WOOD_PROPS.create()));
         KBlockRegistrator.INSTANCE.registerStairs("euca_golden_stairs", "Euca Golden Stairs", eucaGoldPlank, JBlockProperties.WOOD_PROPS.create());
-
+        RegistryObject<Block> eucaDungeonBricks = registerBlock("euca_dungeon_bricks", "Euca Dungeon Brick", () -> new Block(JBlockProperties.STONE_PROPS.create()));
+        KBlockRegistrator.INSTANCE.registerStairs("euca_dungeon_stairs", "Euca Dungeon Stairs", eucaDungeonBricks, JBlockProperties.STONE_PROPS.create());
+        registerDefaultBlock("euca_dungeon_tile", "Euca Dungeon Brick", () -> new Block(JBlockProperties.STONE_PROPS.create()));
+        registerDefaultBlock("euca_gold_stone", "Euca Gold Stone", () -> new Block(JBlockProperties.STONE_PROPS.create()));
+        registerDefaultBlock("euca_runic_bricks", "Euca Dungeon Brick", () -> new Block(JBlockProperties.STONE_PROPS.create()));
+        registerDefaultBlock("euca_runic_lamp", "Euca Dungeon Lamp", () -> new Block(JBlockProperties.STONE_PROPS.create().lightLevel((state29) -> {
+            return 6;
+        })));
+        registerDefaultBlock("euca_square_dungeon_bricks", "Euca Dungeon Brick", () -> new Block(JBlockProperties.STONE_PROPS.create()));
+        registerDefaultBlock("euca_square_runic_bricks", "Euca Dungeon Brick", () -> new Block(JBlockProperties.STONE_PROPS.create()));
         registerDefaultBlock("euca_tile", "Euca Tile");
 
         registerDefaultBlock("laser_emitter", "Laser Emitter", () -> new LaserEmitterBlock(JBlockProperties.STONE_PROPS.create().noOcclusion()));
@@ -187,8 +196,6 @@ public class BlockRegistrator {
         //registerDefaultBlock("senterian_portal_frame", "Senterian Portal Frame");//different style
 
         registerDefaultBlock("euca_portal", "Euca Portal", () -> new JBasePortalBlock(JBlockProperties.PORTAL.create(), Dimensions.EUCA, JBlocks.EUCA_PORTAL_FRAME));
-
-
         registerSpeciallyRenderedBlock("euca_gold_grass_block", "Euca Gold Grass", () -> new Block(JBlockProperties.GRASS_PROPS.create()),
                 () -> BlockModels.cubeBottomTopModel(JITL.tl("block/euca_gold_grass_block_top"), JITL.tl("block/euca_gold_grass_block_side"), JITL.tl("block/goldite_dirt")));
         registerSpeciallyRenderedBlock("goldite_grass_block", "Goldite Grass", () -> new Block(JBlockProperties.GRASS_PROPS.create()),
