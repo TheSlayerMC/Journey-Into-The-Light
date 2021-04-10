@@ -6,6 +6,7 @@ import net.jitl.client.render.JBlockModels;
 import net.jitl.client.render.JBlockStateResources;
 import net.jitl.common.block.*;
 import net.jitl.common.block.base.*;
+import net.jitl.common.block.crop.FloroCropBlock;
 import net.jitl.common.block.crop.TomatoCropBlock;
 import net.jitl.common.block.portal.JBasePortalBlock;
 import net.jitl.common.dimension.Dimensions;
@@ -254,6 +255,8 @@ public class BlockRegistrator {
         registerCustomRenderLayerBlock("gold_bot_spawner", "Goldbot Spawner", () -> new JSpawnerBlock(JEntities.FLORO_TYPE), JTabs.SPAWNERS, () -> RenderTypeWrappers.CUTOUT);
 
         registerCropBlock("tomato_crop", "Tomato Crop", new TomatoCropBlock());
+        registerCropBlock("floro_crop", "Floro Crop", new FloroCropBlock());
+
     }
 
     private static <B extends Block> BlockRegisterChain<B> register(String name, String enName, Supplier<B> block) {

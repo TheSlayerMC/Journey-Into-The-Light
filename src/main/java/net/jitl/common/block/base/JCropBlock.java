@@ -2,6 +2,7 @@ package net.jitl.common.block.base;
 
 import java.util.Random;
 
+import net.jitl.util.JBlockProperties;
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.RavagerEntity;
@@ -30,7 +31,10 @@ public abstract class JCropBlock extends BushBlock implements IGrowable {
     public JCropBlock(AbstractBlock.Properties builder) {
         super(builder);
         this.registerDefaultState(this.stateDefinition.any().setValue(this.getAgeProperty(), Integer.valueOf(0)));
+    }
 
+    public JCropBlock() {
+        this(JBlockProperties.CROP_PROPS.create());
     }
 
     public abstract Item getSeedItem();

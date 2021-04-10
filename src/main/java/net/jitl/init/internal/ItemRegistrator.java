@@ -72,10 +72,12 @@ public class ItemRegistrator {
 
         registerItem("hongoshroom", "Hongoshroom", () -> new Item(itemGrouped().food(JFoods.HONGOSROOM)));
         registerItem("honglowshroom", "Honglowshroom", () -> new Item(itemGrouped().food(JFoods.HONGLOWSROOM)));
-        registerItem("floro_pedal", "Floro Pedal", () -> new Item(itemGrouped().food(JFoods.FLORO_PEDAL)));
 
         registerItem("tomato", "Tomato", () -> new Item(itemGrouped().food(JFoods.TOMATO)));
         registerItem("tomato_seeds", "Tomato Seeds", () -> new SeedsItem(JBlocks.TOMATO_CROP));
+
+        registerItem("floro_pedal", "Floro Pedal", () -> new Item(itemGrouped().food(JFoods.FLORO_PEDAL)));
+        registerItem("floro_seeds", "Floro Seeds", () -> new SeedsItem(JBlocks.FLORO_CROP));
 
         registerItem("lunium_powder", "Lunium Powder");
 
