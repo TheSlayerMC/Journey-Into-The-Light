@@ -70,10 +70,10 @@ public class ItemRegistrator {
 
         registerItem("bradberry", "Bradberry", () -> new Item(itemGrouped().food(JFoods.BRADBERRY)));
 
-        registerItem("fried_ghast_tenticle", "Fried Ghast Tenticle", () -> new Item(itemGrouped().food(JFoods.FRIED_GHAST_TENTACLE)));
-        registerItem("flaming_ghast_tenticle", "Flaming Ghast Tenticle", () -> new Item(itemGrouped().food(JFoods.FLAMING_GHAST_TENTACLE)));
-        registerItem("fried_flaming_ghast_tenticle", "Fried Flaming Ghast Tenticle", () -> new Item(itemGrouped().food(JFoods.FRIED_FLAMING_GHAST_TENTACLE)));
-        registerItem("ghast_tenticle", "Ghast Tenticle", () -> new Item(itemGrouped().food(JFoods.GHAST_TENTACLE)));
+        registerItem("fried_ghast_tentacle", "Fried Ghast Tentacle", () -> new Item(itemGrouped().food(JFoods.FRIED_GHAST_TENTACLE)));
+        registerItem("flaming_ghast_tentacle", "Flaming Ghast Tentacle", () -> new Item(itemGrouped().food(JFoods.FLAMING_GHAST_TENTACLE)));
+        registerItem("fried_flaming_ghast_tentacle", "Fried Flaming Ghast Tentacle", () -> new Item(itemGrouped().food(JFoods.FRIED_FLAMING_GHAST_TENTACLE)));
+        registerItem("ghast_tentacle", "Ghast Tentacle", () -> new Item(itemGrouped().food(JFoods.GHAST_TENTACLE)));
         registerItem("fried_egg", "Fried Egg", () -> new Item(itemGrouped().food(JFoods.FRIED_EGG)));
         registerItem("mint_candy_cane", "Mint Candy Cane", () -> new Item(itemGrouped().food(JFoods.MINT_CANDY_CANE)));
         registerItem("fruity_candy_cane", "Fruity Candy Cane", () -> new Item(itemGrouped().food(JFoods.FRUITY_CANDY_CANE)));
