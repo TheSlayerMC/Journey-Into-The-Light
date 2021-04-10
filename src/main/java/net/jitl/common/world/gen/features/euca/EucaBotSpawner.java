@@ -40,6 +40,8 @@ public class EucaBotSpawner extends Feature<EucaSpawnerFeatureConfig> {
             }
             BlockPos spawnerPos = placement.above(2);
             setBlock(reader, spawnerPos, config.spawnerBlock.getState(random, spawnerPos));
+            spawnerPos = spawnerPos.above(1);
+            setBlock(reader, spawnerPos, config.spawnerBlock.getState(random, spawnerPos));
             addRectangle(7, 3, 1, xPos - 3, yPos + height + 1, zPos - 1, JBlocks.EUCA_TILE, reader);
             addRectangle(3, 7, 1, xPos - 1, yPos + height + 1, zPos - 3, JBlocks.EUCA_TILE, reader);
             addRectangle(5, 5, 1, xPos - 2, yPos + height + 1, zPos - 2, JBlocks.EUCA_TILE, reader);
