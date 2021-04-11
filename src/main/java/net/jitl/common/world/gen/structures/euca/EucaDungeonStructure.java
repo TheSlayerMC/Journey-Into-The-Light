@@ -68,7 +68,7 @@ public class EucaDungeonStructure extends Structure<NoFeatureConfig> {
             int z = chunkZ << 4;
 
             int surface = GenHelper.getAverageFirstFreeHeight(chunkGenerator, x, z, x + 10, z + 10);
-            surface += random.nextInt(50);
+            surface += random.nextInt(85);
 
             BlockPos start = new BlockPos(x, surface, z);
             JITL.LOGGER.debug(JStructures.STRUCTURE_MARKER, "Attempting to generate {} on {}", EucaDungeonStructure.class.getSimpleName(), start);
