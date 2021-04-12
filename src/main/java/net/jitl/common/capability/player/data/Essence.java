@@ -1,6 +1,5 @@
 package net.jitl.common.capability.player.data;
 
-import net.jitl.JITL;
 import net.jitl.init.JAttributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
@@ -31,7 +30,7 @@ public class Essence implements INBTSerializable<CompoundNBT>, IChangable {
     }
 
     public static float getMaxEssence(PlayerEntity player) {
-        return (float) player.getAttribute(JAttributes.MAX_ESSENCE.get()).getValue();
+        return (float) Objects.requireNonNull(player.getAttribute(JAttributes.MAX_ESSENCE.get())).getValue();
     }
 
     public float getCurrentEssence() {
@@ -72,7 +71,7 @@ public class Essence implements INBTSerializable<CompoundNBT>, IChangable {
                 setEssence(getCurrentEssence() - price);
                 return true;
             }
-            setBurnout(getBurnout() + Objects.requireNonNull(player.getAttribute(JAttributes.ESSENCE_BURNOUT.get()).getValue()).floatValue());
+            setBurnout((float) (getBurnout() + Objects.requireNonNull(player.getAttribute(JAttributes.ESSENCE_BURNOUT.get())).getValue()));
             return false;
         }
         return true;

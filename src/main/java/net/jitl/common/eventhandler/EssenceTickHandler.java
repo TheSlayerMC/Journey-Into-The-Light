@@ -26,8 +26,8 @@ public class EssenceTickHandler {
                     } else {
                         essence.setBurnout(essence.getBurnout() - 0.1F);
                     }
+                    playerCapability.detectAndSendChanges();
                 }
-                playerCapability.detectAndSendChanges();
             }
         }
     }
