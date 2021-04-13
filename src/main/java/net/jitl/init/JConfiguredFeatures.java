@@ -21,7 +21,6 @@ import net.minecraft.world.gen.blockstateprovider.WeightedBlockStateProvider;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.template.RuleTest;
 import net.minecraft.world.gen.foliageplacer.MegaPineFoliagePlacer;
-import net.minecraft.world.gen.treedecorator.AlterGroundTreeDecorator;
 import net.minecraft.world.gen.trunkplacer.GiantTrunkPlacer;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import ru.timeconqueror.timecore.api.registry.ConfiguredFeatureRegister;
@@ -297,9 +296,6 @@ public class JConfiguredFeatures {
                                             FeatureSpread.of(3, 4)),
                                     new GiantTrunkPlacer(13, 2, 14),
                                     new TwoLayerFeature(1, 1, 2)))
-                            .decorators(ImmutableList.of(
-                                    new AlterGroundTreeDecorator(
-                                            new SimpleBlockStateProvider(JBlocks.EUCA_GOLD_GRASS_BLOCK.defaultBlockState()))))
                             .build()))
                     .setBiomePredicate(EUCA_GOLD_PLAINS)
                     .asPromise();

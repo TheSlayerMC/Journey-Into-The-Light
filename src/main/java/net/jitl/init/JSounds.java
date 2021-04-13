@@ -36,6 +36,10 @@ public class JSounds {
     public static final RegistryObject<TimeSound> HONGO_DEATH = REGISTER.register("entities.hongo_death");
     public static final RegistryObject<TimeSound> HONGO_SPORE_RELEASE = REGISTER.register("entities.hongo_spore_release");
 
+    public static final RegistryObject<TimeSound> GLUMP_AMBIENT = REGISTER.register("entities.glump_ambient");
+    public static final RegistryObject<TimeSound> GLUMP_HURT = REGISTER.register("entities.glump_hurt");
+    public static final RegistryObject<TimeSound> GLUMP_DEATH = REGISTER.register("entities.glump_death");
+
     public static final RegistryObject<TimeSound> MENU_MUSIC = REGISTER.register("music.menu");
     public static final RegistryObject<TimeSound> TOWER_THEME = REGISTER.register("music.guardian_tower");
     public static final RegistryObject<TimeSound> TEMPLE_GUARDIAN_MUSIC = REGISTER.register("music.temple_guardian");

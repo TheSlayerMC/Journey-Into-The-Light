@@ -5,6 +5,7 @@ import net.jitl.client.render.entity.*;
 import net.jitl.client.render.entity.base.Entity2DRenderer;
 import net.jitl.common.entity.nether.WitherspineEntity;
 import net.jitl.common.entity.overworld.FloroEntity;
+import net.jitl.common.entity.overworld.GlumpEntity;
 import net.jitl.common.entity.overworld.TowerGuardianEntity;
 import net.jitl.init.JEntities;
 import net.minecraft.client.Minecraft;
@@ -19,7 +20,7 @@ public class JEntityRenderRegistry {
     public static TimeEntityModel<FloroEntity> floroModel = TimeModelLoader.loadJsonEntityModel(new ResourceLocation(JITL.MODID, "models/entity/floro.json"));
     public static TimeEntityModel<WitherspineEntity> witherspineModel = TimeModelLoader.loadJsonEntityModel(new ResourceLocation(JITL.MODID, "models/entity/witherspine.json"));
     public static TimeEntityModel<TowerGuardianEntity> towerGuardianModel = TimeModelLoader.loadJsonEntityModel(new ResourceLocation(JITL.MODID, "models/entity/tower_guardian.json"));
-
+    public static TimeEntityModel<GlumpEntity> glumpModel = TimeModelLoader.loadJsonEntityModel(new ResourceLocation(JITL.MODID, "models/entity/glump.json"));
 
     public static void registerEntityRenders() {
         //Misc
@@ -32,6 +33,7 @@ public class JEntityRenderRegistry {
         RenderingRegistry.registerEntityRenderingHandler(JEntities.HONGLOW_TYPE, HonglowRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(JEntities.WITHERSPINE_TYPE, WitherspineRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(JEntities.TOWER_GUARDIAN_TYPE, TowerGuardianRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(JEntities.GLUMP_TYPE, GlumpRenderer::new);
 
         //Projectiles
         RenderingRegistry.registerEntityRenderingHandler(JEntities.FLORO_MUD_TYPE, manager -> new SpriteRenderer<>(manager, Minecraft.getInstance().getItemRenderer()));

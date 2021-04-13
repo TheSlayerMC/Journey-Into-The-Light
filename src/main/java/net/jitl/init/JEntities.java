@@ -3,10 +3,7 @@ package net.jitl.init;
 import net.jitl.JITL;
 import net.jitl.common.entity.EssenciaBoltEntity;
 import net.jitl.common.entity.nether.WitherspineEntity;
-import net.jitl.common.entity.overworld.FloroEntity;
-import net.jitl.common.entity.overworld.HonglowEntity;
-import net.jitl.common.entity.overworld.HongoEntity;
-import net.jitl.common.entity.overworld.TowerGuardianEntity;
+import net.jitl.common.entity.overworld.*;
 import net.jitl.common.entity.projectile.*;
 import net.jitl.common.entity.projectile.base.JEffectCloudEntity;
 import net.jitl.common.entity.projectile.base.PiercerEntity;
@@ -87,6 +84,15 @@ public class JEntities {
                     .setShouldReceiveVelocityUpdates(true)
                     .sized(1.5F, 3))//TODO add spawn settings
             .attributes(() -> TowerGuardianEntity.createAttributes().build())
+            .spawnEgg(overworldColor, bossColor, JTabs.SPAWNERS)
+            .retrieve();
+
+    public static final EntityType<GlumpEntity> GLUMP_TYPE = REGISTER.registerMob("glump",
+            Builder.of(GlumpEntity::new, EntityClassification.MONSTER)
+                    .setTrackingRange(80)
+                    .setShouldReceiveVelocityUpdates(true)
+                    .sized(2F, 1))//TODO add spawn settings
+            .attributes(() -> GlumpEntity.createAttributes().build())
             .spawnEgg(overworldColor, bossColor, JTabs.SPAWNERS)
             .retrieve();
 

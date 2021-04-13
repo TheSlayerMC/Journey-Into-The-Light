@@ -26,7 +26,6 @@ public class StaffItem extends Item implements IEssenceItem {
         this.projectileFactory = projectileFactory;
     }
 
-    //Copy of ThrowableItem#use method so Essence can be consumed (once it's implemented)
     //TODO add essence cap
     @Override
     public @NotNull ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, @NotNull Hand handIn) {

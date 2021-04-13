@@ -139,6 +139,22 @@
       "jitl:entities/hongo_spore_release"
     ]
   },
+  "entities.glump_ambient": {
+    "sounds": [
+      "jitl:entities/glump_ambient_0",
+      "jitl:entities/glump_ambient_1"
+    ]
+  },
+  "entities.glump_hurt": {
+    "sounds": [
+      "jitl:entities/glump_hurt"
+    ]
+  },
+  "entities.glump_death": {
+    "sounds": [
+      "jitl:entities/glump_death"
+    ]
+  },
   "music.menu": {
     "category": "music",
     "sounds": [
