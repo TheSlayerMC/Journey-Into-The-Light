@@ -10,7 +10,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber
-public class JourneyBiomeRegistry {
+public class JBiomeRegistry {
 
     public static Biome EUCA_PLAINS;
     public static Biome EUCA_GOLDITE_GRAINS;
