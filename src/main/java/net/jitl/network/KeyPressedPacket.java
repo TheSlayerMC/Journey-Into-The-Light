@@ -2,8 +2,8 @@ package net.jitl.network;
 
 import net.jitl.common.capability.JCapabilityProvider;
 import net.jitl.common.capability.armorability.IArmorSetCapability;
-import net.jitl.common.item.gearabilities.BaseArmorAbilities;
-import net.jitl.common.item.gearabilities.celestium.CelestiumArmorAbilities;
+import net.jitl.common.item.gearabilities.PieceArmorAbilities;
+import net.jitl.common.item.gearabilities.celestium.CelestiumFullArmorAbilities;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;
@@ -34,15 +34,15 @@ public class KeyPressedPacket implements ITimePacket {
         @Override
         public boolean handle(KeyPressedPacket packet, NetworkEvent.Context ctx) {
             ctx.enqueueWork(() -> {
-                LivingEntity entity = ctx.getSender();
+                /*LivingEntity entity = ctx.getSender();
                 Optional<IArmorSetCapability> optional = entity.getCapability(JCapabilityProvider.ARMOR).resolve();
                 if (optional.isPresent()) {
-                    BaseArmorAbilities gear = optional.get().getArmor();
-                    if (gear instanceof CelestiumArmorAbilities) {
-                        ((CelestiumArmorAbilities) gear).doCharge(entity, packet.angle);
+                    PieceArmorAbilities gear = optional.get().getArmor();
+                    if (gear instanceof CelestiumFullArmorAbilities) {
+                        ((CelestiumFullArmorAbilities) gear).doCharge(entity, packet.angle);
                     }
                 }
-                System.out.println("Angle: " + Math.toDegrees(packet.angle));
+                System.out.println("Angle: " + Math.toDegrees(packet.angle));*/
             });
 
             return true;

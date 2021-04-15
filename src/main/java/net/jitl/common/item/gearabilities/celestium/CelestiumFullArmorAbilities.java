@@ -1,16 +1,14 @@
 package net.jitl.common.item.gearabilities.celestium;
 
 import net.jitl.common.helper.TooltipFiller;
-import net.jitl.common.item.gearabilities.BaseArmorAbilities;
+import net.jitl.common.item.gearabilities.FullArmorAbilities;
+import net.jitl.common.item.gearabilities.PieceArmorAbilities;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingEvent;
 
-public class CelestiumArmorAbilities extends BaseArmorAbilities {
-    private int cooldown = 0;
-    private boolean isJumpReady = false;
-
-
-    @Override
+public class CelestiumFullArmorAbilities extends FullArmorAbilities {
+    /*@Override
     public void doTickAbility(LivingEvent.LivingUpdateEvent event) {
         System.out.println("Dash cooldown for " + event.getEntityLiving().getName().getString() + ": " + cooldown);
         System.out.println("Dash for " + event.getEntityLiving().getName().getString() + " " + (isJumpReady ? "is" : "is not") + " ready");
@@ -32,7 +30,7 @@ public class CelestiumArmorAbilities extends BaseArmorAbilities {
             isJumpReady = false;
             cooldown = 40;
         }
-    }
+    }*/
 
     @Override
     public void fillArmorTooltip(TooltipFiller filler) {

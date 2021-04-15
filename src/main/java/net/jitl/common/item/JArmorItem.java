@@ -1,8 +1,10 @@
 package net.jitl.common.item;
 
+import net.jitl.JITL;
 import net.jitl.common.helper.JArmorMaterial;
 import net.jitl.common.helper.TooltipFiller;
-import net.jitl.common.item.gearabilities.BaseArmorAbilities;
+import net.jitl.common.item.gearabilities.FullArmorAbilities;
+import net.jitl.common.item.gearabilities.PieceArmorAbilities;
 import net.jitl.init.JTabs;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
@@ -61,9 +63,22 @@ public class JArmorItem extends ArmorItem {
 	@Override
 	@OnlyIn(Dist.CLIENT)
 	public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> text, ITooltipFlag flag) {
-		BaseArmorAbilities ability = ((JArmorMaterial) this.getMaterial()).getAbilities();
+		TooltipFiller filler = new TooltipFiller(text, material.toString().toLowerCase() + "_armor");
+		Class<? extends PieceArmorAbilities> ability = ((JArmorMaterial) material).getPieceAbilityClass();
 		if (ability != null) {
-			ability.fillArmorTooltip(new TooltipFiller(text, getMaterial().toString().toLowerCase() + "_armor"));
+			try {
+				ability.getMethod("fillArmorTooltip", TooltipFiller.class).invoke(filler);
+			} catch (Exception e) {
+				JITL.LOGGER.info("Piece armor tooltip method not found");
+			}
+		}
+		Class<? extends FullArmorAbilities> fullAbility = ((JArmorMaterial) material).getFullAbilityClass();
+		if (fullAbility != null) {
+			try {
+				fullAbility.getMethod("fillArmorTooltip", TooltipFiller.class).invoke(filler);
+			} catch (Exception e) {
+				JITL.LOGGER.info("Full armor tooltip method not found");
+			}
 		}
 	}
 }

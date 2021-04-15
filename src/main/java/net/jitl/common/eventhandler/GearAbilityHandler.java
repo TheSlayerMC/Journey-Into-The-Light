@@ -7,11 +7,12 @@ import net.jitl.common.helper.JArmorMaterial;
 import net.jitl.common.helper.JToolTiers;
 import net.jitl.common.item.JArmorItem;
 import net.jitl.common.item.JSwordItem;
-import net.jitl.common.item.gearabilities.BaseArmorAbilities;
+import net.jitl.common.item.gearabilities.PieceArmorAbilities;
 import net.jitl.common.item.gearabilities.BaseToolAbilities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
@@ -28,12 +29,12 @@ import java.util.Optional;
 @Mod.EventBusSubscriber(modid = JITL.MODID)
 public class GearAbilityHandler {
 
-    @SubscribeEvent()
+    /*@SubscribeEvent()
     public static void handleTick(LivingEvent.LivingUpdateEvent event) {
         LivingEntity entity = event.getEntityLiving();
         Optional<IArmorSetCapability> optional = entity.getCapability(JCapabilityProvider.ARMOR).resolve();
         if (optional.isPresent()) {
-            BaseArmorAbilities gear = optional.get().getArmor();
+            PieceArmorAbilities gear = optional.get().getArmor();
             if (gear != null) {
                 gear.doTickAbility(event);
             }
@@ -79,38 +80,32 @@ public class GearAbilityHandler {
         float damageModifier = 0;
         Optional<IArmorSetCapability> optional = event.getEntityLiving().getCapability(JCapabilityProvider.ARMOR).resolve();
         if (optional.isPresent()) {
-            BaseArmorAbilities gear = optional.get().getArmor();
+            PieceArmorAbilities gear = optional.get().getArmor();
             if (gear != null) {
                 damageModifier += gear.getArmorReduction(event);
             }
         }
         event.setAmount(event.getAmount() + damageModifier);
         System.out.println("Post effect: " + event.getAmount());
-    }
+    }*/
 
     @SubscribeEvent()
     public static void armorChange(LivingEquipmentChangeEvent event) {
         LivingEntity entity = event.getEntityLiving();
-        JArmorMaterial material = null;
-        for (ItemStack currentStack : entity.getArmorSlots()) {
-            if (currentStack.getItem() instanceof JArmorItem) { //current piece is part of a jitl set
-                JArmorMaterial currentMaterial = (JArmorMaterial) ((JArmorItem) currentStack.getItem()).getMaterial();
-                if (currentMaterial != material) { //is the current part different from the previous, or has the check simply not started?
-                    if (material != null) { //a part of the set is different. Loop should end
-                        material = null;
-                        break;
-                    } else {
-                        material = currentMaterial; //changed the material
-                    }
-                }
-            } else { //a jitl armor piece is not being worn. This makes it impossible to have a full set
-                material = null;
-                break;
-            }
-        }
         Optional<IArmorSetCapability> optional = entity.getCapability(JCapabilityProvider.ARMOR).resolve();
         if (optional.isPresent()) {
-            optional.get().setArmor(material != null ? material.getAbilities() : null);
+            System.out.println("Optional is present");
+            EquipmentSlotType slot = event.getSlot();
+            if (slot.getType() == EquipmentSlotType.Group.ARMOR) {
+                System.out.println("Armor was changed");
+                ItemStack stack = entity.getItemBySlot(slot);
+                if (stack.getItem() instanceof JArmorItem) {
+                    System.out.println("Armor is from jitl");
+                    PieceArmorAbilities ability = ((JArmorMaterial) ((JArmorItem) stack.getItem()).getMaterial()).getPieceAbility();
+                    if (ability != null) ability.setStack(stack);
+                    optional.get().setArmor(slot.getIndex(), ability);
+                }
+            }
         }
     }
 }

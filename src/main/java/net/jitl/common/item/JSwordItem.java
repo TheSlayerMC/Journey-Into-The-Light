@@ -2,17 +2,14 @@ package net.jitl.common.item;
 
 import net.jitl.common.helper.JToolTiers;
 import net.jitl.common.helper.TooltipFiller;
-import net.jitl.common.item.gearabilities.BaseArmorAbilities;
 import net.jitl.common.item.gearabilities.BaseToolAbilities;
 import net.jitl.init.JTabs;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
-import net.minecraft.potion.Effects;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.text.ITextComponent;

@@ -1,11 +1,8 @@
 package net.jitl.common.helper;
 
 import mcp.MethodsReturnNonnullByDefault;
-import net.jitl.common.item.gearabilities.BaseArmorAbilities;
 import net.jitl.common.item.gearabilities.BaseToolAbilities;
-import net.jitl.common.item.gearabilities.celestium.CelestiumArmorAbilities;
 import net.jitl.common.item.gearabilities.celestium.CelestiumToolAbilities;
-import net.jitl.common.item.gearabilities.shadium.ShadiumArmorAbilities;
 import net.jitl.common.item.gearabilities.shadium.ShadiumToolAbilities;
 import net.jitl.init.JItems;
 import net.minecraft.item.IItemTier;
