@@ -12,7 +12,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import it.unimi.dsi.fastutil.doubles.DoubleArrayList;
 import it.unimi.dsi.fastutil.doubles.DoubleList;
 import net.jitl.JITL;
-import net.jitl.init.JourneyBiomeRegistry;
+import net.jitl.init.JBiomeRegistry;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.registry.Registry;
@@ -181,11 +181,11 @@ public class EucaBiomeProvider extends BiomeProvider {
         private static final Map<ResourceLocation, EucaBiomeProvider.Preset> BY_NAME = Maps.newHashMap();
         public static final EucaBiomeProvider.Preset EUCA = new EucaBiomeProvider.Preset(JITL.rl("euca"), (preset, lookupRegistry1, seed1) -> {
             return new EucaBiomeProvider(seed1, ImmutableList.of(Pair.of(new Biome.Attributes(0.0F, 0.0F, 0.0F, 0.0F, 0.0F), () -> {
-                return lookupRegistry1.get(JourneyBiomeRegistry.EUCA_PLAINS.getRegistryName());
+                return lookupRegistry1.get(JBiomeRegistry.EUCA_PLAINS.getRegistryName());
             }), Pair.of(new Biome.Attributes(0.0F, 0.5F, 0.0F, 0.0F, 0.375F), () -> {
-                return lookupRegistry1.get(JourneyBiomeRegistry.EUCA_GOLDITE_GRAINS.getRegistryName());
+                return lookupRegistry1.get(JBiomeRegistry.EUCA_GOLDITE_GRAINS.getRegistryName());
             }), Pair.of(new Biome.Attributes(0.0F, 0.0F, 0.0F, 0.0F, 0.0F), () -> {
-                return lookupRegistry1.get(JourneyBiomeRegistry.EUCA_SILVER_PLAINS.getRegistryName());
+                return lookupRegistry1.get(JBiomeRegistry.EUCA_SILVER_PLAINS.getRegistryName());
             })), Optional.of(Pair.of(lookupRegistry1, preset)));
         });
         private final ResourceLocation name;

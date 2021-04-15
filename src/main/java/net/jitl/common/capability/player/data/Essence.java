@@ -12,6 +12,7 @@ import java.util.Objects;
 public class Essence implements INBTSerializable<CompoundNBT>, IChangable {
     public final CallbackProperty<Float> currentEssence = new CallbackProperty<>(this, 0.0F);
     public float burnoutTime = 0.0F;
+    public int timeout = 0;
 
     private boolean changed = false;
 
@@ -61,6 +62,12 @@ public class Essence implements INBTSerializable<CompoundNBT>, IChangable {
         }
     }
 
+    public boolean isRegenReady() {
+        if (timeout <= 0) return getBurnout() <= 0;
+        timeout--;
+        return false;
+    }
+
     public void addEssence(PlayerEntity player, float add) {
         setEssence(Math.min(getCurrentEssence() + add, getMaxEssence(player)));
     }
@@ -69,9 +76,11 @@ public class Essence implements INBTSerializable<CompoundNBT>, IChangable {
         if (!player.isCreative()) {
             if (hasEssence(price)) {
                 setEssence(getCurrentEssence() - price);
+                timeout = 10;
                 return true;
             }
-            setBurnout((float) (getBurnout() + Objects.requireNonNull(player.getAttribute(JAttributes.ESSENCE_BURNOUT.get())).getValue()));
+            float attributeValue = (float) player.getAttribute(JAttributes.ESSENCE_BURNOUT.get()).getValue();
+            setBurnout(Math.min(getBurnout() + attributeValue, attributeValue * 5));
             return false;
         }
         return true;

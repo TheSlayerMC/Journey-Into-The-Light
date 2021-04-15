@@ -21,7 +21,7 @@ public class EssenceTickHandler {
                 JPlayer playerCapability = JPlayer.from(event.player);
                 if (playerCapability != null) {
                     Essence essence = playerCapability.essence.get();
-                    if (essence.getBurnout() <= 0) {
+                    if (essence.isRegenReady()) {
                         essence.addEssence(event.player, (float) Objects.requireNonNull(event.player.getAttribute(JAttributes.ESSENCE_REGEN_SPEED.get())).getValue());
                     } else {
                         essence.setBurnout(essence.getBurnout() - 0.1F);

@@ -13,6 +13,7 @@ import net.jitl.config.JConfigs;
 import net.jitl.util.IEssenceItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.MainMenuScreen;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.GuiOpenEvent;
@@ -64,29 +65,32 @@ public class GuiEventHandler {
 	public static void renderEssenceBar(RenderGameOverlayEvent.Post event) {
 		if (event.getType() == RenderGameOverlayEvent.ElementType.ALL) {
 			Minecraft minecraft = Minecraft.getInstance();
-			MatrixStack matrixStack = event.getMatrixStack();
-			JPlayer cap = JPlayer.from(minecraft.player);
-			if (cap != null) {
-				float currentEssence = cap.essence.get().getCurrentEssence();
-				float maxEssence = Essence.getMaxEssence(minecraft.player);
+			PlayerEntity player = minecraft.player;
+			if (!player.isCreative()) {
+				MatrixStack matrixStack = event.getMatrixStack();
+				JPlayer cap = JPlayer.from(player);
+				if (cap != null) {
+					float currentEssence = cap.essence.get().getCurrentEssence();
+					float maxEssence = Essence.getMaxEssence(player);
 
-				boolean isEssenceUsed = currentEssence < maxEssence;
+					boolean isEssenceUsed = currentEssence < maxEssence;
 
-				if (instanceOfEssenceItem(minecraft.player.getMainHandItem().getItem()) || isEssenceUsed && transparency <= 1.0) {
-					transparency += .02;
-				} else if (transparency > 0) {
-					transparency -= .02;
-				}
-				if (!minecraft.options.hideGui) {
-					int l = event.getWindow().getGuiScaledHeight() - 32 + 3;
-					int w = event.getWindow().getGuiScaledWidth() / 2 - 91;
+					if (instanceOfEssenceItem(player.getMainHandItem().getItem()) || isEssenceUsed && transparency <= 1.0) {
+						transparency += .02;
+					} else if (transparency > 0) {
+						transparency -= .02;
+					}
+					if (!minecraft.options.hideGui) {
+						int l = event.getWindow().getGuiScaledHeight() - 32 + 3;
+						int w = event.getWindow().getGuiScaledWidth() / 2 - 91;
 
-					RenderSystem.color4f(1.0F, 1.0F, 1.0F, transparency);
-					minecraft.getTextureManager().bind(JITL.tl("gui/essence.png").fullLocation());
-					RenderUtils.blit(matrixStack, w, l, 0, 5, 81, 5, 81, 10);
+						RenderSystem.color4f(1.0F, 1.0F, 1.0F, transparency);
+						minecraft.getTextureManager().bind(JITL.tl("gui/essence.png").fullLocation());
+						RenderUtils.blit(matrixStack, w, l, 0, 5, 81, 5, 81, 10);
 
-					int i = (int) ((currentEssence / maxEssence) * 81);
-					RenderUtils.blit(matrixStack, w, l, 0, 0, i, 5, 81, 10);
+						int i = (int) ((currentEssence / maxEssence) * 81);
+						RenderUtils.blit(matrixStack, w, l, 0, 0, i, 5, 81, 10);
+					}
 				}
 			}
 		}
