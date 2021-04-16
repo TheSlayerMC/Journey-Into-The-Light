@@ -76,7 +76,7 @@ public class Essence implements INBTSerializable<CompoundNBT>, IChangable {
         if (!player.isCreative()) {
             if (hasEssence(price)) {
                 setEssence(getCurrentEssence() - price);
-                timeout = 10;
+                timeout = 20;
                 return true;
             }
             float attributeValue = (float) player.getAttribute(JAttributes.ESSENCE_BURNOUT.get()).getValue();

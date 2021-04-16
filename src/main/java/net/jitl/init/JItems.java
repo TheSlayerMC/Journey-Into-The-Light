@@ -144,6 +144,7 @@ public class JItems {
     public static final Item RING_OF_POISON = promise();
 
     public static final Item DYNASTER_AMULET = promise();
+    public static final Item CLOUDWALKER_AMULET = promise();
 
     public static final Item WEAK_ESSENCE_CATALYST = promise();
     public static final Item WEAK_REGEN_CATALYST = promise();

@@ -4,6 +4,10 @@
     {
       "id": "jitl:dynaster_amulet",
       "required": false
+    },
+    {
+      "id": "jitl:cloudwalker_amulet",
+      "required": false
     }
   ]
 }

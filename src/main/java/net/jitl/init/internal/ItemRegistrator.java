@@ -9,6 +9,7 @@ import net.jitl.common.item.armor.JArmorItem;
 import net.jitl.common.item.armor.LuniumArmorItem;
 import net.jitl.common.item.curios.HeartContainerItem;
 import net.jitl.common.item.curios.JCurioItem;
+import net.jitl.common.item.curios.amulet.CloudwalkingAmuletItem;
 import net.jitl.common.item.curios.amulet.DynasterAmuletItem;
 import net.jitl.common.item.curios.catalyst.EssenceCatalystItem;
 import net.jitl.common.item.curios.catalyst.RegenCatalystItem;
@@ -230,7 +231,9 @@ public class ItemRegistrator {
         registerItem("ring_of_slowness", "Ring of Slowness", () -> new JRingItem(itemGrouped().stacksTo(1)).effect(Effects.MOVEMENT_SLOWDOWN::getEffect));
         registerItem("ring_of_withering", "Ring of Withering", () -> new JRingItem(itemGrouped().stacksTo(1)).effect(Effects.WITHER::getEffect));
 
-        registerItem("dynaster_amulet", "Dynaster Amulet", () -> new DynasterAmuletItem(itemGrouped().stacksTo(1)));
+        registerItem("dynaster_amulet", "Amulet of the Dynaster", () -> new DynasterAmuletItem(itemGrouped().stacksTo(1)));
+        registerItem("cloudwalker_amulet", "Cloudwalker's Amulet", () -> new CloudwalkingAmuletItem(itemGrouped().stacksTo(1)));
+
         registerItem("weak_essence_catalyst", "Essence Catalyst", () -> new EssenceCatalystItem(itemGrouped().stacksTo(1)).essence(10F));
         registerItem("weak_regen_catalyst", "Regeneration Catalyst", () -> new RegenCatalystItem(itemGrouped().stacksTo(1)).speed(0.0112F));
     }
