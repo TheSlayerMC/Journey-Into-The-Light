@@ -1,7 +1,7 @@
 package net.jitl.init;
 
 import net.jitl.JITL;
-import net.jitl.common.loot.conditions.GetTableCondition;
+import net.jitl.common.loot.conditions.GetTablesCondition;
 import net.minecraft.loot.ILootSerializer;
 import net.minecraft.loot.LootConditionType;
 import net.minecraft.loot.conditions.ILootCondition;
@@ -11,7 +11,7 @@ public class JLootConditions {
     public static void init() {
     }
 
-    public static final LootConditionType GET_TABLE = register("get_table", new GetTableCondition.Serializer());
+    public static final LootConditionType GET_TABLE = register("get_tables", new GetTablesCondition.Serializer());
 
     private static LootConditionType register(String id, ILootSerializer<? extends ILootCondition> serializer) {
         JITL.LOGGER.info("registered loot conditions");
