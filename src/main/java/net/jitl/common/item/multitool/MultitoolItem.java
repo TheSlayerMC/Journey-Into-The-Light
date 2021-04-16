@@ -1,4 +1,4 @@
-package net.jitl.common.item;
+package net.jitl.common.item.multitool;
 
 import com.google.common.collect.Sets;
 import net.jitl.common.helper.JToolTiers;

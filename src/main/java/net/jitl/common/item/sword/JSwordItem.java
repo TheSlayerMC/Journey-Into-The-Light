@@ -1,4 +1,4 @@
-package net.jitl.common.item;
+package net.jitl.common.item.sword;
 
 import net.jitl.common.helper.JToolTiers;
 import net.jitl.common.helper.TooltipFiller;
@@ -26,10 +26,6 @@ public class JSwordItem extends SwordItem {
 		super(tier, (int) tier.getSwordDamage(), tier.getAttackSpeed(), new Item.Properties().tab(JTabs.WEAPONS));
 	}
 
-	public static boolean isDayTime(World world) {
-		final long time = world.getDayTime() % 24000L;
-		return time < 13000L || time > 23000L;
-	}
 	@Override
 	public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
 		ItemStack itemstack = playerIn.getItemInHand(handIn);

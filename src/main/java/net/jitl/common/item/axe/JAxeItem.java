@@ -1,4 +1,4 @@
-package net.jitl.common.item;
+package net.jitl.common.item.axe;
 
 import net.jitl.common.helper.JToolTiers;
 import net.jitl.init.JTabs;
