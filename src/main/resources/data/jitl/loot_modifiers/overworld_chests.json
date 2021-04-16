@@ -1,0 +1,12 @@
+{
+  "conditions": [
+    {
+      "condition": "jitl:get_tables",
+      "old_tables": [
+        "minecraft:chests/spawn_bonus_chest"
+      ]
+    }
+  ],
+  "new_table": "minecraft:chests/abandoned_mineshaft",
+  "type": "jitl:inject_table"
+}

@@ -5,6 +5,7 @@ import net.jitl.client.eventhandler.ClientLoadingEventHandler;
 import net.jitl.client.render.JEntityRenderRegistry;
 import net.jitl.common.capability.JCapabilityProvider;
 import net.jitl.init.JBiomeRegistry;
+import net.jitl.init.JLootConditions;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -33,20 +34,20 @@ public class JITL implements TimeMod {
     public static final Logger LOGGER = LogManager.getLogger(MODID);
 
     public JITL() {
-        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
+		IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+		IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
 
-        Registration.register(modEventBus);
-
-        modEventBus.addListener(this::preInit);
+		Registration.register(modEventBus);
+		JLootConditions.init();
+		modEventBus.addListener(this::preInit);
 		modEventBus.addListener(this::clientSetup);
 		modEventBus.addListener(this::enqueue);
 
-	    MinecraftForge.EVENT_BUS.register(this);
+		MinecraftForge.EVENT_BUS.register(this);
 
-	    ClientLoadingEventHandler.regToBus(modEventBus, forgeEventBus);
-	    ClientEventHandler.regToBus(modEventBus, forgeEventBus);
-    }
+		ClientLoadingEventHandler.regToBus(modEventBus, forgeEventBus);
+		ClientEventHandler.regToBus(modEventBus, forgeEventBus);
+	}
 
 	private void preInit(final FMLCommonSetupEvent event) {
 		event.enqueueWork(JBiomeRegistry::registerProviders);
