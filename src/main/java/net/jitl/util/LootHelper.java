@@ -37,8 +37,25 @@ public class LootHelper {
         builderModificator.accept(builder);
         LootContext context = builder.create(LootParameterSets.EMPTY);
 
-        if(random == null) random = world.getRandom();
+        if (random == null) random = world.getRandom();
 
         return ServerLifecycleHooks.getCurrentServer().getLootTables().get(lootTable).getRandomItems(context);
+    }
+
+    public static Consumer<ItemStack> createStackSplitter(Consumer<ItemStack> stackConsumer) {
+        return (stack) -> {
+            if (stack.getCount() < stack.getMaxStackSize()) {
+                stackConsumer.accept(stack);
+            } else {
+                int i = stack.getCount();
+
+                while (i > 0) {
+                    ItemStack itemstack = stack.copy();
+                    itemstack.setCount(Math.min(stack.getMaxStackSize(), i));
+                    i -= itemstack.getCount();
+                    stackConsumer.accept(itemstack);
+                }
+            }
+        };
     }
 }
