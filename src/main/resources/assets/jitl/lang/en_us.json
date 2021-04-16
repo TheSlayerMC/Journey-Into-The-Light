@@ -5,6 +5,8 @@
   "effect.jitl.essence_regen": "Essence Regeneration",
   "jitl.tooltip.enable_menu": "Use JITL Menu Theme",
   "jitl.tooltip.disable_menu": "Use Default Menu Theme",
+  "jitl.tooltip.lunium_armor.0": "Auto-repair",
+  "jitl.tooltip.lunium_armor.1": "Repair speed relies on light level",
   "jitl.tooltip.shadium_sword.0": "Deal more damage while in darkness.",
   "jitl.tooltip.shadium_sword.1": "Maximum 50% damage increase.",
   "jitl.tooltip.shadium_armor.0": "Take less damage while in darkness.",

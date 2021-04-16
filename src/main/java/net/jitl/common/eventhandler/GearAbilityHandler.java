@@ -1,30 +1,10 @@
 package net.jitl.common.eventhandler;
 
 import net.jitl.JITL;
-import net.jitl.common.capability.JCapabilityProvider;
-import net.jitl.common.capability.armorability.IArmorSetCapability;
-import net.jitl.common.helper.JArmorMaterial;
-import net.jitl.common.helper.JToolTiers;
-import net.jitl.common.item.JArmorItem;
-import net.jitl.common.item.JSwordItem;
-import net.jitl.common.item.gearabilities.PieceArmorAbilities;
-import net.jitl.common.item.gearabilities.BaseToolAbilities;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Hand;
-import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
-import net.minecraftforge.event.entity.living.LivingEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-
-import java.util.Optional;
 
 @Mod.EventBusSubscriber(modid = JITL.MODID)
 public class GearAbilityHandler {
@@ -92,20 +72,5 @@ public class GearAbilityHandler {
     @SubscribeEvent()
     public static void armorChange(LivingEquipmentChangeEvent event) {
         LivingEntity entity = event.getEntityLiving();
-        Optional<IArmorSetCapability> optional = entity.getCapability(JCapabilityProvider.ARMOR).resolve();
-        if (optional.isPresent()) {
-            System.out.println("Optional is present");
-            EquipmentSlotType slot = event.getSlot();
-            if (slot.getType() == EquipmentSlotType.Group.ARMOR) {
-                System.out.println("Armor was changed");
-                ItemStack stack = entity.getItemBySlot(slot);
-                if (stack.getItem() instanceof JArmorItem) {
-                    System.out.println("Armor is from jitl");
-                    PieceArmorAbilities ability = ((JArmorMaterial) ((JArmorItem) stack.getItem()).getMaterial()).getPieceAbility();
-                    if (ability != null) ability.setStack(stack);
-                    optional.get().setArmor(slot.getIndex(), ability);
-                }
-            }
-        }
     }
 }

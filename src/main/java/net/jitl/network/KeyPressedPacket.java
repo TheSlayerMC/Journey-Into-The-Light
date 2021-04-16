@@ -2,8 +2,6 @@ package net.jitl.network;
 
 import net.jitl.common.capability.JCapabilityProvider;
 import net.jitl.common.capability.armorability.IArmorSetCapability;
-import net.jitl.common.item.gearabilities.PieceArmorAbilities;
-import net.jitl.common.item.gearabilities.celestium.CelestiumFullArmorAbilities;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;
