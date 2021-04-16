@@ -3,10 +3,11 @@
     {
       "condition": "jitl:get_tables",
       "old_tables": [
-        "minecraft:chests/spawn_bonus_chest"
+        "minecraft:chests/spawn_bonus_chest",
+        "minecraft:chests/abandoned_mineshaft"
       ]
     }
   ],
-  "new_table": "minecraft:chests/abandoned_mineshaft",
+  "new_table": "jitl:chests/overworld_chests",
   "type": "jitl:inject_table"
 }
