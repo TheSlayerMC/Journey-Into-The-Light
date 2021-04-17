@@ -21,7 +21,7 @@ public class CloudwalkingAmuletItem extends JCurioItem {
                 JPlayer capability = JPlayer.from(player);
                 if (capability != null && capability.essence.get().checkEssenceEitherSide(player.level.isClientSide(), player, 0.25F)) {
                     player.fallDistance = 0.0F;
-                    player.setDeltaMovement(livingEntity.getDeltaMovement().multiply(1, 1.2F, 1));
+                    player.setDeltaMovement(livingEntity.getDeltaMovement().add(0, 0.08F, 0));
                 }
             }
         }

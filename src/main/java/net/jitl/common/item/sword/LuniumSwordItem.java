@@ -27,21 +27,23 @@ public class LuniumSwordItem extends JSwordItem implements LiveNBTUpdateItem {
 
     @Override
     public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
-        IMorphingNBTCapability cap = getCap(stack);
-        if (cap != null) {
-            CompoundNBT tag = cap.getNBT();
-            if (tag.contains("cooldown")) {
-                if (tag.getFloat("cooldown") == 0) {
-                    stack.setDamageValue(stack.getDamageValue() - 1);
-                    tag.putFloat("cooldown", 100);
+        if (!entityIn.level.isClientSide()) {
+            IMorphingNBTCapability cap = getCap(stack);
+            if (cap != null) {
+                CompoundNBT tag = cap.getNBT();
+                if (tag.contains("cooldown")) {
+                    if (tag.getFloat("cooldown") == 0) {
+                        stack.setDamageValue(stack.getDamageValue() - 1);
+                        tag.putFloat("cooldown", 100);
+                    } else {
+                        tag.putFloat("cooldown", Math.max(tag.getFloat("cooldown") - entityIn.getBrightness(), 0));
+                    }
                 } else {
-                    tag.putFloat("cooldown", Math.max(tag.getFloat("cooldown") - entityIn.getBrightness(), 0));
+                    tag.putFloat("cooldown", 0);
                 }
-            } else {
-                tag.putFloat("cooldown", 0);
+                System.out.println(tag.getFloat("cooldown"));
+                cap.setNBT(tag);
             }
-            System.out.println(tag.getFloat("cooldown"));
-            cap.setNBT(tag);
         }
     }
 
