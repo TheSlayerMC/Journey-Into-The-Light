@@ -2,7 +2,7 @@ package net.jitl.common.loot.modifiers;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
-import net.jitl.JITL;
+import net.jitl.util.LootHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootContext;
 import net.minecraft.loot.LootTable;
@@ -32,10 +32,7 @@ public class InjectTableModifier extends LootModifier {
     @Override
     protected List<ItemStack> doApply(List<ItemStack> generatedLoot, LootContext context) {
         LootTable lootTable = context.getLootTable(getNewTable());
-        JITL.LOGGER.info("Applied InjectTableModifier");
-        if (!lootTable.isFrozen()) {
-            lootTable.getRandomItems(context, generatedLoot::add);
-        }
+        lootTable.getRandomItemsRaw(context, LootHelper.createStackSplitter(generatedLoot::add));
         return generatedLoot;
     }
 
