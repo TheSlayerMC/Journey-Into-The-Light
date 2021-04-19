@@ -19,24 +19,6 @@ public class JHoeItem extends HoeItem {
 	}
 
 	@Override
-	public void inventoryTick(@NotNull ItemStack stack, @NotNull World worldIn, @NotNull Entity entityIn, int itemSlot, boolean isSelected) {
-		if (!worldIn.isClientSide() && worldIn.getGameTime() % 40 == 0) {
-			if (getTier() == JToolTiers.LUNIUM) {
-				if (entityIn instanceof PlayerEntity) {
-					if (isDayTime(worldIn) && worldIn.canSeeSky(entityIn.blockPosition())) {
-						stack.hurt(-2, random, null);
-					}
-				}
-			}
-		}
-	}
-
-	public static boolean isDayTime(World world) {
-		final long time = world.getDayTime() % 24000L;
-		return time < 13000L || time > 23000L;
-	}
-
-	@Override
 	public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
 		ItemStack itemstack = playerIn.getItemInHand(handIn);
 

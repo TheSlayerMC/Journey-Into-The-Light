@@ -4,6 +4,7 @@ import net.jitl.common.helper.JArmorMaterial;
 import net.jitl.common.helper.TooltipFiller;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -21,19 +22,17 @@ public class LuniumArmorItem extends JArmorItem {
     }
 
     @Override
-    public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
-        if (this.getSlot().getType() == EquipmentSlotType.Group.ARMOR) {
-            CompoundNBT tag = stack.hasTag() ? stack.getTag() : new CompoundNBT();
-            if (tag.contains("cooldown")) {
-                if (tag.getFloat("cooldown") == 0) {
-                    stack.setDamageValue(stack.getDamageValue() - 1);
-                    tag.putFloat("cooldown", 100);
-                } else {
-                    tag.putFloat("cooldown", Math.max(tag.getFloat("cooldown") - entityIn.getBrightness(), 0));
-                }
+    public void armorTickAbility(LivingEntity entity, World world, ItemStack stack) {
+        CompoundNBT tag = stack.hasTag() ? stack.getTag() : new CompoundNBT();
+        float value = tag.getFloat("cooldown");
+        if (stack.getDamageValue() > 0 || value < 100) {
+            if (value == 0) {
+                tag.putFloat("cooldown", 100);
+                stack.setDamageValue(stack.getDamageValue() - 1);
             } else {
-                tag.putFloat("cooldown", 0);
+                tag.putFloat("cooldown", Math.max(value - entity.getBrightness(), 0));
             }
+            System.out.println(tag.getFloat("cooldown"));
             stack.setTag(tag);
         }
     }
