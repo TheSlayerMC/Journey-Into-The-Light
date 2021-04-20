@@ -1,5 +1,6 @@
 package net.jitl.common.scroll;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
@@ -29,7 +30,7 @@ public class ImageDescComponent implements IDescComponent {
     }
 
     @Override
-    public void drawContentPart(int x0, int y0, int width) {
+    public void drawContentPart(MatrixStack matrixStack, int x0, int y0, int width) {
         drawImage(x0, y0, 0, 0, width, contentHeight);
     }
 

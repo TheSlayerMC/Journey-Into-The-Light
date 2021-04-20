@@ -1,5 +1,6 @@
 package net.jitl.common.scroll;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import net.jitl.JITL;
 import net.minecraft.client.Minecraft;
@@ -32,7 +33,7 @@ public class UnderHeaderDescComponent implements IDescComponent {
 
     //TODO: remove GLStateManager methods, change to new render system
     @Override
-    public void drawContentPart(int x0, int y0, int width) {
+    public void drawContentPart(MatrixStack matrixStack, int x0, int y0, int width) {
         GlStateManager._pushMatrix();
         GlStateManager._enableBlend();
         GlStateManager._enableAlphaTest();
