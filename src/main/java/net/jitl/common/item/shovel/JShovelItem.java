@@ -17,14 +17,4 @@ public class JShovelItem extends ShovelItem {
 	public JShovelItem(JToolTiers tier) {
 		super(tier, tier.getShovelDam(), tier.getAttackSpeed(), new Item.Properties().tab(JTabs.TOOLS));
 	}
-
-	@Override
-	public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
-		ItemStack itemstack = playerIn.getItemInHand(handIn);
-
-		if (!worldIn.isClientSide) {
-			itemstack.setDamageValue(getTier().getUses() / 2);
-		}
-		return ActionResult.pass(itemstack);
-	}
 }

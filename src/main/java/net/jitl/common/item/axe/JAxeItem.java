@@ -17,14 +17,4 @@ public class JAxeItem extends AxeItem {
 	public JAxeItem(JToolTiers tier) {
 		super(tier, tier.getAxeDam(), tier.getAttackSpeed(), new Item.Properties().tab(JTabs.TOOLS));
 	}
-
-	@Override
-	public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
-		ItemStack itemstack = playerIn.getItemInHand(handIn);
-
-		if (!worldIn.isClientSide) {
-			itemstack.setDamageValue(getTier().getUses() / 2);
-		}
-		return ActionResult.pass(itemstack);
-	}
 }

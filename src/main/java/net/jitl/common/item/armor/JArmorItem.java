@@ -40,16 +40,4 @@ public class JArmorItem extends ArmorItem {
 	}
 
 	public void armorTickAbility(LivingEntity entity, World world, ItemStack stack) {}
-
-	@Override
-	public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
-		ItemStack itemstack = playerIn.getItemInHand(handIn);
-
-		if (!worldIn.isClientSide) {
-			itemstack.setDamageValue(getMaterial().getDurabilityForSlot(EquipmentSlotType.HEAD) / 2);
-			System.out.println("World is server");
-			System.out.println(getMaterial().getDurabilityForSlot(EquipmentSlotType.HEAD) / 2);
-		}
-		return ActionResult.pass(itemstack);
-	}
 }
