@@ -6,6 +6,7 @@ import net.jitl.common.helper.TooltipFiller;
 import net.jitl.init.JTabs;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
@@ -29,14 +30,14 @@ public class JArmorItem extends ArmorItem {
 	}
 
 	@Override
-	public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
-		ItemStack itemstack = playerIn.getItemInHand(handIn);
-
-		if (!worldIn.isClientSide) {
-			itemstack.setDamageValue(getMaterial().getDurabilityForSlot(EquipmentSlotType.HEAD) / 2);
-			System.out.println("World is server");
-			System.out.println(getMaterial().getDurabilityForSlot(EquipmentSlotType.HEAD) / 2);
+	public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
+		if (entityIn instanceof LivingEntity) {
+			LivingEntity livingEntity = (LivingEntity) entityIn;
+			if (livingEntity.getItemBySlot(this.getSlot()) == stack) {
+				armorTickAbility(livingEntity, worldIn, stack);
+			}
 		}
-		return ActionResult.pass(itemstack);
 	}
+
+	public void armorTickAbility(LivingEntity entity, World world, ItemStack stack) {}
 }

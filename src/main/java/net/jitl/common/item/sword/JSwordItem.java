@@ -25,14 +25,4 @@ public class JSwordItem extends SwordItem {
 	public JSwordItem(JToolTiers tier) {
 		super(tier, (int) tier.getSwordDamage(), tier.getAttackSpeed(), new Item.Properties().tab(JTabs.WEAPONS));
 	}
-
-	@Override
-	public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
-		ItemStack itemstack = playerIn.getItemInHand(handIn);
-
-		if (!worldIn.isClientSide) {
-			itemstack.setDamageValue(getTier().getUses() / 2);
-		}
-		return ActionResult.pass(itemstack);
-	}
 }

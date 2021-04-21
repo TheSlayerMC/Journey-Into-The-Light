@@ -1,14 +1,10 @@
 package net.jitl.common.item.sword;
 
 import net.jitl.common.capability.JCapabilityProvider;
-import net.jitl.common.capability.morphingnbt.IMorphingNBTCapability;
-import net.jitl.common.capability.morphingnbt.MorphingNBTCapability;
 import net.jitl.common.helper.JToolTiers;
 import net.jitl.common.helper.TooltipFiller;
-import net.jitl.common.item.LiveNBTUpdateItem;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
-import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.text.ITextComponent;
@@ -20,30 +16,24 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.Optional;
 
-public class LuniumSwordItem extends JSwordItem implements LiveNBTUpdateItem {
+public class LuniumSwordItem extends JSwordItem {
     public LuniumSwordItem(JToolTiers tier) {
         super(tier);
     }
 
     @Override
     public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
-        if (!entityIn.level.isClientSide()) {
-            IMorphingNBTCapability cap = getCap(stack);
-            if (cap != null) {
-                CompoundNBT tag = cap.getNBT();
-                if (tag.contains("cooldown")) {
-                    if (tag.getFloat("cooldown") == 0) {
-                        stack.setDamageValue(stack.getDamageValue() - 1);
-                        tag.putFloat("cooldown", 100);
-                    } else {
-                        tag.putFloat("cooldown", Math.max(tag.getFloat("cooldown") - entityIn.getBrightness(), 0));
-                    }
-                } else {
-                    tag.putFloat("cooldown", 0);
-                }
-                System.out.println(tag.getFloat("cooldown"));
-                cap.setNBT(tag);
+        CompoundNBT tag = stack.hasTag() ? stack.getTag() : new CompoundNBT();
+        float value = tag.getFloat("cooldown");
+        if (stack.getDamageValue() > 0 || value < 100) {
+            if (value == 0) {
+                tag.putFloat("cooldown", 100);
+                stack.setDamageValue(stack.getDamageValue() - 1);
+            } else {
+                tag.putFloat("cooldown", Math.max(value - entityIn.getBrightness(), 0));
             }
+            System.out.println(tag.getFloat("cooldown"));
+            stack.setTag(tag);
         }
     }
 
@@ -56,8 +46,22 @@ public class LuniumSwordItem extends JSwordItem implements LiveNBTUpdateItem {
     }
 
     @Override
-    public IMorphingNBTCapability getCap(ItemStack stack) {
-        Optional<IMorphingNBTCapability> optional = stack.getCapability(JCapabilityProvider.NBT).resolve();
-        return optional.orElse(null);
+    public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
+        if (oldStack.equals(newStack)) return false;
+        if (oldStack.sameItem(newStack)) {
+            int durability = newStack.getDamageValue() - oldStack.getDamageValue();
+            return durability != 0 && durability != 1; //for repair
+        }
+        return true;
+    }
+
+    @Override
+    public boolean shouldCauseBlockBreakReset(ItemStack oldStack, ItemStack newStack) {
+        if (oldStack.equals(newStack)) return false;
+        if (oldStack.sameItem(newStack)) {
+            int durability = newStack.getDamageValue() - oldStack.getDamageValue();
+            return durability != 0 && durability != 1;
+        }
+        return true;
     }
 }

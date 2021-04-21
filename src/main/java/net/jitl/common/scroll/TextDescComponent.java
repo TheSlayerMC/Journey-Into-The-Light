@@ -26,8 +26,7 @@ public class TextDescComponent implements IDescComponent {
     }
 
     @Override
-    public void drawContentPart(int x0, int y0, int width) {
-        MatrixStack matrixStack = new MatrixStack(); //TODO: fixme
+    public void drawContentPart(MatrixStack matrixStack, int x0, int y0, int width) {
         int i = y0;
 
         for (IReorderingProcessor s : wrappedText) {

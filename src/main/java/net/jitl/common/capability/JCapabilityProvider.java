@@ -6,9 +6,6 @@ import net.jitl.common.capability.armorability.IArmorSetCapability;
 import net.jitl.common.capability.currentstructure.CurrentStructureCapability;
 import net.jitl.common.capability.currentstructure.CurrentStructureStorage;
 import net.jitl.common.capability.currentstructure.ICurrentStructureCapability;
-import net.jitl.common.capability.morphingnbt.IMorphingNBTCapability;
-import net.jitl.common.capability.morphingnbt.MorphingNBTCapability;
-import net.jitl.common.capability.morphingnbt.MorphingNBTStorage;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.INBT;
 import net.minecraft.util.Direction;
@@ -32,11 +29,6 @@ public class JCapabilityProvider implements ICapabilitySerializable<INBT> {
 
     private final ICurrentStructureCapability structureInstance = STRUCTURE.getDefaultInstance();
 
-    @CapabilityInject(IMorphingNBTCapability.class)
-    public static final Capability<IMorphingNBTCapability> NBT = Hacks.promise();
-
-    private final IMorphingNBTCapability nbtInstance = NBT.getDefaultInstance();
-
     @NotNull
     @Override
     public <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
@@ -44,8 +36,6 @@ public class JCapabilityProvider implements ICapabilitySerializable<INBT> {
             return LazyOptional.of(() -> armorInstance).cast();
         } else if (cap == STRUCTURE && structureInstance != null) {
             return LazyOptional.of(() -> structureInstance).cast();
-        } else if (cap == NBT && nbtInstance != null) {
-            return LazyOptional.of(() -> nbtInstance).cast();
         }
         return LazyOptional.empty();
     }
@@ -65,6 +55,5 @@ public class JCapabilityProvider implements ICapabilitySerializable<INBT> {
     public static void registerCapabilities() {
         CapabilityManager.INSTANCE.register(IArmorSetCapability.class, new ArmorSetStorage(), ArmorSetCapability::new);
         CapabilityManager.INSTANCE.register(ICurrentStructureCapability.class, new CurrentStructureStorage(), CurrentStructureCapability::new);
-        CapabilityManager.INSTANCE.register(IMorphingNBTCapability.class, new MorphingNBTStorage(), MorphingNBTCapability::new);
     }
 }
