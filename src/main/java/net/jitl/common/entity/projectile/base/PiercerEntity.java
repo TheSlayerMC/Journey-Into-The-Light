@@ -40,11 +40,15 @@ public abstract class PiercerEntity extends DamagingProjectileEntity implements 
 
         if(faceHit == Direction.UP || faceHit == Direction.DOWN) {
             //this.motionY *= -1.0D;
+            this.lerpMotion(0.0D, -1.0D, 0.0D);
         } else if (faceHit == Direction.SOUTH || faceHit == Direction.NORTH) {
             // this.motionZ *= -1.0D;
+            this.lerpMotion(0.0D, 0.0D, -1.0D);
         } else if (faceHit == Direction.EAST || faceHit == Direction.WEST) {
             // this.motionX *= -1.0D;
+            this.lerpMotion(-1.0D, 0.0D, 0.0D);
         }
+        System.out.println("Hit: " + faceHit);
         this.bounces++;
         if(this.bounces == this.maxBounces) this.remove();
     }
@@ -54,6 +58,7 @@ public abstract class PiercerEntity extends DamagingProjectileEntity implements 
         if(rt.getEntity() != null && rt.getEntity() != thrower) {
             rt.getEntity().hurt(DamageSource.thrown(this, this.getOwner()), this.getDamage());
             if(!level.isClientSide) this.remove();
+            System.out.println("Hit: ");
             return;
         }
     }
