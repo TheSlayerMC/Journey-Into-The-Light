@@ -3,6 +3,7 @@
   "item.minecraft.splash_potion.effect.essence_regen": "Splash Potion of Essence Regeneration",
   "item.minecraft.lingering_potion.effect.essence_regen": "Lingering Potion of Essence Regeneration",
   "effect.jitl.essence_regen": "Essence Regeneration",
+  "jitl.message.item.miners_pearl": "The pearl doesn't feel safe enough to teleport.",
   "jitl.tooltip.enable_menu": "Use JITL Menu Theme",
   "jitl.tooltip.disable_menu": "Use Default Menu Theme",
   "jitl.tooltip.lunium_gear.0": "Auto-repair",

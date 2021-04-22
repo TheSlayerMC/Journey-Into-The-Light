@@ -55,11 +55,11 @@ public abstract class PiercerEntity extends DamagingProjectileEntity implements 
 
     @Override
     protected void onHitEntity(EntityRayTraceResult rt) {
-        if(rt.getEntity() != null && rt.getEntity() != thrower) {
+        rt.getEntity();
+        if (rt.getEntity() != thrower) {
             rt.getEntity().hurt(DamageSource.thrown(this, this.getOwner()), this.getDamage());
-            if(!level.isClientSide) this.remove();
+            if (!level.isClientSide) this.remove();
             System.out.println("Hit: ");
-            return;
         }
     }
 

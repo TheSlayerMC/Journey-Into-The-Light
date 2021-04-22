@@ -18,6 +18,7 @@ import net.jitl.common.item.curios.catalyst.RegenCatalystItem;
 import net.jitl.common.item.curios.ring.JRingItem;
 import net.jitl.common.item.hoe.JHoeItem;
 import net.jitl.common.item.hoe.LuniumHoeItem;
+import net.jitl.common.item.interactive.MinersPearlItem;
 import net.jitl.common.item.multitool.LuniumMultitoolItem;
 import net.jitl.common.item.multitool.MultitoolItem;
 import net.jitl.common.item.pickaxe.JPickaxeItem;
@@ -229,6 +230,8 @@ public class ItemRegistrator {
 
         registerItem("euca_piercer", "Euca Piercer", () -> new ThrowableItem(rangedWeaponsGrouped(), (world, livingEntity) -> new EucaPiercerEntity(world, livingEntity, 10, 5)).setSound(JSounds.STAFF_0::get));
         registerItem("skull_of_decay", "Skull Of Decay", () -> new JCurioItem(itemGrouped().stacksTo(1)).ability(true).drawback(true).overview(true));
+
+        registerItem("miners_pearl", "Miners Pearl", () -> new MinersPearlItem(itemGrouped().stacksTo(1)));
 
         registerItem("heart_container_small", "Heart Container", () -> new HeartContainerItem(itemGrouped().stacksTo(1)).health(1).ability(true).drawback(true).overview(true));
         registerItem("heart_container_medium", "Heart Container", () -> new HeartContainerItem(itemGrouped().stacksTo(1)).health(4));
