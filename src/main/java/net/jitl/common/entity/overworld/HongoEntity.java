@@ -18,6 +18,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
@@ -60,16 +61,7 @@ public class HongoEntity extends CreatureEntity {
                 poison.addSizeKey(200, 0);
                 poison.setColor(Effects.POISON.getColor());
                 poison.spawn();
-                /*AreaEffectCloudEntity poison = new AreaEffectCloudEntity(this.level, this.getX(), this.getY(), this.getZ());
-                poison.setRadius(0.5F); //the base radius. Vanilla starts large and shrinks down, but I think the opposite is more realistic
-                poison.setWaitTime(5); //time before the cloud starts growing/damaging. Might be worth decreasing since player can run away anyways
-                poison.setRadiusPerTick(0.15F); //the speed at which the cloud size changes. Set negative if you want it to shrink like in vanilla
-                poison.setOwner(this); //does nothing to my knowledge
-                poison.setDuration(20); //how long the cloud lasts
-                poison.setPotion(new Potion(new EffectInstance(Effects.POISON, 500, 3)));
-                poison.addEffect(new EffectInstance(Effects.CONFUSION, 200));
                 level.playSound(null, this.blockPosition(), JSounds.HONGO_SPORE_RELEASE.get(), SoundCategory.HOSTILE, 1.0F, 1.0F);
-                this.level.addFreshEntity(poison);*/
             }
     		return true;
     	} else {

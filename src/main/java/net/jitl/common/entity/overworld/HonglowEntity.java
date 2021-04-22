@@ -19,10 +19,7 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
@@ -95,17 +92,18 @@ public class HonglowEntity extends CreatureEntity {
         if (super.hurt(source, amount) && random.nextInt(10) == 0) {
             if (source != DamageSource.OUT_OF_WORLD && source != DamageSource.MAGIC) {
     			JEffectCloudEntity poison = new JEffectCloudEntity(this, this.level, this.getX(), this.getY(), this.getZ(), 0.5F);
-    			poison.addSizeKey(5, 2);
-    			poison.addSizeKey(300, 0);
-    			poison.addPrimaryEffect(getVariant().getPrimaryPotion());
-    			poison.addSecondaryEffect(getVariant().getSecondaryPotion());
-    			poison.setColor(getVariant().getPotionColor());
-    			Entity attacker = source.getEntity();
-    			if (attacker instanceof LivingEntity) {
+				poison.addSizeKey(5, 2);
+				poison.addSizeKey(300, 0);
+				poison.addPrimaryEffect(getVariant().getPrimaryPotion());
+				poison.addSecondaryEffect(getVariant().getSecondaryPotion());
+				poison.setColor(getVariant().getPotionColor());
+				Entity attacker = source.getEntity();
+				if (attacker instanceof LivingEntity) {
 					poison.exclude((LivingEntity) attacker);
 				}
-    			poison.spawn();
-            }
+				poison.spawn();
+				level.playSound(null, this.blockPosition(), JSounds.HONGO_SPORE_RELEASE.get(), SoundCategory.HOSTILE, 1.0F, 1.0F);
+			}
     		return true;
     	} else {
     		return false;

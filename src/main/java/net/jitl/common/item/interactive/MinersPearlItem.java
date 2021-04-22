@@ -38,17 +38,15 @@ public class MinersPearlItem extends Item implements IEssenceItem {
                         !playerIn.isInWater() &&
                         !playerIn.isInLava();
         try {
-            if (flag) {
-                if (essence.consumeEssence(playerIn, 10F)) {
-                    if (!worldIn.isClientSide()) {
+            if (!worldIn.isClientSide()) {
+                if (flag) {
+                    if (essence.consumeEssence(playerIn, 10F)) {
                         playerIn.addEffect(new EffectInstance(Effects.CONFUSION, 140, 2));
                         canTeleport = true;
                         worldIn.playSound(playerIn, playerIn.blockPosition(), SoundEvents.ENDERMAN_TELEPORT, SoundCategory.PLAYERS, 1.0F, 0.5F);
                         capability.detectAndSendChanges();
                     }
-                }
-            } else {
-                if (!worldIn.isClientSide()) {
+                } else {
                     ChatUtils.format(new TranslationTextComponent("jitl.message.item.miners_pearl"), TextFormatting.DARK_PURPLE);
                 }
             }
