@@ -6,6 +6,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.ThrowableEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
+import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
@@ -68,6 +69,8 @@ public class DamagingProjectileEntity extends ThrowableEntity {
 
                     remove();
                 }
+            } else if (result.getType() == RayTraceResult.Type.BLOCK) {
+                onBlockImpact((BlockRayTraceResult) result);
             } else {
                 remove();
             }
@@ -82,6 +85,10 @@ public class DamagingProjectileEntity extends ThrowableEntity {
      */
     protected void onEntityImpact(RayTraceResult result, Entity target) {
 //        target.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), damage);
+    }
+
+    protected void onBlockImpact(BlockRayTraceResult result) {
+        remove();
     }
 
     @Override
