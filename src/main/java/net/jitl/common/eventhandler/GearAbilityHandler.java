@@ -1,7 +1,10 @@
 package net.jitl.common.eventhandler;
 
 import net.jitl.JITL;
+import net.jitl.common.item.IEquipUpdateItem;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.Item;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -70,7 +73,19 @@ public class GearAbilityHandler {
     }*/
 
     @SubscribeEvent()
-    public static void armorChange(LivingEquipmentChangeEvent event) {
+    public static void equipmentChange(LivingEquipmentChangeEvent event) {
+        Item item = event.getFrom().getItem();
         LivingEntity entity = event.getEntityLiving();
+        EquipmentSlotType slot = event.getSlot();
+        if (item instanceof IEquipUpdateItem) {
+            ((IEquipUpdateItem) item).unEquip(entity, slot);
+        }
+        item = event.getTo().getItem();
+        if (item instanceof IEquipUpdateItem) {
+            ((IEquipUpdateItem) item).equip(entity, slot);
+        }
+        if (slot.getType() == EquipmentSlotType.Group.ARMOR) {
+            //update armor
+        }
     }
 }
