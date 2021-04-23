@@ -57,7 +57,6 @@ public abstract class PiercerEntity extends DamagingProjectileEntity implements 
     protected void onEntityImpact(RayTraceResult result, Entity entity) {
         if (entity instanceof LivingEntity) {
             entity.hurt(DamageSource.thrown(this, this.getOwner()), this.getDamage());
-            if (!level.isClientSide) this.remove();
             System.out.println("Hit: ");
         }
     }
