@@ -61,10 +61,9 @@ public class FloroMudEntity extends DamagingProjectileEntity implements IRenders
 
     @Override
     protected void onEntityImpact(RayTraceResult result, Entity target) {
-        if (target instanceof LivingEntity) {
+        if (target instanceof LivingEntity && target.hurt(DamageSource.thrown(this, this.getOwner()), getDamage())) {
             EffectInstance effectInstance = new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20);
             ((LivingEntity) target).addEffect(effectInstance);
-            target.hurt(DamageSource.thrown(this, this.getOwner()), getDamage());
         }
     }
 
