@@ -66,6 +66,8 @@ public class DamagingProjectileEntity extends ThrowableEntity {
 
                 if (!Objects.equals(target, getOwner())) {
                     onEntityImpact(result, target);
+
+                    remove();
                 }
             } else if (result.getType() == RayTraceResult.Type.BLOCK) {
                 onBlockImpact((BlockRayTraceResult) result);
@@ -82,7 +84,7 @@ public class DamagingProjectileEntity extends ThrowableEntity {
      * @param target target of projectile. Never equals to the thrower.
      */
     protected void onEntityImpact(RayTraceResult result, Entity target) {
-        remove();
+//        target.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), damage);
     }
 
     protected void onBlockImpact(BlockRayTraceResult result) {

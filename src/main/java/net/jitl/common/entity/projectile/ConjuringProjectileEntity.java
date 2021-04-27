@@ -58,7 +58,6 @@ public class ConjuringProjectileEntity extends DamagingProjectileEntity {
             EffectInstance effectInstance = new EffectInstance(Effects.POISON, 60);
             ((LivingEntity) target).addEffect(effectInstance);
         }
-        super.onEntityImpact(result, target);
     }
 
     @Override

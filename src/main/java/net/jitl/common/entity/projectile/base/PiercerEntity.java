@@ -52,32 +52,23 @@ public abstract class PiercerEntity extends DamagingProjectileEntity implements 
     }
 
     @Override
-    protected void onHitEntity(EntityRayTraceResult result) { }
-
-    @Override
     protected void onEntityImpact(RayTraceResult result, Entity entity) {
         LivingEntity target = null;
         if (entity instanceof LivingEntity) {
             if(entity != this.getOwner()) {
                 entity.hurt(DamageSource.thrown(this, this.getOwner()), this.getDamage());
-                List<LivingEntity> entitysNear = this.level.getNearbyEntities(LivingEntity.class, EntityPredicate.DEFAULT, target, this.getBoundingBox().expandTowards(20D, 20D, 20D));
-                boolean needNewTarget = target == null || (target != null && target.isDeadOrDying() && target.hurtDuration >= 0.1);
-                for(LivingEntity e : entitysNear) {
-                    if(e != this.getOwner() && this.canSee(e)) {
-                        if(needNewTarget && (target == null || (target != null && this.distanceTo(e) < this.distanceTo(target)))) {
-                            System.out.println("old target: " + target);
+                List<LivingEntity> entitiesNear = this.level.getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(20D));
+                for(LivingEntity e : entitiesNear) {
+                    if(e != this.getOwner() && this.canSee(e) && !e.isDeadOrDying() && e != entity) {
+                        if(target == null || this.distanceTo(e) < this.distanceTo(target)) {
                             target = e;
-                            System.out.println("new target: " + target);
                         }
                     }
                 }
             }
             if(target != null) {
-                Vec3d directionTo = new Vec3d(target.getX() - this.getX(), (target.getY() + target.getEyeHeight()) - this.getY(), target.getZ() - this.getY());
-                double x = directionTo.x / 1.25D;
-                double y = directionTo.y / 1.25D;
-                double z = directionTo.z / 1.25D;
-                this.setDeltaMovement(getDeltaMovement().add(x, y, z));
+                this.setDeltaMovement(0, 0, 0);
+                this.shoot(target.getX() - this.getX(), target.getEyeY() - this.getY(), target.getZ() - this.getZ(), 1.2F, 0);
                 this.bounces++;
             }
         }
@@ -90,11 +81,6 @@ public abstract class PiercerEntity extends DamagingProjectileEntity implements 
     }
 
     @Override
-    public void tick() {
-        super.tick();
-    }
-
-    @Override
     protected void onHit(RayTraceResult result) {
         if(!this.level.isClientSide) {
             if(result.getType() == RayTraceResult.Type.ENTITY) {
@@ -103,7 +89,7 @@ public abstract class PiercerEntity extends DamagingProjectileEntity implements 
                     onEntityImpact(result, target);
                 }
             } else if(result.getType() == RayTraceResult.Type.BLOCK) {
-               // onBlockImpact((BlockRayTraceResult) result);
+               onBlockImpact((BlockRayTraceResult) result);
             }
             if(this.bounces == this.maxBounces) this.remove();
         }
@@ -116,7 +102,7 @@ public abstract class PiercerEntity extends DamagingProjectileEntity implements 
 
     @Override
     protected float getGravity() {
-        return 0.01F;
+        return 0.0F;
     }
 
 }
