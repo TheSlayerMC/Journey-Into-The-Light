@@ -77,7 +77,7 @@ public abstract class PiercerEntity extends DamagingProjectileEntity implements 
                 double x = directionTo.x / 1.25D;
                 double y = directionTo.y / 1.25D;
                 double z = directionTo.z / 1.25D;
-                this.setDeltaMovement(x, y, z);
+                this.setDeltaMovement(getDeltaMovement().add(x, y, z));
                 this.bounces++;
             }
         }

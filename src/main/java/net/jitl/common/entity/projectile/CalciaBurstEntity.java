@@ -41,7 +41,6 @@ public class CalciaBurstEntity extends DamagingProjectileEntity {
     @Override
     protected void onEntityImpact(RayTraceResult result, Entity target) {
         target.hurt(DamageSource.thrown(this, this.getOwner()), getDamage());
-        super.onEntityImpact(result, target);
     }
 
     @Override
