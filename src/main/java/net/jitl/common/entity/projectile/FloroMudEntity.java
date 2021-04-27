@@ -65,6 +65,7 @@ public class FloroMudEntity extends DamagingProjectileEntity implements IRenders
             EffectInstance effectInstance = new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20);
             ((LivingEntity) target).addEffect(effectInstance);
         }
+        super.onEntityImpact(result, target);
     }
 
     @Override
