@@ -1,9 +1,6 @@
 package net.jitl.common.entity.projectile.base;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.IRendersAsItem;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.*;
 import net.minecraft.network.IPacket;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Direction;
@@ -15,6 +12,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkHooks;
+
+import java.util.List;
 
 @OnlyIn(value = Dist.CLIENT, _interface = IRendersAsItem.class)
 public abstract class PiercerEntity extends DamagingProjectileEntity implements IRendersAsItem {
@@ -53,6 +52,11 @@ public abstract class PiercerEntity extends DamagingProjectileEntity implements 
     protected void onEntityImpact(RayTraceResult result, Entity entity) {
         if (entity instanceof LivingEntity) {
             entity.hurt(DamageSource.thrown(this, this.getOwner()), this.getDamage());
+
+            List<LivingEntity> entityNear = this.level.getNearbyEntities(LivingEntity.class, EntityPredicate.DEFAULT, (LivingEntity)entity, this.getBoundingBox().expandTowards(30D, 30D, 30D));
+            if(entity != this.getOwner()) {
+                
+            }
         }
     }
 
