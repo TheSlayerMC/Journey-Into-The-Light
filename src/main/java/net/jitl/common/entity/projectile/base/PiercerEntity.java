@@ -61,7 +61,7 @@ public abstract class PiercerEntity extends DamagingProjectileEntity implements 
             if(entity != this.getOwner()) {
                 entity.hurt(DamageSource.thrown(this, this.getOwner()), this.getDamage());
                 List<LivingEntity> entitysNear = this.level.getNearbyEntities(LivingEntity.class, EntityPredicate.DEFAULT, target, this.getBoundingBox().expandTowards(20D, 20D, 20D));
-                boolean needNewTarget = target == null || target.isDeadOrDying() || target != entity;
+                boolean needNewTarget = target == null || (target != null && target.isDeadOrDying() && target.hurtDuration >= 0.1);
                 for(LivingEntity e : entitysNear) {
                     if(e != this.getOwner() && this.canSee(e)) {
                         if(needNewTarget && (target == null || (target != null && this.distanceTo(e) < this.distanceTo(target)))) {
@@ -77,7 +77,7 @@ public abstract class PiercerEntity extends DamagingProjectileEntity implements 
                 double x = directionTo.x / 1.25D;
                 double y = directionTo.y / 1.25D;
                 double z = directionTo.z / 1.25D;
-                this.moveTo(x, y, z);
+                this.setDeltaMovement(getDeltaMovement().add(x, y, z));
                 this.bounces++;
             }
         }
@@ -103,7 +103,7 @@ public abstract class PiercerEntity extends DamagingProjectileEntity implements 
                     onEntityImpact(result, target);
                 }
             } else if(result.getType() == RayTraceResult.Type.BLOCK) {
-                onBlockImpact((BlockRayTraceResult) result);
+               // onBlockImpact((BlockRayTraceResult) result);
             }
             if(this.bounces == this.maxBounces) this.remove();
         }
