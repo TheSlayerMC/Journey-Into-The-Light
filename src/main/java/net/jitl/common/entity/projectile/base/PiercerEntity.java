@@ -39,16 +39,12 @@ public abstract class PiercerEntity extends DamagingProjectileEntity implements 
         double z = this.getZ() + vector3d.z;
 
         if(faceHit == Direction.UP || faceHit == Direction.DOWN) {
-            //this.motionY *= -1.0D;
             this.setDeltaMovement(getDeltaMovement().multiply(1.0F, -1.0F, 1.0F));
         } else if (faceHit == Direction.SOUTH || faceHit == Direction.NORTH) {
-            // this.motionZ *= -1.0D;
             this.setDeltaMovement(getDeltaMovement().multiply(1.0F, 1.0F, -1.0F));
         } else if (faceHit == Direction.EAST || faceHit == Direction.WEST) {
-            // this.motionX *= -1.0D;
             this.setDeltaMovement(getDeltaMovement().multiply(-1.0F, 1.0F, 1.0F));
         }
-        System.out.println("Hit: " + faceHit);
         this.bounces++;
         if(this.bounces == this.maxBounces) this.remove();
     }
@@ -57,7 +53,6 @@ public abstract class PiercerEntity extends DamagingProjectileEntity implements 
     protected void onEntityImpact(RayTraceResult result, Entity entity) {
         if (entity instanceof LivingEntity) {
             entity.hurt(DamageSource.thrown(this, this.getOwner()), this.getDamage());
-            System.out.println("Hit: ");
         }
     }
 
