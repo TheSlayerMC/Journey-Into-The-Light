@@ -44,8 +44,8 @@ public class CalciaBurstEntity extends DamagingProjectileEntity {
     }
 
     @Override
-    protected int getDuration() {
-        return 20 * 50;
+    protected boolean shouldDespawn() {
+        return tickCount >= 20 * 50;
     }
 
     @Override

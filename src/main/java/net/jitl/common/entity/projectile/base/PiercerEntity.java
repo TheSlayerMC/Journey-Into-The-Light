@@ -3,6 +3,9 @@ package net.jitl.common.entity.projectile.base;
 import com.sun.javafx.geom.Vec3d;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.FollowMobGoal;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.network.IPacket;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Direction;
@@ -15,6 +18,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkHooks;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.List;
 import java.util.Objects;
@@ -34,42 +38,55 @@ public abstract class PiercerEntity extends DamagingProjectileEntity implements 
     }
 
     @Override
+    public void playerTouch(PlayerEntity entityIn) {
+        super.playerTouch(entityIn);
+        if (tickCount > 5 && (entityIn == this.getOwner() || this.getDeltaMovement().length() < 0.01)) {
+            entityIn.addItem(new ItemStack(Items.DIAMOND));
+            this.remove();
+        }
+    }
+
+    @Override
     protected void onBlockImpact(BlockRayTraceResult result) {
         Direction faceHit = result.getDirection();
-        Vector3d vector3d = this.getDeltaMovement();
-        double x = this.getX() + vector3d.x;
-        double y = this.getY() + vector3d.y;
-        double z = this.getZ() + vector3d.z;
+        Vector3d speed = getDeltaMovement();
+        System.out.println("(" + speed.x() + ", " + speed.y() + ", " + speed.z() + ")");
 
         if(faceHit == Direction.UP || faceHit == Direction.DOWN) {
-            this.setDeltaMovement(getDeltaMovement().multiply(1.0F, -1.0F, 1.0F));
+            this.setDeltaMovement(this.getDeltaMovement().multiply(0.8, 0, 0.8));
         } else if (faceHit == Direction.SOUTH || faceHit == Direction.NORTH) {
-            this.setDeltaMovement(getDeltaMovement().multiply(1.0F, 1.0F, -1.0F));
+            this.setDeltaMovement(this.getDeltaMovement().multiply(1, 1, 0));
         } else if (faceHit == Direction.EAST || faceHit == Direction.WEST) {
-            this.setDeltaMovement(getDeltaMovement().multiply(-1.0F, 1.0F, 1.0F));
+            this.setDeltaMovement(this.getDeltaMovement().multiply(0, 1, 1));
         }
-        this.bounces++;
+        speed = getDeltaMovement();
+        System.out.println("(" + speed.x() + ", " + speed.y() + ", " + speed.z() + ")");
     }
 
     @Override
     protected void onEntityImpact(RayTraceResult result, Entity entity) {
-        LivingEntity target = null;
+        System.out.println("Impact");
+        LivingEntity bounceTo = null;
         if (entity instanceof LivingEntity) {
             if(entity != this.getOwner()) {
                 entity.hurt(DamageSource.thrown(this, this.getOwner()), this.getDamage());
-                List<LivingEntity> entitiesNear = this.level.getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(20D));
-                for(LivingEntity e : entitiesNear) {
-                    if(e != this.getOwner() && this.canSee(e) && !e.isDeadOrDying() && e != entity) {
-                        if(target == null || this.distanceTo(e) < this.distanceTo(target)) {
-                            target = e;
+                if (bounces <= maxBounces) {
+                    List<LivingEntity> entitiesNear = this.level.getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(20D));
+                    for(LivingEntity e : entitiesNear) {
+                        if(e != this.getOwner() && this.canSee(e) && !e.isDeadOrDying() && e != entity) {
+                            if(bounceTo == null || this.distanceTo(e) < this.distanceTo(bounceTo)) {
+                                bounceTo = e;
+                            }
                         }
                     }
                 }
-            }
-            if(target != null) {
-                this.setDeltaMovement(0, 0, 0);
-                this.shoot(target.getX() - this.getX(), target.getEyeY() - this.getY(), target.getZ() - this.getZ(), 1.2F, 0);
-                this.bounces++;
+                Entity target = bounceTo != null ? bounceTo : getOwner();
+                if(target != null) {
+                    float velocity = (float) this.getDeltaMovement().length();
+                    this.setDeltaMovement(0, 0, 0);
+                    this.shoot(target.getX() - this.getX(), target.getY() + target.getBbHeight() * 0.5 - this.getY(), target.getZ() - this.getZ(), velocity, 0);
+                    this.bounces++;
+                }
             }
         }
     }
@@ -82,16 +99,10 @@ public abstract class PiercerEntity extends DamagingProjectileEntity implements 
 
     @Override
     protected void onHit(RayTraceResult result) {
-        if(!this.level.isClientSide) {
-            if(result.getType() == RayTraceResult.Type.ENTITY) {
-                Entity target = ((EntityRayTraceResult) result).getEntity();
-                if(!Objects.equals(target, getOwner())) {
-                    onEntityImpact(result, target);
-                }
-            } else if(result.getType() == RayTraceResult.Type.BLOCK) {
-               onBlockImpact((BlockRayTraceResult) result);
-            }
-            if(this.bounces == this.maxBounces) this.remove();
+        if(result.getType() == RayTraceResult.Type.ENTITY) {
+            onEntityImpact(result, ((EntityRayTraceResult) result).getEntity());
+        } else if(result.getType() == RayTraceResult.Type.BLOCK) {
+            onBlockImpact((BlockRayTraceResult) result);
         }
     }
 
@@ -102,7 +113,11 @@ public abstract class PiercerEntity extends DamagingProjectileEntity implements 
 
     @Override
     protected float getGravity() {
-        return 0.0F;
+        return 0.01F;
     }
 
+    @Override
+    protected boolean shouldDespawn() {
+        return false;
+    }
 }

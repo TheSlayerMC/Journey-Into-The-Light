@@ -42,7 +42,7 @@ public class DamagingProjectileEntity extends ThrowableEntity {
         super.tick();
 
         if (!level.isClientSide) {
-            if (tickCount >= getDuration()) {
+            if (shouldDespawn()) {
                 remove();
             }
         } else {
@@ -54,8 +54,8 @@ public class DamagingProjectileEntity extends ThrowableEntity {
     public void onClientTick() {
     }
 
-    protected int getDuration() {
-        return 20 * 10;
+    protected boolean shouldDespawn() {
+        return tickCount >= 20 * 10;
     }
 
     @Override

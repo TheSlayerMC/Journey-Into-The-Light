@@ -17,7 +17,7 @@ public class CloudwalkingAmuletItem extends JCurioItem {
     public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
         if (livingEntity instanceof PlayerEntity) {
             PlayerEntity player = (PlayerEntity) livingEntity;
-            if (!player.isOnGround() && !player.isInLava() && !player.isInWaterOrBubble() && player.isShiftKeyDown()) {
+            if (!player.isCreative() && !player.isOnGround() && !player.isInLava() && !player.isInWaterOrBubble() && player.isShiftKeyDown()) {
                 JPlayer capability = JPlayer.from(player);
                 if (capability != null && capability.essence.get().checkEssenceEitherSide(player.level.isClientSide(), player, 0.15F)) {
                     player.fallDistance = 0.0F;
