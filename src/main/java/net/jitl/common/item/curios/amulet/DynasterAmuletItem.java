@@ -16,13 +16,13 @@ public class DynasterAmuletItem extends JCurioItem {
 
     @Override
     public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
-        if (!livingEntity.isOnGround() && !livingEntity.isInLava() && !livingEntity.isInWaterOrBubble()) {
+        if (livingEntity.isShiftKeyDown() && !livingEntity.isOnGround() && !livingEntity.isInLava() && !livingEntity.isInWaterOrBubble()) {
             PlayerEntity player = (PlayerEntity) livingEntity;
             if (!player.isCreative()) {
                 JPlayer capability = JPlayer.from(player);
                 if (capability != null && capability.essence.get().checkEssenceEitherSide(player.level.isClientSide(), player, 0.75F)) {
                     if (isFloatReady(livingEntity.level, livingEntity.blockPosition().below())) {
-                        livingEntity.fallDistance = 0.0F; //TODO: Fix
+                        livingEntity.fallDistance = 0.0F;
                         livingEntity.setDeltaMovement(livingEntity.getDeltaMovement().multiply(1, 0.75F, 1));
                     }
                 }
