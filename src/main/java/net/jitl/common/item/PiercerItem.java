@@ -10,6 +10,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
 
 public class PiercerItem extends Item {
@@ -23,6 +25,7 @@ public class PiercerItem extends Item {
     @Override
     public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
         ItemStack stack = playerIn.getItemInHand(handIn);
+        worldIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), SoundEvents.ENDER_PEARL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
         if (!worldIn.isClientSide()) {
             PiercerEntity entity = projectileFactory.apply(worldIn, playerIn, stack);
             entity.setPos(playerIn.getX(), playerIn.getEyeY(), playerIn.getZ());

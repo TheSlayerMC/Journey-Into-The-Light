@@ -19,6 +19,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.math.RayTraceContext;
 import net.minecraft.util.math.RayTraceResult;
@@ -27,7 +28,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 import java.util.List;
-import java.util.Objects;
 
 public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem {
     private static final DataParameter<ItemStack> STACK = EntityDataManager.defineId(PiercerEntity.class, DataSerializers.ITEM_STACK);
@@ -54,7 +54,7 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
         LivingEntity bounceTo = null;
         if (entity instanceof LivingEntity) {
             if (entity != this.getOwner()) {
-                level.playSound(null, this.blockPosition(), JSounds.KNIFE.get(), SoundCategory.NEUTRAL, 1.0F, 1.0F);
+                level.playSound(null, this.blockPosition(), JSounds.PIERCER.get(), SoundCategory.NEUTRAL, 1.0F, 1.0F);
                 entity.hurt(DamageSource.thrown(this, this.getOwner()), damage);
                 if (getOwner() instanceof ServerPlayerEntity) {
                     ServerPlayerEntity player = (ServerPlayerEntity) getOwner();
@@ -97,6 +97,7 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
 
                 if (flag) {
                     entityIn.take(this, 1);
+                    level.playSound(null, this.blockPosition(), SoundEvents.ENDERMAN_TELEPORT, SoundCategory.NEUTRAL, 1.0F, 1.0F);
                     this.remove();
                 }
             }
