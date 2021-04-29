@@ -76,23 +76,6 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
                     this.setDeltaMovement(movement.scale((1 / movement.length()) * this.getDeltaMovement().length()));
                 }
             }
-            if (entity instanceof PlayerEntity) {
-                PlayerEntity playerEntity = (PlayerEntity) entityRayTraceResult_.getEntity();
-                boolean flag = this.pickup == AbstractArrowEntity.PickupStatus.ALLOWED ||
-                        this.pickup == AbstractArrowEntity.PickupStatus.CREATIVE_ONLY &&
-                                playerEntity.abilities.instabuild ||
-                        this.isNoPhysics()
-                                && Objects.requireNonNull(this.getOwner()).getUUID() == entity.getUUID() &&
-                                !inGround;
-                if (this.pickup == AbstractArrowEntity.PickupStatus.ALLOWED && !playerEntity.inventory.add(this.getPickupItem())) {
-                    flag = false;
-                }
-
-                if (flag) {
-                    playerEntity.take(this, 1);
-                    this.remove();
-                }
-            }
         }
     }
 
@@ -100,6 +83,24 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
         Vector3d vector3d = new Vector3d(this.getX(), this.getEyeY(), this.getZ());
         Vector3d vector3d1 = new Vector3d(entityIn.getX(), entityIn.getEyeY(), entityIn.getZ());
         return this.level.clip(new RayTraceContext(vector3d, vector3d1, RayTraceContext.BlockMode.COLLIDER, RayTraceContext.FluidMode.NONE, this)).getType() == RayTraceResult.Type.MISS;
+    }
+
+    @Override
+    public void playerTouch(PlayerEntity entityIn) {
+        if (!this.level.isClientSide) {
+            boolean isOwner = this.getOwner().getUUID() == entityIn.getUUID();
+            if ((isOwner && currentBounces > 0) || ((this.inGround || this.isNoPhysics()) && this.shakeTime <= 0)) {
+                boolean flag = this.pickup == AbstractArrowEntity.PickupStatus.ALLOWED || this.pickup == AbstractArrowEntity.PickupStatus.CREATIVE_ONLY && entityIn.abilities.instabuild || this.isNoPhysics() && isOwner;
+                if (this.pickup == AbstractArrowEntity.PickupStatus.ALLOWED && !entityIn.inventory.add(this.getPickupItem())) {
+                    flag = false;
+                }
+
+                if (flag) {
+                    entityIn.take(this, 1);
+                    this.remove();
+                }
+            }
+        }
     }
 
     @Override
