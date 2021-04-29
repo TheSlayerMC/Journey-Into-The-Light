@@ -14,6 +14,7 @@ import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
+import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
@@ -29,7 +30,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
-public class HongoEntity extends CreatureEntity {
+public class HongoEntity extends MonsterEntity {
 
     public HongoEntity(EntityType<? extends HongoEntity> entityType, World world) {
         super(entityType, world);

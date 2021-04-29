@@ -13,6 +13,7 @@ import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
+import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
@@ -33,7 +34,7 @@ import ru.timeconqueror.timecore.api.util.RandHelper;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class HonglowEntity extends CreatureEntity {
+public class HonglowEntity extends MonsterEntity {
 	public static final DataParameter<Type> VARIANT = EntityDataManager.defineId(HonglowEntity.class, JDataSerializers.HONGLOW_VARIANT);
 
 	public HonglowEntity(EntityType<? extends HonglowEntity> entityType, World world) {
