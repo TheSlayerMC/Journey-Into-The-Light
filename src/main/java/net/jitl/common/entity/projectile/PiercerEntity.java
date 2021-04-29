@@ -1,5 +1,6 @@
 package net.jitl.common.entity.projectile;
 
+import net.jitl.init.JEntities;
 import net.jitl.init.JItems;
 import net.jitl.init.JSounds;
 import net.minecraft.entity.Entity;
@@ -34,8 +35,8 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
     int maxBounces;
     float damage;
 
-    public PiercerEntity(EntityType<? extends AbstractArrowEntity> type, LivingEntity shooter, World worldIn, ItemStack stack, int maxBounces, float damage) {
-        super(type, shooter, worldIn);
+    public PiercerEntity(LivingEntity shooter, World worldIn, ItemStack stack, int maxBounces, float damage) {
+        super(JEntities.PIERCER_TYPE, shooter, worldIn);
         setStack(stack.copy());
         this.setSoundEvent(JSounds.KNIFE.get());
         this.maxBounces = maxBounces;
@@ -106,6 +107,7 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
         super.addAdditionalSaveData(nbt);
         nbt.put("stack", getStack().save(new CompoundNBT()));
         nbt.putInt("bounces", currentBounces);
+        nbt.putInt("maxBounces", maxBounces);
         nbt.putFloat("damage", damage);
     }
 
@@ -115,6 +117,7 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
         setStack(ItemStack.of(nbt.getCompound("stack")));
         if (getStack().isEmpty()) remove();
         nbt.getInt("bounces");
+        nbt.getInt("maxBounces");
         nbt.getFloat("damage");
     }
 
@@ -134,7 +137,7 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
     @Override
     public ItemStack getItem() {
         ItemStack stack = getStack();
-        return stack.isEmpty() ? new ItemStack(JItems.EUCA_PIERCER) : stack;
+        return stack.isEmpty() ? new ItemStack(JItems.PIERCER) : stack;
     }
 
     @Override

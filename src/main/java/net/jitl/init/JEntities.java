@@ -131,7 +131,7 @@ public class JEntities {
                     .sized(0.5F, 0.5F))
             .retrieve();
 
-    public static final EntityType<PiercerEntity> EUCA_PIERCER_TYPE = REGISTER.register("euca_piercer",
+    public static final EntityType<PiercerEntity> PIERCER_TYPE = REGISTER.register("piercer",
             Builder.<PiercerEntity>of(PiercerEntity::new, EntityClassification.MISC)
                     .setTrackingRange(80)
                     .setShouldReceiveVelocityUpdates(true)
