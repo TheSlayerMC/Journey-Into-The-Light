@@ -5,18 +5,29 @@ import net.jitl.common.entity.projectile.*;
 import net.jitl.common.helper.JArmorMaterial;
 import net.jitl.common.helper.JToolTiers;
 import net.jitl.common.item.*;
-import net.jitl.common.item.sword.*;
-import net.jitl.common.item.pickaxe.*;
-import net.jitl.common.item.shovel.*;
-import net.jitl.common.item.axe.*;
-import net.jitl.common.item.hoe.*;
-import net.jitl.common.item.multitool.*;
-import net.jitl.common.item.armor.*;
-import net.jitl.common.item.curios.*;
-import net.jitl.common.item.curios.amulet.*;
-import net.jitl.common.item.curios.catalyst.*;
-import net.jitl.common.item.curios.ring.*;
-import net.jitl.common.item.interactive.*;
+import net.jitl.common.item.armor.JArmorItem;
+import net.jitl.common.item.armor.LuniumArmorItem;
+import net.jitl.common.item.axe.JAxeItem;
+import net.jitl.common.item.axe.LuniumAxeItem;
+import net.jitl.common.item.curios.HeartContainerItem;
+import net.jitl.common.item.curios.JCurioItem;
+import net.jitl.common.item.curios.amulet.CloudwalkingAmuletItem;
+import net.jitl.common.item.curios.amulet.DynasterAmuletItem;
+import net.jitl.common.item.curios.catalyst.EssenceCatalystItem;
+import net.jitl.common.item.curios.catalyst.RegenCatalystItem;
+import net.jitl.common.item.curios.ring.JRingItem;
+import net.jitl.common.item.hoe.JHoeItem;
+import net.jitl.common.item.hoe.LuniumHoeItem;
+import net.jitl.common.item.interactive.MinersPearlItem;
+import net.jitl.common.item.multitool.LuniumMultitoolItem;
+import net.jitl.common.item.multitool.MultitoolItem;
+import net.jitl.common.item.pickaxe.JPickaxeItem;
+import net.jitl.common.item.pickaxe.LuniumPickaxeItem;
+import net.jitl.common.item.shovel.JShovelItem;
+import net.jitl.common.item.shovel.LuniumShovelItem;
+import net.jitl.common.item.sword.JSwordItem;
+import net.jitl.common.item.sword.LuniumSwordItem;
+import net.jitl.common.item.sword.ShadiumSwordItem;
 import net.jitl.init.*;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
@@ -218,7 +229,8 @@ public class ItemRegistrator {
 
         registerItem("molten_knife", "Molten Knife", () -> new ThrowableItem(rangedWeaponsGrouped(), (worldIn, owner) -> new EntityMoltenKnife(worldIn, owner).withBaseDamage(10)).setSound(JSounds.STAFF_0::get));
 
-        registerItem("euca_piercer", "Euca Piercer", () -> new PiercerItem(rangedWeaponsGrouped().durability(1000)));
+        registerItem("euca_piercer", "Euca Piercer", () -> new PiercerItem(rangedWeaponsGrouped().durability(50),
+                (worldIn, owner, stack) -> new PiercerEntity(JEntities.EUCA_PIERCER_TYPE, owner, worldIn, stack, 3, 10.0F)));
         registerItem("skull_of_decay", "Skull Of Decay", () -> new JCurioItem(itemGrouped().stacksTo(1)).ability(true).drawback(true).overview(true));
 
         registerItem("miners_pearl", "Miners Pearl", () -> new MinersPearlItem(itemGrouped().stacksTo(1)));

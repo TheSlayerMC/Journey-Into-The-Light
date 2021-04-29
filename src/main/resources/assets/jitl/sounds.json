@@ -155,6 +155,22 @@
       "jitl:entities/glump_death"
     ]
   },
+  "entities.knife": {
+    "sounds": [
+      "jitl:entities/knife_0",
+      "jitl:entities/knife_1",
+      "jitl:entities/knife_2",
+      "jitl:entities/knife_3",
+      "jitl:entities/knife_4",
+      "jitl:entities/knife_5",
+      "jitl:entities/knife_6"
+    ]
+  },
+  "entities.piercer": {
+    "sounds": [
+      "jitl:entities/piercer"
+    ]
+  },
   "music.menu": {
     "category": "music",
     "sounds": [

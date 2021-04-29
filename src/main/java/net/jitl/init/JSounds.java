@@ -40,6 +40,9 @@ public class JSounds {
     public static final RegistryObject<TimeSound> GLUMP_HURT = REGISTER.register("entities.glump_hurt");
     public static final RegistryObject<TimeSound> GLUMP_DEATH = REGISTER.register("entities.glump_death");
 
+    public static final RegistryObject<TimeSound> KNIFE = REGISTER.register("entities.knife");
+    public static final RegistryObject<TimeSound> PIERCER = REGISTER.register("entities.piercer");
+
     public static final RegistryObject<TimeSound> MENU_MUSIC = REGISTER.register("music.menu");
     public static final RegistryObject<TimeSound> TOWER_THEME = REGISTER.register("music.guardian_tower");
     public static final RegistryObject<TimeSound> TEMPLE_GUARDIAN_MUSIC = REGISTER.register("music.temple_guardian");

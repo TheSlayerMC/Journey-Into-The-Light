@@ -1,6 +1,7 @@
 package net.jitl.common.entity.projectile;
 
 import net.jitl.init.JItems;
+import net.jitl.init.JSounds;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.IRendersAsItem;
@@ -15,6 +16,7 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.math.RayTraceContext;
 import net.minecraft.util.math.RayTraceResult;
@@ -25,19 +27,23 @@ import net.minecraftforge.fml.network.NetworkHooks;
 import java.util.List;
 import java.util.Objects;
 
-public class EucaPiercerEntity extends AbstractArrowEntity implements IRendersAsItem {
-    private static final DataParameter<ItemStack> STACK = EntityDataManager.defineId(EucaPiercerEntity.class, DataSerializers.ITEM_STACK);
-    int bounces;
+public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem {
+    private static final DataParameter<ItemStack> STACK = EntityDataManager.defineId(PiercerEntity.class, DataSerializers.ITEM_STACK);
+    int currentBounces;
+    int maxBounces;
     float damage;
 
-    public EucaPiercerEntity(EntityType<? extends AbstractArrowEntity> type, LivingEntity shooter, World worldIn, ItemStack stack, float damage) {
+    public PiercerEntity(EntityType<? extends AbstractArrowEntity> type, LivingEntity shooter, World worldIn, ItemStack stack, int maxBounces, float damage) {
         super(type, shooter, worldIn);
         setStack(stack.copy());
+        this.setSoundEvent(JSounds.KNIFE.get());
+        this.maxBounces = maxBounces;
         this.damage = damage;
     }
 
-    public EucaPiercerEntity(EntityType<EucaPiercerEntity> eucaPiercerEntityEntityType, World world) {
+    public PiercerEntity(EntityType<PiercerEntity> eucaPiercerEntityEntityType, World world) {
         super(eucaPiercerEntityEntityType, world);
+        this.setSoundEvent(JSounds.KNIFE.get());
     }
 
     @Override
@@ -46,12 +52,13 @@ public class EucaPiercerEntity extends AbstractArrowEntity implements IRendersAs
         LivingEntity bounceTo = null;
         if (entity instanceof LivingEntity) {
             if (entity != this.getOwner()) {
+                level.playSound(null, this.blockPosition(), JSounds.KNIFE.get(), SoundCategory.NEUTRAL, 1.0F, 1.0F);
                 entity.hurt(DamageSource.thrown(this, this.getOwner()), damage);
                 if (getOwner() instanceof ServerPlayerEntity) {
                     ServerPlayerEntity player = (ServerPlayerEntity) getOwner();
                     getStack().hurt(1, player.getRandom(), player);
                 }
-                if (++bounces <= 5) {
+                if (++currentBounces <= maxBounces) {
                     List<LivingEntity> entitiesNear = this.level.getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(20D));
                     for (LivingEntity e : entitiesNear) {
                         if (e != this.getOwner() && this.canSee(e) && !e.isDeadOrDying() && e != entity) {
@@ -97,7 +104,7 @@ public class EucaPiercerEntity extends AbstractArrowEntity implements IRendersAs
     public void addAdditionalSaveData(CompoundNBT nbt) {
         super.addAdditionalSaveData(nbt);
         nbt.put("stack", getStack().save(new CompoundNBT()));
-        nbt.putInt("bounces", bounces);
+        nbt.putInt("bounces", currentBounces);
         nbt.putFloat("damage", damage);
     }
 
