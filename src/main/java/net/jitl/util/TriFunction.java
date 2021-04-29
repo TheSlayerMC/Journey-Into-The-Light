@@ -4,7 +4,7 @@ import java.util.Objects;
 import java.util.function.Function;
 
 /**
- * Used for creating a result using two arguments
+ * Used for creating a result using three arguments
  *
  * @param <A> The first argument
  * @param <B> The second argument
