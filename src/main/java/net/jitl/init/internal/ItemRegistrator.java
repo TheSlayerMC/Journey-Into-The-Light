@@ -218,7 +218,7 @@ public class ItemRegistrator {
 
         registerItem("molten_knife", "Molten Knife", () -> new ThrowableItem(rangedWeaponsGrouped(), (worldIn, owner) -> new EntityMoltenKnife(worldIn, owner).withBaseDamage(10)).setSound(JSounds.STAFF_0::get));
 
-        registerItem("euca_piercer", "Euca Piercer", () -> new ThrowableItem(rangedWeaponsGrouped(), (world, livingEntity) -> new EucaPiercerEntity(world, livingEntity, 10, 5)).setSound(JSounds.STAFF_0::get));
+        registerItem("euca_piercer", "Euca Piercer", () -> new PiercerItem(rangedWeaponsGrouped().durability(1000)));
         registerItem("skull_of_decay", "Skull Of Decay", () -> new JCurioItem(itemGrouped().stacksTo(1)).ability(true).drawback(true).overview(true));
 
         registerItem("miners_pearl", "Miners Pearl", () -> new MinersPearlItem(itemGrouped().stacksTo(1)));
