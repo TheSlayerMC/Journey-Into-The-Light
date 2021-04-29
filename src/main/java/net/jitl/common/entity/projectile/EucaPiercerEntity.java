@@ -1,16 +1,14 @@
 package net.jitl.common.entity.projectile;
 
-import com.sun.javafx.geom.Vec3d;
 import net.jitl.init.JItems;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.IRendersAsItem;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.item.ItemEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
 import net.minecraft.network.datasync.DataParameter;
@@ -23,9 +21,9 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
-import org.lwjgl.system.CallbackI;
 
 import java.util.List;
+import java.util.Objects;
 
 public class EucaPiercerEntity extends AbstractArrowEntity implements IRendersAsItem {
     private static final DataParameter<ItemStack> STACK = EntityDataManager.defineId(EucaPiercerEntity.class, DataSerializers.ITEM_STACK);
@@ -67,6 +65,23 @@ public class EucaPiercerEntity extends AbstractArrowEntity implements IRendersAs
                 if (target != null) {
                     Vector3d movement = new Vector3d(target.getX() - this.getX(), target.getEyeY() - this.getY(), target.getZ() - this.getZ());
                     this.setDeltaMovement(movement.scale((1 / movement.length()) * this.getDeltaMovement().length()));
+                }
+            }
+            if (entity instanceof PlayerEntity) {
+                PlayerEntity playerEntity = (PlayerEntity) entityRayTraceResult_.getEntity();
+                boolean flag = this.pickup == AbstractArrowEntity.PickupStatus.ALLOWED ||
+                        this.pickup == AbstractArrowEntity.PickupStatus.CREATIVE_ONLY &&
+                                playerEntity.abilities.instabuild ||
+                        this.isNoPhysics()
+                                && Objects.requireNonNull(this.getOwner()).getUUID() == entity.getUUID() &&
+                                !inGround;
+                if (this.pickup == AbstractArrowEntity.PickupStatus.ALLOWED && !playerEntity.inventory.add(this.getPickupItem())) {
+                    flag = false;
+                }
+
+                if (flag) {
+                    playerEntity.take(this, 1);
+                    this.remove();
                 }
             }
         }
