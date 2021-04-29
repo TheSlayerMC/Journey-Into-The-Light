@@ -19,7 +19,6 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.math.RayTraceContext;
 import net.minecraft.util.math.RayTraceResult;
@@ -97,7 +96,6 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
 
                 if (flag) {
                     entityIn.take(this, 1);
-                    level.playSound(null, this.blockPosition(), SoundEvents.ENDERMAN_TELEPORT, SoundCategory.NEUTRAL, 1.0F, 1.0F);
                     this.remove();
                 }
             }
