@@ -1,5 +1,6 @@
 package net.jitl.common.entity.projectile;
 
+import com.sun.javafx.geom.Vec3d;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.IRendersAsItem;
@@ -22,10 +23,12 @@ import java.util.List;
 public class EucaPiercerEntity extends AbstractArrowEntity implements IRendersAsItem {
     ItemStack stack;
     int bounces;
+    float damage;
 
-    public EucaPiercerEntity(EntityType<? extends AbstractArrowEntity> type, LivingEntity shooter, World worldIn, ItemStack stack) {
+    public EucaPiercerEntity(EntityType<? extends AbstractArrowEntity> type, LivingEntity shooter, World worldIn, ItemStack stack, float damage) {
         super(type, shooter, worldIn);
         this.stack = stack;
+        this.damage = damage;
     }
 
     public EucaPiercerEntity(EntityType<EucaPiercerEntity> eucaPiercerEntityEntityType, World world) {
@@ -38,7 +41,7 @@ public class EucaPiercerEntity extends AbstractArrowEntity implements IRendersAs
         LivingEntity bounceTo = null;
         if (entity instanceof LivingEntity) {
             if (entity != this.getOwner()) {
-                entity.hurt(DamageSource.thrown(this, this.getOwner()), 10); //TODO: better damage system
+                entity.hurt(DamageSource.thrown(this, this.getOwner()), damage);
                 if (getOwner() instanceof ServerPlayerEntity) {
                     ServerPlayerEntity player = (ServerPlayerEntity) getOwner();
                     stack.hurt(1, player.getRandom(), player);
@@ -55,9 +58,8 @@ public class EucaPiercerEntity extends AbstractArrowEntity implements IRendersAs
                 }
                 Entity target = bounceTo != null ? bounceTo : getOwner();
                 if (target != null) {
-                    float velocity = (float) this.getDeltaMovement().length();
-                    this.setDeltaMovement(0, 0, 0);
-                    this.shoot(target.getX() - this.getX(), target.getEyeY() - this.getY(), target.getZ() - this.getZ(), velocity, 0);
+                    Vector3d movement = new Vector3d(target.getX() - this.getX(), target.getY() + target.getBbHeight() - this.getY(), target.getZ() - this.getZ());
+                    this.setDeltaMovement(movement.scale((1 / movement.length()) * this.getDeltaMovement().length()));
                 }
             }
         }
@@ -74,6 +76,7 @@ public class EucaPiercerEntity extends AbstractArrowEntity implements IRendersAs
         super.addAdditionalSaveData(nbt);
         nbt.put("stack", stack.save(nbt));
         nbt.putInt("bounces", bounces);
+        nbt.putFloat("damage", damage);
     }
 
     @Override
@@ -81,6 +84,7 @@ public class EucaPiercerEntity extends AbstractArrowEntity implements IRendersAs
         super.readAdditionalSaveData(nbt);
         stack = ItemStack.of(nbt.getCompound("stack"));
         bounces = nbt.getInt("bounces");
+        damage = nbt.getFloat("damage");
     }
 
     @Override

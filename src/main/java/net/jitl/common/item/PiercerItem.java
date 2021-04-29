@@ -18,12 +18,11 @@ public class PiercerItem extends Item {
     public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
         ItemStack stack = playerIn.getItemInHand(handIn);
         if (!worldIn.isClientSide()) {
-            EucaPiercerEntity entity = new EucaPiercerEntity(JEntities.EUCA_PIERCER_TYPE, playerIn, worldIn, stack);
+            EucaPiercerEntity entity = new EucaPiercerEntity(JEntities.EUCA_PIERCER_TYPE, playerIn, worldIn, stack, 10);
             entity.setPos(playerIn.getX(), playerIn.getEyeY(), playerIn.getZ());
             entity.shootFromRotation(playerIn, playerIn.xRot, playerIn.yRot, 0.0F, 1.5F, 1.0F);
             worldIn.addFreshEntity(entity);
             playerIn.inventory.removeItem(stack);
-            System.out.println("Shot");
         }
         return ActionResult.sidedSuccess(stack, worldIn.isClientSide());
     }
