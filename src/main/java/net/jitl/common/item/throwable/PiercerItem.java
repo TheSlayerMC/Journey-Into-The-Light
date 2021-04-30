@@ -1,4 +1,4 @@
-package net.jitl.common.item;
+package net.jitl.common.item.throwable;
 
 import net.jitl.common.entity.projectile.PiercerEntity;
 import net.jitl.util.TriFunction;

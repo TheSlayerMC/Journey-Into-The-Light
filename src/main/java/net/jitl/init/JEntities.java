@@ -124,8 +124,8 @@ public class JEntities {
                     .sized(0.5F, 0.5F))
             .retrieve();
 
-    public static final EntityType<EntityMoltenKnife> MOLTEN_KNIFE_TYPE = REGISTER.register("molten_knife",
-            Builder.<EntityMoltenKnife>of(EntityMoltenKnife::new, EntityClassification.MISC)
+    public static final EntityType<KnifeEntity> KNIFE_TYPE = REGISTER.register("knife",
+            Builder.<KnifeEntity>of(KnifeEntity::new, EntityClassification.MISC)
                     .setTrackingRange(80)
                     .setShouldReceiveVelocityUpdates(true)
                     .sized(0.5F, 0.5F))

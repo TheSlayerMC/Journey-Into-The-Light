@@ -28,6 +28,8 @@ import net.jitl.common.item.shovel.LuniumShovelItem;
 import net.jitl.common.item.sword.JSwordItem;
 import net.jitl.common.item.sword.LuniumSwordItem;
 import net.jitl.common.item.sword.ShadiumSwordItem;
+import net.jitl.common.item.throwable.PiercerItem;
+import net.jitl.common.item.throwable.ThrowableItem;
 import net.jitl.init.*;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
@@ -227,7 +229,7 @@ public class ItemRegistrator {
         registerHandheldItem("storon_hoe", "Storon Hoe", () -> new JHoeItem(JToolTiers.STORON));
         registerHandheldItem("storon_multitool", "Storon Multitool", () -> new MultitoolItem(JToolTiers.STORON));
 
-        registerItem("molten_knife", "Molten Knife", () -> new ThrowableItem(rangedWeaponsGrouped(), (worldIn, owner) -> new EntityMoltenKnife(worldIn, owner).withBaseDamage(10)).setSound(JSounds.STAFF_0::get));
+        registerItem("molten_knife", "Molten Knife", () -> new ThrowableItem(rangedWeaponsGrouped(), (worldIn, owner) -> new KnifeEntity(worldIn, owner).withBaseDamage(10)).setSound(JSounds.STAFF_0::get));
 
         registerItem("euca_piercer", "Euca Piercer", () -> new PiercerItem(rangedWeaponsGrouped().durability(50),
                 (worldIn, owner, stack) -> new PiercerEntity(owner, worldIn, stack, 3, 10.0F)));

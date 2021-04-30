@@ -20,17 +20,17 @@ import net.minecraftforge.fml.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
 
 @OnlyIn(value = Dist.CLIENT, _interface = IRendersAsItem.class)
-public class EntityMoltenKnife extends EntityThrowableArrow implements IRendersAsItem {
+public class KnifeEntity extends EntityThrowableArrow implements IRendersAsItem {
 
-    public EntityMoltenKnife(EntityType<EntityMoltenKnife> type, World world) {
+    public KnifeEntity(EntityType<KnifeEntity> type, World world) {
         super(type, world);
     }
 
-    public EntityMoltenKnife(World worldIn, LivingEntity owner) {
-        super(JEntities.MOLTEN_KNIFE_TYPE, worldIn, owner);
+    public KnifeEntity(World worldIn, LivingEntity owner) {
+        super(JEntities.KNIFE_TYPE, worldIn, owner);
     }
 
-    public EntityMoltenKnife withBaseDamage(double damageIn) {
+    public KnifeEntity withBaseDamage(double damageIn) {
         super.setBaseDamage(damageIn);
         return this;
     }
@@ -63,9 +63,7 @@ public class EntityMoltenKnife extends EntityThrowableArrow implements IRendersA
     @Override
     protected void onHitEntity(EntityRayTraceResult rt) {
         super.onHitEntity(rt);
-        if (rt.getEntity() != null) {
-            rt.getEntity().setSecondsOnFire(2);
-        }
+        rt.getEntity().setSecondsOnFire(2);
     }
 
     @Override

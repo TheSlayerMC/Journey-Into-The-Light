@@ -1,4 +1,4 @@
-package net.jitl.common.item;
+package net.jitl.common.item.throwable;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
