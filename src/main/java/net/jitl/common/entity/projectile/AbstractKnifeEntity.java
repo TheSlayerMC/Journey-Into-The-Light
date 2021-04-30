@@ -11,21 +11,23 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public abstract class EntityThrowableArrow extends AbstractArrowEntity {
+public abstract class AbstractKnifeEntity extends AbstractArrowEntity {
 
     private boolean dealtDamage;
     private LivingEntity thower;
 
-    public EntityThrowableArrow(EntityType<? extends AbstractArrowEntity> type, World world) {
+    public AbstractKnifeEntity(EntityType<? extends AbstractArrowEntity> type, World world) {
         super(type, world);
     }
 
-    public EntityThrowableArrow(EntityType<? extends AbstractArrowEntity> entityType, World worldIn, LivingEntity player) {
+    public AbstractKnifeEntity(EntityType<? extends AbstractArrowEntity> entityType, World worldIn, LivingEntity player) {
         super(entityType, player, worldIn);
         this.thower = player;
     }
+
     @OnlyIn(Dist.CLIENT)
-    public void onClientTick() { }
+    public void onClientTick() {
+    }
 
     public void tick() {
         if (this.inGroundTime > 4) {

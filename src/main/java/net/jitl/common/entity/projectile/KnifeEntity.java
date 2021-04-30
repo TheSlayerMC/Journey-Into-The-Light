@@ -20,7 +20,7 @@ import net.minecraftforge.fml.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
 
 @OnlyIn(value = Dist.CLIENT, _interface = IRendersAsItem.class)
-public class KnifeEntity extends EntityThrowableArrow implements IRendersAsItem {
+public class KnifeEntity extends AbstractKnifeEntity implements IRendersAsItem {
 
     public KnifeEntity(EntityType<KnifeEntity> type, World world) {
         super(type, world);
