@@ -66,6 +66,10 @@ public class KnifeEntity extends EntityThrowableArrow implements IRendersAsItem 
         rt.getEntity().setSecondsOnFire(2);
     }
 
+    public boolean isInGround() {
+        return this.inGround;
+    }
+
     @Override
     public Item pickupItem() {
         return JItems.MOLTEN_KNIFE;
