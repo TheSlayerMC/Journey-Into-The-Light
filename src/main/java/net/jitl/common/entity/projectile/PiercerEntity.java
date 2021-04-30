@@ -102,6 +102,10 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
         }
     }
 
+    public boolean isInGround() {
+        return this.inGround;
+    }
+
     @Override
     public void addAdditionalSaveData(CompoundNBT nbt) {
         super.addAdditionalSaveData(nbt);
