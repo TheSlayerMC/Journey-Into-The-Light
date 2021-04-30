@@ -37,14 +37,14 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
     public PiercerEntity(LivingEntity shooter, World worldIn, ItemStack stack, int maxBounces, float damage) {
         super(JEntities.PIERCER_TYPE, shooter, worldIn);
         setStack(stack.copy());
-        this.setSoundEvent(JSounds.KNIFE.get());
+        this.setSoundEvent(JSounds.PIERCER.get());
         this.maxBounces = maxBounces;
         this.damage = damage;
     }
 
     public PiercerEntity(EntityType<PiercerEntity> eucaPiercerEntityEntityType, World world) {
         super(eucaPiercerEntityEntityType, world);
-        this.setSoundEvent(JSounds.KNIFE.get());
+        this.setSoundEvent(JSounds.PIERCER.get());
     }
 
     @Override

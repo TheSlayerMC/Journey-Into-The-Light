@@ -57,7 +57,7 @@ public class EntityMoltenKnife extends EntityThrowableArrow implements IRendersA
 
     @Override
     protected @NotNull SoundEvent getDefaultHitGroundSoundEvent() {
-        return JSounds.MUD_BLOCK_BREAK.get();
+        return JSounds.KNIFE.get();
     }
 
     @Override
