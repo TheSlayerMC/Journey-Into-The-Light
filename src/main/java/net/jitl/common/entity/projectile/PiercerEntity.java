@@ -30,9 +30,9 @@ import java.util.List;
 
 public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem {
     private static final DataParameter<ItemStack> STACK = EntityDataManager.defineId(PiercerEntity.class, DataSerializers.ITEM_STACK);
-    int currentBounces;
-    int maxBounces;
-    float damage;
+    private int currentBounces;
+    private int maxBounces;
+    private float damage;
 
     public PiercerEntity(LivingEntity shooter, World worldIn, ItemStack stack, int maxBounces, float damage) {
         super(JEntities.PIERCER_TYPE, shooter, worldIn);
