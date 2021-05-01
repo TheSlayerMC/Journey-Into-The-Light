@@ -7,6 +7,7 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -14,7 +15,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public abstract class AbstractKnifeEntity extends AbstractArrowEntity {
 
     private boolean dealtDamage;
-    private LivingEntity thower;
 
     public AbstractKnifeEntity(EntityType<? extends AbstractArrowEntity> type, World world) {
         super(type, world);
@@ -22,7 +22,6 @@ public abstract class AbstractKnifeEntity extends AbstractArrowEntity {
 
     public AbstractKnifeEntity(EntityType<? extends AbstractArrowEntity> entityType, World worldIn, LivingEntity player) {
         super(entityType, player, worldIn);
-        this.thower = player;
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -52,7 +51,8 @@ public abstract class AbstractKnifeEntity extends AbstractArrowEntity {
     }
 
     private boolean isAcceptibleReturnOwner() {
-        Entity entity = this.thower;
+        System.out.println("Has owner");
+        Entity entity = this.getOwner();
         if (entity != null && entity.isAlive()) {
             return !(entity instanceof ServerPlayerEntity) || !entity.isSpectator();
         } else {
@@ -67,4 +67,15 @@ public abstract class AbstractKnifeEntity extends AbstractArrowEntity {
 
     public abstract Item pickupItem();
 
+    @Override
+    public void addAdditionalSaveData(CompoundNBT compound) {
+        super.addAdditionalSaveData(compound);
+        compound.putBoolean("damage dealt", dealtDamage);
+    }
+
+    @Override
+    public void readAdditionalSaveData(CompoundNBT compound) {
+        super.readAdditionalSaveData(compound);
+        dealtDamage = compound.getBoolean("damage dealt");
+    }
 }
