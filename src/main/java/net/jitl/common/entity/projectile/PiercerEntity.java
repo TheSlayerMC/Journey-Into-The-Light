@@ -3,10 +3,7 @@ package net.jitl.common.entity.projectile;
 import net.jitl.init.JEntities;
 import net.jitl.init.JItems;
 import net.jitl.init.JSounds;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.IRendersAsItem;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.*;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -48,6 +45,14 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
     }
 
     @Override
+    public void tick() {
+        super.tick();
+        if (!isNoGravity() && !isNoGravity()) {
+            this.setDeltaMovement(this.getDeltaMovement().add(0, 0.04, 0));
+        }
+    }
+
+    @Override
     protected void onHitEntity(EntityRayTraceResult entityRayTraceResult_) {
         Entity entity = entityRayTraceResult_.getEntity();
         LivingEntity bounceTo = null;
@@ -62,7 +67,7 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
                 if (++currentBounces <= maxBounces) {
                     List<LivingEntity> entitiesNear = this.level.getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(10D));
                     for (LivingEntity e : entitiesNear) {
-                        if (e != this.getOwner() && this.canSee(e) && !e.isDeadOrDying() && e != entity && e instanceof MonsterEntity) {
+                        if (e != this.getOwner() && this.canSee(e) && !e.isDeadOrDying() && e != entity && e.getClassification(false) == EntityClassification.MONSTER) {
                             if (bounceTo == null || this.distanceTo(e) < this.distanceTo(bounceTo)) {
                                 bounceTo = e;
                             }
