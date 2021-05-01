@@ -51,7 +51,6 @@ public abstract class AbstractKnifeEntity extends AbstractArrowEntity {
     }
 
     private boolean isAcceptibleReturnOwner() {
-        System.out.println("Has owner");
         Entity entity = this.getOwner();
         if (entity != null && entity.isAlive()) {
             return !(entity instanceof ServerPlayerEntity) || !entity.isSpectator();

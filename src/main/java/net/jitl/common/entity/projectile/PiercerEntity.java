@@ -76,7 +76,7 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
                 }
                 Entity target = bounceTo != null ? bounceTo : getOwner();
                 if (target != null) {
-                    Vector3d movement = new Vector3d(target.getX() - this.getX(), target.getEyeY() - this.getY(), target.getZ() - this.getZ());
+                    Vector3d movement = new Vector3d(target.getX() - this.getX(), target.getY(0.8) - this.getY(), target.getZ() - this.getZ());
                     this.setDeltaMovement(movement.scale((1 / movement.length()) * this.getDeltaMovement().length()));
                 }
             }
