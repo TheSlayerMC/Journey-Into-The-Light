@@ -47,7 +47,7 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
     @Override
     public void tick() {
         super.tick();
-        if (!isNoGravity() && !isNoGravity()) {
+        if (!isNoPhysics() && !isInGround() && !isNoGravity()) {
             this.setDeltaMovement(this.getDeltaMovement().add(0, 0.04, 0));
         }
     }
@@ -59,15 +59,14 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
         if (entity instanceof LivingEntity) {
             if (entity != this.getOwner()) {
                 level.playSound(null, this.blockPosition(), JSounds.PIERCER.get(), SoundCategory.NEUTRAL, 1.0F, 1.0F);
-                entity.hurt(DamageSource.thrown(this, this.getOwner()), damage);
                 if (getOwner() instanceof ServerPlayerEntity) {
                     ServerPlayerEntity player = (ServerPlayerEntity) getOwner();
                     getStack().hurt(1, player.getRandom(), player);
                 }
-                if (++currentBounces <= maxBounces) {
+                if (++currentBounces <= maxBounces && entity.hurt(DamageSource.thrown(this, this.getOwner()), damage)) {
                     List<LivingEntity> entitiesNear = this.level.getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(10D));
                     for (LivingEntity e : entitiesNear) {
-                        if (e != this.getOwner() && this.canSee(e) && !e.isDeadOrDying() && e != entity && e.getClassification(false) == EntityClassification.MONSTER) {
+                        if (e != this.getOwner() && this.canSee(e) && e.invulnerableTime == 0 && !e.isDeadOrDying() && e != entity && e.getClassification(false) == EntityClassification.MONSTER) {
                             if (bounceTo == null || this.distanceTo(e) < this.distanceTo(bounceTo)) {
                                 bounceTo = e;
                             }
