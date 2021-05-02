@@ -4,7 +4,6 @@ import net.jitl.init.JEntities;
 import net.jitl.init.JItems;
 import net.jitl.init.JSounds;
 import net.minecraft.entity.*;
-import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
@@ -64,7 +63,7 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
                     getStack().hurt(1, player.getRandom(), player);
                 }
                 if (++currentBounces <= maxBounces && entity.hurt(DamageSource.thrown(this, this.getOwner()), damage)) {
-                    List<LivingEntity> entitiesNear = this.level.getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(10D));
+                    List<LivingEntity> entitiesNear = this.level.getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(6D));
                     for (LivingEntity e : entitiesNear) {
                         if (e != this.getOwner() && this.canSee(e) && e.invulnerableTime == 0 && !e.isDeadOrDying() && e != entity && e.getClassification(false) == EntityClassification.MONSTER) {
                             if (bounceTo == null || this.distanceTo(e) < this.distanceTo(bounceTo)) {
