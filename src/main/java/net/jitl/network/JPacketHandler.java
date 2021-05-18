@@ -7,7 +7,6 @@ import net.minecraftforge.fml.network.PacketDistributor;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
 import ru.timeconqueror.timecore.api.registry.PacketRegister;
 import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable;
-import ru.timeconqueror.timecore.mod.common.packet.InternalPacketManager;
 
 public class JPacketHandler {
     @AutoRegistrable
@@ -21,6 +20,6 @@ public class JPacketHandler {
             .asChannel();
 
     public static <MSG> void sendToPlayer(ServerPlayerEntity player, MSG message) {
-        InternalPacketManager.INSTANCE.send(PacketDistributor.PLAYER.with(() -> player), message);
+        INSTANCE.send(PacketDistributor.PLAYER.with(() -> player), message);
     }
 }
