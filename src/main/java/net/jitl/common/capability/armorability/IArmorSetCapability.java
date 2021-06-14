@@ -5,9 +5,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public interface IArmorSetCapability {
-    void setArmor(ArrayList<ItemStack> stacks, boolean isFull);
+    void setArmor(Iterator<ItemStack> iterator);
 
     ArrayList<ItemStack> getArmor();
 

@@ -139,29 +139,10 @@ public class GearAbilityHandler {
             ((IEquipUpdateItem) item).equip(entity, slot);
         }
         if (slot.getType() == EquipmentSlotType.Group.ARMOR) {
-            Optional<IArmorSetCapability> optional = event.getEntityLiving().getCapability(JCapabilityProvider.ARMOR).resolve();
+            Optional<IArmorSetCapability> optional = entity.getCapability(JCapabilityProvider.ARMOR).resolve();
             if (optional.isPresent()) {
-                Iterator<ItemStack> iterator = event.getEntityLiving().getArmorSlots().iterator();
-                ArrayList<ItemStack> stacks = new ArrayList<>();
-                ItemStack currentStack = iterator.next();
-                item = currentStack.getItem();
-                boolean isFull = item instanceof FullArmorAbility;
-                IArmorMaterial material = isFull ? ((JArmorItem) item).getMaterial() : null;
-                if (item instanceof JArmorItem) stacks.add(currentStack);
-                while (iterator.hasNext()) {
-                    currentStack = iterator.next();
-                    item = currentStack.getItem();
-                    if (item instanceof JArmorItem) {
-                        if (((ArmorItem) item).getMaterial() != material) {
-                            isFull = false;
-                        }
-                        stacks.add(currentStack);
-                    } else {
-                        isFull = false;
-                    }
-                }
-                stacks.trimToSize();
-                optional.get().setArmor(stacks, isFull);
+                Iterator<ItemStack> iterator = entity.getArmorSlots().iterator();
+                optional.get().setArmor(iterator);
             }
         }
     }
