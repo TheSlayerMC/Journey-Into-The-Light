@@ -2,6 +2,7 @@ package net.jitl.common.capability.armorability;
 
 import net.jitl.JITL;
 import net.jitl.common.capability.JCapabilityProvider;
+import net.jitl.common.item.armor.FullArmorAbility;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;
@@ -14,19 +15,20 @@ import java.util.ArrayList;
 
 @Mod.EventBusSubscriber(modid = JITL.MODID)
 public class ArmorSetCapability implements IArmorSetCapability {
-    private ArrayList<Item> armorPieces;
-    private Item fullSetItem;
+    private ArrayList<ItemStack> armorPieces;
+    private boolean isFullSet;
 
-    public void setArmor(Iterable<ItemStack> stacks) {
-
+    public void setArmor(ArrayList<ItemStack> stacks, boolean full) {
+        armorPieces = stacks;
+        isFullSet = full;
     }
 
-    public ArrayList<Item> getArmor() {
+    public ArrayList<ItemStack> getArmor() {
         return armorPieces;
     }
 
-    public Item getFullSet() {
-        return fullSetItem;
+    public FullArmorAbility getFullArmor() {
+        return isFullSet ? (FullArmorAbility) armorPieces.get(0).getItem() : null;
     }
 
     @SubscribeEvent()

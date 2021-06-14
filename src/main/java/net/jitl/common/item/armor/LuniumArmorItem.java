@@ -23,6 +23,7 @@ public class LuniumArmorItem extends JArmorItem {
 
     @Override
     public void armorTickAbility(LivingEntity entity, World world, ItemStack stack) {
+        System.out.println("Ability");
         CompoundNBT tag = stack.hasTag() ? stack.getTag() : new CompoundNBT();
         float value = tag.getFloat("cooldown");
         if (stack.getDamageValue() > 0 || value < 100) {

@@ -29,15 +29,5 @@ public class JArmorItem extends ArmorItem {
 		super(materialIn, slotIn, new Item.Properties().tab(JTabs.ARMOR));
 	}
 
-	@Override
-	public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
-		if (entityIn instanceof LivingEntity) {
-			LivingEntity livingEntity = (LivingEntity) entityIn;
-			if (livingEntity.getItemBySlot(this.getSlot()) == stack) {
-				armorTickAbility(livingEntity, worldIn, stack);
-			}
-		}
-	}
-
 	public void armorTickAbility(LivingEntity entity, World world, ItemStack stack) {}
 }

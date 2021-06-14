@@ -7,6 +7,7 @@ import net.jitl.common.helper.JToolTiers;
 import net.jitl.common.item.*;
 import net.jitl.common.item.armor.JArmorItem;
 import net.jitl.common.item.armor.LuniumArmorItem;
+import net.jitl.common.item.armor.ShadiumArmorItem;
 import net.jitl.common.item.axe.JAxeItem;
 import net.jitl.common.item.axe.LuniumAxeItem;
 import net.jitl.common.item.curios.HeartContainerItem;
@@ -176,10 +177,10 @@ public class ItemRegistrator {
         registerHandheldItem("shadium_shovel", "Shadium Shovel", () -> new JShovelItem(JToolTiers.SHADIUM));
         registerHandheldItem("shadium_hoe", "Shadium Hoe", () -> new JHoeItem(JToolTiers.SHADIUM));
         registerHandheldItem("shadium_multitool", "Shadium Multitool", () -> new MultitoolItem(JToolTiers.SHADIUM));
-        registerArmorItem("shadium_helmet", "Shadium Helmet", () -> new JArmorItem(JArmorMaterial.SHADIUM, EquipmentSlotType.HEAD));
-        registerArmorItem("shadium_chestplate", "Shadium Chestplate", () -> new JArmorItem(JArmorMaterial.SHADIUM, EquipmentSlotType.CHEST));
-        registerArmorItem("shadium_leggings", "Shadium Leggings", () -> new JArmorItem(JArmorMaterial.SHADIUM, EquipmentSlotType.LEGS));
-        registerArmorItem("shadium_boots", "Shadium Boots", () -> new JArmorItem(JArmorMaterial.SHADIUM, EquipmentSlotType.FEET));
+        registerArmorItem("shadium_helmet", "Shadium Helmet", () -> new ShadiumArmorItem(JArmorMaterial.SHADIUM, EquipmentSlotType.HEAD));
+        registerArmorItem("shadium_chestplate", "Shadium Chestplate", () -> new ShadiumArmorItem(JArmorMaterial.SHADIUM, EquipmentSlotType.CHEST));
+        registerArmorItem("shadium_leggings", "Shadium Leggings", () -> new ShadiumArmorItem(JArmorMaterial.SHADIUM, EquipmentSlotType.LEGS));
+        registerArmorItem("shadium_boots", "Shadium Boots", () -> new ShadiumArmorItem(JArmorMaterial.SHADIUM, EquipmentSlotType.FEET));
 
         //BLOODCRUST
         registerHandheldItem("bloodcrust_sword", "Bloodcrust Sword", () -> new JSwordItem(JToolTiers.BLOODCRUST));
