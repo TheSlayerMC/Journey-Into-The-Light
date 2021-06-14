@@ -69,7 +69,7 @@ public class GearAbilityHandler {
         if (item instanceof ArmorItem) {
             IArmorMaterial material = ((ArmorItem) item).getMaterial();
             if (material == ArmorMaterial.LEATHER) {
-                TooltipFiller filler = new TooltipFiller(event.getToolTip(), "leather_gear");
+                TooltipFiller filler = new TooltipFiller(event.getToolTip(), "leather_gear", 1);
                 filler.addOverview();
                 filler.addDrawback();
             } else if (material == ArmorMaterial.CHAIN) {
