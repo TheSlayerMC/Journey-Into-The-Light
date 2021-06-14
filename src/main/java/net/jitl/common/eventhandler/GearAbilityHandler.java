@@ -10,6 +10,7 @@ import net.jitl.common.item.IEquipUpdateItem;
 import net.jitl.common.item.armor.FullArmorAbility;
 import net.jitl.common.item.armor.JArmorItem;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -50,8 +51,9 @@ public class GearAbilityHandler {
 
     @SubscribeEvent()
     public static void handleIncomingAttack(LivingHurtEvent event) {
+        System.out.println(event.getAmount());
         Entity entity = event.getSource().getDirectEntity();
-        if (entity != null && entity.getClass() == ArrowEntity.class) {
+        if (entity.getType() == EntityType.ARROW || entity.getType() == EntityType.SPECTRAL_ARROW) {
             if (((ArrowEntity) entity).getOwner() instanceof LivingEntity) {
                 for (ItemStack itemStack : ((ArrowEntity) entity).getOwner().getArmorSlots()) {
                     Item current = itemStack.getItem();
@@ -61,6 +63,7 @@ public class GearAbilityHandler {
                 event.setAmount(event.getAmount() * 1.3F);
             }
         }
+        System.out.println(event.getAmount());
     }
 
     @SubscribeEvent()
@@ -71,7 +74,6 @@ public class GearAbilityHandler {
             if (material == ArmorMaterial.LEATHER) {
                 TooltipFiller filler = new TooltipFiller(event.getToolTip(), "leather_gear", 1);
                 filler.addOverview();
-                filler.addDrawback();
             } else if (material == ArmorMaterial.CHAIN) {
                 TooltipFiller filler = new TooltipFiller(event.getToolTip(), "chain_gear");
             }
