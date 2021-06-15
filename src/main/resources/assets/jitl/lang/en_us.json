@@ -6,7 +6,7 @@
   "jitl.message.item.miners_pearl": "The pearl doesn't feel safe enough to teleport.",
   "jitl.tooltip.enable_menu": "Use JITL Menu Theme",
   "jitl.tooltip.disable_menu": "Use Default Menu Theme",
-  "jitl.tooltip.leather_gear.0": "Regular and tipped arrows deal 75% more damage",
+  "jitl.tooltip.leather_gear.0": "Regular and tipped arrows deal +5 damage",
   "jitl.tooltip.lunium_gear.0": "Auto-repair",
   "jitl.tooltip.lunium_gear.1": "Repair speed relies on light level",
   "jitl.tooltip.shadium_sword.0": "Deal more damage while in darkness.",

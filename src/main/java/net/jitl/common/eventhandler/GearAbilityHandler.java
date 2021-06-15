@@ -60,7 +60,7 @@ public class GearAbilityHandler {
                     if (!(current instanceof ArmorItem && ((ArmorItem) current).getMaterial() == ArmorMaterial.LEATHER))
                         return;
                 }
-                event.setAmount(event.getAmount() * 1.75F);
+                event.setAmount(event.getAmount() + 5F);
             }
         }
         System.out.println(event.getAmount());
