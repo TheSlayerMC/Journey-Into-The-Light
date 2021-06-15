@@ -53,14 +53,14 @@ public class GearAbilityHandler {
     public static void handleIncomingAttack(LivingHurtEvent event) {
         System.out.println(event.getAmount());
         Entity entity = event.getSource().getDirectEntity();
-        if (entity.getType() == EntityType.ARROW || entity.getType() == EntityType.SPECTRAL_ARROW) {
+        if (entity != null && entity.getType() == EntityType.ARROW) {
             if (((ArrowEntity) entity).getOwner() instanceof LivingEntity) {
                 for (ItemStack itemStack : ((ArrowEntity) entity).getOwner().getArmorSlots()) {
                     Item current = itemStack.getItem();
                     if (!(current instanceof ArmorItem && ((ArmorItem) current).getMaterial() == ArmorMaterial.LEATHER))
                         return;
                 }
-                event.setAmount(event.getAmount() * 1.3F);
+                event.setAmount(event.getAmount() * 1.75F);
             }
         }
         System.out.println(event.getAmount());
