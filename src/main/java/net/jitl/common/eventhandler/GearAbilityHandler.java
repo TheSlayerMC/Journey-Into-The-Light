@@ -22,6 +22,7 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import ru.timeconqueror.timecore.api.common.event.LivingUpdateEndEvent;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -31,7 +32,7 @@ import java.util.Optional;
 public class GearAbilityHandler {
 
     @SubscribeEvent()
-    public static void handleTick(LivingEvent.LivingUpdateEvent event) {
+    public static void handleTick(LivingUpdateEndEvent event) {
         LivingEntity entity = event.getEntityLiving();
         Optional<IArmorSetCapability> optional = event.getEntityLiving().getCapability(JCapabilityProvider.ARMOR).resolve();
         if (optional.isPresent()) {

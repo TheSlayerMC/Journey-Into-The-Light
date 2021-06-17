@@ -25,9 +25,15 @@ public class ArmorSetCapability implements IArmorSetCapability {
         ArrayList<ItemStack> stacks = new ArrayList<>();
         ItemStack currentStack = iterator.next();
         Item item = currentStack.getItem();
-        boolean isFull = item instanceof FullArmorAbility;
-        IArmorMaterial material = isFull ? ((JArmorItem) item).getMaterial() : null;
-        if (item instanceof JArmorItem) stacks.add(currentStack);
+        boolean isFull = false;
+        IArmorMaterial material = null;
+        if (item instanceof JArmorItem) {
+            stacks.add(currentStack);
+            if (item instanceof FullArmorAbility) {
+                isFull = true;
+                material = ((JArmorItem) item).getMaterial();
+            }
+        }
         while (iterator.hasNext()) {
             currentStack = iterator.next();
             item = currentStack.getItem();
