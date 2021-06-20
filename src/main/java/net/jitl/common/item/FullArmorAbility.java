@@ -1,4 +1,4 @@
-package net.jitl.common.item.armor;
+package net.jitl.common.item;
 
 import net.minecraft.item.ItemStack;
 

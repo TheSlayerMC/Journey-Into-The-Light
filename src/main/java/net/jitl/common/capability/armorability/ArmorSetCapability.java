@@ -1,18 +1,10 @@
 package net.jitl.common.capability.armorability;
 
-import net.jitl.JITL;
-import net.jitl.common.capability.JCapabilityProvider;
-import net.jitl.common.item.armor.FullArmorAbility;
-import net.jitl.common.item.armor.JArmorItem;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.ArmorItem;
+import net.jitl.common.item.FullArmorAbility;
+import net.jitl.common.item.gear.base.JArmorItem;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.event.AttachCapabilitiesEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 
 import java.util.ArrayList;
 import java.util.Iterator;

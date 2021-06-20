@@ -1,12 +1,12 @@
-package net.jitl.common.item.armor;
+package net.jitl.common.item.gear.shadium;
 
 import javafx.util.Pair;
 import net.jitl.common.helper.JArmorMaterial;
 import net.jitl.common.helper.TooltipFiller;
 import net.jitl.common.item.IEquipUpdateItem;
+import net.jitl.common.item.gear.base.JArmorItem;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
@@ -16,7 +16,6 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -48,7 +47,13 @@ public class ShadiumArmorItem extends JArmorItem implements IEquipUpdateItem {
 
     @Override
     public void equip(LivingEntity entity, EquipmentSlotType slot) {
-
+        ModifiableAttributeInstance defense = entity.getAttribute(Attributes.ARMOR_TOUGHNESS);
+        if (defense.getModifier(getAttributeUUID()) == null) {
+            defense.addTransientModifier(new AttributeModifier(getAttributeUUID(),
+                    getAttributeName(),
+                    3.75 * (1 - entity.getBrightness()),
+                    AttributeModifier.Operation.ADDITION));
+        }
     }
 
     @Override

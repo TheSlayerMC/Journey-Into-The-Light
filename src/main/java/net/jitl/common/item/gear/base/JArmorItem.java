@@ -1,27 +1,13 @@
-package net.jitl.common.item.armor;
+package net.jitl.common.item.gear.base;
 
-import net.jitl.JITL;
 import net.jitl.common.helper.JArmorMaterial;
-import net.jitl.common.helper.TooltipFiller;
 import net.jitl.init.JTabs;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import org.jetbrains.annotations.NotNull;
-
-import javax.annotation.Nullable;
-import java.util.List;
 
 public class JArmorItem extends ArmorItem {
 
