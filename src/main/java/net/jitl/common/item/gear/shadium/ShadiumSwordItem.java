@@ -1,7 +1,7 @@
 package net.jitl.common.item.gear.shadium;
 
 import net.jitl.common.helper.JToolTiers;
-import net.jitl.common.item.IEquipUpdateItem;
+import net.jitl.common.item.gear.IEquipUpdateItem;
 import net.jitl.common.item.gear.base.JSwordItem;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;

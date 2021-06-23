@@ -1,6 +1,6 @@
 package net.jitl.common.capability.armorability;
 
-import net.jitl.common.item.FullArmorAbility;
+import net.jitl.common.item.gear.FullArmorAbility;
 import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;

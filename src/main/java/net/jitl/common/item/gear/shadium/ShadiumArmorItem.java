@@ -3,7 +3,7 @@ package net.jitl.common.item.gear.shadium;
 import javafx.util.Pair;
 import net.jitl.common.helper.JArmorMaterial;
 import net.jitl.common.helper.TooltipFiller;
-import net.jitl.common.item.IEquipUpdateItem;
+import net.jitl.common.item.gear.IEquipUpdateItem;
 import net.jitl.common.item.gear.base.JArmorItem;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;

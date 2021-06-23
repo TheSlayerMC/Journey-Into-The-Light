@@ -2,9 +2,11 @@ package net.jitl.common.item.gear.lunium;
 
 import net.jitl.common.helper.JToolTiers;
 import net.jitl.common.helper.TooltipFiller;
+import net.jitl.common.item.gear.JTieredItemAbility;
 import net.jitl.common.item.gear.base.JSwordItem;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.text.ITextComponent;
@@ -15,14 +17,22 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class LuniumSwordItem extends JSwordItem implements ILunium {
+public class LuniumSwordItem extends JSwordItem implements ILunium, JTieredItemAbility {
     public LuniumSwordItem(JToolTiers tier) {
         super(tier);
     }
 
     @Override
+    public void tick(LivingEntity entity, World world, ItemStack stack) {
+        if (!world.isClientSide()) repair(entity, stack);
+    }
+
+    @Override
     public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
-        if (!worldIn.isClientSide()) repair(entityIn, stack);
+        if (!worldIn.isClientSide()) {
+            LivingEntity entity = (LivingEntity) entityIn;
+            if (entity.getMainHandItem() != stack && entity.getOffhandItem() != stack) repair(entityIn, stack);
+        }
     }
 
     @Override

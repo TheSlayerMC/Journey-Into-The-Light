@@ -4,8 +4,9 @@ import net.jitl.JITL;
 import net.jitl.common.capability.JCapabilityProvider;
 import net.jitl.common.capability.armorability.IArmorSetCapability;
 import net.jitl.common.helper.TooltipFiller;
-import net.jitl.common.item.IEquipUpdateItem;
-import net.jitl.common.item.FullArmorAbility;
+import net.jitl.common.item.gear.IEquipUpdateItem;
+import net.jitl.common.item.gear.FullArmorAbility;
+import net.jitl.common.item.gear.JTieredItemAbility;
 import net.jitl.common.item.gear.base.JArmorItem;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -30,7 +31,15 @@ public class GearAbilityHandler {
     @SubscribeEvent()
     public static void handleTick(LivingUpdateEndEvent event) {
         LivingEntity entity = event.getEntityLiving();
-        Optional<IArmorSetCapability> optional = event.getEntityLiving().getCapability(JCapabilityProvider.ARMOR).resolve();
+        ItemStack hand = entity.getMainHandItem();
+        if (hand.getItem() instanceof JTieredItemAbility) {
+            ((JTieredItemAbility) hand.getItem()).tick(entity, entity.level, hand);
+        }
+        hand = entity.getOffhandItem();
+        if (hand.getItem() instanceof JTieredItemAbility) {
+            ((JTieredItemAbility) hand.getItem()).tick(entity, entity.level, hand);
+        }
+        Optional<IArmorSetCapability> optional = entity.getCapability(JCapabilityProvider.ARMOR).resolve();
         if (optional.isPresent()) {
             IArmorSetCapability capability = optional.get();
             ArrayList<ItemStack> stacks = capability.getArmor();
