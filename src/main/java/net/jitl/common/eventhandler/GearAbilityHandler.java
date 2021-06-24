@@ -140,11 +140,11 @@ public class GearAbilityHandler {
         LivingEntity entity = event.getEntityLiving();
         EquipmentSlotType slot = event.getSlot();
         if (item instanceof IEquipUpdateItem) {
-            ((IEquipUpdateItem) item).unEquip(entity, slot);
+            ((IEquipUpdateItem) item).unEquip(entity, slot, event.getFrom());
         }
         item = event.getTo().getItem();
         if (item instanceof IEquipUpdateItem) {
-            ((IEquipUpdateItem) item).equip(entity, slot);
+            ((IEquipUpdateItem) item).equip(entity, slot, event.getTo());
         }
         if (slot.getType() == EquipmentSlotType.Group.ARMOR) {
             Optional<IArmorSetCapability> optional = entity.getCapability(JCapabilityProvider.ARMOR).resolve();

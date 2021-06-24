@@ -34,9 +34,8 @@ public class ShadiumArmorItem extends JArmorItem implements IEquipUpdateItem {
     @Override
     public void armorTickAbility(LivingEntity entity, World world, ItemStack stack) {
         ModifiableAttributeInstance defense = entity.getAttribute(Attributes.ARMOR_TOUGHNESS);
-        AttributeModifier modifier = defense.getModifier(getAttributeUUID());
-        if (modifier != null) {
-            defense.removeModifier(modifier);
+        if (defense.getModifier(getAttributeUUID()) != null) {
+            defense.removeModifier(getAttributeUUID());
         }
         defense.addTransientModifier(new AttributeModifier(getAttributeUUID(),
                 getAttributeName(),
@@ -46,22 +45,27 @@ public class ShadiumArmorItem extends JArmorItem implements IEquipUpdateItem {
     }
 
     @Override
-    public void equip(LivingEntity entity, EquipmentSlotType slot) {
-        ModifiableAttributeInstance defense = entity.getAttribute(Attributes.ARMOR_TOUGHNESS);
-        if (defense.getModifier(getAttributeUUID()) == null) {
-            defense.addTransientModifier(new AttributeModifier(getAttributeUUID(),
-                    getAttributeName(),
-                    3.75 * (1 - entity.getBrightness()),
-                    AttributeModifier.Operation.ADDITION));
+    public void equip(LivingEntity entity, EquipmentSlotType slot, ItemStack stack) {
+        if (slot.getType() == EquipmentSlotType.Group.ARMOR) {
+            ModifiableAttributeInstance defense = entity.getAttribute(Attributes.ARMOR_TOUGHNESS);
+            if (defense.getModifier(getAttributeUUID()) == null) {
+                defense.addTransientModifier(new AttributeModifier(getAttributeUUID(),
+                        getAttributeName(),
+                        3.75 * (1 - entity.getBrightness()),
+                        AttributeModifier.Operation.ADDITION));
+            }
+            System.out.println("Equip");
         }
     }
 
     @Override
-    public void unEquip(LivingEntity entity, EquipmentSlotType slot) {
-        ModifiableAttributeInstance defense = entity.getAttribute(Attributes.ARMOR_TOUGHNESS);
-        AttributeModifier modifier = defense.getModifier(getAttributeUUID());
-        if (modifier != null) {
-            defense.removeModifier(modifier);
+    public void unEquip(LivingEntity entity, EquipmentSlotType slot, ItemStack stack) {
+        if (slot.getType() == EquipmentSlotType.Group.ARMOR) {
+            ModifiableAttributeInstance defense = entity.getAttribute(Attributes.ARMOR_TOUGHNESS);
+            AttributeModifier modifier = defense.getModifier(getAttributeUUID());
+            if (modifier != null) {
+                defense.removeModifier(modifier);
+            }
         }
     }
 
