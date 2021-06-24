@@ -19,7 +19,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.UUID;
 
-public class ShadiumArmorItem extends JArmorItem implements IEquipUpdateItem {
+public class ShadiumArmorItem extends JArmorItem implements IEquipUpdateItem, IShadium {
     private final Pair<String, UUID>[] IDS = new Pair[] {
             new Pair("Shadium Boots", UUID.fromString("1c4e5a9a-10fe-4be1-b088-1652400848e4")),
             new Pair("Shadium Legs", UUID.fromString("c122608d-543f-4f66-b6c1-1ccc95ab4258")),
@@ -39,7 +39,7 @@ public class ShadiumArmorItem extends JArmorItem implements IEquipUpdateItem {
         }
         defense.addTransientModifier(new AttributeModifier(getAttributeUUID(),
                 getAttributeName(),
-                3.75 * (1 - entity.getBrightness()),
+                scaleWithDarkness(entity, 3.75),
                 AttributeModifier.Operation.ADDITION));
         System.out.println(defense.getValue());
     }
@@ -51,10 +51,10 @@ public class ShadiumArmorItem extends JArmorItem implements IEquipUpdateItem {
             if (defense.getModifier(getAttributeUUID()) == null) {
                 defense.addTransientModifier(new AttributeModifier(getAttributeUUID(),
                         getAttributeName(),
-                        3.75 * (1 - entity.getBrightness()),
+                        scaleWithDarkness(entity, 3.75),
                         AttributeModifier.Operation.ADDITION));
             }
-            System.out.println("Equip");
+            System.out.println("Equip " + defense.getValue());
         }
     }
 
@@ -71,7 +71,7 @@ public class ShadiumArmorItem extends JArmorItem implements IEquipUpdateItem {
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-        TooltipFiller filler = new TooltipFiller(tooltip, "shadium_gear");
+        TooltipFiller filler = new TooltipFiller(tooltip, "shadium_armor");
         filler.addOverview();
         filler.addDetail();
     }

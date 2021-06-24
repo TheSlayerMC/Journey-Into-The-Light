@@ -1,14 +1,12 @@
 package net.jitl.common.item.gear.lunium;
 
 import net.jitl.common.helper.JToolTiers;
-import net.jitl.common.helper.TooltipFiller;
 import net.jitl.common.item.gear.JTieredItemAbility;
 import net.jitl.common.item.gear.base.JHoeItem;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -38,7 +36,7 @@ public class LuniumHoeItem extends JHoeItem implements ILunium, JTieredItemAbili
     @Override
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-        tooltip(tooltip);
+        lightTooltip(tooltip);
     }
 
     @Override

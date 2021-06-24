@@ -1,13 +1,11 @@
 package net.jitl.common.item.gear.lunium;
 
 import net.jitl.common.helper.JArmorMaterial;
-import net.jitl.common.helper.TooltipFiller;
 import net.jitl.common.item.gear.base.JArmorItem;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -29,6 +27,6 @@ public class LuniumArmorItem extends JArmorItem implements ILunium {
     @Override
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-        tooltip(tooltip);
+        lightTooltip(tooltip);
     }
 }

@@ -26,7 +26,7 @@ public interface ILunium {
         }
     }
 
-    default void tooltip(List<ITextComponent> tooltip) {
+    default void lightTooltip(List<ITextComponent> tooltip) {
         TooltipFiller filler = new TooltipFiller(tooltip, "lunium_gear");
         filler.addOverview();
         filler.addDrawback();
