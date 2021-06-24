@@ -1,14 +1,15 @@
 package net.jitl.common.capability.armorability;
 
-import net.minecraft.item.Item;
+import net.jitl.common.item.gear.FullArmorAbility;
 import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public interface IArmorSetCapability {
-    void setArmor(Iterable<ItemStack> stacks);
+    void setArmor(Iterator<ItemStack> iterator);
 
-    ArrayList<Item> getArmor();
+    ArrayList<ItemStack> getArmor();
 
-    Item getFullSet();
+    FullArmorAbility getFullArmor();
 }

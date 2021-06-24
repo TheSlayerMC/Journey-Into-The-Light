@@ -8,7 +8,6 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(modid = JITL.MODID)
 public class CurrentStructureCapability implements ICurrentStructureCapability {
     private int structureId;
 
@@ -18,12 +17,5 @@ public class CurrentStructureCapability implements ICurrentStructureCapability {
 
     public int getStructure() {
         return structureId;
-    }
-
-    @SubscribeEvent()
-    public static void registerCapabilities(AttachCapabilitiesEvent<Entity> event) {
-        if (!event.getObject().level.isClientSide() && event.getObject() instanceof PlayerEntity) {
-            event.addCapability(JITL.rl("current_structure"), new JCapabilityProvider());
-        }
     }
 }

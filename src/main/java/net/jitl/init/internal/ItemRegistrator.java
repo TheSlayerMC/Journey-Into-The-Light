@@ -5,10 +5,11 @@ import net.jitl.common.entity.projectile.*;
 import net.jitl.common.helper.JArmorMaterial;
 import net.jitl.common.helper.JToolTiers;
 import net.jitl.common.item.*;
-import net.jitl.common.item.armor.JArmorItem;
-import net.jitl.common.item.armor.LuniumArmorItem;
-import net.jitl.common.item.axe.JAxeItem;
-import net.jitl.common.item.axe.LuniumAxeItem;
+import net.jitl.common.item.gear.base.JArmorItem;
+import net.jitl.common.item.gear.lunium.LuniumArmorItem;
+import net.jitl.common.item.gear.shadium.ShadiumArmorItem;
+import net.jitl.common.item.gear.base.JAxeItem;
+import net.jitl.common.item.gear.lunium.LuniumAxeItem;
 import net.jitl.common.item.curios.HeartContainerItem;
 import net.jitl.common.item.curios.JCurioItem;
 import net.jitl.common.item.curios.amulet.CloudwalkingAmuletItem;
@@ -16,21 +17,24 @@ import net.jitl.common.item.curios.amulet.DynasterAmuletItem;
 import net.jitl.common.item.curios.catalyst.EssenceCatalystItem;
 import net.jitl.common.item.curios.catalyst.RegenCatalystItem;
 import net.jitl.common.item.curios.ring.JRingItem;
-import net.jitl.common.item.hoe.JHoeItem;
-import net.jitl.common.item.hoe.LuniumHoeItem;
+import net.jitl.common.item.gear.base.JHoeItem;
+import net.jitl.common.item.gear.lunium.LuniumHoeItem;
 import net.jitl.common.item.interactive.MinersPearlItem;
-import net.jitl.common.item.multitool.LuniumMultitoolItem;
-import net.jitl.common.item.multitool.MultitoolItem;
-import net.jitl.common.item.pickaxe.JPickaxeItem;
-import net.jitl.common.item.pickaxe.LuniumPickaxeItem;
-import net.jitl.common.item.shovel.JShovelItem;
-import net.jitl.common.item.shovel.LuniumShovelItem;
-import net.jitl.common.item.sword.JSwordItem;
-import net.jitl.common.item.sword.LuniumSwordItem;
-import net.jitl.common.item.sword.ShadiumSwordItem;
+import net.jitl.common.item.gear.lunium.LuniumMultitoolItem;
+import net.jitl.common.item.gear.base.MultitoolItem;
+import net.jitl.common.item.gear.base.JPickaxeItem;
+import net.jitl.common.item.gear.lunium.LuniumPickaxeItem;
+import net.jitl.common.item.gear.base.JShovelItem;
+import net.jitl.common.item.gear.lunium.LuniumShovelItem;
+import net.jitl.common.item.gear.base.JSwordItem;
+import net.jitl.common.item.gear.lunium.LuniumSwordItem;
+import net.jitl.common.item.gear.shadium.ShadiumSwordItem;
 import net.jitl.common.item.throwable.PiercerItem;
 import net.jitl.common.item.throwable.ThrowableItem;
-import net.jitl.init.*;
+import net.jitl.init.JBlocks;
+import net.jitl.init.JEntities;
+import net.jitl.init.JFoods;
+import net.jitl.init.JLootTables;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.potion.Effects;
@@ -176,10 +180,10 @@ public class ItemRegistrator {
         registerHandheldItem("shadium_shovel", "Shadium Shovel", () -> new JShovelItem(JToolTiers.SHADIUM));
         registerHandheldItem("shadium_hoe", "Shadium Hoe", () -> new JHoeItem(JToolTiers.SHADIUM));
         registerHandheldItem("shadium_multitool", "Shadium Multitool", () -> new MultitoolItem(JToolTiers.SHADIUM));
-        registerArmorItem("shadium_helmet", "Shadium Helmet", () -> new JArmorItem(JArmorMaterial.SHADIUM, EquipmentSlotType.HEAD));
-        registerArmorItem("shadium_chestplate", "Shadium Chestplate", () -> new JArmorItem(JArmorMaterial.SHADIUM, EquipmentSlotType.CHEST));
-        registerArmorItem("shadium_leggings", "Shadium Leggings", () -> new JArmorItem(JArmorMaterial.SHADIUM, EquipmentSlotType.LEGS));
-        registerArmorItem("shadium_boots", "Shadium Boots", () -> new JArmorItem(JArmorMaterial.SHADIUM, EquipmentSlotType.FEET));
+        registerArmorItem("shadium_helmet", "Shadium Helmet", () -> new ShadiumArmorItem(JArmorMaterial.SHADIUM, EquipmentSlotType.HEAD));
+        registerArmorItem("shadium_chestplate", "Shadium Chestplate", () -> new ShadiumArmorItem(JArmorMaterial.SHADIUM, EquipmentSlotType.CHEST));
+        registerArmorItem("shadium_leggings", "Shadium Leggings", () -> new ShadiumArmorItem(JArmorMaterial.SHADIUM, EquipmentSlotType.LEGS));
+        registerArmorItem("shadium_boots", "Shadium Boots", () -> new ShadiumArmorItem(JArmorMaterial.SHADIUM, EquipmentSlotType.FEET));
 
         //BLOODCRUST
         registerHandheldItem("bloodcrust_sword", "Bloodcrust Sword", () -> new JSwordItem(JToolTiers.BLOODCRUST));
@@ -229,7 +233,7 @@ public class ItemRegistrator {
         registerHandheldItem("storon_hoe", "Storon Hoe", () -> new JHoeItem(JToolTiers.STORON));
         registerHandheldItem("storon_multitool", "Storon Multitool", () -> new MultitoolItem(JToolTiers.STORON));
 
-        registerItem("molten_knife", "Molten Knife", () -> new ThrowableItem(rangedWeaponsGrouped(), (worldIn, owner) -> new KnifeEntity(worldIn, owner).withBaseDamage(10)).setSound(JSounds.STAFF_0::get));
+        registerItem("molten_knife", "Molten Knife", () -> new ThrowableItem(rangedWeaponsGrouped(), (worldIn, owner) -> new KnifeEntity(worldIn, owner).withBaseDamage(10)).setSound(() -> SoundEvents.SNOWBALL_THROW));
 
         registerItem("euca_piercer", "Euca Piercer", () -> new PiercerItem(rangedWeaponsGrouped().durability(50),
                 (worldIn, owner, stack) -> new PiercerEntity(owner, worldIn, stack, 3, 10.0F)));

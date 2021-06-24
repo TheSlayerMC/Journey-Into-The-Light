@@ -34,7 +34,7 @@ public class ThrowableItem extends Item {
         ItemStack itemstack = playerIn.getItemInHand(handIn);
         worldIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), SoundEvents.SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
         if (sound != null) {
-            worldIn.playSound(playerIn, playerIn.getX(), playerIn.getY(), playerIn.getZ(), sound.get(), SoundCategory.PLAYERS, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
+            worldIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), sound.get(), SoundCategory.PLAYERS, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
         }
         if (!worldIn.isClientSide) {
             ProjectileEntity projectile = projectileFactory.apply(worldIn, playerIn);

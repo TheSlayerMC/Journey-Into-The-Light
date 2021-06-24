@@ -10,14 +10,26 @@ public class TooltipFiller {
     private final List<ITextComponent> tooltip;
     private final String key;
     private int line = 0;
+    private int startPoint;
 
     public TooltipFiller(List<ITextComponent> text, String itemKey) {
         tooltip = text;
         key = itemKey;
+        startPoint = -1;
+    }
+
+    public TooltipFiller(List<ITextComponent> text, String itemKey, int start) {
+        tooltip = text;
+        key = itemKey;
+        startPoint = start;
     }
 
     public void addTooltip(TextFormatting color) {
-        tooltip.add(new TranslationTextComponent("jitl.tooltip." + key + "." + line++).withStyle(color));
+        if (startPoint == -1) {
+            tooltip.add(new TranslationTextComponent("jitl.tooltip." + key + "." + line++).withStyle(color));
+        } else {
+            tooltip.add(startPoint + line, new TranslationTextComponent("jitl.tooltip." + key + "." + line++).withStyle(color));
+        }
     }
 
     public void addOverview() {

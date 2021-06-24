@@ -4,7 +4,6 @@ import net.jitl.init.JEntities;
 import net.jitl.init.JItems;
 import net.jitl.init.JSounds;
 import net.minecraft.entity.*;
-import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
@@ -47,7 +46,7 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
     @Override
     public void tick() {
         super.tick();
-        if (!isNoGravity() && !isNoGravity()) {
+        if (!isNoPhysics() && !isInGround() && !isNoGravity()) {
             this.setDeltaMovement(this.getDeltaMovement().add(0, 0.04, 0));
         }
     }
@@ -59,15 +58,14 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
         if (entity instanceof LivingEntity) {
             if (entity != this.getOwner()) {
                 level.playSound(null, this.blockPosition(), JSounds.PIERCER.get(), SoundCategory.NEUTRAL, 1.0F, 1.0F);
-                entity.hurt(DamageSource.thrown(this, this.getOwner()), damage);
                 if (getOwner() instanceof ServerPlayerEntity) {
                     ServerPlayerEntity player = (ServerPlayerEntity) getOwner();
                     getStack().hurt(1, player.getRandom(), player);
                 }
-                if (++currentBounces <= maxBounces) {
-                    List<LivingEntity> entitiesNear = this.level.getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(10D));
+                if (++currentBounces <= maxBounces && entity.hurt(DamageSource.thrown(this, this.getOwner()), damage)) {
+                    List<LivingEntity> entitiesNear = this.level.getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(6D));
                     for (LivingEntity e : entitiesNear) {
-                        if (e != this.getOwner() && this.canSee(e) && !e.isDeadOrDying() && e != entity && e.getClassification(false) == EntityClassification.MONSTER) {
+                        if (e != this.getOwner() && this.canSee(e) && e.invulnerableTime == 0 && !e.isDeadOrDying() && e != entity && e.getClassification(false) == EntityClassification.MONSTER) {
                             if (bounceTo == null || this.distanceTo(e) < this.distanceTo(bounceTo)) {
                                 bounceTo = e;
                             }
