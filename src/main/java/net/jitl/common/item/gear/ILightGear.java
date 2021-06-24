@@ -1,4 +1,4 @@
-package net.jitl.common.item.gear.lunium;
+package net.jitl.common.item.gear;
 
 import net.jitl.common.helper.TooltipFiller;
 import net.minecraft.entity.Entity;
@@ -10,7 +10,7 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public interface ILunium {
+public interface ILightGear {
     default void repair(Entity entity, ItemStack stack) {
         CompoundNBT tag = stack.hasTag() ? stack.getTag() : new CompoundNBT();
         float value = tag.getFloat("cooldown");
@@ -32,7 +32,11 @@ public interface ILunium {
         filler.addDrawback();
     }
 
-    default boolean shouldAnimate(ItemStack oldStack, ItemStack newStack) {
+    default double scaleWithDarkness(Entity entity, double original) {
+        return original * (1 - entity.getBrightness());
+    }
+
+    default boolean animateIgnoreNBT(ItemStack oldStack, ItemStack newStack) {
         if (oldStack.equals(newStack)) return false;
         if (oldStack.sameItem(newStack)) {
             int durability = newStack.getDamageValue() - oldStack.getDamageValue();

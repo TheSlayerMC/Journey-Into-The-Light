@@ -3,6 +3,7 @@ package net.jitl.common.item.gear.shadium;
 import net.jitl.common.helper.JToolTiers;
 import net.jitl.common.helper.TooltipFiller;
 import net.jitl.common.item.gear.IEquipUpdateItem;
+import net.jitl.common.item.gear.ILightGear;
 import net.jitl.common.item.gear.JTieredItemAbility;
 import net.jitl.common.item.gear.base.JSwordItem;
 import net.minecraft.client.util.ITooltipFlag;
@@ -19,7 +20,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.UUID;
 
-public class ShadiumSwordItem extends JSwordItem implements IEquipUpdateItem, JTieredItemAbility, IShadium {
+public class ShadiumSwordItem extends JSwordItem implements IEquipUpdateItem, JTieredItemAbility, ILightGear {
     private static UUID ID = UUID.fromString("6f56284c-ac30-4490-a06a-b11517d87e91");
 
     public ShadiumSwordItem(JToolTiers tier) {

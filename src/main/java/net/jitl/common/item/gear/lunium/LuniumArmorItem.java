@@ -1,6 +1,7 @@
 package net.jitl.common.item.gear.lunium;
 
 import net.jitl.common.helper.JArmorMaterial;
+import net.jitl.common.item.gear.ILightGear;
 import net.jitl.common.item.gear.base.JArmorItem;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
@@ -14,7 +15,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class LuniumArmorItem extends JArmorItem implements ILunium {
+public class LuniumArmorItem extends JArmorItem implements ILightGear {
     public LuniumArmorItem(JArmorMaterial materialIn, EquipmentSlotType slotIn) {
         super(materialIn, slotIn);
     }

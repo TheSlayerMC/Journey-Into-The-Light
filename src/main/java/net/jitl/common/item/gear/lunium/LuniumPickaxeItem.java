@@ -1,6 +1,7 @@
 package net.jitl.common.item.gear.lunium;
 
 import net.jitl.common.helper.JToolTiers;
+import net.jitl.common.item.gear.ILightGear;
 import net.jitl.common.item.gear.JTieredItemAbility;
 import net.jitl.common.item.gear.base.JPickaxeItem;
 import net.minecraft.client.util.ITooltipFlag;
@@ -15,7 +16,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class LuniumPickaxeItem extends JPickaxeItem implements ILunium, JTieredItemAbility {
+public class LuniumPickaxeItem extends JPickaxeItem implements ILightGear, JTieredItemAbility {
     public LuniumPickaxeItem(JToolTiers tier) {
         super(tier);
     }
@@ -41,11 +42,11 @@ public class LuniumPickaxeItem extends JPickaxeItem implements ILunium, JTieredI
 
     @Override
     public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
-        return shouldAnimate(oldStack, newStack);
+        return animateIgnoreNBT(oldStack, newStack);
     }
 
     @Override
     public boolean shouldCauseBlockBreakReset(ItemStack oldStack, ItemStack newStack) {
-        return shouldAnimate(oldStack, newStack);
+        return animateIgnoreNBT(oldStack, newStack);
     }
 }

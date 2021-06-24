@@ -1,6 +1,7 @@
 package net.jitl.common.item.gear.lunium;
 
 import net.jitl.common.helper.JToolTiers;
+import net.jitl.common.item.gear.ILightGear;
 import net.jitl.common.item.gear.JTieredItemAbility;
 import net.jitl.common.item.gear.base.JHoeItem;
 import net.minecraft.client.util.ITooltipFlag;
@@ -15,7 +16,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class LuniumHoeItem extends JHoeItem implements ILunium, JTieredItemAbility {
+public class LuniumHoeItem extends JHoeItem implements ILightGear, JTieredItemAbility {
     public LuniumHoeItem(JToolTiers tier) {
         super(tier);
     }
@@ -41,11 +42,11 @@ public class LuniumHoeItem extends JHoeItem implements ILunium, JTieredItemAbili
 
     @Override
     public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
-        return shouldAnimate(oldStack, newStack);
+        return animateIgnoreNBT(oldStack, newStack);
     }
 
     @Override
     public boolean shouldCauseBlockBreakReset(ItemStack oldStack, ItemStack newStack) {
-        return shouldAnimate(oldStack, newStack);
+        return animateIgnoreNBT(oldStack, newStack);
     }
 }

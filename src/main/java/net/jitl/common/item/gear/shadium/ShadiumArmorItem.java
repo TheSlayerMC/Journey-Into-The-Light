@@ -4,6 +4,7 @@ import javafx.util.Pair;
 import net.jitl.common.helper.JArmorMaterial;
 import net.jitl.common.helper.TooltipFiller;
 import net.jitl.common.item.gear.IEquipUpdateItem;
+import net.jitl.common.item.gear.ILightGear;
 import net.jitl.common.item.gear.base.JArmorItem;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
@@ -19,7 +20,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.UUID;
 
-public class ShadiumArmorItem extends JArmorItem implements IEquipUpdateItem, IShadium {
+public class ShadiumArmorItem extends JArmorItem implements IEquipUpdateItem, ILightGear {
     private final Pair<String, UUID>[] IDS = new Pair[] {
             new Pair("Shadium Boots", UUID.fromString("1c4e5a9a-10fe-4be1-b088-1652400848e4")),
             new Pair("Shadium Legs", UUID.fromString("c122608d-543f-4f66-b6c1-1ccc95ab4258")),
