@@ -5,11 +5,9 @@ import net.jitl.common.entity.projectile.*;
 import net.jitl.common.helper.JArmorMaterial;
 import net.jitl.common.helper.JToolTiers;
 import net.jitl.common.item.*;
-import net.jitl.common.item.gear.base.JArmorItem;
-import net.jitl.common.item.gear.lunium.LuniumArmorItem;
+import net.jitl.common.item.gear.*;
+import net.jitl.common.item.gear.abilities.LuniumAbility;
 import net.jitl.common.item.gear.shadium.ShadiumArmorItem;
-import net.jitl.common.item.gear.base.JAxeItem;
-import net.jitl.common.item.gear.lunium.LuniumAxeItem;
 import net.jitl.common.item.curios.HeartContainerItem;
 import net.jitl.common.item.curios.JCurioItem;
 import net.jitl.common.item.curios.amulet.CloudwalkingAmuletItem;
@@ -17,17 +15,7 @@ import net.jitl.common.item.curios.amulet.DynasterAmuletItem;
 import net.jitl.common.item.curios.catalyst.EssenceCatalystItem;
 import net.jitl.common.item.curios.catalyst.RegenCatalystItem;
 import net.jitl.common.item.curios.ring.JRingItem;
-import net.jitl.common.item.gear.base.JHoeItem;
-import net.jitl.common.item.gear.lunium.LuniumHoeItem;
 import net.jitl.common.item.interactive.MinersPearlItem;
-import net.jitl.common.item.gear.lunium.LuniumMultitoolItem;
-import net.jitl.common.item.gear.base.MultitoolItem;
-import net.jitl.common.item.gear.base.JPickaxeItem;
-import net.jitl.common.item.gear.lunium.LuniumPickaxeItem;
-import net.jitl.common.item.gear.base.JShovelItem;
-import net.jitl.common.item.gear.lunium.LuniumShovelItem;
-import net.jitl.common.item.gear.base.JSwordItem;
-import net.jitl.common.item.gear.lunium.LuniumSwordItem;
 import net.jitl.common.item.gear.shadium.ShadiumSwordItem;
 import net.jitl.common.item.throwable.PiercerItem;
 import net.jitl.common.item.throwable.ThrowableItem;
@@ -50,6 +38,8 @@ import static net.jitl.util.JItemProperties.itemGrouped;
 import static net.jitl.util.JItemProperties.rangedWeaponsGrouped;
 
 public class ItemRegistrator {
+    private static final IAbility BASIC = new IAbility() {};
+    private static final IAbility LUNIUM = new LuniumAbility();
     @AutoRegistrable
     private static final ItemRegister REGISTER = new ItemRegister(JITL.MODID);
 
@@ -150,88 +140,88 @@ public class ItemRegistrator {
         registerItem("test_bug", "Test Bug", TestBugItem::new);
 
         //SAPPHIRE
-        registerHandheldItem("sapphire_sword", "Sapphire Sword", () -> new JSwordItem(JToolTiers.SAPPHIRE));
-        registerHandheldItem("sapphire_pickaxe", "Sapphire Pickaxe", () -> new JPickaxeItem(JToolTiers.SAPPHIRE));
-        registerHandheldItem("sapphire_axe", "Sapphire Axe", () -> new JAxeItem(JToolTiers.SAPPHIRE));
-        registerHandheldItem("sapphire_shovel", "Sapphire Shovel", () -> new JShovelItem(JToolTiers.SAPPHIRE));
-        registerHandheldItem("sapphire_hoe", "Sapphire Hoe", () -> new JHoeItem(JToolTiers.SAPPHIRE));
-        registerHandheldItem("sapphire_multitool", "Sapphire Multitool", () -> new MultitoolItem(JToolTiers.SAPPHIRE));
-        registerArmorItem("sapphire_helmet", "Sapphire Helmet", () -> new JArmorItem(JArmorMaterial.SAPPHIRE, EquipmentSlotType.HEAD));
-        registerArmorItem("sapphire_chestplate", "Sapphire Chestplate", () -> new JArmorItem(JArmorMaterial.SAPPHIRE, EquipmentSlotType.CHEST));
-        registerArmorItem("sapphire_leggings", "Sapphire Leggings", () -> new JArmorItem(JArmorMaterial.SAPPHIRE, EquipmentSlotType.LEGS));
-        registerArmorItem("sapphire_boots", "Sapphire Boots", () -> new JArmorItem(JArmorMaterial.SAPPHIRE, EquipmentSlotType.FEET));
+        registerHandheldItem("sapphire_sword", "Sapphire Sword", () -> new JSwordItem(JToolTiers.SAPPHIRE, BASIC));
+        registerHandheldItem("sapphire_pickaxe", "Sapphire Pickaxe", () -> new JPickaxeItem(JToolTiers.SAPPHIRE, BASIC));
+        registerHandheldItem("sapphire_axe", "Sapphire Axe", () -> new JAxeItem(JToolTiers.SAPPHIRE, BASIC));
+        registerHandheldItem("sapphire_shovel", "Sapphire Shovel", () -> new JShovelItem(JToolTiers.SAPPHIRE, BASIC));
+        registerHandheldItem("sapphire_hoe", "Sapphire Hoe", () -> new JHoeItem(JToolTiers.SAPPHIRE, BASIC));
+        registerHandheldItem("sapphire_multitool", "Sapphire Multitool", () -> new MultitoolItem(JToolTiers.SAPPHIRE, BASIC));
+        registerArmorItem("sapphire_helmet", "Sapphire Helmet", () -> new JArmorItem(JArmorMaterial.SAPPHIRE, EquipmentSlotType.HEAD, BASIC));
+        registerArmorItem("sapphire_chestplate", "Sapphire Chestplate", () -> new JArmorItem(JArmorMaterial.SAPPHIRE, EquipmentSlotType.CHEST, BASIC));
+        registerArmorItem("sapphire_leggings", "Sapphire Leggings", () -> new JArmorItem(JArmorMaterial.SAPPHIRE, EquipmentSlotType.LEGS, BASIC));
+        registerArmorItem("sapphire_boots", "Sapphire Boots", () -> new JArmorItem(JArmorMaterial.SAPPHIRE, EquipmentSlotType.FEET, BASIC));
         
         //LUNIUM
-        registerHandheldItem("lunium_sword", "Lunium Sword", () -> new LuniumSwordItem(JToolTiers.LUNIUM));
-        registerHandheldItem("lunium_pickaxe", "Lunium Pickaxe", () -> new LuniumPickaxeItem(JToolTiers.LUNIUM));
-        registerHandheldItem("lunium_axe", "Lunium Axe", () -> new LuniumAxeItem(JToolTiers.LUNIUM));
-        registerHandheldItem("lunium_shovel", "Lunium Shovel", () -> new LuniumShovelItem(JToolTiers.LUNIUM));
-        registerHandheldItem("lunium_hoe", "Lunium Hoe", () -> new LuniumHoeItem(JToolTiers.LUNIUM));
-        registerHandheldItem("lunium_multitool", "Lunium Multitool", () -> new LuniumMultitoolItem(JToolTiers.LUNIUM));
-        registerArmorItem("lunium_helmet", "Lunium Helmet", () -> new LuniumArmorItem(JArmorMaterial.LUNIUM, EquipmentSlotType.HEAD));
-        registerArmorItem("lunium_chestplate", "Lunium Chestplate", () -> new LuniumArmorItem(JArmorMaterial.LUNIUM, EquipmentSlotType.CHEST));
-        registerArmorItem("lunium_leggings", "Lunium Leggings", () -> new LuniumArmorItem(JArmorMaterial.LUNIUM, EquipmentSlotType.LEGS));
-        registerArmorItem("lunium_boots", "Lunium Boots", () -> new LuniumArmorItem(JArmorMaterial.LUNIUM, EquipmentSlotType.FEET));
+        registerHandheldItem("lunium_sword", "Lunium Sword", () -> new JSwordItem(JToolTiers.LUNIUM, LUNIUM));
+        registerHandheldItem("lunium_pickaxe", "Lunium Pickaxe", () -> new JPickaxeItem(JToolTiers.LUNIUM, LUNIUM));
+        registerHandheldItem("lunium_axe", "Lunium Axe", () -> new JAxeItem(JToolTiers.LUNIUM, LUNIUM));
+        registerHandheldItem("lunium_shovel", "Lunium Shovel", () -> new JShovelItem(JToolTiers.LUNIUM, LUNIUM));
+        registerHandheldItem("lunium_hoe", "Lunium Hoe", () -> new JHoeItem(JToolTiers.LUNIUM, LUNIUM));
+        registerHandheldItem("lunium_multitool", "Lunium Multitool", () -> new MultitoolItem(JToolTiers.LUNIUM, LUNIUM));
+        registerArmorItem("lunium_helmet", "Lunium Helmet", () -> new JArmorItem(JArmorMaterial.LUNIUM, EquipmentSlotType.HEAD, LUNIUM));
+        registerArmorItem("lunium_chestplate", "Lunium Chestplate", () -> new JArmorItem(JArmorMaterial.LUNIUM, EquipmentSlotType.CHEST, LUNIUM));
+        registerArmorItem("lunium_leggings", "Lunium Leggings", () -> new JArmorItem(JArmorMaterial.LUNIUM, EquipmentSlotType.LEGS, LUNIUM));
+        registerArmorItem("lunium_boots", "Lunium Boots", () -> new JArmorItem(JArmorMaterial.LUNIUM, EquipmentSlotType.FEET, LUNIUM));
         
         //SHADIUM
-        registerHandheldItem("shadium_sword", "Shadium Sword", () -> new ShadiumSwordItem(JToolTiers.SHADIUM));
-        registerHandheldItem("shadium_pickaxe", "Shadium Pickaxe", () -> new JPickaxeItem(JToolTiers.SHADIUM));
-        registerHandheldItem("shadium_axe", "Shadium Axe", () -> new JAxeItem(JToolTiers.SHADIUM));
-        registerHandheldItem("shadium_shovel", "Shadium Shovel", () -> new JShovelItem(JToolTiers.SHADIUM));
-        registerHandheldItem("shadium_hoe", "Shadium Hoe", () -> new JHoeItem(JToolTiers.SHADIUM));
-        registerHandheldItem("shadium_multitool", "Shadium Multitool", () -> new MultitoolItem(JToolTiers.SHADIUM));
-        registerArmorItem("shadium_helmet", "Shadium Helmet", () -> new ShadiumArmorItem(JArmorMaterial.SHADIUM, EquipmentSlotType.HEAD));
-        registerArmorItem("shadium_chestplate", "Shadium Chestplate", () -> new ShadiumArmorItem(JArmorMaterial.SHADIUM, EquipmentSlotType.CHEST));
-        registerArmorItem("shadium_leggings", "Shadium Leggings", () -> new ShadiumArmorItem(JArmorMaterial.SHADIUM, EquipmentSlotType.LEGS));
-        registerArmorItem("shadium_boots", "Shadium Boots", () -> new ShadiumArmorItem(JArmorMaterial.SHADIUM, EquipmentSlotType.FEET));
+        registerHandheldItem("shadium_sword", "Shadium Sword", () -> new JSwordItem(JToolTiers.SHADIUM, BASIC));
+        registerHandheldItem("shadium_pickaxe", "Shadium Pickaxe", () -> new JPickaxeItem(JToolTiers.SHADIUM, BASIC));
+        registerHandheldItem("shadium_axe", "Shadium Axe", () -> new JAxeItem(JToolTiers.SHADIUM, BASIC));
+        registerHandheldItem("shadium_shovel", "Shadium Shovel", () -> new JShovelItem(JToolTiers.SHADIUM, BASIC));
+        registerHandheldItem("shadium_hoe", "Shadium Hoe", () -> new JHoeItem(JToolTiers.SHADIUM, BASIC));
+        registerHandheldItem("shadium_multitool", "Shadium Multitool", () -> new MultitoolItem(JToolTiers.SHADIUM, BASIC));
+        registerArmorItem("shadium_helmet", "Shadium Helmet", () -> new JArmorItem(JArmorMaterial.SHADIUM, EquipmentSlotType.HEAD, BASIC));
+        registerArmorItem("shadium_chestplate", "Shadium Chestplate", () -> new JArmorItem(JArmorMaterial.SHADIUM, EquipmentSlotType.CHEST, BASIC));
+        registerArmorItem("shadium_leggings", "Shadium Leggings", () -> new JArmorItem(JArmorMaterial.SHADIUM, EquipmentSlotType.LEGS, BASIC));
+        registerArmorItem("shadium_boots", "Shadium Boots", () -> new JArmorItem(JArmorMaterial.SHADIUM, EquipmentSlotType.FEET, BASIC));
 
         //BLOODCRUST
-        registerHandheldItem("bloodcrust_sword", "Bloodcrust Sword", () -> new JSwordItem(JToolTiers.BLOODCRUST));
-        registerHandheldItem("bloodcrust_pickaxe", "Bloodcrust Pickaxe", () -> new JPickaxeItem(JToolTiers.BLOODCRUST));
-        registerHandheldItem("bloodcrust_axe", "Bloodcrust Axe", () -> new JAxeItem(JToolTiers.BLOODCRUST));
-        registerHandheldItem("bloodcrust_shovel", "Bloodcrust Shovel", () -> new JShovelItem(JToolTiers.BLOODCRUST));
-        registerHandheldItem("bloodcrust_hoe", "Bloodcrust Hoe", () -> new JHoeItem(JToolTiers.BLOODCRUST));
-        registerHandheldItem("bloodcrust_multitool", "Bloodcrust Multitool", () -> new MultitoolItem(JToolTiers.BLOODCRUST));
-        registerArmorItem("bloodcrust_helmet", "Bloodcrust Helmet", () -> new JArmorItem(JArmorMaterial.BLOODCRUST, EquipmentSlotType.HEAD));
-        registerArmorItem("bloodcrust_chestplate", "Bloodcrust Chestplate", () -> new JArmorItem(JArmorMaterial.BLOODCRUST, EquipmentSlotType.CHEST));
-        registerArmorItem("bloodcrust_leggings", "Bloodcrust Leggings", () -> new JArmorItem(JArmorMaterial.BLOODCRUST, EquipmentSlotType.LEGS));
-        registerArmorItem("bloodcrust_boots", "Bloodcrust Boots", () -> new JArmorItem(JArmorMaterial.BLOODCRUST, EquipmentSlotType.FEET));
+        registerHandheldItem("bloodcrust_sword", "Bloodcrust Sword", () -> new JSwordItem(JToolTiers.BLOODCRUST, BASIC));
+        registerHandheldItem("bloodcrust_pickaxe", "Bloodcrust Pickaxe", () -> new JPickaxeItem(JToolTiers.BLOODCRUST, BASIC));
+        registerHandheldItem("bloodcrust_axe", "Bloodcrust Axe", () -> new JAxeItem(JToolTiers.BLOODCRUST, BASIC));
+        registerHandheldItem("bloodcrust_shovel", "Bloodcrust Shovel", () -> new JShovelItem(JToolTiers.BLOODCRUST, BASIC));
+        registerHandheldItem("bloodcrust_hoe", "Bloodcrust Hoe", () -> new JHoeItem(JToolTiers.BLOODCRUST, BASIC));
+        registerHandheldItem("bloodcrust_multitool", "Bloodcrust Multitool", () -> new MultitoolItem(JToolTiers.BLOODCRUST, BASIC));
+        registerArmorItem("bloodcrust_helmet", "Bloodcrust Helmet", () -> new JArmorItem(JArmorMaterial.BLOODCRUST, EquipmentSlotType.HEAD, BASIC));
+        registerArmorItem("bloodcrust_chestplate", "Bloodcrust Chestplate", () -> new JArmorItem(JArmorMaterial.BLOODCRUST, EquipmentSlotType.CHEST, BASIC));
+        registerArmorItem("bloodcrust_leggings", "Bloodcrust Leggings", () -> new JArmorItem(JArmorMaterial.BLOODCRUST, EquipmentSlotType.LEGS, BASIC));
+        registerArmorItem("bloodcrust_boots", "Bloodcrust Boots", () -> new JArmorItem(JArmorMaterial.BLOODCRUST, EquipmentSlotType.FEET, BASIC));
 
         //CELESTIUM
-        registerHandheldItem("celestium_sword", "Celestium Sword", () -> new JSwordItem(JToolTiers.CELESTIUM));
-        registerHandheldItem("celestium_pickaxe", "Celestium Pickaxe", () -> new JPickaxeItem(JToolTiers.CELESTIUM));
-        registerHandheldItem("celestium_axe", "Celestium Axe", () -> new JAxeItem(JToolTiers.CELESTIUM));
-        registerHandheldItem("celestium_shovel", "Celestium Shovel", () -> new JShovelItem(JToolTiers.CELESTIUM));
-        registerHandheldItem("celestium_hoe", "Celestium Hoe", () -> new JHoeItem(JToolTiers.CELESTIUM));
-        registerHandheldItem("celestium_multitool", "Celestium Multitool", () -> new MultitoolItem(JToolTiers.CELESTIUM));
-        registerArmorItem("celestium_helmet", "Celestium Helmet", () -> new JArmorItem(JArmorMaterial.CELESTIUM, EquipmentSlotType.HEAD));
-        registerArmorItem("celestium_chestplate", "Celestium Chestplate", () -> new JArmorItem(JArmorMaterial.CELESTIUM, EquipmentSlotType.CHEST));
-        registerArmorItem("celestium_leggings", "Celestium Leggings", () -> new JArmorItem(JArmorMaterial.CELESTIUM, EquipmentSlotType.LEGS));
-        registerArmorItem("celestium_boots", "Celestium Boots", () -> new JArmorItem(JArmorMaterial.CELESTIUM, EquipmentSlotType.FEET));
+        registerHandheldItem("celestium_sword", "Celestium Sword", () -> new JSwordItem(JToolTiers.CELESTIUM, BASIC));
+        registerHandheldItem("celestium_pickaxe", "Celestium Pickaxe", () -> new JPickaxeItem(JToolTiers.CELESTIUM, BASIC));
+        registerHandheldItem("celestium_axe", "Celestium Axe", () -> new JAxeItem(JToolTiers.CELESTIUM, BASIC));
+        registerHandheldItem("celestium_shovel", "Celestium Shovel", () -> new JShovelItem(JToolTiers.CELESTIUM, BASIC));
+        registerHandheldItem("celestium_hoe", "Celestium Hoe", () -> new JHoeItem(JToolTiers.CELESTIUM, BASIC));
+        registerHandheldItem("celestium_multitool", "Celestium Multitool", () -> new MultitoolItem(JToolTiers.CELESTIUM, BASIC));
+        registerArmorItem("celestium_helmet", "Celestium Helmet", () -> new JArmorItem(JArmorMaterial.CELESTIUM, EquipmentSlotType.HEAD, BASIC));
+        registerArmorItem("celestium_chestplate", "Celestium Chestplate", () -> new JArmorItem(JArmorMaterial.CELESTIUM, EquipmentSlotType.CHEST, BASIC));
+        registerArmorItem("celestium_leggings", "Celestium Leggings", () -> new JArmorItem(JArmorMaterial.CELESTIUM, EquipmentSlotType.LEGS, BASIC));
+        registerArmorItem("celestium_boots", "Celestium Boots", () -> new JArmorItem(JArmorMaterial.CELESTIUM, EquipmentSlotType.FEET, BASIC));
         
         //KORITE
-        registerHandheldItem("korite_sword", "Korite Sword", () -> new JSwordItem(JToolTiers.KORITE));
-        registerHandheldItem("korite_pickaxe", "Korite Pickaxe", () -> new JPickaxeItem(JToolTiers.KORITE));
-        registerHandheldItem("korite_axe", "Korite Axe", () -> new JAxeItem(JToolTiers.KORITE));
-        registerHandheldItem("korite_shovel", "Korite Shovel", () -> new JShovelItem(JToolTiers.KORITE));
-        registerHandheldItem("korite_hoe", "Korite Hoe", () -> new JHoeItem(JToolTiers.KORITE));
-        registerHandheldItem("korite_multitool", "Korite Multitool", () -> new MultitoolItem(JToolTiers.KORITE));
+        registerHandheldItem("korite_sword", "Korite Sword", () -> new JSwordItem(JToolTiers.KORITE, BASIC));
+        registerHandheldItem("korite_pickaxe", "Korite Pickaxe", () -> new JPickaxeItem(JToolTiers.KORITE, BASIC));
+        registerHandheldItem("korite_axe", "Korite Axe", () -> new JAxeItem(JToolTiers.KORITE, BASIC));
+        registerHandheldItem("korite_shovel", "Korite Shovel", () -> new JShovelItem(JToolTiers.KORITE, BASIC));
+        registerHandheldItem("korite_hoe", "Korite Hoe", () -> new JHoeItem(JToolTiers.KORITE, BASIC));
+        registerHandheldItem("korite_multitool", "Korite Multitool", () -> new MultitoolItem(JToolTiers.KORITE, BASIC));
 
         //MEKYUM
-        registerHandheldItem("mekyum_sword", "Mekyum Sword", () -> new JSwordItem(JToolTiers.MEKYUM));
-        registerHandheldItem("mekyum_pickaxe", "Mekyum Pickaxe", () -> new JPickaxeItem(JToolTiers.MEKYUM));
-        registerHandheldItem("mekyum_axe", "Mekyum Axe", () -> new JAxeItem(JToolTiers.MEKYUM));
-        registerHandheldItem("mekyum_shovel", "Mekyum Shovel", () -> new JShovelItem(JToolTiers.MEKYUM));
-        registerHandheldItem("mekyum_hoe", "Mekyum Hoe", () -> new JHoeItem(JToolTiers.MEKYUM));
-        registerHandheldItem("mekyum_multitool", "Mekyum Multitool", () -> new MultitoolItem(JToolTiers.MEKYUM));
+        registerHandheldItem("mekyum_sword", "Mekyum Sword", () -> new JSwordItem(JToolTiers.MEKYUM, BASIC));
+        registerHandheldItem("mekyum_pickaxe", "Mekyum Pickaxe", () -> new JPickaxeItem(JToolTiers.MEKYUM, BASIC));
+        registerHandheldItem("mekyum_axe", "Mekyum Axe", () -> new JAxeItem(JToolTiers.MEKYUM, BASIC));
+        registerHandheldItem("mekyum_shovel", "Mekyum Shovel", () -> new JShovelItem(JToolTiers.MEKYUM, BASIC));
+        registerHandheldItem("mekyum_hoe", "Mekyum Hoe", () -> new JHoeItem(JToolTiers.MEKYUM, BASIC));
+        registerHandheldItem("mekyum_multitool", "Mekyum Multitool", () -> new MultitoolItem(JToolTiers.MEKYUM, BASIC));
 
         //STORON
-        registerHandheldItem("storon_sword", "Storon Sword", () -> new JSwordItem(JToolTiers.STORON));
-        registerHandheldItem("storon_pickaxe", "Storon Pickaxe", () -> new JPickaxeItem(JToolTiers.STORON));
-        registerHandheldItem("storon_axe", "Storon Axe", () -> new JAxeItem(JToolTiers.STORON));
-        registerHandheldItem("storon_shovel", "Storon Shovel", () -> new JShovelItem(JToolTiers.STORON));
-        registerHandheldItem("storon_hoe", "Storon Hoe", () -> new JHoeItem(JToolTiers.STORON));
-        registerHandheldItem("storon_multitool", "Storon Multitool", () -> new MultitoolItem(JToolTiers.STORON));
+        registerHandheldItem("storon_sword", "Storon Sword", () -> new JSwordItem(JToolTiers.STORON, BASIC));
+        registerHandheldItem("storon_pickaxe", "Storon Pickaxe", () -> new JPickaxeItem(JToolTiers.STORON, BASIC));
+        registerHandheldItem("storon_axe", "Storon Axe", () -> new JAxeItem(JToolTiers.STORON, BASIC));
+        registerHandheldItem("storon_shovel", "Storon Shovel", () -> new JShovelItem(JToolTiers.STORON, BASIC));
+        registerHandheldItem("storon_hoe", "Storon Hoe", () -> new JHoeItem(JToolTiers.STORON, BASIC));
+        registerHandheldItem("storon_multitool", "Storon Multitool", () -> new MultitoolItem(JToolTiers.STORON, BASIC));
 
         registerItem("molten_knife", "Molten Knife", () -> new ThrowableItem(rangedWeaponsGrouped(), (worldIn, owner) -> new KnifeEntity(worldIn, owner).withBaseDamage(10)).setSound(() -> SoundEvents.SNOWBALL_THROW));
 

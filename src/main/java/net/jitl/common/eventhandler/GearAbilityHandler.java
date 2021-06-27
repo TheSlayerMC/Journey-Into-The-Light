@@ -4,10 +4,9 @@ import net.jitl.JITL;
 import net.jitl.common.capability.JCapabilityProvider;
 import net.jitl.common.capability.armorability.IArmorSetCapability;
 import net.jitl.common.helper.TooltipFiller;
-import net.jitl.common.item.gear.IEquipUpdateItem;
 import net.jitl.common.item.gear.FullArmorAbility;
-import net.jitl.common.item.gear.JTieredItemAbility;
-import net.jitl.common.item.gear.base.JArmorItem;
+import net.jitl.common.item.gear.JGear;
+import net.jitl.common.item.gear.JArmorItem;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -15,6 +14,7 @@ import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -27,17 +27,39 @@ import java.util.Optional;
 
 @Mod.EventBusSubscriber(modid = JITL.MODID)
 public class GearAbilityHandler {
+    /*
+    equipment change event has been disabled
+    livingend has been disabled and replaced
+    do something about armor abilities working when held
+     */
 
-    @SubscribeEvent()
+    @SubscribeEvent
+    public static void handleTick(LivingEvent.LivingUpdateEvent event) {
+        LivingEntity entity = event.getEntityLiving();
+        for (EquipmentSlotType equipmentSlotType : EquipmentSlotType.values()) {
+            ItemStack stack = entity.getItemBySlot(equipmentSlotType);
+            Item item = stack.getItem();
+            if (item instanceof JGear) {
+                ((JGear) item).getAbility().tick(entity, entity.level, stack);
+            }
+        }
+    /*@SubscribeEvent()
     public static void handleTick(LivingUpdateEndEvent event) {
         LivingEntity entity = event.getEntityLiving();
-        ItemStack hand = entity.getMainHandItem();
-        if (hand.getItem() instanceof JTieredItemAbility) {
-            ((JTieredItemAbility) hand.getItem()).tick(entity, entity.level, hand);
+        for (EquipmentSlotType equipmentSlotType : EquipmentSlotType.values()) {
+            ItemStack stack = entity.getItemBySlot(equipmentSlotType);
+            Item item = stack.getItem();
+            if (item instanceof JGear) {
+                ((JGear) item).getAbility().tick(entity, entity.level, stack);
+            }
+        }
+        /*ItemStack hand = entity.getMainHandItem();
+        if (hand.getItem() instanceof JGear) {
+            ((JGear) hand.getItem()).getAbility().tick(entity, entity.level, hand);
         }
         hand = entity.getOffhandItem();
-        if (hand.getItem() instanceof JTieredItemAbility) {
-            ((JTieredItemAbility) hand.getItem()).tick(entity, entity.level, hand);
+        if (hand.getItem() instanceof JGear) {
+            ((JGear) hand.getItem()).getAbility().tick(entity, entity.level, hand);
         }
         Optional<IArmorSetCapability> optional = entity.getCapability(JCapabilityProvider.ARMOR).resolve();
         if (optional.isPresent()) {
@@ -45,14 +67,14 @@ public class GearAbilityHandler {
             ArrayList<ItemStack> stacks = capability.getArmor();
             if (stacks != null) {
                 for (ItemStack stack : stacks) {
-                    ((JArmorItem) stack.getItem()).armorTickAbility(entity, entity.level, stack);
+                    ((JArmorItem) stack.getItem()).getAbility().tick(entity, entity.level, stack);
                 }
             }
             FullArmorAbility fullSet = capability.getFullArmor();
             if (fullSet != null) {
                 fullSet.fullSetTick(stacks);
             }
-        }
+        }*/
     }
 
     @SubscribeEvent()
@@ -134,17 +156,17 @@ public class GearAbilityHandler {
         System.out.println("Post effect: " + event.getAmount());
     }*/
 
-    @SubscribeEvent()
+    /*@SubscribeEvent()
     public static void equipmentChange(LivingEquipmentChangeEvent event) {
         Item item = event.getFrom().getItem();
         LivingEntity entity = event.getEntityLiving();
         EquipmentSlotType slot = event.getSlot();
-        if (item instanceof IEquipUpdateItem) {
-            ((IEquipUpdateItem) item).unEquip(entity, slot, event.getFrom());
+        if (item instanceof JGear) {
+            ((JGear) item).getAbility().unEquip(entity, slot, event.getFrom());
         }
         item = event.getTo().getItem();
-        if (item instanceof IEquipUpdateItem) {
-            ((IEquipUpdateItem) item).equip(entity, slot, event.getTo());
+        if (item instanceof JGear) {
+            ((JGear) item).getAbility().unEquip(entity, slot, event.getTo());
         }
         if (slot.getType() == EquipmentSlotType.Group.ARMOR) {
             Optional<IArmorSetCapability> optional = entity.getCapability(JCapabilityProvider.ARMOR).resolve();
@@ -153,5 +175,5 @@ public class GearAbilityHandler {
                 optional.get().setArmor(iterator);
             }
         }
-    }
+    }*/
 }

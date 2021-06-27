@@ -2,10 +2,10 @@ package net.jitl.common.item.gear.shadium;
 
 import net.jitl.common.helper.JToolTiers;
 import net.jitl.common.helper.TooltipFiller;
-import net.jitl.common.item.gear.IEquipUpdateItem;
+import net.jitl.common.item.gear.IAbility;
 import net.jitl.common.item.gear.ILightGear;
-import net.jitl.common.item.gear.JTieredItemAbility;
-import net.jitl.common.item.gear.base.JSwordItem;
+import net.jitl.common.item.gear.JGear;
+import net.jitl.common.item.gear.JSwordItem;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -20,14 +20,13 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.UUID;
 
-public class ShadiumSwordItem extends JSwordItem implements IEquipUpdateItem, JTieredItemAbility, ILightGear {
-    private static UUID ID = UUID.fromString("6f56284c-ac30-4490-a06a-b11517d87e91");
+public class ShadiumSwordItem {
+    /*private static UUID ID = UUID.fromString("6f56284c-ac30-4490-a06a-b11517d87e91");
 
     public ShadiumSwordItem(JToolTiers tier) {
         super(tier);
     }
 
-    @Override
     public void tick(LivingEntity entity, World world, ItemStack stack) {
         if (!world.isClientSide() && entity.getMainHandItem() == stack) {
             ModifiableAttributeInstance attribute = entity.getAttribute(Attributes.ATTACK_DAMAGE);
@@ -42,7 +41,6 @@ public class ShadiumSwordItem extends JSwordItem implements IEquipUpdateItem, JT
         }
     }
 
-    @Override
     public void equip(LivingEntity entity, EquipmentSlotType slot, ItemStack stack) {
         if (entity.getMainHandItem() == stack) {
             ModifiableAttributeInstance attribute = entity.getAttribute(Attributes.ATTACK_DAMAGE);
@@ -56,7 +54,6 @@ public class ShadiumSwordItem extends JSwordItem implements IEquipUpdateItem, JT
         }
     }
 
-    @Override
     public void unEquip(LivingEntity entity, EquipmentSlotType slot, ItemStack stack) {
         if (entity.getMainHandItem() == stack) {
             ModifiableAttributeInstance attribute = entity.getAttribute(Attributes.ATTACK_DAMAGE);
@@ -71,5 +68,5 @@ public class ShadiumSwordItem extends JSwordItem implements IEquipUpdateItem, JT
         TooltipFiller filler = new TooltipFiller(tooltip, "shadium_sword");
         filler.addOverview();
         filler.addDetail();
-    }
+    }*/
 }

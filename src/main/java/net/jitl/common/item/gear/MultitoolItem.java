@@ -1,10 +1,11 @@
-package net.jitl.common.item.gear.base;
+package net.jitl.common.item.gear;
 
 import com.google.common.collect.Sets;
 import net.jitl.common.helper.JToolTiers;
 import net.jitl.init.JTabs;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -16,12 +17,18 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
-public class MultitoolItem extends ToolItem {
+import java.util.List;
 
-    public MultitoolItem(JToolTiers tier) {
+public class MultitoolItem extends ToolItem implements JGear {
+    IAbility ability;
+
+    public MultitoolItem(JToolTiers tier, IAbility multiAbility) {
         super((int) tier.getShovelDam(), tier.getAttackSpeed(), tier, Sets.newHashSet(Registry.BLOCK), new Item.Properties().tab(JTabs.TOOLS));
+        ability = multiAbility;
     }
 
     @Override
@@ -63,5 +70,26 @@ public class MultitoolItem extends ToolItem {
         }
 
         return ActionResultType.PASS;
+    }
+
+    @Override
+    public IAbility getAbility() {
+        return ability;
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+        super.appendHoverText(stack, worldIn, tooltip, flagIn);
+        ability.fillTooltips(stack, tooltip);
+    }
+
+    @Override
+    public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
+        return ability.animate(super.shouldCauseReequipAnimation(oldStack, newStack, slotChanged), oldStack, newStack, slotChanged);
+    }
+
+    @Override
+    public boolean shouldCauseBlockBreakReset(ItemStack oldStack, ItemStack newStack) {
+        return ability.resetBreak(super.shouldCauseBlockBreakReset(oldStack, newStack), oldStack, newStack);
     }
 }
