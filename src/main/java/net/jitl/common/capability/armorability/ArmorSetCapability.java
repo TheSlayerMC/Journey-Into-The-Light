@@ -1,7 +1,7 @@
 package net.jitl.common.capability.armorability;
 
 import net.jitl.common.item.gear.FullArmorAbility;
-import net.jitl.common.item.gear.base.JArmorItem;
+import net.jitl.common.item.gear.JArmorItem;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

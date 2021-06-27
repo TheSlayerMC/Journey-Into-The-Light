@@ -3,9 +3,8 @@ package net.jitl.common.item.gear.shadium;
 import javafx.util.Pair;
 import net.jitl.common.helper.JArmorMaterial;
 import net.jitl.common.helper.TooltipFiller;
-import net.jitl.common.item.gear.IEquipUpdateItem;
 import net.jitl.common.item.gear.ILightGear;
-import net.jitl.common.item.gear.base.JArmorItem;
+import net.jitl.common.item.gear.JArmorItem;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -20,7 +19,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.UUID;
 
-public class ShadiumArmorItem extends JArmorItem implements IEquipUpdateItem, ILightGear {
+public class ShadiumArmorItem {/*
     private final Pair<String, UUID>[] IDS = new Pair[] {
             new Pair("Shadium Boots", UUID.fromString("1c4e5a9a-10fe-4be1-b088-1652400848e4")),
             new Pair("Shadium Legs", UUID.fromString("c122608d-543f-4f66-b6c1-1ccc95ab4258")),
@@ -32,7 +31,6 @@ public class ShadiumArmorItem extends JArmorItem implements IEquipUpdateItem, IL
         super(materialIn, slotIn);
     }
 
-    @Override
     public void armorTickAbility(LivingEntity entity, World world, ItemStack stack) {
         ModifiableAttributeInstance defense = entity.getAttribute(Attributes.ARMOR_TOUGHNESS);
         if (defense.getModifier(getAttributeUUID()) != null) {
@@ -45,7 +43,6 @@ public class ShadiumArmorItem extends JArmorItem implements IEquipUpdateItem, IL
         System.out.println(defense.getValue());
     }
 
-    @Override
     public void equip(LivingEntity entity, EquipmentSlotType slot, ItemStack stack) {
         if (slot.getType() == EquipmentSlotType.Group.ARMOR) {
             ModifiableAttributeInstance defense = entity.getAttribute(Attributes.ARMOR_TOUGHNESS);
@@ -59,7 +56,6 @@ public class ShadiumArmorItem extends JArmorItem implements IEquipUpdateItem, IL
         }
     }
 
-    @Override
     public void unEquip(LivingEntity entity, EquipmentSlotType slot, ItemStack stack) {
         if (slot.getType() == EquipmentSlotType.Group.ARMOR) {
             ModifiableAttributeInstance defense = entity.getAttribute(Attributes.ARMOR_TOUGHNESS);
@@ -83,5 +79,5 @@ public class ShadiumArmorItem extends JArmorItem implements IEquipUpdateItem, IL
 
     private UUID getAttributeUUID() {
         return IDS[this.getSlot().getIndex()].getValue();
-    }
+    }*/
 }
