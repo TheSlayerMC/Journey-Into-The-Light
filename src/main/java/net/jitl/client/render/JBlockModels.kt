@@ -19,7 +19,7 @@ object JBlockModels {
 
     @JvmStatic
     fun emissiveModel(normal: BlockModel?, emissive: BlockModel?): BlockModel {
-        val json = json {
+        return BlockModel(json {
             "parent" set "block/block"
             "loader" set JITL.MODID + ":emissive"
             "particle" set "#normal"
@@ -31,9 +31,7 @@ object JBlockModels {
             if (emissive != null) {
                 "emissive" setRaw emissive.toJson()
             }
-        }
-
-        return BlockModel(json)
+        })
     }
 
     @JvmStatic

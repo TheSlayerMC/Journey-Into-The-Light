@@ -5,9 +5,9 @@ import net.jitl.common.helper.EnumStructureMusic;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;
 import org.jetbrains.annotations.NotNull;
-import ru.timeconqueror.timecore.api.common.packet.ITimePacket;
+import ru.timeconqueror.timecore.api.common.packet.ITimePacketHandler;
 
-public class SCurrentStructurePacket implements ITimePacket {
+public class SCurrentStructurePacket {
     private final int storedID;
 
     public SCurrentStructurePacket(int id) {
