@@ -13,18 +13,19 @@ import java.util.List;
 public class LuniumAbility implements IAbility {
     @Override
     public void tick(LivingEntity entity, World world, ItemStack stack) {
-        CompoundNBT tag = stack.hasTag() ? stack.getTag() : new CompoundNBT();
-        float value = tag.getFloat("cooldown");
-        if (stack.getDamageValue() > 0 || value < 100) {
-            if (value == 0) {
-                tag.putFloat("cooldown", 100);
-                stack.setDamageValue(stack.getDamageValue() - 1);
-                System.out.println(stack.getDamageValue());
-            } else {
-                tag.putFloat("cooldown", Math.max(value - entity.getBrightness(), 0)); //TODO: optimize counter
+        if (!world.isClientSide()) {
+            if (!stack.hasTag()) stack.setTag(new CompoundNBT());
+            CompoundNBT tag = stack.getTag();
+            float value = tag.getFloat("cooldown");
+            if (stack.getDamageValue() > 0 || value < 100) {
+                value -= entity.getBrightness();
+                if (value <= 0) {
+                    value = 100;
+                    stack.setDamageValue(stack.getDamageValue() - 1);
+                }
+                tag.putFloat("cooldown", value);
+                System.out.println(tag.getFloat("cooldown"));
             }
-            System.out.println(tag.getFloat("cooldown"));
-            stack.setTag(tag); //TODO: it may be possible to remove this statement
         }
     }
 

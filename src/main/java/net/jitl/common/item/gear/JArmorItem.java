@@ -21,6 +21,8 @@ public class JArmorItem extends ArmorItem implements JGear {
 		ability = armorAbility;
 	}
 
+
+
 	public IAbility getAbility() {
 		return ability;
 	}

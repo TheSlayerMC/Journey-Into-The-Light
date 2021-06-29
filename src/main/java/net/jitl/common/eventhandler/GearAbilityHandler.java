@@ -27,38 +27,18 @@ import java.util.Optional;
 
 @Mod.EventBusSubscriber(modid = JITL.MODID)
 public class GearAbilityHandler {
-    /*
-    equipment change event has been disabled
-    livingend has been disabled and replaced
-    do something about armor abilities working when held
-     */
 
-    @SubscribeEvent
-    public static void handleTick(LivingEvent.LivingUpdateEvent event) {
-        LivingEntity entity = event.getEntityLiving();
-        for (EquipmentSlotType equipmentSlotType : EquipmentSlotType.values()) {
-            ItemStack stack = entity.getItemBySlot(equipmentSlotType);
-            Item item = stack.getItem();
-            if (item instanceof JGear) {
-                ((JGear) item).getAbility().tick(entity, entity.level, stack);
-            }
-        }
-    /*@SubscribeEvent()
+    @SubscribeEvent()
     public static void handleTick(LivingUpdateEndEvent event) {
         LivingEntity entity = event.getEntityLiving();
-        for (EquipmentSlotType equipmentSlotType : EquipmentSlotType.values()) {
-            ItemStack stack = entity.getItemBySlot(equipmentSlotType);
-            Item item = stack.getItem();
-            if (item instanceof JGear) {
-                ((JGear) item).getAbility().tick(entity, entity.level, stack);
-            }
-        }
-        /*ItemStack hand = entity.getMainHandItem();
-        if (hand.getItem() instanceof JGear) {
+        ItemStack hand = entity.getMainHandItem();
+        Item item = hand.getItem();
+        if (item instanceof JGear && !(item instanceof JArmorItem)) {
             ((JGear) hand.getItem()).getAbility().tick(entity, entity.level, hand);
         }
         hand = entity.getOffhandItem();
-        if (hand.getItem() instanceof JGear) {
+        item = hand.getItem();
+        if (item instanceof JGear && !(item instanceof JArmorItem)) {
             ((JGear) hand.getItem()).getAbility().tick(entity, entity.level, hand);
         }
         Optional<IArmorSetCapability> optional = entity.getCapability(JCapabilityProvider.ARMOR).resolve();
@@ -74,7 +54,7 @@ public class GearAbilityHandler {
             if (fullSet != null) {
                 fullSet.fullSetTick(stacks);
             }
-        }*/
+        }
     }
 
     @SubscribeEvent()
@@ -156,7 +136,7 @@ public class GearAbilityHandler {
         System.out.println("Post effect: " + event.getAmount());
     }*/
 
-    /*@SubscribeEvent()
+    @SubscribeEvent()
     public static void equipmentChange(LivingEquipmentChangeEvent event) {
         Item item = event.getFrom().getItem();
         LivingEntity entity = event.getEntityLiving();
@@ -175,5 +155,5 @@ public class GearAbilityHandler {
                 optional.get().setArmor(iterator);
             }
         }
-    }*/
+    }
 }
