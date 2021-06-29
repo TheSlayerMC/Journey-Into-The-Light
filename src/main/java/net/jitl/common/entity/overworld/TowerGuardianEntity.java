@@ -7,7 +7,6 @@ import net.jitl.init.JAnimations;
 import net.jitl.init.JSounds;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
@@ -78,7 +77,7 @@ public class TowerGuardianEntity extends MonsterEntity implements AnimatedObject
 	}
 
 	public static AttributeModifierMap.MutableAttribute createAttributes() {
-		return MobEntity.createMobAttributes()
+		return createMonsterAttributes()
 				.add(Attributes.MAX_HEALTH, 20.0D)
 				.add(Attributes.MOVEMENT_SPEED, 0.15D);
 	}
