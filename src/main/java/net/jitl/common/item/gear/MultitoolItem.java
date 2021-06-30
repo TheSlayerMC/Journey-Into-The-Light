@@ -2,6 +2,7 @@ package net.jitl.common.item.gear;
 
 import com.google.common.collect.Sets;
 import net.jitl.common.helper.JToolTiers;
+import net.jitl.common.item.gear.abilities.IAbility;
 import net.jitl.init.JTabs;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
@@ -43,7 +44,8 @@ public class MultitoolItem extends ToolItem implements JGear {
     @Override
     public float getDestroySpeed(ItemStack stack, BlockState state) {
         Material material = state.getMaterial();
-        return material != Material.METAL && material != Material.HEAVY_METAL && material != Material.STONE ? super.getDestroySpeed(stack, state) : this.speed;
+        float value = material != Material.METAL && material != Material.HEAVY_METAL && material != Material.STONE ? super.getDestroySpeed(stack, state) : this.speed;
+        return ability.blockBreakSpeed(stack, state, value);
     }
 
     @Override

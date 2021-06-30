@@ -71,7 +71,7 @@ public class MinersPearlItem extends Item implements IEssenceItem {
                 } else {
                     tag.putInt("timer", teleportTimer + 1);
                 }
-                JITL.LOGGER.info("" + teleportTimer);
+                JITL.LOGGER.info(teleportTimer);
             }
         }
     }

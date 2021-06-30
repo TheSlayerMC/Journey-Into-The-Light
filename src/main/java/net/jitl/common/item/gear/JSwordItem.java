@@ -1,6 +1,7 @@
 package net.jitl.common.item.gear;
 
 import net.jitl.common.helper.JToolTiers;
+import net.jitl.common.item.gear.abilities.IAbility;
 import net.jitl.init.JTabs;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;

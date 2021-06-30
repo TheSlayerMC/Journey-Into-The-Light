@@ -1,7 +1,9 @@
 package net.jitl.common.item.gear;
 
 import net.jitl.common.helper.JToolTiers;
+import net.jitl.common.item.gear.abilities.IAbility;
 import net.jitl.init.JTabs;
+import net.minecraft.block.BlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.Item;
@@ -28,6 +30,11 @@ public class JAxeItem extends AxeItem implements JGear {
 	public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 		super.appendHoverText(stack, worldIn, tooltip, flagIn);
 		ability.fillTooltips(stack, tooltip);
+	}
+
+	@Override
+	public float getDestroySpeed(ItemStack stack, BlockState state) {
+		return ability.blockBreakSpeed(stack, state, super.getDestroySpeed(stack, state));
 	}
 
 	@Override

@@ -5,6 +5,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.potion.Effect;
+import top.theillusivec4.curios.api.SlotContext;
 
 import java.util.function.Supplier;
 

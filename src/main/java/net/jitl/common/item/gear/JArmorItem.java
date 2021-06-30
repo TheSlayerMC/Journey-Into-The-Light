@@ -1,6 +1,7 @@
 package net.jitl.common.item.gear;
 
 import net.jitl.common.helper.JArmorMaterial;
+import net.jitl.common.item.gear.abilities.IAbility;
 import net.jitl.init.JTabs;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -20,8 +21,6 @@ public class JArmorItem extends ArmorItem implements JGear {
 		super(materialIn, slotIn, new Item.Properties().tab(JTabs.ARMOR));
 		ability = armorAbility;
 	}
-
-
 
 	public IAbility getAbility() {
 		return ability;

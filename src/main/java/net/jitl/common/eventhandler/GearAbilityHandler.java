@@ -146,7 +146,7 @@ public class GearAbilityHandler {
         }
         item = event.getTo().getItem();
         if (item instanceof JGear) {
-            ((JGear) item).getAbility().unEquip(entity, slot, event.getTo());
+            ((JGear) item).getAbility().equip(entity, slot, event.getTo());
         }
         if (slot.getType() == EquipmentSlotType.Group.ARMOR) {
             Optional<IArmorSetCapability> optional = entity.getCapability(JCapabilityProvider.ARMOR).resolve();

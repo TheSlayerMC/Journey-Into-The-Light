@@ -11,6 +11,8 @@
   "jitl.tooltip.lunium_gear.1": "Repair speed relies on light level",
   "jitl.tooltip.shadium_sword.0": "Deals extra damage while in darkness",
   "jitl.tooltip.shadium_sword.1": "Maximum +4 damage",
+  "jitl.tooltip.shadium_tool.0": "Mines faster while in darkness",
+  "jitl.tooltip.shadium_tool.1": "Maximum +50% mining speed",
   "jitl.tooltip.shadium_armor.0": "Provides Armor Toughness in darkness",
   "jitl.tooltip.shadium_armor.1": "Maximum +3.75 Armor Toughness per piece",
   "jitl.tooltip.celestium_armor.0": "Jumping in the air allows you to dash.",
