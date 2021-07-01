@@ -4,17 +4,18 @@ import net.jitl.JITL;
 import net.jitl.common.capability.JCapabilityProvider;
 import net.jitl.common.capability.armorability.IArmorSetCapability;
 import net.jitl.common.helper.TooltipFiller;
-import net.jitl.common.item.gear.FullArmorAbility;
 import net.jitl.common.item.gear.JGear;
 import net.jitl.common.item.gear.JArmorItem;
+import net.jitl.common.item.gear.abilities.FullArmorAbility;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
-import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -41,9 +42,8 @@ public class GearAbilityHandler {
         if (item instanceof JGear && !(item instanceof JArmorItem)) {
             ((JGear) hand.getItem()).getAbility().tick(entity, entity.level, hand);
         }
-        Optional<IArmorSetCapability> optional = entity.getCapability(JCapabilityProvider.ARMOR).resolve();
-        if (optional.isPresent()) {
-            IArmorSetCapability capability = optional.get();
+        IArmorSetCapability capability = getCapability(entity);
+        if (capability != null) {
             ArrayList<ItemStack> stacks = capability.getArmor();
             if (stacks != null) {
                 for (ItemStack stack : stacks) {
@@ -52,7 +52,7 @@ public class GearAbilityHandler {
             }
             FullArmorAbility fullSet = capability.getFullArmor();
             if (fullSet != null) {
-                fullSet.fullSetTick(stacks);
+                fullSet.tick(entity);
             }
         }
     }
@@ -72,6 +72,23 @@ public class GearAbilityHandler {
             }
         }
         System.out.println(event.getAmount());
+    }
+
+    @SubscribeEvent()
+    public static void handleDamageDealt(LivingDamageEvent event) {
+        Entity entity = event.getSource().getDirectEntity();
+        if (entity instanceof LivingEntity) {
+            LivingEntity living = (LivingEntity) entity;
+            ItemStack stack = living.getMainHandItem();
+            Item item = stack.getItem();
+            if (item instanceof JGear) {
+                ((JGear) item).getAbility().attackTarget(event);
+            }
+        }
+        IArmorSetCapability capability = getCapability(event.getEntityLiving());
+        if (capability != null && capability.getFullArmor() != null) {
+            capability.getFullArmor().hit(event);
+        }
     }
 
     @SubscribeEvent()
@@ -149,11 +166,13 @@ public class GearAbilityHandler {
             ((JGear) item).getAbility().equip(entity, slot, event.getTo());
         }
         if (slot.getType() == EquipmentSlotType.Group.ARMOR) {
-            Optional<IArmorSetCapability> optional = entity.getCapability(JCapabilityProvider.ARMOR).resolve();
-            if (optional.isPresent()) {
-                Iterator<ItemStack> iterator = entity.getArmorSlots().iterator();
-                optional.get().setArmor(iterator);
-            }
+            IArmorSetCapability capability = getCapability(entity);
+            if (capability != null) capability.setArmor(entity.getArmorSlots().iterator());
         }
+    }
+
+    public static IArmorSetCapability getCapability(LivingEntity entity) {
+        Optional<IArmorSetCapability> optional = entity.getCapability(JCapabilityProvider.ARMOR).resolve();
+        return optional.orElse(null);
     }
 }

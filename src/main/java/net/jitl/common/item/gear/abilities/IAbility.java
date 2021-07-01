@@ -9,11 +9,17 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.event.entity.living.LivingDamageEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 import java.util.List;
 
 public interface IAbility {
     default void tick(LivingEntity entity, World world, ItemStack stack) {
+
+    }
+
+    default void attackTarget(LivingDamageEvent event) {
 
     }
 
@@ -36,6 +42,10 @@ public interface IAbility {
 
     default boolean animate(boolean original, ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
         return original;
+    }
+
+    default FullArmorAbility getFullAbility(CompoundNBT nbt) {
+        return null;
     }
 
     default boolean resetBreak(boolean original, ItemStack oldStack, ItemStack newStack) {

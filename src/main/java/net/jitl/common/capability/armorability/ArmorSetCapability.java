@@ -1,10 +1,11 @@
 package net.jitl.common.capability.armorability;
 
-import net.jitl.common.item.gear.FullArmorAbility;
 import net.jitl.common.item.gear.JArmorItem;
+import net.jitl.common.item.gear.abilities.FullArmorAbility;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -12,17 +13,18 @@ import java.util.Iterator;
 public class ArmorSetCapability implements IArmorSetCapability {
     private ArrayList<ItemStack> armorPieces;
     private FullArmorAbility fullSet;
+    private CompoundNBT nbt = new CompoundNBT();
 
     public void setArmor(Iterator<ItemStack> iterator) {
         ArrayList<ItemStack> stacks = new ArrayList<>();
         ItemStack currentStack = iterator.next();
         Item item = currentStack.getItem();
-        boolean isFull = false;
         IArmorMaterial material = null;
+        FullArmorAbility fullArmorAbility = null;
         if (item instanceof JArmorItem) {
             stacks.add(currentStack);
-            if (item instanceof FullArmorAbility) {
-                isFull = true;
+            fullArmorAbility = ((JArmorItem) item).getAbility().getFullAbility(nbt);
+            if (fullArmorAbility != null) {
                 material = ((JArmorItem) item).getMaterial();
             }
         }
@@ -31,16 +33,18 @@ public class ArmorSetCapability implements IArmorSetCapability {
             item = currentStack.getItem();
             if (item instanceof JArmorItem) {
                 if (((JArmorItem) item).getMaterial() != material) {
-                    isFull = false;
+                    fullArmorAbility = null;
+                    material = null;
                 }
                 stacks.add(currentStack);
             } else {
-                isFull = false;
+                fullArmorAbility = null;
+                material = null;
             }
         }
         stacks.trimToSize();
         armorPieces = stacks;
-        if (isFull) fullSet = (FullArmorAbility) stacks.get(0).getItem();
+        fullSet = fullArmorAbility;
     }
 
     public ArrayList<ItemStack> getArmor() {
@@ -49,5 +53,15 @@ public class ArmorSetCapability implements IArmorSetCapability {
 
     public FullArmorAbility getFullArmor() {
         return fullSet;
+    }
+
+    @Override
+    public CompoundNBT getNBT() {
+        return nbt;
+    }
+
+    @Override
+    public void setNBT(CompoundNBT nbt) {
+        this.nbt = nbt;
     }
 }

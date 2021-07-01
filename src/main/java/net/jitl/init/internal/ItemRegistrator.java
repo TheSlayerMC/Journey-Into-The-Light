@@ -6,6 +6,7 @@ import net.jitl.common.helper.JArmorMaterial;
 import net.jitl.common.helper.JToolTiers;
 import net.jitl.common.item.*;
 import net.jitl.common.item.gear.*;
+import net.jitl.common.item.gear.abilities.BloodcrustAbility;
 import net.jitl.common.item.gear.abilities.IAbility;
 import net.jitl.common.item.gear.abilities.LuniumAbility;
 import net.jitl.common.item.curios.HeartContainerItem;
@@ -16,6 +17,8 @@ import net.jitl.common.item.curios.catalyst.EssenceCatalystItem;
 import net.jitl.common.item.curios.catalyst.RegenCatalystItem;
 import net.jitl.common.item.curios.ring.JRingItem;
 import net.jitl.common.item.gear.abilities.ShadiumAbility;
+import net.jitl.common.item.gear.abilities.bloodcrust.BloodcrustArmorAbility;
+import net.jitl.common.item.gear.abilities.bloodcrust.BloodcrustSwordAbility;
 import net.jitl.common.item.interactive.MinersPearlItem;
 import net.jitl.common.item.throwable.PiercerItem;
 import net.jitl.common.item.throwable.ThrowableItem;
@@ -43,6 +46,8 @@ public class ItemRegistrator {
     private static final IAbility SHADIUM_SWORD = new ShadiumAbility.ShadiumSwordAbility();
     private static final IAbility SHADIUM_TOOL = new ShadiumAbility.ShadiumToolAbility();
     private static final IAbility SHADIUM_ARMOR = new ShadiumAbility.ShadiumArmorAbility();
+    private static final IAbility BLOODCRUST_SWORD = new BloodcrustSwordAbility();
+    private static final IAbility BLOODCRUST_ARMOR = new BloodcrustArmorAbility();
     @AutoRegistrable
     private static final ItemRegister REGISTER = new ItemRegister(JITL.MODID);
 
@@ -179,16 +184,16 @@ public class ItemRegistrator {
         registerArmorItem("shadium_boots", "Shadium Boots", () -> new JArmorItem(JArmorMaterial.SHADIUM, EquipmentSlotType.FEET, SHADIUM_ARMOR));
 
         //BLOODCRUST
-        registerHandheldItem("bloodcrust_sword", "Bloodcrust Sword", () -> new JSwordItem(JToolTiers.BLOODCRUST, BASIC));
+        registerHandheldItem("bloodcrust_sword", "Bloodcrust Sword", () -> new JSwordItem(JToolTiers.BLOODCRUST, BLOODCRUST_SWORD));
         registerHandheldItem("bloodcrust_pickaxe", "Bloodcrust Pickaxe", () -> new JPickaxeItem(JToolTiers.BLOODCRUST, BASIC));
         registerHandheldItem("bloodcrust_axe", "Bloodcrust Axe", () -> new JAxeItem(JToolTiers.BLOODCRUST, BASIC));
         registerHandheldItem("bloodcrust_shovel", "Bloodcrust Shovel", () -> new JShovelItem(JToolTiers.BLOODCRUST, BASIC));
         registerHandheldItem("bloodcrust_hoe", "Bloodcrust Hoe", () -> new JHoeItem(JToolTiers.BLOODCRUST, BASIC));
         registerHandheldItem("bloodcrust_multitool", "Bloodcrust Multitool", () -> new MultitoolItem(JToolTiers.BLOODCRUST, BASIC));
-        registerArmorItem("bloodcrust_helmet", "Bloodcrust Helmet", () -> new JArmorItem(JArmorMaterial.BLOODCRUST, EquipmentSlotType.HEAD, BASIC));
-        registerArmorItem("bloodcrust_chestplate", "Bloodcrust Chestplate", () -> new JArmorItem(JArmorMaterial.BLOODCRUST, EquipmentSlotType.CHEST, BASIC));
-        registerArmorItem("bloodcrust_leggings", "Bloodcrust Leggings", () -> new JArmorItem(JArmorMaterial.BLOODCRUST, EquipmentSlotType.LEGS, BASIC));
-        registerArmorItem("bloodcrust_boots", "Bloodcrust Boots", () -> new JArmorItem(JArmorMaterial.BLOODCRUST, EquipmentSlotType.FEET, BASIC));
+        registerArmorItem("bloodcrust_helmet", "Bloodcrust Helmet", () -> new JArmorItem(JArmorMaterial.BLOODCRUST, EquipmentSlotType.HEAD, BLOODCRUST_ARMOR));
+        registerArmorItem("bloodcrust_chestplate", "Bloodcrust Chestplate", () -> new JArmorItem(JArmorMaterial.BLOODCRUST, EquipmentSlotType.CHEST, BLOODCRUST_ARMOR));
+        registerArmorItem("bloodcrust_leggings", "Bloodcrust Leggings", () -> new JArmorItem(JArmorMaterial.BLOODCRUST, EquipmentSlotType.LEGS, BLOODCRUST_ARMOR));
+        registerArmorItem("bloodcrust_boots", "Bloodcrust Boots", () -> new JArmorItem(JArmorMaterial.BLOODCRUST, EquipmentSlotType.FEET, BLOODCRUST_ARMOR));
 
         //CELESTIUM
         registerHandheldItem("celestium_sword", "Celestium Sword", () -> new JSwordItem(JToolTiers.CELESTIUM, BASIC));
