@@ -82,7 +82,7 @@ public class GearAbilityHandler {
             ItemStack stack = living.getMainHandItem();
             Item item = stack.getItem();
             if (item instanceof JGear) {
-                ((JGear) item).getAbility().attackTarget(event);
+                ((JGear) item).getAbility().attackTarget(living, stack, event);
             }
         }
         IArmorSetCapability capability = getCapability(event.getEntityLiving());

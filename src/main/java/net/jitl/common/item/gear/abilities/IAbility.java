@@ -19,7 +19,7 @@ public interface IAbility {
 
     }
 
-    default void attackTarget(LivingDamageEvent event) {
+    default void attackTarget(LivingEntity holder, ItemStack stack, LivingDamageEvent event) {
 
     }
 

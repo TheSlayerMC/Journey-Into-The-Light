@@ -6,7 +6,6 @@ import net.jitl.common.helper.JArmorMaterial;
 import net.jitl.common.helper.JToolTiers;
 import net.jitl.common.item.*;
 import net.jitl.common.item.gear.*;
-import net.jitl.common.item.gear.abilities.BloodcrustAbility;
 import net.jitl.common.item.gear.abilities.IAbility;
 import net.jitl.common.item.gear.abilities.LuniumAbility;
 import net.jitl.common.item.curios.HeartContainerItem;

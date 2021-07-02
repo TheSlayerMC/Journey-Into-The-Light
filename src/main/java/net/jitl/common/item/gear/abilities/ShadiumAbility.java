@@ -23,7 +23,7 @@ public interface ShadiumAbility {
     }
 
     class ShadiumSwordAbility implements IAbility, ShadiumAbility {
-        private static UUID ID = UUID.fromString("6f56284c-ac30-4490-a06a-b11517d87e91");
+        private static final UUID ID = UUID.fromString("6f56284c-ac30-4490-a06a-b11517d87e91");
 
         @Override
         public void tick(LivingEntity entity, World world, ItemStack stack) {
@@ -92,7 +92,7 @@ public interface ShadiumAbility {
     }
 
     class ShadiumArmorAbility implements IAbility, ShadiumAbility {
-        private final Pair<String, UUID>[] IDS = new Pair[] {
+        private static final Pair<String, UUID>[] IDS = new Pair[] {
                 new Pair("Shadium Boots", UUID.fromString("1c4e5a9a-10fe-4be1-b088-1652400848e4")),
                 new Pair("Shadium Legs", UUID.fromString("c122608d-543f-4f66-b6c1-1ccc95ab4258")),
                 new Pair("Shadium Chestplate", UUID.fromString("c6b9597c-856a-4e65-b0c0-9e897a739947")),
