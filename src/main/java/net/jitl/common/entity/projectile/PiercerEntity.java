@@ -55,33 +55,29 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
     protected void onHitEntity(EntityRayTraceResult entityRayTraceResult_) {
         Entity entity = entityRayTraceResult_.getEntity();
         LivingEntity bounceTo = null;
-        if (!level.isClientSide()) {
-            if (entity instanceof LivingEntity) {
-                if (entity != this.getOwner()) {
-                    if (getOwner() instanceof ServerPlayerEntity) {
-                        ServerPlayerEntity player = (ServerPlayerEntity) getOwner();
-                        getStack().hurt(1, player.getRandom(), player);
-                    }
-                    if (++currentBounces <= maxBounces && entity.hurt(DamageSource.thrown(this, this.getOwner()), damage)) {
-                        List<LivingEntity> entitiesNear = this.level.getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(4D));
-                        for (LivingEntity e : entitiesNear) {
-                            if (e != this.getOwner() && this.canSee(e) && e.invulnerableTime == 0 && !e.isDeadOrDying() && e != entity && e.getClassification(false) == EntityClassification.MONSTER) {
-                                if (bounceTo == null || this.distanceTo(e) < this.distanceTo(bounceTo)) {
-                                    bounceTo = e;
-                                }
+        if (entity instanceof LivingEntity && entity != this.getOwner()) {
+            if (!level.isClientSide()) {
+                if (getOwner() instanceof ServerPlayerEntity) {
+                    ServerPlayerEntity player = (ServerPlayerEntity) getOwner();
+                    getStack().hurt(1, player.getRandom(), player);
+                }
+                if (++currentBounces <= maxBounces && entity.hurt(DamageSource.thrown(this, this.getOwner()), damage)) {
+                    List<LivingEntity> entitiesNear = this.level.getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(4D));
+                    for (LivingEntity e : entitiesNear) {
+                        if (e != this.getOwner() && this.canSee(e) && e.invulnerableTime == 0 && !e.isDeadOrDying() && e != entity && e.getClassification(false) == EntityClassification.MONSTER) {
+                            if (bounceTo == null || this.distanceTo(e) < this.distanceTo(bounceTo)) {
+                                bounceTo = e;
                             }
                         }
                     }
-                    Entity target = bounceTo != null ? bounceTo : getOwner();
-                    if (target != null) {
-                        Vector3d movement = new Vector3d(target.getX() - this.getX(), target.getY(0.8) - this.getY(), target.getZ() - this.getZ());
-                        this.setDeltaMovement(movement.scale((1 / movement.length()) * this.getDeltaMovement().length()));
-                    }
                 }
+                Entity target = bounceTo != null ? bounceTo : getOwner();
+                if (target != null) {
+                    Vector3d movement = new Vector3d(target.getX() - this.getX(), target.getY(0.8) - this.getY(), target.getZ() - this.getZ());
+                    this.setDeltaMovement(movement.scale((1 / movement.length()) * this.getDeltaMovement().length()));
+                }
+                this.playSound(JSounds.PIERCER.get(), 1.0F, 1.2F / (this.random.nextFloat() * 0.2F + 0.9F));
             }
-        }
-        if (entity instanceof LivingEntity && entity != this.getOwner()) {
-            level.playSound(null, this.blockPosition(), JSounds.PIERCER.get(), SoundCategory.NEUTRAL, 1.0F, 1.0F);
         }
     }
 
