@@ -187,7 +187,7 @@ public class JBlockProperties {
 
 	public static final BlockPropsFactory FUMICE_PROPS = new BlockPropsFactory(() -> Properties.of
 			(Material.NETHER_WOOD)
-			.sound(SoundType.WART_BLOCK)
+			.sound(JSoundTypes.FUMICE)
 			.harvestTool(ToolType.AXE)
 			.strength(2.0F, 3.0F));
 

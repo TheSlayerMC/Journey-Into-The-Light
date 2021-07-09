@@ -39,6 +39,28 @@
     ],
     "subtitle": "subtitles.block.generic.break"
   },
+  "block.fumice.break": {
+    "sounds": [
+      "jitl:blocks/break/fumice_1",
+      "jitl:blocks/break/fumice_2",
+      "jitl:blocks/break/fumice_3",
+      "jitl:blocks/break/fumice_4",
+      "jitl:blocks/break/fumice_5",
+      "jitl:blocks/break/fumice_6"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.fumice.dig": {
+    "sounds": [
+      "jitl:blocks/dig/fumice_1",
+      "jitl:blocks/dig/fumice_2",
+      "jitl:blocks/dig/fumice_3",
+      "jitl:blocks/dig/fumice_4",
+      "jitl:blocks/dig/fumice_5",
+      "jitl:blocks/dig/fumice_6"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
   "block.lunium_ore.break": {
     "sounds": [
       "jitl:blocks/break/lunium_ore_1",

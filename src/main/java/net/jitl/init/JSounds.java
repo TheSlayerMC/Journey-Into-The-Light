@@ -25,6 +25,9 @@ public class JSounds {
     public static final RegistryObject<TimeSound> BRICK_BLOCK_BREAK = REGISTER.register("block.brick.break");
     public static final RegistryObject<TimeSound> BRICK_BLOCK_DIG = REGISTER.register("block.brick.dig");
 
+    public static final RegistryObject<TimeSound> FUMICE_BLOCK_BREAK = REGISTER.register("block.fumice.break");
+    public static final RegistryObject<TimeSound> FUMICE_BLOCK_DIG = REGISTER.register("block.fumice.dig");
+
     public static final RegistryObject<TimeSound> RUNE_ACTIVATE = REGISTER.register("block.rune.activate");
     public static final RegistryObject<TimeSound> ESSENCIA_ALTAR_ACTIVATE = REGISTER.register("block.essencia_altar.activate");
 
