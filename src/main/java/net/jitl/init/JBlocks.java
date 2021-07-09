@@ -8,7 +8,6 @@ import net.jitl.common.block.base.JDoublePlantBlock;
 import net.jitl.common.block.base.JLeavesBlock;
 import net.jitl.common.block.base.JPlantBlock;
 import net.jitl.common.block.base.XZFacedBlock;
-import net.jitl.common.block.crop.TomatoCropBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.block.StairsBlock;
@@ -160,4 +159,6 @@ public class JBlocks {
 	public static final Block TOMATO_CROP = promise();
 	public static final Block FLORO_CROP = promise();
 
+	public static final Block FUMICE = promise();
+	public static final Block FILLED_FUMICE = promise();
 }

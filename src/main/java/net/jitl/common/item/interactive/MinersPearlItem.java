@@ -65,7 +65,11 @@ public class MinersPearlItem extends Item implements IEssenceItem {
                 int teleportTimer = tag.getInt("timer");
                 System.out.println(teleportTimer);
                 if (teleportTimer >= 130) {
-                    player.teleportTo(player.getX(), world.getHeightmapPos(Heightmap.Type.WORLD_SURFACE, player.blockPosition()).getY(), player.getZ());
+                    if (player.level.dimension() == World.OVERWORLD) {
+                        player.teleportTo(player.getX(), world.getHeightmapPos(Heightmap.Type.WORLD_SURFACE, player.blockPosition()).getY(), player.getZ());
+                    } else {
+                        ChatUtils.format(new TranslationTextComponent("jitl.message.item.miners_pearl"), TextFormatting.DARK_PURPLE);
+                    }
                     tag.putInt("timer", 0);
                     tag.putBoolean("teleport", false);
                 } else {

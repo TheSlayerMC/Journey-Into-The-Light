@@ -5,9 +5,6 @@ import net.jitl.common.entity.projectile.*;
 import net.jitl.common.helper.JArmorMaterial;
 import net.jitl.common.helper.JToolTiers;
 import net.jitl.common.item.*;
-import net.jitl.common.item.gear.*;
-import net.jitl.common.item.gear.abilities.IAbility;
-import net.jitl.common.item.gear.abilities.LuniumAbility;
 import net.jitl.common.item.curios.HeartContainerItem;
 import net.jitl.common.item.curios.JCurioItem;
 import net.jitl.common.item.curios.amulet.CloudwalkingAmuletItem;
@@ -15,6 +12,9 @@ import net.jitl.common.item.curios.amulet.DynasterAmuletItem;
 import net.jitl.common.item.curios.catalyst.EssenceCatalystItem;
 import net.jitl.common.item.curios.catalyst.RegenCatalystItem;
 import net.jitl.common.item.curios.ring.JRingItem;
+import net.jitl.common.item.gear.*;
+import net.jitl.common.item.gear.abilities.IAbility;
+import net.jitl.common.item.gear.abilities.LuniumAbility;
 import net.jitl.common.item.gear.abilities.ShadiumAbility;
 import net.jitl.common.item.gear.abilities.bloodcrust.BloodcrustArmorAbility;
 import net.jitl.common.item.gear.abilities.bloodcrust.BloodcrustSwordAbility;
@@ -235,7 +235,7 @@ public class ItemRegistrator {
         registerItem("euca_piercer", "Euca Piercer", () -> new PiercerItem(rangedWeaponsGrouped().durability(50),
                 (worldIn, owner, stack) -> new PiercerEntity(owner, worldIn, stack, 3, 10.0F)));
 
-        registerItem("piercer", "Piercer", () -> new PiercerItem(rangedWeaponsGrouped().durability(50),
+        registerItem("piercer", "Piercer", () -> new PiercerItem(rangedWeaponsGrouped().durability(128),
                 (worldIn, owner, stack) -> new PiercerEntity(owner, worldIn, stack, 3, 3.0F)));
 
         registerItem("skull_of_decay", "Skull Of Decay", () -> new JCurioItem(itemGrouped().stacksTo(1)).ability(true).drawback(true).overview(true));

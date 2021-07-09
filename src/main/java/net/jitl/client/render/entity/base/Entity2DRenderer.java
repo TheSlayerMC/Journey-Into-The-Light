@@ -37,6 +37,8 @@ public class Entity2DRenderer<T extends Entity> extends EntityRenderer<T> {
         matrixStackIn.scale(scale, scale, scale);
         matrixStackIn.mulPose(this.entityRenderDispatcher.cameraOrientation());
         matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(180.0F));
+        matrixStackIn.translate(0, 0.5D, 0);
+
         MatrixStack.Entry lastMatrix = matrixStackIn.last();
         Matrix4f pose = lastMatrix.pose();
         Matrix3f normal = lastMatrix.normal();

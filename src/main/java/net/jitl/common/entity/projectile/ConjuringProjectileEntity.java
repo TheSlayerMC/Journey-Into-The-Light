@@ -43,9 +43,9 @@ public class ConjuringProjectileEntity extends DamagingProjectileEntity {
         double d2 = this.getZ() + vector3d.z;
         for (int i = 0; i < count; ++i) {
             this.level.addParticle(JParticleManager.CONJURING.get(),
-                    d0 - vector3d.x * 0.25D + this.random.nextDouble() * 0.6D - 0.3D,
-                    d1 - vector3d.y + 0.25F,
-                    d2 - vector3d.z * 0.25D + this.random.nextDouble() * 0.6D - 0.3D,
+                    d0 - vector3d.x * 0.15D + this.random.nextDouble() * 0.6D - 0.3D,
+                    d1 - vector3d.y + 0.05F,
+                    d2 - vector3d.z * 0.15D + this.random.nextDouble() * 0.6D - 0.3D,
                     vector3d.x,
                     vector3d.y,
                     vector3d.z);
