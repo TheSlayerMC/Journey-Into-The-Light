@@ -265,7 +265,7 @@ public class BlockRegistrator {
         registerCropBlock("floro_crop", "Floro Crop", new FloroCropBlock());
 
         registerDefaultBlock("fumice", "Fumice", () -> new FumiceBlock(JBlockProperties.FUMICE_PROPS.create()));
-        registerDefaultBlock("filled_fumice", "Filled Fumice", () -> new Block(JBlockProperties.FUMICE_PROPS.create()));
+        registerDefaultBlock("filled_fumice", "Filled Fumice", () -> new Block(JBlockProperties.FUMICE_PROPS.create().lightLevel((intf) -> 3)));
     }
 
     private static <B extends Block> BlockRegisterChain<B> register(String name, String enName, Supplier<B> block) {

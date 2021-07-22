@@ -59,4 +59,13 @@ public class JSoundTypes {
 			JSounds.BRICK_BLOCK_BREAK::get,
 			JSounds.BRICK_BLOCK_DIG::get,
 			JSounds.BRICK_BLOCK_BREAK::get);
+
+	public static final SoundType FUMICE = new TimeSoundType(
+			1.0F,
+			1.0F,
+			JSounds.FUMICE_BLOCK_BREAK::get,
+			JSounds.FUMICE_BLOCK_DIG::get,
+			JSounds.FUMICE_BLOCK_BREAK::get,
+			JSounds.FUMICE_BLOCK_DIG::get,
+			JSounds.FUMICE_BLOCK_BREAK::get);
 }
