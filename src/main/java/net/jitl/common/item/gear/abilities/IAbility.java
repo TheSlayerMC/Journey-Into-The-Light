@@ -3,12 +3,16 @@ package net.jitl.common.item.gear.abilities;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.TieredItem;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.ToolType;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
@@ -23,8 +27,22 @@ public interface IAbility {
 
     }
 
+    default void breakBlock(ItemStack stack, World world, BlockState state, BlockPos pos, LivingEntity entity) {
+
+    }
+
     default float blockBreakSpeed(ItemStack stack, BlockState state, float original) {
         return original;
+    }
+
+    default boolean isCorrectTool(ItemStack stack, BlockState state) {
+        Item item = stack.getItem();
+        if (((TieredItem) item).getTier().getLevel() >= state.getHarvestLevel()) {
+            for (ToolType type : stack.getToolTypes()) {
+                if (state.isToolEffective(type)) return true;
+            }
+        }
+        return false;
     }
 
     default void equip(LivingEntity entity, EquipmentSlotType slot, ItemStack stack) {

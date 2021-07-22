@@ -79,8 +79,9 @@ public interface ShadiumAbility {
         public float blockBreakSpeed(ItemStack stack, BlockState state, float original) {
             System.out.println(original);
             System.out.println(stack.getTag().getFloat("darkness"));
-            System.out.println(original * (1 + stack.getTag().getFloat("darkness")));
-            return original * (1 + stack.getTag().getFloat("darkness"));
+            if (isCorrectTool(stack, state)) original *= (1 + stack.getTag().getFloat("darkness"));
+            System.out.println(original);
+            return original;
         }
 
         @Override

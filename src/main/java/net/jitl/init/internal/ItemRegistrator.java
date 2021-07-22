@@ -18,6 +18,7 @@ import net.jitl.common.item.gear.abilities.LuniumAbility;
 import net.jitl.common.item.gear.abilities.ShadiumAbility;
 import net.jitl.common.item.gear.abilities.bloodcrust.BloodcrustArmorAbility;
 import net.jitl.common.item.gear.abilities.bloodcrust.BloodcrustSwordAbility;
+import net.jitl.common.item.gear.abilities.bloodcrust.BloodcrustToolAbility;
 import net.jitl.common.item.interactive.MinersPearlItem;
 import net.jitl.common.item.throwable.PiercerItem;
 import net.jitl.common.item.throwable.ThrowableItem;
@@ -46,6 +47,7 @@ public class ItemRegistrator {
     private static final IAbility SHADIUM_TOOL = new ShadiumAbility.ShadiumToolAbility();
     private static final IAbility SHADIUM_ARMOR = new ShadiumAbility.ShadiumArmorAbility();
     private static final IAbility BLOODCRUST_SWORD = new BloodcrustSwordAbility();
+    private static final IAbility BLOODCRUST_TOOL = new BloodcrustToolAbility();
     private static final IAbility BLOODCRUST_ARMOR = new BloodcrustArmorAbility();
     @AutoRegistrable
     private static final ItemRegister REGISTER = new ItemRegister(JITL.MODID);
@@ -184,11 +186,11 @@ public class ItemRegistrator {
 
         //BLOODCRUST
         registerHandheldItem("bloodcrust_sword", "Bloodcrust Sword", () -> new JSwordItem(JToolTiers.BLOODCRUST, BLOODCRUST_SWORD));
-        registerHandheldItem("bloodcrust_pickaxe", "Bloodcrust Pickaxe", () -> new JPickaxeItem(JToolTiers.BLOODCRUST, BASIC));
-        registerHandheldItem("bloodcrust_axe", "Bloodcrust Axe", () -> new JAxeItem(JToolTiers.BLOODCRUST, BASIC));
-        registerHandheldItem("bloodcrust_shovel", "Bloodcrust Shovel", () -> new JShovelItem(JToolTiers.BLOODCRUST, BASIC));
-        registerHandheldItem("bloodcrust_hoe", "Bloodcrust Hoe", () -> new JHoeItem(JToolTiers.BLOODCRUST, BASIC));
-        registerHandheldItem("bloodcrust_multitool", "Bloodcrust Multitool", () -> new MultitoolItem(JToolTiers.BLOODCRUST, BASIC));
+        registerHandheldItem("bloodcrust_pickaxe", "Bloodcrust Pickaxe", () -> new JPickaxeItem(JToolTiers.BLOODCRUST, BLOODCRUST_TOOL));
+        registerHandheldItem("bloodcrust_axe", "Bloodcrust Axe", () -> new JAxeItem(JToolTiers.BLOODCRUST, BLOODCRUST_TOOL));
+        registerHandheldItem("bloodcrust_shovel", "Bloodcrust Shovel", () -> new JShovelItem(JToolTiers.BLOODCRUST, BLOODCRUST_TOOL));
+        registerHandheldItem("bloodcrust_hoe", "Bloodcrust Hoe", () -> new JHoeItem(JToolTiers.BLOODCRUST, BLOODCRUST_TOOL));
+        registerHandheldItem("bloodcrust_multitool", "Bloodcrust Multitool", () -> new MultitoolItem(JToolTiers.BLOODCRUST, BLOODCRUST_TOOL));
         registerArmorItem("bloodcrust_helmet", "Bloodcrust Helmet", () -> new JArmorItem(JArmorMaterial.BLOODCRUST, EquipmentSlotType.HEAD, BLOODCRUST_ARMOR));
         registerArmorItem("bloodcrust_chestplate", "Bloodcrust Chestplate", () -> new JArmorItem(JArmorMaterial.BLOODCRUST, EquipmentSlotType.CHEST, BLOODCRUST_ARMOR));
         registerArmorItem("bloodcrust_leggings", "Bloodcrust Leggings", () -> new JArmorItem(JArmorMaterial.BLOODCRUST, EquipmentSlotType.LEGS, BLOODCRUST_ARMOR));
