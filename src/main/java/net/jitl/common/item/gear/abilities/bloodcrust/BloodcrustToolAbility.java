@@ -1,5 +1,6 @@
 package net.jitl.common.item.gear.abilities.bloodcrust;
 
+import net.jitl.common.helper.TooltipFiller;
 import net.jitl.common.item.gear.abilities.IAbility;
 import net.minecraft.block.AbstractFireBlock;
 import net.minecraft.block.BlockState;
@@ -10,8 +11,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.TieredItem;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
+
+import java.util.List;
 
 public class BloodcrustToolAbility implements IAbility {
     @Override
@@ -37,5 +41,12 @@ public class BloodcrustToolAbility implements IAbility {
             original += (original * 2) * (((float) stack.getTag().getInt("Fire boost")) / 15);
         }
         return original;
+    }
+
+    @Override
+    public void fillTooltips(ItemStack stack, List<ITextComponent> tooltip) {
+        TooltipFiller filler = new TooltipFiller(tooltip, "bloodcrust_tool");
+        filler.addOverview();
+        filler.addDrawback();
     }
 }
