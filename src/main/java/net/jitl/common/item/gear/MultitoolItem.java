@@ -2,15 +2,15 @@ package net.jitl.common.item.gear;
 
 import com.google.common.collect.Sets;
 import net.jitl.common.helper.JToolTiers;
+import net.jitl.common.item.gear.abilities.IAbility;
 import net.jitl.init.JTabs;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
-import net.minecraft.item.ToolItem;
+import net.minecraft.item.*;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.SoundCategory;
@@ -19,6 +19,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ToolType;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -27,12 +28,17 @@ public class MultitoolItem extends ToolItem implements JGear {
     IAbility ability;
 
     public MultitoolItem(JToolTiers tier, IAbility multiAbility) {
-        super((int) tier.getShovelDam(), tier.getAttackSpeed(), tier, Sets.newHashSet(Registry.BLOCK), new Item.Properties().tab(JTabs.TOOLS));
+        super((int) tier.getShovelDam(), tier.getAttackSpeed(), tier, Sets.newHashSet(Registry.BLOCK), new Item.Properties().tab(JTabs.TOOLS)
+                .addToolType(ToolType.HOE, tier.getLevel())
+                .addToolType(ToolType.AXE, tier.getLevel())
+                .addToolType(ToolType.PICKAXE, tier.getLevel())
+                .addToolType(ToolType.SHOVEL, tier.getLevel()));
         ability = multiAbility;
     }
 
     @Override
     public boolean isCorrectToolForDrops(BlockState blockIn) {
+        if (blockIn.is(Blocks.SNOW) || blockIn.is(Blocks.SNOW_BLOCK)) return true;
         int i = this.getTier().getLevel();
         if (blockIn.getHarvestTool() == net.minecraftforge.common.ToolType.PICKAXE)
             return i >= blockIn.getHarvestLevel();
@@ -43,7 +49,8 @@ public class MultitoolItem extends ToolItem implements JGear {
     @Override
     public float getDestroySpeed(ItemStack stack, BlockState state) {
         Material material = state.getMaterial();
-        return material != Material.METAL && material != Material.HEAVY_METAL && material != Material.STONE ? super.getDestroySpeed(stack, state) : this.speed;
+        float value = material != Material.METAL && material != Material.HEAVY_METAL && material != Material.STONE ? super.getDestroySpeed(stack, state) : this.speed;
+        return ability.blockBreakSpeed(stack, state, value);
     }
 
     @Override
@@ -91,5 +98,12 @@ public class MultitoolItem extends ToolItem implements JGear {
     @Override
     public boolean shouldCauseBlockBreakReset(ItemStack oldStack, ItemStack newStack) {
         return ability.resetBreak(super.shouldCauseBlockBreakReset(oldStack, newStack), oldStack, newStack);
+    }
+
+    @Override
+    public boolean mineBlock(ItemStack stack, World worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving) {
+        super.mineBlock(stack, worldIn, state, pos, entityLiving);
+        ability.breakBlock(stack, worldIn, state, pos, entityLiving);
+        return true;
     }
 }

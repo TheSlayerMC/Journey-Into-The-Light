@@ -41,10 +41,10 @@ public class MinersPearlItem extends Item implements IEssenceItem {
                 if (flag) {
                     if (essence.consumeEssence(playerIn, 10F) && stack.getItem() == this) {
                         playerIn.addEffect(new EffectInstance(Effects.CONFUSION, 140, 2));
-                        CompoundNBT tag = stack.hasTag() ? stack.getTag() : new CompoundNBT();
+                        if (!stack.hasTag()) stack.setTag(new CompoundNBT());
+                        CompoundNBT tag = stack.getTag();
                         tag.putBoolean("teleport", true);
                         worldIn.playSound(playerIn, playerIn.blockPosition(), SoundEvents.ENDERMAN_TELEPORT, SoundCategory.PLAYERS, 1.0F, 0.5F);
-                        stack.setTag(tag);
                     }
                 } else {
                     ChatUtils.format(new TranslationTextComponent("jitl.message.item.miners_pearl"), TextFormatting.DARK_PURPLE);
@@ -58,20 +58,25 @@ public class MinersPearlItem extends Item implements IEssenceItem {
 
     @Override
     public void inventoryTick(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected) {
-        CompoundNBT tag = stack.hasTag() ? stack.getTag() : new CompoundNBT();
-        if (tag.getBoolean("teleport")) {
-            PlayerEntity player = (PlayerEntity) entity;
-            int teleportTimer = tag.getInt("timer");
-            System.out.println(teleportTimer);
-            if (teleportTimer >= 130) {
-                player.teleportTo(player.getX(), world.getHeightmapPos(Heightmap.Type.WORLD_SURFACE, player.blockPosition()).getY(), player.getZ());
-                tag.putInt("timer", 0);
-                tag.putBoolean("teleport", false);
-            } else {
-                tag.putInt("timer", teleportTimer + 1);
+        if (stack.hasTag()) {
+            CompoundNBT tag = stack.getTag();
+            if (tag.getBoolean("teleport")) {
+                PlayerEntity player = (PlayerEntity) entity;
+                int teleportTimer = tag.getInt("timer");
+                System.out.println(teleportTimer);
+                if (teleportTimer >= 130) {
+                    if (player.level.dimension() == World.OVERWORLD) {
+                        player.teleportTo(player.getX(), world.getHeightmapPos(Heightmap.Type.WORLD_SURFACE, player.blockPosition()).getY(), player.getZ());
+                    } else {
+                        ChatUtils.format(new TranslationTextComponent("jitl.message.item.miners_pearl"), TextFormatting.DARK_PURPLE);
+                    }
+                    tag.putInt("timer", 0);
+                    tag.putBoolean("teleport", false);
+                } else {
+                    tag.putInt("timer", teleportTimer + 1);
+                }
+                JITL.LOGGER.info(teleportTimer);
             }
-            JITL.LOGGER.info("" + teleportTimer);
-            stack.setTag(tag);
         }
     }
 }

@@ -1,6 +1,7 @@
 package net.jitl.common.item.gear;
 
 import net.jitl.common.helper.JArmorMaterial;
+import net.jitl.common.item.gear.abilities.IAbility;
 import net.jitl.init.JTabs;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.inventory.EquipmentSlotType;

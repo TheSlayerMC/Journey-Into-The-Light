@@ -52,12 +52,12 @@ public class JCapabilityProvider implements ICapabilitySerializable<INBT> {
 
     @Override
     public INBT serializeNBT() {
-        return new CompoundNBT(); //nothing to save
+        return armorInstance.getNBT(); //nothing to save
     }
 
     @Override
     public void deserializeNBT(INBT nbt) {
-        //nothing to load
+        armorInstance.setNBT((CompoundNBT) nbt);
     }
 
     public static void registerCapabilities() {

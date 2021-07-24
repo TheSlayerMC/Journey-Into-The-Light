@@ -4,17 +4,18 @@ import net.jitl.JITL;
 import net.jitl.common.capability.JCapabilityProvider;
 import net.jitl.common.capability.armorability.IArmorSetCapability;
 import net.jitl.common.helper.TooltipFiller;
-import net.jitl.common.item.gear.FullArmorAbility;
 import net.jitl.common.item.gear.JGear;
 import net.jitl.common.item.gear.JArmorItem;
+import net.jitl.common.item.gear.abilities.FullArmorAbility;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
-import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -27,43 +28,22 @@ import java.util.Optional;
 
 @Mod.EventBusSubscriber(modid = JITL.MODID)
 public class GearAbilityHandler {
-    /*
-    equipment change event has been disabled
-    livingend has been disabled and replaced
-    do something about armor abilities working when held
-     */
 
-    @SubscribeEvent
-    public static void handleTick(LivingEvent.LivingUpdateEvent event) {
-        LivingEntity entity = event.getEntityLiving();
-        for (EquipmentSlotType equipmentSlotType : EquipmentSlotType.values()) {
-            ItemStack stack = entity.getItemBySlot(equipmentSlotType);
-            Item item = stack.getItem();
-            if (item instanceof JGear) {
-                ((JGear) item).getAbility().tick(entity, entity.level, stack);
-            }
-        }
-    /*@SubscribeEvent()
+    @SubscribeEvent()
     public static void handleTick(LivingUpdateEndEvent event) {
         LivingEntity entity = event.getEntityLiving();
-        for (EquipmentSlotType equipmentSlotType : EquipmentSlotType.values()) {
-            ItemStack stack = entity.getItemBySlot(equipmentSlotType);
-            Item item = stack.getItem();
-            if (item instanceof JGear) {
-                ((JGear) item).getAbility().tick(entity, entity.level, stack);
-            }
-        }
-        /*ItemStack hand = entity.getMainHandItem();
-        if (hand.getItem() instanceof JGear) {
+        ItemStack hand = entity.getMainHandItem();
+        Item item = hand.getItem();
+        if (item instanceof JGear && !(item instanceof JArmorItem)) {
             ((JGear) hand.getItem()).getAbility().tick(entity, entity.level, hand);
         }
         hand = entity.getOffhandItem();
-        if (hand.getItem() instanceof JGear) {
+        item = hand.getItem();
+        if (item instanceof JGear && !(item instanceof JArmorItem)) {
             ((JGear) hand.getItem()).getAbility().tick(entity, entity.level, hand);
         }
-        Optional<IArmorSetCapability> optional = entity.getCapability(JCapabilityProvider.ARMOR).resolve();
-        if (optional.isPresent()) {
-            IArmorSetCapability capability = optional.get();
+        IArmorSetCapability capability = getCapability(entity);
+        if (capability != null) {
             ArrayList<ItemStack> stacks = capability.getArmor();
             if (stacks != null) {
                 for (ItemStack stack : stacks) {
@@ -72,9 +52,9 @@ public class GearAbilityHandler {
             }
             FullArmorAbility fullSet = capability.getFullArmor();
             if (fullSet != null) {
-                fullSet.fullSetTick(stacks);
+                fullSet.tick(entity);
             }
-        }*/
+        }
     }
 
     @SubscribeEvent()
@@ -92,6 +72,23 @@ public class GearAbilityHandler {
             }
         }
         System.out.println(event.getAmount());
+    }
+
+    @SubscribeEvent()
+    public static void handleDamageDealt(LivingDamageEvent event) {
+        Entity entity = event.getSource().getDirectEntity();
+        if (entity instanceof LivingEntity) {
+            LivingEntity living = (LivingEntity) entity;
+            ItemStack stack = living.getMainHandItem();
+            Item item = stack.getItem();
+            if (item instanceof JGear) {
+                ((JGear) item).getAbility().attackTarget(living, stack, event);
+            }
+        }
+        IArmorSetCapability capability = getCapability(event.getEntityLiving());
+        if (capability != null && capability.getFullArmor() != null) {
+            capability.getFullArmor().hit(event);
+        }
     }
 
     @SubscribeEvent()
@@ -156,7 +153,7 @@ public class GearAbilityHandler {
         System.out.println("Post effect: " + event.getAmount());
     }*/
 
-    /*@SubscribeEvent()
+    @SubscribeEvent()
     public static void equipmentChange(LivingEquipmentChangeEvent event) {
         Item item = event.getFrom().getItem();
         LivingEntity entity = event.getEntityLiving();
@@ -166,14 +163,16 @@ public class GearAbilityHandler {
         }
         item = event.getTo().getItem();
         if (item instanceof JGear) {
-            ((JGear) item).getAbility().unEquip(entity, slot, event.getTo());
+            ((JGear) item).getAbility().equip(entity, slot, event.getTo());
         }
         if (slot.getType() == EquipmentSlotType.Group.ARMOR) {
-            Optional<IArmorSetCapability> optional = entity.getCapability(JCapabilityProvider.ARMOR).resolve();
-            if (optional.isPresent()) {
-                Iterator<ItemStack> iterator = entity.getArmorSlots().iterator();
-                optional.get().setArmor(iterator);
-            }
+            IArmorSetCapability capability = getCapability(entity);
+            if (capability != null) capability.setArmor(entity.getArmorSlots().iterator());
         }
-    }*/
+    }
+
+    public static IArmorSetCapability getCapability(LivingEntity entity) {
+        Optional<IArmorSetCapability> optional = entity.getCapability(JCapabilityProvider.ARMOR).resolve();
+        return optional.orElse(null);
+    }
 }

@@ -5,9 +5,6 @@ import net.jitl.common.entity.projectile.*;
 import net.jitl.common.helper.JArmorMaterial;
 import net.jitl.common.helper.JToolTiers;
 import net.jitl.common.item.*;
-import net.jitl.common.item.gear.*;
-import net.jitl.common.item.gear.abilities.LuniumAbility;
-import net.jitl.common.item.gear.shadium.ShadiumArmorItem;
 import net.jitl.common.item.curios.HeartContainerItem;
 import net.jitl.common.item.curios.JCurioItem;
 import net.jitl.common.item.curios.amulet.CloudwalkingAmuletItem;
@@ -15,8 +12,14 @@ import net.jitl.common.item.curios.amulet.DynasterAmuletItem;
 import net.jitl.common.item.curios.catalyst.EssenceCatalystItem;
 import net.jitl.common.item.curios.catalyst.RegenCatalystItem;
 import net.jitl.common.item.curios.ring.JRingItem;
+import net.jitl.common.item.gear.*;
+import net.jitl.common.item.gear.abilities.IAbility;
+import net.jitl.common.item.gear.abilities.LuniumAbility;
+import net.jitl.common.item.gear.abilities.ShadiumAbility;
+import net.jitl.common.item.gear.abilities.bloodcrust.BloodcrustArmorAbility;
+import net.jitl.common.item.gear.abilities.bloodcrust.BloodcrustSwordAbility;
+import net.jitl.common.item.gear.abilities.bloodcrust.BloodcrustToolAbility;
 import net.jitl.common.item.interactive.MinersPearlItem;
-import net.jitl.common.item.gear.shadium.ShadiumSwordItem;
 import net.jitl.common.item.throwable.PiercerItem;
 import net.jitl.common.item.throwable.ThrowableItem;
 import net.jitl.init.JBlocks;
@@ -40,6 +43,12 @@ import static net.jitl.util.JItemProperties.rangedWeaponsGrouped;
 public class ItemRegistrator {
     private static final IAbility BASIC = new IAbility() {};
     private static final IAbility LUNIUM = new LuniumAbility();
+    private static final IAbility SHADIUM_SWORD = new ShadiumAbility.ShadiumSwordAbility();
+    private static final IAbility SHADIUM_TOOL = new ShadiumAbility.ShadiumToolAbility();
+    private static final IAbility SHADIUM_ARMOR = new ShadiumAbility.ShadiumArmorAbility();
+    private static final IAbility BLOODCRUST_SWORD = new BloodcrustSwordAbility();
+    private static final IAbility BLOODCRUST_TOOL = new BloodcrustToolAbility();
+    private static final IAbility BLOODCRUST_ARMOR = new BloodcrustArmorAbility();
     @AutoRegistrable
     private static final ItemRegister REGISTER = new ItemRegister(JITL.MODID);
 
@@ -164,28 +173,28 @@ public class ItemRegistrator {
         registerArmorItem("lunium_boots", "Lunium Boots", () -> new JArmorItem(JArmorMaterial.LUNIUM, EquipmentSlotType.FEET, LUNIUM));
         
         //SHADIUM
-        registerHandheldItem("shadium_sword", "Shadium Sword", () -> new JSwordItem(JToolTiers.SHADIUM, BASIC));
-        registerHandheldItem("shadium_pickaxe", "Shadium Pickaxe", () -> new JPickaxeItem(JToolTiers.SHADIUM, BASIC));
-        registerHandheldItem("shadium_axe", "Shadium Axe", () -> new JAxeItem(JToolTiers.SHADIUM, BASIC));
-        registerHandheldItem("shadium_shovel", "Shadium Shovel", () -> new JShovelItem(JToolTiers.SHADIUM, BASIC));
-        registerHandheldItem("shadium_hoe", "Shadium Hoe", () -> new JHoeItem(JToolTiers.SHADIUM, BASIC));
-        registerHandheldItem("shadium_multitool", "Shadium Multitool", () -> new MultitoolItem(JToolTiers.SHADIUM, BASIC));
-        registerArmorItem("shadium_helmet", "Shadium Helmet", () -> new JArmorItem(JArmorMaterial.SHADIUM, EquipmentSlotType.HEAD, BASIC));
-        registerArmorItem("shadium_chestplate", "Shadium Chestplate", () -> new JArmorItem(JArmorMaterial.SHADIUM, EquipmentSlotType.CHEST, BASIC));
-        registerArmorItem("shadium_leggings", "Shadium Leggings", () -> new JArmorItem(JArmorMaterial.SHADIUM, EquipmentSlotType.LEGS, BASIC));
-        registerArmorItem("shadium_boots", "Shadium Boots", () -> new JArmorItem(JArmorMaterial.SHADIUM, EquipmentSlotType.FEET, BASIC));
+        registerHandheldItem("shadium_sword", "Shadium Sword", () -> new JSwordItem(JToolTiers.SHADIUM, SHADIUM_SWORD));
+        registerHandheldItem("shadium_pickaxe", "Shadium Pickaxe", () -> new JPickaxeItem(JToolTiers.SHADIUM, SHADIUM_TOOL));
+        registerHandheldItem("shadium_axe", "Shadium Axe", () -> new JAxeItem(JToolTiers.SHADIUM, SHADIUM_TOOL));
+        registerHandheldItem("shadium_shovel", "Shadium Shovel", () -> new JShovelItem(JToolTiers.SHADIUM, SHADIUM_TOOL));
+        registerHandheldItem("shadium_hoe", "Shadium Hoe", () -> new JHoeItem(JToolTiers.SHADIUM, SHADIUM_TOOL));
+        registerHandheldItem("shadium_multitool", "Shadium Multitool", () -> new MultitoolItem(JToolTiers.SHADIUM, SHADIUM_TOOL));
+        registerArmorItem("shadium_helmet", "Shadium Helmet", () -> new JArmorItem(JArmorMaterial.SHADIUM, EquipmentSlotType.HEAD, SHADIUM_ARMOR));
+        registerArmorItem("shadium_chestplate", "Shadium Chestplate", () -> new JArmorItem(JArmorMaterial.SHADIUM, EquipmentSlotType.CHEST, SHADIUM_ARMOR));
+        registerArmorItem("shadium_leggings", "Shadium Leggings", () -> new JArmorItem(JArmorMaterial.SHADIUM, EquipmentSlotType.LEGS, SHADIUM_ARMOR));
+        registerArmorItem("shadium_boots", "Shadium Boots", () -> new JArmorItem(JArmorMaterial.SHADIUM, EquipmentSlotType.FEET, SHADIUM_ARMOR));
 
         //BLOODCRUST
-        registerHandheldItem("bloodcrust_sword", "Bloodcrust Sword", () -> new JSwordItem(JToolTiers.BLOODCRUST, BASIC));
-        registerHandheldItem("bloodcrust_pickaxe", "Bloodcrust Pickaxe", () -> new JPickaxeItem(JToolTiers.BLOODCRUST, BASIC));
-        registerHandheldItem("bloodcrust_axe", "Bloodcrust Axe", () -> new JAxeItem(JToolTiers.BLOODCRUST, BASIC));
-        registerHandheldItem("bloodcrust_shovel", "Bloodcrust Shovel", () -> new JShovelItem(JToolTiers.BLOODCRUST, BASIC));
-        registerHandheldItem("bloodcrust_hoe", "Bloodcrust Hoe", () -> new JHoeItem(JToolTiers.BLOODCRUST, BASIC));
-        registerHandheldItem("bloodcrust_multitool", "Bloodcrust Multitool", () -> new MultitoolItem(JToolTiers.BLOODCRUST, BASIC));
-        registerArmorItem("bloodcrust_helmet", "Bloodcrust Helmet", () -> new JArmorItem(JArmorMaterial.BLOODCRUST, EquipmentSlotType.HEAD, BASIC));
-        registerArmorItem("bloodcrust_chestplate", "Bloodcrust Chestplate", () -> new JArmorItem(JArmorMaterial.BLOODCRUST, EquipmentSlotType.CHEST, BASIC));
-        registerArmorItem("bloodcrust_leggings", "Bloodcrust Leggings", () -> new JArmorItem(JArmorMaterial.BLOODCRUST, EquipmentSlotType.LEGS, BASIC));
-        registerArmorItem("bloodcrust_boots", "Bloodcrust Boots", () -> new JArmorItem(JArmorMaterial.BLOODCRUST, EquipmentSlotType.FEET, BASIC));
+        registerHandheldItem("bloodcrust_sword", "Bloodcrust Sword", () -> new JSwordItem(JToolTiers.BLOODCRUST, BLOODCRUST_SWORD));
+        registerHandheldItem("bloodcrust_pickaxe", "Bloodcrust Pickaxe", () -> new JPickaxeItem(JToolTiers.BLOODCRUST, BLOODCRUST_TOOL));
+        registerHandheldItem("bloodcrust_axe", "Bloodcrust Axe", () -> new JAxeItem(JToolTiers.BLOODCRUST, BLOODCRUST_TOOL));
+        registerHandheldItem("bloodcrust_shovel", "Bloodcrust Shovel", () -> new JShovelItem(JToolTiers.BLOODCRUST, BLOODCRUST_TOOL));
+        registerHandheldItem("bloodcrust_hoe", "Bloodcrust Hoe", () -> new JHoeItem(JToolTiers.BLOODCRUST, BLOODCRUST_TOOL));
+        registerHandheldItem("bloodcrust_multitool", "Bloodcrust Multitool", () -> new MultitoolItem(JToolTiers.BLOODCRUST, BLOODCRUST_TOOL));
+        registerArmorItem("bloodcrust_helmet", "Bloodcrust Helmet", () -> new JArmorItem(JArmorMaterial.BLOODCRUST, EquipmentSlotType.HEAD, BLOODCRUST_ARMOR));
+        registerArmorItem("bloodcrust_chestplate", "Bloodcrust Chestplate", () -> new JArmorItem(JArmorMaterial.BLOODCRUST, EquipmentSlotType.CHEST, BLOODCRUST_ARMOR));
+        registerArmorItem("bloodcrust_leggings", "Bloodcrust Leggings", () -> new JArmorItem(JArmorMaterial.BLOODCRUST, EquipmentSlotType.LEGS, BLOODCRUST_ARMOR));
+        registerArmorItem("bloodcrust_boots", "Bloodcrust Boots", () -> new JArmorItem(JArmorMaterial.BLOODCRUST, EquipmentSlotType.FEET, BLOODCRUST_ARMOR));
 
         //CELESTIUM
         registerHandheldItem("celestium_sword", "Celestium Sword", () -> new JSwordItem(JToolTiers.CELESTIUM, BASIC));
@@ -228,7 +237,7 @@ public class ItemRegistrator {
         registerItem("euca_piercer", "Euca Piercer", () -> new PiercerItem(rangedWeaponsGrouped().durability(50),
                 (worldIn, owner, stack) -> new PiercerEntity(owner, worldIn, stack, 3, 10.0F)));
 
-        registerItem("piercer", "Piercer", () -> new PiercerItem(rangedWeaponsGrouped().durability(50),
+        registerItem("piercer", "Piercer", () -> new PiercerItem(rangedWeaponsGrouped().durability(128),
                 (worldIn, owner, stack) -> new PiercerEntity(owner, worldIn, stack, 3, 3.0F)));
 
         registerItem("skull_of_decay", "Skull Of Decay", () -> new JCurioItem(itemGrouped().stacksTo(1)).ability(true).drawback(true).overview(true));

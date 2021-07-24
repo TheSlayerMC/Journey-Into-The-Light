@@ -5,6 +5,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.potion.Effect;
+import top.theillusivec4.curios.api.SlotContext;
 
 import java.util.function.Supplier;
 
@@ -23,7 +24,8 @@ public class JRingItem extends JCurioItem {
     @Override
     public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
         if (!livingEntity.level.isClientSide()) {
-            CompoundNBT tag = stack.hasTag() ? stack.getTag() : new CompoundNBT();
+            if (!stack.hasTag()) stack.setTag(new CompoundNBT());
+            CompoundNBT tag = stack.getTag();
             int cooldown = tag.getInt("cooldown");
             if (cooldown == 0) {
                 if (livingEntity.hasEffect(potion)) {
@@ -34,7 +36,6 @@ public class JRingItem extends JCurioItem {
                 tag.putInt("cooldown", Math.max(0, cooldown - (livingEntity.hasEffect(potion) ? 1 : 4)));
             }
             System.out.println(cooldown);
-            stack.setTag(tag);
         }
     }
 }
