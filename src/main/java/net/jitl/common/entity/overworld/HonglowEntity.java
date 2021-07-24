@@ -28,8 +28,8 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import org.jetbrains.annotations.NotNull;
-import ru.timeconqueror.timecore.api.util.EnumLookup;
 import ru.timeconqueror.timecore.api.util.RandHelper;
+import ru.timeconqueror.timecore.api.util.lookups.EnumLookup;
 
 import javax.annotation.Nullable;
 import java.util.Random;
@@ -158,7 +158,7 @@ public class HonglowEntity extends MonsterEntity {
 		}
 
 		public static Type getVariantFromInt(int number) {
-			return VARIANT_FINDER.get(number);
+			return VARIANT_FINDER.by(number);
 		}
 		
 		public ResourceLocation getTexture() {
