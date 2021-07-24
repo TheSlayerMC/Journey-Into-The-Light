@@ -3,7 +3,7 @@ package net.jitl.common.helper;
 import net.jitl.init.JSounds;
 import net.jitl.init.JStructures;
 import net.minecraft.world.gen.feature.structure.Structure;
-import ru.timeconqueror.timecore.api.util.EnumLookup;
+import ru.timeconqueror.timecore.api.util.lookups.EnumLookup;
 
 public enum EnumStructureMusic {
     GUARDIAN_TOWER(JStructures.GUARDIAN_TOWER_HOLDER.getStructure(), new JMusic(JSounds.TOWER_THEME.get(), 1, 200, 1000), 1);
@@ -35,7 +35,7 @@ public enum EnumStructureMusic {
         if (id == 0) {
             return null;
         } else {
-            return STRUCTURE_FINDER.get(id);
+            return STRUCTURE_FINDER.by(id);
         }
     }
 }
