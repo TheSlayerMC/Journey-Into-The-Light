@@ -7,6 +7,9 @@ import net.jitl.common.capability.armorability.IArmorSetCapability;
 import net.jitl.common.capability.currentstructure.CurrentStructureCapability;
 import net.jitl.common.capability.currentstructure.CurrentStructureStorage;
 import net.jitl.common.capability.currentstructure.ICurrentStructureCapability;
+import net.jitl.common.capability.pressedkeys.IPressedKeysCapability;
+import net.jitl.common.capability.pressedkeys.PressedKeysCapability;
+import net.jitl.common.capability.pressedkeys.PressedKeysStorage;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -37,6 +40,11 @@ public class JCapabilityProvider implements ICapabilitySerializable<INBT> {
 
     private final ICurrentStructureCapability structureInstance = STRUCTURE.getDefaultInstance();
 
+    @CapabilityInject(IPressedKeysCapability.class)
+    public static final Capability<IPressedKeysCapability> KEYS = Hacks.promise();
+
+    private final IPressedKeysCapability keysInstance = KEYS.getDefaultInstance();
+
     @NotNull
     @Override
     public <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
@@ -44,6 +52,8 @@ public class JCapabilityProvider implements ICapabilitySerializable<INBT> {
             return LazyOptional.of(() -> armorInstance).cast();
         } else if (cap == STRUCTURE && structureInstance != null) {
             return LazyOptional.of(() -> structureInstance).cast();
+        } else if (cap == KEYS && keysInstance != null) {
+            return LazyOptional.of(() -> keysInstance).cast();
         }
         return LazyOptional.empty();
     }
@@ -52,7 +62,7 @@ public class JCapabilityProvider implements ICapabilitySerializable<INBT> {
 
     @Override
     public INBT serializeNBT() {
-        return armorInstance.getNBT(); //nothing to save
+        return armorInstance.getNBT();
     }
 
     @Override
@@ -63,6 +73,7 @@ public class JCapabilityProvider implements ICapabilitySerializable<INBT> {
     public static void registerCapabilities() {
         CapabilityManager.INSTANCE.register(IArmorSetCapability.class, new ArmorSetStorage(), ArmorSetCapability::new);
         CapabilityManager.INSTANCE.register(ICurrentStructureCapability.class, new CurrentStructureStorage(), CurrentStructureCapability::new);
+        CapabilityManager.INSTANCE.register(IPressedKeysCapability.class, new PressedKeysStorage(), PressedKeysCapability::new);
     }
 
     @SubscribeEvent()
@@ -71,7 +82,7 @@ public class JCapabilityProvider implements ICapabilitySerializable<INBT> {
         if (!entity.level.isClientSide()) {
             if (entity instanceof LivingEntity) {
                 if (entity instanceof PlayerEntity) {
-                    event.addCapability(JITL.rl("current_structure"), new JCapabilityProvider());
+                    event.addCapability(JITL.rl("journey_player_data"), new JCapabilityProvider());
                 }
                 event.addCapability(JITL.rl("current_armor"), new JCapabilityProvider());
             }

@@ -15,28 +15,42 @@ import org.lwjgl.glfw.GLFW;
 public class KeybindEventHandler {
 
     public static KeyBinding keyStats;
+    public static KeyBinding keyArmor;
+    public static KeyBinding keyAmulet;
     private static final Minecraft MINECRAFT = Minecraft.getInstance();
 
     public static void registerKeys(FMLClientSetupEvent event) {
         keyStats = new KeyBinding("Open Journey Stats", GLFW.GLFW_KEY_J, "JITL Keys");//TODO I18n
+        keyArmor = new KeyBinding("Use Armor Ability", GLFW.GLFW_KEY_C, "JITL Keys");
+        keyAmulet = new KeyBinding("Use Amulet Ability", GLFW.GLFW_KEY_V, "JITL Keys");
 
         ClientRegistry.registerKeyBinding(keyStats);
+        ClientRegistry.registerKeyBinding(keyArmor);
+        ClientRegistry.registerKeyBinding(keyAmulet);
     }
 
     static void onKeyPressed(InputEvent.KeyInputEvent event) {
         InputMappings.Input key = InputMappings.getKey(event.getKey(), event.getScanCode());
         if (MINECRAFT.screen == null) {
             assert MINECRAFT.player != null;
-            if (event.getAction() == GLFW.GLFW_PRESS) {
+            int action = event.getAction();
+            if (action == GLFW.GLFW_PRESS) {
                 if (key == keyStats.getKey()) {
                     System.out.println("Stats");
                     MINECRAFT.setScreen(new ScreenPlayerStats(MINECRAFT.player.inventory));
-                } else if (key == MINECRAFT.options.keyJump.getKey() && !MINECRAFT.player.isOnGround() && !MINECRAFT.player.isCreative()) {
-                    System.out.println("Jump");
-                    Vector3d move = MINECRAFT.player.getDeltaMovement();
-                    JPacketHandler.INSTANCE.sendToServer(new KeyPressedPacket(Math.atan2(move.z(), move.x())));
+                } else {
+                    handleAbilityKeys(key, action);
                 }
+            } else if (action == GLFW.GLFW_RELEASE) {
+                handleAbilityKeys(key, action);
             }
+        }
+    }
+
+    static void handleAbilityKeys(InputMappings.Input input, int action) {
+        boolean key = input == keyAmulet.getKey();
+        if (key || input == keyArmor.getKey()) {
+            JPacketHandler.INSTANCE.sendToServer(new KeyPressedPacket(key, action == GLFW.GLFW_PRESS));
         }
     }
 }

@@ -1,41 +1,49 @@
 package net.jitl.network;
 
+import net.jitl.common.capability.JCapabilityProvider;
+import net.jitl.common.capability.pressedkeys.IPressedKeysCapability;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;
 import org.jetbrains.annotations.NotNull;
 import ru.timeconqueror.timecore.api.common.packet.ITimePacketHandler;
 
+import java.util.Optional;
+
 public class KeyPressedPacket {
 
-    private final double angle;
+    private final boolean isAmulet;
+    private final boolean isDown;
 
-    public KeyPressedPacket(double rotation) {
-        this.angle = rotation;
+    public KeyPressedPacket(boolean key, boolean isDown) {
+        isAmulet = key;
+        this.isDown = isDown;
     }
 
     public static class Handler implements ITimePacketHandler<KeyPressedPacket> {
         @Override
         public void encode(KeyPressedPacket packet, PacketBuffer buffer) {
-            buffer.writeDouble(packet.angle);
+            buffer.writeBoolean(packet.isAmulet);
+            buffer.writeBoolean(packet.isDown);
         }
 
         @Override
         public @NotNull KeyPressedPacket decode(PacketBuffer buffer) {
-            return new KeyPressedPacket(buffer.readDouble());
+            return new KeyPressedPacket(buffer.readBoolean(), buffer.readBoolean());
         }
 
         @Override
         public boolean handle(KeyPressedPacket packet, NetworkEvent.Context ctx) {
             ctx.enqueueWork(() -> {
-                /*LivingEntity entity = ctx.getSender();
-                Optional<IArmorSetCapability> optional = entity.getCapability(JCapabilityProvider.ARMOR).resolve();
-                if (optional.isPresent()) {
-                    PieceArmorAbilities gear = optional.get().getArmor();
-                    if (gear instanceof CelestiumFullArmorAbilities) {
-                        ((CelestiumFullArmorAbilities) gear).doCharge(entity, packet.angle);
+                Optional<IPressedKeysCapability> optional = ctx.getSender().getCapability(JCapabilityProvider.KEYS).resolve();
+                IPressedKeysCapability keys = optional.orElse(null);
+                if (keys != null) {
+                    if (packet.isAmulet) {
+                        keys.setAmuletPressed(packet.isDown);
+                    } else {
+                        keys.setArmorPressed(packet.isDown);
                     }
                 }
-                System.out.println("Angle: " + Math.toDegrees(packet.angle));*/
+                System.out.println(ctx.getSender().getScoreboardName() + " " + (packet.isDown ? "pressed" : "released") + " " + (packet.isAmulet ? "amulet" : "armor") + " ability key.");
             });
 
             return true;
