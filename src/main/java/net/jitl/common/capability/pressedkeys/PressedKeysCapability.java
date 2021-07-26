@@ -33,11 +33,8 @@ public class PressedKeysCapability implements IPressedKeysCapability {
     }
 
     public static boolean isAmuletPressedEitherSide(PlayerEntity player) {
-        if (KeybindEventHandler.keyAmulet != null) {
-            return KeybindEventHandler.keyAmulet.isDown();
-        }
-        Optional<IPressedKeysCapability> optional = player.getCapability(JCapabilityProvider.KEYS).resolve();
-        IPressedKeysCapability capability = optional.orElse(null);
+        if (KeybindEventHandler.keyAmulet != null) return KeybindEventHandler.keyAmulet.isDown();
+        IPressedKeysCapability capability = JCapabilityProvider.getCapability(player, JCapabilityProvider.KEYS);
         return (capability != null && capability.isAmuletPressed());
     }
 }

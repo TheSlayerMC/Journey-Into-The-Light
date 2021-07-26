@@ -16,10 +16,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.INBT;
 import net.minecraft.util.Direction;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.CapabilityInject;
-import net.minecraftforge.common.capabilities.CapabilityManager;
-import net.minecraftforge.common.capabilities.ICapabilitySerializable;
+import net.minecraftforge.common.capabilities.*;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -48,17 +45,15 @@ public class JCapabilityProvider implements ICapabilitySerializable<INBT> {
     @NotNull
     @Override
     public <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-        if (cap == ARMOR && armorInstance != null) {
-            return LazyOptional.of(() -> armorInstance).cast();
-        } else if (cap == STRUCTURE && structureInstance != null) {
-            return LazyOptional.of(() -> structureInstance).cast();
-        } else if (cap == KEYS && keysInstance != null) {
-            return LazyOptional.of(() -> keysInstance).cast();
-        }
+        if (cap == ARMOR) return armorInstance != null ? LazyOptional.of(() -> armorInstance).cast() : LazyOptional.empty();
+        if (cap == STRUCTURE) return structureInstance != null ? LazyOptional.of(() -> structureInstance).cast() : LazyOptional.empty();
+        if (cap == KEYS) return keysInstance != null ? LazyOptional.of(() -> keysInstance).cast() : LazyOptional.empty();
         return LazyOptional.empty();
     }
 
-    //TODO: Look into creating method to get capabilities more easily
+    public static <T> T getCapability(ICapabilityProvider holder, @NotNull Capability<T> cap) {
+        return holder.getCapability(cap).resolve().orElse(null);
+    }
 
     @Override
     public INBT serializeNBT() {

@@ -44,7 +44,7 @@ public class GearAbilityHandler {
         if (item instanceof JGear && !(item instanceof JArmorItem)) {
             ((JGear) hand.getItem()).getAbility().tick(entity, entity.level, hand);
         }
-        IArmorSetCapability capability = getCapability(entity);
+        IArmorSetCapability capability = JCapabilityProvider.getCapability(entity, JCapabilityProvider.ARMOR);
         if (capability != null) {
             ArrayList<ItemStack> stacks = capability.getArmor();
             if (stacks != null) {
@@ -87,7 +87,7 @@ public class GearAbilityHandler {
                 ((JGear) item).getAbility().attackTarget(living, stack, event);
             }
         }
-        IArmorSetCapability capability = getCapability(event.getEntityLiving());
+        IArmorSetCapability capability = JCapabilityProvider.getCapability(event.getEntityLiving(), JCapabilityProvider.ARMOR);
         if (capability != null && capability.getFullArmor() != null) {
             capability.getFullArmor().hit(event);
         }
@@ -168,13 +168,8 @@ public class GearAbilityHandler {
             ((JGear) item).getAbility().equip(entity, slot, event.getTo());
         }
         if (slot.getType() == EquipmentSlotType.Group.ARMOR) {
-            IArmorSetCapability capability = getCapability(entity);
+            IArmorSetCapability capability = JCapabilityProvider.getCapability(entity, JCapabilityProvider.ARMOR);
             if (capability != null) capability.setArmor(entity.getArmorSlots().iterator());
         }
-    }
-
-    public static IArmorSetCapability getCapability(LivingEntity entity) {
-        Optional<IArmorSetCapability> optional = entity.getCapability(JCapabilityProvider.ARMOR).resolve();
-        return optional.orElse(null);
     }
 }

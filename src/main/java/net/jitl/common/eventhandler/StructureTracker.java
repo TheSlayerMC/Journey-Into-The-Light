@@ -23,9 +23,8 @@ public class StructureTracker {
     public static void onPlayerTick(TickEvent.PlayerTickEvent structureEvent) {
         if (structureEvent.side == LogicalSide.SERVER && structureEvent.phase == TickEvent.Phase.START) {
             ServerPlayerEntity player = (ServerPlayerEntity) structureEvent.player;
-            Optional<ICurrentStructureCapability> optional = player.getCapability(JCapabilityProvider.STRUCTURE).resolve();
-            if (optional.isPresent()) {
-                ICurrentStructureCapability capability = optional.get();
+            ICurrentStructureCapability capability = JCapabilityProvider.getCapability(player, JCapabilityProvider.STRUCTURE);
+            if (capability != null) {
                 int id = findStructure(player);
                 if (id != capability.getStructure()) {
                     JPacketHandler.INSTANCE.send(PacketDistributor.PLAYER.with(() -> player), new SCurrentStructurePacket(id));

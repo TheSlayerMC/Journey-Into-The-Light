@@ -34,8 +34,7 @@ public class KeyPressedPacket {
         @Override
         public boolean handle(KeyPressedPacket packet, NetworkEvent.Context ctx) {
             ctx.enqueueWork(() -> {
-                Optional<IPressedKeysCapability> optional = ctx.getSender().getCapability(JCapabilityProvider.KEYS).resolve();
-                IPressedKeysCapability keys = optional.orElse(null);
+                IPressedKeysCapability keys = JCapabilityProvider.getCapability(ctx.getSender(), JCapabilityProvider.KEYS);
                 if (keys != null) {
                     if (packet.isAmulet) {
                         keys.setAmuletPressed(packet.isDown);
