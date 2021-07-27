@@ -17,6 +17,7 @@ import net.jitl.init.JItems;
 import net.jitl.init.JTabs;
 import net.jitl.util.JBlockProperties;
 import net.minecraft.block.Block;
+import net.minecraft.block.MagmaBlock;
 import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.item.ItemGroup;
@@ -265,7 +266,7 @@ public class BlockRegistrator {
         registerCropBlock("floro_crop", "Floro Crop", new FloroCropBlock());
 
         registerDefaultBlock("fumice", "Fumice", () -> new FumiceBlock(JBlockProperties.FUMICE_PROPS.create()));
-        registerDefaultBlock("filled_fumice", "Filled Fumice", () -> new Block(JBlockProperties.FUMICE_PROPS.create().lightLevel((intf) -> 3)));
+        registerDefaultBlock("filled_fumice", "Filled Fumice", () -> new MagmaBlock(JBlockProperties.FUMICE_PROPS.create().lightLevel((intf) -> 3)));
     }
 
     private static <B extends Block> BlockRegisterChain<B> register(String name, String enName, Supplier<B> block) {

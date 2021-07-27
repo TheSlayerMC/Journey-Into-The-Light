@@ -3,15 +3,12 @@ package net.jitl.common.item.curios.amulet;
 import net.jitl.common.capability.player.JPlayer;
 import net.jitl.common.capability.pressedkeys.PressedKeysCapability;
 import net.jitl.common.item.curios.JCurioItem;
-import net.jitl.init.JParticleManager;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particles.ParticleTypes;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceContext;
 import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
 public class DynasterAmuletItem extends JCurioItem {
@@ -24,9 +21,9 @@ public class DynasterAmuletItem extends JCurioItem {
     public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
         PlayerEntity player = (PlayerEntity) livingEntity;
         if (!player.isOnGround() && !player.isInLava() && !player.isInWaterOrBubble() && PressedKeysCapability.isAmuletPressedEitherSide(player)) {
-            if (isFloatReady(player)) {
-                JPlayer capability = JPlayer.from(player);
-                if (capability != null && capability.essence.get().checkEssenceEitherSide(player.level.isClientSide(), player, 0.15F)) {
+            JPlayer capability = JPlayer.from(player);
+            if (capability != null && capability.essence.get().checkEssenceEitherSide(player.level.isClientSide(), player, 0.5F)) {
+                if (isFloatReady(player)) {
                     player.fallDistance = 0;
                     player.setDeltaMovement(player.getDeltaMovement().multiply(1, 0.75F, 1));
                     if (!player.level.isClientSide()) {
