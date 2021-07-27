@@ -11,7 +11,8 @@ import java.util.Objects;
 
 public class Essence implements INBTSerializable<CompoundNBT>, IChangable {
     public final CallbackProperty<Float> currentEssence = new CallbackProperty<>(this, 0.0F);
-    public float burnoutTime = 0.0F;
+    public final CallbackProperty<Float> burnoutTime = new CallbackProperty<>(this, 0.0F);
+
     public int timeout = 0;
 
     private boolean changed = false;
@@ -39,11 +40,11 @@ public class Essence implements INBTSerializable<CompoundNBT>, IChangable {
     }
 
     public void setBurnout(float value) {
-        burnoutTime = Math.max(value, 0.0F);
+        burnoutTime.set(Math.max(value, 0.0F));
     }
 
     public float getBurnout() {
-        return burnoutTime;
+        return burnoutTime.get();
     }
 
     @Override
