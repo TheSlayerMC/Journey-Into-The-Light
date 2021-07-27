@@ -22,6 +22,7 @@ public class Essence implements INBTSerializable<CompoundNBT>, IChangable {
         CompoundNBT nbt = new CompoundNBT();
         nbt.putFloat("current_essence", getCurrentEssence());
         nbt.putFloat("burnout", getBurnout());
+        nbt.putInt("timeout", getTimeout());
         return nbt;
     }
 
@@ -29,6 +30,8 @@ public class Essence implements INBTSerializable<CompoundNBT>, IChangable {
     public void deserializeNBT(CompoundNBT nbt) {
         currentEssence.set(nbt.getFloat("current_essence"));
         setBurnout(nbt.getFloat("burnout"));
+        setTimeout(nbt.getInt("timeout"));
+
     }
 
     public static float getMaxEssence(PlayerEntity player) {
@@ -43,8 +46,16 @@ public class Essence implements INBTSerializable<CompoundNBT>, IChangable {
         burnoutTime.set(Math.max(value, 0.0F));
     }
 
+    public void setTimeout(int value) {
+        timeout = value;
+    }
+
     public float getBurnout() {
         return burnoutTime.get();
+    }
+
+    public int getTimeout() {
+        return timeout;
     }
 
     @Override
@@ -77,7 +88,7 @@ public class Essence implements INBTSerializable<CompoundNBT>, IChangable {
         if (!player.isCreative()) {
             if (hasEssence(price)) {
                 setEssence(getCurrentEssence() - price);
-                timeout = 20;
+                setTimeout(20);
                 return true;
             }
             float attributeValue = (float) player.getAttribute(JAttributes.ESSENCE_BURNOUT.get()).getValue();
