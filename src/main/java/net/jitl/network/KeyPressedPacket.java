@@ -2,6 +2,9 @@ package net.jitl.network;
 
 import net.jitl.common.capability.JCapabilityProvider;
 import net.jitl.common.capability.pressedkeys.IPressedKeysCapability;
+import net.jitl.common.eventhandler.CurioEventHandler;
+import net.jitl.common.eventhandler.GearAbilityHandler;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;
 import org.jetbrains.annotations.NotNull;
@@ -34,15 +37,18 @@ public class KeyPressedPacket {
         @Override
         public boolean handle(KeyPressedPacket packet, NetworkEvent.Context ctx) {
             ctx.enqueueWork(() -> {
-                IPressedKeysCapability keys = JCapabilityProvider.getCapability(ctx.getSender(), JCapabilityProvider.KEYS);
+                ServerPlayerEntity player = ctx.getSender();
+                IPressedKeysCapability keys = JCapabilityProvider.getCapability(player, JCapabilityProvider.KEYS);
                 if (keys != null) {
                     if (packet.isAmulet) {
                         keys.setAmuletPressed(packet.isDown);
+                        CurioEventHandler.onKeyPressed(player);
                     } else {
                         keys.setArmorPressed(packet.isDown);
+                        GearAbilityHandler.onKeyPressed(player);
                     }
                 }
-                System.out.println(ctx.getSender().getScoreboardName() + " " + (packet.isDown ? "pressed" : "released") + " " + (packet.isAmulet ? "amulet" : "armor") + " ability key.");
+                System.out.println(player.getScoreboardName() + " " + (packet.isDown ? "pressed" : "released") + " " + (packet.isAmulet ? "amulet" : "armor") + " ability key.");
             });
 
             return true;

@@ -28,4 +28,8 @@ public class CurioEventHandler {
             }
         }
     }
+
+    public static void onKeyPressed(PlayerEntity player) {
+
+    }
 }

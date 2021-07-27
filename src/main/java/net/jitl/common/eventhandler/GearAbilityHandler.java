@@ -93,6 +93,14 @@ public class GearAbilityHandler {
         }
     }
 
+    public static void onKeyPressed(PlayerEntity player) {
+        IArmorSetCapability capability = JCapabilityProvider.getCapability(player, JCapabilityProvider.ARMOR);
+        if (capability != null) {
+            FullArmorAbility armor = capability.getFullArmor();
+            if (armor != null) armor.keyPressed(player);
+        }
+    }
+
     @SubscribeEvent()
     public static void addVanillaTooptips(ItemTooltipEvent event) {
         Item item = event.getItemStack().getItem();

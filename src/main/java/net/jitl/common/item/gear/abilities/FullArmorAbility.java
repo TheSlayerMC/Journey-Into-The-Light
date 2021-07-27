@@ -5,7 +5,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 
 public abstract class FullArmorAbility {
-    private CompoundNBT tag;
+    protected CompoundNBT tag;
 
     public FullArmorAbility(CompoundNBT nbt) {
         tag = nbt;

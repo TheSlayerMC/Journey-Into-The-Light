@@ -19,6 +19,7 @@ import net.jitl.common.item.gear.abilities.ShadiumAbility;
 import net.jitl.common.item.gear.abilities.bloodcrust.BloodcrustArmorAbility;
 import net.jitl.common.item.gear.abilities.bloodcrust.BloodcrustSwordAbility;
 import net.jitl.common.item.gear.abilities.bloodcrust.BloodcrustToolAbility;
+import net.jitl.common.item.gear.abilities.celestium.CelestiumArmorAbility;
 import net.jitl.common.item.interactive.MinersPearlItem;
 import net.jitl.common.item.throwable.PiercerItem;
 import net.jitl.common.item.throwable.ThrowableItem;
@@ -49,6 +50,7 @@ public class ItemRegistrator {
     private static final IAbility BLOODCRUST_SWORD = new BloodcrustSwordAbility();
     private static final IAbility BLOODCRUST_TOOL = new BloodcrustToolAbility();
     private static final IAbility BLOODCRUST_ARMOR = new BloodcrustArmorAbility();
+    private static final IAbility CELESTIUM_ARMOR = new CelestiumArmorAbility();
     @AutoRegistrable
     private static final ItemRegister REGISTER = new ItemRegister(JITL.MODID);
 
@@ -203,10 +205,10 @@ public class ItemRegistrator {
         registerHandheldItem("celestium_shovel", "Celestium Shovel", () -> new JShovelItem(JToolTiers.CELESTIUM, BASIC));
         registerHandheldItem("celestium_hoe", "Celestium Hoe", () -> new JHoeItem(JToolTiers.CELESTIUM, BASIC));
         registerHandheldItem("celestium_multitool", "Celestium Multitool", () -> new MultitoolItem(JToolTiers.CELESTIUM, BASIC));
-        registerArmorItem("celestium_helmet", "Celestium Helmet", () -> new JArmorItem(JArmorMaterial.CELESTIUM, EquipmentSlotType.HEAD, BASIC));
-        registerArmorItem("celestium_chestplate", "Celestium Chestplate", () -> new JArmorItem(JArmorMaterial.CELESTIUM, EquipmentSlotType.CHEST, BASIC));
-        registerArmorItem("celestium_leggings", "Celestium Leggings", () -> new JArmorItem(JArmorMaterial.CELESTIUM, EquipmentSlotType.LEGS, BASIC));
-        registerArmorItem("celestium_boots", "Celestium Boots", () -> new JArmorItem(JArmorMaterial.CELESTIUM, EquipmentSlotType.FEET, BASIC));
+        registerArmorItem("celestium_helmet", "Celestium Helmet", () -> new JArmorItem(JArmorMaterial.CELESTIUM, EquipmentSlotType.HEAD, CELESTIUM_ARMOR));
+        registerArmorItem("celestium_chestplate", "Celestium Chestplate", () -> new JArmorItem(JArmorMaterial.CELESTIUM, EquipmentSlotType.CHEST, CELESTIUM_ARMOR));
+        registerArmorItem("celestium_leggings", "Celestium Leggings", () -> new JArmorItem(JArmorMaterial.CELESTIUM, EquipmentSlotType.LEGS, CELESTIUM_ARMOR));
+        registerArmorItem("celestium_boots", "Celestium Boots", () -> new JArmorItem(JArmorMaterial.CELESTIUM, EquipmentSlotType.FEET, CELESTIUM_ARMOR));
         
         //KORITE
         registerHandheldItem("korite_sword", "Korite Sword", () -> new JSwordItem(JToolTiers.KORITE, BASIC));
