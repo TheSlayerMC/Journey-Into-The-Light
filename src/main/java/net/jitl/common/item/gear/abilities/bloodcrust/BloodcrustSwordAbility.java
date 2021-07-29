@@ -21,7 +21,7 @@ public class BloodcrustSwordAbility implements IAbility {
     private static final UUID ID = UUID.fromString("4fe9a512-63c8-400a-90b2-afa53d4fa66a");
 
     @Override
-    public void attackTarget(LivingEntity holder, ItemStack stack, LivingDamageEvent event) {
+    public void damageTarget(LivingEntity holder, ItemStack stack, LivingDamageEvent event) {
         System.out.println("Bloodcrust attack");
         System.out.println("Original damage is " + event.getAmount());
         Entity entity = event.getEntity();

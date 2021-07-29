@@ -16,6 +16,7 @@ import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -63,14 +64,23 @@ public class GearAbilityHandler {
     public static void handleIncomingAttack(LivingHurtEvent event) {
         System.out.println(event.getAmount());
         Entity entity = event.getSource().getDirectEntity();
-        if (entity != null && entity.getType() == EntityType.ARROW) {
-            if (((ArrowEntity) entity).getOwner() instanceof LivingEntity) {
-                for (ItemStack itemStack : ((ArrowEntity) entity).getOwner().getArmorSlots()) {
-                    Item current = itemStack.getItem();
-                    if (!(current instanceof ArmorItem && ((ArmorItem) current).getMaterial() == ArmorMaterial.LEATHER))
-                        return;
+        if (entity != null) {
+            if (entity instanceof LivingEntity) {
+                LivingEntity living = (LivingEntity) entity;
+                ItemStack stack = living.getMainHandItem();
+                Item item = stack.getItem();
+                if (item instanceof JGear) {
+                    ((JGear) item).getAbility().attackTarget(living, stack, event);
                 }
-                event.setAmount(event.getAmount() + 5F);
+            } else if (entity.getType() == EntityType.ARROW) {
+                if (((ArrowEntity) entity).getOwner() instanceof LivingEntity) {
+                    for (ItemStack itemStack : ((ArrowEntity) entity).getOwner().getArmorSlots()) {
+                        Item current = itemStack.getItem();
+                        if (!(current instanceof ArmorItem && ((ArmorItem) current).getMaterial() == ArmorMaterial.LEATHER))
+                            return;
+                    }
+                    event.setAmount(event.getAmount() + 5F);
+                }
             }
         }
         System.out.println(event.getAmount());
@@ -84,7 +94,7 @@ public class GearAbilityHandler {
             ItemStack stack = living.getMainHandItem();
             Item item = stack.getItem();
             if (item instanceof JGear) {
-                ((JGear) item).getAbility().attackTarget(living, stack, event);
+                ((JGear) item).getAbility().damageTarget(living, stack, event);
             }
         }
         IArmorSetCapability capability = JCapabilityProvider.getCapability(event.getEntityLiving(), JCapabilityProvider.ARMOR);

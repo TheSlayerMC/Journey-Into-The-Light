@@ -20,6 +20,8 @@ import net.jitl.common.item.gear.abilities.bloodcrust.BloodcrustArmorAbility;
 import net.jitl.common.item.gear.abilities.bloodcrust.BloodcrustSwordAbility;
 import net.jitl.common.item.gear.abilities.bloodcrust.BloodcrustToolAbility;
 import net.jitl.common.item.gear.abilities.celestium.CelestiumArmorAbility;
+import net.jitl.common.item.gear.abilities.korite.KoriteSwordAbility;
+import net.jitl.common.item.gear.abilities.mekyum.MekyumSwordAbility;
 import net.jitl.common.item.interactive.MinersPearlItem;
 import net.jitl.common.item.throwable.PiercerItem;
 import net.jitl.common.item.throwable.ThrowableItem;
@@ -51,6 +53,8 @@ public class ItemRegistrator {
     private static final IAbility BLOODCRUST_TOOL = new BloodcrustToolAbility();
     private static final IAbility BLOODCRUST_ARMOR = new BloodcrustArmorAbility();
     private static final IAbility CELESTIUM_ARMOR = new CelestiumArmorAbility();
+    private static final IAbility KORITE_SWORD = new KoriteSwordAbility();
+    private static final IAbility MEKYUM_SWORD = new MekyumSwordAbility();
     @AutoRegistrable
     private static final ItemRegister REGISTER = new ItemRegister(JITL.MODID);
 
@@ -211,7 +215,7 @@ public class ItemRegistrator {
         registerArmorItem("celestium_boots", "Celestium Boots", () -> new JArmorItem(JArmorMaterial.CELESTIUM, EquipmentSlotType.FEET, CELESTIUM_ARMOR));
         
         //KORITE
-        registerHandheldItem("korite_sword", "Korite Sword", () -> new JSwordItem(JToolTiers.KORITE, BASIC));
+        registerHandheldItem("korite_sword", "Korite Sword", () -> new JSwordItem(JToolTiers.KORITE, KORITE_SWORD));
         registerHandheldItem("korite_pickaxe", "Korite Pickaxe", () -> new JPickaxeItem(JToolTiers.KORITE, BASIC));
         registerHandheldItem("korite_axe", "Korite Axe", () -> new JAxeItem(JToolTiers.KORITE, BASIC));
         registerHandheldItem("korite_shovel", "Korite Shovel", () -> new JShovelItem(JToolTiers.KORITE, BASIC));
@@ -219,7 +223,7 @@ public class ItemRegistrator {
         registerHandheldItem("korite_multitool", "Korite Multitool", () -> new MultitoolItem(JToolTiers.KORITE, BASIC));
 
         //MEKYUM
-        registerHandheldItem("mekyum_sword", "Mekyum Sword", () -> new JSwordItem(JToolTiers.MEKYUM, BASIC));
+        registerHandheldItem("mekyum_sword", "Mekyum Sword", () -> new JSwordItem(JToolTiers.MEKYUM, MEKYUM_SWORD));
         registerHandheldItem("mekyum_pickaxe", "Mekyum Pickaxe", () -> new JPickaxeItem(JToolTiers.MEKYUM, BASIC));
         registerHandheldItem("mekyum_axe", "Mekyum Axe", () -> new JAxeItem(JToolTiers.MEKYUM, BASIC));
         registerHandheldItem("mekyum_shovel", "Mekyum Shovel", () -> new JShovelItem(JToolTiers.MEKYUM, BASIC));

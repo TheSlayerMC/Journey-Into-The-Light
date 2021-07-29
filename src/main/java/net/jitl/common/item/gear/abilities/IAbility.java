@@ -2,6 +2,7 @@ package net.jitl.common.item.gear.abilities;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -13,6 +14,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ToolType;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
@@ -23,7 +25,11 @@ public interface IAbility {
 
     }
 
-    default void attackTarget(LivingEntity holder, ItemStack stack, LivingDamageEvent event) {
+    default void attackTarget(LivingEntity attacker, ItemStack stack, LivingHurtEvent event) {
+
+    }
+
+    default void damageTarget(LivingEntity holder, ItemStack stack, LivingDamageEvent event) {
 
     }
 
