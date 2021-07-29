@@ -22,7 +22,7 @@ public class JCapabilities {
     private static final CapabilityRegister REGISTER = new CapabilityRegister(JITL.MODID);
 
     @CapabilityInject(IJPlayer.class)
-    public static final Capability<IJPlayer> PLAYER = Hacks.promise();
+    public static final Capability<JPlayer> PLAYER = Hacks.promise();
 
     @AutoRegistrable.InitMethod
     private static void register() {
@@ -33,7 +33,10 @@ public class JCapabilities {
     public static void onCommonSetup(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
             TimeCore.INSTANCE.getCapabilityManager().attachStaticCoffeeCapability(CapabilityOwner.ENTITY, PLAYER, entity -> entity instanceof PlayerEntity, entity -> new JPlayer((PlayerEntity) entity));
-            TimeCore.INSTANCE.getCapabilityManager().enableKeepingPlayerCapability(JPlayer::from);
+//            TimeCore.INSTANCE.getCapabilityManager().enableKeepingPlayerCapability(player -> {
+//                JPlayer cap = JPlayer.from(player);
+//                cap.serialize(coffeeProperty -> {coffeeProperty.})
+//            });//TODO make better
             TimeCore.INSTANCE.getCapabilityManager().enableSyncingPlayerCapabilityOnJoin(entity -> {
                 JPlayer cap = JPlayer.from(entity);
                 if (cap != null) cap.sendAllData();

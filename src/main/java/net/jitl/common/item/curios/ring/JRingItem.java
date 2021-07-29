@@ -2,10 +2,10 @@ package net.jitl.common.item.curios.ring;
 
 import net.jitl.common.item.curios.JCurioItem;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.potion.Effect;
-import top.theillusivec4.curios.api.SlotContext;
 
 import java.util.function.Supplier;
 
@@ -23,6 +23,8 @@ public class JRingItem extends JCurioItem {
 
     @Override
     public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
+        if (!(livingEntity instanceof PlayerEntity)) return;
+
         if (!livingEntity.level.isClientSide()) {
             if (!stack.hasTag()) stack.setTag(new CompoundNBT());
             CompoundNBT tag = stack.getTag();

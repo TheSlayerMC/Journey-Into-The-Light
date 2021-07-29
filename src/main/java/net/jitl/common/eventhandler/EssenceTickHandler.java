@@ -20,7 +20,7 @@ public class EssenceTickHandler {
             if (Essence.getMaxEssence(event.player) > 0) {
                 JPlayer playerCapability = JPlayer.from(event.player);
                 if (playerCapability != null) {
-                    Essence essence = playerCapability.essence.get();
+                    Essence essence = playerCapability.essence;
                     if (essence.isRegenReady()) {
                         essence.addEssence(event.player, (float) Objects.requireNonNull(event.player.getAttribute(JAttributes.ESSENCE_REGEN_SPEED.get())).getValue());
                     } else {

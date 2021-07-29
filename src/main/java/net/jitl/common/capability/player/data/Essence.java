@@ -2,37 +2,15 @@ package net.jitl.common.capability.player.data;
 
 import net.jitl.init.JAttributes;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraftforge.common.util.INBTSerializable;
-import ru.timeconqueror.timecore.common.capability.CallbackProperty;
-import ru.timeconqueror.timecore.common.capability.property.IChangable;
+import ru.timeconqueror.timecore.common.capability.property.CoffeeProperty;
+import ru.timeconqueror.timecore.common.capability.property.container.PropertyContainer;
 
 import java.util.Objects;
 
-public class Essence implements INBTSerializable<CompoundNBT>, IChangable {
-    public final CallbackProperty<Float> currentEssence = new CallbackProperty<>(this, 0.0F);
-    public final CallbackProperty<Float> burnoutTime = new CallbackProperty<>(this, 0.0F);
-
-    public int timeout = 0;
-
-    private boolean changed = false;
-
-    @Override
-    public CompoundNBT serializeNBT() {
-        CompoundNBT nbt = new CompoundNBT();
-        nbt.putFloat("current_essence", getCurrentEssence());
-        nbt.putFloat("burnout", getBurnout());
-        nbt.putInt("timeout", getTimeout());
-        return nbt;
-    }
-
-    @Override
-    public void deserializeNBT(CompoundNBT nbt) {
-        currentEssence.set(nbt.getFloat("current_essence"));
-        setBurnout(nbt.getFloat("burnout"));
-        setTimeout(nbt.getInt("timeout"));
-
-    }
+public class Essence extends PropertyContainer {
+    public final CoffeeProperty<Float> currentEssence = prop("current_essence", 0F);
+    public final CoffeeProperty<Float> burnoutTime = prop("burnout", 0F);
+    public final CoffeeProperty<Integer> timeout = prop("timeout", 0);//FIXME shouldn't be synced with client
 
     public static float getMaxEssence(PlayerEntity player) {
         return (float) Objects.requireNonNull(player.getAttribute(JAttributes.MAX_ESSENCE.get())).getValue();
@@ -47,7 +25,7 @@ public class Essence implements INBTSerializable<CompoundNBT>, IChangable {
     }
 
     public void setTimeout(int value) {
-        timeout = value;
+        timeout.set(value);
     }
 
     public float getBurnout() {
@@ -55,17 +33,7 @@ public class Essence implements INBTSerializable<CompoundNBT>, IChangable {
     }
 
     public int getTimeout() {
-        return timeout;
-    }
-
-    @Override
-    public boolean getChanged() {
-        return changed;
-    }
-
-    @Override
-    public void setChanged(boolean state) {
-        this.changed = state;
+        return timeout.get();
     }
 
     public void setEssence(float value) {
@@ -75,8 +43,8 @@ public class Essence implements INBTSerializable<CompoundNBT>, IChangable {
     }
 
     public boolean isRegenReady() {
-        if (timeout <= 0) return getBurnout() <= 0;
-        timeout--;
+        if (getTimeout() <= 0) return getBurnout() <= 0;
+        setTimeout(getTimeout() - 1);
         return false;
     }
 

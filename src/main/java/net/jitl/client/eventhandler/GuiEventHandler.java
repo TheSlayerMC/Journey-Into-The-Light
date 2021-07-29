@@ -70,9 +70,9 @@ public class GuiEventHandler {
 				MatrixStack matrixStack = event.getMatrixStack();
 				JPlayer cap = JPlayer.from(player);
 				if (cap != null) {
-					float currentEssence = cap.essence.get().getCurrentEssence();
+					float currentEssence = cap.essence.getCurrentEssence();
 					float maxEssence = Essence.getMaxEssence(player);
-					float cooldown = cap.essence.get().getBurnout();
+					float cooldown = cap.essence.getBurnout();
 
 					boolean isEssenceUsed = currentEssence < maxEssence;
 

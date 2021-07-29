@@ -22,7 +22,7 @@ public class DynasterAmuletItem extends JCurioItem {
         PlayerEntity player = (PlayerEntity) livingEntity;
         if (!player.isOnGround() && !player.isInLava() && !player.isInWaterOrBubble() && PressedKeysCapability.isAmuletPressedEitherSide(player)) {
             JPlayer capability = JPlayer.from(player);
-            if (capability != null && capability.essence.get().checkEssenceEitherSide(player.level.isClientSide(), player, 0.5F)) {
+            if (capability != null && capability.essence.checkEssenceEitherSide(player.level.isClientSide(), player, 0.5F)) {
                 if (isFloatReady(player)) {
                     player.fallDistance = 0;
                     player.setDeltaMovement(player.getDeltaMovement().multiply(1, 0.75F, 1));

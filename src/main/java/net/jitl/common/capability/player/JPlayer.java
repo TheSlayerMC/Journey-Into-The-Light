@@ -13,18 +13,14 @@ import net.minecraftforge.fml.network.simple.SimpleChannel;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import ru.timeconqueror.timecore.common.capability.CoffeeCapability;
-import ru.timeconqueror.timecore.common.capability.ICoffeeCapability;
 import ru.timeconqueror.timecore.common.capability.owner.CapabilityOwner;
 import ru.timeconqueror.timecore.common.capability.owner.serializer.CapabilityOwnerSerializer;
-import ru.timeconqueror.timecore.common.capability.property.CoffeeProperty;
-import ru.timeconqueror.timecore.common.capability.property.serializer.NBTPropertySerializer;
 
+//FIXME check if it's saved to the disk
+//FIXME make it be kept? upon death since it's commented now
 public class JPlayer extends CoffeeCapability<Entity> implements IJPlayer {
-    @SuppressWarnings("Convert2MethodRef")
-    public final CoffeeProperty<Essence> essence = prop("essence", new Essence(), new NBTPropertySerializer<>(() -> this.essence.get()));
-
-    @SuppressWarnings("Convert2MethodRef")
-    public final CoffeeProperty<Sentacoins> sentacoins = prop("sentacoins", new Sentacoins(), new NBTPropertySerializer<>(() -> this.sentacoins.get()));
+    public final Essence essence = container("essence", new Essence());
+    public final Sentacoins sentacoins = container("sentacoins", new Sentacoins());
 
     private final PlayerEntity player;
 
@@ -34,7 +30,7 @@ public class JPlayer extends CoffeeCapability<Entity> implements IJPlayer {
 
     @NotNull
     @Override
-    public Capability<? extends ICoffeeCapability<Entity>> getCapability() {
+    public Capability<? extends CoffeeCapability<Entity>> getCapability() {
         return JCapabilities.PLAYER;
     }
 
@@ -45,7 +41,7 @@ public class JPlayer extends CoffeeCapability<Entity> implements IJPlayer {
     }
 
     @Override
-    public void onSendChangesToClients(@NotNull SimpleChannel channel, @NotNull Object data) {
+    public void sendChangesToClients(@NotNull SimpleChannel channel, @NotNull Object data) {
         channel.send(PacketDistributor.PLAYER.with(() -> (ServerPlayerEntity) player), data);
     }
 
@@ -60,10 +56,10 @@ public class JPlayer extends CoffeeCapability<Entity> implements IJPlayer {
     @Nullable
     public static JPlayer from(@Nullable PlayerEntity player) {
         if (player != null) {
-            LazyOptional<IJPlayer> cap = player.getCapability(JCapabilities.PLAYER);
+            LazyOptional<JPlayer> cap = player.getCapability(JCapabilities.PLAYER);
 
             if (cap.isPresent()) {
-                return (JPlayer) cap.orElseThrow(IllegalStateException::new);
+                return cap.orElseThrow(IllegalStateException::new);
             }
         }
 

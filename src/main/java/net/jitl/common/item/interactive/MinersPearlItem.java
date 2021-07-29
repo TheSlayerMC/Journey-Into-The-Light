@@ -31,7 +31,7 @@ public class MinersPearlItem extends Item implements IEssenceItem {
         if (!worldIn.isClientSide()) {
             JPlayer capability = JPlayer.from(playerIn);
             assert capability != null;
-            Essence essence = capability.essence.get();
+            Essence essence = capability.essence;
             boolean flag =
                     playerIn.position().y <= worldIn.getSeaLevel() - 2 &&
                             !worldIn.canSeeSky(new BlockPos(playerIn.getX(), playerIn.getY() + (double) playerIn.getEyeHeight(), playerIn.getZ())) &&
