@@ -1,6 +1,7 @@
 package net.jitl.common.capability.player;
 
 import net.jitl.common.capability.player.data.Essence;
+import net.jitl.common.capability.player.data.Sentacoins;
 import net.jitl.init.JCapabilities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -21,6 +22,9 @@ import ru.timeconqueror.timecore.common.capability.property.serializer.NBTProper
 public class JPlayer extends CoffeeCapability<Entity> implements IJPlayer {
     @SuppressWarnings("Convert2MethodRef")
     public final CoffeeProperty<Essence> essence = prop("essence", new Essence(), new NBTPropertySerializer<>(() -> this.essence.get()));
+
+    @SuppressWarnings("Convert2MethodRef")
+    public final CoffeeProperty<Sentacoins> sentacoins = prop("sentacoins", new Sentacoins(), new NBTPropertySerializer<>(() -> this.sentacoins.get()));
 
     private final PlayerEntity player;
 
