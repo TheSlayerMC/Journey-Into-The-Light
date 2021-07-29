@@ -23,12 +23,16 @@ public class DynasterAmuletItem extends JCurioItem {
         if (!player.isOnGround() && !player.isInLava() && !player.isInWaterOrBubble() && PressedKeysCapability.isAmuletPressedEitherSide(player)) {
             JPlayer capability = JPlayer.from(player);
             if (capability != null && capability.essence.checkEssenceEitherSide(player.level.isClientSide(), player, 0.5F)) {
-                if (isFloatReady(player)) {
+                boolean bool = isFloatReady(player);
+                if (bool) {
                     player.fallDistance = 0;
                     player.setDeltaMovement(player.getDeltaMovement().multiply(1, 0.75F, 1));
                     if (!player.level.isClientSide()) {
                         ((ServerWorld) player.level).sendParticles(ParticleTypes.CLOUD, player.getX(), player.getY(), player.getZ(), 1, 0, 0, 0, 0.2);
                     }
+                }
+                if (!player.level.isClientSide()) {
+                    ((ServerWorld) player.level).sendParticles(bool ? ParticleTypes.CLOUD : ParticleTypes.SMOKE, player.getX(), player.getY(), player.getZ(), 1, 0, 0, 0, 0.2);
                 }
             }
         }

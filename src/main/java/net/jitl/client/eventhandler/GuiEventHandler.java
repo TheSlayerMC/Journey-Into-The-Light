@@ -25,11 +25,8 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = JITL.MODID, value = Dist.CLIENT)
 public class GuiEventHandler {
-	public static float maxEssence = 10F;
-
-	public static float essence = 10F;
-
 	private static float transparency;
+	private static float burnoutTransparency;
 
 	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public static void overrideMainMenu(GuiOpenEvent event) {
@@ -75,13 +72,21 @@ public class GuiEventHandler {
 					float cooldown = cap.essence.getBurnout();
 
 					boolean isEssenceUsed = currentEssence < maxEssence;
-
-					if (instanceOfEssenceItem(player.getMainHandItem().getItem()) || isEssenceUsed && transparency <= 1.0) {
+					if ((instanceOfEssenceItem(player.getMainHandItem().getItem()) || isEssenceUsed) && transparency <= 1.0) {
 						transparency += .02;
 					} else if (transparency > 0) {
 						transparency -= .02;
 					}
-					if (!minecraft.options.hideGui) {
+
+					boolean cooldownActive = cooldown > 1.0F;
+
+					if (cooldownActive && burnoutTransparency < 1) {
+						burnoutTransparency += .02;
+					} else if (burnoutTransparency > 0) {
+						burnoutTransparency -= .02;
+					}
+
+					if (!minecraft.options.hideGui && transparency > 0) {
 						int l = event.getWindow().getGuiScaledHeight() - 32 + 3;
 						int w = event.getWindow().getGuiScaledWidth() / 2 - 91;
 
@@ -89,10 +94,17 @@ public class GuiEventHandler {
 						minecraft.getTextureManager().bind(JITL.tl("gui/essence.png").fullLocation());
 						RenderUtils.blit(matrixStack, w, l, 0, 5, 81, 5, 81, 15);
 
-						int i = (int) ((currentEssence / maxEssence) * 81);
-						RenderUtils.blit(matrixStack, w, l, 0, 0, i, 5, 81, 15);
+						if (cooldownActive) {
+							RenderSystem.color4f(1.0F, 1.0F, 1.0F, (float) -Math.sin((float) player.tickCount / 5) * burnoutTransparency / 2);
+							RenderUtils.blit(matrixStack, w, l, 0, 0, 81, 5, 81, 15);
+						} else {
+							int i = (int) ((currentEssence / maxEssence) * 81);
+							RenderUtils.blit(matrixStack, w, l, 0, 0, i, 5, 81, 15);
+						}
 
-						if (cooldown > 0) {
+
+						if (burnoutTransparency > 0) {
+							RenderSystem.color4f(1.0F, 1.0F, 1.0F, burnoutTransparency);
 							RenderUtils.blit(matrixStack, w, l, 0, 10, 81, 5, 81, 15);
 						}
 						JITL.LOGGER.info(cooldown);
