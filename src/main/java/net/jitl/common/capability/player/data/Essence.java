@@ -8,9 +8,9 @@ import ru.timeconqueror.timecore.common.capability.property.container.PropertyCo
 import java.util.Objects;
 
 public class Essence extends PropertyContainer {
-    public final CoffeeProperty<Float> currentEssence = prop("current_essence", 0F);
-    public final CoffeeProperty<Float> burnoutTime = prop("burnout", 0F);
-    public final CoffeeProperty<Integer> timeout = prop("timeout", 0);//FIXME shouldn't be synced with client
+    public final CoffeeProperty<Float> currentEssence = prop("current_essence", 0F).synced();
+    public final CoffeeProperty<Float> burnoutTime = prop("burnout", 0F).synced();
+    public final CoffeeProperty<Integer> timeout = prop("timeout", 0);
 
     public static float getMaxEssence(PlayerEntity player) {
         return (float) Objects.requireNonNull(player.getAttribute(JAttributes.MAX_ESSENCE.get())).getValue();
