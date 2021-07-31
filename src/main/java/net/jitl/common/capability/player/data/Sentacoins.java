@@ -4,7 +4,7 @@ import ru.timeconqueror.timecore.common.capability.property.CoffeeProperty;
 import ru.timeconqueror.timecore.common.capability.property.container.PropertyContainer;
 
 public class Sentacoins extends PropertyContainer {
-    public final CoffeeProperty<Integer> amount = prop("coins", 0);
+    public final CoffeeProperty<Integer> amount = prop("coins", 0).synced();
 
     public void addCoins(int amount) {
         setAmount(amount + getAmount());
