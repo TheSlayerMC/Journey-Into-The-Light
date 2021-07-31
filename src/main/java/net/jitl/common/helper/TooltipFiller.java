@@ -10,7 +10,7 @@ public class TooltipFiller {
     private final List<ITextComponent> tooltip;
     private final String key;
     private int line = 0;
-    private int startPoint;
+    private final int startPoint;
 
     public TooltipFiller(List<ITextComponent> text, String itemKey) {
         tooltip = text;
@@ -42,5 +42,9 @@ public class TooltipFiller {
 
     public void addDrawback() {
         addTooltip(TextFormatting.RED);
+    }
+
+    public void addBreak() {
+        tooltip.add(new TranslationTextComponent(" "));
     }
 }
