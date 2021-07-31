@@ -107,7 +107,6 @@ public class GuiEventHandler {
 							RenderSystem.color4f(1.0F, 1.0F, 1.0F, burnoutTransparency);
 							RenderUtils.blit(matrixStack, w, l, 0, 10, 81, 5, 81, 15);
 						}
-						JITL.LOGGER.info(cooldown);
 					}
 				}
 			}

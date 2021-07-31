@@ -16,7 +16,6 @@ public class MekyumSwordAbility implements IAbility {
 
     @Override
     public void attackTarget(LivingEntity attacker, ItemStack stack, LivingHurtEvent event) {
-        //TODO: make effect consistent with damage boosts (and change tooltip accordingly)
         LivingEntity entity = event.getEntityLiving();
         int time = entity.invulnerableTime;
         event.setCanceled(true);

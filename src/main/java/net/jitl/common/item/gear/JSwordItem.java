@@ -9,6 +9,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -26,6 +28,12 @@ public class JSwordItem extends SwordItem implements JGear {
 	@Override
 	public IAbility getAbility() {
 		return ability;
+	}
+
+	@Override
+	public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
+		ability.rightClick(playerIn, handIn, worldIn);
+		return super.use(worldIn, playerIn, handIn);
 	}
 
 	@Override

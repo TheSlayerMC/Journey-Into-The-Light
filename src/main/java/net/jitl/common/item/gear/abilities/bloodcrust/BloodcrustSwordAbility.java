@@ -32,7 +32,7 @@ public class BloodcrustSwordAbility implements IAbility {
 
     @Override
     public void equip(LivingEntity entity, EquipmentSlotType slot, ItemStack stack) {
-        if (entity.getMainHandItem() == stack) {
+        if (slot == EquipmentSlotType.MAINHAND) {
             if (stack.hasTag()) {
                 ModifiableAttributeInstance attribute = entity.getAttribute(Attributes.ATTACK_DAMAGE);
                 attribute.removeModifier(ID);
@@ -50,7 +50,7 @@ public class BloodcrustSwordAbility implements IAbility {
 
     @Override
     public void unEquip(LivingEntity entity, EquipmentSlotType slot, ItemStack stack) {
-        entity.getAttribute(Attributes.ATTACK_DAMAGE).removeModifier(ID);
+        if (slot == EquipmentSlotType.MAINHAND) entity.getAttribute(Attributes.ATTACK_DAMAGE).removeModifier(ID);
     }
 
     @Override

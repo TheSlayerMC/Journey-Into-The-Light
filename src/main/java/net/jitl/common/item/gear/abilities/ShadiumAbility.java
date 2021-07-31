@@ -34,13 +34,13 @@ public interface ShadiumAbility {
                         "Shadium sword",
                         scaleWithDarkness(entity, 4),
                         AttributeModifier.Operation.ADDITION));
-                System.out.println(attribute.getValue());
+                //System.out.println(attribute.getValue());
             }
         }
 
         @Override
         public void equip(LivingEntity entity, EquipmentSlotType slot, ItemStack stack) {
-            if (entity.getMainHandItem() == stack) {
+            if (slot == EquipmentSlotType.MAINHAND) {
                 ModifiableAttributeInstance attribute = entity.getAttribute(Attributes.ATTACK_DAMAGE);
                 if (attribute.getModifier(ID) == null) {
                     attribute.addTransientModifier(new AttributeModifier(ID,
@@ -54,8 +54,9 @@ public interface ShadiumAbility {
 
         @Override
         public void unEquip(LivingEntity entity, EquipmentSlotType slot, ItemStack stack) {
-            if (entity.getMainHandItem() == stack) {
+            if (slot == EquipmentSlotType.MAINHAND) {
                 entity.getAttribute(Attributes.ATTACK_DAMAGE).removeModifier(ID);
+                System.out.println("Unequip");
             }
         }
 

@@ -8,6 +8,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.TieredItem;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
@@ -30,6 +31,10 @@ public interface IAbility {
     }
 
     default void damageTarget(LivingEntity holder, ItemStack stack, LivingDamageEvent event) {
+
+    }
+
+    default void rightClick(PlayerEntity player, Hand hand, World world) {
 
     }
 
