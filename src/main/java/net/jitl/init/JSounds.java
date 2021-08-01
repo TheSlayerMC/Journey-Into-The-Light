@@ -33,6 +33,7 @@ public class JSounds {
 
     public static final RegistryObject<TimeSound> STAFF_0 = REGISTER.register("items.staff.staff_0");
     public static final RegistryObject<TimeSound> LOOT = REGISTER.register("items.loot");
+    public static final RegistryObject<TimeSound> MINERS_PEARL = REGISTER.register("items.miners_pearl");
 
     public static final RegistryObject<TimeSound> HONGO_AMBIENT = REGISTER.register("entities.hongo_ambient");
     public static final RegistryObject<TimeSound> HONGO_HURT = REGISTER.register("entities.hongo_hurt");

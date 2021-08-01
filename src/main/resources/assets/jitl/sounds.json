@@ -141,6 +141,11 @@
       "jitl:items/loot"
     ]
   },
+  "items.miners_pearl": {
+    "sounds": [
+      "jitl:items/miners_pearl"
+    ]
+  },
   "entities.hongo_ambient": {
     "sounds": [
       "jitl:entities/hongo_ambient"
