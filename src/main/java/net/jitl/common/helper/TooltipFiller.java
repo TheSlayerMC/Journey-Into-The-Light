@@ -1,6 +1,7 @@
 package net.jitl.common.helper;
 
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 
@@ -26,7 +27,7 @@ public class TooltipFiller {
 
     public void addTooltip(TextFormatting color) {
         if (startPoint == -1) {
-            tooltip.add(new TranslationTextComponent("jitl.tooltip." + key + "." + line++).withStyle(color));
+            tooltip.add(new TranslationTextComponent("jitl.tooltip." + key + "." + line++).withStyle(TextFormatting.GREEN));
         } else {
             tooltip.add(startPoint + line, new TranslationTextComponent("jitl.tooltip." + key + "." + line++).withStyle(color));
         }
@@ -44,7 +45,12 @@ public class TooltipFiller {
         addTooltip(TextFormatting.RED);
     }
 
+    public void addValue(Object... values) {
+        //TODO: test
+        tooltip.add(new TranslationTextComponent("jitl.tooltip." + key + "." + line++, values).withStyle(TextFormatting.GREEN));
+    }
+
     public void addBreak() {
-        tooltip.add(new TranslationTextComponent(" "));
+        tooltip.add(StringTextComponent.EMPTY);
     }
 }

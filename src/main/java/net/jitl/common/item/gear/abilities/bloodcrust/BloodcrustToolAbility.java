@@ -47,10 +47,7 @@ public class BloodcrustToolAbility implements IAbility {
         TooltipFiller filler = new TooltipFiller(tooltip, "bloodcrust_tool");
         filler.addOverview();
         filler.addDrawback();
-
-        filler.addBreak(); //there's gotta be a better way, right?
-
-        tooltip.add(new TranslationTextComponent("jitl.tooltip.bloodcrust_tool_charge").withStyle(TextFormatting.RED)
-                .append(String.valueOf(stack.getTag().getInt("Fire boost"))));
+        filler.addBreak();
+        filler.addValue(1 + (2 * stack.getTag().getInt("Fire boost") / 16));
     }
 }

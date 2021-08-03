@@ -72,6 +72,8 @@ public class KoriteSwordAbility implements IAbility {
         TooltipFiller filler = new TooltipFiller(tooltip, "korite_sword");
         filler.addOverview();
         filler.addDrawback();
+        filler.addBreak();
+        filler.addValue(stack.getTag().getFloat("bonus"));
     }
 
     private void addModifier(LivingEntity entity, float value) {

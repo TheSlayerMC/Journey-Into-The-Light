@@ -58,5 +58,7 @@ public class BloodcrustSwordAbility implements IAbility {
         TooltipFiller filler = new TooltipFiller(tooltip, "bloodcrust_sword");
         filler.addOverview();
         filler.addDetail();
+        filler.addBreak();
+        filler.addValue(stack.getTag().getInt("Fire boost"));
     }
 }

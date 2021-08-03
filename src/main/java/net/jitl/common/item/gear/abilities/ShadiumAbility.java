@@ -3,11 +3,13 @@ package net.jitl.common.item.gear.abilities;
 import javafx.util.Pair;
 import net.jitl.common.helper.TooltipFiller;
 import net.minecraft.block.BlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ItemStack;
@@ -65,6 +67,9 @@ public interface ShadiumAbility {
             TooltipFiller filler = new TooltipFiller(tooltip, "shadium_sword");
             filler.addOverview();
             filler.addDetail();
+            filler.addBreak();
+            PlayerEntity player = Minecraft.getInstance().player;
+            if (player != null) filler.addValue(scaleWithDarkness(player, 4));
         }
     }
 
@@ -90,6 +95,8 @@ public interface ShadiumAbility {
             TooltipFiller filler = new TooltipFiller(tooltip, "shadium_tool");
             filler.addOverview();
             filler.addDetail();
+            filler.addBreak();
+            filler.addValue(stack.getTag().getFloat("darkness") * 100);
         }
     }
 
@@ -140,6 +147,9 @@ public interface ShadiumAbility {
             TooltipFiller filler = new TooltipFiller(tooltip, "shadium_armor");
             filler.addOverview();
             filler.addDetail();
+            filler.addBreak();
+            PlayerEntity player = Minecraft.getInstance().player;
+            if (player != null) filler.addValue(scaleWithDarkness(player, 3.75));
         }
 
         private Pair<String, UUID> getPair(ItemStack stack) {
