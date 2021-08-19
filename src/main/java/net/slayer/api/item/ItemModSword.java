@@ -119,7 +119,11 @@ public class ItemModSword extends ItemSword {
 				default:
 					break;
 			}
-			addParticles(target);
+			// @SideOnly annotation produces NoSuchMethodError on server-side.
+			// catching it to avoid console spam.
+			try{
+				addParticles(target);
+			}catch(NoSuchMethodError ignored){ }
 		}
 		return super.hitEntity(stack, target, player);
 	}
