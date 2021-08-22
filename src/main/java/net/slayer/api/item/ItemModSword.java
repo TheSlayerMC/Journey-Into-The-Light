@@ -119,7 +119,10 @@ public class ItemModSword extends ItemSword {
 				default:
 					break;
 			}
-			addParticles(target);
+
+			if (target.world.isRemote) {
+				addParticles(target);
+			}
 		}
 		return super.hitEntity(stack, target, player);
 	}

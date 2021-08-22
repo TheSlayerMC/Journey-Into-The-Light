@@ -11,10 +11,6 @@ buildscript {
     }
 }
 
-plugins {
-    id "com.wynprice.cursemaven" version "2.1.4"
-}
-
 apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'java'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
@@ -54,6 +50,9 @@ minecraft {
 }
 
 repositories {
+    maven {
+        url "https://www.cursemaven.com"
+    }
     mavenCentral()
     repositories {
         maven {
@@ -65,11 +64,6 @@ repositories {
             // location of the maven that hosts JEI files
             name = "Progwml6 maven"
             url = "https://dvs1.progwml6.com/files/maven/"
-        }
-        maven {
-            // location of a maven mirror for JEI files, as a fallback
-            name = "ModMaven"
-            url = "https://modmaven.k-4u.nl"
         }
         maven {
             url uri('localmaven')
@@ -112,13 +106,13 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 
     implementation 'org.jetbrains:annotations:18.0.0'
-    deobfCompile "mezz.jei:jei_1.12.2:4.15.0.293"
+    deobfCompile "curse.maven:jei-238222:3043174"
 
     deobfCompile "slimeknights.mantle:Mantle:1.12-+"
     deobfCompile "slimeknights:TConstruct:1.12.2-2.12.0.+"
 
-    deobfCompile "curse.maven:just-enough-resources-jer:2728585"
-    deobfCompile "curse.maven:baubles:2518667"
+    deobfCompile "curse.maven:just-enough-resources-jer-240630:2728585"
+    deobfCompile "curse.maven:baubles-227083:2518667"
 }
 
 processResources {
