@@ -5,6 +5,7 @@ import net.journey.api.capability.PlayerStats;
 import net.journey.common.capability.JCapabilityManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.*;
 import net.minecraft.entity.player.EntityPlayer;
@@ -23,7 +24,9 @@ public class JourneyKnowledgeEventListener {
 
 	@SubscribeEvent
 	public void onBlockHarvested(HarvestDropsEvent event) {
-		if (event.getHarvester() != null && !(event.getHarvester() instanceof FakePlayer)) {
+		if (event.getHarvester() == null || event.getHarvester().world.isRemote) return;
+
+		if (!(event.getHarvester() instanceof FakePlayer)) {
 			EntityPlayer player = event.getHarvester();
 			JourneyPlayer journeyPlayer = JCapabilityManager.asJourneyPlayer(player);
 			PlayerStats stats = journeyPlayer.getPlayerStats();
@@ -50,8 +53,11 @@ public class JourneyKnowledgeEventListener {
 
 	@SubscribeEvent
 	public void onMobKilled(LivingDeathEvent event) {
-		if (event.getSource().getTrueSource() instanceof EntityPlayer && !(event.getSource().getTrueSource() instanceof FakePlayer)) {
-			EntityPlayer player = (EntityPlayer) event.getSource().getTrueSource();
+		Entity damager = event.getSource().getTrueSource();
+		if (damager == null || damager.world.isRemote) return;
+
+		if (damager instanceof EntityPlayer && !(damager instanceof FakePlayer)) {
+			EntityPlayer player = (EntityPlayer) damager;
 			JourneyPlayer journeyPlayer = JCapabilityManager.asJourneyPlayer(player);
 			PlayerStats stats = journeyPlayer.getPlayerStats();
 
@@ -68,8 +74,11 @@ public class JourneyKnowledgeEventListener {
 
 	@SubscribeEvent
 	public void onMobDrop(LivingDropsEvent event) {
-		if (event.getSource().getTrueSource() instanceof EntityPlayer && !(event.getSource().getTrueSource() instanceof FakePlayer)) {
-			EntityPlayer player = (EntityPlayer) event.getSource().getTrueSource();
+		Entity damager = event.getSource().getTrueSource();
+		if (damager == null || damager.world.isRemote) return;
+
+		if (damager instanceof EntityPlayer && !(damager instanceof FakePlayer)) {
+			EntityPlayer player = (EntityPlayer) damager;
 			JourneyPlayer journeyPlayer = JCapabilityManager.asJourneyPlayer(player);
 			PlayerStats stats = journeyPlayer.getPlayerStats();
 
