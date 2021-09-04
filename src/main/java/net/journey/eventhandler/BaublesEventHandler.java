@@ -45,7 +45,7 @@ public class BaublesEventHandler {
 
     @SubscribeEvent
     public static void onBlockHarvested(BlockEvent.HarvestDropsEvent event) {
-        EntityPlayerMP player = (EntityPlayerMP) event.getHarvester();
+        EntityPlayer player = event.getHarvester();
         IBlockState state = event.getState();
         List<ItemStack> drops = event.getDrops();
 
@@ -53,7 +53,7 @@ public class BaublesEventHandler {
             if (BaublesApi.isBaubleEquipped(player, JourneyItems.luckyCharm) != -1) {
                 if (RandHelper.RANDOM.nextInt(2) == 0) {
                     if (state.getBlock() instanceof IGrowable) {
-                        List<ItemStack> lootTable = LootHelper.genFromLootTable(JourneyLootTables.LOOT_BASIC, player, builder -> builder.withLuck(1).build());
+                        List<ItemStack> lootTable = LootHelper.genFromLootTable(JourneyLootTables.LOOT_BASIC, (EntityPlayerMP) player, builder -> builder.withLuck(1).build());
                         int index = player.world.rand.nextInt(lootTable.size());
                         ItemStack itemToSpawn = lootTable.get(index);
                         drops.add(itemToSpawn);
