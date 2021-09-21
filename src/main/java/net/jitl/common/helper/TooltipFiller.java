@@ -27,7 +27,7 @@ public class TooltipFiller {
 
     public void addTooltip(TextFormatting color) {
         if (startPoint == -1) {
-            tooltip.add(new TranslationTextComponent("jitl.tooltip." + key + "." + line++).withStyle(TextFormatting.GREEN));
+            tooltip.add(new TranslationTextComponent("jitl.tooltip." + key + "." + line++).withStyle(color));
         } else {
             tooltip.add(startPoint + line, new TranslationTextComponent("jitl.tooltip." + key + "." + line++).withStyle(color));
         }

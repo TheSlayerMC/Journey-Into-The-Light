@@ -28,6 +28,5 @@ public class MekyumSwordAbility implements IAbility {
     public void fillTooltips(ItemStack stack, List<ITextComponent> tooltip) {
         TooltipFiller filler = new TooltipFiller(tooltip, "mekyum_sword");
         filler.addOverview();
-        filler.addDrawback();
     }
 }

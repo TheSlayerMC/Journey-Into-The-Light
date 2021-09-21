@@ -22,6 +22,12 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import java.util.List;
 
 public interface IAbility {
+    /*
+    TODO:Detailed testing and code review of all abilities
+     -Diamond (but if someone else sees this close to release remind me)
+     */
+
+    //TODO: hasTag() might not be needed. Test
     default void tick(LivingEntity entity, World world, ItemStack stack) {
 
     }

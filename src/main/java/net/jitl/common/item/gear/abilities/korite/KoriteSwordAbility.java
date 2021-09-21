@@ -73,7 +73,7 @@ public class KoriteSwordAbility implements IAbility {
         filler.addOverview();
         filler.addDrawback();
         filler.addBreak();
-        filler.addValue(stack.getTag().getFloat("bonus"));
+        filler.addValue(Math.floor(stack.getTag().getFloat("bonus") * 100) / 100);
     }
 
     private void addModifier(LivingEntity entity, float value) {

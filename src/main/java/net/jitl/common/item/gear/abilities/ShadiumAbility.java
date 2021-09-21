@@ -69,7 +69,7 @@ public interface ShadiumAbility {
             filler.addDetail();
             filler.addBreak();
             PlayerEntity player = Minecraft.getInstance().player;
-            if (player != null) filler.addValue(scaleWithDarkness(player, 4));
+            if (player != null) filler.addValue(Math.floor(scaleWithDarkness(player, 400)) / 100);
         }
     }
 

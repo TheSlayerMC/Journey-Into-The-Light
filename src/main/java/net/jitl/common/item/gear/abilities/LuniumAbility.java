@@ -33,7 +33,9 @@ public class LuniumAbility implements IAbility.INBTUpdateAbility {
         TooltipFiller filler = new TooltipFiller(tooltip, "lunium_gear");
         filler.addOverview();
         filler.addDrawback();
-        filler.addBreak();
-        filler.addValue(stack.getTag().getFloat("cooldown") / 20);
+        if (stack.getDamageValue() > 0) {
+            filler.addBreak();
+            filler.addValue((int) stack.getTag().getFloat("cooldown") / 20); //TODO: Not counting seconds!
+        }
     }
 }
