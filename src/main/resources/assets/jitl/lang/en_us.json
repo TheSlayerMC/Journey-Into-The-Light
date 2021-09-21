@@ -24,7 +24,7 @@
   "jitl.tooltip.bloodcrust_sword.2": "+%s damage",
   "jitl.tooltip.bloodcrust_tool.0": "Absorb fire to gain triple mining speed",
   "jitl.tooltip.bloodcrust_tool.1": "Every block broken removes 1/16th of the boost",
-  "jitl.tooltip.bloodcrust_tool.2": "%s times mining speed",
+  "jitl.tooltip.bloodcrust_tool.2": "+%1$s%% mining speed",
   "jitl.tooltip.bloodcrust_armor.0": "Full set lights attackers on fire",
   "jitl.tooltip.bloodcrust_armor.1": "Fire duration stacks with existing flames to a maximum of 30 seconds",
   "jitl.tooltip.bloodcrust_armor.2": "Every life lost adds an extra second",

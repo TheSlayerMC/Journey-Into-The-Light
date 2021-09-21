@@ -24,6 +24,7 @@ public interface ShadiumAbility {
         return original * (1 - entity.getBrightness());
     }
 
+    //TODO: tooltip isn't working properly; client player may not have access to sky light. Store darkness in nbt
     class ShadiumSwordAbility implements IAbility, ShadiumAbility {
         private static final UUID ID = UUID.fromString("6f56284c-ac30-4490-a06a-b11517d87e91");
 
@@ -96,7 +97,7 @@ public interface ShadiumAbility {
             filler.addOverview();
             filler.addDetail();
             filler.addBreak();
-            filler.addValue(stack.getTag().getFloat("darkness") * 100);
+            filler.addValue(stack.getTag().getFloat("darkness") * 100); //TODO: not % and value doesn't update when not held
         }
     }
 
