@@ -28,6 +28,8 @@ public interface IAbility {
      */
 
     //TODO: hasTag() might not be needed. Test
+
+    //TODO: check if value rounding is ideal
     default void tick(LivingEntity entity, World world, ItemStack stack) {
 
     }
