@@ -4,10 +4,7 @@ import net.jitl.common.entity.projectile.base.JEffectCloudEntity;
 import net.jitl.init.JSounds;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.entity.CreatureEntity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.LookAtGoal;
@@ -74,6 +71,11 @@ public class HongoEntity extends MonsterEntity {
         return MobEntity.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 20.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.25D);
+    }
+
+    @Override
+    protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
+        return sizeIn.height * 0.55F;
     }
 
     protected SoundEvent getAmbientSound() {

@@ -5,8 +5,10 @@ import net.jitl.client.eventhandler.music.JMusicTicker;
 import net.jitl.common.helper.JMusic;
 import net.jitl.init.JAnimations;
 import net.jitl.init.JSounds;
+import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.Pose;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
@@ -80,6 +82,11 @@ public class TowerGuardianEntity extends MonsterEntity implements AnimatedObject
 		return createMonsterAttributes()
 				.add(Attributes.MAX_HEALTH, 20.0D)
 				.add(Attributes.MOVEMENT_SPEED, 0.15D);
+	}
+
+	@Override
+	protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
+		return sizeIn.height * 0.9F;
 	}
 
 	private class SmashingGoal extends MeleeAttackGoal {

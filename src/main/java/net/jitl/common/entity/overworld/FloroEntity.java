@@ -216,7 +216,7 @@ public class FloroEntity extends MonsterEntity implements IRangedAttackMob, Anim
 
     @Override
     protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
-        return this.getBbHeight() * 0.78F;
+        return sizeIn.height * 0.78F;
     }
 
     private class FloroRevealingGoal extends Goal {

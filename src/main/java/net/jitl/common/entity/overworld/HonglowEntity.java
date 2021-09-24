@@ -117,6 +117,11 @@ public class HonglowEntity extends MonsterEntity {
 				.add(Attributes.MOVEMENT_SPEED, 0.25D);
 	}
 
+	@Override
+	protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
+		return sizeIn.height * 0.55F;
+	}
+
 	protected SoundEvent getAmbientSound() {
 		return JSounds.HONGO_AMBIENT.get();
 	}

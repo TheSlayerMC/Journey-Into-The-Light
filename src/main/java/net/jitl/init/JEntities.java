@@ -81,7 +81,7 @@ public class JEntities {
             Builder.of(TowerGuardianEntity::new, EntityClassification.MONSTER)
                     .setTrackingRange(80)
                     .setShouldReceiveVelocityUpdates(true)
-                    .sized(2F, 3.5F))//TODO add spawn settings
+                    .sized(2F, 4.2F))//TODO add spawn settings
             .attributes(() -> TowerGuardianEntity.createAttributes().build())
             .spawnEgg(OVERWORLD_COLOR, BOSS_COLOR, JTabs.SPAWNERS)
             .retrieve();
@@ -92,7 +92,7 @@ public class JEntities {
                     .setShouldReceiveVelocityUpdates(true)
                     .sized(2F, 0.8F))//TODO add spawn settings
             .attributes(() -> GlumpEntity.createAttributes().build())
-            .spawnEgg(OVERWORLD_COLOR, BOSS_COLOR, JTabs.SPAWNERS)
+            .spawnEgg(OVERWORLD_COLOR, PASSIVE_COLOR, JTabs.SPAWNERS)
             .retrieve();
 
     public static final EntityType<EssenciaBoltEntity> ESSENCIA_BOLT_TYPE = REGISTER.register("essencia_bolt",

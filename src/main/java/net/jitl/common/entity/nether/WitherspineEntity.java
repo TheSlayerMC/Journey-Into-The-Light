@@ -1,10 +1,7 @@
 package net.jitl.common.entity.nether;
 
 import net.jitl.init.JAnimations;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.IRangedAttackMob;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.monster.MonsterEntity;
@@ -41,6 +38,11 @@ public class WitherspineEntity extends MonsterEntity implements IRangedAttackMob
     @Override
     public void performRangedAttack(@NotNull LivingEntity target, float distanceFactor) {
 
+    }
+
+    @Override
+    protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
+        return sizeIn.height * 0.9F; //TODO: change once texture gets added
     }
 
     public static AttributeModifierMap.MutableAttribute createAttributes() {
