@@ -35,7 +35,7 @@ public class LuniumAbility implements IAbility.INBTUpdateAbility {
         filler.addDrawback();
         if (stack.getDamageValue() > 0) {
             filler.addBreak();
-            filler.addValue((int) stack.getTag().getFloat("cooldown") / 20); //TODO: Not counting seconds!
+            filler.addValue((int) (100 - stack.getTag().getFloat("cooldown")));
         }
     }
 }
