@@ -48,6 +48,6 @@ public class BloodcrustToolAbility implements IAbility {
         filler.addOverview();
         filler.addDrawback();
         filler.addBreak();
-        filler.addValue((200 * (double) stack.getTag().getInt("Fire boost") / 16));
+        filler.addValue((200 * (float) stack.getTag().getInt("Fire boost") / 16));
     }
 }

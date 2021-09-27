@@ -12,7 +12,9 @@ import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 
@@ -20,37 +22,42 @@ import java.util.List;
 import java.util.UUID;
 
 public interface ShadiumAbility {
-    default double scaleWithDarkness(Entity entity, double original) {
+    default float scaleWithDarkness(Entity entity, float original) {
         return original * (1 - entity.getBrightness());
     }
 
     //TODO: tooltip isn't working properly; client player may not have access to sky light. Store darkness in nbt
-    class ShadiumSwordAbility implements IAbility, ShadiumAbility {
+    class ShadiumSwordAbility implements IAbility.INBTUpdateAbility, ShadiumAbility {
         private static final UUID ID = UUID.fromString("6f56284c-ac30-4490-a06a-b11517d87e91");
 
         @Override
         public void tick(LivingEntity entity, World world, ItemStack stack) {
             if (!world.isClientSide() && entity.getMainHandItem() == stack) {
+                float bonus = scaleWithDarkness(entity, 4F);
                 ModifiableAttributeInstance attribute = entity.getAttribute(Attributes.ATTACK_DAMAGE);
                 attribute.removeModifier(ID);
                 attribute.addTransientModifier(new AttributeModifier(ID,
                         "Shadium sword",
-                        scaleWithDarkness(entity, 4),
+                        bonus,
                         AttributeModifier.Operation.ADDITION));
                 //System.out.println(attribute.getValue());
+                stack.getTag().putFloat("darkness", bonus);
             }
         }
 
         @Override
         public void equip(LivingEntity entity, EquipmentSlotType slot, ItemStack stack) {
+            if (!stack.hasTag()) stack.setTag(new CompoundNBT());
             if (slot == EquipmentSlotType.MAINHAND) {
+                float bonus = scaleWithDarkness(entity, 4F);
                 ModifiableAttributeInstance attribute = entity.getAttribute(Attributes.ATTACK_DAMAGE);
                 if (attribute.getModifier(ID) == null) {
                     attribute.addTransientModifier(new AttributeModifier(ID,
                             "Shadium sword",
-                            scaleWithDarkness(entity, 4),
+                            bonus,
                             AttributeModifier.Operation.ADDITION));
                 }
+                stack.getTag().putFloat("darkness", bonus);
                 System.out.println("Equip " + attribute.getValue());
             }
         }
@@ -68,9 +75,11 @@ public interface ShadiumAbility {
             TooltipFiller filler = new TooltipFiller(tooltip, "shadium_sword");
             filler.addOverview();
             filler.addDetail();
-            filler.addBreak();
             PlayerEntity player = Minecraft.getInstance().player;
-            if (player != null) filler.addValue(Math.floor(scaleWithDarkness(player, 400)) / 100);
+            if (player != null && player.getMainHandItem().equals(stack)) {
+                filler.addBreak();
+                filler.addValue(Math.floor(stack.getTag().getFloat("darkness") * 100) / 100);
+            }
         }
     }
 
@@ -78,7 +87,7 @@ public interface ShadiumAbility {
         @Override
         public void tick(LivingEntity entity, World world, ItemStack stack) {
             if (!world.isClientSide() && entity.getMainHandItem() == stack) {
-                stack.getTag().putFloat("darkness", (float) scaleWithDarkness(entity, 0.5));
+                stack.getTag().putFloat("darkness", scaleWithDarkness(entity, 0.5F));
             }
         }
 
@@ -86,7 +95,7 @@ public interface ShadiumAbility {
         public float blockBreakSpeed(ItemStack stack, BlockState state, float original) {
             System.out.println(original);
             System.out.println(stack.getTag().getFloat("darkness"));
-            if (isCorrectTool(stack, state)) original *= (1 + stack.getTag().getFloat("darkness"));
+            if (isCorrectTool(stack, state)) original *= (1F + stack.getTag().getFloat("darkness"));
             System.out.println(original);
             return original;
         }
@@ -96,12 +105,15 @@ public interface ShadiumAbility {
             TooltipFiller filler = new TooltipFiller(tooltip, "shadium_tool");
             filler.addOverview();
             filler.addDetail();
-            filler.addBreak();
-            filler.addValue(stack.getTag().getFloat("darkness") * 100); //TODO: not % and value doesn't update when not held
+            PlayerEntity player = Minecraft.getInstance().player;
+            if (player != null && player.getMainHandItem().equals(stack)) {
+                filler.addBreak();
+                filler.addValue((int) (stack.getTag().getFloat("darkness") * 100));
+            }
         }
     }
 
-    class ShadiumArmorAbility implements IAbility, ShadiumAbility {
+    class ShadiumArmorAbility implements IAbility.INBTUpdateAbility, ShadiumAbility {
         private static final Pair<String, UUID>[] IDS = new Pair[] {
                 new Pair("Shadium Boots", UUID.fromString("1c4e5a9a-10fe-4be1-b088-1652400848e4")),
                 new Pair("Shadium Legs", UUID.fromString("c122608d-543f-4f66-b6c1-1ccc95ab4258")),
@@ -111,25 +123,35 @@ public interface ShadiumAbility {
 
         @Override
         public void tick(LivingEntity entity, World world, ItemStack stack) {
+            /*CompoundNBT tag = stack.getTag();
+            float value = tag.getFloat("darkness");
+            value = scaleWithDarkness(entity, 3.75F);
+            tag.putFloat("darkness", value);
+            System.out.println(tag.getFloat("darkness"));*/
+            float bonus = scaleWithDarkness(entity, 3.75F);
             ModifiableAttributeInstance defense = entity.getAttribute(Attributes.ARMOR_TOUGHNESS);
             Pair<String, UUID> pair = getPair(stack);
             defense.removeModifier(pair.getValue());
             defense.addTransientModifier(new AttributeModifier(pair.getValue(),
                     pair.getKey(),
-                    scaleWithDarkness(entity, 3.75),
+                    bonus,
                     AttributeModifier.Operation.ADDITION));
-            System.out.println(defense.getValue());
+            stack.getTag().putFloat("darkness", bonus);
+                //System.out.println(stack.getTag().getDouble("darkness"));
+                //System.out.println(defense.getValue());
         }
 
         @Override
         public void equip(LivingEntity entity, EquipmentSlotType slot, ItemStack stack) {
+            if (!stack.hasTag()) stack.setTag(new CompoundNBT());
             if (slot.getType() == EquipmentSlotType.Group.ARMOR) {
+                float bonus = scaleWithDarkness(entity, 3.75F);
                 ModifiableAttributeInstance defense = entity.getAttribute(Attributes.ARMOR_TOUGHNESS);
                 Pair<String, UUID> pair = getPair(stack);
                 if (defense.getModifier(pair.getValue()) == null) {
                     defense.addTransientModifier(new AttributeModifier(pair.getValue(),
                             pair.getKey(),
-                            scaleWithDarkness(entity, 3.75),
+                            bonus,
                             AttributeModifier.Operation.ADDITION));
                 }
                 System.out.println("Equip " + defense.getValue());
@@ -148,9 +170,11 @@ public interface ShadiumAbility {
             TooltipFiller filler = new TooltipFiller(tooltip, "shadium_armor");
             filler.addOverview();
             filler.addDetail();
-            filler.addBreak();
             PlayerEntity player = Minecraft.getInstance().player;
-            if (player != null) filler.addValue(scaleWithDarkness(player, 3.75));
+            if (player != null && player.getItemBySlot(((ArmorItem) stack.getItem()).getSlot()).equals(stack)) {
+                filler.addBreak();
+                filler.addValue(Math.floor(stack.getTag().getFloat("darkness") * 100) / 100); //is it broken?
+            }
         }
 
         private Pair<String, UUID> getPair(ItemStack stack) {
