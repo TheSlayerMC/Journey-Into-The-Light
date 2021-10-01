@@ -8,5 +8,6 @@ import net.minecraft.world.World;
 public class Dimensions {
 
     public static final RegistryKey<World> EUCA = RegistryKey.create(Registry.DIMENSION_REGISTRY, JITL.rl("euca"));
+    public static final RegistryKey<World> FROZEN_LANDS = RegistryKey.create(Registry.DIMENSION_REGISTRY, JITL.rl("frozen"));
 
 }

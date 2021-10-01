@@ -9,4 +9,7 @@ import net.minecraft.world.World;
 public class JDimensions {
 	public static final RegistryKey<DimensionType> EUCA = RegistryKey.create(Registry.DIMENSION_TYPE_REGISTRY, JITL.rl("euca"));
 	public static final RegistryKey<World> EUCA_WORLD = RegistryKey.create(Registry.DIMENSION_REGISTRY, JITL.rl("euca"));
+
+	public static final RegistryKey<DimensionType> FROZEN = RegistryKey.create(Registry.DIMENSION_TYPE_REGISTRY, JITL.rl("frozen"));
+	public static final RegistryKey<World> FROZEN_WORLD = RegistryKey.create(Registry.DIMENSION_REGISTRY, JITL.rl("frozen"));
 }

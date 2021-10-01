@@ -1,0 +1,33 @@
+{
+  "surface_builder": "jitl:frozen",
+  "depth": 0.125,
+  "scale": 0.05,
+  "temperature": -2,
+  "downfall": 0.0,
+  "precipitation": "rain",
+  "category": "plains",
+  "effects": {
+    "sky_color": 14876538,
+    "fog_color": 15597506,
+    "water_color": 14995007,
+    "water_fog_color": 3355141,
+    "grass_color": 13159169,
+    "foliage_color": 5660928,
+    "ambient_sound": "jitl:music.frozen.ambience",
+    "music": {
+      "sound": "jitl:music.biome.frozen",
+      "min_delay": 10,
+      "max_delay": 1000,
+      "replace_current_music": true
+    }
+  },
+  "starts": [],
+  "spawners": {},
+  "spawn_costs": {},
+  "carvers": {},
+  "features": [
+    [
+      
+    ]
+  ]
+}
