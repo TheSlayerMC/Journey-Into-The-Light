@@ -6,15 +6,19 @@ import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.stats.Stats;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 
@@ -113,7 +117,7 @@ public interface ShadiumAbility {
         }
     }
 
-    class ShadiumArmorAbility implements IAbility.INBTUpdateAbility, ShadiumAbility {
+    class ShadiumArmorAbility implements IAbility, ShadiumAbility {
         private static final Pair<String, UUID>[] IDS = new Pair[] {
                 new Pair("Shadium Boots", UUID.fromString("1c4e5a9a-10fe-4be1-b088-1652400848e4")),
                 new Pair("Shadium Legs", UUID.fromString("c122608d-543f-4f66-b6c1-1ccc95ab4258")),
@@ -123,11 +127,6 @@ public interface ShadiumAbility {
 
         @Override
         public void tick(LivingEntity entity, World world, ItemStack stack) {
-            /*CompoundNBT tag = stack.getTag();
-            float value = tag.getFloat("darkness");
-            value = scaleWithDarkness(entity, 3.75F);
-            tag.putFloat("darkness", value);
-            System.out.println(tag.getFloat("darkness"));*/
             float bonus = scaleWithDarkness(entity, 3.75F);
             ModifiableAttributeInstance defense = entity.getAttribute(Attributes.ARMOR_TOUGHNESS);
             Pair<String, UUID> pair = getPair(stack);
@@ -136,14 +135,10 @@ public interface ShadiumAbility {
                     pair.getKey(),
                     bonus,
                     AttributeModifier.Operation.ADDITION));
-            stack.getTag().putFloat("darkness", bonus);
-                //System.out.println(stack.getTag().getDouble("darkness"));
-                //System.out.println(defense.getValue());
         }
 
         @Override
         public void equip(LivingEntity entity, EquipmentSlotType slot, ItemStack stack) {
-            if (!stack.hasTag()) stack.setTag(new CompoundNBT());
             if (slot.getType() == EquipmentSlotType.Group.ARMOR) {
                 float bonus = scaleWithDarkness(entity, 3.75F);
                 ModifiableAttributeInstance defense = entity.getAttribute(Attributes.ARMOR_TOUGHNESS);
@@ -171,9 +166,16 @@ public interface ShadiumAbility {
             filler.addOverview();
             filler.addDetail();
             PlayerEntity player = Minecraft.getInstance().player;
-            if (player != null && player.getItemBySlot(((ArmorItem) stack.getItem()).getSlot()).equals(stack)) {
-                filler.addBreak();
-                filler.addValue(Math.floor(stack.getTag().getFloat("darkness") * 100) / 100); //is it broken?
+            EquipmentSlotType slot = ((ArmorItem) stack.getItem()).getSlot();
+            if (player != null && player.getItemBySlot(slot).equals(stack)) {
+                ModifiableAttributeInstance attribute = player.getAttribute(Attributes.ARMOR_TOUGHNESS);
+                if (attribute != null) {
+                    filler.addBreak();
+                    filler.addValue(Math.floor(
+                            attribute.getModifier(IDS[slot.getIndex()]
+                            .getValue())
+                            .getAmount() * 100) / 100);
+                }
             }
         }
 
