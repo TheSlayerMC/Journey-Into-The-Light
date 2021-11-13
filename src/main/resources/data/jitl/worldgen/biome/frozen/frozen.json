@@ -1,7 +1,7 @@
 {
   "surface_builder": "jitl:frozen",
-  "depth": 0.125,
-  "scale": 0.55,
+  "depth": 0.3,
+  "scale": 0.45,
   "temperature": -2,
   "downfall": 0.0,
   "precipitation": "rain",
