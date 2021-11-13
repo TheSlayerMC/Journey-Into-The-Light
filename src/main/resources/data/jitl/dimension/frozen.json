@@ -1,17 +1,16 @@
 {
-   "type": {
-    "name": "jitl:euca",
-    "ultrawarm": false,
-    "natural": true,
+  "type": {
+    "name": "jitl:frozen",
+    "ultrawarm": true,
+    "natural": false,
     "piglin_safe": false,
     "respawn_anchor_works": false,
-    "bed_works": true,
+    "bed_works": false,
     "has_raids": false,
     "has_skylight": true,
-    "has_ceiling": false,
+    "has_ceiling": true,
     "coordinate_scale": 1,
-    "ambient_light": 0,
-    "fixed_time": 4000,
+    "ambient_light": 0.8,
     "logical_height": 256,
     "infiniburn": "minecraft:infiniburn_overworld",
     "min_y": 0,
@@ -19,65 +18,28 @@
   },
   "generator": {
     "type": "minecraft:noise",
-    "seed": -22426074,
-    "biome_source": {
-      "type": "jitl:euca_provider",
-      "seed": -22426074,
-      "altitude_noise": {
-        "firstOctave": -7,
-        "amplitudes": [
-          1,
-          1
-        ]
-      },
-      "temperature_noise": {
-        "firstOctave": -7,
-        "amplitudes": [
-          1,
-          1
-        ]
-      },
-      "humidity_noise": {
-        "firstOctave": -7,
-        "amplitudes": [
-          1,
-          1
-        ]
-      },
-      "weirdness_noise": {
-        "firstOctave": -7,
-        "amplitudes": [
-          1,
-          1
-        ]
-      },
-	  "biomes": [
-        {
-          "biome": "jitl:frozen/frozen",
-          "parameters": {
-            "altitude": 1,
-            "temperature": 0,
-            "humidity": 0,
-            "weirdness": 0,
-            "offset": 0
-          }
-        },
+    "seed": 526731623,
     "settings": {
       "name": "jitl:frozen",
       "bedrock_roof_position": -10,
       "bedrock_floor_position": 0,
       "sea_level": 63,
+      "min_surface_level": 0,
       "disable_mob_generation": false,
+      "noise_caves_enabled": true,
+      "noodle_caves_enabled": false,
+      "aquifers_enabled": true,
+      "deepslate_enabled": true,
+      "ore_veins_enabled": false,
       "default_block": {
-        "Name": "minecraft:stone"
+        "Name": "jitl:frozen_stone"
       },
       "default_fluid": {
         "Name": "minecraft:ice",
-        "Properties": {
-          "level": "0"
-        }
+        "Properties": {}
       },
       "noise": {
+        "min_y": 0,
         "height": 256,
         "density_factor": 1,
         "density_offset": -0.46875,
@@ -107,9 +69,8 @@
       }
     },
     "biome_source": {
-      "type": "minecraft:vanilla_layered",
-      "seed": 2051895843,
-      "legacy_biome_init_layer": true
+      "type": "minecraft:fixed",
+      "biome": "jitl:frozen/frozen"
     }
   }
 }
