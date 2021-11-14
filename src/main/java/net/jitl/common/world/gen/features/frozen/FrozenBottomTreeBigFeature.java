@@ -20,6 +20,7 @@ public class FrozenBottomTreeBigFeature extends Feature<FrozenBottomTreeBigConfi
         super(codec);
     }
 
+
     @Override
     public boolean place(ISeedReader reader, ChunkGenerator generator, Random random, BlockPos pos, FrozenBottomTreeBigConfig config) {
         int xPos = pos.getX() + random.nextInt(6) - random.nextInt(4);
