@@ -153,6 +153,14 @@ public class JBlockProperties {
 			.isViewBlocking(JBlockProperties::never)
 			.strength(1.5F, 6.0F));
 
+	public static final BlockPropsFactory ICE_PROPS = new BlockPropsFactory(() -> Properties.of
+			(Material.ICE)
+			.sound(SoundType.GLASS)
+			.requiresCorrectToolForDrops()
+			.noOcclusion()
+			.isViewBlocking(JBlockProperties::never)
+			.strength(0.5F, 0.2F));
+
 	public static final BlockPropsFactory GLOWSHROOM_PROPS = new BlockPropsFactory(() -> Properties.of
 			(Material.REPLACEABLE_PLANT)
 			.sound(SoundType.SWEET_BERRY_BUSH)

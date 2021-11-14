@@ -133,6 +133,8 @@ public class JBlocks {
 	public static final Block FROZEN_DIRT = promise();
 	public static final Block FROZEN_STONE = promise();
 	public static final Block FROSTY_ICE = promise();
+	public static final Block FROZEN_LEAVES = promise();
+	public static final Block FROZEN_LOG = promise();
 
 	public static final Block GOLDITE_GRASS_BLOCK = promise();
 	public static final Block EUCA_GOLD_GRASS_BLOCK = promise();

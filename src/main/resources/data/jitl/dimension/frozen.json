@@ -35,7 +35,7 @@
         "Name": "jitl:frozen_stone"
       },
       "default_fluid": {
-        "Name": "minecraft:ice",
+        "Name": "jitl:frosty_ice",
         "Properties": {}
       },
       "noise": {
