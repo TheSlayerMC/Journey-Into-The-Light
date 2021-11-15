@@ -45,6 +45,8 @@ public class JConfiguredFeatures {
     public static final Predicate<BiomeLoadingEvent> EUCA_GOLD_PLAINS = event -> Objects.equals(event.getName(), JITL.rl("euca/euca_plains"));
     public static final Predicate<BiomeLoadingEvent> EUCA_SILVER_PLAINS = event -> Objects.equals(event.getName(), JITL.rl("euca/euca_silver_plains"));
 
+    public static final Predicate<BiomeLoadingEvent> FROZEN_LANDS = event -> Objects.equals(event.getName(), JITL.rl("frozen/frozen"));
+
     public static final Predicate<BiomeLoadingEvent> COMMON_BIOMES = IN_NETHER.and(IN_END).negate();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> BRADBERRY_BUSH =
@@ -489,6 +491,18 @@ public class JConfiguredFeatures {
                     Decoration.UNDERGROUND_ORES,
                     defaultDiskFeature(() -> JBlocks.BLOCK_OF_MUD.defaultBlockState(), Blocks.DIRT.defaultBlockState(), 2, 4, 1))
                     .setBiomePredicate(COMMON_BIOMES)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> FROZEN_ICE_SPIKE =
+            REGISTER.register("frozen_ice_spike",
+                    Decoration.SURFACE_STRUCTURES,
+                    () -> JFeatures.FROZEN_ICE_SPIKE.get()
+                            .configured(IFeatureConfig.NONE)
+                            .range(5)
+                            .squared()
+                            .chance(70)
+                            .countRandom(32))
+                    .setBiomePredicate(FROZEN_LANDS)
                     .asPromise();
 
     /**
