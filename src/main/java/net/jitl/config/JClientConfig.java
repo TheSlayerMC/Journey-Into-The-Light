@@ -42,7 +42,7 @@ public class JClientConfig extends Config {
 		public void setup(ImprovedConfigBuilder builder) {
 			ENABLE_JITL_MENU_SCREEN = builder
 					.comment("If set to 'true', the JITL main menu theme will be enabled by default. "
-							+ "This can also be toggled in the main menu itself by pressing the top-left button.")
+							+ "This can also be toggled in the main menu itself by pressing the top-left button if enabled.")
 					.define("enable_jitl_menu_screen", true);
 
 			ENABLE_MENU_TOGGLE_BUTTON = builder
