@@ -45,7 +45,7 @@ public class FrozenFortressStructure extends Structure<NoFeatureConfig> {
             BlockPos pos = new BlockPos(chunkX, 0, chunkZ);
             if (chunkGenerator_.getBaseHeight(chunkX, chunkZ, Heightmap.Type.WORLD_SURFACE_WG) > 0) {
                 JigsawManager.addPieces(dynamicRegistries_,
-                        new VillageConfig(() -> dynamicRegistries_.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY).get(JITL.rl("pool")), 300),
+                        new VillageConfig(() -> dynamicRegistries_.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY).get(JITL.rl("overworld/rockite/hallways")), 300),
                         AbstractVillagePiece::new,
                         chunkGenerator_,
                         templateManager_,
@@ -57,7 +57,7 @@ public class FrozenFortressStructure extends Structure<NoFeatureConfig> {
             }
             pieces.forEach(piece -> piece.move(0, 5, 0));
             calculateBoundingBox();
-            //moveInsideHeights(random, 0, 256);
+            moveInsideHeights(random, 10, 36);
         }
     }
 }

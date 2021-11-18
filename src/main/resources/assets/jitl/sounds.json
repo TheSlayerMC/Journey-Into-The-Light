@@ -121,6 +121,17 @@
     ],
     "subtitle": "subtitles.block.generic.break"
   },
+  "block.ice_crystal.break": {
+    "sounds": [
+      "jitl:blocks/break/ice_crystal_1",
+      "jitl:blocks/break/ice_crystal_2",
+      "jitl:blocks/break/ice_crystal_3",
+      "jitl:blocks/break/ice_crystal_4",
+      "jitl:blocks/break/ice_crystal_5",
+      "jitl:blocks/break/ice_crystal_6"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
   "block.rune.activate": {
     "sounds": [
       "jitl:blocks/activate/rune_activate"

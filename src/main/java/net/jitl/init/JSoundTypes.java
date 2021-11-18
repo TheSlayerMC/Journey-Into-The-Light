@@ -68,4 +68,13 @@ public class JSoundTypes {
 			JSounds.FUMICE_BLOCK_BREAK::get,
 			JSounds.FUMICE_BLOCK_DIG::get,
 			JSounds.FUMICE_BLOCK_BREAK::get);
+
+	public static final SoundType ICE_CRYSTAL = new TimeSoundType(
+			1.0F,
+			1.0F,
+			JSounds.ICE_CRYSTAL_BREAK::get,
+			() -> SoundEvents.GLASS_HIT,
+			() -> SoundEvents.GLASS_PLACE,
+			() -> SoundEvents.GLASS_HIT,
+			() -> SoundEvents.GLASS_PLACE);
 }

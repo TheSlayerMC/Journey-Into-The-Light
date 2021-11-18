@@ -278,6 +278,15 @@ public class BlockRegistrator {
 
         registerDefaultBlock("fumice", "Fumice", () -> new FumiceBlock(JBlockProperties.FUMICE_PROPS.create()));
         registerDefaultBlock("filled_fumice", "Filled Fumice", () -> new MagmaBlock(JBlockProperties.FUMICE_PROPS.create().lightLevel((intf) -> 3)));
+
+        registerColumnRenderedBlock("stone_pillar", "Stone Pillar", () -> new RotatedPillarBlock(JBlockProperties.BRICK_PROPS.create()),
+                "stone_pillar_top",
+                "stone_pillar_side");
+
+        registerDefaultBlock("small_stone_bricks", "Small Stone Bricks", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
+
+        registerCustomRenderLayerBlock("ice_crystal_block", "Ice Crystal Block", () -> new Block(JBlockProperties.ICE_CRYSTAL_PROPS.create()), JTabs.DECORATION, () -> RenderTypeWrappers.TRANSLUCENT);
+        registerCustomRenderLayerBlock("cracked_ice_crystal_block", "Cracked Ice Crystal Block", () -> new Block(JBlockProperties.ICE_CRYSTAL_PROPS.create()), JTabs.DECORATION, () -> RenderTypeWrappers.TRANSLUCENT);
     }
 
     private static <B extends Block> BlockRegisterChain<B> register(String name, String enName, Supplier<B> block) {
