@@ -4,7 +4,7 @@ import net.jitl.JITL;
 import net.jitl.common.world.gen.structures.euca.AlloyMenderStructure;
 import net.jitl.common.world.gen.structures.euca.EucaDungeonStructure;
 import net.jitl.common.world.gen.structures.overworld.BlacksmithStructure;
-import net.jitl.common.world.gen.structures.overworld.FrozenFortressStructure;
+import net.jitl.common.world.gen.structures.overworld.IllagerBunkerStructure;
 import net.jitl.common.world.gen.structures.overworld.MageHouseStructure;
 import net.jitl.common.world.gen.structures.overworld.guardian.GuardianTowerStructure;
 import net.minecraft.world.World;
@@ -58,8 +58,8 @@ public class JStructures {
                     .addToTag(Tag.DISABLE_BREAKING_BY_LAKES)
                     .asHolder();
 
-    public static final StructureHolder<NoFeatureConfig, FrozenFortressStructure> JIGSAW_TEST =
-            REGISTER.register("jigsaw_test", FrozenFortressStructure::new, TimeStructureSeparationSettings.create(10, 5), NoFeatureConfig.CODEC, NoFeatureConfig.NONE)
+    public static final StructureHolder<NoFeatureConfig, IllagerBunkerStructure> JIGSAW_TEST =
+            REGISTER.register("jigsaw_test", IllagerBunkerStructure::new, TimeStructureSeparationSettings.create(10, 5), NoFeatureConfig.CODEC, NoFeatureConfig.NONE)
                     .setDimensionPredicate(serverWorld -> serverWorld.dimension() == World.OVERWORLD)
                     .addToTag(Tag.DISABLE_BREAKING_BY_LAKES)
                     .asHolder();
