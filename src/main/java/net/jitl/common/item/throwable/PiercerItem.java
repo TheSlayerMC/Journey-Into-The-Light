@@ -39,11 +39,11 @@ public class PiercerItem extends Item {
             PiercerEntity entity = projectileFactory.apply(worldIn, playerIn, stack);
             int j = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SHARPNESS, stack);
             if (j > 0) {
-                entity.setBaseDamage(entity.damage + (double) j * 0.5D + 0.5D);
+                entity.setBaseDamage(entity.getBaseDamage() + (double) j * 0.5D + 0.5D);
             }
 
-            //JITL.LOGGER.info(entity.getBaseDamage());
-            JITL.LOGGER.info(stack.getDamageValue());
+            JITL.LOGGER.info(entity.getBaseDamage());
+            //JITL.LOGGER.info(stack.getDamageValue());
 
             entity.setPos(playerIn.getX(), playerIn.getEyeY(), playerIn.getZ());
             entity.shootFromRotation(playerIn, playerIn.xRot, playerIn.yRot, 0.0F, 1.5F, 1.0F);

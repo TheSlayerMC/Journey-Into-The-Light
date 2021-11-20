@@ -3,10 +3,9 @@ package net.jitl.common.eventhandler;
 import net.jitl.JITL;
 import net.jitl.common.capability.JCapabilityProvider;
 import net.jitl.common.capability.armorability.IArmorSetCapability;
-import net.jitl.common.capability.pressedkeys.IPressedKeysCapability;
 import net.jitl.common.helper.TooltipFiller;
-import net.jitl.common.item.gear.JGear;
 import net.jitl.common.item.gear.JArmorItem;
+import net.jitl.common.item.gear.JGear;
 import net.jitl.common.item.gear.abilities.FullArmorAbility;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -15,8 +14,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -26,8 +23,6 @@ import net.minecraftforge.fml.common.Mod;
 import ru.timeconqueror.timecore.api.common.event.LivingUpdateEndEvent;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Optional;
 
 @Mod.EventBusSubscriber(modid = JITL.MODID)
 public class GearAbilityHandler {
@@ -62,7 +57,7 @@ public class GearAbilityHandler {
 
     @SubscribeEvent()
     public static void handleIncomingAttack(LivingHurtEvent event) {
-        System.out.println(event.getAmount());
+        //System.out.println(event.getAmount());
         Entity entity = event.getSource().getDirectEntity();
         if (entity != null) {
             if (entity instanceof LivingEntity) {
@@ -83,7 +78,7 @@ public class GearAbilityHandler {
                 }
             }
         }
-        System.out.println(event.getAmount());
+        //System.out.println(event.getAmount());
     }
 
     @SubscribeEvent()

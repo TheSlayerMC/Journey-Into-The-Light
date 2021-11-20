@@ -27,14 +27,13 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
     private static final DataParameter<ItemStack> STACK = EntityDataManager.defineId(PiercerEntity.class, DataSerializers.ITEM_STACK);
     private int currentBounces;
     private int maxBounces;
-    public float damage;
 
     public PiercerEntity(LivingEntity shooter, World worldIn, ItemStack stack, int maxBounces, float damage) {
         super(JEntities.PIERCER_TYPE, shooter, worldIn);
         setStack(stack.copy());
         this.setSoundEvent(JSounds.PIERCER.get());
         this.maxBounces = maxBounces;
-        this.damage = damage;
+        setBaseDamage(damage);
     }
 
     public PiercerEntity(EntityType<PiercerEntity> eucaPiercerEntityEntityType, World world) {
@@ -60,7 +59,7 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
                     ServerPlayerEntity player = (ServerPlayerEntity) getOwner();
                     getStack().hurt(1, player.getRandom(), player);
                 }
-                if (++currentBounces <= maxBounces && entity.hurt(DamageSource.thrown(this, this.getOwner()), damage)) {
+                if (++currentBounces <= maxBounces && entity.hurt(DamageSource.thrown(this, this.getOwner()), (int) getBaseDamage())) {
                     List<LivingEntity> entitiesNear = this.level.getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(4D));
                     for (LivingEntity e : entitiesNear) {
                         if (e != this.getOwner() && this.canSee(e) && e.invulnerableTime == 0 && !e.isDeadOrDying() && e != entity && e.getClassification(false) == EntityClassification.MONSTER) {
@@ -114,7 +113,7 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
         nbt.put("stack", getStack().save(new CompoundNBT()));
         nbt.putInt("bounces", currentBounces);
         nbt.putInt("maxBounces", maxBounces);
-        nbt.putFloat("damage", damage);
+        nbt.putFloat("damage", (float) getBaseDamage()); //probably not needed anymore
     }
 
     @Override
