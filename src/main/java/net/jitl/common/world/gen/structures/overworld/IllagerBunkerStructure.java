@@ -25,8 +25,8 @@ import java.util.List;
 
 public class IllagerBunkerStructure extends Structure<NoFeatureConfig> {
     private static final List<MobSpawnInfo.Spawners> SPAWNERS_LIST = ImmutableList.of(
-            new MobSpawnInfo.Spawners(EntityType.PILLAGER, 30, 1, 4),
-            new MobSpawnInfo.Spawners(EntityType.VINDICATOR, 50, 1, 4),
+            new MobSpawnInfo.Spawners(EntityType.PILLAGER, 20, 1, 20),
+            new MobSpawnInfo.Spawners(EntityType.VINDICATOR, 50, 1, 20),
             new MobSpawnInfo.Spawners(EntityType.ILLUSIONER, 2, 1, 1),
             new MobSpawnInfo.Spawners(EntityType.EVOKER, 5, 1, 1)
     );
