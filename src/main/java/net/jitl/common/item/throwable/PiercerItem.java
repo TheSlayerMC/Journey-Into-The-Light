@@ -72,9 +72,4 @@ public class PiercerItem extends Item {
     public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
         return enchantment == Enchantments.MENDING || enchantment == Enchantments.UNBREAKING || enchantment == Enchantments.SHARPNESS;
     }
-
-    @Override
-    public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-        super.appendHoverText(stack, worldIn, tooltip, flagIn);
-    }
 }

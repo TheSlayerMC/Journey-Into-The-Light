@@ -59,7 +59,7 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
                     ServerPlayerEntity player = (ServerPlayerEntity) getOwner();
                     getStack().hurt(1, player.getRandom(), player);
                 }
-                if (++currentBounces <= maxBounces && entity.hurt(DamageSource.thrown(this, this.getOwner()), (int) getBaseDamage())) {
+                if (++currentBounces <= maxBounces && entity.hurt(DamageSource.thrown(this, this.getOwner()), (float) getBaseDamage())) {
                     List<LivingEntity> entitiesNear = this.level.getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(4D));
                     for (LivingEntity e : entitiesNear) {
                         if (e != this.getOwner() && this.canSee(e) && e.invulnerableTime == 0 && !e.isDeadOrDying() && e != entity && e.getClassification(false) == EntityClassification.MONSTER) {
@@ -113,7 +113,6 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
         nbt.put("stack", getStack().save(new CompoundNBT()));
         nbt.putInt("bounces", currentBounces);
         nbt.putInt("maxBounces", maxBounces);
-        nbt.putFloat("damage", (float) getBaseDamage()); //probably not needed anymore
     }
 
     @Override
@@ -123,7 +122,6 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
         if (getStack().isEmpty()) remove();
         nbt.getInt("bounces");
         nbt.getInt("maxBounces");
-        nbt.getFloat("damage");
     }
 
     private void setStack(ItemStack stack) {
