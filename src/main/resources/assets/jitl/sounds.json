@@ -4,7 +4,8 @@
       "jitl:blocks/break/mud_1",
       "jitl:blocks/break/mud_2",
       "jitl:blocks/break/mud_3",
-      "jitl:blocks/break/mud_4"
+      "jitl:blocks/break/mud_4",
+      "jitl:blocks/break/mud_5"
     ],
     "subtitle": "subtitles.block.generic.break"
   },
