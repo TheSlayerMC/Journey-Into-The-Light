@@ -90,7 +90,7 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
                     ServerPlayerEntity player = (ServerPlayerEntity) getOwner();
                     getStack().hurt(1, player.getRandom(), player);
                 }
-                if (++currentBounces <= maxBounces && entity.hurt(DamageSource.thrown(this, this.getOwner()), (float) getBaseDamage())) {
+                if (entity.hurt(DamageSource.thrown(this, this.getOwner()), (float) getBaseDamage()) && ++currentBounces <= maxBounces) {
                     if (getFlameAddend() > 0) {
                         entity.setSecondsOnFire(getFlameAddend() * 4);
                     }
