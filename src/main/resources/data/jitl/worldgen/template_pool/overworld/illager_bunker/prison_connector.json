@@ -1,0 +1,15 @@
+{
+  "name": "jitl:prison_connector",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 25,
+      "element": {
+        "location": "jitl:overworld/illager_bunker/iron_golem_prison",
+        "processors": "minecraft:empty",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}
