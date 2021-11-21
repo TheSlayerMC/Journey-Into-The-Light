@@ -157,11 +157,11 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
         super.readAdditionalSaveData(nbt);
         setStack(ItemStack.of(nbt.getCompound("stack")));
         if (getStack().isEmpty()) remove();
-        nbt.getInt("bounces");
-        nbt.getInt("maxBounces");
-        nbt.getFloat("velocityMultiplier");
-        nbt.getDouble("rangeAddend");
-        nbt.getInt("flameAddend");
+        currentBounces = nbt.getInt("bounces");
+        maxBounces = nbt.getInt("maxBounces");
+        velocityMultiplier = nbt.getFloat("velocityMultiplier");
+        rangeAddend = nbt.getDouble("rangeAddend");
+        flameAddend = nbt.getInt("flameAddend");
     }
 
     private void setStack(ItemStack stack) {
