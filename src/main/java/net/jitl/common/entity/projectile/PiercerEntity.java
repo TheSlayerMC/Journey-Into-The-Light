@@ -76,7 +76,7 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
     public void tick() {
         super.tick();
         if (!isNoPhysics() && !isInGround() && !isNoGravity()) {
-            this.setDeltaMovement(this.getDeltaMovement().add(0, 0.02, 0));
+            this.setDeltaMovement(this.getDeltaMovement().add(0, 0.04, 0));
         }
     }
 

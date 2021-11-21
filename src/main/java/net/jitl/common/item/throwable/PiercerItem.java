@@ -49,7 +49,7 @@ public class PiercerItem extends Item {
 
             double k = EnchantmentHelper.getItemEnchantmentLevel(JEnchantments.AMBIT.get(), stack);
             if (k > 0) {
-                entity.setRangeAddend(k * 2);
+                entity.setRangeAddend(k * 4);
             }
 
             int f = EnchantmentHelper.getItemEnchantmentLevel(JEnchantments.SCORCHING.get(), stack);
