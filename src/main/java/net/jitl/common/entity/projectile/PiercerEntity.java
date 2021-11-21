@@ -28,6 +28,10 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
     private int currentBounces;
     private int maxBounces;
 
+    private float velocityMultiplier;
+    private double rangeAddend;
+    private int flameAddend;
+
     public PiercerEntity(LivingEntity shooter, World worldIn, ItemStack stack, int maxBounces, float damage) {
         super(JEntities.PIERCER_TYPE, shooter, worldIn);
         setStack(stack.copy());
@@ -39,6 +43,33 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
     public PiercerEntity(EntityType<PiercerEntity> eucaPiercerEntityEntityType, World world) {
         super(eucaPiercerEntityEntityType, world);
         this.setSoundEvent(JSounds.PIERCER.get());
+    }
+
+    public float setVelocityMultiplier(float velocityMultiplier) {
+        this.velocityMultiplier = velocityMultiplier;
+        return velocityMultiplier;
+    }
+
+    public float getVelocityMultiplier() {
+        return velocityMultiplier;
+    }
+
+    public double setRangeAddend(double rangeAddend) {
+        this.rangeAddend = rangeAddend;
+        return rangeAddend;
+    }
+
+    public double getRangeAddend() {
+        return rangeAddend;
+    }
+
+    public int setFlameAddend(int flameAddend) {
+        this.flameAddend = flameAddend;
+        return flameAddend;
+    }
+
+    public int getFlameAddend() {
+        return flameAddend;
     }
 
     @Override
@@ -60,7 +91,10 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
                     getStack().hurt(1, player.getRandom(), player);
                 }
                 if (++currentBounces <= maxBounces && entity.hurt(DamageSource.thrown(this, this.getOwner()), (float) getBaseDamage())) {
-                    List<LivingEntity> entitiesNear = this.level.getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(4D));
+                    if (getFlameAddend() > 0) {
+                        entity.setSecondsOnFire(getFlameAddend() * 4);
+                    }
+                    List<LivingEntity> entitiesNear = this.level.getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(4D + getRangeAddend()));
                     for (LivingEntity e : entitiesNear) {
                         if (e != this.getOwner() && this.canSee(e) && e.invulnerableTime == 0 && !e.isDeadOrDying() && e != entity && e.getClassification(false) == EntityClassification.MONSTER) {
                             if (bounceTo == null || this.distanceTo(e) < this.distanceTo(bounceTo)) {
@@ -72,7 +106,7 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
                 Entity target = bounceTo != null ? bounceTo : getOwner();
                 if (target != null) {
                     Vector3d movement = new Vector3d(target.getX() - this.getX(), target.getY(0.8) - this.getY(), target.getZ() - this.getZ());
-                    this.setDeltaMovement(movement.scale((1 / movement.length()) * this.getDeltaMovement().length()));
+                    this.setDeltaMovement(movement.scale(((0.7 + getVelocityMultiplier() / 6.5) / movement.length()) * this.getDeltaMovement().length()));
                 }
                 this.playSound(JSounds.PIERCER.get(), 1.0F, 1.2F / (this.random.nextFloat() * 0.2F + 0.9F));
             }
@@ -113,6 +147,9 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
         nbt.put("stack", getStack().save(new CompoundNBT()));
         nbt.putInt("bounces", currentBounces);
         nbt.putInt("maxBounces", maxBounces);
+        nbt.putFloat("velocityMultiplier", velocityMultiplier);
+        nbt.putDouble("rangeAddend", rangeAddend);
+        nbt.putInt("flameAddend", flameAddend);
     }
 
     @Override
@@ -122,6 +159,9 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
         if (getStack().isEmpty()) remove();
         nbt.getInt("bounces");
         nbt.getInt("maxBounces");
+        nbt.getFloat("velocityMultiplier");
+        nbt.getDouble("rangeAddend");
+        nbt.getInt("flameAddend");
     }
 
     private void setStack(ItemStack stack) {

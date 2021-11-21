@@ -1,7 +1,7 @@
 package net.jitl.common.item.throwable;
 
-import net.jitl.JITL;
 import net.jitl.common.entity.projectile.PiercerEntity;
+import net.jitl.init.JEnchantments;
 import net.jitl.util.TriFunction;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.Enchantment;
@@ -42,7 +42,20 @@ public class PiercerItem extends Item {
                 entity.setBaseDamage(entity.getBaseDamage() + (double) j * 0.5D + 0.5D);
             }
 
-            JITL.LOGGER.info(entity.getBaseDamage());
+            int i = EnchantmentHelper.getItemEnchantmentLevel(JEnchantments.LIGHTWEIGHT.get(), stack);
+            if (i > 0) {
+                entity.setVelocityMultiplier(i);
+            }
+
+            double k = EnchantmentHelper.getItemEnchantmentLevel(JEnchantments.AMBIT.get(), stack);
+            if (k > 0) {
+                entity.setRangeAddend(k * 2);
+            }
+
+            int f = EnchantmentHelper.getItemEnchantmentLevel(JEnchantments.SCORCHING.get(), stack);
+            if (f > 0) {
+                entity.setFlameAddend(f);
+            }
             //JITL.LOGGER.info(stack.getDamageValue());
 
             entity.setPos(playerIn.getX(), playerIn.getEyeY(), playerIn.getZ());
@@ -70,6 +83,19 @@ public class PiercerItem extends Item {
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
-        return enchantment == Enchantments.MENDING || enchantment == Enchantments.UNBREAKING || enchantment == Enchantments.SHARPNESS;
+        return enchantment == Enchantments.MENDING ||
+                enchantment == Enchantments.UNBREAKING ||
+                enchantment == Enchantments.SHARPNESS ||
+                enchantment == JEnchantments.LIGHTWEIGHT.get() ||
+                enchantment == JEnchantments.AMBIT.get() ||
+                enchantment == JEnchantments.SCORCHING.get();
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+        super.appendHoverText(stack, worldIn, tooltip, flagIn);
+
+        //how to fuck do we add a damage tooltip to this?
+        // tooltip.add(new TranslationTextComponent("damage").append(damage + ""));
     }
 }
