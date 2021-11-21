@@ -24,6 +24,8 @@ import net.minecraftforge.fml.network.NetworkHooks;
 import java.util.List;
 
 public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem {
+    Entity target = null; //TODO: is this a memory leak risk? (it's messy either way)
+
     private static final DataParameter<ItemStack> STACK = EntityDataManager.defineId(PiercerEntity.class, DataSerializers.ITEM_STACK);
     private int currentBounces;
     private int maxBounces;
@@ -78,6 +80,11 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
         if (!isNoPhysics() && !isInGround() && !isNoGravity()) {
             this.setDeltaMovement(this.getDeltaMovement().add(0, 0.04, 0));
         }
+        if (target != null) {
+            Vector3d movement = new Vector3d(target.getX() - this.getX(), target.getY(0.8) - this.getY(0.5), target.getZ() - this.getZ());
+            this.setDeltaMovement(movement.scale(((0.7 + getVelocityMultiplier() / 6.5) / movement.length()) * this.getDeltaMovement().length()));
+            target = null;
+        }
     }
 
     @Override
@@ -103,11 +110,7 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
                         }
                     }
                 }
-                Entity target = bounceTo != null ? bounceTo : getOwner();
-                if (target != null) {
-                    Vector3d movement = new Vector3d(target.getX() - this.getX(), target.getY(0.8) - this.getY(0.5), target.getZ() - this.getZ());
-                    this.setDeltaMovement(movement.scale(((0.7 + getVelocityMultiplier() / 6.5) / movement.length()) * this.getDeltaMovement().length()));
-                }
+                target = bounceTo != null ? bounceTo : getOwner(); //TODO: one variable?
                 this.playSound(JSounds.PIERCER.get(), 1.0F, 1.2F / (this.random.nextFloat() * 0.2F + 0.9F));
             }
         }
