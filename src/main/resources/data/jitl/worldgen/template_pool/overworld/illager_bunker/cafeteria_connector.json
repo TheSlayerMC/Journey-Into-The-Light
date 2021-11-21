@@ -1,5 +1,5 @@
 {
-  "name": "jitl:rooms",
+  "name": "jitl:cafeteria_connector",
   "fallback": "minecraft:empty",
   "elements": [
     {
