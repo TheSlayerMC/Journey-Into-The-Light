@@ -105,7 +105,7 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
                 }
                 Entity target = bounceTo != null ? bounceTo : getOwner();
                 if (target != null) {
-                    Vector3d movement = new Vector3d(target.getX() - this.getX(), target.getY(0.8) - this.getY(), target.getZ() - this.getZ());
+                    Vector3d movement = new Vector3d(target.getX() - this.getX(), target.getY(0.8) - this.getY(0.5), target.getZ() - this.getZ());
                     this.setDeltaMovement(movement.scale(((0.7 + getVelocityMultiplier() / 6.5) / movement.length()) * this.getDeltaMovement().length()));
                 }
                 this.playSound(JSounds.PIERCER.get(), 1.0F, 1.2F / (this.random.nextFloat() * 0.2F + 0.9F));
@@ -114,8 +114,8 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
     }
 
     public boolean canSee(Entity entityIn) {
-        Vector3d vector3d = new Vector3d(this.getX(), this.getEyeY(), this.getZ());
-        Vector3d vector3d1 = new Vector3d(entityIn.getX(), entityIn.getEyeY(), entityIn.getZ());
+        Vector3d vector3d = new Vector3d(this.getX(), this.getY(0.5), this.getZ());
+        Vector3d vector3d1 = new Vector3d(entityIn.getX(), entityIn.getY(0.8), entityIn.getZ());
         return this.level.clip(new RayTraceContext(vector3d, vector3d1, RayTraceContext.BlockMode.COLLIDER, RayTraceContext.FluidMode.NONE, this)).getType() == RayTraceResult.Type.MISS;
     }
 
