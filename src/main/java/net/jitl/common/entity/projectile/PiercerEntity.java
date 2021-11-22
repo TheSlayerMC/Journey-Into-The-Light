@@ -24,7 +24,7 @@ import net.minecraftforge.fml.network.NetworkHooks;
 import java.util.List;
 
 public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem {
-    Entity target = null; //TODO: is this a memory leak risk? (it's messy either way)
+    Vector3d target = null;
 
     private static final DataParameter<ItemStack> STACK = EntityDataManager.defineId(PiercerEntity.class, DataSerializers.ITEM_STACK);
     private int currentBounces;
@@ -81,7 +81,7 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
             this.setDeltaMovement(this.getDeltaMovement().add(0, 0.04, 0));
         }
         if (target != null) {
-            Vector3d movement = new Vector3d(target.getX() - this.getX(), target.getY(0.8) - this.getY(0.5), target.getZ() - this.getZ());
+            Vector3d movement = target.subtract(this.getX(), this.getY(0.5), this.getZ());
             this.setDeltaMovement(movement.scale(((0.7 + getVelocityMultiplier() / 6.5) / movement.length()) * this.getDeltaMovement().length()));
             target = null;
         }
@@ -90,7 +90,7 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
     @Override
     protected void onHitEntity(EntityRayTraceResult entityRayTraceResult_) {
         Entity entity = entityRayTraceResult_.getEntity();
-        LivingEntity bounceTo = null;
+        Entity bounceTo = null;
         if (entity instanceof LivingEntity && entity != this.getOwner()) {
             if (!level.isClientSide()) {
                 if (getOwner() instanceof ServerPlayerEntity) {
@@ -110,7 +110,8 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
                         }
                     }
                 }
-                target = bounceTo != null ? bounceTo : getOwner(); //TODO: one variable?
+                if (bounceTo == null) bounceTo = getOwner();
+                target = new Vector3d(bounceTo.getX(), bounceTo.getY(0.8), bounceTo.getZ());
                 this.playSound(JSounds.PIERCER.get(), 1.0F, 1.2F / (this.random.nextFloat() * 0.2F + 0.9F));
             }
         }
