@@ -24,7 +24,8 @@ import net.minecraftforge.fml.network.NetworkHooks;
 import java.util.List;
 
 public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem {
-    Vector3d target = null;
+    //TODO: Review and comment cuz this is a mess -Diamond
+    boolean launch = false;
 
     private static final DataParameter<ItemStack> STACK = EntityDataManager.defineId(PiercerEntity.class, DataSerializers.ITEM_STACK);
     private int currentBounces;
@@ -80,47 +81,49 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
         if (!isNoPhysics() && !isInGround() && !isNoGravity()) {
             this.setDeltaMovement(this.getDeltaMovement().add(0, 0.04, 0));
         }
-        if (target != null) {
-            Vector3d movement = target.subtract(this.getX(), this.getY(0.5), this.getZ());
+        if (launch) {
+            Entity bounceTo = null;
+            if (++currentBounces <= maxBounces) {
+                List<LivingEntity> entitiesNear = this.level.getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(4D + getRangeAddend()));
+                for (LivingEntity e : entitiesNear) {
+                    if (e != this.getOwner() && this.pathTo(e) && e.invulnerableTime == 0 && !e.isDeadOrDying() && e.getClassification(false) == EntityClassification.MONSTER) {
+                        if (bounceTo == null || this.distanceTo(e) < this.distanceTo(bounceTo)) {
+                            bounceTo = e;
+                        }
+                    }
+                }
+            }
+            if (bounceTo == null) bounceTo = getOwner();
+            Vector3d movement = new Vector3d(bounceTo.getX(), bounceTo.getY(0.8), bounceTo.getZ()).subtract(this.getX(), this.getY(0.5), this.getZ());
             this.setDeltaMovement(movement.scale(((0.7 + getVelocityMultiplier() / 6.5) / movement.length()) * this.getDeltaMovement().length()));
-            target = null;
+            launch = false;
         }
+    }
+
+    private boolean pathTo(Entity entityIn) {
+        Vector3d vector3d = new Vector3d(this.getX(), this.getY(0.5), this.getZ());
+        Vector3d vector3d1 = new Vector3d(entityIn.getX(), entityIn.getY(0.8), entityIn.getZ());
+        return this.level.clip(new RayTraceContext(vector3d, vector3d1, RayTraceContext.BlockMode.COLLIDER, RayTraceContext.FluidMode.NONE, this)).getType() == RayTraceResult.Type.MISS;
     }
 
     @Override
     protected void onHitEntity(EntityRayTraceResult entityRayTraceResult_) {
         Entity entity = entityRayTraceResult_.getEntity();
-        Entity bounceTo = null;
         if (entity instanceof LivingEntity && entity != this.getOwner()) {
             if (!level.isClientSide()) {
                 if (getOwner() instanceof ServerPlayerEntity) {
                     ServerPlayerEntity player = (ServerPlayerEntity) getOwner();
                     getStack().hurt(1, player.getRandom(), player);
                 }
-                if (entity.hurt(DamageSource.thrown(this, this.getOwner()), (float) getBaseDamage()) && ++currentBounces <= maxBounces) {
+                if (entity.hurt(DamageSource.thrown(this, this.getOwner()), (float) getBaseDamage())) {
                     if (getFlameAddend() > 0) {
                         entity.setSecondsOnFire(getFlameAddend() * 4);
                     }
-                    List<LivingEntity> entitiesNear = this.level.getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(4D + getRangeAddend()));
-                    for (LivingEntity e : entitiesNear) {
-                        if (e != this.getOwner() && this.canSee(e) && e.invulnerableTime == 0 && !e.isDeadOrDying() && e != entity && e.getClassification(false) == EntityClassification.MONSTER) {
-                            if (bounceTo == null || this.distanceTo(e) < this.distanceTo(bounceTo)) {
-                                bounceTo = e;
-                            }
-                        }
-                    }
+                    launch = true;
                 }
-                if (bounceTo == null) bounceTo = getOwner();
-                target = new Vector3d(bounceTo.getX(), bounceTo.getY(0.8), bounceTo.getZ());
                 this.playSound(JSounds.PIERCER.get(), 1.0F, 1.2F / (this.random.nextFloat() * 0.2F + 0.9F));
             }
         }
-    }
-
-    public boolean canSee(Entity entityIn) {
-        Vector3d vector3d = new Vector3d(this.getX(), this.getY(0.5), this.getZ());
-        Vector3d vector3d1 = new Vector3d(entityIn.getX(), entityIn.getY(0.8), entityIn.getZ());
-        return this.level.clip(new RayTraceContext(vector3d, vector3d1, RayTraceContext.BlockMode.COLLIDER, RayTraceContext.FluidMode.NONE, this)).getType() == RayTraceResult.Type.MISS;
     }
 
     @Override
