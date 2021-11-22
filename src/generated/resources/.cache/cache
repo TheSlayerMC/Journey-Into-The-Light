@@ -24,6 +24,7 @@ fef2888c7278102f3bb43e9c29474d353b88ffb3 data/jitl/loot_tables/blocks/dungeon_la
 cce368314d14630813b9f81e0e8fa045b377e247 data/jitl/loot_tables/blocks/shadium_ore.json
 5b288c4aae795106fe8260cc658c61d60b67c307 data/jitl/loot_tables/blocks/smooth_blood_rock.json
 47e4f69f3b4676c72549fc6cc3902a1a122f0160 data/jitl/loot_tables/blocks/warped_quartz_ore.json
+f4537ddb4bbd575a30b69e0dee3d62d35a089603 data/jitl/loot_tables/chests/test.json
 36dc8e690ebff95de7688aaa11eb68cac700bac6 data/jitl/recipes/ashual_block.json
 b85c18652ea266d1818ff9ad1029bffec44d2bdf data/jitl/recipes/block_of_mud.json
 060d25a7344ee30a59206f85dc2b2ad5f6565d60 data/jitl/recipes/bloodcrust_block.json

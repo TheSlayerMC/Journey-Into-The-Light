@@ -4,12 +4,15 @@ import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
 import net.jitl.JITL;
 import net.minecraft.entity.EntityType;
+import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.util.registry.DynamicRegistries;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.MobSpawnInfo;
+import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.Heightmap;
@@ -42,12 +45,22 @@ public class IllagerBunkerStructure extends Structure<NoFeatureConfig> {
 
     @Override
     public GenerationStage.Decoration step() {
-        return GenerationStage.Decoration.SURFACE_STRUCTURES;
+        return GenerationStage.Decoration.UNDERGROUND_STRUCTURES;
     }
 
     @Override
     public List<MobSpawnInfo.Spawners> getDefaultSpawnList() {
         return SPAWNERS_LIST;
+    }
+
+    @Override
+    protected boolean isFeatureChunk(ChunkGenerator chunkGenerator_, BiomeProvider biomeProvider_, long long_, SharedSeedRandom sharedSeedRandom_, int int_, int int1_, Biome biome_, ChunkPos chunkPos_, NoFeatureConfig featureConfig_) {
+        for (Biome biome : biomeProvider_.getBiomesWithin(int_ * 16 + 9, chunkGenerator_.getSeaLevel(), int1_ * 16 + 9, 32)) {
+            if (!biome.getGenerationSettings().isValidStart(this)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public static class Start extends StructureStart<NoFeatureConfig> {
@@ -75,7 +88,7 @@ public class IllagerBunkerStructure extends Structure<NoFeatureConfig> {
             }
             pieces.forEach(piece -> piece.move(0, 5, 0));
             calculateBoundingBox();
-            moveInsideHeights(random, 10, 36);
+            moveInsideHeights(random, 16, 32);
         }
     }
 }

@@ -8,6 +8,7 @@ import net.jitl.common.world.gen.structures.overworld.IllagerBunkerStructure;
 import net.jitl.common.world.gen.structures.overworld.MageHouseStructure;
 import net.jitl.common.world.gen.structures.overworld.guardian.GuardianTowerStructure;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import org.apache.logging.log4j.Marker;
 import org.apache.logging.log4j.MarkerManager;
@@ -58,9 +59,10 @@ public class JStructures {
                     .addToTag(Tag.DISABLE_BREAKING_BY_LAKES)
                     .asHolder();
 
-    public static final StructureHolder<NoFeatureConfig, IllagerBunkerStructure> JIGSAW_TEST =
-            REGISTER.register("jigsaw_test", IllagerBunkerStructure::new, TimeStructureSeparationSettings.create(10, 5), NoFeatureConfig.CODEC, NoFeatureConfig.NONE)
+    public static final StructureHolder<NoFeatureConfig, IllagerBunkerStructure> ILlAGER_BUNKER =
+            REGISTER.register("illager_bunker", IllagerBunkerStructure::new, TimeStructureSeparationSettings.create(40, 10), NoFeatureConfig.CODEC, NoFeatureConfig.NONE)
                     .setDimensionPredicate(serverWorld -> serverWorld.dimension() == World.OVERWORLD)
+                    .setBiomePredicate(biomePredicate -> biomePredicate.getCategory() == Biome.Category.MESA)
                     .addToTag(Tag.DISABLE_BREAKING_BY_LAKES)
                     .asHolder();
 }

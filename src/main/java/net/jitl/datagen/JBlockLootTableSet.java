@@ -11,7 +11,7 @@ import net.minecraft.loot.functions.SetCount;
 import net.minecraft.util.IItemProvider;
 import ru.timeconqueror.timecore.api.devtools.gen.loottable.BlockLootTableSet;
 
-public class JLootTableSet extends BlockLootTableSet {
+public class JBlockLootTableSet extends BlockLootTableSet {
 
 	@Override
 	public void register() {
