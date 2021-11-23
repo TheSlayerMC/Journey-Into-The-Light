@@ -13,6 +13,6 @@ public class FloroCropBlock extends JCropBlock {
 
     @Override
     public int getMaxAge() {
-        return 6;
+        return 5;
     }
 }
