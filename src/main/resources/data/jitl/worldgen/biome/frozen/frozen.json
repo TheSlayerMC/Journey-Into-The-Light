@@ -27,7 +27,8 @@
   "carvers": {},
   "features": [
     [
-      "jitl:frozen_ice_spike"
+      "jitl:frozen_ice_spike",
+      "jitl:frozen_flowers"
     ]
   ]
 }

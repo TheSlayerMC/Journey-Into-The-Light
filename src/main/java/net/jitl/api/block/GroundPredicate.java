@@ -29,6 +29,9 @@ public interface GroundPredicate {
     GroundPredicate EUCA_GRASS_BLOCKS = SOLID_SIDE.and(blockPredicate(block ->
             block == JBlocks.GOLDITE_GRASS_BLOCK || block == JBlocks.EUCA_SILVER_GRASS_BLOCK || block == JBlocks.EUCA_GOLD_GRASS_BLOCK));
 
+    GroundPredicate FROZEN_GRASS_BLOCK = SOLID_SIDE.and(blockPredicate(block ->
+            block == JBlocks.FROZEN_GRASS_BLOCK));
+
     GroundPredicate UNDERGROUND = SOLID_SIDE.and(blockPredicate(block ->
             block == Blocks.STONE ||
                     block == Blocks.COBBLESTONE ||

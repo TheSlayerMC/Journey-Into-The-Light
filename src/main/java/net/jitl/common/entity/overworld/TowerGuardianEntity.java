@@ -2,6 +2,7 @@ package net.jitl.common.entity.overworld;
 
 import net.jitl.JITL;
 import net.jitl.client.eventhandler.music.JMusicTicker;
+import net.jitl.common.entity.base.IJourneyBoss;
 import net.jitl.common.helper.JMusic;
 import net.jitl.init.JAnimations;
 import net.jitl.init.JSounds;
@@ -15,6 +16,7 @@ import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.monster.ZombifiedPiglinEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Lazy;
 import org.jetbrains.annotations.NotNull;
@@ -27,8 +29,9 @@ import ru.timeconqueror.timecore.api.animation.AnimatedObject;
 import ru.timeconqueror.timecore.api.animation.BlendType;
 import ru.timeconqueror.timecore.api.animation.builders.AnimationSystemBuilder;
 
-public class TowerGuardianEntity extends MonsterEntity implements AnimatedObject<TowerGuardianEntity> {
+public class TowerGuardianEntity extends MonsterEntity implements AnimatedObject<TowerGuardianEntity>, IJourneyBoss {
 
+	private static final JMusic BOSS_TRACK = new JMusic(JSounds.TEMPLE_GUARDIAN_MUSIC.get(), 2, 0, 0);
 	private static final Lazy<DelayedAction<TowerGuardianEntity, Object>> SMASHING_ACTION;
 
 	private static final String LAYER_WALKING = "walking";
@@ -49,14 +52,6 @@ public class TowerGuardianEntity extends MonsterEntity implements AnimatedObject
 			builder.addLayer(LAYER_SMASHING, BlendType.OVERRIDE, 1F);
 		}, predefinedAnimations ->
 				predefinedAnimations.setWalkingAnimation(new AnimationStarter(JAnimations.towerGuardianWalk).setSpeed(1F), LAYER_WALKING));
-	}
-
-	@Override
-	public void tick() {
-		super.tick();
-		if (this.level.isClientSide()) {
-			JMusicTicker.addTrack(new JMusic(JSounds.TEMPLE_GUARDIAN_MUSIC.get(), 2, 0, 0));
-		}
 	}
 
 	@Override
@@ -87,6 +82,28 @@ public class TowerGuardianEntity extends MonsterEntity implements AnimatedObject
 	@Override
 	protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
 		return sizeIn.height * 0.9F;
+	}
+
+	@Override
+	public ResourceLocation getBarTexture() {
+		return null;
+	}
+
+	@Override
+	public JMusic getBossMusic() {
+		return BOSS_TRACK;
+	}
+
+	@Override
+	public void onAddedToWorld() {
+		super.onAddedToWorld();
+		if (this.level.isClientSide()); //TODO: store this boss somewhere
+	}
+
+	@Override
+	public void onRemovedFromWorld() {
+		super.onRemovedFromWorld();
+		if (this.level.isClientSide()); //TODO: remove boss
 	}
 
 	private class SmashingGoal extends MeleeAttackGoal {

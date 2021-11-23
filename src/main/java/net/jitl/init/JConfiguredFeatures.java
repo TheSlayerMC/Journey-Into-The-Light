@@ -286,22 +286,6 @@ public class JConfiguredFeatures {
                     .setBiomePredicate(COMMON_BIOMES)
                     .asPromise();
 
-    public static final Promised<? extends ConfiguredFeature<?, ?>> EUCA_TEST_TREE =
-            REGISTER.register("euca_test_tree",
-                    Decoration.SURFACE_STRUCTURES,
-                    () -> Feature.TREE.configured((
-                            new BaseTreeFeatureConfig.Builder(
-                                    new SimpleBlockStateProvider(JBlocks.EUCA_GOLD_LOG.defaultBlockState()),
-                                    new SimpleBlockStateProvider(JBlocks.EUCA_GOLD_LEAVES.defaultBlockState()),
-                                    new MegaPineFoliagePlacer(FeatureSpread.fixed(0),
-                                            FeatureSpread.fixed(0),
-                                            FeatureSpread.of(3, 4)),
-                                    new GiantTrunkPlacer(13, 2, 14),
-                                    new TwoLayerFeature(1, 1, 2)))
-                            .build()))
-                    .setBiomePredicate(EUCA_GOLD_PLAINS)
-                    .asPromise();
-
     public static final Promised<? extends ConfiguredFeature<?, ?>> EUCA_GOLD_TREES =
             REGISTER.register("euca_gold_tree",
                     Decoration.SURFACE_STRUCTURES,
@@ -502,6 +486,28 @@ public class JConfiguredFeatures {
                             .squared()
                             .chance(70)
                             .countRandom(32))
+                    .setBiomePredicate(FROZEN_LANDS)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> FROZEN_PLANTS =
+            REGISTER.register("frozen_flowers", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
+                    .configured((new BlockClusterFeatureConfig.Builder(
+                            new WeightedBlockStateProvider()
+                                    .add(JBlocks.FROSTBERRY_THORN.defaultBlockState(), 1)
+                                    .add(JBlocks.FROZEN_FLOWER.defaultBlockState(), 1)
+                                    .add(JBlocks.ICE_BUSH.defaultBlockState(), 1)
+                                    .add(JBlocks.ICE_BUD.defaultBlockState(), 1)
+                                    .add(JBlocks.FROZEN_BLOOM.defaultBlockState(), 1),
+                            new SimpleBlockPlacer()))
+                            .tries(200)
+                            .xspread(10)
+                            .zspread(10)
+                            .whitelist(ImmutableSet.of(
+                                    JBlocks.FROZEN_GRASS_BLOCK))
+                            .noProjection()
+                            .build())
+                    .range(250)
+                    .count(50))
                     .setBiomePredicate(FROZEN_LANDS)
                     .asPromise();
 

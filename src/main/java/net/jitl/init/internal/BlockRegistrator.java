@@ -287,6 +287,26 @@ public class BlockRegistrator {
 
         registerCustomRenderLayerBlock("ice_crystal_block", "Ice Crystal Block", () -> new Block(JBlockProperties.ICE_CRYSTAL_PROPS.create()), JTabs.DECORATION, () -> RenderTypeWrappers.TRANSLUCENT);
         registerCustomRenderLayerBlock("cracked_ice_crystal_block", "Cracked Ice Crystal Block", () -> new Block(JBlockProperties.ICE_CRYSTAL_PROPS.create()), JTabs.DECORATION, () -> RenderTypeWrappers.TRANSLUCENT);
+
+        registerSpeciallyRenderedBlock("frostberry_thorn", "Frostberry Thorn", () -> new JPlantBlock(JBlockProperties.PLANT_PROPS.create())
+                        .setGroundPredicate(GroundPredicate.FROZEN_GRASS_BLOCK),
+                () -> BlockModels.crossModel(JITL.tl("block/frostberry_thorn")));
+
+        registerSpeciallyRenderedBlock("frozen_bloom", "Frozen Bloom", () -> new JPlantBlock(JBlockProperties.PLANT_PROPS.create())
+                        .setGroundPredicate(GroundPredicate.FROZEN_GRASS_BLOCK),
+                () -> BlockModels.crossModel(JITL.tl("block/frozen_bloom")));
+
+        registerSpeciallyRenderedBlock("frozen_flower", "Frozen Flower", () -> new JPlantBlock(JBlockProperties.PLANT_PROPS.create())
+                        .setGroundPredicate(GroundPredicate.FROZEN_GRASS_BLOCK),
+                () -> BlockModels.crossModel(JITL.tl("block/frozen_flower")));
+
+        registerSpeciallyRenderedBlock("ice_bud", "Ice Bud", () -> new JPlantBlock(JBlockProperties.PLANT_PROPS.create())
+                        .setGroundPredicate(GroundPredicate.FROZEN_GRASS_BLOCK),
+                () -> BlockModels.crossModel(JITL.tl("block/ice_bud")));
+
+        registerSpeciallyRenderedBlock("ice_bush", "Ice Bush", () -> new JPlantBlock(JBlockProperties.PLANT_PROPS.create())
+                        .setGroundPredicate(GroundPredicate.FROZEN_GRASS_BLOCK),
+                () -> BlockModels.crossModel(JITL.tl("block/ice_bush")));
     }
 
     private static <B extends Block> BlockRegisterChain<B> register(String name, String enName, Supplier<B> block) {
