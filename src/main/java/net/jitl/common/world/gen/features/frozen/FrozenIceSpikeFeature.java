@@ -47,14 +47,14 @@ public class FrozenIceSpikeFeature extends Feature<NoFeatureConfig> {
                         if ((i1 == 0 && j1 == 0 || !(f1 * f1 + f2 * f2 > f * f)) && (i1 != -l && i1 != l && j1 != -l && j1 != l || !(rand.nextFloat() > 0.75F))) {
                             BlockState blockstate = reader.getBlockState(pos.offset(i1, k, j1));
                             Block block = blockstate.getBlock();
-                            if (blockstate.isAir(reader, pos.offset(i1, k, j1)) || isDirt(block) || block == JBlocks.FROSTY_ICE || isGrass(block)) {
+                            if (blockstate.isAir(reader, pos.offset(i1, k, j1)) || block == JBlocks.FROSTY_ICE) {
                                 this.setBlock(reader, pos.offset(i1, k, j1), JBlocks.FROSTY_ICE.defaultBlockState());
                             }
 
                             if (k != 0 && l > 1) {
                                 blockstate = reader.getBlockState(pos.offset(i1, -k, j1));
                                 block = blockstate.getBlock();
-                                if (blockstate.isAir(reader, pos.offset(i1, -k, j1)) || isDirt(block) || block == JBlocks.FROSTY_ICE || isGrass(block)) {
+                                if (blockstate.isAir(reader, pos.offset(i1, -k, j1)) || block == JBlocks.FROSTY_ICE) {
                                     this.setBlock(reader, pos.offset(i1, -k, j1), JBlocks.FROSTY_ICE.defaultBlockState());
                                 }
                             }
@@ -78,7 +78,7 @@ public class FrozenIceSpikeFeature extends Feature<NoFeatureConfig> {
                     while (blockpos.getY() > 50) {
                         BlockState blockstate1 = reader.getBlockState(blockpos);
                         Block block1 = blockstate1.getBlock();
-                        if (!blockstate1.isAir(reader, blockpos) && !isDirt(block1) && block1 != JBlocks.FROSTY_ICE && !isGrass(block1)) {
+                        if (!blockstate1.isAir(reader, blockpos) && block1 != JBlocks.FROSTY_ICE) {
                             break;
                         }
                         this.setBlock(reader, blockpos, JBlocks.FROSTY_ICE.defaultBlockState());
@@ -93,13 +93,4 @@ public class FrozenIceSpikeFeature extends Feature<NoFeatureConfig> {
         }
         return true;
     }
-
-    public static boolean isDirt(Block blockIn) {
-        return blockIn == JBlocks.FROZEN_DIRT;
-    }
-
-    public static boolean isGrass(Block blockIn) {
-        return blockIn == JBlocks.FROZEN_GRASS_BLOCK;
-    }
-
 }
