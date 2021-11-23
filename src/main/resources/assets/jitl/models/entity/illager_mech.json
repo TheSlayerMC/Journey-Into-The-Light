@@ -1,0 +1,283 @@
+{
+  "format_version": "1.12.0",
+  "minecraft:geometry": [
+    {
+      "description": {
+        "identifier": "geometry.geometry.irongolem",
+        "texture_width": 128,
+        "texture_height": 128,
+        "visible_bounds_width": 3,
+        "visible_bounds_height": 3.5,
+        "visible_bounds_offset": [
+          0,
+          1.25,
+          0
+        ]
+      },
+      "bones": [
+        {
+          "name": "body",
+          "pivot": [
+            0,
+            29,
+            -5
+          ],
+          "rotation": [
+            20,
+            0,
+            0
+          ],
+          "mirror": true,
+          "cubes": [
+            {
+              "origin": [
+                -9,
+                19,
+                -11
+              ],
+              "size": [
+                18,
+                12,
+                11
+              ],
+              "uv": [
+                0,
+                0
+              ],
+              "mirror": false
+            },
+            {
+              "origin": [
+                -4.5,
+                14,
+                -8
+              ],
+              "size": [
+                9,
+                5,
+                6
+              ],
+              "inflate": 0.5,
+              "uv": [
+                47,
+                0
+              ],
+              "mirror": false
+            }
+          ]
+        },
+        {
+          "name": "head",
+          "pivot": [
+            0,
+            21,
+            -10
+          ],
+          "mirror": true,
+          "cubes": [
+            {
+              "origin": [
+                -4,
+                23,
+                -15.5
+              ],
+              "size": [
+                8,
+                10,
+                8
+              ],
+              "uv": [
+                40,
+                23
+              ],
+              "mirror": false
+            },
+            {
+              "origin": [
+                -1,
+                22,
+                -17.5
+              ],
+              "size": [
+                2,
+                4,
+                2
+              ],
+              "uv": [
+                14,
+                23
+              ],
+              "mirror": false
+            },
+            {
+              "origin": [
+                4,
+                28.33494,
+                -17.11603
+              ],
+              "size": [
+                1,
+                8,
+                3
+              ],
+              "pivot": [
+                4.5,
+                32.33494,
+                -15.61603
+              ],
+              "rotation": [
+                65,
+                0,
+                0
+              ],
+              "uv": [
+                22,
+                57
+              ],
+              "mirror": false
+            },
+            {
+              "origin": [
+                -5,
+                28.33494,
+                -17.11603
+              ],
+              "size": [
+                1,
+                8,
+                3
+              ],
+              "pivot": [
+                -4.5,
+                32.33494,
+                -15.61603
+              ],
+              "rotation": [
+                65,
+                0,
+                0
+              ],
+              "uv": [
+                0,
+                0
+              ],
+              "mirror": false
+            }
+          ]
+        },
+        {
+          "name": "arm0",
+          "pivot": [
+            0,
+            28,
+            -6
+          ],
+          "mirror": true,
+          "cubes": [
+            {
+              "origin": [
+                9,
+                0.5,
+                -9
+              ],
+              "size": [
+                4,
+                28,
+                6
+              ],
+              "uv": [
+                20,
+                23
+              ],
+              "mirror": false
+            }
+          ]
+        },
+        {
+          "name": "arm1",
+          "pivot": [
+            0,
+            28,
+            -6
+          ],
+          "mirror": true,
+          "cubes": [
+            {
+              "origin": [
+                -13,
+                0.5,
+                -9
+              ],
+              "size": [
+                4,
+                28,
+                6
+              ],
+              "uv": [
+                0,
+                23
+              ],
+              "mirror": false
+            }
+          ]
+        },
+        {
+          "name": "leg0",
+          "pivot": [
+            4,
+            13,
+            0
+          ],
+          "mirror": true,
+          "cubes": [
+            {
+              "origin": [
+                1.5,
+                0,
+                -3
+              ],
+              "size": [
+                6,
+                16,
+                5
+              ],
+              "uv": [
+                0,
+                57
+              ],
+              "mirror": false
+            }
+          ]
+        },
+        {
+          "name": "leg1",
+          "pivot": [
+            -5,
+            13,
+            0
+          ],
+          "mirror": true,
+          "cubes": [
+            {
+              "origin": [
+                -7.5,
+                0,
+                -3
+              ],
+              "size": [
+                6,
+                16,
+                5
+              ],
+              "uv": [
+                40,
+                41
+              ],
+              "mirror": false
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

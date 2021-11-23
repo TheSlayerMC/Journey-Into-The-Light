@@ -95,6 +95,15 @@ public class JEntities {
             .spawnEgg(OVERWORLD_COLOR, PASSIVE_COLOR, JTabs.SPAWNERS)
             .retrieve();
 
+    public static final EntityType<IllagerMechEntity> ILLAGER_MECH_TYPE = REGISTER.registerMob("illager_mech",
+            Builder.of(IllagerMechEntity::new, EntityClassification.MONSTER)
+                    .setTrackingRange(80)
+                    .setShouldReceiveVelocityUpdates(true)
+                    .sized(1.5F, 2.0F))//TODO add spawn settings
+            .attributes(() -> IllagerMechEntity.createAttributes().build())
+            .spawnEgg(OVERWORLD_COLOR, HOSTILE_COLOR, JTabs.SPAWNERS)
+            .retrieve();
+
     public static final EntityType<EssenciaBoltEntity> ESSENCIA_BOLT_TYPE = REGISTER.register("essencia_bolt",
             Builder.of(EssenciaBoltEntity::new, EntityClassification.MISC)
                     .noSave()

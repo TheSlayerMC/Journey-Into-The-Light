@@ -194,6 +194,32 @@
       "jitl:entities/glump_death"
     ]
   },
+  "entities.illager_mech_step": {
+    "sounds": [
+      "jitl:entities/illager_mech_step_1",
+      "jitl:entities/illager_mech_step_2",
+      "jitl:entities/illager_mech_step_3",
+      "jitl:entities/illager_mech_step_4"
+    ]
+  },
+  "entities.illager_mech_hurt": {
+    "sounds": [
+      "jitl:entities/illager_mech_hurt_1",
+      "jitl:entities/illager_mech_hurt_2",
+      "jitl:entities/illager_mech_hurt_3",
+      "jitl:entities/illager_mech_hurt_4"
+    ]
+  },
+  "entities.illager_mech_death": {
+    "sounds": [
+      "jitl:entities/illager_mech_death"
+    ]
+  },
+  "entities.illager_mech_throw": {
+    "sounds": [
+      "jitl:entities/illager_mech_throw"
+    ]
+  },
   "entities.piercer": {
     "sounds": [
       "jitl:entities/piercer_0",

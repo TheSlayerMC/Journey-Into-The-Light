@@ -22,6 +22,8 @@ public class JAnimations {
 	public static Animation towerGuardianWalk;
 	public static Animation towerGuardianSmash;
 
+	public static Animation illagerMechWalk;
+
 	@SubscribeEvent
 	public static void registerAnimations(FMLCommonSetupEvent event) {
 		floroWalk = AnimationAPI.loadAndRegisterAnimation(JITL.rl("animations/floro.walk.json"));
@@ -36,5 +38,7 @@ public class JAnimations {
 
 		towerGuardianWalk = AnimationAPI.loadAndRegisterAnimation(JITL.rl("animations/tower_guardian.walk.json"));
 		towerGuardianSmash = AnimationAPI.loadAndRegisterAnimation(JITL.rl("animations/tower_guardian.smash.json"));
+
+		illagerMechWalk = AnimationAPI.loadAndRegisterAnimation(JITL.rl("animations/illager_mech.walk.json"));
 	}
 }

@@ -27,8 +27,8 @@ public class VillagerTradesEventHandler {
     @SubscribeEvent()
     public static void addTrades(VillagerTradesEvent event) {
         if (event.getType() == VillagerProfession.CARTOGRAPHER) {
-            List<VillagerTrades.ITrade> level2_trades = event.getTrades().get(2);
-            level2_trades.add(new MapTrade(Items.EMERALD, 13, Items.COMPASS, 1, JStructures.ILlAGER_BUNKER.getStructure(), MapDecoration.Type.BANNER_LIGHT_GRAY, 12, 5));
+            List<VillagerTrades.ITrade> level5_trades = event.getTrades().get(5);
+            level5_trades.add(new MapTrade(Items.EMERALD, 15, Items.COMPASS, 1, JStructures.ILlAGER_BUNKER.getStructure(), MapDecoration.Type.BANNER_LIGHT_GRAY, 12, 5));
             //trades.add(new BasicTrade(new ItemStack(Items.EMERALD, 1), new ItemStack(JItems.SAPPHIRE, 1), 1, 1, 0));
         }
     }

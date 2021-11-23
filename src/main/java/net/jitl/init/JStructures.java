@@ -7,6 +7,7 @@ import net.jitl.common.world.gen.structures.overworld.BlacksmithStructure;
 import net.jitl.common.world.gen.structures.overworld.IllagerBunkerStructure;
 import net.jitl.common.world.gen.structures.overworld.MageHouseStructure;
 import net.jitl.common.world.gen.structures.overworld.guardian.GuardianTowerStructure;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
@@ -14,6 +15,8 @@ import org.apache.logging.log4j.Marker;
 import org.apache.logging.log4j.MarkerManager;
 import ru.timeconqueror.timecore.api.registry.StructureRegister;
 import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable;
+
+import java.util.Objects;
 
 import static ru.timeconqueror.timecore.api.registry.StructureRegister.StructureHolder;
 import static ru.timeconqueror.timecore.api.registry.StructureRegister.TimeStructureSeparationSettings;
@@ -43,6 +46,7 @@ public class JStructures {
             REGISTER.register("mage_house", MageHouseStructure::new, TimeStructureSeparationSettings.create(10, 5), NoFeatureConfig.CODEC, NoFeatureConfig.NONE)
                     .transformsSurroundingLand()
                     .setDimensionPredicate(serverWorld -> serverWorld.dimension() == World.OVERWORLD)
+                    .setBiomePredicate(biome -> Objects.equals(biome.getName(), new ResourceLocation("dark_forest")))
                     .addToTag(Tag.DISABLE_BREAKING_BY_LAKES)
                     .asHolder();
 
