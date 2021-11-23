@@ -5,8 +5,10 @@ import net.jitl.client.eventhandler.ClientLoadingEventHandler;
 import net.jitl.client.render.JEntityRenderRegistry;
 import net.jitl.common.capability.JCapabilityProvider;
 import net.jitl.init.JBiomeRegistry;
+import net.jitl.init.JEntities;
 import net.jitl.init.JLootConditions;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.raid.Raid;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -52,6 +54,7 @@ public class JITL implements TimeMod {
 	private void preInit(final FMLCommonSetupEvent event) {
 		event.enqueueWork(JBiomeRegistry::registerProviders);
 		JCapabilityProvider.registerCapabilities();
+		Raid.WaveMember.create("illager_mech", JEntities.ILLAGER_MECH_TYPE, new int[]{0, 0, 0, 1, 0, 1, 0, 2}); //TODO: move me
 	}
 
 	private void clientSetup(final FMLClientSetupEvent event) {

@@ -8,11 +8,12 @@ import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.merchant.villager.VillagerEntity;
-import net.minecraft.entity.monster.MonsterEntity;
+import net.minecraft.entity.monster.AbstractRaiderEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
@@ -22,7 +23,7 @@ import ru.timeconqueror.timecore.api.animation.AnimatedObject;
 import ru.timeconqueror.timecore.api.animation.BlendType;
 import ru.timeconqueror.timecore.api.animation.builders.AnimationSystemBuilder;
 
-public class IllagerMechEntity extends MonsterEntity implements AnimatedObject<IllagerMechEntity> {
+public class IllagerMechEntity extends AbstractRaiderEntity implements AnimatedObject<IllagerMechEntity> {
 
     private final AnimationSystem<IllagerMechEntity> animationSystem;
     private static final String LAYER_WALKING = "walking";
@@ -47,6 +48,16 @@ public class IllagerMechEntity extends MonsterEntity implements AnimatedObject<I
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, VillagerEntity.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
+    }
+
+    @Override
+    public void applyRaidBuffs(int wave, boolean boolean_) {
+
+    }
+
+    @Override
+    public SoundEvent getCelebrateSound() {
+        return SoundEvents.RAVAGER_CELEBRATE;
     }
 
     public static AttributeModifierMap.MutableAttribute createAttributes() {
