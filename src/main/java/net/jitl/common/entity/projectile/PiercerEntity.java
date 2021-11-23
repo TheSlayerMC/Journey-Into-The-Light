@@ -24,16 +24,15 @@ import net.minecraftforge.fml.network.NetworkHooks;
 import java.util.List;
 
 public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem {
-    //TODO: Review and comment cuz this is a mess -Diamond
-    boolean launch = false;
-
     private static final DataParameter<ItemStack> STACK = EntityDataManager.defineId(PiercerEntity.class, DataSerializers.ITEM_STACK);
-    private int currentBounces;
-    private int maxBounces;
 
     private float velocityMultiplier;
     private double rangeAddend;
     private int flameAddend;
+
+    private boolean launch = false;
+    private int currentBounces;
+    private int maxBounces;
 
     public PiercerEntity(LivingEntity shooter, World worldIn, ItemStack stack, int maxBounces, float damage) {
         super(JEntities.PIERCER_TYPE, shooter, worldIn);
@@ -78,28 +77,36 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
     @Override
     public void tick() {
         super.tick();
+
+        //counter some of arrow's hardcoded gravity
         if (!isNoPhysics() && !isInGround() && !isNoGravity()) {
             this.setDeltaMovement(this.getDeltaMovement().add(0, 0.025, 0));
         }
-        if (launch) {
+
+        if (launch) { //this piercer needs a new target and will change its motion before the next tick
             Entity bounceTo = null;
             if (++currentBounces <= maxBounces) {
                 List<LivingEntity> entitiesNear = this.level.getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(4D + getRangeAddend()));
                 for (LivingEntity e : entitiesNear) {
-                    if (e != this.getOwner() && this.pathTo(e) && e.invulnerableTime == 0 && !e.isDeadOrDying() && e.getClassification(false) == EntityClassification.MONSTER) {
-                        if (bounceTo == null || this.distanceTo(e) < this.distanceTo(bounceTo)) {
+                    if (e != this.getOwner() && this.pathTo(e) && e.invulnerableTime == 0 && !e.isDeadOrDying() && e.getClassification(false) == EntityClassification.MONSTER) { //check whether this entity is a valid target
+                        if (bounceTo == null || this.distanceTo(e) < this.distanceTo(bounceTo)) { //compare new candidate to previous one
                             bounceTo = e;
                         }
                     }
                 }
             }
-            if (bounceTo == null) bounceTo = getOwner();
+            if (bounceTo == null) bounceTo = getOwner(); //default to owner if it's out of bounces
+
             Vector3d movement = new Vector3d(bounceTo.getX(), bounceTo.getY(0.8), bounceTo.getZ()).subtract(this.getX(), this.getY(0.5), this.getZ());
             this.setDeltaMovement(movement.scale(((0.7 + getVelocityMultiplier() / 6.5) / movement.length()) * this.getDeltaMovement().length()));
+
             launch = false;
         }
     }
 
+    /**
+    Variant of LivingEntity's canSee modified to line up with the piercer's attempted path
+     */
     private boolean pathTo(Entity entityIn) {
         Vector3d vector3d = new Vector3d(this.getX(), this.getY(0.5), this.getZ());
         Vector3d vector3d1 = new Vector3d(entityIn.getX(), entityIn.getY(0.8), entityIn.getZ());
@@ -115,11 +122,12 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
                     ServerPlayerEntity player = (ServerPlayerEntity) getOwner();
                     getStack().hurt(1, player.getRandom(), player);
                 }
+
                 if (entity.hurt(DamageSource.thrown(this, this.getOwner()), (float) getBaseDamage())) {
                     if (getFlameAddend() > 0) {
                         entity.setSecondsOnFire(getFlameAddend() * 4);
                     }
-                    launch = true;
+                    launch = true; //piercer can clip through nearby targets if movement is different than expected, so it'll wait until its position has been updated
                 }
                 this.playSound(JSounds.PIERCER.get(), 1.0F, 1.2F / (this.random.nextFloat() * 0.2F + 0.9F));
             }

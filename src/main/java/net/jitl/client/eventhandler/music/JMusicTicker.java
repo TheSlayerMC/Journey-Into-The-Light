@@ -17,6 +17,7 @@ import java.util.Random;
 
 @Mod.EventBusSubscriber(modid = JITL.MODID, value = Dist.CLIENT)
 public class JMusicTicker {
+    //TODO: rewrite all of this
     private static final Minecraft MINECRAFT = Minecraft.getInstance();
     private static ISound currentTrack;
     private static JMusic shouldPlayTrack;
