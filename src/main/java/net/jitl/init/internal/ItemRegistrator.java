@@ -239,6 +239,12 @@ public class ItemRegistrator {
         registerHandheldItem("storon_hoe", "Storon Hoe", () -> new JHoeItem(JToolTiers.STORON, BASIC));
         registerHandheldItem("storon_multitool", "Storon Multitool", () -> new MultitoolItem(JToolTiers.STORON, BASIC));
 
+        //DREADIRON
+        registerArmorItem("dreadiron_helmet", "Dreadiron Helmet", () -> new JArmorItem(JArmorMaterial.DREADIRON, EquipmentSlotType.HEAD, BASIC));
+        registerArmorItem("dreadiron_chestplate", "Dreadiron Chestplate", () -> new JArmorItem(JArmorMaterial.DREADIRON, EquipmentSlotType.CHEST, BASIC));
+        registerArmorItem("dreadiron_leggings", "Dreadiron Leggings", () -> new JArmorItem(JArmorMaterial.DREADIRON, EquipmentSlotType.LEGS, BASIC));
+        registerArmorItem("dreadiron_boots", "Dreadiron Boots", () -> new JArmorItem(JArmorMaterial.DREADIRON, EquipmentSlotType.FEET, BASIC));
+
         registerHandheldItem("creative_sword", "Creative Sword", () -> new JSwordItem(JToolTiers.CREATIVE, BASIC));
 
         registerItem("molten_knife", "Molten Knife", () -> new ThrowableItem(rangedWeaponsGrouped(), (worldIn, owner) -> new KnifeEntity(worldIn, owner).withBaseDamage(10)).setSound(() -> SoundEvents.SNOWBALL_THROW));

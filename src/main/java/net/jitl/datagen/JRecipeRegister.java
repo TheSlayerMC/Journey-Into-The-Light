@@ -99,5 +99,10 @@ public class JRecipeRegister extends JRecipeProvider {
 		addSmithingRecipe(recipeConsumer, Items.DIAMOND_PICKAXE, JItems.LUNIUM_INGOT, JItems.LUNIUM_PICKAXE);
 		addSmithingRecipe(recipeConsumer, Items.DIAMOND_SHOVEL, JItems.LUNIUM_INGOT, JItems.LUNIUM_SHOVEL);
 		addSmithingRecipe(recipeConsumer, Items.DIAMOND_HOE, JItems.LUNIUM_INGOT, JItems.LUNIUM_HOE);
+
+		addSmithingRecipe(recipeConsumer, Items.IRON_HELMET, JItems.DREADIRON_INGOT, JItems.DREADIRON_HELMET);
+		addSmithingRecipe(recipeConsumer, Items.IRON_CHESTPLATE, JItems.DREADIRON_INGOT, JItems.DREADIRON_CHESTPLATE);
+		addSmithingRecipe(recipeConsumer, Items.IRON_LEGGINGS, JItems.DREADIRON_INGOT, JItems.DREADIRON_LEGGINGS);
+		addSmithingRecipe(recipeConsumer, Items.IRON_BOOTS, JItems.DREADIRON_INGOT, JItems.DREADIRON_BOOTS);
 	}
 }

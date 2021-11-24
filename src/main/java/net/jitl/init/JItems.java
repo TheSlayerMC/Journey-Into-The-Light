@@ -88,6 +88,11 @@ public class JItems {
     public static final Item LUNIUM_LEGGINGS = promise();
     public static final Item LUNIUM_BOOTS = promise();
 
+    public static final Item DREADIRON_HELMET = promise();
+    public static final Item DREADIRON_CHESTPLATE = promise();
+    public static final Item DREADIRON_LEGGINGS = promise();
+    public static final Item DREADIRON_BOOTS = promise();
+
     public static final Item SHADIUM_SWORD = promise();
     public static final Item SHADIUM_MULTITOOL = promise();
     public static final Item SHADIUM_PICKAXE = promise();
