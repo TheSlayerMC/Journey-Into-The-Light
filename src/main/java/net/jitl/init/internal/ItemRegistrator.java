@@ -62,6 +62,7 @@ public class ItemRegistrator {
     private static void register() {
 
         //OVERWORLD ITEMS
+        registerItem("dreadiron_ingot", "Dreadiron Ingot");
         registerItem("sapphire", "Sapphire");
         registerItem("iridium_nugget", "Iridium Nugget");
         registerItem("lunium_ingot", "Lunium Ingot");
@@ -237,6 +238,8 @@ public class ItemRegistrator {
         registerHandheldItem("storon_shovel", "Storon Shovel", () -> new JShovelItem(JToolTiers.STORON, BASIC));
         registerHandheldItem("storon_hoe", "Storon Hoe", () -> new JHoeItem(JToolTiers.STORON, BASIC));
         registerHandheldItem("storon_multitool", "Storon Multitool", () -> new MultitoolItem(JToolTiers.STORON, BASIC));
+
+        registerHandheldItem("creative_sword", "Creative Sword", () -> new JSwordItem(JToolTiers.CREATIVE, BASIC));
 
         registerItem("molten_knife", "Molten Knife", () -> new ThrowableItem(rangedWeaponsGrouped(), (worldIn, owner) -> new KnifeEntity(worldIn, owner).withBaseDamage(10)).setSound(() -> SoundEvents.SNOWBALL_THROW));
 

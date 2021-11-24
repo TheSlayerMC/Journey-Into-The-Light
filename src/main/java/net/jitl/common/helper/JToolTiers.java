@@ -14,7 +14,9 @@ public enum JToolTiers implements IItemTier {
     CELESTIUM(1490, 12F, 8F, 6F, 4F, 1.7F, JItems.CELESTIUM_INGOT),
     KORITE(1490, 12F, 8F, 6F, 4F, 1.7F, JItems.KORITE_INGOT),
     MEKYUM(1490, 12F, 8F, 6F, 4F, 1.7F, JItems.MEKYUM_INGOT),
-    STORON(1490, 12F, 8F, 6F, 4F, 1.7F, JItems.STORON_INGOT);
+    STORON(1490, 12F, 8F, 6F, 4F, 1.7F, JItems.STORON_INGOT),
+
+    CREATIVE(1490, 12F, 1000F, 1000F, 1000F, 2.7F, JItems.STORON_INGOT);
 
     private final int level;
     private final int uses;

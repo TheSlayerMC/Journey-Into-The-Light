@@ -1,10 +1,8 @@
 package net.jitl.datagen;
 
 import net.jitl.JITL;
-import net.minecraft.data.CookingRecipeBuilder;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.IFinishedRecipe;
-import net.minecraft.data.ShapedRecipeBuilder;
+import net.minecraft.data.*;
+import net.minecraft.item.Item;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.IItemProvider;
@@ -19,6 +17,11 @@ public class JRecipeProvider extends ForgeRecipeProvider {
 
 	public JRecipeProvider(DataGenerator generatorIn) {
 		super(generatorIn);
+	}
+
+	protected void addSmithingRecipe(Consumer<IFinishedRecipe> recipeConsumer, IItemProvider input, IItemProvider modifier, Item result) {
+		SmithingRecipeBuilder.smithing(Ingredient.of(input), Ingredient.of(modifier), result).unlocks("has_" + modifier.toString().toLowerCase(), has(modifier)).save(recipeConsumer, result.getRegistryName() + "_smithing");
+		JITL.LOGGER.info(modifier.toString().toLowerCase());
 	}
 
 	protected void add3x3Recipe(Consumer<IFinishedRecipe> recipeConsumer, IItemProvider input, IItemProvider output) {

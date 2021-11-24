@@ -6,6 +6,7 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.data.ShapelessRecipeBuilder;
+import net.minecraft.item.Items;
 
 import java.util.function.Consumer;
 
@@ -23,6 +24,7 @@ public class JRecipeRegister extends JRecipeProvider {
 		buildBlastingRecipes();
 		buildSmeltingRecipes();
 		buildCookingRecipes();
+		buildSmithingRecipes(recipeConsumer);
 	}
 
 	public void buildBlockRecipes(Consumer<IFinishedRecipe> recipeConsumer) {
@@ -47,6 +49,13 @@ public class JRecipeRegister extends JRecipeProvider {
 				.requires(JBlocks.BLOCK_OF_MUD)
 				.unlockedBy(inputToKey(JBlocks.BLOCK_OF_MUD),
 						has(JBlocks.BLOCK_OF_MUD))
+				.save(recipeConsumer);
+
+		ShapelessRecipeBuilder.shapeless(JItems.LUNIUM_INGOT, 1)
+				.requires(JItems.LUNIUM_POWDER, 8)
+				.requires(Items.IRON_INGOT, 1)
+				.unlockedBy(inputToKey(JItems.LUNIUM_POWDER),
+						has(JItems.LUNIUM_POWDER))
 				.save(recipeConsumer);
 
 		ShapedRecipeBuilder.shaped(JItems.POWDER_OF_ESSENCIA, 8).define('#', JItems.LUNIUM_POWDER).define('I', JItems.BLOOD)
@@ -75,5 +84,19 @@ public class JRecipeRegister extends JRecipeProvider {
 
 	public void buildCookingRecipes() {
 //		addCookingRecipe();
+	}
+
+	public void buildSmithingRecipes(Consumer<IFinishedRecipe> recipeConsumer) {
+		addSmithingRecipe(recipeConsumer, Items.DIAMOND_HELMET, JItems.LUNIUM_INGOT, JItems.LUNIUM_HELMET);
+		addSmithingRecipe(recipeConsumer, Items.DIAMOND_CHESTPLATE, JItems.LUNIUM_INGOT, JItems.LUNIUM_CHESTPLATE);
+		addSmithingRecipe(recipeConsumer, Items.DIAMOND_LEGGINGS, JItems.LUNIUM_INGOT, JItems.LUNIUM_LEGGINGS);
+		addSmithingRecipe(recipeConsumer, Items.DIAMOND_BOOTS, JItems.LUNIUM_INGOT, JItems.LUNIUM_BOOTS);
+
+		addSmithingRecipe(recipeConsumer, Items.DIAMOND_SWORD, JItems.LUNIUM_INGOT, JItems.LUNIUM_SWORD);
+
+		addSmithingRecipe(recipeConsumer, Items.DIAMOND_AXE, JItems.LUNIUM_INGOT, JItems.LUNIUM_AXE);
+		addSmithingRecipe(recipeConsumer, Items.DIAMOND_PICKAXE, JItems.LUNIUM_INGOT, JItems.LUNIUM_PICKAXE);
+		addSmithingRecipe(recipeConsumer, Items.DIAMOND_SHOVEL, JItems.LUNIUM_INGOT, JItems.LUNIUM_SHOVEL);
+		addSmithingRecipe(recipeConsumer, Items.DIAMOND_HOE, JItems.LUNIUM_INGOT, JItems.LUNIUM_HOE);
 	}
 }

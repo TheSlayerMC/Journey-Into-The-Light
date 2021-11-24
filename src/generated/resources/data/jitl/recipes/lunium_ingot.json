@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "jitl:lunium_powder"
+    },
+    {
+      "item": "jitl:lunium_powder"
+    },
+    {
+      "item": "jitl:lunium_powder"
+    },
+    {
+      "item": "jitl:lunium_powder"
+    },
+    {
+      "item": "jitl:lunium_powder"
+    },
+    {
+      "item": "jitl:lunium_powder"
+    },
+    {
+      "item": "jitl:lunium_powder"
+    },
+    {
+      "item": "jitl:lunium_powder"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    }
+  ],
+  "result": {
+    "item": "jitl:lunium_ingot"
+  }
+}
