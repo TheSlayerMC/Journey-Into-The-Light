@@ -1,8 +1,6 @@
 package net.jitl.common.item.interactive;
 
 import net.jitl.JITL;
-import net.jitl.common.capability.player.JPlayer;
-import net.jitl.common.capability.player.data.Essence;
 import net.jitl.init.JParticleManager;
 import net.jitl.init.JSounds;
 import net.jitl.util.IEssenceItem;
@@ -31,32 +29,26 @@ public class MinersPearlItem extends Item implements IEssenceItem {
 
     public @NotNull ActionResult<ItemStack> use(@NotNull World worldIn, @NotNull PlayerEntity playerIn, @NotNull Hand handIn) {
         ItemStack stack = playerIn.getItemInHand(handIn);
-        boolean flag =
+        boolean canTeleport =
                 playerIn.position().y <= worldIn.getSeaLevel() - 2 &&
                         !worldIn.canSeeSky(new BlockPos(playerIn.getX(), playerIn.getY() + (double) playerIn.getEyeHeight(), playerIn.getZ())) &&
                         !playerIn.isInWater() &&
-                        !playerIn.isInLava();
+                        !playerIn.isInLava() &&
+                        playerIn.experienceLevel >= 10;
         if (!worldIn.isClientSide()) {
-            JPlayer capability = JPlayer.from(playerIn);
-            assert capability != null;
-            Essence essence = capability.essence;
-
             try {
-                if (flag) {
-                    if (essence.consumeEssence(playerIn, 10F) && stack.getItem() == this) {
-                        playerIn.addEffect(new EffectInstance(Effects.CONFUSION, 140, 2));
-                        if (!stack.hasTag()) stack.setTag(new CompoundNBT());
-                        CompoundNBT tag = stack.getTag();
-                        tag.putBoolean("teleport", true);
-                    }
-                } else {
-                    ChatUtils.format(new TranslationTextComponent("jitl.message.item.miners_pearl"), TextFormatting.DARK_PURPLE);
+                if (canTeleport) {
+                    playerIn.giveExperienceLevels(-10);
+                    playerIn.addEffect(new EffectInstance(Effects.CONFUSION, 140, 2));
+                    if (!stack.hasTag()) stack.setTag(new CompoundNBT());
+                    CompoundNBT tag = stack.getTag();
+                    tag.putBoolean("teleport", true);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        if (flag) {
+        if (canTeleport) {
             worldIn.playSound(playerIn, playerIn.blockPosition(), SoundEvents.ENDERMAN_TELEPORT, SoundCategory.PLAYERS, 1.0F, 0.5F);
             worldIn.playSound(playerIn, playerIn.blockPosition(), JSounds.MINERS_PEARL.get(), SoundCategory.PLAYERS, 1.25F, MathHelper.nextFloat(random, 0.95F, 1.55F));
             for (int i = 0; i < 16; ++i) {
@@ -68,6 +60,11 @@ public class MinersPearlItem extends Item implements IEssenceItem {
                         random.nextDouble(),
                         (random.nextDouble() - 0.75D) * 2.0D);
             }
+        } else {
+            if (worldIn.isClientSide()) {
+                playerIn.sendMessage(ChatUtils.format(new TranslationTextComponent("jitl.message.item.miners_pearl"), TextFormatting.DARK_PURPLE), playerIn.getUUID());
+            }
+            worldIn.playSound(playerIn, playerIn.blockPosition(), JSounds.MINERS_PEARL.get(), SoundCategory.PLAYERS, 1.25F, 0.5F);
         }
         return new ActionResult<>(ActionResultType.PASS, stack);
     }
