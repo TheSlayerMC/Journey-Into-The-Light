@@ -14,10 +14,12 @@ import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.pathfinding.*;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Lazy;
 import org.jetbrains.annotations.NotNull;
@@ -45,6 +47,7 @@ public class IllagerMechEntity extends AbstractRaiderEntity implements AnimatedO
 
     public IllagerMechEntity(EntityType<? extends IllagerMechEntity> entityType, World world) {
         super(entityType, world);
+        setCanJoinRaid(true);
         animationSystem = AnimationSystemBuilder.forEntity(this, world,
                 builder -> {
                     builder.addLayer(LAYER_WALKING, BlendType.ADDING, 1F);
@@ -56,11 +59,13 @@ public class IllagerMechEntity extends AbstractRaiderEntity implements AnimatedO
     }
 
     protected void registerGoals() {
-        this.goalSelector.addGoal(0, new ThrowingGoal(this, 1.0D, false)); //mutex 1
+        this.goalSelector.addGoal(2, new ThrowingGoal(this, 1.0D, false)); //mutex 1
         this.goalSelector.addGoal(0, new SwimGoal(this));
         this.goalSelector.addGoal(7, new LookAtGoal(this, PlayerEntity.class, 6.0F));
         this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
         this.goalSelector.addGoal(6, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
+        this.goalSelector.addGoal(4, new AttackGoal());
+        this.goalSelector.addGoal(0, new MoveTowardsRaidGoal<>(this));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, VillagerEntity.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
@@ -69,7 +74,6 @@ public class IllagerMechEntity extends AbstractRaiderEntity implements AnimatedO
 
     @Override
     public void applyRaidBuffs(int wave, boolean boolean_) {
-
     }
 
     @Override
@@ -81,7 +85,7 @@ public class IllagerMechEntity extends AbstractRaiderEntity implements AnimatedO
         return MobEntity.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 75.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.2D)
-                .add(Attributes.ATTACK_DAMAGE, 20.0D)
+                .add(Attributes.ATTACK_DAMAGE, 12.0D)
                 .add(Attributes.FOLLOW_RANGE, 32.0D)
                 .add(Attributes.KNOCKBACK_RESISTANCE, 1.0D);
     }
@@ -117,6 +121,11 @@ public class IllagerMechEntity extends AbstractRaiderEntity implements AnimatedO
             this.doEnchantDamageEffects(this, entityIn);
         }
         return flag;
+    }
+
+    @Override
+    protected @NotNull PathNavigator createNavigation(@NotNull World worldIn) {
+        return new Navigator(this, worldIn);
     }
 
     @Override
@@ -161,6 +170,39 @@ public class IllagerMechEntity extends AbstractRaiderEntity implements AnimatedO
                     mechEntity.playSound(JSounds.ILLAGER_MECH_THROW.get(), 1.0F, 1.0F);
                 }
             }
+        }
+    }
+
+    class AttackGoal extends MeleeAttackGoal {
+        public AttackGoal() {
+            super(IllagerMechEntity.this, 1.0D, true);
+        }
+
+        protected double getAttackReachSqr(LivingEntity attackTarget) {
+            float f = IllagerMechEntity.this.getBbWidth() - 0.1F;
+            return f * 2.0F * f * 2.0F + attackTarget.getBbWidth();
+        }
+    }
+
+    static class Navigator extends GroundPathNavigator {
+        public Navigator(MobEntity mobEntity, World world) {
+            super(mobEntity, world);
+        }
+
+        @Override
+        protected @NotNull PathFinder createPathFinder(int int_) {
+            this.nodeEvaluator = new Processor();
+            return new PathFinder(this.nodeEvaluator, int_);
+        }
+    }
+
+    static class Processor extends WalkNodeProcessor {
+        private Processor() {
+        }
+
+        @Override
+        protected @NotNull PathNodeType evaluateBlockPathType(@NotNull IBlockReader blockReader_, boolean boolean_, boolean boolean1_, @NotNull BlockPos blockPos_, @NotNull PathNodeType pathNodeType_) {
+            return pathNodeType_ == PathNodeType.LEAVES ? PathNodeType.OPEN : super.evaluateBlockPathType(blockReader_, boolean_, boolean1_, blockPos_, pathNodeType_);
         }
     }
 }
