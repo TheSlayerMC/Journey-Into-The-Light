@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "dreadiron_ingot",
+  "ingredients": [
+    {
+      "item": "jitl:dreadiron_block"
+    }
+  ],
+  "result": {
+    "item": "jitl:dreadiron_ingot",
+    "count": 9
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "storon_ingot",
+  "ingredients": [
+    {
+      "item": "jitl:storon_block"
+    }
+  ],
+  "result": {
+    "item": "jitl:storon_ingot",
+    "count": 9
+  }
+}

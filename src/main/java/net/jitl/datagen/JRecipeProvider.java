@@ -31,6 +31,16 @@ public class JRecipeProvider extends ForgeRecipeProvider {
 				.pattern("###").unlockedBy(inputToKey(input), has(input)).save(recipeConsumer);
 	}
 
+	protected void addOreBlockRecipe(Consumer<IFinishedRecipe> recipeConsumer, IItemProvider input, IItemProvider output) {
+		ShapedRecipeBuilder.shaped(output, 1).define('#', input)
+				.pattern("###")
+				.pattern("###")
+				.pattern("###").unlockedBy(inputToKey(input), has(input)).save(recipeConsumer);
+		ShapelessRecipeBuilder.shapeless(input, 9).requires(output).unlockedBy(inputToKey(output), has(output)).group(input.asItem().toString()).save(recipeConsumer, input.asItem().getRegistryName() + "_from_block");
+
+		JITL.LOGGER.info(input.asItem().getRegistryName());
+	}
+
 	protected void add2x2Recipe(Consumer<IFinishedRecipe> recipeConsumer, IItemProvider input, IItemProvider output) {
 		ShapedRecipeBuilder.shaped(output, 1).define('#', input)
 				.pattern("##")

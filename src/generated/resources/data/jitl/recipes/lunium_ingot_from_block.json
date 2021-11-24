@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "lunium_ingot",
+  "ingredients": [
+    {
+      "item": "jitl:lunium_block"
+    }
+  ],
+  "result": {
+    "item": "jitl:lunium_ingot",
+    "count": 9
+  }
+}

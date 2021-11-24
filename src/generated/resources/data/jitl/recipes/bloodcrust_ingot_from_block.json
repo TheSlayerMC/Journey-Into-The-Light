@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "bloodcrust_ingot",
+  "ingredients": [
+    {
+      "item": "jitl:bloodcrust_block"
+    }
+  ],
+  "result": {
+    "item": "jitl:bloodcrust_ingot",
+    "count": 9
+  }
+}

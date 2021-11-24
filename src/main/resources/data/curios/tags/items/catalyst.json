@@ -2,11 +2,23 @@
   "replace": false,
   "values": [
     {
-      "id": "jitl:weak_essence_catalyst",
+      "id": "jitl:very_weak_essence_crystal",
       "required": false
     },
     {
-      "id": "jitl:weak_regen_catalyst",
+      "id": "jitl:weak_essence_crystal",
+      "required": false
+    },
+    {
+      "id": "jitl:strong_essence_crystal",
+      "required": false
+    },
+    {
+      "id": "jitl:very_strong_essence_crystal",
+      "required": false
+    },
+    {
+      "id": "jitl:breathing_stone",
       "required": false
     }
   ]

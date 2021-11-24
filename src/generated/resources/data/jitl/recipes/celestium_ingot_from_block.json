@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "celestium_ingot",
+  "ingredients": [
+    {
+      "item": "jitl:celestium_block"
+    }
+  ],
+  "result": {
+    "item": "jitl:celestium_ingot",
+    "count": 9
+  }
+}

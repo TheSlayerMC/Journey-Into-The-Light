@@ -155,8 +155,12 @@ public class JItems {
     public static final Item DYNASTER_AMULET = promise();
     public static final Item CLOUDWALKER_AMULET = promise();
 
-    public static final Item WEAK_ESSENCE_CATALYST = promise();
-    public static final Item WEAK_REGEN_CATALYST = promise();
+    public static final Item VERY_WEAK_ESSENCE_CRYSTAL = promise();
+    public static final Item WEAK_ESSENCE_CRYSTAL = promise();
+    public static final Item STRONG_ESSENCE_CRYSTAL = promise();
+    public static final Item VERY_STRONG_ESSENCE_CRYSTAL = promise();
+
+    public static final Item BREATHING_STONE = promise();
 
     public static final Item DREADIRON_INGOT = promise();
 }

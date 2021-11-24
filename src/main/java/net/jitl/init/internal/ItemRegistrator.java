@@ -275,8 +275,12 @@ public class ItemRegistrator {
         registerItem("dynaster_amulet", "Amulet of the Dynaster", () -> new DynasterAmuletItem(itemGrouped().stacksTo(1)));
         registerItem("cloudwalker_amulet", "Cloudwalker's Amulet", () -> new CloudwalkingAmuletItem(itemGrouped().stacksTo(1)));
 
-        registerItem("weak_essence_catalyst", "Essence Catalyst", () -> new EssenceCatalystItem(itemGrouped().stacksTo(1)).essence(10F));
-        registerItem("weak_regen_catalyst", "Regeneration Catalyst", () -> new RegenCatalystItem(itemGrouped().stacksTo(1)).speed(0.0112F));
+        registerItem("very_weak_essence_crystal", "Very Weak Essence Crystal", () -> new EssenceCatalystItem(itemGrouped().stacksTo(1)).essence(2F));
+        registerItem("weak_essence_crystal", "Weak Essence Crystal", () -> new EssenceCatalystItem(itemGrouped().stacksTo(1)).essence(5F));
+        registerItem("strong_essence_crystal", "Strong Essence Crystal", () -> new EssenceCatalystItem(itemGrouped().stacksTo(1)).essence(10F));
+        registerItem("very_strong_essence_crystal", "Very Strong Essence Crystal", () -> new EssenceCatalystItem(itemGrouped().stacksTo(1)).essence(15F));
+
+        registerItem("breathing_stone", "Breathing Stone", () -> new RegenCatalystItem(itemGrouped().stacksTo(1)).speed(0.0112F));
     }
 
     /**

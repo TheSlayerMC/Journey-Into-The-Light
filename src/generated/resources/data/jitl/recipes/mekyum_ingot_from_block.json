@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "mekyum_ingot",
+  "ingredients": [
+    {
+      "item": "jitl:mekyum_block"
+    }
+  ],
+  "result": {
+    "item": "jitl:mekyum_ingot",
+    "count": 9
+  }
+}

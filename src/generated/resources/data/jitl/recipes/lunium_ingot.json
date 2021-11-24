@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shapeless",
+  "group": "lunium_ingot",
   "ingredients": [
     {
       "item": "jitl:lunium_powder"

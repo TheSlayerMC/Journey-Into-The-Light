@@ -28,17 +28,17 @@ public class JRecipeRegister extends JRecipeProvider {
 	}
 
 	public void buildBlockRecipes(Consumer<IFinishedRecipe> recipeConsumer) {
-		add3x3Recipe(recipeConsumer, JItems.SAPPHIRE, JBlocks.SAPPHIRE_BLOCK);
-		add3x3Recipe(recipeConsumer, JItems.LUNIUM_INGOT, JBlocks.LUNIUM_BLOCK);
-		add3x3Recipe(recipeConsumer, JItems.SHADIUM_INGOT, JBlocks.SHADIUM_BLOCK);
-		add3x3Recipe(recipeConsumer, JItems.IRIDIUM_NUGGET, JBlocks.IRIDIUM_BLOCK);
-		add3x3Recipe(recipeConsumer, JItems.BLOODCRUST_INGOT, JBlocks.BLOODCRUST_BLOCK);
-		add3x3Recipe(recipeConsumer, JItems.ENDERILLIUM_SHARD, JBlocks.ENDERILLIUM_BLOCK);
-		add3x3Recipe(recipeConsumer, JItems.ASH, JBlocks.ASHUAL_BLOCK);
-		add3x3Recipe(recipeConsumer, JItems.CELESTIUM_INGOT, JBlocks.CELESTIUM_BLOCK);
-		add3x3Recipe(recipeConsumer, JItems.MEKYUM_INGOT, JBlocks.MEKYUM_BLOCK);
-		add3x3Recipe(recipeConsumer, JItems.STORON_INGOT, JBlocks.STORON_BLOCK);
-		add3x3Recipe(recipeConsumer, JItems.DREADIRON_INGOT, JBlocks.DREADIRON_BLOCK);
+		addOreBlockRecipe(recipeConsumer, JItems.SAPPHIRE, JBlocks.SAPPHIRE_BLOCK);
+		addOreBlockRecipe(recipeConsumer, JItems.LUNIUM_INGOT, JBlocks.LUNIUM_BLOCK);
+		addOreBlockRecipe(recipeConsumer, JItems.SHADIUM_INGOT, JBlocks.SHADIUM_BLOCK);
+		addOreBlockRecipe(recipeConsumer, JItems.IRIDIUM_NUGGET, JBlocks.IRIDIUM_BLOCK);
+		addOreBlockRecipe(recipeConsumer, JItems.BLOODCRUST_INGOT, JBlocks.BLOODCRUST_BLOCK);
+		addOreBlockRecipe(recipeConsumer, JItems.ENDERILLIUM_SHARD, JBlocks.ENDERILLIUM_BLOCK);
+		addOreBlockRecipe(recipeConsumer, JItems.ASH, JBlocks.ASHUAL_BLOCK);
+		addOreBlockRecipe(recipeConsumer, JItems.CELESTIUM_INGOT, JBlocks.CELESTIUM_BLOCK);
+		addOreBlockRecipe(recipeConsumer, JItems.MEKYUM_INGOT, JBlocks.MEKYUM_BLOCK);
+		addOreBlockRecipe(recipeConsumer, JItems.STORON_INGOT, JBlocks.STORON_BLOCK);
+		addOreBlockRecipe(recipeConsumer, JItems.DREADIRON_INGOT, JBlocks.DREADIRON_BLOCK);
 
 		add2x2Recipe(recipeConsumer, JItems.MUD_BALL, JBlocks.BLOCK_OF_MUD);
 	}
@@ -57,6 +57,7 @@ public class JRecipeRegister extends JRecipeProvider {
 				.requires(Items.IRON_INGOT, 1)
 				.unlockedBy(inputToKey(JItems.LUNIUM_POWDER),
 						has(JItems.LUNIUM_POWDER))
+				.group("lunium_ingot")
 				.save(recipeConsumer);
 
 		ShapedRecipeBuilder.shaped(JItems.POWDER_OF_ESSENCIA, 8).define('#', JItems.LUNIUM_POWDER).define('I', JItems.BLOOD)

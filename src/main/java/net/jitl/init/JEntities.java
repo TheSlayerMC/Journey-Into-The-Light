@@ -99,7 +99,7 @@ public class JEntities {
             Builder.of(IllagerMechEntity::new, EntityClassification.MONSTER)
                     .setTrackingRange(80)
                     .setShouldReceiveVelocityUpdates(true)
-                    .sized(1.5F, 2.0F))//TODO add spawn settings
+                    .sized(1.25F, 1.95F))
             .attributes(() -> IllagerMechEntity.createAttributes().build())
             .spawnEgg(OVERWORLD_COLOR, HOSTILE_COLOR, JTabs.SPAWNERS)
             .retrieve();
