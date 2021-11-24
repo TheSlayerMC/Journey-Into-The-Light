@@ -27,7 +27,7 @@ public class StructureTracker {
             if (capability != null) {
                 int id = findStructure(player);
                 if (id != capability.getStructure()) {
-                    JPacketHandler.INSTANCE.send(PacketDistributor.PLAYER.with(() -> player), new SCurrentStructurePacket(id));
+                    JPacketHandler.sendToPlayer(player, new SCurrentStructurePacket(id));
                     capability.setStructure(id);
                     System.out.println("Packet sent");
                 }

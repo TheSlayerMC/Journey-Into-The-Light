@@ -1,9 +1,14 @@
 package net.jitl.common.entity.overworld;
 
 import net.jitl.JITL;
+import net.jitl.common.entity.base.IJourneyBoss;
 import net.jitl.common.entity.projectile.base.JEffectCloudEntity;
+import net.jitl.common.helper.JBossInfo;
+import net.jitl.common.helper.JMusic;
 import net.jitl.init.JDataSerializers;
 import net.jitl.init.JSounds;
+import net.jitl.network.JBossPacket;
+import net.jitl.network.JPacketHandler;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
@@ -15,6 +20,7 @@ import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -22,11 +28,9 @@ import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.IServerWorld;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
+import net.minecraft.world.*;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.server.ServerBossInfo;
 import org.jetbrains.annotations.NotNull;
 import ru.timeconqueror.timecore.api.util.RandHelper;
 import ru.timeconqueror.timecore.api.util.lookups.EnumLookup;
@@ -34,8 +38,9 @@ import ru.timeconqueror.timecore.api.util.lookups.EnumLookup;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class HonglowEntity extends MonsterEntity {
+public class HonglowEntity extends MonsterEntity implements IJourneyBoss {
 	public static final DataParameter<Type> VARIANT = EntityDataManager.defineId(HonglowEntity.class, JDataSerializers.HONGLOW_VARIANT);
+	private final ServerBossInfo bossInfo = new ServerBossInfo(this.getDisplayName(), BossInfo.Color.BLUE, BossInfo.Overlay.NOTCHED_6);
 
 	public HonglowEntity(EntityType<? extends HonglowEntity> entityType, World world) {
 		super(entityType, world);
@@ -89,6 +94,18 @@ public class HonglowEntity extends MonsterEntity {
 	}
 
 	@Override
+	public void startSeenByPlayer(ServerPlayerEntity player) {
+		super.startSeenByPlayer(player);
+		JBossInfo.addInfo(player, bossInfo, this);
+	}
+
+	@Override
+	public void stopSeenByPlayer(ServerPlayerEntity player) {
+		super.stopSeenByPlayer(player);
+		JBossInfo.removeInfo(player, bossInfo, this);
+	}
+
+	@Override
     public boolean hurt(@NotNull DamageSource source, float amount) {
         if (super.hurt(source, amount) && random.nextInt(10) == 0) {
             if (source != DamageSource.OUT_OF_WORLD && source != DamageSource.MAGIC) {
@@ -137,7 +154,17 @@ public class HonglowEntity extends MonsterEntity {
 	protected void playStepSound(@NotNull BlockPos pos, @NotNull BlockState blockIn) {
 		this.playSound(SoundEvents.PIG_STEP, 0.15F, 1.0F);
 	}
-	
+
+	@Override
+	public ResourceLocation getBarTexture() {
+		return null;
+	}
+
+	@Override
+	public JMusic getBossMusic() {
+		return null;
+	}
+
 	public enum Type {
 		RED(0, JITL.rl("textures/entity/overworld/honglow_red.png"), new EffectInstance(Effects.DAMAGE_BOOST, 500, 3), new EffectInstance(Effects.WEAKNESS, 200), Effects.REGENERATION.getColor()),
 	    GREEN(1, JITL.rl("textures/entity/overworld/honglow_green.png"), new EffectInstance(Effects.DAMAGE_RESISTANCE, 500, 3), new EffectInstance(Effects.DIG_SLOWDOWN, 200), Effects.JUMP.getColor()),
