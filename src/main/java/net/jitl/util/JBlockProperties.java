@@ -132,6 +132,13 @@ public class JBlockProperties {
 			.requiresCorrectToolForDrops()
 			.strength(1.5F, 6.0F));
 
+	public static final BlockPropsFactory DREADIRON_BLOCK_PROPS = new BlockPropsFactory(() -> Properties.of
+			(Material.METAL)
+			.sound(SoundType.NETHERITE_BLOCK)
+			.harvestTool(ToolType.PICKAXE)
+			.requiresCorrectToolForDrops()
+			.strength(50.0F, 1200.0F));
+
 	public static final BlockPropsFactory SHADIUM_BLOCK_PROPS = new BlockPropsFactory(() -> Properties.of
 			(Material.METAL)
 			.sound(JSoundTypes.SHADIUM_BLOCK)

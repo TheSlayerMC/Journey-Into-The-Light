@@ -38,6 +38,7 @@ public class JRecipeRegister extends JRecipeProvider {
 		add3x3Recipe(recipeConsumer, JItems.CELESTIUM_INGOT, JBlocks.CELESTIUM_BLOCK);
 		add3x3Recipe(recipeConsumer, JItems.MEKYUM_INGOT, JBlocks.MEKYUM_BLOCK);
 		add3x3Recipe(recipeConsumer, JItems.STORON_INGOT, JBlocks.STORON_BLOCK);
+		add3x3Recipe(recipeConsumer, JItems.DREADIRON_INGOT, JBlocks.DREADIRON_BLOCK);
 
 		add2x2Recipe(recipeConsumer, JItems.MUD_BALL, JBlocks.BLOCK_OF_MUD);
 	}

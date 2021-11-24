@@ -130,6 +130,7 @@ public class BlockRegistrator {
         registerDefaultBlock("purple_gem_block", "Purple Gem Block");
         registerDefaultBlock("blue_gem_block", "Blue Gem Block");
         registerDefaultBlock("yellow_gem_block", "Yellow Gem Block");
+        registerDefaultBlock("dreadiron_block", "Dreadiron Block", () -> new Block(JBlockProperties.DREADIRON_BLOCK_PROPS.create()));
 
         registerDefaultBlock("common_gems", "Common Gems");
         registerDefaultBlock("rare_gems", "Rare Gems");

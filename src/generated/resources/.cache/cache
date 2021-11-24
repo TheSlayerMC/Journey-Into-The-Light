@@ -29,6 +29,7 @@ f4537ddb4bbd575a30b69e0dee3d62d35a089603 data/jitl/loot_tables/chests/test.json
 b85c18652ea266d1818ff9ad1029bffec44d2bdf data/jitl/recipes/block_of_mud.json
 060d25a7344ee30a59206f85dc2b2ad5f6565d60 data/jitl/recipes/bloodcrust_block.json
 8d6d1e938532c9ed88c585e28db46cc5b0d0e282 data/jitl/recipes/celestium_block.json
+39e46a95dd06a9a3b58e7d534546804d5a2bda62 data/jitl/recipes/dreadiron_block.json
 fd9965521006046715781555149912f2d6eeaa2c data/jitl/recipes/enderillium_block.json
 774e9f927df619356cd75fac2e85cacaad627b0c data/jitl/recipes/firestone_clump.json
 4b4e981ac57c19e2d622ef07243f3d48a7149f0c data/jitl/recipes/iridium_block.json

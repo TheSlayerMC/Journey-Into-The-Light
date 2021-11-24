@@ -64,7 +64,7 @@ public class IllagerMechEntity extends AbstractRaiderEntity implements AnimatedO
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, VillagerEntity.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, MobEntity.class, 5, false, false, (livingEntity_) -> livingEntity_ instanceof IMob && !(livingEntity_ instanceof CreeperEntity)));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, MobEntity.class, 5, false, false, (livingEntity_) -> livingEntity_ instanceof IMob && !(livingEntity_ instanceof CreeperEntity) && !(livingEntity_ instanceof AbstractRaiderEntity)));
     }
 
     @Override

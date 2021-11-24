@@ -179,4 +179,5 @@ public class JBlocks {
 	public static final JPlantBlock ICE_BUSH = promise();
 	public static final JPlantBlock ICE_BUD = promise();
 
+	public static final Block DREADIRON_BLOCK = promise();
 }
