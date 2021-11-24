@@ -1,0 +1,49 @@
+{
+  "format_version": "1.8.0",
+  "animations": {
+    "animation.geometry.irongolem.throw": {
+      "animation_length": 1.56,
+      "override_previous_animation": true,
+      "bones": {
+        "arm0": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.52": [
+              -120,
+              0,
+              0
+            ],
+            "1.04": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "arm1": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.56": [
+              -120,
+              0,
+              0
+            ],
+            "1.04": [
+              0,
+              0,
+              0
+            ]
+          }
+        }
+      }
+    }
+  }
+}
