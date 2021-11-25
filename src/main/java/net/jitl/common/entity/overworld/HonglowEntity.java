@@ -157,7 +157,7 @@ public class HonglowEntity extends MonsterEntity implements IJourneyBoss {
 
 	@Override
 	public ResourceLocation getBarTexture() {
-		return null;
+		return JITL.tl("gui/bossbars/blank.png").fullLocation();
 	}
 
 	@Override
