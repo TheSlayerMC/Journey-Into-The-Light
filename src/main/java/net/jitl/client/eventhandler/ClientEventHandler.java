@@ -5,6 +5,7 @@ import net.jitl.init.JDimensions;
 import net.jitl.init.JItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.client.event.DrawHighlightEvent;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
@@ -32,7 +33,9 @@ public class ClientEventHandler {
     }
 
     public static void onFogDensityEvent(EntityViewRenderEvent.FogDensity event) {
-        if(Minecraft.getInstance().player.level.dimension() == JDimensions.FROZEN_WORLD) {
+        PlayerEntity player = Minecraft.getInstance().player;
+
+        if(player.level.dimension() == JDimensions.FROZEN_WORLD) {
             event.setDensity(0.15F);
             event.setCanceled(true);
         }
