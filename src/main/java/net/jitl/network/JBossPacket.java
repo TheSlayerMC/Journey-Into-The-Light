@@ -18,12 +18,12 @@ public class JBossPacket {
 
     private Operation addOrRemove;
     private final UUID barUUID;
-    private final int bossNum;
+    private final Entity boss;
 
-    public JBossPacket(Operation operation, UUID barUUID, int bossNum) {
+    public JBossPacket(Operation operation, UUID barUUID, Entity boss) {
         this.addOrRemove = operation;
         this.barUUID = barUUID;
-        this.bossNum = bossNum;
+        this.boss = boss;
     }
 
     public static class Handler implements ITimePacketHandler<JBossPacket> {
@@ -32,12 +32,12 @@ public class JBossPacket {
         public void encode(JBossPacket packet, PacketBuffer buffer) throws IOException {
             buffer.writeEnum(packet.addOrRemove);
             buffer.writeUUID(packet.barUUID);
-            buffer.writeInt(packet.bossNum);
+            buffer.writeInt(packet.boss.getId());
         }
 
         @Override
         public @NotNull JBossPacket decode(PacketBuffer buffer) throws IOException {
-            return new JBossPacket(buffer.readEnum(Operation.class), buffer.readUUID(), buffer.readInt());
+            return new JBossPacket(buffer.readEnum(Operation.class), buffer.readUUID(), Minecraft.getInstance().level.getEntity(buffer.readInt()));
         }
 
         @Override
@@ -45,12 +45,18 @@ public class JBossPacket {
             ctx.enqueueWork(() -> {
                 switch (packet.addOrRemove) {
                     case ADD:
-                        JBossInfo.map.put(packet.barUUID, (IJourneyBoss) Minecraft.getInstance().level.getEntity(packet.bossNum));
+                        if (packet.boss instanceof IJourneyBoss) {
+                            JBossInfo.map.put(packet.barUUID, (IJourneyBoss) packet.boss);
+                        } else {
+                            throw new IllegalStateException("Attempted to add boss info to " + packet.boss.getClass().getName());
+                        }
                         break;
                     case REMOVE:
                         JBossInfo.map.remove(packet.barUUID);
+                        break;
+                    default:
+                        throw new IllegalStateException();
                 }
-                System.out.println(JBossInfo.map.size());
             });
 
             return true;
