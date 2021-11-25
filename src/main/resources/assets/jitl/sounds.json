@@ -272,6 +272,15 @@
       }
     ]
   },
+  "music.frozen.ambience": {
+    "category": "music",
+    "sounds": [
+      {
+        "name": "jitl:music/ambience/frozen",
+        "stream": true
+      }
+    ]
+  },
   "music.biome.gold_plains": {
     "category": "music",
     "sounds": [
