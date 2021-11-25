@@ -1,8 +1,10 @@
 package net.jitl.client.eventhandler;
 
 import net.jitl.init.JBlocks;
+import net.jitl.init.JDimensions;
 import net.jitl.init.JItems;
 import net.minecraft.block.BlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.client.event.DrawHighlightEvent;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
@@ -30,8 +32,9 @@ public class ClientEventHandler {
     }
 
     public static void onFogDensityEvent(EntityViewRenderEvent.FogDensity event) {
-        //CHECK DIM
-        event.setDensity(1F);
-        event.setCanceled(true);
+        if(Minecraft.getInstance().player.level.dimension() == JDimensions.FROZEN_WORLD) {
+            event.setDensity(0.5F);
+            event.setCanceled(true);
+        }
     }
 }
