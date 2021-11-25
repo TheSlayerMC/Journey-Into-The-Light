@@ -12,6 +12,7 @@ import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import ru.timeconqueror.timecore.api.util.client.ClientProxy;
+import top.theillusivec4.curios.api.CuriosApi;
 
 public class ClientEventHandler {
     public static void regToBus(IEventBus modBus, IEventBus forgeBus) {
@@ -35,11 +36,11 @@ public class ClientEventHandler {
     public static void onFogDensityEvent(EntityViewRenderEvent.FogDensity event) {
         PlayerEntity player = Minecraft.getInstance().player;
 
-        if(player != null && player.level.dimension() == JDimensions.FROZEN_WORLD){
-            if(!(player.inventory.getArmor(3).getItem() == JItems.SNOW_GOGGLES)) {
-                event.setDensity(0.15F);
+        if (player != null && player.level.dimension() == JDimensions.FROZEN_WORLD) {
+            if (CuriosApi.getCuriosHelper().findEquippedCurio(JItems.EYE_OF_THE_BLIZZARD, player).isPresent()) {
+                event.setDensity(0.05F);
             } else {
-                event.setDensity(0.02F);
+                event.setDensity(0.15F);
             }
             event.setCanceled(true);
         }
