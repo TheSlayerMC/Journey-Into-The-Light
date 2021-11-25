@@ -163,4 +163,6 @@ public class JItems {
     public static final Item BREATHING_STONE = promise();
 
     public static final Item DREADIRON_INGOT = promise();
+
+    public static final Item SNOW_GOGGLES = promise();
 }

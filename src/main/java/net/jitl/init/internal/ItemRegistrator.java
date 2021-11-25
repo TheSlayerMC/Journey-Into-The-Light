@@ -281,6 +281,9 @@ public class ItemRegistrator {
         registerItem("very_strong_essence_crystal", "Very Strong Essence Crystal", () -> new EssenceCatalystItem(itemGrouped().stacksTo(1)).essence(15F));
 
         registerItem("breathing_stone", "Breathing Stone", () -> new RegenCatalystItem(itemGrouped().stacksTo(1)).speed(0.0112F));
+
+        registerArmorItem("snow_goggles", "Snow Goggles", () -> new JArmorItem(JArmorMaterial.SAPPHIRE, EquipmentSlotType.HEAD, BASIC));
+
     }
 
     /**

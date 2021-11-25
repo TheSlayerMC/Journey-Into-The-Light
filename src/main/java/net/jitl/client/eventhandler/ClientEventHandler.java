@@ -35,8 +35,12 @@ public class ClientEventHandler {
     public static void onFogDensityEvent(EntityViewRenderEvent.FogDensity event) {
         PlayerEntity player = Minecraft.getInstance().player;
 
-        if(player.level.dimension() == JDimensions.FROZEN_WORLD) {
-            event.setDensity(0.15F);
+        if(player != null && player.level.dimension() == JDimensions.FROZEN_WORLD){
+            if((player.inventory.getArmor(3).getItem() == JItems.SNOW_GOGGLES)) {
+                event.setDensity(0.15F);
+            } else {
+                event.setDensity(0.03F);
+            }
             event.setCanceled(true);
         }
     }
