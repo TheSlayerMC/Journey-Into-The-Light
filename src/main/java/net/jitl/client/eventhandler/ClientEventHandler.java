@@ -5,6 +5,7 @@ import net.jitl.init.JDimensions;
 import net.jitl.init.JItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.client.event.DrawHighlightEvent;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
@@ -32,8 +33,14 @@ public class ClientEventHandler {
     }
 
     public static void onFogDensityEvent(EntityViewRenderEvent.FogDensity event) {
-        if(Minecraft.getInstance().player.level.dimension() == JDimensions.FROZEN_WORLD) {
-            event.setDensity(0.15F);
+        PlayerEntity player = Minecraft.getInstance().player;
+
+        if(player != null && player.level.dimension() == JDimensions.FROZEN_WORLD){
+            if(!(player.inventory.getArmor(3).getItem() == JItems.SNOW_GOGGLES)) {
+                event.setDensity(0.15F);
+            } else {
+                event.setDensity(0.02F);
+            }
             event.setCanceled(true);
         }
     }
