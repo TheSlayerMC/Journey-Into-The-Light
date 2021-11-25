@@ -33,7 +33,7 @@ public class ClientEventHandler {
 
     public static void onFogDensityEvent(EntityViewRenderEvent.FogDensity event) {
         if(Minecraft.getInstance().player.level.dimension() == JDimensions.FROZEN_WORLD) {
-            event.setDensity(0.5F);
+            event.setDensity(0.15F);
             event.setCanceled(true);
         }
     }
