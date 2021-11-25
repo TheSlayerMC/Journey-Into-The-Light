@@ -3,6 +3,7 @@ package net.jitl.common.helper;
 import mcp.MethodsReturnNonnullByDefault;
 import net.jitl.JITL;
 import net.jitl.init.JItems;
+import net.minecraft.block.Blocks;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.Item;
@@ -19,7 +20,8 @@ public enum JArmorMaterial implements IArmorMaterial {
     BLOODCRUST("bloodcrust", 27, new int[]{3, 6, 8, 3}, 0.5F, 0.2F, SoundEvents.ARMOR_EQUIP_IRON, JItems.BLOODCRUST_INGOT),
     CELESTIUM("celestium", 27, new int[]{2, 5, 7, 3}, 0F, 0.2F, SoundEvents.ARMOR_EQUIP_IRON, JItems.CELESTIUM_INGOT),
 
-    DREADIRON("dreadiron", 24, new int[]{2, 5, 6, 2}, 1.0F, 0.2F, SoundEvents.ARMOR_EQUIP_IRON, JItems.DREADIRON_INGOT);
+    DREADIRON("dreadiron", 24, new int[]{2, 5, 6, 2}, 1.0F, 0.2F, SoundEvents.ARMOR_EQUIP_IRON, JItems.DREADIRON_INGOT),
+    SNOW_GOGGLES("snow", 27, new int[]{3, 6, 8, 3}, 0.5F, 0.2F, SoundEvents.ARMOR_EQUIP_IRON, Blocks.GLASS.asItem());
 
     private final String name;
     private final int durabilityMultiplier;

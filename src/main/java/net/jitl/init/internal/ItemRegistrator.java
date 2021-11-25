@@ -282,7 +282,7 @@ public class ItemRegistrator {
 
         registerItem("breathing_stone", "Breathing Stone", () -> new RegenCatalystItem(itemGrouped().stacksTo(1)).speed(0.0112F));
 
-        registerArmorItem("snow_goggles", "Snow Goggles", () -> new JArmorItem(JArmorMaterial.SAPPHIRE, EquipmentSlotType.HEAD, BASIC));
+        registerArmorItem("snow_goggles", "Snow Goggles", () -> new JArmorItem(JArmorMaterial.SNOW_GOGGLES, EquipmentSlotType.HEAD, BASIC));
 
     }
 

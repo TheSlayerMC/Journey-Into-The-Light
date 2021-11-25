@@ -39,7 +39,7 @@ public class ClientEventHandler {
             if(!(player.inventory.getArmor(3).getItem() == JItems.SNOW_GOGGLES)) {
                 event.setDensity(0.15F);
             } else {
-                event.setDensity(0.005F);
+                event.setDensity(0.02F);
             }
             event.setCanceled(true);
         }
