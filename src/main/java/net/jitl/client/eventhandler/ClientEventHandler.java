@@ -36,10 +36,10 @@ public class ClientEventHandler {
         PlayerEntity player = Minecraft.getInstance().player;
 
         if(player != null && player.level.dimension() == JDimensions.FROZEN_WORLD){
-            if((player.inventory.getArmor(3).getItem() == JItems.SNOW_GOGGLES)) {
+            if(!(player.inventory.getArmor(3).getItem() == JItems.SNOW_GOGGLES)) {
                 event.setDensity(0.15F);
             } else {
-                event.setDensity(0.03F);
+                event.setDensity(0.005F);
             }
             event.setCanceled(true);
         }
