@@ -8,6 +8,8 @@ import net.jitl.client.render.gui.menu.JMainMenuGui;
 import net.jitl.client.util.RenderUtils;
 import net.jitl.common.capability.player.JPlayer;
 import net.jitl.common.capability.player.data.Essence;
+import net.jitl.common.entity.base.IJourneyBoss;
+import net.jitl.common.helper.JBossInfo;
 import net.jitl.config.JClientConfig;
 import net.jitl.config.JConfigs;
 import net.jitl.util.IEssenceItem;
@@ -54,6 +56,17 @@ public class GuiEventHandler {
 		if (event.getGui() instanceof MainMenuScreen) {
 			if (guiConfig.isToggleMenuButtonEnabled()) {
 				event.addWidget(buttonToggleMenu);
+			}
+		}
+	}
+
+	@SubscribeEvent
+	public static void renderBossBars(RenderGameOverlayEvent.BossInfo event) {
+		if (!event.isCanceled()) {
+			IJourneyBoss boss = JBossInfo.map.get(event.getBossInfo().getId());
+			if (boss != null) {
+				event.setCanceled(true);
+				boss.renderBossBar(event);
 			}
 		}
 	}
