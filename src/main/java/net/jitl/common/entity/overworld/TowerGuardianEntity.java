@@ -1,7 +1,6 @@
 package net.jitl.common.entity.overworld;
 
 import net.jitl.JITL;
-import net.jitl.client.eventhandler.music.JMusicTicker;
 import net.jitl.common.entity.base.IJourneyBoss;
 import net.jitl.common.helper.JMusic;
 import net.jitl.init.JAnimations;
@@ -107,25 +106,23 @@ public class TowerGuardianEntity extends MonsterEntity implements AnimatedObject
 	}
 
 	private class SmashingGoal extends MeleeAttackGoal {
-		private final TowerGuardianEntity guardianEntity;
-		private int animateTicks;
+        private final TowerGuardianEntity entity;
 
-		private SmashingGoal(TowerGuardianEntity guardianEntity, double speed, boolean useLongMemory) {
-			super(guardianEntity, speed, useLongMemory);
-			this.guardianEntity = guardianEntity;
-		}
+        private SmashingGoal(TowerGuardianEntity entity, double speed, boolean useLongMemory) {
+            super(entity, speed, useLongMemory);
+            this.entity = entity;
+        }
 
-		@Override
-		public void start() {
-			super.start();
-			this.animateTicks = 0;
-		}
+        @Override
+        public void start() {
+            super.start();
+        }
 
-		@Override
-		public void stop() {
-			super.stop();
-			this.guardianEntity.setAggressive(false);
-		}
+        @Override
+        public void stop() {
+            super.stop();
+            this.entity.setAggressive(false);
+        }
 
 		@Override
 		public boolean canUse() {
@@ -133,17 +130,17 @@ public class TowerGuardianEntity extends MonsterEntity implements AnimatedObject
 			return livingEntity != null && livingEntity.isAlive();
 		}
 
-		@Override
-		public void tick() {
-			super.tick();
-			++this.animateTicks;
-			ActionManager<TowerGuardianEntity> actionManager = getActionManager();
-			if (!actionManager.isActionEnabled(SMASHING_ACTION.get()) && this.animateTicks >= 15 && this.getTicksUntilNextAttack() < this.getAttackInterval() / 2) {
-				actionManager.enableAction(SMASHING_ACTION.get(), null);
-				this.guardianEntity.setAggressive(true);
-			} else {
-				this.guardianEntity.setAggressive(false);
-			}
-		}
+        @Override
+        protected void checkAndPerformAttack(LivingEntity enemy, double distToEnemySqr) {
+            double d0 = this.getAttackReachSqr(enemy);
+            ActionManager<TowerGuardianEntity> actionManager = getActionManager();
+            if (distToEnemySqr <= d0) {
+                this.resetAttackCooldown();
+                this.mob.doHurtTarget(enemy);
+                if (!actionManager.isActionEnabled(SMASHING_ACTION.get())) {
+                    actionManager.enableAction(SMASHING_ACTION.get(), null);
+                }
+            }
+        }
 	}
 }
