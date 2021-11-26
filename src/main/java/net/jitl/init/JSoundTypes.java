@@ -67,14 +67,41 @@ public class JSoundTypes {
 			JSounds.FUMICE_BLOCK_DIG::get,
 			JSounds.FUMICE_BLOCK_BREAK::get,
 			JSounds.FUMICE_BLOCK_DIG::get,
-			JSounds.FUMICE_BLOCK_BREAK::get);
+            JSounds.FUMICE_BLOCK_BREAK::get);
 
-	public static final SoundType ICE_CRYSTAL = new TimeSoundType(
-			1.0F,
-			1.0F,
-			JSounds.ICE_CRYSTAL_BREAK::get,
-			() -> SoundEvents.GLASS_HIT,
-			() -> SoundEvents.GLASS_PLACE,
-			() -> SoundEvents.GLASS_HIT,
-			() -> SoundEvents.GLASS_PLACE);
+    public static final SoundType ICE_CRYSTAL = new TimeSoundType(
+            1.0F,
+            1.0F,
+            JSounds.ICE_CRYSTAL_BREAK::get,
+            () -> SoundEvents.GLASS_HIT,
+            () -> SoundEvents.GLASS_PLACE,
+            () -> SoundEvents.GLASS_HIT,
+            () -> SoundEvents.GLASS_PLACE);
+
+    public static final SoundType GRASSY_PERMAFROST = new TimeSoundType(
+            1.0F,
+            1.0F,
+            JSounds.GRASSY_PERMAFROST_BREAK::get,
+            JSounds.GRASSY_PERMAFROST_DIG::get,
+            JSounds.GRASSY_PERMAFROST_BREAK::get,
+            JSounds.GRASSY_PERMAFROST_DIG::get,
+            JSounds.GRASSY_PERMAFROST_BREAK::get);
+
+    public static final SoundType CRUMBLED_PERMAFROST = new TimeSoundType(
+            1.0F,
+            1.0F,
+            JSounds.CRUMBLED_PERMAFROST_BREAK::get,
+            JSounds.CRUMBLED_PERMAFROST_DIG::get,
+            JSounds.CRUMBLED_PERMAFROST_BREAK::get,
+            JSounds.CRUMBLED_PERMAFROST_DIG::get,
+            JSounds.CRUMBLED_PERMAFROST_BREAK::get);
+
+    public static final SoundType PERMAFROST = new TimeSoundType(
+            1.0F,
+            1.0F,
+            JSounds.PERMAFROST_BREAK::get,
+            JSounds.PERMAFROST_DIG::get,
+            JSounds.PERMAFROST_BREAK::get,
+            JSounds.PERMAFROST_DIG::get,
+            JSounds.PERMAFROST_BREAK::get);
 }

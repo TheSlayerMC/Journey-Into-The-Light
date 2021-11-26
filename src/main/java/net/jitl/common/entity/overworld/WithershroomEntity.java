@@ -1,10 +1,10 @@
 package net.jitl.common.entity.overworld;
 
 import net.jitl.common.entity.projectile.base.JEffectCloudEntity;
-import net.jitl.init.JEntities;
 import net.jitl.init.JSounds;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.GrassBlock;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -12,9 +12,9 @@ import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
+import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.WitherSkullEntity;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.DamageSource;
@@ -27,11 +27,12 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
 import java.util.Random;
 
-public class HongoEntity extends MonsterEntity {
+public class WithershroomEntity extends MonsterEntity {
 
-    public HongoEntity(EntityType<? extends HongoEntity> entityType, World world) {
+    public WithershroomEntity(EntityType<? extends WithershroomEntity> entityType, World world) {
         super(entityType, world);
     }
 
@@ -50,32 +51,43 @@ public class HongoEntity extends MonsterEntity {
     }
 
     @Override
-    public boolean hurt(@NotNull DamageSource source, float amount) {
-        if (super.hurt(source, amount)) {
-            if (random.nextInt(10) == 0) {
-                if (source != DamageSource.OUT_OF_WORLD && source != DamageSource.MAGIC) {
-                    JEffectCloudEntity poison = new JEffectCloudEntity(this, this.level, this.getX(), this.getY(), this.getZ(), 0.5F);
-                    poison.excludeOwner();
-                    poison.addPrimaryEffect(new EffectInstance(Effects.POISON, 500, 3));
-                    poison.addPrimaryEffect(new EffectInstance(Effects.CONFUSION, 200));
-                    poison.addSizeKey(10, 4);
-                    poison.addSizeKey(200, 0);
-                    poison.setColor(Effects.POISON.getColor());
-                    poison.spawn();
-                    level.playSound(null, this.blockPosition(), JSounds.HONGO_SPORE_RELEASE.get(), SoundCategory.HOSTILE, 1.0F, 1.0F);
+    public void tick() {
+        if (this.isAlive()) {
+            if (tickCount % 600 == 0) {
+                List<LivingEntity> entitiesNear = this.level.getEntitiesOfClass(CreeperEntity.class, this.getBoundingBox().inflate(4D));
+                if (!entitiesNear.isEmpty()) {
+                    spawnEffectCloud();
                 }
-                return true;
             }
-            if (source.getDirectEntity() instanceof WitherSkullEntity) {
-                WithershroomEntity withershroomEntity = new WithershroomEntity(JEntities.WITHERSHROOM_TYPE, this.level);
-                withershroomEntity.setPos(this.getX(), this.getY(), this.getZ());
-                level.addFreshEntity(withershroomEntity);
-                this.remove();
+            if (this.getBlockStateOn().getBlock() instanceof GrassBlock) {
+                level.setBlock(this.blockPosition().below(), Blocks.COARSE_DIRT.defaultBlockState(), 1);
+            }
+        }
+        super.tick();
+    }
+
+    @Override
+    public boolean hurt(@NotNull DamageSource source, float amount) {
+        if (super.hurt(source, amount) && random.nextInt(10) == 0) {
+            if (source != DamageSource.OUT_OF_WORLD && source != DamageSource.MAGIC) {
+                spawnEffectCloud();
             }
             return true;
         } else {
             return false;
         }
+    }
+
+    public void spawnEffectCloud() {
+        JEffectCloudEntity poison = new JEffectCloudEntity(this, this.level, this.getX(), this.getY(), this.getZ(), 0.5F);
+        poison.excludeOwner();
+        poison.addPrimaryEffect(new EffectInstance(Effects.WITHER, 60, 1));
+        poison.addPrimaryEffect(new EffectInstance(Effects.CONFUSION, 200));
+        poison.addSizeKey(10, 4);
+        poison.addSizeKey(200, 0);
+        poison.setColor(Effects.WITHER.getColor());
+        poison.spawn();
+        level.playSound(null, this.blockPosition(), JSounds.HONGO_SPORE_RELEASE.get(), SoundCategory.HOSTILE, 1.0F, 1.0F);
     }
 
     public static AttributeModifierMap.MutableAttribute createAttributes() {

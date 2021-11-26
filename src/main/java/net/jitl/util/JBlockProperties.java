@@ -15,22 +15,43 @@ import ru.timeconqueror.timecore.api.registry.util.BlockPropsFactory;
 
 public class JBlockProperties {
 
-	public static final BlockPropsFactory GRASS_PROPS = new BlockPropsFactory(() -> Properties.of
-			(Material.GRASS)
-			.sound(SoundType.GRASS)
-			.harvestTool(ToolType.SHOVEL)
-			.randomTicks()
-			.strength(0.6F));
+    public static final BlockPropsFactory GRASS_PROPS = new BlockPropsFactory(() -> Properties.of
+            (Material.GRASS)
+            .sound(SoundType.GRASS)
+            .harvestTool(ToolType.SHOVEL)
+            .randomTicks()
+            .strength(0.6F));
 
-	public static final BlockPropsFactory STONE_PROPS = new BlockPropsFactory(() -> Properties.of
-			(Material.STONE)
-			.sound(SoundType.STONE)
-			.harvestTool(ToolType.PICKAXE)
-			.requiresCorrectToolForDrops()
-			.strength(1.5F, 6.0F));
+    public static final BlockPropsFactory GRASSY_PERMAFROST_PROPS = new BlockPropsFactory(() -> Properties.of
+            (Material.GRASS)
+            .sound(JSoundTypes.GRASSY_PERMAFROST)
+            .harvestTool(ToolType.SHOVEL)
+            .randomTicks()
+            .strength(1.2F));
 
-	public static final BlockPropsFactory LEAVES_PROPS = new BlockPropsFactory(() -> Properties.of
-			(Material.LEAVES)
+    public static final BlockPropsFactory CRUMBLED_PERMAFROST_PROPS = new BlockPropsFactory(() -> Properties.of
+            (Material.DIRT)
+            .sound(JSoundTypes.CRUMBLED_PERMAFROST)
+            .harvestTool(ToolType.SHOVEL)
+            .strength(1.1F));
+
+
+    public static final BlockPropsFactory PERMAFROST_PROPS = new BlockPropsFactory(() -> Properties.of
+            (Material.STONE)
+            .sound(JSoundTypes.PERMAFROST)
+            .harvestTool(ToolType.PICKAXE)
+            .requiresCorrectToolForDrops()
+            .strength(1.75F, 7.0F));
+
+    public static final BlockPropsFactory STONE_PROPS = new BlockPropsFactory(() -> Properties.of
+            (Material.STONE)
+            .sound(SoundType.STONE)
+            .harvestTool(ToolType.PICKAXE)
+            .requiresCorrectToolForDrops()
+            .strength(1.5F, 6.0F));
+
+    public static final BlockPropsFactory LEAVES_PROPS = new BlockPropsFactory(() -> Properties.of
+            (Material.LEAVES)
 			.sound(SoundType.GRASS)
 			.requiresCorrectToolForDrops()
 			.noOcclusion()

@@ -32,6 +32,7 @@ public class JEntityRenderRegistry {
         //Mobs
         RenderingRegistry.registerEntityRenderingHandler(JEntities.FLORO_TYPE, FloroRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(JEntities.HONGO_TYPE, HongoRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(JEntities.WITHERSHROOM_TYPE, WithershroomRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(JEntities.HONGLOW_TYPE, HonglowRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(JEntities.WITHERSPINE_TYPE, WitherspineRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(JEntities.TOWER_GUARDIAN_TYPE, TowerGuardianRenderer::new);

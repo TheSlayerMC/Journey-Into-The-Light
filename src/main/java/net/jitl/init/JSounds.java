@@ -16,6 +16,16 @@ public class JSounds {
     public static final RegistryObject<TimeSound> MUD_BLOCK_BREAK = REGISTER.register("block.mud.break");
     public static final RegistryObject<TimeSound> MUD_BLOCK_DIG = REGISTER.register("block.mud.dig");
 
+    public static final RegistryObject<TimeSound> GRASSY_PERMAFROST_BREAK = REGISTER.register("block.grassy_permafrost.break");
+    public static final RegistryObject<TimeSound> GRASSY_PERMAFROST_DIG = REGISTER.register("block.grassy_permafrost.dig");
+
+    public static final RegistryObject<TimeSound> CRUMBLED_PERMAFROST_BREAK = REGISTER.register("block.crumbled_permafrost.break");
+    public static final RegistryObject<TimeSound> CRUMBLED_PERMAFROST_DIG = REGISTER.register("block.crumbled_permafrost.dig");
+
+    public static final RegistryObject<TimeSound> PERMAFROST_BREAK = REGISTER.register("block.permafrost.break");
+    public static final RegistryObject<TimeSound> PERMAFROST_DIG = REGISTER.register("block.permafrost.dig");
+
+
     public static final RegistryObject<TimeSound> LUNIUM_ORE_BREAK = REGISTER.register("block.lunium_ore.break");
     public static final RegistryObject<TimeSound> LUNIUM_BLOCK_BREAK = REGISTER.register("block.lunium_block.break");
     public static final RegistryObject<TimeSound> LUNIUM_BLOCK_DIG = REGISTER.register("block.lunium_block.dig");

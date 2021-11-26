@@ -28,6 +28,7 @@ public class JParticleManager {
     public static final RegistryObject<BasicParticleType> CAVE_VINE = REGISTER.register("cave_vine", () -> new BasicParticleType(false));
     public static final RegistryObject<BasicParticleType> ESSENCIA_LIGHTNING = REGISTER.register("essencia_lightning", () -> new BasicParticleType(false));
     public static final RegistryObject<BasicParticleType> MINERS_PEARL = REGISTER.register("miners_pearl", () -> new BasicParticleType(false));
+    public static final RegistryObject<BasicParticleType> SNOWFLAKE = REGISTER.register("snowflake", () -> new BasicParticleType(false));
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void registerParticleFactories(ParticleFactoryRegisterEvent event) {
@@ -39,5 +40,6 @@ public class JParticleManager {
         manager.register(CAVE_VINE.get(), CaveVineParticle.Factory::new);
         manager.register(ESSENCIA_LIGHTNING.get(), EssenciaLightningParticle.Factory::new);
         manager.register(MINERS_PEARL.get(), MinersPearlParticle.Factory::new);
+        manager.register(SNOWFLAKE.get(), SnowflakeParticle.Factory::new);
     }
 }

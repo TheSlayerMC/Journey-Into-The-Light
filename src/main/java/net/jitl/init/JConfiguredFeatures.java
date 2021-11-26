@@ -20,8 +20,6 @@ import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.blockstateprovider.WeightedBlockStateProvider;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.template.RuleTest;
-import net.minecraft.world.gen.foliageplacer.MegaPineFoliagePlacer;
-import net.minecraft.world.gen.trunkplacer.GiantTrunkPlacer;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import ru.timeconqueror.timecore.api.registry.ConfiguredFeatureRegister;
 import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable;
@@ -503,7 +501,7 @@ public class JConfiguredFeatures {
                             .xspread(10)
                             .zspread(10)
                             .whitelist(ImmutableSet.of(
-                                    JBlocks.FROZEN_GRASS_BLOCK))
+                                    JBlocks.GRASSY_PERMAFROST))
                             .noProjection()
                             .build())
                     .range(250)

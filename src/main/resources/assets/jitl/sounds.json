@@ -18,6 +18,63 @@
     ],
     "subtitle": "subtitles.block.generic.break"
   },
+  "block.grassy_permafrost.break": {
+    "sounds": [
+      "jitl:blocks/break/grassy_permafrost_1",
+      "jitl:blocks/break/grassy_permafrost_2",
+      "jitl:blocks/break/grassy_permafrost_3",
+      "jitl:blocks/break/grassy_permafrost_4"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.grassy_permafrost.dig": {
+    "sounds": [
+      "jitl:blocks/dig/grassy_permafrost_1",
+      "jitl:blocks/dig/grassy_permafrost_2",
+      "jitl:blocks/dig/grassy_permafrost_3",
+      "jitl:blocks/dig/grassy_permafrost_4"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.crumbled_permafrost.break": {
+    "sounds": [
+      "jitl:blocks/break/crumbled_permafrost_1",
+      "jitl:blocks/break/crumbled_permafrost_2",
+      "jitl:blocks/break/crumbled_permafrost_3",
+      "jitl:blocks/break/crumbled_permafrost_4"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.crumbled_permafrost.dig": {
+    "sounds": [
+      "jitl:blocks/dig/crumbled_permafrost_1",
+      "jitl:blocks/dig/crumbled_permafrost_2",
+      "jitl:blocks/dig/crumbled_permafrost_3",
+      "jitl:blocks/dig/crumbled_permafrost_4"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.permafrost.break": {
+    "sounds": [
+      "jitl:blocks/break/permafrost_1",
+      "jitl:blocks/break/permafrost_2",
+      "jitl:blocks/break/permafrost_3",
+      "jitl:blocks/break/permafrost_4",
+      "jitl:blocks/break/permafrost_5"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.permafrost.dig": {
+    "sounds": [
+      "jitl:blocks/dig/permafrost_1",
+      "jitl:blocks/dig/permafrost_2",
+      "jitl:blocks/dig/permafrost_3",
+      "jitl:blocks/dig/permafrost_4",
+      "jitl:blocks/dig/permafrost_5",
+      "jitl:blocks/dig/permafrost_6"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
   "block.brick.break": {
     "sounds": [
       "jitl:blocks/break/brick_1",

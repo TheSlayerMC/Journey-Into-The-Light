@@ -2,20 +2,20 @@
   "type": "default",
   "config": {
     "top_material": {
-      "Name": "jitl:frozen_grass_block",
+      "Name": "jitl:grassy_permafrost",
       "Properties": {
         "snowy": "false",
         "double_drops": "false"
       }
     },
     "under_material": {
-      "Name": "jitl:frozen_dirt",
+      "Name": "jitl:crumbled_permafrost",
       "Properties": {
         "double_drops": "false"
       }
     },
     "underwater_material": {
-      "Name": "jitl:frozen_stone",
+      "Name": "jitl:permafrost",
       "Properties": {
         "double_drops": "false"
       }

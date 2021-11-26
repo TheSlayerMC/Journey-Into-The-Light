@@ -198,10 +198,12 @@ public class BlockRegistrator {
         //registerDefaultBlock("senterian_portal_frame", "Senterian Portal Frame");//different style
 
         registerDefaultBlock("frozen_portal", "Frozen Portal", () -> new JBasePortalBlock(JBlockProperties.PORTAL.create(), Dimensions.FROZEN_LANDS, JBlocks.FROZEN_PORTAL_FRAME));
-        registerSpeciallyRenderedBlock("frozen_grass_block", "Frozen Grass", () -> new Block(JBlockProperties.GRASS_PROPS.create()),
-                () -> BlockModels.cubeBottomTopModel(JITL.tl("block/frozen_grass_block_top"), JITL.tl("block/frozen_grass_block_side"), JITL.tl("block/frozen_dirt")));
-        registerDefaultBlock("frozen_dirt", "Frozen Dirt", () -> new Block(JBlockProperties.DIRT_PROPS.create()));
-        registerDefaultBlock("frozen_stone", "Frozen Stone", () -> new Block(JBlockProperties.STONE_PROPS.create()));
+
+        registerSpeciallyRenderedBlock("grassy_permafrost", "Grassy Permafrost", () -> new Block(JBlockProperties.GRASSY_PERMAFROST_PROPS.create()),
+                () -> BlockModels.cubeBottomTopModel(JITL.tl("block/grassy_permafrost_top"), JITL.tl("block/grassy_permafrost_side"), JITL.tl("block/crumbled_permafrost")));
+
+        registerDefaultBlock("crumbled_permafrost", "Crumbled Permafrost", () -> new Block(JBlockProperties.CRUMBLED_PERMAFROST_PROPS.create()));
+        registerDefaultBlock("permafrost", "Permafrost", () -> new Block(JBlockProperties.PERMAFROST_PROPS.create()));
 
         registerDefaultBlock("euca_portal", "Euca Portal", () -> new JBasePortalBlock(JBlockProperties.PORTAL.create(), Dimensions.EUCA, JBlocks.EUCA_PORTAL_FRAME));
         registerSpeciallyRenderedBlock("euca_gold_grass_block", "Euca Gold Grass", () -> new Block(JBlockProperties.GRASS_PROPS.create()),

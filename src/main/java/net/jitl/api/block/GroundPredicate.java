@@ -30,7 +30,7 @@ public interface GroundPredicate {
             block == JBlocks.GOLDITE_GRASS_BLOCK || block == JBlocks.EUCA_SILVER_GRASS_BLOCK || block == JBlocks.EUCA_GOLD_GRASS_BLOCK));
 
     GroundPredicate FROZEN_GRASS_BLOCK = SOLID_SIDE.and(blockPredicate(block ->
-            block == JBlocks.FROZEN_GRASS_BLOCK));
+            block == JBlocks.GRASSY_PERMAFROST));
 
     GroundPredicate UNDERGROUND = SOLID_SIDE.and(blockPredicate(block ->
             block == Blocks.STONE ||

@@ -2,9 +2,9 @@
   "surface_builder": "jitl:frozen",
   "depth": 0.3,
   "scale": 0.45,
-  "temperature": -2,
-  "downfall": 1.0,
-  "precipitation": "rain",
+  "precipitation": "snow",
+  "temperature": -0.8,
+  "downfall": 0.4,
   "category": "plains",
   "effects": {
     "sky_color": 3145727,
@@ -19,6 +19,12 @@
       "min_delay": 10,
       "max_delay": 1000,
       "replace_current_music": true
+    },
+    "particle": {
+      "options": {
+        "type": "jitl:snowflake"
+      },
+      "probability": 0.01428
     }
   },
   "starts": [],

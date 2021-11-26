@@ -10,7 +10,7 @@
     "has_skylight": true,
     "has_ceiling": true,
     "coordinate_scale": 1,
-    "ambient_light": 0.8,
+    "ambient_light": 0,
     "logical_height": 256,
     "infiniburn": "minecraft:infiniburn_overworld",
     "min_y": 0,
@@ -32,7 +32,7 @@
       "deepslate_enabled": true,
       "ore_veins_enabled": false,
       "default_block": {
-        "Name": "jitl:frozen_stone"
+        "Name": "jitl:permafrost"
       },
       "default_fluid": {
         "Name": "jitl:frosty_ice",

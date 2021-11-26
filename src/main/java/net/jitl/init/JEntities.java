@@ -58,6 +58,16 @@ public class JEntities {
             .spawnEgg(OVERWORLD_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
             .retrieve();
 
+    public static final EntityType<WithershroomEntity> WITHERSHROOM_TYPE = REGISTER.registerMob("withershroom",
+            Builder.of(WithershroomEntity::new, EntityClassification.MONSTER)
+                    .setTrackingRange(80)
+                    .setShouldReceiveVelocityUpdates(true)
+                    .sized(1.5F, 2F))
+            .spawnSettings(EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, WithershroomEntity::canSpawn)
+            .attributes(() -> HongoEntity.createAttributes().build())
+            .spawnEgg(OVERWORLD_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
+            .retrieve();
+
     public static final EntityType<HonglowEntity> HONGLOW_TYPE = REGISTER.registerMob("honglow",
             Builder.of(HonglowEntity::new, EntityClassification.MONSTER)
                     .setTrackingRange(80)
