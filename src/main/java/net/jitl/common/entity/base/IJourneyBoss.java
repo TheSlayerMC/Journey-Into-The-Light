@@ -21,10 +21,14 @@ public interface IJourneyBoss {
         int x = event.getX();
         int y = event.getY();
 
+        int timeWidth = (int) (182 * Math.min((double) entity.tickCount / 20, 1));
+        double healthWidth = entity.getHealth() / entity.getMaxHealth();
+
+        //TODO: Custom blit method?
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         minecraft.getTextureManager().bind(getBarTexture());
-        RenderUtils.blit(stack, x, y, 0, 10, 182, 9, 182, 19);
-        RenderUtils.blit(stack, x, y, 0, 0, (int) (182 * (entity.getHealth() / entity.getMaxHealth())), 9, 182, 19);
+        RenderUtils.blit(stack, 91 + x - timeWidth / 2, y, timeWidth, 9, 0, 10, 182, 9, 182, 19);
+        RenderUtils.blit(stack, 91 + x - timeWidth / 2, y, (int) (timeWidth * healthWidth), 9, 0, 0, (int) (182 * healthWidth),  9, 182, 19);
     }
 
     JMusic getBossMusic();
