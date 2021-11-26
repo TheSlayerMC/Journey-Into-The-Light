@@ -2,6 +2,7 @@ package net.jitl.common.entity.overworld;
 
 import net.jitl.JITL;
 import net.jitl.common.entity.base.IJourneyBoss;
+import net.jitl.common.helper.JBossInfo;
 import net.jitl.common.helper.JMusic;
 import net.jitl.init.JAnimations;
 import net.jitl.init.JSounds;
@@ -15,8 +16,11 @@ import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.monster.ZombifiedPiglinEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.BossInfo;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerBossInfo;
 import net.minecraftforge.common.util.Lazy;
 import org.jetbrains.annotations.NotNull;
 import ru.timeconqueror.timecore.animation.AnimationStarter;
@@ -30,6 +34,7 @@ import ru.timeconqueror.timecore.api.animation.builders.AnimationSystemBuilder;
 
 public class TowerGuardianEntity extends MonsterEntity implements AnimatedObject<TowerGuardianEntity>, IJourneyBoss {
 
+	private final ServerBossInfo bossInfo = new ServerBossInfo(this.getDisplayName(), BossInfo.Color.BLUE, BossInfo.Overlay.NOTCHED_6);
 	private static final JMusic BOSS_TRACK = new JMusic(JSounds.TEMPLE_GUARDIAN_MUSIC.get(), 2, 0, 0);
 	private static final Lazy<DelayedAction<TowerGuardianEntity, Object>> SMASHING_ACTION;
 
@@ -94,15 +99,15 @@ public class TowerGuardianEntity extends MonsterEntity implements AnimatedObject
 	}
 
 	@Override
-	public void onAddedToWorld() {
-		super.onAddedToWorld();
-		if (this.level.isClientSide()); //TODO: store this boss somewhere
+	public void startSeenByPlayer(ServerPlayerEntity player) {
+		super.startSeenByPlayer(player);
+		JBossInfo.addInfo(player, bossInfo, this);
 	}
 
 	@Override
-	public void onRemovedFromWorld() {
-		super.onRemovedFromWorld();
-		if (this.level.isClientSide()); //TODO: remove boss
+	public void stopSeenByPlayer(ServerPlayerEntity player) {
+		super.stopSeenByPlayer(player);
+		JBossInfo.removeInfo(player, bossInfo, this);
 	}
 
 	private class SmashingGoal extends MeleeAttackGoal {

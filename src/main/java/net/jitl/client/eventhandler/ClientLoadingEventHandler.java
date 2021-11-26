@@ -16,7 +16,7 @@ public class ClientLoadingEventHandler {
     private static void onClientSetup(FMLClientSetupEvent event) {
         KeybindEventHandler.registerKeys(event);
         event.enqueueWork(() -> {
-            DimensionRenderInfo.EFFECTS.put(JDimensions.FROZEN_WORLD.location(), new FrozenRenderInfo());
+            DimensionRenderInfo.EFFECTS.put(JDimensions.FROZEN.location(), new FrozenRenderInfo());
         });
     }
 }

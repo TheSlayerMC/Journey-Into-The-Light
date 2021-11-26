@@ -1,5 +1,6 @@
 package net.jitl.client.world;
 
+import net.jitl.client.render.FrozenSkyRenderer;
 import net.minecraft.client.world.DimensionRenderInfo;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraftforge.client.ISkyRenderHandler;
@@ -27,6 +28,6 @@ public class FrozenRenderInfo extends DimensionRenderInfo {
     @Nullable
     @Override
     public ISkyRenderHandler getSkyRenderHandler() {
-        return null;
+        return new FrozenSkyRenderer();
     }
 }
