@@ -58,6 +58,7 @@ public class WithershroomEntity extends MonsterEntity {
                 if (!entitiesNear.isEmpty()) {
                     spawnEffectCloud();
                 }
+                //transform flowers to wither roses here
             }
             if (this.getBlockStateOn().getBlock() instanceof GrassBlock) {
                 level.setBlock(this.blockPosition().below(), Blocks.COARSE_DIRT.defaultBlockState(), 1);
