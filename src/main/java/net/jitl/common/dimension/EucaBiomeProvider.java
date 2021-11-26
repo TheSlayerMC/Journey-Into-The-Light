@@ -109,7 +109,7 @@ public class EucaBiomeProvider extends BiomeProvider {
 
     public Biome getNoiseBiome(int x, int y, int z) {
         int i = this.useY ? y : 0;
-        Biome.Attributes biome$attributes = new Biome.Attributes((float)this.temperatureNoise.getValue((double)x, (double)i, (double)z), (float)this.humidityNoise.getValue((double)x, (double)i, (double)z), (float)this.altitudeNoise.getValue((double)x, (double)i, (double)z), (float)this.weirdnessNoise.getValue((double)x, (double)i, (double)z), 0.0F);
+        Biome.Attributes biome$attributes = new Biome.Attributes((float) this.temperatureNoise.getValue(x, i, z), (float) this.humidityNoise.getValue(x, i, z), (float) this.altitudeNoise.getValue(x, i, z), (float) this.weirdnessNoise.getValue(x, i, z), 0.0F);
         return this.parameters.stream().min(Comparator.comparing((attributeBiomePair) -> {
             return attributeBiomePair.getFirst().fitness(biome$attributes);
         })).map(Pair::getSecond).map(Supplier::get).orElse(BiomeRegistry.THE_VOID);
@@ -186,6 +186,8 @@ public class EucaBiomeProvider extends BiomeProvider {
                 return lookupRegistry1.get(JBiomeRegistry.EUCA_GOLDITE_GRAINS.getRegistryName());
             }), Pair.of(new Biome.Attributes(0.0F, 0.0F, 0.0F, 0.0F, 0.0F), () -> {
                 return lookupRegistry1.get(JBiomeRegistry.EUCA_SILVER_PLAINS.getRegistryName());
+            }), Pair.of(new Biome.Attributes(0.0F, 0.0F, 0.0F, 0.0F, 0.0F), () -> {
+                return lookupRegistry1.get(JBiomeRegistry.FROZEN_LANDS.getRegistryName());
             })), Optional.of(Pair.of(lookupRegistry1, preset)));
         });
         private final ResourceLocation name;

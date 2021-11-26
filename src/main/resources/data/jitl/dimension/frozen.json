@@ -7,14 +7,16 @@
     "respawn_anchor_works": false,
     "bed_works": false,
     "has_raids": false,
-    "has_skylight": true,
+    "has_skylight": false,
     "has_ceiling": true,
+    "fixed_time": 18000,
     "coordinate_scale": 1,
     "ambient_light": 0,
     "logical_height": 256,
     "infiniburn": "minecraft:infiniburn_overworld",
     "min_y": 0,
-    "height": 256
+    "height": 256,
+    "effects": "jitl:frozen"
   },
   "generator": {
     "type": "minecraft:noise",
@@ -69,8 +71,48 @@
       }
     },
     "biome_source": {
-      "type": "minecraft:fixed",
-      "biome": "jitl:frozen/frozen"
+      "type": "jitl:euca_provider",
+      "seed": -22426074,
+      "altitude_noise": {
+        "firstOctave": -7,
+        "amplitudes": [
+          1,
+          1
+        ]
+      },
+      "temperature_noise": {
+        "firstOctave": -7,
+        "amplitudes": [
+          1,
+          1
+        ]
+      },
+      "humidity_noise": {
+        "firstOctave": -7,
+        "amplitudes": [
+          1,
+          1
+        ]
+      },
+      "weirdness_noise": {
+        "firstOctave": -7,
+        "amplitudes": [
+          1,
+          1
+        ]
+      },
+      "biomes": [
+        {
+          "biome": "jitl:frozen/frozen",
+          "parameters": {
+            "altitude": 1,
+            "temperature": -1,
+            "humidity": -1,
+            "weirdness": -1,
+            "offset": 0
+          }
+        }
+      ]
     }
   }
 }

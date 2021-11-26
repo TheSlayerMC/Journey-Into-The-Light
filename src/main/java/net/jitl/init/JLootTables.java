@@ -1,4 +1,4 @@
-package net.jitl.init;
+/*package net.jitl.init;
 
 import net.jitl.JITL;
 import net.minecraft.loot.LootTables;
@@ -15,4 +15,4 @@ public class JLootTables extends LootTables {
     private static ResourceLocation register(String id) {
         return JITL.rl("loot_tables/" + id);
     }
-}
+}*/

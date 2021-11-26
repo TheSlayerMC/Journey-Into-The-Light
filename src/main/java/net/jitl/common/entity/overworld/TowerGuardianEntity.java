@@ -85,7 +85,7 @@ public class TowerGuardianEntity extends MonsterEntity implements AnimatedObject
 
 	@Override
 	public ResourceLocation getBarTexture() {
-		return null;
+		return JITL.tl("gui/bossbars/tower_guardian.png").fullLocation();
 	}
 
 	@Override

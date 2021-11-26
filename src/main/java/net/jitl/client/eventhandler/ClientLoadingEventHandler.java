@@ -1,6 +1,9 @@
 package net.jitl.client.eventhandler;
 
 import net.jitl.client.Models;
+import net.jitl.client.world.FrozenRenderInfo;
+import net.jitl.init.JDimensions;
+import net.minecraft.client.world.DimensionRenderInfo;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
@@ -12,5 +15,8 @@ public class ClientLoadingEventHandler {
 
     private static void onClientSetup(FMLClientSetupEvent event) {
         KeybindEventHandler.registerKeys(event);
+        event.enqueueWork(() -> {
+            DimensionRenderInfo.EFFECTS.put(JDimensions.FROZEN_WORLD.location(), new FrozenRenderInfo());
+        });
     }
 }

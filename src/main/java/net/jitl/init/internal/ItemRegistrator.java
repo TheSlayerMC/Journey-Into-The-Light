@@ -28,9 +28,9 @@ import net.jitl.common.item.throwable.ThrowableItem;
 import net.jitl.init.JBlocks;
 import net.jitl.init.JEntities;
 import net.jitl.init.JFoods;
-import net.jitl.init.JLootTables;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
+import net.minecraft.loot.LootTables;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.SoundEvents;
 import ru.timeconqueror.timecore.api.client.resource.StandardItemModelParents;
@@ -127,9 +127,9 @@ public class ItemRegistrator {
         registerHandheldItem("staff_of_essencia", "Staff of Essencia", () -> new StaffItem(rangedWeaponsGrouped(),
                 (world, thrower) -> new EssenciaProjectileEntity(JEntities.ESSENCIA_PROJECTILE_TYPE, world, thrower, 0.0F)));
 
-        registerItem("loot_pouch_basic", "Loot Pouch", () -> new LootItem(JLootTables.LOOT_POUCH_BASIC, false));
-        registerItem("loot_pouch_gold", "Gold Loot Pouch", () -> new LootItem(JLootTables.LOOT_POUCH_GOLD, true));
-        registerItem("loot_pouch_diamond", "Diamond Loot Pouch", () -> new LootItem(JLootTables.LOOT_POUCH_DIAMOND, true));
+        registerItem("loot_pouch_basic", "Loot Pouch", () -> new LootItem(LootTables.ABANDONED_MINESHAFT, false));
+        registerItem("loot_pouch_gold", "Gold Loot Pouch", () -> new LootItem(LootTables.DESERT_PYRAMID, true));
+        registerItem("loot_pouch_diamond", "Diamond Loot Pouch", () -> new LootItem(LootTables.STRONGHOLD_CORRIDOR, true));
 
         //NETHER ITEMS
         registerItem("bloodcrust_ingot", "Bloodcrust Ingot");
