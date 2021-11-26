@@ -1,6 +1,7 @@
 package net.jitl.common.entity.overworld;
 
 import net.jitl.JITL;
+import net.jitl.client.render.gui.BossBarRenderer;
 import net.jitl.common.entity.base.IJourneyBoss;
 import net.jitl.common.helper.JBossInfo;
 import net.jitl.common.helper.JMusic;
@@ -35,6 +36,7 @@ import ru.timeconqueror.timecore.api.animation.builders.AnimationSystemBuilder;
 public class TowerGuardianEntity extends MonsterEntity implements AnimatedObject<TowerGuardianEntity>, IJourneyBoss {
 
 	private final ServerBossInfo bossInfo = new ServerBossInfo(this.getDisplayName(), BossInfo.Color.BLUE, BossInfo.Overlay.NOTCHED_6);
+	private final BossBarRenderer BOSS_BAR = new BossBarRenderer(this, JITL.tl("gui/bossbars/tower_guardian.png").fullLocation());
 	private static final JMusic BOSS_TRACK = new JMusic(JSounds.TEMPLE_GUARDIAN_MUSIC.get(), 2, 0, 0);
 	private static final Lazy<DelayedAction<TowerGuardianEntity, Object>> SMASHING_ACTION;
 
@@ -89,8 +91,8 @@ public class TowerGuardianEntity extends MonsterEntity implements AnimatedObject
 	}
 
 	@Override
-	public ResourceLocation getBarTexture() {
-		return JITL.tl("gui/bossbars/tower_guardian.png").fullLocation();
+	public BossBarRenderer getBossBar() {
+		return BOSS_BAR;
 	}
 
 	@Override

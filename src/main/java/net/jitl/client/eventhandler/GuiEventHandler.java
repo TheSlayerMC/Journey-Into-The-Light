@@ -66,7 +66,7 @@ public class GuiEventHandler {
 			IJourneyBoss boss = JBossInfo.map.get(event.getBossInfo().getId());
 			if (boss != null) {
 				event.setCanceled(true);
-				boss.renderBossBar(event);
+				boss.getBossBar().render(event);
 			}
 		}
 	}

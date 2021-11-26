@@ -1,5 +1,6 @@
 package net.jitl.common.helper;
 
+import net.jitl.client.render.gui.BossBarRenderer;
 import net.jitl.common.entity.base.IJourneyBoss;
 import net.jitl.network.JBossPacket;
 import net.jitl.network.JPacketHandler;
