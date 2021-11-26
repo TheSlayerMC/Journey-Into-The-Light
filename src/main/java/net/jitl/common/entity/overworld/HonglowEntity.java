@@ -38,9 +38,8 @@ import ru.timeconqueror.timecore.api.util.lookups.EnumLookup;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class HonglowEntity extends MonsterEntity implements IJourneyBoss {
+public class HonglowEntity extends MonsterEntity {
 	public static final DataParameter<Type> VARIANT = EntityDataManager.defineId(HonglowEntity.class, JDataSerializers.HONGLOW_VARIANT);
-	private final ServerBossInfo bossInfo = new ServerBossInfo(this.getDisplayName(), BossInfo.Color.BLUE, BossInfo.Overlay.NOTCHED_6);
 
 	public HonglowEntity(EntityType<? extends HonglowEntity> entityType, World world) {
 		super(entityType, world);
@@ -94,18 +93,6 @@ public class HonglowEntity extends MonsterEntity implements IJourneyBoss {
 	}
 
 	@Override
-	public void startSeenByPlayer(ServerPlayerEntity player) {
-		super.startSeenByPlayer(player);
-		JBossInfo.addInfo(player, bossInfo, this);
-	}
-
-	@Override
-	public void stopSeenByPlayer(ServerPlayerEntity player) {
-		super.stopSeenByPlayer(player);
-		JBossInfo.removeInfo(player, bossInfo, this);
-	}
-
-	@Override
     public boolean hurt(@NotNull DamageSource source, float amount) {
         if (super.hurt(source, amount) && random.nextInt(10) == 0) {
             if (source != DamageSource.OUT_OF_WORLD && source != DamageSource.MAGIC) {
@@ -153,16 +140,6 @@ public class HonglowEntity extends MonsterEntity implements IJourneyBoss {
 
 	protected void playStepSound(@NotNull BlockPos pos, @NotNull BlockState blockIn) {
 		this.playSound(SoundEvents.PIG_STEP, 0.15F, 1.0F);
-	}
-
-	@Override
-	public ResourceLocation getBarTexture() {
-		return JITL.tl("gui/bossbars/blank.png").fullLocation();
-	}
-
-	@Override
-	public JMusic getBossMusic() {
-		return null;
 	}
 
 	public enum Type {
